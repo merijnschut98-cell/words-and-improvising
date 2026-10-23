@@ -71,7 +71,7 @@ XP: base 10 + `min(10, round(10*durationS/targetS))` + 5 if fillerRate < 3 + 5 i
 Content shape (each file `export default`):
 `{topics:[{id,text}], concepts:[{id,text}], audiences:[{id,text}], opinions:[{id,text}], scenarios:[{id,setting,opener}], words:[string], rapid:[{id,text}]}`. Each list has ≥ 25 items (words ≥ 80). Mix everyday, work/Lean, and team-captain contexts.
 
-**Produces:** `makePrompt(drill, content, rng, seen) -> {id, drill, title, body, extra?}` and `buildLesson(content, drillLevels, rng, seen, n=3) -> Prompt[]`. The lesson has n distinct drills. Prompts prefer ids not in `seen` (oldest seen first when everything has been used). `rng` is a `() => number` for determinism. `explain` combines a concept and an audience. `bridge` = topic + 3 distinct words in `extra.words`. `rapid` = 5 distinct questions in `extra.questions`.
+**Produces:** `makePrompt(drill, content, rng, seen) -> {id, drill, title, body, extra?}` and `buildLesson(content, rng, seen, n=3) -> Prompt[]`. The lesson has n distinct drills. Prompts prefer ids not in `seen` (oldest seen first when everything has been used). `rng` is a `() => number` for determinism. `explain` combines a concept and an audience. `bridge` = topic + 3 distinct words in `extra.words`. `rapid` = 5 distinct questions in `extra.questions`.
 
 - [ ] Tests (with a seeded rng): the lesson has 3 distinct drills. `bridge` has 3 distinct words. `rapid` has 5 distinct questions. Unseen is preferred: when every id but one is in `seen`, that one is picked. Both language files have the same keys and ≥ 25 items per list.
 - [ ] Fail → implement → pass → commit.
