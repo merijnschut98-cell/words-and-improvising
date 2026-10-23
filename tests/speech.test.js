@@ -22,3 +22,19 @@ test('interim only leaves final empty', () => {
 test('joinText trims and single-spaces', () => {
   assert.equal(joinText('  a ', '', ' b  c'), 'a b c');
 });
+
+test('short final followed by a word with the same prefix is kept', () => {
+  assert.equal(sessionText([r('so', true), r('something else', true)]).final, 'so something else');
+  assert.equal(sessionText([r('I', true), r('Indeed it works', true)]).final, 'I Indeed it works');
+});
+
+test('cumulative final equal to previous is not duplicated', () => {
+  assert.equal(sessionText([r('yes and', true), r('yes and', true)]).final, 'yes and');
+});
+
+import { isFatalSpeechError } from '../src/core/speech.js';
+
+test('fatal speech errors stop restarts', () => {
+  for (const c of ['not-allowed', 'service-not-allowed', 'network', 'audio-capture', 'language-not-supported']) assert.ok(isFatalSpeechError(c), c);
+  for (const c of ['no-speech', 'aborted']) assert.ok(!isFatalSpeechError(c), c);
+});

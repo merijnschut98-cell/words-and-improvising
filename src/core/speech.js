@@ -5,6 +5,17 @@ export function joinText(...parts) {
   return parts.join(' ').replace(/\s+/g, ' ').trim();
 }
 
+// Android sometimes repeats earlier finals inside a later one ("I think" ->
+// "I think that"). Only treat it as cumulative on a word boundary.
+function isCumulative(prev, next) {
+  const a = prev.toLowerCase();
+  const b = next.toLowerCase();
+  return b === a || b.startsWith(`${a} `);
+}
+
+const FATAL = new Set(['not-allowed', 'service-not-allowed', 'network', 'audio-capture', 'language-not-supported']);
+export const isFatalSpeechError = (code) => FATAL.has(code);
+
 // results: SpeechRecognitionResultList-like (array of [{transcript}] with isFinal)
 export function sessionText(results) {
   let final = '';
@@ -13,7 +24,7 @@ export function sessionText(results) {
     const text = joinText(results[i][0].transcript);
     if (!text) continue;
     if (!results[i].isFinal) interim = joinText(interim, text);
-    else if (final && text.toLowerCase().startsWith(final.toLowerCase())) final = text;
+    else if (final && isCumulative(final, text)) final = text;
     else final = joinText(final, text);
   }
   return { final, interim };
@@ -30,6 +41,7 @@ export function createRecognizer({ lang, onText, onError }) {
   let active = false;
   let committed = '';
   let session = { final: '', interim: '' };
+  let restarts = [];
 
   const emit = () => onText(joinText(committed, session.final), session.interim);
 
@@ -39,19 +51,28 @@ export function createRecognizer({ lang, onText, onError }) {
     rec.continuous = true;
     rec.interimResults = true;
     rec.onresult = (e) => {
+      restarts = [];
       session = sessionText(e.results);
       emit();
     };
     rec.onerror = (e) => {
-      if (e.error === 'no-speech' || e.error === 'aborted') return;
-      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') active = false;
+      if (!isFatalSpeechError(e.error)) return;
+      active = false;
       onError && onError(e.error);
     };
     rec.onend = () => {
       committed = joinText(committed, session.final);
       session = { final: '', interim: '' };
       if (active) {
-        try { spawn(); } catch (err) { onError && onError('restart'); }
+        // Guard against a restart loop when the engine keeps ending immediately.
+        const now = Date.now();
+        restarts = restarts.filter((t) => now - t < 2000).concat(now);
+        if (restarts.length > 3) {
+          active = false;
+          onError && onError('restart');
+          return;
+        }
+        try { spawn(); } catch { active = false; onError && onError('restart'); }
       } else {
         emit();
       }

@@ -80,6 +80,7 @@ export function renderRound(app, { prompt }, root) {
   let recognizer = null;
   let recorder = null;
   let finished = false;
+  let disposed = false; // set when the screen is left
 
   const sess = app.session;
   const quit = h('button', { class: 'icon-btn', 'aria-label': 'Close', onclick: () => app.go('home') }, '✕');
@@ -127,7 +128,7 @@ export function renderRound(app, { prompt }, root) {
         h('p', { class: 'muted small' }, `${timing.prepS ? `${timing.prepS}s ⏳ · ` : ''}${fmtTime(totalS)}s 🎙`)),
       toggle,
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
-      h('button', { class: 'btn btn-primary btn-big', onclick: begin }, t('start')),
+      h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start')),
     );
   }
 
@@ -135,6 +136,7 @@ export function renderRound(app, { prompt }, root) {
     if (st.mode === 'speak' && settings.record) {
       recorder = createRecorder();
       await recorder.start();
+      if (disposed) { recorder.stop(); return; }
     }
     if (timing.prepS > 0) showPrep();
     else showAnswer();
@@ -176,11 +178,10 @@ export function renderRound(app, { prompt }, root) {
         lang: app.lang,
         onText: (full, interim) => updateLive(full, interim),
         onError: (code) => {
-          if (code === 'not-allowed' || code === 'service-not-allowed') {
-            st.mode = 'type';
-            st.notice = t('micDenied');
-            switchToTyping();
-          }
+          if (finished) return;
+          st.mode = 'type';
+          st.notice = code === 'not-allowed' || code === 'service-not-allowed' ? t('micDenied') : t('speechFailed');
+          switchToTyping();
         },
       });
       recognizer.start();
@@ -234,10 +235,12 @@ export function renderRound(app, { prompt }, root) {
     clearTimer();
     const durationS = elapsed ?? (performance.now() - st.answerStart) / 1000;
     main.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+    quit.disabled = true;
     let transcript = st.transcript;
     if (recognizer) transcript = await recognizer.stop();
     if (st.textarea) transcript = st.textarea.value;
     const audio = recorder ? await recorder.stop() : null;
+    if (disposed) return;
     app.go('feedback', {
       prompt, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode,
     });
@@ -246,6 +249,7 @@ export function renderRound(app, { prompt }, root) {
   showIntro();
 
   return () => {
+    disposed = true;
     finished = true;
     clearTimer();
     if (recognizer) recognizer.stop();

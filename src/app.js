@@ -70,12 +70,17 @@ export const app = {
     this.session = null;
     this.go('round', { prompt: makePrompt(drill, this.content, Math.random, this.state.seen) });
   },
+  // Adds an applied round's result to the running lesson, if any.
+  addToSession({ xp = 0, levelUp = false } = {}) {
+    if (!this.session) return;
+    this.session.xp += xp;
+    this.session.levelUp = this.session.levelUp || levelUp;
+  },
   // Called by feedback after a round is applied.
-  nextAfterRound({ xp = 0, levelUp = false } = {}) {
+  nextAfterRound(result) {
     const s = this.session;
     if (!s) return this.go('home');
-    s.xp += xp;
-    s.levelUp = s.levelUp || levelUp;
+    this.addToSession(result);
     s.index += 1;
     if (s.index < s.prompts.length) return this.go('round', { prompt: s.prompts[s.index] });
     const summary = { xp: s.xp, levelUp: s.levelUp };

@@ -98,3 +98,7 @@ test('runCoach when sdk cannot load', async () => {
   const r = await runCoach('sk', args, async () => { throw new TypeError('Failed to fetch'); });
   assert.deepEqual(r, { ok: false, error: 'offline' });
 });
+
+test('parse truncated response', () => {
+  assert.equal(parseCoachResponse({ stop_reason: 'max_tokens', content: [{ type: 'text', text: '{"scores":' }] }).ok, false);
+});

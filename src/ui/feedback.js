@@ -75,7 +75,10 @@ export function renderFeedback(app, params, root) {
     const head = h('h2', { class: 'card-title' }, '🧑‍🏫 ', t('coach'));
     if (state === 'nokey') {
       coachCard.replaceChildren(head, h('p', { class: 'muted' }, t('coachNoKey')),
-        h('button', { class: 'btn btn-ghost small', onclick: () => app.go('settings') }, t('nav_settings')));
+        h('button', {
+          class: 'btn btn-ghost small',
+          onclick: () => { commit(); app.session = null; app.go('settings'); },
+        }, t('nav_settings')));
     } else if (state === 'loading') {
       coachCard.replaceChildren(head, h('div', { class: 'shimmer' }), h('p', { class: 'muted small' }, t('coachLoading')));
     } else if (state && state.ok === false) {
@@ -110,8 +113,7 @@ export function renderFeedback(app, params, root) {
   }
 
   function sayAgain() {
-    const { xp } = commit();
-    if (app.session) app.session.xp += xp;
+    app.addToSession(commit());
     app.go('round', { prompt });
   }
 

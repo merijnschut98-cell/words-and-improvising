@@ -22,7 +22,11 @@ const FAKE_SPEECH = `
   window.__speechMode = 'ok';
   class FakeRec {
     start() {
-      if (window.__speechMode === 'deny') { setTimeout(() => this.onerror && this.onerror({ error: 'not-allowed' }), 50); setTimeout(() => this.onend && this.onend(), 80); return; }
+      if (window.__speechMode === 'deny' || window.__speechMode === 'network') {
+        window.__recStarts = (window.__recStarts || 0) + 1;
+        const error = window.__speechMode === 'deny' ? 'not-allowed' : 'network';
+        setTimeout(() => this.onerror && this.onerror({ error }), 50); setTimeout(() => this.onend && this.onend(), 80); return;
+      }
       const lines = ['Um so I think', 'Um so I think this is like a really good', 'Um so I think this is like a really good point about the bridge and the river'];
       let i = 0;
       this._t = setInterval(() => {
@@ -124,6 +128,33 @@ await step('mic denied falls back to typing', async () => {
   await page.getByRole('button', { name: 'Klaar' }).click();
   await page.locator('.stats').waitFor();
   await page.evaluate(() => { window.__speechMode = 'ok'; });
+});
+
+await step('network speech error falls back to typing without restart loop', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => { window.__speechMode = 'network'; window.__recStarts = 0; });
+  await page.locator('.drill-prep').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('textarea').waitFor({ timeout: 3000 });
+  await page.waitForTimeout(600);
+  const starts = await page.evaluate(() => window.__recStarts);
+  if (starts !== 1) throw new Error(`recognizer started ${starts} times`);
+  await page.evaluate(() => { window.__speechMode = 'ok'; });
+});
+
+await step('quitting mid-round stays home', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-minute').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.waitForTimeout(500);
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.waitForTimeout(2000);
+  const screen = await page.evaluate(() => document.getElementById('app').dataset.screen);
+  if (screen !== 'home') throw new Error(`ended on ${screen}`);
 });
 
 await step('too-short answer offers retry', async () => {

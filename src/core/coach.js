@@ -70,7 +70,7 @@ export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, 
   ].join('\n\n');
   const req = {
     model,
-    max_tokens: 4000,
+    max_tokens: 8000,
     system: systemPrompt(lang),
     messages: [{ role: 'user', content: user }],
     output_config: { effort: 'low', format: { type: 'json_schema', schema: COACH_SCHEMA } },
@@ -84,6 +84,7 @@ export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, 
 
 export function parseCoachResponse(message) {
   if (!message || message.stop_reason === 'refusal') return { ok: false, error: 'refusal' };
+  if (message.stop_reason === 'max_tokens') return { ok: false, error: 'parse' };
   const texts = (message.content || []).filter((b) => b.type === 'text');
   const last = texts[texts.length - 1];
   if (!last) return { ok: false, error: 'parse' };
