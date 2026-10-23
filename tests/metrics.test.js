@@ -45,3 +45,15 @@ test('fillers do not match inside other words', () => {
   const m = analyze('Unlike someone, the eh-team is sorted', 10, 'en');
   assert.deepEqual(m.fillers, {});
 });
+
+import { highlightFillers } from '../src/core/metrics.js';
+
+test('highlightFillers splits text into filler and plain segments', () => {
+  const segs = highlightFillers('Um, I think you know it is like fine. Unlike that.', 'en');
+  assert.deepEqual(segs.filter((s) => s.filler).map((s) => s.text), ['Um', 'you know', 'like']);
+  assert.equal(segs.map((s) => s.text).join(''), 'Um, I think you know it is like fine. Unlike that.');
+});
+
+test('highlightFillers on empty text', () => {
+  assert.deepEqual(highlightFillers('', 'nl'), []);
+});

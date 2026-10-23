@@ -52,3 +52,19 @@ export function analyze(text, durationS, lang = 'en') {
     uniqueRatio: words ? Math.round((new Set(tokens).size / words) * 100) / 100 : 0,
   };
 }
+
+// For display: split the original text into [{text, filler}] segments.
+export function highlightFillers(text, lang = 'en') {
+  if (!text) return [];
+  const alts = phraseList(lang).map((p) => p.join('\\s+')).join('|');
+  const re = new RegExp(`(?<![\\p{L}\\p{N}'’-])(?:${alts})(?![\\p{L}\\p{N}'’-])`, 'giu');
+  const segs = [];
+  let last = 0;
+  for (const m of text.matchAll(re)) {
+    if (m.index > last) segs.push({ text: text.slice(last, m.index), filler: false });
+    segs.push({ text: m[0], filler: true });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) segs.push({ text: text.slice(last), filler: false });
+  return segs;
+}
