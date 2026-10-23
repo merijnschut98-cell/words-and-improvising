@@ -1,0 +1,65 @@
+import { h } from './dom.js';
+import { navBar } from './home.js';
+
+export function renderSettings(app, _params, root) {
+  const t = app.t;
+  const s = app.state.settings;
+  const status = h('span', { class: 'saved', 'aria-live': 'polite' });
+  const flash = () => {
+    status.textContent = `✓ ${t('saved')}`;
+    setTimeout(() => { status.textContent = ''; }, 1500);
+  };
+  const set = (patch, rerender = false) => {
+    app.updateSettings(patch);
+    if (rerender) app.go('settings');
+    else flash();
+  };
+
+  const segmented = (value, options, onPick) => h('div', { class: 'segmented' },
+    options.map(([v, label]) => h('button', { class: value === v ? 'on' : '', onclick: () => onPick(v) }, label)));
+
+  const keyInput = h('input', {
+    type: 'password', autocomplete: 'off', spellcheck: false, placeholder: 'sk-ant-…', value: s.apiKey,
+    onchange: (e) => set({ apiKey: e.target.value.trim() }),
+  });
+
+  function exportData() {
+    const blob = new Blob([app.exportJson()], { type: 'application/json' });
+    const a = h('a', { href: URL.createObjectURL(blob), download: `spraakwater-${app.today()}.json` });
+    document.body.append(a);
+    a.click();
+    a.remove();
+  }
+
+  root.append(
+    h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('settingsTitle')), status),
+    h('main', { class: 'screen settings' },
+      h('section', { class: 'card' },
+        h('label', { class: 'field-label' }, t('language')),
+        segmented(s.lang, [['nl', '🇳🇱 Nederlands'], ['en', '🇬🇧 English']], (v) => set({ lang: v }, true)),
+        h('label', { class: 'field-label' }, t('defaultMode')),
+        segmented(s.mode, [['speak', `🎙 ${t('speak')}`], ['type', `⌨️ ${t('type')}`]], (v) => set({ mode: v }, true))),
+      h('section', { class: 'card' },
+        h('label', { class: 'field-label' }, t('apiKey')),
+        keyInput,
+        h('p', { class: 'muted small' }, t('apiKeyHelp')),
+        h('label', { class: 'field-label' }, t('model')),
+        h('select', { onchange: (e) => set({ model: e.target.value }) },
+          h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),
+          h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
+      h('section', { class: 'card' },
+        h('label', { class: 'toggle' },
+          h('input', { type: 'checkbox', checked: s.record, onchange: (e) => set({ record: e.target.checked }) }),
+          h('span', {}, t('record'))),
+        h('p', { class: 'muted small' }, t('recordHelp'))),
+      h('section', { class: 'card' },
+        h('p', { class: 'muted small' }, t('install')),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn btn-ghost small', onclick: exportData }, t('exportData')),
+          h('button', {
+            class: 'btn btn-danger small',
+            onclick: () => { if (window.confirm(t('resetConfirm'))) { app.reset(); app.go('home'); } },
+          }, t('resetData'))))),
+    navBar(app, 'settings'),
+  );
+}

@@ -1,0 +1,152 @@
+import { h } from './dom.js';
+import { analyze, highlightFillers } from '../core/metrics.js';
+import { applyRound } from '../core/round.js';
+import { runCoach } from '../core/coach.js';
+
+function speak(text, lang) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang === 'nl' ? 'nl-NL' : 'en-US';
+  u.rate = 1;
+  window.speechSynthesis.speak(u);
+}
+
+function chip(value, label, tone = '') {
+  return h('div', { class: `stat ${tone}` }, h('b', {}, value), h('span', {}, label));
+}
+
+export function renderFeedback(app, params, root) {
+  const t = app.t;
+  const { prompt, transcript, durationS, targetS, audio, mode } = params;
+  const lang = app.lang;
+  const metrics = analyze(transcript, durationS, lang);
+  const st = { rating: null, coach: null, applied: false };
+  let audioUrl = null;
+
+  const main = h('main', { class: 'screen feedback' });
+  root.append(h('header', { class: 'top' },
+    h('div', { class: 'round-title' }, t(`drill_${prompt.drill}`)),
+    h('div', { class: 'muted small' }, app.session ? t('roundOf', app.session.index + 1, app.session.prompts.length) : '')), main);
+
+  if (metrics.words < 5) {
+    main.append(
+      h('section', { class: 'card center' }, h('div', { class: 'big-emoji', 'aria-hidden': 'true' }, '🤔'), h('p', {}, t('tooShort'))),
+      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('round', { prompt }) }, t('retry')),
+      h('button', { class: 'btn btn-ghost', onclick: () => app.nextAfterRound() }, t('skip')),
+    );
+    return undefined;
+  }
+
+  function commit() {
+    if (st.applied) return st.result;
+    st.applied = true;
+    const { state, xp, levelUp } = applyRound(app.state, {
+      prompt, transcript, durationS, targetS, metrics, lang, mode,
+      rating: st.rating, coach: st.coach,
+    }, app.today(), Date.now());
+    app.setState(state);
+    st.result = { xp, levelUp };
+    return st.result;
+  }
+
+  const fillerTone = metrics.fillerRate < 3 ? 'good' : metrics.fillerRate < 6 ? 'ok' : 'bad';
+  const topFillers = Object.entries(metrics.fillers).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+  // Transcript with fillers marked
+  const transcriptEl = h('p', { class: 'transcript' },
+    highlightFillers(transcript, lang).map((s) => (s.filler ? h('mark', {}, s.text) : s.text)));
+
+  // Self rating
+  const nextBtn = h('button', { class: 'btn btn-primary btn-big', onclick: onNext },
+    app.session && app.session.index + 1 >= app.session.prompts.length ? t('finish') : t('next'));
+  const rateButtons = t('rate').map((label, i) => h('button', {
+    class: 'rate-btn',
+    'aria-pressed': 'false',
+    onclick: () => {
+      st.rating = i + 1;
+      rateButtons.forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-pressed', String(k === i)); });
+    },
+  }, h('b', {}, i + 1), h('span', {}, label)));
+
+  // Coach card
+  const coachCard = h('section', { class: 'card coach-card' });
+  function renderCoach(state) {
+    const head = h('h2', { class: 'card-title' }, '🧑‍🏫 ', t('coach'));
+    if (state === 'nokey') {
+      coachCard.replaceChildren(head, h('p', { class: 'muted' }, t('coachNoKey')),
+        h('button', { class: 'btn btn-ghost small', onclick: () => app.go('settings') }, t('nav_settings')));
+    } else if (state === 'loading') {
+      coachCard.replaceChildren(head, h('div', { class: 'shimmer' }), h('p', { class: 'muted small' }, t('coachLoading')));
+    } else if (state && state.ok === false) {
+      coachCard.replaceChildren(head, h('p', { class: 'note' }, (t('coachErr')[state.error] || t('coachErr').unknown)),
+        h('button', { class: 'btn btn-ghost small', onclick: askCoach }, t('coachRetry')));
+    } else if (state && state.ok) {
+      const d = state.data;
+      coachCard.replaceChildren(head,
+        h('div', { class: 'scores' }, ['clarity', 'structure', 'fluency', 'vocabulary'].map((k) => h('div', { class: 'score' },
+          h('span', {}, t(`sc_${k}`)),
+          h('span', { class: 'pips' }, [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= d.scores[k] ? 'on' : '' })))))),
+        h('div', { class: 'coach-line good' }, h('b', {}, `${t('strength')}: `), d.strength),
+        h('div', { class: 'coach-line work' }, h('b', {}, `${t('improvement')}: `), d.improvement),
+        h('details', { class: 'stronger', open: true },
+          h('summary', {}, t('stronger')),
+          h('p', {}, d.stronger_version),
+          h('div', { class: 'row' },
+            window.speechSynthesis ? h('button', { class: 'btn btn-ghost small', onclick: () => speak(d.stronger_version, lang) }, `🔊 ${t('hearIt')}`) : null,
+            h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`))));
+    }
+  }
+
+  let alive = true;
+  async function askCoach() {
+    renderCoach('loading');
+    const res = await runCoach(app.state.settings.apiKey, {
+      drill: prompt.drill, prompt, transcript, lang, durationS, metrics, model: app.state.settings.model,
+    });
+    if (!alive) return;
+    if (res.ok) st.coach = res.data;
+    renderCoach(res);
+  }
+
+  function sayAgain() {
+    const { xp } = commit();
+    if (app.session) app.session.xp += xp;
+    app.go('round', { prompt });
+  }
+
+  function onNext() {
+    app.nextAfterRound(commit());
+  }
+
+  if (audio) audioUrl = URL.createObjectURL(audio);
+
+  main.append(
+    h('section', { class: 'stats' },
+      chip(metrics.words, t('m_words')),
+      chip(metrics.wpm, t('m_wpm')),
+      chip(metrics.fillerRate, t('m_fillers'), fillerTone),
+      chip(Math.round(durationS), t('m_time'))),
+    h('section', { class: 'card' },
+      h('h2', { class: 'card-title' }, t('topFillers')),
+      topFillers.length
+        ? h('div', { class: 'scaffold' }, topFillers.map(([w, n]) => h('span', { class: 'chip filler' }, `${w} ×${n}`)))
+        : h('p', { class: 'good-text' }, t('noFillers')),
+      h('h2', { class: 'card-title' }, t('yourAnswer')),
+      transcriptEl,
+      audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl })) : null),
+    h('section', { class: 'card' },
+      h('h2', { class: 'card-title' }, t('rateYourself')),
+      h('div', { class: 'rate-row' }, rateButtons)),
+    coachCard,
+    nextBtn,
+  );
+
+  if (app.state.settings.apiKey) askCoach();
+  else renderCoach('nokey');
+
+  return () => {
+    alive = false;
+    if (audioUrl) URL.revokeObjectURL(audioUrl);
+  };
+}

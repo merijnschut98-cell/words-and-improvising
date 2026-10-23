@@ -3,7 +3,7 @@
 export const FILLERS = {
   en: ['um', 'uh', 'uhm', 'erm', 'er', 'like', 'you know', 'basically', 'actually',
     'so', 'i mean', 'kind of', 'sort of', 'literally', 'right'],
-  nl: ['eh', 'euh', 'ehm', 'uhm', 'uh', 'dus', 'eigenlijk', 'zeg maar', 'gewoon',
+  nl: ['eh', 'euh', 'ehm', 'uhm', 'uh', 'um', 'dus', 'eigenlijk', 'zeg maar', 'gewoon',
     'nou', 'ofzo', 'weet je', 'als het ware', 'echt', 'toch'],
 };
 
