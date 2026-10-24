@@ -1,4 +1,4 @@
-import { h } from './dom.js';
+import { h, aiErrorText } from './dom.js';
 import { makePrompt } from '../core/lesson.js';
 import { runPartner, MAX_USER_TURNS } from '../core/partner.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
@@ -164,7 +164,7 @@ export function renderConversation(app, _params, root) {
       await partnerSays(res.reply, res.end);
     } else {
       controls.replaceChildren(
-        h('p', { class: 'note' }, `${t('partnerErr')} ${t('coachErr')[res.error] || t('coachErr').unknown}`),
+        h('p', { class: 'note' }, `${t('partnerErr')} ${aiErrorText(t, res)}`),
         h('button', { class: 'btn btn-ghost', onclick: askPartner }, t('coachRetry')),
         finishBtn() || '',
       );

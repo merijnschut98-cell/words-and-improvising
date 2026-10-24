@@ -1,4 +1,5 @@
-import { h } from './dom.js';
+import { h, aiErrorText } from './dom.js';
+import { checkKey } from '../core/claude.js';
 import { navBar } from './home.js';
 
 export function renderSettings(app, _params, root) {
@@ -24,6 +25,20 @@ export function renderSettings(app, _params, root) {
   });
 
   const remindNote = h('p', { class: 'muted small' }, t('remindHelp'));
+
+  const keyStatus = h('p', { class: 'small', 'aria-live': 'polite' });
+  const testBtn = h('button', { class: 'btn btn-ghost small', onclick: testKey }, `🔑 ${t('testKey')}`);
+  async function testKey() {
+    const key = keyInput.value.trim();
+    if (key !== app.state.settings.apiKey) set({ apiKey: key });
+    testBtn.disabled = true;
+    keyStatus.className = 'small muted';
+    keyStatus.textContent = t('testing');
+    const res = await checkKey(key, app.state.settings.model);
+    testBtn.disabled = false;
+    keyStatus.className = `small ${res.ok ? 'good-text' : 'note'}`;
+    keyStatus.textContent = res.ok ? `✓ ${t('keyOk')}` : aiErrorText(t, res);
+  }
 
   // Daily reminder via Periodic Background Sync (installed Chrome apps only, best effort).
   async function toggleReminder(box) {
@@ -69,6 +84,8 @@ export function renderSettings(app, _params, root) {
         h('label', { class: 'field-label' }, t('apiKey')),
         keyInput,
         h('p', { class: 'muted small' }, t('apiKeyHelp')),
+        testBtn,
+        keyStatus,
         h('label', { class: 'field-label' }, t('model')),
         h('select', { onchange: (e) => set({ model: e.target.value }) },
           h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),

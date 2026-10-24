@@ -25,3 +25,10 @@ export function fmtTime(s) {
   const n = Math.max(0, Math.ceil(s));
   return n >= 60 ? `${Math.floor(n / 60)}:${String(n % 60).padStart(2, '0')}` : String(n);
 }
+
+// Readable text for an AI call error {error, detail?}.
+export function aiErrorText(t, res) {
+  const table = t('coachErr');
+  const base = table[res.error] || table.unknown;
+  return res.detail && ['request', 'permission', 'unknown'].includes(res.error) ? `${base} ${res.detail}` : base;
+}

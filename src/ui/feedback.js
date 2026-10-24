@@ -1,4 +1,4 @@
-import { h } from './dom.js';
+import { h, aiErrorText } from './dom.js';
 import { analyze, highlightFillers } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
 import { applyRound } from '../core/round.js';
@@ -86,7 +86,7 @@ export function renderFeedback(app, params, root) {
     } else if (state === 'loading') {
       coachCard.replaceChildren(head, h('div', { class: 'shimmer' }), h('p', { class: 'muted small' }, t('coachLoading')));
     } else if (state && state.ok === false) {
-      coachCard.replaceChildren(head, h('p', { class: 'note' }, (t('coachErr')[state.error] || t('coachErr').unknown)),
+      coachCard.replaceChildren(head, h('p', { class: 'note' }, aiErrorText(t, state)),
         h('button', { class: 'btn btn-ghost small', onclick: askCoach }, t('coachRetry')));
     } else if (state && state.ok) {
       const d = state.data;

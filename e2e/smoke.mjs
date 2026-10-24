@@ -47,7 +47,7 @@ const FAKE_SDK = `
     static AuthenticationError = class extends APIError {};
     static RateLimitError = class extends APIError {};
     static APIConnectionError = class extends APIError {};
-    constructor(o) { window.__coachOpts = o; this.beta = { messages: { create: async (req) => {
+    constructor(o) { window.__coachOpts = o; this.models = { retrieve: async (m) => ({ id: m }) }; this.beta = { messages: { create: async (req) => {
       await new Promise((r) => setTimeout(r, 200));
       if (req.output_config.format.schema.properties.reply) {
         window.__partnerReqs = (window.__partnerReqs || 0) + 1;
@@ -93,7 +93,7 @@ await step('lesson: 3 rounds', async () => {
     await page.waitForTimeout(1300);
     if (i === 0) await shot('03-answer');
     await page.getByRole('button', { name: 'Klaar' }).click();
-    await page.locator('.stats').waitFor();
+    await page.locator('.stats').first().waitFor();
     await page.locator('.coach-card .scores').waitFor({ timeout: 5000 });
     await page.locator('.rate-btn').nth(3).click();
     if (i === 0) await shot('04-feedback');
@@ -130,7 +130,7 @@ await step('mic denied falls back to typing', async () => {
   await page.locator('textarea').waitFor({ timeout: 3000 });
   await page.locator('textarea').fill('Dit is een getypt antwoord over het onderwerp met genoeg woorden erin');
   await page.getByRole('button', { name: 'Klaar' }).click();
-  await page.locator('.stats').waitFor();
+  await page.locator('.stats').first().waitFor();
   await page.evaluate(() => { window.__speechMode = 'ok'; });
 });
 
@@ -212,6 +212,14 @@ await step('pause drill shows live counters and pause stats', async () => {
   await page.getByRole('button', { name: 'Klaar' }).click();
   await page.locator('.stats.two').waitFor({ timeout: 5000 });
   await shot('14-pause-feedback');
+});
+
+await step('test my key reports success', async () => {
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Instellingen/ }).click();
+  await page.getByRole('button', { name: /Test mijn sleutel/ }).click();
+  await page.getByText('Sleutel werkt', { exact: false }).waitFor({ timeout: 5000 });
+  await shot('15-testkey');
 });
 
 await step('too-short answer offers retry', async () => {
