@@ -59,6 +59,18 @@ export function renderHome(app, _params, root) {
       h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
         [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
       h('button', {
+        class: 'drill convo-card target-card',
+        onclick: async (e) => {
+          const btn = e.currentTarget;
+          btn.disabled = true;
+          btn.querySelector('.muted').textContent = t('targetLoading');
+          await app.startTargeted();
+        },
+      },
+      h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, '🎯'),
+      h('span', { class: 'drill-name' }, t('targetTitle')),
+      h('span', { class: 'muted small' }, s.settings.apiKey ? t('targetSubAI') : t('targetSub'))),
+      h('button', {
         class: 'drill convo-card',
         onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
       },

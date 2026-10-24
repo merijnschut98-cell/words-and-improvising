@@ -49,6 +49,9 @@ const FAKE_SDK = `
     static APIConnectionError = class extends APIError {};
     constructor(o) { window.__coachOpts = o; this.models = { retrieve: async (m) => ({ id: m }) }; this.beta = { messages: { create: async (req) => {
       await new Promise((r) => setTimeout(r, 200));
+      if (req.output_config.format.schema.properties.drill) {
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ drill: 'bridge', focus: 'Minder eh, meer pauze', body: 'Je laatste teamuitje', audience: '', words: ['anker', 'fiets', 'storm'], setting: '' }) }] };
+      }
       if (req.output_config.format.schema.properties.reply) {
         window.__partnerReqs = (window.__partnerReqs || 0) + 1;
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ reply: 'Leuk! En hoe was dat?', end_conversation: false }) }] };
@@ -163,7 +166,7 @@ await step('quitting mid-round stays home', async () => {
 
 await step('live conversation: 4 turns then feedback with dialogue', async () => {
   await page.goto(BASE);
-  await page.locator('.convo-card').click();
+  await page.locator('.convo-card:not(.target-card)').click();
   await page.getByRole('button', { name: 'Start' }).click();
   for (let i = 0; i < 4; i++) {
     const mic = page.getByRole('button', { name: /Tik en praat/ });
@@ -220,6 +223,31 @@ await step('test my key reports success', async () => {
   await page.getByRole('button', { name: /Test mijn sleutel/ }).click();
   await page.getByText('Sleutel werkt', { exact: false }).waitFor({ timeout: 5000 });
   await shot('15-testkey');
+});
+
+await step('targeted practice: AI exercise with focus line', async () => {
+  await page.goto(BASE);
+  await page.locator('.target-card').click();
+  await page.getByText('🎯 Minder eh, meer pauze').waitFor({ timeout: 5000 });
+  await page.getByRole('heading', { name: 'Woordbrug' }).waitFor();
+  await shot('16-targeted');
+});
+
+await step('targeted practice without key falls back to the weekly focus', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings.apiKey = '';
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.target-card').click();
+  await page.locator('.intro-card').waitFor({ timeout: 5000 });
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings.apiKey = 'sk-test';
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
 });
 
 await step('too-short answer offers retry', async () => {

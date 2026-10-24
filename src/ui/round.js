@@ -78,14 +78,14 @@ function promptCard(app, prompt, state) {
   return card;
 }
 
-export function renderRound(app, { prompt }, root) {
+export function renderRound(app, { prompt, notice = '' }, root) {
   const t = app.t;
   const settings = app.state.settings;
   const timing = drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
   const totalS = timing.answerS * timing.questions;
   const st = {
     mode: speechSupported ? settings.mode : 'type',
-    notice: speechSupported ? '' : (settings.mode === 'speak' ? t('noSpeech') : ''),
+    notice: [notice, speechSupported || settings.mode !== 'speak' ? '' : t('noSpeech')].filter(Boolean).join(' '),
     phase: 'intro',
     timer: null,
     transcript: '',
@@ -141,6 +141,7 @@ export function renderRound(app, { prompt }, root) {
         h('div', { class: 'intro-icon', 'aria-hidden': 'true' }, DRILL_ICON[prompt.drill]),
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
+        prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
         h('p', { class: 'muted small' }, `${timing.prepS ? `${timing.prepS}s ⏳ · ` : ''}${fmtTime(totalS)}s 🎙`)),
       toggle,
       st.notice ? h('p', { class: 'note' }, st.notice) : null,

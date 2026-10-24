@@ -17,6 +17,8 @@ Daily improvised-speaking practice. Short timed rounds train the gap between *kn
 
 **🗣 Live conversation** (needs an API key): the AI plays the other person in a small-talk scenario and talks back out loud, for up to 4 turns. The coach then judges how well you listened, built on what they said and kept the conversation going.
 
+**🎯 Targeted practice**: one round on your weak spot. With a key, the coach writes the exercise from your weekly review and recent feedback. Without one, it picks the drill from your weekly focus.
+
 A **daily lesson** is 3 random drills. Each drill levels up (less prep time, longer answers) when you rate a round 4–5, and down when you rate it 1–2.
 After every round you get your word count, words per minute, filler words per minute (fillers are highlighted in your transcript) and a self-rating.
 If you add an **Anthropic API key** in Settings, an AI coach scores clarity, structure, fluency and vocabulary. It gives one strength, one thing to work on, and a *stronger version* of your answer that you can listen to and then say again.

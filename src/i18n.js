@@ -2,6 +2,11 @@
 const STRINGS = {
   en: {
     tagline: 'Daily improv for your mouth',
+    targetTitle: 'Targeted practice',
+    targetSub: 'One round on your weak spot from this week',
+    targetSubAI: 'The coach writes an exercise for your weak spot',
+    targetLoading: 'Picking your exercise…',
+    targetFallback: 'Coach unavailable, using your weekly focus instead.',
     convoTitle: 'Live conversation',
     convoSub: 'Small talk with an AI partner who talks back',
     convoNeedsKey: 'Needs an API key (Settings)',
@@ -141,6 +146,11 @@ const STRINGS = {
   },
   nl: {
     tagline: 'Dagelijkse improvisatie voor je mond',
+    targetTitle: 'Gerichte oefening',
+    targetSub: 'Eén ronde op je zwakke plek van deze week',
+    targetSubAI: 'De coach schrijft een oefening voor je zwakke plek',
+    targetLoading: 'Oefening kiezen…',
+    targetFallback: 'Coach niet bereikbaar, ik gebruik je weekfocus.',
     convoTitle: 'Live gesprek',
     convoSub: 'Small talk met een AI-gesprekspartner die terugpraat',
     convoNeedsKey: 'Vereist een API-sleutel (Instellingen)',

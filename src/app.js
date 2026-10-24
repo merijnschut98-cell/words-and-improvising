@@ -4,6 +4,9 @@ import { dayKey } from './core/progress.js';
 import { buildLesson, makePrompt } from './core/lesson.js';
 import { translator } from './i18n.js';
 import { reminderMeta } from './core/reminder.js';
+import { weeklyReview } from './core/review.js';
+import { runTailor, fallbackPick } from './core/tailor.js';
+import { aiErrorText } from './ui/dom.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
 import { renderHome } from './ui/home.js';
@@ -82,6 +85,23 @@ export const app = {
   startDrill(drill) {
     this.session = null;
     this.go('round', { prompt: makePrompt(drill, this.content, Math.random, this.state.seen) });
+  },
+  // Targeted practice: AI-written exercise for the weak spot, or the weekly focus without a key.
+  async startTargeted() {
+    const review = weeklyReview(this.state.history, Date.now());
+    const fallback = () => fallbackPick(review, this.content, Math.random, this.state.seen);
+    let prompt;
+    let notice = '';
+    const { apiKey, model } = this.state.settings;
+    if (apiKey) {
+      const improvements = this.state.history.filter((e) => e.coach && e.coach.improvement)
+        .slice(0, 3).map((e) => e.coach.improvement);
+      const res = await runTailor(apiKey, { review, improvements, lang: this.lang, model });
+      if (res.ok) prompt = res.prompt;
+      else notice = `${this.t('targetFallback')} ${aiErrorText(this.t, res)}`;
+    }
+    this.session = null;
+    this.go('round', { prompt: prompt || fallback(), notice });
   },
   // Adds an applied round's result to the running lesson, if any.
   addToSession({ xp = 0, levelUp = false } = {}) {
