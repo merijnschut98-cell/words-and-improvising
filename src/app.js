@@ -35,6 +35,15 @@ const storage = (() => {
   }
 })();
 
+// The service worker can't read localStorage; give it what the reminder needs.
+function writeMeta(state) {
+  if (!('caches' in window)) return;
+  const meta = { lastDay: state.streak.lastDay, streak: state.streak.count, lang: state.settings.lang, remind: state.settings.remind };
+  caches.open('spraakwater-meta')
+    .then((c) => c.put('./__meta', new Response(JSON.stringify(meta), { headers: { 'Content-Type': 'application/json' } })))
+    .catch(() => {});
+}
+
 const root = document.getElementById('app');
 let cleanup = null;
 
@@ -51,6 +60,7 @@ export const app = {
   setState(next) {
     this.state = next;
     save(storage, next);
+    writeMeta(next);
   },
   updateSettings(patch) {
     this.setState({ ...this.state, settings: { ...this.state.settings, ...patch } });
@@ -113,7 +123,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  navigator.serviceWorker.register('./sw.js').catch(() => {});
+  navigator.serviceWorker.register('./sw.js', { type: 'module' }).catch(() => {});
 }
 
 app.go('home');

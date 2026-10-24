@@ -23,6 +23,32 @@ export function renderSettings(app, _params, root) {
     onchange: (e) => set({ apiKey: e.target.value.trim() }),
   });
 
+  const remindNote = h('p', { class: 'muted small' }, t('remindHelp'));
+
+  // Daily reminder via Periodic Background Sync (installed Chrome apps only, best effort).
+  async function toggleReminder(box) {
+    if (!box.checked) {
+      set({ remind: false });
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        if (reg.periodicSync) await reg.periodicSync.unregister('daily-practice');
+      } catch { /* nothing to undo */ }
+      return;
+    }
+    const fail = (msg) => { box.checked = false; set({ remind: false }); remindNote.textContent = msg; };
+    try {
+      if (!('Notification' in window) || !('serviceWorker' in navigator)) return fail(t('remindUnsupported'));
+      if (await Notification.requestPermission() !== 'granted') return fail(t('remindDenied'));
+      const reg = await navigator.serviceWorker.ready;
+      if (!reg.periodicSync) return fail(t('remindUnsupported'));
+      await reg.periodicSync.register('daily-practice', { minInterval: 12 * 60 * 60 * 1000 });
+      set({ remind: true });
+      remindNote.textContent = t('remindHelp');
+    } catch {
+      fail(t('remindUnsupported'));
+    }
+  }
+
   function exportData() {
     const blob = new Blob([app.exportJson()], { type: 'application/json' });
     const a = h('a', { href: URL.createObjectURL(blob), download: `spraakwater-${app.today()}.json` });
@@ -47,6 +73,11 @@ export function renderSettings(app, _params, root) {
         h('select', { onchange: (e) => set({ model: e.target.value }) },
           h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),
           h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
+      h('section', { class: 'card' },
+        h('label', { class: 'toggle' },
+          h('input', { type: 'checkbox', checked: s.remind, onchange: (e) => toggleReminder(e.target) }),
+          h('span', {}, t('remind'))),
+        remindNote),
       h('section', { class: 'card' },
         h('label', { class: 'toggle' },
           h('input', { type: 'checkbox', checked: s.record, onchange: (e) => set({ record: e.target.checked }) }),

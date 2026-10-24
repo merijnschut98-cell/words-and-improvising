@@ -236,6 +236,14 @@ await step('english + progress + settings', async () => {
   await shot('09-progress');
 });
 
+await step('reminder meta is written for the service worker', async () => {
+  const meta = await page.evaluate(async () => {
+    const r = await (await caches.open('spraakwater-meta')).match('./__meta');
+    return r ? r.json() : null;
+  });
+  if (!meta || !meta.lastDay || typeof meta.streak !== 'number') throw new Error(JSON.stringify(meta));
+});
+
 await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });

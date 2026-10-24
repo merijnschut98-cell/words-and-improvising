@@ -7,7 +7,7 @@ const HISTORY_CAP = 200;
 export function defaultState() {
   return {
     version: 1,
-    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false },
+    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false },
     xp: 0,
     streak: { count: 0, lastDay: null },
     days: {}, // 'YYYY-MM-DD' -> rounds completed that day
