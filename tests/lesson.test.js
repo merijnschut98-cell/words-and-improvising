@@ -51,7 +51,7 @@ test('when all seen, picks the oldest', () => {
 test('language files are parallel and large enough', () => {
   assert.deepEqual(Object.keys(en).sort(), Object.keys(nl).sort());
   for (const key of ['topics', 'concepts', 'opinions', 'scenarios', 'rapid']) {
-    assert.ok(en[key].length >= 25, `en.${key}`);
+    assert.ok(en[key].length >= 40, `en.${key}`);
     assert.deepEqual(en[key].map((x) => x.id), nl[key].map((x) => x.id), key);
   }
   assert.ok(en.audiences.length >= 10 && nl.audiences.length === en.audiences.length);
