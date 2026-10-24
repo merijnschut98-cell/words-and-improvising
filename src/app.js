@@ -11,6 +11,7 @@ import { renderFeedback } from './ui/feedback.js';
 import { renderDone } from './ui/done.js';
 import { renderProgress } from './ui/progress.js';
 import { renderSettings } from './ui/settings.js';
+import { renderConversation } from './ui/conversation.js';
 
 const SCREENS = {
   home: renderHome,
@@ -19,6 +20,7 @@ const SCREENS = {
   done: renderDone,
   progress: renderProgress,
   settings: renderSettings,
+  conversation: renderConversation,
 };
 
 const storage = (() => {

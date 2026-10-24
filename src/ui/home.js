@@ -58,6 +58,13 @@ export function renderHome(app, _params, root) {
       h('span', { class: 'drill-name' }, t(`drill_${d}`)),
       h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
         [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
+      h('button', {
+        class: 'drill convo-card',
+        onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
+      },
+      h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, '🗣'),
+      h('span', { class: 'drill-name' }, t('convoTitle')),
+      h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey'))),
       app.installPrompt
         ? h('button', {
           class: 'btn btn-ghost',

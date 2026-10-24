@@ -102,3 +102,21 @@ test('runCoach when sdk cannot load', async () => {
 test('parse truncated response', () => {
   assert.equal(parseCoachResponse({ stop_reason: 'max_tokens', content: [{ type: 'text', text: '{"scores":' }] }).ok, false);
 });
+
+test('live conversation: coach sees the full dialogue', () => {
+  const r = buildCoachRequest({
+    ...args,
+    drill: 'smalltalk',
+    model: 'claude-opus-5-5',
+    prompt: { body: 'Busy week?', extra: { setting: 'Coffee machine', dialogue: [
+      { role: 'partner', text: 'Busy week?' },
+      { role: 'user', text: 'Yes, workshops.' },
+      { role: 'partner', text: 'What kind?' },
+    ] } },
+  });
+  const user = r.messages[0].content;
+  assert.match(user, /Them: Busy week\?/);
+  assert.match(user, /Him: Yes, workshops\./);
+  assert.match(user, /Them: What kind\?/);
+  assert.match(user, /listen/i);
+});

@@ -1,10 +1,5 @@
-// AI speaking coach via the Anthropic SDK, called straight from the browser with
-// the user's own key. The SDK is lazy-loaded so the app (and tests) work without it.
-
-export const SDK_URL = 'https://esm.sh/@anthropic-ai/sdk@0.133.0';
-const FALLBACK_BETA = 'server-side-fallback-2026-07-01';
-// Server-side refusal fallbacks are not available for Haiku.
-const supportsFallbacks = (model) => !/haiku/.test(model);
+// AI speaking coach: scores an improvised answer and writes a stronger version.
+import { callClaude, withFallbacks, lastJson } from './claude.js';
 
 const score = { type: 'integer', minimum: 1, maximum: 5 };
 
@@ -54,6 +49,12 @@ function describePrompt(drill, prompt) {
   const x = prompt.extra || {};
   if (drill === 'explain') return `Concept: ${prompt.body}\nAudience: ${x.audience}`;
   if (drill === 'bridge') return `Topic: ${prompt.body}\nWords to include: ${(x.words || []).join(', ')}`;
+  if (drill === 'smalltalk' && x.dialogue) {
+    const lines = x.dialogue.map((t) => `${t.role === 'user' ? 'Him' : 'Them'}: ${t.text}`).join('\n');
+    return `Live conversation with an AI partner. Situation: ${x.setting}\n${lines}\n\n`
+      + 'Judge especially whether he listens and builds on what the other person says, shares something, and keeps the conversation going. '
+      + 'The transcript below is his turns only; the stronger version should be his turns rewritten, one line per turn.';
+  }
   if (drill === 'smalltalk') return `Situation: ${x.setting}\nThey say: "${prompt.body}"`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;
@@ -75,46 +76,18 @@ export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, 
     messages: [{ role: 'user', content: user }],
     output_config: { effort: 'low', format: { type: 'json_schema', schema: COACH_SCHEMA } },
   };
-  if (supportsFallbacks(model)) {
-    req.betas = [FALLBACK_BETA];
-    req.fallbacks = 'default';
-  }
-  return req;
+  return withFallbacks(req);
 }
 
 export function parseCoachResponse(message) {
-  if (!message || message.stop_reason === 'refusal') return { ok: false, error: 'refusal' };
-  if (message.stop_reason === 'max_tokens') return { ok: false, error: 'parse' };
-  const texts = (message.content || []).filter((b) => b.type === 'text');
-  const last = texts[texts.length - 1];
-  if (!last) return { ok: false, error: 'parse' };
-  try {
-    const data = JSON.parse(last.text);
-    if (!data || !data.scores || typeof data.stronger_version !== 'string') throw new Error('shape');
-    return { ok: true, data };
-  } catch {
-    return { ok: false, error: 'parse' };
-  }
+  const res = lastJson(message);
+  if (!res.ok) return res;
+  const d = res.data;
+  if (!d || !d.scores || typeof d.stronger_version !== 'string') return { ok: false, error: 'parse' };
+  return { ok: true, data: d };
 }
 
-const defaultLoadSdk = () => import(/* @vite-ignore */ SDK_URL);
-
-export async function runCoach(apiKey, args, loadSdk = defaultLoadSdk) {
-  if (!apiKey) return { ok: false, error: 'nokey' };
-  let Anthropic;
-  try {
-    Anthropic = (await loadSdk()).default;
-  } catch {
-    return { ok: false, error: 'offline' };
-  }
-  try {
-    const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 1 });
-    const message = await client.beta.messages.create(buildCoachRequest(args));
-    return parseCoachResponse(message);
-  } catch (err) {
-    if (err instanceof Anthropic.AuthenticationError) return { ok: false, error: 'key' };
-    if (err instanceof Anthropic.RateLimitError) return { ok: false, error: 'rate' };
-    if (err instanceof Anthropic.APIConnectionError) return { ok: false, error: 'offline' };
-    return { ok: false, error: 'unknown', detail: String(err && err.message) };
-  }
+export async function runCoach(apiKey, args, loadSdk) {
+  const res = await callClaude(apiKey, buildCoachRequest(args), loadSdk);
+  return res.ok ? parseCoachResponse(res.message) : res;
 }

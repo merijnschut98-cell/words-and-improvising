@@ -248,6 +248,17 @@ audio { width: 100%; margin-top: 4px; }
 .hist-main b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.95rem; }
 .hist-meta { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
+/* Live conversation */
+.convo-card { width: 100%; border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.chat { display: flex; flex-direction: column; gap: 8px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 18px; font-size: 1.05rem; line-height: 1.35; }
+.msg-partner { align-self: flex-start; background: color-mix(in srgb, var(--accent) 14%, var(--card)); border-bottom-left-radius: 4px; }
+.msg-user { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+.msg.typing { color: var(--muted); animation: pulse 1.2s infinite; }
+.chat-controls { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.small-live { min-height: 64px; }
+.mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
+
 /* Settings */
 .field-label { display: block; font-weight: 800; margin: 12px 0 6px; }
 .field-label:first-child { margin-top: 0; }

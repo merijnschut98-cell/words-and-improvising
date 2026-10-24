@@ -48,8 +48,12 @@ const FAKE_SDK = `
     static RateLimitError = class extends APIError {};
     static APIConnectionError = class extends APIError {};
     constructor(o) { window.__coachOpts = o; this.beta = { messages: { create: async (req) => {
-      window.__coachReq = req;
       await new Promise((r) => setTimeout(r, 200));
+      if (req.output_config.format.schema.properties.reply) {
+        window.__partnerReqs = (window.__partnerReqs || 0) + 1;
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ reply: 'Leuk! En hoe was dat?', end_conversation: false }) }] };
+      }
+      window.__coachReq = req;
       return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({
         scores: { clarity: 4, structure: 3, fluency: 4, vocabulary: 3 }, overall: 4,
         strength: 'Je begon meteen.', improvement: 'Begin met je punt.', stronger_version: 'Mijn punt is helder: de brug verbindt.' }) }] };
@@ -155,6 +159,28 @@ await step('quitting mid-round stays home', async () => {
   await page.waitForTimeout(2000);
   const screen = await page.evaluate(() => document.getElementById('app').dataset.screen);
   if (screen !== 'home') throw new Error(`ended on ${screen}`);
+});
+
+await step('live conversation: 4 turns then feedback with dialogue', async () => {
+  await page.goto(BASE);
+  await page.locator('.convo-card').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  for (let i = 0; i < 4; i++) {
+    const mic = page.getByRole('button', { name: /Tik en praat/ });
+    await mic.waitFor({ timeout: 15000 });
+    await mic.click();
+    await page.waitForTimeout(1100);
+    if (i === 0) await shot('10-convo');
+    await page.getByRole('button', { name: /Verstuur/ }).click();
+  }
+  await page.locator('.chat-controls .btn-primary', { hasText: 'Afronden' }).waitFor({ timeout: 15000 });
+  await shot('11-convo-end');
+  await page.locator('.chat-controls .btn-primary', { hasText: 'Afronden' }).click();
+  await page.locator('.coach-card .scores').waitFor({ timeout: 5000 });
+  const req = await page.evaluate(() => window.__coachReq);
+  if (!/Them: /.test(req.messages[0].content) || !/Him: /.test(req.messages[0].content)) throw new Error('dialogue missing in coach request');
+  const n = await page.evaluate(() => window.__partnerReqs);
+  if (n !== 4) throw new Error(`partner called ${n} times`);
 });
 
 await step('too-short answer offers retry', async () => {
