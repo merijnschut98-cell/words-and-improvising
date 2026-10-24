@@ -73,3 +73,9 @@ test('pause drill bonus: 3+ pauses and almost no fillers', () => {
   assert.equal(xpForRound({ ...base, drill: 'minute' }), 30);
   assert.equal(xpForRound({ ...base, drill: 'pause', metrics: { words: 100, fillerRate: 2, pauses: 5 } }), 30);
 });
+
+test('pause bonus also needs a normal speaking pace (swallowed "ehh" gaps are not pauses)', () => {
+  const base = { durationS: 60, targetS: 60, rating: 5, drill: 'pause' };
+  assert.equal(xpForRound({ ...base, metrics: { words: 100, fillerRate: 0, pauses: 4, wpm: 60 } }), 30);
+  assert.equal(xpForRound({ ...base, metrics: { words: 100, fillerRate: 0, pauses: 4, wpm: 110 } }), 35);
+});

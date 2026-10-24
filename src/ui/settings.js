@@ -54,8 +54,9 @@ export function renderSettings(app, _params, root) {
     try {
       if (!('Notification' in window) || !('serviceWorker' in navigator)) return fail(t('remindUnsupported'));
       if (await Notification.requestPermission() !== 'granted') return fail(t('remindDenied'));
-      const reg = await navigator.serviceWorker.ready;
-      if (!reg.periodicSync) return fail(t('remindUnsupported'));
+      // ready never resolves if the worker failed to install; don't hang the toggle.
+      const reg = await Promise.race([navigator.serviceWorker.ready, new Promise((r) => setTimeout(() => r(null), 3000))]);
+      if (!reg || !reg.periodicSync) return fail(t('remindUnsupported'));
       await reg.periodicSync.register('daily-practice', { minInterval: 12 * 60 * 60 * 1000 });
       set({ remind: true });
       remindNote.textContent = t('remindHelp');

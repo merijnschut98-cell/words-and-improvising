@@ -250,6 +250,32 @@ await step('targeted practice without key falls back to the weekly focus', async
   });
 });
 
+await step('finish while recording keeps the last answer', async () => {
+  await page.goto(BASE);
+  await page.locator('.convo-card:not(.target-card)').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const mic = page.getByRole('button', { name: /Tik en praat/ });
+  await mic.waitFor({ timeout: 15000 });
+  await mic.click(); await page.waitForTimeout(1100);
+  await page.getByRole('button', { name: /Verstuur/ }).click();
+  await mic.waitFor({ timeout: 15000 });
+  await mic.click(); await page.waitForTimeout(1100);
+  await page.locator('.chat-controls .btn-ghost', { hasText: 'Afronden' }).click();
+  await page.locator('.coach-card .scores').waitFor({ timeout: 8000 });
+  const req = await page.evaluate(() => window.__coachReq);
+  const hims = (req.messages[0].content.match(/^Him: /gm) || []).length;
+  if (hims !== 2) throw new Error(`expected 2 user turns, got ${hims}`);
+});
+
+await step('leaving home while targeted practice loads stays where you went', async () => {
+  await page.goto(BASE);
+  await page.locator('.target-card').click();
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.waitForTimeout(1200);
+  const screen = await page.evaluate(() => document.getElementById('app').dataset.screen);
+  if (screen !== 'progress') throw new Error(`ended on ${screen}`);
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

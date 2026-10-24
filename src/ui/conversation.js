@@ -34,9 +34,21 @@ export function renderConversation(app, _params, root) {
     return el;
   }
 
-  function finish() {
-    if (recognizer) { recognizer.stop(); recognizer = null; }
+  async function finish() {
+    if (st.finishing) return;
+    st.finishing = true;
     hush();
+    // Tapped Finish while still recording: keep that last answer.
+    if (recognizer) {
+      const r = recognizer;
+      recognizer = null;
+      const last = (await r.stop() || '').trim();
+      if (!alive) return;
+      if (tokenize(last).length > 0) {
+        turns.push({ role: 'user', text: last });
+        st.speakS += (performance.now() - st.recStart) / 1000;
+      }
+    }
     const mine = turns.filter((x) => x.role === 'user').map((x) => x.text);
     app.session = null;
     app.go('feedback', {
@@ -119,16 +131,20 @@ export function renderConversation(app, _params, root) {
         hush();
         text = '';
         startedAt = performance.now();
-        recognizer = createRecognizer({
+        st.recStart = startedAt;
+        const rec = createRecognizer({
           lang,
           onText: (full, interim) => { text = full; live.textContent = `${full} ${interim}`.trim(); },
           onError: (code) => {
+            // Ignore late errors from an engine we already stopped or while waiting on the partner.
+            if (!alive || st.busy || st.finishing || recognizer !== rec) return;
             recognizer = null;
             st.mode = 'type';
             showInput(code === 'not-allowed' || code === 'service-not-allowed' ? t('micDenied') : t('speechFailed'));
           },
         });
-        recognizer.start();
+        recognizer = rec;
+        rec.start();
         mic.textContent = `✓ ${t('send')}`;
         mic.classList.add('recording');
       } else {
@@ -153,6 +169,7 @@ export function renderConversation(app, _params, root) {
   }
 
   async function askPartner() {
+    st.busy = true;
     const typing = bubble('partner typing', t('partnerTyping'));
     controls.replaceChildren();
     const res = await runPartner(app.state.settings.apiKey, {
@@ -162,7 +179,9 @@ export function renderConversation(app, _params, root) {
     typing.remove();
     if (res.ok) {
       await partnerSays(res.reply, res.end);
+      st.busy = false;
     } else {
+      st.busy = false;
       controls.replaceChildren(
         h('p', { class: 'note' }, `${t('partnerErr')} ${aiErrorText(t, res)}`),
         h('button', { class: 'btn btn-ghost', onclick: askPartner }, t('coachRetry')),

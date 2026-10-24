@@ -55,6 +55,8 @@ export const app = {
   state: load(storage),
   session: null, // { prompts, index, xp, levelUp } during a lesson
   installPrompt: null,
+  navSeq: 0, // bumped on every navigation; async starters check it before navigating
+  targeting: false,
 
   get lang() { return this.state.settings.lang; },
   get content() { return this.lang === 'en' ? en : nl; },
@@ -88,6 +90,16 @@ export const app = {
   },
   // Targeted practice: AI-written exercise for the weak spot, or the weekly focus without a key.
   async startTargeted() {
+    if (this.targeting) return;
+    this.targeting = true;
+    const seq = this.navSeq;
+    try {
+      await this.pickTargeted(seq);
+    } finally {
+      this.targeting = false;
+    }
+  },
+  async pickTargeted(seq) {
     const review = weeklyReview(this.state.history, Date.now());
     const fallback = () => fallbackPick(review, this.content, Math.random, this.state.seen);
     let prompt;
@@ -100,6 +112,7 @@ export const app = {
       if (res.ok) prompt = res.prompt;
       else notice = `${this.t('targetFallback')} ${aiErrorText(this.t, res)}`;
     }
+    if (this.navSeq !== seq) return; // he navigated away while we waited
     this.session = null;
     this.go('round', { prompt: prompt || fallback(), notice });
   },
@@ -122,6 +135,7 @@ export const app = {
   },
 
   go(screen, params = {}) {
+    this.navSeq += 1;
     if (cleanup) {
       try { cleanup(); } catch { /* ignore */ }
     }

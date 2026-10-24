@@ -33,7 +33,9 @@ export function xpForRound({ metrics, durationS, targetS, rating, drill }) {
   let xp = 10 + Math.min(10, Math.round((10 * durationS) / (targetS || 1)));
   if (metrics.fillerRate < 3) xp += 5;
   if (rating >= 4) xp += 5;
-  if (drill === 'pause' && (metrics.pauses || 0) >= 3 && metrics.fillerRate < 1) xp += 5;
+  // Speech-to-text often drops "ehh" sounds, leaving a gap that looks like a pause.
+  // A normal pace (>= 80 wpm) makes it likelier the gaps were real, short pauses.
+  if (drill === 'pause' && (metrics.pauses || 0) >= 3 && metrics.fillerRate < 1 && (metrics.wpm ?? 100) >= 80) xp += 5;
   return xp;
 }
 
