@@ -1,6 +1,42 @@
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, DRILLS } from '../core/progress.js';
 import { navBar } from './home.js';
+import { weeklyReview } from '../core/review.js';
+
+// "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
+function delta(now, prev, lowerIsBetter) {
+  if (now == null) return { text: '–', tone: '' };
+  if (prev == null) return { text: String(now), tone: '' };
+  const d = Math.round((now - prev) * 10) / 10;
+  if (d === 0) return { text: `${now} (=)`, tone: '' };
+  const good = lowerIsBetter ? d < 0 : d > 0;
+  return { text: `${now} (${d < 0 ? '▼' : '▲'} ${Math.abs(d)})`, tone: good ? 'good' : 'bad' };
+}
+
+function weekCard(app) {
+  const t = app.t;
+  const r = weeklyReview(app.state.history, Date.now());
+  const row = (label, value, tone = '') => h('div', { class: 'week-row' },
+    h('span', {}, label), h('b', { class: tone }, value));
+  const fr = delta(r.thisWeek.fillerRate, r.lastWeek.fillerRate, true);
+  const wpm = delta(r.thisWeek.wpm, r.lastWeek.wpm, false);
+  const f = r.focus;
+  const focusText = f.kind === 'filler' ? t('focusFiller', f.value)
+    : f.kind === 'drill' ? t('focusDrill', t(`drill_${f.value}`))
+      : f.kind === 'rounds' ? t('focusRounds', f.value)
+        : t('focusStretch');
+  return h('section', { class: 'card review-card' },
+    h('h2', { class: 'card-title' }, t('thisWeek')),
+    row(t('rounds'), `${r.thisWeek.rounds} (${t('lastWeekShort')} ${r.lastWeek.rounds})`),
+    row(t('minutesSpoken'), `${r.thisWeek.minutes} (${t('lastWeekShort')} ${r.lastWeek.minutes})`),
+    row(t('m_fillers'), fr.text, fr.tone),
+    row(t('m_wpm'), wpm.text, wpm.tone),
+    r.topFiller ? row(t('topFillerWeek'), `“${r.topFiller.word}” ×${r.topFiller.count}`) : null,
+    r.best ? row(t('bestDrill'), `${DRILL_ICON[r.best.drill]} ${t(`drill_${r.best.drill}`)} (${r.best.avg})`) : null,
+    r.worst && r.worst.drill !== r.best.drill
+      ? row(t('worstDrill'), `${DRILL_ICON[r.worst.drill]} ${t(`drill_${r.worst.drill}`)} (${r.worst.avg})`) : null,
+    h('div', { class: 'focus' }, h('b', {}, `🎯 ${t('focusNext')}: `), focusText));
+}
 
 function sparkline(values, { invert = false } = {}) {
   const w = 300;
@@ -15,10 +51,11 @@ function sparkline(values, { invert = false } = {}) {
     svg.innerHTML = `<line x1="${pad}" y1="${hgt / 2}" x2="${w - pad}" y2="${hgt / 2}" class="spark-base"/>`;
     return svg;
   }
-  const max = Math.max(...values, 1);
-  const min = Math.min(...values, 0);
+  // Scale to the data's own range so small changes stay visible.
+  const max = Math.max(...values);
+  const min = Math.min(...values);
   const x = (i) => pad + (i * (w - 2 * pad)) / (values.length - 1);
-  const y = (v) => hgt - pad - ((v - min) / (max - min || 1)) * (hgt - 2 * pad);
+  const y = (v) => (max === min ? hgt / 2 : hgt - pad - ((v - min) / (max - min)) * (hgt - 2 * pad));
   const pts = values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
   const last = values[values.length - 1];
   svg.innerHTML = `<polyline points="${pts}" class="spark-line${invert ? ' invert' : ''}"/>`
@@ -51,6 +88,7 @@ export function renderProgress(app, _params, root) {
   root.append(
     h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('progressTitle'))),
     h('main', { class: 'screen progress' },
+      weekCard(app),
       h('section', { class: 'stats' },
         h('div', { class: 'stat' }, h('b', {}, lv.level), h('span', {}, t('level'))),
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),

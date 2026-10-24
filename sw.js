@@ -1,11 +1,11 @@
 // App-shell cache. Bump CACHE when shipping changes so clients pick them up.
-const CACHE = 'spraakwater-v3';
+const CACHE = 'spraakwater-v4';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
   'src/app.js', 'src/i18n.js',
   'src/core/claude.js', 'src/core/coach.js', 'src/core/partner.js', 'src/core/voice.js', 'src/core/lesson.js', 'src/core/metrics.js', 'src/core/progress.js',
-  'src/core/recorder.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js',
+  'src/core/recorder.js', 'src/core/review.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js',
   'src/content/prompts.en.js', 'src/content/prompts.nl.js',
   'src/ui/dom.js', 'src/ui/home.js', 'src/ui/round.js', 'src/ui/feedback.js', 'src/ui/done.js', 'src/ui/conversation.js',
   'src/ui/progress.js', 'src/ui/settings.js',

@@ -248,6 +248,13 @@ audio { width: 100%; margin-top: 4px; }
 .hist-main b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.95rem; }
 .hist-meta { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
+/* Weekly review */
+.week-row { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 0.95rem; }
+.week-row span::first-letter { text-transform: uppercase; }
+.week-row b.good { color: var(--good); }
+.week-row b.bad { color: var(--bad); }
+.focus { margin-top: 12px; padding: 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 14%, var(--card)); }
+
 /* Live conversation */
 .convo-card { width: 100%; border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
 .chat { display: flex; flex-direction: column; gap: 8px; }
