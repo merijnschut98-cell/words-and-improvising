@@ -20,3 +20,22 @@ export function reminderFor({ lastDay, streak }, today, lang) {
   const atRisk = streak > 0 && isStreakAlive({ count: streak, lastDay }, today);
   return { title: atRisk ? t.streak(streak) : t.nudge, body: t.body };
 }
+
+function nextDay(day) {
+  const [y, m, d] = day.split('-').map(Number);
+  const n = new Date(Date.UTC(y, m - 1, d + 1));
+  return n.toISOString().slice(0, 10);
+}
+
+// What the (classic, non-module) service worker needs: it only compares dates
+// and picks one of these two precomputed messages.
+export function reminderMeta(state) {
+  const { lang, remind } = state.settings;
+  const { lastDay, count } = state.streak;
+  return {
+    remind: !!remind,
+    lastDay,
+    atRisk: lastDay && count > 0 ? reminderFor({ lastDay, streak: count }, nextDay(lastDay), lang) : null,
+    nudge: reminderFor({ lastDay: null, streak: 0 }, '', lang),
+  };
+}

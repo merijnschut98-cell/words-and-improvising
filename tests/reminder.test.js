@@ -21,3 +21,13 @@ test('no streak: generic nudge, in Dutch', () => {
 test('never practised: generic nudge', () => {
   assert.ok(reminderFor({ lastDay: null, streak: 0 }, '2026-10-24', 'en'));
 });
+
+import { reminderMeta } from '../src/core/reminder.js';
+
+test('reminderMeta precomputes both messages for the service worker', () => {
+  const m = reminderMeta({ settings: { lang: 'en', remind: true }, streak: { count: 5, lastDay: '2026-10-24' } });
+  assert.equal(m.remind, true);
+  assert.equal(m.lastDay, '2026-10-24');
+  assert.match(m.atRisk.title, /5-day streak/);
+  assert.equal(m.nudge.title, 'Time to talk 💬');
+});

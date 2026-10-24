@@ -1,10 +1,9 @@
 // App-shell cache. Bump CACHE when shipping changes so clients pick them up.
-// Registered as a module worker so it can share the reminder logic.
-import { reminderFor } from './src/core/reminder.js';
-import { dayKey } from './src/core/progress.js';
+// Classic (non-module) worker on purpose: switching an installed worker to a
+// module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'spraakwater-v8';
+const CACHE = 'spraakwater-v9';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -44,16 +43,22 @@ self.addEventListener('fetch', (e) => {
 });
 
 // Daily reminder (best effort): Chrome fires periodicsync roughly daily for
-// installed apps. The page stores {lastDay, streak, lang} in the META cache.
+// installed apps. The page stores reminderMeta() in the META cache.
+const pad = (n) => String(n).padStart(2, '0');
+const localDay = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+
 self.addEventListener('periodicsync', (e) => {
   if (e.tag !== 'daily-practice') return;
   e.waitUntil((async () => {
     const res = await (await caches.open(META)).match('./__meta');
     if (!res) return;
     const meta = await res.json();
-    if (!meta.remind) return;
-    const r = reminderFor(meta, dayKey(new Date()), meta.lang);
-    if (r) await self.registration.showNotification(r.title, { body: r.body, icon: 'icons/icon-192.png', tag: 'daily-practice' });
+    const now = new Date();
+    const today = localDay(now);
+    if (!meta.remind || meta.lastDay === today) return;
+    const yesterday = localDay(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1));
+    const msg = meta.lastDay === yesterday && meta.atRisk ? meta.atRisk : meta.nudge;
+    if (msg) await self.registration.showNotification(msg.title, { body: msg.body, icon: 'icons/icon-192.png', tag: 'daily-practice' });
   })());
 });
 

@@ -3,6 +3,7 @@ import { load, save, defaultState, KEY } from './core/storage.js';
 import { dayKey } from './core/progress.js';
 import { buildLesson, makePrompt } from './core/lesson.js';
 import { translator } from './i18n.js';
+import { reminderMeta } from './core/reminder.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
 import { renderHome } from './ui/home.js';
@@ -38,7 +39,7 @@ const storage = (() => {
 // The service worker can't read localStorage; give it what the reminder needs.
 function writeMeta(state) {
   if (!('caches' in window)) return;
-  const meta = { lastDay: state.streak.lastDay, streak: state.streak.count, lang: state.settings.lang, remind: state.settings.remind };
+  const meta = reminderMeta(state);
   caches.open('spraakwater-meta')
     .then((c) => c.put('./__meta', new Response(JSON.stringify(meta), { headers: { 'Content-Type': 'application/json' } })))
     .catch(() => {});
@@ -123,7 +124,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  navigator.serviceWorker.register('./sw.js', { type: 'module' }).catch(() => {});
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
 app.go('home');

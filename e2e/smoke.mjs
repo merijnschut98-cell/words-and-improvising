@@ -241,7 +241,7 @@ await step('reminder meta is written for the service worker', async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');
     return r ? r.json() : null;
   });
-  if (!meta || !meta.lastDay || typeof meta.streak !== 'number') throw new Error(JSON.stringify(meta));
+  if (!meta || !meta.lastDay || !meta.nudge || !meta.nudge.title) throw new Error(JSON.stringify(meta));
 });
 
 await step('offline after first load', async () => {
