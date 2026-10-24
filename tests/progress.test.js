@@ -57,3 +57,12 @@ test('drillTiming', () => {
   assert.deepEqual(drillTiming('rapid', 3), { prepS: 0, answerS: 10, questions: 5 });
   assert.deepEqual(drillTiming('minute', 99), { prepS: 0, answerS: 90, questions: 1 });
 });
+
+import { twistEvery } from '../src/core/progress.js';
+
+test('twistEvery shrinks with level and clamps', () => {
+  assert.equal(twistEvery(1), 20);
+  assert.equal(twistEvery(5), 9);
+  assert.equal(twistEvery(9), 9);
+  assert.equal(twistEvery(0), 20);
+});

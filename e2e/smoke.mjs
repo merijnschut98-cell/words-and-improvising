@@ -183,6 +183,24 @@ await step('live conversation: 4 turns then feedback with dialogue', async () =>
   if (n !== 4) throw new Error(`partner called ${n} times`);
 });
 
+await step('story chain shows a twist and passes it to the coach', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.drillLevels.story = 5;
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.drill-story').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.twist:not([hidden])').waitFor({ timeout: 12000 });
+  await shot('12-story');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.coach-card .scores').waitFor({ timeout: 5000 });
+  const req = await page.evaluate(() => window.__coachReq);
+  if (!/Twists that appeared, in order: (?!\(none\))/.test(req.messages[0].content)) throw new Error('twists missing in coach request');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

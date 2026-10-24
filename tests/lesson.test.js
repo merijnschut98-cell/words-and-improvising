@@ -57,3 +57,13 @@ test('language files are parallel and large enough', () => {
   assert.ok(en.audiences.length >= 10 && nl.audiences.length === en.audiences.length);
   assert.ok(en.words.length >= 80 && nl.words.length >= 80);
 });
+
+test('story prompt has an opening and 8 distinct twists', () => {
+  const p = makePrompt('story', nl, seededRng(5), {});
+  assert.ok(p.body.length > 10);
+  assert.equal(p.extra.twists.length, 8);
+  assert.equal(new Set(p.extra.twists).size, 8);
+  assert.ok(nl.storyStarts.length >= 25 && en.storyStarts.length >= 25);
+  assert.ok(nl.twists.length >= 30 && en.twists.length >= 30);
+  assert.deepEqual(en.storyStarts.map((x) => x.id), nl.storyStarts.map((x) => x.id));
+});

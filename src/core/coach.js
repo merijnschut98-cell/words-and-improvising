@@ -28,6 +28,7 @@ const DRILL_BRIEF = {
   bridge: 'Word Bridge: talk about the topic and naturally weave in the three given words.',
   smalltalk: 'Small Talk: respond naturally to the opener and keep the conversation going, ideally with a follow-up question.',
   rapid: 'Rapid Fire: answer five quick questions, ten seconds each, starting immediately.',
+  story: 'Story Chain: keep telling one story and weave in each surprise twist the moment it appears, without stopping.',
 };
 
 function systemPrompt(lang) {
@@ -56,6 +57,7 @@ function describePrompt(drill, prompt) {
       + 'The transcript below is his turns only; the stronger version should be his turns rewritten, one line per turn.';
   }
   if (drill === 'smalltalk') return `Situation: ${x.setting}\nThey say: "${prompt.body}"`;
+  if (drill === 'story') return `Story opening: ${prompt.body}\nTwists that appeared, in order: ${(x.twistsShown || []).join(' | ') || '(none)'}`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;
 }

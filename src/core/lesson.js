@@ -70,6 +70,11 @@ export function makePrompt(drill, content, rng, seen = {}) {
         seenIds: qs.map((q) => q.seenId),
       };
     }
+    case 'story': {
+      const [st] = pickFresh(content.storyStarts, 'story', seen, rng);
+      const twists = shuffle(content.twists, rng).slice(0, 8);
+      return { id: st.seenId, drill, body: st.item.text, extra: { twists }, seenIds: [st.seenId] };
+    }
     default:
       throw new Error(`Unknown drill: ${drill}`);
   }

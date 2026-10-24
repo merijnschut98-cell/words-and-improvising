@@ -1,8 +1,9 @@
 // XP, levels, streaks and difficulty. Pure functions.
 
-export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid'];
+export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story'];
 const PREP_S = [15, 10, 6, 3, 0];
 const ANSWER_S = [30, 45, 60, 75, 90];
+const TWIST_EVERY_S = [20, 16, 13, 11, 9];
 
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -54,4 +55,9 @@ export function drillTiming(drill, level) {
   if (drill === 'rapid') return { prepS: 0, answerS: 10, questions: 5 };
   const i = Math.max(1, Math.min(5, level || 1)) - 1;
   return { prepS: PREP_S[i], answerS: ANSWER_S[i], questions: 1 };
+}
+
+// Story Chain: seconds between twists at a drill level.
+export function twistEvery(level) {
+  return TWIST_EVERY_S[Math.max(1, Math.min(5, level || 1)) - 1];
 }

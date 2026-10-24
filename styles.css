@@ -248,6 +248,16 @@ audio { width: 100%; margin-top: 4px; }
 .hist-main b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.95rem; }
 .hist-meta { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
+/* Story Chain */
+.story-start { font-size: 1.2rem; }
+.twist {
+  margin-top: 14px; padding: 12px; border-radius: 14px; display: flex; flex-direction: column; gap: 2px;
+  background: color-mix(in srgb, var(--primary) 16%, var(--card)); border: 2px solid var(--primary);
+}
+.twist small { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+.twist b { font-size: 1.2rem; }
+.twist.pop { animation: pop 0.35s ease-out; }
+
 /* Weekly review */
 .week-row { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 0.95rem; }
 .week-row span::first-letter { text-transform: uppercase; }

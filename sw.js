@@ -1,5 +1,5 @@
 // App-shell cache. Bump CACHE when shipping changes so clients pick them up.
-const CACHE = 'spraakwater-v4';
+const CACHE = 'spraakwater-v5';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',

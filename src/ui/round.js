@@ -1,5 +1,5 @@
 import { h, DRILL_ICON, fmtTime } from './dom.js';
-import { drillTiming } from '../core/progress.js';
+import { drillTiming, twistEvery } from '../core/progress.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize } from '../core/metrics.js';
@@ -54,6 +54,10 @@ function promptCard(app, prompt, state) {
       card.append(h('p', { class: 'prompt-sub' }, `${t('situation')}: ${x.setting}`),
         h('p', { class: 'bubble' }, `“${prompt.body}”`));
       break;
+    case 'story':
+      state.twistChip = h('div', { class: 'twist', hidden: true });
+      card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
+      break;
     case 'rapid':
       state.rapidQ = h('p', { class: 'prompt-main' }, x.questions[0]);
       state.rapidDots = x.questions.map((_, i) => h('i', { class: i === 0 ? 'on' : '' }));
@@ -76,6 +80,7 @@ export function renderRound(app, { prompt }, root) {
     phase: 'intro',
     timer: null,
     transcript: '',
+    twistsShown: [],
   };
   let recognizer = null;
   let recorder = null;
@@ -199,6 +204,20 @@ export function renderRound(app, { prompt }, root) {
     if (st.textarea) st.textarea.focus();
     st.answerStart = countdown(totalS, (el) => {
       r.set(1 - el / totalS, fmtTime(totalS - el));
+      if (prompt.drill === 'story') {
+        const every = twistEvery(app.state.drillLevels.story);
+        const n = Math.min(prompt.extra.twists.length, Math.floor(el / every));
+        if (n > st.twistsShown.length && st.twistChip) {
+          const twist = prompt.extra.twists[n - 1];
+          st.twistsShown.push(twist);
+          st.twistChip.hidden = false;
+          st.twistChip.replaceChildren(h('small', {}, `⚡ ${t('twist')} ${n}`), h('b', {}, twist));
+          st.twistChip.classList.remove('pop');
+          void st.twistChip.offsetWidth; // restart the animation
+          st.twistChip.classList.add('pop');
+          if (navigator.vibrate) navigator.vibrate(60);
+        }
+      }
       if (prompt.drill === 'rapid') {
         const qi = Math.min(timing.questions - 1, Math.floor(el / timing.answerS));
         if (st.rapidQ && st.rapidQ.textContent !== prompt.extra.questions[qi]) {
@@ -241,8 +260,9 @@ export function renderRound(app, { prompt }, root) {
     if (st.textarea) transcript = st.textarea.value;
     const audio = recorder ? await recorder.stop() : null;
     if (disposed) return;
+    const shown = prompt.drill === 'story' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
-      prompt, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode,
+      prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode,
     });
   }
 
