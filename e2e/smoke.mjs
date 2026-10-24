@@ -201,6 +201,19 @@ await step('story chain shows a twist and passes it to the coach', async () => {
   if (!/Twists that appeared, in order: (?!\(none\))/.test(req.messages[0].content)) throw new Error('twists missing in coach request');
 });
 
+await step('pause drill shows live counters and pause stats', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-pause').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('.pause-counters .counter.bad').waitFor({ timeout: 5000 });
+  await shot('13-pause');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats.two').waitFor({ timeout: 5000 });
+  await shot('14-pause-feedback');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

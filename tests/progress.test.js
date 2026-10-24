@@ -66,3 +66,10 @@ test('twistEvery shrinks with level and clamps', () => {
   assert.equal(twistEvery(9), 9);
   assert.equal(twistEvery(0), 20);
 });
+
+test('pause drill bonus: 3+ pauses and almost no fillers', () => {
+  const base = { metrics: { words: 100, fillerRate: 0.5, pauses: 3 }, durationS: 60, targetS: 60, rating: 5 };
+  assert.equal(xpForRound({ ...base, drill: 'pause' }), 35);
+  assert.equal(xpForRound({ ...base, drill: 'minute' }), 30);
+  assert.equal(xpForRound({ ...base, drill: 'pause', metrics: { words: 100, fillerRate: 2, pauses: 5 } }), 30);
+});

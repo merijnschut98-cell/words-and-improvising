@@ -6,7 +6,7 @@ export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
   if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false };
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
-  const xp = xpForRound({ metrics, durationS, targetS, rating });
+  const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill });
   const drill = prompt.drill;
   let next = {
     ...state,

@@ -1,5 +1,6 @@
 import { h } from './dom.js';
 import { analyze, highlightFillers } from '../core/metrics.js';
+import { pauseRatio } from '../core/pauses.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
 
@@ -21,16 +22,19 @@ export function renderFeedback(app, params, root) {
   const { prompt, transcript, durationS, targetS, audio, mode } = params;
   const lang = app.lang;
   const metrics = analyze(transcript, durationS, lang);
+  if (params.pauses != null) metrics.pauses = params.pauses;
   const st = { rating: null, coach: null, applied: false };
   let audioUrl = null;
 
   const main = h('main', { class: 'screen feedback' });
+  // append() would render null as the text "null"
+  const add = (...nodes) => main.append(...nodes.filter(Boolean));
   root.append(h('header', { class: 'top' },
     h('div', { class: 'round-title' }, t(`drill_${prompt.drill}`)),
     h('div', { class: 'muted small' }, app.session ? t('roundOf', app.session.index + 1, app.session.prompts.length) : '')), main);
 
   if (metrics.words < 5) {
-    main.append(
+    add(
       h('section', { class: 'card center' }, h('div', { class: 'big-emoji', 'aria-hidden': 'true' }, '🤔'), h('p', {}, t('tooShort'))),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('round', { prompt }) }, t('retry')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.nextAfterRound() }, t('skip')),
@@ -123,12 +127,18 @@ export function renderFeedback(app, params, root) {
 
   if (audio) audioUrl = URL.createObjectURL(audio);
 
-  main.append(
+  add(
     h('section', { class: 'stats' },
       chip(metrics.words, t('m_words')),
       chip(metrics.wpm, t('m_wpm')),
       chip(metrics.fillerRate, t('m_fillers'), fillerTone),
       chip(Math.round(durationS), t('m_time'))),
+    prompt.drill === 'pause' && metrics.pauses != null
+      ? h('section', { class: 'stats two' },
+        chip(metrics.pauses, t('pausesLabel'), metrics.pauses >= 3 ? 'good' : 'ok'),
+        chip(pauseRatio(metrics.pauses, metrics.fillerCount) ?? '–', t('pauseRatio'),
+          (pauseRatio(metrics.pauses, metrics.fillerCount) ?? 0) >= 0.75 ? 'good' : 'ok'))
+      : null,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('topFillers')),
       topFillers.length

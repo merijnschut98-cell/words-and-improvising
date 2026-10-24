@@ -70,6 +70,10 @@ export function makePrompt(drill, content, rng, seen = {}) {
         seenIds: qs.map((q) => q.seenId),
       };
     }
+    case 'pause': {
+      const [t] = pickFresh(content.topics, 'topic', seen, rng);
+      return { id: t.seenId, drill, body: t.item.text, extra: {}, seenIds: [t.seenId] };
+    }
     case 'story': {
       const [st] = pickFresh(content.storyStarts, 'story', seen, rng);
       const twists = shuffle(content.twists, rng).slice(0, 8);

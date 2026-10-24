@@ -248,6 +248,15 @@ audio { width: 100%; margin-top: 4px; }
 .hist-main b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.95rem; }
 .hist-meta { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
+/* Pause drill */
+.pause-counters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.counter { display: flex; flex-direction: column; align-items: center; padding: 8px; border-radius: 12px; background: var(--line); }
+.counter b { font-size: 1.8rem; font-variant-numeric: tabular-nums; }
+.counter span { font-size: 0.8rem; font-weight: 700; }
+.counter.good { background: color-mix(in srgb, var(--good) 14%, var(--card)); }
+.counter.bad { background: color-mix(in srgb, var(--bad) 18%, var(--card)); color: var(--bad); }
+.stats.two { grid-template-columns: 1fr 1fr; }
+
 /* Story Chain */
 .story-start { font-size: 1.2rem; }
 .twist {

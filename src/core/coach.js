@@ -28,6 +28,7 @@ const DRILL_BRIEF = {
   bridge: 'Word Bridge: talk about the topic and naturally weave in the three given words.',
   smalltalk: 'Small Talk: respond naturally to the opener and keep the conversation going, ideally with a follow-up question.',
   rapid: 'Rapid Fire: answer five quick questions, ten seconds each, starting immediately.',
+  pause: "Pause, don't fill: talk about the topic and replace every filler word with a short silent pause. Judge filler use strictly.",
   story: 'Story Chain: keep telling one story and weave in each surprise twist the moment it appears, without stopping.',
 };
 

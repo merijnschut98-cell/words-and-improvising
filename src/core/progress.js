@@ -1,6 +1,6 @@
 // XP, levels, streaks and difficulty. Pure functions.
 
-export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story'];
+export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause'];
 const PREP_S = [15, 10, 6, 3, 0];
 const ANSWER_S = [30, 45, 60, 75, 90];
 const TWIST_EVERY_S = [20, 16, 13, 11, 9];
@@ -28,11 +28,12 @@ export function isStreakAlive(streak, today) {
   return !!streak.lastDay && daysBetween(streak.lastDay, today) <= 1;
 }
 
-export function xpForRound({ metrics, durationS, targetS, rating }) {
+export function xpForRound({ metrics, durationS, targetS, rating, drill }) {
   if (!metrics || metrics.words < 5) return 0;
   let xp = 10 + Math.min(10, Math.round((10 * durationS) / (targetS || 1)));
   if (metrics.fillerRate < 3) xp += 5;
   if (rating >= 4) xp += 5;
+  if (drill === 'pause' && (metrics.pauses || 0) >= 3 && metrics.fillerRate < 1) xp += 5;
   return xp;
 }
 

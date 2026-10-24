@@ -2,7 +2,8 @@ import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery } from '../core/progress.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
 import { createRecorder } from '../core/recorder.js';
-import { tokenize } from '../core/metrics.js';
+import { tokenize, analyze } from '../core/metrics.js';
+import { countPauses } from '../core/pauses.js';
 
 const RING_R = 52;
 const RING_C = 2 * Math.PI * RING_R;
@@ -54,6 +55,14 @@ function promptCard(app, prompt, state) {
       card.append(h('p', { class: 'prompt-sub' }, `${t('situation')}: ${x.setting}`),
         h('p', { class: 'bubble' }, `“${prompt.body}”`));
       break;
+    case 'pause':
+      state.pauseEl = h('b', {}, '0');
+      state.fillerEl = h('b', {}, '0');
+      card.append(h('p', { class: 'prompt-main' }, prompt.body),
+        h('div', { class: 'pause-counters' },
+          h('div', { class: 'counter good' }, h('span', {}, `🤫 ${app.t('pausesLabel')}`), state.pauseEl),
+          h('div', { class: 'counter' }, h('span', {}, `🚫 ${app.t('fillersLabel')}`), state.fillerEl)));
+      break;
     case 'story':
       state.twistChip = h('div', { class: 'twist', hidden: true });
       card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
@@ -81,6 +90,8 @@ export function renderRound(app, { prompt }, root) {
     timer: null,
     transcript: '',
     twistsShown: [],
+    growth: [],
+    lastLive: '',
   };
   let recognizer = null;
   let recorder = null;
@@ -161,6 +172,21 @@ export function renderRound(app, { prompt }, root) {
 
   function updateLive(text, interim = '') {
     st.transcript = text;
+    // Any change in the recognized text means he is speaking; long gaps are pauses.
+    const live = `${text} ${interim}`.trim();
+    if (st.mode === 'speak' && live && live !== st.lastLive) {
+      st.growth.push(performance.now());
+      st.lastLive = live;
+    }
+    if (st.pauseEl) {
+      const fillers = analyze(`${text} ${interim}`, 1, app.lang).fillerCount;
+      if (String(fillers) !== st.fillerEl.textContent) {
+        st.fillerEl.textContent = String(fillers);
+        st.fillerEl.parentElement.classList.toggle('bad', fillers > 0);
+        if (fillers > 0 && navigator.vibrate) navigator.vibrate(30);
+      }
+      st.pauseEl.textContent = String(countPauses(st.growth));
+    }
     if (st.live) {
       st.live.replaceChildren(text, interim ? h('span', { class: 'interim' }, ` ${interim}`) : '');
       st.live.scrollTop = st.live.scrollHeight;
@@ -262,6 +288,7 @@ export function renderRound(app, { prompt }, root) {
     if (disposed) return;
     const shown = prompt.drill === 'story' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
+      pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode,
     });
   }
