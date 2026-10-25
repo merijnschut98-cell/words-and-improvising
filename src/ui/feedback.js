@@ -1,6 +1,7 @@
 import { h, aiErrorText } from './dom.js';
 import { analyze, highlightFillers } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
+import { compareAttempts } from '../core/compare.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
 
@@ -19,7 +20,7 @@ function chip(value, label, tone = '') {
 
 export function renderFeedback(app, params, root) {
   const t = app.t;
-  const { prompt, transcript, durationS, targetS, audio, mode } = params;
+  const { prompt, transcript, durationS, targetS, audio, mode, previous } = params;
   const lang = app.lang;
   const metrics = analyze(transcript, durationS, lang);
   if (params.pauses != null) metrics.pauses = params.pauses;
@@ -118,8 +119,18 @@ export function renderFeedback(app, params, root) {
 
   function sayAgain() {
     app.addToSession(commit());
-    app.go('round', { prompt });
+    app.go('round', { prompt, previous: { metrics, durationS } });
   }
+
+  // Before -> now, when this round is a retry of the same prompt.
+  const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
+  const rows = compareAttempts(previous, { metrics });
+  const compareCard = rows.length ? h('section', { class: 'card compare-card' },
+    h('h2', { class: 'card-title' }, t('beforeNow')),
+    rows.map((r) => h('div', { class: 'week-row' },
+      h('span', {}, t(LABEL[r.key])),
+      h('b', { class: r.better === true ? 'good' : r.better === false ? 'bad' : '' },
+        `${r.before} → ${r.now} ${r.better === true ? '✓' : ''}`)))) : null;
 
   function onNext() {
     app.nextAfterRound(commit());
@@ -139,6 +150,7 @@ export function renderFeedback(app, params, root) {
         chip(pauseRatio(metrics.pauses, metrics.fillerCount) ?? '–', t('pauseRatio'),
           (pauseRatio(metrics.pauses, metrics.fillerCount) ?? 0) >= 0.75 ? 'good' : 'ok'))
       : null,
+    compareCard,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('topFillers')),
       topFillers.length
@@ -151,6 +163,7 @@ export function renderFeedback(app, params, root) {
       h('h2', { class: 'card-title' }, t('rateYourself')),
       h('div', { class: 'rate-row' }, rateButtons)),
     coachCard,
+    h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
     nextBtn,
   );
 

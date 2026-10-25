@@ -78,7 +78,7 @@ function promptCard(app, prompt, state) {
   return card;
 }
 
-export function renderRound(app, { prompt, notice = '' }, root) {
+export function renderRound(app, { prompt, notice = '', previous = null }, root) {
   const t = app.t;
   const settings = app.state.settings;
   const timing = drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
@@ -290,7 +290,7 @@ export function renderRound(app, { prompt, notice = '' }, root) {
     const shown = prompt.drill === 'story' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
-      prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode,
+      prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
     });
   }
 

@@ -276,6 +276,22 @@ await step('leaving home while targeted practice loads stays where you went', as
   if (screen !== 'progress') throw new Error(`ended on ${screen}`);
 });
 
+await step('say it again shows a before/after comparison', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-minute').click();
+  for (let i = 0; i < 2; i++) {
+    await page.getByRole('button', { name: 'Start' }).click();
+    const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+    if (await ready.isVisible().catch(() => false)) await ready.click();
+    await page.waitForTimeout(1300);
+    await page.getByRole('button', { name: 'Klaar' }).click();
+    await page.locator('.stats').first().waitFor();
+    if (i === 0) await page.locator('main > .btn-ghost', { hasText: 'Zeg het nog eens' }).click();
+  }
+  await page.locator('.compare-card').waitFor({ timeout: 3000 });
+  await shot('17-compare');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
