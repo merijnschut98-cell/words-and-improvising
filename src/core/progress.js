@@ -28,11 +28,12 @@ export function isStreakAlive(streak, today) {
   return !!streak.lastDay && daysBetween(streak.lastDay, today) <= 1;
 }
 
-export function xpForRound({ metrics, durationS, targetS, rating, drill }) {
+export function xpForRound({ metrics, durationS, targetS, rating, drill, modifier }) {
   if (!metrics || metrics.words < 5) return 0;
   let xp = 10 + Math.min(10, Math.round((10 * durationS) / (targetS || 1)));
   if (metrics.fillerRate < 3) xp += 5;
   if (rating >= 4) xp += 5;
+  if (modifier) xp += 5; // harder on purpose
   // Speech-to-text often drops "ehh" sounds, leaving a gap that looks like a pause.
   // A normal pace (>= 80 wpm) makes it likelier the gaps were real, short pauses.
   if (drill === 'pause' && (metrics.pauses || 0) >= 3 && metrics.fillerRate < 1 && (metrics.wpm ?? 100) >= 80) xp += 5;

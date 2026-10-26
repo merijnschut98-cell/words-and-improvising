@@ -398,6 +398,21 @@ await step('personal best card on a real-length round', async () => {
   await shot('21-pb');
 });
 
+await step('make it harder adds a modifier with a feedback note', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-explain').click();
+  const harder = page.getByRole('button', { name: /moeilijker|Normale ronde/ });
+  if (!(await page.locator('.modifier-chip').count())) await harder.click();
+  await page.locator('.modifier-chip').waitFor();
+  await shot('22-modifier');
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.note', { hasText: '+5 XP' }).waitFor({ timeout: 3000 });
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

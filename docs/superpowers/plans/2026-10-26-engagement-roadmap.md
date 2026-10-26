@@ -97,8 +97,8 @@
 
 **Interfaces:** `MODIFIERS = ['cold','whisper','slow','noI','standing','eyesClosed','endQuestion']`; `pickModifier(rng, level) -> id|null` (null when level < 2; otherwise 25 % chance; the intro toggle forces one). `appliesPrep(id)` → `cold` sets `prepS = 0`.
 
-- [ ] Tests: never at level 1; ~25 % at level ≥ 2 over 1000 seeded draws (between 200 and 300); forced pick is never null.
-- [ ] Implement with framing copy "Harder on purpose". Commit: `Add practice modifiers`.
+- [x] Tests: never at level 1; ~25 % at level ≥ 2 over 1000 seeded draws (between 200 and 300); forced pick is never null.
+- [x] Implement with framing copy "Harder on purpose". Commit: `Add practice modifiers`.
 
 ### Task 7: Friday boss round
 

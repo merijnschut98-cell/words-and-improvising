@@ -3,6 +3,7 @@ import { updateBests } from '../core/bests.js';
 import { analyze, highlightFillers, cleanRun, tokenize } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
 import { compareAttempts } from '../core/compare.js';
+import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
 
@@ -21,7 +22,7 @@ function chip(value, label, tone = '') {
 
 export function renderFeedback(app, params, root) {
   const t = app.t;
-  const { prompt, transcript, durationS, targetS, audio, mode, previous, prepS = null } = params;
+  const { prompt, transcript, durationS, targetS, audio, mode, previous, prepS = null, modifier = null } = params;
   const lang = app.lang;
   const metrics = analyze(transcript, durationS, lang);
   if (params.pauses != null) metrics.pauses = params.pauses;
@@ -50,7 +51,7 @@ export function renderFeedback(app, params, root) {
     st.applied = true;
     const { state, xp, levelUp, completedQuests = [], newBests = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
-      rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean,
+      rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier,
     }, app.today(), Date.now());
     app.setState(state);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
@@ -121,7 +122,7 @@ export function renderFeedback(app, params, root) {
   async function askCoach() {
     renderCoach('loading');
     const res = await runCoach(app.state.settings.apiKey, {
-      drill: prompt.drill, prompt, transcript, lang, durationS, metrics, model: app.state.settings.model,
+      drill: prompt.drill, prompt, transcript, lang, durationS, metrics, model: app.state.settings.model, modifier,
     });
     if (!alive) return;
     if (res.ok) st.coach = res.data;
@@ -130,7 +131,7 @@ export function renderFeedback(app, params, root) {
 
   function sayAgain() {
     app.addToSession(commit());
-    app.go('round', { prompt, previous: { metrics, durationS } });
+    app.go('round', { prompt, previous: { metrics, durationS }, modifier });
   }
 
   // Before -> now, when this round is a retry of the same prompt.
@@ -163,6 +164,11 @@ export function renderFeedback(app, params, root) {
       : null,
     compareCard,
     pbCard,
+    modifier ? (() => {
+      const c = modifierCheck(modifier, metrics, transcript, lang);
+      return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
+        `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
+    })() : null,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('topFillers')),
       topFillers.length

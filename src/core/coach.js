@@ -21,6 +21,16 @@ export const COACH_SCHEMA = {
   },
 };
 
+const MODIFIER_TEXT = {
+  cold: 'no preparation time at all',
+  whisper: 'speak in a whisper',
+  slow: 'speak slowly, under 110 words per minute',
+  noI: 'never use first person (I, me, my)',
+  standing: 'stand up while speaking',
+  eyesClosed: 'speak with eyes closed',
+  endQuestion: 'end with a question to the listener',
+};
+
 const DRILL_BRIEF = {
   minute: 'Just a Minute: keep talking fluently about a random topic for the full time.',
   explain: 'Explain It: explain a concept clearly to the given audience, at their level.',
@@ -64,11 +74,12 @@ function describePrompt(drill, prompt) {
   return `Prompt: ${prompt.body}`;
 }
 
-export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, metrics, model }) {
+export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, metrics, model, modifier }) {
   const m = metrics || {};
   const user = [
     `Drill: ${DRILL_BRIEF[drill] || drill}`,
     describePrompt(drill, prompt),
+    modifier ? `Extra condition he chose for this round: ${MODIFIER_TEXT[modifier] || modifier}.` : '',
     `Spoke for ${Math.round(durationS)}s, ${m.words} words, ${m.wpm} wpm, ${m.fillerCount} filler words (${m.fillerRate}/min).`,
     'Transcript:',
     `"""${transcript}"""`,

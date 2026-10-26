@@ -8,7 +8,7 @@ export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
   if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false, completedQuests: [], newBests: [] };
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
-  const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill });
+  const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill, modifier: round.modifier });
   const drill = prompt.drill;
   let next = {
     ...state,
@@ -32,6 +32,7 @@ export function applyRound(state, round, today, now) {
     rating: round.rating ?? null,
     coach: coach || null,
     cleanRun: round.cleanRun ?? null,
+    modifier: round.modifier || null,
     xp,
   });
   const b = updateBests(next.bests || {}, next.history[0]);

@@ -293,6 +293,13 @@ audio { width: 100%; margin-top: 4px; }
 .small-live { min-height: 64px; }
 .mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
 
+/* Modifiers */
+.modifier-chip { margin: 10px 0 4px; padding: 10px 12px; border-radius: 14px; text-align: left; display: flex; flex-direction: column; gap: 2px;
+  background: color-mix(in srgb, var(--primary) 12%, var(--card)); border: 2px dashed color-mix(in srgb, var(--primary) 60%, var(--line)); }
+.modifier-chip span { font-size: 0.9rem; color: var(--muted); }
+.harder { align-self: center; }
+.good-note { background: color-mix(in srgb, var(--good) 14%, var(--card)); }
+
 /* Clean run */
 .clean-chip { display: inline-block; margin-bottom: 8px; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
   background: color-mix(in srgb, var(--accent) 14%, var(--card)); color: var(--accent-dark); font-variant-numeric: tabular-nums; }

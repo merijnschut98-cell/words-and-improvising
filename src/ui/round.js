@@ -4,6 +4,7 @@ import { createRecognizer, speechSupported } from '../core/speech.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
+import { pickModifier } from '../core/modifiers.js';
 
 const RING_R = 52;
 const RING_C = 2 * Math.PI * RING_R;
@@ -83,7 +84,7 @@ function promptCard(app, prompt, state) {
   return card;
 }
 
-export function renderRound(app, { prompt, notice = '', previous = null, timing: timingOverride = null }, root) {
+export function renderRound(app, { prompt, notice = '', previous = null, timing: timingOverride = null, modifier = undefined }, root) {
   const t = app.t;
   const settings = app.state.settings;
   const timing = timingOverride || drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
@@ -132,6 +133,12 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     return start;
   }
 
+  // Varied conditions: sometimes added automatically, or on demand.
+  if (st.modifier === undefined) {
+    st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1);
+  }
+  const prepFor = () => (st.modifier === 'cold' ? 0 : timing.prepS);
+
   function showIntro() {
     const toggle = h('div', { class: 'segmented', role: 'radiogroup' },
       ['speak', 'type'].map((m) => h('button', {
@@ -147,8 +154,15 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
         prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
-        h('p', { class: 'muted small' }, `${timing.prepS ? `${timing.prepS}s ⏳ · ` : ''}${fmtTime(totalS)}s 🎙`)),
+        st.modifier ? h('div', { class: 'modifier-chip' },
+          h('b', {}, `💪 ${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
+          h('span', {}, t(`modHow_${st.modifier}`))) : null,
+        h('p', { class: 'muted small' }, `${prepFor() ? `${prepFor()}s ⏳ · ` : ''}${fmtTime(totalS)}s 🎙`)),
       toggle,
+      h('button', {
+        class: `btn btn-ghost small harder${st.modifier ? ' on' : ''}`,
+        onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true); showIntro(); },
+      }, st.modifier ? `↩ ${t('harderOff')}` : `💪 ${t('harderOn')}`),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
       h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start')),
     );
@@ -161,7 +175,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       if (disposed) { recorder.stop(); return; }
     }
     st.prepStart = performance.now();
-    if (timing.prepS > 0) showPrep();
+    if (prepFor() > 0) showPrep();
     else showAnswer();
   }
 
@@ -174,7 +188,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       r.el,
       h('button', { class: 'btn btn-primary btn-big', onclick: () => { clearTimer(); showAnswer(); } }, t('goNow')),
     );
-    countdown(timing.prepS, (el) => r.set(1 - el / timing.prepS, fmtTime(timing.prepS - el)), () => showAnswer());
+    const prepS = prepFor();
+    countdown(prepS, (el) => r.set(1 - el / prepS, fmtTime(prepS - el)), () => showAnswer());
   }
 
   function updateLive(text, interim = '') {
@@ -319,6 +334,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     app.go('feedback', {
       pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
       prepS: Math.round(st.prepUsedS || 0),
+      modifier: st.modifier || null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
     });
   }
