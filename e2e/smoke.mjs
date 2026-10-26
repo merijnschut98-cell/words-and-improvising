@@ -343,6 +343,41 @@ await step('daily quests: cold start completes a quest with a toast', async () =
   await page.locator('.quest.done').first().waitFor({ timeout: 3000 });
 });
 
+const dayAgo = (n) => page.evaluate((n) => {
+  const d = new Date(); d.setDate(d.getDate() - n); const p = (x) => String(x).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}, n);
+const patchState = (patch) => page.evaluate((patch) => {
+  const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+  localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ...patch }));
+}, patch);
+
+await step('streak freeze covers one missed day', async () => {
+  await page.goto(BASE);
+  await patchState({ streak: { count: 5, lastDay: await dayAgo(2) }, freezes: 1, freezeLog: [] });
+  await page.reload();
+  await page.locator('.toast', { hasText: 'bevriezer' }).waitFor({ timeout: 3000 });
+  await page.locator('.day.frozen').waitFor();
+  const head = await page.locator('.top .streak b').textContent();
+  if (head !== '5') throw new Error(`streak shows ${head}`);
+  await shot('20-freeze');
+});
+
+await step('broken streak shows a gentle banner once', async () => {
+  await patchState({ streak: { count: 5, lastDay: await dayAgo(4) }, freezes: 0, ui: {} });
+  await page.reload();
+  await page.locator('.break-card').waitFor({ timeout: 3000 });
+  await page.reload();
+  await page.waitForTimeout(300);
+  if (await page.locator('.break-card').count()) throw new Error('banner shown twice');
+});
+
+await step('quick round is a 60 second minute round', async () => {
+  await page.goto(BASE);
+  await page.locator('.quick-btn').click();
+  await page.locator('.intro-card', { hasText: '1:00' }).waitFor({ timeout: 3000 });
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

@@ -1,5 +1,5 @@
 import { h, DRILL_ICON } from './dom.js';
-import { levelFromXp, isStreakAlive, dayKey, DRILLS } from '../core/progress.js';
+import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
 
 export function navBar(app, active) {
@@ -19,9 +19,10 @@ function weekStrip(app) {
     d.setDate(d.getDate() - i);
     const key = dayKey(d);
     const done = (app.state.days[key] || 0) > 0;
+    const frozen = !done && (app.state.freezeLog || []).includes(key);
     const label = d.toLocaleDateString(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'narrow' });
-    days.push(h('div', { class: `day${done ? ' done' : ''}${i === 0 ? ' today' : ''}` },
-      h('span', { class: 'dot' }, done ? '✓' : ''), h('span', { class: 'lbl' }, label)));
+    days.push(h('div', { class: `day${done ? ' done' : ''}${frozen ? ' frozen' : ''}${i === 0 ? ' today' : ''}` },
+      h('span', { class: 'dot' }, done ? '✓' : frozen ? '🧊' : ''), h('span', { class: 'lbl' }, label)));
   }
   return h('div', { class: 'week' }, days);
 }
@@ -48,14 +49,21 @@ export function renderHome(app, _params, root) {
   const streak = alive ? s.streak.count : 0;
   const lv = levelFromXp(s.xp);
   const doneToday = (s.days[today] || 0) >= 3;
+  // Gentle, once a day: the streak broke, but the total never resets.
+  const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
+  if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
   root.append(
     h('header', { class: 'top' },
       h('div', { class: 'brand' }, h('span', { class: 'logo', 'aria-hidden': 'true' }, '💬'), 'Spraakwater'),
       h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
-        h('span', { 'aria-hidden': 'true' }, '🔥'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)))),
+        h('span', { 'aria-hidden': 'true' }, '🔥'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
+        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, `🧊 ${s.freezes}`) : null)),
     h('main', { class: 'screen home' },
-      h('p', { class: 'tagline' }, t('tagline')),
+      showBreak ? h('section', { class: 'card break-card' },
+        h('p', {}, t('streakReset', daysPractised(s))),
+        h('button', { class: 'icon-btn small', 'aria-label': 'OK', onclick: (e) => e.currentTarget.parentElement.remove() }, '✕')) : null,
+      h('p', { class: 'tagline' }, `${t('tagline')} · ${t('daysTotal', daysPractised(s))}`),
       h('section', { class: 'card level-card' },
         h('div', { class: 'level-row' },
           h('span', { class: 'level-badge' }, `${t('level')} ${lv.level}`),
@@ -65,6 +73,7 @@ export function renderHome(app, _params, root) {
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, t('lessonSub'))),
+      h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
       questCard(app),
       h('div', { class: 'feature-row' },
       h('button', {

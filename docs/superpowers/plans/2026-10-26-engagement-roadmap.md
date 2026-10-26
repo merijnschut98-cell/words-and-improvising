@@ -55,8 +55,8 @@
 - `app.startQuick()` → `go('round', {prompt: makePrompt('minute'), timing: {prepS:5, answerS:60}})`; `renderRound` accepts an optional `timing` override.
 - `daysPractised` increments in `applyRound` when `days[today]` goes 0 → 1.
 
-- [ ] Tests: freeze consumed exactly once for one missed day; not consumed when `lastDay === today` or yesterday; not consumed with 0 freezes; two missed days with one freeze → `broke`. `daysPractised` increments once per day.
-- [ ] Implement UI: week strip shows 🧊 on freeze days; header shows `🔥 N · 🧊 k`; broken-streak banner on home once (dismiss stored in `state.ui.seenBreak = today`). Commit: `Add streak freezes, quick round and days practised`.
+- [x] Tests: freeze consumed exactly once for one missed day; not consumed when `lastDay === today` or yesterday; not consumed with 0 freezes; two missed days with one freeze → `broke`. `daysPractised` increments once per day.
+- [x] Implement UI: week strip shows 🧊 on freeze days; header shows `🔥 N · 🧊 k`; broken-streak banner on home once (dismiss stored in `state.ui.seenBreak = today`). Commit: `Add streak freezes, quick round and days practised`.
 
 ### Task 3: Practice plan (implementation intention)
 

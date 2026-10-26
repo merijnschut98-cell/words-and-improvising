@@ -293,6 +293,13 @@ audio { width: 100%; margin-top: 4px; }
 .small-live { min-height: 64px; }
 .mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
 
+/* Streak freezes */
+.freezes { margin-left: 6px; font-size: 0.95rem; color: var(--accent); font-weight: 800; }
+.day.frozen .dot { border-color: var(--accent); font-size: 0.9rem; }
+.break-card { display: flex; gap: 10px; align-items: flex-start; background: color-mix(in srgb, var(--accent) 10%, var(--card)); }
+.break-card p { margin: 0; flex: 1; }
+.quick-btn { width: 100%; }
+
 /* Quests */
 .quest-card .card-title { margin: 0; }
 .quest { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
@@ -303,7 +310,7 @@ audio { width: 100%; margin-top: 4px; }
 .toast {
   position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 50;
   background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2); animation: pop 0.3s ease-out; max-width: 92vw; text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2); animation: pop 0.3s ease-out; width: max-content; max-width: min(92vw, 420px); text-align: center;
 }
 .toast.out { opacity: 0; transition: opacity 0.4s; }
 

@@ -69,3 +69,37 @@ export function twistEvery(level) {
 export function debateSide(elapsedS, totalS) {
   return elapsedS < totalS / 2 ? 'for' : 'against';
 }
+
+function addDays(day, n) {
+  const [y, m, d] = day.split('-').map(Number);
+  return dayKey(new Date(y, m - 1, d + n));
+}
+
+// On app open: cover missed days with streak freezes if there are enough.
+// One freeze per missed day; otherwise the streak is broken (it resets on the
+// next practised round) and nothing is consumed.
+export function reconcileStreak(state, today) {
+  const { lastDay } = state.streak;
+  const freezes = state.freezes || 0;
+  const none = { state, usedFreeze: false, broke: false };
+  if (!lastDay || state.streak.count === 0) return none;
+  const missed = daysBetween(lastDay, today) - 1;
+  if (missed <= 0) return none;
+  if (freezes < missed) return { ...none, broke: true };
+  const covered = Array.from({ length: missed }, (_, i) => addDays(lastDay, i + 1));
+  return {
+    state: {
+      ...state,
+      freezes: freezes - missed,
+      freezeLog: [...(state.freezeLog || []), ...covered],
+      streak: { ...state.streak, lastDay: covered[covered.length - 1] },
+    },
+    usedFreeze: true,
+    broke: false,
+  };
+}
+
+// Total days with at least one counted round; never resets.
+export function daysPractised(state) {
+  return Object.values(state.days || {}).filter((n) => n > 0).length;
+}

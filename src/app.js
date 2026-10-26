@@ -1,6 +1,6 @@
 // App shell: state, persistence, navigation.
 import { load, save, defaultState, KEY, needsWelcome } from './core/storage.js';
-import { dayKey } from './core/progress.js';
+import { dayKey, reconcileStreak } from './core/progress.js';
 import { buildLesson, makePrompt } from './core/lesson.js';
 import { translator } from './i18n.js';
 import { reminderMeta } from './core/reminder.js';
@@ -85,6 +85,11 @@ export const app = {
     const prompts = buildLesson(this.content, Math.random, this.state.seen);
     this.session = { prompts, index: 0, xp: 0, levelUp: false };
     this.go('round', { prompt: prompts[0] });
+  },
+  // Only a minute: one short round still keeps the day.
+  startQuick() {
+    this.session = null;
+    this.go('round', { prompt: makePrompt('minute', this.content, Math.random, this.state.seen), timing: { prepS: 5, answerS: 60, questions: 1 } });
   },
   startDrill(drill) {
     this.session = null;
@@ -173,5 +178,14 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
+{
+  // Cover missed days with streak freezes before showing anything.
+  const r = reconcileStreak(app.state, app.today());
+  app.broke = r.broke;
+  if (r.usedFreeze) {
+    app.setState(r.state);
+    app.toast(`🧊 ${app.t('freezeUsed')}`);
+  }
+}
 app.go(needsWelcome(app.state) ? 'welcome' : 'home');
 window.__app = app; // handy for debugging on device

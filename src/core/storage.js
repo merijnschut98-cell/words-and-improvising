@@ -17,6 +17,8 @@ export function defaultState() {
     onboarded: false,
     quests: { day: null, items: [] },
     freezes: 0,
+    freezeLog: [],
+    ui: {},
   };
 }
 
@@ -42,7 +44,7 @@ export function load(backend) {
     return base;
   }
   const merged = { ...base, ...parsed };
-  for (const k of ['settings', 'streak', 'drillLevels', 'days', 'seen']) {
+  for (const k of ['settings', 'streak', 'drillLevels', 'days', 'seen', 'ui']) {
     merged[k] = { ...base[k], ...(isObject(parsed[k]) ? parsed[k] : {}) };
   }
   if (!Array.isArray(merged.history)) merged.history = [];

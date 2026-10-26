@@ -83,10 +83,10 @@ function promptCard(app, prompt, state) {
   return card;
 }
 
-export function renderRound(app, { prompt, notice = '', previous = null }, root) {
+export function renderRound(app, { prompt, notice = '', previous = null, timing: timingOverride = null }, root) {
   const t = app.t;
   const settings = app.state.settings;
-  const timing = drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
+  const timing = timingOverride || drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
   const totalS = timing.answerS * timing.questions;
   const st = {
     mode: speechSupported ? settings.mode : 'type',
