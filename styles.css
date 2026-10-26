@@ -378,3 +378,11 @@ input[type="password"], input[type="text"], select {
 
 /* The hidden attribute must win over component display rules (e.g. .twist). */
 [hidden] { display: none !important; }
+
+/* Skill radar + calibration */
+.radar { display: block; width: 100%; max-width: 340px; margin: 4px auto; }
+.radar-grid { fill: none; stroke: var(--line, #eadfd3); stroke-width: 1; }
+.radar-shape { fill: color-mix(in srgb, var(--accent, #ff6b3d) 30%, transparent); stroke: var(--accent, #ff6b3d); stroke-width: 2; }
+.radar-label { font-size: 11px; font-weight: 700; fill: var(--ink, #1f2430); }
+.radar-label.dim { opacity: 0.45; }
+.calib-card p { margin: 0; }

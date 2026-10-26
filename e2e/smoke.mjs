@@ -440,6 +440,24 @@ await step('boss round combines words, sides and double XP framing', async () =>
   await page.locator('.stats').first().waitFor();
 });
 
+await step('progress shows skill radar and calibration', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const base = st.history[0];
+    const fake = [3, 2, 3, 2].map((rating, i) => ({ ...base, ts: Date.now() - i * 60000, rating,
+      coach: { overall: 4, scores: { clarity: 4, structure: 3, fluency: 4 - (i % 2), vocabulary: 3 }, strength: 's', improvement: 'i', stronger_version: 'v' } }));
+    st.history = [...fake, ...st.history];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.locator('.skill-card .radar-shape').waitFor();
+  await page.locator('.calib-card', { hasText: 'strenger' }).waitFor();
+  await page.locator('.skill-card').scrollIntoViewIfNeeded();
+  await shot('25-radar');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

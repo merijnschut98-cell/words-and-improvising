@@ -117,8 +117,8 @@
 
 **Interfaces:** `calibration(history) -> {n, meanGap, verdict:'harsh'|'fair'|'generous'}|null` over the last 10 entries with both `rating` and `coach.overall` (gap = rating − overall; harsh < −0.5, generous > 0.5). `skillRadar(history) -> {clarity, structure, fluency, vocabulary, source:'coach'|'local'}` (0–5), local proxies per the spec.
 
-- [ ] Tests: null under 3 pairs; verdicts at the thresholds; local radar when no coach data.
-- [ ] Implement an inline-SVG radar. Commit: `Add calibration and skill radar`.
+- [x] Tests: null under 3 pairs; verdicts at the thresholds; local radar when no coach data.
+- [x] Implement an inline-SVG radar. Commit: `Add calibration and skill radar`.
 
 ### Task 9: Journey milestones + themes
 

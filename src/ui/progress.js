@@ -2,6 +2,7 @@ import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, DRILLS } from '../core/progress.js';
 import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
+import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
 function delta(now, prev, lowerIsBetter) {
@@ -67,6 +68,63 @@ function sparkline(values, { invert = false } = {}) {
 
 const avg = (a) => (a.length ? a.reduce((s, v) => s + v, 0) / a.length : 0);
 
+const SVGNS = 'http://www.w3.org/2000/svg';
+const AXES = ['clarity', 'structure', 'fluency', 'vocabulary'];
+
+// 4-axis radar (0–5), top/right/bottom/left. Labels are text nodes.
+function radarSvg(r, t) {
+  const c = 110;
+  const R = 70;
+  const svg = document.createElementNS(SVGNS, 'svg');
+  svg.setAttribute('viewBox', '-50 0 320 220');
+  svg.setAttribute('class', 'radar');
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', AXES.map((a) => `${t(`sc_${a}`)} ${r[a]}`).join(', '));
+  const dir = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+  const pt = (i, v) => `${(c + dir[i][0] * R * v / 5).toFixed(1)},${(c + dir[i][1] * R * v / 5).toFixed(1)}`;
+  const el = (tag, attrs) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    svg.append(n);
+    return n;
+  };
+  for (const lvl of [1, 2, 3, 4, 5]) el('polygon', { points: AXES.map((_, i) => pt(i, lvl)).join(' '), class: 'radar-grid' });
+  AXES.forEach((_, i) => el('line', { x1: c, y1: c, x2: c + dir[i][0] * R, y2: c + dir[i][1] * R, class: 'radar-grid' }));
+  el('polygon', { points: AXES.map((a, i) => pt(i, r[a])).join(' '), class: 'radar-shape' });
+  const anchor = ['middle', 'start', 'middle', 'end'];
+  AXES.forEach((a, i) => {
+    const dim = r.source === 'local' && (a === 'clarity' || a === 'structure');
+    const label = el('text', {
+      x: c + dir[i][0] * (R + 8), y: c + dir[i][1] * (R + 14) + (i === 1 || i === 3 ? 4 : 0),
+      'text-anchor': anchor[i], class: `radar-label${dim ? ' dim' : ''}`,
+    });
+    label.textContent = `${t(`sc_${a}`)} ${r[a]}`;
+  });
+  return svg;
+}
+
+function skillCard(app) {
+  const t = app.t;
+  const r = skillRadar(app.state.history);
+  if (!r) return null;
+  const coached = app.state.history.slice(0, 10).filter((e) => e.coach && e.coach.scores).length;
+  return h('section', { class: 'card skill-card' },
+    h('h2', { class: 'card-title' }, t('skillsTitle')),
+    radarSvg(r, t),
+    h('p', { class: 'small muted' }, r.source === 'coach' ? t('skillsCoach', coached) : t('skillsLocal')));
+}
+
+function calibrationCard(app) {
+  const t = app.t;
+  const c = calibration(app.state.history);
+  const text = c ? t(`calib_${c.verdict}`, c.meanGap, c.n)
+    : (() => { const l = localCalibration(app.state.history); return l && t(`calibLocal_${l.verdict}`); })();
+  if (!text) return null;
+  return h('section', { class: 'card calib-card' },
+    h('h2', { class: 'card-title' }, t('calibTitle')),
+    h('p', {}, text));
+}
+
 export function renderProgress(app, _params, root) {
   const t = app.t;
   const s = app.state;
@@ -95,6 +153,8 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
+      skillCard(app),
+      calibrationCard(app),
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('fillersTrend')),
         sparkline(recent.map((e) => e.metrics.fillerRate), { invert: true }),
