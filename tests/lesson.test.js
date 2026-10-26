@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makePrompt, buildLesson, seededRng } from '../src/core/lesson.js';
+import { makePrompt, buildLesson, seededRng, weakestDrill } from '../src/core/lesson.js';
 import { DRILLS, drillTiming } from '../src/core/progress.js';
 import en from '../src/content/prompts.en.js';
 import nl from '../src/content/prompts.nl.js';
@@ -110,4 +110,40 @@ test('TTS drill timing table', () => {
   assert.deepEqual(drillTiming('listen', 1), { prepS: 0, answerS: 45, questions: 1 });
   assert.deepEqual(drillTiming('expert', 2), { prepS: 0, answerS: 12, questions: 5 });
   for (const d of ['yesAnd', 'listen', 'expert']) assert.ok(DRILLS.includes(d));
+});
+
+const h = (drill, rating, fillerRate = 2) => ({ drill, rating, coach: null, metrics: { words: 50, fillerRate } });
+
+test('adaptive lesson with no history: 3 distinct drills, none marked weak', () => {
+  const ls = buildLesson(en, seededRng(1), {}, { history: [], due: [] });
+  assert.equal(new Set(ls.map((p) => p.drill)).size, 3);
+  assert.ok(!ls.some((p) => p.reason === 'weak'));
+});
+
+test('weakestDrill needs 2 rounds and picks the lowest-rated drill', () => {
+  assert.equal(weakestDrill([h('debate', 1)]), null);
+  assert.equal(weakestDrill([h('debate', 2), h('debate', 1), h('minute', 5), h('minute', 4)]), 'debate');
+  // Same rating: more fillers is weaker.
+  assert.equal(weakestDrill([h('prep', 3, 1), h('prep', 3, 1), h('story', 3, 6), h('story', 3, 6)]), 'story');
+});
+
+test('adaptive lesson includes the weakest drill and a due review', () => {
+  const history = [h('debate', 1), h('debate', 2), h('minute', 5), h('minute', 5)];
+  const review = makePrompt('prep', en, seededRng(9));
+  for (let seed = 1; seed < 20; seed++) {
+    const ls = buildLesson(en, seededRng(seed), {}, { history, due: [review] });
+    assert.equal(ls.length, 3);
+    assert.equal(new Set(ls.map((p) => p.drill)).size, 3);
+    assert.equal(ls.find((p) => p.reason === 'weak').drill, 'debate');
+    assert.equal(ls.find((p) => p.reason === 'review').id, review.id);
+  }
+});
+
+test('a due review in the weakest drill is skipped for a stale drill instead', () => {
+  const history = [h('prep', 1), h('prep', 1)];
+  const review = makePrompt('prep', en, seededRng(9));
+  const ls = buildLesson(en, seededRng(2), {}, { history, due: [review] });
+  assert.equal(new Set(ls.map((p) => p.drill)).size, 3);
+  assert.ok(!ls.some((p) => p.reason === 'review'));
+  assert.ok(ls.some((p) => p.reason === 'stale'));
 });

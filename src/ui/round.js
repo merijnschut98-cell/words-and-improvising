@@ -178,6 +178,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
         prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
+        prompt.reason && prompt.reason !== 'random' ? h('p', { class: 'reason-chip' }, t(`reason_${prompt.reason}`)) : null,
         st.modifier ? h('div', { class: 'modifier-chip' },
           h('b', {}, `💪 ${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
           h('span', {}, t(`modHow_${st.modifier}`))) : null,

@@ -584,6 +584,23 @@ await step('spaced re-attempt: due prompt on home, compared with last time', asy
   await shot('34-review-compare');
 });
 
+await step('adaptive lesson leads with the weakest drill', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const base = st.history[0];
+    st.history = [1, 2, 1].map((rating, i) => ({ ...base, ts: Date.now() - i * 1000, drill: 'debate', rating }))
+      .concat(st.history.map((e) => ({ ...e, rating: 5 })));
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.btn-hero', { hasText: 'focus: Debat' }).waitFor();
+  await page.locator('.btn-hero').click();
+  await page.locator('.reason-chip', { hasText: 'zwakste' }).waitFor();
+  await shot('35-adaptive-intro');
+  await page.getByRole('button', { name: 'Close' }).click();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

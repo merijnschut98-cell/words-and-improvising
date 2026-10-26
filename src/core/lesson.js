@@ -114,6 +114,45 @@ export function makePrompt(drill, content, rng, seen = {}) {
   }
 }
 
-export function buildLesson(content, rng, seen = {}, n = 3) {
-  return shuffle(DRILLS, rng).slice(0, n).map((d) => makePrompt(d, content, rng, seen));
+// The drill he does worst lately: lowest average rating (self, else coach),
+// more fillers/min breaking ties. Needs at least 2 recent rounds in a drill.
+export function weakestDrill(history) {
+  const recent = (history || []).slice(0, 40);
+  let worst = null;
+  for (const d of DRILLS) {
+    const es = recent.filter((e) => e.drill === d && e.metrics);
+    if (es.length < 2) continue;
+    const rating = es.reduce((a, e) => a + (e.rating ?? (e.coach && e.coach.overall) ?? 3), 0) / es.length;
+    const fillers = es.reduce((a, e) => a + (e.metrics.fillerRate || 0), 0) / es.length;
+    const score = rating - fillers / 10;
+    if (!worst || score < worst.score) worst = { d, score };
+  }
+  return worst ? worst.d : null;
+}
+
+// Daily lesson. Without opts: 3 random drills. With {history, due}: one drill
+// from the weakest area, one due spaced review (else the drill left longest),
+// and one random; always distinct drills. Each prompt carries a `reason`.
+export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
+  if (!opts) return shuffle(DRILLS, rng).slice(0, n).map((d) => makePrompt(d, content, rng, seen));
+  const history = opts.history || [];
+  const out = [];
+  const used = () => new Set(out.map((p) => p.drill));
+  const weak = weakestDrill(history);
+  if (weak) out.push({ ...makePrompt(weak, content, rng, seen), reason: 'weak' });
+  const review = (opts.due || []).find((p) => !used().has(p.drill));
+  if (review) out.push({ ...review, reason: 'review' });
+  else {
+    const lastDone = (d) => {
+      const i = history.findIndex((e) => e.drill === d);
+      return i === -1 ? Infinity : i; // never done = most stale
+    };
+    const stale = shuffle(DRILLS.filter((d) => !used().has(d)), rng).sort((a, b) => lastDone(b) - lastDone(a))[0];
+    out.push({ ...makePrompt(stale, content, rng, seen), reason: 'stale' });
+  }
+  for (const d of shuffle(DRILLS.filter((x) => !used().has(x)), rng)) {
+    if (out.length >= n) break;
+    out.push({ ...makePrompt(d, content, rng, seen), reason: 'random' });
+  }
+  return out.slice(0, n);
 }

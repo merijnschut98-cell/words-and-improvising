@@ -423,3 +423,6 @@ input[type="password"], input[type="text"], select {
 
 /* Spaced re-attempts */
 .review-card { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 16px 20px; border-radius: var(--radius); border: 0; color: #fff; text-align: left; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 4px 0 var(--accent-dark); font: inherit; cursor: pointer; }
+
+/* Adaptive lesson */
+.reason-chip { margin: 6px 0 0; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--ink); font-weight: 600; }

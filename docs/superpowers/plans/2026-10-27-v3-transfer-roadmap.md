@@ -51,8 +51,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Interfaces:** Lesson = one drill from the weakest area (lowest recent self/coach rating, or highest fillers/min; needs ≥ 2 rounds in that drill), one due review (Task 1) if any, else a drill not done for longest, plus one random. Always 3 distinct drills. Home lesson subtitle names why ("Focus: Debate").
 
-- [ ] Tests: empty history = 3 random distinct; weakest drill chosen; due review included; distinctness.
-- [ ] Implement. Commit: `Make the daily lesson adaptive`.
+- [x] Tests: empty history = 3 random distinct; weakest drill chosen; due review included; distinctness.
+- [x] Implement. Commit: `Make the daily lesson adaptive`.
 
 ### Task 3 (Thu 29 Oct): Structure frames drill
 

@@ -90,7 +90,7 @@ export const app = {
   },
 
   startLesson() {
-    const prompts = buildLesson(this.content, Math.random, this.state.seen);
+    const prompts = buildLesson(this.content, Math.random, this.state.seen, { history: this.state.history, due: this.dueReviews() });
     this.session = { prompts, index: 0, xp: 0, levelUp: false };
     this.go('round', { prompt: prompts[0] });
   },

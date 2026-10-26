@@ -1,3 +1,4 @@
+import { weakestDrill } from '../core/lesson.js';
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
@@ -54,6 +55,7 @@ export function renderHome(app, _params, root) {
   const doneToday = (s.days[today] || 0) >= 3;
   // Gentle, once a day: the streak broke, but the total never resets.
   const dueCount = app.dueReviews().length;
+  const weak = weakestDrill(s.history);
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
@@ -76,7 +78,7 @@ export function renderHome(app, _params, root) {
         weekStrip(app)),
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
-        h('span', { class: 'hero-sub' }, t('lessonSub'))),
+        h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
       planLine(app),
       bossAvailable(s, new Date()) ? h('button', {
         class: 'btn boss-card',
