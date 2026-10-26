@@ -521,6 +521,35 @@ await step('expert interview runs all five items and finishes by itself', async 
   await shot('30-expert-feedback');
 });
 
+await step('challenge link opens the same prompt and offers a reply', async () => {
+  await page.goto(`${BASE}?c=prep.opinion:o07.nl`);
+  await page.locator('.note', { hasText: 'daagt je uit' }).waitFor();
+  if (page.url().includes('?c=')) throw new Error('challenge query should be cleared');
+  await page.getByRole('button', { name: 'Start' }).click();
+  const go = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await go.isVisible().catch(() => false)) await go.click();
+  await page.locator('.live').waitFor();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+  await page.getByRole('button', { name: /Antwoord met jouw resultaat/ }).click();
+  await page.locator('.toast').first().waitFor({ timeout: 3000 });
+  await shot('31-challenge-reply');
+});
+
+await step('share card renders as a PNG', async () => {
+  const data = await page.evaluate(async () => {
+    const { drawShareCard } = await import('./src/core/share.js');
+    const blob = await drawShareCard({ title: 'Les klaar 🎉', rows: [['verdiend deze les', '+45 XP'], ['dagen reeks', '🔥 4'], ['Langste schone reeks: 54 woorden', '🏆']], footer: 'Spraakwater' });
+    const buf = new Uint8Array(await blob.arrayBuffer());
+    let bin = '';
+    for (const b of buf) bin += String.fromCharCode(b);
+    return btoa(bin);
+  });
+  const { writeFileSync } = await import('node:fs');
+  writeFileSync(`${out}/32-share-card.png`, Buffer.from(data, 'base64'));
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

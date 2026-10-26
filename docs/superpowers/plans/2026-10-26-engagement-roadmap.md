@@ -145,8 +145,8 @@
 - Create: `src/core/share.js` (canvas PNG renderer; `challengeLink(prompt, lang) -> url`, `parseChallenge(search) -> {drill, promptId, lang}|null`), `tests/share.test.js` (link parse/format only)
 - Modify: `src/app.js` (open a challenge from `?c=`), `src/ui/done.js`, `src/ui/progress.js`, `src/ui/feedback.js` ("Send this prompt"), `src/i18n.js`, `sw.js`
 
-- [ ] Tests: round-trip of the link; unknown ids rejected.
-- [ ] Implement with `navigator.share` when available, else download/copy. Commit: `Add share card and challenge links`.
+- [x] Tests: round-trip of the link; unknown ids rejected.
+- [x] Implement with `navigator.share` when available, else download/copy. Commit: `Add share card and challenge links`.
 
 ### Task 12: Sounds
 

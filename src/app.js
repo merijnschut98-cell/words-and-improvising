@@ -7,6 +7,7 @@ import { reminderMeta } from './core/reminder.js';
 import { weeklyReview } from './core/review.js';
 import { runTailor, fallbackPick } from './core/tailor.js';
 import { aiErrorText } from './ui/dom.js';
+import { parseChallenge, challengePrompt } from './core/share.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
 import { renderHome } from './ui/home.js';
@@ -196,5 +197,17 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     app.toast(`🧊 ${app.t('freezeUsed')}`);
   }
 }
-app.go(needsWelcome(app.state) ? 'welcome' : 'home');
+// A challenge link (?c=drill.promptId.lang) opens that exact prompt.
+{
+  const ch = parseChallenge(location.search);
+  if (location.search) history.replaceState(null, '', location.pathname);
+  const prompt = ch && challengePrompt(ch, ch.lang === 'en' ? en : nl);
+  if (prompt) {
+    if (ch.lang !== app.lang) app.updateSettings({ lang: ch.lang });
+    app.challengeId = prompt.id;
+    app.go('round', { prompt, notice: app.t('challengeNotice') });
+  } else {
+    app.go(needsWelcome(app.state) ? 'welcome' : 'home');
+  }
+}
 window.__app = app; // handy for debugging on device

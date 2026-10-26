@@ -4,6 +4,7 @@ import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
+import { drawShareCard, shareFile } from '../core/share.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
 function delta(now, prev, lowerIsBetter) {
@@ -38,7 +39,16 @@ function weekCard(app) {
     r.best ? row(t('bestDrill'), `${DRILL_ICON[r.best.drill]} ${t(`drill_${r.best.drill}`)} (${r.best.avg})`) : null,
     r.worst && r.worst.drill !== r.best.drill
       ? row(t('worstDrill'), `${DRILL_ICON[r.worst.drill]} ${t(`drill_${r.worst.drill}`)} (${r.worst.avg})`) : null,
-    h('div', { class: 'focus' }, h('b', {}, `🎯 ${t('focusNext')}: `), focusText));
+    h('div', { class: 'focus' }, h('b', {}, `🎯 ${t('focusNext')}: `), focusText),
+    r.thisWeek.rounds ? h('button', {
+      class: 'btn btn-ghost small',
+      onclick: async () => {
+        const rows = [[t('rounds'), r.thisWeek.rounds], [t('minutesSpoken'), r.thisWeek.minutes]];
+        if (r.thisWeek.fillerRate != null) rows.push([t('m_fillers'), r.thisWeek.fillerRate]);
+        const blob = await drawShareCard({ title: t('shareWeekTitle'), rows, footer: 'Spraakwater' });
+        await shareFile(blob, 'spraakwater-week.png', t('shareWeekTitle'));
+      },
+    }, `📤 ${t('share')}`) : null);
 }
 
 function sparkline(values, { invert = false } = {}) {

@@ -6,6 +6,7 @@ import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
+import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -186,8 +187,25 @@ export function renderFeedback(app, params, root) {
       h('div', { class: 'rate-row' }, rateButtons)),
     coachCard,
     h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
+    challengeBtn(),
     nextBtn,
   );
+
+  // Only prompts that a link can rebuild (not live or coach-written ones).
+  function challengeBtn() {
+    if (!prompt.id || !challengePrompt({ drill: prompt.drill, promptId: prompt.id }, app.content)) return null;
+    const reply = app.challengeId === prompt.id;
+    return h('button', {
+      class: 'btn btn-ghost',
+      onclick: async () => {
+        const text = t('challengeText', t(`drill_${prompt.drill}`), metrics.words, metrics.fillerRate);
+        const url = challengeLink(prompt, app.lang, location.href);
+        const r = await shareText(text, url);
+        if (r === 'copied') app.toast(`📋 ${t('linkCopied')}`);
+        else if (r === 'failed') app.toast(url);
+      },
+    }, reply ? `📨 ${t('challengeReply')}` : `📨 ${t('challengeSend')}`);
+  }
 
   if (app.state.settings.apiKey) askCoach();
   else renderCoach('nokey');
