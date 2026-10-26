@@ -84,6 +84,12 @@ function promptCard(app, prompt, state) {
       state.twistChip = h('div', { class: 'twist', hidden: true });
       card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
       break;
+    case 'real':
+      card.append(h('p', { class: 'prompt-sub' }, x.kind === 'captain' ? `🏟️ ${t('realCaptain')}` : `💼 ${t('realWork')}`),
+        h('p', { class: 'prompt-main real-text' }, prompt.body));
+      if (x.constraint === 'sbi') card.append(h('div', { class: 'scaffold' }, t('con_sbi').map((s, i) => h('span', { class: 'chip' }, `${i + 1}. ${s}`))));
+      else if (x.constraint) card.append(h('p', { class: 'cue-hint' }, t(`con_${x.constraint}`)));
+      break;
     case 'frame': {
       card.append(h('p', { class: 'prompt-main' }, prompt.body));
       const name = (f) => t(`frameName_${f}`);

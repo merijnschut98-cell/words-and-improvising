@@ -144,3 +144,9 @@ test('coach scores are anchored to a rubric at 1, 3 and 5 for every axis', () =>
     for (const n of [1, 3, 5]) assert.match(req, new RegExp(`${axis} ${n} =`), `${axis} ${n}`);
   }
 });
+
+test('captain scenarios tell the coach the constraint', () => {
+  const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'real', prompt: { body: 'Your striker…', extra: { kind: 'captain', constraint: 'sbi' } } }));
+  assert.match(req, /Situation, Behaviour, Impact/);
+  assert.match(req, /assertive/);
+});

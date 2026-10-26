@@ -40,7 +40,14 @@ const FRAME_EN = {
   answer: 'Answer first, then two or three supporting points',
 };
 
+const CAPTAIN_EN = {
+  sbi: 'give the feedback using Situation, Behaviour, Impact, then a clear request',
+  oneSentence: 'deliver the hard message in one clear sentence, then stop',
+  pep: 'a short, energetic team talk: what, why, and one thing to do',
+};
+
 const DRILL_BRIEF = {
+  real: 'Real life: he answers a real situation from his work as a Lean consultant or as captain of his sports team. Judge whether he is assertive without being aggressive, makes his point or request clearly, and fits the listener.',
   frame: 'Structure frames: answer the prompt following the named structure frame. Judge structure mainly on whether every step of the frame is there, in order, and clearly signposted.',
   minute: 'Just a Minute: keep talking fluently about a random topic for the full time.',
   explain: 'Explain It: explain a concept clearly to the given audience, at their level.',
@@ -93,6 +100,7 @@ function describePrompt(drill, prompt) {
   if (drill === 'yesAnd') return `Suggestions spoken to him:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   if (drill === 'listen') return `Statement heard: ${x.statement}\nQuestion: ${x.question}`;
   if (drill === 'expert') return `Expert on: ${prompt.body}\nQuestions:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
+  if (drill === 'real') return `Situation: ${prompt.body}${x.kind === 'captain' ? `\nAs team captain, he must ${CAPTAIN_EN[x.constraint] || x.constraint}. Judge how assertive and clear he is.` : '\nWork situation as a Lean consultant.'}`;
   if (drill === 'frame') return `Prompt: ${prompt.body}\nFrame to follow: ${FRAME_EN[x.frame] || x.frame}${x.framePick && x.framePick !== x.frame ? `\n(He first picked ${FRAME_EN[x.framePick] || x.framePick} as the frame.)` : ''}`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;

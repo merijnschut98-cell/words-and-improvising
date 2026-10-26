@@ -92,6 +92,17 @@ export function makePrompt(drill, content, rng, seen = {}) {
       const twists = shuffle(content.twists, rng).slice(0, 8);
       return { id: st.seenId, drill, body: st.item.text, extra: { twists }, seenIds: [st.seenId] };
     }
+    case 'real': {
+      // Real life: captain situations and work situations, freshest first across both.
+      const both = [
+        ...pickFresh(content.captain, 'captain', seen, rng, content.captain.length).map((c) => ({ ...c, kind: 'captain' })),
+        ...pickFresh(content.work, 'work', seen, rng, content.work.length).map((c) => ({ ...c, kind: 'work' })),
+      ];
+      const unseen = shuffle(both.filter((c) => !(c.seenId in seen)), rng);
+      const pick = unseen[0] || both.sort((a, b) => seen[a.seenId] - seen[b.seenId])[0];
+      const extra = pick.kind === 'captain' ? { kind: 'captain', constraint: pick.item.constraint } : { kind: 'work' };
+      return { id: pick.seenId, drill, body: pick.item.text, extra, seenIds: [pick.seenId] };
+    }
     case 'frame': {
       const [f] = pickFresh(content.frames, 'frame', seen, rng);
       const others = shuffle(FRAME_IDS.filter((x) => x !== f.item.frame), rng).slice(0, 2);

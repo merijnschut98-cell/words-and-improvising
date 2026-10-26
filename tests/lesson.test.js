@@ -169,3 +169,28 @@ test('frame prompt carries its frame and 3 distinct options including the right 
     assert.ok(DRILLS.includes('frame'));
   }
 });
+
+test('captain and work pools: parallel, sized, captain constraints valid', () => {
+  for (const c of [en, nl]) {
+    assert.ok(c.captain.length >= 20 && c.work.length >= 20);
+    for (const it of c.captain) assert.ok(['sbi', 'oneSentence', 'pep'].includes(it.constraint), it.id);
+  }
+  assert.deepEqual(en.captain.map((x) => [x.id, x.constraint]), nl.captain.map((x) => [x.id, x.constraint]));
+  assert.deepEqual(en.work.map((x) => x.id), nl.work.map((x) => x.id));
+});
+
+test('real-life prompt comes from captain or work and carries its kind and constraint', () => {
+  const kinds = new Set();
+  for (let seed = 1; seed < 30; seed++) {
+    const p = makePrompt('real', nl, seededRng(seed));
+    kinds.add(p.extra.kind);
+    if (p.extra.kind === 'captain') {
+      const it = nl.captain.find((x) => `captain:${x.id}` === p.id);
+      assert.equal(p.extra.constraint, it.constraint);
+    } else {
+      assert.ok(nl.work.some((x) => `work:${x.id}` === p.id));
+    }
+  }
+  assert.deepEqual([...kinds].sort(), ['captain', 'work']);
+  assert.ok(DRILLS.includes('real'));
+});

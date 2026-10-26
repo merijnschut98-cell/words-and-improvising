@@ -75,8 +75,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Files:** Content pools `captain` (≥ 20: feedback to a teammate with SBI, pre-match talk, after a loss, benching a player, welcoming a new player) and `work` (≥ 20: present an A3 in 60 s, explain a Lean idea to an operator, answer a client objection, gemba-walk question, stand-up update). New drill `real` (🎯) that draws from both. Captain prompts show the SBI or "one sentence, then stop" constraint. Coach brief: judge assertiveness without aggression, clarity of the ask.
 
-- [ ] Tests: pools parallel and sized; prompt carries its constraint.
-- [ ] Implement. Commit: `Add captain and work scenarios`.
+- [x] Tests: pools parallel and sized; prompt carries its constraint.
+- [x] Implement. Commit: `Add captain and work scenarios`.
 
 ### Task 6 (Sun 1 Nov): Follow-up listening drill
 

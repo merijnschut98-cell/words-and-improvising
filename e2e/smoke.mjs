@@ -624,6 +624,21 @@ await step('frames drill: pick a frame at level 3, then see its steps', async ()
   await page.locator('.stats').first().waitFor();
 });
 
+await step('real-life drill shows a captain or work situation', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-real').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  await page.locator('.real-text').waitFor();
+  await page.locator('.prompt-card .prompt-sub', { hasText: /Als aanvoerder|Op het werk/ }).waitFor();
+  await shot('38-real');
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

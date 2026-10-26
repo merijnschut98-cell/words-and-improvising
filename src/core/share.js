@@ -46,7 +46,11 @@ export function challengePrompt({ drill, promptId }, content) {
   const [pool, itemId] = promptId.split(':');
   const items = content[POOLS[pool]];
   if (!items || !items.some((it) => it.id === itemId)) return null;
-  const seen = Object.fromEntries(items.filter((it) => it.id !== itemId).map((it) => [`${pool}:${it.id}`, 1]));
+  // Every other item of every pool counts as seen, so the shared one is picked.
+  const seen = {};
+  for (const [pre, key] of Object.entries(POOLS)) {
+    for (const it of content[key] || []) if (`${pre}:${it.id}` !== promptId) seen[`${pre}:${it.id}`] = 1;
+  }
   try {
     const p = makePrompt(drill, content, seededRng(hash(promptId)), seen);
     return p.id === promptId ? p : null;
