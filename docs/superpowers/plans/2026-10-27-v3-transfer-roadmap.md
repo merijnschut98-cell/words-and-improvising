@@ -105,3 +105,14 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 - [ ] Short note to Merijn: what's new, and one suggestion for how to use it in his real week.
 
 Slack (Sat 7 – Sun 8 Nov): content top-up (topics, opinions, small talk to ≥ 60 each), accessibility pass (labels, focus order, contrast in the Night theme). Then the daily check-in disables itself.
+
+### Deferred minors from the v2 final review (slack days, or alongside a task touching the same file)
+
+- `sound.js`: `ctx.resume()` can reject unhandled; add `.catch(() => {})`.
+- `styles.css`: `.quest:first-of-type` never matches; use `.quest + .quest` for the divider.
+- `modifiers.js`: `applyModifierTiming` is unused (round.js has `prepFor`); use it or drop it.
+- Quests can be impossible on a day (`beatYesterday` with no rounds yesterday, `otherLang` with no history); filter by feasibility before picking 3.
+- A new install opened via a challenge link skips the welcome flow.
+- The too-short retry re-rolls the modifier; pass it through like "say it again".
+- `app.challengeId` persists for the page session, so later rounds of that prompt show "Reply".
+- With recording on, spoken-cue drills record the app's own voice.
