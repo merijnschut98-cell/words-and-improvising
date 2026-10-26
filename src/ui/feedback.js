@@ -6,6 +6,7 @@ import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
+import { play } from '../core/sound.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 
 function speak(text, lang) {
@@ -55,6 +56,8 @@ export function renderFeedback(app, params, root) {
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier,
     }, app.today(), Date.now());
     app.setState(state);
+    if (newBests.length) play('best', app.state.settings);
+    else if (completedQuests.length) play('quest', app.state.settings);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
     if (newMilestones.length) {
       const msg = newMilestones.length === 1 ? t('milestoneToast', t(`ms_${newMilestones[0]}`)) : t('milestonesToast', newMilestones.length);

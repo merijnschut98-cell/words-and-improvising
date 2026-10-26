@@ -153,7 +153,7 @@
 **Files:**
 - Create: `src/core/sound.js` (WebAudio blips, no assets), Modify: `src/ui/round.js`, `src/ui/feedback.js`, `src/ui/settings.js` (toggle), `sw.js`
 
-- [ ] Implement 4 short synthesized cues (twist, switch, quest, best), muted by `settings.sound === false`. Commit: `Add sound cues`.
+- [x] Implement 4 short synthesized cues (twist, switch, quest, best), muted by `settings.sound === false`. Commit: `Add sound cues`.
 
 ## Order of work for the daily routine
 

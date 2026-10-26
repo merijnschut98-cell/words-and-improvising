@@ -2,6 +2,7 @@ import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
 import { say, hush, voiceSupported } from '../core/voice.js';
+import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
@@ -350,6 +351,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         st.twistChip.hidden = false;
         st.twistChip.replaceChildren(h('small', {}, `⚡ ${t('twist')}`), h('b', {}, twist));
         st.twistChip.classList.add('pop');
+        play('twist', settings);
         if (navigator.vibrate) navigator.vibrate(60);
       }
       if ((prompt.drill === 'debate' || prompt.drill === 'boss') && st.sideEl) {
@@ -358,6 +360,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
           st.side = side;
           st.sideEl.textContent = `👎 ${t('sideAgainst')}`;
           st.sideEl.classList.add('against', 'pop');
+          play('switch', settings);
           if (navigator.vibrate) navigator.vibrate([80, 60, 80]);
         }
       }
@@ -372,6 +375,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
           st.twistChip.classList.remove('pop');
           void st.twistChip.offsetWidth; // restart the animation
           st.twistChip.classList.add('pop');
+          play('twist', settings);
           if (navigator.vibrate) navigator.vibrate(60);
         }
       }
