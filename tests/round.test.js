@@ -70,3 +70,11 @@ test('applyRound records and returns newly reached milestones', () => {
   const again = applyRound(r.state, round(), '2026-10-26', 2000);
   assert.deepEqual(again.newMilestones, []);
 });
+
+test('applyRound uses a freeze for a missed day even if the app stayed open past midnight', () => {
+  const s = { ...defaultState(), streak: { count: 3, lastDay: '2026-10-24' }, freezes: 1 };
+  const r = applyRound(s, round(), '2026-10-26', 1000);
+  assert.equal(r.state.streak.count, 4);
+  assert.equal(r.state.freezes, 0);
+  assert.ok(r.state.freezeLog.includes('2026-10-25'));
+});

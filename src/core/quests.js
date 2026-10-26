@@ -5,6 +5,9 @@ import { dayKey } from './progress.js';
 import { tokenize } from './metrics.js';
 
 export const QUEST_XP = 15;
+
+// Prep seconds actually used; tapping "I'm ready" within a second is a cold start.
+export const prepSecondsUsed = (s) => (!s || s < 1 ? 0 : Math.round(s));
 const MAX_FREEZES = 2;
 
 const yesterdayOf = (day) => {

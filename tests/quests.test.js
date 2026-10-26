@@ -100,3 +100,11 @@ test('currentQuests shows today’s set without writing state', () => {
   assert.equal(currentQuests(s, TODAY).length, 3);
   assert.equal(s.quests.day, '2026-10-01');
 });
+
+test('prep time under one second counts as a cold start (0 s)', async () => {
+  const { prepSecondsUsed } = await import('../src/core/quests.js');
+  assert.equal(prepSecondsUsed(0.7), 0);
+  assert.equal(prepSecondsUsed(0.99), 0);
+  assert.equal(prepSecondsUsed(1.4), 1);
+  assert.equal(prepSecondsUsed(undefined), 0);
+});

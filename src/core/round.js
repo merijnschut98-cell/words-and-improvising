@@ -1,5 +1,5 @@
 // Applies a finished round to the app state. Pure: returns a new state.
-import { updateStreak, xpForRound, levelFromXp, adjustDrillLevel } from './progress.js';
+import { updateStreak, xpForRound, levelFromXp, adjustDrillLevel, reconcileStreak } from './progress.js';
 import { addHistory } from './storage.js';
 import { applyQuests } from './quests.js';
 import { updateBests } from './bests.js';
@@ -8,6 +8,8 @@ import { newMilestones } from './milestones.js';
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
   if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false, completedQuests: [], newBests: [], newMilestones: [] };
+  // The app may have stayed open past midnight: cover missed days with freezes first.
+  state = reconcileStreak(state, today).state;
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill, modifier: round.modifier });
   const drill = prompt.drill;

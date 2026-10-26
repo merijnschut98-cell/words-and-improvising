@@ -1,7 +1,8 @@
 import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
-import { say, hush, voiceSupported } from '../core/voice.js';
+import { say, hush, voiceSupported, speakCapMs } from '../core/voice.js';
+import { prepSecondsUsed } from '../core/quests.js';
 import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
@@ -292,9 +293,18 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     } else {
       st.cueEl.textContent = cue;
     }
-    if (voiceSupported) await Promise.race([say(cue, app.lang), sleep(6000)]);
-    else await sleep(prompt.drill === 'listen' ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
+    const heard = voiceSupported ? await Promise.race([say(cue, app.lang), sleep(speakCapMs(cue)).then(() => 'spoken')]) : 'failed';
     hush();
+    if (finished) return;
+    if (heard === 'failed') {
+      // No speech (unsupported, or no voice for this language): show the text long enough to read.
+      if (prompt.drill === 'listen') {
+        st.statementEl.hidden = false;
+        st.cueEl.textContent = x.question;
+      }
+      st.label.textContent = `👀 ${t('cueRead')}`;
+      await sleep(prompt.drill === 'listen' ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
+    }
     if (finished) return;
     if (prompt.drill === 'listen') {
       st.statementEl.hidden = true;
@@ -426,7 +436,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
-      prepS: Math.round(st.prepUsedS || 0),
+      prepS: prepSecondsUsed(st.prepUsedS),
       modifier: st.modifier || null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
     });

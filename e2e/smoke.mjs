@@ -104,6 +104,8 @@ await step('lesson: 3 rounds', async () => {
     await page.getByRole('button', { name: 'Start' }).click();
     const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
     if (await ready.isVisible().catch(() => false)) { if (i === 0) await shot('02-prep'); await ready.click(); }
+    // Spoken-cue drills talk first; wait until it is his turn.
+    await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
     await page.waitForTimeout(1300);
     if (i === 0) {
       await page.locator('.clean-chip', { hasText: 'schone reeks' }).waitFor();

@@ -188,15 +188,23 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
-{
-  // Cover missed days with streak freezes before showing anything.
+// Cover missed days with streak freezes: at boot and whenever the installed
+// app comes back to the foreground (Android keeps it alive across days).
+function reconcileNow() {
   const r = reconcileStreak(app.state, app.today());
-  app.broke = r.broke;
+  app.broke = app.broke || r.broke;
   if (r.usedFreeze) {
     app.setState(r.state);
     app.toast(`🧊 ${app.t('freezeUsed')}`);
   }
+  return r;
 }
+reconcileNow();
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+  const r = reconcileNow();
+  if ((r.usedFreeze || r.broke) && root.dataset.screen === 'home') app.go('home');
+});
 // A challenge link (?c=drill.promptId.lang) opens that exact prompt.
 {
   const ch = parseChallenge(location.search);
@@ -205,7 +213,7 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   if (prompt) {
     if (ch.lang !== app.lang) app.updateSettings({ lang: ch.lang });
     app.challengeId = prompt.id;
-    app.go('round', { prompt, notice: app.t('challengeNotice') });
+    app.go('round', { prompt, notice: app.t('challengeNotice'), modifier: null });
   } else {
     app.go(needsWelcome(app.state) ? 'welcome' : 'home');
   }
