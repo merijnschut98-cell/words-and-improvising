@@ -132,3 +132,8 @@ test('spoken-cue drills give the coach their brief and the spoken lines', () => 
   assert.match(ex, /sock logistics/);
   assert.match(ex, /1\. Why\?/);
 });
+
+test('frame drill tells the coach which frame to judge', () => {
+  const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'frame', prompt: { body: 'Tell about a time…', extra: { frame: 'star' } } }));
+  assert.match(req, /Frame to follow: STAR \(Situation, Task, Action, Result\)/);
+});

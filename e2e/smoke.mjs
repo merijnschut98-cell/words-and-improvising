@@ -601,6 +601,29 @@ await step('adaptive lesson leads with the weakest drill', async () => {
   await page.getByRole('button', { name: 'Close' }).click();
 });
 
+await step('frames drill: pick a frame at level 3, then see its steps', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.drillLevels.frame = 3;
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.drill-frame').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.frame-pick button').first().waitFor();
+  await shot('36-frame-pick');
+  await page.locator('.frame-pick button').first().click();
+  await page.locator('.frame-name').waitFor();
+  if ((await page.locator('.prompt-card .scaffold .chip').count()) < 3) throw new Error('frame steps missing');
+  await shot('37-frame-steps');
+  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

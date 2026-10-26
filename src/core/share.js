@@ -10,6 +10,7 @@ const ID_RE = /^[A-Za-z]+:[A-Za-z0-9]+$/;
 const POOLS = {
   topic: 'topics', concept: 'concepts', opinion: 'opinions', scenario: 'scenarios', rapid: 'rapid',
   story: 'storyStarts', yesAnd: 'yesAnd', listen: 'listen', expert: 'experts',
+  frame: 'frames', captain: 'captain', work: 'work', followUp: 'followUps',
 };
 
 // True for ids of built-in content (not coach-written or live prompts).

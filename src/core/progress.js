@@ -1,6 +1,6 @@
 // XP, levels, streaks and difficulty. Pure functions.
 
-export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert'];
+export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert', 'frame'];
 const PREP_S = [15, 10, 6, 3, 0];
 const ANSWER_S = [30, 45, 60, 75, 90];
 const TWIST_EVERY_S = [20, 16, 13, 11, 9];

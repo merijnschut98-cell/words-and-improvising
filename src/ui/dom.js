@@ -18,7 +18,7 @@ export function h(tag, attrs = {}, ...children) {
 }
 
 export const DRILL_ICON = {
-  minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫', debate: '⚖️', boss: '👑', yesAnd: '🤝', listen: '👂', expert: '🎓',
+  minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫', debate: '⚖️', boss: '👑', yesAnd: '🤝', listen: '👂', expert: '🎓', frame: '🧭',
 };
 
 // "Fewest fillers/min: 1.2" etc. for a personal-best record.

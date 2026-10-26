@@ -426,3 +426,7 @@ input[type="password"], input[type="text"], select {
 
 /* Adaptive lesson */
 .reason-chip { margin: 6px 0 0; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--ink); font-weight: 600; }
+
+/* Structure frames */
+.frame-name { margin: 10px 0 4px; font-weight: 800; text-align: center; }
+.frame-pick { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }

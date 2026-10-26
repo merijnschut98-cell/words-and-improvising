@@ -147,3 +147,25 @@ test('a due review in the weakest drill is skipped for a stale drill instead', (
   assert.ok(!ls.some((p) => p.reason === 'review'));
   assert.ok(ls.some((p) => p.reason === 'stale'));
 });
+
+const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer'];
+
+test('frames pool: parallel, sized, every prompt tagged with a known frame', () => {
+  for (const c of [en, nl]) {
+    assert.ok(c.frames.length >= 30);
+    for (const f of c.frames) assert.ok(FRAME_IDS.includes(f.frame), f.id);
+  }
+  assert.deepEqual(en.frames.map((f) => [f.id, f.frame]), nl.frames.map((f) => [f.id, f.frame]));
+});
+
+test('frame prompt carries its frame and 3 distinct options including the right one', () => {
+  for (let seed = 1; seed < 15; seed++) {
+    const p = makePrompt('frame', nl, seededRng(seed));
+    const item = nl.frames.find((f) => `frame:${f.id}` === p.id);
+    assert.equal(p.extra.frame, item.frame);
+    assert.equal(p.extra.options.length, 3);
+    assert.equal(new Set(p.extra.options).size, 3);
+    assert.ok(p.extra.options.includes(item.frame));
+    assert.ok(DRILLS.includes('frame'));
+  }
+});

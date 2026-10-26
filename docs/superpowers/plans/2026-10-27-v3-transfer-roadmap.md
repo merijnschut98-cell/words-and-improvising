@@ -60,8 +60,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Frames:** PREP, STAR (Situation-Task-Action-Result), What / So what / Now what, Problem-Solution-Benefit (A3 style), Past-Present-Future (team talk), Answer first (pyramid). Intro shows the frame's steps; at level ≥ 3 he picks the frame himself from three options before prep starts.
 
-- [ ] Tests: each prompt has a known frame; parallel ids; level ≥ 3 offers 3 distinct frames including the right one.
-- [ ] Implement. Commit: `Add structure frames drill`.
+- [x] Tests: each prompt has a known frame; parallel ids; level ≥ 3 offers 3 distinct frames including the right one.
+- [x] Implement. Commit: `Add structure frames drill`.
 
 ### Task 4 (Fri 30 Oct, key day): Coach rubric anchors + key-day check
 

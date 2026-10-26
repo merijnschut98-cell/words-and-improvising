@@ -84,6 +84,25 @@ function promptCard(app, prompt, state) {
       state.twistChip = h('div', { class: 'twist', hidden: true });
       card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
       break;
+    case 'frame': {
+      card.append(h('p', { class: 'prompt-main' }, prompt.body));
+      const name = (f) => t(`frameName_${f}`);
+      const level = app.state.drillLevels.frame || 1;
+      if (level >= 3 && !state.framePick) {
+        // He chooses the frame first; picking reveals the right one and its steps.
+        card.append(h('p', { class: 'cue-hint' }, t('framePick')),
+          h('div', { class: 'frame-pick' }, x.options.map((f) => h('button', {
+            class: 'btn btn-ghost small',
+            onclick: () => { state.framePick = f; card.replaceWith(promptCard(app, prompt, state)); },
+          }, name(f)))));
+      } else {
+        if (state.framePick) card.append(h('p', { class: state.framePick === x.frame ? 'good-text' : 'note' },
+          state.framePick === x.frame ? t('frameRight') : t('frameWrong', name(state.framePick))));
+        card.append(h('p', { class: 'frame-name' }, `🧭 ${name(x.frame)}`),
+          h('div', { class: 'scaffold' }, t(`frameSteps_${x.frame}`).map((s, i) => h('span', { class: 'chip' }, `${i + 1}. ${s}`))));
+      }
+      break;
+    }
     case 'yesAnd':
     case 'expert':
       if (prompt.drill === 'expert') card.append(h('p', { class: 'prompt-sub' }, t('expertOn', prompt.body)));
@@ -434,7 +453,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (st.textarea) transcript = st.textarea.value;
     const audio = recorder ? await recorder.stop() : null;
     if (disposed) return;
-    const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
+    const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } }
+      : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       prepS: prepSecondsUsed(st.prepUsedS),

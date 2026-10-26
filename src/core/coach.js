@@ -31,7 +31,17 @@ const MODIFIER_TEXT = {
   endQuestion: 'end with a question to the listener',
 };
 
+const FRAME_EN = {
+  prep: 'PREP (Point, Reason, Example, Point)',
+  star: 'STAR (Situation, Task, Action, Result)',
+  wsn: 'What / So what / Now what',
+  psb: 'Problem, Solution, Benefit',
+  ppf: 'Past, Present, Future',
+  answer: 'Answer first, then two or three supporting points',
+};
+
 const DRILL_BRIEF = {
+  frame: 'Structure frames: answer the prompt following the named structure frame. Judge structure mainly on whether every step of the frame is there, in order, and clearly signposted.',
   minute: 'Just a Minute: keep talking fluently about a random topic for the full time.',
   explain: 'Explain It: explain a concept clearly to the given audience, at their level.',
   prep: 'PREP: give an opinion structured as Point, Reason, Example, Point.',
@@ -78,6 +88,7 @@ function describePrompt(drill, prompt) {
   if (drill === 'yesAnd') return `Suggestions spoken to him:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   if (drill === 'listen') return `Statement heard: ${x.statement}\nQuestion: ${x.question}`;
   if (drill === 'expert') return `Expert on: ${prompt.body}\nQuestions:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
+  if (drill === 'frame') return `Prompt: ${prompt.body}\nFrame to follow: ${FRAME_EN[x.frame] || x.frame}${x.framePick && x.framePick !== x.frame ? `\n(He first picked ${FRAME_EN[x.framePick] || x.framePick} as the frame.)` : ''}`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;
 }

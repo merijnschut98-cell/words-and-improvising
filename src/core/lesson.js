@@ -13,6 +13,9 @@ export function seededRng(seed) {
   };
 }
 
+// Structure frames for the frame drill (steps live in i18n and coach.js).
+export const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer'];
+
 const pickOne = (arr, rng) => arr[Math.floor(rng() * arr.length)];
 
 function shuffle(arr, rng) {
@@ -88,6 +91,14 @@ export function makePrompt(drill, content, rng, seen = {}) {
       const [st] = pickFresh(content.storyStarts, 'story', seen, rng);
       const twists = shuffle(content.twists, rng).slice(0, 8);
       return { id: st.seenId, drill, body: st.item.text, extra: { twists }, seenIds: [st.seenId] };
+    }
+    case 'frame': {
+      const [f] = pickFresh(content.frames, 'frame', seen, rng);
+      const others = shuffle(FRAME_IDS.filter((x) => x !== f.item.frame), rng).slice(0, 2);
+      return {
+        id: f.seenId, drill, body: f.item.text,
+        extra: { frame: f.item.frame, options: shuffle([f.item.frame, ...others], rng) }, seenIds: [f.seenId],
+      };
     }
     case 'yesAnd': {
       const ls = pickFresh(content.yesAnd, 'yesAnd', seen, rng, 3);
