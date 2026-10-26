@@ -79,3 +79,12 @@ test('pause bonus also needs a normal speaking pace (swallowed "ehh" gaps are no
   assert.equal(xpForRound({ ...base, metrics: { words: 100, fillerRate: 0, pauses: 4, wpm: 60 } }), 30);
   assert.equal(xpForRound({ ...base, metrics: { words: 100, fillerRate: 0, pauses: 4, wpm: 110 } }), 35);
 });
+
+import { debateSide } from '../src/core/progress.js';
+
+test('debateSide flips at half time', () => {
+  assert.equal(debateSide(0, 60), 'for');
+  assert.equal(debateSide(29.9, 60), 'for');
+  assert.equal(debateSide(30, 60), 'against');
+  assert.equal(debateSide(59, 60), 'against');
+});

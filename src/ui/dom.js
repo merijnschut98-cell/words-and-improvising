@@ -18,7 +18,7 @@ export function h(tag, attrs = {}, ...children) {
 }
 
 export const DRILL_ICON = {
-  minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫',
+  minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫', debate: '⚖️',
 };
 
 export function fmtTime(s) {

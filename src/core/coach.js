@@ -29,6 +29,7 @@ const DRILL_BRIEF = {
   smalltalk: 'Small Talk: respond naturally to the opener and keep the conversation going, ideally with a follow-up question.',
   rapid: 'Rapid Fire: answer five quick questions, ten seconds each, starting immediately.',
   pause: "Pause, don't fill: talk about the topic and replace every filler word with a short silent pause. Judge filler use strictly.",
+  debate: 'Debate: argue FOR the statement in the first half, then switch at the signal and argue AGAINST it in the second half. Judge the strength of both sides and how cleanly he switched.',
   story: 'Story Chain: keep telling one story and weave in each surprise twist the moment it appears, without stopping.',
 };
 

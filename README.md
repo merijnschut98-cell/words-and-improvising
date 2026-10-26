@@ -14,6 +14,7 @@ Daily improvised-speaking practice. Short timed rounds train the gap between *kn
 | ⚡ Rapid Fire | 5 questions × 10 s, no prep |
 | 📖 Story Chain | Tell one story; a surprise twist appears every few seconds and has to go in right away |
 | 🤫 Pause, don't fill | Swap every "uh" for a silent pause; live pause and filler counters |
+| ⚖️ Debate | Argue FOR the statement, then flip at halftime and argue AGAINST it |
 
 **🗣 Live conversation** (needs an API key): the AI plays the other person in a small-talk scenario and talks back out loud, for up to 4 turns. The coach then judges how well you listened, built on what they said and kept the conversation going.
 

@@ -1,5 +1,5 @@
 import { h, DRILL_ICON, fmtTime } from './dom.js';
-import { drillTiming, twistEvery } from '../core/progress.js';
+import { drillTiming, twistEvery, debateSide } from '../core/progress.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze } from '../core/metrics.js';
@@ -54,6 +54,11 @@ function promptCard(app, prompt, state) {
     case 'smalltalk':
       card.append(h('p', { class: 'prompt-sub' }, `${t('situation')}: ${x.setting}`),
         h('p', { class: 'bubble' }, `“${prompt.body}”`));
+      break;
+    case 'debate':
+      state.sideEl = h('div', { class: 'side-banner' }, `👍 ${app.t('sideFor')}`);
+      state.side = 'for';
+      card.append(h('p', { class: 'prompt-main' }, prompt.body), state.sideEl);
       break;
     case 'pause':
       state.pauseEl = h('b', {}, '0');
@@ -231,6 +236,15 @@ export function renderRound(app, { prompt, notice = '', previous = null }, root)
     if (st.textarea) st.textarea.focus();
     st.answerStart = countdown(totalS, (el) => {
       r.set(1 - el / totalS, fmtTime(totalS - el));
+      if (prompt.drill === 'debate' && st.sideEl) {
+        const side = debateSide(el, totalS);
+        if (side !== st.side) {
+          st.side = side;
+          st.sideEl.textContent = `👎 ${t('sideAgainst')}`;
+          st.sideEl.classList.add('against', 'pop');
+          if (navigator.vibrate) navigator.vibrate([80, 60, 80]);
+        }
+      }
       if (prompt.drill === 'story') {
         const every = twistEvery(app.state.drillLevels.story);
         const n = Math.min(prompt.extra.twists.length, Math.floor(el / every));

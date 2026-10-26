@@ -292,6 +292,19 @@ await step('say it again shows a before/after comparison', async () => {
   await shot('17-compare');
 });
 
+await step('debate flips sides at half time', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-debate').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('.side-banner:not(.against)').waitFor({ timeout: 3000 });
+  await page.locator('.side-banner.against').waitFor({ timeout: 20000 });
+  await shot('18-debate');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

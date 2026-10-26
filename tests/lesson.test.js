@@ -67,3 +67,9 @@ test('story prompt has an opening and 8 distinct twists', () => {
   assert.ok(nl.twists.length >= 30 && en.twists.length >= 30);
   assert.deepEqual(en.storyStarts.map((x) => x.id), nl.storyStarts.map((x) => x.id));
 });
+
+test('debate prompt comes from the opinions pool', () => {
+  const p = makePrompt('debate', en, seededRng(4), {});
+  assert.ok(en.opinions.some((o) => o.text === p.body));
+  assert.match(p.seenIds[0], /^opinion:/);
+});
