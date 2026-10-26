@@ -150,3 +150,10 @@ test('captain scenarios tell the coach the constraint', () => {
   assert.match(req, /Situation, Behaviour, Impact/);
   assert.match(req, /assertive/);
 });
+
+test('rehearsal rounds never send his event text to the coach', () => {
+  const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'minute',
+    prompt: { body: 'Your 60-second version: SECRET kick-off with Philips', eventId: 'e1', focus: 'The 60-second version: what is it about and what do you want?', extra: {} } }));
+  assert.ok(!req.includes('SECRET'));
+  assert.match(req, /60-second version/);
+});

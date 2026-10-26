@@ -14,7 +14,7 @@ export function applyRound(state, round, today, now) {
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill, modifier: round.modifier });
   const drill = prompt.drill;
-  const earlier = state.history.find((e) => e.promptId === prompt.id);
+  const earlier = state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === round.lang);
   let next = {
     ...state,
     xp: state.xp + xp,

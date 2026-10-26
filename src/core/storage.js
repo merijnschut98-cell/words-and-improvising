@@ -53,6 +53,8 @@ export function load(backend) {
     merged[k] = { ...base[k], ...(isObject(parsed[k]) ? parsed[k] : {}) };
   }
   if (!Array.isArray(merged.history)) merged.history = [];
+  if (!Array.isArray(merged.events)) merged.events = [];
+  if (!isObject(merged.reviews)) merged.reviews = {};
   return merged;
 }
 

@@ -75,3 +75,12 @@ test('plan defaults for existing users', () => {
   assert.deepEqual(s.plan, { cue: 'coffee', hour: null });
   assert.deepEqual(defaultState().plan, { cue: '', hour: null });
 });
+
+test('v3 keys default for existing users and bad values are coerced', () => {
+  const s = load({ getItem: () => JSON.stringify({ xp: 1 }), setItem() {} });
+  assert.deepEqual(s.reviews, {});
+  assert.deepEqual(s.events, []);
+  const bad = load({ getItem: () => JSON.stringify({ xp: 1, events: 'oops', reviews: [1, 2] }), setItem() {} });
+  assert.deepEqual(bad.events, []);
+  assert.deepEqual(bad.reviews, {});
+});

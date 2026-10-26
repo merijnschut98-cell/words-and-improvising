@@ -612,6 +612,7 @@ await step('frames drill: pick a frame at level 3, then see its steps', async ()
   await page.locator('.drill-frame').click();
   await page.getByRole('button', { name: 'Start' }).click();
   await page.locator('.frame-pick button').first().waitFor();
+  if (await page.locator('.ring-wrap').count()) throw new Error('timer must not run while picking a frame');
   await shot('36-frame-pick');
   await page.locator('.frame-pick button').first().click();
   await page.locator('.frame-name').waitFor();

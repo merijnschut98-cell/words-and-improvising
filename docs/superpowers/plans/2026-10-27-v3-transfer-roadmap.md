@@ -101,7 +101,7 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 ### Task 9 (Thu 5 – Fri 6 Nov): Final review + fixes
 
-- [ ] Whole-branch review by a fresh subagent (most capable model) over the v3 range, with this plan's Review Focus. One fix pass for Critical/Important findings, each with a failing test first. Ledger minors.
+- [x] Whole-branch review by a fresh subagent (most capable model) over the v3 range, with this plan's Review Focus. One fix pass for Critical/Important findings, each with a failing test first. Ledger minors.
 - [ ] Short note to Merijn: what's new, and one suggestion for how to use it in his real week.
 
 Slack (Sat 7 – Sun 8 Nov): content top-up (topics, opinions, small talk to ≥ 60 each), accessibility pass (labels, focus order, contrast in the Night theme). Then the daily check-in disables itself.
@@ -116,3 +116,10 @@ Slack (Sat 7 – Sun 8 Nov): content top-up (topics, opinions, small talk to ≥
 - The too-short retry re-rolls the modifier; pass it through like "say it again".
 - `app.challengeId` persists for the page session, so later rounds of that prompt show "Reply".
 - With recording on, spoken-cue drills record the app's own voice.
+
+### Deferred minors from the v3 final review
+
+- The one-fix chip is cleared before the too-short check, so a retry round loses it; clear it in `commit()` instead.
+- `wasImproved` ignores the coach rating when he did not self-rate; compare `rating ?? coach.overall`.
+- A past event can only be reflected on, not deleted (a cancelled meeting keeps asking "How did it go?").
+- The pace card also shows for typed answers; gate on speak mode.

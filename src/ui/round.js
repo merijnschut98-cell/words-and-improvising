@@ -99,7 +99,11 @@ function promptCard(app, prompt, state) {
         card.append(h('p', { class: 'cue-hint' }, t('framePick')),
           h('div', { class: 'frame-pick' }, x.options.map((f) => h('button', {
             class: 'btn btn-ghost small',
-            onclick: () => { state.framePick = f; card.replaceWith(promptCard(app, prompt, state)); },
+            onclick: () => {
+              state.framePick = f;
+              if (state.onFramePick) state.onFramePick();
+              else card.replaceWith(promptCard(app, prompt, state));
+            },
           }, name(f)))));
       } else {
         if (state.framePick) card.append(h('p', { class: state.framePick === x.frame ? 'good-text' : 'note' },
@@ -228,6 +232,17 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       await recorder.start();
       if (disposed) { recorder.stop(); return; }
     }
+    // Frames drill from level 3: he picks the frame first, off the clock.
+    if (prompt.drill === 'frame' && (app.state.drillLevels.frame || 1) >= 3 && !st.framePick) {
+      st.phase = 'pick';
+      st.onFramePick = () => { st.onFramePick = null; startTimed(); };
+      fill(promptCard(app, prompt, st));
+      return;
+    }
+    startTimed();
+  }
+
+  function startTimed() {
     st.prepStart = performance.now();
     if (prepFor() > 0) showPrep();
     else showAnswer();

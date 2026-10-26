@@ -177,7 +177,7 @@ export function renderFeedback(app, params, root) {
   // Before -> now, when this round is a retry of the same prompt.
   const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
   // A spaced re-attempt compares with the last time he did this prompt.
-  const earlier = previous || app.state.history.find((e) => e.promptId === prompt.id) || null;
+  const earlier = previous || app.state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang) || null;
   const rows = compareAttempts(earlier, { metrics });
   const compareCard = rows.length ? h('section', { class: 'card compare-card' },
     h('h2', { class: 'card-title' }, previous ? t('beforeNow') : t('earlierNow')),
