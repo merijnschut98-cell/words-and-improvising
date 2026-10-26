@@ -128,8 +128,8 @@
 
 **Interfaces:** `MILESTONES = [{id, test(state) -> boolean, unlocks?: themeId}]` (≥ 10, from "First words" (1 round) to "Table-topics ready" (50 rounds + 3 drills at level 3)); `newMilestones(state) -> [id]`.
 
-- [ ] Tests: ordering, idempotence, unlock mapping.
-- [ ] Implement. Commit: `Add journey milestones and themes`.
+- [x] Tests: ordering, idempotence, unlock mapping.
+- [x] Implement. Commit: `Add journey milestones and themes`.
 
 ### Task 10: TTS drills: Yes-and, Listen & respond, Expert interview
 

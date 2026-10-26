@@ -62,3 +62,11 @@ test('applyRound records personal bests and reports new ones', () => {
   const again = applyRound(r.state, round({ metrics: { words: 40, fillerRate: 5, wpm: 80, fillerCount: 4, fillers: {} } }), '2026-10-23', 2000);
   assert.deepEqual(again.newBests, []);
 });
+
+test('applyRound records and returns newly reached milestones', () => {
+  const r = applyRound(defaultState(), round(), '2026-10-26', 1000);
+  assert.deepEqual(r.newMilestones, ['firstWords']);
+  assert.deepEqual(r.state.milestones, ['firstWords']);
+  const again = applyRound(r.state, round(), '2026-10-26', 2000);
+  assert.deepEqual(again.newMilestones, []);
+});

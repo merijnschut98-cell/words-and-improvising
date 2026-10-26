@@ -1,4 +1,5 @@
 import { h, aiErrorText } from './dom.js';
+import { THEMES, unlockedThemes } from '../core/milestones.js';
 import { checkKey } from '../core/claude.js';
 import { navBar } from './home.js';
 import { planPicker } from './plan.js';
@@ -92,6 +93,17 @@ export function renderSettings(app, _params, root) {
         h('select', { onchange: (e) => set({ model: e.target.value }) },
           h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),
           h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
+      h('section', { class: 'card' },
+        h('label', { class: 'field-label' }, t('themeTitle')),
+        h('div', { class: 'theme-row' }, THEMES.map((th) => {
+          const open = unlockedThemes(app.state.milestones).includes(th);
+          return h('button', {
+            class: `theme-swatch sw-${th}${(s.theme || 'default') === th ? ' on' : ''}`,
+            disabled: !open, 'aria-pressed': String((s.theme || 'default') === th),
+            onclick: () => set({ theme: th }, true),
+          }, h('i', { 'aria-hidden': 'true' }), `${open ? '' : '🔒 '}${t(`theme_${th}`)}`);
+        })),
+        h('p', { class: 'muted small' }, t('themeLockedHint'))),
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('planTitle')),
         h('p', { class: 'muted small' }, t('planHelp')),

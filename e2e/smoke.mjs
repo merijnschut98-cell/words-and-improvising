@@ -458,6 +458,29 @@ await step('progress shows skill radar and calibration', async () => {
   await shot('25-radar');
 });
 
+await step('journey path and an unlocked theme', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.milestones = ['firstWords', 'threeDays', 'weekOne'];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.locator('.journey-card .ms.next').waitFor();
+  if ((await page.locator('.journey-card .ms.reached').count()) !== 3) throw new Error('expected 3 reached milestones');
+  await page.locator('.journey-card').scrollIntoViewIfNeeded();
+  await shot('26-journey');
+  await page.getByRole('button', { name: /Instellingen/ }).click();
+  await page.locator('.theme-swatch', { hasText: 'Oceaan' }).click();
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'ocean');
+  if (!(await page.locator('.theme-swatch', { hasText: 'Nacht' }).isDisabled())) throw new Error('night should be locked');
+  await page.locator('.theme-row').scrollIntoViewIfNeeded();
+  await shot('27-theme');
+  await page.locator('.theme-swatch', { hasText: 'Zonsondergang' }).click();
+  await page.waitForFunction(() => !document.documentElement.dataset.theme);
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

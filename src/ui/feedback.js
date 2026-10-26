@@ -49,13 +49,17 @@ export function renderFeedback(app, params, root) {
   function commit() {
     if (st.applied) return st.result;
     st.applied = true;
-    const { state, xp, levelUp, completedQuests = [], newBests = [] } = applyRound(app.state, {
+    const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier,
     }, app.today(), Date.now());
     app.setState(state);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
-    st.result = { xp, levelUp, newBests };
+    if (newMilestones.length) {
+      const msg = newMilestones.length === 1 ? t('milestoneToast', t(`ms_${newMilestones[0]}`)) : t('milestonesToast', newMilestones.length);
+      setTimeout(() => app.toast(msg), completedQuests.length * 900);
+    }
+    st.result = { xp, levelUp, newBests, newMilestones };
     return st.result;
   }
 

@@ -3,6 +3,7 @@ import { levelFromXp, DRILLS } from '../core/progress.js';
 import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
+import { MILESTONES } from '../core/milestones.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
 function delta(now, prev, lowerIsBetter) {
@@ -114,6 +115,24 @@ function skillCard(app) {
     h('p', { class: 'small muted' }, r.source === 'coach' ? t('skillsCoach', coached) : t('skillsLocal')));
 }
 
+// One vertical path: reached ✓, the next one highlighted, the rest muted.
+function journeyCard(app) {
+  const t = app.t;
+  const have = new Set(app.state.milestones || []);
+  const next = MILESTONES.find((m) => !have.has(m.id));
+  return h('section', { class: 'card journey-card' },
+    h('h2', { class: 'card-title' }, t('journeyTitle')),
+    h('ol', { class: 'journey' }, MILESTONES.map((m) => {
+      const state = have.has(m.id) ? 'reached' : m === next ? 'next' : 'later';
+      return h('li', { class: `ms ${state}` },
+        h('span', { class: 'ms-dot', 'aria-hidden': 'true' }, state === 'reached' ? '✓' : ''),
+        h('span', { class: 'ms-text' },
+          h('b', {}, t(`ms_${m.id}`), state === 'next' ? h('small', { class: 'ms-next' }, ` · ${t('journeyNext')}`) : null),
+          h('small', {}, t(`msHow_${m.id}`)),
+          m.unlocks ? h('small', { class: 'ms-unlock' }, `🎨 ${t('themeUnlocks', t(`theme_${m.unlocks}`))}`) : null));
+    })));
+}
+
 function calibrationCard(app) {
   const t = app.t;
   const c = calibration(app.state.history);
@@ -153,6 +172,7 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
+      journeyCard(app),
       skillCard(app),
       calibrationCard(app),
       h('section', { class: 'card' },

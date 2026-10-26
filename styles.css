@@ -386,3 +386,33 @@ input[type="password"], input[type="text"], select {
 .radar-label { font-size: 11px; font-weight: 700; fill: var(--ink, #1f2430); }
 .radar-label.dim { opacity: 0.45; }
 .calib-card p { margin: 0; }
+
+/* Journey milestones */
+.journey { list-style: none; margin: 0; padding: 0; position: relative; }
+.journey::before { content: ''; position: absolute; left: 13px; top: 14px; bottom: 14px; width: 3px; background: var(--line); border-radius: 2px; }
+.ms { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; position: relative; }
+.ms-dot { flex: none; width: 29px; height: 29px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 3px solid var(--line); font-weight: 800; color: #fff; z-index: 1; }
+.ms.reached .ms-dot { background: var(--accent); border-color: var(--accent); }
+.ms.next .ms-dot { border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent); }
+.ms-text { display: flex; flex-direction: column; gap: 1px; }
+.ms-text small { color: var(--muted); }
+.ms.later { opacity: 0.55; }
+.ms-next { color: var(--primary) !important; font-weight: 700; }
+.ms-unlock { font-size: 12px; }
+
+/* Themes: cosmetic only, unlocked along the journey */
+.theme-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 6px 0; }
+.theme-swatch { display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+.theme-swatch.on { border-color: var(--primary); }
+.theme-swatch:disabled { opacity: 0.5; cursor: default; }
+.theme-swatch i { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+.sw-default i { background: linear-gradient(135deg, #ff6b3d 50%, #13b5a6 50%); }
+.sw-ocean i { background: linear-gradient(135deg, #2f80ed 50%, #13b5a6 50%); }
+.sw-forest i { background: linear-gradient(135deg, #2e9e5b 50%, #c58b1c 50%); }
+.sw-night i { background: linear-gradient(135deg, #8b5cf6 50%, #22c3d6 50%); }
+:root[data-theme="ocean"] { --primary: #2f80ed; --primary-dark: #1f5fb8; --accent: #13b5a6; --accent-dark: #0d8a7e; }
+:root[data-theme="forest"] { --primary: #2e9e5b; --primary-dark: #1f7a43; --accent: #c58b1c; --accent-dark: #9a6b10; }
+:root[data-theme="night"] {
+  --bg: #12131f; --card: #1d1f33; --ink: #eef0ff; --muted: #a0a4c0; --line: #2b2e4a; --mark: #5b4a8a;
+  --primary: #8b5cf6; --primary-dark: #6d3fd6; --accent: #22c3d6; --accent-dark: #1795a4; color-scheme: dark;
+}

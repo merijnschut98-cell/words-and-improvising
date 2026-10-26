@@ -73,6 +73,12 @@ export const app = {
   updateSettings(patch) {
     this.setState({ ...this.state, settings: { ...this.state.settings, ...patch } });
     document.documentElement.lang = this.lang;
+    this.applyTheme();
+  },
+  applyTheme() {
+    const th = this.state.settings.theme;
+    if (th && th !== 'default') document.documentElement.dataset.theme = th;
+    else delete document.documentElement.dataset.theme;
   },
   reset() {
     this.setState(defaultState());
@@ -134,11 +140,12 @@ export const app = {
     setTimeout(() => el.remove(), 2700);
   },
   // Adds an applied round's result to the running lesson, if any.
-  addToSession({ xp = 0, levelUp = false, newBests = [] } = {}) {
+  addToSession({ xp = 0, levelUp = false, newBests = [], newMilestones = [] } = {}) {
     if (!this.session) return;
     this.session.xp += xp;
     this.session.levelUp = this.session.levelUp || levelUp;
     this.session.highlights = [...(this.session.highlights || []), ...newBests];
+    this.session.milestones = [...(this.session.milestones || []), ...newMilestones];
   },
   // Called by feedback after a round is applied.
   nextAfterRound(result) {
@@ -147,7 +154,7 @@ export const app = {
     this.addToSession(result);
     s.index += 1;
     if (s.index < s.prompts.length) return this.go('round', { prompt: s.prompts[s.index] });
-    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [] };
+    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [], milestones: s.milestones || [] };
     this.session = null;
     return this.go('done', summary);
   },
@@ -168,6 +175,7 @@ export const app = {
 };
 
 document.documentElement.lang = app.lang;
+app.applyTheme();
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
