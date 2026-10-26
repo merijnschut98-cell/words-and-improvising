@@ -2,7 +2,7 @@ import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery, debateSide } from '../core/progress.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
 import { createRecorder } from '../core/recorder.js';
-import { tokenize, analyze } from '../core/metrics.js';
+import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
 
 const RING_R = 52;
@@ -185,6 +185,16 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       st.growth.push(performance.now());
       st.lastLive = live;
     }
+    if (st.cleanEl) {
+      const cr = cleanRun(tokenize(live), app.lang);
+      st.cleanEl.textContent = `🧼 ${t('cleanRun')}: ${cr.current} · ${t('best')} ${cr.max}`;
+      if (cr.max > (st.cleanBest || 0) && cr.max >= 10 && cr.max === cr.current) {
+        st.cleanEl.classList.remove('pop');
+        void st.cleanEl.offsetWidth;
+        st.cleanEl.classList.add('pop');
+      }
+      st.cleanBest = cr.max;
+    }
     if (st.pauseEl) {
       const fillers = analyze(`${text} ${interim}`, 1, app.lang).fillerCount;
       if (String(fillers) !== st.fillerEl.textContent) {
@@ -212,7 +222,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     let input;
     if (st.mode === 'speak') {
       st.live = h('div', { class: 'live', 'aria-live': 'polite' }, h('span', { class: 'muted' }, t('listening')));
-      input = st.live;
+      st.cleanEl = h('div', { class: 'clean-chip' }, `🧼 ${t('cleanRun')}: 0`);
+      input = h('div', {}, st.cleanEl, st.live);
       recognizer = createRecognizer({
         lang: app.lang,
         onText: (full, interim) => updateLive(full, interim),
@@ -285,6 +296,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   function switchToTyping() {
     if (recognizer) { recognizer.stop(); recognizer = null; }
     st.live = null;
+    st.cleanEl = null;
     const ta = typingArea();
     ta.value = st.transcript;
     if (st.inputSlot) st.inputSlot.replaceChildren(h('p', { class: 'note' }, st.notice), ta);

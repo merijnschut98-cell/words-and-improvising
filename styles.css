@@ -293,6 +293,11 @@ audio { width: 100%; margin-top: 4px; }
 .small-live { min-height: 64px; }
 .mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
 
+/* Clean run */
+.clean-chip { display: inline-block; margin-bottom: 8px; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
+  background: color-mix(in srgb, var(--accent) 14%, var(--card)); color: var(--accent-dark); font-variant-numeric: tabular-nums; }
+.clean-chip.pop { animation: pop 0.35s ease-out; }
+
 /* Personal bests */
 .pb-card { background: color-mix(in srgb, #f5b301 14%, var(--card)); border-color: color-mix(in srgb, #f5b301 40%, var(--line)); }
 .pb-card p, .highlights p { margin: 4px 0; font-weight: 700; }

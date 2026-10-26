@@ -1,6 +1,6 @@
 import { h, aiErrorText, bestLabel } from './dom.js';
 import { updateBests } from '../core/bests.js';
-import { analyze, highlightFillers } from '../core/metrics.js';
+import { analyze, highlightFillers, cleanRun, tokenize } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
 import { compareAttempts } from '../core/compare.js';
 import { applyRound } from '../core/round.js';
@@ -25,6 +25,7 @@ export function renderFeedback(app, params, root) {
   const lang = app.lang;
   const metrics = analyze(transcript, durationS, lang);
   if (params.pauses != null) metrics.pauses = params.pauses;
+  const clean = cleanRun(tokenize(transcript), lang).max;
   const st = { rating: null, coach: null, applied: false };
   let audioUrl = null;
 
@@ -49,7 +50,7 @@ export function renderFeedback(app, params, root) {
     st.applied = true;
     const { state, xp, levelUp, completedQuests = [], newBests = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
-      rating: st.rating, coach: st.coach, prepS, retry: !!previous,
+      rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean,
     }, app.today(), Date.now());
     app.setState(state);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
@@ -59,7 +60,7 @@ export function renderFeedback(app, params, root) {
 
   // Preview personal bests before the round is saved (it saves on Next).
   const firstEver = !Object.keys(app.state.bests || {}).length;
-  const preview = updateBests(app.state.bests || {}, { ts: 0, drill: prompt.drill, durationS, metrics }).newBests
+  const preview = updateBests(app.state.bests || {}, { ts: 0, drill: prompt.drill, durationS, metrics, cleanRun: clean }).newBests
     .filter((b) => !b.drill || !firstEver);
   const pbCard = preview.length ? h('section', { class: 'card pb-card' },
     firstEver ? h('p', {}, `🏆 ${t('pbFirst')}`)

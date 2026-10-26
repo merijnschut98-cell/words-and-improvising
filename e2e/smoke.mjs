@@ -105,7 +105,10 @@ await step('lesson: 3 rounds', async () => {
     const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
     if (await ready.isVisible().catch(() => false)) { if (i === 0) await shot('02-prep'); await ready.click(); }
     await page.waitForTimeout(1300);
-    if (i === 0) await shot('03-answer');
+    if (i === 0) {
+      await page.locator('.clean-chip', { hasText: 'schone reeks' }).waitFor();
+      await shot('03-answer');
+    }
     await page.getByRole('button', { name: 'Klaar' }).click();
     await page.locator('.stats').first().waitFor();
     await page.locator('.coach-card .scores').waitFor({ timeout: 5000 });

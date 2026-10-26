@@ -68,3 +68,17 @@ export function highlightFillers(text, lang = 'en') {
   if (last < text.length) segs.push({ text: text.slice(last), filler: false });
   return segs;
 }
+
+// Longest stretch of words without a filler (a multi-word filler is one break),
+// and the stretch running at the end.
+export function cleanRun(tokens, lang = 'en') {
+  const { positions } = findFillers(tokens, lang);
+  let max = 0;
+  let start = 0;
+  for (const [i, len] of positions) {
+    max = Math.max(max, i - start);
+    start = i + len;
+  }
+  const current = tokens.length - start;
+  return { max: Math.max(max, current), current };
+}

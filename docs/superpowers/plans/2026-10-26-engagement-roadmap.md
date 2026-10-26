@@ -86,8 +86,8 @@
 **Files:**
 - Modify: `src/core/metrics.js` (`cleanRun(tokens, lang) -> {max, current}` using `findFillers` positions), `tests/metrics.test.js`, `src/ui/round.js` (live counter for every spoken round), `src/core/round.js` (store `cleanRun` in history), `styles.css`
 
-- [ ] Tests: `"a b you know c d e"` → max 3, current 3; `"um a b"` → max 2; multi-word filler counts as one break; empty → 0.
-- [ ] Implement small live chip "🧼 clean run: 23 · best 54" that pulses on a new best. Commit: `Add clean-run counter`.
+- [x] Tests: `"a b you know c d e"` → max 3, current 3; `"um a b"` → max 2; multi-word filler counts as one break; empty → 0.
+- [x] Implement small live chip "🧼 clean run: 23 · best 54" that pulses on a new best. Commit: `Add clean-run counter`.
 
 ### Task 6: Modifiers (varied conditions)
 

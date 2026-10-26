@@ -57,3 +57,22 @@ test('highlightFillers splits text into filler and plain segments', () => {
 test('highlightFillers on empty text', () => {
   assert.deepEqual(highlightFillers('', 'nl'), []);
 });
+
+import { cleanRun } from '../src/core/metrics.js';
+import { tokenize } from '../src/core/metrics.js';
+
+test('cleanRun: multi-word filler is one break', () => {
+  assert.deepEqual(cleanRun(tokenize('a b you know c d e'), 'en'), { max: 3, current: 3 });
+});
+
+test('cleanRun: leading filler', () => {
+  assert.deepEqual(cleanRun(tokenize('um a b'), 'en'), { max: 2, current: 2 });
+});
+
+test('cleanRun: trailing filler resets current', () => {
+  assert.deepEqual(cleanRun(tokenize('a b c d eh'), 'nl'), { max: 4, current: 0 });
+});
+
+test('cleanRun: empty', () => {
+  assert.deepEqual(cleanRun([], 'en'), { max: 0, current: 0 });
+});
