@@ -103,6 +103,10 @@ export function makePrompt(drill, content, rng, seen = {}) {
       const extra = pick.kind === 'captain' ? { kind: 'captain', constraint: pick.item.constraint } : { kind: 'work' };
       return { id: pick.seenId, drill, body: pick.item.text, extra, seenIds: [pick.seenId] };
     }
+    case 'followUp': {
+      const [u] = pickFresh(content.followUps, 'followUp', seen, rng);
+      return { id: u.seenId, drill, body: u.item.text, extra: { cues: [u.item.text], detail: u.item.detail }, seenIds: [u.seenId] };
+    }
     case 'frame': {
       const [f] = pickFresh(content.frames, 'frame', seen, rng);
       const others = shuffle(FRAME_IDS.filter((x) => x !== f.item.frame), rng).slice(0, 2);

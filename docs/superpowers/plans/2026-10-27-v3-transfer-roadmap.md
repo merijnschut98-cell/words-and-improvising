@@ -82,8 +82,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Files:** Content `followUps` (≥ 30 per language: a small-talk line with one specific detail). Drill `followUp` (🔍) using the spoken-cue flow (`CUED_DRILLS`): the app speaks the line; he answers with one follow-up question that uses the detail. Local check: a question word (`wat/hoe/waarom/wanneer/wie/welke` · `what/how/why/when/who/which`) and a content word from the line's `detail` field. Feedback shows ✓/✗ for "asked a question" and "used the detail".
 
-- [ ] Tests: detail and question detection in both languages; pools parallel.
-- [ ] Implement. Commit: `Add follow-up question drill`.
+- [x] Tests: detail and question detection in both languages; pools parallel.
+- [x] Implement. Commit: `Add follow-up question drill`.
 
 ### Task 7 (Mon 2 – Tue 3 Nov): My real week
 

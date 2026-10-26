@@ -111,11 +111,13 @@ function promptCard(app, prompt, state) {
     }
     case 'yesAnd':
     case 'expert':
+    case 'followUp':
       if (prompt.drill === 'expert') card.append(h('p', { class: 'prompt-sub' }, t('expertOn', prompt.body)));
       state.cueDots = x.cues.map((_, i) => h('i', { class: i === 0 ? 'on' : '' }));
       state.cueEl = h('p', { class: 'prompt-main cue-text' }, '…');
       card.append(h('div', { class: 'rapid-dots' }, state.cueDots), state.cueEl);
       if (prompt.drill === 'yesAnd') card.append(h('p', { class: 'cue-hint' }, t('yesAndStart')));
+      if (prompt.drill === 'followUp') card.append(h('p', { class: 'cue-hint' }, t('followUpHint')));
       break;
     case 'listen':
       state.statementEl = h('p', { class: 'prompt-sub listen-statement', hidden: true }, x.statement);

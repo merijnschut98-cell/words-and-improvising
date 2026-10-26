@@ -7,6 +7,7 @@ import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
 import { play } from '../core/sound.js';
+import { checkFollowUp } from '../core/followup.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 
 function speak(text, lang) {
@@ -178,6 +179,14 @@ export function renderFeedback(app, params, root) {
       const c = modifierCheck(modifier, metrics, transcript, lang);
       return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
         `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
+    })() : null,
+    prompt.drill === 'followUp' ? (() => {
+      const f = checkFollowUp(transcript, prompt.extra.detail, app.lang);
+      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, `${ok ? '✓' : '✗'} ${ok ? yes : no}`);
+      return h('section', { class: 'card followup-card' },
+        h('h2', { class: 'card-title' }, t('followUpCheck')),
+        line(f.asked, t('fuAsked'), t('fuNotAsked')),
+        line(f.usedDetail, t('fuDetail'), t('fuNoDetail', prompt.extra.detail.map((d) => (prompt.body.match(new RegExp(d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')) || [d])[0]).join(', '))));
     })() : null,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('topFillers')),

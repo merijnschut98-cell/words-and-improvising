@@ -1,6 +1,6 @@
 // XP, levels, streaks and difficulty. Pure functions.
 
-export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert', 'frame', 'real'];
+export const DRILLS = ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert', 'frame', 'real', 'followUp'];
 const PREP_S = [15, 10, 6, 3, 0];
 const ANSWER_S = [30, 45, 60, 75, 90];
 const TWIST_EVERY_S = [20, 16, 13, 11, 9];
@@ -56,7 +56,7 @@ export function adjustDrillLevel(level, rating) {
   return Math.max(1, Math.min(5, next));
 }
 
-export const CUED_DRILLS = ['yesAnd', 'listen', 'expert'];
+export const CUED_DRILLS = ['yesAnd', 'listen', 'expert', 'followUp'];
 
 export function drillTiming(drill, level) {
   if (drill === 'rapid') return { prepS: 0, answerS: 10, questions: 5 };
@@ -65,6 +65,7 @@ export function drillTiming(drill, level) {
   if (drill === 'yesAnd') return { prepS: 0, answerS: 15, questions: 3 };
   if (drill === 'listen') return { prepS: 0, answerS: 45, questions: 1 };
   if (drill === 'expert') return { prepS: 0, answerS: 12, questions: 5 };
+  if (drill === 'followUp') return { prepS: 0, answerS: 20, questions: 1 };
   const i = Math.max(1, Math.min(5, level || 1)) - 1;
   return { prepS: PREP_S[i], answerS: ANSWER_S[i], questions: 1 };
 }

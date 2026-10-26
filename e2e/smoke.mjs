@@ -639,6 +639,18 @@ await step('real-life drill shows a captain or work situation', async () => {
   await page.locator('.stats').first().waitFor();
 });
 
+await step('follow-up drill speaks a line and checks question + detail', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-followUp').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.followup-card').waitFor();
+  await page.locator('.followup-card').scrollIntoViewIfNeeded();
+  await shot('39-followup');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
