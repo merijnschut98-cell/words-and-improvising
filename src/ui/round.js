@@ -1,6 +1,7 @@
 import { h, DRILL_ICON, fmtTime } from './dom.js';
-import { drillTiming, twistEvery, debateSide } from '../core/progress.js';
-import { createRecognizer, speechSupported } from '../core/speech.js';
+import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
+import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
+import { say, hush, voiceSupported } from '../core/voice.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
@@ -80,6 +81,19 @@ function promptCard(app, prompt, state) {
     case 'story':
       state.twistChip = h('div', { class: 'twist', hidden: true });
       card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
+      break;
+    case 'yesAnd':
+    case 'expert':
+      if (prompt.drill === 'expert') card.append(h('p', { class: 'prompt-sub' }, t('expertOn', prompt.body)));
+      state.cueDots = x.cues.map((_, i) => h('i', { class: i === 0 ? 'on' : '' }));
+      state.cueEl = h('p', { class: 'prompt-main cue-text' }, '…');
+      card.append(h('div', { class: 'rapid-dots' }, state.cueDots), state.cueEl);
+      if (prompt.drill === 'yesAnd') card.append(h('p', { class: 'cue-hint' }, t('yesAndStart')));
+      break;
+    case 'listen':
+      state.statementEl = h('p', { class: 'prompt-sub listen-statement', hidden: true }, x.statement);
+      state.cueEl = h('p', { class: 'prompt-main cue-text' }, '👂 …');
+      card.append(state.statementEl, state.cueEl, h('p', { class: 'cue-hint' }, t('listenHint')));
       break;
     case 'rapid':
       state.rapidQ = h('p', { class: 'prompt-main' }, x.questions[0]);
@@ -237,6 +251,67 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     }
   }
 
+  const cued = CUED_DRILLS.includes(prompt.drill);
+  const sleep = (ms) => new Promise((r) => { setTimeout(r, ms); });
+
+  // Spoken-cue drills restart recognition per item; st.base holds earlier items.
+  function startListening() {
+    recognizer = createRecognizer({
+      lang: app.lang,
+      onText: (full, interim) => updateLive(joinText(st.base || '', full), interim),
+      onError: (code) => {
+        if (finished) return;
+        st.mode = 'type';
+        st.notice = code === 'not-allowed' || code === 'service-not-allowed' ? t('micDenied') : t('speechFailed');
+        switchToTyping();
+      },
+    });
+    recognizer.start();
+  }
+
+  // One item of a cued drill: stop listening, speak (or show) the cue, then
+  // listen and time this item. The mic is off while the app talks.
+  async function runCue(i, r) {
+    const x = prompt.extra;
+    const cue = x.cues[i];
+    st.phase = 'cue';
+    st.label.textContent = voiceSupported ? `🔊 ${t('cueListening')}` : `👀 ${t('cueRead')}`;
+    st.label.classList.remove('go');
+    r.set(1, fmtTime(timing.answerS));
+    if (st.cueDots) st.cueDots.forEach((d, k) => d.classList.toggle('on', k <= i));
+    if (recognizer) {
+      const rec = recognizer;
+      recognizer = null;
+      st.base = joinText(st.base || '', await rec.stop());
+    }
+    if (finished) return;
+    if (prompt.drill === 'listen') {
+      if (!voiceSupported) st.statementEl.hidden = false;
+      st.cueEl.textContent = voiceSupported ? '👂 …' : x.question;
+    } else {
+      st.cueEl.textContent = cue;
+    }
+    if (voiceSupported) await Promise.race([say(cue, app.lang), sleep(6000)]);
+    else await sleep(prompt.drill === 'listen' ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
+    hush();
+    if (finished) return;
+    if (prompt.drill === 'listen') {
+      st.statementEl.hidden = true;
+      st.cueEl.textContent = x.question;
+    }
+    st.phase = 'answer';
+    st.label.textContent = st.mode === 'speak' ? t('speakNow') : t('typeNow');
+    st.label.classList.add('go');
+    if (st.mode === 'speak') startListening();
+    const done = st.answeredS;
+    const start = countdown(timing.answerS, (el) => r.set(1 - el / timing.answerS, fmtTime(timing.answerS - el)), () => {
+      st.answeredS += timing.answerS;
+      if (i + 1 < timing.questions) runCue(i + 1, r);
+      else finish(st.answeredS);
+    });
+    st.answerStart = start - done * 1000;
+  }
+
   function showAnswer() {
     st.prepUsedS = (performance.now() - (st.prepStart || performance.now())) / 1000;
     st.phase = 'answer';
@@ -247,29 +322,26 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       st.live = h('div', { class: 'live', 'aria-live': 'polite' }, h('span', { class: 'muted' }, t('listening')));
       st.cleanEl = h('div', { class: 'clean-chip' }, `🧼 ${t('cleanRun')}: 0`);
       input = h('div', {}, st.cleanEl, st.live);
-      recognizer = createRecognizer({
-        lang: app.lang,
-        onText: (full, interim) => updateLive(full, interim),
-        onError: (code) => {
-          if (finished) return;
-          st.mode = 'type';
-          st.notice = code === 'not-allowed' || code === 'service-not-allowed' ? t('micDenied') : t('speechFailed');
-          switchToTyping();
-        },
-      });
-      recognizer.start();
+      if (!cued) startListening();
     } else {
       input = typingArea();
     }
     st.inputSlot = h('div', { class: 'input-slot' }, input);
+    st.label = h('div', { class: 'phase-label go' }, st.mode === 'speak' ? t('speakNow') : t('typeNow'));
     fill(
       card,
-      h('div', { class: 'answer-row' }, r.el, h('div', { class: 'phase-label go' }, st.mode === 'speak' ? t('speakNow') : t('typeNow'))),
+      h('div', { class: 'answer-row' }, r.el, st.label),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
       st.inputSlot,
       h('button', { class: 'btn btn-primary btn-big', onclick: () => finish() }, t('done')),
     );
     if (st.textarea) st.textarea.focus();
+    st.answerStart = performance.now();
+    if (cued) {
+      st.answeredS = 0;
+      runCue(0, r);
+      return;
+    }
     st.answerStart = countdown(totalS, (el) => {
       r.set(1 - el / totalS, fmtTime(totalS - el));
       if (prompt.drill === 'boss' && st.twistChip && el >= 30 && !st.twistsShown.length) {
@@ -338,17 +410,18 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (finished) return;
     finished = true;
     clearTimer();
-    const durationS = elapsed ?? (performance.now() - st.answerStart) / 1000;
+    hush();
+    const durationS = elapsed ?? (cued && st.phase === 'cue' ? st.answeredS : (performance.now() - st.answerStart) / 1000);
     main.querySelectorAll('button').forEach((b) => { b.disabled = true; });
     quit.disabled = true;
     let transcript = st.transcript;
-    if (recognizer) transcript = await recognizer.stop();
+    if (recognizer) transcript = joinText(st.base || '', await recognizer.stop());
     if (st.textarea) transcript = st.textarea.value;
     const audio = recorder ? await recorder.stop() : null;
     if (disposed) return;
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
-      pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
+      pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       prepS: Math.round(st.prepUsedS || 0),
       modifier: st.modifier || null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
@@ -361,6 +434,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     disposed = true;
     finished = true;
     clearTimer();
+    hush();
     if (recognizer) recognizer.stop();
     if (recorder) recorder.stop();
   };

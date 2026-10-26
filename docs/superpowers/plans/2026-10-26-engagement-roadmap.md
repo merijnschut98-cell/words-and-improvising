@@ -136,8 +136,8 @@
 **Files:**
 - Modify: `src/content/prompts.*.js` (`yesAnd` ≥ 30 lines, `listen` ≥ 30 `{statement, question}`, `experts` ≥ 30 topics + `expertQuestions` ≥ 20), `src/core/lesson.js`, `src/core/progress.js` (`DRILLS` + timings: yesAnd 3 × 15 s, listen 1 × 45 s after the audio, expert 5 × 12 s), `src/ui/round.js` (speak the line, then start the timer; show the text too), `src/core/coach.js` (briefs), `src/ui/dom.js` (icons), `src/i18n.js`, `tests/lesson.test.js`
 
-- [ ] Tests: content parallel and sized; prompts carry the lines/questions; timing table.
-- [ ] Implement using `say()` from `voice.js` with a 6 s cap before the timer starts; when TTS is unsupported, show the text for 3 s instead. Commit per drill if large.
+- [x] Tests: content parallel and sized; prompts carry the lines/questions; timing table.
+- [x] Implement using `say()` from `voice.js` with a 6 s cap before the timer starts; when TTS is unsupported, show the text for 3 s instead. Commit per drill if large.
 
 ### Task 11: Share card + challenge link
 

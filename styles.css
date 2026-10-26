@@ -416,3 +416,7 @@ input[type="password"], input[type="text"], select {
   --bg: #12131f; --card: #1d1f33; --ink: #eef0ff; --muted: #a0a4c0; --line: #2b2e4a; --mark: #5b4a8a;
   --primary: #8b5cf6; --primary-dark: #6d3fd6; --accent: #22c3d6; --accent-dark: #1795a4; color-scheme: dark;
 }
+
+/* Spoken-cue drills */
+.cue-hint { margin: 8px 0 0; font-weight: 700; color: var(--accent-dark); text-align: center; }
+.listen-statement { font-style: italic; }

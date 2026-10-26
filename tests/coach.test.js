@@ -120,3 +120,15 @@ test('live conversation: coach sees the full dialogue', () => {
   assert.match(user, /Them: What kind\?/);
   assert.match(user, /listen/i);
 });
+
+test('spoken-cue drills give the coach their brief and the spoken lines', () => {
+  const base = { transcript: 'yes and we', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm' };
+  const ya = JSON.stringify(buildCoachRequest({ ...base, drill: 'yesAnd', prompt: { body: 'A', extra: { cues: ['A', 'B', 'C'] } } }));
+  assert.match(ya, /Yes, and/);
+  assert.match(ya, /3\. C/);
+  const li = JSON.stringify(buildCoachRequest({ ...base, drill: 'listen', prompt: { body: 'Q?', extra: { statement: 'S.', question: 'Q?' } } }));
+  assert.match(li, /Statement heard: S\./);
+  const ex = JSON.stringify(buildCoachRequest({ ...base, drill: 'expert', prompt: { body: 'sock logistics', extra: { cues: ['Why?'] } } }));
+  assert.match(ex, /sock logistics/);
+  assert.match(ex, /1\. Why\?/);
+});

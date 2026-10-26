@@ -481,6 +481,46 @@ await step('journey path and an unlocked theme', async () => {
   await page.waitForFunction(() => !document.documentElement.dataset.theme);
 });
 
+await step('yes-and speaks a line, then listens per item', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-yesAnd').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 12000 });
+  const line = await page.locator('.cue-text').textContent();
+  if (!line || line === '…') throw new Error('cue line not shown');
+  await page.waitForTimeout(1300);
+  await shot('28-yesand');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
+await step('listen & respond hides the statement and shows the question', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-listen').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 12000 });
+  if (await page.locator('.listen-statement').isVisible()) throw new Error('statement should be hidden');
+  const q = await page.locator('.cue-text').textContent();
+  if (!q.trim().endsWith('?')) throw new Error(`expected a question, got ${q}`);
+  await page.waitForTimeout(1300);
+  await shot('29-listen');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
+await step('expert interview runs all five items and finishes by itself', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.go('round', { prompt: makePrompt('expert', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 2, questions: 5 } });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.rapid-dots i.on').nth(4).waitFor({ timeout: 45000 });
+  await page.locator('.stats').first().waitFor({ timeout: 20000 });
+  await shot('30-expert-feedback');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

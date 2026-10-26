@@ -89,6 +89,26 @@ export function makePrompt(drill, content, rng, seen = {}) {
       const twists = shuffle(content.twists, rng).slice(0, 8);
       return { id: st.seenId, drill, body: st.item.text, extra: { twists }, seenIds: [st.seenId] };
     }
+    case 'yesAnd': {
+      const ls = pickFresh(content.yesAnd, 'yesAnd', seen, rng, 3);
+      return {
+        id: ls[0].seenId, drill, body: ls[0].item.text,
+        extra: { cues: ls.map((l) => l.item.text) }, seenIds: ls.map((l) => l.seenId),
+      };
+    }
+    case 'listen': {
+      const [l] = pickFresh(content.listen, 'listen', seen, rng);
+      const { statement, question } = l.item;
+      return {
+        id: l.seenId, drill, body: question,
+        extra: { statement, question, cues: [`${statement} ${question}`] }, seenIds: [l.seenId],
+      };
+    }
+    case 'expert': {
+      const [x] = pickFresh(content.experts, 'expert', seen, rng);
+      const qs = shuffle(content.expertQuestions, rng).slice(0, 5).map((q) => q.text);
+      return { id: x.seenId, drill, body: x.item.text, extra: { cues: qs }, seenIds: [x.seenId] };
+    }
     default:
       throw new Error(`Unknown drill: ${drill}`);
   }

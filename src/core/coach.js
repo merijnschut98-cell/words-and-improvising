@@ -41,6 +41,9 @@ const DRILL_BRIEF = {
   pause: "Pause, don't fill: talk about the topic and replace every filler word with a short silent pause. Judge filler use strictly.",
   debate: 'Debate: argue FOR the statement in the first half, then switch at the signal and argue AGAINST it in the second half. Judge the strength of both sides and how cleanly he switched.',
   boss: 'Boss round (2 minutes): argue FOR the statement, weave in three given words, absorb a surprise twist at 30 s, then switch at 60 s and argue AGAINST. Judge stamina, structure across the switch, and whether all words and the twist were used.',
+  yesAnd: 'Yes, and: the app speaks three suggestions; he must start each reply with "Yes, and" and build on the idea instead of blocking or changing it. Judge acceptance and building.',
+  listen: 'Listen & respond: the app speaks a short statement and a question about it; he answers. Judge whether he actually heard and used the details, then how clearly he answered.',
+  expert: "Expert interview: he plays the world's leading expert on an absurd topic and answers five quick interview questions, twelve seconds each. Judge confidence, commitment to the role and fluency, not factual accuracy.",
   story: 'Story Chain: keep telling one story and weave in each surprise twist the moment it appears, without stopping.',
 };
 
@@ -72,6 +75,9 @@ function describePrompt(drill, prompt) {
   if (drill === 'smalltalk') return `Situation: ${x.setting}\nThey say: "${prompt.body}"`;
   if (drill === 'boss') return `Statement: ${prompt.body}\nWords to include: ${(x.words || []).join(', ')}\nTwist that appeared: ${(x.twistsShown || []).join(' | ') || '(none)'}`;
   if (drill === 'story') return `Story opening: ${prompt.body}\nTwists that appeared, in order: ${(x.twistsShown || []).join(' | ') || '(none)'}`;
+  if (drill === 'yesAnd') return `Suggestions spoken to him:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
+  if (drill === 'listen') return `Statement heard: ${x.statement}\nQuestion: ${x.question}`;
+  if (drill === 'expert') return `Expert on: ${prompt.body}\nQuestions:\n${(x.cues || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;
 }
