@@ -160,6 +160,7 @@ export function renderRound(app, { prompt, notice = '', previous = null }, root)
       await recorder.start();
       if (disposed) { recorder.stop(); return; }
     }
+    st.prepStart = performance.now();
     if (timing.prepS > 0) showPrep();
     else showAnswer();
   }
@@ -204,6 +205,7 @@ export function renderRound(app, { prompt, notice = '', previous = null }, root)
   }
 
   function showAnswer() {
+    st.prepUsedS = (performance.now() - (st.prepStart || performance.now())) / 1000;
     st.phase = 'answer';
     const r = ring();
     const card = promptCard(app, prompt, st);
@@ -304,6 +306,7 @@ export function renderRound(app, { prompt, notice = '', previous = null }, root)
     const shown = prompt.drill === 'story' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
+      prepS: Math.round(st.prepUsedS || 0),
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
     });
   }

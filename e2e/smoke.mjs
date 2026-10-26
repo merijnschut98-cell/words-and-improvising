@@ -93,10 +93,10 @@ await step('first run shows the welcome slides', async () => {
 });
 await page.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' } })));
 await page.reload();
-await step('home renders', async () => { await page.getByText('Les van vandaag').waitFor(); await shot('01-home'); });
+await step('home renders', async () => { await page.locator('.btn-hero').waitFor(); await shot('01-home'); });
 
 await step('lesson: 3 rounds', async () => {
-  await page.getByText('Les van vandaag').click();
+  await page.locator('.btn-hero').click();
   for (let i = 0; i < 3; i++) {
     await page.getByRole('button', { name: 'Start' }).click();
     const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
@@ -317,6 +317,30 @@ await step('debate flips sides at half time', async () => {
   await shot('18-debate');
   await page.getByRole('button', { name: 'Klaar' }).click();
   await page.locator('.stats').first().waitFor();
+});
+
+await step('daily quests: cold start completes a quest with a toast', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const d = new Date(); const p = (n) => String(n).padStart(2, '0');
+    const today = `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+    st.quests = { day: today, items: [{ id: 'coldStart', done: false }, { id: 'sayAgain', done: false }, { id: 'bridgeAll', done: false }] };
+    st.drillLevels.minute = 1;
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.quest-card .quest').first().waitFor();
+  await shot('19-quests');
+  await page.locator('.drill-minute').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+  await page.getByRole('button', { name: /Volgende|Afronden/ }).click();
+  await page.locator('.toast', { hasText: 'Opdracht' }).waitFor({ timeout: 3000 });
+  await page.locator('.quest.done').first().waitFor({ timeout: 3000 });
 });
 
 await step('too-short answer offers retry', async () => {

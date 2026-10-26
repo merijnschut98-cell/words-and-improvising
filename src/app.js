@@ -118,6 +118,16 @@ export const app = {
     this.session = null;
     this.go('round', { prompt: prompt || fallback(), notice });
   },
+  // Small floating message that survives navigation.
+  toast(text) {
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.setAttribute('role', 'status');
+    el.textContent = text;
+    document.body.append(el);
+    setTimeout(() => el.classList.add('out'), 2200);
+    setTimeout(() => el.remove(), 2700);
+  },
   // Adds an applied round's result to the running lesson, if any.
   addToSession({ xp = 0, levelUp = false } = {}) {
     if (!this.session) return;

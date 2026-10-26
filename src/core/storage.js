@@ -15,6 +15,8 @@ export function defaultState() {
     history: [],
     seen: {},
     onboarded: false,
+    quests: { day: null, items: [] },
+    freezes: 0,
   };
 }
 

@@ -226,7 +226,7 @@ audio { width: 100%; margin-top: 4px; }
 .big-emoji { font-size: 3rem; }
 
 /* Done */
-.done { align-items: center; justify-content: center; text-align: center; padding-top: 10dvh; }
+.screen.done { align-items: center; justify-content: center; text-align: center; padding-top: 10dvh; }
 .confetti { font-size: 4rem; animation: pop 0.6s ease-out; }
 @keyframes pop { from { transform: scale(0.3); opacity: 0; } }
 .xp-big { font-size: 2.6rem; font-weight: 900; color: var(--accent); }
@@ -292,6 +292,20 @@ audio { width: 100%; margin-top: 4px; }
 .chat-controls { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
 .small-live { min-height: 64px; }
 .mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
+
+/* Quests */
+.quest-card .card-title { margin: 0; }
+.quest { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
+.quest:first-of-type { border-top: 0; }
+.quest-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; font-weight: 900; font-size: 0.8rem; color: #fff; }
+.quest.done .quest-check { background: var(--accent); border-color: var(--accent); }
+.quest.done span:nth-child(2) { color: var(--muted); text-decoration: line-through; }
+.toast {
+  position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 50;
+  background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2); animation: pop 0.3s ease-out; max-width: 92vw; text-align: center;
+}
+.toast.out { opacity: 0; transition: opacity 0.4s; }
 
 /* Home feature cards */
 .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

@@ -62,3 +62,10 @@ test('welcome only on a truly fresh start', () => {
   assert.equal(needsWelcome({ ...defaultState(), onboarded: true }), false);
   assert.equal(needsWelcome({ ...defaultState(), history: [{ ts: 1 }] }), false);
 });
+
+test('v2 keys default for existing users', () => {
+  const b = { getItem: () => JSON.stringify({ xp: 10 }), setItem() {} };
+  const s = load(b);
+  assert.deepEqual(s.quests, { day: null, items: [] });
+  assert.equal(s.freezes, 0);
+});

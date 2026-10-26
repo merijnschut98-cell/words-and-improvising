@@ -47,3 +47,10 @@ test('coach overall is used when there is no self rating', () => {
   const r2 = applyRound(defaultState(), round({ rating: null, coach: { overall: 4 } }), '2026-10-23', 1);
   assert.equal(r2.state.drillLevels.minute, 2);
 });
+
+test('applyRound evaluates quests and reports them', () => {
+  const s = { ...defaultState(), quests: { day: '2026-10-23', items: [{ id: 'coldStart', done: false }, { id: 'sayAgain', done: false }, { id: 'lesson', done: false }] } };
+  const r = applyRound(s, round({ prepS: 0 }), '2026-10-23', 1000);
+  assert.deepEqual(r.completedQuests, ['coldStart']);
+  assert.equal(r.state.xp, 30 + 15);
+});

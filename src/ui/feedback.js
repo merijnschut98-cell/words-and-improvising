@@ -20,7 +20,7 @@ function chip(value, label, tone = '') {
 
 export function renderFeedback(app, params, root) {
   const t = app.t;
-  const { prompt, transcript, durationS, targetS, audio, mode, previous } = params;
+  const { prompt, transcript, durationS, targetS, audio, mode, previous, prepS = null } = params;
   const lang = app.lang;
   const metrics = analyze(transcript, durationS, lang);
   if (params.pauses != null) metrics.pauses = params.pauses;
@@ -46,11 +46,12 @@ export function renderFeedback(app, params, root) {
   function commit() {
     if (st.applied) return st.result;
     st.applied = true;
-    const { state, xp, levelUp } = applyRound(app.state, {
+    const { state, xp, levelUp, completedQuests = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
-      rating: st.rating, coach: st.coach,
+      rating: st.rating, coach: st.coach, prepS, retry: !!previous,
     }, app.today(), Date.now());
     app.setState(state);
+    completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
     st.result = { xp, levelUp };
     return st.result;
   }

@@ -1,10 +1,11 @@
 // Applies a finished round to the app state. Pure: returns a new state.
 import { updateStreak, xpForRound, levelFromXp, adjustDrillLevel } from './progress.js';
 import { addHistory } from './storage.js';
+import { applyQuests } from './quests.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
-  if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false };
+  if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false, completedQuests: [] };
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill });
   const drill = prompt.drill;
@@ -31,5 +32,12 @@ export function applyRound(state, round, today, now) {
     coach: coach || null,
     xp,
   });
-  return { state: next, xp, levelUp: levelFromXp(next.xp).level > levelFromXp(state.xp).level };
+  const q = applyQuests(next, { ...round, ts: now }, today);
+  next = q.state;
+  return {
+    state: next,
+    xp: next.xp - state.xp, // round XP plus any quest XP
+    levelUp: levelFromXp(next.xp).level > levelFromXp(state.xp).level,
+    completedQuests: q.completed,
+  };
 }

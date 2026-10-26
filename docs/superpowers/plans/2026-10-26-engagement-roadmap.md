@@ -42,8 +42,8 @@
 - `applyQuests(state, round, today) -> {state, completed: [id]}` (rolls over `state.quests` if `day !== today`; awards 15 XP per newly completed quest; third completion grants a freeze, cap 2).
 - Ids (en label key `quest_<id>`): `pauseClean`, `beatYesterday`, `sayAgain`, `lesson`, `coldStart`, `bridgeAll`, `liveConvo` (needsKey), `otherLang`.
 
-- [ ] Tests: `questsForDay` is deterministic for the same day and differs between days; never includes `liveConvo` without a key; 3 distinct ids. `applyQuests` rolls over on a new day; awards exactly 15 XP once per quest even if two rounds qualify; the third completion adds one freeze and a fourth never exceeds 2; `beatYesterday` compares against the best fillerRate of yesterday's rounds; `lesson` completes when `state.days[today] >= 3`.
-- [ ] Implement, wire `applyQuests` into `applyRound` (return `completedQuests` to the UI), show quests on home with ticks, toast "✓ Quest: …" on the feedback screen. Bump CACHE, add to SHELL. Commit: `Add daily quests`.
+- [x] Tests: `questsForDay` is deterministic for the same day and differs between days; never includes `liveConvo` without a key; 3 distinct ids. `applyQuests` rolls over on a new day; awards exactly 15 XP once per quest even if two rounds qualify; the third completion adds one freeze and a fourth never exceeds 2; `beatYesterday` compares against the best fillerRate of yesterday's rounds; `lesson` completes when `state.days[today] >= 3`.
+- [x] Implement, wire `applyQuests` into `applyRound` (return `completedQuests` to the UI), show quests on home with ticks, toast "✓ Quest: …" on the feedback screen. Bump CACHE, add to SHELL. Commit: `Add daily quests`.
 
 ### Task 2: Streak freezes, minimum session, days-practised
 

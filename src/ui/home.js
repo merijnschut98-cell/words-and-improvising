@@ -1,5 +1,6 @@
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS } from '../core/progress.js';
+import { currentQuests } from '../core/quests.js';
 
 export function navBar(app, active) {
   const t = app.t;
@@ -23,6 +24,20 @@ function weekStrip(app) {
       h('span', { class: 'dot' }, done ? '✓' : ''), h('span', { class: 'lbl' }, label)));
   }
   return h('div', { class: 'week' }, days);
+}
+
+function questCard(app) {
+  const t = app.t;
+  const items = currentQuests(app.state, app.today());
+  const done = items.filter((q) => q.done).length;
+  return h('section', { class: 'card quest-card' },
+    h('div', { class: 'level-row' },
+      h('h2', { class: 'card-title' }, t('questsTitle')),
+      h('span', { class: 'muted small' }, done === items.length ? `🧊 ${t('questsAllDone')}` : `${done}/${items.length} · 🧊 ${t('questsReward')}`)),
+    items.map((q) => h('div', { class: `quest${q.done ? ' done' : ''}` },
+      h('span', { class: 'quest-check', 'aria-hidden': 'true' }, q.done ? '✓' : ''),
+      h('span', {}, t(`quest_${q.id}`)),
+      h('span', { class: 'muted small' }, '+15'))));
 }
 
 export function renderHome(app, _params, root) {
@@ -50,6 +65,7 @@ export function renderHome(app, _params, root) {
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, t('lessonSub'))),
+      questCard(app),
       h('div', { class: 'feature-row' },
       h('button', {
         class: 'drill convo-card target-card',
