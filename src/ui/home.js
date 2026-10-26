@@ -1,4 +1,6 @@
 import { weakestDrill } from '../core/lesson.js';
+import { upcoming, needsReflection } from '../core/realweek.js';
+import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
@@ -45,6 +47,27 @@ function questCard(app) {
       h('span', { class: 'muted small' }, '+15'))));
 }
 
+// My real week: the next event to rehearse, a reflection that is due, or an invitation.
+function realWeekCard(app) {
+  const t = app.t;
+  const today = app.today();
+  const due = needsReflection(app.state.events, today)[0];
+  const next = upcoming(app.state.events, today)[0];
+  const open = () => app.go('realweek');
+  if (due) {
+    return h('button', { class: 'btn rw-card', onclick: open },
+      h('span', { class: 'rw-card-title' }, `📝 ${t('rwReflectNow')}`), h('span', { class: 'muted small' }, due.text));
+  }
+  if (next) {
+    return h('div', { class: 'card rw-home' },
+      h('div', {}, h('p', { class: 'muted small' }, `📅 ${t('rwComing')} · ${EVENT_ICON[next.type]} ${fmtDay(app, next.date)}`), h('p', { class: 'rw-text' }, next.text)),
+      h('div', { class: 'rw-actions' },
+        h('button', { class: 'btn btn-primary small', onclick: () => startRehearsal(app, next) }, `🎙 ${t('rwRehearse')}`),
+        h('button', { class: 'btn btn-ghost small', onclick: open }, t('rwAll'))));
+  }
+  return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, `📅 ${t('rwInvite')}`);
+}
+
 export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
@@ -88,6 +111,7 @@ export function renderHome(app, _params, root) {
         h('span', { class: 'hero-title' }, `🔁 ${t('reviewTitle')}`),
         h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null,
       h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
+      realWeekCard(app),
       questCard(app),
       h('div', { class: 'feature-row' },
       h('button', {

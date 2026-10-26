@@ -89,8 +89,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Files:** Create `src/core/realweek.js`, `src/ui/realweek.js`, tests. Home card "Coming up" and a screen to add an event (type: client meeting · presentation · team talk · networking · other; date; one line of text). For each event the app offers three rehearsal rounds: the 60-second version (`minute`), the hard question (`prep`, local templates per type; with a key the coach writes the question), and the opening line (`rapid`-style 15 s). After the date passes: a two-tap reflection ("how did it go?" 1–5 + "next time I…"), saved and shown on Progress. Free text is rendered as text only.
 
-- [ ] Tests: rehearsal prompts per type; past events move to reflection; text never interpreted as HTML (UI e2e).
-- [ ] Implement. Commit: `Add my real week rehearsal`.
+- [x] Tests: rehearsal prompts per type; past events move to reflection; text never interpreted as HTML (UI e2e).
+- [x] Implement. Commit: `Add my real week rehearsal`.
 
 ### Task 8 (Wed 4 Nov): Pace over time + one-fix loop
 

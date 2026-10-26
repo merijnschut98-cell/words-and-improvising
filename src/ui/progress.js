@@ -143,6 +143,18 @@ function journeyCard(app) {
     })));
 }
 
+// What he learned from real events (My real week reflections).
+function reflectionsCard(app) {
+  const t = app.t;
+  const done = (app.state.events || []).filter((e) => e.reflection).slice(-5).reverse();
+  if (!done.length) return null;
+  return h('section', { class: 'card' },
+    h('h2', { class: 'card-title' }, t('rwLearned')),
+    done.map((e) => h('div', { class: 'rw-learned' },
+      h('p', {}, h('b', {}, `${'★'.repeat(e.reflection.rating)}${'☆'.repeat(5 - e.reflection.rating)} `), e.text),
+      e.reflection.next ? h('p', { class: 'muted small' }, `→ ${e.reflection.next}`) : null)));
+}
+
 function calibrationCard(app) {
   const t = app.t;
   const c = calibration(app.state.history);
@@ -182,6 +194,7 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
+      reflectionsCard(app),
       journeyCard(app),
       skillCard(app),
       calibrationCard(app),

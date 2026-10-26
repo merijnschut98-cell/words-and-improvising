@@ -19,6 +19,7 @@ import { renderProgress } from './ui/progress.js';
 import { renderSettings } from './ui/settings.js';
 import { renderConversation } from './ui/conversation.js';
 import { renderWelcome } from './ui/welcome.js';
+import { renderRealweek } from './ui/realweek.js';
 
 const SCREENS = {
   home: renderHome,
@@ -26,6 +27,7 @@ const SCREENS = {
   feedback: renderFeedback,
   done: renderDone,
   progress: renderProgress,
+  realweek: renderRealweek,
   settings: renderSettings,
   conversation: renderConversation,
   welcome: renderWelcome,

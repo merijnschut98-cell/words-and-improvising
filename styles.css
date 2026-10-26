@@ -433,3 +433,16 @@ input[type="password"], input[type="text"], select {
 
 /* Real-life scenarios */
 .real-text { font-size: 1.25rem; }
+
+/* My real week */
+.rw-text { margin: 2px 0 0; font-weight: 700; overflow-wrap: anywhere; }
+.rw-event, .rw-home { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.rw-event + .rw-event { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px; }
+.rw-event p, .rw-home p { margin: 0; }
+.rw-actions { display: flex; gap: 6px; flex: none; align-items: center; }
+.rw-card { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; text-align: left; padding: 14px 18px; border-radius: var(--radius); border: 2px solid var(--primary); background: var(--card); color: var(--ink); font: inherit; cursor: pointer; }
+.rw-card-title { font-weight: 800; }
+.rw-invite { width: 100%; }
+.realweek select, .realweek input[type="date"], .text-input { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font: inherit; margin-bottom: 6px; }
+.rw-learned + .rw-learned { border-top: 1px solid var(--line); padding-top: 8px; }
+.rw-learned p { margin: 2px 0; overflow-wrap: anywhere; }

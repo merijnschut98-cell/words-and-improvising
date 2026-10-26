@@ -23,6 +23,7 @@ export function defaultState() {
     bests: {},
     milestones: [],
     reviews: {},
+    events: [],
   };
 }
 

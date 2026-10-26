@@ -651,6 +651,36 @@ await step('follow-up drill speaks a line and checks question + detail', async (
   await shot('39-followup');
 });
 
+await step('my real week: add, rehearse, reflect (text stays text)', async () => {
+  await page.goto(BASE);
+  await page.locator('.rw-invite').click();
+  await page.locator('.realweek select').selectOption('presentation');
+  await page.locator('.realweek .text-input').fill('<b>A3</b> review met de plantmanager');
+  await page.getByRole('button', { name: /Toevoegen/ }).click();
+  await page.locator('.rw-event .rw-text', { hasText: '<b>A3</b> review' }).waitFor();
+  if (await page.locator('.rw-event .rw-text b').count()) throw new Error('event text was interpreted as HTML');
+  await shot('40-realweek');
+  await page.getByRole('button', { name: /Oefenen/ }).first().click();
+  await page.locator('.intro-card .focus', { hasText: '60' }).waitFor();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.locator('.rw-home').waitFor();
+  await page.locator('.rw-home').scrollIntoViewIfNeeded();
+  await shot('41-realweek-home');
+  // A past event asks for a two-tap reflection, which shows up on Progress.
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.events = [{ id: 'old', type: 'teamtalk', date: '2026-01-05', text: 'Praatje voor de wedstrijd', reflection: null }];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.rw-card').click();
+  await page.locator('.rw-reflect .rate-btn').nth(3).click();
+  await page.locator('.rw-reflect .text-input').fill('eerst mijn punt, dan de uitleg');
+  await page.getByRole('button', { name: 'Opslaan' }).click();
+  await page.getByRole('button', { name: /Voortgang/ }).click().catch(async () => { await page.goto(BASE); await page.getByRole('button', { name: /Voortgang/ }).click(); });
+  await page.locator('.rw-learned', { hasText: 'eerst mijn punt' }).waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
