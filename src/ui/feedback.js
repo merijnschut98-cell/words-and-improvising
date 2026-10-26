@@ -1,4 +1,5 @@
-import { h, aiErrorText } from './dom.js';
+import { h, aiErrorText, bestLabel } from './dom.js';
+import { updateBests } from '../core/bests.js';
 import { analyze, highlightFillers } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
 import { compareAttempts } from '../core/compare.js';
@@ -46,15 +47,23 @@ export function renderFeedback(app, params, root) {
   function commit() {
     if (st.applied) return st.result;
     st.applied = true;
-    const { state, xp, levelUp, completedQuests = [] } = applyRound(app.state, {
+    const { state, xp, levelUp, completedQuests = [], newBests = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous,
     }, app.today(), Date.now());
     app.setState(state);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
-    st.result = { xp, levelUp };
+    st.result = { xp, levelUp, newBests };
     return st.result;
   }
+
+  // Preview personal bests before the round is saved (it saves on Next).
+  const firstEver = !Object.keys(app.state.bests || {}).length;
+  const preview = updateBests(app.state.bests || {}, { ts: 0, drill: prompt.drill, durationS, metrics }).newBests
+    .filter((b) => !b.drill || !firstEver);
+  const pbCard = preview.length ? h('section', { class: 'card pb-card' },
+    firstEver ? h('p', {}, `🏆 ${t('pbFirst')}`)
+      : preview.slice(0, 3).map((b) => h('p', {}, `🏆 ${t('pbNew')}: ${bestLabel(t, b)}`))) : null;
 
   const fillerTone = metrics.fillerRate < 3 ? 'good' : metrics.fillerRate < 6 ? 'ok' : 'bad';
   const topFillers = Object.entries(metrics.fillers).sort((a, b) => b[1] - a[1]).slice(0, 5);
@@ -152,6 +161,7 @@ export function renderFeedback(app, params, root) {
           (pauseRatio(metrics.pauses, metrics.fillerCount) ?? 0) >= 0.75 ? 'good' : 'ok'))
       : null,
     compareCard,
+    pbCard,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('topFillers')),
       topFillers.length

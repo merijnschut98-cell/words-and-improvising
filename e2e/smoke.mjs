@@ -381,6 +381,20 @@ await step('quick round is a 60 second minute round', async () => {
   await page.locator('.intro-card', { hasText: '1:00' }).waitFor({ timeout: 3000 });
 });
 
+await step('personal best card on a real-length round', async () => {
+  await page.goto(BASE);
+  await page.locator('.drill-minute').click();
+  await page.getByRole('radio', { name: /Typen/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('textarea').fill(Array.from({ length: 40 }, (_, i) => `woord${i}`).join(' '));
+  await page.waitForTimeout(5500);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.pb-card').waitFor({ timeout: 3000 });
+  await shot('21-pb');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

@@ -134,10 +134,11 @@ export const app = {
     setTimeout(() => el.remove(), 2700);
   },
   // Adds an applied round's result to the running lesson, if any.
-  addToSession({ xp = 0, levelUp = false } = {}) {
+  addToSession({ xp = 0, levelUp = false, newBests = [] } = {}) {
     if (!this.session) return;
     this.session.xp += xp;
     this.session.levelUp = this.session.levelUp || levelUp;
+    this.session.highlights = [...(this.session.highlights || []), ...newBests];
   },
   // Called by feedback after a round is applied.
   nextAfterRound(result) {
@@ -146,7 +147,7 @@ export const app = {
     this.addToSession(result);
     s.index += 1;
     if (s.index < s.prompts.length) return this.go('round', { prompt: s.prompts[s.index] });
-    const summary = { xp: s.xp, levelUp: s.levelUp };
+    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [] };
     this.session = null;
     return this.go('done', summary);
   },

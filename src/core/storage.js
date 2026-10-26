@@ -20,6 +20,7 @@ export function defaultState() {
     freezeLog: [],
     ui: {},
     plan: { cue: '', hour: null },
+    bests: {},
   };
 }
 

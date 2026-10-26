@@ -2,10 +2,11 @@
 import { updateStreak, xpForRound, levelFromXp, adjustDrillLevel } from './progress.js';
 import { addHistory } from './storage.js';
 import { applyQuests } from './quests.js';
+import { updateBests } from './bests.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
-  if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false, completedQuests: [] };
+  if (!metrics || metrics.words < 5) return { state, xp: 0, levelUp: false, completedQuests: [], newBests: [] };
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill });
   const drill = prompt.drill;
@@ -30,8 +31,11 @@ export function applyRound(state, round, today, now) {
     metrics,
     rating: round.rating ?? null,
     coach: coach || null,
+    cleanRun: round.cleanRun ?? null,
     xp,
   });
+  const b = updateBests(next.bests || {}, next.history[0]);
+  next = { ...next, bests: b.bests };
   const q = applyQuests(next, { ...round, ts: now }, today);
   next = q.state;
   return {
@@ -39,5 +43,6 @@ export function applyRound(state, round, today, now) {
     xp: next.xp - state.xp, // round XP plus any quest XP
     levelUp: levelFromXp(next.xp).level > levelFromXp(state.xp).level,
     completedQuests: q.completed,
+    newBests: b.newBests,
   };
 }

@@ -78,8 +78,8 @@
 - `updateBests(bests, entry) -> {bests, newBests: [{key, value, drill?}]}` for keys `fillerRate` (lower, only if words ≥ 30), `words` (higher), `cleanRun` (higher), `pauses` (higher), `byDrill[drill].fillerRate` (lower, words ≥ 30). Ignore entries with `durationS < 5` or `words < 5`.
 - `app.session` accumulates `highlights: []` (`newBests` + the best `cleanRun` of the lesson); Done screen renders up to two.
 
-- [ ] Tests: first qualifying round sets all bests; a worse round changes nothing; tiny rounds ignored; per-drill best independent of global.
-- [ ] Implement; Done screen shows XP, quests ticked today, highlights. Commit: `Add personal bests and lesson highlights`.
+- [x] Tests: first qualifying round sets all bests; a worse round changes nothing; tiny rounds ignored; per-drill best independent of global.
+- [x] Implement; Done screen shows XP, quests ticked today, highlights. Commit: `Add personal bests and lesson highlights`.
 
 ### Task 5: In-round clean-run counter
 

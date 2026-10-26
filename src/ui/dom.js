@@ -21,6 +21,11 @@ export const DRILL_ICON = {
   minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫', debate: '⚖️',
 };
 
+// "Fewest fillers/min: 1.2" etc. for a personal-best record.
+export function bestLabel(t, b) {
+  return b.drill ? t('pb_fillerRateDrill', t(`drill_${b.drill}`), b.value) : t(`pb_${b.key}`, b.value);
+}
+
 export function fmtTime(s) {
   const n = Math.max(0, Math.ceil(s));
   return n >= 60 ? `${Math.floor(n / 60)}:${String(n % 60).padStart(2, '0')}` : String(n);

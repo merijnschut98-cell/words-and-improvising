@@ -54,3 +54,11 @@ test('applyRound evaluates quests and reports them', () => {
   assert.deepEqual(r.completedQuests, ['coldStart']);
   assert.equal(r.state.xp, 30 + 15);
 });
+
+test('applyRound records personal bests and reports new ones', () => {
+  const r = applyRound(defaultState(), round({ metrics: { words: 80, fillerRate: 1, wpm: 160, fillerCount: 1, fillers: {} } }), '2026-10-23', 1000);
+  assert.equal(r.state.bests.words.value, 80);
+  assert.ok(r.newBests.some((b) => b.key === 'words'));
+  const again = applyRound(r.state, round({ metrics: { words: 40, fillerRate: 5, wpm: 80, fillerCount: 4, fillers: {} } }), '2026-10-23', 2000);
+  assert.deepEqual(again.newBests, []);
+});
