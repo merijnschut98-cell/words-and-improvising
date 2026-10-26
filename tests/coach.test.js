@@ -137,3 +137,10 @@ test('frame drill tells the coach which frame to judge', () => {
   const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'frame', prompt: { body: 'Tell about a time…', extra: { frame: 'star' } } }));
   assert.match(req, /Frame to follow: STAR \(Situation, Task, Action, Result\)/);
 });
+
+test('coach scores are anchored to a rubric at 1, 3 and 5 for every axis', () => {
+  const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'nl', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'minute', prompt: { body: 'X', extra: {} } }));
+  for (const axis of ['Clarity', 'Structure', 'Fluency', 'Vocabulary']) {
+    for (const n of [1, 3, 5]) assert.match(req, new RegExp(`${axis} ${n} =`), `${axis} ${n}`);
+  }
+});

@@ -69,6 +69,11 @@ function systemPrompt(lang) {
     `The stronger_version rewrites his answer as he could have said it, in his voice, about the same length, in ${language}.`,
     `Write all feedback in ${language}.`,
     'Scores are 1-5 where 3 is a decent, ordinary answer and 5 is genuinely impressive.',
+    'Use these anchors so scores stay consistent between rounds (2 and 4 sit between them):',
+    'Clarity 1 = the listener cannot tell what the point is; Clarity 3 = the point comes through but is buried or vague in places; Clarity 5 = one clear point, stated early, every sentence serves it.',
+    'Structure 1 = no discernible order, ideas jump around; Structure 3 = a beginning and an end, but the middle wanders or a step of the asked frame is missing; Structure 5 = a clear shape the listener could repeat back (frame steps all present and signposted).',
+    'Fluency 1 = constant restarts, fillers or long stalls; Fluency 3 = flows with some fillers and a few restarts; Fluency 5 = steady and natural, pauses used deliberately instead of fillers.',
+    'Vocabulary 1 = vague, repetitive words (thing, stuff, very); Vocabulary 3 = adequate everyday words; Vocabulary 5 = precise, vivid words chosen for this listener.',
   ].join(' ');
 }
 

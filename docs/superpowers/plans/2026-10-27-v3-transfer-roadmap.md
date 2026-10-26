@@ -67,8 +67,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Files:** Modify `src/core/coach.js` (rubric anchors per score 1/3/5 for clarity, structure, fluency, vocabulary; pass the frame for Task 3), `tests/coach.test.js`.
 
-- [ ] Tests: system prompt contains the anchors; frame passed through.
-- [ ] Implement. Commit: `Anchor coach scores to a rubric`.
+- [x] Tests: system prompt contains the anchors; frame passed through.
+- [x] Implement. Commit: `Anchor coach scores to a rubric`.
 - [ ] Key day: if Merijn reports a coach, key or model problem, that comes first. The live key is only on his phone; never ask him to paste it anywhere.
 
 ### Task 5 (Sat 31 Oct): Captain & work scenarios
