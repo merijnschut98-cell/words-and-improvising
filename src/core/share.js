@@ -12,6 +12,9 @@ const POOLS = {
   story: 'storyStarts', yesAnd: 'yesAnd', listen: 'listen', expert: 'experts',
 };
 
+// True for ids of built-in content (not coach-written or live prompts).
+export const isRebuildableId = (id) => typeof id === 'string' && ID_RE.test(id) && Object.hasOwn(POOLS, id.split(':')[0]);
+
 export function challengeLink(prompt, lang, base) {
   const url = new URL(base);
   url.search = '';

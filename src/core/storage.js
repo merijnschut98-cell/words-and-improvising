@@ -22,6 +22,7 @@ export function defaultState() {
     plan: { cue: '', hour: null },
     bests: {},
     milestones: [],
+    reviews: {},
   };
 }
 

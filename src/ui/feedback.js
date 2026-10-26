@@ -144,9 +144,11 @@ export function renderFeedback(app, params, root) {
 
   // Before -> now, when this round is a retry of the same prompt.
   const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
-  const rows = compareAttempts(previous, { metrics });
+  // A spaced re-attempt compares with the last time he did this prompt.
+  const earlier = previous || app.state.history.find((e) => e.promptId === prompt.id) || null;
+  const rows = compareAttempts(earlier, { metrics });
   const compareCard = rows.length ? h('section', { class: 'card compare-card' },
-    h('h2', { class: 'card-title' }, t('beforeNow')),
+    h('h2', { class: 'card-title' }, previous ? t('beforeNow') : t('earlierNow')),
     rows.map((r) => h('div', { class: 'week-row' },
       h('span', {}, t(LABEL[r.key])),
       h('b', { class: r.better === true ? 'good' : r.better === false ? 'bad' : '' },

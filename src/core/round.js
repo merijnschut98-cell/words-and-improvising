@@ -4,6 +4,7 @@ import { addHistory } from './storage.js';
 import { applyQuests } from './quests.js';
 import { updateBests } from './bests.js';
 import { newMilestones } from './milestones.js';
+import { scheduleReview, wasImproved } from './spaced.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
@@ -13,6 +14,7 @@ export function applyRound(state, round, today, now) {
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill, modifier: round.modifier });
   const drill = prompt.drill;
+  const earlier = state.history.find((e) => e.promptId === prompt.id);
   let next = {
     ...state,
     xp: state.xp + xp,
@@ -38,6 +40,7 @@ export function applyRound(state, round, today, now) {
     modifier: round.modifier || null,
     xp,
   });
+  next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating })) };
   const b = updateBests(next.bests || {}, next.history[0]);
   next = { ...next, bests: b.bests };
   const q = applyQuests(next, { ...round, ts: now }, today);

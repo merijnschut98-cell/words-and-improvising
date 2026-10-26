@@ -8,6 +8,7 @@ import { weeklyReview } from './core/review.js';
 import { runTailor, fallbackPick } from './core/tailor.js';
 import { aiErrorText } from './ui/dom.js';
 import { parseChallenge, challengePrompt } from './core/share.js';
+import { dueReviews } from './core/spaced.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
 import { renderHome } from './ui/home.js';
@@ -92,6 +93,16 @@ export const app = {
     const prompts = buildLesson(this.content, Math.random, this.state.seen);
     this.session = { prompts, index: 0, xp: 0, levelUp: false };
     this.go('round', { prompt: prompts[0] });
+  },
+  // Spaced re-attempts: up to three earlier prompts that are due today.
+  dueReviews() {
+    return dueReviews(this.state.reviews, this.today(), this.content, this.lang);
+  },
+  startReviews() {
+    const prompts = this.dueReviews().slice(0, 3);
+    if (!prompts.length) return this.go('home');
+    this.session = { prompts, index: 0, xp: 0, levelUp: false };
+    return this.go('round', { prompt: prompts[0] });
   },
   // Only a minute: one short round still keeps the day.
   startQuick() {

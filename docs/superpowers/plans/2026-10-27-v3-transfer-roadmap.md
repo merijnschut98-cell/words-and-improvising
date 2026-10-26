@@ -42,8 +42,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Interfaces:** `reviews: { [promptId]: { box: 1..4, due: 'YYYY-MM-DD', drill, lang } }`. Boxes = 1, 3, 7, 21 days. `scheduleReview(reviews, entry, today, improved)` → promotes on improvement (fewer fillers/min or higher rating than the last attempt), else back to box 1. `dueReviews(reviews, today, content)` → prompts rebuilt with `challengePrompt()` (from `share.js`), unknown ids dropped.
 
-- [ ] Tests: box intervals; promotion and demotion; unknown ids dropped; nothing due on day one.
-- [ ] Implement. Commit: `Add spaced re-attempts`.
+- [x] Tests: box intervals; promotion and demotion; unknown ids dropped; nothing due on day one.
+- [x] Implement. Commit: `Add spaced re-attempts`.
 
 ### Task 2 (Wed 28 Oct): Adaptive daily lesson
 

@@ -416,12 +416,17 @@ await step('make it harder adds a modifier with a feedback note', async () => {
 });
 
 await step('boss card shows on a Friday', async () => {
-  const p2 = await ctx.newPage();
+  // Own context: Playwright's clock is context-wide and would leak into later steps.
+  const c2 = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  await c2.addInitScript(() => {
+    if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true }));
+  });
+  const p2 = await c2.newPage();
   await p2.clock.setFixedTime(new Date(2026, 9, 30, 10, 0));
   await p2.goto(BASE);
   await p2.locator('.boss-card').waitFor({ timeout: 5000 });
   await p2.screenshot({ path: `${out}/23-boss-home.png`, fullPage: true });
-  await p2.close();
+  await c2.close();
 });
 
 await step('boss round combines words, sides and double XP framing', async () => {
@@ -550,6 +555,33 @@ await step('share card renders as a PNG', async () => {
   });
   const { writeFileSync } = await import('node:fs');
   writeFileSync(`${out}/32-share-card.png`, Buffer.from(data, 'base64'));
+});
+
+await step('spaced re-attempt: due prompt on home, compared with last time', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const d = new Date(Date.now() - 86400000);
+    const yesterday = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    st.reviews = { 'opinion:o07': { box: 1, due: yesterday, drill: 'prep', lang: 'nl' } };
+    const base = st.history[0];
+    st.history.push({ ...base, ts: Date.now() - 2 * 86400000, drill: 'prep', promptId: 'opinion:o07', metrics: { ...base.metrics, fillerRate: 9.9, words: 40 } });
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.review-card').waitFor();
+  await page.locator('.review-card').scrollIntoViewIfNeeded();
+  await shot('33-review-home');
+  await page.locator('.review-card').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.compare-card', { hasText: 'Vorige keer' }).waitFor();
+  await page.locator('.compare-card').scrollIntoViewIfNeeded();
+  await shot('34-review-compare');
 });
 
 await step('too-short answer offers retry', async () => {

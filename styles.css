@@ -420,3 +420,6 @@ input[type="password"], input[type="text"], select {
 /* Spoken-cue drills */
 .cue-hint { margin: 8px 0 0; font-weight: 700; color: var(--accent-dark); text-align: center; }
 .listen-statement { font-style: italic; }
+
+/* Spaced re-attempts */
+.review-card { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 16px 20px; border-radius: var(--radius); border: 0; color: #fff; text-align: left; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 4px 0 var(--accent-dark); font: inherit; cursor: pointer; }

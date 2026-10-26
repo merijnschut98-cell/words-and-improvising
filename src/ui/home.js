@@ -53,6 +53,7 @@ export function renderHome(app, _params, root) {
   const lv = levelFromXp(s.xp);
   const doneToday = (s.days[today] || 0) >= 3;
   // Gentle, once a day: the streak broke, but the total never resets.
+  const dueCount = app.dueReviews().length;
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
@@ -81,6 +82,9 @@ export function renderHome(app, _params, root) {
         class: 'btn boss-card',
         onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
       }, h('span', { class: 'hero-title' }, `👑 ${t('bossTitle')}`), h('span', { class: 'hero-sub' }, t('bossSub'))) : null,
+      dueCount ? h('button', { class: 'btn review-card', onclick: () => app.startReviews() },
+        h('span', { class: 'hero-title' }, `🔁 ${t('reviewTitle')}`),
+        h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null,
       h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
       questCard(app),
       h('div', { class: 'feature-row' },
