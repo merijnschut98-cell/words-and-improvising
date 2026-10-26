@@ -65,8 +65,8 @@
 
 **Interfaces:** `plan: {cue: string, hour: number|null}`; preset cues `coffee|commute|lunch|dinner|bed` + custom text.
 
-- [ ] Tests: `reminderMeta` carries `hour`; `shouldFireReminder(meta, now)` (new pure fn in `reminder.js`) false when > 3 h from `hour`, true otherwise or when `hour` is null.
-- [ ] Implement slide + settings card + home line "Your plan: after my morning coffee ✏️". Commit: `Add practice plan`.
+- [x] Tests: `reminderMeta` carries `hour`; `shouldFireReminder(meta, now)` (new pure fn in `reminder.js`) false when > 3 h from `hour`, true otherwise or when `hour` is null.
+- [x] Implement slide + settings card + home line "Your plan: after my morning coffee ✏️". Commit: `Add practice plan`.
 
 ### Task 4: Personal bests + lesson summary highlights
 

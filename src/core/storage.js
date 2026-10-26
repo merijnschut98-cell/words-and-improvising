@@ -19,6 +19,7 @@ export function defaultState() {
     freezes: 0,
     freezeLog: [],
     ui: {},
+    plan: { cue: '', hour: null },
   };
 }
 
@@ -44,7 +45,7 @@ export function load(backend) {
     return base;
   }
   const merged = { ...base, ...parsed };
-  for (const k of ['settings', 'streak', 'drillLevels', 'days', 'seen', 'ui']) {
+  for (const k of ['settings', 'streak', 'drillLevels', 'days', 'seen', 'ui', 'plan']) {
     merged[k] = { ...base[k], ...(isObject(parsed[k]) ? parsed[k] : {}) };
   }
   if (!Array.isArray(merged.history)) merged.history = [];

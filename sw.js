@@ -3,7 +3,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'spraakwater-v17';
+const CACHE = 'spraakwater-v18';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -12,7 +12,7 @@ const SHELL = [
   'src/core/pauses.js', 'src/core/recorder.js', 'src/core/reminder.js', 'src/core/review.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js', 'src/core/tailor.js',
   'src/content/prompts.en.js', 'src/content/prompts.nl.js',
   'src/ui/dom.js', 'src/ui/home.js', 'src/ui/round.js', 'src/ui/feedback.js', 'src/ui/done.js', 'src/ui/conversation.js',
-  'src/ui/progress.js', 'src/ui/settings.js', 'src/ui/welcome.js',
+  'src/ui/progress.js', 'src/ui/settings.js', 'src/ui/plan.js', 'src/ui/welcome.js',
 ];
 
 self.addEventListener('install', (e) => {
@@ -56,6 +56,12 @@ self.addEventListener('periodicsync', (e) => {
     const now = new Date();
     const today = localDay(now);
     if (!meta.remind || meta.lastDay === today) return;
+    // Same rule as shouldFireReminder() in src/core/reminder.js.
+    if (meta.hour != null) {
+      const h = now.getHours() + now.getMinutes() / 60;
+      const d = Math.abs(h - meta.hour);
+      if (Math.min(d, 24 - d) > 3) return;
+    }
     const yesterday = localDay(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1));
     const msg = meta.lastDay === yesterday && meta.atRisk ? meta.atRisk : meta.nudge;
     if (msg) await self.registration.showNotification(msg.title, { body: msg.body, icon: 'icons/icon-192.png', tag: 'daily-practice' });

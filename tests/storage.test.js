@@ -69,3 +69,9 @@ test('v2 keys default for existing users', () => {
   assert.deepEqual(s.quests, { day: null, items: [] });
   assert.equal(s.freezes, 0);
 });
+
+test('plan defaults for existing users', () => {
+  const s = load({ getItem: () => JSON.stringify({ xp: 1, plan: { cue: 'coffee' } }), setItem() {} });
+  assert.deepEqual(s.plan, { cue: 'coffee', hour: null });
+  assert.deepEqual(defaultState().plan, { cue: '', hour: null });
+});

@@ -86,10 +86,13 @@ await page.goto(BASE);
 await step('first run shows the welcome slides', async () => {
   await page.getByRole('heading', { name: 'Snel denken, helder praten' }).waitFor({ timeout: 5000 });
   await shot('00-welcome');
-  await page.getByRole('button', { name: 'Volgende' }).click();
-  await page.getByRole('button', { name: 'Volgende' }).click();
+  for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'Volgende' }).click();
+  await page.getByRole('button', { name: 'Na je ochtendkoffie' }).click();
+  await page.locator('select').selectOption('8');
+  await shot('00b-plan');
   await page.getByRole('button', { name: 'Aan de slag' }).click();
   await page.locator('.btn-hero').waitFor();
+  await page.locator('.plan-line', { hasText: 'Na je ochtendkoffie · ~08:00' }).waitFor();
 });
 await page.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' } })));
 await page.reload();

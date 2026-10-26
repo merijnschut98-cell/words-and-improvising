@@ -1,6 +1,7 @@
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
+import { planLine } from './plan.js';
 
 export function navBar(app, active) {
   const t = app.t;
@@ -73,6 +74,7 @@ export function renderHome(app, _params, root) {
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, t('lessonSub'))),
+      planLine(app),
       h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
       questCard(app),
       h('div', { class: 'feature-row' },
