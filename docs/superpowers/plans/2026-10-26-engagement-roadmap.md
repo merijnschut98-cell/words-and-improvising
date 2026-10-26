@@ -106,8 +106,8 @@
 - Create: `src/core/boss.js`, `tests/boss.test.js`
 - Modify: `src/ui/home.js` (card visible Fri–Sun until done this week), `src/ui/round.js` (drill `boss`: topic + twist at 30 s + 3 words + side switch at 60 s, 120 s total), `src/core/progress.js` (`DRILLS` unchanged; `boss` handled as a special drill with its own timing and double XP), `src/core/lesson.js` (`makePrompt('boss')`), `src/core/review.js` (boss highlight), `src/i18n.js`, `sw.js`
 
-- [ ] Tests: `bossAvailable(state, now)` true Fri–Sun when no boss entry this ISO week; `makePrompt('boss')` has topic, 1 twist, 3 words, a question for the switch.
-- [ ] Implement. Commit: `Add Friday boss round`.
+- [x] Tests: `bossAvailable(state, now)` true Fri–Sun when no boss entry this ISO week; `makePrompt('boss')` has topic, 1 twist, 3 words, a question for the switch.
+- [x] Implement. Commit: `Add Friday boss round`.
 
 ### Task 8: Calibration insight + skill radar
 

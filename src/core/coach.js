@@ -40,6 +40,7 @@ const DRILL_BRIEF = {
   rapid: 'Rapid Fire: answer five quick questions, ten seconds each, starting immediately.',
   pause: "Pause, don't fill: talk about the topic and replace every filler word with a short silent pause. Judge filler use strictly.",
   debate: 'Debate: argue FOR the statement in the first half, then switch at the signal and argue AGAINST it in the second half. Judge the strength of both sides and how cleanly he switched.',
+  boss: 'Boss round (2 minutes): argue FOR the statement, weave in three given words, absorb a surprise twist at 30 s, then switch at 60 s and argue AGAINST. Judge stamina, structure across the switch, and whether all words and the twist were used.',
   story: 'Story Chain: keep telling one story and weave in each surprise twist the moment it appears, without stopping.',
 };
 
@@ -69,6 +70,7 @@ function describePrompt(drill, prompt) {
       + 'The transcript below is his turns only; the stronger version should be his turns rewritten, one line per turn.';
   }
   if (drill === 'smalltalk') return `Situation: ${x.setting}\nThey say: "${prompt.body}"`;
+  if (drill === 'boss') return `Statement: ${prompt.body}\nWords to include: ${(x.words || []).join(', ')}\nTwist that appeared: ${(x.twistsShown || []).join(' | ') || '(none)'}`;
   if (drill === 'story') return `Story opening: ${prompt.body}\nTwists that appeared, in order: ${(x.twistsShown || []).join(' | ') || '(none)'}`;
   if (drill === 'rapid') return `Questions:\n${(x.questions || []).map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
   return `Prompt: ${prompt.body}`;

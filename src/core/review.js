@@ -51,5 +51,7 @@ export function weeklyReview(history, now = Date.now()) {
   else if (tw.rounds < 5) focus = { kind: 'rounds', value: 5 };
   else focus = { kind: 'stretch', value: null };
 
-  return { thisWeek: tw, lastWeek: summarize(lastWeek), topFiller, best, worst, focus };
+  const bossEntry = thisWeek.find((e) => e.drill === 'boss');
+  const boss = bossEntry ? { fillerRate: bossEntry.metrics.fillerRate, words: bossEntry.metrics.words } : null;
+  return { thisWeek: tw, lastWeek: summarize(lastWeek), topFiller, best, worst, focus, boss };
 }

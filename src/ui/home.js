@@ -2,6 +2,8 @@ import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
 import { planLine } from './plan.js';
+import { bossAvailable } from '../core/boss.js';
+import { makePrompt } from '../core/lesson.js';
 
 export function navBar(app, active) {
   const t = app.t;
@@ -75,6 +77,10 @@ export function renderHome(app, _params, root) {
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, t('lessonSub'))),
       planLine(app),
+      bossAvailable(s, new Date()) ? h('button', {
+        class: 'btn boss-card',
+        onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
+      }, h('span', { class: 'hero-title' }, `👑 ${t('bossTitle')}`), h('span', { class: 'hero-sub' }, t('bossSub'))) : null,
       h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
       questCard(app),
       h('div', { class: 'feature-row' },

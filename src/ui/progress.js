@@ -31,6 +31,7 @@ function weekCard(app) {
     row(t('minutesSpoken'), `${r.thisWeek.minutes} (${t('lastWeekShort')} ${r.lastWeek.minutes})`),
     row(t('m_fillers'), fr.text, fr.tone),
     row(t('m_wpm'), wpm.text, wpm.tone),
+    r.boss ? row(`👑 ${t('bossTitle')}`, `${r.boss.words} ${t('m_words')} · ${r.boss.fillerRate} ${t('m_fillers')}`) : null,
     r.topFiller ? row(t('topFillerWeek'), `“${r.topFiller.word}” ×${r.topFiller.count}`) : null,
     r.best ? row(t('bestDrill'), `${DRILL_ICON[r.best.drill]} ${t(`drill_${r.best.drill}`)} (${r.best.avg})`) : null,
     r.worst && r.worst.drill !== r.best.drill

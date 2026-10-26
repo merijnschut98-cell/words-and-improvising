@@ -34,6 +34,7 @@ export function xpForRound({ metrics, durationS, targetS, rating, drill, modifie
   if (metrics.fillerRate < 3) xp += 5;
   if (rating >= 4) xp += 5;
   if (modifier) xp += 5; // harder on purpose
+  if (drill === 'boss') xp *= 2;
   // Speech-to-text often drops "ehh" sounds, leaving a gap that looks like a pause.
   // A normal pace (>= 80 wpm) makes it likelier the gaps were real, short pauses.
   if (drill === 'pause' && (metrics.pauses || 0) >= 3 && metrics.fillerRate < 1 && (metrics.wpm ?? 100) >= 80) xp += 5;
@@ -57,6 +58,7 @@ export function adjustDrillLevel(level, rating) {
 
 export function drillTiming(drill, level) {
   if (drill === 'rapid') return { prepS: 0, answerS: 10, questions: 5 };
+  if (drill === 'boss') return { prepS: 15, answerS: 120, questions: 1 };
   const i = Math.max(1, Math.min(5, level || 1)) - 1;
   return { prepS: PREP_S[i], answerS: ANSWER_S[i], questions: 1 };
 }

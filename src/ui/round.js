@@ -56,6 +56,14 @@ function promptCard(app, prompt, state) {
       card.append(h('p', { class: 'prompt-sub' }, `${t('situation')}: ${x.setting}`),
         h('p', { class: 'bubble' }, `“${prompt.body}”`));
       break;
+    case 'boss':
+      state.sideEl = h('div', { class: 'side-banner' }, `👍 ${app.t('sideFor')}`);
+      state.side = 'for';
+      state.wordChips = x.words.map((w) => h('span', { class: 'chip word' }, w));
+      state.twistChip = h('div', { class: 'twist', hidden: true });
+      card.append(h('p', { class: 'prompt-main' }, prompt.body),
+        h('div', { class: 'scaffold' }, state.wordChips), state.sideEl, state.twistChip);
+      break;
     case 'debate':
       state.sideEl = h('div', { class: 'side-banner' }, `👍 ${app.t('sideFor')}`);
       state.side = 'for';
@@ -264,7 +272,15 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (st.textarea) st.textarea.focus();
     st.answerStart = countdown(totalS, (el) => {
       r.set(1 - el / totalS, fmtTime(totalS - el));
-      if (prompt.drill === 'debate' && st.sideEl) {
+      if (prompt.drill === 'boss' && st.twistChip && el >= 30 && !st.twistsShown.length) {
+        const twist = prompt.extra.twists[0];
+        st.twistsShown.push(twist);
+        st.twistChip.hidden = false;
+        st.twistChip.replaceChildren(h('small', {}, `⚡ ${t('twist')}`), h('b', {}, twist));
+        st.twistChip.classList.add('pop');
+        if (navigator.vibrate) navigator.vibrate(60);
+      }
+      if ((prompt.drill === 'debate' || prompt.drill === 'boss') && st.sideEl) {
         const side = debateSide(el, totalS);
         if (side !== st.side) {
           st.side = side;
@@ -330,7 +346,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (st.textarea) transcript = st.textarea.value;
     const audio = recorder ? await recorder.stop() : null;
     if (disposed) return;
-    const shown = prompt.drill === 'story' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
+    const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' ? countPauses(st.growth) : null,
       prepS: Math.round(st.prepUsedS || 0),

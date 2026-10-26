@@ -413,6 +413,33 @@ await step('make it harder adds a modifier with a feedback note', async () => {
   await page.locator('.note', { hasText: '+5 XP' }).waitFor({ timeout: 3000 });
 });
 
+await step('boss card shows on a Friday', async () => {
+  const p2 = await ctx.newPage();
+  await p2.clock.setFixedTime(new Date(2026, 9, 30, 10, 0));
+  await p2.goto(BASE);
+  await p2.locator('.boss-card').waitFor({ timeout: 5000 });
+  await p2.screenshot({ path: `${out}/23-boss-home.png`, fullPage: true });
+  await p2.close();
+});
+
+await step('boss round combines words, sides and double XP framing', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.go('round', { prompt: makePrompt('boss', nl, Math.random, {}), modifier: null });
+  });
+  await page.locator('.intro-card', { hasText: 'Dubbele XP' }).waitFor();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  await page.locator('.side-banner:not(.against)').waitFor();
+  if ((await page.locator('.chip.word').count()) !== 3) throw new Error('expected 3 word chips');
+  await page.waitForTimeout(1300);
+  await shot('24-boss');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.stats').first().waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
