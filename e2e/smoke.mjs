@@ -83,7 +83,15 @@ const shot = async (n) => {
 };
 
 await page.goto(BASE);
-await page.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ settings: { apiKey: 'sk-test' } })));
+await step('first run shows the welcome slides', async () => {
+  await page.getByRole('heading', { name: 'Snel denken, helder praten' }).waitFor({ timeout: 5000 });
+  await shot('00-welcome');
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  await page.getByRole('button', { name: 'Aan de slag' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+await page.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' } })));
 await page.reload();
 await step('home renders', async () => { await page.getByText('Les van vandaag').waitFor(); await shot('01-home'); });
 
@@ -294,6 +302,12 @@ await step('say it again shows a before/after comparison', async () => {
 
 await step('debate flips sides at half time', async () => {
   await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.drillLevels.debate = 1; // 30 s answer: flips at 15 s
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
   await page.locator('.drill-debate').click();
   await page.getByRole('button', { name: 'Start' }).click();
   const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });

@@ -54,3 +54,11 @@ test('save survives a throwing backend', () => {
   const b = { getItem: () => null, setItem: () => { throw new Error('quota'); } };
   assert.doesNotThrow(() => save(b, defaultState()));
 });
+
+import { needsWelcome } from '../src/core/storage.js';
+
+test('welcome only on a truly fresh start', () => {
+  assert.equal(needsWelcome(defaultState()), true);
+  assert.equal(needsWelcome({ ...defaultState(), onboarded: true }), false);
+  assert.equal(needsWelcome({ ...defaultState(), history: [{ ts: 1 }] }), false);
+});

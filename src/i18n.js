@@ -2,6 +2,13 @@
 const STRINGS = {
   en: {
     tagline: 'Daily improv for your mouth',
+    welcome1Title: 'Think fast, talk clearly',
+    welcome1Body: 'Five minutes a day of short, timed speaking rounds. You know the words; this trains getting them out, on the spot.',
+    welcome2Title: 'Talk, then look back',
+    welcome2Body: 'Each round: a prompt, a few seconds to think, then talk. You see your pace and filler words, rate yourself, and say it again better.',
+    welcome3Title: 'Make it a habit',
+    welcome3Body: 'Add the app to your home screen (Chrome menu ⋮ → Add to Home screen) and allow the microphone. An Anthropic API key in Settings unlocks the AI coach and live conversations.',
+    welcomeStart: "Let's go",
     targetTitle: 'Targeted practice',
     targetSub: 'One round on your weak spot from this week',
     targetSubAI: 'The coach writes an exercise for your weak spot',
@@ -151,6 +158,13 @@ const STRINGS = {
   },
   nl: {
     tagline: 'Dagelijkse improvisatie voor je mond',
+    welcome1Title: 'Snel denken, helder praten',
+    welcome1Body: 'Vijf minuten per dag korte spreekrondes op de klok. Je kent de woorden; dit traint ze er op het moment zelf uit te krijgen.',
+    welcome2Title: 'Praat, kijk dan terug',
+    welcome2Body: 'Elke ronde: een opdracht, even nadenken, dan praten. Je ziet je tempo en stopwoorden, beoordeelt jezelf en zegt het nog eens, beter.',
+    welcome3Title: 'Maak er een gewoonte van',
+    welcome3Body: 'Zet de app op je startscherm (Chrome-menu ⋮ → Toevoegen aan startscherm) en sta de microfoon toe. Een Anthropic API-sleutel bij Instellingen opent de AI-coach en live gesprekken.',
+    welcomeStart: 'Aan de slag',
     targetTitle: 'Gerichte oefening',
     targetSub: 'Eén ronde op je zwakke plek van deze week',
     targetSubAI: 'De coach schrijft een oefening voor je zwakke plek',

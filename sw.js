@@ -3,7 +3,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'spraakwater-v14';
+const CACHE = 'spraakwater-v15';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -12,7 +12,7 @@ const SHELL = [
   'src/core/pauses.js', 'src/core/recorder.js', 'src/core/reminder.js', 'src/core/review.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js', 'src/core/tailor.js',
   'src/content/prompts.en.js', 'src/content/prompts.nl.js',
   'src/ui/dom.js', 'src/ui/home.js', 'src/ui/round.js', 'src/ui/feedback.js', 'src/ui/done.js', 'src/ui/conversation.js',
-  'src/ui/progress.js', 'src/ui/settings.js',
+  'src/ui/progress.js', 'src/ui/settings.js', 'src/ui/welcome.js',
 ];
 
 self.addEventListener('install', (e) => {

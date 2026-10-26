@@ -293,6 +293,22 @@ audio { width: 100%; margin-top: 4px; }
 .small-live { min-height: 64px; }
 .mic.recording { background: var(--accent); box-shadow: 0 4px 0 var(--accent-dark); }
 
+/* Home feature cards */
+.feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.feature-row .convo-card { width: auto; }
+
+/* Welcome */
+.welcome { justify-content: space-between; padding-top: calc(16px + env(safe-area-inset-top)); min-height: 100dvh; padding-bottom: 32px; }
+.welcome-top { display: flex; justify-content: space-between; align-items: center; }
+.small-seg button { padding: 6px 12px; }
+.welcome-slide { text-align: center; padding: 0 8px; }
+.welcome-icon { font-size: 4.5rem; animation: pop 0.4s ease-out; }
+.welcome-slide h1 { font-size: 1.8rem; margin: 12px 0 8px; letter-spacing: -0.02em; }
+.welcome-slide p { font-size: 1.1rem; color: var(--muted); margin: 0; }
+.welcome-dots { display: flex; justify-content: center; gap: 8px; }
+.welcome-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.welcome-dots i.on { background: var(--primary); width: 24px; border-radius: 4px; }
+
 /* Settings */
 .field-label { display: block; font-weight: 800; margin: 12px 0 6px; }
 .field-label:first-child { margin-top: 0; }

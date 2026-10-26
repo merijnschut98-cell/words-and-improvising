@@ -14,6 +14,7 @@ export function defaultState() {
     drillLevels: Object.fromEntries(DRILLS.map((d) => [d, 1])),
     history: [],
     seen: {},
+    onboarded: false,
   };
 }
 
@@ -57,4 +58,9 @@ export function save(backend, state) {
 
 export function addHistory(state, entry) {
   return { ...state, history: [entry, ...state.history].slice(0, HISTORY_CAP) };
+}
+
+// First-run explainer: only for someone who has never practised.
+export function needsWelcome(state) {
+  return !state.onboarded && state.history.length === 0;
 }

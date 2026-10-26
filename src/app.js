@@ -1,5 +1,5 @@
 // App shell: state, persistence, navigation.
-import { load, save, defaultState, KEY } from './core/storage.js';
+import { load, save, defaultState, KEY, needsWelcome } from './core/storage.js';
 import { dayKey } from './core/progress.js';
 import { buildLesson, makePrompt } from './core/lesson.js';
 import { translator } from './i18n.js';
@@ -16,6 +16,7 @@ import { renderDone } from './ui/done.js';
 import { renderProgress } from './ui/progress.js';
 import { renderSettings } from './ui/settings.js';
 import { renderConversation } from './ui/conversation.js';
+import { renderWelcome } from './ui/welcome.js';
 
 const SCREENS = {
   home: renderHome,
@@ -25,6 +26,7 @@ const SCREENS = {
   progress: renderProgress,
   settings: renderSettings,
   conversation: renderConversation,
+  welcome: renderWelcome,
 };
 
 const storage = (() => {
@@ -161,5 +163,5 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
-app.go('home');
+app.go(needsWelcome(app.state) ? 'welcome' : 'home');
 window.__app = app; // handy for debugging on device
