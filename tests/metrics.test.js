@@ -76,3 +76,25 @@ test('cleanRun: trailing filler resets current', () => {
 test('cleanRun: empty', () => {
   assert.deepEqual(cleanRun([], 'en'), { max: 0, current: 0 });
 });
+
+test('paceSeries: words per minute per 10 s bucket from a word timeline', async () => {
+  const { paceSeries } = await import('../src/core/metrics.js');
+  // 20 words in the first 10 s, 30 in the next 10 s, then 10 in a 6 s tail.
+  const tl = [[1000, 10], [9000, 20], [15000, 35], [19000, 50], [24000, 60]];
+  assert.deepEqual(paceSeries(tl, 0, 26), [120, 180, 100]);
+});
+
+test('paceSeries guards short rounds and drops tiny tail buckets', async () => {
+  const { paceSeries } = await import('../src/core/metrics.js');
+  assert.deepEqual(paceSeries([[1000, 5]], 0, 8), []);
+  assert.deepEqual(paceSeries([], 0, 0), []);
+  assert.deepEqual(paceSeries([[5000, 20], [15000, 40], [20500, 44]], 0, 21), [120, 120]);
+});
+
+test('paceTrend detects speeding up and slowing down, needs 3 buckets', async () => {
+  const { paceTrend } = await import('../src/core/metrics.js');
+  assert.equal(paceTrend([120, 130]), null);
+  assert.equal(paceTrend([110, 120, 130, 170, 180, 190]), 'faster');
+  assert.equal(paceTrend([180, 170, 150, 110, 100, 100]), 'slower');
+  assert.equal(paceTrend([120, 125, 118, 122, 121, 119]), null);
+});

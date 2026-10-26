@@ -681,6 +681,28 @@ await step('my real week: add, rehearse, reflect (text stays text)', async () =>
   await page.locator('.rw-learned', { hasText: 'eerst mijn punt' }).waitFor();
 });
 
+await step('pace over time and one fix carried to the next round', async () => {
+  await page.goto(BASE);
+  const open = () => page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await open();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.stats').first().waitFor({ timeout: 40000 });
+  await page.locator('.pace-card .pace-bar').nth(1).waitFor();
+  await page.locator('.fix-options button').first().click();
+  await page.locator('.pace-card').scrollIntoViewIfNeeded();
+  await shot('42-pace');
+  await page.locator('.fix-card').scrollIntoViewIfNeeded();
+  await shot('43-fix');
+  await open();
+  await page.locator('.intro-card .fix-chip').waitFor();
+  await shot('44-fix-intro');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

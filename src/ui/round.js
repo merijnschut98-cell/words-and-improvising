@@ -148,6 +148,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     transcript: '',
     twistsShown: [],
     growth: [],
+    timeline: [], // [ms, words] samples for pace over time
     lastLive: '',
   };
   let recognizer = null;
@@ -205,6 +206,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
         prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
+        (app.state.ui || {}).nextFix ? h('p', { class: 'fix-chip' }, `🔧 ${t('yourFix')}: ${app.state.ui.nextFix.text}`) : null,
         prompt.reason && prompt.reason !== 'random' ? h('p', { class: 'reason-chip' }, t(`reason_${prompt.reason}`)) : null,
         st.modifier ? h('div', { class: 'modifier-chip' },
           h('b', {}, `💪 ${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
@@ -248,6 +250,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     st.transcript = text;
     // Any change in the recognized text means he is speaking; long gaps are pauses.
     const live = `${text} ${interim}`.trim();
+    const n = tokenize(live).length;
+    if (n > (st.timeline.length ? st.timeline[st.timeline.length - 1][1] : 0)) st.timeline.push([performance.now(), n]);
     if (st.mode === 'speak' && live && live !== st.lastLive) {
       st.growth.push(performance.now());
       st.lastLive = live;
@@ -465,6 +469,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
+      pace: cued ? null : { timeline: st.timeline, start: st.answerStart },
+      fixUsed: !!(app.state.ui || {}).nextFix,
       prepS: prepSecondsUsed(st.prepUsedS),
       modifier: st.modifier || null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,

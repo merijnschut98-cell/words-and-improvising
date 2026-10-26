@@ -96,8 +96,8 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 **Files:** Modify `src/ui/round.js` (keep word-growth timestamps per 10 s), `src/core/metrics.js` (`paceSeries(growth, words) -> wpm per 10 s`, guards for short rounds), `src/ui/feedback.js` (sparkline + "you sped up in the last third" note), `src/ui/feedback.js` + `src/ui/round.js` ("one fix for next time": a chosen note becomes the next round's goal on the intro screen).
 
-- [ ] Tests: series lengths, zero-division guard, speed-up detection.
-- [ ] Implement. Commit: `Show pace over time and carry one fix forward`.
+- [x] Tests: series lengths, zero-division guard, speed-up detection.
+- [x] Implement. Commit: `Show pace over time and carry one fix forward`.
 
 ### Task 9 (Thu 5 – Fri 6 Nov): Final review + fixes
 

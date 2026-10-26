@@ -82,3 +82,35 @@ export function cleanRun(tokens, lang = 'en') {
   const current = tokens.length - start;
   return { max: Math.max(max, current), current };
 }
+
+// Words per minute per `bucketS` seconds, from a timeline of [ms, wordCount]
+// samples. Rounds under one bucket give []; tail buckets under 3 s are dropped.
+export function paceSeries(timeline, startMs, durationS, bucketS = 10) {
+  if (!timeline || durationS < bucketS) return [];
+  const wordsAt = (ms) => {
+    let w = 0;
+    for (const [t, n] of timeline) if (t <= ms) w = n;
+    return w;
+  };
+  const out = [];
+  for (let from = 0; from < durationS; from += bucketS) {
+    const to = Math.min(from + bucketS, durationS);
+    if (to - from < 3) break;
+    const words = wordsAt(startMs + to * 1000) - wordsAt(startMs + from * 1000);
+    out.push(Math.round((Math.max(0, words) * 60) / (to - from)));
+  }
+  return out;
+}
+
+// 'faster' or 'slower' when the last third differs from the first third by
+// more than 20 %; null otherwise or with fewer than 3 buckets.
+export function paceTrend(series) {
+  if (!series || series.length < 3) return null;
+  const k = Math.max(1, Math.floor(series.length / 3));
+  const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+  const first = mean(series.slice(0, k));
+  const last = mean(series.slice(-k));
+  if (!first) return null;
+  const r = last / first;
+  return r > 1.2 ? 'faster' : r < 0.8 ? 'slower' : null;
+}

@@ -446,3 +446,14 @@ input[type="password"], input[type="text"], select {
 .realweek select, .realweek input[type="date"], .text-input { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font: inherit; margin-bottom: 6px; }
 .rw-learned + .rw-learned { border-top: 1px solid var(--line); padding-top: 8px; }
 .rw-learned p { margin: 2px 0; overflow-wrap: anywhere; }
+
+/* Pace over time + one fix */
+.pace-bars { display: flex; align-items: flex-end; gap: 6px; height: 110px; margin: 8px 0; }
+.pace-bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 2px; }
+.pace-bar i { display: block; width: 100%; border-radius: 6px 6px 2px 2px; background: var(--accent); }
+.pace-bar small { color: var(--muted); font-size: 11px; }
+.fix-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.fix-options .on, .fix-own .on { border-color: var(--primary); }
+.fix-own { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+.fix-own .text-input { margin: 0; }
+.fix-chip { margin: 6px 0 0; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--primary) 12%, transparent); font-weight: 700; }

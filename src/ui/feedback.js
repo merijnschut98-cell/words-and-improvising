@@ -1,6 +1,6 @@
 import { h, aiErrorText, bestLabel } from './dom.js';
 import { updateBests } from '../core/bests.js';
-import { analyze, highlightFillers, cleanRun, tokenize } from '../core/metrics.js';
+import { analyze, highlightFillers, cleanRun, tokenize, paceSeries, paceTrend } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
 import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
@@ -31,6 +31,8 @@ export function renderFeedback(app, params, root) {
   if (params.pauses != null) metrics.pauses = params.pauses;
   const clean = cleanRun(tokenize(transcript), lang).max;
   const st = { rating: null, coach: null, applied: false };
+  // The fix he chose last time has now been practised: clear it.
+  if (params.fixUsed && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
   let audioUrl = null;
 
   const main = h('main', { class: 'screen feedback' });
@@ -78,6 +80,35 @@ export function renderFeedback(app, params, root) {
 
   const fillerTone = metrics.fillerRate < 3 ? 'good' : metrics.fillerRate < 6 ? 'ok' : 'bad';
   const topFillers = Object.entries(metrics.fillers).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+  // Pace over time: words per minute per 10 s, and whether he sped up.
+  const series = params.pace ? paceSeries(params.pace.timeline, params.pace.start, durationS) : [];
+  const trend = paceTrend(series);
+  const top = Math.max(...series, 1);
+  const paceCard = series.length >= 2 ? h('section', { class: 'card pace-card' },
+    h('h2', { class: 'card-title' }, t('paceOverTime')),
+    h('div', { class: 'pace-bars', role: 'img', 'aria-label': series.join(', ') },
+      series.map((v) => h('div', { class: 'pace-bar' }, h('i', { style: { height: `${Math.max(4, (v / top) * 100)}%` } }), h('small', {}, v)))),
+    h('p', { class: trend ? 'note' : 'good-text' }, t(trend === 'faster' ? 'paceFaster' : trend === 'slower' ? 'paceSlower' : 'paceSteady'))) : null;
+
+  // One fix for next time: becomes the goal on the next round's intro.
+  const fixOptions = [
+    topFillers[0] ? t('fixFiller', topFillers[0][0]) : null,
+    trend === 'faster' ? t('fixPace') : null,
+    t('fixPoint'),
+  ].filter(Boolean);
+  const fixInput = h('input', { type: 'text', maxlength: 100, class: 'text-input', placeholder: t('fixOwn') });
+  const setFix = (text, btn) => {
+    const clean = String(text || '').trim().slice(0, 100);
+    if (!clean) return;
+    app.setState({ ...app.state, ui: { ...(app.state.ui || {}), nextFix: { text: clean } } });
+    fixCard.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === btn));
+    app.toast(`🔧 ${t('fixSaved')}`);
+  };
+  const fixCard = h('section', { class: 'card fix-card' },
+    h('h2', { class: 'card-title' }, t('fixTitle')),
+    h('div', { class: 'fix-options' }, fixOptions.map((o) => h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(o, e.currentTarget) }, o))),
+    h('div', { class: 'fix-own' }, fixInput, h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(fixInput.value, e.currentTarget) }, '✓')));
 
   // Transcript with fillers marked
   const transcriptEl = h('p', { class: 'transcript' },
@@ -196,10 +227,12 @@ export function renderFeedback(app, params, root) {
       h('h2', { class: 'card-title' }, t('yourAnswer')),
       transcriptEl,
       audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl })) : null),
+    paceCard,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('rateYourself')),
       h('div', { class: 'rate-row' }, rateButtons)),
     coachCard,
+    fixCard,
     h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
     challengeBtn(),
     nextBtn,
