@@ -959,6 +959,53 @@ await step('a double tap on rehearse starts the rehearsal once', async () => {
   await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
+await step('friend rates a round through links and it shows on Progress', async () => {
+  // The friend: a fresh phone, no stored state, no onboarding.
+  const c3 = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const p3 = await c3.newPage();
+  p3.on('console', (m) => m.type() === 'error' && errors.push(`friend page: ${m.text()}`));
+  await p3.goto(`${BASE}?r=prep.opinion:o07.nl.abc123`);
+  await p3.locator('main.screen.friendrate').waitFor({ timeout: 5000 });
+  if (p3.url().includes('?r=')) throw new Error('rate query should be cleared');
+  const body = (await p3.locator('.friendrate .prompt-main').textContent()).trim();
+  if (!body) throw new Error('friend page shows no prompt');
+  if ((await p3.locator('.friend-row').count()) !== 3) throw new Error('expected three score rows');
+  await p3.getByRole('button', { name: 'Duidelijk: 4 van 5' }).click();
+  await p3.getByRole('button', { name: 'Gestructureerd: 3 van 5' }).click();
+  await p3.getByRole('button', { name: 'Zelfverzekerd: 5 van 5' }).click();
+  const line = '<img src=x onerror=alert(1)> Sterk begin — “top” 😅';
+  await p3.getByLabel('Eén zin voor hem of haar (optioneel)').fill(line);
+  await p3.getByRole('button', { name: 'Verstuur mijn beoordeling' }).click();
+  const link = (await p3.locator('.friend-link').textContent()).trim();
+  if (!link.includes('?rr=abc123.4.3.5.')) throw new Error(`answer link: ${link}`);
+  const friendText = await p3.evaluate(() => document.body.innerText);
+  if (/\b(null|undefined|NaN)\b/.test(friendText)) throw new Error('stray null/undefined/NaN on the friend page');
+  const friendStored = await p3.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1') || '{}').onboarded === true);
+  if (friendStored) throw new Error('the friend must not be marked onboarded');
+  await p3.screenshot({ path: `${out}/48-friend-rate.png`, fullPage: true });
+  await c3.close();
+
+  // Back on his phone: a link that doesn't match a request is refused.
+  await page.goto(`${BASE}?rr=zzz999.4.3.5.`);
+  await page.locator('.toast', { hasText: 'hoort niet bij een verzoek' }).waitFor({ timeout: 3000 });
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.friendAsks = { abc123: { promptId: 'opinion:o07', drill: 'prep', ts: Date.now() } };
+    st.friendRatings = {};
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(link);
+  await page.locator('.toast', { hasText: 'Een vriend heeft je ronde beoordeeld' }).waitFor({ timeout: 3000 });
+  if (page.url().includes('?rr=')) throw new Error('answer query should be cleared');
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).friendRatings.abc123);
+  if (!stored || stored.line !== line || stored.clear !== 4) throw new Error(`stored: ${JSON.stringify(stored)}`);
+  if ((await page.locator('img[src="x"]').count()) !== 0) throw new Error('friend line must never become HTML');
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.locator('.calib-card', { hasText: 'Vrienden (1): duidelijk 4 · structuur 3 · zelfverzekerd 5' }).waitFor();
+  await page.locator('.calib-card').scrollIntoViewIfNeeded();
+  await shot('49-friend-calib');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

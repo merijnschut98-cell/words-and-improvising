@@ -8,6 +8,7 @@ import { weeklyReview } from './core/review.js';
 import { runTailor, fallbackPick } from './core/tailor.js';
 import { aiErrorText } from './ui/dom.js';
 import { parseChallenge, challengePrompt } from './core/share.js';
+import { parseRateLink, parseAnswer, addFriendRating } from './core/friend.js';
 import { dueReviews } from './core/spaced.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
@@ -21,6 +22,7 @@ import { renderConversation } from './ui/conversation.js';
 import { renderWelcome } from './ui/welcome.js';
 import { renderRealweek } from './ui/realweek.js';
 import { renderWeekly } from './ui/weekly.js';
+import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 
 const SCREENS = {
@@ -34,6 +36,7 @@ const SCREENS = {
   settings: renderSettings,
   conversation: renderConversation,
   welcome: renderWelcome,
+  friendrate: renderFriendRate,
 };
 
 const storage = (() => {
@@ -255,11 +258,28 @@ document.addEventListener('visibilitychange', () => {
   if ((r.usedFreeze || r.broke) && root.dataset.screen === 'home') app.go('home');
 });
 // A challenge link (?c=drill.promptId.lang) opens that exact prompt.
+// A rating link (?r=…) opens the friend's page; an answer link (?rr=…) stores his friend's rating.
 {
   const ch = parseChallenge(location.search);
+  const ask = parseRateLink(location.search);
+  const answer = parseAnswer(location.search);
+  const query = new URLSearchParams(location.search);
+  const hasRate = query.has('r');
+  const hasAnswer = query.has('rr');
   if (location.search) history.replaceState(null, '', location.pathname);
   const prompt = ch && challengePrompt(ch, ch.lang === 'en' ? en : nl);
-  if (prompt) {
+  if (answer) {
+    const next = addFriendRating(app.state, answer, Date.now());
+    if (next !== app.state) {
+      app.setState(next);
+      app.toast(`🧑‍🤝‍🧑 ${app.t('friendRated')}`);
+    } else app.toast(app.t('friendUnknown'));
+  } else if (hasAnswer) app.toast(app.t('friendUnknown'));
+  if (hasRate) {
+    // The friend needs no account: nothing is saved and onboarding stays as it was.
+    const friendPrompt = ask && challengePrompt(ask, ask.lang === 'en' ? en : nl);
+    app.go('friendrate', { ask, prompt: friendPrompt });
+  } else if (prompt) {
     if (ch.lang !== app.lang) app.updateSettings({ lang: ch.lang });
     if (needsWelcome(app.state)) app.setState({ ...app.state, ui: { ...(app.state.ui || {}), pendingWelcome: true } });
     app.challengeId = prompt.id;
