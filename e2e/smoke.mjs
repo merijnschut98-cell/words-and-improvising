@@ -55,6 +55,10 @@ const FAKE_SDK = `
       if (req.output_config.format.schema.properties.drill) {
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ drill: 'bridge', focus: 'Minder eh, meer pauze', body: 'Je laatste teamuitje', audience: '', words: ['anker', 'fiets', 'storm'], setting: '' }) }] };
       }
+      if (req.output_config.format.schema.properties.question) {
+        window.__hqReq = req;
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ question: 'En wat als de plantmanager zegt dat er geen tijd voor is?' }) }] };
+      }
       if (req.output_config.format.schema.properties.reply) {
         window.__partnerReqs = (window.__partnerReqs || 0) + 1;
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ reply: 'Leuk! En hoe was dat?', end_conversation: false }) }] };
@@ -766,6 +770,27 @@ await step('accessibility: focus moves to the screen heading, close button is la
   if (!/round-title/.test(tag)) throw new Error(`focus is on "${tag}", expected the screen heading`);
   await page.locator('.drill-minute').click().catch(async () => { await page.goto(BASE); await page.locator('.drill-minute').click(); });
   await page.getByRole('button', { name: 'Sluiten' }).waitFor();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
+await step('coach writes the hard question only after he shares the event line', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, apiKey: 'sk-test' };
+    st.events = [{ id: 'hq', type: 'presentation', date: '2099-01-01', text: 'A3 over omsteltijden', reflection: null }];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.rw-home .btn-ghost').click();
+  await page.locator('.rw-share input').check();
+  await shot('45-rw-share');
+  await page.getByRole('button', { name: /Oefenen/ }).first().click();
+  await page.locator('.intro-card').waitFor();
+  const hard = await page.evaluate(() => window.__app.session.prompts[1].body);
+  if (!/geen tijd/.test(hard)) throw new Error(`hard question not from coach: ${hard}`);
+  const sent = await page.evaluate(() => JSON.stringify(window.__hqReq));
+  if (!sent.includes('A3 over omsteltijden')) throw new Error('shared line missing from request');
   await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 

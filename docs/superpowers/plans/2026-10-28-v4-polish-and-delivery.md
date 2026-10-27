@@ -39,8 +39,8 @@ Every icon-only button gets an `aria-label` from i18n (Close → `t('close')`), 
 First: if Merijn reports any key, coach or model problem, fix that. Also tick the v3 Task 4 key-day box.
 Then: in My real week, a per-event toggle "Let the coach see this line" (off by default). When on and a key exists, the hard-question rehearsal asks the coach (Haiku-class model setting respected) for one realistic hard question for that event type and line; fallback to the local template on any error.
 
-- [ ] Tests: request contains the event text only when the toggle is on; parse/fallback.
-- [ ] Implement. Commit: `Let the coach write the hard question (opt-in)`.
+- [x] Tests: request contains the event text only when the toggle is on; parse/fallback.
+- [x] Implement. Commit: `Let the coach write the hard question (opt-in)`.
 
 ### Task 5 (Sat 31 Oct): Weekly reset with a chosen focus
 

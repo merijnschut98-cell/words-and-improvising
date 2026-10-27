@@ -1,5 +1,5 @@
 import { h } from './dom.js';
-import { EVENT_TYPES, addEvent, upcoming, needsReflection, reflect, rehearsalPrompts } from '../core/realweek.js';
+import { EVENT_TYPES, addEvent, upcoming, needsReflection, reflect, rehearsalPrompts, setShare, runHardQuestion } from '../core/realweek.js';
 
 export const EVENT_ICON = { client: '🤝', presentation: '📊', teamtalk: '🏟️', networking: '🥂', other: '📌' };
 
@@ -9,8 +9,23 @@ export function fmtDay(app, day) {
   return new Intl.DateTimeFormat(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'short' }).format(new Date(y, m - 1, d));
 }
 
-export function startRehearsal(app, event) {
+export async function startRehearsal(app, shown) {
+  // Use the saved event, not the copy captured when the screen was drawn
+  // (the share switch may have changed since).
+  const event = (app.state.events || []).find((x) => x.id === shown.id) || shown;
   const prompts = rehearsalPrompts(event, app.lang);
+  const { apiKey, model } = app.state.settings;
+  // Opt-in: the coach writes the hard question; the local one stays on any error.
+  if (apiKey && event.shareWithCoach) {
+    const seq = app.navSeq;
+    app.toast(`✍️ ${app.t('rwCoachWriting')}`);
+    const res = await Promise.race([
+      runHardQuestion(apiKey, { event, lang: app.lang, model }),
+      new Promise((r) => { setTimeout(() => r({ ok: false, error: 'timeout' }), 8000); }),
+    ]);
+    if (app.navSeq !== seq) return; // he navigated away meanwhile
+    if (res.ok) prompts[1] = { ...prompts[1], body: res.question };
+  }
   app.session = { prompts, index: 0, xp: 0, levelUp: false };
   app.go('round', { prompt: prompts[0], modifier: null });
 }
@@ -71,7 +86,13 @@ export function renderRealweek(app, _params, root) {
       ups.length ? h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('rwComing')),
         ups.map((e) => h('div', { class: 'rw-event' },
-          h('div', {}, h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`), h('p', { class: 'rw-text' }, e.text)),
+          h('div', {}, h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`), h('p', { class: 'rw-text' }, e.text),
+            app.state.settings.apiKey ? h('label', { class: 'toggle small rw-share' },
+              h('input', {
+                type: 'checkbox', checked: !!e.shareWithCoach,
+                onchange: (ev) => app.setState({ ...app.state, events: setShare(app.state.events, e.id, ev.target.checked) }),
+              }),
+              h('span', {}, t('rwShare'))) : null),
           h('div', { class: 'rw-actions' },
             h('button', { class: 'btn btn-primary small', onclick: () => startRehearsal(app, e) }, `🎙 ${t('rwRehearse')}`),
             h('button', {

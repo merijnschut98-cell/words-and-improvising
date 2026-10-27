@@ -42,3 +42,29 @@ test('rehearsal: 60 s version, hard question, 15 s opening line', () => {
   assert.ok(HARD_QUESTIONS.nl.client.includes(ps[1].body));
   for (const p of ps) assert.ok(p.focus && p.seenIds.length === 0);
 });
+
+test('hard-question request includes the event line only when he shared it', async () => {
+  const { buildHardQuestionRequest } = await import('../src/core/realweek.js');
+  const e = { id: 'e1', type: 'client', date: '2026-10-29', text: 'Kick-off with SECRET-CLIENT', reflection: null };
+  const off = JSON.stringify(buildHardQuestionRequest({ event: e, lang: 'nl', model: 'claude-haiku-5-5' }));
+  assert.ok(!off.includes('SECRET-CLIENT'));
+  assert.match(off, /client meeting/);
+  const on = JSON.stringify(buildHardQuestionRequest({ event: { ...e, shareWithCoach: true }, lang: 'nl', model: 'claude-haiku-5-5' }));
+  assert.ok(on.includes('SECRET-CLIENT'));
+  assert.match(on, /Dutch/);
+});
+
+test('parseHardQuestion accepts one question and rejects junk', async () => {
+  const { parseHardQuestion } = await import('../src/core/realweek.js');
+  const msg = (obj) => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(obj) }] });
+  assert.deepEqual(parseHardQuestion(msg({ question: '  Waarom nu?  ' })), { ok: true, question: 'Waarom nu?' });
+  assert.equal(parseHardQuestion(msg({ question: '' })).ok, false);
+  assert.equal(parseHardQuestion({ stop_reason: 'refusal', content: [] }).ok, false);
+  assert.ok(parseHardQuestion(msg({ question: 'x'.repeat(500) })).question.length <= 240);
+});
+
+test('setShare toggles one event only', async () => {
+  const { setShare } = await import('../src/core/realweek.js');
+  const es = setShare([{ id: 'a' }, { id: 'b' }], 'b', true);
+  assert.deepEqual(es.map((e) => !!e.shareWithCoach), [false, true]);
+});

@@ -1,3 +1,5 @@
+import { callClaude, withFallbacks, lastJson } from './claude.js';
+
 // "My real week": upcoming real events he wants to rehearse, and a short
 // reflection afterwards. Free text stays on the device and is only ever
 // rendered as text. Pure.
@@ -61,4 +63,35 @@ export function rehearsalPrompts(event, lang) {
     { ...base, id: `event:${event.id}:hard`, drill: 'prep', body: qs[hashIndex(event.id, qs.length)], focus: PARTS[L].hardF, timing: { prepS: 10, answerS: 45, questions: 1 } },
     { ...base, id: `event:${event.id}:open`, drill: 'minute', body: PARTS[L].open(event.text), focus: PARTS[L].openF, timing: { prepS: 5, answerS: 15, questions: 1 } },
   ];
+}
+
+export const setShare = (events, id, on) => events.map((e) => (e.id === id ? { ...e, shareWithCoach: !!on } : e));
+
+const TYPE_EN = { client: 'client meeting', presentation: 'presentation', teamtalk: 'team talk as sports captain', networking: 'networking event', other: 'other real moment' };
+const HQ_SCHEMA = { type: 'object', additionalProperties: false, required: ['question'], properties: { question: { type: 'string' } } };
+
+// Coach-written hard question. The event line is only included when he
+// switched "let the coach see this line" on for that event.
+export function buildHardQuestionRequest({ event, lang, model }) {
+  const language = lang === 'en' ? 'English' : 'Dutch';
+  const detail = event.shareWithCoach ? `What it is about: "${event.text}"` : '(He did not share any details.)';
+  return withFallbacks({
+    model,
+    max_tokens: 400,
+    system: `You help a 28-year-old Lean consultant rehearse a real upcoming moment. Write ONE realistic, slightly uncomfortable question or objection someone could raise at that moment, in the voice of that person, one or two sentences. Write it in ${language}.`,
+    messages: [{ role: 'user', content: `Kind of moment: ${TYPE_EN[event.type] || 'real moment'}.\n${detail}` }],
+    output_config: { effort: 'low', format: { type: 'json_schema', schema: HQ_SCHEMA } },
+  });
+}
+
+export function parseHardQuestion(message) {
+  const res = lastJson(message);
+  if (!res.ok) return res;
+  const q = String((res.data && res.data.question) || '').replace(/\s+/g, ' ').trim().slice(0, 240);
+  return q ? { ok: true, question: q } : { ok: false, error: 'parse' };
+}
+
+export async function runHardQuestion(apiKey, args, loadSdk) {
+  const res = await callClaude(apiKey, buildHardQuestionRequest(args), loadSdk);
+  return res.ok ? parseHardQuestion(res.message) : res;
 }
