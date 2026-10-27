@@ -2,6 +2,7 @@ import { h, aiErrorText, bestLabel } from './dom.js';
 import { updateBests } from '../core/bests.js';
 import { analyze, highlightFillers, cleanRun, tokenize, paceSeries, paceTrend } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
+import { markVague, repeatedWords } from '../core/words.js';
 import { loudnessStats } from '../core/loudness.js';
 import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
@@ -142,9 +143,15 @@ export function renderFeedback(app, params, root) {
     h('div', { class: 'fix-options' }, fixOptions.map((o) => h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(o, e.currentTarget) }, o))),
     h('div', { class: 'fix-own' }, fixInput, h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(fixInput.value, e.currentTarget) }, '✓')));
 
-  // Transcript with fillers marked
+  // Transcript with fillers marked, and vague words (this language) underlined.
+  const segs = markVague(highlightFillers(transcript, lang), lang);
   const transcriptEl = h('p', { class: 'transcript' },
-    highlightFillers(transcript, lang).map((s) => (s.filler ? h('mark', {}, s.text) : s.text)));
+    segs.map((s) => (s.filler ? h('mark', {}, s.text) : s.vague ? h('span', { class: 'vague' }, s.text) : s.text)));
+  const hasVague = segs.some((s) => s.vague);
+  const leaning = repeatedWords(transcript, lang);
+  const wordsNote = hasVague || leaning.length ? h('div', { class: 'words-note' },
+    hasVague ? h('p', { class: 'muted small' }, h('span', { class: 'vague' }, t('vagueLegend'))) : null,
+    leaning.length ? h('p', { class: 'small leaning' }, t('leaningOn', leaning.map(([w, n]) => `${w} ×${n}`).join(', '))) : null) : null;
 
   // Self rating
   const nextBtn = h('button', { class: 'btn btn-primary btn-big', onclick: onNext },
@@ -298,6 +305,7 @@ export function renderFeedback(app, params, root) {
         : h('p', { class: 'good-text' }, t('noFillers')),
       h('h2', { class: 'card-title' }, t('yourAnswer')),
       transcriptEl,
+      wordsNote,
       audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl })) : null),
     paceCard,
     voiceCard,

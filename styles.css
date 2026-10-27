@@ -203,6 +203,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .stat.bad b { color: var(--bad); }
 .transcript { margin: 0; white-space: pre-wrap; }
 .transcript mark { background: var(--mark); color: inherit; border-radius: 4px; padding: 0 2px; }
+/* Vague words: a different colour from fillers, plus an underline (not colour alone). */
+.vague { background: color-mix(in srgb, var(--accent) 18%, transparent); border-radius: 4px; padding: 0 2px;
+  text-decoration: underline dashed var(--accent-dark); text-underline-offset: 3px; }
+.words-note p { margin: 6px 0 0; }
+.words-vague { margin: 10px 0 2px; font-weight: 600; }
+.words-card .week-row span::first-letter { text-transform: none; }
 .good-text { color: var(--good); font-weight: 700; margin: 0; }
 audio { width: 100%; margin-top: 4px; }
 .rate-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }

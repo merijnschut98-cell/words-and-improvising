@@ -1110,6 +1110,53 @@ await step('mastery: three good rounds on different days show "Beheerst"', async
   await shot('52-mastery');
 });
 
+await step('your words: filler movers and a vague-word swap on Progress, vague words marked in feedback', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const base = st.history[0];
+    const w = (n) => Array(n).fill('woord').join(' ');
+    const mk = (days, transcript, fillers, lang = 'nl') => ({ ...base, ts: Date.now() - days * 86400000, lang, transcript,
+      metrics: { ...base.metrics, words: transcript.split(' ').length, fillers } });
+    st.history = [
+      mk(1, `${w(96)} ding ding dingen heel`, { eh: 2, dus: 4, nou: 1 }),
+      mk(20, w(100), { eh: 6, dus: 4, nou: 3 }),
+      mk(2, 'the thing thing thing stuff', { um: 9 }, 'en'),
+      ...st.history,
+    ];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  const card = page.locator('.words-card');
+  await card.waitFor();
+  await card.locator('.week-row', { hasText: '“eh”' }).filter({ hasText: '▼' }).waitFor();
+  await card.locator('.words-vague', { hasText: '“ding”' }).waitFor();
+  await card.getByText('noem het ding').waitFor();
+  await card.getByText('Spraakherkenning mist soms stopwoorden').waitFor();
+  if (await card.getByText('thing').count()) throw new Error('English vague word shown on the Dutch card');
+  await card.scrollIntoViewIfNeeded();
+  await shot('53-your-words');
+  // A typed round with vague and repeated words.
+  await page.goto(BASE);
+  await page.locator('.drill-minute').click();
+  await page.getByRole('radio', { name: /Typen/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('textarea').fill('Het proces is een <b>ding</b>. Het proces moet sneller, eh, en het proces wordt dan sneller. Dat ding is best wel sneller, gewoon. Dingetje.');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.transcript').first().waitFor();
+  const vague = await page.locator('.transcript .vague').allInnerTexts();
+  if (vague.join('|') !== 'ding|ding|best wel') throw new Error(`vague marks: ${vague.join('|')}`);
+  const marks = await page.locator('.transcript mark').allInnerTexts();
+  if (marks.join('|') !== 'eh|gewoon') throw new Error(`filler marks: ${marks.join('|')}`);
+  if (await page.locator('.transcript b').count()) throw new Error('transcript was interpreted as HTML');
+  await page.locator('.leaning', { hasText: 'Je leunt op: proces ×3, sneller ×3' }).waitFor();
+  await page.locator('.transcript').first().scrollIntoViewIfNeeded();
+  await shot('54-vague-feedback');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
