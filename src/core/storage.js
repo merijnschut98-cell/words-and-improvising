@@ -67,6 +67,35 @@ export function save(backend, state) {
   }
 }
 
+// Checks an exported backup. Returns the state load() would make of it.
+export function parseBackup(text) {
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return { ok: false, error: 'json' };
+  }
+  if (!isObject(parsed) || !Array.isArray(parsed.history) || typeof parsed.xp !== 'number' || !Number.isFinite(parsed.xp)) {
+    return { ok: false, error: 'shape' };
+  }
+  const state = load({ getItem: () => text, setItem() {} });
+  const days = Object.values(state.days).filter((n) => n > 0).length;
+  return { ok: true, state, summary: { rounds: state.history.length, days, xp: state.xp } };
+}
+
+// Replaces the stored state with a backup, keeping the previous value aside.
+export function importBackup(backend, text) {
+  const res = parseBackup(text);
+  if (!res.ok) return res;
+  let prev = null;
+  try { prev = backend.getItem(KEY); } catch { /* treat as nothing stored */ }
+  if (prev != null) {
+    try { backend.setItem(`${KEY}:backup`, prev); } catch { /* best effort */ }
+  }
+  save(backend, res.state);
+  return res;
+}
+
 export function addHistory(state, entry) {
   return { ...state, history: [entry, ...state.history].slice(0, HISTORY_CAP) };
 }

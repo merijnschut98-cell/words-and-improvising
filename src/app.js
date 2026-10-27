@@ -1,5 +1,5 @@
 // App shell: state, persistence, navigation.
-import { load, save, defaultState, KEY, needsWelcome } from './core/storage.js';
+import { load, save, defaultState, KEY, needsWelcome, importBackup } from './core/storage.js';
 import { dayKey, reconcileStreak } from './core/progress.js';
 import { buildLesson, makePrompt } from './core/lesson.js';
 import { translator } from './i18n.js';
@@ -89,6 +89,17 @@ export const app = {
   },
   exportJson() {
     return storage.getItem(KEY) || JSON.stringify(this.state);
+  },
+  // Replaces progress with a backup file's contents; the old value is kept under KEY:backup.
+  importJson(text) {
+    const res = importBackup(storage, text);
+    if (res.ok) {
+      this.state = load(storage);
+      writeMeta(this.state);
+      document.documentElement.lang = this.lang;
+      this.applyTheme();
+    }
+    return res;
   },
 
   startLesson() {

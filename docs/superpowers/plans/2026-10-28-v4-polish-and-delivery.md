@@ -60,8 +60,8 @@ Optional (Settings toggle, default off until tested on his phone): during spoken
 
 Settings: "Export" already downloads JSON; add "Import" (file input). Validate via `load()` on a fake backend, show a summary (rounds, days, XP) and ask to confirm; keep the current state as `spraakwater:v1:backup` before replacing.
 
-- [ ] Tests: import rejects non-JSON, wrong shape, and keeps a backup.
-- [ ] Implement. Commit: `Add backup import`.
+- [x] Tests: import rejects non-JSON, wrong shape, and keeps a backup.
+- [x] Implement. Commit: `Add backup import`.
 
 ### Task 8 (Wed 4 Nov): Speed and offline audit
 
