@@ -24,6 +24,7 @@ export function defaultState() {
     milestones: [],
     reviews: {},
     events: [],
+    weekly: { week: null, focus: null },
   };
 }
 

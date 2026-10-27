@@ -194,6 +194,7 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
+      h('button', { class: 'btn btn-ghost week-btn', onclick: () => app.go('weekly') }, `🗓️ ${t('weekChange')}`),
       reflectionsCard(app),
       journeyCard(app),
       skillCard(app),

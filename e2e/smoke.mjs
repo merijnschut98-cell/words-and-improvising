@@ -101,7 +101,11 @@ await step('first run shows the welcome slides', async () => {
   await page.locator('.btn-hero').waitFor();
   await page.locator('.plan-line', { hasText: 'Na je ochtendkoffie · ~08:00' }).waitFor();
 });
-await page.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' } })));
+await page.evaluate(async () => {
+  // Mark this week's focus as answered so seeded older rounds don't open the weekly screen.
+  const { isoWeekKey } = await import('./src/core/boss.js');
+  localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' }, weekly: { week: isoWeekKey(new Date()), focus: null } }));
+});
 await page.reload();
 await step('home renders', async () => { await page.locator('.btn-hero').waitFor(); await shot('01-home'); });
 
@@ -811,6 +815,25 @@ await step('import a backup: confirm replaces progress and keeps the old value',
   const after = await page.evaluate(() => ({ xp: JSON.parse(localStorage.getItem('spraakwater:v1')).xp, backup: localStorage.getItem('spraakwater:v1:backup') }));
   if (after.xp !== 4321) throw new Error(`xp after import: ${after.xp}`);
   if (after.backup !== exported) throw new Error('previous value not kept under spraakwater:v1:backup');
+});
+
+await step('weekly reset: new week asks for a focus, which then leads the lesson', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.weekly = { week: '2000-W01', focus: null };
+    st.history.push({ ...st.history[0], ts: Date.now() - 9 * 86400000 });
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.screen.weekly .week-option').first().waitFor();
+  await shot('46-weekly');
+  await page.locator('.week-option', { hasText: 'Spreekstructuren' }).click();
+  await page.locator('.btn-hero', { hasText: 'focus: Spreekstructuren' }).waitFor();
+  await page.locator('.btn-hero').click();
+  await page.locator('.reason-chip', { hasText: 'focus deze week' }).waitFor();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+  await page.locator('.btn-hero').waitFor();
 });
 
 await step('too-short answer offers retry', async () => {

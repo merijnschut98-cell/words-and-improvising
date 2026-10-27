@@ -468,3 +468,11 @@ input[type="password"], input[type="text"], select {
 /* Headings get focus on navigation (for screen readers); no ring for that. */
 [tabindex="-1"]:focus { outline: none; }
 .rw-share { margin-top: 6px; font-size: 0.85rem; color: var(--muted); }
+
+/* Weekly reset */
+.week-options { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 10px; }
+.week-option { display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; }
+.week-option.on { border-color: var(--primary); }
+.week-option small { display: block; font-weight: 600; }
+.week-icon { font-size: 1.6rem; }
+.week-btn { width: 100%; }

@@ -1,4 +1,5 @@
 import { weakestDrill } from '../core/lesson.js';
+import { weekFocus } from '../core/weekly.js';
 import { upcoming, needsReflection } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
@@ -78,7 +79,7 @@ export function renderHome(app, _params, root) {
   const doneToday = (s.days[today] || 0) >= 3;
   // Gentle, once a day: the streak broke, but the total never resets.
   const dueCount = app.dueReviews().length;
-  const weak = weakestDrill(s.history);
+  const weak = weekFocus(s, new Date()) || weakestDrill(s.history);
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 

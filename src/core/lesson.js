@@ -164,8 +164,10 @@ export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
   const history = opts.history || [];
   const out = [];
   const used = () => new Set(out.map((p) => p.drill));
-  const weak = weakestDrill(history);
-  if (weak) out.push({ ...makePrompt(weak, content, rng, seen), reason: 'weak' });
+  // His chosen focus for the week takes the first slot; otherwise the weakest drill.
+  const weak = opts.focus ? null : weakestDrill(history);
+  if (opts.focus) out.push({ ...makePrompt(opts.focus, content, rng, seen), reason: 'focus' });
+  else if (weak) out.push({ ...makePrompt(weak, content, rng, seen), reason: 'weak' });
   const review = (opts.due || []).find((p) => !used().has(p.drill));
   if (review) out.push({ ...review, reason: 'review' });
   else {

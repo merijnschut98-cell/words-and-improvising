@@ -20,6 +20,8 @@ import { renderSettings } from './ui/settings.js';
 import { renderConversation } from './ui/conversation.js';
 import { renderWelcome } from './ui/welcome.js';
 import { renderRealweek } from './ui/realweek.js';
+import { renderWeekly } from './ui/weekly.js';
+import { needsWeeklyReset, weekFocus } from './core/weekly.js';
 
 const SCREENS = {
   home: renderHome,
@@ -28,6 +30,7 @@ const SCREENS = {
   done: renderDone,
   progress: renderProgress,
   realweek: renderRealweek,
+  weekly: renderWeekly,
   settings: renderSettings,
   conversation: renderConversation,
   welcome: renderWelcome,
@@ -103,7 +106,7 @@ export const app = {
   },
 
   startLesson() {
-    const prompts = buildLesson(this.content, Math.random, this.state.seen, { history: this.state.history, due: this.dueReviews() });
+    const prompts = buildLesson(this.content, Math.random, this.state.seen, { history: this.state.history, due: this.dueReviews(), focus: weekFocus(this.state, new Date()) });
     this.session = { prompts, index: 0, xp: 0, levelUp: false };
     this.go('round', { prompt: prompts[0] });
   },
@@ -189,6 +192,7 @@ export const app = {
     if (screen === 'home') {
       this.challengeId = null; // "Reply" only right after the challenge itself
       if (needsWelcome(this.state)) screen = 'welcome';
+      else if (needsWeeklyReset(this.state, new Date())) screen = 'weekly';
     }
     if (cleanup) {
       try { cleanup(); } catch { /* ignore */ }

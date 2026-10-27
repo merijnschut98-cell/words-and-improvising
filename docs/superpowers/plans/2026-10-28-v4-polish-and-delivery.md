@@ -46,8 +46,8 @@ Then: in My real week, a per-event toggle "Let the coach see this line" (off by 
 
 On the first open of a new ISO week (or from Progress), a short weekly screen: last week in three lines (rounds, fillers/min trend, best moment from reflections or bests), then he picks next week's focus from three suggestions (weakest drill, a frame, a real-week event type) or keeps the adaptive default. The chosen focus steers `buildLesson`'s weak slot for that week (autonomy, SDT).
 
-- [ ] Tests: week rollover detection; chosen focus overrides weakestDrill for that week only.
-- [ ] Implement. Commit: `Add weekly reset with a chosen focus`.
+- [x] Tests: week rollover detection; chosen focus overrides weakestDrill for that week only.
+- [x] Implement. Commit: `Add weekly reset with a chosen focus`.
 
 ### Task 6 (Sun 1 – Mon 2 Nov): Delivery: volume and monotone
 
