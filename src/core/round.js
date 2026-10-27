@@ -14,13 +14,16 @@ export function applyRound(state, round, today, now) {
   const rating = round.rating ?? (coach && coach.overall) ?? 3;
   const xp = xpForRound({ metrics, durationS, targetS, rating, drill: prompt.drill, modifier: round.modifier });
   const drill = prompt.drill;
-  const earlier = state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === round.lang);
+  // Shadow rounds repeat a model answer: practice, but not his own record.
+  const shadow = !!(prompt.extra && prompt.extra.shadow);
+  // His own earlier attempt (shadow rounds repeat the model; they are not his record).
+  const earlier = state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === round.lang);
   let next = {
     ...state,
     xp: state.xp + xp,
     streak: updateStreak(state.streak, today),
     days: { ...state.days, [today]: (state.days[today] || 0) + 1 },
-    drillLevels: { ...state.drillLevels, [drill]: adjustDrillLevel(state.drillLevels[drill] || 1, rating) },
+    drillLevels: shadow ? state.drillLevels : { ...state.drillLevels, [drill]: adjustDrillLevel(state.drillLevels[drill] || 1, rating) },
     seen: { ...state.seen, ...Object.fromEntries(prompt.seenIds.map((id) => [id, now])) },
   };
   next = addHistory(next, {
@@ -42,8 +45,6 @@ export function applyRound(state, round, today, now) {
     modifier: round.modifier || null,
     xp,
   });
-  // Shadow rounds repeat a model answer: practice, but not his own record.
-  const shadow = !!(prompt.extra && prompt.extra.shadow);
   if (!shadow) next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
   const b = shadow ? { bests: next.bests || {}, newBests: [] } : updateBests(next.bests || {}, next.history[0]);
   next = { ...next, bests: b.bests };

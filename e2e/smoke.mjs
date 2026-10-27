@@ -241,6 +241,7 @@ await step('pause drill shows live counters and pause stats', async () => {
   const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
   if (await ready.isVisible().catch(() => false)) await ready.click();
   await page.locator('.pause-counters .counter.bad').waitFor({ timeout: 5000 });
+  await page.waitForTimeout(1000); // let the fake mic finish its sentence (under 5 words = too short)
   await shot('13-pause');
   await page.getByRole('button', { name: 'Klaar' }).click();
   await page.locator('.stats.two').waitFor({ timeout: 5000 });
@@ -1087,6 +1088,9 @@ await step('friend rates a round through links and it shows on Progress', async 
   if ((await page.locator('img[src="x"]').count()) !== 0) throw new Error('friend line must never become HTML');
   await page.getByRole('button', { name: /Voortgang/ }).click();
   await page.locator('.calib-card', { hasText: 'Vrienden (1): duidelijk 4 · structuur 3 · zelfverzekerd 5' }).waitFor();
+  // The friend's line is shown, as literal text: the <img> must not become an element.
+  await page.locator('.friend-line', { hasText: '<img src=x onerror=alert(1)> Sterk begin' }).waitFor();
+  if ((await page.locator('.calib-card img').count()) !== 0) throw new Error('friend line rendered as HTML');
   await page.locator('.calib-card').scrollIntoViewIfNeeded();
   await shot('49-friend-calib');
 });

@@ -1,6 +1,10 @@
 // Modifiers: varied practice conditions ("harder on purpose"). Varying the
 // conditions costs a little in the moment and builds transfer. Pure.
 import { tokenize } from './metrics.js';
+import { CUED_DRILLS } from './progress.js';
+
+// One word budget makes no sense across several short items or spoken cues.
+const NO_BUDGET = ['rapid', ...CUED_DRILLS];
 
 export const MODIFIERS = ['cold', 'whisper', 'slow', 'noI', 'standing', 'eyesClosed', 'endQuestion', 'budget'];
 
@@ -8,9 +12,10 @@ export const MODIFIERS = ['cold', 'whisper', 'slow', 'noI', 'standing', 'eyesClo
 export const wordBudget = (level) => ((level || 1) >= 5 ? 30 : (level || 1) >= 3 ? 45 : 60);
 const CHANCE = 0.25;
 
-export function pickModifier(rng, level, force = false) {
+export function pickModifier(rng, level, force = false, drill = null) {
   if (!force && (level < 2 || rng() >= CHANCE)) return null;
-  return MODIFIERS[Math.floor(rng() * MODIFIERS.length)];
+  const pool = MODIFIERS.filter((m) => !(m === 'budget' && NO_BUDGET.includes(drill)));
+  return pool[Math.floor(rng() * MODIFIERS.length) % pool.length];
 }
 
 export function applyModifierTiming(timing, id) {

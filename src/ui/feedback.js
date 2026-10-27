@@ -222,7 +222,8 @@ export function renderFeedback(app, params, root) {
   function shadowIt(model) {
     app.addToSession(commit());
     app.go('round', {
-      prompt: { ...prompt, extra: { ...prompt.extra, shadow: true, model, cues: [model], itemS: null, original: prompt, firstMetrics: metrics, firstDuration: durationS }, seenIds: [] },
+      prompt: { ...prompt, extra: { ...prompt.extra, shadow: true, model, cues: [model], itemS: null, original: prompt, firstMetrics: metrics, firstDuration: durationS },
+        seenIds: [], timing: { prepS: 0, answerS: 45, questions: 1 } }, // on the prompt, so retries keep it
       timing: { prepS: 0, answerS: 45, questions: 1 }, modifier: null,
     });
   }
@@ -235,7 +236,7 @@ export function renderFeedback(app, params, root) {
   // Before -> now, when this round is a retry of the same prompt.
   const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
   // A spaced re-attempt compares with the last time he did this prompt.
-  const earlier = previous || (shadowRound ? null : app.state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang)) || null;
+  const earlier = previous || (shadowRound ? null : app.state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang)) || null;
   const rows = compareAttempts(earlier, { metrics });
   const compareCard = rows.length ? h('section', { class: 'card compare-card' },
     h('h2', { class: 'card-title' }, previous ? t('beforeNow') : t('earlierNow')),
@@ -270,7 +271,7 @@ export function renderFeedback(app, params, root) {
       return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
         `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
     })() : null,
-    prompt.drill === 'pressure' ? (() => {
+    prompt.drill === 'pressure' && !shadowRound ? (() => {
       const x = prompt.extra;
       if (!x.interrupted) return h('section', { class: 'card pressure-card' }, h('p', { class: 'note' }, t('pressureEarly')));
       const c = pressureChecks(x.reply, app.lang);
@@ -282,7 +283,7 @@ export function renderFeedback(app, params, root) {
         line(c.short, t('pcShort'), t('pcLong')),
         line(c.checkedBack, t('pcBack'), t('pcNoBack')));
     })() : null,
-    prompt.drill === 'followUp' ? (() => {
+    prompt.drill === 'followUp' && !shadowRound ? (() => {
       const f = checkFollowUp(transcript, prompt.extra.detail, app.lang);
       const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, `${ok ? '✓' : '✗'} ${ok ? yes : no}`);
       return h('section', { class: 'card followup-card' },

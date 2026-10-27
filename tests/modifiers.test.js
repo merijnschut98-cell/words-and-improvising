@@ -60,3 +60,10 @@ test('word budget is met within the cap and at least 60 % of it', async () => {
   // Counts with tokenize, like the metrics: fillers and punctuation behave the same.
   assert.equal(modifierCheck('budget', { words: 0 }, words(27), 'nl', 3).ok, true);
 });
+
+test('the word budget is never handed to multi-part or spoken-cue drills', async () => {
+  const { pickModifier: pick, MODIFIERS: M } = await import('../src/core/modifiers.js');
+  const budgetRng = () => () => (M.indexOf('budget') + 0.5) / M.length;
+  for (const d of ['rapid', 'yesAnd', 'expert', 'listen', 'followUp', 'pressure']) assert.notEqual(pick(budgetRng(), 5, true, d), 'budget', d);
+  assert.equal(pick(budgetRng(), 5, true, 'minute'), 'budget');
+});

@@ -67,3 +67,14 @@ Opt-in from Progress: four weekly themes (1 clarity and structure, 2 small talk 
 
 - [ ] Fresh whole-branch review subagent (most capable model) over the v6 range with this Review Focus; one fix pass (re-grade by effect, failing test first); ledger minors.
 - [ ] Short note to Merijn.
+
+### Deferred minors from the v5 final review (ride along with tasks touching the same files)
+
+- Pressure rounds: target/total is 40 s while the real round is 32–38 s; use the sum of `itemS`.
+- Typing-mode reply slice assumes he only appends after the interruption.
+- Word budget "near" colour is green; the plan said amber.
+- Cancelled friend asks leave `friendAsks` entries forever; prune by age.
+- Shadow history entries store the whole original prompt; strip `original`/`firstMetrics` before saving.
+- Shadow feedback still offers Challenge / Ask a friend.
+- Self-fix input: Enter does nothing; handle it like the button.
+- From the v4 review: weekly reset asks once right after deploy; `ui.pendingWelcome` never cleared; import reports success if saving fails; review card gradient ignores the theme; "0 rounds … <1 minutes" wording; duplicate e2e screenshot numbers; mic permission note in the voice help text.

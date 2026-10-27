@@ -169,7 +169,21 @@ function calibrationCard(app) {
   return h('section', { class: 'card calib-card' },
     h('h2', { class: 'card-title' }, t('calibTitle')),
     text ? h('p', {}, text) : null,
-    friends ? h('p', { class: 'friend-calib' }, friends) : null);
+    friends ? h('p', { class: 'friend-calib' }, friends) : null,
+    latestFriend(app));
+}
+
+// The most recent friend rating: which round, the three scores, and their line (as text).
+function latestFriend(app) {
+  const t = app.t;
+  const entries = Object.entries(app.state.friendRatings || {}).sort((a, b) => (b[1].ts || 0) - (a[1].ts || 0));
+  if (!entries.length) return null;
+  const [nonce, r] = entries[0];
+  const ask = (app.state.friendAsks || {})[nonce];
+  const drill = ask && ask.drill ? t(`drill_${ask.drill}`) : '';
+  return h('div', { class: 'friend-latest' },
+    h('p', { class: 'small' }, t('friendLatest', drill, r.clear, r.structured, r.confident)),
+    r.line ? h('p', { class: 'friend-line' }, `“${r.line}”`) : null);
 }
 
 export function renderProgress(app, _params, root) {

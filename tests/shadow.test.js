@@ -27,3 +27,23 @@ test('a shadow round earns XP but leaves spaced reviews and personal bests alone
   assert.deepEqual(r.state.bests, {});
   assert.equal(r.state.history[0].shadow, true);
 });
+
+test('a shadow round never becomes his baseline for that prompt', () => {
+  const prompt = { id: 'opinion:o01', drill: 'prep', body: 'X', extra: {}, seenIds: [] };
+  const s0 = { ...defaultState(), reviews: { 'nl|opinion:o01': { box: 1, due: '2026-10-27', drill: 'prep', lang: 'nl' } },
+    history: [
+      { ts: 3, drill: 'prep', lang: 'nl', promptId: 'opinion:o01', shadow: true, metrics: { words: 50, fillerRate: 9 }, rating: 1 },
+      { ts: 2, drill: 'prep', lang: 'nl', promptId: 'opinion:o01', metrics: { words: 50, fillerRate: 1 }, rating: 5 },
+    ] };
+  const r = applyRound(s0, { prompt, transcript: 'a b c d e f', durationS: 30, targetS: 30, lang: 'nl', mode: 'speak', coach: null, rating: 3,
+    metrics: { words: 60, fillerRate: 5, wpm: 120, fillerCount: 5, fillers: {} } }, '2026-10-27', 1000);
+  // Compared with his own earlier attempt (1/min, rated 5) this is not better: back to box 1.
+  assert.equal(r.state.reviews['nl|opinion:o01'].box, 1);
+});
+
+test('a shadow round does not move the drill level', () => {
+  const prompt = { id: 'opinion:o01', drill: 'prep', body: 'X', extra: { shadow: true, model: 'Y' }, seenIds: [] };
+  const r = applyRound(defaultState(), { prompt, transcript: 'a b c d e f', durationS: 30, targetS: 30, lang: 'nl', mode: 'speak', coach: null, rating: 5,
+    metrics: { words: 80, fillerRate: 0.5, wpm: 130, fillerCount: 1, fillers: {} } }, '2026-10-27', 1000);
+  assert.equal(r.state.drillLevels.prep, defaultState().drillLevels.prep);
+});

@@ -246,7 +246,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
 
   // Varied conditions: sometimes added automatically, or on demand.
   if (st.modifier === undefined) {
-    st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1);
+    st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1, false, prompt.drill);
   }
   const prepFor = () => applyModifierTiming(timing, st.modifier).prepS;
 
@@ -274,7 +274,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       toggle,
       h('button', {
         class: `btn btn-ghost small harder${st.modifier ? ' on' : ''}`,
-        onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true); showIntro(); },
+        onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true, prompt.drill); showIntro(); },
       }, st.modifier ? `↩ ${t('harderOff')}` : `💪 ${t('harderOn')}`),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
       h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start')),
@@ -289,7 +289,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       if (disposed) { recorder.stop(); return; }
     }
     // Frames drill from level 3: he picks the frame first, off the clock.
-    if (prompt.drill === 'frame' && (app.state.drillLevels.frame || 1) >= 3 && !st.framePick) {
+    if (prompt.drill === 'frame' && !(prompt.extra && prompt.extra.shadow) && (app.state.drillLevels.frame || 1) >= 3 && !st.framePick) {
       st.phase = 'pick';
       st.onFramePick = () => { st.onFramePick = null; startTimed(); };
       fill(promptCard(app, prompt, st));
@@ -571,7 +571,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (disposed) return;
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } }
       : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } }
-        : prompt.drill === 'pressure' ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? transcript.slice(st.itemBase[1].length).trim() : '' } } : prompt;
+        : prompt.drill === 'pressure' && !(prompt.extra && prompt.extra.shadow) ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? transcript.slice(st.itemBase[1].length).trim() : '' } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       pace: cued || st.mode !== 'speak' ? null : { timeline: st.timeline, start: st.answerStart },

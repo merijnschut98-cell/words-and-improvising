@@ -70,7 +70,7 @@ From feedback: "Ask a friend to rate this" makes a link `?r=<drill>.<promptId>.<
 
 ### Task 7: Final review + note
 
-- [ ] Fresh whole-branch review subagent (most capable model) over the v5 range with this Review Focus; one fix pass (re-grade by effect, failing test first); ledger minors.
+- [x] Fresh whole-branch review subagent (most capable model) over the v5 range with this Review Focus; one fix pass (re-grade by effect, failing test first); ledger minors.
 - [ ] Short note to Merijn: what is new and one way to use it this week.
 
 ### Deferred minors from the v4 final review (take alongside a task touching the same file, or on a slack run)
