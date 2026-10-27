@@ -2,6 +2,7 @@ import { h, aiErrorText, bestLabel } from './dom.js';
 import { updateBests } from '../core/bests.js';
 import { analyze, highlightFillers, cleanRun, tokenize, paceSeries, paceTrend } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
+import { loudnessStats } from '../core/loudness.js';
 import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
@@ -92,6 +93,14 @@ export function renderFeedback(app, params, root) {
     h('div', { class: 'pace-bars', role: 'img', 'aria-label': series.join(', ') },
       series.map((v) => h('div', { class: 'pace-bar' }, h('i', { style: { height: `${Math.max(4, (v / top) * 100)}%` } }), h('small', {}, v)))),
     h('p', { class: trend ? 'note' : 'good-text' }, t(trend === 'faster' ? 'paceFaster' : trend === 'slower' ? 'paceSlower' : 'paceSteady'))) : null;
+
+  // Voice variety (optional, settings.voiceStats): loudness samples from the round.
+  const voice = loudnessStats(params.loudness);
+  const voiceCard = voice ? h('section', { class: 'card voice-card' },
+    h('h2', { class: 'card-title' }, t('voiceTitle')),
+    h('p', { class: voice.variety === 'flat' ? 'note' : voice.variety === 'lively' ? 'good-text' : '' },
+      t(voice.variety === 'flat' ? 'voiceFlat' : voice.variety === 'lively' ? 'voiceLively' : 'voiceOk')),
+    voice.trailingOff ? h('p', { class: 'note' }, t('voiceTrailing')) : null) : null;
 
   // One fix for next time: becomes the goal on the next round's intro.
   const fixOptions = [
@@ -231,6 +240,7 @@ export function renderFeedback(app, params, root) {
       transcriptEl,
       audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl })) : null),
     paceCard,
+    voiceCard,
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('rateYourself')),
       h('div', { class: 'rate-row' }, rateButtons)),

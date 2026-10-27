@@ -813,6 +813,55 @@ await step('import a backup: confirm replaces progress and keeps the old value',
   if (after.backup !== exported) throw new Error('previous value not kept under spraakwater:v1:backup');
 });
 
+await step('voice variety card after a spoken round (optional toggle)', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, voiceStats: true };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.evaluate(async () => {
+    // Fake mic + analyser: loud/soft alternation, fading in the last part.
+    window.__meter = { gum: 0, stopped: 0, closed: 0, n: 0 };
+    const track = { stop: () => { window.__meter.stopped += 1; } };
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: {
+      getUserMedia: async () => { window.__meter.gum += 1; return { getTracks: () => [track] }; },
+    } });
+    class FakeAC {
+      createAnalyser() {
+        return {
+          fftSize: 2048,
+          getFloatTimeDomainData(buf) {
+            const k = window.__meter.n++;
+            const amp = (k % 2 ? 0.1 : 0.4) * (k > 150 ? 0.3 : 1);
+            for (let i = 0; i < buf.length; i++) buf[i] = i % 2 ? amp : -amp;
+          },
+        };
+      }
+      createMediaStreamSource() { return { connect() {} }; }
+      close() { window.__meter.closed += 1; return Promise.resolve(); }
+    }
+    window.AudioContext = FakeAC;
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.stats').first().waitFor({ timeout: 40000 });
+  await page.locator('.voice-card').waitFor({ timeout: 3000 });
+  await page.locator('.voice-card', { hasText: 'Levendige stem' }).waitFor({ timeout: 1000 });
+  await page.locator('.voice-card', { hasText: 'zakte aan het eind weg' }).waitFor({ timeout: 1000 });
+  const m = await page.evaluate(() => window.__meter);
+  if (m.gum !== 1 || m.stopped !== 1 || m.closed !== 1) throw new Error(`meter not cleaned up: ${JSON.stringify(m)}`);
+  await page.locator('.voice-card').scrollIntoViewIfNeeded();
+  await shot('45-voice');
+  await page.evaluate(() => window.__app.updateSettings({ voiceStats: false }));
+  const off = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).settings.voiceStats);
+  if (off !== false) throw new Error('voiceStats not switched back off');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
