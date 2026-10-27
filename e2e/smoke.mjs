@@ -885,6 +885,30 @@ await step('voice variety card after a spoken round (optional toggle)', async ()
   if (off !== false) throw new Error('voiceStats not switched back off');
 });
 
+await step('word budget counter turns red over the cap', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.drillLevels.minute = 3; // 45-word budget
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: 'budget', timing: { prepS: 0, answerS: 60, questions: 1 } });
+  });
+  await page.getByRole('radio', { name: /Typen/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.budget-chip', { hasText: '0 / 45' }).waitFor();
+  await page.locator('textarea').fill(Array.from({ length: 50 }, (_, i) => `woord${i}`).join(' '));
+  await page.locator('.budget-chip.over', { hasText: '50 / 45' }).waitFor();
+  await shot('47-budget');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.modifier-note, .stats').first().waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

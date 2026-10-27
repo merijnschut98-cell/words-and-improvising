@@ -220,7 +220,7 @@ export function renderFeedback(app, params, root) {
     compareCard,
     pbCard,
     modifier ? (() => {
-      const c = modifierCheck(modifier, metrics, transcript, lang);
+      const c = modifierCheck(modifier, metrics, transcript, lang, app.state.drillLevels[prompt.drill] || 1);
       return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
         `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
     })() : null,

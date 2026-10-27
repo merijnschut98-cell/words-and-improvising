@@ -2,7 +2,10 @@
 // conditions costs a little in the moment and builds transfer. Pure.
 import { tokenize } from './metrics.js';
 
-export const MODIFIERS = ['cold', 'whisper', 'slow', 'noI', 'standing', 'eyesClosed', 'endQuestion'];
+export const MODIFIERS = ['cold', 'whisper', 'slow', 'noI', 'standing', 'eyesClosed', 'endQuestion', 'budget'];
+
+// Word budget: answer first, then stop. Tighter at higher drill levels.
+export const wordBudget = (level) => ((level || 1) >= 5 ? 30 : (level || 1) >= 3 ? 45 : 60);
 const CHANCE = 0.25;
 
 export function pickModifier(rng, level, force = false) {
@@ -20,7 +23,13 @@ const FIRST_PERSON = {
 };
 
 // Can we tell from the transcript whether the condition was met?
-export function modifierCheck(id, metrics, transcript, lang) {
+export function modifierCheck(id, metrics, transcript, lang, level = 1) {
+  if (id === 'budget') {
+    // Same word count as the metrics (tokenize); within the cap and at least 60 % of it.
+    const n = tokenize(transcript).length;
+    const cap = wordBudget(level);
+    return { checked: true, ok: n <= cap && n >= Math.ceil(cap * 0.6) };
+  }
   if (id === 'slow') return { checked: true, ok: metrics.wpm < 110 };
   if (id === 'noI') {
     const banned = new Set(FIRST_PERSON[lang] || FIRST_PERSON.en);

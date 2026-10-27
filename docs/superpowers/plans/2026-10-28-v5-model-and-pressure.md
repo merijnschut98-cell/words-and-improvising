@@ -37,8 +37,8 @@ On feedback, when the coach returned a stronger version: a button "Shadow it" st
 
 A new modifier `budget` (30/45/60 words by drill level) with a live counter "23 / 45 words" that turns amber near the cap and red over it. Never stops the round. Coach brief mentions the budget. `modifierCheck('budget')` met when words ≤ budget and ≥ 60 % of it.
 
-- [ ] Tests: budget by level; check met/missed; counter uses `tokenize`.
-- [ ] Implement. Commit: `Add word budget modifier`.
+- [x] Tests: budget by level; check met/missed; counter uses `tokenize`.
+- [x] Implement. Commit: `Add word budget modifier`.
 
 ### Task 3: Self-explanation before the model
 

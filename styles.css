@@ -476,3 +476,8 @@ input[type="password"], input[type="text"], select {
 .week-option small { display: block; font-weight: 600; }
 .week-icon { font-size: 1.6rem; }
 .week-btn { width: 100%; }
+
+/* Word budget */
+.budget-chip { display: inline-block; margin: 0 0 8px; padding: 6px 12px; border-radius: 999px; font-weight: 800; background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.budget-chip.near { background: color-mix(in srgb, var(--ok) 22%, transparent); }
+.budget-chip.over { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }

@@ -7,7 +7,7 @@ import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
-import { pickModifier, applyModifierTiming } from '../core/modifiers.js';
+import { pickModifier, applyModifierTiming, wordBudget } from '../core/modifiers.js';
 
 // Optional loudness meter on a separate mic stream (settings.voiceStats).
 // Samples RMS every 100 ms. Any failure leaves samples empty; it never throws
@@ -310,6 +310,11 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     // Any change in the recognized text means he is speaking; long gaps are pauses.
     const live = `${text} ${interim}`.trim();
     const n = tokenize(live).length;
+    if (st.budgetEl) {
+      st.budgetEl.textContent = `📏 ${n} / ${st.budget} ${t('m_words')}`;
+      st.budgetEl.classList.toggle('near', n >= st.budget * 0.85 && n <= st.budget);
+      st.budgetEl.classList.toggle('over', n > st.budget);
+    }
     if (n > (st.timeline.length ? st.timeline[st.timeline.length - 1][1] : 0)) st.timeline.push([performance.now(), n]);
     if (st.mode === 'speak' && live && live !== st.lastLive) {
       st.growth.push(performance.now());
@@ -432,11 +437,15 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       input = typingArea();
     }
     st.inputSlot = h('div', { class: 'input-slot' }, input);
+    // Word budget: a live counter; it never ends the round by itself.
+    st.budget = st.modifier === 'budget' ? wordBudget(app.state.drillLevels[prompt.drill] || 1) : 0;
+    st.budgetEl = st.budget ? h('div', { class: 'budget-chip' }, `📏 0 / ${st.budget} ${t('m_words')}`) : null;
     st.label = h('div', { class: 'phase-label go' }, st.mode === 'speak' ? t('speakNow') : t('typeNow'));
     fill(
       card,
       h('div', { class: 'answer-row' }, r.el, st.label),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
+      st.budgetEl,
       st.inputSlot,
       h('button', { class: 'btn btn-primary btn-big', onclick: () => finish() }, t('done')),
     );

@@ -29,6 +29,7 @@ const MODIFIER_TEXT = {
   standing: 'stand up while speaking',
   eyesClosed: 'speak with eyes closed',
   endQuestion: 'end with a question to the listener',
+  budget: 'stay within a word budget (30 to 60 words): answer first, then stop; judge concision',
 };
 
 const FRAME_EN = {
