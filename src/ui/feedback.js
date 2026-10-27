@@ -9,6 +9,7 @@ import { applyRound } from '../core/round.js';
 import { runCoach } from '../core/coach.js';
 import { play } from '../core/sound.js';
 import { checkFollowUp } from '../core/followup.js';
+import { pressureChecks } from '../core/pressure.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 
 function speak(text, lang) {
@@ -223,6 +224,18 @@ export function renderFeedback(app, params, root) {
       const c = modifierCheck(modifier, metrics, transcript, lang, app.state.drillLevels[prompt.drill] || 1);
       return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
         `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
+    })() : null,
+    prompt.drill === 'pressure' ? (() => {
+      const x = prompt.extra;
+      if (!x.interrupted) return h('section', { class: 'card pressure-card' }, h('p', { class: 'note' }, t('pressureEarly')));
+      const c = pressureChecks(x.reply, app.lang);
+      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, `${ok ? '✓' : '✗'} ${ok ? yes : no}`);
+      return h('section', { class: 'card pressure-card' },
+        h('h2', { class: 'card-title' }, t('pressureTitle')),
+        h('p', { class: 'muted small' }, `🔥 “${x.interrupt}”`),
+        line(c.acknowledged, t('pcAck'), t('pcNoAck')),
+        line(c.short, t('pcShort'), t('pcLong')),
+        line(c.checkedBack, t('pcBack'), t('pcNoBack')));
     })() : null,
     prompt.drill === 'followUp' ? (() => {
       const f = checkFollowUp(transcript, prompt.extra.detail, app.lang);

@@ -22,7 +22,7 @@ test('malformed or unknown links are rejected', () => {
 });
 
 test('challengePrompt rebuilds the same main item, deterministically', () => {
-  for (const drill of ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert', 'boss', 'frame', 'real', 'followUp']) {
+  for (const drill of ['minute', 'explain', 'prep', 'bridge', 'smalltalk', 'rapid', 'story', 'pause', 'debate', 'yesAnd', 'listen', 'expert', 'boss', 'frame', 'real', 'followUp', 'pressure']) {
     const original = makePrompt(drill, en, seededRng(11));
     const a = challengePrompt({ drill, promptId: original.id }, en);
     const b = challengePrompt({ drill, promptId: original.id }, en);

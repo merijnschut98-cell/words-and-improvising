@@ -959,6 +959,44 @@ await step('a double tap on rehearse starts the rehearsal once', async () => {
   await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
+await step('story frame shows Hook, Detail, Question back', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.drillLevels.frame = 1;
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { challengePrompt } = await import('./src/core/share.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: challengePrompt({ drill: 'frame', promptId: 'frame:f37' }, nl), modifier: null });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.prompt-card .chip', { hasText: 'Vraag terug' }).waitFor();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
+await step('under pressure: interruption, then a checklist on the reply', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    const p = makePrompt('pressure', nl, Math.random, {});
+    p.extra.itemS = [3, 4];
+    window.__app.session = null;
+    window.__app.go('round', { prompt: p, modifier: null });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.cue-text.interrupt').waitFor({ timeout: 20000 });
+  await shot('48-pressure');
+  await page.locator('.pressure-card').waitFor({ timeout: 30000 });
+  if ((await page.locator('.pressure-card p').count()) < 4) throw new Error('checklist missing');
+  await page.locator('.pressure-card').scrollIntoViewIfNeeded();
+  await shot('49-pressure-feedback');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

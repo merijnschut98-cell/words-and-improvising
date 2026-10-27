@@ -103,6 +103,15 @@ export function makePrompt(drill, content, rng, seen = {}) {
       const extra = pick.kind === 'captain' ? { kind: 'captain', constraint: pick.item.constraint } : { kind: 'work' };
       return { id: pick.seenId, drill, body: pick.item.text, extra, seenIds: [pick.seenId] };
     }
+    case 'pressure': {
+      const [p] = pickFresh(content.pressure, 'pressure', seen, rng);
+      const interruptAt = 12 + Math.floor(rng() * 7); // 12–18 s into his answer
+      return {
+        id: p.seenId, drill, body: p.item.opening,
+        extra: { cues: [p.item.opening, p.item.interrupt], itemS: [interruptAt, 20], interrupt: p.item.interrupt },
+        seenIds: [p.seenId],
+      };
+    }
     case 'followUp': {
       const [u] = pickFresh(content.followUps, 'followUp', seen, rng);
       return { id: u.seenId, drill, body: u.item.text, extra: { cues: [u.item.text], detail: u.item.detail }, seenIds: [u.seenId] };

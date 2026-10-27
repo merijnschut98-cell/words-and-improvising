@@ -159,12 +159,14 @@ function promptCard(app, prompt, state) {
     case 'yesAnd':
     case 'expert':
     case 'followUp':
+    case 'pressure':
       if (prompt.drill === 'expert') card.append(h('p', { class: 'prompt-sub' }, t('expertOn', prompt.body)));
       state.cueDots = x.cues.map((_, i) => h('i', { class: i === 0 ? 'on' : '' }));
       state.cueEl = h('p', { class: 'prompt-main cue-text' }, '…');
       card.append(h('div', { class: 'rapid-dots' }, state.cueDots), state.cueEl);
       if (prompt.drill === 'yesAnd') card.append(h('p', { class: 'cue-hint' }, t('yesAndStart')));
       if (prompt.drill === 'followUp') card.append(h('p', { class: 'cue-hint' }, t('followUpHint')));
+      if (prompt.drill === 'pressure') card.append(h('p', { class: 'cue-hint' }, t('pressureHint')));
       break;
     case 'listen':
       state.statementEl = h('p', { class: 'prompt-sub listen-statement', hidden: true }, x.statement);
@@ -196,6 +198,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     twistsShown: [],
     growth: [],
     timeline: [], // [ms, words] samples for pace over time
+    itemBase: [], // transcript so far when each cued item started (pressure: the reply)
     lastLive: '',
   };
   let recognizer = null;
@@ -381,7 +384,12 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     st.phase = 'cue';
     st.label.textContent = voiceSupported ? `🔊 ${t('cueListening')}` : `👀 ${t('cueRead')}`;
     st.label.classList.remove('go');
-    r.set(1, fmtTime(timing.answerS));
+    const itemS = (x.itemS && x.itemS[i]) || timing.answerS; // pressure: opening, then reply
+    r.set(1, fmtTime(itemS));
+    if (prompt.drill === 'pressure' && i === 1 && st.cueEl) {
+      st.cueEl.classList.add('interrupt');
+      if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
+    }
     if (st.cueDots) st.cueDots.forEach((d, k) => d.classList.toggle('on', k <= i));
     if (recognizer) {
       const rec = recognizer;
@@ -416,9 +424,10 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     st.label.textContent = st.mode === 'speak' ? t('speakNow') : t('typeNow');
     st.label.classList.add('go');
     if (st.mode === 'speak') startListening();
+    st.itemBase[i] = st.mode === 'speak' ? (st.base || '') : (st.textarea ? st.textarea.value : '');
     const done = st.answeredS;
-    const start = countdown(timing.answerS, (el) => r.set(1 - el / timing.answerS, fmtTime(timing.answerS - el)), () => {
-      st.answeredS += timing.answerS;
+    const start = countdown(itemS, (el) => r.set(1 - el / itemS, fmtTime(itemS - el)), () => {
+      st.answeredS += itemS;
       if (i + 1 < timing.questions) runCue(i + 1, r);
       else finish(st.answeredS);
     });
@@ -546,7 +555,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     const audio = recorder ? await recorder.stop() : null;
     if (disposed) return;
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } }
-      : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } } : prompt;
+      : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } }
+        : prompt.drill === 'pressure' ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? transcript.slice(st.itemBase[1].length).trim() : '' } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       pace: cued || st.mode !== 'speak' ? null : { timeline: st.timeline, start: st.answerStart },

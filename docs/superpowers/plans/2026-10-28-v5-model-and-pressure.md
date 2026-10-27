@@ -58,8 +58,8 @@ Add frame `story3` (Hook, Detail, Question back) to the frames drill: frame step
 
 New drill `pressure` (🔥): he starts answering an opening question; after 12–18 s the app interrupts (stops listening, speaks a hostile or vague follow-up from a bank of ≥ 30 per language, e.g. "Sorry, but what is your actual point?"), then he answers that in ≤ 20 s. The intro teaches the four moves: acknowledge, bridge, one-sentence answer, check back. Feedback shows the interruption and a checklist (did the answer start within the first sentence? did he check back with a question?).
 
-- [ ] Tests: interruption timing window; pools parallel and sized; checklist detection (question at the end, short first sentence).
-- [ ] Implement using the cued-drill helpers. Commit: `Add interruptions and hostile questions drill`.
+- [x] Tests: interruption timing window; pools parallel and sized; checklist detection (question at the end, short first sentence).
+- [x] Implement using the cued-drill helpers. Commit: `Add interruptions and hostile questions drill`.
 
 ### Task 6: Friend rating
 
