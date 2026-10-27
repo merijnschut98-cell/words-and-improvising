@@ -5,6 +5,7 @@ import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
 import { drawShareCard, shareFile } from '../core/share.js';
+import { friendAverages } from '../core/friend.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
 function delta(now, prev, lowerIsBetter) {
@@ -160,10 +161,13 @@ function calibrationCard(app) {
   const c = calibration(app.state.history);
   const text = c ? t(`calib_${c.verdict}`, c.meanGap, c.n)
     : (() => { const l = localCalibration(app.state.history); return l && t(`calibLocal_${l.verdict}`); })();
-  if (!text) return null;
+  const f = friendAverages(app.state);
+  const friends = f && f.n >= 1 ? t('friendsCalib', f.n, f.clear, f.structured, f.confident) : null;
+  if (!text && !friends) return null;
   return h('section', { class: 'card calib-card' },
     h('h2', { class: 'card-title' }, t('calibTitle')),
-    h('p', {}, text));
+    text ? h('p', {}, text) : null,
+    friends ? h('p', { class: 'friend-calib' }, friends) : null);
 }
 
 export function renderProgress(app, _params, root) {

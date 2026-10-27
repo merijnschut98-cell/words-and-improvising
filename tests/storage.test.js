@@ -85,6 +85,19 @@ test('v3 keys default for existing users and bad values are coerced', () => {
   assert.deepEqual(bad.reviews, {});
 });
 
+test('friend keys default for existing users and bad values are coerced', () => {
+  assert.deepEqual(defaultState().friendAsks, {});
+  assert.deepEqual(defaultState().friendRatings, {});
+  const s = load({ getItem: () => JSON.stringify({ xp: 1 }), setItem() {} });
+  assert.deepEqual(s.friendAsks, {});
+  assert.deepEqual(s.friendRatings, {});
+  const bad = load({ getItem: () => JSON.stringify({ xp: 1, friendAsks: 'x', friendRatings: [1] }), setItem() {} });
+  assert.deepEqual(bad.friendAsks, {});
+  assert.deepEqual(bad.friendRatings, {});
+  const kept = load({ getItem: () => JSON.stringify({ xp: 1, friendAsks: { abc123: { promptId: 'topic:t01', drill: 'minute', ts: 1 } } }), setItem() {} });
+  assert.equal(kept.friendAsks.abc123.drill, 'minute');
+});
+
 test('a fresh install opened from a challenge link still gets the welcome afterwards', () => {
   const s = { ...defaultState(), history: [{ ts: 1 }], ui: { pendingWelcome: true } };
   assert.equal(needsWelcome(s), true);

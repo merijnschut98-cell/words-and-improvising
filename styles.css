@@ -488,3 +488,7 @@ input[type="password"], input[type="text"], select {
 /* Shadowing */
 .shadow-model { font-style: italic; }
 .shadow-card .btn { width: 100%; margin-top: 6px; }
+
+/* Friend rating */
+.friend-row { margin-bottom: 12px; }
+.friend-link { word-break: break-all; }

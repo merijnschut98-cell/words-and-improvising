@@ -65,8 +65,8 @@ New drill `pressure` (🔥): he starts answering an opening question; after 12�
 
 From feedback: "Ask a friend to rate this" makes a link `?r=<drill>.<promptId>.<lang>.<nonce>`. The friend's page shows the prompt and three 1–5 sliders (clear, structured, confident) plus one short line; submitting produces a short code or link back (`?rr=<nonce>.<c>.<s>.<f>.<base64url line>`) that he opens or pastes. Stored as `friendRatings[nonce]`; calibration card gains a "Friend" row.
 
-- [ ] Tests: link round-trip; malformed links rejected; line capped and rendered as text; calibration includes friend averages.
-- [ ] Implement. Commit: `Add friend rating links`.
+- [x] Tests: link round-trip; malformed links rejected; line capped and rendered as text; calibration includes friend averages.
+- [x] Implement. Commit: `Add friend rating links`.
 
 ### Task 7: Final review + note
 

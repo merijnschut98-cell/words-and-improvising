@@ -25,6 +25,8 @@ export function defaultState() {
     reviews: {},
     events: [],
     weekly: { week: null, focus: null },
+    friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
+    friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
   };
 }
 
@@ -56,6 +58,8 @@ export function load(backend) {
   if (!Array.isArray(merged.history)) merged.history = [];
   if (!Array.isArray(merged.events)) merged.events = [];
   if (!isObject(merged.reviews)) merged.reviews = {};
+  if (!isObject(merged.friendAsks)) merged.friendAsks = {};
+  if (!isObject(merged.friendRatings)) merged.friendRatings = {};
   return merged;
 }
 

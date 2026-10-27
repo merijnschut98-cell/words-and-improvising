@@ -12,6 +12,7 @@ import { checkFollowUp } from '../core/followup.js';
 import { pressureChecks } from '../core/pressure.js';
 import { modelOverlap } from '../core/shadow.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
+import { rateLink, askFriend, newNonce } from '../core/friend.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -290,6 +291,7 @@ export function renderFeedback(app, params, root) {
     fixCard,
     h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
     challengeBtn(),
+    friendBtn(),
     nextBtn,
   );
 
@@ -307,6 +309,22 @@ export function renderFeedback(app, params, root) {
         else if (r === 'failed') app.toast(url);
       },
     }, reply ? `📨 ${t('challengeReply')}` : `📨 ${t('challengeSend')}`);
+  }
+
+  // The link carries only the prompt id and a nonce: no recording, no transcript.
+  function friendBtn() {
+    if (!prompt.id || !challengePrompt({ drill: prompt.drill, promptId: prompt.id }, app.content)) return null;
+    return h('button', {
+      class: 'btn btn-ghost friend-ask',
+      onclick: async () => {
+        const nonce = newNonce();
+        app.setState(askFriend(app.state, prompt, nonce, Date.now()));
+        const url = rateLink(prompt, app.lang, location.href, nonce);
+        const r = await shareText(t('friendAskText', t(`drill_${prompt.drill}`)), url);
+        if (r === 'copied') app.toast(`📋 ${t('linkCopied')}`);
+        else if (r === 'failed') app.toast(url);
+      },
+    }, `🧑‍🤝‍🧑 ${t('friendAsk')}`);
   }
 
   if (shadowRound) coachCard.remove(); // the overlap card is the feedback; no API call
