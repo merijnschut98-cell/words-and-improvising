@@ -148,7 +148,7 @@ test('a due review in the weakest drill is skipped for a stale drill instead', (
   assert.ok(ls.some((p) => p.reason === 'stale'));
 });
 
-const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer'];
+const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer', 'story3'];
 
 test('frames pool: parallel, sized, every prompt tagged with a known frame', () => {
   for (const c of [en, nl]) {
@@ -211,8 +211,19 @@ test('no duplicate texts or ids within a pool', () => {
       if (!Array.isArray(items) || typeof items[0] !== 'object') continue;
       const ids = items.map((x) => x.id);
       assert.equal(new Set(ids).size, ids.length, `${k} ids`);
-      const texts = items.map((x) => String(x.text || x.opener || x.statement || '').toLowerCase().trim());
+      const texts = items.map((x) => String(x.text || x.opener || x.statement || x.opening || '').toLowerCase().trim());
       assert.equal(new Set(texts).size, texts.length, `${k} texts`);
     }
+  }
+});
+
+test('small-talk story frame: known, has prompts in both languages, and its own steps', async () => {
+  const { FRAME_IDS: ids } = await import('../src/core/lesson.js');
+  const { STRINGS: T } = await import('../src/i18n.js');
+  assert.ok(ids.includes('story3'));
+  for (const c of [en, nl]) assert.ok(c.frames.filter((f) => f.frame === 'story3').length >= 6);
+  for (const L of ['en', 'nl']) {
+    assert.equal(T[L].frameSteps_story3.length, 3);
+    assert.ok(T[L].frameName_story3);
   }
 });

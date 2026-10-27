@@ -14,7 +14,7 @@ export function seededRng(seed) {
 }
 
 // Structure frames for the frame drill (steps live in i18n and coach.js).
-export const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer'];
+export const FRAME_IDS = ['prep', 'star', 'wsn', 'psb', 'ppf', 'answer', 'story3'];
 
 const pickOne = (arr, rng) => arr[Math.floor(rng() * arr.length)];
 

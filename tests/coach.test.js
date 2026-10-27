@@ -157,3 +157,8 @@ test('rehearsal rounds never send his event text to the coach', () => {
   assert.ok(!req.includes('SECRET'));
   assert.match(req, /60-second version/);
 });
+
+test('story3 frame is described to the coach', () => {
+  const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'frame', prompt: { body: 'How was your weekend?', extra: { frame: 'story3' } } }));
+  assert.match(req, /Hook, Detail, Question back/);
+});

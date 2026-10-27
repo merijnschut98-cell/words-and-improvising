@@ -39,6 +39,7 @@ const FRAME_EN = {
   psb: 'Problem, Solution, Benefit',
   ppf: 'Past, Present, Future',
   answer: 'Answer first, then two or three supporting points',
+  story3: 'Hook, Detail, Question back (a short anecdote that ends by inviting the other person in)',
 };
 
 const CAPTAIN_EN = {

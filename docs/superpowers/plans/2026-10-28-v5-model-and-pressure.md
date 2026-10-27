@@ -51,8 +51,8 @@ On feedback with a coach result, the stronger version is collapsed behind one op
 
 Add frame `story3` (Hook, Detail, Question back) to the frames drill: frame steps in i18n, `FRAME_IDS`, coach `FRAME_EN`, and ≥ 6 new prompts per language tagged `story3` (content subagent).
 
-- [ ] Tests: frame valid everywhere; parity; options still 3 distinct.
-- [ ] Implement. Commit: `Add small-talk story frame`.
+- [x] Tests: frame valid everywhere; parity; options still 3 distinct.
+- [x] Implement. Commit: `Add small-talk story frame`.
 
 ### Task 5: Interruptions & hostile questions
 
