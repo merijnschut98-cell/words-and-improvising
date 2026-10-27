@@ -81,6 +81,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn-big { width: 100%; font-size: 1.15rem; padding: 16px; }
 .btn-ghost { background: var(--card); border: 2px solid var(--line); box-shadow: 0 3px 0 var(--line); }
 .btn-danger { background: transparent; border: 2px solid var(--bad); color: var(--bad); }
+.file-btn { position: relative; cursor: pointer; }
+.file-btn .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.file-btn:focus-within { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+.import-confirm { margin: 12px 0 0; }
 .btn.small { padding: 8px 12px; font-size: 0.9rem; border-radius: 12px; }
 .btn-hero {
   display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%;

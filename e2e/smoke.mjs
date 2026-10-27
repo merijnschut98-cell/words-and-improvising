@@ -759,6 +759,25 @@ await step('a fresh install opened from a challenge gets the welcome afterwards'
   await c3.close();
 });
 
+await step('import a backup: confirm replaces progress and keeps the old value', async () => {
+  await page.goto(BASE);
+  const exported = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  const st = JSON.parse(exported);
+  st.xp = 4321;
+  await page.getByRole('button', { name: /Instellingen/ }).click();
+  await page.locator('input[type=file]').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: Buffer.from('{oops') });
+  await page.locator('.toast').filter({ hasText: 'Spraakwater' }).first().waitFor();
+  if (await page.locator('.import-confirm').count()) throw new Error('bad file should not offer a confirm');
+  await page.locator('input[type=file]').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(st)) });
+  await page.locator('.import-confirm').getByText('4321 XP').waitFor();
+  await shot('07b-import-confirm');
+  await page.getByRole('button', { name: 'Vervang mijn voortgang' }).click();
+  await page.locator('.btn-hero').waitFor();
+  const after = await page.evaluate(() => ({ xp: JSON.parse(localStorage.getItem('spraakwater:v1')).xp, backup: localStorage.getItem('spraakwater:v1:backup') }));
+  if (after.xp !== 4321) throw new Error(`xp after import: ${after.xp}`);
+  if (after.backup !== exported) throw new Error('previous value not kept under spraakwater:v1:backup');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

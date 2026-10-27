@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { defaultState, load, save, addHistory, KEY } from '../src/core/storage.js';
+import { defaultState, load, save, addHistory, KEY, parseBackup, importBackup } from '../src/core/storage.js';
 
 function fakeBackend(init = {}) {
   const data = { ...init };
@@ -90,4 +90,63 @@ test('a fresh install opened from a challenge link still gets the welcome afterw
   assert.equal(needsWelcome(s), true);
   assert.equal(needsWelcome({ ...s, onboarded: true }), false);
   assert.equal(needsWelcome({ ...s, ui: {} }), false);
+});
+
+test('parseBackup rejects non-JSON', () => {
+  assert.deepEqual(parseBackup('{not json'), { ok: false, error: 'json' });
+  assert.deepEqual(parseBackup(''), { ok: false, error: 'json' });
+});
+
+test('parseBackup rejects the wrong shape', () => {
+  assert.deepEqual(parseBackup('42'), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup('[1,2]'), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup('null'), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup(JSON.stringify({ xp: 10 })), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup(JSON.stringify({ history: [] })), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup(JSON.stringify({ history: {}, xp: 1 })), { ok: false, error: 'shape' });
+  assert.deepEqual(parseBackup(JSON.stringify({ history: [], xp: '5' })), { ok: false, error: 'shape' });
+});
+
+test('parseBackup accepts an exported state and summarises it', () => {
+  const st = { ...defaultState(), xp: 340, days: { '2026-01-01': 2, '2026-01-02': 0, '2026-01-03': 1 } };
+  st.history = [{ drill: 'rapid' }, { drill: 'bridge' }, { drill: 'minute' }];
+  const res = parseBackup(JSON.stringify(st));
+  assert.equal(res.ok, true);
+  assert.deepEqual(res.summary, { rounds: 3, days: 2, xp: 340 });
+  assert.deepEqual(res.state, st);
+});
+
+test('parseBackup merges an older export with defaults', () => {
+  const res = parseBackup(JSON.stringify({ history: [], xp: 5 }));
+  assert.equal(res.ok, true);
+  assert.equal(res.state.settings.lang, 'nl');
+  assert.deepEqual(res.state.events, []);
+});
+
+test('importBackup keeps the previous value and writes the new one', () => {
+  const old = JSON.stringify({ ...defaultState(), xp: 1 });
+  const b = fakeBackend({ [KEY]: old });
+  const next = { ...defaultState(), xp: 999, history: [{ drill: 'rapid' }] };
+  const res = importBackup(b, JSON.stringify(next));
+  assert.equal(res.ok, true);
+  assert.equal(b.data[`${KEY}:backup`], old);
+  assert.equal(load(b).xp, 999);
+  assert.equal(load(b).history.length, 1);
+});
+
+test('importBackup without previous data writes no backup', () => {
+  const b = fakeBackend();
+  const res = importBackup(b, JSON.stringify({ history: [], xp: 3 }));
+  assert.equal(res.ok, true);
+  assert.equal(`${KEY}:backup` in b.data, false);
+  assert.equal(load(b).xp, 3);
+});
+
+test('importBackup with a bad file writes nothing', () => {
+  const old = JSON.stringify({ ...defaultState(), xp: 1 });
+  const b = fakeBackend({ [KEY]: old });
+  assert.deepEqual(importBackup(b, '{oops'), { ok: false, error: 'json' });
+  assert.deepEqual(importBackup(b, JSON.stringify({ hello: 1 })), { ok: false, error: 'shape' });
+  assert.deepEqual(Object.keys(b.data), [KEY]);
+  assert.equal(b.data[KEY], old);
 });

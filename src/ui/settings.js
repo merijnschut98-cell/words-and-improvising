@@ -1,6 +1,7 @@
 import { h, aiErrorText } from './dom.js';
 import { THEMES, unlockedThemes } from '../core/milestones.js';
 import { checkKey } from '../core/claude.js';
+import { parseBackup } from '../core/storage.js';
 import { navBar } from './home.js';
 import { planPicker } from './plan.js';
 
@@ -75,6 +76,38 @@ export function renderSettings(app, _params, root) {
     a.remove();
   }
 
+  // Import: read the picked file, show what it holds, replace only after a confirm.
+  // File contents only ever reach the screen as numbers via textContent.
+  const importArea = h('div', { class: 'import-area', 'aria-live': 'polite' });
+  const importErr = (code) => app.toast(`⚠️ ${t(code === 'json' ? 'importErrJson' : code === 'shape' ? 'importErrShape' : 'importErrRead')}`);
+  function showImportConfirm(text, summary) {
+    importArea.replaceChildren(h('div', { class: 'card import-confirm' },
+      h('p', {}, t('importConfirm')),
+      h('p', { class: 'import-summary' }, h('strong', {}, t('importSummary', summary.rounds, summary.days, summary.xp))),
+      h('div', { class: 'row' },
+        h('button', {
+          class: 'btn btn-danger small',
+          onclick: () => {
+            const res = app.importJson(text);
+            if (!res.ok) { importArea.replaceChildren(); return importErr(res.error); }
+            app.toast(`✓ ${t('importDone')}`);
+            app.go('home');
+          },
+        }, t('importReplace')),
+        h('button', { class: 'btn btn-ghost small', onclick: () => importArea.replaceChildren() }, t('importCancel')))));
+  }
+  async function pickBackup(input) {
+    const file = input.files && input.files[0];
+    input.value = '';
+    if (!file) return;
+    let text;
+    try { text = await file.text(); } catch { return importErr('read'); }
+    const res = parseBackup(text);
+    if (!res.ok) { importArea.replaceChildren(); return importErr(res.error); }
+    showImportConfirm(text, res.summary);
+  }
+  const importInput = h('input', { type: 'file', accept: '.json,application/json', class: 'file-input', onchange: (e) => pickBackup(e.target) });
+
   root.append(
     h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('settingsTitle')), status),
     h('main', { class: 'screen settings' },
@@ -127,10 +160,12 @@ export function renderSettings(app, _params, root) {
         h('p', { class: 'muted small' }, t('install')),
         h('div', { class: 'row' },
           h('button', { class: 'btn btn-ghost small', onclick: exportData }, t('exportData')),
+          h('label', { class: 'btn btn-ghost small file-btn' }, importInput, t('importData')),
           h('button', {
             class: 'btn btn-danger small',
             onclick: () => { if (window.confirm(t('resetConfirm'))) { app.reset(); app.go('home'); } },
-          }, t('resetData'))))),
+          }, t('resetData'))),
+        importArea)),
     navBar(app, 'settings'),
   );
 }
