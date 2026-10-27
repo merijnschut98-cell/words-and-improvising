@@ -24,8 +24,8 @@ Work through both "Deferred minors" lists at the end of the v3 plan (v2 list and
 
 Bring `topics`, `opinions`, `scenarios`, `concepts` to ≥ 60 per language and `captain`/`work` to ≥ 36, same ids in en/nl, natural spoken Dutch. Dispatch one content subagent with the exact JSON shape and a validation script (parity, counts, no duplicates), merge its output, extend the size tests.
 
-- [ ] Tests: raised minimum sizes; no duplicate texts within a pool.
-- [ ] Merge content. Commit: `Top up practice content`.
+- [x] Tests: raised minimum sizes; no duplicate texts within a pool.
+- [x] Merge content. Commit: `Top up practice content`.
 
 ### Task 3 (Thu 29 Oct): Accessibility pass
 

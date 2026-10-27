@@ -194,3 +194,25 @@ test('real-life prompt comes from captain or work and carries its kind and const
   assert.deepEqual([...kinds].sort(), ['captain', 'work']);
   assert.ok(DRILLS.includes('real'));
 });
+
+test('content top-up: core pools have at least 60 items, captain and work 36', () => {
+  for (const c of [en, nl]) {
+    for (const k of ['topics', 'concepts', 'opinions', 'scenarios']) assert.ok(c[k].length >= 60, `${k} ${c[k].length}`);
+    for (const k of ['captain', 'work']) assert.ok(c[k].length >= 36, `${k} ${c[k].length}`);
+  }
+  for (const k of ['topics', 'concepts', 'opinions', 'scenarios', 'captain', 'work']) {
+    assert.deepEqual(en[k].map((x) => x.id), nl[k].map((x) => x.id), k);
+  }
+});
+
+test('no duplicate texts or ids within a pool', () => {
+  for (const c of [en, nl]) {
+    for (const [k, items] of Object.entries(c)) {
+      if (!Array.isArray(items) || typeof items[0] !== 'object') continue;
+      const ids = items.map((x) => x.id);
+      assert.equal(new Set(ids).size, ids.length, `${k} ids`);
+      const texts = items.map((x) => String(x.text || x.opener || x.statement || '').toLowerCase().trim());
+      assert.equal(new Set(texts).size, texts.length, `${k} texts`);
+    }
+  }
+});
