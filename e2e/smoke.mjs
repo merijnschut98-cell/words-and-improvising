@@ -76,6 +76,13 @@ const errors = [];
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 await ctx.addInitScript(FAKE_SPEECH);
+// Most steps click drills on home directly: keep the "Choose myself" grid open on every load.
+await ctx.addInitScript(() => {
+  try {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1') || 'null');
+    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...(st.ui || {}), gridOpen: true } }));
+  } catch { /* first run */ }
+});
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
 const page = await ctx.newPage();
 page.on('pageerror', (e) => errors.push(e.message));
@@ -106,7 +113,7 @@ await step('first run shows the welcome slides', async () => {
 await page.evaluate(async () => {
   // Mark this week's focus as answered so seeded older rounds don't open the weekly screen.
   const { isoWeekKey } = await import('./src/core/boss.js');
-  localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' }, weekly: { week: isoWeekKey(new Date()), focus: null } }));
+  localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' }, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { gridOpen: true } }));
 });
 await page.reload();
 await step('home renders', async () => { await page.locator('.btn-hero').waitFor(); await shot('01-home'); });
@@ -1108,6 +1115,19 @@ await step('mastery: three good rounds on different days show "Beheerst"', async
   await page.locator('.drill-explain .mastery.m-own', { hasText: 'Beheerst' }).waitFor();
   await page.locator('.drill-explain').scrollIntoViewIfNeeded();
   await shot('52-mastery');
+});
+
+await step('today card recommends one round; the drill grid folds away and remembers it', async () => {
+  await page.goto(BASE);
+  await page.locator('.today-card .today-what').waitFor();
+  await shot('53-today');
+  await page.locator('details.choose > summary').click();
+  // The toggle event fires just after the click: wait for the saved state.
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.gridOpen === false, null, { timeout: 3000 });
+  await page.locator('details.choose > summary').click();
+  await page.locator('.today-go').click();
+  await page.locator('.intro-card').waitFor();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
 await step('too-short answer offers retry', async () => {

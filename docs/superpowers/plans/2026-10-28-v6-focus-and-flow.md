@@ -25,8 +25,8 @@ Executed by the "Evolve Spraakwater" check-ins with superpowers:executing-plans 
 
 Home leads with one card: the single recommended round for now, with a reason ("due again", "your focus this week", "rehearse Thursday's A3 review", "weakest lately") and two lengths ("2 min" quick, "5 min" lesson). The full drill grid moves below a "Choose myself" disclosure (open state remembered in `ui`). Pure `todayPick(state, today, content, lang) -> {prompt, reason}` priority: upcoming real-week event within 2 days → due spaced review → weekly focus → weakest drill → least recently played.
 
-- [ ] Tests: priority order; deterministic per day; empty state gives a sensible first round.
-- [ ] Implement. Commit: `Lead home with one next thing`.
+- [x] Tests: priority order; deterministic per day; empty state gives a sensible first round.
+- [x] Implement. Commit: `Lead home with one next thing`.
 
 ### Task 2: Mastery per drill (Learn → Practise → Own)
 

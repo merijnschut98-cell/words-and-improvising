@@ -1,6 +1,7 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf } from '../core/mastery.js';
+import { todayPick } from '../core/today.js';
 import { upcoming, needsReflection } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
@@ -73,6 +74,25 @@ function realWeekCard(app) {
   return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, `📅 ${t('rwInvite')}`);
 }
 
+// "One next thing": the single round recommended now, and why.
+function todayCard(app) {
+  const t = app.t;
+  const pick = todayPick(app.state, app.today(), app.content, app.lang);
+  const d = pick.prompt.drill;
+  const why = pick.reason === 'event' ? t('todayWhy_event', pick.event.text) : t(`todayWhy_${pick.reason}`);
+  const go = (ev) => {
+    ev.currentTarget.disabled = true;
+    if (pick.reason === 'event') { startRehearsal(app, pick.event); return; }
+    app.session = null;
+    app.go('round', { prompt: pick.prompt });
+  };
+  return h('section', { class: 'card today-card' },
+    h('p', { class: 'today-label' }, t('todayNext')),
+    h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)),
+    h('p', { class: 'muted small' }, why),
+    h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${t('todayGo')}`));
+}
+
 export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
@@ -104,6 +124,7 @@ export function renderHome(app, _params, root) {
           h('span', { class: 'muted' }, `${lv.into} / ${lv.needed} XP`)),
         h('div', { class: 'bar' }, h('div', { class: 'fill', style: { width: `${(100 * lv.into) / lv.needed}%` } })),
         weekStrip(app)),
+      todayCard(app),
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
@@ -138,7 +159,12 @@ export function renderHome(app, _params, root) {
       h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, '🗣'),
       h('span', { class: 'drill-name' }, t('convoTitle')),
       h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey')))),
-      h('h2', { class: 'section-title' }, t('freePractice')),
+      // All drills, behind one tap: the Today card is the default choice.
+      h('details', {
+        class: 'choose', open: !!(s.ui || {}).gridOpen,
+        ontoggle: (e) => { app.setState({ ...app.state, ui: { ...(app.state.ui || {}), gridOpen: e.currentTarget.open } }); },
+      },
+      h('summary', { class: 'section-title' }, t('chooseMyself')),
       h('div', { class: 'drill-grid' }, DRILLS.map((d) => h('button', {
         class: `drill drill-${d}`, onclick: () => app.startDrill(d),
       },
@@ -146,7 +172,7 @@ export function renderHome(app, _params, root) {
       h('span', { class: 'drill-name' }, t(`drill_${d}`)),
       masteryBadge(t, masteryOf(s.history, d)),
       h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
-        [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
+        [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' }))))))),
       app.installPrompt
         ? h('button', {
           class: 'btn btn-ghost',
