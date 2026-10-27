@@ -31,8 +31,8 @@ Bring `topics`, `opinions`, `scenarios`, `concepts` to ≥ 60 per language and `
 
 Every icon-only button gets an `aria-label` from i18n (Close → `t('close')`), focus is moved to the screen heading on navigation, `prefers-reduced-motion` turns off pop/confetti animations, the Night theme passes WCAG AA contrast for muted text (check with a small contrast function in a test), touch targets ≥ 44 px for rate buttons and chips that are buttons.
 
-- [ ] Tests: contrast of theme tokens (AA 4.5:1 for `--muted` on `--card` in all themes); i18n key for every aria-label.
-- [ ] Implement; update e2e selectors that used `'Close'`. Commit: `Accessibility pass`.
+- [x] Tests: contrast of theme tokens (AA 4.5:1 for `--muted` on `--card` in all themes); i18n key for every aria-label.
+- [x] Implement; update e2e selectors that used `'Close'`. Commit: `Accessibility pass`.
 
 ### Task 4 (Fri 30 Oct, key day): Key-day support + coach-written hard question
 

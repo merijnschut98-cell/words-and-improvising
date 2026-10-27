@@ -63,7 +63,7 @@ export function renderRealweek(app, _params, root) {
   const due = needsReflection(events, today);
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': 'Close', onclick: () => app.go('home') }, '✕'),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
       h('div', { class: 'round-title' }, `📅 ${t('rwTitle')}`), h('div', {})),
     h('main', { class: 'screen realweek' },
       h('p', { class: 'muted' }, t('rwIntro')),

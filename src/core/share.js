@@ -81,7 +81,7 @@ export function drawShareCard({ title, rows, footer }) {
   c.width = 1080;
   c.height = 1080;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = v('--primary', '#ff6b3d');
+  ctx.fillStyle = v('--primary', '#e8562a');
   ctx.fillRect(0, 0, 1080, 1080);
   ctx.fillStyle = v('--card', '#ffffff');
   ctx.beginPath();

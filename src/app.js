@@ -188,6 +188,12 @@ export const app = {
     root.dataset.screen = screen;
     const result = SCREENS[screen](app, params, root);
     if (typeof result === 'function') cleanup = result;
+    // Move focus to the new screen's heading so screen readers announce it.
+    const heading = root.querySelector('h1, .round-title');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      try { heading.focus({ preventScroll: true }); } catch { /* old browsers */ }
+    }
     window.scrollTo(0, 0);
   },
 };

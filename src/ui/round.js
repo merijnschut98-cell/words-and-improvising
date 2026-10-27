@@ -161,7 +161,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   let disposed = false; // set when the screen is left
 
   const sess = app.session;
-  const quit = h('button', { class: 'icon-btn', 'aria-label': 'Close', onclick: () => app.go('home') }, '✕');
+  const quit = h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕');
   const header = h('header', { class: 'top round-top' }, quit,
     h('div', { class: 'round-title' }, h('span', { 'aria-hidden': 'true' }, DRILL_ICON[prompt.drill]), ' ', t(`drill_${prompt.drill}`)),
     h('div', { class: 'muted small' }, sess ? t('roundOf', sess.index + 1, sess.prompts.length) : ''));

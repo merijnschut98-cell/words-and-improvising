@@ -91,7 +91,7 @@ export function renderHome(app, _params, root) {
     h('main', { class: 'screen home' },
       showBreak ? h('section', { class: 'card break-card' },
         h('p', {}, t('streakReset', daysPractised(s))),
-        h('button', { class: 'icon-btn small', 'aria-label': 'OK', onclick: (e) => e.currentTarget.parentElement.remove() }, '✕')) : null,
+        h('button', { class: 'icon-btn small', 'aria-label': t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, '✕')) : null,
       h('p', { class: 'tagline' }, `${t('tagline')} · ${t('daysTotal', daysPractised(s))}`),
       h('section', { class: 'card level-card' },
         h('div', { class: 'level-row' },

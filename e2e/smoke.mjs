@@ -178,7 +178,7 @@ await step('quitting mid-round stays home', async () => {
   const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
   if (await ready.isVisible().catch(() => false)) await ready.click();
   await page.waitForTimeout(500);
-  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
   await page.waitForTimeout(2000);
   const screen = await page.evaluate(() => document.getElementById('app').dataset.screen);
   if (screen !== 'home') throw new Error(`ended on ${screen}`);
@@ -602,7 +602,7 @@ await step('adaptive lesson leads with the weakest drill', async () => {
   await page.locator('.btn-hero').click();
   await page.locator('.reason-chip', { hasText: 'zwakste' }).waitFor();
   await shot('35-adaptive-intro');
-  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
 await step('frames drill: pick a frame at level 3, then see its steps', async () => {
@@ -667,7 +667,7 @@ await step('my real week: add, rehearse, reflect (text stays text)', async () =>
   await shot('40-realweek');
   await page.getByRole('button', { name: /Oefenen/ }).first().click();
   await page.locator('.intro-card .focus', { hasText: '60' }).waitFor();
-  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
   await page.locator('.rw-home').waitFor();
   await page.locator('.rw-home').scrollIntoViewIfNeeded();
   await shot('41-realweek-home');
@@ -757,6 +757,16 @@ await step('a fresh install opened from a challenge gets the welcome afterwards'
   await p3.getByRole('button', { name: /Volgende|Afronden/ }).click();
   await p3.locator('.screen.welcome').waitFor();
   await c3.close();
+});
+
+await step('accessibility: focus moves to the screen heading, close button is labelled', async () => {
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  const tag = await page.evaluate(() => document.activeElement && document.activeElement.className);
+  if (!/round-title/.test(tag)) throw new Error(`focus is on "${tag}", expected the screen heading`);
+  await page.locator('.drill-minute').click().catch(async () => { await page.goto(BASE); await page.locator('.drill-minute').click(); });
+  await page.getByRole('button', { name: 'Sluiten' }).waitFor();
+  await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
 await step('too-short answer offers retry', async () => {

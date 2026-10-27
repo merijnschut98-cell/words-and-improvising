@@ -19,7 +19,7 @@ export function renderConversation(app, _params, root) {
   const main = h('main', { class: 'screen convo' });
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': 'Close', onclick: () => app.go('home') }, '✕'),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
       h('div', { class: 'round-title' }, '🗣 ', t('convoTitle')),
       h('div', { class: 'muted small' }, '')),
     main,
