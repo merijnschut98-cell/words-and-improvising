@@ -73,5 +73,7 @@ export function addHistory(state, entry) {
 
 // First-run explainer: only for someone who has never practised.
 export function needsWelcome(state) {
-  return !state.onboarded && state.history.length === 0;
+  if (state.onboarded) return false;
+  // A fresh install that started with a challenge link still gets the welcome.
+  return state.history.length === 0 || !!(state.ui && state.ui.pendingWelcome);
 }

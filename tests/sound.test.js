@@ -22,3 +22,18 @@ test('play is a silent no-op without WebAudio or when muted', () => {
   assert.doesNotThrow(() => play('twist', { sound: false }));
   assert.doesNotThrow(() => play('unknown', {}));
 });
+
+test('a rejected AudioContext.resume() never becomes an unhandled rejection', async () => {
+  const seen = [];
+  const onRej = (e) => seen.push(e);
+  process.on('unhandledRejection', onRej);
+  const node = () => ({ connect: () => node(), start() {}, stop() {}, frequency: {}, gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} } });
+  globalThis.window = { AudioContext: class { constructor() { this.state = 'suspended'; this.currentTime = 0; this.destination = {}; }
+    resume() { return Promise.reject(new Error('blocked')); } createOscillator() { return node(); } createGain() { return node(); } } };
+  const { play: playFresh } = await import(`../src/core/sound.js?fresh=${Date.now()}`);
+  playFresh('quest', {});
+  await new Promise((r) => setTimeout(r, 20));
+  process.off('unhandledRejection', onRej);
+  delete globalThis.window;
+  assert.equal(seen.length, 0);
+});

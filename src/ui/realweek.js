@@ -31,8 +31,12 @@ function reflectCard(app, e) {
       app.go('realweek');
     },
   }, t('rwSave'));
+  const drop = h('button', {
+    class: 'icon-btn', 'aria-label': t('rwDelete'),
+    onclick: () => { app.setState({ ...app.state, events: app.state.events.filter((x) => x.id !== e.id) }); app.go('realweek'); },
+  }, '🗑');
   return h('section', { class: 'card rw-reflect' },
-    h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`),
+    h('div', { class: 'rw-event' }, h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`), drop),
     h('p', { class: 'rw-text' }, e.text),
     h('p', {}, h('b', {}, t('rwHowWent'))),
     h('div', { class: 'rate-row' }, btns),

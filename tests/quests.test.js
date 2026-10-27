@@ -108,3 +108,19 @@ test('prep time under one second counts as a cold start (0 s)', async () => {
   assert.equal(prepSecondsUsed(1.4), 1);
   assert.equal(prepSecondsUsed(undefined), 0);
 });
+
+test('impossible quests are not offered: no rounds yesterday, no earlier days', () => {
+  for (const day of ['2026-10-27', '2026-10-28', '2026-11-03', '2026-11-11', '2026-12-01']) {
+    const ids = currentQuests({ ...defaultState(), history: [], days: {} }, day).map((q) => q.id);
+    assert.ok(!ids.includes('beatYesterday'), day);
+    assert.ok(!ids.includes('otherLang'), day);
+    assert.equal(ids.length, 3);
+  }
+});
+
+test('feasibility is stable through the day (a first round today does not change the quests)', () => {
+  const day = '2026-10-27';
+  const before = currentQuests({ ...defaultState(), days: {} }, day).map((q) => q.id);
+  const after = currentQuests({ ...defaultState(), days: { [day]: 1 }, history: [{ ts: ts(day), lang: 'nl', metrics: { words: 30, fillerRate: 2 } }] }, day).map((q) => q.id);
+  assert.deepEqual(after, before);
+});

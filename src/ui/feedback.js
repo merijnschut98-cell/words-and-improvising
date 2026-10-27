@@ -31,8 +31,7 @@ export function renderFeedback(app, params, root) {
   if (params.pauses != null) metrics.pauses = params.pauses;
   const clean = cleanRun(tokenize(transcript), lang).max;
   const st = { rating: null, coach: null, applied: false };
-  // The fix he chose last time has now been practised: clear it.
-  if (params.fixUsed && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
+
   let audioUrl = null;
 
   const main = h('main', { class: 'screen feedback' });
@@ -45,7 +44,7 @@ export function renderFeedback(app, params, root) {
   if (metrics.words < 5) {
     add(
       h('section', { class: 'card center' }, h('div', { class: 'big-emoji', 'aria-hidden': 'true' }, '🤔'), h('p', {}, t('tooShort'))),
-      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('round', { prompt }) }, t('retry')),
+      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('round', { prompt, modifier }) }, t('retry')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.nextAfterRound() }, t('skip')),
     );
     return undefined;
@@ -54,6 +53,9 @@ export function renderFeedback(app, params, root) {
   function commit() {
     if (st.applied) return st.result;
     st.applied = true;
+    // The fix he chose last time has now been practised: clear it, unless he
+    // already picked a new one on this screen.
+    if (params.fixUsed && !st.fixChosen && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
     const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier,
@@ -101,6 +103,7 @@ export function renderFeedback(app, params, root) {
   const setFix = (text, btn) => {
     const clean = String(text || '').trim().slice(0, 100);
     if (!clean) return;
+    st.fixChosen = true;
     app.setState({ ...app.state, ui: { ...(app.state.ui || {}), nextFix: { text: clean } } });
     fixCard.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === btn));
     app.toast(`🔧 ${t('fixSaved')}`);

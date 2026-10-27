@@ -48,8 +48,8 @@ function seedOf(day) {
   return h >>> 0;
 }
 
-export function questsForDay(day, hasKey, rng = seededRng(seedOf(day))) {
-  const pool = QUEST_POOL.filter((q) => hasKey || !q.needsKey).map((q) => q.id);
+export function questsForDay(day, hasKey, rng = seededRng(seedOf(day)), feasible = () => true) {
+  const pool = QUEST_POOL.filter((q) => (hasKey || !q.needsKey) && feasible(q.id)).map((q) => q.id);
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -60,7 +60,14 @@ export function questsForDay(day, hasKey, rng = seededRng(seedOf(day))) {
 // Today's quests for display, without touching state.
 export function currentQuests(state, today) {
   const q = state.quests;
-  return q && q.day === today && q.items.length ? q.items : questsForDay(today, !!state.settings.apiKey);
+  if (q && q.day === today && q.items.length) return q.items;
+  // Leave out quests that cannot be done today. Both checks look only at
+  // earlier days, so they stay the same all day.
+  const yesterday = yesterdayOf(today);
+  const roundsYesterday = (state.history || []).some((e) => e.ts && dayKey(new Date(e.ts)) === yesterday && e.metrics && e.metrics.words >= 20);
+  const earlierDay = Object.entries(state.days || {}).some(([d, n]) => d < today && n > 0);
+  const feasible = (id) => (id === 'beatYesterday' ? roundsYesterday : id === 'otherLang' ? earlierDay : true);
+  return questsForDay(today, !!state.settings.apiKey, seededRng(seedOf(today)), feasible);
 }
 
 // `state` is the state after the round was applied (days/history updated).

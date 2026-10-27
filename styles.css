@@ -334,8 +334,9 @@ audio { width: 100%; margin-top: 4px; }
 
 /* Quests */
 .quest-card .card-title { margin: 0; }
-.quest { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
-.quest:first-of-type { border-top: 0; }
+.quest { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; font-size: 0.95rem; }
+/* Divider only between quests (the first quest follows the title row). */
+.quest + .quest { border-top: 1px solid var(--line); }
 .quest-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; font-weight: 900; font-size: 0.8rem; color: #fff; }
 .quest.done .quest-check { background: var(--accent); border-color: var(--accent); }
 .quest.done span:nth-child(2) { color: var(--muted); text-decoration: line-through; }

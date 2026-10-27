@@ -7,7 +7,7 @@ import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
-import { pickModifier } from '../core/modifiers.js';
+import { pickModifier, applyModifierTiming } from '../core/modifiers.js';
 
 const RING_R = 52;
 const RING_C = 2 * Math.PI * RING_R;
@@ -193,7 +193,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   if (st.modifier === undefined) {
     st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1);
   }
-  const prepFor = () => (st.modifier === 'cold' ? 0 : timing.prepS);
+  const prepFor = () => applyModifierTiming(timing, st.modifier).prepS;
 
   function showIntro() {
     const toggle = h('div', { class: 'segmented', role: 'radiogroup' },
@@ -227,7 +227,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   }
 
   async function begin() {
-    if (st.mode === 'speak' && settings.record) {
+    // Spoken-cue drills would record the app's own voice: no recording there.
+    if (st.mode === 'speak' && settings.record && !cued) {
       recorder = createRecorder();
       await recorder.start();
       if (disposed) { recorder.stop(); return; }
@@ -484,7 +485,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
-      pace: cued ? null : { timeline: st.timeline, start: st.answerStart },
+      pace: cued || st.mode !== 'speak' ? null : { timeline: st.timeline, start: st.answerStart },
       fixUsed: !!(app.state.ui || {}).nextFix,
       prepS: prepSecondsUsed(st.prepUsedS),
       modifier: st.modifier || null,

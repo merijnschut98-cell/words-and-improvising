@@ -17,7 +17,7 @@ export function play(name, settings) {
   if (!AC) return;
   try {
     ctx = ctx || new AC();
-    if (ctx.state === 'suspended') ctx.resume();
+    if (ctx.state === 'suspended') Promise.resolve(ctx.resume()).catch(() => {});
     let t = ctx.currentTime + 0.01;
     for (const [freq, dur] of notes) {
       const osc = ctx.createOscillator();

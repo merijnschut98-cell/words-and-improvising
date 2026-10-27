@@ -27,16 +27,19 @@ const FAKE_SPEECH = `
         const error = window.__speechMode === 'deny' ? 'not-allowed' : 'network';
         setTimeout(() => this.onerror && this.onerror({ error }), 50); setTimeout(() => this.onend && this.onend(), 80); return;
       }
+      // An automatic restart after a natural end (Android behaviour, no stop()
+      // in between) stays silent: real speech would not replay the sentence.
+      if (window.__autoRestart) return;
       const lines = ['Um so I think', 'Um so I think this is like a really good', 'Um so I think this is like a really good point about the bridge and the river'];
       let i = 0;
       this._t = setInterval(() => {
-        if (i >= lines.length) { clearInterval(this._t); this.onend && this.onend(); return; }
+        if (i >= lines.length) { clearInterval(this._t); window.__autoRestart = true; this.onend && this.onend(); return; }
         const res = lines.slice(0, i + 1).map((l, k) => Object.assign([{ transcript: l }], { isFinal: k < i || i === lines.length - 1 }));
         this.onresult && this.onresult({ results: res });
         i++;
       }, 300);
     }
-    stop() { clearInterval(this._t); setTimeout(() => this.onend && this.onend(), 30); }
+    stop() { window.__autoRestart = false; clearInterval(this._t); setTimeout(() => this.onend && this.onend(), 30); }
   }
   window.SpeechRecognition = FakeRec;
 `;
@@ -136,7 +139,8 @@ await step('state persisted after reload', async () => {
   if (st.history.length !== 3) throw new Error(`history ${st.history.length}`);
   if (st.streak.count !== 1) throw new Error('streak');
   if (!(st.xp > 0)) throw new Error('xp');
-  if (st.history.some((h) => /(\bUm so I think\b.*){2}/.test(h.transcript))) throw new Error('duplicated transcript: ' + st.history[0].transcript);
+  const dup = st.history.find((h) => /(\bUm so I think\b.*){2}/.test(h.transcript));
+  if (dup) throw new Error(`duplicated transcript in ${dup.drill} (${dup.durationS}s): ${dup.transcript}`);
   await shot('06-home-after');
 });
 
@@ -702,6 +706,57 @@ await step('pace over time and one fix carried to the next round', async () => {
   await open();
   await page.locator('.intro-card .fix-chip').waitFor();
   await shot('44-fix-intro');
+});
+
+await step('too-short retry keeps the modifier and the chosen fix', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.ui = { ...(st.ui || {}), nextFix: { text: 'Noem mijn punt eerst' } };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: 'slow', timing: { prepS: 0, answerS: 30, questions: 1 } });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.getByRole('button', { name: 'Opnieuw', exact: true }).click();
+  await page.locator('.intro-card .fix-chip').waitFor();
+  await page.locator('.intro-card .modifier-chip').waitFor();
+});
+
+await step('a past event can be deleted instead of reflected on', async () => {
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.events = [{ id: 'gone', type: 'client', date: '2026-01-06', text: 'Geannuleerd overleg', reflection: null }];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.rw-card').click();
+  await page.locator('.rw-reflect .icon-btn').click();
+  await page.locator('.realweek').waitFor();
+  if (await page.locator('.rw-reflect').count()) throw new Error('past event should be gone');
+});
+
+await step('a fresh install opened from a challenge gets the welcome afterwards', async () => {
+  const c3 = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await c3.addInitScript(FAKE_SPEECH);
+  const p3 = await c3.newPage();
+  await p3.goto(`${BASE}?c=minute.topic:t01.nl`);
+  await p3.getByRole('button', { name: 'Start' }).click();
+  const ready = p3.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await p3.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await p3.waitForTimeout(1300);
+  await p3.getByRole('button', { name: 'Klaar' }).click();
+  await p3.locator('.stats').first().waitFor();
+  await p3.getByRole('button', { name: /Volgende|Afronden/ }).click();
+  await p3.locator('.screen.welcome').waitFor();
+  await c3.close();
 });
 
 await step('too-short answer offers retry', async () => {

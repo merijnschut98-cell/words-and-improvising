@@ -98,3 +98,9 @@ test('the earlier attempt must match language and drill', () => {
   // No Dutch debate attempt before, so this is a first try: box 1, not a promotion.
   assert.equal(r.state.reviews['nl|opinion:o01'].box, 1);
 });
+
+test('wasImproved counts the coach score when he did not rate himself', () => {
+  const prev = { metrics: { fillerRate: 3 }, rating: null, coach: { overall: 2 } };
+  assert.equal(wasImproved(prev, { metrics: { fillerRate: 3 }, rating: null, coach: { overall: 4 } }), true);
+  assert.equal(wasImproved(prev, { metrics: { fillerRate: 3 }, rating: null, coach: { overall: 2 } }), false);
+});

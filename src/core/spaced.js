@@ -14,7 +14,8 @@ function addDays(day, n) {
 // Better than the earlier attempt: fewer fillers/min, or a higher rating.
 export function wasImproved(prev, cur) {
   if (!prev || !prev.metrics || !cur || !cur.metrics) return false;
-  return cur.metrics.fillerRate < prev.metrics.fillerRate || (cur.rating ?? 0) > (prev.rating ?? 0);
+  const score = (e) => e.rating ?? (e.coach && e.coach.overall) ?? 0;
+  return cur.metrics.fillerRate < prev.metrics.fillerRate || score(cur) > score(prev);
 }
 
 // Reviews are keyed "lang|promptId": the same id exists in both languages.

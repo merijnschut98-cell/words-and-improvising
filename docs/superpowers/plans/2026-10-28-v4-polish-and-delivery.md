@@ -17,8 +17,8 @@ Still binding from v3: the global constraints in `docs/superpowers/plans/2026-10
 
 Work through both "Deferred minors" lists at the end of the v3 plan (v2 list and v3 list): each with a failing test first where the behaviour is testable, otherwise an e2e assertion. One commit per logical group. Commit: `Fix deferred minors from v2 and v3 reviews`.
 
-- [ ] v2 minors (sound resume catch, quest divider CSS, applyModifierTiming, impossible quests, challenge skips welcome, too-short retry keeps modifier, challengeId scope, recording during cued drills).
-- [ ] v3 minors (fix chip vs too-short, wasImproved with coach rating, delete past events, pace card only when speaking).
+- [x] v2 minors (sound resume catch, quest divider CSS, applyModifierTiming, impossible quests, challenge skips welcome, too-short retry keeps modifier, challengeId scope, recording during cued drills).
+- [x] v3 minors (fix chip vs too-short, wasImproved with coach rating, delete past events, pace card only when speaking).
 
 ### Task 2 (Wed 28 Oct): Content top-up (use a content subagent in parallel)
 

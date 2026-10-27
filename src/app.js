@@ -175,6 +175,10 @@ export const app = {
 
   go(screen, params = {}) {
     this.navSeq += 1;
+    if (screen === 'home') {
+      this.challengeId = null; // "Reply" only right after the challenge itself
+      if (needsWelcome(this.state)) screen = 'welcome';
+    }
     if (cleanup) {
       try { cleanup(); } catch { /* ignore */ }
     }
@@ -225,6 +229,7 @@ document.addEventListener('visibilitychange', () => {
   const prompt = ch && challengePrompt(ch, ch.lang === 'en' ? en : nl);
   if (prompt) {
     if (ch.lang !== app.lang) app.updateSettings({ lang: ch.lang });
+    if (needsWelcome(app.state)) app.setState({ ...app.state, ui: { ...(app.state.ui || {}), pendingWelcome: true } });
     app.challengeId = prompt.id;
     app.go('round', { prompt, notice: app.t('challengeNotice'), modifier: null });
   } else {

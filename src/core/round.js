@@ -40,7 +40,7 @@ export function applyRound(state, round, today, now) {
     modifier: round.modifier || null,
     xp,
   });
-  next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating })) };
+  next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
   const b = updateBests(next.bests || {}, next.history[0]);
   next = { ...next, bests: b.bests };
   const q = applyQuests(next, { ...round, ts: now }, today);

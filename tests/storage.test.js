@@ -84,3 +84,10 @@ test('v3 keys default for existing users and bad values are coerced', () => {
   assert.deepEqual(bad.events, []);
   assert.deepEqual(bad.reviews, {});
 });
+
+test('a fresh install opened from a challenge link still gets the welcome afterwards', () => {
+  const s = { ...defaultState(), history: [{ ts: 1 }], ui: { pendingWelcome: true } };
+  assert.equal(needsWelcome(s), true);
+  assert.equal(needsWelcome({ ...s, onboarded: true }), false);
+  assert.equal(needsWelcome({ ...s, ui: {} }), false);
+});
