@@ -44,8 +44,8 @@ A new modifier `budget` (30/45/60 words by drill level) with a live counter "23 
 
 On feedback with a coach result, the stronger version is collapsed behind one optional line: "What would you change, and why?" (typed, ≤ 140 chars). After he answers or skips, the stronger version opens; his line is shown above it for comparison and stored on the history entry (`selfFix`).
 
-- [ ] Tests: history entry stores `selfFix` trimmed and capped; absent when skipped.
-- [ ] Implement. Commit: `Ask what he would change before showing the stronger version`.
+- [x] Tests: history entry stores `selfFix` trimmed and capped; absent when skipped.
+- [x] Implement. Commit: `Ask what he would change before showing the stronger version`.
 
 ### Task 4: Small-talk story frame
 

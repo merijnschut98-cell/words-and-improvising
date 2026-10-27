@@ -86,7 +86,8 @@ const step = async (name, fn) => {
 };
 const shot = async (n) => {
   const text = await page.evaluate(() => document.body.innerText);
-  if (/\b(null|undefined|NaN)\b/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+  // No word boundary on the right: "nullnull" must be caught too.
+  if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
   await page.screenshot({ path: `${out}/${n}.png`, fullPage: true });
 };
 
@@ -1016,7 +1017,14 @@ await step('shadow the stronger version, then say it in your own words', async (
   await page.getByRole('button', { name: 'Start' }).click();
   await page.waitForTimeout(1300);
   await page.getByRole('button', { name: 'Klaar' }).click();
+  // First his own fix, then the stronger version opens.
+  await page.locator('.self-q input').fill('begin met mijn punt');
+  await shot('51-self-fix');
+  await page.getByRole('button', { name: 'Toon de sterkere versie' }).click();
+  await page.locator('.self-fix', { hasText: 'begin met mijn punt' }).waitFor();
   await page.getByRole('button', { name: /Naspreken/ }).click();
+  const fix = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).history[0].selfFix);
+  if (fix !== 'begin met mijn punt') throw new Error(`selfFix not stored: ${fix}`);
   await page.getByRole('button', { name: 'Start' }).click();
   await page.locator('.shadow-model').waitFor();
   await page.locator('.phase-label.go').waitFor({ timeout: 20000 });

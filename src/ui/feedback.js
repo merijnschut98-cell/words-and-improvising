@@ -62,7 +62,7 @@ export function renderFeedback(app, params, root) {
     if (params.fixUsed && !st.fixChosen && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
     const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
-      rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier,
+      rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier, selfFix: st.selfFix || '',
     }, app.today(), Date.now());
     app.setState(state);
     if (newBests.length) play('best', app.state.settings);
@@ -175,19 +175,35 @@ export function renderFeedback(app, params, root) {
         h('button', { class: 'btn btn-ghost small', onclick: askCoach }, t('coachRetry')));
     } else if (state && state.ok) {
       const d = state.data;
-      coachCard.replaceChildren(head,
+      // replaceChildren() would render null as the text "null": filter the optional parts.
+      coachCard.replaceChildren(...[head,
         h('div', { class: 'scores' }, ['clarity', 'structure', 'fluency', 'vocabulary'].map((k) => h('div', { class: 'score' },
           h('span', {}, t(`sc_${k}`)),
           h('span', { class: 'pips' }, [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= d.scores[k] ? 'on' : '' })))))),
         h('div', { class: 'coach-line good' }, h('b', {}, `${t('strength')}: `), d.strength),
         h('div', { class: 'coach-line work' }, h('b', {}, `${t('improvement')}: `), d.improvement),
-        h('details', { class: 'stronger', open: true },
+        // Self-explanation first: what would he change? Then the model opens.
+        !st.selfDone ? (() => {
+          const input = h('input', { type: 'text', maxlength: 140, class: 'text-input', placeholder: t('selfFixPh') });
+          const reveal = (save) => {
+            st.selfFix = save ? input.value.trim().slice(0, 140) : '';
+            st.selfDone = true;
+            renderCoach(state);
+          };
+          return h('div', { class: 'self-q' },
+            h('label', { class: 'field-label' }, t('selfFixQ')), input,
+            h('div', { class: 'row' },
+              h('button', { class: 'btn btn-primary small', onclick: () => reveal(true) }, t('selfFixShow')),
+              h('button', { class: 'btn btn-ghost small', onclick: () => reveal(false) }, t('selfFixSkip'))));
+        })() : null,
+        st.selfDone && st.selfFix ? h('p', { class: 'self-fix' }, h('b', {}, `🙋 ${t('selfFixYours')}: `), st.selfFix) : null,
+        !st.selfDone ? null : h('details', { class: 'stronger', open: true },
           h('summary', {}, t('stronger')),
           h('p', {}, d.stronger_version),
           h('div', { class: 'row' },
             window.speechSynthesis ? h('button', { class: 'btn btn-ghost small', onclick: () => speak(d.stronger_version, lang) }, `🔊 ${t('hearIt')}`) : null,
             h('button', { class: 'btn btn-ghost small', onclick: () => shadowIt(d.stronger_version) }, `🎧 ${t('shadowIt')}`),
-            h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`))));
+            h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`)))].filter(Boolean));
     }
   }
 

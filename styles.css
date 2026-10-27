@@ -492,3 +492,8 @@ input[type="password"], input[type="text"], select {
 /* Friend rating */
 .friend-row { margin-bottom: 12px; }
 .friend-link { word-break: break-all; }
+
+/* Self-explanation before the stronger version */
+.self-q { margin-top: 10px; padding: 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.self-q .row { display: flex; gap: 8px; margin-top: 6px; }
+.self-fix { margin: 10px 0 0; }

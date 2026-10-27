@@ -78,3 +78,12 @@ test('applyRound uses a freeze for a missed day even if the app stayed open past
   assert.equal(r.state.freezes, 0);
   assert.ok(r.state.freezeLog.includes('2026-10-25'));
 });
+
+test('his own "what would I change" line is stored on the round, trimmed and capped', () => {
+  const a = applyRound(defaultState(), round({ selfFix: '   start with my point  ' }), '2026-10-27', 1000);
+  assert.equal(a.state.history[0].selfFix, 'start with my point');
+  const b = applyRound(defaultState(), round({ selfFix: 'x'.repeat(300) }), '2026-10-27', 1000);
+  assert.equal(b.state.history[0].selfFix.length, 140);
+  const c = applyRound(defaultState(), round(), '2026-10-27', 1000);
+  assert.equal('selfFix' in c.state.history[0], false);
+});

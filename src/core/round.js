@@ -28,6 +28,7 @@ export function applyRound(state, round, today, now) {
     drill,
     promptId: prompt.id,
     ...(prompt.extra && prompt.extra.shadow ? { shadow: true } : {}),
+    ...(String(round.selfFix || '').trim() ? { selfFix: String(round.selfFix).trim().slice(0, 140) } : {}),
     body: prompt.body,
     extra: prompt.extra,
     lang: round.lang,
