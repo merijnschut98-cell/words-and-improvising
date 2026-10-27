@@ -467,6 +467,9 @@ input[type="password"], input[type="text"], select {
 .pace-bar small { color: var(--muted); font-size: 11px; }
 .fix-options { display: flex; flex-wrap: wrap; gap: 8px; }
 .fix-options .on, .fix-own .on { border-color: var(--primary); }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--card)); }
+.skill-chip.on::before { content: '✓ '; }
 .fix-own { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
 .fix-own .text-input { margin: 0; }
 .fix-chip { margin: 6px 0 0; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--primary) 12%, transparent); font-weight: 700; }

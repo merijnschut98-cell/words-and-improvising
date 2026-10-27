@@ -1157,6 +1157,44 @@ await step('your words: filler movers and a vague-word swap on Progress, vague w
   await shot('54-vague-feedback');
 });
 
+await step('skills used in real life: chips on the reflection, counts on the weekly reset', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const d = new Date(Date.now() - 86400000);
+    const day = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    st.events = [{ id: 'sk1', type: 'client', date: day, text: 'Klantgesprek over de 5S-audit', reflection: null }];
+    st.history = [{ ...st.history[0], drill: 'frame', ts: Date.now() - 3600000 }, ...st.history];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.rw-card').click();
+  await page.locator('.rw-reflect .rate-btn').nth(3).click();
+  await page.locator('.skill-chip', { hasText: 'Spreekstructuren' }).click();
+  await page.locator('.skill-chip', { hasText: 'Doorvragen' }).click();
+  await page.locator('.skill-chip', { hasText: 'Doorvragen' }).click(); // tap again: off
+  await page.locator('.skill-chip', { hasText: 'Iets anders' }).click();
+  if (await page.locator('.skill-chip[aria-pressed="true"]').count() !== 2) throw new Error('chip toggle state');
+  await shot('55-reflect-skills');
+  await page.getByRole('button', { name: 'Opslaan' }).click();
+  const skills = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).events.find((e) => e.id === 'sk1').reflection.skills);
+  if (skills.join(',') !== 'frame,other') throw new Error(`stored skills: ${skills}`);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.weekly = { week: '2000-W01', focus: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  const card = page.locator('.screen.weekly .skill-use');
+  await card.waitFor();
+  await card.locator('.skill-use-line', { hasText: /Spreekstructuren: \d+× geoefend, 1× echt gebruikt/ }).waitFor();
+  await card.locator('.skill-use-line', { hasText: 'Iets anders: 1× echt gebruikt' }).waitFor();
+  if (await card.locator('.skill-use-line').count() > 3) throw new Error('more than three lines');
+  await shot('56-weekly-skills');
+  await page.getByRole('button', { name: /Laat het meebewegen/ }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();
