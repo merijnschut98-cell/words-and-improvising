@@ -24,6 +24,7 @@ import { renderRealweek } from './ui/realweek.js';
 import { renderWeekly } from './ui/weekly.js';
 import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
+import { ownedDrills } from './core/mastery.js';
 
 const SCREENS = {
   home: renderHome,
@@ -109,7 +110,7 @@ export const app = {
   },
 
   startLesson() {
-    const prompts = buildLesson(this.content, Math.random, this.state.seen, { history: this.state.history, due: this.dueReviews(), focus: weekFocus(this.state, new Date()) });
+    const prompts = buildLesson(this.content, Math.random, this.state.seen, { history: this.state.history, due: this.dueReviews(), focus: weekFocus(this.state, new Date()), owned: ownedDrills(this.state.history) });
     this.session = { prompts, index: 0, xp: 0, levelUp: false };
     this.go('round', { prompt: prompts[0] });
   },

@@ -497,3 +497,9 @@ input[type="password"], input[type="text"], select {
 .self-q { margin-top: 10px; padding: 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .self-q .row { display: flex; gap: 8px; margin-top: 6px; }
 .self-fix { margin: 10px 0 0; }
+
+/* Mastery */
+.mastery { display: inline-block; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin: 2px 0; text-transform: uppercase; letter-spacing: 0.04em; }
+.mastery.m-learn { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+.mastery.m-practise { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ink); }
+.mastery.m-own { background: color-mix(in srgb, var(--good) 22%, transparent); color: var(--ink); }

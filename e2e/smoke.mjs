@@ -1091,6 +1091,21 @@ await step('friend rates a round through links and it shows on Progress', async 
   await shot('49-friend-calib');
 });
 
+await step('mastery: three good rounds on different days show "Beheerst"', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const base = st.history[0];
+    const good = [1, 2, 3].map((d) => ({ ...base, ts: Date.now() - d * 86400000, drill: 'explain', rating: 5, promptId: `concept:c0${d}` }));
+    st.history = [...good, ...st.history];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.drill-explain .mastery.m-own', { hasText: 'Beheerst' }).waitFor();
+  await page.locator('.drill-explain').scrollIntoViewIfNeeded();
+  await shot('52-mastery');
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

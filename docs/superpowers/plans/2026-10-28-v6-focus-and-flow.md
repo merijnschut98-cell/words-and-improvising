@@ -32,8 +32,8 @@ Home leads with one card: the single recommended round for now, with a reason ("
 
 `masteryOf(history, drill) -> 'learn'|'practise'|'own'`: own = 3 rounds rated ≥ 4 (self or coach) on 3 different days within the last 14 days; practise = ≥ 3 rounds; else learn. Shown on drill cards and Progress. Owned drills are skipped by the adaptive weak slot and the Today pick (unless nothing else qualifies), and appear at most once a week as maintenance.
 
-- [ ] Tests: thresholds, different-days rule, window; picker skips owned drills.
-- [ ] Implement. Commit: `Show mastery per drill`.
+- [x] Tests: thresholds, different-days rule, window; picker skips owned drills.
+- [x] Implement. Commit: `Show mastery per drill`.
 
 ### Task 3: Situation finder + 30-second micro-lessons
 

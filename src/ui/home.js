@@ -1,5 +1,6 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
+import { masteryOf } from '../core/mastery.js';
 import { upcoming, needsReflection } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
@@ -47,6 +48,9 @@ function questCard(app) {
       h('span', {}, t(`quest_${q.id}`)),
       h('span', { class: 'muted small' }, '+15'))));
 }
+
+// Learn → Practise → Own, as a small label on each drill.
+export const masteryBadge = (t, m) => h('span', { class: `mastery m-${m}` }, t(`mastery_${m}`));
 
 // My real week: the next event to rehearse, a reflection that is due, or an invitation.
 function realWeekCard(app) {
@@ -140,6 +144,7 @@ export function renderHome(app, _params, root) {
       },
       h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, DRILL_ICON[d]),
       h('span', { class: 'drill-name' }, t(`drill_${d}`)),
+      masteryBadge(t, masteryOf(s.history, d)),
       h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
         [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
       app.installPrompt

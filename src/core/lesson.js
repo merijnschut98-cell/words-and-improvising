@@ -151,10 +151,11 @@ export function makePrompt(drill, content, rng, seen = {}) {
 
 // The drill he does worst lately: lowest average rating (self, else coach),
 // more fillers/min breaking ties. Needs at least 2 recent rounds in a drill.
-export function weakestDrill(history) {
+export function weakestDrill(history, owned = []) {
   const recent = (history || []).slice(0, 40);
   let worst = null;
   for (const d of DRILLS) {
+    if (owned.includes(d)) continue; // owned drills: effort goes elsewhere
     const es = recent.filter((e) => e.drill === d && e.metrics);
     if (es.length < 2) continue;
     const rating = es.reduce((a, e) => a + (e.rating ?? (e.coach && e.coach.overall) ?? 3), 0) / es.length;
@@ -174,7 +175,7 @@ export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
   const out = [];
   const used = () => new Set(out.map((p) => p.drill));
   // His chosen focus for the week takes the first slot; otherwise the weakest drill.
-  const weak = opts.focus ? null : weakestDrill(history);
+  const weak = opts.focus ? null : weakestDrill(history, opts.owned || []);
   if (opts.focus) out.push({ ...makePrompt(opts.focus, content, rng, seen), reason: 'focus' });
   else if (weak) out.push({ ...makePrompt(weak, content, rng, seen), reason: 'weak' });
   const review = (opts.due || []).find((p) => !used().has(p.drill));

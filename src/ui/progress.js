@@ -4,6 +4,8 @@ import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
+import { masteryOf } from '../core/mastery.js';
+import { masteryBadge } from './home.js';
 import { drawShareCard, shareFile } from '../core/share.js';
 import { friendAverages } from '../core/friend.js';
 
@@ -212,7 +214,7 @@ export function renderProgress(app, _params, root) {
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('drillLevels')),
         h('div', { class: 'levels' }, DRILLS.map((d) => h('div', { class: 'level-line' },
-          h('span', {}, `${DRILL_ICON[d]} ${t(`drill_${d}`)}`),
+          h('span', {}, `${DRILL_ICON[d]} ${t(`drill_${d}`)} `, masteryBadge(t, masteryOf(s.history, d))),
           h('span', { class: 'pips' }, [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' }))))))),
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('history')),
