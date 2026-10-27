@@ -53,8 +53,8 @@ On the first open of a new ISO week (or from Progress), a short weekly screen: l
 
 Optional (Settings toggle, default off until tested on his phone): during spoken rounds, a WebAudio `AnalyserNode` on a separate `getUserMedia` stream samples loudness every 100 ms. Feedback shows a "voice variety" line (low variance = monotone) and "trailing off" (last third clearly quieter). If opening a second mic stream breaks recognition on a device, the toggle explains that and turns itself off.
 
-- [ ] Tests (pure): `loudnessStats(samples) -> {variety, trailingOff}` thresholds and short-round guards.
-- [ ] Implement with cleanup on finish/dispose. Commit: `Add voice variety feedback (optional)`.
+- [x] Tests (pure): `loudnessStats(samples) -> {variety, trailingOff}` thresholds and short-round guards.
+- [x] Implement with cleanup on finish/dispose. Commit: `Add voice variety feedback (optional)`.
 
 ### Task 7 (Tue 3 Nov): Backup and restore
 
@@ -67,8 +67,8 @@ Settings: "Export" already downloads JSON; add "Import" (file input). Validate v
 
 Measure first load on the live site (Playwright, throttled "Fast 3G"): total bytes, number of requests, time to interactive. Lazy-load screens that are not needed for Home (`realweek`, `progress`, `conversation`) with dynamic `import()` if that saves > 20 % of first-load bytes; verify offline still works for every screen (e2e goes offline and visits each).
 
-- [ ] Measure before/after in the ledger.
-- [ ] Implement only if the gain is real. Commit: `Load secondary screens on demand`.
+- [x] Measure before/after in the ledger.
+- [x] Implement only if the gain is real. Commit: `Load secondary screens on demand`.
 
 ### Task 9 (Thu 5 – Fri 6 Nov): Final review + fixes + note
 

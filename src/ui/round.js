@@ -9,6 +9,48 @@ import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
 import { pickModifier, applyModifierTiming } from '../core/modifiers.js';
 
+// Optional loudness meter on a separate mic stream (settings.voiceStats).
+// Samples RMS every 100 ms. Any failure leaves samples empty; it never throws
+// and never waits on anything the speech recogniser needs.
+function startMeter() {
+  const samples = [];
+  let stopped = false;
+  let stream = null;
+  let ctx = null;
+  let timer = null;
+  function stop() {
+    stopped = true;
+    if (timer) { clearInterval(timer); timer = null; }
+    if (stream) { try { stream.getTracks().forEach((tr) => tr.stop()); } catch { /* ignore */ } stream = null; }
+    if (ctx) { try { ctx.close().catch(() => {}); } catch { /* ignore */ } ctx = null; }
+  }
+  (async () => {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+      const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (stopped) { s.getTracks().forEach((tr) => tr.stop()); return; }
+      stream = s;
+      ctx = new AC();
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      ctx.createMediaStreamSource(stream).connect(analyser);
+      const buf = new Float32Array(analyser.fftSize);
+      timer = setInterval(() => {
+        try {
+          analyser.getFloatTimeDomainData(buf);
+          let sum = 0;
+          for (let i = 0; i < buf.length; i += 1) sum += buf[i] * buf[i];
+          samples.push(Math.sqrt(sum / buf.length));
+        } catch { stop(); }
+      }, 100);
+    } catch {
+      stop();
+    }
+  })();
+  return { samples, stop };
+}
+
 const RING_R = 52;
 const RING_C = 2 * Math.PI * RING_R;
 
@@ -157,6 +199,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   };
   let recognizer = null;
   let recorder = null;
+  let meter = null; // loudness meter (settings.voiceStats)
   let finished = false;
   let disposed = false; // set when the screen is left
 
@@ -381,7 +424,10 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       st.live = h('div', { class: 'live', 'aria-live': 'polite' }, h('span', { class: 'muted' }, t('listening')));
       st.cleanEl = h('div', { class: 'clean-chip' }, `🧼 ${t('cleanRun')}: 0`);
       input = h('div', {}, st.cleanEl, st.live);
-      if (!cued) startListening();
+      if (!cued) {
+        startListening();
+        if (settings.voiceStats) meter = startMeter();
+      }
     } else {
       input = typingArea();
     }
@@ -460,6 +506,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
 
   function switchToTyping() {
     if (recognizer) { recognizer.stop(); recognizer = null; }
+    if (meter) { meter.stop(); meter = null; }
     st.live = null;
     st.cleanEl = null;
     const ta = typingArea();
@@ -473,6 +520,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     finished = true;
     clearTimer();
     hush();
+    const loudness = meter && st.mode === 'speak' ? meter.samples : null;
+    if (meter) { meter.stop(); meter = null; }
     const durationS = elapsed ?? (cued && st.phase === 'cue' ? st.answeredS : (performance.now() - st.answerStart) / 1000);
     main.querySelectorAll('button').forEach((b) => { b.disabled = true; });
     quit.disabled = true;
@@ -486,6 +535,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       pace: cued || st.mode !== 'speak' ? null : { timeline: st.timeline, start: st.answerStart },
+      loudness,
       fixUsed: !!(app.state.ui || {}).nextFix,
       prepS: prepSecondsUsed(st.prepUsedS),
       modifier: st.modifier || null,
@@ -502,5 +552,6 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     hush();
     if (recognizer) recognizer.stop();
     if (recorder) recorder.stop();
+    if (meter) { meter.stop(); meter = null; }
   };
 }
