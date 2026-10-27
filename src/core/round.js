@@ -27,6 +27,7 @@ export function applyRound(state, round, today, now) {
     ts: now,
     drill,
     promptId: prompt.id,
+    ...(prompt.extra && prompt.extra.shadow ? { shadow: true } : {}),
     body: prompt.body,
     extra: prompt.extra,
     lang: round.lang,
@@ -40,8 +41,10 @@ export function applyRound(state, round, today, now) {
     modifier: round.modifier || null,
     xp,
   });
-  next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
-  const b = updateBests(next.bests || {}, next.history[0]);
+  // Shadow rounds repeat a model answer: practice, but not his own record.
+  const shadow = !!(prompt.extra && prompt.extra.shadow);
+  if (!shadow) next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
+  const b = shadow ? { bests: next.bests || {}, newBests: [] } : updateBests(next.bests || {}, next.history[0]);
   next = { ...next, bests: b.bests };
   const q = applyQuests(next, { ...round, ts: now }, today);
   next = q.state;

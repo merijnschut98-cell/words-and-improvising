@@ -84,6 +84,14 @@ function promptCard(app, prompt, state) {
   const t = app.t;
   const x = prompt.extra || {};
   const card = h('section', { class: `card prompt-card prompt-${prompt.drill}` });
+  if (x.shadow) {
+    // Shadowing: the model is shown (and spoken), then hidden; he says it from memory.
+    state.statementEl = h('p', { class: 'prompt-sub shadow-model', hidden: true }, x.model);
+    state.cueEl = h('p', { class: 'prompt-main cue-text' }, '🎧 …');
+    card.append(h('p', { class: 'prompt-sub' }, `🎧 ${t('shadowLabel')}`), state.statementEl, state.cueEl,
+      h('p', { class: 'cue-hint' }, t('shadowHint')));
+    return card;
+  }
   switch (prompt.drill) {
     case 'explain':
       card.append(h('p', { class: 'prompt-main' }, prompt.body),
@@ -353,7 +361,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     }
   }
 
-  const cued = CUED_DRILLS.includes(prompt.drill);
+  const cued = CUED_DRILLS.includes(prompt.drill) || !!(prompt.extra && prompt.extra.shadow);
   const sleep = (ms) => new Promise((r) => { setTimeout(r, ms); });
 
   // Spoken-cue drills restart recognition per item; st.base holds earlier items.
@@ -397,7 +405,10 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       st.base = joinText(st.base || '', await rec.stop());
     }
     if (finished) return;
-    if (prompt.drill === 'listen') {
+    if (x.shadow) {
+      st.statementEl.hidden = false; // read along while it is spoken
+      st.cueEl.textContent = '🎧 …';
+    } else if (prompt.drill === 'listen') {
       if (!voiceSupported) st.statementEl.hidden = false;
       st.cueEl.textContent = voiceSupported ? '👂 …' : x.question;
     } else {
@@ -413,12 +424,16 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         st.cueEl.textContent = x.question;
       }
       st.label.textContent = `👀 ${t('cueRead')}`;
-      await sleep(prompt.drill === 'listen' ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
+      await sleep(prompt.drill === 'listen' || x.shadow ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
     }
     if (finished) return;
     if (prompt.drill === 'listen') {
       st.statementEl.hidden = true;
       st.cueEl.textContent = x.question;
+    }
+    if (x.shadow) {
+      st.statementEl.hidden = true;
+      st.cueEl.textContent = t('shadowNow');
     }
     st.phase = 'answer';
     st.label.textContent = st.mode === 'speak' ? t('speakNow') : t('typeNow');

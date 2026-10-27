@@ -10,6 +10,7 @@ import { runCoach } from '../core/coach.js';
 import { play } from '../core/sound.js';
 import { checkFollowUp } from '../core/followup.js';
 import { pressureChecks } from '../core/pressure.js';
+import { modelOverlap } from '../core/shadow.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 
 function speak(text, lang) {
@@ -83,6 +84,22 @@ export function renderFeedback(app, params, root) {
       : preview.slice(0, 3).map((b) => h('p', {}, `🏆 ${t('pbNew')}: ${bestLabel(t, b)}`))) : null;
 
   const fillerTone = metrics.fillerRate < 3 ? 'good' : metrics.fillerRate < 6 ? 'ok' : 'bad';
+  const shadowRound = !!(prompt.extra && prompt.extra.shadow);
+  const shadowCard = shadowRound ? (() => {
+    const x = prompt.extra;
+    const pct = Math.round(modelOverlap(x.model, transcript, app.lang) * 100);
+    return h('section', { class: 'card shadow-card' },
+      h('h2', { class: 'card-title' }, t('shadowTitle')),
+      h('p', { class: pct >= 60 ? 'good-text' : 'note' }, t('shadowOverlap', pct)),
+      h('p', { class: 'muted small' }, x.model),
+      h('button', {
+        class: 'btn btn-primary',
+        onclick: () => {
+          app.addToSession(commit());
+          app.go('round', { prompt: x.original, previous: { metrics: x.firstMetrics, durationS: x.firstDuration }, modifier: null });
+        },
+      }, `🗣️ ${t('shadowOwn')}`));
+  })() : null;
   const topFillers = Object.entries(metrics.fillers).sort((a, b) => b[1] - a[1]).slice(0, 5);
 
   // Pace over time: words per minute per 10 s, and whether he sped up.
@@ -168,6 +185,7 @@ export function renderFeedback(app, params, root) {
           h('p', {}, d.stronger_version),
           h('div', { class: 'row' },
             window.speechSynthesis ? h('button', { class: 'btn btn-ghost small', onclick: () => speak(d.stronger_version, lang) }, `🔊 ${t('hearIt')}`) : null,
+            h('button', { class: 'btn btn-ghost small', onclick: () => shadowIt(d.stronger_version) }, `🎧 ${t('shadowIt')}`),
             h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`))));
     }
   }
@@ -183,6 +201,15 @@ export function renderFeedback(app, params, root) {
     renderCoach(res);
   }
 
+  // Shadowing: hear/see the stronger version, say it from memory, then in his own words.
+  function shadowIt(model) {
+    app.addToSession(commit());
+    app.go('round', {
+      prompt: { ...prompt, extra: { ...prompt.extra, shadow: true, model, cues: [model], itemS: null, original: prompt, firstMetrics: metrics, firstDuration: durationS }, seenIds: [] },
+      timing: { prepS: 0, answerS: 45, questions: 1 }, modifier: null,
+    });
+  }
+
   function sayAgain() {
     app.addToSession(commit());
     app.go('round', { prompt, previous: { metrics, durationS }, modifier });
@@ -191,7 +218,7 @@ export function renderFeedback(app, params, root) {
   // Before -> now, when this round is a retry of the same prompt.
   const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
   // A spaced re-attempt compares with the last time he did this prompt.
-  const earlier = previous || app.state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang) || null;
+  const earlier = previous || (shadowRound ? null : app.state.history.find((e) => e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang)) || null;
   const rows = compareAttempts(earlier, { metrics });
   const compareCard = rows.length ? h('section', { class: 'card compare-card' },
     h('h2', { class: 'card-title' }, previous ? t('beforeNow') : t('earlierNow')),
@@ -218,6 +245,7 @@ export function renderFeedback(app, params, root) {
         chip(pauseRatio(metrics.pauses, metrics.fillerCount) ?? '–', t('pauseRatio'),
           (pauseRatio(metrics.pauses, metrics.fillerCount) ?? 0) >= 0.75 ? 'good' : 'ok'))
       : null,
+    shadowCard,
     compareCard,
     pbCard,
     modifier ? (() => {
@@ -281,7 +309,8 @@ export function renderFeedback(app, params, root) {
     }, reply ? `📨 ${t('challengeReply')}` : `📨 ${t('challengeSend')}`);
   }
 
-  if (app.state.settings.apiKey) askCoach();
+  if (shadowRound) coachCard.remove(); // the overlap card is the feedback; no API call
+  else if (app.state.settings.apiKey) askCoach();
   else renderCoach('nokey');
 
   return () => {

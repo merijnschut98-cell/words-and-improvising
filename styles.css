@@ -484,3 +484,7 @@ input[type="password"], input[type="text"], select {
 
 /* Under pressure */
 .cue-text.interrupt { color: var(--bad); animation: pop 0.35s ease-out; }
+
+/* Shadowing */
+.shadow-model { font-style: italic; }
+.shadow-card .btn { width: 100%; margin-top: 6px; }

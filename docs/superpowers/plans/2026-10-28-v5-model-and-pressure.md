@@ -30,8 +30,8 @@ Not doing: a separate difficulty auto-tuner (drill levels already move with rati
 
 On feedback, when the coach returned a stronger version: a button "Shadow it" starts a short round where the stronger version is shown (and spoken with TTS if available), then he says it from memory; then a second round "now in your own words" with the original prompt. Feedback for the shadow round compares words used from the model (overlap %) and fillers; the own-words round compares with the first attempt (existing compare card).
 
-- [ ] Tests (pure): `modelOverlap(model, transcript) -> 0..1` on content words; ignores fillers; empty → 0.
-- [ ] Implement (reuse round flow with `prompt.extra.model`; no XP double-counting: shadow rounds give normal XP but do not update spaced reviews or bests). Commit: `Add shadow-then-repeat`.
+- [x] Tests (pure): `modelOverlap(model, transcript) -> 0..1` on content words; ignores fillers; empty → 0.
+- [x] Implement (reuse round flow with `prompt.extra.model`; no XP double-counting: shadow rounds give normal XP but do not update spaced reviews or bests). Commit: `Add shadow-then-repeat`.
 
 ### Task 2: Word budget
 

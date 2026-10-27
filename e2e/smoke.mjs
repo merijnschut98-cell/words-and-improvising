@@ -631,7 +631,9 @@ await step('frames drill: pick a frame at level 3, then see its steps', async ()
   await page.locator('.frame-name').waitFor();
   if ((await page.locator('.prompt-card .scaffold .chip').count()) < 3) throw new Error('frame steps missing');
   await shot('37-frame-steps');
-  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  // Level-3 prep is only 6 s; the full-page screenshot can use most of it.
+  const ready3 = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready3.isVisible().catch(() => false)) await ready3.click().catch(() => {});
   await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
   await page.waitForTimeout(1300);
   await page.getByRole('button', { name: 'Klaar' }).click();
@@ -995,6 +997,43 @@ await step('under pressure: interruption, then a checklist on the reply', async 
   if ((await page.locator('.pressure-card p').count()) < 4) throw new Error('checklist missing');
   await page.locator('.pressure-card').scrollIntoViewIfNeeded();
   await shot('49-pressure-feedback');
+});
+
+await step('shadow the stronger version, then say it in your own words', async () => {
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, apiKey: 'sk-test' };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 30, questions: 1 } });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.getByRole('button', { name: /Naspreken/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.shadow-model').waitFor();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  if (await page.locator('.shadow-model').isVisible()) throw new Error('model should be hidden while he repeats it');
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.shadow-card').waitFor();
+  if (await page.locator('.coach-card').count()) throw new Error('shadow rounds should not call the coach');
+  await shot('50-shadow');
+  await page.getByRole('button', { name: /Nu in je eigen woorden/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const readyOwn = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await readyOwn.isVisible().catch(() => false)) await readyOwn.click();
+  await page.locator('.phase-label.go').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.compare-card', { hasText: 'Vorige → nu' }).waitFor();
 });
 
 await step('too-short answer offers retry', async () => {
