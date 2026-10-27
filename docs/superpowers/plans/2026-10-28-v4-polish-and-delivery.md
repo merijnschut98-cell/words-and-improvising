@@ -72,7 +72,7 @@ Measure first load on the live site (Playwright, throttled "Fast 3G"): total byt
 
 ### Task 9 (Thu 5 – Fri 6 Nov): Final review + fixes + note
 
-- [ ] Fresh whole-branch review subagent (most capable model) over the v4 range with this Review Focus; one fix pass for Critical/Important (re-grade by effect), each with a failing test first; ledger minors.
+- [x] Fresh whole-branch review subagent (most capable model) over the v4 range with this Review Focus; one fix pass for Critical/Important (re-grade by effect), each with a failing test first; ledger minors.
 - [ ] Short note to Merijn: what is new since last week and one suggestion for using it in his real week.
 
 Slack (Sat 7 – Sun 8 Nov): v4 deferred minors; then the daily check-in disables itself.

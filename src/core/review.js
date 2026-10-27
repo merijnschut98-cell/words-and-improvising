@@ -29,7 +29,9 @@ function drillAverages(entries) {
     .map(([drill, rs]) => ({ drill, avg: round1(avg(rs)) }));
 }
 
-export function weeklyReview(history, now = Date.now()) {
+export function weeklyReview(all, now = Date.now()) {
+  // Skip odd entries (e.g. from a hand-edited backup): no metrics, no timestamp.
+  const history = (all || []).filter((e) => e && typeof e.ts === 'number' && e.metrics);
   const thisWeek = history.filter((e) => now - e.ts < WEEK);
   const lastWeek = history.filter((e) => now - e.ts >= WEEK && now - e.ts < 2 * WEEK);
 

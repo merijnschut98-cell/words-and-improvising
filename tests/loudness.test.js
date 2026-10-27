@@ -43,3 +43,11 @@ test('silence is ignored for variety and length', () => {
 test('non-numbers are ignored', () => {
   assert.equal(loudnessStats([...flat(49), NaN, undefined]), null);
 });
+
+test('the voice meter switches itself off when recognition breaks while it runs', async () => {
+  const { meterShouldTurnOff } = await import('../src/core/loudness.js');
+  assert.equal(meterShouldTurnOff('network', true), true);
+  assert.equal(meterShouldTurnOff('audio-capture', true), true);
+  assert.equal(meterShouldTurnOff('not-allowed', true), false); // mic denied: not the meter's fault
+  assert.equal(meterShouldTurnOff('network', false), false);
+});

@@ -57,6 +57,7 @@ const FAKE_SDK = `
       }
       if (req.output_config.format.schema.properties.question) {
         window.__hqReq = req;
+        window.__hqCount = (window.__hqCount || 0) + 1;
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ question: 'En wat als de plantmanager zegt dat er geen tijd voor is?' }) }] };
       }
       if (req.output_config.format.schema.properties.reply) {
@@ -907,6 +908,55 @@ await step('word budget counter turns red over the cap', async () => {
   await shot('47-budget');
   await page.getByRole('button', { name: 'Klaar' }).click();
   await page.locator('.modifier-note, .stats').first().waitFor();
+});
+
+await step('voice variety switches itself off when recognition breaks', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, voiceStats: true };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.evaluate(async () => {
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }) } });
+    window.AudioContext = class { createAnalyser() { return { fftSize: 2048, getFloatTimeDomainData() {} }; } createMediaStreamSource() { return { connect() {} }; } close() { return Promise.resolve(); } };
+    window.__speechMode = 'network';
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 30, questions: 1 } });
+  });
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.note', { hasText: 'Stemvariatie staat nu uit' }).waitFor({ timeout: 5000 });
+  const on = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).settings.voiceStats);
+  await page.evaluate(() => { window.__speechMode = 'ok'; });
+  if (on !== false) throw new Error('voiceStats should have switched itself off');
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
+await step('a double tap on rehearse starts the rehearsal once', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, apiKey: 'sk-test' };
+    st.events = [{ id: 'dt', type: 'client', date: '2099-01-02', text: 'Dubbel getikt', reflection: null, shareWithCoach: true }];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  const rounds = await page.evaluate(async () => {
+    const { startRehearsal } = await import('./src/ui/realweek.js');
+    let n = 0;
+    const go = window.__app.go.bind(window.__app);
+    window.__app.go = (screen, params) => { if (screen === 'round') n += 1; return go(screen, params); };
+    const ev = window.__app.state.events[0];
+    const before = window.__hqCount || 0;
+    await Promise.all([startRehearsal(window.__app, ev), startRehearsal(window.__app, ev)]);
+    window.__app.go = go;
+    return { n, requests: (window.__hqCount || 0) - before };
+  });
+  if (rounds.n !== 1 || rounds.requests !== 1) throw new Error(`rehearsal: ${JSON.stringify(rounds)}`);
+  await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
 await step('too-short answer offers retry', async () => {

@@ -21,7 +21,7 @@ import { renderConversation } from './ui/conversation.js';
 import { renderWelcome } from './ui/welcome.js';
 import { renderRealweek } from './ui/realweek.js';
 import { renderWeekly } from './ui/weekly.js';
-import { needsWeeklyReset, weekFocus } from './core/weekly.js';
+import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 
 const SCREENS = {
   home: renderHome,
@@ -201,7 +201,18 @@ export const app = {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     root.replaceChildren();
     root.dataset.screen = screen;
-    const result = SCREENS[screen](app, params, root);
+    let result;
+    try {
+      result = SCREENS[screen](app, params, root);
+    } catch (err) {
+      // The weekly screen sits in front of Home: never let it become a dead end.
+      if (screen !== 'weekly') throw err;
+      console.error(err);
+      app.setState(chooseFocus(app.state, new Date(), null));
+      root.replaceChildren();
+      root.dataset.screen = 'home';
+      result = SCREENS.home(app, {}, root);
+    }
     if (typeof result === 'function') cleanup = result;
     // Move focus to the new screen's heading so screen readers announce it.
     const heading = root.querySelector('h1, .round-title');

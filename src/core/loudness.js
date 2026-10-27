@@ -29,3 +29,7 @@ export function loudnessStats(samples) {
   const last = mean(voiced.slice(voiced.length - third));
   return { variety, trailingOff: last < TRAIL_RATIO * first };
 }
+
+// When speech recognition fails while the meter is running (and not because
+// the mic was denied), the second mic stream is the likely cause: switch off.
+export const meterShouldTurnOff = (code, meterActive) => !!meterActive && code !== 'not-allowed' && code !== 'service-not-allowed';

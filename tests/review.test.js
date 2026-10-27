@@ -72,3 +72,9 @@ test('focus: stretch when everything is fine', () => {
   const h = Array.from({ length: 6 }, (_, i) => entry(i, { rating: 4 }));
   assert.deepEqual(weeklyReview(h, now).focus, { kind: 'stretch', value: null });
 });
+
+test('weeklyReview tolerates odd history entries without metrics', () => {
+  const now = Date.now();
+  const r = weeklyReview([{ ts: now - 1000 }, { ts: now - 2000, drill: 'minute', metrics: { words: 50, fillerRate: 2, wpm: 120, fillers: {} }, durationS: 60, rating: 3 }], now);
+  assert.equal(r.thisWeek.rounds, 1);
+});

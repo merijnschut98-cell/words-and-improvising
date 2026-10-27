@@ -9,7 +9,19 @@ export function fmtDay(app, day) {
   return new Intl.DateTimeFormat(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'short' }).format(new Date(y, m - 1, d));
 }
 
+let starting = false; // a second tap while the coach writes must not start twice
+
 export async function startRehearsal(app, shown) {
+  if (starting) return;
+  starting = true;
+  try {
+    await startRehearsalOnce(app, shown);
+  } finally {
+    starting = false;
+  }
+}
+
+async function startRehearsalOnce(app, shown) {
   // Use the saved event, not the copy captured when the screen was drawn
   // (the share switch may have changed since).
   const event = (app.state.events || []).find((x) => x.id === shown.id) || shown;
@@ -94,7 +106,7 @@ export function renderRealweek(app, _params, root) {
               }),
               h('span', {}, t('rwShare'))) : null),
           h('div', { class: 'rw-actions' },
-            h('button', { class: 'btn btn-primary small', onclick: () => startRehearsal(app, e) }, `🎙 ${t('rwRehearse')}`),
+            h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, e); } }, `🎙 ${t('rwRehearse')}`),
             h('button', {
               class: 'icon-btn', 'aria-label': t('rwDelete'),
               onclick: () => { app.setState({ ...app.state, events: events.filter((x) => x.id !== e.id) }); app.go('realweek'); },

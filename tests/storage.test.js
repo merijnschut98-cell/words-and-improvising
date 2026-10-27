@@ -109,7 +109,7 @@ test('parseBackup rejects the wrong shape', () => {
 
 test('parseBackup accepts an exported state and summarises it', () => {
   const st = { ...defaultState(), xp: 340, days: { '2026-01-01': 2, '2026-01-02': 0, '2026-01-03': 1 } };
-  st.history = [{ drill: 'rapid' }, { drill: 'bridge' }, { drill: 'minute' }];
+  st.history = ['rapid', 'bridge', 'minute'].map((drill, i) => ({ ts: 1000 + i, drill, metrics: { words: 40, fillerRate: 2 } }));
   const res = parseBackup(JSON.stringify(st));
   assert.equal(res.ok, true);
   assert.deepEqual(res.summary, { rounds: 3, days: 2, xp: 340 });
@@ -126,7 +126,7 @@ test('parseBackup merges an older export with defaults', () => {
 test('importBackup keeps the previous value and writes the new one', () => {
   const old = JSON.stringify({ ...defaultState(), xp: 1 });
   const b = fakeBackend({ [KEY]: old });
-  const next = { ...defaultState(), xp: 999, history: [{ drill: 'rapid' }] };
+  const next = { ...defaultState(), xp: 999, history: [{ ts: 1, drill: 'rapid', metrics: { words: 30, fillerRate: 1 } }] };
   const res = importBackup(b, JSON.stringify(next));
   assert.equal(res.ok, true);
   assert.equal(b.data[`${KEY}:backup`], old);
@@ -149,4 +149,13 @@ test('importBackup with a bad file writes nothing', () => {
   assert.deepEqual(importBackup(b, JSON.stringify({ hello: 1 })), { ok: false, error: 'shape' });
   assert.deepEqual(Object.keys(b.data), [KEY]);
   assert.equal(b.data[KEY], old);
+});
+
+test('import drops history entries without a timestamp or metrics', async () => {
+  const { parseBackup } = await import('../src/core/storage.js');
+  const good = { ts: 1, drill: 'minute', metrics: { words: 50, fillerRate: 2 } };
+  const r = parseBackup(JSON.stringify({ xp: 5, history: [good, { ts: 2 }, { metrics: {} }, null, 'x'] }));
+  assert.equal(r.ok, true);
+  assert.equal(r.state.history.length, 1);
+  assert.equal(r.summary.rounds, 1);
 });

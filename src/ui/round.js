@@ -1,3 +1,4 @@
+import { meterShouldTurnOff } from '../core/loudness.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
@@ -361,6 +362,11 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         if (finished) return;
         st.mode = 'type';
         st.notice = code === 'not-allowed' || code === 'service-not-allowed' ? t('micDenied') : t('speechFailed');
+        if (meterShouldTurnOff(code, !!meter)) {
+          // The extra mic stream for voice variety probably broke recognition on this phone.
+          app.updateSettings({ voiceStats: false });
+          st.notice = `${st.notice} ${t('voiceStatsOff')}`;
+        }
         switchToTyping();
       },
     });

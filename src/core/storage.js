@@ -80,6 +80,8 @@ export function parseBackup(text) {
     return { ok: false, error: 'shape' };
   }
   const state = load({ getItem: () => text, setItem() {} });
+  // Keep only rounds that look like rounds: an object with a timestamp and metrics.
+  state.history = state.history.filter((e) => isObject(e) && typeof e.ts === 'number' && isObject(e.metrics));
   const days = Object.values(state.days).filter((n) => n > 0).length;
   return { ok: true, state, summary: { rounds: state.history.length, days, xp: state.xp } };
 }

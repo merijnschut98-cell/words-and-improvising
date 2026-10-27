@@ -72,3 +72,13 @@ From feedback: "Ask a friend to rate this" makes a link `?r=<drill>.<promptId>.<
 
 - [ ] Fresh whole-branch review subagent (most capable model) over the v5 range with this Review Focus; one fix pass (re-grade by effect, failing test first); ledger minors.
 - [ ] Short note to Merijn: what is new and one way to use it this week.
+
+### Deferred minors from the v4 final review (take alongside a task touching the same file, or on a slack run)
+
+- Weekly reset asks every existing player once right after deploy, whatever the weekday.
+- `ui.pendingWelcome` is never cleared after the welcome.
+- Import reports success even if saving fails; the streak is not reconciled after import.
+- The review card gradient hard-codes teal instead of following the theme (`color-mix` with `--accent-dark`).
+- "0 rounds … <1 minutes" wording when the last 7 days are empty.
+- Duplicate e2e screenshot numbers (45-rw-share, 45-voice).
+- The voice meter may trigger a mic permission prompt mid-answer on some devices; say so in the help text.

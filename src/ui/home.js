@@ -63,7 +63,7 @@ function realWeekCard(app) {
     return h('div', { class: 'card rw-home' },
       h('div', {}, h('p', { class: 'muted small' }, `📅 ${t('rwComing')} · ${EVENT_ICON[next.type]} ${fmtDay(app, next.date)}`), h('p', { class: 'rw-text' }, next.text)),
       h('div', { class: 'rw-actions' },
-        h('button', { class: 'btn btn-primary small', onclick: () => startRehearsal(app, next) }, `🎙 ${t('rwRehearse')}`),
+        h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, next); } }, `🎙 ${t('rwRehearse')}`),
         h('button', { class: 'btn btn-ghost small', onclick: open }, t('rwAll'))));
   }
   return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, `📅 ${t('rwInvite')}`);
