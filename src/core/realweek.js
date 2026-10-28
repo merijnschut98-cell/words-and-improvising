@@ -42,9 +42,32 @@ export function addEvent(events, { type, date, text }, id) {
 export const upcoming = (events, today) => (events || []).filter((e) => e.date >= today && !e.reflection).sort(byDate);
 export const needsReflection = (events, today) => (events || []).filter((e) => e.date < today && !e.reflection).sort(byDate);
 
-export function reflect(events, id, { rating, next }) {
+// Skills he can say he used in real life; the first four match a drill.
+export const SKILLS = ['frame', 'followUp', 'pressure', 'pause', 'other'];
+const SKILL_DRILL = { frame: 'frame', followUp: 'followUp', pressure: 'pressure', pause: 'pause' };
+const DAY = 86400000;
+
+export function reflect(events, id, { rating, next, skills }) {
   const r = Math.min(5, Math.max(1, Math.round(Number(rating) || 3)));
-  return events.map((e) => (e.id === id ? { ...e, reflection: { rating: r, next: clean(next, NOTE_MAX) } } : e));
+  const sk = [...new Set((Array.isArray(skills) ? skills : []).filter((s) => SKILLS.includes(s)))];
+  return events.map((e) => (e.id === id ? { ...e, reflection: { rating: r, next: clean(next, NOTE_MAX), skills: sk } } : e));
+}
+
+// Last 7 days: rounds of the matching drill vs real events where he used the
+// skill. Only skills with any count, most active first (ties in SKILLS order).
+export function skillUse(events, history, now) {
+  const recent = (ts) => ts <= now && now - ts < 7 * DAY;
+  const dayMs = (d) => {
+    const [y, m, dd] = String(d).split('-').map(Number);
+    return new Date(y, m - 1, dd).getTime();
+  };
+  const reflections = (events || []).filter((e) => e && e.reflection && Array.isArray(e.reflection.skills) && recent(dayMs(e.date)));
+  return SKILLS.map((skill) => ({
+    skill,
+    practised: SKILL_DRILL[skill] ? (history || []).filter((h) => h && h.drill === SKILL_DRILL[skill] && recent(h.ts)).length : 0,
+    used: reflections.filter((e) => e.reflection.skills.includes(skill)).length,
+  })).filter((x) => x.practised || x.used)
+    .sort((a, b) => (b.practised + b.used) - (a.practised + a.used));
 }
 
 function hashIndex(s, n) {

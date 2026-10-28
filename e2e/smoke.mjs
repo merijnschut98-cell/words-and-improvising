@@ -1130,6 +1130,91 @@ await step('today card recommends one round; the drill grid folds away and remem
   await page.getByRole('button', { name: 'Sluiten' }).click();
 });
 
+await step('your words: filler movers and a vague-word swap on Progress, vague words marked in feedback', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const base = st.history[0];
+    const w = (n) => Array(n).fill('woord').join(' ');
+    const mk = (days, transcript, fillers, lang = 'nl') => ({ ...base, ts: Date.now() - days * 86400000, lang, transcript,
+      metrics: { ...base.metrics, words: transcript.split(' ').length, fillers } });
+    st.history = [
+      mk(1, `${w(96)} ding ding dingen heel`, { eh: 2, dus: 4, nou: 1 }),
+      mk(20, w(100), { eh: 6, dus: 4, nou: 3 }),
+      mk(2, 'the thing thing thing stuff', { um: 9 }, 'en'),
+      ...st.history,
+    ];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  const card = page.locator('.words-card');
+  await card.waitFor();
+  await card.locator('.week-row', { hasText: '“eh”' }).filter({ hasText: '▼' }).waitFor();
+  await card.locator('.words-vague', { hasText: '“ding”' }).waitFor();
+  await card.getByText('noem het ding').waitFor();
+  await card.getByText('Spraakherkenning mist soms stopwoorden').waitFor();
+  if (await card.getByText('thing').count()) throw new Error('English vague word shown on the Dutch card');
+  await card.scrollIntoViewIfNeeded();
+  await shot('53-your-words');
+  // A typed round with vague and repeated words.
+  await page.goto(BASE);
+  await page.locator('.drill-minute').click();
+  await page.getByRole('radio', { name: /Typen/ }).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.locator('textarea').fill('Het proces is een <b>ding</b>. Het proces moet sneller, eh, en het proces wordt dan sneller. Dat ding is best wel sneller, gewoon. Dingetje.');
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.transcript').first().waitFor();
+  const vague = await page.locator('.transcript .vague').allInnerTexts();
+  if (vague.join('|') !== 'ding|ding|best wel') throw new Error(`vague marks: ${vague.join('|')}`);
+  const marks = await page.locator('.transcript mark').allInnerTexts();
+  if (marks.join('|') !== 'eh|gewoon') throw new Error(`filler marks: ${marks.join('|')}`);
+  if (await page.locator('.transcript b').count()) throw new Error('transcript was interpreted as HTML');
+  await page.locator('.leaning', { hasText: 'Je leunt op: proces ×3, sneller ×3' }).waitFor();
+  await page.locator('.transcript').first().scrollIntoViewIfNeeded();
+  await shot('54-vague-feedback');
+});
+
+await step('skills used in real life: chips on the reflection, counts on the weekly reset', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const d = new Date(Date.now() - 86400000);
+    const day = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    st.events = [{ id: 'sk1', type: 'client', date: day, text: 'Klantgesprek over de 5S-audit', reflection: null }];
+    st.history = [{ ...st.history[0], drill: 'frame', ts: Date.now() - 3600000 }, ...st.history];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.rw-card').click();
+  await page.locator('.rw-reflect .rate-btn').nth(3).click();
+  await page.locator('.skill-chip', { hasText: 'Spreekstructuren' }).click();
+  await page.locator('.skill-chip', { hasText: 'Doorvragen' }).click();
+  await page.locator('.skill-chip', { hasText: 'Doorvragen' }).click(); // tap again: off
+  await page.locator('.skill-chip', { hasText: 'Iets anders' }).click();
+  if (await page.locator('.skill-chip[aria-pressed="true"]').count() !== 2) throw new Error('chip toggle state');
+  await shot('55-reflect-skills');
+  await page.getByRole('button', { name: 'Opslaan' }).click();
+  const skills = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).events.find((e) => e.id === 'sk1').reflection.skills);
+  if (skills.join(',') !== 'frame,other') throw new Error(`stored skills: ${skills}`);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.weekly = { week: '2000-W01', focus: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  const card = page.locator('.screen.weekly .skill-use');
+  await card.waitFor();
+  await card.locator('.skill-use-line', { hasText: /Spreekstructuren: \d+× geoefend, 1× echt gebruikt/ }).waitFor();
+  await card.locator('.skill-use-line', { hasText: 'Iets anders: 1× echt gebruikt' }).waitFor();
+  if (await card.locator('.skill-use-line').count() > 3) throw new Error('more than three lines');
+  await shot('56-weekly-skills');
+  await page.getByRole('button', { name: /Laat het meebewegen/ }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

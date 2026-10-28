@@ -56,3 +56,59 @@ export function fillerTrend(history, now, lang) {
     return { word, now: nowR, before, change: round1(nowR - before) };
   }).sort((x, y) => Math.abs(y.change) - Math.abs(x.change));
 }
+
+// One concrete swap per vague word (shown on Progress).
+export const SWAPS = {
+  en: {
+    thing: 'name the thing: “the planning board”', things: 'name them: “the three delays”', stuff: 'say what it is: “the spare parts”',
+    'kind of': 'just drop it', 'sort of': 'just drop it', basically: 'just drop it',
+    really: 'pick a stronger word: “crucial”', very: 'pick a stronger word: “urgent”',
+  },
+  nl: {
+    ding: 'noem het ding: “het planbord”', dingen: 'noem ze: “de drie vertragingen”', eigenlijk: 'laat het weg', gewoon: 'laat het weg',
+    'soort van': 'laat het weg', 'best wel': 'zeg hoeveel: “flink”', heel: 'kies een sterker woord: “cruciaal”', echt: 'kies een sterker woord: “dringend”',
+  },
+};
+
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Split the plain parts of highlightFillers() segments further: vague words
+// of this language get {vague: true}. Filler segments stay as they are.
+export function markVague(segs, lang) {
+  const list = [...(VAGUE[lang] || [])].sort((a, b) => b.length - a.length);
+  if (!list.length) return segs || [];
+  const alts = list.map((p) => p.split(' ').map(esc).join('\\s+')).join('|');
+  const re = new RegExp(`(?<![\\p{L}\\p{N}'’-])(?:${alts})(?![\\p{L}\\p{N}'’-])`, 'giu');
+  const out = [];
+  for (const s of segs || []) {
+    if (s.filler) { out.push(s); continue; }
+    let last = 0;
+    for (const m of s.text.matchAll(re)) {
+      if (m.index > last) out.push({ text: s.text.slice(last, m.index), filler: false });
+      out.push({ text: m[0], filler: false, vague: true });
+      last = m.index + m[0].length;
+    }
+    if (last < s.text.length) out.push({ text: s.text.slice(last), filler: false });
+  }
+  return out;
+}
+
+// For the Progress card: up to three filler movers (or current rates when
+// there is no earlier fortnight) and the most-used vague word in the last
+// 14 days, this language only. null when there is nothing to show.
+export function wordsSummary(history, now, lang) {
+  const inSpan = (e, from, to) => e && e.lang === lang && now - e.ts >= from * DAY && now - e.ts < to * DAY;
+  const hasBefore = (history || []).some((e) => inSpan(e, 14, 28) && e.metrics && e.metrics.words > 0);
+  const trend = fillerTrend(history, now, lang);
+  const movers = hasBefore
+    ? trend.filter((m) => m.change !== 0).slice(0, 3)
+    : trend.filter((m) => m.now > 0).sort((a, b) => b.now - a.now).slice(0, 3);
+  const counts = {};
+  for (const e of (history || []).filter((x) => inSpan(x, 0, 14))) {
+    for (const [w, n] of Object.entries(vagueWords(e.transcript, lang))) counts[w] = (counts[w] || 0) + n;
+  }
+  const top = Object.entries(counts).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))[0];
+  const vague = top ? { word: top[0], count: top[1] } : null;
+  if (!movers.length && !vague) return null;
+  return { movers, hasBefore, vague };
+}

@@ -46,15 +46,15 @@ A "What's coming up?" sheet (client pushback, stand-up update, presenting an A3,
 
 From transcripts: fillers per 100 words per filler word (last 14 days vs the 14 before), vague words per language (en: thing, stuff, things, kind of, sort of, basically, really, very; nl: ding, dingen, eigenlijk, gewoon, soort van, best wel, heel, echt), repeated-word top 3 per round. Progress card "Your words" with the three biggest movers and one swap suggestion; feedback shows vague words highlighted like fillers (different colour). Note in the UI that speech-to-text may drop fillers.
 
-- [ ] Tests: per-filler rates and trend; vague words per language only; repeated words ignore stop words.
-- [ ] Implement. Commit: `Track fillers per word and vague words`.
+- [x] Tests: per-filler rates and trend; vague words per language only; repeated words ignore stop words.
+- [x] Implement. Commit: `Track fillers per word and vague words`.
 
 ### Task 5: Did it in real life
 
 After a real-week event's reflection, one extra tap: which skill did you use (frames, follow-up questions, staying calm under pressure, pausing instead of fillers, other). Weekly reset shows "practised vs used in real life" counts; the Today pick nudges the skill he used least.
 
-- [ ] Tests: skill stored; weekly counts; nudge.
-- [ ] Implement. Commit: `Log skills used in real life`.
+- [x] Tests: skill stored; weekly counts; nudge.
+- [x] Implement. Commit: `Log skills used in real life`.
 
 ### Task 6: A 4-week programme (optional path)
 

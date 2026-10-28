@@ -68,3 +68,37 @@ test('setShare toggles one event only', async () => {
   const es = setShare([{ id: 'a' }, { id: 'b' }], 'b', true);
   assert.deepEqual(es.map((e) => !!e.shareWithCoach), [false, true]);
 });
+
+test('reflect stores only known skills, deduped; none gives an empty list', async () => {
+  const { SKILLS } = await import('../src/core/realweek.js');
+  assert.deepEqual(SKILLS, ['frame', 'followUp', 'pressure', 'pause', 'other']);
+  const base = [{ ...ev(), id: 'a', reflection: null }];
+  const es = reflect(base, 'a', { rating: 4, next: '', skills: ['pause', 'frame', 'pause', 'juggling', 42, null] });
+  assert.deepEqual(es[0].reflection.skills, ['pause', 'frame']);
+  assert.deepEqual(reflect(base, 'a', { rating: 4, next: '' })[0].reflection.skills, []);
+  assert.deepEqual(reflect(base, 'a', { rating: 4, next: '', skills: 'frame' })[0].reflection.skills, []);
+});
+
+test('skillUse: rounds of the matching drill vs reflections that used it, last 7 days', async () => {
+  const { skillUse } = await import('../src/core/realweek.js');
+  const DAY = 86400000;
+  const now = new Date(2026, 9, 27, 12).getTime();
+  const r = (daysAgo, drill) => ({ ts: now - daysAgo * DAY, drill });
+  const history = [r(1, 'frame'), r(2, 'frame'), r(6, 'frame'), r(8, 'frame'), r(1, 'pause'), r(3, 'minute'), r(-1, 'frame')];
+  const refl = (id, date, skills) => ({ ...ev(), id, date, reflection: { rating: 4, next: '', skills } });
+  const events = [
+    refl('a', '2026-10-26', ['frame', 'followUp']),
+    refl('b', '2026-10-23', ['frame']),
+    refl('c', '2026-10-15', ['frame', 'pressure']), // too long ago
+    refl('d', '2026-10-29', ['pause']), // in the future
+    { ...ev(), id: 'e', date: '2026-10-25', reflection: { rating: 3, next: '' } }, // older reflection without skills
+    { ...ev(), id: 'f', date: '2026-10-25', reflection: null },
+  ];
+  assert.deepEqual(skillUse(events, history, now), [
+    { skill: 'frame', practised: 3, used: 2 },
+    { skill: 'followUp', practised: 0, used: 1 },
+    { skill: 'pause', practised: 1, used: 0 },
+  ]);
+  assert.deepEqual(skillUse([], [], now), []);
+  assert.deepEqual(skillUse(undefined, undefined, now), []);
+});

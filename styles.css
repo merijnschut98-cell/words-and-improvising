@@ -203,6 +203,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .stat.bad b { color: var(--bad); }
 .transcript { margin: 0; white-space: pre-wrap; }
 .transcript mark { background: var(--mark); color: inherit; border-radius: 4px; padding: 0 2px; }
+/* Vague words: a different colour from fillers, plus an underline (not colour alone). */
+.vague { background: color-mix(in srgb, var(--accent) 18%, transparent); border-radius: 4px; padding: 0 2px;
+  text-decoration: underline dashed var(--accent-dark); text-underline-offset: 3px; }
+.words-note p { margin: 6px 0 0; }
+.words-vague { margin: 10px 0 2px; font-weight: 600; }
+.words-card .week-row span::first-letter { text-transform: none; }
 .good-text { color: var(--good); font-weight: 700; margin: 0; }
 audio { width: 100%; margin-top: 4px; }
 .rate-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
@@ -461,6 +467,9 @@ input[type="password"], input[type="text"], select {
 .pace-bar small { color: var(--muted); font-size: 11px; }
 .fix-options { display: flex; flex-wrap: wrap; gap: 8px; }
 .fix-options .on, .fix-own .on { border-color: var(--primary); }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--card)); }
+.skill-chip.on::before { content: '✓ '; }
 .fix-own { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
 .fix-own .text-input { margin: 0; }
 .fix-chip { margin: 6px 0 0; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--primary) 12%, transparent); font-weight: 700; }

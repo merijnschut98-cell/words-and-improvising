@@ -1,5 +1,5 @@
 import { h } from './dom.js';
-import { EVENT_TYPES, addEvent, upcoming, needsReflection, reflect, rehearsalPrompts, setShare, runHardQuestion } from '../core/realweek.js';
+import { EVENT_TYPES, SKILLS, addEvent, upcoming, needsReflection, reflect, rehearsalPrompts, setShare, runHardQuestion } from '../core/realweek.js';
 
 export const EVENT_ICON = { client: '🤝', presentation: '📊', teamtalk: '🏟️', networking: '🥂', other: '📌' };
 
@@ -50,10 +50,20 @@ function reflectCard(app, e) {
     onclick: () => { rating = n; btns.forEach((b, i) => b.classList.toggle('on', i + 1 === n)); save.disabled = false; },
   }, h('b', {}, n)));
   const note = h('input', { type: 'text', maxlength: 160, placeholder: t('rwNextPh'), class: 'text-input' });
+  // Optional: which skill he used in the real moment (any number of chips).
+  const skills = new Set();
+  const skillChips = SKILLS.map((sk) => h('button', {
+    class: 'btn btn-ghost small skill-chip', 'aria-pressed': 'false',
+    onclick: (ev) => {
+      if (skills.has(sk)) skills.delete(sk); else skills.add(sk);
+      ev.currentTarget.classList.toggle('on', skills.has(sk));
+      ev.currentTarget.setAttribute('aria-pressed', String(skills.has(sk)));
+    },
+  }, t(`skill_${sk}`)));
   const save = h('button', {
     class: 'btn btn-primary', disabled: true,
     onclick: () => {
-      app.setState({ ...app.state, events: reflect(app.state.events, e.id, { rating, next: note.value }) });
+      app.setState({ ...app.state, events: reflect(app.state.events, e.id, { rating, next: note.value, skills: [...skills] }) });
       app.toast(`✓ ${t('rwSaved')}`);
       app.go('realweek');
     },
@@ -67,6 +77,8 @@ function reflectCard(app, e) {
     h('p', { class: 'rw-text' }, e.text),
     h('p', {}, h('b', {}, t('rwHowWent'))),
     h('div', { class: 'rate-row' }, btns),
+    h('p', { class: 'field-label' }, t('rwSkillsQ')),
+    h('div', { class: 'skill-chips' }, skillChips),
     h('label', { class: 'field-label' }, t('rwNext')), note, save);
 }
 

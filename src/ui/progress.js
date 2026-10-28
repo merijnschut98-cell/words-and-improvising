@@ -8,6 +8,7 @@ import { masteryOf } from '../core/mastery.js';
 import { masteryBadge } from './home.js';
 import { drawShareCard, shareFile } from '../core/share.js';
 import { friendAverages } from '../core/friend.js';
+import { wordsSummary, SWAPS } from '../core/words.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
 function delta(now, prev, lowerIsBetter) {
@@ -158,6 +159,25 @@ function reflectionsCard(app) {
       e.reflection.next ? h('p', { class: 'muted small' }, `→ ${e.reflection.next}`) : null)));
 }
 
+// Your words: which fillers are moving, and one vague word with a swap.
+function wordsCard(app) {
+  const t = app.t;
+  const s = wordsSummary(app.state.history, Date.now(), app.lang);
+  if (!s) return null;
+  const per = t('wordsPer100');
+  const swap = s.vague && (SWAPS[app.lang] || {})[s.vague.word];
+  return h('section', { class: 'card words-card' },
+    h('h2', { class: 'card-title' }, t('wordsTitle')),
+    s.movers.length ? h('p', { class: 'muted small' }, s.hasBefore ? t('wordsMovers') : t('wordsNow')) : null,
+    s.movers.map((m) => (s.hasBefore
+      ? h('div', { class: 'week-row' }, h('span', {}, `“${m.word}”`),
+        h('b', { class: m.change < 0 ? 'good' : 'bad' }, `${m.before} → ${m.now} ${per} ${m.change < 0 ? '▼' : '▲'}`))
+      : h('div', { class: 'week-row' }, h('span', {}, `“${m.word}”`), h('b', {}, `${m.now} ${per}`)))),
+    s.vague ? h('p', { class: 'words-vague' }, t('wordsVague', s.vague.word, s.vague.count)) : null,
+    swap ? h('p', { class: 'small' }, h('b', {}, `${t('wordsSwap')}: `), `“${s.vague.word}” → ${swap}`) : null,
+    h('p', { class: 'muted small' }, t('wordsSttNote')));
+}
+
 function calibrationCard(app) {
   const t = app.t;
   const c = calibration(app.state.history);
@@ -219,6 +239,7 @@ export function renderProgress(app, _params, root) {
       journeyCard(app),
       skillCard(app),
       calibrationCard(app),
+      wordsCard(app),
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('fillersTrend')),
         sparkline(recent.map((e) => e.metrics.fillerRate), { invert: true }),
