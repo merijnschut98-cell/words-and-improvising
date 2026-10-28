@@ -4,6 +4,7 @@ import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progre
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
 import { say, hush, voiceSupported, speakCapMs } from '../core/voice.js';
 import { prepSecondsUsed } from '../core/quests.js';
+import TIPS from '../content/tips.js';
 import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
@@ -250,6 +251,22 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   }
   const prepFor = () => applyModifierTiming(timing, st.modifier).prepS;
 
+  // 30-second micro-lesson: open the first time for a drill, then folded away.
+  function tipBlock() {
+    const tip = TIPS.tips[prompt.drill] && TIPS.tips[prompt.drill][app.lang];
+    if (!tip) return null;
+    // Decide once per round, so redrawing the intro (speak/type toggle) keeps it open.
+    if (st.tipOpen === undefined) {
+      st.tipOpen = !((app.state.ui || {}).tipsSeen || {})[prompt.drill];
+      if (st.tipOpen) app.setState({ ...app.state, ui: { ...(app.state.ui || {}), tipsSeen: { ...((app.state.ui || {}).tipsSeen || {}), [prompt.drill]: true } } });
+    }
+    return h('details', { class: 'tip', open: st.tipOpen },
+      h('summary', {}, `💡 ${t('tipTitle')}`),
+      h('p', {}, tip.tip),
+      h('p', { class: 'tip-before' }, h('b', {}, `${t('tipBefore')}: `), tip.before),
+      h('p', { class: 'tip-after' }, h('b', {}, `${t('tipAfter')}: `), tip.after));
+  }
+
   function showIntro() {
     const toggle = h('div', { class: 'segmented', role: 'radiogroup' },
       ['speak', 'type'].map((m) => h('button', {
@@ -265,6 +282,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
         prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
+        tipBlock(),
         (app.state.ui || {}).nextFix ? h('p', { class: 'fix-chip' }, `🔧 ${t('yourFix')}: ${app.state.ui.nextFix.text}`) : null,
         prompt.reason && prompt.reason !== 'random' ? h('p', { class: 'reason-chip' }, t(`reason_${prompt.reason}`)) : null,
         st.modifier ? h('div', { class: 'modifier-chip' },

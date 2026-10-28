@@ -39,8 +39,8 @@ Home leads with one card: the single recommended round for now, with a reason ("
 
 A "What's coming up?" sheet (client pushback, stand-up update, presenting an A3, small talk at the club, a hard message to a teammate, networking, explaining a Lean tool) maps each situation to 2–3 drills. Every drill gets a short tip with a before/after example (≤ 50 words), shown on the intro the first time (then collapsed under "Tip"). Content via a content subagent, both languages.
 
-- [ ] Tests: every drill has a tip in both languages; every situation maps to existing drills; parity.
-- [ ] Implement. Commit: `Add situation finder and micro-lessons`.
+- [x] Tests: every drill has a tip in both languages; every situation maps to existing drills; parity.
+- [x] Implement. Commit: `Add situation finder and micro-lessons`.
 
 ### Task 4: Words: per-filler trend and vague words
 

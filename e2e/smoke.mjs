@@ -1215,6 +1215,28 @@ await step('skills used in real life: chips on the reflection, counts on the wee
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('situation finder and a first-time tip on the intro', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.ui = { ...(st.ui || {}), tipsSeen: {} };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('details.finder > summary').click();
+  await page.locator('.finder-row', { hasText: 'Klant gaat tegen je idee in' }).waitFor();
+  await shot('57-finder');
+  await page.locator('.finder-row', { hasText: 'Klant gaat tegen je idee in' }).getByRole('button', { name: /PREP/ }).click();
+  await page.locator('details.tip[open]').waitFor();
+  await page.getByRole('radio', { name: /Typen/ }).click();
+  await page.locator('details.tip[open]').waitFor(); // stays open after the redraw
+  await shot('58-tip');
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+  await page.locator('.drill-prep').click();
+  if (await page.locator('details.tip[open]').count()) throw new Error('tip should be folded the second time');
+  await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
 await step('too-short answer offers retry', async () => {
   await page.goto(BASE);
   await page.locator('.drill-rapid').click();

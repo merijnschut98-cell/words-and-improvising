@@ -523,3 +523,14 @@ input[type="password"], input[type="text"], select {
 details.choose > summary { cursor: pointer; list-style: none; padding: 10px 0; }
 details.choose > summary::before { content: '▸ '; }
 details.choose[open] > summary::before { content: '▾ '; }
+
+/* Micro-lessons and situation finder */
+details.tip { margin: 8px 0 0; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 8%, transparent); text-align: left; }
+details.tip summary { cursor: pointer; font-weight: 800; }
+details.tip p { margin: 6px 0 0; }
+.tip-before { color: var(--muted); }
+details.finder summary { cursor: pointer; font-weight: 800; }
+.finder-row { padding: 8px 0; }
+.finder-row + .finder-row { border-top: 1px solid var(--line); }
+.finder-label { margin: 0 0 6px; font-weight: 700; }
+.finder-drills { display: flex; flex-wrap: wrap; gap: 6px; }

@@ -2,6 +2,7 @@ import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf } from '../core/mastery.js';
 import { todayPick } from '../core/today.js';
+import TIPS from '../content/tips.js';
 import { upcoming, needsReflection } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
@@ -93,6 +94,18 @@ function todayCard(app) {
     h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${t('todayGo')}`));
 }
 
+// "What's coming up?": real situations, each mapped to the drills that train it.
+function situationFinder(app) {
+  const t = app.t;
+  return h('details', { class: 'card finder' },
+    h('summary', {}, `🧭 ${t('finderTitle')}`),
+    TIPS.situations.map((sit) => h('div', { class: 'finder-row' },
+      h('p', { class: 'finder-label' }, sit[app.lang] || sit.en),
+      h('div', { class: 'finder-drills' }, sit.drills.map((d) => h('button', {
+        class: 'btn btn-ghost small', onclick: () => app.startDrill(d),
+      }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)))))));
+}
+
 export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
@@ -125,6 +138,7 @@ export function renderHome(app, _params, root) {
         h('div', { class: 'bar' }, h('div', { class: 'fill', style: { width: `${(100 * lv.into) / lv.needed}%` } })),
         weekStrip(app)),
       todayCard(app),
+      situationFinder(app),
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
