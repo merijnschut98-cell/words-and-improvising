@@ -2,6 +2,8 @@
 // (autonomy), or keeps it adaptive. Pure.
 import { isoWeekKey } from './boss.js';
 import { weakestDrill } from './lesson.js';
+import { programmeFocus } from './programme.js';
+import { dayKey } from './progress.js';
 
 // Only players with history from an earlier week get asked.
 export function needsWeeklyReset(state, now = new Date()) {
@@ -22,7 +24,9 @@ export function weekSuggestions(state) {
 
 export const chooseFocus = (state, now, drill) => ({ ...state, weekly: { week: isoWeekKey(now), focus: drill || null } });
 
+// His own choice for the week wins; otherwise the programme's theme, if running.
 export function weekFocus(state, now = new Date()) {
   const w = state.weekly;
-  return w && w.week === isoWeekKey(now) ? w.focus : null;
+  if (w && w.week === isoWeekKey(now) && w.focus) return w.focus;
+  return programmeFocus(state, dayKey(now));
 }

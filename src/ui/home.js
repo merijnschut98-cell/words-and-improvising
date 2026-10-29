@@ -2,6 +2,7 @@ import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf } from '../core/mastery.js';
 import { todayPick } from '../core/today.js';
+import { programmeWeek, PROGRAMME } from '../core/programme.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
@@ -87,8 +88,9 @@ function todayCard(app) {
     app.session = null;
     app.go('round', { prompt: pick.prompt });
   };
+  const week = programmeWeek(app.state, app.today());
   return h('section', { class: 'card today-card' },
-    h('p', { class: 'today-label' }, t('todayNext')),
+    h('p', { class: 'today-label' }, week ? `${t('todayNext')} · ${t('progWeek', week, t(`progTheme_${PROGRAMME[week - 1].id}`))}` : t('todayNext')),
     h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)),
     h('p', { class: 'muted small' }, why),
     h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${t('todayGo')}`));

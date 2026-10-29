@@ -25,6 +25,7 @@ export function defaultState() {
     reviews: {},
     events: [],
     weekly: { week: null, focus: null },
+    programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
   };

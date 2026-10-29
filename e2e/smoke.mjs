@@ -487,6 +487,24 @@ await step('progress shows skill radar and calibration', async () => {
   await shot('25-radar');
 });
 
+await step('4-week programme: start plays the baseline, Today shows the week, stop clears it', async () => {
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.locator('.programme-card').scrollIntoViewIfNeeded();
+  await shot('25b-programme-off');
+  await page.getByRole('button', { name: 'Start het programma' }).click();
+  await page.getByText('Nulmeting: doe het gewoon', { exact: false }).waitFor();
+  const prog = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).programme);
+  if (!prog || !prog.baseline || !prog.baseline.promptId) throw new Error('baseline not stored');
+  await page.goto(BASE);
+  await page.locator('.today-label', { hasText: 'Week 1 van 4' }).waitFor();
+  await page.getByRole('button', { name: /Voortgang/ }).click();
+  await page.locator('.programme-card', { hasText: 'helderheid en structuur' }).scrollIntoViewIfNeeded();
+  await shot('25c-programme-on');
+  await page.getByRole('button', { name: 'Stop het programma' }).click();
+  await page.getByRole('button', { name: 'Start het programma' }).waitFor();
+});
+
 await step('journey path and an unlocked theme', async () => {
   await page.goto(BASE);
   await page.evaluate(() => {

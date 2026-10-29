@@ -60,8 +60,8 @@ After a real-week event's reflection, one extra tap: which skill did you use (fr
 
 Opt-in from Progress: four weekly themes (1 clarity and structure, 2 small talk and rapport, 3 captain voice and assertiveness, 4 pressure and transfer). Starting it sets each week's focus automatically (overridable in the weekly reset), shows "Week 2 of 4" on the Today card, and ends with a re-take of the week-1 baseline prompt with a before/after comparison.
 
-- [ ] Tests: week index from start date; focus per week; baseline prompt stored and re-offered in week 4.
-- [ ] Implement. Commit: `Add an optional 4-week programme`.
+- [x] Tests: week index from start date; focus per week; baseline prompt stored and re-offered in week 4.
+- [x] Implement. Commit: `Add an optional 4-week programme`.
 
 ### Task 7: Final review + note
 

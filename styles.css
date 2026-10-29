@@ -534,3 +534,4 @@ details.finder summary { cursor: pointer; font-weight: 800; }
 .finder-row + .finder-row { border-top: 1px solid var(--line); }
 .finder-label { margin: 0 0 6px; font-weight: 700; }
 .finder-drills { display: flex; flex-wrap: wrap; gap: 6px; }
+.prog-stop { margin-top: 10px; }
