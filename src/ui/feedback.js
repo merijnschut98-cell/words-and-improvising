@@ -14,6 +14,7 @@ import { pressureChecks } from '../core/pressure.js';
 import { modelOverlap } from '../core/shadow.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 import { rateLink, askFriend, newNonce } from '../core/friend.js';
+import { baselineEntry } from '../core/programme.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -243,7 +244,10 @@ export function renderFeedback(app, params, root) {
   // Before -> now, when this round is a retry of the same prompt.
   const LABEL = { fillerRate: 'm_fillers', wpm: 'm_wpm', words: 'm_words', pauses: 'pausesLabel' };
   // A spaced re-attempt compares with the last time he did this prompt.
-  const earlier = previous || (shadowRound ? null : app.state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang)) || null;
+  // The week-4 programme re-take compares with the baseline, not last week.
+  const bl = app.state.programme && app.state.programme.baseline;
+  const base = bl && bl.promptId === prompt.id && !shadowRound ? baselineEntry(app.state) : null;
+  const earlier = previous || (base && base !== app.state.history[0] ? base : null) || (shadowRound ? null : app.state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === app.lang)) || null;
   const rows = compareAttempts(earlier, { metrics });
   const compareCard = rows.length ? h('section', { class: 'card compare-card' },
     h('h2', { class: 'card-title' }, previous ? t('beforeNow') : t('earlierNow')),

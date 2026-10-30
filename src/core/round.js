@@ -45,7 +45,9 @@ export function applyRound(state, round, today, now) {
     modifier: round.modifier || null,
     xp,
   });
-  if (!shadow) next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
+  // The programme baseline is re-taken in week 4, not reviewed in between.
+  const baseline = state.programme && state.programme.baseline && state.programme.baseline.promptId === prompt.id;
+  if (!shadow && !baseline) next = { ...next, reviews: scheduleReview(next.reviews || {}, { promptId: prompt.id, drill, lang: round.lang }, today, wasImproved(earlier, { metrics, rating: round.rating, coach })) };
   const b = shadow ? { bests: next.bests || {}, newBests: [] } : updateBests(next.bests || {}, next.history[0]);
   next = { ...next, bests: b.bests };
   const q = applyQuests(next, { ...round, ts: now }, today);

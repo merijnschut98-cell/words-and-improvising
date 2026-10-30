@@ -49,3 +49,11 @@ test('the chosen focus leads the lesson for that week only', () => {
   assert.equal(new Set(ls.map((p) => p.drill)).size, 3);
   assert.equal(weekFocus(s, new Date(2026, 10, 9, 9)), null);
 });
+
+test('weekSuggestions never names an owned drill as weakest', async () => {
+  const day = (n) => new Date(2026, 9, 20 + n, 9).getTime();
+  const own = [0, 2, 4].map((n) => ({ ts: day(n), drill: 'prep', rating: 4, coach: null, metrics: { words: 50, fillerRate: 2 } }));
+  const bad = [0, 1].map((n) => ({ ts: day(n), drill: 'prep', rating: 1, coach: null, metrics: { words: 50, fillerRate: 9 } }));
+  const s = { ...defaultState(), history: [...own, ...bad, h('debate', 3, new Date(day(3))), h('debate', 3, new Date(day(4)))] };
+  assert.notEqual(weekSuggestions(s, new Date(day(5)))[0], 'prep');
+});

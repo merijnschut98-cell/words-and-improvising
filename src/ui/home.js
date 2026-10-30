@@ -1,6 +1,6 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
-import { masteryOf } from '../core/mastery.js';
+import { masteryOf, ownedDrills } from '../core/mastery.js';
 import { todayPick } from '../core/today.js';
 import { programmeWeek, PROGRAMME } from '../core/programme.js';
 import TIPS from '../content/tips.js';
@@ -118,7 +118,7 @@ export function renderHome(app, _params, root) {
   const doneToday = (s.days[today] || 0) >= 3;
   // Gentle, once a day: the streak broke, but the total never resets.
   const dueCount = app.dueReviews().length;
-  const weak = weekFocus(s, new Date()) || weakestDrill(s.history);
+  const weak = weekFocus(s, new Date()) || weakestDrill(s.history, ownedDrills(s.history));
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 

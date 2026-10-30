@@ -79,3 +79,8 @@ test('wordsSummary: no earlier period shows current rates; no data gives null', 
   assert.equal(wordsSummary([e(1, 'goed gedaan vandaag', 'nl')], NOW, 'nl'), null);
   assert.equal(wordsSummary([e(40, 'het ding', 'nl', { eh: 1 })], NOW, 'nl'), null);
 });
+
+test('wordsSummary: a word that is also a filler is not reported again as vague', () => {
+  const s = wordsSummary([e(1, 'gewoon gewoon gewoon eigenlijk ding', 'nl', { gewoon: 3 })], NOW, 'nl');
+  assert.deepEqual(s.vague, { word: 'ding', count: 1 });
+});

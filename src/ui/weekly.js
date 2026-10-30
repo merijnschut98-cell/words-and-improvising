@@ -3,6 +3,7 @@ import { weeklyReview } from '../core/review.js';
 import { weekSuggestions, chooseFocus, weekFocus } from '../core/weekly.js';
 import { weakestDrill } from '../core/lesson.js';
 import { skillUse } from '../core/realweek.js';
+import { ownedDrills } from '../core/mastery.js';
 
 // Weekly reset: last week in three lines, then he picks next week's focus.
 export function renderWeekly(app, _params, root) {
@@ -19,7 +20,7 @@ export function renderWeekly(app, _params, root) {
   const moment = lastReflection ? t('weekLearned', lastReflection.reflection.next)
     : r.best ? t('weekBest', `${DRILL_ICON[r.best.drill]} ${t(`drill_${r.best.drill}`)}`) : null;
   const uses = skillUse(s.events, s.history, now.getTime());
-  const weak = weakestDrill(s.history);
+  const weak = weakestDrill(s.history, ownedDrills(s.history, now.getTime()));
   const current = weekFocus(s, now);
   const pick = (drill) => {
     app.setState(chooseFocus(app.state, new Date(), drill));
@@ -44,7 +45,7 @@ export function renderWeekly(app, _params, root) {
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('weekPick')),
         h('p', { class: 'muted small' }, t('weekPickHelp')),
-        h('div', { class: 'week-options' }, weekSuggestions(s).map((d) => h('button', {
+        h('div', { class: 'week-options' }, weekSuggestions(s, now).map((d) => h('button', {
           class: `btn btn-ghost week-option${current === d ? ' on' : ''}`,
           onclick: () => pick(d),
         }, h('span', { class: 'week-icon', 'aria-hidden': 'true' }, DRILL_ICON[d]),

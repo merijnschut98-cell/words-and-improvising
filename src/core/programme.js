@@ -36,6 +36,16 @@ export function programmeFocus(state, today) {
 }
 
 // Week 4: re-take the baseline round, once.
+// His first attempt at the baseline since the start: the "before" for the week-4 re-take.
+export function baselineEntry(state) {
+  const p = state.programme;
+  if (!p || !p.baseline) return null;
+  const from = toUTC(p.start);
+  const hits = (state.history || []).filter((e) => !e.shadow && e.promptId === p.baseline.promptId
+    && e.lang === p.baseline.lang && toUTC(dayKey(new Date(e.ts))) >= from);
+  return hits.length ? hits[hits.length - 1] : null;
+}
+
 export function baselineDue(state, today) {
   if (programmeWeek(state, today) !== WEEKS) return false;
   const p = state.programme;

@@ -1,7 +1,7 @@
 // Word-level feedback: which fillers are moving, vague words, and words he
 // leans on. Speech-to-text drops some fillers, so treat filler numbers as a
 // lower bound. Pure.
-import { tokenize } from './metrics.js';
+import { tokenize, FILLERS } from './metrics.js';
 
 const DAY = 86400000;
 const round1 = (x) => Math.round(x * 10) / 10;
@@ -105,7 +105,8 @@ export function wordsSummary(history, now, lang) {
     : trend.filter((m) => m.now > 0).sort((a, b) => b.now - a.now).slice(0, 3);
   const counts = {};
   for (const e of (history || []).filter((x) => inSpan(x, 0, 14))) {
-    for (const [w, n] of Object.entries(vagueWords(e.transcript, lang))) counts[w] = (counts[w] || 0) + n;
+    // Words that are also fillers already show in the filler rows.
+    for (const [w, n] of Object.entries(vagueWords(e.transcript, lang))) if (!(FILLERS[lang] || []).includes(w)) counts[w] = (counts[w] || 0) + n;
   }
   const top = Object.entries(counts).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))[0];
   const vague = top ? { word: top[0], count: top[1] } : null;
