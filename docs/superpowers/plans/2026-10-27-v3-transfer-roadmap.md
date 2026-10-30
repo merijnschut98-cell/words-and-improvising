@@ -69,7 +69,7 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 
 - [x] Tests: system prompt contains the anchors; frame passed through.
 - [x] Implement. Commit: `Anchor coach scores to a rubric`.
-- [ ] Key day: if Merijn reports a coach, key or model problem, that comes first. The live key is only on his phone; never ask him to paste it anywhere.
+- [x] Key day: if Merijn reports a coach, key or model problem, that comes first. The live key is only on his phone; never ask him to paste it anywhere.
 
 ### Task 5 (Sat 31 Oct): Captain & work scenarios
 
@@ -102,7 +102,7 @@ Avoid: more XP types/badges/leaderboards; live coaching mid-speech (splits atten
 ### Task 9 (Thu 5 – Fri 6 Nov): Final review + fixes
 
 - [x] Whole-branch review by a fresh subagent (most capable model) over the v3 range, with this plan's Review Focus. One fix pass for Critical/Important findings, each with a failing test first. Ledger minors.
-- [ ] Short note to Merijn: what's new, and one suggestion for how to use it in his real week.
+- [x] Short note to Merijn: what's new, and one suggestion for how to use it in his real week.
 
 Slack (Sat 7 – Sun 8 Nov): content top-up (topics, opinions, small talk to ≥ 60 each), accessibility pass (labels, focus order, contrast in the Night theme). Then the daily check-in disables itself.
 

@@ -66,7 +66,7 @@ Opt-in from Progress: four weekly themes (1 clarity and structure, 2 small talk 
 ### Task 7: Final review + note
 
 - [ ] Fresh whole-branch review subagent (most capable model) over the v6 range with this Review Focus; one fix pass (re-grade by effect, failing test first); ledger minors.
-- [ ] Short note to Merijn.
+- [x] Short note to Merijn.
 
 ### Deferred minors from the v5 final review (ride along with tasks touching the same files)
 
