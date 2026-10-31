@@ -93,7 +93,7 @@ function todayCard(app) {
     h('p', { class: 'today-label' }, week ? `${t('todayNext')} · ${t('progWeek', week, t(`progTheme_${PROGRAMME[week - 1].id}`))}` : t('todayNext')),
     h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)),
     h('p', { class: 'muted small' }, why),
-    h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${t('todayGo')}`));
+    h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${pick.reason === 'event' ? t('todayRehearse') : t('todayGo')}`));
 }
 
 // "What's coming up?": real situations, each mapped to the drills that train it.

@@ -79,3 +79,13 @@ test('keeping it adaptive in the weekly reset overrides the programme focus', as
   assert.equal(weekFocus(s, now), 'followUp');
   assert.equal(weekFocus(chooseFocus(s, now, null), now), null);
 });
+
+test('a week-4 attempt in the other language does not clear the baseline', () => {
+  const s = started();
+  const b = s.programme.baseline;
+  const [day, ts] = dayAt(22);
+  const other = { ...s, history: [{ ts, drill: b.drill, promptId: b.promptId, lang: 'en', metrics: { words: 50 } }] };
+  assert.equal(baselineDue(other, day), true);
+  const same = { ...s, history: [{ ts, drill: b.drill, promptId: b.promptId, lang: 'nl', metrics: { words: 50 } }] };
+  assert.equal(baselineDue(same, day), false);
+});

@@ -1202,7 +1202,8 @@ await step('skills used in real life: chips on the reflection, counts on the wee
     const d = new Date(Date.now() - 86400000);
     const day = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     st.events = [{ id: 'sk1', type: 'client', date: day, text: 'Klantgesprek over de 5S-audit', reflection: null }];
-    st.history = [{ ...st.history[0], drill: 'frame', ts: Date.now() - 3600000 }, ...st.history];
+    // Only one skill-mapped round this week, so the card's top 3 does not depend on earlier steps.
+    st.history = [{ ...st.history[0], drill: 'frame', ts: Date.now() - 3600000 }, ...st.history.filter((e) => !['frame', 'followUp', 'pressure', 'pause'].includes(e.drill))];
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.goto(BASE);

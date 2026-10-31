@@ -172,3 +172,13 @@ test('import drops history entries without a timestamp or metrics', async () => 
   assert.equal(r.state.history.length, 1);
   assert.equal(r.summary.rounds, 1);
 });
+
+test('programme defaults to null and a malformed value is dropped', () => {
+  assert.equal(load(fakeBackend()).programme, null);
+  const bad = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), programme: 'x' }) }));
+  assert.equal(bad.programme, null);
+  const half = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), programme: { start: '2026-10-29' } }) }));
+  assert.equal(half.programme, null);
+  const ok = { start: '2026-10-29', baseline: { drill: 'minute', promptId: 'topic:t01', lang: 'nl' } };
+  assert.deepEqual(load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), programme: ok }) })).programme, ok);
+});

@@ -67,3 +67,11 @@ test('the word budget is never handed to multi-part or spoken-cue drills', async
   for (const d of ['rapid', 'yesAnd', 'expert', 'listen', 'followUp', 'pressure']) assert.notEqual(pick(budgetRng(), 5, true, d), 'budget', d);
   assert.equal(pick(budgetRng(), 5, true, 'minute'), 'budget');
 });
+
+test('modifier pick is uniform over the pool, also without budget', () => {
+  const rng = seededRng(7);
+  const counts = {};
+  for (let i = 0; i < 7000; i++) { const m = pickModifier(rng, 3, true, 'rapid'); counts[m] = (counts[m] || 0) + 1; }
+  assert.equal(counts.budget, undefined);
+  for (const m of MODIFIERS.filter((x) => x !== 'budget')) assert.ok(counts[m] > 850 && counts[m] < 1150, `${m}: ${counts[m]}`);
+});

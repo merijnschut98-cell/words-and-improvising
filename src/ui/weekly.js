@@ -22,6 +22,9 @@ export function renderWeekly(app, _params, root) {
   const uses = skillUse(s.events, s.history, now.getTime());
   const weak = weakestDrill(s.history, ownedDrills(s.history, now.getTime()));
   const current = weekFocus(s, now);
+  // The programme's drill for this week is shown (and marked) even when not suggested.
+  const suggested = weekSuggestions(s, now);
+  const options = current && !suggested.includes(current) ? [current, ...suggested.slice(0, 2)] : suggested;
   const pick = (drill) => {
     app.setState(chooseFocus(app.state, new Date(), drill));
     app.toast(drill ? `🎯 ${t('weekChosen', t(`drill_${drill}`))}` : `✓ ${t('weekAdaptive')}`);
@@ -45,10 +48,10 @@ export function renderWeekly(app, _params, root) {
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('weekPick')),
         h('p', { class: 'muted small' }, t('weekPickHelp')),
-        h('div', { class: 'week-options' }, weekSuggestions(s, now).map((d) => h('button', {
+        h('div', { class: 'week-options' }, options.map((d) => h('button', {
           class: `btn btn-ghost week-option${current === d ? ' on' : ''}`,
           onclick: () => pick(d),
         }, h('span', { class: 'week-icon', 'aria-hidden': 'true' }, DRILL_ICON[d]),
-        h('span', {}, h('b', {}, t(`drill_${d}`)), h('small', { class: 'muted' }, d === weak ? t('weekWhyWeak') : t(`weekWhy_${d}`)))))),
+        h('span', {}, h('b', {}, t(`drill_${d}`)), h('small', { class: 'muted' }, d === weak ? t('weekWhyWeak') : d === current && !suggested.includes(d) ? t('weekWhyProg') : t(`weekWhy_${d}`)))))),
         h('button', { class: 'btn btn-ghost', onclick: () => pick(null) }, `🔀 ${t('weekKeepAdaptive')}`))));
 }

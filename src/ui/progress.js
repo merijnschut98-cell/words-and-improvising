@@ -5,7 +5,7 @@ import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
 import { masteryOf } from '../core/mastery.js';
-import { PROGRAMME, startProgramme, stopProgramme, programmeWeek } from '../core/programme.js';
+import { PROGRAMME, startProgramme, stopProgramme, programmeWeek, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
 import { masteryBadge } from './home.js';
 import { drawShareCard, shareFile } from '../core/share.js';
@@ -197,9 +197,11 @@ function programmeCard(app) {
           const next = startProgramme(app.state, today, app.content, app.lang, Math.random);
           app.setState(next);
           const b = next.programme.baseline;
+          const prompt = challengePrompt({ drill: b.drill, promptId: b.promptId }, app.content);
+          if (!prompt) { app.go('progress'); return; }
           app.session = null;
           app.toast(`🗓️ ${t('progStarted')}`);
-          app.go('round', { prompt: challengePrompt({ drill: b.drill, promptId: b.promptId }, app.content), notice: t('progBaseline'), modifier: null });
+          app.go('round', { prompt, notice: t('progBaseline'), modifier: null });
         },
       }, finished ? t('progRestart') : t('progStart')));
   }
@@ -207,6 +209,7 @@ function programmeCard(app) {
   return h('section', { class: 'card programme-card' },
     h('h2', { class: 'card-title' }, t('progTitle')),
     h('p', {}, h('b', {}, t('progWeek', week, t(`progTheme_${theme.id}`)))),
+    baselineDue(s, today) && s.programme.baseline.lang !== app.lang ? h('p', { class: 'note' }, t('progOtherLang')) : null,
     h('div', { class: 'finder-drills' }, theme.drills.map((d) => h('button', { class: 'btn btn-ghost small', onclick: () => app.startDrill(d) },
       h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)))),
     h('button', { class: 'btn btn-ghost small prog-stop', onclick: () => { app.setState(stopProgramme(app.state)); app.go('progress'); } }, t('progStop')));

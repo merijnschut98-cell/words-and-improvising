@@ -61,6 +61,8 @@ export function load(backend) {
   if (!isObject(merged.reviews)) merged.reviews = {};
   if (!isObject(merged.friendAsks)) merged.friendAsks = {};
   if (!isObject(merged.friendRatings)) merged.friendRatings = {};
+  const pr = merged.programme;
+  if (!(isObject(pr) && typeof pr.start === 'string' && isObject(pr.baseline) && typeof pr.baseline.promptId === 'string')) merged.programme = null;
   return merged;
 }
 

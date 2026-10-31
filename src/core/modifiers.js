@@ -15,7 +15,7 @@ const CHANCE = 0.25;
 export function pickModifier(rng, level, force = false, drill = null) {
   if (!force && (level < 2 || rng() >= CHANCE)) return null;
   const pool = MODIFIERS.filter((m) => !(m === 'budget' && NO_BUDGET.includes(drill)));
-  return pool[Math.floor(rng() * MODIFIERS.length) % pool.length];
+  return pool[Math.floor(rng() * pool.length)];
 }
 
 export function applyModifierTiming(timing, id) {

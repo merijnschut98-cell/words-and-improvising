@@ -50,6 +50,6 @@ export function baselineDue(state, today) {
   if (programmeWeek(state, today) !== WEEKS) return false;
   const p = state.programme;
   const week4 = toUTC(p.start) + (WEEKS - 1) * 7 * 86400000;
-  return !(state.history || []).some((e) => !e.shadow && e.promptId === p.baseline.promptId
+  return !(state.history || []).some((e) => !e.shadow && e.promptId === p.baseline.promptId && e.lang === p.baseline.lang
     && toUTC(dayKey(new Date(e.ts))) >= week4);
 }
