@@ -1,4 +1,5 @@
 import { meterShouldTurnOff } from '../core/loudness.js';
+import { roundSeconds, replyAfter } from '../core/pressure.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
@@ -197,7 +198,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   const t = app.t;
   const settings = app.state.settings;
   const timing = timingOverride || prompt.timing || drillTiming(prompt.drill, app.state.drillLevels[prompt.drill]);
-  const totalS = timing.answerS * timing.questions;
+  const totalS = roundSeconds(timing, prompt);
   const st = {
     mode: speechSupported ? settings.mode : 'type',
     notice: [notice, speechSupported || settings.mode !== 'speak' ? '' : t('noSpeech')].filter(Boolean).join(' '),
@@ -589,7 +590,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (disposed) return;
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } }
       : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } }
-        : prompt.drill === 'pressure' && !(prompt.extra && prompt.extra.shadow) ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? transcript.slice(st.itemBase[1].length).trim() : '' } } : prompt;
+        : prompt.drill === 'pressure' && !(prompt.extra && prompt.extra.shadow) ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? replyAfter(st.itemBase[1], transcript) : '' } } : prompt;
     app.go('feedback', {
       pauses: st.mode === 'speak' && !cued ? countPauses(st.growth) : null,
       pace: cued || st.mode !== 'speak' ? null : { timeline: st.timeline, start: st.answerStart },

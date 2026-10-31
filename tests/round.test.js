@@ -87,3 +87,12 @@ test('his own "what would I change" line is stored on the round, trimmed and cap
   const c = applyRound(defaultState(), round(), '2026-10-27', 1000);
   assert.equal('selfFix' in c.state.history[0], false);
 });
+
+test('a shadow round does not store the whole original prompt in history', () => {
+  const sp = { ...prompt, extra: { shadow: true, model: 'm', cues: ['m'], itemS: null, original: prompt, firstMetrics: { words: 3 }, firstDuration: 30 } };
+  const { state } = applyRound(defaultState(), round({ prompt: sp }), '2026-10-23', 1000);
+  const x = state.history[0].extra;
+  assert.equal(x.shadow, true);
+  assert.equal(x.model, 'm');
+  for (const k of ['original', 'firstMetrics', 'firstDuration']) assert.equal(k in x, false, k);
+});

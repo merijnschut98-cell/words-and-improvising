@@ -488,7 +488,7 @@ input[type="password"], input[type="text"], select {
 
 /* Word budget */
 .budget-chip { display: inline-block; margin: 0 0 8px; padding: 6px 12px; border-radius: 999px; font-weight: 800; background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.budget-chip.near { background: color-mix(in srgb, var(--ok) 22%, transparent); }
+.budget-chip.near { background: color-mix(in srgb, #f59e0b 28%, transparent); }
 .budget-chip.over { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }
 
 /* Under pressure */

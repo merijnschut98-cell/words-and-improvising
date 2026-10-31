@@ -33,7 +33,7 @@ export function applyRound(state, round, today, now) {
     ...(prompt.extra && prompt.extra.shadow ? { shadow: true } : {}),
     ...(String(round.selfFix || '').trim() ? { selfFix: String(round.selfFix).trim().slice(0, 140) } : {}),
     body: prompt.body,
-    extra: prompt.extra,
+    extra: shadowExtra(prompt.extra),
     lang: round.lang,
     mode: round.mode,
     durationS: Math.round(durationS),
@@ -62,4 +62,11 @@ export function applyRound(state, round, today, now) {
     newBests: b.newBests,
     newMilestones: reached,
   };
+}
+
+// A shadow round keeps its model text but not the prompt it came from.
+function shadowExtra(extra) {
+  if (!extra || !extra.shadow) return extra;
+  const { original, firstMetrics, firstDuration, ...rest } = extra;
+  return rest;
 }

@@ -192,7 +192,7 @@ export function renderFeedback(app, params, root) {
         h('div', { class: 'coach-line work' }, h('b', {}, `${t('improvement')}: `), d.improvement),
         // Self-explanation first: what would he change? Then the model opens.
         !st.selfDone ? (() => {
-          const input = h('input', { type: 'text', maxlength: 140, class: 'text-input', placeholder: t('selfFixPh') });
+          const input = h('input', { type: 'text', maxlength: 140, class: 'text-input', placeholder: t('selfFixPh'), onkeydown: (ev) => { if (ev.key === 'Enter') reveal(true); } });
           const reveal = (save) => {
             st.selfFix = save ? input.value.trim().slice(0, 140) : '';
             st.selfDone = true;
@@ -319,8 +319,8 @@ export function renderFeedback(app, params, root) {
     coachCard,
     fixCard,
     h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
-    challengeBtn(),
-    friendBtn(),
+    shadowRound ? null : challengeBtn(),
+    shadowRound ? null : friendBtn(),
     nextBtn,
   );
 

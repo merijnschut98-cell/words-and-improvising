@@ -40,3 +40,20 @@ test('checklist in Dutch, and an empty answer passes nothing', () => {
     { acknowledged: true, short: true, checkedBack: true });
   assert.deepEqual(pressureChecks('', 'nl'), { acknowledged: false, short: false, checkedBack: false });
 });
+
+test('a pressure round lasts the sum of its items, not the generic answer time', async () => {
+  const { roundSeconds } = await import('../src/core/pressure.js');
+  const p = makePrompt('pressure', nl, seededRng(3), {});
+  assert.equal(roundSeconds(drillTiming('pressure', 1), p), p.extra.itemS[0] + p.extra.itemS[1]);
+  const plain = { drill: 'minute', extra: {} };
+  assert.equal(roundSeconds({ answerS: 60, questions: 1 }, plain), 60);
+  assert.equal(roundSeconds({ answerS: 10, questions: 3 }, { drill: 'rapid', extra: { itemS: null } }), 30);
+});
+
+test('the reply after an interruption survives edits to the earlier text', async () => {
+  const { replyAfter } = await import('../src/core/pressure.js');
+  assert.equal(replyAfter('my opening', 'my opening fair point, in short yes'), 'fair point, in short yes');
+  assert.equal(replyAfter('my openin', 'my opening, fixed. fair point'), 'g, fixed. fair point');
+  assert.equal(replyAfter('', 'just the reply'), 'just the reply');
+  assert.equal(replyAfter('abc', 'abc'), '');
+});

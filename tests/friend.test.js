@@ -84,3 +84,10 @@ test('friendAverages: null without ratings, else one-decimal means', () => {
   s = addFriendRating(s, { nonce: 'bbb222', clear: 5, structured: 3, confident: 4, line: '' }, 4);
   assert.deepEqual(friendAverages(s), { n: 2, clear: 4.5, structured: 2.5, confident: 4.5 });
 });
+
+test('asking a friend prunes asks older than 30 days', () => {
+  const DAY = 86400000, now = 100 * DAY;
+  const s = { ...defaultState(), friendAsks: { old: { promptId: 'x', drill: 'minute', ts: now - 31 * DAY }, fresh: { promptId: 'y', drill: 'minute', ts: now - 2 * DAY } } };
+  const next = askFriend(s, { id: 'z', drill: 'minute' }, 'new', now);
+  assert.deepEqual(Object.keys(next.friendAsks).sort(), ['fresh', 'new']);
+});

@@ -28,3 +28,20 @@ export function pressureChecks(answer, lang) {
     checkedBack: hasPhrase(toks.slice(-8), CHECK_BACK[L]),
   };
 }
+
+// A pressure round lasts its two items (opening + reply); other rounds use the drill timing.
+export function roundSeconds(timing, prompt) {
+  const items = prompt && prompt.extra && prompt.extra.itemS;
+  if (Array.isArray(items) && items.every((n) => typeof n === 'number')) return items.reduce((a, b) => a + b, 0);
+  return timing.answerS * timing.questions;
+}
+
+// The reply is what follows the text he had when the interruption came. When
+// typing he may have edited that earlier text, so cut at the common prefix.
+export function replyAfter(base, text) {
+  const a = base || '';
+  const b = text || '';
+  let i = 0;
+  while (i < a.length && i < b.length && a[i] === b[i]) i += 1;
+  return b.slice(i).trim();
+}

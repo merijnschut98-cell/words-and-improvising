@@ -29,8 +29,8 @@ Seven items (ledger of v6, "Final: minor (deferred)"):
 - `baselineDue` should check the entry's language.
 - The weekly screen should highlight the programme drill.
 
-- [ ] Tests: `baselineDue` language; `programme` coerced to null when not an object; modifier pick is uniform over the pool (seeded counts).
-- [ ] Implement. Commit: `Fix v6 review minors`.
+- [x] Tests: `baselineDue` language; `programme` coerced to null when not an object; modifier pick is uniform over the pool (seeded counts).
+- [x] Implement. Commit: `Fix v6 review minors`.
 
 ### Task 2: v5 review minors
 
@@ -43,8 +43,8 @@ Seven items (end of the v6 plan):
 - Shadow feedback should not offer Challenge or Ask a friend.
 - Enter on the self-fix input should act like the button.
 
-- [ ] Tests: pressure target equals the sum of items; `friendAsks` pruning by age; shadow entry stripped.
-- [ ] Implement. Commit: `Fix v5 review minors`.
+- [x] Tests: pressure target equals the sum of items; `friendAsks` pruning by age; shadow entry stripped.
+- [x] Implement. Commit: `Fix v5 review minors`.
 
 ### Task 3: v4 review minors
 

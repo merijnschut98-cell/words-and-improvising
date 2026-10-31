@@ -86,7 +86,9 @@ const own = (o, k) => o !== null && typeof o === 'object' && Object.hasOwn(o, k)
 
 // Remembers that this phone asked a friend about this prompt.
 export function askFriend(state, prompt, nonce, ts) {
-  return { ...state, friendAsks: { ...(state.friendAsks || {}), [nonce]: { promptId: prompt.id, drill: prompt.drill, ts } } };
+  // Asks nobody answered within 30 days are dropped.
+  const kept = Object.fromEntries(Object.entries(state.friendAsks || {}).filter(([, a]) => a && ts - a.ts <= 30 * 86400000));
+  return { ...state, friendAsks: { ...kept, [nonce]: { promptId: prompt.id, drill: prompt.drill, ts } } };
 }
 
 // Stores a friend's answer; an answer to a request this phone never made is ignored (same state back).
