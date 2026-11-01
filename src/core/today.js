@@ -4,7 +4,7 @@ import { DRILLS } from './progress.js';
 import { makePrompt, seededRng, weakestDrill } from './lesson.js';
 import { dueReviews } from './spaced.js';
 import { weekFocus } from './weekly.js';
-import { ownedDrills } from './mastery.js';
+import { ownedDrills, maintenanceDrill } from './mastery.js';
 import { upcoming, rehearsalPrompts } from './realweek.js';
 import { baselineDue } from './programme.js';
 import { challengePrompt } from './share.js';
@@ -38,6 +38,9 @@ export function todayPick(state, today, content, lang, now = Date.now()) {
   // 3. His focus for the week.
   const focus = weekFocus(state, new Date(now));
   if (focus) return { reason: 'focus', prompt: makePrompt(focus, content, rng, seen) };
+  // 3b. Once a week, an owned drill to keep it sharp.
+  const keep = maintenanceDrill(state.history || [], now);
+  if (keep) return { reason: 'maintain', prompt: makePrompt(keep, content, rng, seen) };
   // 4. The weakest drill lately (not one he already owns).
   const weak = weakestDrill(state.history || [], ownedDrills(state.history || [], now));
   if (weak) return { reason: 'weak', prompt: makePrompt(weak, content, rng, seen) };

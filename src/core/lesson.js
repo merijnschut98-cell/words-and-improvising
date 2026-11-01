@@ -173,7 +173,10 @@ export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
   if (!opts) return shuffle(DRILLS, rng).slice(0, n).map((d) => makePrompt(d, content, rng, seen));
   const history = opts.history || [];
   const out = [];
+  // Owned drills only come back as this week's maintenance drill.
+  const resting = (opts.owned || []).filter((d) => d !== opts.maintain);
   const used = () => new Set(out.map((p) => p.drill));
+  const free = (d) => !used().has(d) && !resting.includes(d);
   // His chosen focus for the week takes the first slot; otherwise the weakest drill.
   const weak = opts.focus ? null : weakestDrill(history, opts.owned || []);
   if (opts.focus) out.push({ ...makePrompt(opts.focus, content, rng, seen), reason: 'focus' });
@@ -185,10 +188,10 @@ export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
       const i = history.findIndex((e) => e.drill === d);
       return i === -1 ? Infinity : i; // never done = most stale
     };
-    const stale = shuffle(DRILLS.filter((d) => !used().has(d)), rng).sort((a, b) => lastDone(b) - lastDone(a))[0];
+    const stale = shuffle(DRILLS.filter(free), rng).sort((a, b) => lastDone(b) - lastDone(a))[0];
     out.push({ ...makePrompt(stale, content, rng, seen), reason: 'stale' });
   }
-  for (const d of shuffle(DRILLS.filter((x) => !used().has(x)), rng)) {
+  for (const d of shuffle(DRILLS.filter(free), rng)) {
     if (out.length >= n) break;
     out.push({ ...makePrompt(d, content, rng, seen), reason: 'random' });
   }

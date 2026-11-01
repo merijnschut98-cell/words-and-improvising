@@ -64,8 +64,8 @@ Seven items:
 
 `maintenanceDrill(state, today)` returns the owned drill not played for the longest time, but at most once per ISO week: none if any owned drill was played this week. The Today pick uses it after the weekly focus and before the weakest drill, with the reason "keep it sharp". The lesson's random slot skips owned drills except this one.
 
-- [ ] Tests: once per week; longest-unplayed owned drill; never above a due review or an event.
-- [ ] Implement. Commit: `Bring owned drills back once a week`.
+- [x] Tests: once per week; longest-unplayed owned drill; never above a due review or an event.
+- [x] Implement. Commit: `Bring owned drills back once a week`.
 
 ### Task 5: Nudge toward the least-used real-life skill
 
