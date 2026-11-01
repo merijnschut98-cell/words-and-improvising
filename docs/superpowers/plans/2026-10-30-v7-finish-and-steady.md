@@ -71,8 +71,8 @@ Seven items:
 
 From `skillUse` (v6 Task 5): when at least two reflected events exist this week or last, and one skill has 0 uses, the Today card's reason line adds "you haven’t used X in real life yet". A skill maps to a drill: frames → frame, follow-up → followUp, calm → pressure, pause → pause. The nudge changes the reason text only, never the pick.
 
-- [ ] Tests: no nudge without events; the skill-to-drill map uses existing drills; the least-used skill is chosen deterministically.
-- [ ] Implement. Commit: `Nudge toward the skill used least in real life`.
+- [x] Tests: no nudge without events; the skill-to-drill map uses existing drills; the least-used skill is chosen deterministically.
+- [x] Implement. Commit: `Nudge toward the skill used least in real life`.
 
 ### Task 6: Final review + wrap-up
 

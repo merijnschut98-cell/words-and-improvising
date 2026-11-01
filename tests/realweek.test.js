@@ -102,3 +102,21 @@ test('skillUse: rounds of the matching drill vs reflections that used it, last 7
   assert.deepEqual(skillUse([], [], now), []);
   assert.deepEqual(skillUse(undefined, undefined, now), []);
 });
+
+test('unusedSkill: no nudge without at least two reflected events in the last two weeks', async () => {
+  const { unusedSkill } = await import('../src/core/realweek.js');
+  const NOW = new Date(2026, 10, 1, 12).getTime();
+  const ev = (date, skills) => ({ id: date, type: 'client', date, text: 'x', reflection: { rating: 4, next: '', skills } });
+  assert.equal(unusedSkill([], NOW), null);
+  assert.equal(unusedSkill([ev('2026-10-30', ['frame'])], NOW), null);
+  assert.equal(unusedSkill([ev('2026-10-30', ['frame']), ev('2026-10-10', ['followUp'])], NOW), null, 'too old');
+  // Deterministic: the first unused skill in SKILLS order; 'other' is never nudged.
+  assert.equal(unusedSkill([ev('2026-10-30', ['frame']), ev('2026-10-25', ['pressure'])], NOW), 'followUp');
+  assert.equal(unusedSkill([ev('2026-10-30', ['frame', 'followUp']), ev('2026-10-25', ['pressure', 'pause'])], NOW), null);
+});
+
+test('every nudged skill maps to an existing drill', async () => {
+  const { SKILL_DRILL, SKILLS } = await import('../src/core/realweek.js');
+  const { DRILLS } = await import('../src/core/progress.js');
+  for (const s of SKILLS.filter((x) => x !== 'other')) assert.ok(DRILLS.includes(SKILL_DRILL[s]), s);
+});

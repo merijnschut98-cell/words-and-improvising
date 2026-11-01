@@ -44,7 +44,7 @@ export const needsReflection = (events, today) => (events || []).filter((e) => e
 
 // Skills he can say he used in real life; the first four match a drill.
 export const SKILLS = ['frame', 'followUp', 'pressure', 'pause', 'other'];
-const SKILL_DRILL = { frame: 'frame', followUp: 'followUp', pressure: 'pressure', pause: 'pause' };
+export const SKILL_DRILL = { frame: 'frame', followUp: 'followUp', pressure: 'pressure', pause: 'pause' };
 const DAY = 86400000;
 
 export function reflect(events, id, { rating, next, skills }) {
@@ -117,4 +117,15 @@ export function parseHardQuestion(message) {
 export async function runHardQuestion(apiKey, args, loadSdk) {
   const res = await callClaude(apiKey, buildHardQuestionRequest(args), loadSdk);
   return res.ok ? parseHardQuestion(res.message) : res;
+}
+
+// A skill he hasn't used in real life in the last two weeks, once he has
+// reflected on at least two events: the first such skill in SKILLS order.
+export function unusedSkill(events, now) {
+  const dayMs = (d) => { const [y, m, dd] = String(d).split('-').map(Number); return new Date(y, m - 1, dd).getTime(); };
+  const recent = (events || []).filter((e) => e && e.reflection && Array.isArray(e.reflection.skills)
+    && dayMs(e.date) <= now && now - dayMs(e.date) < 14 * DAY);
+  if (recent.length < 2) return null;
+  const used = new Set(recent.flatMap((e) => e.reflection.skills));
+  return SKILLS.find((s) => SKILL_DRILL[s] && !used.has(s)) || null;
 }

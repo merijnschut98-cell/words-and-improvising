@@ -1234,6 +1234,20 @@ await step('skills used in real life: chips on the reflection, counts on the wee
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('today card nudges toward a real-life skill not used lately', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const day = (n) => { const d = new Date(Date.now() - n * 86400000); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+    const ev = (id, n, skills) => ({ id, type: 'team', date: day(n), text: 'x', reflection: { rating: 4, next: '', skills } });
+    st.events = [ev('n1', 1, ['frame']), ev('n2', 3, ['pressure', 'pause'])];
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.goto(BASE);
+  await page.locator('.today-nudge', { hasText: 'Doorvragen' }).waitFor();
+  await shot('57-today-nudge');
+});
+
 await step('situation finder and a first-time tip on the intro', async () => {
   await page.goto(BASE);
   await page.evaluate(() => {

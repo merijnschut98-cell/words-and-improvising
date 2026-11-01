@@ -4,7 +4,7 @@ import { masteryOf, ownedDrills } from '../core/mastery.js';
 import { todayPick } from '../core/today.js';
 import { programmeWeek, PROGRAMME } from '../core/programme.js';
 import TIPS from '../content/tips.js';
-import { upcoming, needsReflection } from '../core/realweek.js';
+import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
@@ -93,7 +93,14 @@ function todayCard(app) {
     h('p', { class: 'today-label' }, week ? `${t('todayNext')} · ${t('progWeek', week, t(`progTheme_${PROGRAMME[week - 1].id}`))}` : t('todayNext')),
     h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)),
     h('p', { class: 'muted small' }, why),
+    nudgeLine(app),
     h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${pick.reason === 'event' ? t('todayRehearse') : t('todayGo')}`));
+}
+
+// One line toward the real-life skill he hasn't used lately; the pick itself stays the same.
+function nudgeLine(app) {
+  const skill = unusedSkill(app.state.events, Date.now());
+  return skill ? h('p', { class: 'muted small today-nudge' }, app.t('todayNudge', app.t(`skill_${skill}`))) : null;
 }
 
 // "What's coming up?": real situations, each mapped to the drills that train it.
