@@ -176,7 +176,8 @@ export function buildLesson(content, rng, seen = {}, opts = null, n = 3) {
   // Owned drills only come back as this week's maintenance drill.
   const resting = (opts.owned || []).filter((d) => d !== opts.maintain);
   const used = () => new Set(out.map((p) => p.drill));
-  const free = (d) => !used().has(d) && !resting.includes(d);
+  // If resting drills would leave too few, let them back in rather than run dry.
+  const free = (d) => !used().has(d) && (!resting.includes(d) || DRILLS.filter((x) => !resting.includes(x)).length < n + 1);
   // His chosen focus for the week takes the first slot; otherwise the weakest drill.
   const weak = opts.focus ? null : weakestDrill(history, opts.owned || []);
   if (opts.focus) out.push({ ...makePrompt(opts.focus, content, rng, seen), reason: 'focus' });

@@ -32,3 +32,17 @@ export function weekFocus(state, now = new Date()) {
   if (w && w.week === isoWeekKey(now) && w.focus) return w.focus === 'adaptive' ? null : w.focus;
   return programmeFocus(state, dayKey(now));
 }
+
+// The weekly screen's options, each with why it is there. His current focus is
+// always listed: 'prog' when it is the programme's drill, 'chosen' when it was his pick.
+export function weekOptions(state, now = new Date()) {
+  const suggested = weekSuggestions(state, now);
+  const current = weekFocus(state, now);
+  const weak = weakestDrill(state.history || [], ownedDrills(state.history || [], now.getTime()));
+  const prog = programmeFocus(state, dayKey(now));
+  const drills = current && !suggested.includes(current) ? [current, ...suggested.slice(0, 2)] : suggested;
+  return drills.map((drill) => ({
+    drill,
+    why: drill === weak ? 'weak' : drill === current && !suggested.includes(drill) ? (drill === prog ? 'prog' : 'chosen') : 'drill',
+  }));
+}

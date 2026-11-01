@@ -58,3 +58,10 @@ test('lesson random slots skip owned drills except the maintenance one', () => {
     assert.ok(!l.some((p) => p.drill === 'prep' || p.drill === 'rapid'), `seed ${seed}: ${l.map((p) => p.drill)}`);
   }
 });
+
+test('a lesson still has 3 drills when nearly every drill is owned and resting', async () => {
+  const { DRILLS } = await import('../src/core/progress.js');
+  const l = buildLesson(en, seededRng(2), {}, { history: [], due: [], focus: null, owned: DRILLS.slice(0, DRILLS.length - 1), maintain: null });
+  assert.equal(l.length, 3);
+  assert.equal(new Set(l.map((p) => p.drill)).size, 3);
+});

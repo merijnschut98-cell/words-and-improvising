@@ -57,3 +57,12 @@ test('weekSuggestions never names an owned drill as weakest', async () => {
   const s = { ...defaultState(), history: [...own, ...bad, h('debate', 3, new Date(day(3))), h('debate', 3, new Date(day(4)))] };
   assert.notEqual(weekSuggestions(s, new Date(day(5)))[0], 'prep');
 });
+
+test('the programme label only marks the programme drill, not his own earlier pick', async () => {
+  const { weekOptions } = await import('../src/core/weekly.js');
+  const s = { ...defaultState(), history: [h('debate', 2)], weekly: chooseFocus(defaultState(), MON, 'pause').weekly };
+  const opts = weekOptions(s, MON);
+  const p = opts.find((o) => o.drill === 'pause');
+  assert.ok(p, 'his current pick is listed');
+  assert.notEqual(p.why, 'prog');
+});

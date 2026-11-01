@@ -76,5 +76,5 @@ From `skillUse` (v6 Task 5): when at least two reflected events exist this week 
 
 ### Task 6: Final review + wrap-up
 
-- [ ] Fresh whole-branch review subagent (most capable model) over the v7 range, with this Review Focus. One fix pass with failing tests first; minors go to the ledger.
-- [ ] Short note to Merijn. After 2026-11-08 the check-in disables itself.
+- [x] Fresh whole-branch review subagent (most capable model) over the v7 range, with this Review Focus. One fix pass with failing tests first; minors go to the ledger.
+- [x] Short note to Merijn. After 2026-11-08 the check-in disables itself.
