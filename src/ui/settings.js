@@ -79,7 +79,7 @@ export function renderSettings(app, _params, root) {
   // Import: read the picked file, show what it holds, replace only after a confirm.
   // File contents only ever reach the screen as numbers via textContent.
   const importArea = h('div', { class: 'import-area', 'aria-live': 'polite' });
-  const importErr = (code) => app.toast(`⚠️ ${t(code === 'json' ? 'importErrJson' : code === 'shape' ? 'importErrShape' : 'importErrRead')}`);
+  const importErr = (code) => app.toast(`⚠️ ${t(code === 'json' ? 'importErrJson' : code === 'shape' ? 'importErrShape' : code === 'save' ? 'importErrSave' : 'importErrRead')}`);
   function showImportConfirm(text, summary) {
     importArea.replaceChildren(h('div', { class: 'card import-confirm' },
       h('p', {}, t('importConfirm')),

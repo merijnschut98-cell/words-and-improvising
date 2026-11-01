@@ -182,3 +182,19 @@ test('programme defaults to null and a malformed value is dropped', () => {
   const ok = { start: '2026-10-29', baseline: { drill: 'minute', promptId: 'topic:t01', lang: 'nl' } };
   assert.deepEqual(load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), programme: ok }) })).programme, ok);
 });
+
+test('importBackup reports a failed save instead of success', () => {
+  const b = { getItem: () => null, setItem: () => { throw new Error('quota'); } };
+  const next = { ...defaultState(), xp: 5 };
+  const res = importBackup(b, JSON.stringify(next));
+  assert.deepEqual({ ok: res.ok, error: res.error }, { ok: false, error: 'save' });
+});
+
+test('finishing the welcome clears the pending flag', async () => {
+  const { finishWelcome, needsWelcome } = await import('../src/core/storage.js');
+  const s = finishWelcome({ ...defaultState(), ui: { pendingWelcome: true, theme: 'x' } });
+  assert.equal(s.onboarded, true);
+  assert.equal('pendingWelcome' in s.ui, false);
+  assert.equal(s.ui.theme, 'x');
+  assert.equal(needsWelcome(s), false);
+});

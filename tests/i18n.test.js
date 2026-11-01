@@ -12,3 +12,12 @@ test('translator handles functions and missing keys', () => {
   assert.equal(t('roundOf', 1, 3), 'Ronde 1 van 3');
   assert.equal(t('nope'), 'nope');
 });
+
+test('weekly summary says plainly when there were no rounds', () => {
+  for (const lang of ['en', 'nl']) {
+    const s = STRINGS[lang].weekRounds(0, 0);
+    assert.ok(!/<1/.test(s), s);
+    assert.ok(!/\b0\b/.test(s), s);
+  }
+  assert.match(STRINGS.en.weekRounds(3, 0), /<1 minute/);
+});

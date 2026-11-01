@@ -102,12 +102,18 @@ export function importBackup(backend, text) {
   if (prev != null) {
     try { backend.setItem(`${KEY}:backup`, prev); } catch { /* best effort */ }
   }
-  save(backend, res.state);
+  if (!save(backend, res.state)) return { ok: false, error: 'save' };
   return res;
 }
 
 export function addHistory(state, entry) {
   return { ...state, history: [entry, ...state.history].slice(0, HISTORY_CAP) };
+}
+
+// The welcome is done: never show it again, and drop the challenge-link flag.
+export function finishWelcome(state) {
+  const { pendingWelcome, ...ui } = state.ui || {};
+  return { ...state, onboarded: true, ui };
 }
 
 // First-run explainer: only for someone who has never practised.

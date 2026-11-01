@@ -57,8 +57,8 @@ Seven items:
 - Fix the duplicate screenshot numbers.
 - Add a mic-permission note to the voice help text.
 
-- [ ] Tests: weekly reset rule; import save failure surfaces; weekly summary wording for an empty week.
-- [ ] Implement. Commit: `Fix v4 review minors`.
+- [x] Tests: weekly reset rule; import save failure surfaces; weekly summary wording for an empty week.
+- [x] Implement. Commit: `Fix v4 review minors`.
 
 ### Task 4: Owned drills as weekly maintenance
 

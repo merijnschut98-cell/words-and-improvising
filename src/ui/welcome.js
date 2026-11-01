@@ -1,4 +1,5 @@
 import { h } from './dom.js';
+import { finishWelcome } from '../core/storage.js';
 import { planPicker } from './plan.js';
 
 // First-run explainer: three short slides, skippable.
@@ -8,7 +9,7 @@ export function renderWelcome(app, _params, root) {
   root.append(main);
 
   const done = () => {
-    app.setState({ ...app.state, onboarded: true });
+    app.setState(finishWelcome(app.state));
     app.go('home');
   };
 

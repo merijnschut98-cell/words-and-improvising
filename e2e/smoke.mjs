@@ -909,7 +909,7 @@ await step('voice variety card after a spoken round (optional toggle)', async ()
   const m = await page.evaluate(() => window.__meter);
   if (m.gum !== 1 || m.stopped !== 1 || m.closed !== 1) throw new Error(`meter not cleaned up: ${JSON.stringify(m)}`);
   await page.locator('.voice-card').scrollIntoViewIfNeeded();
-  await shot('45-voice');
+  await shot('45b-voice');
   await page.evaluate(() => window.__app.updateSettings({ voiceStats: false }));
   const off = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).settings.voiceStats);
   if (off !== false) throw new Error('voiceStats not switched back off');
@@ -1117,7 +1117,7 @@ await step('friend rates a round through links and it shows on Progress', async 
   await page.locator('.friend-line', { hasText: '<img src=x onerror=alert(1)> Sterk begin' }).waitFor();
   if ((await page.locator('.calib-card img').count()) !== 0) throw new Error('friend line rendered as HTML');
   await page.locator('.calib-card').scrollIntoViewIfNeeded();
-  await shot('49-friend-calib');
+  await shot('49b-friend-calib');
 });
 
 await step('mastery: three good rounds on different days show "Beheerst"', async () => {
@@ -1174,7 +1174,7 @@ await step('your words: filler movers and a vague-word swap on Progress, vague w
   await card.getByText('Spraakherkenning mist soms stopwoorden').waitFor();
   if (await card.getByText('thing').count()) throw new Error('English vague word shown on the Dutch card');
   await card.scrollIntoViewIfNeeded();
-  await shot('53-your-words');
+  await shot('53b-your-words');
   // A typed round with vague and repeated words.
   await page.goto(BASE);
   await page.locator('.drill-minute').click();
