@@ -312,6 +312,16 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [ ] **Step 4:** e2e with a stubbed client; manual test on the live site with Merijn’s email once the Site URL is set.
 - [ ] **Step 5:** Commit `Sync progress between devices`.
 
+### Task 15b: First-time-user fixes (from the screenshot test, 2026-11-02)
+
+- [ ] Start screen: one primary button above the cards, "Begin: <next step>", that opens the recommended round or lesson directly (one tap). The three subject cards become secondary.
+- [ ] Speaking home: one way to start. "Alleen deze (2 min)" becomes "Start deze ronde (2 min)"; the daily lesson stays as the single secondary option; everything else stays in Meer oefenen.
+- [ ] "Live gesprek" without a key links to Settings → Coach en API-sleutel (now plain text).
+- [ ] Status tags (LEREN/BASIS/x van 6) and the lesson step indicator must not look like buttons: no border or fill that suggests a tap; aria stays.
+- [ ] Disclosures (Meer oefenen, Wat komt eraan) get one consistent chevron that rotates when open, plus a visible "open/close" affordance.
+- [ ] Streak icon gets a text label ("dagen op rij") where shown alone.
+- [ ] Re-run the first-time-user check (fresh agent, screenshots only, the five tasks); all five sure within 2 taps, task 1 in 1 tap.
+
 ### Task 13: Interactive figures (anatomy skill)
 
 **Files:**
