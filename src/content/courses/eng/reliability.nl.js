@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.reliability.weibull',
+      figure: 'eng.reliability.weibull',
       title: 'Storingsdata en Weibull in gewone taal',
       pre: [
         {
