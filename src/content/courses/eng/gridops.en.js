@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridops.outage',
+      figure: 'eng.gridops.switching',
       title: 'Handling an outage',
       pre: [
         {
