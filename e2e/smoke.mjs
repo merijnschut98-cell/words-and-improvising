@@ -279,7 +279,17 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
       await pg.locator('.quiz-card .opt', { hasText: pick }).first().click();
     }
   };
-  for (let i = 0; i < lesson.recall.length; i++) await answer(lesson.recall[i], missFirst && i === 0);
+  for (let i = 0; i < lesson.recall.length; i++) {
+    if (i === 1 && i < lesson.recall.length - 1) {
+      // An accidental wrong tap, taken back with 'Vorige vraag': it never counts as a miss.
+      await answer(lesson.recall[1], true);
+      await pg.locator('.quiz-card .quiz-back').click();
+      const prog = (await pg.locator('.quiz-card .quiz-progress').innerText()).trim();
+      if (!prog.startsWith('2/')) throw new Error(`back did not return to question 2: ${prog}`);
+      if (await pg.locator('.quiz-card .btn-primary, .quiz-card .opt').count() < 1) throw new Error('no answer controls after back');
+    }
+    await answer(lesson.recall[i], missFirst && i === 0);
+  }
   await pg.locator('.quiz-review').waitFor();
   if (reviewShot) await shot(reviewShot);
   if (missFirst) {

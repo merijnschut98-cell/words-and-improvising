@@ -73,7 +73,7 @@ export default {
       title: 'De bottleneck bepaalt de output',
       pre: [
         {
-          q: 'Een lijn heeft vier stations van 40, 55, 45 en 50 seconden. Je versnelt het eerste station van 40 naar 30 seconden. Wat gebeurt er met de output?',
+          q: 'Een product gaat langs vier stations op een rij. Elk station doet per product: 40, 55, 45 en 50 seconden. Je versnelt het eerste station van 40 naar 30 seconden. Wat gebeurt er met de output?',
           options: ['Die stijgt met zo’n 25%', 'Niets', 'Die stijgt met 10 seconden per product', 'Die daalt'],
           answer: 'Niets',
           why: 'Het station van 55 seconden beperkt de lijn nog steeds tot één product per 55 seconden.',

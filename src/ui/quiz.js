@@ -2,7 +2,7 @@
 // again until each is right once. Shared by lessons and due sessions.
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { startQuiz, answerQuiz, continueQuiz, judge } from '../core/course.js';
+import { startQuiz, answerQuiz, backQuiz, continueQuiz, judge } from '../core/course.js';
 
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
 const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
@@ -19,8 +19,11 @@ export function renderQuiz(app, { questions, onDone }, box) {
     draw();
   };
 
+  const back = () => { st = backQuiz(st, questions); lastPass.pop(); draw(); };
+
   function askCard() {
     const q = questions[st.order[st.i]];
+    const backBtn = st.i > 0 ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack')) : null;
     const progress = h('p', { class: 'quiz-progress muted small' }, `${st.pass > 1 ? `${t('quizAgain')} · ` : ''}${st.i + 1}/${st.order.length}`);
     if ('number' in q) {
       const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
@@ -30,11 +33,11 @@ export function renderQuiz(app, { questions, onDone }, box) {
       return h('section', { class: 'card quiz-card' }, progress,
         h('p', { class: 'quiz-q' }, q.q),
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
-        h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')));
+        h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), backBtn);
     }
     return h('section', { class: 'card quiz-card' }, progress,
       h('p', { class: 'quiz-q' }, q.q),
-      h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => answer(o) }, o))));
+      h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => answer(o) }, o))), backBtn);
   }
 
   function reviewCard() {

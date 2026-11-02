@@ -45,6 +45,25 @@ export function answerQuiz(state, questions, value) {
   return next.i >= state.order.length ? { ...next, phase: 'review' } : next;
 }
 
+// Take back the last answer in this pass (an accidental tap), so the
+// question is asked again. Not once the review with the answers is shown.
+export function backQuiz(state, questions) {
+  if (state.phase !== 'ask' || state.i === 0) return state;
+  const i = state.i - 1;
+  const idx = state.order[i];
+  const id = questions[idx].id;
+  const drop = (o) => { const c = { ...(o || {}) }; delete c[id]; return c; };
+  const at = state.misses.lastIndexOf(idx);
+  return {
+    ...state,
+    i,
+    answers: drop(state.answers),
+    last: drop(state.last),
+    firstTry: state.pass === 1 ? drop(state.firstTry) : state.firstTry,
+    misses: at < 0 ? state.misses : state.misses.filter((_, k) => k !== at),
+  };
+}
+
 export function continueQuiz(state) {
   if (state.phase !== 'review') return state;
   if (!state.misses.length) return { ...state, phase: 'done' };

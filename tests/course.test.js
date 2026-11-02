@@ -213,3 +213,22 @@ test('retaking a passed lesson never moves a question up without spacing (only a
   s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW + 3).state;
   assert.equal(s.courseReviews['nl|eng.flow.takt#r0'].box, 1, 'a miss still resets');
 });
+
+import { backQuiz } from '../src/core/course.js';
+
+test('quiz: back undoes the previous answer within a pass, so it can be answered again', () => {
+  const qs = [choice('l#r0'), choice('l#r1'), choice('l#r2')];
+  let s = startQuiz(qs);
+  assert.equal(backQuiz(s, qs), s, 'nothing to undo on the first question');
+  s = answerQuiz(s, qs, 'a'); // wrong by accident
+  s = backQuiz(s, qs);
+  assert.equal(s.i, 0);
+  assert.equal('l#r0' in s.firstTry, false);
+  assert.deepEqual(s.misses, []);
+  s = answerQuiz(s, qs, 'b');
+  s = answerQuiz(s, qs, 'b');
+  s = answerQuiz(s, qs, 'b');
+  assert.equal(s.phase, 'review');
+  assert.equal(backQuiz(s, qs), s, 'no going back once the answers are shown');
+  assert.deepEqual(s.firstTry, { 'l#r0': true, 'l#r1': true, 'l#r2': true });
+});

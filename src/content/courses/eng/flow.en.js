@@ -73,7 +73,7 @@ export default {
       title: 'The bottleneck sets output',
       pre: [
         {
-          q: 'A line has four stations of 40, 55, 45 and 50 seconds. You speed up the first station from 40 to 30 seconds. What happens to output?',
+          q: 'A product passes four stations in a row. Each station takes, per product: 40, 55, 45 and 50 seconds. You speed up the first station from 40 to 30 seconds. What happens to output?',
           options: ['It rises by about 25%', 'No change', 'It rises by 10 seconds per part', 'It falls'],
           answer: 'No change',
           why: 'The 55-second station still limits the line to one part every 55 seconds.',
