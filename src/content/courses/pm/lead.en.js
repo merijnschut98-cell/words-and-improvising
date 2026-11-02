@@ -1,0 +1,413 @@
+// pm.lead (EN): Leading people: influence without authority, feedback, difficult conversations, team dynamics, listening and leading yourself.
+export default {
+  lessons: [
+    {
+      id: 'pm.lead.influence',
+      title: 'Influence without authority',
+      pre: [
+        {
+          q: 'You need a plant manager who outranks you to free two operators for your project. What is usually the most effective first move?',
+          options: ['Ask your sponsor to instruct him', 'Find out what he needs this quarter and link your request to it', 'Send a well-argued email with the business case', 'Raise it at the steering committee'],
+          answer: 'Find out what he needs this quarter and link your request to it',
+          why: 'People say yes to what helps them. Escalating first costs you the relationship you will need later.',
+        },
+      ],
+      teach: [
+        'As a consultant you can’t order anyone. You trade. Every stakeholder has interests: what they’re judged on, what keeps them up at night, what they want to avoid. Cohen and Bradford call what you can offer “currencies”: help, information, visibility, time saved, a problem off their plate. Find out what they need before you ask for what you need.',
+        'Reciprocity: give first. Pull the data they’ve been wanting for months, fix a report, share a finding with them before it goes to the steering committee. Small, real help builds credit, and people repay it. It isn’t manipulation as long as the help is genuine and you would have offered it anyway.',
+        'Credibility when you’re the youngest comes from three things, not from a title: being precise (your numbers are right and you know where they come from), doing what you said by when you said it, and being on the floor. One accurate observation from the shop floor beats ten slides.',
+        'Map before you move. Put stakeholders on two axes: influence on your project, and current stance, against to for. Win first the person with high influence who is neutral and whom others listen to. That’s often not the most senior: a respected shift lead or senior engineer. Talk one-on-one before any group meeting; never surprise someone in front of their peers.',
+        'Scripts. “What would make this worth it for you?” “If I take the weekly report off your plate, could you free Jan for two mornings?” “Who should I talk to before I bring this to the steering committee?” “What would you need to see to back this?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 4 at a grid operator. Your project aims to cut jobs cancelled in the week itself. Next Tuesday you present a readiness check at the regional team meeting. The head of planning supports it, but has little sway over the field. The head of execution is sceptical and the crews respect him. Ans, a work preparer with 25 years in, is the one everyone asks when a job is unclear; she hasn’t said what she thinks. The regional manager is your sponsor.',
+        ask: 'What would you do next?',
+        reveal: 'Don’t walk into Tuesday cold. Start with Ans: show her the data on cancelled jobs, ask her to poke holes in the check, and adopt her best improvement, visibly. Then see the head of execution one-on-one. His currency is crews not driving out for jobs that can’t be done, so frame it as “fewer wasted crew trips” and ask: “What would have to be in this for you to back it?” Keep the sponsor in reserve. On Tuesday, let Ans explain the parts she improved.',
+      },
+      said: 'What you hear in projects: “If Ans says it works, the rest of the office will follow.”',
+      recall: [
+        {
+          q: 'In influence without authority, what is a “currency”?',
+          options: ['Your consulting rate', 'Something the other person values that you can offer', 'The project budget', 'Your sponsor’s backing'],
+          answer: 'Something the other person values that you can offer',
+          why: 'Help, information, visibility or time saved: you trade what they value for what you need.',
+        },
+        {
+          q: 'Whom do you usually try to win first?',
+          options: ['The most senior person in the room', 'The loudest critic', 'The person with high influence who is still neutral and whom others listen to', 'Whoever agrees already'],
+          answer: 'The person with high influence who is still neutral and whom others listen to',
+          why: 'They are movable and they move others; supporters are already there and loud critics rarely turn first.',
+        },
+        {
+          q: 'Why do you talk to key people one-on-one before a group meeting?',
+          options: ['To save time in the meeting', 'Because group meetings are unimportant', 'To get the decision made without them', 'People rarely change position in public, and nobody likes being surprised in front of peers'],
+          answer: 'People rarely change position in public, and nobody likes being surprised in front of peers',
+          why: 'In a one-on-one they can ask questions and shape it; in a group they defend.',
+        },
+        {
+          q: 'You’re the youngest in the room. What builds credibility fastest?',
+          options: ['Precise numbers and doing what you said, when you said it', 'Mentioning your firm’s big clients', 'Using lots of method terms', 'Agreeing with the most senior person'],
+          answer: 'Precise numbers and doing what you said, when you said it',
+          why: 'Senior people judge on reliability and accuracy, which age doesn’t give you but work does.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a metal parts manufacturer. The maintenance manager, 20 years your senior, keeps postponing the two hours a week his technicians promised your project. He’s friendly about it: “Next week, it’s busy.”',
+        ask: 'What do you say in your next one-on-one with him?',
+        model: 'I’d ask what’s eating his technicians’ time right now, and listen. Then link it: “If the changeover data shows where your breakdowns come from, that’s fewer callouts for your people. Could we start with one hour on Thursday, on the press line you’re most worried about?” And I’d offer something concrete, like taking the downtime report off his plate.',
+        rubric: [
+          'Asks about his pressures before repeating the request',
+          'Links the project to something he is judged on',
+          'Makes a smaller, concrete ask and offers something in return',
+        ],
+      },
+      sayIt: 'Explain to a new junior consultant in 60 seconds how to get things done at a client when nobody has to listen to you.',
+      terms: [
+        { term: 'Currency', def: 'Something a stakeholder values that you can offer in exchange for their help.' },
+        { term: 'Reciprocity', def: 'People tend to repay help; giving first builds credit.' },
+        { term: 'Stakeholder map', def: 'Stakeholders plotted by influence and stance, to decide whom to win first.' },
+      ],
+    },
+    {
+      id: 'pm.lead.feedback',
+      title: 'Feedback that lands',
+      pre: [
+        {
+          q: 'A senior client manager kept checking his phone during your workshop, and the team noticed. When is the best moment to give feedback?',
+          options: ['Right then, in front of the group', 'At the next steering committee', 'Never: he’s the client', 'Soon after, one-on-one, after asking if he’s open to it'],
+          answer: 'Soon after, one-on-one, after asking if he’s open to it',
+          why: 'Private, soon, and with permission: the three things that make upward feedback hearable.',
+        },
+      ],
+      teach: [
+        'SBI: Situation, Behaviour, Impact. Situation: when and where. Behaviour: what you saw or heard, observable, no interpretation. Impact: the effect on you, the team or the result. Then a question. “In yesterday’s workshop (S), you were on your phone for most of the second hour (B). Two operators stopped talking because they thought it was already decided (I). What was going on?”',
+        'Behaviour, not character. “You interrupted Ans twice” is feedback; “you’re dominant” is a label people defend against. Tie the impact to something they care about: their goal, their team, the project they sponsor. One point per conversation. Three points at once turn feedback into a performance review.',
+        'Timing. As soon as you can, in private, when you’re both calm: within a day or two. Not right before he presents. Positive feedback works the same way and should come more often. Specific praise, like “opening with the outage numbers got the crews listening”, builds the credit you need for the harder message.',
+        'Upward feedback to a senior client. Ask permission: “Can I share an observation from this morning?” Make it about the shared goal, keep it small, use “I noticed”. Then ask and listen. If he pushes back, don’t argue the facts a second time; ask what he saw. You’re offering information, not a verdict.',
+        'Receiving it. Say thanks, ask for an example, don’t defend on the spot. “Thanks. Can you give me an example, so I know what to change?” Come back later with what you did with it. Being good at receiving feedback earns you the right to give it.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'This morning’s working session at a food manufacturer. The operations director, 55 and your sponsor, answered every question you addressed to his team leads. After the fourth time, the team leads went quiet. You need them to own the actions. You have a short slot with him after lunch.',
+        ask: 'What would you do next?',
+        reveal: 'Ask permission and link it to his goal: “Can I share an observation from this morning? It’s about getting the team leads to own this, which you asked me for.” S: “In the session, when I asked the team leads about the changeover data,” B: “you answered the first four questions yourself.” I: “After that, Peter and Sandra didn’t say anything, and I need their commitment on the actions.” Then ask: “How did you see it?” And stop talking. If he agrees, offer: “Next time, could you let them answer first and add yours after?”',
+      },
+      said: 'What you hear in projects: “Can I share an observation from this morning? It’s small, but it matters for the rollout.”',
+      recall: [
+        {
+          q: 'Which of these is a behaviour in SBI terms?',
+          options: ['You weren’t interested', 'You’re too dominant', 'You checked your phone four times during the session', 'You don’t respect the team'],
+          answer: 'You checked your phone four times during the session',
+          why: 'Behaviour is observable; the others are interpretations people will defend against.',
+        },
+        {
+          q: 'What do you do right after giving the SBI?',
+          options: ['Ask a question and listen', 'Give your solution', 'Repeat it so it sinks in', 'Give two more points while you’re at it'],
+          answer: 'Ask a question and listen',
+          why: 'Their view may change the picture, and it turns a verdict into a conversation.',
+        },
+        {
+          q: 'What is the first step when giving feedback to a senior client?',
+          options: ['Copy your manager in', 'Ask permission to share an observation', 'Start with three compliments', 'Put it in writing'],
+          answer: 'Ask permission to share an observation',
+          why: 'Permission makes the senior person choose to listen, which lowers defensiveness.',
+        },
+        {
+          q: 'A senior manager pushes back on your feedback: “That’s not how it went.” What do you do?',
+          options: ['Repeat the facts more firmly', 'Drop it and apologise', 'Escalate to the sponsor', 'Ask what he saw'],
+          answer: 'Ask what he saw',
+          why: 'Arguing the facts again makes it a contest; his view may give you information you missed.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a grid operator. The planning lead, your main contact, sends the weekly data two days late every week, which pushes your analysis into the weekend. You haven’t said anything yet.',
+        ask: 'How do you raise it with him?',
+        model: 'I’d ask for ten minutes and say: “Can I raise something practical? The last three weeks (S), the data came in on Wednesday instead of Monday (B). That leaves me one day for the analysis, so the review gets thinner (I). What makes Monday hard?” Then I’d look for a fix with him, like an automatic export.',
+        rubric: [
+          'Uses situation, observable behaviour and impact',
+          'Asks a question about his side instead of assuming',
+          'Moves to a concrete, shared fix',
+        ],
+      },
+      sayIt: 'Explain to a colleague in 60 seconds how to give feedback to someone more senior than you.',
+      terms: [
+        { term: 'SBI', def: 'Situation, Behaviour, Impact: a structure for feedback based on what you observed.' },
+        { term: 'Upward feedback', def: 'Feedback to someone with more seniority or power than you.' },
+        { term: 'Observable behaviour', def: 'What a camera would record, without interpretation.' },
+      ],
+    },
+    {
+      id: 'pm.lead.difficult',
+      title: 'Difficult conversations',
+      pre: [
+        {
+          q: 'Which part of a difficult conversation do most people prepare least, and regret most?',
+          options: ['The facts', 'The opening sentence', 'The agenda', 'The meeting room'],
+          answer: 'The opening sentence',
+          why: 'People prepare arguments and then improvise the start, which sets the tone for everything after.',
+        },
+      ],
+      teach: [
+        'Every difficult conversation is three conversations at once (Stone, Patton and Heen). What happened: the facts, who’s right. Feelings: anger, embarrassment, hurt. Identity: what this says about me. Am I competent? Am I taken seriously? Under pressure the identity part runs loudest, especially when you’re the youngest in the room.',
+        'Prepare on paper. What did you see? What is probably their story? What do you feel? What do you want at the end: one concrete agreement? Then write the first two sentences and say them out loud. The rest follows; the opening is where most conversations go wrong.',
+        'Open straight, with the “third story”: how a neutral observer would describe the situation. “I’d like to talk about the downtime data. We see it differently, and I want to understand how you look at it.” No long warm-up; people feel it coming and tense up.',
+        'Stay with facts and feelings. Separate what happened from what you made of it. Name emotions when they show: “You sound frustrated.” Don’t argue about intent: your impact is yours to tell, their intent is theirs. “I don’t think you meant it this way, but it made it harder for me to get people to talk.”',
+        'End with an agreement: who does what by when, and how you check. Say it out loud. “So you send the downtime log by Thursday, and I take out the shift comparison. Shall we look at it together Monday?” Then send it in two lines the same day.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 3 at a packaging plant. Henk, a team leader in his fifties, told his shift in front of you: “This consultant thinks he knows our line after two weeks.” Your analysis is due Friday and you still need his line data. You felt your face go red and said nothing.',
+        ask: 'What would you do next?',
+        reveal: 'Book twenty minutes alone with him, today or tomorrow. Prepare: the facts (what he said, data not received), his likely story (an outsider judging his line, his team getting the blame), your feelings (embarrassed, irritated) and your identity trap (wanting to prove you’re competent). Goal: data by Wednesday and Henk checking the analysis before Friday. Open: “Henk, I want to talk about Monday’s remark and about the data, because I need your help to get this right.” Then: “When you said that in front of the shift, it made it harder for me to get people to talk. What’s behind it?” Listen. End with the agreement.',
+      },
+      said: 'What you hear in projects: “I’d like to talk about Monday. I don’t think we see it the same way, and I want to hear how you look at it.”',
+      recall: [
+        {
+          q: 'Which of the three conversations usually makes you defensive?',
+          options: ['The facts', 'The agenda', 'The planning', 'The identity conversation: what this says about you'],
+          answer: 'The identity conversation: what this says about you',
+          why: 'When your competence feels at stake, you defend instead of listen.',
+        },
+        {
+          q: 'What is a “third story” opening?',
+          options: ['Describing the situation as a neutral observer would', 'Telling a story about a previous client', 'Starting with your own view', 'Quoting a third person who agrees with you'],
+          answer: 'Describing the situation as a neutral observer would',
+          why: 'It names the difference without blaming, so both sides can start from it.',
+        },
+        {
+          q: 'Someone’s remark hurt your project. What do you speak about, and what do you ask about?',
+          options: ['You state their intent, you ask about the facts', 'You speak about your impact, you ask about their intent', 'You speak about both, you ask about neither', 'You avoid both'],
+          answer: 'You speak about your impact, you ask about their intent',
+          why: 'You know the impact on you; you don’t know their intent, so you ask.',
+        },
+        {
+          q: 'How do you end a difficult conversation well?',
+          options: ['With a joke to ease the tension', 'By agreeing to talk again sometime', 'With a concrete agreement said out loud: who does what by when', 'By letting them have the last word'],
+          answer: 'With a concrete agreement said out loud: who does what by when',
+          why: 'Without a spoken agreement both leave with a different version of what was decided.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a grid operator. A senior planner has told your project lead that “the young consultant” is wasting the planners’ time with questions. You hear it secondhand. You need the planners for two more weeks.',
+        ask: 'How do you handle it?',
+        model: 'I’d go to the planner directly instead of letting it run through others. “I heard you feel the questions are taking too much of the planners’ time. I want to hear that from you, because I need their input for two more weeks. What would work better?” Then I’d agree something concrete, like one fixed half hour a week, and confirm it in writing.',
+        rubric: [
+          'Goes to the person directly rather than through others',
+          'Opens neutrally and asks for their view',
+          'Ends with a concrete agreement on how to work together',
+        ],
+      },
+      sayIt: 'Explain to a friend in 60 seconds how to prepare a conversation you’d rather avoid.',
+      terms: [
+        { term: 'Three conversations', def: 'What happened, feelings, and identity: all three run in every difficult talk.' },
+        { term: 'Third story', def: 'Describing the situation as a neutral observer would, as a way to open.' },
+        { term: 'Intent versus impact', def: 'You can speak about the effect on you; their intention is theirs to tell.' },
+      ],
+    },
+    {
+      id: 'pm.lead.teams',
+      title: 'Team dynamics',
+      pre: [
+        {
+          q: 'A project team never disagrees in meetings, yet decisions don’t get carried out. What is the most likely cause?',
+          options: ['Artificial harmony: the disagreement goes underground', 'Too much conflict', 'Bad minutes', 'Too many meetings'],
+          answer: 'Artificial harmony: the disagreement goes underground',
+          why: 'If people don’t voice doubts, they don’t commit, and the decision quietly dies after the meeting.',
+        },
+      ],
+      teach: [
+        'A widely used model (Lencioni): trust makes healthy conflict possible, conflict makes real commitment possible, and commitment makes accountability and results possible. Trust here means being able to say “I don’t know” or “I got that wrong” without paying for it. Edmondson calls it psychological safety.',
+        'Spot it. Low trust: people check with their boss after the meeting, nobody admits a mistake. No conflict: meetings feel smooth, the real discussion happens at the coffee machine. No commitment: “we’ll look into it”, actions without owners, decisions reopened next week. Low accountability: only the consultant chases missed actions.',
+        'As an outsider you’re not the boss, but you shape the meeting. Make disagreement safe: “What would go wrong with this?” “Who sees it differently?” Go round the table and let the quietest people speak first. Name what you see: “I notice we agree quickly, and then it doesn’t happen.”',
+        'Lock in commitment. Close every decision with who, what and by when, and ask: “Can everyone live with this?” Silence isn’t yes, so ask the quiet ones by name. Send the decisions the same day. A pre-mortem helps: “It’s three months from now and this has failed. Why?”',
+        'Know your limits. If the real problem is two managers in a quiet war, you won’t fix it in the team meeting. Take your observations to the sponsor one-on-one: what you saw, the effect on the project, and what you think is needed.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A project team at a machine builder: maintenance lead, production lead, two operators, a planner and a quality engineer. Meetings are pleasant and actions get agreed, but 60% aren’t done by the next meeting. The operators almost never speak. After meetings, the production lead complains to you about maintenance.',
+        ask: 'What would you do next?',
+        reveal: 'This is artificial harmony and no commitment, with low trust between production and maintenance underneath. Next meeting: go round the table starting with the operators, and run a pre-mortem on the main action. Close each action with an owner and a date, and ask each person by name if they can live with it. Then talk to the production lead one-on-one: “You’ve told me this three times now. Are you willing to say it to him, with me in the room?” If it turns out to be a deeper conflict between the two managers, bring it to the sponsor.',
+      },
+      said: 'What you hear in projects: “Everyone nodded on Tuesday. By Thursday, nobody remembered agreeing.”',
+      recall: [
+        {
+          q: 'In Lencioni’s model, what comes first: the base the rest builds on?',
+          options: ['Accountability', 'Trust', 'Commitment', 'Results'],
+          answer: 'Trust',
+          why: 'Without trust there is no open conflict, and without conflict no real commitment.',
+        },
+        {
+          q: 'Which is a sign of missing commitment?',
+          options: ['Heated discussions in the meeting', 'People asking critical questions', 'Actions without owners and decisions reopened next week', 'A long agenda'],
+          answer: 'Actions without owners and decisions reopened next week',
+          why: 'People didn’t really buy in, so the decision doesn’t stick.',
+        },
+        {
+          q: 'As an outsider, how do you get quiet team members to speak?',
+          options: ['Wait until they volunteer', 'Ask the manager to make them', 'Send a survey afterwards', 'Go round the table and let the quietest speak first'],
+          answer: 'Go round the table and let the quietest speak first',
+          why: 'Once senior people have spoken, others tend to agree; going first gives them room.',
+        },
+        {
+          q: 'What does a pre-mortem do?',
+          options: ['Brings doubts into the open by imagining the plan has already failed', 'Reviews a finished project', 'Checks the budget', 'Assigns blame in advance'],
+          answer: 'Brings doubts into the open by imagining the plan has already failed',
+          why: 'It makes voicing concerns the task, so nobody looks negative for raising them.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a grid operator, in a team of planners and work preparers. In meetings, the senior planner speaks first and longest, and the others agree. In the corridor, two preparers tell you the plan won’t work.',
+        ask: 'What do you change in the next meeting?',
+        model: 'I’d change the order: “Before we decide, I’d like to hear everyone, starting with the preparers, because they’ll build this.” I’d ask: “What would go wrong with this in practice?” And I’d ask the senior planner beforehand to hold his view until the end, framing it as getting the preparers’ buy-in.',
+        rubric: [
+          'Changes who speaks first instead of just asking for input',
+          'Uses a question that makes doubts safe to voice',
+          'Prepares the dominant person beforehand rather than confronting him in the meeting',
+        ],
+      },
+      sayIt: 'Explain to a client project lead in 60 seconds why a team that never disagrees is a warning sign.',
+      terms: [
+        { term: 'Psychological safety', def: 'People can admit mistakes and disagree without being punished for it.' },
+        { term: 'Artificial harmony', def: 'A team that avoids open disagreement, so conflict moves to the corridor.' },
+        { term: 'Pre-mortem', def: 'Imagining the plan has failed and asking why, before you start.' },
+      ],
+    },
+    {
+      id: 'pm.lead.listen',
+      title: 'Listening under pressure',
+      pre: [
+        {
+          q: 'A plant manager snaps: “This project is costing my people hours we don’t have.” What is the strongest first response?',
+          options: ['Explain the benefits of the project', 'Show that the hours are within the plan', '“Hours you don’t have. What’s eating them right now?”', 'Promise to cut the meetings'],
+          answer: '“Hours you don’t have. What’s eating them right now?”',
+          why: 'Reflect, then ask: it lowers the heat and gets you the real problem before you answer.',
+        },
+      ],
+      teach: [
+        'MORE PIES is your toolkit. Mood: read the energy in the room before the content. Open questions: what and how, not yes or no. Reflecting: give back the feeling. Empathy: show you get why it matters to them. Paraphrasing: restate the content in your words. Inquiry: dig one level deeper. Experience: share your own only when it helps them. Silence: let it work.',
+        'Under pressure you skip straight to defending or solving. The rule: reflect or paraphrase first, then ask, then answer. Reflecting: “That sounds frustrating.” Paraphrasing: “So the forms took more time than the change saved.” When someone attacks the project, there’s usually a worry underneath: workload, blame, losing control. Listening finds it.',
+        'Silence. After a question, count to five in your head. Most people fill a gap within a few seconds, and the real answer often comes after the first one. Being comfortable with silence reads as confidence, which is useful when you’re the youngest in the room.',
+        'Questions that open: “What worries you most about this?” “What would have to be true for this to work?” “What have you tried before?” “What am I missing?” Avoid “why” when emotions run high: it sounds like an accusation. Use “what made you…” instead.',
+        'Experience, used well. The trap is “At a previous client we had exactly that…”, which takes the floor away from them. Use it as a bridge: one sentence, then hand it back. “I’ve seen that go wrong when the people doing the work weren’t asked. Is that what happened here?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Team meeting at a grid operator. You’ve just shown the plan. A senior work preparer says loudly: “We did a project like this three years ago. Nothing changed, we just got more forms.” The room goes quiet and everyone looks at you.',
+        ask: 'What would you do next?',
+        reveal: 'Mood: tense; don’t meet it with defensiveness. Reflect: “So you’ve seen this before, and it gave you more work.” Then silence: wait. Open question: “What happened then? What made it end in forms?” Paraphrase his answer: “So the problem was that the preparers weren’t asked, and the forms came from head office.” Empathy: “I get why you’re sceptical.” Then commit: “I’d like you to tell me when you see this one heading the same way. Could you look at the check with me on Thursday?”',
+      },
+      said: 'What you hear in projects: “We’ve tried this before.” And the answer that works: “What happened then?”',
+      recall: [
+        {
+          q: 'What is the difference between reflecting and paraphrasing?',
+          options: ['There is no difference', 'Reflecting is a question, paraphrasing is a statement', 'Reflecting is for seniors, paraphrasing for juniors', 'Reflecting gives back the feeling, paraphrasing the content'],
+          answer: 'Reflecting gives back the feeling, paraphrasing the content',
+          why: '“That sounds frustrating” reflects; “so the forms cost more than they saved” paraphrases.',
+        },
+        {
+          q: 'Why avoid “why” questions when emotions run high?',
+          options: ['They are too long', 'They sound like an accusation', 'They are closed questions', 'They are too personal'],
+          answer: 'They sound like an accusation',
+          why: '“Why did you…” invites a defence; “what made you…” invites an explanation.',
+        },
+        {
+          q: 'After you ask a question, how long should you be willing to stay silent?',
+          options: ['Around five seconds, or longer', 'One second', 'Not at all; fill the gap quickly', 'Until the senior person speaks'],
+          answer: 'Around five seconds, or longer',
+          why: 'The considered answer usually comes after the first quick one.',
+        },
+        {
+          q: 'How do you use your own experience without taking over?',
+          options: ['Tell the whole story so they see you know it', 'Never mention it', 'One sentence, then a question that hands it back', 'Only at the end of the meeting'],
+          answer: 'One sentence, then a question that hands it back',
+          why: 'Experience works as a bridge to their story, not as a replacement for it.',
+        },
+      ],
+      situation: {
+        scene: 'You’re in a steering committee at a manufacturer. The finance director cuts in: “Honestly, I don’t see what we’re getting for this money.” The sponsor looks at you.',
+        ask: 'What do you say first?',
+        model: 'I’d not jump into the benefits. First: “You’re not seeing the return yet.” A short pause. Then: “What would you need to see to know it’s worth it?” Then I’d paraphrase his answer and only then link what we have, or say honestly what we don’t have yet and when we will.',
+        rubric: [
+          'Reflects or paraphrases before defending',
+          'Asks an open question to find his real criterion',
+          'Answers against his criterion, and is honest about gaps',
+        ],
+      },
+      sayIt: 'Explain MORE PIES to a colleague in 60 seconds, with one example line for each letter you find hardest.',
+      terms: [
+        { term: 'MORE PIES', def: 'Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence.' },
+        { term: 'Reflecting', def: 'Giving back the feeling you hear: “That sounds frustrating.”' },
+        { term: 'Paraphrasing', def: 'Restating the content in your own words to check you understood.' },
+      ],
+    },
+    {
+      id: 'pm.lead.self',
+      title: 'Leading yourself',
+      pre: [
+        {
+          q: 'Your heart is pounding just before a big presentation. Which approach worked better in experiments?',
+          options: ['Telling yourself to calm down', 'Skipping preparation so you don’t overthink', 'Avoiding eye contact with seniors', 'Telling yourself “I’m excited”'],
+          answer: 'Telling yourself “I’m excited”',
+          why: 'Nerves and excitement feel the same in the body; reframing as excitement improved performance (Brooks, 2014).',
+        },
+      ],
+      teach: [
+        'Being the youngest. People judge you in the first minutes on preparation and calm, not on age. What works: know your numbers cold, sit at the table rather than along the wall, say something in the first ten minutes (a question or a fact), and stop apologising. Not “Sorry, maybe a stupid question”, but “One question:”.',
+        'Nerves. Your body’s arousal before a big moment is the same as excitement. Telling yourself “I’m excited” works better than “calm down”. Breathe out longer than you breathe in for a minute; it slows your heart rate. Prepare your first thirty seconds word for word, so you’re on rails when the adrenaline peaks.',
+        'Say it plainly. What you see, what you think, what you propose: “I think this is premature. The data covers two weeks. I propose we wait for the full month.” When you don’t know: “I don’t know yet. I’ll come back to you on Thursday.” Senior people respect that far more than bluffing.',
+        'When a senior pushes back, don’t fold at once and don’t escalate. “That’s a fair point. What I see in the data is this. How do you see it?” Holding your position once, calmly, is often enough to be taken seriously. If you were wrong, say so quickly: that builds credibility too.',
+        'Recovering from a bad meeting. Within 24 hours, write down the facts, your part, and what you would do differently. Then act: a short message to the person, like “I didn’t explain it well yesterday; here’s the one-pager.” Talk it through with someone you trust. One bad meeting rarely defines you; how you follow up often does.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'You presented first results to the management team of a manufacturer. After two minutes the finance director cut in: “These numbers don’t match ours.” You lost your thread, rushed through the rest and finished early. Now you’re back at your desk, replaying it.',
+        ask: 'What would you do next?',
+        reveal: 'Facts first: his number and yours differ, most likely a different period or definition. Find out which before anything else. Your part: you didn’t state your source and definitions at the start, and you didn’t pause when he cut in. Act today: email him, “You raised a fair point about the numbers. Ours use the line’s own downtime log for March; I’d like fifteen minutes to align with yours before the next MT.” Ask your manager how it came across. Next time, open with source and definitions, and have a line ready: “Good point. Which figure do you have?”',
+      },
+      said: 'What you hear in projects: “I don’t know yet. I’ll come back to you on Thursday.”',
+      recall: [
+        {
+          q: 'Which opening sounds most confident in a meeting with senior people?',
+          options: ['“Sorry, maybe a stupid question, but…”', '“I’m just the consultant, but…”', '“One question:”', '“I could be wrong, but maybe…”'],
+          answer: '“One question:”',
+          why: 'Apologies and hedges shrink you before you’ve said anything.',
+        },
+        {
+          q: 'A senior manager asks something you don’t know. What is the best answer?',
+          options: ['Give your best guess as fact', '“I don’t know yet. I’ll come back to you on Thursday.”', 'Change the subject', 'Refer him to your manager'],
+          answer: '“I don’t know yet. I’ll come back to you on Thursday.”',
+          why: 'It’s honest and comes with a commitment; bluffing gets found out.',
+        },
+        {
+          q: 'Which breathing pattern helps calm nerves fastest?',
+          options: ['Short, quick breaths', 'Holding your breath', 'Breathing in longer than out', 'Breathing out longer than in'],
+          answer: 'Breathing out longer than in',
+          why: 'A long exhale slows the heart rate within a minute.',
+        },
+        {
+          q: 'What do you do first after a meeting that went badly?',
+          options: ['Write down the facts, your part, and what you’d do differently', 'Avoid the person for a while', 'Explain to everyone why it wasn’t your fault', 'Forget it and move on'],
+          answer: 'Write down the facts, your part, and what you’d do differently',
+          why: 'Facts calm the replaying in your head and give you a concrete next step.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a grid operator, about to lead a workshop with eight experienced planners, most of them over 45. In the coffee line one says, half joking: “So you’re going to tell us how to plan?”',
+        ask: 'What do you say, and how do you open the workshop?',
+        model: 'I’d smile and say: “No, you know planning far better than I do. I’m here to help find where the time goes.” In the workshop I’d open with one sharp fact from their own data, then ask: “What do you see in this?” That puts their expertise first and shows I’ve done my homework.',
+        rubric: [
+          'Responds calmly without apologising or getting defensive',
+          'Opens with a concrete fact from their own data',
+          'Positions their expertise as central with an open question',
+        ],
+      },
+      sayIt: 'Explain to a new junior consultant in 60 seconds how you handle being the youngest in the room.',
+      terms: [
+        { term: 'Reframing', def: 'Calling nerves excitement, so the same energy helps you instead of blocking you.' },
+        { term: 'Assertive statement', def: 'What you see, what you think, what you propose, said plainly.' },
+        { term: 'Recovery', def: 'Facts, your part, one action within 24 hours after a meeting that went badly.' },
+      ],
+    },
+  ],
+};
