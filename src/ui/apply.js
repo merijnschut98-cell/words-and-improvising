@@ -28,7 +28,7 @@ export function renderApply(app, { subject, planId }, root) {
     h('p', { class: 'said plan-text' }, plan.text));
   const later = h('button', {
     class: 'btn btn-ghost apply-later',
-    onclick: () => { app.setState(skipPlan(app.state, { subject, id: plan.id }, app.today(), Date.now())); app.go('home'); },
+    onclick: () => { app.go('home'); }, // leaving unanswered = ask later (cleanup below)
   }, t('applyLater'));
 
   // Step 1: how it went. The choices are the action; no filled button yet.
@@ -79,4 +79,7 @@ export function renderApply(app, { subject, planId }, root) {
     h('section', { class: 'card' },
       h('div', { class: 'quiz-opts apply-opts' }, PLAN_USED.map((u) => h('button', { class: 'opt', 'aria-pressed': 'false', onclick: () => choose(u) }, t(`applyUsed_${u}`))))),
     later);
+  // Leaving without an answer counts as "ask me later": after twice the plan
+  // expires, so the check-back never returns day after day. No-op once answered.
+  return () => { app.setState(skipPlan(app.state, { subject, id: plan.id }, app.today(), Date.now())); };
 }

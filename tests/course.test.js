@@ -364,3 +364,21 @@ test('calibration: sure and guessing answers, right and total, over the last 30 
   assert.deepEqual(calibrationLine(s.courses.eng.sessions, '2026-12-20'), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 });
   assert.deepEqual(calibrationLine([{ day: TODAY, kind: 'lesson' }], TODAY), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 }, 'v8 sessions count nothing');
 });
+
+test('applyDue: a correct answer on a question not yet due keeps its box (no same-day climb); a miss still resets', () => {
+  const k = (n) => `nl|eng.flow.takt#r${n}`;
+  const later = '2099-01-01';
+  const s = { ...defaultState(), courseReviews: { [k(0)]: { box: 2, due: later, lesson: 'eng.flow.takt', subject: 'eng' }, [k(1)]: { box: 2, due: later, lesson: 'eng.flow.takt', subject: 'eng' } } };
+  const { state } = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': false }, lang: 'nl', prep: 'ev1' }, TODAY, NOW);
+  assert.equal(state.courseReviews[k(0)].box, 2);
+  assert.equal(state.courseReviews[k(0)].due, later);
+  assert.equal(state.courseReviews[k(1)].box, 1);
+});
+
+test('applyDue: a second refresh for the same event gives no XP and is not another round', () => {
+  const first = applyDue(defaultState(), { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl', prep: 'ev1' }, TODAY, NOW);
+  const again = applyDue(first.state, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl', prep: 'ev1' }, TODAY, NOW + 1);
+  assert.equal(again.xp, 0);
+  assert.equal(again.state.xp, first.state.xp);
+  assert.equal(again.state.days[TODAY], first.state.days[TODAY]);
+});

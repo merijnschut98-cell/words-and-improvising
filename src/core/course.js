@@ -127,10 +127,15 @@ export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lan
 export function applyDue(state, { subject, results, sure = {}, lang, maintenance = false, prep = null }, today, now) {
   const entries = Object.entries(results || {});
   const correct = entries.filter(([, ok]) => ok).length;
-  const xp = Math.min(DUE_XP_MAX, DUE_XP + correct);
-  let next = countRound(state, today, xp);
+  // A repeat refresh for the same event is practice only: no XP, no round.
+  const repeat = !!prep && ((((state.courses || {})[subject] || {}).prepped) || []).includes(prep);
+  const xp = repeat ? 0 : Math.min(DUE_XP_MAX, DUE_XP + correct);
+  let next = repeat ? state : countRound(state, today, xp);
   let reviews = next.courseReviews || {};
   for (const [questionId, ok] of entries) {
+    // Spacing: a right answer before the question is due never climbs a box.
+    const cur = reviews[`${lang}|${questionId}`];
+    if (ok && cur && cur.due > today) continue;
     reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok, (sure || {})[questionId] !== false);
   }
   next = { ...next, courseReviews: reviews };

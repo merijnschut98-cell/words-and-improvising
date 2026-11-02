@@ -278,7 +278,13 @@ export const app = {
   },
 
   go(screen, params = {}) {
-    if (this.updateReady && screen === 'home') { location.reload(); return; }
+    if (this.updateReady && screen === 'home') {
+      // Let the screen being left save first (a lesson's plan), then load the new version.
+      if (cleanup) { try { cleanup(); } catch { /* ignore */ } }
+      cleanup = null;
+      location.reload();
+      return;
+    }
     this.navSeq += 1;
     // Redrawing Settings after a change keeps your place on the page.
     const keepScroll = screen === 'settings' && root.dataset.screen === 'settings';

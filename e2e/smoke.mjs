@@ -1932,6 +1932,9 @@ await step('use it this week: plan at lesson end, check back two days later', as
     await p.evaluate(() => { const s = window.__app.state; window.__app.go('apply', { subject: 'eng', planId: s.courses.eng.plans[0].id }); });
     await p.locator('.screen.apply .plan-text').waitFor();
   });
+  // Leaving the check-back without an answer counts as "ask me later", so it can't come back daily.
+  const asked = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.eng.plans[0].asked || 0);
+  if (asked < 1) throw new Error('leaving the check-back unanswered did not count as asked');
   await p.locator('.screen.apply .opt', { hasText: 'Deels' }).click();
   await p.locator('.screen.apply .opt[aria-pressed="true"]', { hasText: 'Deels' }).waitFor();
   await onePrimary(p, 'apply after the choice');
