@@ -69,6 +69,7 @@ export default {
     },
     {
       id: 'eng.flow.bottleneck',
+      figure: 'eng.flow.line',
       title: 'The bottleneck sets output',
       pre: [
         {
