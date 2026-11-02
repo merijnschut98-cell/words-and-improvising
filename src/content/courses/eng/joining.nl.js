@@ -272,6 +272,7 @@ export default {
     },
     {
       id: 'eng.joining.bolting',
+      figure: 'eng.joining.bolt',
       title: 'Boutverbindingen: aanhaalmoment en voorspanning',
       pre: [
         {
