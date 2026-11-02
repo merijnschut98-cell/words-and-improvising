@@ -272,6 +272,7 @@ await step('sync: send a login link; a signed-in device merges the cloud state w
         }),
       };
     }`;
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
   await page.route('**/@supabase/supabase-js@*', (r) => r.fulfill({ contentType: 'application/javascript', body: FAKE_SUPABASE }));
   await page.evaluate(() => window.__app.go('settings'));
   await page.locator('.sync-card input[type=email]').fill('merijn@example.com');
@@ -300,7 +301,10 @@ await step('sync: send a login link; a signed-in device merges the cloud state w
   await page.locator('.sync-card .btn', { hasText: 'Synchroniseren uitzetten' }).click();
   await page.locator('.sync-card input[type=email]').waitFor();
   await page.unroute('**/@supabase/supabase-js@*');
-  await page.evaluate(() => { localStorage.removeItem('__fakeCloud'); localStorage.removeItem('__otp'); window.__app.go('home'); });
+  // Leave the state as later steps expect it: no merged round, sync off.
+  await page.evaluate((st) => { localStorage.removeItem('__fakeCloud'); localStorage.removeItem('__otp'); localStorage.setItem('spraakwater:v1', st); }, saved);
+  await page.reload();
+  await page.locator('.btn-hero').waitFor();
 });
 
 await step('a lesson whose module fails to load shows a retry, then loads', async () => {
