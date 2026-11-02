@@ -278,6 +278,7 @@ export default {
     },
     {
       id: 'eng.lines.oee_auto',
+      figure: 'eng.lines.auto',
       title: 'OEE on automated lines',
       pre: [
         {
