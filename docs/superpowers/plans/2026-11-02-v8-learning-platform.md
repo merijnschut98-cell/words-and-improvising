@@ -113,9 +113,9 @@ The fixture is a minimal two-lesson module defined inside the test file.
   - `dueSession(reviews, today, subject, lang, rng, max = 10) -> questionIds[]` — groups due questions by track (via `trackOf(moduleOf(lessonId))`), picks the track with the most due, interleaves its modules round-robin, seeded shuffle within module, caps at `max`; returns `[]` when nothing is due. Never includes another subject.
   - `maintenanceQuestion(reviews, today, subject, lang) -> questionId | null` — among owned questions, the one with the oldest `due`, at most one per ISO week per subject (tracked by `lastMaintenance[subject] = isoWeek` inside `reviews._meta`).
 
-- [ ] **Step 1: Failing tests**: box progression to owned after three spaced correct answers (quiz, +3 days, +7 days → box 4 `owned`); a miss resets to box 1; `dueSession` with 3 eng tracks picks the busiest track and alternates modules; `dueSession` with 1 due question returns 1; a pm question never appears in an eng session; per-language keys keep en and nl separate (Review Focus 2, 5).
-- [ ] **Step 2: Run** → FAIL. **Step 3: Implement.** **Step 4: Run** → PASS.
-- [ ] **Step 5: Commit** `Add course relearning queue`.
+- [x] **Step 1: Failing tests**: box progression to owned after three spaced correct answers (quiz, +3 days, +7 days → box 4 `owned`); a miss resets to box 1; `dueSession` with 3 eng tracks picks the busiest track and alternates modules; `dueSession` with 1 due question returns 1; a pm question never appears in an eng session; per-language keys keep en and nl separate (Review Focus 2, 5).
+- [x] **Step 2: Run** → FAIL. **Step 3: Implement.** **Step 4: Run** → PASS.
+- [x] **Step 5: Commit** `Add course relearning queue`.
 
 ### Task 4: Course engine: quiz, judging, progress, XP
 
