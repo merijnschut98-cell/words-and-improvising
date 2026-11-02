@@ -211,3 +211,10 @@ export function courseSummary(state, subject, lang, today, modules = MODULES) {
   const situations = sessions.filter((x) => x.kind === 'situation').slice(0, 5).map((x) => ({ lessonId: x.lessonId, pts: x.correct, ts: x.ts }));
   return { tracks, due: dueCourseQuestions(state.courseReviews || {}, today, subject, lang).length, strip, situations };
 }
+
+// The step indicator at the top of a lesson: Guess · Read · Example · Check.
+const STEP_OF = { pre: 'guess', teach: 'read', example: 'example', quiz: 'check' };
+export function lessonSteps(phases, current) {
+  const at = current === 'done' ? phases.length : phases.indexOf(current);
+  return phases.map((p, i) => ({ id: STEP_OF[p], state: i < at ? 'done' : i === at ? 'current' : 'todo' }));
+}
