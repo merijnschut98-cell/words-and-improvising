@@ -136,3 +136,16 @@ test('his work context stays on this device: syncable strips it, and a merge kee
   const remote = { ...syncable(base()), settings: { context: 'remote context' } };
   assert.equal(mergeStates(local, remote).settings.context, 'I plan MV work at Enexis');
 });
+
+test('prepped merge: same result in either order, newest 50 kept', () => {
+  const ids = (from, n) => Array.from({ length: n }, (_, i) => `e${(from + i).toString(36).padStart(8, '0')}`);
+  const withPrep = (list) => ({ ...base(), courses: { ...base().courses, eng: { lessons: {}, sessions: [], plans: [], prepped: list } } });
+  const a = withPrep(ids(1000, 40));
+  const b = withPrep(ids(1030, 40));
+  const ab = mergeStates(a, b).courses.eng.prepped;
+  const ba = mergeStates(b, a).courses.eng.prepped;
+  assert.deepEqual(ab, ba);
+  assert.equal(ab.length, 50);
+  assert.ok(ab.includes(ids(1069, 1)[0]), 'the newest is kept');
+  assert.ok(!ab.includes(ids(1000, 1)[0]), 'the oldest is dropped');
+});

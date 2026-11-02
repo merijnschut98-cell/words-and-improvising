@@ -5,6 +5,7 @@ import { cleanPlans, strings } from './storage.js';
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
+const PREPPED_CAP = 50;
 // Device-only: settings (API key, theme, language), ui state, and the reminder plan (cue and hour).
 const LOCAL_ONLY = ['settings', 'ui', 'plan'];
 
@@ -84,7 +85,8 @@ function mergeCourses(a, b) {
       lessons: perKey(cx.lessons, cy.lessons, mergeLesson),
       sessions: unionBy(cx.sessions, cy.sessions, (s) => `${s.ts}|${s.kind}|${s.lessonId || ''}`, SESSIONS_CAP),
       plans: mergePlans(cx.plans, cy.plans),
-      prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])],
+      // Event ids grow with time: newest first, capped like on the device.
+      prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])].sort().reverse().slice(0, PREPPED_CAP),
     };
     const lm = [cx.lastMaintenance, cy.lastMaintenance].filter(Boolean).sort().pop();
     if (lm) out.lastMaintenance = lm;
