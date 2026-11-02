@@ -70,6 +70,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      figure: 'eng.gridbasics.levels',
       title: 'Voltage levels and who runs them',
       pre: [
         {

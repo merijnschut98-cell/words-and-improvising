@@ -70,6 +70,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      figure: 'eng.gridbasics.levels',
       title: 'Spanningsniveaus en wie wat beheert',
       pre: [
         {
