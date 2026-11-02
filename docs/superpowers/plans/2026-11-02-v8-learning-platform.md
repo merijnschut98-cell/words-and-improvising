@@ -254,10 +254,10 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - Docs: `docs/superpowers/content/course-brief.md` — the brief template and schema a content subagent gets (lesson fields, word limits, tone: natural spoken Dutch, terms engineers use, Projecten reflects a consultant leading improvement projects at clients).
 
 **Process:**
-- [ ] **Step 1:** Write the brief file and the two module briefs (lesson slug + one line each). Show Merijn the two briefs in the session summary; proceed unless he objects (he approved trusting briefs after the first two per subject).
-- [ ] **Step 2:** Dispatch one content subagent per module (both languages in one dispatch so the ids and meaning match), with the brief, the schema, the validator path and the command `node --test tests/coursecontent.test.js`. The subagent writes the two files and runs the validator until `[]`.
-- [ ] **Step 3:** Add the index entries, run `npm test` (the shipped-modules test now exercises real files), add to `SHELL`.
-- [ ] **Step 4: Commit** `Add the first engineering and project modules`.
+- [x] **Step 1:** Write the brief file and the two module briefs (lesson slug + one line each). Show Merijn the two briefs in the session summary; proceed unless he objects (he approved trusting briefs after the first two per subject).
+- [x] **Step 2:** Dispatch one content subagent per module (both languages in one dispatch so the ids and meaning match), with the brief, the schema, the validator path and the command `node --test tests/coursecontent.test.js`. The subagent writes the two files and runs the validator until `[]`.
+- [x] **Step 3:** Add the index entries, run `npm test` (the shipped-modules test now exercises real files), add to `SHELL`.
+- [x] **Step 4: Commit** `Add the first engineering and project modules`.
 
 ### Task 11b: Launch content wave
 
