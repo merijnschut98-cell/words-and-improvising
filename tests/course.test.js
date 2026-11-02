@@ -161,3 +161,24 @@ test('glossary: every term with its lesson, sorted without regard to case', () =
   assert.equal(g[1].lessonId, 'eng.flow.a');
   assert.equal(g[1].moduleId, 'eng.flow');
 });
+
+import { lessonPhases, recallQuestions, questionById } from '../src/core/course.js';
+import { isRebuildableId } from '../src/core/share.js';
+
+test('lesson phases: pre only when there are prequestions', () => {
+  assert.deepEqual(lessonPhases({ pre: [{}], teach: ['a'] }), ['pre', 'teach', 'example', 'quiz']);
+  assert.deepEqual(lessonPhases({ pre: [], teach: ['a'] }), ['teach', 'example', 'quiz']);
+});
+
+test('recall questions get stable ids; questionById resolves them', () => {
+  const lesson = { id: 'eng.flow.takt', recall: [choice('x'), choice('y'), choice('z', 'c')] };
+  const qs = recallQuestions(lesson);
+  assert.deepEqual(qs.map((q) => q.id), ['eng.flow.takt#r0', 'eng.flow.takt#r1', 'eng.flow.takt#r2']);
+  assert.equal(questionById([{ lessons: [lesson] }], 'eng.flow.takt#r2').answer, 'c');
+  assert.equal(questionById([{ lessons: [lesson] }], 'eng.flow.takt#r9'), null);
+  assert.equal(questionById([{ lessons: [lesson] }], 'eng.flow.other#r0'), null);
+});
+
+test('course say-it prompts never enter the speaking review queue', () => {
+  assert.equal(isRebuildableId('course:eng.flow.takt'), false);
+});

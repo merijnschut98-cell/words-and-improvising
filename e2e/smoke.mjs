@@ -135,6 +135,74 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.btn-hero').waitFor();
 });
 
+// Answers a lesson's quiz from the module file; the first question wrong on purpose.
+async function playLesson(pg, subject, slug, lessonId, { missFirst = true } = {}) {
+  const lesson = await pg.evaluate(async ([sub, sl, id]) => (await import(`/src/content/courses/${sub}/${sl}.nl.js`)).default.lessons.find((l) => l.id === id), [subject, slug, lessonId]);
+  for (const q of lesson.pre) {
+    if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.pre-card .btn-primary').click(); }
+    else await pg.locator('.pre-card .opt').first().click();
+    await pg.locator('.pre-card .btn-primary', { hasText: 'Verder' }).click();
+  }
+  for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
+  if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
+  else await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
+  const answer = async (q, wrong) => {
+    if ('number' in q) {
+      await pg.locator('.quiz-card .quiz-num').fill(String(wrong ? q.number + 1000 : q.number).replace('.', ','));
+      await pg.locator('.quiz-card .btn-primary').click();
+    } else {
+      const pick = wrong ? q.options.find((o) => o !== q.answer) : q.answer;
+      await pg.locator('.quiz-card .opt', { hasText: pick }).first().click();
+    }
+  };
+  for (let i = 0; i < lesson.recall.length; i++) await answer(lesson.recall[i], missFirst && i === 0);
+  await pg.locator('.quiz-review').waitFor();
+  if (missFirst) {
+    if (await pg.locator('.review-row.miss').count() !== 1) throw new Error('expected one miss in review');
+    await pg.locator('.quiz-review .btn-primary').click();
+    await answer(lesson.recall[0], false);
+    await pg.locator('.quiz-review').waitFor();
+  }
+  await pg.locator('.quiz-review .btn-primary').click();
+  await pg.locator('.lesson-done').waitFor();
+  return lesson;
+}
+
+await step('a full lesson: guess, read, example, quiz with one miss, review, pass', async () => {
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-today .today-go').click();
+  await page.locator('.pre-card').waitFor();
+  await shot('61a-lesson-pre');
+  const lesson = await playLesson(page, 'eng', 'flow', 'eng.flow.takt');
+  if (!(await page.locator('.lesson-done').textContent()).includes('+20')) throw new Error('no +20 XP');
+  await shot('61-lesson-done');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (!st.courses.eng.lessons['eng.flow.takt'].passed) throw new Error('lesson not passed');
+  if (st.courseReviews['nl|eng.flow.takt#r0'].box !== 1 || st.courseReviews['nl|eng.flow.takt#r1'].box !== 2) throw new Error('queue boxes wrong');
+  if (lesson.recall.length !== Object.keys(st.courseReviews).length) throw new Error('not every question scheduled');
+  await page.locator('.lesson-done ~ .btn', { hasText: 'Terug naar de cursus' }).click();
+  await page.locator('.course-today .today-what', { hasText: 'De bottleneck' }).waitFor();
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
+await step('a lesson whose module fails to load shows a retry, then loads', async () => {
+  const c4 = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+  await c4.addInitScript(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'pm' } })));
+  const p4 = await c4.newPage();
+  let block = true;
+  await c4.route(/courses\/pm\/intake\.nl\.js/, (r) => (block ? r.fulfill({ status: 404, body: '' }) : r.continue()));
+  await p4.goto(BASE);
+  await p4.locator('.course-pm').waitFor();
+  await p4.evaluate(() => window.__app.go('lesson', { subject: 'pm', moduleId: 'pm.intake', lessonId: 'pm.intake.ask' }));
+  await p4.locator('.load-error').waitFor();
+  await p4.screenshot({ path: `${out}/61b-load-error.png` });
+  block = false;
+  await p4.locator('.load-error .btn-primary').click();
+  await p4.locator('.pre-card').waitFor();
+  await c4.close();
+});
+
 await step('lesson: 3 rounds', async () => {
   await page.locator('.btn-hero').click();
   for (let i = 0; i < 3; i++) {
@@ -1329,6 +1397,8 @@ await step('offline after first load', async () => {
     await page.evaluate((sc) => window.__app.go(sc), screen);
     await page.locator(`main.screen.${screen}`).waitFor({ timeout: 5000 });
   }
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await page.locator('.pre-card').waitFor({ timeout: 5000 });
   await page.evaluate(() => window.__app.go('home'));
   await page.locator('.drill-frame').click();
   await page.locator('.intro-card').waitFor({ timeout: 5000 });

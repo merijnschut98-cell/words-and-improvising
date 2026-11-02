@@ -17,9 +17,10 @@ export const lessonOf = (questionId) => String(questionId).split('#')[0];
 export const metaOf = (moduleId) => MODULES.find((m) => m.id === moduleId) || null;
 export const trackOf = (moduleId) => (metaOf(moduleId) || {}).track || null;
 
-// One module file per language; rejects when the file can't be loaded.
-export async function loadModule(subject, moduleId, lang) {
+// One module file per language; rejects when the file can't be loaded. A
+// browser remembers a failed import, so a retry asks for a fresh URL.
+export async function loadModule(subject, moduleId, lang, attempt = 0) {
   const slug = String(moduleId).split('.')[1];
-  const mod = await import(`./${subject}/${slug}.${lang === 'en' ? 'en' : 'nl'}.js`);
+  const mod = await import(`./${subject}/${slug}.${lang === 'en' ? 'en' : 'nl'}.js${attempt ? `?retry=${attempt}` : ''}`);
   return mod.default;
 }

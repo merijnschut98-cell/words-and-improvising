@@ -177,3 +177,19 @@ export function glossary(modules) {
   return (modules || []).flatMap((m) => (m.lessons || []).flatMap((l) => (l.terms || []).map((x) => ({ term: x.term, def: x.def, lessonId: l.id, moduleId: m.id }))))
     .sort((a, b) => a.term.localeCompare(b.term, undefined, { sensitivity: 'base' }));
 }
+
+// The steps of a lesson; a lesson without prequestions starts reading.
+export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), 'teach', 'example', 'quiz'];
+
+// Recall questions with their stable ids: '<lessonId>#r<n>'.
+export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));
+
+export function questionById(modules, questionId) {
+  const [lessonId, tag] = String(questionId).split('#');
+  const n = Number((tag || '').slice(1));
+  for (const m of modules || []) {
+    const l = (m.lessons || []).find((x) => x.id === lessonId);
+    if (l && tag && tag[0] === 'r' && Number.isInteger(n) && l.recall && l.recall[n]) return { ...l.recall[n], id: questionId };
+  }
+  return null;
+}

@@ -7,6 +7,7 @@ import { loudnessStats } from '../core/loudness.js';
 import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
+import { markSayIt } from '../core/course.js';
 import { runCoach } from '../core/coach.js';
 import { play } from '../core/sound.js';
 import { checkFollowUp } from '../core/followup.js';
@@ -66,7 +67,9 @@ export function renderFeedback(app, params, root) {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier, selfFix: st.selfFix || '',
     }, app.today(), Date.now());
-    app.setState(state);
+    // A say-it round from a course lesson also marks that lesson.
+    const course = prompt.extra && prompt.extra.course;
+    app.setState(course ? markSayIt(state, course.subject, course.lessonId, Date.now()) : state);
     if (newBests.length) play('best', app.state.settings);
     else if (completedQuests.length) play('quest', app.state.settings);
     completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));

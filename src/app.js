@@ -89,10 +89,16 @@ export const app = {
     this.go('home');
   },
   modules: {}, // 'lang:moduleId' -> loaded module (promise), course bodies on demand
+  moduleFails: {}, // 'lang:moduleId' -> failed loads so far
   openModule(subject, moduleId) {
     const key = `${this.lang}:${moduleId}`;
     if (!this.modules[key]) {
-      this.modules[key] = loadModule(subject, moduleId, this.lang).catch((err) => { delete this.modules[key]; throw err; });
+      const attempt = this.moduleFails[key] || 0;
+      this.modules[key] = loadModule(subject, moduleId, this.lang, attempt).catch((err) => {
+        delete this.modules[key];
+        this.moduleFails[key] = attempt + 1;
+        throw err;
+      });
     }
     return this.modules[key];
   },

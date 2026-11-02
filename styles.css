@@ -552,3 +552,27 @@ details.finder summary { cursor: pointer; font-weight: 800; }
 .lesson-list { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 8px; }
 .lesson-row { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .lesson-row.passed span:first-child { color: var(--good); font-weight: 800; }
+.lesson .card { margin-bottom: 12px; }
+.teach-text { font-size: 1.08rem; line-height: 1.55; margin: 8px 0; }
+.said { margin: 12px 0 0; padding: 10px 12px; border-left: 4px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 0 10px 10px 0; font-style: italic; }
+.dots { display: flex; gap: 6px; margin: 6px 0; }
+.dots i { width: 22px; height: 6px; border-radius: 999px; background: var(--line); }
+.dots i.on { background: var(--primary); }
+.quiz-q { font-weight: 700; font-size: 1.05rem; margin: 6px 0 10px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { min-height: 48px; padding: 10px 14px; text-align: left; border: 2px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); font: inherit; cursor: pointer; }
+.opt:active { border-color: var(--primary); }
+.quiz-num-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.quiz-num { max-width: 180px; }
+.quiz-unit { font-weight: 700; color: var(--muted); }
+.review-row { border-top: 1px solid var(--line); padding: 8px 0; }
+.review-row .quiz-q { margin: 0 0 4px; }
+.review-row.ok .mark { color: var(--good); }
+.review-row.miss .mark { color: var(--bad); }
+.example-ask { margin: 10px 0 6px; }
+.reveal { border-top: 1px dashed var(--line); padding-top: 8px; }
+.lesson-done { text-align: center; }
+.big-emoji { font-size: 2.6rem; margin: 4px 0; }
+.xp-line { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+.load-error .row { display: flex; gap: 8px; flex-wrap: wrap; }
+.lesson > .btn { width: 100%; margin-bottom: 8px; }

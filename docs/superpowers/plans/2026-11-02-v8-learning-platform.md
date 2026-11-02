@@ -189,10 +189,10 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - Say-it: `app.go('round', { prompt: { id: \`course:${lessonId}\`, drill: 'explain', body: lesson.sayIt, extra: { course: { subject, lessonId, terms } }, seenIds: [] }, modifier: null })`; `share.js` `isRebuildableId` must return false for `course:` ids (so it never enters the speaking review queue); `round.js` finishing calls `markSayIt` when `prompt.extra.course` exists.
 - i18n: `lessonPre`, `lessonTeach`, `lessonExample`, `lessonWhatNext`, `reveal`, `quizNext`, `quizReview`, `quizAgain`, `quizClean`, `lessonPassed` (xp) => …, `openSituation`, `openSayIt`, `backToCourse`, `loadError`, `retry`, `numericPh`.
 
-- [ ] **Step 1: Failing unit tests**: `isRebuildableId('course:eng.flow.takt') === false`; quiz state transitions already covered; add `lessonPhases(lesson) -> ['pre','teach','example','quiz']` with `'pre'` omitted when `lesson.pre` is empty (pure helper in course.js).
-- [ ] **Step 2: Implement** screens and wiring.
-- [ ] **Step 3: e2e step** `a full lesson: pretest, teach, example, quiz with one miss, review, pass`: open Engineering, tap the Today card, answer the pretest, tap Next through blocks, answer the quiz with one deliberate wrong option, see `.quiz-review` with one ✗, re-answer, see `.lesson-done` with "+20", screenshot `61-lesson-done`; then assert `localStorage` has `courses.eng.lessons[<id>].passed`. Add a step `lesson load failure shows retry` by routing one module path to a 404 with `page.route` before opening it, expect `.load-error`, unroute, tap Retry, expect the lesson.
-- [ ] **Step 4: `npm test`, e2e all green, CACHE, SHELL. Step 5: Commit** `Add the lesson screen`.
+- [x] **Step 1: Failing unit tests**: `isRebuildableId('course:eng.flow.takt') === false`; quiz state transitions already covered; add `lessonPhases(lesson) -> ['pre','teach','example','quiz']` with `'pre'` omitted when `lesson.pre` is empty (pure helper in course.js).
+- [x] **Step 2: Implement** screens and wiring.
+- [x] **Step 3: e2e step** `a full lesson: pretest, teach, example, quiz with one miss, review, pass`: open Engineering, tap the Today card, answer the pretest, tap Next through blocks, answer the quiz with one deliberate wrong option, see `.quiz-review` with one ✗, re-answer, see `.lesson-done` with "+20", screenshot `61-lesson-done`; then assert `localStorage` has `courses.eng.lessons[<id>].passed`. Add a step `lesson load failure shows retry` by routing one module path to a 404 with `page.route` before opening it, expect `.load-error`, unroute, tap Retry, expect the lesson.
+- [x] **Step 4: `npm test`, e2e all green, CACHE, SHELL. Step 5: Commit** `Add the lesson screen`.
 
 ### Task 8: Due session screen
 
