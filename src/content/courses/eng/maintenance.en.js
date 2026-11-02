@@ -205,6 +205,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
+      figure: 'eng.maintenance.pf',
       title: 'Condition monitoring',
       pre: [
         {
