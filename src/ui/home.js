@@ -1,20 +1,21 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf, ownedDrills } from '../core/mastery.js';
-import { todayPick } from '../core/today.js';
-import { programmeWeek, PROGRAMME } from '../core/programme.js';
+import { todayPick, startCards, MORE_GROUPS } from '../core/today.js';
+import { programmeWeek, PROGRAMME, startProgramme, stopProgramme, baselineDue } from '../core/programme.js';
+import { challengePrompt } from '../core/share.js';
+import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
 import { ico } from './icons.js';
-import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
+import { levelFromXp, isStreakAlive, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
-import { planLine } from './plan.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
-import { subjectBar } from './subjectbar.js';
-import { courseHome } from './coursehome.js';
+import { subjectBar, SUBJECT_TABS } from './subjectbar.js';
+import { courseHome, COURSE_ICON } from './coursehome.js';
 
 // The Vantage mark (one image per theme, CSS shows the right one) and the wordmark.
 export function brandLockup() {
@@ -26,27 +27,13 @@ export function brandLockup() {
 
 export function navBar(app, active) {
   const t = app.t;
+  // Home is the start screen: the overview of all three subjects.
   const item = (id, icon) => h('button', {
     class: `nav-item${active === id ? ' active' : ''}`,
-    onclick: () => app.go(id),
+    onclick: () => (id === 'home' ? app.setSubject('start') : app.go(id)),
     'aria-current': active === id ? 'page' : null,
   }, h('span', { class: 'nav-icon' }, ico(icon)), h('span', {}, t(`nav_${id}`)));
   return h('nav', { class: 'navbar' }, item('home', 'house'), item('progress', 'gauge'), item('settings', 'settings'));
-}
-
-function weekStrip(app) {
-  const days = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    const key = dayKey(d);
-    const done = (app.state.days[key] || 0) > 0;
-    const frozen = !done && (app.state.freezeLog || []).includes(key);
-    const label = d.toLocaleDateString(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'narrow' });
-    days.push(h('div', { class: `day${done ? ' done' : ''}${frozen ? ' frozen' : ''}${i === 0 ? ' today' : ''}` },
-      h('span', { class: 'dot' }, done ? ico('check') : frozen ? ico('snowflake') : ''), h('span', { class: 'lbl' }, label)));
-  }
-  return h('div', { class: 'week' }, days);
 }
 
 function questCard(app) {
@@ -81,7 +68,7 @@ function realWeekCard(app) {
     return h('div', { class: 'card rw-home' },
       h('div', {}, h('p', { class: 'muted small' }, ico('calendar'), ` ${t('rwComing')} · `, ico(EVENT_ICON[next.type]), ` ${fmtDay(app, next.date)}`), h('p', { class: 'rw-text' }, next.text)),
       h('div', { class: 'rw-actions' },
-        h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, next); } }, ico('mic'), ' ', t('rwRehearse')),
+        h('button', { class: 'btn btn-ghost small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, next); } }, ico('mic'), ' ', t('rwRehearse')),
         h('button', { class: 'btn btn-ghost small', onclick: open }, t('rwAll'))));
   }
   return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, ico('calendar'), ' ', t('rwInvite'));
@@ -126,100 +113,202 @@ function situationFinder(app) {
       }, ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)))))));
 }
 
+// The optional 4-week programme: start, status with this week's drills, stop.
+function programmeCard(app) {
+  const t = app.t;
+  const s = app.state;
+  const today = app.today();
+  const week = programmeWeek(s, today);
+  if (!week) {
+    const finished = !!(s.programme && s.programme.start);
+    return h('section', { class: 'card programme-card' },
+      h('h3', { class: 'card-title' }, t('progTitle')),
+      h('p', {}, finished ? t('progDone') : t('progIntro')),
+      h('button', {
+        class: 'btn btn-ghost',
+        onclick: () => {
+          const next = startProgramme(app.state, today, app.content, app.lang, Math.random);
+          app.setState(next);
+          const b = next.programme.baseline;
+          const prompt = challengePrompt({ drill: b.drill, promptId: b.promptId }, app.content);
+          if (!prompt) { app.go('home'); return; }
+          app.session = null;
+          app.toast(t('progStarted'));
+          app.go('round', { prompt, notice: t('progBaseline'), modifier: null });
+        },
+      }, finished ? t('progRestart') : t('progStart')));
+  }
+  const theme = PROGRAMME[week - 1];
+  return h('section', { class: 'card programme-card' },
+    h('h3', { class: 'card-title' }, t('progTitle')),
+    h('p', {}, h('b', {}, t('progWeek', week, t(`progTheme_${theme.id}`)))),
+    baselineDue(s, today) && s.programme.baseline.lang !== app.lang ? h('p', { class: 'note' }, t('progOtherLang')) : null,
+    h('div', { class: 'finder-drills' }, theme.drills.map((d) => h('button', { class: 'btn btn-ghost small', onclick: () => app.startDrill(d) },
+      ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)))),
+    h('button', { class: 'btn btn-ghost small prog-stop', onclick: () => { app.setState(stopProgramme(app.state)); app.go('home'); } }, t('progStop')));
+}
+
+// Everything that is not the one next thing, behind one labelled disclosure.
+export function morePractice(app) {
+  const t = app.t;
+  const s = app.state;
+  const dueCount = app.dueReviews().length;
+  const ITEMS = {
+    quick: () => h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
+    drills: () => h('div', { class: 'drill-grid' }, DRILLS.map((d) => h('button', {
+      class: `drill drill-${d}`, onclick: () => app.startDrill(d),
+    },
+    h('span', { class: 'drill-icon' }, ico(DRILL_ICON[d])),
+    h('span', { class: 'drill-name' }, t(`drill_${d}`)),
+    masteryBadge(t, masteryOf(s.history, d)),
+    h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
+      [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
+    reviews: () => (dueCount ? h('button', { class: 'btn review-card', onclick: () => app.startReviews() },
+      h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('reviewTitle')),
+      h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null),
+    boss: () => (bossAvailable(s, new Date()) ? h('button', {
+      class: 'btn boss-card',
+      onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
+    }, h('span', { class: 'hero-title' }, ico('crown'), ' ', t('bossTitle')), h('span', { class: 'hero-sub' }, t('bossSub'))) : null),
+    targeted: () => h('button', {
+      class: 'drill convo-card target-card',
+      onclick: async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        btn.querySelector('.muted').textContent = t('targetLoading');
+        await app.startTargeted();
+      },
+    },
+    h('span', { class: 'drill-icon' }, ico('crosshair')),
+    h('span', { class: 'drill-name' }, t('targetTitle')),
+    h('span', { class: 'muted small' }, s.settings.apiKey ? t('targetSubAI') : t('targetSub'))),
+    conversation: () => h('button', {
+      class: 'drill convo-card',
+      onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
+    },
+    h('span', { class: 'drill-icon' }, ico('message-circle')),
+    h('span', { class: 'drill-name' }, t('convoTitle')),
+    h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey'))),
+    realweek: () => realWeekCard(app),
+    finder: () => situationFinder(app),
+    quests: () => questCard(app),
+    programme: () => programmeCard(app),
+  };
+  const groups = MORE_GROUPS.map((g) => {
+    const items = g.items.map((id) => ITEMS[id]()).filter(Boolean);
+    return items.length ? h('div', { class: `more-group more-${g.id}` }, h('h2', { class: 'more-title' }, t(`more_${g.id}`)), items) : null;
+  });
+  return h('details', {
+    class: 'more', open: !!(s.ui || {}).moreOpen,
+    ontoggle: (e) => { app.setState({ ...app.state, ui: { ...(app.state.ui || {}), moreOpen: e.currentTarget.open } }); },
+  },
+  h('summary', {}, h('span', { class: 'more-label' }, t('moreTitle')), h('span', { class: 'muted small more-sub' }, t('moreSub'))),
+  groups);
+}
+
+// One compact card per subject: its next step and why. Tapping opens that subject's home.
+function startCard(app, card) {
+  const t = app.t;
+  const icon = Object.fromEntries(SUBJECT_TABS)[card.subject];
+  let what;
+  let why;
+  if (card.subject === 'speak') {
+    what = h('span', { class: 'start-what' }, ico(DRILL_ICON[card.drill]), ' ', t(`drill_${card.drill}`));
+    why = card.reason === 'event' ? t('todayWhy_event', card.eventText) : t(`todayWhy_${card.reason}`);
+  } else {
+    const meta = card.moduleId ? MODULES.find((m) => m.id === card.moduleId) : null;
+    const modTitle = meta ? (meta.title[app.lang] || meta.title.en) : '';
+    what = h('span', { class: 'start-what' }, ico(COURSE_ICON[card.reason]), ' ', modTitle || t(`courseWhat_${card.reason}`, card.count || 0));
+    why = modTitle && card.lessonId ? `${t(`courseWhy_${card.reason}`)} · ${modTitle}` : t(`courseWhy_${card.reason}`);
+    // The lesson title lives in the module file: fill it in once it is loaded.
+    if (card.lessonId && meta) {
+      app.openModule(card.subject, meta.id).then((mod) => {
+        const l = mod.lessons.find((x) => x.id === card.lessonId);
+        if (l && what.isConnected) what.replaceChildren(ico(COURSE_ICON[card.reason]), ' ', l.title);
+      }).catch(() => {});
+    }
+  }
+  return h('button', {
+    class: `btn start-card start-${card.subject}${card.suggested ? ' btn-primary' : ''}`,
+    onclick: () => app.setSubject(card.subject),
+  },
+  h('span', { class: 'start-head' },
+    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`)),
+    card.done ? h('span', { class: 'start-done' }, ico('check'), ' ', t('startDone')) : null),
+  what,
+  h('span', { class: 'start-why' }, why),
+  h('span', { class: 'start-open' }, t('startOpen', t(`subject_${card.subject}`)), ' ', ico('chevron-right')));
+}
+
+function breakCard(app, show) {
+  if (!show) return null;
+  return h('section', { class: 'card break-card' },
+    h('p', {}, app.t('streakReset', daysPractised(app.state))),
+    h('button', { class: 'icon-btn small', 'aria-label': app.t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, ico('x')));
+}
+
+// The start screen: under the Vantage Point name, one today card per subject,
+// and the streak and level in one quiet line.
+function renderStart(app, root, showBreak) {
+  const t = app.t;
+  const s = app.state;
+  const today = app.today();
+  const streak = isStreakAlive(s.streak, today) ? s.streak.count : 0;
+  const lv = levelFromXp(s.xp);
+  const cards = startCards(s, today, app.content, app.lang);
+  root.append(
+    h('header', { class: 'top' }, brandLockup()),
+    h('main', { class: 'screen home start' },
+      breakCard(app, showBreak),
+      h('h1', { class: 'start-title' }, t('startTitle')),
+      h('p', { class: 'start-meta muted small' },
+        ico('flame'), ` ${streak} ${t('streak', streak)} · ${t('level')} ${lv.level} · ${lv.into}/${lv.needed} XP`,
+        s.freezes ? ` · ${t('freezesShort', s.freezes)}` : ''),
+      h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
+      navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
+    navBar(app, 'home'));
+}
+
+// Inside a subject: a labelled way back to the overview, and the streak.
+function subjectHeader(app) {
+  const t = app.t;
+  const s = app.state;
+  const streak = isStreakAlive(s.streak, app.today()) ? s.streak.count : 0;
+  return h('header', { class: 'top' },
+    h('button', { class: 'back-btn', onclick: () => app.setSubject('start') }, ico('chevron-left'), h('span', {}, t('overview'))),
+    h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
+      ico('flame'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
+      s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));
+}
+
 export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  const alive = isStreakAlive(s.streak, today);
-  const streak = alive ? s.streak.count : 0;
-  const lv = levelFromXp(s.xp);
   const doneToday = (s.days[today] || 0) >= 3;
-  // Gentle, once a day: the streak broke, but the total never resets.
-  const dueCount = app.dueReviews().length;
   const weak = weekFocus(s, new Date()) || weakestDrill(s.history, ownedDrills(s.history));
+  // Gentle, once a day: the streak broke, but the total never resets.
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
-  const header = h('header', { class: 'top' },
-      brandLockup(),
-      h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
-        ico('flame'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
-        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));
+  if (app.subject === 'start') { renderStart(app, root, showBreak); return; }
   // A course subject: its own home under the same header and bar.
   if (app.subject !== 'speak') {
-    root.append(header, subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
+    root.append(subjectHeader(app), subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
     return;
   }
+  // Speaking: the Today card, the daily lesson, then "More practice".
   root.append(
-    header,
+    subjectHeader(app),
     subjectBar(app),
     h('main', { class: 'screen home' },
-      showBreak ? h('section', { class: 'card break-card' },
-        h('p', {}, t('streakReset', daysPractised(s))),
-        h('button', { class: 'icon-btn small', 'aria-label': t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, ico('x'))) : null,
-      h('p', { class: 'tagline' }, `${t('tagline')} · ${t('daysTotal', daysPractised(s))}`),
-      h('section', { class: 'card level-card' },
-        h('div', { class: 'level-row' },
-          h('span', { class: 'level-badge' }, `${t('level')} ${lv.level}`),
-          h('span', { class: 'muted' }, `${lv.into} / ${lv.needed} XP`)),
-        h('div', { class: 'bar' }, h('div', { class: 'fill', style: { width: `${(100 * lv.into) / lv.needed}%` } })),
-        weekStrip(app)),
+      h('h1', { class: 'sr' }, t('subject_speak')),
+      breakCard(app, showBreak),
       todayCard(app),
-      situationFinder(app),
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
-        h('span', { class: 'hero-title' }, doneToday ? t('lessonDone') : t('todayLesson')),
+        h('span', { class: 'hero-title' }, ico('layers'), ' ', doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
-      planLine(app),
-      bossAvailable(s, new Date()) ? h('button', {
-        class: 'btn boss-card',
-        onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
-      }, h('span', { class: 'hero-title' }, ico('crown'), ' ', t('bossTitle')), h('span', { class: 'hero-sub' }, t('bossSub'))) : null,
-      dueCount ? h('button', { class: 'btn review-card', onclick: () => app.startReviews() },
-        h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('reviewTitle')),
-        h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null,
-      h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
-      realWeekCard(app),
-      questCard(app),
-      h('div', { class: 'feature-row' },
-      h('button', {
-        class: 'drill convo-card target-card',
-        onclick: async (e) => {
-          const btn = e.currentTarget;
-          btn.disabled = true;
-          btn.querySelector('.muted').textContent = t('targetLoading');
-          await app.startTargeted();
-        },
-      },
-      h('span', { class: 'drill-icon' }, ico('crosshair')),
-      h('span', { class: 'drill-name' }, t('targetTitle')),
-      h('span', { class: 'muted small' }, s.settings.apiKey ? t('targetSubAI') : t('targetSub'))),
-      h('button', {
-        class: 'drill convo-card',
-        onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
-      },
-      h('span', { class: 'drill-icon' }, ico('message-circle')),
-      h('span', { class: 'drill-name' }, t('convoTitle')),
-      h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey')))),
-      // All drills, behind one tap: the Today card is the default choice.
-      h('details', {
-        class: 'choose', open: !!(s.ui || {}).gridOpen,
-        ontoggle: (e) => { app.setState({ ...app.state, ui: { ...(app.state.ui || {}), gridOpen: e.currentTarget.open } }); },
-      },
-      h('summary', { class: 'section-title' }, t('chooseMyself')),
-      h('div', { class: 'drill-grid' }, DRILLS.map((d) => h('button', {
-        class: `drill drill-${d}`, onclick: () => app.startDrill(d),
-      },
-      h('span', { class: 'drill-icon' }, ico(DRILL_ICON[d])),
-      h('span', { class: 'drill-name' }, t(`drill_${d}`)),
-      masteryBadge(t, masteryOf(s.history, d)),
-      h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
-        [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' }))))))),
-      app.installPrompt
-        ? h('button', {
-          class: 'btn btn-ghost',
-          onclick: async () => { app.installPrompt.prompt(); app.installPrompt = null; },
-        }, t('installBtn'))
-        : null,
+      morePractice(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),
   );

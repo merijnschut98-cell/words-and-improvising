@@ -8,6 +8,8 @@ import { ownedDrills, maintenanceDrill } from './mastery.js';
 import { upcoming, rehearsalPrompts } from './realweek.js';
 import { baselineDue } from './programme.js';
 import { challengePrompt } from './share.js';
+import { dayKey } from './progress.js';
+import { courseTodayPick } from './course.js';
 
 function seedOf(s) {
   let h = 2166136261;
@@ -49,4 +51,37 @@ export function todayPick(state, today, content, lang, now = Date.now()) {
   const last = (d) => { const i = (state.history || []).findIndex((e) => e.drill === d); return i === -1 ? Infinity : i; };
   const fresh = order.sort((a, b) => last(b) - last(a))[0];
   return { reason: 'fresh', prompt: makePrompt(fresh, content, rng, seen) };
+}
+
+// The start screen: ui.subject absent or 'start' means the overview.
+export const SUBJECTS = ['speak', 'eng', 'pm'];
+export const homeSubject = (ui) => (ui && SUBJECTS.includes(ui.subject) ? ui.subject : 'start');
+
+// The speaking home, top to bottom: the Today card, one secondary card (the
+// daily lesson), then a single "More practice" disclosure with these groups.
+export const HOME_SECTIONS = ['today', 'secondary', 'more'];
+export const MORE_GROUPS = [
+  { id: 'drills', items: ['quick', 'drills'] },
+  { id: 'again', items: ['reviews', 'boss', 'targeted'] },
+  { id: 'real', items: ['realweek', 'conversation', 'finder'] },
+  { id: 'plan', items: ['quests', 'programme'] },
+];
+
+const practisedToday = (state, subject, today) => (subject === 'speak'
+  ? (state.history || []).some((e) => dayKey(new Date(e.ts)) === today)
+  : ((((state.courses || {})[subject]) || {}).sessions || []).some((x) => x.day === today));
+
+// One compact card per subject: its next step, the reason, whether it was
+// practised today, and one suggestion (the first subject not done today).
+export function startCards(state, today, content, lang, now = Date.now()) {
+  const cards = SUBJECTS.map((subject) => {
+    const done = practisedToday(state, subject, today);
+    if (subject === 'speak') {
+      const p = todayPick(state, today, content, lang, now);
+      return { subject, reason: p.reason, drill: p.prompt.drill, eventText: p.event ? p.event.text : '', done };
+    }
+    return { subject, ...courseTodayPick(state, subject, lang, today), done };
+  });
+  const pick = Math.max(0, cards.findIndex((c) => !c.done));
+  return cards.map((c, i) => ({ ...c, suggested: i === pick }));
 }

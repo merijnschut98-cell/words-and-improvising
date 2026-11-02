@@ -5,14 +5,14 @@ import { ico } from './icons.js';
 export const SUBJECT_TABS = [['speak', 'mic'], ['eng', 'cog'], ['pm', 'route']];
 
 // Three subjects; the choice is remembered in ui.subject. On Progress the bar
-// switches the view and stays on that screen.
+// switches the view and stays on that screen (from the overview it shows speaking).
 export function subjectBar(app, screen = 'home') {
   const t = app.t;
-  const cur = app.subject;
+  const cur = app.subject === 'start' ? 'speak' : app.subject;
   return h('nav', { class: 'subject-bar', 'aria-label': t('subjectsLabel') },
     SUBJECT_TABS.map(([id, icon]) => h('button', {
       class: `subject-tab${cur === id ? ' on' : ''}`,
       'aria-pressed': cur === id ? 'true' : 'false',
-      onclick: () => { if (app.subject !== id) app.setSubject(id, screen); },
+      onclick: () => { if (cur !== id) app.setSubject(id, screen); },
     }, ico(icon), h('span', {}, t(`subject_${id}`)))));
 }

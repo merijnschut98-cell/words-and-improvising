@@ -6,8 +6,6 @@ import { weeklyReview } from '../core/review.js';
 import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
 import { masteryOf } from '../core/mastery.js';
-import { PROGRAMME, startProgramme, stopProgramme, programmeWeek, baselineDue } from '../core/programme.js';
-import { challengePrompt } from '../core/share.js';
 import { masteryBadge } from './home.js';
 import { subjectBar } from './subjectbar.js';
 import { courseSummary } from '../core/course.js';
@@ -204,41 +202,6 @@ function wordsCard(app) {
     h('p', { class: 'muted small' }, t('wordsSttNote')));
 }
 
-// The optional 4-week programme: start, status with this week's drills, stop.
-function programmeCard(app) {
-  const t = app.t;
-  const s = app.state;
-  const today = app.today();
-  const week = programmeWeek(s, today);
-  if (!week) {
-    const finished = !!(s.programme && s.programme.start);
-    return h('section', { class: 'card programme-card' },
-      h('h2', { class: 'card-title' }, t('progTitle')),
-      h('p', {}, finished ? t('progDone') : t('progIntro')),
-      h('button', {
-        class: 'btn btn-primary',
-        onclick: () => {
-          const next = startProgramme(app.state, today, app.content, app.lang, Math.random);
-          app.setState(next);
-          const b = next.programme.baseline;
-          const prompt = challengePrompt({ drill: b.drill, promptId: b.promptId }, app.content);
-          if (!prompt) { app.go('progress'); return; }
-          app.session = null;
-          app.toast(t('progStarted'));
-          app.go('round', { prompt, notice: t('progBaseline'), modifier: null });
-        },
-      }, finished ? t('progRestart') : t('progStart')));
-  }
-  const theme = PROGRAMME[week - 1];
-  return h('section', { class: 'card programme-card' },
-    h('h2', { class: 'card-title' }, t('progTitle')),
-    h('p', {}, h('b', {}, t('progWeek', week, t(`progTheme_${theme.id}`)))),
-    baselineDue(s, today) && s.programme.baseline.lang !== app.lang ? h('p', { class: 'note' }, t('progOtherLang')) : null,
-    h('div', { class: 'finder-drills' }, theme.drills.map((d) => h('button', { class: 'btn btn-ghost small', onclick: () => app.startDrill(d) },
-      ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)))),
-    h('button', { class: 'btn btn-ghost small prog-stop', onclick: () => { app.setState(stopProgramme(app.state)); app.go('progress'); } }, t('progStop')));
-}
-
 function calibrationCard(app) {
   const t = app.t;
   const c = calibration(app.state.history);
@@ -287,8 +250,10 @@ export function renderProgress(app, _params, root) {
   const dateFmt = new Intl.DateTimeFormat(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
 
   const header = h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('progressTitle')));
-  if (app.subject !== 'speak') {
-    root.append(header, subjectBar(app, 'progress'), courseProgress(app, app.subject), navBar(app, 'progress'));
+  // From the start screen, Progress opens on speaking.
+  const subject = app.subject === 'start' ? 'speak' : app.subject;
+  if (subject !== 'speak') {
+    root.append(header, subjectBar(app, 'progress'), courseProgress(app, subject), navBar(app, 'progress'));
     return;
   }
   root.append(
@@ -301,7 +266,6 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
-      programmeCard(app),
       h('button', { class: 'btn btn-ghost week-btn', onclick: () => app.go('weekly') }, ico('calendar'), ' ', t('weekChange')),
       reflectionsCard(app),
       journeyCard(app),

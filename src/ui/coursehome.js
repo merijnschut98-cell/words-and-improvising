@@ -6,7 +6,7 @@ import { MODULES, TRACKS } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
 import { dueCourseQuestions } from '../core/coursereview.js';
 
-const ICON = { due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
+export const COURSE_ICON = { due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
@@ -24,13 +24,13 @@ function todayCard(app, subject) {
   const t = app.t;
   const pick = courseTodayPick(app.state, subject, app.lang, app.today());
   const meta = pick.moduleId ? MODULES.find((m) => m.id === pick.moduleId) : null;
-  const what = h('p', { class: 'today-what' }, ico(ICON[pick.reason]), ' ',
+  const what = h('p', { class: 'today-what' }, ico(COURSE_ICON[pick.reason]), ' ',
     meta ? modTitle(app, meta) : t(`courseWhat_${pick.reason}`, pick.count || 0));
   // The lesson title lives in the module file: fill it in once it is loaded.
   if (pick.lessonId && meta) {
     app.openModule(subject, meta.id).then((mod) => {
       const l = mod.lessons.find((x) => x.id === pick.lessonId);
-      if (l && what.isConnected) what.replaceChildren(ico(ICON[pick.reason]), ' ', l.title);
+      if (l && what.isConnected) what.replaceChildren(ico(COURSE_ICON[pick.reason]), ' ', l.title);
     }).catch(() => {});
   }
   return h('section', { class: 'card today-card course-today' },
@@ -86,7 +86,7 @@ export function courseHome(app, subject) {
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
     todayCard(app, subject),
-    due ? h('button', { class: 'btn review-card due-card', onclick: () => app.go('due', { subject }) },
+    due ? h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
       h('span', { class: 'hero-sub' }, t('dueCard', due))) : null,
     ...tracks,

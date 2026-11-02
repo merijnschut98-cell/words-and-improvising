@@ -73,7 +73,8 @@ export function load(backend) {
     return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [] }];
   }));
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
-  if ('subject' in merged.ui && !['speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
+  if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
+  if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
   const pr = merged.programme;
   if (!(isObject(pr) && typeof pr.start === 'string' && isObject(pr.baseline) && typeof pr.baseline.promptId === 'string')) merged.programme = null;
   return merged;
