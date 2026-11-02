@@ -22,6 +22,7 @@ const SHELL = [
   'src/content/courses/eng/gridplanning.en.js', 'src/content/courses/eng/gridplanning.nl.js', 'src/content/courses/eng/reliability.en.js', 'src/content/courses/eng/reliability.nl.js', 'src/content/courses/pm/consult.en.js', 'src/content/courses/pm/consult.nl.js', 'src/content/courses/pm/portfolio.en.js', 'src/content/courses/pm/portfolio.nl.js',
   'src/content/courses/eng/improve.en.js', 'src/content/courses/eng/improve.nl.js',
   'src/content/courses/eng/process.en.js', 'src/content/courses/eng/process.nl.js',
+  'src/content/courses/eng/mechanics.en.js', 'src/content/courses/eng/mechanics.nl.js',
   'src/content/courses/eng/cost.en.js', 'src/content/courses/eng/cost.nl.js',
   'src/content/courses/eng/spc.en.js', 'src/content/courses/eng/spc.nl.js',
   'src/content/courses/eng/fluids.en.js', 'src/content/courses/eng/fluids.nl.js',
