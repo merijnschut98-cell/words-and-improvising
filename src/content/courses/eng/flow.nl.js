@@ -93,7 +93,7 @@ export default {
       said: 'Wat engineers zeggen: “Laat die wasser maar, de CNC is de bottleneck. Elke minuut dat die stilstaat ben je kwijt.”',
       recall: [
         {
-          q: 'Vier stations doen 35, 48, 60 en 42 seconden. Hoeveel stuks per uur maakt de lijn?',
+          q: 'Een product gaat langs vier stations op een rij. Elk station doet per product: 35, 48, 60 en 42 seconden. Hoeveel stuks per uur maakt de lijn?',
           number: 60,
           tolerance: 1,
           unit: 'stuks/uur',
@@ -245,7 +245,7 @@ export default {
           q: 'Omstellen duurt 30 minuten. De netto tijd is 15 uur per dag, en maximaal 10% mag naar omstellen. Hoeveel omstellingen passen er per dag?',
           number: 3,
           tolerance: 0.1,
-          unit: '',
+          unit: 'omstellingen',
           why: '10% van 900 minuten = 90 minuten; 90 / 30 = 3 omstellingen.',
         },
         {
@@ -303,7 +303,7 @@ export default {
           why: '420 / 50 = 8,4, naar boven afgerond 9.',
         },
         {
-          q: 'Vier stations doen 40, 55, 50 en 35 seconden. Wat is het balansverlies, in procent?',
+          q: 'Een lijn heeft vier stations. Elk station doet per product: 40, 55, 50 en 35 seconden. Wat is het balansverlies, in procent?',
           number: 18.2,
           tolerance: 1,
           unit: '%',
@@ -364,7 +364,7 @@ export default {
       said: 'Wat engineers zeggen: “De planner laat 98% belasting zien op de vijfassige. Dat is geen efficiëntie, dat is een wachtrij in wording.”',
       recall: [
         {
-          q: 'Twee ploegen × 5 dagen × 7,5 netto uur, OEE 80%. De vraag is 54 uur. Wat is de belasting, in procent?',
+          q: 'Een machine draait twee ploegen per dag, 5 dagen per week, 7,5 netto uur per ploeg, bij een OEE van 80%. De orders van deze week vragen 54 uur zuivere machinetijd (stuks × cyclustijd). Wat is de belasting, in procent?',
           number: 90,
           tolerance: 1,
           unit: '%',

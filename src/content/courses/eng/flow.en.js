@@ -93,7 +93,7 @@ export default {
       said: 'What engineers say: “Forget the washer, the CNC is the constraint. Every minute it stands still is gone for good.”',
       recall: [
         {
-          q: 'Four stations take 35, 48, 60 and 42 seconds. How many parts per hour does the line make?',
+          q: 'A product passes four stations in a row. Each station takes, per product: 35, 48, 60 and 42 seconds. How many parts per hour does the line make?',
           number: 60,
           tolerance: 1,
           unit: 'parts/hour',
@@ -245,7 +245,7 @@ export default {
           q: 'Changeover takes 30 minutes. Net time is 15 hours a day, and at most 10% may go to changeovers. How many changeovers fit per day?',
           number: 3,
           tolerance: 0.1,
-          unit: '',
+          unit: 'changeovers',
           why: '10% of 900 minutes = 90 minutes; 90 / 30 = 3 changeovers.',
         },
         {
@@ -303,7 +303,7 @@ export default {
           why: '420 / 50 = 8.4, rounded up to 9.',
         },
         {
-          q: 'Four stations take 40, 55, 50 and 35 seconds. What is the balance loss, in percent?',
+          q: 'A line has four stations. Each station takes, per product: 40, 55, 50 and 35 seconds. What is the balance loss, in percent?',
           number: 18.2,
           tolerance: 1,
           unit: '%',
@@ -364,7 +364,7 @@ export default {
       said: 'What engineers say: “The planner shows 98% load on the five-axis. That’s not efficiency, that’s a queue waiting to happen.”',
       recall: [
         {
-          q: 'Two shifts × 5 days × 7.5 net hours, OEE 80%. Demand is 54 hours. What is the load, in percent?',
+          q: 'A machine runs two shifts a day, 5 days a week, 7.5 net hours per shift, at an OEE of 80%. This week’s orders need 54 hours of pure machine time (parts × cycle time). What is the load, in percent?',
           number: 90,
           tolerance: 1,
           unit: '%',

@@ -50,7 +50,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a metal stamping plant. The operations manager opens with: “Our OEE is 58%, we want 75% within six months.” (OEE: the share of planned time the presses make good parts.) “ Can you put an improvement team on it?”',
+        scene: 'You’re at a metal stamping plant. The operations manager opens with: “Our OEE is 58%, we want 75% within six months.” (OEE: the share of planned time the presses make good parts.) “Can you put an improvement team on it?”',
         ask: 'What do you ask before agreeing to anything?',
         model: '“75% would be great. Before we commit: where do the 42 points go now, roughly, between breakdowns, changeovers, speed losses and scrap? And which press line hurts your deliveries most?” Then: “What have you tried so far, and what happens if OEE stays at 58?”',
         rubric: [
@@ -299,7 +299,7 @@ export default {
           why: 'Their history shows you what to avoid, and asking shows respect.',
         },
         {
-          q: 'A missing tool costs 20 minutes per shift on one shift, 5 days a week, 46 working weeks a year. How many hours a year is that?',
+          q: 'A missing tool costs 20 minutes a day, on one shift only, 5 days a week, 46 working weeks a year. How many hours a year is that?',
           number: 76.7,
           tolerance: 1,
           unit: 'hours',

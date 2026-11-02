@@ -104,7 +104,7 @@ export default {
           why: 'Een faalwijze noemt wat faalt en waarom, zodat je een taak kunt kiezen die het aanpakt.',
         },
         {
-          q: 'Trillingsanalyse ziet lagerschade ongeveer 6 weken voordat het lager uitvalt. Hoe vaak moet je meten volgens de vuistregel van de helft van het P-F-interval?',
+          q: 'Trillingsanalyse ziet lagerschade ongeveer 6 weken voordat het lager uitvalt. Hoeveel weken mag er volgens de vuistregel van de helft van het P-F-interval hoogstens tussen twee metingen zitten?',
           number: 3,
           tolerance: 0.5,
           unit: 'weken',

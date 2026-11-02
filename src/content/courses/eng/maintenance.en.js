@@ -73,7 +73,7 @@ export default {
       title: 'MTBF, MTTR and availability',
       pre: [
         {
-          q: 'A machine runs 500 hours and has 5 breakdowns with 10 hours of repair in total. What is the MTBF?',
+          q: 'A machine runs 500 hours, not counting repair time, and has 5 breakdowns with 10 hours of repair in total. What is the MTBF?',
           options: ['2 hours', '50 hours', '98 hours', '100 hours'],
           answer: '100 hours',
           why: 'MTBF = running time / number of failures = 500 / 5 = 100 hours. The 2 hours is the MTTR.',
@@ -227,7 +227,7 @@ export default {
       said: 'What engineers say: “It went from 1.9 to 3.4 in two months and you can see the outer race frequency. Order the bearing, we swap it in the May stop.”',
       recall: [
         {
-          q: 'The P-F interval for a gearbox failure is 8 weeks. Using the usual rule, how often should you inspect, at most every how many weeks?',
+          q: 'The P-F interval for a gearbox failure is 8 weeks. Using the usual rule, what is the longest time you may leave between two inspections, in weeks?',
           number: 4,
           tolerance: 0.5,
           unit: 'weeks',

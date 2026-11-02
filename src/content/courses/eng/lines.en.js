@@ -27,7 +27,7 @@ export default {
       said: 'What engineers say: “It’s hard-linked, there’s no buffer. Every hiccup at the press stops the whole line.”',
       recall: [
         {
-          q: 'A downstream station has stops of about 5 minutes. Cycle time is 30 seconds. How many parts must a buffer hold to ride through one typical stop?',
+          q: 'The line makes one part every 30 seconds. A station further down the line has stops of about 5 minutes. How many parts must the buffer in front of that station hold to ride through one typical stop?',
           number: 10,
           tolerance: 0.5,
           unit: 'parts',
@@ -233,7 +233,7 @@ export default {
       said: 'What engineers say: “The balance is fine on average. It’s the back-to-back L’s that kill us.”',
       recall: [
         {
-          q: 'Mix: 70% model A at 48 seconds, 30% model B at 75 seconds. What is the weighted average work content, in seconds?',
+          q: 'At one station, model A takes 48 seconds per product and model B 75 seconds. The mix is 70% A and 30% B. What is the weighted average work content per product at that station, in seconds?',
           number: 56.1,
           tolerance: 0.3,
           unit: 's',

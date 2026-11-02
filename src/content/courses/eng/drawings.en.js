@@ -360,7 +360,7 @@ export default {
       said: 'What engineers say: “Sure, we can skip that wait step, it’s just a process interlock. But the light curtain’s on the safety PLC, nobody touches that without a risk assessment.”',
       recall: [
         {
-          q: 'A cycle goes from 28 to 25 seconds. How many extra cycles do you get in an 8-hour shift (28,800 seconds)?',
+          q: 'A machine’s cycle time goes from 28 to 25 seconds per cycle. How many extra cycles do you get in an 8-hour shift (28,800 seconds)?',
           number: 123,
           tolerance: 2,
           unit: 'cycles',

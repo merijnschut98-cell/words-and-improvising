@@ -104,7 +104,7 @@ export default {
           why: 'A failure mode names what fails and why, so you can pick a task that addresses it.',
         },
         {
-          q: 'Vibration analysis shows bearing damage about 6 weeks before the bearing fails. Using the half-the-P-F-interval rule of thumb, how often should you measure?',
+          q: 'Vibration analysis shows bearing damage about 6 weeks before the bearing fails. Using the half-the-P-F-interval rule of thumb, how many weeks may you leave between two measurements, at most?',
           number: 3,
           tolerance: 0.5,
           unit: 'weeks',

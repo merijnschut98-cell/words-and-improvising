@@ -27,7 +27,7 @@ export default {
       said: 'Wat engineers zeggen: “Hij is star gekoppeld, er zit geen buffer in. Elk hikje bij de pers legt de hele lijn plat.”',
       recall: [
         {
-          q: 'Een station verderop in de lijn heeft stops van zo’n 5 minuten. De cyclustijd is 30 seconden. Hoeveel stuks moet een buffer bevatten om één typische stop te overbruggen?',
+          q: 'De lijn maakt elke 30 seconden een stuk. Een station verderop in de lijn heeft stops van zo’n 5 minuten. Hoeveel stuks moet de buffer vóór dat station bevatten om één typische stop te overbruggen?',
           number: 10,
           tolerance: 0.5,
           unit: 'stuks',
@@ -233,7 +233,7 @@ export default {
       said: 'Wat engineers zeggen: “Gemiddeld klopt de balans prima. Het zijn die L’s achter elkaar die ons slopen.”',
       recall: [
         {
-          q: 'Mix: 70% model A van 48 seconden, 30% model B van 75 seconden. Wat is de gewogen gemiddelde werkinhoud, in seconden?',
+          q: 'Op één station kost model A 48 seconden per product en model B 75 seconden. De mix is 70% A en 30% B. Wat is de gewogen gemiddelde werkinhoud per product op dat station, in seconden?',
           number: 56.1,
           tolerance: 0.3,
           unit: 's',

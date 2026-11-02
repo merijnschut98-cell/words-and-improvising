@@ -91,14 +91,14 @@ export default {
       said: 'What engineers say: “We’re cooling-limited. Take a millimetre out of that wall and we gain five seconds.”',
       recall: [
         {
-          q: 'An 8-cavity mould runs at 30 seconds. How many parts per hour?',
+          q: 'An 8-cavity mould (8 parts per shot) runs a 30-second cycle. How many parts per hour?',
           number: 960,
           tolerance: 5,
           unit: 'parts/h',
           why: '3,600 / 30 = 120 cycles per hour; 120 × 8 = 960 parts.',
         },
         {
-          q: 'A wall goes from 2 mm to 4 mm. By what factor does the cooling time roughly grow?',
+          q: 'A part’s wall thickness goes from 2 mm to 4 mm. By what factor does the cooling time roughly grow?',
           number: 4,
           tolerance: 0.3,
           unit: '×',

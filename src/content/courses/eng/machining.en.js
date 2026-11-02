@@ -92,7 +92,7 @@ export default {
       said: 'What engineers say: “First-off is good, release the batch. But double-check the tool length on T5 next time, that’s the second typo this month.”',
       recall: [
         {
-          q: 'A batch is 150 parts at €28 each. A first-off check catches a wrong offset on part 1. How much scrap cost is avoided, in €?',
+          q: 'A batch is 150 parts; each scrapped part costs €28. Without a check, a wrong offset would scrap the whole batch. A first-off check catches it on part 1. How much scrap cost is avoided, in €?',
           number: 4172,
           tolerance: 1,
           unit: '€',

@@ -33,7 +33,7 @@ export default {
           why: '400.000 / (1,73 × 400) ≈ 577 A.',
         },
         {
-          q: 'Een transformator zet 20 kV om naar 400 V. Wat is de wikkelverhouding?',
+          q: 'Een transformator zet 20 kV om naar 400 V. Wat is de wikkelverhouding: hoeveel keer meer windingen heeft de 20 kV-wikkeling dan de 400 V-wikkeling?',
           number: 50,
           tolerance: 0.5,
           unit: '',

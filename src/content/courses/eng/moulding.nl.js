@@ -91,14 +91,14 @@ export default {
       said: 'Wat engineers zeggen: “We zijn koeltijd-gelimiteerd. Haal een millimeter uit die wand en we winnen vijf seconden.”',
       recall: [
         {
-          q: 'Een 8-voudige matrijs loopt op 30 seconden. Hoeveel stuks per uur?',
+          q: 'Een 8-voudige matrijs (8 stuks per shot) loopt een cyclus van 30 seconden. Hoeveel stuks per uur?',
           number: 960,
           tolerance: 5,
           unit: 'stuks/uur',
           why: '3.600 / 30 = 120 cycli per uur; 120 × 8 = 960 stuks.',
         },
         {
-          q: 'Een wand gaat van 2 mm naar 4 mm. Met welke factor groeit de koeltijd ongeveer?',
+          q: 'De wanddikte van een product gaat van 2 mm naar 4 mm. Met welke factor groeit de koeltijd ongeveer?',
           number: 4,
           tolerance: 0.3,
           unit: '×',

@@ -360,7 +360,7 @@ export default {
       said: 'Wat engineers zeggen: “Die wachtstap kunnen we best overslaan, dat is gewoon een procesinterlock. Maar het lichtscherm hangt aan de veiligheids-PLC, daar komt niemand aan zonder risicobeoordeling.”',
       recall: [
         {
-          q: 'Een cyclus gaat van 28 naar 25 seconden. Hoeveel extra cycli krijg je in een ploeg van 8 uur (28.800 seconden)?',
+          q: 'De cyclustijd van een machine gaat van 28 naar 25 seconden per cyclus. Hoeveel extra cycli krijg je in een ploeg van 8 uur (28.800 seconden)?',
           number: 123,
           tolerance: 2,
           unit: 'cycli',

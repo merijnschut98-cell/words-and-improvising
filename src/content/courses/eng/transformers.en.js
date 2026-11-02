@@ -33,7 +33,7 @@ export default {
           why: '400,000 / (1.73 × 400) ≈ 577 A.',
         },
         {
-          q: 'A transformer steps 20 kV down to 400 V. What is the turns ratio?',
+          q: 'A transformer steps 20 kV down to 400 V. What is the turns ratio: how many times more turns does the 20 kV winding have than the 400 V winding?',
           number: 50,
           tolerance: 0.5,
           unit: '',

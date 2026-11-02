@@ -73,7 +73,7 @@ export default {
       title: 'MTBF, MTTR en beschikbaarheid',
       pre: [
         {
-          q: 'Een machine draait 500 uur en heeft 5 storingen met in totaal 10 uur reparatie. Wat is de MTBF?',
+          q: 'Een machine draait 500 uur, reparatietijd niet meegeteld, en heeft 5 storingen met in totaal 10 uur reparatie. Wat is de MTBF?',
           options: ['2 uur', '50 uur', '98 uur', '100 uur'],
           answer: '100 uur',
           why: 'MTBF = draaitijd / aantal storingen = 500 / 5 = 100 uur. Die 2 uur is de MTTR.',
@@ -227,7 +227,7 @@ export default {
       said: 'Wat engineers zeggen: “Van 1,9 naar 3,4 in twee maanden en je ziet de buitenringfrequentie. Bestel het lager, we wisselen hem in de stop van mei.”',
       recall: [
         {
-          q: 'Het P-F-interval voor een storing in een tandwielkast is 8 weken. Om de hoeveel weken moet je volgens de vuistregel hoogstens meten?',
+          q: 'Het P-F-interval voor een storing in een tandwielkast is 8 weken. Hoeveel weken mag er volgens de vuistregel hoogstens tussen twee inspecties zitten?',
           number: 4,
           tolerance: 0.5,
           unit: 'weken',

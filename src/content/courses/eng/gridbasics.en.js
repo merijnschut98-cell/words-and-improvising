@@ -93,7 +93,7 @@ export default {
       said: 'What engineers say: “That’s TenneT’s side of the station. We start at the 10 kV rail.”',
       recall: [
         {
-          q: 'An operator converts an MS grid from 10 kV to 20 kV and carries the same power. By what factor do the cable losses change? Give the fraction.',
+          q: 'An operator converts an MS grid from 10 kV to 20 kV and carries the same power. By what factor do the cable losses change? Give the factor as a decimal number.',
           number: 0.25,
           tolerance: 0.02,
           unit: '',

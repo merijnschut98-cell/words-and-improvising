@@ -92,7 +92,7 @@ export default {
       said: 'Wat engineers zeggen: “Eerste stuk is goed, serie mag draaien. Maar check de lengte van T5 de volgende keer even dubbel, dat is de tweede tikfout deze maand.”',
       recall: [
         {
-          q: 'Een serie is 150 stuks à €28. De eerste-stukcontrole vangt een verkeerde offset op stuk 1. Hoeveel afkeurkosten worden voorkomen, in €?',
+          q: 'Een serie is 150 stuks; elk afgekeurd stuk kost €28. Zonder controle zou een verkeerde offset de hele serie afkeuren. De eerste-stukcontrole vangt hem op stuk 1. Hoeveel afkeurkosten worden voorkomen, in €?',
           number: 4172,
           tolerance: 1,
           unit: '€',

@@ -50,7 +50,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een metaalstansbedrijf. De operations manager begint met: “Onze OEE is 58%, we willen binnen een half jaar naar 75%.” (OEE: het deel van de geplande tijd dat de persen goede producten maken.) “ Kun je daar een verbeterteam op zetten?”',
+        scene: 'Je zit bij een metaalstansbedrijf. De operations manager begint met: “Onze OEE is 58%, we willen binnen een half jaar naar 75%.” (OEE: het deel van de geplande tijd dat de persen goede producten maken.) “Kun je daar een verbeterteam op zetten?”',
         ask: 'Wat vraag je voordat je ergens ja op zegt?',
         model: '“75% zou mooi zijn. Voordat we iets afspreken: waar gaan die 42 punten nu ongeveer naartoe, storingen, omstellen, snelheidsverlies of afkeur? En welke perslijn doet jullie leverprestatie het meeste pijn?” En dan: “Wat hebben jullie al geprobeerd, en wat gebeurt er als de OEE op 58 blijft?”',
         rubric: [
@@ -299,7 +299,7 @@ export default {
           why: 'Hun geschiedenis laat zien wat je moet vermijden, en vragen toont respect.',
         },
         {
-          q: 'Een ontbrekend gereedschap kost 20 minuten per dienst in één dienst, 5 dagen per week, 46 werkweken per jaar. Hoeveel uur per jaar is dat?',
+          q: 'Een ontbrekend gereedschap kost 20 minuten per dag, in maar één dienst, 5 dagen per week, 46 werkweken per jaar. Hoeveel uur per jaar is dat?',
           number: 76.7,
           tolerance: 1,
           unit: 'uur',
