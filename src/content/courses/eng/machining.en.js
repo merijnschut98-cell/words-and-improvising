@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Turning, on a lathe: the workpiece rotates and a fixed tool moves along it. It makes round shapes: shafts, bushings, flanges, threads, grooves, bores. Modern turning centres often have driven tools, so they can also mill flats and drill cross holes in the same setup.',
-        'Milling: the tool rotates and the workpiece, clamped on the table, moves under it. It makes flat faces, pockets, slots and contours: housings, brackets, mould parts. Three axes is the standard; five-axis machines tilt the part or the head for complex shapes such as impellers and aerospace parts.',
-        'Drilling: a rotating drill makes round holes, usually on a milling machine. For an accurate hole you drill slightly undersize and then ream it (to H7, for example); for a thread you tap it. Holes deeper than about five times the diameter get slow and risky: chips jam and drills break.',
-        'Grinding: an abrasive wheel removes tiny amounts for tight tolerances and a fine finish, often after hardening: bearing seats, hardened shafts, gauge parts. Turning holds about ±0.02 mm; grinding ±0.005 mm or better. It’s slower and more expensive, so engineers grind only where the drawing really needs it.',
+        'Turning, on a lathe: the workpiece rotates and a fixed cutting tool moves along it. It makes round shapes: shafts, bushings (short tubes), flanges, threads, grooves, bores (accurate holes). Many modern lathes also have driven tools: small motorised cutters. With these they can mill a flat or drill a cross hole without moving the part to another machine.',
+        'Milling: the tool rotates and the workpiece, clamped on the table, moves under it. It makes flat faces, pockets, slots and contours: housings, brackets, mould parts. A standard mill moves in three directions, called axes: left-right (X), front-back (Y) and up-down (Z). Five-axis machines can also tilt the part or the head, for complex shapes such as pump impellers and aircraft parts.',
+        'Drilling: a rotating drill makes round holes, usually on a milling machine. A drilled hole is not very accurate. For an accurate hole you drill slightly too small, then finish it with a reamer: a tool that takes off the last few tenths of a millimetre. For a thread you cut it with a tap. Holes deeper than about five times the diameter get slow and risky: chips jam and drills break.',
+        'Grinding: a fast-spinning abrasive wheel removes tiny amounts of material. It gives tight tolerances (the allowed deviation from the drawing size) and a fine finish, often after the part is hardened: bearing seats, hardened shafts, measuring gauges. Turning holds about ±0.02 mm; grinding ±0.005 mm or better. It’s slower and more expensive, so engineers grind only where the drawing really needs it.',
       ],
       example: {
         kind: 'worked',
-        text: 'A gearbox output shaft. Route: saw a Ø55 bar to length (1 minute); turn on a CNC lathe to Ø50 with shoulders, leaving 0.2 mm on the Ø35 bearing seat (6 minutes); mill a 10 mm keyway on a machining centre (3 minutes); harden at an outside heat treater (3 days); grind the bearing seat to Ø35 k6, a 16 µm tolerance (4 minutes). Total cutting time: 14 minutes. Lead time: about 6 days, almost all of it the outsourced hardening and the waiting before and after it.',
+        text: 'A gearbox output shaft. Route: saw a Ø55 mm bar to length (1 minute); turn it on a CNC lathe to Ø50 with shoulders (steps in the diameter), leaving 0.2 mm extra on the Ø35 bearing seat for grinding (6 minutes); mill a 10 mm keyway, the slot for a key that locks a gear to the shaft (3 minutes); harden it at an outside heat treater (3 days); grind the bearing seat to Ø35 k6, a standard size class with a 16 µm tolerance, or 0.016 mm (4 minutes). Total cutting time: 14 minutes. Lead time: about 6 days, almost all of it the outsourced hardening and the waiting before and after it.',
       },
       said: 'What engineers say: “We turn it, mill the keyway, send it out for hardening, then grind the bearing seats. The grinding’s four minutes, the hardener’s three days.”',
       recall: [
@@ -35,7 +35,7 @@ export default {
           q: 'Which process makes a keyway in a shaft?',
           options: ['Milling', 'Turning', 'Reaming', 'Grinding'],
           answer: 'Milling',
-          why: 'A keyway is a slot, made with a rotating end mill.',
+          why: 'A keyway is a slot, cut with a rotating end mill (a milling cutter).',
         },
         {
           q: 'A hardened bearing seat needs ±0.005 mm. Which process finishes it?',
@@ -80,14 +80,14 @@ export default {
         },
       ],
       teach: [
-        'CNC (computer numerical control) means motors move the axes according to a program. On a lathe, X is the diameter and Z runs along the spindle. On a mill, X and Y move the table and Z moves the spindle up and down; a fourth and fifth axis rotate the part or the head.',
-        'The program is G-code. G00 is a rapid move, G01 a straight cut at feed, G02 and G03 arcs. M03 starts the spindle, M08 the coolant, M06 changes the tool. F is the feed, S the speed, T the tool. Most programs today are made in CAM software and sent to the control (Fanuc, Siemens, Heidenhain); small edits happen at the machine.',
-        'Zero points: machine zero is fixed. The work offset (G54) tells the machine where the part sits. Tool offsets tell it each tool’s length and radius. Most crashes and first-part scrap come from wrong offsets, not from wrong programs.',
-        'First-off inspection: after every setup, program change or tool change, measure the first part fully before running the batch. Many shops also check the last part. It costs 10 to 20 minutes and saves a batch of 200 wrong parts.',
+        'CNC (computer numerical control) means a computer drives the machine’s motors, following a program. The spindle is the rotating shaft that holds the part (on a lathe) or the tool (on a mill). On a lathe, X sets the diameter and Z runs along the spindle. On a mill, X and Y move the table and Z moves the spindle up and down; a fourth and fifth axis rotate the part or the head.',
+        'The program is G-code, a list of short commands. G00 is a rapid move, G01 a straight cut, G02 and G03 arcs. M03 starts the spindle, M08 the coolant, M06 changes the tool. F sets the feed (how fast the tool advances), S the speed, T the tool. Most programs are made in CAM software, which turns the 3D model into G-code, and sent to the machine’s control (Fanuc, Siemens, Heidenhain). Small edits happen at the machine.',
+        'Zero points. Machine zero is a fixed home position. The work offset (G54) tells the machine where the part sits on the table. Tool offsets tell it each tool’s length and radius, because every tool sticks out a different amount. The setter, who prepares the machine for a new job, types these numbers in. Most crashes (the tool hitting the part or the clamps) and scrapped first parts come from wrong offsets, not from wrong programs.',
+        'First-off inspection: after every setup (changing the machine over to a new job), program change or tool change, measure the first part fully before running the batch. Many shops also check the last part. It costs 10 to 20 minutes and saves a batch of 200 wrong parts.',
       ],
       example: {
         kind: 'worked',
-        text: 'A setter starts a job of 200 flanges. He sets G54 by probing the vice jaw. For tool 5, a drill, he types a length of 112.43 instead of 121.43. The machine thinks the drill is 9 mm shorter than it is, so it drills 9 mm deeper. The first-off check finds the hole depth 9 mm over: one part scrapped, €35. Without the check, 200 × €35 = €7,000 of scrap, and on a blind hole into a thin floor possibly a broken drill and a damaged fixture.',
+        text: 'A setter starts a job of 200 flanges. He sets G54 by touching the vice jaw with a probe, a measuring pin held in the spindle. For tool 5, a drill, he types a length of 112.43 instead of 121.43. The machine thinks the drill is 9 mm shorter than it is, so it drills 9 mm deeper. The first-off check finds the hole depth 9 mm over: one part scrapped, €35. Without the check, 200 × €35 = €7,000 of scrap, and if the hole should stop just above a thin floor, possibly a broken drill and a damaged fixture (the part holder).',
       },
       said: 'What engineers say: “First-off is good, release the batch. But double-check the tool length on T5 next time, that’s the second typo this month.”',
       recall: [
@@ -147,14 +147,14 @@ export default {
         },
       ],
       teach: [
-        'Cutting speed (Vc, in m/min) is how fast the cutting edge moves through the material. The tool and material set it: carbide in steel 150 to 300, in stainless 100 to 200, in aluminium 300 to 1,000 or more, in titanium 40 to 80. Old-style HSS tools run much slower, about 30 in steel.',
-        'Spindle speed n (rpm) follows from the diameter: n = Vc × 1,000 / (π × D). A Ø50 part at 200 m/min needs 200,000 / 157 = 1,273 rpm. A smaller diameter needs more rpm for the same cutting speed.',
-        'Feed: in turning, mm per revolution (f, say 0.25). In milling, feed per tooth (fz, say 0.1 mm), so table feed = fz × number of teeth × rpm. Depth of cut (ap) is how deep the tool goes in, in mm. Feed and depth decide how much metal you remove per minute; speed decides most of the heat and tool wear.',
-        'Turning time for one pass = length / (f × n). The trade-offs: higher speed shortens the cycle but kills tool life fast; with carbide, 20% more speed can roughly halve it. Higher feed is cheaper for the tool but gives a rougher surface. So engineers push feed and depth first, then speed, and keep a separate, finer finishing pass.',
+        'Cutting speed (Vc, in metres per minute) is how fast the cutting edge moves through the material. Tool and material set it. Most tools today are carbide inserts: small, replaceable tips of very hard tungsten carbide. Carbide runs at 150 to 300 m/min in steel, 100 to 200 in stainless, 300 to 1,000 or more in aluminium, 40 to 80 in titanium. Older HSS tools (high-speed steel) run much slower, about 30 in steel.',
+        'Spindle speed n, in rpm (revolutions per minute), follows from the diameter D in mm: n = Vc × 1,000 / (π × D). Example: a Ø50 part at 200 m/min needs 200,000 / 157 = 1,273 rpm. A smaller diameter needs more rpm for the same cutting speed.',
+        'Feed is how far the tool moves forward while it cuts. In turning: mm per revolution (f, say 0.25). In milling: mm per tooth of the cutter (fz, say 0.1), so table feed = fz × number of teeth × rpm. Depth of cut (ap) is how deep the tool goes in, in mm. Feed and depth decide how much metal you remove per minute; speed decides most of the heat and tool wear.',
+        'Time for one turning pass = length / (f × n). The trade-offs: higher speed shortens the cycle but cuts tool life (how long an edge lasts) fast; with carbide, 20% more speed can roughly halve it. Higher feed costs the tool less but gives a rougher surface. So engineers push feed and depth first, then speed. Roughing passes remove most of the metal; a separate, gentler finishing pass gives the final size and surface.',
       ],
       example: {
         kind: 'worked',
-        text: 'Roughing a Ø60 shaft over 200 mm in C45 steel, carbide, Vc 220 m/min, f 0.3 mm/rev. n = 220,000 / (π × 60) = 220,000 / 188.5 = 1,167 rpm. Feed rate = 0.3 × 1,167 = 350 mm/min. Time per pass = 200 / 350 = 0.57 min, 34 seconds. Raise the roughing feed to 0.4: 467 mm/min, 26 seconds, saving about 8.6 seconds per pass. With 3 roughing passes and 5,000 parts a year, that’s about 36 hours of machine time. The finishing pass stays at 0.15 for the surface.',
+        text: 'Roughing a Ø60 shaft over 200 mm in C45 (a common medium-carbon steel) with a carbide insert, Vc 220 m/min, f 0.3 mm/rev. n = 220,000 / (π × 60) = 220,000 / 188.5 = 1,167 rpm. Feed rate = 0.3 × 1,167 = 350 mm/min. Time per pass = 200 / 350 = 0.57 min, 34 seconds. Raise the roughing feed to 0.4: 467 mm/min, 26 seconds, saving about 8.6 seconds per pass. With 3 roughing passes and 5,000 parts a year, that’s about 36 hours of machine time. The finishing pass stays at 0.15 for the surface.',
       },
       said: 'What engineers say: “Don’t crank up the speed, you’ll just eat inserts. Push the feed on the roughing passes and leave the finish pass alone.”',
       recall: [
@@ -215,10 +215,10 @@ export default {
         },
       ],
       teach: [
-        'Tools wear: flank wear along the edge, crater wear on top, chipping, built-up edge. Wear grows slowly and then fast. A worn tool shows as size drift, a worse finish, burrs and rising spindle load, and then a breakage that can scrap the part and damage the machine.',
-        'Tool life is set in minutes of cutting or in parts per edge, for example 15 minutes or 120 parts. The control counts it; at the limit it calls a sister tool (an identical spare in the magazine) or stops for a change. Too late means scrap; too early wastes edges, but edges are cheap.',
-        'Coolant cools, lubricates and flushes chips. Water-based emulsion usually runs at 5 to 8%, checked with a refractometer. Too lean: rust, poor tool life, bacteria. Too rich: foam and skin problems. High-pressure coolant through the tool, around 70 bar, breaks chips in deep drilling.',
-        'Tool management drives uptime. Presetting tools offline, measuring length and radius before they go in the machine, means the machine doesn’t stand still while the setter measures. Sister tools, a standard tool library and kitting tools before a setup all cut stops. Missing or unprepared tools are a top cause of long setups.',
+        'Tools wear. Flank wear: the edge itself rubs away. Crater wear: a hollow forms on top, where the chip slides over. Chipping: small pieces break off. Built-up edge: workpiece material sticks to the edge. Wear grows slowly, then fast. A worn tool shows as sizes drifting, a worse surface, burrs (sharp ridges on the edges) and rising spindle load (the motor works harder). Then it breaks, which can scrap the part and damage the machine.',
+        'Tool life is set in minutes of cutting or in parts per edge, for example 15 minutes or 120 parts. The control counts it; at the limit it calls a sister tool (an identical spare in the machine’s tool store, the magazine) or stops for a change. Too late means scrap; too early wastes edges, but edges are cheap.',
+        'Coolant cools, lubricates and flushes chips away. Most shops use emulsion: oil mixed into water, usually 5 to 8% oil. They check it with a refractometer, a small hand-held meter. Too lean: rust, poor tool life, bacteria. Too rich: foam and skin problems. High-pressure coolant, around 70 bar, pumped through the tool, breaks up the chips in deep drilling.',
+        'Tool management drives uptime. Presetting means measuring each tool’s length and radius on a separate device before it goes into the machine, so the machine doesn’t stand still while the setter measures. Sister tools, a standard tool list and kitting (collecting all tools for the next job in advance) all cut stops. Missing or unprepared tools are a top cause of long setups.',
       ],
       example: {
         kind: 'worked',
@@ -282,16 +282,16 @@ export default {
         },
       ],
       teach: [
-        'Workholding is how the part is held: a vice, a three-jaw chuck on a lathe, a collet, or a dedicated fixture. Its job is to locate the part in exactly the same place every time and hold it firmly against the cutting forces, without bending it.',
-        'The 3-2-1 principle: three points under the main face, two along a side, one at the end. Together they fix all six degrees of freedom. Good fixtures locate on the same datums the drawing uses (A, B, C), and clamp the part towards the locators, never into empty space.',
-        'Setup time is everything from the last good part of one job to the first good part of the next: removing the old fixture, mounting the new one, loading tools, setting offsets, first-off. Typically 30 minutes to 3 hours. Zero-point clamping systems repeat within 0.005 mm, so a pre-loaded pallet drops in and runs.',
-        'Workholding errors are a big source of scrap: a chip under the part (it tilts), too much clamping force (a thin wall distorts and springs back after unclamping), a part not seated against the locator, worn jaws. Telltale: a dimension that varies between clampings but not within one, or one fixture position always worse than the others.',
+        'Workholding is how the part is held: a vice, a three-jaw chuck on a lathe (three jaws that close around the part), a collet (a slotted sleeve that squeezes a bar), or a fixture, a holder made for one specific part. Its job is to put the part in exactly the same place every time and hold it firmly against the cutting forces, without bending it.',
+        'A loose part can move in six ways: slide in three directions and turn around three axes. These are its six degrees of freedom. The 3-2-1 principle stops all six: three support points under the main face, two along a side, one at the end. Good fixtures locate on the datums, the reference faces the drawing marks A, B and C, and clamp the part towards these points, never into empty space.',
+        'Setup time is everything from the last good part of one job to the first good part of the next: removing the old fixture, mounting the new one, loading tools, setting offsets, first-off. Typically 30 minutes to 3 hours. Zero-point clamping systems repeat within 0.005 mm, so a pallet (a base plate with the part already clamped on it, loaded outside the machine) drops in and runs.',
+        'Workholding errors are a big source of scrap: a chip under the part (it tilts), too much clamping force (a thin wall distorts and springs back after unclamping), a part not pushed fully against its stops, worn jaws. Telltale: a dimension that varies between clampings but not within one, or one fixture position always worse than the others.',
       ],
       example: {
         kind: 'worked',
-        text: 'An aluminium housing with 2 mm walls and a bore of Ø40 H7 (tolerance 0.025 mm). Clamped hard in a vice, the bore measures round on the machine. Unclamped, it is 0.04 mm out of round: scrap. Fix: clamp on the thick flange with a set clamping torque, and the bore stays within 0.008 mm. A second problem: chips under the part tilt it by 0.05 mm, so an air blast before loading is added to the standard. Setup also drops from 90 to 25 minutes with a zero-point pallet loaded outside the machine.',
+        text: 'An aluminium housing with 2 mm walls and a bore of Ø40 H7 (tolerance 0.025 mm). Clamped hard in a vice, the bore measures round on the machine. Unclamped, it is 0.04 mm out of round: scrap. Fix: clamp on the thick flange, tightened to a set torque (twisting force), and the bore stays within 0.008 mm. A second problem: chips under the part tilt it by 0.05 mm, so an air blast before loading is added to the standard. Setup also drops from 90 to 25 minutes with a zero-point pallet loaded outside the machine.',
       },
-      said: 'What engineers say: “It measures perfect in the machine and oval on the CMM. You’re clamping it too hard, it springs back.”',
+      said: 'What engineers say: “It measures perfect in the machine and oval on the measuring machine. You’re clamping it too hard, it springs back.”',
       recall: [
         {
           q: 'How many degrees of freedom does the 3-2-1 principle fix?',
@@ -350,14 +350,14 @@ export default {
         },
       ],
       teach: [
-        'Surface finish is given as Ra, the average roughness in µm. Rough turning gives Ra 3.2 to 6.3, fine turning 0.8 to 1.6, grinding 0.2 to 0.8. Seal faces and bearing seats need a low Ra. A note like “Ra 0.8” on a drawing means a finishing pass or grinding, so extra cost.',
-        'Measuring tools. Caliper: reads 0.01 mm, real accuracy about ±0.02 to 0.03, fine for ±0.1 tolerances. Micrometer: reads 0.001 mm, for ±0.01. Holes: bore gauge, air gauge, or go/no-go plug gauges. A CMM (coordinate measuring machine) touches points in 3D and reports against datums and GD&T, in a room kept at 20 °C.',
+        'Surface finish is given as Ra: the average height of the tiny peaks and valleys on the surface, in µm (thousandths of a millimetre). Rough turning gives Ra 3.2 to 6.3, fine turning 0.8 to 1.6, grinding 0.2 to 0.8. Seal faces and bearing seats need a low Ra. A note like “Ra 0.8” on a drawing means a finishing pass or grinding, so extra cost.',
+        'Measuring tools. Caliper: reads 0.01 mm, real accuracy about ±0.02 to 0.03, fine for ±0.1 tolerances. Micrometer: reads 0.001 mm, for ±0.01. Holes: bore gauge, air gauge, or go/no-go plug gauges (fixed pins: one end must fit, the other must not). A CMM (coordinate measuring machine) touches points in 3D and reports them against the datums, in a room kept at 20 °C.',
         'Temperature matters. Steel grows about 0.0115 mm per metre for every °C; aluminium twice that. A 200 mm steel part measured at 30 °C, warm from the machine, is 0.023 mm bigger than at 20 °C: more than many tolerances. So measure at 20 °C, or let parts cool, or correct for it.',
-        'Typical defects and their usual causes. Size drift: tool wear or the machine warming up. Chatter marks: vibration from a long tool overhang, thin walls or the wrong speed. Burrs: worn tools or exit edges. Poor finish: worn insert or too high a feed. Position errors: fixture or offset. Out of round: clamping.',
+        'Typical defects and their usual causes. Size drift: tool wear or the machine warming up. Chatter marks: a wavy pattern from vibration, caused by a tool sticking out too far, thin walls or the wrong speed. Burrs: worn tools, or edges where the tool exits. Poor finish: worn insert or too high a feed. Position errors: fixture or offset. Out of round: clamping.',
       ],
       example: {
         kind: 'worked',
-        text: 'A shaft Ø30 h6: from 29.987 to 30.000 mm. The operator measures it with a micrometer straight from the machine, at 35 °C: 29.990, in spec. At 20 °C, 15 °C cooler, it shrinks by 30 × 0.0115 × 15 / 1,000 = 0.005 mm, to 29.985: out of spec. The customer measures at 20 °C and rejects the batch. Fix: measure after the part has cooled in a set place for 15 minutes, or use a master part at the same temperature to set the gauge.',
+        text: 'A shaft Ø30 h6, a standard size class: it must measure between 29.987 and 30.000 mm. The operator measures it with a micrometer straight from the machine, at 35 °C: 29.990, in spec. At 20 °C, 15 °C cooler, it shrinks by 30 × 0.0115 × 15 / 1,000 = 0.005 mm, to 29.985: out of spec. The customer measures at 20 °C and rejects the batch. Fix: measure after the part has cooled in a set place for 15 minutes, or set the gauge with a master part (a reference part of known size) at the same temperature.',
       },
       said: 'What engineers say: “You measured it warm. Give it fifteen minutes on the plate and it’s five microns smaller, and then it’s out.”',
       recall: [
@@ -370,8 +370,8 @@ export default {
         },
         {
           q: 'A turned part shows a regular wavy pattern of chatter marks. What is the most likely cause?',
-          options: ['Vibration from a long tool overhang or thin wall', 'Wrong material grade', 'Too much coolant', 'A wrong drawing revision'],
-          answer: 'Vibration from a long tool overhang or thin wall',
+          options: ['Vibration from a tool sticking out too far, or a thin wall', 'Wrong material grade', 'Too much coolant', 'A wrong drawing revision'],
+          answer: 'Vibration from a tool sticking out too far, or a thin wall',
           why: 'Chatter is a vibration problem: stiffness and speed.',
         },
         {

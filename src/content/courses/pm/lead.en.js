@@ -81,7 +81,7 @@ export default {
         },
       ],
       teach: [
-        'SBI: Situation, Behaviour, Impact. Situation: when and where. Behaviour: what you saw or heard, observable, no interpretation. Impact: the effect on you, the team or the result. Then a question. “In yesterday’s workshop (S), you were on your phone for most of the second hour (B). Two operators stopped talking because they thought it was already decided (I). What was going on?”',
+        'SBI (from the Center for Creative Leadership): Situation, Behaviour, Impact. Situation: when and where. Behaviour: what you saw or heard, observable, no interpretation. Impact: the effect on you, the team or the result. Then a question. “In yesterday’s workshop (S), you were on your phone for most of the second hour (B). Two operators stopped talking because they thought it was already decided (I). What was going on?”',
         'Behaviour, not character. “You interrupted Ans twice” is feedback; “you’re dominant” is a label people defend against. Tie the impact to something they care about: their goal, their team, the project they sponsor. One point per conversation. Three points at once turn feedback into a performance review.',
         'Timing. As soon as you can, in private, when you’re both calm: within a day or two. Not right before he presents. Positive feedback works the same way and should come more often. Specific praise, like “opening with the outage numbers got the crews listening”, builds the credit you need for the harder message.',
         'Upward feedback to a senior client. Ask permission: “Can I share an observation from this morning?” Make it about the shared goal, keep it small, use “I noticed”. Then ask and listen. If he pushes back, don’t argue the facts a second time; ask what he saw. You’re offering information, not a verdict.',
@@ -217,7 +217,7 @@ export default {
         },
       ],
       teach: [
-        'A widely used model (Lencioni): trust makes healthy conflict possible, conflict makes real commitment possible, and commitment makes accountability and results possible. Trust here means being able to say “I don’t know” or “I got that wrong” without paying for it. Edmondson calls it psychological safety.',
+        'A widely used model (Lencioni): trust makes healthy conflict possible, conflict makes real commitment possible, and commitment makes accountability and results possible. Trust here means being able to say “I don’t know” or “I got that wrong” without paying for it. Amy Edmondson’s related term is psychological safety: the shared belief that the team is safe for that kind of risk.',
         'Spot it. Low trust: people check with their boss after the meeting, nobody admits a mistake. No conflict: meetings feel smooth, the real discussion happens at the coffee machine. No commitment: “we’ll look into it”, actions without owners, decisions reopened next week. Low accountability: only the consultant chases missed actions.',
         'As an outsider you’re not the boss, but you shape the meeting. Make disagreement safe: “What would go wrong with this?” “Who sees it differently?” Go round the table and let the quietest people speak first. Name what you see: “I notice we agree quickly, and then it doesn’t happen.”',
         'Lock in commitment. Close every decision with who, what and by when, and ask: “Can everyone live with this?” Silence isn’t yes, so ask the quiet ones by name. Send the decisions the same day. A pre-mortem helps: “It’s three months from now and this has failed. Why?”',

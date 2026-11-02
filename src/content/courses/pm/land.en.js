@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Two models you’ll hear. Kotter, for the organisation: create urgency, form a group that drives it, make the picture clear, communicate it, remove obstacles, get quick wins, keep going, anchor it in how things work. ADKAR, for one person: Awareness (I know it changes), Desire (I want to), Knowledge (I know how), Ability (I can do it in practice), Reinforcement (it keeps being rewarded).',
+        'Two models you’ll hear. Kotter’s eight steps, for the organisation: create urgency, form a group that drives it, make the picture clear, communicate it, remove obstacles, get quick wins, keep going, anchor it in how things work. ADKAR (from Prosci), for one person: Awareness (I know it changes), Desire (I want to), Knowledge (I know how), Ability (I can do it in practice), Reinforcement (it keeps being rewarded).',
         'Use ADKAR as a diagnosis, not a slide. When people don’t adopt, ask where they’re stuck. Not aware: they need to hear it from their boss. No desire: find out what they lose. No knowledge: explain. No ability: practice on the job, not more e-mails. No reinforcement: someone has to ask about it every week.',
         'What actually drives adoption, in practice: the new way is easier than the old one for the person doing it; their direct boss asks about it; they helped shape it; and the old way is gone, so there’s no fallback. If the new process takes longer than the old for the operator, no campaign will save it.',
         'The people side: say the reason in their terms. Not “to improve OEE” but “so you’re not called in on Saturday because the line is behind”. And when you don’t know why people aren’t adopting, ask five of them: “What makes this hard to use?” You’ll usually hear one practical thing you can fix this week.',
@@ -25,7 +25,7 @@ export default {
       said: 'What you hear in projects: “They all got the training. They just don’t want to change.”',
       recall: [
         {
-          q: 'Operators know the new process and want it, but keep falling back to the old way under pressure. Where in ADKAR are they stuck?',
+          q: 'Operators know the new process and want it, but on a busy shift they can’t yet do it fast enough, so they fall back to the old way. Where in ADKAR are they stuck?',
           options: ['Awareness', 'Desire', 'Ability', 'Knowledge'],
           answer: 'Ability',
           why: 'They know and want, but can’t yet do it reliably in practice: they need practice and support on the job.',
@@ -215,7 +215,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A grid operator introduces a new way for technicians to report as-built data with an app. You write a one-page instruction with the team leader: six steps, photos of the app screens, and the key point “photograph the joint before backfilling, because you can’t afterwards”. A technician who wasn’t involved tests it; he gets stuck on step 4, which you rewrite. Training: 30 minutes in the morning meeting on why, then the team leader goes along on the first job of each technician. A week later you check 20 reports: 15 complete, 5 without the joint photo. All 5 are from crews who start at 6:00, before the team leader arrives. Next week, a team leader starts early.',
+        text: 'A grid operator introduces a new way for technicians to report as-built data (where the cable and joints actually ended up) with an app. You write a one-page instruction with the team leader: six steps, photos of the app screens, and the key point “photograph the joint before backfilling, because you can’t afterwards”. A technician who wasn’t involved tests it; he gets stuck on step 4, which you rewrite. Training: 30 minutes in the morning meeting on why, then the team leader goes along on the first job of each technician. A week later you check 20 reports: 15 complete, 5 without the joint photo. All 5 are from crews who start at 6:00, before the team leader arrives. Next week, a team leader starts early.',
       },
       said: 'What you hear in projects: “We trained everyone in March. By June they were doing it the old way again.”',
       recall: [
@@ -338,7 +338,7 @@ export default {
         },
       ],
       teach: [
-        'The three-month dip. During the project everyone pays attention. After you leave, attention goes elsewhere, people change jobs, a busy season comes, exceptions become habits. Expect it and plan for it, instead of being surprised when the KPI slides.',
+        'Expect a dip after about three months. During the project everyone pays attention. After you leave, attention goes elsewhere, people change jobs, a busy season comes, exceptions become habits. Expect it and plan for it, instead of being surprised when the KPI slides.',
         'Short, regular checks keep it alive. The line manager checks a few things every week on the floor: is the board up to date, is the checklist used, are the actions done. The owner reviews the KPI every month with the team. Small checks often beat a big audit once a year.',
         'Agree in advance when you step back in. For example: a follow-up at one, three and six months; and a trigger, like “if on-time delivery is below 85% for three weeks in a row, the owner calls us”. That turns your return into a plan, not a sign of failure.',
         'When results slip, don’t fix it yourself; that undermines the owner. Ask the owner what changed: new people, more volume, a step that got skipped. Help him find the cause and act. And don’t take it personally: some slipping is normal. What matters is that the owner notices it and acts.',

@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Nominal is the target value on the drawing. Tolerance is how far a part may deviate and still work. Ø20 ±0.05 means a lower spec limit (LSL) of 19.95 and an upper spec limit (USL) of 20.05: a tolerance band of 0.10 mm. Tolerances can be unequal too: Ø12 +0.018/0 runs from 12.000 to 12.018.',
-        'Every dimension that matters for fit or function has a tolerance. Dimensions without one fall under the general tolerance in the title block, often ISO 2768-m: ±0.2 mm for sizes from 6 to 30 mm. So “there was no tolerance on it” is almost never true.',
+        'Nominal is the target value on the drawing (Ø means diameter). Tolerance is how far a part may deviate and still work. Ø20 ±0.05 means a lower spec limit (LSL) of 19.95 and an upper spec limit (USL) of 20.05: a tolerance band of 0.10 mm. Tolerances can be unequal too: Ø12 +0.018/0 runs from 12.000 to 12.018.',
+        'Every dimension that matters for fit or function has a tolerance. Dimensions without one fall under the general tolerance in the title block (the box in the drawing’s corner), often ISO 2768-m: ±0.2 mm for sizes from 6 to 30 mm. So “there was no tolerance on it” is almost never true.',
         'Tighter costs money. Halving a tolerance can mean a better machine, slower cutting, an extra grinding step and more measuring. A bearing seat may need ±0.01 mm; a hole in a cover plate is fine at ±0.2. Good engineers ask what the function needs, not what looks precise.',
         'Out of spec means nonconforming: scrap it, rework it, or use it as is with a written deviation (concession) from the customer. Cost grows roughly tenfold at every step it travels: €1 at the machine, €10 at assembly, €100 at the customer, and a recall costs far more.',
       ],
       example: {
         kind: 'worked',
-        text: 'A bushing bore is Ø12 +0.018/0, so it must be between 12.000 and 12.018 mm. In a batch of 500, 15 bores measure 12.021: 3% out. Caught at the machine: 15 × €4.50 = €67.50 of scrap. Caught at the customer: they block the whole lot, a sorting company checks all 500 at €0.80 each (€400), the complaint fee is €250, and you write an 8D. Same 15 parts, ten times the cost, plus a dent in your supplier rating.',
+        text: 'A bushing bore is Ø12 +0.018/0, so it must be between 12.000 and 12.018 mm. In a batch of 500, 15 bores measure 12.021: 3% out. Caught at the machine: 15 × €4.50 = €67.50 of scrap. Caught at the customer: they block the whole lot, a sorting company checks all 500 at €0.80 each (€400), the complaint fee is €250, and you write an 8D (a formal problem-solving report for the customer). Same 15 parts, ten times the cost, plus a dent in your supplier rating.',
       },
       said: 'What engineers say: “It’s 20.06 on a twenty plus-minus fifty microns, so it’s out. Either we scrap it or quality asks the customer for a deviation.”',
       recall: [
@@ -84,7 +84,7 @@ export default {
         'No two parts are identical. Engineers describe variation with two numbers. The mean is where the process is centred. The standard deviation (σ, sigma) is how wide it spreads. For a normal distribution, about 68% of parts fall within ±1σ of the mean and 99.7% within ±3σ. A mean of 10.00 with σ 0.01 puts nearly every part between 9.97 and 10.03.',
         'Common cause variation comes from many small sources that are always there: material, temperature, spindle play, operator technique. It gives a stable, predictable spread. You only reduce it by changing the system: a better machine, fixture or method.',
         'Special cause variation comes from a specific event: a broken tool, a new coil of steel, a cold machine on Monday morning, a new operator. It shows as a jump, a trend or an outlier. You find it, fix it and stop it coming back.',
-        'Treating common cause as special makes things worse. An operator who adjusts the offset after every part, chasing normal noise, increases the spread by about 40%: that’s called tampering. So the first question is always: did something change, or is this just how wide the process is?',
+        'Treating common cause as special makes things worse. An operator who adjusts the offset (the correction value in the machine program) after every part, chasing normal noise, increases the spread by about 40%: that’s called tampering. So the first question is always: did something change, or is this just how wide the process is?',
       ],
       example: {
         kind: 'worked',
@@ -190,7 +190,7 @@ export default {
       situation: {
         scene: 'You’re at a supplier quality meeting at an automotive client. The supplier presents a Cpk of 1.52 on a safety-critical diameter and says: “So we’re capable, case closed.”',
         ask: 'What do you ask before you accept that number?',
-        model: 'Over how many parts and how many days was that measured? Was the process in control in that period, and can we see the control chart? A Cpk from 30 parts on one good morning says little. And has the gauge been through a gauge R&R, because measurement noise ends up in that σ too?',
+        model: 'Over how many parts and how many days was that measured? Was the process stable in that period, and can we see the control chart (the measurements plotted over time)? A Cpk from 30 parts on one good morning says little. And has anyone checked the gauge itself (a gauge R&R study), because measurement noise ends up in that σ too?',
         rubric: [
           'Asks for sample size and the period of measurement',
           'Asks whether the process was stable (control chart) during the study',
@@ -201,7 +201,7 @@ export default {
       terms: [
         { term: 'Cp', def: 'Tolerance width divided by 6σ: could the spread fit if centred?' },
         { term: 'Cpk', def: 'Distance from mean to the nearest limit divided by 3σ: does it fit where it is?' },
-        { term: 'Ppk', def: 'Like Cpk, but using the overall long-term spread, often asked at launch.' },
+        { term: 'Ppk', def: 'Like Cpk, but using the overall spread of all measured parts; asked in launch studies.' },
         { term: 'ppm', def: 'Parts per million: defects out of every million parts.' },
       ],
     },
@@ -219,12 +219,12 @@ export default {
       teach: [
         'A control chart plots a measurement over time, with a centre line and control limits at ±3σ of the process itself. The classic is the X-bar/R chart: every hour you measure a subgroup of, say, 5 parts and plot their average (X-bar) and their range (R, largest minus smallest). X-bar shows whether the centre moves; R shows whether the spread changes.',
         'Control limits are not spec limits. Spec limits are what the customer needs. Control limits are what the process normally does. A point can be in control but out of spec (the process isn’t capable), or out of control but still in spec (something changed: act before it becomes scrap). Spec limits don’t belong on an X-bar chart, because averages spread less than single parts.',
-        'The rules that signal a special cause: one point outside a control limit; a run of 7 points in a row on one side of the centre line (some plants use 8 or 9); 6 or more points in a row steadily rising or falling; 2 out of 3 points beyond 2σ. Any of these means stop and look.',
+        'The rules that signal a special cause: one point outside a control limit; a run of 7 points in a row on one side of the centre line (some plants use 8 or 9); 6 or more points in a row steadily rising or falling; 2 out of 3 points beyond 2σ on the same side. Any of these means stop and look.',
         'The weak spot in most plants: the charts are filled in, but nobody reacts. Every chart needs a reaction plan: what the operator does when a rule fires, who to call, what to do with the parts since the last good check. A chart without reaction is wallpaper.',
       ],
       example: {
         kind: 'worked',
-        text: 'Shafts Ø20 ±0.05, subgroups of 5 every hour. Grand mean 20.000, average range 0.020. For n = 5 the constant A2 is 0.577, so the limits are 20.000 ± 0.577 × 0.020: 19.9885 to 20.0115. From 10:00 to 16:00 the averages are 20.002, 20.004, 20.005, 20.006, 20.008, 20.009, 20.011. All inside the limits, all far inside spec, but seven rising in a row: a trend. Tool wear. The operator changes the insert at 16:10, before a single part is out.',
+        text: 'Shafts Ø20 ±0.05, subgroups of 5 every hour. Grand mean 20.000, average range 0.020. For n = 5 the constant A2 is 0.577, so the limits are 20.000 ± 0.577 × 0.020: 19.9885 to 20.0115. From 10:00 to 16:00 the averages are 20.002, 20.004, 20.005, 20.006, 20.008, 20.009, 20.011. All inside the limits, all far inside spec, but seven rising in a row: a trend. Tool wear. The operator changes the insert (the replaceable cutting tip) at 16:10, before a single part is out.',
       },
       said: 'What engineers say: “It’s still in spec, but that’s seven up in a row. That’s the insert going, change it now and we never make a bad part.”',
       recall: [
@@ -242,7 +242,7 @@ export default {
           why: 'Something changed in the process; finding it before parts go out of spec is the whole point.',
         },
         {
-          q: 'Eight points in a row sit above the centre line, all inside the control limits. What does that signal?',
+          q: 'Nine points in a row sit above the centre line, all inside the control limits. What does that signal?',
           options: ['Nothing, they are all inside the limits', 'The chart is drawn wrong', 'The process is very capable', 'The process mean has shifted'],
           answer: 'The process mean has shifted',
           why: 'A long run on one side is very unlikely by chance; it signals a shift.',
@@ -287,13 +287,13 @@ export default {
         'FMEA (Failure Mode and Effects Analysis) is a structured team session, held before launch. For every process step (PFMEA) or design function (DFMEA) the team asks: how can it fail (failure mode), what happens then (effect), why would it happen (cause), and what do we already do to prevent or detect it (controls)?',
         'Each line gets three scores from 1 to 10. Severity: how bad the effect is; 9 or 10 is safety or legal. Occurrence: how likely the cause is. Detection: how likely we catch it before it leaves us; note that 1 means almost certain to catch it and 10 means no chance. RPN = S × O × D, maximum 1,000.',
         'RPN has problems: very different risks get the same number, and teams learn to score just under the threshold. The AIAG-VDA FMEA (2019) replaced it with Action Priority (high, medium, low), which weighs severity first, then occurrence, then detection. Only a design change lowers severity; prevention lowers occurrence; better checks lower detection.',
-        'Timing is everything. An FMEA done before design freeze can still change the product and the process. One written after start of production to fill the PPAP file is paperwork. Good FMEAs have design, process engineering, quality, maintenance and an operator in the room, and get updated after every complaint.',
+        'Timing is everything. An FMEA done before design freeze can still change the product and the process. One written after start of production, just to fill the customer’s approval file (the PPAP, see the next lesson), is paperwork. Good FMEAs have design, process engineering, quality, maintenance and an operator in the room, and get updated after every complaint.',
       ],
       example: {
         kind: 'worked',
         text: 'Step: press a bearing into a wheel hub housing. Failure mode: bearing not fully seated. Effect: bearing walks out, noise, possible wheel damage: S = 8. Cause: press force too low from worn tooling: O = 5. Current control: operator looks at it: D = 7. RPN = 8 × 5 × 7 = 280. Action: force-displacement monitoring on the press, rejecting every part outside the curve window: D = 2. New RPN = 8 × 5 × 2 = 80. Severity stays 8, because only a design change can make the effect less bad.',
       },
-      said: 'What engineers say: “Severity nine and we’re relying on a visual check? That’s a detection of seven at best. We need a poka-yoke there before SOP.”',
+      said: 'What engineers say: “Severity nine and we’re relying on a visual check? That’s a detection of seven at best. We need a poka-yoke there, a check that makes the error impossible, before start of production.”',
       recall: [
         {
           q: 'A failure mode scores S 7, O 4, D 5. What is the RPN?',
@@ -351,14 +351,14 @@ export default {
         },
       ],
       teach: [
-        'The control plan is a table that says, for every process step, which characteristics are checked: the spec, the gauge, the sample size and frequency, who checks, how it’s recorded, and the reaction plan. Example row: “Bore Ø30 H7, air gauge, 1 in 20, operator, SPC chart; if out: stop, quarantine back to the last good check, call the team leader.” It is the bridge from the FMEA to the shop floor.',
+        'The control plan is a table that says, for every process step, which characteristics are checked: the spec, the gauge, the sample size and frequency, who checks, how it’s recorded, and the reaction plan. Example row: “Bore Ø30 +0.021/0, air gauge, 1 in 20, operator, SPC chart; if out: stop, quarantine back to the last good check, call the team leader.” It is the bridge from the FMEA to the shop floor.',
         'Measuring is a process with its own variation. MSA (measurement system analysis) checks it. The best-known study is gauge R&R: for example 10 parts, 3 operators, each part measured 3 times. Repeatability is the spread with the same person and gauge; reproducibility is the difference between people.',
         'The result is shown as % of tolerance. Under 10%: good. 10 to 30%: acceptable depending on use and cost. Over 30%: not acceptable. Rule of ten: the gauge resolution should be at most a tenth of the tolerance. A caliper reading to 0.01 mm is useless on a 0.02 mm tolerance.',
         'PPAP (Production Part Approval Process) is the automotive package a supplier submits before shipping series parts: drawing and dimensional results, FMEA, control plan, MSA, capability studies, sample parts, and a signed Part Submission Warrant (PSW). Level 3 is the default. Underneath the paperwork it answers one question: can this process make good parts at rate?',
       ],
       example: {
         kind: 'worked',
-        text: 'Control plan line for a shaft OD 20 ±0.02 (tolerance 0.04 mm). The proposal is a digital caliper with 0.01 mm resolution. Rule of ten: you need 0.004 or better, so the caliper fails. With a micrometer (0.001 mm), a gauge R&R of 10 parts × 3 operators × 3 repeats gives 90 readings and a measurement σ of 0.001 mm. Six times that is 0.006 mm: 0.006 / 0.04 = 15% of tolerance. Acceptable, and written into the control plan with frequency 5 parts per hour.',
+        text: 'Control plan line for a shaft with an outside diameter of 20 ±0.02 (tolerance 0.04 mm). The proposal is a digital caliper with 0.01 mm resolution. Rule of ten: you need 0.004 or better, so the caliper fails. With a micrometer (0.001 mm), a gauge R&R of 10 parts × 3 operators × 3 repeats gives 90 readings and a measurement σ of 0.001 mm. Six times that is 0.006 mm: 0.006 / 0.04 = 15% of tolerance. Acceptable, and written into the control plan with frequency 5 parts per hour.',
       },
       said: 'What engineers say: “Before we argue about the Cpk, has anyone done an R&R on that gauge? If it eats 40% of the tolerance, we’re measuring noise.”',
       recall: [

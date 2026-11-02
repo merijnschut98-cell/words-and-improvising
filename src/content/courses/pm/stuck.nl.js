@@ -21,7 +21,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Week 7 bij een netbeheerder. Je ontwerpt een gereedheidscheck voor geplande klussen. Dit is de derde ontwerpsessie. Het hoofd planning wil een strenge check die elke klus zonder bevestigd schakelplan en materiaal tegenhoudt. Het hoofd uitvoering wil een lichte check, want “streng betekent dat klussen nog later worden vrijgegeven”. De sponsor zei bij de start: “Zorg gewoon dat het werkt.” Het team raakt vermoeid.',
+        text: 'Week 7 bij een netbeheerder. Je ontwerpt een gereedheidscheck voor geplande klussen. Dit is de derde ontwerpsessie. Het hoofd planning wil een strenge check die elke klus zonder bevestigd schakelplan en materiaal tegenhoudt. Het hoofd uitvoering wil een lichte check, want “streng betekent dat klussen nog later worden vrijgegeven”. De sponsor zei bij de start: “Zorg gewoon dat het werkt.” Het team raakt moe van de discussie.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Dit lijkt een ontwerpdiscussie, maar het is een onduidelijk doel. Streng dient “minder afzeggingen”; licht dient “sneller vrijgeven”. Nog een sessie lost het niet op, want ze optimaliseren voor verschillende dingen. Schrijf één A4 met de twee doelen en wat elk ontwerp doet met afzeggingen en vrijgavetijd, en vraag de sponsor te kiezen, of een doel voor allebei te stellen, bijvoorbeeld: afzeggingen onder de 8% terwijl het vrijgeven hooguit 2 dagen langer duurt. Vertel beide hoofden vooraf dat je dit doet. Ontwerp daarna tegen het gekozen doel.',
       },
@@ -276,7 +276,7 @@ export default {
     },
     {
       id: 'pm.stuck.pressure',
-      title: 'Als de klant duwt',
+      title: 'Als de klant druk zet',
       pre: [
         {
           q: 'Een boze directeur bij de klant eist dat je twee weken eerder levert. Wat is de meest riskante reactie?',
@@ -286,7 +286,7 @@ export default {
         },
       ],
       teach: [
-        'Als een klant hard duwt, is je eerste taak vertragen. Niet verdedigen, niet beloven. Erken de druk: “Ik hoor dat dit voor jou urgent is.” Koop dan wat tijd: “Laat me kijken wat realistisch is, dan bel ik je om 18:00 terug.” Een rustige consultant die terugkomt met opties is meer waard dan een snel ja.',
+        'Als een klant flink druk zet, is je eerste taak het tempo eruit halen. Niet verdedigen, niet beloven. Erken de druk: “Ik hoor dat dit voor jou urgent is.” Koop dan wat tijd: “Laat me kijken wat realistisch is, dan bel ik je om 18:00 terug.” Een rustige consultant die terugkomt met opties is meer waard dan een snel ja.',
         'Eerst de feiten. Wat is er precies afgesproken? Wat is de status? Wat is er veranderd, bij hen of bij jou? Schrijf het op voordat je terugbelt. Vaak komt de druk van boven hen: een bestuursvergadering, een klacht van een klant. Vraag: “Wat moet je maandag kunnen laten zien?” De echte behoefte is vaak kleiner dan de eis.',
         'Scheid de eis van de opties. Het is zelden alles of niks. Kan een deel live? Kan het bestuur resultaten zien in plaats van een livegang? Wat is het risico van sneller gaan, en wie draagt dat? Kom met twee of drie opties en je advies, zoals bij elk besluit.',
         'De stuurgroep is je bondgenoot. Afwegingen tussen tijd, scope en risico horen daar, niet op de gang met één boze manager. En vertel het je eigen manager voordat de klant dat doet. Escaleert de klant naar je partner, dan wil je dat de partner het eerst van jou hoort.',
@@ -301,9 +301,9 @@ export default {
       said: 'Wat je hoort in projecten: “Het kan me niet schelen hoe, maandag moet dit af zijn. Anders bel ik je baas.”',
       recall: [
         {
-          q: 'Wat doe je als eerste als een klant hard duwt?',
-          options: ['Uitleggen waarom de vertraging niet jouw schuld is', 'Beloven dat je je best doet', 'Vertragen, de druk erkennen en zeggen wanneer je terugkomt', 'Meteen naar zijn baas escaleren'],
-          answer: 'Vertragen, de druk erkennen en zeggen wanneer je terugkomt',
+          q: 'Wat doe je als eerste als een klant flink druk zet?',
+          options: ['Uitleggen waarom de vertraging niet jouw schuld is', 'Beloven dat je je best doet', 'Het tempo eruit halen, de druk erkennen en zeggen wanneer je terugkomt', 'Meteen naar zijn baas escaleren'],
+          answer: 'Het tempo eruit halen, de druk erkennen en zeggen wanneer je terugkomt',
           why: 'Rust en een duidelijk terugkommoment werken beter dan verdedigen of beloven in het heetst van de strijd.',
         },
         {
@@ -384,7 +384,7 @@ export default {
           q: 'Wat staat er in een goede nieuwe afspraak?',
           options: ['Een nieuw doel, scope, einddatum, rollen, toezeggingen van de sponsor en een ijkmoment', 'Alleen een nieuwe einddatum', 'Een excuusbrief', 'Een belofte om harder te werken'],
           answer: 'Een nieuw doel, scope, einddatum, rollen, toezeggingen van de sponsor en een ijkmoment',
-          why: 'Een herstart werkt alleen als de voorwaarden veranderen, niet alleen de data.',
+          why: 'Een herstart werkt alleen als de voorwaarden veranderen, niet alleen de datums.',
         },
         {
           q: 'Halverwege is het doel duidelijk buiten bereik. Wat is de meest gemaakte maar duurste keuze?',

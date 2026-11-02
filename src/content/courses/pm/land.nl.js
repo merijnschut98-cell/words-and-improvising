@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Twee modellen die je gaat horen. Kotter, voor de organisatie: urgentie creëren, een groep vormen die het trekt, het beeld helder maken, het communiceren, obstakels weghalen, snelle successen boeken, doorzetten, het verankeren in hoe dingen werken. ADKAR, voor één persoon: Awareness (ik weet dat het verandert), Desire (ik wil het), Knowledge (ik weet hoe), Ability (ik kan het in de praktijk), Reinforcement (het blijft beloond worden).',
+        'Twee modellen die je gaat horen. De acht stappen van Kotter, voor de organisatie: urgentie creëren, een groep vormen die het trekt, het beeld helder maken, het communiceren, obstakels weghalen, snelle successen boeken, doorzetten, het verankeren in hoe dingen werken. ADKAR (van Prosci), voor één persoon: Awareness (ik weet dat het verandert), Desire (ik wil het), Knowledge (ik weet hoe), Ability (ik kan het in de praktijk), Reinforcement (het blijft beloond worden).',
         'Gebruik ADKAR als diagnose, niet als slide. Als mensen niet meegaan, vraag dan waar ze vastzitten. Niet bewust: ze moeten het van hun baas horen. Geen zin: zoek uit wat ze kwijtraken. Geen kennis: uitleggen. Kunnen het niet: oefenen op de werkplek, geen extra mails. Geen bekrachtiging: iemand moet er elke week naar vragen.',
         'Wat adoptie in de praktijk echt drijft: de nieuwe manier is makkelijker dan de oude voor wie het werk doet; hun directe baas vraagt ernaar; ze hebben het mee vormgegeven; en de oude manier is weg, dus er is geen terugvaloptie. Kost het nieuwe proces de operator meer tijd dan het oude, dan redt geen enkele campagne het.',
         'De mensenkant: zeg de reden in hun termen. Niet “om de OEE te verbeteren” maar “zodat je niet op zaterdag wordt opgeroepen omdat de lijn achterloopt”. En als je niet weet waarom mensen niet meegaan, vraag het vijf van hen: “Wat maakt dit lastig om te gebruiken?” Meestal hoor je één praktisch ding dat je deze week kunt oplossen.',
@@ -25,7 +25,7 @@ export default {
       said: 'Wat je hoort in projecten: “Ze hebben allemaal de training gehad. Ze willen gewoon niet veranderen.”',
       recall: [
         {
-          q: 'Operators kennen het nieuwe proces en willen het ook, maar vallen onder druk terug in de oude manier. Waar in ADKAR zitten ze vast?',
+          q: 'Operators kennen het nieuwe proces en willen het ook, maar op een drukke dienst lukt het ze nog niet snel genoeg, dus vallen ze terug in de oude manier. Waar in ADKAR zitten ze vast?',
           options: ['Awareness', 'Desire', 'Ability', 'Knowledge'],
           answer: 'Ability',
           why: 'Ze weten het en willen het, maar kunnen het in de praktijk nog niet betrouwbaar: ze hebben oefening en steun op de werkplek nodig.',
@@ -215,7 +215,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een netbeheerder voert een nieuwe manier in waarop monteurs revisiegegevens met een app doorgeven. Je schrijft met de teamleider een instructie van één A4: zes stappen, foto’s van de schermen, en het kernpunt “fotografeer de mof voor het aanvullen, want daarna kan het niet meer”. Een monteur die er niet bij was test hem; hij loopt vast bij stap 4, die je herschrijft. Training: 30 minuten in het ochtendoverleg over het waarom, daarna gaat de teamleider mee met de eerste klus van elke monteur. Een week later check je 20 meldingen: 15 compleet, 5 zonder moffoto. Alle 5 komen van ploegen die om 6:00 beginnen, voordat de teamleider er is. Volgende week begint er een teamleider vroeger.',
+        text: 'Een netbeheerder voert een nieuwe manier in waarop monteurs revisiegegevens (waar kabel en moffen echt liggen) met een app doorgeven. Je schrijft met de teamleider een instructie van één A4: zes stappen, foto’s van de schermen, en het kernpunt “fotografeer de mof voor het aanvullen, want daarna kan het niet meer”. Een monteur die er niet bij was test hem; hij loopt vast bij stap 4, die je herschrijft. Training: 30 minuten in het ochtendoverleg over het waarom, daarna gaat de teamleider mee met de eerste klus van elke monteur. Een week later check je 20 meldingen: 15 compleet, 5 zonder moffoto. Alle 5 komen van ploegen die om 6:00 beginnen, voordat de teamleider er is. Volgende week begint er een teamleider vroeger.',
       },
       said: 'Wat je hoort in projecten: “We hebben in maart iedereen getraind. In juni deden ze het weer op de oude manier.”',
       recall: [
@@ -280,7 +280,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een kabelfabrikant draag je het nieuwe wekelijkse planningsoverleg over aan de planningsmanager, Sanne. De checklist: ze kan de KPI leverbetrouwbaarheid lezen en weet dat 92% normaal is; ze zit het overleg voor; ze kan het capaciteitsmodel uitleggen aan een nieuwe planner; ze weet wat te doen bij een spoedorder. Week 1 tot 3: jij zit voor, zij kijkt. Week 4 tot 6: zij zit voor, jij zit ernaast en jullie nabespreken 10 minuten. Week 7 tot 9: ze doet het alleen. In week 8 valt een belangrijke machine uit en plant ze de week om zonder jou te bellen. De KPI gaat naar het maandelijkse operationele rapport. Overdracht klaar.',
+        text: 'Bij een kabelfabrikant draag je het nieuwe wekelijkse planningsoverleg over aan de planningsmanager, Sanne. De checklist: ze kan de KPI leverbetrouwbaarheid lezen en weet dat 92% normaal is; ze zit het overleg voor; ze kan het capaciteitsmodel uitleggen aan een nieuwe planner; ze weet wat te doen bij een spoedorder. Week 1 tot 3: jij zit voor, zij kijkt. Week 4 tot 6: zij zit voor, jij zit ernaast en jullie bespreken het daarna 10 minuten na. Week 7 tot 9: ze doet het alleen. In week 8 valt een belangrijke machine uit en plant ze de week om zonder jou te bellen. De KPI gaat naar het maandelijkse operationele rapport. Overdracht klaar.',
       },
       said: 'Wat je hoort in projecten: “Dus dat is nu ook van mij? Naast al het andere?”',
       recall: [
@@ -338,23 +338,23 @@ export default {
         },
       ],
       teach: [
-        'De dip na drie maanden. Tijdens het project let iedereen op. Als jij weg bent, gaat de aandacht naar iets anders, wisselen mensen van baan, komt er een druk seizoen, worden uitzonderingen gewoontes. Reken erop en plan ervoor, in plaats van verrast te zijn als de KPI wegzakt.',
-        'Korte, regelmatige checks houden het levend. De leidinggevende checkt elke week een paar dingen op de vloer: is het bord bijgewerkt, wordt de checklist gebruikt, zijn de acties gedaan. De eigenaar bespreekt de KPI elke maand met het team. Kleine checks vaak werken beter dan één grote audit per jaar.',
+        'Reken op een dip na een maand of drie. Tijdens het project let iedereen op. Als jij weg bent, gaat de aandacht naar iets anders, wisselen mensen van baan, komt er een druk seizoen, worden uitzonderingen gewoontes. Houd er in je planning rekening mee, in plaats van verrast te zijn als de KPI wegzakt.',
+        'Korte, regelmatige checks houden het levend. De leidinggevende checkt elke week een paar dingen op de vloer: is het bord bijgewerkt, wordt de checklist gebruikt, zijn de acties gedaan. De eigenaar bespreekt de KPI elke maand met het team. Vaak een kleine check werkt beter dan één grote audit per jaar.',
         'Spreek vooraf af wanneer jij terugkomt. Bijvoorbeeld: een follow-up na één, drie en zes maanden; en een trigger, zoals “als de leverbetrouwbaarheid drie weken achter elkaar onder de 85% zit, belt de eigenaar ons”. Dan is terugkomen een plan, geen teken van falen.',
         'Zakken de resultaten weg, los het dan niet zelf op; dat ondermijnt de eigenaar. Vraag de eigenaar wat er veranderd is: nieuwe mensen, meer volume, een stap die wordt overgeslagen. Help hem de oorzaak te vinden en te handelen. En trek het je niet persoonlijk aan: wat wegzakken is normaal. Het gaat erom dat de eigenaar het ziet en iets doet.',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een levensmiddelenfabriek bracht je project de leverbetrouwbaarheid van 72% naar 90%. Bij de follow-up na drie maanden is het 81%. De helft van de winst is weg. Je gaat zitten met de eigenaar, de operations manager, en kijkt wat er veranderd is. In maand twee begonnen twee nieuwe planners die nooit getraind zijn; het weekoverleg is in de zomer vier keer afgezegd. Hij besluit: de senior planner traint de twee nieuwe deze maand, en het weekoverleg komt vast in de agenda met een vervanger als hij weg is. Jullie spreken af over zes weken weer te kijken. Dan zit het weer op 88%.',
+        text: 'Bij een levensmiddelenfabriek bracht je project de leverbetrouwbaarheid van 72% naar 90%. Bij de follow-up na drie maanden is het 81%. De helft van de verbetering is weg. Je gaat zitten met de eigenaar, de operations manager, en kijkt wat er veranderd is. In maand twee begonnen twee nieuwe planners die nooit getraind zijn; het weekoverleg is in de zomer vier keer afgezegd. Hij besluit: de senior planner traint de twee nieuwe deze maand, en het weekoverleg komt vast in de agenda met een vervanger als hij weg is. Jullie spreken af over zes weken weer te kijken. Dan zit het weer op 88%.',
       },
       said: 'Wat je hoort in projecten: “Het ging echt goed toen jij er was. Toen kwam de zomer en ja, je weet hoe het gaat.”',
       recall: [
         {
-          q: 'De leverbetrouwbaarheid ging van 72% naar 90% en zakte daarna naar 81%. Welk percentage van de winst is verloren?',
+          q: 'De leverbetrouwbaarheid ging van 72% naar 90% en zakte daarna naar 81%. Welk percentage van de verbetering is verloren?',
           number: 50,
           tolerance: 1,
           unit: '%',
-          why: 'De winst was 18 punten; 9 punten verloren; 9 / 18 = 50%.',
+          why: 'De verbetering was 18 punten; 9 punten verloren; 9 / 18 = 50%.',
         },
         {
           q: 'Waarom spreek je een trigger af om terug te komen?',

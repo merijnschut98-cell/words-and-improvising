@@ -81,9 +81,9 @@ export default {
         },
       ],
       teach: [
-        'SBI: Situatie, Gedrag (Behaviour), Impact. Situatie: wanneer en waar. Gedrag: wat je zag of hoorde, waarneembaar, zonder interpretatie. Impact: het effect op jou, het team of het resultaat. Daarna een vraag. “In de workshop van gisteren (S) zat je het grootste deel van het tweede uur op je telefoon (G). Twee operators zeiden daarna niks meer, omdat ze dachten dat het al besloten was (I). Wat speelde er?”',
+        'SBI (van het Center for Creative Leadership): Situatie, Gedrag (Behaviour), Impact. Situatie: wanneer en waar. Gedrag: wat je zag of hoorde, waarneembaar, zonder interpretatie. Impact: het effect op jou, het team of het resultaat. Daarna een vraag. “In de workshop van gisteren (S) zat je het grootste deel van het tweede uur op je telefoon (G). Twee operators zeiden daarna niks meer, omdat ze dachten dat het al besloten was (I). Wat speelde er?”',
         'Gedrag, geen karakter. “Je onderbrak Ans twee keer” is feedback; “je bent dominant” is een etiket waar mensen zich tegen verdedigen. Koppel de impact aan iets waar hij om geeft: zijn doel, zijn team, het project dat hij sponsort. Eén punt per gesprek. Drie punten tegelijk en het wordt een beoordelingsgesprek.',
-        'Timing. Zo snel als het kan, onder vier ogen, als jullie allebei rustig zijn: binnen een dag of twee. Niet vlak voordat hij moet presenteren. Positieve feedback werkt op dezelfde manier en mag vaker. Concreet compliment, zoals “dat je opende met de storingscijfers maakte dat de ploegen gingen luisteren”, bouwt het krediet op dat je nodig hebt voor de lastiger boodschap.',
+        'Timing. Zo snel als het kan, onder vier ogen, als jullie allebei rustig zijn: binnen een dag of twee. Niet vlak voordat hij moet presenteren. Positieve feedback werkt op dezelfde manier en mag vaker. Een concreet compliment, zoals “dat je opende met de storingscijfers maakte dat de ploegen gingen luisteren”, bouwt het krediet op dat je nodig hebt voor de lastiger boodschap.',
         'Feedback naar boven, naar een senior klant. Vraag toestemming: “Mag ik iets delen wat me vanochtend opviel?” Maak het over het gezamenlijke doel, houd het klein, zeg “mij viel op”. Vraag dan en luister. Gaat hij ertegenin, herhaal de feiten dan niet nog eens; vraag wat hij zag. Je geeft informatie, geen oordeel.',
         'Zelf ontvangen. Zeg dank je, vraag om een voorbeeld, verdedig je niet ter plekke. “Dank je. Heb je een voorbeeld, zodat ik weet wat ik moet veranderen?” Kom later terug met wat je ermee gedaan hebt. Wie goed feedback ontvangt, verdient het recht om het te geven.',
       ],
@@ -191,7 +191,7 @@ export default {
       situation: {
         scene: 'Je zit bij een netbeheerder. Een senior planner heeft tegen je projectleider gezegd dat “die jonge consultant” de tijd van de planners verspilt met vragen. Je hoort het via via. Je hebt de planners nog twee weken nodig.',
         ask: 'Hoe pak je het aan?',
-        model: 'Ik zou direct naar de planner gaan in plaats van het via anderen te laten lopen. “Ik hoorde dat je vindt dat mijn vragen te veel tijd van de planners kosten. Dat hoor ik liever van jou zelf, want ik heb hun input nog twee weken nodig. Wat zou beter werken?” Daarna zou ik iets concreets afspreken, zoals één vast halfuur per week, en dat op de mail bevestigen.',
+        model: 'Ik zou direct naar de planner gaan in plaats van het via anderen te laten lopen. “Ik hoorde dat je vindt dat mijn vragen te veel tijd van de planners kosten. Dat hoor ik liever van jou zelf, want ik heb hun input nog twee weken nodig. Wat zou beter werken?” Daarna zou ik iets concreets afspreken, zoals één vast halfuur per week, en dat per mail bevestigen.',
         rubric: [
           'Gaat direct naar de persoon in plaats van via anderen',
           'Opent neutraal en vraagt naar zijn kijk',
@@ -217,7 +217,7 @@ export default {
         },
       ],
       teach: [
-        'Een veelgebruikt model (Lencioni): vertrouwen maakt gezond conflict mogelijk, conflict maakt echt commitment mogelijk, en commitment maakt aanspreken en resultaat mogelijk. Vertrouwen betekent hier dat je “ik weet het niet” of “dat deed ik fout” kunt zeggen zonder dat je ervoor betaalt. Edmondson noemt dat psychologische veiligheid.',
+        'Een veelgebruikt model (Lencioni): vertrouwen maakt gezond conflict mogelijk, conflict maakt echt commitment mogelijk, en commitment maakt aanspreken en resultaat mogelijk. Vertrouwen betekent hier dat je “ik weet het niet” of “dat deed ik fout” kunt zeggen zonder dat je ervoor betaalt. Amy Edmondson gebruikt een verwant begrip, psychologische veiligheid: het gedeelde gevoel dat je in dit team dat risico kunt nemen.',
         'Herken het. Weinig vertrouwen: mensen checken na het overleg bij hun baas, niemand geeft een fout toe. Geen conflict: overleggen lopen soepel, de echte discussie gebeurt bij de koffieautomaat. Geen commitment: “we kijken ernaar”, acties zonder eigenaar, besluiten die de week erna weer opengaan. Weinig aanspreken: alleen de consultant loopt achter gemiste acties aan.',
         'Als buitenstaander ben je niet de baas, maar je bepaalt wel mee hoe het overleg loopt. Maak onenigheid veilig: “Wat zou hier misgaan?” “Wie ziet het anders?” Doe een rondje en laat de stilste mensen eerst praten. Benoem wat je ziet: “Het valt me op dat we het snel eens zijn, en dat het daarna niet gebeurt.”',
         'Zet commitment vast. Sluit elk besluit af met wie, wat en wanneer, en vraag: “Kan iedereen hiermee leven?” Stilte is geen ja, dus vraag de stille mensen bij naam. Stuur de besluiten dezelfde dag rond. Een pre-mortem helpt: “Het is drie maanden later en dit is mislukt. Hoe kan dat?”',
@@ -295,7 +295,7 @@ export default {
         kind: 'faded',
         text: 'Teamoverleg bij een netbeheerder. Je hebt net het plan laten zien. Een senior werkvoorbereider zegt hardop: “Zo’n project hebben we drie jaar geleden ook gedaan. Er veranderde niks, we kregen alleen meer formulieren.” Het wordt stil en iedereen kijkt naar jou.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Mood: gespannen; ga er niet defensief tegenin. Reflecteer: “Dus je hebt dit eerder meegemaakt, en het leverde je vooral meer werk op.” Dan stilte: wacht. Open vraag: “Wat gebeurde er toen? Waardoor eindigde het in formulieren?” Parafraseer zijn antwoord: “Dus het probleem was dat de werkvoorbereiders niet gevraagd werden, en de formulieren kwamen van het hoofdkantoor.” Empathie: “Ik snap dat je sceptisch bent.” Commit dan: “Ik wil graag dat je me zegt als je ziet dat dit dezelfde kant op gaat. Wil je donderdag samen met mij naar de check kijken?”',
+        reveal: 'Mood: gespannen; ga er niet defensief tegenin. Reflecteer: “Dus je hebt dit eerder meegemaakt, en het leverde je vooral meer werk op.” Dan stilte: wacht. Open vraag: “Wat gebeurde er toen? Waardoor eindigde het in formulieren?” Parafraseer zijn antwoord: “Dus het probleem was dat de werkvoorbereiders niet gevraagd werden, en de formulieren kwamen van het hoofdkantoor.” Empathie: “Ik snap dat je sceptisch bent.” Spreek dan iets af: “Ik wil graag dat je me zegt als je ziet dat dit dezelfde kant op gaat. Wil je donderdag samen met mij naar de check kijken?”',
       },
       said: 'Wat je hoort in projecten: “Dat hebben we al eens geprobeerd.” En het antwoord dat werkt: “Wat gebeurde er toen?”',
       recall: [

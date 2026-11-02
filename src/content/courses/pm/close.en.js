@@ -79,14 +79,14 @@ export default {
         },
       ],
       teach: [
-        'Acceptance criteria say when the project is done. Make them measurable and agree them at the start: “Cancellations below 8% for six consecutive weeks in the pilot region; readiness check used in all regions; owner trained.” Write down who signs off. Without criteria, the project ends when someone gets tired of it.',
+        'Acceptance criteria say when the project is done. Make them measurable and agree them at the start, in the project charter (the written agreement on goal, scope and roles): “Cancellations below 8% for six consecutive weeks in the pilot region; readiness check used in all regions; owner trained.” Write down who signs off. Without criteria, the project ends when someone gets tired of it.',
         'The sign-off. Go through each criterion with the sponsor, with the evidence on one page. Met, partly met or not met. Then a signature or a written confirmation. Formal acceptance protects both sides: the client knows what they got, and you can close the project and invoice.',
         'Use an open points list. Not everything will be perfect. List what remains: item, owner in the line organisation, date. Accept the project with open points rather than waiting for everything to be done. Open points owned by the line are part of handing over.',
         'The people side: clients sometimes delay sign-off with new wishes. Say: “Let’s check against the criteria we agreed in March. These new wishes are good; they go on the list for the line or a follow-up.” If criteria were never agreed, own that honestly and agree them now, before the last week.',
       ],
       example: {
         kind: 'worked',
-        text: 'At a cable manufacturer, the charter said: on-time delivery at least 90% for eight weeks, weekly planning meeting run by the planning manager, capacity model documented. In the closing meeting you show one page: on-time delivery 91 to 94% for nine weeks (met), planning manager chairs since week 7 (met), model documented but not yet trained to the second planner (partly met). The sponsor asks about a link to the sales forecast, which was never in scope. You say: “Good idea; I’d put it on the open points list for IT.” Open points: train second planner (planning manager, 15 May), sales forecast link (IT lead, to assess by June). He signs.',
+        text: 'At a cable manufacturer, the charter said: on-time delivery at least 90% for eight weeks, weekly planning meeting run by the planning manager, capacity model documented and explained to both planners. In the closing meeting you show one page: on-time delivery 91 to 94% for nine weeks (met), planning manager chairs since week 7 (met), model documented but not yet explained to the second planner (partly met). The sponsor asks about a link to the sales forecast, which was never in scope. You say: “Good idea; I’d put it on the open points list for IT.” Open points: train second planner (planning manager, 15 May), sales forecast link (IT lead, to assess by June). He signs.',
       },
       said: 'What you hear in projects: “Before we sign off, could you just also have a look at the forecast?”',
       recall: [
@@ -151,7 +151,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'At the end of a project at a grid operator, you run a 75-minute retro with six client people and your colleague. On the timeline, the low is clear: weeks 6 to 9, when system access was late. You start: “One thing I’d do differently: I should have escalated the access issue in week 3, not week 6.” Then everyone writes on sticky notes. Themes: the pilot worked because two planners helped design it; the field crews heard about it too late. Actions: for the next rollout, field team leaders are in the design from week 1 (owner: head of execution); IT access is requested in the first week of any project (owner: the PMO lead).',
+        text: 'At the end of a project at a grid operator, you run a 75-minute retro with six client people and your colleague. On the timeline, the low is clear: weeks 6 to 9, when system access was late. You start: “One thing I’d do differently: I should have escalated the access issue in week 3, not week 6.” Then everyone writes on sticky notes. Themes: the pilot worked because two planners helped design it; the field crews heard about it too late. Actions: for the next rollout, field team leaders are in the design from week 1 (owner: head of execution); IT access is requested in the first week of any project (owner: the PMO lead, who runs the project office).',
       },
       said: 'What you hear in projects: “Lessons learned? We wrote those last time too. Nothing ever happens with them.”',
       recall: [

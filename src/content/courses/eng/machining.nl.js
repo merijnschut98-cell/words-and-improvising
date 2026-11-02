@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Draaien, op een draaibank: het werkstuk draait en een stilstaande beitel beweegt erlangs. Zo maak je ronde vormen: assen, bussen, flenzen, schroefdraad, groeven, boringen. Moderne draaicentra hebben vaak aangedreven gereedschap, zodat ze in dezelfde opspanning ook vlakken frezen en dwarsgaten boren.',
-        'Frezen: het gereedschap draait en het werkstuk, vastgezet op de tafel, beweegt eronder. Zo maak je vlakken, kamers, sleuven en contouren: behuizingen, beugels, matrijsdelen. Drie assen is standaard; vijfassige machines kantelen het werkstuk of de kop voor complexe vormen zoals waaiers en luchtvaartdelen.',
-        'Boren: een draaiende boor maakt ronde gaten, meestal op een freesmachine. Voor een nauwkeurig gat boor je iets te klein en ga je er daarna met een ruimer doorheen (bijvoorbeeld naar H7); voor schroefdraad tap je het. Gaten dieper dan zo’n vijf keer de diameter worden traag en riskant: spanen lopen vast en boren breken.',
-        'Slijpen: een slijpschijf haalt piepkleine beetjes weg voor nauwe toleranties en een fijne afwerking, vaak na het harden: lagerzittingen, geharde assen, kalibers. Draaien haalt zo’n ±0,02 mm; slijpen ±0,005 mm of beter. Het is trager en duurder, dus engineers slijpen alleen waar de tekening het echt vraagt.',
+        'Draaien, op een draaibank: het werkstuk draait en een stilstaande beitel beweegt erlangs. Zo maak je ronde vormen: assen, bussen (korte buisjes), flenzen, schroefdraad, groeven, boringen (nauwkeurige gaten). Veel moderne draaibanken hebben ook aangedreven gereedschap: kleine gemotoriseerde frezen en boren. Daarmee frees je een vlak of boor je een dwarsgat zonder het werkstuk naar een andere machine te brengen.',
+        'Frezen: het gereedschap draait en het werkstuk, vastgezet op de tafel, beweegt eronder. Zo maak je vlakken, kamers, sleuven en contouren: behuizingen, beugels, matrijsdelen. Een standaard freesmachine beweegt in drie richtingen, de assen: links-rechts (X), voor-achter (Y) en op-neer (Z). Vijfassige machines kunnen ook het werkstuk of de kop kantelen, voor complexe vormen zoals pompwaaiers en vliegtuigdelen.',
+        'Boren: een draaiende boor maakt ronde gaten, meestal op een freesmachine. Een geboord gat is niet erg nauwkeurig. Voor een nauwkeurig gat boor je iets te klein en ga je er daarna met een ruimer doorheen: een gereedschap dat de laatste tienden van een millimeter weghaalt. Voor schroefdraad tap je het gat. Gaten dieper dan zo’n vijf keer de diameter worden traag en riskant: spanen lopen vast en boren breken.',
+        'Slijpen: een snel draaiende slijpschijf haalt piepkleine beetjes materiaal weg. Zo haal je nauwe toleranties (hoeveel de maat van de tekening mag afwijken) en een fijne afwerking, vaak nadat het deel gehard is: lagerzittingen, geharde assen, kalibers. Draaien haalt zo’n ±0,02 mm; slijpen ±0,005 mm of beter. Het is trager en duurder, dus engineers slijpen alleen waar de tekening het echt vraagt.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een uitgaande as van een tandwielkast. Routing: een staaf Ø55 op lengte zagen (1 minuut); op een CNC-draaibank naar Ø50 draaien met kragen, met 0,2 mm overmaat op de lagerzitting van Ø35 (6 minuten); een spiebaan van 10 mm frezen op een bewerkingscentrum (3 minuten); harden bij een externe harderij (3 dagen); de lagerzitting slijpen naar Ø35 k6, een tolerantie van 16 µm (4 minuten). Totale bewerkingstijd: 14 minuten. Doorlooptijd: zo’n 6 dagen, bijna helemaal het uitbestede harden en het wachten ervoor en erna.',
+        text: 'Een uitgaande as van een tandwielkast. Routing: een staaf Ø55 mm op lengte zagen (1 minuut); op een CNC-draaibank naar Ø50 draaien met kragen (sprongen in de diameter), met 0,2 mm overmaat op de lagerzitting van Ø35 om later te slijpen (6 minuten); een spiebaan van 10 mm frezen, de sleuf voor de spie die een tandwiel op de as vastzet (3 minuten); harden bij een externe harderij (3 dagen); de lagerzitting slijpen naar Ø35 k6, een standaard maatklasse met 16 µm tolerantie, oftewel 0,016 mm (4 minuten). Totale bewerkingstijd: 14 minuten. Doorlooptijd: zo’n 6 dagen, bijna helemaal het uitbestede harden en het wachten ervoor en erna.',
       },
       said: 'Wat engineers zeggen: “We draaien hem, frezen de spiebaan, sturen hem weg om te harden, en dan slijpen we de lagerzittingen. Het slijpen is vier minuten, de harderij drie dagen.”',
       recall: [
@@ -35,7 +35,7 @@ export default {
           q: 'Met welk proces maak je een spiebaan in een as?',
           options: ['Frezen', 'Draaien', 'Ruimen', 'Slijpen'],
           answer: 'Frezen',
-          why: 'Een spiebaan is een sleuf, gemaakt met een draaiende vingerfrees.',
+          why: 'Een spiebaan is een sleuf, gemaakt met een draaiende vingerfrees (een freesgereedschap).',
         },
         {
           q: 'Een geharde lagerzitting moet ±0,005 mm halen. Met welk proces werk je hem af?',
@@ -80,14 +80,14 @@ export default {
         },
       ],
       teach: [
-        'CNC (computer numerical control) betekent dat motoren de assen bewegen volgens een programma. Op een draaibank is X de diameter en loopt Z langs de spil. Op een freesmachine bewegen X en Y de tafel en beweegt Z de spil op en neer; een vierde en vijfde as draaien het werkstuk of de kop.',
-        'Het programma is G-code. G00 is een ijlgang, G01 een rechte snede met voeding, G02 en G03 zijn cirkelbogen. M03 start de spil, M08 de koeling, M06 wisselt het gereedschap. F is de voeding, S het toerental, T het gereedschap. De meeste programma’s worden nu in CAM-software gemaakt en naar de besturing gestuurd (Fanuc, Siemens, Heidenhain); kleine aanpassingen doe je aan de machine.',
-        'Nulpunten: het machinenulpunt ligt vast. Het werkstuknulpunt (G54) vertelt de machine waar het werkstuk zit. Gereedschapscorrecties vertellen hoe lang en hoe dik elk gereedschap is. De meeste crashes en afgekeurde eerste stukken komen door verkeerde offsets, niet door verkeerde programma’s.',
-        'Eerste-stukcontrole (first-off): na elke omstelling, programmawijziging of gereedschapswissel meet je het eerste stuk volledig voordat de serie draait. Veel bedrijven controleren ook het laatste stuk. Het kost 10 tot 20 minuten en voorkomt een serie van 200 foute stukken.',
+        'CNC (computer numerical control) betekent dat een computer de motoren van de machine aanstuurt, volgens een programma. De spil is de draaiende as die het werkstuk (draaibank) of het gereedschap (freesmachine) vasthoudt. Op een draaibank bepaalt X de diameter en loopt Z langs de spil. Op een freesmachine bewegen X en Y de tafel en beweegt Z de spil op en neer; een vierde en vijfde as draaien het werkstuk of de kop.',
+        'Het programma is G-code, een lijst korte commando’s. G00 is een ijlgang (snel verplaatsen), G01 een rechte snede, G02 en G03 zijn cirkelbogen. M03 start de spil, M08 de koeling, M06 wisselt het gereedschap. F is de voeding (hoe snel het gereedschap opschuift), S het toerental, T het gereedschap. De meeste programma’s maak je in CAM-software, die het 3D-model omzet in G-code, en stuur je naar de besturing (Fanuc, Siemens, Heidenhain). Kleine aanpassingen doe je aan de machine.',
+        'Nulpunten. Het machinenulpunt is een vaste thuispositie. Het werkstuknulpunt (G54) vertelt de machine waar het werkstuk op de tafel zit. Gereedschapscorrecties vertellen hoe lang en hoe dik elk gereedschap is, want elk gereedschap steekt anders uit. De insteller, die de machine klaarmaakt voor een nieuwe order, typt deze getallen in. Samen heten ze de offsets. De meeste crashes (gereedschap raakt werkstuk of klemmen) en afgekeurde eerste stukken komen door verkeerde offsets, niet door verkeerde programma’s.',
+        'Eerste-stukcontrole (first-off): na elke omstelling (de machine ombouwen voor een nieuwe order), programmawijziging of gereedschapswissel meet je het eerste stuk volledig voordat de serie draait. Veel bedrijven controleren ook het laatste stuk. Het kost 10 tot 20 minuten en voorkomt een serie van 200 foute stukken.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een insteller begint aan een order van 200 flenzen. Hij zet G54 door de bankschroefbek af te tasten. Voor gereedschap 5, een boor, typt hij een lengte van 112,43 in plaats van 121,43. De machine denkt dat de boor 9 mm korter is dan hij is, dus hij boort 9 mm dieper. De eerste-stukcontrole vindt een gatdiepte die 9 mm te diep is: één stuk afgekeurd, €35. Zonder die controle: 200 × €35 = €7.000 afkeur, en bij een blind gat boven een dunne bodem misschien een gebroken boor en een beschadigde opspanning.',
+        text: 'Een insteller begint aan een order van 200 flenzen. Hij zet G54 door de bek van de bankschroef af te tasten met een taster, een meetpen in de spil. Voor gereedschap 5, een boor, typt hij een lengte van 112,43 in plaats van 121,43. De machine denkt dat de boor 9 mm korter is dan hij is, dus hij boort 9 mm dieper. De eerste-stukcontrole vindt een gatdiepte die 9 mm te diep is: één stuk afgekeurd, €35. Zonder die controle: 200 × €35 = €7.000 afkeur, en als het gat net boven een dunne bodem moet stoppen, misschien een gebroken boor en een beschadigde mal (de houder van het werkstuk).',
       },
       said: 'Wat engineers zeggen: “Eerste stuk is goed, serie mag draaien. Maar check de lengte van T5 de volgende keer even dubbel, dat is de tweede tikfout deze maand.”',
       recall: [
@@ -147,14 +147,14 @@ export default {
         },
       ],
       teach: [
-        'Snijsnelheid (Vc, in m/min) is hoe snel de snijkant door het materiaal gaat. Gereedschap en materiaal bepalen hem: hardmetaal in staal 150 tot 300, in rvs 100 tot 200, in aluminium 300 tot 1.000 of meer, in titanium 40 tot 80. Ouderwets HSS-gereedschap gaat veel langzamer, zo’n 30 in staal.',
-        'Het toerental n (omw/min) volgt uit de diameter: n = Vc × 1.000 / (π × D). Een werkstuk van Ø50 op 200 m/min vraagt 200.000 / 157 = 1.273 omw/min. Een kleinere diameter vraagt meer toeren voor dezelfde snijsnelheid.',
-        'Voeding: bij draaien in mm per omwenteling (f, zeg 0,25). Bij frezen per tand (fz, zeg 0,1 mm), dus tafelvoeding = fz × aantal tanden × toerental. Snedediepte (ap) is hoe diep het gereedschap erin gaat, in mm. Voeding en snedediepte bepalen hoeveel metaal je per minuut weghaalt; snijsnelheid bepaalt het meeste van de warmte en de slijtage.',
-        'Draaitijd voor één snede = lengte / (f × n). De afwegingen: een hogere snijsnelheid maakt de cyclus korter maar sloopt de standtijd snel; bij hardmetaal kan 20% sneller die ruwweg halveren. Een hogere voeding is goedkoper voor het gereedschap maar geeft een ruwer oppervlak. Dus engineers verhogen eerst voeding en snedediepte, dan pas de snijsnelheid, en houden een aparte, fijnere nabewerkingssnede.',
+        'Snijsnelheid (Vc, in meter per minuut) is hoe snel de snijkant door het materiaal gaat. Gereedschap en materiaal bepalen hem. Meestal snij je met hardmetalen wisselplaten: kleine, vervangbare puntjes van heel hard wolfraamcarbide. Hardmetaal draait 150 tot 300 m/min in staal, 100 tot 200 in rvs, 300 tot 1.000 of meer in aluminium, 40 tot 80 in titanium. Ouder HSS-gereedschap (snelstaal) gaat veel langzamer, zo’n 30 in staal.',
+        'Het toerental n, in omwentelingen per minuut, volgt uit de diameter D in mm: n = Vc × 1.000 / (π × D). Voorbeeld: een werkstuk van Ø50 op 200 m/min vraagt 200.000 / 157 = 1.273 omw/min. Een kleinere diameter vraagt meer toeren voor dezelfde snijsnelheid.',
+        'Voeding is hoe ver het gereedschap opschuift terwijl het snijdt. Bij draaien in mm per omwenteling (f, zeg 0,25). Bij frezen in mm per tand van de frees (fz, zeg 0,1), dus tafelvoeding = fz × aantal tanden × toerental. Snedediepte (ap) is hoe diep het gereedschap erin gaat, in mm. Voeding en snedediepte bepalen hoeveel metaal je per minuut weghaalt; snijsnelheid bepaalt het meeste van de warmte en de slijtage.',
+        'Draaitijd voor één snede = lengte / (f × n). De afwegingen: een hogere snijsnelheid maakt de cyclus korter maar sloopt de standtijd (hoe lang een snijkant meegaat); bij hardmetaal kan 20% sneller die ruwweg halveren. Een hogere voeding kost minder gereedschap maar geeft een ruwer oppervlak. Dus engineers verhogen eerst voeding en snedediepte, dan pas de snijsnelheid. Voorbewerken haalt het meeste metaal weg; een aparte, rustigere nabewerkingssnede geeft de eindmaat en het oppervlak.',
       ],
       example: {
         kind: 'worked',
-        text: 'Voordraaien van een as Ø60 over 200 mm in C45-staal, hardmetaal, Vc 220 m/min, f 0,3 mm/omw. n = 220.000 / (π × 60) = 220.000 / 188,5 = 1.167 omw/min. Voedingssnelheid = 0,3 × 1.167 = 350 mm/min. Tijd per snede = 200 / 350 = 0,57 min, 34 seconden. Verhoog de voorbewerkingsvoeding naar 0,4: 467 mm/min, 26 seconden, zo’n 8,6 seconden winst per snede. Met 3 voorbewerkingssneden en 5.000 stuks per jaar is dat zo’n 36 uur machinetijd. De nabewerkingssnede blijft op 0,15 voor het oppervlak.',
+        text: 'Voordraaien van een as Ø60 over 200 mm in C45 (een gangbaar middelhard koolstofstaal) met een hardmetalen wisselplaat, Vc 220 m/min, f 0,3 mm/omw. n = 220.000 / (π × 60) = 220.000 / 188,5 = 1.167 omw/min. Voedingssnelheid = 0,3 × 1.167 = 350 mm/min. Tijd per snede = 200 / 350 = 0,57 min, 34 seconden. Verhoog de voorbewerkingsvoeding naar 0,4: 467 mm/min, 26 seconden, zo’n 8,6 seconden winst per snede. Met 3 voorbewerkingssneden en 5.000 stuks per jaar is dat zo’n 36 uur machinetijd. De nabewerkingssnede blijft op 0,15 voor het oppervlak.',
       },
       said: 'Wat engineers zeggen: “Draai de snijsnelheid niet op, dan vreet je alleen maar wisselplaten. Geef meer voeding op het voordraaien en laat de nabewerking met rust.”',
       recall: [
@@ -215,10 +215,10 @@ export default {
         },
       ],
       teach: [
-        'Gereedschap slijt: vrijloopslijtage langs de snijkant, kolkslijtage erbovenop, uitbrokkelen, opbouwsnede. Slijtage groeit eerst langzaam en dan snel. Een versleten gereedschap zie je aan maatverloop, een slechter oppervlak, braampjes en een stijgende spilbelasting, en daarna een breuk die het stuk kan verpesten en de machine kan beschadigen.',
-        'De standtijd zet je in snijminuten of in stuks per snijkant, bijvoorbeeld 15 minuten of 120 stuks. De besturing telt mee; op de grens roept hij een zustergereedschap op (een identiek reserve in het magazijn) of stopt hij voor een wissel. Te laat betekent afkeur; te vroeg verspilt snijkanten, maar snijkanten zijn goedkoop.',
-        'Koelsmeermiddel koelt, smeert en spoelt spanen weg. Emulsie op waterbasis draait meestal op 5 tot 8%, gecontroleerd met een refractometer. Te mager: roest, korte standtijd, bacteriën. Te vet: schuim en huidproblemen. Hogedrukkoeling door het gereedschap, zo’n 70 bar, breekt de spanen bij diep boren.',
-        'Gereedschapsbeheer bepaalt de beschikbaarheid. Gereedschap voorinstellen buiten de machine, lengte en radius meten voordat het erin gaat, betekent dat de machine niet stilstaat terwijl de insteller meet. Zustergereedschap, een standaard gereedschapsbibliotheek en gereedschap klaarzetten vóór een omstelling scheelt allemaal stops. Ontbrekend of niet voorbereid gereedschap is een van de grootste oorzaken van lange omstellingen.',
+        'Gereedschap slijt. Vrijloopslijtage: de snijkant zelf slijt weg. Kolkslijtage: er ontstaat een kuiltje bovenop, waar de spaan overheen schuurt. Uitbrokkelen: er springen stukjes af. Opbouwsnede: materiaal van het werkstuk plakt aan de snijkant. Slijtage groeit eerst langzaam, dan snel. Je ziet het aan maatverloop, een slechter oppervlak, braampjes (scherpe randjes) en een stijgende spilbelasting (de motor moet harder werken). Daarna breekt hij, en dat kan het stuk en de machine beschadigen.',
+        'De standtijd zet je in snijminuten of in stuks per snijkant, bijvoorbeeld 15 minuten of 120 stuks. De besturing telt mee; op de grens roept hij een zustergereedschap op (een identiek reservegereedschap in het gereedschapsmagazijn van de machine) of stopt hij voor een wissel. Te laat betekent afkeur; te vroeg verspilt snijkanten, maar snijkanten zijn goedkoop.',
+        'Koelsmeermiddel koelt, smeert en spoelt spanen weg. De meeste bedrijven gebruiken emulsie: olie gemengd met water, meestal 5 tot 8% olie. Dat meet je met een refractometer, een klein handmeetapparaatje. Te mager: roest, korte standtijd, bacteriën. Te vet: schuim en huidproblemen. Hogedrukkoeling, zo’n 70 bar, die door het gereedschap gepompt wordt, breekt de spanen bij diep boren.',
+        'Gereedschapsbeheer bepaalt hoeveel de machine draait. Voorinstellen betekent dat je lengte en radius van elk gereedschap op een apart apparaat meet voordat het de machine in gaat, zodat de machine niet stilstaat terwijl de insteller meet. Zustergereedschap, een vaste gereedschapslijst en gereedschap klaarzetten vóór een omstelling schelen allemaal stops. Ontbrekend of niet voorbereid gereedschap is een van de grootste oorzaken van lange omstellingen.',
       ],
       example: {
         kind: 'worked',
@@ -282,16 +282,16 @@ export default {
         },
       ],
       teach: [
-        'Opspanning is hoe het werkstuk vastgehouden wordt: een bankschroef, een driebekklauw op een draaibank, een spantang, of een speciale mal. De taak: het werkstuk elke keer op precies dezelfde plek leggen en het stevig vasthouden tegen de snijkrachten, zonder het te vervormen.',
-        'Het 3-2-1-principe: drie punten onder het hoofdvlak, twee langs een zijkant, één aan het eind. Samen leggen ze alle zes vrijheidsgraden vast. Goede mallen positioneren op dezelfde referenties als de tekening (A, B, C), en spannen het werkstuk naar de aanslagen toe, nooit de lucht in.',
-        'Omsteltijd is alles van het laatste goede stuk van de ene order tot het eerste goede stuk van de volgende: oude mal eraf, nieuwe erop, gereedschap laden, offsets zetten, eerste-stukcontrole. Meestal 30 minuten tot 3 uur. Nulpuntspansystemen herhalen binnen 0,005 mm, dus een vooraf geladen pallet zet je erin en hij draait.',
+        'Opspanning is hoe het werkstuk vastgehouden wordt: een bankschroef, een driebekklauw op een draaibank (drie bekken die om het werkstuk sluiten), een spantang (een ingezaagde huls die een staaf vastknijpt), of een mal, een houder gemaakt voor één specifiek werkstuk. De taak: het werkstuk elke keer op precies dezelfde plek leggen en het stevig vasthouden tegen de snijkrachten, zonder het te vervormen.',
+        'Een los werkstuk kan op zes manieren bewegen: schuiven in drie richtingen en draaien om drie assen. Dat zijn de zes vrijheidsgraden. Het 3-2-1-principe zet ze alle zes vast: drie steunpunten onder het hoofdvlak, twee langs een zijkant, één aan het eind. Goede mallen positioneren op de referentievlakken die de tekening A, B en C noemt, en spannen het werkstuk naar die aanslagen toe, nooit de lucht in.',
+        'Omsteltijd is alles van het laatste goede stuk van de ene order tot het eerste goede stuk van de volgende: oude mal eraf, nieuwe erop, gereedschap laden, offsets zetten, eerste-stukcontrole. Meestal 30 minuten tot 3 uur. Nulpuntspansystemen herhalen binnen 0,005 mm, dus een pallet (een basisplaat met het werkstuk er al op gespannen, buiten de machine geladen) zet je erin en hij draait.',
         'Opspanfouten zijn een grote bron van afkeur: een spaan onder het werkstuk (het kantelt), te veel spankracht (een dunne wand vervormt en veert terug na het lossen), een werkstuk dat niet tegen de aanslag ligt, versleten bekken. Herkenbaar aan: een maat die verschilt tussen opspanningen maar niet binnen één, of één malpositie die altijd slechter is dan de andere.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een aluminium behuizing met wanden van 2 mm en een boring van Ø40 H7 (tolerantie 0,025 mm). Hard vastgezet in een bankschroef meet de boring rond in de machine. Na het lossen is hij 0,04 mm onrond: afkeur. Oplossing: spannen op de dikke flens met een vast aanhaalmoment, en de boring blijft binnen 0,008 mm. Tweede probleem: spanen onder het werkstuk laten het 0,05 mm kantelen, dus een keer afblazen vóór het laden komt in de standaard. Het omstellen gaat ook van 90 naar 25 minuten met een nulpuntpallet die buiten de machine geladen wordt.',
+        text: 'Een aluminium behuizing met wanden van 2 mm en een boring van Ø40 H7 (tolerantie 0,025 mm). Hard vastgezet in een bankschroef meet de boring rond in de machine. Na het lossen is hij 0,04 mm onrond: afkeur. Oplossing: spannen op de dikke flens, aangedraaid met een vast aanhaalmoment (draaikracht), en de boring blijft binnen 0,008 mm. Tweede probleem: spanen onder het werkstuk laten het 0,05 mm kantelen, dus een keer afblazen vóór het laden komt in de standaard. Het omstellen gaat ook van 90 naar 25 minuten met een nulpuntpallet die buiten de machine geladen wordt.',
       },
-      said: 'Wat engineers zeggen: “In de machine meet hij perfect en op de meetmachine is hij ovaal. Je spant hem te hard, hij veert terug.”',
+      said: 'Wat engineers zeggen: “In de machine meet hij perfect en op de 3D-meetmachine is hij ovaal. Je spant hem te hard, hij veert terug.”',
       recall: [
         {
           q: 'Hoeveel vrijheidsgraden legt het 3-2-1-principe vast?',
@@ -350,14 +350,14 @@ export default {
         },
       ],
       teach: [
-        'Oppervlakteruwheid geef je aan met Ra, de gemiddelde ruwheid in µm. Voordraaien geeft Ra 3,2 tot 6,3, nadraaien 0,8 tot 1,6, slijpen 0,2 tot 0,8. Afdichtvlakken en lagerzittingen hebben een lage Ra nodig. Een notitie als “Ra 0,8” op tekening betekent een nabewerkingssnede of slijpen, dus extra kosten.',
-        'Meetmiddelen. Schuifmaat: leest 0,01 mm af, echte nauwkeurigheid zo’n ±0,02 à 0,03, prima voor toleranties van ±0,1. Micrometer (schroefmaat): leest 0,001 mm af, voor ±0,01. Gaten: boringmeter, luchtmeter, of tolerantiedoorns (goed/afkeur). Een 3D-meetmachine (CMM) tast punten af in 3D en rapporteert ten opzichte van referenties en GD&T, in een ruimte op 20 °C.',
+        'Oppervlakteruwheid geef je aan met Ra: de gemiddelde hoogte van de piepkleine pieken en dalen in het oppervlak, in µm (duizendsten van een millimeter). Voordraaien geeft Ra 3,2 tot 6,3, nadraaien 0,8 tot 1,6, slijpen 0,2 tot 0,8. Afdichtvlakken en lagerzittingen hebben een lage Ra nodig. Een notitie als “Ra 0,8” op tekening betekent een nabewerkingssnede of slijpen, dus extra kosten.',
+        'Meetmiddelen. Schuifmaat: leest 0,01 mm af, echte nauwkeurigheid zo’n ±0,02 à 0,03, prima voor toleranties van ±0,1. Micrometer (schroefmaat): leest 0,001 mm af, voor ±0,01. Gaten: boringmeter, luchtmeter, of tolerantiedoorns (vaste pennen: de ene kant moet erin passen, de andere niet). Een 3D-meetmachine (CMM, coordinate measuring machine) tast punten af in 3D en rapporteert ze ten opzichte van de referentievlakken, in een ruimte op 20 °C.',
         'Temperatuur telt. Staal groeit zo’n 0,0115 mm per meter per °C; aluminium twee keer zoveel. Een stalen deel van 200 mm dat je op 30 °C meet, warm uit de machine, is 0,023 mm groter dan op 20 °C: meer dan veel toleranties. Dus meet op 20 °C, laat delen afkoelen, of reken het om.',
-        'Typische fouten en hun gebruikelijke oorzaken. Maatverloop: gereedschapsslijtage of de machine die opwarmt. Trillingssporen (chatter): trilling door een lange uitsteeklengte, dunne wanden of het verkeerde toerental. Bramen: versleten gereedschap of uitloopranden. Slecht oppervlak: versleten wisselplaat of te hoge voeding. Positiefouten: mal of offset. Onrondheid: opspanning.',
+        'Typische fouten en hun gebruikelijke oorzaken. Maatverloop: gereedschapsslijtage of de machine die opwarmt. Trillingssporen (chatter): een golfpatroon door trilling, omdat het gereedschap te ver uitsteekt, de wanden dun zijn of het toerental niet klopt. Bramen: versleten gereedschap, of randen waar het gereedschap eruit loopt. Slecht oppervlak: versleten wisselplaat of te hoge voeding. Positiefouten: mal of offset. Onrondheid: opspanning.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een as Ø30 h6: van 29,987 tot 30,000 mm. De operator meet hem met een micrometer direct uit de machine, op 35 °C: 29,990, binnen spec. Op 20 °C, 15 °C kouder, krimpt hij 30 × 0,0115 × 15 / 1.000 = 0,005 mm, naar 29,985: buiten spec. De klant meet op 20 °C en keurt de partij af. Oplossing: meten nadat het stuk 15 minuten op een vaste plek is afgekoeld, of het meetmiddel instellen met een meesterstuk op dezelfde temperatuur.',
+        text: 'Een as Ø30 h6, een standaard maatklasse: hij moet tussen 29,987 en 30,000 mm meten. De operator meet hem met een micrometer direct uit de machine, op 35 °C: 29,990, binnen spec. Op 20 °C, 15 °C kouder, krimpt hij 30 × 0,0115 × 15 / 1.000 = 0,005 mm, naar 29,985: buiten spec. De klant meet op 20 °C en keurt de partij af. Oplossing: meten nadat het stuk 15 minuten op een vaste plek is afgekoeld, of het meetmiddel instellen met een meesterstuk (een referentiestuk met bekende maat) op dezelfde temperatuur.',
       },
       said: 'Wat engineers zeggen: “Je hebt hem warm gemeten. Geef hem een kwartier op de plaat en hij is vijf micron kleiner, en dan is hij af.”',
       recall: [
@@ -370,8 +370,8 @@ export default {
         },
         {
           q: 'Een gedraaid deel heeft een regelmatig golvend patroon van trillingssporen. Wat is de waarschijnlijkste oorzaak?',
-          options: ['Trilling door een lange uitsteeklengte of dunne wand', 'Een verkeerde materiaalsoort', 'Te veel koeling', 'Een verkeerde tekeningrevisie'],
-          answer: 'Trilling door een lange uitsteeklengte of dunne wand',
+          options: ['Trilling doordat het gereedschap te ver uitsteekt, of een dunne wand', 'Een verkeerde materiaalsoort', 'Te veel koeling', 'Een verkeerde tekeningrevisie'],
+          answer: 'Trilling doordat het gereedschap te ver uitsteekt, of een dunne wand',
           why: 'Chatter is een trillingsprobleem: stijfheid en toerental.',
         },
         {
@@ -401,7 +401,7 @@ export default {
       terms: [
         { term: 'Ra', def: 'Gemiddelde oppervlakteruwheid in µm; lager is gladder.' },
         { term: '3D-meetmachine (CMM)', def: 'Meet punten in 3D ten opzichte van referenties.' },
-        { term: 'Tolerantiekaliber', def: 'Vast meetmiddel (goed/afkeur) dat goed van fout scheidt zonder een getal af te lezen.' },
+        { term: 'Tolerantiekaliber', def: 'Vast meetmiddel (gaat/gaat niet) dat goed van fout scheidt zonder een getal af te lezen.' },
         { term: 'Chatter', def: 'Trilling tijdens het verspanen die een golvend patroon achterlaat.' },
       ],
     },

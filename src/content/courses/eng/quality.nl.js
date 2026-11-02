@@ -13,16 +13,16 @@ export default {
         },
       ],
       teach: [
-        'De nominale maat is de doelwaarde op de tekening. De tolerantie is hoeveel een onderdeel mag afwijken en nog steeds werkt. Ø20 ±0,05 betekent een ondergrens (LSL) van 19,95 en een bovengrens (USL) van 20,05: een tolerantieveld van 0,10 mm. Het kan ook ongelijk: Ø12 +0,018/0 loopt van 12,000 tot 12,018.',
-        'Elke maat die telt voor passing of functie heeft een tolerantie. Maten zonder tolerantie vallen onder de algemene tolerantie in de stempel, vaak ISO 2768-m: ±0,2 mm voor maten van 6 tot 30 mm. “Er stond geen tolerantie op” klopt dus bijna nooit.',
+        'De nominale maat is de doelwaarde op de tekening (Ø betekent diameter). De tolerantie is hoeveel een onderdeel mag afwijken en nog steeds werkt. Ø20 ±0,05 betekent een ondergrens (LSL) van 19,95 en een bovengrens (USL) van 20,05: een tolerantieveld van 0,10 mm. Het kan ook ongelijk: Ø12 +0,018/0 loopt van 12,000 tot 12,018.',
+        'Elke maat die telt voor passing of functie heeft een tolerantie. Maten zonder tolerantie vallen onder de algemene tolerantie in het stempel (het kader rechtsonder op de tekening), vaak ISO 2768-m: ±0,2 mm voor maten van 6 tot 30 mm. “Er stond geen tolerantie op” klopt dus bijna nooit.',
         'Nauwer kost geld. Een tolerantie halveren kan betekenen: een betere machine, langzamer verspanen, een extra slijpstap en meer meten. Een lagerzitting heeft misschien ±0,01 mm nodig; een gat in een afdekplaat kan prima met ±0,2. Een goede engineer vraagt wat de functie nodig heeft, niet wat er precies uitziet.',
         'Buiten spec betekent afwijkend product: afkeuren, nabewerken, of “use as is” met een schriftelijke deviatie (concessie) van de klant. De kosten worden grofweg tien keer zo hoog bij elke stap verder: €1 bij de machine, €10 bij de assemblage, €100 bij de klant, en een terugroepactie kost nog veel meer.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een bus heeft een boring van Ø12 +0,018/0, dus tussen 12,000 en 12,018 mm. In een serie van 500 meten 15 boringen 12,021: 3% buiten spec. Gevonden bij de machine: 15 × €4,50 = €67,50 afkeur. Gevonden bij de klant: die blokkeert de hele partij, een sorteerbedrijf controleert alle 500 stuks à €0,80 (€400), de klachtenfee is €250, en jij schrijft een 8D. Dezelfde 15 onderdelen, tien keer de kosten, plus een deuk in je leveranciersrating.',
+        text: 'Een bus heeft een boring van Ø12 +0,018/0, dus tussen 12,000 en 12,018 mm. In een serie van 500 meten 15 boringen 12,021: 3% buiten spec. Gevonden bij de machine: 15 × €4,50 = €67,50 afkeur. Gevonden bij de klant: die blokkeert de hele partij, een sorteerbedrijf controleert alle 500 stuks à €0,80 (€400), de klant rekent €250 klachtkosten, en jij schrijft een 8D (een formeel probleemrapport voor de klant). Dezelfde 15 onderdelen, tien keer de kosten, plus een deuk in je leveranciersrating.',
       },
-      said: 'Wat engineers zeggen: “Hij is 20,06 op twintig plus-min vijf honderdste, dus hij is af. Of we keuren hem af, of kwaliteit vraagt een deviatie aan bij de klant.”',
+      said: 'Wat engineers zeggen: “Hij is 20,06 op twintig plus-min vijf honderdste, dus hij zit erbuiten. Of we keuren hem af, of kwaliteit vraagt een deviatie aan bij de klant.”',
       recall: [
         {
           q: 'Een maat is Ø40 ±0,1 mm. Hoe breed is het tolerantieveld, in mm?',
@@ -84,7 +84,7 @@ export default {
         'Geen twee onderdelen zijn gelijk. Engineers beschrijven spreiding met twee getallen. Het gemiddelde zegt waar het proces zit. De standaardafwijking (σ, sigma) zegt hoe breed het spreidt. Bij een normale verdeling valt zo’n 68% binnen ±1σ van het gemiddelde en 99,7% binnen ±3σ. Gemiddeld 10,00 met een σ van 0,01 legt bijna alles tussen 9,97 en 10,03.',
         'Gewone oorzaken (common cause) zijn de vele kleine bronnen die er altijd zijn: materiaal, temperatuur, speling in de spil, hoe de operator het doet. Dat geeft een stabiele, voorspelbare spreiding. Die krijg je alleen omlaag door het systeem te veranderen: een betere machine, opspanning of methode.',
         'Speciale oorzaken (special cause) komen van een concrete gebeurtenis: een gebroken beitel, een nieuwe rol staal, een koude machine op maandagochtend, een nieuwe operator. Je ziet een sprong, een trend of een uitschieter. Die zoek je op, los je op en voorkom je.',
-        'Gewone spreiding behandelen als een speciale oorzaak maakt het erger. Een operator die na elk onderdeel de offset bijstelt en zo de ruis achternaloopt, vergroot de spreiding met zo’n 40%: dat heet tampering, of “bijsturen op ruis”. De eerste vraag is dus altijd: is er iets veranderd, of is dit gewoon hoe breed het proces is?',
+        'Gewone spreiding behandelen als een speciale oorzaak maakt het erger. Een operator die na elk onderdeel de offset (de correctiewaarde in het machineprogramma) bijstelt en zo de ruis achternaloopt, vergroot de spreiding met zo’n 40%: dat heet tampering, of “bijsturen op ruis”. De eerste vraag is dus altijd: is er iets veranderd, of is dit gewoon hoe breed het proces is?',
       ],
       example: {
         kind: 'worked',
@@ -190,7 +190,7 @@ export default {
       situation: {
         scene: 'Je zit in een leveranciersoverleg bij een automotive klant. De leverancier laat een Cpk van 1,52 zien op een veiligheidskritische diameter en zegt: “Dus we zijn capabel, klaar.”',
         ask: 'Wat vraag je voordat je dat getal accepteert?',
-        model: 'Over hoeveel stuks en hoeveel dagen is dat gemeten? Was het proces in die periode stabiel, en mogen we de regelkaart zien? Een Cpk van 30 stuks op één goede ochtend zegt weinig. En is het meetmiddel door een gauge R&R gegaan, want meetruis zit ook in die σ.',
+        model: 'Over hoeveel stuks en hoeveel dagen is dat gemeten? Was het proces in die periode stabiel, en mogen we de regelkaart zien (de metingen uitgezet in de tijd)? Een Cpk van 30 stuks op één goede ochtend zegt weinig. En heeft iemand het meetmiddel zelf gecontroleerd (een gauge R&R-studie)? Want meetruis zit ook in die σ.',
         rubric: [
           'Vraagt naar het aantal stuks en de meetperiode',
           'Vraagt of het proces stabiel was (regelkaart) tijdens de studie',
@@ -201,7 +201,7 @@ export default {
       terms: [
         { term: 'Cp', def: 'Tolerantiebreedte gedeeld door 6σ: zou de spreiding passen als hij gecentreerd is?' },
         { term: 'Cpk', def: 'Afstand van gemiddelde tot de dichtstbijzijnde grens gedeeld door 3σ: past hij waar hij nu zit?' },
-        { term: 'Ppk', def: 'Zoals Cpk, maar met de totale spreiding over langere tijd; vaak gevraagd bij een start.' },
+        { term: 'Ppk', def: 'Zoals Cpk, maar met de totale spreiding van alle gemeten delen; gevraagd bij een opstartstudie.' },
         { term: 'ppm', def: 'Parts per million: afwijkende delen per miljoen.' },
       ],
     },
@@ -219,12 +219,12 @@ export default {
       teach: [
         'Een regelkaart zet een meting uit in de tijd, met een middellijn en regelgrenzen op ±3σ van het proces zelf. De klassieker is de X-bar/R-kaart: elk uur meet je een steekproef van bijvoorbeeld 5 delen en je zet het gemiddelde (X-bar) en de range (R, grootste min kleinste) uit. X-bar laat zien of het midden verschuift; R of de spreiding verandert.',
         'Regelgrenzen zijn geen specgrenzen. Specgrenzen zijn wat de klant nodig heeft. Regelgrenzen zijn wat het proces normaal doet. Een punt kan binnen de regelgrenzen liggen en toch buiten spec (het proces is niet capabel), of buiten de regelgrenzen en nog binnen spec (er is iets veranderd: grijp in voordat het afkeur wordt). Specgrenzen horen niet op een X-bar-kaart, want gemiddelden spreiden minder dan losse delen.',
-        'De regels die een speciale oorzaak signaleren: één punt buiten een regelgrens; 7 punten op rij aan één kant van de middellijn (sommige fabrieken gebruiken 8 of 9); 6 of meer punten op rij die steeds stijgen of dalen; 2 van de 3 punten voorbij 2σ. Bij elk daarvan: stoppen en kijken.',
+        'De regels die een speciale oorzaak signaleren: één punt buiten een regelgrens; 7 punten op rij aan één kant van de middellijn (sommige fabrieken gebruiken 8 of 9); 6 of meer punten op rij die steeds stijgen of dalen; 2 van de 3 punten voorbij 2σ aan dezelfde kant. Bij elk daarvan: stoppen en kijken.',
         'Het zwakke punt in de meeste fabrieken: de kaarten worden keurig ingevuld, maar niemand reageert. Elke kaart heeft een reactieplan nodig: wat doet de operator als een regel afgaat, wie belt hij, wat gebeurt er met de delen sinds de laatste goede meting. Een kaart zonder reactie is behang.',
       ],
       example: {
         kind: 'worked',
-        text: 'Assen Ø20 ±0,05, elk uur een steekproef van 5. Totaalgemiddelde 20,000, gemiddelde range 0,020. Bij n = 5 is de constante A2 0,577, dus de grenzen zijn 20,000 ± 0,577 × 0,020: 19,9885 tot 20,0115. Van 10:00 tot 16:00 zijn de gemiddelden 20,002, 20,004, 20,005, 20,006, 20,008, 20,009, 20,011. Allemaal binnen de grenzen, ver binnen spec, maar zeven keer op rij omhoog: een trend. Slijtage van de wisselplaat. De operator wisselt hem om 16:10, voordat er één deel af is.',
+        text: 'Assen Ø20 ±0,05, elk uur een steekproef van 5. Totaalgemiddelde 20,000, gemiddelde range 0,020. Bij n = 5 is de constante A2 0,577, dus de grenzen zijn 20,000 ± 0,577 × 0,020: 19,9885 tot 20,0115. Van 10:00 tot 16:00 zijn de gemiddelden 20,002, 20,004, 20,005, 20,006, 20,008, 20,009, 20,011. Allemaal binnen de grenzen, ver binnen spec, maar zeven keer op rij omhoog: een trend. Slijtage van de wisselplaat (het verwisselbare snijpuntje). De operator wisselt hem om 16:10, voordat er één deel af is.',
       },
       said: 'Wat engineers zeggen: “Hij zit nog binnen spec, maar dat is zeven keer op rij omhoog. Dat is de wisselplaat, nu wisselen en we maken geen enkel slecht deel.”',
       recall: [
@@ -242,7 +242,7 @@ export default {
           why: 'Er is iets veranderd in het proces; het vinden voordat delen buiten spec gaan is precies de bedoeling.',
         },
         {
-          q: 'Acht punten op rij liggen boven de middellijn, allemaal binnen de regelgrenzen. Wat betekent dat?',
+          q: 'Negen punten op rij liggen boven de middellijn, allemaal binnen de regelgrenzen. Wat betekent dat?',
           options: ['Niets, ze liggen allemaal binnen de grenzen', 'De kaart is verkeerd getekend', 'Het proces is heel capabel', 'Het procesgemiddelde is verschoven'],
           answer: 'Het procesgemiddelde is verschoven',
           why: 'Een lange reeks aan één kant is heel onwaarschijnlijk bij toeval; het wijst op een verschuiving.',
@@ -257,7 +257,7 @@ export default {
       situation: {
         scene: 'Je loopt langs het SPC-bord bij een klant in de kunststof spuitgieterij. De kaarten zijn keurig ingevuld. Op twee ervan liggen deze week drie punten buiten de regelgrenzen. Er staat niets bij geschreven.',
         ask: 'Wat vraag je de teamleider?',
-        model: 'Wat doet de operator als een punt buiten de grenzen valt, is er een reactieplan? Wie kijkt er naar deze kaarten, en wanneer heeft iemand voor het laatst ingegrepen op basis van een kaart? Als het antwoord “niemand” is, maken we het reactieplan echt of stoppen we met de tijd die het invullen kost.',
+        model: 'Wat doet de operator als een punt buiten de grenzen valt, is er een reactieplan? Wie kijkt er naar deze kaarten, en wanneer heeft iemand voor het laatst ingegrepen op basis van een kaart? Als het antwoord “niemand” is, maken we het reactieplan echt, of stoppen we met invullen en besteden die tijd beter.',
         rubric: [
           'Vraagt naar het reactieplan',
           'Vraagt wie de kaarten bekijkt en wanneer er voor het laatst is ingegrepen',
@@ -287,13 +287,13 @@ export default {
         'Een FMEA (Failure Mode and Effects Analysis) is een gestructureerde teamsessie vóór de start van productie. Voor elke processtap (PFMEA) of ontwerpfunctie (DFMEA) vraagt het team: hoe kan het misgaan (faalwijze), wat gebeurt er dan (effect), waarom zou het gebeuren (oorzaak), en wat doen we al om het te voorkomen of te ontdekken (beheersmaatregelen)?',
         'Elke regel krijgt drie scores van 1 tot 10. Severity: hoe erg het effect is; 9 of 10 is veiligheid of wetgeving. Occurrence: hoe waarschijnlijk de oorzaak is. Detection: hoe groot de kans is dat we het vinden voordat het de deur uitgaat; let op, 1 betekent vrijwel zeker gevonden en 10 geen kans. RPN = S × O × D, maximaal 1.000.',
         'De RPN heeft nadelen: heel verschillende risico’s krijgen hetzelfde getal, en teams leren net onder de drempel te scoren. De AIAG-VDA FMEA (2019) heeft hem vervangen door Action Priority (hoog, midden, laag), die eerst naar severity kijkt, dan occurrence, dan detection. Alleen een ontwerpwijziging verlaagt de severity; preventie verlaagt de occurrence; betere controles verlagen de detection.',
-        'Timing is alles. Een FMEA vóór de design freeze kan het product en het proces nog veranderen. Eentje die na de start van productie wordt geschreven om het PPAP-dossier te vullen, is papierwerk. Bij een goede FMEA zitten ontwerp, procesengineering, kwaliteit, onderhoud en een operator aan tafel, en hij wordt na elke klacht bijgewerkt.',
+        'Timing is alles. Een FMEA vóór de design freeze kan het product en het proces nog veranderen. Eentje die na de start van productie wordt geschreven, alleen om het goedkeuringsdossier voor de klant te vullen (de PPAP, zie de volgende les), is papierwerk. Bij een goede FMEA zitten ontwerp, procesengineering, kwaliteit, onderhoud en een operator aan tafel, en hij wordt na elke klacht bijgewerkt.',
       ],
       example: {
         kind: 'worked',
         text: 'Stap: een lager in een wielnaafhuis persen. Faalwijze: lager niet volledig op zijn plek. Effect: lager loopt uit, geluid, mogelijk schade aan het wiel: S = 8. Oorzaak: te lage perskracht door versleten gereedschap: O = 5. Huidige controle: de operator kijkt ernaar: D = 7. RPN = 8 × 5 × 7 = 280. Actie: kracht-wegbewaking op de pers, die elk deel buiten het curvevenster afkeurt: D = 2. Nieuwe RPN = 8 × 5 × 2 = 80. De severity blijft 8, want alleen een ontwerpwijziging maakt het effect minder erg.',
       },
-      said: 'Wat engineers zeggen: “Severity negen en we vertrouwen op een visuele check? Dat is op z’n best een detection van zeven. Daar moet vóór SOP een poka-yoke op.”',
+      said: 'Wat engineers zeggen: “Severity negen en we vertrouwen op een visuele check? Dat is op z’n best een detection van zeven. Daar moet vóór de start van productie een poka-yoke op, een check die de fout onmogelijk maakt.”',
       recall: [
         {
           q: 'Een faalwijze scoort S 7, O 4, D 5. Wat is de RPN?',
@@ -351,7 +351,7 @@ export default {
         },
       ],
       teach: [
-        'Het control plan (beheersplan) is een tabel die per processtap zegt welke kenmerken je controleert: de spec, het meetmiddel, steekproefgrootte en frequentie, wie meet, hoe het wordt vastgelegd en het reactieplan. Voorbeeldregel: “Boring Ø30 H7, luchtmeter, 1 op 20, operator, SPC-kaart; bij afwijking: stoppen, terug tot de laatste goede meting in quarantaine, teamleider bellen.” Het is de brug van de FMEA naar de werkvloer.',
+        'Het control plan (beheersplan) is een tabel die per processtap zegt welke kenmerken je controleert: de spec, het meetmiddel, steekproefgrootte en frequentie, wie meet, hoe het wordt vastgelegd en het reactieplan. Voorbeeldregel: “Boring Ø30 +0,021/0, luchtmeter, 1 op 20, operator, SPC-kaart; bij afwijking: stoppen, terug tot de laatste goede meting in quarantaine, teamleider bellen.” Het is de brug van de FMEA naar de werkvloer.',
         'Meten is zelf ook een proces, met eigen spreiding. MSA (meetsysteemanalyse) controleert dat. De bekendste studie is de gauge R&R: bijvoorbeeld 10 delen, 3 operators, elk deel 3 keer gemeten. Herhaalbaarheid (repeatability) is de spreiding bij dezelfde persoon en hetzelfde meetmiddel; reproduceerbaarheid (reproducibility) is het verschil tussen mensen.',
         'De uitkomst geef je als % van de tolerantie. Onder de 10%: goed. 10 tot 30%: acceptabel, afhankelijk van toepassing en kosten. Boven de 30%: niet acceptabel. Vuistregel van tien: de resolutie van het meetmiddel is hoogstens een tiende van de tolerantie. Een schuifmaat die op 0,01 mm afleest, is nutteloos bij een tolerantie van 0,02 mm.',
         'PPAP (Production Part Approval Process) is het automotive-pakket dat een leverancier indient voordat hij seriedelen mag leveren: tekening en maatrapport, FMEA, control plan, MSA, capability-studies, monsterdelen en een getekende Part Submission Warrant (PSW). Level 3 is standaard. Onder al dat papier beantwoordt het één vraag: kan dit proces goede delen maken, op tempo?',

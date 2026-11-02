@@ -41,7 +41,7 @@ export default {
           q: 'Wat is het sterkste bewijs dat de verandering, en niet iets anders, de verbetering veroorzaakte?',
           options: ['Het team heeft het gevoel dat het beter gaat', 'Eén heel goede week', 'De mening van de sponsor', 'Een vergelijkingslijn of -regio zonder de verandering die niet verbeterde'],
           answer: 'Een vergelijkingslijn of -regio zonder de verandering die niet verbeterde',
-          why: 'Bleef de lijn zonder verandering vlak, dan verklaren seizoen of volume jouw winst niet.',
+          why: 'Bleef de lijn zonder verandering vlak, dan verklaren seizoen of volume jouw verbetering niet.',
         },
         {
           q: 'De controller van de klant trekt je besparing in twijfel. Hoe reageer je?',
@@ -79,14 +79,14 @@ export default {
         },
       ],
       teach: [
-        'Acceptatiecriteria zeggen wanneer het project klaar is. Maak ze meetbaar en spreek ze aan het begin af: “Afzeggingen onder de 8% gedurende zes weken op rij in de pilotregio; gereedheidscheck in gebruik in alle regio’s; eigenaar getraind.” Schrijf op wie tekent. Zonder criteria eindigt het project als iemand er moe van wordt.',
+        'Acceptatiecriteria zeggen wanneer het project klaar is. Maak ze meetbaar en spreek ze aan het begin af, in de projectopdracht (de schriftelijke afspraak over doel, scope en rollen): “Afzeggingen onder de 8% gedurende zes weken op rij in de pilotregio; gereedheidscheck in gebruik in alle regio’s; eigenaar getraind.” Schrijf op wie tekent. Zonder criteria eindigt het project als iemand er moe van wordt.',
         'De ondertekening. Loop elk criterium door met de sponsor, met het bewijs op één A4. Gehaald, deels gehaald of niet gehaald. Dan een handtekening of een schriftelijke bevestiging. Formele acceptatie beschermt beide kanten: de klant weet wat hij gekregen heeft, en jij kunt het project afsluiten en factureren.',
         'Gebruik een openpuntenlijst. Niet alles zal perfect zijn. Zet op een rij wat er nog ligt: punt, eigenaar in de lijnorganisatie, datum. Accepteer het project met open punten in plaats van te wachten tot alles af is. Open punten met een eigenaar in de lijn horen bij de overdracht.',
         'De mensenkant: klanten rekken de ondertekening soms met nieuwe wensen. Zeg: “Laten we het toetsen aan de criteria die we in maart afspraken. Die nieuwe wensen zijn goed; ze gaan op de lijst voor de lijn of een vervolg.” Zijn er nooit criteria afgesproken, neem dat dan eerlijk op je en spreek ze nu af, voor de laatste week.',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een kabelfabrikant stond in de projectopdracht: leverbetrouwbaarheid minstens 90% gedurende acht weken, wekelijks planningsoverleg geleid door de planningsmanager, capaciteitsmodel gedocumenteerd. In het afsluitende overleg laat je één A4 zien: leverbetrouwbaarheid 91 tot 94% gedurende negen weken (gehaald), planningsmanager zit voor sinds week 7 (gehaald), model gedocumenteerd maar nog niet overgedragen aan de tweede planner (deels). De sponsor vraagt naar een koppeling met de verkoopprognose, die nooit in scope was. Je zegt: “Goed idee; ik zou het op de openpuntenlijst voor IT zetten.” Open punten: tweede planner trainen (planningsmanager, 15 mei), koppeling verkoopprognose (IT-lead, beoordelen voor juni). Hij tekent.',
+        text: 'Bij een kabelfabrikant stond in de projectopdracht: leverbetrouwbaarheid minstens 90% gedurende acht weken, wekelijks planningsoverleg geleid door de planningsmanager, capaciteitsmodel gedocumenteerd en uitgelegd aan beide planners. In het afsluitende overleg laat je één A4 zien: leverbetrouwbaarheid 91 tot 94% gedurende negen weken (gehaald), planningsmanager zit voor sinds week 7 (gehaald), model gedocumenteerd maar nog niet uitgelegd aan de tweede planner (deels gehaald). De sponsor vraagt naar een koppeling met de verkoopprognose, die nooit in scope was. Je zegt: “Goed idee; ik zou het op de openpuntenlijst voor IT zetten.” Open punten: tweede planner trainen (planningsmanager, 15 mei), koppeling verkoopprognose (IT-lead, beoordelen voor juni). Hij tekent.',
       },
       said: 'Wat je hoort in projecten: “Voordat we tekenen, kun je nog even naar de prognose kijken?”',
       recall: [
@@ -147,11 +147,11 @@ export default {
         'Een simpel format: teken een tijdlijn van het project op de muur en laat iedereen hoogte- en dieptepunten aangeven. Dan drie vragen: wat ging goed en willen we herhalen, wat ging niet goed, en wat zouden we de volgende keer anders doen. 60 tot 90 minuten, met het klantteam, niet alleen de consultants.',
         'Eerst veiligheid. Mensen zeggen alleen wat er echt gebeurde als het veilig voelt. Begin als leider bij jezelf: noem één ding dat jij anders zou doen. Laat mensen eerst schrijven en dan praten, zodat de stille stemmen meetellen. Praat over wat er gebeurde en waarom, niet over wie faalde. Als de sponsor mensen stil maakt, doe dan een aparte sessie zonder hem.',
         'Maak van lessen acties. “De communicatie kan beter” verandert niks. “Volgend project: de ploegleiders horen een week eerder over veranderingen dan de operators; eigenaar: de operations manager” wel. Kies er twee of drie, geen twintig, elk met een eigenaar en een moment waarop hij gebruikt wordt.',
-        'De mensenkant: een terugblik kan ontaarden in een schuldsessie. Gaat het die kant op, stuur dan terug: “Laten we kijken naar wat het moeilijk maakte, niet naar wie.” Weet je niet hoe je een gespannen moment moet aanpakken, pauzeer dan en vraag de groep: “Wat hebben we nodig om hier veilig over te praten?”',
+        'De mensenkant: een terugblik kan omslaan in schuldigen zoeken. Gaat het die kant op, stuur dan terug: “Laten we kijken naar wat het moeilijk maakte, niet naar wie.” Weet je niet hoe je een gespannen moment moet aanpakken, pauzeer dan en vraag de groep: “Wat hebben we nodig om hier veilig over te praten?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Aan het eind van een project bij een netbeheerder houd je een terugblik van 75 minuten met zes mensen van de klant en je collega. Op de tijdlijn is het dieptepunt duidelijk: week 6 tot 9, toen de systeemtoegang te laat was. Je begint: “Eén ding dat ik anders zou doen: ik had het toegangsprobleem in week 3 moeten escaleren, niet in week 6.” Daarna schrijft iedereen op post-its. Thema’s: de pilot werkte omdat twee planners hem mee ontwierpen; de buitendienst hoorde het te laat. Acties: bij de volgende uitrol zitten de teamleiders van de buitendienst vanaf week 1 in het ontwerp (eigenaar: hoofd uitvoering); IT-toegang wordt in de eerste week van elk project aangevraagd (eigenaar: de PMO-lead).',
+        text: 'Aan het eind van een project bij een netbeheerder houd je een terugblik van 75 minuten met zes mensen van de klant en je collega. Op de tijdlijn is het dieptepunt duidelijk: week 6 tot 9, toen de systeemtoegang te laat was. Je begint: “Eén ding dat ik anders zou doen: ik had het toegangsprobleem in week 3 moeten escaleren, niet in week 6.” Daarna schrijft iedereen op post-its. Thema’s: de pilot werkte omdat twee planners hem mee ontwierpen; de buitendienst hoorde het te laat. Acties: bij de volgende uitrol zitten de teamleiders van de buitendienst vanaf week 1 in het ontwerp (eigenaar: hoofd uitvoering); IT-toegang wordt in de eerste week van elk project aangevraagd (eigenaar: de PMO-lead, die het projectbureau leidt).',
       },
       said: 'Wat je hoort in projecten: “Lessons learned? Die hebben we vorige keer ook opgeschreven. Er gebeurt nooit iets mee.”',
       recall: [
@@ -174,7 +174,7 @@ export default {
           why: 'Eerst schrijven haalt ieders kijk op voordat de groep naar één beeld trekt.',
         },
         {
-          q: 'De terugblik ontaardt in een schuldsessie. Wat zeg je?',
+          q: 'De terugblik slaat om in schuldigen zoeken. Wat zeg je?',
           options: ['“Laten we kijken naar wat het moeilijk maakte, niet naar wie.”', '“Wie was daar verantwoordelijk voor?”', '“Laten we hier stoppen.”', '“Eens, dat was een mislukking.”'],
           answer: '“Laten we kijken naar wat het moeilijk maakte, niet naar wie.”',
           why: 'Het stuurt terug naar oorzaken, en daar zit het leren.',
@@ -287,8 +287,8 @@ export default {
       recall: [
         {
           q: 'Wat is bij opvolging het verschil tussen helpen en verkopen?',
-          options: ['Helpen is gratis, verkopen betaald', 'Helpen reageert op een probleem dat de klant noemde; verkopen duwt een probleem dat jij noemde', 'Er is geen verschil', 'Verkopen doen alleen partners'],
-          answer: 'Helpen reageert op een probleem dat de klant noemde; verkopen duwt een probleem dat jij noemde',
+          options: ['Helpen is gratis, verkopen betaald', 'Helpen reageert op een probleem dat de klant noemde; verkopen pusht een probleem dat jij noemde', 'Er is geen verschil', 'Verkopen doen alleen partners'],
+          answer: 'Helpen reageert op een probleem dat de klant noemde; verkopen pusht een probleem dat jij noemde',
           why: 'Voorstellen bij een probleem dat de klant herkent zijn welkom.',
         },
         {
@@ -346,7 +346,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Na een project bij een metaalbedrijf neem je een uur. Ging goed: het koffiegesprek met de sceptische insteller draaide hem om. Anders: ik wachtte drie weken met het escaleren van de IT-vertraging, omdat ik niet wilde overkomen alsof ik het niet aankon. Geleerd: senior klanten horen slecht nieuws liever vroeg. Je belt de plantmanager: “Eén ding dat ik de volgende keer anders moet doen?” Hij zegt: “Kom eerder naar me toe als iets vastzit. Ik hoor het liever in week 2.” Dezelfde boodschap. Je casus-A4: “Metaalbedrijf, weekplanning, leverbetrouwbaarheid 78 naar 91%; les: escaleren in week 2, niet in week 5.”',
+        text: 'Na een project bij een metaalbedrijf neem je een uur. Ging goed: het koffiegesprek met de sceptische insteller kreeg hem mee. Anders: ik wachtte drie weken met het escaleren van de IT-vertraging, omdat ik niet wilde overkomen alsof ik het niet aankon. Geleerd: senior klanten horen slecht nieuws liever vroeg. Je belt de plantmanager: “Eén ding dat ik de volgende keer anders moet doen?” Hij zegt: “Kom eerder naar me toe als iets vastzit. Ik hoor het liever in week 2.” Dezelfde boodschap. Je casus-A4: “Metaalbedrijf, weekplanning, leverbetrouwbaarheid 78 naar 91%; les: escaleren in week 2, niet in week 5.”',
       },
       said: 'Wat je hoort in projecten: “Je deed het prima. Misschien de volgende keer wat zelfverzekerder.”',
       recall: [
