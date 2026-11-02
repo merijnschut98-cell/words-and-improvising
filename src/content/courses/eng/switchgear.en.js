@@ -204,6 +204,7 @@ export default {
     },
     {
       id: 'eng.switchgear.selectivity',
+      figure: 'eng.switchgear.selectivity',
       title: 'Selectivity',
       pre: [
         {
