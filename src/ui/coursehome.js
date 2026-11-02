@@ -1,7 +1,7 @@
 // Course home: one next thing, the due questions, and the module map.
 import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
-import { masteryBadge } from './home.js';
+import { masteryBadge, realWeekEntry } from './home.js';
 import { MODULES, TRACKS } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
 import { dueCount } from '../core/coursereview.js';
@@ -96,5 +96,6 @@ export function courseHome(app, subject) {
       h('span', { class: 'hero-sub' }, t('dueCard', due))) : null,
     ...tracks,
     tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty')),
-    h('button', { class: 'btn btn-ghost', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')));
+    h('button', { class: 'btn btn-ghost', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
+    realWeekEntry(app));
 }

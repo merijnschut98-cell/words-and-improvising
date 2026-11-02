@@ -137,6 +137,7 @@ export function renderRealweek(app, _params, root) {
         h('h2', { class: 'card-title' }, t('rwComing')),
         ups.map((e, i) => h('div', { class: 'rw-event' },
           h('div', {}, h('p', { class: 'muted small' }, ico(EVENT_ICON[e.type]), ` ${fmtDay(app, e.date)}`), h('p', { class: 'rw-text' }, e.text),
+            (e.topics || [])[0] && metaOf(e.topics[0]) ? h('p', { class: 'muted small rw-topic-line' }, ico('book-open'), ` ${t('rwTopicShown', modTitle(e.topics[0]))}`) : null,
             app.state.settings.apiKey ? h('label', { class: 'toggle small rw-share' },
               h('input', {
                 type: 'checkbox', checked: !!e.shareWithCoach,

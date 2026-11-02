@@ -96,6 +96,9 @@ export function load(backend) {
   }
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
   if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
+  // A plan typed on the lesson-done card, not yet turned into a plan (device only).
+  const pd = merged.ui.planDraft;
+  if ('planDraft' in merged.ui && !(isObject(pd) && ['eng', 'pm'].includes(pd.subject) && typeof pd.lessonId === 'string' && typeof pd.text === 'string' && pd.text.trim())) delete merged.ui.planDraft;
   const pr = merged.programme;
   if (!(isObject(pr) && typeof pr.start === 'string' && isObject(pr.baseline) && typeof pr.baseline.promptId === 'string')) merged.programme = null;
   return merged;

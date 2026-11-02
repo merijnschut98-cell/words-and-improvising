@@ -31,7 +31,7 @@ export function judge(question, answer) {
 // the misses, until every question has been right once. sure records, on the
 // first pass, whether he answered sure (true) or said he was guessing (false).
 export function startQuiz(questions) {
-  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, sure: {}, misses: [], phase: 'ask' };
+  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, sure: {}, misses: [], phase: 'ask', prev: null };
 }
 
 export function answerQuiz(state, questions, value, sure = true) {
@@ -47,12 +47,15 @@ export function answerQuiz(state, questions, value, sure = true) {
     misses: ok ? state.misses : [...state.misses, idx],
     i: state.i + 1,
     last: { ...(state.last || {}), [q.id]: ok },
+    prev: null,
   };
   return next.i >= state.order.length ? { ...next, phase: 'review' } : next;
 }
 
 // Take back the last answer in this pass (an accidental tap), so the
 // question is asked again. Not once the review with the answers is shown.
+// prev keeps what he picked (and whether he said he was guessing), so the
+// screen can show it.
 export function backQuiz(state, questions) {
   if (state.phase !== 'ask' || state.i === 0) return state;
   const i = state.i - 1;
@@ -68,6 +71,7 @@ export function backQuiz(state, questions) {
     firstTry: state.pass === 1 ? drop(state.firstTry) : state.firstTry,
     sure: state.pass === 1 ? drop(state.sure) : (state.sure || {}),
     misses: at < 0 ? state.misses : state.misses.filter((_, k) => k !== at),
+    prev: { id, value: (state.answers || {})[id], sure: state.pass === 1 ? (state.sure || {})[id] !== false : true },
   };
 }
 
@@ -361,6 +365,24 @@ export function addPlan(state, { subject, lessonId, text }, today, id) {
   if (!clean || !lessonId || !id) return state;
   const plan = { id, lessonId, text: clean, day: today, due: planDue(today), asked: 0, outcome: null };
   return withPlans(state, subject, (list) => [plan, ...list.filter((p) => p.outcome || p.lessonId !== lessonId)].slice(0, PLANS_CAP));
+}
+
+// While he types on the lesson-done card: a draft on this device (ui, never
+// synced). It becomes one plan when he leaves, or on the next start.
+export function savePlanDraft(state, { subject, lessonId, text }) {
+  const { planDraft, ...ui } = state.ui || {};
+  const clean = collapse(text, PLAN_MAX);
+  if (!clean || !lessonId || !subject) return { ...state, ui };
+  return { ...state, ui: { ...ui, planDraft: { subject, lessonId, text: clean } } };
+}
+
+export const newPlanId = (now = Date.now(), r = Math.random()) => `p${now.toString(36)}${Math.floor(r * 1296).toString(36)}`;
+
+export function commitPlanDraft(state, today, id) {
+  const d = (state.ui || {}).planDraft;
+  if (!d) return state;
+  const { planDraft, ...ui } = state.ui;
+  return addPlan({ ...state, ui }, d, today, id);
 }
 
 export function answerPlan(state, { subject, id, used, note }, now) {

@@ -277,16 +277,16 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
 async function playLesson(pg, subject, slug, lessonId, { missFirst = true, reviewShot = null } = {}) {
   const lesson = await pg.evaluate(async ([sub, sl, id]) => (await import(`/src/content/courses/${sub}/${sl}.nl.js`)).default.lessons.find((l) => l.id === id), [subject, slug, lessonId]);
   for (const q of lesson.pre) {
-    if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.pre-card .btn-primary').click(); }
+    if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.lesson > .pre-next').click(); }
     else await pg.locator('.pre-card .opt').first().click();
-    await pg.locator('.pre-card .btn-primary', { hasText: 'Verder' }).click();
+    await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
   }
   // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
   await pg.locator('.teach-card').waitFor();
   await pg.locator('.lesson > .lesson-back').click();
   await pg.locator('.pre-card').waitFor();
   if (await pg.locator('.pre-card .opt').count()) throw new Error('going back asked the guess again');
-  await pg.locator('.pre-card .btn-primary', { hasText: 'Verder' }).click();
+  await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
   await pg.locator('.teach-card').waitFor();
   for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
@@ -525,9 +525,9 @@ await step('explain it back: one filled button on the last reading step with a k
   const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   for (const q of lesson.pre) {
-    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.pre-card .btn-primary').click(); }
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.lesson > .pre-next').click(); }
     else await page.locator('.pre-card .opt').first().click();
-    await page.locator('.pre-card .btn-primary').click();
+    await page.locator('.lesson > .pre-next').click();
   }
   for (let i = 0; i < lesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
   await page.locator('.explain .btn-ghost', { hasText: 'Leg dit uit voor mijn situatie' }).click();
@@ -556,9 +556,9 @@ await step('a lesson with a figure shows it under the last reading block', async
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
   const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck'));
   for (const q of lesson.pre) {
-    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.pre-card .btn-primary').click(); }
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.lesson > .pre-next').click(); }
     else await page.locator('.pre-card .opt').first().click();
-    await page.locator('.pre-card .btn-primary').click();
+    await page.locator('.lesson > .pre-next').click();
   }
   for (let i = 0; i < lesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
   const frame = page.locator('.figure-wrap iframe.figure-frame');
@@ -2021,15 +2021,17 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   await p.locator('.course-today').waitFor();
   await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
   for (const q of lesson.pre) {
-    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.pre-card .btn-primary').click(); }
+    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
     else await p.locator('.pre-card .opt').first().click();
-    await p.locator('.pre-card .btn-primary').click();
+    await p.locator('.lesson > .pre-next').click();
   }
   for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
   await p.locator('.example-card').waitFor();
   await p.locator('.lesson > .btn-primary').click();
-  // Q1 (a choice): say "I'm guessing", then answer it right.
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').click();
+  // Q1 (a choice): two plain options, "Ik weet het" selected; say "Ik gok", then answer it right.
+  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]', { hasText: 'Ik weet het' }).waitFor();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]', { hasText: 'Ik gok' }).click();
+  await p.locator('.quiz-card .guess-sure[aria-pressed="false"]').waitFor();
   await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
   if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the toggle');
   await shotP('94-guess-toggle');
@@ -2037,6 +2039,7 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   // Q2 (a number): the toggle is back to sure; one filled button; answer wrong while sure.
   await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
   await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').waitFor();
+  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]').waitFor();
   await onePrimary(p, 'quiz card with the toggle');
   const q2 = lesson.recall[1];
   await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
@@ -2044,7 +2047,7 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
   await p.locator('.quiz-review').waitFor();
   if (await p.locator('.review-row.sure-miss').count() !== 1) throw new Error('expected one sure miss');
-  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Je was zeker' }).waitFor();
+  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Niet als gok aangegeven' }).waitFor();
   await onePrimary(p, 'quiz review with a sure miss');
   await shotP('95-sure-miss-review');
   await dark('95-sure-miss-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
@@ -2067,6 +2070,148 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   await p.locator('.due-card', { hasText: '1' }).click();
   const takt = await p.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.takt'));
   await p.locator('.screen.due .quiz-q', { hasText: takt.recall[1].q.trim().slice(0, 30) }).waitFor();
+  await c.close();
+});
+
+await step('polish: the real week from the start screen and course homes; welcome text; settings order; page language', async () => {
+  const { c, p, shotP, dark } = await v9Context({ ui: { subject: 'start' } });
+  if (await p.evaluate(() => document.documentElement.lang) !== 'nl') throw new Error('html lang is not nl');
+  await p.locator('.start-cards .start-card').nth(2).waitFor();
+  await p.locator('.start .rw-entry', { hasText: 'Mijn echte week' }).waitFor();
+  await onePrimary(p, 'start with the real-week entry');
+  await shotP('96-start-realweek-entry');
+  await dark('96-start-realweek-entry-dark', async () => { await p.evaluate(() => window.__app.go('home')); await p.locator('.start .rw-entry').waitFor(); });
+  await p.locator('.start .rw-entry').click();
+  await p.locator('main.screen.realweek').waitFor();
+  for (const sub of ['eng', 'pm']) {
+    await p.evaluate((x) => window.__app.setSubject(x), sub);
+    await p.locator(`.course-${sub} .rw-entry`).waitFor();
+    await onePrimary(p, `course home ${sub} with the real-week entry`);
+  }
+  await p.locator('.course-pm .rw-entry').scrollIntoViewIfNeeded();
+  await shotP('97-course-realweek-entry');
+  await dark('97-course-realweek-entry-dark', async () => { await p.evaluate(() => window.__app.go('home')); await p.locator('.course-pm .rw-entry').waitFor(); });
+  await p.locator('.course-pm .rw-entry').click();
+  await p.locator('main.screen.realweek').waitFor();
+  // Settings: sync above the coach and the key.
+  await p.evaluate(() => window.__app.go('settings'));
+  await p.locator('.settings-group').first().waitFor();
+  const order = await p.locator('[data-section]').evaluateAll((els) => els.map((e) => e.dataset.section));
+  if (order.indexOf('sync') < 0 || order.indexOf('sync') > order.indexOf('coach')) throw new Error(`settings order: ${order}`);
+  await shotP('98a-settings-sync-first');
+  await p.evaluate(() => window.__app.updateSettings({ lang: 'en' }));
+  if (await p.evaluate(() => document.documentElement.lang) !== 'en') throw new Error('html lang did not follow the language');
+  await p.evaluate(() => window.__app.updateSettings({ lang: 'nl' }));
+  // Welcome: plain subject list, extras per subject, sync mentioned.
+  await p.evaluate(() => window.__app.go('welcome'));
+  await p.locator('.welcome-list li').first().waitFor();
+  const look = await p.locator('.welcome-list li').first().evaluate((el) => { const cs = getComputedStyle(el); return `${cs.borderTopWidth}|${cs.backgroundColor}`; });
+  if (!look.startsWith('0px|') || !/rgba\(0, 0, 0, 0\)|transparent/.test(look)) throw new Error(`welcome subjects still look like cards: ${look}`);
+  await shotP('98-welcome-subjects');
+  await dark('98-welcome-subjects-dark', async () => { await p.evaluate(() => window.__app.go('welcome')); await p.locator('.welcome-list li').first().waitFor(); });
+  await p.evaluate(() => window.__app.go('welcome'));
+  await p.getByRole('button', { name: 'Volgende' }).click();
+  await p.locator('.welcome-slide', { hasText: 'Extra oefeningen staan per vak' }).waitFor();
+  await p.getByRole('button', { name: 'Volgende' }).click();
+  await p.locator('.welcome-slide', { hasText: 'synchroniseren tussen apparaten' }).waitFor();
+  await c.close();
+});
+
+await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons alike; spacing; plan saved under the done card', async () => {
+  const lid = 'eng.flow.takt';
+  const { c, p, shotP, dark } = await v9Context();
+  const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
+  await p.locator('.course-today').waitFor();
+  await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
+  await p.locator('.pre-card').waitFor();
+  const width = async (sel) => (await p.locator(sel).first().boundingBox()).width;
+  for (const q of lesson.pre) {
+    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
+    else await p.locator('.pre-card .opt').first().click();
+    const w = await width('.lesson > .pre-next');
+    if (w < 340) throw new Error(`Raden: Verder is not full width (${w})`);
+    await shotP('104-pre-next-full-width');
+    await p.locator('.lesson > .pre-next').click();
+  }
+  await p.locator('.teach-card').waitFor();
+  const wRead = await width('.lesson > .btn-primary');
+  if (wRead < 340) throw new Error(`Lezen: Verder is not full width (${wRead})`);
+  for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
+  if (lesson.example.kind === 'faded') { await p.locator('.reveal-btn').click(); await p.locator('.example-card .btn-primary').click(); }
+  else await p.locator('.lesson > .btn-primary').click();
+  await p.locator('.quiz-card').waitFor();
+  // The first question: the back button sits apart from the answer controls.
+  const backBox = await p.locator('.quiz-card .lesson-back').boundingBox();
+  const above = await p.locator('.quiz-card .btn-primary, .quiz-card .opt').last().boundingBox();
+  if (backBox.y - (above.y + above.height) < 8) throw new Error('first question: back touches the answer controls');
+  await shotP('99-quiz-first-spacing');
+  await dark('99-quiz-first-spacing-dark', async () => { await p.locator('.quiz-card').waitFor(); });
+  // Answer the first question (a guess, wrong), then go back: the pick and the guess are shown again.
+  const q1 = lesson.recall[0];
+  await p.locator('.quiz-card .guess-toggle').click();
+  let mine;
+  if ('number' in q1) { mine = String(q1.number + 7); await p.locator('.quiz-card .quiz-num').fill(mine); await p.locator('.quiz-card .btn-primary').click(); }
+  else { mine = q1.options.find((o) => o !== q1.answer); await p.locator('.quiz-card .opt', { hasText: mine }).first().click(); }
+  await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
+  await p.locator('.quiz-card .quiz-back').click();
+  await p.locator('.quiz-card .quiz-picked', { hasText: 'Je koos:' }).waitFor();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
+  if ('number' in q1) {
+    if ((await p.locator('.quiz-card .quiz-num').inputValue()) !== mine) throw new Error('numeric answer not prefilled');
+    await onePrimary(p, 'quiz back with the earlier answer');
+  } else {
+    await p.locator('.quiz-card .opt.chosen[aria-pressed="true"]', { hasText: mine }).waitFor();
+    if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz back: filled button next to the options');
+  }
+  await shotP('100-quiz-back-picked');
+  await dark('100-quiz-back-picked-dark', async () => { await p.locator('.quiz-card .quiz-picked').waitFor(); });
+  for (let i = 0; i < lesson.recall.length; i++) {
+    await p.locator('.quiz-card').waitFor();
+    await answerRight(p, lesson);
+  }
+  await p.locator('.quiz-review .btn-primary').click();
+  await p.locator('.lesson-done').waitFor();
+  // The plan field directly under the done card; a quiet "Bewaard" after typing.
+  if (!(await p.locator('.lesson-done + .plan-card').count())) throw new Error('plan field is not right under the done card');
+  await p.locator('.plan-card .plan-input').fill('Als de planner de takt noemt, vraag ik hoe die berekend is.');
+  await p.locator('.plan-card .plan-saved[aria-live="polite"]', { hasText: 'Bewaard' }).waitFor({ timeout: 3000 });
+  const draft = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.planDraft);
+  if (!draft || !draft.text.startsWith('Als de planner')) throw new Error(`draft not kept: ${JSON.stringify(draft)}`);
+  await onePrimary(p, 'lesson done with the plan saved');
+  await shotP('101-plan-saved');
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await shotP('101-plan-saved-dark');
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  // Closing the app on this screen: the next start turns the draft into the plan, once.
+  await p.reload();
+  await p.locator('.course-today').waitFor();
+  const st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if ('planDraft' in st.ui || !st.courses.eng.plans || st.courses.eng.plans.length !== 1) throw new Error(`draft not committed once: ${JSON.stringify(st.courses.eng.plans)}`);
+  await c.close();
+});
+
+await step('polish: speaking intro shows Start without scrolling, labelled timing; the real week shows the linked topic', async () => {
+  const { c, p, shotP, dark } = await v9Context({ ui: { subject: 'speak' } });
+  await p.locator('.btn-hero').waitFor();
+  await p.evaluate(() => window.__app.startDrill('explain'));
+  await p.locator('.intro-card .tip[open]').waitFor();
+  await p.locator('.intro-card .timing-line', { hasText: 'Spreektijd' }).waitFor();
+  const box = await p.getByRole('button', { name: 'Start' }).boundingBox();
+  if (!box || box.y + box.height > 844) throw new Error(`Start is below the fold: ${JSON.stringify(box)}`);
+  await onePrimary(p, 'speaking intro');
+  await p.screenshot({ path: `${out}/102-intro-start-visible.png`, animations: 'disabled' });
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await p.screenshot({ path: `${out}/102-intro-start-visible-dark.png`, animations: 'disabled' });
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await shotP('102b-intro-full');
+  // A saved event with a topic shows the module title.
+  const tomorrow = new Date(Date.now() + 86400000);
+  const tk = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`;
+  await p.evaluate((d) => { const s = window.__app.state; window.__app.setState({ ...s, events: [{ id: 'e1', type: 'client', date: d, text: 'Overleg met de netbeheerder', topics: ['eng.gridbasics'] }] }); window.__app.go('realweek'); }, tk);
+  await p.locator('.rw-event .rw-topic-line', { hasText: 'Onderwerp: Het elektriciteitsnet' }).waitFor();
+  await onePrimary(p, 'real week with a topic line');
+  await shotP('103-realweek-topic');
+  await dark('103-realweek-topic-dark', async () => { await p.evaluate(() => window.__app.go('realweek')); await p.locator('.rw-topic-line').waitFor(); });
   await c.close();
 });
 

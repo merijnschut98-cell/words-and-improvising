@@ -267,8 +267,17 @@ function renderStart(app, root, showBreak) {
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
+      realWeekEntry(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'));
+}
+
+// A quiet way into "My real week" from the start screen and the course homes.
+export function realWeekEntry(app) {
+  const t = app.t;
+  return h('button', { class: 'btn btn-ghost rw-entry', onclick: () => app.go('realweek') },
+    h('span', { class: 'rw-entry-title' }, ico('calendar'), ' ', t('rwTitle')),
+    h('span', { class: 'muted small' }, t('rwEntry')));
 }
 
 // The one primary action of the app: start the recommended next step now.

@@ -26,6 +26,7 @@ import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
+import { commitPlanDraft, newPlanId } from './core/course.js';
 import { createCloud } from './core/cloud.js';
 import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
@@ -324,8 +325,12 @@ export const app = {
   },
 };
 
+// The page language follows the UI (screen readers, hyphenation, and date
+// inputs in browsers that use it).
 document.documentElement.lang = app.lang;
 app.applyTheme();
+// A plan typed on a lesson-done card when the app was closed: keep it as the plan.
+if ((app.state.ui || {}).planDraft) app.setState(commitPlanDraft(app.state, app.today(), newPlanId()));
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();

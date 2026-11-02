@@ -155,3 +155,32 @@ test('sync: plans union by id; an answered plan beats an open one; later answer 
   assert.deepEqual(mergeStates(m, b).courses.eng.plans, m.courses.eng.plans);
   assert.deepEqual(mergeStates(m, m).courses.eng.plans, m.courses.eng.plans);
 });
+
+// Polish: the plan field saves a draft while he types; it becomes a plan on leaving (or on the next start).
+import { savePlanDraft, commitPlanDraft } from '../src/core/course.js';
+import { syncable } from '../src/core/sync.js';
+
+test('plan draft: saved on this device while typing, committed once as one plan, empty clears it', () => {
+  let s = savePlanDraft(defaultState(), { subject: 'eng', lessonId: 'eng.flow.a', text: '  When the data is late  ' });
+  assert.deepEqual(s.ui.planDraft, { subject: 'eng', lessonId: 'eng.flow.a', text: 'When the data is late' });
+  assert.deepEqual(plans(s) || [], [], 'a draft is not a plan yet');
+  s = savePlanDraft(s, { subject: 'eng', lessonId: 'eng.flow.a', text: 'When the data is late, I name it' });
+  s = commitPlanDraft(s, MON, 'p1');
+  assert.equal('planDraft' in s.ui, false);
+  assert.deepEqual(plans(s).map((p) => [p.id, p.text]), [['p1', 'When the data is late, I name it']]);
+  assert.equal(commitPlanDraft(s, MON, 'p2'), s, 'nothing to commit twice');
+  const cleared = savePlanDraft(savePlanDraft(defaultState(), { subject: 'eng', lessonId: 'eng.flow.a', text: 'x' }), { subject: 'eng', lessonId: 'eng.flow.a', text: '   ' });
+  assert.equal('planDraft' in cleared.ui, false);
+  assert.deepEqual(plans(commitPlanDraft(cleared, MON, 'p3')) || [], []);
+});
+
+test('plan draft: device only (never synced); a malformed one is dropped on load', () => {
+  const s = savePlanDraft(defaultState(), { subject: 'eng', lessonId: 'eng.flow.a', text: 'x' });
+  assert.equal('ui' in syncable(s), false);
+  const bad = load(backend(JSON.stringify({ ...defaultState(), ui: { planDraft: { subject: 'eng', lessonId: 5, text: 'x' } } })));
+  assert.equal('planDraft' in bad.ui, false);
+  const odd = load(backend(JSON.stringify({ ...defaultState(), ui: { planDraft: { subject: 'speak', lessonId: 'x', text: 'x' } } })));
+  assert.equal('planDraft' in odd.ui, false);
+  const good = load(backend(JSON.stringify({ ...defaultState(), ui: { planDraft: { subject: 'pm', lessonId: 'pm.x.a', text: 'y' } } })));
+  assert.deepEqual(good.ui.planDraft, { subject: 'pm', lessonId: 'pm.x.a', text: 'y' });
+});

@@ -130,6 +130,8 @@ export function renderSettings(app, _params, root) {
     h('main', { class: 'screen settings' },
       group('language',
         segmented(s.lang, [['nl', 'Nederlands'], ['en', 'English']], (v) => set({ lang: v }, true))),
+      // Sync between devices, above the coach: most people need it before a key.
+      syncSection(app),
       group('coach',
         h('label', { class: 'field-label' }, t('apiKey')),
         keyInput,
@@ -143,8 +145,6 @@ export function renderSettings(app, _params, root) {
         h('label', { class: 'field-label', for: 'ctx-input' }, t('ctxLabel')),
         ctxInput,
         h('p', { class: 'muted small' }, t('ctxHelp'))),
-      // Sync between devices (Task 16).
-      syncSection(app),
       group('practice',
         h('label', { class: 'field-label' }, t('defaultMode')),
         segmented(s.mode, [['speak', [ico('mic'), ' ', t('speak')]], ['type', [ico('keyboard'), ' ', t('type')]]], (v) => set({ mode: v }, true)),

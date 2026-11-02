@@ -233,6 +233,25 @@ test('quiz: back undoes the previous answer within a pass, so it can be answered
   assert.deepEqual(s.firstTry, { 'l#r0': true, 'l#r1': true, 'l#r2': true });
 });
 
+// Polish: going back shows what he picked the first time.
+test('quiz: back keeps the taken-back answer and its guess flag as prev, for that question only', () => {
+  const qs = [choice('l#r0'), choice('l#r1'), { id: 'l#r2', q: 'n?', number: 50, tolerance: 0, unit: 's', why: 'w' }];
+  let s = startQuiz(qs);
+  assert.equal(s.prev, null, 'nothing picked before the first answer');
+  s = answerQuiz(s, qs, 'a', false);
+  s = backQuiz(s, qs);
+  assert.deepEqual(s.prev, { id: 'l#r0', value: 'a', sure: false });
+  s = answerQuiz(s, qs, 'b');
+  assert.equal(s.prev, null, 'answering again clears it');
+  s = answerQuiz(s, qs, 'c');
+  s = answerQuiz(s, qs, '49,5');
+  assert.equal(s.phase, 'review');
+  s = continueQuiz(s);
+  s = answerQuiz(s, qs, 'b', true);
+  s = backQuiz(s, qs);
+  assert.deepEqual(s.prev, { id: 'l#r1', value: 'b', sure: true }, 'a later pass keeps the value too');
+});
+
 import { guessFeedback, lessonBack } from '../src/core/course.js';
 
 test('guess feedback: each guess next to the right answer and the why; unanswered ones are skipped', () => {

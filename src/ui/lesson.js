@@ -3,7 +3,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, addPlan, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
+import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
@@ -59,11 +59,13 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     let finished = false;
     const guesses = []; // his first guesses; going back shows them, never changes them
     let planDraft = '';
+    let planTimer = null;
+    // While he types the draft is kept on this device; leaving turns it into the plan.
+    const keepDraft = () => { clearTimeout(planTimer); planTimer = null; app.setState(savePlanDraft(app.state, { subject, lessonId: lesson.id, text: planDraft })); };
     onLeave = () => {
       onLeave = null;
-      if (!planDraft.trim()) return;
-      const id = `p${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
-      app.setState(addPlan(app.state, { subject, lessonId: lesson.id, text: planDraft }, app.today(), id));
+      if (planTimer) keepDraft();
+      app.setState(commitPlanDraft(app.state, app.today(), newPlanId()));
     };
     const next = () => { p += 1; block = 0; draw(); };
     const jump = (i) => { finished = false; p = i; block = 0; if (phases[i] === 'pre') pre = 0; draw(); };
@@ -84,23 +86,26 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           if (guesses[pre] == null) guesses[pre] = o;
           show(h('section', { class: 'card pre-card' },
             h('p', { class: 'quiz-q' }, q.q),
-            h('p', { class: 'muted' }, t('preGuessed', guesses[pre])),
-            h('button', {
-              class: 'btn btn-primary',
-              onclick: () => { if (pre + 1 < lesson.pre.length) { pre += 1; draw(); } else next(); },
-            }, t('quizNext'))), backBtn());
+            h('p', { class: 'muted' }, t('preGuessed', guesses[pre]))),
+          h('button', {
+            class: 'btn btn-primary btn-big pre-next',
+            onclick: () => { if (pre + 1 < lesson.pre.length) { pre += 1; draw(); } else next(); },
+          }, t('quizNext')), backBtn());
         };
         if (guesses[pre] != null) { pick(guesses[pre]); return; }
+        if ('number' in q) {
+          const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
+          show(h('section', { class: 'card pre-card' },
+            h('p', { class: 'muted small' }, t('preHint')),
+            h('p', { class: 'quiz-q' }, q.q),
+            h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null)),
+          h('button', { class: 'btn btn-primary btn-big pre-next', onclick: () => pick(input.value.trim() || '?') }, t('quizNext')), backBtn());
+          return;
+        }
         show(h('section', { class: 'card pre-card' },
           h('p', { class: 'muted small' }, t('preHint')),
           h('p', { class: 'quiz-q' }, q.q),
-          'number' in q
-            ? (() => {
-              const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
-              return h('div', {}, h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
-                h('button', { class: 'btn btn-primary', onclick: () => pick(input.value.trim() || '?') }, t('quizNext')));
-            })()
-            : h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => pick(o) }, o)))), backBtn());
+          h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => pick(o) }, o)))), backBtn());
         return;
       }
       if (phase === 'teach') {
@@ -196,15 +201,25 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('p', { class: 'muted small' }, why))));
     }
 
-    // Where he will use it: an if-then plan, optional, no extra button.
+    // Where he will use it: an if-then plan, optional, no extra button. A quiet
+    // "Saved" once he pauses typing.
     function planCard() {
+      const status = h('span', { class: 'plan-saved small', 'aria-live': 'polite' });
       return h('section', { class: 'card plan-card' },
         h('label', { class: 'plan-label', for: 'plan-input' }, t('planLabel')),
         h('textarea', {
           id: 'plan-input', class: 'text-input plan-input', rows: 2, maxlength: 160, placeholder: t('planPh'),
-          oninput: (e) => { planDraft = e.currentTarget.value; },
+          oninput: (e) => {
+            planDraft = e.currentTarget.value;
+            status.replaceChildren();
+            clearTimeout(planTimer);
+            planTimer = setTimeout(() => {
+              keepDraft();
+              if (status.isConnected && planDraft.trim()) status.replaceChildren(ico('check'), ' ', t('planSaved'));
+            }, 700);
+          },
         }, planDraft),
-        h('p', { class: 'muted small' }, t('planHint')));
+        h('div', { class: 'plan-foot' }, h('p', { class: 'muted small' }, t('planHint')), status));
     }
 
     // Explain-back on the done card: he explains first. With a key the coach
@@ -249,9 +264,9 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         h('h2', { class: 'card-title' }, t('lessonPassed')),
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
+      planCard(),
       guessCard(),
       explainBack(),
-      planCard(),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));

@@ -1,6 +1,9 @@
 import { meterShouldTurnOff } from '../core/loudness.js';
 import { roundSeconds, replyAfter } from '../core/pressure.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
+
+// 15 → "15s", 90 → "1:30".
+const secs = (s) => (s >= 60 ? fmtTime(s) : `${fmtTime(s)}s`);
 import { ico } from './icons.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
@@ -292,14 +295,17 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         st.modifier ? h('div', { class: 'modifier-chip' },
           h('b', {}, `${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
           h('span', {}, t(`modHow_${st.modifier}`))) : null,
-        h('p', { class: 'muted small timing-line' }, prepFor() ? [ico('hourglass'), ` ${prepFor()}s · `] : null, ico('mic'), ` ${fmtTime(totalS)}s`)),
+        h('p', { class: 'muted small timing-line' },
+          prepFor() ? [ico('hourglass'), ` ${t('timingThink', secs(prepFor()))} · `] : null, ico('mic'), ` ${t('timingSpeak', secs(totalS))}`)),
       toggle,
       h('button', {
         class: `btn btn-ghost small harder${st.modifier ? ' on' : ''}`,
         onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true, prompt.drill); showIntro(); },
       }, ico(st.modifier ? 'undo-2' : 'zap'), ' ', st.modifier ? t('harderOff') : t('harderOn')),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
-      h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start')),
+      // Pinned to the bottom of the screen, so Start is visible without scrolling past the tip.
+      h('div', { class: 'sticky-cta' },
+        h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start'))),
     );
   }
 
