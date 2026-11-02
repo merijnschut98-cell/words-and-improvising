@@ -407,7 +407,7 @@ await step('sync: send a login link; a signed-in device merges the cloud state w
   // The other device already uploaded a round this one never saw.
   const localTs = await page.evaluate(() => {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
-    const remote = { ...st, settings: undefined, ui: undefined, xp: st.xp + 500, history: [{ ...st.history[0], ts: 42 }] };
+    const remote = { ...st, settings: undefined, ui: undefined, xp: st.xp + 500, history: [{ ts: 42, drill: 'minute', promptId: 'topic:t01', lang: 'nl', mode: 'type', durationS: 40, transcript: 'x', metrics: { words: 60, wpm: 90, fillerCount: 1, fillerRate: 1.5, fillers: {} }, rating: 3, xp: 20 }] };
     localStorage.setItem('__fakeCloud', JSON.stringify({ row: { user_id: 'u1', state: remote } }));
     localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, settings: { ...st.settings, syncOn: true } }));
     return st.history.map((e) => e.ts);
@@ -429,6 +429,21 @@ await step('sync: send a login link; a signed-in device merges the cloud state w
   await page.evaluate((st) => { localStorage.removeItem('__fakeCloud'); localStorage.removeItem('__otp'); localStorage.setItem('spraakwater:v1', st); }, saved);
   await page.reload();
   await page.locator('.btn-hero').waitFor();
+});
+
+await step('changing a setting keeps the scroll position', async () => {
+  await page.evaluate(() => window.__app.go('settings'));
+  await page.locator('.screen.settings').waitFor();
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.waitForTimeout(200);
+  const before = await page.evaluate(() => window.scrollY);
+  if (before < 200) throw new Error(`settings page too short to test (${before})`);
+  await page.evaluate(() => window.__app.updateSettings({ sound: false }));
+  await page.evaluate(() => window.__app.go('settings'));
+  await page.waitForTimeout(200);
+  const after = await page.evaluate(() => window.scrollY);
+  if (Math.abs(after - before) > 40) throw new Error(`scroll jumped from ${before} to ${after}`);
+  await page.evaluate(() => { window.__app.updateSettings({ sound: true }); window.__app.go('home'); });
 });
 
 await step('a lesson whose module fails to load shows a retry, then loads', async () => {

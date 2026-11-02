@@ -274,6 +274,9 @@ export const app = {
 
   go(screen, params = {}) {
     this.navSeq += 1;
+    // Redrawing Settings after a change keeps your place on the page.
+    const keepScroll = screen === 'settings' && root.dataset.screen === 'settings';
+    const scrollY = window.scrollY;
     if (screen === 'home') {
       this.challengeId = null; // "Reply" only right after the challenge itself
       if (needsWelcome(this.state)) screen = 'welcome';
@@ -305,7 +308,7 @@ export const app = {
       heading.setAttribute('tabindex', '-1');
       try { heading.focus({ preventScroll: true }); } catch { /* old browsers */ }
     }
-    window.scrollTo(0, 0);
+    window.scrollTo(0, keepScroll ? scrollY : 0);
   },
 };
 
