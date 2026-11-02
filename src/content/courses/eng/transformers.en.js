@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.transformers.principle',
+      figure: 'eng.transformers.load',
       title: 'How a transformer works',
       pre: [
         {
