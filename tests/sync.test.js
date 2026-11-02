@@ -82,3 +82,18 @@ test('a missing or broken remote changes nothing', () => {
   assert.deepEqual(mergeStates(local, null), local);
   assert.deepEqual(mergeStates(local, 'garbage'), local);
 });
+
+test('a broken remote never poisons local numbers or history', () => {
+  const local = { ...base(), xp: 120, freezes: 1, days: { d1: 2 }, streak: { count: 3, lastDay: '2026-11-02' }, history: [h(5)] };
+  const remote = { xp: 'lots', freezes: null, days: { d1: 'x', d2: 3 }, streak: { count: 'NaN', lastDay: '2026-11-03' }, history: [{ drill: 'x' }, { ts: 9 }, h(6)] };
+  const m = mergeStates(local, remote);
+  assert.equal(m.xp, 120);
+  assert.equal(m.freezes, 1);
+  assert.deepEqual(m.days, { d1: 2, d2: 3 });
+  assert.ok(Number.isFinite(m.streak.count));
+  assert.deepEqual(m.history.map((e) => e.ts), [6, 5], 'entries without ts or metrics are dropped');
+});
+
+test('a reset device starts with sync off, so a wipe is never pushed to the cloud', () => {
+  assert.ok(!base().settings.syncOn);
+});

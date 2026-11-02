@@ -27,7 +27,7 @@ import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
 import { createCloud } from './core/cloud.js';
-import { createSyncer } from './core/syncer.js';
+import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
@@ -131,7 +131,17 @@ export const app = {
   ensureCloud() {
     if (!this.cloud) {
       this.cloud = createCloud({ redirect: `${location.origin}${location.pathname}` });
-      this.syncer = createSyncer({ cloud: this.cloud, getState: () => this.state, setState: (s) => this.setState(s, true) });
+      this.syncer = createSyncer({
+        cloud: this.cloud,
+        getState: () => this.state,
+        setState: (s) => this.setState(s, true),
+        // Signed out elsewhere or the session expired: say so, and show the sign-in form again.
+        onAuthLost: () => {
+          if (!this.state.settings.syncOn) return;
+          this.updateSettings({ syncOn: false });
+          this.toast(this.t('syncSignedOut'));
+        },
+      });
     }
     return this.cloud;
   },
@@ -325,8 +335,18 @@ function reconcileNow() {
 }
 reconcileNow();
 // Sync: back from a login link, or a device that is already signed in.
-if (/access_token=/.test(location.hash) || app.state.settings.syncOn) {
-  app.startSync().then((res) => { if (res.ok && root.dataset.screen === 'home') app.go('home'); });
+{
+  const back = authReturn(location.hash);
+  if (back === 'error') {
+    // An expired or already-used login link: nothing to sign in with.
+    history.replaceState(null, '', location.pathname + location.search);
+    app.toast(app.t('syncLinkExpired'));
+  } else if (back === 'token' || app.state.settings.syncOn) {
+    app.startSync().then((res) => {
+      if (res.ok && root.dataset.screen === 'home') app.go('home');
+      else if (!res.ok && back === 'token') app.toast(app.t('syncFailed'));
+    });
+  }
 }
 document.addEventListener('visibilitychange', () => {
   if (app.state.settings.syncOn && app.cloud) {

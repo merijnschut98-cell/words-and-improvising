@@ -67,3 +67,20 @@ test('two syncs at once never run in parallel', async () => {
   await Promise.all([r.syncer.syncNow(), r.syncer.syncNow()]);
   assert.equal(r.pushed.length, 1);
 });
+
+test('a change pulls and merges before it pushes, so a stale device never rolls the cloud back', async () => {
+  const remote = { ...defaultState(), xp: 900, history: [{ ts: 7, drill: 'prep', metrics: { words: 9, fillerRate: 1 } }] };
+  const r = rig({ remote });
+  r.syncer.changed();
+  await r.timers.filter((x) => x.fn)[0].fn();
+  assert.equal(r.pushed.length, 1);
+  assert.ok(r.pushed[0].history.some((e) => e.ts === 7), 'the other device’s round is kept');
+  assert.equal(r.pushed[0].xp, 900);
+});
+
+test('a lost session is reported once through onAuthLost', async () => {
+  let lost = 0;
+  const syncer = createSyncer({ cloud: { pull: async () => ({ ok: false, error: 'auth' }), push: async () => ({ ok: false, error: 'auth' }) }, getState: () => defaultState(), setState: () => {}, onAuthLost: () => { lost += 1; } });
+  await syncer.syncNow();
+  assert.equal(lost, 1);
+});

@@ -203,3 +203,13 @@ test('courseSummary: owned per track, due count, a 14-day strip ending today, re
   assert.equal(sum.strip[12], 1);
   assert.deepEqual(sum.situations, [{ lessonId: 'eng.flow.a', pts: 2, ts: 2 }]);
 });
+
+test('retaking a passed lesson never moves a question up without spacing (only a miss resets it)', () => {
+  const firstTry = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true };
+  let s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW).state;
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW + 1).state;
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW + 2).state;
+  assert.equal(s.courseReviews['nl|eng.flow.takt#r0'].box, 2, 'still box 2 after same-day retakes');
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW + 3).state;
+  assert.equal(s.courseReviews['nl|eng.flow.takt#r0'].box, 1, 'a miss still resets');
+});

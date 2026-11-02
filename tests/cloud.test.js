@@ -12,7 +12,7 @@ function fakeSupabase({ user = { id: 'u1', email: 'm@example.com' }, row = null,
     auth: {
       getSession: async () => ({ data: { session: user ? { user } : null } }),
       signInWithOtp: async (args) => { calls.push(['otp', args]); return fail ? { error: { message: 'rate limit' } } : { error: null }; },
-      signOut: async () => { calls.push(['signOut']); return { error: null }; },
+      signOut: async (opts) => { calls.push(['signOut', opts]); return { error: null }; },
     },
     from: (table) => ({
       select: () => ({ eq: (_c, id) => ({ maybeSingle: async () => (fail ? { data: null, error: { message: 'down' } } : { data: db.row && db.row.user_id === id ? db.row : null, error: null }) }) }),
@@ -62,4 +62,21 @@ test('an invalid email is refused before any request', async () => {
   const fake = fakeSupabase({ user: null });
   assert.equal((await cloudWith(fake).signIn('not-an-email')).ok, false);
   assert.equal(fake.calls.length, 0);
+});
+
+test('after a failed SDK load the next call asks for a fresh copy (browsers cache failed imports)', async () => {
+  const attempts = [];
+  let fail = true;
+  const fake = fakeSupabase();
+  const c = createCloud({ load: async (attempt) => { attempts.push(attempt); if (fail) throw new Error('offline'); return { createClient: () => fake }; }, url: 'u', key: 'k', redirect: 'r' });
+  assert.equal((await c.pull()).ok, false);
+  fail = false;
+  assert.equal((await c.pull()).ok, true);
+  assert.deepEqual(attempts, [0, 1]);
+});
+
+test('turning sync off signs out this device only', async () => {
+  const fake = fakeSupabase();
+  await cloudWith(fake).signOut();
+  assert.deepEqual(fake.calls.find((x) => x[0] === 'signOut')[1], { scope: 'local' });
 });

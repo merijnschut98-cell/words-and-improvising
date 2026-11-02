@@ -91,10 +91,24 @@ function laterStreak(a, b) {
   return (a.count || 0) >= (b.count || 0) ? a : b;
 }
 
+const num = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : 0);
+const validEntry = (e) => isObj(e) && typeof e.ts === 'number' && isObj(e.metrics);
+
+// A remote row is outside this device's control: keep only well-formed parts.
+function clean(r) {
+  const out = { ...r };
+  out.xp = num(r.xp);
+  out.freezes = num(r.freezes);
+  out.days = Object.fromEntries(Object.entries(obj(r.days)).filter(([, v]) => typeof v === 'number' && Number.isFinite(v)));
+  out.streak = isObj(r.streak) && typeof r.streak.lastDay === 'string' ? { count: num(r.streak.count), lastDay: r.streak.lastDay } : null;
+  out.history = arr(r.history).filter(validEntry);
+  return out;
+}
+
 export function mergeStates(local, remote) {
   if (!isObj(remote)) return local;
   const l = local;
-  const r = remote;
+  const r = clean(remote);
   const m = { ...r, ...l };
   m.history = unionBy(l.history, r.history, (e) => e.ts, HISTORY_CAP);
   m.days = perKey(l.days, r.days, Math.max);

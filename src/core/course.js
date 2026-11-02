@@ -74,6 +74,10 @@ export function applyLesson(state, { subject, lessonId, firstTry, lang }, today,
   let next = countRound(state, today, xp);
   let reviews = next.courseReviews || {};
   for (const [questionId, ok] of Object.entries(firstTry || {})) {
+    // A retake before the question is due can't count as a spaced recall:
+    // a miss still resets it, a hit leaves it where it is.
+    const cur = reviews[`${lang}|${questionId}`];
+    if (ok && cur && cur.due > today) continue;
     reviews = scheduleCourseReview(reviews, { questionId, lessonId, subject, lang }, today, ok);
   }
   next = { ...next, courseReviews: reviews };

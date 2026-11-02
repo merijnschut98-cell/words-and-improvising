@@ -81,3 +81,11 @@ test('speaking home: today, one secondary card, then one "More practice" holding
   assert.equal(new Set(items).size, items.length, 'each item in exactly one group');
   assert.ok(MORE_GROUPS.every((g) => g.id && g.items.length));
 });
+
+test('a login-link return is recognised, including an expired link', async () => {
+  const { authReturn } = await import('../src/core/syncer.js');
+  assert.equal(authReturn('#access_token=abc&type=magiclink'), 'token');
+  assert.equal(authReturn('#error=access_denied&error_code=otp_expired&error_description=x'), 'error');
+  assert.equal(authReturn(''), null);
+  assert.equal(authReturn('#something'), null);
+});
