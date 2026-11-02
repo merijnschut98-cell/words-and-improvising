@@ -149,3 +149,11 @@ test('prepped merge: same result in either order, newest 50 kept', () => {
   assert.ok(ab.includes(ids(1069, 1)[0]), 'the newest is kept');
   assert.ok(!ab.includes(ids(1000, 1)[0]), 'the oldest is dropped');
 });
+
+test('a remote review box outside 1–6 is clamped on merge, not only at the next load', () => {
+  const k = 'nl|eng.flow.takt#r0';
+  const remote = { ...syncable(base()), courseReviews: { [k]: { box: 9, due: '2099-01-01', lesson: 'eng.flow.takt', subject: 'eng' }, 'nl|x#r0': { box: 'x', due: '2099-01-01' } } };
+  const m = mergeStates(base(), remote);
+  assert.equal(m.courseReviews[k].box, 6);
+  assert.equal(m.courseReviews['nl|x#r0'].box, 1);
+});

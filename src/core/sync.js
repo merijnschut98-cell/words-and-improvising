@@ -129,6 +129,11 @@ function clean(r) {
   out.days = Object.fromEntries(Object.entries(obj(r.days)).filter(([, v]) => typeof v === 'number' && Number.isFinite(v)));
   out.streak = isObj(r.streak) && typeof r.streak.lastDay === 'string' ? { count: num(r.streak.count), lastDay: r.streak.lastDay } : null;
   out.history = arr(r.history).filter(validEntry);
+  // Course review boxes run 1–6, as load() enforces locally.
+  out.courseReviews = Object.fromEntries(Object.entries(obj(r.courseReviews)).filter(([, v]) => isObj(v)).map(([k, v]) => {
+    const box = Math.round(Number(v.box));
+    return [k, { ...v, box: Number.isFinite(box) ? Math.min(6, Math.max(1, box)) : 1 }];
+  }));
   return out;
 }
 
