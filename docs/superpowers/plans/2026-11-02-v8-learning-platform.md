@@ -91,11 +91,11 @@ The fixture is a minimal two-lesson module defined inside the test file.
 **Interfaces:**
 - Produces: `defaultState().courses = { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } }`, `defaultState().courseReviews = {}`, `defaultState().ui.subject` absent by default (treated as `'speak'`). `load()` coerces: `courses` object with both subjects present (missing one is filled from defaults; a non-object `lessons` → `{}`, non-array `sessions` → `[]`), `courseReviews` object, `ui.subject` one of `'speak'|'eng'|'pm'` else deleted.
 
-- [ ] **Step 1: Write failing tests**: `courses and courseReviews default and coerce`, asserting the three coercions above and that a valid blob round-trips unchanged.
-- [ ] **Step 2: Run** → FAIL.
-- [ ] **Step 3: Implement** in `defaultState()` and the coercion block of `load()`.
-- [ ] **Step 4: Run** `npm test` → all pass.
-- [ ] **Step 5: Commit** `Add course state to storage`.
+- [x] **Step 1: Write failing tests**: `courses and courseReviews default and coerce`, asserting the three coercions above and that a valid blob round-trips unchanged.
+- [x] **Step 2: Run** → FAIL.
+- [x] **Step 3: Implement** in `defaultState()` and the coercion block of `load()`.
+- [x] **Step 4: Run** `npm test` → all pass.
+- [x] **Step 5: Commit** `Add course state to storage`.
 
 ### Task 3: Relearning queue
 

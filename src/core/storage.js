@@ -28,6 +28,8 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
+    courses: { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } }, // per subject: lessonId -> progress, session log
+    courseReviews: {}, // 'lang|questionId' -> { box, due, lesson, subject }: course relearning queue
   };
 }
 
@@ -61,6 +63,13 @@ export function load(backend) {
   if (!isObject(merged.reviews)) merged.reviews = {};
   if (!isObject(merged.friendAsks)) merged.friendAsks = {};
   if (!isObject(merged.friendRatings)) merged.friendRatings = {};
+  const courses = isObject(parsed.courses) ? parsed.courses : {};
+  merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
+    const c = isObject(courses[k]) ? courses[k] : {};
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [] }];
+  }));
+  if (!isObject(merged.courseReviews)) merged.courseReviews = {};
+  if ('subject' in merged.ui && !['speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
   const pr = merged.programme;
   if (!(isObject(pr) && typeof pr.start === 'string' && isObject(pr.baseline) && typeof pr.baseline.promptId === 'string')) merged.programme = null;
   return merged;
