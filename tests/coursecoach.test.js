@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildGradeRequest, parseGrade, buildExplainRequest, parseExplain } from '../src/core/coursecoach.js';
+import {
+  buildGradeRequest, parseGrade, buildExplainRequest, parseExplain,
+  buildSceneRequest, parseScene, runScene, buildExplainBackRequest, parseExplainBack, runExplainBack,
+} from '../src/core/coursecoach.js';
 
 const lesson = {
   id: 'eng.flow.oee',
@@ -39,4 +42,53 @@ test('explain request sends title, terms and his context only', () => {
   assert.equal(p.ok, true);
   assert.equal(p.text.length, 600);
   assert.equal(parseExplain(msg({ text: '' })).ok, false);
+});
+
+test('scene request: title, terms, ask and rubric as a template; his context only when he wrote one; never the teach text', () => {
+  const r = buildSceneRequest({ lesson, context: 'At Enexis I plan MV station work', lang: 'nl', model: 'm' });
+  const all = JSON.stringify(r);
+  for (const s of ['OEE', 'Micro-stop', 'What do you ask?', 'Splits OEE into three', 'Asks for loss data', 'No vague cause', 'At Enexis I plan MV station work']) assert.ok(all.includes(s), s);
+  assert.ok(!all.includes('SECRET TEACH'), 'no teach text');
+  assert.match(r.system, /new/i);
+  assert.match(r.system, /Dutch/);
+  assert.ok(r.max_tokens <= 700);
+  const none = JSON.stringify(buildSceneRequest({ lesson, context: '   ', lang: 'en', model: 'm' }));
+  assert.ok(!/context/i.test(none.replace(/"system":"[^"]*"/, '')), 'no context line when empty');
+});
+
+test('parseScene needs four filled fields and exactly three rubric lines, and caps every length', () => {
+  const good = { scene: 's'.repeat(900), ask: 'a'.repeat(300), model: 'm'.repeat(900), rubric: ['r'.repeat(300), 'two', 'three'] };
+  const p = parseScene(msg(good));
+  assert.equal(p.ok, true);
+  assert.equal(p.situation.scene.length, 600);
+  assert.equal(p.situation.ask.length, 200);
+  assert.equal(p.situation.model.length, 700);
+  assert.equal(p.situation.rubric[0].length, 160);
+  assert.equal(p.situation.rubric.length, 3);
+  assert.equal(parseScene(msg({ ...good, rubric: ['one', 'two'] })).ok, false, 'two rubric lines');
+  assert.equal(parseScene(msg({ ...good, rubric: ['one', 'two', ' '] })).ok, false, 'an empty rubric line');
+  assert.equal(parseScene(msg({ ...good, ask: '' })).ok, false, 'an empty field');
+  assert.equal(parseScene({ content: [{ type: 'text', text: 'nope' }] }).ok, false);
+});
+
+test('explain-back request: terms, the said line and his explanation, never the teach text; the gap comes back as a question', () => {
+  const l = { ...lesson, said: 'What engineers say: it is the bottleneck.' };
+  const r = buildExplainBackRequest({ lesson: l, text: 'OEE is availability times performance times quality', lang: 'en', model: 'm' });
+  const all = JSON.stringify(r);
+  for (const s of ['OEE', 'Micro-stop', 'What engineers say: it is the bottleneck.', 'OEE is availability times performance times quality']) assert.ok(all.includes(s), s);
+  assert.ok(!all.includes('SECRET TEACH'));
+  assert.match(r.system, /question/i);
+  const p = parseExplainBack(msg({ points: [1, 5, 0], question: 'q'.repeat(400) }));
+  assert.equal(p.ok, true);
+  assert.deepEqual(p.points, [1, 1, 0]);
+  assert.equal(p.question.length, 200);
+  assert.equal(parseExplainBack(msg({ points: [1, 1], question: 'x' })).ok, false);
+  assert.equal(parseExplainBack({ content: [{ type: 'text', text: 'nope' }] }).ok, false);
+});
+
+test('scene and explain-back calls never throw', async () => {
+  const boom = async () => { throw new Error('offline'); };
+  assert.equal((await runScene('k', { lesson, context: 'x', lang: 'en', model: 'm' }, boom)).ok, false);
+  assert.equal((await runExplainBack('k', { lesson, text: 'x', lang: 'en', model: 'm' }, boom)).ok, false);
+  assert.equal((await runScene('k', { lesson: null, context: 'x', lang: 'en', model: 'm' }, boom)).ok, false);
 });

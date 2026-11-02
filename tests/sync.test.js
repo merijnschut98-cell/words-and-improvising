@@ -127,3 +127,12 @@ test('a v9 box-6 entry and a v8 box-4 entry: the later due wins, in either order
   const lapsedLocal = { ...base(), courseReviews: { [k]: { box: 1, due: '2027-07-01', lesson: 'eng.flow.takt', subject: 'eng' } } };
   assert.equal(mergeStates(v9, lapsedLocal).courseReviews[k].box, 1, 'a later miss on another device still wins');
 });
+
+test('his work context stays on this device: syncable strips it, and a merge keeps the local one', () => {
+  const local = { ...base(), settings: { ...base().settings, context: 'I plan MV work at Enexis' } };
+  const out = syncable(local);
+  assert.equal(out.settings, undefined);
+  assert.ok(!JSON.stringify(out).includes('Enexis'));
+  const remote = { ...syncable(base()), settings: { context: 'remote context' } };
+  assert.equal(mergeStates(local, remote).settings.context, 'I plan MV work at Enexis');
+});

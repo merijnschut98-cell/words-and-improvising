@@ -9,7 +9,7 @@ const HISTORY_CAP = 200;
 export function defaultState() {
   return {
     version: 1,
-    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false },
+    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '' }, // context: his work, device-only, sent only on a coach tap
     xp: 0,
     streak: { count: 0, lastDay: null },
     days: {}, // 'YYYY-MM-DD' -> rounds completed that day
@@ -73,6 +73,7 @@ export function load(backend) {
   }
   // Retired colour themes (default, ocean, forest, night) follow the system now.
   if (!THEMES.includes(merged.settings.theme)) merged.settings.theme = 'auto';
+  merged.settings.context = typeof merged.settings.context === 'string' ? merged.settings.context.slice(0, 400) : '';
   if (!Array.isArray(merged.history)) merged.history = [];
   if (!Array.isArray(merged.events)) merged.events = [];
   // Course topics on an event (v9): a list of module ids; old events stay as they were.

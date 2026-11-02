@@ -61,6 +61,18 @@ export default {
           'Koppelt het project aan iets waar hij op wordt afgerekend',
           'Doet een kleiner, concreet verzoek en biedt er iets voor terug',
         ],
+        pushback: {
+          lines: [
+            '“Luister, ik run deze afdeling al vijftien jaar. Storingen gaan voor. Jouw project kan wel een week wachten.”',
+            '“Je bent jong, je leert het nog wel: op een echte vloer overleeft geen plan de maandagochtend.”',
+          ],
+          model: '“Je hebt gelijk dat storingen voorgaan; dat zou ik ook doen. Juist daarom vraag ik het: de omstellingsdata moet je mensen minder storingen opleveren. Eén uur donderdag, op de perslijn waar jij je de meeste zorgen over maakt. Heb je er niks aan, dan hoor ik het.”',
+          rubric: [
+            'Erkent zijn ervaring en prioriteiten',
+            'Herhaalt het verzoek, gekoppeld aan zijn eigen doelen',
+            'Stelt een kleinere, concrete toezegging voor',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe junior consultant in 60 seconden uit hoe je dingen gedaan krijgt bij een klant waar niemand naar je hoeft te luisteren.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Stelt een vraag over zijn kant in plaats van iets aan te nemen',
           'Gaat door naar een concrete, gezamenlijke oplossing',
         ],
+        pushback: {
+          lines: [
+            '“Twee dagen, echt? Je krijgt de data toch? Ik heb wel grotere brandjes te blussen.”',
+            '“Maandag is onmogelijk. Het systeem sluit de week pas dinsdagavond af.”',
+          ],
+          model: '“Snap ik, en ik krijg het ook, dank je. Die twee dagen maken uit omdat de review dan dun wordt. Als het systeem dinsdag sluit, verschuiven we de review naar donderdag, of zetten we een automatische export op. Wat werkt voor jou beter?”',
+          rubric: [
+            'Erkent zijn werkdruk en de beperking van het systeem',
+            'Benoemt de impact helder',
+            'Stelt concrete opties voor en laat hem kiezen',
+          ],
+        },
       },
       sayIt: 'Leg een collega in 60 seconden uit hoe je feedback geeft aan iemand die hoger in rang is dan jij.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Opent neutraal en vraagt naar zijn kijk',
           'Sluit af met een concrete afspraak over hoe jullie samenwerken',
         ],
+        pushback: {
+          lines: [
+            '“Ja, dat heb ik gezegd. Jouw vragen kosten uren en we zien nooit wat ermee gebeurt.”',
+            '“We hebben werk te doen. Nog twee weken zo is te veel.”',
+          ],
+          model: '“Fijn dat je het direct zegt; ik hoor het liever van jou. Je hebt gelijk dat je nog niks terug hebt gezien. Vrijdag laat ik zien wat jullie antwoorden tot nu toe hebben opgeleverd. De komende twee weken: één vast halfuur per week, en ik neem mijn vragen mee in een lijstje.”',
+          rubric: [
+            'Erkent de kritiek zonder zich te verdedigen',
+            'Maakt duidelijk dat de input van de planners nodig blijft',
+            'Stelt een concrete, lichtere werkwijze voor en laat resultaat zien',
+          ],
+        },
       },
       sayIt: 'Leg een vriend in 60 seconden uit hoe je een gesprek voorbereidt dat je liever uit de weg gaat.',
       terms: [
@@ -265,6 +301,18 @@ export default {
           'Gebruikt een vraag die twijfels veilig maakt',
           'Bereidt de dominante persoon vooraf voor in plaats van hem in het overleg te confronteren',
         ],
+        pushback: {
+          lines: [
+            '“Waarom moet ik ineens op mijn beurt wachten? Ik plan deze regio al twintig jaar.”',
+            '“Als ze een probleem hadden met het plan, hadden ze dat kunnen zeggen. Niemand hield ze tegen.”',
+          ],
+          model: '“Juist om die twintig jaar wil ik jouw kijk, en die krijg je ook. Ik wil eerst iedereen horen, omdat sommige mensen pas praten als er ruimte is. Jij sluit de ronde af; daar weegt jouw ervaring het zwaarst. Zullen we het twee overleggen proberen?”',
+          rubric: [
+            'Erkent zijn ervaring en positie',
+            'Houdt vast aan eerst ruimte voor de anderen',
+            'Stelt een korte, concrete proef voor met een rol voor hem',
+          ],
+        },
       },
       sayIt: 'Leg een projectleider bij de klant in 60 seconden uit waarom een team dat het nooit oneens is een waarschuwingssignaal is.',
       terms: [
@@ -333,6 +381,18 @@ export default {
           'Stelt een open vraag om zijn echte criterium te vinden',
           'Antwoordt op zijn criterium, en is eerlijk over wat er nog ontbreekt',
         ],
+        pushback: {
+          lines: [
+            '“Mooi verhaal, maar ik vroeg wat we voor het geld krijgen. Ik wil een getal, geen proces.”',
+            '“En als je me vandaag geen getal kunt geven, waarom zou ik er volgende maand dan wel een geloven?”',
+          ],
+          model: '“Terechte vraag, en je hoort een getal te krijgen. Vandaag kunnen we één hard getal laten zien: het overwerk op de pilotlijnen is met een vijfde gedaald. De rest is nog een prognose, en die ga ik niet mooier maken. Ik stuur je morgen de berekening, dan kun je hem zelf nalopen.”',
+          rubric: [
+            'Erkent de vraag als terecht',
+            'Antwoordt direct en eerlijk, zonder te overdrijven',
+            'Stelt een concrete opvolging voor die hij kan controleren',
+          ],
+        },
       },
       sayIt: 'Leg een collega in 60 seconden MORE PIES uit, met één voorbeeldzin bij elke letter die jij het lastigst vindt.',
       terms: [
@@ -401,6 +461,18 @@ export default {
           'Opent met een concreet feit uit hun eigen data',
           'Zet hun vakkennis centraal met een open vraag',
         ],
+        pushback: {
+          lines: [
+            '“Niet persoonlijk bedoeld, maar ik plande al netwerk toen jij nog op de basisschool zat.”',
+            '“We hebben wel vaker workshops gehad. Veel geeltjes, en daarna verandert er niks.”',
+          ],
+          model: '“Ik vat het niet persoonlijk op; juist om die ervaring zit je hier. Ik kom jullie niet vertellen hoe je moet plannen. Ik neem de data mee over waar klussen vastlopen, jullie vertellen me wat het betekent. En aan het eind kiezen we één ding, met een naam en een datum erbij.”',
+          rubric: [
+            'Reageert rustig op zijn ervaring, niet defensief',
+            'Maakt zijn eigen rol helder',
+            'Stelt een concrete uitkomst voor de workshop voor',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe junior consultant in 60 seconden uit hoe jij ermee omgaat dat je de jongste in de kamer bent.',
       terms: [

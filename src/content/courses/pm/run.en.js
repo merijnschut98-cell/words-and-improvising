@@ -58,6 +58,18 @@ export default {
           'Labels items and moves information to a written update',
           'Prepares decisions in advance and records them the same day',
         ],
+        pushback: {
+          lines: [
+            '“If you cut people from the meeting, they’ll feel left out. Everyone here wants to stay informed.”',
+            '“We postpone decisions because we need more information. That’s just being careful.”',
+          ],
+          model: '“Staying informed matters, and they will be: a short written update every Friday. The meeting becomes 45 minutes, for the people who decide. If we need more information for a decision, we name what and by when, so next week it actually gets decided.”',
+          rubric: [
+            'Acknowledges the wish to stay informed and be careful',
+            'Holds to a smaller meeting for decisions',
+            'Proposes a concrete alternative and a deadline for information',
+          ],
+        },
       },
       sayIt: 'Explain to a client team lead in 60 seconds the meeting rhythm of your project and why each meeting exists.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Reports what happened and what it means in numbers',
           'Brings options with a recommendation and a clear request',
         ],
+        pushback: {
+          lines: [
+            '“Why go amber now? It was green last week. The board will ask what went wrong, and I can’t explain that.”',
+            '“Can’t we keep it green until we know more? 180 is a forecast, not a result.”',
+          ],
+          model: '“I see why that’s uncomfortable. But if we keep it green and it lands at 180, the question becomes why we didn’t say so. With eight weeks left we can still act. I’ll bring two options to close the gap, so the board hears a plan, not just a problem.”',
+          rubric: [
+            'Acknowledges his discomfort with the board',
+            'Holds to reporting the honest status now',
+            'Proposes concrete options to bring with the bad news',
+          ],
+        },
       },
       sayIt: 'Explain to a new client team in 60 seconds what green, amber and red mean in your project and why red is not a failure.',
       terms: [
@@ -189,6 +213,18 @@ export default {
           'Makes the impact visible before agreeing',
           'Routes the decision to the sponsor',
         ],
+        pushback: {
+          lines: [
+            '“Come on, it’s a small thing. You’re already talking to the same people. Don’t make it bureaucratic.”',
+            '“If I have to go through the sponsor for every little thing, this project isn’t helping me at all.”',
+          ],
+          model: '“It might well be small, and I’d like to help. I just don’t know yet what it does to the planning work. Give me two days to size it; then you and the sponsor decide together. If it’s really small, that’s a five-minute conversation.”',
+          rubric: [
+            'Acknowledges his request and the wish to avoid bureaucracy',
+            'Holds to sizing it and a sponsor decision before saying yes',
+            'Proposes a quick, concrete route to a decision',
+          ],
+        },
       },
       sayIt: 'Explain to a team member in 60 seconds how you handle “small” extra requests from the client.',
       terms: [
@@ -254,6 +290,18 @@ export default {
           'Sets a deadline and tells both heads before escalating',
           'Records the decision in a log',
         ],
+        pushback: {
+          lines: [
+            '“This isn’t something to force. Give us another few weeks and we’ll work it out between us.”',
+            '“If you take this to the director, it looks like we can’t manage our own departments.”',
+          ],
+          model: '“I’d prefer the two of you decide it, and you still can. But the project has waited three weeks. Let’s set a date: if you agree by Friday, done. If not, I put both options and their consequences to the director, as a choice, not a complaint.”',
+          rubric: [
+            'Acknowledges their wish to solve it themselves',
+            'Holds to a deadline for the decision',
+            'Proposes a clear fallback route that saves their face',
+          ],
+        },
       },
       sayIt: 'Explain to a client project owner in 60 seconds how you prepare a decision so the steering group can take it in ten minutes.',
       terms: [
@@ -319,6 +367,18 @@ export default {
           'Asks what would make the project worth it for him',
           'Agrees a small, specific commitment and handles capacity openly',
         ],
+        pushback: {
+          lines: [
+            '“Nobody asked me if I wanted this. I have a full job already. This project comes on top.”',
+            '“And frankly, I’ve seen five of these projects come and go.”',
+          ],
+          model: '“That’s fair, someone should have asked you, and I’m sorry nobody did. Your experience is exactly why I need you. What would make it worth your time? If we can take something off your plate, I’ll ask your manager this week.”',
+          rubric: [
+            'Acknowledges that he was not asked and has a full job',
+            'Makes clear why his part matters',
+            'Proposes a concrete change that makes it workable for him',
+          ],
+        },
       },
       sayIt: 'Explain to a new consultant in 60 seconds how you get client staff to deliver when they don’t report to you.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Talks to each side separately to find interests',
           'Brings them together on a shared interest and involves him in the solution',
         ],
+        pushback: {
+          lines: [
+            '“I’m just saying what everyone on the floor thinks. Somebody has to say it.”',
+            '“Talking about it won’t help. The planners need to send better jobs, that’s all.”',
+          ],
+          model: '“Good that you say it out loud; better here than in the corridor. Undoable jobs are exactly what the check should stop. Bring me three from last week, and we’ll go through them with the planners on Thursday. If the check doesn’t catch them, we change the check.”',
+          rubric: [
+            'Acknowledges his frustration and that he said it openly',
+            'Restates the purpose without taking sides',
+            'Proposes a concrete joint look at real cases',
+          ],
+        },
       },
       sayIt: 'Explain to a client team lead in 60 seconds the difference between positions and interests, with an example from the shop floor.',
       terms: [

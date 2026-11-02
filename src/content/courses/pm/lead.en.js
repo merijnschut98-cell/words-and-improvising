@@ -61,6 +61,18 @@ export default {
           'Links the project to something he is judged on',
           'Makes a smaller, concrete ask and offers something in return',
         ],
+        pushback: {
+          lines: [
+            '“Listen, I’ve run this department for fifteen years. Breakdowns come first. Your project can wait a week.”',
+            '“You’re young, you’ll learn: on a real floor, no plan survives Monday morning.”',
+          ],
+          model: '“You’re right that breakdowns come first; I’d do the same. That’s exactly why I’m asking: the changeover data should mean fewer breakdowns for your people. One hour on Thursday, on the press line you worry about most. If it’s no use to you, tell me.”',
+          rubric: [
+            'Acknowledges his experience and priorities',
+            'Restates the request, linked to his own goals',
+            'Proposes a smaller, concrete commitment',
+          ],
+        },
       },
       sayIt: 'Explain to a new junior consultant in 60 seconds how to get things done at a client when nobody has to listen to you.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Asks a question about his side instead of assuming',
           'Moves to a concrete, shared fix',
         ],
+        pushback: {
+          lines: [
+            '“Two days, really? You get the data, don’t you? I have bigger fires to put out.”',
+            '“Monday is impossible. The system only closes the week on Tuesday night.”',
+          ],
+          model: '“I understand, and I do get it, thank you. The two days matter because the review gets thin. If the system closes on Tuesday, let’s move the review to Thursday, or set up an automatic export. Which works better for you?”',
+          rubric: [
+            'Acknowledges his workload and the system constraint',
+            'Restates the impact plainly',
+            'Proposes concrete options and lets him choose',
+          ],
+        },
       },
       sayIt: 'Explain to a colleague in 60 seconds how to give feedback to someone more senior than you.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Opens neutrally and asks for their view',
           'Ends with a concrete agreement on how to work together',
         ],
+        pushback: {
+          lines: [
+            '“Yes, I said it. Your questions take hours and we never see what comes of them.”',
+            '“We have a job to do. Two more weeks of this is too much.”',
+          ],
+          model: '“Thanks for being direct; I’d rather hear it from you. You’re right that you haven’t seen anything back yet. On Friday I’ll show what your answers have produced so far. For the next two weeks: one fixed half hour a week, and I bring my questions as a list.”',
+          rubric: [
+            'Acknowledges the criticism without defending himself',
+            'Makes clear the planners’ input is still needed',
+            'Proposes a concrete, lighter way of working and shows results',
+          ],
+        },
       },
       sayIt: 'Explain to a friend in 60 seconds how to prepare a conversation you’d rather avoid.',
       terms: [
@@ -265,6 +301,18 @@ export default {
           'Uses a question that makes doubts safe to voice',
           'Prepares the dominant person beforehand rather than confronting him in the meeting',
         ],
+        pushback: {
+          lines: [
+            '“Why do I suddenly have to wait my turn? I’ve planned this region for twenty years.”',
+            '“If they had a problem with the plan, they could have said so. Nobody stopped them.”',
+          ],
+          model: '“Your twenty years are exactly why I want your view, and you’ll have it. I want to hear everyone first, because some people only speak when there’s room. You close the round; that’s where your experience weighs most. Can we try it for two meetings?”',
+          rubric: [
+            'Acknowledges his experience and position',
+            'Holds to giving the others room first',
+            'Proposes a short, concrete trial with a role for him',
+          ],
+        },
       },
       sayIt: 'Explain to a client project lead in 60 seconds why a team that never disagrees is a warning sign.',
       terms: [
@@ -333,6 +381,18 @@ export default {
           'Asks an open question to find his real criterion',
           'Answers against his criterion, and is honest about gaps',
         ],
+        pushback: {
+          lines: [
+            '“That’s a nice story, but I asked what we get for the money. I want a number, not a process.”',
+            '“And if you can’t give me a number today, why should I believe one next month?”',
+          ],
+          model: '“Fair question, and you should get a number. Today we can show one hard figure: overtime on the pilot lines is down by a fifth. The rest is still a forecast, and I won’t dress it up. I’ll send you the calculation tomorrow, so you can check it yourself.”',
+          rubric: [
+            'Acknowledges the question as fair',
+            'Answers straight and honestly, without overselling',
+            'Proposes a concrete follow-up he can check',
+          ],
+        },
       },
       sayIt: 'Explain MORE PIES to a colleague in 60 seconds, with one example line for each letter you find hardest.',
       terms: [
@@ -401,6 +461,18 @@ export default {
           'Opens with a concrete fact from their own data',
           'Positions their expertise as central with an open question',
         ],
+        pushback: {
+          lines: [
+            '“No offence, but I was planning grid work when you were in primary school.”',
+            '“We’ve had workshops before. Lots of sticky notes, and then nothing changes.”',
+          ],
+          model: '“None taken; that experience is why you’re in the room. I’m not here to tell you how to plan. I bring the data on where jobs get stuck, you tell me what it means. And at the end we pick one thing, with a name and a date on it.”',
+          rubric: [
+            'Responds to his experience calmly, not defensively',
+            'Makes his own role clear',
+            'Proposes a concrete outcome for the workshop',
+          ],
+        },
       },
       sayIt: 'Explain to a new junior consultant in 60 seconds how you handle being the youngest in the room.',
       terms: [

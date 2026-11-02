@@ -60,6 +60,22 @@ test('validateModule: flags missing lessons, bad answers, numeric without tolera
   assert.match(errs, /[<>]/);
 });
 
+test('validateModule: pushback is checked when present, and required on project (pm) lessons', () => {
+  const pb = { lines: ['That is not how we do it here.', 'We have no budget for this.'], model: 'I hear you. Let us test it on one line for two weeks.', rubric: ['Acknowledges the point', 'Restates the ask', 'Proposes a next step'] };
+  const withPb = (p) => ({ lessons: [lesson('eng.fx.a', { situation: { ...lesson('eng.fx.a').situation, pushback: p } }), lesson('eng.fx.b')] });
+  assert.deepEqual(validateModule(withPb(pb), fxNl, fxMeta), [], 'a valid pushback passes, and eng does not need one');
+  assert.match(validateModule(withPb({ ...pb, lines: [pb.lines[0]] }), fxNl, fxMeta).join('\n'), /pushback/);
+  assert.match(validateModule(withPb({ ...pb, model: '' }), fxNl, fxMeta).join('\n'), /pushback/);
+  assert.match(validateModule(withPb({ ...pb, rubric: pb.rubric.slice(0, 2) }), fxNl, fxMeta).join('\n'), /pushback/);
+  assert.match(validateModule(withPb({ ...pb, lines: [pb.lines[0], 'word '.repeat(41)] }), fxNl, fxMeta).join('\n'), /pushback/);
+  assert.match(validateModule(withPb({ ...pb, model: 'word '.repeat(71) }), fxNl, fxMeta).join('\n'), /pushback/);
+  const pmMeta = { ...fxMeta, id: 'pm.fx', subject: 'pm', lessons: ['pm.fx.a'], questions: { 'pm.fx.a': 3 } };
+  const pmLesson = (extra) => ({ lessons: [lesson('pm.fx.a', extra)] });
+  assert.match(validateModule(pmLesson(), pmLesson(), pmMeta).join('\n'), /pm\.fx\.a.*pushback/);
+  const ok = pmLesson({ situation: { ...lesson('pm.fx.a').situation, pushback: pb } });
+  assert.deepEqual(validateModule(ok, ok, pmMeta), []);
+});
+
 test('validateModule: question counts must match the index', () => {
   const meta = { ...fxMeta, questions: { 'eng.fx.a': 4, 'eng.fx.b': 3 } };
   assert.match(validateModule(fxEn, fxNl, meta).join('\n'), /eng\.fx\.a.*count/);

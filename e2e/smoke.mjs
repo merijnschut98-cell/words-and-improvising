@@ -61,6 +61,19 @@ const FAKE_SDK = `
         window.__hqCount = (window.__hqCount || 0) + 1;
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ question: 'En wat als de plantmanager zegt dat er geen tijd voor is?' }) }] };
       }
+      if (req.output_config.format.schema.properties.scene) {
+        window.__sceneReq = req;
+        const rubric = window.__sceneMode === 'bad' ? ['Alleen twee', 'regels'] : ['Vraagt naar de verliesverdeling', 'Vraagt welke ploeg het meest verliest', 'Noemt een concrete volgende stap'];
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ scene: 'In het Enexis-depot staat de <i>OEE</i> van de montagecel op 61%. De teamleider wil een extra ploeg.', ask: 'Wat vraag je eerst?', model: 'Waar gaan de 39 punten heen, per verliessoort?', rubric }) }] };
+      }
+      if (req.output_config.format.schema.properties.end) {
+        window.__pbReqs = [...(window.__pbReqs || []), req];
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ reply: 'Mooi plan, maar <b>wie</b> gaat dat betalen?', end: false }) }] };
+      }
+      if (req.output_config.format.schema.properties.points && window.__fakeGrade) {
+        window.__gradeReqs = [...(window.__gradeReqs || []), req];
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ points: [1, 1, 0], missed: 'Je noemde geen concrete volgende stap.' }) }] };
+      }
       if (req.output_config.format.schema.properties.reply) {
         window.__partnerReqs = (window.__partnerReqs || 0) + 1;
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ reply: 'Leuk! En hoe was dat?', end_conversation: false }) }] };
@@ -377,6 +390,166 @@ await step('situation without a key: answer, self-rate 2 of 3, 10 XP once; gloss
   await page.locator('.screen.progress .stats').waitFor();
   await page.evaluate(() => window.__app.go('home'));
   await page.locator('.btn-hero').waitFor();
+});
+
+// Puts back a saved blob through the app too: the page writes its own state on the way out.
+const restoreState = async (saved) => {
+  await page.evaluate((v) => { window.__app.setState(JSON.parse(v)); localStorage.setItem('spraakwater:v1', v); }, saved);
+  await page.goto(BASE);
+  await page.locator('.btn-hero').waitFor();
+};
+
+await step('pushback without a key: two objections from the lesson, self-rate 2, the model reply; 0 XP', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.evaluate(() => window.__app.updateSettings({ apiKey: '' }));
+  const lesson = await page.evaluate(async () => (await import('/src/content/courses/pm/intake.nl.js')).default.lessons.find((l) => l.id === 'pm.intake.ask'));
+  await page.evaluate(() => window.__app.go('situation', { subject: 'pm', moduleId: 'pm.intake', lessonId: 'pm.intake.ask' }));
+  await page.locator('.sit-answer').fill('Waar gaan die 42 punten nu naartoe, en welke perslijn raakt jullie leveringen het meest?');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.rubric-line input').nth(1).check();
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.sit-result').waitFor();
+  await onePrimary(page, 'situation result with pushback');
+  const xp0 = await page.evaluate(() => window.__app.state.xp);
+  await page.locator('.situation .pb-open').click();
+  await page.locator('.pb-they', { hasText: lesson.situation.pushback.lines[0] }).waitFor();
+  await onePrimary(page, 'pushback turn 1');
+  await shot('96-pushback-turn');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await shot('96-pushback-turn-dark');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'auto' }));
+  // An empty reply is not sent.
+  await page.locator('.situation > .btn-primary', { hasText: 'Antwoorden' }).click();
+  await page.locator('.pb-they', { hasText: lesson.situation.pushback.lines[0] }).waitFor();
+  await page.locator('.pb-answer').fill('Klopt, jij kent de persen beter. Laat me deze week de verliesverdeling zien.');
+  await page.locator('.situation > .btn-primary', { hasText: 'Antwoorden' }).click();
+  await page.locator('.pb-they', { hasText: lesson.situation.pushback.lines[1] }).waitFor();
+  await onePrimary(page, 'pushback turn 2');
+  await page.locator('.pb-answer').fill('Eén week kijken, maandag zet ik het team op het grootste verlies.');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.pb-card .rubric-line', { hasText: lesson.situation.pushback.rubric[0] }).waitFor();
+  await onePrimary(page, 'pushback self-rating');
+  await shot('97-pushback-grade');
+  await page.locator('.pb-card .rubric-line input').nth(0).check();
+  await page.locator('.pb-card .rubric-line input').nth(2).check();
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.pb-result', { hasText: '2 van 3' }).waitFor();
+  await page.locator('.pb-result .said', { hasText: lesson.situation.pushback.model.slice(0, 40) }).waitFor();
+  await onePrimary(page, 'pushback result');
+  await shot('97b-pushback-model');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const pb = st.courses.pm.lessons['pm.intake.ask'].pushback;
+  if (!pb || pb.pts !== 2 || typeof pb.ts !== 'number') throw new Error(`pushback not saved: ${JSON.stringify(pb)}`);
+  if (st.xp !== xp0) throw new Error('pushback gave XP');
+  if (st.courses.pm.sessions.some((x) => x.kind !== 'situation')) throw new Error('pushback logged a session');
+  await page.locator('.situation > .btn-primary', { hasText: 'Klaar' }).click();
+  await restoreState(saved);
+});
+
+await step('pushback with a stubbed coach: the coach plays the other person, its text shows as text, then grades', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.evaluate(() => { window.__fakeGrade = true; window.__pbReqs = []; window.__app.updateSettings({ apiKey: 'sk-test' }); });
+  await page.evaluate(() => window.__app.go('situation', { subject: 'pm', moduleId: 'pm.intake', lessonId: 'pm.intake.ask' }));
+  await page.locator('.sit-answer').fill('Waar zit het verlies per perslijn?');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.sit-result').waitFor();
+  await page.locator('.situation .pb-open').click();
+  const they = page.locator('.pb-they', { hasText: 'wie' });
+  await they.waitFor();
+  if (await page.locator('.pb-they b').count()) throw new Error('coach reply rendered as html');
+  if (!(await they.textContent()).includes('<b>wie</b>')) throw new Error('coach reply not shown as text');
+  await onePrimary(page, 'pushback turn with coach');
+  await page.locator('.pb-answer').fill('Dat betalen we uit de besparing op stilstand.');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.pb-they', { hasText: 'wie' }).waitFor();
+  await page.locator('.pb-answer').fill('Twee weken proef op één lijn, dan beslis jij.');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.pb-result', { hasText: '2 van 3' }).waitFor();
+  await page.locator('.pb-result .note', { hasText: 'concrete volgende stap' }).waitFor();
+  await onePrimary(page, 'pushback coach result');
+  const reqs = await page.evaluate(() => window.__pbReqs.map((r) => JSON.stringify(r)));
+  if (reqs.length !== 2) throw new Error(`expected 2 pushback requests, got ${reqs.length}`);
+  if (!reqs[1].includes('Waar zit het verlies per perslijn?') || !reqs[1].includes('Dat betalen we uit de besparing')) throw new Error('request lacks his answers');
+  if (/work context/i.test(reqs[0])) throw new Error('empty context was sent');
+  await page.evaluate(() => { window.__fakeGrade = false; });
+  await restoreState(saved);
+});
+
+await step('coach context: saved in Settings, a fresh scene from a stubbed coach shows as text; a malformed one keeps the lesson scene', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.evaluate(() => { window.__app.updateSettings({ apiKey: 'sk-test' }); window.__app.go('settings'); });
+  const ctx = page.locator('.ctx-input');
+  await ctx.fill('Ik plan MS-werk bij een netbeheerder en help maakbedrijven met hun OEE.');
+  await ctx.blur();
+  await page.waitForFunction(() => (window.__app.state.settings.context || '').startsWith('Ik plan MS-werk'));
+  await ctx.scrollIntoViewIfNeeded();
+  await shot('98-settings-context');
+  const oee = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
+  await page.evaluate(() => { window.__sceneMode = 'good'; window.__app.go('situation', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }); });
+  await page.locator('.scene-new').waitFor();
+  await onePrimary(page, 'situation with a fresh-scene button');
+  await page.locator('.scene-new').click();
+  const scene = page.locator('.sit-scene', { hasText: 'Enexis-depot' });
+  await scene.waitFor();
+  if (await page.locator('.sit-scene i').count()) throw new Error('fresh scene rendered as html');
+  if (!(await scene.textContent()).includes('<i>OEE</i>')) throw new Error('fresh scene not shown as text');
+  await onePrimary(page, 'fresh scene');
+  const req = await page.evaluate(() => JSON.stringify(window.__sceneReq));
+  if (!req.includes('Ik plan MS-werk')) throw new Error('scene request lacks his context');
+  if (oee.teach.some((b) => req.includes(b.slice(0, 40)))) throw new Error('scene request carries teach text');
+  await shot('99-fresh-scene');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await shot('99-fresh-scene-dark');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'auto' }));
+  await page.locator('.sit-answer').fill('Waar gaan de 39 punten heen, per verliessoort?');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.rubric-line', { hasText: 'Vraagt naar de verliesverdeling' }).locator('input').check();
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.sit-result', { hasText: '1 van 3' }).waitFor();
+  if (await page.locator('.pb-open').count()) throw new Error('pushback offered on a generated scene');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (st.courses.eng.lessons['eng.flow.oee'].situation.pts !== 1) throw new Error('fresh scene points not saved under the lesson');
+  await page.evaluate(() => { window.__sceneMode = 'bad'; window.__app.go('situation', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }); });
+  await page.locator('.scene-new').click();
+  await page.locator('.scene-note').waitFor();
+  if ((await page.locator('.sit-scene').textContent()).trim() !== oee.situation.scene.trim()) throw new Error('malformed scene did not keep the lesson scene');
+  await onePrimary(page, 'scene note');
+  await restoreState(saved);
+});
+
+await step('explain it back: one filled button on the last reading step with a key; without a key, a self-check of the terms on the done card', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.evaluate(() => window.__app.updateSettings({ apiKey: 'sk-test', context: 'Ik plan MS-werk' }));
+  const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  for (const q of lesson.pre) {
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.pre-card .btn-primary').click(); }
+    else await page.locator('.pre-card .opt').first().click();
+    await page.locator('.pre-card .btn-primary').click();
+  }
+  for (let i = 0; i < lesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
+  await page.locator('.explain .btn-ghost', { hasText: 'Leg dit uit voor mijn situatie' }).click();
+  await page.locator('.explain-ask input').waitFor();
+  if ((await page.locator('.explain-ask input').inputValue()) !== 'Ik plan MS-werk') throw new Error('explain box not prefilled from his context');
+  await onePrimary(page, 'last teach card with the explain box open');
+  await page.evaluate(() => window.__app.updateSettings({ apiKey: '' }));
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await page.locator('.pre-card').waitFor();
+  await playLesson(page, 'eng', 'flow', 'eng.flow.oee', { missFirst: false });
+  const xp0 = await page.evaluate(() => window.__app.state.xp);
+  if (await page.locator('details.explain-back[open]').count()) throw new Error('explain-back open by default');
+  await page.locator('details.explain-back > summary').click();
+  await page.locator('.eb-text').fill('OEE is beschikbaarheid maal prestatie maal kwaliteit; zo zie je waar de tijd van een lijn heen gaat.');
+  await page.locator('.explain-back .rubric-line input').nth(0).check();
+  await page.locator('.explain-back .rubric-line input').nth(1).check();
+  await page.locator('.eb-count', { hasText: `2 van ${lesson.terms.length}` }).waitFor();
+  await onePrimary(page, 'lesson done with explain-back open');
+  await page.locator('details.explain-back').scrollIntoViewIfNeeded();
+  await shot('100-explain-back');
+  if ((await page.evaluate(() => window.__app.state.xp)) !== xp0) throw new Error('explain-back gave XP');
+  await restoreState(saved);
 });
 
 await step('a lesson with a figure shows it under the last reading block', async () => {

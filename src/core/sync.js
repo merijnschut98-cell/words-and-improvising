@@ -51,6 +51,9 @@ function mergeLesson(x, y) {
   const sa = isObj(a.situation) ? a.situation : null;
   const sb = isObj(b.situation) ? b.situation : null;
   if (sa || sb) out.situation = !sa ? sb : !sb ? sa : (sb.ts > sa.ts ? sb : sa);
+  const pa = isObj(a.pushback) ? a.pushback : null;
+  const pb = isObj(b.pushback) ? b.pushback : null;
+  if (pa || pb) out.pushback = !pa ? pb : !pb ? pa : (pb.ts > pa.ts ? pb : pa);
   return out;
 }
 

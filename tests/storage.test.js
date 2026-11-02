@@ -10,7 +10,7 @@ function fakeBackend(init = {}) {
 test('missing data gives defaults', () => {
   const s = load(fakeBackend());
   assert.deepEqual(s, defaultState());
-  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false });
+  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '' });
 });
 
 test('corrupt data gives defaults and is backed up', () => {
@@ -237,4 +237,13 @@ test('v9: course review boxes load as an integer 1–6; a v8 queue (boxes 1–4)
   assert.deepEqual(ok.courseReviews, v8);
   const bad = load(fakeBackend({ [KEY]: JSON.stringify({ courseReviews: { a: { box: 9, due: 'd' }, b: { box: 0, due: 'd' }, c: { box: 2.6, due: 'd' }, d: { box: 'x', due: 'd' } } }) }));
   assert.deepEqual(Object.fromEntries(Object.entries(bad.courseReviews).map(([k, v]) => [k, v.box])), { a: 6, b: 1, c: 3, d: 1 });
+});
+
+test('settings.context defaults to empty, is a string and is cut at 400 characters', () => {
+  assert.equal(defaultState().settings.context, '');
+  const at = (context) => load(fakeBackend({ [KEY]: JSON.stringify({ settings: { context } }) })).settings.context;
+  for (const bad of [undefined, 42, null, ['x']]) assert.equal(at(bad), '', String(bad));
+  assert.equal(at('I plan MV work at a grid operator'), 'I plan MV work at a grid operator');
+  assert.equal(at('x'.repeat(900)).length, 400);
+  assert.equal(load(fakeBackend({ [KEY]: JSON.stringify({ xp: 3 }) })).settings.context, '', 'an older blob gets the default');
 });

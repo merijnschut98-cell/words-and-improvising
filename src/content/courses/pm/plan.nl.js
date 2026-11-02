@@ -58,6 +58,18 @@ export default {
           'Begint bij resultaten, niet bij activiteiten',
           'Geeft elk pakket een eigenaar en een “klaar als”',
         ],
+        pushback: {
+          lines: [
+            '“We weten wat er stuk is. Waarom een week bezig met hokjes en lijstjes als we vandaag de doppenzetter kunnen fixen?”',
+            '“Vorig project hadden we een prachtig plan en er gebeurde niks. De jongens haken af als ze geen actie zien.”',
+          ],
+          model: '“Snap ik, en de doppenzetter pakken we deze week aan. Geef me daarnaast donderdag één uur om op te schrijven wat er verder stilstand vreet, zodat we niet eerst de verkeerde dingen oplossen. Jouw doppenzetter staat dan als eerste op die lijst, al in uitvoering.”',
+          rubric: [
+            'Erkent hun energie en de slechte ervaring',
+            'Houdt vast aan een korte uitsplitsing voor de grote aanpak',
+            'Stelt voor allebei te doen: nu een snelle fix en een korte planningssessie',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe collega in 60 seconden uit hoe je een project opdeelt, van resultaten naar werkpakketten.',
       terms: [
@@ -125,6 +137,18 @@ export default {
           'Benoemt eerlijk de grootste onbekende',
           'Zegt wanneer en hoe de bandbreedte kleiner wordt',
         ],
+        pushback: {
+          lines: [
+            '“Het hoeft niet exact. Geef me gewoon een datum die ik in de update voor de directie kan zetten.”',
+            '“Elke consultant zegt ‘het hangt ervan af’. Als je me geen datum kunt geven, waar heb ik je dan voor?”',
+          ],
+          model: '“Terecht, je hebt iets nodig voor de directie. Zonder IT zit het ergens tussen mei en september; de systeemaanpassing is de grote onbekende. Ik spreek IT deze week en geef je volgende dinsdag een vaste bandbreedte. Dan is de datum die je doorgeeft er een die we halen.”',
+          rubric: [
+            'Erkent dat hij een datum nodig heeft',
+            'Geeft een eerlijke bandbreedte en benoemt de onbekende',
+            'Belooft een stap met datum die de bandbreedte versmalt',
+          ],
+        },
       },
       sayIt: 'Leg een engineer bij de klant in 60 seconden uit waarom je naar een beste en slechtste geval vraagt in plaats van één getal.',
       terms: [
@@ -191,6 +215,18 @@ export default {
           'Stelt de sponsor een concrete andere datum voor, met de reden',
           'Maakt de planning zichtbaar zodat anderen hem kunnen corrigeren',
         ],
+        pushback: {
+          lines: [
+            '“Week 20 staat in het plan dat de directie heeft goedgekeurd. Als we dat nu verschuiven, lijkt het alsof we niet hebben nagedacht.”',
+            '“Kun je niet gewoon live gaan tijdens de stop? Dan is het rustig, ideaal voor iets nieuws.”',
+          ],
+          model: '“Snap ik, een verschoven datum voelt slecht. Maar live gaan tijdens de stop betekent dat niemand het wekenlang gebruikt, en de helft van de operators leert het dan pas na de vakantie. Beter om het nu te zeggen: week 23, met iedereen erbij. Ik schrijf vandaag twee regels uitleg voor de directie.”',
+          rubric: [
+            'Erkent wat het verschuiven kost',
+            'Houdt vast aan een datum die op de vloer werkt',
+            'Stelt een concrete nieuwe datum voor en hoe de directie het hoort',
+          ],
+        },
       },
       sayIt: 'Leg een klantteam in 60 seconden uit wat het kritieke pad is en waarom het telt voor de einddatum.',
       terms: [
@@ -256,6 +292,18 @@ export default {
           'Vraagt open naar de eerdere pogingen',
           'Zet redenen om in risico’s met een eigenaar en een actie',
         ],
+        pushback: {
+          lines: [
+            '“Waarom die oude pogingen erbij halen? Dan wordt iedereen al negatief voordat we begonnen zijn.”',
+            '“Die projecten zijn mislukt door de mensen van toen. Dit team is anders.”',
+          ],
+          model: '“Ik wil er ook niet in blijven hangen. Maar als iets het twee keer heeft tegengehouden, kan het ons ook tegenhouden. Geef me een kwartier in de volgende sessie: wat ging er toen mis, en wat is er nu anders? Wat eruit komt, gaat op de risicolijst met een eigenaar.”',
+          rubric: [
+            'Erkent de zorg over negativiteit',
+            'Houdt leren van eerdere pogingen op tafel',
+            'Stelt een korte, concrete sessie voor met eigenaren voor de risico’s',
+          ],
+        },
       },
       sayIt: 'Leg een teamleider bij de klant in 60 seconden uit hoe een pre-mortem werkt en waarom het helpt.',
       terms: [
@@ -321,6 +369,18 @@ export default {
           'Stelt concrete taken voor de sponsor voor',
           'Bevestigt de afspraak op papier',
         ],
+        pushback: {
+          lines: [
+            '“Ik zei toch dat ik erachter sta. Ik hoef niet bij elk overleg te zitten. Daar heb ik jou voor ingehuurd.”',
+            '“Maandelijks een stuurgroep? Mijn agenda zit tot maart vol. Stuur me gewoon af en toe een update.”',
+          ],
+          model: '“Fijn dat je me dat vertrouwen geeft, en je hoeft niet bij elk overleg. Ik heb je nodig voor drie besluiten dit kwartaal, en de teams moeten zien dat je erachter staat. Elke vier weken een halfuur is genoeg. Zal ik nu bij je secretariaat het eerste moment vragen?”',
+          rubric: [
+            'Erkent zijn vertrouwen en zijn volle agenda',
+            'Maakt concreet wat de rol van sponsor vraagt',
+            'Stelt een klein, vast moment voor en plant het in',
+          ],
+        },
       },
       sayIt: 'Leg een nieuw projectlid in 60 seconden uit wat RACI betekent en waarom maar één persoon accountable kan zijn.',
       terms: [
@@ -386,6 +446,18 @@ export default {
           'Biedt mijlpalen en een go/no-go voor controle',
           'Stelt een kleine, gecontroleerde test voor in plaats van jargon',
         ],
+        pushback: {
+          lines: [
+            '“Ik heb vaker ‘pilots’ gezien. Dan wordt mijn vloer een proeftuin en ruimt niemand achteraf op.”',
+            '“Als het ontwerp goed is, waarom zou je het dan moeten testen? Doe het werk gewoon vooraf goed.”',
+          ],
+          model: '“Terecht, een pilot die een puinhoop achterlaat is erger dan geen pilot. Ik ontwerp het gewoon goed. Het punt is om twee aannames te checken voordat we het overal uitrollen: één cel, vier weken, met een einddatum en een weg terug. Aan het eind beslis jij of het breder gaat.”',
+          rubric: [
+            'Erkent zijn slechte ervaring en zijn behoefte aan controle',
+            'Houdt vast aan het testen van de kernaannames voor de uitrol',
+            'Stelt een afgebakende test voor met einddatum en zijn besluit',
+          ],
+        },
       },
       sayIt: 'Leg een plantmanager in 60 seconden uit wanneer je een project in één keer plant en wanneer in korte rondes.',
       terms: [

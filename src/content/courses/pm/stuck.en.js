@@ -61,6 +61,18 @@ export default {
           'Names one kind of stuck, backed by symptoms',
           'Links it to the matching fix and who needs to act',
         ],
+        pushback: {
+          lines: [
+            '“‘It feels stuck’ isn’t something I can do anything with. Give me facts.”',
+            '“Maybe you’re overthinking it. Keep going for a few weeks and see.”',
+          ],
+          model: '“Fair, a feeling isn’t enough. Facts: two of the four actions have slipped twice, and the sponsor missed the last steering group. I think the sponsor is losing interest. I want to test that this week in a one-on-one with him, and I’ll tell you on Friday.”',
+          rubric: [
+            'Acknowledges the request for facts',
+            'Names the problem with concrete evidence, not a vague feeling',
+            'Proposes a concrete way to test the diagnosis soon',
+          ],
+        },
       },
       sayIt: 'Explain to a junior colleague in 60 seconds the four kinds of stuck and how to tell them apart.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Names a specific action and moment to come back',
           'Continues the presentation without bluffing about the affected data',
         ],
+        pushback: {
+          lines: [
+            '“You didn’t know about the storm? Then how can we trust any of these numbers?”',
+            '“I don’t want a follow-up later. Either the result holds or it doesn’t. Which is it?”',
+          ],
+          model: '“Good catch, I didn’t know, thank you. The other numbers come from the same source, so that part stands. Whether the result holds without week 4, I can’t say right now, and I won’t guess. I’ll rerun it without that week and send it to you before noon tomorrow.”',
+          rubric: [
+            'Acknowledges the point without getting defensive',
+            'Holds to not guessing while keeping what is solid',
+            'Proposes a concrete follow-up with a time',
+          ],
+        },
       },
       sayIt: 'Explain to a new consultant in 60 seconds how to handle a question you can’t answer in front of a client.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Frames the question with context, what was tried and a clear ask',
           'Uses the client as a resource too, and closes the loop',
         ],
+        pushback: {
+          lines: [
+            '“You’re the lead now. If you come to me after two weeks, the client will wonder why we sent you.”',
+            '“Have you actually tried walking into his office? Invitations are easy to ignore.”',
+          ],
+          model: '“Fair, I don’t want you to take it over. I’ve tried three invitations and one chat in the corridor; tomorrow I’ll walk in. What I’m asking is fifteen minutes of your view: what does he care about, and who does he listen to? Then I’ll handle it myself.”',
+          rubric: [
+            'Acknowledges the concern about his role as lead',
+            'Names what he already tried and what he needs',
+            'Proposes a specific, limited request for help',
+          ],
+        },
       },
       sayIt: 'Explain to a junior colleague in 60 seconds when and how to ask a senior for help.',
       terms: [
@@ -266,6 +302,18 @@ export default {
           'Defines what to measure and a comparison',
           'Agrees continue and stop criteria up front',
         ],
+        pushback: {
+          lines: [
+            '“An experiment? I’ve heard both sides for four meetings. I know it’s right; it just needs doing.”',
+            '“And if you test it on one line, the shift leads will make sure it fails.”',
+          ],
+          model: '“I understand you want it settled. A two-week trial on one line settles it with facts instead of a fifth meeting. To keep it fair, we agree up front, with you and the shift leads, what counts as success. If it works, it goes plant-wide.”',
+          rubric: [
+            'Acknowledges his impatience and his concern',
+            'Holds to testing before a plant-wide decision',
+            'Proposes a concrete trial with criteria agreed up front',
+          ],
+        },
       },
       sayIt: 'Explain to a client manager in 60 seconds why a small experiment is often better than more analysis.',
       terms: [
@@ -334,6 +382,18 @@ export default {
           'Gives the facts, including the earlier escalation, without blaming',
           'Moves to options for the steering group to decide',
         ],
+        pushback: {
+          lines: [
+            '“I don’t care whose fault it was. I was promised September and now I have nothing.”',
+            '“Escalated? Then why didn’t I hear about it? That’s your job too.”',
+          ],
+          model: '“You’re right to expect results, and I’m sorry this lands on you. The delay came from IT access; I raised it in the August steering group, which you missed. I should have called you directly as well. The first results are ready in three weeks, and until then you get a short update from me every Friday.”',
+          rubric: [
+            'Acknowledges his frustration without blaming',
+            'Restates the facts calmly and owns his part',
+            'Proposes a concrete new date and how he will be kept informed',
+          ],
+        },
       },
       sayIt: 'Explain to a junior colleague in 60 seconds what to do in the first hour after an angry client call.',
       terms: [
@@ -402,6 +462,18 @@ export default {
           'Says plainly to the sponsor that the goal won’t be reached as set up',
           'Offers clear options, including stopping, and re-contracts in writing',
         ],
+        pushback: {
+          lines: [
+            '“Let’s not be dramatic. 64 is already better than before. Keep going and we’ll see in week 16.”',
+            '“Maintenance hours are tight everywhere. I can’t just take them from somewhere else.”',
+          ],
+          model: '“64 is real progress, and I want to protect it. But flat for five weeks means we won’t reach 75 this way. The missing maintenance hours are the main reason. Either we free eight hours a week, or we lower the target to 68 now. I’d like you to choose this week.”',
+          rubric: [
+            'Acknowledges the progress and his constraints',
+            'Says plainly that the current path will not reach the target',
+            'Proposes a clear choice with a deadline',
+          ],
+        },
       },
       sayIt: 'Explain to a junior colleague in 60 seconds how to run a reset conversation with a sponsor.',
       terms: [

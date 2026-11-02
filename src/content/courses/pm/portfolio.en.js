@@ -61,6 +61,18 @@ export default {
           'Makes dependencies visible with owners and dates',
           'Separates programme decisions from project decisions',
         ],
+        pushback: {
+          lines: [
+            '“I don’t want another layer of meetings. Just give me one slide every month.”',
+            '“The three project leads won’t like someone above them. Can’t you do it without changing anything?”',
+          ],
+          model: '“One slide a month is exactly the aim, and for that all three need one shared goal. No new layer: the leads keep their projects, and we add one hour a month where they look at shared dependencies together. In two weeks I’ll show you the draft slide and the goal.”',
+          rubric: [
+            'Acknowledges his wish for simplicity and the leads’ concern',
+            'Holds to a shared goal and a light joint rhythm',
+            'Proposes a concrete deliverable within two weeks',
+          ],
+        },
       },
       sayIt: 'Explain to a client operations director in 60 seconds why three green projects can still miss the goal.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Asks for the value in comparable terms',
           'Leaves the decision with the people who own the portfolio',
         ],
+        pushback: {
+          lines: [
+            '“Everyone knows this one matters. The scoring model doesn’t capture strategy.”',
+            '“If my project has to wait a quarter, I’ll take it to the CEO. Is that what you want?”',
+          ],
+          model: '“It may well be strategic, and then it should score that way. Which criterion is it missing? If the MT wants it in this quarter, fine, but then one project above the line drops out. I’ll put that choice on Thursday’s agenda, so the MT decides it openly.”',
+          rubric: [
+            'Acknowledges that the project may matter',
+            'Holds to the agreed ranking and the trade-off it implies',
+            'Proposes an open decision at a concrete moment',
+          ],
+        },
       },
       sayIt: 'Explain to an MT in 60 seconds why they should start fewer projects to finish more.',
       terms: [
@@ -196,6 +220,18 @@ export default {
           'Proposes explicit decision rights and tolerances',
           'Addresses who needs to be in the room',
         ],
+        pushback: {
+          lines: [
+            '“People expect those updates. If I cut them, they’ll think the steering group doesn’t care.”',
+            '“And nine people is the minimum. Everyone wants to be represented.”',
+          ],
+          model: '“I understand; those updates feel like attention. They can go in a short note before the meeting, which people read anyway. In the room: three decisions, five people who can make them. Let’s try it twice and then ask the group what they think.”',
+          rubric: [
+            'Acknowledges his concern about attention and representation',
+            'Holds to a steering group built around decisions',
+            'Proposes a short trial that gets reviewed',
+          ],
+        },
       },
       sayIt: 'Explain to a new sponsor in 60 seconds what makes a steering group decide instead of discuss.',
       terms: [
@@ -264,6 +300,18 @@ export default {
           'Agrees the measure and a monthly review',
           'Sets a trigger and a follow-up moment after close',
         ],
+        pushback: {
+          lines: [
+            '“We hit 9%. The project is closed. Watching a number is line work, not a project.”',
+            '“Nobody has time for another monthly report. If it goes up, we’ll notice.”',
+          ],
+          model: '“Agreed, the project is done, and it is line work now. That’s why I want a name on it: someone who looks at the cancellation figure once a month for five minutes. If it rises above 11%, they raise the alarm. Who in your team would fit?”',
+          rubric: [
+            'Acknowledges that the project itself is finished',
+            'Holds to someone owning the benefit after handover',
+            'Proposes a light, concrete check with a named owner',
+          ],
+        },
       },
       sayIt: 'Explain to a project lead in 60 seconds the difference between output, outcome and benefit, with one example.',
       terms: [
@@ -332,6 +380,18 @@ export default {
           'Makes the overbooking visible in numbers',
           'Brings options to the owner instead of negotiating in the corridor',
         ],
+        pushback: {
+          lines: [
+            '“She told me June was fine. My project was first, so she’s mine.”',
+            '“Why make this a big thing? She’ll manage; she always does.”',
+          ],
+          model: '“I believe she said that, and she probably said it to all three of you. Three times ‘basically committed’ adds up to more than one person. I’d like to sit down with the three leads and her this week and divide June by the day. Then everyone knows what they get.”',
+          rubric: [
+            'Acknowledges his claim without dismissing it',
+            'Names the overload plainly',
+            'Proposes a concrete joint split, with the analyst present',
+          ],
+        },
       },
       sayIt: 'Explain to a project lead in 60 seconds why “two days a week of Fatima” is probably not real.',
       terms: [
@@ -400,6 +460,18 @@ export default {
           'Uses numbers and offers a smaller option',
           'Stops talking and lets the board discuss',
         ],
+        pushback: {
+          lines: [
+            '“That’s the slide I already read. I asked why now, with margins under pressure.”',
+            '“Every consultant promises payback. What if it doesn’t come?”',
+          ],
+          model: '“Precisely because margins are under pressure: the losses we measured come straight off the margin. We phase it: first one line, with a go or no-go after three months on measured results. If it doesn’t pay back there, you stop.”',
+          rubric: [
+            'Acknowledges the pressure on margins',
+            'Answers the why-now question directly',
+            'Proposes a phased step with a clear stop point',
+          ],
+        },
       },
       sayIt: 'Explain to a project lead in 60 seconds how to get a decision from an MT in a 20-minute slot.',
       terms: [

@@ -59,6 +59,18 @@ export default {
           'Zet vraagtekens bij de besparingsberekening voordat die naar het bestuur gaat',
           'Betrekt de controller en vertaalt uren naar echte effecten',
         ],
+        pushback: {
+          lines: [
+            '“De directie houdt van een groot getal. 40.000 uur, dat onthouden mensen.”',
+            '“Niemand gaat die berekening narekenen. Waarom maken we het onszelf moeilijk?”',
+          ],
+          model: '“Snap ik, een groot getal blijft hangen. Maar als één directielid vraagt hoe we eraan komen, kunnen we het niet verdedigen. Wat we wel kunnen bewijzen: de annuleringen gehalveerd, van 18 naar 9 procent. Ik reken zorgvuldig uit hoeveel uur dat scheelt en maak er één zin van die nog steeds sterk klinkt.”',
+          rubric: [
+            'Erkent de aantrekkingskracht van een groot getal',
+            'Houdt vast aan een resultaat dat te verdedigen is',
+            'Stelt een concrete, sterke alternatieve boodschap voor',
+          ],
+        },
       },
       sayIt: 'Leg een sponsor in 60 seconden uit hoe je een projectresultaat aantoont op een manier die de controller accepteert.',
       terms: [
@@ -124,6 +136,18 @@ export default {
           'Stelt concrete, meetbare criteria voor op basis van het echte doel',
           'Bereidt de ondertekening voor met bewijs en een openpuntenlijst',
         ],
+        pushback: {
+          lines: [
+            '“Waarom het nu nog formeel maken? Iedereen ziet dat de lijn beter loopt. Laten we het niet bureaucratisch maken.”',
+            '“Als je nu criteria opschrijft, lijkt het alsof je de doelpalen verzet om er zelf goed uit te komen.”',
+          ],
+          model: '“Nu ziet iedereen het, en over een halfjaar weet niemand meer wat we hebben afgesproken. Ik wil niks verzetten: ik zet op één pagina wat we bij de start hebben gemeten en wat nu, en jij checkt of het eerlijk is. Zullen we het donderdag doorlopen?”',
+          rubric: [
+            'Erkent het zichtbare resultaat en zijn zorg',
+            'Houdt vast aan een opgeschreven, afgesproken acceptatie',
+            'Stelt een korte, concrete stap voor waar hij zelf over gaat',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe projectleider in 60 seconden uit waarom je acceptatiecriteria aan het begin afspreekt en hoe de ondertekening werkt.',
       terms: [
@@ -189,6 +213,18 @@ export default {
           'Maakt een veilige ruimte waarin het team kan praten',
           'Bereidt de plantmanager onder vier ogen voor op gevoelige feedback',
         ],
+        pushback: {
+          lines: [
+            '“Het is mijn fabriek en mijn project. Natuurlijk zit ik de retrospective voor.”',
+            '“Als mensen iets over mij te zeggen hebben, kunnen ze dat recht in mijn gezicht zeggen.”',
+          ],
+          model: '“Het is jouw project, en dat jij erbij bent doet ertoe. Als jij voorzit, wachten mensen eerst af wat jij vindt. Laat mij het begeleiden, en open jij met één ding dat je zelf anders zou doen. Dan durven de anderen het ook.”',
+          rubric: [
+            'Erkent zijn eigenaarschap en zijn openheid',
+            'Houdt vast aan een neutrale begeleider voor eerlijke inbreng',
+            'Stelt een concrete rol voor hem voor die openheid uitlokt',
+          ],
+        },
       },
       sayIt: 'Leg een klantteam in 60 seconden uit hoe je een terugblik houdt die tot echte veranderingen leidt.',
       terms: [
@@ -254,6 +290,18 @@ export default {
           'Richt zich op wat er voor de klant veranderd is',
           'Geeft de eigenaar bij de klant een rol in de presentatie',
         ],
+        pushback: {
+          lines: [
+            '“De klant heeft veel betaald. Die moet het werk zien, anders lijkt het mager.”',
+            '“De analyses in een bijlage, prima, maar tien slides is te weinig voor een afsluiting.”',
+          ],
+          model: '“Ze moeten het werk zien, eens. Wat ze onthouden is het resultaat en wat ze nu moeten doen. Dus: vijf slides in de zaal, resultaat, oorzaak, wat er veranderd is, wat nu, en alle analyses in een bijlage om na te lezen. Woensdag laat ik je een concept zien.”',
+          rubric: [
+            'Erkent de wens om het werk te laten zien',
+            'Houdt vast aan een korte presentatie gericht op besluiten',
+            'Stelt een concrete opbouw en een datum voor een concept voor',
+          ],
+        },
       },
       sayIt: 'Leg een collega in 60 seconden uit hoe je een eindrapport op één A4 opbouwt.',
       terms: [
@@ -319,6 +367,18 @@ export default {
           'Stelt open vragen over de nieuwe uitdaging en luistert',
           'Biedt alleen hulp aan bij een probleem dat de klant herkent',
         ],
+        pushback: {
+          lines: [
+            '“Ach, dat is voor HR, niet voor jou. Het is toch pas over een jaar.”',
+            '“Ik noemde het terloops. Maak er geen verkooppraatje van.”',
+          ],
+          model: '“Terecht, en ik ga je niks verkopen. Een jaar gaat snel als je een nieuwe lijn moet bemensen, en het raakt de roosters die we net hebben neergezet. Mag ik je drie vragen sturen om over na te denken? Komt er iets uit, dan praten we. Zo niet, ook goed.”',
+          rubric: [
+            'Erkent dat het terloops was en geen vraag',
+            'Maakt kort duidelijk waarom het voor hem ertoe doet',
+            'Stelt een lichte, concrete stap voor zonder druk',
+          ],
+        },
       },
       sayIt: 'Leg een junior collega in 60 seconden uit hoe je na een project in contact blijft met een klant zonder op te dringen.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Vraagt om concrete feedback of hulp op dat punt',
           'Schrijft de casus met de les erin',
         ],
+        pushback: {
+          lines: [
+            '“De resultaten waren goed. Waarom focus je op de stuurgroepen? Pak die winst.”',
+            '“Iedereen voelt zich de eerste keer onzeker. Dat komt met ervaring.”',
+          ],
+          model: '“Ik ben blij met het resultaat. Juist de stuurgroepen wil ik beter doen, en alleen ervaring gaat dat niet regelen. Mag ik de volgende met jou voorbereiden, en wil je één keer meekijken en me na afloop twee punten geven?”',
+          rubric: [
+            'Erkent het goede resultaat en de geruststelling',
+            'Houdt vast aan het benoemen van zijn eigen ontwikkelpunt',
+            'Stelt een concrete vraag om ondersteuning voor',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe consultant in 60 seconden uit hoe je na een project reflecteert en je eigen casusverzameling opbouwt.',
       terms: [
