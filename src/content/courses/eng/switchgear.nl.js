@@ -284,7 +284,7 @@ export default {
         'De vijf veiligheidsregels voor spanningsloos werken, in deze volgorde: 1. Vrijschakelen, aan alle kanten. 2. Vergrendelen, beveiligen tegen herinschakelen, met een slot en een label. 3. Spanningsloos meten, met een spanningzoeker vaststellen dat het dood is. 4. Aarden en kortsluiten. 5. Afschermen van delen in de buurt die nog onder spanning staan.',
         'Elke regel dekt een echte fout. Het verkeerde veld schakelen. Iemand die weer inschakelt. Terugvoeding van een aggregaat, zonnepanelen of een andere ring. Geïnduceerde of achtergebleven spanning. Een spanningvoerend deel vlakbij binnen handbereik. Een stap overslaan omdat “hij is echt uit” is precies hoe ernstige ongevallen gebeuren.',
         'NEN 3140 geeft de regels voor de bedrijfsvoering van LS-installaties, tot 1.000 V wisselspanning; NEN 3840 doet hetzelfde daarboven, dus voor MS en HS. Beide bouwen op de Europese NEN-EN 50110, en netbeheerders werken met sectorregels die daarop gebaseerd zijn (BEI). Belangrijke rollen: de installatieverantwoordelijke (IV), die de installatie beheert, en de werkverantwoordelijke (WV), die het werk ter plaatse leidt. Een VP is een vakbekwaam persoon, een VOP een voldoende onderricht persoon.',
-        'Een AVP is een aangewezen vakbekwaam persoon: iemand die vakbekwaam is én door de werkgever schriftelijk is aangewezen voor bepaalde werkzaamheden. Kunde alleen is niet genoeg; de aanwijzing telt. Als consultant ben je in een installatie een leek: je gaat alleen naar binnen met een bevoegd persoon, en je raakt niks aan.',
+        'De werkgever wijst mensen schriftelijk aan voor die rollen, voor bepaalde werkzaamheden: de aanwijzing. Een vakkundige monteur zonder aanwijzing mag niet als VP aan de installatie werken. Kunde alleen is niet genoeg; de aanwijzing telt. Als consultant ben je in een installatie een leek: je gaat alleen naar binnen met een bevoegd persoon, en je raakt niks aan.',
       ],
       example: {
         kind: 'worked',
@@ -306,10 +306,10 @@ export default {
           why: 'Eerst scheiden, dan zorgen dat het gescheiden blijft, dan aantonen dat het spanningsloos is.',
         },
         {
-          q: 'Wat maakt iemand een AVP?',
+          q: 'Wat maakt dat een vakkundige monteur volgens NEN 3140 als VP aan een installatie mag werken?',
           options: ['Een technisch diploma', 'Vijf jaar ervaring', 'Een veiligheidsquiz halen', 'Een schriftelijke aanwijzing van de werkgever voor bepaalde werkzaamheden'],
           answer: 'Een schriftelijke aanwijzing van de werkgever voor bepaalde werkzaamheden',
-          why: 'Een AVP is een vakbekwaam persoon die formeel door de werkgever is aangewezen.',
+          why: 'Opleiding en ervaring zijn nodig, maar pas de schriftelijke aanwijzing van de werkgever maakt iemand VP voor dat werk.',
         },
         {
           q: 'Waarom aarden en kortsluiten nadat je spanningsloos hebt gemeten?',
@@ -333,7 +333,7 @@ export default {
         { term: 'Vrijschakelen', def: 'Een deel van de installatie aan alle kanten afschakelen.' },
         { term: 'NEN 3140', def: 'Nederlandse norm voor de veilige bedrijfsvoering van LS-installaties.' },
         { term: 'IV', def: 'Installatieverantwoordelijke: degene die verantwoordelijk is voor de installatie.' },
-        { term: 'AVP', def: 'Aangewezen vakbekwaam persoon: vakbekwaam en formeel door de werkgever aangewezen.' },
+        { term: 'Aanwijzing', def: 'De schriftelijke aanwijzing door de werkgever voor een NEN 3140-rol, zoals VP of WV, en bepaalde werkzaamheden.' },
       ],
     },
     {
