@@ -290,7 +290,7 @@ The fixture is a minimal two-lesson module defined inside the test file.
 
 ### Task 15: Minimal UX pass (after Task 14, before Task 12)
 
-**Files:** `src/ui/home.js` (speaking home → Today + one secondary card + "More practice" disclosure), `src/ui/coursehome.js`, `src/ui/lesson.js` (step indicator), `src/ui/settings.js` (grouped sections), `src/ui/welcome.js` (three-screen first run covering all subjects), `src/i18n.js`, `styles.css`, `e2e/smoke.mjs` (selectors for moved items; open "More practice" where steps need hidden items), `tests/ux.test.js`.
+**Files:** `src/ui/home.js` (new start screen: one today-card per subject, then the subject homes; speaking home → Today + one secondary card + "More practice" disclosure), `src/ui/coursehome.js`, `src/ui/lesson.js` (step indicator), `src/ui/settings.js` (grouped sections), `src/ui/welcome.js` (three-screen first run covering all subjects), `src/i18n.js`, `styles.css`, `e2e/smoke.mjs` (selectors for moved items; open "More practice" where steps need hidden items), `tests/ux.test.js`.
 
 **Interfaces:** `morePractice(app) -> HTMLDetailsElement` (class `more`, open state remembered in `ui.moreOpen`); `stepIndicator(t, phases, current) -> HTMLElement` (class `steps`, `aria-current="step"` on the active one).
 
@@ -299,6 +299,18 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [ ] **Step 3:** e2e green (update selectors; steps that click drills open "More practice" first); screenshots light and dark.
 - [ ] **Step 4:** First-time-user check: a fresh subagent gets only the screenshots and the five tasks from the spec; fix every miss; repeat once.
 - [ ] **Step 5:** Commit `Simplify navigation: one next thing per screen`.
+
+### Task 16: Sync between devices (after Task 14)
+
+**Files:** Create `src/core/sync.js` (pure `mergeStates(local, remote) -> state`, `syncable(state) -> state without settings/ui`), `src/core/cloud.js` (lazy Supabase client from `https://esm.sh/@supabase/supabase-js@2.45.4`, `signIn(email)`, `session()`, `pull()`, `push(state)`, `signOut()`), `tests/sync.test.js`. Modify `src/app.js` (on start and focus: pull + merge; after setState: debounced push; handle the magic-link return), `src/ui/settings.js` (Sync section: email field, send link, status, sign out), `src/i18n.js`, `sw.js`, `e2e/smoke.mjs` (sync section renders; with a stubbed client, a remote state merges into local).
+
+**Interfaces:** `mergeStates(local, remote)` never drops a history entry, course session, passed lesson or reflected event from either side; `syncable(state)` strips `settings` and `ui`; `pushState` writes `syncable(state)`.
+
+- [ ] **Step 1: Failing tests** (`tests/sync.test.js`): history union by ts without duplicates; lessons merge to earliest passed; reviews keep later due; days per-day max; streak keeps the longer run; settings and API key never leave `syncable`; merging a state with itself is identity (idempotent); merge is order-independent for the unions.
+- [ ] **Step 2:** Implement `sync.js`.
+- [ ] **Step 3:** `cloud.js` and the Settings section; app wiring; status line.
+- [ ] **Step 4:** e2e with a stubbed client; manual test on the live site with Merijn’s email once the Site URL is set.
+- [ ] **Step 5:** Commit `Sync progress between devices`.
 
 ### Task 13: Interactive figures (anatomy skill)
 

@@ -28,6 +28,18 @@ The app must be easy to navigate and understood at first sight, by Merijn and by
 - **First run:** three short screens (what the three subjects are, how a day works, where Settings and the key live), skippable.
 - **Verification:** a fresh "first-time user" subagent looks only at the screenshots and must find how to (1) start today’s practice, (2) open an engineering lesson, (3) see progress, (4) add the API key, (5) switch language, each in one or two taps; any miss is a finding to fix.
 
+## Start screen and sync (added 2026-11-02, binding)
+
+**Start screen.** Home opens on an overview of all three subjects under the Vantage Point name: one compact "today" card per subject (Speaking, Engineering, Projecten) with that subject's next step and its reason, plus streak and level in one quiet line. Tapping a card opens that subject's home (the current speaking home, or a course home). The subject bar stays for switching inside a subject. This is part of the minimal-UX pass.
+
+**Sync between devices** (Merijn chose it). Supabase project `vantage-point` (ref `ysybqtdzcutmyabfwijl`, eu-central-1, free tier) with one table `public.progress (user_id uuid pk → auth.users, state jsonb, updated_at)` and row-level security: a user reads and writes only their own row.
+
+- Sign-in: email magic link (no password), in Settings → Sync. Site URL and redirect URL point at the GitHub Pages address (set once in the Supabase dashboard).
+- The app stays offline-first and works without signing in. The client library loads on demand (like the Anthropic SDK), only when sync is on.
+- **Never synced:** `settings` (API key, model, theme, language, mic and voice options), `ui`, device-only flags. The API key never leaves the device.
+- **Merge, not overwrite** (`src/core/sync.js`, pure, tested): history and course sessions are unions keyed by timestamp; days take the per-day maximum; xp is recomputed as max(local, remote) plus nothing else; streak takes the longer run with the later last day; course lessons merge per lesson (earliest `read`/`passed`, latest `situation`/`sayIt`); course reviews and speaking reviews keep, per key, the entry with the later `due`; events merge by id (a reflected event wins); bests keep the better value; milestones and seen are unions; drill levels take the maximum; programme and weekly take the more recently started.
+- Pull on start and on focus; push after changes (debounced 3 s) and on hide. On any network or auth error the app keeps working locally and retries later; a small status line in Settings says when it last synced.
+
 ## Purpose
 
 - **Engineering** (manufacturing, process engineering, and the electricity grid): understand what engineering teams talk about, follow a gemba walk, ask a real question at the machine. Fundamentals to expert.
