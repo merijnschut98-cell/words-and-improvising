@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v15';
+const CACHE = 'vantage-point-v16';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -46,10 +46,19 @@ self.addEventListener('activate', (e) => {
 // Same-origin: cache first, refresh in the background. Everything else: network.
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  if (e.request.method !== 'GET' || url.origin !== location.origin) return;
+  if (url.origin !== location.origin) return;
+  // HEAD (does this figure page exist?): answer from the cache, so it works offline.
+  if (e.request.method === 'HEAD') {
+    e.respondWith(caches.match(e.request, { ignoreSearch: true, ignoreMethod: true })
+      .then((cached) => (cached ? new Response(null, { status: cached.status, headers: cached.headers }) : fetch(e.request)))
+      .catch(() => fetch(e.request)));
+    return;
+  }
+  if (e.request.method !== 'GET') return;
   const refresh = fetch(e.request, { cache: 'no-cache' }).then(async (res) => {
     // Redirected responses can't be served for navigations; never cache them.
-    if (res.ok && !res.redirected) await (await caches.open(CACHE)).put(e.request, res.clone());
+    // One entry per path: ?retry=N and ?theme=... variants share it (matching ignores the search).
+    if (res.ok && !res.redirected) await (await caches.open(CACHE)).put(url.origin + url.pathname, res.clone());
     return res;
   });
   e.waitUntil(refresh.catch(() => {}));

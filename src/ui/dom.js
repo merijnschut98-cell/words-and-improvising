@@ -17,6 +17,13 @@ export function h(tag, attrs = {}, ...children) {
   return el;
 }
 
+// A start button disables itself on tap; if what it started reports failure
+// (resolves false or rejects), it can be tapped again.
+export function enableOnFail(btn, started) {
+  if (!started || typeof started.then !== 'function') return Promise.resolve();
+  return started.then((ok) => { if (ok === false) btn.disabled = false; }, () => { btn.disabled = false; });
+}
+
 // Drill -> icon name in icons.js. Render with ico(DRILL_ICON[d]).
 export const DRILL_ICON = {
   minute: 'timer', explain: 'presentation', prep: 'layers', bridge: 'link', smalltalk: 'coffee', rapid: 'zap', story: 'book-open', pause: 'pause',

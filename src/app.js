@@ -106,16 +106,18 @@ export const app = {
     }
     return this.modules[key];
   },
+  // Resolves true once the round is open, false if the module failed to load.
   startSayIt(subject, moduleId, lessonId) {
     return this.openModule(subject, moduleId).then((mod) => {
       const l = mod.lessons.find((x) => x.id === lessonId);
-      if (!l) return this.go('home');
+      if (!l) { this.go('home'); return true; }
       this.session = null;
-      return this.go('round', {
+      this.go('round', {
         prompt: { id: `course:${lessonId}`, drill: 'explain', body: l.sayIt, extra: { course: { subject, lessonId, terms: l.terms.map((x) => x.term) } }, seenIds: [] },
         modifier: null,
       });
-    }).catch(() => this.toast(this.t('loadError')));
+      return true;
+    }).catch(() => { this.toast(this.t('loadError')); return false; });
   },
   today() { return dayKey(new Date()); },
 
@@ -150,7 +152,8 @@ export const app = {
     this.ensureCloud();
     const res = await this.syncer.syncNow();
     if (res.ok && !this.state.settings.syncOn) {
-      this.updateSettings({ syncOn: true });
+      // fromSync: the sync just pushed, so turning it on must not queue another push.
+      this.setState({ ...this.state, settings: { ...this.state.settings, syncOn: true } }, true);
       this.toast(this.t('syncStarted'));
     }
     return res;
@@ -354,7 +357,10 @@ reconcileNow();
 document.addEventListener('visibilitychange', () => {
   if (app.state.settings.syncOn && app.cloud) {
     if (document.visibilityState === 'hidden') app.cloud.push(app.state);
-    else app.startSync();
+    else {
+      // Show what the other device did, as on boot.
+      app.startSync().then((res) => { if (res.ok && root.dataset.screen === 'home') app.go('home'); });
+    }
   }
   if (document.visibilityState !== 'visible') return;
   const r = reconcileNow();

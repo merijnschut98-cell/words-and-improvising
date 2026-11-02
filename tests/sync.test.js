@@ -97,3 +97,15 @@ test('a broken remote never poisons local numbers or history', () => {
 test('a reset device starts with sync off, so a wipe is never pushed to the cloud', () => {
   assert.ok(!base().settings.syncOn);
 });
+
+test('the reminder plan (cue and hour) is device-specific: it never leaves the device', () => {
+  const s = { ...base(), plan: { cue: 'after coffee', hour: 8 } };
+  const out = syncable(s);
+  assert.equal('plan' in out, false);
+  assert.ok(!JSON.stringify(out).includes('after coffee'));
+  const remote = { ...syncable(base()), plan: { cue: 'other phone', hour: 21 } };
+  assert.deepEqual(mergeStates(s, remote).plan, { cue: 'after coffee', hour: 8 });
+  const bare = { ...base() };
+  delete bare.plan;
+  assert.equal('plan' in mergeStates(bare, remote), false, 'a remote plan is never adopted');
+});
