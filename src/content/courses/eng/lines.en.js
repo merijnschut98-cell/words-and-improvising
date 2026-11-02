@@ -83,8 +83,8 @@ export default {
       teach: [
         'Articulated robots have six axes, like an arm with a wrist. They reach almost anywhere, typically 0.7 to 3 metres, with payloads from a few kilos to over a tonne: welding, palletising, machine tending. SCARA robots have four axes and move very fast in a horizontal plane: pick-and-place and screwing. Delta robots hang above a conveyor and pick light products at very high speed.',
         'Cobots, collaborative robots, are built to work next to people: they limit force and speed and stop on contact. Payloads are usually 3 to 20 kg and they are slower than industrial robots. “Collaborative” is not a property of the robot alone: the whole application needs a risk assessment, and a cobot holding a knife is not safe.',
-        'Payload is the gripper plus the part, and the robot’s rating assumes the weight sits close to the flange. A heavy gripper or an off-centre part eats into it fast. Datasheet speeds are peak values: real cycles include acceleration, slowing down to place accurately, and 0.2 to 0.5 seconds for each gripper open or close.',
-        'Industrial robots work behind guarding: fences with interlocked doors, light curtains, or laser scanners that slow the robot when someone enters a zone and stop it when they come closer. The cell as a whole needs CE marking and a risk assessment. Safety design often takes more floor space and engineering time than people expect.',
+        'Payload is the gripper plus the part, and the robot’s rating assumes the weight sits close to the flange, the mounting plate at the wrist. A heavy gripper or an off-centre part eats into it fast. Datasheet speeds are peak values: real cycles include acceleration, slowing down to place accurately, and 0.2 to 0.5 seconds for each gripper open or close.',
+        'Industrial robots work behind guarding: fences with interlocked doors, light curtains, or laser scanners that slow the robot when someone enters a zone and stop it when they come closer. The cell as a whole needs CE marking and a risk assessment. The standards: ISO 10218-1 for the robot, ISO 10218-2 for the cell; the 2025 edition of part 2 took in most of ISO/TS 15066, which sets force and pressure limits for cobots touching people. Safety design often takes more space and engineering time than people expect.',
       ],
       example: {
         kind: 'faded',
@@ -295,9 +295,9 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'A bottling line has six machines. Each machine’s screen shows availability above 90%. Line OEE is 58%. The team plans to replace the filler, the slowest machine on paper. PLC data for a week show: filler running 71%, starved 22%; labeller running 93%, starved 2%, blocked 1%; capper running 68%, blocked 25%. The labeller logs about 40 stops per hour, each under a minute.',
+        text: 'A bottling line has six machines. Each machine’s screen shows availability above 90%. Line OEE is 58%. The team plans to replace the filler, the slowest machine on paper. The order is filler, capper, labeller. PLC data for a week show: filler running 71%, blocked 22%; capper running 68%, blocked 25%; labeller running 74%, faulted 23%, starved 2%, blocked 1%. The labeller logs about 40 stops per hour, most under a minute.',
         ask: 'What would you do next?',
-        reveal: 'The labeller is the real bottleneck: it runs 93% of the time, almost never waits, and the capper before it is blocked a quarter of the time. The filler is starved, so a new one adds nothing. Focus on the labeller’s 40 micro-stops per hour: log the stop reasons for a week, fix the top two, and check whether a bigger buffer before the labeller helps. Then look again at the state data, because the bottleneck may move.',
+        reveal: 'The labeller is the real bottleneck: it has the highest running share, almost never waits, and the capper and filler before it are blocked a quarter of the time. A new filler would only be blocked more, so it adds nothing. The labeller loses almost a quarter of its time to 40 micro-stops per hour, so focus there: log the stop reasons for a week, fix the top two, and check whether a bigger buffer before the labeller helps. Then look again at the state data, because the bottleneck may move.',
       },
       said: 'What engineers say: “Look at the states, not the speeds. The labeller never starves, that’s your constraint.”',
       recall: [
@@ -399,7 +399,7 @@ export default {
       situation: {
         scene: 'You’re at a metalworking supplier. The managing director wants to automate the welding station “because we can’t find welders”. The engineering team has a quote for €450,000 and no business case.',
         ask: 'How do you help them decide?',
-        model: 'The staff shortage is a real reason, so let’s make it part of the case, next to labour savings, quality and ergonomics. What does the €450,000 include, and what is the ramp-up plan? And how stable is the welding process and the fit-up of the parts today, because a robot needs consistent parts. If the parts vary, the first project may be the fixtures and parts, not the robot.',
+        model: 'The staff shortage is a real reason, so let’s make it part of the case, next to labour savings, quality and ergonomics. What does the €450,000 include, and what is the ramp-up plan? And how stable are the welding process and the fit-up (how well the parts fit together before welding) today, because a robot needs consistent parts. If the parts vary, the first project may be the fixtures and parts, not the robot.',
         rubric: [
           'Takes the staff shortage seriously as part of the case',
           'Asks for full cost and ramp-up, not just the quote',

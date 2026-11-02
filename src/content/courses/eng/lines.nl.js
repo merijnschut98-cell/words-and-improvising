@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Er zijn drie lijntypes. Een gepaste lijn loopt op een vast ritme: een transportband schuift door of kruipt op takt, en elk station moet op tijd klaar zijn, zoals in de autoassemblage. Een ongepaste lijn laat elk station zijn product doorgeven als het klaar is, meestal op pallets of een vrije band met kleine wachtrijen ertussen. Een cel is een compacte, vaak U-vormige groep machines met een paar operators die met het werk meelopen.',
+        'Er zijn drie lijntypes. Een getakte lijn loopt op een vast ritme: een transportband schuift door of kruipt op takt, en elk station moet op tijd klaar zijn, zoals in de autoassemblage. Een vrije, niet-getakte lijn laat elk station zijn product doorgeven als het klaar is, meestal op pallets of een vrije band met kleine wachtrijen ertussen. Een cel is een compacte, vaak U-vormige groep machines met een paar operators die met het werk meelopen.',
         'Buffers ontkoppelen stations. Als een station stilvalt, vangt de buffer ervoor de aanvoer op en houdt de buffer erna het volgende station aan de gang. Dimensioneer een buffer op de stops die je wilt overbruggen: een typische stop van 3 minuten bij een cyclus van 30 seconden vraagt zo’n 6 stuks. Buffers kosten ruimte en voorraad, en ze verstoppen problemen. Leg ze dus bewust neer, niet per ongeluk.',
         'Waar inspecteer je: direct na de stap die het risico veroorzaakt, zodat de terugkoppeling snel is; vóór een dure of onomkeerbare stap, zoals lakken of een behuizing dichtlassen; en vóór de bottleneck, zodat die nooit tijd verspilt aan een fout product. Een eindtest vangt fouten, maar laat, als alle waarde er al in zit.',
         'De vraag die laat zien hoe een lijn echt werkt: “wat gebeurt hier als het station ernaast stilvalt?” Is het antwoord “dan staat alles stil”, dan is de lijn star gekoppeld, en vermenigvuldigt de beschikbaarheid van elk station zich tot het lijnresultaat.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een ongepaste assemblagelijn heeft vier stations van elk zo’n 40 seconden. Station 3, een inpers-unit, loopt een paar keer per dienst vast, telkens zo’n 4 minuten. Tussen de stations is plek voor 1 stuk. Als station 3 vastloopt, staan station 1 en 2 binnen een minuut stil en staat station 4 te wachten. Het team wil station 1 en 2 sneller maken.',
+        text: 'Een vrije assemblagelijn heeft vier stations van elk zo’n 40 seconden. Station 3, een inpers-unit, loopt een paar keer per dienst vast, telkens zo’n 4 minuten. Tussen de stations is plek voor 1 stuk. Als station 3 vastloopt, staan station 1 en 2 binnen een minuut stil en staat station 4 te wachten. Het team wil station 1 en 2 sneller maken.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Station 1 en 2 versnellen helpt niks; ze worden geblokkeerd door station 3. Zet eerst buffers rond station 3: een stop van 4 minuten bij 40 seconden is 240 / 40 = 6 stuks, dus ruimte voor zo’n 6 stuks ervoor en 6 erna houdt de andere stations draaiende tijdens een gewone storing. Pak daarna de storingen op station 3 zelf aan, want buffers vangen stops op, ze halen ze niet weg. En check of station 3 ook het langzaamst is, want dan heeft het de meeste bescherming nodig.',
       },
@@ -35,7 +35,7 @@ export default {
         },
         {
           q: 'Wat is het grootste nadeel van grote buffers?',
-          options: ['Stations gaan er langzamer door draaien', 'Ze geven meer voorraad en doorlooptijd, en verstoppen problemen', 'Ze maken de lijn gepast', 'Ze maken inspectie onmogelijk'],
+          options: ['Stations gaan er langzamer door draaien', 'Ze geven meer voorraad en doorlooptijd, en verstoppen problemen', 'Ze maken de lijn getakt', 'Ze maken inspectie onmogelijk'],
           answer: 'Ze geven meer voorraad en doorlooptijd, en verstoppen problemen',
           why: 'Een buffer vangt stops op, maar producten wachten langer en stops worden minder zichtbaar.',
         },
@@ -46,10 +46,10 @@ export default {
           why: 'Je houdt foute producten tegen voordat je er meer waarde aan toevoegt of ze dichtmaakt.',
         },
         {
-          q: 'Wat bepaalt het ritme in een gepaste lijn?',
+          q: 'Wat bepaalt het ritme in een getakte lijn?',
           options: ['De transportband die op takt loopt', 'Het eigen tempo van elke operator', 'De langzaamste leverancier', 'De eindtest'],
           answer: 'De transportband die op takt loopt',
-          why: 'In een gepaste lijn schuift of loopt de band op een vaste snelheid en moet elk station bijblijven.',
+          why: 'In een getakte lijn schuift of loopt de band op een vaste snelheid en moet elk station bijblijven.',
         },
       ],
       situation: {
@@ -64,7 +64,7 @@ export default {
       },
       sayIt: 'Leg een projectmanager in 60 seconden uit waarom een paar goed geplaatste buffers de output van een lijn kunnen verhogen.',
       terms: [
-        { term: 'Gepaste lijn', def: 'Een lijn die op een vast ritme loopt; elk station moet binnen de takt klaar zijn.' },
+        { term: 'Getakte lijn', def: 'Een lijn die op een vast ritme loopt; elk station moet binnen de takt klaar zijn.' },
         { term: 'Buffer', def: 'Een kleine wachtrij tussen stations die ze bij stops ontkoppelt.' },
         { term: 'Star gekoppeld', def: 'Stations zonder buffers ertussen, zodat één stop alles stillegt.' },
       ],
@@ -83,8 +83,8 @@ export default {
       teach: [
         'Knikarmrobots hebben zes assen, als een arm met een pols. Ze komen bijna overal, met een bereik van meestal 0,7 tot 3 meter en een payload van een paar kilo tot ruim een ton: lassen, palletiseren, machines beladen. SCARA-robots hebben vier assen en zijn heel snel in een horizontaal vlak: pick-and-place en schroeven. Deltarobots hangen boven een band en pakken lichte producten op hoge snelheid.',
         'Cobots, collaboratieve robots, zijn gemaakt om naast mensen te werken: ze begrenzen kracht en snelheid en stoppen bij contact. De payload is meestal 3 tot 20 kg en ze zijn langzamer dan industriële robots. “Collaboratief” is geen eigenschap van alleen de robot: de hele toepassing heeft een risicobeoordeling nodig, en een cobot met een mes is niet veilig.',
-        'Payload is grijper plus product, en de opgave van de robot gaat ervan uit dat het gewicht dicht bij de flens zit. Een zware grijper of een excentrisch product vreet dat snel op. Snelheden in de datasheet zijn piekwaarden: een echte cyclus heeft versnellen, afremmen om nauwkeurig te plaatsen, en 0,2 tot 0,5 seconde voor elke keer dat de grijper opent of sluit.',
-        'Industriële robots werken achter afscherming: hekken met vergrendelde deuren, lichtschermen, of laserscanners die de robot vertragen als iemand een zone binnenloopt en stoppen als die dichterbij komt. De cel als geheel heeft een CE-markering en een risicobeoordeling nodig. Het veiligheidsontwerp kost vaak meer ruimte en engineeringtijd dan mensen verwachten.',
+        'Payload is grijper plus product, en de opgave van de robot gaat ervan uit dat het gewicht dicht bij de flens zit, de montageplaat aan de pols. Een zware grijper of een excentrisch product vreet dat snel op. Snelheden in de datasheet zijn piekwaarden: een echte cyclus heeft versnellen, afremmen om nauwkeurig te plaatsen, en 0,2 tot 0,5 seconde voor elke keer dat de grijper opent of sluit.',
+        'Industriële robots werken achter afscherming: hekken met vergrendelde deuren, lichtschermen, of laserscanners die de robot vertragen als iemand een zone binnenloopt en stoppen als die dichterbij komt. De cel als geheel heeft een CE-markering en een risicobeoordeling nodig. De normen: ISO 10218-1 voor de robot, ISO 10218-2 voor de cel; de editie 2025 van deel 2 nam het meeste over van ISO/TS 15066, met grenzen voor kracht en druk als een cobot een mens raakt. Het veiligheidsontwerp kost vaak meer ruimte en engineeringtijd dan mensen verwachten.',
       ],
       example: {
         kind: 'faded',
@@ -151,7 +151,7 @@ export default {
       ],
       teach: [
         'Foutvrij maken, poka-yoke, kent twee niveaus. Voorkomen maakt de fout onmogelijk: een mal met een pen zodat een onderdeel maar op één manier past, een connector die er maar in één richting in gaat. Detecteren ziet de fout meteen en stopt het proces: een sensor ziet dat de clip ontbreekt en blokkeert de volgende stap. Voorkomen wint van detecteren; detecteren wint van inspectie aan het eind.',
-        'Veelgebruikte sensoren: een inductieve naderingsschakelaar ziet metaal op een paar millimeter; een fotocel ziet of een lichtstraal onderbroken wordt; een visionsysteem checkt aanwezigheid, positie, kleur of een etiket. Een momentsleutel of moertrekker kan schroeven tellen en per schroef moment en hoek controleren. Elk stuurt een signaal naar de PLC.',
+        'Veelgebruikte sensoren: een inductieve naderingsschakelaar ziet metaal op een paar millimeter; een fotocel ziet of een lichtstraal onderbroken wordt; een visionsysteem checkt aanwezigheid, positie, kleur of een etiket. Een gestuurde schroefmachine (nutrunner) kan schroeven tellen en per schroef moment en hoek controleren. Elk stuurt een signaal naar de PLC.',
         'De vergrendeling (interlock) maakt het af: de PLC geeft de volgende stap pas vrij als alle checks OK zijn. De pers maakt geen slag tot beide productsensoren bevestigen; de pallet gaat pas door als alle zes schroeven OK zijn. Zonder interlock is een sensor gewoon een lampje dat mensen leren negeren.',
         'Let op valse afkeur. Een visionsysteem dat 3% goede producten afkeurt maakt operators boos, en al snel vindt iemand de overbruggingssleutel. Vraag hoe vaak elke foutvrij-voorziening wordt overbrugd en hoe vaak hij vals alarm geeft; dan weet je of hij echt werkt.',
       ],
@@ -172,7 +172,7 @@ export default {
         },
         {
           q: 'Wat is voorkomen in plaats van detecteren?',
-          options: ['Een mal die het onderdeel alleen in de goede stand accepteert', 'Een camera die producten zonder etiket afkeurt', 'Een controleur aan het eind van de lijn', 'Een moertrekker die alarm geeft bij te laag moment'],
+          options: ['Een mal die het onderdeel alleen in de goede stand accepteert', 'Een camera die producten zonder etiket afkeurt', 'Een controleur aan het eind van de lijn', 'Een schroefmachine die alarm geeft bij te laag moment'],
           answer: 'Een mal die het onderdeel alleen in de goede stand accepteert',
           why: 'De fout kan helemaal niet gemaakt worden; de andere zien hem pas nadat hij gemaakt is.',
         },
@@ -220,7 +220,7 @@ export default {
       ],
       teach: [
         'Een mixed-model lijn bouwt meerdere varianten op dezelfde lijn, in een gemengde volgorde. Elke variant heeft per station een andere werkinhoud: een auto met schuifdak of een warmtepomp met een extra module kost op sommige stations meer tijd. De lijn loopt op één takt, dus sommige cycli zitten boven de takt en sommige eronder.',
-        'Bij het balanceren gebruik je het gewogen gemiddelde van de mix, maar dat is niet genoeg. Check per station ook de langste variant. Zit die ver boven de takt, dan raakt de operator op een gepaste lijn achter en schuift hij het gebied van het volgende station in. Oplossingen: variantspecifiek werk naar een apart station of een voormontage, of een vliegende kracht die bij zware cycli bijspringt.',
+        'Bij het balanceren gebruik je het gewogen gemiddelde van de mix, maar dat is niet genoeg. Check per station ook de langste variant. Zit die ver boven de takt, dan raakt de operator op een getakte lijn achter en schuift hij het gebied van het volgende station in. Oplossingen: variantspecifiek werk naar een apart station of een voormontage, of een vliegende kracht die bij zware cycli bijspringt.',
         'Sequencen houdt zware varianten uit elkaar. Typische regels: “nooit twee B’s achter elkaar” of “hooguit 1 op 3 met optie X”. De planner bouwt de volgorde met die regels, zodat de lijn elk uur een voorspelbare mix ziet. Een veranderde klantmix kan van een goed gebalanceerde lijn een lijn maken die altijd achterloopt.',
         'Meer varianten betekent ook meer onderdelen aan de lijn. Met tien varianten van één component is er geen ruimte voor alle bakken, dus werken lijnen met kits of gesequencede aanvoer: de onderdelen komen in dezelfde volgorde als de producten op de lijn. Daarmee wordt logistiek een deel van het lijnontwerp.',
       ],
@@ -295,9 +295,9 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Een bottellijn heeft zes machines. Op het scherm van elke machine staat een beschikbaarheid boven de 90%. De lijn-OEE is 58%. Het team wil de vuller vervangen, op papier de langzaamste machine. PLC-data van een week: vuller draait 71%, starved 22%; etiketteerder draait 93%, starved 2%, blocked 1%; doppenzetter draait 68%, blocked 25%. De etiketteerder registreert zo’n 40 stops per uur, elk korter dan een minuut.',
+        text: 'Een bottellijn heeft zes machines. Op het scherm van elke machine staat een beschikbaarheid boven de 90%. De lijn-OEE is 58%. Het team wil de vuller vervangen, op papier de langzaamste machine. De volgorde is vuller, doppenzetter, etiketteerder. PLC-data van een week: vuller draait 71%, blocked 22%; doppenzetter draait 68%, blocked 25%; etiketteerder draait 74%, storing 23%, starved 2%, blocked 1%. De etiketteerder registreert zo’n 40 stops per uur, de meeste korter dan een minuut.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'De etiketteerder is de echte bottleneck: hij draait 93% van de tijd, wacht bijna nooit, en de doppenzetter ervoor is een kwart van de tijd blocked. De vuller is starved, dus een nieuwe vuller levert niks op. Focus op de 40 microstops per uur van de etiketteerder: registreer een week lang de stopredenen, los de top twee op, en kijk of een grotere buffer vóór de etiketteerder helpt. Kijk daarna opnieuw naar de statusdata, want de bottleneck kan verschuiven.',
+        reveal: 'De etiketteerder is de echte bottleneck: hij heeft het hoogste draaipercentage, wacht bijna nooit, en de doppenzetter en vuller ervoor zijn een kwart van de tijd blocked. Een nieuwe vuller zou alleen nog vaker blocked staan, dus die levert niks op. De etiketteerder verliest bijna een kwart van zijn tijd aan 40 microstops per uur, dus focus daar: registreer een week lang de stopredenen, los de top twee op, en kijk of een grotere buffer vóór de etiketteerder helpt. Kijk daarna opnieuw naar de statusdata, want de bottleneck kan verschuiven.',
       },
       said: 'Wat engineers zeggen: “Kijk naar de statussen, niet naar de snelheden. De etiketteerder valt nooit droog, dat is je bottleneck.”',
       recall: [
