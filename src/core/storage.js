@@ -30,12 +30,23 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
-    courses: { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } }, // per subject: lessonId -> progress, session log
+    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
     courseReviews: {}, // 'lang|questionId' -> { box, due, lesson, subject }: course relearning queue
   };
 }
 
 const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+const isDay = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+
+// A lesson plan ("use it this week") as stored and synced; anything else is dropped.
+export function validPlan(p) {
+  if (!isObject(p) || typeof p.id !== 'string' || !p.id || typeof p.lessonId !== 'string' || typeof p.text !== 'string' || !p.text) return false;
+  if (!isDay(p.day) || !isDay(p.due) || ![0, 1, 2].includes(p.asked)) return false;
+  const o = p.outcome;
+  return o === null || (isObject(o) && ['yes', 'partly', 'no'].includes(o.used) && typeof o.note === 'string' && typeof o.ts === 'number');
+}
+export const strings = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string') : []);
+export const cleanPlans = (v) => (Array.isArray(v) ? v.filter(validPlan) : []);
 
 export function load(backend) {
   const base = defaultState();
@@ -64,15 +75,24 @@ export function load(backend) {
   if (!THEMES.includes(merged.settings.theme)) merged.settings.theme = 'auto';
   if (!Array.isArray(merged.history)) merged.history = [];
   if (!Array.isArray(merged.events)) merged.events = [];
+  // Course topics on an event (v9): a list of module ids; old events stay as they were.
+  merged.events = merged.events.map((e) => (isObject(e) && 'topics' in e ? { ...e, topics: strings(e.topics) } : e));
   if (!isObject(merged.reviews)) merged.reviews = {};
   if (!isObject(merged.friendAsks)) merged.friendAsks = {};
   if (!isObject(merged.friendRatings)) merged.friendRatings = {};
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [] }];
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped) }];
   }));
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
+  // Boxes run 1–6 since v9; a v8 queue (1–4) loads unchanged.
+  for (const [k, r] of Object.entries(merged.courseReviews)) {
+    if (!isObject(r)) continue;
+    const box = Math.round(Number(r.box));
+    const fixed = Number.isFinite(box) ? Math.min(6, Math.max(1, box)) : 1;
+    if (fixed !== r.box) merged.courseReviews[k] = { ...r, box: fixed };
+  }
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
   if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
   const pr = merged.programme;

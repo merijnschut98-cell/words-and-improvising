@@ -33,6 +33,7 @@ import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
 import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
+import { renderApply } from './ui/apply.js';
 
 const SCREENS = {
   home: renderHome,
@@ -50,6 +51,7 @@ const SCREENS = {
   due: renderDue,
   situation: renderSituation,
   glossary: renderGlossary,
+  apply: renderApply,
 };
 
 const storage = (() => {

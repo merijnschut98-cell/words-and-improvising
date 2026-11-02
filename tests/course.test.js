@@ -56,7 +56,7 @@ test('applyLesson: 20 XP the first time, 0 on a retake; passed stays the first t
   assert.equal(again.state.days[TODAY], 2);
   assert.equal(again.state.courses.eng.lessons['eng.flow.takt'].passed, NOW);
   assert.equal(again.state.courses.eng.sessions.length, 2);
-  assert.deepEqual(again.state.courses.eng.sessions[1], { day: TODAY, kind: 'lesson', lessonId: 'eng.flow.takt', correct: 1, total: 2, ts: NOW });
+  assert.deepEqual(again.state.courses.eng.sessions[1], { day: TODAY, kind: 'lesson', lessonId: 'eng.flow.takt', correct: 1, total: 2, cal: { sr: 1, st: 2, gr: 0, gt: 0 }, ts: NOW });
 });
 
 test('applyDue: 10 XP plus 1 per correct, capped at 20; schedules each; logs the session', () => {
@@ -253,4 +253,114 @@ test('lesson back: one step back at a time, through guesses, read blocks, exampl
   assert.deepEqual(b(1, 2, 1), { p: 1, block: 1, pre: 1 });
   assert.deepEqual(b(2, 0, 1), { p: 1, block: 2, pre: 1 }, 'from the example to the last read block');
   assert.deepEqual(b(3, 0, 1), { p: 2, block: 0, pre: 1 });
+});
+
+import { prepQuestions } from '../src/core/course.js';
+
+// Before the meeting: refresh what he learned for a real event.
+const PMODS = [
+  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, lessons: ['eng.flow.a', 'eng.flow.b'], questions: { 'eng.flow.a': 3, 'eng.flow.b': 2 } },
+  { id: 'eng.quality', subject: 'eng', track: 'basics', level: 2, lessons: ['eng.quality.a'], questions: { 'eng.quality.a': 4 } },
+];
+const PDAY = '2026-11-02';
+const rv = (box, due, lesson = 'eng.flow.a') => ({ box, due, lesson, subject: 'eng' });
+const prepState = () => {
+  let s = passed(defaultState(), 'eng.flow.a');
+  s = { ...s, courseReviews: {
+    'nl|eng.flow.a#r0': rv(4, '2026-11-20'),
+    'nl|eng.flow.a#r1': rv(2, '2026-11-09'),
+    'nl|eng.flow.a#r2': rv(2, '2026-11-05'),
+    'nl|eng.flow.b#r0': rv(1, '2026-11-03', 'eng.flow.b'),
+  } };
+  return { ...s, events: [{ id: 'ev1', type: 'client', date: '2026-11-04', text: 'Line review at the plant', reflection: null, topics: ['eng.flow'] }] };
+};
+
+test('prepQuestions: passed lessons only, lowest box then soonest due, owned last; none below three', () => {
+  const s = prepState();
+  assert.deepEqual(prepQuestions(s, s.events[0], 'nl', PDAY, 5, PMODS), ['eng.flow.a#r2', 'eng.flow.a#r1', 'eng.flow.a#r0']);
+  assert.deepEqual(prepQuestions(s, s.events[0], 'nl', PDAY, 2, PMODS), ['eng.flow.a#r2', 'eng.flow.a#r1']);
+  const unscheduled = { ...s, courseReviews: { 'nl|eng.flow.a#r0': rv(2, '2026-11-09') } };
+  assert.deepEqual(prepQuestions(unscheduled, s.events[0], 'nl', PDAY, 5, PMODS), ['eng.flow.a#r1', 'eng.flow.a#r2', 'eng.flow.a#r0'], 'a question never scheduled in this language comes first');
+  const tiny = [{ ...PMODS[0], questions: { 'eng.flow.a': 2, 'eng.flow.b': 2 } }];
+  assert.deepEqual(prepQuestions(s, s.events[0], 'nl', PDAY, 5, tiny), []);
+});
+
+test('course today: prep two days before an event with a topic, not three; once only; apply beats prep beats due', () => {
+  const s = prepState();
+  const pick = courseTodayPick(s, 'eng', 'nl', PDAY, PMODS);
+  assert.deepEqual(pick, { reason: 'prep', eventId: 'ev1', moduleId: 'eng.flow', questionIds: ['eng.flow.a#r2', 'eng.flow.a#r1', 'eng.flow.a#r0'], eventText: 'Line review at the plant' });
+  assert.notEqual(courseTodayPick(s, 'eng', 'nl', '2026-11-01', PMODS).reason, 'prep', 'three days before');
+  assert.notEqual(courseTodayPick(s, 'pm', 'nl', PDAY, PMODS).reason, 'prep', 'another subject');
+  const done = applyDue(s, { subject: 'eng', results: { 'eng.flow.a#r2': true }, lang: 'nl', prep: 'ev1' }, PDAY, NOW);
+  assert.deepEqual(done.state.courses.eng.prepped, ['ev1']);
+  assert.notEqual(courseTodayPick(done.state, 'eng', 'nl', PDAY, PMODS).reason, 'prep');
+  // Five due questions: prep still first.
+  const due5 = { ...s, courseReviews: { ...s.courseReviews, ...Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.quality.a#r${i}`, rv(1, PDAY, 'eng.quality.a')])), 'nl|eng.flow.b#r0': rv(1, PDAY, 'eng.flow.b') } };
+  assert.equal(courseTodayPick(due5, 'eng', 'nl', PDAY, PMODS).reason, 'prep');
+  // A plan follow-up beats it.
+  const plan = { id: 'p1', lessonId: 'eng.flow.a', text: 't', day: '2026-10-28', due: '2026-11-02', asked: 0, outcome: null };
+  const withPlan = { ...s, courses: { ...s.courses, eng: { ...s.courses.eng, plans: [plan] } } };
+  assert.equal(courseTodayPick(withPlan, 'eng', 'nl', PDAY, PMODS).reason, 'apply');
+});
+
+test('course today: an event topic with no passed lesson suggests that module’s lesson, with its own reason', () => {
+  const s = { ...defaultState(), events: [{ id: 'ev2', type: 'client', date: '2026-11-03', text: 'Quality review', reflection: null, topics: ['eng.quality'] }] };
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', PDAY, PMODS), { reason: 'lesson', moduleId: 'eng.quality', lessonId: 'eng.quality.a', why: 'prepLesson', eventId: 'ev2' });
+});
+
+test('a prep session counts once, like a due session', () => {
+  const s = prepState();
+  const r = applyDue(s, { subject: 'eng', results: { 'eng.flow.a#r2': true, 'eng.flow.a#r1': true, 'eng.flow.a#r0': false }, lang: 'nl', prep: 'ev1' }, PDAY, NOW);
+  assert.equal(r.xp, 12);
+  assert.equal(r.state.days[PDAY], 1);
+  assert.equal(r.state.courses.eng.sessions.length, 1);
+  const again = applyDue(r.state, { subject: 'eng', results: {}, lang: 'nl', prep: 'ev1' }, PDAY, NOW + 1);
+  assert.deepEqual(again.state.courses.eng.prepped, ['ev1']);
+});
+
+import { calibrationLine } from '../src/core/course.js';
+
+// Sure or guessing.
+test('quiz: sure is recorded on the first pass only, defaults to sure, and back drops it', () => {
+  const qs = [choice('l#r0'), choice('l#r1')];
+  let s = startQuiz(qs);
+  s = answerQuiz(s, qs, 'b', false);
+  assert.deepEqual(s.sure, { 'l#r0': false });
+  s = backQuiz(s, qs);
+  assert.deepEqual(s.sure, {}, 'taking an answer back drops its guess flag');
+  s = answerQuiz(s, qs, 'b');
+  s = answerQuiz(s, qs, 'a', false);
+  assert.deepEqual(s.sure, { 'l#r0': true, 'l#r1': false });
+  s = continueQuiz(s);
+  s = answerQuiz(s, qs, 'b', true);
+  assert.deepEqual(s.sure, { 'l#r0': true, 'l#r1': false }, 'later passes do not change it');
+  assert.deepEqual(s.firstTry, { 'l#r0': true, 'l#r1': false });
+});
+
+test('applyLesson: a correct guess does not create box 2; a sure correct answer does', () => {
+  const firstTry = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true };
+  const s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, sure: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW).state;
+  assert.equal(s.courseReviews['nl|eng.flow.takt#r0'].box, 1);
+  assert.equal(s.courseReviews['nl|eng.flow.takt#r1'].box, 2);
+  const d = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r1': true }, sure: { 'eng.flow.takt#r1': false }, lang: 'nl' }, '2026-11-05', NOW).state;
+  assert.equal(d.courseReviews['nl|eng.flow.takt#r1'].box, 2, 'a due guess keeps its box');
+});
+
+test('course today: lapsed questions count at most three toward "due"', () => {
+  const day = '2026-11-02';
+  const lapsed = Object.fromEntries([0, 1, 2, 3, 4, 5].map((i) => [`nl|eng.flow.a#r${i}`, { box: 2, due: '2026-08-01', lesson: 'eng.flow.a', subject: 'eng' }]));
+  const s = { ...defaultState(), courseReviews: lapsed };
+  assert.equal(courseTodayPick(s, 'eng', 'nl', day, MODS).reason, 'lesson', 'six lapsed count as three');
+  const plus2 = { ...s, courseReviews: { ...lapsed, 'nl|eng.flow.b#r0': { box: 2, due: day, lesson: 'eng.flow.b', subject: 'eng' }, 'nl|eng.flow.b#r1': { box: 2, due: day, lesson: 'eng.flow.b', subject: 'eng' } } };
+  assert.deepEqual(courseTodayPick(plus2, 'eng', 'nl', day, MODS), { reason: 'due', count: 5 });
+});
+
+test('calibration: sure and guessing answers, right and total, over the last 30 days', () => {
+  let s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', lang: 'nl',
+    firstTry: { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': false, 'eng.flow.takt#r2': true, 'eng.flow.takt#r3': false },
+    sure: { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true, 'eng.flow.takt#r2': false, 'eng.flow.takt#r3': false } }, TODAY, NOW).state;
+  s = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r1': true }, lang: 'nl' }, TODAY, NOW + 1).state;
+  assert.deepEqual(calibrationLine(s.courses.eng.sessions, TODAY), { sureRight: 2, sureTotal: 3, guessRight: 1, guessTotal: 2 });
+  assert.deepEqual(calibrationLine(s.courses.eng.sessions, '2026-12-20'), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 });
+  assert.deepEqual(calibrationLine([{ day: TODAY, kind: 'lesson' }], TODAY), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 }, 'v8 sessions count nothing');
 });

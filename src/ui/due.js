@@ -9,7 +9,7 @@ import { seededRng } from '../core/lesson.js';
 
 const seedOf = (s) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
 
-export function renderDue(app, { subject, questionIds = null, maintenance = false }, root) {
+export function renderDue(app, { subject, questionIds = null, maintenance = false, prep = null }, root) {
   const t = app.t;
   const seq = app.navSeq;
   const main = h('main', { class: 'screen due' }, h('p', { class: 'muted loading' }, '…'));
@@ -33,16 +33,16 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
       const questions = ids.map((id) => questionById(loaded.filter(Boolean), id)).filter(Boolean);
       if (!questions.length) {
         main.replaceChildren(h('section', { class: 'card load-error' }, h('p', {}, t('loadError')),
-          h('button', { class: 'btn btn-primary', onclick: () => app.go('due', { subject, questionIds, maintenance }) }, t('retry'))));
+          h('button', { class: 'btn btn-primary', onclick: () => app.go('due', { subject, questionIds, maintenance, prep }) }, t('retry'))));
         return;
       }
       const box = h('div', {});
       main.replaceChildren(box);
       renderQuiz(app, {
         questions,
-        onDone: (firstTry) => {
+        onDone: (firstTry, sure) => {
           const before = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length;
-          const res = applyDue(app.state, { subject, results: firstTry, lang: app.lang, maintenance }, app.today(), Date.now());
+          const res = applyDue(app.state, { subject, results: firstTry, sure, lang: app.lang, maintenance, prep }, app.today(), Date.now());
           app.setState(res.state);
           const owned = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length - before;
           main.replaceChildren(h('section', { class: 'card lesson-done due-done' },

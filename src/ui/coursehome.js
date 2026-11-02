@@ -4,14 +4,19 @@ import { ico } from './icons.js';
 import { masteryBadge } from './home.js';
 import { MODULES, TRACKS } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
-import { dueCourseQuestions } from '../core/coursereview.js';
+import { dueCount } from '../core/coursereview.js';
 
-export const COURSE_ICON = { due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
+export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
+
+// The reason line for a course pick: a lesson for an event says so; prep names the event.
+export const courseWhy = (t, pick) => t(`courseWhy_${pick.why || pick.reason}`, pick.eventText || '');
 
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
 // Opens what the Today card or a lesson row points at.
 export function openPick(app, subject, pick) {
+  if (pick.reason === 'apply') return app.go('apply', { subject, planId: pick.planId });
+  if (pick.reason === 'prep') return app.go('due', { subject, questionIds: pick.questionIds, prep: pick.eventId });
   if (pick.reason === 'due') return app.go('due', { subject });
   if (pick.reason === 'maintain') return app.go('due', { subject, questionIds: [pick.questionId], maintenance: true });
   if (pick.reason === 'lesson') return app.go('lesson', { subject, moduleId: pick.moduleId, lessonId: pick.lessonId });
@@ -37,8 +42,8 @@ function todayCard(app, subject) {
     h('p', { class: 'today-label' }, t('courseNext')),
     what,
     h('p', { class: 'muted small' }, meta && pick.lessonId
-      ? `${t(`courseWhy_${pick.reason}`)} · ${modTitle(app, meta)}`
-      : t(`courseWhy_${pick.reason}`)),
+      ? `${courseWhy(t, pick)} · ${modTitle(app, meta)}`
+      : courseWhy(t, pick)),
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },
@@ -76,7 +81,7 @@ function moduleRow(app, meta) {
 
 export function courseHome(app, subject) {
   const t = app.t;
-  const due = dueCourseQuestions(app.state.courseReviews, app.today(), subject, app.lang).length;
+  const due = dueCount(app.state.courseReviews, app.today(), subject, app.lang);
   const tracks = TRACKS[subject].map((track) => {
     const mods = MODULES.filter((m) => m.subject === subject && m.track === track);
     return mods.length ? h('section', { class: 'card track' },

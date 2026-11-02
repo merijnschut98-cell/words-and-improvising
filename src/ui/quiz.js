@@ -12,14 +12,28 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
   let st = startQuiz(questions);
   let lastPass = [];
 
+  // "I'm guessing": off (sure) on every new question; first pass only.
+  let guessing = false;
   const answer = (value) => {
     const q = questions[st.order[st.i]];
-    lastPass.push({ q, value, ok: judge(q, value) });
-    st = answerQuiz(st, questions, value);
+    const sure = st.pass === 1 ? !guessing : true;
+    lastPass.push({ q, value, ok: judge(q, value), sure: st.pass === 1 ? sure : null });
+    st = answerQuiz(st, questions, value, sure);
+    guessing = false;
     draw();
   };
 
-  const back = () => { st = backQuiz(st, questions); lastPass.pop(); draw(); };
+  const back = () => { st = backQuiz(st, questions); lastPass.pop(); guessing = false; draw(); };
+
+  const guessToggle = () => {
+    if (st.pass !== 1) return null;
+    const btn = h('button', {
+      class: 'btn btn-ghost small guess-toggle', 'aria-pressed': String(guessing),
+      onclick: () => { guessing = !guessing; btn.setAttribute('aria-pressed', String(guessing)); btn.classList.toggle('on', guessing); },
+    }, t('guessToggle'));
+    btn.classList.toggle('on', guessing);
+    return h('div', { class: 'guess-row' }, btn);
+  };
 
   function askCard() {
     const q = questions[st.order[st.i]];
@@ -36,11 +50,13 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
       setTimeout(() => input.focus(), 0);
       return h('section', { class: 'card quiz-card' }, progress,
         h('p', { class: 'quiz-q' }, q.q),
+        guessToggle(),
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), backBtn);
     }
     return h('section', { class: 'card quiz-card' }, progress,
       h('p', { class: 'quiz-q' }, q.q),
+      guessToggle(),
       h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => answer(o) }, o))), backBtn);
   }
 
@@ -48,11 +64,16 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
     const misses = lastPass.filter((x) => !x.ok).length;
     return h('section', { class: 'card quiz-review' },
       h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean')),
-      lastPass.map(({ q, value, ok }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}` },
-        h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
-        ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
-        h('p', { class: 'small' }, h('b', {}, correct(q))),
-        h('p', { class: 'muted small' }, q.why))),
+      lastPass.map(({ q, value, ok, sure }) => {
+        // A miss he was sure about: worth reading twice (errors made with confidence are the ones that get fixed).
+        const sureMiss = !ok && sure === true;
+        return h('div', { class: `review-row${ok ? ' ok' : ' miss'}${sureMiss ? ' sure-miss' : ''}` },
+          h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
+          sureMiss ? h('p', { class: 'sure-mark small' }, t('sureMiss')) : null,
+          ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
+          h('p', { class: 'small' }, h('b', {}, correct(q))),
+          h('p', { class: sureMiss ? 'small why-strong' : 'muted small' }, q.why));
+      }),
       h('button', {
         class: 'btn btn-primary',
         onclick: () => { st = continueQuiz(st); lastPass = []; draw(); },
@@ -60,7 +81,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
   }
 
   function draw() {
-    if (st.phase === 'done') { onDone(st.firstTry); return; }
+    if (st.phase === 'done') { onDone(st.firstTry, st.sure || {}); return; }
     box.replaceChildren(st.phase === 'review' ? reviewCard() : askCard());
     window.scrollTo(0, 0);
   }

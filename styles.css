@@ -774,6 +774,26 @@ details.finder summary::-webkit-details-marker { display: none; }
 .step-jump { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; min-width: 0; min-height: 32px; width: 100%; }
 .step-jump:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
 .guess-review { margin-top: 12px; }
+
+/* Use it this week: the plan on the done card, and the check-back. */
+.plan-card { margin-top: 12px; }
+.plan-label { display: block; font-weight: 600; color: var(--heading); margin: 0 0 8px; }
+.plan-card .text-input { margin: 0; resize: vertical; }
+.plan-card .muted { margin: 6px 0 0; }
+.apply-opts { margin-bottom: 10px; }
+.opt.chosen { border-color: var(--accent); background: var(--tint); font-weight: 600; }
+.apply .said { margin-top: 8px; }
+/* Before the meeting: link a course topic to a real event. */
+details.rw-topic { margin: 4px 0 8px; }
+details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-weight: 600; }
+.rw-refresh { margin-top: 6px; }
+/* Sure or guessing. */
+.guess-row { margin: 0 0 8px; }
+.guess-toggle { min-height: 44px; }
+.guess-toggle[aria-pressed="true"] { border-color: var(--accent); background: var(--tint); color: var(--heading); }
+.sure-mark { margin: 0 0 4px; color: var(--bad); font-weight: 600; }
+.why-strong { font-weight: 600; color: var(--ink); }
+.mono-line { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
 .step-current { color: var(--heading); font-weight: 700; border-bottom-color: var(--primary); }
 
 /* Settings groups. */

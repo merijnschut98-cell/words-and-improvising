@@ -1687,6 +1687,213 @@ await step('english + progress + settings', async () => {
   await shot('09-progress');
 });
 
+// v9: a separate context per feature, seeded from scratch, so the steps above keep their state.
+async function v9Context(seed = {}) {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const p = await c.newPage();
+  p.on('pageerror', (e) => errors.push(e.message));
+  p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+  await p.goto(BASE);
+  await p.evaluate(async (s) => {
+    const { isoWeekKey } = await import('./src/core/boss.js');
+    localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { subject: 'eng' }, ...s }));
+  }, seed);
+  await p.reload();
+  const shotP = async (n) => {
+    const text = await p.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
+  };
+  const dark = async (n, redraw) => {
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+    await redraw();
+    await shotP(n);
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  };
+  return { c, p, shotP, dark };
+}
+const yesterdayKey = () => { const d = new Date(Date.now() - 86400000); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+// Answers the visible quiz question correctly from the lesson file.
+async function answerRight(pg, lesson, scope = '.quiz-card') {
+  const text = (await pg.locator(`${scope} .quiz-q`).innerText()).trim();
+  const q = lesson.recall.find((x) => x.q.trim() === text);
+  if (!q) throw new Error(`question not in lesson: ${text}`);
+  if ('number' in q) { await pg.locator(`${scope} .quiz-num`).fill(String(q.number).replace('.', ',')); await pg.locator(`${scope} .btn-primary`).click(); }
+  else await pg.locator(`${scope} .opt`, { hasText: q.answer }).first().click();
+  return q;
+}
+
+await step('use it this week: plan at lesson end, check back two days later', async () => {
+  // A speaking round today, so the start screen suggests Engineering.
+  const round = await page.evaluate(() => ((JSON.parse(localStorage.getItem('spraakwater:v1')) || {}).history || [])[0]);
+  const r0 = round || { ts: Date.now(), drill: 'minute', promptId: 'topic:t1', metrics: { words: 50, fillerRate: 2 } };
+  const { c, p, shotP, dark } = await v9Context();
+  await p.locator('.course-today .today-go').waitFor();
+  await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.takt' }));
+  await p.locator('.pre-card').waitFor();
+  const lesson = await playLesson(p, 'eng', 'flow', 'eng.flow.takt');
+  await onePrimary(p, 'lesson done with the plan field');
+  await p.locator('.plan-card .plan-input').fill('Als de planner maandag de takt noemt, dan vraag ik hoe die berekend is.');
+  await shotP('90-plan-field');
+  await p.locator('.lesson-done ~ .btn', { hasText: 'Terug naar de cursus' }).click();
+  await p.locator('.course-home').waitFor();
+  let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (!st.courses.eng.plans[0] || !st.courses.eng.plans[0].text.startsWith('Als de planner')) throw new Error('plan not saved');
+  if (st.xp !== 20) throw new Error(`a plan gave XP: ${st.xp}`);
+  // Four days later: the plan is due.
+  await p.evaluate(([r, y]) => {
+    const s = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    s.courses.eng.plans[0].due = y;
+    s.courses.eng.sessions = s.courses.eng.sessions.map((x) => ({ ...x, day: y }));
+    s.history = [{ ...r, ts: Date.now() }];
+    s.ui = { ...s.ui, subject: 'start' };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(s));
+  }, [r0, yesterdayKey()]);
+  await p.reload();
+  await p.locator('.start-card.start-eng.suggested', { hasText: 'Je wilde dit gebruiken' }).waitFor();
+  await p.locator('.begin-btn').click();
+  await p.locator('.screen.apply .plan-text', { hasText: 'Als de planner' }).waitFor();
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('apply: filled button next to the choices');
+  await shotP('91-apply');
+  await dark('91-apply-dark', async () => {
+    await p.evaluate(() => { const s = window.__app.state; window.__app.go('apply', { subject: 'eng', planId: s.courses.eng.plans[0].id }); });
+    await p.locator('.screen.apply .plan-text').waitFor();
+  });
+  await p.locator('.screen.apply .opt', { hasText: 'Deels' }).click();
+  await p.locator('.screen.apply .opt[aria-pressed="true"]', { hasText: 'Deels' }).waitFor();
+  await onePrimary(p, 'apply after the choice');
+  await p.locator('.apply-note').fill('Gevraagd, bleek bruto tijd.');
+  await p.locator('.apply-save').click();
+  await p.locator('.screen.apply .quiz-card').waitFor();
+  if (await p.locator('.screen.apply .opt').count()) {
+    if (await p.locator('.btn-primary:visible').count()) throw new Error('apply quiz: filled button next to the options');
+  } else await onePrimary(p, 'apply quiz');
+  await answerRight(p, lesson, '.screen.apply .quiz-card');
+  await p.locator('.screen.apply .quiz-review').waitFor();
+  await onePrimary(p, 'apply review');
+  await p.locator('.screen.apply .quiz-review .btn-primary').click();
+  await p.locator('.apply-done').waitFor();
+  await onePrimary(p, 'apply done');
+  await p.locator('.screen.apply .btn-primary').click();
+  st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const plan = st.courses.eng.plans[0];
+  if (!plan.outcome || plan.outcome.used !== 'partly' || plan.outcome.note !== 'Gevraagd, bleek bruto tijd.') throw new Error(`outcome: ${JSON.stringify(plan.outcome)}`);
+  if (st.xp !== 20) throw new Error(`the check-back gave XP: ${st.xp}`);
+  await p.evaluate(() => window.__app.setSubject('eng'));
+  await p.locator('.course-today').waitFor();
+  if ((await p.locator('.course-today').innerText()).includes('Je wilde dit gebruiken')) throw new Error('Today is still the plan');
+  await c.close();
+});
+
+await step('before the meeting: event with a topic offers a refresh', async () => {
+  const later = new Date(Date.now() + 9 * 86400000);
+  const laterKey = `${later.getFullYear()}-${String(later.getMonth() + 1).padStart(2, '0')}-${String(later.getDate()).padStart(2, '0')}`;
+  const lid = 'eng.gridbasics.basics';
+  const { c, p, shotP, dark } = await v9Context({
+    xp: 20,
+    courses: { eng: { lessons: { [lid]: { read: 1, passed: 1 } }, sessions: [] }, pm: { lessons: {}, sessions: [] } },
+    courseReviews: Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|${lid}#r${i}`, { box: 2, due: laterKey, lesson: lid, subject: 'eng' }])),
+  });
+  const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/gridbasics.nl.js')).default.lessons.find((l) => l.id === id), lid);
+  await p.locator('.course-today').waitFor();
+  await p.evaluate(() => window.__app.go('realweek'));
+  await p.locator('.realweek .text-input').waitFor();
+  await onePrimary(p, 'real week form');
+  const tomorrow = new Date(Date.now() + 86400000);
+  await p.locator('.realweek input[type="date"]').fill(`${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`);
+  await p.locator('.realweek .text-input').fill('Netcongestie-overleg bij Enexis');
+  await p.locator('details.rw-topic > summary').click();
+  await p.locator('.rw-topic-select').selectOption('eng.gridbasics');
+  await onePrimary(p, 'real week form with the topic open');
+  await shotP('92-event-topic');
+  await p.getByRole('button', { name: /Toevoegen/ }).click();
+  await p.locator('.rw-refresh', { hasText: 'Het elektriciteitsnet' }).waitFor();
+  await onePrimary(p, 'real week with an event');
+  const st0 = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (JSON.stringify(st0.events[0].topics) !== '["eng.gridbasics"]') throw new Error(`topics: ${JSON.stringify(st0.events[0].topics)}`);
+  await p.evaluate(() => window.__app.go('home'));
+  await p.locator('.course-today', { hasText: 'Voor Netcongestie-overleg bij Enexis' }).waitFor();
+  await shotP('93-prep-today');
+  await dark('93-prep-today-dark', async () => {
+    await p.evaluate(() => window.__app.go('home'));
+    await p.locator('.course-today', { hasText: 'Voor Netcongestie' }).waitFor();
+  });
+  await p.locator('.course-today .today-go').click();
+  await p.locator('.screen.due .quiz-card').waitFor();
+  for (let i = 0; i < 4; i++) {
+    await p.locator('.screen.due .quiz-card').waitFor();
+    if (!(await p.locator('.screen.due .opt').count())) await onePrimary(p, 'prep due screen');
+    else if (await p.locator('.btn-primary:visible').count()) throw new Error('prep: filled button next to the options');
+    await answerRight(p, lesson, '.screen.due .quiz-card');
+  }
+  await p.locator('.screen.due .quiz-review .btn-primary').click();
+  await p.locator('.due-done').waitFor();
+  await onePrimary(p, 'prep done');
+  const st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (JSON.stringify(st.courses.eng.prepped) !== JSON.stringify([st.events[0].id])) throw new Error(`prepped: ${JSON.stringify(st.courses.eng.prepped)}`);
+  if (Object.values(st.days).reduce((a, b) => a + b, 0) !== 1) throw new Error('a prep session counts once');
+  await p.locator('.due-done ~ .btn-primary').click();
+  await p.locator('.course-today').waitFor();
+  if ((await p.locator('.course-today').innerText()).includes('Voor Netcongestie')) throw new Error('Today still offers the refresh');
+  await c.close();
+});
+
+await step('guessing: a correct guess does not climb; a sure miss is marked', async () => {
+  const lid = 'eng.flow.changeover';
+  const { c, p, shotP, dark } = await v9Context();
+  const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
+  await p.locator('.course-today').waitFor();
+  await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
+  for (const q of lesson.pre) {
+    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.pre-card .btn-primary').click(); }
+    else await p.locator('.pre-card .opt').first().click();
+    await p.locator('.pre-card .btn-primary').click();
+  }
+  for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
+  await p.locator('.example-card').waitFor();
+  await p.locator('.lesson > .btn-primary').click();
+  // Q1 (a choice): say "I'm guessing", then answer it right.
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').click();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the toggle');
+  await shotP('94-guess-toggle');
+  await answerRight(p, lesson);
+  // Q2 (a number): the toggle is back to sure; one filled button; answer wrong while sure.
+  await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').waitFor();
+  await onePrimary(p, 'quiz card with the toggle');
+  const q2 = lesson.recall[1];
+  await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
+  await p.locator('.quiz-card .btn-primary').click();
+  for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
+  await p.locator('.quiz-review').waitFor();
+  if (await p.locator('.review-row.sure-miss').count() !== 1) throw new Error('expected one sure miss');
+  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Je was zeker' }).waitFor();
+  await onePrimary(p, 'quiz review with a sure miss');
+  await shotP('95-sure-miss-review');
+  await dark('95-sure-miss-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
+  await p.locator('.quiz-review .btn-primary').click();
+  await answerRight(p, lesson);
+  await p.locator('.quiz-review .btn-primary').click();
+  await p.locator('.lesson-done').waitFor();
+  let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const box = (i) => st.courseReviews[`nl|${lid}#r${i}`].box;
+  if (box(0) !== 1 || box(1) !== 1 || box(2) !== 2) throw new Error(`boxes: ${[0, 1, 2, 3].map(box)}`);
+  // Back after a long break: a question due 90 days ago is still in the queue.
+  const old = new Date(Date.now() - 90 * 86400000);
+  const oldKey = `${old.getFullYear()}-${String(old.getMonth() + 1).padStart(2, '0')}-${String(old.getDate()).padStart(2, '0')}`;
+  await p.evaluate(([k, d]) => {
+    const s = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    s.courseReviews = { [k]: { box: 3, due: d, lesson: 'eng.flow.takt', subject: 'eng' } };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(s));
+  }, ['nl|eng.flow.takt#r1', oldKey]);
+  await p.reload();
+  await p.locator('.due-card', { hasText: '1' }).click();
+  const takt = await p.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.takt'));
+  await p.locator('.screen.due .quiz-q', { hasText: takt.recall[1].q.trim().slice(0, 30) }).waitFor();
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

@@ -120,3 +120,14 @@ test('every nudged skill maps to an existing drill', async () => {
   const { DRILLS } = await import('../src/core/progress.js');
   for (const s of SKILLS.filter((x) => x !== 'other')) assert.ok(DRILLS.includes(SKILL_DRILL[s]), s);
 });
+
+test('addEvent keeps up to two known course topics and drops the rest; no topics behaves as before', () => {
+  const [e] = addEvent([], ev({ topics: ['eng.gridbasics', 'nope.module', 'pm.intake', 'eng.flow'] }), 'e1');
+  assert.deepEqual(e.topics, ['eng.gridbasics', 'pm.intake']);
+  const [plain] = addEvent([], ev(), 'e2');
+  assert.deepEqual(plain, { id: 'e2', type: 'client', date: '2026-10-29', text: 'Kick-off meeting with Philips', reflection: null });
+  const [junk] = addEvent([], ev({ topics: 'eng.flow' }), 'e3');
+  assert.equal('topics' in junk, false);
+  const [dup] = addEvent([], ev({ topics: ['eng.flow', 'eng.flow'] }), 'e4');
+  assert.deepEqual(dup.topics, ['eng.flow']);
+});

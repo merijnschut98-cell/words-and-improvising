@@ -201,13 +201,13 @@ test('finishing the welcome clears the pending flag', async () => {
 
 test('courses and courseReviews default and coerce', () => {
   const d = load(fakeBackend());
-  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } });
+  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } });
   assert.deepEqual(d.courseReviews, {});
   const bad = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: { eng: { lessons: 'x', sessions: {} } }, courseReviews: [], ui: { subject: 'cooking' } }) }));
-  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } });
+  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } });
   assert.deepEqual(bad.courseReviews, {});
   assert.equal('subject' in bad.ui, false);
-  const good = { eng: { lessons: { 'eng.flow.takt': { read: 1, passed: 2 } }, sessions: [{ day: '2026-11-02', kind: 'lesson', correct: 3, total: 3, ts: 2 }] }, pm: { lessons: {}, sessions: [] } };
+  const good = { eng: { lessons: { 'eng.flow.takt': { read: 1, passed: 2 } }, sessions: [{ day: '2026-11-02', kind: 'lesson', correct: 3, total: 3, ts: 2 }], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } };
   const ok = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: good, courseReviews: { 'nl|eng.flow.takt#r0': { box: 2, due: '2026-11-05', lesson: 'eng.flow.takt', subject: 'eng' } }, ui: { subject: 'eng' } }) }));
   assert.deepEqual(ok.courses, good);
   assert.equal(ok.courseReviews['nl|eng.flow.takt#r0'].box, 2);
@@ -219,4 +219,22 @@ test('theme is auto, light or dark; retired themes and junk load as auto', () =>
   for (const old of ['default', 'ocean', 'forest', 'night', 'purple', 3, null]) assert.equal(withTheme(old).settings.theme, 'auto', String(old));
   for (const ok of ['auto', 'light', 'dark']) assert.equal(withTheme(ok).settings.theme, ok);
   assert.equal(load(fakeBackend({ [KEY]: JSON.stringify({ settings: { lang: 'en' } }) })).settings.theme, 'auto');
+});
+
+test('v9: event topics and prepped are coerced', () => {
+  const ev = { id: 'e1', type: 'client', date: '2026-11-04', text: 'x', reflection: null };
+  const s = load(fakeBackend({ [KEY]: JSON.stringify({ events: [{ ...ev, topics: 'eng.flow' }, { ...ev, id: 'e2', topics: ['eng.flow', 3] }, { ...ev, id: 'e3' }], courses: { eng: { prepped: 'x' }, pm: { prepped: ['ev9', 4] } } }) }));
+  assert.deepEqual(s.events[0].topics, []);
+  assert.deepEqual(s.events[1].topics, ['eng.flow']);
+  assert.equal('topics' in s.events[2], false, 'an old event stays as it was');
+  assert.deepEqual(s.courses.eng.prepped, []);
+  assert.deepEqual(s.courses.pm.prepped, ['ev9']);
+});
+
+test('v9: course review boxes load as an integer 1–6; a v8 queue (boxes 1–4) loads unchanged', () => {
+  const v8 = { 'nl|eng.flow.takt#r0': { box: 1, due: '2026-11-03', lesson: 'eng.flow.takt', subject: 'eng' }, 'nl|eng.flow.takt#r1': { box: 4, due: '2026-12-03', lesson: 'eng.flow.takt', subject: 'eng' } };
+  const ok = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courseReviews: v8 }) }));
+  assert.deepEqual(ok.courseReviews, v8);
+  const bad = load(fakeBackend({ [KEY]: JSON.stringify({ courseReviews: { a: { box: 9, due: 'd' }, b: { box: 0, due: 'd' }, c: { box: 2.6, due: 'd' }, d: { box: 'x', due: 'd' } } }) }));
+  assert.deepEqual(Object.fromEntries(Object.entries(bad.courseReviews).map(([k, v]) => [k, v.box])), { a: 6, b: 1, c: 3, d: 1 });
 });
