@@ -1,0 +1,84 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { mergeStates, syncable } from '../src/core/sync.js';
+import { defaultState } from '../src/core/storage.js';
+
+const h = (ts, drill = 'minute') => ({ ts, drill, promptId: `topic:t${ts}`, metrics: { words: 50, fillerRate: 2 } });
+const base = () => defaultState();
+
+test('syncable never carries settings (API key) or device ui', () => {
+  const s = { ...base(), settings: { ...base().settings, apiKey: 'sk-secret' }, ui: { subject: 'eng' } };
+  const out = syncable(s);
+  assert.equal('settings' in out, false);
+  assert.equal('ui' in out, false);
+  assert.ok(!JSON.stringify(out).includes('sk-secret'));
+});
+
+test('merge keeps settings and ui from the local device', () => {
+  const local = { ...base(), settings: { ...base().settings, apiKey: 'k', lang: 'en' }, ui: { subject: 'pm' } };
+  const remote = { ...syncable(base()), xp: 50 };
+  const m = mergeStates(local, remote);
+  assert.equal(m.settings.apiKey, 'k');
+  assert.equal(m.settings.lang, 'en');
+  assert.equal(m.ui.subject, 'pm');
+});
+
+test('history is a union by timestamp, newest first, without duplicates', () => {
+  const local = { ...base(), history: [h(5), h(3), h(1)] };
+  const remote = { ...base(), history: [h(4), h(3), h(2)] };
+  assert.deepEqual(mergeStates(local, remote).history.map((e) => e.ts), [5, 4, 3, 2, 1]);
+});
+
+test('course lessons merge per lesson: earliest passed, latest situation and say-it; sessions union', () => {
+  const local = { ...base(), courses: { eng: { lessons: { 'eng.flow.takt': { read: 10, passed: 10, situation: { pts: 1, ts: 11 } } }, sessions: [{ ts: 10, day: 'a', kind: 'lesson' }] }, pm: { lessons: {}, sessions: [] } } };
+  const remote = { ...base(), courses: { eng: { lessons: { 'eng.flow.takt': { read: 5, passed: 6, sayIt: 20 }, 'eng.flow.oee': { read: 7, passed: 8 } }, sessions: [{ ts: 6, day: 'b', kind: 'lesson' }] }, pm: { lessons: { 'pm.intake.ask': { read: 1 } }, sessions: [] } } };
+  const m = mergeStates(local, remote);
+  assert.deepEqual(m.courses.eng.lessons['eng.flow.takt'], { read: 5, passed: 6, situation: { pts: 1, ts: 11 }, sayIt: 20 });
+  assert.ok(m.courses.eng.lessons['eng.flow.oee'].passed);
+  assert.ok(m.courses.pm.lessons['pm.intake.ask']);
+  assert.deepEqual(m.courses.eng.sessions.map((x) => x.ts), [10, 6]);
+});
+
+test('reviews keep the entry with the later due date, per key', () => {
+  const local = { ...base(), courseReviews: { 'nl|a#r0': { box: 3, due: '2026-11-10' }, 'nl|b#r0': { box: 1, due: '2026-11-03' } }, reviews: { 'nl|topic:t1': { box: 1, due: '2026-11-03' } } };
+  const remote = { ...base(), courseReviews: { 'nl|a#r0': { box: 2, due: '2026-11-05' }, 'nl|c#r0': { box: 2, due: '2026-11-06' } }, reviews: { 'nl|topic:t1': { box: 2, due: '2026-11-06' } } };
+  const m = mergeStates(local, remote);
+  assert.equal(m.courseReviews['nl|a#r0'].box, 3);
+  assert.ok(m.courseReviews['nl|b#r0'] && m.courseReviews['nl|c#r0']);
+  assert.equal(m.reviews['nl|topic:t1'].box, 2);
+});
+
+test('days take the per-day maximum; xp the maximum; streak the longer run with the later day', () => {
+  const local = { ...base(), days: { '2026-11-01': 2, '2026-11-02': 1 }, xp: 300, streak: { count: 4, lastDay: '2026-11-02' } };
+  const remote = { ...base(), days: { '2026-11-02': 3, '2026-10-30': 1 }, xp: 280, streak: { count: 2, lastDay: '2026-11-01' } };
+  const m = mergeStates(local, remote);
+  assert.deepEqual(m.days, { '2026-10-30': 1, '2026-11-01': 2, '2026-11-02': 3 });
+  assert.equal(m.xp, 300);
+  assert.deepEqual(m.streak, { count: 4, lastDay: '2026-11-02' });
+});
+
+test('events merge by id and a reflected event wins; bests keep the better value', () => {
+  const ev = (id, reflection = null) => ({ id, type: 'client', date: '2026-11-01', text: 'x', reflection });
+  const local = { ...base(), events: [ev('a'), ev('b', { rating: 4 })], bests: { words: { value: 120, ts: 1 }, fillerRate: { value: 2.1, ts: 1 }, byDrill: {} } };
+  const remote = { ...base(), events: [ev('a', { rating: 3 }), ev('c')], bests: { words: { value: 90, ts: 2 }, fillerRate: { value: 1.4, ts: 2 }, byDrill: {} } };
+  const m = mergeStates(local, remote);
+  assert.deepEqual(m.events.map((e) => e.id).sort(), ['a', 'b', 'c']);
+  assert.equal(m.events.find((e) => e.id === 'a').reflection.rating, 3);
+  assert.equal(m.bests.words.value, 120);
+  assert.equal(m.bests.fillerRate.value, 1.4, 'fewer fillers is better');
+});
+
+test('merge is idempotent and the unions do not depend on order', () => {
+  const a = { ...base(), history: [h(3), h(1)], xp: 40, days: { d1: 1 } };
+  const b = { ...base(), history: [h(2)], xp: 60, days: { d2: 2 } };
+  const ab = mergeStates(a, b);
+  assert.deepEqual(mergeStates(ab, syncable(ab)).history, ab.history);
+  assert.deepEqual(mergeStates(b, syncable(a)).history.map((e) => e.ts), ab.history.map((e) => e.ts));
+  assert.deepEqual(mergeStates(b, syncable(a)).days, ab.days);
+});
+
+test('a missing or broken remote changes nothing', () => {
+  const local = { ...base(), xp: 10, history: [h(1)] };
+  assert.deepEqual(mergeStates(local, null), local);
+  assert.deepEqual(mergeStates(local, 'garbage'), local);
+});
