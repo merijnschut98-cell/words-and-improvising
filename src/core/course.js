@@ -396,7 +396,7 @@ export function skipPlan(state, { subject, id }, today, now = dayStart(today)) {
   return withPlans(state, subject, (list) => list.map((p) => {
     if (p.id !== id) return p;
     const asked = (p.asked || 0) + 1;
-    return asked >= 2 ? { ...p, asked: 2, outcome: { used: 'no', note: '', ts: now } } : { ...p, asked, due: shiftDay(today, 2) };
+    return asked >= 2 ? { ...p, asked: 2, outcome: { used: 'no', note: '', ts: now, expired: true } } : { ...p, asked, due: shiftDay(today, 2) };
   }));
 }
 

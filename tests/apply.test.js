@@ -48,7 +48,7 @@ test('skipPlan asks again two days later, and the second skip expires it', () =>
   assert.deepEqual([plans(s)[0].asked, plans(s)[0].due, plans(s)[0].outcome], [1, '2026-11-06', null]);
   s = skipPlan(s, { subject: 'eng', id: 'p1' }, '2026-11-06', NOW);
   assert.equal(plans(s)[0].asked, 2);
-  assert.deepEqual(plans(s)[0].outcome, { used: 'no', note: '', ts: NOW });
+  assert.deepEqual(plans(s)[0].outcome, { used: 'no', note: '', ts: NOW, expired: true });
   assert.deepEqual(openPlans(s, 'eng', '2026-11-30'), []);
 });
 
@@ -141,8 +141,8 @@ test('storage: a v8 blob without plans loads with plans []; junk is coerced; bad
 test('sync: plans union by id; an answered plan beats an open one; later answer wins; asked takes the max; idempotent', () => {
   const base = { id: 'p1', lessonId: 'eng.flow.a', text: 't', day: MON, due: '2026-11-04', asked: 0, outcome: null };
   const withPlans = (list) => ({ ...defaultState(), courses: { ...defaultState().courses, eng: { lessons: {}, sessions: [], plans: list } } });
-  const a = withPlans([{ ...base, asked: 1, due: '2026-11-06' }, { ...base, id: 'p2', day: '2026-11-03' }]);
-  const b = withPlans([{ ...base, outcome: { used: 'yes', note: '', ts: 5 } }, { ...base, id: 'p3', day: '2026-11-01' }]);
+  const a = withPlans([{ ...base, asked: 1, due: '2026-11-06' }, { ...base, id: 'p2', lessonId: 'eng.flow.b', day: '2026-11-03' }]);
+  const b = withPlans([{ ...base, outcome: { used: 'yes', note: '', ts: 5 } }, { ...base, id: 'p3', lessonId: 'eng.flow.c', day: '2026-11-01' }]);
   const m = mergeStates(a, b);
   assert.deepEqual(plans(m).map((p) => p.id).sort(), ['p1', 'p2', 'p3']);
   const p1 = plans(m).find((p) => p.id === 'p1');
@@ -183,4 +183,13 @@ test('plan draft: device only (never synced); a malformed one is dropped on load
   assert.equal('planDraft' in odd.ui, false);
   const good = load(backend(JSON.stringify({ ...defaultState(), ui: { planDraft: { subject: 'pm', lessonId: 'pm.x.a', text: 'y' } } })));
   assert.deepEqual(good.ui.planDraft, { subject: 'pm', lessonId: 'pm.x.a', text: 'y' });
+});
+
+test('a plan that expires after two skips is marked expired, unlike a real "no"', async () => {
+  const { addPlan, skipPlan } = await import('../src/core/course.js');
+  const { defaultState } = await import('../src/core/storage.js');
+  let s = addPlan(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', text: 'Als x, dan y' }, '2026-11-02', 'p1');
+  s = skipPlan(s, { subject: 'eng', id: 'p1' }, '2026-11-04');
+  s = skipPlan(s, { subject: 'eng', id: 'p1' }, '2026-11-06');
+  assert.equal(s.courses.eng.plans[0].outcome.expired, true);
 });

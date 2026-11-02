@@ -157,3 +157,22 @@ test('a remote review box outside 1–6 is clamped on merge, not only at the nex
   assert.equal(m.courseReviews[k].box, 6);
   assert.equal(m.courseReviews['nl|x#r0'].box, 1);
 });
+
+test('plans: a real answer on one device beats an auto-expiry on the other, even if the expiry is later', () => {
+  const p = { id: 'p1', lessonId: 'eng.flow.takt', text: 'Als x, dan y', day: '2026-11-01', due: '2026-11-03' };
+  const withPlans = (plans) => ({ ...base(), courses: { ...base().courses, eng: { lessons: {}, sessions: [], plans, prepped: [] } } });
+  const answered = withPlans([{ ...p, asked: 0, outcome: { used: 'yes', note: 'gedaan', ts: 100 } }]);
+  const expired = withPlans([{ ...p, asked: 2, outcome: { used: 'no', note: '', ts: 200, expired: true } }]);
+  for (const m of [mergeStates(answered, expired), mergeStates(expired, answered)]) {
+    assert.equal(m.courses.eng.plans[0].outcome.used, 'yes');
+  }
+});
+
+test('plans: two devices with an open plan for the same lesson keep only the newest open one', () => {
+  const mk = (id, day) => ({ id, lessonId: 'eng.flow.takt', text: `plan ${id}`, day, due: '2026-11-05', asked: 0, outcome: null });
+  const withPlans = (plans) => ({ ...base(), courses: { ...base().courses, eng: { lessons: {}, sessions: [], plans, prepped: [] } } });
+  for (const m of [mergeStates(withPlans([mk('a', '2026-11-01')]), withPlans([mk('b', '2026-11-02')])), mergeStates(withPlans([mk('b', '2026-11-02')]), withPlans([mk('a', '2026-11-01')]))]) {
+    const open = m.courses.eng.plans.filter((x) => !x.outcome);
+    assert.deepEqual(open.map((x) => x.id), ['b']);
+  }
+});

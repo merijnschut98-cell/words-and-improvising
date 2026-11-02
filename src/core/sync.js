@@ -62,6 +62,9 @@ function mergeLesson(x, y) {
 // later one wins; asked takes the maximum (with the due date that goes with it).
 const PLANS_CAP = 50;
 function mergePlan(x, y) {
+  // A real answer beats an automatic expiry, whichever came later.
+  const real = (p) => !!p.outcome && !p.outcome.expired;
+  if (real(x) !== real(y)) return { ...(real(x) ? x : y), asked: Math.max(x.asked, y.asked) };
   const ax = x.outcome ? x.outcome.ts : -1;
   const ay = y.outcome ? y.outcome.ts : -1;
   let win;
@@ -73,7 +76,15 @@ function mergePlan(x, y) {
 function mergePlans(a, b) {
   const byId = new Map();
   for (const p of [...cleanPlans(a), ...cleanPlans(b)]) byId.set(p.id, byId.has(p.id) ? mergePlan(byId.get(p.id), p) : p);
-  return [...byId.values()].sort((x, y) => (x.day !== y.day ? (x.day < y.day ? 1 : -1) : x.id < y.id ? 1 : x.id > y.id ? -1 : 0)).slice(0, PLANS_CAP);
+  const sorted = [...byId.values()].sort((x, y) => (x.day !== y.day ? (x.day < y.day ? 1 : -1) : x.id < y.id ? 1 : x.id > y.id ? -1 : 0));
+  // One open plan per lesson, as on a single device: the newest stays.
+  const openFor = new Set();
+  return sorted.filter((p) => {
+    if (p.outcome) return true;
+    if (openFor.has(p.lessonId)) return false;
+    openFor.add(p.lessonId);
+    return true;
+  }).slice(0, PLANS_CAP);
 }
 
 function mergeCourses(a, b) {
