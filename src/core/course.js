@@ -2,8 +2,8 @@
 // work feeds the shared XP, days and streak. Pure.
 import { updateStreak, reconcileStreak } from './progress.js';
 import { isoWeekKey } from './boss.js';
-import { scheduleCourseReview } from './coursereview.js';
-import { lessonOf } from '../content/courses/index.js';
+import { scheduleCourseReview, dueCourseQuestions, maintenanceQuestion } from './coursereview.js';
+import { lessonOf, MODULES } from '../content/courses/index.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -120,4 +120,60 @@ export function markSayIt(state, subject, lessonId, now) {
     const before = c.lessons[lessonId] || {};
     return { ...c, lessons: { ...c.lessons, [lessonId]: { ...before, sayIt: now } } };
   });
+}
+
+// Mastery per module: learn → practise (every lesson passed) → own (every
+// recall question owned in this language).
+export function moduleMastery(state, meta, lang) {
+  const lessons = (((state.courses || {})[meta.subject]) || { lessons: {} }).lessons;
+  if (!meta.lessons.every((id) => lessons[id] && lessons[id].passed)) return 'learn';
+  const reviews = state.courseReviews || {};
+  const owned = meta.lessons.every((id) => Array.from({ length: (meta.questions || {})[id] || 0 },
+    (_, i) => ((reviews[`${lang}|${id}#r${i}`] || {}).box || 0) >= 4).every(Boolean));
+  return owned ? 'own' : 'practise';
+}
+
+const passedIn = (state, subject) => (((state.courses || {})[subject]) || { lessons: {} }).lessons;
+
+export function nextLesson(state, meta) {
+  const lessons = passedIn(state, meta.subject);
+  return meta.lessons.find((id) => !(lessons[id] && lessons[id].passed)) || null;
+}
+
+// A module he started first; otherwise the lowest level across tracks, in
+// index order. Null when every lesson of the subject is passed.
+export function recommendedModule(state, subject, modules = MODULES) {
+  const open = modules.filter((m) => m.subject === subject && nextLesson(state, m));
+  const lessons = passedIn(state, subject);
+  const started = open.find((m) => m.lessons.some((id) => lessons[id] && lessons[id].passed));
+  if (started) return started.id;
+  const first = [...open].sort((a, b) => a.level - b.level || modules.indexOf(a) - modules.indexOf(b))[0];
+  return first ? first.id : null;
+}
+
+// One next thing per course, deterministic for a state and day.
+export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
+  const reviews = state.courseReviews || {};
+  const due = dueCourseQuestions(reviews, today, subject, lang).length;
+  if (due >= 5) return { reason: 'due', count: due };
+  const rec = recommendedModule(state, subject, modules);
+  if (rec) return { reason: 'lesson', moduleId: rec, lessonId: nextLesson(state, modules.find((m) => m.id === rec)) };
+  const lessons = passedIn(state, subject);
+  const all = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons.map((lessonId) => ({ moduleId: m.id, lessonId })));
+  const done = all.filter((x) => lessons[x.lessonId] && lessons[x.lessonId].passed);
+  const sit = done.find((x) => !lessons[x.lessonId].situation);
+  if (sit) return { reason: 'situation', ...sit };
+  const say = done.find((x) => !lessons[x.lessonId].sayIt);
+  if (say) return { reason: 'sayIt', ...say };
+  if (due) return { reason: 'due', count: due };
+  const last = (((state.courses || {})[subject]) || {}).lastMaintenance || null;
+  const keep = maintenanceQuestion(reviews, today, subject, lang, last);
+  if (keep) return { reason: 'maintain', questionId: keep };
+  return { reason: 'done' };
+}
+
+// Every term of the loaded modules, with where it came from, A–Z.
+export function glossary(modules) {
+  return (modules || []).flatMap((m) => (m.lessons || []).flatMap((l) => (l.terms || []).map((x) => ({ term: x.term, def: x.def, lessonId: l.id, moduleId: m.id }))))
+    .sort((a, b) => a.term.localeCompare(b.term, undefined, { sensitivity: 'base' }));
 }

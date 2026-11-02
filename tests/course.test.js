@@ -93,3 +93,71 @@ test('markSayIt stores the time; sessions are capped at 200', () => {
   assert.equal(st.courses.eng.sessions.length, 200);
   assert.equal(st.courses.eng.sessions[0].ts, NOW + 204);
 });
+
+import { moduleMastery, recommendedModule, nextLesson, courseTodayPick, glossary } from '../src/core/course.js';
+
+const MODS = [
+  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, lessons: ['eng.flow.a', 'eng.flow.b'], questions: { 'eng.flow.a': 2, 'eng.flow.b': 1 } },
+  { id: 'eng.machining', subject: 'eng', track: 'discrete', level: 1, lessons: ['eng.machining.a'], questions: { 'eng.machining.a': 1 } },
+  { id: 'eng.quality', subject: 'eng', track: 'basics', level: 2, lessons: ['eng.quality.a'], questions: { 'eng.quality.a': 1 } },
+  { id: 'pm.intake', subject: 'pm', track: 'project', level: 1, lessons: ['pm.intake.ask'], questions: { 'pm.intake.ask': 1 } },
+];
+const passed = (st, ...ids) => ids.reduce((s, id) => ({ ...s, courses: { ...s.courses, [id.split('.')[0]]: { ...s.courses[id.split('.')[0]], lessons: { ...s.courses[id.split('.')[0]].lessons, [id]: { read: 1, passed: 1 } } } } }), st);
+const own = (st, lang, ...qids) => ({ ...st, courseReviews: { ...st.courseReviews, ...Object.fromEntries(qids.map((q) => [`${lang}|${q}`, { box: 4, due: '2026-12-30', lesson: q.split('#')[0], subject: q.split('.')[0] }])) } });
+
+test('mastery: learn until all lessons passed, practise until all questions owned, then own', () => {
+  const m = MODS[0];
+  let s = defaultState();
+  assert.equal(moduleMastery(s, m, 'nl'), 'learn');
+  s = passed(s, 'eng.flow.a');
+  assert.equal(moduleMastery(s, m, 'nl'), 'learn');
+  s = passed(s, 'eng.flow.b');
+  assert.equal(moduleMastery(s, m, 'nl'), 'practise');
+  s = own(s, 'nl', 'eng.flow.a#r0', 'eng.flow.a#r1', 'eng.flow.b#r0');
+  assert.equal(moduleMastery(s, m, 'nl'), 'own');
+  assert.equal(moduleMastery(s, m, 'en'), 'practise', 'owning is per language');
+});
+
+test('recommendation: a module in progress first, then the lowest level across tracks, in index order', () => {
+  let s = defaultState();
+  assert.equal(recommendedModule(s, 'eng', MODS), 'eng.flow');
+  s = passed(s, 'eng.flow.a');
+  assert.equal(recommendedModule(s, 'eng', MODS), 'eng.flow');
+  assert.equal(nextLesson(s, MODS[0]), 'eng.flow.b');
+  s = passed(s, 'eng.flow.b');
+  assert.equal(recommendedModule(s, 'eng', MODS), 'eng.machining', 'level 1 in another track before level 2');
+  s = passed(s, 'eng.machining.a');
+  assert.equal(recommendedModule(s, 'eng', MODS), 'eng.quality');
+  s = passed(s, 'eng.quality.a');
+  assert.equal(recommendedModule(s, 'eng', MODS), null);
+  assert.equal(recommendedModule(s, 'pm', MODS), 'pm.intake');
+});
+
+test('course today: due ≥ 5 beats a lesson; then lesson, situation, say-it, any due, maintenance, done', () => {
+  const day = '2026-11-02';
+  let s = defaultState();
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, MODS), { reason: 'lesson', moduleId: 'eng.flow', lessonId: 'eng.flow.a' });
+  const due5 = { ...s, courseReviews: Object.fromEntries([0, 1, 2, 3, 4].map((i) => [`nl|eng.flow.a#r${i}`, { box: 1, due: day, lesson: 'eng.flow.a', subject: 'eng' }])) };
+  assert.deepEqual(courseTodayPick(due5, 'eng', 'nl', day, MODS), { reason: 'due', count: 5 });
+  s = passed(s, 'eng.flow.a', 'eng.flow.b', 'eng.machining.a', 'eng.quality.a');
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, MODS), { reason: 'situation', moduleId: 'eng.flow', lessonId: 'eng.flow.a' });
+  for (const id of ['eng.flow.a', 'eng.flow.b', 'eng.machining.a', 'eng.quality.a']) s.courses.eng.lessons[id].situation = { pts: 2, ts: 1 };
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, MODS), { reason: 'sayIt', moduleId: 'eng.flow', lessonId: 'eng.flow.a' });
+  for (const id of ['eng.flow.a', 'eng.flow.b', 'eng.machining.a', 'eng.quality.a']) s.courses.eng.lessons[id].sayIt = 1;
+  const due1 = { ...s, courseReviews: { 'nl|eng.flow.a#r0': { box: 2, due: day, lesson: 'eng.flow.a', subject: 'eng' } } };
+  assert.deepEqual(courseTodayPick(due1, 'eng', 'nl', day, MODS), { reason: 'due', count: 1 });
+  const owned = own(s, 'nl', 'eng.flow.a#r0');
+  assert.deepEqual(courseTodayPick(owned, 'eng', 'nl', day, MODS), { reason: 'maintain', questionId: 'eng.flow.a#r0' });
+  const doneWeek = { ...owned, courses: { ...owned.courses, eng: { ...owned.courses.eng, lastMaintenance: '2026-W45' } } };
+  assert.deepEqual(courseTodayPick(doneWeek, 'eng', 'nl', day, MODS), { reason: 'done' });
+});
+
+test('glossary: every term with its lesson, sorted without regard to case', () => {
+  const g = glossary([{ id: 'eng.flow', lessons: [
+    { id: 'eng.flow.a', terms: [{ term: 'takt', def: 'd1' }, { term: 'WIP', def: 'd2' }] },
+    { id: 'eng.flow.b', terms: [{ term: 'Bottleneck', def: 'd3' }] },
+  ] }]);
+  assert.deepEqual(g.map((x) => x.term), ['Bottleneck', 'takt', 'WIP']);
+  assert.equal(g[1].lessonId, 'eng.flow.a');
+  assert.equal(g[1].moduleId, 'eng.flow');
+});

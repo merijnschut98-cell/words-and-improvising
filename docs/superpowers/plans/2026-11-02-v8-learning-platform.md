@@ -153,9 +153,9 @@ The fixture is a minimal two-lesson module defined inside the test file.
   - `courseTodayPick(state, subject, lang, today) -> { reason: 'due'|'lesson'|'situation'|'sayIt'|'maintain'|'done', moduleId?, lessonId?, questionIds? }` in the spec's order; `'done'` when nothing applies.
   - `glossary(modules: Array<{ id, lessons }>) -> Array<{ term, def, lessonId }>` sorted by term, case-insensitive, Dutch and English handled by `localeCompare`.
 
-- [ ] **Step 1: Failing tests**: mastery thresholds; recommendation walks levels in order and never returns an owned module unless all are owned; Today order (due ≥ 5 beats lesson; lesson beats situation; `'done'` when all done and nothing due); deterministic for the same state and day; glossary sort.
-- [ ] **Step 2–4: RED → implement → GREEN.**
-- [ ] **Step 5: Commit** `Add course mastery and today pick`.
+- [x] **Step 1: Failing tests**: mastery thresholds; recommendation walks levels in order and never returns an owned module unless all are owned; Today order (due ≥ 5 beats lesson; lesson beats situation; `'done'` when all done and nothing due); deterministic for the same state and day; glossary sort.
+- [x] **Step 2–4: RED → implement → GREEN.**
+- [x] **Step 5: Commit** `Add course mastery and today pick`.
 
 ### Task 6: Subject bar and course home
 
