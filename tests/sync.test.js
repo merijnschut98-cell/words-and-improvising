@@ -97,3 +97,11 @@ test('a broken remote never poisons local numbers or history', () => {
 test('a reset device starts with sync off, so a wipe is never pushed to the cloud', () => {
   assert.ok(!base().settings.syncOn);
 });
+
+test('prepped events merge as a union, in either order', () => {
+  const withPrep = (list) => ({ ...base(), courses: { ...base().courses, eng: { lessons: {}, sessions: [], plans: [], prepped: list } } });
+  const m = mergeStates(withPrep(['a', 'b']), withPrep(['b', 'c']));
+  assert.deepEqual([...m.courses.eng.prepped].sort(), ['a', 'b', 'c']);
+  assert.deepEqual([...mergeStates(withPrep(['b', 'c']), withPrep(['a', 'b'])).courses.eng.prepped].sort(), ['a', 'b', 'c']);
+  assert.deepEqual(mergeStates(m, m).courses.eng.prepped, m.courses.eng.prepped);
+});

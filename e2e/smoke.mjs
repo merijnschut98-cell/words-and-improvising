@@ -1785,6 +1785,59 @@ await step('use it this week: plan at lesson end, check back two days later', as
   await c.close();
 });
 
+await step('before the meeting: event with a topic offers a refresh', async () => {
+  const later = new Date(Date.now() + 9 * 86400000);
+  const laterKey = `${later.getFullYear()}-${String(later.getMonth() + 1).padStart(2, '0')}-${String(later.getDate()).padStart(2, '0')}`;
+  const lid = 'eng.gridbasics.basics';
+  const { c, p, shotP, dark } = await v9Context({
+    xp: 20,
+    courses: { eng: { lessons: { [lid]: { read: 1, passed: 1 } }, sessions: [] }, pm: { lessons: {}, sessions: [] } },
+    courseReviews: Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|${lid}#r${i}`, { box: 2, due: laterKey, lesson: lid, subject: 'eng' }])),
+  });
+  const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/gridbasics.nl.js')).default.lessons.find((l) => l.id === id), lid);
+  await p.locator('.course-today').waitFor();
+  await p.evaluate(() => window.__app.go('realweek'));
+  await p.locator('.realweek .text-input').waitFor();
+  await onePrimary(p, 'real week form');
+  const tomorrow = new Date(Date.now() + 86400000);
+  await p.locator('.realweek input[type="date"]').fill(`${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`);
+  await p.locator('.realweek .text-input').fill('Netcongestie-overleg bij Enexis');
+  await p.locator('details.rw-topic > summary').click();
+  await p.locator('.rw-topic-select').selectOption('eng.gridbasics');
+  await onePrimary(p, 'real week form with the topic open');
+  await shotP('92-event-topic');
+  await p.getByRole('button', { name: /Toevoegen/ }).click();
+  await p.locator('.rw-refresh', { hasText: 'Het elektriciteitsnet' }).waitFor();
+  await onePrimary(p, 'real week with an event');
+  const st0 = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (JSON.stringify(st0.events[0].topics) !== '["eng.gridbasics"]') throw new Error(`topics: ${JSON.stringify(st0.events[0].topics)}`);
+  await p.evaluate(() => window.__app.go('home'));
+  await p.locator('.course-today', { hasText: 'Voor Netcongestie-overleg bij Enexis' }).waitFor();
+  await shotP('93-prep-today');
+  await dark('93-prep-today-dark', async () => {
+    await p.evaluate(() => window.__app.go('home'));
+    await p.locator('.course-today', { hasText: 'Voor Netcongestie' }).waitFor();
+  });
+  await p.locator('.course-today .today-go').click();
+  await p.locator('.screen.due .quiz-card').waitFor();
+  for (let i = 0; i < 4; i++) {
+    await p.locator('.screen.due .quiz-card').waitFor();
+    if (!(await p.locator('.screen.due .opt').count())) await onePrimary(p, 'prep due screen');
+    else if (await p.locator('.btn-primary:visible').count()) throw new Error('prep: filled button next to the options');
+    await answerRight(p, lesson, '.screen.due .quiz-card');
+  }
+  await p.locator('.screen.due .quiz-review .btn-primary').click();
+  await p.locator('.due-done').waitFor();
+  await onePrimary(p, 'prep done');
+  const st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (JSON.stringify(st.courses.eng.prepped) !== JSON.stringify([st.events[0].id])) throw new Error(`prepped: ${JSON.stringify(st.courses.eng.prepped)}`);
+  if (Object.values(st.days).reduce((a, b) => a + b, 0) !== 1) throw new Error('a prep session counts once');
+  await p.locator('.due-done ~ .btn-primary').click();
+  await p.locator('.course-today').waitFor();
+  if ((await p.locator('.course-today').innerText()).includes('Voor Netcongestie')) throw new Error('Today still offers the refresh');
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

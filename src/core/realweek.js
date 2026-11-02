@@ -1,4 +1,5 @@
 import { callClaude, withFallbacks, lastJson } from './claude.js';
+import { MODULES } from '../content/courses/index.js';
 
 // "My real week": upcoming real events he wants to rehearse, and a short
 // reflection afterwards. Free text stays on the device and is only ever
@@ -33,10 +34,16 @@ const PARTS = {
 const clean = (s, max) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, max);
 const byDate = (a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
 
-export function addEvent(events, { type, date, text }, id) {
+// Course topics linked to an event: known module ids, at most two.
+const TOPICS_MAX = 2;
+const cleanTopics = (topics) => (Array.isArray(topics)
+  ? [...new Set(topics.filter((x) => MODULES.some((m) => m.id === x)))].slice(0, TOPICS_MAX) : []);
+
+export function addEvent(events, { type, date, text, topics }, id) {
   const t = clean(text, TEXT_MAX);
   if (!EVENT_TYPES.includes(type) || !DATE_RE.test(String(date)) || !t) return events;
-  return [...events, { id, type, date, text: t, reflection: null }].sort(byDate);
+  const tp = cleanTopics(topics);
+  return [...events, { id, type, date, text: t, reflection: null, ...(tp.length ? { topics: tp } : {}) }].sort(byDate);
 }
 
 export const upcoming = (events, today) => (events || []).filter((e) => e.date >= today && !e.reflection).sort(byDate);

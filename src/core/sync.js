@@ -1,7 +1,7 @@
 // Merging progress from another device. Never an overwrite: anything done on
 // either device survives. Device settings (API key, theme, language) and ui
 // state never leave the device. Pure.
-import { cleanPlans } from './storage.js';
+import { cleanPlans, strings } from './storage.js';
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
@@ -80,6 +80,7 @@ function mergeCourses(a, b) {
       lessons: perKey(cx.lessons, cy.lessons, mergeLesson),
       sessions: unionBy(cx.sessions, cy.sessions, (s) => `${s.ts}|${s.kind}|${s.lessonId || ''}`, SESSIONS_CAP),
       plans: mergePlans(cx.plans, cy.plans),
+      prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])],
     };
     const lm = [cx.lastMaintenance, cy.lastMaintenance].filter(Boolean).sort().pop();
     if (lm) out.lastMaintenance = lm;

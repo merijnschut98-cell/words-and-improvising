@@ -4,12 +4,16 @@ import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCourseQuestions, maintenanceQuestion } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS } from '../content/courses/index.js';
+import { upcoming } from './realweek.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
 const DUE_XP = 10;
 const DUE_XP_MAX = 20;
 const SESSIONS_CAP = 200;
+const PREPPED_CAP = 50;
+const PREP_DAYS = 2;
+const PREP_MIN = 3;
 
 // Numeric answers accept a Dutch decimal comma and always use the tolerance.
 export function judge(question, answer) {
@@ -108,7 +112,7 @@ export function applyLesson(state, { subject, lessonId, firstTry, lang }, today,
   return { state: next, xp };
 }
 
-export function applyDue(state, { subject, results, lang, maintenance = false }, today, now) {
+export function applyDue(state, { subject, results, lang, maintenance = false, prep = null }, today, now) {
   const entries = Object.entries(results || {});
   const correct = entries.filter(([, ok]) => ok).length;
   const xp = Math.min(DUE_XP_MAX, DUE_XP + correct);
@@ -119,8 +123,10 @@ export function applyDue(state, { subject, results, lang, maintenance = false },
   }
   next = { ...next, courseReviews: reviews };
   const [y, m, d] = today.split('-').map(Number);
+  // A refresh before a real event: remembered, so it is offered once.
+  const marked = (c) => (prep ? { ...c, prepped: [prep, ...(c.prepped || []).filter((x) => x !== prep)].slice(0, PREPPED_CAP) } : c);
   next = withSubject(next, subject, (c) => logSession(
-    maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c,
+    marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
     { day: today, kind: 'due', correct, total: entries.length, ts: now },
   ));
   return { state: next, xp };
@@ -180,6 +186,9 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   // A plan follow-up is quick and time-sensitive: first.
   const plan = openPlans(state, subject, today)[0];
   if (plan) return { reason: 'apply', planId: plan.id, lessonId: plan.lessonId, moduleId: moduleOf(plan.lessonId) };
+  // A real event within two days with a topic in this course: refresh it.
+  const prep = prepPick(state, subject, lang, today, modules);
+  if (prep) return prep;
   const due = dueCourseQuestions(reviews, today, subject, lang).length;
   if (due >= 5) return { reason: 'due', count: due };
   const rec = recommendedModule(state, subject, modules);
@@ -196,6 +205,40 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   const keep = maintenanceQuestion(reviews, today, subject, lang, last);
   if (keep) return { reason: 'maintain', questionId: keep };
   return { reason: 'done' };
+}
+
+// Recall questions from passed lessons of the event's modules: lowest box
+// first (owned last), then soonest due, then id. None when fewer than three.
+export function prepQuestions(state, event, lang, today, max = 5, modules = MODULES) {
+  const reviews = state.courseReviews || {};
+  const ids = ((event && event.topics) || []).flatMap((mid) => {
+    const meta = modules.find((m) => m.id === mid);
+    if (!meta) return [];
+    const lessons = passedIn(state, meta.subject);
+    return meta.lessons.filter((id) => lessons[id] && lessons[id].passed)
+      .flatMap((id) => Array.from({ length: (meta.questions || {})[id] || 0 }, (_, i) => `${id}#r${i}`));
+  });
+  if (ids.length < PREP_MIN) return [];
+  const at = (id) => reviews[`${lang}|${id}`] || {};
+  return ids.map((id) => ({ id, box: at(id).box || 0, due: at(id).due || '' }))
+    .sort((a, b) => a.box - b.box || (a.due < b.due ? -1 : a.due > b.due ? 1 : a.id < b.id ? -1 : 1))
+    .slice(0, max).map((x) => x.id);
+}
+
+function prepPick(state, subject, lang, today, modules) {
+  const prepped = (((state.courses || {})[subject]) || {}).prepped || [];
+  for (const ev of upcoming(state.events || [], today)) {
+    if (shiftDay(today, PREP_DAYS) < ev.date) break;
+    const topics = (ev.topics || []).filter((id) => modules.some((m) => m.id === id && m.subject === subject));
+    if (!topics.length || prepped.includes(ev.id)) continue;
+    const questionIds = prepQuestions(state, { ...ev, topics }, lang, today, 5, modules);
+    if (questionIds.length) return { reason: 'prep', eventId: ev.id, moduleId: topics[0], questionIds, eventText: ev.text };
+    // Nothing learned yet for this topic: its first lesson, for this event.
+    const lessons = passedIn(state, subject);
+    const fresh = topics.map((id) => modules.find((m) => m.id === id)).find((m) => !m.lessons.some((id) => lessons[id] && lessons[id].passed));
+    if (fresh) return { reason: 'lesson', moduleId: fresh.id, lessonId: nextLesson(state, fresh), why: 'prepLesson', eventId: ev.id };
+  }
+  return null;
 }
 
 // Every term of the loaded modules, with where it came from, A–Z.

@@ -774,6 +774,10 @@ details.finder summary::-webkit-details-marker { display: none; }
 .apply-opts { margin-bottom: 10px; }
 .opt.chosen { border-color: var(--accent); background: var(--tint); font-weight: 600; }
 .apply .said { margin-top: 8px; }
+/* Before the meeting: link a course topic to a real event. */
+details.rw-topic { margin: 4px 0 8px; }
+details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-weight: 600; }
+.rw-refresh { margin-top: 6px; }
 .mono-line { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
 .step-current { color: var(--heading); font-weight: 700; border-bottom-color: var(--primary); }
 
