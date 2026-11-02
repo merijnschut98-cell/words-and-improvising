@@ -13,9 +13,9 @@ export default {
         },
       ],
       teach: [
-        'An injection moulding machine has two halves. The injection unit melts and pushes the plastic: granules drop from the hopper into a heated barrel, where a rotating screw melts, mixes and collects them in front of its tip. The clamp unit holds the mould: one half fixed, one half moving. The machine is mostly a big, precise press with a heated syringe on one side.',
-        'The cycle has six steps. The mould closes. The screw moves forward like a plunger and fills the cavity (injection). It keeps pushing to pack in extra plastic as the part shrinks (holding pressure). The part cools in the mould while the screw turns and doses the next shot. The mould opens. Ejector pins push the part out. Then it starts again.',
-        'Clamp force is how machines are sized, in tonnes. The molten plastic pushes the mould halves apart with hundreds of bar. Rule of thumb: you need about 0.3 to 0.6 tonne per cm² of projected area, the part’s shadow seen from the press direction. Too little force and the mould opens a fraction, and plastic leaks out as flash.',
+        'An injection moulding machine has two halves. The injection unit melts and pushes the plastic: plastic granules drop from the hopper, a funnel on top, into a heated barrel (a long steel tube), where a rotating screw melts, mixes and collects them in front of its tip. The clamp unit holds the mould: one half fixed, one half moving. The machine is mostly a big, precise press with a heated syringe on one side.',
+        'The cycle has six steps. The mould closes. The screw moves forward like a plunger and pushes the melt through the gate, a small opening, into the cavity, the part-shaped hollow in the mould (injection). It keeps pushing to pack in extra plastic as the part shrinks (holding pressure). The part cools in the mould while the screw turns and doses the next shot. The mould opens. Ejector pins push the part out. Then it starts again.',
+        'Clamp force is how machines are sized, in tonnes. The molten plastic pushes the mould halves apart with hundreds of bar. Rule of thumb: you need about 0.3 to 0.6 tonne per cm² of projected area, the part’s shadow seen from the press direction. Too little force and the mould opens a fraction at the parting line, where the halves meet, and plastic leaks out as flash: a thin fin on the part.',
         'The mould is the expensive, part-specific bit; the machine is generic. One machine runs many moulds, so a moulding shop thinks in two lists: which machines have which tonnage, and which moulds fit on which machines. A mould that only fits one press makes that press a planning bottleneck.',
       ],
       example: {
@@ -53,7 +53,7 @@ export default {
       situation: {
         scene: 'You’re at a plastics moulder that supplies a car maker. The planner says: “Machine 7 is free, we’ll put the new mould on there.” Machine 7 is 150 tonnes; the new part is large and flat.',
         ask: 'What do you ask before the mould goes on?',
-        model: 'What is the projected area of the part and how much clamp force does the mould need? If a large flat part needs 200 tonnes, it will flash on machine 7, and we lose more time sorting parts than we gain by using a free press. Also: does the mould physically fit, the tie-bar spacing and mould height?',
+        model: 'What is the projected area of the part and how much clamp force does the mould need? If a large flat part needs 200 tonnes, it will flash on machine 7, and we lose more time sorting parts than we gain by using a free press. Also: does the mould physically fit between the tie bars (the four columns of the clamp), and is the mould height within the machine’s range?',
         rubric: [
           'Asks about projected area and required clamp force',
           'Links too little tonnage to flash and scrap',
@@ -80,7 +80,7 @@ export default {
       ],
       teach: [
         'A typical cycle of 30 seconds might be: mould close 2 s, injection 1.5 s, holding 6 s, cooling 15 s, mould open 2 s, eject and remove 3.5 s. Cooling is often 50 to 80% of the cycle. The plastic has to become stiff enough that the part keeps its shape when it is pushed out.',
-        'Cooling time grows with the square of the wall thickness. A wall that is twice as thick needs roughly four times the cooling. That is why designers fight for thin, even walls, and why one thick boss can set the cycle of the whole part. Mould temperature and well-placed cooling channels matter too.',
+        'Cooling time grows with the square of the wall thickness. A wall that is twice as thick needs roughly four times the cooling. That is why designers fight for thin, even walls, and why one thick boss (a solid stud, for example for a screw) can set the cycle of the whole part. Mould temperature and well-placed cooling channels matter too.',
         'Output per hour = 3,600 / cycle time × number of cavities. A 4-cavity mould at 24 seconds gives 3,600 / 24 × 4 = 600 parts per hour. More cavities means more parts per cycle, but a bigger, more expensive mould and a bigger machine. If one cavity is damaged, shops often block it and run with three.',
         'Cycle time is a commercial number. The quoted price of a part was calculated with a cycle time. If the real cycle runs 10% slower, the margin on that part can disappear. When someone says a mould “runs at 28 seconds”, ask whether that is the quoted cycle, the set cycle, or the average actually achieved over a week.',
       ],
@@ -120,10 +120,10 @@ export default {
       situation: {
         scene: 'You’re at a moulder looking at a capacity problem. The ERP says mould 4411 runs at 22 seconds. The operators say it has been running at 26 seconds for months “because of warping”.',
         ask: 'What do you ask, and why does it matter?',
-        model: 'What cycle did we quote this part at, and what is the average real cycle over the last weeks? Four seconds on 22 is 18% less output and more machine hours than planned, so both the capacity plan and the margin are off. And who decided the extra cooling time, is it fixing the warp or hiding a cooling problem in the mould?',
+        model: 'What cycle did we quote this part at, and what is the average real cycle over the last weeks? Four seconds on 22 is 18% more machine time per part, or about 15% less output than planned, so both the capacity plan and the margin are off. And who decided the extra cooling time, is it fixing the warp or hiding a cooling problem in the mould?',
         rubric: [
           'Separates quoted, set and actual cycle times',
-          'Quantifies the impact: 18% output and margin',
+          'Quantifies the impact: about 15% less output, 18% more machine hours, lower margin',
           'Asks for the root cause instead of accepting extra cooling as permanent',
         ],
       },
@@ -147,9 +147,9 @@ export default {
       ],
       teach: [
         'Four plastics cover much of what you’ll see. PP: cheap, tough, chemical-resistant, used for caps, crates and car interiors. ABS: stiff, nice surface, used for housings. PA (nylon): strong and heat-resistant, often glass-filled, used for technical parts under the bonnet. PC: transparent and impact-resistant, used for lenses and covers. Each has its own melt and mould temperatures.',
-        'Some plastics absorb water from the air: PA, PC, PET and PBT. They must be dried before moulding, typically for 2 to 4 hours at 80 to 120 °C in a dryer that blows dry air. Wet material gives silver streaks (splay) and, worse, weak parts that look fine but break later. PP and PE hardly absorb water and usually need no drying.',
-        'Regrind is ground-up runners and rejects that go back into the hopper. It saves material, but each pass through the barrel degrades the plastic a little. Customers often allow a maximum, for example 10 to 25%, and some safety or medical parts allow none. A regrind mill next to the machine is normal; an unclear ratio is a quality risk.',
-        'Colour usually comes from masterbatch: coloured granules mixed in at a few percent. A colour change means purging the barrel until the old colour is gone. Dark to light is the slowest; black to white can take an hour and a lot of scrap. Good planners sequence light to dark.',
+        'Some plastics absorb water from the air: PA, PC, PET and PBT. They must be dried before moulding, typically for 2 to 4 hours at 80 to 120 °C (PET even hotter) in a dryer that blows very dry air through the granules; shops check that air’s dew point. Wet material gives silver streaks (splay) and, worse, weak parts that look fine but break later. PP and PE hardly absorb water and usually need no drying.',
+        'Regrind is ground-up runners (the plastic channels that feed the cavities) and rejects that go back into the hopper. It saves material, but each pass through the barrel degrades the plastic a little. Customers often allow a maximum, for example 10 to 25%, and some safety or medical parts allow none. A regrind mill next to the machine is normal; an unclear ratio is a quality risk.',
+        'Colour usually comes from masterbatch: coloured granules mixed in at a few percent. A colour change means purging: pushing new material through the barrel until the old colour is gone. Dark to light is the slowest; black to white can take an hour and a lot of scrap. Good planners sequence light to dark.',
       ],
       example: {
         kind: 'worked',
@@ -213,14 +213,14 @@ export default {
         },
       ],
       teach: [
-        'Short shot: the part is not completely filled. Causes: too little material dosed, too low injection pressure or speed, plastic too cold, or air that cannot escape through the vents. Flash: a thin film of plastic at the parting line or around pins. Causes: too high pressure, too little clamp force, or a worn mould where the halves no longer seal.',
-        'Sink marks: dents above thick sections. The inside keeps shrinking after the skin has set. Causes: too little holding pressure or time, gate freezing too early, or a design with thick ribs and bosses. Voids are the same problem inside the part: bubbles where the core shrank away.',
+        'Short shot: the part is not completely filled. Causes: too little material dosed, too low injection pressure or speed, plastic too cold, or air that cannot escape through the vents, tiny slots in the mould that let air out. Flash: a thin film of plastic at the parting line or around pins. Causes: too high pressure, too little clamp force, or a worn mould where the halves no longer seal.',
+        'Sink marks: dents above thick sections. The inside keeps shrinking after the skin has set. Causes: too little holding pressure or time, the gate freezing (solidifying) too early, or a design with thick ribs and bosses. Voids are the same problem inside the part: bubbles where the core shrank away.',
         'Warpage: the part bends after ejection because it shrinks unevenly. Causes: uneven wall thickness, one mould half hotter than the other, glass fibres lining up in one direction, or ejecting too hot. Warpage often shows up hours later, so it can pass inspection at the machine and fail at the customer.',
         'Burn marks: black or brown spots, usually at the end of the flow path. Air is trapped and compressed so fast that it heats up and scorches the plastic. Causes: blocked or missing vents, injection too fast. Each defect points at a few causes. Good engineers ask which one changed before touching settings.',
       ],
       example: {
         kind: 'worked',
-        text: 'A PP crate starts flashing at one corner after 80,000 shots. The setter raises clamp force from 180 to 220 tonnes and the flash stops. Two weeks later it is back, worse. The real cause: the parting line at that corner is worn, so the halves no longer seal there. More clamp force only pushed the problem away and adds wear. The fix: take the mould out, repair the parting line in the toolroom, and run it again at 180 tonnes.',
+        text: 'A PP crate starts flashing at one corner after 80,000 shots. The setter raises clamp force from 180 to 220 tonnes and the flash stops. Two weeks later it is back, worse. The real cause: the parting line at that corner is worn, so the halves no longer seal there. More clamp force only pushed the problem away and adds wear. The fix: take the mould out, repair the parting line in the toolroom (the in-house mould repair shop), and run it again at 180 tonnes.',
       },
       said: 'What engineers say: “It’s short-shotting at the end of fill. Before you crank up pressure, check the vents.”',
       recall: [
@@ -280,14 +280,14 @@ export default {
         },
       ],
       teach: [
-        'The main settings: melt temperature, mould temperature, injection speed, switchover point (from filling to holding), holding pressure and time, cooling time and back pressure. The process window is the range of these settings within which every part is good. A wide window is robust; a narrow one means small variations in material or temperature give scrap.',
-        'Scientific moulding (also called decoupled moulding) splits the cycle: fill about 95 to 98% of the part on speed, then switch to pressure to pack the last bit. The engineer finds the settings with short studies: a viscosity curve for injection speed, a gate freeze study for holding time, and a test of the window. The result is a documented, reasoned set of settings.',
+        'The main settings: melt temperature, mould temperature, injection speed, switchover point (from filling to holding), holding pressure and time, cooling time and back pressure (the resistance the screw works against while dosing, which mixes the melt). The process window is the range of these settings within which every part is good. A wide window is robust; a narrow one means small variations in material or temperature give scrap.',
+        'Scientific moulding (also called decoupled moulding) splits the cycle: fill about 95 to 98% of the part on speed, then switch to pressure to pack the last bit. The engineer finds the settings with short studies: a viscosity curve (how easily the melt flows at each speed) to choose injection speed, a gate freeze study (when the gate solidifies) to set holding time, and a test of the window. The result is a documented, reasoned set of settings.',
         '“Just tweak it” is risky. Settings interact: more temperature changes viscosity, which changes fill, which changes pressure. Every shift that adjusts a few values pushes the process somewhere new, and nobody knows anymore which setting fixes what. After a month, a mould has three versions of “the right settings”.',
-        'Good shops lock the approved settings, log every change with a reason, and ask “what changed?” before adjusting. If an operator has to tweak to keep making good parts, the real cause is upstream: wet material, a blocked cooling channel, a worn check ring on the screw. Tweaking hides it.',
+        'Good shops lock the approved settings, log every change with a reason, and ask “what changed?” before adjusting. If an operator has to tweak to keep making good parts, the real cause is upstream: wet material, a blocked cooling channel, a worn check ring, the valve ring on the screw tip that stops melt flowing backwards. Tweaking hides it.',
       ],
       example: {
         kind: 'worked',
-        text: 'A mould for a PC lens makes 3% rejects. The engineer finds 14 changes in the log over 6 weeks, from four people. She resets to the approved sheet, runs a 30-shot study and finds that the switchover position drifts because the check ring on the screw leaks: the screw cushion varies from 2 to 8 mm. After replacing the check ring, the original settings run at 0.4% rejects. The fix was a €300 part, not the 14 adjustments.',
+        text: 'A mould for a PC lens makes 3% rejects. The engineer finds 14 changes in the log over 6 weeks, from four people. She resets to the approved sheet, runs a 30-shot study and finds that the switchover position drifts because the check ring on the screw leaks: the cushion, the melt left in front of the screw after injection, varies from 2 to 8 mm. After replacing the check ring, the original settings run at 0.4% rejects. The fix was a €300 part, not the 14 adjustments.',
       },
       said: 'What engineers say: “Don’t chase it with settings. If the cushion is jumping around, the check ring is gone.”',
       recall: [
@@ -347,8 +347,8 @@ export default {
         },
       ],
       teach: [
-        'A mould is a precision tool of hardened steel with cavities, cooling channels, ejector pins and vents. A simple mould can cost €20,000; a multi-cavity or large automotive mould easily €100,000 to €300,000 or more. Lead time is typically 10 to 16 weeks, plus trials (T1, T2) before the customer approves the parts.',
-        'The runner carries plastic from the nozzle to the cavities. A cold runner solidifies and is ejected with the parts as waste or regrind. A hot runner keeps the plastic molten in a heated manifold: no runner waste and often a shorter cycle, but a more expensive mould and extra failure points such as heater zones and leaks.',
+        'A mould is a precision tool of hardened steel with cavities, cooling channels, ejector pins and vents. A simple mould can cost €20,000; a multi-cavity or large automotive mould easily €100,000 to €300,000 or more. Lead time is typically 10 to 16 weeks, plus trial runs (T1, T2) before the customer approves the parts.',
+        'The runner is the channel that carries plastic from the machine nozzle to the cavities. A cold runner solidifies and is ejected with the parts as waste or regrind. A hot runner keeps the plastic molten in a heated manifold (a block of channels inside the mould): no runner waste and often a shorter cycle, but a more expensive mould and extra failure points such as heater zones and leaks.',
         'Moulds need preventive maintenance, often every 50,000 to 100,000 shots or on a fixed calendar: cleaning vents, checking ejector pins, descaling cooling channels and checking the parting line. Skipping maintenance shows up later as flash, short shots and longer cycles. The shot counter on the mould is the key number.',
         'A mould change typically takes 1 to 2 hours: disconnecting water and hot runner, cranes, unclamping, clamping, heating up and first-part approval. With SMED you bring that to 15 to 30 minutes: pre-heating the next mould, standard clamp plates, quick couplings for water and power, and doing everything possible while the machine still runs.',
       ],
