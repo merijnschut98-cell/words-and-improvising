@@ -28,7 +28,7 @@ Tree: **subject → track → module → lesson**. Ids are stable, identical in 
 
 Module fields: `id`, `track`, `level` (1 fundamentals, 2 working knowledge, 3 advanced, 4 expert), `title`, `blurb`, `lessons[]`. Modules of a higher level are *recommended* after the lower level in the same track is owned; never hard-locked.
 
-Lesson fields (per language file):
+Lesson fields (per language file; `figure` is optional and shared by both languages):
 
 ```js
 {
@@ -42,10 +42,20 @@ Lesson fields (per language file):
   situation: { scene, ask, model, rubric: [3 strings] },
   sayIt: 'Explain OEE to a new operator in 60 seconds.',
   terms: [ { term, def } ],                      // 2–4
+  figure: 'eng.flow.oee',                        // optional: id of a figure page
 }
 ```
 
 Levels 1–2 use `example.kind: 'worked'`; levels 3–4 use `'faded'` (he answers "what next?" before the reveal). Files live in `src/content/courses/<subject>/<module>.<lang>.js`, one module per file, loaded with dynamic `import()` when a module is opened or its questions are due; the service worker precaches them all. A small index `src/content/courses/index.js` lists subjects, tracks, modules (id, track, level, title keys, lesson ids) without lesson bodies, so the course home renders without loading content.
+
+## Figures (visual learning)
+
+Added 2026-11-02 at Merijn's request. Key lessons get an interactive isometric figure built with the anatomy skill: a recognisable machine whose moving parts are the concept, with a live readout driven by a small true model (e.g. a line whose bottleneck station sets the output; an OEE gauge fed by three loss dials; a transformer with turns ratio and load; a protection relay that trips on a fault current).
+
+- Each figure is a standalone HTML page at `src/content/courses/figures/<figureId>.html` (kit and live script inlined, no network), built during development by `figures/<figureId>/build.mjs` (not shipped). Both themes: the page reads `?theme=light|dark`.
+- The lesson screen shows it under the teach blocks in a sandboxed `iframe` (`sandbox="allow-scripts"`, `loading="lazy"`, fixed aspect ratio, title from i18n), with a caption from the lesson. If the page fails to load, the lesson works without it.
+- Launch: one figure per engineering module, on its key concept. Projecten modules get a figure only when a physical metaphor truly teaches; never boxes and arrows.
+- The validator checks that a referenced figure file exists and is in the service worker shell.
 
 ## Learning engine (evidence-based decisions)
 
@@ -113,4 +123,4 @@ Natural spoken Dutch, not translated English. Terms engineers actually use (OEE,
 
 ## Out of scope
 
-Lean/Kata/A3 content, leaderboards or badges, server sync, images or diagrams in lessons (text only for now), audio narration.
+Lean/Kata/A3 content, leaderboards or badges, server sync, static images, audio narration.

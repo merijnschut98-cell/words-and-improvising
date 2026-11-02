@@ -268,6 +268,22 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [ ] **Step 3:** Index entries, `SHELL`, `npm test`, one e2e step that opens the first lesson of a level-3 module and sees the faded example (`.example-ask` then Reveal). Screenshot `66-faded-example`.
 - [ ] **Step 4: Commit per 3–4 modules** `Add <subject> modules: …`.
 
+### Task 13: Interactive figures (anatomy skill)
+
+**Files:**
+- Create: `figures/<figureId>/build.mjs` (dev only, not shipped), `src/content/courses/figures/<figureId>.html`
+- Modify: `src/content/courses/validate.js` (if `figure` is set: file exists in `src/content/courses/figures/` — checked by the content test with `fs`, not by the browser), `src/ui/lesson.js` (iframe under the teach blocks), `src/i18n.js` (`figureTitle`, `figureHint`), `sw.js`, `e2e/smoke.mjs`
+
+**Interfaces:**
+- Consumes: lesson `figure?: string`; theme from `app.state.settings.theme` mapped to `light|dark` the same way `applyTheme` does.
+- Produces: `figureFrame(app, figureId, caption) -> HTMLElement` in `src/ui/lesson.js`: `div.figure-wrap` with an `iframe` (`src="src/content/courses/figures/<id>.html?theme=<t>"`, `sandbox="allow-scripts"`, `loading="lazy"`, `title=t('figureTitle')`) and a `p.muted.small` caption; on `error` the wrap removes itself.
+
+- [ ] **Step 1: Failing tests** (`tests/coursecontent.test.js`): a lesson with `figure: 'eng.fx.none'` fails validation with "figure"; every shipped `figure` id has its file and is in `SHELL`.
+- [ ] **Step 2:** Build the first figure for `eng.flow` (OEE or bottleneck line) with the anatomy skill at **Figure** size: dark and light, phone width 390 legible, audit and line checks to zero; read the screenshots.
+- [ ] **Step 3:** Wire `figureFrame` into the lesson; e2e step opens the lesson and sees `.figure-wrap iframe`; screenshot `67-figure`.
+- [ ] **Step 4:** One figure per remaining engineering module on its key concept, dispatched to subagents (one figure each, at most 2 in parallel, each with the skill path and the figure brief); Projecten figures only where the module brief names a physical metaphor.
+- [ ] **Step 5:** Commit per figure: `Add figure: <title>`.
+
 ### Task 12: Final review and note
 
 - [ ] Fresh whole-branch review subagent (most capable model) over the v8 range with the spec's Review Focus and this plan's; one fix pass with failing tests first; minors to the ledger.
