@@ -26,6 +26,7 @@ import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
+import { homeSubject } from './core/today.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
 import { renderSituation } from './ui/situation.js';
@@ -83,7 +84,8 @@ export const app = {
   get lang() { return this.state.settings.lang; },
   get content() { return this.lang === 'en' ? en : nl; },
   get t() { return translator(this.lang); },
-  get subject() { return ((this.state.ui || {}).subject) || 'speak'; },
+  // 'start' (the overview of all subjects), 'speak', 'eng' or 'pm'.
+  get subject() { return homeSubject(this.state.ui); },
   setSubject(id, screen = 'home') {
     this.setState({ ...this.state, ui: { ...(this.state.ui || {}), subject: id } });
     this.go(screen);
@@ -280,7 +282,7 @@ app.applyTheme();
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   app.installPrompt = e;
-  if (root.dataset.screen === 'home') app.go('home');
+  if (root.dataset.screen === 'settings') app.go('settings');
 });
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {

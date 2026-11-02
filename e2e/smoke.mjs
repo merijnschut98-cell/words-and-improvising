@@ -76,11 +76,15 @@ const errors = [];
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 await ctx.addInitScript(FAKE_SPEECH);
-// Most steps click drills on home directly: keep the "Choose myself" grid open on every load.
+// Most steps click drills on the speaking home directly: on every load, open on
+// speaking (not the start screen) with "More practice" open. The start screen
+// itself is checked in its own context and by tapping Home.
 await ctx.addInitScript(() => {
   try {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1') || 'null');
-    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...(st.ui || {}), gridOpen: true } }));
+    const ui = (st && st.ui) || {};
+    const subject = ui.subject && ui.subject !== 'start' ? ui.subject : 'speak';
+    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...ui, moreOpen: true, subject } }));
   } catch { /* first run */ }
 });
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
@@ -99,24 +103,141 @@ const shot = async (n) => {
 };
 
 await page.goto(BASE);
-await step('first run shows the welcome slides', async () => {
-  await page.getByRole('heading', { name: 'Snel denken, helder praten' }).waitFor({ timeout: 5000 });
+await step('first run: three short screens (subjects, a day, settings), then the start screen', async () => {
+  await page.getByRole('heading', { name: 'Drie vakken, één app' }).waitFor({ timeout: 5000 });
+  for (const s of ['Spreken', 'Engineering', 'Projecten']) await page.locator('.welcome-list li', { hasText: s }).waitFor();
   await shot('00-welcome');
-  for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'Volgende' }).click();
-  await page.getByRole('button', { name: 'Na je ochtendkoffie' }).click();
-  await page.locator('select').selectOption('8');
-  await shot('00b-plan');
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  await page.getByRole('heading', { name: 'Eén volgende stap per vak' }).waitFor();
+  await shot('00b-welcome-day');
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  await page.getByRole('heading', { name: 'Instellingen en je sleutel' }).waitFor();
+  await shot('00c-welcome-settings');
   await page.getByRole('button', { name: 'Aan de slag' }).click();
-  await page.locator('.btn-hero').waitFor();
-  await page.locator('.plan-line', { hasText: 'Na je ochtendkoffie · ~08:00' }).waitFor();
+  await page.locator('.start-cards .start-card').nth(2).waitFor();
 });
 await page.evaluate(async () => {
   // Mark this week's focus as answered so seeded older rounds don't open the weekly screen.
   const { isoWeekKey } = await import('./src/core/boss.js');
-  localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' }, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { gridOpen: true } }));
+  localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { apiKey: 'sk-test' }, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { moreOpen: true, subject: 'speak' } }));
 });
 await page.reload();
 await step('home renders', async () => { await page.locator('.btn-hero').waitFor(); await shot('01-home'); });
+
+// Exactly one filled button in view on a screen (the one next thing).
+const onePrimary = async (pg, where) => {
+  const n = await pg.locator('.btn-primary:visible').count();
+  if (n !== 1) throw new Error(`${where}: ${n} visible .btn-primary, expected 1`);
+};
+
+await step('start screen: one card per subject with its reason, streak and level in one line; cards open each home', async () => {
+  const c5 = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const p5 = await c5.newPage();
+  p5.on('pageerror', (e) => errors.push(e.message));
+  await c5.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, xp: 40, streak: { count: 0, lastDay: null } })); });
+  const shot5 = async (n) => {
+    const text = await p5.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p5.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
+  };
+  await p5.goto(BASE);
+  // ui.subject absent: the app opens on the start screen.
+  await p5.locator('.start-card').nth(2).waitFor({ timeout: 5000 });
+  const subjects = await p5.locator('.start-subject').allInnerTexts();
+  if (subjects.map((x) => x.trim()).join('|') !== 'SPREKEN|ENGINEERING|PROJECTEN' && subjects.map((x) => x.trim().toUpperCase()).join('|') !== 'SPREKEN|ENGINEERING|PROJECTEN') throw new Error(`cards: ${subjects}`);
+  for (const i of [0, 1, 2]) if (!(await p5.locator('.start-card').nth(i).locator('.start-why').innerText()).trim()) throw new Error(`card ${i} has no reason`);
+  await p5.locator('.start-card.start-eng .start-what', { hasText: 'Takt' }).waitFor();
+  await p5.locator('.start-meta', { hasText: 'Level 1 · 40/100 XP' }).waitFor();
+  await onePrimary(p5, 'start');
+  // Every card readable at 390 px: nothing wider than the viewport.
+  const wide = await p5.evaluate(() => [...document.querySelectorAll('.start-card')].some((c) => c.scrollWidth > c.clientWidth || c.getBoundingClientRect().right > 390));
+  if (wide) throw new Error('a start card overflows at 390 px');
+  await shot5('80-start');
+  await p5.locator('.start-card.start-eng').click();
+  await p5.locator('.course-home.course-eng').waitFor();
+  if ((await p5.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.subject)) !== 'eng') throw new Error('subject not stored');
+  await p5.getByRole('button', { name: 'Overzicht' }).click();
+  await p5.locator('.start-card.start-speak').click();
+  await p5.locator('.today-card .today-go').waitFor();
+  if (await p5.locator('details.more').getAttribute('open') !== null) throw new Error('More practice should start closed');
+  await p5.locator('details.more > summary').click();
+  await p5.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.moreOpen === true, null, { timeout: 3000 });
+  for (const g of ['Kies een oefening', 'Herhalen en uitdagen', 'Je echte week', 'Opdrachten en programma']) await p5.locator('.more-title', { hasText: g }).waitFor();
+  await onePrimary(p5, 'speaking home with More open');
+  await shot5('82-more-practice');
+  await p5.reload();
+  await p5.locator('details.more[open]').waitFor();
+  // Home in the bottom bar always returns to the overview, which stays the default after a reload.
+  await p5.getByRole('button', { name: /Home/ }).click();
+  await p5.locator('.start-card').first().waitFor();
+  await p5.reload();
+  await p5.locator('.start-card').first().waitFor();
+  await p5.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await p5.evaluate(() => window.__app.go('home'));
+  await p5.locator('.start-card').first().waitFor();
+  await shot5('81-start-dark');
+  await c5.close();
+});
+
+await step('one filled button per screen: speaking home, course home, every lesson step, due and situation', async () => {
+  await page.goto(BASE);
+  // Later steps expect untouched course progress: put it back afterwards.
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.locator('.btn-hero').waitFor();
+  await onePrimary(page, 'speaking home');
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-today .today-go').waitFor();
+  await onePrimary(page, 'course home');
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await page.locator('.steps [aria-current="step"]', { hasText: 'Raden' }).waitFor();
+  const labels = (await page.locator('.steps .step').allInnerTexts()).map((x) => x.trim().toUpperCase());
+  if (labels.join('|') !== 'RADEN|LEZEN|VOORBEELD|CHECK') throw new Error(`steps: ${labels}`);
+  const oee = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
+  const recallOf = async () => { const q = (await page.locator('.quiz-card .quiz-q').innerText().catch(() => '')).trim(); return oee.recall.find((r) => r.q.trim() === q); };
+  // Walk the lesson: each step that has a button has exactly one filled one.
+  for (let guard = 0; guard < 40; guard++) {
+    if (await page.locator('.lesson-done').count()) { await onePrimary(page, 'lesson done'); break; }
+    const opts = page.locator('.screen.lesson .opt:visible');
+    const step = (await page.locator('.steps [aria-current="step"]').innerText().catch(() => '')).trim();
+    if (await opts.count()) {
+      // A choice step: the options are the action; no competing filled button.
+      if (await page.locator('.btn-primary:visible').count()) throw new Error(`${step}: filled button next to the options`);
+      const r = await recallOf();
+      await (r ? page.locator('.quiz-opts').getByRole('button', { name: r.answer, exact: true }).first() : opts.first()).click();
+      continue;
+    }
+    const num = page.locator('.screen.lesson .quiz-num:visible');
+    if (await num.count()) { const r = await recallOf(); await num.fill(r ? String(r.number) : '1'); }
+    await onePrimary(page, `lesson step ${step}`);
+    await page.locator('.btn-primary:visible').click();
+    await page.waitForTimeout(80);
+  }
+  await page.locator('.lesson-done').waitFor();
+  await page.locator('.steps .step-done').nth(3).waitFor();
+  await page.evaluate(() => window.__app.go('situation', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await page.locator('.screen.situation .btn-primary').first().waitFor();
+  await onePrimary(page, 'situation');
+  await page.evaluate(() => {
+    const st = window.__app.state;
+    const y = window.__app.today();
+    window.__app.setState({ ...st, courseReviews: { ...st.courseReviews, 'nl|eng.flow.oee#r0': { box: 2, due: y, lesson: 'eng.flow.oee', subject: 'eng' } } });
+    window.__app.go('due', { subject: 'eng', questionIds: ['eng.flow.oee#r0'] });
+  });
+  await page.locator('.screen.due .quiz-card').waitFor();
+  if (await page.locator('.screen.due .opt').count()) {
+    if (await page.locator('.btn-primary:visible').count()) throw new Error('due: filled button next to the options');
+    await page.locator('.screen.due .opt').first().click();
+  } else {
+    await onePrimary(page, 'due');
+    await page.locator('.screen.due .quiz-num').fill('1');
+    await page.locator('.screen.due .btn-primary').click();
+  }
+  await page.locator('.screen.due .quiz-review').waitFor();
+  await onePrimary(page, 'due review');
+  await page.evaluate((v) => localStorage.setItem('spraakwater:v1', v), saved);
+  await page.goto(BASE);
+  await page.locator('.btn-hero').waitFor();
+});
 
 await step('subject bar switches to Engineering and Projects and back; speaking home unchanged', async () => {
   await page.locator('.subject-bar .subject-tab[aria-pressed="true"]', { hasText: 'Spreken' }).waitFor();
@@ -540,7 +661,6 @@ await step('streak freeze covers one missed day', async () => {
   await patchState({ streak: { count: 5, lastDay: await dayAgo(2) }, freezes: 1, freezeLog: [] });
   await page.reload();
   await page.locator('.toast', { hasText: 'bevriezer' }).waitFor({ timeout: 3000 });
-  await page.locator('.day.frozen').waitFor();
   const head = await page.locator('.top .streak b').textContent();
   if (head !== '5') throw new Error(`streak shows ${head}`);
   await shot('20-freeze');
@@ -594,7 +714,7 @@ await step('boss card shows on a Friday', async () => {
   // Own context: Playwright's clock is context-wide and would leak into later steps.
   const c2 = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
   await c2.addInitScript(() => {
-    if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true }));
+    if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'speak', moreOpen: true } }));
   });
   const p2 = await c2.newPage();
   await p2.clock.setFixedTime(new Date(2026, 9, 30, 10, 0));
@@ -643,8 +763,7 @@ await step('progress shows skill radar and calibration', async () => {
 
 await step('4-week programme: start plays the baseline, Today shows the week, stop clears it', async () => {
   await page.goto(BASE);
-  await page.getByRole('button', { name: /Voortgang/ }).click();
-  await page.locator('.programme-card').scrollIntoViewIfNeeded();
+  await page.locator('details.more[open] .programme-card').scrollIntoViewIfNeeded();
   await shot('25b-programme-off');
   await page.getByRole('button', { name: 'Start het programma' }).click();
   await page.getByText('Nulmeting: doe het gewoon', { exact: false }).waitFor();
@@ -652,7 +771,6 @@ await step('4-week programme: start plays the baseline, Today shows the week, st
   if (!prog || !prog.baseline || !prog.baseline.promptId) throw new Error('baseline not stored');
   await page.goto(BASE);
   await page.locator('.today-label', { hasText: 'Week 1 van 4' }).waitFor();
-  await page.getByRole('button', { name: /Voortgang/ }).click();
   await page.locator('.programme-card', { hasText: 'helderheid en structuur' }).scrollIntoViewIfNeeded();
   await shot('25c-programme-on');
   await page.getByRole('button', { name: 'Stop het programma' }).click();
@@ -693,8 +811,10 @@ await step('dark theme: home, course home and a lesson', async () => {
   await page.getByRole('button', { name: 'Donker', exact: true }).click();
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
   await page.getByRole('button', { name: /Home/ }).click();
-  await page.locator('.btn-hero').waitFor();
+  await page.locator('.start-card').first().waitFor();
   if (!(await page.locator('.brand .mark-dark').isVisible()) || (await page.locator('.brand .mark-light').isVisible())) throw new Error('wrong mark for dark');
+  await page.locator('.start-card.start-speak').click();
+  await page.locator('.btn-hero').waitFor();
   await shot('70-dark-home');
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await page.locator('.course-home .track').first().waitFor();
@@ -1000,7 +1120,7 @@ await step('coach writes the hard question only after he shares the event line',
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.goto(BASE);
-  await page.locator('.rw-home .btn-ghost').click();
+  await page.locator('.rw-home').getByRole('button', { name: 'Alles' }).click();
   await page.locator('.rw-share input').check();
   await shot('45-rw-share');
   await page.getByRole('button', { name: /Oefenen/ }).first().click();
@@ -1319,14 +1439,15 @@ await step('mastery: three good rounds on different days show "Beheerst"', async
   await shot('52-mastery');
 });
 
-await step('today card recommends one round; the drill grid folds away and remembers it', async () => {
+await step('today card recommends one round; "More practice" folds away and remembers it', async () => {
   await page.goto(BASE);
   await page.locator('.today-card .today-what').waitFor();
-  await shot('53-today');
-  await page.locator('details.choose > summary').click();
+  await page.locator('details.more > summary').click();
   // The toggle event fires just after the click: wait for the saved state.
-  await page.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.gridOpen === false, null, { timeout: 3000 });
-  await page.locator('details.choose > summary').click();
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.moreOpen === false, null, { timeout: 3000 });
+  if (await page.locator('.drill-minute').isVisible()) throw new Error('drills still visible with More practice closed');
+  await shot('53-today');
+  await page.locator('details.more > summary').click();
   await page.locator('.today-go').click();
   await page.locator('.intro-card').waitFor();
   await page.getByRole('button', { name: 'Sluiten' }).click();

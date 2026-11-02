@@ -3,10 +3,17 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, lessonPhases, recallQuestions } from '../core/course.js';
+import { applyLesson, lessonPhases, lessonSteps, recallQuestions } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
+
+// Where he is in the lesson: Guess · Read · Example · Check, the current one marked.
+export function stepIndicator(t, phases, current) {
+  return h('ol', { class: 'steps', 'aria-label': t('stepsLabel') }, lessonSteps(phases, current).map((st) => h('li', {
+    class: `step step-${st.state}`, 'aria-current': st.state === 'current' ? 'step' : null,
+  }, st.state === 'done' ? ico('check') : null, h('span', {}, t(`step_${st.id}`)))));
+}
 
 export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   const t = app.t;
@@ -42,9 +49,11 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     let p = 0;
     let block = 0;
     let pre = 0;
+    let finished = false;
     const next = () => { p += 1; block = 0; draw(); };
     const dots = (n, i) => h('div', { class: 'dots', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
-    const step = (name) => h('p', { class: 'today-label' }, t(`lessonStep_${name}`));
+    // Every step starts with the indicator; the rest of the screen follows it.
+    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p]), ...nodes);
 
     function draw() {
       const phase = phases[p];
@@ -52,7 +61,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       if (phase === 'pre') {
         const q = lesson.pre[pre];
         const pick = (o) => {
-          main.replaceChildren(h('section', { class: 'card pre-card' }, step('pre'),
+          show(h('section', { class: 'card pre-card' },
             h('p', { class: 'quiz-q' }, q.q),
             h('p', { class: 'muted' }, t('preGuessed', o)),
             h('button', {
@@ -60,7 +69,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
               onclick: () => { if (pre + 1 < lesson.pre.length) { pre += 1; draw(); } else next(); },
             }, t('quizNext'))));
         };
-        main.replaceChildren(h('section', { class: 'card pre-card' }, step('pre'),
+        show(h('section', { class: 'card pre-card' },
           h('p', { class: 'muted small' }, t('preHint')),
           h('p', { class: 'quiz-q' }, q.q),
           'number' in q
@@ -74,8 +83,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       }
       if (phase === 'teach') {
         const last = block === lesson.teach.length - 1;
-        main.replaceChildren(
-          h('section', { class: 'card teach-card' }, step('teach'), dots(lesson.teach.length, block),
+        show(
+          h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
             h('p', { class: 'teach-text' }, lesson.teach[block]),
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure) : null,
@@ -91,13 +100,13 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         if (ex.kind === 'faded') {
           const input = h('textarea', { class: 'text-input', rows: 3, placeholder: t('lessonWhatNextPh'), 'aria-label': ex.ask });
           const reveal = h('div', {});
-          main.replaceChildren(h('section', { class: 'card example-card' }, step('example'),
+          show(h('section', { class: 'card example-card' },
             h('p', { class: 'teach-text' }, ex.text),
             h('p', { class: 'example-ask' }, h('b', {}, ex.ask)),
             input,
             reveal,
             h('button', {
-              class: 'btn btn-ghost reveal-btn',
+              class: 'btn btn-primary reveal-btn',
               onclick: (e) => {
                 e.currentTarget.remove();
                 reveal.replaceChildren(h('p', { class: 'teach-text reveal' }, ex.reveal),
@@ -106,14 +115,14 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
             }, t('reveal'))));
           return;
         }
-        main.replaceChildren(h('section', { class: 'card example-card' }, step('example'),
+        show(h('section', { class: 'card example-card' },
           h('p', { class: 'teach-text' }, ex.text)),
         h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')));
         return;
       }
       if (phase === 'quiz') {
         const box = h('div', {});
-        main.replaceChildren(step('quiz'), box);
+        show(box);
         renderQuiz(app, {
           questions: recallQuestions(lesson),
           onDone: (firstTry) => {
@@ -151,7 +160,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     }
 
     function done(xp) {
-      main.replaceChildren(h('section', { class: 'card lesson-done' },
+      finished = true;
+      show(h('section', { class: 'card lesson-done' },
         h('p', { class: 'done-mark' }, ico('graduation-cap')),
         h('h2', { class: 'card-title' }, t('lessonPassed')),
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
