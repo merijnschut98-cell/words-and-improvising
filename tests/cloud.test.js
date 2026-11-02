@@ -80,3 +80,11 @@ test('turning sync off signs out this device only', async () => {
   await cloudWith(fake).signOut();
   assert.deepEqual(fake.calls.find((x) => x[0] === 'signOut')[1], { scope: 'local' });
 });
+
+test('too many login emails is its own error, so the app can say when to try again', async () => {
+  const fake = fakeSupabase({ user: null });
+  fake.auth.signInWithOtp = async () => ({ error: { message: 'email rate limit exceeded', status: 429, code: 'over_email_send_rate_limit' } });
+  const res = await cloudWith(fake).signIn('a@b.nl');
+  assert.equal(res.ok, false);
+  assert.equal(res.error, 'rate');
+});

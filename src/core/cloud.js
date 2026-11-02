@@ -32,7 +32,10 @@ export function createCloud({ load = (attempt) => import(`${SDK_URL}${attempt ? 
       if (!EMAIL_RE.test(addr)) return { ok: false, error: 'email' };
       const c = await get();
       const { error } = await c.auth.signInWithOtp({ email: addr, options: { emailRedirectTo: redirect } });
-      return error ? { ok: false, error: 'send', detail: error.message } : { ok: true };
+      if (!error) return { ok: true };
+      // The mail service allows only a few login emails per hour.
+      const rate = error.status === 429 || /rate limit/i.test(error.message || '') || error.code === 'over_email_send_rate_limit';
+      return { ok: false, error: rate ? 'rate' : 'send', detail: error.message };
     }),
     // The signed-in email, or null.
     who: () => safely(async () => {

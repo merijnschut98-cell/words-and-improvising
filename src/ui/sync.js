@@ -21,7 +21,7 @@ export function syncSection(app) {
         if (res.ok) {
           app.updateSettings({ syncEmail: email.value.trim().toLowerCase() });
           note.textContent = t('syncLinkSent', email.value.trim());
-        } else note.textContent = res.error === 'email' ? t('syncBadEmail') : t('syncFailed');
+        } else note.textContent = res.error === 'email' ? t('syncBadEmail') : res.error === 'rate' ? t('syncRateLimit') : t('syncFailed');
       },
     }, t('syncSend'));
     card.append(h('p', { class: 'muted small' }, t('syncHelp')), email, send, note);

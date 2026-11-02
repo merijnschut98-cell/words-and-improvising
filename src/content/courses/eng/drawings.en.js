@@ -204,6 +204,7 @@ export default {
     },
     {
       id: 'eng.drawings.loop',
+      figure: 'eng.drawings.loop',
       title: 'The control loop',
       pre: [
         {

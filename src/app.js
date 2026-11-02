@@ -276,6 +276,7 @@ export const app = {
   },
 
   go(screen, params = {}) {
+    if (this.updateReady && screen === 'home') { location.reload(); return; }
     this.navSeq += 1;
     // Redrawing Settings after a change keeps your place on the page.
     const keepScroll = screen === 'settings' && root.dataset.screen === 'settings';
@@ -324,8 +325,17 @@ window.addEventListener('beforeinstallprompt', (e) => {
   if (root.dataset.screen === 'settings') app.go('settings');
 });
 
+// Updates: the installed app can stay open for days, so look for a new
+// version whenever it comes to the foreground. A new version takes over at
+// once, but the page reloads only on the home screen, never mid-lesson.
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  navigator.serviceWorker.register('./sw.js').catch(() => {});
+  const hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('./sw.js').then((reg) => { app.swReg = reg; }).catch(() => {});
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || app.updateReady) return; // first install: nothing old to replace
+    app.updateReady = true;
+    if (root.dataset.screen === 'home') location.reload();
+  });
 }
 
 // Cover missed days with streak freezes: at boot and whenever the installed
@@ -363,6 +373,7 @@ document.addEventListener('visibilitychange', () => {
     }
   }
   if (document.visibilityState !== 'visible') return;
+  if (app.swReg) app.swReg.update().catch(() => {});
   const r = reconcileNow();
   if ((r.usedFreeze || r.broke) && root.dataset.screen === 'home') app.go('home');
 });
