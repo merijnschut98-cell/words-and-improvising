@@ -169,11 +169,11 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - UI: subject bar = three `button`s with `aria-pressed`, class `subject-bar`, each with icon and label (`subject_speak`, `subject_eng`, `subject_pm`). Course home = `today-card` reused (same classes) with a course reason line (`courseWhy_<reason>`), a `due-card` ("N vragen · 2 min") when due > 0, then the module map: one `section.card.track` per track with `h2` track title (`track_<track>`), module rows as buttons (`module-row`) showing title, level pill (`level_<n>`), mastery badge (reuse `masteryBadge` classes), and lesson count "3/6". A `glossary` ghost button at the bottom.
 - i18n keys (en+nl): `subject_*`, `track_*` (4), `level_1..4`, `courseWhy_*` (6), `dueCard` (n) => …, `glossary`, `moduleLessons` (done, total) => …, `courseDone`.
 
-- [ ] **Step 1: Failing unit test** (in `tests/course.test.js`): `courseTodayPick` on an empty state returns `{ reason: 'lesson', moduleId: <first level-1 module>, lessonId: <its first lesson> }` for both subjects (needs Task 11's first module in the index; until then use the index entries added in Task 11a Step 1 — see ordering note below).
-- [ ] **Step 2: Implement** bar, course home, app wiring, stubs, strings, CSS (`.subject-bar` sticky under the header, horizontal, 44 px targets; `.module-row` full-width button with grid of title/pills).
-- [ ] **Step 3: e2e step** `subject bar switches to Engineering and back; speaking home unchanged`: click ⚙️, expect `.subject-bar [aria-pressed="true"]` text to contain "Engineering", `.track` count ≥ 1, screenshot `60-course-home`; click 🎙, expect `.btn-hero` visible. Add a step at the very start of the suite that asserts the default subject is speaking so all older steps keep working. Run the whole suite; all older steps green.
-- [ ] **Step 4: `npm test`**, bump `CACHE`, add new files to `SHELL`.
-- [ ] **Step 5: Commit** `Add subject bar and course home`.
+- [x] **Step 1: Failing unit test** (in `tests/course.test.js`): `courseTodayPick` on an empty state returns `{ reason: 'lesson', moduleId: <first level-1 module>, lessonId: <its first lesson> }` for both subjects (needs Task 11's first module in the index; until then use the index entries added in Task 11a Step 1 — see ordering note below).
+- [x] **Step 2: Implement** bar, course home, app wiring, stubs, strings, CSS (`.subject-bar` sticky under the header, horizontal, 44 px targets; `.module-row` full-width button with grid of title/pills).
+- [x] **Step 3: e2e step** `subject bar switches to Engineering and back; speaking home unchanged`: click ⚙️, expect `.subject-bar [aria-pressed="true"]` text to contain "Engineering", `.track` count ≥ 1, screenshot `60-course-home`; click 🎙, expect `.btn-hero` visible. Add a step at the very start of the suite that asserts the default subject is speaking so all older steps keep working. Run the whole suite; all older steps green.
+- [x] **Step 4: `npm test`**, bump `CACHE`, add new files to `SHELL`.
+- [x] **Step 5: Commit** `Add subject bar and course home`.
 
 **Ordering note:** Task 6 needs at least one real module per subject in the index to show anything. Run Task 11a (two seed modules) **before** Task 6, after Task 5. The plan lists it later for readability only; the ledger records the order.
 

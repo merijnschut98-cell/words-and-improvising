@@ -25,6 +25,11 @@ import { renderWeekly } from './ui/weekly.js';
 import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
+import { loadModule } from './content/courses/index.js';
+import { renderLesson } from './ui/lesson.js';
+import { renderDue } from './ui/due.js';
+import { renderSituation } from './ui/situation.js';
+import { renderGlossary } from './ui/glossary.js';
 
 const SCREENS = {
   home: renderHome,
@@ -38,6 +43,10 @@ const SCREENS = {
   conversation: renderConversation,
   welcome: renderWelcome,
   friendrate: renderFriendRate,
+  lesson: renderLesson,
+  due: renderDue,
+  situation: renderSituation,
+  glossary: renderGlossary,
 };
 
 const storage = (() => {
@@ -74,6 +83,30 @@ export const app = {
   get lang() { return this.state.settings.lang; },
   get content() { return this.lang === 'en' ? en : nl; },
   get t() { return translator(this.lang); },
+  get subject() { return ((this.state.ui || {}).subject) || 'speak'; },
+  setSubject(id) {
+    this.setState({ ...this.state, ui: { ...(this.state.ui || {}), subject: id } });
+    this.go('home');
+  },
+  modules: {}, // 'lang:moduleId' -> loaded module (promise), course bodies on demand
+  openModule(subject, moduleId) {
+    const key = `${this.lang}:${moduleId}`;
+    if (!this.modules[key]) {
+      this.modules[key] = loadModule(subject, moduleId, this.lang).catch((err) => { delete this.modules[key]; throw err; });
+    }
+    return this.modules[key];
+  },
+  startSayIt(subject, moduleId, lessonId) {
+    return this.openModule(subject, moduleId).then((mod) => {
+      const l = mod.lessons.find((x) => x.id === lessonId);
+      if (!l) return this.go('home');
+      this.session = null;
+      return this.go('round', {
+        prompt: { id: `course:${lessonId}`, drill: 'explain', body: l.sayIt, extra: { course: { subject, lessonId, terms: l.terms.map((x) => x.term) } }, seenIds: [] },
+        modifier: null,
+      });
+    }).catch(() => this.toast(this.t('loadError')));
+  },
   today() { return dayKey(new Date()); },
 
   setState(next) {

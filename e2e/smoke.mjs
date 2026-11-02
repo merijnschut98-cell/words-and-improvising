@@ -118,6 +118,23 @@ await page.evaluate(async () => {
 await page.reload();
 await step('home renders', async () => { await page.locator('.btn-hero').waitFor(); await shot('01-home'); });
 
+await step('subject bar switches to Engineering and Projects and back; speaking home unchanged', async () => {
+  await page.locator('.subject-bar .subject-tab[aria-pressed="true"]', { hasText: 'Spreken' }).waitFor();
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-home .track').first().waitFor();
+  await page.locator('.course-today .today-what', { hasText: 'Takt' }).waitFor();
+  await shot('60-course-home');
+  await page.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
+  await page.locator('.lesson-row').nth(5).waitFor();
+  await shot('60b-module-open');
+  await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await page.locator('.course-pm .track').waitFor();
+  await page.reload();
+  await page.locator('.course-pm').waitFor();
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
 await step('lesson: 3 rounds', async () => {
   await page.locator('.btn-hero').click();
   for (let i = 0; i < 3; i++) {

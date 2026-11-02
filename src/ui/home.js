@@ -12,6 +12,8 @@ import { currentQuests } from '../core/quests.js';
 import { planLine } from './plan.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
+import { subjectBar } from './subjectbar.js';
+import { courseHome } from './coursehome.js';
 
 export function navBar(app, active) {
   const t = app.t;
@@ -129,12 +131,19 @@ export function renderHome(app, _params, root) {
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
-  root.append(
-    h('header', { class: 'top' },
+  const header = h('header', { class: 'top' },
       h('div', { class: 'brand' }, h('span', { class: 'logo', 'aria-hidden': 'true' }, '💬'), 'Spraakwater'),
       h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
         h('span', { 'aria-hidden': 'true' }, '🔥'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
-        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, `🧊 ${s.freezes}`) : null)),
+        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, `🧊 ${s.freezes}`) : null));
+  // A course subject: its own home under the same header and bar.
+  if (app.subject !== 'speak') {
+    root.append(header, subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
+    return;
+  }
+  root.append(
+    header,
+    subjectBar(app),
     h('main', { class: 'screen home' },
       showBreak ? h('section', { class: 'card break-card' },
         h('p', {}, t('streakReset', daysPractised(s))),
