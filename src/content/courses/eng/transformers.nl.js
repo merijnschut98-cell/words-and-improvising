@@ -84,7 +84,7 @@ export default {
       teach: [
         'In een transformator zijn de wikkelingen geïsoleerd met papier dat in olie gedrenkt is. Warmte breekt dat papier langzaam af. De vuistregel: elke 6 °C of zo boven de ontwerptemperatuur van het heetste punt verdubbelt de verouderingssnelheid. Een transformator die jarenlang te warm draait kan tientallen jaren levensduur verliezen; een koel draaiende gaat 40 tot 60 jaar mee.',
         'Korte overbelasting is meestal geen probleem. Een transformator warmt langzaam op, over uren, dus een avondpiek van een uur op 120% doet weinig kwaad, en weken op 120% heel veel. Daarom kijken engineers naar het belastingprofiel, niet alleen naar de piekwaarde. Met warmtepompen, auto’s en zonnepanelen draaien veel netstations nu warmer en langer dan waar ze voor ontworpen zijn.',
-        'Bij grote transformatoren in onderstations is de olie een gezondheidscheck. Gas-in-olie-analyse (DGA) meet gassen in een oliemonster. Waterstof wijst op partiële ontladingen, acetyleen op vlambogen, etheen op oververhitting, en koolmonoxide op papier dat afbreekt. De trend in de tijd zegt meer dan één waarde. Grote transformatoren hebben vaak een online DGA-monitor.',
+        'Bij grote transformatoren in onderstations is de olie een gezondheidscheck. Gas-in-olie-analyse (DGA) meet gassen in een oliemonster. Waterstof wijst op partiële ontladingen (kleine vonkjes in de isolatie), acetyleen op vlambogen, etheen op oververhitting, en koolmonoxide op papier dat afbreekt. De trend in de tijd zegt meer dan één waarde. Grote transformatoren hebben vaak een online DGA-monitor.',
         'Netstationtransformatoren zijn anders: er zijn er tienduizenden, meestal hermetisch gesloten, dus ze worden zelden bemonsterd. Daar gebruiken netbeheerders leeftijd, belastingmetingen en storingsdata om te bepalen wat vervangen moet worden. Slimme meters en netstationmonitoring geven nu veel betere belastingdata dan een paar jaar geleden.',
       ],
       example: {
@@ -215,7 +215,7 @@ export default {
         },
       ],
       teach: [
-        'Als een MS-kabel uitvalt, schakelt de beveiliging in het onderstation het veld af, en iedereen op dat deel van de ring zit zonder stroom. Het bedrijfsvoeringscentrum ziet het meteen. Monteurs rijden naar de netstations, gebruiken kortsluitverklikkers om het defecte stuk te vinden, openen de schakelaars aan beide kanten en sluiten het normaal openpunt. De meeste klanten hebben binnen één à twee uur weer stroom, sneller waar op afstand geschakeld kan worden.',
+        'Als een MS-kabel uitvalt, schakelt de beveiliging in het onderstation het veld (de uitgaande MS-kabel) af, en iedereen op dat deel van de ring zit zonder stroom. Het bedrijfsvoeringscentrum ziet het meteen. Monteurs rijden naar de netstations, gebruiken kortsluitverklikkers (kastjes die laten zien of er foutstroom langs kwam) om het defecte stuk te vinden, openen de schakelaars aan beide kanten en sluiten het normaal openpunt. De meeste klanten hebben binnen één à twee uur weer stroom, sneller waar op afstand geschakeld kan worden.',
         'Dan moet de fout gevonden worden. Eerst de voorlokalisatie: een reflectiemeter (echometer) stuurt een puls de kabel in en meet hoe lang de echo van de fout erover doet om terug te komen. Dan het nalokaliseren: een stootgenerator stuurt hoogspanningspulsen die de fout laten doorslaan, en een monteur luistert boven het tracé naar de klap om de precieze plek te vinden.',
         'Herstel: een gat graven, het beschadigde stuk eruit, een nieuw stuk kabel met twee moffen erin, testen en terugschakelen. Dat is vaak een volle werkdag of meer, afhankelijk van de plek, vergunningen en diepte. In de tussentijd draait de ring zonder reserve, dus een tweede storing geeft een langere onderbreking.',
         'LS-storingen zijn anders: vaak slaat een zekering in het netstation door en vervangt een monteur die, of brandt een LS-kabel door. Graafschade is een groot deel van alle storingen. Vóór het graven is een KLIC-melding verplicht om de kaarten van kabels en leidingen te krijgen; toch gebeurt er dagelijks schade.',
@@ -283,7 +283,7 @@ export default {
       teach: [
         'Een aansluiting gaat door vijf stappen. Aanvraag: de klant vraagt aan, voor kleine aansluitingen meestal online. Capaciteitscheck: is er ruimte in het net, en wacht de aanvraag in congestiegebieden? Ontwerp: het tracé, de kabel, en of er een nieuw netstation of een MS-aansluiting nodig is. Werkvoorbereiding: vergunningen, KLIC, materiaal, ploegplanning. Uitvoering: graven, kabel leggen, moffen, aansluiten, meter, en in bedrijf nemen.',
         'De grootte bepaalt de route. Kleine aansluitingen tot 3 × 80 A komen op de LS-kabel in de straat. Grotere krijgen een zware LS-kabel rechtstreeks uit het netstation. Boven ruwweg een paar honderd kVA krijgt de klant meestal een MS-aansluiting met een eigen station of MS-ruimte, en dat vraagt veel meer ontwerp en afstemming.',
-        'De wet geeft een standaardtermijn van 18 weken voor de meeste aansluitingen tot 10 MVA, en die termijn halen netbeheerders nu vaak niet. Het werk zelf is kort, vaak één of twee dagen op locatie. De rest is wachten: op een capaciteitscheck, een graafvergunning van de gemeente, materiaal of een vrije ploeg. Herstelwerk als het ontwerp niet klopt met de straat maakt het langer.',
+        'De oude wettelijke termijn van 18 weken voor aansluitingen tot 10 MVA is in 2025 geschrapt. De wet vraagt nu een “redelijke termijn”, en bij congestie mag het langer duren; voor grote aansluitingen geeft de Netcode termijnen van 26 of 52 weken, afhankelijk van hoe complex het is. Het werk zelf is kort, vaak één of twee dagen op locatie. De rest is wachten: op een capaciteitscheck, een graafvergunning van de gemeente, materiaal of een vrije ploeg. Herstelwerk als het ontwerp niet klopt met de straat maakt het langer.',
         'In de werkvoorbereiding zit vaak een groot deel van de doorlooptijd. Eén ontbrekende vergunning of een transformator die niet op voorraad is, en het werk ligt stil. Daarom is het een logisch verbeterdoel: standaardpakketten, vergunningen eerder aanvragen, en de locatie checken voordat de ploeg komt.',
       ],
       example: {
@@ -331,7 +331,7 @@ export default {
       sayIt: 'Leg een zakelijke klant in 60 seconden uit waarom zijn aansluiting maanden duurt terwijl het werk twee dagen is.',
       terms: [
         { term: 'Werkvoorbereiding', def: 'Vergunningen, kaarten, materiaal en planning vóór de uitvoering.' },
-        { term: 'Aansluittermijn', def: 'De tijd die een netbeheerder heeft om een aansluiting te realiseren; standaard 18 weken tot 10 MVA.' },
+        { term: 'Aansluittermijn', def: 'De tijd die een netbeheerder heeft om een aansluiting te realiseren: wettelijk een “redelijke termijn”; de vaste 18 weken is in 2025 geschrapt.' },
         { term: 'Kleinverbruik', def: 'Kleine aansluitingen tot 3 × 80 A.' },
       ],
     },

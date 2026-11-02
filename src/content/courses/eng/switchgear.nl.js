@@ -65,7 +65,7 @@ export default {
         { term: 'Vermogensschakelaar', def: 'Schakelt belasting en onderbreekt kortsluitstromen.' },
         { term: 'Lastscheider', def: 'Schakelt normale belasting, geen kortsluiting.' },
         { term: 'Scheider', def: 'Wordt stroomloos bediend om een veilige scheiding te maken.' },
-        { term: 'Kortsluitvermogen', def: 'Het kortsluitvermogen of de kortsluitstroom op een punt in het net.' },
+        { term: 'Kortsluitvermogen', def: 'Hoeveel vermogen of stroom er op een punt in het net loopt bij een kortsluiting.' },
       ],
     },
     {
@@ -283,7 +283,7 @@ export default {
       teach: [
         'De vijf veiligheidsregels voor spanningsloos werken, in deze volgorde: 1. Vrijschakelen, aan alle kanten. 2. Vergrendelen, beveiligen tegen herinschakelen, met een slot en een label. 3. Spanningsloos meten, met een spanningzoeker vaststellen dat het dood is. 4. Aarden en kortsluiten. 5. Afschermen van delen in de buurt die nog onder spanning staan.',
         'Elke regel dekt een echte fout. Het verkeerde veld schakelen. Iemand die weer inschakelt. Terugvoeding van een aggregaat, zonnepanelen of een andere ring. Geïnduceerde of achtergebleven spanning. Een spanningvoerend deel vlakbij binnen handbereik. Een stap overslaan omdat “hij is echt uit” is precies hoe ernstige ongevallen gebeuren.',
-        'NEN 3140 geeft de regels voor de bedrijfsvoering van LS-installaties, tot 1.000 V wisselspanning; voor HS-installaties past de sector NEN-EN 50110 toe via eigen regels (BEI). Belangrijke rollen: de installatieverantwoordelijke (IV), die de installatie beheert, en de werkverantwoordelijke (WV), die het werk ter plaatse leidt. Een VP is een vakbekwaam persoon, een VOP een voldoende onderricht persoon.',
+        'NEN 3140 geeft de regels voor de bedrijfsvoering van LS-installaties, tot 1.000 V wisselspanning; NEN 3840 doet hetzelfde daarboven, dus voor MS en HS. Beide bouwen op de Europese NEN-EN 50110, en netbeheerders werken met sectorregels die daarop gebaseerd zijn (BEI). Belangrijke rollen: de installatieverantwoordelijke (IV), die de installatie beheert, en de werkverantwoordelijke (WV), die het werk ter plaatse leidt. Een VP is een vakbekwaam persoon, een VOP een voldoende onderricht persoon.',
         'Een AVP is een aangewezen vakbekwaam persoon: iemand die vakbekwaam is én door de werkgever schriftelijk is aangewezen voor bepaalde werkzaamheden. Kunde alleen is niet genoeg; de aanwijzing telt. Als consultant ben je in een installatie een leek: je gaat alleen naar binnen met een bevoegd persoon, en je raakt niks aan.',
       ],
       example: {
@@ -297,7 +297,7 @@ export default {
           number: 1000,
           tolerance: 1,
           unit: 'V',
-          why: 'Laagspanning is tot 1.000 V wisselspanning; daarboven gelden de HS-regels.',
+          why: 'Laagspanning is tot 1.000 V wisselspanning; daarboven geldt NEN 3840.',
         },
         {
           q: 'Wat is de goede volgorde van de eerste drie veiligheidsregels?',

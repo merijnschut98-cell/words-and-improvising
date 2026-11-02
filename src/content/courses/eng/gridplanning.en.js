@@ -226,7 +226,7 @@ export default {
         'A battery moves energy in time: charge now, discharge later. It has two ratings: power in MW, and energy in MWh. A 10 MW / 20 MWh battery delivers 10 MW for 2 hours. Most grid batteries are 1 to 4 hours. To shave a 4-hour evening peak you need enough MWh, not just MW.',
         'Where it helps. Placed behind the congested point and run for the local problem. In a solar-heavy area it charges at midday and empties in the evening. At a factory it shaves the offtake peak behind the meter, so the company needs a smaller connection. At a busy LS station a small battery can postpone a transformer swap by a few years.',
         'Where it makes things worse. A battery that trades on national markets reacts to prices, not to your feeder. Prices drop when the whole country has lots of wind, which may be exactly your local evening peak, so it charges at the worst moment. A battery connection also asks for both offtake and feed-in capacity, and stands in the same queue. Many batteries reacting to the same price at once create new peaks.',
-        'How operators handle it. Batteries are often offered non-firm or time-bound contracts: TenneT’s ATR85, for example, guarantees transport 85% of the time. The battery stays out of certain hours in return for a faster connection or a lower tariff. Sharing a connection with a solar park works well: the battery fills the gap the park leaves and adds little extra load.',
+        'How operators handle it. Batteries are often offered non-firm or time-bound contracts: TenneT’s time-bound transport right (first called ATR85), for example, guarantees transport at least 85% of the time. The battery stays out of certain hours in return for a faster connection or a lower tariff. Sharing a connection with a solar park works well: the battery fills the gap the park leaves and adds little extra load.',
         'The question that cuts through: “At the peak hour, who decides what the battery does: the grid or the market?” If the answer is the market, ask what the contract says about those hours.',
       ],
       example: {
@@ -295,7 +295,7 @@ export default {
       teach: [
         'Grid operators plan against scenarios, not one forecast. Nationally there are shared scenarios for 2030 to 2050 (II3050); regionally the energy strategies (RES), municipal heat plans and the real queue of connection requests. Planners turn these into load per station per year: how many heat pumps, chargers, solar roofs and large connections, at what simultaneity.',
         'The bottleneck list. Run load flows per scenario per year, and you see where and when each asset goes over its limit. Each bottleneck gets a solution (an extra cable, a third transformer, a new station), a cost and a date. Dutch operators publish an investment plan every two years, which turns this into a public programme.',
-        'Prioritising. There is more need than people and money. Bottlenecks are ranked on risk (overload, safety), customers waiting, and how ready the solution is. For the connection queue, the ACM allowed operators from 2024 to put projects with social value first: projects that relieve congestion, then safety and defence, then basic needs like housing, healthcare and education.',
+        'Prioritising. There is more need than people and money. Bottlenecks are ranked on risk (overload, safety), customers waiting, and how ready the solution is. For the connection queue, the ACM lets operators put projects with social value first (since 2024; a renewed framework is mandatory in congestion areas from 2026): projects that relieve congestion, then safety (acute care, defence, water management), then basic needs like housing, education and public transport.',
         'Lead times (rule of thumb): LS reinforcement and new MS/LS stations, months to a year; MS cables and stations, one to three years; a new HS/MS substation, 5 to 10 years, mostly site and permits. That means you must build before demand is certain, called anticipatory investment. Wait for certainty and you are always late.',
         'Questions that land in planning meetings: “Which scenario is this based on?”, “What happens to the date if demand comes faster?” and “Which steps are no-regret: useful in every scenario?” Buying a site or starting permits early is often no-regret; building the full station is not.',
       ],
@@ -327,7 +327,7 @@ export default {
           why: 'Like buying a site early: it pays off whichever scenario comes true.',
         },
         {
-          q: 'Under the 2024 prioritisation rules for the connection queue, which kind of project goes first?',
+          q: 'Under the ACM prioritisation rules for the connection queue, which kind of project goes first?',
           options: ['The oldest request', 'The largest request', 'Projects that pay the most', 'Projects that relieve congestion'],
           answer: 'Projects that relieve congestion',
           why: 'They free room for others, so they come before safety, defence and basic needs.',

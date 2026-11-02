@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Detectie. Een MS-storing zie je meestal als een beveiligingsuitschakeling in het HS/MS-onderstation: de vermogensschakelaar van het veld valt eruit en het bedrijfsvoeringscentrum ziet het binnen seconden in SCADA. Het LS-net in de straat wordt nauwelijks gemeten, dus LS-storingen merk je vaak pas als klanten het landelijke storingsnummer bellen, of steeds vaker via slimme meters en sensoren in stations. Hoe sneller je het weet, hoe sneller je klok voor je werkt.',
+        'Detectie. Een MS-storing zie je meestal als een beveiligingsuitschakeling in het HS/MS-onderstation: de vermogensschakelaar van het veld valt eruit en het bedrijfsvoeringscentrum ziet het binnen seconden in SCADA. Het LS-net in de straat wordt nauwelijks gemeten, dus LS-storingen merk je vaak pas als klanten het landelijke storingsnummer bellen, of steeds vaker via slimme meters en sensoren in stations. Elke minuut voordat je het weet, telt mee in de storingsduur.',
         'MS-netten zijn als ringen aangelegd, maar worden open bedreven met een normaal open punt. Dat houdt kortsluitstromen en beveiliging eenvoudig en laat een reserveroute over. Valt een deel uit, dan zoeken het bedrijfsvoeringscentrum en de storingsmonteur met de kortsluitverklikkers in de MS-stations welk kabeldeel het is. De monteur schakelt dat deel aan beide kanten vrij.',
         'Herstel door schakelen. Met het defecte deel vrijgeschakeld schakelt het bedrijfsvoeringscentrum het veld weer in en wordt het normaal open punt gesloten, zodat het gezonde deel van de andere kant wordt gevoed. De meeste klanten hebben binnen een à twee uur weer stroom, lang voordat er gegraven wordt. Met afstandsbediende stations is dat minuten. Alleen klanten binnen het vrijgeschakelde deel wachten op de reparatie.',
         'Reparatie. Een meetwagen bepaalt waar de fout precies zit, de graafmelding gaat eruit, de ploeg graaft, maakt een of twee moffen, test de kabel en schakelt hem via een schakelplan terug. Dat kost vaak een dag of meer. Tot die tijd draait de ring in een afwijkende situatie zonder reserve: een tweede storing komt dan harder aan.',
@@ -76,7 +76,7 @@ export default {
       title: 'Schakelplannen',
       pre: [
         {
-          q: 'Wat is bij gepland netwerk vaak het schaarsste middel?',
+          q: 'Wat is bij gepland werk aan het net vaak het schaarsste middel?',
           options: ['Mensen die mogen schakelen, en de momenten om het te doen', 'Kabel en moffen', 'Graafmachines', 'Budget'],
           answer: 'Mensen die mogen schakelen, en de momenten om het te doen',
           why: 'De ploeg en het materiaal kunnen klaarstaan terwijl de klus weken wacht op een schakelmoment.',

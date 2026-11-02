@@ -283,7 +283,7 @@ export default {
       teach: [
         'The five safety rules for working dead, in this order: 1. vrijschakelen, disconnect on all sides. 2. Vergrendelen, secure against switching back on, with a lock and a tag. 3. Spanningsloos meten, verify that it is dead with a tester. 4. Aarden en kortsluiten, earth and short-circuit. 5. Afschermen, shield nearby parts that are still live.',
         'Each rule covers a real failure. Switching the wrong field. Someone switching back on. A back-feed from a generator, solar panels or another ring. Induced or residual voltage. A neighbouring live part within reach. Skipping one step because “it’s definitely off” is how serious accidents happen.',
-        'NEN 3140 sets the rules for operating LS installations, up to 1,000 V AC; for HS installations the sector applies NEN-EN 50110 through its own rules (BEI). Key roles: the installation responsible (installatieverantwoordelijke, IV), who controls the installation, and the work responsible (werkverantwoordelijke, WV), who leads the work on site. A VP is a skilled person, an instructed person is a VOP.',
+        'NEN 3140 sets the rules for operating LS installations, up to 1,000 V AC; NEN 3840 does the same above that, so for MS and HS. Both build on the European NEN-EN 50110, and grid operators work with sector rules based on them (BEI). Key roles: the installatieverantwoordelijke (IV), who controls the installation, and the werkverantwoordelijke (WV), who leads the work on site. A VP (vakbekwaam persoon) is a skilled person; a VOP (voldoende onderricht persoon) is an instructed person.',
         'An AVP is an aangewezen vakbekwaam persoon: a skilled person whose employer has formally appointed them, in writing, for specific work. Skill alone is not enough; the appointment matters. As a consultant you are a layperson in an installation: you go in only with a qualified person and you never touch anything.',
       ],
       example: {
@@ -297,7 +297,7 @@ export default {
           number: 1000,
           tolerance: 1,
           unit: 'V',
-          why: 'Low voltage is up to 1,000 V AC; above that, HS rules apply.',
+          why: 'Low voltage is up to 1,000 V AC; above that, NEN 3840 applies.',
         },
         {
           q: 'What is the correct order of the first three safety rules?',

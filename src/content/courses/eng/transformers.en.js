@@ -84,7 +84,7 @@ export default {
       teach: [
         'Inside a transformer, the windings are insulated with paper soaked in oil. Heat slowly breaks down that paper. The rule of thumb: every 6 °C or so above the design hot-spot temperature doubles the ageing rate. A transformer that runs too hot for years can lose decades of life; one that runs cool can last 40 to 60 years.',
         'Short overloads are usually fine. A transformer heats up slowly, over hours, so a one-hour evening peak of 120% does little harm, while weeks at 120% do a lot. That is why engineers look at the load profile, not only the peak value. With heat pumps, cars and solar, many netstations now run hotter, for longer, than they were designed for.',
-        'For large substation transformers, the oil is a health check. Dissolved gas analysis (DGA) measures gases in an oil sample. Hydrogen points to partial discharges, acetylene to arcing, ethylene to overheating, and carbon monoxide to paper breaking down. The trend over time matters more than one value. Large transformers often have online DGA monitors.',
+        'For large substation transformers, the oil is a health check. Dissolved gas analysis (DGA) measures gases in an oil sample. Hydrogen points to partial discharges (tiny sparks in the insulation), acetylene to arcing, ethylene to overheating, and carbon monoxide to paper breaking down. The trend over time matters more than one value. Large transformers often have online DGA monitors.',
         'Netstation transformers are different: there are tens of thousands of them, mostly sealed, so they are rarely sampled. For those, operators use age, load measurements and failure data to decide what to replace. Smart meters and netstation monitoring now give much better load data than a few years ago.',
       ],
       example: {
@@ -215,7 +215,7 @@ export default {
         },
       ],
       teach: [
-        'When an MS cable fails, the protection at the substation trips the feeder and everyone on that part of the ring loses power. The control room sees it immediately. Technicians drive to netstations, use fault indicators to find the faulty section, open the switches on both sides and close the normally open point. Most customers are back within one to two hours, faster where switching is remote.',
+        'When an MS cable fails, the protection at the substation switches off the feeder (the outgoing MS cable) and everyone on that part of the ring loses power. The control room sees it immediately. Technicians drive to netstations, use fault indicators (small devices that show whether fault current passed) to find the faulty section, open the switches on both sides and close the normally open point. Most customers are back within one to two hours, faster where switching is remote.',
         'Then the fault must be found. First pre-location: a time-domain reflectometer sends a pulse into the cable and measures how long the echo takes to come back from the fault. Then pinpointing: a surge generator sends high-voltage pulses that make the fault flash over, and a technician listens along the route for the bang to find the exact spot.',
         'Repair: dig a hole, cut out the damaged piece, put in a new piece of cable with two joints, test it and switch back. That is often a full working day or more, depending on the location, permits and depth. Meanwhile the ring runs without its backup, so a second fault would cause a longer outage.',
         'LS faults are different: often a fuse in the netstation blows and a technician replaces it, or an LS cable burns through. Digging damage is a big part of all faults. Before digging, a KLIC notification is mandatory to get the maps of cables and pipes; still, damage happens daily.',
@@ -283,7 +283,7 @@ export default {
       teach: [
         'A connection goes through five steps. Request: the customer applies, for small connections usually online. Capacity check: does the grid have room, and in congested areas, does the request wait? Design: the route, the cable, and whether a new netstation or MS connection is needed. Work preparation: permits, digging maps, materials, crew planning. Execution: digging, laying cable, joints, connecting, meter, and putting it into service.',
         'Size decides the route. Small connections up to 3 × 80 A connect to the LS cable in the street. Larger ones get a heavy LS cable straight from the netstation. Above roughly a few hundred kVA, the customer usually gets an MS connection with its own station or MS-ruimte, which takes much more design and coordination.',
-        'The law sets a standard term of 18 weeks for most connections up to 10 MVA, a term operators now often miss. The work itself is short, often one or two days on site. The rest is waiting: for a capacity check, a digging permit from the municipality, materials, or a free crew. Rework when the design does not match the street makes it longer.',
+        'The old legal deadline of 18 weeks for connections up to 10 MVA was scrapped in 2025. The law now asks for a “reasonable term”, and congestion can justify longer; for large connections the Netcode sets terms of 26 or 52 weeks, depending on complexity. The work itself is short, often one or two days on site. The rest is waiting: for a capacity check, a digging permit from the municipality, materials, or a free crew. Rework when the design does not match the street makes it longer.',
         'Work preparation (werkvoorbereiding) is where much of the lead time sits. One missing permit or a transformer that is not in stock stops the job. That makes it a natural target for improvement: standard packages, earlier permit requests, and checking the site before the crew arrives.',
       ],
       example: {
@@ -331,7 +331,7 @@ export default {
       sayIt: 'Explain to a business customer in 60 seconds why their connection takes months while the work takes two days.',
       terms: [
         { term: 'Werkvoorbereiding', def: 'Work preparation: permits, maps, materials and planning before execution.' },
-        { term: 'Aansluittermijn', def: 'The time a grid operator has to realise a connection; standard 18 weeks up to 10 MVA.' },
+        { term: 'Aansluittermijn', def: 'The time a grid operator has to realise a connection: by law a “reasonable term”; the fixed 18 weeks was dropped in 2025.' },
         { term: 'Kleinverbruik', def: 'Small connections up to 3 × 80 A.' },
       ],
     },
