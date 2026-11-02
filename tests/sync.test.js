@@ -97,3 +97,12 @@ test('a broken remote never poisons local numbers or history', () => {
 test('a reset device starts with sync off, so a wipe is never pushed to the cloud', () => {
   assert.ok(!base().settings.syncOn);
 });
+
+test('his work context stays on this device: syncable strips it, and a merge keeps the local one', () => {
+  const local = { ...base(), settings: { ...base().settings, context: 'I plan MV work at Enexis' } };
+  const out = syncable(local);
+  assert.equal(out.settings, undefined);
+  assert.ok(!JSON.stringify(out).includes('Enexis'));
+  const remote = { ...syncable(base()), settings: { context: 'remote context' } };
+  assert.equal(mergeStates(local, remote).settings.context, 'I plan MV work at Enexis');
+});

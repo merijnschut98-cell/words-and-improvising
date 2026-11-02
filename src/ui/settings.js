@@ -31,6 +31,13 @@ export function renderSettings(app, _params, root) {
 
   const remindNote = h('p', { class: 'muted small' }, t('remindHelp'));
 
+  // His work, for coach scenes and explanations. Device-only (settings never sync).
+  const ctxInput = h('textarea', {
+    id: 'ctx-input', class: 'text-input ctx-input', rows: 3, maxlength: 400,
+    onchange: (e) => set({ context: e.target.value.trim().slice(0, 400) }),
+  });
+  ctxInput.value = s.context || '';
+
   const keyStatus = h('p', { class: 'small', 'aria-live': 'polite' });
   const testBtn = h('button', { class: 'btn btn-ghost small', onclick: testKey }, ico('key-round'), ' ', t('testKey'));
   async function testKey() {
@@ -132,7 +139,10 @@ export function renderSettings(app, _params, root) {
         h('label', { class: 'field-label' }, t('model')),
         h('select', { onchange: (e) => set({ model: e.target.value }) },
           h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),
-          h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
+          h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap'))),
+        h('label', { class: 'field-label', for: 'ctx-input' }, t('ctxLabel')),
+        ctxInput,
+        h('p', { class: 'muted small' }, t('ctxHelp'))),
       // Sync between devices (Task 16).
       syncSection(app),
       group('practice',

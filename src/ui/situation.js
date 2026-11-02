@@ -5,7 +5,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { applySituation } from '../core/course.js';
-import { runGrade } from '../core/coursecoach.js';
+import { runGrade, runScene } from '../core/coursecoach.js';
 import { pushbackTurns, runPushback, runPushbackGrade, applyPushback } from '../core/pushback.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
 
@@ -57,13 +57,32 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
     return { ta, micBtn };
   }
 
-  function ask(lesson) {
+  // base is the lesson as written: a fresh scene is made from it and lives only
+  // in memory for this visit; its points are saved under the same lesson.
+  function ask(lesson, note = '', base = lesson) {
     const s = lesson.situation;
     const { ta, micBtn } = answerBox('sit-answer', t('sitAnswerPh'));
+    const key = app.state.settings.apiKey;
+    const context = String(app.state.settings.context || '').trim();
+    const fresh = key && context ? h('button', {
+      class: 'btn btn-ghost small scene-new',
+      onclick: async (e) => {
+        stopRec();
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        btn.textContent = t('coachThinking');
+        const res = await runScene(key, { lesson: base, context, lang: app.lang, model: app.state.settings.model });
+        if (seq !== app.navSeq) return;
+        if (res.ok) ask({ ...base, situation: res.situation }, '', base);
+        else ask(base, t('sceneNote'), base);
+      },
+    }, t('sceneNew')) : null;
     main.replaceChildren(
       h('section', { class: 'card sit-card' },
         h('p', { class: 'today-label' }, lesson.title),
-        h('p', { class: 'teach-text' }, s.scene),
+        fresh,
+        note ? h('p', { class: 'note scene-note' }, note) : null,
+        h('p', { class: 'teach-text sit-scene' }, s.scene),
         h('p', { class: 'quiz-q' }, s.ask),
         ta, micBtn),
       h('button', {

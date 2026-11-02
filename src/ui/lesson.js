@@ -5,7 +5,7 @@ import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { applyLesson, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
-import { runExplain } from '../core/coursecoach.js';
+import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
 
 // Where he is in the lesson: Guess · Read · Example · Check, the current one
@@ -156,8 +156,9 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         class: 'btn btn-ghost small',
         onclick: () => {
           const input = h('input', { type: 'text', class: 'text-input', maxlength: 200, placeholder: t('explainCtxPh'), 'aria-label': t('explainCtxPh') });
+          input.value = String(app.state.settings.context || '').slice(0, 200);
           const go = h('button', {
-            class: 'btn btn-primary small',
+            class: 'btn btn-ghost small',
             onclick: async () => {
               if (!input.value.trim()) { input.focus(); return; }
               go.disabled = true;
@@ -187,6 +188,41 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('p', { class: 'muted small' }, why))));
     }
 
+    // Explain-back on the done card: he explains first. With a key the coach
+    // grades three points and asks about one gap; without one he ticks the
+    // terms he used. Practice only: no XP, not a round.
+    function explainBack() {
+      const ta = h('textarea', { class: 'text-input eb-text', rows: 4, placeholder: t('ebPh'), 'aria-label': t('ebPh') });
+      const key = app.state.settings.apiKey;
+      let body;
+      if (key) {
+        const out = h('div', { class: 'eb-out', 'aria-live': 'polite' });
+        const go = h('button', {
+          class: 'btn btn-ghost small eb-check',
+          onclick: async () => {
+            if (!ta.value.trim()) { ta.focus(); return; }
+            go.disabled = true;
+            out.replaceChildren(h('p', { class: 'muted small' }, t('coachThinking')));
+            const res = await runExplainBack(key, { lesson, text: ta.value.trim(), lang: app.lang, model: app.state.settings.model });
+            if (!out.isConnected) return;
+            go.disabled = false;
+            out.replaceChildren(res.ok
+              ? h('div', {}, h('p', { class: 'xp-line' }, t('ebPoints', res.points.reduce((a, b) => a + b, 0), 3)), res.question ? h('p', { class: 'said' }, res.question) : null)
+              : h('p', { class: 'note' }, t('loadError')));
+          },
+        }, t('ebCheck'));
+        body = [ta, go, out];
+      } else {
+        const terms = lesson.terms || [];
+        const count = h('p', { class: 'muted small eb-count', 'aria-live': 'polite' }, t('ebPoints', 0, terms.length));
+        const boxes = terms.map((x) => h('label', { class: 'rubric-line' },
+          h('input', { type: 'checkbox', onchange: () => { count.textContent = t('ebPoints', boxes.filter((b) => b.querySelector('input').checked).length, terms.length); } }),
+          h('span', {}, x.term)));
+        body = [ta, h('p', { class: 'quiz-q' }, t('ebSelf')), boxes, count];
+      }
+      return h('details', { class: 'card explain-back' }, h('summary', {}, t('ebTitle')), body);
+    }
+
     function done(xp) {
       finished = true;
       show(h('section', { class: 'card lesson-done' },
@@ -195,6 +231,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
       guessCard(),
+      explainBack(),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));
