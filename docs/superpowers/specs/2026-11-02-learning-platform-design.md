@@ -2,6 +2,19 @@
 
 Agreed 2026-11-02 with Merijn. Spraakwater grows from a speaking trainer into a learning platform with three subjects: **Spreken** (as is), **Engineering** and **Projecten**. The speaking subject keeps working exactly as today; the two courses are new.
 
+## Name and brand (added 2026-11-02)
+
+The platform is renamed **Vantage Point** and adopts Merijn's Vantage design system (`anthropic-skills:vantage-design`) in full:
+
+- Tokens, fonts (Fraunces, Inter, JetBrains Mono; self-hosted woff2) and the Vantage mark, copied into the repo, never redrawn. Header shows the mark plus a Fraunces wordmark; title, manifest name and short name are "Vantage Point"; home-screen icons are rendered from the mark.
+- Two themes: light (beige canvas `#E8DFCA`) and dark (deep green `#0B291B` canvas, bone text), plus Auto following the system. Existing colour themes are retired and map to Auto. No third background colour.
+- No emoji anywhere (UI, strings, toasts). Icons: a fine-lined set (Lucide, ISC licence), self-hosted as inline SVG, flagged as a substitution because the design system defines none. No magnifier, lightbulb or up-and-right arrow icons.
+- Flat and fine-lined: radii 3–10 px, hairline borders, subtle shadows, no gradients, no coloured left-border cards. Accent petrol `#276F81`; semantics success `#265C40`, warning `#A87433` (text `#6E4A1C`), danger `#7E3128`. Gold and coral never used.
+- Motion decelerates into place (motion tokens); no confetti, bounces or springs; all zeroed under reduced motion.
+- Copy: sentence case, calm, no exclamation marks, no buzzwords. XP and streak stay as quiet mono labels.
+- The storage key stays `spraakwater:v1` so nobody loses progress; the service-worker cache name changes to `vantage-point-v*` and the old caches are deleted on activate.
+- Interactive figures use the Vantage palette in both themes.
+
 ## Purpose
 
 - **Engineering** (manufacturing, process engineering, and the electricity grid): understand what engineering teams talk about, follow a gemba walk, ask a real question at the machine. Fundamentals to expert.

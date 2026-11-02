@@ -175,6 +175,8 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [x] **Step 4: `npm test`**, bump `CACHE`, add new files to `SHELL`.
 - [x] **Step 5: Commit** `Add subject bar and course home`.
 
+**Ordering note (rebrand):** run Task 14 right after Task 10, so the remaining tasks build on the Vantage look.
+
 **Ordering note:** Task 6 needs at least one real module per subject in the index to show anything. Run Task 11a (two seed modules) **before** Task 6, after Task 5. The plan lists it later for readability only; the ledger records the order.
 
 ### Task 7: Lesson screen
@@ -267,6 +269,24 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [ ] **Step 2:** Dispatch content subagents, at most 3 in parallel (budget), each one module both languages; validator must pass.
 - [ ] **Step 3:** Index entries, `SHELL`, `npm test`, one e2e step that opens the first lesson of a level-3 module and sees the faded example (`.example-ask` then Reveal). Screenshot `66-faded-example`.
 - [ ] **Step 4: Commit per 3–4 modules** `Add <subject> modules: …`.
+
+### Task 14: Vantage Point rebrand (run after Task 10, before 11b's UI checks and Task 13)
+
+**Files:**
+- Create: `fonts/*.woff2` (6, copied from the skill), `brand/tokens.css` (the skill's `tokens/*.css` concatenated, font URLs pointing at `fonts/`), `brand/mark.svg`, `brand/mark-on-dark.svg`, `icons/*.png` regenerated from the mark (192, 512, maskable 512) with a Playwright script `scripts/icons.mjs` (dev only), `src/ui/icons.js` (Lucide paths, ISC notice), `LICENSES.md` (OFL fonts, ISC Lucide).
+- Modify: `index.html` (title, theme-color, font preload, `brand/tokens.css`), `manifest.webmanifest` (name/short_name "Vantage Point", colors), `styles.css` (map every existing variable to Vantage tokens; light = beige, dark = deep green; radii 3–10 px; remove gradients, confetti/pop keyframes → decelerating fades), `src/ui/dom.js` (`DRILL_ICON` → icon names; helper `ico(name)`), every UI file that prints emoji (home, round, feedback, done, progress, settings, realweek, weekly, plan, welcome, conversation, coursehome, lesson, quiz, due, situation, glossary, subjectbar), `src/i18n.js` (strip emoji and exclamation marks; brand name), `src/core/storage.js` (theme values: `auto|light|dark`; old values → `auto`), `src/app.js` (`applyTheme` sets `data-theme="light|dark"` or none for auto), `sw.js` (cache prefix `vantage-point-v`, delete any cache not equal to the current one, fonts and brand files in SHELL), tests (contrast test on new tokens, no-emoji test over `src/`), `e2e/smoke.mjs` (selectors that used emoji text).
+
+**Interfaces:**
+- `ico(name: string, label?: string) -> SVGElement` — `aria-hidden` unless `label` is given (then `role="img"` + `aria-label`).
+- `DRILL_ICON: { [drill]: iconName }`; callers render `ico(DRILL_ICON[d])`.
+- Settings theme options: `auto`, `light`, `dark` (i18n `theme_auto|light|dark`).
+
+- [ ] **Step 1: Failing tests**: `tests/brand.test.js` — no emoji code points (`\p{Extended_Pictographic}`) in any `src/**/*.js` string except `src/content/courses/figures/` (none expected); `--muted` on `--card` ≥ 4.5:1 and `--ink` on `--bg` ≥ 7:1 in both themes (reuse the contrast helper from the existing contrast test); manifest name is "Vantage Point"; storage maps `theme: 'night'` to `'auto'`.
+- [ ] **Step 2:** Brand assets, tokens and fonts in; header lockup; manifest and icons.
+- [ ] **Step 3:** Icon module; replace every emoji in UI and strings; copy pass on tone (sentence case, no "!").
+- [ ] **Step 4:** Styles: tokens mapping, both themes, motion, remove gradients/confetti; theme setting.
+- [ ] **Step 5:** e2e green with updated selectors; screenshots in light and dark (add a dark-theme pass for home, course home, lesson, feedback); look at every screenshot.
+- [ ] **Step 6:** Commit `Rebrand as Vantage Point with the Vantage design system`.
 
 ### Task 13: Interactive figures (anatomy skill)
 
