@@ -4,6 +4,7 @@ import { h } from './dom.js';
 import { renderQuiz } from './quiz.js';
 import { applyLesson, lessonPhases, recallQuestions } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
+import { runExplain } from '../core/coursecoach.js';
 
 export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   const t = app.t;
@@ -74,7 +75,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         main.replaceChildren(
           h('section', { class: 'card teach-card' }, step('teach'), dots(lesson.teach.length, block),
             h('p', { class: 'teach-text' }, lesson.teach[block]),
-            last ? h('p', { class: 'said' }, lesson.said) : null),
+            last ? h('p', { class: 'said' }, lesson.said) : null,
+            last && app.state.settings.apiKey ? explainBox(lesson) : null),
           h('button', {
             class: 'btn btn-primary btn-big',
             onclick: () => { if (last) next(); else { block += 1; draw(); } },
@@ -118,6 +120,31 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           },
         }, box);
       }
+    }
+
+    // With a key: one line about his own context, and the coach relates the lesson to it.
+    function explainBox(lesson) {
+      const out = h('div', { class: 'explain-out' });
+      const open = h('button', {
+        class: 'btn btn-ghost small',
+        onclick: () => {
+          const input = h('input', { type: 'text', class: 'text-input', maxlength: 200, placeholder: t('explainCtxPh'), 'aria-label': t('explainCtxPh') });
+          const go = h('button', {
+            class: 'btn btn-primary small',
+            onclick: async () => {
+              if (!input.value.trim()) { input.focus(); return; }
+              go.disabled = true;
+              out.replaceChildren(h('p', { class: 'muted small' }, t('coachThinking')));
+              const res = await runExplain(app.state.settings.apiKey, { lesson, context: input.value.trim(), lang: app.lang, model: app.state.settings.model });
+              if (!out.isConnected) return;
+              go.disabled = false;
+              out.replaceChildren(res.ok ? h('p', { class: 'said' }, res.text) : h('p', { class: 'note' }, t('loadError')));
+            },
+          }, t('explainGo'));
+          open.replaceWith(h('div', { class: 'explain-ask' }, input, go));
+        },
+      }, t('explainMine'));
+      return h('div', { class: 'explain' }, open, out);
     }
 
     function done(xp) {

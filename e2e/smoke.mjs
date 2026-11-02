@@ -186,6 +186,55 @@ await step('a full lesson: guess, read, example, quiz with one miss, review, pas
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('due session: 4 due questions, answered, XP and boxes move', async () => {
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const d = new Date(Date.now() - 86400000);
+    const y = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    st.courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.flow.takt#r${i}`, { box: 2, due: y, lesson: 'eng.flow.takt', subject: 'eng' }]));
+    st.ui = { ...(st.ui || {}), subject: 'eng' };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.locator('.due-card', { hasText: '4' }).click();
+  const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons[0]);
+  for (let i = 0; i < 4; i++) {
+    const text = await page.locator('.quiz-card .quiz-q').textContent();
+    const q = lesson.recall.find((x) => x.q === text);
+    if ('number' in q) { await page.locator('.quiz-card .quiz-num').fill(String(q.number)); await page.locator('.quiz-card .btn-primary').click(); }
+    else await page.locator('.quiz-card .opt', { hasText: q.answer }).first().click();
+  }
+  await page.locator('.quiz-review .btn-primary').click();
+  await page.locator('.due-done').waitFor();
+  await shot('62-due-done');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (![0, 1, 2, 3].every((i) => st.courseReviews[`nl|eng.flow.takt#r${i}`].box === 3)) throw new Error('boxes did not move to 3');
+});
+
+await step('situation without a key: answer, self-rate 2 of 3, 10 XP once; glossary search; course progress', async () => {
+  await page.evaluate(() => window.__app.go('situation', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.takt' }));
+  await page.locator('.sit-answer').fill('Welke takt rekenen we, en hoeveel netto beschikbare tijd zit er per dienst in?');
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.rubric-line input').nth(0).check();
+  await page.locator('.rubric-line input').nth(2).check();
+  await page.locator('.situation > .btn-primary').click();
+  await page.locator('.sit-result', { hasText: '2 van 3' }).waitFor();
+  if (!(await page.locator('.sit-result').textContent()).includes('+10 XP')) throw new Error('no situation XP');
+  await shot('63-situation');
+  await page.evaluate(() => window.__app.go('glossary', { subject: 'eng' }));
+  await page.locator('.glossary .term').first().waitFor();
+  await page.locator('.glossary input[type=search]').fill('takt');
+  await page.locator('.glossary .term', { hasText: /takt/i }).first().waitFor();
+  await shot('65-glossary');
+  await page.evaluate(() => window.__app.go('progress'));
+  await page.locator('.course-progress .strip i.on').first().waitFor();
+  await shot('64-progress-course');
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.screen.progress .stats').waitFor();
+  await page.evaluate(() => window.__app.go('home'));
+  await page.locator('.btn-hero').waitFor();
+});
+
 await step('a lesson whose module fails to load shows a retry, then loads', async () => {
   const c4 = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   await c4.addInitScript(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'pm' } })));
@@ -1393,7 +1442,7 @@ await step('offline after first load', async () => {
   await page.reload();
   await page.locator('.btn-hero').waitFor({ timeout: 5000 });
   // Every screen works offline (all modules come from the service worker cache).
-  for (const screen of ['progress', 'settings', 'realweek', 'weekly']) {
+  for (const screen of ['progress', 'settings', 'realweek', 'weekly', 'glossary']) {
     await page.evaluate((sc) => window.__app.go(sc), screen);
     await page.locator(`main.screen.${screen}`).waitFor({ timeout: 5000 });
   }

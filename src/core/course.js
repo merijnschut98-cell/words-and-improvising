@@ -1,9 +1,9 @@
 // Course engine: quiz flow, judging answers, lesson progress, and how course
 // work feeds the shared XP, days and streak. Pure.
-import { updateStreak, reconcileStreak } from './progress.js';
+import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCourseQuestions, maintenanceQuestion } from './coursereview.js';
-import { lessonOf, MODULES } from '../content/courses/index.js';
+import { lessonOf, MODULES, TRACKS } from '../content/courses/index.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -192,4 +192,22 @@ export function questionById(modules, questionId) {
     if (l && tag && tag[0] === 'r' && Number.isInteger(n) && l.recall && l.recall[n]) return { ...l.recall[n], id: questionId };
   }
   return null;
+}
+
+// Progress per course: owned modules per track, due now, sessions per day for
+// the last 14 days (today last), and the latest situations.
+export function courseSummary(state, subject, lang, today, modules = MODULES) {
+  const mods = modules.filter((m) => m.subject === subject);
+  const tracks = (TRACKS[subject] || []).map((track) => {
+    const inTrack = mods.filter((m) => m.track === track);
+    return { track, owned: inTrack.filter((m) => moduleMastery(state, m, lang) === 'own').length, total: inTrack.length };
+  });
+  const sessions = (((state.courses || {})[subject]) || {}).sessions || [];
+  const [y, m, d] = today.split('-').map(Number);
+  const strip = Array.from({ length: 14 }, (_, i) => {
+    const key = dayKey(new Date(y, m - 1, d - 13 + i));
+    return sessions.filter((x) => x.day === key).length;
+  });
+  const situations = sessions.filter((x) => x.kind === 'situation').slice(0, 5).map((x) => ({ lessonId: x.lessonId, pts: x.correct, ts: x.ts }));
+  return { tracks, due: dueCourseQuestions(state.courseReviews || {}, today, subject, lang).length, strip, situations };
 }

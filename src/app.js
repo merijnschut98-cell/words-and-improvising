@@ -84,9 +84,9 @@ export const app = {
   get content() { return this.lang === 'en' ? en : nl; },
   get t() { return translator(this.lang); },
   get subject() { return ((this.state.ui || {}).subject) || 'speak'; },
-  setSubject(id) {
+  setSubject(id, screen = 'home') {
     this.setState({ ...this.state, ui: { ...(this.state.ui || {}), subject: id } });
-    this.go('home');
+    this.go(screen);
   },
   modules: {}, // 'lang:moduleId' -> loaded module (promise), course bodies on demand
   moduleFails: {}, // 'lang:moduleId' -> failed loads so far

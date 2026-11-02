@@ -8,6 +8,30 @@ import { masteryOf } from '../core/mastery.js';
 import { PROGRAMME, startProgramme, stopProgramme, programmeWeek, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
 import { masteryBadge } from './home.js';
+import { subjectBar } from './subjectbar.js';
+import { courseSummary } from '../core/course.js';
+import { MODULES } from '../content/courses/index.js';
+
+// A course on Progress: modules owned per track, due now, the last 14 days and recent situations.
+function courseProgress(app, subject) {
+  const t = app.t;
+  const sum = courseSummary(app.state, subject, app.lang, app.today());
+  const max = Math.max(1, ...sum.strip);
+  const lessonTitle = (id) => { const m = MODULES.find((x) => id.startsWith(`${x.id}.`)); return m ? (m.title[app.lang] || m.title.en) : id; };
+  return h('main', { class: 'screen progress course-progress' },
+    h('section', { class: 'card' },
+      h('h2', { class: 'card-title' }, t('courseOwned')),
+      sum.tracks.filter((x) => x.total).map((x) => h('div', { class: 'week-row' },
+        h('span', {}, t(`track_${x.track}`)), h('b', {}, `${x.owned}/${x.total}`))),
+      h('div', { class: 'week-row' }, h('span', {}, t('dueTitle')), h('b', {}, sum.due))),
+    h('section', { class: 'card' },
+      h('h2', { class: 'card-title' }, t('courseDays')),
+      h('div', { class: 'strip', role: 'img', 'aria-label': t('courseDaysLabel', sum.strip.reduce((a, b) => a + b, 0)) },
+        sum.strip.map((n) => h('i', { style: { height: `${8 + (40 * n) / max}px` }, class: n ? 'on' : '' })))),
+    sum.situations.length ? h('section', { class: 'card' },
+      h('h2', { class: 'card-title' }, t('courseSituations')),
+      sum.situations.map((x) => h('div', { class: 'week-row' }, h('span', {}, lessonTitle(x.lessonId)), h('b', {}, `${x.pts}/3`)))) : null);
+}
 import { drawShareCard, shareFile } from '../core/share.js';
 import { friendAverages } from '../core/friend.js';
 import { wordsSummary, SWAPS } from '../core/words.js';
@@ -262,8 +286,14 @@ export function renderProgress(app, _params, root) {
 
   const dateFmt = new Intl.DateTimeFormat(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
 
+  const header = h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('progressTitle')));
+  if (app.subject !== 'speak') {
+    root.append(header, subjectBar(app, 'progress'), courseProgress(app, app.subject), navBar(app, 'progress'));
+    return;
+  }
   root.append(
-    h('header', { class: 'top' }, h('div', { class: 'round-title' }, t('progressTitle'))),
+    header,
+    subjectBar(app, 'progress'),
     h('main', { class: 'screen progress' },
       weekCard(app),
       h('section', { class: 'stats' },

@@ -162,3 +162,11 @@ test('story3 frame is described to the coach', () => {
   const req = JSON.stringify(buildCoachRequest({ transcript: 'x', lang: 'en', durationS: 30, metrics: { words: 3 }, model: 'm', drill: 'frame', prompt: { body: 'How was your weekend?', extra: { frame: 'story3' } } }));
   assert.match(req, /Hook, Detail, Question back/);
 });
+
+test('a course say-it round tells the coach the lesson terms', () => {
+  const prompt = { id: 'course:eng.flow.oee', drill: 'explain', body: 'Explain OEE to a new operator.', extra: { course: { subject: 'eng', lessonId: 'eng.flow.oee', terms: ['OEE', 'Micro-stop'] } }, seenIds: [] };
+  const r = buildCoachRequest({ drill: 'explain', prompt, transcript: 'OEE is ...', lang: 'nl', durationS: 50, metrics: { words: 100, wpm: 120, fillerCount: 1, fillerRate: 1 }, model: 'claude-opus-5-5' });
+  const user = r.messages[0].content;
+  assert.match(user, /OEE, Micro-stop/);
+  assert.match(user, /Explain OEE to a new operator\./);
+});

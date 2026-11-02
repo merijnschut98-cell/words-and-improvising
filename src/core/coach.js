@@ -92,6 +92,8 @@ function describePrompt(drill, prompt) {
   const x = prompt.extra || {};
   // Rehearsal of a real event: his own event text stays on the phone.
   if (prompt.eventId) return `Rehearsal of a real upcoming moment. Task: ${prompt.focus || 'speak about it'}`;
+  // A say-it round from a course lesson: the task itself names the audience.
+  if (x.course) return `Course task: ${prompt.body}\nKey terms he should use correctly: ${(x.course.terms || []).join(', ')}`;
   if (drill === 'explain') return `Concept: ${prompt.body}\nAudience: ${x.audience}`;
   if (drill === 'bridge') return `Topic: ${prompt.body}\nWords to include: ${(x.words || []).join(', ')}`;
   if (drill === 'smalltalk' && x.dialogue) {

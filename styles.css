@@ -576,3 +576,20 @@ details.finder summary { cursor: pointer; font-weight: 800; }
 .xp-line { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
 .load-error .row { display: flex; gap: 8px; flex-wrap: wrap; }
 .lesson > .btn { width: 100%; margin-bottom: 8px; }
+.sit-answer { width: 100%; margin: 8px 0; }
+.mic-btn { margin-bottom: 4px; }
+.rubric-line { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; padding: 6px 0; border-top: 1px solid var(--line); }
+.rubric-line input { width: 22px; height: 22px; margin-top: 2px; flex: none; }
+.rubric-result { margin: 4px 0; }
+.rubric-result.ok span { color: var(--good); }
+.rubric-result.miss span { color: var(--bad); }
+.sit-mine { white-space: pre-wrap; }
+.glossary input[type=search] { width: 100%; margin-bottom: 12px; }
+.term { padding: 6px 0; border-top: 1px solid var(--line); }
+.term:first-of-type { border-top: 0; }
+.term p { margin: 2px 0 0; }
+.strip { display: flex; align-items: flex-end; gap: 4px; height: 52px; }
+.strip i { flex: 1; background: var(--line); border-radius: 3px; }
+.strip i.on { background: var(--primary); }
+.explain { margin-top: 10px; }
+.explain-ask { display: flex; flex-direction: column; gap: 6px; }

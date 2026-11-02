@@ -207,10 +207,10 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - Produces: `renderDue(app, { subject }, root)`: loads, runs `renderQuiz` on the due questions (question text looked up by id from the loaded modules), on done calls `applyDue` with first-try results, shows a done card with XP and "N owned now" (count of questions that reached box 4 this session).
 - i18n: `dueTitle`, `dueDone` (xp, owned) => …, `dueNone`.
 
-- [ ] **Step 1: Failing unit test**: `questionById(modules, questionId) -> question | null` (pure, course.js) resolves `'<lessonId>#r2'` to the third recall question and returns `null` for unknown ids.
-- [ ] **Step 2: Implement.**
-- [ ] **Step 3: e2e step** `due session: seed 4 due questions, answer, XP and boxes move`: seed `courseReviews` with 4 eng entries due yesterday (ids from the passed lesson of the previous step), reload, course home shows `.due-card` "4", open it, answer all correctly, done card shows XP, storage shows box 3 for each. Screenshot `62-due-done`.
-- [ ] **Step 4–5:** tests, CACHE, SHELL, commit `Add due sessions`.
+- [x] **Step 1: Failing unit test**: `questionById(modules, questionId) -> question | null` (pure, course.js) resolves `'<lessonId>#r2'` to the third recall question and returns `null` for unknown ids.
+- [x] **Step 2: Implement.**
+- [x] **Step 3: e2e step** `due session: seed 4 due questions, answer, XP and boxes move`: seed `courseReviews` with 4 eng entries due yesterday (ids from the passed lesson of the previous step), reload, course home shows `.due-card` "4", open it, answer all correctly, done card shows XP, storage shows box 3 for each. Screenshot `62-due-done`.
+- [x] **Step 4–5:** tests, CACHE, SHELL, commit `Add due sessions`.
 
 ### Task 9: Situation screen and coach helpers
 
@@ -228,10 +228,10 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - UI: `renderSituation(app, { subject, moduleId, lessonId }, root)`: scene, ask, textarea (or mic button reusing `speech.js` recognizer when supported, appending the transcript to the textarea), Submit → with key: coach grade with the local self-rating as fallback on any error; without key: three rubric checkboxes (0–3) → model answer shown → Done applies `applySituation`. On the lesson's teach phase a ghost button "Explain this for my situation" (only when a key is set) opens an inline input for one line of context, then shows the answer under the blocks.
 - i18n: `sitTitle`, `sitAsk`, `sitAnswerPh`, `sitSubmit`, `sitSelfRate`, `sitModel`, `sitPoints` (n) => …, `sitDone`, `explainMine`, `explainCtxPh`, `coachMissed`.
 
-- [ ] **Step 1: Failing tests**: request contains the answer and the three rubric lines and not the teach blocks; `parseGrade` clamps `[2, -1, 1]` to `[1, 0, 1]` and rejects a non-JSON message; explain request has no teach text; coach brief includes the terms when `extra.course` is set.
-- [ ] **Step 2: Implement.**
-- [ ] **Step 3: e2e steps** `situation without a key: self-rate 2 of 3, 10 XP once` (screenshot `63-situation`) and `say-it round from a lesson runs through the round screen and marks sayIt` (typing mode; the fake SDK branch is not needed).
-- [ ] **Step 4–5:** tests, CACHE, SHELL, commit `Add situations and course coach helpers`.
+- [x] **Step 1: Failing tests**: request contains the answer and the three rubric lines and not the teach blocks; `parseGrade` clamps `[2, -1, 1]` to `[1, 0, 1]` and rejects a non-JSON message; explain request has no teach text; coach brief includes the terms when `extra.course` is set.
+- [x] **Step 2: Implement.**
+- [x] **Step 3: e2e steps** `situation without a key: self-rate 2 of 3, 10 XP once` (screenshot `63-situation`) and `say-it round from a lesson runs through the round screen and marks sayIt` (typing mode; the fake SDK branch is not needed).
+- [x] **Step 4–5:** tests, CACHE, SHELL, commit `Add situations and course coach helpers`.
 
 ### Task 10: Glossary, Progress tab, backup
 
@@ -243,10 +243,10 @@ The fixture is a minimal two-lesson module defined inside the test file.
 **Interfaces:**
 - Produces: `courseSummary(state, subject, lang, today) -> { tracks: [{ track, owned, total }], due: n, strip: number[14], situations: [{ lessonId, pts, ts }] }` (pure, course.js). `renderGlossary(app, { subject }, root)`: loads all modules of the subject (parallel, skips failures with a note), search input filters by term or definition, grouped by module title.
 
-- [ ] **Step 1: Failing tests**: `courseSummary` counts; strip is 14 long with today last; backup import keeps `courses`.
-- [ ] **Step 2: Implement.**
-- [ ] **Step 3: e2e step** `progress course tab and glossary search` (screenshots `64-progress-course`, `65-glossary`). Add `'glossary'` to the offline loop in the existing `offline after first load` step.
-- [ ] **Step 4–5:** commit `Add glossary and course progress`.
+- [x] **Step 1: Failing tests**: `courseSummary` counts; strip is 14 long with today last; backup import keeps `courses`.
+- [x] **Step 2: Implement.**
+- [x] **Step 3: e2e step** `progress course tab and glossary search` (screenshots `64-progress-course`, `65-glossary`). Add `'glossary'` to the offline loop in the existing `offline after first load` step.
+- [x] **Step 4–5:** commit `Add glossary and course progress`.
 
 ### Task 11a: Seed content (two modules) and the content pipeline
 

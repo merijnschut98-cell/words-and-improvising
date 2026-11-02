@@ -97,7 +97,8 @@ function promptCard(app, prompt, state) {
   switch (prompt.drill) {
     case 'explain':
       card.append(h('p', { class: 'prompt-main' }, prompt.body),
-        h('p', { class: 'prompt-sub' }, `${t('for')}: `, h('b', {}, x.audience)));
+        x.audience ? h('p', { class: 'prompt-sub' }, `${t('for')}: `, h('b', {}, x.audience)) : null,
+        x.course ? h('p', { class: 'prompt-sub' }, `${t('useTerms')}: `, h('b', {}, (x.course.terms || []).join(', '))) : null);
       break;
     case 'prep':
       card.append(h('p', { class: 'prompt-main' }, prompt.body),

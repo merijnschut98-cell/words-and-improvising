@@ -182,3 +182,24 @@ test('recall questions get stable ids; questionById resolves them', () => {
 test('course say-it prompts never enter the speaking review queue', () => {
   assert.equal(isRebuildableId('course:eng.flow.takt'), false);
 });
+
+import { courseSummary } from '../src/core/course.js';
+
+test('courseSummary: owned per track, due count, a 14-day strip ending today, recent situations', () => {
+  const day = '2026-11-02';
+  let s = passed(defaultState(), 'eng.flow.a', 'eng.flow.b');
+  s = own(s, 'nl', 'eng.flow.a#r0', 'eng.flow.a#r1', 'eng.flow.b#r0');
+  s.courseReviews['nl|eng.machining.a#r0'] = { box: 1, due: day, lesson: 'eng.machining.a', subject: 'eng' };
+  s.courses.eng.sessions = [
+    { day, kind: 'lesson', correct: 3, total: 4, ts: 3 },
+    { day: '2026-11-01', kind: 'situation', lessonId: 'eng.flow.a', correct: 2, total: 3, ts: 2 },
+    { day: '2026-10-01', kind: 'due', correct: 1, total: 1, ts: 1 },
+  ];
+  const sum = courseSummary(s, 'eng', 'nl', day, MODS);
+  assert.deepEqual(sum.tracks, [{ track: 'basics', owned: 1, total: 2 }, { track: 'discrete', owned: 0, total: 1 }, { track: 'grid', owned: 0, total: 0 }]);
+  assert.equal(sum.due, 1);
+  assert.equal(sum.strip.length, 14);
+  assert.equal(sum.strip[13], 1);
+  assert.equal(sum.strip[12], 1);
+  assert.deepEqual(sum.situations, [{ lessonId: 'eng.flow.a', pts: 2, ts: 2 }]);
+});
