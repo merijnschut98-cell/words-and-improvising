@@ -14,13 +14,13 @@ export default {
       ],
       teach: [
         'Takttijd is beschikbare tijd gedeeld door de klantvraag: het tempo waarin de klant afneemt. Beschikbare tijd is diensttijd min geplande pauzes en overleg, niet min storingen, want die verliezen moet de lijn zelf opvangen. Een dienst van 7,5 netto uur is 27.000 seconden; bij een vraag van 450 stuks is de takt 60 seconden. Takt hangt af van de vraag, niet van de machine. Verandert de vraag, dan verandert de takt.',
-        'Cyclustijd is hoe vaak er echt een product van een station of lijn afkomt: de tijd tussen twee goede producten. Ligt de cyclustijd boven de takt, dan kom je niet rond en heb je overwerk, een extra dienst of meer capaciteit nodig. Engineers plannen de cyclustijd meestal op 85 tot 90% van de takt, zodat er ruimte is voor stops en uitval.',
-        'Doorlooptijd is hoe lang één product erover doet van grondstof tot verzending, wachten meegerekend. Een onderdeel met 4 minuten bewerking heeft vaak 3 tot 10 dagen doorlooptijd, omdat het in buffers, voorraad en wachtrijen staat. Een lange doorlooptijd is bijna altijd een wachtprobleem, geen snelheidsprobleem van de machine.',
+        'Cyclustijd is hoe vaak er echt een product van een station of lijn afkomt: de tijd tussen twee goede producten. Ligt de cyclustijd boven de takt, dan haal je de vraag niet en heb je overwerk, een extra dienst of meer capaciteit nodig. Engineers plannen de cyclustijd meestal op 85 tot 90% van de takt, zodat er ruimte is voor stops en uitval.',
+        'Doorlooptijd is hoe lang één product erover doet van grondstof tot verzending, wachten meegerekend. Een onderdeel met 4 minuten bewerking heeft vaak 3 tot 10 dagen doorlooptijd, omdat het in buffers (kleine voorraden tussen de stappen), voorraad en wachtrijen staat. Een lange doorlooptijd is bijna altijd een wachtprobleem, geen snelheidsprobleem van de machine.',
         '“Cyclustijd” betekent voor iedereen iets anders: de machinecyclus (spil draait), de cyclus van de operator, of de tijd tussen producten die de lijn verlaten. Vraag altijd welke. Een robotcyclus van 38 seconden kan nog steeds een product per 45 seconden opleveren als je laden en afkeur meetelt.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een verpakkingslijn moet 2.400 dozen per week leveren, 5 dagen, één dienst van 8 uur. Pauzes: 2 × 15 minuten plus een startoverleg van 10 minuten. Beschikbare tijd per dag: 480 − 40 = 440 minuten = 26.400 seconden. Vraag per dag: 2.400 / 5 = 480 dozen. Takt = 26.400 / 480 = 55 seconden. De lijn maakt elke 52 seconden een doos: hij komt rond, maar met maar 3 seconden (5%) marge, dus een paar storinkjes per dienst en je loopt achter. De doorlooptijd is 3 dagen, omdat de dozen in het magazijn wachten.',
+        text: 'Een verpakkingslijn moet 2.400 dozen per week leveren, 5 dagen, één dienst van 8 uur. Pauzes: 2 × 15 minuten plus een startoverleg van 10 minuten. Beschikbare tijd per dag: 480 − 40 = 440 minuten = 26.400 seconden. Vraag per dag: 2.400 / 5 = 480 dozen. Takt = 26.400 / 480 = 55 seconden. De lijn maakt elke 52 seconden een doos: hij haalt het, maar met maar 3 seconden (5%) marge, dus een paar storinkjes per dienst en je loopt achter. De doorlooptijd is 3 dagen, omdat de dozen in het magazijn wachten.',
       },
       said: 'Wat engineers zeggen: “We draaien 52 seconden op een takt van 55, dus één slecht uur en we lopen de hele dag achter.”',
       recall: [
@@ -52,7 +52,7 @@ export default {
       ],
       situation: {
         scene: 'Je loopt door de fabriek bij een automotive toeleverancier. De productiemanager zegt: “Onze takt is 40 seconden.” Op het scherm bij de robotcel staat een cyclustijd van 38 seconden.',
-        ask: 'Wat vraag je om te weten of deze cel echt rondkomt?',
+        ask: 'Wat vraag je om te weten of deze cel het echt bijhoudt?',
         model: 'Is die 40 seconden gebaseerd op de huidige vraag en de netto tijd na pauzes? En is die 38 seconden de robotcyclus, of de echte tijd tussen twee goede producten uit de cel, inclusief laden en afkeur? Als het alleen de robot is, zit het echte interval misschien al boven de takt, en met 5% marge is er sowieso weinig ruimte.',
         rubric: [
           'Vraagt hoe de takt is berekend (vraag en netto beschikbare tijd)',
@@ -82,8 +82,8 @@ export default {
       teach: [
         'Een lijn produceert nooit sneller dan zijn langzaamste stap: de bottleneck, of constraint. Stations van 40, 55 en 45 seconden geven één product per 55 seconden, zo’n 65 per uur. Het station van 40 seconden sneller maken levert niks op, dat staat alleen nog meer te wachten.',
         'Hoe herken je hem: onderhanden werk (WIP) stapelt zich op vóór hem, het station erna staat te wachten op product (starved), en de bottleneck zelf staat bijna nooit stil. Let op: een grote stapel kan ook nog van een storing komen. Het echte teken is welke machine continu draait.',
-        'Een uur verloren op de bottleneck is een uur verloren voor de hele fabriek. Een uur gewonnen ergens anders is een luchtspiegeling. Dus bescherm de bottleneck: een buffer ervoor, pauzes laten aflossen zodat hij doordraait, een kwaliteitscheck ervoor zodat hij nooit afkeur bewerkt, en onderhoud eromheen plannen.',
-        'De wet van Little koppelt voorraad aan tijd: doorlooptijd = WIP / throughput. Met 300 stuks in het systeem en een output van 60 per uur is de doorlooptijd 5 uur. Breng de WIP terug naar 120 en de doorlooptijd zakt naar 2 uur, zonder dat er één machine sneller gaat.',
+        'Een uur verloren op de bottleneck is een uur verloren voor de hele fabriek. Een uur gewonnen ergens anders is een luchtspiegeling. Dus bescherm de bottleneck: een kleine voorraad ervoor, pauzes laten aflossen zodat hij doordraait, een kwaliteitscheck ervoor zodat hij nooit afkeur bewerkt, en onderhoud eromheen plannen.',
+        'De wet van Little koppelt voorraad aan tijd: doorlooptijd = WIP / throughput, waarbij throughput de goede output per uur is. Met 300 stuks in het systeem en een output van 60 per uur is de doorlooptijd 5 uur. Breng de WIP terug naar 120 en de doorlooptijd zakt naar 2 uur, zonder dat er één machine sneller gaat.',
         'Bottlenecks verschuiven. Los je er één op, dan neemt de op-één-na-langzaamste het over. Ook een andere productmix kan hem verplaatsen, omdat sommige producten op de ene machine veel langer duren dan op de andere.',
       ],
       example: {
@@ -114,8 +114,8 @@ export default {
         },
         {
           q: 'Je zet een tweede CNC naast de CNC die de bottleneck is. Verdubbelt de output?',
-          options: ['Ja, altijd', 'Alleen tot het op-één-na-langzaamste station de bottleneck wordt', 'Nee, de output blijft gelijk', 'Alleen als de WIP stijgt'],
-          answer: 'Alleen tot het op-één-na-langzaamste station de bottleneck wordt',
+          options: ['Ja, altijd', 'Alleen als alle andere stations het bijhouden; anders wordt de op-één-na-langzaamste de bottleneck', 'Nee, de output blijft gelijk', 'Alleen als de WIP stijgt'],
+          answer: 'Alleen als alle andere stations het bijhouden; anders wordt de op-één-na-langzaamste de bottleneck',
           why: 'De bottleneck verschuift; de output stijgt tot het tempo van de nieuwe langzaamste stap.',
         },
       ],
@@ -149,14 +149,14 @@ export default {
         },
       ],
       teach: [
-        'OEE = beschikbaarheid × performance × kwaliteit. Beschikbaarheid = looptijd / geplande productietijd (verlies door storingen en omstellen). Performance = ideale cyclustijd × gemaakte stuks / looptijd (verlies door langzaam draaien en microstops). Kwaliteit = goede stuks / gemaakte stuks (verlies door afkeur en herbewerking). Vermenigvuldigen, nooit middelen. Snelle check: OEE = goede stuks × ideale cyclustijd / geplande tijd.',
+        'OEE = beschikbaarheid × performance × kwaliteit. Beschikbaarheid = looptijd / geplande productietijd (verlies door storingen en omstellen). Performance = ideale cyclustijd (de snelste bewezen tijd per stuk) × gemaakte stuks / looptijd (verlies door langzaam draaien en microstops). Kwaliteit = goede stuks / gemaakte stuks (verlies door afkeur en herbewerking). Vermenigvuldigen, nooit middelen. Snelle check: OEE = goede stuks × ideale cyclustijd / geplande tijd.',
         'De zes grote verliezen. Beschikbaarheid: storingen, en omstellen en afstellen. Performance: microstops (vastlopers korter dan zo’n 5 minuten) en verlaagde snelheid. Kwaliteit: opstartafkeur en productieafkeur. Microstops zijn de verborgen post: niemand vult een formulier in voor een vastloper van 40 seconden, maar 30 daarvan per dienst is 20 minuten.',
-        'Wat is goed? 85% is het bekende “world class” getal (90% × 95% × 99,9%). Eerlijk gemeten zit je in de discrete maakindustrie meestal op 40 tot 60%. Een fabriek die 90% rapporteert, maakt meestal de noemer kleiner: omstellen niet meetellen in de geplande tijd, of een trage “ideale” cyclustijd gebruiken.',
-        '100% bestaat niet: geen enkele stop, elk product op ideale snelheid, nul afkeur. Dat gebeurt nooit. En OEE is per machine: hem verhogen op een niet-bottleneck levert alleen meer WIP op. De vragen die ertoe doen: OEE van welke machine, tegen welke ideale cyclustijd, en wat laat je buiten de geplande tijd?',
+        'Wat is goed? 85% is het bekende “world class” getal (90% × 95% × 99,9%). Eerlijk gemeten zit je in de discrete maakindustrie meestal op 40 tot 60%. Een fabriek die 90% rapporteert, rekent zich meestal rijk: omstellen niet meetellen in de geplande tijd, of een trage “ideale” cyclustijd gebruiken.',
+        '100% bestaat niet: geen enkele stop, elk product op ideale snelheid, nul afkeur. Dat gebeurt nooit. En OEE meet je per machine of lijn: hem verhogen op een niet-bottleneck levert alleen meer WIP op. De vragen die ertoe doen: OEE van welke machine, tegen welke ideale cyclustijd, en wat laat je buiten de geplande tijd?',
       ],
       example: {
         kind: 'worked',
-        text: 'Dienst van 480 minuten met 30 minuten pauze: geplande tijd 450 minuten. Storingen 30 minuten, één omstelling 45 minuten: looptijd 375 minuten. Beschikbaarheid = 375 / 450 = 83,3%. Ideale cyclus 30 seconden, 600 stuks gemaakt: 300 ideale minuten. Performance = 300 / 375 = 80%. Van de 600 stuks zijn er 570 goed: kwaliteit = 95%. OEE = 0,833 × 0,80 × 0,95 = 63,3%. Check: 570 × 0,5 minuut / 450 = 63,3%. De grootste hefboom is performance: 75 minuten kwijt aan microstops en langzaam draaien.',
+        text: 'Dienst van 480 minuten met 30 minuten pauze: geplande tijd 450 minuten. Storingen 30 minuten, één omstelling 45 minuten: looptijd 375 minuten. Beschikbaarheid = 375 / 450 = 83,3%. Ideale cyclus 30 seconden, 600 stuks gemaakt: 300 ideale minuten. Performance = 300 / 375 = 80%. Van de 600 stuks zijn er 570 goed: kwaliteit = 95%. OEE = 0,833 × 0,80 × 0,95 = 63,3%. Check: 570 × 0,5 minuut / 450 = 63,3%. Waar bleef de tijd? Beschikbaarheid kost 75 minuten (storingen en de omstelling), performance ook 75 minuten (microstops en langzaam draaien), kwaliteit maar 15 minuten (30 slechte stuks × 0,5 minuut). Er zijn dus twee grote hefbomen, niet één.',
       },
       said: 'Wat engineers zeggen: “Beschikbaarheid is prima, het zijn de microstops die onze performance slopen. Niemand registreert een vastloper van 30 seconden.”',
       recall: [
@@ -178,7 +178,7 @@ export default {
           q: 'Een klant meldt een OEE van 92% op een verpakkingslijn. Wat is de beste eerste vraag?',
           options: ['Welke lijn is jullie beste?', 'Kunnen we naar 100%?', 'Wat laten jullie buiten de geplande tijd, en welke ideale cyclustijd gebruiken jullie?', 'Waarom is het niet hoger?'],
           answer: 'Wat laten jullie buiten de geplande tijd, en welke ideale cyclustijd gebruiken jullie?',
-          why: 'Een heel hoge OEE komt meestal door een kleinere noemer of een trage ideale cyclus.',
+          why: 'Een heel hoge OEE komt meestal doordat verliezen buiten de geplande tijd blijven, of door een trage ideale cyclus.',
         },
         {
           q: 'Welke verliezen vallen onder performance?',
@@ -218,7 +218,7 @@ export default {
       ],
       teach: [
         'Omsteltijd loopt van het laatste goede product A tot het eerste goede product B op volle snelheid. Dus de proefruns en het afstellen aan het eind tellen mee, en daar zit veel verborgen tijd.',
-        'Intern werk kan alleen als de machine stilstaat: de matrijs wisselen. Extern werk kan terwijl hij draait: de volgende matrijs halen, voorverwarmen, gereedschap en papieren klaarleggen. SMED in stappen: film een omstelling en schrijf elke stap op; markeer intern of extern; haal extern werk uit de stop; maak intern werk extern (matrijzen voorverwarmen, gereedschap offline voorinstellen); stroomlijn daarna met snelspanners in plaats van bouten.',
+        'Intern werk kan alleen als de machine stilstaat: de matrijs (het gereedschap dat het product vormt) wisselen. Extern werk kan terwijl hij draait: de volgende matrijs halen, voorverwarmen, gereedschap en papieren klaarleggen. SMED (single-minute exchange of die: omstellen in minder dan 10 minuten) gaat in stappen: film een omstelling en schrijf elke stap op; markeer intern of extern; haal extern werk uit de stop; maak intern werk extern (matrijzen voorverwarmen, gereedschap offline voorinstellen); stroomlijn daarna met snelspanners in plaats van bouten.',
         'Afstellen is de killer: proberen en bijstellen is vaak de helft van een omstelling. De technische oplossing: vaste aanslagen, paspennen, standaard matrijshoogtes en instelkaarten, zodat de instelling in één keer goed is. Moeten afstellen betekent dat de instelling niet vastligt.',
         'De afweging met seriegrootte: de gemiddelde voorraad is ongeveer een halve serie. Bij lange omsteltijden draaien planners grote series om minder tijd te verliezen, en dan groeien voorraad en doorlooptijd. Halveer de omsteltijd en je kunt de serie halveren bij hetzelfde tijdverlies: de helft minder voorraad. Of houd de serie gelijk en win capaciteit, maar dat loont alleen op de bottleneck.',
       ],
@@ -269,7 +269,7 @@ export default {
       terms: [
         { term: 'Omsteltijd (changeover)', def: 'Laatste goede product A tot eerste goede product B op volle snelheid.' },
         { term: 'Intern / extern', def: 'Werk waarvoor de machine stil moet / werk dat kan terwijl hij draait.' },
-        { term: 'SMED', def: 'Single-minute exchange of die: een methode om omsteltijd te verkorten.' },
+        { term: 'SMED', def: 'Single-minute exchange of die: een methode om omsteltijd te verkorten, liefst tot onder de 10 minuten.' },
       ],
     },
     {
@@ -352,7 +352,7 @@ export default {
         },
       ],
       teach: [
-        'Capaciteit = beschikbare tijd / cyclustijd, gecorrigeerd voor verliezen. Eén dienst van 7,5 netto uur bij een cyclus van 60 seconden is op papier 450 stuks; bij 75% OEE zo’n 340. Plan op het realistische getal, niet op de papieren capaciteit. Van twee- naar drieploegendienst geeft 50% meer uren, maar kost nachttoeslag en laat minder tijd over voor onderhoud.',
+        'Capaciteit = beschikbare tijd / cyclustijd, gecorrigeerd voor verliezen. Eén dienst van 7,5 netto uur bij een cyclus van 60 seconden is op papier 450 stuks; bij 75% OEE zo’n 340. Plan op het realistische getal, niet op de papieren capaciteit volgens het typeplaatje. Van twee- naar drieploegendienst geeft 50% meer uren, maar kost nachttoeslag en laat minder tijd over voor onderhoud.',
         'Bezettingsgraad = bezette tijd / beschikbare tijd. Managers willen 100%. Maar aanvoer en bewerkingstijden variëren, en de wachttijd groeit ongeveer met u / (1 − u). Bij 50% bezetting is die factor 1, bij 80% is het 4, bij 90% is het 9, bij 95% is het 19. In de laatste 10 tot 15% exploderen de wachtrijen.',
         'Plan de bottleneck dus op zo’n 80 tot 85% belasting na OEE, met ruimte voor storingen en spoedorders. Niet-bottlenecks hebben nog meer reserve nodig, zodat ze na een verstoring kunnen inhalen en de bottleneck blijven voeden. Een fabriek die op 100% is ingepland, heeft lange doorlooptijden en is permanent aan het brandjes blussen.',
         'De vraag waarmee je serieus genomen wordt: wat is de geplande belasting van de bottleneck, in uren, na OEE? Niet tegen papieren uren. Variatie verminderen (minder storingen, gelijkmatiger aanvoer) is wat je in staat stelt veilig op een hogere belasting te draaien.',
@@ -391,7 +391,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit in het S&OP-overleg bij een plaatbewerker. Verkoop wil een grote order aannemen. De planner zegt: “We hebben capaciteit, de laser zit op 85%, dus er is 15% vrij.”',
+        scene: 'Je zit in het overleg tussen verkoop en productie (S&OP) bij een plaatbewerker. Verkoop wil een grote order aannemen. De planner zegt: “We hebben capaciteit, de laser zit op 85%, dus er is 15% vrij.”',
         ask: 'Wat vraag je voordat de order wordt aangenomen?',
         model: 'Is die 85% tegen papieren uren of na OEE? Als het papieren uren zijn, zit de echte belasting misschien al boven de 100%. En hoe lang is de wachtrij voor de laser nu? Richting 100% exploderen de doorlooptijden, dus laten we uitrekenen welke levertijd we eerlijk kunnen beloven, of wat een extra ploeg oplevert.',
         rubric: [

@@ -16,7 +16,7 @@ export default {
         'Voltage (V, volt) is the push, current (A, ampere) is the flow, and power (W, watt) is how fast energy is used: power = voltage × current. A 2,000 W kettle on 230 V draws about 8.7 A. Energy is power × time, in kilowatt-hours: that kettle running for 3 minutes uses 2 kW × 0.05 h = 0.1 kWh. You pay for kWh; the grid is built for kW.',
         'The grid uses alternating current (AC): the voltage swings back and forth 50 times a second (50 Hz) in Europe. AC is used because transformers can easily raise and lower AC voltage, which is the key to moving power over long distances with low losses.',
         'Most of the grid is three-phase: three wires each carrying AC, shifted a third of a cycle from each other, plus a neutral. In a Dutch home, the voltage between one phase and neutral is 230 V; between two phases it is 400 V. Three phases deliver smooth power and use the copper efficiently, which is why heavy loads like heat pumps and car chargers often use all three.',
-        'A common Dutch house connection is 3 × 25 A: three phases, 25 A each, about 3 × 230 × 25 ≈ 17 kVA maximum. Older homes may have 1 × 35 A. That maximum is what the main fuse allows, not what the house normally uses.',
+        'A common Dutch house connection is 3 × 25 A: three phases, 25 A each, about 3 × 230 × 25 ≈ 17 kVA maximum (kVA, kilovolt-ampere, is the grid’s unit for what a cable or fuse must carry; for a home it is close to kW). Older homes may have 1 × 35 A. That maximum is what the main fuse allows, not what the house normally uses.',
       ],
       example: {
         kind: 'worked',
@@ -83,7 +83,7 @@ export default {
         'Why high voltage: power = voltage × current, and losses in a cable grow with the current squared. Raise the voltage 10 times and the current for the same power drops 10 times, so the losses drop 100 times. That is why power travels long distances at very high voltage and is stepped down close to the user.',
         'The Dutch levels: extra-high voltage (EHS) of 380 and 220 kV and high voltage (HS) of 150 and 110 kV, all run by TenneT, the national transmission system operator. Below that, regional grid operators take over. Some regions have an intermediate level (tussenspanning) of around 50 or 25 kV.',
         'Medium voltage (MS, middenspanning) is mostly 10 to 20 kV. It runs from substations through cities and villages to the distribution substations, and directly to large customers such as factories. Low voltage (LS, laagspanning) is 400/230 V: the cables in your street and the connection to your house.',
-        'The regional operators (DSOs) are Enexis, Liander and Stedin, plus a few smaller ones such as Westland Infra, Coteq and Rendo. Each has a monopoly in its area. Enexis covers large parts of the north, east and south. They own and run the MS and LS grid that almost every home and business connects to.',
+        'The regional operators (DSOs, distribution system operators) are Enexis, Liander and Stedin, plus a few smaller ones such as Westland Infra, Coteq and Rendo. Each has a monopoly in its area. Enexis covers large parts of the north, east and south. They own and run the MS and LS grid that almost every home and business connects to.',
       ],
       example: {
         kind: 'worked',
@@ -149,7 +149,7 @@ export default {
       teach: [
         'Power arrives from TenneT at an onderstation (substation), where large transformers step it down from 150 or 110 kV to 10 or 20 kV. From there, MS cables leave in many directions. The substation is where the national and regional grids meet, and where much of the capacity for a whole town is decided.',
         'MS cables are laid in rings: they leave the substation, pass a series of distribution substations and return. The ring is run open at one point, the normally open point. If a cable section fails, operators isolate it and close the open point, so most customers are back on supply while the cable is repaired.',
-        'The distribution substation, netstation or wijktrafo, is the small building or cabinet in your street. Inside: MS switchgear for the ring, a transformer from 10 kV to 400 V of typically 250 to 630 kVA, and an LS rack with fuses for each outgoing street cable. In buildings and at large customers the MS equipment often sits in an MS-ruimte.',
+        'The distribution substation, netstation or wijktrafo, is the small building or cabinet in your street. Inside: MS switchgear (the switches) for the ring, a transformer from 10 kV to 400 V of typically 250 to 630 kVA, and an LS rack with fuses for each outgoing street cable. In buildings and at large customers the MS equipment often sits in an MS-ruimte.',
         'From the netstation, LS cables run along the streets, each feeding dozens of homes. A connection cable runs to each house and ends at the main fuse and meter in the meterkast. Up to and including the meter, it belongs to the grid operator; after it, to the owner.',
       ],
       example: {
@@ -217,11 +217,11 @@ export default {
         'Grid equipment is rated in kVA, apparent power: what the cable or transformer actually has to carry, including the part that does no useful work. kW is the useful part. The ratio is the power factor, usually 0.9 to 1 for homes. A 400 kVA transformer can deliver about 360 to 400 kW.',
         'Simultaneity (gelijktijdigheid) is the key planning idea. Not every home uses its maximum at the same time. Traditionally a street was planned at about 1 to 1.5 kVA per home at the evening peak, far below the 17 kVA of each connection. That assumption is why many old LS grids are relatively light.',
         'Heat pumps and electric cars change this. On a cold evening, all heat pumps run at once: simultaneity close to 1. Cars charge after work at 11 kW each. Solar panels add a new peak at midday in the other direction: on a sunny day, every roof feeds back at the same time. The grid now needs room for peaks it was never designed for.',
-        'Too much feed-in raises the voltage at the end of a long LS cable. Above about 253 V (230 V plus 10%), inverters switch off to protect the grid: “my panels keep switching off” is often a voltage problem, not a broken inverter.',
+        'Too much feed-in raises the voltage at the end of a long LS cable. Above about 253 V (230 V plus 10%), inverters (the boxes that turn solar power into grid AC) switch off to protect the grid: “my panels keep switching off” is often a voltage problem, not a broken inverter.',
       ],
       example: {
         kind: 'worked',
-        text: 'A netstation of 400 kVA feeds 150 homes. Old peak: 1.5 kVA × 150 = 225 kVA, 56% loaded. Now 50 homes get a heat pump of 3 kW, all running on a cold evening: + 50 × 3 × 0.8 = 120 kVA. And 40 homes charge a car at 11 kW, with about 30% charging at the same moment: + 40 × 11 × 0.3 = 132 kVA. New peak: 225 + 120 + 132 = 477 kVA, 119% of the transformer. The annual energy only rose by about half; the peak more than doubled.',
+        text: 'A netstation of 400 kVA feeds 150 homes. Old peak: 1.5 kVA × 150 = 225 kVA, 56% loaded. Now 50 homes get a heat pump of 3 kW, all running on a cold evening at about 80% of full power: + 50 × 3 × 0.8 = 120 kVA. And 40 homes charge a car at 11 kW, with about 30% charging at the same moment: + 40 × 11 × 0.3 = 132 kVA. New peak: 225 + 120 + 132 = 477 kVA, 119% of the transformer. The annual energy only rose by about half; the peak more than doubled.',
       },
       said: 'What engineers say: “The simultaneity of those heat pumps is close to one. When it freezes, they all run.”',
       recall: [
@@ -283,7 +283,7 @@ export default {
         'Grid congestion (netcongestie) means that at peak moments, the demand for transport capacity is higher than what part of the grid can safely carry. It can be for consumption (afname), for example an industrial area that wants more power, or for feed-in (invoeding), for example solar parks in a rural area. Large parts of the Netherlands are now congested.',
         'In congested areas, new large customers (grootverbruik, connections above 3 × 80 A) and customers who want more capacity end up on a waiting list. Households and small businesses are still connected. The national capacity map shows where there is room and where not.',
         'Reinforcing the grid takes years: a new substation often takes 5 to 10 years including permits, land and the space for cables in the street. MS reinforcement is faster but still months to years. Staff, materials and digging space are all scarce.',
-        'Meanwhile, operators use the existing grid more cleverly. Congestion management: customers are paid or contracted to use less or feed in less at peak moments, often through the GOPACS platform. Flexible or time-bound contracts give capacity except at peak hours, so a customer can connect now in return for limits. Since most congestion is a few hundred hours a year, a little flexibility frees a lot of room.',
+        'Meanwhile, operators use the existing grid more cleverly. Congestion management: customers are paid or contracted to use less or feed in less at peak moments, often through GOPACS, the national platform where grid operators buy this flexibility. Flexible or time-bound contracts give capacity except at peak hours, so a customer can connect now in return for limits. Since most congestion is a few hundred hours a year, a little flexibility frees a lot of room.',
       ],
       example: {
         kind: 'worked',

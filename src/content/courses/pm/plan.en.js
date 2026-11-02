@@ -14,7 +14,7 @@ export default {
       ],
       teach: [
         'Start with deliverables, not activities. A deliverable is something that exists at the end and that someone can check: “a baseline of cancellations by cause”, “a readiness check agreed by the planners”, “a six-week pilot in one region”. Ask: “If this project is done, what is there that isn’t there now?” Write four to seven deliverables. Activities come later, under each one.',
-        'Then break each deliverable into work packages: pieces one person or a small team can do and finish. The 8–80 hour idea: a package smaller than about 8 hours is micromanagement, bigger than about 80 hours hides surprises and can’t be tracked. Each package gets a verb, an owner and a “done when”: “Classify 3 months of cancellations by cause, done when the planning manager agrees the categories.”',
+        'Then break each deliverable into work packages: pieces one person or a small team can do and finish. The 8–80 rule: a package smaller than about 8 hours is micromanagement, bigger than about 80 hours hides surprises and can’t be tracked. Each package gets a verb, an owner and a “done when”: “Classify 3 months of cancellations by cause, done when the planning manager agrees the categories.”',
         'Build the breakdown with the people who will do the work, not alone behind your laptop. Sticky notes on a wall, one deliverable per column, 60 minutes. People commit to what they helped break down. And they spot the packages you forgot, like data access, the works council or the training of the night shift.',
         'Resistance sounds like: “We don’t need all this planning, let’s just start.” Answer: “Agreed, we start this week. Give me one hour to see what we’re signing up for, so we don’t get surprised in month two.” When you don’t understand the technical work, ask the expert: “What needs to be finished before you can start this?” and “What would you deliver first?”',
       ],
@@ -31,7 +31,7 @@ export default {
           why: 'Deliverables are outcomes you can point at; activities are what you do to get there.',
         },
         {
-          q: 'A work package is estimated at 200 hours. By the 8–80 hour idea, what do you do?',
+          q: 'A work package is estimated at 200 hours. By the 8–80 rule, what do you do?',
           options: ['Leave it, big packages are efficient', 'Merge it with another package', 'Split it into smaller packages that can be tracked', 'Give it to two owners'],
           answer: 'Split it into smaller packages that can be tracked',
           why: 'Above about 80 hours a package hides surprises and you can’t see progress.',
@@ -63,7 +63,7 @@ export default {
       terms: [
         { term: 'Deliverable', def: 'Something that exists at the end of the project and can be checked.' },
         { term: 'Work package', def: 'A piece of work one person or small team can do and finish, with an owner and a “done when”.' },
-        { term: '8–80 hour idea', def: 'Rule of thumb: work packages between about 8 and 80 hours of effort.' },
+        { term: '8–80 rule', def: 'Rule of thumb: work packages between about 8 and 80 hours of effort.' },
       ],
     },
     {
@@ -147,12 +147,12 @@ export default {
       teach: [
         'Dependencies: some work can only start when other work is finished. You can’t pilot the new readiness check before the planners agree on it. List them by asking each owner: “What do you need from someone else before you can start?” Most dependencies at clients are about people and decisions, not tasks: a sign-off, a works council, a production stop.',
         'The critical path is the longest chain of dependent work from start to finish. It sets the end date. Tasks off that path have slack: they can slip a bit without moving the end. So you watch the critical path closely and don’t panic about everything else. If you need to go faster, only shortening the critical path helps.',
-        'Milestones are moments, not activities: “readiness check agreed”, “pilot starts”, “go/no-go for rollout”. Good milestones are decisions or visible results, about every three to six weeks. They give the steering group something to check and the team something to aim at.',
+        'Milestones are moments, not activities: “readiness check agreed”, “pilot starts”, “go/no-go for rollout” (the decision to roll out or stop). Good milestones are decisions or visible results, about every three to six weeks. They give the steering group something to check and the team something to aim at.',
         'Put the plan on one page: deliverables as rows, weeks as columns, milestones as diamonds, an owner per row. Check it against the client’s calendar: shutdowns, holidays, peak season, steering group dates. Hang it on the wall where the team works. A plan people see every day gets corrected; a plan in a file gets forgotten.',
       ],
       example: {
         kind: 'worked',
-        text: 'A planning project at a grid operator. Baseline analysis (A) takes 3 weeks. Then two chains: designing the readiness check (B, 4 weeks) and training the planners (D, 2 weeks) after it; and arranging system access for the pilot region (C, 6 weeks), also before the pilot. Pilot (E, 6 weeks) needs D and C. Chain A-B-D-E = 3 + 4 + 2 + 6 = 15 weeks. Chain A-C-E = 3 + 6 + 6 = 15 weeks. Both are critical. You ask IT whether the access request can start in week 1 instead of after the baseline: then C runs alongside A and the project ends in 15 weeks with 3 weeks of slack on the access chain.',
+        text: 'A planning project at a grid operator. Baseline analysis (A) takes 3 weeks. Then two chains: designing the readiness check (B, 4 weeks) and training the planners (D, 2 weeks) after it; and arranging system access for the pilot region (C, 6 weeks), also before the pilot. Pilot (E, 6 weeks) needs D and C. Chain A-B-D-E = 3 + 4 + 2 + 6 = 15 weeks. Chain A-C-E = 3 + 6 + 6 = 15 weeks. Both are critical. You ask IT whether the access request can start in week 1 instead of after the baseline: then C runs alongside A. The end date stays at 15 weeks, but the access chain now has 3 weeks of slack, so an IT delay no longer moves the end.',
       },
       said: 'What you hear in projects: “That date’s fine, as long as IT delivers on time. Has anyone actually asked IT?”',
       recall: [
@@ -183,9 +183,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a plastic parts manufacturer. Your plan says the new shift handover goes live in week 20. In a coffee chat, a team leader mentions the plant has a two-week shutdown in week 19 and half the operators then go on holiday.',
+        scene: 'You’re at a plastic parts manufacturer. Your plan says the new shift handover goes live in week 20. In a coffee chat, a team leader mentions the plant shuts down in weeks 19 and 20, and that half the operators go on holiday right after.',
         ask: 'What do you do with this?',
-        model: 'Thank him, and check the plan against the client calendar right away: shutdowns, holidays, peak season. Going live in week 20 with half the operators away is risky, so I’d propose either week 17 or after the holidays, and bring that to the sponsor with the reason. And I’d hang the one-page plan where the team can see it, so this kind of thing gets caught sooner.',
+        model: 'Thank him, and check the plan against the client calendar right away: shutdowns, holidays, peak season. Going live in week 20 can’t work: the plant is shut down, and right after that half the operators are away. So I’d propose either week 17 or after the holidays, and bring that to the sponsor with the reason. And I’d hang the one-page plan where the team can see it, so this kind of thing gets caught sooner.',
         rubric: [
           'Checks the plan against the client’s calendar',
           'Proposes a concrete alternative date with the reason to the sponsor',

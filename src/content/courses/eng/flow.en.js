@@ -15,7 +15,7 @@ export default {
       teach: [
         'Takt time is available time divided by customer demand: the pace the customer pulls. Available time is shift time minus planned breaks and meetings, not minus breakdowns, because those are losses the line has to absorb. A shift of 7.5 net hours is 27,000 seconds; with a demand of 450 units, takt is 60 seconds. Takt is set by demand, not by the machine. When demand changes, takt changes.',
         'Cycle time is how often a part actually comes off a station or the line: the time between two good parts. If cycle time is above takt, you cannot keep up and need overtime, an extra shift or more capacity. Engineers usually plan cycle time at 85 to 90% of takt, to leave room for stops and scrap.',
-        'Lead time is how long one part spends from raw material to shipping, waiting included. A part with 4 minutes of processing often has a lead time of 3 to 10 days, because it sits in buffers, stock and queues. Long lead time is almost always a waiting problem, not a machine-speed problem.',
+        'Lead time is how long one part spends from raw material to shipping, waiting included. A part with 4 minutes of processing often has a lead time of 3 to 10 days, because it sits in buffers (small stocks between steps), stock and queues. Long lead time is almost always a waiting problem, not a machine-speed problem.',
         '“Cycle time” means different things to different people: the machine cycle (spindle running), the operator cycle, or the interval between parts leaving the line. Always ask which one. A robot cycle of 38 seconds can still give a part every 45 seconds once loading and rejects are counted.',
       ],
       example: {
@@ -82,8 +82,8 @@ export default {
       teach: [
         'A line produces no faster than its slowest step: the bottleneck, or constraint. Stations of 40, 55 and 45 seconds give one part every 55 seconds, about 65 per hour. Making the 40-second station faster gains nothing, it just waits more.',
         'How to spot it: work in progress (WIP) piles up in front of it, the station after it waits for parts (starved), and the bottleneck itself almost never stops. Be careful: a big pile can also be left over from a breakdown. The real tell is which machine is running all the time.',
-        'An hour lost at the bottleneck is an hour lost for the whole plant. An hour saved anywhere else is a mirage. So protect the bottleneck: a buffer in front of it, staggered breaks so it runs through lunch, a quality check before it so it never processes scrap, and maintenance planned around it.',
-        'Little’s law links stock and time: lead time = WIP / throughput. With 300 parts in the system and an output of 60 per hour, lead time is 5 hours. Cut WIP to 120 and lead time drops to 2 hours, without any machine going faster.',
+        'An hour lost at the bottleneck is an hour lost for the whole plant. An hour saved anywhere else is a mirage. So protect the bottleneck: a small stock of parts in front of it, staggered breaks so it runs through lunch, a quality check before it so it never processes scrap, and maintenance planned around it.',
+        'Little’s law links stock and time: lead time = WIP / throughput, where throughput is good output per hour. With 300 parts in the system and an output of 60 per hour, lead time is 5 hours. Cut WIP to 120 and lead time drops to 2 hours, without any machine going faster.',
         'Bottlenecks move. Fix one and the next-slowest takes over. A change in product mix can move it too, because some products take much longer on one machine than on another.',
       ],
       example: {
@@ -114,8 +114,8 @@ export default {
         },
         {
           q: 'You add a second CNC next to the bottleneck CNC. Will output double?',
-          options: ['Yes, always', 'Only until the next-slowest station becomes the bottleneck', 'No, output stays the same', 'Only if WIP goes up'],
-          answer: 'Only until the next-slowest station becomes the bottleneck',
+          options: ['Yes, always', 'Only if every other station can keep up; otherwise the next-slowest becomes the bottleneck', 'No, output stays the same', 'Only if WIP goes up'],
+          answer: 'Only if every other station can keep up; otherwise the next-slowest becomes the bottleneck',
           why: 'The bottleneck moves; output rises to the pace of the new slowest step.',
         },
       ],
@@ -149,14 +149,14 @@ export default {
         },
       ],
       teach: [
-        'OEE = availability × performance × quality. Availability = run time / planned production time (lost to breakdowns and changeovers). Performance = ideal cycle time × parts made / run time (lost to slow running and small stops). Quality = good parts / parts made (lost to scrap and rework). Multiply, never average. A quick check: OEE = good parts × ideal cycle time / planned time.',
+        'OEE = availability × performance × quality. Availability = run time / planned production time (lost to breakdowns and changeovers). Performance = ideal cycle time (the fastest proven time per part) × parts made / run time (lost to slow running and small stops). Quality = good parts / parts made (lost to scrap and rework). Multiply, never average. A quick check: OEE = good parts × ideal cycle time / planned time.',
         'The six big losses. Availability: breakdowns, and setups and adjustments. Performance: small stops (jams under about 5 minutes) and reduced speed. Quality: start-up rejects and production rejects. Small stops are the hidden one: nobody fills in a form for a 40-second jam, but 30 of them per shift is 20 minutes.',
-        'What is good? 85% is the famous “world class” figure (90% × 95% × 99.9%). Honest measurement in discrete manufacturing typically gives 40 to 60%. A plant reporting 90% is usually shrinking the denominator: leaving changeovers out of planned time, or using a slow “ideal” cycle time.',
-        '100% is a lie: no stop, every part at ideal speed, zero scrap. It never happens. And OEE is per machine: raising it on a non-bottleneck only makes more WIP. The questions that matter: OEE of which machine, against which ideal cycle time, and what is left out of planned time?',
+        'What is good? 85% is the famous “world class” figure (90% × 95% × 99.9%). Honest measurement in discrete manufacturing typically gives 40 to 60%. A plant reporting 90% is usually flattering the sum: leaving changeovers out of planned time, or using a slow “ideal” cycle time.',
+        '100% is a lie: no stop, every part at ideal speed, zero scrap. It never happens. And OEE is measured per machine or line: raising it on a non-bottleneck only makes more WIP. The questions that matter: OEE of which machine, against which ideal cycle time, and what is left out of planned time?',
       ],
       example: {
         kind: 'worked',
-        text: 'Shift of 480 minutes with a 30-minute break: planned time 450 minutes. Breakdowns 30 minutes, one changeover 45 minutes: run time 375 minutes. Availability = 375 / 450 = 83.3%. Ideal cycle 30 seconds, 600 parts made: 300 ideal minutes. Performance = 300 / 375 = 80%. Of 600 parts, 570 are good: quality = 95%. OEE = 0.833 × 0.80 × 0.95 = 63.3%. Check: 570 × 0.5 minutes / 450 = 63.3%. The biggest lever is performance: 75 minutes lost to small stops and slow running.',
+        text: 'Shift of 480 minutes with a 30-minute break: planned time 450 minutes. Breakdowns 30 minutes, one changeover 45 minutes: run time 375 minutes. Availability = 375 / 450 = 83.3%. Ideal cycle 30 seconds, 600 parts made: 300 ideal minutes. Performance = 300 / 375 = 80%. Of 600 parts, 570 are good: quality = 95%. OEE = 0.833 × 0.80 × 0.95 = 63.3%. Check: 570 × 0.5 minutes / 450 = 63.3%. Where did the time go? Availability lost 75 minutes (breakdowns and the changeover), performance also 75 minutes (small stops and slow running), quality only 15 minutes (30 bad parts × 0.5 minutes). So there are two big levers, not one.',
       },
       said: 'What engineers say: “Availability looks fine, it’s the small stops killing our performance rate. Nobody logs a 30-second jam.”',
       recall: [
@@ -178,7 +178,7 @@ export default {
           q: 'A client reports an OEE of 92% on a packaging line. What is the best first question?',
           options: ['Which line is your best one?', 'Can we get it to 100%?', 'What is left out of planned time, and which ideal cycle time do you use?', 'Why isn’t it higher?'],
           answer: 'What is left out of planned time, and which ideal cycle time do you use?',
-          why: 'Very high OEE usually comes from a shrunk denominator or a slow ideal cycle.',
+          why: 'Very high OEE usually comes from leaving losses out of planned time or from a slow ideal cycle.',
         },
         {
           q: 'Which losses fall under performance?',
@@ -218,7 +218,7 @@ export default {
       ],
       teach: [
         'Changeover time runs from the last good part of product A to the first good part of product B at full speed. So it includes the trial runs and adjustments at the end, and that is where much of the hidden time sits.',
-        'Internal work can only be done with the machine stopped: swapping the die. External work can be done while it runs: fetching the next die, preheating it, preparing tools and paperwork. SMED steps: film a changeover and list every step; mark each one internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools offline); then streamline with quick clamps instead of bolts.',
+        'Internal work can only be done with the machine stopped: swapping the die (the shaped tool that forms the part). External work can be done while it runs: fetching the next die, preheating it, preparing tools and paperwork. SMED (single-minute exchange of die: changeovers under 10 minutes) works in steps: film a changeover and list every step; mark each one internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools offline); then streamline with quick clamps instead of bolts.',
         'Adjustment is the killer: trial and tweak is often half of a changeover. The engineering fix is fixed locators, pins, standard die heights and setting sheets, so the setting is right first time. Adjustment is a sign the setting isn’t defined.',
         'The batch size trade-off: average stock is roughly half a batch. With long changeovers, planners run big batches to lose less time, and stock and lead time grow. Halve the changeover and you can halve the batch at the same lost time, halving stock. Or keep the batch and gain capacity, which only pays off at the bottleneck.',
       ],
@@ -269,7 +269,7 @@ export default {
       terms: [
         { term: 'Changeover', def: 'Last good part of A to first good part of B at full speed.' },
         { term: 'Internal / external', def: 'Work that needs the machine stopped / work that can be done while it runs.' },
-        { term: 'SMED', def: 'Single-minute exchange of die: a method to cut changeover time.' },
+        { term: 'SMED', def: 'Single-minute exchange of die: a method to cut changeover time, ideally to under 10 minutes.' },
       ],
     },
     {
@@ -352,7 +352,7 @@ export default {
         },
       ],
       teach: [
-        'Capacity = available time / cycle time, corrected for losses. One shift of 7.5 net hours at a 60-second cycle is 450 parts on paper; at 75% OEE it is about 340. Plan on the realistic number, not the nameplate. Going from two to three shifts adds 50% hours, but costs night premiums and leaves less time for maintenance.',
+        'Capacity = available time / cycle time, corrected for losses. One shift of 7.5 net hours at a 60-second cycle is 450 parts on paper; at 75% OEE it is about 340. Plan on the realistic number, not the nameplate (the maker’s rated figure). Going from two to three shifts adds 50% hours, but costs night premiums and leaves less time for maintenance.',
         'Utilisation = busy time / available time. Managers love 100%. But arrivals and process times vary, and queue time grows roughly with u / (1 − u). At 50% utilisation that factor is 1, at 80% it is 4, at 90% it is 9, at 95% it is 19. Queues explode in the last 10 to 15%.',
         'So plan the bottleneck at around 80 to 85% load after OEE, leaving room for breakdowns and rush orders. Non-bottlenecks need even more spare capacity, so they can catch up after a disruption and keep the bottleneck fed. A plant planned to 100% has long lead times and permanent firefighting.',
         'The question that gets you taken seriously: what is the planned load on the bottleneck, in hours, after OEE? Not against nameplate hours. Reducing variation (fewer breakdowns, steadier arrivals) is what lets you run a higher load safely.',

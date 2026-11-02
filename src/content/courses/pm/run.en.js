@@ -117,7 +117,7 @@ export default {
       situation: {
         scene: 'You’re at a packaging plant. Your project has been reported green for eight weeks. Today you calculate that the savings target of 300,000 euro a year will come out at about 180,000. The steering group is next Tuesday.',
         ask: 'What do you do before and in the steering group?',
-        model: 'First tell the project owner and the team what I found and what I’ll report, so nobody is surprised. In the steering group: “Amber on the savings. We’re heading for about 180,000 instead of 300,000, because line 2 won’t be in scope before the summer. Two options: accept 180 this year, or add line 2 with one extra technician for three months. I recommend option two. I need your decision today.”',
+        model: 'First tell the project owner and the team what I found and what I’ll report, so nobody is surprised. In the steering group: “Red on the savings. We’re heading for about 180,000 instead of 300,000, because line 2 won’t be in scope before the summer. Two options: accept 180 this year, or add line 2 with one extra technician for three months. I recommend option two. I need your decision today.”',
         rubric: [
           'Tells the people involved before the steering group',
           'Reports what happened and what it means in numbers',
@@ -339,14 +339,14 @@ export default {
         },
       ],
       teach: [
-        'Positions versus interests. A position is what someone says they want: “no stops during the week”. An interest is why: “we can’t miss the weekly delivery to our biggest customer”. Positions clash; interests often don’t. Maybe a four-hour stop on Monday morning, when the order is already shipped, works for both. Ask “what do you need it for?” and “what are you worried about?”',
+        'Positions versus interests (Fisher and Ury, Getting to Yes). A position is what someone says they want: “no stops during the week”. An interest is why: “we can’t miss the weekly delivery to our biggest customer”. Positions clash; interests often don’t. Maybe a four-hour stop on Monday morning, when the order is already shipped, works for both. Ask “what do you need it for?” and “what are you worried about?”',
         'In the team: listen to both sides separately first. Don’t take sides, even when one is right. Then bring them together with the interests on the table, not the positions: “You both want the line to run reliably. You disagree on when to stop it.” Look for options that serve both, and decide on criteria, not on who shouts.',
         'The difficult conversation, in four steps. What I saw, factual: “Twice this month the data wasn’t there on Monday.” The impact: “The planning meeting then decides on guesses.” Ask their view, and listen: “How do you see it?” Agree the next step together. Prepare the first sentence; the rest follows.',
         'With the client: when a manager blames your project, don’t defend in the room. “I hear you’re unhappy with how this is going. Can we take twenty minutes tomorrow to go through it?” Then use the same four steps. When you don’t know what to do, separate the people, talk to each alone, and ask a senior colleague before you act.',
       ],
       example: {
         kind: 'worked',
-        text: 'At a dairy plant, the production manager and the maintenance manager clash in your weekly meeting. Production: “No more stops on line 1, we’re behind.” Maintenance: “Then it will break down, and that’s worse.” You stop the discussion and talk to each alone. Production’s interest: a big retail order ships every Thursday. Maintenance’s interest: three hours per week to replace worn seals before they fail. Together again: “You both want line 1 reliable for Thursday.” Option: a three-hour stop on Friday morning, right after shipping. Both agree to try it for four weeks and look at downtime and deliveries then.',
+        text: 'At a dairy plant, the production manager and the maintenance manager clash in your weekly meeting. Production: “No more stops on line 1, we’re behind.” Maintenance: “Then it will break down, and that’s worse.” You stop the discussion and talk to each alone. Production’s interest: a big retail order ships every Thursday. Maintenance’s interest: three hours per week to replace worn seals before they fail. Together again: “You both want line 1 reliable for Thursday.” Option: a three-hour stop on Friday morning, the day after the Thursday shipment. Both agree to try it for four weeks and look at downtime and deliveries then.',
       },
       said: 'What you hear in projects: “If maintenance had done their job, we wouldn’t need this project at all.”',
       recall: [

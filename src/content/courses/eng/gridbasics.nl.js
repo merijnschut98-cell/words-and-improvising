@@ -16,7 +16,7 @@ export default {
         'Spanning (V, volt) is de druk, stroom (A, ampère) is de doorstroming, en vermogen (W, watt) is hoe snel energie wordt gebruikt: vermogen = spanning × stroom. Een waterkoker van 2.000 W op 230 V trekt zo’n 8,7 A. Energie is vermogen × tijd, in kilowattuur: die waterkoker gebruikt in 3 minuten 2 kW × 0,05 uur = 0,1 kWh. Je betaalt voor kWh; het net wordt gebouwd voor kW.',
         'Het net werkt met wisselspanning (AC): de spanning gaat in Europa 50 keer per seconde heen en weer (50 Hz). Dat doen we omdat transformatoren wisselspanning makkelijk omhoog en omlaag kunnen zetten, en dat is de sleutel om vermogen met weinig verlies over grote afstanden te transporteren.',
         'Het grootste deel van het net is driefasig: drie draden met elk wisselspanning, een derde periode ten opzichte van elkaar verschoven, plus een nul. In een Nederlands huis is de spanning tussen een fase en de nul 230 V; tussen twee fasen 400 V. Drie fasen leveren een gelijkmatig vermogen en gebruiken het koper efficiënt. Daarom gebruiken zware verbruikers zoals warmtepompen en laadpalen vaak alle drie.',
-        'Een gangbare huisaansluiting in Nederland is 3 × 25 A: drie fasen van elk 25 A, maximaal zo’n 3 × 230 × 25 ≈ 17 kVA. Oudere woningen hebben soms 1 × 35 A. Dat maximum is wat de hoofdzekering toelaat, niet wat het huis normaal gebruikt.',
+        'Een gangbare huisaansluiting in Nederland is 3 × 25 A: drie fasen van elk 25 A, maximaal zo’n 3 × 230 × 25 ≈ 17 kVA (kVA, kilovoltampère, is de eenheid voor wat een kabel of zekering moet dragen; voor een woning ligt het dicht bij kW). Oudere woningen hebben soms 1 × 35 A. Dat maximum is wat de hoofdzekering toelaat, niet wat het huis normaal gebruikt.',
       ],
       example: {
         kind: 'worked',
@@ -89,7 +89,7 @@ export default {
         kind: 'worked',
         text: 'Een windpark levert 100 MW aan het net. Op 10 kV zou dat een stroom vragen van ruwweg 100.000.000 / (1,73 × 10.000) ≈ 5.800 A, veel te veel voor een normale kabel. Op 150 kV is het zo’n 385 A: 15 keer minder stroom, en zo’n 225 keer minder verlies in dezelfde kabel. Daarom sluit het windpark aan op een 150 kV-station van TenneT, terwijl een losse windturbine of een klein zonnepark op het MS-net van de regionale netbeheerder komt.',
       },
-      said: 'Wat engineers zeggen: “Dat is de kant van TenneT in het station. Wij beginnen bij het 10 kV-rail.”',
+      said: 'Wat engineers zeggen: “Dat is de kant van TenneT in het station. Wij beginnen bij de 10 kV-rail.”',
       recall: [
         {
           q: 'Een netbeheerder zet een MS-net om van 10 kV naar 20 kV en transporteert hetzelfde vermogen. Met welke factor veranderen de kabelverliezen? Geef de breuk als decimaal getal.',
@@ -149,7 +149,7 @@ export default {
       teach: [
         'De stroom komt van TenneT binnen in een onderstation, waar grote transformatoren de spanning van 150 of 110 kV omlaag zetten naar 10 of 20 kV. Vanaf daar vertrekken MS-kabels alle kanten op. In het onderstation komen het landelijke en het regionale net samen, en daar ligt vaak de capaciteit voor een hele stad of regio vast.',
         'MS-kabels liggen in ringen: ze vertrekken uit het onderstation, gaan langs een reeks netstations en komen terug. De ring wordt op één punt open bedreven, het normaal openpunt. Valt een kabelstuk uit, dan schakelen de bedrijfsvoerders dat stuk vrij en sluiten ze het openpunt, zodat de meeste klanten weer stroom hebben terwijl de kabel gerepareerd wordt.',
-        'Het netstation, ook wel wijktrafo of trafohuisje, is het kleine gebouwtje of de kast in je straat. Daarin: een MS-installatie voor de ring, een transformator van 10 kV naar 400 V van meestal 250 tot 630 kVA, en een LS-rek met zekeringen voor elke uitgaande straatkabel. In gebouwen en bij grote klanten staat de MS-apparatuur vaak in een MS-ruimte.',
+        'Het netstation, ook wel wijktrafo of trafohuisje, is het kleine gebouwtje of de kast in je straat. Daarin: een MS-installatie (de schakelaars) voor de ring, een transformator van 10 kV naar 400 V van meestal 250 tot 630 kVA, en een LS-rek met zekeringen voor elke uitgaande straatkabel. In gebouwen en bij grote klanten staat de MS-apparatuur vaak in een MS-ruimte.',
         'Vanaf het netstation lopen LS-kabels door de straten, elk voor tientallen woningen. Naar elk huis loopt een aansluitkabel die eindigt bij de hoofdzekering en de meter in de meterkast. Tot en met de meter is dat van de netbeheerder; daarna van de eigenaar.',
       ],
       example: {
@@ -217,11 +217,11 @@ export default {
         'Netcomponenten hebben een rating in kVA, schijnbaar vermogen: wat de kabel of transformator echt moet dragen, inclusief het deel dat geen nuttig werk doet. kW is het nuttige deel. De verhouding heet de arbeidsfactor (cos φ), voor woningen meestal 0,9 tot 1. Een transformator van 400 kVA kan zo’n 360 tot 400 kW leveren.',
         'Gelijktijdigheid is het kernbegrip in de netplanning. Niet elke woning gebruikt op hetzelfde moment zijn maximum. Traditioneel werd een straat gepland op zo’n 1 tot 1,5 kVA per woning in de avondpiek, ver onder de 17 kVA van elke aansluiting. Door die aanname zijn veel oude LS-netten relatief licht uitgevoerd.',
         'Warmtepompen en elektrische auto’s veranderen dat. Op een koude avond draaien alle warmtepompen tegelijk: een gelijktijdigheid van bijna 1. Auto’s laden na het werk op 11 kW per stuk. Zonnepanelen geven ’s middags een nieuwe piek de andere kant op: op een zonnige dag levert elk dak tegelijk terug. Het net moet nu ruimte hebben voor pieken waar het nooit voor ontworpen is.',
-        'Te veel teruglevering laat de spanning aan het eind van een lange LS-kabel stijgen. Boven zo’n 253 V (230 V plus 10%) schakelen omvormers af om het net te beschermen. “Mijn panelen vallen steeds uit” is dus vaak een spanningsprobleem, geen kapotte omvormer.',
+        'Te veel teruglevering laat de spanning aan het eind van een lange LS-kabel stijgen. Boven zo’n 253 V (230 V plus 10%) schakelen omvormers (de kastjes die zonnestroom omzetten naar netspanning) af om het net te beschermen. “Mijn panelen vallen steeds uit” is dus vaak een spanningsprobleem, geen kapotte omvormer.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een netstation van 400 kVA voedt 150 woningen. Oude piek: 1,5 kVA × 150 = 225 kVA, 56% belast. Nu krijgen 50 woningen een warmtepomp van 3 kW, die op een koude avond allemaal draaien: + 50 × 3 × 0,8 = 120 kVA. En 40 woningen laden een auto op 11 kW, waarvan zo’n 30% tegelijk: + 40 × 11 × 0,3 = 132 kVA. Nieuwe piek: 225 + 120 + 132 = 477 kVA, 119% van de transformator. Het jaarverbruik steeg met zo’n de helft; de piek werd meer dan twee keer zo hoog.',
+        text: 'Een netstation van 400 kVA voedt 150 woningen. Oude piek: 1,5 kVA × 150 = 225 kVA, 56% belast. Nu krijgen 50 woningen een warmtepomp van 3 kW, die op een koude avond allemaal op zo’n 80% van hun vermogen draaien: + 50 × 3 × 0,8 = 120 kVA. En 40 woningen laden een auto op 11 kW, waarvan zo’n 30% tegelijk: + 40 × 11 × 0,3 = 132 kVA. Nieuwe piek: 225 + 120 + 132 = 477 kVA, 119% van de transformator. Het jaarverbruik steeg met ongeveer de helft; de piek werd meer dan twee keer zo hoog.',
       },
       said: 'Wat engineers zeggen: “De gelijktijdigheid van die warmtepompen is bijna één. Als het vriest, draaien ze allemaal.”',
       recall: [
@@ -283,7 +283,7 @@ export default {
         'Netcongestie betekent dat op piekmomenten de vraag naar transportcapaciteit groter is dan wat een deel van het net veilig kan dragen. Dat kan aan de afnamekant zijn, bijvoorbeeld een bedrijventerrein dat meer vermogen wil, of aan de invoedingskant, bijvoorbeeld zonneparken in een landelijk gebied. Grote delen van Nederland zitten inmiddels vol.',
         'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A) en klanten die meer capaciteit willen op een wachtrij. Huishoudens en kleine bedrijven worden nog wel aangesloten. De landelijke capaciteitskaart laat zien waar nog ruimte is en waar niet.',
         'Het net verzwaren kost jaren: een nieuw onderstation duurt vaak 5 tot 10 jaar, met vergunningen, grond en ruimte voor kabels in de straat. MS-verzwaring gaat sneller, maar ook dat is maanden tot jaren. Mensen, materiaal en ruimte in de grond zijn allemaal schaars.',
-        'In de tussentijd gebruiken netbeheerders het bestaande net slimmer. Congestiemanagement: klanten worden betaald of gecontracteerd om op piekmomenten minder af te nemen of minder in te voeden, vaak via het platform GOPACS. Flexibele of tijdsgebonden contracten geven capaciteit behalve op de piekuren, zodat een klant nu kan aansluiten in ruil voor beperkingen. Omdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
+        'In de tussentijd gebruiken netbeheerders het bestaande net slimmer. Congestiemanagement: klanten worden betaald of gecontracteerd om op piekmomenten minder af te nemen of minder in te voeden, vaak via GOPACS, het landelijke platform waar netbeheerders die flexibiliteit inkopen. Flexibele of tijdsgebonden contracten geven capaciteit behalve op de piekuren, zodat een klant nu kan aansluiten in ruil voor beperkingen. Omdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
       ],
       example: {
         kind: 'worked',

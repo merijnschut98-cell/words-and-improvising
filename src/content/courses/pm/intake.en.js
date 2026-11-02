@@ -50,9 +50,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a metal stamping plant. The operations manager opens with: “Our OEE is 58%, we want 75% within six months. Can you put an improvement team on it?”',
+        scene: 'You’re at a metal stamping plant. The operations manager opens with: “Our OEE is 58%, we want 75% within six months.” (OEE: the share of planned time the presses make good parts.) “ Can you put an improvement team on it?”',
         ask: 'What do you ask before agreeing to anything?',
-        model: '“75% would be great. Before we commit: where do the 42 points go now, roughly, between breakdowns, changeovers and speed losses? And which press line hurts your deliveries most?” Then: “What have you tried so far, and what happens if OEE stays at 58?”',
+        model: '“75% would be great. Before we commit: where do the 42 points go now, roughly, between breakdowns, changeovers, speed losses and scrap? And which press line hurts your deliveries most?” Then: “What have you tried so far, and what happens if OEE stays at 58?”',
         rubric: [
           'Does not accept or reject the target straight away',
           'Asks where the loss actually sits, per loss type or per line',
@@ -78,10 +78,10 @@ export default {
         },
       ],
       teach: [
-        'A simple structure. Open (5 minutes): why you’re here and what you’d like to leave with. Explore (35): their story, the problem, the people. Check (10): summarise back, ask what’s missing. Close (10): next step with a date. Say the structure out loud at the start: “I’d like to mostly listen today and end with a concrete next step. Okay?” It puts people at ease.',
+        'A simple structure. Open (5 minutes): why you’re here and what you’d like to leave with. Explore (35): their story, the problem, the people. Check (10): summarise back, ask what’s missing. Close (10): a next step with a date. Say the structure out loud at the start: “I’d like to mostly listen today and end with a concrete next step. Okay?” It puts people at ease.',
         'Use MORE PIES as your listening checklist. Mood: read the room. Open questions. Reflecting feelings: “That sounds frustrating.” Empathy. Paraphrasing: “So the main issue is…”. Inquiry: dig deeper into one thing. Experience: share your own briefly, only to build trust. Silence: wait three seconds after an answer. The important sentence often comes right after the pause.',
         'Resistance in a first talk is usually quiet: short answers, “it’s all in the report”, a phone face-up on the table. Name it lightly: “I get the sense this has been looked at before. What happened last time?” Often a previous consultant left a slide deck and nothing changed. Let them tell that story; it tells you what not to repeat.',
-        'Leave with five things: the problem in their words, three names of people to talk to, which data you may see, what success means to the sponsor, and a date for the next step. Send a one-page summary within 24 hours. Anything you don’t know yet goes in that summary as an open question, not as a guess.',
+        'Leave with five things: the problem in their words, three names of people to talk to, which data you may see, what success means to the sponsor (the manager who pays and decides), and a date for the next step. Send a one-page summary within 24 hours. Anything you don’t know yet goes in that summary as an open question, not as a guess.',
       ],
       example: {
         kind: 'worked',
@@ -144,9 +144,9 @@ export default {
       ],
       teach: [
         'Four roles. Sponsor: owns the budget and the result, and can decide. Owner: the manager who runs the process and has to live with the change. Users: the operators, planners or technicians whose daily work changes. Blockers: anyone whose interest, power or time is affected, often IT, the works council or a shift lead with 20 years of service. One person can hold two roles.',
-        'A quick map: two axes, influence (can they stop or speed it up?) and interest (does it change their work?). High on both: involve weekly. High influence, low interest: keep informed, briefly and in their terms. Low influence, high interest: involve in the work, they know the details. Draw it on paper in 15 minutes after the intake and update it monthly.',
+        'A quick map: two axes, influence (can they stop or speed it up?) and interest (does it change their work?). High on both: involve weekly. High influence, low interest: keep satisfied, with short updates in their terms. Low influence, high interest: keep informed and use them in the work, they know the details. Draw it on paper in 15 minutes after the intake and update it monthly.',
         'Ask straight out: “Who decides whether this goes ahead?”, “Who could stop it, even without saying so?” and “Who has been through a project like this before?” People often answer the second with a laugh and a name. Write that name down. That person gets a one-on-one with you this week.',
-        'Resistance rarely sounds like “no”. It looks like missed meetings, people who aren’t freed up, or “interesting, let’s discuss it in the MT”. Don’t escalate first. Go and ask: “What would this need to look like to work for your team?” Escalate to the sponsor only when a decision is truly blocked, and tell the person beforehand that you’re doing it.',
+        'Resistance rarely sounds like “no”. It looks like missed meetings, people who aren’t freed up, or “interesting, let’s discuss it in the MT” (the management team). Don’t escalate first. Go and ask: “What would this need to look like to work for your team?” Escalate to the sponsor only when a decision is truly blocked, and tell the person beforehand that you’re doing it.',
       ],
       example: {
         kind: 'worked',
@@ -162,8 +162,8 @@ export default {
         },
         {
           q: 'A stakeholder has high influence but low interest. What do you do?',
-          options: ['Involve them in weekly working sessions', 'Keep them informed, briefly and in their terms', 'Leave them out until the end', 'Ask them to become the sponsor'],
-          answer: 'Keep them informed, briefly and in their terms',
+          options: ['Involve them in weekly working sessions', 'Keep them satisfied with short updates in their terms', 'Leave them out until the end', 'Ask them to become the sponsor'],
+          answer: 'Keep them satisfied with short updates in their terms',
           why: 'They can stop you, but don’t want your detail; short updates keep them on side.',
         },
         {
@@ -180,7 +180,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re two weeks into a changeover project at a packaging plant. The sponsor, the plant director, is enthusiastic. The maintenance manager has skipped both steering meetings and his technicians are “too busy” for the pilot.',
+        scene: 'You’re two weeks into a changeover project at a packaging plant. The sponsor, the plant director, is enthusiastic. The maintenance manager has skipped both steering meetings (the monthly meeting with the sponsor) and his technicians are “too busy” for the pilot.',
         ask: 'What do you do this week?',
         model: 'See the maintenance manager one-on-one, not in the steering meeting. “I can see your team is under pressure and this pilot takes their time. What would it need to look like to work for you?” Listen for the real issue, such as a breakdown backlog or no say in the design. Only if a decision on capacity stays blocked, ask the sponsor to decide, and tell him first.',
         rubric: [
@@ -209,9 +209,9 @@ export default {
         },
       ],
       teach: [
-        'Write a one-sentence goal: from X to Y by when, measured how. “Reduce unplanned stops on line 3 from 14 to 8 hours a week by 1 April, measured in the MES stop log.” If you can’t write that sentence, you don’t have a project yet, you have a wish. Write it with the client, in their words, and read it back to them.',
+        'Write a one-sentence goal: from X to Y by when, measured how. “Reduce unplanned stops on line 3 from 14 to 8 hours a week by 1 April, measured in the MES stop log.” (MES: the system that logs every stop.) If you can’t write that sentence, you don’t have a project yet, you have a wish. Write it with the client, in their words, and read it back to them.',
         'Baseline first. Without a measured starting point nobody can say you succeeded, and every result gets disputed. If the data doesn’t exist, measuring for two weeks is your first deliverable. Say it plainly: “I don’t know the current number yet, and honestly neither do you. Let’s measure before we promise anything.”',
-        'Scope in and scope out. Write both down. Out matters more: “Line 3 only, not lines 1 and 2. Process and planning, not a new ERP. No changes to shift patterns.” List the out-of-scope items people are likely to raise. When they come up later, you point to the list instead of having the argument again.',
+        'Scope in and scope out. Write both down. Out matters more: “Line 3 only, not lines 1 and 2. Process and planning, not a new ERP system. No changes to shift patterns.” List the out-of-scope items people are likely to raise. When they come up later, you point to the list instead of having the argument again.',
         'Acceptance criteria: who signs off, on what evidence, and when. “The plant manager accepts when the average over four consecutive weeks is 8 hours or less.” Agree this at the start. By the end the mood in the room will be different and everyone will remember the promise differently.',
       ],
       example: {

@@ -14,7 +14,7 @@ export default {
       ],
       teach: [
         'Begin bij de resultaten, niet bij de activiteiten. Een resultaat (deliverable) is iets wat er aan het eind is en wat iemand kan controleren: “een nulmeting van afzeggingen per oorzaak”, “een gereedheidscheck waar de planners mee akkoord zijn”, “een pilot van zes weken in één regio”. Vraag: “Als dit project klaar is, wat is er dan wat er nu niet is?” Schrijf er vier tot zeven op. Activiteiten komen later, eronder.',
-        'Deel elk resultaat daarna op in werkpakketten: stukken die één persoon of een klein team kan doen en afmaken. Het 8–80-urenidee: een pakket kleiner dan ongeveer 8 uur is micromanagement, groter dan ongeveer 80 uur verbergt verrassingen en kun je niet volgen. Elk pakket krijgt een werkwoord, een eigenaar en een “klaar als”: “3 maanden afzeggingen indelen per oorzaak, klaar als de planningsmanager akkoord is met de categorieën.”',
+        'Deel elk resultaat daarna op in werkpakketten: stukken die één persoon of een klein team kan doen en afmaken. De 8–80-regel: een pakket kleiner dan ongeveer 8 uur is micromanagement, groter dan ongeveer 80 uur verbergt verrassingen en kun je niet volgen. Elk pakket krijgt een werkwoord, een eigenaar en een “klaar als”: “3 maanden afzeggingen indelen per oorzaak, klaar als de planningsmanager akkoord is met de categorieën.”',
         'Maak de opdeling samen met de mensen die het werk gaan doen, niet alleen achter je laptop. Post-its op de muur, één resultaat per kolom, 60 minuten. Mensen committeren zich aan wat ze zelf hebben helpen opdelen. En ze zien de pakketten die jij vergat, zoals toegang tot data, de OR of het trainen van de nachtploeg.',
         'Weerstand klinkt als: “Al dat plannen hebben we niet nodig, laten we gewoon beginnen.” Antwoord: “Eens, we beginnen deze week. Geef me één uur om te zien waar we ja tegen zeggen, zodat we in maand twee niet verrast worden.” Snap je het technische werk niet, vraag de expert dan: “Wat moet er af zijn voordat jij hieraan kunt beginnen?” en “Wat zou jij als eerste opleveren?”',
       ],
@@ -31,7 +31,7 @@ export default {
           why: 'Resultaten kun je aanwijzen; activiteiten zijn wat je doet om er te komen.',
         },
         {
-          q: 'Een werkpakket is geschat op 200 uur. Wat doe je volgens het 8–80-urenidee?',
+          q: 'Een werkpakket is geschat op 200 uur. Wat doe je volgens de 8–80-regel?',
           options: ['Laten staan, grote pakketten zijn efficiënt', 'Samenvoegen met een ander pakket', 'Opknippen in kleinere pakketten die je kunt volgen', 'Twee eigenaren geven'],
           answer: 'Opknippen in kleinere pakketten die je kunt volgen',
           why: 'Boven de 80 uur verbergt een pakket verrassingen en zie je geen voortgang.',
@@ -63,7 +63,7 @@ export default {
       terms: [
         { term: 'Deliverable', def: 'Iets wat er aan het eind van het project is en wat je kunt controleren.' },
         { term: 'Werkpakket', def: 'Een stuk werk dat één persoon of klein team kan doen en afmaken, met een eigenaar en een “klaar als”.' },
-        { term: '8–80-urenidee', def: 'Vuistregel: werkpakketten tussen ongeveer 8 en 80 uur werk.' },
+        { term: '8–80-regel', def: 'Vuistregel: werkpakketten tussen ongeveer 8 en 80 uur werk.' },
       ],
     },
     {
@@ -147,12 +147,12 @@ export default {
       teach: [
         'Afhankelijkheden: sommig werk kan pas beginnen als ander werk af is. Je kunt de nieuwe gereedheidscheck niet testen voordat de planners ermee akkoord zijn. Breng ze in kaart door elke eigenaar te vragen: “Wat heb je van een ander nodig voordat je kunt beginnen?” Bij klanten gaan de meeste afhankelijkheden over mensen en besluiten, niet over taken: een handtekening, de OR, een productiestop.',
         'Het kritieke pad is de langste keten van afhankelijk werk van start tot eind. Die bepaalt de einddatum. Taken buiten dat pad hebben speling: ze mogen een beetje uitlopen zonder dat het eind verschuift. Dus je houdt het kritieke pad scherp in de gaten en raakt niet in paniek over al het andere. Moet het sneller, dan helpt alleen het kritieke pad korter maken.',
-        'Mijlpalen zijn momenten, geen activiteiten: “gereedheidscheck vastgesteld”, “pilot start”, “go/no-go voor uitrol”. Goede mijlpalen zijn besluiten of zichtbare resultaten, ongeveer elke drie tot zes weken. Ze geven de stuurgroep iets om te checken en het team iets om op te mikken.',
-        'Zet de planning op één A4: resultaten als rijen, weken als kolommen, mijlpalen als ruitjes, een eigenaar per rij. Leg hem naast de kalender van de klant: stops, vakanties, piekseizoen, stuurgroepdata. Hang hem op waar het team werkt. Een planning die mensen elke dag zien, wordt gecorrigeerd; een planning in een map wordt vergeten.',
+        'Mijlpalen zijn momenten, geen activiteiten: “gereedheidscheck vastgesteld”, “pilot start”, “go/no-go voor uitrol” (het besluit om uit te rollen of te stoppen). Goede mijlpalen zijn besluiten of zichtbare resultaten, ongeveer elke drie tot zes weken. Ze geven de stuurgroep iets om te checken en het team iets om op te mikken.',
+        'Zet de planning op één A4: resultaten als rijen, weken als kolommen, mijlpalen als ruitjes, een eigenaar per rij. Leg hem naast de kalender van de klant: stops, vakanties, piekseizoen, stuurgroepdatums. Hang hem op waar het team werkt. Een planning die mensen elke dag zien, wordt gecorrigeerd; een planning in een map wordt vergeten.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een planningsproject bij een netbeheerder. De nulmeting (A) duurt 3 weken. Dan twee ketens: de gereedheidscheck ontwerpen (B, 4 weken) met daarna de planners trainen (D, 2 weken); en systeemtoegang regelen voor de pilotregio (C, 6 weken), ook voor de pilot. De pilot (E, 6 weken) heeft D en C nodig. Keten A-B-D-E = 3 + 4 + 2 + 6 = 15 weken. Keten A-C-E = 3 + 6 + 6 = 15 weken. Allebei kritiek. Je vraagt IT of de toegangsaanvraag in week 1 kan starten in plaats van na de nulmeting: dan loopt C naast A, en eindigt het project na 15 weken met 3 weken speling op de toegangsketen.',
+        text: 'Een planningsproject bij een netbeheerder. De nulmeting (A) duurt 3 weken. Dan twee ketens: de gereedheidscheck ontwerpen (B, 4 weken) met daarna de planners trainen (D, 2 weken); en systeemtoegang regelen voor de pilotregio (C, 6 weken), ook voor de pilot. De pilot (E, 6 weken) heeft D en C nodig. Keten A-B-D-E = 3 + 4 + 2 + 6 = 15 weken. Keten A-C-E = 3 + 6 + 6 = 15 weken. Allebei kritiek. Je vraagt IT of de toegangsaanvraag in week 1 kan starten in plaats van na de nulmeting: dan loopt C naast A. De einddatum blijft 15 weken, maar de toegangsketen heeft nu 3 weken speling, dus vertraging bij IT schuift het eind niet meer op.',
       },
       said: 'Wat je hoort in projecten: “Die datum is prima, als IT op tijd levert. Heeft iemand IT eigenlijk al gevraagd?”',
       recall: [
@@ -183,9 +183,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een maker van kunststof onderdelen. Volgens je planning gaat de nieuwe ploegoverdracht in week 20 live. Bij de koffie zegt een teamleider dat de fabriek in week 19 twee weken stilligt en de helft van de operators dan op vakantie gaat.',
+        scene: 'Je zit bij een maker van kunststof onderdelen. Volgens je planning gaat de nieuwe ploegoverdracht in week 20 live. Bij de koffie zegt een teamleider dat de fabriek in week 19 en 20 stilligt, en dat de helft van de operators direct daarna op vakantie gaat.',
         ask: 'Wat doe je hiermee?',
-        model: 'Hem bedanken, en de planning meteen naast de kalender van de klant leggen: stops, vakanties, piekseizoen. Live gaan in week 20 met de helft van de operators weg is riskant, dus ik zou week 17 of na de vakantie voorstellen, en dat met de reden aan de sponsor voorleggen. En ik hang de planning op één A4 op waar het team hem ziet, zodat zoiets eerder boven komt.',
+        model: 'Hem bedanken, en de planning meteen naast de kalender van de klant leggen: stops, vakanties, piekseizoen. Live gaan in week 20 kan niet: dan ligt de fabriek stil, en direct daarna is de helft van de operators weg. Dus ik zou week 17 of na de vakantie voorstellen, en dat met de reden aan de sponsor voorleggen. En ik hang de planning op één A4 op waar het team hem ziet, zodat zoiets eerder boven komt.',
         rubric: [
           'Legt de planning naast de kalender van de klant',
           'Stelt de sponsor een concrete andere datum voor, met de reden',
@@ -350,7 +350,7 @@ export default {
         kind: 'worked',
         text: 'Bij een netbeheerder leid je een project om een gereedheidscheck in te voeren voordat klussen in de weekplanning komen. Niemand weet precies welke checks ertoe doen. Planning voor de stuurgroep: nulmeting klaar week 4, pilot live week 8, go/no-go voor uitrol week 16. Daarbinnen: rondes van twee weken. Ronde 1: een papieren checklist met vijf checks, gebruikt door twee planners. Review: “check 4 kost te veel tijd en valt nooit af”, dus die gaat eruit. Ronde 2: de schakelplancheck erbij waar het bedrijfsvoeringscentrum om vroeg. In week 8 is de checklist op 60 echte klussen getest, en de planners hebben hem mee vormgegeven, dus ze verdedigen hem.',
       },
-      said: 'Wat je hoort in projecten: “Agile? We zijn geen softwarebedrijf. We hebben gewoon een planning met data nodig.”',
+      said: 'Wat je hoort in projecten: “Agile? We zijn geen softwarebedrijf. We hebben gewoon een planning met datums nodig.”',
       recall: [
         {
           q: 'Welk project past het best bij waterval?',
@@ -365,7 +365,7 @@ export default {
           why: 'De waarde van korte rondes is de feedback van echte gebruikers.',
         },
         {
-          q: 'De directie wil een volledig plan met data. Jij wilt in rondes werken. Wat doe je?',
+          q: 'De directie wil een volledig plan met datums. Jij wilt in rondes werken. Wat doe je?',
           options: ['Weigeren en agile uitleggen', 'De rondes laten vallen', 'Elke taak in detail plannen', 'Ze een mijlpalenplanning geven, met rondes daarbinnen om er te komen'],
           answer: 'Ze een mijlpalenplanning geven, met rondes daarbinnen om er te komen',
           why: 'Hybride geeft de directie zekerheid over mijlpalen en het team ruimte om te leren.',

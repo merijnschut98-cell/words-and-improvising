@@ -38,7 +38,7 @@ export default {
         },
         {
           q: 'De sponsor zegt de stuurgroep voor de tweede keer af. Wat doe je?',
-          options: ['Wachten op de volgende geplande', 'Hem zonder hem houden', 'Klagen bij zijn leidinggevende', 'Hem vragen of dit nog het goede moment is of dat hij een andere manier nodig heeft om te beslissen'],
+          options: ['Wachten op de volgende geplande', 'De stuurgroep zonder hem houden', 'Klagen bij zijn leidinggevende', 'Hem vragen of dit nog het goede moment is of dat hij een andere manier nodig heeft om te beslissen'],
           answer: 'Hem vragen of dit nog het goede moment is of dat hij een andere manier nodig heeft om te beslissen',
           why: 'Herhaald afzeggen is een signaal; je spreekt het aan en houdt de besluiten in beweging.',
         },
@@ -117,7 +117,7 @@ export default {
       situation: {
         scene: 'Je zit bij een verpakkingsbedrijf. Je project staat al acht weken op groen. Vandaag reken je uit dat de besparingsdoelstelling van 300.000 euro per jaar op ongeveer 180.000 uitkomt. De stuurgroep is volgende week dinsdag.',
         ask: 'Wat doe je voor en in de stuurgroep?',
-        model: 'Eerst de projecteigenaar en het team vertellen wat ik gevonden heb en wat ik ga rapporteren, zodat niemand verrast wordt. In de stuurgroep: “Oranje op de besparing. We gaan richting 180.000 in plaats van 300.000, omdat lijn 2 voor de zomer niet in scope komt. Twee opties: dit jaar 180 accepteren, of lijn 2 erbij nemen met één extra monteur voor drie maanden. Ik adviseer optie twee. Ik heb vandaag je besluit nodig.”',
+        model: 'Eerst de projecteigenaar en het team vertellen wat ik gevonden heb en wat ik ga rapporteren, zodat niemand verrast wordt. In de stuurgroep: “Rood op de besparing. We gaan richting 180.000 in plaats van 300.000, omdat lijn 2 voor de zomer niet in scope komt. Twee opties: dit jaar 180 accepteren, of lijn 2 erbij nemen met één extra monteur voor drie maanden. Ik adviseer optie twee. Ik heb vandaag je besluit nodig.”',
         rubric: [
           'Vertelt het de betrokkenen voor de stuurgroep',
           'Meldt wat er gebeurd is en wat het in cijfers betekent',
@@ -311,7 +311,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een netbeheerder. Een senior planner in je team kan het duidelijk, maar zegt niks in overleggen en levert laat. Een collega vertelt je dat hem nooit gevraagd is of hij in het project wilde.',
+        scene: 'Je zit bij een netbeheerder. Een senior planner in je team kan het duidelijk, maar zegt niks in overleggen en levert te laat. Een collega vertelt je dat hem nooit gevraagd is of hij in het project wilde.',
         ask: 'Wat doe je?',
         model: 'Eén op één met hem praten, zonder verwijt. “Ik hoorde dat je in dit project bent gezet zonder dat iemand het je vroeg. Hoe is dat voor jou?” Dan vragen wat het voor hem de moeite waard zou maken, en of zijn werkdruk het toelaat. Iets kleins en concreets afspreken waar hij eigenaar van wil zijn, en als tijd het probleem is, dat bij zijn leidinggevende aankaarten nadat ik het hem verteld heb.',
         rubric: [
@@ -339,14 +339,14 @@ export default {
         },
       ],
       teach: [
-        'Standpunten tegenover belangen. Een standpunt is wat iemand zegt te willen: “geen stops door de week”. Een belang is waarom: “we mogen de wekelijkse levering aan onze grootste klant niet missen”. Standpunten botsen; belangen vaak niet. Misschien werkt een stop van vier uur op maandagochtend, als de order al de deur uit is, voor allebei. Vraag “waar heb je het voor nodig?” en “waar maak je je zorgen over?”',
+        'Standpunten tegenover belangen (Fisher en Ury, Getting to Yes). Een standpunt is wat iemand zegt te willen: “geen stops door de week”. Een belang is waarom: “we mogen de wekelijkse levering aan onze grootste klant niet missen”. Standpunten botsen; belangen vaak niet. Misschien werkt een stop van vier uur op maandagochtend, als de order al de deur uit is, voor allebei. Vraag “waar heb je het voor nodig?” en “waar maak je je zorgen over?”',
         'In het team: luister eerst los naar beide kanten. Kies geen kant, ook niet als een van de twee gelijk heeft. Breng ze daarna samen met de belangen op tafel, niet de standpunten: “Jullie willen allebei dat de lijn betrouwbaar draait. Jullie verschillen over wanneer je hem stilzet.” Zoek opties die beide dienen, en beslis op criteria, niet op wie het hardst roept.',
         'Het lastige gesprek, in vier stappen. Wat ik zag, feitelijk: “Deze maand was de data twee keer niet klaar op maandag.” Het effect: “Het planningsoverleg beslist dan op gevoel.” Vraag naar hun kijk, en luister: “Hoe zie jij het?” Spreek samen de volgende stap af. Bereid de eerste zin voor; de rest volgt.',
         'Met de klant: als een manager je project de schuld geeft, verdedig je dan niet in de zaal. “Ik hoor dat je niet tevreden bent over hoe dit loopt. Kunnen we morgen twintig minuten nemen om het door te lopen?” Gebruik dan dezelfde vier stappen. Weet je niet wat je moet doen, haal de mensen dan uit elkaar, praat met ieder apart, en vraag een senior collega voordat je iets doet.',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een zuivelfabriek botsen de productiemanager en de onderhoudsmanager in je weekoverleg. Productie: “Geen stops meer op lijn 1, we lopen achter.” Onderhoud: “Dan gaat hij stuk, en dat is erger.” Je stopt de discussie en praat met ieder apart. Het belang van productie: elke donderdag gaat er een grote order naar een retailer. Het belang van onderhoud: drie uur per week om versleten afdichtingen te vervangen voordat ze falen. Weer samen: “Jullie willen allebei dat lijn 1 donderdag betrouwbaar draait.” Optie: een stop van drie uur op vrijdagochtend, direct na de levering. Beiden willen het vier weken proberen en dan naar stilstand en leveringen kijken.',
+        text: 'Bij een zuivelfabriek botsen de productiemanager en de onderhoudsmanager in je weekoverleg. Productie: “Geen stops meer op lijn 1, we lopen achter.” Onderhoud: “Dan gaat hij stuk, en dat is erger.” Je stopt de discussie en praat met ieder apart. Het belang van productie: elke donderdag gaat er een grote order naar een retailer. Het belang van onderhoud: drie uur per week om versleten afdichtingen te vervangen voordat ze falen. Weer samen: “Jullie willen allebei dat lijn 1 donderdag betrouwbaar draait.” Optie: een stop van drie uur op vrijdagochtend, de dag na de donderdaglevering. Beiden willen het vier weken proberen en dan naar stilstand en leveringen kijken.',
       },
       said: 'Wat je hoort in projecten: “Als onderhoud gewoon zijn werk had gedaan, hadden we dit hele project niet nodig gehad.”',
       recall: [

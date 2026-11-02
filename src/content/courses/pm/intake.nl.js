@@ -50,9 +50,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een metaalstansbedrijf. De operations manager begint met: “Onze OEE is 58%, we willen binnen een half jaar naar 75%. Kun je daar een verbeterteam op zetten?”',
+        scene: 'Je zit bij een metaalstansbedrijf. De operations manager begint met: “Onze OEE is 58%, we willen binnen een half jaar naar 75%.” (OEE: het deel van de geplande tijd dat de persen goede producten maken.) “ Kun je daar een verbeterteam op zetten?”',
         ask: 'Wat vraag je voordat je ergens ja op zegt?',
-        model: '“75% zou mooi zijn. Voordat we iets afspreken: waar gaan die 42 punten nu ongeveer naartoe, storingen, omstellen of snelheidsverlies? En welke perslijn doet jullie leverprestatie het meeste pijn?” En dan: “Wat hebben jullie al geprobeerd, en wat gebeurt er als de OEE op 58 blijft?”',
+        model: '“75% zou mooi zijn. Voordat we iets afspreken: waar gaan die 42 punten nu ongeveer naartoe, storingen, omstellen, snelheidsverlies of afkeur? En welke perslijn doet jullie leverprestatie het meeste pijn?” En dan: “Wat hebben jullie al geprobeerd, en wat gebeurt er als de OEE op 58 blijft?”',
         rubric: [
           'Gaat niet meteen akkoord met het target en wijst het ook niet af',
           'Vraagt waar het verlies echt zit, per verliessoort of per lijn',
@@ -81,7 +81,7 @@ export default {
         'Een simpele opbouw. Openen (5 minuten): waarom je er zit en waarmee je weg wilt. Verkennen (35): hun verhaal, het probleem, de mensen. Checken (10): samenvatten, vragen wat er mist. Afsluiten (10): volgende stap met een datum. Benoem die opbouw aan het begin: “Ik wil vandaag vooral luisteren en eindigen met een concrete volgende stap. Is dat goed?” Dat geeft rust.',
         'Gebruik MORE PIES als luisterchecklist. Mood: lees de sfeer. Open vragen. Reflecteren op gevoel: “Dat klinkt frustrerend.” Empathie. Parafraseren: “Dus het grootste probleem is…”. Inquiry: doorvragen op één ding. Experience: deel kort je eigen ervaring, alleen om vertrouwen te bouwen. Silence: wacht drie tellen na een antwoord. De belangrijkste zin komt vaak net na de stilte.',
         'Weerstand in een eerste gesprek is meestal stil: korte antwoorden, “het staat allemaal in het rapport”, een telefoon open op tafel. Benoem het luchtig: “Ik krijg de indruk dat hier al eerder naar gekeken is. Hoe ging dat toen?” Vaak heeft een vorige consultant een mooi slidedeck achtergelaten en is er niks veranderd. Laat ze dat verhaal vertellen; dan weet je wat je niet moet herhalen.',
-        'Ga weg met vijf dingen: het probleem in hun woorden, drie namen van mensen om te spreken, welke data je mag zien, wat succes is voor de sponsor, en een datum voor de volgende stap. Stuur binnen 24 uur een samenvatting van één A4. Wat je nog niet weet, zet je daarin als open vraag, niet als aanname.',
+        'Ga weg met vijf dingen: het probleem in hun woorden, drie namen van mensen om te spreken, welke data je mag zien, wat succes is voor de sponsor (de manager die betaalt en beslist), en een datum voor de volgende stap. Stuur binnen 24 uur een samenvatting van één A4. Wat je nog niet weet, zet je daarin als open vraag, niet als aanname.',
       ],
       example: {
         kind: 'worked',
@@ -108,7 +108,7 @@ export default {
           why: 'Mensen vullen de stilte op, vaak met het belangrijkste.',
         },
         {
-          q: 'Waarmee moet je het eerste gesprek uit lopen?',
+          q: 'Waarmee ga je na het eerste gesprek in elk geval de deur uit?',
           options: ['Een getekend projectplan', 'Een lijst met oplossingen om te testen', 'Namen van mensen om te spreken en een datum voor de volgende stap', 'Overeenstemming over het budget'],
           answer: 'Namen van mensen om te spreken en een datum voor de volgende stap',
           why: 'Een eerste gesprek is voor begrip en toegang, niet voor toezeggingen.',
@@ -144,9 +144,9 @@ export default {
       ],
       teach: [
         'Vier rollen. Sponsor: eigenaar van budget en resultaat, en kan beslissen. Eigenaar: de manager die het proces runt en met de verandering moet leven. Gebruikers: de operators, planners of monteurs van wie het dagelijkse werk verandert. Blokkeerders: iedereen wiens belang, macht of tijd geraakt wordt, vaak IT, de OR of een ploegleider met twintig dienstjaren. Eén persoon kan twee rollen hebben.',
-        'Een snelle map: twee assen, invloed (kunnen ze het stoppen of versnellen?) en belang (verandert hun werk?). Hoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: kort informeren, in hun taal. Weinig invloed, veel belang: laten meedoen, zij kennen de details. Teken hem na de intake in een kwartier op papier en werk hem elke maand bij.',
+        'Een snelle map: twee assen, invloed (kunnen ze het stoppen of versnellen?) en belang (verandert hun werk?). Hoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: tevreden houden, met korte updates in hun taal. Weinig invloed, veel belang: goed informeren en laten meedoen, zij kennen de details. Teken hem na de intake in een kwartier op papier en werk hem elke maand bij.',
         'Vraag het gewoon: “Wie beslist of dit doorgaat?”, “Wie kan het tegenhouden, ook zonder het hardop te zeggen?” en “Wie heeft zo’n project al eens meegemaakt?” Op de tweede vraag krijg je vaak een lachje en een naam. Schrijf die naam op. Met die persoon zit je deze week nog één op één.',
-        'Weerstand klinkt zelden als “nee”. Het ziet eruit als gemiste afspraken, mensen die niet vrijgemaakt worden, of “interessant, laten we het in het MT bespreken”. Escaleer niet als eerste stap. Ga erheen en vraag: “Hoe zou dit eruit moeten zien om voor jouw team te werken?” Escaleer pas naar de sponsor als een besluit echt vastzit, en zeg het de persoon vooraf.',
+        'Weerstand klinkt zelden als “nee”. Het ziet eruit als gemiste afspraken, mensen die niet vrijgemaakt worden, of “interessant, laten we het in het MT bespreken” (het managementteam). Escaleer niet als eerste stap. Ga erheen en vraag: “Hoe zou dit eruit moeten zien om voor jouw team te werken?” Escaleer pas naar de sponsor als een besluit echt vastzit, en zeg het de persoon vooraf.',
       ],
       example: {
         kind: 'worked',
@@ -162,8 +162,8 @@ export default {
         },
         {
           q: 'Een stakeholder heeft veel invloed maar weinig belang. Wat doe je?',
-          options: ['Wekelijks laten meedraaien in werksessies', 'Kort informeren, in zijn eigen taal', 'Tot het einde buiten beeld laten', 'Vragen of hij sponsor wil worden'],
-          answer: 'Kort informeren, in zijn eigen taal',
+          options: ['Wekelijks laten meedraaien in werksessies', 'Tevreden houden met korte updates in zijn eigen taal', 'Tot het einde buiten beeld laten', 'Vragen of hij sponsor wil worden'],
+          answer: 'Tevreden houden met korte updates in zijn eigen taal',
           why: 'Hij kan je stoppen maar wil je details niet; korte updates houden hem aan boord.',
         },
         {
@@ -180,7 +180,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit twee weken in een omstelproject bij een verpakkingsfabriek. De sponsor, de plantmanager, is enthousiast. De manager TD is bij beide stuurgroepen niet komen opdagen en zijn monteurs hebben het “te druk” voor de pilot.',
+        scene: 'Je zit twee weken in een omstelproject bij een verpakkingsfabriek. De sponsor, de plantmanager, is enthousiast. De manager TD is bij beide stuurgroepen (het maandelijkse overleg met de sponsor) niet komen opdagen en zijn monteurs hebben het “te druk” voor de pilot.',
         ask: 'Wat doe je deze week?',
         model: 'Zoek de manager TD één op één op, niet in de stuurgroep. “Ik zie dat je team onder druk staat en deze pilot kost ze tijd. Hoe zou het eruit moeten zien om voor jou te werken?” Luister naar het echte probleem, bijvoorbeeld een achterstand in storingen of geen inspraak in het ontwerp. Pas als een capaciteitsbesluit vast blijft zitten, vraag je de sponsor om te beslissen, en dat zeg je hem eerst.',
         rubric: [
@@ -209,9 +209,9 @@ export default {
         },
       ],
       teach: [
-        'Schrijf een doel in één zin: van X naar Y voor wanneer, gemeten hoe. “Ongeplande stilstand op lijn 3 terugbrengen van 14 naar 8 uur per week voor 1 april, gemeten in het stoplog van het MES.” Krijg je die zin niet op papier, dan heb je nog geen project maar een wens. Schrijf hem samen met de klant, in hun woorden, en lees hem hardop terug.',
+        'Schrijf een doel in één zin: van X naar Y voor wanneer, gemeten hoe. “Ongeplande stilstand op lijn 3 terugbrengen van 14 naar 8 uur per week voor 1 april, gemeten in het stoplog van het MES.” (MES: het systeem dat elke stilstand vastlegt.) Krijg je die zin niet op papier, dan heb je nog geen project maar een wens. Schrijf hem samen met de klant, in hun woorden, en lees hem hardop terug.',
         'Eerst een nulmeting. Zonder gemeten startpunt kan niemand zeggen dat het gelukt is, en wordt elk resultaat betwist. Is de data er niet, dan is twee weken meten je eerste deliverable. Zeg het gewoon: “Ik weet het huidige getal nog niet, en eerlijk gezegd jij ook niet. Laten we eerst meten voordat we iets beloven.”',
-        'Scope in en scope uit. Schrijf ze allebei op. Uit is belangrijker: “Alleen lijn 3, niet lijn 1 en 2. Proces en planning, geen nieuw ERP. Niet aan de ploegendiensten komen.” Zet erbij wat mensen waarschijnlijk gaan inbrengen. Komt het later op tafel, dan wijs je naar de lijst in plaats van de discussie opnieuw te voeren.',
+        'Scope in en scope uit. Schrijf ze allebei op. Uit is belangrijker: “Alleen lijn 3, niet lijn 1 en 2. Proces en planning, geen nieuw ERP-systeem. Niet aan de ploegendiensten komen.” Zet erbij wat mensen waarschijnlijk gaan inbrengen. Komt het later op tafel, dan wijs je naar de lijst in plaats van de discussie opnieuw te voeren.',
         'Acceptatiecriteria: wie tekent af, op basis van welk bewijs, en wanneer. “De plantmanager accepteert als het gemiddelde over vier weken achter elkaar 8 uur of minder is.” Spreek dit aan het begin af. Aan het eind is de sfeer anders en herinnert iedereen zich de belofte anders.',
       ],
       example: {
