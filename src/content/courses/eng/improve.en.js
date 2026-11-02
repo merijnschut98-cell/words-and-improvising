@@ -207,6 +207,7 @@ export default {
     },
     {
       id: 'eng.improve.doe',
+      figure: 'eng.improve.doe',
       title: 'Design of experiments in plain words',
       pre: [
         {

@@ -207,6 +207,7 @@ export default {
     },
     {
       id: 'eng.improve.doe',
+      figure: 'eng.improve.doe',
       title: 'Proefopzetten (DOE) in gewone woorden',
       pre: [
         {
