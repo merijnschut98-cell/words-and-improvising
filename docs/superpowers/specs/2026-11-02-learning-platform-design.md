@@ -15,6 +15,19 @@ The platform is renamed **Vantage Point** and adopts Merijn's Vantage design sys
 - The storage key stays `spraakwater:v1` so nobody loses progress; the service-worker cache name changes to `vantage-point-v*` and the old caches are deleted on activate.
 - Interactive figures use the Vantage palette in both themes.
 
+## Minimal, instantly clear UX (added 2026-11-02, binding)
+
+The app must be easy to navigate and understood at first sight, by Merijn and by anyone he shows it to.
+
+- **One primary action per screen.** Each screen has exactly one filled (primary) button; everything else is secondary or behind a disclosure.
+- **Home answers one question: "what do I do now?"** Above the fold: the subject bar, the Today card (one next thing, with its reason), and at most one secondary card. Everything else (all drills, quick round, reviews, boss, targeted practice, conversation, real week, quests, situation finder, programme) moves behind a single "More practice" disclosure, grouped and labelled.
+- **Course home:** Today card, the due card only when something is due, then the module list (collapsed), glossary at the bottom. Nothing else.
+- **Lessons show where you are:** a step indicator (Guess · Read · Example · Check) at the top, one button per step, always a visible way out.
+- **Settings grouped** into Language, Coach and API key, Practice, Appearance, Data. Rarely used options sit below the fold.
+- **Plain labels over clever ones;** no icon without a text label, except close and back.
+- **First run:** three short screens (what the three subjects are, how a day works, where Settings and the key live), skippable.
+- **Verification:** a fresh "first-time user" subagent looks only at the screenshots and must find how to (1) start today’s practice, (2) open an engineering lesson, (3) see progress, (4) add the API key, (5) switch language, each in one or two taps; any miss is a finding to fix.
+
 ## Purpose
 
 - **Engineering** (manufacturing, process engineering, and the electricity grid): understand what engineering teams talk about, follow a gemba walk, ask a real question at the machine. Fundamentals to expert.

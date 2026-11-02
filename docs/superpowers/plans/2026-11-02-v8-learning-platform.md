@@ -288,6 +288,18 @@ The fixture is a minimal two-lesson module defined inside the test file.
 - [ ] **Step 5:** e2e green with updated selectors; screenshots in light and dark (add a dark-theme pass for home, course home, lesson, feedback); look at every screenshot.
 - [ ] **Step 6:** Commit `Rebrand as Vantage Point with the Vantage design system`.
 
+### Task 15: Minimal UX pass (after Task 14, before Task 12)
+
+**Files:** `src/ui/home.js` (speaking home → Today + one secondary card + "More practice" disclosure), `src/ui/coursehome.js`, `src/ui/lesson.js` (step indicator), `src/ui/settings.js` (grouped sections), `src/ui/welcome.js` (three-screen first run covering all subjects), `src/i18n.js`, `styles.css`, `e2e/smoke.mjs` (selectors for moved items; open "More practice" where steps need hidden items), `tests/ux.test.js`.
+
+**Interfaces:** `morePractice(app) -> HTMLDetailsElement` (class `more`, open state remembered in `ui.moreOpen`); `stepIndicator(t, phases, current) -> HTMLElement` (class `steps`, `aria-current="step"` on the active one).
+
+- [ ] **Step 1: Failing tests** (`tests/ux.test.js`, jsdom-free: render functions are DOM-based, so test the pure parts): `lessonSteps(phases)` maps phases to the four labelled steps; home section order constant `HOME_SECTIONS` lists exactly today, secondary, more. Plus an e2e assertion per main screen: exactly one `.btn-primary` visible (home, course home, each lesson step, due, situation, settings has none).
+- [ ] **Step 2:** Implement the home, course home, lesson, settings and first-run changes.
+- [ ] **Step 3:** e2e green (update selectors; steps that click drills open "More practice" first); screenshots light and dark.
+- [ ] **Step 4:** First-time-user check: a fresh subagent gets only the screenshots and the five tasks from the spec; fix every miss; repeat once.
+- [ ] **Step 5:** Commit `Simplify navigation: one next thing per screen`.
+
 ### Task 13: Interactive figures (anatomy skill)
 
 **Files:**
