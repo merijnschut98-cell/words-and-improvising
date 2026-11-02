@@ -75,3 +75,21 @@ test('every shipped module validates and its files are in the service worker she
     for (const l of ['en', 'nl']) assert.ok(sw.includes(`'src/content/courses/${m.subject}/${slug}.${l}.js'`), `${m.id} ${l} missing from sw.js`);
   }
 });
+
+test('validateModule: a figure id must be a plain id; every shipped figure file exists and is in the shell', async () => {
+  const bad = { lessons: [lesson('eng.fx.a', { figure: '../evil' }), lesson('eng.fx.b')] };
+  assert.match(validateModule(bad, fxNl, fxMeta).join('\n'), /figure/);
+  const ok = { lessons: [lesson('eng.fx.a', { figure: 'eng.fx.line' }), lesson('eng.fx.b')] };
+  assert.deepEqual(validateModule(ok, fxNl, fxMeta), []);
+  const sw = fs.readFileSync('sw.js', 'utf8');
+  for (const m of MODULES) {
+    for (const lang of ['en', 'nl']) {
+      const mod = await loadModule(m.subject, m.id, lang);
+      for (const l of mod.lessons.filter((x) => x.figure)) {
+        const file = `src/content/courses/figures/${l.figure}.html`;
+        assert.ok(fs.existsSync(file), `${l.id}: ${file} missing`);
+        assert.ok(sw.includes(`'${file}'`), `${file} missing from sw.js`);
+      }
+    }
+  }
+});

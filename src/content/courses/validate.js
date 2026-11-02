@@ -58,6 +58,7 @@ function checkLesson(l, meta, lang, errs) {
   const terms = l.terms || [];
   if (terms.length < 2 || terms.length > 4 || !terms.every((x) => x && str(x.term) && str(x.def))) errs.push(`${at}: needs 2–4 terms with term and def`);
   if (strings(l).some((x) => /[<>]/.test(x))) errs.push(`${at}: no < or > allowed in text`);
+  if ('figure' in l && !(typeof l.figure === 'string' && /^[a-z]+(\.[a-z0-9]+)+$/.test(l.figure))) errs.push(`${at}: figure must be an id like eng.flow.line`);
 }
 
 export function validateModule(en, nl, meta) {
