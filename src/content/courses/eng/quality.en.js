@@ -139,6 +139,7 @@ export default {
     },
     {
       id: 'eng.quality.capability',
+      figure: 'eng.quality.capability',
       title: 'Capability: Cp and Cpk',
       pre: [
         {

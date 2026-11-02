@@ -139,6 +139,7 @@ export default {
     },
     {
       id: 'eng.quality.capability',
+      figure: 'eng.quality.capability',
       title: 'Procesgeschiktheid: Cp en Cpk',
       pre: [
         {
