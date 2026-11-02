@@ -254,6 +254,55 @@ await step('a lesson with a figure shows it under the last reading block', async
   await page.evaluate(() => window.__app.go('home'));
 });
 
+await step('sync: send a login link; a signed-in device merges the cloud state without losing local rounds', async () => {
+  const FAKE_SUPABASE = `
+    const store = JSON.parse(localStorage.getItem('__fakeCloud') || 'null') || { row: null };
+    const save = () => localStorage.setItem('__fakeCloud', JSON.stringify(store));
+    const user = { id: 'u1', email: 'merijn@example.com' };
+    export function createClient() {
+      return {
+        auth: {
+          getSession: async () => ({ data: { session: { user } } }),
+          signInWithOtp: async ({ email }) => { localStorage.setItem('__otp', email); return { error: null }; },
+          signOut: async () => ({ error: null }),
+        },
+        from: () => ({
+          select: () => ({ eq: () => ({ maybeSingle: async () => ({ data: store.row, error: null }) }) }),
+          upsert: async (row) => { store.row = row; save(); return { error: null }; },
+        }),
+      };
+    }`;
+  await page.route('**/@supabase/supabase-js@*', (r) => r.fulfill({ contentType: 'application/javascript', body: FAKE_SUPABASE }));
+  await page.evaluate(() => window.__app.go('settings'));
+  await page.locator('.sync-card input[type=email]').fill('merijn@example.com');
+  await page.locator('.sync-card .btn', { hasText: 'Stuur inloglink' }).click();
+  await page.locator('.sync-note', { hasText: 'Inloglink gestuurd' }).waitFor();
+  if (await page.evaluate(() => localStorage.getItem('__otp')) !== 'merijn@example.com') throw new Error('no login request');
+  await shot('68-sync-send');
+  // The other device already uploaded a round this one never saw.
+  const localTs = await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    const remote = { ...st, settings: undefined, ui: undefined, xp: st.xp + 500, history: [{ ...st.history[0], ts: 42 }] };
+    localStorage.setItem('__fakeCloud', JSON.stringify({ row: { user_id: 'u1', state: remote } }));
+    localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, settings: { ...st.settings, syncOn: true } }));
+    return st.history.map((e) => e.ts);
+  });
+  await page.reload();
+  await page.waitForFunction(() => window.__app.syncer && window.__app.syncer.status().lastSync);
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (!st.history.some((e) => e.ts === 42)) throw new Error('remote round not merged');
+  if (!localTs.every((ts) => st.history.some((e) => e.ts === ts))) throw new Error('a local round was lost');
+  const cloud = await page.evaluate(() => JSON.parse(localStorage.getItem('__fakeCloud')).row.state);
+  if ('settings' in cloud) throw new Error('settings were uploaded');
+  await page.evaluate(() => window.__app.go('settings'));
+  await page.locator('.sync-card', { hasText: 'Synchroniseren staat aan' }).waitFor();
+  await shot('69-sync-on');
+  await page.locator('.sync-card .btn', { hasText: 'Synchroniseren uitzetten' }).click();
+  await page.locator('.sync-card input[type=email]').waitFor();
+  await page.unroute('**/@supabase/supabase-js@*');
+  await page.evaluate(() => { localStorage.removeItem('__fakeCloud'); localStorage.removeItem('__otp'); window.__app.go('home'); });
+});
+
 await step('a lesson whose module fails to load shows a retry, then loads', async () => {
   const c4 = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   await c4.addInitScript(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'pm' } })));

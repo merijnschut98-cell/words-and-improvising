@@ -26,6 +26,8 @@ import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
+import { createCloud } from './core/cloud.js';
+import { createSyncer } from './core/syncer.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
 import { renderSituation } from './ui/situation.js';
@@ -115,10 +117,31 @@ export const app = {
   },
   today() { return dayKey(new Date()); },
 
-  setState(next) {
+  setState(next, fromSync = false) {
     this.state = next;
     save(storage, next);
     writeMeta(next);
+    // Signed-in devices push their changes a few seconds later.
+    if (!fromSync && this.syncer && next.settings.syncOn) this.syncer.changed();
+  },
+  cloud: null,
+  syncer: null,
+  ensureCloud() {
+    if (!this.cloud) {
+      this.cloud = createCloud({ redirect: `${location.origin}${location.pathname}` });
+      this.syncer = createSyncer({ cloud: this.cloud, getState: () => this.state, setState: (s) => this.setState(s, true) });
+    }
+    return this.cloud;
+  },
+  // Pull, merge and push; on the first success after a login link, sync is on.
+  async startSync() {
+    this.ensureCloud();
+    const res = await this.syncer.syncNow();
+    if (res.ok && !this.state.settings.syncOn) {
+      this.updateSettings({ syncOn: true });
+      this.toast(this.t('syncStarted'));
+    }
+    return res;
   },
   updateSettings(patch) {
     this.setState({ ...this.state, settings: { ...this.state.settings, ...patch } });
@@ -299,7 +322,15 @@ function reconcileNow() {
   return r;
 }
 reconcileNow();
+// Sync: back from a login link, or a device that is already signed in.
+if (/access_token=/.test(location.hash) || app.state.settings.syncOn) {
+  app.startSync().then((res) => { if (res.ok && root.dataset.screen === 'home') app.go('home'); });
+}
 document.addEventListener('visibilitychange', () => {
+  if (app.state.settings.syncOn && app.cloud) {
+    if (document.visibilityState === 'hidden') app.cloud.push(app.state);
+    else app.startSync();
+  }
   if (document.visibilityState !== 'visible') return;
   const r = reconcileNow();
   if ((r.usedFreeze || r.broke) && root.dataset.screen === 'home') app.go('home');

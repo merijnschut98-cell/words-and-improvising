@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v4';
+const CACHE = 'vantage-point-v5';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -12,7 +12,7 @@ const SHELL = [
   'fonts/Fraunces-Variable.woff2', 'fonts/Fraunces-Italic-Variable.woff2', 'fonts/Inter-Variable.woff2', 'fonts/Inter-Italic-Variable.woff2',
   'fonts/JetBrainsMono-Variable.woff2', 'fonts/JetBrainsMono-Italic-Variable.woff2',
   'src/app.js', 'src/i18n.js',
-  'src/core/bests.js', 'src/core/boss.js', 'src/core/calibration.js', 'src/core/share.js', 'src/core/sound.js', 'src/core/spaced.js', 'src/core/followup.js', 'src/core/friend.js', 'src/core/realweek.js', 'src/core/pressure.js', 'src/core/shadow.js', 'src/core/words.js', 'src/core/mastery.js', 'src/core/today.js', 'src/core/programme.js', 'src/core/coursereview.js', 'src/core/course.js', 'src/core/coursecoach.js', 'src/core/sync.js', 'src/core/cloud.js', 'src/core/weekly.js', 'src/core/milestones.js', 'src/core/claude.js', 'src/core/compare.js', 'src/core/coach.js', 'src/core/partner.js', 'src/core/voice.js', 'src/core/lesson.js', 'src/core/metrics.js', 'src/core/modifiers.js', 'src/core/progress.js', 'src/core/quests.js',
+  'src/core/bests.js', 'src/core/boss.js', 'src/core/calibration.js', 'src/core/share.js', 'src/core/sound.js', 'src/core/spaced.js', 'src/core/followup.js', 'src/core/friend.js', 'src/core/realweek.js', 'src/core/pressure.js', 'src/core/shadow.js', 'src/core/words.js', 'src/core/mastery.js', 'src/core/today.js', 'src/core/programme.js', 'src/core/coursereview.js', 'src/core/course.js', 'src/core/coursecoach.js', 'src/core/sync.js', 'src/core/cloud.js', 'src/core/syncer.js', 'src/core/weekly.js', 'src/core/milestones.js', 'src/core/claude.js', 'src/core/compare.js', 'src/core/coach.js', 'src/core/partner.js', 'src/core/voice.js', 'src/core/lesson.js', 'src/core/metrics.js', 'src/core/modifiers.js', 'src/core/progress.js', 'src/core/quests.js',
   'src/core/pauses.js', 'src/core/recorder.js', 'src/core/reminder.js', 'src/core/review.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js', 'src/core/tailor.js', 'src/core/loudness.js',
   'src/content/prompts.en.js', 'src/content/prompts.nl.js', 'src/content/tips.js',
   'src/content/courses/index.js', 'src/content/courses/validate.js', 'src/content/courses/figures/eng.flow.line.html', 'src/content/courses/figures/eng.transformers.load.html', 'src/content/courses/figures/eng.switchgear.selectivity.html', 'src/content/courses/figures/eng.quality.capability.html', 'src/content/courses/figures/eng.machining.lathe.html',
@@ -27,7 +27,7 @@ const SHELL = [
   'src/content/courses/eng/drawings.en.js', 'src/content/courses/eng/drawings.nl.js', 'src/content/courses/eng/gridbasics.en.js', 'src/content/courses/eng/gridbasics.nl.js', 'src/content/courses/eng/gridops.en.js', 'src/content/courses/eng/gridops.nl.js', 'src/content/courses/eng/lines.en.js', 'src/content/courses/eng/lines.nl.js', 'src/content/courses/eng/machining.en.js', 'src/content/courses/eng/machining.nl.js', 'src/content/courses/eng/maintenance.en.js', 'src/content/courses/eng/maintenance.nl.js', 'src/content/courses/eng/moulding.en.js', 'src/content/courses/eng/moulding.nl.js', 'src/content/courses/eng/quality.en.js', 'src/content/courses/eng/quality.nl.js', 'src/content/courses/eng/transformers.en.js', 'src/content/courses/eng/transformers.nl.js', 'src/content/courses/pm/land.en.js', 'src/content/courses/pm/land.nl.js', 'src/content/courses/pm/plan.en.js', 'src/content/courses/pm/plan.nl.js', 'src/content/courses/pm/run.en.js', 'src/content/courses/pm/run.nl.js',
   'src/ui/dom.js', 'src/ui/icons.js', 'src/ui/home.js', 'src/ui/round.js', 'src/ui/feedback.js', 'src/ui/done.js', 'src/ui/conversation.js',
   'src/ui/progress.js', 'src/ui/settings.js', 'src/ui/plan.js', 'src/ui/welcome.js', 'src/ui/realweek.js', 'src/ui/weekly.js', 'src/ui/friendrate.js',
-  'src/ui/subjectbar.js', 'src/ui/coursehome.js', 'src/ui/quiz.js', 'src/ui/figure.js', 'src/ui/lesson.js', 'src/ui/due.js', 'src/ui/situation.js', 'src/ui/glossary.js',
+  'src/ui/subjectbar.js', 'src/ui/coursehome.js', 'src/ui/quiz.js', 'src/ui/figure.js', 'src/ui/sync.js', 'src/ui/lesson.js', 'src/ui/due.js', 'src/ui/situation.js', 'src/ui/glossary.js',
 ];
 
 self.addEventListener('install', (e) => {

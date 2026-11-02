@@ -1,4 +1,5 @@
 import { h, aiErrorText } from './dom.js';
+import { syncSection } from './sync.js';
 import { ico } from './icons.js';
 import { THEMES } from '../core/storage.js';
 import { checkKey } from '../core/claude.js';
@@ -127,6 +128,7 @@ export function renderSettings(app, _params, root) {
         h('select', { onchange: (e) => set({ model: e.target.value }) },
           h('option', { value: 'claude-opus-5-5', selected: s.model === 'claude-opus-5-5' }, t('modelBest')),
           h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
+      syncSection(app),
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('themeTitle')),
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
