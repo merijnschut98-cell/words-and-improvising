@@ -14,9 +14,10 @@ const { chromium } = playwright;
 const out = process.argv[2] || 'e2e/out';
 fs.mkdirSync(out, { recursive: true });
 
-const server = spawn('python3', ['-m', 'http.server', '8123'], { stdio: 'ignore' });
+const PORT = process.env.E2E_PORT || '8123';
+const server = spawn('python3', ['-m', 'http.server', PORT], { stdio: 'ignore' });
 await new Promise((r) => setTimeout(r, 800));
-const BASE = 'http://localhost:8123/';
+const BASE = `http://localhost:${PORT}/`;
 
 const FAKE_SPEECH = `
   window.__speechMode = 'ok';
