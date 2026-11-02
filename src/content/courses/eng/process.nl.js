@@ -15,12 +15,12 @@ export default {
       teach: [
         'Procesinstallaties zijn opgebouwd uit unit operations: een klein setje fysische stappen dat overal terugkomt. Pompen, verwarmen en koelen, mengen, scheiden (filtreren, centrifugeren, destilleren, indampen), drogen en reageren. Een zuivelfabriek, een chemische fabriek en een waterbedrijf gebruiken dezelfde bouwstenen, alleen in een andere volgorde. Weet je naar welke stap je kijkt, dan weet je welke vragen je moet stellen, wat het product ook is.',
         'Batch: een vaste hoeveelheid gaat een vat in, wordt stap voor stap bewerkt en komt eruit als één partij. Dat is flexibel, makkelijk te traceren (één batch, één registratie) en past bij veel recepten en kleine volumes: farma, specialistische chemie, veel voeding. De nadelen: vullen, legen en reinigen leveren niks op, en elke batch is net iets anders.',
-        'Continu: het product stroomt non-stop in en uit, en de installatie draait stationair: overal dezelfde condities, uur na uur. Dat is efficiënt bij grote volumes: raffinaderijen, papier, bulkchemie, melkpoeder. Opstarten en stoppen kost veel en levert product buiten spec op, dus zulke fabrieken stoppen liever niet. Veel locaties combineren: batchgewijs mengen dat een continue vullijn voedt.',
+        'Continu: het product stroomt non-stop in en uit, en de installatie draait in een stationaire toestand (steady state): overal dezelfde condities, uur na uur. Dat is efficiënt bij grote volumes: raffinaderijen, papier, bulkchemie, melkpoeder. Opstarten en stoppen kost veel en levert product buiten spec op, dus zulke fabrieken stoppen liever niet. Veel locaties combineren: batchgewijs mengen dat een continue vullijn voedt.',
         'Verblijftijd is hoe lang het product gemiddeld in een continue stap zit: het volume van die stap gedeeld door het debiet erdoorheen. Een tank van 6 m³ met 3 m³ per uur erdoorheen geeft 2 uur. Vraag ernaar zodra de kwaliteit van tijd afhangt: verhitten, warmhouden, reageren, bezinken. In een continu proces betekent meer debiet minder verblijftijd.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een sapfabriek pasteuriseert continu. Na het verhitten stroomt het sap door een heethoudbuis van 0,1 m³, met 12 m³ per uur. Verblijftijd = 0,1 / 12 uur = 0,00833 uur = 30 seconden. Het voedselveiligheidsplan eist minstens 20 seconden op temperatuur. Productie wil naar 18 m³ per uur om meer te maken. Dan wordt de verblijftijd 0,1 / 18 uur = 20 seconden: precies op het minimum, zonder marge. In een continu proces hangen doorzet en verblijftijd aan elkaar: meer output vraagt een langere heethoudbuis, niet alleen een snellere pomp.',
+        text: 'Een sapfabriek pasteuriseert continu. Na het verhitten stroomt het sap door een heethoudbuis van 0,1 m³, met 12 m³ per uur. Verblijftijd = 0,1 / 12 uur = 0,00833 uur = 30 seconden. Het voedselveiligheidsplan eist minstens 20 seconden op temperatuur. Productie wil naar 18 m³ per uur om meer te maken. Dan wordt de verblijftijd 0,1 / 18 uur = 20 seconden: precies op het minimum, zonder marge. En dat is nog het gemiddelde: in het midden van een buis stroomt het sap sneller dan gemiddeld, dus het snelste sap zit er korter dan 20 seconden in. Daarom ontwerp je een heethoudbuis op het snelste deeltje, niet op het gemiddelde. In een continu proces hangen doorzet en verblijftijd aan elkaar: meer output vraagt een langere heethoudbuis, niet alleen een snellere pomp.',
       },
       said: 'Wat engineers zeggen: “We kunnen naar 18 kuub per uur, maar dan zitten we precies op de minimale heethoudtijd. Niet zonder langere buis.”',
       recall: [
@@ -41,7 +41,7 @@ export default {
           q: 'Waarom doen continue installaties er alles aan om niet te stoppen?',
           options: ['Opstarten en stoppen duurt lang en levert product buiten spec op', 'Hun machines kunnen niet uit', 'Continue installaties hebben geen onderhoud', 'Stoppen verandert het recept'],
           answer: 'Opstarten en stoppen duurt lang en levert product buiten spec op',
-          why: 'Een continue installatie maakt alleen goed product als ze stationair draait; elke stop kost de weg terug daarnaartoe.',
+          why: 'Een continue installatie maakt alleen goed product als ze in stationaire toestand draait; elke stop kost de weg terug daarnaartoe.',
         },
         {
           q: 'Een farmaceutisch bedrijf maakt 40 verschillende producten in kleine volumes en moet elke partij kunnen traceren. Welke manier van produceren past het best?',
@@ -64,7 +64,7 @@ export default {
       terms: [
         { term: 'Unit operation', def: 'Een fysische basisstap in een proces, zoals pompen, verwarmen, mengen, scheiden, drogen of reageren.' },
         { term: 'Batchproces', def: 'Een vaste hoeveelheid die stap voor stap in een vat wordt bewerkt en als één partij wordt vrijgegeven.' },
-        { term: 'Continu proces', def: 'Het product stroomt non-stop in en uit en de installatie draait stationair.' },
+        { term: 'Continu proces', def: 'Het product stroomt non-stop in en uit en de installatie draait in stationaire toestand.' },
         { term: 'Verblijftijd', def: 'Gemiddelde tijd dat het product in een stap zit: volume gedeeld door debiet.' },
       ],
     },
@@ -87,7 +87,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een tank heeft een niveaumeter op basis van druk, ingesteld op water (1.000 kg/m³). Er staat nu siroop van 1.250 kg/m³ in, echt 2,0 m hoog. De druk onderin is 1.250 × 9,81 × 2,0 = 24.525 Pa. De meter deelt door de dichtheid van water: 24.525 / (1.000 × 9,81) = 2,5 m. Het scherm zegt 2,5 m terwijl het echt 2,0 m is, dus het hoog-niveaualarm kan te vroeg afgaan en de tank lijkt voller dan hij is. De massa die de meter aangeeft klopt wel, want druk × tankoppervlak / g is het gewicht van de inhoud. Oplossing: de juiste dichtheid invoeren, of de tank in kg aflezen.',
+        text: 'Een tank heeft een niveaumeter op basis van druk, ingesteld op water (1.000 kg/m³). Er staat nu siroop van 1.250 kg/m³ in, echt 2,0 m hoog. De druk onderin is 1.250 × 9,81 × 2,0 = 24.525 Pa. De meter deelt door de dichtheid van water: 24.525 / (1.000 × 9,81) = 2,5 m. Het scherm zegt 2,5 m terwijl het echt 2,0 m is, dus het hoog-niveaualarm kan te vroeg afgaan en de tank lijkt voller dan hij is. De massa die de meter aangeeft klopt wel, want druk × tankoppervlak / g is de massa van de inhoud (bij een tank met rechte, verticale wanden). Oplossing: de juiste dichtheid invoeren, of de tank in kg aflezen.',
       },
       said: 'Wat engineers zeggen: “Die niveautransmitter staat op water. Met siroop leest hij een halve meter te hoog, dus vertrouw dat alarm niet.”',
       recall: [
@@ -148,7 +148,7 @@ export default {
         },
       ],
       teach: [
-        'Massa blijft behouden: wat erin gaat, komt eruit of blijft erin zitten. Als formule: in = uit + ophoping. In een continue installatie die stationair draait hoopt niks op, dus in = uit. Een massabalans is het eerste gereedschap van een procesengineer: teken een kader om een stap, zet elke stroom erin en eruit op een rij, en kijk of het sluit.',
+        'Massa blijft behouden: wat erin gaat, komt eruit of blijft erin zitten. Als formule: in = uit + ophoping. In een continue installatie in stationaire toestand hoopt niks op, dus in = uit. Een massabalans is het eerste gereedschap van een procesengineer: teken een kader om een stap, zet elke stroom erin en eruit op een rij, en kijk of het sluit.',
         'Maak de balans ook per component. Water, suiker, droge stof of zout kloppen elk apart, zolang er niks reageert. De truc bij de meeste vraagstukken is de component die er onveranderd doorheen gaat: de droge stof in een indamper, de vaste stof in een droger. Die legt de grootte van de andere stromen vast.',
         'Opbrengst (yield) is nuttige output gedeeld door input: kg goed product per kg grondstof. Een balans die niet sluit is een bevinding. Mist er 2% van de massa, zoek dan een lek, een meetfout, product dat naar het riool gaat, of materiaal dat in tanks en leidingen staat. Verliezen verstoppen zich in spoelwater, filterkoek, opstartproduct en labmonsters.',
         'Vraag om balansen in massa, niet in volume. Volumes veranderen met temperatuur en menging: 1 liter water plus 1 liter ethanol geeft ongeveer 1,92 liter, geen 2. Massa telt altijd op. En check of de voorraad in de tanks aan het begin en eind van de periode is meegenomen, anders lijkt een volle tank een verlies.',
@@ -157,7 +157,7 @@ export default {
         kind: 'worked',
         text: 'Een siroopstap lost per batch 1.000 kg suiker op in 500 kg water: 1.500 kg erin. Eruit: 1.440 kg siroop op de weegcellen en 30 kg filterkoek: 1.470 kg. Er mist 30 kg, 2% van de input. Opbrengst aan siroop: 1.440 / 1.500 = 96%. Waar blijft die 30 kg? De batch wordt in een open vat naar 85 °C verwarmd, dus er verdampt water. Een suikerbalans geeft uitsluitsel: zit alle 1.000 kg suiker in de siroop en de koek, dan is wat mist water, en is de siroop iets sterker dan het recept. Mist er ook suiker, zoek dan naar morsen of product dat in de leidingen blijft staan.',
       },
-      said: 'Wat engineers zeggen: “De balans sluit op 2% na. Voordat we het verlies noemen, doen we hem eerst op droge stof.”',
+      said: 'Wat engineers zeggen: “De balans sluit op 2% na. Voordat we het een verlies noemen, maken we hem eerst op droge stof.”',
       recall: [
         {
           q: 'Een droger krijgt 500 kg per uur nat poeder binnen met 20% water. Het gedroogde poeder gaat eruit met 4% water, en alle vaste stof gaat mee met het poeder. Hoeveel kg gedroogd poeder komt er per uur uit?',
@@ -199,7 +199,7 @@ export default {
       sayIt: 'Leg een productiemanager in 60 seconden uit wat een massabalans is en waarom je er verliezen mee vindt.',
       terms: [
         { term: 'Massabalans', def: 'In = uit + ophoping, voor het totaal en per component.' },
-        { term: 'Stationair', def: 'Een continu proces waarin niks verandert in de tijd, dus niks ophoopt.' },
+        { term: 'Stationaire toestand', def: 'Een continu proces waarin niks verandert in de tijd, dus niks ophoopt.' },
         { term: 'Opbrengst (yield)', def: 'Nuttige output gedeeld door input, meestal in kg per kg.' },
         { term: 'Sleutelcomponent', def: 'Een component die er onveranderd doorheen gaat, zoals droge stof, en de andere stromen vastlegt.' },
       ],
@@ -235,7 +235,7 @@ export default {
           why: '500 × 4,2 × 60 = 126.000 kJ; 126.000 / 3.600 = 35 kWh.',
         },
         {
-          q: 'Een continue verwarmer warmt 3 kg per seconde product op, met cp 4,0 kJ per kg per °C, en wel 20 °C. Verwaarloos verliezen. Welk vermogen heeft de verwarmer nodig, in kW?',
+          q: 'Een continue verwarmer warmt 3 kg product per seconde 20 °C op. Het product heeft een cp van 4,0 kJ per kg per °C. Verwaarloos verliezen. Welk vermogen heeft de verwarmer nodig, in kW?',
           number: 240,
           tolerance: 2,
           unit: 'kW',
@@ -286,7 +286,7 @@ export default {
       teach: [
         'Een batchvat produceert in cycli. De cyclustijd is alles tussen twee starts: vullen, opwarmen, reageren of mengen, afkoelen, legen, reinigen, en het wachten op een operator, een labuitslag of een vrije tank verderop. Capaciteit per vat = batchgrootte / cyclustijd. Een cyclus van 5 uur met 4 ton geeft 0,8 ton per uur, zo’n 19 ton per dag als hij dag en nacht draait.',
         'Elke minuut in de cyclus telt even zwaar. Engineers willen graag de reactiestap korter maken, maar vullen, legen, reinigen en wachten op QC-vrijgave nemen vaak een derde van de cyclus in en zijn makkelijker in te korten: grotere pompen, voorverwarmde grondstoffen, stappen parallel, snellere labtests of een inline meting.',
-        'Met meerdere vaten achter elkaar is de bottleneck de stap met de langste tijd per batch, gedeeld door het aantal parallelle vaten in die stap. Een reactor van 6 uur die een filter van 3 uur voedt, geeft één batch per 6 uur. Zet er een tweede reactor naast en de fabriek maakt elke 3 uur een batch, zolang het filter het bijhoudt.',
+        'Met meerdere vaten achter elkaar is de bottleneck de stap met de langste tijd per batch, als je de tijd van elke stap eerst deelt door het aantal parallelle vaten in die stap. Een reactor van 6 uur die een filter van 3 uur voedt, geeft één batch per 6 uur. Zet er een tweede reactor naast en de fabriek maakt elke 3 uur een batch, zolang het filter het bijhoudt.',
         'Recepten draaien vaak volgens een standaard die ISA-88 heet: een recept is een reeks fasen (doseren, opwarmen, aanhouden, overpompen) met instelwaarden, uitgevoerd door het besturingssysteem. Vraag om de batchrapporten: de echte tijd per fase over de laatste 50 batches. Het verschil tussen de snelste en de traagste batches is vaak de grootste capaciteitswinst op de hele locatie.',
       ],
       example: {
@@ -359,7 +359,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een reactie gaat van een labreactor van 10 liter naar een fabrieksreactor van 10 m³ met dezelfde vorm: volume × 1.000, dus elke maat × 10 en het wandoppervlak × 100. In het lab gaf een uur doseren 0,5 kW warmte, makkelijk af te voeren. In de fabriek geeft dezelfde doseertijd 1.000 × 0,5 = 500 kW. De mantel heeft 25 m² en voert bij vol koelwater hooguit 10 kW per m² af: 250 kW. De oplossing: twee keer zo langzaam doseren, in 2 uur, zodat de warmteproductie halveert naar 250 kW. De batch duurt een uur langer: een opschaalkost die in de capaciteitsplanning hoort.',
+        text: 'Een reactie gaat van een labreactor van 10 liter naar een fabrieksreactor van 10 m³ met dezelfde vorm: volume × 1.000, dus elke maat × 10 en het wandoppervlak × 100. In het lab gaf een uur doseren 0,5 kW warmte, makkelijk af te voeren. Stel dat de grondstof meteen reageert zodra hij erin gaat, zodat de warmteproductie het doseertempo volgt. In de fabriek geeft dezelfde doseertijd 1.000 × 0,5 = 500 kW. De mantel heeft 25 m² en voert bij vol koelwater hooguit 10 kW per m² af: 250 kW. Twee keer zo langzaam doseren, in 2 uur, halveert de warmteproductie naar 250 kW: precies de grens van de mantel, zonder marge. Dus doseert de fabriek in 2,5 uur of langer, met zo’n 200 kW. De batch duurt minstens anderhalf uur langer: een opschaalkost die in de capaciteitsplanning hoort.',
       },
       said: 'Wat engineers zeggen: “In het lab is menging hooguit de beperking. In de fabriek is het de warmte, dus de mantel bepaalt hoe snel we doseren.”',
       recall: [

@@ -20,7 +20,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een koelwaterpomp moet 11 kW hydraulisch vermogen leveren, dag en nacht, 6.000 uur per jaar. De pomp haalt 70% rendement, de motor 92%. Opgenomen vermogen: 11 / (0,70 × 0,92) = 17,1 kW. Energie per jaar: 17,1 × 6.000 = 102.600 kWh. Bij €0,15 per kWh is dat zo’n €15.400 per jaar, waarschijnlijk meer dan de pomp heeft gekost. Een pomp met 80% in plaats van 70% zou 11 / (0,80 × 0,92) = 14,9 kW nodig hebben: zo’n 13.000 kWh en €2.000 per jaar minder. Rendement is een lopende kostenpost, geen detail op een datasheet.',
+        text: 'Een koelwaterpomp moet 11 kW hydraulisch vermogen leveren zolang hij draait, 6.000 uur per jaar. De pomp haalt 70% rendement, de motor 92%. Opgenomen vermogen: 11 / (0,70 × 0,92) = 17,1 kW. Energie per jaar: 17,1 × 6.000 = 102.600 kWh. Bij €0,15 per kWh is dat zo’n €15.400 per jaar, waarschijnlijk meer dan de pomp heeft gekost. Een pomp met 80% in plaats van 70% zou 11 / (0,80 × 0,92) = 14,9 kW nodig hebben: zo’n 13.000 kWh en €2.000 per jaar minder. Rendement is een lopende kostenpost, geen detail op een datasheet.',
       },
       said: 'Wat engineers zeggen: “Het is een motor van vijftien kW, maar hij trekt er maar negen. Dat is negen kW, geen vijftien, en met een belabberde cos phi.”',
       recall: [
@@ -85,13 +85,13 @@ export default {
         'De driefasige asynchrone motor (ook kooiankermotor of inductiemotor) drijft de meeste pompen, ventilatoren, transportbanden en compressoren aan: robuust, goedkoop, weinig onderhoud. De statorwikkelingen maken een draaiend magnetisch veld; de rotor wordt daardoor meegesleept. Het toerental hangt af van de netfrequentie en het aantal polen.',
         'Synchroon toerental = 120 × frequentie / aantal polen. Bij 50 Hz: 2 polen geven 3.000 toeren, 4 polen 1.500, 6 polen 1.000. De rotor draait altijd iets langzamer: de slip, meestal 1 tot 5%. Een 4-polige motor draait zo’n 1.450 tot 1.480 toeren, en meer belasting geeft iets meer slip.',
         'Koppel en vermogen hangen samen via het toerental: vermogen (kW) = koppel (Nm) × toerental (tpm) / 9.550. Een motor van 15 kW op 1.460 toeren levert zo’n 98 Nm. Een tandwielkast verlaagt het toerental en verhoogt het koppel met dezelfde verhouding, min zijn verliezen.',
-        'Rendementsklassen lopen van IE1 tot IE5 (IEC 60034-30-1). De EU eist voor de meeste nieuwe motoren van 0,75 tot 1.000 kW minstens IE3, en IE4 van 75 tot 200 kW. De meeste motorstoringen zitten in lagers en wikkelisolatie. Warmte sloopt isolatie: als vuistregel halveert elke 10 °C boven de toegestane temperatuur ruwweg de levensduur van de wikkeling. Vraag naar motortemperatuur, trillingen en hoe vaak hij aanloopt.',
+        'Rendementsklassen lopen van IE1 tot IE5 (IEC 60034-30-1). EU-verordening 2019/1781 eist voor de meeste nieuwe motoren van 0,75 tot 1.000 kW minstens IE3 (sinds juli 2021), en IE4 voor de meeste motoren van 75 tot 200 kW (sinds juli 2023). De meeste motorstoringen zitten in lagers en wikkelisolatie. Warmte sloopt isolatie: als vuistregel halveert elke 10 °C boven de toegestane temperatuur ruwweg de levensduur van de wikkeling. Vraag naar motortemperatuur, trillingen en hoe vaak hij aanloopt.',
       ],
       example: {
         kind: 'worked',
         text: 'Een ventilatormotor: 4 polen, 50 Hz, 30 kW, typeplaatje 1.470 toeren. Slip = (1.500 − 1.470) / 1.500 = 2%. Nominaal koppel = 30 × 9.550 / 1.470 = 195 Nm. Het is een oude IE1-motor met zo’n 90% rendement, die 6.000 uur per jaar 25 kW asvermogen levert. Opgenomen vermogen: 25 / 0,90 = 27,8 kW. Een nieuwe IE3-motor met zo’n 93,6%: 25 / 0,936 = 26,7 kW. Besparing 1,1 kW × 6.000 uur = zo’n 6.400 kWh, €960 per jaar bij €0,15. De moeite waard als de oude motor kapotgaat; zelden een reden om een gezonde motor alleen daarvoor te vervangen.',
       },
-      said: 'Wat engineers zeggen: “Dat is een vierpolige, dus 1.500 synchroon, 1.470 op het plaatje. Draait hij 1.420, dan is hij overbelast.”',
+      said: 'Wat engineers zeggen: “Dat is een vierpolige, dus 1.500 synchroon, 1.470 op het plaatje. Draait hij 1.420, dan is hij waarschijnlijk overbelast.”',
       recall: [
         {
           q: 'Een asynchrone motor heeft 6 polen en draait op een net van 50 Hz. Wat is zijn synchrone toerental, in toeren per minuut?',
@@ -218,14 +218,14 @@ export default {
         },
       ],
       teach: [
-        'Perslucht is veilig, schoon en handig, en daarom zit het overal: cilinders, blaaspistolen, gereedschap, ventielen. Het is ook de duurste manier om energie in een fabriek rond te brengen. Het grootste deel van de stroom van een compressor wordt warmte; maar zo’n 10% doet nuttig werk bij de gebruiker. De warmte van de compressor terugwinnen voor ruimte- of waterverwarming haalt daar een deel van terug.',
+        'Perslucht is schoon en handig, en daarom zit het overal: cilinders, blaaspistolen, gereedschap, ventielen. Het is ook de duurste manier om energie in een fabriek rond te brengen. Het grootste deel van de stroom van een compressor wordt warmte; maar zo’n 10% doet nuttig werk bij de gebruiker. De warmte van de compressor terugwinnen haalt daar een deel van terug. Onschuldig is het niet: blaas nooit perslucht op je huid of kleding.',
         'Lekken zijn het grote verlies. In fabrieken zonder lekprogramma ontsnapt vaak 20 tot 30% van wat de compressor levert via koppelingen, slangen en ventielen. Luister eens in het weekend: draaien de compressoren nog terwijl de productie stilligt, dan is dat vooral lekkage. Met ultrasone detectoren vind je ze; labelen en repareren is een klassieke snelle winst.',
         'Druk kost energie: elke bar extra opgewekte druk kost ruwweg 7% meer compressorenergie, en elk lek wordt er groter door. Veel fabrieken draaien op 7 of 8 bar omdat één machine dat nodig heeft. Los die machine lokaal op (een booster, een dikkere aanvoerleiding, een lokaal buffervat) en verlaag het hele net.',
         'Lucht moet schoon en droog zijn: water en olie beschadigen ventielen en cilinders. Na de compressor zitten een droger en filters; vóór elke machine een verzorgingseenheid (filter, regelaar, olienevelaar). Oneigenlijk gebruik is het derde verlies: open blaaspijpjes, koelen met lucht, vacuüm maken met perslucht, terwijl een elektrische ventilator of pomp een fractie van de energie zou gebruiken.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een weekendtest: de productie ligt stil, niks zou lucht moeten gebruiken. De compressor van 75 kW, die in last 10 m³ lucht per minuut levert, draait 40% van de tijd in last. De lekkage is dus zo’n 40% × 10 = 4 m³ per minuut. Lekken lopen het hele jaar door: 75 kW × 40% × 8.760 uur = zo’n 263.000 kWh, ruwweg €39.000 per jaar bij €0,15 per kWh, en dan tellen we het vermogen in nullast nog niet eens mee. Een ronde lekken zoeken en repareren kost meestal een paar duizend euro. Zet daarna de druk 1 bar lager en bespaar nog eens ruwweg 7%.',
+        text: 'Een weekendtest: de productie ligt stil, niks zou lucht moeten gebruiken. De compressor van 75 kW, die in last 10 m³ lucht per minuut levert, draait 40% van de tijd in last. De lekkage is dus zo’n 40% × 10 = 4 m³ per minuut. Lekken lopen het hele jaar door. Als we 75 kW nemen als wat hij in last opneemt: 75 kW × 40% × 8.760 uur = zo’n 263.000 kWh, ruwweg €39.000 per jaar bij €0,15 per kWh, en dan tellen we het vermogen in nullast nog niet eens mee. Een ronde lekken zoeken en repareren kost meestal een paar duizend euro. Zet daarna de druk 1 bar lager en bespaar nog eens ruwweg 7%.',
       },
       said: 'Wat engineers zeggen: “Zaterdag, alles stil, en de compressor zit nog veertig procent van de tijd in last. Dat is onze lekrekening.”',
       recall: [
@@ -288,7 +288,7 @@ export default {
         'Hydrauliek gebruikt olie onder hoge druk, meestal 100 tot 350 bar, om grote krachten te maken in een kleine ruimte: persen, spuitgietmachines, graafmachines, heftafels. Kracht = druk × zuigeroppervlak. 1 bar is 0,1 N/mm², dus 200 bar op een zuiger van 100 mm (7.854 mm²) geeft zo’n 157 kN, het gewicht van 16 ton.',
         'Een hydraulische pomp (tandwiel, schoep of plunjer) maakt het debiet; de belasting maakt de druk. Ventielen sturen de olie: stuurventielen kiezen waar hij heen gaat, drukbegrenzingsventielen begrenzen de druk, smoorventielen bepalen de snelheid. Cilindersnelheid = debiet / zuigeroppervlak. Accumulatoren slaan olie onder druk op voor snelle bewegingen.',
         'Vervuiling is de grootste vijand: de meeste hydraulische storingen zijn terug te voeren op vuil, water of lucht in de olie. Reinheid wordt uitgedrukt volgens ISO 4406 met drie getallen, zoals 18/16/13; lager is schoner. Goede praktijk: filters gekozen op een streefcode, afgesloten ontluchters, olieanalyse, en nooit bijvullen uit een open vat.',
-        'Warmte is de tweede vijand. Elk drukverlies over een ventiel wordt warmte; olie die steeds boven zo’n 60 °C draait, veroudert snel en afdichtingen verharden. Lekken zijn een veiligheidsrisico: een speldenprikstraal onder hoge druk kan olie onder de huid spuiten. Accumulatoren houden druk vast als de pomp stilstaat, dus een machine veilig stellen betekent ook die druk afblazen.',
+        'Warmte is de tweede vijand. Elk drukverlies over een ventiel wordt warmte; olie die steeds boven zo’n 60 °C draait, veroudert snel en afdichtingen verharden. Lekken zijn een veiligheidsrisico: een speldenprikstraal onder hoge druk kan olie onder de huid spuiten, dus voel nooit met je hand naar lekken, en behandel zo’n injectie altijd als medisch spoedgeval. Accumulatoren houden druk vast als de pomp stilstaat, dus een machine veilig stellen betekent ook die druk afblazen.',
       ],
       example: {
         kind: 'worked',
@@ -320,7 +320,7 @@ export default {
           q: 'Een hydraulische machine heeft een accumulator. Voor onderhoud is de pomp uitgezet en vergrendeld. Wat moet er nog meer gebeuren?',
           options: ['Niks, het systeem is nu veilig', 'De druk in de accumulator afblazen', 'De hele olietank aftappen', 'De filters vervangen'],
           answer: 'De druk in de accumulator afblazen',
-          why: 'Een accumulator houdt olie onder druk als de pomp stilstaat en kan delen laten bewegen of olie laten spuiten.',
+          why: 'Een accumulator houdt olie onder druk als de pomp stilstaat en kan delen laten bewegen of olie laten spuiten. Opgeheven lasten moet je ook ondersteunen of laten zakken.',
         },
       ],
       situation: {

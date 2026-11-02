@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Vloeistof stroomt van hoge naar lage druk. Pompen maken de druk; leidingen, bochten, kranen, filters en warmtewisselaars verbruiken die door wrijving. Pompmensen praten in opvoerhoogte: de hoogte in meters vloeistof die de pomp kan opstuwen. 10 m water is ongeveer 1 bar. De opvoerhoogte is voor elke vloeistof gelijk; de druk die het oplevert schaalt met de dichtheid.',
+        'Vloeistof stroomt van hoge naar lage druk. Pompen maken de druk; leidingen, bochten, kranen, filters en warmtewisselaars verbruiken die door wrijving. Pompmensen praten in opvoerhoogte: de hoogte in meters vloeistof die de pomp kan opstuwen. 10 m water is ongeveer 1 bar. Een centrifugaalpomp geeft met elke dunne vloeistof dezelfde opvoerhoogte; de druk die dat oplevert schaalt met de dichtheid.',
         'De wrijvingsdrukval groeit met de snelheid in het kwadraat bij de turbulente stroming in de meeste procesleidingen. Verdubbel het debiet in dezelfde leiding en de drukval wordt ongeveer vier keer zo groot. Daarom lukt meer door een bestaande leiding duwen vaak niet: de pomp kan die extra druk niet leveren. Eén maat grotere leiding verlaagt de snelheid, en de drukval zakt flink.',
         'Snelheid = debiet / doorsnede van de leiding. Gangbare ontwerpsnelheden voor waterachtige vloeistoffen zijn 1 tot 3 m/s. Daarboven nemen slijtage, geluid en drukval toe; daaronder kunnen vaste deeltjes bezinken. Leidingmaat wordt gegeven als DN, de nominale diameter in mm: DN50 is ongeveer 50 mm inwendig.',
         'Langzame, dikke stroming is laminair: lagen schuiven netjes langs elkaar. De meeste stroming van dunne vloeistoffen is turbulent: wervelend. Het getal van Reynolds zegt welke: onder ongeveer 2.300 laminair, boven ongeveer 4.000 turbulent. Turbulentie mengt en draagt warmte goed over; dikke producten zoals siropen, crèmes en pasta’s stromen vaak laminair en warmen in een buis traag op.',
@@ -88,9 +88,9 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een koelwaterpomp is ontworpen voor 100 m³ per uur, maar de fabriek heeft er maar 60 nodig, dus een afsluiter staat half dicht. Bij 60 m³ per uur maakt de pomp 45 m opvoerhoogte, terwijl het leidingwerk maar 25 m nodig heeft: de andere 20 m gaan op in de afsluiter. Hydraulisch vermogen van de pomp: 1.000 × 9,81 × (60 / 3.600) × 45 = 7,4 kW. Nodig: 1.000 × 9,81 × (60 / 3.600) × 25 = 4,1 kW. Er gaat dus zo’n 3,3 kW verloren in de afsluiter, 26.000 kWh per jaar bij 8.000 uur, nog vóór motor- en pompverliezen. En op 60% van het BEP-debiet trilt de pomp: afdichtingen houden vier maanden. Een afgedraaide waaier of een toerenregeling lost allebei op.',
+        text: 'Een koelwaterpomp is gekozen met zijn best efficiency point (BEP) bij 100 m³ per uur, maar de fabriek heeft er maar 60 nodig, dus een afsluiter staat half dicht. Bij 60 m³ per uur maakt de pomp 45 m opvoerhoogte, terwijl het leidingwerk maar 25 m nodig heeft: de andere 20 m gaan op in de afsluiter. Hydraulisch vermogen van de pomp: 1.000 × 9,81 × (60 / 3.600) × 45 = 7,4 kW. Nodig: 1.000 × 9,81 × (60 / 3.600) × 25 = 4,1 kW. Er gaat dus zo’n 3,3 kW verloren in de afsluiter, 26.000 kWh per jaar bij 8.000 uur, nog vóór motor- en pompverliezen. En op 60% van het BEP-debiet trilt de pomp: afdichtingen houden vier maanden. Een afgedraaide waaier of een toerenregeling lost allebei op.',
       },
-      said: 'Wat engineers zeggen: “Die pomp is niet slecht, hij is dichtgeknepen tot 60% van zijn BEP. Draai de waaier af en het afdichtingsprobleem is weg.”',
+      said: 'Wat engineers zeggen: “Die pomp is niet slecht, hij is dichtgeknepen tot 60% van zijn BEP. Draai de waaier af en ik durf te wedden dat het afdichtingsprobleem weg is.”',
       recall: [
         {
           q: 'Een tandwielpomp draait en iemand draait de persafsluiter dicht. Wat beschermt pomp en leiding?',
@@ -222,7 +222,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een circulatiepomp trekt op vol toerental 30 kW in een circuit met alleen wrijving. Hij draait 8.000 uur per jaar: 2.000 uur op vol debiet en 6.000 uur op 70%. Nu knijpt een afsluiter hem terug naar 70%, en trekt hij nog steeds zo’n 25,5 kW. Per jaar: 30 × 2.000 + 25,5 × 6.000 = 213.000 kWh. Met een frequentieregelaar op 70% toerental: 0,7³ × 30 = 10,3 kW. Met 3% verlies in de regelaar: 30,9 × 2.000 + 10,6 × 6.000 = zo’n 125.400 kWh. Dat scheelt zo’n 88.000 kWh per jaar, ruwweg €13.000 bij €0,15 per kWh, voor een regelaar die een fractie daarvan kost.',
+        text: 'Een circulatiepomp trekt op vol toerental 30 kW in een circuit met alleen wrijving. Hij draait 8.000 uur per jaar: 2.000 uur op vol debiet en 6.000 uur op 70%. Nu knijpt een afsluiter hem terug naar 70% debiet; volgens de pompkarakteristiek trekt hij dan nog steeds zo’n 25,5 kW. Per jaar: 30 × 2.000 + 25,5 × 6.000 = 213.000 kWh. Met een frequentieregelaar op 70% toerental: 0,7³ × 30 = 10,3 kW. Met 3% verlies in de regelaar: 30,9 × 2.000 + 10,6 × 6.000 = zo’n 125.400 kWh. Dat scheelt zo’n 88.000 kWh per jaar, ruwweg €13.000 bij €0,15 per kWh, voor een regelaar die een fractie daarvan kost.',
       },
       said: 'Wat engineers zeggen: “Het is een gesloten circuit, alleen wrijving. Zet er een regelaar op, regel op drukverschil, en die afsluiter kan gewoon open.”',
       recall: [
@@ -284,7 +284,7 @@ export default {
       ],
       teach: [
         'Een warmtewisselaar brengt warmte van een warme stroom naar een koude via een wand, zonder dat ze mengen. Platenwarmtewisselaars (gestapelde, geprofileerde platen) zijn compact, efficiënt en makkelijk open te maken om te reinigen; veel gebruikt in voeding en installatietechniek, maar beperkt in druk en gevoelig voor deeltjes. Pijpenbundelwarmtewisselaars (een bundel buizen in een mantel) kunnen hoge druk, hoge temperatuur en vuile stromen aan; veel gebruikt in chemie en raffinaderijen.',
-        'De warmtelast volgt uit de stromen: Q = m × cp × ΔT aan elke kant, en stationair geeft de warme kant af wat de koude kant opneemt, min kleine verliezen. Wat een wisselaar kán overdragen is Q = U × A × ΔT gemiddeld: U is hoe goed warmte door de wand en de vloeistoflaagjes gaat, A het oppervlak, en ΔT gemiddeld het gemiddelde temperatuurverschil tussen de stromen.',
+        'De warmtelast volgt uit de stromen: Q = m × cp × ΔT aan elke kant, en in een stationaire toestand geeft de warme kant af wat de koude kant opneemt, min kleine verliezen. Wat een wisselaar kán overdragen is Q = U × A × ΔT gemiddeld: U is hoe goed warmte door de wand en de vloeistoflaagjes gaat, A het oppervlak, en ΔT gemiddeld het gemiddelde temperatuurverschil tussen de stromen.',
         'Bij tegenstroom, met de stromen in tegengestelde richting, houd je over de hele lengte een temperatuurverschil. Dat geeft de meeste warmteoverdracht per oppervlak, en de koude stroom kan er warmer uitkomen dan de warme stroom eruit komt. Bij meestroom kan de koude uitlaat nooit boven de warme uitlaat komen.',
         'De naderingstemperatuur (approach) is het kleinste temperatuurverschil tussen de stromen. Een krappe nadering van 2 tot 5 °C wint veel warmte terug maar vraagt veel oppervlak. Haalt een wisselaar zijn temperatuur niet meer, vraag dan wat er veranderd is: hoger debiet, vervuiling op de wand (lagere U), een warmer koelmedium, of lucht of condensaat dat een deel van het oppervlak blokkeert.',
       ],
@@ -292,7 +292,7 @@ export default {
         kind: 'worked',
         text: 'Een productkoeler: 5.000 kg per uur, cp 3,8 kJ per kg per °C, gekoeld van 70 naar 30 °C. Warmtelast: 5.000 × 3,8 × 40 = 760.000 kJ per uur = 211 kW. Het koelwater komt binnen op 15 °C en mag eruit op 25 °C, 10 °C opwarming met cp 4,2: waterdebiet = 760.000 / (4,2 × 10) = 18.100 kg per uur, zo’n 18 m³ per uur. In de zomer komt het water binnen op 20 °C. Om op 25 °C eruit te blijven mag het maar 5 °C opwarmen, dus is er twee keer zoveel water nodig, 36 m³ per uur, en door het kleinere temperatuurverschil is het oppervlak misschien helemaal niet genoeg. Daarom hebben koelers het in juli moeilijk.',
       },
-      said: 'Wat engineers zeggen: “Zelfde debieten, zelfde ingangstemperaturen, vier graden warmer eruit dan vorige maand. Dat is vervuiling. Plan een reiniging in.”',
+      said: 'Wat engineers zeggen: “Zelfde debieten, zelfde ingangstemperaturen, vier graden warmer eruit dan vorige maand. Dat is hoogstwaarschijnlijk vervuiling. Plan een reiniging in.”',
       recall: [
         {
           q: 'Een productstroom van 2 kg per seconde met cp 4,0 kJ per kg per °C wordt gekoeld van 60 naar 20 °C. Verwaarloos verliezen. Hoeveel warmte wordt er afgevoerd, in kW?',
@@ -358,7 +358,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een inspectie van condenspotten bij een voedingsfabriek vindt 30 van de 200 potten die openstaan. Eén openstaande pot verliest naar schatting 15 kg stoom per uur. Over 8.000 uur is dat 120 ton stoom per jaar per pot. Bij een aangenomen €40 per ton stoom (afhankelijk van de gasprijs) is dat €4.800 per jaar per pot, en €144.000 voor alle 30, als ze elk zoveel lekken. Een nieuwe pot kost een paar honderd euro. Zelfs als het echte gemiddelde verlies de helft is, verdient de reparatie zich in weken terug. Zet daarna een jaarlijkse test op, zodat het niet terugsluipt.',
+        text: 'Een inspectie van condenspotten bij een voedingsfabriek vindt 30 van de 200 potten die openstaan. Eén openstaande pot verliest naar schatting 15 kg stoom per uur. Over 8.000 uur is dat 120 ton stoom per jaar per pot. Bij een aangenomen €40 per ton stoom (afhankelijk van de gasprijs) is dat €4.800 per jaar per pot, en €144.000 voor alle 30, als ze elk zoveel lekken. Een nieuwe pot kost een paar honderd euro. Zelfs als het echte gemiddelde verlies de helft is, verdient de reparatie zich binnen een paar maanden terug. Vervang potten alleen met de leiding afgesloten, drukloos en afgekoeld. Zet daarna een jaarlijkse test op, zodat het niet terugsluipt.',
       },
       said: 'Wat engineers zeggen: “Voordat we het over een nieuwe ketel hebben: eerst de condenspotten doorlopen. Elke pot die openstaat is een lekje dat je het hele jaar betaalt.”',
       recall: [

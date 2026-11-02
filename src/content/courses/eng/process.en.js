@@ -20,7 +20,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A juice plant pasteurises continuously. After heating, the juice flows through a holding tube of 0.1 m³ at 12 m³ per hour. Residence time = 0.1 / 12 hours = 0.00833 hours = 30 seconds. The food safety plan demands at least 20 seconds at temperature. Production wants to raise the flow to 18 m³ per hour to make more. Then the residence time becomes 0.1 / 18 hours = 20 seconds: exactly on the minimum, with no margin. In a continuous plant, throughput and holding time are linked: more output needs a longer holding tube, not just a faster pump.',
+        text: 'A juice plant pasteurises continuously. After heating, the juice flows through a holding tube of 0.1 m³ at 12 m³ per hour. Residence time = 0.1 / 12 hours = 0.00833 hours = 30 seconds. The food safety plan demands at least 20 seconds at temperature. Production wants to raise the flow to 18 m³ per hour to make more. Then the residence time becomes 0.1 / 18 hours = 20 seconds: exactly on the minimum, with no margin. And that is the average: in a tube the liquid in the centre flows faster than the average, so the fastest juice spends less than 20 seconds in it. That is why holding tubes are sized on the fastest particle, not the average. In a continuous plant, throughput and holding time are linked: more output needs a longer holding tube, not just a faster pump.',
       },
       said: 'What engineers say: “We can push it to 18 cubes an hour, but then we’re right on the minimum hold time. Not without a longer tube.”',
       recall: [
@@ -87,7 +87,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A tank has a pressure-based level meter set up for water (1,000 kg/m³). It now holds syrup of 1,250 kg/m³ to a real height of 2.0 m. The pressure at the bottom is 1,250 × 9.81 × 2.0 = 24,525 Pa. The meter divides by the density of water: 24,525 / (1,000 × 9.81) = 2.5 m. The screen shows 2.5 m while the real level is 2.0 m, so the high-level alarm may trip early and the tank looks fuller than it is. The mass the meter implies is still correct, because pressure × tank area / g is the weight of what is in it. The fix: enter the right density, or read the tank in kg.',
+        text: 'A tank has a pressure-based level meter set up for water (1,000 kg/m³). It now holds syrup of 1,250 kg/m³ to a real height of 2.0 m. The pressure at the bottom is 1,250 × 9.81 × 2.0 = 24,525 Pa. The meter divides by the density of water: 24,525 / (1,000 × 9.81) = 2.5 m. The screen shows 2.5 m while the real level is 2.0 m, so the high-level alarm may trip early and the tank looks fuller than it is. The mass the meter implies is still correct, because pressure × tank area / g is the mass of what is in it (for a tank with straight vertical walls). The fix: enter the right density, or read the tank in kg.',
       },
       said: 'What engineers say: “That level transmitter is set up for water. With syrup it reads half a metre high, so don’t trust the alarm.”',
       recall: [
@@ -286,7 +286,7 @@ export default {
       teach: [
         'A batch vessel produces in cycles. The cycle time is everything between two starts: fill, heat, react or mix, cool, empty, clean, and the waiting for an operator, a lab result or a free tank downstream. Capacity per vessel = batch size / cycle time. A 5-hour cycle of 4 tonnes gives 0.8 tonnes per hour, about 19 tonnes per day if it runs around the clock.',
         'Every minute in the cycle counts the same. Engineers like to shorten the reaction step, but filling, emptying, cleaning and waiting for QC release often take a third of the cycle and are easier to cut: bigger pumps, preheated raw materials, steps in parallel, faster lab tests or an inline measurement.',
-        'With several vessels in a row, the bottleneck is the stage with the longest time per batch, divided by the number of parallel vessels at that stage. A 6-hour reactor feeding a 3-hour filter gives one batch per 6 hours. Add a second reactor and the plant makes a batch every 3 hours, as long as the filter keeps pace.',
+        'With several vessels in a row, the bottleneck is the stage with the longest time per batch once you divide each stage’s time by its number of parallel vessels. A 6-hour reactor feeding a 3-hour filter gives one batch per 6 hours. Add a second reactor and the plant makes a batch every 3 hours, as long as the filter keeps pace.',
         'Recipes are often run to a standard called ISA-88: a recipe is a sequence of phases (charge, heat, hold, transfer) with set values, run by the control system. Ask for the batch reports: actual time per phase over the last 50 batches. The gap between the fastest and slowest batches is often the biggest capacity gain on site.',
       ],
       example: {
@@ -359,7 +359,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A reaction is scaled from a 10-litre lab reactor to a 10 m³ plant reactor of the same shape: volume × 1,000, so every dimension × 10 and wall area × 100. In the lab, dosing the reagent over 1 hour released 0.5 kW, easily removed. In the plant the same dosing time releases 1,000 × 0.5 = 500 kW. The jacket has 25 m² and removes at most 10 kW per m² at full cooling water flow: 250 kW. The solution: dose twice as slowly, over 2 hours, so the heat release halves to 250 kW. The batch gets an hour longer: a scale-up cost that belongs in the capacity plan.',
+        text: 'A reaction is scaled from a 10-litre lab reactor to a 10 m³ plant reactor of the same shape: volume × 1,000, so every dimension × 10 and wall area × 100. In the lab, dosing the reagent over 1 hour released 0.5 kW, easily removed. Assume the reagent reacts as fast as it is dosed, so heat release follows the dosing rate. In the plant the same dosing time releases 1,000 × 0.5 = 500 kW. The jacket has 25 m² and removes at most 10 kW per m² at full cooling water flow: 250 kW. Dosing twice as slowly, over 2 hours, halves the heat release to 250 kW: exactly the jacket’s limit, with no margin. So the plant doses over 2.5 hours or more, at about 200 kW. The batch gets at least 1.5 hours longer: a scale-up cost that belongs in the capacity plan.',
       },
       said: 'What engineers say: “In the lab it’s mixing-limited at worst. In the plant it’s heat-limited, so the dosing rate is set by the jacket.”',
       recall: [

@@ -89,7 +89,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A steel tie rod of Ø20 mm has a cross-section of 314 mm². It carries 31.4 kN: stress = 31,400 / 314 = 100 MPa. Strain = 100 / 210,000 = 0.000476. Over its 2,000 mm length that is 0.95 mm of stretch. The same rod in aluminium: 100 / 70,000 × 2,000 = 2.86 mm. Both are far below their yield strength, so both are strong enough. But if the rod holds a machine alignment, the aluminium version moves three times as much. The question was never only “will it break?”, but also “how much will it move?”',
+        text: 'A steel tie rod of Ø20 mm has a cross-section of 314 mm². It carries 31.4 kN: stress = 31,400 / 314 = 100 MPa. Strain = 100 / 210,000 = 0.000476. Over its 2,000 mm length that is 0.95 mm of stretch. The same rod in aluminium: 100 / 70,000 × 2,000 = 2.86 mm. Both are well below their yield strength (assuming structural steel and a structural aluminium alloy such as 6082), so both are strong enough. But if the rod holds a machine alignment, the aluminium version moves three times as much. The question was never only “will it break?”, but also “how much will it move?”',
       },
       said: 'What engineers say: “Strength isn’t the issue, it’s stiffness. High-tensile steel won’t help; we need a deeper section.”',
       recall: [
@@ -360,7 +360,7 @@ export default {
         kind: 'worked',
         text: 'Gear teeth from a new supplier wear out within weeks. The drawing says “carburised and hardened, 58–62 HRC, case depth 0.8–1.2 mm”. The incoming hardness check measures 48 HRC at the surface. Possible causes: the carburising was skipped or too short, the surface lost carbon in the furnace, or the quench was too slow. Actions: quarantine the stock, cut one gear and measure the hardness profile in HV from the surface inward to see the real case depth, and ask the supplier for the furnace records and heat-treatment certificate for that batch.',
       },
-      said: 'What engineers say: “The drawing says 58 to 62 HRC, we measure 48. That’s not a gear, that’s a soft gear. Cut one and check the case depth.”',
+      said: 'What engineers say: “The drawing says 58 to 62 HRC, we measure 48. At 48 that gear is just soft; it was never going to last. Cut one and check the case depth.”',
       recall: [
         {
           q: 'Which hardness scale is typically used for hardened steel?',

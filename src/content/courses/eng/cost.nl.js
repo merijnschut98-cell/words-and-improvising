@@ -20,7 +20,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Een gezette stalen beugel: staal €2,40 per stuk inclusief snijverlies; lasersnijden 1,2 minuut en kanten 1,8 minuut, allebei tegen €80 per uur; omstellen in totaal 1 uur tegen €80 per uur; serie 50; 3% afkeur bij de eindcontrole; overheadopslag 15% op het totaal. Verkoop zegt dat de klant €8,50 per stuk wil betalen.',
+        text: 'Een gezette stalen beugel: staal €2,40 per stuk inclusief snijverlies; lasersnijden 1,2 minuut en kanten 1,8 minuut, allebei tegen €80 per uur; omstellen in totaal 1 uur per serie tegen €80 per uur; serie 50; 3% afkeur bij de eindcontrole; overheadopslag 15% op het totaal. Verkoop zegt dat de klant €8,50 per stuk wil betalen.',
         ask: 'Wat zou jij nu uitrekenen?',
         reveal: 'Bouw het regel voor regel op. Machinetijd: 3,0 minuut tegen €80 per uur = €4,00. Omstellen: €80 / 50 = €1,60. Materiaal + machine + omstellen = €8,00. Met 3% late afkeur: €8,00 / 0,97 = €8,25. Plus 15% overhead: €9,48. Bij €8,50 verliest deze order geld bij een serie van 50. Bij een serie van 200 zakt het omstellen naar €0,40, de som naar €6,80, met afkeur €7,01, met overhead €8,06: dan verdien je eraan. De echte vraag voor verkoop: welke seriegrootte en welk jaarvolume zegt de klant toe?',
       },
@@ -84,7 +84,7 @@ export default {
       ],
       teach: [
         'Een machine-uurtarief verdeelt de jaarkosten van een machine over de productieve uren. Jaarkosten: afschrijving (aanschafprijs min restwaarde, gedeeld door de levensduur in jaren), rente over het geïnvesteerde vermogen, vloeroppervlak, energie, onderhoud, gereedschap en verzekering. Sommige bedrijven rekenen de operator mee, andere rekenen arbeid apart. Vraag welke.',
-        'Het aantal uren is waar tarieven ontsporen. Productieve uren zijn de uren dat de machine echt onderdelen maakt: kalendertijd min niet-werktijd, onderhoud, omstellen (tenzij apart gerekend) en storingen. Begroot 4.000 uur, draai er echt 2.500, en elk uur kostte in werkelijkheid 60% meer dan het tarief zegt: het bedrijf offreert te laag zonder het te merken.',
+        'Het aantal uren is waar tarieven ontsporen. Productieve uren zijn de uren dat de machine echt onderdelen maakt: kalendertijd min niet-werktijd, onderhoud, omstellen (tenzij apart gerekend) en storingen. Begroot 4.000 uur, draai er echt 2.500, en de vaste kosten per uur komen 60% hoger uit dan het tarief zegt: het bedrijf offreert te laag zonder het te merken.',
         'Vaste en variabele delen: afschrijving, rente en ruimte liggen per jaar vast; energie en slijtage gaan mee met de draaiuren. Draai meer uren en het vaste deel per uur zakt. Dat is een valkuil: tarieven op basis van optimistische uren laten een nieuwe machine goedkoop lijken, en niemand controleert het tarief daarna nog.',
         'Rente wordt vaak berekend over de helft van de aanschafprijs: het gemiddeld vastgezette vermogen over de levensduur bij lineaire afschrijving. Gereedschap en opspanmiddelen zitten soms in het tarief, soms worden ze per order gerekend. Vergelijk je tarieven, eigen productie tegen een toeleverancier of tussen fabrieken, check dan eerst wat er in elk tarief zit.',
       ],
@@ -156,7 +156,7 @@ export default {
       teach: [
         'Vaste kosten blijven op korte termijn gelijk, wat je ook maakt: huur, vast personeel, afschrijving. Variabele kosten bewegen mee met elk stuk: materiaal, procesenergie, verpakking, stukloon of uitzendkrachten. Dekkingsbijdrage = prijs − variabele kosten per stuk: wat elk stuk bijdraagt aan het dekken van de vaste kosten en aan de winst.',
         'De integrale kostprijs bevat een deel van de vaste kosten. Bij een eenmalig besluit met vrije capaciteit verandert dat deel niet: de vaste kosten zijn er toch. Een extra order boven de variabele kosten levert dus winst op, ook als hij onder de integrale kostprijs zit. De risico’s: hij vult capaciteit die je later nodig hebt, en andere klanten willen dezelfde prijs.',
-        'Zit een bottleneck vol, dan verandert de regel: rangschik producten op dekkingsbijdrage per bottleneckminuut, niet per stuk. Een product dat €20 per stuk oplevert en 10 bottleneckminuten kost, levert €2 per minuut; een product van €12 dat 3 minuten kost, levert €4. Duw het tweede.',
+        'Zit een bottleneck vol, dan verandert de regel: rangschik producten op dekkingsbijdrage per bottleneckminuut, niet per stuk. Een product dat €20 per stuk oplevert en 10 bottleneckminuten kost, levert €2 per minuut; een product van €12 dat 3 minuten kost, levert €4. Geef het tweede voorrang.',
         'Break-evenvolume = vaste kosten / dekkingsbijdrage per stuk. Het laat zien hoeveel je moet verkopen voordat een lijn of product iets oplevert, en hoe gevoelig de winst is voor volume. Engineers komen dit tegen in investeringscases en als verkoop vraagt: “Hoe laag kunnen we gaan?”',
       ],
       example: {
@@ -233,7 +233,7 @@ export default {
         kind: 'faded',
         text: 'Een pompenbouwer verspaant zijn eigen waaierhuizen. Eigen kostprijs €46: materiaal €18, machinetijd tegen het volle uurtarief €20, waarvan €12 vast (afschrijving, ruimte, rente), en toegerekende overhead €8. Een leverancier in Oost-Europa biedt €34 per huis. Vracht en invoerrechten kosten €2,50, ingangscontrole €1,00, extra veiligheidsvoorraad zo’n €0,50 per stuk. De machine is voor 60% bezet en niks anders heeft hem nodig.',
         ask: 'Wat zou jij nu uitrekenen?',
-        reveal: 'Vergelijk alleen wat verandert. Zelf maken: materiaal €18 + het variabele deel van de machinekosten €8 = €26 per huis (de €12 vaste machinekosten en de €8 overhead blijven hoe dan ook). Kopen: €34 + 2,50 + 1,00 + 0,50 = €38. Met de machine half leeg en geen ander werk om dit te vervangen, is zelf maken €12 per huis goedkoper. Het beeld draait om als de machine verkocht kan worden, of als de uren naar beter betalend werk zouden gaan. Vraag dat voordat iemand tekent.',
+        reveal: 'Vergelijk alleen wat verandert. Zelf maken: materiaal €18 + het variabele deel van de machinekosten €8 = €26 per huis (de €12 vaste machinekosten en de €8 overhead blijven hoe dan ook). Kopen: €34 + 2,50 + 1,00 + 0,50 = €38. Met vrije machine-uren en geen ander werk om ze te vullen, is zelf maken €12 per huis goedkoper. Het beeld draait om als de machine verkocht kan worden, of als de uren naar beter betalend werk zouden gaan. Vraag dat voordat iemand tekent.',
       },
       said: 'Wat engineers zeggen: “Die offerte zit onder onze kostprijs, ja. Maar de helft van die kostprijs blijft als het onderdeel de deur uit gaat. Vergelijk wat echt verdwijnt.”',
       recall: [
@@ -364,7 +364,7 @@ export default {
       ],
       teach: [
         'Een should-cost is je eigen schatting van wat een onderdeel zou moeten kosten bij een efficiënte leverancier, van onderop opgebouwd zoals een kostprijs: materiaal naar gewicht en prijs, procestijd per stap × een marktconform uurtarief, omstellen, uitval, overhead en een redelijke winstmarge. Het maakt van een prijsgesprek een gesprek over feiten in plaats van afdingen: “Jullie offerte gaat uit van 9 minuten verspanen; wij zien er 6. Wat missen we?”',
-        'Lees een offerte per onderdeel. Vraag om een kostenopbouw: materiaal, bewerking, omstellen, gereedschap, verpakking, logistiek, marge. Eenmalige kosten zoals matrijzen en opspanmiddelen horen los van de stukprijs, met duidelijk eigendom van het gereedschap. Jaarvolume en seriegrootte moeten erin staan, want de stukprijs hangt van allebei af.',
+        'Lees een offerte per kostenpost. Vraag om een kostenopbouw: materiaal, bewerking, omstellen, gereedschap, verpakking, logistiek, marge. Eenmalige kosten zoals matrijzen en opspanmiddelen horen los van de stukprijs, met duidelijk eigendom van het gereedschap. Jaarvolume en seriegrootte moeten erin staan, want de stukprijs hangt van allebei af.',
         'Materiaal stuurt vaak de prijsbewegingen. Voor metalen en kunststoffen koppelen veel contracten het materiaaldeel aan een gepubliceerde prijsindex, die bijvoorbeeld elk kwartaal wordt bijgesteld. Dan hoeft de leverancier geen marge voor speculatie in te bouwen, en draag jij het marktrisico open en bloot. Check op welk gewicht de index slaat: het eindgewicht of het brutogewicht inclusief snijverlies.',
         'De leercurve: bij arbeidsintensief werk zakt de tijd per stuk bij elke verdubbeling van het cumulatieve volume naar een vast percentage, vaak 80 tot 90%. Bij een curve van 85% kost stuk 200 85% van de tijd van stuk 100. Gebruik het bij nieuwe producten: een prijs die jaren gelijk blijft terwijl het volume groeit, suggereert dat de besparing bij de leverancier blijft.',
       ],

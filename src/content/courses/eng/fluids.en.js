@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Liquids flow from high to low pressure. Pumps make the pressure; pipes, bends, valves, filters and heat exchangers use it up through friction. Pump people talk in head: the height in metres of liquid the pump can lift. 10 m of water is about 1 bar. Head is the same for any liquid; the pressure it gives scales with density.',
+        'Liquids flow from high to low pressure. Pumps make the pressure; pipes, bends, valves, filters and heat exchangers use it up through friction. Pump people talk in head: the height in metres of liquid the pump can lift. 10 m of water is about 1 bar. A centrifugal pump gives the same head with any thin liquid; the pressure that head gives scales with density.',
         'The friction pressure drop rises with the velocity squared in the turbulent flow found in most process pipes. Double the flow in the same pipe and the drop roughly quadruples. That is why pushing more through an existing line often fails: the pump can’t deliver the extra pressure. One pipe size larger lowers the velocity, and the drop falls sharply.',
         'Velocity = flow / pipe cross-section. Typical design velocities for water-like liquids are 1 to 3 m/s. Above that, erosion, noise and pressure drop climb; below it, solids may settle. Pipe size is given as DN, the nominal diameter in mm: DN50 is roughly 50 mm inside.',
         'Slow, thick flow is laminar: layers slide smoothly past each other. Most flows of thin liquids are turbulent: swirling. The Reynolds number tells which: below about 2,300 laminar, above about 4,000 turbulent. Turbulence mixes and transfers heat well; thick products like syrups, creams and pastes often flow laminar and heat up slowly in a pipe.',
@@ -88,9 +88,9 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling pump was designed for 100 m³ per hour, but the plant only needs 60, so a valve is half closed. At 60 m³ per hour the pump makes 45 m of head, while the pipework needs only 25 m: the other 20 m burn in the valve. Hydraulic power at the pump: 1,000 × 9.81 × (60 / 3,600) × 45 = 7.4 kW. Needed: 1,000 × 9.81 × (60 / 3,600) × 25 = 4.1 kW. So about 3.3 kW is wasted in the valve, 26,000 kWh a year at 8,000 hours, before motor and pump losses. And at 60% of its BEP flow the pump vibrates: seals last four months. A trimmed impeller or a speed drive fixes both.',
+        text: 'A cooling pump was chosen with its best efficiency point (BEP) at 100 m³ per hour, but the plant only needs 60, so a valve is half closed. At 60 m³ per hour the pump makes 45 m of head, while the pipework needs only 25 m: the other 20 m burn in the valve. Hydraulic power at the pump: 1,000 × 9.81 × (60 / 3,600) × 45 = 7.4 kW. Needed: 1,000 × 9.81 × (60 / 3,600) × 25 = 4.1 kW. So about 3.3 kW is wasted in the valve, 26,000 kWh a year at 8,000 hours, before motor and pump losses. And at 60% of its BEP flow the pump vibrates: seals last four months. A trimmed impeller or a speed drive fixes both.',
       },
-      said: 'What engineers say: “That pump isn’t bad, it’s throttled back to 60% of BEP. Trim the impeller and the seal problem goes away.”',
+      said: 'What engineers say: “That pump isn’t bad, it’s throttled back to 60% of BEP. Trim the impeller and I bet the seal problem goes away.”',
       recall: [
         {
           q: 'A gear pump is running and someone closes the discharge valve. What protects the pump and pipe?',
@@ -222,7 +222,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A circulation pump takes 30 kW at full speed in a friction-only loop. It runs 8,000 hours a year: 2,000 hours at full flow and 6,000 hours at 70% flow. Now a valve throttles it to 70%, and it still draws about 25.5 kW. Yearly: 30 × 2,000 + 25.5 × 6,000 = 213,000 kWh. With a VFD at 70% speed: 0.7³ × 30 = 10.3 kW. Adding 3% drive losses: 30.9 × 2,000 + 10.6 × 6,000 = about 125,400 kWh. Saving about 88,000 kWh a year, roughly €13,000 at €0.15 per kWh, for a drive costing a fraction of that.',
+        text: 'A circulation pump takes 30 kW at full speed in a friction-only loop. It runs 8,000 hours a year: 2,000 hours at full flow and 6,000 hours at 70% flow. Now a valve throttles it to 70% flow; according to the pump curve it then still draws about 25.5 kW. Yearly: 30 × 2,000 + 25.5 × 6,000 = 213,000 kWh. With a VFD at 70% speed: 0.7³ × 30 = 10.3 kW. Adding 3% drive losses: 30.9 × 2,000 + 10.6 × 6,000 = about 125,400 kWh. Saving about 88,000 kWh a year, roughly €13,000 at €0.15 per kWh, for a drive costing a fraction of that.',
       },
       said: 'What engineers say: “It’s a closed loop, all friction. Put a drive on it and run it on differential pressure; the valve can stay open.”',
       recall: [
@@ -292,7 +292,7 @@ export default {
         kind: 'worked',
         text: 'A product cooler: 5,000 kg per hour, cp 3.8 kJ per kg per °C, cooled from 70 to 30 °C. Duty: 5,000 × 3.8 × 40 = 760,000 kJ per hour = 211 kW. Cooling water enters at 15 °C and may leave at 25 °C, a 10 °C rise with cp 4.2: water flow = 760,000 / (4.2 × 10) = 18,100 kg per hour, about 18 m³ per hour. In summer the water comes in at 20 °C. To stay at 25 °C out, the water may only rise 5 °C, so it needs twice the flow, 36 m³ per hour, and the smaller temperature difference means the area may not be enough at all. That’s why coolers struggle in July.',
       },
-      said: 'What engineers say: “Same flows, same inlet temperatures, four degrees warmer out than last month. That’s fouling. Schedule a clean.”',
+      said: 'What engineers say: “Same flows, same inlet temperatures, four degrees warmer out than last month. That’s most likely fouling. Schedule a clean.”',
       recall: [
         {
           q: 'A product stream of 2 kg per second with cp 4.0 kJ per kg per °C is cooled from 60 to 20 °C. Ignore losses. How much heat is removed, in kW?',
@@ -358,7 +358,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A trap survey at a food plant finds 30 of 200 traps failed open. One failed-open trap is estimated to lose 15 kg of steam per hour. Over 8,000 hours that is 120 tonnes of steam a year per trap. At an assumed €40 per tonne of steam (it depends on the gas price), that is €4,800 a year per trap, and €144,000 for all 30, if each loses that much. A new trap costs a few hundred euros. Even if the real average loss is half the estimate, the repair pays back within weeks. Then set up a yearly trap test so it doesn’t creep back.',
+        text: 'A trap survey at a food plant finds 30 of 200 traps failed open. One failed-open trap is estimated to lose 15 kg of steam per hour. Over 8,000 hours that is 120 tonnes of steam a year per trap. At an assumed €40 per tonne of steam (it depends on the gas price), that is €4,800 a year per trap, and €144,000 for all 30, if each loses that much. A new trap costs a few hundred euros. Even if the real average loss is half the estimate, the repair pays back within a few months. Replace traps only with the line isolated, depressurised and cooled down. Then set up a yearly trap test so it doesn’t creep back.',
       },
       said: 'What engineers say: “Before we talk about a new boiler, let’s survey the traps. Every failed-open trap is a small leak you pay for all year.”',
       recall: [

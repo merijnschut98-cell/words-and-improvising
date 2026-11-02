@@ -6,14 +6,14 @@ export default {
       title: 'Meetsysteemanalyse voorbij het kopgetal',
       pre: [
         {
-          q: 'Een gauge R&R-studie gebruikt 10 onderdelen, allemaal uit één uur productie. Uitkomst: het meetmiddel neemt 35% van de studievariatie in, maar maar 8% van de tolerantie. Wat is de meest waarschijnlijke verklaring?',
+          q: 'Een gauge R&R-studie gebruikt 10 onderdelen, allemaal uit één uur productie. Uitkomst: het meetmiddel neemt 35% van de studievariatie in, maar slechts 8% van de tolerantie. Wat is de meest waarschijnlijke verklaring?',
           options: ['Het meetmiddel is kapot', 'De 10 onderdelen verschillen nauwelijks, dus de meetruis lijkt groot naast hun spreiding; ten opzichte van de tolerantie is het meetmiddel prima', 'De operators hebben verkeerd gemeten', 'De tolerantie is te krap'],
           answer: 'De 10 onderdelen verschillen nauwelijks, dus de meetruis lijkt groot naast hun spreiding; ten opzichte van de tolerantie is het meetmiddel prima',
           why: 'Procent van de studievariatie vergelijkt het meetmiddel met de spreiding van de onderdelen in de studie; onderdelen uit één uur hebben weinig spreiding.',
         },
       ],
       teach: [
-        'Een gauge R&R splitst de meetspreiding in herhaalbaarheid (EV: zelfde operator, zelfde onderdeel, zelfde meetmiddel, nog een keer) en reproduceerbaarheid (AV: de verschillen tussen operators). Uitkomsten staan in % van de tolerantie of % van de studievariatie. De eerste vraagt: kan ik goed van fout onderscheiden ten opzichte van de spec? De tweede: zie ik verschillen tussen onderdelen, wat je voor SPC en verbeterwerk nodig hebt. Gangbare grenzen (AIAG) voor allebei: onder 10% goed, 10 tot 30% misschien, boven 30% niet acceptabel.',
+        'Een gauge R&R splitst de meetspreiding in herhaalbaarheid (EV: zelfde operator, zelfde onderdeel, zelfde meetmiddel, nog een keer) en reproduceerbaarheid (AV: de verschillen tussen operators). Uitkomsten staan in % van de tolerantie of % van de studievariatie. De eerste vraagt: kan ik goed van fout onderscheiden ten opzichte van de spec? De tweede: zie ik verschillen tussen onderdelen, wat je voor SPC en verbeterwerk nodig hebt. Gangbare grenzen (AIAG) voor allebei: onder 10% goed, 10 tot 30% acceptabel afhankelijk van toepassing en kosten, boven 30% niet acceptabel.',
         '% van de studievariatie hangt af van welke onderdelen je kiest. Tien onderdelen uit één uur verschillen nauwelijks, dus zelfs een goed meetmiddel lijkt dan slecht. De onderdelen moeten de echte processpreiding afdekken. De ndc, het aantal onderscheidbare categorieën, zegt hoeveel groepen het meetmiddel binnen die spreiding uit elkaar kan houden; minstens 5 is de gangbare eis.',
         'Lees de verdeling. Een grote herhaalbaarheid wijst naar het meetmiddel of de opspanning: speling, slecht vastzetten, de verkeerde taster, vuil op het onderdeel. Een grote reproduceerbaarheid wijst naar de mensen: andere techniek, andere meetplekken, een onduidelijke instructie. De oplossingen zijn compleet anders.',
         'R&R gaat over spreiding, niet over de waarheid. Bias (een gemiddelde afwijking van een referentie), lineariteit (bias die over het meetbereik verandert) en stabiliteit (verloop in de tijd) vragen eigen controles tegen een referentie of stelring. De resolutie mag hooguit een tiende van de tolerantie zijn. Een meetmiddel dat door de R&R komt, kan nog steeds elke keer 0,02 mm ernaast zitten.',
@@ -240,7 +240,7 @@ export default {
           why: 'Ppk geeft de totale prestatie weer, inclusief variatie tussen subgroepen.',
         },
         {
-          q: 'Een diameter heeft USL 10,30 mm en LSL 9,70 mm. Het procesgemiddelde is 10,10 mm en sigma is 0,05 mm. Wat is de Cpk?',
+          q: 'Een diameter heeft USL 10,30 mm en LSL 9,70 mm. Het procesgemiddelde is 10,10 mm en de sigma binnen de subgroepen is 0,05 mm. Wat is de Cpk?',
           number: 1.33,
           tolerance: 0.02,
           unit: '',
@@ -298,7 +298,7 @@ export default {
         kind: 'faded',
         text: 'Slag op een as: USL 0,040 mm, geen ondergrens. 100 onderdelen: gemiddelde 0,012 mm, σ 0,006 mm, duidelijk scheef naar rechts met een paar onderdelen op 0,030 tot 0,034 mm. De normale berekening geeft Cpu = (0,040 − 0,012) / 0,018 = 1,56, en het team meldt “capabel”.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Eerst plotten: een kansplot laat zien dat de normale fit faalt in de bovenste staart, precies waar de grens ligt. Fit een lognormale of Weibull-verdeling en bereken de capability met de percentielmethode; de bovenste staart is zwaarder dan de normale kromme voorspelt, dus de capability valt lager uit. Kijk ook of de staart een eigen oorzaak heeft, zoals één spindel, één opspanning of een klemprobleem. Die oorzaak oplossen is beter dan welke statistiek ook.',
+        reveal: 'Eerst plotten: een kansplot laat zien dat de normale fit faalt in de bovenste staart, precies waar de grens ligt. Fit een lognormale of Weibull-verdeling en bereken de capability met de percentielmethode; de bovenste staart is zwaarder dan de normale kromme voorspelt, dus de capability valt meestal lager uit. Kijk ook of de staart een eigen oorzaak heeft, zoals één spindel, één opspanning of een klemprobleem. Die oorzaak oplossen is beter dan welke statistiek ook.',
       },
       said: 'Wat engineers zeggen: “Slag is nooit normaal verdeeld. Laat me eerst de kansplot zien, dan pas een Cpk.”',
       recall: [

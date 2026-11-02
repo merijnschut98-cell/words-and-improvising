@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'A gauge R&R splits measurement spread into repeatability (EV: same operator, same part, same gauge, measured again) and reproducibility (AV: the differences between operators). Results come as % of tolerance or % of study variation. The first asks: can I judge good versus bad against the spec? The second: can I see differences between parts, which SPC and improvement work need. Common bands (AIAG) for both: under 10% good, 10 to 30% maybe, over 30% not acceptable.',
+        'A gauge R&R splits measurement spread into repeatability (EV: same operator, same part, same gauge, measured again) and reproducibility (AV: the differences between operators). Results come as % of tolerance or % of study variation. The first asks: can I judge good versus bad against the spec? The second: can I see differences between parts, which SPC and improvement work need. Common bands (AIAG) for both: under 10% good, 10 to 30% acceptable depending on use and cost, over 30% not acceptable.',
         '% of study variation depends on the parts chosen. Ten parts from one hour barely differ, so even a good gauge looks bad. The parts should cover the real process spread. The ndc, number of distinct categories, says how many groups the gauge can tell apart within that spread; at least 5 is the usual demand.',
         'Read the split. Large repeatability points at the gauge or fixture: play, poor clamping, the wrong probe, dirt on the part. Large reproducibility points at the people: different technique, different measuring positions, an unclear instruction. The fixes differ completely.',
         'R&R covers spread, not truth. Bias (an average offset from a reference), linearity (bias that changes over the range) and stability (drift over time) need their own checks against a master or setting ring. Resolution should be at most a tenth of the tolerance. A gauge that passes R&R can still read 0.02 mm off, every time.',
@@ -240,7 +240,7 @@ export default {
           why: 'Ppk reflects total performance, including variation between subgroups.',
         },
         {
-          q: 'A diameter has USL 10.30 mm and LSL 9.70 mm. The process mean is 10.10 mm and sigma is 0.05 mm. What is Cpk?',
+          q: 'A diameter has USL 10.30 mm and LSL 9.70 mm. The process mean is 10.10 mm and the within-subgroup sigma is 0.05 mm. What is Cpk?',
           number: 1.33,
           tolerance: 0.02,
           unit: '',
@@ -298,7 +298,7 @@ export default {
         kind: 'faded',
         text: 'Runout on a shaft: USL 0.040 mm, no lower limit. 100 parts: mean 0.012 mm, σ 0.006 mm, clearly skewed to the right with a few parts at 0.030 to 0.034 mm. The normal calculation gives Cpu = (0.040 − 0.012) / 0.018 = 1.56, and the team reports “capable”.',
         ask: 'What would you do next?',
-        reveal: 'Plot it first: a probability plot will show the normal fit failing in the upper tail, exactly where the limit is. Fit a lognormal or Weibull and compute capability with the percentile method; the upper tail is heavier than the normal curve predicts, so capability will come out lower. Also check whether the tail has a separate cause, such as one spindle, one fixture or a clamping issue. Fixing that cause beats any statistics.',
+        reveal: 'Plot it first: a probability plot will show the normal fit failing in the upper tail, exactly where the limit is. Fit a lognormal or Weibull and compute capability with the percentile method; the upper tail is heavier than the normal curve predicts, so capability will usually come out lower. Also check whether the tail has a separate cause, such as one spindle, one fixture or a clamping issue. Fixing that cause beats any statistics.',
       },
       said: 'What engineers say: “Runout is never normal. Show me the probability plot before you show me a Cpk.”',
       recall: [

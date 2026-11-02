@@ -22,7 +22,7 @@ export default {
         kind: 'worked',
         text: 'Een motor van 50 kg hangt aan een wandconsole, met zijn zwaartepunt 0,4 m van de muur. Gewicht: 50 × 9,81 = 490 N. Het moment bij de muur: 490 N × 0,4 m = 196 Nm, en de bovenste bouten vangen dat op als trek. In een nieuw ontwerp schuift de motor naar 0,8 m: het moment verdubbelt naar 392 Nm, met dezelfde motor. Omdat de motor trilt, rekent de engineer er ook nog een factor voor de dynamische belasting bovenop. Het gewicht veranderde niet; de arm en de manier van belasten wel.',
       },
-      said: 'Wat engineers zeggen: “Het is maar vijftig kilo, maar hij hangt achthonderd millimeter uit en hij trilt. Reken die bouten na.”',
+      said: 'Wat engineers zeggen: “Het is maar vijftig kilo, maar hij hangt tachtig centimeter uit de muur en hij trilt. Reken die bouten na.”',
       recall: [
         {
           q: 'Een last heeft een massa van 250 kg. Met g = 9,81 m/s²: wat is het gewicht, in newton?',
@@ -89,7 +89,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een stalen trekstang van Ø20 mm heeft een doorsnede van 314 mm². Hij draagt 31,4 kN: spanning = 31.400 / 314 = 100 MPa. Rek = 100 / 210.000 = 0,000476. Over zijn lengte van 2.000 mm is dat 0,95 mm uitrekking. Dezelfde stang in aluminium: 100 / 70.000 × 2.000 = 2,86 mm. Allebei zitten ze ver onder hun vloeigrens, dus allebei zijn ze sterk genoeg. Maar als de stang een machine uitgelijnd moet houden, beweegt de aluminium versie drie keer zoveel. De vraag was nooit alleen “breekt hij?”, maar ook “hoeveel beweegt hij?”',
+        text: 'Een stalen trekstang van Ø20 mm heeft een doorsnede van 314 mm². Hij draagt 31,4 kN: spanning = 31.400 / 314 = 100 MPa. Rek = 100 / 210.000 = 0,000476. Over zijn lengte van 2.000 mm is dat 0,95 mm uitrekking. Dezelfde stang in aluminium: 100 / 70.000 × 2.000 = 2,86 mm. Allebei zitten ze ruim onder hun vloeigrens (uitgaande van constructiestaal en een constructieve aluminiumlegering als 6082), dus allebei zijn ze sterk genoeg. Maar als de stang een machine uitgelijnd moet houden, beweegt de aluminium versie drie keer zoveel. De vraag was nooit alleen “breekt hij?”, maar ook “hoeveel beweegt hij?”',
       },
       said: 'Wat engineers zeggen: “Sterkte is het probleem niet, stijfheid wel. Hogesterktestaal helpt niks; we hebben een hoger profiel nodig.”',
       recall: [
@@ -287,7 +287,7 @@ export default {
       teach: [
         'Koolstofstaal is het werkpaard: sterk, stijf, goedkoop en lasbaar, met een dichtheid van zo’n 7.850 kg/m³. Meer koolstof betekent harder en sterker, maar lastiger te lassen. Het roest, dus het wordt geverfd, verzinkt of geolied. Constructiestaal zoals S235 en S355 gaat in frames; staalsoorten als C45 of 42CrMo4 in assen en tandwielen.',
         'Roestvast staal (rvs) bevat minstens zo’n 10,5% chroom, dat een dun beschermend oxidelaagje vormt. 304 (1.4301) is de gangbare soort; 316 (1.4401) bevat ook molybdeen en kan beter tegen chloriden, zoals zout en veel reinigingsmiddelen. Daarom schrijven voedings- en farmafabrieken vaak 316 voor. Rvs is duurder, lastiger te verspanen en kan in spleten toch corroderen.',
-        'Aluminium weegt ongeveer een derde van staal (2.700 kg/m³) en is ongeveer een derde zo stijf. Legeringen als 6082 of 7075 kunnen in sterkte tippen aan constructiestaal. Het verspaant snel en roest niet, maar heeft geen vermoeiingsgrens, verliest sterkte bij lassen en wordt aangetast door sterk alkalische reinigers. Gietijzer is goedkoop en dempt trillingen goed, dus het zit in machinebedden, maar het is bros.',
+        'Aluminium weegt ongeveer een derde van staal (2.700 kg/m³) en is ongeveer een derde zo stijf. Legeringen als 6082 of 7075 kunnen in sterkte tippen aan constructiestaal. Het verspaant snel en roest niet, maar heeft geen vermoeiingsgrens, verliest sterkte rond lassen en wordt aangetast door sterk alkalische reinigers. Gietijzer is goedkoop en dempt trillingen goed, dus het zit in machinebedden, maar het is bros.',
         'Kunststoffen als PA (nylon), POM en PE-UHMW worden gebruikt voor slijtstrips en geleidingen: licht en stil, maar veel minder stijf dan metaal. Ze kruipen (vervormen langzaam) onder een constante belasting en veranderen door warmte of water. Galvanische corrosie: zet rvs tegen aluminium of zink in een natte omgeving en het minder edele metaal corrodeert snel.',
       ],
       example: {
@@ -360,7 +360,7 @@ export default {
         kind: 'worked',
         text: 'Tandwielen van een nieuwe leverancier slijten binnen een paar weken. Op de tekening staat “ingezet en gehard, 58–62 HRC, hardingsdiepte 0,8–1,2 mm”. De ingangscontrole meet 48 HRC aan het oppervlak. Mogelijke oorzaken: het inzetten is overgeslagen of te kort geweest, het oppervlak heeft in de oven koolstof verloren, of het afschrikken ging te langzaam. Acties: de voorraad blokkeren, één tandwiel doorzagen en het hardheidsverloop in HV van het oppervlak naar binnen meten om de echte hardingsdiepte te zien, en de leverancier om de ovenregistratie en het warmtebehandelingscertificaat van die partij vragen.',
       },
-      said: 'Wat engineers zeggen: “Op tekening 58 tot 62 HRC, wij meten 48. Dat is geen tandwiel, dat is een zacht tandwiel. Zaag er eentje door en check de hardingsdiepte.”',
+      said: 'Wat engineers zeggen: “Op tekening 58 tot 62 HRC, wij meten 48. Met 48 is dat tandwiel gewoon zacht; dat gaat nooit lang mee. Zaag er eentje door en check de hardingsdiepte.”',
       recall: [
         {
           q: 'Welke hardheidsschaal gebruik je meestal voor gehard staal?',

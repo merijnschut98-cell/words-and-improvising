@@ -20,7 +20,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling-water pump must deliver 11 kW of hydraulic power, around the clock for 6,000 hours a year. The pump is 70% efficient and the motor 92%. Electrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy. A pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
+        text: 'A cooling-water pump must deliver 11 kW of hydraulic power whenever it runs, 6,000 hours a year. The pump is 70% efficient and the motor 92%. Electrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy. A pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
       },
       said: 'What engineers say: “It’s a fifteen kW motor, but it’s only drawing nine. That’s nine kW, not fifteen, and it’s running at a lousy power factor.”',
       recall: [
@@ -85,13 +85,13 @@ export default {
         'The three-phase induction motor (also called asynchronous or squirrel-cage motor) drives most pumps, fans, conveyors and compressors: robust, cheap, little maintenance. The stator windings make a rotating magnetic field; the rotor is dragged along with it. Its speed is set by the grid frequency and the number of poles.',
         'Synchronous speed = 120 × frequency / number of poles. At 50 Hz: 2 poles give 3,000 rpm, 4 poles 1,500, 6 poles 1,000. The rotor always runs a little slower: the slip, typically 1 to 5%. A 4-pole motor turns at about 1,450 to 1,480 rpm, and more load means a little more slip.',
         'Torque and power are linked by speed: power (kW) = torque (Nm) × speed (rpm) / 9,550. A 15 kW motor at 1,460 rpm delivers about 98 Nm. A gearbox lowers the speed and raises the torque by the same ratio, minus its losses.',
-        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1). EU rules require at least IE3 for most new motors from 0.75 to 1,000 kW, and IE4 from 75 to 200 kW. Most motor failures are bearings and winding insulation. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life. Ask about motor temperature, vibration and how often it starts.',
+        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1). EU Regulation 2019/1781 requires at least IE3 for most new motors from 0.75 to 1,000 kW (since July 2021), and IE4 for most 75 to 200 kW motors (since July 2023). Most motor failures are bearings and winding insulation. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life. Ask about motor temperature, vibration and how often it starts.',
       ],
       example: {
         kind: 'worked',
         text: 'A fan motor: 4 poles, 50 Hz, 30 kW, nameplate 1,470 rpm. Slip = (1,500 − 1,470) / 1,500 = 2%. Rated torque = 30 × 9,550 / 1,470 = 195 Nm. It is an old IE1 motor at about 90% efficiency, running 6,000 hours a year at 25 kW shaft output. Electrical input: 25 / 0.90 = 27.8 kW. A new IE3 motor at about 93.6%: 25 / 0.936 = 26.7 kW. Saving 1.1 kW × 6,000 h = about 6,400 kWh, €960 a year at €0.15. Worth doing when the old motor fails; rarely worth replacing a healthy one for that alone.',
       },
-      said: 'What engineers say: “That’s a four-pole, so 1,500 synchronous, 1,470 on the plate. If it’s turning 1,420 it’s overloaded.”',
+      said: 'What engineers say: “That’s a four-pole, so 1,500 synchronous, 1,470 on the plate. If it’s turning 1,420 it’s probably overloaded.”',
       recall: [
         {
           q: 'An induction motor has 6 poles and runs on a 50 Hz supply. What is its synchronous speed, in rpm?',
@@ -218,14 +218,14 @@ export default {
         },
       ],
       teach: [
-        'Compressed air is safe, clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant. Most of a compressor’s electricity becomes heat; only around 10% does useful work at the point of use. Recovering the compressor heat for space or water heating wins part of it back.',
+        'Compressed air is clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant. Most of a compressor’s electricity becomes heat; only around 10% does useful work at the point of use. Recovering the compressor heat wins part of it back. It is not harmless: never blow air at skin or clothes.',
         'Leaks are the big loss. In plants without a leak programme, often 20 to 30% of the compressor output escapes through couplings, hoses and valves. Listen at a weekend: if compressors still run with production stopped, that is mostly leaks. Ultrasonic detectors find them; tagging and fixing them is a classic quick win.',
         'Pressure costs energy: each extra bar of generated pressure costs roughly 7% more compressor energy, and it makes every leak bigger. Many plants run at 7 or 8 bar because one machine needs it. Solve that machine locally (a booster, a bigger supply line, a local tank) and lower the whole network.',
         'Air must be clean and dry: water and oil damage valves and cylinders. A dryer and filters sit after the compressor; an FRL unit (filter, regulator, lubricator) sits before each machine. Inappropriate use is the third loss: open blow-offs, cooling with air, vacuum made with air, where an electric fan or pump would use a fraction of the energy.',
       ],
       example: {
         kind: 'worked',
-        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute. Leaks run all year: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the unloaded running power. A leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
+        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute. Leaks run all year. Taking 75 kW as its loaded power draw: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the unloaded running power. A leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
       },
       said: 'What engineers say: “Saturday, nothing running, and the compressor still loads forty percent of the time. That’s our leak bill.”',
       recall: [
@@ -288,7 +288,7 @@ export default {
         'Hydraulics uses oil under high pressure, typically 100 to 350 bar, to make large forces in a small space: presses, injection moulding machines, excavators, lifting tables. Force = pressure × piston area. 1 bar is 0.1 N/mm², so 200 bar on a 100 mm piston (7,854 mm²) gives about 157 kN, the weight of 16 tonnes.',
         'A hydraulic pump (gear, vane or piston) makes the flow; the load makes the pressure. Valves steer the oil: directional valves choose where it goes, pressure relief valves cap the pressure, flow control valves set the speed. Cylinder speed = flow / piston area. Accumulators store oil under pressure for fast movements.',
         'Contamination is the main enemy: most hydraulic failures trace back to dirt, water or air in the oil. Cleanliness is coded to ISO 4406 with three numbers such as 18/16/13; lower is cleaner. Good practice: filters chosen for a target code, sealed breathers, oil analysis, and never topping up from an open drum.',
-        'Heat is the second enemy. Every pressure drop across a valve turns into heat; oil kept above about 60 °C ages fast and seals harden. Leaks are a safety issue: a pinhole jet at high pressure can inject oil under the skin. Accumulators keep pressure after the pump stops, so making a machine safe includes bleeding them off.',
+        'Heat is the second enemy. Every pressure drop across a valve turns into heat; oil kept above about 60 °C ages fast and seals harden. Leaks are a safety issue: a pinhole jet at high pressure can inject oil under the skin, so never feel for leaks by hand, and treat any injection as a medical emergency. Accumulators keep pressure after the pump stops, so making a machine safe includes bleeding them off.',
       ],
       example: {
         kind: 'worked',
@@ -320,7 +320,7 @@ export default {
           q: 'A hydraulic machine has an accumulator. Before maintenance, the pump is switched off and locked out. What else must be done?',
           options: ['Nothing, the system is now safe', 'Bleed off the pressure stored in the accumulator', 'Drain the whole oil tank', 'Replace the filters'],
           answer: 'Bleed off the pressure stored in the accumulator',
-          why: 'An accumulator holds oil under pressure after the pump stops and can move parts or spray oil.',
+          why: 'An accumulator holds oil under pressure after the pump stops and can move parts or spray oil. Raised loads must also be supported or lowered.',
         },
       ],
       situation: {

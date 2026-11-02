@@ -20,7 +20,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'A bent steel bracket: steel €2.40 per part including offcuts; laser cutting 1.2 minutes and press brake 1.8 minutes, both at €80 per hour; setups take 1 hour in total at €80 per hour; batch 50; 3% scrap at final inspection; overhead surcharge 15% on the total. Sales says the customer will pay €8.50 per part.',
+        text: 'A bent steel bracket: steel €2.40 per part including offcuts; laser cutting 1.2 minutes and press brake 1.8 minutes, both at €80 per hour; setups take 1 hour in total per batch at €80 per hour; batch 50; 3% scrap at final inspection; overhead surcharge 15% on the total. Sales says the customer will pay €8.50 per part.',
         ask: 'What would you work out next?',
         reveal: 'Build it line by line. Machine time: 3.0 minutes at €80 per hour = €4.00. Setup: €80 / 50 = €1.60. Material + machine + setup = €8.00. With 3% late scrap: €8.00 / 0.97 = €8.25. Plus 15% overhead: €9.48. At €8.50 this order loses money at a batch of 50. At a batch of 200, setup drops to €0.40, the sum to €6.80, with scrap €7.01, with overhead €8.06: then it earns. The real question for sales: what batch size and yearly volume will the customer commit to?',
       },
@@ -84,7 +84,7 @@ export default {
       ],
       teach: [
         'A machine hour rate spreads a machine’s yearly costs over its productive hours. Yearly costs: depreciation (purchase price minus residual value, divided by the years of life), interest on the capital tied up, floor space, energy, maintenance, tooling and insurance. Some plants include the operator; others charge labour separately. Ask which.',
-        'The number of hours is where rates go wrong. Productive hours are the hours the machine actually makes parts: calendar time minus non-working time, maintenance, setups (unless charged separately) and breakdowns. Budget 4,000 hours, actually run 2,500, and every hour really cost 60% more than the rate says: the company quotes too low without noticing.',
+        'The number of hours is where rates go wrong. Productive hours are the hours the machine actually makes parts: calendar time minus non-working time, maintenance, setups (unless charged separately) and breakdowns. Budget 4,000 hours, actually run 2,500, and the fixed costs per hour come out 60% higher than the rate says: the company quotes too low without noticing.',
         'Fixed and variable parts: depreciation, interest and space are fixed per year; energy and wear move with running hours. Run more hours and the fixed part per hour drops. That creates a trap: rates computed on optimistic hours make a new machine look cheap, and nobody checks the rate later.',
         'Interest is often taken on half the purchase price: the average capital tied up over the life with straight-line depreciation. Tools and fixtures are sometimes in the rate, sometimes charged per job. When you compare rates, in-house against a subcontractor or between plants, first check what each one includes.',
       ],
@@ -233,7 +233,7 @@ export default {
         kind: 'faded',
         text: 'A pump maker machines its own impeller housings. In-house cost price €46: material €18, machine time at the full hour rate €20, of which €12 is fixed (depreciation, space, interest), and allocated overhead €8. A supplier in Eastern Europe offers €34 per housing. Freight and duty add €2.50, incoming inspection €1.00, extra safety stock about €0.50 per part. The machine is 60% loaded and nothing else needs it.',
         ask: 'What would you work out next?',
-        reveal: 'Compare only what changes. Make: material €18 + the variable part of the machine cost €8 = €26 per housing (the €12 fixed machine cost and the €8 overhead stay either way). Buy: €34 + 2.50 + 1.00 + 0.50 = €38. With the machine idle and no other work to replace this, making is €12 cheaper per housing. The picture flips if the machine could be sold, or if its hours would go to better-paying work. Ask that before anyone signs.',
+        reveal: 'Compare only what changes. Make: material €18 + the variable part of the machine cost €8 = €26 per housing (the €12 fixed machine cost and the €8 overhead stay either way). Buy: €34 + 2.50 + 1.00 + 0.50 = €38. With spare machine hours and no other work to fill them, making is €12 cheaper per housing. The picture flips if the machine could be sold, or if its hours would go to better-paying work. Ask that before anyone signs.',
       },
       said: 'What engineers say: “The quote beats our cost price, sure. But half our cost price stays when the part leaves. Compare what actually goes away.”',
       recall: [
