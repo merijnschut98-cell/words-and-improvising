@@ -15,7 +15,7 @@ export default {
       teach: [
         'Een offerte wint op de eerste pagina. Begin met het probleem van de klant, in hun woorden en getallen: “14% van de geplande klussen wordt afgezegd; elke afzegging kost een ploegdag; jullie doel is 8% in Q4.” Leest de sponsor dat en denkt hij “ja, precies dat”, dan ben je al een heel eind. Je aanpak komt later.',
         'Dan de uitkomst en hoe je weet dat je er bent: de maatstaf, de nulmeting, het doel en wie er eigenaar van is. Dan de aanpak, in fases. Een goede eerste fase is kort en goedkoop: een diagnose van drie weken, 12 dagen, € 14.400, met aan het eind een go/no-go. Dat verlaagt het risico voor de klant én voor jou, want de rest prijs je pas als je de data gezien hebt.',
-        'Schrijf op wat je van hen nodig hebt. De sponsor één uur per twee weken. Een vast aanspreekpunt één dag per week. Toegang tot de planningsdata in week 1. Twee sessies met de teamleiders. Dit is geen kleine lettertjes: veel projecten lopen uit omdat de klantkant niet leverde. Benoem je het vooraf, dan is het een gedeelde afspraak in plaats van later een excuus.',
+        'Schrijf op wat je van hen nodig hebt. De sponsor één uur per twee weken. Een vast aanspreekpunt één dag per week. Toegang tot de planningsdata in week 1. Twee sessies met de teamleiders. Dit zijn geen kleine lettertjes: veel projecten lopen uit omdat de klantkant niet leverde. Benoem je het vooraf, dan is het een gedeelde afspraak in plaats van later een excuus.',
         'Bied twee of drie opties, niet één: alleen de diagnose; diagnose plus een pilot in één regio; het volledige programma. Eén optie vraagt om ja of nee; opties vragen om een keuze tussen ja’s. Houd het op vijf of zes pagina’s. Loop de opzet vóór het versturen telefonisch door met de sponsor, zodat het document een gesprek bevestigt in plaats van er een te beginnen.',
       ],
       example: {
@@ -226,7 +226,7 @@ export default {
         kind: 'faded',
         text: 'Een plantdirecteur heeft Vantage ingehuurd om een nieuw rooster “uit te rollen” dat hij al heeft aangekondigd. Uit jouw analyse blijkt dat het zo’n 6% output kost op de bottlenecklijn, omdat de overdrachten in het drukste uur vallen. Hij betaalt je factuur, en hij heeft je gevraagd volgende week bij de OR “draagvlak voor het plan” te presenteren.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Presenteer niets waar je zelf niet in gelooft, en overval hem ook niet. Vraag deze week een uur met hem alleen. Laat de data zien: de timing van de overdracht en de 6% verlies. Bied dan een uitweg: schuif de overdracht 45 minuten op, of laat de diensten op de bottleneck overlappen, en het rooster kan alsnog werken. Zeg het gewoon: “Ik kan het plan presenteren met deze aanpassing. Ik kan het niet presenteren zoals het nu is en de OR vertellen dat het klopt.” De meeste directeuren respecteren dat. Doet hij dat niet, dan kun je beter deze opdracht kwijtraken dan je naam.',
+        reveal: 'Presenteer niets waar je zelf niet in gelooft, en overval hem ook niet. Bedenk dat de OR instemmingsrecht heeft op een werktijdenregeling (artikel 27 WOR), dus een gebrekkig plan dat als degelijk wordt verkocht, is ook voor hem een risico. Vraag deze week een uur met hem alleen. Laat de data zien: de timing van de overdracht en de 6% verlies. Bied dan een uitweg: schuif de overdracht 45 minuten op, of laat de diensten op de bottleneck overlappen, en het rooster kan alsnog werken. Zeg het gewoon: “Ik kan het plan presenteren met deze aanpassing. Ik kan het niet presenteren zoals het nu is en de OR vertellen dat het klopt.” De meeste directeuren respecteren dat. Doet hij dat niet, dan kun je beter deze opdracht kwijtraken dan je naam.',
       },
       said: 'Wat je hoort in projecten: “We willen eigenlijk alleen dat je bevestigt wat we al besloten hebben.”',
       recall: [
@@ -301,7 +301,7 @@ export default {
           q: 'Wat is het beste moment om problemen in te brengen die je buiten je scope zag?',
           options: ['Midden in het project, om het te laten groeien', 'Nooit; het lijkt op verkopen', 'Bij de afsluiting, één keer, en de klant laten beslissen', 'In een apart verkoopgesprek'],
           answer: 'Bij de afsluiting, één keer, en de klant laten beslissen',
-          why: 'Eén keer op het goede moment is het advies; steeds opnieuw duwen is verkopen.',
+          why: 'Eén keer op het goede moment is het advies; steeds opnieuw pushen is verkopen.',
         },
         {
           q: 'Waarom neem je 3 en 6 maanden na een project contact op?',

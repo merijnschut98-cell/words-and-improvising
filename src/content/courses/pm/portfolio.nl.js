@@ -88,7 +88,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'MT van een levensmiddelenproducent. Twee procesengineers hebben dit jaar samen 240 projectdagen. Op tafel: A, energiebesparing, € 200k per jaar, 80 dagen. B, kortere omsteltijden, € 180k, 40 dagen. C, een nieuw MES, € 400k maar maar 50% vertrouwen, 200 dagen. D, verpakkingsafval, € 90k, 30 dagen. E, het dashboard van de plantdirecteur, waarde niet genoemd, 40 dagen. Iedereen wil ze alle vijf.',
+        text: 'MT van een levensmiddelenproducent. Twee procesengineers hebben dit jaar samen 240 projectdagen. Op tafel: A, energiebesparing, € 200k per jaar, 80 dagen. B, kortere omsteltijden, € 180k, 40 dagen. C, een nieuw MES, € 400k, maar slechts 50% vertrouwen, 200 dagen. D, verpakkingsafval, € 90k, 30 dagen. E, het dashboard van de plantdirecteur, waarde niet genoemd, 40 dagen. Iedereen wil ze alle vijf.',
         ask: 'Wat zou jij adviseren?',
         reveal: 'Waarde per engineersdag: B € 4,5k, D € 3k, A € 2,5k, C € 1k na de correctie voor 50% risico, E onbekend. B, D en A kosten samen 150 dagen: daarmee starten. C past niet en is het onzekerst, dus stel een eerste fase van 60 dagen voor die de grote aanname test voordat je 200 dagen vastlegt. Dan zit je op 210 dagen, met 30 als buffer. Vraag de plantdirecteur voor E een getal te noemen: “Komt het boven € 2,5k per dag, dan gaat het vóór A.” Dan kiest het MT, niet jij.',
       },
@@ -354,7 +354,7 @@ export default {
       teach: [
         'Eén A4, antwoord eerst. Bovenaan staat het besluit dat je nodig hebt. Dan: waarom nu, twee of drie opties met elk kosten, baten en risico, jouw advies, en wat er gebeurt als ze niet beslissen. Detail gaat in een bijlage. Een directie leest de eerste alinea en de getallen; schrijf daarvoor.',
         'Twintig minuten op de agenda betekent ongeveer vijf minuten praten en vijftien minuten discussie. Open met: “Ik heb vandaag één besluit nodig: X. Ik adviseer Y, om drie redenen.” Loop geen twintig slides door; ze onderbreken je toch bij slide drie.',
-        'Voorsorteren. De week ervoor loop je het stuk één-op-één door met de twee of drie mensen wiens mening zwaar weegt. Niks in het overleg mag hen verrassen. De meeste directiebesluiten worden vóór het overleg genomen; het overleg bevestigt ze. Gaat iemand tegenliggen, dan wil je dat nu weten, niet in de kamer.',
+        'Voorsorteren. De week ervoor loop je het stuk één-op-één door met de twee of drie mensen wiens mening zwaar weegt. Niks in het overleg mag hen verrassen. De meeste directiebesluiten worden vóór het overleg genomen; het overleg bevestigt ze. Gaat iemand dwarsliggen, dan wil je dat nu weten, niet in de kamer.',
         'De lastige vraag. Laat hem uitpraten, herhaal de kern, antwoord in één zin, en geef dan het bewijs. Weet je het niet: “Dat getal heb ik hier niet; je hebt het donderdag.” Zit er een bezwaar achter, zoals “Is dit echt de prioriteit?”, benoem het dan: “Je vraagt of dit belangrijker is dan de ERP-upgrade. Hier is de vergelijking.” Ga in de kamer nooit in discussie met de voorzitter.',
       ],
       example: {
