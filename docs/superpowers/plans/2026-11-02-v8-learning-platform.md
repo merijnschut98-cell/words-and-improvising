@@ -265,8 +265,8 @@ The fixture is a minimal two-lesson module defined inside the test file.
 
 **Files:** engineering modules `eng.quality` (basics, L1), `eng.maintenance` (basics, L2), `eng.drawings` (basics, L2: drawings, P&IDs, process control), `eng.machining` (discrete, L1), `eng.joining` (discrete, L2: welding and joining), `eng.moulding` (discrete, L2), `eng.lines` (discrete, L3: assembly lines, automation, robots, tooling), `eng.gridbasics` (grid, L1), `eng.transformers` (grid, L2: transformers, cables, connections), `eng.switchgear` (grid, L2: switchgear and protection), `eng.gridops` (grid, L3: outages, switching plans, asset management, energy-transition workload); project modules `pm.plan` (L1), `pm.run` (L2), `pm.land` (L2), `pm.close` (L2), `pm.stuck` (L3).
 
-- [ ] **Step 1:** Briefs for all 16 modules in `docs/superpowers/content/briefs/<moduleId>.md`.
-- [ ] **Step 2:** Dispatch content subagents, at most 3 in parallel (budget), each one module both languages; validator must pass.
+- [x] **Step 1:** Briefs for all 16 modules in `docs/superpowers/content/briefs/<moduleId>.md`.
+- [x] **Step 2:** Dispatch content subagents, at most 3 in parallel (budget), each one module both languages; validator must pass.
 - [ ] **Step 3:** Index entries, `SHELL`, `npm test`, one e2e step that opens the first lesson of a level-3 module and sees the faded example (`.example-ask` then Reveal). Screenshot `66-faded-example`.
 - [ ] **Step 4: Commit per 3–4 modules** `Add <subject> modules: …`.
 
