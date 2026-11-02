@@ -1,4 +1,5 @@
 import { h, aiErrorText } from './dom.js';
+import { ico } from './icons.js';
 import { makePrompt } from '../core/lesson.js';
 import { runPartner, MAX_USER_TURNS } from '../core/partner.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
@@ -19,8 +20,8 @@ export function renderConversation(app, _params, root) {
   const main = h('main', { class: 'screen convo' });
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
-      h('div', { class: 'round-title' }, '🗣 ', t('convoTitle')),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('div', { class: 'round-title' }, ico('message-circle'), ' ', t('convoTitle')),
       h('div', { class: 'muted small' }, '')),
     main,
   );
@@ -73,10 +74,10 @@ export function renderConversation(app, _params, root) {
         'aria-checked': String(st.mode === m),
         disabled: m === 'speak' && !speechSupported,
         onclick: () => { st.mode = m; showIntro(); },
-      }, m === 'speak' ? `🎙 ${t('speak')}` : `⌨️ ${t('type')}`)));
+      }, ico(m === 'speak' ? 'mic' : 'keyboard'), ' ', m === 'speak' ? t('speak') : t('type'))));
     main.replaceChildren(
       h('section', { class: 'card intro-card' },
-        h('div', { class: 'intro-icon', 'aria-hidden': 'true' }, '🗣'),
+        h('div', { class: 'intro-icon' }, ico('message-circle')),
         h('h1', {}, t('convoTitle')),
         h('p', {}, t('convoHow')),
         h('p', { class: 'muted small' }, `${t('situation')}: ${prompt.extra.setting}`)),
@@ -123,7 +124,7 @@ export function renderConversation(app, _params, root) {
       return;
     }
     const live = h('div', { class: 'live small-live' });
-    const mic = h('button', { class: 'btn btn-primary btn-big mic' }, `🎙 ${t('tapToTalk')}`);
+    const mic = h('button', { class: 'btn btn-primary btn-big mic' }, ico('mic'), ' ', t('tapToTalk'));
     let startedAt = 0;
     let text = '';
     mic.onclick = async () => {
@@ -145,7 +146,7 @@ export function renderConversation(app, _params, root) {
         });
         recognizer = rec;
         rec.start();
-        mic.textContent = `✓ ${t('send')}`;
+        mic.replaceChildren(ico('send'), ' ', t('send'));
         mic.classList.add('recording');
       } else {
         mic.disabled = true;

@@ -125,10 +125,17 @@ export const app = {
     document.documentElement.lang = this.lang;
     this.applyTheme();
   },
+  // Light or dark forces a theme; auto (no attribute) follows prefers-color-scheme.
   applyTheme() {
     const th = this.state.settings.theme;
-    if (th && th !== 'default') document.documentElement.dataset.theme = th;
+    const forced = th === 'light' || th === 'dark' ? th : null;
+    if (forced) document.documentElement.dataset.theme = forced;
     else delete document.documentElement.dataset.theme;
+    // The browser bar follows the canvas: beige in light, deep green in dark.
+    for (const m of document.querySelectorAll('meta[name="theme-color"]')) {
+      const dark = forced ? forced === 'dark' : /dark/.test(m.media || '');
+      m.content = dark ? '#0B291B' : '#E8DFCA';
+    }
   },
   reset() {
     this.setState(defaultState());
@@ -287,7 +294,7 @@ function reconcileNow() {
   app.broke = app.broke || r.broke;
   if (r.usedFreeze) {
     app.setState(r.state);
-    app.toast(`🧊 ${app.t('freezeUsed')}`);
+    app.toast(app.t('freezeUsed'));
   }
   return r;
 }
@@ -312,7 +319,7 @@ document.addEventListener('visibilitychange', () => {
     const next = addFriendRating(app.state, answer, Date.now());
     if (next !== app.state) {
       app.setState(next);
-      app.toast(`🧑‍🤝‍🧑 ${app.t('friendRated')}`);
+      app.toast(app.t('friendRated'));
     } else app.toast(app.t('friendUnknown'));
   } else if (hasAnswer) app.toast(app.t('friendUnknown'));
   if (hasRate) {

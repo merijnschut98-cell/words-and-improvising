@@ -73,40 +73,44 @@ function wrap(ctx, text, maxW) {
   return lines;
 }
 
-// A 1080×1080 card: title, big stat rows, footer. Colours follow the theme.
-export function drawShareCard({ title, rows, footer }) {
-  const css = getComputedStyle(document.documentElement);
-  const v = (name, fb) => css.getPropertyValue(name).trim() || fb;
+// A 1080×1080 card in the Vantage colours (the same in both themes): deep
+// green ground, paper card, Fraunces title, petrol figures, mono footer.
+export async function drawShareCard({ title, rows, footer }) {
+  // The brand faces are self-hosted; wait for them so the canvas uses them.
+  try {
+    if (document.fonts) await Promise.all(['600 64px Fraunces', '600 88px Fraunces', '500 38px Inter', '500 30px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+  } catch { /* fall back to the system faces */ }
   const c = document.createElement('canvas');
   c.width = 1080;
   c.height = 1080;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = v('--primary', '#e8562a');
+  ctx.fillStyle = '#0B291B';
   ctx.fillRect(0, 0, 1080, 1080);
-  ctx.fillStyle = v('--card', '#ffffff');
+  ctx.fillStyle = '#F4EFE3';
   ctx.beginPath();
-  ctx.roundRect(60, 60, 960, 960, 48);
+  ctx.roundRect(60, 60, 960, 960, 20);
   ctx.fill();
-  const ink = v('--ink', '#1f2430');
-  const font = 'system-ui, -apple-system, "Segoe UI", sans-serif';
-  ctx.fillStyle = ink;
-  ctx.font = `800 64px ${font}`;
-  let y = 180;
+  const serif = 'Fraunces, Georgia, serif';
+  const sans = 'Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#0B291B';
+  ctx.font = `600 64px ${serif}`;
+  let y = 190;
   for (const l of wrap(ctx, title, 840)) { ctx.fillText(l, 120, y); y += 76; }
   y += 30;
   for (const [label, value] of rows) {
-    ctx.fillStyle = v('--accent', '#13b5a6');
-    ctx.font = `800 88px ${font}`;
+    ctx.fillStyle = '#1C5563';
+    ctx.font = `600 88px ${serif}`;
     ctx.fillText(String(value), 120, y + 70);
-    ctx.fillStyle = v('--muted', '#6b7280');
-    ctx.font = `600 38px ${font}`;
+    ctx.fillStyle = '#5A6B60';
+    ctx.font = `500 38px ${sans}`;
     for (const l of wrap(ctx, label, 840)) { ctx.fillText(l, 120, y + 120); y += 46; }
     y += 140;
     if (y > 860) break;
   }
-  ctx.fillStyle = ink;
-  ctx.font = `700 36px ${font}`;
-  ctx.fillText(footer, 120, 970);
+  ctx.fillStyle = '#0B291B';
+  ctx.font = `500 30px "JetBrains Mono", ui-monospace, monospace`;
+  ctx.letterSpacing = '3px'; // wide-tracked mono label; ignored where unsupported
+  ctx.fillText(String(footer).toUpperCase(), 120, 965);
   return new Promise((resolve) => { c.toBlob((b) => resolve(b), 'image/png'); });
 }
 

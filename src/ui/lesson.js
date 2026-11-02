@@ -1,6 +1,7 @@
 // A lesson: guess first (prequestions), read in short blocks, see an example,
 // then the quiz. Passing unlocks the situation and the say-it round.
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { applyLesson, lessonPhases, recallQuestions } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
@@ -13,7 +14,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   const main = h('main', { class: 'screen lesson' }, h('p', { class: 'muted loading' }, '…'));
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
       title, h('div', {})),
     main);
 
@@ -149,12 +150,12 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
 
     function done(xp) {
       main.replaceChildren(h('section', { class: 'card lesson-done' },
-        h('p', { class: 'big-emoji', 'aria-hidden': 'true' }, '🎓'),
+        h('p', { class: 'done-mark' }, ico('graduation-cap')),
         h('h2', { class: 'card-title' }, t('lessonPassed')),
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
-      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, `🎭 ${t('openSituation')}`),
-      h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, `🎙 ${t('openSayIt')}`),
+      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
+      h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));
     }
 

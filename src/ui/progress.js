@@ -1,4 +1,5 @@
 import { h, DRILL_ICON } from './dom.js';
+import { ico } from './icons.js';
 import { levelFromXp, DRILLS } from '../core/progress.js';
 import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
@@ -58,27 +59,27 @@ function weekCard(app) {
     : f.kind === 'drill' ? t('focusDrill', t(`drill_${f.value}`))
       : f.kind === 'rounds' ? t('focusRounds', f.value)
         : t('focusStretch');
-  return h('section', { class: 'card review-card' },
+  return h('section', { class: 'card week-card' },
     h('h2', { class: 'card-title' }, t('thisWeek')),
     row(t('rounds'), `${r.thisWeek.rounds} (${t('lastWeekShort')} ${r.lastWeek.rounds})`),
     row(t('minutesSpoken'), `${r.thisWeek.minutes} (${t('lastWeekShort')} ${r.lastWeek.minutes})`),
     row(t('m_fillers'), fr.text, fr.tone),
     row(t('m_wpm'), wpm.text, wpm.tone),
-    r.boss ? row(`👑 ${t('bossTitle')}`, `${r.boss.words} ${t('m_words')} · ${r.boss.fillerRate} ${t('m_fillers')}`) : null,
+    r.boss ? row(t('bossTitle'), `${r.boss.words} ${t('m_words')} · ${r.boss.fillerRate} ${t('m_fillers')}`) : null,
     r.topFiller ? row(t('topFillerWeek'), `“${r.topFiller.word}” ×${r.topFiller.count}`) : null,
-    r.best ? row(t('bestDrill'), `${DRILL_ICON[r.best.drill]} ${t(`drill_${r.best.drill}`)} (${r.best.avg})`) : null,
+    r.best ? row(t('bestDrill'), `${t(`drill_${r.best.drill}`)} (${r.best.avg})`) : null,
     r.worst && r.worst.drill !== r.best.drill
-      ? row(t('worstDrill'), `${DRILL_ICON[r.worst.drill]} ${t(`drill_${r.worst.drill}`)} (${r.worst.avg})`) : null,
-    h('div', { class: 'focus' }, h('b', {}, `🎯 ${t('focusNext')}: `), focusText),
+      ? row(t('worstDrill'), `${t(`drill_${r.worst.drill}`)} (${r.worst.avg})`) : null,
+    h('div', { class: 'focus' }, h('b', {}, `${t('focusNext')}: `), focusText),
     r.thisWeek.rounds ? h('button', {
       class: 'btn btn-ghost small',
       onclick: async () => {
         const rows = [[t('rounds'), r.thisWeek.rounds], [t('minutesSpoken'), r.thisWeek.minutes]];
         if (r.thisWeek.fillerRate != null) rows.push([t('m_fillers'), r.thisWeek.fillerRate]);
-        const blob = await drawShareCard({ title: t('shareWeekTitle'), rows, footer: 'Spraakwater' });
-        await shareFile(blob, 'spraakwater-week.png', t('shareWeekTitle'));
+        const blob = await drawShareCard({ title: t('shareWeekTitle'), rows, footer: 'Vantage Point' });
+        await shareFile(blob, 'vantage-point-week.png', t('shareWeekTitle'));
       },
-    }, `📤 ${t('share')}`) : null);
+    }, ico('share-2'), ' ', t('share')) : null);
 }
 
 function sparkline(values, { invert = false } = {}) {
@@ -155,7 +156,7 @@ function skillCard(app) {
     h('p', { class: 'small muted' }, r.source === 'coach' ? t('skillsCoach', coached) : t('skillsLocal')));
 }
 
-// One vertical path: reached ✓, the next one highlighted, the rest muted.
+// One vertical path: reached (checked), the next one highlighted, the rest muted.
 function journeyCard(app) {
   const t = app.t;
   const have = new Set(app.state.milestones || []);
@@ -165,11 +166,10 @@ function journeyCard(app) {
     h('ol', { class: 'journey' }, MILESTONES.map((m) => {
       const state = have.has(m.id) ? 'reached' : m === next ? 'next' : 'later';
       return h('li', { class: `ms ${state}` },
-        h('span', { class: 'ms-dot', 'aria-hidden': 'true' }, state === 'reached' ? '✓' : ''),
+        h('span', { class: 'ms-dot', 'aria-hidden': 'true' }, state === 'reached' ? ico('check') : ''),
         h('span', { class: 'ms-text' },
           h('b', {}, t(`ms_${m.id}`), state === 'next' ? h('small', { class: 'ms-next' }, ` · ${t('journeyNext')}`) : null),
-          h('small', {}, t(`msHow_${m.id}`)),
-          m.unlocks ? h('small', { class: 'ms-unlock' }, `🎨 ${t('themeUnlocks', t(`theme_${m.unlocks}`))}`) : null));
+          h('small', {}, t(`msHow_${m.id}`))));
     })));
 }
 
@@ -181,7 +181,7 @@ function reflectionsCard(app) {
   return h('section', { class: 'card' },
     h('h2', { class: 'card-title' }, t('rwLearned')),
     done.map((e) => h('div', { class: 'rw-learned' },
-      h('p', {}, h('b', {}, `${'★'.repeat(e.reflection.rating)}${'☆'.repeat(5 - e.reflection.rating)} `), e.text),
+      h('p', {}, h('b', { class: 'rw-rating' }, `${e.reflection.rating}/5`), ' ', e.text),
       e.reflection.next ? h('p', { class: 'muted small' }, `→ ${e.reflection.next}`) : null)));
 }
 
@@ -224,7 +224,7 @@ function programmeCard(app) {
           const prompt = challengePrompt({ drill: b.drill, promptId: b.promptId }, app.content);
           if (!prompt) { app.go('progress'); return; }
           app.session = null;
-          app.toast(`🗓️ ${t('progStarted')}`);
+          app.toast(t('progStarted'));
           app.go('round', { prompt, notice: t('progBaseline'), modifier: null });
         },
       }, finished ? t('progRestart') : t('progStart')));
@@ -235,7 +235,7 @@ function programmeCard(app) {
     h('p', {}, h('b', {}, t('progWeek', week, t(`progTheme_${theme.id}`)))),
     baselineDue(s, today) && s.programme.baseline.lang !== app.lang ? h('p', { class: 'note' }, t('progOtherLang')) : null,
     h('div', { class: 'finder-drills' }, theme.drills.map((d) => h('button', { class: 'btn btn-ghost small', onclick: () => app.startDrill(d) },
-      h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)))),
+      ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)))),
     h('button', { class: 'btn btn-ghost small prog-stop', onclick: () => { app.setState(stopProgramme(app.state)); app.go('progress'); } }, t('progStop')));
 }
 
@@ -302,7 +302,7 @@ export function renderProgress(app, _params, root) {
         h('div', { class: 'stat' }, h('b', {}, hist.length), h('span', {}, t('rounds'))),
         h('div', { class: 'stat' }, h('b', {}, minutes), h('span', {}, t('minutesSpoken')))),
       programmeCard(app),
-      h('button', { class: 'btn btn-ghost week-btn', onclick: () => app.go('weekly') }, `🗓️ ${t('weekChange')}`),
+      h('button', { class: 'btn btn-ghost week-btn', onclick: () => app.go('weekly') }, ico('calendar'), ' ', t('weekChange')),
       reflectionsCard(app),
       journeyCard(app),
       skillCard(app),
@@ -317,14 +317,14 @@ export function renderProgress(app, _params, root) {
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('drillLevels')),
         h('div', { class: 'levels' }, DRILLS.map((d) => h('div', { class: 'level-line' },
-          h('span', {}, `${DRILL_ICON[d]} ${t(`drill_${d}`)} `, masteryBadge(t, masteryOf(s.history, d))),
+          h('span', {}, ico(DRILL_ICON[d]), ` ${t(`drill_${d}`)} `, masteryBadge(t, masteryOf(s.history, d))),
           h('span', { class: 'pips' }, [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' }))))))),
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('history')),
         hist.length === 0 ? h('p', { class: 'muted' }, t('noHistory')) : null,
         h('div', { class: 'history' }, hist.slice(0, 50).map((e) => h('details', { class: 'hist-item' },
           h('summary', {},
-            h('span', { class: 'hist-icon', 'aria-hidden': 'true' }, DRILL_ICON[e.drill]),
+            h('span', { class: 'hist-icon' }, ico(DRILL_ICON[e.drill])),
             h('span', { class: 'hist-main' }, h('b', {}, e.body), h('small', { class: 'muted' }, dateFmt.format(e.ts))),
             h('span', { class: 'hist-meta' }, `${e.metrics.fillerRate}/min`)),
           h('p', { class: 'transcript small' }, e.transcript),

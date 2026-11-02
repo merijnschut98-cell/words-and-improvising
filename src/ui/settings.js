@@ -1,5 +1,6 @@
 import { h, aiErrorText } from './dom.js';
-import { THEMES, unlockedThemes } from '../core/milestones.js';
+import { ico } from './icons.js';
+import { THEMES } from '../core/storage.js';
 import { checkKey } from '../core/claude.js';
 import { parseBackup } from '../core/storage.js';
 import { navBar } from './home.js';
@@ -10,7 +11,7 @@ export function renderSettings(app, _params, root) {
   const s = app.state.settings;
   const status = h('span', { class: 'saved', 'aria-live': 'polite' });
   const flash = () => {
-    status.textContent = `✓ ${t('saved')}`;
+    status.replaceChildren(ico('check'), ' ', t('saved'));
     setTimeout(() => { status.textContent = ''; }, 1500);
   };
   const set = (patch, rerender = false) => {
@@ -20,7 +21,7 @@ export function renderSettings(app, _params, root) {
   };
 
   const segmented = (value, options, onPick) => h('div', { class: 'segmented' },
-    options.map(([v, label]) => h('button', { class: value === v ? 'on' : '', onclick: () => onPick(v) }, label)));
+    options.map(([v, label]) => h('button', { class: value === v ? 'on' : '', 'aria-pressed': String(value === v), onclick: () => onPick(v) }, label)));
 
   const keyInput = h('input', {
     type: 'password', autocomplete: 'off', spellcheck: false, placeholder: 'sk-ant-…', value: s.apiKey,
@@ -30,7 +31,7 @@ export function renderSettings(app, _params, root) {
   const remindNote = h('p', { class: 'muted small' }, t('remindHelp'));
 
   const keyStatus = h('p', { class: 'small', 'aria-live': 'polite' });
-  const testBtn = h('button', { class: 'btn btn-ghost small', onclick: testKey }, `🔑 ${t('testKey')}`);
+  const testBtn = h('button', { class: 'btn btn-ghost small', onclick: testKey }, ico('key-round'), ' ', t('testKey'));
   async function testKey() {
     const key = keyInput.value.trim();
     if (key !== app.state.settings.apiKey) set({ apiKey: key });
@@ -40,7 +41,7 @@ export function renderSettings(app, _params, root) {
     const res = await checkKey(key, app.state.settings.model);
     testBtn.disabled = false;
     keyStatus.className = `small ${res.ok ? 'good-text' : 'note'}`;
-    keyStatus.textContent = res.ok ? `✓ ${t('keyOk')}` : aiErrorText(t, res);
+    keyStatus.textContent = res.ok ? t('keyOk') : aiErrorText(t, res);
   }
 
   // Daily reminder via Periodic Background Sync (installed Chrome apps only, best effort).
@@ -70,7 +71,7 @@ export function renderSettings(app, _params, root) {
 
   function exportData() {
     const blob = new Blob([app.exportJson()], { type: 'application/json' });
-    const a = h('a', { href: URL.createObjectURL(blob), download: `spraakwater-${app.today()}.json` });
+    const a = h('a', { href: URL.createObjectURL(blob), download: `vantage-point-${app.today()}.json` });
     document.body.append(a);
     a.click();
     a.remove();
@@ -79,7 +80,7 @@ export function renderSettings(app, _params, root) {
   // Import: read the picked file, show what it holds, replace only after a confirm.
   // File contents only ever reach the screen as numbers via textContent.
   const importArea = h('div', { class: 'import-area', 'aria-live': 'polite' });
-  const importErr = (code) => app.toast(`⚠️ ${t(code === 'json' ? 'importErrJson' : code === 'shape' ? 'importErrShape' : code === 'save' ? 'importErrSave' : 'importErrRead')}`);
+  const importErr = (code) => app.toast(t(code === 'json' ? 'importErrJson' : code === 'shape' ? 'importErrShape' : code === 'save' ? 'importErrSave' : 'importErrRead'));
   function showImportConfirm(text, summary) {
     importArea.replaceChildren(h('div', { class: 'card import-confirm' },
       h('p', {}, t('importConfirm')),
@@ -90,7 +91,7 @@ export function renderSettings(app, _params, root) {
           onclick: () => {
             const res = app.importJson(text);
             if (!res.ok) { importArea.replaceChildren(); return importErr(res.error); }
-            app.toast(`✓ ${t('importDone')}`);
+            app.toast(t('importDone'));
             app.go('home');
           },
         }, t('importReplace')),
@@ -113,9 +114,9 @@ export function renderSettings(app, _params, root) {
     h('main', { class: 'screen settings' },
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('language')),
-        segmented(s.lang, [['nl', '🇳🇱 Nederlands'], ['en', '🇬🇧 English']], (v) => set({ lang: v }, true)),
+        segmented(s.lang, [['nl', 'Nederlands'], ['en', 'English']], (v) => set({ lang: v }, true)),
         h('label', { class: 'field-label' }, t('defaultMode')),
-        segmented(s.mode, [['speak', `🎙 ${t('speak')}`], ['type', `⌨️ ${t('type')}`]], (v) => set({ mode: v }, true))),
+        segmented(s.mode, [['speak', [ico('mic'), ' ', t('speak')]], ['type', [ico('keyboard'), ' ', t('type')]]], (v) => set({ mode: v }, true))),
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('apiKey')),
         keyInput,
@@ -128,15 +129,8 @@ export function renderSettings(app, _params, root) {
           h('option', { value: 'claude-haiku-5-5', selected: s.model === 'claude-haiku-5-5' }, t('modelCheap')))),
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('themeTitle')),
-        h('div', { class: 'theme-row' }, THEMES.map((th) => {
-          const open = unlockedThemes(app.state.milestones).includes(th);
-          return h('button', {
-            class: `theme-swatch sw-${th}${(s.theme || 'default') === th ? ' on' : ''}`,
-            disabled: !open, 'aria-pressed': String((s.theme || 'default') === th),
-            onclick: () => set({ theme: th }, true),
-          }, h('i', { 'aria-hidden': 'true' }), `${open ? '' : '🔒 '}${t(`theme_${th}`)}`);
-        })),
-        h('p', { class: 'muted small' }, t('themeLockedHint'))),
+        segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
+        h('p', { class: 'muted small' }, t('themeHelp'))),
       h('section', { class: 'card' },
         h('label', { class: 'field-label' }, t('planTitle')),
         h('p', { class: 'muted small' }, t('planHelp')),

@@ -1,11 +1,12 @@
 // Course home: one next thing, the due questions, and the module map.
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { masteryBadge } from './home.js';
 import { MODULES, TRACKS } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
 import { dueCourseQuestions } from '../core/coursereview.js';
 
-const ICON = { due: '🔁', lesson: '📖', situation: '🎭', sayIt: '🎙', maintain: '🧰', done: '✅' };
+const ICON = { due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
@@ -23,13 +24,13 @@ function todayCard(app, subject) {
   const t = app.t;
   const pick = courseTodayPick(app.state, subject, app.lang, app.today());
   const meta = pick.moduleId ? MODULES.find((m) => m.id === pick.moduleId) : null;
-  const what = h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${ICON[pick.reason]} `),
+  const what = h('p', { class: 'today-what' }, ico(ICON[pick.reason]), ' ',
     meta ? modTitle(app, meta) : t(`courseWhat_${pick.reason}`, pick.count || 0));
   // The lesson title lives in the module file: fill it in once it is loaded.
   if (pick.lessonId && meta) {
     app.openModule(subject, meta.id).then((mod) => {
       const l = mod.lessons.find((x) => x.id === pick.lessonId);
-      if (l && what.isConnected) what.replaceChildren(h('span', { 'aria-hidden': 'true' }, `${ICON[pick.reason]} `), l.title);
+      if (l && what.isConnected) what.replaceChildren(ico(ICON[pick.reason]), ' ', l.title);
     }).catch(() => {});
   }
   return h('section', { class: 'card today-card course-today' },
@@ -41,7 +42,7 @@ function todayCard(app, subject) {
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { e.currentTarget.disabled = true; openPick(app, subject, pick); },
-    }, `▶ ${t('courseGo')}`));
+    }, ico('play'), ' ', t('courseGo')));
 }
 
 function moduleRow(app, meta) {
@@ -55,7 +56,7 @@ function moduleRow(app, meta) {
       return h('button', {
         class: `lesson-row${p.passed ? ' passed' : ''}`,
         onclick: () => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId: l.id }),
-      }, h('span', { 'aria-hidden': 'true' }, p.passed ? '✓' : '○'), h('span', {}, l.title));
+      }, ico(p.passed ? 'circle-check' : 'circle'), h('span', {}, l.title));
     }));
   }).catch(() => list.replaceChildren(h('p', { class: 'note' }, t('loadError'))));
   return h('details', { class: 'module', ontoggle: (e) => { if (e.currentTarget.open && !list.childElementCount) fill(); } },
@@ -70,7 +71,7 @@ function moduleRow(app, meta) {
     nextLesson(app.state, meta) ? h('button', {
       class: 'btn btn-ghost small',
       onclick: () => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId: nextLesson(app.state, meta) }),
-    }, `▶ ${t('moduleContinue')}`) : null);
+    }, ico('play'), ' ', t('moduleContinue')) : null);
 }
 
 export function courseHome(app, subject) {
@@ -86,9 +87,9 @@ export function courseHome(app, subject) {
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
     todayCard(app, subject),
     due ? h('button', { class: 'btn review-card due-card', onclick: () => app.go('due', { subject }) },
-      h('span', { class: 'hero-title' }, `🔁 ${t('dueTitle')}`),
+      h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
       h('span', { class: 'hero-sub' }, t('dueCard', due))) : null,
     ...tracks,
     tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty')),
-    h('button', { class: 'btn btn-ghost', onclick: () => app.go('glossary', { subject }) }, `📚 ${t('glossary')}`));
+    h('button', { class: 'btn btn-ghost', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')));
 }

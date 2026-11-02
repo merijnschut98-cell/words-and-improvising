@@ -95,7 +95,7 @@ const shot = async (n) => {
   const text = await page.evaluate(() => document.body.innerText);
   // No word boundary on the right: "nullnull" must be caught too.
   if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
-  await page.screenshot({ path: `${out}/${n}.png`, fullPage: true });
+  await page.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
 };
 
 await page.goto(BASE);
@@ -136,7 +136,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
 });
 
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
-async function playLesson(pg, subject, slug, lessonId, { missFirst = true } = {}) {
+async function playLesson(pg, subject, slug, lessonId, { missFirst = true, reviewShot = null } = {}) {
   const lesson = await pg.evaluate(async ([sub, sl, id]) => (await import(`/src/content/courses/${sub}/${sl}.nl.js`)).default.lessons.find((l) => l.id === id), [subject, slug, lessonId]);
   for (const q of lesson.pre) {
     if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.pre-card .btn-primary').click(); }
@@ -157,6 +157,7 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true } = {}
   };
   for (let i = 0; i < lesson.recall.length; i++) await answer(lesson.recall[i], missFirst && i === 0);
   await pg.locator('.quiz-review').waitFor();
+  if (reviewShot) await shot(reviewShot);
   if (missFirst) {
     if (await pg.locator('.review-row.miss').count() !== 1) throw new Error('expected one miss in review');
     await pg.locator('.quiz-review .btn-primary').click();
@@ -173,7 +174,7 @@ await step('a full lesson: guess, read, example, quiz with one miss, review, pas
   await page.locator('.course-today .today-go').click();
   await page.locator('.pre-card').waitFor();
   await shot('61a-lesson-pre');
-  const lesson = await playLesson(page, 'eng', 'flow', 'eng.flow.takt');
+  const lesson = await playLesson(page, 'eng', 'flow', 'eng.flow.takt', { reviewShot: '61r-quiz-review' });
   if (!(await page.locator('.lesson-done').textContent()).includes('+20')) throw new Error('no +20 XP');
   await shot('61-lesson-done');
   const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
@@ -400,7 +401,7 @@ await step('test my key reports success', async () => {
 await step('targeted practice: AI exercise with focus line', async () => {
   await page.goto(BASE);
   await page.locator('.target-card').click();
-  await page.getByText('🎯 Minder eh, meer pauze').waitFor({ timeout: 5000 });
+  await page.locator('.focus', { hasText: 'Minder eh, meer pauze' }).waitFor({ timeout: 5000 });
   await page.getByRole('heading', { name: 'Woordbrug' }).waitFor();
   await shot('16-targeted');
 });
@@ -587,6 +588,7 @@ await step('boss card shows on a Friday', async () => {
 
 await step('boss round combines words, sides and double XP framing', async () => {
   await page.goto(BASE);
+  await page.waitForFunction(() => window.__app); // the app module may still be loading
   await page.evaluate(async () => {
     const { makePrompt } = await import('./src/core/lesson.js');
     const { default: nl } = await import('./src/content/prompts.nl.js');
@@ -639,7 +641,7 @@ await step('4-week programme: start plays the baseline, Today shows the week, st
   await page.getByRole('button', { name: 'Start het programma' }).waitFor();
 });
 
-await step('journey path and an unlocked theme', async () => {
+await step('journey path and the theme setting', async () => {
   await page.goto(BASE);
   await page.evaluate(() => {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
@@ -653,13 +655,43 @@ await step('journey path and an unlocked theme', async () => {
   await page.locator('.journey-card').scrollIntoViewIfNeeded();
   await shot('26-journey');
   await page.getByRole('button', { name: /Instellingen/ }).click();
-  await page.locator('.theme-swatch', { hasText: 'Oceaan' }).click();
-  await page.waitForFunction(() => document.documentElement.dataset.theme === 'ocean');
-  if (!(await page.locator('.theme-swatch', { hasText: 'Nacht' }).isDisabled())) throw new Error('night should be locked');
-  await page.locator('.theme-row').scrollIntoViewIfNeeded();
-  await shot('27-theme');
-  await page.locator('.theme-swatch', { hasText: 'Zonsondergang' }).click();
+  await page.getByRole('button', { name: 'Licht', exact: true }).click();
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
+  await page.getByRole('button', { name: 'Donker', exact: true }).click();
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  if (bg !== 'rgb(11, 41, 27)') throw new Error(`dark canvas is ${bg}`);
+  await page.getByRole('button', { name: 'Donker', exact: true }).scrollIntoViewIfNeeded();
+  await shot('27-theme-dark');
+  await page.getByRole('button', { name: 'Automatisch', exact: true }).click();
   await page.waitForFunction(() => !document.documentElement.dataset.theme);
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).settings.theme);
+  if (st !== 'auto') throw new Error(`stored theme ${st}`);
+});
+
+await step('dark theme: home, course home and a lesson', async () => {
+  await page.goto(BASE);
+  await page.getByRole('button', { name: /Instellingen/ }).click();
+  await page.getByRole('button', { name: 'Donker', exact: true }).click();
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await page.getByRole('button', { name: /Home/ }).click();
+  await page.locator('.btn-hero').waitFor();
+  if (!(await page.locator('.brand .mark-dark').isVisible()) || (await page.locator('.brand .mark-light').isVisible())) throw new Error('wrong mark for dark');
+  await shot('70-dark-home');
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-home .track').first().waitFor();
+  await shot('71-dark-course');
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await page.locator('.pre-card').waitFor();
+  await shot('72-dark-lesson');
+  await page.evaluate(() => { window.__app.setSubject('speak'); window.__app.go('progress'); });
+  await page.locator('.week-card').waitFor();
+  await shot('73-dark-progress');
+  await page.evaluate(() => window.__app.go('settings'));
+  await page.getByRole('button', { name: 'Automatisch', exact: true }).click();
+  await page.waitForFunction(() => !document.documentElement.dataset.theme);
+  await page.evaluate(() => { window.__app.setSubject('speak'); });
+  await page.locator('.btn-hero').waitFor();
 });
 
 await step('yes-and speaks a line, then listens per item', async () => {
@@ -721,7 +753,7 @@ await step('challenge link opens the same prompt and offers a reply', async () =
 await step('share card renders as a PNG', async () => {
   const data = await page.evaluate(async () => {
     const { drawShareCard } = await import('./src/core/share.js');
-    const blob = await drawShareCard({ title: 'Les klaar 🎉', rows: [['verdiend deze les', '+45 XP'], ['dagen reeks', '🔥 4'], ['Langste schone reeks: 54 woorden', '🏆']], footer: 'Spraakwater' });
+    const blob = await drawShareCard({ title: 'Les klaar', rows: [['verdiend deze les', '+45 XP'], ['dagen op rij', 4], ['Langste schone reeks: 54 woorden zonder stopwoord', 54]], footer: 'Vantage Point' });
     const buf = new Uint8Array(await blob.arrayBuffer());
     let bin = '';
     for (const b of buf) bin += String.fromCharCode(b);
@@ -969,7 +1001,7 @@ await step('import a backup: confirm replaces progress and keeps the old value',
   st.xp = 4321;
   await page.getByRole('button', { name: /Instellingen/ }).click();
   await page.locator('input[type=file]').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: Buffer.from('{oops') });
-  await page.locator('.toast').filter({ hasText: 'Spraakwater' }).first().waitFor();
+  await page.locator('.toast').filter({ hasText: 'Vantage Point' }).first().waitFor();
   if (await page.locator('.import-confirm').count()) throw new Error('bad file should not offer a confirm');
   await page.locator('input[type=file]').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(st)) });
   await page.locator('.import-confirm').getByText('4321 XP').waitFor();

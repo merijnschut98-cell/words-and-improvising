@@ -1,5 +1,6 @@
 // Every term of a course, searchable, grouped by module.
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { glossary } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
 
@@ -10,8 +11,8 @@ export function renderGlossary(app, { subject }, root) {
   const search = h('input', { type: 'search', class: 'text-input', placeholder: t('glossarySearch'), 'aria-label': t('glossarySearch') });
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
-      h('div', { class: 'round-title' }, `📚 ${t('glossary')}`), h('div', {})),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('div', { class: 'round-title' }, ico('library'), ' ', t('glossary')), h('div', {})),
     h('main', { class: 'screen glossary' }, search, list));
 
   const metas = MODULES.filter((m) => m.subject === subject);

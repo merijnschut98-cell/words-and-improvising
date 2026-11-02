@@ -1,4 +1,5 @@
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { PLAN_CUES, planCueText } from '../core/reminder.js';
 
 // Practice plan picker (implementation intention): a cue plus an optional hour.
@@ -36,5 +37,5 @@ export function planLine(app) {
   const { cue, hour } = app.state.plan || {};
   if (!cue && hour == null) return null;
   const when = [planCueText(cue, app.lang), hour != null ? `~${String(hour).padStart(2, '0')}:00` : ''].filter(Boolean).join(' · ');
-  return h('button', { class: 'plan-line', onclick: () => app.go('settings') }, `🗓 ${app.t('planYour')}: ${when} ✏️`);
+  return h('button', { class: 'plan-line', onclick: () => app.go('settings') }, ico('calendar'), ` ${app.t('planYour')}: ${when} `, ico('pen-line'));
 }

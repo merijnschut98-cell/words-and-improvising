@@ -1,6 +1,7 @@
 // A situation from his work: he answers (typed or spoken), then rates himself
 // against three rubric points, or the coach grades it when there is a key.
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { applySituation } from '../core/course.js';
 import { runGrade } from '../core/coursecoach.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
@@ -12,8 +13,8 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
   let rec = null;
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
-      h('div', { class: 'round-title' }, `🎭 ${t('sitTitle')}`), h('div', {})),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('div', { class: 'round-title' }, ico('drama'), ' ', t('sitTitle')), h('div', {})),
     main);
 
   app.openModule(subject, moduleId).then((mod) => {
@@ -32,7 +33,7 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
     const ta = h('textarea', { class: 'text-input sit-answer', rows: 5, placeholder: t('sitAnswerPh'), 'aria-label': t('sitAnswerPh') });
     let micBtn = null;
     if (speechSupported) {
-      const idle = () => { rec = null; if (micBtn.isConnected) micBtn.textContent = `🎙 ${t('sitSpeak')}`; };
+      const idle = () => { rec = null; if (micBtn.isConnected) micBtn.replaceChildren(ico('mic'), ' ', t('sitSpeak')); };
       micBtn = h('button', {
         class: 'btn btn-ghost small mic-btn',
         onclick: () => {
@@ -44,9 +45,9 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
             onError: idle,
           });
           if (rec.start() === false) { idle(); return; }
-          micBtn.textContent = `⏹ ${t('sitStop')}`;
+          micBtn.replaceChildren(ico('square'), ' ', t('sitStop'));
         },
-      }, `🎙 ${t('sitSpeak')}`);
+      }, ico('mic'), ' ', t('sitSpeak'));
     }
     main.replaceChildren(
       h('section', { class: 'card sit-card' },
@@ -95,11 +96,11 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
       h('section', { class: 'card sit-card sit-result' },
         h('p', { class: 'xp-line' }, `${t('sitPoints', pts)}${res.xp ? ` · +${res.xp} XP` : ''}`),
         lesson.situation.rubric.map((line, i) => h('p', { class: `rubric-result ${points[i] ? 'ok' : 'miss'}` },
-          h('span', { 'aria-hidden': 'true' }, points[i] ? '✓ ' : '✗ '), line)),
+          ico(points[i] ? 'check' : 'x'), ' ', line)),
         missed ? h('p', { class: 'note' }, `${t('coachMissed')}: ${missed}`) : null,
         h('p', { class: 'muted small' }, t('sitModel')),
         h('p', { class: 'said' }, lesson.situation.model)),
-      h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, moduleId, lesson.id) }, `🎙 ${t('openSayIt')}`),
+      h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, moduleId, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
   }
 

@@ -1,6 +1,8 @@
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { finishWelcome } from '../core/storage.js';
 import { planPicker } from './plan.js';
+import { brandLockup } from './home.js';
 
 // First-run explainer: three short slides, skippable.
 export function renderWelcome(app, _params, root) {
@@ -16,10 +18,10 @@ export function renderWelcome(app, _params, root) {
   function show() {
     const t = app.t;
     const slides = [
-      { icon: '💬', title: t('welcome1Title'), body: t('welcome1Body') },
-      { icon: '🎙', title: t('welcome2Title'), body: t('welcome2Body') },
-      { icon: '📲', title: t('welcome3Title'), body: t('welcome3Body') },
-      { icon: '🗓', title: t('welcome4Title'), body: t('welcome4Body'), extra: () => planPicker(app) },
+      { icon: null, title: t('welcome1Title'), body: t('welcome1Body') },
+      { icon: 'mic', title: t('welcome2Title'), body: t('welcome2Body') },
+      { icon: 'smartphone', title: t('welcome3Title'), body: t('welcome3Body') },
+      { icon: 'calendar', title: t('welcome4Title'), body: t('welcome4Body'), extra: () => planPicker(app) },
     ];
     const s = slides[i];
     const last = i === slides.length - 1;
@@ -27,14 +29,15 @@ export function renderWelcome(app, _params, root) {
       h('div', { class: 'welcome-top' },
         i === 0
           ? h('div', { class: 'segmented small-seg' },
-            [['nl', '🇳🇱 NL'], ['en', '🇬🇧 EN']].map(([v, label]) => h('button', {
+            [['nl', 'NL'], ['en', 'EN']].map(([v, label]) => h('button', {
               class: app.lang === v ? 'on' : '',
               onclick: () => { app.updateSettings({ lang: v }); show(); },
             }, label)))
           : h('span', {}),
         h('button', { class: 'icon-btn small', onclick: done }, t('skip'))),
       h('section', { class: 'welcome-slide' },
-        h('div', { class: 'welcome-icon', 'aria-hidden': 'true' }, s.icon),
+        // The first slide shows the Vantage mark; the others a quiet icon.
+        s.icon ? h('div', { class: 'welcome-icon' }, ico(s.icon)) : brandLockup(),
         h('h1', {}, s.title),
         h('p', {}, s.body),
         s.extra ? s.extra() : null),

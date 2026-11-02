@@ -10,7 +10,7 @@ function fakeBackend(init = {}) {
 test('missing data gives defaults', () => {
   const s = load(fakeBackend());
   assert.deepEqual(s, defaultState());
-  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'default', voiceStats: false });
+  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false });
 });
 
 test('corrupt data gives defaults and is backed up', () => {
@@ -212,4 +212,11 @@ test('courses and courseReviews default and coerce', () => {
   assert.deepEqual(ok.courses, good);
   assert.equal(ok.courseReviews['nl|eng.flow.takt#r0'].box, 2);
   assert.equal(ok.ui.subject, 'eng');
+});
+
+test('theme is auto, light or dark; retired themes and junk load as auto', () => {
+  const withTheme = (theme) => load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), settings: { theme } }) }));
+  for (const old of ['default', 'ocean', 'forest', 'night', 'purple', 3, null]) assert.equal(withTheme(old).settings.theme, 'auto', String(old));
+  for (const ok of ['auto', 'light', 'dark']) assert.equal(withTheme(ok).settings.theme, ok);
+  assert.equal(load(fakeBackend({ [KEY]: JSON.stringify({ settings: { lang: 'en' } }) })).settings.theme, 'auto');
 });
