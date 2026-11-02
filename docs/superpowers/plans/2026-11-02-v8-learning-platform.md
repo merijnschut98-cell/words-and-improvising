@@ -67,7 +67,7 @@
   - `loadModule(subject, moduleId, lang) -> Promise<{ lessons: Lesson[] }>` using `import(\`./${subject}/${slug}.${lang}.js\`)`; rejects on failure (callers handle).
   - `validateModule(en, nl, meta) -> string[]` of human-readable problems; `[]` when valid. Checks: same lesson ids in both, ids equal `meta.lessons`, each lesson has `title`, 1–2 `pre`, 3–5 `teach` blocks each ≤ 90 words, `example.kind` in `{worked, faded}` matching level (`faded` only when `meta.level >= 3`), `said`, 3–5 `recall`, each choice question has 4 options and `answer` in `options`, each numeric question has `number`, `tolerance > 0`, `unit`; `situation` with `scene`, `ask`, `model`, `rubric` of exactly 3; `sayIt`; 2–4 `terms` with `term` and `def`; no `<` or `>` anywhere; `why` present on every question.
 
-- [ ] **Step 1: Write the failing tests** in `tests/coursecontent.test.js`:
+- [x] **Step 1: Write the failing tests** in `tests/coursecontent.test.js`:
 
 ```js
 test('index: every module has a known subject and track, ≥ 3 lessons, level 1–4, titles in both languages', ...)
@@ -77,10 +77,10 @@ test('every shipped module validates and its files are listed in sw.js SHELL', a
 ```
 The fixture is a minimal two-lesson module defined inside the test file.
 
-- [ ] **Step 2: Run** `node --test tests/coursecontent.test.js` → FAIL (module not found).
-- [ ] **Step 3: Implement** `index.js` with `MODULES = []` for now and `validate.js`.
-- [ ] **Step 4: Run** → PASS (the shipped-modules test passes vacuously).
-- [ ] **Step 5: Commit** `Add course content index and validator`.
+- [x] **Step 2: Run** `node --test tests/coursecontent.test.js` → FAIL (module not found).
+- [x] **Step 3: Implement** `index.js` with `MODULES = []` for now and `validate.js`.
+- [x] **Step 4: Run** → PASS (the shipped-modules test passes vacuously).
+- [x] **Step 5: Commit** `Add course content index and validator`.
 
 ### Task 2: Storage defaults and coercion
 
