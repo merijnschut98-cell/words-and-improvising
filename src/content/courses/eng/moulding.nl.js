@@ -13,9 +13,9 @@ export default {
         },
       ],
       teach: [
-        'Een spuitgietmachine bestaat uit twee delen. De spuitunit smelt de kunststof en spuit hem in: korrels vallen uit de trechter in een verwarmde cilinder, waar een draaiende schroef ze smelt, mengt en vóór de punt verzamelt. De sluitunit houdt de matrijs vast: één helft staat vast, de andere beweegt. Eigenlijk is het een grote, nauwkeurige pers met aan één kant een verwarmde injectiespuit.',
-        'De cyclus heeft zes stappen. De matrijs sluit. De schroef schuift als een plunjer naar voren en vult de holte (inspuiten). Daarna blijft hij drukken om extra kunststof na te persen terwijl het product krimpt (nadruk). Het product koelt in de matrijs, terwijl de schroef draait en het volgende shot doseert. De matrijs gaat open. Uitwerppennen duwen het product eruit. En weer opnieuw.',
-        'Machines worden ingedeeld op sluitkracht, in ton. De gesmolten kunststof drukt de matrijshelften met honderden bar uit elkaar. Vuistregel: je hebt zo’n 0,3 tot 0,6 ton per cm² geprojecteerd oppervlak nodig, de schaduw van het product gezien vanuit de persrichting. Te weinig kracht en de matrijs gaat een fractie open: de kunststof lekt eruit als braam.',
+        'Een spuitgietmachine bestaat uit twee delen. De spuitunit smelt de kunststof en spuit hem in: kunststofkorrels vallen uit de trechter bovenop in een verwarmde cilinder (een lange stalen buis), waar een draaiende schroef ze smelt, mengt en vóór de punt verzamelt. De sluitunit houdt de matrijs vast: één helft staat vast, de andere beweegt. Eigenlijk is het een grote, nauwkeurige pers met aan één kant een verwarmde injectiespuit.',
+        'De cyclus heeft zes stappen. De matrijs sluit. De schroef schuift als een plunjer naar voren en duwt de smelt via het aanspuitpunt, een kleine opening, de holte in: de productvormige ruimte in de matrijs (inspuiten). Daarna blijft hij drukken om extra kunststof na te persen terwijl het product krimpt (nadruk). Het product koelt in de matrijs, terwijl de schroef draait en het volgende shot doseert. De matrijs gaat open. Uitwerppennen duwen het product eruit. En weer opnieuw.',
+        'Machines worden ingedeeld op sluitkracht, in ton. De gesmolten kunststof drukt de matrijshelften met honderden bar uit elkaar. Vuistregel: je hebt zo’n 0,3 tot 0,6 ton per cm² geprojecteerd oppervlak nodig, de schaduw van het product gezien vanuit de persrichting. Te weinig kracht en de matrijs gaat een fractie open op de deellijn, waar de helften op elkaar sluiten: de kunststof lekt eruit als braam, een dun vliesje aan het product.',
         'De matrijs is het dure, productspecifieke deel; de machine is generiek. Eén machine draait veel matrijzen, dus een spuitgieterij denkt in twee lijsten: welke machine heeft welke tonnage, en welke matrijs past op welke machines. Een matrijs die maar op één pers past, maakt die pers een bottleneck in de planning.',
       ],
       example: {
@@ -53,7 +53,7 @@ export default {
       situation: {
         scene: 'Je bent bij een spuitgieter die toelevert aan een autofabrikant. De planner zegt: “Machine 7 is vrij, daar zetten we de nieuwe matrijs op.” Machine 7 is 150 ton; het nieuwe product is groot en plat.',
         ask: 'Wat vraag je voordat de matrijs erop gaat?',
-        model: 'Wat is het geprojecteerd oppervlak van het product en hoeveel sluitkracht heeft de matrijs nodig? Als een groot plat product 200 ton vraagt, krijg je braam op machine 7, en dan verliezen we meer tijd met sorteren dan we winnen met een vrije pers. En past de matrijs fysiek: de afstand tussen de geleidekolommen en de inbouwhoogte?',
+        model: 'Wat is het geprojecteerd oppervlak van het product en hoeveel sluitkracht heeft de matrijs nodig? Als een groot plat product 200 ton vraagt, krijg je braam op machine 7, en dan verliezen we meer tijd met sorteren dan we winnen met een vrije pers. En past de matrijs fysiek tussen de geleidekolommen (de vier kolommen van de sluitunit), en valt de matrijshoogte binnen het bereik van de machine?',
         rubric: [
           'Vraagt naar geprojecteerd oppervlak en benodigde sluitkracht',
           'Koppelt te weinig tonnage aan braam en afkeur',
@@ -80,7 +80,7 @@ export default {
       ],
       teach: [
         'Een typische cyclus van 30 seconden is bijvoorbeeld: matrijs sluiten 2 s, inspuiten 1,5 s, nadruk 6 s, koelen 15 s, matrijs openen 2 s, uitwerpen en uitnemen 3,5 s. Koelen is vaak 50 tot 80% van de cyclus. De kunststof moet stijf genoeg zijn dat het product zijn vorm houdt als het eruit wordt geduwd.',
-        'De koeltijd groeit met het kwadraat van de wanddikte. Een twee keer zo dikke wand vraagt ruwweg vier keer zoveel koeltijd. Daarom vechten ontwerpers voor dunne, gelijkmatige wanden, en daarom kan één dikke bus de cyclus van het hele product bepalen. Ook de matrijstemperatuur en goed geplaatste koelkanalen tellen mee.',
+        'De koeltijd groeit met het kwadraat van de wanddikte. Een twee keer zo dikke wand vraagt ruwweg vier keer zoveel koeltijd. Daarom vechten ontwerpers voor dunne, gelijkmatige wanden, en daarom kan één dikke bus (een massief nokje, bijvoorbeeld voor een schroef) de cyclus van het hele product bepalen. Ook de matrijstemperatuur en goed geplaatste koelkanalen tellen mee.',
         'Output per uur = 3.600 / cyclustijd × aantal holtes. Een 4-voudige matrijs op 24 seconden geeft 3.600 / 24 × 4 = 600 stuks per uur. Meer holtes betekent meer stuks per cyclus, maar ook een grotere, duurdere matrijs en een grotere machine. Is één holte beschadigd, dan wordt die vaak dichtgezet en draait de matrijs op drie.',
         'Cyclustijd is een commercieel getal. De verkoopprijs van een product is berekend met een cyclustijd. Loopt de echte cyclus 10% langzamer, dan kan de marge op dat product verdwijnen. Zegt iemand dat een matrijs “op 28 seconden loopt”, vraag dan of dat de gecalculeerde cyclus is, de ingestelde, of het gemiddelde dat een week lang echt gehaald is.',
       ],
@@ -120,10 +120,10 @@ export default {
       situation: {
         scene: 'Je bent bij een spuitgieter met een capaciteitsprobleem. Volgens het ERP loopt matrijs 4411 op 22 seconden. De operators zeggen dat hij al maanden op 26 seconden draait “vanwege kromtrekken”.',
         ask: 'Wat vraag je, en waarom doet het ertoe?',
-        model: 'Op welke cyclus hebben we dit product gecalculeerd, en wat is de gemiddelde echte cyclus van de afgelopen weken? Vier seconden op 22 is 18% minder output en meer machine-uren dan gepland, dus zowel de capaciteitsplanning als de marge kloppen niet. En wie heeft die extra koeltijd bepaald: lost die het kromtrekken op, of verstopt die een koelprobleem in de matrijs?',
+        model: 'Op welke cyclus hebben we dit product gecalculeerd, en wat is de gemiddelde echte cyclus van de afgelopen weken? Vier seconden op 22 is 18% meer machinetijd per product, oftewel zo’n 15% minder output dan gepland, dus zowel de capaciteitsplanning als de marge kloppen niet. En wie heeft die extra koeltijd bepaald: lost die het kromtrekken op, of verstopt die een koelprobleem in de matrijs?',
         rubric: [
           'Maakt onderscheid tussen gecalculeerde, ingestelde en echte cyclustijd',
-          'Maakt de impact concreet: 18% output en marge',
+          'Maakt de impact concreet: zo’n 15% minder output, 18% meer machine-uren, minder marge',
           'Vraagt naar de oorzaak in plaats van extra koeltijd als blijvend te accepteren',
         ],
       },
@@ -147,9 +147,9 @@ export default {
       ],
       teach: [
         'Met vier kunststoffen kom je al een heel eind. PP: goedkoop, taai, chemisch bestendig, voor doppen, kratten en auto-interieurs. ABS: stijf, mooi oppervlak, voor behuizingen. PA (nylon): sterk en hittebestendig, vaak glasgevuld, voor technische delen onder de motorkap. PC: transparant en slagvast, voor lenzen en kappen. Elk heeft zijn eigen smelt- en matrijstemperatuur.',
-        'Sommige kunststoffen nemen water op uit de lucht: PA, PC, PET en PBT. Die moeten vóór het spuitgieten gedroogd worden, meestal 2 tot 4 uur op 80 tot 120 °C in een droger die droge lucht blaast. Nat materiaal geeft zilverstrepen (splay) en, erger, zwakke producten die er goed uitzien maar later breken. PP en PE nemen nauwelijks water op en hoeven meestal niet gedroogd.',
-        'Maalgoed is vermalen aanspuitingen en afkeur die terug de trechter in gaan. Dat bespaart materiaal, maar elke keer door de cilinder degradeert de kunststof een beetje. Klanten staan vaak een maximum toe, bijvoorbeeld 10 tot 25%, en sommige veiligheids- of medische producten helemaal niks. Een maalmolen naast de machine is normaal; een onduidelijke verhouding is een kwaliteitsrisico.',
-        'Kleur komt meestal uit masterbatch: gekleurde korrels die er voor een paar procent bij gaan. Een kleurwissel betekent de cilinder spoelen tot de oude kleur weg is. Donker naar licht is het traagst; van zwart naar wit kan een uur en veel afval kosten. Goede planners plannen van licht naar donker.',
+        'Sommige kunststoffen nemen water op uit de lucht: PA, PC, PET en PBT. Die moeten vóór het spuitgieten gedroogd worden, meestal 2 tot 4 uur op 80 tot 120 °C (PET nog heter) in een droger die heel droge lucht door de korrels blaast; je controleert het dauwpunt van die lucht. Nat materiaal geeft zilverstrepen (splay) en, erger, zwakke producten die er goed uitzien maar later breken. PP en PE nemen nauwelijks water op en hoeven meestal niet gedroogd te worden.',
+        'Maalgoed is vermalen aanspuitingen (de kanaaltjes kunststof die de holtes voeden) en afkeur die terug de trechter in gaan. Dat bespaart materiaal, maar elke keer door de cilinder degradeert de kunststof een beetje. Klanten staan vaak een maximum toe, bijvoorbeeld 10 tot 25%, en sommige veiligheids- of medische producten helemaal niks. Een maalmolen naast de machine is normaal; een onduidelijke verhouding is een kwaliteitsrisico.',
+        'Kleur komt meestal uit masterbatch: gekleurde korrels die er voor een paar procent bij gaan. Een kleurwissel betekent spoelen: nieuw materiaal door de cilinder duwen tot de oude kleur weg is. Donker naar licht is het traagst; van zwart naar wit kan een uur en veel afval kosten. Goede planners plannen van licht naar donker.',
       ],
       example: {
         kind: 'worked',
@@ -213,14 +213,14 @@ export default {
         },
       ],
       teach: [
-        'Short shot, onvolledige vulling: het product is niet helemaal vol. Oorzaken: te weinig gedoseerd, te lage inspuitdruk of -snelheid, te koude kunststof, of lucht die niet weg kan via de ontluchting. Braam (flash): een dun velletje kunststof op de deellijn of rond pennen. Oorzaken: te hoge druk, te weinig sluitkracht, of een versleten matrijs waarvan de helften niet meer goed afsluiten.',
-        'Inzakplekken (sink marks): deukjes boven dikke delen. De binnenkant blijft krimpen nadat de huid al vast is. Oorzaken: te weinig nadruk of te korte nadruktijd, een aanspuitpunt dat te vroeg bevriest, of een ontwerp met dikke ribben en bussen. Holtes (voids) zijn hetzelfde probleem binnenin: luchtbellen waar de kern is weggekrompen.',
+        'Short shot, onvolledige vulling: het product is niet helemaal vol. Oorzaken: te weinig gedoseerd, te lage inspuitdruk of -snelheid, te koude kunststof, of lucht die niet weg kan via de ontluchting, piepkleine sleufjes in de matrijs waar lucht uit kan. Braam (flash): een dun velletje kunststof op de deellijn of rond pennen. Oorzaken: te hoge druk, te weinig sluitkracht, of een versleten matrijs waarvan de helften niet meer goed afsluiten.',
+        'Inzakplekken (sink marks): deukjes boven dikke delen. De binnenkant blijft krimpen nadat de huid al vast is. Oorzaken: te weinig nadruk of te korte nadruktijd, een aanspuitpunt dat te vroeg bevriest (stolt), of een ontwerp met dikke ribben en bussen. Holtes (voids) zijn hetzelfde probleem binnenin: luchtbellen waar de kern is weggekrompen.',
         'Kromtrekken (warpage): het product buigt na het uitwerpen omdat het ongelijk krimpt. Oorzaken: ongelijke wanddikte, één matrijshelft warmer dan de andere, glasvezels die allemaal één kant op liggen, of te warm uitwerpen. Kromtrekken komt vaak pas uren later, dus het kan bij de machine door de controle komen en bij de klant afgekeurd worden.',
         'Brandplekken: zwarte of bruine plekjes, meestal aan het eind van de vloeiweg. Lucht zit opgesloten en wordt zo snel samengeperst dat hij heet wordt en de kunststof verbrandt. Oorzaken: verstopte of ontbrekende ontluchting, te snel inspuiten. Elke fout wijst naar een paar oorzaken. Goede engineers vragen eerst wat er veranderd is, voordat ze aan de instellingen zitten.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een PP-krat begint na 80.000 shots op één hoek braam te geven. De insteller zet de sluitkracht van 180 naar 220 ton en de braam is weg. Twee weken later is hij terug, erger. De echte oorzaak: de deellijn op die hoek is versleten, dus de helften sluiten daar niet meer af. Meer sluitkracht schoof het probleem alleen vooruit en geeft extra slijtage. De oplossing: matrijs eruit, deellijn repareren in de gereedschapmakerij, en weer draaien op 180 ton.',
+        text: 'Een PP-krat begint na 80.000 shots op één hoek braam te geven. De insteller zet de sluitkracht van 180 naar 220 ton en de braam is weg. Twee weken later is hij terug, erger. De echte oorzaak: de deellijn op die hoek is versleten, dus de helften sluiten daar niet meer af. Meer sluitkracht schoof het probleem alleen vooruit en geeft extra slijtage. De oplossing: matrijs eruit, deellijn repareren in de gereedschapmakerij (de eigen matrijzenwerkplaats), en weer draaien op 180 ton.',
       },
       said: 'Wat engineers zeggen: “Hij loopt niet vol aan het eind van de vloeiweg. Voordat je de druk opschroeft: check de ontluchting.”',
       recall: [
@@ -280,14 +280,14 @@ export default {
         },
       ],
       teach: [
-        'De belangrijkste instellingen: smelttemperatuur, matrijstemperatuur, inspuitsnelheid, omschakelpunt (van vullen naar nadruk), nadruk en nadruktijd, koeltijd en tegendruk. Het procesvenster is het bereik van die instellingen waarbinnen elk product goed is. Een breed venster is robuust; een smal venster betekent dat kleine schommelingen in materiaal of temperatuur al afkeur geven.',
-        'Scientific moulding (ook wel decoupled moulding) knipt de cyclus op: vul zo’n 95 tot 98% van het product op snelheid, en schakel dan om naar druk om het laatste stukje na te persen. De engineer vindt de instellingen met korte studies: een viscositeitscurve voor de inspuitsnelheid, een gate-freeze-studie voor de nadruktijd, en een test van het venster. Het resultaat is een vastgelegde, onderbouwde instelling.',
+        'De belangrijkste instellingen: smelttemperatuur, matrijstemperatuur, inspuitsnelheid, omschakelpunt (van vullen naar nadruk), nadruk en nadruktijd, koeltijd en tegendruk (de weerstand waartegen de schroef doseert, wat de smelt goed mengt). Het procesvenster is het bereik van die instellingen waarbinnen elk product goed is. Een breed venster is robuust; een smal venster betekent dat kleine schommelingen in materiaal of temperatuur al afkeur geven.',
+        'Scientific moulding (ook wel decoupled moulding) knipt de cyclus op: vul zo’n 95 tot 98% van het product op snelheid, en schakel dan om naar druk om het laatste stukje na te persen. De engineer vindt de instellingen met korte studies: een viscositeitscurve (hoe makkelijk de smelt bij elke snelheid vloeit) om de inspuitsnelheid te kiezen, een gate-freeze-studie (wanneer het aanspuitpunt stolt) om de nadruktijd te bepalen, en een test van het venster. Het resultaat is een vastgelegde, onderbouwde instelling.',
         '“Even bijdraaien” is riskant. Instellingen beïnvloeden elkaar: hogere temperatuur verandert de viscositeit, dat verandert het vullen, dat verandert de druk. Elke dienst die een paar waarden aanpast, duwt het proces ergens anders heen, en niemand weet meer welke instelling wat oplost. Na een maand heeft een matrijs drie versies van “de goede instellingen”.',
-        'Goede bedrijven zetten de goedgekeurde instellingen vast, loggen elke wijziging met een reden, en vragen eerst “wat is er veranderd?” voordat ze bijstellen. Moet een operator blijven bijdraaien om goede producten te maken, dan zit de echte oorzaak eerder in het proces: nat materiaal, een verstopt koelkanaal, een versleten terugslagring op de schroef. Bijdraaien verstopt dat.',
+        'Goede bedrijven zetten de goedgekeurde instellingen vast, loggen elke wijziging met een reden, en vragen eerst “wat is er veranderd?” voordat ze bijstellen. Moet een operator blijven bijdraaien om goede producten te maken, dan zit de echte oorzaak eerder in het proces: nat materiaal, een verstopt koelkanaal, een versleten terugslagring, het ventielringetje op de schroefpunt dat voorkomt dat smelt terugstroomt. Bijdraaien verstopt dat.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een matrijs voor een PC-lens geeft 3% afkeur. De engineer vindt in het log 14 wijzigingen in 6 weken, van vier mensen. Ze zet alles terug naar de goedgekeurde instelkaart, draait een studie van 30 shots en ziet dat het omschakelpunt verloopt omdat de terugslagring op de schroef lekt: het restkussen schommelt van 2 tot 8 mm. Na vervanging van de terugslagring draaien de oorspronkelijke instellingen op 0,4% afkeur. De oplossing was een onderdeel van €300, niet die 14 aanpassingen.',
+        text: 'Een matrijs voor een PC-lens geeft 3% afkeur. De engineer vindt in het log 14 wijzigingen in 6 weken, van vier mensen. Ze zet alles terug naar de goedgekeurde instelkaart, draait een studie van 30 shots en ziet dat het omschakelpunt verloopt omdat de terugslagring op de schroef lekt: het restkussen, de smelt die na het inspuiten vóór de schroef overblijft, schommelt van 2 tot 8 mm. Na vervanging van de terugslagring draaien de oorspronkelijke instellingen op 0,4% afkeur. De oplossing was een onderdeel van €300, niet die 14 aanpassingen.',
       },
       said: 'Wat engineers zeggen: “Ga het niet met instellingen najagen. Als het kussen zo heen en weer springt, is de terugslagring op.”',
       recall: [
@@ -348,9 +348,9 @@ export default {
       ],
       teach: [
         'Een matrijs is precisiegereedschap van gehard staal, met holtes, koelkanalen, uitwerppennen en ontluchting. Een eenvoudige matrijs kost al €20.000; een meervoudige of grote automotive matrijs al snel €100.000 tot €300.000 of meer. De levertijd is meestal 10 tot 16 weken, plus proefspuitingen (T1, T2) voordat de klant de producten vrijgeeft.',
-        'Het aanspuitsysteem brengt de kunststof van de spuitmond naar de holtes. Een koudkanaal stolt en wordt met de producten uitgeworpen, als afval of maalgoed. Een heetkanaal houdt de kunststof vloeibaar in een verwarmd verdeelblok: geen aanspuitafval en vaak een kortere cyclus, maar een duurdere matrijs en extra storingsbronnen zoals verwarmingszones en lekkage.',
+        'Het aanspuitsysteem is het kanalenstelsel dat de kunststof van de spuitmond van de machine naar de holtes brengt. Een koudkanaal stolt en wordt met de producten uitgeworpen, als afval of maalgoed. Een heetkanaal houdt de kunststof vloeibaar in een verwarmd verdeelblok (een blok met kanalen in de matrijs): geen aanspuitafval en vaak een kortere cyclus, maar een duurdere matrijs en extra storingsbronnen zoals verwarmingszones en lekkage.',
         'Matrijzen hebben preventief onderhoud nodig, vaak elke 50.000 tot 100.000 shots of op een vaste kalender: ontluchting schoonmaken, uitwerppennen checken, koelkanalen ontkalken en de deellijn controleren. Onderhoud overslaan zie je later terug als braam, onvolledig gevulde producten en langere cycli. De shotteller op de matrijs is het getal dat telt.',
-        'Een matrijswissel duurt meestal 1 tot 2 uur: water en heetkanaal loskoppelen, kraan, losnemen, opspannen, opwarmen en eerste-stukgoedkeuring. Met SMED breng je dat naar 15 tot 30 minuten: de volgende matrijs voorverwarmen, standaard opspanplaten, snelkoppelingen voor water en stroom, en alles wat kan doen terwijl de machine nog draait.',
+        'Een matrijswissel duurt meestal 1 tot 2 uur: water en heetkanaal loskoppelen, kraan, losnemen, opspannen, opwarmen en eerste-stukgoedkeuring. Met SMED breng je dat naar 15 tot 30 minuten: de volgende matrijs voorverwarmen, standaard opspanplaten, snelkoppelingen voor water en stroom, en alles wat kan al doen terwijl de machine nog draait.',
       ],
       example: {
         kind: 'worked',
