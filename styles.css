@@ -762,6 +762,9 @@ details.finder summary::-webkit-details-marker { display: none; }
 }
 .step span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .step-done { color: var(--accent-dark); border-bottom-color: var(--accent); }
+.step-jump { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; min-width: 0; min-height: 32px; width: 100%; }
+.step-jump:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+.guess-review { margin-top: 12px; }
 .step-current { color: var(--heading); font-weight: 700; border-bottom-color: var(--primary); }
 
 /* Settings groups. */

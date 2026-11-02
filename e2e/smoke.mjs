@@ -267,6 +267,13 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
     else await pg.locator('.pre-card .opt').first().click();
     await pg.locator('.pre-card .btn-primary', { hasText: 'Verder' }).click();
   }
+  // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
+  await pg.locator('.teach-card').waitFor();
+  await pg.locator('.lesson > .lesson-back').click();
+  await pg.locator('.pre-card').waitFor();
+  if (await pg.locator('.pre-card .opt').count()) throw new Error('going back asked the guess again');
+  await pg.locator('.pre-card .btn-primary', { hasText: 'Verder' }).click();
+  await pg.locator('.teach-card').waitFor();
   for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
   else await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
@@ -300,6 +307,7 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   }
   await pg.locator('.quiz-review .btn-primary').click();
   await pg.locator('.lesson-done').waitFor();
+  if (!(await pg.locator('.guess-review .review-row').count())) throw new Error('no feedback on the guesses');
   return lesson;
 }
 

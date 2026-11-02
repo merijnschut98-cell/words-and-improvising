@@ -241,3 +241,29 @@ export function lessonSteps(phases, current) {
   const at = current === 'done' ? phases.length : phases.indexOf(current);
   return phases.map((p, i) => ({ id: STEP_OF[p], state: i < at ? 'done' : i === at ? 'current' : 'todo' }));
 }
+
+const withUnit = (q, v) => (q.unit ? `${v} ${q.unit}` : String(v));
+
+// The guesses from the start of a lesson, each next to the right answer and
+// why: the gap between guess and answer is what makes the lesson stick.
+export function guessFeedback(lesson, guesses) {
+  return (lesson.pre || []).flatMap((q, i) => {
+    const g = guesses[i];
+    if (g == null) return [];
+    const num = 'number' in q;
+    return [{ q: q.q, guess: num ? withUnit(q, g) : g, answer: num ? withUnit(q, q.number) : q.answer, ok: judge(q, g), why: q.why }];
+  });
+}
+
+// One step back in a lesson: previous guess, read block, example or check.
+// Null when there is nothing before.
+export function lessonBack({ p, block, pre }, phases, lesson) {
+  const here = phases[p];
+  if (here === 'pre' && pre > 0) return { p, block: 0, pre: pre - 1 };
+  if (here === 'teach' && block > 0) return { p, block: block - 1, pre };
+  if (p === 0) return null;
+  const prev = phases[p - 1];
+  if (prev === 'teach') return { p: p - 1, block: lesson.teach.length - 1, pre };
+  if (prev === 'pre') return { p: p - 1, block: 0, pre: Math.max(0, (lesson.pre || []).length - 1) };
+  return { p: p - 1, block: 0, pre };
+}

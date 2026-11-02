@@ -3,16 +3,21 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, lessonPhases, lessonSteps, recallQuestions } from '../core/course.js';
+import { applyLesson, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
 
-// Where he is in the lesson: Guess · Read · Example · Check, the current one marked.
-export function stepIndicator(t, phases, current) {
-  return h('ol', { class: 'steps', 'aria-label': t('stepsLabel') }, lessonSteps(phases, current).map((st) => h('li', {
-    class: `step step-${st.state}`, 'aria-current': st.state === 'current' ? 'step' : null,
-  }, st.state === 'done' ? ico('check') : null, h('span', {}, t(`step_${st.id}`)))));
+// Where he is in the lesson: Guess · Read · Example · Check, the current one
+// marked. With onJump, a step already done is a button back to it.
+export function stepIndicator(t, phases, current, onJump = null) {
+  return h('ol', { class: 'steps', 'aria-label': t('stepsLabel') }, lessonSteps(phases, current).map((st, i) => {
+    const label = [st.state === 'done' ? ico('check') : null, h('span', {}, t(`step_${st.id}`))];
+    const inner = onJump && st.state === 'done'
+      ? h('button', { class: 'step-jump', 'aria-label': t('stepGoTo', t(`step_${st.id}`)), onclick: () => onJump(i) }, ...label)
+      : label;
+    return h('li', { class: `step step-${st.state}`, 'aria-current': st.state === 'current' ? 'step' : null }, ...[].concat(inner));
+  }));
 }
 
 export function renderLesson(app, { subject, moduleId, lessonId }, root) {
@@ -50,10 +55,16 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     let block = 0;
     let pre = 0;
     let finished = false;
+    const guesses = []; // his first guesses; going back shows them, never changes them
     const next = () => { p += 1; block = 0; draw(); };
+    const jump = (i) => { finished = false; p = i; block = 0; if (phases[i] === 'pre') pre = 0; draw(); };
+    const goBack = () => { const b = lessonBack({ p, block, pre }, phases, lesson); if (b) { ({ p, block, pre } = b); draw(); } };
+    const backBtn = () => (lessonBack({ p, block, pre }, phases, lesson)
+      ? h('button', { class: 'btn btn-ghost lesson-back', onclick: goBack }, ico('chevron-left'), ' ', t('lessonBack'))
+      : null);
     const dots = (n, i) => h('div', { class: 'dots', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
     // Every step starts with the indicator; the rest of the screen follows it.
-    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p]), ...nodes);
+    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes);
 
     function draw() {
       const phase = phases[p];
@@ -61,14 +72,16 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       if (phase === 'pre') {
         const q = lesson.pre[pre];
         const pick = (o) => {
+          if (guesses[pre] == null) guesses[pre] = o;
           show(h('section', { class: 'card pre-card' },
             h('p', { class: 'quiz-q' }, q.q),
-            h('p', { class: 'muted' }, t('preGuessed', o)),
+            h('p', { class: 'muted' }, t('preGuessed', guesses[pre])),
             h('button', {
               class: 'btn btn-primary',
               onclick: () => { if (pre + 1 < lesson.pre.length) { pre += 1; draw(); } else next(); },
-            }, t('quizNext'))));
+            }, t('quizNext'))), backBtn());
         };
+        if (guesses[pre] != null) { pick(guesses[pre]); return; }
         show(h('section', { class: 'card pre-card' },
           h('p', { class: 'muted small' }, t('preHint')),
           h('p', { class: 'quiz-q' }, q.q),
@@ -78,7 +91,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
               return h('div', {}, h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
                 h('button', { class: 'btn btn-primary', onclick: () => pick(input.value.trim() || '?') }, t('quizNext')));
             })()
-            : h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => pick(o) }, o)))));
+            : h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', { class: 'opt', onclick: () => pick(o) }, o)))), backBtn());
         return;
       }
       if (phase === 'teach') {
@@ -92,7 +105,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('button', {
             class: 'btn btn-primary btn-big',
             onclick: () => { if (last) next(); else { block += 1; draw(); } },
-          }, t('quizNext')));
+          }, t('quizNext')), backBtn());
         return;
       }
       if (phase === 'example') {
@@ -112,12 +125,12 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
                 reveal.replaceChildren(h('p', { class: 'teach-text reveal' }, ex.reveal),
                   h('button', { class: 'btn btn-primary', onclick: next }, t('quizNext')));
               },
-            }, t('reveal'))));
+            }, t('reveal'))), backBtn());
           return;
         }
         show(h('section', { class: 'card example-card' },
           h('p', { class: 'teach-text' }, ex.text)),
-        h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')));
+        h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')), backBtn());
         return;
       }
       if (phase === 'quiz') {
@@ -125,6 +138,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         show(box);
         renderQuiz(app, {
           questions: recallQuestions(lesson),
+          onBack: goBack,
           onDone: (firstTry) => {
             const res = applyLesson(app.state, { subject, lessonId: lesson.id, firstTry, lang: app.lang }, app.today(), Date.now());
             app.setState(res.state);
@@ -159,6 +173,19 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       return h('div', { class: 'explain' }, open, out);
     }
 
+    // The guesses from the start, now with the answer: the gap is the lesson.
+    function guessCard() {
+      const fb = guessFeedback(lesson, guesses);
+      if (!fb.length) return null;
+      return h('section', { class: 'card guess-review' },
+        h('h2', { class: 'card-title' }, t('guessTitle')),
+        fb.map(({ q, guess, answer, ok, why }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}` },
+          h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q),
+          ok ? null : h('p', { class: 'small' }, t('guessYours', guess)),
+          h('p', { class: 'small' }, h('b', {}, answer)),
+          h('p', { class: 'muted small' }, why))));
+    }
+
     function done(xp) {
       finished = true;
       show(h('section', { class: 'card lesson-done' },
@@ -166,6 +193,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         h('h2', { class: 'card-title' }, t('lessonPassed')),
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
+      guessCard(),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));

@@ -232,3 +232,25 @@ test('quiz: back undoes the previous answer within a pass, so it can be answered
   assert.equal(backQuiz(s, qs), s, 'no going back once the answers are shown');
   assert.deepEqual(s.firstTry, { 'l#r0': true, 'l#r1': true, 'l#r2': true });
 });
+
+import { guessFeedback, lessonBack } from '../src/core/course.js';
+
+test('guess feedback: each guess next to the right answer and the why; unanswered ones are skipped', () => {
+  const lesson = { pre: [{ q: 'A?', options: ['x', 'y'], answer: 'y', why: 'wy' }, { q: 'N?', number: 50, tolerance: 0, unit: 's', why: 'wn' }, { q: 'C?', options: ['p', 'q'], answer: 'p', why: 'wc' }] };
+  const fb = guessFeedback(lesson, ['x', '50', undefined]);
+  assert.equal(fb.length, 2);
+  assert.deepEqual(fb[0], { q: 'A?', guess: 'x', answer: 'y', ok: false, why: 'wy' });
+  assert.deepEqual(fb[1], { q: 'N?', guess: '50 s', answer: '50 s', ok: true, why: 'wn' });
+});
+
+test('lesson back: one step back at a time, through guesses, read blocks, example and check', () => {
+  const lesson = { pre: [{}, {}], teach: ['a', 'b', 'c'], example: {}, recall: [] };
+  const phases = ['pre', 'teach', 'example', 'quiz'];
+  const b = (p, block = 0, pre = 0) => lessonBack({ p, block, pre }, phases, lesson);
+  assert.equal(b(0, 0, 0), null, 'nothing before the first guess');
+  assert.deepEqual(b(0, 0, 1), { p: 0, block: 0, pre: 0 });
+  assert.deepEqual(b(1, 0, 1), { p: 0, block: 0, pre: 1 }, 'from the first read block to the last guess');
+  assert.deepEqual(b(1, 2, 1), { p: 1, block: 1, pre: 1 });
+  assert.deepEqual(b(2, 0, 1), { p: 1, block: 2, pre: 1 }, 'from the example to the last read block');
+  assert.deepEqual(b(3, 0, 1), { p: 2, block: 0, pre: 1 });
+});

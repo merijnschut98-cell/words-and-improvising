@@ -7,7 +7,7 @@ import { startQuiz, answerQuiz, backQuiz, continueQuiz, judge } from '../core/co
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
 const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
 
-export function renderQuiz(app, { questions, onDone }, box) {
+export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
@@ -23,7 +23,11 @@ export function renderQuiz(app, { questions, onDone }, box) {
 
   function askCard() {
     const q = questions[st.order[st.i]];
-    const backBtn = st.i > 0 ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack')) : null;
+    // Within a pass: take back the last answer. Before the first: back out of
+    // the quiz (in a lesson, to the example).
+    const backBtn = st.i > 0
+      ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack'))
+      : (onBack && st.pass === 1 ? h('button', { class: 'btn btn-ghost small lesson-back', onclick: onBack }, ico('chevron-left'), ' ', t('lessonBack')) : null);
     const progress = h('p', { class: 'quiz-progress muted small' }, `${st.pass > 1 ? `${t('quizAgain')} · ` : ''}${st.i + 1}/${st.order.length}`);
     if ('number' in q) {
       const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
