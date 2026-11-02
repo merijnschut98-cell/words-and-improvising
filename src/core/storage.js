@@ -1,13 +1,15 @@
 // Versioned persistence on a localStorage-like backend ({getItem, setItem}).
 import { DRILLS } from './progress.js';
 
+// The key keeps the app's old name on purpose: renaming it would lose everyone's progress.
 export const KEY = 'spraakwater:v1';
+export const THEMES = ['auto', 'light', 'dark'];
 const HISTORY_CAP = 200;
 
 export function defaultState() {
   return {
     version: 1,
-    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'default', voiceStats: false },
+    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false },
     xp: 0,
     streak: { count: 0, lastDay: null },
     days: {}, // 'YYYY-MM-DD' -> rounds completed that day
@@ -58,6 +60,8 @@ export function load(backend) {
   for (const k of ['settings', 'streak', 'drillLevels', 'days', 'seen', 'ui', 'plan']) {
     merged[k] = { ...base[k], ...(isObject(parsed[k]) ? parsed[k] : {}) };
   }
+  // Retired colour themes (default, ocean, forest, night) follow the system now.
+  if (!THEMES.includes(merged.settings.theme)) merged.settings.theme = 'auto';
   if (!Array.isArray(merged.history)) merged.history = [];
   if (!Array.isArray(merged.events)) merged.events = [];
   if (!isObject(merged.reviews)) merged.reviews = {};

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MILESTONES, THEMES, newMilestones, unlockedThemes } from '../src/core/milestones.js';
+import { MILESTONES, newMilestones } from '../src/core/milestones.js';
 import { defaultState } from '../src/core/storage.js';
 
 const entry = (drill = 'minute', extra = {}) => ({ ts: 1, drill, durationS: 60, cleanRun: 10, metrics: { words: 80, fillerCount: 2, fillerRate: 2 }, ...extra });
@@ -46,10 +46,6 @@ test('a clean minute: 55+ s, 60+ words, zero fillers', () => {
   assert.ok(newMilestones(s).includes('cleanMinute'));
 });
 
-test('unlocks map to known themes; unlockedThemes follows reached milestones', () => {
-  const unlocking = MILESTONES.filter((m) => m.unlocks);
-  assert.ok(unlocking.length >= 3);
-  for (const m of unlocking) assert.ok(THEMES.includes(m.unlocks));
-  assert.deepEqual(unlockedThemes([]), ['default']);
-  assert.deepEqual(unlockedThemes(unlocking.map((m) => m.id)), ['default', ...unlocking.map((m) => m.unlocks)]);
+test('milestones unlock nothing: the colour themes are retired', () => {
+  assert.ok(MILESTONES.every((m) => !('unlocks' in m)));
 });

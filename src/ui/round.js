@@ -1,6 +1,7 @@
 import { meterShouldTurnOff } from '../core/loudness.js';
 import { roundSeconds, replyAfter } from '../core/pressure.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
+import { ico } from './icons.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
 import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
 import { say, hush, voiceSupported, speakCapMs } from '../core/voice.js';
@@ -89,16 +90,17 @@ function promptCard(app, prompt, state) {
   if (x.shadow) {
     // Shadowing: the model is shown (and spoken), then hidden; he says it from memory.
     state.statementEl = h('p', { class: 'prompt-sub shadow-model', hidden: true }, x.model);
-    state.cueEl = h('p', { class: 'prompt-main cue-text' }, '🎧 …');
-    card.append(h('p', { class: 'prompt-sub' }, `🎧 ${t('shadowLabel')}`), state.statementEl, state.cueEl,
+    state.cueEl = h('p', { class: 'prompt-main cue-text' }, ico('headphones'), ' …');
+    card.append(h('p', { class: 'prompt-sub' }, ico('headphones'), ' ', t('shadowLabel')), state.statementEl, state.cueEl,
       h('p', { class: 'cue-hint' }, t('shadowHint')));
     return card;
   }
   switch (prompt.drill) {
     case 'explain':
-      card.append(h('p', { class: 'prompt-main' }, prompt.body),
+      // Native append prints null as text: keep only the lines that exist.
+      card.append(...[h('p', { class: 'prompt-main' }, prompt.body),
         x.audience ? h('p', { class: 'prompt-sub' }, `${t('for')}: `, h('b', {}, x.audience)) : null,
-        x.course ? h('p', { class: 'prompt-sub' }, `${t('useTerms')}: `, h('b', {}, (x.course.terms || []).join(', '))) : null);
+        x.course ? h('p', { class: 'prompt-sub' }, `${t('useTerms')}: `, h('b', {}, (x.course.terms || []).join(', '))) : null].filter(Boolean));
       break;
     case 'prep':
       card.append(h('p', { class: 'prompt-main' }, prompt.body),
@@ -114,7 +116,7 @@ function promptCard(app, prompt, state) {
         h('p', { class: 'bubble' }, `“${prompt.body}”`));
       break;
     case 'boss':
-      state.sideEl = h('div', { class: 'side-banner' }, `👍 ${app.t('sideFor')}`);
+      state.sideEl = h('div', { class: 'side-banner' }, ico('thumbs-up'), ` ${app.t('sideFor')}`);
       state.side = 'for';
       state.wordChips = x.words.map((w) => h('span', { class: 'chip word' }, w));
       state.twistChip = h('div', { class: 'twist', hidden: true });
@@ -122,7 +124,7 @@ function promptCard(app, prompt, state) {
         h('div', { class: 'scaffold' }, state.wordChips), state.sideEl, state.twistChip);
       break;
     case 'debate':
-      state.sideEl = h('div', { class: 'side-banner' }, `👍 ${app.t('sideFor')}`);
+      state.sideEl = h('div', { class: 'side-banner' }, ico('thumbs-up'), ` ${app.t('sideFor')}`);
       state.side = 'for';
       card.append(h('p', { class: 'prompt-main' }, prompt.body), state.sideEl);
       break;
@@ -131,15 +133,15 @@ function promptCard(app, prompt, state) {
       state.fillerEl = h('b', {}, '0');
       card.append(h('p', { class: 'prompt-main' }, prompt.body),
         h('div', { class: 'pause-counters' },
-          h('div', { class: 'counter good' }, h('span', {}, `🤫 ${app.t('pausesLabel')}`), state.pauseEl),
-          h('div', { class: 'counter' }, h('span', {}, `🚫 ${app.t('fillersLabel')}`), state.fillerEl)));
+          h('div', { class: 'counter good' }, h('span', {}, ico('pause'), ' ', app.t('pausesLabel')), state.pauseEl),
+          h('div', { class: 'counter' }, h('span', {}, ico('x'), ' ', app.t('fillersLabel')), state.fillerEl)));
       break;
     case 'story':
       state.twistChip = h('div', { class: 'twist', hidden: true });
       card.append(h('p', { class: 'prompt-main story-start' }, prompt.body), state.twistChip);
       break;
     case 'real':
-      card.append(h('p', { class: 'prompt-sub' }, x.kind === 'captain' ? `🏟️ ${t('realCaptain')}` : `💼 ${t('realWork')}`),
+      card.append(h('p', { class: 'prompt-sub' }, ico(x.kind === 'captain' ? 'users' : 'briefcase'), ' ', x.kind === 'captain' ? t('realCaptain') : t('realWork')),
         h('p', { class: 'prompt-main real-text' }, prompt.body));
       if (x.constraint === 'sbi') card.append(h('div', { class: 'scaffold' }, t('con_sbi').map((s, i) => h('span', { class: 'chip' }, `${i + 1}. ${s}`))));
       else if (x.constraint) card.append(h('p', { class: 'cue-hint' }, t(`con_${x.constraint}`)));
@@ -162,7 +164,7 @@ function promptCard(app, prompt, state) {
       } else {
         if (state.framePick) card.append(h('p', { class: state.framePick === x.frame ? 'good-text' : 'note' },
           state.framePick === x.frame ? t('frameRight') : t('frameWrong', name(state.framePick))));
-        card.append(h('p', { class: 'frame-name' }, `🧭 ${name(x.frame)}`),
+        card.append(h('p', { class: 'frame-name' }, ico('compass'), ' ', name(x.frame)),
           h('div', { class: 'scaffold' }, t(`frameSteps_${x.frame}`).map((s, i) => h('span', { class: 'chip' }, `${i + 1}. ${s}`))));
       }
       break;
@@ -181,7 +183,7 @@ function promptCard(app, prompt, state) {
       break;
     case 'listen':
       state.statementEl = h('p', { class: 'prompt-sub listen-statement', hidden: true }, x.statement);
-      state.cueEl = h('p', { class: 'prompt-main cue-text' }, '👂 …');
+      state.cueEl = h('p', { class: 'prompt-main cue-text' }, ico('ear'), ' …');
       card.append(state.statementEl, state.cueEl, h('p', { class: 'cue-hint' }, t('listenHint')));
       break;
     case 'rapid':
@@ -219,9 +221,9 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   let disposed = false; // set when the screen is left
 
   const sess = app.session;
-  const quit = h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕');
+  const quit = h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x'));
   const header = h('header', { class: 'top round-top' }, quit,
-    h('div', { class: 'round-title' }, h('span', { 'aria-hidden': 'true' }, DRILL_ICON[prompt.drill]), ' ', t(`drill_${prompt.drill}`)),
+    h('div', { class: 'round-title' }, ico(DRILL_ICON[prompt.drill]), ' ', t(`drill_${prompt.drill}`)),
     h('div', { class: 'muted small' }, sess ? t('roundOf', sess.index + 1, sess.prompts.length) : ''));
   const main = h('main', { class: 'screen round' });
   root.append(header, main);
@@ -263,7 +265,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       if (st.tipOpen) app.setState({ ...app.state, ui: { ...(app.state.ui || {}), tipsSeen: { ...((app.state.ui || {}).tipsSeen || {}), [prompt.drill]: true } } });
     }
     return h('details', { class: 'tip', open: st.tipOpen },
-      h('summary', {}, `💡 ${t('tipTitle')}`),
+      h('summary', {}, ico('notebook-pen'), ' ', t('tipTitle')),
       h('p', {}, tip.tip),
       h('p', { class: 'tip-before' }, h('b', {}, `${t('tipBefore')}: `), tip.before),
       h('p', { class: 'tip-after' }, h('b', {}, `${t('tipAfter')}: `), tip.after));
@@ -277,25 +279,25 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         'aria-checked': String(st.mode === m),
         disabled: m === 'speak' && !speechSupported,
         onclick: () => { st.mode = m; showIntro(); },
-      }, m === 'speak' ? `🎙 ${t('speak')}` : `⌨️ ${t('type')}`)));
+      }, ico(m === 'speak' ? 'mic' : 'keyboard'), ' ', m === 'speak' ? t('speak') : t('type'))));
     fill(
       h('section', { class: 'card intro-card' },
-        h('div', { class: 'intro-icon', 'aria-hidden': 'true' }, DRILL_ICON[prompt.drill]),
+        h('div', { class: 'intro-icon' }, ico(DRILL_ICON[prompt.drill])),
         h('h1', {}, t(`drill_${prompt.drill}`)),
         h('p', {}, t(`how_${prompt.drill}`)),
-        prompt.focus ? h('p', { class: 'focus' }, `🎯 ${prompt.focus}`) : null,
+        prompt.focus ? h('p', { class: 'focus' }, ico('crosshair'), ' ', prompt.focus) : null,
         tipBlock(),
-        (app.state.ui || {}).nextFix ? h('p', { class: 'fix-chip' }, `🔧 ${t('yourFix')}: ${app.state.ui.nextFix.text}`) : null,
+        (app.state.ui || {}).nextFix ? h('p', { class: 'fix-chip' }, ico('wrench'), ` ${t('yourFix')}: ${app.state.ui.nextFix.text}`) : null,
         prompt.reason && prompt.reason !== 'random' ? h('p', { class: 'reason-chip' }, t(`reason_${prompt.reason}`)) : null,
         st.modifier ? h('div', { class: 'modifier-chip' },
-          h('b', {}, `💪 ${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
+          h('b', {}, `${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
           h('span', {}, t(`modHow_${st.modifier}`))) : null,
-        h('p', { class: 'muted small' }, `${prepFor() ? `${prepFor()}s ⏳ · ` : ''}${fmtTime(totalS)}s 🎙`)),
+        h('p', { class: 'muted small timing-line' }, prepFor() ? [ico('hourglass'), ` ${prepFor()}s · `] : null, ico('mic'), ` ${fmtTime(totalS)}s`)),
       toggle,
       h('button', {
         class: `btn btn-ghost small harder${st.modifier ? ' on' : ''}`,
         onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true, prompt.drill); showIntro(); },
-      }, st.modifier ? `↩ ${t('harderOff')}` : `💪 ${t('harderOn')}`),
+      }, ico(st.modifier ? 'undo-2' : 'zap'), ' ', st.modifier ? t('harderOff') : t('harderOn')),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
       h('button', { class: 'btn btn-primary btn-big', onclick: (e) => { e.currentTarget.disabled = true; begin(); } }, t('start')),
     );
@@ -343,7 +345,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     const live = `${text} ${interim}`.trim();
     const n = tokenize(live).length;
     if (st.budgetEl) {
-      st.budgetEl.textContent = `📏 ${n} / ${st.budget} ${t('m_words')}`;
+      st.budgetEl.replaceChildren(ico('ruler'), ` ${n} / ${st.budget} ${t('m_words')}`);
       st.budgetEl.classList.toggle('near', n >= st.budget * 0.85 && n <= st.budget);
       st.budgetEl.classList.toggle('over', n > st.budget);
     }
@@ -354,7 +356,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     }
     if (st.cleanEl) {
       const cr = cleanRun(tokenize(live), app.lang);
-      st.cleanEl.textContent = `🧼 ${t('cleanRun')}: ${cr.current} · ${t('best')} ${cr.max}`;
+      st.cleanEl.replaceChildren(ico('eraser'), ` ${t('cleanRun')}: ${cr.current} · ${t('best')} ${cr.max}`);
       if (cr.max > (st.cleanBest || 0) && cr.max >= 10 && cr.max === cr.current) {
         st.cleanEl.classList.remove('pop');
         void st.cleanEl.offsetWidth;
@@ -410,7 +412,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     const x = prompt.extra;
     const cue = x.cues[i];
     st.phase = 'cue';
-    st.label.textContent = voiceSupported ? `🔊 ${t('cueListening')}` : `👀 ${t('cueRead')}`;
+    st.label.replaceChildren(ico(voiceSupported ? 'volume-2' : 'book-open'), ' ', voiceSupported ? t('cueListening') : t('cueRead'));
     st.label.classList.remove('go');
     const itemS = (x.itemS && x.itemS[i]) || timing.answerS; // pressure: opening, then reply
     r.set(1, fmtTime(itemS));
@@ -427,10 +429,11 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (finished) return;
     if (x.shadow) {
       st.statementEl.hidden = false; // read along while it is spoken
-      st.cueEl.textContent = '🎧 …';
+      st.cueEl.replaceChildren(ico('headphones'), ' …');
     } else if (prompt.drill === 'listen') {
       if (!voiceSupported) st.statementEl.hidden = false;
-      st.cueEl.textContent = voiceSupported ? '👂 …' : x.question;
+      if (voiceSupported) st.cueEl.replaceChildren(ico('ear'), ' …');
+      else st.cueEl.textContent = x.question;
     } else {
       st.cueEl.textContent = cue;
     }
@@ -443,7 +446,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         st.statementEl.hidden = false;
         st.cueEl.textContent = x.question;
       }
-      st.label.textContent = `👀 ${t('cueRead')}`;
+      st.label.replaceChildren(ico('book-open'), ' ', t('cueRead'));
       await sleep(prompt.drill === 'listen' || x.shadow ? Math.max(3000, cue.split(/\s+/).length * 300) : 3000);
     }
     if (finished) return;
@@ -477,7 +480,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     let input;
     if (st.mode === 'speak') {
       st.live = h('div', { class: 'live', 'aria-live': 'polite' }, h('span', { class: 'muted' }, t('listening')));
-      st.cleanEl = h('div', { class: 'clean-chip' }, `🧼 ${t('cleanRun')}: 0`);
+      st.cleanEl = h('div', { class: 'clean-chip' }, ico('eraser'), ` ${t('cleanRun')}: 0`);
       input = h('div', {}, st.cleanEl, st.live);
       if (!cued) {
         startListening();
@@ -489,7 +492,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     st.inputSlot = h('div', { class: 'input-slot' }, input);
     // Word budget: a live counter; it never ends the round by itself.
     st.budget = st.modifier === 'budget' ? wordBudget(app.state.drillLevels[prompt.drill] || 1) : 0;
-    st.budgetEl = st.budget ? h('div', { class: 'budget-chip' }, `📏 0 / ${st.budget} ${t('m_words')}`) : null;
+    st.budgetEl = st.budget ? h('div', { class: 'budget-chip' }, ico('ruler'), ` 0 / ${st.budget} ${t('m_words')}`) : null;
     st.label = h('div', { class: 'phase-label go' }, st.mode === 'speak' ? t('speakNow') : t('typeNow'));
     fill(
       card,
@@ -512,7 +515,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         const twist = prompt.extra.twists[0];
         st.twistsShown.push(twist);
         st.twistChip.hidden = false;
-        st.twistChip.replaceChildren(h('small', {}, `⚡ ${t('twist')}`), h('b', {}, twist));
+        st.twistChip.replaceChildren(h('small', {}, ico('zap'), ` ${t('twist')}`), h('b', {}, twist));
         st.twistChip.classList.add('pop');
         play('twist', settings);
         if (navigator.vibrate) navigator.vibrate(60);
@@ -521,7 +524,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         const side = debateSide(el, totalS);
         if (side !== st.side) {
           st.side = side;
-          st.sideEl.textContent = `👎 ${t('sideAgainst')}`;
+          st.sideEl.replaceChildren(ico('thumbs-down'), ` ${t('sideAgainst')}`);
           st.sideEl.classList.add('against', 'pop');
           play('switch', settings);
           if (navigator.vibrate) navigator.vibrate([80, 60, 80]);
@@ -534,7 +537,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
           const twist = prompt.extra.twists[n - 1];
           st.twistsShown.push(twist);
           st.twistChip.hidden = false;
-          st.twistChip.replaceChildren(h('small', {}, `⚡ ${t('twist')} ${n}`), h('b', {}, twist));
+          st.twistChip.replaceChildren(h('small', {}, ico('zap'), ` ${t('twist')} ${n}`), h('b', {}, twist));
           st.twistChip.classList.remove('pop');
           void st.twistChip.offsetWidth; // restart the animation
           st.twistChip.classList.add('pop');

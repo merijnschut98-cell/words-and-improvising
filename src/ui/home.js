@@ -7,6 +7,7 @@ import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON } from './dom.js';
+import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, dayKey, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
 import { planLine } from './plan.js';
@@ -15,14 +16,22 @@ import { makePrompt } from '../core/lesson.js';
 import { subjectBar } from './subjectbar.js';
 import { courseHome } from './coursehome.js';
 
+// The Vantage mark (one image per theme, CSS shows the right one) and the wordmark.
+export function brandLockup() {
+  return h('div', { class: 'brand' },
+    h('img', { class: 'brand-mark mark-light', src: 'brand/mark.svg', alt: '', width: 30, height: 30 }),
+    h('img', { class: 'brand-mark mark-dark', src: 'brand/mark-on-dark.svg', alt: '', width: 30, height: 30 }),
+    h('span', { class: 'wordmark' }, 'Vantage Point'));
+}
+
 export function navBar(app, active) {
   const t = app.t;
   const item = (id, icon) => h('button', {
     class: `nav-item${active === id ? ' active' : ''}`,
     onclick: () => app.go(id),
     'aria-current': active === id ? 'page' : null,
-  }, h('span', { class: 'nav-icon', 'aria-hidden': 'true' }, icon), h('span', {}, t(`nav_${id}`)));
-  return h('nav', { class: 'navbar' }, item('home', '🏠'), item('progress', '📈'), item('settings', '⚙️'));
+  }, h('span', { class: 'nav-icon' }, ico(icon)), h('span', {}, t(`nav_${id}`)));
+  return h('nav', { class: 'navbar' }, item('home', 'house'), item('progress', 'gauge'), item('settings', 'settings'));
 }
 
 function weekStrip(app) {
@@ -35,7 +44,7 @@ function weekStrip(app) {
     const frozen = !done && (app.state.freezeLog || []).includes(key);
     const label = d.toLocaleDateString(app.lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'narrow' });
     days.push(h('div', { class: `day${done ? ' done' : ''}${frozen ? ' frozen' : ''}${i === 0 ? ' today' : ''}` },
-      h('span', { class: 'dot' }, done ? '✓' : frozen ? '🧊' : ''), h('span', { class: 'lbl' }, label)));
+      h('span', { class: 'dot' }, done ? ico('check') : frozen ? ico('snowflake') : ''), h('span', { class: 'lbl' }, label)));
   }
   return h('div', { class: 'week' }, days);
 }
@@ -47,9 +56,9 @@ function questCard(app) {
   return h('section', { class: 'card quest-card' },
     h('div', { class: 'level-row' },
       h('h2', { class: 'card-title' }, t('questsTitle')),
-      h('span', { class: 'muted small' }, done === items.length ? `🧊 ${t('questsAllDone')}` : `${done}/${items.length} · 🧊 ${t('questsReward')}`)),
+      h('span', { class: 'muted small quest-reward' }, ico('snowflake'), ' ', done === items.length ? t('questsAllDone') : `${done}/${items.length} · ${t('questsReward')}`)),
     items.map((q) => h('div', { class: `quest${q.done ? ' done' : ''}` },
-      h('span', { class: 'quest-check', 'aria-hidden': 'true' }, q.done ? '✓' : ''),
+      h('span', { class: 'quest-check', 'aria-hidden': 'true' }, q.done ? ico('check') : ''),
       h('span', {}, t(`quest_${q.id}`)),
       h('span', { class: 'muted small' }, '+15'))));
 }
@@ -66,16 +75,16 @@ function realWeekCard(app) {
   const open = () => app.go('realweek');
   if (due) {
     return h('button', { class: 'btn rw-card', onclick: open },
-      h('span', { class: 'rw-card-title' }, `📝 ${t('rwReflectNow')}`), h('span', { class: 'muted small' }, due.text));
+      h('span', { class: 'rw-card-title' }, ico('notebook-pen'), ' ', t('rwReflectNow')), h('span', { class: 'muted small' }, due.text));
   }
   if (next) {
     return h('div', { class: 'card rw-home' },
-      h('div', {}, h('p', { class: 'muted small' }, `📅 ${t('rwComing')} · ${EVENT_ICON[next.type]} ${fmtDay(app, next.date)}`), h('p', { class: 'rw-text' }, next.text)),
+      h('div', {}, h('p', { class: 'muted small' }, ico('calendar'), ` ${t('rwComing')} · `, ico(EVENT_ICON[next.type]), ` ${fmtDay(app, next.date)}`), h('p', { class: 'rw-text' }, next.text)),
       h('div', { class: 'rw-actions' },
-        h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, next); } }, `🎙 ${t('rwRehearse')}`),
+        h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, next); } }, ico('mic'), ' ', t('rwRehearse')),
         h('button', { class: 'btn btn-ghost small', onclick: open }, t('rwAll'))));
   }
-  return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, `📅 ${t('rwInvite')}`);
+  return h('button', { class: 'btn btn-ghost rw-invite', onclick: open }, ico('calendar'), ' ', t('rwInvite'));
 }
 
 // "One next thing": the single round recommended now, and why.
@@ -93,10 +102,10 @@ function todayCard(app) {
   const week = programmeWeek(app.state, app.today());
   return h('section', { class: 'card today-card' },
     h('p', { class: 'today-label' }, week ? `${t('todayNext')} · ${t('progWeek', week, t(`progTheme_${PROGRAMME[week - 1].id}`))}` : t('todayNext')),
-    h('p', { class: 'today-what' }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)),
+    h('p', { class: 'today-what' }, ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)),
     h('p', { class: 'muted small' }, why),
     nudgeLine(app),
-    h('button', { class: 'btn btn-primary today-go', onclick: go }, `▶ ${pick.reason === 'event' ? t('todayRehearse') : t('todayGo')}`));
+    h('button', { class: 'btn btn-primary today-go', onclick: go }, ico('play'), ' ', pick.reason === 'event' ? t('todayRehearse') : t('todayGo')));
 }
 
 // One line toward the real-life skill he hasn't used lately; the pick itself stays the same.
@@ -109,12 +118,12 @@ function nudgeLine(app) {
 function situationFinder(app) {
   const t = app.t;
   return h('details', { class: 'card finder' },
-    h('summary', {}, `🧭 ${t('finderTitle')}`),
+    h('summary', {}, ico('compass'), ' ', t('finderTitle')),
     TIPS.situations.map((sit) => h('div', { class: 'finder-row' },
       h('p', { class: 'finder-label' }, sit[app.lang] || sit.en),
       h('div', { class: 'finder-drills' }, sit.drills.map((d) => h('button', {
         class: 'btn btn-ghost small', onclick: () => app.startDrill(d),
-      }, h('span', { 'aria-hidden': 'true' }, `${DRILL_ICON[d]} `), t(`drill_${d}`)))))));
+      }, ico(DRILL_ICON[d]), ' ', t(`drill_${d}`)))))));
 }
 
 export function renderHome(app, _params, root) {
@@ -132,10 +141,10 @@ export function renderHome(app, _params, root) {
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
 
   const header = h('header', { class: 'top' },
-      h('div', { class: 'brand' }, h('span', { class: 'logo', 'aria-hidden': 'true' }, '💬'), 'Spraakwater'),
+      brandLockup(),
       h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
-        h('span', { 'aria-hidden': 'true' }, '🔥'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
-        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, `🧊 ${s.freezes}`) : null));
+        ico('flame'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
+        s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));
   // A course subject: its own home under the same header and bar.
   if (app.subject !== 'speak') {
     root.append(header, subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
@@ -147,7 +156,7 @@ export function renderHome(app, _params, root) {
     h('main', { class: 'screen home' },
       showBreak ? h('section', { class: 'card break-card' },
         h('p', {}, t('streakReset', daysPractised(s))),
-        h('button', { class: 'icon-btn small', 'aria-label': t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, '✕')) : null,
+        h('button', { class: 'icon-btn small', 'aria-label': t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, ico('x'))) : null,
       h('p', { class: 'tagline' }, `${t('tagline')} · ${t('daysTotal', daysPractised(s))}`),
       h('section', { class: 'card level-card' },
         h('div', { class: 'level-row' },
@@ -164,11 +173,11 @@ export function renderHome(app, _params, root) {
       bossAvailable(s, new Date()) ? h('button', {
         class: 'btn boss-card',
         onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
-      }, h('span', { class: 'hero-title' }, `👑 ${t('bossTitle')}`), h('span', { class: 'hero-sub' }, t('bossSub'))) : null,
+      }, h('span', { class: 'hero-title' }, ico('crown'), ' ', t('bossTitle')), h('span', { class: 'hero-sub' }, t('bossSub'))) : null,
       dueCount ? h('button', { class: 'btn review-card', onclick: () => app.startReviews() },
-        h('span', { class: 'hero-title' }, `🔁 ${t('reviewTitle')}`),
+        h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('reviewTitle')),
         h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null,
-      h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, `⏱ ${t('quickRound')}`),
+      h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
       realWeekCard(app),
       questCard(app),
       h('div', { class: 'feature-row' },
@@ -181,14 +190,14 @@ export function renderHome(app, _params, root) {
           await app.startTargeted();
         },
       },
-      h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, '🎯'),
+      h('span', { class: 'drill-icon' }, ico('crosshair')),
       h('span', { class: 'drill-name' }, t('targetTitle')),
       h('span', { class: 'muted small' }, s.settings.apiKey ? t('targetSubAI') : t('targetSub'))),
       h('button', {
         class: 'drill convo-card',
         onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
       },
-      h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, '🗣'),
+      h('span', { class: 'drill-icon' }, ico('message-circle')),
       h('span', { class: 'drill-name' }, t('convoTitle')),
       h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey')))),
       // All drills, behind one tap: the Today card is the default choice.
@@ -200,7 +209,7 @@ export function renderHome(app, _params, root) {
       h('div', { class: 'drill-grid' }, DRILLS.map((d) => h('button', {
         class: `drill drill-${d}`, onclick: () => app.startDrill(d),
       },
-      h('span', { class: 'drill-icon', 'aria-hidden': 'true' }, DRILL_ICON[d]),
+      h('span', { class: 'drill-icon' }, ico(DRILL_ICON[d])),
       h('span', { class: 'drill-name' }, t(`drill_${d}`)),
       masteryBadge(t, masteryOf(s.history, d)),
       h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },

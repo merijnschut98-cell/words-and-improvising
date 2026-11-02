@@ -1,5 +1,6 @@
 // A due session: up to ten questions from one track, recalled before they fade.
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { applyDue, questionById } from '../core/course.js';
 import { dueSession, isOwned } from '../core/coursereview.js';
@@ -14,8 +15,8 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
   const main = h('main', { class: 'screen due' }, h('p', { class: 'muted loading' }, '…'));
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
-      h('div', { class: 'round-title' }, `🔁 ${t('dueTitle')}`), h('div', {})),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('div', { class: 'round-title' }, ico('repeat'), ' ', t('dueTitle')), h('div', {})),
     main);
 
   const ids = (questionIds || dueSession(app.state.courseReviews, app.today(), subject, app.lang, seededRng(seedOf(`${app.today()}|${subject}`))))
@@ -45,7 +46,7 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
           app.setState(res.state);
           const owned = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length - before;
           main.replaceChildren(h('section', { class: 'card lesson-done due-done' },
-            h('p', { class: 'big-emoji', 'aria-hidden': 'true' }, '🧠'),
+            h('p', { class: 'done-mark' }, ico('brain')),
             h('h2', { class: 'card-title' }, t('dueDone')),
             h('p', { class: 'xp-line' }, `+${res.xp} XP`),
             owned > 0 ? h('p', { class: 'muted' }, t('dueOwned', owned)) : null),

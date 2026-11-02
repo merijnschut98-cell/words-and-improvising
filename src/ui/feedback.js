@@ -1,4 +1,5 @@
 import { h, aiErrorText, bestLabel } from './dom.js';
+import { ico } from './icons.js';
 import { updateBests } from '../core/bests.js';
 import { analyze, highlightFillers, cleanRun, tokenize, paceSeries, paceTrend } from '../core/metrics.js';
 import { pauseRatio } from '../core/pauses.js';
@@ -50,7 +51,7 @@ export function renderFeedback(app, params, root) {
 
   if (metrics.words < 5) {
     add(
-      h('section', { class: 'card center' }, h('div', { class: 'big-emoji', 'aria-hidden': 'true' }, '🤔'), h('p', {}, t('tooShort'))),
+      h('section', { class: 'card center' }, h('p', {}, t('tooShort'))),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('round', { prompt, modifier }) }, t('retry')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.nextAfterRound() }, t('skip')),
     );
@@ -72,7 +73,7 @@ export function renderFeedback(app, params, root) {
     app.setState(course ? markSayIt(state, course.subject, course.lessonId, Date.now()) : state);
     if (newBests.length) play('best', app.state.settings);
     else if (completedQuests.length) play('quest', app.state.settings);
-    completedQuests.forEach((id, i) => setTimeout(() => app.toast(`✓ ${t('questDone')}: ${t(`quest_${id}`)} +15 XP`), i * 900));
+    completedQuests.forEach((id, i) => setTimeout(() => app.toast(`${t('questDone')}: ${t(`quest_${id}`)} · +15 XP`), i * 900));
     if (newMilestones.length) {
       const msg = newMilestones.length === 1 ? t('milestoneToast', t(`ms_${newMilestones[0]}`)) : t('milestonesToast', newMilestones.length);
       setTimeout(() => app.toast(msg), completedQuests.length * 900);
@@ -86,8 +87,8 @@ export function renderFeedback(app, params, root) {
   const preview = updateBests(app.state.bests || {}, { ts: 0, drill: prompt.drill, durationS, metrics, cleanRun: clean }).newBests
     .filter((b) => !b.drill || !firstEver);
   const pbCard = preview.length ? h('section', { class: 'card pb-card' },
-    firstEver ? h('p', {}, `🏆 ${t('pbFirst')}`)
-      : preview.slice(0, 3).map((b) => h('p', {}, `🏆 ${t('pbNew')}: ${bestLabel(t, b)}`))) : null;
+    firstEver ? h('p', {}, ico('award'), ' ', t('pbFirst'))
+      : preview.slice(0, 3).map((b) => h('p', {}, ico('award'), ` ${t('pbNew')}: ${bestLabel(t, b)}`))) : null;
 
   const fillerTone = metrics.fillerRate < 3 ? 'good' : metrics.fillerRate < 6 ? 'ok' : 'bad';
   const shadowRound = !!(prompt.extra && prompt.extra.shadow);
@@ -104,7 +105,7 @@ export function renderFeedback(app, params, root) {
           app.addToSession(commit());
           app.go('round', { prompt: x.original, previous: { metrics: x.firstMetrics, durationS: x.firstDuration }, modifier: null });
         },
-      }, `🗣️ ${t('shadowOwn')}`));
+      }, ico('message-circle'), ' ', t('shadowOwn')));
   })() : null;
   const topFillers = Object.entries(metrics.fillers).sort((a, b) => b[1] - a[1]).slice(0, 5);
 
@@ -140,12 +141,12 @@ export function renderFeedback(app, params, root) {
     st.fixChosen = true;
     app.setState({ ...app.state, ui: { ...(app.state.ui || {}), nextFix: { text: clean } } });
     fixCard.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === btn));
-    app.toast(`🔧 ${t('fixSaved')}`);
+    app.toast(t('fixSaved'));
   };
   const fixCard = h('section', { class: 'card fix-card' },
     h('h2', { class: 'card-title' }, t('fixTitle')),
     h('div', { class: 'fix-options' }, fixOptions.map((o) => h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(o, e.currentTarget) }, o))),
-    h('div', { class: 'fix-own' }, fixInput, h('button', { class: 'btn btn-ghost small', onclick: (e) => setFix(fixInput.value, e.currentTarget) }, '✓')));
+    h('div', { class: 'fix-own' }, fixInput, h('button', { class: 'btn btn-ghost small', 'aria-label': t('rwSave'), onclick: (e) => setFix(fixInput.value, e.currentTarget) }, ico('check'))));
 
   // Transcript with fillers marked, and vague words (this language) underlined.
   const segs = markVague(highlightFillers(transcript, lang), lang);
@@ -172,7 +173,7 @@ export function renderFeedback(app, params, root) {
   // Coach card
   const coachCard = h('section', { class: 'card coach-card' });
   function renderCoach(state) {
-    const head = h('h2', { class: 'card-title' }, '🧑‍🏫 ', t('coach'));
+    const head = h('h2', { class: 'card-title' }, t('coach'));
     if (state === 'nokey') {
       coachCard.replaceChildren(head, h('p', { class: 'muted' }, t('coachNoKey')),
         h('button', {
@@ -207,14 +208,14 @@ export function renderFeedback(app, params, root) {
               h('button', { class: 'btn btn-primary small', onclick: () => reveal(true) }, t('selfFixShow')),
               h('button', { class: 'btn btn-ghost small', onclick: () => reveal(false) }, t('selfFixSkip'))));
         })() : null,
-        st.selfDone && st.selfFix ? h('p', { class: 'self-fix' }, h('b', {}, `🙋 ${t('selfFixYours')}: `), st.selfFix) : null,
+        st.selfDone && st.selfFix ? h('p', { class: 'self-fix' }, h('b', {}, `${t('selfFixYours')}: `), st.selfFix) : null,
         !st.selfDone ? null : h('details', { class: 'stronger', open: true },
           h('summary', {}, t('stronger')),
           h('p', {}, d.stronger_version),
           h('div', { class: 'row' },
-            window.speechSynthesis ? h('button', { class: 'btn btn-ghost small', onclick: () => speak(d.stronger_version, lang) }, `🔊 ${t('hearIt')}`) : null,
-            h('button', { class: 'btn btn-ghost small', onclick: () => shadowIt(d.stronger_version) }, `🎧 ${t('shadowIt')}`),
-            h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`)))].filter(Boolean));
+            window.speechSynthesis ? h('button', { class: 'btn btn-ghost small', onclick: () => speak(d.stronger_version, lang) }, ico('volume-2'), ' ', t('hearIt')) : null,
+            h('button', { class: 'btn btn-ghost small', onclick: () => shadowIt(d.stronger_version) }, ico('headphones'), ' ', t('shadowIt')),
+            h('button', { class: 'btn btn-ghost small', onclick: sayAgain }, ico('repeat'), ' ', t('sayItAgain'))))].filter(Boolean));
     }
   }
 
@@ -257,7 +258,7 @@ export function renderFeedback(app, params, root) {
     rows.map((r) => h('div', { class: 'week-row' },
       h('span', {}, t(LABEL[r.key])),
       h('b', { class: r.better === true ? 'good' : r.better === false ? 'bad' : '' },
-        `${r.before} → ${r.now} ${r.better === true ? '✓' : ''}`)))) : null;
+        `${r.before} → ${r.now} `, r.better === true ? ico('check') : null)))) : null;
 
   function onNext() {
     app.nextAfterRound(commit());
@@ -283,23 +284,23 @@ export function renderFeedback(app, params, root) {
     modifier ? (() => {
       const c = modifierCheck(modifier, metrics, transcript, lang, app.state.drillLevels[prompt.drill] || 1);
       return h('p', { class: `note${c.checked && c.ok ? ' good-note' : ''}` },
-        `💪 ${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
+        `${t(`mod_${modifier}`)}: ${c.checked ? (c.ok ? t('modMet') : t('modMissed')) : t('modHonest')} · +5 XP`);
     })() : null,
     prompt.drill === 'pressure' && !shadowRound ? (() => {
       const x = prompt.extra;
       if (!x.interrupted) return h('section', { class: 'card pressure-card' }, h('p', { class: 'note' }, t('pressureEarly')));
       const c = pressureChecks(x.reply, app.lang);
-      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, `${ok ? '✓' : '✗'} ${ok ? yes : no}`);
+      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, ico(ok ? 'check' : 'x'), ` ${ok ? yes : no}`);
       return h('section', { class: 'card pressure-card' },
         h('h2', { class: 'card-title' }, t('pressureTitle')),
-        h('p', { class: 'muted small' }, `🔥 “${x.interrupt}”`),
+        h('p', { class: 'muted small' }, ico('flame'), ` “${x.interrupt}”`),
         line(c.acknowledged, t('pcAck'), t('pcNoAck')),
         line(c.short, t('pcShort'), t('pcLong')),
         line(c.checkedBack, t('pcBack'), t('pcNoBack')));
     })() : null,
     prompt.drill === 'followUp' && !shadowRound ? (() => {
       const f = checkFollowUp(transcript, prompt.extra.detail, app.lang);
-      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, `${ok ? '✓' : '✗'} ${ok ? yes : no}`);
+      const line = (ok, yes, no) => h('p', { class: ok ? 'good-text' : 'note' }, ico(ok ? 'check' : 'x'), ` ${ok ? yes : no}`);
       return h('section', { class: 'card followup-card' },
         h('h2', { class: 'card-title' }, t('followUpCheck')),
         line(f.asked, t('fuAsked'), t('fuNotAsked')),
@@ -321,7 +322,7 @@ export function renderFeedback(app, params, root) {
       h('div', { class: 'rate-row' }, rateButtons)),
     coachCard,
     fixCard,
-    h('button', { class: 'btn btn-ghost', onclick: sayAgain }, `🔁 ${t('sayItAgain')}`),
+    h('button', { class: 'btn btn-ghost', onclick: sayAgain }, ico('repeat'), ' ', t('sayItAgain')),
     shadowRound ? null : challengeBtn(),
     shadowRound ? null : friendBtn(),
     nextBtn,
@@ -337,10 +338,10 @@ export function renderFeedback(app, params, root) {
         const text = t('challengeText', t(`drill_${prompt.drill}`), metrics.words, metrics.fillerRate);
         const url = challengeLink(prompt, app.lang, location.href);
         const r = await shareText(text, url);
-        if (r === 'copied') app.toast(`📋 ${t('linkCopied')}`);
+        if (r === 'copied') app.toast(t('linkCopied'));
         else if (r === 'failed') app.toast(url);
       },
-    }, reply ? `📨 ${t('challengeReply')}` : `📨 ${t('challengeSend')}`);
+    }, ico('send'), ' ', reply ? t('challengeReply') : t('challengeSend'));
   }
 
   // The link carries only the prompt id and a nonce: no recording, no transcript.
@@ -353,10 +354,10 @@ export function renderFeedback(app, params, root) {
         app.setState(askFriend(app.state, prompt, nonce, Date.now()));
         const url = rateLink(prompt, app.lang, location.href, nonce);
         const r = await shareText(t('friendAskText', t(`drill_${prompt.drill}`)), url);
-        if (r === 'copied') app.toast(`📋 ${t('linkCopied')}`);
+        if (r === 'copied') app.toast(t('linkCopied'));
         else if (r === 'failed') app.toast(url);
       },
-    }, `🧑‍🤝‍🧑 ${t('friendAsk')}`);
+    }, ico('users'), ' ', t('friendAsk'));
   }
 
   if (shadowRound) coachCard.remove(); // the overlap card is the feedback; no API call

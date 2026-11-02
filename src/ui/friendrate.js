@@ -1,4 +1,5 @@
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { translator } from '../i18n.js';
 import { answerLink, LINE_MAX } from '../core/friend.js';
 import { shareText } from '../core/share.js';
@@ -10,7 +11,7 @@ export function renderFriendRate(app, params, root) {
   const { ask, prompt } = params;
   const t = translator(ask ? ask.lang : app.lang);
   const main = h('main', { class: 'screen friendrate' });
-  root.append(h('header', { class: 'top' }, h('div', { class: 'round-title' }, `🧑‍🤝‍🧑 ${t('friendTitle')}`)), main);
+  root.append(h('header', { class: 'top' }, h('div', { class: 'round-title' }, ico('users'), ' ', t('friendTitle'))), main);
   const tryBtn = h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('friendTryApp'));
 
   if (!ask || !prompt) {
@@ -46,7 +47,7 @@ export function renderFriendRate(app, params, root) {
     status.replaceChildren(h('p', { class: 'good-text' }, t('friendSent')),
       h('p', { class: 'small friend-link' }, url), tryBtn);
     const r = await shareText(t('friendSendText'), url);
-    if (r === 'copied') app.toast(`📋 ${t('linkCopied')}`);
+    if (r === 'copied') app.toast(t('linkCopied'));
   }
 
   main.append(

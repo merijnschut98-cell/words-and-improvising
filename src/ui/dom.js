@@ -17,8 +17,10 @@ export function h(tag, attrs = {}, ...children) {
   return el;
 }
 
+// Drill -> icon name in icons.js. Render with ico(DRILL_ICON[d]).
 export const DRILL_ICON = {
-  minute: '⏱', explain: '💡', prep: '🧱', bridge: '🌉', smalltalk: '☕', rapid: '⚡', story: '📖', pause: '🤫', debate: '⚖️', boss: '👑', yesAnd: '🤝', listen: '👂', expert: '🎓', frame: '🧭', real: '🌍', followUp: '🔍', pressure: '🔥',
+  minute: 'timer', explain: 'presentation', prep: 'layers', bridge: 'link', smalltalk: 'coffee', rapid: 'zap', story: 'book-open', pause: 'pause',
+  debate: 'scale', boss: 'crown', yesAnd: 'handshake', listen: 'ear', expert: 'graduation-cap', frame: 'compass', real: 'globe', followUp: 'message-circle-question', pressure: 'flame',
 };
 
 // "Fewest fillers/min: 1.2" etc. for a personal-best record.

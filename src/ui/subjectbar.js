@@ -1,6 +1,8 @@
 import { h } from './dom.js';
+import { ico } from './icons.js';
 
-export const SUBJECT_TABS = [['speak', '🎙'], ['eng', '⚙️'], ['pm', '📋']];
+// Subject -> icon name in icons.js.
+export const SUBJECT_TABS = [['speak', 'mic'], ['eng', 'cog'], ['pm', 'route']];
 
 // Three subjects; the choice is remembered in ui.subject. On Progress the bar
 // switches the view and stays on that screen.
@@ -12,5 +14,5 @@ export function subjectBar(app, screen = 'home') {
       class: `subject-tab${cur === id ? ' on' : ''}`,
       'aria-pressed': cur === id ? 'true' : 'false',
       onclick: () => { if (app.subject !== id) app.setSubject(id, screen); },
-    }, h('span', { 'aria-hidden': 'true' }, icon), h('span', {}, t(`subject_${id}`)))));
+    }, ico(icon), h('span', {}, t(`subject_${id}`)))));
 }

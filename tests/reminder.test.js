@@ -29,7 +29,7 @@ test('reminderMeta precomputes both messages for the service worker', () => {
   assert.equal(m.remind, true);
   assert.equal(m.lastDay, '2026-10-24');
   assert.match(m.atRisk.title, /5-day streak/);
-  assert.equal(m.nudge.title, 'Time to talk 💬');
+  assert.equal(m.nudge.title, 'Time to talk');
 });
 
 import { shouldFireReminder } from '../src/core/reminder.js';

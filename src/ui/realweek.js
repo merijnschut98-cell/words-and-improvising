@@ -1,7 +1,9 @@
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { EVENT_TYPES, SKILLS, addEvent, upcoming, needsReflection, reflect, rehearsalPrompts, setShare, runHardQuestion } from '../core/realweek.js';
 
-export const EVENT_ICON = { client: '🤝', presentation: '📊', teamtalk: '🏟️', networking: '🥂', other: '📌' };
+// Event type -> icon name in icons.js.
+export const EVENT_ICON = { client: 'handshake', presentation: 'presentation', teamtalk: 'users', networking: 'message-circle', other: 'pin' };
 
 // Short local date, e.g. "do 29 okt".
 export function fmtDay(app, day) {
@@ -30,7 +32,7 @@ async function startRehearsalOnce(app, shown) {
   // Opt-in: the coach writes the hard question; the local one stays on any error.
   if (apiKey && event.shareWithCoach) {
     const seq = app.navSeq;
-    app.toast(`✍️ ${app.t('rwCoachWriting')}`);
+    app.toast(app.t('rwCoachWriting'));
     const res = await Promise.race([
       runHardQuestion(apiKey, { event, lang: app.lang, model }),
       new Promise((r) => { setTimeout(() => r({ ok: false, error: 'timeout' }), 8000); }),
@@ -64,16 +66,16 @@ function reflectCard(app, e) {
     class: 'btn btn-primary', disabled: true,
     onclick: () => {
       app.setState({ ...app.state, events: reflect(app.state.events, e.id, { rating, next: note.value, skills: [...skills] }) });
-      app.toast(`✓ ${t('rwSaved')}`);
+      app.toast(t('rwSaved'));
       app.go('realweek');
     },
   }, t('rwSave'));
   const drop = h('button', {
     class: 'icon-btn', 'aria-label': t('rwDelete'),
     onclick: () => { app.setState({ ...app.state, events: app.state.events.filter((x) => x.id !== e.id) }); app.go('realweek'); },
-  }, '🗑');
+  }, ico('trash-2'));
   return h('section', { class: 'card rw-reflect' },
-    h('div', { class: 'rw-event' }, h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`), drop),
+    h('div', { class: 'rw-event' }, h('p', { class: 'muted small' }, ico(EVENT_ICON[e.type]), ` ${fmtDay(app, e.date)}`), drop),
     h('p', { class: 'rw-text' }, e.text),
     h('p', {}, h('b', {}, t('rwHowWent'))),
     h('div', { class: 'rate-row' }, btns),
@@ -86,7 +88,7 @@ export function renderRealweek(app, _params, root) {
   const t = app.t;
   const today = app.today();
   const events = app.state.events || [];
-  const typeSel = h('select', {}, EVENT_TYPES.map((ty) => h('option', { value: ty }, `${EVENT_ICON[ty]} ${t(`rwType_${ty}`)}`)));
+  const typeSel = h('select', {}, EVENT_TYPES.map((ty) => h('option', { value: ty }, t(`rwType_${ty}`))));
   const dateIn = h('input', { type: 'date', value: today, min: today });
   const textIn = h('input', { type: 'text', maxlength: 120, placeholder: t('rwTextPh'), class: 'text-input' });
   const add = h('button', {
@@ -97,20 +99,20 @@ export function renderRealweek(app, _params, root) {
       app.setState({ ...app.state, events: next });
       app.go('realweek');
     },
-  }, `＋ ${t('rwAdd')}`);
+  }, t('rwAdd'));
   const ups = upcoming(events, today);
   const due = needsReflection(events, today);
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, '✕'),
-      h('div', { class: 'round-title' }, `📅 ${t('rwTitle')}`), h('div', {})),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('div', { class: 'round-title' }, ico('calendar'), ' ', t('rwTitle')), h('div', {})),
     h('main', { class: 'screen realweek' },
       h('p', { class: 'muted' }, t('rwIntro')),
       due.map((e) => reflectCard(app, e)),
       ups.length ? h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('rwComing')),
         ups.map((e) => h('div', { class: 'rw-event' },
-          h('div', {}, h('p', { class: 'muted small' }, `${EVENT_ICON[e.type]} ${fmtDay(app, e.date)}`), h('p', { class: 'rw-text' }, e.text),
+          h('div', {}, h('p', { class: 'muted small' }, ico(EVENT_ICON[e.type]), ` ${fmtDay(app, e.date)}`), h('p', { class: 'rw-text' }, e.text),
             app.state.settings.apiKey ? h('label', { class: 'toggle small rw-share' },
               h('input', {
                 type: 'checkbox', checked: !!e.shareWithCoach,
@@ -118,11 +120,11 @@ export function renderRealweek(app, _params, root) {
               }),
               h('span', {}, t('rwShare'))) : null),
           h('div', { class: 'rw-actions' },
-            h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, e); } }, `🎙 ${t('rwRehearse')}`),
+            h('button', { class: 'btn btn-primary small', onclick: (ev) => { ev.currentTarget.disabled = true; startRehearsal(app, e); } }, ico('mic'), ' ', t('rwRehearse')),
             h('button', {
               class: 'icon-btn', 'aria-label': t('rwDelete'),
               onclick: () => { app.setState({ ...app.state, events: events.filter((x) => x.id !== e.id) }); app.go('realweek'); },
-            }, '🗑'))))) : null,
+            }, ico('trash-2')))))) : null,
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, t('rwNew')),
         h('label', { class: 'field-label' }, t('rwType')), typeSel,
