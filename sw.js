@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v14';
+const CACHE = 'vantage-point-v15';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -19,6 +19,7 @@ const SHELL = [
   'src/content/courses/eng/flow.en.js', 'src/content/courses/eng/flow.nl.js', 'src/content/courses/pm/intake.en.js', 'src/content/courses/pm/intake.nl.js',
   'src/content/courses/eng/industry40.en.js', 'src/content/courses/eng/industry40.nl.js',
   'src/content/courses/pm/lead.en.js', 'src/content/courses/pm/lead.nl.js',
+  'src/content/courses/pm/perform.en.js', 'src/content/courses/pm/perform.nl.js', 'src/content/courses/pm/negotiate.en.js', 'src/content/courses/pm/negotiate.nl.js', 'src/content/courses/eng/safety.en.js', 'src/content/courses/eng/safety.nl.js',
   'src/content/courses/eng/gridplanning.en.js', 'src/content/courses/eng/gridplanning.nl.js', 'src/content/courses/eng/reliability.en.js', 'src/content/courses/eng/reliability.nl.js', 'src/content/courses/pm/consult.en.js', 'src/content/courses/pm/consult.nl.js', 'src/content/courses/pm/portfolio.en.js', 'src/content/courses/pm/portfolio.nl.js',
   'src/content/courses/eng/improve.en.js', 'src/content/courses/eng/improve.nl.js',
   'src/content/courses/pm/stuck.en.js', 'src/content/courses/pm/stuck.nl.js',
