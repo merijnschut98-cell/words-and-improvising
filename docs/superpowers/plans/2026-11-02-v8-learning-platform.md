@@ -135,9 +135,9 @@ The fixture is a minimal two-lesson module defined inside the test file.
   - `markSayIt(state, subject, lessonId, now) -> state`.
   - `sessions` capped at 200 per subject.
 
-- [ ] **Step 1: Failing tests**: numeric tolerance (0.85 vs 0.86 with tolerance 0.02 passes; 0.9 fails) (Review Focus 3); quiz with one miss goes ask → review → ask(misses) → done and `firstTry` holds the first result; `applyLesson` twice on one day: XP 20 then 0, `days[today]` 2 (two sessions), `passed` timestamp unchanged; `applyDue` XP cap; `applySituation` no day increment; streak updates.
-- [ ] **Step 2: Run** → FAIL. **Step 3: Implement.** **Step 4: Run** → PASS.
-- [ ] **Step 5: Commit** `Add course engine: quiz, judging and progress`.
+- [x] **Step 1: Failing tests**: numeric tolerance (0.85 vs 0.86 with tolerance 0.02 passes; 0.9 fails) (Review Focus 3); quiz with one miss goes ask → review → ask(misses) → done and `firstTry` holds the first result; `applyLesson` twice on one day: XP 20 then 0, `days[today]` 2 (two sessions), `passed` timestamp unchanged; `applyDue` XP cap; `applySituation` no day increment; streak updates.
+- [x] **Step 2: Run** → FAIL. **Step 3: Implement.** **Step 4: Run** → PASS.
+- [x] **Step 5: Commit** `Add course engine: quiz, judging and progress`.
 
 ### Task 5: Mastery, recommendation, Today pick, glossary
 
