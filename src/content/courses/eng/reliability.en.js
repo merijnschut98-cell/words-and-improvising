@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.reliability.weibull',
+      figure: 'eng.reliability.weibull',
       title: 'Failure data and Weibull in words',
       pre: [
         {
