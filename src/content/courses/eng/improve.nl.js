@@ -248,7 +248,7 @@ export default {
           q: 'Wat betekent een interactie tussen twee factoren?',
           options: ['Beide factoren hebben een groot effect', 'De twee factoren zijn per ongeluk tegelijk veranderd', 'Het effect van de ene factor hangt af van het niveau van de andere', 'De factoren heffen elkaar op'],
           answer: 'Het effect van de ene factor hangt af van het niveau van de andere',
-          why: 'In de 2×2 lopen de lijnen voor de twee niveaus niet parallel.',
+          why: 'In een interactieplot lopen de lijnen voor de twee niveaus van de andere factor niet parallel.',
         },
         {
           q: 'Waarom randomiseer je de volgorde van de runs?',

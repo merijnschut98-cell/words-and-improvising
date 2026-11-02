@@ -248,7 +248,7 @@ export default {
           q: 'What does an interaction between two factors mean?',
           options: ['Both factors have a large effect', 'The two factors were changed at the same time by mistake', 'The effect of one factor depends on the level of the other', 'The factors cancel each other out'],
           answer: 'The effect of one factor depends on the level of the other',
-          why: 'In the 2×2 grid the lines for the two levels are not parallel.',
+          why: 'On an interaction plot, the lines for the two levels of the other factor are not parallel.',
         },
         {
           q: 'Why randomise the run order?',
