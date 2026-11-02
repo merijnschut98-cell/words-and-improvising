@@ -230,7 +230,7 @@ export default {
       said: 'Wat engineers zeggen: “Zaterdag, alles stil, en de compressor zit nog veertig procent van de tijd in last. Dat is onze lekrekening.”',
       recall: [
         {
-          q: 'Weekendtest: de productie ligt stil en niks zou lucht moeten gebruiken. De compressor levert in last 12 m³ per minuut en draait 25% van de tijd in last. Hoe groot is de lekkage, in m³ per minuut?',
+          q: 'Weekendtest: de productie ligt stil en niks zou lucht moeten gebruiken. De compressor levert in last 12 m³ per minuut en draait 25% van de tijd in last. Hoe groot is de gemiddelde lekkage, in m³ per minuut?',
           number: 3,
           tolerance: 0.1,
           unit: 'm³/min',

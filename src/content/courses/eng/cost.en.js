@@ -188,10 +188,10 @@ export default {
           why: 'A: 30 / 12 = €2.50 per minute. B: 18 / 4 = €4.50 per minute. The scarce resource is the minute.',
         },
         {
-          q: 'An extra one-off order is priced below the full cost price but above variable cost. The plant has spare capacity. Which statement is right?',
-          options: ['It reduces profit', 'It raises profit, provided it doesn’t block better orders or drag other prices down', 'It has no effect on profit', 'It should be refused on principle'],
-          answer: 'It raises profit, provided it doesn’t block better orders or drag other prices down',
-          why: 'Each unit adds its contribution; the fixed costs are unchanged.',
+          q: 'You judge a one-off extra order on spare capacity. Which costs belong in its variable cost per unit?',
+          options: ['Material, process energy and packaging for that order', 'A share of the factory rent', 'Depreciation of the machines it runs on', 'The plant manager’s salary'],
+          answer: 'Material, process energy and packaging for that order',
+          why: 'Only costs that move with the extra units are variable; rent, depreciation and salaries stay the same either way.',
         },
       ],
       situation: {

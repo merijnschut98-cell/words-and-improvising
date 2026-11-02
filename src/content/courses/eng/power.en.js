@@ -230,7 +230,7 @@ export default {
       said: 'What engineers say: “Saturday, nothing running, and the compressor still loads forty percent of the time. That’s our leak bill.”',
       recall: [
         {
-          q: 'Weekend test: production is stopped and nothing should use air. The compressor delivers 12 m³ per minute when loaded and runs loaded 25% of the time. What is the leak flow, in m³ per minute?',
+          q: 'Weekend test: production is stopped and nothing should use air. The compressor delivers 12 m³ per minute when loaded and runs loaded 25% of the time. What is the average leak flow, in m³ per minute?',
           number: 3,
           tolerance: 0.1,
           unit: 'm³/min',

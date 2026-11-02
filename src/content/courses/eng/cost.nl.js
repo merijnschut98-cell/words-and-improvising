@@ -188,10 +188,10 @@ export default {
           why: 'A: 30 / 12 = €2,50 per minuut. B: 18 / 4 = €4,50 per minuut. De schaarste zit in de minuut.',
         },
         {
-          q: 'Een extra eenmalige order is geprijsd onder de integrale kostprijs, maar boven de variabele kosten. De fabriek heeft capaciteit over. Welke uitspraak klopt?',
-          options: ['De winst daalt', 'De winst stijgt, zolang de order geen beter werk blokkeert en andere prijzen niet omlaag trekt', 'Er is geen effect op de winst', 'De order moet uit principe worden geweigerd'],
-          answer: 'De winst stijgt, zolang de order geen beter werk blokkeert en andere prijzen niet omlaag trekt',
-          why: 'Elk stuk levert zijn dekkingsbijdrage; de vaste kosten veranderen niet.',
+          q: 'Je beoordeelt een eenmalige extra order op vrije capaciteit. Welke kosten horen bij de variabele kosten per stuk?',
+          options: ['Materiaal, procesenergie en verpakking voor die order', 'Een deel van de huur van de fabriek', 'Afschrijving van de machines waarop hij draait', 'Het salaris van de plantmanager'],
+          answer: 'Materiaal, procesenergie en verpakking voor die order',
+          why: 'Alleen kosten die met de extra stuks meebewegen zijn variabel; huur, afschrijving en salarissen blijven hoe dan ook gelijk.',
         },
       ],
       situation: {
