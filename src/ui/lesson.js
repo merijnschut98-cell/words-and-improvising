@@ -148,8 +148,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         renderQuiz(app, {
           questions: recallQuestions(lesson),
           onBack: goBack,
-          onDone: (firstTry) => {
-            const res = applyLesson(app.state, { subject, lessonId: lesson.id, firstTry, lang: app.lang }, app.today(), Date.now());
+          onDone: (firstTry, sure) => {
+            const res = applyLesson(app.state, { subject, lessonId: lesson.id, firstTry, sure, lang: app.lang }, app.today(), Date.now());
             app.setState(res.state);
             done(res.xp);
           },

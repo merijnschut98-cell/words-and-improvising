@@ -105,3 +105,13 @@ test('prepped events merge as a union, in either order', () => {
   assert.deepEqual([...mergeStates(withPrep(['b', 'c']), withPrep(['a', 'b'])).courses.eng.prepped].sort(), ['a', 'b', 'c']);
   assert.deepEqual(mergeStates(m, m).courses.eng.prepped, m.courses.eng.prepped);
 });
+
+test('a v9 box-6 entry and a v8 box-4 entry: the later due wins, in either order', () => {
+  const k = 'nl|eng.flow.takt#r0';
+  const v9 = { ...base(), courseReviews: { [k]: { box: 6, due: '2027-06-05', lesson: 'eng.flow.takt', subject: 'eng', lastSure: true } } };
+  const v8 = { ...base(), courseReviews: { [k]: { box: 4, due: '2026-12-03', lesson: 'eng.flow.takt', subject: 'eng' } } };
+  assert.equal(mergeStates(v9, v8).courseReviews[k].box, 6);
+  assert.equal(mergeStates(v8, v9).courseReviews[k].box, 6);
+  const lapsedLocal = { ...base(), courseReviews: { [k]: { box: 1, due: '2027-07-01', lesson: 'eng.flow.takt', subject: 'eng' } } };
+  assert.equal(mergeStates(v9, lapsedLocal).courseReviews[k].box, 1, 'a later miss on another device still wins');
+});

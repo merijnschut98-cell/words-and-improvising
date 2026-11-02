@@ -1838,6 +1838,62 @@ await step('before the meeting: event with a topic offers a refresh', async () =
   await c.close();
 });
 
+await step('guessing: a correct guess does not climb; a sure miss is marked', async () => {
+  const lid = 'eng.flow.changeover';
+  const { c, p, shotP, dark } = await v9Context();
+  const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
+  await p.locator('.course-today').waitFor();
+  await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
+  for (const q of lesson.pre) {
+    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.pre-card .btn-primary').click(); }
+    else await p.locator('.pre-card .opt').first().click();
+    await p.locator('.pre-card .btn-primary').click();
+  }
+  for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
+  await p.locator('.example-card').waitFor();
+  await p.locator('.lesson > .btn-primary').click();
+  // Q1 (a choice): say "I'm guessing", then answer it right.
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').click();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the toggle');
+  await shotP('94-guess-toggle');
+  await answerRight(p, lesson);
+  // Q2 (a number): the toggle is back to sure; one filled button; answer wrong while sure.
+  await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
+  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').waitFor();
+  await onePrimary(p, 'quiz card with the toggle');
+  const q2 = lesson.recall[1];
+  await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
+  await p.locator('.quiz-card .btn-primary').click();
+  for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
+  await p.locator('.quiz-review').waitFor();
+  if (await p.locator('.review-row.sure-miss').count() !== 1) throw new Error('expected one sure miss');
+  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Je was zeker' }).waitFor();
+  await onePrimary(p, 'quiz review with a sure miss');
+  await shotP('95-sure-miss-review');
+  await dark('95-sure-miss-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
+  await p.locator('.quiz-review .btn-primary').click();
+  await answerRight(p, lesson);
+  await p.locator('.quiz-review .btn-primary').click();
+  await p.locator('.lesson-done').waitFor();
+  let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const box = (i) => st.courseReviews[`nl|${lid}#r${i}`].box;
+  if (box(0) !== 1 || box(1) !== 1 || box(2) !== 2) throw new Error(`boxes: ${[0, 1, 2, 3].map(box)}`);
+  // Back after a long break: a question due 90 days ago is still in the queue.
+  const old = new Date(Date.now() - 90 * 86400000);
+  const oldKey = `${old.getFullYear()}-${String(old.getMonth() + 1).padStart(2, '0')}-${String(old.getDate()).padStart(2, '0')}`;
+  await p.evaluate(([k, d]) => {
+    const s = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    s.courseReviews = { [k]: { box: 3, due: d, lesson: 'eng.flow.takt', subject: 'eng' } };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(s));
+  }, ['nl|eng.flow.takt#r1', oldKey]);
+  await p.reload();
+  await p.locator('.due-card', { hasText: '1' }).click();
+  const takt = await p.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.takt'));
+  await p.locator('.screen.due .quiz-q', { hasText: takt.recall[1].q.trim().slice(0, 30) }).waitFor();
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

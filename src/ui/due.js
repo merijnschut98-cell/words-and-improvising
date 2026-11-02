@@ -40,9 +40,9 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
       main.replaceChildren(box);
       renderQuiz(app, {
         questions,
-        onDone: (firstTry) => {
+        onDone: (firstTry, sure) => {
           const before = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length;
-          const res = applyDue(app.state, { subject, results: firstTry, lang: app.lang, maintenance, prep }, app.today(), Date.now());
+          const res = applyDue(app.state, { subject, results: firstTry, sure, lang: app.lang, maintenance, prep }, app.today(), Date.now());
           app.setState(res.state);
           const owned = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length - before;
           main.replaceChildren(h('section', { class: 'card lesson-done due-done' },

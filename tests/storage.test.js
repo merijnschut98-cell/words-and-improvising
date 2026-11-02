@@ -230,3 +230,11 @@ test('v9: event topics and prepped are coerced', () => {
   assert.deepEqual(s.courses.eng.prepped, []);
   assert.deepEqual(s.courses.pm.prepped, ['ev9']);
 });
+
+test('v9: course review boxes load as an integer 1–6; a v8 queue (boxes 1–4) loads unchanged', () => {
+  const v8 = { 'nl|eng.flow.takt#r0': { box: 1, due: '2026-11-03', lesson: 'eng.flow.takt', subject: 'eng' }, 'nl|eng.flow.takt#r1': { box: 4, due: '2026-12-03', lesson: 'eng.flow.takt', subject: 'eng' } };
+  const ok = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courseReviews: v8 }) }));
+  assert.deepEqual(ok.courseReviews, v8);
+  const bad = load(fakeBackend({ [KEY]: JSON.stringify({ courseReviews: { a: { box: 9, due: 'd' }, b: { box: 0, due: 'd' }, c: { box: 2.6, due: 'd' }, d: { box: 'x', due: 'd' } } }) }));
+  assert.deepEqual(Object.fromEntries(Object.entries(bad.courseReviews).map(([k, v]) => [k, v.box])), { a: 6, b: 1, c: 3, d: 1 });
+});

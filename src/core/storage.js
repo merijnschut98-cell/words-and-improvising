@@ -86,6 +86,13 @@ export function load(backend) {
     return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped) }];
   }));
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
+  // Boxes run 1–6 since v9; a v8 queue (1–4) loads unchanged.
+  for (const [k, r] of Object.entries(merged.courseReviews)) {
+    if (!isObject(r)) continue;
+    const box = Math.round(Number(r.box));
+    const fixed = Number.isFinite(box) ? Math.min(6, Math.max(1, box)) : 1;
+    if (fixed !== r.box) merged.courseReviews[k] = { ...r, box: fixed };
+  }
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
   if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
   const pr = merged.programme;

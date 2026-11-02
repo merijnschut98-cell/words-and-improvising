@@ -2,7 +2,7 @@
 // work feeds the shared XP, days and streak. Pure.
 import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
-import { scheduleCourseReview, dueCourseQuestions, maintenanceQuestion } from './coursereview.js';
+import { scheduleCourseReview, dueCount, maintenanceQuestion } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS } from '../content/courses/index.js';
 import { upcoming } from './realweek.js';
 
@@ -28,12 +28,13 @@ export function judge(question, answer) {
 }
 
 // One pass asks every question; review shows them all; the next pass asks only
-// the misses, until every question has been right once.
+// the misses, until every question has been right once. sure records, on the
+// first pass, whether he answered sure (true) or said he was guessing (false).
 export function startQuiz(questions) {
-  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, misses: [], phase: 'ask' };
+  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, sure: {}, misses: [], phase: 'ask' };
 }
 
-export function answerQuiz(state, questions, value) {
+export function answerQuiz(state, questions, value, sure = true) {
   if (state.phase !== 'ask') return state;
   const idx = state.order[state.i];
   const q = questions[idx];
@@ -42,6 +43,7 @@ export function answerQuiz(state, questions, value) {
     ...state,
     answers: { ...state.answers, [q.id]: value },
     firstTry: state.pass === 1 ? { ...state.firstTry, [q.id]: ok } : state.firstTry,
+    sure: state.pass === 1 ? { ...(state.sure || {}), [q.id]: sure !== false } : (state.sure || {}),
     misses: ok ? state.misses : [...state.misses, idx],
     i: state.i + 1,
     last: { ...(state.last || {}), [q.id]: ok },
@@ -64,6 +66,7 @@ export function backQuiz(state, questions) {
     answers: drop(state.answers),
     last: drop(state.last),
     firstTry: state.pass === 1 ? drop(state.firstTry) : state.firstTry,
+    sure: state.pass === 1 ? drop(state.sure) : (state.sure || {}),
     misses: at < 0 ? state.misses : state.misses.filter((_, k) => k !== at),
   };
 }
@@ -83,6 +86,15 @@ function withSubject(state, subject, fn) {
   return { ...state, courses: { ...courses, [subject]: fn(c) } };
 }
 
+// Sure and guessing answers of one session, for the calibration line.
+function calib(results, sure) {
+  const out = { sr: 0, st: 0, gr: 0, gt: 0 };
+  for (const [id, ok] of Object.entries(results || {})) {
+    if ((sure || {})[id] === false) { out.gt += 1; if (ok) out.gr += 1; } else { out.st += 1; if (ok) out.sr += 1; }
+  }
+  return out;
+}
+
 const logSession = (c, entry) => ({ ...c, sessions: [entry, ...(c.sessions || [])].slice(0, SESSIONS_CAP) });
 
 // A lesson or a due session counts as a round for the day: days and streak.
@@ -91,7 +103,7 @@ function countRound(state, today, xp) {
   return { ...s, xp: s.xp + xp, streak: updateStreak(s.streak, today), days: { ...s.days, [today]: (s.days[today] || 0) + 1 } };
 }
 
-export function applyLesson(state, { subject, lessonId, firstTry, lang }, today, now) {
+export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lang }, today, now) {
   const before = ((state.courses || {})[subject] || { lessons: {} }).lessons[lessonId] || {};
   const xp = before.passed ? 0 : LESSON_XP;
   let next = countRound(state, today, xp);
@@ -101,25 +113,25 @@ export function applyLesson(state, { subject, lessonId, firstTry, lang }, today,
     // a miss still resets it, a hit leaves it where it is.
     const cur = reviews[`${lang}|${questionId}`];
     if (ok && cur && cur.due > today) continue;
-    reviews = scheduleCourseReview(reviews, { questionId, lessonId, subject, lang }, today, ok);
+    reviews = scheduleCourseReview(reviews, { questionId, lessonId, subject, lang }, today, ok, (sure || {})[questionId] !== false);
   }
   next = { ...next, courseReviews: reviews };
   const results = Object.values(firstTry || {});
   next = withSubject(next, subject, (c) => logSession({
     ...c,
     lessons: { ...c.lessons, [lessonId]: { ...before, read: before.read || now, passed: before.passed || now } },
-  }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, ts: now }));
+  }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, cal: calib(firstTry, sure), ts: now }));
   return { state: next, xp };
 }
 
-export function applyDue(state, { subject, results, lang, maintenance = false, prep = null }, today, now) {
+export function applyDue(state, { subject, results, sure = {}, lang, maintenance = false, prep = null }, today, now) {
   const entries = Object.entries(results || {});
   const correct = entries.filter(([, ok]) => ok).length;
   const xp = Math.min(DUE_XP_MAX, DUE_XP + correct);
   let next = countRound(state, today, xp);
   let reviews = next.courseReviews || {};
   for (const [questionId, ok] of entries) {
-    reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok);
+    reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok, (sure || {})[questionId] !== false);
   }
   next = { ...next, courseReviews: reviews };
   const [y, m, d] = today.split('-').map(Number);
@@ -127,7 +139,7 @@ export function applyDue(state, { subject, results, lang, maintenance = false, p
   const marked = (c) => (prep ? { ...c, prepped: [prep, ...(c.prepped || []).filter((x) => x !== prep)].slice(0, PREPPED_CAP) } : c);
   next = withSubject(next, subject, (c) => logSession(
     marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
-    { day: today, kind: 'due', correct, total: entries.length, ts: now },
+    { day: today, kind: 'due', correct, total: entries.length, cal: calib(results, sure), ts: now },
   ));
   return { state: next, xp };
 }
@@ -189,7 +201,7 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   // A real event within two days with a topic in this course: refresh it.
   const prep = prepPick(state, subject, lang, today, modules);
   if (prep) return prep;
-  const due = dueCourseQuestions(reviews, today, subject, lang).length;
+  const due = dueCount(reviews, today, subject, lang);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = recommendedModule(state, subject, modules);
   if (rec) return { reason: 'lesson', moduleId: rec, lessonId: nextLesson(state, modules.find((m) => m.id === rec)) };
@@ -278,7 +290,7 @@ export function courseSummary(state, subject, lang, today, modules = MODULES) {
     return sessions.filter((x) => x.day === key).length;
   });
   const situations = sessions.filter((x) => x.kind === 'situation').slice(0, 5).map((x) => ({ lessonId: x.lessonId, pts: x.correct, ts: x.ts }));
-  return { tracks, due: dueCourseQuestions(state.courseReviews || {}, today, subject, lang).length, strip, situations };
+  return { tracks, due: dueCount(state.courseReviews || {}, today, subject, lang), strip, situations };
 }
 
 // The step indicator at the top of a lesson: Guess · Read · Example · Check.
@@ -386,12 +398,25 @@ export function applyQuestionId(reviews, lang, lessonId, count) {
 
 // Recall right after the real experience: scheduled like a due question, but
 // no XP, no round and no session. A hit before it is due does not climb.
-export function applyRecall(state, { subject, results, lang }, today) {
+export function applyRecall(state, { subject, results, sure = {}, lang }, today) {
   let reviews = state.courseReviews || {};
   for (const [questionId, ok] of Object.entries(results || {})) {
     const cur = reviews[`${lang}|${questionId}`];
     if (ok && cur && cur.due > today) continue;
-    reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok);
+    reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok, (sure || {})[questionId] !== false);
   }
   return { state: { ...state, courseReviews: reviews }, xp: 0 };
+}
+
+// Sure versus guessing over the last 30 days: how often each was right.
+// Information for Progress, not a goal.
+export function calibrationLine(sessions, today) {
+  const since = shiftDay(today, -30);
+  const out = { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 };
+  for (const x of sessions || []) {
+    if (!x || !x.cal || !(x.day >= since && x.day <= today)) continue;
+    out.sureRight += x.cal.sr || 0; out.sureTotal += x.cal.st || 0;
+    out.guessRight += x.cal.gr || 0; out.guessTotal += x.cal.gt || 0;
+  }
+  return out;
 }

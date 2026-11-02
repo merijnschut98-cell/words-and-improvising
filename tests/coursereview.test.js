@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { questionKey, scheduleCourseReview, isOwned, dueCourseQuestions, dueSession, maintenanceQuestion } from '../src/core/coursereview.js';
+import { questionKey, scheduleCourseReview, isOwned, dueCourseQuestions, dueSession, maintenanceQuestion, dueCount, COURSE_INTERVALS, OWNED_BOX } from '../src/core/coursereview.js';
 import { seededRng } from '../src/core/lesson.js';
 
-const sched = (r, qid, day, ok, lang = 'nl') => scheduleCourseReview(r, { questionId: qid, lessonId: qid.split('#')[0], subject: qid.split('.')[0], lang }, day, ok);
+const sched = (r, qid, day, ok, lang = 'nl', sure = true) => scheduleCourseReview(r, { questionId: qid, lessonId: qid.split('#')[0], subject: qid.split('.')[0], lang }, day, ok, sure);
 
 test('owned after three correct recalls in three spaced sessions', () => {
   let r = sched({}, 'eng.flow.takt#r0', '2026-11-02', true); // the quiz itself
-  assert.deepEqual(r[questionKey('nl', 'eng.flow.takt#r0')], { box: 2, due: '2026-11-05', lesson: 'eng.flow.takt', subject: 'eng' });
+  assert.deepEqual(r[questionKey('nl', 'eng.flow.takt#r0')], { box: 2, due: '2026-11-05', lesson: 'eng.flow.takt', subject: 'eng', lastSure: true });
   assert.equal(isOwned(r, 'nl', 'eng.flow.takt#r0'), false);
   r = sched(r, 'eng.flow.takt#r0', '2026-11-05', true);
   assert.equal(r['nl|eng.flow.takt#r0'].box, 3);
@@ -59,9 +59,48 @@ test('due session is deterministic for the same day and seed', () => {
   assert.deepEqual(dueSession(r, '2026-11-02', 'eng', 'nl', seededRng(5), { trackOf }), dueSession(r, '2026-11-02', 'eng', 'nl', seededRng(5), { trackOf }));
 });
 
-test('questions overdue by more than 60 days drop out of the due list', () => {
+test('questions overdue by more than 60 days come back marked lapsed, never dropped', () => {
   const r = seed(['eng.flow.a#r0'], '2026-08-01');
-  assert.equal(dueCourseQuestions(r, '2026-11-02', 'eng', 'nl').length, 0);
+  const due = dueCourseQuestions(r, '2026-11-02', 'eng', 'nl');
+  assert.equal(due.length, 1);
+  assert.equal(due[0].lapsed, true);
+  assert.equal(dueCourseQuestions(seed(['eng.flow.a#r0'], '2026-10-30'), '2026-11-02', 'eng', 'nl')[0].lapsed, false);
+});
+
+test('a session takes at most three lapsed questions, after the regular due ones', () => {
+  let r = seed(Array.from({ length: 6 }, (_, i) => `eng.flow.old${i}#r0`), '2026-07-01');
+  r = { ...r, ...seed(['eng.flow.a#r0', 'eng.quality.a#r0'], '2026-11-01') };
+  const s = dueSession(r, '2026-11-02', 'eng', 'nl', seededRng(3), { trackOf });
+  assert.equal(s.length, 5);
+  assert.deepEqual(s.slice(0, 2).sort(), ['eng.flow.a#r0', 'eng.quality.a#r0']);
+  assert.ok(s.slice(2).every((id) => id.includes('.old')));
+  assert.equal(dueCount(r, '2026-11-02', 'eng', 'nl'), 5, 'the count a returning user sees');
+  // Only lapsed ones: still three, oldest first.
+  const only = seed(Array.from({ length: 6 }, (_, i) => `eng.flow.old${i}#r0`), '2026-07-01');
+  assert.equal(dueSession(only, '2026-11-02', 'eng', 'nl', seededRng(3), { trackOf }).length, 3);
+  // A lapsed miss goes to box 1 as usual.
+  assert.equal(sched(only, 'eng.flow.old0#r0', '2026-11-02', false)['nl|eng.flow.old0#r0'].box, 1);
+});
+
+test('a correct guess keeps the box (a new one starts at box 1); sure and correct climbs to 6 with gaps 60 and 120', () => {
+  const q = 'eng.flow.takt#r0';
+  let r = sched({}, q, '2026-11-02', true, 'nl', false);
+  assert.deepEqual(r[`nl|${q}`], { box: 1, due: '2026-11-03', lesson: 'eng.flow.takt', subject: 'eng', lastSure: false });
+  r = sched(r, q, '2026-11-03', true); // box 2
+  r = sched(r, q, '2026-11-06', true, 'nl', false);
+  assert.deepEqual([r[`nl|${q}`].box, r[`nl|${q}`].due], [2, '2026-11-09'], 'a guess keeps box 2 and waits its interval');
+  r = sched(r, q, '2026-11-09', true); // 3
+  r = sched(r, q, '2026-11-16', true); // 4
+  assert.equal(isOwned(r, 'nl', q), true, 'box 4 is owned');
+  r = sched(r, q, '2026-12-07', true);
+  assert.deepEqual([r[`nl|${q}`].box, r[`nl|${q}`].due], [5, '2027-02-05']);
+  r = sched(r, q, '2027-02-05', true);
+  assert.deepEqual([r[`nl|${q}`].box, r[`nl|${q}`].due], [6, '2027-06-05']);
+  r = sched(r, q, '2027-06-05', true);
+  assert.equal(r[`nl|${q}`].box, 6, 'capped at 6');
+  assert.deepEqual(COURSE_INTERVALS, [1, 3, 7, 21, 60, 120]);
+  assert.equal(OWNED_BOX, 4);
+  assert.equal(isOwned({ 'nl|x#r0': { box: 3 } }, 'nl', 'x#r0'), false, 'box 3 is not owned');
 });
 
 test('maintenance: oldest owned question, at most once per ISO week', () => {
