@@ -211,6 +211,7 @@ export default {
     },
     {
       id: 'eng.industry40.vision',
+      figure: 'eng.industry40.vision',
       title: 'Machine vision and AI inspection',
       pre: [
         {
