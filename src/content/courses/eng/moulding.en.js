@@ -69,6 +69,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      figure: 'eng.moulding.cycle',
       title: 'Cycle time and output',
       pre: [
         {
