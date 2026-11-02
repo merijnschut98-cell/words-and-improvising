@@ -58,6 +58,18 @@ export default {
           'Vraagt waar het verlies echt zit, per verliessoort of per lijn',
           'Vraagt wat er al geprobeerd is en wat niks doen kost',
         ],
+        pushback: {
+          lines: [
+            '“Daar kijken we al jaren naar. We weten heus waar de verliezen zitten. Ik heb mensen op de vloer nodig, geen vragen.”',
+            '“Zes maanden, dat heb ik de directie beloofd. Als jij met analyse begint, zijn we er twee kwijt.”',
+          ],
+          model: '“Terecht, jij kent die persen veel beter dan ik. Dan gaat het snel: laat me deze week jullie verliesverdeling zien, en maandag zetten we het team op het grootste verlies. Geen maanden analyse; één week, dan gaan we aan de slag.”',
+          rubric: [
+            'Erkent zijn kennis en zijn deadline',
+            'Houdt vast aan eerst weten waar het verlies zit',
+            'Stelt een korte stap met een datum voor',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe collega in 60 seconden het verschil uit tussen symptoom, probleem en doel, met late orders als voorbeeld.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Gebruikt reflecteren of doorvragen om een concreet voorbeeld te krijgen',
           'Plant om ook de andere kant te horen, de planners zelf',
         ],
+        pushback: {
+          lines: [
+            '“Kom op, ik werk al jaren met die planners. Je hoeft niet te graven, ik vertel je toch wat het probleem is.”',
+            '“Dus jij denkt dat ik het mis heb? Ik heb je ingehuurd om de planning te verbeteren, niet om mijn mensen ter discussie te stellen.”',
+          ],
+          model: '“Ik denk niet dat je het mis hebt; ik wil het zien zoals jij het ziet. Als het aan de planners ligt, laten de laatste drie vertraagde stations dat snel zien. Zullen we die donderdag samen doorlopen? Dan weet ik waar ik moet beginnen.”',
+          rubric: [
+            'Erkent zijn beeld zonder mee te gaan of in discussie te gaan',
+            'Blijft vragen naar concrete gevallen voor een conclusie',
+            'Stelt een concrete volgende stap met echte gevallen voor',
+          ],
+        },
       },
       sayIt: 'Leg een collega in 60 seconden uit hoe je een eerste klantgesprek aanpakt, van opening tot waarmee je weggaat.',
       terms: [
@@ -188,6 +212,18 @@ export default {
           'Vraagt wat er nodig is om het voor zijn team te laten werken en zoekt de echte reden',
           'Escaleert alleen bij een vastgelopen besluit, en open',
         ],
+        pushback: {
+          lines: [
+            '“Kijk, mijn mensen houden de lijnen draaiende. Jouw pilot is mooi, maar als er een lijn stilvalt, is dat mijn probleem, niet het jouwe.”',
+            '“De directeur wil dit, prima. Mij heeft niemand iets gevraagd. Dus reken er niet op dat ik monteurs vrijmaak.”',
+          ],
+          model: '“Je hebt gelijk, niemand heeft het je gevraagd, en dat was een fout van onze kant. Jij draagt het risico als een lijn stilvalt. Help me dan de pilot zo in te richten dat dat niet gebeurt: welke lijn en welke uren kosten jou het minst? Jouw antwoord neem ik graag mee naar de volgende stuurgroep.”',
+          rubric: [
+            'Erkent zijn risico en dat hij erbuiten is gelaten',
+            'Houdt de pilot en zijn rol erin op tafel',
+            'Stelt een concrete manier voor om hem mee te laten ontwerpen',
+          ],
+        },
       },
       sayIt: 'Leg de projectleider van de klant in 60 seconden uit waarom je de teamleiders wilt spreken vóór de kick-off.',
       terms: [
@@ -255,6 +291,18 @@ export default {
           'Maakt er van, naar, voor wanneer van, met een databron',
           'Spreekt af wie aftekent en op basis van welk bewijs',
         ],
+        pushback: {
+          lines: [
+            '“Jullie consultants willen altijd een getal. Samenwerking is geen getal. Iedereen snapt wat ik bedoel.”',
+            '“Als we er een hard doel in zetten, voelen de teams zich afgerekend. Dat wil ik niet.”',
+          ],
+          model: '“Eens, samenwerking zelf is geen getal. Maar je merkt het ergens aan: minder klussen die terugkomen, minder ritten voor niks. Als we daar één van kiezen, kunnen we de directie laten zien dat het werkt. We meten het proces, niet de mensen. Zal ik vrijdag twee opties meenemen?”',
+          rubric: [
+            'Erkent dat samenwerking op zich geen getal is',
+            'Houdt vast aan één waarneembare maat voor klaar',
+            'Stelt concrete opties en een keuzemoment voor',
+          ],
+        },
       },
       sayIt: 'Leg een sponsor in 60 seconden uit waarom je eerst een nulmeting wilt voordat je je aan een target vastlegt.',
       terms: [
@@ -321,6 +369,18 @@ export default {
           'Zorgt dat het snel geregeld is en geeft de monteur de credits',
           'Koppelt het terug aan de nulmeting of het hoofddoel',
         ],
+        pushback: {
+          lines: [
+            '“De voorraadlijst van de bus? Daar ben je niet voor hier. Hou je bij het planningsproject.”',
+            '“En eerlijk, de mannen klagen over alles. Als we elke opmerking najagen, komt er niks af.”',
+          ],
+          model: '“Klopt, het staat niet in de scope. Maar ritjes terug naar het magazijn kosten geplande uren, en dat is wel mijn project. Ik check het even: ik vraag drie monteurs om deze week hun ritjes naar het magazijn bij te houden. Is het klein, dan laat ik het los. Is het groot, dan beslis jij.”',
+          rubric: [
+            'Erkent de scope en zijn zorg',
+            'Koppelt de opmerking aan het doel van het project zelf',
+            'Stelt een kleine, snelle check voor en laat het besluit bij hem',
+          ],
+        },
       },
       sayIt: 'Leg de proceseigenaar in 60 seconden uit waarom je je eerste twee weken vooral op de vloer doorbrengt.',
       terms: [
@@ -386,6 +446,18 @@ export default {
           'Legt het risico uit in het belang van de klant zelf: een uitkomst die niemand gelooft',
           'Biedt een omgebouwd, neutraal alternatief met een termijn',
         ],
+        pushback: {
+          lines: [
+            '“Het ligt duidelijk aan de buitendienst. Ik heb alleen de cijfers nodig om het te laten zien. Daar betalen we je voor.”',
+            '“Als jij het niet doet, vind ik wel een bureau dat het wel doet. Denk even na wat dat betekent voor jullie.”',
+          ],
+          model: '“Ik snap dat je een stevige basis nodig hebt voor het besluit. Ik kan je de echte oorzaken van de vertraging geven, met cijfers, en als de buitendienst daar een groot deel van is, zie je dat terug. Wat ik niet kan, is beginnen bij het antwoord. Dat beschermt jou ook, als iemand het later natrekt.”',
+          rubric: [
+            'Erkent de behoefte achter het verzoek',
+            'Blijft erbij niet vanuit een vaste conclusie te beginnen',
+            'Biedt een concreet alternatief dat hem toch helpt',
+          ],
+        },
       },
       sayIt: 'Leg je eigen manager in 60 seconden uit waarom je een project wilt ombouwen dat de klant al wil tekenen.',
       terms: [

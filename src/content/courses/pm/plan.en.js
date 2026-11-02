@@ -58,6 +58,18 @@ export default {
           'Starts from deliverables, not activities',
           'Gives each package an owner and a “done when”',
         ],
+        pushback: {
+          lines: [
+            '“We know what’s broken. Why spend a week on boxes and lists when we could be fixing the capper today?”',
+            '“Last project we made a beautiful plan and nothing happened. The guys lose interest if they don’t see action.”',
+          ],
+          model: '“I get it, and we will fix the capper this week. Alongside it, give me one hour on Thursday to list what else eats downtime, so we don’t fix the wrong things first. Your capper goes on that list as item one, already started.”',
+          rubric: [
+            'Acknowledges their energy and the bad experience',
+            'Holds to a short breakdown before the full push',
+            'Proposes doing both: a quick fix now and a short planning session',
+          ],
+        },
       },
       sayIt: 'Explain to a new colleague in 60 seconds how you break a project down, from deliverables to work packages.',
       terms: [
@@ -125,6 +137,18 @@ export default {
           'Names the biggest unknown honestly',
           'Says when and how the range will be narrowed',
         ],
+        pushback: {
+          lines: [
+            '“I don’t need it exact. Just give me a date I can put in the board update.”',
+            '“Every consultant says ‘it depends’. If you can’t give me a date, what do I have you for?”',
+          ],
+          model: '“Fair, you need something for the board. Without IT it’s somewhere between May and September; the system change is the big unknown. I’ll talk to IT this week and give you a firm range by next Tuesday. Then the date you report is one we can keep.”',
+          rubric: [
+            'Acknowledges his need for a date',
+            'Gives an honest range and names the unknown',
+            'Commits to a dated step that narrows the range',
+          ],
+        },
       },
       sayIt: 'Explain to a client engineer in 60 seconds why you ask for a best case and a worst case instead of one number.',
       terms: [
@@ -191,6 +215,18 @@ export default {
           'Proposes a concrete alternative date with the reason to the sponsor',
           'Makes the plan visible so others can correct it',
         ],
+        pushback: {
+          lines: [
+            '“Week 20 is in the plan the board approved. Moving it now makes us look like we didn’t think it through.”',
+            '“Can’t you just go live during the shutdown? It’s quiet then, perfect for something new.”',
+          ],
+          model: '“I understand, a moved date feels bad. But going live in a shutdown means nobody uses it for weeks, and half the operators then learn it after their holiday. Better to say it now: week 23, with everyone there. I’ll write the board a two-line reason today.”',
+          rubric: [
+            'Acknowledges the cost of moving the date',
+            'Holds to a date that actually works on the floor',
+            'Proposes a concrete new date and how to tell the board',
+          ],
+        },
       },
       sayIt: 'Explain to a client team in 60 seconds what the critical path is and why it matters for the end date.',
       terms: [
@@ -256,6 +292,18 @@ export default {
           'Asks about the earlier attempts openly',
           'Turns reasons into risks with an owner and an action',
         ],
+        pushback: {
+          lines: [
+            '“Why bring up the old attempts? It just makes people negative before we’ve even started.”',
+            '“Those projects failed because of the people back then. This team is different.”',
+          ],
+          model: '“I don’t want to dwell on it either. But if something stopped it twice, it can stop us too. Give me fifteen minutes in the next session: what went wrong then, and what’s different now? Whatever comes out goes on the risk list with an owner.”',
+          rubric: [
+            'Acknowledges the worry about negativity',
+            'Keeps learning from the earlier attempts on the table',
+            'Proposes a short, concrete session with owners for the risks',
+          ],
+        },
       },
       sayIt: 'Explain to a client team lead in 60 seconds how a pre-mortem works and why it helps.',
       terms: [
@@ -321,6 +369,18 @@ export default {
           'Proposes concrete sponsor tasks',
           'Confirms the agreement in writing',
         ],
+        pushback: {
+          lines: [
+            '“I told you, I support it. I don’t need to be in every meeting. That’s what I hired you for.”',
+            '“A monthly steering group? My diary is full until March. Just send me an update now and then.”',
+          ],
+          model: '“I appreciate the trust, and you don’t need to be in every meeting. I need you for three decisions this quarter, and the teams need to see you behind it. Thirty minutes every four weeks is enough. Shall I ask your assistant for the first slot now?”',
+          rubric: [
+            'Acknowledges his trust and his full diary',
+            'Makes concrete what the sponsor role needs',
+            'Proposes a small, fixed slot and books it',
+          ],
+        },
       },
       sayIt: 'Explain to a new project member in 60 seconds what RACI means and why only one person can be accountable.',
       terms: [
@@ -386,6 +446,18 @@ export default {
           'Offers milestones and a go/no-go for control',
           'Proposes a small, controlled test instead of jargon',
         ],
+        pushback: {
+          lines: [
+            '“I’ve seen ‘pilots’ before. They turn my floor into a lab and nobody cleans up afterwards.”',
+            '“If the design is good, why would you need to test it? Just do the work properly up front.”',
+          ],
+          model: '“Fair, a pilot that leaves a mess is worse than none. I’ll design it properly. The point is to check two assumptions before we roll it out everywhere: one cell, four weeks, with an end date and a way back. At the end, you decide whether it goes wider.”',
+          rubric: [
+            'Acknowledges his bad experience and his need for control',
+            'Holds to testing the key assumptions before a full rollout',
+            'Proposes a bounded test with an end date and his decision',
+          ],
+        },
       },
       sayIt: 'Explain to a plant manager in 60 seconds when you would plan a project in one go and when in short rounds.',
       terms: [

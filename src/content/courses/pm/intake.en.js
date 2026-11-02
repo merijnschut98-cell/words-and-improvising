@@ -58,6 +58,18 @@ export default {
           'Asks where the loss actually sits, per loss type or per line',
           'Asks what was already tried and what doing nothing costs',
         ],
+        pushback: {
+          lines: [
+            '“We’ve looked at this for years. We know where the losses are. I need people on the floor, not more questions.”',
+            '“Six months is what I promised the board. If you start with analysis, we lose two of them.”',
+          ],
+          model: '“Fair, you know these presses far better than I do. Then this goes fast: show me your loss split this week, and on Monday we put the team on the biggest loss. No months of analysis; one week, then we fix.”',
+          rubric: [
+            'Acknowledges his knowledge and his deadline',
+            'Holds to knowing where the loss sits before choosing a fix',
+            'Proposes a short step with a date',
+          ],
+        },
       },
       sayIt: 'Explain to a new colleague in 60 seconds the difference between symptom, problem and goal, using a late-orders example.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Uses reflecting or inquiry to get a concrete example',
           'Plans to hear the other side, the planners themselves',
         ],
+        pushback: {
+          lines: [
+            '“Come on, I’ve worked with these planners for years. You don’t need to dig, I’m telling you what the problem is.”',
+            '“So you think I’m wrong? I hired you to fix the planning, not to question my people.”',
+          ],
+          model: '“I don’t think you’re wrong; I want to see it the way you see it. If it’s the planners, the last three late stations will show that quickly. Can we go through those together on Thursday? Then I’ll know where to start.”',
+          rubric: [
+            'Acknowledges his view without agreeing or arguing',
+            'Keeps asking for concrete cases before a conclusion',
+            'Proposes a specific next look at real cases',
+          ],
+        },
       },
       sayIt: 'Explain to a colleague in 60 seconds how you run a first client conversation, from opening to what you leave with.',
       terms: [
@@ -188,6 +212,18 @@ export default {
           'Asks what it needs to work for his team and listens for the real reason',
           'Escalates only on a blocked decision, and openly',
         ],
+        pushback: {
+          lines: [
+            '“Look, my people keep the lines running. Your pilot is nice, but if a line stops, that’s on me, not on you.”',
+            '“The director wants this, fine. Nobody asked me. So don’t expect me to free up technicians.”',
+          ],
+          model: '“You’re right, nobody asked you, and that was a mistake on our side. You carry the risk if a line stops. So help me set up the pilot so it doesn’t: which line and which hours would cost you least? I’d like to take your answer to the next steering meeting.”',
+          rubric: [
+            'Acknowledges his risk and that he was left out',
+            'Keeps the pilot and his part in it on the table',
+            'Proposes a concrete way to let him shape it',
+          ],
+        },
       },
       sayIt: 'Explain to a client’s project lead in 60 seconds why you want to talk to the team leads before the kick-off.',
       terms: [
@@ -255,6 +291,18 @@ export default {
           'Turns it into from, to, by when, with a data source',
           'Agrees who signs off and on what evidence',
         ],
+        pushback: {
+          lines: [
+            '“You consultants always want a number. Collaboration isn’t a number. Everyone knows what I mean.”',
+            '“If we put a hard target in, the teams will feel judged. I don’t want that.”',
+          ],
+          model: '“Agreed, collaboration itself isn’t a number. But you’ll notice it somewhere: fewer jobs bounced back, fewer trips for nothing. If we pick one of those, we can show the board it worked. We measure the process, not the people. Shall I bring two options on Friday?”',
+          rubric: [
+            'Acknowledges that collaboration is not a number in itself',
+            'Holds to one observable measure of done',
+            'Proposes concrete options and a moment to choose',
+          ],
+        },
       },
       sayIt: 'Explain to a sponsor in 60 seconds why you want a measured baseline before you commit to a target.',
       terms: [
@@ -321,6 +369,18 @@ export default {
           'Gets it fixed quickly and gives the technician the credit',
           'Links it back to the baseline or the main goal',
         ],
+        pushback: {
+          lines: [
+            '“The van stock list? That’s not what you’re here for. Stick to the planning project.”',
+            '“And honestly, the guys complain about everything. If we chase every comment, nothing gets done.”',
+          ],
+          model: '“Fair, it’s not in the scope. But trips back to the warehouse cost planned hours, and that is my project. Let me check it quickly: I’ll ask three technicians to note their warehouse trips this week. If it’s small, I drop it. If it’s big, you decide.”',
+          rubric: [
+            'Acknowledges the scope and his worry',
+            'Links the remark to the project’s own goal',
+            'Proposes a small, quick check and leaves the decision with him',
+          ],
+        },
       },
       sayIt: 'Explain to the process owner in 60 seconds why you’ll spend most of your first two weeks on the floor.',
       terms: [
@@ -386,6 +446,18 @@ export default {
           'Explains the risk in the client’s own interest: a result nobody trusts',
           'Offers a reshaped, neutral alternative with a time frame',
         ],
+        pushback: {
+          lines: [
+            '“It’s obviously the field teams. I just need the numbers to show it. That’s what we’re paying you for.”',
+            '“If you won’t do it, I’ll find a bureau that will. Think about what that means for your firm.”',
+          ],
+          model: '“I understand you need a solid basis for the decision. I can give you the real causes of the delays, with numbers, and if the field teams are a big part, it will show. What I can’t do is start from the answer. That protects you too, if anyone checks it later.”',
+          rubric: [
+            'Acknowledges the need behind the request',
+            'Holds firm on not starting from a fixed conclusion',
+            'Offers a concrete alternative that still helps him',
+          ],
+        },
       },
       sayIt: 'Explain to your own manager in 60 seconds why you want to reshape a project the client already wants to sign.',
       terms: [

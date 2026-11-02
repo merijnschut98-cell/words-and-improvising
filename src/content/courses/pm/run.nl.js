@@ -58,6 +58,18 @@ export default {
           'Labelt punten en verplaatst informatie naar een schriftelijke update',
           'Bereidt besluiten vooraf voor en legt ze dezelfde dag vast',
         ],
+        pushback: {
+          lines: [
+            '“Als je mensen uit het overleg haalt, voelen ze zich buitengesloten. Iedereen hier wil op de hoogte blijven.”',
+            '“We stellen besluiten uit omdat we meer informatie nodig hebben. Dat is gewoon zorgvuldig.”',
+          ],
+          model: '“Op de hoogte blijven is belangrijk, en dat blijven ze: elke vrijdag een korte schriftelijke update. Het overleg wordt drie kwartier, met de mensen die beslissen. Hebben we voor een besluit meer informatie nodig, dan zeggen we welke en wanneer, zodat het volgende week echt besloten wordt.”',
+          rubric: [
+            'Erkent de wens om op de hoogte te blijven en zorgvuldig te zijn',
+            'Houdt vast aan een kleiner overleg voor besluiten',
+            'Stelt een concreet alternatief voor en een termijn voor informatie',
+          ],
+        },
       },
       sayIt: 'Leg een teamleider bij de klant in 60 seconden het overlegritme van je project uit en waarom elk overleg bestaat.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Meldt wat er gebeurd is en wat het in cijfers betekent',
           'Komt met opties, een advies en een duidelijke vraag',
         ],
+        pushback: {
+          lines: [
+            '“Waarom nu op oranje? Vorige week was het groen. De directie vraagt wat er misging, en dat kan ik niet uitleggen.”',
+            '“Kunnen we het niet groen houden tot we meer weten? 180 is een prognose, geen resultaat.”',
+          ],
+          model: '“Ik snap dat dat ongemakkelijk is. Maar als we het groen houden en het komt uit op 180, wordt de vraag waarom we het niet eerder zeiden. Met acht weken te gaan kunnen we nog bijsturen. Ik neem twee opties mee om het gat te dichten, zodat de directie een plan hoort en niet alleen een probleem.”',
+          rubric: [
+            'Erkent zijn ongemak richting de directie',
+            'Houdt vast aan nu de eerlijke status melden',
+            'Stelt concrete opties voor bij het slechte nieuws',
+          ],
+        },
       },
       sayIt: 'Leg een nieuw klantteam in 60 seconden uit wat groen, oranje en rood in je project betekenen en waarom rood geen falen is.',
       terms: [
@@ -189,6 +213,18 @@ export default {
           'Maakt de impact zichtbaar voordat hij ja zegt',
           'Legt het besluit bij de sponsor',
         ],
+        pushback: {
+          lines: [
+            '“Kom op, het is iets kleins. Je spreekt toch al dezelfde mensen. Maak het niet bureaucratisch.”',
+            '“Als ik voor elk dingetje langs de sponsor moet, heb ik helemaal niks aan dit project.”',
+          ],
+          model: '“Het kan best klein zijn, en ik help je graag. Ik weet alleen nog niet wat het doet met het planningswerk. Geef me twee dagen om het in te schatten; daarna beslissen jij en de sponsor samen. Als het echt klein is, is dat een gesprek van vijf minuten.”',
+          rubric: [
+            'Erkent zijn verzoek en de wens om geen bureaucratie',
+            'Houdt vast aan eerst inschatten en een besluit van de sponsor',
+            'Stelt een snelle, concrete route naar een besluit voor',
+          ],
+        },
       },
       sayIt: 'Leg een teamlid in 60 seconden uit hoe je omgaat met “kleine” extra verzoeken van de klant.',
       terms: [
@@ -254,6 +290,18 @@ export default {
           'Stelt een termijn en licht beide hoofden in voor hij escaleert',
           'Legt het besluit vast in een besluitenlijst',
         ],
+        pushback: {
+          lines: [
+            '“Dit moet je niet forceren. Geef ons nog een paar weken, dan komen we er samen wel uit.”',
+            '“Als je dit bij de directeur neerlegt, lijkt het alsof wij onze eigen afdelingen niet kunnen aansturen.”',
+          ],
+          model: '“Ik heb het liefst dat jullie het samen besluiten, en dat kan nog steeds. Maar het project wacht al drie weken. Laten we een datum prikken: zijn jullie het vrijdag eens, prima. Zo niet, dan leg ik beide opties met de gevolgen bij de directeur, als keuze en niet als klacht.”',
+          rubric: [
+            'Erkent hun wens om het zelf op te lossen',
+            'Houdt vast aan een termijn voor het besluit',
+            'Stelt een duidelijke vervolgroute voor die hun gezicht spaart',
+          ],
+        },
       },
       sayIt: 'Leg een projecteigenaar bij de klant in 60 seconden uit hoe je een besluit voorbereidt zodat de stuurgroep het in tien minuten kan nemen.',
       terms: [
@@ -319,6 +367,18 @@ export default {
           'Vraagt wat het project voor hem de moeite waard maakt',
           'Spreekt een kleine, concrete toezegging af en pakt capaciteit open aan',
         ],
+        pushback: {
+          lines: [
+            '“Niemand heeft me gevraagd of ik dit wilde. Ik heb al een volle baan. Dit project komt erbovenop.”',
+            '“En eerlijk, ik heb er al vijf van dit soort projecten zien komen en gaan.”',
+          ],
+          model: '“Terecht, dat had iemand je moeten vragen, en het spijt me dat het niet is gebeurd. Juist jouw ervaring heb ik nodig. Wat zou het de moeite waard maken? Als we iets van je bord kunnen halen, vraag ik dat deze week aan je leidinggevende.”',
+          rubric: [
+            'Erkent dat hij niet gevraagd is en een volle baan heeft',
+            'Maakt duidelijk waarom zijn rol ertoe doet',
+            'Stelt een concrete verandering voor die het voor hem werkbaar maakt',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe consultant in 60 seconden uit hoe je mensen bij de klant laat leveren als ze niet aan jou rapporteren.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Praat met elke kant apart om de belangen te vinden',
           'Brengt ze samen op een gedeeld belang en betrekt hem bij de oplossing',
         ],
+        pushback: {
+          lines: [
+            '“Ik zeg gewoon wat iedereen op de vloer denkt. Iemand moet het zeggen.”',
+            '“Erover praten helpt niks. De planners moeten betere klussen sturen, meer niet.”',
+          ],
+          model: '“Goed dat je het hardop zegt; liever hier dan op de gang. Onuitvoerbare klussen zijn precies wat de check moet tegenhouden. Neem er drie van vorige week mee, dan lopen we ze donderdag met de planners door. Vangt de check ze niet, dan passen we de check aan.”',
+          rubric: [
+            'Erkent zijn frustratie en dat hij het open zegt',
+            'Maakt het doel duidelijk zonder partij te kiezen',
+            'Stelt voor samen naar echte gevallen te kijken',
+          ],
+        },
       },
       sayIt: 'Leg een teamleider bij de klant in 60 seconden het verschil uit tussen standpunten en belangen, met een voorbeeld van de vloer.',
       terms: [

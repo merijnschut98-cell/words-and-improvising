@@ -61,6 +61,18 @@ export default {
           'Makes the decision and the phase-1 price visible on page one',
           'Checks the outline with her before sending it',
         ],
+        pushback: {
+          lines: [
+            '“Why do you want to meet the director? Just send me the document; I’ll handle him.”',
+            '“And keep the price off the first page. He gets nervous when he sees numbers first.”',
+          ],
+          model: '“Happy for you to lead with him. A fifteen-minute call would help me write it in his words, so you don’t have to translate. If that’s not possible, tell me his two biggest worries. The price goes on page one next to what it delivers, so he can weigh the two together.”',
+          rubric: [
+            'Acknowledges her role with the director',
+            'Holds to what the proposal needs: his concerns and an honest price',
+            'Proposes a concrete alternative if a meeting is not possible',
+          ],
+        },
       },
       sayIt: 'Explain to a new client in 60 seconds why you propose a short paid diagnostic before the full project.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Puts a number of days and euros on it',
           'Offers a choice and confirms it in writing',
         ],
+        pushback: {
+          lines: [
+            '“It’s the same process at the other site. Just copy the analysis; it can’t be that much work.”',
+            '“We agreed a fixed price. I assumed that meant you’d be flexible on the details.”',
+          ],
+          model: '“It may well be similar, and I’d like to include it. A second site does mean new data and new interviews, about six extra days. Two options: we add it for a fixed amount, or we swap it for something in the current scope. Which do you prefer?”',
+          rubric: [
+            'Acknowledges the request and his assumption',
+            'Makes clear what the fixed price covers',
+            'Offers concrete options: an extra fee or a trade',
+          ],
+        },
       },
       sayIt: 'Explain to a client in 60 seconds the difference between a day rate and a fixed price, and who carries the risk in each.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Treats what was said in confidence with care',
           'Puts the client’s interest before the next phase',
         ],
+        pushback: {
+          lines: [
+            '“Don’t get me wrong, I’m not saying it’s over. But I can’t promise you anything about phase two.”',
+            '“Why do you care so much? You’ll get paid for phase one either way.”',
+          ],
+          model: '“I don’t need a promise. I care because the results only last if someone owns them after the reorganisation. Who will own the lines then? If you like, I’ll write a one-page handover that works whoever it is, and we look at phase two once that’s clear.”',
+          rubric: [
+            'Acknowledges his uncertainty without pushing for a promise',
+            'Makes clear it is about the client’s results, not the fee',
+            'Proposes a concrete step that helps in any outcome',
+          ],
+        },
       },
       sayIt: 'Explain to a junior consultant in 60 seconds what the trust equation is and which part most consultants get wrong.',
       terms: [
@@ -264,6 +300,18 @@ export default {
           'Shows the data and stays respectful',
           'Offers an honest alternative wording',
         ],
+        pushback: {
+          lines: [
+            '“It’s one sentence. The contractor matters to us next year; I don’t want a fight.”',
+            '“You’re being very rigid. Other bureaus understand how these things work.”',
+          ],
+          model: '“I understand the relationship matters, and I don’t want a fight either. I can’t write that they performed well, because our data says otherwise. I can describe it factually and add what has gone well since week 8. Then the report holds up, for you as well.”',
+          rubric: [
+            'Acknowledges the relationship and his concern',
+            'Holds firm on not writing what the data contradicts',
+            'Offers a factual alternative wording',
+          ],
+        },
       },
       sayIt: 'Explain to a client in 60 seconds why you will sometimes tell them things they don’t want to hear, and why that is what they pay for.',
       terms: [
@@ -331,6 +379,18 @@ export default {
           'Names the adjacent problems once and briefly',
           'Leaves the choice with the client',
         ],
+        pushback: {
+          lines: [
+            '“Honestly, we have no budget for anything new this year. So there’s nothing to talk about.”',
+            '“I don’t like being sold to on the last day. Let’s keep it nice.”',
+          ],
+          model: '“Understood, and I’m not selling anything today. I’d just like to check in three months whether the cancellation figure holds. If it does, good. If it doesn’t, we talk about why. Can I put thirty minutes in your diary for early March?”',
+          rubric: [
+            'Acknowledges the budget and the wish not to be sold to',
+            'Makes clear his interest is in the result lasting',
+            'Proposes a specific, low-pressure follow-up with a date',
+          ],
+        },
       },
       sayIt: 'Explain to a fellow freelancer in 60 seconds how you grow an account without selling.',
       terms: [
@@ -401,6 +461,18 @@ export default {
           'Gives one concrete result with numbers',
           'Turns quickly to the other person’s problem',
         ],
+        pushback: {
+          lines: [
+            '“Performance management, everybody says that. We had a big bureau in last year and nothing changed.”',
+            '“And how old are you? Why would I trust my plant to a small firm?”',
+          ],
+          model: '“Fair; plenty of projects leave nothing behind. We work on the floor with your own people, and we stay until your team runs the review without us. Pick one line where the numbers keep slipping; after half a day there I’ll tell you honestly whether we can help.”',
+          rubric: [
+            'Responds calmly to his scepticism',
+            'Says in plain, concrete words what Vantage does',
+            'Proposes a small, concrete next step',
+          ],
+        },
       },
       sayIt: 'Explain to a friend in 60 seconds why a consultant with 130 billable days a year should still say no to work.',
       terms: [

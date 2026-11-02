@@ -61,6 +61,18 @@ export default {
           'Maakt het besluit en de prijs van fase 1 zichtbaar op pagina één',
           'Checkt de opzet met haar voordat hij hem verstuurt',
         ],
+        pushback: {
+          lines: [
+            '“Waarom wil je de directeur spreken? Stuur mij gewoon het stuk; ik regel het wel met hem.”',
+            '“En zet de prijs niet op de eerste pagina. Hij wordt zenuwachtig als hij eerst getallen ziet.”',
+          ],
+          model: '“Prima dat jij het bij hem trekt. Een belletje van een kwartier zou me helpen het in zijn woorden te schrijven, zodat jij niet hoeft te vertalen. Lukt dat niet, vertel me dan zijn twee grootste zorgen. De prijs staat op pagina één naast wat het oplevert, zodat hij die samen kan wegen.”',
+          rubric: [
+            'Erkent haar rol richting de directeur',
+            'Houdt vast aan wat het voorstel nodig heeft: zijn zorgen en een eerlijke prijs',
+            'Stelt een concreet alternatief voor als een gesprek niet lukt',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe klant in 60 seconden uit waarom je een korte, betaalde diagnose voorstelt vóór het volledige project.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Plakt er een aantal dagen en euro’s op',
           'Biedt een keuze en legt die schriftelijk vast',
         ],
+        pushback: {
+          lines: [
+            '“Het is hetzelfde proces op de andere locatie. Kopieer de analyse gewoon; zo veel werk kan dat niet zijn.”',
+            '“We hebben een vaste prijs afgesproken. Ik ging ervan uit dat je dan flexibel bent op de details.”',
+          ],
+          model: '“Het kan best vergelijkbaar zijn, en ik neem het graag mee. Een tweede locatie betekent wel nieuwe data en nieuwe interviews, zo’n zes dagen extra. Twee opties: we voegen het toe voor een vast bedrag, of we ruilen het tegen iets uit de huidige scope. Wat heeft jouw voorkeur?”',
+          rubric: [
+            'Erkent het verzoek en zijn aanname',
+            'Maakt duidelijk wat de vaste prijs dekt',
+            'Biedt concrete opties: meerprijs of ruilen',
+          ],
+        },
       },
       sayIt: 'Leg een klant in 60 seconden het verschil uit tussen een dagtarief en een vaste prijs, en wie bij elk het risico draagt.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Gaat zorgvuldig om met wat in vertrouwen is gezegd',
           'Zet het belang van de klant boven de volgende fase',
         ],
+        pushback: {
+          lines: [
+            '“Begrijp me niet verkeerd, ik zeg niet dat het voorbij is. Maar ik kan je niks beloven over fase twee.”',
+            '“Waarom maak je je er zo druk om? Je wordt voor fase één toch betaald.”',
+          ],
+          model: '“Ik heb geen belofte nodig. Ik maak me er druk om omdat het resultaat alleen blijft als iemand het na de reorganisatie oppakt. Wie wordt dan eigenaar van de lijnen? Als je wilt, schrijf ik een overdracht van één pagina die werkt wie het ook wordt, en kijken we naar fase twee zodra dat duidelijk is.”',
+          rubric: [
+            'Erkent zijn onzekerheid zonder op een belofte aan te dringen',
+            'Maakt duidelijk dat het om het resultaat van de klant gaat, niet om het honorarium',
+            'Stelt een concrete stap voor die in elke uitkomst helpt',
+          ],
+        },
       },
       sayIt: 'Leg een junior consultant in 60 seconden uit wat de vertrouwensformule is en welk deel de meeste adviseurs verkeerd doen.',
       terms: [
@@ -264,6 +300,18 @@ export default {
           'Laat de data zien en blijft respectvol',
           'Biedt een eerlijke alternatieve formulering',
         ],
+        pushback: {
+          lines: [
+            '“Het is één zin. De aannemer is belangrijk voor ons volgend jaar; ik wil geen gedoe.”',
+            '“Je bent wel erg star. Andere bureaus snappen hoe dit soort dingen werkt.”',
+          ],
+          model: '“Ik snap dat de relatie belangrijk is, en ik wil ook geen gedoe. Ik kan niet opschrijven dat ze goed hebben gepresteerd, want onze data zegt iets anders. Ik kan het feitelijk beschrijven en erbij zetten wat er sinds week 8 goed ging. Dan blijft het rapport overeind, ook voor jou.”',
+          rubric: [
+            'Erkent de relatie en zijn zorg',
+            'Blijft erbij niets op te schrijven wat de data tegenspreekt',
+            'Biedt een feitelijke alternatieve formulering',
+          ],
+        },
       },
       sayIt: 'Leg een klant in 60 seconden uit waarom je hem soms dingen vertelt die hij niet wil horen, en waarom hij je daarvoor betaalt.',
       terms: [
@@ -331,6 +379,18 @@ export default {
           'Noemt de aangrenzende problemen één keer en kort',
           'Laat de keuze bij de klant',
         ],
+        pushback: {
+          lines: [
+            '“Eerlijk gezegd hebben we dit jaar geen budget voor iets nieuws. Dus er valt niks te bespreken.”',
+            '“Ik hou er niet van om op de laatste dag iets verkocht te krijgen. Laten we het gezellig houden.”',
+          ],
+          model: '“Helder, en ik verkoop vandaag niks. Ik wil alleen over drie maanden even checken of het annuleringscijfer standhoudt. Doet het dat, mooi. Zo niet, dan praten we over waarom. Mag ik begin maart een halfuur in je agenda zetten?”',
+          rubric: [
+            'Erkent het budget en dat hij niets verkocht wil krijgen',
+            'Maakt duidelijk dat het om het blijvende resultaat gaat',
+            'Stelt een concrete, vrijblijvende opvolging met datum voor',
+          ],
+        },
       },
       sayIt: 'Leg een collega-zzp’er in 60 seconden uit hoe je een klant laat groeien zonder te verkopen.',
       terms: [
@@ -401,6 +461,18 @@ export default {
           'Geeft één concreet resultaat met getallen',
           'Schakelt snel naar het probleem van de ander',
         ],
+        pushback: {
+          lines: [
+            '“Prestatiemanagement, dat zegt iedereen. Vorig jaar hadden we een groot bureau binnen en er veranderde niks.”',
+            '“En hoe oud ben jij? Waarom zou ik mijn fabriek aan een klein bureau toevertrouwen?”',
+          ],
+          model: '“Terecht; genoeg projecten laten niks achter. Wij werken op de vloer met je eigen mensen, en we blijven tot jouw team de review zonder ons draait. Kies één lijn waar de cijfers steeds wegzakken; na een halve dag daar zeg ik je eerlijk of we kunnen helpen.”',
+          rubric: [
+            'Reageert rustig op zijn scepsis',
+            'Zegt in gewone, concrete woorden wat Vantage doet',
+            'Stelt een kleine, concrete volgende stap voor',
+          ],
+        },
       },
       sayIt: 'Leg een vriend in 60 seconden uit waarom een adviseur met 130 declarabele dagen per jaar toch nee moet zeggen tegen werk.',
       terms: [

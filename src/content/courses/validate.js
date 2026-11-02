@@ -28,6 +28,17 @@ function checkQuestion(qn, where, errs) {
   }
 }
 
+// "They push back": two objections in the other person's voice, a calm firm
+// reply and a 3-line rubric. Required on project lessons, optional elsewhere.
+function checkPushback(p, at, errs) {
+  if (!p || typeof p !== 'object') { errs.push(`${at}: situation needs a pushback`); return; }
+  if (!Array.isArray(p.lines) || p.lines.length !== 2 || !p.lines.every(str)) errs.push(`${at}: pushback needs exactly 2 lines`);
+  else p.lines.forEach((x, i) => { if (words(x) > 40) errs.push(`${at}: pushback line ${i} has ${words(x)} words (max 40)`); });
+  if (!str(p.model)) errs.push(`${at}: pushback model missing`);
+  else if (words(p.model) > 70) errs.push(`${at}: pushback model has ${words(p.model)} words (max 70)`);
+  if (!Array.isArray(p.rubric) || p.rubric.length !== 3 || !p.rubric.every(str)) errs.push(`${at}: pushback rubric needs exactly 3 lines`);
+}
+
 function checkLesson(l, meta, lang, errs) {
   const at = `${lang} ${l.id}`;
   if (!str(l.title)) errs.push(`${at}: title missing`);
@@ -54,6 +65,7 @@ function checkLesson(l, meta, lang, errs) {
   const s = l.situation || {};
   if (!(str(s.scene) && str(s.ask) && str(s.model))) errs.push(`${at}: situation needs scene, ask and model`);
   if (!Array.isArray(s.rubric) || s.rubric.length !== 3 || !s.rubric.every(str)) errs.push(`${at}: situation rubric needs exactly 3 lines`);
+  if ('pushback' in s || meta.subject === 'pm') checkPushback(s.pushback, at, errs);
   if (!str(l.sayIt)) errs.push(`${at}: sayIt missing`);
   const terms = l.terms || [];
   if (terms.length < 2 || terms.length > 4 || !terms.every((x) => x && str(x.term) && str(x.def))) errs.push(`${at}: needs 2–4 terms with term and def`);

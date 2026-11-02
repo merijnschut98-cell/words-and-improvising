@@ -59,6 +59,18 @@ export default {
           'Questions the savings calculation before it goes to the board',
           'Involves the controller and translates hours into real effects',
         ],
+        pushback: {
+          lines: [
+            '“The board likes a big number. 40,000 hours is what people will remember.”',
+            '“Nobody is going to check the calculation. Why make it harder for ourselves?”',
+          ],
+          model: '“I get it, a big number sticks. But if one board member asks how we got it, we can’t defend it. What we can prove: cancellations halved, from 18 to 9 percent. I’ll work out carefully how many hours that saves, and turn it into one sentence that still sounds strong.”',
+          rubric: [
+            'Acknowledges the appeal of a big number',
+            'Holds to a result that can be defended',
+            'Proposes a concrete, strong alternative message',
+          ],
+        },
       },
       sayIt: 'Explain to a sponsor in 60 seconds how you prove a project result in a way the controller accepts.',
       terms: [
@@ -124,6 +136,18 @@ export default {
           'Proposes concrete, measurable criteria based on the actual goal',
           'Prepares sign-off with evidence and an open points list',
         ],
+        pushback: {
+          lines: [
+            '“Why make it formal now? Everyone can see the line runs better. Let’s not make it bureaucratic.”',
+            '“If you write criteria now, it looks like you’re moving the goalposts to look good.”',
+          ],
+          model: '“Everyone sees it now, and in six months nobody remembers what we agreed. I don’t want to move anything: on one page I’ll put what we measured at the start and what we measure now, and you check whether it’s fair. Shall we go through it on Thursday?”',
+          rubric: [
+            'Acknowledges the visible result and his worry',
+            'Holds to a written, agreed acceptance',
+            'Proposes a short, concrete step he controls',
+          ],
+        },
       },
       sayIt: 'Explain to a new project lead in 60 seconds why you agree acceptance criteria at the start and how sign-off works.',
       terms: [
@@ -189,6 +213,18 @@ export default {
           'Creates a safe space for the team to speak',
           'Prepares the plant manager privately for sensitive feedback',
         ],
+        pushback: {
+          lines: [
+            '“It’s my plant and my project. Of course I chair the retrospective.”',
+            '“If people have something to say about me, they can say it to my face.”',
+          ],
+          model: '“It is your project, and it matters that you’re there. If you chair it, people will wait to hear what you think first. Let me facilitate, and you open by naming one thing you would do differently yourself. Then the others will dare to as well.”',
+          rubric: [
+            'Acknowledges his ownership and his openness',
+            'Holds to a neutral facilitator for honest input',
+            'Proposes a concrete role for him that invites openness',
+          ],
+        },
       },
       sayIt: 'Explain to a client team in 60 seconds how you run a retrospective that leads to real changes.',
       terms: [
@@ -254,6 +290,18 @@ export default {
           'Focuses on what changed for the client',
           'Gives the client owner a role in presenting',
         ],
+        pushback: {
+          lines: [
+            '“The client paid a lot. They need to see the work, otherwise it looks thin.”',
+            '“Put the analyses in an appendix, fine, but ten slides isn’t enough for a closing.”',
+          ],
+          model: '“They should see the work, I agree. What they’ll remember is the result and what to do next. So: five slides in the room, result, cause, what changed, what’s next, and every analysis in an appendix to read later. I’ll show you a draft on Wednesday.”',
+          rubric: [
+            'Acknowledges the wish to show the work',
+            'Holds to a short presentation aimed at decisions',
+            'Proposes a concrete structure and a date for a draft',
+          ],
+        },
       },
       sayIt: 'Explain to a colleague in 60 seconds how you build a closing report on one page.',
       terms: [
@@ -319,6 +367,18 @@ export default {
           'Asks open questions about the new challenge and listens',
           'Offers help only for a problem the client recognises',
         ],
+        pushback: {
+          lines: [
+            '“Oh, that’s for HR, not for you. It’s a year away anyway.”',
+            '“I mentioned it in passing. Don’t turn it into a sales pitch.”',
+          ],
+          model: '“Fair, and I’m not pitching. A year goes fast when you have to staff a new line, and it touches the shift patterns we just set up. Could I send you three questions to think about? If something comes of it, we talk. If not, that’s fine too.”',
+          rubric: [
+            'Acknowledges that it was in passing, not a request',
+            'Says briefly why it matters for him',
+            'Proposes a light, concrete step without pressure',
+          ],
+        },
       },
       sayIt: 'Explain to a junior colleague in 60 seconds how you stay in touch with a client after a project without being pushy.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Asks for specific feedback or help on that point',
           'Writes the case history with the lesson',
         ],
+        pushback: {
+          lines: [
+            '“The results were good. Why focus on the steering groups? Take the win.”',
+            '“Everyone feels unsure the first time. It comes with experience.”',
+          ],
+          model: '“I’m happy with the results. The steering groups are exactly what I want to do better, and experience alone won’t fix that. Could I prepare the next one with you, and would you sit in once and give me two points afterwards?”',
+          rubric: [
+            'Acknowledges the good result and the reassurance',
+            'Holds to naming his own point to develop',
+            'Proposes a concrete request for support',
+          ],
+        },
       },
       sayIt: 'Explain to a new consultant in 60 seconds how you reflect after a project and build your own case history.',
       terms: [

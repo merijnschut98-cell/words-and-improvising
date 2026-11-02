@@ -61,6 +61,18 @@ export default {
           'Benoemt één soort vastzitten, onderbouwd met symptomen',
           'Koppelt het aan de passende oplossing en wie er moet handelen',
         ],
+        pushback: {
+          lines: [
+            '“‘Het voelt vast’ is niks waar ik iets mee kan. Geef me feiten.”',
+            '“Misschien denk je er te veel over na. Ga nog een paar weken door en kijk wat er gebeurt.”',
+          ],
+          model: '“Terecht, een gevoel is niet genoeg. Feiten: twee van de vier acties zijn twee keer doorgeschoven, en de sponsor miste de laatste stuurgroep. Ik denk dat de sponsor zijn interesse verliest. Dat wil ik deze week toetsen in een één-op-één met hem, en vrijdag hoor je het.”',
+          rubric: [
+            'Erkent de vraag om feiten',
+            'Benoemt het probleem met concreet bewijs, geen vaag gevoel',
+            'Stelt een concrete manier voor om de diagnose snel te toetsen',
+          ],
+        },
       },
       sayIt: 'Leg een junior collega in 60 seconden de vier soorten vastzitten uit en hoe je ze uit elkaar houdt.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Noemt een concrete actie en een moment om terug te komen',
           'Gaat door met de presentatie zonder te bluffen over de geraakte data',
         ],
+        pushback: {
+          lines: [
+            '“Wist je niets van de storm? Hoe kunnen we dan al deze cijfers nog vertrouwen?”',
+            '“Ik wil geen terugkoppeling achteraf. Of het resultaat klopt of niet. Wat is het?”',
+          ],
+          model: '“Scherp, dat wist ik niet, dank je. De andere cijfers komen uit dezelfde bron, dus dat deel staat. Of het resultaat overeind blijft zonder week 4, kan ik nu niet zeggen, en ik ga niet gokken. Ik reken het opnieuw door zonder die week en stuur het je morgen voor twaalven.”',
+          rubric: [
+            'Erkent het punt zonder defensief te worden',
+            'Blijft erbij niet te gokken en houdt vast wat wel klopt',
+            'Stelt een concrete opvolging met tijdstip voor',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe consultant in 60 seconden uit hoe je omgaat met een vraag die je bij een klant niet kunt beantwoorden.',
       terms: [
@@ -197,6 +221,18 @@ export default {
           'Formuleert de vraag met context, wat geprobeerd is en een duidelijk verzoek',
           'Gebruikt ook de klant als bron, en sluit de lus',
         ],
+        pushback: {
+          lines: [
+            '“Jij bent nu de lead. Als je na twee weken al naar mij komt, vraagt de klant zich af waarom we jou gestuurd hebben.”',
+            '“Ben je al eens gewoon bij hem binnengelopen? Uitnodigingen negeren is makkelijk.”',
+          ],
+          model: '“Terecht, ik wil ook niet dat jij het overneemt. Ik heb drie uitnodigingen en één gesprekje op de gang geprobeerd; morgen loop ik bij hem binnen. Wat ik vraag is een kwartier van jouw kijk: waar ligt hij wakker van, en naar wie luistert hij? Dan pak ik het zelf op.”',
+          rubric: [
+            'Erkent de zorg over zijn rol als lead',
+            'Benoemt wat hij al probeerde en wat hij nodig heeft',
+            'Stelt een concrete, beperkte hulpvraag voor',
+          ],
+        },
       },
       sayIt: 'Leg een junior collega in 60 seconden uit wanneer en hoe je een senior om hulp vraagt.',
       terms: [
@@ -266,6 +302,18 @@ export default {
           'Bepaalt wat er gemeten wordt en een vergelijking',
           'Spreekt vooraf criteria af voor doorgaan en stoppen',
         ],
+        pushback: {
+          lines: [
+            '“Een experiment? Ik heb vier overleggen lang beide kanten gehoord. Ik weet dat het klopt; het moet gewoon gebeuren.”',
+            '“En als je het op één lijn test, zorgen de ploegleiders er wel voor dat het mislukt.”',
+          ],
+          model: '“Ik snap dat je het afgerond wilt hebben. Een proef van twee weken op één lijn rondt het af met feiten in plaats van een vijfde overleg. Om het eerlijk te houden spreken we vooraf met jou en de ploegleiders af wat telt als succes. Werkt het, dan gaat het fabrieksbreed.”',
+          rubric: [
+            'Erkent zijn ongeduld en zijn zorg',
+            'Houdt vast aan testen voor een fabrieksbreed besluit',
+            'Stelt een concrete proef voor met vooraf afgesproken criteria',
+          ],
+        },
       },
       sayIt: 'Leg een manager bij de klant in 60 seconden uit waarom een klein experiment vaak beter is dan meer analyse.',
       terms: [
@@ -334,6 +382,18 @@ export default {
           'Geeft de feiten, inclusief de eerdere escalatie, zonder schuld te leggen',
           'Gaat door naar opties waar de stuurgroep over beslist',
         ],
+        pushback: {
+          lines: [
+            '“Het maakt me niet uit wiens schuld het was. Mij was september beloofd en nu heb ik niks.”',
+            '“Geëscaleerd? Waarom heb ik daar dan niks van gehoord? Dat is ook jouw werk.”',
+          ],
+          model: '“Je mag resultaat verwachten, en het spijt me dat dit bij jou terechtkomt. De vertraging kwam door de IT-toegang; die heb ik in de stuurgroep van augustus gemeld, die jij miste. Ik had je ook rechtstreeks moeten bellen. Over drie weken liggen de eerste resultaten er, en tot die tijd krijg je elke vrijdag een korte update van mij.”',
+          rubric: [
+            'Erkent zijn frustratie zonder iemand de schuld te geven',
+            'Zet de feiten rustig neer en neemt zijn eigen deel',
+            'Stelt een concrete nieuwe datum voor en hoe hij op de hoogte blijft',
+          ],
+        },
       },
       sayIt: 'Leg een junior collega in 60 seconden uit wat je doet in het eerste uur na een boos telefoontje van een klant.',
       terms: [
@@ -402,6 +462,18 @@ export default {
           'Zegt de sponsor ronduit dat het doel zo niet gehaald wordt',
           'Biedt heldere opties, inclusief stoppen, en legt de nieuwe afspraak vast',
         ],
+        pushback: {
+          lines: [
+            '“Laten we niet dramatisch doen. 64 is al beter dan eerst. Ga door, dan zien we het in week 16.”',
+            '“Onderhoudsuren zijn overal krap. Ik kan ze niet zomaar ergens anders weghalen.”',
+          ],
+          model: '“64 is echte vooruitgang, en die wil ik vasthouden. Maar vijf weken vlak betekent dat we 75 zo niet halen. De ontbrekende onderhoudsuren zijn de belangrijkste reden. Of we maken acht uur per week vrij, of we stellen het doel nu bij naar 68. Ik wil je vragen om deze week te kiezen.”',
+          rubric: [
+            'Erkent de vooruitgang en zijn beperkingen',
+            'Zegt helder dat de huidige weg het doel niet haalt',
+            'Stelt een duidelijke keuze met een termijn voor',
+          ],
+        },
       },
       sayIt: 'Leg een junior collega in 60 seconden uit hoe je een herstartgesprek met een sponsor voert.',
       terms: [

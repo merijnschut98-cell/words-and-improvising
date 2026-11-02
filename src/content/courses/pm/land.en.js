@@ -58,6 +58,18 @@ export default {
           'Diagnoses where people are stuck instead of assuming knowledge',
           'Checks whether their direct supervisors reinforce it',
         ],
+        pushback: {
+          lines: [
+            '“The app works fine. The technicians just need to learn it. Training is what we always do.”',
+            '“If you go asking technicians why, you’ll only get complaints about IT.”',
+          ],
+          model: '“The app may well work fine, and training may be part of it. Before we spend another round, I want to know why half of them still call. I’ll ride along with two technicians this week. If it’s skills, we train. If it’s something else, training won’t fix it.”',
+          rubric: [
+            'Acknowledges his view that the app works',
+            'Holds to finding the cause before more training',
+            'Proposes a quick, concrete way to find out',
+          ],
+        },
       },
       sayIt: 'Explain to a plant manager in 60 seconds why a good training doesn’t guarantee people will use a new process.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Treats their objection as possibly valid and improves the design',
           'Involves them in reworking it and avoids labelling them',
         ],
+        pushback: {
+          lines: [
+            '“We’ve prepared jobs for twenty years without your checklist. It just adds paperwork.”',
+            '“If management wants it, fine, we’ll fill it in. Don’t expect us to like it.”',
+          ],
+          model: '“Fair, you know jobs better than any checklist. I’m not after paperwork; I want fewer jobs cancelled on the day itself. Which questions on it are useless to you? Let’s cut those together on Thursday. Whatever stays, you’ll have chosen.”',
+          rubric: [
+            'Acknowledges their experience and the extra work',
+            'Makes the purpose behind the check clear',
+            'Proposes improving it together, concretely',
+          ],
+        },
       },
       sayIt: 'Explain to a client manager in 60 seconds why resistance is useful information and how you work with it.',
       terms: [
@@ -188,6 +212,18 @@ export default {
           'Briefs and equips the shift leads before their teams',
           'Plans repetition and a check on what landed',
         ],
+        pushback: {
+          lines: [
+            '“A town hall reaches everyone at once. More sessions just stir things up.”',
+            '“The team leaders have enough to do. I don’t want them answering questions all week.”',
+          ],
+          model: '“The town hall is a good start; everyone hears it from you. But people really make up their minds talking to their own team leader. I’d like to give the team leaders a one-page Q and A and fifteen minutes at each shift start. That stirs up less than six weeks of rumours.”',
+          rubric: [
+            'Acknowledges the value of the town hall and his concern',
+            'Holds to more than one moment of communication',
+            'Proposes a light, concrete follow-up through the team leaders',
+          ],
+        },
       },
       sayIt: 'Explain to a plant manager in 60 seconds why the middle manager is the most important channel in a change.',
       terms: [
@@ -253,6 +289,18 @@ export default {
           'Plans on-the-job support in the first days',
           'Checks a week later by watching, and fixes the instruction if needed',
         ],
+        pushback: {
+          lines: [
+            '“Night shift are professionals. They can read slides. We’re not moving go-live.”',
+            '“An extra session at night costs overtime. Who pays for that?”',
+          ],
+          model: '“I’m not asking to move Monday. Night shift are professionals, and still, slides don’t show where it goes wrong. I’ll run a thirty-minute session at their shift start on Sunday, and stand next to the first two night changeovers. That costs less than one bad changeover.”',
+          rubric: [
+            'Acknowledges the go-live date and the cost',
+            'Holds to hands-on training for night shift',
+            'Proposes a small, concrete session and support on the floor',
+          ],
+        },
       },
       sayIt: 'Explain to a team leader in 60 seconds how you train a new way of working so it actually sticks.',
       terms: [
@@ -318,6 +366,18 @@ export default {
           'Starts a stepwise handover with a checklist',
           'Checks the owner’s means and escalates early if missing',
         ],
+        pushback: {
+          lines: [
+            '“You chair it well. If I take over, it just becomes one more meeting on my plate.”',
+            '“And when you’re gone and it falls apart, they’ll blame me, not you.”',
+          ],
+          model: '“Thank you, and that’s exactly the risk: it works because I chair it. In four weeks I’m gone. Let’s switch now: you chair from next week, and I sit next to you for three weeks. If something goes wrong, it happens while I’m still here to help fix it.”',
+          rubric: [
+            'Acknowledges his workload and his fear of blame',
+            'Holds to handing over before he leaves',
+            'Proposes a concrete, supported transition',
+          ],
+        },
       },
       sayIt: 'Explain to a client manager in 60 seconds how you hand over a new process so it keeps running after you leave.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Looks for what changed together, without fixing it himself',
           'Lets the owner choose actions and agrees a next check and trigger',
         ],
+        pushback: {
+          lines: [
+            '“It’s been busy, okay? The storms, the holidays. It’ll come back down on its own.”',
+            '“I don’t need a lecture. I know it slipped.”',
+          ],
+          model: '“No lecture; 12 is still far better than 18, and it’s been a busy quarter. I’m curious what changed: is the check still done every week? If we find the one step that dropped out, we fix it together today, and agree how you’ll spot it next time.”',
+          rubric: [
+            'Acknowledges the busy period and his embarrassment',
+            'Names the slip factually, without blame',
+            'Proposes a joint look and a signal for next time',
+          ],
+        },
       },
       sayIt: 'Explain to a sponsor in 60 seconds why results often slip after a project and how you plan for it.',
       terms: [

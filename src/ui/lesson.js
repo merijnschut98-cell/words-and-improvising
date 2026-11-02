@@ -64,7 +64,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       : null);
     const dots = (n, i) => h('div', { class: 'dots', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
     // Every step starts with the indicator; the rest of the screen follows it.
-    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes);
+    // replaceChildren would render a null (no back button on the first step) as the text "null".
+    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes.filter((n) => n != null));
 
     function draw() {
       const phase = phases[p];

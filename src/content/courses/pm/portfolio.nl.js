@@ -61,6 +61,18 @@ export default {
           'Maakt afhankelijkheden zichtbaar met eigenaren en data',
           'Scheidt programmabesluiten van projectbesluiten',
         ],
+        pushback: {
+          lines: [
+            '“Ik wil niet nog een laag overleggen. Geef me gewoon elke maand één slide.”',
+            '“De drie projectleiders zitten niet te wachten op iemand boven zich. Kun je het niet doen zonder iets te veranderen?”',
+          ],
+          model: '“Eén slide per maand is precies het doel, en daarvoor is één gezamenlijk doel voor alle drie nodig. Geen nieuwe laag: de projectleiders houden hun projecten, en we voegen één uur per maand toe waarin ze samen naar afhankelijkheden kijken. Over twee weken laat ik je de conceptslide en het doel zien.”',
+          rubric: [
+            'Erkent zijn wens om het simpel te houden en de zorg van de projectleiders',
+            'Houdt vast aan een gezamenlijk doel en een licht gezamenlijk ritme',
+            'Stelt binnen twee weken een concreet resultaat voor',
+          ],
+        },
       },
       sayIt: 'Leg een operationeel directeur bij een klant in 60 seconden uit waarom drie groene projecten toch het doel kunnen missen.',
       terms: [
@@ -129,6 +141,18 @@ export default {
           'Vraagt om de waarde in vergelijkbare termen',
           'Laat het besluit bij de mensen die over het portfolio gaan',
         ],
+        pushback: {
+          lines: [
+            '“Iedereen weet dat dit project ertoe doet. Het scoremodel vangt strategie niet.”',
+            '“Als mijn project een kwartaal moet wachten, stap ik naar de CEO. Is dat wat je wilt?”',
+          ],
+          model: '“Het kan heel goed strategisch zijn, en dan moet het ook zo scoren. Welk criterium mist het? Als het MT het dit kwartaal wil, prima, maar dan valt er boven de streep een project af. Die keuze zet ik donderdag op de agenda, zodat het MT het open besluit.”',
+          rubric: [
+            'Erkent dat het project ertoe kan doen',
+            'Houdt vast aan de afgesproken rangorde en de afweging die daarbij hoort',
+            'Stelt een open besluit voor op een concreet moment',
+          ],
+        },
       },
       sayIt: 'Leg een MT in 60 seconden uit waarom ze minder projecten moeten starten om er meer af te maken.',
       terms: [
@@ -196,6 +220,18 @@ export default {
           'Stelt expliciete beslisbevoegdheden en toleranties voor',
           'Pakt aan wie er in de kamer moet zitten',
         ],
+        pushback: {
+          lines: [
+            '“Mensen verwachten die updates. Als ik die schrap, denken ze dat de stuurgroep het niet belangrijk vindt.”',
+            '“En negen mensen is het minimum. Iedereen wil vertegenwoordigd zijn.”',
+          ],
+          model: '“Snap ik, die updates voelen als aandacht. Ze kunnen in een korte notitie vooraf, die mensen toch al lezen. In de zaal: drie besluiten, vijf mensen die ze kunnen nemen. Laten we het twee keer proberen en dan de groep vragen wat ze ervan vinden.”',
+          rubric: [
+            'Erkent zijn zorg over aandacht en vertegenwoordiging',
+            'Houdt vast aan een stuurgroep rond besluiten',
+            'Stelt een korte proef voor die wordt geëvalueerd',
+          ],
+        },
       },
       sayIt: 'Leg een nieuwe sponsor in 60 seconden uit waardoor een stuurgroep beslist in plaats van discussieert.',
       terms: [
@@ -264,6 +300,18 @@ export default {
           'Spreekt de meetwijze en een maandelijkse review af',
           'Zet een trigger en een moment om na de afsluiting terug te kijken',
         ],
+        pushback: {
+          lines: [
+            '“We zitten op 9%. Het project is klaar. Een getal in de gaten houden is lijnwerk, geen project.”',
+            '“Niemand heeft tijd voor nog een maandrapport. Als het oploopt, merken we dat heus.”',
+          ],
+          model: '“Eens, het project is klaar, en het is nu lijnwerk. Daarom wil ik er een naam op: iemand die één keer per maand vijf minuten naar het annuleringscijfer kijkt. Komt het boven de 11%, dan trekt die aan de bel. Wie in je team past daarbij?”',
+          rubric: [
+            'Erkent dat het project zelf klaar is',
+            'Houdt vast aan een eigenaar van de baten na de overdracht',
+            'Stelt een lichte, concrete check voor met een eigenaar',
+          ],
+        },
       },
       sayIt: 'Leg een projectleider in 60 seconden het verschil uit tussen output, uitkomst en baten, met één voorbeeld.',
       terms: [
@@ -332,6 +380,18 @@ export default {
           'Maakt de overboeking zichtbaar in getallen',
           'Komt met opties bij de eigenaar in plaats van op de gang te onderhandelen',
         ],
+        pushback: {
+          lines: [
+            '“Ze zei tegen mij dat juni prima was. Mijn project was eerst, dus ze is van mij.”',
+            '“Waarom maak je er zo’n punt van? Ze redt het wel; dat doet ze altijd.”',
+          ],
+          model: '“Dat geloof ik, en waarschijnlijk zei ze het tegen jullie alle drie. Drie keer ‘zo goed als toegezegd’ is meer dan één persoon. Ik wil deze week met de drie projectleiders en haar om tafel om juni per dag te verdelen. Dan weet iedereen wat hij krijgt.”',
+          rubric: [
+            'Erkent zijn claim zonder hem weg te wuiven',
+            'Benoemt de overbelasting helder',
+            'Stelt een concrete gezamenlijke verdeling voor, met de analist erbij',
+          ],
+        },
       },
       sayIt: 'Leg een projectleider in 60 seconden uit waarom “twee dagen per week Fatima” waarschijnlijk niet bestaat.',
       terms: [
@@ -400,6 +460,18 @@ export default {
           'Gebruikt getallen en biedt een kleinere optie',
           'Stopt met praten en laat de directie discussiëren',
         ],
+        pushback: {
+          lines: [
+            '“Dat is de slide die ik al gelezen heb. Ik vroeg waarom nu, nu de marges onder druk staan.”',
+            '“Elke consultant belooft terugverdientijd. Wat als die niet komt?”',
+          ],
+          model: '“Juist omdat de marges onder druk staan: de verliezen die we gemeten hebben, gaan rechtstreeks van de marge af. We knippen het op: eerst één lijn, met na drie maanden een go of no-go op gemeten resultaat. Verdient het zich daar niet terug, dan stop je.”',
+          rubric: [
+            'Erkent de druk op de marges',
+            'Beantwoordt de vraag waarom nu direct',
+            'Stelt een gefaseerde stap voor met een duidelijk stopmoment',
+          ],
+        },
       },
       sayIt: 'Leg een projectleider in 60 seconden uit hoe je in een slot van 20 minuten een besluit van een MT krijgt.',
       terms: [

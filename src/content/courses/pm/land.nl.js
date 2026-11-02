@@ -58,6 +58,18 @@ export default {
           'Stelt vast waar mensen vastzitten in plaats van kennis aan te nemen',
           'Checkt of hun directe leidinggevenden het bekrachtigen',
         ],
+        pushback: {
+          lines: [
+            '“De app werkt prima. De monteurs moeten het gewoon leren. Training is wat we altijd doen.”',
+            '“Als je monteurs gaat vragen waarom, krijg je alleen geklaag over IT.”',
+          ],
+          model: '“De app kan prima werken, en training kan er een deel van zijn. Voordat we nog een ronde doen, wil ik weten waarom de helft nog belt. Ik rij deze week met twee monteurs mee. Is het kunde, dan trainen we. Is het iets anders, dan lost training het niet op.”',
+          rubric: [
+            'Erkent zijn beeld dat de app werkt',
+            'Houdt vast aan eerst de oorzaak vinden',
+            'Stelt een snelle, concrete manier voor om dat te achterhalen',
+          ],
+        },
       },
       sayIt: 'Leg een plantmanager in 60 seconden uit waarom een goede training geen garantie is dat mensen een nieuw proces gaan gebruiken.',
       terms: [
@@ -123,6 +135,18 @@ export default {
           'Behandelt hun bezwaar als mogelijk terecht en verbetert het ontwerp',
           'Betrekt hen bij het herzien en vermijdt labels',
         ],
+        pushback: {
+          lines: [
+            '“We bereiden al twintig jaar klussen voor zonder jouw checklist. Het is gewoon extra papierwerk.”',
+            '“Als het management het wil, prima, dan vullen we het in. Verwacht niet dat we het leuk vinden.”',
+          ],
+          model: '“Terecht, jullie kennen klussen beter dan welke checklist ook. Het gaat mij niet om papierwerk; ik wil minder klussen die op de dag zelf vervallen. Welke vragen zijn voor jullie zinloos? Die schrappen we donderdag samen. Wat overblijft, hebben jullie zelf gekozen.”',
+          rubric: [
+            'Erkent hun ervaring en het extra werk',
+            'Maakt het doel achter de check duidelijk',
+            'Stelt voor het samen concreet te verbeteren',
+          ],
+        },
       },
       sayIt: 'Leg een manager bij de klant in 60 seconden uit waarom weerstand nuttige informatie is en hoe je ermee werkt.',
       terms: [
@@ -188,6 +212,18 @@ export default {
           'Praat de ploegleiders bij en rust ze toe voor hun teams',
           'Plant herhaling en een check op wat er geland is',
         ],
+        pushback: {
+          lines: [
+            '“Een town hall bereikt iedereen tegelijk. Meer sessies maken alleen onrust.”',
+            '“De teamleiders hebben genoeg te doen. Ik wil niet dat ze de hele week vragen moeten beantwoorden.”',
+          ],
+          model: '“De town hall is een goed begin; iedereen hoort het van jou. Maar mensen vormen hun mening echt in het gesprek met hun eigen teamleider. Ik wil de teamleiders een vraag-en-antwoordblad van één pagina geven en een kwartier bij elke ploegstart. Dat geeft minder onrust dan zes weken geruchten.”',
+          rubric: [
+            'Erkent de waarde van de town hall en zijn zorg',
+            'Houdt vast aan meer dan één communicatiemoment',
+            'Stelt een lichte, concrete opvolging via de teamleiders voor',
+          ],
+        },
       },
       sayIt: 'Leg een plantmanager in 60 seconden uit waarom de middenmanager het belangrijkste kanaal is bij een verandering.',
       terms: [
@@ -253,6 +289,18 @@ export default {
           'Plant begeleiding op de werkplek in de eerste dagen',
           'Checkt een week later door mee te kijken, en verbetert de instructie waar nodig',
         ],
+        pushback: {
+          lines: [
+            '“De nachtploeg zijn professionals. Die kunnen heus slides lezen. We schuiven de livegang niet.”',
+            '“Een extra sessie ’s nachts kost overuren. Wie betaalt dat?”',
+          ],
+          model: '“Ik vraag niet om maandag te verschuiven. De nachtploeg zijn professionals, en toch laten slides niet zien waar het misgaat. Ik geef zondag een sessie van een halfuur bij hun ploegstart, en ik sta naast de eerste twee omstellingen van de nacht. Dat kost minder dan één slechte omstelling.”',
+          rubric: [
+            'Erkent de livedatum en de kosten',
+            'Houdt vast aan praktische training voor de nachtploeg',
+            'Stelt een kleine, concrete sessie en ondersteuning op de vloer voor',
+          ],
+        },
       },
       sayIt: 'Leg een teamleider in 60 seconden uit hoe je een nieuwe werkwijze traint zodat hij echt blijft hangen.',
       terms: [
@@ -318,6 +366,18 @@ export default {
           'Start een stapsgewijze overdracht met een checklist',
           'Checkt de middelen van de eigenaar en escaleert vroeg als ze ontbreken',
         ],
+        pushback: {
+          lines: [
+            '“Jij zit het goed voor. Als ik het overneem, wordt het gewoon nog een overleg op mijn bord.”',
+            '“En als jij weg bent en het valt om, krijg ik de schuld, niet jij.”',
+          ],
+          model: '“Dank je, en dat is precies het risico: het werkt omdat ik het voorzit. Over vier weken ben ik weg. Laten we nu wisselen: jij zit het vanaf volgende week voor, en ik zit drie weken naast je. Gaat er iets mis, dan gebeurt dat terwijl ik er nog ben om het mee op te lossen.”',
+          rubric: [
+            'Erkent zijn werkdruk en zijn angst voor de schuld',
+            'Houdt vast aan overdragen voordat hij vertrekt',
+            'Stelt een concrete, begeleide overgang voor',
+          ],
+        },
       },
       sayIt: 'Leg een manager bij de klant in 60 seconden uit hoe je een nieuw proces overdraagt zodat het blijft lopen als jij weg bent.',
       terms: [
@@ -384,6 +444,18 @@ export default {
           'Zoekt samen wat er veranderd is, zonder het zelf op te lossen',
           'Laat de eigenaar acties kiezen en spreekt een volgende check en trigger af',
         ],
+        pushback: {
+          lines: [
+            '“Het was druk, oké? De stormen, de vakanties. Het zakt vanzelf weer.”',
+            '“Ik hoef geen preek. Ik weet dat het is teruggezakt.”',
+          ],
+          model: '“Geen preek; 12 is nog steeds veel beter dan 18, en het was een druk kwartaal. Ik ben benieuwd wat er veranderd is: wordt de check nog elke week gedaan? Als we de stap vinden die is weggevallen, lossen we dat vandaag samen op, en spreken we af hoe je het de volgende keer ziet aankomen.”',
+          rubric: [
+            'Erkent de drukke periode en zijn gêne',
+            'Benoemt de terugval feitelijk, zonder schuld',
+            'Stelt voor samen te kijken en een signaal voor de volgende keer af te spreken',
+          ],
+        },
       },
       sayIt: 'Leg een sponsor in 60 seconden uit waarom resultaten na een project vaak wegzakken en hoe je daarvoor plant.',
       terms: [
