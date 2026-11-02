@@ -407,7 +407,7 @@ await step('sync: send a login link; a signed-in device merges the cloud state w
   // The other device already uploaded a round this one never saw.
   const localTs = await page.evaluate(() => {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
-    const remote = { ...st, settings: undefined, ui: undefined, xp: st.xp + 500, history: [{ ...st.history[0], ts: 42 }] };
+    const remote = { ...st, settings: undefined, ui: undefined, xp: st.xp + 500, history: [{ drill: 'minute', promptId: 'topic:t42', metrics: { words: 50, fillerRate: 2 }, ...st.history[0], ts: 42 }] };
     localStorage.setItem('__fakeCloud', JSON.stringify({ row: { user_id: 'u1', state: remote } }));
     localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, settings: { ...st.settings, syncOn: true } }));
     return st.history.map((e) => e.ts);

@@ -142,7 +142,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         onclick: () => {
           const input = h('input', { type: 'text', class: 'text-input', maxlength: 200, placeholder: t('explainCtxPh'), 'aria-label': t('explainCtxPh') });
           const go = h('button', {
-            class: 'btn btn-primary small',
+            class: 'btn btn-ghost small',
             onclick: async () => {
               if (!input.value.trim()) { input.focus(); return; }
               go.disabled = true;

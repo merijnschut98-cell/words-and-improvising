@@ -4,7 +4,8 @@
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
-const LOCAL_ONLY = ['settings', 'ui'];
+// Device-only: settings (API key, theme, language), ui state, and the reminder plan (cue and hour).
+const LOCAL_ONLY = ['settings', 'ui', 'plan'];
 
 const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 const arr = (v) => (Array.isArray(v) ? v : []);
@@ -141,6 +142,6 @@ export function mergeStates(local, remote) {
   m.weekly = weekOf(r.weekly) > weekOf(l.weekly) ? r.weekly : l.weekly;
   const dayOf = (q) => (isObj(q) && q.day) || '';
   m.quests = dayOf(r.quests) > dayOf(l.quests) ? r.quests : l.quests;
-  for (const k of LOCAL_ONLY) if (k in l) m[k] = l[k];
+  for (const k of LOCAL_ONLY) { if (k in l) m[k] = l[k]; else delete m[k]; }
   return m;
 }

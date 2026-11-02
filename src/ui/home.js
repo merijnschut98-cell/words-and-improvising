@@ -8,7 +8,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
-import { h, DRILL_ICON } from './dom.js';
+import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, DRILLS, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
@@ -275,7 +275,8 @@ function renderStart(app, root, showBreak) {
 function beginButton(app, card) {
   const t = app.t;
   const begin = (ev) => {
-    ev.currentTarget.disabled = true;
+    const btn = ev.currentTarget;
+    btn.disabled = true;
     if (card.subject === 'speak') {
       const pick = todayPick(app.state, app.today(), app.content, app.lang);
       if (pick.reason === 'event') { startRehearsal(app, pick.event); return; }
@@ -284,7 +285,8 @@ function beginButton(app, card) {
       return;
     }
     if (card.reason === 'done') { app.setSubject(card.subject); return; }
-    openPick(app, card.subject, card);
+    // A say-it whose module fails to load: the button works again.
+    enableOnFail(btn, openPick(app, card.subject, card));
   };
   return h('button', { class: 'btn btn-primary btn-big begin-btn', onclick: begin },
     h('span', { class: 'begin-main' }, ico('play'), ' ', t('startBegin')),
@@ -299,7 +301,7 @@ function subjectHeader(app) {
   return h('header', { class: 'top' },
     h('button', { class: 'back-btn', onclick: () => app.setSubject('start') }, ico('chevron-left'), h('span', {}, t('overview'))),
     h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
-      ico('flame'), h('b', {}, streak), h('span', { class: 'sr' }, t('streak', streak)),
+      ico('flame'), h('b', {}, streak), h('span', { class: 'streak-label' }, t('streak', streak)),
       s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));
 }
 

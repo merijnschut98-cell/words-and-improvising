@@ -10,17 +10,35 @@ export function figureTheme(setting, prefersDark) {
 
 export const figureSrc = (id, theme, lang) => `src/content/courses/figures/${id}.html?theme=${theme}&lang=${lang === 'en' ? 'en' : 'nl'}`;
 
+// An iframe fires no error on a 404, so ask first. Offline, the service worker
+// answers the HEAD request from its cache.
+export async function figureAvailable(src, fetchFn = globalThis.fetch) {
+  try {
+    const res = await fetchFn(src, { method: 'HEAD' });
+    return !!(res && res.ok);
+  } catch {
+    return false;
+  }
+}
+
+// Returns the wrapper at once; the frame goes in only when the page is there.
 export function figureFrame(app, id) {
   const t = app.t;
   const dark = typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches;
-  const frame = h('iframe', {
-    class: 'figure-frame',
-    src: figureSrc(id, figureTheme(app.state.settings.theme, dark), app.lang),
-    sandbox: 'allow-scripts',
-    loading: 'lazy',
-    title: t('figureTitle'),
+  const src = figureSrc(id, figureTheme(app.state.settings.theme, dark), app.lang);
+  const wrap = h('figure', { class: 'figure-wrap', hidden: true });
+  figureAvailable(src).then((ok) => {
+    if (!ok) { wrap.remove(); return; }
+    const frame = h('iframe', {
+      class: 'figure-frame',
+      src,
+      sandbox: 'allow-scripts',
+      loading: 'lazy',
+      title: t('figureTitle'),
+    });
+    frame.addEventListener('error', () => wrap.remove());
+    wrap.append(frame, h('figcaption', { class: 'muted small' }, t('figureHint')));
+    wrap.hidden = false;
   });
-  const wrap = h('figure', { class: 'figure-wrap' }, frame, h('figcaption', { class: 'muted small' }, t('figureHint')));
-  frame.addEventListener('error', () => wrap.remove());
   return wrap;
 }

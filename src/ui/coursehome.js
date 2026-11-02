@@ -1,5 +1,5 @@
 // Course home: one next thing, the due questions, and the module map.
-import { h } from './dom.js';
+import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { masteryBadge } from './home.js';
 import { MODULES, TRACKS } from '../content/courses/index.js';
@@ -41,7 +41,7 @@ function todayCard(app, subject) {
       : t(`courseWhy_${pick.reason}`)),
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
-      onclick: (e) => { e.currentTarget.disabled = true; openPick(app, subject, pick); },
+      onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },
     }, ico('play'), ' ', t('courseGo')));
 }
 

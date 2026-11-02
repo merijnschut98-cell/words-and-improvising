@@ -21,6 +21,33 @@ test('figure frame follows the app theme and language', async () => {
   assert.match(figureSrc('eng.flow.line', 'light', 'nl'), /lang=nl$/);
 });
 
+test('a figure is shown only when its page answers ok (an iframe gives no error on a 404)', async () => {
+  const { figureAvailable } = await import('../src/ui/figure.js');
+  const calls = [];
+  const fake = (res) => (url, opts) => { calls.push([url, opts && opts.method]); return res; };
+  assert.equal(await figureAvailable('a.html?theme=dark', fake(Promise.resolve({ ok: true }))), true);
+  assert.deepEqual(calls[0], ['a.html?theme=dark', 'HEAD']);
+  assert.equal(await figureAvailable('a.html', fake(Promise.resolve({ ok: false, status: 404 }))), false);
+  assert.equal(await figureAvailable('a.html', fake(Promise.reject(new Error('offline')))), false);
+  assert.equal(await figureAvailable('a.html', () => { throw new Error('no fetch'); }), false);
+});
+
+test('a start button that fails comes back enabled; one that navigates stays disabled', async () => {
+  const { enableOnFail } = await import('../src/ui/dom.js');
+  const a = { disabled: true };
+  await enableOnFail(a, Promise.resolve(false));
+  assert.equal(a.disabled, false);
+  const b = { disabled: true };
+  await enableOnFail(b, Promise.reject(new Error('x')));
+  assert.equal(b.disabled, false);
+  const c = { disabled: true };
+  await enableOnFail(c, Promise.resolve(true));
+  assert.equal(c.disabled, true);
+  const d = { disabled: true };
+  await enableOnFail(d, undefined);
+  assert.equal(d.disabled, true);
+});
+
 // Start screen and the speaking home's sections (pure parts).
 import { startCards, HOME_SECTIONS, MORE_GROUPS, homeSubject } from '../src/core/today.js';
 import { defaultState, load, KEY } from '../src/core/storage.js';
