@@ -1,0 +1,417 @@
+// eng.lines (NL): Lijnen en automatisering: layout en buffers, robots, poka-yoke, mixed-model lijnen, OEE van geautomatiseerde lijnen, de businesscase.
+export default {
+  lessons: [
+    {
+      id: 'eng.lines.layout',
+      title: 'Lijntypes, buffers en inspectie',
+      pre: [
+        {
+          q: 'Een lijn heeft vijf stations die zonder buffers aan elkaar gekoppeld zijn. Eén station heeft een storing van 2 minuten. Wat gebeurt er met de andere vier?',
+          options: ['Die draaien op volle snelheid door', 'Alleen het station ervoor stopt', 'Alleen het station erna stopt', 'Binnen een cyclus of twee staan ze allemaal stil'],
+          answer: 'Binnen een cyclus of twee staan ze allemaal stil',
+          why: 'Zonder buffers lopen de stations ervoor bijna meteen vast (blocked) en vallen de stations erna droog (starved).',
+        },
+      ],
+      teach: [
+        'Er zijn drie lijntypes. Een gepaste lijn loopt op een vast ritme: een transportband schuift door of kruipt op takt, en elk station moet op tijd klaar zijn, zoals in de autoassemblage. Een ongepaste lijn laat elk station zijn product doorgeven als het klaar is, meestal op pallets of een vrije band met kleine wachtrijen ertussen. Een cel is een compacte, vaak U-vormige groep machines met een paar operators die met het werk meelopen.',
+        'Buffers ontkoppelen stations. Als een station stilvalt, vangt de buffer ervoor de aanvoer op en houdt de buffer erna het volgende station aan de gang. Dimensioneer een buffer op de stops die je wilt overbruggen: een typische stop van 3 minuten bij een cyclus van 30 seconden vraagt zo’n 6 stuks. Buffers kosten ruimte en voorraad, en ze verstoppen problemen. Leg ze dus bewust neer, niet per ongeluk.',
+        'Waar inspecteer je: direct na de stap die het risico veroorzaakt, zodat de terugkoppeling snel is; vóór een dure of onomkeerbare stap, zoals lakken of een behuizing dichtlassen; en vóór de bottleneck, zodat die nooit tijd verspilt aan een fout product. Een eindtest vangt fouten, maar laat, als alle waarde er al in zit.',
+        'De vraag die laat zien hoe een lijn echt werkt: “wat gebeurt hier als het station ernaast stilvalt?” Is het antwoord “dan staat alles stil”, dan is de lijn star gekoppeld, en vermenigvuldigt de beschikbaarheid van elk station zich tot het lijnresultaat.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een ongepaste assemblagelijn heeft vier stations van elk zo’n 40 seconden. Station 3, een inpers-unit, loopt een paar keer per dienst vast, telkens zo’n 4 minuten. Tussen de stations is plek voor 1 stuk. Als station 3 vastloopt, staan station 1 en 2 binnen een minuut stil en staat station 4 te wachten. Het team wil station 1 en 2 sneller maken.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Station 1 en 2 versnellen helpt niks; ze worden geblokkeerd door station 3. Zet eerst buffers rond station 3: een stop van 4 minuten bij 40 seconden is 240 / 40 = 6 stuks, dus ruimte voor zo’n 6 stuks ervoor en 6 erna houdt de andere stations draaiende tijdens een gewone storing. Pak daarna de storingen op station 3 zelf aan, want buffers vangen stops op, ze halen ze niet weg. En check of station 3 ook het langzaamst is, want dan heeft het de meeste bescherming nodig.',
+      },
+      said: 'Wat engineers zeggen: “Hij is star gekoppeld, er zit geen buffer in. Elk hikje bij de pers legt de hele lijn plat.”',
+      recall: [
+        {
+          q: 'Een station verderop in de lijn heeft stops van zo’n 5 minuten. De cyclustijd is 30 seconden. Hoeveel stuks moet een buffer bevatten om één typische stop te overbruggen?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'stuks',
+          why: '5 minuten = 300 seconden; 300 / 30 = 10 stuks.',
+        },
+        {
+          q: 'Wat is het grootste nadeel van grote buffers?',
+          options: ['Stations gaan er langzamer door draaien', 'Ze geven meer voorraad en doorlooptijd, en verstoppen problemen', 'Ze maken de lijn gepast', 'Ze maken inspectie onmogelijk'],
+          answer: 'Ze geven meer voorraad en doorlooptijd, en verstoppen problemen',
+          why: 'Een buffer vangt stops op, maar producten wachten langer en stops worden minder zichtbaar.',
+        },
+        {
+          q: 'Waar levert een inspectiestap het meeste op?',
+          options: ['Alleen aan het eind van de lijn', 'Aan het begin, vóór elke bewerking', 'Vóór een dure of onomkeerbare stap', 'Waar nog vloerruimte vrij is'],
+          answer: 'Vóór een dure of onomkeerbare stap',
+          why: 'Je houdt foute producten tegen voordat je er meer waarde aan toevoegt of ze dichtmaakt.',
+        },
+        {
+          q: 'Wat bepaalt het ritme in een gepaste lijn?',
+          options: ['De transportband die op takt loopt', 'Het eigen tempo van elke operator', 'De langzaamste leverancier', 'De eindtest'],
+          answer: 'De transportband die op takt loopt',
+          why: 'In een gepaste lijn schuift of loopt de band op een vaste snelheid en moet elk station bijblijven.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een leverancier van elektromotoren. Ze ontwerpen een nieuwe lijn en de engineer laat een layout zien met acht stations die direct aan elkaar gekoppeld zijn, zonder buffers, “om de voorraad laag te houden”.',
+        ask: 'Wat vraag je over de layout?',
+        model: 'Welke beschikbaarheid verwachten jullie per station, en wat gebeurt er met de lijn als er één stilvalt? Met acht star gekoppelde stations van elk 95% kom je voor de lijn rond de 66% uit. Welke stations hebben de langste of meest frequente stops, en kan een kleine buffer daaromheen de rest beschermen? En waar inspecteren we: vóór de stap waarin de motor wordt dichtgemaakt?',
+        rubric: [
+          'Vraagt wat er met de lijn gebeurt als één station stilvalt',
+          'Benoemt dat beschikbaarheden zich vermenigvuldigen in een starre lijn',
+          'Stelt gerichte buffers voor en een inspectiepunt vóór een onomkeerbare stap',
+        ],
+      },
+      sayIt: 'Leg een projectmanager in 60 seconden uit waarom een paar goed geplaatste buffers de output van een lijn kunnen verhogen.',
+      terms: [
+        { term: 'Gepaste lijn', def: 'Een lijn die op een vast ritme loopt; elk station moet binnen de takt klaar zijn.' },
+        { term: 'Buffer', def: 'Een kleine wachtrij tussen stations die ze bij stops ontkoppelt.' },
+        { term: 'Star gekoppeld', def: 'Stations zonder buffers ertussen, zodat één stop alles stillegt.' },
+      ],
+    },
+    {
+      id: 'eng.lines.robots',
+      title: 'Robots: types, bereik en veiligheid',
+      pre: [
+        {
+          q: 'Een robot heeft een payload van 10 kg. De grijper weegt 4 kg. Wat is het zwaarste product dat hij veilig op volle snelheid kan hanteren?',
+          options: ['Hooguit 6 kg, en minder als het gewicht uit het midden zit', '10 kg', '14 kg', 'Elk gewicht, op lagere snelheid'],
+          answer: 'Hooguit 6 kg, en minder als het gewicht uit het midden zit',
+          why: 'De payload is inclusief grijper; een excentrische last verlaagt wat de robot kan dragen.',
+        },
+      ],
+      teach: [
+        'Knikarmrobots hebben zes assen, als een arm met een pols. Ze komen bijna overal, met een bereik van meestal 0,7 tot 3 meter en een payload van een paar kilo tot ruim een ton: lassen, palletiseren, machines beladen. SCARA-robots hebben vier assen en zijn heel snel in een horizontaal vlak: pick-and-place en schroeven. Deltarobots hangen boven een band en pakken lichte producten op hoge snelheid.',
+        'Cobots, collaboratieve robots, zijn gemaakt om naast mensen te werken: ze begrenzen kracht en snelheid en stoppen bij contact. De payload is meestal 3 tot 20 kg en ze zijn langzamer dan industriële robots. “Collaboratief” is geen eigenschap van alleen de robot: de hele toepassing heeft een risicobeoordeling nodig, en een cobot met een mes is niet veilig.',
+        'Payload is grijper plus product, en de opgave van de robot gaat ervan uit dat het gewicht dicht bij de flens zit. Een zware grijper of een excentrisch product vreet dat snel op. Snelheden in de datasheet zijn piekwaarden: een echte cyclus heeft versnellen, afremmen om nauwkeurig te plaatsen, en 0,2 tot 0,5 seconde voor elke keer dat de grijper opent of sluit.',
+        'Industriële robots werken achter afscherming: hekken met vergrendelde deuren, lichtschermen, of laserscanners die de robot vertragen als iemand een zone binnenloopt en stoppen als die dichterbij komt. De cel als geheel heeft een CE-markering en een risicobeoordeling nodig. Het veiligheidsontwerp kost vaak meer ruimte en engineeringtijd dan mensen verwachten.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een team wil een robot gietstukken van 6 kg uit een machine laten halen. De integrator stelt een robot van 10 kg voor. De grijper met vingers en sensoren weegt 4 kg, en door de vorm hangt het gietstuk 150 mm van de flens. De gewenste cyclus is 12 seconden; de beweging volgens de datasheet is 4 seconden.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Grijper plus product is 10 kg: 100% van de payload, met een excentrische last, dus de robot wordt afgeremd of overbelast. Vraag om het payloaddiagram en overweeg een robot uit de 20 kg-klasse of een lichtere grijper. Bouw daarna de echte cyclus op: 4 seconden beweging plus twee grijperacties, benaderen, langzaam plaatsen en wachten op de machinedeur, vaak 7 tot 9 seconden. Leg dat naast die 12 seconden, en naast de machinecyclus die de robot echt moet bijhouden.',
+      },
+      said: 'Wat engineers zeggen: “Op papier kan de robot het, maar met die grijper zit je op de rand van de payloadcurve.”',
+      recall: [
+        {
+          q: 'Een product weegt 7 kg en de grijper 5 kg. Het team wil hooguit 80% van de payload gebruiken. Welke payload is nodig, in kg?',
+          number: 15,
+          tolerance: 0.5,
+          unit: 'kg',
+          why: '7 + 5 = 12 kg; 12 / 0,8 = 15 kg.',
+        },
+        {
+          q: 'Welk robottype past bij snel pick-and-place in een horizontaal vlak?',
+          options: ['Een zware zesassige robot', 'Een portaalkraan', 'Een cobot op een mobiele kar', 'Een SCARA-robot'],
+          answer: 'Een SCARA-robot',
+          why: 'SCARA-robots hebben vier assen en zijn heel snel in het horizontale vlak.',
+        },
+        {
+          q: 'Een cobot wordt ingezet in een toepassing. Wat is dan nog steeds nodig?',
+          options: ['Niks, cobots zijn per definitie veilig', 'Een volledig hek eromheen', 'Een risicobeoordeling van de hele toepassing', 'Een tweede operator die meekijkt'],
+          answer: 'Een risicobeoordeling van de hele toepassing',
+          why: 'Veiligheid hangt af van het gereedschap, het product, de snelheden en de taak, niet alleen van de robot.',
+        },
+        {
+          q: 'Waarom is de echte robotcyclus meestal langer dan de bewegingstijd in de datasheet?',
+          options: ['Robots worden langzamer met de jaren', 'Grijperacties, nauwkeurig plaatsen en wachten kosten tijd', 'De datasheet rekent met een zwaarder product', 'Robots draaien maar op halve snelheid'],
+          answer: 'Grijperacties, nauwkeurig plaatsen en wachten kosten tijd',
+          why: 'Bewegen is maar een deel van de cyclus; acties en wachten vullen de rest.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een metaalwarenbedrijf. De operations manager heeft een cobot op een beurs gezien en wil er een bij het inpakstation, “zonder hek, dus goedkoop en snel”. De dozen wegen 18 kg.',
+        ask: 'Wat vraag je?',
+        model: 'Wat is het gewicht van doos plus grijper ten opzichte van de payload van de cobot, en hoe snel moet hij lopen om bij te blijven? Met 18 kg plus een grijper zit je boven de meeste cobots, en een zware last die naast mensen beweegt komt misschien niet door de risicobeoordeling zonder afscherming. Kunnen we eerst de eisen voor cyclus en gewicht op een rij zetten, en dan kijken of een cobot of een afgeschermde industriële robot past?',
+        rubric: [
+          'Checkt de payload inclusief grijper',
+          'Zet vraagtekens bij “zonder hek” via een risicobeoordeling',
+          'Begint bij de eisen voor cyclus en gewicht, niet bij een robottype',
+        ],
+      },
+      sayIt: 'Leg een plantmanager in 60 seconden het verschil uit tussen een industriële robot en een cobot, en wanneer welke past.',
+      terms: [
+        { term: 'Payload', def: 'Het gewicht dat een robot kan hanteren, inclusief de grijper.' },
+        { term: 'Cobot', def: 'Een robot die gemaakt is om naast mensen te werken, met grenzen aan kracht en snelheid.' },
+        { term: 'Grijper (end-of-arm tooling)', def: 'Het gereedschap op de flens van de robot.' },
+        { term: 'Laserscanner', def: 'Sensor die de robot vertraagt of stopt als iemand een zone binnenloopt.' },
+      ],
+    },
+    {
+      id: 'eng.lines.pokayoke',
+      title: 'Foutvrij maken met sensoren en mallen',
+      pre: [
+        {
+          q: 'Getrainde controleurs kijken visueel of er een clip ontbreekt. Welk deel van de fouten vangen ze meestal?',
+          options: ['Vrijwel 100%', 'Minder dan 10%', 'Zo’n 80 tot 90%', 'Precies 50%'],
+          answer: 'Zo’n 80 tot 90%',
+          why: 'Visuele inspectie mist een flink deel van de fouten, zeker zeldzame fouten bij repeterend werk.',
+        },
+      ],
+      teach: [
+        'Foutvrij maken, poka-yoke, kent twee niveaus. Voorkomen maakt de fout onmogelijk: een mal met een pen zodat een onderdeel maar op één manier past, een connector die er maar in één richting in gaat. Detecteren ziet de fout meteen en stopt het proces: een sensor ziet dat de clip ontbreekt en blokkeert de volgende stap. Voorkomen wint van detecteren; detecteren wint van inspectie aan het eind.',
+        'Veelgebruikte sensoren: een inductieve naderingsschakelaar ziet metaal op een paar millimeter; een fotocel ziet of een lichtstraal onderbroken wordt; een visionsysteem checkt aanwezigheid, positie, kleur of een etiket. Een momentsleutel of moertrekker kan schroeven tellen en per schroef moment en hoek controleren. Elk stuurt een signaal naar de PLC.',
+        'De vergrendeling (interlock) maakt het af: de PLC geeft de volgende stap pas vrij als alle checks OK zijn. De pers maakt geen slag tot beide productsensoren bevestigen; de pallet gaat pas door als alle zes schroeven OK zijn. Zonder interlock is een sensor gewoon een lampje dat mensen leren negeren.',
+        'Let op valse afkeur. Een visionsysteem dat 3% goede producten afkeurt maakt operators boos, en al snel vindt iemand de overbruggingssleutel. Vraag hoe vaak elke foutvrij-voorziening wordt overbrugd en hoe vaak hij vals alarm geeft; dan weet je of hij echt werkt.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Op een station draaien operators 8 schroeven in een behuizing met een handschroevendraaier. Ongeveer 1 op de 2.000 behuizingen gaat weg met een ontbrekende schroef. De eindcontrole vangt daar zo’n 85% van. De klant heeft dit kwartaal drie klachten ingediend, en de kwaliteitsmanager wil een tweede controleur erbij.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Een tweede controleur vangt een deel van wat de eerste mist, maar nog steeds niet alles, en kost elke dienst geld. Ga naar de bron: een momentgestuurde schroefmachine die schroeven telt en moment en hoek controleert, gekoppeld aan de PLC, zodat de behuizing pas doorgaat als alle 8 schroeven OK zijn. Zet de schroefvolgorde op een scherm zodat de operator ziet welke schroef de volgende is. Houd de eerste weken bij hoe vaak hij overbrugd wordt en vals alarm geeft.',
+      },
+      said: 'Wat engineers zeggen: “Zet er geen controleur bij, vergrendel het. Geen acht keer OK, geen vrijgave.”',
+      recall: [
+        {
+          q: 'Een proces maakt 400 fouten per miljoen stuks. De inspectie vangt 85%. Hoeveel fouten per miljoen komen bij de klant?',
+          number: 60,
+          tolerance: 1,
+          unit: 'ppm',
+          why: '15% glipt erdoor: 400 × 0,15 = 60 ppm.',
+        },
+        {
+          q: 'Wat is voorkomen in plaats van detecteren?',
+          options: ['Een mal die het onderdeel alleen in de goede stand accepteert', 'Een camera die producten zonder etiket afkeurt', 'Een controleur aan het eind van de lijn', 'Een moertrekker die alarm geeft bij te laag moment'],
+          answer: 'Een mal die het onderdeel alleen in de goede stand accepteert',
+          why: 'De fout kan helemaal niet gemaakt worden; de andere zien hem pas nadat hij gemaakt is.',
+        },
+        {
+          q: 'Wat maakt dat een sensor het proces echt foutvrij maakt?',
+          options: ['Een hard alarm', 'Een rood lampje', 'Dagelijks kalibreren', 'Een interlock in de PLC die de volgende stap blokkeert'],
+          answer: 'Een interlock in de PLC die de volgende stap blokkeert',
+          why: 'Zonder de volgende stap te blokkeren kun je het signaal negeren.',
+        },
+        {
+          q: 'Een visioncheck geeft veel valse afkeur. Wat gebeurt er meestal?',
+          options: ['De kwaliteit gaat omhoog', 'Operators gaan hem overbruggen', 'De lijn gaat sneller', 'Klanten klagen minder'],
+          answer: 'Operators gaan hem overbruggen',
+          why: 'Vals alarm sloopt het vertrouwen, en mensen vinden een manier om de check te omzeilen.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een elektronica-assembleerder. Een camera checkt op één station of een connector aanwezig is. Het team zegt dat het werkt, maar de klachten over ontbrekende connectoren blijven komen. Op het paneel zie je een sleutelschakelaar met “bypass”.',
+        ask: 'Wat vraag je?',
+        model: 'Hoe vaak wordt die bypass gebruikt, en wie beslist dat? Als de camera vals afkeurt, gaan mensen de bypass gebruiken, en dan gaan producten ongecontroleerd door. Kunnen we de valse afkeur en een log van het bypassgebruik zien? En als overbruggen soms nodig is, laat er dan een teamleider voor nodig zijn en markeer die producten voor een extra controle.',
+        rubric: [
+          'Vraagt naar bypassgebruik en valse afkeur',
+          'Koppelt vals alarm aan mensen die de check omzeilen',
+          'Stelt voor de bypass te beheersen en de betrokken producten te traceren',
+        ],
+      },
+      sayIt: 'Leg een kwaliteitsmanager in 60 seconden uit waarom een vergrendelde sensor beter werkt dan een extra controleur.',
+      terms: [
+        { term: 'Poka-yoke', def: 'Foutvrij maken: een fout onmogelijk maken of meteen detecteren.' },
+        { term: 'Interlock', def: 'Een voorwaarde in de PLC die de volgende stap blokkeert tot de checks OK zijn.' },
+        { term: 'Valse afkeur', def: 'Een goed product dat door een check wordt afgekeurd.' },
+        { term: 'Inductieve sensor', def: 'Een sensor die metaal op korte afstand ziet zonder contact.' },
+      ],
+    },
+    {
+      id: 'eng.lines.mixed',
+      title: 'Mixed-model lijnen',
+      pre: [
+        {
+          q: 'Een station heeft een takt van 60 seconden. Model A kost daar 50 seconden, model B 70 seconden. De mix is 50/50. Komt het station rond?',
+          options: ['Nee, B is altijd te langzaam', 'Ja, zolang er nooit twee B’s achter elkaar komen', 'Ja, in elke volgorde', 'Alleen als B op een andere lijn wordt gebouwd'],
+          answer: 'Ja, zolang er nooit twee B’s achter elkaar komen',
+          why: 'Gemiddeld is het 60 seconden, maar twee zware modellen achter elkaar zetten de operator 20 seconden achter.',
+        },
+      ],
+      teach: [
+        'Een mixed-model lijn bouwt meerdere varianten op dezelfde lijn, in een gemengde volgorde. Elke variant heeft per station een andere werkinhoud: een auto met schuifdak of een warmtepomp met een extra module kost op sommige stations meer tijd. De lijn loopt op één takt, dus sommige cycli zitten boven de takt en sommige eronder.',
+        'Bij het balanceren gebruik je het gewogen gemiddelde van de mix, maar dat is niet genoeg. Check per station ook de langste variant. Zit die ver boven de takt, dan raakt de operator op een gepaste lijn achter en schuift hij het gebied van het volgende station in. Oplossingen: variantspecifiek werk naar een apart station of een voormontage, of een vliegende kracht die bij zware cycli bijspringt.',
+        'Sequencen houdt zware varianten uit elkaar. Typische regels: “nooit twee B’s achter elkaar” of “hooguit 1 op 3 met optie X”. De planner bouwt de volgorde met die regels, zodat de lijn elk uur een voorspelbare mix ziet. Een veranderde klantmix kan van een goed gebalanceerde lijn een lijn maken die altijd achterloopt.',
+        'Meer varianten betekent ook meer onderdelen aan de lijn. Met tien varianten van één component is er geen ruimte voor alle bakken, dus werken lijnen met kits of gesequencede aanvoer: de onderdelen komen in dezelfde volgorde als de producten op de lijn. Daarmee wordt logistiek een deel van het lijnontwerp.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een warmtepomplijn heeft een takt van 120 seconden. Op station 5 kost variant S 100 seconden, M 120 en L 160. De mix is 50% S, 30% M en 20% L. Het gewogen gemiddelde is 0,5 × 100 + 0,3 × 120 + 0,2 × 160 = 118 seconden, dus op papier past het station. In de praktijk roept de operator een paar keer per dienst om hulp, meestal als de planner de L’s in series vrijgeeft.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Het gemiddelde past, maar L zit 40 seconden boven de takt. Twee L’s achter elkaar zetten de operator 80 seconden achter, en een S geeft maar 20 terug. Eerst een sequenceregel: na een L komen altijd minstens twee S’en, die samen 40 seconden terugwinnen. Praat daarna met planning over waarom ze L’s in series vrijgeven, misschien om een materiaal- of testreden. Op langere termijn: haal een deel van het L-specifieke werk naar een voormontage, zodat L dichter bij de takt komt.',
+      },
+      said: 'Wat engineers zeggen: “Gemiddeld klopt de balans prima. Het zijn die L’s achter elkaar die ons slopen.”',
+      recall: [
+        {
+          q: 'Mix: 70% model A van 48 seconden, 30% model B van 75 seconden. Wat is de gewogen gemiddelde werkinhoud, in seconden?',
+          number: 56.1,
+          tolerance: 0.3,
+          unit: 's',
+          why: '0,7 × 48 + 0,3 × 75 = 33,6 + 22,5 = 56,1 seconden.',
+        },
+        {
+          q: 'Waarom is balanceren op alleen het gewogen gemiddelde niet genoeg?',
+          options: ['Het gemiddelde verandert elke dag', 'Het gemiddelde vergeet de operator', 'Een zware variant kan op een station nog steeds boven de takt zitten', 'Het gemiddelde is altijd te hoog'],
+          answer: 'Een zware variant kan op een station nog steeds boven de takt zitten',
+          why: 'De operator moet elke cyclus afhandelen zoals hij komt, niet het gemiddelde.',
+        },
+        {
+          q: 'Wat beschermt een sequenceregel als “hooguit 1 op 3 met optie X”?',
+          options: ['Hij spreidt zwaar werk, zodat stations tussen zware cycli kunnen bijkomen', 'Hij vermindert het aantal varianten', 'Hij maakt de takt korter', 'Hij maakt balanceren overbodig'],
+          answer: 'Hij spreidt zwaar werk, zodat stations tussen zware cycli kunnen bijkomen',
+          why: 'Lichte cycli na een zware geven de operator tijd om in te lopen.',
+        },
+        {
+          q: 'Een lijn bouwt tien varianten van een component. Hoe worden de onderdelen vaak aangevoerd?',
+          options: ['Alle tien in grote bakken aan de lijn', 'Op aanvraag uit een centraal magazijn', 'De operator loopt zelf naar het magazijn', 'In kits of in dezelfde volgorde als de producten'],
+          answer: 'In kits of in dezelfde volgorde als de producten',
+          why: 'Er is geen ruimte voor alle varianten aan de lijn, dus de aanvoer volgt de volgorde.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een fabrikant van laadpalen. Sales heeft een grote order binnengehaald voor het premium model, dat op drie stations meer werk heeft. Productie zegt dat de lijn “perfect gebalanceerd” is.',
+        ask: 'Wat vraag je?',
+        model: 'Gebalanceerd bij welke mix? Als het aandeel premium van 20 naar 50% gaat, verschuift het gemiddelde op die drie stations en kunnen ze boven de takt komen. Kunnen we de balans doorrekenen met de nieuwe mix, per station naar de langste variant kijken, en met planning een sequenceregel afspreken voordat de order start?',
+        rubric: [
+          'Vraagt op welke mix de balans gebaseerd is',
+          'Rekent de nieuwe mix door en checkt de langste variant',
+          'Betrekt planning bij een sequenceregel',
+        ],
+      },
+      sayIt: 'Leg een planner in 60 seconden uit waarom de volgorde van varianten ertoe doet op een mixed-model lijn.',
+      terms: [
+        { term: 'Mixed-model lijn', def: 'Een lijn die meerdere varianten in een gemengde volgorde bouwt.' },
+        { term: 'Sequenceregel', def: 'Een regel die zware varianten over de volgorde spreidt.' },
+        { term: 'Vliegende kracht', def: 'Een operator die bijspringt waar cycli uitlopen.' },
+        { term: 'Gesequencede aanvoer', def: 'Onderdelen die in dezelfde volgorde komen als de producten op de lijn.' },
+      ],
+    },
+    {
+      id: 'eng.lines.oee_auto',
+      title: 'OEE op geautomatiseerde lijnen',
+      pre: [
+        {
+          q: 'Welk verlies wordt op geautomatiseerde lijnen het vaakst onderschat?',
+          options: ['Gepland onderhoud', 'Lange storingen', 'Omstellen', 'Microstops van een paar seconden tot een paar minuten'],
+          answer: 'Microstops van een paar seconden tot een paar minuten',
+          why: 'Korte vastlopers worden snel gereset en zelden geregistreerd, maar tellen op tot een groot deel van de verloren tijd.',
+        },
+      ],
+      teach: [
+        'Microstops zijn korte stops, van een paar seconden tot een paar minuten: een onderdeel loopt vast in een toevoer, een sensor leest verkeerd, een operator reset. Ze worden zelden opgeschreven, maar op geautomatiseerde lijnen kosten ze vaak 10 tot 20% van de output. Alleen machinedata laat ze zien: tel het aantal stops per uur, niet alleen de uren stilstand.',
+        'Elk station in een geautomatiseerde lijn heeft op elk moment een status: draaien, storing, starved (wacht op een product van ervoor) of blocked (kan zijn product niet kwijt naar erna). De meeste PLC’s kunnen die statussen loggen. Een station dat vaak starved is, wacht op iets ervoor; vaak blocked, op iets erna.',
+        'De verborgen bottleneck is het station dat het grootste deel van de tijd draait en zelden starved of blocked is. Dat is niet altijd het station met de langzaamste nominale cyclus: een snel station met veel microstops kan de lijn beperken. Zoek hem in de statusdata, en zet daar je verbeterinzet en bufferbescherming neer.',
+        'In een starre lijn vermenigvuldigen beschikbaarheden zich: vijf stations van 95% geven 0,95 tot de macht 5, zo’n 77%, voor de lijn. Buffers winnen daar een deel van terug. Meet de lijn-OEE op de bottleneck of aan het eind van de lijn, tegen de ideale cyclus van de bottleneck.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een bottellijn heeft zes machines. Op het scherm van elke machine staat een beschikbaarheid boven de 90%. De lijn-OEE is 58%. Het team wil de vuller vervangen, op papier de langzaamste machine. PLC-data van een week: vuller draait 71%, starved 22%; etiketteerder draait 93%, starved 2%, blocked 1%; doppenzetter draait 68%, blocked 25%. De etiketteerder registreert zo’n 40 stops per uur, elk korter dan een minuut.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'De etiketteerder is de echte bottleneck: hij draait 93% van de tijd, wacht bijna nooit, en de doppenzetter ervoor is een kwart van de tijd blocked. De vuller is starved, dus een nieuwe vuller levert niks op. Focus op de 40 microstops per uur van de etiketteerder: registreer een week lang de stopredenen, los de top twee op, en kijk of een grotere buffer vóór de etiketteerder helpt. Kijk daarna opnieuw naar de statusdata, want de bottleneck kan verschuiven.',
+      },
+      said: 'Wat engineers zeggen: “Kijk naar de statussen, niet naar de snelheden. De etiketteerder valt nooit droog, dat is je bottleneck.”',
+      recall: [
+        {
+          q: 'Vier machines zijn star gekoppeld zonder buffers, elk met 90% beschikbaarheid. Wat is de beschikbaarheid van de lijn, in procent?',
+          number: 66,
+          tolerance: 1,
+          unit: '%',
+          why: '0,9 × 0,9 × 0,9 × 0,9 = 0,656, zo’n 66%.',
+        },
+        {
+          q: 'Een station is het grootste deel van de tijd “blocked”. Wat betekent dat?',
+          options: ['Het is kapot', 'Het kan zijn producten niet kwijt naar erna', 'Het wacht op producten van ervoor', 'Het wordt omgesteld'],
+          answer: 'Het kan zijn producten niet kwijt naar erna',
+          why: 'Blocked betekent dat het volgende station of de buffer vol is.',
+        },
+        {
+          q: 'Welke statusdata wijst naar de verborgen bottleneck?',
+          options: ['De hoogste draaitijd, zelden starved of blocked', 'De meeste tijd starved', 'De laagste nominale snelheid in de datasheet', 'Het meeste geplande onderhoud'],
+          answer: 'De hoogste draaitijd, zelden starved of blocked',
+          why: 'De bottleneck is altijd aan het werk; de andere wachten op hem.',
+        },
+        {
+          q: 'Waarom worden microstops vaak gemist?',
+          options: ['Ze gebeuren alleen ’s nachts', 'Ze worden als omstellen geteld', 'Ze zijn kort, worden snel gereset en zelden geregistreerd', 'Ze hebben geen invloed op de output'],
+          answer: 'Ze zijn kort, worden snel gereset en zelden geregistreerd',
+          why: 'Handmatige registratie vangt lange storingen, geen vastlopers van 30 seconden.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een voedingsmiddelenproducent. De engineeringmanager vraagt €400.000 voor een snellere verpakkingsmachine, omdat de lijn-OEE laag is. Je hebt nog geen statusdata gezien.',
+        ask: 'Wat vraag je voordat de investering doorgaat?',
+        model: 'Kunnen we twee weken lang de PLC-statussen per machine trekken: draaien, starved, blocked en storing, en het aantal stops per uur? Als de verpakkingsmachine vaak starved of blocked is, is hij niet de bottleneck en levert een snellere niks op. Laten we eerst de machine vinden die altijd draait, en kijken of de microstops daar het echte verlies zijn.',
+        rubric: [
+          'Vraagt om statusdata per machine vóór de investering',
+          'Gebruikt starved en blocked om te beoordelen of de machine de bottleneck is',
+          'Noemt microstops als waarschijnlijk verborgen verlies',
+        ],
+      },
+      sayIt: 'Leg een financieel directeur in 60 seconden uit waarom de langzaamste machine op papier niet altijd is wat een geautomatiseerde lijn beperkt.',
+      terms: [
+        { term: 'Microstop', def: 'Een korte stop van seconden tot minuten, meestal niet geregistreerd.' },
+        { term: 'Starved', def: 'Wacht op producten van ervoor.' },
+        { term: 'Blocked', def: 'Kan zijn producten niet kwijt omdat het erna vol is.' },
+        { term: 'Machinestatussen', def: 'PLC-data die over de tijd laat zien: draaien, storing, starved of blocked.' },
+      ],
+    },
+    {
+      id: 'eng.lines.business',
+      title: 'De businesscase voor automatisering',
+      pre: [
+        {
+          q: 'Welk deel van de totale kosten van een typische robotcel is de robot zelf?',
+          options: ['Zo’n 90%', 'Bijna alles', 'Zo’n kwart tot een derde', 'Niks, robots worden geleaset'],
+          answer: 'Zo’n kwart tot een derde',
+          why: 'Grijpers, afscherming, integratie, engineering en programmeren kosten meestal meer dan de robot.',
+        },
+      ],
+      teach: [
+        'Terugverdientijd = investering / jaarlijkse netto besparing. Veel maakbedrijven willen dat automatisering zich binnen 2 tot 3 jaar terugverdient. De besparing is vooral arbeid: een operator kost in Nederland ruwweg €50.000 tot €60.000 per jaar, dus één operator per dienst vervangen in twee ploegen bespaart zo’n €110.000. Trek daar onderhoud, energie en ondersteuning van de cel van af.',
+        'De robot is vaak maar een kwart tot een derde van de kosten van de cel. Tel grijpers, afscherming, transportbanden, sensoren, integratie, programmeren en projectmanagement erbij op. Dan de opstartfase: een nieuwe cel heeft vaak 3 tot 6 maanden nodig om zijn doeloutput te halen, en in die tijd zijn de mensen die hij vervangt nog gewoon nodig.',
+        'Flexibiliteit is het verborgen risico. Heeft het product nog 2 jaar te gaan en is de terugverdientijd 3 jaar, dan moet de cel herbruikbaar zijn, anders klopt de case niet. Veel varianten, onzekere volumes of vaak ontwerpwijzigingen maken automatiseren lastiger. Vraag wat er met de cel gebeurt als het product stopt.',
+        'Wanneer niet automatiseren: als het proces instabiel is (dan automatiseer je de problemen), bij lage volumes en een hoge mix, als de taak inschattingsvermogen of fijne handelingen vraagt, of als een simpelere oplossing zoals een mal of een betere layout het meeste al oplost. Automatisering levert ook meer op dan kosten: ergonomie, constante kwaliteit en minder afhankelijkheid van schaars personeel.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een cel om een CNC-machine te beladen kost alles bij elkaar €300.000. Hij vervangt één operator per dienst in twee ploegen, à €55.000 per operator. Onderhoud en ondersteuning kosten €10.000 per jaar. Het product dat hij belaadt is voor een klantprogramma dat over 2 jaar stopt. De machine is nu instabiel: 6% afkeur en vaak gereedschapsbreuk.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Besparing: 2 × €55.000 − €10.000 = €100.000 per jaar, dus de terugverdientijd is 3 jaar, langer dan de 2 jaar die het programma nog loopt. Vraag of de cel herbruikbaar is voor het volgende product, want dat verandert de case. Stabiliseer daarna eerst het proces: een robot die een machine met 6% afkeur en gereedschapsbreuk belaadt, staat steeds stil en er is niemand die reageert. Breng afkeur en breuk omlaag, en reken de case dan opnieuw door met een realistische opstart van 3 tot 6 maanden.',
+      },
+      said: 'Wat engineers zeggen: “Ga geen puinhoop automatiseren. Eerst het proces stabiel, dan praten we over robots.”',
+      recall: [
+        {
+          q: 'Een automatiseringsproject kost €240.000 en bespaart netto €80.000 per jaar. Wat is de terugverdientijd, in jaren?',
+          number: 3,
+          tolerance: 0.1,
+          unit: 'jaar',
+          why: '€240.000 / €80.000 = 3 jaar.',
+        },
+        {
+          q: 'Welke situatie pleit het sterkst tegen nu automatiseren?',
+          options: ['Hoog volume en weinig varianten', 'Een krappe arbeidsmarkt', 'Een zware, repeterende taak', 'Een instabiel proces met veel afkeur'],
+          answer: 'Een instabiel proces met veel afkeur',
+          why: 'Automatisering vermenigvuldigt de problemen in een instabiel proces.',
+        },
+        {
+          q: 'Waarom leveren nieuwe cellen de eerste maanden meestal niet de volle besparing?',
+          options: ['Robots moeten langzaam worden ingereden', 'De opstart duurt maanden, en de operators zijn nog nodig', 'Energieprijzen stijgen', 'De terugverdientijd is verkeerd berekend'],
+          answer: 'De opstart duurt maanden, en de operators zijn nog nodig',
+          why: 'Een nieuwe cel heeft vaak 3 tot 6 maanden nodig om zijn doeloutput te halen.',
+        },
+        {
+          q: 'De resterende levensduur van het product is korter dan de terugverdientijd. Welke vraag doet er het meest toe?',
+          options: ['Kan de cel hergebruikt worden voor het volgende product?', 'Is de robot het nieuwste model?', 'Kan de lijn sneller?', 'Kunnen we de robot leasen?'],
+          answer: 'Kan de cel hergebruikt worden voor het volgende product?',
+          why: 'Hergebruik verlengt de periode waarin de investering zich terugverdient.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent bij een toeleverancier in de metaal. De directeur wil het lasstation automatiseren “omdat we geen lassers kunnen vinden”. Het engineeringteam heeft een offerte van €450.000 en geen businesscase.',
+        ask: 'Hoe help je ze beslissen?',
+        model: 'Het personeelstekort is een echte reden, dus laten we dat in de case meenemen, naast de besparing op arbeid, kwaliteit en ergonomie. Wat zit er in die €450.000, en hoe ziet het opstartplan eruit? En hoe stabiel zijn het lasproces en de pasvorm van de onderdelen nu, want een robot heeft constante onderdelen nodig. Variëren de onderdelen, dan is het eerste project misschien de mallen en de onderdelen, niet de robot.',
+        rubric: [
+          'Neemt het personeelstekort serieus als deel van de case',
+          'Vraagt naar de totale kosten en de opstart, niet alleen naar de offerte',
+          'Checkt de stabiliteit van proces en onderdelen vóór het automatiseren',
+        ],
+      },
+      sayIt: 'Leg een directeur in 60 seconden uit wat er in een goede businesscase voor automatisering hoort.',
+      terms: [
+        { term: 'Terugverdientijd', def: 'Investering gedeeld door de jaarlijkse netto besparing.' },
+        { term: 'Opstartfase (ramp-up)', def: 'De maanden die een nieuwe lijn of cel nodig heeft om de doeloutput te halen.' },
+        { term: 'Integrator', def: 'Het bedrijf dat de complete geautomatiseerde cel ontwerpt en bouwt.' },
+      ],
+    },
+  ],
+};

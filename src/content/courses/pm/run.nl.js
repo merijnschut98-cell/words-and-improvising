@@ -1,0 +1,396 @@
+// pm.run (Nederlands): uitvoeren, een project in beweging houden: overlegritme, eerlijke status, scope creep, besluiten, het team en conflict.
+export default {
+  lessons: [
+    {
+      id: 'pm.run.rhythm',
+      title: 'Een overlegritme dat werkt',
+      pre: [
+        {
+          q: 'Welk agendapunt voor de stuurgroep levert het meest waarschijnlijk iets op?',
+          options: ['“Status pilot”', '“Update vanuit het projectteam”', '“Rondvraag”', '“Pilot: vanaf week 12 uitbreiden naar regio Noord, ja of nee?”'],
+          answer: '“Pilot: vanaf week 12 uitbreiden naar regio Noord, ja of nee?”',
+          why: 'Een punt geschreven als besluitvraag levert een besluit op; een onderwerptitel levert een discussie op.',
+        },
+      ],
+      teach: [
+        'Drie lagen. Een korte stand-up bij het bord, 15 minuten, twee of drie keer per week voor een klantteam dat parttime meedraait: wat heb ik afgerond, wat is de volgende stap, wat houdt me tegen. Een wekelijks teamoverleg, 45 tot 60 minuten: voortgang tegen de planning, blokkades, benodigde besluiten, volgende week. Een stuurgroep elke vier tot zes weken, 60 tot 90 minuten, voor besluiten die alleen de sponsor kan nemen.',
+        'Agenda’s die eindigen in besluiten. Label elk punt: besluiten, bespreken of informeren. Schrijf besluitpunten als vraag: “Breiden we de pilot vanaf week 12 uit naar regio Noord?” Stuur de agenda en een besluitnotitie van één A4 twee dagen vooraf. Informatiepunten gaan in een schriftelijke update, niet in het overleg.',
+        'Het verslag is besluiten en acties, verder niks: wat is besloten, wie doet wat voor wanneer. Stuur het dezelfde dag. Begin het volgende overleg met de acties. Als acties steeds uitlopen, zegt dat meer over het project dan welke statusslide ook.',
+        'De mensenkant: mensen bij de klant verzuipen in overleggen. Elk overleg dat jij toevoegt kost ze iets. Houd de jouwe kort, begin op tijd, stop eerder als het kan, en zeg af als er niets te besluiten is. Zegt de sponsor de stuurgroep steeds af, dan is dat een signaal, geen pech. Vraag hem: “Is dit nog het goede moment, of moeten we een andere manier vinden waarop jij beslist?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Stilstandproject bij een frisdrankfabriek. Stand-up maandag en donderdag om 08:30 bij het bord op de vloer, 15 minuten, vijf mensen. Weekoverleg dinsdag 13:00, 45 minuten: 10 minuten acties, 15 minuten voortgang tegen de planning op één A4, 15 minuten twee besluiten (welke lijn hierna, of we de leverancier erbij halen), 5 minuten volgende week. Stuurgroep elke vijf weken, 60 minuten, drie besluitpunten, besluitnotitie de vrijdag ervoor verstuurd. Na de eerste stuurgroep past het verslag op een half A4: drie besluiten, vier acties, om 16:00 dezelfde dag verstuurd.',
+      },
+      said: 'Wat je hoort in projecten: “Wéér een overleg? Ik zit nu al de halve week in overleggen over overleggen.”',
+      recall: [
+        {
+          q: 'Wat hoort in het verslag van een projectoverleg?',
+          options: ['Een volledig verslag van wie wat zei', 'De slides die getoond zijn', 'Besluiten en acties met eigenaar en datum', 'Alleen de datum van het volgende overleg'],
+          answer: 'Besluiten en acties met eigenaar en datum',
+          why: 'Een kort verslag met besluiten en acties wordt gelezen en uitgevoerd.',
+        },
+        {
+          q: 'Waar horen pure informatiepunten?',
+          options: ['Aan het begin van de stuurgroep', 'In een schriftelijke update, niet in het overleg', 'In de stand-up', 'Nergens, die zijn niet nodig'],
+          answer: 'In een schriftelijke update, niet in het overleg',
+          why: 'Overlegtijd is voor bespreken en besluiten; lezen kan iedereen alleen.',
+        },
+        {
+          q: 'De sponsor zegt de stuurgroep voor de tweede keer af. Wat doe je?',
+          options: ['Wachten op de volgende geplande', 'Hem zonder hem houden', 'Klagen bij zijn leidinggevende', 'Hem vragen of dit nog het goede moment is of dat hij een andere manier nodig heeft om te beslissen'],
+          answer: 'Hem vragen of dit nog het goede moment is of dat hij een andere manier nodig heeft om te beslissen',
+          why: 'Herhaald afzeggen is een signaal; je spreekt het aan en houdt de besluiten in beweging.',
+        },
+        {
+          q: 'Waar is een stand-up bij het bord voor?',
+          options: ['Snel checken wat af is, wat de volgende stap is en wat blokkeert', 'Strategie bespreken met het team', 'Rapporteren aan de sponsor', 'Nieuwe teamleden opleiden'],
+          answer: 'Snel checken wat af is, wat de volgende stap is en wat blokkeert',
+          why: 'Kort en vaak, zodat blokkades binnen dagen boven komen, niet binnen weken.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Je wekelijkse projectoverleg is uitgegroeid tot 90 minuten met twaalf mensen, van wie de helft alleen luistert. Besluiten worden steeds doorgeschoven naar “volgende week”.',
+        ask: 'Wat verander je?',
+        model: 'Ik zou het terugbrengen naar de vijf mensen die het werk doen, 45 minuten, met elk punt gelabeld als besluiten, bespreken of informeren. Informatie gaat in een korte schriftelijke update voor de rest. Besluitpunten krijgen twee dagen vooraf een notitie van één A4, en het verslag bevat alleen besluiten en acties, dezelfde dag verstuurd.',
+        rubric: [
+          'Brengt het overleg terug tot de mensen die iets doen',
+          'Labelt punten en verplaatst informatie naar een schriftelijke update',
+          'Bereidt besluiten vooraf voor en legt ze dezelfde dag vast',
+        ],
+      },
+      sayIt: 'Leg een teamleider bij de klant in 60 seconden het overlegritme van je project uit en waarom elk overleg bestaat.',
+      terms: [
+        { term: 'Stand-up', def: 'Een staande check van 15 minuten bij het bord: af, volgende, geblokkeerd.' },
+        { term: 'Stuurgroep', def: 'De sponsor en senior mensen die de besluiten nemen die het team niet kan nemen.' },
+        { term: 'Besluitnotitie', def: 'Eén A4 met de vraag, opties, een advies en de deadline.' },
+      ],
+    },
+    {
+      id: 'pm.run.status',
+      title: 'Eerlijke status',
+      pre: [
+        {
+          q: 'Een mijlpaal loopt drie weken achter. Het team denkt het met eigen acties in te halen, zonder hulp. Welke kleur is eerlijk?',
+          options: ['Groen', 'Oranje', 'Rood', 'Grijs, het is te vroeg om te zeggen'],
+          answer: 'Oranje',
+          why: 'Risico, maar door het team zelf te herstellen: oranje. Rood betekent dat de stuurgroep moet ingrijpen.',
+        },
+      ],
+      teach: [
+        'Spreek aan het begin af wat de kleuren betekenen, anders betekenen ze niks. Een werkbare set: groen, op koers voor de volgende mijlpaal zonder extra hulp. Oranje, risico, maar het team kan het met eigen acties herstellen. Rood, we halen het niet tenzij de stuurgroep ingrijpt. Dan is rood geen falen, maar een vraag om een besluit.',
+        'Het watermeloenproject: groen van buiten, rood van binnen. Rapportages blijven groen tot twee weken voor de deadline en springen dan op rood. Dat gebeurt omdat mensen hopen het in te halen en bang zijn dat de boodschapper wordt neergeschoten. De prijs: dan zijn de opties weg. Slecht nieuws vroeg is goedkoop; slecht nieuws laat is duur.',
+        'Breng slecht nieuws in vier delen: wat er gebeurd is, wat het betekent voor de mijlpaal, wat ik voorstel, wat ik van je nodig heb. “De systeemtoegang is zes weken te laat. Daardoor schuift de pilot van week 8 naar week 12. Ik stel voor de pilot in week 8 op papier te starten. Ik heb jouw akkoord nodig en een belletje van jou naar de IT-manager.”',
+        'De mensenkant: teamleden bij de klant vragen je misschien om het “nog even groen te houden”. Ga daar niet op de gang over in discussie. Zeg: “Snap ik, niemand houdt van rood. Maar als we het nu zeggen, kan de sponsor nog helpen. Over zes weken niet meer.” Als buitenstaander kun je vaak zeggen wat insiders niet kunnen. Ga daar zorgvuldig mee om, en vertel het altijd eerst de eigenaar voordat de sponsor het hoort.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Week 6 van een project bij een netbeheerder. De pilot heeft systeemtoegang nodig, die IT voor week 5 beloofde. Die is er niet en IT zegt nu week 11. Je teamleider wil oranje rapporteren. Je checkt de definities: het team kan IT niet zelf oplossen, en de pilot schuift vier weken op tenzij iemand ingrijpt. Dat is rood. Je vertelt eerst de teamleider en je contact bij IT wat je gaat rapporteren. In de stuurgroep: “Rood op de pilot. De toegang is zes weken te laat, daardoor schuift de pilot van week 8 naar week 12. Voorstel: in week 8 op papier starten met twee planners. Ik heb jouw akkoord nodig, en een belletje van jou naar de IT-manager over de datum.” De sponsor stemt in en belt dezelfde middag.',
+      },
+      said: 'Wat je hoort in projecten: “Laten we het nog even op oranje houden. Als we rood zeggen, zit de directeur er meteen bovenop.”',
+      recall: [
+        {
+          q: 'Wat betekent rood bij een goed gedefinieerde status?',
+          options: ['Het project is mislukt', 'Iemand heeft een fout gemaakt', 'Het team loopt een beetje achter', 'We halen het niet tenzij de stuurgroep ingrijpt'],
+          answer: 'We halen het niet tenzij de stuurgroep ingrijpt',
+          why: 'Rood is een vraag om een besluit of hulp, geen oordeel.',
+        },
+        {
+          q: 'Waarom zijn watermeloenprojecten duur?',
+          options: ['Als het slechte nieuws eindelijk komt, zijn de meeste opties weg', 'Ze gebruiken te veel kleuren', 'De rapportages zijn te lang', 'Sponsors houden niet van groen'],
+          answer: 'Als het slechte nieuws eindelijk komt, zijn de meeste opties weg',
+          why: 'Vroeg slecht nieuws laat ruimte om te handelen; laat slecht nieuws laat alleen schadebeperking over.',
+        },
+        {
+          q: 'Wat is de beste volgorde voor slecht nieuws?',
+          options: ['Excuses, achtergrond, probleem, verzoek', 'Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb', 'Eerst het verzoek, dan de uitleg', 'Probleem, schuld, oplossing'],
+          answer: 'Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb',
+          why: 'Kort, feitelijk, en het eindigt met een duidelijke vraag.',
+        },
+        {
+          q: 'Een teamlid bij de klant vraagt je de status op groen te houden. Wat zeg je?',
+          options: ['“Prima, het is jullie project.”', '“Ik meld het vandaag bij de sponsor.”', '“Snap ik, maar als we het nu zeggen kan de sponsor nog helpen; later niet meer.”', '“De methode schrijft rood voor.”'],
+          answer: '“Snap ik, maar als we het nu zeggen kan de sponsor nog helpen; later niet meer.”',
+          why: 'Je erkent de angst en legt uit waarom vroeg ook in hun belang is.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een verpakkingsbedrijf. Je project staat al acht weken op groen. Vandaag reken je uit dat de besparingsdoelstelling van 300.000 euro per jaar op ongeveer 180.000 uitkomt. De stuurgroep is volgende week dinsdag.',
+        ask: 'Wat doe je voor en in de stuurgroep?',
+        model: 'Eerst de projecteigenaar en het team vertellen wat ik gevonden heb en wat ik ga rapporteren, zodat niemand verrast wordt. In de stuurgroep: “Oranje op de besparing. We gaan richting 180.000 in plaats van 300.000, omdat lijn 2 voor de zomer niet in scope komt. Twee opties: dit jaar 180 accepteren, of lijn 2 erbij nemen met één extra monteur voor drie maanden. Ik adviseer optie twee. Ik heb vandaag je besluit nodig.”',
+        rubric: [
+          'Vertelt het de betrokkenen voor de stuurgroep',
+          'Meldt wat er gebeurd is en wat het in cijfers betekent',
+          'Komt met opties, een advies en een duidelijke vraag',
+        ],
+      },
+      sayIt: 'Leg een nieuw klantteam in 60 seconden uit wat groen, oranje en rood in je project betekenen en waarom rood geen falen is.',
+      terms: [
+        { term: 'RAG-status', def: 'Rood, oranje, groen: afgesproken definities van hoe een project ervoor staat.' },
+        { term: 'Watermeloenproject', def: 'Een project dat van buiten groen gerapporteerd wordt terwijl het van binnen rood is.' },
+        { term: 'Escalatie', def: 'Een probleem neerleggen bij iemand die kan beslissen of helpen, met een voorstel.' },
+      ],
+    },
+    {
+      id: 'pm.run.scope',
+      title: 'Scope creep',
+      pre: [
+        {
+          q: 'Waar komt de meeste scope creep bij klanten vandaan?',
+          options: ['Veel kleine verzoeken die redelijk klinken', 'Grote formele wijzigingsverzoeken', 'Het contract', 'Alleen de eigen ideeën van de consultant'],
+          answer: 'Veel kleine verzoeken die redelijk klinken',
+          why: 'Elk verzoek klinkt los prima; samen eten ze het project op.',
+        },
+      ],
+      teach: [
+        'Scope creep komt zelden als één groot verzoek. Het komt als “als je toch bezig bent, kun je ook even naar lijn 4 kijken?”, “kan het dashboard ook kwaliteit laten zien?”, “kun je aanschuiven bij het overleg over het nieuwe ERP?”. Elk verzoek is klein en redelijk. Signalen: nieuwe mensen bij je overleggen, een doelzin die verschuift, en jij die ’s avonds doorwerkt terwijl de planning zegt dat je op koers ligt.',
+        'Maak elk verzoek zichtbaar. Schrijf op: wat er gevraagd wordt, door wie, waarom, en wat het doet met tijd, kosten, risico en het oorspronkelijke doel. Kleine dingen gaan op een lijst die je wekelijks doorloopt. Grotere worden een wijzigingsverzoek waar de sponsor over beslist. Beslis nooit alleen over scope; het is niet jouw project, het is het hunne.',
+        'Zeg “ja, en dit kost het”. “We kunnen lijn 4 erbij nemen. Dat is ongeveer drie weken extra, of de ploegoverdracht valt af. Wat heeft je voorkeur?” Je zegt geen nee; je maakt de afweging zichtbaar. De meeste verzoeken krimpen of verdwijnen zodra ze een prijs hebben.',
+        'De mensenkant: als junior voelt het riskant om een senior klant tegen te spreken. Je spreekt hem ook niet tegen; je vraagt de sponsor om te kiezen. Soms is de wijziging terecht, omdat het oorspronkelijke doel niet klopte. Pas de scope dan officieel aan, met een nieuwe doelzin en planning, in plaats van hem te laten wegdrijven.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Je project bij een kabelfabrikant om de weekplanning te verbeteren is begroot op 40 consultantdagen. In week 5 heb je ja gezegd tegen vijf kleine verzoeken: een rapportage voor verkoop, een check op voorraadniveaus, een sessie met het nieuwe ERP-team en twee extra analyses. Elk ongeveer 2 dagen. Samen: 10 dagen, 25% extra, en de planning staat nog op groen. Je zet de lijst met de impact op papier en legt hem bij de sponsor: “Deze vijf kwamen binnen. Samen kosten ze 10 dagen. Optie A: we houden ze en de einddatum schuift twee weken. Optie B: de voorraadcheck en de ERP-sessie vallen af.” Hij kiest B en vertelt het verkoop zelf.',
+      },
+      said: 'Wat je hoort in projecten: “Het is maar één klein dingetje extra. Je bent hier toch al?”',
+      recall: [
+        {
+          q: 'Een project heeft 40 dagen budget. Er komen vijf kleine verzoeken van elk 2 dagen bij. Met hoeveel procent is de scope gegroeid?',
+          number: 25,
+          tolerance: 0.5,
+          unit: '%',
+          why: '5 × 2 = 10 dagen; 10 / 40 = 25%.',
+        },
+        {
+          q: 'Wie beslist over een flinke scopewijziging?',
+          options: ['De consultant, die de planning kent', 'Degene die het vraagt', 'De sponsor', 'Het hele team, met stemming'],
+          answer: 'De sponsor',
+          why: 'Scope moet je afwegen tegen tijd, kosten en doel, en dat is aan de sponsor.',
+        },
+        {
+          q: 'Wat doet “ja, en dit kost het”?',
+          options: ['De afweging zichtbaar maken zodat de klant kan kiezen', 'Het verzoek beleefd weigeren', 'Het tarief van de consultant verhogen', 'Het gesprek vermijden'],
+          answer: 'De afweging zichtbaar maken zodat de klant kan kiezen',
+          why: 'Je blokkeert niet; je laat zien wat het kost en laat de juiste persoon beslissen.',
+        },
+        {
+          q: 'Wat is een vroeg signaal van scope creep?',
+          options: ['Het team is eerder klaar', 'De sponsor is bij elke stuurgroep', 'Risico’s worden wekelijks besproken', 'Nieuwe mensen bij je overleggen en een doelzin die verschuift'],
+          answer: 'Nieuwe mensen bij je overleggen en een doelzin die verschuift',
+          why: 'Nieuwe stakeholders brengen nieuwe wensen; een verschuivend doel laat zien dat het project verandert.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Op de gang vraagt een regiomanager: “Nu je toch naar de planning kijkt, kun je ook onze materiaalreserveringen even rechtzetten? Kan niet veel werk zijn.”',
+        ask: 'Wat zeg je?',
+        model: '“Interessant, en het raakt de planning waarschijnlijk ook. Ik kan nog niet inschatten hoeveel werk het is. Laat me opschrijven wat je ervan wilt en inschatten wat het doet met de huidige planning. Dan leg ik het bij de sponsor neer, zodat zij kan beslissen of we het toevoegen en wat er dan schuift.”',
+        rubric: [
+          'Neemt het verzoek serieus in plaats van nee te zeggen',
+          'Maakt de impact zichtbaar voordat hij ja zegt',
+          'Legt het besluit bij de sponsor',
+        ],
+      },
+      sayIt: 'Leg een teamlid in 60 seconden uit hoe je omgaat met “kleine” extra verzoeken van de klant.',
+      terms: [
+        { term: 'Scope creep', def: 'Het project dat langzaam groeit door kleine toevoegingen die niemand formeel heeft afgesproken.' },
+        { term: 'Wijzigingsverzoek', def: 'Een schriftelijk verzoek tot scopewijziging met de impact, waar de sponsor over beslist.' },
+        { term: 'Doelzin', def: 'Eén zin die zegt wat het project moet bereiken, om verzoeken aan te toetsen.' },
+      ],
+    },
+    {
+      id: 'pm.run.decisions',
+      title: 'Besluiten voor elkaar krijgen',
+      pre: [
+        {
+          q: 'Een manager schuift een besluit steeds door “tot we meer data hebben”. Welke vraag helpt het meest?',
+          options: ['“Wanneer ga je beslissen?”', '“Zal ik alle data verzamelen?”', '“Wat zou je moeten zien om de ene of de andere kant op te beslissen?”', '“Kan iemand anders beslissen?”'],
+          answer: '“Wat zou je moeten zien om de ene of de andere kant op te beslissen?”',
+          why: 'Het maakt van vage twijfel een concrete voorwaarde, of laat zien dat geen enkele data het besluit verandert.',
+        },
+      ],
+      teach: [
+        'Kom met opties en een advies, niet met een probleem. Twee of drie echte opties, de criteria die tellen (kosten, tijd, risico, impact op mensen), de voor- en nadelen, en wat jij adviseert en waarom. Zet erbij wat er gebeurt als er niet besloten wordt. Eén A4. Op een goed A4 beslist een manager in tien minuten; een vage vraag kost drie overleggen.',
+        'Houd een besluitenlijst bij: datum, besluit, wie besliste, waarom, en welke alternatieven afvielen. Dat kost twee minuten per besluit. Als in maand vier iemand zegt “wie heeft dat eigenlijk besloten?”, open je de lijst in plaats van de discussie opnieuw te voeren.',
+        'Escaleren dat werkt: escaleer het besluit, niet de persoon. Spreek de route aan het begin af: team, projecteigenaar, sponsor, met een termijn per niveau. “Als we er vrijdag niet uit zijn, gaat het naar de sponsor.” Vertel de betrokkenen dat je gaat escaleren voordat je het doet. En gebruik een standaardoptie: “Als er op de 15e geen besluit is, gaan we door met optie A.”',
+        'De mensenkant: managers schuiven besluiten door omdat ze bang zijn het fout te doen, of omdat iemand boven hen het er niet mee eens is. Vraag: “Wat zou je moeten zien om te beslissen?” Is het antwoord vaag, vraag dan: “Wie moet zich hier nog meer goed bij voelen?” Weet jij niet welke optie de beste is, zeg dat dan en adviseer een kleine test.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Bij een kunststofverwerker komt het team er niet uit waar te beginnen: lijn 2 (meeste stilstand, 14% van de uren) of lijn 5 (kleinere verliezen, maar een teamleider die graag wil). Je schrijft één A4. Optie A, lijn 2: grootste besparing, ongeveer 90.000 euro per jaar, maar de ploegleider daar is sceptisch. Optie B, lijn 5: ongeveer 40.000, snelle start, gemotiveerd team. Optie C: vier weken op lijn 5 laten zien dat de aanpak werkt, dan lijn 2. Advies: C, omdat een zichtbaar succes op lijn 5 helpt om lijn 2 te overtuigen. Geen besluit voor vrijdag, dan start het team met C. De operations manager kiest C in het overleg, en jij zet het met de reden in de besluitenlijst.',
+      },
+      said: 'Wat je hoort in projecten: “Laten we dit even offline oppakken en er volgende week op terugkomen.”',
+      recall: [
+        {
+          q: 'Wat hoort er in een goede besluitnotitie?',
+          options: ['Alle data die je verzameld hebt', 'Alleen jouw advies', 'Opties, criteria, een advies en wat er gebeurt zonder besluit', 'Een lijst met open vragen'],
+          answer: 'Opties, criteria, een advies en wat er gebeurt zonder besluit',
+          why: 'Het maakt beslissen snel en laat zien wat niet beslissen kost.',
+        },
+        {
+          q: 'Waarom houd je een besluitenlijst bij?',
+          options: ['De auditor eist het', 'Om te voorkomen dat afgesloten discussies later weer opengaan', 'Om later mensen de schuld te geven', 'Om het verslag te vervangen'],
+          answer: 'Om te voorkomen dat afgesloten discussies later weer opengaan',
+          why: 'Je kunt laten zien wat er besloten is, door wie en waarom.',
+        },
+        {
+          q: 'Wat betekent “escaleer het besluit, niet de persoon”?',
+          options: ['Je klaagt over een collega bij zijn baas', 'Je vermijdt escaleren', 'Je laat de persoon zelf escaleren', 'Je legt het open besluit een niveau hoger neer, nadat je de betrokkenen hebt ingelicht'],
+          answer: 'Je legt het open besluit een niveau hoger neer, nadat je de betrokkenen hebt ingelicht',
+          why: 'Het gaat om een besluit krijgen, niet om iemand in de problemen brengen.',
+        },
+        {
+          q: 'Waar dient een standaardoptie in een besluitnotitie voor?',
+          options: ['Hij laat zien wat er gebeurt als niemand beslist, zodat niet beslissen ook een keuze is', 'Hij vervangt de sponsor', 'Hij verbergt de risico’s', 'Hij maakt de notitie korter'],
+          answer: 'Hij laat zien wat er gebeurt als niemand beslist, zodat niet beslissen ook een keuze is',
+          why: 'Een standaardoptie houdt het project in beweging en maakt uitstel zichtbaar.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Al drie weken zijn de hoofden planning en uitvoering het oneens over wie eigenaar wordt van de nieuwe gereedheidscheck. Het project wacht.',
+        ask: 'Hoe krijg je dit besloten?',
+        model: 'Ik zou één A4 schrijven met de opties: planning wordt eigenaar, uitvoering wordt eigenaar, of planning wordt eigenaar met een akkoord van uitvoering. Met voor- en nadelen en mijn advies. Ik vertel beide hoofden dat ik het bij de sponsor neerleg als ze er vrijdag niet uit zijn, en ik zet er een standaardoptie bij. Daarna zet ik het besluit met de reden in de lijst.',
+        rubric: [
+          'Zet opties met een advies op één A4',
+          'Stelt een termijn en licht beide hoofden in voor hij escaleert',
+          'Legt het besluit vast in een besluitenlijst',
+        ],
+      },
+      sayIt: 'Leg een projecteigenaar bij de klant in 60 seconden uit hoe je een besluit voorbereidt zodat de stuurgroep het in tien minuten kan nemen.',
+      terms: [
+        { term: 'Besluitenlijst', def: 'Een lijst met besluiten met datum, wie, waarom en afgevallen opties.' },
+        { term: 'Escalatieroute', def: 'Afgesproken niveaus en termijnen voor besluiten die het team niet kan nemen.' },
+        { term: 'Standaardoptie', def: 'Wat er gebeurt als er voor de deadline geen besluit is.' },
+      ],
+    },
+    {
+      id: 'pm.run.team',
+      title: 'Leidinggeven zonder macht',
+      pre: [
+        {
+          q: 'Een teamlid bij de klant mist zijn tweede deadline in je project. Wat is de meest waarschijnlijke oorzaak?',
+          options: ['Hij is niet gemotiveerd', 'Hij snapt de taak niet', 'Zijn gewone werk ging voor', 'Hij heeft een hekel aan consultants'],
+          answer: 'Zijn gewone werk ging voor',
+          why: 'Mensen bij de klant doen projecten naast hun baan; als het druk wordt, verliest het project.',
+        },
+      ],
+      teach: [
+        'Je team rapporteert aan hun eigen leidinggevende, niet aan jou. Je stuurt met wat je hebt: duidelijkheid, hulp en erkenning. Mensen werken aan een project als het hun eigen pijn oplost, als voortgang zichtbaar is, en als hun naam aan het succes hangt. Vraag vroeg: “Wat zou dit project voor jou de moeite waard maken?”',
+        'Toezeggingen die standhouden zijn klein, concreet en in hun eigen woorden. Niet “kun je even naar de data kijken?” maar “wat kun je donderdag af hebben?” Laat ze het hardop zeggen in het teamoverleg en schrijf het op het bord. Check het in het volgende overleg. Mensen houden zich aan beloftes die ze in het openbaar deden.',
+        'Levert iemand niet, ga dan eerst uit van capaciteit, niet van houding. Eén op één: “Ik zag dat de analyse er nog niet is. Wat zit er in de weg?” Vaak is het het gewone werk, een leidinggevende die van niks weet, of een taak die onduidelijk was. Help het weg te halen: kleiner stuk, duidelijkere taak, of een belletje naar hun leidinggevende voor tijd.',
+        'Blijft het gebeuren, praat dan met hun leidinggevende, maar vertel het de persoon eerst: “Ik ga je leidinggevende vragen of je de vier uur per week kunt krijgen die we afspraken. Is dat goed?” Ga nooit om iemand heen. En geef hardop erkenning: noem in de stuurgroep wie het werk gedaan heeft.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Bij een levensmiddelenfabriek zou onderhoudsengineer Ahmed donderdag een storingslijst opleveren. Het is maandag, er is niks. Je vraagt hem mee voor koffie: “De lijst is er nog niet. Wat zit er in de weg?” Hij vertelt dat twee storingen vorige week zijn tijd opslokten en dat zijn leidinggevende vroeg die voorrang te geven. Je maakt de taak kleiner: alleen de top 10 storingen van lijn 3, voor woensdag. Daarna vraag je zijn leidinggevende om de vier uur per week die aan het begin waren afgesproken, nadat je Ahmed hebt gezegd dat je dat zou doen. Woensdag ligt de lijst er. In de stuurgroep zeg je: “Uit de lijst van Ahmed blijkt dat 60% van de stilstand uit drie oorzaken komt.”',
+      },
+      said: 'Wat je hoort in projecten: “Sorry, ik ben er gewoon nog niet aan toegekomen. Het gewone werk gaat voor, snap je.”',
+      recall: [
+        {
+          q: 'Wat is de beste vraag als iemand niet geleverd heeft?',
+          options: ['“Waarom heb je het niet gedaan?”', '“Wat zit er in de weg?”', '“Zal ik het je leidinggevende vertellen?”', '“Wil je nog wel in dit project zitten?”'],
+          answer: '“Wat zit er in de weg?”',
+          why: 'Het zoekt naar het obstakel in plaats van een schuldige, en vindt het meestal.',
+        },
+        {
+          q: 'Wat maakt het waarschijnlijker dat een toezegging standhoudt?',
+          options: ['Klein, concreet, in eigen woorden, uitgesproken voor het team', 'Een formele mail van jou', 'Een grote taak met een verre deadline', 'Goedkeuring van HR'],
+          answer: 'Klein, concreet, in eigen woorden, uitgesproken voor het team',
+          why: 'Mensen houden zich aan concrete beloftes die ze zelf in het openbaar deden.',
+        },
+        {
+          q: 'Je moet iemands leidinggevende inschakelen over zijn tijd. Wat doe je eerst?',
+          options: ['Meteen naar de leidinggevende gaan', 'De leidinggevende in de cc van een mail zetten', 'Wachten tot het eind van het project', 'De persoon vertellen dat je dat gaat doen'],
+          answer: 'De persoon vertellen dat je dat gaat doen',
+          why: 'Om iemand heen gaan sloopt vertrouwen; het hem eerst vertellen houdt het heel.',
+        },
+        {
+          q: 'Waar geef je erkenning voor goed werk?',
+          options: ['Onder vier ogen, zodat niemand zich buitengesloten voelt', 'Hardop, ook in de stuurgroep', 'Alleen in het eindrapport', 'Nergens, het is hun werk'],
+          answer: 'Hardop, ook in de stuurgroep',
+          why: 'Zichtbare erkenning van senior mensen is een van de weinige beloningen die jij kunt geven.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Een senior planner in je team kan het duidelijk, maar zegt niks in overleggen en levert laat. Een collega vertelt je dat hem nooit gevraagd is of hij in het project wilde.',
+        ask: 'Wat doe je?',
+        model: 'Eén op één met hem praten, zonder verwijt. “Ik hoorde dat je in dit project bent gezet zonder dat iemand het je vroeg. Hoe is dat voor jou?” Dan vragen wat het voor hem de moeite waard zou maken, en of zijn werkdruk het toelaat. Iets kleins en concreets afspreken waar hij eigenaar van wil zijn, en als tijd het probleem is, dat bij zijn leidinggevende aankaarten nadat ik het hem verteld heb.',
+        rubric: [
+          'Begint een één-op-ééngesprek zonder verwijt',
+          'Vraagt wat het project voor hem de moeite waard maakt',
+          'Spreekt een kleine, concrete toezegging af en pakt capaciteit open aan',
+        ],
+      },
+      sayIt: 'Leg een nieuwe consultant in 60 seconden uit hoe je mensen bij de klant laat leveren als ze niet aan jou rapporteren.',
+      terms: [
+        { term: 'Leidinggeven zonder macht', def: 'Werk gedaan krijgen met duidelijkheid, hulp en erkenning, niet met hiërarchie.' },
+        { term: 'Toezegging', def: 'Een kleine, concrete belofte die iemand in eigen woorden doet.' },
+        { term: 'Lijnmanager', def: 'De persoon aan wie een teamlid echt rapporteert.' },
+      ],
+    },
+    {
+      id: 'pm.run.conflict',
+      title: 'Conflict en het lastige gesprek',
+      pre: [
+        {
+          q: 'Productie zegt: “Geen onderhoudsstops door de week.” Onderhoud zegt: “We hebben vier uur per lijn per week nodig.” Wat is de beste eerste stap?',
+          options: ['Het verschil delen: twee uur', 'De plantmanager laten beslissen', 'Elke kant vragen waar ze het voor nodig hebben', 'De kant met de beste data kiezen'],
+          answer: 'Elke kant vragen waar ze het voor nodig hebben',
+          why: 'Achter standpunten zitten belangen, en aan belangen kun je vaak allebei voldoen.',
+        },
+      ],
+      teach: [
+        'Standpunten tegenover belangen. Een standpunt is wat iemand zegt te willen: “geen stops door de week”. Een belang is waarom: “we mogen de wekelijkse levering aan onze grootste klant niet missen”. Standpunten botsen; belangen vaak niet. Misschien werkt een stop van vier uur op maandagochtend, als de order al de deur uit is, voor allebei. Vraag “waar heb je het voor nodig?” en “waar maak je je zorgen over?”',
+        'In het team: luister eerst los naar beide kanten. Kies geen kant, ook niet als een van de twee gelijk heeft. Breng ze daarna samen met de belangen op tafel, niet de standpunten: “Jullie willen allebei dat de lijn betrouwbaar draait. Jullie verschillen over wanneer je hem stilzet.” Zoek opties die beide dienen, en beslis op criteria, niet op wie het hardst roept.',
+        'Het lastige gesprek, in vier stappen. Wat ik zag, feitelijk: “Deze maand was de data twee keer niet klaar op maandag.” Het effect: “Het planningsoverleg beslist dan op gevoel.” Vraag naar hun kijk, en luister: “Hoe zie jij het?” Spreek samen de volgende stap af. Bereid de eerste zin voor; de rest volgt.',
+        'Met de klant: als een manager je project de schuld geeft, verdedig je dan niet in de zaal. “Ik hoor dat je niet tevreden bent over hoe dit loopt. Kunnen we morgen twintig minuten nemen om het door te lopen?” Gebruik dan dezelfde vier stappen. Weet je niet wat je moet doen, haal de mensen dan uit elkaar, praat met ieder apart, en vraag een senior collega voordat je iets doet.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Bij een zuivelfabriek botsen de productiemanager en de onderhoudsmanager in je weekoverleg. Productie: “Geen stops meer op lijn 1, we lopen achter.” Onderhoud: “Dan gaat hij stuk, en dat is erger.” Je stopt de discussie en praat met ieder apart. Het belang van productie: elke donderdag gaat er een grote order naar een retailer. Het belang van onderhoud: drie uur per week om versleten afdichtingen te vervangen voordat ze falen. Weer samen: “Jullie willen allebei dat lijn 1 donderdag betrouwbaar draait.” Optie: een stop van drie uur op vrijdagochtend, direct na de levering. Beiden willen het vier weken proberen en dan naar stilstand en leveringen kijken.',
+      },
+      said: 'Wat je hoort in projecten: “Als onderhoud gewoon zijn werk had gedaan, hadden we dit hele project niet nodig gehad.”',
+      recall: [
+        {
+          q: 'Welke van deze is een belang en geen standpunt?',
+          options: ['“Geen stops door de week.”', '“We hebben een nieuwe machine nodig.”', '“Vier uur per lijn, geen minuut minder.”', '“We mogen de donderdaglevering aan onze grootste klant niet missen.”'],
+          answer: '“We mogen de donderdaglevering aan onze grootste klant niet missen.”',
+          why: 'Het zegt waarom iemand iets wil, en dat opent andere oplossingen.',
+        },
+        {
+          q: 'Hoe begin je een lastig gesprek?',
+          options: ['Met wat je zag, feitelijk', 'Met je conclusie over de persoon', 'Met tien minuten smalltalk', 'Met wat anderen over hem gezegd hebben'],
+          answer: 'Met wat je zag, feitelijk',
+          why: 'Over feiten valt weinig te twisten; oordelen roepen verdediging op.',
+        },
+        {
+          q: 'Twee teamleden botsen in een overleg. Wat doe je eerst?',
+          options: ['Ter plekke beslissen wie gelijk heeft', 'Negeren en doorgaan', 'Met ieder van hen apart praten', 'Escaleren naar de sponsor'],
+          answer: 'Met ieder van hen apart praten',
+          why: 'Alleen zeggen mensen wat ze echt nodig hebben zonder gezichtsverlies.',
+        },
+        {
+          q: 'Een manager bij de klant bekritiseert je project in een overleg. Wat is de beste reactie?',
+          options: ['Het project meteen met data verdedigen', 'Het erkennen en snel een apart gesprek voorstellen', 'Niks zeggen en hopen dat het overwaait', 'De sponsor vragen in te grijpen'],
+          answer: 'Het erkennen en snel een apart gesprek voorstellen',
+          why: 'Je vecht niet in het openbaar, en je laat zien dat je het serieus neemt.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Een teamleider van uitvoering zegt in je projectoverleg: “Planning stuurt ons klussen die niet kunnen, en nu moeten wij nog een checklist invullen?” De planners in je team worden stil.',
+        ask: 'Wat doe je in het overleg en daarna?',
+        model: 'In het overleg: “Ik hoor echte frustratie over klussen die niet kunnen. Dat is precies wat deze check moet oplossen, dus ik wil het goed begrijpen.” Daarna apart met hem praten: wat is er gebeurd, wat heeft hij van planning nodig? Dan met de planners praten. Ze samenbrengen op het gedeelde belang, minder ritten voor niks, en de checklist met zijn input aanpassen.',
+        rubric: [
+          'Erkent de frustratie in het overleg zonder zich te verdedigen',
+          'Praat met elke kant apart om de belangen te vinden',
+          'Brengt ze samen op een gedeeld belang en betrekt hem bij de oplossing',
+        ],
+      },
+      sayIt: 'Leg een teamleider bij de klant in 60 seconden het verschil uit tussen standpunten en belangen, met een voorbeeld van de vloer.',
+      terms: [
+        { term: 'Standpunt', def: 'Wat iemand zegt te willen.' },
+        { term: 'Belang', def: 'Waarom iemand het wil: de behoefte of zorg achter het standpunt.' },
+        { term: 'Lastig gesprek', def: 'Feiten, effect, hun kijk, volgende stap, in die volgorde.' },
+      ],
+    },
+  ],
+};

@@ -1,0 +1,417 @@
+// eng.lines (EN): Lines and automation: layout and buffers, robots, poka-yoke, mixed-model lines, automated line OEE, the business case.
+export default {
+  lessons: [
+    {
+      id: 'eng.lines.layout',
+      title: 'Line types, buffers and inspection',
+      pre: [
+        {
+          q: 'A line has five stations linked without buffers. One station has a 2-minute jam. What happens to the other four?',
+          options: ['They keep running at full speed', 'Only the station before it stops', 'Only the station after it stops', 'They all stop within a cycle or two'],
+          answer: 'They all stop within a cycle or two',
+          why: 'Without buffers, stations before it get blocked and stations after it get starved almost immediately.',
+        },
+      ],
+      teach: [
+        'Three line types. A paced line moves at a fixed rhythm: a conveyor indexes or crawls at takt, and every station must finish in time, as in car assembly. An unpaced line lets each station release its part when it is done, usually on pallets or a free conveyor with small queues between stations. A cell is a compact, often U-shaped group of machines run by a few operators who walk with the work.',
+        'Buffers decouple stations. When a station stops, the buffer before it absorbs incoming parts and the buffer after it keeps the next station fed. Size a buffer on the stops you want to ride through: a typical stop of 3 minutes at a 30-second cycle needs about 6 parts. Buffers cost floor space and inventory, and they hide problems, so they should be deliberate, not accidental.',
+        'Where to inspect: right after the step that creates the risk, so feedback is fast; before an expensive or irreversible step, such as painting or welding a housing shut; and before the bottleneck, so it never spends time on a bad part. An end-of-line test catches defects, but late, after all the value is added.',
+        'The question that reveals how a line really works: “what happens here when the station next to it stops?” If the answer is “everything stops”, the line is rigidly linked, and the availability of each station multiplies into the line result.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'An unpaced assembly line has four stations, each at about 40 seconds. Station 3, a press-fit unit, jams several times per shift for about 4 minutes. There is room for 1 part between stations. When station 3 jams, stations 1 and 2 stop within a minute, and station 4 stands idle. The team wants to speed up stations 1 and 2.',
+        ask: 'What would you do next?',
+        reveal: 'Speeding up 1 and 2 does nothing; they are blocked by station 3. First, put buffers around station 3: a 4-minute stop at 40 seconds is 240 / 40 = 6 parts, so space for about 6 parts before and 6 after keeps the other stations running through a typical jam. Second, attack the jams themselves at station 3, because buffers only absorb stops, they do not remove them. Check whether station 3 is also the slowest, because then it needs protection most of all.',
+      },
+      said: 'What engineers say: “It’s hard-linked, there’s no buffer. Every hiccup at the press stops the whole line.”',
+      recall: [
+        {
+          q: 'A downstream station has stops of about 5 minutes. Cycle time is 30 seconds. How many parts must a buffer hold to ride through one typical stop?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'parts',
+          why: '5 minutes = 300 seconds; 300 / 30 = 10 parts.',
+        },
+        {
+          q: 'What is the main downside of large buffers?',
+          options: ['They make stations run slower', 'They add inventory and lead time, and hide problems', 'They make the line paced', 'They prevent inspection'],
+          answer: 'They add inventory and lead time, and hide problems',
+          why: 'A buffer absorbs stops, but parts wait longer and stops become less visible.',
+        },
+        {
+          q: 'Where is an inspection step most valuable?',
+          options: ['Only at the end of the line', 'At the start, before any work', 'Before an expensive or irreversible step', 'Wherever there is free floor space'],
+          answer: 'Before an expensive or irreversible step',
+          why: 'You stop bad parts before you add more value or close them up.',
+        },
+        {
+          q: 'In a paced line, what sets the rhythm?',
+          options: ['The conveyor that moves at takt', 'Each operator’s own pace', 'The slowest supplier', 'The end-of-line test'],
+          answer: 'The conveyor that moves at takt',
+          why: 'In a paced line the conveyor indexes or moves at a fixed speed and every station has to keep up.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a supplier of electric motors. They are designing a new line and the engineer shows a layout with eight stations linked directly, no buffers, “to keep inventory low”.',
+        ask: 'What do you ask about the layout?',
+        model: 'What availability do you expect per station, and what happens to the line when one stops? With eight hard-linked stations at 95% each, the line ends up around 66%. Which stations have the longest or most frequent stops, and could a small buffer around those protect the rest? And where do we inspect, before the step where the motor is closed up?',
+        rubric: [
+          'Asks what happens to the line when one station stops',
+          'Notes that availabilities multiply in a rigid line',
+          'Proposes targeted buffers and an inspection point before an irreversible step',
+        ],
+      },
+      sayIt: 'Explain to a project manager in 60 seconds why a few well-placed buffers can raise line output.',
+      terms: [
+        { term: 'Paced line', def: 'A line that moves at a fixed rhythm; every station must finish within takt.' },
+        { term: 'Buffer', def: 'A small queue between stations that decouples them during stops.' },
+        { term: 'Hard-linked', def: 'Stations connected without buffers, so one stop stops all.' },
+      ],
+    },
+    {
+      id: 'eng.lines.robots',
+      title: 'Robots: types, reach and safety',
+      pre: [
+        {
+          q: 'A robot is rated for 10 kg payload. Its gripper weighs 4 kg. What is the heaviest part it can safely handle at full speed?',
+          options: ['At most 6 kg, and less if the weight sits off-centre', '10 kg', '14 kg', 'Any weight, at lower speed'],
+          answer: 'At most 6 kg, and less if the weight sits off-centre',
+          why: 'Payload includes the gripper; an off-centre load lowers what the robot can carry.',
+        },
+      ],
+      teach: [
+        'Articulated robots have six axes, like an arm with a wrist. They reach almost anywhere, typically 0.7 to 3 metres, with payloads from a few kilos to over a tonne: welding, palletising, machine tending. SCARA robots have four axes and move very fast in a horizontal plane: pick-and-place and screwing. Delta robots hang above a conveyor and pick light products at very high speed.',
+        'Cobots, collaborative robots, are built to work next to people: they limit force and speed and stop on contact. Payloads are usually 3 to 20 kg and they are slower than industrial robots. “Collaborative” is not a property of the robot alone: the whole application needs a risk assessment, and a cobot holding a knife is not safe.',
+        'Payload is the gripper plus the part, and the robot’s rating assumes the weight sits close to the flange. A heavy gripper or an off-centre part eats into it fast. Datasheet speeds are peak values: real cycles include acceleration, slowing down to place accurately, and 0.2 to 0.5 seconds for each gripper open or close.',
+        'Industrial robots work behind guarding: fences with interlocked doors, light curtains, or laser scanners that slow the robot when someone enters a zone and stop it when they come closer. The cell as a whole needs CE marking and a risk assessment. Safety design often takes more floor space and engineering time than people expect.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A team wants a robot to take 6 kg castings out of a machine. The integrator proposes a 10 kg robot. The gripper with fingers and sensors weighs 4 kg, and the casting is held 150 mm from the flange because of its shape. The target cycle is 12 seconds; the datasheet motion is 4 seconds.',
+        ask: 'What would you do next?',
+        reveal: 'Gripper plus part is 10 kg: 100% of the rating, with the load off-centre, so the robot will be slowed down or overloaded. Ask for the payload diagram, and consider a 20 kg class robot or a lighter gripper. Then build the real cycle: 4 seconds of motion plus two gripper actions, approach, slow placement and waiting for the machine door, often 7 to 9 seconds. Check that against the 12 seconds, and against the machine cycle the robot actually has to keep up with.',
+      },
+      said: 'What engineers say: “The robot can do it on paper, but with that gripper you’re at the edge of the payload curve.”',
+      recall: [
+        {
+          q: 'A part weighs 7 kg and the gripper 5 kg. The team wants to use at most 80% of the rated payload. What payload rating is needed, in kg?',
+          number: 15,
+          tolerance: 0.5,
+          unit: 'kg',
+          why: '7 + 5 = 12 kg; 12 / 0.8 = 15 kg.',
+        },
+        {
+          q: 'Which robot type fits fast pick-and-place in a horizontal plane?',
+          options: ['A 6-axis heavy-duty robot', 'A gantry crane', 'A cobot on a mobile cart', 'A SCARA robot'],
+          answer: 'A SCARA robot',
+          why: 'SCARA robots have four axes and are very fast in the horizontal plane.',
+        },
+        {
+          q: 'A cobot is used in an application. What is still required?',
+          options: ['Nothing, cobots are safe by design', 'A full fence around it', 'A risk assessment of the whole application', 'A second operator watching it'],
+          answer: 'A risk assessment of the whole application',
+          why: 'Safety depends on the tool, the part, speeds and the task, not just the robot.',
+        },
+        {
+          q: 'Why is the real robot cycle usually longer than the datasheet motion time?',
+          options: ['Robots slow down with age', 'Gripper actions, accurate placement and waiting add time', 'The datasheet uses a heavier part', 'Robots only run at half speed'],
+          answer: 'Gripper actions, accurate placement and waiting add time',
+          why: 'Motion is only part of the cycle; actions and waiting fill the rest.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a metal products company. The operations manager has seen a cobot at a trade fair and wants one at the packing station, “without a fence, so it’s cheap and quick”. Boxes weigh 18 kg.',
+        ask: 'What do you ask?',
+        model: 'What is the box plus gripper weight against the cobot’s payload, and how fast must it run to keep up? At 18 kg plus a gripper you are above most cobots, and a heavy load moving next to people may not pass the risk assessment without guarding. Can we first list the cycle and weight requirements, and then see whether a cobot or a guarded industrial robot fits?',
+        rubric: [
+          'Checks payload including the gripper',
+          'Questions the “no fence” assumption via a risk assessment',
+          'Starts from cycle and weight requirements, not from a robot type',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds the difference between an industrial robot and a cobot, and when each fits.',
+      terms: [
+        { term: 'Payload', def: 'The weight a robot can handle, including the gripper.' },
+        { term: 'Cobot', def: 'A robot designed to work near people, with force and speed limits.' },
+        { term: 'End-of-arm tooling', def: 'The gripper or tool on the robot’s flange.' },
+        { term: 'Area scanner', def: 'Laser sensor that slows or stops the robot when someone enters a zone.' },
+      ],
+    },
+    {
+      id: 'eng.lines.pokayoke',
+      title: 'Error-proofing with sensors and fixtures',
+      pre: [
+        {
+          q: 'Trained inspectors check parts visually for a missing clip. Roughly what share of defects do they typically catch?',
+          options: ['Practically 100%', 'Below 10%', 'Around 80 to 90%', 'Exactly 50%'],
+          answer: 'Around 80 to 90%',
+          why: 'Visual inspection misses a meaningful share of defects, especially rare ones on repetitive work.',
+        },
+      ],
+      teach: [
+        'Error-proofing, poka-yoke, has two levels. Prevention makes the error impossible: a fixture with a pin so a part only fits one way round, a connector that only plugs in one orientation. Detection notices the error immediately and stops the process: a sensor that sees the clip is missing and blocks the next step. Prevention beats detection; detection beats inspection at the end.',
+        'Common sensors: an inductive proximity sensor detects metal within a few millimetres; a photoelectric sensor detects whether a beam is broken; a vision camera checks presence, position, colour or a label. A torque tool can count screws and check torque and angle per screw. Each sends a signal to the PLC.',
+        'The interlock makes it work: the PLC only allows the next step when all checks are OK. The press does not cycle until both part sensors confirm; the pallet is not released until all six screws are OK. Without an interlock, a sensor is just a lamp that people learn to ignore.',
+        'Watch false rejects. A vision system that rejects 3% good parts makes operators angry, and soon someone finds the bypass key. Ask how often each error-proofing device is bypassed and how often it gives false alarms; that tells you whether it is really working.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a station, operators fasten 8 screws on a housing with a manual screwdriver. About 1 in 2,000 housings leaves with a missing screw. Final inspection catches about 85% of these. The customer has had three complaints this quarter, and the quality manager wants to add a second inspector.',
+        ask: 'What would you do next?',
+        reveal: 'A second inspector catches part of what the first one misses, but still not everything, and adds cost every shift. Go to the source: a torque-controlled screwdriver that counts screws and checks torque and angle, linked to the PLC, so the housing is only released when all 8 screws are OK. Add a fixture or screw sequence on the screen so the operator sees which screw is next. Then track bypasses and false alarms for the first weeks.',
+      },
+      said: 'What engineers say: “Don’t add an inspector, interlock it. No eight OKs, no release.”',
+      recall: [
+        {
+          q: 'A process creates 400 defects per million parts. Inspection catches 85%. How many defects per million escape to the customer?',
+          number: 60,
+          tolerance: 1,
+          unit: 'ppm',
+          why: '15% escape: 400 × 0.15 = 60 ppm.',
+        },
+        {
+          q: 'Which is prevention rather than detection?',
+          options: ['A fixture that only accepts the part in the correct orientation', 'A camera that rejects parts with a missing label', 'An inspector at the end of the line', 'A torque tool that alarms on a low torque'],
+          answer: 'A fixture that only accepts the part in the correct orientation',
+          why: 'The error cannot be made at all; the others detect it after it happened.',
+        },
+        {
+          q: 'What makes a sensor actually error-proof the process?',
+          options: ['A loud alarm', 'A red lamp', 'Daily calibration', 'An interlock in the PLC that blocks the next step'],
+          answer: 'An interlock in the PLC that blocks the next step',
+          why: 'Without blocking the next step, the signal can be ignored.',
+        },
+        {
+          q: 'A vision check gives many false rejects. What usually happens?',
+          options: ['Quality improves', 'Operators start bypassing it', 'The line runs faster', 'Customers complain less'],
+          answer: 'Operators start bypassing it',
+          why: 'False alarms destroy trust, and people find a way around the check.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at an electronics assembler. A camera checks for a connector at one station. The team says it works, but complaints about missing connectors continue. You notice a key switch marked “bypass” on the panel.',
+        ask: 'What do you ask?',
+        model: 'How often is the bypass used, and who decides when? If the camera gives false rejects, people will use the bypass, and then parts go through unchecked. Can we see the false reject rate and a log of bypass use, and if bypassing is needed, make it require a team leader and mark those parts for extra checks?',
+        rubric: [
+          'Asks about bypass use and false reject rate',
+          'Links false alarms to people bypassing the check',
+          'Proposes controlling the bypass and tracing affected parts',
+        ],
+      },
+      sayIt: 'Explain to a quality manager in 60 seconds why an interlocked sensor beats an extra inspector.',
+      terms: [
+        { term: 'Poka-yoke', def: 'Error-proofing: making an error impossible or detecting it immediately.' },
+        { term: 'Interlock', def: 'A PLC condition that blocks the next step until checks are OK.' },
+        { term: 'False reject', def: 'A good part rejected by a check.' },
+        { term: 'Inductive sensor', def: 'A sensor that detects metal at short distance without contact.' },
+      ],
+    },
+    {
+      id: 'eng.lines.mixed',
+      title: 'Mixed-model lines',
+      pre: [
+        {
+          q: 'A station has a takt of 60 seconds. Model A takes 50 seconds there, model B 70 seconds. The mix is 50/50. Can the station keep up?',
+          options: ['No, B is always too slow', 'Yes, as long as two Bs never come in a row', 'Yes, whatever the order', 'Only if B is built on another line'],
+          answer: 'Yes, as long as two Bs never come in a row',
+          why: 'On average it is 60 seconds, but two heavy models in a row put the operator 20 seconds behind.',
+        },
+      ],
+      teach: [
+        'A mixed-model line builds several variants on the same line, in a mixed sequence. Each variant has different work content per station: a model with a sunroof or a heat pump with an extra module takes longer at some stations. The line runs on one takt, so some cycles are over takt and some are under.',
+        'Balancing uses the weighted average of the mix, but that is not enough. Check the longest variant at each station too. If it is far above takt, the operator falls behind on a paced line and drifts into the next station’s zone. Solutions: move variant-specific work to a separate station or sub-assembly, or add a floater who helps on heavy cycles.',
+        'Sequencing keeps heavy variants spread out. Typical rules: “never two Bs in a row” or “at most 1 in 3 with option X”. The planner builds the sequence with these rules, so the line sees a predictable mix every hour. A changed customer mix can turn a well-balanced line into a line that is always behind.',
+        'More variants also means more parts at line side. With ten variants of one component, there is no space for all boxes, so lines use kits or sequenced supply: parts arrive in the same order as the products on the line. That makes logistics part of the line design.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A heat pump line has takt 120 seconds. At station 5, variant S takes 100 seconds, M 120 and L 160. The mix is 50% S, 30% M, 20% L. The weighted average is 0.5 × 100 + 0.3 × 120 + 0.2 × 160 = 118 seconds, so on paper the station fits. In practice, the operator calls for help several times per shift, usually when the planner releases L units in batches.',
+        ask: 'What would you do next?',
+        reveal: 'The average fits, but L is 40 seconds over takt. Two Ls in a row put the operator 80 seconds behind, which an S cannot recover (it only gives back 20). First, a sequencing rule: an L is always followed by at least two S units, which recovers 40 seconds. Then talk to planning about why they release L in batches, maybe a material or test reason. Longer term, move part of the L-specific work to a sub-assembly so L comes closer to takt.',
+      },
+      said: 'What engineers say: “The balance is fine on average. It’s the back-to-back L’s that kill us.”',
+      recall: [
+        {
+          q: 'Mix: 70% model A at 48 seconds, 30% model B at 75 seconds. What is the weighted average work content, in seconds?',
+          number: 56.1,
+          tolerance: 0.3,
+          unit: 's',
+          why: '0.7 × 48 + 0.3 × 75 = 33.6 + 22.5 = 56.1 seconds.',
+        },
+        {
+          q: 'Why is balancing on the weighted average alone not enough?',
+          options: ['The average changes every day', 'The average ignores the operator', 'A heavy variant can still exceed takt at a station', 'The average is always too high'],
+          answer: 'A heavy variant can still exceed takt at a station',
+          why: 'The operator has to handle each cycle as it comes, not the average.',
+        },
+        {
+          q: 'What does a sequencing rule like “at most 1 in 3 with option X” protect?',
+          options: ['It spreads heavy work so stations can recover between heavy cycles', 'It reduces the number of variants', 'It makes the takt shorter', 'It removes the need for balancing'],
+          answer: 'It spreads heavy work so stations can recover between heavy cycles',
+          why: 'Light cycles after a heavy one give the operator time to catch up.',
+        },
+        {
+          q: 'A line builds ten variants of a component. How are parts often supplied?',
+          options: ['All ten in big boxes at line side', 'From a central store on request', 'By the operator walking to the warehouse', 'In kits or in the same sequence as the products'],
+          answer: 'In kits or in the same sequence as the products',
+          why: 'There is no space for all variants at line side, so supply follows the sequence.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a manufacturer of charging stations. Sales has won a big order for the premium model, which has more work at three stations. Production says the line is “perfectly balanced”.',
+        ask: 'What do you ask?',
+        model: 'Balanced at which mix? If the premium share goes from 20 to 50%, the average at those three stations moves, and they may go over takt. Can we recalculate the balance with the new mix, look at the longest variant per station, and agree a sequencing rule with planning before the order starts?',
+        rubric: [
+          'Asks which mix the balance was based on',
+          'Recalculates for the new mix and checks the longest variant',
+          'Involves planning in a sequencing rule',
+        ],
+      },
+      sayIt: 'Explain to a planner in 60 seconds why the order of variants matters on a mixed-model line.',
+      terms: [
+        { term: 'Mixed-model line', def: 'A line that builds several variants in a mixed sequence.' },
+        { term: 'Sequencing rule', def: 'A rule that spreads heavy variants through the sequence.' },
+        { term: 'Floater', def: 'An operator who helps where cycles run over.' },
+        { term: 'Sequenced supply', def: 'Parts delivered in the same order as the products on the line.' },
+      ],
+    },
+    {
+      id: 'eng.lines.oee_auto',
+      title: 'OEE on automated lines',
+      pre: [
+        {
+          q: 'On automated lines, which loss is most often underestimated?',
+          options: ['Planned maintenance', 'Long breakdowns', 'Changeovers', 'Micro-stops of seconds to a few minutes'],
+          answer: 'Micro-stops of seconds to a few minutes',
+          why: 'Short jams are reset quickly and rarely logged, but they add up to a large share of lost time.',
+        },
+      ],
+      teach: [
+        'Micro-stops are short stops, from a few seconds to a few minutes: a part jams in a feeder, a sensor misreads, an operator resets. They are rarely written down, but on automated lines they often cost 10 to 20% of output. Only machine data shows them: count stops per hour, not only hours of downtime.',
+        'Each station in an automated line has a state at every moment: running, faulted, starved (waiting for a part from upstream) or blocked (cannot pass its part downstream). Most PLCs can log these states. A station that is often starved is waiting on something upstream; often blocked, on something downstream.',
+        'The hidden bottleneck is the station that is running the largest share of time and is rarely starved or blocked. It is not always the one with the slowest nominal cycle: a fast station with many micro-stops can limit the line. Find it in the state data, then put improvement effort and buffer protection there.',
+        'In a rigid line, availabilities multiply: five stations at 95% give 0.95 to the power of 5, about 77%, for the line. Buffers recover part of that. Measure line OEE at the bottleneck or at the end of the line, against the ideal cycle of the bottleneck.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A bottling line has six machines. Each machine’s screen shows availability above 90%. Line OEE is 58%. The team plans to replace the filler, the slowest machine on paper. PLC data for a week show: filler running 71%, starved 22%; labeller running 93%, starved 2%, blocked 1%; capper running 68%, blocked 25%. The labeller logs about 40 stops per hour, each under a minute.',
+        ask: 'What would you do next?',
+        reveal: 'The labeller is the real bottleneck: it runs 93% of the time, almost never waits, and the capper before it is blocked a quarter of the time. The filler is starved, so a new one adds nothing. Focus on the labeller’s 40 micro-stops per hour: log the stop reasons for a week, fix the top two, and check whether a bigger buffer before the labeller helps. Then look again at the state data, because the bottleneck may move.',
+      },
+      said: 'What engineers say: “Look at the states, not the speeds. The labeller never starves, that’s your constraint.”',
+      recall: [
+        {
+          q: 'Four machines are rigidly linked without buffers, each with 90% availability. What is the line availability, in percent?',
+          number: 66,
+          tolerance: 1,
+          unit: '%',
+          why: '0.9 × 0.9 × 0.9 × 0.9 = 0.656, about 66%.',
+        },
+        {
+          q: 'A station is “blocked” most of the time. What does that mean?',
+          options: ['It is broken', 'It cannot pass parts downstream', 'It is waiting for parts from upstream', 'It is in changeover'],
+          answer: 'It cannot pass parts downstream',
+          why: 'Blocked means the next station or buffer is full.',
+        },
+        {
+          q: 'Which state data points to the hidden bottleneck?',
+          options: ['Highest running time, rarely starved or blocked', 'Most starved time', 'Lowest nominal speed on the datasheet', 'Most planned maintenance'],
+          answer: 'Highest running time, rarely starved or blocked',
+          why: 'The bottleneck is always working; the others wait on it.',
+        },
+        {
+          q: 'Why are micro-stops often missed?',
+          options: ['They only happen at night', 'They are counted as changeovers', 'They are short, reset quickly and rarely logged', 'They do not affect output'],
+          answer: 'They are short, reset quickly and rarely logged',
+          why: 'Manual logging captures long breakdowns, not 30-second jams.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a food manufacturer. The engineering manager proposes €400,000 for a faster packaging machine, because line OEE is low. You have not seen any state data.',
+        ask: 'What do you ask before the investment goes ahead?',
+        model: 'Can we pull the PLC states for each machine for two weeks: running, starved, blocked and faulted, and the number of stops per hour? If the packaging machine is often starved or blocked, it is not the bottleneck, and a faster one adds nothing. Let’s find the machine that is always running first, and see whether its micro-stops are the real loss.',
+        rubric: [
+          'Asks for state data per machine before investing',
+          'Uses starved and blocked to judge whether the machine is the bottleneck',
+          'Mentions micro-stops as a likely hidden loss',
+        ],
+      },
+      sayIt: 'Explain to a finance director in 60 seconds why the slowest machine on paper is not always what limits an automated line.',
+      terms: [
+        { term: 'Micro-stop', def: 'A short stop of seconds to minutes, usually not logged.' },
+        { term: 'Starved', def: 'Waiting for parts from upstream.' },
+        { term: 'Blocked', def: 'Cannot pass parts downstream because it is full there.' },
+        { term: 'Machine states', def: 'PLC data showing running, faulted, starved or blocked over time.' },
+      ],
+    },
+    {
+      id: 'eng.lines.business',
+      title: 'The business case for automation',
+      pre: [
+        {
+          q: 'In a typical robot cell, what share of the total cost is the robot itself?',
+          options: ['Around 90%', 'Almost all of it', 'Around a quarter to a third', 'Nothing, robots are leased'],
+          answer: 'Around a quarter to a third',
+          why: 'Grippers, guarding, integration, engineering and programming usually cost more than the robot.',
+        },
+      ],
+      teach: [
+        'Payback = investment / yearly net savings. Many manufacturers want automation to pay back within 2 to 3 years. Savings are mostly labour: an operator in the Netherlands costs roughly €50,000 to €60,000 a year, so replacing one operator per shift on two shifts saves around €110,000. Subtract maintenance, energy and support for the cell.',
+        'The robot is often only a quarter to a third of the cell cost. Add grippers, guarding, conveyors, sensors, integration, programming and project management. Then ramp-up: a new cell often needs 3 to 6 months to reach its target output, and during that time the people it replaces are still needed.',
+        'Flexibility is the hidden risk. If the product has 2 years of life left and payback is 3 years, the cell must be reusable or the case fails. Many variants, uncertain volumes or frequent design changes make automation harder. Ask what happens to the cell when the product ends.',
+        'When not to automate: when the process is unstable (you automate the problems), when volume is low and mix high, when the task needs judgement or delicate handling, or when a simpler fix such as a fixture or a better layout solves most of it. Automation also has benefits beyond cost: ergonomics, consistent quality and less dependence on scarce staff.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A cell for loading a CNC machine costs €300,000 all-in. It replaces one operator per shift on two shifts, at €55,000 per operator. Maintenance and support cost €10,000 a year. The part it loads is for a customer programme that ends in 2 years. The machine is currently unstable: 6% scrap and frequent tool breakage.',
+        ask: 'What would you do next?',
+        reveal: 'Savings: 2 × €55,000 − €10,000 = €100,000 a year, so payback is 3 years, longer than the programme’s remaining 2 years. Ask whether the cell can be reused for the next part, which changes the case. Then stabilise the process first: a robot loading a machine with 6% scrap and tool breakage will stop all the time and nobody will be there to react. Bring scrap and tool breakage down, then revisit the case with a realistic ramp-up of 3 to 6 months.',
+      },
+      said: 'What engineers say: “Don’t automate a mess. Get the process stable first, then we talk robots.”',
+      recall: [
+        {
+          q: 'An automation project costs €240,000 and saves €80,000 a year net. What is the payback time, in years?',
+          number: 3,
+          tolerance: 0.1,
+          unit: 'years',
+          why: '€240,000 / €80,000 = 3 years.',
+        },
+        {
+          q: 'Which situation argues most against automating now?',
+          options: ['High volume and few variants', 'A tight labour market', 'A heavy, repetitive task', 'An unstable process with high scrap'],
+          answer: 'An unstable process with high scrap',
+          why: 'Automation multiplies problems in an unstable process.',
+        },
+        {
+          q: 'Why do new cells usually not deliver full savings in the first months?',
+          options: ['Robots need to be run in slowly', 'Ramp-up takes months, and the operators are still needed', 'Energy prices rise', 'Payback is calculated wrongly'],
+          answer: 'Ramp-up takes months, and the operators are still needed',
+          why: 'A new cell often needs 3 to 6 months to reach target output.',
+        },
+        {
+          q: 'The product’s remaining life is shorter than the payback time. What question matters most?',
+          options: ['Can the cell be reused for the next product?', 'Is the robot the newest model?', 'Can the line run faster?', 'Can we lease the robot?'],
+          answer: 'Can the cell be reused for the next product?',
+          why: 'Reuse extends the period over which the investment earns back.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a metalworking supplier. The managing director wants to automate the welding station “because we can’t find welders”. The engineering team has a quote for €450,000 and no business case.',
+        ask: 'How do you help them decide?',
+        model: 'The staff shortage is a real reason, so let’s make it part of the case, next to labour savings, quality and ergonomics. What does the €450,000 include, and what is the ramp-up plan? And how stable is the welding process and the fit-up of the parts today, because a robot needs consistent parts. If the parts vary, the first project may be the fixtures and parts, not the robot.',
+        rubric: [
+          'Takes the staff shortage seriously as part of the case',
+          'Asks for full cost and ramp-up, not just the quote',
+          'Checks process and part stability before automating',
+        ],
+      },
+      sayIt: 'Explain to a managing director in 60 seconds what a sound automation business case contains.',
+      terms: [
+        { term: 'Payback time', def: 'Investment divided by yearly net savings.' },
+        { term: 'Ramp-up', def: 'The months it takes a new line or cell to reach target output.' },
+        { term: 'Integrator', def: 'The company that designs and builds the complete automated cell.' },
+      ],
+    },
+  ],
+};
