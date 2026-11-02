@@ -3,7 +3,7 @@
 import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCourseQuestions, maintenanceQuestion } from './coursereview.js';
-import { lessonOf, MODULES, TRACKS } from '../content/courses/index.js';
+import { lessonOf, moduleOf, MODULES, TRACKS } from '../content/courses/index.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -177,6 +177,9 @@ export function recommendedModule(state, subject, modules = MODULES) {
 // One next thing per course, deterministic for a state and day.
 export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
   const reviews = state.courseReviews || {};
+  // A plan follow-up is quick and time-sensitive: first.
+  const plan = openPlans(state, subject, today)[0];
+  if (plan) return { reason: 'apply', planId: plan.id, lessonId: plan.lessonId, moduleId: moduleOf(plan.lessonId) };
   const due = dueCourseQuestions(reviews, today, subject, lang).length;
   if (due >= 5) return { reason: 'due', count: due };
   const rec = recommendedModule(state, subject, modules);
@@ -266,4 +269,86 @@ export function lessonBack({ p, block, pre }, phases, lesson) {
   if (prev === 'teach') return { p: p - 1, block: lesson.teach.length - 1, pre };
   if (prev === 'pre') return { p: p - 1, block: 0, pre: Math.max(0, (lesson.pre || []).length - 1) };
   return { p: p - 1, block: 0, pre };
+}
+
+// "Use it this week": an if-then plan at the end of a lesson, and one
+// check-back on a working day at least two days later. No XP, no round.
+const PLAN_MAX = 160;
+const PLANS_CAP = 50;
+const PLAN_STALE_DAYS = 14;
+export const PLAN_USED = ['yes', 'partly', 'no'];
+const collapse = (s, max) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, max);
+
+function shiftDay(day, n) {
+  const [y, m, d] = day.split('-').map(Number);
+  return dayKey(new Date(y, m - 1, d + n));
+}
+const weekday = (day) => { const [y, m, d] = day.split('-').map(Number); return new Date(y, m - 1, d).getDay(); };
+const dayStart = (day) => { const [y, m, d] = day.split('-').map(Number); return new Date(y, m - 1, d).getTime(); };
+
+// The next working day (Mon–Fri) at least two days after today.
+export function planDue(today) {
+  let d = shiftDay(today, 2);
+  while (weekday(d) === 0 || weekday(d) === 6) d = shiftDay(d, 1);
+  return d;
+}
+
+const plansOf = (state, subject) => ((((state.courses || {})[subject]) || {}).plans || []);
+const withPlans = (state, subject, fn) => withSubject(state, subject, (c) => ({ ...c, plans: fn(c.plans || []) }));
+
+export function addPlan(state, { subject, lessonId, text }, today, id) {
+  const clean = collapse(text, PLAN_MAX);
+  if (!clean || !lessonId || !id) return state;
+  const plan = { id, lessonId, text: clean, day: today, due: planDue(today), asked: 0, outcome: null };
+  return withPlans(state, subject, (list) => [plan, ...list.filter((p) => p.outcome || p.lessonId !== lessonId)].slice(0, PLANS_CAP));
+}
+
+export function answerPlan(state, { subject, id, used, note }, now) {
+  if (!PLAN_USED.includes(used) || !plansOf(state, subject).some((p) => p.id === id)) return state;
+  return withPlans(state, subject, (list) => list.map((p) => (p.id === id ? { ...p, outcome: { used, note: collapse(note, PLAN_MAX), ts: now } } : p)));
+}
+
+// "Ask me later": two days on; the second time it expires, so it never nags a third time.
+export function skipPlan(state, { subject, id }, today, now = dayStart(today)) {
+  if (!plansOf(state, subject).some((p) => p.id === id && !p.outcome)) return state;
+  return withPlans(state, subject, (list) => list.map((p) => {
+    if (p.id !== id) return p;
+    const asked = (p.asked || 0) + 1;
+    return asked >= 2 ? { ...p, asked: 2, outcome: { used: 'no', note: '', ts: now } } : { ...p, asked, due: shiftDay(today, 2) };
+  }));
+}
+
+// Due, unanswered, and not left for more than two weeks; oldest due first.
+export function openPlans(state, subject, today) {
+  const oldest = shiftDay(today, -PLAN_STALE_DAYS);
+  return plansOf(state, subject).filter((p) => !p.outcome && p.due <= today && p.due >= oldest)
+    .sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.id < b.id ? -1 : 1));
+}
+
+// Plans made since a day and how many were used (yes or partly). Information only.
+export function planStats(state, subject, since) {
+  const made = plansOf(state, subject).filter((p) => p.day >= since);
+  return { made: made.length, used: made.filter((p) => p.outcome && p.outcome.used !== 'no').length };
+}
+
+// The recall question asked after a plan: the lowest box of the lesson, first on ties.
+export function applyQuestionId(reviews, lang, lessonId, count) {
+  let best = null;
+  for (let i = 0; i < (count || 0); i++) {
+    const box = ((reviews || {})[`${lang}|${lessonId}#r${i}`] || {}).box || 0;
+    if (!best || box < best.box) best = { id: `${lessonId}#r${i}`, box };
+  }
+  return best ? best.id : null;
+}
+
+// Recall right after the real experience: scheduled like a due question, but
+// no XP, no round and no session. A hit before it is due does not climb.
+export function applyRecall(state, { subject, results, lang }, today) {
+  let reviews = state.courseReviews || {};
+  for (const [questionId, ok] of Object.entries(results || {})) {
+    const cur = reviews[`${lang}|${questionId}`];
+    if (ok && cur && cur.due > today) continue;
+    reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok);
+  }
+  return { state: { ...state, courseReviews: reviews }, xp: 0 };
 }

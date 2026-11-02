@@ -1,6 +1,7 @@
 // Merging progress from another device. Never an overwrite: anything done on
 // either device survives. Device settings (API key, theme, language) and ui
 // state never leave the device. Pure.
+import { cleanPlans } from './storage.js';
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
@@ -52,6 +53,24 @@ function mergeLesson(x, y) {
   return out;
 }
 
+// Plans: union by id. An answered plan beats an open one; of two answers the
+// later one wins; asked takes the maximum (with the due date that goes with it).
+const PLANS_CAP = 50;
+function mergePlan(x, y) {
+  const ax = x.outcome ? x.outcome.ts : -1;
+  const ay = y.outcome ? y.outcome.ts : -1;
+  let win;
+  if (ax !== ay) win = ax > ay ? x : y;
+  else if (x.asked !== y.asked) win = x.asked > y.asked ? x : y;
+  else win = x.due >= y.due ? x : y;
+  return { ...win, asked: Math.max(x.asked, y.asked) };
+}
+function mergePlans(a, b) {
+  const byId = new Map();
+  for (const p of [...cleanPlans(a), ...cleanPlans(b)]) byId.set(p.id, byId.has(p.id) ? mergePlan(byId.get(p.id), p) : p);
+  return [...byId.values()].sort((x, y) => (x.day !== y.day ? (x.day < y.day ? 1 : -1) : x.id < y.id ? 1 : x.id > y.id ? -1 : 0)).slice(0, PLANS_CAP);
+}
+
 function mergeCourses(a, b) {
   return perKey(a, b, (x, y) => {
     const cx = obj(x);
@@ -60,6 +79,7 @@ function mergeCourses(a, b) {
       ...cy, ...cx,
       lessons: perKey(cx.lessons, cy.lessons, mergeLesson),
       sessions: unionBy(cx.sessions, cy.sessions, (s) => `${s.ts}|${s.kind}|${s.lessonId || ''}`, SESSIONS_CAP),
+      plans: mergePlans(cx.plans, cy.plans),
     };
     const lm = [cx.lastMaintenance, cy.lastMaintenance].filter(Boolean).sort().pop();
     if (lm) out.lastMaintenance = lm;

@@ -6,12 +6,13 @@ import { MODULES, TRACKS } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
 import { dueCourseQuestions } from '../core/coursereview.js';
 
-export const COURSE_ICON = { due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
+export const COURSE_ICON = { apply: 'pen-line', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
 // Opens what the Today card or a lesson row points at.
 export function openPick(app, subject, pick) {
+  if (pick.reason === 'apply') return app.go('apply', { subject, planId: pick.planId });
   if (pick.reason === 'due') return app.go('due', { subject });
   if (pick.reason === 'maintain') return app.go('due', { subject, questionIds: [pick.questionId], maintenance: true });
   if (pick.reason === 'lesson') return app.go('lesson', { subject, moduleId: pick.moduleId, lessonId: pick.lessonId });

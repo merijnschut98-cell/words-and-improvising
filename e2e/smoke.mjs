@@ -1687,6 +1687,104 @@ await step('english + progress + settings', async () => {
   await shot('09-progress');
 });
 
+// v9: a separate context per feature, seeded from scratch, so the steps above keep their state.
+async function v9Context(seed = {}) {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const p = await c.newPage();
+  p.on('pageerror', (e) => errors.push(e.message));
+  p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+  await p.goto(BASE);
+  await p.evaluate(async (s) => {
+    const { isoWeekKey } = await import('./src/core/boss.js');
+    localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { subject: 'eng' }, ...s }));
+  }, seed);
+  await p.reload();
+  const shotP = async (n) => {
+    const text = await p.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
+  };
+  const dark = async (n, redraw) => {
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+    await redraw();
+    await shotP(n);
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  };
+  return { c, p, shotP, dark };
+}
+const yesterdayKey = () => { const d = new Date(Date.now() - 86400000); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+// Answers the visible quiz question correctly from the lesson file.
+async function answerRight(pg, lesson, scope = '.quiz-card') {
+  const text = (await pg.locator(`${scope} .quiz-q`).innerText()).trim();
+  const q = lesson.recall.find((x) => x.q.trim() === text);
+  if (!q) throw new Error(`question not in lesson: ${text}`);
+  if ('number' in q) { await pg.locator(`${scope} .quiz-num`).fill(String(q.number).replace('.', ',')); await pg.locator(`${scope} .btn-primary`).click(); }
+  else await pg.locator(`${scope} .opt`, { hasText: q.answer }).first().click();
+  return q;
+}
+
+await step('use it this week: plan at lesson end, check back two days later', async () => {
+  // A speaking round today, so the start screen suggests Engineering.
+  const round = await page.evaluate(() => ((JSON.parse(localStorage.getItem('spraakwater:v1')) || {}).history || [])[0]);
+  const r0 = round || { ts: Date.now(), drill: 'minute', promptId: 'topic:t1', metrics: { words: 50, fillerRate: 2 } };
+  const { c, p, shotP, dark } = await v9Context();
+  await p.locator('.course-today .today-go').waitFor();
+  await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.takt' }));
+  await p.locator('.pre-card').waitFor();
+  const lesson = await playLesson(p, 'eng', 'flow', 'eng.flow.takt');
+  await onePrimary(p, 'lesson done with the plan field');
+  await p.locator('.plan-card .plan-input').fill('Als de planner maandag de takt noemt, dan vraag ik hoe die berekend is.');
+  await shotP('90-plan-field');
+  await p.locator('.lesson-done ~ .btn', { hasText: 'Terug naar de cursus' }).click();
+  await p.locator('.course-home').waitFor();
+  let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  if (!st.courses.eng.plans[0] || !st.courses.eng.plans[0].text.startsWith('Als de planner')) throw new Error('plan not saved');
+  if (st.xp !== 20) throw new Error(`a plan gave XP: ${st.xp}`);
+  // Four days later: the plan is due.
+  await p.evaluate(([r, y]) => {
+    const s = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    s.courses.eng.plans[0].due = y;
+    s.courses.eng.sessions = s.courses.eng.sessions.map((x) => ({ ...x, day: y }));
+    s.history = [{ ...r, ts: Date.now() }];
+    s.ui = { ...s.ui, subject: 'start' };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(s));
+  }, [r0, yesterdayKey()]);
+  await p.reload();
+  await p.locator('.start-card.start-eng.suggested', { hasText: 'Je wilde dit gebruiken' }).waitFor();
+  await p.locator('.begin-btn').click();
+  await p.locator('.screen.apply .plan-text', { hasText: 'Als de planner' }).waitFor();
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('apply: filled button next to the choices');
+  await shotP('91-apply');
+  await dark('91-apply-dark', async () => {
+    await p.evaluate(() => { const s = window.__app.state; window.__app.go('apply', { subject: 'eng', planId: s.courses.eng.plans[0].id }); });
+    await p.locator('.screen.apply .plan-text').waitFor();
+  });
+  await p.locator('.screen.apply .opt', { hasText: 'Deels' }).click();
+  await p.locator('.screen.apply .opt[aria-pressed="true"]', { hasText: 'Deels' }).waitFor();
+  await onePrimary(p, 'apply after the choice');
+  await p.locator('.apply-note').fill('Gevraagd, bleek bruto tijd.');
+  await p.locator('.apply-save').click();
+  await p.locator('.screen.apply .quiz-card').waitFor();
+  if (await p.locator('.screen.apply .opt').count()) {
+    if (await p.locator('.btn-primary:visible').count()) throw new Error('apply quiz: filled button next to the options');
+  } else await onePrimary(p, 'apply quiz');
+  await answerRight(p, lesson, '.screen.apply .quiz-card');
+  await p.locator('.screen.apply .quiz-review').waitFor();
+  await onePrimary(p, 'apply review');
+  await p.locator('.screen.apply .quiz-review .btn-primary').click();
+  await p.locator('.apply-done').waitFor();
+  await onePrimary(p, 'apply done');
+  await p.locator('.screen.apply .btn-primary').click();
+  st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const plan = st.courses.eng.plans[0];
+  if (!plan.outcome || plan.outcome.used !== 'partly' || plan.outcome.note !== 'Gevraagd, bleek bruto tijd.') throw new Error(`outcome: ${JSON.stringify(plan.outcome)}`);
+  if (st.xp !== 20) throw new Error(`the check-back gave XP: ${st.xp}`);
+  await p.evaluate(() => window.__app.setSubject('eng'));
+  await p.locator('.course-today').waitFor();
+  if ((await p.locator('.course-today').innerText()).includes('Je wilde dit gebruiken')) throw new Error('Today is still the plan');
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

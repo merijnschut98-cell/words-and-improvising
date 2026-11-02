@@ -30,12 +30,22 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
-    courses: { eng: { lessons: {}, sessions: [] }, pm: { lessons: {}, sessions: [] } }, // per subject: lessonId -> progress, session log
+    courses: { eng: { lessons: {}, sessions: [], plans: [] }, pm: { lessons: {}, sessions: [], plans: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson
     courseReviews: {}, // 'lang|questionId' -> { box, due, lesson, subject }: course relearning queue
   };
 }
 
 const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+const isDay = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+
+// A lesson plan ("use it this week") as stored and synced; anything else is dropped.
+export function validPlan(p) {
+  if (!isObject(p) || typeof p.id !== 'string' || !p.id || typeof p.lessonId !== 'string' || typeof p.text !== 'string' || !p.text) return false;
+  if (!isDay(p.day) || !isDay(p.due) || ![0, 1, 2].includes(p.asked)) return false;
+  const o = p.outcome;
+  return o === null || (isObject(o) && ['yes', 'partly', 'no'].includes(o.used) && typeof o.note === 'string' && typeof o.ts === 'number');
+}
+export const cleanPlans = (v) => (Array.isArray(v) ? v.filter(validPlan) : []);
 
 export function load(backend) {
   const base = defaultState();
@@ -70,7 +80,7 @@ export function load(backend) {
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [] }];
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans) }];
   }));
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;

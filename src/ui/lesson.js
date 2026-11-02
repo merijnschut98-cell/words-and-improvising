@@ -3,7 +3,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
+import { applyLesson, addPlan, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
@@ -25,6 +25,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   const seq = app.navSeq;
   const title = h('div', { class: 'round-title' }, t('lessonTitle'));
   const main = h('main', { class: 'screen lesson' }, h('p', { class: 'muted loading' }, '…'));
+  let onLeave = null; // the plan from the done card is saved on the way out
   root.append(
     h('header', { class: 'top round-top' },
       h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
@@ -48,6 +49,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     title.textContent = lesson.title;
     run(lesson, meta);
   }).catch(fail);
+  return () => { if (onLeave) onLeave(); };
 
   function run(lesson, meta) {
     const phases = lessonPhases(lesson);
@@ -56,6 +58,13 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     let pre = 0;
     let finished = false;
     const guesses = []; // his first guesses; going back shows them, never changes them
+    let planDraft = '';
+    onLeave = () => {
+      onLeave = null;
+      if (!planDraft.trim()) return;
+      const id = `p${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
+      app.setState(addPlan(app.state, { subject, lessonId: lesson.id, text: planDraft }, app.today(), id));
+    };
     const next = () => { p += 1; block = 0; draw(); };
     const jump = (i) => { finished = false; p = i; block = 0; if (phases[i] === 'pre') pre = 0; draw(); };
     const goBack = () => { const b = lessonBack({ p, block, pre }, phases, lesson); if (b) { ({ p, block, pre } = b); draw(); } };
@@ -64,7 +73,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       : null);
     const dots = (n, i) => h('div', { class: 'dots', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
     // Every step starts with the indicator; the rest of the screen follows it.
-    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes);
+    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes.filter(Boolean));
 
     function draw() {
       const phase = phases[p];
@@ -186,6 +195,17 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('p', { class: 'muted small' }, why))));
     }
 
+    // Where he will use it: an if-then plan, optional, no extra button.
+    function planCard() {
+      return h('section', { class: 'card plan-card' },
+        h('label', { class: 'plan-label', for: 'plan-input' }, t('planLabel')),
+        h('textarea', {
+          id: 'plan-input', class: 'text-input plan-input', rows: 2, maxlength: 160, placeholder: t('planPh'),
+          oninput: (e) => { planDraft = e.currentTarget.value; },
+        }, planDraft),
+        h('p', { class: 'muted small' }, t('planHint')));
+    }
+
     function done(xp) {
       finished = true;
       show(h('section', { class: 'card lesson-done' },
@@ -194,6 +214,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
       guessCard(),
+      planCard(),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));
