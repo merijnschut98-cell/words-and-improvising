@@ -93,3 +93,12 @@ test('validateModule: a figure id must be a plain id; every shipped figure file 
     }
   }
 });
+
+test('every module file on disk is in the index (none silently dropped)', () => {
+  for (const subject of SUBJECTS) {
+    for (const f of fs.readdirSync(`src/content/courses/${subject}`).filter((x) => x.endsWith('.en.js'))) {
+      const id = `${subject}.${f.replace('.en.js', '')}`;
+      assert.ok(MODULES.some((m) => m.id === id), `${id} has files but no index entry`);
+    }
+  }
+});
