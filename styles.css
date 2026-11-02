@@ -701,3 +701,6 @@ details.finder summary::-webkit-details-marker { display: none; }
 .explain { margin-top: 10px; }
 .explain-ask { display: flex; flex-direction: column; gap: 6px; }
 .timing-line { display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--font-mono); font-size: 0.8rem; }
+.figure-wrap { margin: var(--space-4, 16px) 0 0; }
+.figure-frame { display: block; width: 100%; aspect-ratio: 1 / 1.05; border: 1px solid var(--line); border-radius: var(--radius-md, 6px); background: var(--card); }
+.figure-wrap figcaption { margin-top: 6px; }

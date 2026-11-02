@@ -6,6 +6,7 @@ import { renderQuiz } from './quiz.js';
 import { applyLesson, lessonPhases, recallQuestions } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain } from '../core/coursecoach.js';
+import { figureFrame } from './figure.js';
 
 export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   const t = app.t;
@@ -77,6 +78,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('section', { class: 'card teach-card' }, step('teach'), dots(lesson.teach.length, block),
             h('p', { class: 'teach-text' }, lesson.teach[block]),
             last ? h('p', { class: 'said' }, lesson.said) : null,
+            last && lesson.figure ? figureFrame(app, lesson.figure) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
           h('button', {
             class: 'btn btn-primary btn-big',

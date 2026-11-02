@@ -236,6 +236,24 @@ await step('situation without a key: answer, self-rate 2 of 3, 10 XP once; gloss
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('a lesson with a figure shows it under the last reading block', async () => {
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
+  const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck'));
+  for (const q of lesson.pre) {
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.pre-card .btn-primary').click(); }
+    else await page.locator('.pre-card .opt').first().click();
+    await page.locator('.pre-card .btn-primary').click();
+  }
+  for (let i = 0; i < lesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
+  const frame = page.locator('.figure-wrap iframe.figure-frame');
+  await frame.waitFor();
+  if (!(await frame.getAttribute('src')).startsWith('src/content/courses/figures/eng.flow.line.html?theme=')) throw new Error('figure src');
+  await page.frameLocator('.figure-frame').locator('svg').first().waitFor({ timeout: 10000 });
+  await page.waitForTimeout(800);
+  await shot('67-figure');
+  await page.evaluate(() => window.__app.go('home'));
+});
+
 await step('a lesson whose module fails to load shows a retry, then loads', async () => {
   const c4 = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   await c4.addInitScript(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'pm' } })));
