@@ -15,7 +15,7 @@ import { currentQuests } from '../core/quests.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
 import { subjectBar, SUBJECT_TABS } from './subjectbar.js';
-import { courseHome, COURSE_ICON } from './coursehome.js';
+import { courseHome, COURSE_ICON, openPick } from './coursehome.js';
 
 // The Vantage mark (one image per theme, CSS shows the right one) and the wordmark.
 export function brandLockup() {
@@ -229,7 +229,7 @@ function startCard(app, card) {
     }
   }
   return h('button', {
-    class: `btn start-card start-${card.subject}${card.suggested ? ' btn-primary' : ''}`,
+    class: `btn start-card start-${card.subject}${card.suggested ? ' suggested' : ''}`,
     onclick: () => app.setSubject(card.subject),
   },
   h('span', { class: 'start-head' },
@@ -264,9 +264,31 @@ function renderStart(app, root, showBreak) {
       h('p', { class: 'start-meta muted small' },
         ico('flame'), ` ${streak} ${t('streak', streak)} · ${t('level')} ${lv.level} · ${lv.into}/${lv.needed} XP`,
         s.freezes ? ` · ${t('freezesShort', s.freezes)}` : ''),
+      beginButton(app, cards.find((c) => c.suggested) || cards[0]),
+      h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'));
+}
+
+// The one primary action of the app: start the recommended next step now.
+function beginButton(app, card) {
+  const t = app.t;
+  const begin = (ev) => {
+    ev.currentTarget.disabled = true;
+    if (card.subject === 'speak') {
+      const pick = todayPick(app.state, app.today(), app.content, app.lang);
+      if (pick.reason === 'event') { startRehearsal(app, pick.event); return; }
+      app.session = null;
+      app.go('round', { prompt: pick.prompt });
+      return;
+    }
+    if (card.reason === 'done') { app.setSubject(card.subject); return; }
+    openPick(app, card.subject, card);
+  };
+  return h('button', { class: 'btn btn-primary btn-big begin-btn', onclick: begin },
+    h('span', { class: 'begin-main' }, ico('play'), ' ', t('startBegin')),
+    h('span', { class: 'begin-sub' }, t(`subject_${card.subject}`)));
 }
 
 // Inside a subject: a labelled way back to the overview, and the streak.

@@ -781,3 +781,8 @@ details.finder summary::-webkit-details-marker { display: none; }
 .welcome-list .muted { font-size: 0.95rem; }
 .welcome-list-icon { color: var(--accent-dark); font-size: 1.25rem; line-height: 1; padding-top: 2px; }
 .welcome-slide .welcome-list .muted { color: var(--muted); }
+.begin-btn { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 2px; margin: var(--space-2, 8px) 0 var(--space-1, 4px); }
+.begin-main { font-size: 1.15rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.begin-sub { font-size: 0.85rem; opacity: 0.85; }
+.start-or { margin: var(--space-3, 12px) 0 var(--space-2, 8px); }
+.start-card.suggested { border-color: var(--accent); }

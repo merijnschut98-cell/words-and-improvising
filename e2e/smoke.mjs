@@ -176,6 +176,9 @@ await step('start screen: one card per subject with its reason, streak and level
   await p5.evaluate(() => window.__app.go('home'));
   await p5.locator('.start-card').first().waitFor();
   await shot5('81-start-dark');
+  // One tap: "Begin vandaag" starts the recommended round directly.
+  await p5.locator('.begin-btn').click();
+  await p5.locator('.intro-card').waitFor({ timeout: 5000 });
   await c5.close();
 });
 
