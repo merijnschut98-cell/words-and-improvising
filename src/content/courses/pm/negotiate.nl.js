@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Een standpunt is wat iemand zegt te willen: “We moeten het rapport vrijdag hebben”, “De prijs moet 10% omlaag”. Een belang is waarom hij dat wil: een directieoverleg op maandag, een bezuiniging die hij moet laten zien. Fisher en Ury, in Getting to Yes (1981): onderhandelen over standpunten graaft mensen in; kijken naar belangen maakt ruimte voor opties.',
+        'Een standpunt is wat iemand zegt te willen: “We moeten het rapport vrijdag hebben”, “De prijs moet 10% omlaag”. Een belang is waarom hij dat wil: een directieoverleg op maandag, een bezuiniging die hij moet laten zien. Fisher en Ury, in Getting to Yes (1981): wie over standpunten onderhandelt, graaft zich in; wie naar belangen kijkt, ziet ruimte voor opties.',
         'Vraag waarom, en waarom niet. “Wat levert dat je op?” “Wat gebeurt er als het geen vrijdag wordt?” “Waar maak je je zorgen over?” Luister naar behoeften als zekerheid, erkenning, grip, geld en tijd. De meeste belangen kun je op meer dan één manier dienen. Schrijf die van de ander op naast die van jezelf.',
         'Gedeelde en verschillende belangen helpen allebei. Gedeeld: jullie willen allebei dat het project slaagt. Verschillend: de een vindt timing het belangrijkst, de ander de kosten. Door verschillen kun je ruilen: geef wat voor jou goedkoop is en voor de ander veel waard.',
         'Gebruik eerlijke maatstaven in plaats van wilskracht: marktprijzen, data uit het verleden, een afgesproken norm. “Wat zou hier redelijk zijn, en hoe kunnen we dat checken?” Dan gaat het gesprek niet meer over wie de sterkste is maar over wat redelijk is, en kunnen beide partijen ja zeggen zonder gezichtsverlies.',
@@ -52,9 +52,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Bij een maker van onderdelen weigert de productiemanager volgende week twee operators vrij te maken voor je verbeterworkshop: “Geen sprake van. We lopen achter op de grote vrachtwagenorder.”',
+        scene: 'Bij een onderdelenfabrikant weigert de productiemanager volgende week twee operators vrij te maken voor je verbeterworkshop: “Geen sprake van. We lopen achter op de grote vrachtwagenorder.”',
         ask: 'Hoe reageer je?',
-        model: 'Ik zou die order serieus nemen en ernaar vragen: “Hoeveel lopen jullie achter, en waar zit het vast?” Zijn belang is op tijd leveren; het mijne is input van de mensen die de lijn kennen. Opties: de workshop in twee kortere sessies na het verschepen van de order, of operators uit de ploeg die niet op die order zit. Ik zou vragen wat voor hem beter werkt.',
+        model: 'Ik zou die order serieus nemen en ernaar vragen: “Hoeveel lopen jullie achter, en waar zit het vast?” Zijn belang is op tijd leveren; het mijne is input van de mensen die de lijn kennen. Opties: de workshop in twee kortere sessies nadat de order de deur uit is, of operators uit de ploeg die niet op die order zit. Ik zou vragen wat voor hem beter werkt.',
         rubric: [
           'Vraagt naar het belang achter zijn weigering',
           'Benoemt beide belangen',
@@ -99,7 +99,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Een maker van onderdelen koopt gecoate beugels bij één leverancier, en die kondigt een prijsverhoging van 12% aan. Een tweede leverancier heeft een prijs geoffreerd van 4% boven de huidige, maar heeft 10 weken nodig om de onderdelen te kwalificeren. Zelf coaten kan niet.',
+        text: 'Een onderdelenfabrikant koopt gecoate beugels bij één leverancier, en die kondigt een prijsverhoging van 12% aan. Een tweede leverancier heeft een prijs geoffreerd van 4% boven de huidige, maar heeft 10 weken nodig om de onderdelen te kwalificeren. Zelf coaten kan niet.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Je BATNA is overstappen naar de tweede leverancier na 10 weken kwalificatie. Die van hen is jouw volume kwijtraken. Start de kwalificatie nu al: dat verbetert je alternatief, hoe het ook loopt. Onderhandel dan: vraag wat achter de 12% zit (energie, grondstof?) en stel bijvoorbeeld 4% nu voor, met een clausule die de energie-index volgt. Je ondergrens ligt rond de 4% van de tweede leverancier plus de kosten van het kwalificeren.',
       },
@@ -292,7 +292,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Twee weken voor het einde van een project tegen vaste prijs bij een maker van onderdelen vraagt de plantmanager of je “even dezelfde analyse voor de spuiterij” wilt doen. Jij schat dat op 6 dagen. Je planning heeft geen ruimte meer.',
+        scene: 'Twee weken voor het einde van een project tegen vaste prijs bij een onderdelenfabrikant vraagt de plantmanager of je “even dezelfde analyse voor de spuiterij” wilt doen. Jij schat dat op 6 dagen. Je planning heeft geen ruimte meer.',
         ask: 'Wat zeg je tegen hem?',
         model: 'Ik zou zeggen dat ik blij ben dat hij er waarde in ziet, en vragen wat hij voor de spuiterij wil besluiten. Dan: “Dat is ongeveer zes dagen. We kunnen het toevoegen en het eindrapport drie weken opschuiven, of het als kort vervolg doen na dit project. Binnen de huidige planning gaat het ten koste van de kwaliteit van wat je al gevraagd hebt.” Ik check de vervolgprijs bij mijn manager en bevestig per mail.',
         rubric: [
@@ -417,7 +417,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Stuurgroep bij een maker van onderdelen. De COO zegt: “De leveringen zijn te laat omdat operators zich niet aan de planning houden. We maken er een bonuscriterium van.” Jouw data: van de 120 te late orders in de laatste 12 weken startten er 84 te laat omdat het materiaal te laat binnenkwam. Je bent de jongste in de kamer.',
+        text: 'Stuurgroep bij een onderdelenfabrikant. De COO zegt: “De leveringen zijn te laat omdat operators zich niet aan de planning houden. We maken er een bonuscriterium van.” Jouw data: van de 120 te late orders in de laatste 12 weken startten er 84 te laat omdat het materiaal te laat binnenkwam. Je bent de jongste in de kamer.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Vraag rustig om ruimte: “Mag ik er één ding uit de data aan toevoegen?” Het feit: “84 van de 120 te late orders in de laatste 12 weken, dat is 70%, startten te laat omdat het materiaal te laat binnenkwam.” Je visie: “Dus een bonus voor operators gaat het misschien niet veel veranderen.” Je verzoek: “Kunnen we eerst naar het materiaal kijken, en volgende maand over de bonus besluiten?” Blijft hij erbij, ga dan niet een tweede keer in de kamer in discussie. Vraag om een kwartier na afloop.',
       },
@@ -463,7 +463,7 @@ export default {
             'Ik leid deze regio al vijftien jaar. Ik ken mijn ploegen beter dan een enquête.',
             'Ik ben hier de klant. Als ik zeg dat het eruit gaat, gaat het eruit.',
           ],
-          model: 'Jij kent je ploegen veel beter dan ik, en dat waardeer ik. De enquête vervangt dat niet; hij ondersteunt de data over afgezegde klussen. Het is jouw rapport, en jij beslist. Mijn advies is om het erin te laten, met jouw acties ernaast. Wil je het er toch uit, dan noteer ik mijn advies in het projectdossier. Zal ik de versie met jouw reactie opzetten?',
+          model: 'Jij kent je ploegen veel beter dan ik, en dat waardeer ik. De enquête vervangt dat niet; die ondersteunt de data over afgezegde klussen. Het is jouw rapport, en jij beslist. Mijn advies is om het erin te laten, met jouw acties ernaast. Wil je het er toch uit, dan noteer ik mijn advies in het projectdossier. Zal ik de versie met jouw reactie opzetten?',
           rubric: [
             'Erkent zijn ervaring en zijn recht om te beslissen',
             'Herhaalt het advies en de reden één keer, rustig',

@@ -16,7 +16,7 @@ export default {
         'A KPI is a number someone acts on. If nobody would do anything different when it moves, it is a report figure, not a KPI. A team can steer on three to seven numbers; a wall of forty gets read by nobody. Choose per level: the board needs a few results, a team needs the few numbers it can move this week.',
         'Lagging indicators measure the result after the fact: on-time delivery last month, customer minutes lost, cost per connection. Leading indicators move before the result and point to what to do: share of jobs with materials ready two days before the start, preventive maintenance done on time, age of the backlog. Lagging tells you whether you won. Leading tells you whether you will.',
         'A good KPI has a written definition (what counts and what doesn’t), one owner, a data source nobody argues about, a frequency that fits how fast it can change, and a known direction: is higher better or lower? Half of all KPI arguments are two people measuring different things under the same name.',
-        'Balance. One number on its own gets pushed at the cost of others. Pair them: output with quality, speed with safety, cost with service. Kaplan and Norton made this point with the balanced scorecard in 1992: steering on financial results alone is driving by the rear-view mirror.',
+        'Balance. One number on its own gets pushed at the cost of others. Pair them: output with quality, speed with safety, cost with service. Kaplan and Norton made this point with the balanced scorecard in 1992: financial results alone tell you how you did, not where you are heading, so they added customer, process and learning measures.',
       ],
       example: {
         kind: 'faded',

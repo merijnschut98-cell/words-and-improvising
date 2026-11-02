@@ -16,11 +16,11 @@ export default {
         'Een KPI is een cijfer waar iemand op handelt. Als niemand iets anders gaat doen wanneer het beweegt, is het een rapportagecijfer, geen KPI. Een team kan sturen op drie tot zeven cijfers; een muur van veertig leest niemand. Kies per niveau: de directie heeft een paar resultaten nodig, een team de paar cijfers die het deze week kan beïnvloeden.',
         'Achterlopende indicatoren meten het resultaat achteraf: leverbetrouwbaarheid vorige maand, verloren klantminuten, kosten per aansluiting. Voorlopende indicatoren bewegen vóór het resultaat en laten zien wat je moet doen: het aandeel klussen waarvan het materiaal twee dagen voor de start klaarligt, preventief onderhoud op tijd gedaan, de leeftijd van de werkvoorraad. Achterlopend zegt of je gewonnen hebt. Voorlopend zegt of je gaat winnen.',
         'Een goede KPI heeft een opgeschreven definitie (wat telt mee en wat niet), één eigenaar, een bron waar niemand over twist, een frequentie die past bij hoe snel hij kan veranderen, en een bekende richting: is hoger beter of lager? De helft van alle KPI-discussies gaat over twee mensen die onder dezelfde naam iets anders meten.',
-        'Balans. Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Zet ze in paren: output met kwaliteit, snelheid met veiligheid, kosten met service. Kaplan en Norton maakten dat punt in 1992 met de balanced scorecard: alleen op financiële resultaten sturen is rijden op je achteruitkijkspiegel.',
+        'Balans. Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Zet ze in paren: output met kwaliteit, snelheid met veiligheid, kosten met service. Kaplan en Norton maakten dat punt in 1992 met de balanced scorecard: financiële resultaten alleen zeggen hoe het ging, niet waar je heen gaat. Daarom zetten ze er cijfers over klanten, processen en leren naast.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een maker van onderdelen krijgt klachten van klanten over late leveringen. De plantmanager wil één KPI op het bord: leverbetrouwbaarheid, in % van de orderregels, maandelijks gerapporteerd. Planning en de productieteams zien het cijfer in het maandoverleg.',
+        text: 'Een onderdelenfabrikant krijgt klachten van klanten over late leveringen. De plantmanager wil één KPI op het bord: leverbetrouwbaarheid, in % van de orderregels, maandelijks gerapporteerd. Planning en de productieteams zien het cijfer in het maandoverleg.',
         ask: 'Wat zou jij toevoegen of veranderen voordat dit op het bord komt?',
         reveal: 'Houd leverbetrouwbaarheid als achterlopend resultaat, maar definieer het: tegen de datum die aan de klant is bevestigd, per orderregel, nul dagen te laat toegestaan. Geef het één eigenaar, de planningsleider. Voeg dan een of twee voorlopende cijfers toe die de teams elke week kunnen bewegen, zoals planningsnaleving op de bottleneck per dag en het aandeel orders dat wordt vrijgegeven met al het materiaal op voorraad. Zet er first-pass yield naast, zodat de leverbetrouwbaarheid niet gekocht wordt door onderdelen er snel doorheen te jagen.',
       },
@@ -134,7 +134,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Bij een maker van onderdelen staat op de strategieslide “winstgevend groeien”. In je eerste week zegt een teamleider productie tegen je: “Ik heb geen idee wat wij daaraan bijdragen. Wij maken gewoon onderdelen.”',
+        scene: 'Bij een onderdelenfabrikant staat op de strategieslide “winstgevend groeien”. In je eerste week zegt een teamleider productie tegen je: “Ik heb geen idee wat wij daaraan bijdragen. Wij maken gewoon onderdelen.”',
         ask: 'Hoe help je hem de cijfers van zijn team te zien?',
         model: 'Ik zou samen met hem een simpele boom op het whiteboard tekenen. De winst hangt onder meer af van de kosten per goed stuk. Die hangen af van de output per uur en de uitval. Op zijn cel zijn uitval en ongeplande stops wat zijn team beweegt. Dus de cijfers van zijn team kunnen zijn: uitval in % per week en minuten ongeplande stilstand per dienst. Dan zou ik met de data van vorige maand kijken welke van de twee het grootste gat heeft.',
         rubric: [
@@ -181,7 +181,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Een maker van onderdelen. De uitval op één verspaningscel, in % van de gemaakte stuks, over de laatste acht weken: 4,1, 3,6, 5,2, 3,9, 4,4, 3,3, 4,8, 3,7. Het gemiddelde is ongeveer 4,1%. Er is nog niks aan het proces veranderd. Het management wil vanaf volgende maand een doel van 1%.',
+        text: 'Een onderdelenfabrikant. De uitval op één verspaningscel, in % van de gemaakte stuks, over de laatste acht weken: 4,1, 3,6, 5,2, 3,9, 4,4, 3,3, 4,8, 3,7. Het gemiddelde is ongeveer 4,1%. Er is nog niks aan het proces veranderd. Het management wil vanaf volgende maand een doel van 1%.',
         ask: 'Welk doel zou jij voorstellen, en hoe?',
         reveal: 'Een doel van 1% ligt ver onder elke week die er ooit is geweest, en aan de werkwijze is niks veranderd, dus niemand gaat erin geloven. Stel een eerste doel voor dicht bij de beste weken (3,3 en 3,6): een bandbreedte van 3,0 tot 4,0%, mikpunt 3,5, na acht weken evalueren. Een week boven 5% is de actiegrens om erin te duiken. Ondertussen is het oorzakenonderzoek naar het grootste defect wat 1% later realistisch kan maken. Zeg dat hardop, zodat de ambitie niet verdwijnt.',
       },
@@ -294,7 +294,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je begeleidt het maandelijkse prestatieoverleg bij een maker van onderdelen. De leverbetrouwbaarheid van één waardestroom is gezakt van 92% naar 81%. De plantmanager draait zich waar iedereen bij is naar de teamleider: “Dit is onacceptabel. Wat ga je eraan doen?” De teamleider valt stil.',
+        scene: 'Je begeleidt het maandelijkse prestatieoverleg bij een onderdelenfabrikant. De leverbetrouwbaarheid van één waardestroom is gezakt van 92% naar 81%. De plantmanager draait zich waar iedereen bij is naar de teamleider: “Dit is onacceptabel. Wat ga je eraan doen?” De teamleider valt stil.',
         ask: 'Wat zeg je als begeleider?',
         model: 'Ik zou rustig ingrijpen: “Zullen we eerst kijken wat de data laat zien? Dan komen we daarna bij de acties.” Ik zou de trend laten zien en vragen of de daling over de hele maand verspreid zit of in één week. Dan stel ik de teamleider open vragen over waar orders zijn blijven hangen. En ik zou afsluiten met een of twee acties, elk met een eigenaar en een datum, die we volgende maand als eerste bespreken.',
         rubric: [
@@ -374,7 +374,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Bij een maker van onderdelen meldt de inkoopmanager trots dat de gemiddelde inkoopprijzen dit jaar 8% lager zijn, precies haar bonusdoel. Jij hebt ook gezien dat het aantal lijnstops door te late of verkeerde onderdelen van een nieuwe, goedkopere leverancier steeg van 3 naar 11 per maand.',
+        scene: 'Bij een onderdelenfabrikant meldt de inkoopmanager trots dat de gemiddelde inkoopprijzen dit jaar 8% lager zijn, precies haar bonusdoel. Jij hebt ook gezien dat het aantal lijnstops door te late of verkeerde onderdelen van een nieuwe, goedkopere leverancier steeg van 3 naar 11 per maand.',
         ask: 'Hoe breng je dit in het managementoverleg?',
         model: 'Eerst zou ik de besparing erkennen: 8% is echt geld. Dan leg ik de twee cijfers naast elkaar: “In dezelfde periode gingen de lijnstops door te late of verkeerde onderdelen van 3 naar 11 per maand. Ik wil graag weten wat die stops kosten, zodat we het totaal zien.” En ik zou voorstellen om in de doelen van inkoop de inkoopprijs te koppelen aan de leverbetrouwbaarheid van leveranciers.',
         rubric: [
@@ -421,7 +421,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een maker van onderdelen heb je een wekelijks KPI-overleg opgezet. Je zit het al acht weken voor en je werkt de spreadsheet elke maandagochtend zelf bij. De productiemanager is erbij en vindt het goed. Over vier weken loopt je opdracht af.',
+        text: 'Bij een onderdelenfabrikant heb je een wekelijks KPI-overleg opgezet. Je zit het al acht weken voor en je werkt de spreadsheet elke maandagochtend zelf bij. De productiemanager is erbij en vindt het goed. Over vier weken loopt je opdracht af.',
         ask: 'Wat doe je in die vier weken?',
         reveal: 'Draag in stappen over. Volgende week zit de productiemanager voor en zit jij naast hem. De week erna ben je er alleen bij. De laatste twee weken blijf je weg en vraag je achteraf hoe het ging. Leg het verversen van de data bij een automatische export, of bij de planner die eigenaar is van de bron, en test dat terwijl je er nog bent. Schrijf de beschrijving van één pagina. Spreek met de sponsor een check af vier en twaalf weken na je vertrek.',
       },
