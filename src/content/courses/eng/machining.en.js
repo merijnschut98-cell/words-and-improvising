@@ -137,6 +137,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      figure: 'eng.machining.lathe',
       title: 'Cutting speed, feed and depth of cut',
       pre: [
         {

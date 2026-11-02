@@ -137,6 +137,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      figure: 'eng.machining.lathe',
       title: 'Snijsnelheid, voeding en snedediepte',
       pre: [
         {
