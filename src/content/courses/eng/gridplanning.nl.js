@@ -74,6 +74,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.redundancy',
+      figure: 'eng.gridplanning.n1',
       title: 'N-1 en redundantie',
       pre: [
         {
