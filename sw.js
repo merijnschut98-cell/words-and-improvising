@@ -3,7 +3,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'spraakwater-v99';
+const CACHE = 'spraakwater-v100';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -13,6 +13,7 @@ const SHELL = [
   'src/content/prompts.en.js', 'src/content/prompts.nl.js', 'src/content/tips.js',
   'src/content/courses/index.js', 'src/content/courses/validate.js', 'src/content/courses/figures/eng.flow.line.html',
   'src/content/courses/eng/flow.en.js', 'src/content/courses/eng/flow.nl.js', 'src/content/courses/pm/intake.en.js', 'src/content/courses/pm/intake.nl.js',
+  'src/content/courses/eng/improve.en.js', 'src/content/courses/eng/improve.nl.js',
   'src/content/courses/pm/stuck.en.js', 'src/content/courses/pm/stuck.nl.js',
   'src/content/courses/eng/joining.en.js', 'src/content/courses/eng/joining.nl.js',
   'src/content/courses/eng/switchgear.en.js', 'src/content/courses/eng/switchgear.nl.js', 'src/content/courses/pm/close.en.js', 'src/content/courses/pm/close.nl.js',
