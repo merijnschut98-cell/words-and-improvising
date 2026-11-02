@@ -81,9 +81,9 @@ export default {
       ],
       teach: [
         'A ± tolerance controls size. It does not control form (flat, round, straight) or where features sit relative to each other. GD&T (geometric dimensioning and tolerancing; ISO GPS in Europe, ASME Y14.5 in the US) adds that, in a feature control frame: a box with a symbol, a tolerance and the datums it refers to.',
-        'Datums A, B and C are the reference features, marked with a triangle. They’re the surfaces the part is located on, like the corner of a room. Primary A: the part rests on it (three points). Secondary B: it’s pushed against it (two points). Tertiary C: one point. The order matters, because that’s how the part sits in the fixture and on the CMM.',
+        'Datums A, B and C are the reference features, marked with a triangle. They’re the surfaces the part is located on, like the corner of a room. Primary A: the part rests on it (three points). Secondary B: it’s pushed against it (two points). Tertiary C: one point. The order matters, because that’s how the part sits in the fixture and on the CMM (coordinate measuring machine).',
         'Symbols in plain words. Flatness: the surface lies between two planes 0.05 apart. Perpendicularity: square to a datum. Parallelism: parallel to a datum. Position: the centre of a hole within a round zone around its exact spot. Runout: how much a surface wobbles when the part turns on its axis. Profile: a surface within a band around its ideal shape.',
-        'Boxed dimensions are basic: exact theoretical values without ±; the tolerance sits in the frame. A round position zone of Ø0.2 has 57% more area than a square of ±0.1 in X and Y, so more good parts pass while every part that fits still passes. An Ⓜ in the frame means maximum material condition: the hole gets bonus tolerance as it measures bigger.',
+        'Boxed dimensions are basic: exact theoretical values without ±; the tolerance sits in the frame. A round zone that just encloses a ±0.1 square (Ø0.28) has 57% more area, so more parts that will fit get accepted. An Ⓜ in the frame means maximum material condition (MMC): the hole gets bonus tolerance as it measures bigger.',
       ],
       example: {
         kind: 'worked',
@@ -150,7 +150,7 @@ export default {
         'A P&ID (piping and instrumentation diagram) is a schematic of pipes, equipment, valves and instruments in a process plant: food, chemicals, water, energy. It is not to scale and doesn’t show real routing. It shows what is connected to what, and how it is measured and controlled. Changes to the plant start with a marked-up P&ID.',
         'Lines: a thick solid line is process pipe, with a line number such as DN150-CW-1203 (size, medium, number). A dashed line is an electrical signal. A line with double slashes is pneumatic. Arrows show flow direction. Equipment has its own tags: P-101 a pump, T-101 a tank, E-101 a heat exchanger.',
         'Valves are drawn as a bowtie. Filled in black: normally closed. A bowtie with a dome on top is a control valve with a pneumatic actuator. A check valve lets flow go one way. A PSV is a pressure safety valve, the last line of defence against overpressure.',
-        'Instrument tags follow ISA 5.1. First letter: what is measured: F flow, P pressure, T temperature, L level. Next letters: what it does: I indicate, T transmit, C control, A alarm, S switch, V valve. FT 201 is a flow transmitter; TIC 305 a temperature indicating controller; LAH a level alarm high. A plain circle is in the field; a circle in a square is on the DCS screen.',
+        'Instrument tags follow ISA 5.1. First letter: what is measured: F flow, P pressure, T temperature, L level. Next letters: what it does: I indicate, T transmit, C control, A alarm, S switch, V valve. FT 201 is a flow transmitter; TIC 305 a temperature indicating controller; LAH a level alarm high. A plain circle is in the field; a circle in a square is on the screen of the DCS, the plant’s central control system.',
       ],
       example: {
         kind: 'worked',
@@ -368,7 +368,7 @@ export default {
         },
         {
           q: 'Which of these is a safety function rather than a process interlock?',
-          options: ['A pump that won’t start with the suction valve closed', 'A tank inlet that closes at high level to stop overflow', 'A light curtain that stops a robot when someone reaches in', 'A step that waits for a box to be in position'],
+          options: ['A pump that won’t start with the suction valve closed', 'A conveyor that stops when the next machine is full', 'A light curtain that stops a robot when someone reaches in', 'A step that waits for a box to be in position'],
           answer: 'A light curtain that stops a robot when someone reaches in',
           why: 'It exists to protect a person, so it’s designed and rated as a safety function.',
         },
@@ -388,7 +388,7 @@ export default {
       situation: {
         scene: 'You’re on a plant walk at a building materials client. At the palletiser, a sensor is bypassed with a wire bridge in the cabinet. The team leader says: “It gave false stops, so maintenance bridged it last year.”',
         ask: 'What do you ask?',
-        model: 'What does that sensor protect: is it part of the guarding or just a process check? Who approved the bypass, and is it on a bypass register? If it’s safety-related, this needs fixing today; if not, it still needs a proper repair of the false stops rather than a permanent bridge. I’d like the maintenance lead and the EHS person to look at it now.',
+        model: 'What does that sensor protect: is it part of the guarding or just a process check? Who approved the bypass, and is it on a bypass register? If it’s safety-related, this needs fixing today; if not, it still needs a proper repair of the false stops rather than a permanent bridge. I’d like the maintenance lead and the safety officer to look at it now.',
         rubric: [
           'Asks whether the sensor is safety-related',
           'Asks about approval and a bypass register',

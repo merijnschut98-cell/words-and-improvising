@@ -13,10 +13,10 @@ export default {
         },
       ],
       teach: [
-        'Arc welding melts the base metal and a filler with an electric arc, at roughly 20 to 35 volts and 100 to 400 amps. A shielding gas keeps air away from the molten pool, because oxygen and nitrogen cause porosity and brittle welds.',
-        'MIG/MAG (GMAW): a wire is fed continuously through the torch and is both the electrode and the filler. MAG, metal active gas, is used on steel with argon plus 8 to 20% CO₂; an 82/18 mix is common. MIG, metal inert gas, uses pure argon, for aluminium. It’s fast and easy to automate: robot cells for car parts, frames, trailers and steel structures.',
-        'TIG (GTAW): a tungsten electrode that doesn’t melt, a separate filler rod fed by hand, and pure argon. Slower, but clean and precise: stainless pipe in food and pharma, thin sheet, aluminium, root passes in pressure piping. A good TIG welder is a scarce skill.',
-        'Arc energy per mm = volts × amps × 60 / (travel speed in mm/min × 1,000), in kJ/mm. Too much heat gives distortion and a wide heat-affected zone (HAZ) where steel loses strength; too little gives lack of fusion. Welders talk in parameters: wire feed speed, voltage, travel speed, and gas flow, usually 12 to 18 litres a minute.',
+        'Arc welding melts the edges of the parts (the base metal) and extra metal (the filler) with an electric arc: a continuous spark between the electrode and the part, at roughly 20 to 35 volts and 100 to 400 amps. A shielding gas keeps air away from the molten pool, because oxygen and nitrogen cause porosity (gas bubbles in the weld) and brittle welds.',
+        'MIG/MAG (also called GMAW, gas metal arc welding): a wire is fed continuously through the torch, the welding gun, and is both the electrode and the filler. MAG, metal active gas, is used on steel with argon plus 8 to 20% CO₂; an 82/18 mix is common. MIG, metal inert gas, uses pure argon, for aluminium. It’s fast and easy to automate: robot cells for car parts, frames, trailers and steel structures.',
+        'TIG (GTAW, gas tungsten arc welding): a tungsten electrode that doesn’t melt, a separate filler rod fed by hand, and pure argon. Slower, but clean and precise: stainless pipe in food and pharma, thin sheet, aluminium, and the first layer (root pass) of welds in pressure piping. A good TIG welder is a scarce skill.',
+        'Arc energy per mm of weld = volts × amps × 60 / (travel speed in mm/min × 1,000), in kJ/mm. Too much heat gives distortion and a wide heat-affected zone (HAZ) where steel loses strength; too little gives lack of fusion: the weld doesn’t melt properly into the part. Welders talk in parameters: wire feed speed, voltage, travel speed, and gas flow, usually 12 to 18 litres a minute.',
       ],
       example: {
         kind: 'worked',
@@ -80,16 +80,16 @@ export default {
         },
       ],
       teach: [
-        'Resistance spot welding: two copper electrodes squeeze the sheets together and pass a high current, around 8 to 12 kA, for 200 to 400 milliseconds. The resistance at the contact heats the metal until a nugget of molten metal forms and solidifies. No filler, no gas. Robot guns do this on every body-in-white line.',
+        'Resistance spot welding joins overlapping sheets at single points. Two copper electrodes squeeze the sheets together and pass a high current, around 8 to 12 kA (8,000 to 12,000 amps), for 200 to 400 milliseconds. The resistance at the contact heats the metal until a nugget, a small lens of molten metal, forms and solidifies. No filler, no gas. Robot weld guns do this on every body-in-white line (the bare, unpainted car body).',
         'Three main parameters: current, weld time and electrode force (about 2 to 4 kN). Heat = I² × R × t, so current counts squared: 10% more current gives about 21% more heat. Too little gives a small nugget or none, a “stick weld” that looks fine but holds nothing. Too much gives expulsion: sparks and splashed metal, deep marks and a weaker joint.',
         'Nugget size is the quality measure. A common rule: the nugget diameter must be at least 4√t, with t the thinnest sheet in mm. For 1 mm sheet that’s 4 mm; for 2 mm sheet about 5.7 mm.',
-        'Electrode tips wear: they mushroom, growing wider, so the same current spreads over a bigger area and the nugget shrinks. Two counters: a stepper that raises the current as the weld count rises, and tip dressing, where a cutter reshapes the tips, on galvanised steel often every 200 welds or so. Zinc coating makes tips wear faster.',
+        'Electrode tips wear: they mushroom, growing wider, so the same current spreads over a bigger area and the nugget shrinks. Two counters: a stepper that raises the current as the weld count rises, and tip dressing, where a cutter reshapes the tips, on galvanised (zinc-coated) steel often every 200 welds or so. Zinc coating makes tips wear faster.',
       ],
       example: {
         kind: 'worked',
-        text: 'A gun welds two 1.2 mm galvanised sheets at 9.5 kA, 300 ms and 3 kN, with a Ø6 mm tip face: 28.3 mm², so 9,500 / 28.3 = 336 A/mm². The tip dresser jams and nobody notices. After 500 welds the tip face is Ø7.5 mm: 44.2 mm², and the current density drops to 215 A/mm², 36% less. The nugget shrinks from 5.5 to about 3.8 mm, below the minimum of 4√1.2 = 4.4 mm. The daily chisel test catches it, but 2 shifts of bodies need checking.',
+        text: 'A gun welds two 1.2 mm galvanised sheets at 9.5 kA, 300 ms and 3 kN, with a Ø6 mm tip face: 28.3 mm², so 9,500 / 28.3 = 336 A/mm². The tip dresser jams and nobody notices. After 500 welds the tip face is Ø7.5 mm: 44.2 mm², and the current per mm² of tip (the current density) drops to 215 A/mm², 36% less. The nugget shrinks from 5.5 to about 3.8 mm, below the minimum of 4√1.2 = 4.4 mm. The daily chisel test (prying the sheets apart and measuring the weld) catches it, but 2 shifts of bodies need checking.',
       },
-      said: 'What engineers say: “Don’t just turn up the current. Check the dresser first. If the caps are mushroomed, more amps just gives you expulsion.”',
+      said: 'What engineers say: “Don’t just turn up the current. Check the dresser first. If the tips are mushroomed, more amps just gives you expulsion.”',
       recall: [
         {
           q: 'The thinnest sheet in a joint is 2.25 mm. What is the minimum nugget diameter, using 4√t, in mm?',
@@ -149,15 +149,15 @@ export default {
       ],
       teach: [
         'Porosity: gas bubbles trapped in the weld. Causes: shielding gas lost (draught, low flow, spatter in the nozzle), dirty, oily or wet metal, or vapour from a zinc coating. Pores at the surface you can see; pores inside need X-ray or ultrasonic testing.',
-        'Lack of fusion and incomplete penetration: the weld metal did not melt into the base metal or reach the root. Causes: too little heat, travelling too fast, the wrong torch angle, a poorly prepared joint. It’s the most dangerous defect, because a weld can look perfect on the outside while hiding a crack-like flaw.',
-        'Cracks are never accepted. Hot cracks form as the weld solidifies, along the centre of the bead. Cold or hydrogen cracks form hours after welding, in the heat-affected zone of high-strength steel, from moisture or hydrogen; the cure is dry filler and preheat. That’s why inspection of some steels waits 16 to 48 hours.',
-        'Distortion: heat expands the metal and cooling shrinks it, so parts bend and angles close up. It’s a defect of the part rather than of the weld. Remedies: jigs and clamping, pre-setting parts at the opposite angle, a balanced welding sequence, and less heat. Spatter and small undercut are usually cosmetic or minor.',
+        'Lack of fusion and incomplete penetration: the weld metal did not melt into the base metal or did not reach the root, the bottom of the joint. Causes: too little heat, travelling too fast, the wrong torch angle, a poorly prepared joint. It’s the most dangerous defect, because a weld can look perfect on the outside while hiding a crack-like flaw.',
+        'Cracks are never accepted. Hot cracks form as the weld solidifies, along the centre of the bead (the line of weld metal). Cold or hydrogen cracks form hours after welding, in the heat-affected zone of high-strength steel, from moisture or hydrogen; the cure is dry filler and preheating the parts. That’s why inspection of some steels waits 16 to 48 hours.',
+        'Distortion: heat expands the metal and cooling shrinks it, so parts bend and angles close up. It’s a defect of the part rather than of the weld. Remedies: jigs (holding frames) and clamping, pre-setting parts at the opposite angle, a balanced welding sequence, and less heat. Spatter (drops of metal thrown out) and small undercut (a groove melted along the weld edge) are usually cosmetic or minor.',
       ],
       example: {
         kind: 'worked',
-        text: 'An excavator boom: ultrasonic testing finds lack of fusion in 3 of 40 joints, all vertical-up welds from the second shift. The welding procedure says 300 mm/min travel speed; measured is 405 mm/min, 35% too fast, which drops the arc energy by 26%. The welders also skipped the weave. Why? After a robot breakdown, the shift had a tighter target and sped up. Each repair means gouging out, rewelding and retesting: about 3.5 hours. The fix is a realistic plan and travel-speed checks, not a talk about craftsmanship.',
+        text: 'An excavator boom: ultrasonic testing finds lack of fusion in 3 of 40 joints, all welded vertically upwards by the second shift. The welding procedure says 300 mm/min travel speed; measured is 405 mm/min, 35% too fast, which drops the arc energy by 26%. The welders also skipped the weave, the side-to-side motion of the torch. Why? After a robot breakdown, the shift had a tighter target and sped up. Each repair means gouging out the bad weld, rewelding and retesting: about 3.5 hours. The fix is a realistic plan and travel-speed checks, not a talk about craftsmanship.',
       },
-      said: 'What engineers say: “It looks beautiful from the outside, but UT shows no fusion on the sidewall. They were running way too fast.”',
+      said: 'What engineers say: “It looks beautiful from the outside, but the ultrasonic test shows no fusion on the side wall. They were running way too fast.”',
       recall: [
         {
           q: 'The procedure specifies 300 mm/min travel speed; the welder runs at 405 mm/min. By how many % does the arc energy drop?',
@@ -215,7 +215,7 @@ export default {
         },
       ],
       teach: [
-        'Visual testing (VT) comes first and is cheapest: weld size (throat thickness, checked with a fillet gauge), undercut, surface pores, cracks, spatter. It only sees the surface. On most structural work every weld gets it.',
+        'Visual testing (VT) comes first and is cheapest: weld size (on a fillet weld, the corner weld between two plates: its throat thickness, checked with a weld gauge), undercut, surface pores, cracks, spatter. It only sees the surface. On most structural work every weld gets it.',
         'Dye penetrant (PT): a red dye seeps into surface cracks, and a white developer draws it out, showing cracks too fine for the eye. Magnetic particle testing (MT) does the same on steel, also just below the surface. Ultrasonic testing (UT) sends sound pulses in and listens for reflections from internal flaws such as lack of fusion. Radiography (RT) is X-ray, good for porosity.',
         'Destructive tests: for spot welds, the chisel test and peel test pry the sheets apart; a good weld tears a button out of the sheet, and you measure its diameter. Cut-and-etch sections show penetration. Bend and tensile tests are used to qualify procedures. All on samples, per shift or per robot.',
         'A WPQR (welding procedure qualification record) proves a procedure works: a test piece is welded, then tested destructively and non-destructively, under ISO 15614. The WPS (welding procedure specification) is the instruction derived from it, at the workstation: process, filler, gas, current and voltage ranges, position, preheat. Welders are qualified separately under ISO 9606. For structural steel under EN 1090 this is mandatory.',
@@ -234,13 +234,13 @@ export default {
           why: '12 × 3 × €140 = €5,040, which is why plants add non-destructive checks.',
         },
         {
-          q: 'You want to find a fine surface crack in a stainless steel weld. Which method?',
+          q: 'You want to find a fine surface crack in a weld on 304 stainless steel. Which method?',
           options: ['Magnetic particle testing', 'Dye penetrant testing', 'A tensile test', 'Weighing the part'],
           answer: 'Dye penetrant testing',
-          why: 'Penetrant shows surface cracks on any non-porous metal; magnetic particle needs magnetic steel.',
+          why: 'Penetrant shows surface cracks on any non-porous metal; magnetic particle needs magnetic steel, and 304 stainless is not magnetic.',
         },
         {
-          q: 'You suspect lack of fusion inside a thick butt weld. Which method finds it without destroying the part?',
+          q: 'You suspect lack of fusion inside a thick butt weld (two plates welded edge to edge). Which method finds it without destroying the part?',
           options: ['Visual testing', 'Dye penetrant testing', 'A chisel test', 'Ultrasonic testing'],
           answer: 'Ultrasonic testing',
           why: 'UT detects internal planar flaws such as lack of fusion.',
@@ -282,10 +282,10 @@ export default {
         },
       ],
       teach: [
-        'A bolt works like a spring: tightening stretches it, and that tension, the preload, clamps the joint. Preload is what matters, not torque. An M10 bolt in grade 8.8, with normal friction, gets about 25 kN of preload from about 49 Nm.',
+        'A bolt works like a spring: tightening stretches it, and that tension, the preload, clamps the joint. Preload is what matters, not torque. An M10 bolt (metric thread, 10 mm) in strength grade 8.8, with normal friction, gets about 25 kN of preload from about 49 Nm (newton-metres) of torque.',
         'Torque is only an indirect measure. About 50% goes into friction under the head, 40% into friction in the thread, and only 10% into stretching the bolt. Change the friction with oil, a different coating, dirt or rust, and the same torque gives 25 to 30% more or less preload. An oiled bolt tightened to a dry torque can be overloaded.',
-        'Tools: click wrenches for manual work, pulse tools, and electric nutrunners that control and record torque and angle, standard in automotive assembly, where safety joints like wheels and brakes are traceable per car. Torque-angle tightening, a snug torque and then a fixed angle, gives a more accurate preload. Audits check breakaway torque with a calibrated wrench, or use paint marks.',
-        'Why bolts loosen: vibration that makes the joint slip sideways, which turns the nut back; settling of rough surfaces or paint under the head, which loses preload; and too little preload to begin with. Remedies: the right preload, longer bolts, flanged heads, no paint in the joint. Split lock washers don’t help in vibration tests; thread-locking adhesive does.',
+        'Tools: click wrenches for manual work, pulse tools (air tools that tighten in short bursts), and electric nutrunners that control and record torque and angle. These are standard in car assembly, where safety joints like wheels and brakes are traceable per car. Torque-angle tightening, a low snug torque and then a fixed extra angle, gives a more accurate preload. Audits check breakaway torque, the torque needed to turn a tightened bolt further, with a calibrated wrench, or use paint marks.',
+        'Why bolts loosen: vibration that makes the joint slip sideways, which turns the nut back; settling of rough surfaces or paint under the head, which loses preload; and too little preload to begin with. Remedies: the right preload, longer bolts, heads with a wide flange, no paint in the joint. Split spring washers don’t help in vibration tests; thread-locking adhesive does.',
       ],
       example: {
         kind: 'worked',
@@ -349,14 +349,14 @@ export default {
         },
       ],
       teach: [
-        'Structural adhesives (epoxies, polyurethanes, acrylics) join different materials, such as aluminium to steel or composites, without heat distortion. They also seal, damp vibration and spread load over an area, which helps fatigue. They’re strong in shear and weak in peel. They need clean surfaces and curing time; in car body shops, epoxy cures in the paint oven at about 180 °C. And they’re hard to inspect.',
-        'Rivets. Blind rivets (pop rivets) are set from one side. Self-piercing rivets (SPR) punch through the top sheet and flare into the bottom one without a pre-drilled hole: the standard for aluminium car bodies. Solid rivets are still used in aircraft. Quality is checked through head height and cut sections.',
-        'Clinching: a punch and die press the sheets into an interlocking button, with no extra part and no heat. Used in ventilation ducts, appliances and car doors. Weaker than a spot weld, but cheap, fume-free and fine with coated sheet.',
+        'Structural adhesives (epoxies, polyurethanes, acrylics) join different materials, such as aluminium to steel or composites, without heat distortion. They also seal, damp vibration and spread load over an area, which helps against fatigue (cracking from repeated loads). They’re strong in shear (parts sliding along each other) and weak in peel (one edge pulled open). They need clean surfaces and curing time; in car body shops, epoxy cures in the paint oven at about 180 °C. And they’re hard to inspect.',
+        'Rivets. Blind rivets (pop rivets) are set from one side. Self-piercing rivets (SPR) punch through the top sheet and flare into the bottom one without a pre-drilled hole: the standard for aluminium car bodies. Solid rivets are still used in aircraft. Quality is checked through head height and sections cut through the joint.',
+        'Clinching: a punch presses the sheets into a shaped die below them, forming an interlocking button, with no extra part and no heat. Used in ventilation ducts, appliances and car doors. Weaker than a spot weld, but cheap, fume-free and fine with coated sheet.',
         'How engineers choose. Same material, steel, high strength, cheap: weld. Mixed materials, crash stiffness, sealing: adhesive plus rivets, a hybrid joint. Must come apart for service: bolts. Questions to ask: does it need to come apart, which materials, what kind of load (peel or shear), and how do we check it in production?',
       ],
       example: {
         kind: 'worked',
-        text: 'A battery tray for an electric van joins aluminium extrusions to steel crossmembers. Welding is out. The design: 96 self-piercing rivets at 30 mm pitch, plus 14 metres of structural epoxy bead. The rivets hold the parts while the adhesive cures in the oven and take the peel loads at the bead ends; the adhesive carries the shear and seals out water. In production a camera checks every bead for gaps, the riveting tool monitors force and stroke on every rivet, and one tray per shift is cut up to check head height and bead coverage.',
+        text: 'A battery tray for an electric van joins aluminium profiles (extrusions) to steel crossmembers. Welding is out. The design: 96 self-piercing rivets spaced 30 mm apart, plus a 14-metre bead (line) of structural epoxy. The rivets hold the parts while the adhesive cures in the oven and take the peel loads at the bead ends; the adhesive carries the shear and seals out water. In production a camera checks every bead for gaps, the riveting tool monitors force and stroke on every rivet, and one tray per shift is cut up to check head height and bead coverage.',
       },
       said: 'What engineers say: “Glue’s great in shear, but this joint peels open in a crash. Put a rivet at each end of the bead to stop the peel.”',
       recall: [

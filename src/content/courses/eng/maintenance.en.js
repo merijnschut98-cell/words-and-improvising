@@ -149,7 +149,7 @@ export default {
       ],
       teach: [
         'The textbook picture is the bathtub curve: many failures at the start (infant mortality: assembly errors, bad parts), then a long flat period of random failures, then rising wear-out. The textbook suggests all equipment looks like this. It doesn’t.',
-        'Nowlan and Heap (United Airlines, 1978) found six patterns. Only about 11% of components showed wear-out with age. Most failed at random (constant chance, whatever their age) or early in life after installation or overhaul (68%). Later studies in navies and industry found the same picture. What wears with age is what rubs, cuts or carries load: tyres, brake pads, cutting tools, belts, liners. Electronics, hydraulics and complex assemblies mostly fail at random.',
+        'Nowlan and Heap (United Airlines, 1978) found six patterns. Only about 11% of components showed wear-out with age. The other 89% did not: 68% failed early in life, after installation or overhaul, and most of the rest at random (constant chance, whatever their age). Later studies in navies and industry found a similar picture. What wears with age is what rubs, cuts or carries load: tyres, brake pads, cutting tools, belts, liners. Electronics, hydraulics and complex assemblies mostly fail at random.',
         'The consequence: replacing a randomly failing part on a schedule does not reduce failures. It can increase them, because every intervention risks infant mortality: a seal fitted wrongly, dirt in the hydraulics, a misaligned coupling.',
         'Engineers check the pattern with a Weibull analysis of failure history. Shape factor β below 1: early failures; fix installation and quality. β around 1: random; use condition monitoring or design it out. β above 1, and especially above 3: wear-out; time-based replacement makes sense, with the interval taken from the data.',
       ],
@@ -157,7 +157,7 @@ export default {
         kind: 'worked',
         text: 'A packaging plant replaces the bearings in all 24 servo axes every 12 months: 24 × €750 = €18,000 a year. Before the programme there were 6 bearing failures a year. After it there were 9, and 5 of those happened within two weeks after a replacement. A Weibull fit on the old data gives β = 1.0: random failure, not wear-out. The plant stops the yearly swap, puts the 6 critical axes on a monthly vibration check, and trains the technicians on bearing fitting. Next year: 3 failures.',
       },
-      said: 'What engineers say: “Half of our breakdowns come in the week after the PM. We’re not preventing failures, we’re causing them.”',
+      said: 'What engineers say: “Half of our breakdowns come in the week after the preventive service. We’re not preventing failures, we’re causing them.”',
       recall: [
         {
           q: 'Of 40 pump failures last year, 26 happened within three weeks after a maintenance intervention. What share is that, in %?',
@@ -215,14 +215,14 @@ export default {
         },
       ],
       teach: [
-        'The P-F interval is the key idea. P is the point where a developing failure becomes detectable; F is the functional failure. For a bearing, vibration can see damage months before F; heat and noise come only days or hours before. You must check more often than the P-F interval, usually at half of it, or you will miss it.',
-        'Vibration: a sensor on the bearing housings. It finds imbalance, misalignment, looseness, bearing damage and gear wear, each at its own frequency. Levels are in mm/s RMS. For a medium-sized motor on a rigid base, ISO 10816-3 puts about 2.8 mm/s as a warning and 4.5 mm/s as a call for action. The trend matters more than one reading.',
+        'The P-F interval is the key idea. P is the point where a developing failure becomes detectable; F is the functional failure. For a bearing, vibration can see damage months before F; heat and noise come only days or hours before. Your inspection interval must be shorter than the P-F interval, usually half of it, or you will miss it.',
+        'Vibration: a sensor on the bearing housings. It finds imbalance, misalignment, looseness, bearing damage and gear wear, each at its own frequency. Levels are in mm/s RMS (the average vibration speed). For a medium-sized motor on a rigid base, ISO 10816-3 (now ISO 20816-3) puts about 2.8 mm/s as a warning and 4.5 mm/s as a call for action. The trend matters more than one reading.',
         'Thermography: an infrared camera shows hot spots: loose electrical connections, overloaded cables, unbalanced phases, blocked coolers. Electrical cabinets must be scanned under load, at least 40%. A connection more than 15 °C hotter than the same connection on the other phases needs action soon.',
-        'Oil analysis: a sample from a gearbox or hydraulic unit shows wear metals (iron, copper), particles, water and viscosity, often before vibration sees a slow gearbox wearing. Ultrasound: listening at 20 to 100 kHz finds compressed-air leaks, under-greased bearings and partial discharge in medium-voltage switchgear. One 3 mm air leak at 7 bar wastes roughly €1,000 to €2,000 of electricity a year.',
+        'Oil analysis: a sample from a gearbox or hydraulic unit shows wear metals (iron, copper), particles, water and viscosity, often before vibration sees a slow gearbox wearing. Ultrasound: listening at 20 to 100 kHz finds compressed-air leaks, under-greased bearings and partial discharge (small sparks inside insulation) in medium-voltage switchgear. One 3 mm air leak at 7 bar wastes about 4 kW of compressor power: €2,000 to €5,000 a year if it leaks around the clock.',
       ],
       example: {
         kind: 'worked',
-        text: 'Monthly vibration route, cooling-water pump on the bottleneck: January 1.8 mm/s, February 1.9, March 2.6, April 3.4, with a bearing defect frequency showing in the spectrum. The trend rises about 0.8 mm/s per month, so it will pass 4.5 in about six weeks. The planner orders a bearing (€350, one week delivery) and books four hours in the planned stop in mid-May. Compare a breakdown: the pump seizes on a Friday night and the line stands for most of the weekend.',
+        text: 'Monthly vibration route, cooling-water pump on the bottleneck: January 1.8 mm/s, February 1.9, March 2.6, April 3.4, with a bearing defect frequency showing in the spectrum (the vibration split out by frequency). The trend rises about 0.8 mm/s per month, so it will pass 4.5 in about six weeks. The planner orders a bearing (€350, one week delivery) and books four hours in the planned stop in mid-May. Compare a breakdown: the pump seizes on a Friday night and the line stands for most of the weekend.',
       },
       said: 'What engineers say: “It went from 1.9 to 3.4 in two months and you can see the outer race frequency. Order the bearing, we swap it in the May stop.”',
       recall: [
@@ -282,7 +282,7 @@ export default {
         },
       ],
       teach: [
-        'TPM (Total Productive Maintenance) came from Japan in the 1970s (Nakajima, JIPM). The goal: zero breakdowns, zero defects, zero accidents, by making equipment care everyone’s job and not only maintenance’s. Progress is measured with OEE. Most plants use eight pillars, including autonomous maintenance, planned maintenance, focused improvement, quality maintenance and training.',
+        'TPM (Total Productive Maintenance) came from Japan in the 1970s (Seiichi Nakajima, Japan Institute of Plant Maintenance). The goal: zero breakdowns, zero defects, zero accidents, by making equipment care everyone’s job and not only maintenance’s. Progress is measured with OEE. Most plants use eight pillars, including autonomous maintenance, planned maintenance, focused improvement, quality maintenance and training.',
         'Autonomous maintenance (AM): operators own basic care: clean, inspect, lubricate, tighten (CILT), and spot and tag abnormalities. Cleaning is inspection: on a clean machine you see the oil leak, the loose bolt, the crack. It starts with an initial clean where every abnormality gets a tag.',
         'Planned maintenance: with routine work moved to operators, technicians spend time on skilled work: condition monitoring, root cause of repeat failures, improving MTBF. A typical split: operators do 5 to 10 minutes of checks per shift; technicians fix what they find.',
         'The people side decides it. Operators hear “extra work, not my job”. Technicians fear losing their role or don’t trust operators with their machine. It works when technicians train operators, checks are visual (match marks on bolts, min/max on oil glasses, green zones on gauges), and tags are fixed fast. When tags hang for months, AM dies.',
@@ -352,7 +352,7 @@ export default {
         'A CMMS (computerised maintenance management system) is the maintenance database: SAP PM, Maximo, and in the Netherlands often Ultimo. It holds the asset register (every machine in a hierarchy), work orders, preventive plans, spare parts and history. The data is only as good as what technicians type in.',
         'Work order flow: notification, approved, planned (tasks, parts, hours), scheduled (date), executed, completed with feedback (what was found, what was done, time spent), closed. Breakdown orders are often created after the fact. Feedback like “fixed” or “repaired” makes root cause analysis impossible.',
         'Criticality ranking scores each asset on safety, quality, output impact (is it the bottleneck?), cost and redundancy, usually into A, B and C. A gets condition monitoring and critical spares; C runs to failure. Stock a €12,000 gearbox with 14 weeks delivery if it sits on the bottleneck. Many stores hold millions in parts, with a third not moved in years.',
-        'Backlog: approved work not yet done, in hours. Divide by weekly crew hours to get weeks. Two to four weeks is healthy. Under two: you may not be finding the work. Over six: work is piling up and preventive jobs are slipping. Pair it with PM compliance, the share of preventive jobs done on time; aim for 90% or more.',
+        'Backlog: approved work not yet done, in hours. Divide by weekly crew hours to get weeks. Two to four weeks is healthy. Under two: you may not be finding the work. Over six: work is piling up and preventive jobs are slipping. Pair it with PM (preventive maintenance) compliance, the share of preventive jobs done on time; aim for 90% or more.',
       ],
       example: {
         kind: 'worked',

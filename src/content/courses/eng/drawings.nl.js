@@ -83,7 +83,7 @@ export default {
         'Een ±-tolerantie bepaalt de maat. Niet de vorm (vlak, rond, recht), en ook niet waar kenmerken ten opzichte van elkaar zitten. GD&T (vorm- en plaatstoleranties; ISO GPS in Europa, ASME Y14.5 in de VS) voegt dat toe, in een tolerantiekader: een vakje met een symbool, een tolerantie en de referenties waar het naar verwijst.',
         'Referenties (datums) A, B en C zijn de vlakken waar het onderdeel op gepositioneerd wordt, aangeduid met een driehoekje. Denk aan de hoek van een kamer. Primair A: het onderdeel ligt erop (drie punten). Secundair B: het wordt ertegenaan geduwd (twee punten). Tertiair C: één punt. De volgorde telt, want zo zit het onderdeel in de opspanning en op de 3D-meetmachine.',
         'De symbolen in gewone taal. Vlakheid: het vlak ligt tussen twee vlakken die 0,05 uit elkaar liggen. Haaksheid: haaks op een referentie. Evenwijdigheid: evenwijdig aan een referentie. Positie: het hart van een gat binnen een ronde zone rond de exacte plek. Slag (runout): hoeveel een vlak slingert als het onderdeel om zijn as draait. Profiel: een vlak binnen een band rond de ideale vorm.',
-        'Maten in een kader zijn theoretisch exacte maten: zonder ±; de tolerantie staat in het tolerantiekader. Een ronde positiezone van Ø0,2 heeft 57% meer oppervlak dan een vierkant van ±0,1 in X en Y, dus meer goede delen worden goedgekeurd en alles wat past, blijft goed. Een Ⓜ in het kader betekent maximum-materiaalvoorwaarde: het gat krijgt bonustolerantie naarmate het groter gemeten wordt.',
+        'Maten in een kader zijn theoretisch exacte maten: zonder ±; de tolerantie staat in het tolerantiekader. Een ronde zone die precies om een vierkant van ±0,1 past (Ø0,28), heeft 57% meer oppervlak, dus meer delen die passen worden goedgekeurd. Een Ⓜ in het kader betekent maximum-materiaalvoorwaarde (MMC): het gat krijgt bonustolerantie naarmate het groter gemeten wordt.',
       ],
       example: {
         kind: 'worked',
@@ -150,7 +150,7 @@ export default {
         'Een P&ID (piping and instrumentation diagram) is een schema van leidingen, apparatuur, appendages en instrumenten in een procesinstallatie: voeding, chemie, water, energie. Het is niet op schaal en laat de echte routing niet zien. Het laat zien wat met wat verbonden is, en hoe het gemeten en geregeld wordt. Een wijziging in de installatie begint met een bijgewerkte P&ID.',
         'Lijnen: een dikke doorgetrokken lijn is procesleiding, met een leidingnummer zoals DN150-CW-1203 (maat, medium, nummer). Een stippellijn is een elektrisch signaal. Een lijn met dubbele schuine streepjes is pneumatisch. Pijlen geven de stroomrichting. Apparatuur heeft eigen tags: P-101 een pomp, T-101 een tank, E-101 een warmtewisselaar.',
         'Afsluiters worden getekend als een strikje. Zwart ingevuld: normaal dicht. Een strikje met een koepeltje erop is een regelklep met pneumatische aandrijving. Een terugslagklep laat maar één kant op door. Een PSV is een veiligheidsklep, de laatste verdediging tegen overdruk.',
-        'Instrumenttags volgen ISA 5.1. Eerste letter: wat je meet: F flow (debiet), P druk, T temperatuur, L niveau. Volgende letters: wat het doet: I aanwijzen, T transmitter, C regelen, A alarm, S schakelaar, V klep. FT 201 is een flowtransmitter; TIC 305 een temperatuurregelaar met aanwijzing; LAH een hoog-niveaualarm. Een los rondje zit in het veld; een rondje in een vierkant staat op het DCS-scherm.',
+        'Instrumenttags volgen ISA 5.1. Eerste letter: wat je meet: F flow (debiet), P druk, T temperatuur, L niveau. Volgende letters: wat het doet: I aanwijzen, T transmitter, C regelen, A alarm, S schakelaar, V klep. FT 201 is een flowtransmitter; TIC 305 een temperatuurregelaar met aanwijzing; LAH een hoog-niveaualarm. Een los rondje zit in het veld; een rondje in een vierkant staat op het scherm van het DCS, het centrale besturingssysteem van de fabriek.',
       ],
       example: {
         kind: 'worked',
@@ -221,7 +221,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een melkpasteur moet het product 15 seconden op 72 °C houden. TT 401 meet 71,2 °C. TIC 401 heeft een setpoint van 72,5 °C, dus de regelafwijking is 1,3 °C. De uitgang stijgt van 45% naar 58%, heetwaterklep TV 401 gaat verder open, en in zo’n 40 seconden is de temperatuur 72,5. Los daarvan: als de temperatuur onder 72,0 °C zakt, stuurt een omloopklep de melk terug naar de balanstank. Dat is een voedselveiligheidsfunctie, onafhankelijk van de regelkring.',
+        text: 'Een melkpasteur moet het product 15 seconden op 72 °C houden. TT 401 meet 71,2 °C. TIC 401 heeft een setpoint van 72,5 °C, dus de regelafwijking is 1,3 °C. De uitgang stijgt van 45% naar 58%, heetwaterklep TV 401 gaat verder open, en in zo’n 40 seconden is de temperatuur 72,5. Los daarvan: als de temperatuur onder 72,0 °C zakt, stuurt een omschakelklep (divert valve) de melk terug naar de balanstank. Dat is een voedselveiligheidsfunctie, onafhankelijk van de regelkring.',
       },
       said: 'Wat engineers zeggen: “Die kring staat al maanden in hand op veertig procent. Niemand vertrouwt hem in automaat, dus de operators zitten er maar bovenop.”',
       recall: [
@@ -368,7 +368,7 @@ export default {
         },
         {
           q: 'Welke hiervan is een veiligheidsfunctie en geen procesinterlock?',
-          options: ['Een pomp die niet start als de zuigklep dicht is', 'Een tankinlaat die bij hoog niveau sluit om overlopen te voorkomen', 'Een lichtscherm dat een robot stopt als iemand erin grijpt', 'Een stap die wacht tot een doos op positie is'],
+          options: ['Een pomp die niet start als de zuigklep dicht is', 'Een transportband die stopt als de volgende machine vol is', 'Een lichtscherm dat een robot stopt als iemand erin grijpt', 'Een stap die wacht tot een doos op positie is'],
           answer: 'Een lichtscherm dat een robot stopt als iemand erin grijpt',
           why: 'Het is er om een mens te beschermen, dus het wordt als veiligheidsfunctie ontworpen en gecertificeerd.',
         },
@@ -388,7 +388,7 @@ export default {
       situation: {
         scene: 'Je loopt door de fabriek bij een klant in de bouwmaterialen. Bij de palletizer is in de kast een sensor overbrugd met een draadje. De teamleider zegt: “Die gaf valse stops, dus onderhoud heeft hem vorig jaar overbrugd.”',
         ask: 'Wat vraag je?',
-        model: 'Wat beschermt die sensor: hoort hij bij de afscherming of is het alleen een procescheck? Wie heeft de overbrugging goedgekeurd, en staat hij op een overbruggingslijst? Als hij veiligheidsgerelateerd is, moet dit vandaag opgelost worden; zo niet, dan moeten de valse stops alsnog echt verholpen worden in plaats van een blijvende brug. Ik wil dat de onderhoudsleider en de VGM-er er nu naar kijken.',
+        model: 'Wat beschermt die sensor: hoort hij bij de afscherming of is het alleen een procescheck? Wie heeft de overbrugging goedgekeurd, en staat hij op een overbruggingslijst? Als hij veiligheidsgerelateerd is, moet dit vandaag opgelost worden; zo niet, dan moeten de valse stops alsnog echt verholpen worden in plaats van een blijvende brug. Ik wil dat de onderhoudsleider en de veiligheidskundige er nu naar kijken.',
         rubric: [
           'Vraagt of de sensor veiligheidsgerelateerd is',
           'Vraagt naar goedkeuring en een overbruggingslijst',
