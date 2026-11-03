@@ -4,10 +4,12 @@
 // two turns of holding his ground, then a rating and a calm, firm reply.
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { applySituation } from '../core/course.js';
+import { applySituation, paragraphs } from '../core/course.js';
 import { runGrade, runScene } from '../core/coursecoach.js';
 import { pushbackTurns, runPushback, runPushbackGrade, applyPushback } from '../core/pushback.js';
 import { createRecognizer, speechSupported } from '../core/speech.js';
+
+const prose = (cls, text) => h('div', { class: cls }, paragraphs(text).map((x) => h('p', {}, x)));
 
 export function renderSituation(app, { subject, moduleId, lessonId }, root) {
   const t = app.t;
@@ -82,7 +84,7 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
         h('p', { class: 'today-label' }, lesson.title),
         fresh,
         note ? h('p', { class: 'note scene-note' }, note) : null,
-        h('p', { class: 'teach-text sit-scene' }, s.scene),
+        prose('teach-text sit-scene', s.scene),
         h('p', { class: 'quiz-q' }, s.ask),
         ta, micBtn),
       h('button', {

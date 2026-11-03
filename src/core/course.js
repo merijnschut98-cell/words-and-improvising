@@ -447,3 +447,8 @@ export function calibrationLine(sessions, today) {
   }
   return out;
 }
+
+// Learning text in paragraphs: a blank line in the content starts a new one.
+export function paragraphs(text) {
+  return String(text ?? '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+}

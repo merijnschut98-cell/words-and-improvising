@@ -401,3 +401,13 @@ test('applyDue: a second refresh for the same event gives no XP and is not anoth
   assert.equal(again.state.xp, first.state.xp);
   assert.equal(again.state.days[TODAY], first.state.days[TODAY]);
 });
+
+import { paragraphs } from '../src/core/course.js';
+
+test('paragraphs: a blank line splits learning text into paragraphs; single text stays one', () => {
+  assert.deepEqual(paragraphs('Een. Twee.'), ['Een. Twee.']);
+  assert.deepEqual(paragraphs('Een.\n\nTwee.\n\n\nDrie.'), ['Een.', 'Twee.', 'Drie.']);
+  assert.deepEqual(paragraphs('  Een. \n\n  '), ['Een.']);
+  assert.deepEqual(paragraphs(''), []);
+  assert.deepEqual(paragraphs(undefined), []);
+});

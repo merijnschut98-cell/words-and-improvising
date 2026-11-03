@@ -514,7 +514,7 @@ await step('coach context: saved in Settings, a fresh scene from a stubbed coach
   await page.evaluate(() => { window.__sceneMode = 'bad'; window.__app.go('situation', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }); });
   await page.locator('.scene-new').click();
   await page.locator('.scene-note').waitFor();
-  if ((await page.locator('.sit-scene').textContent()).trim() !== oee.situation.scene.trim()) throw new Error('malformed scene did not keep the lesson scene');
+  if ((await page.locator('.sit-scene').textContent()).replace(/\s+/g, '') !== oee.situation.scene.replace(/\s+/g, '')) throw new Error('malformed scene did not keep the lesson scene');
   await onePrimary(page, 'scene note');
   await restoreState(saved);
 });

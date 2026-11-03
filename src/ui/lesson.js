@@ -3,13 +3,16 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack } from '../core/course.js';
+import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
 
 // Where he is in the lesson: Guess · Read · Example · Check, the current one
 // marked. With onJump, a step already done is a button back to it.
+// Learning text: one <p> per paragraph (a blank line in the content).
+export const prose = (cls, text) => h('div', { class: cls }, paragraphs(text).map((x) => h('p', {}, x)));
+
 export function stepIndicator(t, phases, current, onJump = null) {
   return h('ol', { class: 'steps', 'aria-label': t('stepsLabel') }, lessonSteps(phases, current).map((st, i) => {
     const label = [st.state === 'done' ? ico('check') : null, h('span', {}, t(`step_${st.id}`))];
@@ -112,7 +115,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         const last = block === lesson.teach.length - 1;
         show(
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
-            h('p', { class: 'teach-text' }, lesson.teach[block]),
+            prose('teach-text', lesson.teach[block]),
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
@@ -128,7 +131,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           const input = h('textarea', { class: 'text-input', rows: 3, placeholder: t('lessonWhatNextPh'), 'aria-label': ex.ask });
           const reveal = h('div', {});
           show(h('section', { class: 'card example-card' },
-            h('p', { class: 'teach-text' }, ex.text),
+            prose('teach-text', ex.text),
             h('p', { class: 'example-ask' }, h('b', {}, ex.ask)),
             input,
             reveal,
@@ -136,14 +139,14 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
               class: 'btn btn-primary reveal-btn',
               onclick: (e) => {
                 e.currentTarget.remove();
-                reveal.replaceChildren(h('p', { class: 'teach-text reveal' }, ex.reveal),
+                reveal.replaceChildren(prose('teach-text reveal', ex.reveal),
                   h('button', { class: 'btn btn-primary', onclick: next }, t('quizNext')));
               },
             }, t('reveal'))), backBtn());
           return;
         }
         show(h('section', { class: 'card example-card' },
-          h('p', { class: 'teach-text' }, ex.text)),
+          prose('teach-text', ex.text)),
         h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')), backBtn());
         return;
       }

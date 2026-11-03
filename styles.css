@@ -687,6 +687,8 @@ details.finder summary::-webkit-details-marker { display: none; }
 .lesson-row.passed .ico { color: var(--good); }
 .lesson .card { margin-bottom: 12px; }
 .teach-text { font-size: 1.06rem; line-height: 1.6; margin: 8px 0; }
+.teach-text p { margin: 0 0 0.8em; }
+.teach-text p:last-child { margin-bottom: 0; }
 /* Quotes and what people say: a hairline box in Fraunces italic, no coloured edge. */
 .said { margin: 12px 0 0; padding: 12px 14px; border: 1px solid var(--border-subtle); background: var(--tint); border-radius: var(--radius-sm); font-family: var(--font-display); font-style: italic; color: var(--heading); }
 .dots { display: flex; gap: 6px; margin: 6px 0; }
