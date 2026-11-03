@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Takt time is available time divided by customer demand: the pace the customer pulls. Available time is shift time minus planned breaks and meetings, not minus breakdowns, because those are losses the line has to absorb. A shift of 7.5 net hours is 27,000 seconds; with a demand of 450 units, takt is 60 seconds. Takt is set by demand, not by the machine. When demand changes, takt changes.',
-        'Cycle time is how often a part actually comes off a station or the line: the time between two good parts. If cycle time is above takt, you cannot keep up and need overtime, an extra shift or more capacity. Engineers usually plan cycle time at 85 to 90% of takt, to leave room for stops and scrap.',
-        'Lead time is how long one part spends from raw material to shipping, waiting included. A part with 4 minutes of processing often has a lead time of 3 to 10 days, because it sits in buffers (small stocks between steps), stock and queues. Long lead time is almost always a waiting problem, not a machine-speed problem.',
-        '“Cycle time” means different things to different people: the machine cycle (spindle running), the operator cycle, or the interval between parts leaving the line. Always ask which one. A robot cycle of 38 seconds can still give a part every 45 seconds once loading and rejects are counted.',
+        'Takt time is available time divided by customer demand: the pace the customer pulls. Available time is shift time minus planned breaks and meetings, not minus breakdowns, because those are losses the line has to absorb. A shift of 7.5 net hours is 27,000 seconds; with a demand of 450 units, takt is 60 seconds.\n\nTakt is set by demand, not by the machine. When demand changes, takt changes.',
+        'Cycle time is how often a part actually comes off a station or the line: the time between two good parts.\n\nIf cycle time is above takt, you cannot keep up and need overtime, an extra shift or more capacity. Engineers usually plan cycle time at 85 to 90% of takt, to leave room for stops and scrap.',
+        'Lead time is how long one part spends from raw material to shipping, waiting included. A part with 4 minutes of processing often has a lead time of 3 to 10 days, because it sits in buffers (small stocks between steps), stock and queues.\n\nLong lead time is almost always a waiting problem, not a machine-speed problem.',
+        '“Cycle time” means different things to different people: the machine cycle (spindle running), the operator cycle, or the interval between parts leaving the line. Always ask which one.\n\nA robot cycle of 38 seconds can still give a part every 45 seconds once loading and rejects are counted.',
       ],
       example: {
         kind: 'worked',
-        text: 'A packaging line must ship 2,400 boxes a week, 5 days, one 8-hour shift. Breaks are 2 × 15 minutes plus a 10-minute start-up meeting. Available time per day: 480 − 40 = 440 minutes = 26,400 seconds. Daily demand: 2,400 / 5 = 480 boxes. Takt = 26,400 / 480 = 55 seconds. The line runs a box every 52 seconds: it keeps up, but with only 3 seconds (5%) margin, so a few jams per shift put it behind. Lead time is 3 days, because finished boxes wait in the warehouse.',
+        text: 'A packaging line must ship 2,400 boxes a week, 5 days, one 8-hour shift. Breaks are 2 × 15 minutes plus a 10-minute start-up meeting.\n\nAvailable time per day: 480 − 40 = 440 minutes = 26,400 seconds. Daily demand: 2,400 / 5 = 480 boxes. Takt = 26,400 / 480 = 55 seconds.\n\nThe line runs a box every 52 seconds: it keeps up, but with only 3 seconds (5%) margin, so a few jams per shift put it behind. Lead time is 3 days, because finished boxes wait in the warehouse.',
       },
       said: 'What engineers say: “We’re running 52 seconds against a 55-second takt, so one bad hour and we’re behind for the day.”',
       recall: [
@@ -80,15 +80,15 @@ export default {
         },
       ],
       teach: [
-        'A line produces no faster than its slowest step: the bottleneck, or constraint. Stations of 40, 55 and 45 seconds give one part every 55 seconds, about 65 per hour. Making the 40-second station faster gains nothing, it just waits more.',
-        'How to spot it: work in progress (WIP) piles up in front of it, the station after it waits for parts (starved), and the bottleneck itself almost never stops. Be careful: a big pile can also be left over from a breakdown. The real tell is which machine is running all the time.',
-        'An hour lost at the bottleneck is an hour lost for the whole plant. An hour saved anywhere else is a mirage. So protect the bottleneck: a small stock of parts in front of it, staggered breaks so it runs through lunch, a quality check before it so it never processes scrap, and maintenance planned around it.',
-        'Little’s law links stock and time: lead time = WIP / throughput, where throughput is good output per hour. With 300 parts in the system and an output of 60 per hour, lead time is 5 hours. Cut WIP to 120 and lead time drops to 2 hours, without any machine going faster.',
+        'A line produces no faster than its slowest step: the bottleneck, or constraint.\n\nStations of 40, 55 and 45 seconds give one part every 55 seconds, about 65 per hour. Making the 40-second station faster gains nothing, it just waits more.',
+        'How to spot it: work in progress (WIP) piles up in front of it, the station after it waits for parts (starved), and the bottleneck itself almost never stops.\n\nBe careful: a big pile can also be left over from a breakdown. The real tell is which machine is running all the time.',
+        'An hour lost at the bottleneck is an hour lost for the whole plant. An hour saved anywhere else is a mirage.\n\nSo protect the bottleneck: a small stock of parts in front of it, staggered breaks so it runs through lunch, a quality check before it so it never processes scrap, and maintenance planned around it.',
+        'Little’s law links stock and time: lead time = WIP / throughput, where throughput is good output per hour.\n\nWith 300 parts in the system and an output of 60 per hour, lead time is 5 hours. Cut WIP to 120 and lead time drops to 2 hours, without any machine going faster.',
         'Bottlenecks move. Fix one and the next-slowest takes over. A change in product mix can move it too, because some products take much longer on one machine than on another.',
       ],
       example: {
         kind: 'worked',
-        text: 'A machining cell: saw 30 seconds, CNC 90 seconds, deburring 45 seconds, washing 40 seconds. Output = 3,600 / 90 = 40 parts per hour, set by the CNC. There are 480 parts in the cell, 360 of them waiting before the CNC. Little’s law: 480 / 40 = 12 hours lead time. Buying a faster deburring station: zero gain. Adding a second CNC: the CNC step now delivers a part every 45 seconds, deburring becomes the bottleneck at 45 seconds, and output goes to 80 per hour, exactly double.',
+        text: 'A machining cell: saw 30 seconds, CNC 90 seconds, deburring 45 seconds, washing 40 seconds. Output = 3,600 / 90 = 40 parts per hour, set by the CNC.\n\nThere are 480 parts in the cell, 360 of them waiting before the CNC. Little’s law: 480 / 40 = 12 hours lead time.\n\nBuying a faster deburring station: zero gain. Adding a second CNC: the CNC step now delivers a part every 45 seconds, deburring becomes the bottleneck at 45 seconds, and output goes to 80 per hour, exactly double.',
       },
       said: 'What engineers say: “Forget the washer, the CNC is the constraint. Every minute it stands still is gone for good.”',
       recall: [
@@ -149,14 +149,14 @@ export default {
         },
       ],
       teach: [
-        'OEE = availability × performance × quality. Availability = run time / planned production time (lost to breakdowns and changeovers). Performance = ideal cycle time (the fastest proven time per part) × parts made / run time (lost to slow running and small stops). Quality = good parts / parts made (lost to scrap and rework). Multiply, never average. A quick check: OEE = good parts × ideal cycle time / planned time.',
-        'The six big losses. Availability: breakdowns, and setups and adjustments. Performance: small stops (jams under about 5 minutes) and reduced speed. Quality: start-up rejects and production rejects. Small stops are the hidden one: nobody fills in a form for a 40-second jam, but 30 of them per shift is 20 minutes.',
-        'What is good? 85% is the famous “world class” figure (90% × 95% × 99.9%). Honest measurement in discrete manufacturing typically gives 40 to 60%. A plant reporting 90% is usually flattering the sum: leaving changeovers out of planned time, or using a slow “ideal” cycle time.',
-        '100% is a lie: no stop, every part at ideal speed, zero scrap. It never happens. And OEE is measured per machine or line: raising it on a non-bottleneck only makes more WIP. The questions that matter: OEE of which machine, against which ideal cycle time, and what is left out of planned time?',
+        'OEE = availability × performance × quality.\n\nAvailability = run time / planned production time (lost to breakdowns and changeovers). Performance = ideal cycle time (the fastest proven time per part) × parts made / run time (lost to slow running and small stops). Quality = good parts / parts made (lost to scrap and rework).\n\nMultiply, never average. A quick check: OEE = good parts × ideal cycle time / planned time.',
+        'The six big losses. Availability: breakdowns, and setups and adjustments. Performance: small stops (jams under about 5 minutes) and reduced speed. Quality: start-up rejects and production rejects.\n\nSmall stops are the hidden one: nobody fills in a form for a 40-second jam, but 30 of them per shift is 20 minutes.',
+        'What is good? 85% is the famous “world class” figure (90% × 95% × 99.9%). Honest measurement in discrete manufacturing typically gives 40 to 60%.\n\nA plant reporting 90% is usually flattering the sum: leaving changeovers out of planned time, or using a slow “ideal” cycle time.',
+        '100% is a lie: no stop, every part at ideal speed, zero scrap. It never happens.\n\nAnd OEE is measured per machine or line: raising it on a non-bottleneck only makes more WIP. The questions that matter: OEE of which machine, against which ideal cycle time, and what is left out of planned time?',
       ],
       example: {
         kind: 'worked',
-        text: 'Shift of 480 minutes with a 30-minute break: planned time 450 minutes. Breakdowns 30 minutes, one changeover 45 minutes: run time 375 minutes. Availability = 375 / 450 = 83.3%. Ideal cycle 30 seconds, 600 parts made: 300 ideal minutes. Performance = 300 / 375 = 80%. Of 600 parts, 570 are good: quality = 95%. OEE = 0.833 × 0.80 × 0.95 = 63.3%. Check: 570 × 0.5 minutes / 450 = 63.3%. Where did the time go? Availability lost 75 minutes (breakdowns and the changeover), performance also 75 minutes (small stops and slow running), quality only 15 minutes (30 bad parts × 0.5 minutes). So there are two big levers, not one.',
+        text: 'Shift of 480 minutes with a 30-minute break: planned time 450 minutes. Breakdowns 30 minutes, one changeover 45 minutes: run time 375 minutes. Availability = 375 / 450 = 83.3%.\n\nIdeal cycle 30 seconds, 600 parts made: 300 ideal minutes. Performance = 300 / 375 = 80%. Of 600 parts, 570 are good: quality = 95%.\n\nOEE = 0.833 × 0.80 × 0.95 = 63.3%. Check: 570 × 0.5 minutes / 450 = 63.3%.\n\nWhere did the time go? Availability lost 75 minutes (breakdowns and the changeover), performance also 75 minutes (small stops and slow running), quality only 15 minutes (30 bad parts × 0.5 minutes). So there are two big levers, not one.',
       },
       said: 'What engineers say: “Availability looks fine, it’s the small stops killing our performance rate. Nobody logs a 30-second jam.”',
       recall: [
@@ -218,13 +218,13 @@ export default {
       ],
       teach: [
         'Changeover time runs from the last good part of product A to the first good part of product B at full speed. So it includes the trial runs and adjustments at the end, and that is where much of the hidden time sits.',
-        'Internal work can only be done with the machine stopped: swapping the die (the shaped tool that forms the part). External work can be done while it runs: fetching the next die, preheating it, preparing tools and paperwork. SMED (single-minute exchange of die: changeovers under 10 minutes) works in steps: film a changeover and list every step; mark each one internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools offline); then streamline with quick clamps instead of bolts.',
-        'Adjustment is the killer: trial and tweak is often half of a changeover. The engineering fix is fixed locators, pins, standard die heights and setting sheets, so the setting is right first time. Adjustment is a sign the setting isn’t defined.',
-        'The batch size trade-off: average stock is roughly half a batch. With long changeovers, planners run big batches to lose less time, and stock and lead time grow. Halve the changeover and you can halve the batch at the same lost time, halving stock. Or keep the batch and gain capacity, which only pays off at the bottleneck.',
+        'Internal work can only be done with the machine stopped: swapping the die (the shaped tool that forms the part). External work can be done while it runs: fetching the next die, preheating it, preparing tools and paperwork.\n\nSMED (single-minute exchange of die: changeovers under 10 minutes) works in steps: film a changeover and list every step; mark each one internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools offline); then streamline with quick clamps instead of bolts.',
+        'Adjustment is the killer: trial and tweak is often half of a changeover.\n\nThe engineering fix is fixed locators, pins, standard die heights and setting sheets, so the setting is right first time. Adjustment is a sign the setting isn’t defined.',
+        'The batch size trade-off: average stock is roughly half a batch. With long changeovers, planners run big batches to lose less time, and stock and lead time grow.\n\nHalve the changeover and you can halve the batch at the same lost time, halving stock. Or keep the batch and gain capacity, which only pays off at the bottleneck.',
       ],
       example: {
         kind: 'worked',
-        text: 'Injection moulding, mould change 90 minutes. The video shows: 25 minutes fetching mould, crane and tools; 15 minutes connecting cooling water; 20 minutes heating the mould; 30 minutes of trial shots. Fetching everything beforehand removes 25 minutes. Preheating the mould on a heating station removes 20. Quick couplings take water from 15 to 5 minutes. New changeover: 5 + 30 = 35 minutes. With 4 changeovers a day that frees 220 minutes, or allows 8 smaller batches a day for 280 minutes instead of the old 360.',
+        text: 'Injection moulding, mould change 90 minutes. The video shows: 25 minutes fetching mould, crane and tools; 15 minutes connecting cooling water; 20 minutes heating the mould; 30 minutes of trial shots.\n\nFetching everything beforehand removes 25 minutes. Preheating the mould on a heating station removes 20. Quick couplings take water from 15 to 5 minutes.\n\nNew changeover: 5 + 30 = 35 minutes. With 4 changeovers a day that frees 220 minutes, or allows 8 smaller batches a day for 280 minutes instead of the old 360.',
       },
       said: 'What engineers say: “Half our changeover is waiting for the forklift with the next mould. That’s external work done internally.”',
       recall: [
@@ -284,14 +284,14 @@ export default {
         },
       ],
       teach: [
-        'Line balancing divides the total work content over stations so each station’s cycle time sits just under takt. Minimum stations = total work content / takt, rounded up. 300 seconds of work at a 60-second takt needs at least 5 stations.',
-        'A line runs at the pace of its slowest station. Stations of 50, 30, 45 and 40 seconds give a line cycle of 50 seconds. The others wait every cycle: idle time = 4 × 50 − 165 = 35 seconds. Balance loss = idle time / (stations × slowest cycle) = 35 / 200 = 17.5%.',
-        'One slow station hurts everyone. If it is over takt, the whole line misses demand, upstream builds WIP and downstream starves. Variation matters too: a station averaging 55 seconds against a 60-second takt but swinging between 45 and 75 seconds will regularly hold up the line. The average is not enough.',
-        'Fixes: move work elements from the slow station to stations with slack, split the task, add a second operator, or automate. Precedence limits what can move: you can’t fit the screw before the bracket. The standard picture is a Yamazumi chart: a stacked bar per station with the takt line drawn across.',
+        'Line balancing divides the total work content over stations so each station’s cycle time sits just under takt.\n\nMinimum stations = total work content / takt, rounded up. 300 seconds of work at a 60-second takt needs at least 5 stations.',
+        'A line runs at the pace of its slowest station. Stations of 50, 30, 45 and 40 seconds give a line cycle of 50 seconds.\n\nThe others wait every cycle: idle time = 4 × 50 − 165 = 35 seconds. Balance loss = idle time / (stations × slowest cycle) = 35 / 200 = 17.5%.',
+        'One slow station hurts everyone. If it is over takt, the whole line misses demand, upstream builds WIP and downstream starves.\n\nVariation matters too: a station averaging 55 seconds against a 60-second takt but swinging between 45 and 75 seconds will regularly hold up the line. The average is not enough.',
+        'Fixes: move work elements from the slow station to stations with slack, split the task, add a second operator, or automate. Precedence limits what can move: you can’t fit the screw before the bracket.\n\nThe standard picture is a Yamazumi chart: a stacked bar per station with the takt line drawn across.',
       ],
       example: {
         kind: 'worked',
-        text: 'An e-bike motor assembly line with a takt of 72 seconds. Stations: 65, 80, 50 and 70 seconds, total 265. Station 2 is over takt, so the line cycle is 80 seconds: 45 motors an hour instead of the 50 needed. Minimum stations: 265 / 72 = 3.7, so 4 is enough. Move 12 seconds of cable routing from station 2 to station 3: 65, 68, 62, 70. Slowest is now 70 seconds, under takt. Balance loss = (4 × 70 − 265) / 280 = 5.4%.',
+        text: 'An e-bike motor assembly line with a takt of 72 seconds. Stations: 65, 80, 50 and 70 seconds, total 265. Station 2 is over takt, so the line cycle is 80 seconds: 45 motors an hour instead of the 50 needed.\n\nMinimum stations: 265 / 72 = 3.7, so 4 is enough. Move 12 seconds of cable routing from station 2 to station 3: 65, 68, 62, 70. Slowest is now 70 seconds, under takt. Balance loss = (4 × 70 − 265) / 280 = 5.4%.',
       },
       said: 'What engineers say: “Station two is over takt, look at the Yamazumi. Can we shift the cable routing to three?”',
       recall: [
@@ -352,14 +352,14 @@ export default {
         },
       ],
       teach: [
-        'Capacity = available time / cycle time, corrected for losses. One shift of 7.5 net hours at a 60-second cycle is 450 parts on paper; at 75% OEE it is about 340. Plan on the realistic number, not the nameplate (the maker’s rated figure). Going from two to three shifts adds 50% hours, but costs night premiums and leaves less time for maintenance.',
-        'Utilisation = busy time / available time. Managers love 100%. But arrivals and process times vary, and queue time grows roughly with u / (1 − u). At 50% utilisation that factor is 1, at 80% it is 4, at 90% it is 9, at 95% it is 19. Queues explode in the last 10 to 15%.',
-        'So plan the bottleneck at around 80 to 85% load after OEE, leaving room for breakdowns and rush orders. Non-bottlenecks need even more spare capacity, so they can catch up after a disruption and keep the bottleneck fed. A plant planned to 100% has long lead times and permanent firefighting.',
-        'The question that gets you taken seriously: what is the planned load on the bottleneck, in hours, after OEE? Not against nameplate hours. Reducing variation (fewer breakdowns, steadier arrivals) is what lets you run a higher load safely.',
+        'Capacity = available time / cycle time, corrected for losses. One shift of 7.5 net hours at a 60-second cycle is 450 parts on paper; at 75% OEE it is about 340.\n\nPlan on the realistic number, not the nameplate (the maker’s rated figure). Going from two to three shifts adds 50% hours, but costs night premiums and leaves less time for maintenance.',
+        'Utilisation = busy time / available time. Managers love 100%.\n\nBut arrivals and process times vary, and queue time grows roughly with u / (1 − u). At 50% utilisation that factor is 1, at 80% it is 4, at 90% it is 9, at 95% it is 19. Queues explode in the last 10 to 15%.',
+        'So plan the bottleneck at around 80 to 85% load after OEE, leaving room for breakdowns and rush orders. Non-bottlenecks need even more spare capacity, so they can catch up after a disruption and keep the bottleneck fed.\n\nA plant planned to 100% has long lead times and permanent firefighting.',
+        'The question that gets you taken seriously: what is the planned load on the bottleneck, in hours, after OEE? Not against nameplate hours.\n\nReducing variation (fewer breakdowns, steadier arrivals) is what lets you run a higher load safely.',
       ],
       example: {
         kind: 'worked',
-        text: 'A CNC bottleneck must make 1,200 parts a week at 4 minutes each: 80 hours of demand. Two shifts × 5 days × 7.5 net hours = 75 hours. At 70% OEE that is 52.5 effective hours: load = 80 / 52.5 = 152%. Not feasible. Three shifts give 112.5 hours; at 70% OEE that is 78.75 hours, still 102%. Three shifts plus OEE raised to 80% gives 90 hours: load 89%. Workable, but only just, so lead times will still be long.',
+        text: 'A CNC bottleneck must make 1,200 parts a week at 4 minutes each: 80 hours of demand. Two shifts × 5 days × 7.5 net hours = 75 hours.\n\nAt 70% OEE that is 52.5 effective hours: load = 80 / 52.5 = 152%. Not feasible.\n\nThree shifts give 112.5 hours; at 70% OEE that is 78.75 hours, still 102%. Three shifts plus OEE raised to 80% gives 90 hours: load 89%. Workable, but only just, so lead times will still be long.',
       },
       said: 'What engineers say: “The planner shows 98% load on the five-axis. That’s not efficiency, that’s a queue waiting to happen.”',
       recall: [
