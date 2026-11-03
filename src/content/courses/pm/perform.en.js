@@ -13,16 +13,16 @@ export default {
         },
       ],
       teach: [
-        'A KPI is a number someone acts on. If nobody would do anything different when it moves, it is a report figure, not a KPI. A team can steer on three to seven numbers; a wall of forty gets read by nobody. Choose per level: the board needs a few results, a team needs the few numbers it can move this week.',
-        'Lagging indicators measure the result after the fact: on-time delivery last month, customer minutes lost, cost per connection. Leading indicators move before the result and point to what to do: share of jobs with materials ready two days before the start, preventive maintenance done on time, age of the backlog. Lagging tells you whether you won. Leading tells you whether you will.',
+        'A KPI is a number someone acts on. If nobody would do anything different when it moves, it is a report figure, not a KPI.\n\nA team can steer on three to seven numbers; a wall of forty gets read by nobody. Choose per level: the board needs a few results, a team needs the few numbers it can move this week.',
+        'Lagging indicators measure the result after the fact: on-time delivery last month, customer minutes lost, cost per connection. Leading indicators move before the result and point to what to do: share of jobs with materials ready two days before the start, preventive maintenance done on time, age of the backlog.\n\nLagging tells you whether you won. Leading tells you whether you will.',
         'A good KPI has a written definition (what counts and what doesn’t), one owner, a data source nobody argues about, a frequency that fits how fast it can change, and a known direction: is higher better or lower? Half of all KPI arguments are two people measuring different things under the same name.',
-        'Balance. One number on its own gets pushed at the cost of others. Pair them: output with quality, speed with safety, cost with service. Kaplan and Norton made this point with the balanced scorecard in 1992: financial results alone tell you how you did, not where you are heading, so they added customer, process and learning measures.',
+        'Balance. One number on its own gets pushed at the cost of others. Pair them: output with quality, speed with safety, cost with service.\n\nKaplan and Norton made this point with the balanced scorecard in 1992: financial results alone tell you how you did, not where you are heading, so they added customer, process and learning measures.',
       ],
       example: {
         kind: 'faded',
         text: 'A parts manufacturer gets customer complaints about late deliveries. The plant manager wants one KPI on the board: on-time delivery, in % of order lines, reported monthly. Planning and the production teams will see it at the monthly meeting.',
         ask: 'What would you add or change before this goes on the board?',
-        reveal: 'Keep on-time delivery as the lagging result, but define it: against the date confirmed to the customer, per order line, zero days late allowed. Give it one owner, the planning lead. Then add one or two leading numbers the teams can move every week, such as schedule adherence at the bottleneck per day and the share of orders released with all materials in stock. Pair it with first-pass yield, so on-time delivery isn’t bought by rushing parts out.',
+        reveal: 'Keep on-time delivery as the lagging result, but define it: against the date confirmed to the customer, per order line, zero days late allowed. Give it one owner, the planning lead.\n\nThen add one or two leading numbers the teams can move every week, such as schedule adherence at the bottleneck per day and the share of orders released with all materials in stock. Pair it with first-pass yield, so on-time delivery isn’t bought by rushing parts out.',
       },
       said: 'What you hear in projects: “That’s a lagging number. What can the team move this week that tells us where it’s heading?”',
       recall: [
@@ -93,16 +93,16 @@ export default {
         },
       ],
       teach: [
-        'A KPI tree, also called a driver tree, breaks a goal into the numbers that cause it. At the top sits a result, such as lead time or cost per unit. Each level down answers “what drives this?”, until you reach numbers a team controls. A math tree adds or multiplies exactly; a logic tree only lists the main drivers. Use math where you can.',
-        'Example. Weekly good output of a press line = available hours × share of those hours running × parts per running hour × share of good parts. Each branch has a natural owner: planning for the hours, maintenance for the running share, engineering for the rate, quality for the good share. Now each team sees which branch it moves.',
-        'Check the tree with data before you trust it. Does the branch actually move the top? A branch that hardly varies won’t explain the gap. Look for the branch with the biggest gap to a realistic level: that is where the effort goes. Stop breaking down when you reach a number a team can act on weekly.',
-        'Cascading isn’t copying. A team target should be its own driver, not a slice of the board number. “Cut lead time by 20%” given to every team is a slogan. “Raise jobs started on the planned day from 70% to 85%” is a team number.',
+        'A KPI tree, also called a driver tree, breaks a goal into the numbers that cause it. At the top sits a result, such as lead time or cost per unit. Each level down answers “what drives this?”, until you reach numbers a team controls.\n\nA math tree adds or multiplies exactly; a logic tree only lists the main drivers. Use math where you can.',
+        'Example. Weekly good output of a press line = available hours × share of those hours running × parts per running hour × share of good parts.\n\nEach branch has a natural owner: planning for the hours, maintenance for the running share, engineering for the rate, quality for the good share. Now each team sees which branch it moves.',
+        'Check the tree with data before you trust it. Does the branch actually move the top? A branch that hardly varies won’t explain the gap.\n\nLook for the branch with the biggest gap to a realistic level: that is where the effort goes. Stop breaking down when you reach a number a team can act on weekly.',
+        'Cascading isn’t copying. A team target should be its own driver, not a slice of the board number.\n\n“Cut lead time by 20%” given to every team is a slogan. “Raise jobs started on the planned day from 70% to 85%” is a team number.',
       ],
       example: {
         kind: 'faded',
         text: 'A grid operator wants to shorten the time from a customer’s request to a working connection for small users. The average is 26 weeks. The steps run one after another, and the data shows how long each step takes on average: intake 3 weeks, design and permits 9 weeks, waiting for a crew 10 weeks, execution 1 week, meter placement 3 weeks.',
         ask: 'How would you build the tree, and where would you look first?',
-        reveal: 'Because the steps run one after another, lead time is their sum: 3 + 9 + 10 + 1 + 3 = 26 weeks. The big branches are waiting for a crew (10) and design and permits (9); execution (1) has little to win. Break “waiting for a crew” down further: is it crew capacity, or jobs bounced back because they weren’t ready? Give each step one owner and one weekly team number, such as the share of jobs that pass the readiness check.',
+        reveal: 'Because the steps run one after another, lead time is their sum: 3 + 9 + 10 + 1 + 3 = 26 weeks. The big branches are waiting for a crew (10) and design and permits (9); execution (1) has little to win.\n\nBreak “waiting for a crew” down further: is it crew capacity, or jobs bounced back because they weren’t ready? Give each step one owner and one weekly team number, such as the share of jobs that pass the readiness check.',
       },
       said: 'What you hear in projects: “Which branch of the tree are we actually moving with this?”',
       recall: [
@@ -175,15 +175,15 @@ export default {
       ],
       teach: [
         'Decades of research by Locke and Latham show that specific, difficult goals beat “do your best”, as long as people accept them, have the skills and get feedback on their progress. Make it too hard and people give up or start gaming the number. A target nobody believes is not a target, it’s a wish.',
-        'Base a target on data, not on last year plus ten percent. Look at the spread: which weeks were best, and what made them work? A target close to the best weeks you have actually achieved is believable. A target beyond anything you’ve ever seen needs a changed method behind it. Say what changes.',
-        'Use ranges, not single points. Results vary from week to week. “Between 83 and 87%, aiming for 85” lets a team tell a normal week from a real change. A single point turns every week below it into a failure, even when it’s just noise. Separate the target (where we want to be) from the trigger (when we take action).',
-        'Involve the people who have to hit it. Ask: what is realistic in three months, and what would have to change to get more? People defend targets they helped set. You still own the ambition: if their proposal is below their own best weeks, ask why.',
+        'Base a target on data, not on last year plus ten percent. Look at the spread: which weeks were best, and what made them work?\n\nA target close to the best weeks you have actually achieved is believable. A target beyond anything you’ve ever seen needs a changed method behind it. Say what changes.',
+        'Use ranges, not single points. Results vary from week to week.\n\n“Between 83 and 87%, aiming for 85” lets a team tell a normal week from a real change. A single point turns every week below it into a failure, even when it’s just noise.\n\nSeparate the target (where we want to be) from the trigger (when we take action).',
+        'Involve the people who have to hit it. Ask: what is realistic in three months, and what would have to change to get more? People defend targets they helped set.\n\nYou still own the ambition: if their proposal is below their own best weeks, ask why.',
       ],
       example: {
         kind: 'faded',
-        text: 'A parts manufacturer. Scrap on one machining cell, in % of parts made, over the last eight weeks: 4.1, 3.6, 5.2, 3.9, 4.4, 3.3, 4.8, 3.7. The average is about 4.1%. Nothing in the process has changed yet. Management wants a target of 1% from next month.',
+        text: 'A parts manufacturer. Scrap on one machining cell, in % of parts made, over the last eight weeks: 4.1, 3.6, 5.2, 3.9, 4.4, 3.3, 4.8, 3.7.\n\nThe average is about 4.1%. Nothing in the process has changed yet. Management wants a target of 1% from next month.',
         ask: 'What target would you propose, and how?',
-        reveal: 'A target of 1% is far below any week ever seen, and nothing in the method has changed, so nobody will believe it. Propose a first target close to the best weeks (3.3 and 3.6): a range of 3.0 to 4.0%, aiming for 3.5, reviewed after eight weeks. A week above 5% is the trigger to look into it. Meanwhile the root-cause work on the biggest defect is what could make 1% realistic later. Say that out loud, so the ambition isn’t lost.',
+        reveal: 'A target of 1% is far below any week ever seen, and nothing in the method has changed, so nobody will believe it.\n\nPropose a first target close to the best weeks (3.3 and 3.6): a range of 3.0 to 4.0%, aiming for 3.5, reviewed after eight weeks. A week above 5% is the trigger to look into it.\n\nMeanwhile the root-cause work on the biggest defect is what could make 1% realistic later. Say that out loud, so the ambition isn’t lost.',
       },
       said: 'What you hear in projects: “Your best weeks were at 86. What would we need to change to make that a normal week?”',
       recall: [
@@ -255,15 +255,15 @@ export default {
       ],
       teach: [
         'A performance conversation is a short, regular talk about the numbers between a manager and the team or person who owns them. It has three steps: facts, cause, commitment. Most reviews skip the middle and jump from a red number to “try harder”.',
-        'Facts. What does the number show, against which target, over which period? Is it a real change or a normal week? Look at the trend, not one point. Agree on the facts before discussing why. If the data is disputed, fix the data first, or the meeting turns into an argument about the data.',
-        'Cause. Ask open questions: “What happened in the weeks that went well?” “Where did the jobs get stuck?” Go and look if you can. Separate a one-off, like a storm, from a pattern. If the first explanation is outside the team’s control, accept that part and ask which part was inside it.',
-        'Commitment. One or two actions, each with an owner, a date and a way to see whether it worked. Next time, start with those actions. The tone: hard on the numbers, soft on the people. The goal is to learn what to do, not to find who to blame.',
+        'Facts. What does the number show, against which target, over which period? Is it a real change or a normal week?\n\nLook at the trend, not one point. Agree on the facts before discussing why. If the data is disputed, fix the data first, or the meeting turns into an argument about the data.',
+        'Cause. Ask open questions: “What happened in the weeks that went well?” “Where did the jobs get stuck?”\n\nGo and look if you can. Separate a one-off, like a storm, from a pattern. If the first explanation is outside the team’s control, accept that part and ask which part was inside it.',
+        'Commitment. One or two actions, each with an owner, a date and a way to see whether it worked. Next time, start with those actions.\n\nThe tone: hard on the numbers, soft on the people. The goal is to learn what to do, not to find who to blame.',
       ],
       example: {
         kind: 'faded',
-        text: 'A grid operator, weekly review with crew lead Mark. Target: 85% of jobs start on the planned day. The last four weeks: 84, 86, 83 and 70%. Last week 40 jobs were planned and 12 didn’t start on the planned day. Mark opens with: “It was the weather. Nothing we could do.”',
+        text: 'A grid operator, weekly review with crew lead Mark. Target: 85% of jobs start on the planned day. The last four weeks: 84, 86, 83 and 70%.\n\nLast week 40 jobs were planned and 12 didn’t start on the planned day. Mark opens with: “It was the weather. Nothing we could do.”',
         ask: 'How would you run the rest of this conversation?',
-        reveal: 'Facts first: 70% (28 of 40) is clearly below the normal 83 to 86%, so it is worth discussing. Then ask how the 12 missed jobs split: say 5 were due to the storm and 7 to materials not being ready. Accept the storm as a one-off and focus on the part inside the team’s control, the materials. Commitment: Mark checks materials for next week’s jobs with the warehouse every Thursday. The next review starts with how that check went.',
+        reveal: 'Facts first: 70% (28 of 40) is clearly below the normal 83 to 86%, so it is worth discussing. Then ask how the 12 missed jobs split: say 5 were due to the storm and 7 to materials not being ready. Accept the storm as a one-off and focus on the part inside the team’s control, the materials.\n\nCommitment: Mark checks materials for next week’s jobs with the warehouse every Thursday. The next review starts with how that check went.',
       },
       said: 'What you hear in projects: “Before we talk about why, are we agreed on what the numbers say?”',
       recall: [
@@ -336,7 +336,7 @@ export default {
       teach: [
         'Goodhart’s law, in Marilyn Strathern’s phrasing: when a measure becomes a target, it ceases to be a good measure. Put pressure on one number and people find the cheapest way to move it, which is not always the way you intended.',
         'Typical forms: shifting work, cost or defects just outside the measured period or scope; cherry-picking the easy jobs to hit a count; redefining what counts; and plain fudging. Steve Kerr called it “rewarding A while hoping for B” (1975). The textbook case is Wells Fargo, where aggressive sales targets led staff to open millions of accounts customers never asked for.',
-        'How to spot it: the number improves but nothing around it does. Sudden jumps right before the deadline. Results that cluster just above the threshold. Paired numbers moving the wrong way, like on-time delivery up while complaints rise too. And ask the floor: “What do people do to make this number green?”',
+        'How to spot it: the number improves but nothing around it does.\n\nSudden jumps right before the deadline. Results that cluster just above the threshold. Paired numbers moving the wrong way, like on-time delivery up while complaints rise too. And ask the floor: “What do people do to make this number green?”',
         'Prevention: pair indicators, keep some numbers for learning only with no bonus attached, change the definition when you see gaming, and look at the work itself, not only the figure. Most gaming isn’t done by bad people. It is a reasonable answer to a badly designed system, so fix the system first.',
       ],
       example: {
@@ -415,15 +415,15 @@ export default {
       ],
       teach: [
         'Build a chain of short meetings that feed each other: daily or weekly at team level, about 15 minutes at the board; weekly or every two weeks at department level; monthly for management. The same definitions all the way up. Problems a team can’t solve go up one level, decisions come back down.',
-        'Fit the frequency to the number. Daily for what changes daily, such as jobs started or breakdowns. Monthly for slow numbers, such as cost per connection or customer satisfaction. Looking at a slow number every day only produces noise and frustration.',
-        'A fixed, short agenda: actions from last time, the numbers against target, one or two problems in depth, new actions. Same time, same place. Make it visible, so anyone walking past sees where the team stands. An action list nobody looks at the next time is how a rhythm dies.',
-        'Design for your exit from day one. A line manager chairs from the start; you coach from the side, then step back. The data refreshes without you: no spreadsheet only you can update. Leave a one-page description of who, when, which numbers and how problems go up. Check after you leave whether the meetings still happen.',
+        'Fit the frequency to the number.\n\nDaily for what changes daily, such as jobs started or breakdowns. Monthly for slow numbers, such as cost per connection or customer satisfaction. Looking at a slow number every day only produces noise and frustration.',
+        'A fixed, short agenda: actions from last time, the numbers against target, one or two problems in depth, new actions. Same time, same place.\n\nMake it visible, so anyone walking past sees where the team stands. An action list nobody looks at the next time is how a rhythm dies.',
+        'Design for your exit from day one. A line manager chairs from the start; you coach from the side, then step back.\n\nThe data refreshes without you: no spreadsheet only you can update. Leave a one-page description of who, when, which numbers and how problems go up. Check after you leave whether the meetings still happen.',
       ],
       example: {
         kind: 'faded',
-        text: 'At a parts manufacturer you set up a weekly KPI review. You’ve chaired it for eight weeks and you update the spreadsheet yourself every Monday morning. The production manager attends and likes it. Your contract ends in four weeks.',
+        text: 'At a parts manufacturer you set up a weekly KPI review. You’ve chaired it for eight weeks and you update the spreadsheet yourself every Monday morning.\n\nThe production manager attends and likes it. Your contract ends in four weeks.',
         ask: 'What do you do in these four weeks?',
-        reveal: 'Hand over in steps. Next week the production manager chairs and you sit next to him. The week after, you only attend. In the last two weeks you stay away and ask afterwards how it went. Move the data refresh to an automatic export, or to the planner who owns the source, and test it while you’re still there. Write the one-pager. Agree with the sponsor on a check four and twelve weeks after you leave.',
+        reveal: 'Hand over in steps.\n\nNext week the production manager chairs and you sit next to him. The week after, you only attend. In the last two weeks you stay away and ask afterwards how it went.\n\nMove the data refresh to an automatic export, or to the planner who owns the source, and test it while you’re still there. Write the one-pager. Agree with the sponsor on a check four and twelve weeks after you leave.',
       },
       said: 'What you hear in projects: “If this meeting only happens when the consultant is here, we haven’t built anything.”',
       recall: [
