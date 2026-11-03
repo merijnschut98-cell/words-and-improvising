@@ -84,3 +84,10 @@ test('a lost session is reported once through onAuthLost', async () => {
   await syncer.syncNow();
   assert.equal(lost, 1);
 });
+
+test('syncNow reports whether the merge changed anything here, so home redraws only then', async () => {
+  const changed = rig({ remote: { ...defaultState(), xp: 500 } });
+  assert.equal((await changed.syncer.syncNow()).changed, true);
+  const same = rig({ remote: null });
+  assert.equal((await same.syncer.syncNow()).changed, false);
+});

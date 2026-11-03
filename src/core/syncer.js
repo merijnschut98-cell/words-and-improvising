@@ -13,12 +13,13 @@ export function createSyncer({ cloud, getState, setState, now = Date.now, schedu
     const pulled = await cloud.pull();
     if (!pulled.ok) { st.error = pulled.error; if (pulled.error === 'auth') onAuthLost(); return pulled; }
     const merged = mergeStates(getState(), pulled.state);
-    if (merged !== getState()) setState(merged);
+    const changed = JSON.stringify(merged) !== JSON.stringify(getState());
+    if (changed) setState(merged);
     const pushed = await cloud.push(merged);
     if (!pushed.ok) { st.error = pushed.error; return pushed; }
     st.lastSync = now();
     st.error = null;
-    return { ok: true };
+    return { ok: true, changed };
   }
 
   return {

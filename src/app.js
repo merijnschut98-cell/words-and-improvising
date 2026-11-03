@@ -382,7 +382,7 @@ document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') app.cloud.push(app.state);
     else {
       // Show what the other device did, as on boot.
-      app.startSync().then((res) => { if (res.ok && root.dataset.screen === 'home') app.go('home'); });
+      app.startSync().then((res) => { if (res.ok && res.changed && root.dataset.screen === 'home') app.go('home'); });
     }
   }
   if (document.visibilityState !== 'visible') return;
