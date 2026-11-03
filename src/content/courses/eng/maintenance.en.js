@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Reactive (run-to-failure, breakdown maintenance): fix it when it breaks. Fine when failure is cheap, safe and not on the bottleneck: a light fitting, a small motor with a spare on the shelf. As a default it’s expensive: an unplanned repair typically costs three to five times a planned one, through rush parts, overtime and lost output.',
+        'Reactive (run-to-failure, breakdown maintenance): fix it when it breaks. Fine when failure is cheap, safe and not on the bottleneck: a light fitting, a small motor with a spare on the shelf.\n\nAs a default it’s expensive: an unplanned repair typically costs three to five times a planned one, through rush parts, overtime and lost output.',
         'Preventive (time- or usage-based): service or replace at a fixed interval: gearbox oil every 4,000 running hours, filters every month, belts every year. Works for parts that clearly wear out. Wasteful when good parts are thrown away, and risky, because every time you open a machine you can introduce a fault.',
-        'Condition-based: measure the condition and act when it crosses a threshold: vibration level, temperature, wear particles in the oil. Predictive goes one step further: use the trend to forecast when it will cross, and plan the repair into a planned stop. It costs sensors and analysis time, so it pays on critical, expensive assets: a press main drive, a bottleneck gearbox, a power transformer.',
-        'You choose per asset and per failure mode, based on criticality and how it fails. That logic is called RCM (reliability-centred maintenance). Good plants do 85% or more of their maintenance hours as planned work. Ask: what share of your hours last month was planned?',
+        'Condition-based: measure the condition and act when it crosses a threshold: vibration level, temperature, wear particles in the oil. Predictive goes one step further: use the trend to forecast when it will cross, and plan the repair into a planned stop.\n\nIt costs sensors and analysis time, so it pays on critical, expensive assets: a press main drive, a bottleneck gearbox, a power transformer.',
+        'You choose per asset and per failure mode, based on criticality and how it fails. That logic is called RCM (reliability-centred maintenance).\n\nGood plants do 85% or more of their maintenance hours as planned work. Ask: what share of your hours last month was planned?',
       ],
       example: {
         kind: 'worked',
-        text: 'A stamping plant has two candidates. Bottleneck press main gearbox: €60,000 new, 10 weeks delivery. Run to failure would stop the plant for weeks: unacceptable. A preventive overhaul every 2 years costs €25,000 and opens a healthy gearbox. A monthly vibration route (€3,000 a year) plus quarterly oil analysis (€400 a year) spots bearing damage months early; a bearing swap in a planned weekend costs €4,000. Choice: condition-based. Conveyor motors on the packing line: €400, spares in stock, 15 minutes to swap. Choice: run to failure.',
+        text: 'A stamping plant has two candidates. Bottleneck press main gearbox: €60,000 new, 10 weeks delivery. Run to failure would stop the plant for weeks: unacceptable.\n\nA preventive overhaul every 2 years costs €25,000 and opens a healthy gearbox. A monthly vibration route (€3,000 a year) plus quarterly oil analysis (€400 a year) spots bearing damage months early; a bearing swap in a planned weekend costs €4,000. Choice: condition-based.\n\nConveyor motors on the packing line: €400, spares in stock, 15 minutes to swap. Choice: run to failure.',
       },
       said: 'What engineers say: “That gearbox is on the bottleneck with ten weeks delivery. We’re not running that to failure, put it on the vibration route.”',
       recall: [
@@ -80,14 +80,14 @@ export default {
         },
       ],
       teach: [
-        'MTBF (mean time between failures) = total running time / number of failures. It measures reliability: how often it breaks. MTTR (mean time to repair) = total repair time / number of failures. It measures maintainability: how fast you get it back.',
+        'MTBF (mean time between failures) = total running time / number of failures. It measures reliability: how often it breaks.\n\nMTTR (mean time to repair) = total repair time / number of failures. It measures maintainability: how fast you get it back.',
         'MTTR covers everything from stop to restart: noticing, calling the technician, walking there, diagnosis, finding the part, the repair itself, testing and restarting. The actual wrench time is often the smallest piece; waiting for people and parts is the biggest. That is where the quick wins are.',
         'Availability from the two: MTBF / (MTBF + MTTR). With an MTBF of 40 hours and an MTTR of 2 hours, availability is 40 / 42 = 95.2%. You raise it by making breakdowns rarer (MTBF up) or shorter (MTTR down).',
-        'Always ask for the definitions. Does a 3-minute jam count as a failure, or only stops over 10 minutes? Is running time measured in production hours or calendar hours? Including micro-stops can turn an MTBF of 40 hours into one of 2. And MTBF is not a lifetime: an MTBF of 10,000 hours does not mean each part lasts 10,000 hours.',
+        'Always ask for the definitions. Does a 3-minute jam count as a failure, or only stops over 10 minutes? Is running time measured in production hours or calendar hours?\n\nIncluding micro-stops can turn an MTBF of 40 hours into one of 2. And MTBF is not a lifetime: an MTBF of 10,000 hours does not mean each part lasts 10,000 hours.',
       ],
       example: {
         kind: 'worked',
-        text: 'A filling machine, four weeks, two shifts, five days: 4 × 5 × 16 = 320 planned hours. The stop list shows 8 breakdowns over 10 minutes: 0.5, 1.5, 3, 0.75, 2, 0.25, 4 and 0.5 hours, total 12.5 hours. Running time 320 − 12.5 = 307.5 hours. MTBF = 307.5 / 8 = 38.4 hours. MTTR = 12.5 / 8 = 1.56 hours. Availability = 38.4 / (38.4 + 1.56) = 96.1%. The two longest stops, 3 and 4 hours, were both waiting for a spare part: 7 of the 12.5 hours, 56% of the downtime.',
+        text: 'A filling machine, four weeks, two shifts, five days: 4 × 5 × 16 = 320 planned hours. The stop list shows 8 breakdowns over 10 minutes: 0.5, 1.5, 3, 0.75, 2, 0.25, 4 and 0.5 hours, total 12.5 hours.\n\nRunning time 320 − 12.5 = 307.5 hours. MTBF = 307.5 / 8 = 38.4 hours. MTTR = 12.5 / 8 = 1.56 hours. Availability = 38.4 / (38.4 + 1.56) = 96.1%.\n\nThe two longest stops, 3 and 4 hours, were both waiting for a spare part: 7 of the 12.5 hours, 56% of the downtime.',
       },
       said: 'What engineers say: “The MTTR looks bad, but the repair itself is twenty minutes. The rest is waiting for the part from the stores on the other site.”',
       recall: [
@@ -149,13 +149,13 @@ export default {
       ],
       teach: [
         'The textbook picture is the bathtub curve: many failures at the start (infant mortality: assembly errors, bad parts), then a long flat period of random failures, then rising wear-out. The textbook suggests all equipment looks like this. It doesn’t.',
-        'Nowlan and Heap (United Airlines, 1978) found six patterns. Only about 11% of components showed wear-out with age. The other 89% did not: 68% failed early in life, after installation or overhaul, and most of the rest at random (constant chance, whatever their age). Later studies in navies and industry found a similar picture. What wears with age is what rubs, cuts or carries load: tyres, brake pads, cutting tools, belts, liners. Electronics, hydraulics and complex assemblies mostly fail at random.',
+        'Nowlan and Heap (United Airlines, 1978) found six patterns. Only about 11% of components showed wear-out with age. The other 89% did not: 68% failed early in life, after installation or overhaul, and most of the rest at random (constant chance, whatever their age).\n\nLater studies in navies and industry found a similar picture. What wears with age is what rubs, cuts or carries load: tyres, brake pads, cutting tools, belts, liners. Electronics, hydraulics and complex assemblies mostly fail at random.',
         'The consequence: replacing a randomly failing part on a schedule does not reduce failures. It can increase them, because every intervention risks infant mortality: a seal fitted wrongly, dirt in the hydraulics, a misaligned coupling.',
         'Engineers check the pattern with a Weibull analysis of failure history. Shape factor β below 1: early failures; fix installation and quality. β around 1: random; use condition monitoring or design it out. β above 1, and especially above 3: wear-out; time-based replacement makes sense, with the interval taken from the data.',
       ],
       example: {
         kind: 'worked',
-        text: 'A packaging plant replaces the bearings in all 24 servo axes every 12 months: 24 × €750 = €18,000 a year. Before the programme there were 6 bearing failures a year. After it there were 9, and 5 of those happened within two weeks after a replacement. A Weibull fit on the old data gives β = 1.0: random failure, not wear-out. The plant stops the yearly swap, puts the 6 critical axes on a monthly vibration check, and trains the technicians on bearing fitting. Next year: 3 failures.',
+        text: 'A packaging plant replaces the bearings in all 24 servo axes every 12 months: 24 × €750 = €18,000 a year. Before the programme there were 6 bearing failures a year. After it there were 9, and 5 of those happened within two weeks after a replacement.\n\nA Weibull fit on the old data gives β = 1.0: random failure, not wear-out. The plant stops the yearly swap, puts the 6 critical axes on a monthly vibration check, and trains the technicians on bearing fitting. Next year: 3 failures.',
       },
       said: 'What engineers say: “Half of our breakdowns come in the week after the preventive service. We’re not preventing failures, we’re causing them.”',
       recall: [
@@ -216,14 +216,14 @@ export default {
         },
       ],
       teach: [
-        'The P-F interval is the key idea. P is the point where a developing failure becomes detectable; F is the functional failure. For a bearing, vibration can see damage months before F; heat and noise come only days or hours before. Your inspection interval must be shorter than the P-F interval, usually half of it, or you will miss it.',
-        'Vibration: a sensor on the bearing housings. It finds imbalance, misalignment, looseness, bearing damage and gear wear, each at its own frequency. Levels are in mm/s RMS (the average vibration speed). For a medium-sized motor on a rigid base, ISO 10816-3 (now ISO 20816-3) puts about 2.8 mm/s as a warning and 4.5 mm/s as a call for action. The trend matters more than one reading.',
+        'The P-F interval is the key idea. P is the point where a developing failure becomes detectable; F is the functional failure.\n\nFor a bearing, vibration can see damage months before F; heat and noise come only days or hours before. Your inspection interval must be shorter than the P-F interval, usually half of it, or you will miss it.',
+        'Vibration: a sensor on the bearing housings. It finds imbalance, misalignment, looseness, bearing damage and gear wear, each at its own frequency. Levels are in mm/s RMS (the average vibration speed).\n\nFor a medium-sized motor on a rigid base, ISO 10816-3 (now ISO 20816-3) puts about 2.8 mm/s as a warning and 4.5 mm/s as a call for action. The trend matters more than one reading.',
         'Thermography: an infrared camera shows hot spots: loose electrical connections, overloaded cables, unbalanced phases, blocked coolers. Electrical cabinets must be scanned under load, at least 40%. A connection more than 15 °C hotter than the same connection on the other phases needs action soon.',
-        'Oil analysis: a sample from a gearbox or hydraulic unit shows wear metals (iron, copper), particles, water and viscosity, often before vibration sees a slow gearbox wearing. Ultrasound: listening at 20 to 100 kHz finds compressed-air leaks, under-greased bearings and partial discharge (small sparks inside insulation) in medium-voltage switchgear. One 3 mm air leak at 7 bar wastes about 4 kW of compressor power: €2,000 to €5,000 a year if it leaks around the clock.',
+        'Oil analysis: a sample from a gearbox or hydraulic unit shows wear metals (iron, copper), particles, water and viscosity, often before vibration sees a slow gearbox wearing.\n\nUltrasound: listening at 20 to 100 kHz finds compressed-air leaks, under-greased bearings and partial discharge (small sparks inside insulation) in medium-voltage switchgear. One 3 mm air leak at 7 bar wastes about 4 kW of compressor power: €2,000 to €5,000 a year if it leaks around the clock.',
       ],
       example: {
         kind: 'worked',
-        text: 'Monthly vibration route, cooling-water pump on the bottleneck: January 1.8 mm/s, February 1.9, March 2.6, April 3.4, with a bearing defect frequency showing in the spectrum (the vibration split out by frequency). The trend rises about 0.8 mm/s per month, so it will pass 4.5 in about six weeks. The planner orders a bearing (€350, one week delivery) and books four hours in the planned stop in mid-May. Compare a breakdown: the pump seizes on a Friday night and the line stands for most of the weekend.',
+        text: 'Monthly vibration route, cooling-water pump on the bottleneck: January 1.8 mm/s, February 1.9, March 2.6, April 3.4, with a bearing defect frequency showing in the spectrum (the vibration split out by frequency). The trend rises about 0.8 mm/s per month, so it will pass 4.5 in about six weeks.\n\nThe planner orders a bearing (€350, one week delivery) and books four hours in the planned stop in mid-May. Compare a breakdown: the pump seizes on a Friday night and the line stands for most of the weekend.',
       },
       said: 'What engineers say: “It went from 1.9 to 3.4 in two months and you can see the outer race frequency. Order the bearing, we swap it in the May stop.”',
       recall: [
@@ -283,14 +283,14 @@ export default {
         },
       ],
       teach: [
-        'TPM (Total Productive Maintenance) came from Japan in the 1970s (Seiichi Nakajima, Japan Institute of Plant Maintenance). The goal: zero breakdowns, zero defects, zero accidents, by making equipment care everyone’s job and not only maintenance’s. Progress is measured with OEE. Most plants use eight pillars, including autonomous maintenance, planned maintenance, focused improvement, quality maintenance and training.',
+        'TPM (Total Productive Maintenance) came from Japan in the 1970s (Seiichi Nakajima, Japan Institute of Plant Maintenance). The goal: zero breakdowns, zero defects, zero accidents, by making equipment care everyone’s job and not only maintenance’s.\n\nProgress is measured with OEE. Most plants use eight pillars, including autonomous maintenance, planned maintenance, focused improvement, quality maintenance and training.',
         'Autonomous maintenance (AM): operators own basic care: clean, inspect, lubricate, tighten (CILT), and spot and tag abnormalities. Cleaning is inspection: on a clean machine you see the oil leak, the loose bolt, the crack. It starts with an initial clean where every abnormality gets a tag.',
         'Planned maintenance: with routine work moved to operators, technicians spend time on skilled work: condition monitoring, root cause of repeat failures, improving MTBF. A typical split: operators do 5 to 10 minutes of checks per shift; technicians fix what they find.',
-        'The people side decides it. Operators hear “extra work, not my job”. Technicians fear losing their role or don’t trust operators with their machine. It works when technicians train operators, checks are visual (match marks on bolts, min/max on oil glasses, green zones on gauges), and tags are fixed fast. When tags hang for months, AM dies.',
+        'The people side decides it. Operators hear “extra work, not my job”. Technicians fear losing their role or don’t trust operators with their machine.\n\nIt works when technicians train operators, checks are visual (match marks on bolts, min/max on oil glasses, green zones on gauges), and tags are fixed fast. When tags hang for months, AM dies.',
       ],
       example: {
         kind: 'worked',
-        text: 'Pilot on one injection moulding machine. The initial clean takes one shift and the team hangs 37 tags: 12 oil leaks, 9 loose bolts, 6 missing guards, 10 other. Operators fix 21 themselves in the first week; 16 go to maintenance, with a promise to close them within 4 weeks. A daily CILT checklist of 8 points takes 7 minutes at shift start. After three months, breakdowns drop from 9 to 4 a month, and hydraulic oil top-ups fall from 60 litres to 15 litres a month.',
+        text: 'Pilot on one injection moulding machine. The initial clean takes one shift and the team hangs 37 tags: 12 oil leaks, 9 loose bolts, 6 missing guards, 10 other. Operators fix 21 themselves in the first week; 16 go to maintenance, with a promise to close them within 4 weeks.\n\nA daily CILT checklist of 8 points takes 7 minutes at shift start. After three months, breakdowns drop from 9 to 4 a month, and hydraulic oil top-ups fall from 60 litres to 15 litres a month.',
       },
       said: 'What engineers say: “If the operators clean it every day, they see the leak in week one. We find it when the pump runs dry.”',
       recall: [
@@ -352,12 +352,12 @@ export default {
       teach: [
         'A CMMS (computerised maintenance management system) is the maintenance database: SAP PM, Maximo, and in the Netherlands often Ultimo. It holds the asset register (every machine in a hierarchy), work orders, preventive plans, spare parts and history. The data is only as good as what technicians type in.',
         'Work order flow: notification, approved, planned (tasks, parts, hours), scheduled (date), executed, completed with feedback (what was found, what was done, time spent), closed. Breakdown orders are often created after the fact. Feedback like “fixed” or “repaired” makes root cause analysis impossible.',
-        'Criticality ranking scores each asset on safety, quality, output impact (is it the bottleneck?), cost and redundancy, usually into A, B and C. A gets condition monitoring and critical spares; C runs to failure. Stock a €12,000 gearbox with 14 weeks delivery if it sits on the bottleneck. Many stores hold millions in parts, with a third not moved in years.',
-        'Backlog: approved work not yet done, in hours. Divide by weekly crew hours to get weeks. Two to four weeks is healthy. Under two: you may not be finding the work. Over six: work is piling up and preventive jobs are slipping. Pair it with PM (preventive maintenance) compliance, the share of preventive jobs done on time; aim for 90% or more.',
+        'Criticality ranking scores each asset on safety, quality, output impact (is it the bottleneck?), cost and redundancy, usually into A, B and C. A gets condition monitoring and critical spares; C runs to failure.\n\nStock a €12,000 gearbox with 14 weeks delivery if it sits on the bottleneck. Many stores hold millions in parts, with a third not moved in years.',
+        'Backlog: approved work not yet done, in hours. Divide by weekly crew hours to get weeks.\n\nTwo to four weeks is healthy. Under two: you may not be finding the work. Over six: work is piling up and preventive jobs are slipping.\n\nPair it with PM (preventive maintenance) compliance, the share of preventive jobs done on time; aim for 90% or more.',
       ],
       example: {
         kind: 'worked',
-        text: 'CMMS report for a bakery, last quarter. Six technicians × 40 hours = 240 hours a week. Backlog 1,150 hours, so 1,150 / 240 = 4.8 weeks. PM compliance 68%. Breakdown work 42% of all hours. One asset, the oven conveyor, takes 31% of breakdown hours. Reading: the team is firefighting, PMs slip because breakdowns eat the hours, and the backlog grows. Two actions: a root cause team on the oven conveyor, and four protected PM hours per technician per week.',
+        text: 'CMMS report for a bakery, last quarter. Six technicians × 40 hours = 240 hours a week. Backlog 1,150 hours, so 1,150 / 240 = 4.8 weeks. PM compliance 68%.\n\nBreakdown work 42% of all hours. One asset, the oven conveyor, takes 31% of breakdown hours.\n\nReading: the team is firefighting, PMs slip because breakdowns eat the hours, and the backlog grows. Two actions: a root cause team on the oven conveyor, and four protected PM hours per technician per week.',
       },
       said: 'What engineers say: “Our backlog is eight weeks and PM compliance is sixty percent. We’re not maintaining, we’re just repairing.”',
       recall: [

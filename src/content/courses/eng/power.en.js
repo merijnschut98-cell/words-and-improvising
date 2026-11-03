@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'Power is the rate of using energy, in watts or kilowatts. Energy is power × time, in kWh. A motor drawing 15 kW for 8 hours uses 120 kWh. The energy bill charges kWh; the grid connection and peak charges are about kW. Mixing the two up is the most common error in energy discussions.',
+        'Power is the rate of using energy, in watts or kilowatts. Energy is power × time, in kWh. A motor drawing 15 kW for 8 hours uses 120 kWh.\n\nThe energy bill charges kWh; the grid connection and peak charges are about kW. Mixing the two up is the most common error in energy discussions.',
         'Efficiency is useful output divided by input. A motor at 93% turns 93% of its electrical input into shaft power; the rest becomes heat. Losses multiply along a chain: motor 93%, gearbox 95%, pump 70% gives 0.93 × 0.95 × 0.70 = 62% from the plug to the water.',
         'Industry runs on three-phase alternating current: in Europe 400 V between phases at 50 Hz (230 V between a phase and neutral). The electrical power of a three-phase load is √3 × voltage × current × power factor. A motor drawing 30 A at 400 V with a power factor of 0.85 takes about 17.7 kW.',
-        'Power factor (cos φ) says how much of the current does useful work. Lightly loaded motors have a low power factor and lower efficiency. A motor nameplate gives the rated power, which is the mechanical output at the shaft, not the electrical input, plus voltage, current, speed, power factor and efficiency class. When someone quotes “kW”, ask: shaft output or electrical input?',
+        'Power factor (cos φ) says how much of the current does useful work. Lightly loaded motors have a low power factor and lower efficiency.\n\nA motor nameplate gives the rated power, which is the mechanical output at the shaft, not the electrical input, plus voltage, current, speed, power factor and efficiency class. When someone quotes “kW”, ask: shaft output or electrical input?',
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling-water pump must deliver 11 kW of hydraulic power whenever it runs, 6,000 hours a year. The pump is 70% efficient and the motor 92%. Electrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy. A pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
+        text: 'A cooling-water pump must deliver 11 kW of hydraulic power whenever it runs, 6,000 hours a year. The pump is 70% efficient and the motor 92%.\n\nElectrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy.\n\nA pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
       },
       said: 'What engineers say: “It’s a fifteen kW motor, but it’s only drawing nine. That’s nine kW, not fifteen, and it’s running at a lousy power factor.”',
       recall: [
@@ -83,13 +83,13 @@ export default {
       ],
       teach: [
         'The three-phase induction motor (also called asynchronous or squirrel-cage motor) drives most pumps, fans, conveyors and compressors: robust, cheap, little maintenance. The stator windings make a rotating magnetic field; the rotor is dragged along with it. Its speed is set by the grid frequency and the number of poles.',
-        'Synchronous speed = 120 × frequency / number of poles. At 50 Hz: 2 poles give 3,000 rpm, 4 poles 1,500, 6 poles 1,000. The rotor always runs a little slower: the slip, typically 1 to 5%. A 4-pole motor turns at about 1,450 to 1,480 rpm, and more load means a little more slip.',
+        'Synchronous speed = 120 × frequency / number of poles. At 50 Hz: 2 poles give 3,000 rpm, 4 poles 1,500, 6 poles 1,000.\n\nThe rotor always runs a little slower: the slip, typically 1 to 5%. A 4-pole motor turns at about 1,450 to 1,480 rpm, and more load means a little more slip.',
         'Torque and power are linked by speed: power (kW) = torque (Nm) × speed (rpm) / 9,550. A 15 kW motor at 1,460 rpm delivers about 98 Nm. A gearbox lowers the speed and raises the torque by the same ratio, minus its losses.',
-        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1). EU Regulation 2019/1781 requires at least IE3 for most new motors from 0.75 to 1,000 kW (since July 2021), and IE4 for most 75 to 200 kW motors (since July 2023). Most motor failures are bearings and winding insulation. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life. Ask about motor temperature, vibration and how often it starts.',
+        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1). EU Regulation 2019/1781 requires at least IE3 for most new motors from 0.75 to 1,000 kW (since July 2021), and IE4 for most 75 to 200 kW motors (since July 2023).\n\nMost motor failures are bearings and winding insulation. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life. Ask about motor temperature, vibration and how often it starts.',
       ],
       example: {
         kind: 'worked',
-        text: 'A fan motor: 4 poles, 50 Hz, 30 kW, nameplate 1,470 rpm. Slip = (1,500 − 1,470) / 1,500 = 2%. Rated torque = 30 × 9,550 / 1,470 = 195 Nm. It is an old IE1 motor at about 90% efficiency, running 6,000 hours a year at 25 kW shaft output. Electrical input: 25 / 0.90 = 27.8 kW. A new IE3 motor at about 93.6%: 25 / 0.936 = 26.7 kW. Saving 1.1 kW × 6,000 h = about 6,400 kWh, €960 a year at €0.15. Worth doing when the old motor fails; rarely worth replacing a healthy one for that alone.',
+        text: 'A fan motor: 4 poles, 50 Hz, 30 kW, nameplate 1,470 rpm. Slip = (1,500 − 1,470) / 1,500 = 2%. Rated torque = 30 × 9,550 / 1,470 = 195 Nm.\n\nIt is an old IE1 motor at about 90% efficiency, running 6,000 hours a year at 25 kW shaft output. Electrical input: 25 / 0.90 = 27.8 kW. A new IE3 motor at about 93.6%: 25 / 0.936 = 26.7 kW.\n\nSaving 1.1 kW × 6,000 h = about 6,400 kWh, €960 a year at €0.15. Worth doing when the old motor fails; rarely worth replacing a healthy one for that alone.',
       },
       said: 'What engineers say: “That’s a four-pole, so 1,500 synchronous, 1,470 on the plate. If it’s turning 1,420 it’s probably overloaded.”',
       recall: [
@@ -152,13 +152,13 @@ export default {
       ],
       teach: [
         'Direct on line (DOL): switch the motor straight onto the grid with a contactor. Simple and cheap, but the starting current is 6 to 8 times the rated current, and the full torque hits the mechanics as a jolt. Fine for small motors; for big ones it can dip the plant voltage and wear belts, couplings and gearboxes.',
-        'A soft starter ramps up the voltage over a few seconds, cutting the inrush current and the jolt. It does not change the running speed. A star-delta starter is the older, cheaper way to cut the starting current, for motors that start without much load. Soft starters also give less starting torque, so a machine that must start under heavy load may stall.',
-        'A variable frequency drive (VFD, also called inverter or frequency converter) changes the frequency and so the speed, smoothly. It also starts the motor gently, with full torque available from low speed. Uses: matching pump and fan speed to demand, conveyor speed, process control. Side effects: harmonics on the grid, electrical noise, and sometimes bearing damage; proper cabling and filters handle these.',
+        'A soft starter ramps up the voltage over a few seconds, cutting the inrush current and the jolt. It does not change the running speed.\n\nA star-delta starter is the older, cheaper way to cut the starting current, for motors that start without much load. Soft starters also give less starting torque, so a machine that must start under heavy load may stall.',
+        'A variable frequency drive (VFD, also called inverter or frequency converter) changes the frequency and so the speed, smoothly. It also starts the motor gently, with full torque available from low speed.\n\nUses: matching pump and fan speed to demand, conveyor speed, process control. Side effects: harmonics on the grid, electrical noise, and sometimes bearing damage; proper cabling and filters handle these.',
         'Servo motors and drives control position and speed precisely, with an encoder feeding back the actual position: robots, pick-and-place, cut-to-length, packaging machines. They are about motion accuracy, not energy saving. Ask what the drive must do: just start, run at variable speed, or position to a tenth of a millimetre.',
       ],
       example: {
         kind: 'worked',
-        text: 'A 90 kW crusher motor starts direct on line. Its rated current is about 160 A at 400 V, so the start draws roughly 1,000 to 1,300 A for a few seconds. Each start dips the voltage in the plant: lights flicker and two VFDs elsewhere trip on undervoltage. A soft starter would cut the inrush to about 3 to 4 times rated, but the crusher often has to start full of material, and a soft starter’s reduced torque may stall it. A VFD limits the current to about rated while giving full torque from standstill. The more expensive device is the one that fits here.',
+        text: 'A 90 kW crusher motor starts direct on line. Its rated current is about 160 A at 400 V, so the start draws roughly 1,000 to 1,300 A for a few seconds. Each start dips the voltage in the plant: lights flicker and two VFDs elsewhere trip on undervoltage.\n\nA soft starter would cut the inrush to about 3 to 4 times rated, but the crusher often has to start full of material, and a soft starter’s reduced torque may stall it. A VFD limits the current to about rated while giving full torque from standstill. The more expensive device is the one that fits here.',
       },
       said: 'What engineers say: “Every time that crusher starts DOL the whole hall dips. Soft starter won’t pull it loaded; it needs a drive.”',
       recall: [
@@ -218,14 +218,14 @@ export default {
         },
       ],
       teach: [
-        'Compressed air is clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant. Most of a compressor’s electricity becomes heat; only around 10% does useful work at the point of use. Recovering the compressor heat wins part of it back. It is not harmless: never blow air at skin or clothes.',
-        'Leaks are the big loss. In plants without a leak programme, often 20 to 30% of the compressor output escapes through couplings, hoses and valves. Listen at a weekend: if compressors still run with production stopped, that is mostly leaks. Ultrasonic detectors find them; tagging and fixing them is a classic quick win.',
+        'Compressed air is clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant.\n\nMost of a compressor’s electricity becomes heat; only around 10% does useful work at the point of use. Recovering the compressor heat wins part of it back. It is not harmless: never blow air at skin or clothes.',
+        'Leaks are the big loss. In plants without a leak programme, often 20 to 30% of the compressor output escapes through couplings, hoses and valves.\n\nListen at a weekend: if compressors still run with production stopped, that is mostly leaks. Ultrasonic detectors find them; tagging and fixing them is a classic quick win.',
         'Pressure costs energy: each extra bar of generated pressure costs roughly 7% more compressor energy, and it makes every leak bigger. Many plants run at 7 or 8 bar because one machine needs it. Solve that machine locally (a booster, a bigger supply line, a local tank) and lower the whole network.',
-        'Air must be clean and dry: water and oil damage valves and cylinders. A dryer and filters sit after the compressor; an FRL unit (filter, regulator, lubricator) sits before each machine. Inappropriate use is the third loss: open blow-offs, cooling with air, vacuum made with air, where an electric fan or pump would use a fraction of the energy.',
+        'Air must be clean and dry: water and oil damage valves and cylinders. A dryer and filters sit after the compressor; an FRL unit (filter, regulator, lubricator) sits before each machine.\n\nInappropriate use is the third loss: open blow-offs, cooling with air, vacuum made with air, where an electric fan or pump would use a fraction of the energy.',
       ],
       example: {
         kind: 'worked',
-        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute. Leaks run all year. Taking 75 kW as its loaded power draw: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the unloaded running power. A leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
+        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute.\n\nLeaks run all year. Taking 75 kW as its loaded power draw: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the unloaded running power.\n\nA leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
       },
       said: 'What engineers say: “Saturday, nothing running, and the compressor still loads forty percent of the time. That’s our leak bill.”',
       recall: [
@@ -285,14 +285,14 @@ export default {
         },
       ],
       teach: [
-        'Hydraulics uses oil under high pressure, typically 100 to 350 bar, to make large forces in a small space: presses, injection moulding machines, excavators, lifting tables. Force = pressure × piston area. 1 bar is 0.1 N/mm², so 200 bar on a 100 mm piston (7,854 mm²) gives about 157 kN, the weight of 16 tonnes.',
-        'A hydraulic pump (gear, vane or piston) makes the flow; the load makes the pressure. Valves steer the oil: directional valves choose where it goes, pressure relief valves cap the pressure, flow control valves set the speed. Cylinder speed = flow / piston area. Accumulators store oil under pressure for fast movements.',
+        'Hydraulics uses oil under high pressure, typically 100 to 350 bar, to make large forces in a small space: presses, injection moulding machines, excavators, lifting tables.\n\nForce = pressure × piston area. 1 bar is 0.1 N/mm², so 200 bar on a 100 mm piston (7,854 mm²) gives about 157 kN, the weight of 16 tonnes.',
+        'A hydraulic pump (gear, vane or piston) makes the flow; the load makes the pressure. Valves steer the oil: directional valves choose where it goes, pressure relief valves cap the pressure, flow control valves set the speed.\n\nCylinder speed = flow / piston area. Accumulators store oil under pressure for fast movements.',
         'Contamination is the main enemy: most hydraulic failures trace back to dirt, water or air in the oil. Cleanliness is coded to ISO 4406 with three numbers such as 18/16/13; lower is cleaner. Good practice: filters chosen for a target code, sealed breathers, oil analysis, and never topping up from an open drum.',
-        'Heat is the second enemy. Every pressure drop across a valve turns into heat; oil kept above about 60 °C ages fast and seals harden. Leaks are a safety issue: a pinhole jet at high pressure can inject oil under the skin, so never feel for leaks by hand, and treat any injection as a medical emergency. Accumulators keep pressure after the pump stops, so making a machine safe includes bleeding them off.',
+        'Heat is the second enemy. Every pressure drop across a valve turns into heat; oil kept above about 60 °C ages fast and seals harden.\n\nLeaks are a safety issue: a pinhole jet at high pressure can inject oil under the skin, so never feel for leaks by hand, and treat any injection as a medical emergency. Accumulators keep pressure after the pump stops, so making a machine safe includes bleeding them off.',
       ],
       example: {
         kind: 'worked',
-        text: 'A press cylinder of 125 mm bore should extend fast, fed by a pump of 60 litres per minute. Piston area: 3.14 / 4 × 125² = 12,272 mm² = 0.01227 m². Flow: 60 litres per minute = 0.001 m³ per second. Expected speed: 0.001 / 0.01227 = 0.081 m/s, about 81 mm/s. Measured: 60 mm/s, and the oil runs at 70 °C. So about a quarter of the flow is not reaching the cylinder. Likely causes: a worn pump leaking internally, or a relief valve that opens too early. Both turn the lost flow into heat, which explains the hot oil.',
+        text: 'A press cylinder of 125 mm bore should extend fast, fed by a pump of 60 litres per minute. Piston area: 3.14 / 4 × 125² = 12,272 mm² = 0.01227 m². Flow: 60 litres per minute = 0.001 m³ per second.\n\nExpected speed: 0.001 / 0.01227 = 0.081 m/s, about 81 mm/s. Measured: 60 mm/s, and the oil runs at 70 °C. So about a quarter of the flow is not reaching the cylinder.\n\nLikely causes: a worn pump leaking internally, or a relief valve that opens too early. Both turn the lost flow into heat, which explains the hot oil.',
       },
       said: 'What engineers say: “The cylinder’s slow and the oil’s hot. That flow is going somewhere: worn pump or a relief valve bypassing.”',
       recall: [
@@ -353,14 +353,14 @@ export default {
         },
       ],
       teach: [
-        'Start with the load profile: electricity use per 15 minutes over a few weeks, from the utility’s smart meter or the plant’s own meters. Three things stand out: the base load when nothing is produced, the peaks, and how use moves with output. The base load is often surprisingly high, and part of it is avoidable: compressors feeding leaks, extraction fans, heaters and idling machines.',
-        'Energy (kWh) and peak power (kW) are paid differently. In the Netherlands, larger connections pay the grid operator for the contracted transport capacity in kW and for the monthly peak. With grid congestion, extra kW may simply not be available for years. Staggered start-ups, a battery or switching big loads in turn can keep a plant within its contracted capacity.',
+        'Start with the load profile: electricity use per 15 minutes over a few weeks, from the utility’s smart meter or the plant’s own meters. Three things stand out: the base load when nothing is produced, the peaks, and how use moves with output.\n\nThe base load is often surprisingly high, and part of it is avoidable: compressors feeding leaks, extraction fans, heaters and idling machines.',
+        'Energy (kWh) and peak power (kW) are paid differently. In the Netherlands, larger connections pay the grid operator for the contracted transport capacity in kW and for the monthly peak.\n\nWith grid congestion, extra kW may simply not be available for years. Staggered start-ups, a battery or switching big loads in turn can keep a plant within its contracted capacity.',
         'Measure energy per product: kWh per tonne, per part or per m³. It turns energy from overhead into a process number that teams can steer. Compare shifts, products and lines; the spread between the best and worst runs usually shows the first savings.',
         'The usual order: switch off what isn’t needed (idling, weekends), fix leaks and losses (compressed air, steam), turn down what runs too high (pressure, temperature, speed), recover heat, and only then buy new equipment. Electrifying heat with heat pumps or electric boilers is the big transition topic, but it adds kW the grid may not have.',
       ],
       example: {
         kind: 'worked',
-        text: 'A plant draws 1,200 kW in production, two shifts five days a week: 80 hours. The other 88 hours of the week it draws 400 kW with nothing produced. Weekly: 1,200 × 80 = 96,000 kWh in production hours and 400 × 88 = 35,200 kWh with no production, so 27% of all energy is used while nothing is made. A walk-round at night finds compressors, extraction and two ovens on standby. If half of that 400 kW can be switched off: 200 × 88 × 50 weeks = 880,000 kWh, about €132,000 a year at €0.15, before any investment.',
+        text: 'A plant draws 1,200 kW in production, two shifts five days a week: 80 hours. The other 88 hours of the week it draws 400 kW with nothing produced. Weekly: 1,200 × 80 = 96,000 kWh in production hours and 400 × 88 = 35,200 kWh with no production, so 27% of all energy is used while nothing is made.\n\nA walk-round at night finds compressors, extraction and two ovens on standby. If half of that 400 kW can be switched off: 200 × 88 × 50 weeks = 880,000 kWh, about €132,000 a year at €0.15, before any investment.',
       },
       said: 'What engineers say: “Before we talk about a heat pump, look at Sunday. Four hundred kW and nobody in the building.”',
       recall: [

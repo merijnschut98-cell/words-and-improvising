@@ -13,14 +13,14 @@ export default {
         },
       ],
       teach: [
-        'A circuit breaker (vermogensschakelaar) can switch normal load and interrupt short-circuit currents, in MS often 10 to 20 kA or more. A protection relay tells it to open when it sees a fault. Breakers sit in substations at the start of every MS feeder. Modern MS breakers interrupt the arc in a vacuum bottle.',
+        'A circuit breaker (vermogensschakelaar) can switch normal load and interrupt short-circuit currents, in MS often 10 to 20 kA or more. A protection relay tells it to open when it sees a fault.\n\nBreakers sit in substations at the start of every MS feeder. Modern MS breakers interrupt the arc in a vacuum bottle.',
         'A load-break switch (lastscheider) can switch normal load current on and off, and close onto a fault, but it cannot interrupt a short circuit. That is what you find in netstations for the ring cables: operators use them to switch sections in and out of the ring.',
-        'A disconnector (scheider) may only be operated without current. Its job is to create a safe, reliable gap so people can work behind it. An earthing switch connects a dead section to earth. A fuse (zekering) interrupts a fault by melting, once; then it must be replaced. In a netstation, the transformer is often protected by MS fuses combined with a load-break switch.',
+        'A disconnector (scheider) may only be operated without current. Its job is to create a safe, reliable gap so people can work behind it. An earthing switch connects a dead section to earth.\n\nA fuse (zekering) interrupts a fault by melting, once; then it must be replaced. In a netstation, the transformer is often protected by MS fuses combined with a load-break switch.',
         'The key question for any device: what can it make and what can it break? Operating a disconnector under load, or a load-break switch onto a fault it cannot handle, can create an arc that injures the operator. Knowing what each device can do is basic safety, not trivia.',
       ],
       example: {
         kind: 'worked',
-        text: 'A 10 kV feeder in a substation is protected by a breaker rated 20 kA. The ring passes netstation 12, which has two load-break switches for the ring cables and a fuse-switch for its 400 kVA transformer. A digger hits the ring cable: the relay at the substation sees 8 kA and opens the breaker in about 0.3 s. The load-break switches in netstation 12 could not have done that. Once the feeder is dead, a technician opens the load-break switches around the damaged section to isolate it, and the breaker is switched back on.',
+        text: 'A 10 kV feeder in a substation is protected by a breaker rated 20 kA. The ring passes netstation 12, which has two load-break switches for the ring cables and a fuse-switch for its 400 kVA transformer. A digger hits the ring cable: the relay at the substation sees 8 kA and opens the breaker in about 0.3 s.\n\nThe load-break switches in netstation 12 could not have done that. Once the feeder is dead, a technician opens the load-break switches around the damaged section to isolate it, and the breaker is switched back on.',
       },
       said: 'What engineers say: “You can’t pull that under load, it’s a disconnector. Open the switch first.”',
       recall: [
@@ -80,14 +80,14 @@ export default {
         },
       ],
       teach: [
-        'In a substation, MS switchgear is a row of cabinets (velden), one per feeder, each with a breaker, measurement transformers and a relay. Older air-insulated switchgear (AIS) is large: air between the parts insulates them. Gas-insulated switchgear (GIS) puts the live parts in a sealed tank of SF6, which makes it much more compact.',
-        'In a netstation, the MS part is usually a ring main unit (RMU): a compact unit with two cable fields for the ring and one transformer field. Many RMUs from recent decades are SF6-insulated. Older types, such as the Magnefix, are still very common in Dutch netstations. For some older types, grid operators have extra rules on how to operate them safely.',
+        'In a substation, MS switchgear is a row of cabinets (velden), one per feeder, each with a breaker, measurement transformers and a relay.\n\nOlder air-insulated switchgear (AIS) is large: air between the parts insulates them. Gas-insulated switchgear (GIS) puts the live parts in a sealed tank of SF6, which makes it much more compact.',
+        'In a netstation, the MS part is usually a ring main unit (RMU): a compact unit with two cable fields for the ring and one transformer field. Many RMUs from recent decades are SF6-insulated.\n\nOlder types, such as the Magnefix, are still very common in Dutch netstations. For some older types, grid operators have extra rules on how to operate them safely.',
         'SF6 insulates and quenches arcs extremely well, but it is a very strong greenhouse gas: about 23,500 times CO2. Under the EU F-gas rules, new MS switchgear up to 24 kV may no longer use F-gases such as SF6 from 2026, and up to 52 kV from 2030. Alternatives use vacuum to interrupt the arc and dry air or solid insulation.',
         'Switchgear choices are long-term: an installation stays 30 to 50 years. That makes them a big topic in standardisation, purchasing and safety. When grid people talk about “the installation”, ask what type it is; the answer tells you how it is operated, maintained and replaced.',
       ],
       example: {
         kind: 'worked',
-        text: 'A grid operator has 20,000 SF6 RMUs, each with about 1.5 kg of gas: 30 tonnes of SF6. If 0.1% leaks per year, that is 30 kg, which equals about 30 × 23,500 = 705,000 kg, roughly 700 tonnes of CO2 equivalent a year. From 2026, new RMUs must be SF6-free. The operator updates its standard netstation design to a vacuum and dry-air RMU, retrains technicians on the new operating steps, and keeps a plan for safely collecting SF6 from units it replaces.',
+        text: 'A grid operator has 20,000 SF6 RMUs, each with about 1.5 kg of gas: 30 tonnes of SF6. If 0.1% leaks per year, that is 30 kg, which equals about 30 × 23,500 = 705,000 kg, roughly 700 tonnes of CO2 equivalent a year.\n\nFrom 2026, new RMUs must be SF6-free. The operator updates its standard netstation design to a vacuum and dry-air RMU, retrains technicians on the new operating steps, and keeps a plan for safely collecting SF6 from units it replaces.',
       },
       said: 'What engineers say: “From now on it’s SF6-free for new stations. Same footprint, different operating steps, so we retrain everyone.”',
       recall: [
@@ -147,14 +147,14 @@ export default {
         },
       ],
       teach: [
-        'A protection system has three parts. Measurement transformers scale the real values down: a current transformer (CT, stroomtransformator) of 400/1 A turns 400 A into 1 A; a voltage transformer (VT, spanningstransformator) turns 10 kV into 100 V. A relay compares these values with its settings. A breaker opens when the relay sends a trip signal.',
-        'Overcurrent protection trips when the current stays above a set value for a set time. Typically there are two stages: a lower setting with a delay for overload and distant faults, and a high setting that trips almost instantly for heavy short circuits close by. The setting must be above the highest normal load and below the lowest fault current.',
-        'Earth-fault protection looks at the current that leaks to earth, measured as the sum of the three phases, which should be zero when all is well. How large an earth fault current is depends on how the network’s star point is earthed, and that differs per network. Some networks need very sensitive or directional earth-fault relays.',
-        'Modern relays are digital: they also record events and fault currents, which helps after a trip. Settings are a managed engineering product. A wrong setting causes either unwanted trips or, worse, no trip at all. When the network changes, for example a new solar park, the settings must be checked.',
+        'A protection system has three parts.\n\nMeasurement transformers scale the real values down: a current transformer (CT, stroomtransformator) of 400/1 A turns 400 A into 1 A; a voltage transformer (VT, spanningstransformator) turns 10 kV into 100 V. A relay compares these values with its settings. A breaker opens when the relay sends a trip signal.',
+        'Overcurrent protection trips when the current stays above a set value for a set time.\n\nTypically there are two stages: a lower setting with a delay for overload and distant faults, and a high setting that trips almost instantly for heavy short circuits close by. The setting must be above the highest normal load and below the lowest fault current.',
+        'Earth-fault protection looks at the current that leaks to earth, measured as the sum of the three phases, which should be zero when all is well.\n\nHow large an earth fault current is depends on how the network’s star point is earthed, and that differs per network. Some networks need very sensitive or directional earth-fault relays.',
+        'Modern relays are digital: they also record events and fault currents, which helps after a trip. Settings are a managed engineering product.\n\nA wrong setting causes either unwanted trips or, worse, no trip at all. When the network changes, for example a new solar park, the settings must be checked.',
       ],
       example: {
         kind: 'worked',
-        text: 'A 10 kV feeder has a maximum load of 300 A and the smallest fault current at the far end is 2,000 A. The CT is 400/1 A. The engineer sets the first stage at 450 A, 1.5 times the maximum load, with 0.5 s delay: on the relay side that is 450 / 400 = 1.125 A. The second stage is set at 4,000 A, instantaneous. A fault at the far end (2,000 A) trips on stage one after 0.5 s; a fault near the substation (12,000 A) trips immediately on stage two.',
+        text: 'A 10 kV feeder has a maximum load of 300 A and the smallest fault current at the far end is 2,000 A. The CT is 400/1 A. The engineer sets the first stage at 450 A, 1.5 times the maximum load, with 0.5 s delay: on the relay side that is 450 / 400 = 1.125 A.\n\nThe second stage is set at 4,000 A, instantaneous. A fault at the far end (2,000 A) trips on stage one after 0.5 s; a fault near the substation (12,000 A) trips immediately on stage two.',
       },
       said: 'What engineers say: “Check the relay settings after that solar park connects. The fault currents on that feeder have changed.”',
       recall: [
@@ -216,13 +216,13 @@ export default {
       ],
       teach: [
         'Selectivity means that only the protection closest to the fault trips, so as few customers as possible lose power. A fault in a street cable should blow that cable’s fuse in the netstation, not the transformer fuse, and certainly not the feeder breaker in the substation.',
-        'Time grading is the most common method. The relay closest to the fault is set fastest; each relay upstream waits a bit longer, typically about 0.3 s more. That grading margin covers the breaker’s opening time and measuring tolerances. If the nearest device fails to clear the fault, the next one up still will, just later: that is the backup.',
+        'Time grading is the most common method. The relay closest to the fault is set fastest; each relay upstream waits a bit longer, typically about 0.3 s more.\n\nThat grading margin covers the breaker’s opening time and measuring tolerances. If the nearest device fails to clear the fault, the next one up still will, just later: that is the backup.',
         'Fuses are coordinated by size. For LS fuses of the same type, a rule of thumb is that the upstream fuse should be at least about 1.6 times the rating of the downstream one. Between a netstation’s MS fuse and its LS fuses, engineers check the curves to make sure the LS fuse goes first.',
         'Without selectivity, a small fault turns into a big outage: one bad street cable takes out a whole ring of 2,000 customers. Selectivity can also break when the network changes: a new feed point, a cable section moved to another ring, or larger fuses fitted “because they kept blowing”.',
       ],
       example: {
         kind: 'worked',
-        text: 'A netstation feeds six LS cables, each with a 250 A fuse. A technician replaces a fuse that keeps blowing on one cable with a 400 A one. Months later, a fault on that cable does not blow the 400 A fuse fast enough; the MS fuse of the transformer blows first. Result: all six cables, 180 homes, lose power instead of 30. The fix: back to 250 A on that cable, and find out why it kept blowing, probably an overloaded cable that needs splitting or reinforcing.',
+        text: 'A netstation feeds six LS cables, each with a 250 A fuse. A technician replaces a fuse that keeps blowing on one cable with a 400 A one. Months later, a fault on that cable does not blow the 400 A fuse fast enough; the MS fuse of the transformer blows first.\n\nResult: all six cables, 180 homes, lose power instead of 30. The fix: back to 250 A on that cable, and find out why it kept blowing, probably an overloaded cable that needs splitting or reinforcing.',
       },
       said: 'What engineers say: “Someone put a bigger fuse in and now it’s not selective. The trafo fuse goes first.”',
       recall: [
@@ -281,14 +281,14 @@ export default {
         },
       ],
       teach: [
-        'The five safety rules for working dead, in this order: 1. vrijschakelen, disconnect on all sides. 2. Vergrendelen, secure against switching back on, with a lock and a tag. 3. Spanningsloos meten, verify that it is dead with a tester. 4. Aarden en kortsluiten, earth and short-circuit. 5. Afschermen, shield nearby parts that are still live.',
-        'Each rule covers a real failure. Switching the wrong field. Someone switching back on. A back-feed from a generator, solar panels or another ring. Induced or residual voltage. A neighbouring live part within reach. Skipping one step because “it’s definitely off” is how serious accidents happen.',
-        'NEN 3140 sets the rules for operating LS installations, up to 1,000 V AC; NEN 3840 does the same above that, so for MS and HS. Both build on the European NEN-EN 50110, and grid operators work with sector rules based on them (BEI). Key roles: the installatieverantwoordelijke (IV), who controls the installation, and the werkverantwoordelijke (WV), who leads the work on site. A VP (vakbekwaam persoon) is a skilled person; a VOP (voldoende onderricht persoon) is an instructed person.',
-        'The employer appoints people to these roles in writing, for specific work: the aanwijzing. A skilled technician without that appointment may not work on the installation as a VP. Skill alone is not enough; the appointment matters. As a consultant you are a layperson in an installation: you go in only with a qualified person and you never touch anything.',
+        'The five safety rules for working dead, in this order: 1. vrijschakelen, disconnect on all sides.\n\n2. Vergrendelen, secure against switching back on, with a lock and a tag.\n\n3. Spanningsloos meten, verify that it is dead with a tester.\n\n4. Aarden en kortsluiten, earth and short-circuit.\n\n5. Afschermen, shield nearby parts that are still live.',
+        'Each rule covers a real failure. Switching the wrong field. Someone switching back on.\n\nA back-feed from a generator, solar panels or another ring. Induced or residual voltage. A neighbouring live part within reach.\n\nSkipping one step because “it’s definitely off” is how serious accidents happen.',
+        'NEN 3140 sets the rules for operating LS installations, up to 1,000 V AC; NEN 3840 does the same above that, so for MS and HS. Both build on the European NEN-EN 50110, and grid operators work with sector rules based on them (BEI).\n\nKey roles: the installatieverantwoordelijke (IV), who controls the installation, and the werkverantwoordelijke (WV), who leads the work on site. A VP (vakbekwaam persoon) is a skilled person; a VOP (voldoende onderricht persoon) is an instructed person.',
+        'The employer appoints people to these roles in writing, for specific work: the aanwijzing. A skilled technician without that appointment may not work on the installation as a VP. Skill alone is not enough; the appointment matters.\n\nAs a consultant you are a layperson in an installation: you go in only with a qualified person and you never touch anything.',
       ],
       example: {
         kind: 'worked',
-        text: 'Work on an MS cable between netstations 8 and 9. The control room and the IV prepare a switching plan. A technician opens the switches in both stations (rule 1), locks them and hangs tags (rule 2). At the work location, they test that all three cores are dead, after first checking the tester on a live source (rule 3). They close the earthing switches at both ends (rule 4) and cover nearby live parts in the netstation (rule 5). Only then does the WV release the cable for the jointing crew.',
+        text: 'Work on an MS cable between netstations 8 and 9. The control room and the IV prepare a switching plan. A technician opens the switches in both stations (rule 1), locks them and hangs tags (rule 2).\n\nAt the work location, they test that all three cores are dead, after first checking the tester on a live source (rule 3). They close the earthing switches at both ends (rule 4) and cover nearby live parts in the netstation (rule 5). Only then does the WV release the cable for the jointing crew.',
       },
       said: 'What engineers say: “It’s switched off, locked and earthed both sides. You can start, but measure first yourself.”',
       recall: [
@@ -348,14 +348,14 @@ export default {
         },
       ],
       teach: [
-        'Without automation, a technician drives to netstations, reads fault indicators and switches by hand: one to two hours of outage for most customers. With distribution automation, some netstations get remote-controlled switches and fault indicators that report to the control room. The operator sees where the fault is and switches remotely, in minutes.',
+        'Without automation, a technician drives to netstations, reads fault indicators and switches by hand: one to two hours of outage for most customers.\n\nWith distribution automation, some netstations get remote-controlled switches and fault indicators that report to the control room. The operator sees where the fault is and switches remotely, in minutes.',
         'Fault indicators (kortsluitverklikkers) light up or send a signal when fault current has passed them. The fault lies between the last indicator that saw current and the first that did not. That is how the faulty section is found quickly, with or without remote control.',
         'A self-healing ring goes one step further: the system locates the fault, opens the switches around it and closes the open point automatically, often within a minute. It needs reliable communication, good data on the network and well-tested logic, so it is introduced step by step.',
-        'Automating every netstation is too expensive. Operators choose a few key stations per ring, often two or three, where a remote switch splits the ring into sections. That is a business case: cost per station against fewer outage minutes and less driving. Netstation monitoring of load and voltage is often added at the same time.',
+        'Automating every netstation is too expensive. Operators choose a few key stations per ring, often two or three, where a remote switch splits the ring into sections.\n\nThat is a business case: cost per station against fewer outage minutes and less driving. Netstation monitoring of load and voltage is often added at the same time.',
       ],
       example: {
         kind: 'worked',
-        text: 'A ring feeds 1,200 customers. Without automation, all are out for 90 minutes: 1,200 × 90 = 108,000 customer minutes. With remote switches in two key netstations, the control room isolates the faulty section in 3 minutes: 1,000 customers are back after 3 minutes and 200 stay out for 90 minutes. That is 1,000 × 3 + 200 × 90 = 3,000 + 18,000 = 21,000 customer minutes, about 80% less, from two upgraded netstations.',
+        text: 'A ring feeds 1,200 customers. Without automation, all are out for 90 minutes: 1,200 × 90 = 108,000 customer minutes. With remote switches in two key netstations, the control room isolates the faulty section in 3 minutes: 1,000 customers are back after 3 minutes and 200 stay out for 90 minutes.\n\nThat is 1,000 × 3 + 200 × 90 = 3,000 + 18,000 = 21,000 customer minutes, about 80% less, from two upgraded netstations.',
       },
       said: 'What engineers say: “The verklikkers show it’s between 6 and 7. I’ve switched it out remotely, most of them are back.”',
       recall: [

@@ -13,16 +13,16 @@ export default {
         },
       ],
       teach: [
-        'A gauge R&R splits measurement spread into repeatability (EV: same operator, same part, same gauge, measured again) and reproducibility (AV: the differences between operators). Results come as % of tolerance or % of study variation. The first asks: can I judge good versus bad against the spec? The second: can I see differences between parts, which SPC and improvement work need. Common bands (AIAG) for both: under 10% good, 10 to 30% acceptable depending on use and cost, over 30% not acceptable.',
-        '% of study variation depends on the parts chosen. Ten parts from one hour barely differ, so even a good gauge looks bad. The parts should cover the real process spread. The ndc, number of distinct categories, says how many groups the gauge can tell apart within that spread; at least 5 is the usual demand.',
-        'Read the split. Large repeatability points at the gauge or fixture: play, poor clamping, the wrong probe, dirt on the part. Large reproducibility points at the people: different technique, different measuring positions, an unclear instruction. The fixes differ completely.',
-        'R&R covers spread, not truth. Bias (an average offset from a reference), linearity (bias that changes over the range) and stability (drift over time) need their own checks against a master or setting ring. Resolution should be at most a tenth of the tolerance. A gauge that passes R&R can still read 0.02 mm off, every time.',
+        'A gauge R&R splits measurement spread into repeatability (EV: same operator, same part, same gauge, measured again) and reproducibility (AV: the differences between operators). Results come as % of tolerance or % of study variation.\n\nThe first asks: can I judge good versus bad against the spec? The second: can I see differences between parts, which SPC and improvement work need. Common bands (AIAG) for both: under 10% good, 10 to 30% acceptable depending on use and cost, over 30% not acceptable.',
+        '% of study variation depends on the parts chosen. Ten parts from one hour barely differ, so even a good gauge looks bad. The parts should cover the real process spread.\n\nThe ndc, number of distinct categories, says how many groups the gauge can tell apart within that spread; at least 5 is the usual demand.',
+        'Read the split. Large repeatability points at the gauge or fixture: play, poor clamping, the wrong probe, dirt on the part.\n\nLarge reproducibility points at the people: different technique, different measuring positions, an unclear instruction. The fixes differ completely.',
+        'R&R covers spread, not truth. Bias (an average offset from a reference), linearity (bias that changes over the range) and stability (drift over time) need their own checks against a master or setting ring.\n\nResolution should be at most a tenth of the tolerance. A gauge that passes R&R can still read 0.02 mm off, every time.',
       ],
       example: {
         kind: 'faded',
-        text: 'A bore of Ø12 ±0.02 mm, so a tolerance band of 0.04 mm. Study: 10 parts, 3 operators, 3 repeats each. Result: R&R is 28% of tolerance, almost all of it repeatability; reproducibility is small; ndc is 3. The quality engineer says: “Under 30%, so it passes. Let’s start the SPC chart.”',
+        text: 'A bore of Ø12 ±0.02 mm, so a tolerance band of 0.04 mm. Study: 10 parts, 3 operators, 3 repeats each.\n\nResult: R&R is 28% of tolerance, almost all of it repeatability; reproducibility is small; ndc is 3. The quality engineer says: “Under 30%, so it passes. Let’s start the SPC chart.”',
         ask: 'What would you do next?',
-        reveal: 'Don’t sign it off yet. 28% sits at the edge, and an ndc of 3 means the gauge can barely tell parts apart, so an SPC chart on this bore will mostly chart measurement noise. The split points at the gauge, not the operators: check the fixture, the probe, part cleanliness and the resolution (at most 0.004 mm for a 0.04 mm band). Fix that, rerun the study with parts that cover the full process range, and add a bias check against a setting ring.',
+        reveal: 'Don’t sign it off yet. 28% sits at the edge, and an ndc of 3 means the gauge can barely tell parts apart, so an SPC chart on this bore will mostly chart measurement noise.\n\nThe split points at the gauge, not the operators: check the fixture, the probe, part cleanliness and the resolution (at most 0.004 mm for a 0.04 mm band). Fix that, rerun the study with parts that cover the full process range, and add a bias check against a setting ring.',
       },
       said: 'What engineers say: “It passes on tolerance, but ndc is three. I wouldn’t run SPC off that gauge.”',
       recall: [
@@ -83,15 +83,15 @@ export default {
       ],
       teach: [
         'Many checks are pass or fail: scratches, colour, burrs, labels, weld appearance. They need a measurement study too: an attribute agreement analysis. Typically 30 to 50 parts, a mix of good, bad and borderline ones whose status an expert has set, each judged two or three times by each inspector, blind and in random order.',
-        'Three questions: does each inspector agree with himself (repeatability), do inspectors agree with each other, and do they agree with the expert standard? Agreement is often given as kappa, which corrects for agreement by chance: above 0.75 is good, below 0.4 poor. Look at both error types: passing a bad part (an escape, the customer’s risk) and rejecting a good one (a false reject, your cost).',
-        'Even good people miss defects. Studies of 100% visual inspection often find about 80% effectiveness, worse with fatigue, rare defects and fast lines. A second inspector helps, but doesn’t make it perfect. That is why “we added 100% inspection” is containment, not a solution.',
+        'Three questions: does each inspector agree with himself (repeatability), do inspectors agree with each other, and do they agree with the expert standard?\n\nAgreement is often given as kappa, which corrects for agreement by chance: above 0.75 is good, below 0.4 poor. Look at both error types: passing a bad part (an escape, the customer’s risk) and rejecting a good one (a false reject, your cost).',
+        'Even good people miss defects. Studies of 100% visual inspection often find about 80% effectiveness, worse with fatigue, rare defects and fast lines.\n\nA second inspector helps, but doesn’t make it perfect. That is why “we added 100% inspection” is containment, not a solution.',
         'Make the defect judgeable: boundary samples (limit samples) of the borderline cases, good lighting, a set viewing distance and time, a defect catalogue with photos. Then rerun the study. If agreement stays low, the spec itself is vague: agree it with the customer.',
       ],
       example: {
         kind: 'faded',
-        text: 'A painting line rejects 6% of panels for “orange peel”. An attribute study: 40 panels, 3 inspectors, 2 rounds each. Each inspector agrees with himself on about 90% of panels. But against the expert, inspector A rejects 4 good panels and inspector C passes 5 bad ones. Production says the paint process is the problem and wants a new spray robot.',
+        text: 'A painting line rejects 6% of panels for “orange peel”. An attribute study: 40 panels, 3 inspectors, 2 rounds each. Each inspector agrees with himself on about 90% of panels.\n\nBut against the expert, inspector A rejects 4 good panels and inspector C passes 5 bad ones. Production says the paint process is the problem and wants a new spray robot.',
         ask: 'What would you do next?',
-        reveal: 'Fix the measurement first. A and C use different boundaries: A over-rejects (cost), C lets defects escape (customer risk). Build boundary samples with the customer’s agreement, define the lighting and viewing distance, train, and rerun the study. Only then is the 6% a real number to attack in the paint process; part of it may disappear on its own. A spray robot bought on a number nobody can measure consistently is a gamble.',
+        reveal: 'Fix the measurement first. A and C use different boundaries: A over-rejects (cost), C lets defects escape (customer risk). Build boundary samples with the customer’s agreement, define the lighting and viewing distance, train, and rerun the study.\n\nOnly then is the 6% a real number to attack in the paint process; part of it may disappear on its own. A spray robot bought on a number nobody can measure consistently is a gamble.',
       },
       said: 'What engineers say: “Before we touch the paint process, let’s get the three inspectors to agree on what orange peel is.”',
       recall: [
@@ -152,8 +152,8 @@ export default {
       ],
       teach: [
         'Pick the chart from the data. For measured values: X-bar and R with subgroups of 2 to 9 parts made close together; X-bar and S for subgroups of about 10 or more; I-MR (individuals and moving range) when you get one value at a time: a batch result, a daily lab test, a slow process.',
-        'For counts: a p chart for the fraction defective when the sample size varies; an np chart for the number defective with a fixed sample size; a c chart for the number of defects per unit (scratches per panel) when units are the same size; a u chart for defects per unit when unit size varies. The p chart limits are p̄ ± 3 × √(p̄ × (1 − p̄) / n). With low defect rates you need large samples to see anything.',
-        'Rational subgroups: within a subgroup only common cause should act, so take parts made together, such as five in a row from one cavity, not five spread over the shift. Mixing four cavities or two spindles in one subgroup inflates the range, widens the limits and hides real signals. Chart each stream separately, or know you are mixing them.',
+        'For counts: a p chart for the fraction defective when the sample size varies; an np chart for the number defective with a fixed sample size; a c chart for the number of defects per unit (scratches per panel) when units are the same size; a u chart for defects per unit when unit size varies.\n\nThe p chart limits are p̄ ± 3 × √(p̄ × (1 − p̄) / n). With low defect rates you need large samples to see anything.',
+        'Rational subgroups: within a subgroup only common cause should act, so take parts made together, such as five in a row from one cavity, not five spread over the shift.\n\nMixing four cavities or two spindles in one subgroup inflates the range, widens the limits and hides real signals. Chart each stream separately, or know you are mixing them.',
         'Control limits come from the process in a stable period, usually 20 to 25 subgroups, and are then frozen. Recalculate only after a known, deliberate change. Limits recalculated every week drift along with the problem they should reveal.',
       ],
       example: {
@@ -220,7 +220,7 @@ export default {
         },
       ],
       teach: [
-        'Cpk = distance from the mean to the nearest spec limit, divided by 3 sigma. Cpk and Ppk use the same formula with a different sigma. Cpk uses the within-subgroup sigma (estimated from R-bar / d2): the short-term spread, as if the process never moved. Ppk uses the overall standard deviation of all the data: shifts, drift and material lots included. A big gap between them means the process moves between subgroups.',
+        'Cpk = distance from the mean to the nearest spec limit, divided by 3 sigma. Cpk and Ppk use the same formula with a different sigma.\n\nCpk uses the within-subgroup sigma (estimated from R-bar / d2): the short-term spread, as if the process never moved. Ppk uses the overall standard deviation of all the data: shifts, drift and material lots included. A big gap between them means the process moves between subgroups.',
         'Capability only means something for a stable process. If the control chart shows special causes, next month may look nothing like last month. The order: make it stable, then measure capability, then improve centring and spread.',
         'Typical automotive demands: Ppk ≥ 1.67 in the initial study before launch, Cpk ≥ 1.33 in ongoing production. As a rough guide for centred, normal data: Cpk 1.0 means about 2,700 ppm outside spec, 1.33 about 63 ppm, 1.67 under 1 ppm.',
         'Capability numbers are easy to flatter: 30 parts from one good hour, removing “outliers”, one narrow material lot, a gauge that rounds. Ask how many parts, over what period, how many lots and setups, and whether the data was checked for normality. A Ppk over a few weeks of production says more than a Cpk from one morning.',
@@ -229,7 +229,7 @@ export default {
         kind: 'faded',
         text: 'A supplier’s approval package shows Cpk 2.1 on a critical diameter, from 30 consecutive parts made in one morning. Three months into series production, the customer measures 125 parts spread over 5 weeks and finds Ppk 1.05.',
         ask: 'What would you do next?',
-        reveal: 'Both numbers can be true: one morning has no lot changes, tool wear, setups or temperature swings. Ask for the control chart over the five weeks to see where the extra variation comes from: shifts between lots or setups, or drift with tool wear. Treat 1.05 as the real performance. The fix is to find and remove the between-subgroup variation, then repeat the study over a longer period with several lots.',
+        reveal: 'Both numbers can be true: one morning has no lot changes, tool wear, setups or temperature swings. Ask for the control chart over the five weeks to see where the extra variation comes from: shifts between lots or setups, or drift with tool wear.\n\nTreat 1.05 as the real performance. The fix is to find and remove the between-subgroup variation, then repeat the study over a longer period with several lots.',
       },
       said: 'What engineers say: “Cpk two from one morning means nothing. Show me Ppk over five weeks and three lots.”',
       recall: [
@@ -298,7 +298,7 @@ export default {
         kind: 'faded',
         text: 'Runout on a shaft: USL 0.040 mm, no lower limit. 100 parts: mean 0.012 mm, σ 0.006 mm, clearly skewed to the right with a few parts at 0.030 to 0.034 mm. The normal calculation gives Cpu = (0.040 − 0.012) / 0.018 = 1.56, and the team reports “capable”.',
         ask: 'What would you do next?',
-        reveal: 'Plot it first: a probability plot will show the normal fit failing in the upper tail, exactly where the limit is. Fit a lognormal or Weibull and compute capability with the percentile method; the upper tail is heavier than the normal curve predicts, so capability will usually come out lower. Also check whether the tail has a separate cause, such as one spindle, one fixture or a clamping issue. Fixing that cause beats any statistics.',
+        reveal: 'Plot it first: a probability plot will show the normal fit failing in the upper tail, exactly where the limit is. Fit a lognormal or Weibull and compute capability with the percentile method; the upper tail is heavier than the normal curve predicts, so capability will usually come out lower.\n\nAlso check whether the tail has a separate cause, such as one spindle, one fixture or a clamping issue. Fixing that cause beats any statistics.',
       },
       said: 'What engineers say: “Runout is never normal. Show me the probability plot before you show me a Cpk.”',
       recall: [
@@ -358,7 +358,7 @@ export default {
         },
       ],
       teach: [
-        'Adjusting a stable process after every part, by that part’s deviation, makes it worse. Each deviation is mostly random noise; correcting for noise adds a second noise. Deming’s funnel experiment shows that this rule raises the standard deviation by about 41% (the variance doubles). Operators do it with the best intentions, especially with a tight tolerance and a digital readout.',
+        'Adjusting a stable process after every part, by that part’s deviation, makes it worse. Each deviation is mostly random noise; correcting for noise adds a second noise.\n\nDeming’s funnel experiment shows that this rule raises the standard deviation by about 41% (the variance doubles). Operators do it with the best intentions, especially with a tight tolerance and a digital readout.',
         'The rule: adjust only on a signal. A control chart tells you when a shift is real; between signals, leave the machine alone. For known drift, such as tool or wheel wear, plan the compensation: a fixed offset after a set number of parts, or an adjustment when the chart crosses a pre-set line.',
         'A reaction plan turns a signal into action: who does what, and how fast. Stop or not, what to check (tool, material lot, temperature, setting), what to do with the parts made since the last good check, who to call, and how to record it. Without one, charts collect points and nobody moves.',
         'Automatic feedback, such as in-process gauging that corrects a CNC offset, follows the same logic. It needs filtering: adjust on a trend or on the average of several parts, not on one reading. Ask the automation engineer what the correction rule is and how often it fires.',
@@ -367,7 +367,7 @@ export default {
         kind: 'faded',
         text: 'A grinding operator measures every shaft on a digital gauge and nudges the offset by each part’s deviation: “I keep it on nominal.” The chart of individual parts shows a wider spread than the gauge study would explain, and a zig-zag pattern from part to part.',
         ask: 'What would you do next?',
-        reveal: 'This is tampering: the corrections chase noise. Agree a rule with the operator and the engineer: no adjustments unless the chart gives a signal (or the average of five parts crosses a set line), plus a planned offset for wheel wear. Explain it with the funnel effect, not as blame. Track the spread for two weeks: if tampering was the main extra source, the standard deviation should drop by roughly 30%.',
+        reveal: 'This is tampering: the corrections chase noise. Agree a rule with the operator and the engineer: no adjustments unless the chart gives a signal (or the average of five parts crosses a set line), plus a planned offset for wheel wear.\n\nExplain it with the funnel effect, not as blame. Track the spread for two weeks: if tampering was the main extra source, the standard deviation should drop by roughly 30%.',
       },
       said: 'What engineers say: “Stop touching it every part. You’re adding your own variation on top of the machine’s.”',
       recall: [
