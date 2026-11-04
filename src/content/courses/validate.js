@@ -39,6 +39,16 @@ function checkPushback(p, at, errs) {
   if (!Array.isArray(p.rubric) || p.rubric.length !== 3 || !p.rubric.every(str)) errs.push(`${at}: pushback rubric needs exactly 3 lines`);
 }
 
+// A lesson's level: in a topic module its place in its topic (levels[i] is
+// level i + 1), otherwise the module level.
+function tierOf(meta, id) {
+  for (const t of Array.isArray(meta.topics) ? meta.topics : []) {
+    const i = Array.isArray(t.levels) ? t.levels.indexOf(id) : -1;
+    if (i >= 0) return i + 1;
+  }
+  return meta.level;
+}
+
 function checkLesson(l, meta, lang, errs) {
   const at = `${lang} ${l.id}`;
   if (!str(l.title)) errs.push(`${at}: title missing`);
@@ -52,9 +62,10 @@ function checkLesson(l, meta, lang, errs) {
     else if (words(b) > MAX_BLOCK_WORDS) errs.push(`${at}: teach ${i} has ${words(b)} words (max ${MAX_BLOCK_WORDS})`);
   });
   const ex = l.example || {};
+  const tier = tierOf(meta, l.id);
   if (!['worked', 'faded'].includes(ex.kind)) errs.push(`${at}: example kind must be worked or faded`);
-  if (ex.kind === 'faded' && meta.level < 3) errs.push(`${at}: faded example only at level 3–4`);
-  if (ex.kind === 'worked' && meta.level >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
+  if (ex.kind === 'faded' && tier < 3) errs.push(`${at}: faded example only at level 3–4`);
+  if (ex.kind === 'worked' && tier >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
   if (!str(ex.text)) errs.push(`${at}: example text missing`);
   if (ex.kind === 'faded' && !(str(ex.ask) && str(ex.reveal))) errs.push(`${at}: faded example needs ask and reveal`);
   if (!str(l.said)) errs.push(`${at}: said missing`);
