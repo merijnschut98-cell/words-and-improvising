@@ -84,7 +84,7 @@ export default {
       ],
       teach: [
         'Een lijn produceert nooit sneller dan zijn langzaamste stap: de bottleneck, ook wel de constraint of het knelpunt. Denk aan de hals van een fles: hoe breed de fles ook is, het loopt eruit op het tempo van de hals.\n\nStations van 40, 55 en 45 seconden per product geven één product per 55 seconden, zo’n 65 per uur. Het station van 40 seconden sneller maken levert niks op; dat staat alleen nog meer te wachten.',
-        'Hoe herken je hem: WIP (work in progress, onderhanden werk: producten die gestart maar nog niet af zijn) stapelt zich op vóór hem. Het station erna is starved: het wacht op aanvoer. Een station ervoor is soms blocked: klaar, maar het kan zijn product nergens kwijt. De bottleneck zelf staat bijna nooit stil.\n\nLet op: een grote stapel kan ook nog van de storing van gisteren zijn. Het echte teken is welke machine continu draait.',
+        'Hoe herken je hem: WIP (work in progress, onderhanden werk: producten die gestart maar nog niet af zijn) stapelt zich op vóór hem. Het station erna valt droog (starved): het wacht op aanvoer. Een station ervoor staat soms vast (blocked): klaar, maar het kan zijn product nergens kwijt. De bottleneck zelf staat bijna nooit stil.\n\nLet op: een grote stapel kan ook nog van de storing van gisteren zijn. Het echte teken is welke machine continu draait.',
         'Een uur verloren op de bottleneck is een uur verloren voor de hele fabriek. Een uur gewonnen ergens anders is een luchtspiegeling.\n\nDus bescherm hem: een kleine buffer ervoor, pauzes laten aflossen zodat hij doordraait, een kwaliteitscheck ervoor zodat hij nooit afkeur bewerkt, en onderhoud eromheen plannen. Dat is de kern van de Theory of Constraints, uit Eli Goldratts managementroman The Goal (1984).',
         'De wet van Little koppelt voorraad aan tijd: doorlooptijd = WIP / throughput. Throughput is de goede output per uur: het tempo waarin afgewerkte producten de deur uitgaan.\n\nMet 300 stuks in het systeem en een output van 60 per uur is de doorlooptijd 5 uur. Breng de WIP terug naar 120 en de doorlooptijd zakt naar 2 uur, zonder dat er één machine sneller gaat. De wet geldt gemiddeld, voor een proces waarvan de voorraad niet groeit of krimpt.',
         'Bottlenecks verschuiven. Los je er één op, dan neemt de op-één-na-langzaamste het over. Een andere productmix kan hem ook verplaatsen, omdat sommige producten op de ene machine veel langer duren dan op de andere.\n\nExperts verschillen over de remedie: Theory of Constraints zegt: stuur op die ene bottleneck; lean (de Toyota-manier van verspilling weghalen) zegt: maak de flow gelijkmatig. Hoe dan ook: eerst vinden. Vraag de ploegleider: “Welke machine mag nooit stilstaan?”',
@@ -226,9 +226,9 @@ export default {
       ],
       teach: [
         'Een omstelling (changeover, ook setup) is een machine ombouwen van product A naar product B: ander gereedschap, andere instellingen, ander materiaal. De omsteltijd loopt van het laatste goede product A tot het eerste goede product B op volle snelheid.\n\nDus de proefruns en het afstellen aan het eind tellen mee, en daar zit veel verborgen tijd. Op een pers of spuitgietmachine ben je al snel een uur of meer kwijt.',
-        'Intern werk kan alleen als de machine stilstaat: de matrijs wisselen (het gevormde gereedschap dat het product vormt; in de kunststof heet het ook wel mal). Extern werk kan terwijl de machine nog draait: de volgende matrijs halen, voorverwarmen, gereedschap en papieren klaarleggen.\n\nIn de meeste fabrieken is een groot deel van de stop extern werk op het verkeerde moment: mensen die rondlopen op zoek naar een kraan, een klem of de instelkaart.',
-        'SMED (single-minute exchange of die) mikt op omstellingen onder de 10 minuten: een aantal minuten van één cijfer. Shigeo Shingo ontwikkelde het bij Mazda en Toyota in de jaren vijftig en zestig.\n\nDe stappen: film een omstelling en schrijf elke stap op; markeer intern of extern; haal extern werk uit de stop; maak intern werk extern (matrijzen voorverwarmen, gereedschap offline voorinstellen); stroomlijn daarna wat overblijft, bijvoorbeeld snelspanners in plaats van bouten.',
-        'Afstellen is de killer: proberen en bijstellen is vaak de helft van een omstelling.\n\nDe technische oplossing: vaste aanslagen (waar het gereedschap tegenaan schuift), paspennen, standaard matrijshoogtes en instelkaarten, zodat de instelling in één keer goed is. Moeten afstellen betekent dat de instelling niet vastligt. Scherpe vraag op de vloer: “Hoeveel proefstuks heb je nodig voor het eerste goede, en waarom?”',
+        'Intern werk kan alleen als de machine stilstaat: de matrijs wisselen (het gereedschap waarin de vorm van het product zit; in de kunststof zegt men ook wel mal). Extern werk kan terwijl de machine nog draait: de volgende matrijs halen, voorverwarmen, gereedschap en papieren klaarleggen.\n\nIn de meeste fabrieken is een groot deel van de stop extern werk op het verkeerde moment: mensen die rondlopen op zoek naar een kraan, een klem of de instelkaart (het blad met de juiste machine-instellingen per product).',
+        'SMED (single-minute exchange of die) mikt op omstellingen onder de 10 minuten: een aantal minuten van één cijfer. Shigeo Shingo ontwikkelde het bij Mazda en Toyota in de jaren vijftig en zestig.\n\nDe stappen: film een omstelling en schrijf elke stap op; markeer intern of extern; haal extern werk uit de stop; maak intern werk extern (matrijzen voorverwarmen, gereedschap naast de machine voorinstellen); stroomlijn daarna wat overblijft, bijvoorbeeld snelspanners in plaats van bouten.',
+        'Afstellen is de grootste tijdvreter: proberen en bijstellen is vaak de helft van een omstelling.\n\nDe technische oplossing: vaste aanslagen (waar het gereedschap tegenaan schuift), paspennen, standaard matrijshoogtes en instelkaarten, zodat de instelling in één keer goed is. Moeten afstellen betekent dat de instelling niet vastligt. Scherpe vraag op de vloer: “Hoeveel proefstuks heb je nodig voor het eerste goede, en waarom?”',
         'Dan de afweging met seriegrootte (batch size): hoeveel stuks je maakt tussen twee omstellingen. De gemiddelde voorraad is ongeveer een halve serie. Bij lange omsteltijden draaien planners grote series om minder tijd te verliezen, en dan groeien voorraad en doorlooptijd.\n\nHalveer de omsteltijd en je kunt de serie halveren bij hetzelfde tijdverlies: de helft minder voorraad. Of houd de serie gelijk en win capaciteit, maar dat loont alleen op de bottleneck.',
       ],
       example: {
@@ -239,7 +239,7 @@ export default {
       recall: [
         {
           q: 'Welke van deze is extern werk?',
-          options: ['De oude matrijs losschroeven', 'De volgende matrijs voorverwarmen op een apart station', 'Proefschieten tot de producten binnen spec zijn', 'De opspanplaten wisselen'],
+          options: ['De oude matrijs losschroeven', 'De volgende matrijs voorverwarmen op een apart station', 'Proefschieten tot de producten goed zijn', 'De opspanplaten wisselen'],
           answer: 'De volgende matrijs voorverwarmen op een apart station',
           why: 'Dat kan terwijl de machine nog het vorige product maakt.',
         },
@@ -279,7 +279,7 @@ export default {
         { term: 'Omstelling', def: 'Een machine ombouwen voor een ander product; gemeten van het laatste goede product A tot het eerste goede product B op volle snelheid.' },
         { term: 'Intern werk', def: 'Omstelwerk waarvoor de machine stil moet staan.' },
         { term: 'Extern werk', def: 'Omstelwerk dat kan terwijl de machine nog draait.' },
-        { term: 'Matrijs', def: 'Het gevormde gereedschap dat het product vormt; in de kunststof ook mal genoemd.' },
+        { term: 'Matrijs', def: 'Het gereedschap waarin de vorm van het product zit; in de kunststof ook mal genoemd.' },
         { term: 'SMED', def: 'Single-minute exchange of die: een methode om omsteltijd te verkorten, liefst tot onder de 10 minuten.' },
         { term: 'Seriegrootte', def: 'Het aantal stuks dat je maakt tussen twee omstellingen.' },
       ],
@@ -376,7 +376,7 @@ export default {
         kind: 'worked',
         text: 'Een CNC-bottleneck moet 1.200 stuks per week maken van 4 minuten per stuk: 4.800 minuten, oftewel 80 uur vraag. Twee ploegen × 5 dagen × 7,5 netto uur = 75 uur.\n\nBij 70% OEE is dat 52,5 effectieve uren: belasting = 80 / 52,5 = 152%. Gaat niet.\n\nDrie ploegen geven 112,5 uur; bij 70% OEE is dat 78,75 uur, nog steeds 102%. Drie ploegen plus OEE naar 80% geeft 90 uur: belasting 89%. Haalbaar, maar krap, dus de doorlooptijden blijven lang.',
       },
-      said: 'Wat engineers zeggen: “De planner laat 98% belasting zien op de vijfassige. Dat is geen efficiëntie, dat is een wachtrij in wording.”',
+      said: 'Wat engineers zeggen: “De planner laat 98% belasting zien op de vijfassige freesmachine. Dat is geen efficiëntie, dat is een wachtrij in wording.”',
       recall: [
         {
           q: 'Een machine draait twee ploegen per dag, 5 dagen per week, 7,5 netto uur per ploeg, bij een OEE van 80%. De orders van deze week vragen 54 uur zuivere machinetijd (stuks × ideale cyclustijd). Wat is de belasting, in procent?',

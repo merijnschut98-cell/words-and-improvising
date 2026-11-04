@@ -25,3 +25,5 @@ Recalculations (all checked):
 - Capacity: 27,000 / 60 = 450, × 0.75 = 337.5 (“about 340”); u / (1 − u) = 1, 4, 9, 19 at 50/80/90/95% (Kingman’s G/G/1 approximation: waiting ∝ u / (1 − u) × variability × process time). Example 1,200 × 4 min = 4,800 min = 80 h; 75 × 0.7 = 52.5 → 152%; 112.5 × 0.7 = 78.75 → 101.6%; 112.5 × 0.8 = 90 → 88.9%.
 
 Facts fixed: none wrong; sharpened units and assumptions (takt in seconds per unit, “assuming no stops”, “average lead time”, “ideal cycle time” in the load question). The “night premium” is kept generic (no percentage), since Dutch CAO shift premiums vary per sector.
+
+Review fixes (2026-11-04): numbers all rechecked, none changed. Glossed setting sheet / instelkaart and “offline” (now “away from the machine”); “five-axis” now “five-axis mill”; recall option “in spec” → “good” (spec is not taught in this module). nl: starved/blocked now “valt droog (starved)” and “staat vast (blocked)”; die gloss reworded; “de killer” → “de grootste tijdvreter”. “Omstelling” kept: it is the normal Dutch shop-floor word (omstellen, omsteltijd).

@@ -226,8 +226,8 @@ export default {
       ],
       teach: [
         'A changeover, also called a setup, is switching a machine from product A to product B: other tools, other settings, other material. Changeover time runs from the last good part of A to the first good part of B at full speed.\n\nSo it includes the trial runs and adjustments at the end, and that is where much of the hidden time sits. On a press or moulding machine it easily takes an hour or more.',
-        'Internal work can only be done with the machine stopped: swapping the die (the shaped tool that forms the part; in plastics it is called a mould). External work can be done while the machine still runs: fetching the next die, preheating it, preparing tools and paperwork.\n\nIn most plants a big part of the stop is external work done at the wrong moment: people walking to find a crane, a clamp or the setting sheet.',
-        'SMED (single-minute exchange of die) aims for changeovers under 10 minutes, a single digit of minutes. Shigeo Shingo developed it at Mazda and Toyota in the 1950s and 1960s.\n\nThe steps: film a changeover and list every step; mark each step internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools offline); then streamline what is left, for example quick clamps instead of bolts.',
+        'Internal work can only be done with the machine stopped: swapping the die (the shaped tool that forms the part; in plastics it is called a mould). External work can be done while the machine still runs: fetching the next die, preheating it, preparing tools and paperwork.\n\nIn most plants a big part of the stop is external work done at the wrong moment: people walking to find a crane, a clamp or the setting sheet (the sheet with the right machine settings for each product).',
+        'SMED (single-minute exchange of die) aims for changeovers under 10 minutes, a single digit of minutes. Shigeo Shingo developed it at Mazda and Toyota in the 1950s and 1960s.\n\nThe steps: film a changeover and list every step; mark each step internal or external; move external work out of the stop; convert internal to external (preheat moulds, preset tools away from the machine); then streamline what is left, for example quick clamps instead of bolts.',
         'Adjustment is the killer: trial and tweak is often half of a changeover.\n\nThe engineering fix is fixed locators (stops the tool slides against), pins, standard die heights and setting sheets, so the setting is right the first time. Needing to adjust is a sign the setting isn’t defined. Sharp question on the floor: “How many trial parts before the first good one, and why?”',
         'Then the batch size trade-off. Batch size is how many parts you make between two changeovers. Average stock is roughly half a batch. With long changeovers, planners run big batches to lose less time, and stock and lead time grow.\n\nHalve the changeover and you can halve the batch at the same lost time, halving stock. Or keep the batch and gain capacity, which only pays off at the bottleneck.',
       ],
@@ -239,7 +239,7 @@ export default {
       recall: [
         {
           q: 'Which of these is external work?',
-          options: ['Unbolting the old die', 'Preheating the next mould on a separate station', 'Trial shots until parts are in spec', 'Swapping the clamping plates'],
+          options: ['Unbolting the old die', 'Preheating the next mould on a separate station', 'Trial shots until the parts are good', 'Swapping the clamping plates'],
           answer: 'Preheating the next mould on a separate station',
           why: 'It can be done while the machine is still producing the previous product.',
         },
@@ -376,7 +376,7 @@ export default {
         kind: 'worked',
         text: 'A CNC bottleneck must make 1,200 parts a week at 4 minutes each: 4,800 minutes, or 80 hours of demand. Two shifts × 5 days × 7.5 net hours = 75 hours.\n\nAt 70% OEE that is 52.5 effective hours: load = 80 / 52.5 = 152%. Not feasible.\n\nThree shifts give 112.5 hours; at 70% OEE that is 78.75 hours, still 102%. Three shifts plus OEE raised to 80% gives 90 hours: load 89%. Workable, but only just, so lead times will still be long.',
       },
-      said: 'What engineers say: “The planner shows 98% load on the five-axis. That’s not efficiency, that’s a queue waiting to happen.”',
+      said: 'What engineers say: “The planner shows 98% load on the five-axis mill. That’s not efficiency, that’s a queue waiting to happen.”',
       recall: [
         {
           q: 'A machine runs two shifts a day, 5 days a week, 7.5 net hours per shift, at an OEE of 80%. This week’s orders need 54 hours of pure machine time (parts × ideal cycle time). What is the load, in percent?',

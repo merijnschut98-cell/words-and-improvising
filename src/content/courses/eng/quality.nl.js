@@ -17,7 +17,7 @@ export default {
         'Toleranties kunnen ongelijk zijn. Ø12 +0,018/0 loopt van 12,000 tot 12,018: het gat mag iets groter, nooit kleiner. Verspaners praten in micron (duizendsten van een millimeter), dus ze zeggen “nul tot plus achttien”.\n\nTer vergelijking: een mensenhaar is zo’n 70 micron dik. Een tolerantie van ±0,01 mm is een zevende haar naar elke kant.',
         'Elke maat die telt voor passing of functie heeft een tolerantie. Maten zonder eigen tolerantie vallen onder de algemene tolerantie in het stempel (title block: het kader rechtsonder op de tekening), vaak ISO 2768-m: ±0,2 mm voor maten boven 6 tot en met 30 mm.\n\n“Er stond geen tolerantie op” klopt dus bijna nooit. Scherpe vraag: “Welke algemene tolerantie gebruikt deze tekening?”',
         'Nauwer kost geld. Een tolerantie halveren kan betekenen: een betere machine, langzamer verspanen, een extra slijpstap en meer meten.\n\nEen lagerzitting (de diameter waar een kogellager op zit) heeft misschien ±0,01 mm nodig; een gat in een afdekplaat kan prima met ±0,2. Ontwerp en productie botsen hier vaak over: de ontwerper zet er “voor de zekerheid” een decimaal bij, de productie betaalt hem. Een goede engineer vraagt wat de functie nodig heeft.',
-        'Een onderdeel buiten de grenzen is afwijkend (nonconforming): afkeuren, nabewerken, of “use as is” met een schriftelijke deviatie, ook wel concessie, van de klant.\n\nDe kosten worden grofweg tien keer zo hoog bij elke stap verder, de “1-10-100-regel”: €1 bij de machine, €10 bij de assemblage, €100 bij de klant, en een terugroepactie (recall) kost nog veel meer. Vraag dus: “Waar zouden we dit vinden, en hoe snel?”',
+        'Een onderdeel buiten de grenzen is afwijkend (nonconforming): afkeuren, nabewerken, of zo gebruiken (“use as is”) met een schriftelijke deviatie, ook wel concessie, van de klant.\n\nDe kosten worden grofweg tien keer zo hoog bij elke stap verder, de “1-10-100-regel”: €1 bij de machine, €10 bij de assemblage, €100 bij de klant, en een terugroepactie (recall) kost nog veel meer. Vraag dus: “Waar zouden we dit vinden, en hoe snel?”',
       ],
       example: {
         kind: 'worked',
@@ -41,8 +41,8 @@ export default {
         },
         {
           q: 'Er staat geen tolerantie bij een maat op de tekening. Wat geldt dan?',
-          options: ['Alles mag', 'De algemene tolerantie in de stempel', 'De nauwste tolerantie op de tekening', 'Wat de machine haalt'],
-          answer: 'De algemene tolerantie in de stempel',
+          options: ['Alles mag', 'De algemene tolerantie in het stempel', 'De nauwste tolerantie op de tekening', 'Wat de machine haalt'],
+          answer: 'De algemene tolerantie in het stempel',
           why: 'Maten zonder tolerantie vallen onder de algemene tolerantie, bijvoorbeeld ISO 2768-m.',
         },
         {
@@ -53,9 +53,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent bij een verspaningsbedrijf (een bedrijf dat metalen onderdelen op machines uit materiaal snijdt) na een klacht van de klant: 40 behuizingen met een boring 0,01 mm boven de bovengrens. De kwaliteitsmanager wil de interne tolerantie op alle boringen halveren, “voor de zekerheid”.',
+        scene: 'Je bent bij een verspaningsbedrijf (een bedrijf dat metalen onderdelen maakt door materiaal weg te snijden op draai- en freesmachines) na een klacht van de klant: 40 behuizingen met een boring 0,01 mm boven de bovengrens. De kwaliteitsmanager wil de interne tolerantie op alle boringen halveren, “voor de zekerheid”.',
         ask: 'Wat vraag je voordat iedereen akkoord gaat met dat plan?',
-        model: 'Hoeveel stuks waren af, hoeveel, en van welke machine en welke ploeg: is dit één oorzaak of een algemeen spreidingsprobleem? Alle boringen halveren maakt alles duurder voor één maat. En is die boring met deze tolerantie echt functioneel, of kunnen we de klant vragen of die ruimer mag?',
+        model: 'Hoeveel stuks zaten erbuiten, hoe ver, en van welke machine en welke ploeg: is dit één oorzaak of een algemeen spreidingsprobleem? Alle boringen halveren maakt alles duurder voor één maat. En is die boring met deze tolerantie echt functioneel, of kunnen we de klant vragen of die ruimer mag?',
         rubric: [
           'Vraagt naar de feiten: hoeveel, hoe ver buiten spec, waar en wanneer',
           'Zet vraagtekens bij overal nauwer maken vanwege de kosten',
@@ -84,7 +84,7 @@ export default {
         },
       ],
       teach: [
-        'Geen twee onderdelen zijn gelijk, ook niet van dezelfde machine met een minuut ertussen. Engineers beschrijven die spreiding (variation) met twee getallen.\n\nHet gemiddelde (mean) zegt waar het proces zit. De standaardafwijking (σ, de Griekse letter sigma) is de gewone afstand van een onderdeel tot het gemiddelde: hoe breed het proces spreidt. Kleine σ: de delen liggen dicht bij elkaar; grote σ: ze liggen alle kanten op.',
+        'Geen twee onderdelen zijn gelijk, ook niet van dezelfde machine met een minuut ertussen. Engineers beschrijven die spreiding (variation) met twee getallen.\n\nHet gemiddelde (mean) zegt waar het proces zit. De standaardafwijking (σ, de Griekse letter sigma) is de typische afstand van een onderdeel tot het gemiddelde: hoe breed het proces spreidt. Kleine σ: de delen liggen dicht bij elkaar; grote σ: ze liggen alle kanten op.',
         'Veel metingen volgen een normale verdeling: de klokvorm, met de meeste delen rond het gemiddelde en steeds minder verder weg. Dan valt zo’n 68% binnen ±1σ van het gemiddelde, 95% binnen ±2σ en 99,7% binnen ±3σ.\n\nGemiddeld 10,00 mm met een σ van 0,01 legt bijna alles tussen 9,97 en 10,03. Echte data is niet altijd een nette klok: slijtage van het gereedschap geeft een helling, twee machines door elkaar geven twee bulten.',
         'Spreiding met een gewone oorzaak (common cause) komt uit de vele kleine bronnen die er altijd zijn: materiaal, temperatuur, speling in de spil (een heel klein beetje ruimte in de draaiende as), hoe de operator het doet. Dat geeft een stabiele, voorspelbare spreiding.\n\nDie krijg je alleen omlaag door het systeem te veranderen: een betere machine, opspanning (fixture: wat het onderdeel vasthoudt) of methode. Dat is een beslissing van het management, niet iets wat de operator aan de machine oplost.',
         'Speciale oorzaken (special cause) komen van een concrete gebeurtenis: een gebroken beitel, een nieuwe rol staal, een koude machine op maandagochtend, een nieuwe operator. Je ziet een sprong, een trend of een uitschieter (één punt ver van de rest). Die zoek je op, los je op en voorkom je.\n\nW. Edwards Deming, de Amerikaanse kwaliteitspionier, stelde dat de meeste problemen, meer dan 90%, in het systeem zitten, niet bij mensen.',
@@ -158,9 +158,9 @@ export default {
       teach: [
         'Procesgeschiktheid (capability) zegt of een proces binnen de tolerantie kan blijven: je vergelijkt de spreiding van het proces met de breedte van de tolerantie.\n\nCp = tolerantiebreedte / 6σ, omdat ±3σ, zes sigma breed, 99,7% van de delen bevat. Met een tolerantie van 0,10 mm en een σ van 0,0125 mm is 6σ 0,075, dus Cp = 1,33: de spreiding gebruikt driekwart van de tolerantie. Cp zegt alleen of het proces zou passen als het precies in het midden zat.',
         'Cpk telt het centreren mee: de afstand van het gemiddelde tot de dichtstbijzijnde specgrens, gedeeld door 3σ.\n\nSchuif hetzelfde proces 0,025 mm richting de bovengrens, dan is er nog 0,025 mm over: Cpk = 0,025 / 0,0375 = 0,67. Cp is nog steeds 1,33, maar nu maak je afkeur. Cpk is nooit hoger dan Cp; ze zijn alleen gelijk als het proces precies in het midden zit.',
-        'Doelen: 1,33 is het gangbare minimum voor lopende productie. Gecentreerd liggen de grenzen dan op ±4σ: zo’n 63 ppm (parts per million, delen per miljoen) erbuiten. 1,67 (±5σ, minder dan 1 ppm) vragen klanten voor nieuwe processen en veiligheidskenmerken.\n\nCpk 1,0 betekent zo’n 2.700 ppm. Onder de 1,0 maak je elke dag afkeur en heb je 100% controle nodig.',
+        'Doelen: 1,33 is het gangbare minimum voor lopende productie. Gecentreerd liggen de grenzen dan op ±4σ: zo’n 63 ppm (parts per million, delen per miljoen) erbuiten. 1,67 (±5σ, minder dan 1 ppm) vragen klanten voor nieuwe processen en veiligheidskenmerken.\n\nCpk 1,0 betekent zo’n 2.700 ppm. Onder de 1,0 maak je elke dag afkeur en heb je meestal 100% controle nodig.',
         'Cp en Cpk gebruiken de korte-termijnspreiding: binnen kleine groepjes delen die direct na elkaar gemaakt zijn. Ppk gebruikt de totale spreiding van alle gemeten delen, inclusief verloop tussen uren en dagen. Klanten vragen hem bij een opstartstudie, vaak met een Ppk van minstens 1,67.\n\nLigt de Ppk veel lager dan de Cpk, dan zwerft het proces in de tijd. En geen van deze getallen zegt iets als het proces niet stabiel was tijdens de meting.',
-        'Het verschil tussen Cp en Cpk vertelt je de oplossing. Cp hoog en Cpk laag: centreren, vaak één offset. Allebei laag: de spreiding moet omlaag, en dat betekent opspanning, machine of methode, en dat kost echt geld.\n\nStatistici waarschuwen dat een Cpk uit 30 delen een grote foutmarge heeft; klanten willen meestal 50 delen of meer, vaak 125. Scherpe vraag: “Hoeveel stuks, over hoeveel dagen?”',
+        'Het verschil tussen Cp en Cpk vertelt je de oplossing. Cp hoog en Cpk laag: centreren, vaak één offset. Allebei laag: de spreiding moet omlaag, en dat betekent opspanning, machine of methode, en dat kost echt geld.\n\nStatistici waarschuwen dat een Cpk uit 30 delen een grote foutmarge heeft. Klanten willen meestal minstens 50 delen voor een machinestudie, en zo’n 100 of meer, in 25 steekproeven, voor een processtudie. Scherpe vraag: “Hoeveel stuks, over hoeveel dagen?”',
       ],
       example: {
         kind: 'worked',
@@ -234,7 +234,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Assen Ø20 ±0,05, elk uur een steekproef van 5. Totaalgemiddelde (het gemiddelde van alle steekproefgemiddelden) 20,000, gemiddelde range 0,020. Bij n = 5 is de tabelconstante A2 0,577, dus de grenzen zijn 20,000 ± 0,577 × 0,020: 19,9885 tot 20,0115.\n\nVan 10:00 tot 16:00 zijn de gemiddelden 20,002, 20,004, 20,005, 20,006, 20,008, 20,009, 20,011. Allemaal binnen de grenzen, ver binnen spec, maar zeven keer op rij omhoog: een trend.\n\nSlijtage van de wisselplaat (het verwisselbare snijpuntje). De operator wisselt hem om 16:10, voordat er één deel af is.',
+        text: 'Assen Ø20 ±0,05, elk uur een steekproef van 5. Totaalgemiddelde (het gemiddelde van alle steekproefgemiddelden) 20,000, gemiddelde range 0,020. Bij n = 5 is de tabelconstante A2 0,577, dus de grenzen zijn 20,000 ± 0,577 × 0,020: 19,9885 tot 20,0115.\n\nVan 10:00 tot 16:00 zijn de gemiddelden 20,002, 20,004, 20,005, 20,006, 20,008, 20,009, 20,011. Allemaal binnen de grenzen, ver binnen spec, maar zeven keer op rij omhoog: een trend.\n\nSlijtage van de wisselplaat (het verwisselbare snijpuntje). De operator wisselt hem om 16:10, voordat er één deel buiten spec is.',
       },
       said: 'Wat engineers zeggen: “Hij zit nog binnen spec, maar dat is zeven keer op rij omhoog. Dat is de wisselplaat, nu wisselen en we maken geen enkel slecht deel.”',
       recall: [
@@ -265,7 +265,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je loopt langs het SPC-bord bij een klant in de kunststof spuitgieterij. De kaarten zijn keurig ingevuld.\n\nOp twee ervan liggen deze week drie punten buiten de regelgrenzen. Er staat niets bij geschreven.',
+        scene: 'Je loopt langs het SPC-bord bij een spuitgieterij (een fabriek die gesmolten kunststof in matrijzen perst). De kaarten zijn keurig ingevuld.\n\nOp twee ervan liggen deze week drie punten buiten de regelgrenzen. Er staat niets bij geschreven.',
         ask: 'Wat vraag je de teamleider?',
         model: 'Wat doet de operator als een punt buiten de grenzen valt, is er een reactieplan? Wie kijkt er naar deze kaarten, en wanneer heeft iemand voor het laatst ingegrepen op basis van een kaart? Als het antwoord “niemand” is, maken we het reactieplan echt, of stoppen we met invullen en besteden die tijd beter.',
         rubric: [
@@ -289,43 +289,43 @@ export default {
       title: 'FMEA: risico’s vóór de start',
       pre: [
         {
-          q: 'In een risicoanalyse krijgt elke fout drie scores van 1 tot 10. Faalwijze 1 scoort Severity 10, Occurrence 4, Detection 3; vermenigvuldigd is de RPN (risk priority number) 120. Faalwijze 2 scoort 4, 6, 6: RPN 144. Welke pak je eerst aan?',
-          options: ['Faalwijze 1, want severity 10 gaat voor', 'Faalwijze 2, want die heeft de hoogste RPN', 'Allebei even hard', 'Geen van beide, ze zitten allebei onder de 200'],
-          answer: 'Faalwijze 1, want severity 10 gaat voor',
-          why: 'Een severity van 9 of 10 betekent een veiligheids- of wettelijk risico; daar komt actie op, wat de RPN ook is.',
+          q: 'In een risicoanalyse krijgt elke fout drie scores van 1 tot 10. Faalwijze 1 scoort ernst (severity) 10, kans op optreden (occurrence) 4, detectie (detection) 3 (een hoge detectiescore betekent dat de fout makkelijk doorglipt); vermenigvuldigd is de RPN (risk priority number, risicoprioriteitsgetal) 120. Faalwijze 2 scoort 4, 6, 6: RPN 144. Welke pak je eerst aan?',
+          options: ['Faalwijze 1, want ernst 10 gaat voor', 'Faalwijze 2, want die heeft de hoogste RPN', 'Allebei even hard', 'Geen van beide, ze zitten allebei onder de 200'],
+          answer: 'Faalwijze 1, want ernst 10 gaat voor',
+          why: 'Een ernst van 9 of 10 betekent een veiligheids- of wettelijk risico; daar komt actie op, wat de RPN ook is.',
         },
       ],
       teach: [
-        'Een FMEA (failure mode and effects analysis) is een gestructureerde teamsessie om risico’s vóór de start op papier te vinden, in plaats van bij de klant. Een PFMEA kijkt naar elke processtap; een DFMEA naar elke ontwerpfunctie.\n\nPer regel vraagt het team: hoe kan het misgaan (de faalwijze), wat gebeurt er dan (het effect), waarom zou het gebeuren (de oorzaak), en wat doen we al om het te voorkomen of te ontdekken (de beheersmaatregelen, controls)?',
-        'Elke regel krijgt drie scores van 1 tot 10. Severity (ernst): hoe erg het effect is; 9 of 10 is veiligheid of wetgeving. Occurrence (kans op optreden): hoe waarschijnlijk de oorzaak is. Detection (ontdekking): hoe groot de kans is dat we het vinden voordat het de deur uitgaat.\n\nLet op: detection is omgekeerd. 1 betekent vrijwel zeker gevonden, 10 geen kans. Het klassieke risicogetal is de RPN = S × O × D, van 1 tot 1.000.',
-        'De RPN heeft nadelen: heel verschillende risico’s krijgen hetzelfde getal, en teams leren net onder de drempel voor actie te scoren.\n\nHet AIAG-VDA FMEA-handboek (2019, de gezamenlijke Amerikaanse en Duitse automotive-standaard) heeft hem vervangen door Action Priority (AP): hoog, midden of laag, uit een tabel die eerst naar severity kijkt, dan occurrence, dan detection. Veel fabrieken laten nog allebei zien.',
-        'Elke score heeft zijn eigen hefboom. Alleen een ontwerpwijziging verlaagt de severity, want severity gaat over het effect. Preventie verlaagt de occurrence: beter gereedschap, of een poka-yoke, een voorziening die de fout onmogelijk maakt. Betere controles verlagen de detection.\n\nEen typische fout: het team beantwoordt een severity-9-risico met “operators trainen”. Training is de zwakste maatregel die er is; vraag wat er verandert aan de machine of het product.',
+        'Een FMEA (failure mode and effects analysis) is een gestructureerde teamsessie om risico’s vóór de start op papier te vinden, in plaats van bij de klant. Een PFMEA (proces-FMEA) kijkt naar elke processtap; een DFMEA (design-FMEA) naar elke ontwerpfunctie.\n\nPer regel vraagt het team: hoe kan het misgaan (de faalwijze), wat gebeurt er dan (het effect), waarom zou het gebeuren (de oorzaak), en wat doen we al om het te voorkomen of te ontdekken (de beheersmaatregelen, controls)?',
+        'Elke regel krijgt drie scores van 1 tot 10. Ernst (severity): hoe erg het effect is; 9 of 10 is veiligheid of wetgeving. Kans op optreden (occurrence): hoe waarschijnlijk de oorzaak is. Detectie (detection): hoe groot de kans is dat we het vinden voordat het de deur uitgaat.\n\nLet op: detectie is omgekeerd. 1 betekent vrijwel zeker gevonden, 10 geen kans. Het klassieke risicogetal is de RPN = S × O × D, van 1 tot 1.000.',
+        'De RPN heeft nadelen: heel verschillende risico’s krijgen hetzelfde getal, en teams leren net onder de drempel voor actie te scoren.\n\nHet AIAG-VDA FMEA-handboek (2019, de gezamenlijke Amerikaanse en Duitse automotive-standaard) heeft hem vervangen door Action Priority (AP): hoog, midden of laag, uit een tabel die eerst naar ernst kijkt, dan kans op optreden, dan detectie. Veel fabrieken laten nog allebei zien.',
+        'Elke score heeft zijn eigen hefboom. Alleen een ontwerpwijziging verlaagt de ernst, want ernst gaat over het effect. Preventie verlaagt de kans op optreden: beter gereedschap, of een poka-yoke, een voorziening die de fout onmogelijk maakt. Betere controles verlagen de detectiescore.\n\nEen typische fout: het team beantwoordt een risico met ernst 9 met “operators trainen”. Training is een van de zwakste maatregelen; vraag wat er verandert aan de machine of het product.',
         'Timing is alles. Een FMEA vóór de design freeze (de datum waarna het ontwerp niet meer mag veranderen) kan product en proces nog veranderen. Eentje die na de start van productie wordt geschreven, alleen om het goedkeuringsdossier voor de klant te vullen (de PPAP, volgende les), is papierwerk.\n\nBij een goede FMEA zitten ontwerp, procesengineering, kwaliteit, onderhoud en een operator aan tafel, en hij wordt na elke klacht bijgewerkt.',
       ],
       example: {
         kind: 'worked',
-        text: 'Stap: een lager in een wielnaafhuis persen (het deel waarin het wiel draait). Faalwijze: lager niet volledig op zijn plek. Effect: lager loopt uit, geluid, mogelijk schade aan het wiel: S = 8.\n\nOorzaak: te lage perskracht door versleten gereedschap: O = 5. Huidige controle: de operator kijkt ernaar: D = 7. RPN = 8 × 5 × 7 = 280.\n\nActie: kracht-wegbewaking op de pers (die meet de kracht tegen de verplaatsing) die elk deel buiten het curvevenster afkeurt: D = 2. Nieuwe RPN = 8 × 5 × 2 = 80. De severity blijft 8, want alleen een ontwerpwijziging maakt het effect minder erg.',
+        text: 'Stap: een lager in een wielnaafhuis persen (het deel waarin het wiel draait). Faalwijze: lager niet volledig op zijn plek. Effect: lager loopt uit, geluid, mogelijk schade aan het wiel: S = 8.\n\nOorzaak: te lage perskracht door versleten gereedschap: O = 5. Huidige controle: de operator kijkt ernaar: D = 7. RPN = 8 × 5 × 7 = 280.\n\nActie: kracht-wegbewaking op de pers (die meet de kracht tegen de verplaatsing) die elk deel afkeurt waarvan de curve buiten de toegestane band komt: D = 2. Nieuwe RPN = 8 × 5 × 2 = 80. De ernst blijft 8, want alleen een ontwerpwijziging maakt het effect minder erg.',
       },
-      said: 'Wat engineers zeggen: “Severity negen en we vertrouwen op een visuele check? Dat is op z’n best een detection van zeven. Daar moet vóór de start van productie een poka-yoke op.”',
+      said: 'Wat engineers zeggen: “Ernst negen en we vertrouwen op een visuele check? Dat is op z’n best een detectie van zeven. Daar moet vóór de start van productie een poka-yoke op.”',
       recall: [
         {
-          q: 'Een faalwijze scoort Severity 7, Occurrence 4, Detection 5. Wat is de RPN?',
+          q: 'Een faalwijze scoort ernst 7, kans op optreden 4, detectie 5. Wat is de RPN?',
           number: 140,
           tolerance: 0.5,
           unit: '',
           why: 'RPN = S × O × D = 7 × 4 × 5 = 140.',
         },
         {
-          q: 'Wat betekent een detection-score van 1?',
+          q: 'Wat betekent een detectiescore van 1?',
           options: ['De fout wordt vrijwel zeker niet ontdekt', 'De fout wordt vrijwel zeker ontdekt', 'De fout komt één keer voor', 'De fout is onschadelijk'],
           answer: 'De fout wordt vrijwel zeker ontdekt',
           why: 'De detectieschaal is omgekeerd: laag is goed.',
         },
         {
-          q: 'Welke actie kan de severity-score verlagen?',
+          q: 'Welke actie kan de ernstscore verlagen?',
           options: ['Een cameracontrole toevoegen', 'De operators trainen', 'Vaker onderhoud doen', 'Het ontwerp zo veranderen dat het effect minder schadelijk is'],
           answer: 'Het ontwerp zo veranderen dat het effect minder schadelijk is',
-          why: 'Severity gaat over het effect; alleen het ontwerp veranderen verandert het effect.',
+          why: 'Ernst gaat over het effect; alleen het ontwerp veranderen verandert het effect.',
         },
         {
           q: 'Wanneer levert een FMEA het meeste op?',
@@ -337,21 +337,21 @@ export default {
       situation: {
         scene: 'Je helpt een klant een nieuwe assemblagelijn op te starten, over zes weken. De PFMEA is door één kwaliteitsengineer gekopieerd van een oudere lijn. Elke RPN zit onder de 100.',
         ask: 'Wat vraag je?',
-        model: 'Wie zaten er in de sessie, en wat is er anders aan deze lijn dan aan de oude: nieuwe machines, nieuwe productkenmerken, nieuwe leveranciers? Welke regels hebben een severity van 9 of 10, en wat is daar de detectiemaatregel: als dat een visuele check is, wil ik dat vóór de start opgepakt zien. Kunnen we ontwerp, onderhoud en een operator twee halve dagen bij elkaar krijgen?',
+        model: 'Wie zaten er in de sessie, en wat is er anders aan deze lijn dan aan de oude: nieuwe machines, nieuwe productkenmerken, nieuwe leveranciers? Welke regels hebben een ernst van 9 of 10, en wat is daar de detectiemaatregel: als dat een visuele check is, wil ik dat vóór de start opgepakt zien. Kunnen we ontwerp, onderhoud en een operator twee halve dagen bij elkaar krijgen?',
         rubric: [
           'Vraagt wie hem gemaakt heeft en wat er nieuw is ten opzichte van de gekopieerde lijn',
-          'Gaat direct naar de punten met hoge severity en hun beheersmaatregelen',
+          'Gaat direct naar de punten met hoge ernst en hun beheersmaatregelen',
           'Stelt een echte multidisciplinaire sessie vóór de start voor',
         ],
       },
       sayIt: 'Leg een projectsponsor in 60 seconden uit wat een FMEA is en waarom hij na de start te laat is.',
       terms: [
         { term: 'Faalwijze', def: 'De manier waarop iets mis kan gaan in een stap of functie.' },
-        { term: 'Severity', def: 'Score 1–10 voor hoe erg het effect is (ernst); 9–10 is veiligheid of wetgeving.' },
-        { term: 'Occurrence', def: 'Score 1–10 voor hoe waarschijnlijk de oorzaak is.' },
-        { term: 'Detection', def: 'Score 1–10 voor de kans dat de fout ontsnapt; 1 = vrijwel zeker gevonden.' },
-        { term: 'RPN', def: 'Risk priority number: Severity × Occurrence × Detection.' },
-        { term: 'Action Priority (AP)', def: 'AIAG-VDA-beoordeling (hoog, midden, laag) die eerst naar severity kijkt.' },
+        { term: 'Ernst', def: 'Severity: score 1–10 voor hoe erg het effect is; 9–10 is veiligheid of wetgeving.' },
+        { term: 'Kans op optreden', def: 'Occurrence: score 1–10 voor hoe waarschijnlijk de oorzaak is.' },
+        { term: 'Detectie', def: 'Detection: score 1–10 voor de kans dat de fout ontsnapt; 1 = vrijwel zeker gevonden.' },
+        { term: 'RPN', def: 'Risk priority number (risicoprioriteitsgetal): ernst × kans op optreden × detectie.' },
+        { term: 'Action Priority (AP)', def: 'AIAG-VDA-beoordeling (hoog, midden, laag) die eerst naar de ernst kijkt.' },
       ],
     },
     {
@@ -366,7 +366,7 @@ export default {
         },
       ],
       teach: [
-        'Het control plan (beheersplan) is een tabel die per processtap zegt welke kenmerken je controleert: de spec, het meetmiddel (gauge), steekproefgrootte en frequentie, wie meet, hoe het wordt vastgelegd en het reactieplan. Het is de brug van de FMEA naar de werkvloer.\n\nVoorbeeldregel: “Boring Ø30 +0,021/0, luchtmeter, 1 op 20, operator, SPC-kaart; bij afwijking: stoppen, terug tot de laatste goede meting in quarantaine, teamleider bellen.”',
+        'Het control plan (beheersplan) is een tabel die per processtap zegt welke kenmerken je controleert: de spec, het meetmiddel (gauge), steekproefgrootte en frequentie, wie meet, hoe het wordt vastgelegd en het reactieplan. Het is de brug van de FMEA naar de werkvloer.\n\nVoorbeeldregel: “Boring Ø30 +0,021/0, luchtmeter (meet de boring met luchtdruk), 1 op de 20 stuks, operator, SPC-kaart; bij afwijking: stoppen, terug tot de laatste goede meting in quarantaine, teamleider bellen.”',
         'Meten is zelf ook een proces, met eigen spreiding. MSA (measurement system analysis, meetsysteemanalyse) controleert hoeveel.\n\nDe bekendste studie is de gauge R&R: bijvoorbeeld 10 delen, 3 operators, elk deel 3 keer gemeten, 90 metingen in totaal. Herhaalbaarheid (repeatability) is de spreiding als dezelfde persoon hetzelfde deel meet met hetzelfde meetmiddel. Reproduceerbaarheid (reproducibility) is het verschil tussen mensen. R&R staat voor die twee samen.',
         'De uitkomst geef je als % van de tolerantie: de meetspreiding (6σ van het meetmiddel) gedeeld door de tolerantiebreedte. Onder de 10%: goed. 10 tot 30%: acceptabel, afhankelijk van toepassing en kosten. Boven de 30%: niet acceptabel.\n\nBij 30% kan een deel dicht bij de grens de ene keer goed en de volgende keer fout gemeten worden. Dan zijn ploegen het oneens, en krijgen mensen de schuld van het meetmiddel.',
         'Vuistregel van tien: de resolutie van het meetmiddel, de kleinste stap die het kan tonen, is hoogstens een tiende van de tolerantie. Een schuifmaat die op 0,01 mm afleest, is nutteloos bij een tolerantie van 0,02 mm; dan heb je een micrometer (schroefmaat) nodig die op 0,001 mm afleest.\n\nScherpe vraag vóór elke Cpk-discussie: “Heeft dit meetmiddel een R&R gehad, met de mensen die er echt mee meten?”',

@@ -158,9 +158,9 @@ export default {
       teach: [
         'Capability says whether a process can stay inside the tolerance: it compares the spread of the process with the width of the tolerance.\n\nCp = tolerance width / 6σ, because ±3σ, six sigma wide, holds 99.7% of parts. With a tolerance of 0.10 mm and σ of 0.0125 mm, 6σ is 0.075, so Cp = 1.33: the spread uses three quarters of the tolerance. Cp only says whether the process would fit if it were perfectly centred.',
         'Cpk adds the centring: the distance from the mean to the nearest spec limit, divided by 3σ.\n\nMove that same process 0.025 mm towards the upper limit and it has 0.025 mm left to the limit: Cpk = 0.025 / 0.0375 = 0.67. Cp is still 1.33, but now it makes scrap. Cpk is never higher than Cp; the two are equal only when the process is centred.',
-        'Targets: 1.33 is the common minimum for running production. Centred, that puts the limits at ±4σ: about 63 ppm (parts per million) outside. 1.67 (±5σ, under 1 ppm) is asked for new processes and safety characteristics.\n\nCpk 1.0 means about 2,700 ppm. Below 1.0 you make scrap every day and need 100% inspection.',
+        'Targets: 1.33 is the common minimum for running production. Centred, that puts the limits at ±4σ: about 63 ppm (parts per million) outside. 1.67 (±5σ, under 1 ppm) is asked for new processes and safety characteristics.\n\nCpk 1.0 means about 2,700 ppm. Below 1.0 you make scrap every day and usually need 100% inspection.',
         'Cp and Cpk use the short-term spread: within small groups of parts made one after another. Ppk uses the overall spread of all parts measured, including drift between hours and days. Customers ask for it in launch studies, often Ppk of at least 1.67.\n\nIf Ppk is much lower than Cpk, the process wanders over time. And none of these numbers means anything unless the process was stable while you measured.',
-        'The gap between Cp and Cpk tells you the fix. Cp high and Cpk low: centre the process, often one offset. Both low: reduce the spread, which means fixture, machine or method, and costs real money.\n\nStatisticians warn that a Cpk from 30 parts has a wide margin of error; customers usually want 50 parts or more, often 125. Sharp question: “How many parts, over how many days?”',
+        'The gap between Cp and Cpk tells you the fix. Cp high and Cpk low: centre the process, often one offset. Both low: reduce the spread, which means fixture, machine or method, and costs real money.\n\nStatisticians warn that a Cpk from 30 parts has a wide margin of error. Customers typically want at least 50 parts for a machine study and about 100 or more, in 25 subgroups, for a process study. Sharp question: “How many parts, over how many days?”',
       ],
       example: {
         kind: 'worked',
@@ -234,7 +234,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Shafts Ø20 ±0.05, subgroups of 5 every hour. Grand mean (average of all subgroup averages) 20.000, average range 0.020. For n = 5 the table constant A2 is 0.577, so the limits are 20.000 ± 0.577 × 0.020: 19.9885 to 20.0115.\n\nFrom 10:00 to 16:00 the averages are 20.002, 20.004, 20.005, 20.006, 20.008, 20.009, 20.011. All inside the limits, all far inside spec, but seven rising in a row: a trend.\n\nTool wear. The operator changes the insert (the replaceable cutting tip) at 16:10, before a single part is out.',
+        text: 'Shafts Ø20 ±0.05, subgroups of 5 every hour. Grand mean (average of all subgroup averages) 20.000, average range 0.020. For n = 5 the table constant A2 is 0.577, so the limits are 20.000 ± 0.577 × 0.020: 19.9885 to 20.0115.\n\nFrom 10:00 to 16:00 the averages are 20.002, 20.004, 20.005, 20.006, 20.008, 20.009, 20.011. All inside the limits, all far inside spec, but seven rising in a row: a trend.\n\nTool wear. The operator changes the insert (the replaceable cutting tip) at 16:10, before a single part is out of spec.',
       },
       said: 'What engineers say: “It’s still in spec, but that’s seven up in a row. That’s the insert going, change it now and we never make a bad part.”',
       recall: [
@@ -265,7 +265,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You walk past the SPC board at a plastic injection moulding client. The charts are neatly filled in.\n\nOn two of them, three points from this week sit outside the control limits. Nothing is written next to them.',
+        scene: 'You walk past the SPC board at an injection moulding client (a plant that presses molten plastic into moulds). The charts are neatly filled in.\n\nOn two of them, three points from this week sit outside the control limits. Nothing is written next to them.',
         ask: 'What do you ask the team leader?',
         model: 'What does the operator do when a point falls outside the limits, is there a reaction plan? Who looks at these charts, and when did someone last act on one? If the answer is nobody, we either make the reaction plan real or stop spending time filling them in.',
         rubric: [
@@ -289,22 +289,22 @@ export default {
       title: 'FMEA: risk before launch',
       pre: [
         {
-          q: 'In a risk analysis each failure gets three scores from 1 to 10. Failure mode 1 scores Severity 10, Occurrence 4, Detection 3; multiplied, its RPN (risk priority number) is 120. Failure mode 2 scores 4, 6, 6: RPN 144. Which do you work on first?',
+          q: 'In a risk analysis each failure gets three scores from 1 to 10. Failure mode 1 scores Severity 10 (how bad the effect is), Occurrence 4 (how likely the cause is), Detection 3 (a high score means it easily slips through); multiplied, its RPN (risk priority number) is 120. Failure mode 2 scores 4, 6, 6: RPN 144. Which do you work on first?',
           options: ['Failure mode 1, because severity 10 comes first', 'Failure mode 2, because its RPN is higher', 'Both equally', 'Neither, both are below 200'],
           answer: 'Failure mode 1, because severity 10 comes first',
           why: 'A severity of 9 or 10 means a safety or legal risk; it gets action whatever the RPN.',
         },
       ],
       teach: [
-        'FMEA (failure mode and effects analysis) is a structured team session to find risks before launch, on paper, instead of at the customer. A PFMEA looks at each process step; a DFMEA at each design function.\n\nPer line the team asks: how can it fail (the failure mode), what happens then (the effect), why would it happen (the cause), and what do we already do to prevent or detect it (the controls)?',
+        'FMEA (failure mode and effects analysis) is a structured team session to find risks before launch, on paper, instead of at the customer. A PFMEA (process FMEA) looks at each process step; a DFMEA (design FMEA) at each design function.\n\nPer line the team asks: how can it fail (the failure mode), what happens then (the effect), why would it happen (the cause), and what do we already do to prevent or detect it (the controls)?',
         'Each line gets three scores from 1 to 10. Severity: how bad the effect is; 9 or 10 means a safety or legal problem. Occurrence: how likely the cause is. Detection: how likely we catch it before it leaves us.\n\nCareful: detection is inverted. 1 means almost certain to catch it, 10 means no chance. The classic risk priority number is RPN = S × O × D, from 1 to 1,000.',
         'RPN has problems: very different risks get the same number, and teams learn to score just under the threshold for action.\n\nThe AIAG-VDA FMEA handbook (2019, the joint American and German automotive standard) replaced it with Action Priority (AP): high, medium or low, from a table that weighs severity first, then occurrence, then detection. Many plants still show both.',
-        'Each score has its own lever. Only a design change lowers severity, because severity is about the effect. Prevention lowers occurrence: better tooling, or a poka-yoke, a device that makes the error impossible. Better checks lower detection.\n\nA typical failure: the team answers a severity-9 risk with “train the operators”. Training is the weakest control there is; ask what changes in the machine or the product.',
+        'Each score has its own lever. Only a design change lowers severity, because severity is about the effect. Prevention lowers occurrence: better tooling, or a poka-yoke, a device that makes the error impossible. Better checks lower detection.\n\nA typical failure: the team answers a severity-9 risk with “train the operators”. Training is one of the weakest controls; ask what changes in the machine or the product.',
         'Timing is everything. An FMEA done before design freeze (the date after which the design may no longer change) can still change product and process. One written after start of production, just to fill the customer’s approval file (the PPAP, next lesson), is paperwork.\n\nGood FMEAs have design, process engineering, quality, maintenance and an operator in the room, and are updated after every complaint.',
       ],
       example: {
         kind: 'worked',
-        text: 'Step: press a bearing into a wheel hub housing (the part the wheel turns in). Failure mode: bearing not fully seated. Effect: bearing walks out, noise, possible wheel damage: S = 8.\n\nCause: press force too low from worn tooling: O = 5. Current control: operator looks at it: D = 7. RPN = 8 × 5 × 7 = 280.\n\nAction: force-displacement monitoring on the press (it records force against travel) rejecting every part outside the curve window: D = 2. New RPN = 8 × 5 × 2 = 80. Severity stays 8, because only a design change can make the effect less bad.',
+        text: 'Step: press a bearing into a wheel hub housing (the part the wheel turns in). Failure mode: bearing not fully seated. Effect: bearing walks out, noise, possible wheel damage: S = 8.\n\nCause: press force too low from worn tooling: O = 5. Current control: operator looks at it: D = 7. RPN = 8 × 5 × 7 = 280.\n\nAction: force-displacement monitoring on the press (it records force against travel) rejecting every part whose curve leaves the allowed band: D = 2. New RPN = 8 × 5 × 2 = 80. Severity stays 8, because only a design change can make the effect less bad.',
       },
       said: 'What engineers say: “Severity nine and we’re relying on a visual check? That’s a detection of seven at best. We need a poka-yoke there before start of production.”',
       recall: [
@@ -366,7 +366,7 @@ export default {
         },
       ],
       teach: [
-        'The control plan is a table that says, for every process step, which characteristics are checked: the spec, the gauge (measuring instrument), sample size and frequency, who checks, how it’s recorded, and the reaction plan. It is the bridge from the FMEA to the shop floor.\n\nExample row: “Bore Ø30 +0.021/0, air gauge, 1 in 20, operator, SPC chart; if out: stop, quarantine back to the last good check, call the team leader.”',
+        'The control plan is a table that says, for every process step, which characteristics are checked: the spec, the gauge (measuring instrument), sample size and frequency, who checks, how it’s recorded, and the reaction plan. It is the bridge from the FMEA to the shop floor.\n\nExample row: “Bore Ø30 +0.021/0, air gauge (measures the bore with air pressure), 1 part in 20, operator, SPC chart; if out: stop, quarantine back to the last good check, call the team leader.”',
         'Measuring is a process with its own variation. MSA (measurement system analysis) checks how much.\n\nThe best-known study is gauge R&R: for example 10 parts, 3 operators, each part measured 3 times, 90 readings in total. Repeatability is the spread when the same person measures the same part with the same gauge. Reproducibility is the difference between people. R&R stands for the two together.',
         'The result is shown as % of tolerance: the measurement spread (6σ of the gauge) divided by the tolerance width. Under 10%: good. 10 to 30%: acceptable, depending on use and cost. Over 30%: not acceptable.\n\nAt 30%, a part near a limit can be called good one time and bad the next. Shifts then disagree, and people get blamed for the gauge.',
         'Rule of ten: the gauge resolution, the smallest step it can show, should be at most a tenth of the tolerance. A caliper (a sliding measuring tool) reading to 0.01 mm is useless on a 0.02 mm tolerance; you need a micrometer reading to 0.001 mm.\n\nSharp question before any Cpk discussion: “Has this gauge had an R&R, with the people who actually use it?”',
