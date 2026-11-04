@@ -1,4 +1,4 @@
-// eng.lines (NL): Lijnen en automatisering, in topics met vier niveaus: lijnontwerp, robots, foutvrij maken (geschreven), daarna mixed-model lijnen, OEE van geautomatiseerde lijnen en de businesscase.
+// eng.lines (NL): Lijnen en automatisering, in zes topics met elk vier niveaus: lijnontwerp, robots, foutvrij maken, varianten en omstellen, besturing en data, businesscase.
 export default {
   lessons: [
     {
@@ -837,6 +837,142 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.variants',
+      title: 'Meerdere producten op één lijn: varianten en wat ze kosten',
+      pre: [
+        {
+          q: 'Een lijn bouwt twee versies van dezelfde pomp: één met een druksensor, één zonder. Hoe noemen engineers die versies?',
+          options: ['Batches', 'Varianten', 'Stations', 'Buffers'],
+          answer: 'Varianten',
+          why: 'Een variant is een versie van hetzelfde product die in een paar onderdelen of stappen verschilt.',
+        },
+      ],
+      teach: [
+        'Een variant is een versie van hetzelfde product die in een paar onderdelen of stappen verschilt: een andere kleur, een grotere motor, een andere stekker voor Engeland. Klanten willen die keuze.\n\nAlle varianten op één lijn bouwen scheelt vloerruimte en investering tegenover een lijn per variant. Een mixed-model lijn gaat een stap verder: die bouwt de varianten in een gemengde volgorde, product voor product.',
+        'Er zijn twee manieren om varianten te draaien. In series (batches): een tijd lang één variant, dan omschakelen naar de volgende. Of gemengd, zonder omschakelen, en dat kan alleen als de stations per variant geen andere onderdelen of instellingen nodig hebben.\n\nOmstellen is het wisselen tussen twee varianten: van het laatste goede product van de ene tot het eerste goede product van de volgende op volle snelheid. Onderdelen, gereedschap en instellingen wisselen valt er allemaal onder, en ondertussen maakt de lijn niks.',
+        'De seriegrootte is het aantal producten van één variant tussen twee keer omstellen. Grote series kosten minder omsteltijd, maar ze bouwen voorraad op, en een klant die een andere variant wil, wacht langer.\n\nDe module eng.flow gaat dieper op die afweging in; hier is genoeg om te weten dat elke keer omstellen output kost.',
+        'Varianten kosten meer dan omsteltijd. Meer verschillende onderdelen aan de lijn, meer kans dat er een verkeerde in gaat, meer werkinstructies, en stations met per variant ander werk, die je daardoor lastiger balanceert.\n\nVraag op een gemba walk drie dingen: hoeveel varianten lopen hier, hoe vaak stellen jullie om, en wat verandert er bij omstellen? Schermen met de volgende variant en bakken met kleurcodes vertellen je dat de lijn met veel varianten leeft.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een lijn monteert koffiemachines in vier kleuren. Ga uit van een dienst met 7 uur werktijd (420 minuten) en een cyclustijd van 60 seconden op de bottleneck, dus de lijn maakt één machine per minuut als hij draait.\n\nNu wisselt hij 4 keer per dienst van kleur, en elke keer omstellen duurt 20 minuten: 4 × 20 = 80 minuten zonder output. De lijn maakt 420 − 80 = 340 machines in plaats van 420, een verlies van 80 / 420 = 19%.\n\nMet 2 keer omstellen per dienst (grotere series) is het verlies 40 minuten en de output 380. De prijs: elke kleur wacht langer, dus er staat meer voorraad klaar.',
+      },
+      said: 'Wat operators zeggen: “Zes keer omgebouwd vandaag, daar gaat onze output.” Ombouwen is vloertaal voor omstellen naar een andere variant.',
+      recall: [
+        {
+          q: 'Een lijn heeft 480 minuten werktijd per dienst en maakt één product per minuut als hij draait. Hij stelt 3 keer om, elke keer 25 minuten. Hoeveel producten maakt hij die dienst?',
+          number: 405,
+          tolerance: 1,
+          unit: 'producten',
+          why: '3 × 25 = 75 minuten kwijt; 480 − 75 = 405 minuten draaien, dus 405 producten.',
+        },
+        {
+          q: 'Waar begint en eindigt omstellen?',
+          options: ['Van de lijn stilzetten tot weer op start drukken', 'Alleen de tijd om gereedschap te wisselen', 'Van het laatste goede product van de ene variant tot het eerste goede product van de volgende op volle snelheid', 'Van het vrijgeven van de order tot de verzending'],
+          answer: 'Van het laatste goede product van de ene variant tot het eerste goede product van de volgende op volle snelheid',
+          why: 'Proefproducten en bijstellen na het wisselen horen ook bij omstellen.',
+        },
+        {
+          q: 'Wat gebeurt er als een lijn grotere series maakt?',
+          options: ['Meer keer omstellen per week', 'Minder tijd kwijt aan omstellen, maar meer voorraad', 'Minder voorraad en minder keer omstellen', 'Elke variant is sneller leverbaar'],
+          answer: 'Minder tijd kwijt aan omstellen, maar meer voorraad',
+          why: 'Minder wissels kosten minder tijd, maar elke variant wordt verder vooruit gebouwd.',
+        },
+        {
+          q: 'Een lijn heeft 420 minuten werktijd per dienst en stelt 4 keer om, elke keer 15 minuten. Welk deel van de werktijd gaat op aan omstellen, in procent?',
+          number: 14.3,
+          tolerance: 0.3,
+          unit: '%',
+          why: '4 × 15 = 60 minuten; 60 / 420 = 0,143, dus 14,3%.',
+        },
+      ],
+      situation: {
+        scene: 'Je eerste gemba walk bij een maker van espressomachines. De productiemanager zucht: “Sales verzint steeds nieuwe kleuren en uitvoeringen, en de lijn haalt nooit zijn aantallen.”',
+        ask: 'Wat vraag je?',
+        model: 'Hoeveel varianten lopen er nu op deze lijn, en hoe vaak stellen jullie per dienst om? Wat verandert er bij omstellen, en hoe lang duurt het, van de laatste goede machine tot de eerste goede? Dan weten we wat de varianten echt aan output kosten, en of grotere series of korter omstellen het meest helpt.',
+        rubric: [
+          'Vraagt hoeveel varianten er zijn en hoe vaak de lijn omstelt',
+          'Vraagt wat er verandert en hoe lang omstellen duurt',
+          'Koppelt de varianten aan verloren output in plaats van sales de schuld te geven',
+        ],
+      },
+      sayIt: 'Leg een nieuwe collega in 60 seconden uit wat varianten een assemblagelijn kosten.',
+      terms: [
+        { term: 'Variant', def: 'Een versie van hetzelfde product die in een paar onderdelen of stappen verschilt.' },
+        { term: 'Mixed-model lijn', def: 'Een lijn die meerdere varianten van een product in een gemengde volgorde bouwt.' },
+        { term: 'Omstellen', def: 'Wisselen naar een andere variant, van het laatste goede product van de ene tot het eerste goede van de volgende.' },
+        { term: 'Seriegrootte', def: 'Het aantal producten van één variant tussen twee keer omstellen.' },
+      ],
+    },
+    {
+      id: 'eng.lines.linechange',
+      title: 'Omstellen op een geautomatiseerde lijn: recepten, formaatdelen en SMED',
+      pre: [
+        {
+          q: 'Welk deel van het omstellen duurt op een geautomatiseerde lijn vaak het langst?',
+          options: ['De nieuwe variant kiezen op het scherm', 'De vloer schoonmaken', 'Bijstellen en proefproducten draaien tot het eerste goede product', 'Nieuwe etiketten printen'],
+          answer: 'Bijstellen en proefproducten draaien tot het eerste goede product',
+          why: 'Proberen en bijstellen is vaak zo’n helft van het omstellen, omdat de instellingen niet in één keer goed zijn.',
+        },
+      ],
+      teach: [
+        'Omstellen op een geautomatiseerde lijn heeft een softwarehelft en een hardwarehelft. De softwarehelft is het recept: een opgeslagen set instellingen per variant in de PLC, de besturingscomputer van de machine. Snelheden, posities, robotprogramma’s en camerachecks zitten er allemaal in.\n\nDe operator kiest de variant en de machine laadt het recept. Een verkeerd recept is een klassieke fout, dus goede lijnen koppelen het recept aan de order, bijvoorbeeld door de barcode van de order te scannen.',
+        'De hardwarehelft zijn de formaatdelen. Een formaatdeel is een onderdeel dat per variant verschilt, zoals grijpervingers, geleiders, nesten in een mal of de sterwielen (star wheels) van een bottellijn. Elk deel wordt losgeschroefd, gewisseld en bijgesteld.\n\nGoede formaatdelen zijn per variant genummerd of met een kleur gemerkt, zitten op vaste paspennen (locating pins) zodat ze zonder bijstellen goed zitten, gebruiken snelspanners in plaats van bouten, en staan klaar op een kar naast de lijn.',
+        'SMED, single-minute exchange of die, is de methode om omstellen onder de 10 minuten te krijgen (Shingo). Splits eerst intern werk, dat alleen kan als de lijn stilstaat, van extern werk, dat kan terwijl hij nog draait: de kar met formaatdelen halen, gereedschap klaarleggen, het materiaal voor de volgende order checken.\n\nHaal het externe werk uit de stilstand, maak intern werk waar het kan extern, en stroomlijn de rest. De module eng.flow leert de methode zelf.',
+        'Automatisering kan formaatdelen helemaal overbodig maken. Een servo-as (servo axis), een as met een motor die naar een positie uit het recept rijdt, zet zelf een geleiderbreedte of een grijperslag.\n\nDat kost vooraf meer en loont als er vaak omgesteld wordt. Omstellen is dan een recept laden plus een check op het eerste product: een paar minuten in plaats van een uur.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Omstellen op een verpakkingslijn duurt 50 minuten. Je filmt het en splitst het op: 15 minuten zoeken naar formaatdelen en gereedschap, 20 minuten 6 formaatdelen met bouten wisselen, en 15 minuten bijstellen en proefdozen draaien.\n\nStap 1: zoeken naar delen is extern werk. Zet de delen vóór de stop op een kar: 50 − 15 = 35 minuten.\n\nStap 2: paspennen en snelspanners brengen het wisselen terug van 20 naar 10 minuten, en omdat de delen nu in één keer goed zitten, zakt het bijstellen van 15 naar 5. Omstellen duurt nu 10 + 5 = 15 minuten.\n\nBij 2 keer omstellen per dienst wint de lijn 2 × 35 = 70 minuten draaitijd per dienst.',
+      },
+      said: 'Wat instellers zeggen: “Recept erin, formaatdelen erin, eerste doos goed, we draaien.” Zo hoort omstellen te gaan.',
+      recall: [
+        {
+          q: 'Omstellen duurt 40 minuten met de lijn stil. 12 van die minuten zijn extern werk, zoals onderdelen halen. Hoe lang duurt het als al het externe werk vóór de stop gebeurt, in minuten?',
+          number: 28,
+          tolerance: 0.5,
+          unit: 'min',
+          why: '40 − 12 = 28 minuten intern werk blijft over.',
+        },
+        {
+          q: 'Wat is een recept op een geautomatiseerde lijn?',
+          options: ['Een werkinstructie op papier', 'Een opgeslagen set machine-instellingen per variant', 'De stuklijst', 'De orderlijst van de dag'],
+          answer: 'Een opgeslagen set machine-instellingen per variant',
+          why: 'De PLC laadt snelheden, posities, programma’s en checks voor de gekozen variant.',
+        },
+        {
+          q: 'Welke van deze is extern werk?',
+          options: ['Een grijper losschroeven', 'Een geleider bijstellen op de stilstaande lijn', 'Proefproducten draaien', 'De kar met formaatdelen vóór de stop naar de lijn brengen'],
+          answer: 'De kar met formaatdelen vóór de stop naar de lijn brengen',
+          why: 'Dat kan terwijl de lijn nog de vorige variant draait.',
+        },
+        {
+          q: 'Waarom zet je formaatdelen op vaste paspennen?',
+          options: ['Ze zijn goedkoper', 'Ze zitten in één keer goed, dus minder bijstellen', 'Dan is het recept niet meer nodig', 'Dan draait de lijn sneller'],
+          answer: 'Ze zitten in één keer goed, dus minder bijstellen',
+          why: 'Bijstellen is vaak het grootste deel van het omstellen; paspennen halen het weg.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een voedingsmiddelenverpakker zeggen de operators dat omstellen “ongeveer een uur” duurt. De engineeringmanager wil een nieuwe, snellere verpakkingsmachine kopen om de verloren output terug te halen.',
+        ask: 'Wat stel je voor vóór de aankoop?',
+        model: 'Kunnen we één keer omstellen filmen en elke stap indelen in intern en extern werk? Hoeveel van dat uur is zoeken naar delen, en hoeveel is bijstellen? Zijn de formaatdelen per variant gemerkt en staan ze op een kar, en zit het recept aan de order vast? Als we het omstellen halveren, winnen we de output misschien zonder nieuwe machine.',
+        rubric: [
+          'Stelt voor om omstellen te filmen en te splitsen in intern en extern werk',
+          'Vraagt naar bijstellen, formaatdelen en het recept',
+          'Zet korter omstellen af tegen capaciteit kopen',
+        ],
+      },
+      sayIt: 'Leg een operator in 60 seconden uit wat SMED betekent op een geautomatiseerde lijn.',
+      terms: [
+        { term: 'Recept', def: 'Een opgeslagen set machine-instellingen per variant, die de PLC laadt bij omstellen.' },
+        { term: 'Formaatdeel', def: 'Een machineonderdeel dat per variant verschilt en bij omstellen gewisseld wordt.' },
+        { term: 'SMED', def: 'Single-minute exchange of die: een methode om omstellen onder de 10 minuten te krijgen.' },
+        { term: 'Intern werk', def: 'Omstelwerk dat alleen kan als de lijn stilstaat.' },
+        { term: 'Extern werk', def: 'Omstelwerk dat kan terwijl de lijn nog draait.' },
+      ],
+    },
+    {
       id: 'eng.lines.mixed',
       title: 'Mixed-model lijnen',
       pre: [
@@ -900,12 +1036,217 @@ export default {
       },
       sayIt: 'Leg een planner in 60 seconden uit waarom de volgorde van varianten ertoe doet op een mixed-model lijn.',
       terms: [
-        { term: 'Mixed-model lijn', def: 'Een lijn die meerdere varianten van een product in een gemengde volgorde bouwt.' },
         { term: 'Werkinhoud', def: 'De seconden werk die een station heeft aan één product van een bepaalde variant.' },
         { term: 'Voormontage', def: 'Een zijstation dat een module bouwt, die daarna in één keer op de hoofdlijn wordt gemonteerd.' },
         { term: 'Vliegende kracht', def: 'Een extra operator die bijspringt waar een cyclus uitloopt.' },
         { term: 'Volgorderegel', def: 'Een regel die zware varianten over de bouwvolgorde spreidt.' },
         { term: 'Aanvoer in volgorde', def: 'Onderdelen die in dezelfde volgorde aankomen als de producten op de lijn.' },
+      ],
+    },
+    {
+      id: 'eng.lines.sequencing',
+      title: 'Volgorde en heijunka: het werk op een lijn egaliseren',
+      pre: [
+        {
+          q: 'Een fabriek bouwt per dag 200 van variant A en 100 van variant B op één lijn. Welke bouwvolgorde is het meest egaal?',
+          options: ['’s Ochtends alle A, ’s middags alle B', 'Eerst B, dan A', 'A, A, B, de hele dag herhaald', 'Elke dag een nieuwe willekeurige volgorde'],
+          answer: 'A, A, B, de hele dag herhaald',
+          why: 'Een klein, herhalend patroon spreidt beide varianten gelijkmatig over de dag.',
+        },
+      ],
+      teach: [
+        'Heijunka is egaliseren: mix en volume gelijkmatig over de dag bouwen in een klein, herhalend patroon, in plaats van in grote blokken per variant. Het is een van de pijlers van het Toyota Production System.\n\nDe winst: stations krijgen een rustige mix van zwaar en licht werk, voormontage en leveranciers zien een gelijkmatige vraag, en de voorraad van elke eindvariant blijft klein. De prijs: veel meer wissels tussen varianten, dus heijunka werkt alleen als wisselen geen omsteltijd kost.',
+        'Het patroon maken is rekenwerk. Een dagvraag van 240 A, 120 B en 60 C is een verhouding van 4 : 2 : 1, een patroon van 7 producten zoals A B A C A B A, 60 keer per dag herhaald.\n\nEen heijunka box is een bord met een vakje per tijdsblok; kanbankaarten in de vakjes, die elk een kleine portie werk vrijgeven, leggen het patroon vast. Op een lijn met een volgordesysteem maakt software de volgorde uit het patroon plus stationsregels zoals “nooit twee zware achter elkaar”.',
+        'Ligt de volgorde vast, dan kunnen leveranciers erin leveren. Dat vraagt een bevroren volgorde: het laatste stuk vóór de lijn waarin de bouwvolgorde niet meer verandert, vaak een aantal uren dat met de leveranciers is afgesproken. Een spoedorder die in dat venster wordt geduwd, breekt de aanvoer in volgorde en geeft ontbrekende onderdelen.\n\nEgaliseren heeft grenzen. Waar wisselen echt tijd kost, zoals een kleurwissel in een spuiterij, groeperen fabrieken varianten in kleine blokken in plaats van elk product te mengen.',
+        'Flexibele automatisering is automatisering die elke variant aankan zonder om te stellen: servo-assen die het recept volgen, grijpers die op alle varianten passen, camera’s die het onderdeel zelf vinden. Het kost vooraf meer, en het maakt een volledig gemengde volgorde mogelijk.\n\nVragen die een operations manager serieus neemt: “Kan elk station elke variant in elke volgorde bouwen, en wat kost dat?”, “Hoe lang is de bevroren volgorde, en hoe vaak wordt hij gebroken?” en “Is het weekplan geëgaliseerd, of in blokken gebouwd?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een lijn last frames voor e-bikes in één dienst van 420 minuten. Dagvraag: 180 van A, 120 van B en 60 van C, samen 360, dus de takt is 25.200 / 360 = 70 seconden. Op het lasstation kost A 60 seconden, B 70 en C 100. Het gewogen gemiddelde is precies 70 seconden. Nu bouwt planning ’s ochtends A, dan B, en aan het eind van de dag alle C-frames, en de lasser maakt elke dag overuren.\n\nStap 1: de verhouding is 180 : 120 : 60 = 3 : 2 : 1, een patroon van 6 frames.',
+        ask: 'Welk patroon stel je voor, en waarom houden de overuren daarmee op?',
+        reveal: 'Patroon A B A C A B, 60 keer herhaald. Elke ronde bevat 3 × 60 + 2 × 70 + 100 = 420 seconden laswerk, precies 6 × 70, dus elke ronde eindigt in balans. C loopt 30 seconden uit, en de drie A-frames vóór de volgende C winnen er elk 10 terug.\n\nIn een blok van 60 C-frames raakt de lasser 60 × 30 = 1.800 seconden, 30 minuten, achter: de dagelijkse overuren. Het patroon werkt alleen als wisselen tussen A, B en C geen omsteltijd kost, dus check dat eerst.',
+      },
+      said: 'Wat planners zeggen: “We bevriezen de volgorde vier uur vooruit; daarna komt niemand er meer aan.” Bevriezen betekent: de volgorde verandert niet meer, zodat leveranciers erin kunnen leveren.',
+      recall: [
+        {
+          q: 'De dagvraag is 200 van A, 100 van B en 100 van C. Hoeveel producten lang is het kleinste herhalende patroon met deze mix?',
+          number: 4,
+          tolerance: 0.5,
+          unit: 'producten',
+          why: 'De verhouding is 2 : 1 : 1, dus een patroon van 4, zoals A B A C.',
+        },
+        {
+          q: 'Wat beschermt een bevroren volgorde?',
+          options: ['De takt', 'Aanvoer in volgorde: leveranciers die in bouwvolgorde leveren', 'De robotprogramma’s', 'De kwaliteitschecks'],
+          answer: 'Aanvoer in volgorde: leveranciers die in bouwvolgorde leveren',
+          why: 'De onderdelen zijn al in die volgorde onderweg; de volgorde wijzigen geeft ontbrekende onderdelen.',
+        },
+        {
+          q: 'Wat is de prijs van heijunka?',
+          options: ['Meer voorraad eindproduct', 'Grotere series', 'Een langere takt', 'Veel meer wissels tussen varianten, dus omstellen moet bijna nul zijn'],
+          answer: 'Veel meer wissels tussen varianten, dus omstellen moet bijna nul zijn',
+          why: 'Een klein gemengd patroon wisselt bijna bij elk product van variant.',
+        },
+        {
+          q: 'Op een station loopt een zware variant 30 seconden boven de takt uit en houdt een lichte 10 seconden over. Hoeveel lichte producten moeten er na elke zware komen om de tijd terug te winnen?',
+          number: 3,
+          tolerance: 0.5,
+          unit: 'producten',
+          why: '30 / 10 = 3 lichte producten.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een maker van keukenapparatuur bouwt de planner de week in blokken: maandag en dinsdag de standaardoven, woensdag de stoomoven, enzovoort. De plantmanager klaagt over overuren aan het eind van de week en een magazijn vol verkeerde modellen.',
+        ask: 'Wat vraag je?',
+        model: 'Wat kost wisselen tussen modellen nu op de lijn: echt omstellen, of alleen een recept? Als het bijna niks is, kunnen we dan een klein dagpatroon van alle modellen bouwen in plaats van weekblokken? Dat spreidt het zware stoomovenwerk, maakt de vraag aan leveranciers rustiger en verkleint de voorraad per model. Welke stations of leveranciers moeten daarvoor eerst iets veranderen?',
+        rubric: [
+          'Vraagt wat wisselen tussen modellen kost voordat hij egaliseren voorstelt',
+          'Stelt een klein, herhalend dagpatroon voor in plaats van weekblokken',
+          'Noemt de winst: rustiger werk, rustiger aanvoer, minder voorraad',
+        ],
+      },
+      sayIt: 'Leg een plantmanager in 60 seconden uit wat heijunka is en wat ervoor nodig is om het te laten werken.',
+      terms: [
+        { term: 'Heijunka', def: 'Egaliseren: mix en volume gelijkmatig over de dag bouwen in een klein, herhalend patroon.' },
+        { term: 'Heijunka box', def: 'Een bord met een vakje per tijdsblok, waarin kanbankaarten het werk in het geëgaliseerde patroon vrijgeven.' },
+        { term: 'Bevroren volgorde', def: 'Het laatste stuk vóór de lijn waarin de bouwvolgorde niet meer verandert.' },
+        { term: 'Flexibele automatisering', def: 'Automatisering die elke variant aankan zonder om te stellen.' },
+      ],
+    },
+    {
+      id: 'eng.lines.plc',
+      title: 'PLC, sensoren en actuatoren: hoe een machine denkt',
+      pre: [
+        {
+          q: 'Welke van deze is op een machine een actuator?',
+          options: ['Een foto-elektrische sensor', 'Een drukknop', 'Een pneumatische cilinder', 'Een camera'],
+          answer: 'Een pneumatische cilinder',
+          why: 'Een actuator laat iets bewegen; de andere zien of melden iets.',
+        },
+      ],
+      teach: [
+        'Elke geautomatiseerde machine heeft drie delen. Een sensor ziet iets: ligt er een onderdeel, is de deur dicht, is de druk bereikt? De PLC, de programmable logic controller, is de kleine industriële computer in de besturingskast die beslist wat er daarna gebeurt. Een actuator doet iets: een pneumatische cilinder (lucht duwt een zuiger naar buiten), een motor, een ventiel, een grijper.\n\nEen machine werkt dus als een mens: ogen, een brein en handen.',
+        'Elke sensor zit op een ingang van de PLC, elke actuator op een uitgang: samen de I/O. De meeste ingangen zijn gewoon aan of uit, meestal op 24 volt: onderdeel aanwezig, ja of nee. Sommige zijn analoog en geven een waarde door, zoals een druk of een temperatuur.\n\nAls een machine stilvalt, is de vraag bijna altijd: op welke ingang wachtte de PLC, en kwam die?',
+        'De PLC werkt in een scancyclus: alle ingangen lezen, het programma van boven naar beneden doorlopen, alle uitgangen schrijven, en opnieuw. Eén scan duurt meestal een paar tot enkele tientallen milliseconden, snel genoeg voor de meeste machines.\n\nHet programma is vaak geschreven als ladderdiagram, dat eruitziet als een elektrisch schema met sporten, of als gestructureerde tekst (structured text). De norm IEC 61131-3 legt die talen vast, zodat een monteur programma’s van verschillende merken kan lezen.',
+        'De operator praat met de machine via de HMI, de human-machine interface: het touchscreen met de status, de alarmen en de recepten.\n\nHet programma loopt in stappen: wachten op onderdeel, klemmen, checken, persen, loslaten. Komt de voorwaarde voor de volgende stap nooit, dan wacht de machine. Daarom kan een vuile of verschoven sensor een hele lijn stilleggen. Een interlock, een regel in de PLC die de volgende stap blokkeert tot alle checks OK zijn, werkt net zo.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een persstation valt stil en de signaalzuil wordt geel. Op de HMI staat: “Stap 3: wacht op klem dicht”.\n\nLees het zoals de PLC. In stap 2 zette hij de uitgang “klem sluiten” aan; die opent een luchtventiel, zodat een cilinder de klem dichtduwt. Stap 3 wacht op de ingang “klem dicht”, een kleine sensor op de cilinder. Met een scancyclus van 10 milliseconden heeft de PLC die ingang 100 keer per seconde gecheckt; hij is niet traag, hij wacht.\n\nKijk dus naar de klem. Is hij dicht? Dan zit het probleem in de sensor: verschoven, vuil of een kapotte kabel. Staat hij open? Dan zit het in de lucht of het ventiel.',
+      },
+      said: 'Wat monteurs zeggen: “Hij hangt in stap 3, hij krijgt klem-dicht niet binnen.” Ze lezen het stapnummer op de HMI voordat ze iets aanraken.',
+      recall: [
+        {
+          q: 'Een PLC heeft een scancyclus van 20 milliseconden. Hoe vaak per seconde leest hij zijn ingangen?',
+          number: 50,
+          tolerance: 0.5,
+          unit: 'keer',
+          why: '1.000 ms / 20 ms = 50 keer per seconde.',
+        },
+        {
+          q: 'Welke van deze is een ingang van de PLC?',
+          options: ['Een ventiel', 'Een motor', 'Een lamp van de signaalzuil', 'Een sensor die het onderdeel ziet'],
+          answer: 'Een sensor die het onderdeel ziet',
+          why: 'Sensoren brengen informatie binnen; ventielen, motoren en lampen zijn uitgangen.',
+        },
+        {
+          q: 'Wat kan een operator met de HMI?',
+          options: ['De machinestatus en alarmen zien, en recepten kiezen', 'De sensoren opnieuw bedraden', 'De PLC vervangen', 'De onderdelen meten'],
+          answer: 'De machinestatus en alarmen zien, en recepten kiezen',
+          why: 'De HMI is het touchscreen tussen de operator en de PLC.',
+        },
+        {
+          q: 'Een machine wacht in een stap: de PLC gaf de uitgang, maar de bijbehorende ingang kwam nooit. Wat check je eerst?',
+          options: ['Of de PLC vervangen moet worden', 'Of de actuator echt bewogen heeft', 'Of het programma herschreven moet worden', 'Of de takt klopt'],
+          answer: 'Of de actuator echt bewogen heeft',
+          why: 'Bewoog hij wel, dan ligt het aan de sensor; zo niet, aan de lucht, het ventiel of de aandrijving.',
+        },
+      ],
+      situation: {
+        scene: 'Op een gemba walk bij een maker van elektrische tandenborstels valt een station om de paar minuten stil. De operator drukt elke keer op reset en hij draait weer. “Dat doet hij de hele dag,” zegt ze.',
+        ask: 'Wat vraag je?',
+        model: 'Wat staat er op de HMI als hij stilvalt: welke stap, en op welke ingang wacht hij? Is het elke keer dezelfde sensor, dan is die misschien vuil, los of te scherp afgesteld. Houdt iemand bij hoe vaak dit gebeurt? Een reset om de paar minuten is verloren output die niemand ziet.',
+        rubric: [
+          'Vraagt in welke stap en op welke ingang de machine wacht',
+          'Verdenkt de sensor of actuator achter die ingang',
+          'Vraagt of de stops geteld worden',
+        ],
+      },
+      sayIt: 'Leg een nieuwe collega in 60 seconden uit hoe sensoren, een PLC en actuatoren op een machine samenwerken.',
+      terms: [
+        { term: 'Sensor', def: 'Een component die iets waarneemt, zoals een onderdeel, een positie of een druk, en dat aan de PLC meldt.' },
+        { term: 'Actuator', def: 'Een component die iets laat bewegen of gebeuren, zoals een cilinder, motor of ventiel.' },
+        { term: 'I/O', def: 'Ingangen en uitgangen: de draden van sensoren naar de PLC en van de PLC naar actuatoren.' },
+        { term: 'Scancyclus', def: 'Eén ronde van de PLC: ingangen lezen, programma doorlopen, uitgangen schrijven.' },
+        { term: 'HMI', def: 'Human-machine interface: het scherm waarop de operator statussen en alarmen ziet en recepten kiest.' },
+        { term: 'Ladderdiagram', def: 'Een PLC-programmeertaal die eruitziet als een elektrisch schema met sporten.' },
+      ],
+    },
+    {
+      id: 'eng.lines.safety',
+      title: 'Machineveiligheid: noodstop, afscherming en de regels',
+      pre: [
+        {
+          q: 'Een operator drukt een noodstop in en trekt de knop daarna weer uit. Wat moet de machine doen?',
+          options: ['Verder gaan waar hij stopte', 'Na 10 seconden weer starten', 'Stil blijven tot iemand bewust reset en start', 'Langzaam doordraaien'],
+          answer: 'Stil blijven tot iemand bewust reset en start',
+          why: 'Een noodstop loslaten of resetten mag de machine nooit vanzelf laten starten.',
+        },
+      ],
+      teach: [
+        'Machineveiligheid begint met een risicobeoordeling (risk assessment): wie kan gewond raken, hoe, hoe erg en hoe vaak? Daarna de volgorde van maatregelen: het gevaar wegontwerpen, dan afschermen, dan waarschuwen en instrueren.\n\nAfscherming (guarding) is vaste hekken, deuren met een interlock (hier een veiligheidsschakelaar die de gevaarlijke beweging stopt als de deur opengaat) en lichtschermen, rijen lichtstralen die de machine stoppen als een hand ze onderbreekt.',
+        'De noodstop is de rode knop op een gele achtergrond. Hij stopt de machine, door de energie meteen weg te nemen of door eerst af te remmen en dan de energie weg te nemen, hij blijft ingedrukt staan, en resetten mag niets laten starten.\n\nHet is een extra maatregel voor als het misgaat. Hij vervangt nooit de afscherming: een machine die alleen veilig is als iemand op tijd bij de knop komt, is niet veilig.',
+        'Een veiligheidsfunctie is wat het veiligheidssysteem doet, zoals “deur open, robot stopt”. ISO 13849-1 bepaalt hoe betrouwbaar die moet zijn, als performance level van PL a (laagst) tot PL e (hoogst).\n\nDe risicobeoordeling bepaalt het vereiste niveau met drie vragen: hoe ernstig is het letsel, hoe vaak staat iemand bloot, en kan hij nog wegkomen? Daarom draait veiligheid op een veiligheidsrelais of veiligheids-PLC (safety PLC), daarvoor gebouwd en getest, niet op de gewone PLC.',
+        'In de EU heeft een machine een CE-markering nodig: de maker verklaart dat hij aan de veiligheidsregels voldoet, onderbouwd met een risicobeoordeling en een technisch dossier. Nu is dat de Machinerichtlijn 2006/42/EG. Vanaf 20 januari 2027 vervangt de Machineverordening (EU) 2023/1230 die.\n\nLet op: wie machines tot een lijn koppelt, of een machine ingrijpend wijzigt, kan juridisch de maker worden en is dan de CE-markering verschuldigd.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een operator opent de deur van een robotcel zo’n 10 keer per uur om klare onderdelen te pakken. De veiligheidsfunctie: “deur open, robot stopt”. Welk performance level is nodig?\n\nErnst: een robotarm kan ernstig, blijvend letsel geven, dus ernstig. Blootstelling: 10 keer per uur is vaak. Ontwijken: in deze zone beweegt de robot langzaam, dus wegkomen is mogelijk.\n\nIn de risicograaf van ISO 13849-1 geeft ernstig, vaak en ontwijken mogelijk PL d. Was de robot snel geweest, dus nauwelijks te ontwijken, dan werd het PL e. De deurschakelaar, het veiligheidsrelais en de stop van de robot moeten dat niveau samen halen.',
+      },
+      said: 'Wat veiligheidskundigen zeggen: “Welk PL vroeg de risicobeoordeling, en wat hebben jullie gebouwd?” Vereist en gebouwd moeten kloppen.',
+      recall: [
+        {
+          q: 'Welke reeks beschrijft de performance levels van ISO 13849-1?',
+          options: ['PL 1 tot PL 5, met 1 als hoogste', 'PL a tot PL e, met e als hoogste', 'Klasse A tot klasse C', 'Groen, oranje en rood'],
+          answer: 'PL a tot PL e, met e als hoogste',
+          why: 'PL a vraagt het minst van een veiligheidsfunctie, PL e het meest.',
+        },
+        {
+          q: 'Vanaf wanneer geldt de EU-Machineverordening 2023/1230 in plaats van de Machinerichtlijn?',
+          options: ['Die geldt al sinds 2006', 'Vanaf 20 januari 2027', 'Vanaf 2030', 'Alleen voor nieuwe robots'],
+          answer: 'Vanaf 20 januari 2027',
+          why: 'Vanaf die datum vervangt hij Richtlijn 2006/42/EG.',
+        },
+        {
+          q: 'Waarom is een noodstop alleen nooit genoeg?',
+          options: ['Hij is te duur', 'Hij werkt alleen op robots', 'Iemand moet hem op tijd bereiken; afscherming voorkomt het gevaar', 'Hij heeft een PLC nodig'],
+          answer: 'Iemand moet hem op tijd bereiken; afscherming voorkomt het gevaar',
+          why: 'Het is een extra maatregel voor als het misgaat, niet de bescherming zelf.',
+        },
+        {
+          q: 'In de risicograaf van ISO 13849-1: letsel ernstig, blootstelling vaak, ontwijken nauwelijks mogelijk. Welk vereist performance level volgt daaruit?',
+          options: ['PL a', 'PL c', 'PL d', 'PL e'],
+          answer: 'PL e',
+          why: 'Alle drie de antwoorden wijzen op het hoogste risico, dus het hoogste niveau.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een metaalwarenbedrijf laat een ervaren operator je een beetje trots zien hoe hij de deurschakelaar van een robotcel heeft dichtgeplakt, “want elke keer dat ik hem open, kost het tien seconden”.',
+        ask: 'Wat doe en vraag je?',
+        model: 'Eerst: dit moet nu terug, en ik meld het bij de teamleider, want die robot kan hem raken. Dan wil ik snappen waarom: hoe vaak open je de deur, en waarvoor? Een overbrugging vertelt ons dat het ontwerp niet bij het werk past. Misschien kunnen de onderdelen eruit via een lichtscherm of een luik, zodat niemand de deur hoeft te openen.',
+        rubric: [
+          'Stopt de overbrugging meteen en betrekt de teamleider',
+          'Vraagt waarom en hoe vaak de deur opengaat',
+          'Behandelt de overbrugging als een ontwerpprobleem om op te lossen',
+        ],
+      },
+      sayIt: 'Leg een productiemanager in 60 seconden uit wat een performance level is en waarom de Machineverordening van 2027 ertoe doet.',
+      terms: [
+        { term: 'Noodstop', def: 'De rode knop op een gele achtergrond die een machine stopt en ingedrukt blijft tot hij bewust gereset wordt.' },
+        { term: 'Veiligheidsfunctie', def: 'Wat het veiligheidssysteem doet als een risico optreedt, zoals de robot stoppen als de deur opengaat.' },
+        { term: 'Performance level', def: 'De betrouwbaarheid van een veiligheidsfunctie volgens ISO 13849-1, van PL a (laagst) tot PL e (hoogst).' },
+        { term: 'CE-markering', def: 'De verklaring van de maker dat een machine aan de EU-veiligheidsregels voldoet.' },
+        { term: 'Machineverordening', def: 'EU-Verordening 2023/1230, die de Machinerichtlijn vervangt vanaf 20 januari 2027.' },
       ],
     },
     {
@@ -980,6 +1321,210 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.stoppages',
+      title: 'Microstops en storingsdata: van alarmlog naar actie',
+      pre: [
+        {
+          q: 'Een machine logt 2.000 alarmen in een week. Waar begin je?',
+          options: ['Bij het nieuwste alarm', 'Bij het alarm dat het vaakst komt', 'Bij de alarmen gesorteerd op verloren tijd, en op aantal', 'Bij allemaal tegelijk'],
+          answer: 'Bij de alarmen gesorteerd op verloren tijd, en op aantal',
+          why: 'Verloren tijd laat zien waar de meeste output heen gaat; het aantal laat de vele korte stops zien.',
+        },
+      ],
+      teach: [
+        'Elke stop laat een spoor achter in de PLC: de alarmlog, een lijst met tijd, alarmcode, tekst en duur. Ruwe logs misleiden, want één vastloper kan vijf alarmen achter elkaar geven.\n\nHet first-out alarm is het eerste alarm in zo’n keten, meestal de oorzaak; de rest volgt eruit. Vraag of de machine first-out vastlegt. Zo niet, dan jagen mensen op symptomen, zoals “deur open”, terwijl de echte oorzaak een vastgelopen toevoer was.',
+        'Zet de stops in een paretodiagram: staven van groot naar klein. Maak hem twee keer. Op aantal zie je de microstops (stops van seconden tot een paar minuten): veel, kort en vaak genegeerd. Op verloren minuten zie je de lange storingen.\n\nMeestal pakken een paar oorzaken het grootste deel van het verlies. Gebruik per machine een korte, vaste lijst stopredenen, geen vrije tekst, anders loopt het diagram vol met “overig”.',
+        'Een MES, een manufacturing execution system (zie eng.industry40), haalt statussen en alarmen op uit elke PLC en voegt de order, de variant, de dienst en de reden van de operator toe. Het laat de lijn-OEE live zien.\n\nEen bekende valkuil: bij elke stop van 20 seconden om een reden vragen. Operators kiezen dan het eerste item uit de lijst om door te kunnen, en de data is waardeloos. Gangbaar: korte stops automatisch indelen op de alarmcode, en mensen alleen naar de lange vragen.',
+        'Data helpt pas als iemand ermee aan de slag gaat. Een kort dagelijks overleg aan de lijn bekijkt de topstops van gisteren, geeft elke stop een eigenaar en checkt het paretodiagram opnieuw na een verbetering.\n\nVragen die geloofwaardig klinken: “Leggen jullie first-out alarmen vast? Waar ligt de grens tussen een microstop en een storing? Wie kijkt elke ochtend naar de top drie, en wat is er vorige maand veranderd?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'De alarmlog van een assemblagelijn over één week van 10 diensten toont drie topalarmen. “Onderdeel niet aanwezig in nest”: 1.200 keer, elk 20 seconden. “Servostoring”: 6 keer, elk 25 minuten. “Deur geopend”: 300 keer, elk 30 seconden.\n\nStap 1, verloren tijd: onderdeel niet aanwezig 1.200 × 20 = 24.000 seconden, 400 minuten; servostoring 6 × 25 = 150 minuten; deur geopend 300 × 30 = 9.000 seconden, 150 minuten.',
+        ask: 'Welke pak je als eerste aan, en hoe?',
+        reveal: '“Onderdeel niet aanwezig” staat bovenaan op aantal én op minuten: 120 microstops per dienst. Waarschijnlijk een toevoerprobleem, dus check eerst de first-out data: is het het eerste alarm, of het gevolg van een vastgelopen toevoer? Kijk dan naar de toevoer, bijvoorbeeld met een slow-motion video.\n\nVraag waarom de deur 300 keer opengaat: waarschijnlijk om diezelfde onderdelen los te halen, dus dat verdwijnt misschien met de eerste oplossing. De servostoring is zeldzaam maar lang; die gaat als aparte zaak naar onderhoud.',
+      },
+      said: 'Wat engineers zeggen: “Vertrouw niet op het topalarm, vertrouw op de first-out.” Het eerste alarm in een keten is meestal de oorzaak.',
+      recall: [
+        {
+          q: 'Een alarm komt 900 keer in een week en elke stop duurt 20 seconden. Hoeveel minuten productie kost dat die week?',
+          number: 300,
+          tolerance: 1,
+          unit: 'min',
+          why: '900 × 20 = 18.000 seconden; 18.000 / 60 = 300 minuten.',
+        },
+        {
+          q: 'Wat is een first-out alarm?',
+          options: ['Het alarm dat het vaakst voorkomt', 'Het oudste alarm in de log', 'Het alarm dat een operator als eerste bevestigt', 'Het eerste alarm in een keten, meestal de oorzaak'],
+          answer: 'Het eerste alarm in een keten, meestal de oorzaak',
+          why: 'De alarmen erna volgen eruit.',
+        },
+        {
+          q: 'Waarom maak je een paretodiagram van stops zowel op aantal als op verloren minuten?',
+          options: ['Aantal toont de vele korte stops, minuten tonen waar de meeste tijd heen gaat', 'Aantal klopt nooit', 'Minuten bevatten ook kwaliteitsverlies', 'Het MES vraagt erom'],
+          answer: 'Aantal toont de vele korte stops, minuten tonen waar de meeste tijd heen gaat',
+          why: 'Microstops en storingen vragen een andere aanpak, en elk komt in een ander diagram naar voren.',
+        },
+        {
+          q: 'Wat gebeurt er als operators bij elke korte stop een reden moeten invoeren?',
+          options: ['De OEE stijgt', 'Ze kiezen maar een reden om door te kunnen, dus de data wordt onbetrouwbaar', 'De PLC wordt trager', 'De stops verdwijnen'],
+          answer: 'Ze kiezen maar een reden om door te kunnen, dus de data wordt onbetrouwbaar',
+          why: 'Korte stops kun je beter automatisch indelen op de alarmcode.',
+        },
+      ],
+      situation: {
+        scene: 'De plantmanager van een verpakkingsbedrijf laat je trots het nieuwe MES-dashboard zien. De grootste staaf in het stop-pareto is “overig”, en sinds de livegang heeft niemand naar de alarmlogs gekeken.',
+        ask: 'Wat vraag je?',
+        model: 'Waarom is “overig” de grootste reden: moeten operators bij elke korte stop een reden invoeren? Kunnen we de korte stops automatisch indelen op de alarmcodes, met het first-out alarm, en mensen alleen naar de lange vragen? En wie kijkt elke ochtend naar de top drie stops, en wat is er sinds de livegang opgelost?',
+        rubric: [
+          'Stelt vragen bij hoe stopredenen worden ingevoerd',
+          'Stelt automatische indeling met first-out alarmen voor korte stops voor',
+          'Vraagt wie met de data aan de slag gaat en wat er veranderd is',
+        ],
+      },
+      sayIt: 'Leg een plantmanager in 60 seconden uit hoe je van alarmdata naar minder microstops komt.',
+      terms: [
+        { term: 'Alarmlog', def: 'De lijst van elk alarm dat een machine gaf, met tijd, code, tekst en duur.' },
+        { term: 'First-out alarm', def: 'Het eerste alarm in een keten van alarmen, meestal de echte oorzaak.' },
+        { term: 'Paretodiagram', def: 'Een staafdiagram van groot naar klein, om te zien welke paar oorzaken het meeste verlies geven.' },
+        { term: 'MES', def: 'Manufacturing execution system: software die machinedata verzamelt en koppelt aan orders, diensten en redenen.' },
+      ],
+    },
+    {
+      id: 'eng.lines.autobasics',
+      title: 'Automatiseren of niet: arbeid, volume, variatie en kwaliteit',
+      pre: [
+        {
+          q: 'Welke taak is de beste eerste kandidaat voor een robot?',
+          options: ['Losse prototypes in elkaar zetten', 'Kabelbomen op gevoel controleren voor 40 varianten', 'Dezelfde doos van 12 kg 400 keer per dienst op een pallet tillen', 'Retourproducten repareren'],
+          answer: 'Dezelfde doos van 12 kg 400 keer per dienst op een pallet tillen',
+          why: 'Het is repeterend, zwaar, hoog in volume en altijd hetzelfde product.',
+        },
+      ],
+      teach: [
+        'Automatisering betekent dat een machine werk doet dat een mens deed, van een pers met automatische toevoer tot een complete robotcel. Of het zinvol is, hangt af van vier vragen: hoeveel arbeid vervangt het, hoeveel producten, hoeveel variatie, en wat doet het voor de kwaliteit?\n\nStel ze in die volgorde op elke gemba walk waar iemand zegt “dit moeten we automatiseren”.',
+        'Eerst arbeid. Loonkosten zijn het loon plus de werkgeverslasten; voor een operator in Nederland is dat zo’n € 50.000 tot € 60.000 per jaar. Een cel die één operator per dienst vervangt, scheelt één persoon bij één dienst, drie mensen bij drie diensten.\n\nHet gaat niet alleen om geld: zwaar, heet of saai werk dat mensen niet willen, en personeel dat moeilijk te vinden is.',
+        'Dan volume en variatie. Het jaarvolume is het aantal producten per jaar: automatisering houdt van veel gelijke producten. Variatie maakt het lastig: veel varianten, onderdelen die in wisselende posities aankomen, en slappe onderdelen zoals kabels, schuim of stof.\n\nDe vuistregel: hoog volume en weinig variatie, automatiseren; laag volume en veel variatie, laat het aan mensen en help ze met goede mallen en instructies.',
+        'Kwaliteit: een machine maakt elke keer dezelfde beweging, dus de kwaliteit wordt stabieler, maar alleen als de aangeleverde onderdelen ook stabiel zijn.\n\nDe cel zelf wordt meestal gebouwd door een integrator: het bedrijf dat de complete cel ontwerpt, bouwt en programmeert, met een robot van een robotfabrikant plus grijpers, afscherming, banden en software. Vraag vroeg wie dat wordt, en wie de cel daarna onderhoudt.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Aan het eind van een lijn stapelt een operator dozen van 12 kg op pallets. Ga uit van 2 diensten, één operator per dienst à € 55.000 per jaar, 400 dozen per dienst, 220 werkdagen per jaar en één doosmaat.\n\nArbeid: 2 × € 55.000 = € 110.000 per jaar. Volume: 400 × 2 × 220 = 176.000 dozen per jaar, allemaal gelijk. Variatie: geen. Ergonomie: 400 × 12 = 4.800 kg tillen per operator per dienst.\n\nAlle vier de vragen wijzen dezelfde kant op: een klassieke klus voor een palletiseerrobot. Vergelijk een station dat 30 kabelbomen per dag bouwt in 40 varianten: laag volume, veel variatie en slappe onderdelen. Laat dat aan mensen.',
+      },
+      said: 'Wat engineers zeggen: “Die stapelplek is een schoolvoorbeeld voor een palletiseerder.” Palletiseren, dozen op pallets stapelen, is een van de meest gebruikte eerste robotklussen.',
+      recall: [
+        {
+          q: 'Een cel vervangt één operator per dienst bij 3 diensten. Elke operator kost € 55.000 per jaar. Hoeveel loonkosten bespaart hij per jaar, in euro?',
+          number: 165000,
+          tolerance: 100,
+          unit: '€',
+          why: '3 × € 55.000 = € 165.000.',
+        },
+        {
+          q: 'Een lijn maakt 500 producten per dienst, 2 diensten, 220 dagen per jaar. Wat is het jaarvolume?',
+          number: 220000,
+          tolerance: 100,
+          unit: 'producten',
+          why: '500 × 2 × 220 = 220.000 producten.',
+        },
+        {
+          q: 'Wat maakt een taak het lastigst om te automatiseren?',
+          options: ['Hoog volume', 'Veel varianten en slappe, buigzame onderdelen', 'Een zware, repeterende taak', 'Werken in twee diensten'],
+          answer: 'Veel varianten en slappe, buigzame onderdelen',
+          why: 'Variatie en slappe onderdelen maken pakken en positioneren lastig voor een machine.',
+        },
+        {
+          q: 'Wat doet een integrator?',
+          options: ['Hij maakt de robotarm', 'Hij draait de cel in de nachtdienst', 'Hij ontwerpt, bouwt en programmeert de complete cel', 'Hij financiert de investering'],
+          answer: 'Hij ontwerpt, bouwt en programmeert de complete cel',
+          why: 'De robotfabrikant levert de arm; de integrator maakt er een werkende cel van.',
+        },
+      ],
+      situation: {
+        scene: 'De eigenaar van een meubelmaker komt net terug van een beurs. “Ik zag een robot die tafelbladen schuurt. Zo een moeten wij ook,” zegt hij op de werkvloer.',
+        ask: 'Wat vraag je hem?',
+        model: 'Welke taak zou hij overnemen, en hoeveel mensen heeft die taak nu per dienst nodig? Hoeveel tafelbladen per jaar, en hoe verschillend zijn ze in maat, houtsoort en afwerking? Is het volume hoog en lijken de bladen op elkaar, dan is het de moeite waard om verder te kijken; is elke order anders, dan helpt een betere mal misschien meer. Wie zou hem bouwen en onderhouden?',
+        rubric: [
+          'Vraagt naar de arbeid die de robot zou vervangen',
+          'Vraagt naar jaarvolume en variatie',
+          'Vraagt wie de cel bouwt en onderhoudt',
+        ],
+      },
+      sayIt: 'Leg een ondernemer in 60 seconden uit welke vier vragen bepalen of een taak het automatiseren waard is.',
+      terms: [
+        { term: 'Automatisering', def: 'Een machine die werk doet dat eerst een mens deed.' },
+        { term: 'Loonkosten', def: 'Wat een medewerker het bedrijf kost: loon plus werkgeverslasten.' },
+        { term: 'Jaarvolume', def: 'Het aantal producten dat per jaar gemaakt wordt.' },
+        { term: 'Integrator', def: 'Het bedrijf dat de complete geautomatiseerde cel ontwerpt, bouwt en programmeert.' },
+      ],
+    },
+    {
+      id: 'eng.lines.payback',
+      title: 'Terugverdientijd: investering, jaarlijkse besparing en diensten',
+      pre: [
+        {
+          q: 'Een cel kost € 200.000 en bespaart € 50.000 per jaar. Wat is de terugverdientijd?',
+          options: ['2 jaar', '4 jaar', '5 jaar', '10 jaar'],
+          answer: '4 jaar',
+          why: '€ 200.000 / € 50.000 per jaar = 4 jaar.',
+        },
+      ],
+      teach: [
+        'Terugverdientijd = investering / jaarlijkse netto besparing. Hij beantwoordt één vraag: na hoeveel jaar heeft de cel zijn kosten terugverdiend? Veel fabrikanten willen dat automatisering zich binnen 2 tot 3 jaar terugverdient.\n\nDe investering heet capex, capital expenditure: geld dat je één keer uitgeeft aan apparatuur. Tel alles mee: robot, grijpers, afscherming, banden, integratie, training en reserveonderdelen. De robot zelf is daar vaak maar een klein deel van.',
+        'De netto besparing is wat er elk jaar niet meer uitgaat, min de nieuwe lopende kosten. Arbeidsbesparing = operators per dienst × diensten × kosten per operator. Lopende kosten zijn wat de cel zelf elk jaar kost: onderhoud, energie, reserveonderdelen en tijd van een monteur.\n\nVergeet je de lopende kosten, dan ziet de terugverdientijd er beter uit dan hij is.',
+        'Diensten tellen het zwaarst. Dezelfde cel bespaart bij één dienst één operator, bij drie diensten drie, voor bijna dezelfde capex. Daarom verdient automatisering zich veel sneller terug in fabrieken die in twee of drie ploegen draaien.\n\nEen besparing telt alleen als er echt geld niet meer uitgaat: iemand vertrekt, een vacature blijft open, of uitzendkrachten of overuren stoppen. “Het maakt een halve operator vrij” bespaart niks tot een van die dingen gebeurt (zie eng.cost).',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een cel die een pers belaadt, kost alles bij elkaar € 280.000. Hij vervangt één operator per dienst à € 55.000 per jaar. De lopende kosten zijn € 12.000 per jaar.\n\nBij 2 diensten: 2 × € 55.000 − € 12.000 = € 98.000 per jaar; € 280.000 / € 98.000 = 2,9 jaar. Net binnen de grens van 2 tot 3 jaar.\n\nBij 3 diensten: 3 × € 55.000 − € 12.000 = € 153.000; terugverdientijd 1,8 jaar.\n\nBij 1 dienst: € 55.000 − € 12.000 = € 43.000; terugverdientijd 6,5 jaar. Dezelfde machine is een goede of een slechte investering, afhankelijk van de diensten waarin hij draait.',
+      },
+      said: 'Wat controllers zeggen: “Laat me de terugverdientijd zien op de diensten die we echt draaien.” Controllers zijn de financiële mensen die investeringsvoorstellen checken.',
+      recall: [
+        {
+          q: 'Een cel kost € 360.000. Hij vervangt één operator per dienst bij 2 diensten à € 55.000, en de lopende kosten zijn € 20.000 per jaar. Wat is de terugverdientijd, in jaren?',
+          number: 4,
+          tolerance: 0.05,
+          unit: 'jaar',
+          why: '2 × € 55.000 − € 20.000 = € 90.000; € 360.000 / € 90.000 = 4 jaar.',
+        },
+        {
+          q: 'Dezelfde cel (€ 360.000, lopende kosten € 20.000 per jaar) draait in 3 diensten en vervangt per dienst één operator van € 55.000. Wat is de terugverdientijd nu, in jaren?',
+          number: 2.48,
+          tolerance: 0.05,
+          unit: 'jaar',
+          why: '3 × € 55.000 − € 20.000 = € 145.000; € 360.000 / € 145.000 = 2,48 jaar.',
+        },
+        {
+          q: 'Welke hoort bij de capex van een robotcel?',
+          options: ['Jaarlijks onderhoud', 'Energie', 'De grijper en de afscherming', 'Het loon van de operator'],
+          answer: 'De grijper en de afscherming',
+          why: 'Capex is de eenmalige investering; de rest zijn jaarlijkse kosten.',
+        },
+        {
+          q: 'Wanneer wordt “het maakt een halve operator vrij” een echte besparing?',
+          options: ['Altijd', 'Als de robot nieuw is', 'Als de terugverdientijd onder 2 jaar ligt', 'Als iemand vertrekt, een vacature open blijft of overuren stoppen'],
+          answer: 'Als iemand vertrekt, een vacature open blijft of overuren stoppen',
+          why: 'Pas dan gaat er echt geld niet meer uit.',
+        },
+      ],
+      situation: {
+        scene: 'De engineeringmanager van een kunststofbedrijf laat je een slide zien: een nieuwe cel met een terugverdientijd van 1,5 jaar. Je weet dat de fabriek vooral in dagdienst draait.',
+        ask: 'Wat vraag je?',
+        model: 'Op hoeveel diensten is die 1,5 jaar gebaseerd? Als hij uitgaat van drie diensten en we draaien er één, is de besparing een derde en verdrievoudigt de terugverdientijd. Zitten de lopende kosten erin, en bevat de capex ook grijpers, afscherming en integratie? En welke operators vertrekken echt, of stoppen met overwerken?',
+        rubric: [
+          'Checkt het aantal diensten achter de besparing',
+          'Vraagt naar lopende kosten en de volledige capex',
+          'Vraagt of de arbeidsbesparing echt geld wordt',
+        ],
+      },
+      sayIt: 'Leg een productiemanager in 60 seconden uit waarom dezelfde robotcel zich in 2 jaar of in 6 jaar kan terugverdienen.',
+      terms: [
+        { term: 'Terugverdientijd', def: 'De investering gedeeld door de jaarlijkse netto besparing, in jaren.' },
+        { term: 'Capex', def: 'Capital expenditure: geld dat je één keer uitgeeft aan apparatuur, zoals een robotcel.' },
+        { term: 'Netto besparing', def: 'Wat er elk jaar niet meer uitgaat, min de nieuwe lopende kosten.' },
+        { term: 'Lopende kosten', def: 'Wat de apparatuur zelf elk jaar kost: onderhoud, energie, reserveonderdelen, ondersteuning.' },
+      ],
+    },
+    {
       id: 'eng.lines.business',
       title: 'De businesscase voor automatisering',
       pre: [
@@ -1043,10 +1588,79 @@ export default {
       },
       sayIt: 'Leg een directeur in 60 seconden uit wat er in een goede businesscase voor automatisering hoort.',
       terms: [
-        { term: 'Terugverdientijd', def: 'De investering gedeeld door de jaarlijkse netto besparing, in jaren.' },
-        { term: 'Integrator', def: 'Het bedrijf dat de complete geautomatiseerde cel ontwerpt, bouwt en programmeert.' },
         { term: 'Opstartfase', def: 'De maanden die een nieuwe lijn of cel nodig heeft om zijn doeloutput te halen (ramp-up).' },
         { term: 'Afkeur', def: 'Producten die fout gemaakt zijn en weggegooid of omgesmolten moeten worden.' },
+      ],
+    },
+    {
+      id: 'eng.lines.risk',
+      title: 'Risico en waarde: NPV, opstartverlies en waarom automatiseringsprojecten mislukken',
+      pre: [
+        {
+          q: 'Waarom kan een cel met een terugverdientijd van 3 jaar toch een slechte investering zijn?',
+          options: ['Omdat hij in drie diensten draait', 'Omdat het product na 2 jaar stopt en de cel niet herbruikbaar is', 'Omdat de NPV positief is', 'Omdat de robot een cobot is'],
+          answer: 'Omdat het product na 2 jaar stopt en de cel niet herbruikbaar is',
+          why: 'De terugverdientijd zegt niks over of de besparing lang genoeg doorloopt.',
+        },
+      ],
+      teach: [
+        'De terugverdientijd negeert wat er na het terugverdienen gebeurt en wanneer het geld binnenkomt. De NPV, net present value (netto contante waarde), doet dat wel. Die rekent het geld van elk jaar terug naar vandaag met de disconteringsvoet, het geëiste rendement (vaak 6 tot 12%), en trekt de investering eraf. Een euro in jaar n is vandaag 1 / (1 + r) tot de macht n waard.\n\nNPV boven nul: het project verdient meer dan geëist. De methode zelf staat in eng.cost; hier passen we hem toe op automatisering.',
+        'Twee getallen maken of breken een automatiseringscase. Het opstartverlies: in de eerste maanden maakt de cel minder dan gepland, terwijl de mensen die hij vervangt nog nodig zijn, dus jaar 1 bespaart vaak veel minder. Neem het mee, bijvoorbeeld als de halve besparing.\n\nDe restwaarde: wat de cel aan het eind nog waard is. Een standaardrobot kun je hergebruiken of verkopen; productspecifieke grijpers en mallen zijn vaak niks meer waard.',
+        'Waarom automatiseringsprojecten in de praktijk mislukken: het proces was niet stabiel; de onderdelen varieerden meer dan gedacht; de cyclustijd kwam uit een datasheet in plaats van een test; niemand in huis kan de programma’s onderhouden of aanpassen; of de scope bleef groeien.\n\nFlexibiliteit heeft waarde: een cel die het volgende product aankan, verlengt de jaren van besparing, vaak meer dan welke andere aanname ook.',
+        'Een gevoeligheidsanalyse verandert één aanname tegelijk en laat zien wat er met de NPV gebeurt: besparing 30% lager, opstartfase 6 maanden langer, productleven 2 jaar korter. Zo zie je op welke aanname de case echt rust.\n\nVragen die een directeur serieus neemt: “Wat is de NPV als het product 2 jaar eerder stopt? Met welke opstartfase heb je gerekend? Wat kunnen we hergebruiken, en wie onderhoudt het ’s nachts?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een cel kost € 300.000. Het plan bespaart netto € 100.000 per jaar, maar in jaar 1 halveert de opstartfase dat tot € 50.000. Het product loopt 4 jaar; de grijpers en de mal hebben geen restwaarde. De disconteringsvoet is 8%, dus de factoren voor jaar 1 tot 4 zijn 0,926, 0,857, 0,794 en 0,735.\n\nStap 1: jaar 1 is vandaag € 50.000 × 0,926 = € 46.300 waard. De eenvoudige terugverdientijd is 3,5 jaar: € 250.000 terug na 3 jaar, de laatste € 50.000 in de eerste helft van jaar 4.',
+        ask: 'Wat is de NPV, en wat zou de beslissing veranderen?',
+        reveal: 'Jaar 2 tot 4: € 85.700 + € 79.400 + € 73.500 = € 238.600. Plus € 46.300 is € 284.900, min € 300.000: een NPV van zo’n −€ 15.000. De case valt om, terwijl 3,5 jaar terugverdientijd acceptabel klonk.\n\nKan de cel nog 2 jaar mee voor het volgende product (factoren 0,681 en 0,630), dan komt er zo’n € 68.100 + € 63.000 = € 131.100 bij: een NPV van zo’n +€ 116.000. Hergebruik beslist de case, dus ontwerp erop en vraag de integrator wat het kost.',
+      },
+      said: 'Wat financieel directeuren zeggen: “Terugverdientijd is een snelheid, geen waarde. Laat me de NPV zien met een realistische opstartfase.”',
+      recall: [
+        {
+          q: 'Over één jaar komt een besparing van € 110.000 binnen. De disconteringsvoet is 10%. Wat is die vandaag waard, in euro?',
+          number: 100000,
+          tolerance: 500,
+          unit: '€',
+          why: '€ 110.000 / 1,10 = € 100.000.',
+        },
+        {
+          q: 'Een project kost nu € 180.000 en bespaart € 110.000 in jaar 1 en € 121.000 in jaar 2. De disconteringsvoet is 10%. Wat is de NPV, in euro?',
+          number: 20000,
+          tolerance: 500,
+          unit: '€',
+          why: '€ 110.000 / 1,1 = € 100.000; € 121.000 / 1,21 = € 100.000; € 200.000 − € 180.000 = € 20.000.',
+        },
+        {
+          q: 'Wat is de restwaarde van een cel?',
+          options: ['De jaarlijkse besparing', 'Het opstartverlies', 'De disconteringsvoet', 'Wat hij aan het eind van het project nog waard is'],
+          answer: 'Wat hij aan het eind van het project nog waard is',
+          why: 'Herbruikbare robots houden waarde; productspecifieke tooling meestal niet.',
+        },
+        {
+          q: 'Wat laat een gevoeligheidsanalyse zien?',
+          options: ['De exacte NPV', 'Hoe de NPV verandert als één belangrijke aanname verandert', 'Het draagvermogen van de robot', 'De goedkoopste integrator'],
+          answer: 'Hoe de NPV verandert als één belangrijke aanname verandert',
+          why: 'Zo zie je op welke aanname de case echt rust.',
+        },
+      ],
+      situation: {
+        scene: 'In een investeringsoverleg bij een automotive toeleverancier presenteert een integrator een lascel met een flink positieve NPV. Je ziet dat hij uitgaat van drie diensten, 8 jaar productleven en volle besparing vanaf de eerste maand.',
+        ask: 'Wat vraag je?',
+        model: 'Voor welk klantprogramma is dit, en hoeveel jaar heeft dat echt nog? Wat is de NPV met een realistische opstartfase, zeg de halve besparing in jaar 1, en met de diensten die we echt draaien? Wat kunnen we hergebruiken als het programma stopt, en wat is de restwaarde? Kunnen we een gevoeligheidstabel zien op die drie aannames?',
+        rubric: [
+          'Stelt vragen bij productleven, diensten en opstartfase',
+          'Vraagt naar hergebruik en restwaarde',
+          'Vraagt om een gevoeligheidsanalyse in plaats van één NPV',
+        ],
+      },
+      sayIt: 'Leg een financieel directeur in 60 seconden uit waarom een automatiseringscase een NPV met opstartfase en hergebruik nodig heeft, niet alleen een terugverdientijd.',
+      terms: [
+        { term: 'NPV', def: 'Net present value (netto contante waarde): al het toekomstige geld teruggerekend naar vandaag, min de investering.' },
+        { term: 'Disconteringsvoet', def: 'Het jaarlijkse rendement dat het bedrijf eist, waarmee je toekomstig geld naar vandaag terugrekent.' },
+        { term: 'Opstartverlies', def: 'De besparing die je misloopt terwijl een nieuwe cel in de eerste maanden onder plan draait.' },
+        { term: 'Restwaarde', def: 'Wat apparatuur aan het eind van het project nog waard is.' },
+        { term: 'Gevoeligheidsanalyse', def: 'Eén aanname tegelijk veranderen om te zien hoeveel de uitkomst verschuift.' },
       ],
     },
   ],

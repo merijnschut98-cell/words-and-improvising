@@ -1,4 +1,4 @@
-// eng.lines (EN): Lines and automation, in topics with four levels: line design, robots, error-proofing (written), then mixed-model lines, automated line OEE and the business case.
+// eng.lines (EN): Lines and automation, in six topics with four levels each: line design, robots, error-proofing, variants and changeover, control and data, business case.
 export default {
   lessons: [
     {
@@ -837,6 +837,142 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.variants',
+      title: 'Several products on one line: variants and what they cost',
+      pre: [
+        {
+          q: 'A line builds two versions of the same pump: one with a pressure sensor, one without. What do engineers call these versions?',
+          options: ['Batches', 'Variants', 'Stations', 'Buffers'],
+          answer: 'Variants',
+          why: 'A variant is a version of the same product that differs in a few parts or steps.',
+        },
+      ],
+      teach: [
+        'A variant is a version of the same product that differs in a few parts or steps: another colour, a bigger motor, a different plug for the UK. Customers want that choice.\n\nBuilding all variants on one line saves floor space and investment compared with a line per variant. A mixed-model line goes one step further: it builds the variants in a mixed order, product by product.',
+        'There are two ways to run variants. In batches: a run of one variant, then a switch to the next. Or mixed, with no switch at all, which only works when the stations need no new parts or settings per variant.\n\nA changeover is the switch between two variants: from the last good product of one to the first good product of the next at full speed. Swapping parts, tools and settings all fall inside it, and the line makes nothing meanwhile.',
+        'The batch size is the number of products of one variant made between two changeovers. Big batches lose less time to changeovers, but they build up stock, and a customer who wants another variant waits longer.\n\nThe module eng.flow covers that trade-off in depth; here it is enough to know that every changeover costs output.',
+        'Variants cost more than changeovers. More different parts at the line, more chances to fit the wrong one, more work instructions, and stations whose work differs per variant, so they are harder to balance.\n\nOn a gemba walk, ask three things: how many variants run here, how often do you switch, and what changes at a switch? Screens showing the next variant and colour-coded bins tell you the line lives with many variants.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A line assembles coffee machines in four colours. Assume a shift of 7 hours of working time (420 minutes) and a bottleneck cycle time of 60 seconds, so the line makes one machine per minute when it runs.\n\nToday it switches colour 4 times per shift, and each changeover takes 20 minutes: 4 × 20 = 80 minutes without output. The line makes 420 − 80 = 340 machines instead of 420, a loss of 80 / 420 = 19%.\n\nWith 2 switches per shift (bigger batches), the loss is 40 minutes and the output 380. The price: each colour waits longer, so there is more stock of finished machines.',
+      },
+      said: 'What operators say: “Six changeovers today, there goes our output.” A changeover, in this sense, is any switch to another variant.',
+      recall: [
+        {
+          q: 'A line has 480 minutes of working time per shift and makes one product per minute when it runs. It does 3 changeovers of 25 minutes each. How many products does it make that shift?',
+          number: 405,
+          tolerance: 1,
+          unit: 'products',
+          why: '3 × 25 = 75 minutes lost; 480 − 75 = 405 minutes of running, so 405 products.',
+        },
+        {
+          q: 'Where does a changeover start and end?',
+          options: ['From stopping the line to pressing start again', 'Only the time to swap the tools', 'From the last good product of one variant to the first good product of the next at full speed', 'From the order release to the shipment'],
+          answer: 'From the last good product of one variant to the first good product of the next at full speed',
+          why: 'Trial products and adjusting after the swap are part of the changeover too.',
+        },
+        {
+          q: 'What happens when a line makes bigger batches?',
+          options: ['More changeovers per week', 'Less time lost to changeovers, but more stock', 'Less stock and fewer changeovers', 'Every variant is available sooner'],
+          answer: 'Less time lost to changeovers, but more stock',
+          why: 'Fewer switches cost less time, but each variant is built further ahead of demand.',
+        },
+        {
+          q: 'A line has 420 minutes of working time per shift and does 4 changeovers of 15 minutes each. What share of the working time is lost to changeovers, in percent?',
+          number: 14.3,
+          tolerance: 0.3,
+          unit: '%',
+          why: '4 × 15 = 60 minutes; 60 / 420 = 0.143, so 14.3%.',
+        },
+      ],
+      situation: {
+        scene: 'Your first gemba walk at a maker of espresso machines. The production manager sighs: “Sales keeps adding colours and versions, and the line never makes its numbers.”',
+        ask: 'What do you ask?',
+        model: 'How many variants run on this line now, and how often do you switch per shift? What changes at a switch, and how long does a changeover take, from the last good machine to the first good one? Then we know how much output the variants really cost, and whether bigger batches or shorter changeovers help most.',
+        rubric: [
+          'Asks how many variants there are and how often the line switches',
+          'Asks what changes and how long a changeover takes',
+          'Links the variants to lost output instead of blaming sales',
+        ],
+      },
+      sayIt: 'Explain to a new colleague in 60 seconds what variants cost an assembly line.',
+      terms: [
+        { term: 'Variant', def: 'A version of the same product that differs in a few parts or steps.' },
+        { term: 'Mixed-model line', def: 'A line that builds several variants of a product in a mixed order.' },
+        { term: 'Changeover', def: 'The switch to another variant, from the last good product of one to the first good product of the next.' },
+        { term: 'Batch size', def: 'The number of products of one variant made between two changeovers.' },
+      ],
+    },
+    {
+      id: 'eng.lines.linechange',
+      title: 'Changeover on an automated line: recipes, change parts and SMED',
+      pre: [
+        {
+          q: 'On an automated line, which part of a changeover often takes the longest?',
+          options: ['Selecting the new variant on the screen', 'Cleaning the floor', 'Adjusting and running trial products until the first good one', 'Printing new labels'],
+          answer: 'Adjusting and running trial products until the first good one',
+          why: 'Trial and tweak is often about half of a changeover, because the settings are not right first time.',
+        },
+      ],
+      teach: [
+        'A changeover on an automated line has a software half and a hardware half. The software half is the recipe: a stored set of settings per variant in the PLC, the machine’s control computer. Speeds, positions, robot programs and camera checks all sit in it.\n\nThe operator picks the variant and the machine loads it. A wrong recipe is a classic error, so good lines tie the recipe to the order, for example by scanning the order barcode.',
+        'The hardware half is the change parts: parts that differ per variant, such as gripper fingers, guide rails, nests in a fixture or the star wheels of a bottling line. Each one is unbolted, swapped and adjusted.\n\nGood change parts are numbered or colour-coded per variant, sit on fixed locating pins so they are right without adjusting, use quick-release clamps instead of bolts, and wait on a cart next to the line.',
+        'SMED, single-minute exchange of die, is the method to shorten changeovers to under 10 minutes (Shingo). First separate internal work, which can only be done with the line stopped, from external work, which can be done while it still runs: fetching the change parts cart, presetting, checking the next order’s material.\n\nMove the external work out of the stop, turn internal work into external where you can, then streamline what is left. The module eng.flow teaches the method itself.',
+        'Automation can remove change parts altogether. A servo axis, a motor-driven axis that moves to a position stored in the recipe, sets a guide width or a gripper stroke by itself.\n\nThat costs more up front and pays off when changeovers are frequent. Then a changeover becomes loading a recipe plus a first-product check, a few minutes instead of an hour.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A packaging line changeover takes 50 minutes. You film one and split it: 15 minutes looking for change parts and tools, 20 minutes swapping 6 change parts held by bolts, and 15 minutes adjusting and running trial boxes.\n\nStep 1: looking for parts is external work. Put the parts on a cart before the stop: 50 − 15 = 35 minutes.\n\nStep 2: locating pins and quick-release clamps cut the swap from 20 to 10 minutes, and because the parts now sit right first time, adjusting drops from 15 to 5. The changeover is 10 + 5 = 15 minutes.\n\nWith 2 changeovers per shift, the line gains 2 × 35 = 70 minutes of running time per shift.',
+      },
+      said: 'What setters say: “Recipe loaded, change parts in, first box good, we’re running.” That is a changeover done right.',
+      recall: [
+        {
+          q: 'A changeover takes 40 minutes with the line stopped. 12 of those minutes are external work, such as fetching parts. How long does it take once all external work is done before the stop, in minutes?',
+          number: 28,
+          tolerance: 0.5,
+          unit: 'min',
+          why: '40 − 12 = 28 minutes of internal work remain.',
+        },
+        {
+          q: 'What is a recipe on an automated line?',
+          options: ['A work instruction on paper', 'A stored set of machine settings per variant', 'The bill of materials', 'The order list for the day'],
+          answer: 'A stored set of machine settings per variant',
+          why: 'The PLC loads speeds, positions, programs and checks for the chosen variant.',
+        },
+        {
+          q: 'Which of these is external work?',
+          options: ['Unbolting a gripper', 'Adjusting a guide rail on the stopped line', 'Running trial products', 'Bringing the change parts cart to the line before the stop'],
+          answer: 'Bringing the change parts cart to the line before the stop',
+          why: 'It can be done while the line still runs the previous variant.',
+        },
+        {
+          q: 'Why put change parts on fixed locating pins?',
+          options: ['They are cheaper', 'They sit right first time, so less adjusting', 'They make the recipe unnecessary', 'They let the line run faster'],
+          answer: 'They sit right first time, so less adjusting',
+          why: 'Adjusting is often the biggest part of a changeover; pins remove it.',
+        },
+      ],
+      situation: {
+        scene: 'At a food packer the operators say a changeover takes “about an hour”. The engineering manager wants to buy a new, faster packaging machine to make up the lost output.',
+        ask: 'What do you propose before the purchase?',
+        model: 'Can we film one changeover and split every step into internal and external work? How much of the hour is looking for parts and how much is adjusting? Are the change parts marked per variant and on a cart, and is the recipe tied to the order? If we halve the changeover, we may win the output without a new machine.',
+        rubric: [
+          'Proposes filming and splitting a changeover into internal and external work',
+          'Asks about adjusting, change parts and the recipe',
+          'Compares a shorter changeover with buying capacity',
+        ],
+      },
+      sayIt: 'Explain to an operator in 60 seconds what SMED means on an automated line.',
+      terms: [
+        { term: 'Recipe', def: 'A stored set of machine settings per variant, loaded by the PLC at a changeover.' },
+        { term: 'Change part', def: 'A machine part that differs per variant and is swapped at a changeover.' },
+        { term: 'SMED', def: 'Single-minute exchange of die: a method to bring changeovers under 10 minutes.' },
+        { term: 'Internal work', def: 'Changeover work that can only be done with the line stopped.' },
+        { term: 'External work', def: 'Changeover work that can be done while the line still runs.' },
+      ],
+    },
+    {
       id: 'eng.lines.mixed',
       title: 'Mixed-model lines',
       pre: [
@@ -900,12 +1036,217 @@ export default {
       },
       sayIt: 'Explain to a planner in 60 seconds why the order of variants matters on a mixed-model line.',
       terms: [
-        { term: 'Mixed-model line', def: 'A line that builds several variants of a product in a mixed order.' },
         { term: 'Work content', def: 'The seconds of work a station does on one product of a given variant.' },
         { term: 'Sub-assembly', def: 'A side station that builds a module, which is then fitted on the main line in one go.' },
         { term: 'Floater', def: 'An extra operator who helps wherever a cycle runs over.' },
         { term: 'Sequencing rule', def: 'A rule that spreads heavy variants through the build order.' },
         { term: 'Sequenced supply', def: 'Parts delivered in the same order as the products on the line.' },
+      ],
+    },
+    {
+      id: 'eng.lines.sequencing',
+      title: 'Sequencing and heijunka: levelling the work on a line',
+      pre: [
+        {
+          q: 'A plant builds 200 of variant A and 100 of variant B per day on one line. Which build order is the most level?',
+          options: ['All A in the morning, all B in the afternoon', 'B first, then A', 'A, A, B, repeated all day', 'A new random order each day'],
+          answer: 'A, A, B, repeated all day',
+          why: 'A small repeating pattern spreads both variants evenly over the day.',
+        },
+      ],
+      teach: [
+        'Heijunka is levelling: building the mix and volume evenly over the day in a small repeating pattern, instead of in big blocks per variant. It is one of the pillars of the Toyota Production System.\n\nThe gains: stations see a steady mix of heavy and light work, sub-assembly and suppliers see steady demand, and the stock of each finished variant stays small. The price: many more switches between variants, so heijunka only works when a switch costs no changeover time.',
+        'The pattern is arithmetic: daily demand of 240 A, 120 B and 60 C is a ratio of 4 : 2 : 1, so 7 products such as A B A C A B A, repeated 60 times.\n\nA heijunka box is a board with a slot per time interval; kanban cards in the slots, each releasing one small batch of work, set the pattern. With a sequencing system, software builds the order from the pattern plus station rules such as “never two heavy ones in a row”.',
+        'Once the order is fixed, suppliers can deliver in it. That needs a frozen sequence: the last stretch before the line in which the build order no longer changes, often a number of hours set with the suppliers. A rush order pushed into that window breaks sequenced supply and causes missing parts.\n\nLevelling has limits. Where a switch really costs time, such as a colour change in a paint shop, plants group variants into small blocks instead of mixing every product.',
+        'Flexible automation is automation that handles every variant without a changeover: servo axes set from the recipe, grippers that fit all variants, cameras that find the part. It costs more up front and is what makes a fully mixed sequence possible.\n\nQuestions an operations manager respects: “Can every station build any variant in any order, and at what cost?”, “How long is the frozen sequence, and how often is it broken?” and “Is the weekly plan levelled, or built in blocks?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A line welds e-bike frames in one shift of 420 minutes. Daily demand: 180 of A, 120 of B and 60 of C, 360 in total, so the takt is 25,200 / 360 = 70 seconds. At the welding station A takes 60 seconds, B 70 and C 100. The weighted average is exactly 70 seconds. Today planning builds A in the morning, then B, then all the C frames at the end of the day, and the welder works overtime every day.\n\nStep 1: the ratio is 180 : 120 : 60 = 3 : 2 : 1, a pattern of 6 frames.',
+        ask: 'Which pattern would you propose, and why does it end the overtime?',
+        reveal: 'Pattern A B A C A B, repeated 60 times. Each round holds 3 × 60 + 2 × 70 + 100 = 420 seconds of welding, exactly 6 × 70, so every round ends level. C runs 30 seconds over, and the three A frames before the next C win back 10 seconds each.\n\nIn a block of 60 C frames, the welder falls 60 × 30 = 1,800 seconds, 30 minutes, behind: the daily overtime. The pattern only works if switching between A, B and C needs no changeover, so check that first.',
+      },
+      said: 'What planners say: “We freeze the sequence four hours out; after that, nobody touches it.” Freezing means the order can no longer change, so suppliers can deliver in it.',
+      recall: [
+        {
+          q: 'Daily demand is 200 of A, 100 of B and 100 of C. How many products long is the smallest repeating pattern that keeps this mix?',
+          number: 4,
+          tolerance: 0.5,
+          unit: 'products',
+          why: 'The ratio is 2 : 1 : 1, so a pattern of 4, such as A B A C.',
+        },
+        {
+          q: 'What does a frozen sequence protect?',
+          options: ['The takt', 'Sequenced supply: suppliers delivering in build order', 'The robot programs', 'The quality checks'],
+          answer: 'Sequenced supply: suppliers delivering in build order',
+          why: 'Parts are already on their way in that order; changing it causes missing parts.',
+        },
+        {
+          q: 'What is the price of heijunka?',
+          options: ['More finished stock', 'Larger batches', 'A longer takt', 'Many more switches between variants, so changeovers must be near zero'],
+          answer: 'Many more switches between variants, so changeovers must be near zero',
+          why: 'A small mixed pattern switches variant almost every product.',
+        },
+        {
+          q: 'At one station a heavy variant runs 30 seconds over takt and a light one 10 seconds under. How many light products must follow each heavy one to win the time back?',
+          number: 3,
+          tolerance: 0.5,
+          unit: 'products',
+          why: '30 / 10 = 3 light products.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of kitchen appliances the planner builds the week in blocks: Monday and Tuesday the standard oven, Wednesday the steam oven, and so on. The plant manager complains about overtime late in the week and a warehouse full of the wrong models.',
+        ask: 'What do you ask?',
+        model: 'What does a switch between models cost on the line today: a real changeover or just a recipe? If it is close to zero, could we build a small daily pattern of every model instead of weekly blocks? That spreads the heavy steam-oven work, steadies supplier demand and shrinks the stock of each model. Which stations or suppliers would need to change first?',
+        rubric: [
+          'Asks what a switch between models costs before proposing levelling',
+          'Proposes a small repeating daily pattern instead of weekly blocks',
+          'Names the gains: steadier work, steadier supply, less finished stock',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds what heijunka is and what it takes to make it work.',
+      terms: [
+        { term: 'Heijunka', def: 'Levelling: building the mix and volume evenly over the day in a small repeating pattern.' },
+        { term: 'Heijunka box', def: 'A board with a slot per time interval, in which kanban cards release work in the levelled pattern.' },
+        { term: 'Frozen sequence', def: 'The last stretch before the line in which the build order no longer changes.' },
+        { term: 'Flexible automation', def: 'Automation that handles every variant without a changeover.' },
+      ],
+    },
+    {
+      id: 'eng.lines.plc',
+      title: 'PLC, sensors and actuators: how a machine thinks',
+      pre: [
+        {
+          q: 'On a machine, which of these is an actuator?',
+          options: ['A photoelectric sensor', 'A push button', 'A pneumatic cylinder', 'A camera'],
+          answer: 'A pneumatic cylinder',
+          why: 'An actuator makes something move; the others detect or report something.',
+        },
+      ],
+      teach: [
+        'Every automated machine has three parts. A sensor sees something: is a part there, is the door closed, has the pressure been reached? The PLC, the programmable logic controller, is the small industrial computer in the control cabinet that decides what happens next. An actuator acts: a pneumatic cylinder (air pushes a piston out), a motor, a valve, a gripper.\n\nSo a machine works like a person: eyes, a brain and hands.',
+        'Each sensor is wired to an input of the PLC, each actuator to an output: together the I/O. Most inputs are simply on or off, usually at 24 volts: part present, yes or no. Some are analogue and carry a value, such as a pressure or a temperature.\n\nWhen a machine stops, the question is almost always: which input did the PLC wait for, and did it come?',
+        'The PLC works in a scan cycle: read all inputs, run the program from top to bottom, write all outputs, and start again. One scan typically takes from a few to some tens of milliseconds, fast enough for most machines.\n\nThe program is often written as a ladder diagram, which looks like an electrical drawing with rungs, or as structured text. The standard IEC 61131-3 defines these languages, so a technician can read programs from different brands.',
+        'The operator talks to the machine through the HMI, the human-machine interface: the touch screen that shows the state, the alarms and the recipes.\n\nThe program runs in steps: wait for part, clamp, check, press, release. If the condition for the next step never comes, the machine waits, which is why a dirty or shifted sensor can stop a whole line. An interlock, a rule in the PLC that blocks the next step until all checks are OK, works the same way.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A press station stops and the stack light turns yellow. The HMI says: “Step 3: waiting for clamp closed”.\n\nRead it like the PLC. In step 2 it switched on the output “close clamp”, which opens an air valve so a cylinder pushes the clamp. Step 3 waits for the input “clamp closed”, a small sensor on the cylinder. With a scan cycle of 10 milliseconds, the PLC has checked that input 100 times per second; it is not slow, it is waiting.\n\nSo look at the clamp. Is it closed? Then the sensor is the problem: shifted, dirty or a broken cable. Is it open? Then the air or the valve is the problem.',
+      },
+      said: 'What technicians say: “It’s hanging in step 3, it never gets clamp closed.” They read the step number on the HMI before they touch anything.',
+      recall: [
+        {
+          q: 'A PLC has a scan cycle of 20 milliseconds. How many times per second does it read its inputs?',
+          number: 50,
+          tolerance: 0.5,
+          unit: 'times',
+          why: '1,000 ms / 20 ms = 50 times per second.',
+        },
+        {
+          q: 'Which of these is an input of the PLC?',
+          options: ['A valve', 'A motor', 'A stack light lamp', 'A sensor that sees the part'],
+          answer: 'A sensor that sees the part',
+          why: 'Sensors bring information in; valves, motors and lamps are outputs.',
+        },
+        {
+          q: 'What does the HMI let an operator do?',
+          options: ['See the machine state and alarms, and choose recipes', 'Rewire the sensors', 'Replace the PLC', 'Measure the parts'],
+          answer: 'See the machine state and alarms, and choose recipes',
+          why: 'The HMI is the touch screen between the operator and the PLC.',
+        },
+        {
+          q: 'A machine waits in a step: the PLC gave the output, but the matching input never came. What do you check first?',
+          options: ['Whether the PLC needs replacing', 'Whether the actuator really moved', 'Whether the program needs rewriting', 'Whether the takt is right'],
+          answer: 'Whether the actuator really moved',
+          why: 'If it moved, the sensor is at fault; if not, the air, the valve or the drive.',
+        },
+      ],
+      situation: {
+        scene: 'On a gemba walk at a maker of electric toothbrushes, a station stops every few minutes. The operator presses reset each time and it runs again. “It does that all day,” she says.',
+        ask: 'What do you ask?',
+        model: 'What does the HMI say when it stops: which step, and which input is it waiting for? If it is the same sensor every time, it may be dirty, loose or set too sharp. Does anyone log how often this happens? A reset every few minutes is lost output nobody sees.',
+        rubric: [
+          'Asks which step and which input the machine waits for',
+          'Suspects the sensor or actuator behind that input',
+          'Asks whether the stops are counted',
+        ],
+      },
+      sayIt: 'Explain to a new colleague in 60 seconds how sensors, a PLC and actuators work together on a machine.',
+      terms: [
+        { term: 'Sensor', def: 'A device that detects something, such as a part, a position or a pressure, and reports it to the PLC.' },
+        { term: 'Actuator', def: 'A device that makes something move or happen, such as a cylinder, motor or valve.' },
+        { term: 'I/O', def: 'Inputs and outputs: the wires from sensors into the PLC and from the PLC to actuators.' },
+        { term: 'Scan cycle', def: 'One round of the PLC: read inputs, run the program, write outputs.' },
+        { term: 'HMI', def: 'Human-machine interface: the screen where the operator sees states and alarms and chooses recipes.' },
+        { term: 'Ladder diagram', def: 'A PLC programming language that looks like an electrical drawing with rungs.' },
+      ],
+    },
+    {
+      id: 'eng.lines.safety',
+      title: 'Machine safety: emergency stop, guarding and the rules',
+      pre: [
+        {
+          q: 'An operator presses an emergency stop and then pulls the button out again. What should the machine do?',
+          options: ['Restart where it stopped', 'Restart after 10 seconds', 'Stay stopped until someone deliberately resets and starts it', 'Run on at low speed'],
+          answer: 'Stay stopped until someone deliberately resets and starts it',
+          why: 'Releasing or resetting an emergency stop must never restart the machine by itself.',
+        },
+      ],
+      teach: [
+        'Machine safety starts with a risk assessment: who can get hurt, how, how badly and how often? Then the order of measures: design the hazard away, then guard it, then warn and instruct.\n\nGuarding is fixed fences, doors with an interlock (here a safety switch that stops the dangerous motion when the door opens) and light curtains, rows of light beams that stop the machine when a hand breaks them.',
+        'The emergency stop is the red button on a yellow background. It stops the machine, either by cutting power at once or by braking first and then cutting power, it stays pressed in, and resetting it must not restart anything.\n\nIt is an extra measure for when something goes wrong. It never replaces guarding: a machine that is only safe if someone reaches the button in time is not safe.',
+        'A safety function is what the safety system does, such as “door opens, robot stops”. ISO 13849-1 sets how reliable it must be, as a performance level from PL a (lowest) to PL e (highest).\n\nThe risk assessment sets the required level from three questions: how severe is the injury, how often is someone exposed, and can they get out of the way? That is why safety runs on a safety relay or safety PLC, built and tested for it, not on the normal PLC.',
+        'In the EU a machine needs CE marking: the maker declares it meets the safety rules, backed by a risk assessment and a technical file. Today that is the Machinery Directive 2006/42/EC. From 20 January 2027 the Machinery Regulation (EU) 2023/1230 replaces it.\n\nWatch out: whoever links machines into a line, or substantially modifies one, can become the maker in law and then owes the CE marking.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'An operator opens the door of a robot cell about 10 times per hour to take out finished parts. The safety function: “door opens, robot stops”. Which performance level does it need?\n\nSeverity: a robot arm can cause serious, lasting injury, so severe. Exposure: 10 times an hour is frequent. Avoiding: in this zone the robot moves slowly, so getting out of the way is possible.\n\nIn the risk graph of ISO 13849-1, severe, frequent and possible to avoid gives PL d. Had the robot been fast, so hard to avoid, it would be PL e. The door switch, the safety relay and the robot’s stop must reach that level together.',
+      },
+      said: 'What safety engineers say: “Which PL did the risk assessment ask for, and what did you build?” Required and built must match.',
+      recall: [
+        {
+          q: 'Which range describes the performance levels of ISO 13849-1?',
+          options: ['PL 1 to PL 5, with 1 the highest', 'PL a to PL e, with e the highest', 'Class A to class C', 'Green, amber and red'],
+          answer: 'PL a to PL e, with e the highest',
+          why: 'PL a asks the least of a safety function, PL e the most.',
+        },
+        {
+          q: 'From when does the EU Machinery Regulation 2023/1230 apply in place of the Machinery Directive?',
+          options: ['It has applied since 2006', 'From 20 January 2027', 'From 2030', 'Only for new robots'],
+          answer: 'From 20 January 2027',
+          why: 'It replaces Directive 2006/42/EC from that date.',
+        },
+        {
+          q: 'Why is an emergency stop never enough on its own?',
+          options: ['It is too expensive', 'It only works on robots', 'Someone must reach it in time; guarding prevents the danger', 'It needs a PLC'],
+          answer: 'Someone must reach it in time; guarding prevents the danger',
+          why: 'It is an extra measure for when something goes wrong, not the protection itself.',
+        },
+        {
+          q: 'In the ISO 13849-1 risk graph: injury severe, exposure frequent, avoiding hardly possible. Which required performance level follows?',
+          options: ['PL a', 'PL c', 'PL d', 'PL e'],
+          answer: 'PL e',
+          why: 'All three answers point to the highest risk, so the highest level.',
+        },
+      ],
+      situation: {
+        scene: 'At a metal products company an experienced operator shows you, a bit proudly, how he taped down the door switch of a robot cell, “because it costs ten seconds every time I open it”.',
+        ask: 'What do you do and ask?',
+        model: 'First: this has to be undone now, and I will tell the team leader, because the robot can hit him. Then I want to understand why: how often do you open the door, and for what? A bypass tells us the design does not fit the work. Maybe the parts can come out through a light curtain or a hatch, so nobody needs to open the door.',
+        rubric: [
+          'Stops the bypass at once and involves the team leader',
+          'Asks why and how often the door is opened',
+          'Treats the bypass as a design problem to solve',
+        ],
+      },
+      sayIt: 'Explain to a production manager in 60 seconds what a performance level is and why the 2027 Machinery Regulation matters.',
+      terms: [
+        { term: 'Emergency stop', def: 'The red button on a yellow background that stops a machine and stays pressed in until it is deliberately reset.' },
+        { term: 'Safety function', def: 'What the safety system does when a risk occurs, such as stopping the robot when the door opens.' },
+        { term: 'Performance level', def: 'The reliability of a safety function under ISO 13849-1, from PL a (lowest) to PL e (highest).' },
+        { term: 'CE marking', def: 'The maker’s declaration that a machine meets the EU safety rules.' },
+        { term: 'Machinery Regulation', def: 'EU Regulation 2023/1230, which replaces the Machinery Directive from 20 January 2027.' },
       ],
     },
     {
@@ -980,6 +1321,210 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.stoppages',
+      title: 'Micro-stops and fault data: from alarm log to action',
+      pre: [
+        {
+          q: 'A machine logs 2,000 alarms in a week. Where do you start?',
+          options: ['With the newest alarm', 'With the alarm that fires most often', 'With the alarms sorted by lost time, and by count', 'With all of them at once'],
+          answer: 'With the alarms sorted by lost time, and by count',
+          why: 'Lost time shows where most output goes; count shows the frequent short stops.',
+        },
+      ],
+      teach: [
+        'Every stop leaves a trace in the PLC: the alarm log, a list with the time, an alarm code, a text and the duration. Raw logs mislead, because one jam can fire five alarms in a row.\n\nThe first-out alarm is the first alarm in such a chain, usually the cause; the rest follow from it. Ask whether the machine records first-out. If not, people chase symptoms, such as “door open”, when the real cause was a feeder jam.',
+        'Sort the stops in a Pareto chart: bars from largest to smallest. Make it twice. By count, it shows micro-stops (stops of seconds to a few minutes): many, short and often ignored. By lost minutes, it shows the long breakdowns.\n\nA few causes usually take most of the loss. Use a short, fixed list of stop reasons per machine, not free text, or the chart fills up with “other”.',
+        'An MES, a manufacturing execution system (see eng.industry40), collects states and alarms from every PLC and adds the order, the variant, the shift and the reason the operator gives. It shows line OEE live.\n\nA common trap: asking a reason for every 20-second stop. Operators then pick the first item in the list to get going, and the data is worthless. Common practice: classify short stops automatically from the alarm code, and ask people only about the long ones.',
+        'Data only helps when someone acts on it. A short daily meeting at the line looks at yesterday’s top stops, gives each one an owner, and checks the Pareto again after a fix.\n\nQuestions that sound credible: “Do you log first-out alarms? Where is the cut-off between a micro-stop and a breakdown? Who looks at the top three each morning, and what changed last month?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'An assembly line’s alarm log for one week of 10 shifts shows three top alarms. “Part not present in nest”: 1,200 times, 20 seconds each. “Servo fault”: 6 times, 25 minutes each. “Door opened”: 300 times, 30 seconds each.\n\nStep 1, lost time: part not present 1,200 × 20 = 24,000 seconds, 400 minutes; servo fault 6 × 25 = 150 minutes; door opened 300 × 30 = 9,000 seconds, 150 minutes.',
+        ask: 'Which do you attack first, and how?',
+        reveal: '“Part not present” is the top by count and by minutes: 120 micro-stops per shift. It is probably a feeder problem, so first check the first-out data: is it the first alarm, or a result of a feeder jam? Then watch the feeder, for example with a slow-motion video.\n\nAsk why the door is opened 300 times: likely to clear those same parts, so it may disappear with the first fix. The servo fault is rare but long; it goes to maintenance as a separate case.',
+      },
+      said: 'What engineers say: “Don’t trust the top alarm, trust the first-out.” The first alarm in a chain is usually the cause.',
+      recall: [
+        {
+          q: 'An alarm fires 900 times in a week and each stop lasts 20 seconds. How many minutes of production does it cost that week?',
+          number: 300,
+          tolerance: 1,
+          unit: 'min',
+          why: '900 × 20 = 18,000 seconds; 18,000 / 60 = 300 minutes.',
+        },
+        {
+          q: 'What is a first-out alarm?',
+          options: ['The alarm with the most counts', 'The oldest alarm in the log', 'The alarm an operator confirms first', 'The first alarm in a chain, usually the cause'],
+          answer: 'The first alarm in a chain, usually the cause',
+          why: 'The alarms after it follow from it.',
+        },
+        {
+          q: 'Why make a Pareto of stops both by count and by lost minutes?',
+          options: ['Count shows the frequent short stops, minutes shows where most time goes', 'Count is always wrong', 'Minutes include quality losses', 'The MES requires both'],
+          answer: 'Count shows the frequent short stops, minutes shows where most time goes',
+          why: 'Micro-stops and breakdowns need different fixes, and each shows in a different chart.',
+        },
+        {
+          q: 'What happens when operators must enter a reason for every short stop?',
+          options: ['The OEE rises', 'They pick any reason to get going, so the data becomes unreliable', 'The PLC slows down', 'The stops disappear'],
+          answer: 'They pick any reason to get going, so the data becomes unreliable',
+          why: 'Short stops are better classified automatically from the alarm code.',
+        },
+      ],
+      situation: {
+        scene: 'The plant manager of a packaging company proudly shows you the new MES dashboard. The biggest bar in the stop Pareto is “other”, and nobody has looked at the alarm logs since go-live.',
+        ask: 'What do you ask?',
+        model: 'Why is “other” the biggest reason: do operators have to enter a reason for every short stop? Could we classify the short stops automatically from the alarm codes, using the first-out alarm, and ask people only about the long ones? And who looks at the top three stops each morning, and what has been fixed since go-live?',
+        rubric: [
+          'Questions how stop reasons are entered',
+          'Proposes automatic classification with first-out alarms for short stops',
+          'Asks who acts on the data and what changed',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds how you turn alarm data into fewer micro-stops.',
+      terms: [
+        { term: 'Alarm log', def: 'The list of every alarm a machine raised, with time, code, text and duration.' },
+        { term: 'First-out alarm', def: 'The first alarm in a chain of alarms, usually the real cause.' },
+        { term: 'Pareto chart', def: 'A bar chart sorted from largest to smallest, to show which few causes take most of the loss.' },
+        { term: 'MES', def: 'Manufacturing execution system: software that collects machine data and links it to orders, shifts and reasons.' },
+      ],
+    },
+    {
+      id: 'eng.lines.autobasics',
+      title: 'Automate or not: labour, volume, variation and quality',
+      pre: [
+        {
+          q: 'Which task is the best first candidate for a robot?',
+          options: ['Assembling one-off prototypes', 'Checking cable harnesses by feel for 40 variants', 'Lifting the same 12 kg box onto a pallet 400 times per shift', 'Repairing returned products'],
+          answer: 'Lifting the same 12 kg box onto a pallet 400 times per shift',
+          why: 'It is repetitive, heavy, high in volume and always the same product.',
+        },
+      ],
+      teach: [
+        'Automation means a machine does work a person did, from a press with an automatic feed to a full robot cell. Whether it makes sense comes down to four questions: how much labour does it replace, how many products, how much variation, and what does it do for quality?\n\nAsk them in that order on any gemba walk where someone says “we should automate this”.',
+        'Labour first. Labour cost is the wage plus the employer’s costs; for an operator in the Netherlands that is roughly €50,000 to €60,000 a year. A cell that replaces one operator per shift saves one person on one shift, three people on three shifts.\n\nThere is more than money: heavy, hot or boring work that people do not want, and staff that are hard to find.',
+        'Then volume and variation. Annual volume is the number of products per year: automation likes many identical products. Variation makes it hard: many variants, parts that arrive in different positions, and soft parts such as cables, foam or fabric.\n\nThe rule of thumb: high volume and little variation, automate; low volume and a lot of variation, leave it to people and help them with good fixtures and instructions.',
+        'Quality: a machine repeats the same motion every time, so quality gets steadier, but only if the incoming parts are steady too.\n\nThe cell itself is usually built by an integrator: the company that designs, builds and programs the complete cell, with a robot from a robot maker plus grippers, guarding, conveyors and software. Ask early who that will be, and who maintains the cell afterwards.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'At the end of a line, an operator stacks boxes of 12 kg on pallets. Assume 2 shifts, one operator per shift at €55,000 a year, 400 boxes per shift, 220 working days a year and one box size.\n\nLabour: 2 × €55,000 = €110,000 a year. Volume: 400 × 2 × 220 = 176,000 boxes a year, all the same. Variation: none. Ergonomics: 400 × 12 = 4,800 kg lifted per operator per shift.\n\nAll four questions point the same way: a classic job for a palletising robot. Compare a station that builds 30 cable harnesses a day in 40 variants: low volume, high variation and soft parts. Leave that to people.',
+      },
+      said: 'What engineers say: “That stacking job is a textbook palletiser.” Palletising, stacking boxes on pallets, is one of the most common first robot jobs.',
+      recall: [
+        {
+          q: 'A cell replaces one operator per shift on 3 shifts. Each operator costs €55,000 a year. How much labour cost does it save per year, in euros?',
+          number: 165000,
+          tolerance: 100,
+          unit: '€',
+          why: '3 × €55,000 = €165,000.',
+        },
+        {
+          q: 'A line makes 500 products per shift on 2 shifts, 220 days a year. What is the annual volume?',
+          number: 220000,
+          tolerance: 100,
+          unit: 'products',
+          why: '500 × 2 × 220 = 220,000 products.',
+        },
+        {
+          q: 'Which makes a task the hardest to automate?',
+          options: ['High volume', 'Many variants and soft, bendable parts', 'A heavy, repetitive task', 'Two-shift operation'],
+          answer: 'Many variants and soft, bendable parts',
+          why: 'Variation and soft parts make gripping and positioning hard for a machine.',
+        },
+        {
+          q: 'What does an integrator do?',
+          options: ['Makes the robot arm', 'Runs the cell on the night shift', 'Designs, builds and programs the complete cell', 'Finances the investment'],
+          answer: 'Designs, builds and programs the complete cell',
+          why: 'The robot maker supplies the arm; the integrator turns it into a working cell.',
+        },
+      ],
+      situation: {
+        scene: 'The owner of a furniture maker has just been to a trade fair. “I saw a robot sanding table tops. We need one of those,” he tells you on the shop floor.',
+        ask: 'What do you ask him?',
+        model: 'Which task would it take over, and how many people does that task need per shift today? How many table tops a year, and how different are they in size, wood and finish? If the volume is high and the tops are similar, it is worth a closer look; if every order is different, a better fixture may help more. Who would build and maintain it?',
+        rubric: [
+          'Asks about the labour the robot would replace',
+          'Asks about annual volume and variation',
+          'Asks who would build and maintain the cell',
+        ],
+      },
+      sayIt: 'Explain to a business owner in 60 seconds which four questions decide whether a task is worth automating.',
+      terms: [
+        { term: 'Automation', def: 'A machine doing work that a person did before.' },
+        { term: 'Labour cost', def: 'What a worker costs the company: wage plus the employer’s costs.' },
+        { term: 'Annual volume', def: 'The number of products made per year.' },
+        { term: 'Integrator', def: 'The company that designs, builds and programs the complete automated cell.' },
+      ],
+    },
+    {
+      id: 'eng.lines.payback',
+      title: 'Payback time: investment, yearly saving and shifts',
+      pre: [
+        {
+          q: 'A cell costs €200,000 and saves €50,000 a year. What is its payback time?',
+          options: ['2 years', '4 years', '5 years', '10 years'],
+          answer: '4 years',
+          why: '€200,000 / €50,000 per year = 4 years.',
+        },
+      ],
+      teach: [
+        'Payback time = investment / yearly net saving. It answers one question: after how many years has the cell earned its cost back? Many manufacturers want automation to pay back within 2 to 3 years.\n\nThe investment is called capex, capital expenditure: money spent once on equipment. Count all of it: robot, grippers, guarding, conveyors, integration, training and spare parts. The robot itself is often a minority of it.',
+        'The net saving is what stops going out each year, minus the new running costs. Labour saving = operators per shift × shifts × cost per operator. Running costs are what the cell itself costs each year: maintenance, energy, spare parts and a technician’s time.\n\nForget the running costs and the payback looks better than it is.',
+        'Shifts matter most. The same cell on one shift saves one operator, on three shifts three, for almost the same capex. That is why automation pays back much faster in plants that run two or three shifts.\n\nA saving only counts if money really stops going out: someone leaves, a vacancy stays unfilled, or temporary staff or overtime stop. “It frees half an operator” saves nothing until one of those happens (see eng.cost).',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A cell that loads a press costs €280,000 all-in. It replaces one operator per shift at €55,000 a year. Its running costs are €12,000 a year.\n\nOn 2 shifts: 2 × €55,000 − €12,000 = €98,000 a year; €280,000 / €98,000 = 2.9 years. Inside the 2-to-3-year hurdle, just.\n\nOn 3 shifts: 3 × €55,000 − €12,000 = €153,000; payback 1.8 years.\n\nOn 1 shift: €55,000 − €12,000 = €43,000; payback 6.5 years. The same machine is a good or a bad investment depending on the shifts it runs.',
+      },
+      said: 'What controllers say: “Show me the payback on the shifts we actually run.” Controllers are the finance people who check investment cases.',
+      recall: [
+        {
+          q: 'A cell costs €360,000. It replaces one operator per shift on 2 shifts at €55,000 each, and its running costs are €20,000 a year. What is the payback time, in years?',
+          number: 4,
+          tolerance: 0.05,
+          unit: 'years',
+          why: '2 × €55,000 − €20,000 = €90,000; €360,000 / €90,000 = 4 years.',
+        },
+        {
+          q: 'The same cell (€360,000, running costs €20,000 a year) runs on 3 shifts, replacing one €55,000 operator per shift. What is the payback time now, in years?',
+          number: 2.48,
+          tolerance: 0.05,
+          unit: 'years',
+          why: '3 × €55,000 − €20,000 = €145,000; €360,000 / €145,000 = 2.48 years.',
+        },
+        {
+          q: 'Which of these belongs in the capex of a robot cell?',
+          options: ['Yearly maintenance', 'Energy', 'The gripper and the guarding', 'The operator’s wage'],
+          answer: 'The gripper and the guarding',
+          why: 'Capex is the one-off investment; the others are yearly costs.',
+        },
+        {
+          q: 'When does “it frees half an operator” become a real saving?',
+          options: ['Always', 'When the robot is new', 'When payback is under 2 years', 'When someone leaves, a vacancy stays unfilled or overtime stops'],
+          answer: 'When someone leaves, a vacancy stays unfilled or overtime stops',
+          why: 'Only then does money really stop going out.',
+        },
+      ],
+      situation: {
+        scene: 'The engineering manager of a plastics company shows you a slide: a new cell with a payback of 1.5 years. You know the plant runs mostly on day shift.',
+        ask: 'What do you ask?',
+        model: 'On how many shifts is the 1.5 years based? If it assumes three shifts and we run one, the saving is a third and the payback triples. Are the running costs in it, and does the capex include grippers, guarding and integration? And which operators actually leave or stop working overtime?',
+        rubric: [
+          'Checks the number of shifts behind the saving',
+          'Asks for running costs and the full capex',
+          'Asks whether the labour saving becomes real money',
+        ],
+      },
+      sayIt: 'Explain to a production manager in 60 seconds why the same robot cell can pay back in 2 years or in 6.',
+      terms: [
+        { term: 'Payback time', def: 'Investment divided by the yearly net saving, in years.' },
+        { term: 'Capex', def: 'Capital expenditure: money spent once on equipment, such as a robot cell.' },
+        { term: 'Net saving', def: 'What stops going out each year, minus the new running costs.' },
+        { term: 'Running costs', def: 'What the equipment itself costs each year: maintenance, energy, spare parts, support.' },
+      ],
+    },
+    {
       id: 'eng.lines.business',
       title: 'The business case for automation',
       pre: [
@@ -1043,10 +1588,79 @@ export default {
       },
       sayIt: 'Explain to a managing director in 60 seconds what a sound automation business case contains.',
       terms: [
-        { term: 'Payback time', def: 'Investment divided by the yearly net savings, in years.' },
-        { term: 'Integrator', def: 'The company that designs, builds and programs the complete automated cell.' },
         { term: 'Ramp-up', def: 'The months a new line or cell needs to reach its target output.' },
         { term: 'Scrap', def: 'Parts that are made wrong and must be thrown away or melted down.' },
+      ],
+    },
+    {
+      id: 'eng.lines.risk',
+      title: 'Risk and value: NPV, ramp-up loss and why automation projects fail',
+      pre: [
+        {
+          q: 'Why can a cell with a 3-year payback still be a bad investment?',
+          options: ['Because it runs on three shifts', 'Because the product ends after 2 years and the cell cannot be reused', 'Because its NPV is positive', 'Because the robot is a cobot'],
+          answer: 'Because the product ends after 2 years and the cell cannot be reused',
+          why: 'Payback says nothing about whether the savings last long enough.',
+        },
+      ],
+      teach: [
+        'Payback ignores what happens after payback and when the money comes. NPV, net present value, does not. It discounts each year’s cash to today at the discount rate, the return the company requires (often between 6 and 12%), and subtracts the investment. A euro in year n is worth 1 / (1 + r) to the power n today.\n\nNPV above zero: the project earns more than required. The module eng.cost covers the method; here we apply it to automation.',
+        'Two numbers make or break an automation case. The ramp-up loss: in the first months the cell makes less than planned while the people it replaces are still needed, so year 1 often saves far less. Put it in, for example at half the saving.\n\nThe residual value: what the cell is worth at the end. A standard robot can be reused or sold; product-specific grippers and fixtures are often worth nothing.',
+        'Why automation projects fail, in practice: the process was not stable; the parts varied more than assumed; the cycle time came from a datasheet instead of a test; nobody in-house can maintain or change the programs; or the scope kept growing.\n\nFlexibility has value: a cell that can take the next product extends the years of saving, often more than any other assumption.',
+        'A sensitivity analysis changes one assumption at a time and shows what happens to the NPV: saving 30% lower, ramp-up 6 months longer, product life 2 years shorter. It shows which assumption the case really rests on.\n\nQuestions a director respects: “What is the NPV if the product stops 2 years early? What ramp-up did you assume? What can we reuse, and who maintains it at night?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A cell costs €300,000. The plan saves €100,000 net a year, but in year 1 ramp-up halves that to €50,000. The product runs 4 years; the grippers and fixture have no residual value. The discount rate is 8%, so the factors for years 1 to 4 are 0.926, 0.857, 0.794 and 0.735.\n\nStep 1: year 1 is worth €50,000 × 0.926 = €46,300 today. Simple payback is 3.5 years: €250,000 back after 3 years, the last €50,000 in half of year 4.',
+        ask: 'What is the NPV, and what would change the decision?',
+        reveal: 'Years 2 to 4: €85,700 + €79,400 + €73,500 = €238,600. Plus €46,300 gives €284,900, minus €300,000: an NPV of about −€15,000. The case fails, although a 3.5-year payback sounded acceptable.\n\nIf the cell can be reused for the next product for 2 more years (factors 0.681 and 0.630), that adds about €68,100 + €63,000 = €131,100: an NPV of about +€116,000. Reuse decides the case, so design for it and ask the integrator what it costs.',
+      },
+      said: 'What finance directors say: “Payback is a speed, not a value. Show me the NPV with a realistic ramp-up.”',
+      recall: [
+        {
+          q: 'A saving of €110,000 arrives one year from now. The discount rate is 10%. What is it worth today, in euros?',
+          number: 100000,
+          tolerance: 500,
+          unit: '€',
+          why: '€110,000 / 1.10 = €100,000.',
+        },
+        {
+          q: 'A project costs €180,000 now and saves €110,000 in year 1 and €121,000 in year 2. The discount rate is 10%. What is the NPV, in euros?',
+          number: 20000,
+          tolerance: 500,
+          unit: '€',
+          why: '€110,000 / 1.1 = €100,000; €121,000 / 1.21 = €100,000; €200,000 − €180,000 = €20,000.',
+        },
+        {
+          q: 'What is the residual value of a cell?',
+          options: ['The yearly saving', 'The ramp-up loss', 'The discount rate', 'What it is still worth at the end of the project'],
+          answer: 'What it is still worth at the end of the project',
+          why: 'Reusable robots keep value; product-specific tooling usually does not.',
+        },
+        {
+          q: 'What does a sensitivity analysis show?',
+          options: ['The exact NPV', 'How the NPV changes when one key assumption changes', 'The robot’s payload', 'The cheapest integrator'],
+          answer: 'How the NPV changes when one key assumption changes',
+          why: 'It shows which assumption the case really rests on.',
+        },
+      ],
+      situation: {
+        scene: 'In an investment meeting at an automotive supplier, an integrator presents a welding cell with a strongly positive NPV. You notice it assumes three shifts, 8 years of product life and full savings from month one.',
+        ask: 'What do you ask?',
+        model: 'Which customer programme is this for, and how many years does it really have? What is the NPV with a realistic ramp-up, say half the saving in year 1, and with the shifts we actually run? What can we reuse when the programme ends, and what is the residual value? Can we see a sensitivity table on those three assumptions?',
+        rubric: [
+          'Challenges product life, shifts and ramp-up assumptions',
+          'Asks about reuse and residual value',
+          'Asks for a sensitivity analysis rather than one NPV',
+        ],
+      },
+      sayIt: 'Explain to a finance director in 60 seconds why an automation case needs an NPV with ramp-up and reuse, not only a payback time.',
+      terms: [
+        { term: 'NPV', def: 'Net present value: all future cash discounted to today, minus the investment.' },
+        { term: 'Discount rate', def: 'The yearly return the company requires, used to value future cash today.' },
+        { term: 'Ramp-up loss', def: 'The saving missed while a new cell runs below plan in its first months.' },
+        { term: 'Residual value', def: 'What equipment is still worth at the end of the project.' },
+        { term: 'Sensitivity analysis', def: 'Changing one assumption at a time to see how much the result moves.' },
       ],
     },
   ],
