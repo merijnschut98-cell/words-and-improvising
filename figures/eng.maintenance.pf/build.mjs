@@ -34,8 +34,9 @@ const OUT = join(ROOT, "src/content/courses/figures/eng.maintenance.pf.html");
 // velocity on the bearing housing follows
 //   v(t) = 1.2 + 0.01·t + A·(exp((t − T0)/τ) − 1)      [mm/s RMS], t > T0
 // with A and τ solved so that v crosses the alarm level 4.5 mm/s (the ISO
-// 10816-3 zone B/C boundary for a medium machine on a rigid base) at P and
-// reaches 11 mm/s at functional failure F.
+// 10816-3 / 20816-3 zone C/D boundary for a group 2 machine, 15–300 kW, on a
+// rigid base; zone B/C there is 2.8 mm/s) at P and reaches 11 mm/s at
+// functional failure F.
 // P is defined for vibration, the technique this figure inspects with, so the
 // vibration P-F interval is F − P = 10 weeks. The other techniques see the same
 // defect at their own time before F (typical textbook order):
