@@ -29,3 +29,5 @@ Facts and sources:
 - Recomputed: (4 + 24 + 14) / 6 = 7; 24 / 4 = 6; A-C-D = 3 + 6 + 2 = 11 vs A-B-D = 9; example chains 3 + 4 + 2 + 6 = 15 and 3 + 6 + 6 = 15; with C parallel to A, C ends week 6 while E waits for D at week 9, so 3 weeks slack; (2 + 12 + 10) / 6 = 4 days effort at 1 day a week ≈ 4 weeks. All recall numbers, answer positions and ids unchanged.
 
 Uncertain: the 1–5 × 1–5 scoring is one common convention among several; “experts doubt how much pilots prove” reflects the Hawthorne-style attention effect, practitioner judgement rather than a single study.
+
+Review fixes: the estimate example’s plan range now follows from its numbers (2–10 days of effort at 1 day a week = 2 to 10 weeks, most likely about 4; was “3 to 6 weeks”). Risk scoring example now compares different scores (12 vs 10; “4 × 3 vs 3 × 4” were equal). Prospective hindsight attributed to Mitchell, Russo & Pennington (1989) as cited by Klein. CPM credited to DuPont and Remington Rand; Gantt charts “in the 1910s”.

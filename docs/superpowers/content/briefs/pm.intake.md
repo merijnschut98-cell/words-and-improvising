@@ -20,7 +20,7 @@ New fifth blocks: expert disagreement on accepting the client’s solution (hypo
 
 Facts and sources:
 - OEE = availability × performance × quality; 85% “world class” is Nakajima’s (TPM, 1988) commonly quoted benchmark; ~60% typical for discrete manufacturing (widely cited industry surveys). Phrased as “often quoted” / “many plants measure around 60%”.
-- Stakeholder power–interest grid: Mendelow, A. (1991), Proceedings of the 2nd International Conference on Information Systems; phrased “usually credited to Mendelow”.
+- Stakeholder power–interest grid: Mendelow, A. L. (1981), “Environmental Scanning: The Impact of the Stakeholder Concept”, Proceedings of the 2nd International Conference on Information Systems (ICIS 1981, Cambridge MA); widely mis-cited as 1991. Phrased “usually credited to Mendelow (1981, often cited as 1991)” (review fix).
 - Dutch works council consent right on working-time and shift schedules: Wet op de ondernemingsraden art. 27 lid 1 sub b (arbeids- en rusttijdenregeling). A decision taken without consent is voidable if the OR invokes it (art. 27 lid 5), hence “can stop a project for months”.
 - MS stations: Dutch medium-voltage distribution is mostly 10 kV or 20 kV, stepped down to 400/230 V.
 - Recomputed: 3.2% × 75,000 = 2,400 kg; 2.0% × 75,000 = 1,500 kg; difference 900 kg (unchanged). 20 min × 5 × 46 = 4,600 min = 76.67 h (unchanged). 140/600 and 90 of 140 in the example are illustrative, unchanged. 6 changeovers × 50 min = 300 min = 5 h (unchanged).
