@@ -3,7 +3,15 @@
 Merijn (2026-11-04): later in the plan, add things that are proven to raise motivation ("dopamine") so he keeps playing and, more importantly, keeps learning; keep the app minimal. Also small mini-games that use the learning concepts. Not for now.
 
 ## Tension to settle first
-The v9 Global Constraints say "no new reward layers" (no badges, leaderboards, celebratory screens) because extrinsic rewards can shift attention from learning to points (overjustification). v12 deliberately revisits that rule with one test: a mechanism ships only if it raises learning behaviour (retrieval practice done, spaced reviews kept, lessons completed), not just time in the app.
+The v9 Global Constraints say "no new reward layers" (now revisited for competence-based titles, see below) (no badges, leaderboards, celebratory screens) because extrinsic rewards can shift attention from learning to points (overjustification). v12 deliberately revisits that rule with one test: a mechanism ships only if it raises learning behaviour (retrieval practice done, spaced reviews kept, lessons completed), not just time in the app.
+
+## Decided (Merijn, 2026-11-04): titles and badges for real mastery
+Revisit the v9 "no badges" rule for **competence-based** recognition only. Achievements, badges and titles ("Werkkennis Draaien", "Expert in Spuitgieten", "Meester Verspanen") are earned by evidence of learning, never by taps or time alone:
+- **Level achieved** in a topic (passed / owned per level chip).
+- **Retention**: questions that came back via spaced repetition and were still answered correctly N times (e.g. owned questions held over 30 / 60 / 120 days).
+- **Time spent** on a subject counts only together with progress (minutes of practice that produced passed lessons or kept reviews), so it cannot be gamed by leaving the app open.
+- Titles per topic and per module (e.g. topic: Basis → Werkkennis → Gevorderd → Expert; module: all topics at Expert with retention → "Meester"), shown quietly on the module view and in Progress; a small, calm moment when one is earned (no confetti, Vantage style).
+Why this passes the test: informational rewards that confirm competence tend to support intrinsic motivation, while rewards for mere participation tend to undermine it (Deci, Koestner & Ryan 1999; self-determination theory). Design check in research: avoid badge inflation; keep each title rare enough to mean something.
 
 ## Research first (one research agent, sources required)
 - Variable reward schedules and reward prediction error (Schultz; Berridge on wanting vs liking) — what transfers to learning apps without hurting intrinsic motivation (Deci, Koestner & Ryan 1999 meta-analysis; Hanus & Fox 2015).
