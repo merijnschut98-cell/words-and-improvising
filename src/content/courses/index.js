@@ -49,6 +49,22 @@ export const lessonOf = (questionId) => String(questionId).split('#')[0];
 export const metaOf = (moduleId) => MODULES.find((m) => m.id === moduleId) || null;
 export const trackOf = (moduleId) => (metaOf(moduleId) || {}).track || null;
 
+// Topic modules: meta.topics lists topics, each with exactly four lessons as
+// levels 1–4 (Basis, Werkkennis, Gevorderd, Expert). Not to be confused with
+// events[].topics in My real week, which holds module ids.
+export const LEVELS = [1, 2, 3, 4];
+export const topicsOf = (meta) => (meta && Array.isArray(meta.topics) ? meta.topics : null);
+
+// Where a lesson sits in its topic module; null for non-topic modules and unknown ids.
+export function placeOf(lessonId, modules = MODULES) {
+  const meta = modules.find((m) => m.id === moduleOf(lessonId));
+  for (const topic of topicsOf(meta) || []) {
+    const i = (topic.levels || []).indexOf(lessonId);
+    if (i >= 0) return { moduleId: meta.id, topicId: topic.id, topic, level: i + 1 };
+  }
+  return null;
+}
+
 // One module file per language; rejects when the file can't be loaded. A
 // browser remembers a failed import, so a retry asks for a fresh URL.
 export async function loadModule(subject, moduleId, lang, attempt = 0) {

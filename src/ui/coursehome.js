@@ -2,14 +2,28 @@
 import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { masteryBadge, realWeekEntry } from './home.js';
-import { MODULES, TRACKS } from '../content/courses/index.js';
-import { courseTodayPick, moduleMastery, nextLesson } from '../core/course.js';
+import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
+import { courseTodayPick, moduleMastery, nextLesson, topicRows, levelsDone } from '../core/course.js';
 import { dueCount } from '../core/coursereview.js';
 
 export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
 // The reason line for a course pick: a lesson for an event says so; prep names the event.
 export const courseWhy = (t, pick) => t(`courseWhy_${pick.why || pick.reason}`, pick.eventText || '');
+
+// "Draaien · Gevorderd" for a lesson in a topic module; '' otherwise.
+export function placeLabel(t, lang, lessonId, modules = MODULES) {
+  const p = placeOf(lessonId, modules);
+  return p ? t('topicLevel', p.topic.title[lang] || p.topic.title.en, t(`level_${p.level}`)) : '';
+}
+
+// The why line of a course pick: a topic lesson names its topic and level, a
+// lesson elsewhere its module.
+export function pickWhy(t, lang, pick, meta, modules = MODULES) {
+  const place = pick.topicId && pick.lessonId ? placeLabel(t, lang, pick.lessonId, modules) : '';
+  if (place) return `${courseWhy(t, pick)} · ${place}`;
+  return meta && pick.lessonId ? `${courseWhy(t, pick)} · ${meta.title[lang] || meta.title.en}` : courseWhy(t, pick);
+}
 
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
@@ -41,16 +55,67 @@ function todayCard(app, subject) {
   return h('section', { class: 'card today-card course-today' },
     h('p', { class: 'today-label' }, t('courseNext')),
     what,
-    h('p', { class: 'muted small' }, meta && pick.lessonId
-      ? `${courseWhy(t, pick)} · ${modTitle(app, meta)}`
-      : courseWhy(t, pick)),
+    h('p', { class: 'muted small today-why' }, pickWhy(t, app.lang, pick, meta)),
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },
     }, ico('play'), ' ', t('courseGo')));
 }
 
+// One level chip of a topic: state as an icon (not colour alone), the level
+// name, and a spoken label. The suggested chip is marked, never filled.
+const CHIP_ICON = { todo: null, passed: 'circle-check', owned: 'check-check' };
+export function chipModel(t, topicTitle, lv, isNext) {
+  const label = t(`level_${lv.level}`);
+  const aria = t('chipLabel', topicTitle, label, t(`chipState_${lv.state}`));
+  return { cls: `level-chip s-${lv.state}${isNext ? ' next' : ''}`, label, aria: isNext ? `${aria} (${t('chipNext')})` : aria, icon: CHIP_ICON[lv.state] || null };
+}
+
+const topicTitle = (app, topic) => topic.title[app.lang] || topic.title.en;
+
+function modSummary(app, meta, ...bits) {
+  return h('summary', { class: 'module-row' },
+    h('span', { class: 'module-title' }, modTitle(app, meta),
+      // In Dutch, the English name too: he needs both words at work.
+      app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? h('span', { class: 'term-en module-en', lang: 'en' }, ` · ${meta.title.en}`) : null),
+    h('span', { class: 'module-meta' }, ...bits));
+}
+
+// A topic module: one row per topic with four level chips, from the index
+// alone (no module load). Every chip opens its lesson: nothing is locked.
+function topicModuleRow(app, meta) {
+  const t = app.t;
+  const go = (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
+  const next = nextLesson(app.state, meta);
+  const at = next ? placeOf(next, [meta]) : null;
+  const { done, total } = levelsDone(app.state, meta);
+  const rows = topicRows(app.state, meta, app.lang).map((row, i) => {
+    const title = topicTitle(app, meta.topics[i]);
+    return h('div', { class: 'topic-row' },
+      h('div', { class: 'topic-head' },
+        h('h3', { class: 'topic-title' }, title),
+        h('span', { class: 'mono topic-count' }, t('topicCount', row.passed))),
+      h('div', { class: 'level-chips' }, row.levels.map((lv) => {
+        const isNext = lv.lessonId === next;
+        const m = chipModel(t, title, lv, isNext);
+        return h('button', { class: m.cls, 'aria-label': m.aria, onclick: () => go(lv.lessonId) },
+          m.icon ? ico(m.icon) : null,
+          h('span', { class: 'chip-label' }, m.label),
+          isNext ? h('span', { class: 'chip-next' }, t('chipNext')) : null);
+      })));
+  });
+  return h('details', { class: 'module topic-module' },
+    modSummary(app, meta,
+      masteryBadge(t, moduleMastery(app.state, meta, app.lang)),
+      h('span', { class: 'muted small' }, t('moduleLevels', done, total))),
+    h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
+    h('section', { class: 'topics' }, rows),
+    next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
+      ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null);
+}
+
 function moduleRow(app, meta) {
+  if (topicsOf(meta)) return topicModuleRow(app, meta);
   const t = app.t;
   const lessons = ((app.state.courses || {})[meta.subject] || { lessons: {} }).lessons;
   const done = meta.lessons.filter((id) => lessons[id] && lessons[id].passed).length;
@@ -65,14 +130,10 @@ function moduleRow(app, meta) {
     }));
   }).catch(() => list.replaceChildren(h('p', { class: 'note' }, t('loadError'))));
   return h('details', { class: 'module', ontoggle: (e) => { if (e.currentTarget.open && !list.childElementCount) fill(); } },
-    h('summary', { class: 'module-row' },
-      h('span', { class: 'module-title' }, modTitle(app, meta),
-        // In Dutch, the English name too: he needs both words at work.
-        app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? h('span', { class: 'term-en module-en', lang: 'en' }, ` · ${meta.title.en}`) : null),
-      h('span', { class: 'module-meta' },
-        h('span', { class: 'pill' }, t(`level_${meta.level}`)),
-        masteryBadge(t, moduleMastery(app.state, meta, app.lang)),
-        h('span', { class: 'muted small' }, t('moduleLessons', done, meta.lessons.length)))),
+    modSummary(app, meta,
+      h('span', { class: 'pill' }, t(`level_${meta.level}`)),
+      masteryBadge(t, moduleMastery(app.state, meta, app.lang)),
+      h('span', { class: 'muted small' }, t('moduleLessons', done, meta.lessons.length))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     list,
     nextLesson(app.state, meta) ? h('button', {

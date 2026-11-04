@@ -14,6 +14,7 @@ export const ICONS = {
   'briefcase': '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /><rect width="20" height="14" x="2" y="6" rx="2" />',
   'calendar': '<path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" />',
   'check': '<path d="M20 6 9 17l-5-5" />',
+  'check-check': '<path d="M18 6 7 17l-5-5" /><path d="m22 10-7.5 7.5L13 16" />',
   'chevron-left': '<path d="m15 18-6-6 6-6" />',
   'chevron-right': '<path d="m9 18 6-6-6-6" />',
   'circle': '<circle cx="12" cy="12" r="10" />',

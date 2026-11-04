@@ -151,6 +151,98 @@ Steps per module: (1) a module brief (lesson slugs, one line each) reviewed by M
 
 Natural spoken Dutch, not translated English. Terms engineers actually use (OEE, takt, CpK, FMEA, P&ID, MV/LV, protection relay, switching plan). Projecten content reflects a consultant leading improvement projects at clients, not textbook PM.
 
+## Topics and levels (added 2026-11-04)
+
+### Data model: `topics` on the module meta (chosen)
+
+```js
+{ id: 'eng.machining', subject: 'eng', track: 'discrete', level: 1,
+  title: {...}, blurb: {...},
+  topics: [
+    { id: 'turning', title: { en: 'Turning', nl: 'Draaien' },
+      levels: ['eng.machining.processes', 'eng.machining.cutting', 'eng.machining.turnfinish', 'eng.machining.turncell'] },
+    ...
+  ],
+  lessons: [ ...topics.flatMap((t) => t.levels) ],    // written out, same order
+  questions: { [lessonId]: n, ... } }
+```
+
+- `levels[i]` is the lesson for level `i + 1`: 1 Basis, 2 Werkkennis, 3 Gevorderd, 4 Expert. The existing i18n keys `level_1..4` already say exactly this in nl and en.
+- `lessons` stays an explicit flat array, because `moduleMastery`, `prepQuestions`, `courseSummary`, the validator and the content tests all read it. For a topic module it must equal `topics.flatMap((t) => t.levels)`, element for element.
+- A topic id is a short slug (`[a-z0-9]+`) that is unique within the module. It is never stored in state.
+- Name clash to keep in mind: since v9, `events[].topics` (My real week) holds **module ids**, and `prepQuestions`/`prepPick` read it. Module-meta `topics` is a different thing. Never pass a meta topic id where an event topic is expected. In code, name locals `metaTopics` or `rows` next to `ev.topics`.
+- `level` on the module stays. It only orders unstarted modules in `recommendedModule`, so v9 picks stay the same. The module row no longer shows it for topic modules (see UI).
+- For readability and union merges, topic modules are written over several lines in `index.js`: one line per topic and one line each for `lessons` and `questions`. Non-topic modules stay one line each.
+
+**Why on the meta, not `topic`/`tier` fields on lessons:**
+1. Course home, the start screen and `courseTodayPick` render and decide from `index.js` **without loading lesson bodies** (spec: "the course home renders without loading content"). Chips with state and the suggestion need the structure up front.
+2. One place states the structure. The validator checks it once per module instead of cross-checking 48 lesson objects in two languages, which could disagree.
+3. It keeps lesson files schema-compatible. A lesson does not know its tier, so moving a lesson to another level later is a one-line index change.
+4. The pure engine (`course.js`) already takes `modules = MODULES` as a parameter, so tests can inject topic fixtures.
+
+### How existing lessons map without changing ids
+
+The 6 existing lessons of each module become levels in the topic table (Content section). Their ids, recall counts (4) and question meaning stay. Their position in the module file changes to match the new `lessons` order. Where a lesson's level in its topic differs from its old module level, only its `example.kind` changes (worked at levels 1–2, faded at 3–4). That changes no id. Progress for these lessons shows up at once as passed or owned chips. Sync is unaffected, because nothing new is stored.
+
+One consequence is expected and accepted: a module that was `practise` or `own` drops to `learn` until the 18 new lessons are passed, because mastery means every lesson of the module. The chips show what he already has, so nothing looks lost. The ledger records this ruling.
+
+### Validator rules (only when `meta.topics` is present)
+
+- `topics` is an array of 2–8 topics. Each has an `id` matching `^[a-z0-9]+$` and unique in the module, a non-empty `title.en` and `title.nl`, and `levels` of **exactly 4** distinct lesson ids.
+- Every lesson id in `meta.lessons` is in exactly one topic, and every level id is in `meta.lessons`.
+- `meta.lessons` equals `topics.flatMap(levels)` in order. Because the file order must already follow the index order, the files follow topic-major order too.
+- Example kind follows the **lesson's level in its topic**, not `meta.level`: levels 1–2 `worked`, 3–4 `faded` with `ask` and `reveal`.
+- Teach blocks: 3–5 per lesson and ≤ 90 words each, as in every module (integrator ruling: one block fits one card; depth goes into more levels, not longer blocks).
+- Terms: 2–6 per lesson (unchanged). No term (case-insensitive, trimmed) is defined twice within one module in one language. The lesson screen already makes every term of the module tappable (`glossary([{...mod}])`), so a term is defined once, in the lowest level that uses it, and is tappable in every level.
+- Non-topic modules: every existing rule exactly as today.
+- Every module (added with v10): a lesson's en and nl `terms` lists have the same length, because the Dutch screen pairs each term with its English word by position (`withEnglish`).
+
+### Mastery per topic and level
+
+- `levelState(state, lessonId, questions, lang)` returns:
+  - `'todo'`: not passed;
+  - `'passed'`: `lessons[id].passed` is set;
+  - `'owned'`: passed, and every `lang|id#r<n>` is at box ≥ 4 (the existing `OWNED_BOX`).
+  "Read but not passed" shows as `todo`. He asked for three states.
+- A topic has no badge. Its row shows a quiet mono count "2/4" (levels passed). Module mastery (`moduleMastery`) is unchanged in meaning.
+
+### Suggesting the next level (free access)
+
+For a topic module, `nextLesson(state, meta)` returns:
+1. **Current topic**: the topic that holds the lesson with the latest `max(read, passed)` timestamp in this module, provided it still has an unpassed level. Ties go to index order.
+2. If the current topic is complete, or nothing has been touched yet: the first topic in index order that has an unpassed level.
+3. Within that topic: the **lowest unpassed level**. Say he jumped to Expert and passed it; the suggestion is then the lowest level he skipped.
+4. `null` when every level of every topic is passed.
+
+`recommendedModule` and `courseTodayPick` keep their v9 logic and call this `nextLesson`. A lesson pick gains `topicId` and `level` for labels: `{ reason: 'lesson', moduleId, lessonId, topicId, level }`. For non-topic modules, `nextLesson` and the picks are byte-for-byte the v9 behaviour.
+
+**Decision for Merijn (default chosen, can be flipped in one function):** the suggestion goes depth-first, finishing the current topic from Basis to Expert, as he asked. The alternative is breadth-first: all Basis levels first, then all Werkkennis. Mention this in the note to Merijn.
+
+### UI (minimal)
+
+- **Course home, module row of a topic module:** the `<details>` summary shows the title, the mastery badge and "5/24 levels" (`moduleLevels`) instead of the level pill and the lesson count. When opened, the body shows the blurb and then one **topic row** per topic. Each row has the topic title, a mono "2/4", and a 4-column grid of **level chips**: Basis · Werkkennis · Gevorderd · Expert. Rows render from the index alone, with no module load.
+  - Chip states:
+    - todo: hairline outline, no icon;
+    - passed: `circle-check` icon in success ink;
+    - owned: `check-check` icon plus a subtle success-tinted fill.
+  - The suggested chip (only one, the module's `nextLesson`) gets an accent ring and a small "Next" (`chipNext`) under the label. It is not filled.
+  - Every chip is a `button.level-chip` that opens that lesson, with `aria-label` "Draaien, Gevorderd: passed" (`chipLabel`).
+  - The existing ghost "Continue" button stays at the bottom and reads "Continue: Draaien · Gevorderd" (`moduleContinueAt`).
+- **Lesson header:** above the step indicator, one muted line `p.lesson-place` reads "Draaien · Gevorderd" (`topicLevel`). The top bar keeps the lesson title. Non-topic lessons show no line.
+- **Lesson done card:** for topic lessons, add a ghost `button.next-level` "Next: Draaien · Expert" when `nextLesson` (after this pass) is in the same module. The primary stays what it is today.
+- **Course Today card and start card:** "what" stays the lesson title. The "why" line for a topic lesson reads `${courseWhy} · Draaien · Gevorderd` instead of `· Verspanen`.
+- **Figures:** `figureSrc(id, theme, lang, level)` appends `&level=N` for topic lessons. Figure pages read it to pick a level-appropriate default state; pages that ignore it keep working.
+- **i18n (en + nl):**
+  - `topicLevel` (topic, level) => …
+  - `moduleLevels` (done, total) => …
+  - `chipNext`
+  - `chipLabel` (topic, level, state) => …
+  - `chipState_todo|passed|owned`
+  - `moduleContinueAt` (label) => …
+  - `nextLevel` (label) => …
+  - `topicCount` (done) => `${done}/4`
+- Light and dark: chips use only `--line`, `--success`, `--accent`, `--surface` tokens. Check in both themes.
+
 ## Review focus (for the final review)
 
 1. The speaking subject behaves exactly as before: e2e stays green with no selector changes outside the subject bar.

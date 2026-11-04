@@ -39,7 +39,8 @@ function checkPushback(p, at, errs) {
   if (!Array.isArray(p.rubric) || p.rubric.length !== 3 || !p.rubric.every(str)) errs.push(`${at}: pushback rubric needs exactly 3 lines`);
 }
 
-function checkLesson(l, meta, lang, errs) {
+// tier: the lesson's level, from its place in a topic, else the module level.
+function checkLesson(l, meta, lang, errs, tier = meta.level) {
   const at = `${lang} ${l.id}`;
   if (!str(l.title)) errs.push(`${at}: title missing`);
   const pre = l.pre || [];
@@ -53,8 +54,8 @@ function checkLesson(l, meta, lang, errs) {
   });
   const ex = l.example || {};
   if (!['worked', 'faded'].includes(ex.kind)) errs.push(`${at}: example kind must be worked or faded`);
-  if (ex.kind === 'faded' && meta.level < 3) errs.push(`${at}: faded example only at level 3–4`);
-  if (ex.kind === 'worked' && meta.level >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
+  if (ex.kind === 'faded' && tier < 3) errs.push(`${at}: faded example only at level 3–4`);
+  if (ex.kind === 'worked' && tier >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
   if (!str(ex.text)) errs.push(`${at}: example text missing`);
   if (ex.kind === 'faded' && !(str(ex.ask) && str(ex.reveal))) errs.push(`${at}: faded example needs ask and reveal`);
   if (!str(l.said)) errs.push(`${at}: said missing`);
@@ -73,8 +74,55 @@ function checkLesson(l, meta, lang, errs) {
   if ('figure' in l && !(typeof l.figure === 'string' && /^[a-z]+(\.[a-z0-9]+)+$/.test(l.figure))) errs.push(`${at}: figure must be an id like eng.flow.line`);
 }
 
+const TOPIC_ID = /^[a-z0-9]+$/;
+
+// The topic table of a topic module: 2–8 topics, each a slug id unique in the
+// module, a title in both languages and exactly 4 distinct lessons as levels
+// 1–4; every lesson in exactly one topic; lessons in topic order.
+export function checkTopics(meta) {
+  const errs = [];
+  const topics = meta && meta.topics;
+  if (!Array.isArray(topics) || topics.length < 2 || topics.length > 8) {
+    errs.push(`${meta && meta.id}: needs 2–8 topics`);
+    if (!Array.isArray(topics)) return errs;
+  }
+  const lessons = (meta && meta.lessons) || [];
+  const seen = new Set();
+  const where = new Map();
+  for (const t of topics) {
+    const id = t && t.id;
+    if (typeof id !== 'string' || !TOPIC_ID.test(id)) errs.push(`${meta.id}: topic id ${id} must match [a-z0-9]+`);
+    else if (seen.has(id)) errs.push(`${meta.id}: duplicate topic id ${id}`);
+    seen.add(id);
+    if (!(t && t.title && str(t.title.en) && str(t.title.nl))) errs.push(`${meta.id}: topic ${id} needs a title in en and nl`);
+    const levels = (t && t.levels) || [];
+    if (!Array.isArray(levels) || levels.length !== 4 || new Set(levels).size !== 4) errs.push(`${meta.id}: topic ${id} needs exactly 4 levels`);
+    for (const lid of Array.isArray(levels) ? levels : []) {
+      if (!lessons.includes(lid)) errs.push(`${meta.id}: level ${lid} of topic ${id} is not in lessons`);
+      where.set(lid, [...(where.get(lid) || []), id]);
+    }
+  }
+  for (const lid of lessons) {
+    const n = (where.get(lid) || []).length;
+    if (n === 0) errs.push(`${meta.id}: lesson ${lid} is in no topic`);
+    else if (n > 1) errs.push(`${meta.id}: lesson ${lid} is in more than one topic`);
+  }
+  if (lessons.join() !== topics.flatMap((t) => (t && Array.isArray(t.levels) ? t.levels : [])).join()) errs.push(`${meta.id}: lessons must follow topic order`);
+  return errs;
+}
+
+// Lesson id -> its level in its topic (topic modules only).
+function tiersOf(meta) {
+  const tiers = new Map();
+  for (const t of Array.isArray(meta.topics) ? meta.topics : []) ((t && t.levels) || []).forEach((id, i) => { if (!tiers.has(id)) tiers.set(id, i + 1); });
+  return tiers;
+}
+
 export function validateModule(en, nl, meta) {
   const errs = [];
+  const topical = Array.isArray(meta.topics);
+  if (topical) errs.push(...checkTopics(meta));
+  const tiers = tiersOf(meta);
   const byLang = { en, nl };
   for (const lang of ['en', 'nl']) {
     const lessons = (byLang[lang] && byLang[lang].lessons) || [];
@@ -82,7 +130,21 @@ export function validateModule(en, nl, meta) {
     for (const id of meta.lessons) if (!ids.includes(id)) errs.push(`${lang}: lesson ${id} missing`);
     for (const id of ids) if (!meta.lessons.includes(id)) errs.push(`${lang}: lesson ${id} not in the index`);
     if (ids.join() !== meta.lessons.filter((id) => ids.includes(id)).join()) errs.push(`${lang}: lessons out of index order`);
-    for (const l of lessons) if (l && meta.lessons.includes(l.id)) checkLesson(l, meta, lang, errs);
+    for (const l of lessons) if (l && meta.lessons.includes(l.id)) checkLesson(l, meta, lang, errs, tiers.get(l.id) ?? meta.level);
+    // A topic module defines each term once (in the lowest level that uses it);
+    // the lesson screen makes every term of the module tappable.
+    if (topical) {
+      const first = new Map();
+      for (const l of lessons) {
+        if (!l || !meta.lessons.includes(l.id)) continue;
+        for (const x of l.terms || []) {
+          const key = x && typeof x.term === 'string' ? x.term.trim().toLowerCase() : '';
+          if (!key) continue;
+          if (first.has(key)) errs.push(`${lang}: term "${key}" defined in ${first.get(key)} and ${l.id}`);
+          else first.set(key, l.id);
+        }
+      }
+    }
   }
   // Same shape in both languages: question counts and numeric answers match.
   for (const id of meta.lessons) {
@@ -91,6 +153,8 @@ export function validateModule(en, nl, meta) {
     if (!a || !b) continue;
     if ((a.recall || []).length !== (b.recall || []).length) errs.push(`${id}: recall counts differ between en and nl`);
     if ((a.pre || []).length !== (b.pre || []).length) errs.push(`${id}: pre counts differ between en and nl`);
+    // The Dutch screen pairs terms with their English word by position.
+    if ((a.terms || []).length !== (b.terms || []).length) errs.push(`${id}: terms counts differ between en and nl`);
     (a.recall || []).forEach((qa, i) => {
       const qb = (b.recall || [])[i];
       if (qb && ('number' in qa) !== ('number' in qb)) errs.push(`${id} recall ${i}: numeric in one language only`);

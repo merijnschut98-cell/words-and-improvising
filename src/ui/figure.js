@@ -8,7 +8,8 @@ export function figureTheme(setting, prefersDark) {
   return prefersDark ? 'dark' : 'light';
 }
 
-export const figureSrc = (id, theme, lang) => `src/content/courses/figures/${id}.html?theme=${theme}&lang=${lang === 'en' ? 'en' : 'nl'}`;
+// A topic lesson passes its level (1–4), so the page can open in a fitting state.
+export const figureSrc = (id, theme, lang, level) => `src/content/courses/figures/${id}.html?theme=${theme}&lang=${lang === 'en' ? 'en' : 'nl'}${[1, 2, 3, 4].includes(level) ? `&level=${level}` : ''}`;
 
 // An iframe fires no error on a 404, so ask first. Offline, the service worker
 // answers the HEAD request from its cache.
@@ -22,10 +23,10 @@ export async function figureAvailable(src, fetchFn = globalThis.fetch) {
 }
 
 // Returns the wrapper at once; the frame goes in only when the page is there.
-export function figureFrame(app, id) {
+export function figureFrame(app, id, level) {
   const t = app.t;
   const dark = typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches;
-  const src = figureSrc(id, figureTheme(app.state.settings.theme, dark), app.lang);
+  const src = figureSrc(id, figureTheme(app.state.settings.theme, dark), app.lang, level);
   const wrap = h('figure', { class: 'figure-wrap', hidden: true });
   figureAvailable(src).then((ok) => {
     if (!ok) { wrap.remove(); return; }
