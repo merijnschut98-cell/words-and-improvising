@@ -96,3 +96,46 @@ Material prices, mould prices and energy prices in the examples are stated as as
 ### Note on faded examples (temporary)
 
 The current validator still checks the example kind against the module's `level` (2), so a `faded` example fails until Task 1 lands. The six level-3/4 lessons of topics 1–3 therefore ship with `kind: 'worked'` for now and already carry `ask` and `reveal`; their `text` ends with the reveal verbatim. To switch after Task 1: set `kind: 'faded'` and cut the trailing reveal (and the `\n\n` before it) from `text`.
+
+### Scope per level (topics 4–6)
+
+- **defects**: 1 `defects` (existing, unchanged) the common defects and one cause each. 2 `diagnose` four questions (which cavity, where, every shot or intermittent, since when), fill study, jetting, change one thing and wait (about 10 shots; 20–30 min after a temperature change), boundary samples. 3 `warpage` differential shrinkage from thickness, temperature (bows towards the hotter half) and orientation; corner effect; mould shrinkage vs post-shrinkage, conditioning; process vs steel, steel-safe; faded anisotropic steel sizing. 4 `defectdata` a defect solved for good (cause, window, monitoring), 2^k DOE with main effect and interaction, cavity pressure sensors, process monitoring and its limits, what a manager weighs; faded DOE main effects.
+- **setting**: 1 `setup` (new) the five settings: temperatures, injection speed, switchover point, holding pressure and time, cooling time; the setting sheet; worked fill-time and cycle sum. 2 `process` (existing) the process window. 3 `scientific` viscosity curve (relative viscosity = pressure × intensification ratio × fill time), pressure drop study (≤ about 80 % of available), gate freeze study; faded viscosity calculation. 4 `validation` IQ/OQ/PQ, part weight on a control chart, cavity pressure, revalidation triggers; faded control limits and Cpk.
+- **moulds**: 1 `tooling` (existing) moulds, changes, maintenance. 2 `mouldparts` halves, sprue, runners, edge and tunnel gates, cooling, vents, ejector pins, draft angle, undercuts and slides; worked runner share of the shot. 3 `mouldcare` PM calendar from the shot counter, in-press vs toolroom PM, wear parts, mould logbook patterns, last-shot sample, internal vs external setup; faded PM interval and services per year. 4 `newmould` project steps, DFM (ribs 40–60 % of wall, draft), fill simulation, SPI classes 101–105, T0/T1, PPAP (300 consecutive parts, default level), quote comparison on cost per part over life; faded.
+
+Term move (existing lesson): `Switchover point` / `Omschakelpunt` moved from `process` (level 2) to `setup` (level 1 of the same topic), so it is defined at the lowest level that uses it. `process` keeps 5 terms in the same en/nl order; its recall is untouched. Terms defined in topics 4–6: diagnose (Flow front, Fill study, Jetting, Boundary sample), warpage (Differential shrinkage, Corner effect, Mould shrinkage, Conditioning), defectdata (DOE, Main effect, Interaction, Cavity pressure sensor, Process monitoring), setup (Setting sheet, Melt temperature, Injection speed, Switchover point, Holding time), scientific (Viscosity curve, Intensification ratio, Pressure drop study, Pressure-limited, Gate freeze study), validation (Validation, IQ/OQ/PQ, Part weight, Revalidation), mouldparts (Sprue, Tunnel gate, Ejector pin, Draft angle, Undercut, Slide), mouldcare (Wear parts, Mould logbook, Last-shot sample, Internal setup, External setup), newmould (DFM, Fill simulation, SPI class, T0, PPAP).
+
+### Facts and sources, topics 4–6 (verified 2026-11-04)
+
+| Fact used | Lesson | Source |
+|---|---|---|
+| Part bows towards the hotter mould half; a larger temperature difference between plates gives more warpage; about 5–10 °C difference can already cause bowing (rule of thumb, stated with “about”) | warpage | Estudos Tecnológicos (UNISINOS) https://revistas.unisinos.br/index.php/estudos_tecnologicos/article/view/5499 ; ZetarMold https://zetarmold.com/?p=36277 (vendor rule of thumb) |
+| Glass-fibre PA shrinks 2–3× more across the flow (0.3 / 0.7 % used as “about”, from the 0.27 / 0.72 % datasheet values) | warpage | as in topics 1–3 (Ultramid B GF datasheet, Material Data Center) |
+| Change one thing; wait about 10 shots after speed/pressure, 20–30 min after temperature | diagnose | shop rule of thumb, stated with “about”/“often” (no single source) |
+| Relative viscosity = peak hydraulic pressure × intensification ratio × fill time; 10–12 speeds; pick the flat part; study without hold, about 95 % full | scientific | Plastics Technology https://www.ptonline.com/columns/understanding-polymer-flow-interpreting-the-viscosity-curve ; PlasticsToday https://www.plasticstoday.com/plastics-processing/robust-repeatable-recommendations-fill-time ; Kulkarni, *Robust Process Development and Scientific Molding* (Hanser) |
+| Intensification ratio “often about 10” | scientific | typical machine value (rule of thumb, “often about”); the lesson says the machine maker gives it |
+| Required injection pressure ≤ 80 % of available (pressure drop study) | scientific | Kulkarni (FIMMTECH) on UL Prospector https://ulprospector.ul.com/1207/pe-plastic-pressure-drop/ ; Autodesk Moldflow (80 % flag) https://help.autodesk.com/cloudhelp/2014/ENU/MoldflowComm/files/GUID-1D69A13A-6BAA-4FDC-8A6C-0512AB5AF8F9.htm |
+| Gate freeze: weight plateau; set hold a little beyond (half a second to a second) | scientific, process | Kulkarni (as above); margin stated as common practice |
+| IQ/OQ/PQ definitions; OQ sets limits at the window edges, PQ shows consistency under production conditions | validation | GHTF/SG3/N99-10:2004 https://www.imdrf.org/sites/default/files/docs/ghtf/final/sg3/technical-docs/ghtf-sg3-n99-10-2004-qms-process-guidance-04010.doc |
+| Cavity pressure sensors sort good from bad parts automatically | defectdata, validation | Kistler https://www.kistler.com/AT/en/cavity-pressure/C00000099 ; Plastics Machinery & Manufacturing (RJG CoPilot) https://www.plasticsmachinerymanufacturing.com/injection-molding/product/55316362/copilot-go-speeds-mold-trials-troubleshooting |
+| SPI classes: 101 ≥ 1M cycles; 102 ≤ 1M; 103 < 500k; 104 < 100k; 105 prototype ≈ 500 | newmould | Plastikon SPI summary https://www.plastikon.com/wp-content/uploads/spi-class-summary.pdf ; Fictiv https://www.fictiv.com/articles/what-to-know-about-injection-molding-tooling-life (sources differ at the edges; the common values are used) |
+| PPAP significant production run: at least 300 consecutive parts unless the customer specifies otherwise, production tooling and rate; level 3 is the default | newmould | AIAG PPAP 4th ed., as quoted in Prestolite Supplier PPAP Handbook https://www.prestolite.com/wp-content/uploads/2024/01/Prestolite-Supplier-PPAP-Handbook-Rev-D.pdf |
+| Rib thickness about 40–60 % of the nominal wall; draft at least 0.5°, about 1° per side typical, more with texture | mouldparts, newmould | Fathom design guidelines https://fathommfg.com/app/uploads/2025/12/Design-Guidelines-for-Injection-Molding.pdf ; Protolabs draft guide https://protolabs.com/resources/design-tips/improving-part-moldability-with-draft/ |
+
+Mould prices, sensor costs, complaint costs and weights in the examples are stated as assumptions.
+
+### Recalculations (topics 4–6, new lessons)
+
+| Lesson | Number | Check |
+|---|---|---|
+| diagnose | 1/20 = 5 % of shots / 4 = 1.25 % of parts; r1 10 % / 8 = 1.25 % | recalculated |
+| warpage | 200 × 1.005 = 201.0; 100 × 1.005 = 100.5; 201.0 × 0.997 = 200.40; 100.5 × 0.993 = 99.80; 200 × 1.003 = 200.6; 100 × 1.007 = 100.7; r1 150 × 0.004 = 0.6 mm | recalculated |
+| defectdata | P: (30+10)/2 = 20 − (40+24)/2 = 32 → −12; t: 17 − 35 = −18; P at short t −10, at long t −14; r1 2^4 = 16; r2 12,000/3,000 = 4 | recalculated |
+| setup | 60 − 12 = 48 mm / 80 = 0.6 s; 0.6 + 4 + 10 + 4 = 18.6 s; r1 (50 − 10)/40 = 1.0 s | recalculated |
+| scientific | 80×10×1.60 = 1,280; 110×10×0.80 = 880; 150×10×0.55 = 825; 400/1,280 = 31 %; 55/880 = 6 %; 1,500/2,000 = 75 %; r1 120×10×0.9 = 1,080; r2 1,800/2,000 = 90 % | recalculated |
+| validation | 4.820 ± 3 × 0.006 = 4.802–4.838; Cpk 0.040/0.018 = 2.2; r1 12.50 + 0.06 = 12.56; r2 0.10/0.06 = 1.67 | recalculated |
+| mouldparts | 2 × 18 + 6 = 42 g; 6/42 = 14.3 %; r1 8/56 = 14.3 % | recalculated |
+| mouldcare | 120 × 3,600/12 = 36,000/week; 100,000/36,000 = 2.8 weeks; 46 × 36,000 = 1,656,000 → 16.6 services × 8 h ≈ 130 h; pre 80,000/2,000 = 40; r1 16×3,600/20 = 2,880/day; 50,000/2,880 = 17.4 | recalculated |
+| newmould | 1.5M/2 = 750,000 shots; A 2 × 45,000 = 90,000 / 1.5M = 0.060; B 75,000/1.5M = 0.050; Δ 15,000; r1 90,000/1.2M = 0.075; situation 5 × 400,000 = 2M parts = 1M shots | recalculated |
+
+Faded examples in `warpage`, `defectdata`, `scientific`, `validation`, `mouldcare` and `newmould` ship as `worked` with `ask` and `reveal` and the reveal verbatim at the end of `text`, as in topics 1–3; switch them as described in the note above.
