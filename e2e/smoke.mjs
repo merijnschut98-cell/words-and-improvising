@@ -283,6 +283,16 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   }
   // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
   await pg.locator('.teach-card').waitFor();
+  // A term in the text explains itself on a tap, and closes again.
+  if (lessonId === 'eng.flow.takt') {
+    const term = pg.locator('.teach-card .term').first();
+    await term.click();
+    await pg.locator('.teach-card .term-def:not([hidden])', { hasText: 'Takttijd' }).waitFor();
+    if (await term.getAttribute('aria-expanded') !== 'true') throw new Error('term not marked open');
+    await shot('105-term-open');
+    await term.click();
+    if (await pg.locator('.teach-card .term-def:not([hidden])').count()) throw new Error('term definition did not close');
+  }
   await pg.locator('.lesson > .lesson-back').click();
   await pg.locator('.pre-card').waitFor();
   if (await pg.locator('.pre-card .opt').count()) throw new Error('going back asked the guess again');

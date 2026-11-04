@@ -689,6 +689,10 @@ details.finder summary::-webkit-details-marker { display: none; }
 .teach-text { font-size: 1.06rem; line-height: 1.6; margin: 8px 0; }
 .teach-text p { margin: 0 0 0.8em; }
 .teach-text p:last-child { margin-bottom: 0; }
+.term { all: unset; cursor: pointer; color: inherit; text-decoration: underline dotted var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.term[aria-expanded="true"] { color: var(--accent-dark); }
+.term:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
+.teach-text .term-def { margin: -0.4em 0 0.8em; padding: 8px 12px; background: var(--tint); border-radius: 6px; }
 /* Quotes and what people say: a hairline box in Fraunces italic, no coloured edge. */
 .said { margin: 12px 0 0; padding: 12px 14px; border: 1px solid var(--border-subtle); background: var(--tint); border-radius: var(--radius-sm); font-family: var(--font-display); font-style: italic; color: var(--heading); }
 .dots { display: flex; gap: 6px; margin: 6px 0; }

@@ -411,3 +411,18 @@ test('paragraphs: a blank line splits learning text into paragraphs; single text
   assert.deepEqual(paragraphs(''), []);
   assert.deepEqual(paragraphs(undefined), []);
 });
+
+import { linkTerms } from '../src/core/course.js';
+
+test('linkTerms: marks the first whole-word use of each term in a paragraph; longest term wins; case-insensitive', () => {
+  const terms = [{ term: 'Spiebaan', def: 'Sleuf in de as.' }, { term: 'Spie', def: 'Blokje.' }, { term: 'CNC', def: 'Computergestuurd.' }];
+  const segs = linkTerms('Frees de spiebaan, dan de spie erin. De spiebaan is klaar. Geen spiegel.', terms);
+  const marked = segs.filter((s) => s.term);
+  assert.deepEqual(marked.map((s) => [s.text, s.term]), [['spiebaan', 'Spiebaan'], ['spie', 'Spie']]);
+  assert.equal(segs.map((s) => s.text).join(''), 'Frees de spiebaan, dan de spie erin. De spiebaan is klaar. Geen spiegel.');
+  assert.equal(marked[0].def, 'Sleuf in de as.');
+  assert.deepEqual(linkTerms('Een CNC-draaibank.', terms).filter((s) => s.term).map((s) => s.text), ['CNC']);
+  assert.deepEqual(linkTerms('Niets hier.', terms), [{ text: 'Niets hier.' }]);
+  assert.deepEqual(linkTerms('', terms), []);
+  assert.deepEqual(linkTerms('Tekst (met haakjes).', [{ term: 'a+b (x)', def: 'd' }]).filter((s) => s.term), []);
+});

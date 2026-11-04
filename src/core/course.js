@@ -452,3 +452,29 @@ export function calibrationLine(sessions, today) {
 export function paragraphs(text) {
   return String(text ?? '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
 }
+
+// Terms in a paragraph of learning text, so a tap can show what they mean:
+// segments [{ text } | { text, term, def }]. First whole-word use of each term
+// only, longest term first, ignoring case. Joining the texts gives the input.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+export function linkTerms(text, terms) {
+  const src = String(text ?? '');
+  if (!src) return [];
+  const list = (terms || []).filter((x) => x && x.term && x.term.trim()).sort((a, b) => b.term.length - a.term.length);
+  if (!list.length) return [{ text: src }];
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(${list.map((x) => escapeRe(x.term.trim())).join('|')})(?![\\p{L}\\p{N}])`, 'giu');
+  const byKey = new Map(list.map((x) => [x.term.trim().toLowerCase(), x]));
+  const used = new Set();
+  const out = [];
+  let at = 0;
+  for (const m of src.matchAll(re)) {
+    const hit = byKey.get(m[1].toLowerCase());
+    if (!hit || used.has(hit.term)) continue;
+    used.add(hit.term);
+    if (m.index > at) out.push({ text: src.slice(at, m.index) });
+    out.push({ text: m[1], term: hit.term, def: hit.def });
+    at = m.index + m[1].length;
+  }
+  if (at < src.length) out.push({ text: src.slice(at) });
+  return out;
+}

@@ -3,7 +3,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs } from '../core/course.js';
+import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf } from '../content/courses/index.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
@@ -11,7 +11,31 @@ import { figureFrame } from './figure.js';
 // Where he is in the lesson: Guess · Read · Example · Check, the current one
 // marked. With onJump, a step already done is a button back to it.
 // Learning text: one <p> per paragraph (a blank line in the content).
-export const prose = (cls, text) => h('div', { class: cls }, paragraphs(text).map((x) => h('p', {}, x)));
+// Learning text: one <p> per paragraph (a blank line in the content). With
+// terms, the first use of each glossary term is a button; a tap shows what it
+// means right under that paragraph.
+export function prose(cls, text, terms = []) {
+  return h('div', { class: cls }, paragraphs(text).map((para) => {
+    const def = h('p', { class: 'term-def muted small', hidden: true, 'aria-live': 'polite' });
+    let open = null;
+    const parts = linkTerms(para, terms).map((seg) => {
+      if (!seg.term) return seg.text;
+      const btn = h('button', { type: 'button', class: 'term', 'aria-expanded': 'false' }, seg.text);
+      btn.onclick = () => {
+        const same = open === btn;
+        if (open) open.setAttribute('aria-expanded', 'false');
+        open = same ? null : btn;
+        def.hidden = same;
+        if (!same) {
+          btn.setAttribute('aria-expanded', 'true');
+          def.replaceChildren(h('b', {}, seg.term), ': ', seg.def);
+        }
+      };
+      return btn;
+    });
+    return [h('p', {}, parts), def];
+  }));
+}
 
 export function stepIndicator(t, phases, current, onJump = null) {
   return h('ol', { class: 'steps', 'aria-label': t('stepsLabel') }, lessonSteps(phases, current).map((st, i) => {
@@ -50,11 +74,11 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     if (!lesson) { fail(); return; }
     const meta = metaOf(moduleId);
     title.textContent = lesson.title;
-    run(lesson, meta);
+    run(lesson, meta, glossary([{ ...mod, id: moduleId }]));
   }).catch(fail);
   return () => { if (onLeave) onLeave(); };
 
-  function run(lesson, meta) {
+  function run(lesson, meta, terms = []) {
     const phases = lessonPhases(lesson);
     let p = 0;
     let block = 0;
@@ -115,7 +139,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         const last = block === lesson.teach.length - 1;
         show(
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
-            prose('teach-text', lesson.teach[block]),
+            prose('teach-text', lesson.teach[block], terms),
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
@@ -131,7 +155,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           const input = h('textarea', { class: 'text-input', rows: 3, placeholder: t('lessonWhatNextPh'), 'aria-label': ex.ask });
           const reveal = h('div', {});
           show(h('section', { class: 'card example-card' },
-            prose('teach-text', ex.text),
+            prose('teach-text', ex.text, terms),
             h('p', { class: 'example-ask' }, h('b', {}, ex.ask)),
             input,
             reveal,
@@ -139,14 +163,14 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
               class: 'btn btn-primary reveal-btn',
               onclick: (e) => {
                 e.currentTarget.remove();
-                reveal.replaceChildren(prose('teach-text reveal', ex.reveal),
+                reveal.replaceChildren(prose('teach-text reveal', ex.reveal, terms),
                   h('button', { class: 'btn btn-primary', onclick: next }, t('quizNext')));
               },
             }, t('reveal'))), backBtn());
           return;
         }
         show(h('section', { class: 'card example-card' },
-          prose('teach-text', ex.text)),
+          prose('teach-text', ex.text, terms)),
         h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')), backBtn());
         return;
       }
