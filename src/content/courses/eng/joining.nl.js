@@ -16,8 +16,8 @@ export default {
         'Booglassen verbindt twee metalen delen door de randen samen te smelten. De warmte komt van een elektrische boog: een doorlopende vonk tussen de elektrode (de draad of staaf waar de stroom door gaat) en het werkstuk, bij zo’n 20 tot 35 volt en 100 tot 400 ampère. Een waterkoker trekt zo’n 10 ampère.\n\nHet gesmolten metaal vormt een gloeiend plasje, het smeltbad, dat stolt tot de las. Extra metaal, het toevoegmateriaal, vult de naad; de delen zelf heten het basismateriaal.',
         'Lucht moet weg blijven van het smeltbad: zuurstof en stikstof laten gasbelletjes achter (porositeit) en maken de las bros. Daarom stroomt er beschermgas uit de toorts, het laspistool, rond het smeltbad, meestal 12 tot 18 liter per minuut.\n\nOp de vloer hoor je het: een goede MAG-boog knettert gelijkmatig, als spek in de pan. Een ploppende boog met veel spatten (rondvliegende metaaldruppels) wijst op verkeerde instellingen of te weinig gas.',
         'MIG/MAG: een draad van 0,8 tot 1,2 mm dik wordt continu van een haspel door de toorts geduwd; de draad is elektrode én toevoegmateriaal. MAG (metal active gas) is voor staal: argon met 8 tot 20% CO₂, vaak 82% argon en 18% CO₂. Het CO₂ is actief: het reageert in de boog, zodat de las dieper en rustiger in het staal smelt.\n\nMIG (metal inert gas) gebruikt zuiver argon, dat nergens mee reageert, voor aluminium. MIG/MAG is snel en goed te automatiseren: lasrobotcellen voor auto-onderdelen, frames en aanhangwagens.',
-        'TIG: een puntige wolfraamelektrode die niet afsmelt, een losse lasstaaf die de lasser met de hand in het smeltbad dipt, en zuiver argon. De lasser regelt de warmte met een voetpedaal. Het is langzamer, vaak drie tot vijf keer, maar schoon en precies.\n\nTIG gebruik je voor rvs-leidingen (roestvast staal) in voeding en farma, dunne plaat, aluminium en de grondlaag: de eerste laag onderin een pijplas. Een goede TIG-lasser is schaars en goed betaald.',
-        'Booglasenergie is de warmte per millimeter las: volt × ampère × 60 / (lassnelheid in mm per minuut × 1.000), in kJ/mm (kilojoule per millimeter). De warmte-inbreng is booglasenergie maal een rendement: 0,8 voor MAG, 0,6 voor TIG.\n\nTe veel warmte laat het werkstuk kromtrekken en verbreedt de WBZ, de warmtebeïnvloede zone: staal naast de las dat heet werd en sterkte of taaiheid verloor. Te weinig en de las smelt niet in het werkstuk in. Lassers praten in instellingen: draadsnelheid, spanning, lassnelheid, gasdebiet.',
+        'TIG: een puntige elektrode van wolfraam, een metaal dat pas rond 3.400 °C smelt en dus vast blijft; een losse lasstaaf die de lasser met de hand in het smeltbad dipt, en zuiver argon. De lasser regelt de warmte met een voetpedaal. Het is langzamer, vaak drie tot vijf keer, maar schoon en precies.\n\nTIG gebruik je voor rvs-leidingen (roestvast staal) in voeding en farma, dunne plaat, aluminium en de grondlaag: de eerste laag onderin een pijplas. Een goede TIG-lasser is schaars en goed betaald.',
+        'Booglasenergie is de warmte per millimeter las, in kJ/mm (kilojoule per mm): volt × ampère × 60 / (lassnelheid × 1.000), met de lassnelheid, hoe snel de toorts langs de naad gaat, in mm per minuut. De warmte-inbreng is booglasenergie maal het deel van de warmte dat echt in het werkstuk komt: 0,8 voor MAG, 0,6 voor TIG.\n\nTe veel warmte laat het werkstuk kromtrekken en verbreedt de WBZ, de warmtebeïnvloede zone: staal naast de las dat heet werd en verzwakte. Te weinig en de las smelt niet in.',
       ],
       example: {
         kind: 'worked',
@@ -34,7 +34,7 @@ export default {
         },
         {
           q: 'Welk proces is de gebruikelijke keuze voor rvs-leidingwerk in een zuivelfabriek, waar de binnenkant van de las glad en schoon moet zijn?',
-          options: ['MAG', 'TIG', 'Puntlassen', 'Gevulde-draadlassen (MAG met een draad gevuld met poeder)'],
+          options: ['MAG', 'TIG', 'Puntlassen', 'Lassen met gevulde draad (MAG met een draad vol poeder)'],
           answer: 'TIG',
           why: 'TIG geeft schone, precieze lassen met een gladde binnenkant, en dat vraagt hygiënisch leidingwerk.',
         },
@@ -48,7 +48,7 @@ export default {
           q: 'Welk beschermgas gebruik je bij MIG-lassen van aluminium?',
           options: ['Argon', 'Zuiver CO₂', 'Argon met 18% CO₂', 'Zuurstof'],
           answer: 'Argon',
-          why: 'Aluminium vraagt een inert gas; een actief gas zou het oxideren.',
+          why: 'Aluminium vraagt een inert gas; een actief gas reageert ermee en laat oxide (een hard, roestachtig huidje) in de las achter.',
         },
       ],
       situation: {
@@ -84,19 +84,19 @@ export default {
       ],
       teach: [
         'Weerstandspuntlassen verbindt twee of drie overlappende stalen platen op losse punten, als steken. Een lastang, een zware tang aan een robot, knijpt de platen tussen twee koperen elektroden en stuurt er een enorme stroom doorheen: 8 tot 12 kA (8.000 tot 12.000 ampère), gedurende 200 tot 400 milliseconden.\n\nHet metaal biedt weerstand en wordt heet waar de platen elkaar raken, tot er een laslens ontstaat: een lensje gesmolten metaal van zo’n 4 tot 7 mm doorsnede dat stolt tot de las. Geen toevoegmateriaal, geen gas.',
-        'De body-in-white, de kale carrosserie voor het lakken, telt 4.000 tot 5.000 laspunten. Op de vloer zie je vonkenregens en hoor je bij elk punt een scherpe klak; om de paar honderd punten zwaait de tang naar de kappenfrees.\n\nPuntlassen is snel (minder dan een seconde per punt), goedkoop en vraagt geen geschoolde lasser. Maar het werkt alleen op overlappende plaat, meestal 0,6 tot 3 mm dik, en van buiten zie je niet of een punt goed is.',
+        'De body-in-white, de kale carrosserie voor het lakken, telt 4.000 tot 5.000 laspunten. Op de vloer zie je vonkenregens en hoor je bij elk punt een scherpe klak; om de paar honderd punten zwaait de tang naar de kappenfrees, een kleine frees die de koperen kappen weer in vorm snijdt.\n\nPuntlassen is snel (minder dan een seconde per punt), goedkoop en vraagt geen geschoolde lasser. Maar het werkt alleen op overlappende plaat, meestal 0,6 tot 3 mm dik, en van buiten zie je niet of een punt goed is.',
         'Drie hoofdinstellingen: stroom, lastijd en elektrodekracht, hoe hard de tang knijpt: zo’n 2 tot 4 kN (kilonewton; 1 kN is ongeveer het gewicht van 100 kg). Warmte = stroom² × weerstand × tijd, dus de stroom telt in het kwadraat: 10% meer stroom geeft zo’n 21% meer warmte.\n\nTe weinig warmte geeft een kleine lens of geen: een plakpunt dat er goed uitziet maar niets houdt. Te veel geeft uitspatten: vonken van weggeslingerd gesmolten metaal, diepe deuken en een zwakkere verbinding.',
-        'De lensdiameter is de kwaliteitsmaat. Een gangbare regel: de lens moet minstens 4√t zijn, met t de dikte van de dunste plaat in mm. Voor 1 mm plaat is dat 4 mm; voor 2 mm plaat zo’n 5,7 mm.\n\nDe maat ken je alleen door proefstukken uit elkaar te breken (beitel- of peeltest) of door met ultrageluid te meten. Een scherpe vraag is dus: hoe vaak controleren we de lenzen, per robot, en wat gebeurt er als er een te klein is?',
+        'De lensdiameter is de kwaliteitsmaat. Een gangbare vuistregel: de lens moet minstens 4√t zijn, met t de dikte van de dunste plaat in mm. Voor 1 mm plaat is dat 4 mm; voor 2 mm plaat zo’n 5,7 mm. Autobouwers verschillen: sommige eisen 5√t, dus kijk in de specificatie.\n\nDe maat ken je alleen door proefstukken uit elkaar te breken (beitel- of peeltest) of door met ultrageluid te meten. Vraag dus: hoe vaak controleren we de lenzen per robot, en wat gebeurt er als er een te klein is?',
         'De koperen kappen slijten: ze paddenstoelen uit, worden platter en breder, zodat dezelfde stroom zich over een groter vlak verdeelt. De stroom per mm² kapvlak, de stroomdichtheid, daalt en de lens krimpt.\n\nTwee tegenmaatregelen: een stepper, een besturingsfunctie die de stroom verhoogt naarmate het aantal punten oploopt, en kappenfrezen, waarbij een kleine frees de kappen weer in vorm snijdt. Op verzinkt (met zink tegen roest beschermd) staal vaak zo’n om de 200 punten, omdat zink het koper aantast.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een tang last twee verzinkte platen van 1,2 mm op 9,5 kA, 300 ms en 3 kN, met een kapvlak van Ø6 mm (6 mm doorsnede): een oppervlak van 28,3 mm², dus 9.500 / 28,3 = 336 A per mm².\n\nDe kappenfrees loopt vast en niemand merkt het. Na 500 punten is het kapvlak Ø7,5 mm: 44,2 mm², en de stroomdichtheid zakt naar 215 A per mm², 36% minder.\n\nDe lens krimpt van 5,5 naar zo’n 3,8 mm, onder het minimum van 4√1,2 = 4,4 mm. De dagelijkse beiteltest (de platen uit elkaar wrikken en het punt meten) vangt het, maar twee ploegen aan carrosserieën moeten nagekeken worden.',
+        text: 'Een tang last twee verzinkte platen van 1,2 mm op 9,5 kA, 300 ms en 3 kN, met een kapvlak van Ø6 mm (6 mm doorsnede): een oppervlak van 28,3 mm², dus 9.500 / 28,3 = 336 A per mm².\n\nDe kappenfrees loopt vast en niemand merkt het. Na 500 punten is het kapvlak Ø7,5 mm: 44,2 mm², en de stroomdichtheid zakt naar 215 A per mm², 36% minder.\n\nDe lens krimpt van 5,5 naar zo’n 3,8 mm, onder het minimum van de fabriek: 4√1,2 = 4,4 mm. De dagelijkse beiteltest (de platen uit elkaar wrikken en het punt meten) vangt het, maar twee ploegen aan carrosserieën moeten nagekeken worden.',
       },
       said: 'Wat engineers zeggen: “Niet zomaar de stroom opdraaien. Check eerst de kappenfrees. Als de kappen uitgepaddenstoeld zijn, breed en plat, krijg je met meer ampère alleen maar spatten en een zwakker punt.”',
       recall: [
         {
-          q: 'De dunste plaat in een puntgelaste verbinding is 2,25 mm dik. Met de regel lensdiameter ≥ 4√t: wat is de minimale lensdiameter, in mm?',
+          q: 'De dunste plaat in een puntgelaste verbinding is 2,25 mm dik. Met de vuistregel lensdiameter ≥ 4√t: wat is de minimale lensdiameter, in mm?',
           number: 6,
           tolerance: 0.05,
           unit: 'mm',
@@ -154,9 +154,9 @@ export default {
         },
       ],
       teach: [
-        'Porositeit: gasbelletjes die in de las zijn opgesloten. Oorzaken: het beschermgas viel weg (tocht, te laag debiet, spatten die het gasmondstuk verstoppen), of het metaal was vuil, vettig of nat, of zink van een coating kookte weg.\n\nPoriën aan het oppervlak zie je als speldenprikjes; poriën binnenin vragen röntgen- of ultrasoon onderzoek. Een paar kleine poriën mag vaak; een hele rij niet.',
+        'Porositeit: gasbelletjes die in de las zijn opgesloten. Oorzaken: het beschermgas viel weg (tocht, te laag debiet, spatten die het gasmondstuk verstoppen), of het metaal was vuil, vettig of nat, of zink van een coating verdampte.\n\nPoriën aan het oppervlak zie je als speldenprikjes; poriën binnenin vragen röntgen- of ultrasoon onderzoek (geluidspulsen die op fouten terugkaatsen). Een paar kleine poriën mag vaak; een hele rij niet.',
         'Bindingsfout: het lasmetaal ligt op het werkstuk zonder erin op te smelten, als lijm op een vettig vlak. Onvolledige doorlassing: de las kwam niet tot de grondnaad, de onderkant van de naad. Oorzaken: te weinig warmte, te snel lassen, de verkeerde toortshoek, een slecht voorbereide naad.\n\nDit is de meest gevreesde fout: een las kan er van buiten perfect uitzien en binnenin een platte, scheurachtige spleet verbergen. Onder herhaalde belasting groeit die uit tot een scheur.',
-        'Scheuren worden nooit geaccepteerd. Warmscheuren ontstaan tijdens het stollen, midden in de rups (de lijn lasmetaal). Koudscheuren, ook waterstofscheuren genoemd, ontstaan uren na het lassen, in de warmtebeïnvloede zone van hogesterktestaal; vocht brengt de waterstof binnen.\n\nDe remedie: droog toevoegmateriaal en voorwarmen, de delen vooraf opwarmen tot bijvoorbeeld 100 °C. Daarom wacht de inspectie bij sommige staalsoorten 16 tot 48 uur.',
+        'Scheuren worden nooit geaccepteerd. Warmscheuren ontstaan tijdens het stollen, midden in de rups (de lijn lasmetaal). Koudscheuren, ook waterstofscheuren genoemd, ontstaan uren na het lassen, in de warmtebeïnvloede zone (het staal naast de las dat heet werd) van hogesterktestaal; vocht brengt de waterstof binnen.\n\nDe remedie: droog toevoegmateriaal en voorwarmen, de delen vooraf opwarmen tot bijvoorbeeld 100 °C. Bij dikke lassen en sterkere staalsoorten laten normen zoals EN 1090 de laatste scheurcontrole wachten, vaak 16 tot 48 uur.',
         'Vervorming: warmte zet het metaal uit en afkoelen laat het krimpen, dus delen trekken krom en hoeken trekken dicht. Het is meer een fout van het onderdeel dan van de las. Remedies: lasmallen (vasthoudframes) en klemmen, de delen vooraf in de tegengestelde hoek zetten, een uitgebalanceerde lasvolgorde, en minder warmte.\n\nSpatten (metaaldruppels naast de las) en een kleine randinkarteling (een groefje langs de rand van de las) zijn meestal cosmetisch of klein.',
         'Hoe groot mag een fout zijn? ISO 5817 legt grenzen vast in drie kwaliteitsniveaus: B (het strengst, bijvoorbeeld kranen en drukdelen), C (normaal constructiewerk) en D (licht werk). Op de tekening hoort te staan welk niveau geldt.\n\nDaar wordt over gesteggeld: overal niveau B eisen maakt elke las traag en duur; niveau D op een kraan is gevaarlijk. Een goede vraag: welk kwaliteitsniveau staat op de tekening, en wie heeft dat gekozen?',
       ],
@@ -164,7 +164,7 @@ export default {
         kind: 'worked',
         text: 'Een graafmachinegiek (de lange arm): ultrasoon onderzoek vindt bindingsfouten in 3 van de 40 lassen, allemaal verticaal opgaand gelast door de tweede ploeg.\n\nDe lasmethode zegt een lassnelheid van 300 mm per minuut; gemeten is 405 mm per minuut, 35% te snel, en dat verlaagt de booglasenergie met 26%. De lassers lieten ook de pendelbeweging weg, het heen-en-weer bewegen van de toorts.\n\nWaarom? Na een robotstoring kreeg de ploeg een strakker doel en ging sneller lassen. Elke reparatie betekent de foute las uitgutsen (wegsnijden met een boog en perslucht), opnieuw lassen en opnieuw onderzoeken: zo’n 3,5 uur. De oplossing is een realistische planning en controle op lassnelheid, geen preek over vakmanschap.',
       },
-      said: 'Wat engineers zeggen: “Van buiten ziet hij er prachtig uit, maar het ultrasoon onderzoek laat geen binding op de flank zien: de las is nooit in de plaat opgesmolten. Ze liepen veel te hard.”',
+      said: 'Wat engineers zeggen: “Van buiten ziet hij er prachtig uit, maar het ultrasoon onderzoek laat geen binding op de flank zien, de schuine kant van de plaat: de las is daar nooit in opgesmolten. Ze hebben veel te snel gelast.”',
       recall: [
         {
           q: 'De lasmethode schrijft een lassnelheid van 300 mm per minuut voor; de lasser last op 405 mm per minuut, met dezelfde volt en ampère. Booglasenergie schaalt met 1 / lassnelheid. Met hoeveel % daalt de booglasenergie?',
@@ -181,8 +181,8 @@ export default {
         },
         {
           q: 'Een dag na het lassen verschijnt een scheur in de warmtebeïnvloede zone van een las in hogesterktestaal. Wat is het waarschijnlijk?',
-          options: ['Een warmscheur', 'Porositeit', 'Een waterstof- (koud)scheur', 'Vervorming'],
-          answer: 'Een waterstof- (koud)scheur',
+          options: ['Een warmscheur', 'Porositeit', 'Een waterstofscheur (koudscheur)', 'Vervorming'],
+          answer: 'Een waterstofscheur (koudscheur)',
           why: 'Waterstofscheuren komen vertraagd en ontstaan in de warmtebeïnvloede zone van staalsoorten die hard worden bij snel afkoelen, zoals hogesterktestaal.',
         },
         {
@@ -199,7 +199,7 @@ export default {
         rubric: [
           'Benoemt dat visuele controle inwendige fouten mist',
           'Vraagt wat de specificatie, norm of het kwaliteitsniveau eist',
-          'Stelt een steekproef met inwendig (volumetrisch) onderzoek op kritische lassen voor',
+          'Stelt een steekproef met inwendig onderzoek (ultrasoon of röntgen) op kritische lassen voor',
         ],
       },
       sayIt: 'Leg een plantmanager in 60 seconden de vier belangrijkste lasfouten uit en van welke een lasingenieur wakker ligt.',
@@ -224,17 +224,17 @@ export default {
         },
       ],
       teach: [
-        'Visueel onderzoek (VT) komt eerst en is het goedkoopst. De inspecteur kijkt naar lasmaat, randinkarteling, oppervlakteporiën, scheuren en spatten. Bij een hoeklas, de driehoekige las in de hoek tussen twee platen, is de maat de keeldoorsnede, gemeten met een lasmaat: een klein metalen meetmalletje.\n\nVT ziet alleen het oppervlak. Bij de meeste staalconstructies krijgt elke las het.',
-        'Penetrantonderzoek (PT): een rode vloeistof wordt opgespoten en trekt in oppervlaktescheuren; na afvegen haalt een wit poederlaagje, de ontwikkelaar, hem eruit als rode lijntjes. Magnetisch onderzoek (MT) doet hetzelfde op magnetisch staal, met ijzerpoeder, en vindt ook scheuren net onder het oppervlak.\n\nBeide zijn goedkoop en snel, maar zien alleen de buitenkant. Samen met VT, UT en RT heet dit NDO: niet-destructief onderzoek, in het Engels NDT.',
+        'Visueel onderzoek (VT) komt eerst en is het goedkoopst. De inspecteur kijkt naar lasmaat, randinkarteling, oppervlakteporiën, scheuren en spatten. Bij een hoeklas, de driehoekige las in de hoek tussen twee platen, is de maat de keeldoorsnede, de diepte van de hoek tot het lasoppervlak, gemeten met een lasmaat: een klein metalen meetmalletje.\n\nVT ziet alleen het oppervlak. Bij de meeste staalconstructies krijgt elke las het.',
+        'Penetrantonderzoek (PT): een rode vloeistof wordt opgespoten en trekt in oppervlaktescheuren; na afvegen haalt een wit poederlaagje, de ontwikkelaar, hem eruit als rode lijntjes. Magnetisch onderzoek (MT) werkt op magnetisch staal: het onderdeel wordt gemagnetiseerd en fijn ijzerpoeder hoopt zich op bij scheuren, ook net onder het oppervlak.\n\nBeide zijn goedkoop en snel, maar zien alleen de buitenkant. Samen met VT, UT en RT heet dit NDO: niet-destructief onderzoek, in het Engels NDT.',
         'Ultrasoon onderzoek (UT): een meetkop (taster) op het staal stuurt geluidspulsen naar binnen en luistert naar echo’s van fouten binnenin, zoals bindingsfouten. Er is een getrainde operator nodig die het echobeeld kan lezen.\n\nRadiografie (RT) maakt een röntgenfoto door de las heen; goed voor poriën, maar traag, en het gebied moet ontruimd worden vanwege de straling. Vraag welke methode past bij de fout die je vreest: platte fouten zie je het best met UT, ronde poriën met RT.',
-        'Destructieve testen breken proefstukken. Bij puntlassen wrikken de beiteltest en de peeltest de platen uit elkaar; een goed punt scheurt een knoopje uit de plaat, en je meet de diameter.\n\nEen macro-ets (een las doorzagen en het zaagvlak met zuur etsen) laat zien hoe diep hij in het materiaal is gesmolten. Buig- en trekproeven gebruik je om lasmethodes goed te keuren. Allemaal op steekproeven: per ploeg, per robot of per partij.',
-        'Een LMK (lasmethodekwalificatie, Engels WPQR) bewijst dat een recept werkt: er wordt een proefstuk gelast en getest volgens ISO 15614. De LMB (lasmethodebeschrijving, Engels WPS) is het recept dat eruit volgt, bij de werkplek: proces, toevoegmateriaal, gas, bereik voor stroom en spanning, positie, voorwarmen.\n\nLassers worden apart gekwalificeerd volgens ISO 9606, met een certificaat per proces en positie. Voor staalconstructies onder EN 1090 (de Europese norm voor bouwstaal) is dit allemaal verplicht, net als een lascoördinator.',
+        'Destructieve testen breken proefstukken. Bij puntlassen wrikken de beiteltest en de peeltest de platen uit elkaar; een goed punt scheurt een knoopje, een rond propje las, uit de plaat, en je meet de diameter.\n\nEen macro-ets (een las doorzagen en het zaagvlak met zuur etsen) laat zien hoe diep hij in het materiaal is gesmolten. Buig- en trekproeven gebruik je om lasmethodes goed te keuren. Allemaal op steekproeven: per ploeg, per robot of per partij.',
+        'Een LMK (lasmethodekwalificatie, Engels WPQR) bewijst dat een recept werkt: er wordt een proefstuk gelast en getest volgens ISO 15614. De LMB (lasmethodebeschrijving, Engels WPS) is het recept dat eruit volgt, bij de werkplek: proces, toevoegmateriaal, gas, bereik voor stroom en spanning, positie, voorwarmen.\n\nLassers worden apart gekwalificeerd volgens ISO 9606, met een certificaat per proces en positie. Voor de meeste dragende staalconstructies onder EN 1090 (de Europese norm voor bouwstaal) is dit verplicht, net als een lascoördinator: degene die verantwoordelijk is voor de laskwaliteit.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een carrosseriebouw met 12 lasrobots doet per robot per ploeg een peeltest op één onderdeel: 32 punten, elk knoopje gemeten met een schuifmaat (een meetlat met schuivende bek), minimaal 4,4 mm bij 1,2 mm plaat. De vernielde delen kosten 12 robots × 3 ploegen × €140 = €5.040 per dag.\n\nDus de fabriek voegt handmatige ultrasone controles toe: 200 punten per ploeg zonder iets kapot te maken, met de resultaten in een regelkaart per robot (een grafiek die verloop in de tijd laat zien).\n\nDe peeltests gaan terug naar één keer per dag per robot, en worden nog gebruikt om te ijken wat de ultrasone metingen betekenen.',
+        text: 'Een carrosseriebouw met 12 lasrobots doet per robot per ploeg een peeltest op één onderdeel: 32 punten, elk knoopje gemeten met een schuifmaat (een meetlat met schuivende bek), minimaal 4,4 mm bij 1,2 mm plaat. De vernielde delen kosten 12 robots × 3 ploegen × €140 = €5.040 per dag.\n\nDus de fabriek voegt handmatige ultrasone controles toe: 200 punten per ploeg zonder iets kapot te maken, met de resultaten in een regelkaart per robot (een grafiek die verloop in de tijd laat zien).\n\nDe peeltests gaan terug naar één keer per dag per robot, en worden nog gebruikt om te checken of de ultrasone metingen kloppen met de echte knoopjes.',
       },
-      said: 'Wat engineers zeggen: “Is er een LMB, het lasrecept, voor die las, en is die lasser gekwalificeerd voor verticaal opgaand? Want de auditor vraagt naar allebei.”',
+      said: 'Wat engineers zeggen: “Is er een LMB, het lasrecept, voor die las, en is die lasser gekwalificeerd voor verticaal opgaand, van onder naar boven lassen op een staande naad? Want de auditor vraagt naar allebei.”',
       recall: [
         {
           q: 'Een fabriek vernielt per robot per ploeg één onderdeel van €140 voor een peeltest. Er zijn 12 robots en 3 ploegen per dag. Wat kost dat per dag, in €?',
@@ -295,14 +295,14 @@ export default {
       ],
       teach: [
         'Een bout werkt als een stijve veer: de moer aandraaien rekt de bout een fractie van een millimeter uit, en die spanning, de voorspanning, klemt de delen op elkaar. Voorspanning, ook klemkracht genoemd, houdt de verbinding bij elkaar, niet het moment.\n\nHet aanhaalmoment is de draaikracht op de sleutel, in Nm (newtonmeter): 50 Nm is een duw van 200 N, zo’n 20 kg, op een sleutel van 25 cm.',
-        'Een M10-bout heeft een metrische schroefdraad van 10 mm doorsnede. Sterkteklasse 8.8, ingeslagen op de kop, betekent een treksterkte van 800 MPa (newton per mm²) en een vloeigrens, waar hij blijvend gaat rekken, op 80% daarvan: 640 MPa.\n\nBij normale wrijving geeft een aanhaalmoment van ongeveer 49 Nm een M10-bout 8.8 zo’n 25 kN voorspanning: ruwweg het gewicht van 2,5 ton. Bij zo’n 37 kN gaat hij vloeien.',
-        'Het aanhaalmoment is maar een indirecte maat. Zo’n 50% gaat op aan wrijving onder de kop, 40% aan wrijving in de schroefdraad, en maar 10% aan het uitrekken van de bout.\n\nVerander de wrijving met olie, een andere coating, vuil of roest, en hetzelfde moment geeft 25 tot 30% meer of minder voorspanning. Een geoliede bout die op een droog moment wordt aangedraaid, kan voorbij zijn vloeigrens worden gerekt. Zelfs onder goede omstandigheden spreidt de voorspanning bij aandraaien op moment zo’n ±25%.',
-        'Gereedschap: klikmomentsleutels voor handwerk, pulsgereedschap (luchtgereedschap dat in korte stoten aandraait) en schroefspindels (nutrunners): elektrische spindels die moment en hoek regelen en vastleggen. In de autoassemblage zijn veiligheidsverbindingen zoals wielen en remmen per auto traceerbaar.\n\nAandraaien op moment-hoek, eerst een laag aanlegmoment en dan een vaste hoek verder, geeft een nauwkeuriger voorspanning. Audits meten het losbreekmoment, het moment waarbij een vastgedraaide bout verder gaat draaien, met een gekalibreerde sleutel, of gebruiken verfstrepen over bout en onderdeel.',
+        'Een M10-bout heeft een metrische schroefdraad van 10 mm doorsnede. Sterkteklasse 8.8, ingeslagen op de kop, betekent een treksterkte, de spanning waarbij hij breekt, van 800 MPa (newton per mm²) en een vloeigrens, waar hij blijvend gaat rekken, op 80% daarvan: 640 MPa.\n\nBij normale wrijving geeft een aanhaalmoment van ongeveer 49 Nm een M10-bout 8.8 zo’n 25 kN voorspanning: ruwweg het gewicht van 2,5 ton. Bij zo’n 37 kN gaat hij vloeien.',
+        'Het aanhaalmoment is maar een indirecte maat. Grofweg 50% gaat op aan wrijving onder de kop, 40% aan wrijving in de schroefdraad, en maar 10% aan het uitrekken van de bout.\n\nVerander de wrijving met olie, een andere coating, vuil of roest, en hetzelfde moment geeft 25 tot 30% meer of minder voorspanning. Een geoliede bout die op een droog moment wordt aangedraaid, kan voorbij zijn vloeigrens worden gerekt. Zelfs onder goede omstandigheden spreidt de voorspanning bij aandraaien op moment meestal zo’n ±25%.',
+        'Gereedschap: klikmomentsleutels voor handwerk, pulsgereedschap (luchtgereedschap dat in korte stoten aandraait) en schroefspindels (nutrunners): elektrische spindels die moment en hoek regelen en vastleggen. In de autoassemblage worden resultaten van veiligheidsverbindingen zoals wielen en remmen per auto opgeslagen.\n\nAandraaien op moment-hoek, eerst een laag moment dat de delen tegen elkaar trekt en dan een vaste hoek verder, is nauwkeuriger. Audits meten het losbreekmoment, het moment waarbij een vastgedraaide bout verder gaat draaien, met een gekalibreerde (regelmatig gecontroleerde) sleutel, of gebruiken verfstrepen over bout en onderdeel.',
         'Waarom bouten losraken: trillingen die de verbinding zijdelings laten schuiven, waardoor de moer terugdraait; zetting, waarbij ruwe vlakken of verf onder de kop platgedrukt worden en voorspanning verdwijnt; en te weinig voorspanning vanaf het begin.\n\nRemedies: de juiste voorspanning, langere bouten (die rekken meer, dus zetting kost minder), flenskoppen (koppen met een brede kraag), geen verf in de verbinding. Veerringen helpen niet in trillingsproeven; schroefdraadborgmiddel wel. Een goede vraag: welke voorspanning hebben we nodig, en hoe weten we dat we die halen?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een autostoelframe zit vast met vier M10-bouten; de specificatie op de schroefspindel is 50 Nm ±10%. De ploegaudit meet het losbreekmoment op vijf auto’s: 53, 52, 31, 54 en 52 Nm. Het losbreekmoment ligt normaal iets boven het aandraaimoment, dus 31 is een probleem.\n\nHet log van de spindel toont vier keer OK voor die auto, maar twee daarvan op dezelfde bout: de operator draaide een al vastzittende bout nog eens aan, wat direct OK geeft, en de vierde bout was alleen met de hand ingedraaid.\n\nDe oplossing: positiebewaking op het gereedschap, zodat elke boutpositie maar één keer telt.',
+        text: 'Een autostoelframe zit vast met vier M10-bouten; het ingestelde moment op de schroefspindel is 50 Nm ±10%. De ploegaudit meet het losbreekmoment op vijf auto’s: 53, 52, 31, 54 en 52 Nm. Het losbreekmoment ligt normaal dicht bij het aandraaimoment, vaak iets erboven, dus 31 is een probleem.\n\nHet log van de spindel toont vier keer OK voor die auto, maar twee daarvan op dezelfde bout: de operator draaide een al vastzittende bout nog eens aan, wat direct OK geeft, en de vierde bout was alleen op gevoel aangedraaid met een gewone steeksleutel.\n\nDe oplossing: positiebewaking op het gereedschap, zodat elke boutpositie maar één keer telt.',
       },
       said: 'Wat engineers zeggen: “Het gereedschap zegt vijftig newtonmeter, prima, maar wat is de klemkracht, de echte voorspanning? Iemand heeft die bouten geolied, dus we zitten er ver boven.”',
       recall: [
@@ -335,7 +335,7 @@ export default {
       situation: {
         scene: 'Je bent bij een fabrikant van landbouwmachines. Bij drie klanten zijn wielbouten losgeraakt. Het engineeringteam stelt voor het aanhaalmoment met 20% te verhogen.',
         ask: 'Wat vraag je voordat het moment omhoog gaat?',
-        model: 'Welke voorspanning halen we nu echt, en op welke wrijvingstoestand is de momentspecificatie gebaseerd: droog, geolied, gecoat? Zit er verf onder de wielmoeren die in gebruik inzakt? En wat zeggen de audit- en spindeldata: zaten deze verbindingen echt op spec, of zijn er bouten gemist? Het moment verhogen op een verbinding die om een andere reden voorspanning mist, lost het niet op, en bij geoliede bouten kan het ze voorbij de vloeigrens rekken.',
+        model: 'Welke voorspanning halen we nu echt, en op welke wrijvingstoestand is de momentspecificatie gebaseerd: droog, geolied, gecoat? Zit er verf onder de wielmoeren die in gebruik inzakt? En wat zeggen de audit- en spindeldata: zaten deze verbindingen echt op spec, of zijn er bouten gemist? Het moment verhogen op een verbinding die om een andere reden voorspanning mist, lost het niet op, en bij geoliede bouten kan het ze voorbij hun vloeigrens rekken.',
         rubric: [
           'Verlegt de vraag van aanhaalmoment naar voorspanning',
           'Vraagt naar de wrijvingstoestand en verf in de verbinding',
@@ -347,7 +347,7 @@ export default {
         { term: 'Voorspanning', def: 'De spanning in een aangedraaide bout die de verbinding klemt; ook klemkracht genoemd.' },
         { term: 'Aanhaalmoment', def: 'Draaikracht op de sleutel, kracht × armlengte, in Nm.' },
         { term: 'Schroefspindel', def: 'Elektrisch aandraaigereedschap (nutrunner) dat moment en hoek per bout regelt en vastlegt.' },
-        { term: 'Moment-hoek', def: 'Aandraaien tot een laag aanlegmoment, daarna een vaste hoek verder draaien.' },
+        { term: 'Moment-hoek', def: 'Aandraaien tot een laag moment dat de delen net tegen elkaar trekt, daarna een vaste hoek verder draaien.' },
         { term: 'Losbreekmoment', def: 'Moment dat nodig is om een al aangedraaide bout te laten draaien; gebruikt bij audits.' },
         { term: 'Zetting', def: 'Verlies van voorspanning doordat ruwe vlakken of verf onder de kop platgedrukt worden.' },
       ],
@@ -364,10 +364,10 @@ export default {
         },
       ],
       teach: [
-        'Constructielijmen zijn dragende lijmen: epoxy’s, polyurethanen en acrylaten. Ze verbinden verschillende materialen, zoals aluminium aan staal, zonder warmte. Ze dichten ook af tegen water, dempen trillingen en verdelen de belasting over een vlak in plaats van een paar punten, wat helpt tegen vermoeiing: scheuren door belasting die miljoenen keren terugkomt.\n\nZe vragen schone, ontvette oppervlakken en tijd om uit te harden. In de carrosseriebouw hardt epoxy uit in de lakoven op zo’n 180 °C.',
+        'Constructielijmen zijn dragende lijmen: epoxy’s, polyurethanen en acrylaten, families van kunststoflijm. Ze verbinden verschillende materialen, zoals aluminium aan staal, zonder warmte. Ze dichten ook af tegen water, dempen trillingen en verdelen de belasting over een vlak in plaats van een paar punten, wat helpt tegen vermoeiing: scheuren door belasting die miljoenen keren terugkomt.\n\nZe vragen schone, ontvette oppervlakken en tijd om uit te harden. In de carrosseriebouw hardt epoxy uit in de lakoven op zo’n 180 °C.',
         'Lijm is sterk op afschuiving en zwak op afpellen. Afschuiving: de delen schuiven langs elkaar en het hele lijmvlak draagt mee. Afpellen: één rand wordt opengetrokken, zoals je een sticker lostrekt, en de belasting zit op een dun lijntje.\n\nEn je kunt niet in een lijmnaad kijken. Daar gaat de discussie over: zit hij er, is hij uitgehard, hecht hij? Een goede vraag: hoe controleren we elke lijmnaad in productie?',
-        'Klinknagels. Blindklinknagels (popnagels) zet je vanaf één kant met een handtang. Zelfponsende klinknagels (SPR) worden door de bovenste plaat geperst en spreiden uit in de onderste, zonder voorgeboord gat: de standaard voor aluminium carrosserieën.\n\nMassieve klinknagels zie je nog in de luchtvaart. De kwaliteit controleer je via de kophoogte, de kracht en slag die het gereedschap vastlegde, en doorgezaagde proefverbindingen.',
-        'Clinchen: een stempel drukt de platen in een gevormde matrijs (een mal) eronder, tot een knoop die in elkaar haakt, zoals twee papieren bekertjes die je in elkaar drukt. Geen extra onderdeel, geen warmte, geen rook.\n\nGebruikt in ventilatiekanalen, huishoudelijke apparaten en autodeuren. Zwakker dan een laspunt, maar goedkoop, snel en prima met gecoate of gelakte plaat.',
+        'Klinknagels. Blindklinknagels (popnagels) zet je vanaf één kant met een handtang. Zelfponsende klinknagels (SPR) worden door de bovenste plaat geperst en spreiden uit in de onderste, zonder voorgeboord gat: een standaardmethode voor aluminium carrosserieën.\n\nMassieve klinknagels zie je nog in de luchtvaart. De kwaliteit controleer je via de kophoogte, de kracht en slag (hoe ver het doorduwde) die het gereedschap vastlegde, en doorgezaagde proefverbindingen.',
+        'Clinchen: een stempel, een harde stalen pen, drukt de platen in een gevormde matrijs (een mal) eronder, tot een knoop die in elkaar haakt, zoals twee papieren bekertjes die je in elkaar drukt. Geen extra onderdeel, geen warmte, geen rook.\n\nGebruikt in ventilatiekanalen, huishoudelijke apparaten en autodeuren. Meestal zwakker dan een laspunt, maar goedkoop, snel en prima met gecoate of gelakte plaat.',
         'Hoe engineers kiezen. Zelfde materiaal, staal, hoge sterkte, goedkoop: lassen. Gemengde materialen, stijfheid bij een crash, afdichting: lijm plus klinknagels, een hybride verbinding. Moet uit elkaar voor service: bouten.\n\nVragen die je stelt: moet het uit elkaar, welke materialen komen samen, is de belasting afpellen of afschuiving, en hoe controleren we de verbinding in productie?',
       ],
       example: {
@@ -377,7 +377,7 @@ export default {
       said: 'Wat engineers zeggen: “Lijm is top op afschuiving, maar deze verbinding pelt open bij een crash, één rand trekt omhoog. Zet een klinknagel aan elk eind van de rups om het pellen te stoppen.”',
       recall: [
         {
-          q: 'Een overlappende lijmverbinding (twee strips over elkaar) heeft een overlap van 25 mm × 20 mm. De afschuifsterkte van de lijm is 20 MPa, dat is 20 N per mm². Welke belasting kan hij ongeveer op afschuiving dragen, in kN?',
+          q: 'Een overlappende lijmverbinding (twee strips over elkaar) heeft een overlap van 25 mm × 20 mm. De afschuifsterkte van de lijm is 20 MPa, dat is 20 N per mm². Neem aan dat de belasting zich gelijk over de hele overlap verdeelt. Welke belasting kan hij ongeveer op afschuiving dragen, in kN?',
           number: 10,
           tolerance: 0.2,
           unit: 'kN',

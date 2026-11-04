@@ -16,8 +16,8 @@ export default {
         'Arc welding joins two metal parts by melting their edges together. The heat comes from an electric arc: a continuous spark between the electrode (the live wire or rod) and the part, at about 20 to 35 volts and 100 to 400 amps. A kettle draws about 10 amps.\n\nThe molten metal forms a small glowing puddle, the weld pool, that freezes into the weld. Extra metal, the filler, is melted in to fill the joint; the parts themselves are the base metal.',
         'Air must stay away from the weld pool: oxygen and nitrogen leave gas bubbles (porosity) and make the weld brittle. So a shielding gas flows out of the torch, the welding gun, around the pool, usually 12 to 18 litres a minute.\n\nOn the floor you can hear it: a good MAG arc crackles steadily, like bacon frying. A popping arc with a lot of spatter (drops of metal flying off) points to wrong settings or missing gas.',
         'MIG/MAG: a reel of wire, 0.8 to 1.2 mm thick, is pushed continuously through the torch; the wire is both electrode and filler. MAG (metal active gas) is for steel: argon plus 8 to 20% CO₂, often 82% argon and 18% CO₂. The CO₂ is active: it reacts in the arc and gives deeper, steadier melting.\n\nMIG (metal inert gas) uses pure argon, which reacts with nothing, for aluminium. MIG/MAG is fast and easy to automate: robot cells for car parts, frames and trailers.',
-        'TIG: a pointed tungsten electrode that does not melt, a separate filler rod the welder dips in by hand, and pure argon. The welder sets the heat with a foot pedal. It is slower, often three to five times, but clean and precise.\n\nTIG is used for stainless steel pipe in food and pharma, thin sheet, aluminium, and the root pass: the first layer at the bottom of a pipe weld. A good TIG welder is scarce and well paid.',
-        'Arc energy is the heat put in per millimetre of weld: volts × amps × 60 / (travel speed in mm per minute × 1,000), in kJ/mm (kilojoules per millimetre). Heat input is arc energy times an efficiency: 0.8 for MAG, 0.6 for TIG.\n\nToo much heat warps the part and widens the HAZ, the heat-affected zone: steel beside the weld that got hot and lost toughness. Too little and the weld does not melt into the part. Welders talk settings: wire speed, voltage, travel speed, gas flow.',
+        'TIG: a pointed electrode of tungsten, a metal that only melts at about 3,400 °C, so it stays solid; a separate filler rod the welder dips in by hand, and pure argon. The welder sets the heat with a foot pedal. It is slower, often three to five times, but clean and precise.\n\nTIG is used for stainless steel pipe in food and pharma, thin sheet, aluminium, and the root pass: the first layer at the bottom of a pipe weld. A good TIG welder is scarce and well paid.',
+        'Arc energy is the heat put in per millimetre of weld, in kJ/mm (kilojoules per mm): volts × amps × 60 / (travel speed × 1,000); travel speed is how fast the torch moves, in mm per minute. Heat input is arc energy times the share of heat that reaches the part: 0.8 for MAG, 0.6 for TIG.\n\nToo much heat warps the part and widens the HAZ, the heat-affected zone: steel beside the weld that got hot and weakened. Too little and the weld does not melt in.',
       ],
       example: {
         kind: 'worked',
@@ -48,7 +48,7 @@ export default {
           q: 'Which shielding gas is used for MIG welding aluminium?',
           options: ['Argon', 'Pure CO₂', 'Argon with 18% CO₂', 'Oxygen'],
           answer: 'Argon',
-          why: 'Aluminium needs an inert gas; an active gas would oxidise it.',
+          why: 'Aluminium needs an inert gas; an active gas would react with it and leave oxide (a hard, rust-like skin) in the weld.',
         },
       ],
       situation: {
@@ -84,19 +84,19 @@ export default {
       ],
       teach: [
         'Resistance spot welding joins two or three overlapping steel sheets at single points, like stitches. A weld gun, a heavy pair of tongs on a robot, squeezes the sheets between two copper electrodes and sends a very high current through them: 8 to 12 kA (8,000 to 12,000 amps) for 200 to 400 milliseconds.\n\nThe metal resists the current and heats up where the sheets touch, until a nugget forms: a lens of molten metal, about 4 to 7 mm across, that freezes into the weld. No filler, no gas.',
-        'The body-in-white, the bare car body before painting, holds 4,000 to 5,000 spot welds. On the floor you see showers of sparks and hear a sharp clack at each weld; every few hundred welds the gun swings to the tip dresser.\n\nSpot welding is fast (under a second per weld), cheap and needs no skilled welder. But it only works on overlapping sheet, typically 0.6 to 3 mm thick, and you cannot see from outside whether a weld is good.',
+        'The body-in-white, the bare car body before painting, holds 4,000 to 5,000 spot welds. On the floor you see showers of sparks and hear a sharp clack at each weld; every few hundred welds the gun swings to the tip dresser, a small cutter that reshapes its copper tips.\n\nSpot welding is fast (under a second per weld), cheap and needs no skilled welder. But it only works on overlapping sheet, typically 0.6 to 3 mm thick, and you cannot see from outside whether a weld is good.',
         'Three main settings: current, weld time and electrode force, how hard the tongs squeeze: about 2 to 4 kN (kilonewton; 1 kN is roughly the weight of 100 kg). Heat = current² × resistance × time, so current counts squared: 10% more current gives about 21% more heat.\n\nToo little heat gives a small nugget or none: a stick weld that looks fine but holds nothing. Too much gives expulsion: sparks of splashed molten metal, deep dents and a weaker joint.',
-        'Nugget size is the quality measure. A common rule: the nugget diameter must be at least 4√t, with t the thickness of the thinnest sheet in mm. For 1 mm sheet that is 4 mm; for 2 mm sheet about 5.7 mm.\n\nYou only know the size by breaking sample parts apart (chisel or peel test) or by measuring with ultrasound. So a sharp question is: how often do we check nuggets, per robot, and what happens when one is too small?',
+        'Nugget size is the quality measure. A common rule of thumb: the nugget diameter must be at least 4√t, with t the thickness of the thinnest sheet in mm. For 1 mm sheet that is 4 mm; for 2 mm sheet about 5.7 mm. Carmakers differ: some demand 5√t, so check the spec.\n\nYou only know the size by breaking sample parts apart (chisel or peel test) or by measuring with ultrasound. Ask: how often do we check nuggets per robot, and what happens when one is too small?',
         'The copper tips wear: they mushroom, flattening and growing wider, so the same current spreads over a bigger area. The current per mm² of tip, the current density, drops and the nugget shrinks.\n\nTwo counters: a stepper, a control function that raises the current as the weld count rises, and tip dressing, where a small cutter reshapes the tips. On galvanised (zinc-coated, rust-proofed) steel this is often every 200 welds or so, because zinc eats into the copper.',
       ],
       example: {
         kind: 'worked',
-        text: 'A gun welds two galvanised sheets of 1.2 mm at 9.5 kA, 300 ms and 3 kN, with a tip face of Ø6 mm (6 mm across): an area of 28.3 mm², so 9,500 / 28.3 = 336 A per mm².\n\nThe tip dresser jams and nobody notices. After 500 welds the tip face is Ø7.5 mm: 44.2 mm², and the current density drops to 215 A per mm², 36% less.\n\nThe nugget shrinks from 5.5 to about 3.8 mm, below the minimum of 4√1.2 = 4.4 mm. The daily chisel test (prying the sheets apart and measuring the weld) catches it, but two shifts of car bodies need checking.',
+        text: 'A gun welds two galvanised sheets of 1.2 mm at 9.5 kA, 300 ms and 3 kN, with a tip face of Ø6 mm (6 mm across): an area of 28.3 mm², so 9,500 / 28.3 = 336 A per mm².\n\nThe tip dresser jams and nobody notices. After 500 welds the tip face is Ø7.5 mm: 44.2 mm², and the current density drops to 215 A per mm², 36% less.\n\nThe nugget shrinks from 5.5 to about 3.8 mm, below the plant’s minimum of 4√1.2 = 4.4 mm. The daily chisel test (prying the sheets apart and measuring the weld) catches it, but two shifts of car bodies need checking.',
       },
       said: 'What engineers say: “Don’t just turn up the current. Check the dresser first. If the tips are mushroomed, grown wide and flat, more amps just gives you expulsion: sparks and a weaker weld.”',
       recall: [
         {
-          q: 'The thinnest sheet in a spot-welded joint is 2.25 mm thick. Using the rule nugget diameter ≥ 4√t, what is the minimum nugget diameter, in mm?',
+          q: 'The thinnest sheet in a spot-welded joint is 2.25 mm thick. Using the rule of thumb nugget diameter ≥ 4√t, what is the minimum nugget diameter, in mm?',
           number: 6,
           tolerance: 0.05,
           unit: 'mm',
@@ -154,9 +154,9 @@ export default {
         },
       ],
       teach: [
-        'Porosity: gas bubbles trapped in the weld. Causes: the shielding gas was lost (a draught, low flow, spatter clogging the nozzle), or the metal was dirty, oily or wet, or zinc from a coating boiled off.\n\nPores at the surface you can see as pinholes; pores inside need X-ray or ultrasonic testing. A few small pores are often allowed; a row of them is not.',
+        'Porosity: gas bubbles trapped in the weld. Causes: the shielding gas was lost (a draught, low flow, spatter clogging the nozzle), or the metal was dirty, oily or wet, or zinc from a coating boiled off.\n\nPores at the surface you can see as pinholes; pores inside need X-ray or ultrasonic testing (sound pulses that echo off flaws). A few small pores are often allowed; a row of them is not.',
         'Lack of fusion: the weld metal sits on the part without melting into it, like glue on a greasy surface. Incomplete penetration: the weld did not reach the root, the bottom of the joint. Causes: too little heat, travelling too fast, the wrong torch angle, a badly prepared joint.\n\nThis is the most feared defect: a weld can look perfect outside and hide a flat, crack-like gap inside. Under repeated load it grows into a crack.',
-        'Cracks are never accepted. Hot cracks form as the weld freezes, down the middle of the bead (the line of weld metal). Cold cracks, also called hydrogen cracks, form hours after welding, in the heat-affected zone of high-strength steel; moisture brings in the hydrogen.\n\nThe cure: dry filler and preheating, warming the parts to for example 100 °C before welding. That is why inspection of some steels waits 16 to 48 hours.',
+        'Cracks are never accepted. Hot cracks form as the weld freezes, down the middle of the bead (the line of weld metal). Cold cracks, also called hydrogen cracks, form hours after welding, in the heat-affected zone (the steel beside the weld that got hot) of high-strength steel; moisture brings in the hydrogen.\n\nThe cure: dry filler and preheating, warming the parts to for example 100 °C before welding. For thick welds and stronger steels, standards such as EN 1090 make the final crack check wait, often 16 to 48 hours.',
         'Distortion: heat expands the metal and cooling shrinks it, so parts bend and angles close up. It is a defect of the part rather than of the weld. Remedies: jigs (holding frames) and clamps, pre-setting the parts at the opposite angle, a balanced welding sequence, and less heat.\n\nSpatter (metal drops stuck beside the weld) and small undercut (a groove melted along the weld edge) are usually cosmetic or minor.',
         'How big may a defect be? ISO 5817 sets limits in three quality levels: B (strictest, for example cranes and pressure parts), C (normal structural work) and D (light work). The drawing should say which level applies.\n\nEngineers argue about this: asking level B everywhere makes every weld slow and expensive; level D on a crane is dangerous. A good question: which quality level is on the drawing, and who chose it?',
       ],
@@ -164,7 +164,7 @@ export default {
         kind: 'worked',
         text: 'An excavator boom (the long arm): ultrasonic testing finds lack of fusion in 3 of 40 joints, all welded vertically upwards by the second shift.\n\nThe welding procedure says a travel speed of 300 mm per minute; measured is 405 mm per minute, 35% too fast, which drops the arc energy by 26%. The welders also skipped the weave, the side-to-side motion of the torch.\n\nWhy? After a robot breakdown the shift got a tighter target and sped up. Each repair means gouging out the bad weld (cutting it away with an arc and air), rewelding and retesting: about 3.5 hours. The fix is a realistic plan and travel-speed checks, not a talk about craftsmanship.',
       },
-      said: 'What engineers say: “It looks beautiful from the outside, but the ultrasonic test shows no fusion on the side wall: the weld never melted into the plate. They were running way too fast.”',
+      said: 'What engineers say: “It looks beautiful from the outside, but the ultrasonic test shows no fusion on the side wall, the sloping edge of the plate: the weld never melted into it. They were running way too fast.”',
       recall: [
         {
           q: 'The welding procedure specifies a travel speed of 300 mm per minute; the welder runs at 405 mm per minute with the same volts and amps. Arc energy scales with 1 / travel speed. By how many % does the arc energy drop?',
@@ -199,7 +199,7 @@ export default {
         rubric: [
           'Points out that visual inspection misses internal defects',
           'Asks what the specification, standard or quality level requires',
-          'Proposes a sample of internal (volumetric) testing on critical welds',
+          'Proposes a sample of internal testing (ultrasonic or X-ray) on critical welds',
         ],
       },
       sayIt: 'Explain to a plant manager in 60 seconds the four main weld defects and which one keeps welding engineers awake.',
@@ -224,17 +224,17 @@ export default {
         },
       ],
       teach: [
-        'Visual testing (VT) comes first and is cheapest. The inspector checks weld size, undercut, surface pores, cracks and spatter. On a fillet weld, the triangular weld in the corner between two plates, the size is the throat thickness, measured with a weld gauge, a small metal template.\n\nVT only sees the surface. On most structural work every weld gets it.',
-        'Dye penetrant testing (PT): a red liquid is sprayed on and seeps into surface cracks; after wiping, a white powder layer, the developer, draws it out as red lines. Magnetic particle testing (MT) does the same on magnetic steel, with iron powder, and also finds cracks just below the surface.\n\nBoth are cheap and quick but only see the surface. Together with VT, UT and RT they are called NDT: non-destructive testing.',
+        'Visual testing (VT) comes first and is cheapest. The inspector checks weld size, undercut, surface pores, cracks and spatter. On a fillet weld, the triangular weld in the corner between two plates, the size is the throat thickness, the depth from the corner to the weld surface, measured with a weld gauge, a small metal template.\n\nVT only sees the surface. On most structural work every weld gets it.',
+        'Dye penetrant testing (PT): a red liquid is sprayed on and seeps into surface cracks; after wiping, a white powder layer, the developer, draws it out as red lines. Magnetic particle testing (MT) works on magnetic steel: the part is magnetised and fine iron powder gathers at cracks, also just below the surface.\n\nBoth are cheap and quick but only see the surface. Together with VT, UT and RT they are called NDT: non-destructive testing.',
         'Ultrasonic testing (UT): a probe on the steel sends sound pulses in and listens for echoes from flaws inside, such as lack of fusion. It needs a trained operator who reads the echo screen.\n\nRadiography (RT) takes an X-ray picture through the weld; good for pores, but slow, and the area must be cleared for radiation safety. Ask which method suits the defect you fear: flat flaws show best on UT, round pores on RT.',
-        'Destructive tests break samples. For spot welds, the chisel test and peel test pry the sheets apart; a good weld tears a button out of the sheet, and you measure its diameter.\n\nA cut-and-etch section (sawing through a weld and etching it with acid) shows how deep it melted in. Bend and tensile (pulling) tests are used to approve welding procedures. All on samples: per shift, per robot or per batch.',
-        'A WPQR (welding procedure qualification record) proves a recipe works: a test piece is welded and tested under ISO 15614. The WPS (welding procedure specification) is the recipe derived from it, at the workstation: process, filler, gas, current and voltage ranges, position, preheat.\n\nWelders are qualified separately under ISO 9606, with a certificate per process and position. For steel structures under EN 1090 (the European standard for building steelwork) all of this is mandatory, along with a welding coordinator.',
+        'Destructive tests break samples. For spot welds, the chisel test and peel test pry the sheets apart; a good weld tears a button, a round plug of weld, out of the sheet, and you measure its diameter.\n\nA cut-and-etch section (sawing through a weld and etching it with acid) shows how deep it melted in. Bend and tensile (pulling) tests are used to approve welding procedures. All on samples: per shift, per robot or per batch.',
+        'A WPQR (welding procedure qualification record) proves a recipe works: a test piece is welded and tested under ISO 15614. The WPS (welding procedure specification) is the recipe derived from it, at the workstation: process, filler, gas, current and voltage ranges, position, preheat.\n\nWelders are qualified separately under ISO 9606, with a certificate per process and position. For most load-bearing steelwork under EN 1090 (the European standard for building steelwork) this is mandatory, along with a welding coordinator: the person who answers for welding quality.',
       ],
       example: {
         kind: 'worked',
-        text: 'A body shop with 12 welding robots peel-tests one part per robot per shift: 32 welds, each button measured with a caliper (a sliding measuring tool), minimum 4.4 mm for 1.2 mm sheet. The destroyed parts cost 12 robots × 3 shifts × €140 = €5,040 a day.\n\nSo the plant adds handheld ultrasonic checks: 200 welds per shift without destroying anything, with the results plotted on a control chart per robot (a graph that shows drift over time).\n\nThe peel tests drop to once a day per robot, and are still used to calibrate what the ultrasonic readings mean.',
+        text: 'A body shop with 12 welding robots peel-tests one part per robot per shift: 32 welds, each button measured with a caliper (a sliding measuring tool), minimum 4.4 mm for 1.2 mm sheet. The destroyed parts cost 12 robots × 3 shifts × €140 = €5,040 a day.\n\nSo the plant adds handheld ultrasonic checks: 200 welds per shift without destroying anything, with the results plotted on a control chart per robot (a graph that shows drift over time).\n\nThe peel tests drop to once a day per robot, and are still used to check that the ultrasonic readings match real button sizes.',
       },
-      said: 'What engineers say: “Is there a WPS, the welding recipe, for that joint, and is that welder qualified for vertical-up? Because the auditor will ask both.”',
+      said: 'What engineers say: “Is there a WPS, the welding recipe, for that joint, and is that welder qualified for vertical-up, welding upwards on an upright joint? Because the auditor will ask both.”',
       recall: [
         {
           q: 'A plant destroys one part worth €140 per robot per shift for peel testing. It has 12 robots and runs 3 shifts a day. What does that cost per day, in €?',
@@ -295,14 +295,14 @@ export default {
       ],
       teach: [
         'A bolt works like a stiff spring: tightening the nut stretches the bolt a fraction of a millimetre, and that tension, the preload, clamps the parts together. Preload, also called clamp load, is what holds the joint, not torque.\n\nTorque is the turning force on the wrench, in Nm (newton-metres): 50 Nm is a push of 200 N, about 20 kg, on a wrench 25 cm long.',
-        'An M10 bolt has a metric thread 10 mm across. Grade 8.8, stamped on the head, means a tensile strength of 800 MPa (newtons per mm²) and a yield point, where it starts to stretch for good, at 80% of that: 640 MPa.\n\nWith normal friction, about 49 Nm of torque gives an M10 8.8 bolt about 25 kN of preload: roughly the weight of 2.5 tonnes. It yields at about 37 kN.',
-        'Torque is only an indirect measure. About 50% goes into friction under the head, 40% into friction in the thread, and only 10% into stretching the bolt.\n\nChange the friction with oil, a different coating, dirt or rust, and the same torque gives 25 to 30% more or less preload. An oiled bolt tightened to a dry torque can be stretched past its yield point. Even in good conditions, torque control scatters preload by about ±25%.',
-        'Tools: click wrenches for hand work, pulse tools (air tools that tighten in short bursts) and nutrunners: electric spindles that control and record torque and angle. In car assembly, safety joints like wheels and brakes are traceable per car.\n\nTorque-angle tightening, a low snug torque and then a fixed extra angle, gives a more accurate preload. Audits check breakaway torque, the torque at which a tightened bolt starts to turn further, with a calibrated wrench, or use paint marks across bolt and part.',
+        'An M10 bolt has a metric thread 10 mm across. Grade 8.8, stamped on the head, means a tensile strength, the stress at which it breaks, of 800 MPa (newtons per mm²) and a yield point, where it starts to stretch for good, at 80% of that: 640 MPa.\n\nWith normal friction, about 49 Nm of torque gives an M10 8.8 bolt about 25 kN of preload: roughly the weight of 2.5 tonnes. It yields at about 37 kN.',
+        'Torque is only an indirect measure. Roughly 50% goes into friction under the head, 40% into friction in the thread, and only 10% into stretching the bolt.\n\nChange the friction with oil, a different coating, dirt or rust, and the same torque gives 25 to 30% more or less preload. An oiled bolt tightened to a dry torque can be stretched past its yield point. Even in good conditions, torque control typically scatters preload by about ±25%.',
+        'Tools: click wrenches for hand work, pulse tools (air tools that tighten in short bursts) and nutrunners: electric spindles that control and record torque and angle. In car assembly, results for safety joints like wheels and brakes are stored per car.\n\nTorque-angle tightening, a low torque that pulls the parts together and then a fixed extra angle, is more accurate. Audits check breakaway torque, the torque at which a tightened bolt starts to turn further, with a calibrated (regularly checked) wrench, or use paint marks across bolt and part.',
         'Why bolts loosen: vibration that lets the joint slip sideways, which turns the nut back; settling, where rough surfaces or paint under the head flatten and preload is lost; and too little preload to begin with.\n\nRemedies: the right preload, longer bolts (they stretch more, so settling costs less), heads with a wide flange, no paint in the joint. Split spring washers do not help in vibration tests; thread-locking adhesive does. A good question: what preload do we need, and how do we know we get it?',
       ],
       example: {
         kind: 'worked',
-        text: 'A car seat frame is fixed with four M10 bolts; the nutrunner spec is 50 Nm ±10%. The shift audit measures breakaway torque on five cars: 53, 52, 31, 54 and 52 Nm. Breakaway normally reads a little above the install torque, so 31 is a problem.\n\nThe nutrunner log shows four OK results for that car, but two of them on the same bolt: the operator hit an already tightened bolt again, which reads OK instantly, and the fourth bolt was only run down by hand.\n\nThe fix: position control on the tool, so it counts each bolt location only once.',
+        text: 'A car seat frame is fixed with four M10 bolts; the torque set on the nutrunner is 50 Nm ±10%. The shift audit measures breakaway torque on five cars: 53, 52, 31, 54 and 52 Nm. Breakaway normally reads close to the tightening torque, often a little above, so 31 is a problem.\n\nThe nutrunner log shows four OK results for that car, but two of them on the same bolt: the operator hit an already tightened bolt again, which reads OK instantly, and the fourth bolt was only tightened by feel with an ordinary hand wrench.\n\nThe fix: position control on the tool, so it counts each bolt location only once.',
       },
       said: 'What engineers say: “The tool says fifty newton-metre, fine, but what’s the clamp load, the actual preload? Somebody oiled those bolts, so we’re way over.”',
       recall: [
@@ -335,7 +335,7 @@ export default {
       situation: {
         scene: 'You’re at a manufacturer of agricultural machines. Wheel bolts have come loose at three customers. The engineering team proposes raising the tightening torque by 20%.',
         ask: 'What do you ask before the torque goes up?',
-        model: 'What preload do we actually get today, and what friction condition is the torque spec based on: dry, oiled, coated? Is there paint under the wheel nuts that settles in use? And what do the audit and nutrunner data say: were these joints really at spec, or were some missed? Raising torque on a joint that is missing preload for another reason won’t fix it, and on oiled bolts it may stretch them past yield.',
+        model: 'What preload do we actually get today, and what friction condition is the torque spec based on: dry, oiled, coated? Is there paint under the wheel nuts that settles in use? And what do the audit and nutrunner data say: were these joints really at spec, or were some missed? Raising torque on a joint that is missing preload for another reason won’t fix it, and on oiled bolts it may stretch them past their yield point.',
         rubric: [
           'Shifts the question from torque to preload',
           'Asks about friction condition and paint in the joint',
@@ -347,7 +347,7 @@ export default {
         { term: 'Preload', def: 'The tension in a tightened bolt that clamps the joint; also called clamp load.' },
         { term: 'Torque', def: 'Turning force on the wrench, force × lever arm, in Nm.' },
         { term: 'Nutrunner', def: 'Electric tightening spindle that controls and records torque and angle per bolt.' },
-        { term: 'Torque-angle', def: 'Tightening to a low snug torque, then turning a fixed extra angle.' },
+        { term: 'Torque-angle', def: 'Tightening to a low torque that just pulls the parts together, then turning a fixed extra angle.' },
         { term: 'Breakaway torque', def: 'Torque needed to start turning an already tightened bolt; used in audits.' },
         { term: 'Settling', def: 'Loss of preload as rough surfaces or paint under the head flatten.' },
       ],
@@ -364,10 +364,10 @@ export default {
         },
       ],
       teach: [
-        'Structural adhesives are load-bearing glues: epoxies, polyurethanes and acrylics. They join different materials, such as aluminium to steel, without heat. They also seal out water, damp vibration and spread the load over an area instead of a few points, which helps against fatigue: cracking from loads that repeat millions of times.\n\nThey need clean, degreased surfaces and time to cure (harden). In car body shops, epoxy cures in the paint oven at about 180 °C.',
+        'Structural adhesives are load-bearing glues: epoxies, polyurethanes and acrylics, families of plastic-based glue. They join different materials, such as aluminium to steel, without heat. They also seal out water, damp vibration and spread the load over an area instead of a few points, which helps against fatigue: cracking from loads that repeat millions of times.\n\nThey need clean, degreased surfaces and time to cure (harden). In car body shops, epoxy cures in the paint oven at about 180 °C.',
         'Glue is strong in shear and weak in peel. Shear: the parts slide along each other and the whole bonded area carries the load. Peel: one edge is pulled open, like peeling a sticker, and the load sits on a thin line.\n\nAnd you cannot see inside a bond. That is what engineers argue about: is it there, is it cured, did it stick? A good question: how do we check every bond in production?',
-        'Rivets. Blind rivets (pop rivets) are set from one side with a hand tool. Self-piercing rivets (SPR) are pressed through the top sheet and flare into the bottom one without a pre-drilled hole: the standard for aluminium car bodies.\n\nSolid rivets are still used in aircraft. Quality is checked through head height, the force and stroke the tool recorded, and sections sawn through sample joints.',
-        'Clinching: a punch presses the sheets into a shaped die (a mould) below them, forming an interlocking button, like two paper cups pressed into each other. No extra part, no heat, no fumes.\n\nUsed in ventilation ducts, household appliances and car doors. Weaker than a spot weld, but cheap, fast and fine with coated or painted sheet.',
+        'Rivets. Blind rivets (pop rivets) are set from one side with a hand tool. Self-piercing rivets (SPR) are pressed through the top sheet and flare into the bottom one without a pre-drilled hole: a standard method for aluminium car bodies.\n\nSolid rivets are still used in aircraft. Quality is checked through head height, the force and stroke (how far it pushed) that the tool recorded, and sections sawn through sample joints.',
+        'Clinching: a punch, a hard steel pin, presses the sheets into a shaped die (a mould) below them, forming an interlocking button, like two paper cups pressed into each other. No extra part, no heat, no fumes.\n\nUsed in ventilation ducts, household appliances and car doors. Usually weaker than a spot weld, but cheap, fast and fine with coated or painted sheet.',
         'How engineers choose. Same material, steel, high strength, cheap: weld. Mixed materials, stiffness in a crash, sealing: adhesive plus rivets, a hybrid joint. Must come apart for service: bolts.\n\nQuestions to ask: does it need to come apart, which materials meet, is the load peel or shear, and how do we check the joint in production?',
       ],
       example: {
@@ -377,7 +377,7 @@ export default {
       said: 'What engineers say: “Glue’s great in shear, but this joint peels open in a crash, one edge pulled up. Put a rivet at each end of the bead to stop the peel.”',
       recall: [
         {
-          q: 'An adhesive lap joint (two overlapping strips) has an overlap of 25 mm × 20 mm. The adhesive’s shear strength is 20 MPa, that is 20 N per mm². Roughly what load can it carry in shear, in kN?',
+          q: 'An adhesive lap joint (two overlapping strips) has an overlap of 25 mm × 20 mm. The adhesive’s shear strength is 20 MPa, that is 20 N per mm². Assume the load spreads evenly over the whole overlap. Roughly what load can it carry in shear, in kN?',
           number: 10,
           tolerance: 0.2,
           unit: 'kN',
