@@ -1,6 +1,76 @@
-// eng.lines (EN): Lines and automation: layout and buffers, robots, poka-yoke, mixed-model lines, automated line OEE, the business case.
+// eng.lines (EN): Lines and automation, in topics with four levels: line design, robots, error-proofing (written), then mixed-model lines, automated line OEE and the business case.
 export default {
   lessons: [
+    {
+      id: 'eng.lines.linebasics',
+      title: 'Reading a line: stations, cycle time and transport',
+      pre: [
+        {
+          q: 'An assembly line finishes one product every 45 seconds. How many products is that per hour?',
+          options: ['45', '60', '80', '100'],
+          answer: '80',
+          why: 'An hour has 3,600 seconds; 3,600 / 45 = 80 products.',
+        },
+      ],
+      teach: [
+        'An assembly line is a row of stations: workplaces where one fixed part of the work is done, such as fitting a seal or fastening four screws. The product travels from station to station and is complete at the end.\n\nWhen you walk a line, follow one product from start to finish. Count the stations, and at each one ask: what is added here, and is it done by a person or by a machine?',
+        'The cycle time of a station is the time it needs for one product, from starting one to being ready for the next. Measure it with a stopwatch over ten products and take the typical value.\n\nThe station with the longest cycle time is the bottleneck: the whole line can go no faster than that station. A line with stations of 30, 40 and 35 seconds makes one product every 40 seconds.',
+        'Takt is the other side: the time available per product to meet customer demand. 480 minutes of working time for 960 products gives 28,800 / 960 = 30 seconds. Every cycle time must stay below takt, or the line falls behind.\n\nTransport moves the product on: by hand, over a roller track, on a conveyor (a moving belt or chain), or on pallets: flat carriers that ride on the conveyor and hold the product in place.',
+        'Stations are manual (a person with hand tools), semi-automatic (a person loads, a machine such as a press or a screwing unit does the work) or fully automatic (a robot or machine does everything).\n\nYou recognise automatic stations by their guarding, fences or light curtains, and by a stack light: the lamp column that shows green for running, yellow for waiting and red for a fault.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'You walk a line that assembles water pumps. Assume the customer needs 420 pumps per shift, and a shift has 7 hours of working time after breaks.\n\nTakt: 7 × 3,600 = 25,200 seconds / 420 = 60 seconds per pump. You time the four stations: housing 50 seconds (manual), impeller 55 seconds (semi-automatic press), cover 65 seconds (manual, 6 screws), test 45 seconds (automatic).\n\nThe cover station, at 65 seconds, is the bottleneck and it is above takt. The line makes 25,200 / 65 = 387 pumps per shift, 33 short. That is the station to look at first.',
+      },
+      said: 'What operators say: “The cover station can’t keep up, the pallets pile up in front of it every morning.” Products piling up in front of a station are the first sign of a bottleneck.',
+      recall: [
+        {
+          q: 'A shift has 450 minutes of working time and the customer needs 900 products per shift. What is the takt, in seconds?',
+          number: 30,
+          tolerance: 0.5,
+          unit: 's',
+          why: '450 × 60 = 27,000 seconds; 27,000 / 900 = 30 seconds per product.',
+        },
+        {
+          q: 'A line has stations with cycle times of 38, 52, 45 and 40 seconds. Which station sets the output of the line?',
+          options: ['The 38-second station', 'The 52-second station', 'The 45-second station', 'Always the last station'],
+          answer: 'The 52-second station',
+          why: 'The slowest station is the bottleneck; the line can make no more than one product every 52 seconds.',
+        },
+        {
+          q: 'The slowest station of a line takes 40 seconds per product. How many products per hour can the line make at most?',
+          number: 90,
+          tolerance: 0.5,
+          unit: 'products',
+          why: '3,600 / 40 = 90 products per hour.',
+        },
+        {
+          q: 'An operator places a part and presses two buttons, and then a press does the work. What kind of station is this?',
+          options: ['Manual', 'Semi-automatic', 'Fully automatic', 'A buffer'],
+          answer: 'Semi-automatic',
+          why: 'A person loads and starts it, a machine does the work.',
+        },
+      ],
+      situation: {
+        scene: 'Your first gemba walk (going to the floor to see the work) at a maker of garden pumps. The production manager says: “The line should make 420 a shift, but we never get past 390.”',
+        ask: 'What do you ask first?',
+        model: 'What is the cycle time of each station, measured on the floor, and which one is the longest? If one station takes 65 seconds against a takt of 60, that station sets the output and the rest of the line can only wait for it. Is it manual or automatic, and where do the pallets pile up?',
+        rubric: [
+          'Asks for the measured cycle time per station',
+          'Compares the slowest station with takt',
+          'Uses where products pile up as a clue to the bottleneck',
+        ],
+      },
+      sayIt: 'Explain to a new colleague in 60 seconds what station, cycle time, takt and bottleneck mean on an assembly line.',
+      terms: [
+        { term: 'Station', def: 'A workplace on a line where one fixed part of the work is done.' },
+        { term: 'Cycle time', def: 'The time a station needs for one product, from starting one to being ready for the next.' },
+        { term: 'Takt', def: 'The time available per product to meet customer demand, such as 60 seconds when 60 an hour are needed.' },
+        { term: 'Bottleneck', def: 'The slowest station, which sets the output of the whole line.' },
+        { term: 'Conveyor', def: 'A moving belt or chain that carries products or pallets from station to station.' },
+        { term: 'Stack light', def: 'The lamp column on a machine: green running, yellow waiting, red fault.' },
+      ],
+    },
     {
       id: 'eng.lines.layout',
       title: 'Line types, buffers and inspection',
@@ -20,10 +90,8 @@ export default {
         'A hard-linked line has stations joined without buffers. On the floor you see one stack light (the coloured lamp column on a machine) go red and the others turn yellow: waiting.\n\nAsk: “what happens here when the station next to it stops?” If the answer is “everything stops”, availabilities (the share of time each station can run) multiply: eight stations at 95% give about 66% for the line. Production wants big buffers for output; improvement people want small ones to expose problems.',
       ],
       example: {
-        kind: 'faded',
-        text: 'An unpaced assembly line has four stations, each taking about 40 seconds per product. Station 3 is a press-fit unit: a small press that pushes a bearing (a metal ring that lets a shaft turn smoothly) tightly into a housing.\n\nIt jams several times per shift, about 4 minutes each time. There is room for 1 product between stations. When station 3 jams, stations 1 and 2 stop within a minute or two and station 4 stands idle. The team wants to make stations 1 and 2 faster.',
-        ask: 'What would you do next?',
-        reveal: 'Speeding up stations 1 and 2 does nothing: they are blocked, they cannot pass their product on to station 3.\n\nFirst, buffers around station 3: a 4-minute stop at 40 seconds is 240 / 40 = 6 products, so room for about 6 before and 6 after keeps the others running through a typical jam. Second, attack the jams themselves, because buffers absorb stops, they do not remove them. And check whether station 3 is also the slowest, because then it needs protection most.',
+        kind: 'worked',
+        text: 'An unpaced assembly line has four stations, each taking about 40 seconds per product. Station 3 is a press-fit unit: a small press that pushes a bearing (a metal ring that lets a shaft turn smoothly) tightly into a housing.\n\nIt jams several times per shift, about 4 minutes each time. There is room for 1 product between stations. When station 3 jams, stations 1 and 2 stop within a minute or two and station 4 stands idle. The team wants to make stations 1 and 2 faster.\n\nThat does nothing: they are blocked, they cannot pass their product on to station 3.\n\nFirst, buffers around station 3: a 4-minute stop at 40 seconds is 240 / 40 = 6 products, so room for about 6 before and 6 after keeps the others running through a typical jam. Second, attack the jams themselves, because buffers absorb stops, they do not remove them. And check whether station 3 is also the slowest, because then it needs protection most.',
       },
       said: 'What engineers say: “It’s hard-linked, there’s no buffer. Every hiccup at the press stops the whole line.” Hard-linked means no room for products between the stations.',
       recall: [
@@ -65,12 +133,218 @@ export default {
       },
       sayIt: 'Explain to a project manager in 60 seconds why a few well-placed buffers can raise the output of a line.',
       terms: [
-        { term: 'Takt', def: 'The time available per product to meet customer demand, such as 60 seconds when 60 an hour are needed.' },
         { term: 'Paced line', def: 'A line that moves at one fixed rhythm; every station must finish within the takt.' },
         { term: 'Cell', def: 'A compact group of machines, often U-shaped, run by a few operators who walk with the work.' },
         { term: 'Buffer', def: 'A small queue of products between stations, so one stop does not stop the others at once.' },
         { term: 'Hard-linked', def: 'Stations joined without buffers, so one stop stops them all.' },
-        { term: 'Bottleneck', def: 'The slowest station, which sets the output of the whole line.' },
+      ],
+    },
+    {
+      id: 'eng.lines.buffers',
+      title: 'Sizing buffers: blocking, starving and refilling',
+      pre: [
+        {
+          q: 'Two stations are joined by a buffer with room for 10 products. Both take exactly 30 seconds per product. After a stop of the second station the buffer is full. What happens to the buffer next?',
+          options: ['It empties again by itself within a minute', 'It stays full, because the first station is no faster than the second', 'It overflows', 'The second station speeds up to empty it'],
+          answer: 'It stays full, because the first station is no faster than the second',
+          why: 'A buffer only fills or empties when one side runs faster than the other. With equal speeds it keeps the level the last stop left behind.',
+        },
+      ],
+      teach: [
+        'Two words describe every stop on a line. A station is blocked when it has finished a product but cannot pass it on, because the place after it is full. It is starved when it is ready to work but nothing arrives.\n\nWhen station 3 stops, stations 1 and 2 soon become blocked and station 4 starved. A buffer decouples two stations: each can keep working for a while when the other stops.',
+        'The size follows from the stop you want to ride through: stop length divided by the cycle time of the station that keeps working. A 4-minute stop at a 30-second cycle needs 240 / 30 = 8 places.\n\nDo not size on the longest breakdown. A common choice is a stop length that most stops stay under, say 80 to 90% of them, taken from the machine data. A two-hour breakdown needs a repair, not a buffer of 240 products.',
+        'A buffer only works if it can refill. After a stop, the station before it must run faster than the station after it, or the buffer never recovers. That difference in output rate is the spare capacity.\n\nExample: upstream at 25 seconds makes 144 an hour, downstream at 30 seconds 120 an hour. The buffer fills at 24 an hour, so 12 places take half an hour. A second stop within that half hour is not fully covered.',
+        'Protect the bottleneck first. Every minute it stands still is lost for the whole line, so keep the buffer in front of it full (against starving) and the buffer after it nearly empty (against blocking). A stop at the bottleneck itself is lost whatever the buffers.\n\nThe first places of a buffer give the most; each extra place adds less output but the same floor space and WIP (work in progress, the products inside the line).',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A gearbox line has a press, station B, at 30 seconds per product, with short stops: most last under 3 minutes and they come about every 20 minutes. Station C after it is the bottleneck, a leak tester at 36 seconds.\n\nStep 1, size: to keep C fed through a 3-minute stop of B, the buffer must hold 180 / 36 = 5 products, and it must be full when B stops.',
+        ask: 'How long does that buffer take to refill after a stop, and is that fast enough?',
+        reveal: 'B makes 3,600 / 30 = 120 an hour, C 3,600 / 36 = 100 an hour. The buffer refills at 20 an hour, so 5 places take 5 / 20 = 0.25 hour: 15 minutes.\n\nWith stops every 20 minutes it is refilled just in time, with 5 minutes to spare. If stops start coming every 10 minutes, a bigger buffer does not help much, because it never gets full: then reduce the stops at B.',
+      },
+      said: 'What engineers say: “The buffer is there, but it never fills up again before the next stop.” That means the station in front of it has too little spare capacity.',
+      recall: [
+        {
+          q: 'A station after a buffer takes 40 seconds per product. The station before the buffer has stops of up to 4 minutes. How many places does the buffer need to keep the station after it fed?',
+          number: 6,
+          tolerance: 0.5,
+          unit: 'places',
+          why: '4 minutes = 240 seconds; 240 / 40 = 6 places.',
+        },
+        {
+          q: 'Upstream of a buffer makes 150 products an hour, downstream 120 an hour. How many minutes does it take to refill a buffer of 10 places?',
+          number: 20,
+          tolerance: 0.5,
+          unit: 'min',
+          why: 'It fills at 150 − 120 = 30 an hour; 10 / 30 = 1/3 hour = 20 minutes.',
+        },
+        {
+          q: 'Which buffer state best protects the bottleneck?',
+          options: ['Full in front of it and nearly empty after it', 'Empty in front of it and full after it', 'Both full', 'Both empty'],
+          answer: 'Full in front of it and nearly empty after it',
+          why: 'A full buffer in front keeps it from starving; room after it keeps it from being blocked.',
+        },
+        {
+          q: 'One station has breakdowns of about 2 hours. What do you do?',
+          options: ['Add a buffer that holds 2 hours of products', 'Attack the breakdowns, because a buffer cannot sensibly cover them', 'Slow the whole line down', 'Remove all buffers'],
+          answer: 'Attack the breakdowns, because a buffer cannot sensibly cover them',
+          why: 'Buffers are for short, frequent stops. Long breakdowns need repair and maintenance, not hours of stock.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of heating boilers the production manager wants to double every buffer on a 7-station line, “because we lose output on stops”. The bottleneck is the burner test.',
+        ask: 'What do you ask before agreeing?',
+        model: 'Where are the stops that cost output: before the burner test, after it, or at the test itself? A stop at the bottleneck is lost whatever the buffers. Do the stations in front of it have enough spare capacity to refill a bigger buffer? And can we see output against buffer size, because the first places help most and the rest mainly add stock?',
+        rubric: [
+          'Asks where the stops are relative to the bottleneck',
+          'Checks that there is spare capacity to refill a buffer',
+          'Asks for output against buffer size before adding places',
+        ],
+      },
+      sayIt: 'Explain to a production manager in 60 seconds why a bigger buffer does not help unless the station in front of it is faster.',
+      terms: [
+        { term: 'Blocked', def: 'A station that has finished a product but cannot pass it on, because the place after it is full.' },
+        { term: 'Starved', def: 'A station that is ready to work but gets no product from before it.' },
+        { term: 'Spare capacity', def: 'How much faster a station can run than the one after it; what refills a buffer after a stop.' },
+        { term: 'WIP', def: 'Work in progress: all products that are inside the line, in stations and buffers.' },
+      ],
+    },
+    {
+      id: 'eng.lines.simulation',
+      title: 'Line simulation, Little’s law and ramp-up',
+      pre: [
+        {
+          q: 'A line holds 60 products on average and makes 120 per hour. How long does one product spend in the line?',
+          options: ['2 hours', '30 minutes', '60 minutes', '12 minutes'],
+          answer: '30 minutes',
+          why: 'Lead time = products inside / output = 60 / 120 = 0.5 hour.',
+        },
+      ],
+      teach: [
+        'A spreadsheet with average cycle times and availabilities gives the capacity of a line if nothing interacts. Real lines interact: a stop here starves a station there, two stops overlap, one robot serves two stations. Averages then promise more than the line makes.\n\nDiscrete-event simulation models every product, stop and repair as an event in time, with its real spread. Tools such as Plant Simulation, FlexSim or Arena run months of production in minutes and show output, buffer levels and blocking per station.',
+        'Simulate when the decision is expensive and the line is coupled: a new line, buffer sizes over many stations, mixed variants, robots or AGVs (driverless carts) shared between stations. For one machine or a steady flow, a spreadsheet is enough.\n\nThe model is only as good as its stop data: MTBF, the mean time between failures, and MTTR, the mean time to repair, per station and with their spread. Ask where they come from: machine data from a similar line, or a supplier’s guess.',
+        'Trust the model only after it reproduces today. Run it on a past month of a similar line and compare its output with what that line really made; if it is far off, the stop data or the logic is wrong.\n\nLittle’s law is the quick sanity check: WIP = throughput × lead time. A line that makes 100 per hour with 50 products inside has a lead time of half an hour. Bigger buffers raise output a little and lead time a lot.',
+        'A new line does not start at its target. Ramp-up, the weeks to months from first part to full output, is planned as a curve with weekly targets for output and OEE (the share of the ideal output really made). The simulation gives the end point; the ramp-up curve says when the money comes in.\n\nCredible questions: “Which stop data did you use? Did you validate the model? Where does output flatten as you add buffer places? Which scenario breaks the line?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'An integrator presents a simulation of a new seven-station line: 112 products per hour against a target of 105. In the model each station stops for exactly 3 minutes every 2 hours. The buffers hold 4 products each, and the line holds about 40 products in total.\n\nStep 1, Little’s law: 40 / 112 = 0.36 hour, about 21 minutes in the line. That matches the planned lead time, so the logic looks sane.',
+        ask: 'What do you check next before you trust the 112?',
+        reveal: 'The stops. Real stops are not exactly 3 minutes every 2 hours: some last 30 seconds, some 20 minutes, and they cluster. Fixed stops make buffers look far more effective than they are.\n\nAsk for stop distributions from machine data of a similar line, a rerun, and a validation of the model against an existing line. If output then drops below 105, discuss buffers or the worst station before the order is placed, not during ramp-up.',
+      },
+      said: 'What engineers say: “Garbage in, garbage out: with average stop times every simulation looks great.” They mean the stop data decide the answer.',
+      recall: [
+        {
+          q: 'A line makes 90 products per hour and holds 45 products on average. What is the lead time, in minutes?',
+          number: 30,
+          tolerance: 0.5,
+          unit: 'min',
+          why: 'Lead time = WIP / throughput = 45 / 90 = 0.5 hour = 30 minutes.',
+        },
+        {
+          q: 'A line makes 120 products per hour and the target lead time is 20 minutes. How many products may the line hold on average?',
+          number: 40,
+          tolerance: 0.5,
+          unit: 'products',
+          why: 'WIP = throughput × lead time = 120 × 20/60 = 40 products.',
+        },
+        {
+          q: 'When is a discrete-event simulation most worth it?',
+          options: ['For one stand-alone machine', 'For a coupled line with buffers, shared robots and variants', 'To work out takt from customer demand', 'For a single manual workbench'],
+          answer: 'For a coupled line with buffers, shared robots and variants',
+          why: 'Simulation pays off where stops and stations interact, which averages cannot show.',
+        },
+        {
+          q: 'What is the first test of a simulation model?',
+          options: ['It reproduces the real output of a line over a past period', 'It runs fast', 'It shows a 3D animation', 'It reaches the target output'],
+          answer: 'It reproduces the real output of a line over a past period',
+          why: 'A model that cannot reproduce what happened cannot be trusted to predict what will.',
+        },
+      ],
+      situation: {
+        scene: 'At a supplier of car seats the operations director has a simulation from the integrator: the new line makes 8% more than needed. The investment decision is next week.',
+        ask: 'What do you ask about the simulation?',
+        model: 'Which stop data went in: real MTBF and MTTR with their spread from a similar line, or supplier averages? Has the model been checked against an existing line? What happens to output if stops last 50% longer? And which ramp-up curve is in the business case, because the 8% only counts at full speed.',
+        rubric: [
+          'Asks where the stop data come from and whether they have spread',
+          'Asks for validation against a real line',
+          'Asks for a stress scenario and the ramp-up curve',
+        ],
+      },
+      sayIt: 'Explain to an operations director in 60 seconds what a line simulation can and cannot tell him.',
+      terms: [
+        { term: 'Discrete-event simulation', def: 'A computer model that plays every product, stop and repair as an event in time, to predict a line’s output.' },
+        { term: 'MTBF', def: 'Mean time between failures: the average running time between two stops.' },
+        { term: 'MTTR', def: 'Mean time to repair: the average length of a stop.' },
+        { term: 'Little’s law', def: 'WIP = throughput × lead time; true for any stable line or queue.' },
+      ],
+    },
+    {
+      id: 'eng.lines.robotbasics',
+      title: 'What a robot is: axes, gripper and teach pendant',
+      pre: [
+        {
+          q: 'An industrial robot arm has six joints that each turn. What are those joints called?',
+          options: ['Axes', 'Stations', 'Grippers', 'Pallets'],
+          answer: 'Axes',
+          why: 'Each turning joint is an axis; six axes let the arm reach a point from almost any angle.',
+        },
+      ],
+      teach: [
+        'An industrial robot is an arm on a fixed base, bolted to the floor. Its joints each turn, driven by an electric servo motor, and each joint is called an axis. Most robots on a line have six: the base turns, the shoulder and elbow lift, and three wrist axes turn and tilt the hand.\n\nNext to it stands the controller: a cabinet with the computer and the drives that move the arm.',
+        'The robot does nothing useful until a tool is mounted on its wrist. For handling that is a gripper: two or three fingers that close on the part, usually driven by compressed air, or suction cups that hold a flat part by vacuum. For welding it is a welding torch; for gluing, a glue nozzle.\n\nThe same robot can load a machine today and weld tomorrow: the tool makes the job.',
+        'A robot program is a list of positions of one point: the tool centre point, or TCP, the working tip of the tool. For a gripper that is the point between the fingers; for a welding torch, the tip of the wire.\n\nIf the tool gets bent in a collision, the real tip moves and every position is off by the same amount. That is why a setter checks the TCP after a crash.',
+        'Positions are taught with the teach pendant: a heavy tablet on a cable with keys or a joystick, an emergency stop and an enabling switch on the back. The robot only moves while that switch is held in its middle position; let go or squeeze hard, and it stops.\n\nIn this manual mode the tool moves at most 250 mm per second. In automatic mode, with nobody inside the cell, the robot runs at full speed.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A setter must teach a new place position, 1.5 metres from where the robot now stands. In manual mode the tool moves at most 250 mm per second, the limit set by the robot safety standard ISO 10218-1.\n\nThe move takes at least 1,500 / 250 = 6 seconds, and in practice longer, because the setter jogs in small steps and checks the position by eye. In automatic mode the same move takes well under a second.\n\nThat is why teaching a new product can take hours, while the program then runs a cycle in seconds.',
+      },
+      said: 'What setters say: “Grab the pendant and touch up point 20, the TCP is a few millimetres off since the crash.” Touching up means correcting a taught position.',
+      recall: [
+        {
+          q: 'In manual mode the tool moves at most 250 mm per second. How many seconds does a move of 2 metres take at least?',
+          number: 8,
+          tolerance: 0.2,
+          unit: 's',
+          why: '2 metres = 2,000 mm; 2,000 / 250 = 8 seconds.',
+        },
+        {
+          q: 'What is the tool centre point (TCP)?',
+          options: ['The working tip of the tool, the point the program positions', 'The middle of the robot base', 'The controller cabinet', 'The emergency stop on the pendant'],
+          answer: 'The working tip of the tool, the point the program positions',
+          why: 'Every taught position is a position of the TCP.',
+        },
+        {
+          q: 'A setter lets go of the enabling switch on the teach pendant. What does the robot do?',
+          options: ['It keeps moving slowly', 'It stops', 'It returns to its start position', 'It switches to automatic mode'],
+          answer: 'It stops',
+          why: 'The robot only moves while the enabling switch is held in its middle position.',
+        },
+        {
+          q: 'The same robot model welds in one cell and loads a machine in another. What makes the difference?',
+          options: ['The number of axes', 'The tool on the wrist', 'The colour of the fence', 'The controller cabinet'],
+          answer: 'The tool on the wrist',
+          why: 'The tool, a gripper or a welding torch, decides the job.',
+        },
+      ],
+      situation: {
+        scene: 'On a gemba walk at a metal products company you stop at a robot cell that loads a lathe. The setter is inside the fence with the teach pendant, and the robot crawls towards the chuck.',
+        ask: 'What do you ask the setter?',
+        model: 'What are you teaching now, and why does it go so slowly? I understand it moves at reduced speed in manual mode, for your safety. How long does it take to teach a new product, and which points need touching up after a collision? That tells me what a new product costs in setup time.',
+        rubric: [
+          'Asks what is being taught and why it is slow',
+          'Links the low speed to manual mode and safety',
+          'Asks how long teaching a new product takes',
+        ],
+      },
+      sayIt: 'Explain to a colleague in 60 seconds what axes, a gripper, the TCP and the teach pendant are.',
+      terms: [
+        { term: 'Axis', def: 'One turning joint of a robot; most industrial robots have six.' },
+        { term: 'Gripper', def: 'The hand on the robot’s wrist that holds the part: fingers or suction cups.' },
+        { term: 'Tool centre point', def: 'The working tip of the tool, whose positions make up the robot program (TCP).' },
+        { term: 'Teach pendant', def: 'The handheld tablet on a cable used to move the robot and teach positions.' },
+        { term: 'Enabling switch', def: 'A three-position switch on the pendant; the robot only moves while it is held in the middle.' },
       ],
     },
     {
@@ -92,10 +366,8 @@ export default {
         'Industrial robots work behind guarding: fences with interlocked doors (opening one stops the robot), light curtains (beams that stop it when broken) or area scanners (a laser that slows or stops it when someone walks into a zone). Every cell needs a risk assessment, a written check of how it could hurt someone, and CE marking: the European declaration that it meets the safety rules.\n\n“Collaborative” describes the application, not the robot: a cobot holding a knife is not safe. Standards: ISO 10218-1 (robots) and -2 (cells).',
       ],
       example: {
-        kind: 'faded',
-        text: 'A team wants a robot to take 6 kg castings (metal parts made by pouring liquid metal into a mould) out of a machine. The integrator, the company that would build the whole cell, proposes a 10 kg robot.\n\nThe gripper with fingers and sensors weighs 4 kg, and because of the casting’s shape its weight sits 150 mm from the flange. The target cycle is 12 seconds; the datasheet says the motion takes 4 seconds.',
-        ask: 'What would you do next?',
-        reveal: 'Gripper plus part is 10 kg: 100% of the rating, with the load off-centre, so the robot will have to slow down or be overloaded. Ask for the payload diagram, and consider a 20 kg class robot or a lighter gripper.\n\nThen build the real cycle: 4 seconds of motion plus two gripper actions, the approach, slow placing and waiting for the machine door, often 7 to 9 seconds in all. Check that against the 12 seconds, and against the machine cycle the robot really has to keep up with.',
+        kind: 'worked',
+        text: 'A team wants a robot to take 6 kg castings (metal parts made by pouring liquid metal into a mould) out of a machine. The integrator, the company that would build the whole cell, proposes a 10 kg robot.\n\nThe gripper with fingers and sensors weighs 4 kg, and because of the casting’s shape its weight sits 150 mm from the flange. The target cycle is 12 seconds; the datasheet says the motion takes 4 seconds.\n\nCheck the weight first. Gripper plus part is 10 kg: 100% of the rating, with the load off-centre, so the robot will have to slow down or be overloaded. Ask for the payload diagram, and consider a 20 kg class robot or a lighter gripper.\n\nThen build the real cycle: 4 seconds of motion plus two gripper actions, the approach, slow placing and waiting for the machine door, often 7 to 9 seconds in all. Check that against the 12 seconds, and against the machine cycle the robot really has to keep up with.',
       },
       said: 'What engineers say: “The robot can do it on paper, but with that gripper you’re at the edge of the payload curve.” The payload curve shows how much weight is allowed at each distance from the wrist.',
       recall: [
@@ -146,6 +418,215 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.robotcell',
+      title: 'Designing a robot cell: cycle, feeding and safety distance',
+      pre: [
+        {
+          q: 'A light curtain stops a robot when a hand breaks its beams. Why can it not be mounted right next to the danger point?',
+          options: ['The robot needs time to stop, and the hand keeps moving meanwhile', 'Light curtains do not work close to metal', 'The fence would have to be higher', 'Light curtains are not allowed near robots'],
+          answer: 'The robot needs time to stop, and the hand keeps moving meanwhile',
+          why: 'The distance must be large enough that the robot stands still before the hand arrives.',
+        },
+      ],
+      teach: [
+        'A cell is designed around its cycle. List every move: pick, travel, place, gripper open and close, waiting for the machine door. Usually the machine, not the robot, sets the pace, so the question is how long the machine stands idle while the robot swaps parts.\n\nA double gripper, two grippers on one wrist, takes the finished part out and puts the new one in during a single visit. That can cut the machine’s idle time sharply.',
+        'Part feeding is often harder than the robot. The robot must find each part in a known position: in trays or drawers, on a conveyor with a stop, or from a vibratory bowl feeder that shakes small parts into one orientation. Loose parts in a box need a camera, which costs time and money.\n\nThe gripper is designed per part: finger shape, grip force, a sensor that confirms the part is held. Ask how many finger sets the range needs.',
+        'Guarding needs a safety distance. A person reaching through a light curtain keeps moving while the system reacts and the robot brakes. ISO 13855 gives the minimum: S = K × T + C.\n\nT is the total stopping time in seconds, from beam broken to robot standing still, measured. K is the approach speed of a hand: 2,000 mm per second. C adds a margin for fingers reaching through: 8 × (d − 14) mm, with d the beam spacing (resolution) of the curtain.',
+        'If S comes out above 500 mm, calculate again with K = 1,600 mm per second, but never below 500 mm. A 14 mm curtain has C = 0; a 30 mm curtain adds 128 mm.\n\nThe stopping time grows with speed and payload, so measure it on the real robot with its real gripper. Robot controllers also offer safety-rated zones that limit where the arm may go, which allows a smaller cell.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A robot loads and unloads a lathe whose cycle is 40 seconds. With a single gripper the robot opens the door, takes the finished part out, puts it on the outfeed, picks a raw part and loads it. The lathe stands idle for 20 seconds each time: 60 seconds in all, so the cell makes 3,600 / 60 = 60 parts per hour.\n\nWith a double gripper the robot arrives holding a raw part, swaps in one visit, and the lathe stands idle for 8 seconds.',
+        ask: 'What is the new cycle, and the output per hour?',
+        reveal: '40 + 8 = 48 seconds per part, so 3,600 / 48 = 75 parts per hour: 25% more from the same lathe.\n\nThe robot now does the outfeed and the next pick while the lathe cuts, so check that those moves fit in the 40 seconds. Then check the payload: two grippers plus a part on the flange weigh more than one gripper.',
+      },
+      said: 'What engineers say: “The robot is waiting on the door, so a faster robot buys you nothing. Put a double gripper on it.” A double gripper swaps the parts in one visit.',
+      recall: [
+        {
+          q: 'A light curtain has a resolution of 30 mm and the total stopping time is 0.15 s. What safety distance S does ISO 13855 give, in mm? Use K = 2,000 mm/s.',
+          number: 428,
+          tolerance: 2,
+          unit: 'mm',
+          why: 'C = 8 × (30 − 14) = 128 mm; S = 2,000 × 0.15 + 128 = 300 + 128 = 428 mm, below 500, so K = 2,000 stands.',
+        },
+        {
+          q: 'A machine cycle is 50 seconds, and the machine stands idle for 10 seconds per cycle while the robot swaps parts. How many parts per hour does the cell make?',
+          number: 60,
+          tolerance: 0.5,
+          unit: 'parts',
+          why: '50 + 10 = 60 seconds per part; 3,600 / 60 = 60 parts per hour.',
+        },
+        {
+          q: 'Why should the stopping time T be measured on the real cell?',
+          options: ['It grows with the robot’s speed and payload, including the gripper', 'Datasheet values are always 50% too short', 'The standard forbids datasheet values', 'Light curtains slow down with age'],
+          answer: 'It grows with the robot’s speed and payload, including the gripper',
+          why: 'A heavier, faster arm needs longer to brake, so the real set-up decides T.',
+        },
+        {
+          q: 'Small parts arrive loose in a box. What is the usual way to present them to a robot without a camera?',
+          options: ['A vibratory bowl feeder that orients them', 'A faster robot', 'A heavier gripper', 'A light curtain'],
+          answer: 'A vibratory bowl feeder that orients them',
+          why: 'The bowl feeder shakes the parts into one orientation, so the robot finds each in a known position.',
+        },
+      ],
+      situation: {
+        scene: 'At a machining company the plant manager shows a quotation for a robot cell that loads two CNC machines. The integrator promises 30% more output, but the drawing shows a single gripper and parts arriving loose in a box.',
+        ask: 'What do you ask the integrator?',
+        model: 'Can you break the cycle down: how long does each machine stand idle per part while the robot swaps? Would a double gripper cut that? How do the loose parts get into a known position? And which stopping time did you use for the safety distance, measured or from the datasheet?',
+        rubric: [
+          'Asks for the cycle breakdown and the machine idle time',
+          'Asks how the parts are presented in a known position',
+          'Asks about the safety distance and a measured stopping time',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds why the robot is often not what sets the pace of a robot cell.',
+      terms: [
+        { term: 'Double gripper', def: 'Two grippers on one wrist, so the robot can take out the finished part and load a new one in one visit.' },
+        { term: 'Vibratory bowl feeder', def: 'A bowl that shakes small parts up a spiral track so they come out in one orientation.' },
+        { term: 'Light curtain', def: 'A row of light beams that stops the machine when a hand or body breaks them.' },
+        { term: 'Safety distance', def: 'The minimum distance between a protective device and the danger point, from ISO 13855: S = K × T + C.' },
+        { term: 'Stopping time', def: 'The time from a protective device being triggered to the robot standing still.' },
+      ],
+    },
+    {
+      id: 'eng.lines.vision',
+      title: 'Vision, offline programming and when a cobot fits',
+      pre: [
+        {
+          q: 'A cobot works next to people without a fence. What usually limits its speed?',
+          options: ['The force and pressure it may exert on a person in a collision', 'The length of its cable', 'The speed of the conveyor', 'The size of the teach pendant'],
+          answer: 'The force and pressure it may exert on a person in a collision',
+          why: 'Contact is allowed only below limits per body region, and that usually means moving slowly.',
+        },
+      ],
+      teach: [
+        'Vision lets a robot handle parts that are not in a fixed position. A 2D camera above a conveyor finds flat parts and tells the robot where to pick, even while the belt moves. 3D vision looks into a box of loose parts and picks one: bin picking.\n\nBin picking sounds like the end of all feeding problems, but parts tangle, lie in corners or hide under others. Ask for the pick success rate and cycle measured on your own parts, including the last ones.',
+        'Offline programming means writing and testing the robot program in a 3D model of the cell on a PC, with software such as ABB RobotStudio or FANUC ROBOGUIDE, while the real cell keeps producing. It checks reach, collisions and cycle time before anything is built.\n\nThe real cell never matches the model exactly, so the setter still touches up key points on site. Done well, it cuts the time the cell stands still for a new product a lot.',
+        'Collaborative describes the application: people and robot share space. There are four ways: a monitored stop when someone enters; hand guiding; speed and separation monitoring, where a scanner slows the robot as people come closer; and power and force limiting, where contact is allowed but kept below limits per body region from ISO/TS 15066, now taken into ISO 10218-2:2025.\n\nStaying below those limits usually means slow moves and light, rounded tools.',
+        'A cobot fits light parts, moderate speed, frequent product changes and work beside a person: screwing, gluing, tending a machine on one or two shifts. It fits less when takt is short, loads are heavy or the tool is sharp; then an industrial robot with a fence or a scanner is cheaper per part.\n\nCredible questions: “Which collaborative mode do you use? What speed did the risk assessment allow? What is the cycle at that speed?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A packing station needs one box every 14 seconds (takt). An integrator proposes a cobot without guarding. At full speed the motion takes 6 seconds, and the rest of the cycle (gripping, placing, scanning the label) 4 seconds.\n\nAssume the risk assessment allows power and force limiting only at half speed here, because people pass within reach.\n\nStep 1: at half speed the motion takes 12 seconds, so the cycle is 12 + 4 = 16 seconds.',
+        ask: 'Does it meet takt, and what would you propose?',
+        reveal: 'No: 16 seconds against a takt of 14.\n\nTwo options. Speed and separation monitoring: a scanner lets the robot run at full speed, a 10-second cycle, while nobody is near, and slows it only when someone comes close. Or an industrial robot behind a fence, if people rarely need to be there. Ask how often people actually enter the zone; that decides which is cheaper.',
+      },
+      said: 'What engineers say: “A cobot is a robot with a speed limit. If you need the takt, scan the zone or fence it.”',
+      recall: [
+        {
+          q: 'A cobot’s motion takes 5 seconds at full speed and the rest of the cycle 3 seconds. The risk assessment allows only half speed. What is the cycle, in seconds?',
+          number: 13,
+          tolerance: 0.2,
+          unit: 's',
+          why: 'Half speed doubles the motion: 2 × 5 = 10 seconds; 10 + 3 = 13 seconds.',
+        },
+        {
+          q: 'Which collaborative mode slows the robot as a person comes closer?',
+          options: ['Speed and separation monitoring', 'Hand guiding', 'Power and force limiting', 'Offline programming'],
+          answer: 'Speed and separation monitoring',
+          why: 'A scanner measures the distance and the robot slows or stops as people approach.',
+        },
+        {
+          q: 'What should you ask before believing a bin-picking demo?',
+          options: ['The pick success rate and cycle on your own parts, including the last ones in the box', 'The camera brand', 'The number of robot axes', 'Whether it has a teach pendant'],
+          answer: 'The pick success rate and cycle on your own parts, including the last ones in the box',
+          why: 'Demos use friendly parts; tangled parts and the last ones in the corners decide the real result.',
+        },
+        {
+          q: 'What does offline programming mainly save?',
+          options: ['Most of the time the real cell stands still for programming', 'All touch-up work on site', 'The risk assessment', 'The gripper design'],
+          answer: 'Most of the time the real cell stands still for programming',
+          why: 'The program is built and tested on a PC while the cell produces; only touch-up remains on site.',
+        },
+      ],
+      situation: {
+        scene: 'At a food packaging company the operations manager wants a cobot to replace a manual packing step, “because they need no fence and they’re flexible”. The line runs three shifts at a takt of 10 seconds.',
+        ask: 'What do you ask?',
+        model: 'Which collaborative mode do you have in mind, and what speed will the risk assessment allow next to people? At that speed, does the cycle stay under 10 seconds? If not, a scanner that only slows the robot when someone is near, or a guarded industrial robot, may fit better. And how often does the product change, because that is where a cobot earns its keep.',
+        rubric: [
+          'Asks which collaborative mode and which speed is allowed',
+          'Checks the cycle at that speed against takt',
+          'Weighs a scanner or a guarded robot, and how often the product changes',
+        ],
+      },
+      sayIt: 'Explain to an operations manager in 60 seconds when a cobot is the right choice and when it is not.',
+      terms: [
+        { term: 'Vision', def: 'Cameras plus software that find, check or measure parts, so a robot can work with parts that are not in a fixed position.' },
+        { term: 'Bin picking', def: 'A robot picking loose, randomly lying parts from a box, guided by 3D vision.' },
+        { term: 'Offline programming', def: 'Writing and testing a robot program in a 3D model on a PC while the real cell keeps producing.' },
+        { term: 'Speed and separation monitoring', def: 'A collaborative mode where a scanner slows or stops the robot as a person comes closer.' },
+        { term: 'Power and force limiting', def: 'A collaborative mode where contact is allowed but force and pressure stay below limits per body region (ISO/TS 15066).' },
+      ],
+    },
+    {
+      id: 'eng.lines.errors',
+      title: 'Why people make mistakes, and poka-yoke',
+      pre: [
+        {
+          q: 'An experienced operator fits the wrong bracket on one product in a few thousand. What is the most likely cause?',
+          options: ['He does not care', 'Two brackets look almost the same and lie side by side', 'He needs weekly training', 'The line runs too slowly'],
+          answer: 'Two brackets look almost the same and lie side by side',
+          why: 'Most mistakes come from the situation: lookalike parts, interruptions, unclear signals, not from carelessness.',
+        },
+      ],
+      teach: [
+        'Everyone makes mistakes: you forget a step after an interruption, grab the part that looks almost the same, misread a number, fit a part upside down. On a line that repeats a task hundreds of times a day, even a tiny chance per product turns into faulty products every week, counted in ppm (parts per million).\n\nSo the question is not “who did it?” but “why could it happen?”. Blaming people makes them hide mistakes; fixing the process removes them.',
+        'Shigeo Shingo, the Japanese engineer behind much of the Toyota Production System, separated the mistake from the defect. A mistake is the human action: picking the wrong bracket. A defect is the faulty product that results. Mistakes will happen; defects need not, if the mistake is caught before the product moves on.\n\nHis answer was poka-yoke, Japanese for avoiding inadvertent errors: simple devices that make a mistake impossible or catch it at once.',
+        'Poka-yoke works at two strengths. A warning signals the mistake with a light or a buzzer, and the operator must react. A stop halts the process: the press does not close, the pallet does not move on.\n\nA stop is stronger, because a warning can be missed in a noisy hall or ignored after the hundredth false alarm. Use a warning only where a stop is impossible or the consequence is small.',
+        'Once you know it, you see poka-yoke everywhere. A plug that only fits one way. A part with a notch and a holder with a matching pin. Pick-to-light: a lamp lights up at the right bin, and a sensor checks that the operator’s hand went into that bin.\n\nAt home: a car that only starts with the brake pressed, or a diesel nozzle too wide for the filler neck of a petrol car.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A line builds two versions of a heater: one with a 6 mm bracket, one with an 8 mm bracket. The brackets look alike and lie in bins next to each other. About 1 in 5,000 heaters gets the wrong one: 1,000,000 / 5,000 = 200 ppm (parts per million).\n\nOption 1, a warning: a sign above the bins. Better than nothing, but people stop reading signs.\n\nOption 2, pick-to-light with a stop: the system knows which version comes next, lights the right bin, checks that the hand went in there, and holds the pallet if not. Option 2 attacks the cause, the mix-up between two lookalike parts.',
+      },
+      said: 'What engineers say: “Don’t retrain, poka-yoke it. If it can go wrong, sooner or later it will.”',
+      recall: [
+        {
+          q: 'One product in 2,500 leaves the line with a part fitted upside down. How many is that in ppm (parts per million)?',
+          number: 400,
+          tolerance: 1,
+          unit: 'ppm',
+          why: '1,000,000 / 2,500 = 400 ppm.',
+        },
+        {
+          q: 'What is the difference between a mistake and a defect?',
+          options: ['A mistake is the human action; a defect is the faulty product that results', 'They mean the same', 'A defect is always caused by a machine', 'A mistake is only found by the customer'],
+          answer: 'A mistake is the human action; a defect is the faulty product that results',
+          why: 'Shingo’s point: catch the mistake before it becomes a defect.',
+        },
+        {
+          q: 'Which of these is the strongest poka-yoke?',
+          options: ['A sign above the bin', 'A buzzer when the wrong part is picked', 'A press that will not close until the part sits right', 'A note in the work instruction'],
+          answer: 'A press that will not close until the part sits right',
+          why: 'It stops the process; the others only warn or inform.',
+        },
+        {
+          q: 'An operator fitted the wrong part. What is the best first question?',
+          options: ['Who did it?', 'Why could the mistake happen here?', 'How do we punish it?', 'Can we add an inspector?'],
+          answer: 'Why could the mistake happen here?',
+          why: 'The cause is usually in the process, so that is where the fix is.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of heating products the quality manager tells you: “Another complaint about a wrong bracket. I’m sending the operator back to training.”',
+        ask: 'What do you ask?',
+        model: 'Why could the wrong bracket be picked at all? Do the two brackets look alike, and do they lie next to each other? Training helps for a while, but after a few weeks the same mix-up comes back. Could we make it impossible, with a pin or a different hole pattern, or at least hold the pallet with pick-to-light when the wrong bin is used?',
+        rubric: [
+          'Asks why the mistake was possible instead of who made it',
+          'Notes that training alone does not stop repeat mistakes',
+          'Proposes a poka-yoke that stops the process, not only a warning',
+        ],
+      },
+      sayIt: 'Explain to a supervisor in 60 seconds the difference between a mistake and a defect, and what poka-yoke does.',
+      terms: [
+        { term: 'Mistake', def: 'The human action that goes wrong, such as picking the wrong part.' },
+        { term: 'Defect', def: 'A faulty product, the result of a mistake that was not caught.' },
+        { term: 'Poka-yoke', def: 'Error-proofing: making a mistake impossible, or catching it at once and stopping.' },
+        { term: 'Pick-to-light', def: 'A lamp at the right bin shows which part to take; a sensor checks the hand went there.' },
+        { term: 'ppm', def: 'Parts per million: how many products in a million are faulty.' },
+      ],
+    },
+    {
       id: 'eng.lines.pokayoke',
       title: 'Error-proofing with sensors and fixtures',
       pre: [
@@ -164,10 +645,8 @@ export default {
         'Watch false rejects: good parts that a check turns down. A camera that rejects 3% good parts makes operators angry, and soon someone finds the bypass key.\n\nEngineers argue about how tight to set a check: too loose lets defects through, too tight gives false rejects. Ask how often each check is bypassed and how often it gives false alarms; that tells you whether it really works.',
       ],
       example: {
-        kind: 'faded',
-        text: 'At one station, operators fasten 8 screws in a housing (the outer casing of the product) with a plain hand-held screwdriver. About 1 in 2,000 housings leaves with a missing screw. Final inspection catches about 85% of these.\n\nThe customer has complained three times this quarter, and the quality manager wants to add a second inspector.',
-        ask: 'What would you do next?',
-        reveal: 'A second inspector catches part of what the first misses, but still not everything, and costs money every shift.\n\nGo to the source: a torque-controlled screwdriver that counts the screws and checks torque and angle, linked to the PLC with an interlock, so the housing is only released when all 8 screws are OK. Show the screw order on a screen so the operator sees which screw is next. Then track bypasses and false alarms for the first weeks.',
+        kind: 'worked',
+        text: 'At one station, operators fasten 8 screws in a housing (the outer casing of the product) with a plain hand-held screwdriver. About 1 in 2,000 housings leaves with a missing screw. Final inspection catches about 85% of these.\n\nThe customer has complained three times this quarter, and the quality manager wants to add a second inspector.\n\nA second inspector catches part of what the first misses, but still not everything, and costs money every shift.\n\nGo to the source: a torque-controlled screwdriver that counts the screws and checks torque and angle, linked to the PLC with an interlock, so the housing is only released when all 8 screws are OK. Show the screw order on a screen so the operator sees which screw is next. Then track bypasses and false alarms for the first weeks.',
       },
       said: 'What engineers say: “Don’t add an inspector, interlock it. No eight OKs, no release.” Interlock it means: the machine will not let the part go until the check is OK.',
       recall: [
@@ -209,12 +688,152 @@ export default {
       },
       sayIt: 'Explain to a quality manager in 60 seconds why an interlocked sensor beats an extra inspector.',
       terms: [
-        { term: 'Poka-yoke', def: 'Error-proofing: making an error impossible, or detecting it at once and stopping.' },
         { term: 'Fixture', def: 'A holder that positions and clamps the part, so it can only go in one way.' },
         { term: 'Inductive sensor', def: 'A sensor that detects metal at a few millimetres without touching it.' },
+        { term: 'Photoelectric sensor', def: 'A sensor that sends a light beam and switches when something breaks or reflects it.' },
         { term: 'PLC', def: 'Programmable logic controller: the small industrial computer that runs a machine’s sequence.' },
         { term: 'Interlock', def: 'A rule in the PLC that blocks the next step until all checks are OK.' },
         { term: 'False reject', def: 'A good part turned down by a check.' },
+      ],
+    },
+    {
+      id: 'eng.lines.sensors',
+      title: 'Choosing and validating sensors for error-proofing',
+      pre: [
+        {
+          q: 'A sensor must check that a plastic clip is present on a steel bracket. Which sensor is the wrong choice?',
+          options: ['An inductive sensor', 'A camera', 'A photoelectric sensor that ignores the background', 'A small mechanical probe that touches the clip'],
+          answer: 'An inductive sensor',
+          why: 'An inductive sensor sees only metal: it sees the steel bracket and is blind to the plastic clip.',
+        },
+      ],
+      teach: [
+        'Start from the defect, not from the catalogue: what is physically different between a good and a bad product? Metal present or not, plastic present or not, a height, a colour, a force.\n\nAn inductive sensor sees only metal, within a few millimetres; its rated range is for steel and drops to roughly a third to a half for aluminium, brass or copper. A capacitive sensor also sees plastic, wood or liquid, even through a plastic wall, but it reacts to moisture and dirt too.',
+        'A photoelectric sensor works with light. Through-beam, with sender and receiver facing each other, is the most reliable. A diffuse sensor sees light reflected by the part itself; with background suppression it ignores anything beyond a set distance, so a shiny bracket behind the clip does not fool it.\n\nA camera checks presence, position, colour and codes in one picture, but needs steady lighting and a part in a known place. Lighting decides more than the camera.',
+        'For pressing and screwing, force-displacement monitoring records the force over the stroke and compares the curve with windows set from good parts. A missing bearing, a wrong part or a cracked housing each give a different curve. Screwing uses torque and angle the same way.\n\nThe press and the screwdriver then judge the joint itself, not just whether a part is there.',
+        'A sensor is not proven until it is validated. Build reference parts: good ones, and one bad part for each failure mode, including the borderline case, such as a clip half pushed in. Run each one many times, in different positions and with the line running, and record that every bad part is rejected and every good one accepted.\n\nOnly then does the check go into the control plan, the list of checks per process step.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A plastic clip must be present on a steel bracket. The team fits an inductive sensor aimed at the clip position. In the trial it reports “present” on every part, including parts without a clip.\n\nStep 1, why: the inductive sensor sees metal only. It does not see the plastic clip at all; it sees the steel bracket behind it, which is always there.',
+        ask: 'Which sensor would you choose, and how do you prove it works?',
+        reveal: 'Choose a sensor that sees the clip itself: a diffuse photoelectric sensor with background suppression set just in front of the bracket, or a camera if the clip must also sit at the right angle.\n\nThen validate with reference parts: 5 good, 5 without a clip and 5 with the clip half seated, each run several times. Accept the check only when all 10 bad parts are rejected every time and the 5 good ones pass.',
+      },
+      said: 'What engineers say: “That sensor isn’t checking the clip, it’s checking the bracket.” A sensor that always says OK is the most dangerous kind.',
+      recall: [
+        {
+          q: 'An inductive sensor has a rated sensing range of 8 mm on steel. Its datasheet gives a correction factor of 0.4 for brass. What is its range on a brass part, in mm?',
+          number: 3.2,
+          tolerance: 0.1,
+          unit: 'mm',
+          why: '8 × 0.4 = 3.2 mm.',
+        },
+        {
+          q: 'Which sensor can detect a liquid through the wall of a plastic bottle?',
+          options: ['An inductive sensor', 'A capacitive sensor', 'A mechanical limit switch', 'A torque sensor'],
+          answer: 'A capacitive sensor',
+          why: 'A capacitive sensor reacts to non-metals too, also through a plastic wall.',
+        },
+        {
+          q: 'What does force-displacement monitoring on a press add over a presence sensor?',
+          options: ['It judges the joint itself from the force curve over the stroke', 'It is cheaper', 'It works without a PLC', 'It replaces the fixture'],
+          answer: 'It judges the joint itself from the force curve over the stroke',
+          why: 'A wrong, missing or cracked part changes the curve, even when a part is present.',
+        },
+        {
+          q: 'Which set of reference parts validates a clip check properly?',
+          options: ['Only good parts', 'Good parts, parts without a clip and parts with a half-seated clip', 'One bad part, run once', 'The first 100 production parts'],
+          answer: 'Good parts, parts without a clip and parts with a half-seated clip',
+          why: 'You must prove that every failure mode, including the borderline one, is rejected, and that good parts pass.',
+        },
+      ],
+      situation: {
+        scene: 'At an automotive supplier the engineer calls a new camera check for a connector “finished”: it passed the first 200 production parts.',
+        ask: 'What do you ask?',
+        model: 'How many of those 200 were bad? If none, we only know it accepts good parts. Did you test reference parts for each failure mode, including a connector that is half plugged in, many times and in different positions? And what happens to the lighting when the hall door opens in the afternoon?',
+        rubric: [
+          'Notes that good parts alone do not prove a check',
+          'Asks for reference parts per failure mode, including borderline cases',
+          'Asks about conditions that change, such as lighting',
+        ],
+      },
+      sayIt: 'Explain to a quality engineer in 60 seconds how you choose a sensor for an error-proofing check and how you prove it works.',
+      terms: [
+        { term: 'Capacitive sensor', def: 'A sensor that detects almost any material, also plastic or liquid, by its effect on an electric field.' },
+        { term: 'Background suppression', def: 'A setting of a diffuse light sensor that ignores everything beyond a set distance.' },
+        { term: 'Force-displacement monitoring', def: 'Recording the force over the stroke of a press and checking the curve against windows from good parts.' },
+        { term: 'Reference part', def: 'A known good or known bad part used to prove that a check accepts and rejects correctly.' },
+      ],
+    },
+    {
+      id: 'eng.lines.detection',
+      title: 'Error-proofing as a strategy: PFMEA, escapes and daily checks',
+      pre: [
+        {
+          q: 'A process makes 1,000 defective parts per million. An automatic check catches 99.9% of them. How many defective parts per million reach the customer?',
+          options: ['1', '10', '0.1', '100'],
+          answer: '1',
+          why: '0.1% is missed: 1,000 × 0.001 = 1 ppm.',
+        },
+      ],
+      teach: [
+        'A plant has dozens of possible mistakes and money for a few poka-yokes. The PFMEA, the process failure mode and effects analysis, decides where. Each failure mode is scored 1 to 10 for severity, occurrence and detection. Since the AIAG-VDA handbook of 2019, an action priority table (high, medium, low) replaces the old product of the three, the RPN.\n\nSeverity comes first: a safety or legal failure needs prevention or automatic detection, however rare it is.',
+        'Detection is scored backwards: 10 means nothing will find it; low numbers mean a proven automatic check that stops the product. A visual check by people scores high; a validated sensor with an interlock scores low. Prevention, which removes the cause, lowers the occurrence score instead.\n\nThe order of preference: make the mistake impossible; detect it at the station and stop; detect it later; inspect last.',
+        'Measure the result in escapes: defects that reach the customer, in ppm. Escapes = defects made × share missed. 1,000 ppm made with 99.9% caught gives 1 ppm out; with 85% caught by eye, 150 ppm.\n\nA check only counts while it still works. A red rabbit is a known bad reference part, often painted red, run through the check at the start of every shift. If the check accepts it, the check has failed.',
+        'Then the reaction plan starts: stop, repair the check and verify it again, and contain everything made since the last successful check, because none of it was really checked. IATF 16949, the automotive quality standard, requires such a plan for error-proofing devices.\n\nQuestions for a quality engineer: “Which failure modes have poka-yoke? When were they last verified, with what result? How often are they bypassed?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A press-fit station checks with force-displacement monitoring that a bearing is fully seated. A red rabbit, a part with a missing bearing, is run at the start of each 8-hour shift. The line makes 60 parts per hour.\n\nAt the 14:00 check the station accepts the red rabbit. The 06:00 check was fine.\n\nStep 1: every part since 06:00 is suspect: 8 hours × 60 = 480 parts.',
+        ask: 'What do you do with those parts, and with the check?',
+        reveal: 'Quarantine the 480 parts, including any in the warehouse or on the way to the customer, and check them another way, for example by measuring the press-in depth. Repair the monitoring, run the red rabbit again and release the station only when it is rejected. Then find out why it failed.\n\nFor a safety-critical feature, ask whether once per shift is often enough: the check interval is also the size of every recall.',
+      },
+      said: 'What quality engineers say: “Did the red rabbit run this morning?” If nobody knows, the poka-yoke may not be checking anything.',
+      recall: [
+        {
+          q: 'A process makes 2,000 defective parts per million. An automatic check catches 99.5% of them. How many reach the customer, in ppm?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'ppm',
+          why: '0.5% is missed: 2,000 × 0.005 = 10 ppm.',
+        },
+        {
+          q: 'A check is verified at the start of every 8-hour shift and the line makes 45 parts per hour. One verification fails. How many parts are suspect at most?',
+          number: 360,
+          tolerance: 1,
+          unit: 'parts',
+          why: 'Everything since the last good check: 8 × 45 = 360 parts.',
+        },
+        {
+          q: 'In the AIAG-VDA PFMEA, what replaced the RPN?',
+          options: ['Action priority', 'Cpk', 'OEE', 'Takt'],
+          answer: 'Action priority',
+          why: 'A table of severity, occurrence and detection gives high, medium or low priority, with severity weighted most.',
+        },
+        {
+          q: 'What is a red rabbit?',
+          options: ['A known bad part used to prove a check still rejects', 'A robot that runs too fast', 'A part made during ramp-up', 'A defect found by the customer'],
+          answer: 'A known bad part used to prove a check still rejects',
+          why: 'It is run through the check every shift; if it passes, the check has failed.',
+        },
+      ],
+      situation: {
+        scene: 'At an automotive supplier you join the weekly quality meeting. A customer found a part with a missing clip, although the station has a camera check. Nobody can say when the check was last verified.',
+        ask: 'What do you ask?',
+        model: 'Is there a red rabbit for this check, and is it run every shift and recorded? If the check failed, which parts since the last good verification are at risk, and are they contained? And what does the PFMEA say about this failure mode: is detection scored as if the check always works?',
+        rubric: [
+          'Asks whether and how often the check is verified with a known bad part',
+          'Asks for containment back to the last good verification',
+          'Links the PFMEA detection score to whether the check is verified',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds why a poka-yoke must be verified every shift, and what happens when it fails.',
+      terms: [
+        { term: 'PFMEA', def: 'Process failure mode and effects analysis: scoring what can go wrong in each process step, to decide where to act.' },
+        { term: 'Action priority', def: 'The AIAG-VDA table that turns severity, occurrence and detection into high, medium or low priority.' },
+        { term: 'Escape', def: 'A defect that slips past every check and reaches the customer.' },
+        { term: 'Red rabbit', def: 'A known bad part, often painted red, run through a check each shift to prove it still rejects.' },
+        { term: 'Reaction plan', def: 'What to do when a check fails: stop, repair, verify, and contain everything since the last good check.' },
       ],
     },
     {
@@ -356,8 +975,6 @@ export default {
       terms: [
         { term: 'OEE', def: 'Overall equipment effectiveness: availability × performance × quality, the share of the ideal output really made.' },
         { term: 'Micro-stop', def: 'A short stop of seconds to a few minutes, usually not written down.' },
-        { term: 'Starved', def: 'A station waiting for parts from upstream.' },
-        { term: 'Blocked', def: 'A station that cannot pass its part downstream because it is full there.' },
         { term: 'Machine states', def: 'PLC data showing, over time, whether a station is running, faulted, starved or blocked.' },
         { term: 'Hidden bottleneck', def: 'The station that really limits the line: running most, rarely waiting, often not the slowest on paper.' },
       ],

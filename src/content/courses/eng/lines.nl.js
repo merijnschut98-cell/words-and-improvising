@@ -1,6 +1,76 @@
-// eng.lines (NL): Lijnen en automatisering: layout en buffers, robots, poka-yoke, mixed-model lijnen, OEE van geautomatiseerde lijnen, de businesscase.
+// eng.lines (NL): Lijnen en automatisering, in topics met vier niveaus: lijnontwerp, robots, foutvrij maken (geschreven), daarna mixed-model lijnen, OEE van geautomatiseerde lijnen en de businesscase.
 export default {
   lessons: [
+    {
+      id: 'eng.lines.linebasics',
+      title: 'Een lijn lezen: stations, cyclustijd en transport',
+      pre: [
+        {
+          q: 'Een assemblagelijn levert elke 45 seconden een product af. Hoeveel producten is dat per uur?',
+          options: ['45', '60', '80', '100'],
+          answer: '80',
+          why: 'Een uur heeft 3.600 seconden; 3.600 / 45 = 80 producten.',
+        },
+      ],
+      teach: [
+        'Een assemblagelijn (assembly line) is een rij stations: werkplekken waar één vast deel van het werk gebeurt, zoals een afdichting plaatsen of vier schroeven aandraaien. Het product gaat van station naar station en is aan het eind af.\n\nLoop je langs een lijn, volg dan één product van begin tot eind. Tel de stations, en vraag bij elk: wat komt hier bij, en doet een mens dat of een machine?',
+        'De cyclustijd van een station is de tijd die het nodig heeft voor één product, van beginnen tot klaar zijn voor het volgende. Meet hem met een stopwatch over tien producten en neem de gewone waarde.\n\nHet station met de langste cyclustijd is de bottleneck: de hele lijn kan niet sneller dan dat station. Een lijn met stations van 30, 40 en 35 seconden maakt elke 40 seconden een product.',
+        'Takt is de andere kant: de tijd die je per product hebt om de klantvraag te halen. 480 minuten werktijd voor 960 producten geeft 28.800 / 960 = 30 seconden. Elke cyclustijd moet onder de takt blijven, anders loopt de lijn achter.\n\nTransport schuift het product door: met de hand, over een rollenbaan, op een transportband (een bewegende band of ketting), of op pallets: platte dragers die over de band rijden en het product vasthouden.',
+        'Stations zijn handmatig (een mens met handgereedschap), halfautomatisch (een mens legt in, een machine zoals een pers of schroefunit doet het werk) of volautomatisch (een robot of machine doet alles).\n\nAutomatische stations herken je aan afscherming, hekken of lichtschermen, en aan een signaalzuil: de lampenpaal die groen laat zien bij draaien, geel bij wachten en rood bij een storing.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Je loopt langs een lijn die waterpompen monteert. Ga ervan uit dat de klant 420 pompen per dienst nodig heeft, en dat een dienst na de pauzes 7 uur werktijd heeft.\n\nTakt: 7 × 3.600 = 25.200 seconden / 420 = 60 seconden per pomp. Je klokt de vier stations: huis 50 seconden (handmatig), waaier 55 seconden (halfautomatische pers), deksel 65 seconden (handmatig, 6 schroeven), test 45 seconden (automatisch).\n\nHet dekselstation is met 65 seconden de bottleneck, en zit boven de takt. De lijn maakt 25.200 / 65 = 387 pompen per dienst, 33 te weinig. Daar kijk je dus als eerste.',
+      },
+      said: 'Wat operators zeggen: “Het dekselstation trekt het niet, elke ochtend staan de pallets ervoor opgestapeld.” Producten die zich voor een station ophopen, zijn het eerste teken van een bottleneck.',
+      recall: [
+        {
+          q: 'Een dienst heeft 450 minuten werktijd en de klant wil 900 producten per dienst. Wat is de takt, in seconden?',
+          number: 30,
+          tolerance: 0.5,
+          unit: 's',
+          why: '450 × 60 = 27.000 seconden; 27.000 / 900 = 30 seconden per product.',
+        },
+        {
+          q: 'Een lijn heeft stations met cyclustijden van 38, 52, 45 en 40 seconden. Welk station bepaalt de output van de lijn?',
+          options: ['Het station van 38 seconden', 'Het station van 52 seconden', 'Het station van 45 seconden', 'Altijd het laatste station'],
+          answer: 'Het station van 52 seconden',
+          why: 'Het langzaamste station is de bottleneck; de lijn maakt hooguit elke 52 seconden een product.',
+        },
+        {
+          q: 'Het langzaamste station van een lijn doet 40 seconden per product. Hoeveel producten per uur kan de lijn maximaal maken?',
+          number: 90,
+          tolerance: 0.5,
+          unit: 'producten',
+          why: '3.600 / 40 = 90 producten per uur.',
+        },
+        {
+          q: 'Een operator legt een onderdeel in en drukt op twee knoppen, daarna doet een pers het werk. Wat voor station is dit?',
+          options: ['Handmatig', 'Halfautomatisch', 'Volautomatisch', 'Een buffer'],
+          answer: 'Halfautomatisch',
+          why: 'Een mens legt in en start, een machine doet het werk.',
+        },
+      ],
+      situation: {
+        scene: 'Je eerste gemba walk (de vloer op om het werk te zien) bij een maker van tuinpompen. De productiemanager zegt: “De lijn moet 420 per dienst maken, maar we komen nooit boven de 390.”',
+        ask: 'Wat vraag je als eerste?',
+        model: 'Wat is de cyclustijd van elk station, gemeten op de vloer, en welke is de langste? Als één station 65 seconden doet tegen een takt van 60, dan bepaalt dat station de output en kan de rest van de lijn alleen maar wachten. Is het handwerk of automatisch, en waar stapelen de pallets zich op?',
+        rubric: [
+          'Vraagt naar de gemeten cyclustijd per station',
+          'Legt het langzaamste station naast de takt',
+          'Gebruikt de plek waar producten zich ophopen als aanwijzing voor de bottleneck',
+        ],
+      },
+      sayIt: 'Leg een nieuwe collega in 60 seconden uit wat station, cyclustijd, takt en bottleneck betekenen op een assemblagelijn.',
+      terms: [
+        { term: 'Station', def: 'Een werkplek op een lijn waar één vast deel van het werk gebeurt.' },
+        { term: 'Cyclustijd', def: 'De tijd die een station nodig heeft voor één product, van beginnen tot klaar zijn voor het volgende.' },
+        { term: 'Takt', def: 'De tijd die je per product hebt om de klantvraag te halen, bijvoorbeeld 60 seconden als er 60 per uur nodig zijn.' },
+        { term: 'Bottleneck', def: 'Het langzaamste station, dat de output van de hele lijn bepaalt.' },
+        { term: 'Transportband', def: 'Een bewegende band of ketting die producten of pallets van station naar station brengt.' },
+        { term: 'Signaalzuil', def: 'De lampenpaal op een machine: groen draait, geel wacht, rood storing.' },
+      ],
+    },
     {
       id: 'eng.lines.layout',
       title: 'Lijntypes, buffers en inspectie',
@@ -20,10 +90,8 @@ export default {
         'Een star gekoppelde lijn heeft stations zonder buffers ertussen. Op de vloer zie je dan één signaalzuil (de paal met gekleurde lampen op een machine) rood worden en de rest geel: wachten.\n\nVraag: “wat gebeurt hier als het station ernaast stilvalt?” Is het antwoord “dan staat alles stil”, dan vermenigvuldigen de beschikbaarheden (het deel van de tijd dat een station kan draaien) zich: acht stations van 95% geven zo’n 66% voor de lijn. Productie wil grote buffers voor output; verbeteraars willen kleine, zodat problemen zichtbaar worden.',
       ],
       example: {
-        kind: 'faded',
-        text: 'Een vrije assemblagelijn heeft vier stations van elk zo’n 40 seconden per product. Station 3 is een inpers-unit: een kleine pers die een lager (een metalen ring waarin een as soepel draait) strak in een behuizing drukt.\n\nHij loopt een paar keer per dienst vast, telkens zo’n 4 minuten. Tussen de stations is plek voor 1 product. Loopt station 3 vast, dan staan station 1 en 2 binnen een minuut of twee stil en staat station 4 te wachten. Het team wil station 1 en 2 sneller maken.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Station 1 en 2 versnellen helpt niks: ze zijn blocked, ze kunnen hun product niet kwijt aan station 3.\n\nEerst buffers rond station 3: een stop van 4 minuten bij 40 seconden is 240 / 40 = 6 producten, dus plek voor zo’n 6 ervoor en 6 erna houdt de rest draaiende tijdens een gewone storing. Pak daarna de storingen zelf aan, want buffers vangen stops op, ze halen ze niet weg. En check of station 3 ook het langzaamst is, want dan heeft het de meeste bescherming nodig.',
+        kind: 'worked',
+        text: 'Een vrije assemblagelijn heeft vier stations van elk zo’n 40 seconden per product. Station 3 is een inpers-unit: een kleine pers die een lager (een metalen ring waarin een as soepel draait) strak in een behuizing drukt.\n\nHij loopt een paar keer per dienst vast, telkens zo’n 4 minuten. Tussen de stations is plek voor 1 product. Loopt station 3 vast, dan staan station 1 en 2 binnen een minuut of twee stil en staat station 4 te wachten. Het team wil station 1 en 2 sneller maken.\n\nDat helpt niks: ze zijn blocked, ze kunnen hun product niet kwijt aan station 3.\n\nEerst buffers rond station 3: een stop van 4 minuten bij 40 seconden is 240 / 40 = 6 producten, dus plek voor zo’n 6 ervoor en 6 erna houdt de rest draaiende tijdens een gewone storing. Pak daarna de storingen zelf aan, want buffers vangen stops op, ze halen ze niet weg. En check of station 3 ook het langzaamst is, want dan heeft het de meeste bescherming nodig.',
       },
       said: 'Wat engineers zeggen: “Hij is star gekoppeld, er zit geen buffer in. Elk hikje bij de pers legt de hele lijn plat.” Star gekoppeld betekent: geen plek voor producten tussen de stations.',
       recall: [
@@ -65,12 +133,218 @@ export default {
       },
       sayIt: 'Leg een projectmanager in 60 seconden uit waarom een paar goed geplaatste buffers de output van een lijn kunnen verhogen.',
       terms: [
-        { term: 'Takt', def: 'De tijd die je per product hebt om de klantvraag te halen, bijvoorbeeld 60 seconden als er 60 per uur nodig zijn.' },
         { term: 'Getakte lijn', def: 'Een lijn die op één vast ritme loopt; elk station moet binnen de takt klaar zijn.' },
         { term: 'Cel', def: 'Een compacte groep machines, vaak in een U, met een paar operators die met het werk meelopen.' },
         { term: 'Buffer', def: 'Een kleine wachtrij van producten tussen stations, zodat één stop de rest niet meteen stillegt.' },
         { term: 'Star gekoppeld', def: 'Stations zonder buffers ertussen, zodat één stop alles stillegt.' },
-        { term: 'Bottleneck', def: 'Het langzaamste station, dat de output van de hele lijn bepaalt.' },
+      ],
+    },
+    {
+      id: 'eng.lines.buffers',
+      title: 'Buffers dimensioneren: blocked, starved en bijvullen',
+      pre: [
+        {
+          q: 'Twee stations zijn verbonden door een buffer met plek voor 10 producten. Beide doen precies 30 seconden per product. Na een stop van het tweede station is de buffer vol. Wat gebeurt er daarna met de buffer?',
+          options: ['Die loopt binnen een minuut vanzelf weer leeg', 'Die blijft vol, want het eerste station is niet sneller dan het tweede', 'Die loopt over', 'Het tweede station versnelt om hem leeg te maken'],
+          answer: 'Die blijft vol, want het eerste station is niet sneller dan het tweede',
+          why: 'Een buffer loopt alleen vol of leeg als de ene kant sneller draait dan de andere. Bij gelijke snelheid houdt hij het niveau dat de laatste stop achterliet.',
+        },
+      ],
+      teach: [
+        'Twee woorden beschrijven elke stop op een lijn. Een station is blocked als het een product af heeft maar het niet kwijt kan, omdat de plek erna vol is. Het is starved als het klaar is om te werken maar er niks aankomt.\n\nValt station 3 stil, dan raken station 1 en 2 al snel blocked en station 4 starved. Een buffer ontkoppelt (decouples) twee stations: elk kan even doorwerken als de ander stilstaat.',
+        'De grootte volgt uit de stop die je wilt overbruggen: stopduur gedeeld door de cyclustijd van het station dat doorwerkt. Een stop van 4 minuten bij een cyclus van 30 seconden vraagt 240 / 30 = 8 plekken.\n\nReken niet op de langste storing. Gebruikelijk is een stopduur waar de meeste stops onder blijven, zeg 80 tot 90% ervan, uit de machinedata. Een storing van twee uur vraagt om een reparatie, niet om een buffer van 240 stuks.',
+        'Een buffer werkt alleen als hij weer vol kan lopen. Na een stop moet het station ervoor sneller draaien dan het station erna, anders herstelt de buffer nooit. Dat verschil in output is de overcapaciteit.\n\nVoorbeeld: stroomopwaarts op 25 seconden maakt 144 per uur, stroomafwaarts op 30 seconden 120 per uur. De buffer loopt vol met 24 per uur, dus 12 plekken kosten een half uur. Een tweede stop binnen dat half uur wordt niet helemaal opgevangen.',
+        'Bescherm eerst de bottleneck. Elke minuut dat die stilstaat, is verloren voor de hele lijn. Houd de buffer ervoor dus vol (tegen starved) en de buffer erna bijna leeg (tegen blocked). Een stop van de bottleneck zelf is verloren, wat je ook aan buffers hebt.\n\nDe eerste plekken van een buffer leveren het meest op; elke extra plek geeft minder output maar evenveel vloerruimte en onderhanden werk (WIP, de producten die in de lijn zitten).',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een lijn voor tandwielkasten heeft een pers, station B, op 30 seconden per product, met korte stops: de meeste duren minder dan 3 minuten en ze komen ongeveer elke 20 minuten. Station C erna is de bottleneck, een lektester op 36 seconden.\n\nStap 1, grootte: om C door een stop van 3 minuten van B heen te helpen, moet de buffer 180 / 36 = 5 producten bevatten, en vol zijn als B stopt.',
+        ask: 'Hoe lang duurt het voordat die buffer na een stop weer vol is, en is dat snel genoeg?',
+        reveal: 'B maakt 3.600 / 30 = 120 per uur, C 3.600 / 36 = 100 per uur. De buffer loopt vol met 20 per uur, dus 5 plekken kosten 5 / 20 = 0,25 uur: 15 minuten.\n\nMet een stop elke 20 minuten is hij net op tijd weer vol, met 5 minuten over. Komen de stops elke 10 minuten, dan helpt een grotere buffer weinig, want die raakt nooit vol: pak dan de stops bij B aan.',
+      },
+      said: 'Wat engineers zeggen: “De buffer is er wel, maar hij loopt nooit meer vol voor de volgende stop.” Dan heeft het station ervoor te weinig overcapaciteit.',
+      recall: [
+        {
+          q: 'Een station na een buffer doet 40 seconden per product. Het station vóór de buffer heeft stops tot 4 minuten. Hoeveel plekken heeft de buffer nodig om het station erna aan het werk te houden?',
+          number: 6,
+          tolerance: 0.5,
+          unit: 'plekken',
+          why: '4 minuten = 240 seconden; 240 / 40 = 6 plekken.',
+        },
+        {
+          q: 'Vóór een buffer worden 150 producten per uur gemaakt, erna 120 per uur. Hoeveel minuten duurt het om een buffer van 10 plekken weer te vullen?',
+          number: 20,
+          tolerance: 0.5,
+          unit: 'min',
+          why: 'Hij loopt vol met 150 − 120 = 30 per uur; 10 / 30 = 1/3 uur = 20 minuten.',
+        },
+        {
+          q: 'Bij welke stand van de buffers is de bottleneck het best beschermd?',
+          options: ['Vol ervoor en bijna leeg erna', 'Leeg ervoor en vol erna', 'Allebei vol', 'Allebei leeg'],
+          answer: 'Vol ervoor en bijna leeg erna',
+          why: 'Een volle buffer ervoor voorkomt starved; ruimte erna voorkomt blocked.',
+        },
+        {
+          q: 'Eén station heeft storingen van zo’n 2 uur. Wat doe je?',
+          options: ['Een buffer neerzetten voor 2 uur aan producten', 'De storingen aanpakken, want een buffer kan die niet zinnig opvangen', 'De hele lijn langzamer zetten', 'Alle buffers weghalen'],
+          answer: 'De storingen aanpakken, want een buffer kan die niet zinnig opvangen',
+          why: 'Buffers zijn voor korte, vaak voorkomende stops. Lange storingen vragen om reparatie en onderhoud, niet om uren voorraad.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een maker van cv-ketels wil de productiemanager elke buffer op een lijn van 7 stations verdubbelen, “want we verliezen output op stops”. De bottleneck is de branderstest.',
+        ask: 'Wat vraag je voordat je ja zegt?',
+        model: 'Waar zitten de stops die output kosten: vóór de branderstest, erna, of bij de test zelf? Een stop van de bottleneck is verloren, wat je ook aan buffers hebt. Hebben de stations ervoor genoeg overcapaciteit om een grotere buffer weer te vullen? En kunnen we de output naast de buffergrootte zien, want de eerste plekken helpen het meest en de rest geeft vooral voorraad?',
+        rubric: [
+          'Vraagt waar de stops zitten ten opzichte van de bottleneck',
+          'Checkt of er overcapaciteit is om een buffer weer te vullen',
+          'Vraagt naar output tegen buffergrootte voordat er plekken bij komen',
+        ],
+      },
+      sayIt: 'Leg een productiemanager in 60 seconden uit waarom een grotere buffer niet helpt als het station ervoor niet sneller is.',
+      terms: [
+        { term: 'Blocked', def: 'Een station dat een product af heeft maar het niet kwijt kan, omdat de plek erna vol is.' },
+        { term: 'Starved', def: 'Een station dat klaar is om te werken maar geen product krijgt van ervoor.' },
+        { term: 'Overcapaciteit', def: 'Hoeveel sneller een station kan dan het station erna; daarmee loopt een buffer na een stop weer vol.' },
+        { term: 'Onderhanden werk', def: 'Alle producten die in de lijn zitten, in stations en buffers (WIP).' },
+      ],
+    },
+    {
+      id: 'eng.lines.simulation',
+      title: 'Lijnsimulatie, de wet van Little en opstarten',
+      pre: [
+        {
+          q: 'Een lijn bevat gemiddeld 60 producten en maakt er 120 per uur. Hoe lang zit één product in de lijn?',
+          options: ['2 uur', '30 minuten', '60 minuten', '12 minuten'],
+          answer: '30 minuten',
+          why: 'Doorlooptijd = producten in de lijn / output = 60 / 120 = 0,5 uur.',
+        },
+      ],
+      teach: [
+        'Een spreadsheet met gemiddelde cyclustijden en beschikbaarheden geeft de capaciteit van een lijn als niks elkaar beïnvloedt. Echte lijnen beïnvloeden elkaar wel: een stop hier laat daar een station droogvallen, twee stops overlappen, één robot bedient twee stations. Gemiddelden beloven dan meer dan de lijn maakt.\n\nDiscrete-eventsimulatie speelt elk product, elke stop en elke reparatie af als gebeurtenis in de tijd, met de echte spreiding. Pakketten als Plant Simulation, FlexSim of Arena draaien maanden productie in minuten.',
+        'Simuleer als de beslissing duur is en de lijn gekoppeld: een nieuwe lijn, buffers over veel stations, gemengde varianten, robots of AGV’s (zelfrijdende karren) die stations delen. Voor één machine of een gelijkmatige stroom volstaat een spreadsheet.\n\nHet model is zo goed als de stopdata: MTBF, de gemiddelde tijd tussen storingen, en MTTR, de gemiddelde reparatietijd, per station en met spreiding. Vraag waar ze vandaan komen: machinedata van een vergelijkbare lijn, of een gok van de leverancier.',
+        'Vertrouw het model pas als het het heden nabootst (validatie). Draai het op een afgelopen maand van een vergelijkbare lijn en vergelijk de output met wat die lijn echt maakte; zit het er ver naast, dan kloppen de stopdata of de logica niet.\n\nDe wet van Little is de snelle check: onderhanden werk = output × doorlooptijd. Een lijn die 100 per uur maakt met 50 producten erin, heeft een doorlooptijd van een half uur. Grotere buffers geven iets meer output en veel meer doorlooptijd.',
+        'Een nieuwe lijn start niet op zijn doel. De opstartfase (ramp-up), weken tot maanden van eerste product tot volle output, plan je als een curve met weekdoelen voor output en OEE (het deel van de ideale output dat je echt haalt). De simulatie geeft het eindpunt; de opstartcurve zegt wanneer het geld binnenkomt.\n\nGeloofwaardige vragen: “Welke stopdata hebben jullie gebruikt? Is het model gevalideerd? Waar vlakt de output af bij meer bufferplekken? Bij welk scenario gaat de lijn onderuit?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een integrator laat een simulatie zien van een nieuwe lijn met zeven stations: 112 producten per uur tegen een doel van 105. In het model stopt elk station precies 3 minuten per 2 uur. De buffers hebben elk 4 plekken, en er zitten zo’n 40 producten in de lijn.\n\nStap 1, de wet van Little: 40 / 112 = 0,36 uur, zo’n 21 minuten in de lijn. Dat klopt met de geplande doorlooptijd, dus de logica lijkt in orde.',
+        ask: 'Wat check je hierna voordat je de 112 gelooft?',
+        reveal: 'De stops. Echte stops duren niet precies 3 minuten per 2 uur: sommige duren 30 seconden, andere 20 minuten, en ze komen in clusters. Vaste stops laten buffers veel beter lijken dan ze zijn.\n\nVraag om stopverdelingen uit machinedata van een vergelijkbare lijn, een nieuwe run, en een validatie van het model op een bestaande lijn. Zakt de output dan onder de 105, bespreek dan buffers of het slechtste station vóór de bestelling, niet tijdens de opstart.',
+      },
+      said: 'Wat engineers zeggen: “Garbage in, garbage out: met gemiddelde stoptijden ziet elke simulatie er geweldig uit.” Ze bedoelen: de stopdata bepalen de uitkomst.',
+      recall: [
+        {
+          q: 'Een lijn maakt 90 producten per uur en bevat er gemiddeld 45. Wat is de doorlooptijd, in minuten?',
+          number: 30,
+          tolerance: 0.5,
+          unit: 'min',
+          why: 'Doorlooptijd = onderhanden werk / output = 45 / 90 = 0,5 uur = 30 minuten.',
+        },
+        {
+          q: 'Een lijn maakt 120 producten per uur en de doelstelling voor de doorlooptijd is 20 minuten. Hoeveel producten mag de lijn gemiddeld bevatten?',
+          number: 40,
+          tolerance: 0.5,
+          unit: 'producten',
+          why: 'Onderhanden werk = output × doorlooptijd = 120 × 20/60 = 40 producten.',
+        },
+        {
+          q: 'Wanneer loont een discrete-eventsimulatie het meest?',
+          options: ['Voor één losse machine', 'Voor een gekoppelde lijn met buffers, gedeelde robots en varianten', 'Om de takt uit de klantvraag te berekenen', 'Voor één handmatige werkbank'],
+          answer: 'Voor een gekoppelde lijn met buffers, gedeelde robots en varianten',
+          why: 'Simulatie loont waar stops en stations elkaar beïnvloeden, en dat laten gemiddelden niet zien.',
+        },
+        {
+          q: 'Wat is de eerste test van een simulatiemodel?',
+          options: ['Het bootst de echte output van een lijn over een afgelopen periode na', 'Het draait snel', 'Het laat een 3D-animatie zien', 'Het haalt de doeloutput'],
+          answer: 'Het bootst de echte output van een lijn over een afgelopen periode na',
+          why: 'Een model dat niet kan nabootsen wat er gebeurd is, kun je niet vertrouwen voor wat er gaat gebeuren.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een leverancier van autostoelen heeft de operationeel directeur een simulatie van de integrator: de nieuwe lijn maakt 8% meer dan nodig. Volgende week valt de investeringsbeslissing.',
+        ask: 'Wat vraag je over de simulatie?',
+        model: 'Welke stopdata zitten erin: echte MTBF en MTTR met spreiding van een vergelijkbare lijn, of gemiddelden van de leverancier? Is het model getoetst aan een bestaande lijn? Wat gebeurt er met de output als de stops 50% langer duren? En welke opstartcurve zit in de businesscase, want die 8% telt pas op volle snelheid.',
+        rubric: [
+          'Vraagt waar de stopdata vandaan komen en of er spreiding in zit',
+          'Vraagt om validatie op een echte lijn',
+          'Vraagt om een stressscenario en de opstartcurve',
+        ],
+      },
+      sayIt: 'Leg een operationeel directeur in 60 seconden uit wat een lijnsimulatie wel en niet kan vertellen.',
+      terms: [
+        { term: 'Discrete-eventsimulatie', def: 'Een computermodel dat elk product, elke stop en elke reparatie als gebeurtenis in de tijd afspeelt, om de output van een lijn te voorspellen.' },
+        { term: 'MTBF', def: 'Mean time between failures: de gemiddelde draaitijd tussen twee stops.' },
+        { term: 'MTTR', def: 'Mean time to repair: de gemiddelde duur van een stop.' },
+        { term: 'Wet van Little', def: 'Onderhanden werk = output × doorlooptijd; geldt voor elke stabiele lijn of wachtrij.' },
+      ],
+    },
+    {
+      id: 'eng.lines.robotbasics',
+      title: 'Wat een robot is: assen, grijper en teach pendant',
+      pre: [
+        {
+          q: 'Een industriële robotarm heeft zes gewrichten die elk draaien. Hoe heten die gewrichten?',
+          options: ['Assen', 'Stations', 'Grijpers', 'Pallets'],
+          answer: 'Assen',
+          why: 'Elk draaiend gewricht is een as; met zes assen komt de arm bij een punt onder bijna elke hoek.',
+        },
+      ],
+      teach: [
+        'Een industriële robot is een arm op een vaste voet, vastgeschroefd aan de vloer. Zijn gewrichten draaien elk, aangedreven door een elektrische servomotor, en elk gewricht heet een as. De meeste robots op een lijn hebben er zes: de voet draait, schouder en elleboog tillen, en drie polsassen draaien en kantelen de hand.\n\nErnaast staat de besturing (controller): een kast met de computer en de aandrijvingen die de arm bewegen.',
+        'De robot doet niks nuttigs tot er gereedschap op zijn pols zit. Voor hanteren is dat een grijper: twee of drie vingers die om het product sluiten, meestal op perslucht, of zuignappen die een plat product met vacuüm vasthouden. Voor lassen is het een lastoorts, voor lijmen een lijmpistool.\n\nDezelfde robot kan vandaag een machine beladen en morgen lassen: het gereedschap bepaalt de klus.',
+        'Een robotprogramma is een lijst posities van één punt: het tool centre point, de TCP, de werkende punt van het gereedschap. Bij een grijper is dat het punt tussen de vingers, bij een lastoorts het puntje van de draad.\n\nRaakt het gereedschap verbogen bij een botsing, dan verschuift de echte punt en zit elke positie evenveel naast. Daarom controleert een insteller (setter) de TCP na een crash.',
+        'Posities leer je in met de teach pendant: een zware tablet aan een kabel met toetsen of een joystick, een noodstop en achterop een vrijgaveknop. De robot beweegt alleen zolang je die knop in de middelste stand houdt; laat je los of knijp je hard, dan stopt hij.\n\nIn deze handbediening beweegt het gereedschap hooguit 250 mm per seconde. In automatisch bedrijf, met niemand in de cel, draait de robot op volle snelheid.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een insteller moet een nieuwe afzetpositie inleren, 1,5 meter van waar de robot nu staat. In handbediening beweegt het gereedschap hooguit 250 mm per seconde, de grens uit de veiligheidsnorm voor robots, ISO 10218-1.\n\nDe beweging duurt minstens 1.500 / 250 = 6 seconden, en in de praktijk langer, want de insteller verplaatst in kleine stapjes en checkt de positie met het oog. In automatisch bedrijf duurt dezelfde beweging ruim onder een seconde.\n\nDaarom kan het inleren van een nieuw product uren kosten, terwijl het programma daarna een cyclus in seconden draait.',
+      },
+      said: 'Wat instellers zeggen: “Pak de pendant en corrigeer punt 20 even, sinds de crash zit de TCP er een paar millimeter naast.” Corrigeren (touch up) betekent een ingeleerde positie bijstellen.',
+      recall: [
+        {
+          q: 'In handbediening beweegt het gereedschap hooguit 250 mm per seconde. Hoeveel seconden duurt een beweging van 2 meter minstens?',
+          number: 8,
+          tolerance: 0.2,
+          unit: 's',
+          why: '2 meter = 2.000 mm; 2.000 / 250 = 8 seconden.',
+        },
+        {
+          q: 'Wat is het tool centre point (TCP)?',
+          options: ['De werkende punt van het gereedschap, het punt dat het programma positioneert', 'Het midden van de robotvoet', 'De besturingskast', 'De noodstop op de pendant'],
+          answer: 'De werkende punt van het gereedschap, het punt dat het programma positioneert',
+          why: 'Elke ingeleerde positie is een positie van de TCP.',
+        },
+        {
+          q: 'Een insteller laat de vrijgaveknop op de teach pendant los. Wat doet de robot?',
+          options: ['Hij beweegt langzaam door', 'Hij stopt', 'Hij gaat terug naar zijn startpositie', 'Hij schakelt naar automatisch'],
+          answer: 'Hij stopt',
+          why: 'De robot beweegt alleen zolang de vrijgaveknop in de middelste stand wordt gehouden.',
+        },
+        {
+          q: 'Hetzelfde robottype last in de ene cel en belaadt een machine in de andere. Wat maakt het verschil?',
+          options: ['Het aantal assen', 'Het gereedschap op de pols', 'De kleur van het hek', 'De besturingskast'],
+          answer: 'Het gereedschap op de pols',
+          why: 'Het gereedschap, een grijper of een lastoorts, bepaalt de klus.',
+        },
+      ],
+      situation: {
+        scene: 'Tijdens een gemba walk bij een metaalwarenbedrijf sta je stil bij een robotcel die een draaibank belaadt. De insteller staat binnen het hek met de teach pendant, en de robot kruipt naar de klauwplaat.',
+        ask: 'Wat vraag je de insteller?',
+        model: 'Wat leer je nu in, en waarom gaat het zo langzaam? Ik begrijp dat hij in handbediening langzaam beweegt, voor jouw veiligheid. Hoe lang duurt het om een nieuw product in te leren, en welke punten moet je na een botsing corrigeren? Dan weet ik wat een nieuw product aan insteltijd kost.',
+        rubric: [
+          'Vraagt wat er wordt ingeleerd en waarom het langzaam gaat',
+          'Koppelt de lage snelheid aan handbediening en veiligheid',
+          'Vraagt hoe lang het inleren van een nieuw product duurt',
+        ],
+      },
+      sayIt: 'Leg een collega in 60 seconden uit wat assen, een grijper, de TCP en de teach pendant zijn.',
+      terms: [
+        { term: 'As', def: 'Eén draaiend gewricht van een robot; de meeste industriële robots hebben er zes.' },
+        { term: 'Grijper', def: 'De hand op de robotpols die het product vasthoudt: vingers of zuignappen.' },
+        { term: 'TCP', def: 'Tool centre point: de werkende punt van het gereedschap, waarvan de posities samen het robotprogramma vormen.' },
+        { term: 'Teach pendant', def: 'De handtablet aan een kabel waarmee je de robot beweegt en posities inleert.' },
+        { term: 'Vrijgaveknop', def: 'Een knop met drie standen op de pendant; de robot beweegt alleen als je hem in het midden houdt.' },
       ],
     },
     {
@@ -92,10 +366,8 @@ export default {
         'Industriële robots werken achter afscherming: hekken met beveiligde deuren (deur open is robot stil), lichtschermen (lichtstralen die hem stoppen als je ze onderbreekt) of laserscanners (een laser die hem afremt of stopt als iemand een zone in loopt). Elke cel heeft een risicobeoordeling nodig, een schriftelijke check van hoe hij iemand kan verwonden, en een CE-markering: de Europese verklaring dat hij aan de veiligheidsregels voldoet.\n\n“Collaboratief” gaat over de toepassing, niet de robot: een cobot met een mes is niet veilig. Normen: ISO 10218-1 (robot) en -2 (cel).',
       ],
       example: {
-        kind: 'faded',
-        text: 'Een team wil een robot gietstukken van 6 kg (metalen onderdelen, gemaakt door vloeibaar metaal in een mal te gieten) uit een machine laten halen. De integrator, het bedrijf dat de hele cel zou bouwen, stelt een robot van 10 kg voor.\n\nDe grijper met vingers en sensoren weegt 4 kg, en door de vorm van het gietstuk zit het gewicht 150 mm van de flens. De doelcyclus is 12 seconden; volgens de datasheet duurt de beweging 4 seconden.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Grijper plus product is 10 kg: 100% van de payload, met de last uit het midden. De robot moet dus langzamer of raakt overbelast. Vraag het payloaddiagram op, en kijk naar een robot uit de 20 kg-klasse of een lichtere grijper.\n\nBouw daarna de echte cyclus op: 4 seconden beweging plus twee grijperacties, de nadering, langzaam plaatsen en wachten op de machinedeur, samen vaak 7 tot 9 seconden. Leg dat naast de 12 seconden, en naast de machinecyclus die de robot echt moet bijhouden.',
+        kind: 'worked',
+        text: 'Een team wil een robot gietstukken van 6 kg (metalen onderdelen, gemaakt door vloeibaar metaal in een mal te gieten) uit een machine laten halen. De integrator, het bedrijf dat de hele cel zou bouwen, stelt een robot van 10 kg voor.\n\nDe grijper met vingers en sensoren weegt 4 kg, en door de vorm van het gietstuk zit het gewicht 150 mm van de flens. De doelcyclus is 12 seconden; volgens de datasheet duurt de beweging 4 seconden.\n\nKijk eerst naar het gewicht. Grijper plus product is 10 kg: 100% van de payload, met de last uit het midden. De robot moet dus langzamer of raakt overbelast. Vraag het payloaddiagram op, en kijk naar een robot uit de 20 kg-klasse of een lichtere grijper.\n\nBouw daarna de echte cyclus op: 4 seconden beweging plus twee grijperacties, de nadering, langzaam plaatsen en wachten op de machinedeur, samen vaak 7 tot 9 seconden. Leg dat naast de 12 seconden, en naast de machinecyclus die de robot echt moet bijhouden.',
       },
       said: 'Wat engineers zeggen: “Op papier kan die robot het, maar met die grijper zit je op de rand van de payloadcurve.” De payloadcurve laat zien hoeveel gewicht mag op elke afstand van de pols.',
       recall: [
@@ -146,6 +418,215 @@ export default {
       ],
     },
     {
+      id: 'eng.lines.robotcell',
+      title: 'Een robotcel ontwerpen: cyclus, aanvoer en veiligheidsafstand',
+      pre: [
+        {
+          q: 'Een lichtscherm stopt een robot als een hand de stralen onderbreekt. Waarom kun je het niet vlak bij het gevaarlijke punt hangen?',
+          options: ['De robot heeft tijd nodig om te stoppen, en de hand beweegt intussen door', 'Lichtschermen werken niet dicht bij metaal', 'Het hek zou dan hoger moeten', 'Lichtschermen zijn bij robots niet toegestaan'],
+          answer: 'De robot heeft tijd nodig om te stoppen, en de hand beweegt intussen door',
+          why: 'De afstand moet zo groot zijn dat de robot stilstaat voordat de hand er is.',
+        },
+      ],
+      teach: [
+        'Een cel ontwerp je rond zijn cyclus. Zet elke beweging op een rij: pakken, verplaatsen, neerzetten, grijper open en dicht, wachten op de machinedeur. Meestal bepaalt de machine het tempo, niet de robot. De vraag is dus hoe lang de machine stilstaat terwijl de robot wisselt.\n\nEen dubbele grijper, twee grijpers op één pols, haalt het klare product eruit en zet het nieuwe erin in één bezoek. Dat kan de stilstand van de machine flink verkorten.',
+        'De aanvoer van onderdelen is vaak lastiger dan de robot. De robot moet elk onderdeel op een bekende plek vinden: in trays of laden, op een band met een stopper, of uit een trilpot die kleine onderdelen in één stand schudt. Losse onderdelen in een bak vragen een camera, en die kost tijd en geld.\n\nDe grijper ontwerp je per product: vingervorm, grijpkracht, een sensor die bevestigt dat hij het product vasthoudt. Vraag hoeveel vingersets het assortiment nodig heeft.',
+        'Afscherming vraagt een veiligheidsafstand. Wie door een lichtscherm reikt, beweegt door terwijl het systeem reageert en de robot remt. ISO 13855 geeft het minimum: S = K × T + C.\n\nT is de totale stoptijd in seconden, van straal onderbroken tot robot stil, gemeten. K is de naderingssnelheid van een hand: 2.000 mm per seconde. C is een toeslag voor vingers die erdoor reiken: 8 × (d − 14) mm, met d de stralenafstand (resolutie) van het scherm.',
+        'Komt S boven de 500 mm uit, reken dan opnieuw met K = 1.600 mm per seconde, maar nooit onder de 500 mm. Een scherm van 14 mm heeft C = 0; een scherm van 30 mm telt 128 mm op.\n\nDe stoptijd groeit met snelheid en payload, dus meet hem op de echte robot met de echte grijper. Robotbesturingen hebben ook veilige zones (safety-rated zones) die begrenzen waar de arm mag komen, zodat de cel kleiner kan.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een robot belaadt en ontlaadt een draaibank met een cyclus van 40 seconden. Met een enkele grijper opent de robot de deur, haalt het klare product eruit, zet het op de afvoer, pakt een ruw stuk en legt het in. De draaibank staat elke keer 20 seconden stil: samen 60 seconden, dus de cel maakt 3.600 / 60 = 60 stuks per uur.\n\nMet een dubbele grijper komt de robot aan met een ruw stuk in de hand, wisselt in één bezoek, en staat de draaibank 8 seconden stil.',
+        ask: 'Wat is de nieuwe cyclus, en de output per uur?',
+        reveal: '40 + 8 = 48 seconden per stuk, dus 3.600 / 48 = 75 stuks per uur: 25% meer uit dezelfde draaibank.\n\nDe robot doet de afvoer en het volgende ruwe stuk nu terwijl de draaibank draait, dus check of die bewegingen in de 40 seconden passen. Check daarna de payload: twee grijpers plus een product aan de flens wegen meer dan één grijper.',
+      },
+      said: 'Wat engineers zeggen: “De robot wacht op de deur, dus een snellere robot levert niks op. Zet er een dubbele grijper op.” Een dubbele grijper wisselt de producten in één bezoek.',
+      recall: [
+        {
+          q: 'Een lichtscherm heeft een resolutie van 30 mm en de totale stoptijd is 0,15 s. Welke veiligheidsafstand S geeft ISO 13855, in mm? Gebruik K = 2.000 mm/s.',
+          number: 428,
+          tolerance: 2,
+          unit: 'mm',
+          why: 'C = 8 × (30 − 14) = 128 mm; S = 2.000 × 0,15 + 128 = 300 + 128 = 428 mm, onder de 500, dus K = 2.000 blijft staan.',
+        },
+        {
+          q: 'Een machinecyclus is 50 seconden, en de machine staat per cyclus 10 seconden stil terwijl de robot wisselt. Hoeveel stuks per uur maakt de cel?',
+          number: 60,
+          tolerance: 0.5,
+          unit: 'stuks',
+          why: '50 + 10 = 60 seconden per stuk; 3.600 / 60 = 60 stuks per uur.',
+        },
+        {
+          q: 'Waarom moet je de stoptijd T op de echte cel meten?',
+          options: ['Hij groeit met de snelheid en payload van de robot, inclusief grijper', 'Datasheetwaarden zijn altijd 50% te kort', 'De norm verbiedt datasheetwaarden', 'Lichtschermen worden met de jaren trager'],
+          answer: 'Hij groeit met de snelheid en payload van de robot, inclusief grijper',
+          why: 'Een zwaardere, snellere arm heeft langer nodig om te remmen, dus de echte opstelling bepaalt T.',
+        },
+        {
+          q: 'Kleine onderdelen komen los in een bak. Hoe bied je ze meestal zonder camera aan een robot aan?',
+          options: ['Met een trilpot die ze in één stand zet', 'Met een snellere robot', 'Met een zwaardere grijper', 'Met een lichtscherm'],
+          answer: 'Met een trilpot die ze in één stand zet',
+          why: 'De trilpot schudt de onderdelen in één stand, zodat de robot elk onderdeel op een bekende plek vindt.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een verspaningsbedrijf laat de fabrieksmanager een offerte zien voor een robotcel die twee CNC-machines belaadt. De integrator belooft 30% meer output, maar op de tekening staat een enkele grijper en komen de onderdelen los in een bak.',
+        ask: 'Wat vraag je de integrator?',
+        model: 'Kun je de cyclus uitsplitsen: hoe lang staat elke machine per stuk stil terwijl de robot wisselt? Zou een dubbele grijper dat verkorten? Hoe komen de losse onderdelen op een bekende plek? En welke stoptijd heb je gebruikt voor de veiligheidsafstand: gemeten, of uit de datasheet?',
+        rubric: [
+          'Vraagt om de opbouw van de cyclus en de stilstand van de machine',
+          'Vraagt hoe de onderdelen op een bekende plek worden aangeboden',
+          'Vraagt naar de veiligheidsafstand en een gemeten stoptijd',
+        ],
+      },
+      sayIt: 'Leg een fabrieksmanager in 60 seconden uit waarom de robot vaak niet het tempo van een robotcel bepaalt.',
+      terms: [
+        { term: 'Dubbele grijper', def: 'Twee grijpers op één pols, zodat de robot in één bezoek het klare product eruit haalt en een nieuw erin legt.' },
+        { term: 'Trilpot', def: 'Een pot die kleine onderdelen langs een spiraalbaan omhoog schudt, zodat ze er in één stand uitkomen.' },
+        { term: 'Lichtscherm', def: 'Een rij lichtstralen die de machine stopt als een hand of lichaam ze onderbreekt.' },
+        { term: 'Veiligheidsafstand', def: 'De minimale afstand tussen een beveiliging en het gevaarlijke punt, volgens ISO 13855: S = K × T + C.' },
+        { term: 'Stoptijd', def: 'De tijd van het aanspreken van een beveiliging tot de robot stilstaat.' },
+      ],
+    },
+    {
+      id: 'eng.lines.vision',
+      title: 'Vision, offline programmeren en wanneer een cobot past',
+      pre: [
+        {
+          q: 'Een cobot werkt zonder hek naast mensen. Wat begrenst meestal zijn snelheid?',
+          options: ['De kracht en druk die hij bij een botsing op een mens mag uitoefenen', 'De lengte van zijn kabel', 'De snelheid van de band', 'De grootte van de teach pendant'],
+          answer: 'De kracht en druk die hij bij een botsing op een mens mag uitoefenen',
+          why: 'Contact mag alleen onder grenzen per lichaamsdeel blijven, en dat betekent meestal langzaam bewegen.',
+        },
+      ],
+      teach: [
+        'Met vision kan een robot onderdelen hanteren die niet op een vaste plek liggen. Een 2D-camera boven een band vindt platte producten en vertelt de robot waar hij moet pakken, ook terwijl de band loopt. 3D-vision kijkt in een bak met losse onderdelen en pakt er een: bin picking.\n\nBin picking klinkt als het einde van alle aanvoerproblemen, maar onderdelen haken in elkaar, liggen in hoeken of verstoppen zich. Vraag naar het pakpercentage en de cyclus op je eigen onderdelen, ook de laatste.',
+        'Offline programmeren betekent het robotprogramma schrijven en testen in een 3D-model van de cel op een pc, met software als ABB RobotStudio of FANUC ROBOGUIDE, terwijl de echte cel doorproduceert. Je checkt bereik, botsingen en cyclustijd voordat er iets gebouwd is.\n\nDe echte cel wijkt altijd iets af van het model, dus de insteller corrigeert ter plekke nog een paar sleutelpunten. Goed gedaan scheelt het veel stilstand bij een nieuw product.',
+        'Collaboratief gaat over de toepassing: mens en robot delen de ruimte. Er zijn vier manieren: een bewaakte stop als iemand binnenkomt; handgeleiding; snelheids- en afstandsbewaking, waarbij een scanner de robot afremt als mensen dichterbij komen; en kracht- en vermogensbegrenzing, waarbij contact mag maar onder grenzen per lichaamsdeel uit ISO/TS 15066 blijft, nu opgenomen in ISO 10218-2:2025.\n\nOnder die grenzen blijven betekent meestal langzaam bewegen en licht, rond gereedschap.',
+        'Een cobot past bij lichte onderdelen, gematigde snelheid, vaak wisselende producten en werk naast een mens: schroeven, lijmen, een machine beladen in één of twee ploegen. Hij past minder bij een korte takt, zware lasten of scherp gereedschap; dan is een industriële robot met hek of scanner goedkoper per stuk.\n\nGeloofwaardige vragen: “Welke collaboratieve modus gebruiken jullie? Welke snelheid stond de risicobeoordeling toe? Wat is de cyclus op die snelheid?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een inpakstation moet elke 14 seconden een doos af hebben (takt). Een integrator stelt een cobot zonder afscherming voor. Op volle snelheid duurt de beweging 6 seconden, en de rest van de cyclus (pakken, neerzetten, etiket scannen) 4 seconden.\n\nGa ervan uit dat de risicobeoordeling kracht- en vermogensbegrenzing hier alleen op halve snelheid toestaat, omdat er mensen binnen bereik langslopen.\n\nStap 1: op halve snelheid duurt de beweging 12 seconden, dus de cyclus is 12 + 4 = 16 seconden.',
+        ask: 'Haalt hij de takt, en wat stel je voor?',
+        reveal: 'Nee: 16 seconden tegen een takt van 14.\n\nTwee opties. Snelheids- en afstandsbewaking: een scanner laat de robot op volle snelheid draaien, een cyclus van 10 seconden, zolang er niemand in de buurt is, en remt hem alleen af als iemand dichtbij komt. Of een industriële robot achter een hek, als er zelden iemand hoeft te komen. Vraag hoe vaak er echt iemand de zone in loopt; dat bepaalt wat goedkoper is.',
+      },
+      said: 'Wat engineers zeggen: “Een cobot is een robot met een snelheidsbegrenzer. Heb je de takt nodig, scan de zone of zet er een hek om.”',
+      recall: [
+        {
+          q: 'De beweging van een cobot duurt op volle snelheid 5 seconden en de rest van de cyclus 3 seconden. De risicobeoordeling staat alleen halve snelheid toe. Wat is de cyclus, in seconden?',
+          number: 13,
+          tolerance: 0.2,
+          unit: 's',
+          why: 'Halve snelheid verdubbelt de beweging: 2 × 5 = 10 seconden; 10 + 3 = 13 seconden.',
+        },
+        {
+          q: 'Bij welke collaboratieve modus remt de robot af als een mens dichterbij komt?',
+          options: ['Snelheids- en afstandsbewaking', 'Handgeleiding', 'Kracht- en vermogensbegrenzing', 'Offline programmeren'],
+          answer: 'Snelheids- en afstandsbewaking',
+          why: 'Een scanner meet de afstand, en de robot remt af of stopt als mensen naderen.',
+        },
+        {
+          q: 'Wat vraag je voordat je een demo van bin picking gelooft?',
+          options: ['Het pakpercentage en de cyclus op je eigen onderdelen, ook de laatste in de bak', 'Het merk van de camera', 'Het aantal assen van de robot', 'Of er een teach pendant bij zit'],
+          answer: 'Het pakpercentage en de cyclus op je eigen onderdelen, ook de laatste in de bak',
+          why: 'Demo’s gebruiken makkelijke onderdelen; verhaakte stukken en de laatste in de hoeken bepalen het echte resultaat.',
+        },
+        {
+          q: 'Wat bespaart offline programmeren vooral?',
+          options: ['Het grootste deel van de tijd dat de echte cel stilstaat voor programmeren', 'Al het correctiewerk ter plekke', 'De risicobeoordeling', 'Het grijperontwerp'],
+          answer: 'Het grootste deel van de tijd dat de echte cel stilstaat voor programmeren',
+          why: 'Het programma wordt op een pc gebouwd en getest terwijl de cel produceert; alleen het corrigeren blijft over.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een verpakkingsbedrijf in de voeding wil de operationeel manager een handmatige inpakstap vervangen door een cobot, “want die hebben geen hek nodig en ze zijn flexibel”. De lijn draait drie ploegen op een takt van 10 seconden.',
+        ask: 'Wat vraag je?',
+        model: 'Aan welke collaboratieve modus denken jullie, en welke snelheid laat de risicobeoordeling naast mensen toe? Blijft de cyclus op die snelheid onder de 10 seconden? Zo niet, dan past een scanner die de robot alleen afremt als er iemand in de buurt is, of een afgeschermde industriële robot, misschien beter. En hoe vaak wisselt het product, want daar verdient een cobot zich terug.',
+        rubric: [
+          'Vraagt welke collaboratieve modus en welke snelheid is toegestaan',
+          'Legt de cyclus op die snelheid naast de takt',
+          'Weegt een scanner of afgeschermde robot af, en hoe vaak het product wisselt',
+        ],
+      },
+      sayIt: 'Leg een operationeel manager in 60 seconden uit wanneer een cobot de goede keuze is en wanneer niet.',
+      terms: [
+        { term: 'Vision', def: 'Camera’s met software die onderdelen vinden, controleren of meten, zodat een robot ook met onderdelen op wisselende plekken kan werken.' },
+        { term: 'Bin picking', def: 'Een robot die losse, willekeurig liggende onderdelen uit een bak pakt, geleid door 3D-vision.' },
+        { term: 'Offline programmeren', def: 'Een robotprogramma schrijven en testen in een 3D-model op een pc, terwijl de echte cel doorproduceert.' },
+        { term: 'Snelheids- en afstandsbewaking', def: 'Een collaboratieve modus waarin een scanner de robot afremt of stopt als een mens dichterbij komt.' },
+        { term: 'Kracht- en vermogensbegrenzing', def: 'Een collaboratieve modus waarin contact mag, maar kracht en druk onder grenzen per lichaamsdeel blijven (ISO/TS 15066).' },
+      ],
+    },
+    {
+      id: 'eng.lines.errors',
+      title: 'Waarom mensen zich vergissen, en poka-yoke',
+      pre: [
+        {
+          q: 'Een ervaren operator monteert bij één op de paar duizend producten de verkeerde beugel. Wat is de meest waarschijnlijke oorzaak?',
+          options: ['Het kan hem niks schelen', 'Twee beugels lijken bijna hetzelfde en liggen naast elkaar', 'Hij heeft elke week training nodig', 'De lijn loopt te langzaam'],
+          answer: 'Twee beugels lijken bijna hetzelfde en liggen naast elkaar',
+          why: 'De meeste vergissingen komen uit de situatie: onderdelen die op elkaar lijken, onderbrekingen, onduidelijke signalen. Niet uit onverschilligheid.',
+        },
+      ],
+      teach: [
+        'Iedereen vergist zich: je vergeet een stap na een onderbreking, pakt het onderdeel dat er bijna hetzelfde uitziet, leest een getal verkeerd, monteert iets ondersteboven. Op een lijn die een handeling honderden keren per dag herhaalt, wordt zelfs een heel kleine kans per product elke week foute producten, geteld in ppm (per miljoen stuks).\n\nDe vraag is dus niet “wie heeft het gedaan?” maar “hoe kon het gebeuren?”. Mensen de schuld geven zorgt dat ze fouten verstoppen; het proces aanpassen haalt ze weg.',
+        'Shigeo Shingo, de Japanse engineer achter een groot deel van het Toyota Production System, maakte onderscheid tussen de vergissing en het defect. Een vergissing is de menselijke handeling: de verkeerde beugel pakken. Een defect is het foute product dat eruit komt. Vergissingen gebeuren; defecten hoeven niet, als je de vergissing vangt voordat het product doorgaat.\n\nZijn antwoord was poka-yoke, Japans voor het vermijden van onbedoelde fouten: simpele middelen die een vergissing onmogelijk maken of meteen vangen.',
+        'Poka-yoke heeft twee sterktes. Een waarschuwing meldt de vergissing met een lampje of een zoemer, en de operator moet reageren. Een stop zet het proces stil: de pers gaat niet dicht, de pallet gaat niet door.\n\nEen stop is sterker, want een waarschuwing mis je in een lawaaiige hal of negeer je na het honderdste vals alarm. Gebruik een waarschuwing alleen waar een stop niet kan of de gevolgen klein zijn.',
+        'Als je het eenmaal kent, zie je poka-yoke overal. Een stekker die maar op één manier past. Een onderdeel met een nok en een houder met een passende pen. Pick-to-light: bij de goede bak gaat een lampje branden, en een sensor checkt of de hand van de operator in die bak ging.\n\nThuis: een auto die alleen start als je de rem intrapt, of een dieselpistool dat te breed is voor de vulopening van een benzineauto.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Een lijn bouwt twee versies van een kachel: één met een beugel van 6 mm, één met een beugel van 8 mm. De beugels lijken op elkaar en liggen in bakken naast elkaar. Ongeveer 1 op de 5.000 kachels krijgt de verkeerde: 1.000.000 / 5.000 = 200 ppm.\n\nOptie 1, een waarschuwing: een bord boven de bakken. Beter dan niks, maar mensen lezen borden na een tijdje niet meer.\n\nOptie 2, pick-to-light met een stop: het systeem weet welke versie eraan komt, laat de goede bak oplichten, checkt of de hand daarin ging, en houdt de pallet anders tegen. Optie 2 pakt de oorzaak aan: de verwarring tussen twee onderdelen die op elkaar lijken.',
+      },
+      said: 'Wat engineers zeggen: “Niet opnieuw trainen, poka-yoke het. Als het fout kán gaan, gaat het vroeg of laat fout.”',
+      recall: [
+        {
+          q: 'Eén op de 2.500 producten verlaat de lijn met een onderdeel dat ondersteboven zit. Hoeveel is dat in ppm (per miljoen stuks)?',
+          number: 400,
+          tolerance: 1,
+          unit: 'ppm',
+          why: '1.000.000 / 2.500 = 400 ppm.',
+        },
+        {
+          q: 'Wat is het verschil tussen een vergissing en een defect?',
+          options: ['Een vergissing is de menselijke handeling; een defect is het foute product dat eruit komt', 'Ze betekenen hetzelfde', 'Een defect komt altijd door een machine', 'Een vergissing vindt alleen de klant'],
+          answer: 'Een vergissing is de menselijke handeling; een defect is het foute product dat eruit komt',
+          why: 'Het punt van Shingo: vang de vergissing voordat hij een defect wordt.',
+        },
+        {
+          q: 'Welke van deze is de sterkste poka-yoke?',
+          options: ['Een bord boven de bak', 'Een zoemer als het verkeerde onderdeel wordt gepakt', 'Een pers die pas dichtgaat als het onderdeel goed ligt', 'Een opmerking in de werkinstructie'],
+          answer: 'Een pers die pas dichtgaat als het onderdeel goed ligt',
+          why: 'Die zet het proces stil; de andere waarschuwen of informeren alleen.',
+        },
+        {
+          q: 'Een operator heeft het verkeerde onderdeel gemonteerd. Wat is de beste eerste vraag?',
+          options: ['Wie heeft het gedaan?', 'Hoe kon deze vergissing hier gebeuren?', 'Hoe straffen we dit?', 'Kunnen we er een controleur bij zetten?'],
+          answer: 'Hoe kon deze vergissing hier gebeuren?',
+          why: 'De oorzaak zit meestal in het proces, en daar zit dus ook de oplossing.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een maker van verwarmingsproducten zegt de kwaliteitsmanager: “Wéér een klacht over een verkeerde beugel. Ik stuur de operator terug naar de training.”',
+        ask: 'Wat vraag je?',
+        model: 'Hoe kon de verkeerde beugel überhaupt gepakt worden? Lijken de twee beugels op elkaar, en liggen ze naast elkaar? Training helpt even, maar na een paar weken komt dezelfde verwisseling terug. Kunnen we het onmogelijk maken, met een pen of een ander gatenpatroon, of de pallet in elk geval tegenhouden met pick-to-light als de verkeerde bak wordt gebruikt?',
+        rubric: [
+          'Vraagt hoe de vergissing kon gebeuren in plaats van wie hem maakte',
+          'Benoemt dat training alleen herhaling niet voorkomt',
+          'Stelt een poka-yoke voor die het proces stopt, niet alleen waarschuwt',
+        ],
+      },
+      sayIt: 'Leg een teamleider in 60 seconden het verschil uit tussen een vergissing en een defect, en wat poka-yoke doet.',
+      terms: [
+        { term: 'Vergissing', def: 'De menselijke handeling die misgaat, zoals het verkeerde onderdeel pakken.' },
+        { term: 'Defect', def: 'Een fout product: het gevolg van een vergissing die niet is gevangen.' },
+        { term: 'Poka-yoke', def: 'Foutvrij maken: een vergissing onmogelijk maken, of hem meteen vangen en stoppen.' },
+        { term: 'Pick-to-light', def: 'Een lampje bij de goede bak laat zien welk onderdeel je pakt; een sensor checkt of de hand daar was.' },
+        { term: 'ppm', def: 'Parts per million: hoeveel producten op een miljoen fout zijn.' },
+      ],
+    },
+    {
       id: 'eng.lines.pokayoke',
       title: 'Foutvrij maken met sensoren en mallen',
       pre: [
@@ -164,10 +645,8 @@ export default {
         'Let op valse afkeur: goede producten die een check afkeurt. Een camera die 3% goede producten afkeurt, maakt operators boos, en al snel vindt iemand de overbruggingssleutel.\n\nEngineers discussiëren over hoe streng je een check afstelt: te ruim laat fouten door, te streng geeft valse afkeur. Vraag hoe vaak elke check wordt overbrugd en hoe vaak hij vals alarm geeft; dan weet je of hij echt werkt.',
       ],
       example: {
-        kind: 'faded',
-        text: 'Op één station draaien operators 8 schroeven in een behuizing (de buitenkast van het product), met een gewone handschroevendraaier. Ongeveer 1 op de 2.000 behuizingen gaat de deur uit met een ontbrekende schroef. De eindcontrole vangt zo’n 85% daarvan.\n\nDe klant heeft dit kwartaal drie keer geklaagd, en de kwaliteitsmanager wil een tweede controleur erbij.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Een tweede controleur vangt een deel van wat de eerste mist, maar nog steeds niet alles, en kost elke dienst geld.\n\nGa naar de bron: een momentgestuurde schroefmachine die de schroeven telt en moment en hoek controleert, met een interlock in de PLC, zodat de behuizing pas doorgaat als alle 8 schroeven OK zijn. Laat de schroefvolgorde op een scherm zien, zodat de operator ziet welke schroef de volgende is. Volg daarna de eerste weken het overbruggen en de valse alarmen.',
+        kind: 'worked',
+        text: 'Op één station draaien operators 8 schroeven in een behuizing (de buitenkast van het product), met een gewone handschroevendraaier. Ongeveer 1 op de 2.000 behuizingen gaat de deur uit met een ontbrekende schroef. De eindcontrole vangt zo’n 85% daarvan.\n\nDe klant heeft dit kwartaal drie keer geklaagd, en de kwaliteitsmanager wil een tweede controleur erbij.\n\nEen tweede controleur vangt een deel van wat de eerste mist, maar nog steeds niet alles, en kost elke dienst geld.\n\nGa naar de bron: een momentgestuurde schroefmachine die de schroeven telt en moment en hoek controleert, met een interlock in de PLC, zodat de behuizing pas doorgaat als alle 8 schroeven OK zijn. Laat de schroefvolgorde op een scherm zien, zodat de operator ziet welke schroef de volgende is. Volg daarna de eerste weken het overbruggen en de valse alarmen.',
       },
       said: 'Wat engineers zeggen: “Zet er geen controleur bij, interlock het. Geen acht keer OK, dan gaat hij niet door.” Interlocken betekent: de machine laat het product pas los als de check OK is.',
       recall: [
@@ -209,12 +688,152 @@ export default {
       },
       sayIt: 'Leg een kwaliteitsmanager in 60 seconden uit waarom een sensor met interlock beter is dan een extra controleur.',
       terms: [
-        { term: 'Poka-yoke', def: 'Foutvrij maken: een fout onmogelijk maken, of hem meteen zien en stoppen.' },
         { term: 'Mal', def: 'Een houder die het onderdeel op zijn plek zet en vastklemt, zodat het er maar op één manier in kan.' },
         { term: 'Inductieve sensor', def: 'Een sensor die metaal op een paar millimeter ziet zonder het aan te raken.' },
+        { term: 'Foto-elektrische sensor', def: 'Een sensor die een lichtstraal uitzendt en schakelt als iets die straal onderbreekt of terugkaatst.' },
         { term: 'PLC', def: 'Programmable logic controller: de kleine industriële computer die de volgorde van een machine aanstuurt.' },
         { term: 'Interlock', def: 'Een regel in de PLC die de volgende stap blokkeert tot alle checks OK zijn.' },
         { term: 'Valse afkeur', def: 'Een goed product dat door een check wordt afgekeurd.' },
+      ],
+    },
+    {
+      id: 'eng.lines.sensors',
+      title: 'Sensoren kiezen en valideren voor foutvrij maken',
+      pre: [
+        {
+          q: 'Een sensor moet controleren of er een kunststof clip op een stalen beugel zit. Welke sensor is de verkeerde keuze?',
+          options: ['Een inductieve sensor', 'Een camera', 'Een foto-elektrische sensor die de achtergrond negeert', 'Een kleine mechanische taster die de clip aanraakt'],
+          answer: 'Een inductieve sensor',
+          why: 'Een inductieve sensor ziet alleen metaal: hij ziet de stalen beugel en is blind voor de kunststof clip.',
+        },
+      ],
+      teach: [
+        'Begin bij het defect, niet bij de catalogus: wat is er fysiek anders aan een goed en een fout product? Metaal wel of niet, kunststof wel of niet, een hoogte, een kleur, een kracht.\n\nEen inductieve sensor ziet alleen metaal, binnen een paar millimeter; zijn opgegeven bereik geldt voor staal en zakt naar ruwweg een derde tot de helft bij aluminium, messing of koper. Een capacitieve sensor ziet ook kunststof, hout of vloeistof, zelfs door een kunststof wand, maar reageert ook op vocht en vuil.',
+        'Een foto-elektrische sensor werkt met licht. Een eenwegsysteem (through-beam), zender en ontvanger tegenover elkaar, is het betrouwbaarst. Een reflectietaster (diffuse sensor) ziet licht dat het product zelf terugkaatst; met achtergrondonderdrukking negeert hij alles voorbij een ingestelde afstand, zodat een glimmende beugel achter de clip hem niet voor de gek houdt.\n\nEen camera checkt aanwezigheid, positie, kleur en codes in één beeld, maar vraagt stabiel licht en een product op een vaste plek. De verlichting bepaalt meer dan de camera.',
+        'Bij persen en schroeven registreert kracht-wegbewaking de kracht over de slag en vergelijkt de curve met vensters die zijn ingesteld op goede producten. Een ontbrekend lager, een verkeerd onderdeel of een gescheurd huis geven elk een andere curve. Schroeven gebruikt aanhaalmoment en hoek op dezelfde manier.\n\nDe pers en de schroefmachine beoordelen dan de verbinding zelf, niet alleen of er een onderdeel zit.',
+        'Een sensor is pas bewezen als hij gevalideerd is. Maak referentiedelen: goede, en één fout deel per faalwijze (failure mode), ook het grensgeval, zoals een clip die half is ingedrukt. Laat elk referentiedeel vaak langskomen, in verschillende standen en met de lijn in bedrijf, en leg vast dat elk fout deel wordt afgekeurd en elk goed deel goedgekeurd.\n\nPas dan gaat de check in het control plan, de lijst met controles per processtap.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Er moet een kunststof clip op een stalen beugel zitten. Het team zet een inductieve sensor op de plek van de clip. In de proef meldt hij bij elk product “aanwezig”, ook bij producten zonder clip.\n\nStap 1, waarom: de inductieve sensor ziet alleen metaal. De kunststof clip ziet hij helemaal niet; hij ziet de stalen beugel erachter, en die zit er altijd.',
+        ask: 'Welke sensor kies je, en hoe bewijs je dat hij werkt?',
+        reveal: 'Kies een sensor die de clip zelf ziet: een reflectietaster met achtergrondonderdrukking, ingesteld net vóór de beugel, of een camera als de clip ook onder de goede hoek moet zitten.\n\nValideer daarna met referentiedelen: 5 goede, 5 zonder clip en 5 met een half ingedrukte clip, elk een paar keer. Keur de check pas goed als alle 10 foute delen elke keer worden afgekeurd en de 5 goede doorgaan.',
+      },
+      said: 'Wat engineers zeggen: “Die sensor controleert de clip niet, hij controleert de beugel.” Een sensor die altijd OK zegt, is de gevaarlijkste soort.',
+      recall: [
+        {
+          q: 'Een inductieve sensor heeft op staal een schakelafstand van 8 mm. De datasheet geeft voor messing een correctiefactor van 0,4. Wat is zijn bereik op een messing onderdeel, in mm?',
+          number: 3.2,
+          tolerance: 0.1,
+          unit: 'mm',
+          why: '8 × 0,4 = 3,2 mm.',
+        },
+        {
+          q: 'Welke sensor kan een vloeistof zien door de wand van een kunststof fles?',
+          options: ['Een inductieve sensor', 'Een capacitieve sensor', 'Een mechanische eindschakelaar', 'Een momentsensor'],
+          answer: 'Een capacitieve sensor',
+          why: 'Een capacitieve sensor reageert ook op niet-metalen, ook door een kunststof wand heen.',
+        },
+        {
+          q: 'Wat voegt kracht-wegbewaking op een pers toe ten opzichte van een aanwezigheidssensor?',
+          options: ['Hij beoordeelt de verbinding zelf aan de krachtcurve over de slag', 'Hij is goedkoper', 'Hij werkt zonder PLC', 'Hij vervangt de mal'],
+          answer: 'Hij beoordeelt de verbinding zelf aan de krachtcurve over de slag',
+          why: 'Een verkeerd, ontbrekend of gescheurd onderdeel verandert de curve, ook als er wel een onderdeel zit.',
+        },
+        {
+          q: 'Met welke set referentiedelen valideer je een clipcheck goed?',
+          options: ['Alleen goede delen', 'Goede delen, delen zonder clip en delen met een half ingedrukte clip', 'Eén fout deel, één keer', 'De eerste 100 productiedelen'],
+          answer: 'Goede delen, delen zonder clip en delen met een half ingedrukte clip',
+          why: 'Je moet bewijzen dat elke faalwijze, ook het grensgeval, wordt afgekeurd, en dat goede delen doorgaan.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een automotive-toeleverancier noemt de engineer een nieuwe cameracheck op een connector “klaar”: hij keurde de eerste 200 productiedelen goed.',
+        ask: 'Wat vraag je?',
+        model: 'Hoeveel van die 200 waren fout? Als dat er geen waren, weten we alleen dat hij goede delen goedkeurt. Heb je referentiedelen getest voor elke faalwijze, ook een connector die half is ingestoken, vaak en in verschillende standen? En wat gebeurt er met het licht als ’s middags de haldeur opengaat?',
+        rubric: [
+          'Benoemt dat alleen goede delen een check niet bewijzen',
+          'Vraagt om referentiedelen per faalwijze, ook grensgevallen',
+          'Vraagt naar omstandigheden die veranderen, zoals licht',
+        ],
+      },
+      sayIt: 'Leg een kwaliteitsengineer in 60 seconden uit hoe je een sensor kiest voor een foutvrij-check en hoe je bewijst dat hij werkt.',
+      terms: [
+        { term: 'Capacitieve sensor', def: 'Een sensor die bijna elk materiaal ziet, ook kunststof of vloeistof, doordat het een elektrisch veld verandert.' },
+        { term: 'Achtergrondonderdrukking', def: 'Een instelling van een reflectietaster die alles voorbij een ingestelde afstand negeert.' },
+        { term: 'Kracht-wegbewaking', def: 'De kracht over de slag van een pers registreren en de curve toetsen aan vensters van goede producten.' },
+        { term: 'Referentiedeel', def: 'Een bekend goed of bekend fout deel waarmee je bewijst dat een check goed goed- en afkeurt.' },
+      ],
+    },
+    {
+      id: 'eng.lines.detection',
+      title: 'Foutvrij maken als strategie: PFMEA, escapes en dagelijkse checks',
+      pre: [
+        {
+          q: 'Een proces maakt 1.000 foute delen per miljoen. Een automatische check vangt er 99,9% van. Hoeveel foute delen per miljoen bereiken de klant?',
+          options: ['1', '10', '0,1', '100'],
+          answer: '1',
+          why: '0,1% glipt erdoor: 1.000 × 0,001 = 1 ppm.',
+        },
+      ],
+      teach: [
+        'Een fabriek heeft tientallen mogelijke vergissingen en geld voor een paar poka-yokes. De PFMEA, de procesgerichte faalwijze- en effectenanalyse, bepaalt waar. Elke faalwijze krijgt een score van 1 tot 10 voor ernst, optreden en detectie. Sinds het AIAG-VDA-handboek van 2019 vervangt een actieprioriteit-tabel (hoog, middel, laag) het oude product van de drie, het RPN.\n\nErnst gaat voor: een veiligheids- of wettelijke fout vraagt om voorkomen of automatische detectie, hoe zeldzaam ook.',
+        'Detectie scoor je omgekeerd: 10 betekent dat niks het vindt; lage getallen betekenen een bewezen automatische check die het product tegenhoudt. Een visuele controle door mensen scoort hoog; een gevalideerde sensor met interlock scoort laag. Voorkomen, dat de oorzaak weghaalt, verlaagt juist de score voor optreden.\n\nDe volgorde van voorkeur: maak de vergissing onmogelijk; detecteer hem op het station en stop; detecteer hem later; keur als laatste.',
+        'Meet het resultaat in escapes: fouten die de klant bereiken, in ppm. Escapes = gemaakte fouten × deel dat gemist wordt. 1.000 ppm gemaakt en 99,9% gevangen geeft 1 ppm eruit; met 85% gevangen door het oog is het 150 ppm.\n\nEen check telt alleen zolang hij werkt. Een red rabbit is een bekend fout referentiedeel, vaak rood gespoten, dat aan het begin van elke dienst door de check gaat. Keurt de check hem goed, dan is de check stuk.',
+        'Dan begint het reactieplan: stoppen, de check repareren en opnieuw verifiëren, en alles blokkeren (containment) wat sinds de laatste goede check is gemaakt, want niks daarvan is echt gecontroleerd. IATF 16949, de kwaliteitsnorm voor automotive, eist zo’n plan voor foutvrij-voorzieningen.\n\nVragen voor een kwaliteitsengineer: “Welke faalwijzen hebben een poka-yoke? Wanneer zijn ze voor het laatst geverifieerd, met welk resultaat? Hoe vaak worden ze overbrugd?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een inpersstation controleert met kracht-wegbewaking of een lager helemaal op zijn plek zit. Aan het begin van elke dienst van 8 uur gaat er een red rabbit door, een deel zonder lager. De lijn maakt 60 delen per uur.\n\nBij de check van 14:00 keurt het station de red rabbit goed. De check van 06:00 was in orde.\n\nStap 1: elk deel sinds 06:00 is verdacht: 8 uur × 60 = 480 delen.',
+        ask: 'Wat doe je met die delen, en met de check?',
+        reveal: 'Zet de 480 delen in quarantaine, ook wat al in het magazijn staat of onderweg is naar de klant, en controleer ze op een andere manier, bijvoorbeeld door de inpersdiepte te meten. Repareer de bewaking, laat de red rabbit opnieuw langskomen en geef het station pas vrij als die wordt afgekeurd. Zoek daarna uit waarom hij faalde.\n\nVraag bij een veiligheidskritisch kenmerk of één keer per dienst vaak genoeg is: het interval van de check is ook de omvang van elke terugroepactie.',
+      },
+      said: 'Wat kwaliteitsengineers zeggen: “Is de red rabbit vanochtend gelopen?” Weet niemand het, dan controleert de poka-yoke misschien helemaal niks.',
+      recall: [
+        {
+          q: 'Een proces maakt 2.000 foute delen per miljoen. Een automatische check vangt er 99,5% van. Hoeveel bereiken de klant, in ppm?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'ppm',
+          why: '0,5% glipt erdoor: 2.000 × 0,005 = 10 ppm.',
+        },
+        {
+          q: 'Een check wordt aan het begin van elke dienst van 8 uur geverifieerd, en de lijn maakt 45 delen per uur. Eén verificatie faalt. Hoeveel delen zijn hooguit verdacht?',
+          number: 360,
+          tolerance: 1,
+          unit: 'delen',
+          why: 'Alles sinds de laatste goede check: 8 × 45 = 360 delen.',
+        },
+        {
+          q: 'Wat verving in de AIAG-VDA-PFMEA het RPN?',
+          options: ['De actieprioriteit', 'De Cpk', 'De OEE', 'De takt'],
+          answer: 'De actieprioriteit',
+          why: 'Een tabel van ernst, optreden en detectie geeft een hoge, middelste of lage prioriteit, met ernst het zwaarst.',
+        },
+        {
+          q: 'Wat is een red rabbit?',
+          options: ['Een bekend fout deel waarmee je bewijst dat een check nog afkeurt', 'Een robot die te snel draait', 'Een deel uit de opstartfase', 'Een fout die de klant vond'],
+          answer: 'Een bekend fout deel waarmee je bewijst dat een check nog afkeurt',
+          why: 'Hij gaat elke dienst door de check; keurt die hem goed, dan is de check stuk.',
+        },
+      ],
+      situation: {
+        scene: 'Bij een automotive-toeleverancier zit je in het wekelijkse kwaliteitsoverleg. Een klant vond een deel zonder clip, terwijl het station een cameracheck heeft. Niemand weet wanneer de check voor het laatst is geverifieerd.',
+        ask: 'Wat vraag je?',
+        model: 'Is er een red rabbit voor deze check, en gaat die elke dienst langs en wordt dat vastgelegd? Als de check stuk was, welke delen sinds de laatste goede verificatie lopen risico, en zijn die geblokkeerd? En wat zegt de PFMEA over deze faalwijze: is detectie gescoord alsof de check altijd werkt?',
+        rubric: [
+          'Vraagt of en hoe vaak de check met een bekend fout deel wordt geverifieerd',
+          'Vraagt om blokkeren terug tot de laatste goede verificatie',
+          'Koppelt de detectiescore in de PFMEA aan of de check geverifieerd wordt',
+        ],
+      },
+      sayIt: 'Leg een fabrieksmanager in 60 seconden uit waarom een poka-yoke elke dienst geverifieerd moet worden, en wat er gebeurt als hij faalt.',
+      terms: [
+        { term: 'PFMEA', def: 'Procesgerichte faalwijze- en effectenanalyse: per processtap scoren wat er mis kan gaan, om te bepalen waar je ingrijpt.' },
+        { term: 'Actieprioriteit', def: 'De AIAG-VDA-tabel die ernst, optreden en detectie omzet in een hoge, middelste of lage prioriteit.' },
+        { term: 'Escape', def: 'Een fout die langs elke check glipt en bij de klant terechtkomt.' },
+        { term: 'Red rabbit', def: 'Een bekend fout deel, vaak rood gespoten, dat elke dienst door een check gaat om te bewijzen dat die nog afkeurt.' },
+        { term: 'Reactieplan', def: 'Wat je doet als een check faalt: stoppen, repareren, verifiëren en alles blokkeren sinds de laatste goede check.' },
       ],
     },
     {
@@ -356,8 +975,6 @@ export default {
       terms: [
         { term: 'OEE', def: 'Overall equipment effectiveness: beschikbaarheid × prestatie × kwaliteit, het deel van de ideale output dat je echt haalt.' },
         { term: 'Microstop', def: 'Een korte stop van seconden tot een paar minuten, meestal niet opgeschreven.' },
-        { term: 'Starved', def: 'Een station dat wacht op onderdelen van stroomopwaarts.' },
-        { term: 'Blocked', def: 'Een station dat zijn onderdeel niet kwijt kan omdat het erna vol is.' },
         { term: 'Machinestatussen', def: 'PLC-data die over de tijd laat zien of een station draait, in storing staat, starved of blocked is.' },
         { term: 'Verborgen bottleneck', def: 'Het station dat de lijn echt begrenst: draait het meest, wacht zelden, vaak niet het langzaamste op papier.' },
       ],
