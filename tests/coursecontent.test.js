@@ -118,3 +118,10 @@ test('every module file on disk is in the index (none silently dropped)', () => 
     }
   }
 });
+
+test('validator: a lesson may explain up to 6 terms, not 7', () => {
+  const terms = (n) => Array.from({ length: n }, (_, i) => ({ term: `T${i}`, def: `Def ${i}.` }));
+  const withTerms = (n) => ({ lessons: [lesson('eng.fx.a', { terms: terms(n) }), lesson('eng.fx.b')] });
+  assert.deepEqual(validateModule(withTerms(6), withTerms(6), fxMeta).filter((e) => e.includes('terms')), []);
+  assert.ok(validateModule(withTerms(7), withTerms(7), fxMeta).some((e) => e.includes('terms')));
+});
