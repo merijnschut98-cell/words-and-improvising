@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { SUBJECTS, TRACKS, MODULES, loadModule, moduleOf, trackOf, subjectOf } from '../src/content/courses/index.js';
-import { validateModule } from '../src/content/courses/validate.js';
+import { validateModule, checkTopics } from '../src/content/courses/validate.js';
 
 const q = (n) => ({ q: `Question ${n}?`, options: ['a', 'b', 'c', 'd'], answer: 'b', why: 'Because b.' });
 const lesson = (id, extra = {}) => ({
@@ -124,4 +124,8 @@ test('validator: a lesson may explain up to 6 terms, not 7', () => {
   const withTerms = (n) => ({ lessons: [lesson('eng.fx.a', { terms: terms(n) }), lesson('eng.fx.b')] });
   assert.deepEqual(validateModule(withTerms(6), withTerms(6), fxMeta).filter((e) => e.includes('terms')), []);
   assert.ok(validateModule(withTerms(7), withTerms(7), fxMeta).some((e) => e.includes('terms')));
+});
+
+test('every topic module in the index passes checkTopics', () => {
+  for (const m of MODULES.filter((x) => Array.isArray(x.topics))) assert.deepEqual(checkTopics(m), [], m.id);
 });
