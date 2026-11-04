@@ -66,7 +66,9 @@ function moduleRow(app, meta) {
   }).catch(() => list.replaceChildren(h('p', { class: 'note' }, t('loadError'))));
   return h('details', { class: 'module', ontoggle: (e) => { if (e.currentTarget.open && !list.childElementCount) fill(); } },
     h('summary', { class: 'module-row' },
-      h('span', { class: 'module-title' }, modTitle(app, meta)),
+      h('span', { class: 'module-title' }, modTitle(app, meta),
+        // In Dutch, the English name too: he needs both words at work.
+        app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? h('span', { class: 'term-en module-en', lang: 'en' }, ` · ${meta.title.en}`) : null),
       h('span', { class: 'module-meta' },
         h('span', { class: 'pill' }, t(`level_${meta.level}`)),
         masteryBadge(t, moduleMastery(app.state, meta, app.lang)),

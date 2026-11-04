@@ -289,7 +289,10 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
     await term.click();
     await pg.locator('.teach-card .term-def:not([hidden])', { hasText: 'Takttijd' }).waitFor();
     if (await term.getAttribute('aria-expanded') !== 'true') throw new Error('term not marked open');
-    await shot('105-term-open');
+    // In Dutch the English word is shown next to the term, and in its definition.
+    if (!(await pg.locator('.teach-card .term-en[lang="en"]').count())) throw new Error('no English word next to the Dutch term');
+    if (!(await pg.locator('.teach-card .term-def .term-en', { hasText: 'EN:' }).count())) throw new Error('no English word in the definition');
+    await pg.screenshot({ path: `${out}/105-term-open.png` });
     await term.click();
     if (await pg.locator('.teach-card .term-def:not([hidden])').count()) throw new Error('term definition did not close');
   }

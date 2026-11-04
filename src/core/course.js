@@ -264,7 +264,7 @@ function prepPick(state, subject, lang, today, modules) {
 
 // Every term of the loaded modules, with where it came from, A–Z.
 export function glossary(modules) {
-  return (modules || []).flatMap((m) => (m.lessons || []).flatMap((l) => (l.terms || []).map((x) => ({ term: x.term, def: x.def, lessonId: l.id, moduleId: m.id }))))
+  return (modules || []).flatMap((m) => (m.lessons || []).flatMap((l) => (l.terms || []).map((x) => ({ term: x.term, def: x.def, ...(x.en ? { en: x.en } : {}), lessonId: l.id, moduleId: m.id }))))
     .sort((a, b) => a.term.localeCompare(b.term, undefined, { sensitivity: 'base' }));
 }
 
@@ -472,9 +472,33 @@ export function linkTerms(text, terms) {
     if (!hit || used.has(hit.term)) continue;
     used.add(hit.term);
     if (m.index > at) out.push({ text: src.slice(at, m.index) });
-    out.push({ text: m[1], term: hit.term, def: hit.def });
-    at = m.index + m[1].length;
+    const end = m.index + m[1].length;
+    // The English word, unless the text already gives it right after the term.
+    const en = hit.en && !src.slice(end, end + hit.en.length + 6).toLowerCase().includes(hit.en.toLowerCase()) ? hit.en : undefined;
+    out.push(en ? { text: m[1], term: hit.term, def: hit.def, en } : { text: m[1], term: hit.term, def: hit.def });
+    at = end;
   }
   if (at < src.length) out.push({ text: src.slice(at) });
   return out;
+}
+
+// The Dutch course with the English word next to each term (same lesson, same
+// position in its terms list): he needs both words at work. Pure.
+export function withEnglish(nlMod, enMod) {
+  if (!nlMod || !enMod) return nlMod;
+  const enLessons = new Map((enMod.lessons || []).map((l) => [l.id, l]));
+  return {
+    ...nlMod,
+    lessons: (nlMod.lessons || []).map((l) => {
+      const other = enLessons.get(l.id);
+      if (!other || !(l.terms || []).length || (other.terms || []).length !== l.terms.length) return l;
+      return {
+        ...l,
+        terms: l.terms.map((x, i) => {
+          const en = other.terms[i] && other.terms[i].term;
+          return en && en.trim().toLowerCase() !== x.term.trim().toLowerCase() ? { ...x, en } : x;
+        }),
+      };
+    }),
+  };
 }

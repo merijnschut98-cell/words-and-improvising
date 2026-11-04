@@ -426,3 +426,24 @@ test('linkTerms: marks the first whole-word use of each term in a paragraph; lon
   assert.deepEqual(linkTerms('', terms), []);
   assert.deepEqual(linkTerms('Tekst (met haakjes).', [{ term: 'a+b (x)', def: 'd' }]).filter((s) => s.term), []);
 });
+
+import { withEnglish } from '../src/core/course.js';
+
+test('withEnglish: each Dutch term gets the English term from the same lesson and position; same words are skipped', () => {
+  const nl = { lessons: [{ id: 'm.a', terms: [{ term: 'Spiebaan', def: 'Sleuf.' }, { term: 'CNC', def: 'Computer.' }] }, { id: 'm.b', terms: [{ term: 'Takt', def: 'x' }] }] };
+  const en = { lessons: [{ id: 'm.a', terms: [{ term: 'Keyway', def: 'Slot.' }, { term: 'CNC', def: 'Computer.' }] }] };
+  const out = withEnglish(nl, en);
+  assert.equal(out.lessons[0].terms[0].en, 'Keyway');
+  assert.equal('en' in out.lessons[0].terms[1], false, 'same word in both languages: nothing to add');
+  assert.equal('en' in out.lessons[1].terms[0], false, 'lesson missing in English: unchanged');
+  assert.equal(nl.lessons[0].terms[0].en, undefined, 'input not mutated');
+  assert.deepEqual(withEnglish(nl, null), nl);
+});
+
+test('linkTerms: carries the English word, and does not repeat it when the text already gives it', () => {
+  const terms = [{ term: 'Spiebaan', def: 'Sleuf.', en: 'Keyway' }];
+  const a = linkTerms('Frees de spiebaan.', terms).find((s) => s.term);
+  assert.equal(a.en, 'Keyway');
+  const b = linkTerms('Frees de spiebaan (keyway) erin.', terms).find((s) => s.term);
+  assert.equal(b.en, undefined);
+});

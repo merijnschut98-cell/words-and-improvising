@@ -26,7 +26,7 @@ import { renderFriendRate } from './ui/friendrate.js';
 import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
-import { commitPlanDraft, newPlanId } from './core/course.js';
+import { commitPlanDraft, newPlanId, withEnglish } from './core/course.js';
 import { createCloud } from './core/cloud.js';
 import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
@@ -97,11 +97,19 @@ export const app = {
   },
   modules: {}, // 'lang:moduleId' -> loaded module (promise), course bodies on demand
   moduleFails: {}, // 'lang:moduleId' -> failed loads so far
-  openModule(subject, moduleId) {
-    const key = `${this.lang}:${moduleId}`;
+  // In Dutch, the module with the English word next to each term (he needs
+  // both at work). The English file is only for the terms: if it fails to
+  // load, the Dutch module comes back as it is.
+  openModuleTerms(subject, moduleId) {
+    const nl = this.openModule(subject, moduleId);
+    if (this.lang !== 'nl') return nl;
+    return Promise.all([nl, this.openModule(subject, moduleId, 'en').catch(() => null)]).then(([a, b]) => withEnglish(a, b));
+  },
+  openModule(subject, moduleId, lang = this.lang) {
+    const key = `${lang}:${moduleId}`;
     if (!this.modules[key]) {
       const attempt = this.moduleFails[key] || 0;
-      this.modules[key] = loadModule(subject, moduleId, this.lang, attempt).catch((err) => {
+      this.modules[key] = loadModule(subject, moduleId, lang, attempt).catch((err) => {
         delete this.modules[key];
         this.moduleFails[key] = attempt + 1;
         throw err;

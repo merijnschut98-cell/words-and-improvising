@@ -21,6 +21,8 @@ export function prose(cls, text, terms = []) {
     const parts = linkTerms(para, terms).map((seg) => {
       if (!seg.term) return seg.text;
       const btn = h('button', { type: 'button', class: 'term', 'aria-expanded': 'false' }, seg.text);
+      // The English word right after the Dutch term, highlighted.
+      const en = seg.en ? h('span', { class: 'term-en', lang: 'en' }, ` (${seg.en})`) : null;
       btn.onclick = () => {
         const same = open === btn;
         if (open) open.setAttribute('aria-expanded', 'false');
@@ -28,10 +30,10 @@ export function prose(cls, text, terms = []) {
         def.hidden = same;
         if (!same) {
           btn.setAttribute('aria-expanded', 'true');
-          def.replaceChildren(h('b', {}, seg.term), ': ', seg.def);
+          def.replaceChildren(h('b', {}, seg.term), seg.en ? h('span', { class: 'term-en', lang: 'en' }, ` · EN: ${seg.en}`) : null, ': ', seg.def);
         }
       };
-      return btn;
+      return en ? [btn, en] : btn;
     });
     return [h('p', {}, parts), def];
   }));
@@ -68,7 +70,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')))));
   };
 
-  app.openModule(subject, moduleId).then((mod) => {
+  app.openModuleTerms(subject, moduleId).then((mod) => {
     if (seq !== app.navSeq) return;
     const lesson = mod.lessons.find((l) => l.id === lessonId);
     if (!lesson) { fail(); return; }

@@ -16,7 +16,7 @@ export function renderGlossary(app, { subject }, root) {
     h('main', { class: 'screen glossary' }, search, list));
 
   const metas = MODULES.filter((m) => m.subject === subject);
-  Promise.all(metas.map((m) => app.openModule(subject, m.id).then((mod) => ({ id: m.id, lessons: mod.lessons }), () => null)))
+  Promise.all(metas.map((m) => app.openModuleTerms(subject, m.id).then((mod) => ({ id: m.id, lessons: mod.lessons }), () => null)))
     .then((loaded) => {
       if (seq !== app.navSeq) return;
       const terms = glossary(loaded.filter(Boolean));
@@ -24,12 +24,12 @@ export function renderGlossary(app, { subject }, root) {
       const titleOf = (id) => { const m = metas.find((x) => x.id === id); return m ? (m.title[app.lang] || m.title.en) : id; };
       const draw = () => {
         const q = search.value.trim().toLowerCase();
-        const hits = terms.filter((x) => !q || x.term.toLowerCase().includes(q) || x.def.toLowerCase().includes(q));
+        const hits = terms.filter((x) => !q || x.term.toLowerCase().includes(q) || x.def.toLowerCase().includes(q) || (x.en || '').toLowerCase().includes(q));
         const groups = metas.map((m) => [m.id, hits.filter((x) => x.moduleId === m.id)]).filter(([, l]) => l.length);
         list.replaceChildren(...[
           ...groups.map(([id, l]) => h('section', { class: 'card glossary-group' },
             h('h2', { class: 'card-title' }, titleOf(id)),
-            l.map((x) => h('div', { class: 'term' }, h('b', {}, x.term), h('p', { class: 'muted small' }, x.def))))),
+            l.map((x) => h('div', { class: 'term' }, h('b', {}, x.term), x.en ? h('span', { class: 'term-en', lang: 'en' }, ` · ${x.en}`) : null, h('p', { class: 'muted small' }, x.def))))),
           groups.length ? null : h('p', { class: 'note' }, t('glossaryNone')),
           missing ? h('p', { class: 'note' }, t('glossaryMissing')) : null,
         ].filter(Boolean));
