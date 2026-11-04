@@ -512,13 +512,15 @@ export function linkTerms(text, terms) {
   if (!src) return [];
   const list = (terms || []).filter((x) => x && x.term && x.term.trim()).sort((a, b) => b.term.length - a.term.length);
   if (!list.length) return [{ text: src }];
-  const re = new RegExp(`(?<![\\p{L}\\p{N}])(${list.map((x) => escapeRe(x.term.trim())).join('|')})(?![\\p{L}\\p{N}])`, 'giu');
+  // A plural or simple inflection also counts: micro-stops, laserscanners, gekoppelde.
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])((?:${list.map((x) => escapeRe(x.term.trim())).join('|')})(?:s|es|en|e|n|’s)?)(?![\\p{L}\\p{N}])`, 'giu');
   const byKey = new Map(list.map((x) => [x.term.trim().toLowerCase(), x]));
   const used = new Set();
   const out = [];
   let at = 0;
   for (const m of src.matchAll(re)) {
-    const hit = byKey.get(m[1].toLowerCase());
+    const word = m[1].toLowerCase();
+    const hit = byKey.get(word) || [...byKey.keys()].filter((k) => word.startsWith(k)).sort((a, b) => b.length - a.length).map((k) => byKey.get(k))[0];
     if (!hit || used.has(hit.term)) continue;
     used.add(hit.term);
     if (m.index > at) out.push({ text: src.slice(at, m.index) });

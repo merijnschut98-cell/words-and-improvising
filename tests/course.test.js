@@ -449,3 +449,13 @@ test('linkTerms: carries the English word, and does not repeat it when the text 
   assert.equal(b.enInline, false, 'but the text does not repeat it');
   assert.equal(a.enInline, true);
 });
+
+test('linkTerms: a plural or simple inflection of a term also links (micro-stops, laserscanners, gekoppelde)', () => {
+  const terms = [{ term: 'Micro-stop', def: 'a' }, { term: 'Laserscanner', def: 'b' }, { term: 'Star gekoppeld', def: 'c' }, { term: 'Escape', def: 'd' }];
+  const hit = (txt) => linkTerms(txt, terms).filter((s) => s.term).map((s) => s.text);
+  assert.deepEqual(hit('Count the micro-stops.'), ['micro-stops']);
+  assert.deepEqual(hit('Twee laserscanners bewaken de cel.'), ['laserscanners']);
+  assert.deepEqual(hit('Een star gekoppelde lijn.'), ['star gekoppelde']);
+  assert.deepEqual(hit('Escapes cost money.'), ['Escapes']);
+  assert.deepEqual(hit('Escaped is not a term.'), [], 'only plural/inflection endings, not any suffix');
+});
