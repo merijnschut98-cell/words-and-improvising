@@ -2,8 +2,8 @@
 // work feeds the shared XP, days and streak. Pure.
 import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
-import { scheduleCourseReview, dueCount, maintenanceQuestion } from './coursereview.js';
-import { lessonOf, moduleOf, MODULES, TRACKS } from '../content/courses/index.js';
+import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
+import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { upcoming } from './realweek.js';
 
 const LESSON_XP = 20;
@@ -185,9 +185,59 @@ export function moduleMastery(state, meta, lang) {
 
 const passedIn = (state, subject) => (((state.courses || {})[subject]) || { lessons: {} }).lessons;
 
+// When he last read or passed a lesson.
+const lastTouched = (p) => Math.max((p && p.read) || 0, (p && p.passed) || 0);
+
+// Topic modules (free access): the topic he touched last while it has an open
+// level, else the first open topic in index order; within it, the lowest
+// level not passed. Depth-first: one topic from Basis to Expert. Other
+// modules: the first lesson not passed, in index order.
 export function nextLesson(state, meta) {
   const lessons = passedIn(state, meta.subject);
-  return meta.lessons.find((id) => !(lessons[id] && lessons[id].passed)) || null;
+  const done = (id) => !!(lessons[id] && lessons[id].passed);
+  const metaTopics = topicsOf(meta);
+  if (metaTopics) {
+    let recent = null;
+    let at = 0;
+    for (const id of meta.lessons) { const ts = lastTouched(lessons[id]); if (ts > at) { recent = id; at = ts; } }
+    const open = (t) => t.levels.some((id) => !done(id));
+    const current = recent && metaTopics.find((t) => t.levels.includes(recent));
+    const topic = current && open(current) ? current : metaTopics.find(open);
+    return topic ? topic.levels.find((id) => !done(id)) : null;
+  }
+  return meta.lessons.find((id) => !done(id)) || null;
+}
+
+// One level of a topic: todo (not passed), passed, or owned (passed and every
+// recall question at the owned box in this language).
+export function levelState(state, subject, lessonId, count, lang) {
+  const p = passedIn(state, subject)[lessonId];
+  if (!(p && p.passed)) return 'todo';
+  const reviews = state.courseReviews || {};
+  const owned = count > 0 && Array.from({ length: count }, (_, i) => ((reviews[`${lang}|${lessonId}#r${i}`] || {}).box || 0) >= OWNED_BOX).every(Boolean);
+  return owned ? 'owned' : 'passed';
+}
+
+// The rows of a topic module for the course home; null for other modules.
+export function topicRows(state, meta, lang) {
+  const metaTopics = topicsOf(meta);
+  if (!metaTopics) return null;
+  return metaTopics.map((t) => {
+    const levels = t.levels.map((lessonId, i) => ({ lessonId, level: i + 1, state: levelState(state, meta.subject, lessonId, (meta.questions || {})[lessonId] || 0, lang) }));
+    return { id: t.id, title: t.title, passed: levels.filter((l) => l.state !== 'todo').length, levels };
+  });
+}
+
+// Lessons passed in a module, for "5/24 levels".
+export function levelsDone(state, meta) {
+  const lessons = passedIn(state, meta.subject);
+  return { done: meta.lessons.filter((id) => lessons[id] && lessons[id].passed).length, total: meta.lessons.length };
+}
+
+// A lesson pick in a topic module says where it sits, for labels.
+function placed(pick, modules) {
+  const p = placeOf(pick.lessonId, modules);
+  return p ? { ...pick, topicId: p.topicId, level: p.level } : pick;
 }
 
 // A module he started first; otherwise the lowest level across tracks, in
@@ -213,7 +263,7 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   const due = dueCount(reviews, today, subject, lang);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = recommendedModule(state, subject, modules);
-  if (rec) return { reason: 'lesson', moduleId: rec, lessonId: nextLesson(state, modules.find((m) => m.id === rec)) };
+  if (rec) return placed({ reason: 'lesson', moduleId: rec, lessonId: nextLesson(state, modules.find((m) => m.id === rec)) }, modules);
   const lessons = passedIn(state, subject);
   const all = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons.map((lessonId) => ({ moduleId: m.id, lessonId })));
   const done = all.filter((x) => lessons[x.lessonId] && lessons[x.lessonId].passed);
@@ -257,7 +307,7 @@ function prepPick(state, subject, lang, today, modules) {
     // Nothing learned yet for this topic: its first lesson, for this event.
     const lessons = passedIn(state, subject);
     const fresh = topics.map((id) => modules.find((m) => m.id === id)).find((m) => !m.lessons.some((id) => lessons[id] && lessons[id].passed));
-    if (fresh) return { reason: 'lesson', moduleId: fresh.id, lessonId: nextLesson(state, fresh), why: 'prepLesson', eventId: ev.id };
+    if (fresh) return placed({ reason: 'lesson', moduleId: fresh.id, lessonId: nextLesson(state, fresh), why: 'prepLesson', eventId: ev.id }, modules);
   }
   return null;
 }
