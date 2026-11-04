@@ -11,6 +11,20 @@ export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat',
 // The reason line for a course pick: a lesson for an event says so; prep names the event.
 export const courseWhy = (t, pick) => t(`courseWhy_${pick.why || pick.reason}`, pick.eventText || '');
 
+// "Draaien · Gevorderd" for a lesson in a topic module; '' otherwise.
+export function placeLabel(t, lang, lessonId, modules = MODULES) {
+  const p = placeOf(lessonId, modules);
+  return p ? t('topicLevel', p.topic.title[lang] || p.topic.title.en, t(`level_${p.level}`)) : '';
+}
+
+// The why line of a course pick: a topic lesson names its topic and level, a
+// lesson elsewhere its module.
+export function pickWhy(t, lang, pick, meta, modules = MODULES) {
+  const place = pick.topicId && pick.lessonId ? placeLabel(t, lang, pick.lessonId, modules) : '';
+  if (place) return `${courseWhy(t, pick)} · ${place}`;
+  return meta && pick.lessonId ? `${courseWhy(t, pick)} · ${meta.title[lang] || meta.title.en}` : courseWhy(t, pick);
+}
+
 function modTitle(app, meta) { return meta.title[app.lang] || meta.title.en; }
 
 // Opens what the Today card or a lesson row points at.
@@ -41,9 +55,7 @@ function todayCard(app, subject) {
   return h('section', { class: 'card today-card course-today' },
     h('p', { class: 'today-label' }, t('courseNext')),
     what,
-    h('p', { class: 'muted small' }, meta && pick.lessonId
-      ? `${courseWhy(t, pick)} · ${modTitle(app, meta)}`
-      : courseWhy(t, pick)),
+    h('p', { class: 'muted small today-why' }, pickWhy(t, app.lang, pick, meta)),
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },
@@ -99,7 +111,7 @@ function topicModuleRow(app, meta) {
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     h('section', { class: 'topics' }, rows),
     next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
-      ico('play'), ' ', at ? t('moduleContinueAt', t('topicLevel', topicTitle(app, at.topic), t(`level_${at.level}`))) : t('moduleContinue')) : null);
+      ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null);
 }
 
 function moduleRow(app, meta) {

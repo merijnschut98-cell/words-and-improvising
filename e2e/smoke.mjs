@@ -2325,6 +2325,43 @@ await step('topics: level chips in a module (fixture)', async () => {
   await c.close();
 });
 
+await step('topics: where you are (fixture)', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed());
+  const mod = await openTopicModule(p);
+  // Chip 3 is Gevorderd: eng.machining.tools in the fixture.
+  await mod.locator('.topic-row').first().locator('.level-chip').nth(2).click();
+  await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
+  await shotP('112-lesson-place');
+  await playLesson(p, 'eng', 'machining', 'eng.machining.tools');
+  const nextBtn = p.locator('.next-level');
+  if ((await nextBtn.innerText()).trim() !== 'Volgende: Draaien · Expert') throw new Error(`next level: ${await nextBtn.innerText()}`);
+  if (await p.locator('.next-level.btn-primary').count()) throw new Error('next level is a primary button');
+  await onePrimary(p, 'lesson done with a next level');
+  await shotP('113-done-next-level');
+  // Dark through the system setting (theme Auto), so the done card stays.
+  await p.emulateMedia({ colorScheme: 'dark' });
+  await shotP('113-done-next-level-dark');
+  await p.emulateMedia({ colorScheme: 'light' });
+  await p.getByRole('button', { name: 'Terug naar de cursus' }).click();
+  await p.locator('.course-today .today-why', { hasText: 'Draaien · Expert' }).waitFor();
+  await onePrimary(p, 'course home after a topic lesson');
+  await shotP('114-today-topic');
+  await p.getByRole('button', { name: 'Overzicht' }).click();
+  await p.locator('.start-eng .start-why', { hasText: 'Draaien · Expert' }).waitFor();
+  // The figure of a topic lesson gets its level: cutting is Werkkennis (2).
+  await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+  const lesson = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.cutting'));
+  for (const q of lesson.pre) {
+    if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
+    else await p.locator('.pre-card .opt').first().click();
+    await p.locator('.lesson > .pre-next').click();
+  }
+  for (let i = 1; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
+  const src = await p.locator('.figure-frame').getAttribute('src', { timeout: 5000 });
+  if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure src without level=2: ${src}`);
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

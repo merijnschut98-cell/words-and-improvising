@@ -799,6 +799,7 @@ details.explain-back > summary { font-family: var(--font-display); font-weight: 
 
 /* Lesson step indicator: Guess · Read · Example · Check. */
 .steps { list-style: none; margin: 0 0 12px; padding: 0; display: flex; gap: 4px; }
+.lesson-place { margin: 0 0 6px; font-family: var(--font-mono); font-size: 0.75rem; }
 .step {
   flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 2px; padding: 6px 2px 8px; text-align: center;
   font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);

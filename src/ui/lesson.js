@@ -3,8 +3,9 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
-import { metaOf } from '../content/courses/index.js';
+import { applyLesson, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { metaOf, placeOf } from '../content/courses/index.js';
+import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
 
@@ -104,7 +105,12 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       : null);
     const dots = (n, i) => h('div', { class: 'dots', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
     // Every step starts with the indicator; the rest of the screen follows it.
-    const show = (...nodes) => main.replaceChildren(stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes.filter(Boolean));
+    // A topic lesson says where it sits ("Draaien · Gevorderd") above the steps.
+    const place = placeOf(lesson.id);
+    const placeText = place ? placeLabel(t, app.lang, lesson.id) : '';
+    const show = (...nodes) => main.replaceChildren(...[
+      placeText ? h('p', { class: 'lesson-place muted small' }, placeText) : null,
+      stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes].filter(Boolean));
 
     function draw() {
       const phase = phases[p];
@@ -143,7 +149,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
             prose('teach-text', lesson.teach[block], terms),
             last ? h('p', { class: 'said' }, lesson.said) : null,
-            last && lesson.figure ? figureFrame(app, lesson.figure) : null,
+            last && lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
           h('button', {
             class: 'btn btn-primary btn-big',
@@ -286,6 +292,15 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       return h('details', { class: 'card explain-back' }, h('summary', {}, t('ebTitle')), body);
     }
 
+    // In a topic module: the suggested next level, quiet (the primary stays the situation).
+    function nextLevelBtn() {
+      if (!place) return null;
+      const id = nextLesson(app.state, meta);
+      if (!id || id === lesson.id || !meta.lessons.includes(id)) return null;
+      return h('button', { class: 'btn btn-ghost next-level', onclick: () => app.go('lesson', { subject, moduleId: meta.id, lessonId: id }) },
+        ico('chevron-right'), ' ', t('nextLevel', placeLabel(t, app.lang, id)));
+    }
+
     function done(xp) {
       finished = true;
       show(h('section', { class: 'card lesson-done' },
@@ -297,6 +312,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       guessCard(),
       explainBack(),
       h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
+      nextLevelBtn(),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
       h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));
     }

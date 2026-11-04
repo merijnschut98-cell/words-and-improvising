@@ -264,7 +264,35 @@ test('i18n: topic and level strings in both languages', () => {
   assert.equal(nl('moduleContinueAt', 'Draaien · Gevorderd'), 'Verder: Draaien · Gevorderd');
   assert.equal(nl('chipNext'), 'Volgende');
   assert.equal(nl('topicCount', 2), '2/4');
-  for (const k of ['topicLevel', 'moduleLevels', 'chipNext', 'chipLabel', 'chipState_todo', 'chipState_passed', 'chipState_owned', 'moduleContinueAt', 'topicCount']) {
+  for (const k of ['topicLevel', 'moduleLevels', 'chipNext', 'chipLabel', 'chipState_todo', 'chipState_passed', 'chipState_owned', 'moduleContinueAt', 'topicCount', 'nextLevel']) {
     assert.ok(k in STRINGS.en && k in STRINGS.nl, k);
   }
+});
+
+// ---- Task 4: where you are ----
+import { placeLabel, pickWhy } from '../src/ui/coursehome.js';
+import { figureSrc } from '../src/ui/figure.js';
+
+test('placeLabel: topic and level for a topic lesson, empty otherwise', () => {
+  const nl = translator('nl');
+  assert.equal(placeLabel(nl, 'nl', 'eng.machining.turnfinish', [machiningV10]), 'Draaien · Gevorderd');
+  assert.equal(placeLabel(translator('en'), 'en', 'eng.machining.cam', [machiningV10]), 'CNC programme · Expert');
+  assert.equal(placeLabel(nl, 'nl', 'eng.flow.takt', [machiningV10]), '');
+  assert.equal(nl('nextLevel', 'Draaien · Expert'), 'Volgende: Draaien · Expert');
+});
+
+test('pickWhy: a topic lesson pick names topic and level; others keep the v9 line', () => {
+  const nl = translator('nl');
+  const pick = { reason: 'lesson', moduleId: 'eng.machining', lessonId: 'eng.machining.turnfinish', topicId: 'turning', level: 3 };
+  assert.equal(pickWhy(nl, 'nl', pick, machiningV10, [machiningV10]), 'Je volgende les · Draaien · Gevorderd');
+  const flow = { id: 'eng.flow', title: { en: 'Capacity and flow', nl: 'Capaciteit en flow' } };
+  assert.equal(pickWhy(nl, 'nl', { reason: 'lesson', moduleId: 'eng.flow', lessonId: 'eng.flow.takt' }, flow), 'Je volgende les · Capaciteit en flow');
+  assert.equal(pickWhy(nl, 'nl', { reason: 'due', count: 5 }, null), nl('courseWhy_due'));
+});
+
+test('figureSrc: a level 1–4 is passed on; otherwise the v9 address', () => {
+  assert.equal(figureSrc('x', 'dark', 'nl'), 'src/content/courses/figures/x.html?theme=dark&lang=nl');
+  assert.match(figureSrc('x', 'dark', 'nl', 3), /&level=3$/);
+  assert.equal(figureSrc('x', 'dark', 'nl', 7), figureSrc('x', 'dark', 'nl'));
+  assert.equal(figureSrc('x', 'dark', 'nl', null), figureSrc('x', 'dark', 'nl'));
 });
