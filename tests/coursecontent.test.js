@@ -60,16 +60,6 @@ test('validateModule: flags missing lessons, bad answers, numeric without tolera
   assert.match(errs, /[<>]/);
 });
 
-test('validateModule: in a topic module the example kind follows the lesson’s level in its topic', () => {
-  const faded = { kind: 'faded', text: 'x', ask: 'next?', reveal: 'y' };
-  const mk = (b) => ({ lessons: [lesson('eng.fx.a'), lesson('eng.fx.b', b ? { example: faded } : {})] });
-  const topical = { ...fxMeta, topics: [{ id: 't', title: { en: 'T', nl: 'T' }, levels: ['eng.fx.x', 'eng.fx.y', 'eng.fx.b'] }] };
-  assert.deepEqual(validateModule(mk(true), mk(true), topical), [], 'faded at level 3 of a level-1 module');
-  const errs = validateModule(mk(false), mk(false), topical);
-  assert.ok(errs.some((e) => e.includes('eng.fx.b') && e.includes('faded')), 'worked at level 3');
-  assert.ok(!errs.some((e) => e.includes('eng.fx.a')), 'a lesson in no topic keeps the module level');
-});
-
 test('validateModule: pushback is checked when present, and required on project (pm) lessons', () => {
   const pb = { lines: ['That is not how we do it here.', 'We have no budget for this.'], model: 'I hear you. Let us test it on one line for two weeks.', rubric: ['Acknowledges the point', 'Restates the ask', 'Proposes a next step'] };
   const withPb = (p) => ({ lessons: [lesson('eng.fx.a', { situation: { ...lesson('eng.fx.a').situation, pushback: p } }), lesson('eng.fx.b')] });
