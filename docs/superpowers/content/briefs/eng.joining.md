@@ -157,3 +157,10 @@ Batch 2 kept `eng.joining.bolting` and `eng.joining.bonding` byte-identical (che
 - fixturing: 3/6 = 0.5. Recall: 2/4 = 0.5; 1.0/2 = 0.5.
 - arcon: 2.4/0.3 = 8 → €8.00; 2.4/0.7 = 3.43 × 1.5 = €5.14; 0.196/0.95 = 0.206 × 2.5 = €0.52; 2.4/0.4 × 1.5 = €9.00; break-even 2.4 × 1.5/8 = 0.45. Recall: 3/0.25 = 12; 0.3/0.9 × 3 = 1.00.
 - weldsystem: 14 × 2 = 28. Recall: 22 × 2 = 44.
+
+### Review (Task 9, 2026-11-04)
+- **ISO 15614-1 thickness range**: "3 mm to 2t" holds for multi-pass butt test plates of 3–12 mm; above 12 mm the lower limit rises (0.5t in the 2004 table; TWI calls the 2017 Table 7 "essentially similar"). The `wps` lesson now says "a butt test weld in several passes covers up to twice the test thickness; a 12 mm plate covers 3 to 24 mm", and the 15 mm recall states "welded in several passes" (answer 30 mm unchanged). The exact 2017 lower limit above 12 mm was not confirmed from the standard, so no lower limit is quoted for it.
+- **Hydrogen hold time** (16–48 h, EN 1011-2 Annex A as reproduced by TWI) is now taught in `metallurgy` too, because its situation relies on delayed cracking.
+- **6082-T6 HAZ**: the lesson says "about half the yield strength" (Eurocode 9 ρo,haz ≈ 0.5; the tensile-strength factor is higher, about 0.6–0.65).
+- **arcon**: the reveal now derives the 45 % break-even (2.4 × €1.50 / €8.00) that the `said` quotes, and states that hand and robot are assumed to need the same 2.4 min arc time per metre.
+- **Clinch bottom thickness** is described as the standard non-destructive check, not as "the key measure of strength" (supplier practice, qualitative).
