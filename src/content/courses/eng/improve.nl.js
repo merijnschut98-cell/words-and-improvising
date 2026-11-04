@@ -6,23 +6,24 @@ export default {
       title: '8D: indammen, oorzaak vinden, blijvend oplossen',
       pre: [
         {
-          q: 'Een klant vindt gescheurde beugels. De leverancier sorteert alle voorraad 100% en levert alleen nog goede delen. Is het probleem opgelost?',
+          q: 'Een klant vindt gescheurde beugels. De leverancier sorteert alle voorraad 100% (controleert elk stuk) en levert alleen nog goede delen. Is het probleem opgelost?',
           options: ['Ja, de klant krijgt nu goede delen', 'Ja, als het sorteren gedocumenteerd is', 'Nee, de klant is beschermd maar de oorzaak maakt nog steeds gescheurde delen', 'Nee, want 100% sorteren mag niet in automotive'],
           answer: 'Nee, de klant is beschermd maar de oorzaak maakt nog steeds gescheurde delen',
           why: 'Sorteren is indammen: het houdt foute delen weg bij de klant, maar het proces blijft ze maken.',
         },
       ],
       teach: [
-        'De 8D is hét probleemoplossingsrapport in automotive en een groot deel van de industrie.\n\nD1 team samenstellen. D2 het probleem in cijfers beschrijven. D3 indammen. D4 de grondoorzaak vinden.\n\nD5 de blijvende maatregel kiezen en bewijzen. D6 invoeren en valideren. D7 herhaling voorkomen. D8 afsluiten en het team bedanken.\n\nVeel versies hebben ook een D0: is een 8D nodig, en welke noodmaatregel nemen we. Klanten verwachten D3 vaak binnen 24 uur (een gangbare eis, geen wet).',
-        'Indammen (D3, containment) beschermt de klant terwijl je zoekt. Zet voorraad in quarantaine bij jou, onderweg en bij de klant, sorteer, en markeer de eerste schone levering. Het is duur en lek: mensen die op het oog sorteren missen een deel van de fouten, als vuistregel vaak 10–20%.\n\nContainment koopt tijd. Het is nooit de oplossing, en een team dat na D3 stopt, ziet het probleem terug.',
-        'Een echte grondoorzaak (D4) heeft twee poten. De ontstaansoorzaak (occurrence): waarom maakte het proces een fout deel? De ontsnappingsoorzaak (escape): waarom liet jouw controle het door? Allebei met bewijs, niet met een mening.\n\n“Operatorfout” is geen grondoorzaak; het verschuift de vraag alleen naar waarom het proces die fout toeliet, en waarom niemand hem ving.',
-        'De blijvende maatregel (D5–D6) haalt de oorzaak weg of blokkeert hem, en in D7 pas je de FMEA, het control plan en de werkinstructies aan en kijk je naar vergelijkbare processen.\n\nDe vraag die een zwakke 8D blootlegt: “Als we verder niks doen, wat houdt dit morgen tegen?” Is het antwoord “mensen letten beter op”, dan is de 8D niet af.',
+        'De 8D, van acht disciplines, is hét probleemoplossingsrapport in automotive (autofabrikanten en hun toeleveranciers) en een groot deel van de industrie. Ford maakte het eind jaren tachtig tot standaard.\n\nD1 team samenstellen. D2 het probleem in cijfers beschrijven. D3 indammen. D4 de grondoorzaak vinden. D5 de blijvende maatregel kiezen en bewijzen. D6 invoeren en valideren. D7 herhaling voorkomen. D8 afsluiten en het team bedanken.\n\nVeel versies hebben ook een D0: is een 8D nodig, en welke noodmaatregel nemen we.',
+        'Indammen (D3) beschermt de klant terwijl je zoekt. Zet voorraad in quarantaine bij jou, onderweg en bij de klant, sorteer, en markeer de eerste schone levering. Klanten verwachten dat vaak binnen 24 uur (een gangbare eis, geen wet).\n\nHet is duur en lek: mensen die op het oog sorteren missen een deel van de fouten, als vuistregel vaak 10–20%. Indammen koopt tijd. Het is nooit de oplossing, en een team dat na D3 stopt, ziet het probleem terug.',
+        'Een echte grondoorzaak (D4), de oorzaak die het probleem stopt als je hem weghaalt, heeft twee poten. De ontstaansoorzaak: waarom maakte het proces een fout deel? De ontsnappingsoorzaak: waarom liet jouw controle het door? Allebei met bewijs, niet met een mening.\n\n“Operatorfout” is geen grondoorzaak; het verschuift de vraag alleen naar waarom het proces die fout toeliet, en waarom niemand hem ving.',
+        'De blijvende maatregel (D5–D6) haalt de oorzaak weg of blokkeert hem. In D7 pas je de FMEA aan (de tabel van wat er mis kan gaan en hoe je dat voorkomt), het control plan (welke controles waar en hoe vaak) en de werkinstructies, en kijk je naar vergelijkbare processen.\n\nDe vraag die een zwakke 8D blootlegt: “Als we verder niks doen, wat houdt dit morgen tegen?” Is het antwoord “mensen letten beter op”, dan is de 8D niet af.',
+        'Wat je in de praktijk ziet: een D3 binnen een dag, dan weken stilte, en een D4 met “operatorfout” of “training”. Klanten willen D4 en D5 meestal binnen zo’n tien werkdagen en afsluiting binnen een paar maanden; een snel rapport wordt makkelijker geaccepteerd dan een kloppend rapport.\n\nDeskundigen discussiëren over wie de 8D schrijft: de kwaliteitsafdeling alleen schrijft snel en leert weinig; een team met de operator en de insteller doet er langer over maar vindt de oorzaak.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een tier-2-leverancier levert kunststof behuizingen met short shots (niet volgespoten delen) aan een klant in de autotoeleveringsindustrie.\n\nD3: 100% visueel sorteren van 9.000 stuks, 140 afgekeurd. In het concept-8D staat bij D4 “operator heeft de delen niet gecontroleerd”. Bij D5: “operator opnieuw getraind, extra visuele controle toegevoegd”. De kwaliteitsmanager wil hem vandaag naar de klant sturen.',
+        text: 'Een tier-2-leverancier (een leverancier van een toeleverancier van de autofabrikant) levert kunststof behuizingen met short shots (delen waarbij het plastic de matrijs niet helemaal heeft gevuld) aan een klant in de autotoeleveringsindustrie.\n\nD3: 100% visueel sorteren van 9.000 stuks, 140 afgekeurd. In het concept-8D staat bij D4 “operator heeft de delen niet gecontroleerd”. Bij D5: “operator opnieuw getraind, extra visuele controle toegevoegd”. De kwaliteitsmanager wil hem vandaag naar de klant sturen.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Eerst terugduwen voordat hij de deur uitgaat. “Operator heeft niet gecontroleerd” is de escape-kant, en maar de helft daarvan: waarom was een visuele check de enige barrière?\n\nDe ontstaansoorzaak ontbreekt helemaal: waarom maakte de matrijs short shots? Vraag data op over doseerslag, inspuitdruk, smelttemperatuur, drogen van het granulaat en dichte ontluchtingen, uitgesplitst per caviteit en in de tijd.\n\nDe blijvende maatregel moet voorkomen dat short shots ontstaan (bijvoorbeeld een procesvenster met alarmen) en ze automatisch detecteren (cavity-drukmeting in de matrijs of een gewichtscontrole), niet leunen op beter kijken. Pas daarna de PFMEA en het control plan aan, en check de andere matrijzen die hetzelfde materiaal draaien.',
+        reveal: 'Eerst terugduwen voordat hij de deur uitgaat. “Operator heeft niet gecontroleerd” is de ontsnappingskant, en maar de helft daarvan: waarom was een visuele check de enige barrière?\n\nDe ontstaansoorzaak ontbreekt helemaal: waarom maakte de matrijs short shots? Vraag data op over doseerslag, inspuitdruk, smelttemperatuur, drogen van het granulaat en dichte ontluchtingen (vents, piepkleine luchtuitgangen in de matrijs), uitgesplitst per caviteit en in de tijd.\n\nDe blijvende maatregel moet voorkomen dat short shots ontstaan (bijvoorbeeld een procesvenster, vaste grenzen met alarmen) en ze automatisch detecteren (een druksensor in de matrijs of een gewichtscontrole), niet leunen op beter kijken. Pas daarna de PFMEA en het control plan aan, en check de andere matrijzen die hetzelfde materiaal draaien.',
       },
       said: 'Wat engineers zeggen: “D3 staat, de klant is schoon. Maar we hebben nog geen D4, we hebben alleen een theorie.”',
       recall: [
@@ -34,7 +35,7 @@ export default {
           why: '12.000 × 2% = 240 foute delen; 15% glipt erdoor, dus 240 × 0,15 = 36.',
         },
         {
-          q: 'Wanneer is D4 af?',
+          q: 'Wanneer is D4, de stap van de grondoorzaak, af?',
           options: ['Als het team het eens is over de waarschijnlijkste oorzaak', 'Als de operator het trainingsformulier heeft getekend', 'Als zowel de ontstaans- als de ontsnappingsoorzaak met bewijs bevestigd zijn', 'Als de klant niet meer klaagt'],
           answer: 'Als zowel de ontstaans- als de ontsnappingsoorzaak met bewijs bevestigd zijn',
           why: 'Een grondoorzaak verklaart waarom het deel fout gemaakt werd én waarom het erdoor kwam, en is bewezen, niet gestemd.',
@@ -53,9 +54,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een metaalstansbedrijf in de wekelijkse 8D-review. Bij een klacht over bramen op een beugel staat bij D4 “slijtage van het stempel” en bij D5 “extra visuele controle bij het inpakken”. De kwaliteitsengineer wil hem sluiten.',
+        scene: 'Je zit bij een metaalstansbedrijf (een fabriek die plaatstaal in vorm perst met stempels, gereedschap van hard staal) in de wekelijkse 8D-review. Bij een klacht over bramen, scherpe opstaande randjes, op een beugel staat bij D4 “slijtage van het stempel” en bij D5 “extra visuele controle bij het inpakken”. De kwaliteitsengineer wil hem sluiten.',
         ask: 'Wat vraag je?',
-        model: 'Welk bewijs hebben we dat slijtage deze bramen geeft: lopen braamhoogte en het aantal slagen sinds het laatste slijpen gelijk op? En waarom viel de slijtage niet op: is er een slijpinterval of een braamcontrole bij de pers? Een check bij het inpakken is indammen; de blijvende maatregel is een slijpinterval op basis van slagen en een braamcheck aan de pers. Hebben de andere stempels op die pers hetzelfde risico?',
+        model: 'Welk bewijs hebben we dat slijtage deze bramen geeft: lopen braamhoogte en het aantal persslagen sinds het laatste slijpen gelijk op? En waarom viel de slijtage niet op: is er een slijpinterval of een braamcontrole bij de pers? Een check bij het inpakken is indammen; de blijvende maatregel is een slijpinterval op basis van slagen en een braamcheck aan de pers. Hebben de andere stempels op die pers hetzelfde risico?',
         rubric: [
           'Vraagt om bewijs dat de genoemde oorzaak het defect geeft',
           'Maakt onderscheid tussen ontstaans- en ontsnappingsoorzaak',
@@ -64,9 +65,12 @@ export default {
       },
       sayIt: 'Leg een plantmanager in 60 seconden uit waarom indammen niet de oplossing is, en hoe een afgeronde D4 eruitziet.',
       terms: [
-        { term: '8D', def: 'Probleemoplossingsrapport in acht stappen: team, beschrijving, indammen, grondoorzaak, maatregel, validatie, voorkomen, afsluiten.' },
-        { term: 'Containment (indammen)', def: 'Tijdelijke maatregel die de klant beschermt, zoals quarantaine en sorteren, terwijl je de oorzaak zoekt.' },
-        { term: 'Occurrence- en escape-oorzaak', def: 'Waarom het defect ontstond, en waarom de controles het niet vingen.' },
+        { term: '8D', def: 'Probleemoplossingsrapport in acht stappen: team, beschrijving, indammen, grondoorzaak, maatregel, invoeren en valideren, voorkomen, afsluiten.' },
+        { term: 'Indammen', def: 'Tijdelijke maatregel die de klant beschermt, zoals quarantaine en sorteren, terwijl je de oorzaak zoekt.' },
+        { term: 'Grondoorzaak', def: 'De oorzaak die het probleem stopt als je hem weghaalt; bewezen met bewijs, niet bij stemming gekozen.' },
+        { term: 'Ontstaansoorzaak', def: 'Waarom het proces het defect maakte.' },
+        { term: 'Ontsnappingsoorzaak', def: 'Waarom de controles het defect niet vingen voordat het de deur uit ging.' },
+        { term: 'Blijvende maatregel', def: 'De verandering die de grondoorzaak voorgoed weghaalt of blokkeert, anders dan indammen.' },
       ],
     },
     {
@@ -74,28 +78,29 @@ export default {
       title: 'Is/is-niet en stratificatie',
       pre: [
         {
-          q: 'Lekkages zitten op delen van bewerkingscentrum 2, niet op die van bewerkingscentrum 1. Beide draaien dezelfde gietcharges. Welke theorie verzwakt deze data het meest?',
+          q: 'Lekkages zitten op delen van bewerkingscentrum 2 (een computergestuurde frees- en boormachine), niet op die van bewerkingscentrum 1. Beide draaien dezelfde gietcharges. Welke theorie verzwakt deze data het meest?',
           options: ['Een versleten gereedschap op centrum 2', 'Poreus gietwerk van de leverancier', 'Een programmawijziging op centrum 2', 'Andere koelvloeistof op centrum 2'],
           answer: 'Poreus gietwerk van de leverancier',
           why: 'Hetzelfde gietwerk is goed op centrum 1, dus een leveranciersoorzaak moet ook verklaren waarom centrum 1 niet lekt.',
         },
       ],
       teach: [
-        'Een is/is-niet-analyse beschrijft een probleem langs vier lijnen: wat (welk deel, welk defect), waar (welke machine, welke plek op het deel), wanneer (sinds wanneer, welke dienst, welk moment in de cyclus) en hoeveel (aantallen, trend).\n\nPer lijn schrijf je op wat het is, en wat het zou kunnen zijn maar níet is. In de “is niet”-kolom zit het inzicht.',
-        'Stel daarna bij elk paar twee vragen. Wat is uniek aan de “is”-kant? En wat veranderde er rond het moment dat het begon?\n\nEen probleem dat op een datum begint, heeft bijna altijd een trigger: nieuw gereedschap, een programmawijziging, een andere leverancier, een nieuwe operator, een onderhoudsklus.',
-        'Stratificatie is is/is-niet met data. Splits de fouten uit per machine, caviteit, dienst, materiaalcharge, operator en week. Een vlakke 5% uitval blijkt dan soms 28% op één caviteit en onder de 2% op de rest.\n\nGeconcentreerde fouten wijzen naar een specifieke oorzaak. Fouten die gelijk over alles verdeeld zijn, wijzen naar iets gemeenschappelijks: het materiaal, het ontwerp of de methode.',
+        'Een is/is-niet-analyse, uit de methode van Kepner en Tregoe (1965), beschrijft een probleem langs vier lijnen: wat (welk deel, welk defect), waar (welke machine, welke plek op het deel), wanneer (sinds wanneer, welke dienst, welk moment in de cyclus) en hoeveel (aantallen, trend).\n\nPer lijn schrijf je op wat het is, en wat het zou kunnen zijn maar níet is. In de “is niet”-kolom zit het inzicht.',
+        'Stel daarna bij elk paar twee vragen. Wat is uniek aan de “is”-kant? Dat is een onderscheid: iets wat alleen waar is waar het probleem zit. En wat veranderde er rond het moment dat het begon?\n\nEen probleem dat op een datum begint, heeft bijna altijd een trigger: nieuw gereedschap, een programmawijziging, een andere leverancier, een nieuwe operator, een onderhoudsklus.',
+        'Stratificatie is is/is-niet met data. Splits de fouten uit per machine, caviteit (een van de holtes in de vorm van het deel in een matrijs; een matrijs heeft er vaak 4 of 8), dienst, charge (één geleverde partij materiaal, lot), operator en week. Een vlakke 5% uitval blijkt dan soms 28% op één caviteit en onder de 2% op de rest.\n\nGeconcentreerde fouten wijzen naar een specifieke oorzaak. Gelijk verdeelde fouten wijzen naar iets gemeenschappelijks: het materiaal, het ontwerp of de methode.',
         'Een echte oorzaak verklaart elke “is” en elke “is niet”.\n\nToets elke theorie tegen de tabel: “Als het het materiaal is, waarom is lijn 1 dan goed?” Die ene vraag legt de meeste zwakke analyses bloot, want een stokpaardje verklaart meestal wel het defect, maar niet waar het afwezig is.',
+        'Wat je in de praktijk ziet: een tabel die pas wordt ingevuld als het team zijn oorzaak al heeft gekozen, met een half lege “is niet”-kolom. Of data die je niet kunt uitsplitsen, omdat niemand heeft vastgelegd uit welke caviteit of charge een deel kwam.\n\nDeskundigen discussiëren over hoeveel structuur nodig is: sommigen vinden de tabel traag, anderen zeggen dat overslaan de reden is dat problemen terugkomen.\n\nEen scherpe vraag: “Waar zou dit defect kunnen zitten, maar zit het niet?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Klephuizen vallen voor 3% af op de lektest. De engineer weet zeker dat het porositeit is van de gieterij.\n\nDe data: de lekkages begonnen in week 14; alle lekkende delen komen van bewerkingscentrum 2, geen van centrum 1; beide centra draaien dezelfde gietcharges; elk lek zit op dezelfde poort.',
+        text: 'Klephuizen vallen voor 3% af op de lektest. De engineer weet zeker dat het porositeit is, piepkleine gasbelletjes in het metaal, van de gieterij.\n\nDe data: de lekkages begonnen in week 14; alle lekkende delen komen van bewerkingscentrum 2, geen van centrum 1; beide centra draaien dezelfde gietcharges; elk lek zit op dezelfde poort, een van de openingen met schroefdraad.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Toets de leverancierstheorie tegen de is-niet: dezelfde charges zijn goed op centrum 1, dus porositeit alleen verklaart het niet. Kijk wat uniek is aan centrum 2 en wat daar rond week 14 veranderde: een nieuwe boor of tap, een programmawijziging, een gerepareerde opspanning, andere koelvloeistof.\n\nEén poort wijst op één bewerking. Check die bewerking op centrum 2: gereedschapsslijtage, diepte, en of de boor nu in een poreuze zone komt die het oude programma miste. Bevestig het daarna door dezelfde charge op beide centra te draaien.',
+        reveal: 'Toets de leverancierstheorie tegen de is-niet: dezelfde charges zijn goed op centrum 1, dus porositeit alleen verklaart het niet. Kijk wat uniek is aan centrum 2 en wat daar rond week 14 veranderde: een nieuwe boor of tap (het gereedschap dat de schroefdraad snijdt), een programmawijziging, een gerepareerde opspanning (de klem die het deel vasthoudt, fixture), andere koelvloeistof.\n\nEén poort wijst op één bewerking. Check die bewerking op centrum 2: gereedschapsslijtage, diepte, en of de boor nu in een poreuze zone komt die het oude programma miste. Bevestig het daarna door dezelfde charge op beide centra te draaien.',
       },
       said: 'Wat engineers zeggen: “Splits het eerst uit per caviteit. Zit het allemaal op caviteit 5, dan hoeven we het niet meer over het materiaal te hebben.”',
       recall: [
         {
-          q: 'Een 8-voudige matrijs maakte 8.000 delen, 1.000 per caviteit, met 400 afkeur. Caviteit 5 heeft er 280 van. Wat is het afkeurpercentage van de andere zeven caviteiten samen?',
+          q: 'Een 8-voudige matrijs maakte 8.000 delen, 1.000 per caviteit, met 400 afkeur. Caviteit 5 heeft er 280 van. Wat is het afkeurpercentage van de andere zeven caviteiten samen, als deel van hun delen?',
           number: 1.7,
           tolerance: 0.1,
           unit: '%',
@@ -121,9 +126,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent bij een klant in voedingsverpakkingen. Het aantal lekke seals op één verpakkingslijn is verdubbeld. De TD-chef zegt dat de nieuwe folieleverancier de oorzaak is en wil terug naar de oude.',
+        scene: 'Je bent bij een klant in voedingsverpakkingen. Het aantal lekke seals, verpakkingen waarvan de dichtgesealde rand lekt, op één verpakkingslijn is verdubbeld. De TD-chef (hoofd technische dienst, het onderhoud) zegt dat de nieuwe folieleverancier de oorzaak is en wil terug naar de oude.',
         ask: 'Wat vraag je voordat ze wisselen?',
-        model: 'Draait de nieuwe folie ook op de andere lijnen, en zien die ook meer lekke seals? Zo niet, dan verklaart de folie het niet alleen. Kunnen we de fouten uitsplitsen per sealbek, dienst en folierol, en op een rij zetten wat er rond dezelfde datum op deze lijn veranderde? Zitten de fouten op één bek, dan kijken we eerst naar die bek voordat we van leverancier wisselen.',
+        model: 'Draait de nieuwe folie ook op de andere lijnen, en zien die ook meer lekke seals? Zo niet, dan verklaart de folie het niet alleen. Kunnen we de fouten uitsplitsen per sealbek (de verwarmde balk die de seal dichtdrukt), dienst en folierol, en op een rij zetten wat er rond dezelfde datum op deze lijn veranderde? Zitten de fouten op één bek, dan kijken we eerst naar die bek voordat we van leverancier wisselen.',
         rubric: [
           'Toetst de theorie tegen de is-niet (andere lijnen met dezelfde folie)',
           'Vraagt de fouten uit te splitsen per bek, dienst of rol',
@@ -132,9 +137,11 @@ export default {
       },
       sayIt: 'Leg een productiemanager in 60 seconden uit hoe een is/is-niet-tabel een stokpaardje onderuit kan halen.',
       terms: [
-        { term: 'Is/is-niet', def: 'Een tabel die zet waar, wanneer en hoeveel een probleem optreedt tegenover waar het zou kunnen optreden maar niet doet.' },
-        { term: 'Stratificatie', def: 'Foutdata uitsplitsen per machine, caviteit, dienst, charge of tijd om te zien waar het zich concentreert.' },
+        { term: 'Is/is-niet', def: 'Een tabel die zet wat, waar, wanneer en hoeveel een probleem optreedt tegenover waar het zou kunnen optreden maar niet doet.' },
         { term: 'Onderscheid', def: 'Iets wat waar is voor de “is”-kant en niet voor de “is niet”-kant; een wegwijzer naar de oorzaak.' },
+        { term: 'Stratificatie', def: 'Foutdata uitsplitsen per machine, caviteit, dienst, charge of tijd om te zien waar het zich concentreert.' },
+        { term: 'Caviteit', def: 'Eén holte in de vorm van het deel in een matrijs; een meervoudige matrijs maakt meerdere delen per schot.' },
+        { term: 'Charge', def: 'Eén partij materiaal of delen die samen is gemaakt of geleverd, herleidbaar via een nummer.' },
       ],
     },
     {
@@ -142,35 +149,36 @@ export default {
       title: 'Meten voordat je concludeert',
       pre: [
         {
-          q: 'De uitval ligt normaal tussen 3% en 7% per dag. Na een proceswijziging laat de eerste dag 3,5% zien. Wat kun je concluderen?',
+          q: 'De uitval ligt normaal tussen 3% en 7% van de delen per dag. Na een proceswijziging laat de eerste dag 3,5% zien. Wat kun je concluderen?',
           options: ['De wijziging werkt', 'De wijziging heeft de uitval verergerd', 'Nog niks; 3,5% valt binnen de normale spreiding', 'De uitvalmeting moet fout zijn'],
           answer: 'Nog niks; 3,5% valt binnen de normale spreiding',
           why: 'Een dag binnen de gewone bandbreedte is wat je ook zonder wijziging zou zien.',
         },
       ],
       teach: [
-        'Elk proces varieert. Uitval, cyclustijd en maten bewegen van dag tot dag zonder dat iemand iets aanraakt.\n\nKen eerst de normale spreiding voordat je een wijziging beoordeelt: zet de laatste 20 tot 30 dagen in een run chart of regelkaart. Een resultaat binnen de gewone band zegt niks, hoe mooi het ook oogt.',
-        'Eén goede dag bewijst niks. Je zoekt een blijvende verschuiving.\n\nEen gangbare vuistregel bij run charts: zo’n 8 punten op rij aan één kant van de middellijn wijzen op een echte verandering (boeken noemen 6 tot 9). Check ook of er tegelijk iets anders veranderde, zoals de productmix, de materiaalcharge of het rooster.',
-        'Zeldzame fouten vragen grote steekproeven. De regel van drie: zie je nul fouten in n delen, dan kun je met 95% zekerheid zeggen dat het foutpercentage onder ongeveer 3 / n ligt.\n\nMet 50 goede delen weet je dus alleen dat het onder de 6% zit. Wil je onder de 1% claimen, dan heb je zo’n 300 goede delen op rij nodig.',
-        'Vertrouw eerst de meting. Een meetsysteemanalyse (gauge R&R) laat zien hoeveel van de spreiding uit de meting zelf komt. Gangbare richtlijn (AIAG): onder 10% is goed, 10–30% kan acceptabel zijn, boven 30% niet.\n\nDe vraag die een zwakke analyse blootlegt: “Hoe groot was de normale variatie vooraf, en hoe goed is de meting?”',
+        'Elk proces varieert. Uitval, cyclustijd en maten bewegen van dag tot dag zonder dat iemand iets aanraakt: dat is normale variatie.\n\nKen eerst de normale spreiding voordat je een wijziging beoordeelt: zet de laatste 20 tot 30 dagen in een run chart, een grafiek van de dagwaarde in volgorde van de tijd met een middellijn (mediaan of gemiddelde), of in een regelkaart (control chart), die er statistische grenzen bij zet. Een resultaat binnen de gewone band zegt niks, hoe mooi het ook oogt.',
+        'Eén goede dag bewijst niks. Je zoekt een blijvende verschuiving.\n\nEen gangbare vuistregel bij run charts: zo’n 8 punten op rij aan één kant van de middellijn wijzen op een echte verandering (boeken noemen 6 tot 9). Puur door toeval gebeurt 8 op rij aan één bepaalde kant zo’n 4 keer op de 1.000. Check ook of er tegelijk iets anders veranderde, zoals de productmix, de materiaalcharge of het rooster.',
+        'Zeldzame fouten vragen grote steekproeven. De regel van drie: zie je nul fouten in n delen, dan kun je met 95% betrouwbaarheid zeggen dat het foutpercentage onder ongeveer 3 / n ligt. Betrouwbaarheid betekent hier: als het echte percentage zo hoog was, zag je nul fouten in minder dan 5% van de gevallen.\n\nMet 50 goede delen weet je dus alleen dat het onder de 6% zit. Wil je onder de 1% claimen, dan heb je zo’n 300 goede delen op rij nodig.',
+        'Vertrouw eerst de meting. Bij een gauge R&R (herhaalbaarheid en reproduceerbaarheid) meten meerdere mensen dezelfde delen meerdere keren; je ziet hoeveel van de tolerantie (de toegestane marge) de meetfout opeet. Gangbare richtlijn van AIAG, de Amerikaanse automotive-normorganisatie: onder 10% is goed, 10–30% kan acceptabel zijn, boven 30% niet.\n\nDe vraag die een zwakke analyse blootlegt: “Hoe groot was de normale variatie vooraf, en hoe goed is de meting?”',
+        'Wat je in de praktijk ziet: een voor-en-na-staafdiagram met één staaf per kant, een doellijn, en applaus. De spreiding achter de staven ontbreekt.\n\nDeskundigen discussiëren over formele statistiek: sommigen willen bij elke wijziging een significantietoets; anderen zeggen dat een run chart met genoeg punten engineers en managers sneller overtuigt, en moeilijker te misbruiken is.\n\nTypische fout: twee dingen in dezelfde week veranderen, zodat niemand kan zeggen wat werkte.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een spuitgietteam heeft dinsdag de spuitmondtemperatuur verhoogd. Woensdag was de uitval 1,8%, tegen “normaal 4%”. De afgelopen vier weken lag de dagelijkse uitval tussen 2,1% en 6,3%.\n\nDe plantmanager wil de instelling morgen op alle zes machines uitrollen.',
+        text: 'Een spuitgietteam heeft dinsdag de spuitmondtemperatuur verhoogd (de spuitmond is het verwarmde puntje waar het plastic de matrijs in gaat). Woensdag was de uitval 1,8% van de delen van die dag, tegen “normaal 4%”. De afgelopen vier weken lag de dagelijkse uitval tussen 2,1% en 6,3%.\n\nDe plantmanager wil de instelling morgen op alle zes machines uitrollen.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Woensdag ligt net onder de laagste dag van de afgelopen maand: interessant, geen bewijs.\n\nLaat de nieuwe instelling zo’n twee weken op deze machine staan en zet de dagelijkse uitval in dezelfde grafiek als de vier weken ervoor. Zoek een blijvende reeks onder het oude gemiddelde, niet één punt. Check wat er verder veranderde: productmix, materiaalcharge, wie er in de dienst stond.\n\nWil je het sneller weten, zet de instelling dan een paar dagen terug en kijk of de uitval terugkomt. Dán uitrollen.',
       },
       said: 'Wat engineers zeggen: “Eén goede dienst is ruis. Laat me twee weken in de grafiek zien, dan praten we verder.”',
       recall: [
         {
-          q: 'Met de regel van drie: hoeveel goede delen op rij heb je nodig om met 95% zekerheid te claimen dat het foutpercentage onder 0,5% ligt?',
+          q: 'Met de regel van drie: hoeveel goede delen op rij (nul fouten) heb je nodig om met 95% betrouwbaarheid te claimen dat het foutpercentage onder 0,5% ligt?',
           number: 600,
           tolerance: 10,
           unit: 'delen',
           why: '3 / 0,005 = 600.',
         },
         {
-          q: 'Een team ziet de uitval de week na een wijziging dalen van 5% naar 4%. Normaal ligt de weekuitval tussen 3,5% en 6%. Wat is de eerlijke samenvatting?',
+          q: 'Een team ziet de weekuitval de week na een wijziging dalen van 5% naar 4%. Normaal ligt de weekuitval tussen 3,5% en 6%. Wat is de eerlijke samenvatting?',
           options: ['De uitval daalde met 20%, de wijziging werkt', 'Het resultaat valt binnen de normale variatie; blijf meten', 'De wijziging maakte geen verschil', 'Het meetsysteem is kapot'],
           answer: 'Het resultaat valt binnen de normale variatie; blijf meten',
           why: 'Een week binnen de gewone bandbreedte is geen bewijs voor of tegen de wijziging.',
@@ -189,7 +197,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit in het maandelijkse resultatenoverleg bij een klant. Een engineer laat zien dat een nieuwe opspanning de maatafkeur verlaagde van 2,4% naar 0,9%, op basis van één week ervoor en één week erna.',
+        scene: 'Je zit in het maandelijkse resultatenoverleg bij een klant. Een engineer laat zien dat een nieuwe opspanning, de klem die het deel vasthoudt tijdens het bewerken, de maatafkeur (delen buiten de maatgrenzen) verlaagde van 2,4% naar 0,9%, op basis van één week ervoor en één week erna.',
         ask: 'Wat vraag je?',
         model: 'Hoeveel varieert de afkeur normaal van week tot week, en valt 0,9% daarbuiten? Kunnen we meer weken ervoor en erna in één grafiek zien? En is de meting gecheckt: hoe ziet de gauge R&R op deze maat eruit? Houdt de daling een aantal weken stand en is de meting in orde, dan durf ik het te zeggen.',
         rubric: [
@@ -200,9 +208,11 @@ export default {
       },
       sayIt: 'Leg een sponsor in 60 seconden uit waarom één goede dag na een wijziging niks bewijst.',
       terms: [
-        { term: 'Run chart', def: 'Een grafiek van een meetwaarde in de tijd met een middellijn, om echte verschuivingen te zien.' },
-        { term: 'Regel van drie', def: 'Nul fouten in n delen betekent met 95% zekerheid een foutpercentage onder ongeveer 3 / n.' },
-        { term: 'Gauge R&R', def: 'Een studie naar hoeveel meetvariatie komt van het meetmiddel en de mensen die meten.' },
+        { term: 'Normale variatie', def: 'De spreiding die een proces uit zichzelf laat zien, zonder wijziging; een resultaat daarbinnen bewijst niks.' },
+        { term: 'Run chart', def: 'Een grafiek van een meetwaarde in volgorde van de tijd met een middellijn, om echte verschuivingen te zien.' },
+        { term: 'Regel van drie', def: 'Nul fouten in n delen betekent met 95% betrouwbaarheid een foutpercentage onder ongeveer 3 / n.' },
+        { term: 'Betrouwbaarheid', def: 'Hoe zeker een statistische uitspraak is: bij 95% zit zo’n uitspraak er ongeveer 1 op de 20 keer naast.' },
+        { term: 'Gauge R&R', def: 'Een studie naar hoeveel meetvariatie komt van het meetmiddel en de mensen die meten, als deel van de tolerantie.' },
       ],
     },
     {
@@ -214,14 +224,15 @@ export default {
           q: 'Een engineer test de temperatuur met de druk vast, en daarna de druk met de temperatuur vast. Wat kan deze aanpak missen?',
           options: ['Niks, als elke test zorgvuldig is', 'Het effect van de temperatuur', 'De kosten van de proef', 'De beste combinatie, als de twee factoren interactie hebben'],
           answer: 'De beste combinatie, als de twee factoren interactie hebben',
-          why: 'Eén factor tegelijk test nooit de hoeken waar je beide verandert, dus mist interacties.',
+          why: 'Eén factor tegelijk test nooit de hoeken waar je beide verandert, dus mist interacties: gevallen waarin de ene instelling alleen helpt bij een bepaalde waarde van de andere.',
         },
       ],
       teach: [
-        'Design of experiments (DOE) verandert meerdere instellingen tegelijk volgens een vast schema.\n\nDe woorden: een factor is een instelling die je varieert (temperatuur, druk); een niveau is een waarde die je test (laag en hoog); de respons is wat je meet (uitval, sterkte); een run is één combinatie. Een volledig factorieel ontwerp op twee niveaus vraagt 2 tot de macht k runs: 4 runs voor 2 factoren, 8 voor 3, 16 voor 4.',
-        'Het hoofdeffect van een factor is de gemiddelde respons op het hoge niveau min het gemiddelde op het lage niveau. Omdat elke run voor elke factor meetelt, haal je uit hetzelfde aantal runs meer informatie dan wanneer je één factor tegelijk test.',
-        'Een interactie betekent dat het effect van de ene factor afhangt van het niveau van de andere. Bij lijmen helpt een hogere uithardtemperatuur misschien alleen als de klemdruk ook hoog is.\n\nEén factor tegelijk test die hoek nooit, concludeert dus dat temperatuur “niet helpt”, en mist de beste instelling.',
-        'Goede praktijk: randomiseer de volgorde van de runs, zodat drift zoals het opwarmen van de machine of een nieuwe materiaalcharge niet op een factoreffect lijkt. Herhaal runs om de ruis te zien. Kies niveaus die ver genoeg uit elkaar liggen om een effect te tonen, maar veilig zijn. Met veel factoren screen je met een fractioneel factorieel ontwerp in minder runs.\n\nDe vraag: “Hoe groot is het effect vergeleken met de spreiding tussen herhalingen?”',
+        'Design of experiments (DOE), proefopzetten, verandert meerdere instellingen tegelijk volgens een vast schema.\n\nDe woorden: een factor is een instelling die je varieert (temperatuur, druk); een niveau is een waarde die je test (laag en hoog); de respons is wat je meet (uitval, sterkte); een run is één combinatie. Een volledig factorieel ontwerp (full factorial), elke combinatie van elk niveau, vraagt op twee niveaus 2 tot de macht k runs bij k factoren: 4 runs voor 2 factoren, 8 voor 3, 16 voor 4.',
+        'Het hoofdeffect van een factor is de gemiddelde respons op het hoge niveau min het gemiddelde op het lage niveau.\n\nOmdat elke run voor elke factor meetelt, haal je uit hetzelfde aantal runs meer informatie dan met OFAT: één factor tegelijk veranderen en de rest vasthouden. In een 2×2 is elk hoofdeffect het gemiddelde van twee vergelijkingen in plaats van één.',
+        'Een interactie betekent dat het effect van de ene factor afhangt van het niveau van de andere. Bij lijmen helpt een hogere uithardtemperatuur (de warmte die de lijm hard maakt) misschien alleen als de klemdruk ook hoog is.\n\nEén factor tegelijk test die hoek nooit, concludeert dus dat temperatuur “niet helpt”, en mist de beste instelling. In een grafiek zie je een interactie aan lijnen die niet parallel lopen.',
+        'Goede praktijk: randomiseer de volgorde van de runs, zodat drift zoals het opwarmen van de machine of een nieuwe materiaalcharge niet op een factoreffect lijkt. Herhaal runs om de ruis te zien. Kies niveaus die ver genoeg uit elkaar liggen om een effect te tonen, maar veilig zijn. Met veel factoren screen je met een fractioneel factorieel ontwerp, een gepland deel van de combinaties: 7 factoren in 8 runs in plaats van 128.\n\nDe vraag: “Hoe groot is het effect vergeleken met de spreiding tussen herhalingen?”',
+        'Wat je in de praktijk ziet: een engineer die “de machine kent” en wekenlang aan één knop tegelijk draait, en een factoriële proef die het in twee dagen beslist.\n\nDeskundigen discussiëren over hoe ver je gaat: klassieke statistici willen herhalingen en een significantietoets; engineers in de lijn van Taguchi zoeken instellingen die ongevoelig zijn voor ruis (robust); veel praktijkmensen beginnen met een kleine screening en voegen later punten toe.\n\nTypische fouten: niveaus te dicht bij elkaar, en runs in een handige in plaats van een willekeurige volgorde.',
       ],
       example: {
         kind: 'faded',
@@ -239,7 +250,7 @@ export default {
           why: '2 tot de macht 4 = 16.',
         },
         {
-          q: 'Trekkracht in een 2×2-proef: A laag, B laag = 200 N; A hoog, B laag = 240 N; A laag, B hoog = 220 N; A hoog, B hoog = 260 N. Wat is het hoofdeffect van A?',
+          q: 'Trekkracht in een 2×2-proef: A laag, B laag = 200 N; A hoog, B laag = 240 N; A laag, B hoog = 220 N; A hoog, B hoog = 260 N. Wat is het hoofdeffect van A, in newton (N, de eenheid van kracht)?',
           number: 40,
           tolerance: 1,
           unit: 'N',
@@ -259,7 +270,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent bij een lijmlijn. De procesengineer heeft drie weken lang lijmhoeveelheid, uithardtijd en uithardtemperatuur één voor één getest, en de hechtsterkte is nog steeds instabiel.',
+        scene: 'Je bent bij een lijmlijn, waar delen aan elkaar worden gelijmd. De procesengineer heeft drie weken lang lijmhoeveelheid, uithardtijd en uithardtemperatuur één voor één getest, en de hechtsterkte is nog steeds instabiel.',
         ask: 'Wat stel je voor?',
         model: 'Kunnen we in plaats daarvan een factoriële proef op twee niveaus doen met de drie factoren: 8 runs, één keer herhaald, in willekeurige volgorde? Dan zie je elk hoofdeffect en elke interactie, bijvoorbeeld dat de temperatuur alleen helpt bij een langere uithardtijd. Voordat we beginnen: hoeveel varieert de hechtsterkte tussen herhalingen op dezelfde instelling? Anders kunnen we een effect niet van ruis onderscheiden.',
         rubric: [
@@ -270,7 +281,9 @@ export default {
       },
       sayIt: 'Leg een productiemanager in 60 seconden met een 2×2-voorbeeld uit wat een interactie is.',
       terms: [
-        { term: 'Factor en niveau', def: 'Een instelling die je varieert, en de waarden waarop je hem test.' },
+        { term: 'Factor', def: 'Een instelling die je in een proef varieert, zoals temperatuur of druk.' },
+        { term: 'Niveau', def: 'Een waarde waarop je een factor test, zoals laag en hoog.' },
+        { term: 'Respons', def: 'Wat je bij elke run meet, zoals uitval of sterkte.' },
         { term: 'Hoofdeffect', def: 'Gemiddelde respons op het hoge niveau van een factor min het gemiddelde op het lage niveau.' },
         { term: 'Interactie', def: 'Als het effect van de ene factor afhangt van het niveau van de andere.' },
         { term: 'OFAT', def: 'One factor at a time: instellingen één voor één veranderen, waardoor je interacties mist.' },
@@ -288,21 +301,22 @@ export default {
         },
       ],
       teach: [
-        'Het sterkste bewijs voor een grondoorzaak is het probleem aan- en uitzetten. Breng de oude situatie terug, als dat veilig en goedkoop kan, en het defect komt terug. Haal haar weg, en het defect verdwijnt.\n\nKan dat niet, laat dan zien dat het foutpercentage de oorzaak volgt, bijvoorbeeld scheuren die toenemen met gereedschapsslijtage. “Het stopte na de fix” is zwakker, want er verandert vaak meer tegelijk.',
-        'Valideer in productie over genoeg volume. Vergelijk wat je ziet met wat je zonder fix zou verwachten.\n\nOud foutpercentage 1%, sindsdien 1.500 delen: dan verwacht je zo’n 15 fouten, dus nul is sterk bewijs. Na 100 delen verwacht je er maar 1, dus dan zegt nul weinig. Zeldzame problemen vragen geduld.',
+        'Het sterkste bewijs voor een grondoorzaak is aan/uit-verificatie: het probleem aan- en uitzetten. Breng de oude situatie terug, als dat veilig en goedkoop kan, en het defect komt terug. Haal haar weg, en het defect verdwijnt.\n\nKan dat niet, laat dan zien dat het foutpercentage de oorzaak volgt, bijvoorbeeld scheuren die toenemen met gereedschapsslijtage. “Het stopte na de fix” is zwakker, want er verandert vaak meer tegelijk.',
+        'Valideer in productie over genoeg volume. Vergelijk wat je ziet met wat je zonder fix zou verwachten.\n\nOud foutpercentage 1%, sindsdien 1.500 delen: dan verwacht je zo’n 15 fouten, dus nul is sterk bewijs; door toeval gebeurt dat veel minder dan één keer op een miljoen. Na 100 delen verwacht je er maar 1, en nul gebeurt dan door toeval zo’n 37% van de keren, dus het zegt weinig. Zeldzame problemen vragen geduld.',
         'Het escape point is de plek in het proces, zo dicht mogelijk bij de grondoorzaak, waar het defect gevangen had moeten worden en dat niet gebeurde.\n\nLos dat ook op: waarom miste de controle het? Was het meetmiddel niet capabel, de controle te weinig frequent, de steekproef te klein? Een goede 8D sluit zowel de oorzaak als de ontsnapping.',
-        'Voorkom herhaling elders. Pas de PFMEA, het control plan, de werkinstructies en het onderhoudsplan aan.\n\nDoe daarna de read-across: hetzelfde machinetype, hetzelfde ontwerpdetail, dezelfde leverancier, andere vestigingen. De vraag die een te smalle fix blootlegt: “Waar hebben we dit nog meer, en hebben we dat gecheckt?”',
+        'Voorkom herhaling elders. Pas de PFMEA aan (de proces-FMEA: de tabel van wat er per processtap mis kan gaan, en hoe je dat voorkomt en ontdekt), het control plan (welke controles waar, hoe vaak, met welk meetmiddel), de werkinstructies en het onderhoudsplan.\n\nDoe daarna de read-across: hetzelfde machinetype, hetzelfde ontwerpdetail, dezelfde leverancier, andere vestigingen. De vraag die een te smalle fix blootlegt: “Waar hebben we dit nog meer, en hebben we dat gecheckt?”',
+        'Wat je in de praktijk ziet: een 8D die na twee rustige weken dicht gaat, een PFMEA die niemand heeft geopend, en een jaar later hetzelfde defect op de zustermachine.\n\nDeskundigen discussiëren over het defect bewust terugbrengen: het is het zuiverste bewijs, maar sommige managers weigeren expres foute delen te maken. Een kleine testserie in quarantaine lost dat meestal op.\n\nEen scherpe vraag: “Hoeveel fouten hadden we sinds de fix verwacht, en hoeveel zagen we?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Puntgelaste beugels scheurden bij een klant. Grondoorzaak: een versleten elektrodetip op lastang 4 nadat het tipfrezen was overgeslagen. De fix: automatisch tipfrezen elke 200 lassen.\n\nVooraf werd zo’n 0,5% scheuren gevonden. Twee weken en 1.200 beugels na de fix: geen scheuren.\n\nHet team wil de 8D sluiten. De fabriek heeft 12 lastangen met dezelfde besturing, een zusterfabriek heeft er 8.',
+        text: 'Puntgelaste beugels (twee platen tussen koperen elektroden geklemd en met stroom aan elkaar gelast) scheurden bij een klant. Grondoorzaak: een versleten elektrodetip op lastang 4 nadat het tipfrezen, het regelmatig bijfrezen van de tip (tip dressing), was overgeslagen. De fix: automatisch tipfrezen elke 200 lassen.\n\nVooraf werd zo’n 0,5% scheuren gevonden. Twee weken en 1.200 beugels na de fix: geen scheuren.\n\nHet team wil de 8D sluiten. De fabriek heeft 12 lastangen met dezelfde besturing, een zusterfabriek heeft er 8.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Het volume is veelbelovend: bij 0,5% zou je op 1.200 delen zo’n 6 scheuren zien, dus nul is echt bewijs. Maak het sterker met aan/uit-bewijs: las een kleine testserie met een bewust versleten tip en bevestig dat de scheuren terugkomen, en dat ze verdwijnen met een gefreesde tip.\n\nSluit de ontsnapping: waarom miste de beitelproef aan het eind van de lijn de scheuren? Check frequentie en steekproefgrootte.\n\nDoe dan de read-across: staan de andere 11 lastangen en de 8 in de zusterfabriek ook op automatisch frezen? Pas PFMEA, control plan en onderhoudsplan aan voordat je sluit.',
+        reveal: 'Het volume is veelbelovend: bij 0,5% zou je op 1.200 delen zo’n 6 scheuren zien, dus nul is echt bewijs. Maak het sterker met aan/uit-bewijs: las een kleine testserie met een bewust versleten tip en bevestig dat de scheuren terugkomen, en dat ze verdwijnen met een gefreesde tip.\n\nSluit de ontsnapping: waarom miste de beitelproef aan het eind van de lijn (een beitel tussen de platen slaan om te zien of de las houdt) de scheuren? Check frequentie en steekproefgrootte.\n\nDoe dan de read-across: staan de andere 11 lastangen en de 8 in de zusterfabriek ook op automatisch frezen? Pas PFMEA, control plan en onderhoudsplan aan voordat je sluit.',
       },
       said: 'Wat engineers zeggen: “Kun je het aan- en uitzetten? Zo niet, dan heb je een correlatie, geen grondoorzaak.”',
       recall: [
         {
-          q: 'Het foutpercentage was vóór de fix 0,5%. Sinds de fix zijn er 2.000 delen gemaakt. Hoeveel fouten verwacht je als de fix niks deed?',
+          q: 'Het foutpercentage was vóór de fix 0,5% van de delen. Sinds de fix zijn er 2.000 delen gemaakt. Hoeveel fouten verwacht je als de fix niks deed?',
           number: 10,
           tolerance: 0.5,
           unit: 'fouten',
@@ -328,7 +342,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit in een 8D-afsluitoverleg bij een klant. De fix voor een lekkende slangkoppeling, een nieuwe krimphoogte, staat er één week in. De kwaliteitsmanager wil de 8D sluiten en door.',
+        scene: 'Je zit in een 8D-afsluitoverleg bij een klant. De fix voor een lekkende slangkoppeling, een nieuwe krimphoogte (hoe ver de metalen huls om de slang wordt dichtgeknepen), staat er één week in. De kwaliteitsmanager wil de 8D sluiten en door.',
         ask: 'Wat vraag je voordat je sluit?',
         model: 'Hoeveel koppelingen hebben we sinds de fix gemaakt, en hoeveel lekkages hadden we bij het oude percentage verwacht? Hebben we laten zien dat de verkeerde krimphoogte het lek terugbrengt? Waarom miste de lektest deze delen? En gebruiken de andere krimpmachines en slangvarianten dezelfde instelling, zodat we een read-across kunnen doen?',
         rubric: [
@@ -342,6 +356,8 @@ export default {
         { term: 'Aan/uit-verificatie', def: 'Een oorzaak bewijzen door het defect bewust te laten terugkomen en verdwijnen.' },
         { term: 'Escape point', def: 'De plek zo dicht mogelijk bij de grondoorzaak waar het defect gedetecteerd had moeten worden.' },
         { term: 'Read-across', def: 'Een fix en de bijbehorende controles doorvoeren op vergelijkbare machines, producten en locaties.' },
+        { term: 'PFMEA', def: 'Proces-FMEA: een tabel van wat er per processtap mis kan gaan, hoe erg dat is, en hoe je het voorkomt en ontdekt.' },
+        { term: 'Control plan', def: 'Het document met welke kenmerken waar worden gecontroleerd, hoe vaak, met welk meetmiddel en wat je doet als het fout is.' },
       ],
     },
     {
@@ -356,16 +372,17 @@ export default {
         },
       ],
       teach: [
-        'Als niet-engineer ben jij eigenaar van het proces, niet van het antwoord.\n\nBereid voor: een probleemstelling met cijfers, de data uitgesplitst per machine en in de tijd, en de echte foute delen op tafel. Nodig de mensen uit die het probleem aanraken: operator, insteller, onderhoud, kwaliteit en de procesengineer. Houd de sessie op zo’n 60 tot 90 minuten (een vuistregel).',
-        'Houd het feitelijk. Verdeel het bord in drie kolommen: feiten, theorieën en open vragen.\n\nNoemt iemand een oorzaak, vraag dan “hoe weten we dat?” en “wat zouden we zien als dat klopt?” Een feit heeft data of een deel dat je kunt vasthouden. Al het andere is een theorie tot het getest is.',
-        'De expert die het “al weet” heeft vaak gelijk, en je hebt hem nodig. Zet zijn idee als eerste theorie op het bord, bedank hem, en vraag dan: “Wat zou dit uitsluiten?” en “Verklaart het waarom lijn 1 goed is?”\n\nJe gaat niet op inhoud de strijd aan; je houdt iedereen aan dezelfde lat van bewijs.',
+        'Als niet-engineer ben jij de gespreksleider (facilitator): eigenaar van het proces, niet van het antwoord.\n\nBereid voor: een probleemstelling met cijfers (wat, waar, sinds wanneer, hoeveel), de data uitgesplitst per machine en in de tijd, en de echte foute delen op tafel. Nodig de mensen uit die het probleem aanraken: operator, insteller (die de machine klaarzet), onderhoud, kwaliteit en de procesengineer. Houd de sessie op zo’n 60 tot 90 minuten (een vuistregel).',
+        'Houd het feitelijk. Verdeel het bord in drie kolommen: feiten, theorieën en open vragen.\n\nNoemt iemand een oorzaak, vraag dan “hoe weten we dat?” en “wat zouden we zien als dat klopt?” Achter een feit zit data of een deel dat je kunt vasthouden. Al het andere is een theorie tot het getest is.',
+        'De expert die het “al weet” heeft vaak gelijk, en je hebt hem nodig. Maar een vroeg antwoord van een senior persoon geeft een ankereffect: de groep kijkt niet meer verder.\n\nZet zijn idee als eerste theorie op het bord, bedank hem, en vraag dan: “Wat zou dit uitsluiten?” en “Verklaart het waarom lijn 1 goed is?” Je gaat niet op inhoud de strijd aan; je houdt iedereen aan dezelfde lat van bewijs.',
         'Snap je iets niet, zeg dat en gebruik het: “Leg het uit zoals je het aan een nieuwe operator zou uitleggen,” of “Teken het eens voor me.” Herhaal het daarna in je eigen woorden.\n\nSluit elke sessie af met bij elke theorie een test, een eigenaar en een datum. Een sessie die eindigt met alleen meningen heeft zijn werk niet gedaan.',
+        'Wat je hoort in een vastgelopen sessie: “dat hebben we altijd al”, “het is de leverancier”, en lange stiltes van de operators.\n\nDeskundigen discussiëren over of de expert als eerste mag praten: sommige gespreksleiders laten iedereen eerst in stilte ideeën op plakbriefjes zetten, zodat rang niet stuurt; anderen vinden dat traag.\n\nTypische fout: de sessie wordt een jacht op de schuldige, en de mensen met de feiten zwijgen. Een scherpe vraag: “Wat hebben we met eigen ogen gezien?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Je begeleidt een sessie over steeds terugkerende lagerschade aan een koelwaterpomp: zes storingen in vier maanden. Aanwezig: de TD-chef, twee monteurs, de procesengineer, inkoop en een operator.\n\nNa tien minuten zegt de TD-chef: “Het zijn die goedkope lagers waar inkoop naar is overgestapt. Dit heb ik honderd keer gezien.” Inkoop loopt rood aan, de monteurs vallen stil.',
+        text: 'Je begeleidt een sessie over steeds terugkerende lagerschade aan een koelwaterpomp: zes storingen in vier maanden. Een lager is de ring met stalen kogels of rollen waarin de as draait. Aanwezig: de TD-chef (hoofd technische dienst), twee monteurs, de procesengineer, inkoop en een operator.\n\nNa tien minuten zegt de TD-chef: “Het zijn die goedkope lagers waar inkoop naar is overgestapt. Dit heb ik honderd keer gezien.” Inkoop loopt rood aan, de monteurs vallen stil.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Schrijf “ander lagermerk” in de kolom theorieën en bedank hem: het is een serieuze kandidaat. Maak er dan een test van: wanneer is het merk gewisseld, en volgen de storingsdata die wissel? Draaien dezelfde lagers zonder problemen in andere pompen?\n\nVraag de monteurs wat ze zagen aan de kapotte lagers: slijtagebeeld, verkleuring, smering. Vraag de operator wat er veranderde in hoe de pomp draait.\n\nVerzamel andere theorieën, zoals uitlijning, smeerinterval en draaien buiten het ontwerppunt, en geef elke theorie een test, een eigenaar en een datum, inclusief een schadeanalyse van het volgende lager.',
+        reveal: 'Schrijf “ander lagermerk” in de kolom theorieën en bedank hem: het is een serieuze kandidaat. Maak er dan een test van: wanneer is het merk gewisseld, en volgen de storingsdata die wissel? Draaien dezelfde lagers zonder problemen in andere pompen?\n\nVraag de monteurs wat ze zagen aan de kapotte lagers: slijtagebeeld, verkleuring, smering. Vraag de operator wat er veranderde in hoe de pomp draait.\n\nVerzamel andere theorieën, zoals uitlijning (of de assen van pomp en motor in één lijn liggen), smeerinterval en draaien buiten het ontwerppunt (het debiet waarvoor hij gebouwd is), en geef elke theorie een test, een eigenaar en een datum, inclusief een schadeanalyse van het volgende lager.',
       },
       said: 'Wat engineers zeggen: “Ik weet al wat het is, daar hebben we geen hele sessie voor nodig.” Jouw antwoord: “Mooi, laten we dan opschrijven wat het zou bewijzen.”',
       recall: [
@@ -395,7 +412,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent in de fabriek van een klant en leidt een grondoorzaaksessie over krassen op gelakte panelen. De lakstraatengineer gebruikt steeds termen die je niet kent en zegt dat het “overduidelijk de haken van de transporteur” zijn. De operators zeggen niks.',
+        scene: 'Je bent in de fabriek van een klant en leidt een grondoorzaaksessie over krassen op gelakte panelen. De lakstraatengineer gebruikt steeds termen die je niet kent en zegt dat het “overduidelijk de haken van de transporteur” zijn, de haken waaraan de panelen door de lakstraat hangen. De operators zeggen niks.',
         ask: 'Wat doe je?',
         model: 'Ik vraag de engineer de hakentheorie uit te leggen zoals hij dat aan een nieuwe operator zou doen, en ik herhaal het in mijn eigen woorden. Dan zet ik het als eerste theorie op het bord en vraag wat we zouden zien als het klopt: krassen op dezelfde plek op elk paneel, in alle kleuren? Ik vraag de operators direct waar ze de krassen het eerst zien. Voordat we afsluiten krijgt elke theorie een check, een eigenaar en een datum.',
         rubric: [
@@ -406,8 +423,11 @@ export default {
       },
       sayIt: 'Leg een nieuwe collega in 60 seconden uit hoe je een grondoorzaaksessie leidt als je minder van de techniek weet dan iedereen in de ruimte.',
       terms: [
-        { term: 'Anchoring (verankering)', def: 'Als een vroeg antwoord, vaak van een senior persoon, beperkt wat de groep nog overweegt.' },
-        { term: 'Theorie tegenover feit', def: 'Achter een feit zit data of een deel; een theorie heeft nog een test nodig.' },
+        { term: 'Gespreksleider', def: 'Degene die de sessie leidt: eigenaar van het proces en de lat van bewijs, niet van het antwoord.' },
+        { term: 'Probleemstelling', def: 'Een korte beschrijving van het probleem in cijfers: wat, waar, sinds wanneer, hoeveel.' },
+        { term: 'Feit', def: 'Iets met data of een deel dat je kunt vasthouden erachter.' },
+        { term: 'Theorie', def: 'Een mogelijke oorzaak die nog getest moet worden voordat iemand ernaar handelt.' },
+        { term: 'Ankereffect', def: 'Als een vroeg antwoord, vaak van een senior persoon, beperkt wat de groep nog overweegt.' },
       ],
     },
   ],
