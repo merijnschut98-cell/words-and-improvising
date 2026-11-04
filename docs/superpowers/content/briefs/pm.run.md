@@ -30,3 +30,5 @@ Facts and sources:
 - Recomputed: 5 × 2 = 10 days, 10 / 40 = 25%; access promised week 5, now week 11 = 6 weeks late; pilot week 8 → 12 = 4 weeks; meeting agenda 10 + 15 + 15 + 5 = 45 min; 20% of a five-day week = 1 day. All ids, recall order, answer positions and numbers unchanged.
 
 Uncertain: the “10% goodwill reserve” is practitioner judgement, not a standard; the four-step difficult conversation is a common practitioner format, not taken from one source.
+
+Review pass (2026-11-04): stand-up now said to come from agile methods such as Scrum (Scrum’s own event is the Daily Scrum); MUM effect explained (“keep mum”); goal-sentence example made precise (cancelled in the week before they are due); 10% goodwill reserve labelled a rule of thumb; Bezos one-way/two-way doors dated to the 2015 shareholder letter and “disagree and commit” attributed to Intel, made known by Bezos at Amazon; BATNA tied to Getting to Yes and spelled out in nl; difficult-conversation term definition now says what it is; nl “boodschapper neergeschoten” → “het moet ontgelden”.

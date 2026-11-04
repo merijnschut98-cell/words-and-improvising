@@ -16,7 +16,7 @@ export default {
         'Change management is the work of getting people to actually work the new way. Two models you’ll hear.\n\nKotter’s eight steps (John Kotter, Leading Change, 1996) are for the organisation: create urgency, form a group that drives it, make the picture clear, communicate it, remove obstacles, get quick wins, early visible successes, keep going, and anchor it in how things work.',
         'ADKAR, from the firm Prosci (Jeff Hiatt), is for one person: Awareness (I know it changes), Desire (I want to), Knowledge (I know how), Ability (I can do it in practice), Reinforcement (it keeps being rewarded).\n\nUse it as a diagnosis, not a slide. Not aware: they need to hear it from their boss. No desire: find out what they lose. No knowledge: explain. No ability: practice on the job. No reinforcement: someone has to ask about it every week.',
         'Adoption means people actually using the new way, also when nobody is watching. What drives it in practice: the new way is easier than the old one for the person doing it; their direct boss asks about it; they helped shape it; and the old way is gone, so there’s no fallback.\n\nIf the new process takes the operator longer than the old one, no campaign will save it.',
-        'The people side: say the reason in their terms. Not “to improve OEE”, the score for how well a line uses its time, but “so you’re not called in on Saturday because the line is behind”.\n\nWhen you don’t know why people aren’t adopting, ask five of them: “What makes this hard to use?” You’ll usually hear one practical thing you can fix this week.',
+        'The people side: say the reason in their terms. Not “to improve OEE”, the score for how much of its planned time a line makes good product, but “so you’re not called in on Saturday because the line is behind”.\n\nWhen you don’t know why people aren’t adopting, ask five of them: “What makes this hard to use?” You’ll usually hear one practical thing you can fix this week.',
         'Watch the weeks after go-live, the day the new way officially starts. That’s when the old way tempts and problems show up.\n\nExperts argue about the famous claim that 70% of change programmes fail: a 2011 review by Mark Hughes found no solid evidence behind the number. Kotter’s model is also criticised as too top-down. Ask the sharp question: “What does the operator lose if he works the new way?”',
       ],
       example: {
@@ -97,7 +97,7 @@ export default {
         'Resistance tells you something real. Usually one of these: a loss, something they give up (status, skill, control, overtime pay); extra work for them; an earlier project that failed and they paid for it; or a flaw in your design they can see and you can’t.\n\nAsk before you judge: “What would have to be true for this to work for you?”',
         'Work with it, not against it. Invite the sharpest critic into the design: their objections make it better, and a converted critic convinces others more than you ever will.\n\nThis is old news. In 1948 Coch and French showed at a pyjama factory in Virginia that workers who helped design a new method got their output back faster, and quit less, than workers who were simply told.',
         'Be honest when a loss is real: “Yes, you’ll lose the Saturday overtime. Here’s why we still think it’s right.”\n\nDon’t label people as “resisters” in conversations with management; it sticks and closes the door. When you don’t know what’s behind it, have a coffee with the person, one-on-one, away from the meeting. Ask about their experience with earlier changes; often you hear the real story there.',
-        'You’ll hear about the change curve: shock, denial, frustration, then acceptance, borrowed from Elisabeth Kübler-Ross’s 1969 work on grief. It is a useful reminder that a dip in mood is normal, but there is little evidence that people pass through fixed stages.\n\nExperts also argue about the word itself: many say people don’t resist change, they resist loss. A common failure is treating all resistance as a bad attitude.',
+        'You’ll hear about the change curve: shock, denial, frustration, then acceptance. Management writers adapted it from Elisabeth Kübler-Ross’s 1969 stages for dying patients; she did not write about organisations. It reminds you that a dip in mood is normal, but there is little evidence that people pass through fixed stages.\n\nExperts also argue about the word itself: with Ronald Heifetz, many say people don’t resist change, they resist loss. A common failure is treating all resistance as a bad attitude.',
       ],
       example: {
         kind: 'worked',
@@ -176,8 +176,8 @@ export default {
         'A stakeholder is anyone affected by the change or able to influence it. Map who hears what, when. Groups: directly affected (they work differently), indirectly affected (their input or output changes), and managers.\n\nPer group, answer five questions: what changes for me, when, why, what is expected of me, and where can I ask questions. That one-page table is your communication plan.',
         'Sequence matters. Managers hear it before their teams, so they can answer questions instead of being surprised. Passing it down level by level like this is called a cascade. Never let people hear it first in the corridor or from another site.\n\nIf a rumour is already out, communicate the same day, even if not everything is decided: “Here’s what we know, here’s what we don’t yet, and when we will.”',
         'The middle manager, the shift lead or team leader between senior management and the floor, is the key channel. The plant manager can explain why; the shift lead is the one people ask “what does this mean for my Monday?”\n\nEquip middle managers first: their own questions answered, three talking points, key messages they can say in their own words, and a short list of likely questions with answers.',
-        'Repeat. One message in one meeting is not communication. A town hall, one big meeting for all staff, is good for the why, but people need to hear it several times, in several ways: the board, the shift start, a one-on-one. Kotter wrote that leaders under-communicate by a factor of ten.\n\nCheck if it landed: ask a few people what they understood. When you don’t know an answer, say so and say when you’ll know.',
-        'Prosci, the firm behind ADKAR, keeps finding the same split in its surveys: employees want the business reasons from senior leaders, and what it means for their own job from their direct supervisor.\n\nA common failure is the cascade that stops halfway: the managers were briefed, but half never told their teams. A week later, ask each manager the sharp question: “Which of your people have you told, and what did they ask?”',
+        'Repeat. One message in one meeting is not communication. A town hall, one big meeting for all staff, is good for the why, but people need to hear it several times, in several ways: the board, the shift start, a one-on-one. Kotter (1995) estimated from experience that leaders under-communicate their vision by a factor of ten.\n\nCheck if it landed: ask a few people what they understood. When you don’t know an answer, say so and say when you’ll know.',
+        'Prosci, the consulting firm behind ADKAR, reports the same split in its own surveys of change practitioners: employees want the business reasons from senior leaders, and what it means for their own job from their direct supervisor.\n\nA common failure is the cascade that stops halfway: the managers were briefed, but half never told their teams. A week later, ask each manager the sharp question: “Which of your people have you told, and what did they ask?”',
       ],
       example: {
         kind: 'worked',
@@ -213,7 +213,7 @@ export default {
       situation: {
         scene: 'You’re at a food plant. The new shift pattern, which crews work which hours and days, starts in six weeks. The plant manager wants to announce it in a town hall next week and “then we’re done communicating”.',
         ask: 'What do you propose?',
-        model: '“The town hall is good for the why. But people will ask their shift lead what it means for their weekends. Can we brief the shift leads first, with an FAQ, so they can answer? Then the town hall, then each shift lead talks to his team in the shift start. And in week three we ask a few operators what they understood.”',
+        model: '“The town hall is good for the why. But people will ask their shift lead what it means for their weekends. Can we brief the shift leads first, with an FAQ, a sheet of likely questions and answers, so they can answer? Then the town hall, then each shift lead talks to his team in the shift start. And in week three we ask a few operators what they understood.”',
         rubric: [
           'Keeps the town hall for the why but adds more moments',
           'Briefs and equips the shift leads before their teams',
@@ -255,14 +255,14 @@ export default {
       ],
       teach: [
         'Write the new way down as a short work instruction: one page per task, steps in order, photos of the real equipment, and for each step the key point, the detail that makes it go right or wrong, plus why it matters.\n\nWrite it with the people who do the work and test it: let someone who wasn’t involved follow it while you watch. Where they hesitate, the instruction is unclear.',
-        'This comes from TWI, Training Within Industry, a US wartime programme started in 1940 that issued over 1.6 million certificates by 1945. Its Job Instruction method has four steps: prepare the learner, show and explain, let them try while you correct, then follow up.\n\nIts motto still holds: if the worker hasn’t learned, the instructor hasn’t taught. Toyota adopted TWI after the war.',
+        'This comes from TWI, Training Within Industry, a US wartime programme started in 1940 that issued over 1.6 million certificates by 1945. Its Job Instruction method has four steps: prepare the learner, show and explain, let them try while you correct, then follow up.\n\nIts motto still holds: if the worker hasn’t learned, the instructor hasn’t taught. Toyota adopted it in the 1950s.',
         'Classroom versus on the job. A classroom is good for the why and the big picture, in 30 to 60 minutes. Skills are learned through on-the-job training: show it, do it together, let them do it while you watch, check later.\n\nShift leads or experienced operators make the best trainers, if you train them first. Train just before people need it; a session six weeks before go-live is mostly forgotten by then.',
         'Plan short sessions in the week before go-live and support on the floor in the first two weeks after. Cover every shift, including nights and weekends, which projects often forget.\n\nCheck it stuck: a week later, watch people do it without help, not to judge them, but to see whether the instruction or the training needs fixing. When many people make the same mistake, the instruction is wrong, not the people.',
-        'Trainers often measure the wrong thing. The Kirkpatrick levels (Donald Kirkpatrick, 1959) rank four checks: did they like it, did they learn it, do they do it on the job, did results improve. Most projects stop at the first: a smiley form.\n\nExperts argue whether a classroom is needed at all; the 70-20-10 rule of thumb says most learning happens on the job. When you don’t know the technical task well, let the expert train and you check the result.',
+        'Trainers often measure the wrong thing. The Kirkpatrick levels (Donald Kirkpatrick, 1959) rank four checks: did they like it, did they learn it, do they do it on the job, did results improve. Most projects stop at the first: a smiley form.\n\nExperts argue whether a classroom is needed at all. The popular 70-20-10 rule (70% learned on the job, 20% from others, 10% in courses) is a practitioner model with weak evidence. If you don’t know the task well, let the expert train and check the result yourself.',
       ],
       example: {
         kind: 'worked',
-        text: 'A grid operator introduces a new way for technicians to report as-built data (where the cable and its joints, the connections between cable lengths, actually ended up) with an app. You write a one-page instruction with the team leader: six steps, photos of the app screens, and the key point “photograph the joint before backfilling the trench, because you can’t afterwards”. A technician who wasn’t involved tests it; he gets stuck on step 4, which you rewrite.\n\nTraining: 30 minutes in the morning meeting on why, then the team leader goes along on the first job of each technician.\n\nA week later you check 20 reports: 15 complete, 5 without the joint photo. All 5 are from crews who start at 6:00, before the team leader arrives. Next week, a team leader starts early.',
+        text: 'A grid operator introduces a new way for technicians to report as-built data (where the cable and its joints, the connections between cable lengths, actually ended up) with an app. You write a one-page instruction with the team leader: six steps, photos of the app screens, and the key point “photograph the joint before the trench is filled in again, because you can’t afterwards”. A technician who wasn’t involved tests it; he gets stuck on step 4, which you rewrite.\n\nTraining: 30 minutes in the morning meeting on why, then the team leader goes along on the first job of each technician.\n\nA week later you check 20 reports: 15 complete, 5 without the joint photo. All 5 are from crews who start at 6:00, before the team leader arrives. Next week, a team leader starts early.',
       },
       said: 'What you hear in projects: “We trained everyone in March. By June they were doing it the old way again.”',
       recall: [
@@ -317,7 +317,7 @@ export default {
       terms: [
         { term: 'Work instruction', def: 'One page per task: steps, photos, key points and why they matter.' },
         { term: 'Key point', def: 'The detail in a step that makes it go right or wrong.' },
-        { term: 'TWI', def: 'Training Within Industry: the 1940s US method to teach a job in four steps, still used in lean companies.' },
+        { term: 'TWI', def: 'Training Within Industry: a US wartime programme of the 1940s; its Job Instruction method teaches a job in four steps.' },
         { term: 'On-the-job training', def: 'Show, do together, let them do it, check: learning on the real work.' },
         { term: 'Kirkpatrick levels', def: 'Four ways to check a training: reaction, learning, behaviour on the job, results.' },
       ],
@@ -410,7 +410,7 @@ export default {
           q: 'After a successful project, when do results most often start to slip?',
           options: ['Two to four months after the consultant leaves', 'In the first week after go-live', 'After about five years', 'They rarely slip'],
           answer: 'Two to four months after the consultant leaves',
-          why: 'Once project attention fades, exceptions creep in and people go back to old habits.',
+          why: 'A practitioner rule of thumb: once project attention fades, exceptions creep in and people go back to old habits.',
         },
       ],
       teach: [
@@ -476,7 +476,7 @@ export default {
       },
       sayIt: 'Explain to a sponsor in 60 seconds why results often slip after a project and how you plan for it.',
       terms: [
-        { term: 'Three-month dip', def: 'The common slide in results a few months after project attention ends.' },
+        { term: 'Three-month dip', def: 'A practitioner rule of thumb: results often slide a few months after project attention ends.' },
         { term: 'Layered process audit', def: 'Short, frequent checks by several layers of management, from team leader to plant manager.' },
         { term: 'KPI review', def: 'A monthly meeting where the owner and team look at the KPI trend, causes and actions.' },
         { term: 'Follow-up', def: 'A planned check after the project, for example at one, three and six months.' },
