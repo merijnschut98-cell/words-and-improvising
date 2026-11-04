@@ -6,21 +6,22 @@ export default {
       title: 'Pressure, flow and pressure drop',
       pre: [
         {
-          q: 'The flow through an existing pipe doubles. The flow is turbulent, as in most process pipes. What happens to the friction pressure drop, roughly?',
+          q: 'The flow through an existing pipe doubles. The flow is turbulent (swirling), as in most process pipes. What happens to the pressure lost to friction in the pipe, roughly?',
           options: ['It doubles', 'It roughly quadruples', 'It stays the same', 'It halves'],
           answer: 'It roughly quadruples',
           why: 'In turbulent flow the friction pressure drop rises roughly with the velocity squared: 2 × 2 = 4.',
         },
       ],
       teach: [
-        'Liquids flow from high to low pressure. Pumps make the pressure; pipes, bends, valves, filters and heat exchangers use it up through friction.\n\nPump people talk in head: the height in metres of liquid the pump can lift. 10 m of water is about 1 bar. A centrifugal pump gives the same head with any thin liquid; the pressure that head gives scales with density.',
-        'The friction pressure drop rises with the velocity squared in the turbulent flow found in most process pipes. Double the flow in the same pipe and the drop roughly quadruples.\n\nThat is why pushing more through an existing line often fails: the pump can’t deliver the extra pressure. One pipe size larger lowers the velocity, and the drop falls sharply.',
-        'Velocity = flow / pipe cross-section. Typical design velocities for water-like liquids are 1 to 3 m/s. Above that, erosion, noise and pressure drop climb; below it, solids may settle.\n\nPipe size is given as DN, the nominal diameter in mm: DN50 is roughly 50 mm inside.',
-        'Slow, thick flow is laminar: layers slide smoothly past each other. Most flows of thin liquids are turbulent: swirling.\n\nThe Reynolds number tells which: below about 2,300 laminar, above about 4,000 turbulent. Turbulence mixes and transfers heat well; thick products like syrups, creams and pastes often flow laminar and heat up slowly in a pipe.',
+        'Liquids flow from high to low pressure. A pump makes the pressure; pipes, bends, valves, filters and heat exchangers (units that pass heat from one liquid to another) use it up through friction.\n\nPump people talk in head: the height in metres to which the pump could lift the liquid. 10 m of water is about 1 bar. A centrifugal pump, one with a spinning wheel inside, gives the same head with any thin liquid; the pressure that head gives scales with density, the mass per m³.',
+        'The pressure drop is the pressure lost to friction between two points. In turbulent flow, the swirling flow found in most process pipes, it rises roughly with the velocity squared. Double the flow in the same pipe and the drop roughly quadruples.\n\nThat is why pushing more through an existing line often fails: the pump can’t deliver the extra pressure. One pipe size larger lowers the velocity, and the drop falls sharply.',
+        'Velocity = flow / pipe cross-section, the area of the inside circle. Typical design velocities for water-like liquids are 1 to 3 m/s. Above that, erosion (the liquid wearing the pipe away), noise and pressure drop climb; below it, solids may settle.\n\nPipe size is given as DN, the nominal diameter in mm: DN50 is roughly 50 mm inside. The real bore depends on the wall thickness, so ask for it when the numbers get tight.',
+        'Slow, thick flow is laminar: layers slide smoothly past each other, fastest in the centre. Most flows of thin liquids are turbulent.\n\nThe Reynolds number tells which: density × velocity × diameter / viscosity (how thick the liquid is). Below about 2,300 the flow is laminar, above about 4,000 turbulent. Water at 1.4 m/s in a 50 mm pipe gives about 70,000; a thick syrup in the same pipe can drop below 100. Turbulence mixes and transfers heat well; laminar flow heats up slowly.',
+        'In practice every bend, valve and filter adds its own pressure drop; engineers count each as a length of straight pipe that loses the same. A clogged strainer, a coarse filter that catches debris, can lose several times the pressure of a clean one.\n\nExperts argue over pipe size: a bigger pipe costs more to buy, a smaller one costs pumping energy for twenty years. A sharp question when a line won’t deliver: “What is the pressure before and after each filter and valve, right now?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling circuit runs 10 m³ per hour through a DN50 line. Cross-section: 3.14 / 4 × 0.05² = 0.00196 m²; flow 10 / 3,600 = 0.00278 m³/s; velocity 1.4 m/s. The friction drop is 0.8 bar.\n\nA new machine needs the flow doubled to 20 m³ per hour: velocity 2.8 m/s and a drop of about 4 × 0.8 = 3.2 bar. The pump can only add 2 bar at that flow, so it won’t work. Changing the line to DN80 brings the velocity down to 1.1 m/s and the drop to roughly 0.3 bar: the pipe, not the pump, was the problem.',
+        text: 'A cooling water circuit runs 10 m³ per hour through a DN50 line. Cross-section: 3.14 / 4 × 0.05² = 0.00196 m²; flow 10 / 3,600 = 0.00278 m³ per second; velocity 0.00278 / 0.00196 = 1.4 m/s. The friction drop is 0.8 bar.\n\nA new machine needs the flow doubled to 20 m³ per hour: velocity 2.8 m/s and a drop of about 4 × 0.8 = 3.2 bar. The pump can only add 2 bar at that flow, so it won’t work. Changing the line to DN80 brings the velocity down to 1.1 m/s and the drop to roughly 0.3 bar: the pipe, not the pump, was the problem.',
       },
       said: 'What engineers say: “Double the flow in that line and you need four times the pressure. The pump won’t make it, so we upsize the pipe.”',
       recall: [
@@ -29,7 +30,7 @@ export default {
           number: 1.125,
           tolerance: 0.05,
           unit: 'bar',
-          why: '18 / 12 = 1.5; 1.5² = 2.25; 0.5 × 2.25 = 1.125 bar.',
+          why: '18 / 12 = 1.5; 1.5² = 2.25; 0.5 bar × 2.25 = 1.125 bar.',
         },
         {
           q: 'A pump delivers 30 m of head pumping water. Using 10 m of water ≈ 1 bar, how much pressure does it add, in bar?',
@@ -39,10 +40,10 @@ export default {
           why: '30 m / 10 m per bar = 3 bar.',
         },
         {
-          q: 'The same pump, at the same flow and speed, now pumps a liquid with a density of 1,200 kg/m³ instead of water. What changes?',
+          q: 'The same centrifugal pump, at the same flow and speed, now pumps a thin liquid with a density of 1,200 kg/m³ instead of water (1,000 kg/m³). What changes?',
           options: ['The head in metres drops by 20%', 'Same head in metres, about 20% more pressure in bar', 'Both head and pressure stay the same', 'The flow doubles'],
           answer: 'Same head in metres, about 20% more pressure in bar',
-          why: 'A centrifugal pump gives the same head for any thin liquid; pressure = density × g × head, so it scales with density.',
+          why: 'A centrifugal pump gives the same head for any thin liquid; pressure = density × g × head, so it rises with density: 1,200 / 1,000 = 20% more.',
         },
         {
           q: 'Why does a thick sauce heat up slowly in a tube heat exchanger?',
@@ -54,7 +55,7 @@ export default {
       situation: {
         scene: 'You’re at a plastics client. They want to raise the flow in a cooling water circuit by 40% to cool a new machine, using the existing pipes and pump.',
         ask: 'What do you ask?',
-        model: 'What is the pressure drop in the circuit now, and what would 40% more flow do to it: roughly 1.4² = 2 times the friction drop? Where on its curve does the pump run, and can it deliver that head at the higher flow? Which section of pipe has the highest velocity? Maybe one undersized section or a clogged filter is the real limit.',
+        model: 'What is the pressure drop in the circuit now, and what would 40% more flow do to it: roughly 1.4² = 2 times the friction drop? Where on its curve, its graph of head against flow, does the pump run, and can it deliver that head at the higher flow? Which section of pipe has the highest velocity? Maybe one undersized section or a clogged filter is the real limit.',
         rubric: [
           'Expects the friction drop to rise with flow squared',
           'Checks the pump curve at the new flow',
@@ -65,7 +66,9 @@ export default {
       terms: [
         { term: 'Head', def: 'Pump pressure expressed as metres of liquid column; 10 m of water is about 1 bar.' },
         { term: 'Pressure drop', def: 'Pressure lost to friction in pipes, valves and equipment; grows with velocity squared in turbulent flow.' },
-        { term: 'DN', def: 'Nominal pipe diameter in mm.' },
+        { term: 'DN', def: 'Nominal pipe diameter in mm; the real inside diameter depends on the wall thickness.' },
+        { term: 'Laminar', def: 'Smooth flow in layers, typical of slow or thick liquids; little mixing.' },
+        { term: 'Turbulent', def: 'Swirling flow, typical of thin liquids in process pipes; mixes and transfers heat well.' },
         { term: 'Reynolds number', def: 'Number that tells laminar (below about 2,300) from turbulent (above about 4,000) flow.' },
       ],
     },
@@ -74,29 +77,30 @@ export default {
       title: 'Pump curve, system curve and duty point',
       pre: [
         {
-          q: 'A centrifugal pump runs with its discharge valve fully closed. What happens?',
+          q: 'A centrifugal pump, one with a spinning wheel inside, runs with its discharge valve (the valve on its outlet) fully closed. What happens?',
           options: ['The pressure rises until the pipe bursts', 'The pressure rises a little, the flow is zero and the liquid in the pump heats up', 'The pump automatically stops', 'Nothing, it’s a normal operating point'],
           answer: 'The pressure rises a little, the flow is zero and the liquid in the pump heats up',
           why: 'A centrifugal pump has a maximum head at zero flow; all its power then turns into heat in the trapped liquid.',
         },
       ],
       teach: [
-        'Two pump families. A centrifugal pump spins an impeller and throws liquid outward: simple, cheap, ideal for thin liquids and large flows. Its flow drops as the pressure against it rises.\n\nA positive displacement pump (gear, lobe, screw, piston, diaphragm) pushes a fixed volume per turn, so its flow barely changes with pressure. It suits thick liquids, dosing and high pressures, but against a closed valve the pressure climbs until something breaks, so it needs a relief valve.',
-        'A centrifugal pump has a pump curve: head against flow, high at low flow and falling as flow rises. The pipework has a system curve: static head (height difference and vessel pressure to overcome) plus friction, which grows with flow squared.\n\nWhere the two curves cross is the duty point: the flow and head you actually get.',
-        'Every pump has a best efficiency point (BEP), the flow where it runs most efficiently. Running far from it, roughly below 70% or above 120% of the BEP flow, causes vibration, heating, and seal and bearing wear.\n\nMany “bad pumps” are good pumps in the wrong place on their curve.',
-        'Throttling a valve to cut the flow moves the duty point by adding friction: it works, but burns energy across the valve. Hydraulic power = density × g × flow × head; the motor must supply that divided by the pump efficiency.\n\nOversized pumps throttled back are common in older plants: a quick energy and reliability win.',
+        'Two pump families. A centrifugal pump spins an impeller, a wheel with curved vanes, and flings the liquid outward. It is simple, cheap and ideal for thin liquids and large flows.\n\nIts flow drops as the pressure against it rises, and against a closed valve it just churns: pressure tops out, flow is zero, and the trapped liquid heats up.',
+        'A positive displacement pump (gear, lobe, screw, piston, diaphragm) pushes a fixed volume per turn, so its flow barely changes with pressure. It suits thick liquids, dosing and high pressures.\n\nBut against a closed valve the pressure climbs until something breaks. So it needs a relief valve: a spring-loaded valve that opens at a set pressure and sends the liquid back.',
+        'A centrifugal pump has a pump curve: head against flow, high at low flow and falling as flow rises. The pipework has a system curve: static head (height difference and vessel pressure to overcome) plus friction, which grows with flow squared.\n\nWhere the two curves cross is the duty point: the flow and head you actually get. Change the pipework, and the duty point moves along the pump curve.',
+        'Every pump has a best efficiency point (BEP), the flow where it runs most efficiently and most smoothly. Running far from it, roughly below 70% or above 120% of the BEP flow, causes vibration, heating, and wear on the seals and bearings.\n\nThe mechanical seal, where the spinning shaft leaves the casing, is usually the first to go. Many “bad pumps” are good pumps in the wrong place on their curve.',
+        'Throttling, closing a valve to cut the flow, moves the duty point by adding friction: it works, but burns energy across the valve. Hydraulic power = density × g × flow × head; the motor must supply that divided by the pump efficiency.\n\nWhy are so many pumps oversized? Each designer adds a safety margin on flow and head, and the margins stack up. A sharp question: “What are the real flow and head now, compared with the BEP?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling pump was chosen with its best efficiency point (BEP) at 100 m³ per hour, but the plant only needs 60, so a valve is half closed. At 60 m³ per hour the pump makes 45 m of head, while the pipework needs only 25 m: the other 20 m burn in the valve.\n\nHydraulic power at the pump: 1,000 × 9.81 × (60 / 3,600) × 45 = 7.4 kW. Needed: 1,000 × 9.81 × (60 / 3,600) × 25 = 4.1 kW. So about 3.3 kW is wasted in the valve, 26,000 kWh a year at 8,000 hours, before motor and pump losses.\n\nAnd at 60% of its BEP flow the pump vibrates: seals last four months. A trimmed impeller or a speed drive fixes both.',
+        text: 'A cooling pump was chosen with its best efficiency point (BEP) at 100 m³ per hour, but the plant only needs 60, so a valve is half closed. At 60 m³ per hour the pump makes 45 m of head, while the pipework needs only 25 m: the other 20 m burn in the valve.\n\nHydraulic power at the pump: 1,000 × 9.81 × (60 / 3,600) × 45 = 7.4 kW. Needed: 1,000 × 9.81 × (60 / 3,600) × 25 = 4.1 kW. So about 3.3 kW is wasted in the valve, 26,000 kWh a year at 8,000 hours, before motor and pump losses.\n\nAnd at 60% of its BEP flow the pump vibrates: seals last four months. Trimming the impeller (machining it to a smaller diameter) or a speed drive fixes both.',
       },
       said: 'What engineers say: “That pump isn’t bad, it’s throttled back to 60% of BEP. Trim the impeller and I bet the seal problem goes away.”',
       recall: [
         {
-          q: 'A gear pump is running and someone closes the discharge valve. What protects the pump and pipe?',
+          q: 'A gear pump, a positive displacement pump, is running and someone closes the discharge valve. What protects the pump and pipe?',
           options: ['The pump curve', 'A pressure relief valve', 'A check valve', 'Nothing is needed'],
           answer: 'A pressure relief valve',
-          why: 'A positive displacement pump keeps pushing volume, so pressure climbs until a relief valve opens or something breaks.',
+          why: 'A positive displacement pump keeps pushing volume, so pressure climbs until a relief valve opens or something breaks. A check valve only stops backflow.',
         },
         {
           q: 'What is the duty point of a centrifugal pump?',
@@ -119,9 +123,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a chemicals client. The maintenance lead says pump P-204 “eats mechanical seals” and wants to switch to a more expensive brand.',
+        scene: 'You’re at a chemicals client. The maintenance lead says pump P-204 “eats mechanical seals”, the seals where the shaft leaves the pump, and wants to switch to a more expensive brand.',
         ask: 'What do you ask before they buy?',
-        model: 'Where on its curve does P-204 actually run: what are the real flow and head compared with its BEP? Is it throttled with a valve? Is there any sign of cavitation, such as noise or a low suction tank? And is the seal type right for this liquid and temperature? A pump running far from BEP will eat any brand of seal.',
+        model: 'Where on its curve does P-204 actually run: what are the real flow and head compared with its BEP? Is it throttled with a valve? Is there any sign of cavitation, boiling at the pump inlet, such as a gravel noise or a low suction tank? And is the seal type right for this liquid and temperature? A pump running far from BEP will eat any brand of seal.',
         rubric: [
           'Asks for the real duty point compared with the BEP',
           'Checks for throttling or an oversized pump',
@@ -132,6 +136,8 @@ export default {
       terms: [
         { term: 'Centrifugal pump', def: 'A pump with a spinning impeller; its flow falls as the pressure against it rises.' },
         { term: 'Positive displacement pump', def: 'A pump that pushes a fixed volume per turn; needs a relief valve.' },
+        { term: 'Pump curve', def: 'The maker’s graph of head against flow for a pump at a given speed.' },
+        { term: 'System curve', def: 'The head the pipework needs at each flow: static head plus friction.' },
         { term: 'Duty point', def: 'Where the pump curve and the system curve cross: the real flow and head.' },
         { term: 'BEP', def: 'Best efficiency point: the flow where a pump runs most efficiently and smoothly.' },
       ],
@@ -141,23 +147,24 @@ export default {
       title: 'Cavitation and NPSH',
       pre: [
         {
-          q: 'A pump sounds as if it is pumping gravel. Its suction tank is nearly empty and the liquid is hot. What is the most likely cause?',
+          q: 'A pump sounds as if it is pumping gravel. Its suction tank, the tank it draws from, is nearly empty and the liquid is hot. What is the most likely cause?',
           options: ['A loose motor', 'Cavitation', 'Too much flow resistance on the discharge side', 'A blocked vent on the motor'],
           answer: 'Cavitation',
-          why: 'A low tank level and hot liquid both reduce the margin against boiling at the pump inlet.',
+          why: 'A low tank level and hot liquid both reduce the margin against boiling at the pump inlet; the bubbles that form and collapse sound like gravel.',
         },
       ],
       teach: [
-        'Liquids boil when the pressure falls below their vapour pressure, which rises with temperature: water at 20 °C boils at about 0.023 bar absolute, at 80 °C at about 0.47 bar absolute.\n\nThe pump inlet is where the pressure dips lowest. If it falls below the vapour pressure, vapour bubbles form and then collapse violently further along the impeller. That is cavitation.',
-        'Symptoms: a crackling, gravel-like noise, vibration, falling flow and head, and pitted, sponge-like damage on the impeller. Seals and bearings suffer too. Heavy cavitation can wreck an impeller within weeks.',
-        'Engineers check it with NPSH, net positive suction head, in metres. NPSHr (required) comes from the pump maker’s curve and rises with flow. NPSHa (available) comes from the installation: the pressure on the liquid surface as head, plus the liquid height above the pump inlet, minus friction in the suction line, minus the vapour pressure as head.\n\nThe rule: NPSHa must stay above NPSHr, with a margin.',
-        'What lowers NPSHa: a low tank level, hot liquid, a long or narrow suction pipe, a clogged suction strainer, a partly closed suction valve, a vessel under vacuum.\n\nFixes: raise the tank or lower the pump, a wider and shorter suction line, cooler liquid, a clean strainer, and never throttle on the suction side. Running above design flow raises NPSHr.',
+        'A liquid boils when the pressure on it falls below its vapour pressure, and that rises with temperature. Water at 20 °C boils at about 0.023 bar absolute (measured from vacuum); at 80 °C already at about 0.47 bar absolute.\n\nSo boiling is not only about heat. Lower the pressure enough and cold water boils too.',
+        'The pump inlet is where the pressure dips lowest. If it falls below the vapour pressure, vapour bubbles form there and collapse violently further along the impeller, the spinning wheel. That is cavitation.\n\nSymptoms: a crackling, gravel-like noise, vibration, falling flow and head, and pitted, sponge-like damage on the impeller. Seals and bearings suffer too. Heavy cavitation can wreck an impeller within weeks.',
+        'Engineers check it with NPSH, net positive suction head, in metres. NPSHr (required) comes from the pump maker’s curve and rises with flow.\n\nNPSHa (available) comes from the installation: the pressure on the liquid surface as head, plus the liquid height above the pump inlet, minus friction in the suction line (the pipe from tank to pump), minus the vapour pressure as head. The rule: NPSHa must stay above NPSHr, with a margin.',
+        'What lowers NPSHa: a low tank level, hot liquid, a long or narrow suction line, a clogged suction strainer (coarse filter), a partly closed suction valve, a vessel under vacuum.\n\nFixes: raise the tank or lower the pump, a wider and shorter suction line, cooler liquid, a clean strainer, and never throttle on the suction side. Running above design flow raises NPSHr.',
+        'A detail many miss: makers measure NPSHr at the point where the head has already dropped 3% from cavitation. So at NPSHa = NPSHr the pump already cavitates.\n\nExperts argue about how much margin is enough. The guideline of the Hydraulic Institute, the American pump association, suggests NPSHa of roughly 1.1 to 2 times NPSHr, depending on the application: more for large, fast pumps. A sharp question: “What is NPSHa at the lowest tank level and the hottest day, not at design?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A condensate pump takes water at 95 °C from a vented tank. Pressure on the surface: 1.01 bar; vapour pressure at 95 °C: 0.85 bar. The difference, 0.16 bar, is about 1.7 m of water.\n\nThe tank level sits 1.5 m above the pump inlet; suction friction is 0.5 m. NPSHa = 1.7 + 1.5 − 0.5 = 2.7 m.\n\nThe pump curve says NPSHr = 3.0 m at the duty flow: it cavitates, and the impeller shows it. Raising the tank 1 m gives NPSHa 3.7 m, a margin of 0.7 m. That, not a new pump brand, solves it.',
+        text: 'A condensate pump takes water at 95 °C from a vented tank, open to the air. Pressure on the surface: 1.01 bar absolute; vapour pressure at 95 °C: 0.85 bar. The difference, 0.16 bar, is about 1.7 m of water.\n\nThe tank level sits 1.5 m above the pump inlet; suction friction is 0.5 m. NPSHa = 1.7 + 1.5 − 0.5 = 2.7 m.\n\nThe pump curve says NPSHr = 3.0 m at the duty flow: it cavitates, and the impeller shows it. Raising the tank 1 m gives NPSHa 3.7 m, a margin of 0.7 m, about 1.2 times NPSHr: at the low end of the usual range, so confirm it with the pump maker. That, not a new pump brand, is the fix.',
       },
-      said: 'What engineers say: “It’s hot condensate with a metre and a half of suction head. Of course it cavitates. Raise the tank.”',
+      said: 'What engineers say: “It’s hot condensate with a metre and a half of liquid above the pump. Of course it cavitates. Raise the tank.”',
       recall: [
         {
           q: 'Which change lowers the NPSH available to a pump?',
@@ -169,14 +176,14 @@ export default {
           q: 'What must hold to avoid cavitation?',
           options: ['NPSHr above NPSHa', 'NPSHa above NPSHr, with a margin', 'The pump runs below 1,500 rpm', 'The discharge pressure is above 3 bar'],
           answer: 'NPSHa above NPSHr, with a margin',
-          why: 'The installation must offer more suction head than the pump needs at that flow.',
+          why: 'The installation must offer more suction head than the pump needs at that flow, and NPSHr already includes a 3% head loss.',
         },
         {
           q: 'A pump draws water from an open tank. Expressed as head: the pressure on the liquid surface is 10.3 m, the vapour pressure is 0.4 m, the liquid level is 2 m above the pump inlet, and friction in the suction line is 1.5 m. What is the NPSH available, in m?',
           number: 10.4,
           tolerance: 0.1,
           unit: 'm',
-          why: 'NPSHa = 10.3 + 2 − 1.5 − 0.4 = 10.4 m.',
+          why: 'NPSHa = surface pressure + height − friction − vapour pressure = 10.3 + 2 − 1.5 − 0.4 = 10.4 m.',
         },
         {
           q: 'An operator closes the suction valve of a centrifugal pump halfway to reduce its flow. What does that do?',
@@ -186,7 +193,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a brewery. The CIP return pump has needed a new impeller three times this year; the old ones are pitted like a sponge. Maintenance blames the supplier.',
+        scene: 'You’re at a brewery. The CIP return pump, which pumps the cleaning liquid back after cleaning tanks and pipes in place, has needed a new impeller three times this year; the old ones are pitted like a sponge. Maintenance blames the supplier.',
         ask: 'What do you ask?',
         model: 'That pitting looks like cavitation. How hot is the cleaning liquid at the pump, and how high is the liquid level above the pump inlet? How long and narrow is the suction line, and is there a strainer or a half-closed valve before the pump? What is the NPSHr at the actual flow, and does it run above design flow? Let’s compare NPSHa with NPSHr before we change supplier.',
         rubric: [
@@ -197,10 +204,11 @@ export default {
       },
       sayIt: 'Explain cavitation to a production supervisor in 60 seconds, and say what makes it worse.',
       terms: [
-        { term: 'Cavitation', def: 'Vapour bubbles forming and collapsing in a pump because the inlet pressure is too low.' },
         { term: 'Vapour pressure', def: 'The pressure at which a liquid boils at a given temperature; rises with temperature.' },
-        { term: 'NPSHa', def: 'Net positive suction head available: the suction margin the installation offers.' },
-        { term: 'NPSHr', def: 'Net positive suction head required: what the pump needs at a given flow, from the maker’s curve.' },
+        { term: 'Cavitation', def: 'Vapour bubbles forming and collapsing in a pump because the inlet pressure is too low.' },
+        { term: 'Suction line', def: 'The pipe from the tank to the pump inlet; its friction lowers NPSHa.' },
+        { term: 'NPSHa', def: 'Net positive suction head available: the suction margin the installation offers, in metres.' },
+        { term: 'NPSHr', def: 'Net positive suction head required: what the pump needs at a given flow, from the maker’s curve (measured at 3% head loss).' },
       ],
     },
     {
@@ -215,23 +223,24 @@ export default {
         },
       ],
       teach: [
-        'A variable frequency drive (VFD) changes motor speed.\n\nFor a centrifugal pump or fan, the affinity laws say: flow scales with speed, head with speed squared, and power with speed cubed. At 80% speed you get 80% flow, 64% head and about 51% power.',
-        'Compare that with throttling. To get 80% flow by closing a valve, the pump keeps running at full speed and its power drops only a little.\n\nOn systems that are mostly friction, such as circulation loops, ventilation and cooling circuits, speed control usually saves far more.',
-        'The catch is static head. If the pump has to lift liquid 30 m or push into a vessel at 5 bar, it must reach that head before any flow starts. Turn the speed down too far and flow collapses to zero.\n\nIn such systems the savings are smaller than the cube law suggests: ask what share of the head is static.',
-        'Other gains: gentle starts, no water hammer, and control of pressure or flow directly from a sensor instead of a valve. Costs: the drive itself, about 3% drive losses, harmonics on the electrical network, and bearing currents on some motors.\n\nEngineers size the case with a load profile: how many hours a year at each flow.',
+        'A VFD, variable frequency drive, changes motor speed by changing the frequency of the electricity it feeds the motor: 50 Hz is full speed on a European grid, 40 Hz is 80%.\n\nFor a centrifugal pump or fan, the affinity laws say: flow scales with speed, head with speed squared, and power with speed cubed. At 80% speed you get 80% flow, 64% head and about 51% power.',
+        'Compare that with throttling: closing a valve to cut the flow. To get 80% flow that way, the pump keeps running at full speed and its power drops only a little, because the valve burns the extra head.\n\nOn systems that are mostly friction, such as circulation loops, ventilation and cooling circuits, speed control usually saves far more.',
+        'The catch is static head: the height or pressure the pump must overcome even at zero flow. If the pump has to lift liquid 30 m or push into a vessel at 5 bar, it must reach that head before any flow starts. Turn the speed down too far and flow collapses to zero.\n\nIn such systems the savings are smaller than the cube law suggests: ask what share of the head is static.',
+        'Other gains: gentle starts, no water hammer (the bang when flow stops suddenly), and control of pressure or flow straight from a sensor instead of a valve.\n\nCosts: the drive itself, about 3% drive losses, harmonics (distortion of the mains voltage that can heat transformers and upset other equipment), and bearing currents: small currents through the motor bearings that pit them.',
+        'Experts warn that the cube law is optimistic: at low speed the motor and pump efficiencies drop too, so real savings are smaller. A common failure: a drive fitted but left at 50 Hz, with the old valve still throttling.\n\nSo engineers size the case with a load profile: how many hours a year at each flow. A sharp question: “Show me the speed and valve position over a normal week.”',
       ],
       example: {
         kind: 'worked',
         text: 'A circulation pump takes 30 kW at full speed in a friction-only loop. It runs 8,000 hours a year: 2,000 hours at full flow and 6,000 hours at 70% flow.\n\nNow a valve throttles it to 70% flow; according to the pump curve it then still draws about 25.5 kW. Yearly: 30 × 2,000 + 25.5 × 6,000 = 213,000 kWh.\n\nWith a VFD at 70% speed: 0.7³ × 30 = 10.3 kW. Adding 3% drive losses: 30.9 × 2,000 + 10.6 × 6,000 = about 125,400 kWh. Saving about 88,000 kWh a year, roughly €13,000 at €0.15 per kWh, for a drive costing a fraction of that.',
       },
-      said: 'What engineers say: “It’s a closed loop, all friction. Put a drive on it and run it on differential pressure; the valve can stay open.”',
+      said: 'What engineers say: “It’s a closed loop, all friction. Put a drive on it and control it on differential pressure (the pressure difference across the loop); the valve can stay open.”',
       recall: [
         {
           q: 'A pump in a friction-only loop draws 40 kW at full speed. It is slowed to 50% speed. Using the affinity laws and ignoring drive losses, what power does it draw, in kW?',
           number: 5,
           tolerance: 0.2,
           unit: 'kW',
-          why: 'Power scales with speed cubed: 0.5³ = 0.125; 0.125 × 40 = 5 kW.',
+          why: 'Power scales with speed cubed: 0.5³ = 0.125; 0.125 × 40 kW = 5 kW.',
         },
         {
           q: 'A centrifugal pump delivers 200 m³ per hour at full speed in a friction-only loop. It is slowed to 75% speed. Using the affinity laws, what flow does it deliver, in m³ per hour?',
@@ -254,9 +263,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a food client. A supplier pitches VFDs on all 40 pumps in the plant with “50% energy savings guaranteed”.',
+        scene: 'You’re at a food client. A supplier pitches VFDs, speed drives, on all 40 pumps in the plant with “50% energy savings guaranteed”.',
         ask: 'What do you ask before anyone signs?',
-        model: 'Which of these pumps actually run at reduced flow for long periods, and which run flat out? For each, how much of the head is static? A pump lifting to a high tank saves little. Can we log flow or valve position on the biggest ten for two weeks to build a load profile? And what exactly does “guaranteed” mean: measured how, against which baseline?',
+        model: 'Which of these pumps actually run at reduced flow for long periods, and which run flat out? For each, how much of the head is static? A pump lifting to a high tank saves little. Can we log flow or valve position on the biggest ten for two weeks to build a load profile? And what exactly does “guaranteed” mean: measured how, against which baseline, the energy use before the change?',
         rubric: [
           'Asks which pumps run at part flow and for how long',
           'Raises static head as a limit on savings',
@@ -267,6 +276,7 @@ export default {
       terms: [
         { term: 'VFD', def: 'Variable frequency drive: changes the motor speed by changing the supply frequency.' },
         { term: 'Affinity laws', def: 'Flow scales with speed, head with speed squared, power with speed cubed.' },
+        { term: 'Throttling', def: 'Closing a valve to reduce flow; the pump keeps full speed and the valve burns the extra head.' },
         { term: 'Static head', def: 'Height and pressure difference the pump must overcome even at zero flow.' },
         { term: 'Load profile', def: 'Hours per year at each flow or load; the basis of any savings estimate.' },
       ],
@@ -283,14 +293,15 @@ export default {
         },
       ],
       teach: [
-        'A heat exchanger moves heat from a hot stream to a cold one through a wall, without mixing them.\n\nPlate heat exchangers (stacked corrugated plates) are compact and efficient and easy to open for cleaning; common in food and building services, but limited in pressure and sensitive to particles. Shell and tube exchangers (a tube bundle inside a shell) handle high pressures, high temperatures and dirty streams; common in chemicals and refineries.',
-        'The heat duty follows from the streams: Q = m × cp × ΔT on either side, and at steady state the hot side gives what the cold side takes, minus small losses. What an exchanger can transfer is Q = U × A × ΔT mean: U is how well heat passes through the wall and the liquid films, A is the area, and ΔT mean the average temperature difference between the streams.',
-        'Counterflow, with the streams in opposite directions, keeps a temperature difference along the whole length. It transfers the most heat for a given area, and the cold stream can leave hotter than the hot stream leaves.\n\nIn parallel flow the cold outlet can never get above the hot outlet.',
-        'The approach is the smallest temperature gap between the streams. A tight approach of 2 to 5 °C recovers a lot of heat but needs a large area.\n\nIf an exchanger stops reaching its temperature, ask what changed: higher flow, fouling on the wall (lower U), a warmer cooling medium, or air or condensate blocking part of the area.',
+        'A heat exchanger moves heat from a hot stream to a cold one through a wall, without mixing them.\n\nA plate heat exchanger is a stack of thin corrugated plates with rubber gaskets: compact, efficient, easy to open and clean; common in food and building services, but limited in pressure and sensitive to particles. A shell and tube exchanger has a bundle of tubes inside a large shell: it handles high pressures, high temperatures and dirty streams; common in chemicals and refineries.',
+        'The heat duty is the heat moved per second, in kW. It follows from either stream: Q = m × cp × ΔT (mass flow × specific heat × temperature change). At steady state the hot side gives what the cold side takes, minus small losses.\n\nWhat an exchanger can transfer is Q = U × A × ΔT mean: U is how well heat passes through the wall and the liquid films on it, A the area, and ΔT mean the average temperature difference between the streams.',
+        'Counterflow, with the streams in opposite directions, keeps a temperature difference along the whole length. It transfers the most heat for a given area, and the cold stream can leave hotter than the hot stream leaves.\n\nIn parallel flow, both streams in the same direction, the cold outlet can never get above the hot outlet.',
+        'The approach is the smallest temperature gap between the two streams. A tight approach of 2 to 5 °C recovers a lot of heat but needs a large area.\n\nIf an exchanger stops reaching its temperature, ask what changed: higher flow, fouling on the wall (deposits that lower U), a warmer cooling medium, or air or condensate (condensed steam) blocking part of the area.',
+        'Experts argue about cleaning: clean on a fixed schedule, or when U has dropped by an agreed share? Too early wastes production time, too late wastes energy.\n\nA classic failure in food: a pinhole in a plate lets raw product leak into pasteurised product. So the pasteurised side is kept at higher pressure: a leak then flows the safe way. A sharp question: “What is U now, compared with U just after cleaning?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A product cooler: 5,000 kg per hour, cp 3.8 kJ per kg per °C, cooled from 70 to 30 °C. Duty: 5,000 × 3.8 × 40 = 760,000 kJ per hour = 211 kW. Cooling water enters at 15 °C and may leave at 25 °C, a 10 °C rise with cp 4.2: water flow = 760,000 / (4.2 × 10) = 18,100 kg per hour, about 18 m³ per hour.\n\nIn summer the water comes in at 20 °C. To stay at 25 °C out, the water may only rise 5 °C, so it needs twice the flow, 36 m³ per hour, and the smaller temperature difference means the area may not be enough at all. That’s why coolers struggle in July.',
+        text: 'A product cooler: 5,000 kg per hour, cp 3.8 kJ per kg per °C, cooled from 70 to 30 °C. Heat duty: 5,000 × 3.8 × 40 = 760,000 kJ per hour; divided by 3,600 that is 211 kW. Cooling water enters at 15 °C and may leave at 25 °C, a 10 °C rise with cp 4.2: water flow = 760,000 / (4.2 × 10) = 18,100 kg per hour, about 18 m³ per hour.\n\nIn summer the water comes in at 20 °C. To stay at 25 °C out, the water may only rise 5 °C, so it needs twice the flow, 36 m³ per hour, and the smaller temperature difference means the area may not be enough at all. That’s why coolers struggle in July.',
       },
       said: 'What engineers say: “Same flows, same inlet temperatures, four degrees warmer out than last month. That’s most likely fouling. Schedule a clean.”',
       recall: [
@@ -299,14 +310,14 @@ export default {
           number: 320,
           tolerance: 2,
           unit: 'kW',
-          why: '2 × 4.0 × 40 = 320 kJ per second = 320 kW.',
+          why: '2 kg/s × 4.0 kJ per kg per °C × 40 °C = 320 kJ per second = 320 kW.',
         },
         {
           q: 'A cooler must remove 320 kW. The cooling water (cp 4.2 kJ per kg per °C) may warm up by 10 °C. Ignore losses. How many kg of cooling water per second are needed?',
           number: 7.6,
           tolerance: 0.1,
           unit: 'kg/s',
-          why: '320 / (4.2 × 10) = 7.6 kg per second.',
+          why: '320 kJ/s / (4.2 kJ per kg per °C × 10 °C) = 7.6 kg per second.',
         },
         {
           q: 'Which flow arrangement transfers the most heat per m² of exchanger area?',
@@ -322,7 +333,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a brewery. In summer the wort cooler can’t get the wort down to 12 °C, and the brewmaster wants a bigger chiller.',
+        scene: 'You’re at a brewery. In summer the wort cooler can’t get the wort, the sweet liquid that becomes beer, down to 12 °C, and the brewmaster wants a bigger chiller, the refrigeration unit that makes the cold water.',
         ask: 'What do you ask?',
         model: 'What are the temperatures in and out on both sides in summer compared with winter? If the cooling medium comes in warmer, the temperature difference shrinks and the same exchanger transfers less. When was it last cleaned, and is U falling over time? Is the problem the chiller’s capacity, the exchanger’s area, or the cooling medium flow? Each has a different fix.',
         rubric: [
@@ -335,7 +346,9 @@ export default {
       terms: [
         { term: 'Plate heat exchanger', def: 'Compact exchanger of stacked corrugated plates; easy to clean, limited in pressure.' },
         { term: 'Shell and tube', def: 'Exchanger with a tube bundle in a shell; robust for high pressure and dirty streams.' },
+        { term: 'Heat duty', def: 'The heat an exchanger moves per second, in kW: mass flow × specific heat × temperature change.' },
         { term: 'Counterflow', def: 'Streams moving in opposite directions; the most effective arrangement.' },
+        { term: 'Approach', def: 'The smallest temperature difference between the hot and the cold stream in an exchanger.' },
         { term: 'Fouling', def: 'Deposits on the heat transfer surface that lower U and so the heat transferred.' },
       ],
     },
@@ -347,14 +360,15 @@ export default {
           q: 'Why do many plants heat with steam rather than hot water?',
           options: ['Steam is free', 'Condensing steam releases a lot of heat at a fixed temperature', 'Steam needs no pipes', 'Hot water cannot be pumped'],
           answer: 'Condensing steam releases a lot of heat at a fixed temperature',
-          why: 'Most of steam’s heat is latent heat, released at the condensing temperature set by its pressure.',
+          why: 'Most of steam’s heat is latent heat, released when it turns back into water, at the condensing temperature set by its pressure.',
         },
       ],
       teach: [
-        'Steam carries its heat mostly as latent heat. Condensing 1 kg of saturated steam at about 7 bar(g) releases around 2,050 kJ, at a fixed temperature of about 170 °C.\n\nThat makes steam compact to distribute and easy to control: the steam pressure sets the heating temperature. Raise the pressure, and the temperature rises with it.',
-        'After condensing, the water (condensate) must leave the heat exchanger, or it floods the surface and heating drops. Steam traps do that: they let condensate out and keep steam in.\n\nA trap stuck open blows live steam into the condensate line; a trap stuck closed waterlogs the exchanger and can cause water hammer: violent bangs that break pipes and gaskets.',
-        'Traps fail quietly. In systems without a test programme, 15 to 30% of the traps can be failed (a common estimate). Plants test them every year with ultrasound or temperature measurement.\n\nCondensate is hot, clean water: returning it to the boiler saves fuel, water and treatment chemicals.',
-        'Steam leaks and uninsulated pipes and valves are visible money. The numbers to ask for: boiler efficiency, the share of condensate returned, and steam use per tonne of product.\n\nFouling in steam-heated exchangers, such as scale or burnt-on product, lowers heat transfer like in any exchanger; cleaning or descaling restores it.',
+        'Plants mostly use saturated steam: steam at the boiling point that belongs to its pressure. It carries its heat mainly as latent heat, the heat released when it turns back into water. Condensing 1 kg at about 7 bar(g) releases around 2,050 kJ, at a fixed temperature of about 170 °C.\n\nThat makes steam compact to distribute and easy to control: the steam pressure sets the heating temperature. Raise the pressure and the temperature rises with it.',
+        'After condensing, the water, called condensate, must leave the heat exchanger, or it floods the surface and heating drops. A steam trap does that: an automatic valve that lets condensate out and keeps steam in.\n\nA trap stuck open blows live steam, fresh steam straight from the supply, into the condensate line. A trap stuck closed waterlogs the exchanger and can cause water hammer: steam slams slugs of water through the pipes, with bangs that break pipes and gaskets.',
+        'Traps fail quietly. In systems without a test programme, 15 to 30% of the traps can be failed (a common estimate). Good plants test every trap yearly by listening with an ultrasound tester or measuring the temperature on both sides.\n\nCondensate is hot, clean water: returning it to the boiler saves fuel, water and treatment chemicals. It still holds roughly a tenth of the heat the boiler put into the steam.',
+        'Not every plume means a leak. When hot condensate drops to a lower pressure, part of it boils off as flash steam: from 7 bar(g) to the open air, about 13% of the condensate. A vent (an open pipe to the air) on a condensate tank always shows some.\n\nExperts tell them apart by the look: live steam from a failed trap is clear for a few centimetres from the outlet; flash steam is white from the start, lazy and wet.',
+        'Steam leaks and uninsulated pipes and valves are visible money. The numbers to ask for: boiler efficiency, the share of condensate returned, and steam use per tonne of product.\n\nFouling in steam-heated exchangers, such as scale (hard mineral deposits) or burnt-on product, lowers heat transfer like in any exchanger. A sharp question: “When was every trap last tested, and what share failed?”',
       ],
       example: {
         kind: 'worked',
@@ -367,7 +381,7 @@ export default {
           number: 720,
           tolerance: 5,
           unit: 'kg/h',
-          why: '410 kJ/s × 3,600 = 1,476,000 kJ per hour; / 2,050 = 720 kg per hour.',
+          why: '410 kW = 410 kJ per second; × 3,600 = 1,476,000 kJ per hour; / 2,050 kJ per kg = 720 kg per hour.',
         },
         {
           q: 'The steam trap on a heat exchanger is stuck closed. What happens?',
@@ -401,9 +415,10 @@ export default {
       sayIt: 'Explain to a finance manager in 60 seconds what a steam trap does and why failed traps cost money.',
       terms: [
         { term: 'Saturated steam', def: 'Steam at its boiling point; its pressure fixes its temperature.' },
-        { term: 'Steam trap', def: 'A valve that lets condensate out of steam equipment and keeps steam in.' },
         { term: 'Condensate', def: 'The hot water left after steam has given up its latent heat.' },
+        { term: 'Steam trap', def: 'An automatic valve that lets condensate out of steam equipment and keeps steam in.' },
         { term: 'Water hammer', def: 'Violent pressure shocks when condensate is slammed through steam pipes.' },
+        { term: 'Flash steam', def: 'Steam that forms when hot condensate drops to a lower pressure; normal, not a leak.' },
       ],
     },
   ],
