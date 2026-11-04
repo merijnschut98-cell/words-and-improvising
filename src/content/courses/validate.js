@@ -53,8 +53,11 @@ function checkLesson(l, meta, lang, errs) {
   });
   const ex = l.example || {};
   if (!['worked', 'faded'].includes(ex.kind)) errs.push(`${at}: example kind must be worked or faded`);
-  if (ex.kind === 'faded' && meta.level < 3) errs.push(`${at}: faded example only at level 3–4`);
-  if (ex.kind === 'worked' && meta.level >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
+  // In a topic module the example kind follows the lesson's level in its topic.
+  const topic = (meta.topics || []).find((t) => (t.levels || []).includes(l.id));
+  const level = topic ? topic.levels.indexOf(l.id) + 1 : meta.level;
+  if (ex.kind === 'faded' && level < 3) errs.push(`${at}: faded example only at level 3–4`);
+  if (ex.kind === 'worked' && level >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
   if (!str(ex.text)) errs.push(`${at}: example text missing`);
   if (ex.kind === 'faded' && !(str(ex.ask) && str(ex.reveal))) errs.push(`${at}: faded example needs ask and reveal`);
   if (!str(l.said)) errs.push(`${at}: said missing`);
