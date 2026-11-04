@@ -107,7 +107,11 @@ page.on('pageerror', (e) => errors.push(e.message));
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 
 const step = async (name, fn) => {
-  try { await fn(); console.log('ok  ', name); } catch (e) { console.log('FAIL', name, e.message); errors.push(`${name}: ${e.message}`); }
+  try { await fn(); console.log('ok  ', name); } catch (e) {
+    console.log('FAIL', name, e.message); errors.push(`${name}: ${e.message}`);
+    // What the screen showed when it failed.
+    await page.screenshot({ path: `${out}/FAIL-${name.slice(0, 40).replace(/[^a-z0-9]+/gi, '-')}.png`, fullPage: true }).catch(() => {});
+  }
 };
 const shot = async (n) => {
   const text = await page.evaluate(() => document.body.innerText);
