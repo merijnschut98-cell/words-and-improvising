@@ -93,7 +93,10 @@ Material prices, mould prices and energy prices in the examples are stated as as
 | drying | 0.006/20 = 0.03 %; r1 0.010/10 = 0.1 %; r2 100,000 g × 0.00005 = 5 g | recalculated |
 | fillers | 50 × 1.36 = 68 g × €4.00/kg = €0.272; 50 × 1.12 = 56 g × €2.20/kg = €0.123; r1 0.6 % × 200 = 1.2 mm; r2 40 × 1.25 = 50 g × €3/kg = €0.15 | recalculated |
 
-### Note on faded examples (temporary)
+### Note on faded examples (done in the Task 9 review)
+
+Switched: the twelve level-3/4 lessons now ship `kind: 'faded'` with `ask` and `reveal`, and the reveal is no longer repeated at the end of `text`. The validator takes the example kind from the lesson's level in its topic. The note below is kept for history.
+
 
 The current validator still checks the example kind against the module's `level` (2), so a `faded` example fails until Task 1 lands. The six level-3/4 lessons of topics 1–3 therefore ship with `kind: 'worked'` for now and already carry `ask` and `reveal`; their `text` ends with the reveal verbatim. To switch after Task 1: set `kind: 'faded'` and cut the trailing reveal (and the `\n\n` before it) from `text`.
 

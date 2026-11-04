@@ -39,7 +39,8 @@ function checkPushback(p, at, errs) {
   if (!Array.isArray(p.rubric) || p.rubric.length !== 3 || !p.rubric.every(str)) errs.push(`${at}: pushback rubric needs exactly 3 lines`);
 }
 
-function checkLesson(l, meta, lang, errs) {
+// tier: the lesson's level, from its place in a topic, else the module level.
+function checkLesson(l, meta, lang, errs, tier = meta.level) {
   const at = `${lang} ${l.id}`;
   if (!str(l.title)) errs.push(`${at}: title missing`);
   const pre = l.pre || [];
@@ -53,8 +54,8 @@ function checkLesson(l, meta, lang, errs) {
   });
   const ex = l.example || {};
   if (!['worked', 'faded'].includes(ex.kind)) errs.push(`${at}: example kind must be worked or faded`);
-  if (ex.kind === 'faded' && meta.level < 3) errs.push(`${at}: faded example only at level 3–4`);
-  if (ex.kind === 'worked' && meta.level >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
+  if (ex.kind === 'faded' && tier < 3) errs.push(`${at}: faded example only at level 3–4`);
+  if (ex.kind === 'worked' && tier >= 3) errs.push(`${at}: level 3–4 uses a faded example`);
   if (!str(ex.text)) errs.push(`${at}: example text missing`);
   if (ex.kind === 'faded' && !(str(ex.ask) && str(ex.reveal))) errs.push(`${at}: faded example needs ask and reveal`);
   if (!str(l.said)) errs.push(`${at}: said missing`);
@@ -73,8 +74,16 @@ function checkLesson(l, meta, lang, errs) {
   if ('figure' in l && !(typeof l.figure === 'string' && /^[a-z]+(\.[a-z0-9]+)+$/.test(l.figure))) errs.push(`${at}: figure must be an id like eng.flow.line`);
 }
 
+// Lesson id -> its level in its topic (topic modules only).
+function tiersOf(meta) {
+  const tiers = new Map();
+  for (const t of Array.isArray(meta.topics) ? meta.topics : []) ((t && t.levels) || []).forEach((id, i) => { if (!tiers.has(id)) tiers.set(id, i + 1); });
+  return tiers;
+}
+
 export function validateModule(en, nl, meta) {
   const errs = [];
+  const tiers = tiersOf(meta);
   const byLang = { en, nl };
   for (const lang of ['en', 'nl']) {
     const lessons = (byLang[lang] && byLang[lang].lessons) || [];
@@ -82,7 +91,7 @@ export function validateModule(en, nl, meta) {
     for (const id of meta.lessons) if (!ids.includes(id)) errs.push(`${lang}: lesson ${id} missing`);
     for (const id of ids) if (!meta.lessons.includes(id)) errs.push(`${lang}: lesson ${id} not in the index`);
     if (ids.join() !== meta.lessons.filter((id) => ids.includes(id)).join()) errs.push(`${lang}: lessons out of index order`);
-    for (const l of lessons) if (l && meta.lessons.includes(l.id)) checkLesson(l, meta, lang, errs);
+    for (const l of lessons) if (l && meta.lessons.includes(l.id)) checkLesson(l, meta, lang, errs, tiers.get(l.id) ?? meta.level);
   }
   // Same shape in both languages: question counts and numeric answers match.
   for (const id of meta.lessons) {
