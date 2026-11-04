@@ -2247,7 +2247,8 @@ async function routeModuleEntry(c, moduleId, entry) {
     const text = await res.text();
     const start = text.indexOf(`{ id: '${moduleId}',`);
     if (start < 0) throw new Error(`${moduleId} not in the index`);
-    const after = text.slice(start + 1).search(/\n\s*\{ id: '|\n\];/);
+    // The next module entry (two-space indent), not a topic inside this one.
+    const after = text.slice(start + 1).search(/\n  \{ id: '|\n\];/);
     const end = start + 1 + after;
     await route.fulfill({ response: res, body: `${text.slice(0, start)}${entry}${text.slice(end)}` });
   });
