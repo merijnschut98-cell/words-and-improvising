@@ -524,8 +524,8 @@ export function linkTerms(text, terms) {
     if (m.index > at) out.push({ text: src.slice(at, m.index) });
     const end = m.index + m[1].length;
     // The English word, unless the text already gives it right after the term.
-    const en = hit.en && !src.slice(end, end + hit.en.length + 6).toLowerCase().includes(hit.en.toLowerCase()) ? hit.en : undefined;
-    out.push(en ? { text: m[1], term: hit.term, def: hit.def, en } : { text: m[1], term: hit.term, def: hit.def });
+    const enInline = !!hit.en && !src.slice(end, end + hit.en.length + 6).toLowerCase().includes(hit.en.toLowerCase());
+    out.push(hit.en ? { text: m[1], term: hit.term, def: hit.def, en: hit.en, enInline } : { text: m[1], term: hit.term, def: hit.def });
     at = end;
   }
   if (at < src.length) out.push({ text: src.slice(at) });

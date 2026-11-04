@@ -23,7 +23,7 @@ export function prose(cls, text, terms = []) {
       if (!seg.term) return seg.text;
       const btn = h('button', { type: 'button', class: 'term', 'aria-expanded': 'false' }, seg.text);
       // The English word right after the Dutch term, highlighted.
-      const en = seg.en ? h('span', { class: 'term-en', lang: 'en' }, ` (${seg.en})`) : null;
+      const en = seg.en && seg.enInline ? h('span', { class: 'term-en', lang: 'en' }, ` (${seg.en})`) : null;
       btn.onclick = () => {
         const same = open === btn;
         if (open) open.setAttribute('aria-expanded', 'false');

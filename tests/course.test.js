@@ -445,5 +445,7 @@ test('linkTerms: carries the English word, and does not repeat it when the text 
   const a = linkTerms('Frees de spiebaan.', terms).find((s) => s.term);
   assert.equal(a.en, 'Keyway');
   const b = linkTerms('Frees de spiebaan (keyway) erin.', terms).find((s) => s.term);
-  assert.equal(b.en, undefined);
+  assert.equal(b.en, 'Keyway', 'the definition still names the English word');
+  assert.equal(b.enInline, false, 'but the text does not repeat it');
+  assert.equal(a.enInline, true);
 });
