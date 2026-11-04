@@ -2228,6 +2228,103 @@ await step('polish: speaking intro shows Start without scrolling, labelled timin
   await c.close();
 });
 
+// v10: topic modules. Until real topic content lands, the index is served with
+// the eng.machining entry replaced by a fixture: one topic (Draaien) whose four
+// levels are lessons that exist today. Reusable: pass another entry text.
+const MACHINING_TOPIC_FIXTURE = `{ id: 'eng.machining', subject: 'eng', track: 'discrete', level: 1, title: { en: 'Machining', nl: 'Verspanen' }, blurb: { en: 'Turning, milling, drilling and CNC.', nl: 'Draaien, frezen, boren en CNC.' },
+    topics: [{ id: 'turning', title: { en: 'Turning', nl: 'Draaien' }, levels: ['eng.machining.processes', 'eng.machining.cutting', 'eng.machining.tools', 'eng.machining.quality'] }],
+    lessons: ['eng.machining.processes', 'eng.machining.cutting', 'eng.machining.tools', 'eng.machining.quality'],
+    questions: { 'eng.machining.processes': 4, 'eng.machining.cutting': 4, 'eng.machining.tools': 4, 'eng.machining.quality': 4 } },`;
+async function routeModuleEntry(c, moduleId, entry) {
+  await c.route(/\/src\/content\/courses\/index\.js(\?.*)?$/, async (route) => {
+    const res = await route.fetch();
+    const text = await res.text();
+    const start = text.indexOf(`{ id: '${moduleId}',`);
+    if (start < 0) throw new Error(`${moduleId} not in the index`);
+    const after = text.slice(start + 1).search(/\n\s*\{ id: '|\n\];/);
+    const end = start + 1 + after;
+    await route.fulfill({ response: res, body: `${text.slice(0, start)}${entry}${text.slice(end)}` });
+  });
+}
+// A context without the service worker (it would answer before the route) and
+// with the fixture index; seeded like v9Context.
+async function topicContext(seed = {}) {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
+  await routeModuleEntry(c, 'eng.machining', MACHINING_TOPIC_FIXTURE);
+  const p = await c.newPage();
+  p.on('pageerror', (e) => errors.push(e.message));
+  p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+  await p.goto(BASE);
+  await p.evaluate(async (s) => {
+    const { isoWeekKey } = await import('./src/core/boss.js');
+    localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, weekly: { week: isoWeekKey(new Date()), focus: null }, ui: { subject: 'eng' }, ...s }));
+  }, seed);
+  await p.reload();
+  const shotP = async (n, opts = {}) => {
+    const text = await p.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled', ...opts });
+  };
+  return { c, p, shotP };
+}
+// v9-style progress on the fixture topic: Basis passed, Werkkennis owned.
+const topicSeed = () => {
+  const lessons = { 'eng.machining.processes': { read: 1000, passed: 1000 }, 'eng.machining.cutting': { read: 2000, passed: 2000 } };
+  const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2099-01-01', lesson: 'eng.machining.cutting', subject: 'eng' }]));
+  return { courses: { eng: { lessons, sessions: [] } }, courseReviews };
+};
+const openTopicModule = async (p) => {
+  await p.locator('.course-home').waitFor();
+  const mod = p.locator('details.topic-module', { hasText: 'Verspanen' });
+  if (!(await mod.evaluate((d) => d.open))) await mod.locator('summary').click();
+  await mod.locator('.level-chip').first().waitFor();
+  return mod;
+};
+
+await step('topics: level chips in a module (fixture)', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed());
+  const mod = await openTopicModule(p);
+  const chips = mod.locator('.topic-row').first().locator('.level-chip');
+  if (await chips.count() !== 4) throw new Error(`expected 4 chips, got ${await chips.count()}`);
+  const cls = await chips.evaluateAll((els) => els.map((e) => e.className));
+  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next') || cls[3].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
+  if (!(await chips.nth(0).locator('.ico-circle-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('chip state icons missing');
+  if ((await chips.nth(2).locator('.chip-next').innerText()).trim() !== 'Volgende') throw new Error('next chip not labelled Volgende');
+  if (await chips.nth(1).getAttribute('aria-label') !== 'Draaien, Werkkennis: beheerst') throw new Error(`aria: ${await chips.nth(1).getAttribute('aria-label')}`);
+  if (await mod.locator('.level-chip.btn-primary').count()) throw new Error('a chip is a primary button');
+  if (!(await mod.locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the summary');
+  if (!(await mod.locator('.topic-count', { hasText: '2/4' }).count())) throw new Error('no topic count');
+  if (!(await mod.locator('.module-continue', { hasText: 'Verder: Draaien · Gevorderd' }).count())) throw new Error('continue does not name the level');
+  await onePrimary(p, 'course home with a topic module open');
+  // No chip label is cut off: every label fits its chip.
+  const clipped = await mod.locator('.chip-label').evaluateAll((els) => els.filter((e) => e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1).map((e) => e.textContent));
+  if (clipped.length) throw new Error(`clipped chip labels: ${clipped.join(', ')}`);
+  // A one-word label is never broken inside the word.
+  const broken = await mod.locator('.chip-label').evaluateAll((els) => els.filter((e) => {
+    if (/\s/.test(e.textContent.trim())) return false;
+    const r = document.createRange(); r.selectNodeContents(e);
+    return r.getClientRects().length > 1;
+  }).map((e) => e.textContent));
+  if (broken.length) throw new Error(`chip label broken mid-word: ${broken.join(', ')}`);
+  await mod.scrollIntoViewIfNeeded();
+  await shotP('110-topic-chips');
+  await mod.screenshot({ path: `${out}/111-topic-chips-390.png`, animations: 'disabled' });
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await p.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await openTopicModule(p);
+  await shotP('110-topic-chips-dark');
+  await mod.screenshot({ path: `${out}/111-topic-chips-390-dark.png`, animations: 'disabled' });
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  // Free access: Expert opens although Gevorderd is not passed.
+  const title = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.quality').title);
+  await chips.nth(3).click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card').first().waitFor();
+  if ((await p.locator('.round-title').innerText()).trim() !== title) throw new Error('Expert chip did not open eng.machining.quality');
+  await p.locator('.round-top .icon-btn').first().click();
+  await openTopicModule(p);
+  await c.close();
+});
+
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
     const r = await (await caches.open('spraakwater-meta')).match('./__meta');

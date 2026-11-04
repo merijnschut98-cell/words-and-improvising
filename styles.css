@@ -685,6 +685,27 @@ details.finder summary::-webkit-details-marker { display: none; }
 .lesson-row { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 6px 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--card); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .lesson-row .ico { color: var(--muted); }
 .lesson-row.passed .ico { color: var(--good); }
+/* Topic modules: one row per topic, four level chips. State is an icon plus a
+   tint, never colour alone; the suggested chip gets a ring, not a fill. */
+.module > .module-continue { margin-left: 19px; }
+.topics { display: flex; flex-direction: column; gap: 12px; margin: 6px 0 10px; }
+.topic-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.topic-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: var(--heading); }
+.topic-count { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+.level-chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.level-chip {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-height: 44px; min-width: 0; padding: 6px 1px; border: 1px solid var(--border-subtle); border-radius: 6px;
+  background: var(--card); color: var(--ink); font: inherit; cursor: pointer; text-align: center;
+}
+.level-chip .ico { color: var(--good); }
+.chip-label { font-size: 0.78rem; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.level-chip.s-todo .chip-label { color: var(--muted); }
+.level-chip.s-owned { background: color-mix(in srgb, var(--good) 14%, var(--card)); border-color: color-mix(in srgb, var(--good) 40%, var(--border-subtle)); }
+.level-chip.next { outline: 2px solid var(--accent); outline-offset: 1px; }
+.level-chip.next .chip-label { color: var(--ink); }
+.chip-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
+@media (hover: hover) { .level-chip:hover { border-color: var(--accent); } }
 .lesson .card { margin-bottom: 12px; }
 .teach-text { font-size: 1.06rem; line-height: 1.6; margin: 8px 0; }
 .teach-text p { margin: 0 0 0.8em; }

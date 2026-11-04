@@ -237,3 +237,34 @@ test('v9 progress under the v10 machining table: same lessons passed or owned, s
   assert.deepEqual(rows.find((r) => r.id === 'cnc').levels.map((l) => l.state), ['passed', 'todo', 'todo', 'todo']);
   assert.equal(nextLesson(s, m), 'eng.machining.processes', 'Draaien is the most recent topic; its lowest open level');
 });
+
+// ---- Task 3: level chips ----
+import { chipModel } from '../src/ui/coursehome.js';
+import { translator, STRINGS } from '../src/i18n.js';
+
+test('chipModel: class, icon and aria label per state; the suggested chip is marked next', () => {
+  const nl = translator('nl');
+  const en = translator('en');
+  const lv = (level, state) => ({ lessonId: `eng.fx.a${level}`, level, state });
+  assert.deepEqual(chipModel(nl, 'Draaien', lv(1, 'todo'), false), { cls: 'level-chip s-todo', label: 'Basis', aria: 'Draaien, Basis: nog te doen', icon: null });
+  assert.deepEqual(chipModel(nl, 'Draaien', lv(3, 'passed'), false), { cls: 'level-chip s-passed', label: 'Gevorderd', aria: 'Draaien, Gevorderd: behaald', icon: 'circle-check' });
+  assert.deepEqual(chipModel(nl, 'Draaien', lv(2, 'owned'), false), { cls: 'level-chip s-owned', label: 'Werkkennis', aria: 'Draaien, Werkkennis: beheerst', icon: 'check-check' });
+  assert.equal(chipModel(en, 'Turning', lv(3, 'passed'), false).aria, 'Turning, Advanced: passed');
+  const next = chipModel(nl, 'Draaien', lv(4, 'todo'), true);
+  assert.equal(next.cls, 'level-chip s-todo next');
+  assert.match(next.aria, /Volgende/);
+});
+
+test('i18n: topic and level strings in both languages', () => {
+  const nl = translator('nl');
+  const en = translator('en');
+  assert.equal(nl('moduleLevels', 5, 24), '5/24 niveaus');
+  assert.equal(en('moduleLevels', 5, 24), '5/24 levels');
+  assert.equal(nl('topicLevel', 'Draaien', 'Gevorderd'), 'Draaien · Gevorderd');
+  assert.equal(nl('moduleContinueAt', 'Draaien · Gevorderd'), 'Verder: Draaien · Gevorderd');
+  assert.equal(nl('chipNext'), 'Volgende');
+  assert.equal(nl('topicCount', 2), '2/4');
+  for (const k of ['topicLevel', 'moduleLevels', 'chipNext', 'chipLabel', 'chipState_todo', 'chipState_passed', 'chipState_owned', 'moduleContinueAt', 'topicCount']) {
+    assert.ok(k in STRINGS.en && k in STRINGS.nl, k);
+  }
+});
