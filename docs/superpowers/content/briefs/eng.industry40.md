@@ -29,3 +29,5 @@ Facts and attributions checked:
 - Rules of thumb hedged as such: 3 pixels per defect, "other" above 10–15%, 2-minute reason threshold, 10–30+ replications, pilots of 8–12 weeks.
 
 Uncertain: none of the numbers; the "OT under the IT director versus under engineering" debate is described as practitioner disagreement, not a finding.
+
+Review (2026-11-06): Profinet is not an "older protocol" (removed; Modbus dated to the 1970s). Payback €250,000 / €1.2 M a year = 2.5 months (was "three months"). NIS2: "several" (not "many") manufacturing sectors; Dutch Cyberbeveiligingswet in force 15 August 2026 (Stb. 2026, 187 and 189). SCADA, CMMS and Euromap now explained at first use; "poll" replaced by "sample"; nl "TD" spelled out.

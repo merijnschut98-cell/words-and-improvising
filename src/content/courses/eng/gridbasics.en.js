@@ -293,10 +293,10 @@ export default {
       ],
       teach: [
         'Grid congestion means that at peak moments, the demand for transport capacity is higher than what part of the grid, a cable, transformer or substation, can safely carry.\n\nIt can be on the consumption side, for example an industrial area that wants more power, or on the feed-in side, for example solar parks in a rural area pushing power into the grid. Large parts of the Netherlands are now congested for one or both.',
-        'In congested areas, new large consumers (connections above 3 × 80 A, about 55 kVA: a supermarket, a factory, a charging hub) and existing ones that want more capacity end up on a waiting list. Thousands of companies are waiting.\n\nHouseholds and small businesses are usually still connected, although grid operators warn that in some regions even that is under pressure. The public capacity map shows where there is room and where not.',
+        'In congested areas, new large consumers (connections above 3 × 80 A, about 55 kVA: a supermarket, a factory, a charging hub) and existing ones that want more capacity end up on a waiting list. Thousands of companies are waiting.\n\nSmall connections, such as homes and small shops, used to have capacity set aside; since July 2026 they follow the same priority rules, so in some regions they can have to wait too. The public capacity map shows where there is room and where not.',
         'Reinforcing the grid takes years: a new substation often takes 5 to 10 years, including permits, land and space for cables under the street. MV reinforcement is faster, but still months to years. Technicians, transformers and digging space are all scarce.\n\nSo building alone will not solve congestion this decade; the existing grid has to be used better.',
         'Congestion management means paying or contracting customers to use less or feed in less at peak moments. Grid operators often buy this flexibility through GOPACS, the joint platform of the Dutch grid operators where they post requests and companies offer to shift.\n\nA flexible contract gives a customer capacity except at peak hours, or for a set share of the year, usually at a lower tariff. Since most congestion lasts a few hundred hours a year, a little flexibility frees a lot of room.',
-        'What experts argue about: who gets scarce capacity first. Since 2024 the ACM, the regulator, lets grid operators put projects with social value ahead in the queue, such as schools, healthcare and projects that relieve congestion, instead of strictly first come, first served. Companies further down the queue wait longer as a result.\n\nA sharp question: for how many hours a year is this station really over its limit, and by how much?',
+        'What experts argue about: who gets scarce capacity first. Since 2024 the ACM, the regulator, lets grid operators put projects with social value ahead in the queue, such as schools, healthcare and projects that relieve congestion, instead of strictly first come, first served. A revised framework keeps this and, since July 2026, also covers small connections. Companies further down the queue wait longer as a result.\n\nA sharp question: for how many hours a year is this station really over its limit, and by how much?',
       ],
       example: {
         kind: 'worked',
@@ -315,7 +315,7 @@ export default {
           q: 'Who usually ends up on a waiting list in a congested area?',
           options: ['Every household', 'Nobody, the law forbids waiting lists', 'Only solar panel owners', 'New large customers and those wanting more capacity'],
           answer: 'New large customers and those wanting more capacity',
-          why: 'Small connections are still made; large ones wait for capacity.',
+          why: 'Large connections wait for capacity; since July 2026 small ones can have to wait too in some regions, but not every household.',
         },
         {
           q: 'What is congestion management?',

@@ -35,3 +35,5 @@ Facts checked / added:
 - Shortage of technicians: "thousands" (sector estimates vary); kept vague.
 
 Uncertain: exact current numbers on waiting lists and the Stedin state stake are moving targets; the text avoids exact figures.
+
+Review (2026-11-06): nl term "Stroom" renamed "Stroomsterkte" (plain "stroom" linked in the sense of "electricity/supply" in other lessons). Congestion text updated: the ACM framework of April 2024 (mandatory from 1 October 2024) was annulled by the CBb in March 2025 for lack of justification; a revised framework (December 2025) keeps social priority and, since 1 July 2026, ends the separate capacity reserve for small connections (one integrated queue). Text now says small connections follow the same priority rules since July 2026 and can have to wait in some regions. Verified: Energiewet in force 1 January 2026 (Elektriciteitswet 1998 and Gaswet withdrawn); state became Stedin shareholder in December 2023 with €500 million (about 11.9%).

@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Spanning (V, volt) is de elektrische druk, zoals de waterdruk in een leiding. Stroom (A, ampère) is de doorstroming, zoals liters per seconde. Vermogen (W, watt) is hoe snel energie wordt gebruikt: vermogen = spanning × stroom.\n\nEen waterkoker van 2.000 W op 230 V trekt zo’n 2.000 / 230 ≈ 8,7 A. Vermogen geef je meestal in kilowatt: 1 kW = 1.000 W.',
+        'Spanning (V, volt) is de elektrische druk, zoals de waterdruk in een leiding. Stroomsterkte (A, ampère), kortweg stroom, is de doorstroming, zoals liters per seconde. Vermogen (W, watt) is hoe snel energie wordt gebruikt: vermogen = spanning × stroom.\n\nEen waterkoker van 2.000 W op 230 V trekt zo’n 2.000 / 230 ≈ 8,7 A. Vermogen geef je meestal in kilowatt: 1 kW = 1.000 W.',
         'Energie is vermogen × tijd, in kilowattuur (kWh). Die waterkoker gebruikt in 3 minuten 2 kW × 0,05 uur = 0,1 kWh.\n\nJe betaalt je energieleverancier per kWh, maar het net wordt gebouwd voor kW: kabels en transformatoren moeten het hoogste vermogen op één moment dragen, niet het totaal over een jaar. Die twee door elkaar halen is de meest gemaakte fout in gesprekken over het net.',
         'Het net werkt met wisselstroom (AC): de spanning gaat in Europa 50 keer per seconde heen en weer (50 hertz, Hz). Batterijen en zonnepanelen geven gelijkstroom (DC, direct current), die maar één kant op loopt.\n\nWisselstroom won omdat een transformator, twee draadspoelen om een ijzeren kern, wisselspanning makkelijk omhoog en omlaag kan zetten. Dat is de sleutel om vermogen met weinig verlies over grote afstanden te transporteren, zoals de volgende les laat zien.',
         'Het grootste deel van het net is driefasig: drie spanningvoerende draden, de fasen, met elk wisselstroom, een derde periode ten opzichte van elkaar verschoven, plus een nul, de terugleider. In een Nederlands huis is fase-nul 230 V; tussen twee fasen 400 V (230 × √3).\n\nDrie fasen leveren een gelijkmatig vermogen en gebruiken het koper efficiënt. Daarom gebruiken zware verbruikers zoals warmtepompen en laadpalen vaak alle drie.',
@@ -65,7 +65,7 @@ export default {
       sayIt: 'Leg een vriend in 60 seconden het verschil uit tussen kW en kWh, en waarom het net om kW draait.',
       terms: [
         { term: 'Spanning', def: 'De elektrische druk, in volt (V); 230 V tussen fase en nul in een Nederlands huis.' },
-        { term: 'Stroom', def: 'De doorstroming van elektriciteit, in ampère (A); die verwarmt kabels en laat zekeringen doorslaan.' },
+        { term: 'Stroomsterkte', def: 'Hoeveel elektriciteit er doorstroomt, in ampère (A), kortweg stroom; die verwarmt kabels en laat zekeringen doorslaan.' },
         { term: 'kW', def: 'Vermogen: hoe snel energie op één moment wordt gebruikt of geleverd.' },
         { term: 'kWh', def: 'Energie: vermogen × tijd; waar je voor betaalt.' },
         { term: 'Wisselstroom', def: 'AC: stroom die in Europa 50 keer per seconde (50 Hz) van richting wisselt; transformatoren kunnen de spanning ervan omzetten.' },
@@ -223,7 +223,7 @@ export default {
         },
       ],
       teach: [
-        'Netcomponenten hebben een rating in kVA, schijnbaar vermogen (apparent power): wat de kabel of transformator echt moet dragen, inclusief een deel dat alleen heen en weer stroomt (door motoren en elektronica) en geen nuttig werk doet. kW is het nuttige deel.\n\nDe verhouding kW / kVA heet de arbeidsfactor (cos φ), voor woningen meestal 0,9 tot 1. Een transformator van 400 kVA kan zo’n 360 tot 400 kW leveren.',
+        'De capaciteit van netcomponenten geef je op in kVA, schijnbaar vermogen (apparent power): wat de kabel of transformator echt moet dragen, inclusief een deel dat alleen heen en weer stroomt (door motoren en elektronica) en geen nuttig werk doet. kW is het nuttige deel.\n\nDe verhouding kW / kVA heet de arbeidsfactor (cos φ), voor woningen meestal 0,9 tot 1. Een transformator van 400 kVA kan zo’n 360 tot 400 kW leveren.',
         'Gelijktijdigheid is het kernbegrip in de netplanning: welk deel van ieders maximum op hetzelfde moment optreedt. Niet elke woning gebruikt tegelijk zijn maximum.\n\nTraditioneel rekenden planners met zo’n 1 tot 1,5 kVA per woning bij piekbelasting, de hoogste belasting van het jaar, meestal op een winteravond. Dat is ver onder de 17 kVA van elke aansluiting, en daarom zijn veel oude LS-netten relatief licht uitgevoerd.',
         'Warmtepompen en elektrische auto’s veranderen dat. Op een koude avond draaien bijna alle warmtepompen tegelijk: een gelijktijdigheid van bijna 1. Auto’s laden na het werk op maximaal 11 kW per stuk.\n\nZonnepanelen geven ’s middags een nieuwe piek de andere kant op: op een zonnige dag levert elk dak tegelijk terug. Het net moet nu ruimte hebben voor pieken waar het nooit voor ontworpen is.',
         'Te veel teruglevering laat de spanning aan het eind van een lange LS-kabel stijgen. Boven zo’n 253 V (230 V plus 10%, de bovengrens in de Europese norm voor spanningskwaliteit EN 50160) schakelt de omvormer, het kastje dat de gelijkstroom van de panelen omzet naar wisselstroom voor het net, af om het net te beschermen.\n\n“Mijn panelen vallen steeds uit” is dus vaak een spanningsprobleem, geen kapotte omvormer.',
@@ -293,10 +293,10 @@ export default {
       ],
       teach: [
         'Netcongestie betekent dat op piekmomenten de vraag naar transportcapaciteit groter is dan wat een deel van het net, een kabel, transformator of onderstation, veilig kan dragen.\n\nDat kan aan de afnamekant zijn, bijvoorbeeld een bedrijventerrein dat meer vermogen wil, of aan de invoedingskant (feed-in), bijvoorbeeld zonneparken in een landelijk gebied die stroom het net op duwen. Grote delen van Nederland zitten inmiddels vol voor een van beide of allebei.',
-        'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A, zo’n 55 kVA: een supermarkt, een fabriek, een laadplein) en bestaande die meer capaciteit willen op een wachtrij (waiting list). Duizenden bedrijven wachten.\n\nHuishoudens en kleine bedrijven worden meestal nog aangesloten, al waarschuwen netbeheerders dat ook dat in sommige regio’s onder druk staat. De openbare capaciteitskaart laat zien waar nog ruimte is en waar niet.',
+        'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A, zo’n 55 kVA: een supermarkt, een fabriek, een laadplein) en bestaande die meer capaciteit willen op een wachtrij (waiting list). Duizenden bedrijven wachten.\n\nVoor kleine aansluitingen, zoals woningen en winkels, werd capaciteit apart gehouden; sinds juli 2026 vallen ook zij onder dezelfde voorrangsregels, dus in sommige regio’s kunnen ook zij moeten wachten. De openbare capaciteitskaart laat zien waar nog ruimte is en waar niet.',
         'Het net verzwaren kost jaren: een nieuw onderstation duurt vaak 5 tot 10 jaar, met vergunningen, grond en ruimte voor kabels onder de straat. MS-verzwaring gaat sneller, maar ook dat is maanden tot jaren. Monteurs, transformatoren en ruimte in de grond zijn allemaal schaars.\n\nAlleen bouwen lost netcongestie dit decennium dus niet op; het bestaande net moet beter benut worden.',
         'Congestiemanagement betekent dat klanten betaald of gecontracteerd worden om op piekmomenten minder af te nemen of minder in te voeden. Netbeheerders kopen die flexibiliteit vaak in via GOPACS, het gezamenlijke platform van de Nederlandse netbeheerders waar zij verzoeken plaatsen en bedrijven aanbieden om te schuiven.\n\nEen flexibel contract geeft een klant capaciteit behalve op de piekuren, of voor een vast deel van het jaar, meestal tegen een lager tarief. Omdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
-        'Waar experts over discussiëren: wie de schaarse capaciteit het eerst krijgt. Sinds 2024 mogen netbeheerders van de ACM, de toezichthouder, projecten met maatschappelijke waarde voorrang geven in de wachtrij, zoals scholen, zorg en projecten die congestie verlichten, in plaats van strikt wie het eerst komt. Bedrijven verderop in de rij wachten daardoor langer.\n\nEen scherpe vraag: hoeveel uur per jaar zit dit station echt boven zijn grens, en hoeveel erboven?',
+        'Waar experts over discussiëren: wie de schaarse capaciteit het eerst krijgt. Sinds 2024 mogen netbeheerders van de ACM, de toezichthouder, projecten met maatschappelijke waarde voorrang geven in de wachtrij, zoals scholen, zorg en projecten die congestie verlichten, in plaats van strikt wie het eerst komt. Een herzien kader houdt dat vast en geldt sinds juli 2026 ook voor kleine aansluitingen. Bedrijven verderop in de rij wachten daardoor langer.\n\nEen scherpe vraag: hoeveel uur per jaar zit dit station echt boven zijn grens, en hoeveel erboven?',
       ],
       example: {
         kind: 'worked',
@@ -315,7 +315,7 @@ export default {
           q: 'Wie komt er in een congestiegebied meestal op een wachtrij?',
           options: ['Elk huishouden', 'Niemand, de wet verbiedt wachtrijen', 'Alleen eigenaren van zonnepanelen', 'Nieuwe grootverbruikers en klanten die meer capaciteit willen'],
           answer: 'Nieuwe grootverbruikers en klanten die meer capaciteit willen',
-          why: 'Kleine aansluitingen worden nog gemaakt; grote wachten op capaciteit.',
+          why: 'Grote aansluitingen wachten op capaciteit; sinds juli 2026 kunnen in sommige regio’s ook kleine moeten wachten, maar niet elk huishouden.',
         },
         {
           q: 'Wat is congestiemanagement?',
