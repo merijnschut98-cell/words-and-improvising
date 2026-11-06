@@ -13,14 +13,15 @@ export default {
         },
       ],
       teach: [
-        'Force is measured in newtons (N); mass in kilograms. Weight is the force gravity puts on a mass: mass × 9.81 m/s². So a 100 kg crate pulls on its hook with about 981 N; engineers round to “1 kN per 100 kg”.\n\nDrawings and data sheets give loads in N or kN; lifting gear is rated in kg or tonnes, as its working load limit (WLL).',
-        'Torque is a turning force: force × lever arm. Pushing 200 N on a wrench 0.25 m long gives 50 Nm.\n\nDouble the arm and you need half the force for the same torque. Bolts are tightened to a torque, motors deliver torque, gearboxes trade speed for torque.',
-        'A part that doesn’t move has all its forces and torques in balance. That simple rule lets engineers work out what each support, bolt or bearing carries.\n\nA load exactly in the middle of a beam on two supports puts half its weight on each; move it close to one support and that support takes nearly all of it.',
-        'Loads come in kinds: static (constant, like a tank on its legs), dynamic (changing, like a press stroke or a vibrating motor) and impact (a dropped load, a crash stop). Dynamic and impact loads can be several times the static weight. When someone says “it only weighs 200 kg”, ask how it is loaded.',
+        'Force is a push or a pull, measured in newtons (N). Mass is how much material there is, in kilograms. Weight is the force gravity puts on a mass: mass × 9.81 m/s². So a 100 kg crate pulls on its hook with about 981 N; engineers round to “1 kN per 100 kg” (a kilonewton, kN, is 1,000 N).\n\nDrawings and data sheets give loads, the forces a part must carry, in N or kN.',
+        'Torque is a turning force: force × lever arm, the distance from the turning point to where the force acts. Pushing 200 N on a wrench 0.25 m long gives 50 Nm (newton-metres).\n\nDouble the arm and you need half the force for the same torque. Bolts are tightened to a set torque, motors deliver torque at their shaft, and a gearbox trades speed for torque: slower out, more torque.',
+        'A part that doesn’t move is in equilibrium: all its forces and torques balance out. That simple rule lets engineers work out what each support, bolt or bearing carries.\n\nA load exactly in the middle of a beam on two supports puts half its weight on each. Move it close to one support and that support takes nearly all of it. The total stays the same; the split changes.',
+        'Loads come in kinds. A static load is constant, like a tank on its legs. A dynamic load changes over time, like a press stroke or a vibrating motor. An impact load is a sudden blow: a dropped load, an emergency stop.\n\nDynamic and impact loads can be several times the static weight. Designers multiply the weight by a dynamic factor, often somewhere between 1.1 and 2, depending on how hard the load can stop or swing. When someone says “it only weighs 200 kg”, ask how it is loaded.',
+        'Lifting gear such as slings, shackles and hoists carries a working load limit (WLL): the maximum load it may lift in normal use, on a tag or stamped on the part. The breaking load is several times higher, often 4 to 5 times, but that margin is not yours to use.\n\nA common mistake is forgetting the sling angle: with two legs spread 120° apart, each leg carries the full load. On the floor, ask: where is the WLL tag, and who checked the angle?',
       ],
       example: {
         kind: 'worked',
-        text: 'A 50 kg motor is mounted on a wall bracket, with its centre 0.4 m from the wall. Weight: 50 × 9.81 = 490 N. The turning moment at the wall: 490 N × 0.4 m = 196 Nm, and the top bolts take that as tension.\n\nA redesign moves the motor out to 0.8 m: the moment doubles to 392 Nm, with the same motor. Because the motor vibrates, the engineer also applies a factor for the dynamic load on top. The weight didn’t change; the lever arm and the way it’s loaded did.',
+        text: 'A 50 kg motor is mounted on a wall bracket, with its centre 0.4 m from the wall. Weight: 50 × 9.81 = 490 N. The turning moment at the wall: 490 N × 0.4 m = 196 Nm, and the top bolts take that as tension, a pull.\n\nA redesign moves the motor out to 0.8 m: the moment doubles to 392 Nm, with the same motor. Because the motor vibrates, the engineer also applies a factor for the dynamic load on top. The weight didn’t change; the lever arm and the way it’s loaded did.',
       },
       said: 'What engineers say: “It’s only fifty kilos, but it hangs eight hundred mil out and it vibrates. Check the bolts.”',
       recall: [
@@ -55,7 +56,7 @@ export default {
       situation: {
         scene: 'You’re at a plant where maintenance wants to hang a new 400 kg electric hoist from an existing roof beam, “because the old one was 300 kg and that was fine”.',
         ask: 'What do you ask before it goes up?',
-        model: 'What load is the beam designed for, and who checked it? The hoist weighs 400 kg, but what will it lift on top of that, and how hard can a load stop or swing: the dynamic load can be well above the static weight. Where on the beam does it hang: near a support or in the middle of the span? And what are the beam and the hoist’s rated WLL? Someone qualified should sign off the calculation.',
+        model: 'What load is the beam designed for, and who checked it? The hoist weighs 400 kg, but what will it lift on top of that, and how hard can a load stop or swing: the dynamic load can be well above the static weight. Where on the beam does it hang: near a support or in the middle of the span, the distance between supports? And what are the beam and the hoist’s rated WLL? Someone qualified should sign off the calculation.',
         rubric: [
           'Asks for the beam’s rated capacity and a calculation, not a comparison with the old hoist',
           'Includes the lifted load and dynamic effects, not just the hoist’s weight',
@@ -64,10 +65,12 @@ export default {
       },
       sayIt: 'Explain to a production supervisor in 60 seconds the difference between mass, weight and torque.',
       terms: [
-        { term: 'Newton (N)', def: 'Unit of force; 100 kg weighs about 1,000 N (1 kN).' },
+        { term: 'Newton', def: 'Unit of force (N); 100 kg weighs about 1,000 N, or 1 kN.' },
         { term: 'Torque', def: 'Turning force: force × lever arm, in Nm.' },
-        { term: 'Working load limit (WLL)', def: 'The maximum load lifting gear may carry in normal use.' },
+        { term: 'Equilibrium', def: 'All forces and torques on a part that doesn’t move balance out; used to work out what each support carries.' },
+        { term: 'Static load', def: 'A load that stays constant, like a tank on its legs.' },
         { term: 'Dynamic load', def: 'A load that changes over time; can be several times the static weight.' },
+        { term: 'Working load limit (WLL)', def: 'The maximum load lifting gear may carry in normal use, marked on the gear.' },
       ],
     },
     {
@@ -82,14 +85,15 @@ export default {
         },
       ],
       teach: [
-        'Stress is force per area: σ = F / A, in N/mm², which is the same as MPa. A 10 kN pull on a rod with a 100 mm² cross-section gives 100 MPa.\n\nStress, not force, decides whether a part fails: the same force is harmless on a thick bar and fatal on a thin one.',
-        'Strain is how much a part stretches relative to its length: ε = ΔL / L. A 1,000 mm bar that gets 0.5 mm longer has a strain of 0.0005. Up to a limit, metals behave like a spring: stress = E × strain.\n\nE, Young’s modulus, is the stiffness of the material: about 210,000 MPa for steel, 70,000 for aluminium, 2,000 to 3,000 for many plastics.',
-        'Stiffness and strength are different things. Stiffness is how much a part deflects under load; strength is how much load it takes before it bends permanently or breaks.\n\nHigh-strength steel is much stronger than mild steel but just as stiff: the same E. If a frame flexes too much, a stronger grade won’t help; more material or a better shape will.',
-        'Shape matters as much as material. The bending stiffness of a beam rises with its height cubed: a beam twice as tall is eight times stiffer. That is why beams are I-shaped and why a tube beats a solid rod of the same weight.',
+        'Stress is force per area: σ = F / A. The area is the cross-section: the surface you would see if you sawed the part straight through. Stress is in N/mm², which is the same as MPa (megapascal). A 10 kN pull on a rod with a 100 mm² cross-section gives 100 MPa.\n\nStress, not force, decides whether a part fails: the same force is harmless on a thick bar and fatal on a thin one.',
+        'Strain is how much a part stretches relative to its length: ε = ΔL / L, the change in length divided by the original length. A 1,000 mm bar that gets 0.5 mm longer has a strain of 0.0005.\n\nUp to a limit, metals behave like a spring: pull harder and they stretch more, let go and they spring back. That is the elastic range.',
+        'In the elastic range, stress = E × strain. E, Young’s modulus, is the stiffness of the material itself: about 210,000 MPa (210 GPa) for steel, 70,000 for aluminium, 2,000 to 3,000 for many plastics.\n\nSo under the same stress, aluminium stretches three times as much as steel, and plastic about a hundred times as much. E barely changes between grades: a cheap steel and an expensive one have almost the same E.',
+        'Stiffness and strength are different things. Stiffness is how much a part deflects, bends or stretches, under load; strength is how much load it takes before it bends permanently or breaks.\n\nHigh-strength steel is much stronger than mild steel, the common low-carbon structural steel, but just as stiff: the same E. If a frame flexes too much, a stronger grade won’t help; more material or a better shape will.',
+        'Shape matters as much as material. The bending stiffness of a beam rises with its height cubed: a beam twice as tall is eight times stiffer. That is why beams are I-shaped and why a tube beats a solid rod of the same weight.\n\nIn practice you see it as a frame that shakes when the machine runs, or a dial gauge needle that moves when someone leans on the table. The sharp question: is this about breaking, or about moving?',
       ],
       example: {
         kind: 'worked',
-        text: 'A steel tie rod of Ø20 mm has a cross-section of 314 mm². It carries 31.4 kN: stress = 31,400 / 314 = 100 MPa. Strain = 100 / 210,000 = 0.000476. Over its 2,000 mm length that is 0.95 mm of stretch.\n\nThe same rod in aluminium: 100 / 70,000 × 2,000 = 2.86 mm. Both are well below their yield strength (assuming structural steel and a structural aluminium alloy such as 6082), so both are strong enough.\n\nBut if the rod holds a machine alignment, the aluminium version moves three times as much. The question was never only “will it break?”, but also “how much will it move?”',
+        text: 'A steel tie rod, a rod that only carries a pull, of Ø20 mm (20 mm diameter) has a cross-section of 314 mm². It carries 31.4 kN: stress = 31,400 / 314 = 100 MPa. Strain = 100 / 210,000 = 0.000476. Over its 2,000 mm length that is 0.95 mm of stretch.\n\nThe same rod in aluminium: 100 / 70,000 × 2,000 = 2.86 mm. Both are well below their yield strength, the stress where they would start to bend for good (assuming structural steel and a structural aluminium alloy such as 6082), so both are strong enough.\n\nBut if the rod holds a machine alignment, the aluminium version moves three times as much. The question was never only “will it break?”, but also “how much will it move?”',
       },
       said: 'What engineers say: “Strength isn’t the issue, it’s stiffness. High-tensile steel won’t help; we need a deeper section.”',
       recall: [
@@ -133,9 +137,11 @@ export default {
       sayIt: 'Explain the difference between stiffness and strength to a project manager in 60 seconds.',
       terms: [
         { term: 'Stress', def: 'Force per area, in N/mm² or MPa.' },
-        { term: 'Strain', def: 'Stretch relative to the original length.' },
-        { term: 'Young’s modulus (E)', def: 'The stiffness of a material: stress divided by strain in the elastic range.' },
-        { term: 'Stiffness and strength', def: 'How much a part deflects, versus how much load it takes before it yields or breaks.' },
+        { term: 'Cross-section', def: 'The surface you would see if you sawed a part straight through; its area carries the load.' },
+        { term: 'Strain', def: 'Stretch relative to the original length: ΔL / L.' },
+        { term: 'Young’s modulus', def: 'E: the stiffness of a material, stress divided by strain in the elastic range; about 210,000 MPa for steel.' },
+        { term: 'Stiffness', def: 'How little a part deflects under load; set by the material’s E and the part’s shape.' },
+        { term: 'Strength', def: 'How much load a part takes before it bends permanently or breaks.' },
       ],
     },
     {
@@ -150,14 +156,15 @@ export default {
         },
       ],
       teach: [
-        'A tensile test pulls a sample until it breaks and plots stress against strain. At first the line is straight: elastic, the sample springs back.\n\nAt the yield strength the material starts to deform permanently. The highest stress reached is the tensile strength (UTS). Then it necks and breaks.',
-        'Designers keep stresses below yield, because a part that bends permanently has usually already failed. Steel grades carry their minimum yield in the name: S235 yields at 235 MPa, S355 at 355 MPa (for thin sections).\n\nBolt grades work differently: in 8.8, the first number × 100 is the tensile strength in MPa (800), and the second number × 10 is the yield as a percentage of it (80%), so 640 MPa.',
-        'Ductile materials (most steels, aluminium, copper) stretch a lot before they break, which gives a warning. Brittle materials (cast iron, glass, ceramics, very hard steels) break with little warning. Cold makes some steels brittle; that is why steel certificates show an impact test at a temperature, for example 27 J at −20 °C.',
-        'The safety factor is the margin between strength and the expected stress: yield divided by working stress. Typical values run from about 1.5 for well-known static loads to 3 or more for uncertain or dynamic loads; lifting gear often uses 4 to 5 against breaking.\n\nA safety factor covers unknowns. It is not spare capacity for extra load.',
+        'A tensile test pulls a sample bar until it breaks and plots stress against strain. At first the line is straight: elastic, the sample springs back when you let go.\n\nAt the yield strength the material starts to deform permanently. Pull on and the stress still rises, to the highest point: the tensile strength (UTS, ultimate tensile strength). Then the bar necks, gets visibly thinner in one spot, and breaks.',
+        'Designers keep stresses below yield, because a permanently bent part has usually failed. European structural steels carry their minimum yield in their name: S235 yields at 235 MPa or more, S355 at 355 MPa, for plate up to 16 mm thick; thicker plate is slightly lower.\n\nBolts carry a property class (ISO 898-1). In 8.8, the first number × 100 is the tensile strength in MPa (800); the second number × 10 is the yield as a percentage of it (80%), so 640 MPa: nominal values, used in calculations.',
+        'A ductile material stretches a lot before it breaks, which gives a warning: it bends, necks, sags. Most steels, aluminium and copper are ductile. A brittle material breaks with little warning: cast iron, glass, ceramics, very hard steels.\n\nCold makes some steels brittle. That is why steel certificates show an impact test: a notched bar is broken by a swinging hammer and the energy it absorbs is measured, for example at least 27 J at −20 °C.',
+        'The safety factor is the margin between strength and the expected stress: yield divided by working stress, the stress the part sees in normal use. Typical values run from about 1.5 for well-known static loads to 3 or more for uncertain or dynamic loads. Lifting gear often uses 4 to 5 against breaking.\n\nA safety factor covers unknowns: scatter in the material, a load nobody foresaw, a sloppy weld. It is not spare capacity for extra load.',
+        'Each batch of steel should come with a material certificate, often a 3.1 certificate (EN 10204): the measured yield, tensile strength, elongation and impact energy of that batch. Ask for it on safety-critical parts.\n\nA common failure: someone quotes a safety factor of 2, but against breaking instead of yield, or on the static weight while the load is dynamic. Experts argue less about the number than about what it is measured against. The sharp question: “Safety factor against what, and on which load?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A bracket of S235 sees a working stress of 120 MPa. Safety factor: 235 / 120 = 1.96, fine for a steady load. After a process change the load doubles: 240 MPa, above yield. The bracket will bend permanently.\n\nSwitching to S355 gives 355 / 240 = 1.48: it holds, but the margin is thin if the load vibrates, and fatigue may become the next problem. A thicker bracket in S235, bringing the stress back to 120 MPa, restores the original margin. The question is always: what is the stress now, and what margin do we need for this kind of load?',
+        text: 'A bracket of S235 sees a working stress of 120 MPa. Safety factor: 235 / 120 = 1.96, fine for a steady load. After a process change the load doubles: 240 MPa, above yield. The bracket will bend permanently.\n\nSwitching to S355 gives 355 / 240 = 1.48: it holds, but the margin is thin if the load vibrates, and fatigue, cracking from repeated loading, may become the next problem. A thicker bracket in S235, bringing the stress back to 120 MPa, restores the original margin. The question is always: what is the stress now, and what margin do we need for this kind of load?',
       },
       said: 'What engineers say: “It’s not about whether it breaks. At that load it yields, and then it’s scrap anyway.”',
       recall: [
@@ -200,9 +207,11 @@ export default {
       },
       sayIt: 'Explain to a maintenance technician in 60 seconds what yield strength and a safety factor are.',
       terms: [
+        { term: 'Tensile test', def: 'Pulling a sample bar until it breaks while plotting stress against strain.' },
         { term: 'Yield strength', def: 'The stress at which permanent deformation starts.' },
-        { term: 'Tensile strength (UTS)', def: 'The highest stress a material reaches before it necks and breaks.' },
-        { term: 'Ductile and brittle', def: 'Stretches a lot before breaking, versus breaks with little warning.' },
+        { term: 'Tensile strength', def: 'UTS: the highest stress a material reaches before it necks and breaks.' },
+        { term: 'Ductile', def: 'Stretches a lot before breaking, which gives a warning; most steels, aluminium, copper.' },
+        { term: 'Brittle', def: 'Breaks with little warning; cast iron, glass, very hard steel.' },
         { term: 'Safety factor', def: 'Strength divided by the working stress: the margin for unknowns.' },
       ],
     },
@@ -218,14 +227,15 @@ export default {
         },
       ],
       teach: [
-        'Most mechanical failures in machines are fatigue: a load that repeats millions of times grows a small crack until the part snaps, even though the stress stays well below yield.\n\nA shaft at 1,500 rpm sees over 2 million load cycles a day. A fatigue fracture shows beach marks, rings spreading from where the crack started, and a small, rough final break zone.',
-        'The S-N curve plots stress against the number of cycles to failure. Steels have an endurance limit: below roughly half their tensile strength (for polished test samples) they can last indefinitely. Aluminium has no real limit: it eventually fails at any repeated stress, so designs state a life in cycles.',
-        'Cracks start where stress concentrates: sharp corners, holes, keyways, threads, weld toes, scratches and corrosion pits. A small round hole in a wide plate locally triples the stress. A generous radius at a shoulder, a smooth surface and a shot-peened finish can multiply fatigue life.',
-        'Real fatigue strength is much lower than the polished-sample value: rough surfaces, larger sizes, corrosion and welds all cut it. So a static calculation that says “strong enough” proves nothing for a vibrating part.\n\nWhen a part breaks again after being replaced with a stronger one, suspect fatigue and ask about the cycles, the vibration and the corner radius.',
+        'Fatigue is, by many estimates, the most common way machine parts break: a load that repeats millions of times grows a small crack until the part snaps, even though the stress stays well below yield.\n\nEach repeat is one load cycle: for a rotating shaft that bends, one revolution is one cycle. A shaft at 1,500 rpm (revolutions per minute) sees over 2 million load cycles a day.',
+        'A fatigue fracture has a typical look. Beach marks, curved rings like the lines a wave leaves on sand, spread out from where the crack started. The crack grows a little in each period of running, and each stop or change of load leaves a ring.\n\nAt the end the remaining metal is too small and breaks at once: a rough, grainy final zone. A small final zone means the stress was low; the crack had time to grow.',
+        'The S-N curve plots stress (S) against the number of cycles to failure (N): the lower the stress, the more cycles a part survives. Steels have an endurance limit: below roughly half their tensile strength, for polished test samples, they can last indefinitely.\n\nAluminium has no real limit: it eventually fails at any repeated stress, so designs state a life in cycles. Researchers also see steels fail far beyond 10 million cycles, so “infinite life” is a useful approximation, not a law.',
+        'Cracks start at a stress concentration: a spot where the shape makes the stress pile up. Think of sharp corners, holes, keyways (the slot in a shaft for a key, a steel block that locks a gear to it), threads, weld toes (where weld metal meets the plate), scratches and corrosion pits.\n\nA small round hole in a wide plate locally triples the stress. A generous radius where a shaft steps down, a smooth surface and shot peening (blasting with steel balls, which compresses the skin) can multiply fatigue life.',
+        'Real fatigue strength is much lower than the polished-sample value: rough surfaces, larger sizes, corrosion and welds all cut it. So a static calculation that says “strong enough” proves nothing for a vibrating part.\n\nOn site, cracks are found with dye penetrant: a red liquid that seeps into cracks and shows them on a white coating. When a part breaks again after being replaced with a stronger one, suspect fatigue: ask about the cycles, the vibration and the corner radius.',
       ],
       example: {
         kind: 'worked',
-        text: 'An agitator shaft broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the impeller is out of balance, so the shaft bends back and forth once per revolution, and the sharp keyway corner concentrates that stress. The fix: a rounded keyway end, a balanced impeller and an alignment check. Stronger steel alone did little, because high-strength steels are often more sensitive to notches.',
+        text: 'The shaft of an agitator, a mixer in a tank, broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the impeller, the mixing blades on the shaft, is out of balance, so the shaft bends back and forth once per revolution, and the sharp keyway corner concentrates that stress. The fix: a rounded keyway end, a balanced impeller and an alignment check. Stronger steel alone did little, because high-strength steels are often more sensitive to notches.',
       },
       said: 'What engineers say: “Look at those beach marks. It started at the keyway corner. Stronger steel won’t fix a sharp corner.”',
       recall: [
@@ -258,7 +268,7 @@ export default {
       situation: {
         scene: 'You’re at a packaging client. The welds on a conveyor frame crack every few months. Each time, a welder grinds the crack out and welds it again.',
         ask: 'What do you ask?',
-        model: 'Where exactly do the cracks start: at the weld toe, and always in the same spot? What vibrates or loads that frame repeatedly: a drive, an unbalanced roller, a stop-start cycle? How many cycles per day does it see? Re-welding resets the crack but not the cause; can we reduce the vibration, move the weld away from the stress peak, or add a gusset with smooth transitions?',
+        model: 'Where exactly do the cracks start: at the weld toe, and always in the same spot? What vibrates or loads that frame repeatedly: a drive, an unbalanced roller, a stop-start cycle? How many cycles per day does it see? Re-welding resets the crack but not the cause; can we reduce the vibration, move the weld away from the stress peak, or add a gusset, a stiffening plate, with smooth transitions?',
         rubric: [
           'Recognises repeated cracking at welds as likely fatigue',
           'Asks for the source and frequency of the repeated load',
@@ -268,9 +278,11 @@ export default {
       sayIt: 'Explain fatigue to a plant manager in 60 seconds, and why a stronger part doesn’t always help.',
       terms: [
         { term: 'Fatigue', def: 'Failure by a crack that grows under repeated loading, below the yield strength.' },
+        { term: 'Load cycle', def: 'One repeat of a changing load; for a bending, rotating shaft, one revolution.' },
+        { term: 'Beach marks', def: 'Curved rings on a fatigue fracture, spreading from where the crack started.' },
         { term: 'S-N curve', def: 'Stress against number of cycles to failure.' },
         { term: 'Endurance limit', def: 'The stress below which steel can survive indefinite cycles; aluminium has none.' },
-        { term: 'Stress concentration', def: 'A local stress peak at a hole, corner, notch or weld toe.' },
+        { term: 'Stress concentration', def: 'A local stress peak at a hole, corner, keyway or weld toe.' },
       ],
     },
     {
@@ -285,10 +297,11 @@ export default {
         },
       ],
       teach: [
-        'Carbon steel is the workhorse: strong, stiff, cheap and weldable, with a density of about 7,850 kg/m³. More carbon means harder and stronger but harder to weld.\n\nIt rusts, so it is painted, galvanised or oiled. Structural grades such as S235 and S355 go into frames; steels such as C45 or 42CrMo4 into shafts and gears.',
-        'Stainless steel contains at least about 10.5% chromium, which forms a thin protective oxide layer.\n\n304 (1.4301) is the general grade; 316 (1.4401) adds molybdenum for better resistance to chlorides, such as salt and many cleaning agents, which is why food and pharma plants often specify it. Stainless costs more, machines harder, and can still corrode in crevices.',
-        'Aluminium weighs about a third of steel (2,700 kg/m³) and is about a third as stiff. Alloys such as 6082 or 7075 can match mild steel in strength. It machines fast and doesn’t rust, but it has no fatigue limit, loses strength near welds, and is attacked by strong alkaline cleaners.\n\nCast iron is cheap and damps vibration well, so it is used for machine beds, but it is brittle.',
-        'Plastics such as PA (nylon), POM and PE-UHMW are used for wear strips and guides: light and quiet, but far less stiff than metal. They creep (slowly deform) under constant load and change with heat or water.\n\nGalvanic corrosion: put stainless steel against aluminium or zinc in a wet environment and the less noble metal corrodes fast.',
+        'Carbon steel is the workhorse: iron with a little carbon, strong, stiff, cheap and weldable, with a density (mass per volume) of about 7,850 kg/m³. More carbon means harder and stronger, but harder to weld.\n\nIt rusts, so it is painted, galvanised (zinc-coated) or oiled. Structural grades such as S235 and S355 go into frames; grades such as C45 or 42CrMo4 into shafts and gears.',
+        'Stainless steel contains at least about 10.5% chromium, which forms a thin, invisible oxide layer that protects it. 304 (1.4301 in the European numbering) is the general grade; 316 (1.4401) adds molybdenum for better resistance to chlorides: salt and many cleaning and disinfecting agents. That is why food and pharma plants often specify it.\n\nStainless costs more, machines harder, and can still corrode: as pitting (small deep holes) or in crevices, narrow gaps where the oxide layer can’t repair itself.',
+        'Aluminium weighs about a third of steel (2,700 kg/m³) and is about a third as stiff. Alloys such as 6082 or 7075 can match mild steel in strength. It machines fast and doesn’t rust.\n\nBut it has no endurance limit for fatigue, loses strength next to welds, and is attacked by strong alkaline cleaners such as caustic soda (sodium hydroxide). Its oxide layer protects it in neutral conditions, not in strong lye.',
+        'Cast iron is iron with a lot of carbon, poured into moulds. It is cheap, casts into complex shapes and damps vibration well, so it is used for machine beds and pump housings, but grey cast iron is brittle.\n\nPlastics such as PA (nylon), POM and PE-UHMW are used for wear strips and guides: light and quiet, but far less stiff than metal. Under a constant load they show creep: they keep slowly deforming over weeks or months. Heat speeds it up.',
+        'Galvanic corrosion: put two different metals in contact in a wet environment and they form a battery. The less noble metal, the one that gives up electrons more easily, corrodes fast: aluminium or zinc against stainless steel, for example.\n\nOn site you see white powder around stainless bolts in an aluminium frame. The fix is to break the circuit: insulating washers and sleeves, sealant, or keeping it dry. The sharp question: which metals touch here, and does it get wet?',
       ],
       example: {
         kind: 'worked',
@@ -334,7 +347,10 @@ export default {
       },
       sayIt: 'Explain to a buyer in 60 seconds why “just use aluminium, it’s lighter” is not a simple swap.',
       terms: [
+        { term: 'Carbon steel', def: 'Iron with a little carbon: strong, stiff, cheap and weldable, but it rusts.' },
         { term: 'Stainless steel', def: 'Steel with at least about 10.5% chromium; 316 adds molybdenum for chloride resistance.' },
+        { term: 'Aluminium', def: 'A third of the weight and a third of the stiffness of steel; no fatigue limit, attacked by caustic cleaners.' },
+        { term: 'Cast iron', def: 'Iron with a lot of carbon, cast into shape; damps vibration well but grey cast iron is brittle.' },
         { term: 'Creep', def: 'Slow deformation under a constant load, especially in plastics and at high temperature.' },
         { term: 'Galvanic corrosion', def: 'Fast corrosion of the less noble metal when two different metals touch in a wet environment.' },
       ],
@@ -351,10 +367,11 @@ export default {
         },
       ],
       teach: [
-        'Hardness is resistance to indentation. Three common scales: Brinell (HB) for softer steels and castings, Vickers (HV) for any material and thin layers, Rockwell C (HRC) for hardened steel.\n\nMild steel is about 120 HB; a hardened tool steel 60 HRC or more. Hardness tracks strength and wear resistance, and the test is quick and cheap, so it is a common incoming check.',
-        'Steel with enough carbon can be hardened: heat it to roughly 800 to 900 °C, then quench it fast in water, oil or a polymer solution. It becomes very hard and brittle.\n\nThen it is tempered: reheated to typically 150 to 650 °C, which trades some hardness back for toughness. Quench and temper is how shafts, gears and tools get their properties.',
-        'Annealing does the opposite: slow cooling makes steel soft and easy to machine or form. Stress relieving, a lower-temperature treatment, removes internal stresses after welding or rough machining, so parts don’t warp later.',
-        'Case hardening gives a hard skin on a tough core: carburising (adding carbon to the surface, then quenching), nitriding (low temperature, little distortion) and induction hardening (heating only the surface).\n\nGears and bearing seats use it. Heat treatment can distort parts, so grinding often follows. A drawing note like “58–62 HRC, case depth 0.8–1.2 mm” is a spec to check, not decoration.',
+        'Hardness is a material’s resistance to being dented. A tester presses a hard ball, diamond or cone into the surface and measures the dent. Three common scales: Brinell (HB) for softer steels and castings, Vickers (HV) for any material and thin layers, Rockwell C (HRC) for hardened steel.\n\nMild steel is about 120 HB; a hardened tool steel 60 HRC or more. Hardness tracks strength and wear resistance, and the test is quick and cheap, so it is a common incoming check.',
+        'Steel with enough carbon, roughly 0.3% or more, can be hardened. Heat it to roughly 800 to 900 °C, until its internal structure changes, then cool it very fast. That fast cooling is quenching: plunging the part into water, oil or a polymer solution. The steel becomes very hard, but also brittle.\n\nQuenching also causes distortion and sometimes quench cracks, especially at sharp corners and sudden changes in thickness.',
+        'Then comes tempering: reheating to typically 150 to 650 °C, which trades some hardness back for toughness, the ability to take a blow without cracking. Low tempering keeps it hard (tools); high tempering makes it tough (shafts).\n\nQuench and temper together is how shafts, gears and tools get their properties. A quenched part that is never tempered can crack by itself, sometimes days later.',
+        'Annealing does the opposite: heating and then cooling slowly makes steel soft and easy to machine or form. Stress relieving is a gentler treatment, for steel typically around 550 to 650 °C, that removes internal stresses after welding or rough machining, so parts don’t warp (bend out of shape) later.\n\nYou see the need when a welded frame moves after machining: the stresses locked in by welding are released as material is cut away.',
+        'Case hardening gives a hard skin on a tough core: carburising (adding carbon to the surface at about 900 °C, then quenching), nitriding (nitrogen into the surface at around 500 °C, little distortion) and induction hardening (heating only the surface with an electric coil, then quenching). Gears and bearing seats use it.\n\nA drawing note like “58–62 HRC, case depth 0.8–1.2 mm” is a spec to check, not decoration. The sharp question to a supplier: “Show me the hardness profile and furnace record for this batch.”',
       ],
       example: {
         kind: 'worked',
@@ -399,9 +416,11 @@ export default {
       },
       sayIt: 'Explain to a buyer in 60 seconds what hardening and tempering do, and why a heat-treatment note on a drawing matters.',
       terms: [
-        { term: 'Hardness (HB, HV, HRC)', def: 'Resistance to indentation, measured on the Brinell, Vickers or Rockwell C scale.' },
-        { term: 'Quench and temper', def: 'Heat, quench fast to harden, then reheat moderately to regain toughness.' },
-        { term: 'Annealing and stress relieving', def: 'Heat treatments that soften steel or remove internal stresses.' },
+        { term: 'Hardness', def: 'Resistance to being dented, measured on the Brinell (HB), Vickers (HV) or Rockwell C (HRC) scale.' },
+        { term: 'Quenching', def: 'Cooling hot steel very fast in water, oil or polymer to harden it; leaves it hard but brittle.' },
+        { term: 'Tempering', def: 'Reheating quenched steel to 150–650 °C to trade some hardness for toughness.' },
+        { term: 'Annealing', def: 'Heating and slowly cooling steel to make it soft and easy to machine or form.' },
+        { term: 'Stress relieving', def: 'A gentle heat treatment that removes internal stresses after welding or rough machining.' },
         { term: 'Case hardening', def: 'Hardening only the surface layer: carburising, nitriding or induction hardening.' },
       ],
     },
