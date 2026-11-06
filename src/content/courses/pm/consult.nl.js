@@ -6,28 +6,29 @@ export default {
       title: 'Een offerte die wint',
       pre: [
         {
-          q: 'Een klant leest je offerte van acht pagina’s. Welk deel bepaalt het meest of je hem wint?',
+          q: 'Een klant leest je offerte (proposal: het stuk waarin je je werk en je prijs aanbiedt) van acht pagina’s. Welk deel bepaalt het meest of je hem wint?',
           options: ['Je aanpak en modellen', 'Je cv en referenties', 'De eerste pagina: hun probleem, in hun woorden, met hun getallen', 'De prijstabel'],
           answer: 'De eerste pagina: hun probleem, in hun woorden, met hun getallen',
           why: 'Niemand koopt een methode. Ze kopen hun eigen probleem opgelost, en op pagina één beslissen ze of je het begrepen hebt.',
         },
       ],
       teach: [
-        'Een offerte wint op de eerste pagina. Begin met het probleem van de klant, in hun woorden en getallen: “14% van de geplande klussen wordt afgezegd; elke afzegging kost een ploegdag; jullie doel is 8% in Q4.”\n\nLeest de sponsor dat en denkt hij “ja, precies dat”, dan ben je al een heel eind. Je aanpak komt later.',
-        'Dan de uitkomst en hoe je weet dat je er bent: de maatstaf, de nulmeting, het doel en wie er eigenaar van is. Dan de aanpak, in fases.\n\nEen goede eerste fase is kort en goedkoop: een diagnose van drie weken, 12 dagen, € 14.400, met aan het eind een go/no-go. Dat verlaagt het risico voor de klant én voor jou, want de rest prijs je pas als je de data gezien hebt.',
-        'Schrijf op wat je van hen nodig hebt.\n\nDe sponsor één uur per twee weken. Een vast aanspreekpunt één dag per week. Toegang tot de planningsdata in week 1. Twee sessies met de teamleiders.\n\nDit zijn geen kleine lettertjes: veel projecten lopen uit omdat de klantkant niet leverde. Benoem je het vooraf, dan is het een gedeelde afspraak in plaats van later een excuus.',
+        'Een offerte wint op de eerste pagina. Begin met het probleem van de klant, in hun woorden en getallen: “14% van de geplande klussen wordt afgezegd; elke afzegging kost een ploegdag; jullie doel is 8% in Q4.”\n\nLeest de sponsor, de manager die het project betaalt en er eigenaar van is, dat en denkt hij “ja, precies dat”, dan ben je al een heel eind. Je aanpak komt later.',
+        'Dan de uitkomst en hoe je weet dat je er bent: de maatstaf, de nulmeting (het niveau van vandaag, gemeten voordat je begint), het doel en wie er eigenaar van is. Dan de aanpak, in fases.\n\nEen goede eerste fase is een diagnosefase: kort en goedkoop, bijvoorbeeld drie weken, 12 adviesdagen, € 14.400. Die eindigt met een go/no-go-besluit: doorgaan, bijsturen of stoppen. De rest prijs je pas als je de data gezien hebt, en dat verlaagt het risico voor beide kanten.',
+        'Schrijf de inzet van de klant op: wat je van hen nodig hebt. De sponsor één uur per twee weken. Een vast aanspreekpunt (counterpart), één persoon aan hun kant, één dag per week. Toegang tot de planningsdata in week 1. Twee sessies met de teamleiders.\n\nDit zijn geen kleine lettertjes: veel projecten lopen uit omdat de klantkant niet leverde. Benoem je het vooraf, dan is het een gedeelde afspraak in plaats van later een excuus.',
         'Bied twee of drie opties, niet één: alleen de diagnose; diagnose plus een pilot in één regio; het volledige programma. Eén optie vraagt om ja of nee; opties vragen om een keuze tussen ja’s.\n\nHoud het op vijf of zes pagina’s. Loop de opzet vóór het versturen telefonisch door met de sponsor, zodat het document een gesprek bevestigt in plaats van er een te beginnen.',
+        'Wat je in de praktijk ziet: offertes die vooral over het adviesbureau gaan en nauwelijks over de klant, en inkoopafdelingen die offertes alleen op dagtarief vergelijken. Vraag vroeg hoe de keuze gemaakt wordt, en door wie.\n\nAdviseurs verschillen van mening over de prijs van latere fases noemen: een bandbreedte schept vertrouwen, één getal blijft hangen in het hoofd van de klant.\n\nEen scherpe vraag voordat je schrijft: “Als dit lukt, wat is er over zes maanden anders, en waar zien we dat aan?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een operationeel directeur bij een verpakkingsfabrikant belt Vantage. Het omstellen op de twee thermovormlijnen gaat traag, de OEE zit rond de 58%, en ze heeft dit jaar € 60k budget.\n\nIn de intake zei ze dat de echte zorg een grote klant is die dreigt volume weg te halen als de leverbetrouwbaarheid niet boven de 85% uitkomt. Haar inkoopafdeling wil drie offertes en “een helder plan met een vaste prijs”.',
+        text: 'Een operationeel directeur bij een verpakkingsfabrikant belt Vantage. Het omstellen (changeover: een lijn ombouwen naar het volgende product) op de twee thermovormlijnen, die verwarmde kunststof plaat tot bakjes vormen, gaat traag. De OEE zit rond de 58%: de lijnen maken maar 58% van hun geplande tijd goede stuks op volle snelheid. Ze heeft dit jaar € 60k budget.\n\nIn de intake, het eerste gesprek, zei ze dat de echte zorg een grote klant is die dreigt volume weg te halen als de leverbetrouwbaarheid (on-time delivery) niet boven de 85% uitkomt. Haar inkoopafdeling wil drie offertes en “een helder plan met een vaste prijs”.',
         ask: 'Hoe zou jij de offerte opbouwen?',
-        reveal: 'Begin met haar probleem: leverbetrouwbaarheid op 85%, een belangrijke klant die dreigt te vertrekken, en een OEE van rond de 58% op de twee lijnen als waarschijnlijke oorzaak. Noem de uitkomst: leverbetrouwbaarheid boven de 95% op een concrete datum.\n\nFase 1: een diagnose van drie weken, 12 dagen, € 14.400 vast, die laat zien waar de verloren uren zitten. Fase 2 als twee opties met een prijsbandbreedte, die vast wordt na fase 1.\n\nZet erin wat je nodig hebt: lijndata uit het MES, één dag per week van de productie-engineer, de sponsor elke twee weken. Blijf in totaal binnen de € 60k. Bel haar voor je het verstuurt, en vraag hoe inkoop de drie offertes gaat vergelijken.',
+        reveal: 'Begin met haar probleem: leverbetrouwbaarheid op 85%, een belangrijke klant die dreigt te vertrekken, en een OEE van rond de 58% op de twee lijnen als waarschijnlijke oorzaak. Noem de uitkomst: leverbetrouwbaarheid boven de 95% op een concrete datum.\n\nFase 1: een diagnose van drie weken, 12 dagen, € 14.400 vast, die laat zien waar de verloren uren zitten. Fase 2 als twee opties met een prijsbandbreedte, die vast wordt na fase 1.\n\nZet erin wat je nodig hebt: lijndata uit het MES (het systeem dat bijhoudt wat de lijnen doen), één dag per week van de productie-engineer, de sponsor elke twee weken. Blijf in totaal binnen de € 60k. Bel haar voor je het verstuurt, en vraag hoe inkoop de drie offertes gaat vergelijken.',
       },
       said: 'Wat je hoort in projecten: “Mooi document. Maar wat kopen we nou precies?”',
       recall: [
         {
-          q: 'Je diagnose in fase 1 is 12 dagen à € 1.200 per dag. Wat is het bedrag, in euro’s?',
+          q: 'Je diagnose in fase 1 is 12 adviesdagen tegen een dagtarief van € 1.200. Wat is het bedrag, in euro’s?',
           number: 14400,
           tolerance: 1,
           unit: '€',
@@ -55,7 +56,7 @@ export default {
       situation: {
         scene: 'Je zit bij een netbeheerder, na een goede intake met een regiomanager. Ze zegt: “Stuur me vóór vrijdag iets. Houd het kort; mijn directeur moet tekenen.”',
         ask: 'Wat staat er op de eerste pagina, en wat doe je vóór vrijdag?',
-        model: 'Op pagina één: haar probleem met haar getallen, de uitkomst waar we op mikken en hoe we die meten, en het besluit dat haar directeur moet nemen, met de prijs van fase 1. Vóór vrijdag bel ik haar: “Mag ik in tien minuten de opzet met je doorlopen, zodat er staat wat je directeur moet horen?” En ik vraag waar haar directeur meestal nee op zegt.',
+        model: 'Op pagina één: haar probleem met haar getallen, de uitkomst waar we op mikken en hoe we die meten, en het besluit dat haar directeur moet nemen, met de prijs van fase 1. Vóór vrijdag bel ik haar: “Mag ik in tien minuten de opzet met je doorlopen, zodat er staat wat je directeur moet horen?” Ik vraag waar hij meestal nee op zegt, en of ik een kwartier mag aansluiten als zij het hem voorlegt.',
         rubric: [
           'Opent met het probleem en de getallen van de klant, niet met Vantage',
           'Maakt het besluit en de prijs van fase 1 zichtbaar op pagina één',
@@ -76,7 +77,9 @@ export default {
       },
       sayIt: 'Leg een nieuwe klant in 60 seconden uit waarom je een korte, betaalde diagnose voorstelt vóór het volledige project.',
       terms: [
+        { term: 'Nulmeting', def: 'Het niveau van de maatstaf vandaag, gemeten voordat het werk begint, zodat je het resultaat later kunt laten zien.' },
         { term: 'Diagnosefase', def: 'Een korte, vaste eerste fase die het probleem toetst en eindigt met een go/no-go.' },
+        { term: 'Go/no-go-besluit', def: 'Het moment aan het eind van een fase waarop de klant kiest: doorgaan, bijsturen of stoppen.' },
         { term: 'Inzet van de klant', def: 'Wat de klant moet leveren, zoals mensen, data en tijd van de sponsor, vastgelegd in de offerte.' },
         { term: 'Opties', def: 'Twee of drie manieren om het werk in te kopen, zodat de klant kiest hoe en niet óf.' },
       ],
@@ -93,21 +96,22 @@ export default {
         },
       ],
       teach: [
-        'Drie manieren om te prijzen. Dagtarief: € 1.200 per gewerkte dag; simpel, het risico op uitloop ligt bij de klant, maar je wordt betaald voor uren, niet voor resultaat. Vaste prijs: € 48k voor een afgesproken scope; de klant weet wat het kost, jij draagt het risico.\n\nWaardegebaseerd: een fee gekoppeld aan wat het resultaat waard is, zeg € 80k voor een verandering van € 900k per jaar. Het meeste potentieel, maar alleen als de waarde meetbaar is en jij er genoeg invloed op hebt.',
-        'Een vaste prijs is een gok op je schatting. Schat je 40 dagen, vraag je € 48k en kost het er 50, dan zakt je echte tarief naar € 960.\n\nReken dus 15 tot 25% opslag voor wat je nog niet weet, en schrijf de scope strak op: opleveringen, aantal sessies, wat er buiten valt. Elke aanname die je opschrijft, zoals “data beschikbaar in week 1”, is een grond voor meerwerk als hij niet klopt.',
-        'Bewaak de scope op het moment zelf, vriendelijk. Vraagt de klant om “nog één analyse”, zeg dan: “Doe ik graag. Het valt buiten wat we hebben afgesproken. Het is zo’n drie dagen; zal ik het als meerwerk toevoegen, of ruilen we het tegen de tweede workshop?” Eén keer gratis zet de prijs van alles daarna op nul.',
-        'Korting. Tien procent van € 1.200 af betekent dat je 11% meer dagen moet werken voor hetzelfde geld. Geef je korting, ruil dan: een langere opdracht, een referentiecase met naam, sneller betalen, of minder scope. Nooit kale korting.\n\nEn ga niet op de eerste fase zakken om het werk binnen te halen; dan leert de klant dat je prijs het begin van de onderhandeling is.',
+        'Drie manieren om te prijzen. Met een dagtarief reken je per gewerkte dag, zeg € 1.200: simpel, het risico op uitloop ligt bij de klant, maar je wordt betaald voor uren, niet voor resultaat.\n\nMet een vaste prijs spreek je één bedrag af, zeg € 48k, voor een afgesproken scope, de lijst van wat je oplevert: de klant weet wat het kost, jij draagt het risico.\n\nBij een waardegebaseerde prijs hangt de fee aan wat het resultaat waard is, zeg € 80k voor een verandering van € 900k per jaar.',
+        'Een waardegebaseerde prijs heeft het meeste potentieel, maar alleen als de waarde meetbaar is, je de nulmeting (baseline) met de klant afspreekt, en jij genoeg invloed hebt op het resultaat.\n\nVoorstanders zoals Alan Weiss vinden het het eerlijkste model voor beide kanten. Veel inkoopafdelingen willen toch liever dagtarieven, omdat die makkelijk te vergelijken zijn. In de praktijk werkt een waardefee het best bij een klant die je al vertrouwt.',
+        'Een vaste prijs is een gok op je schatting. Schat je 40 dagen, vraag je € 48k en kost het er 50, dan zakt je echte tarief naar € 960.\n\nReken dus een risico-opslag, vaak 15 tot 25% erbovenop, voor wat je nog niet weet, en schrijf de scope strak op: opleveringen, aantal sessies, wat er buiten valt. Elke aanname die je opschrijft, zoals “data beschikbaar in week 1”, is een grond voor meerwerk als hij niet klopt.',
+        'Meerwerk (change request) is een korte schriftelijke afspraak om werk toe te voegen of te ruilen, met de dagen en de prijs erbij. Bewaak de scope op het moment zelf, vriendelijk.\n\nVraagt de klant om “nog één analyse”, zeg dan: “Doe ik graag. Het valt buiten wat we hebben afgesproken. Het is zo’n drie dagen; zal ik het als meerwerk toevoegen, of ruilen we het tegen de tweede workshop?” Eén keer gratis zet de prijs van alles daarna op nul.',
+        'Korting. Tien procent van € 1.200 af is € 1.080, dus je moet zo’n 11% meer dagen werken voor hetzelfde geld (1.200 / 1.080 ≈ 1,11). Geef je korting, ruil dan: een langere opdracht, een referentiecase met naam, sneller betalen, of minder scope. Nooit kale korting, en ga niet op de eerste fase zakken om het werk binnen te halen; dan leert de klant dat je prijs het begin van de onderhandeling is.\n\nEen scherpe vraag als iemand korting vraagt: “Wat wil je eruit laten?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een plantdirecteur wil dat Vantage de uitval op een extrusielijn omlaag brengt. De uitval kost zo’n € 400k per jaar. Hij vraagt een vaste prijs.\n\nJij schat 30 dagen als de kwaliteitsdata schoon is en 45 als dat niet zo is, en dat weet je pas in week 2. Je dagtarief is € 1.200. Hij laat vallen dat een concurrent € 30k offreerde.',
+        text: 'Een plantdirecteur wil dat Vantage de uitval (scrap) op een extrusielijn omlaag brengt, een lijn die hete kunststof door een vormopening perst om profielen te maken. De uitval kost zo’n € 400k per jaar. Hij vraagt een vaste prijs.\n\nJij schat 30 dagen als de kwaliteitsdata schoon is en 45 als dat niet zo is, en dat weet je pas in week 2. Je dagtarief is € 1.200. Hij laat vallen dat een concurrent € 30k offreerde.',
         ask: 'Hoe zou jij dit prijzen?',
-        reveal: 'Gok niet op het schone scenario. Knip het op: een fase 1 van 8 dagen tegen een vaste prijs, € 9.600, inclusief het checken van de data. Daarna een vaste prijs voor fase 2 op basis van wat je vond: 22 dagen als de data schoon is, 37 als dat niet zo is, plus 15% opslag.\n\nOf bied een waardeoptie: een lagere vaste fee plus een bonus als de uitval met een afgesproken hoeveelheid daalt, gemeten door zijn controller.\n\nOver die € 30k: “Ik kan hun scope niet beoordelen. Laten we vergelijken wat elke offerte oplevert, en wie het risico draagt als de data slecht is.” Ga niet blind op dat getal zitten.',
+        reveal: 'Gok niet op het schone scenario. Knip het op: een fase 1 van 8 dagen tegen een vaste prijs, € 9.600, inclusief het checken van de data. Daarna een vaste prijs voor fase 2 op basis van wat je vond: 22 dagen als de data schoon is, 37 als dat niet zo is, plus 15% opslag.\n\nOf bied een waardeoptie: een lagere vaste fee plus een bonus als de uitval met een afgesproken hoeveelheid daalt, gemeten door zijn controller, de financiële man die de cijfers bewaakt.\n\nOver die € 30k: “Ik kan hun scope niet beoordelen. Laten we vergelijken wat elke offerte oplevert, en wie het risico draagt als de data slecht is.” Ga niet blind op dat getal zitten.',
       },
       said: 'Wat je hoort in projecten: “Kun je het voor een vaste prijs doen? En misschien iets scherper?”',
       recall: [
         {
-          q: 'Je offreerde € 48k vast voor 40 geschatte dagen. Het werk kost 50 dagen. Wat is je effectieve dagtarief, in euro’s?',
+          q: 'Je offreerde € 48k vast voor 40 geschatte dagen. Het werk kost 50 dagen. Wat is je effectieve dagtarief (het bedrag gedeeld door de dagen die je echt werkte), in euro’s?',
           number: 960,
           tolerance: 1,
           unit: '€ per dag',
@@ -133,7 +137,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een fabrikant, in week 4 van een project tegen een vaste prijs. De sponsor vraagt of je de tweede vestiging “even” meeneemt in de analyse.',
+        scene: 'Je zit bij een fabrikant, in week 4 van een project tegen een vaste prijs, gerekend met € 1.200 per dag. De sponsor vraagt of je de tweede vestiging “even” meeneemt in de analyse.',
         ask: 'Wat zeg je?',
         model: '“Goed idee, en ik snap waarom. Het valt buiten onze vaste scope: de tweede vestiging is zo’n zes dagen extra, dus € 7.200. We kunnen het als meerwerk toevoegen, of het ruilen tegen de derde workshop en de prijs gelijk houden. Wat werkt voor jou het best?” Zijn keuze bevestig ik dezelfde dag per mail.',
         rubric: [
@@ -156,10 +160,12 @@ export default {
       },
       sayIt: 'Leg een klant in 60 seconden het verschil uit tussen een dagtarief en een vaste prijs, en wie bij elk het risico draagt.',
       terms: [
+        { term: 'Dagtarief', def: 'Een bedrag per gewerkte dag; de klant draagt het risico als het werk langer duurt.' },
         { term: 'Vaste prijs', def: 'Een afgesproken bedrag voor een afgesproken scope; de adviseur draagt het risico op uitloop.' },
-        { term: 'Risico-opslag', def: 'Een extra 15 tot 25% op een vaste prijs voor wat je nog niet kunt weten.' },
-        { term: 'Meerwerk', def: 'Een schriftelijke afspraak om scope toe te voegen of te ruilen, met de dagen en de prijs erbij.' },
         { term: 'Waardegebaseerde prijs', def: 'Een fee gekoppeld aan de meetbare waarde van het resultaat, niet aan de gewerkte dagen.' },
+        { term: 'Risico-opslag', def: 'Een extra 15 tot 25% op een vaste prijs voor wat je nog niet kunt weten.' },
+        { term: 'Scope', def: 'De opgeschreven lijst van wat je oplevert, en wat niet.' },
+        { term: 'Meerwerk', def: 'Een schriftelijke afspraak om scope toe te voegen of te ruilen, met de dagen en de prijs erbij.' },
       ],
     },
     {
@@ -174,14 +180,15 @@ export default {
         },
       ],
       teach: [
-        'Vertrouwen kun je opdelen in vier delen, uit het boek The Trusted Advisor van Maister, Green en Galford: geloofwaardigheid, betrouwbaarheid en intimiteit, gedeeld door zelfgerichtheid.\n\nGeloofwaardigheid: weet je waar je het over hebt? Betrouwbaarheid: doe je wat je zegt? Intimiteit: durven ze je te vertellen wat ze echt dwarszit?\n\nZelfgerichtheid: ben je met hen bezig, of met jezelf, je fee en slim overkomen? Dat laatste deelt al het andere.',
-        'Betrouwbaarheid bouw je in kleine dingen, en vroeg. Stuur de notulen dezelfde dag. Kom met de getallen die je beloofde. Zei je donderdag, dan is het donderdag, of je belt woensdag.\n\nTien kleine nagekomen beloftes doen meer dan één briljante analyse.',
+        'De vertrouwensformule (trust equation) komt uit het boek The Trusted Advisor (2000) van Maister, Green en Galford: vertrouwen = (geloofwaardigheid + betrouwbaarheid + intimiteit) / zelfgerichtheid.\n\nGeloofwaardigheid: weet je waar je het over hebt? Betrouwbaarheid: doe je wat je zegt? Intimiteit: durven ze je te vertellen wat ze echt dwarszit? Zelfgerichtheid: ben je met hen bezig, of met jezelf, je fee en slim overkomen? Omdat die deelt, maakt veel zelfgerichtheid de rest teniet.',
+        'Betrouwbaarheid bouw je in kleine dingen, en vroeg. Stuur de notulen dezelfde dag. Kom met de getallen die je beloofde. Zei je donderdag, dan is het donderdag, of je belt woensdag.\n\nKlanten beoordelen dit als eerste, omdat ze je methode nog niet kunnen beoordelen. Tien kleine nagekomen beloftes doen meer dan één briljante analyse.',
         'Intimiteit is het moeilijkst en het waardevolst. Je merkt het als de sponsor zegt: “Onder ons, ik weet niet of mijn plantmanager dit kan dragen.”\n\nJe verdient het door dingen voor je te houden, door eerlijk te zijn over je eigen twijfels, en door oprecht interesse te tonen in de persoon: “Wanneer is dit voor jou een goed jaar?” Gebruik wat ze je vertellen nooit tegen iemand.',
         'Zelfgerichtheid zie je in kleine dingen: elk gesprek naar je volgende fase sturen, over Vantage praten, gelijk willen hebben, hun zinnen afmaken. De oplossing is makkelijk gezegd en lastig gedaan: langer luisteren, nog één vraag stellen, en soms minder werk adviseren dan je zou kunnen verkopen.\n\n“Voor dit stuk heb je ons niet nodig; dat kan je planner.” Die zin verdient zich vele keren terug.',
+        'De formule is een manier van denken, geen meting: de scores die je invult zijn schattingen. Je gebruikt hem om te diagnosticeren: is het vertrouwen laag, vraag dan welk deel zwak is.\n\nWat junior adviseurs het vaakst verkeerd doen: ze investeren in geloofwaardigheid, meer slides en meer analyse, terwijl de klant wacht op betrouwbaarheid en een luisterend oor.\n\nEen scherpe vraag aan jezelf na een overleg: “Wie praatte het meest, en over wiens probleem?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Zes weken in een project bij een netbeheerder. Je analyse is sterk.\n\nMaar de sponsor heeft twee van je tweewekelijkse overleggen afgezegd, en een teamleider vertelt je dat ze je laatste rapport “een hoop slides” noemde. Terugkijkend heb je decks van 25 pagina’s twee dagen te laat gestuurd, en in overleggen vooral gepresenteerd.',
+        text: 'Zes weken in een project bij een netbeheerder. Je analyse is sterk.\n\nMaar de sponsor heeft twee van je tweewekelijkse overleggen afgezegd, en een teamleider vertelt je dat ze je laatste rapport “een hoop slides” noemde. Terugkijkend heb je decks (presentaties) van 25 pagina’s twee dagen te laat gestuurd, en in overleggen vooral gepresenteerd.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Geloofwaardigheid is het probleem niet; betrouwbaarheid en intimiteit wel, en in die decks zit zelfgerichtheid.\n\nVerander het ritme: een update van één A4, dezelfde dag, elke keer. Vraag om 30 minuten, niet om te presenteren maar om te luisteren: “Ik heb het gevoel dat onze updates je niet helpen. Wat zou wel nuttig zijn?” Vraag dan wat haar bezighoudt buiten dit project.\n\nHoud de volgende drie beloftes klein en op tijd. Vraag het haar over een maand nog eens.',
       },
@@ -206,7 +213,7 @@ export default {
           why: 'Het laat de klant zien dat je belangstelling bij je volgende factuur ligt.',
         },
         {
-          q: 'Waarom kan minder betaald werk adviseren een klantrelatie laten groeien?',
+          q: 'Waarom kan minder betaald werk adviseren een klantrelatie (een klant met wie je over meerdere projecten werkt) laten groeien?',
           options: ['Het laat zien dat je het belang van de klant boven je fee zet, en dat verhoogt het vertrouwen', 'Het verlaagt je dagtarief', 'Klanten willen goedkope adviseurs', 'Zo ontloop je lastig werk'],
           answer: 'Het laat zien dat je het belang van de klant boven je fee zet, en dat verhoogt het vertrouwen',
           why: 'Lage zelfgerichtheid is zichtbaar en zeldzaam, en klanten onthouden het.',
@@ -236,9 +243,11 @@ export default {
       },
       sayIt: 'Leg een junior consultant in 60 seconden uit wat de vertrouwensformule is en welk deel de meeste adviseurs verkeerd doen.',
       terms: [
-        { term: 'Vertrouwensformule', def: 'Geloofwaardigheid plus betrouwbaarheid plus intimiteit, gedeeld door zelfgerichtheid.' },
-        { term: 'Zelfgerichtheid', def: 'Hoeveel je bezig bent met jezelf, je fee en gelijk krijgen in plaats van met de klant.' },
+        { term: 'Vertrouwensformule', def: 'Geloofwaardigheid plus betrouwbaarheid plus intimiteit, gedeeld door zelfgerichtheid (Maister, Green en Galford, 2000).' },
+        { term: 'Geloofwaardigheid', def: 'Of de klant gelooft dat je weet waar je het over hebt.' },
+        { term: 'Betrouwbaarheid', def: 'Of je doet wat je zegt, op het moment dat je het zei.' },
         { term: 'Intimiteit', def: 'Hoe veilig de klant zich voelt om je te vertellen wat hem echt dwarszit.' },
+        { term: 'Zelfgerichtheid', def: 'Hoeveel je bezig bent met jezelf, je fee en gelijk krijgen in plaats van met de klant.' },
       ],
     },
     {
@@ -253,16 +262,17 @@ export default {
         },
       ],
       teach: [
-        'Je advies is alleen geld waard als het onafhankelijk is. Dat betekent: voor het advies dat je de klant geeft, krijg je van niemand anders geld dan van de klant.\n\nHeb je een band met een leverancier, een partner of een oud-werkgever, meld dat dan schriftelijk voordat je adviseert. Vooraf melden kost je niks; later betrapt worden kost je de klant en je naam.',
+        'Je advies is alleen geld waard als het onafhankelijk is: voor je advies krijg je van niemand anders geld dan van de klant. Een aanbrengfee, geld van een leverancier voor elke klant die je naar hem stuurt, breekt dat, want de klant kan niet meer zien of het je advies gebogen heeft.\n\nHeb je een band met een leverancier, een partner of een oud-werkgever, meld dat dan schriftelijk voordat je adviseert. Vooraf melden kost niks; later betrapt worden kost je de klant en je naam.',
         'De klant vertellen wat hij niet wil horen. Bereid het voor: eerst de feiten, dan je conclusie, dan je advies. Zeg het eerst alleen tegen de sponsor, vóór welke groep dan ook.\n\nZo zeg je het: “Ik moet je iets vertellen wat je niet leuk gaat vinden. De data laat zien dat de planningstool niet de reden is van de vele afzeggingen; het materiaalproces wel. Ik vertel het je liever nu dan straks waar de directie bij zit.” Stop dan en laat hem reageren.',
-        'Belangenverstrengeling komt ook in stillere vormen. Voor twee concurrerende fabrikanten aan hetzelfde onderwerp werken. Ingehuurd worden om een al genomen besluit te “bevestigen”. Adviseren over een vervolgproject dat je zelf zou uitvoeren.\n\nDe test: zou je het prima vinden als de klant je redenering en je factuur naast elkaar legt? Zo niet, meld het of stap terug.',
+        'Belangenverstrengeling (conflict of interest), waarbij je eigen voordeel je advies kan buigen, komt ook in stillere vormen. Voor twee concurrerende fabrikanten aan hetzelfde onderwerp werken. Ingehuurd worden om een al genomen besluit te “bevestigen”. Adviseren over een vervolgproject dat je zelf zou uitvoeren.\n\nDe test: zou je het prima vinden als de klant je redenering en je factuur naast elkaar legt? Zo niet, meld het of stap terug.',
         'Vertrouwelijkheid: wat je bij de ene klant leert, blijft daar. Deel lessen anoniem, nooit namen, getallen of documenten. Vraag toestemming voordat je een klant als case gebruikt, en laat ze de tekst zien.\n\nBij netbeheerders gelden ook regels voor netdata en beveiliging; vraag op dag één wat je waar mag opslaan.',
+        'Beroepsverenigingen leggen dit vast: de Ooa, de Nederlandse beroepsvereniging van organisatieadviseurs, heeft een gedragscode over onafhankelijkheid en vertrouwelijkheid, en grote klanten zetten hun eigen regels in het contract.\n\nWaar adviseurs verschillen: de een werkt een jaar lang niet voor een concurrent van een klant; de ander doet het wel, met gescheiden teams en duidelijke muren.\n\nEen scherpe vraag aan jezelf: “Zou ik hetzelfde adviseren als het me niks opleverde?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een plantdirecteur heeft Vantage ingehuurd om een nieuw rooster “uit te rollen” dat hij al heeft aangekondigd. Uit jouw analyse blijkt dat het zo’n 6% output kost op de bottlenecklijn, omdat de overdrachten in het drukste uur vallen. Hij betaalt je factuur, en hij heeft je gevraagd volgende week bij de OR “draagvlak voor het plan” te presenteren.',
+        text: 'Een plantdirecteur heeft Vantage ingehuurd om een nieuw rooster “uit te rollen” dat hij al heeft aangekondigd. Uit jouw analyse blijkt dat het zo’n 6% output kost op de bottlenecklijn, de lijn die de output van de hele fabriek begrenst, omdat de overdrachten tussen de diensten in het drukste uur vallen. Hij betaalt je factuur, en hij heeft je gevraagd volgende week bij de OR (de ondernemingsraad, gekozen door de medewerkers) “draagvlak voor het plan” te presenteren.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Presenteer niets waar je zelf niet in gelooft, en overval hem ook niet. Bedenk dat de OR instemmingsrecht heeft op een werktijdenregeling (artikel 27 WOR), dus een gebrekkig plan dat als degelijk wordt verkocht, is ook voor hem een risico.\n\nVraag deze week een uur met hem alleen. Laat de data zien: de timing van de overdracht en de 6% verlies. Bied dan een uitweg: schuif de overdracht 45 minuten op, of laat de diensten op de bottleneck overlappen, en het rooster kan alsnog werken.\n\nZeg het gewoon: “Ik kan het plan presenteren met deze aanpassing. Ik kan het niet presenteren zoals het nu is en de OR vertellen dat het klopt.” De meeste directeuren respecteren dat. Doet hij dat niet, dan kun je beter deze opdracht kwijtraken dan je naam.',
+        reveal: 'Presenteer niets waar je zelf niet in gelooft, en overval hem ook niet. Bedenk dat de OR instemmingsrecht heeft op een werktijdenregeling (artikel 27 WOR): voert hij hem zonder instemming in, dan kan de OR een beroep doen op de nietigheid van het besluit. Een gebrekkig plan dat als degelijk wordt verkocht, is dus ook voor hem een risico.\n\nVraag deze week een uur met hem alleen. Laat de data zien: de timing van de overdracht en de 6% verlies. Bied dan een uitweg: schuif de overdracht 45 minuten op, of laat de diensten op de bottleneck overlappen, en het rooster kan alsnog werken.\n\nZeg het gewoon: “Ik kan het plan presenteren met deze aanpassing. Ik kan het niet presenteren zoals het nu is en de OR vertellen dat het klopt.” Accepteert hij dat niet, dan kun je beter deze opdracht kwijtraken dan je naam.',
       },
       said: 'Wat je hoort in projecten: “We willen eigenlijk alleen dat je bevestigt wat we al besloten hebben.”',
       recall: [
@@ -292,9 +302,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een netbeheerder. De sponsor vraagt je een zin aan het eindrapport toe te voegen dat de nieuwe aannemer “goed gepresteerd” heeft. Jouw data laat zien dat de aannemer zo’n derde van de afzeggingen veroorzaakte.',
+        scene: 'Je zit bij een netbeheerder. De sponsor vraagt je een zin aan het eindrapport toe te voegen dat de nieuwe aannemer “goed gepresteerd” heeft. Jouw data laat zien dat de aannemer zo’n derde van de afzeggingen veroorzaakte, al zijn het er sinds week 8 minder.',
         ask: 'Wat zeg je?',
-        model: '“Ik snap dat je die zin graag wilt, en ik wil het met de aannemer ook niet moeilijk maken. Maar de data laat zien dat zij zo’n derde van de afzeggingen veroorzaakten, dus dat kan ik niet opschrijven. Ik kan het feitelijk beschrijven en erbij zetten wat ze al verbeterd hebben. Zullen we samen naar de formulering kijken?”',
+        model: '“Ik snap dat je die zin graag wilt, en ik wil het met de aannemer ook niet moeilijk maken. Maar de data laat zien dat zij zo’n derde van de afzeggingen veroorzaakten, dus dat kan ik niet opschrijven. Ik kan het feitelijk beschrijven en erbij zetten wat ze sinds week 8 verbeterd hebben. Zullen we samen naar de formulering kijken?”',
         rubric: [
           'Weigert iets op te schrijven wat niet waar is',
           'Laat de data zien en blijft respectvol',
@@ -316,8 +326,10 @@ export default {
       sayIt: 'Leg een klant in 60 seconden uit waarom je hem soms dingen vertelt die hij niet wil horen, en waarom hij je daarvoor betaalt.',
       terms: [
         { term: 'Onafhankelijkheid', def: 'Alleen door de klant betaald worden voor je advies, zonder belang bij een bepaald antwoord.' },
-        { term: 'Belangenverstrengeling', def: 'Een situatie waarin je eigen voordeel het advies kan buigen.' },
+        { term: 'Aanbrengfee', def: 'Geld van een leverancier voor elke klant die je naar hem stuurt; het maakt je advies afhankelijk.' },
         { term: 'Melden', def: 'De klant vooraf en schriftelijk vertellen over elke band die je advies kan beïnvloeden.' },
+        { term: 'Belangenverstrengeling', def: 'Een situatie waarin je eigen voordeel het advies kan buigen.' },
+        { term: 'Vertrouwelijkheid', def: 'Wat je bij de ene klant leert weghouden bij anderen: geen namen, getallen of documenten.' },
       ],
     },
     {
@@ -332,14 +344,15 @@ export default {
         },
       ],
       teach: [
-        'Een klant laten groeien is geen verkopen. Het is het werk zo goed en zo zichtbaar doen dat het volgende probleem vanzelf naar je toe komt. Een tweede project bij een klant die je kent, kost een paar uur praten; een nieuwe klant kan maanden aan gesprekken en offertes kosten.',
-        'Volg op als het project klaar is: een belletje na 3 maanden en een bezoek na 6. “Hoe houdt het afzegpercentage zich? Glipt er iets weg?” Geen factuur, geen pitch.\n\nHet beschermt het resultaat, en het is vaak het moment waarop klanten het volgende probleem noemen: “Nu de planning loopt, is ons magazijn de puinhoop.” Dat is een aangrenzend probleem, en jij hoorde het als eerste.',
-        'Aangrenzende problemen zijn de eerlijke route. Je ziet ze tijdens het werk: de onderhoudsachterstand achter de OEE-verliezen, de slechte data achter de planningsproblemen.\n\nNoteer ze, en breng ze één keer in, op het goede moment, meestal bij de afsluiting: “Twee dingen die ik zag die buiten onze scope vallen, maar die je moet weten.” Laat de klant dan beslissen of hij hulp wil, en van wie.',
-        'Verbreed de relaties. Ken je alleen de sponsor, dan stopt de klant als zij van baan wisselt.\n\nBouw echt contact op met twee of drie anderen: de controller, de lijnmanager die de baten bezit, de IT-lead. Niet met lunches, maar door in het project nuttig voor ze te zijn.\n\nEn als iemand met wie je werkte naar een ander bedrijf gaat, feliciteer hem; daar komt je volgende klant vaak vandaan.',
+        'Een klantrelatie is een klantorganisatie waar je langere tijd mee werkt, over meerdere projecten en mensen. Die laten groeien is geen verkopen: het is het werk zo goed en zo zichtbaar doen dat het volgende probleem vanzelf naar je toe komt.\n\nEen tweede project bij een klant die je kent, kost een paar uur praten; een nieuwe klant kan maanden aan gesprekken en offertes kosten. Daarom halen de meeste gevestigde adviseurs het grootste deel van hun werk bij mensen die hen al kennen.',
+        'Zorg voor opvolging (follow-up) als het project klaar is: een belletje na 3 maanden en een bezoek na 6. “Hoe houdt het afzegpercentage zich? Glipt er iets weg?” Geen factuur, geen pitch.\n\nHet beschermt het resultaat, en het is vaak het moment waarop klanten het volgende probleem noemen: “Nu de planning loopt, is ons magazijn de puinhoop.” Jij hoorde het als eerste.',
+        'Dat is een aangrenzend probleem: dicht bij wat je oploste, en gezien tijdens het werk, zoals de onderhoudsachterstand (maintenance backlog) achter de OEE-verliezen, of de slechte data achter de planningsproblemen. Aangrenzende problemen zijn de eerlijke route naar meer werk.\n\nNoteer ze, en breng ze één keer in, meestal bij de afsluiting, het laatste overleg waarin je de resultaten overdraagt: “Twee dingen die ik buiten onze scope zag en die je moet weten.” Laat de klant dan beslissen of hij hulp wil, en van wie.',
+        'Verbreed de relaties. Ken je alleen de sponsor, dan stopt de klantrelatie als zij van baan wisselt.\n\nBouw echt contact op met twee of drie anderen: de controller, de lijnmanager die de baten bezit, de IT-lead. Niet met lunches, maar door in het project nuttig voor ze te zijn.\n\nEn als iemand met wie je werkte naar een ander bedrijf gaat, feliciteer hem; daar komt je volgende klant vaak vandaan.',
+        'De andere bron is een doorverwijzing (referral): een klant die een collega elders zegt “bel haar maar”. Die komen van resultaten die mensen in één zin kunnen navertellen, dus geef ze die zin: “afzeggingen van 14% naar 9%”.\n\nWat misgaat: verdwijnen na de laatste factuur, of in elk overleg iets verkopen. Over gratis opvolging verschillen de meningen; een uur is goodwill, een week is onbetaald werk.\n\nEen scherpe vraag bij de afsluiting: “Wie moet dit resultaat nog meer horen?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Vantage sloot in juni een succesvol project af bij een levensmiddelenproducent: omsteltijden 40% korter. Sindsdien niks. Het is nu oktober.\n\nJe sponsor, de operationeel manager, is net gepromoveerd tot plantdirecteur. Tijdens het project zag je dat hun onderhoud vooral reactief is: zo’n 60% van de onderhoudsuren gaat naar storingen.',
+        text: 'Vantage sloot in juni een succesvol project af bij een levensmiddelenproducent: omsteltijden (de tijd om een lijn om te bouwen naar het volgende product) 40% korter. Sindsdien niks. Het is nu oktober.\n\nJe sponsor, de operationeel manager, is net gepromoveerd tot plantdirecteur. Tijdens het project zag je dat hun onderhoud vooral reactief is, pas repareren als iets kapot is: zo’n 60% van de onderhoudsuren gaat naar storingen.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Feliciteer haar persoonlijk met de promotie en vraag haar voor een kop koffie, niet voor een afspraak. Begin bij het oude resultaat: “Hoe houden de omstellingen zich?” Zijn ze teruggezakt, bied dan een uurtje hulp aan, gratis.\n\nDan, als het moment goed is: “Toen we aan de lijnen werkten, zag ik dat zo’n 60% van de onderhoudsuren naar storingen gaat. Staat dat nu op je lijstje?” Neem geen offerte mee.\n\nHeeft ze interesse, stel dan een korte diagnose voor, net als de vorige keer. En leer de nieuwe operationeel manager kennen die haar oude baan heeft overgenomen.',
       },
@@ -371,9 +384,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een netbeheerder en sluit een project af. De regiomanager zegt: “Mooi werk. We laten het weten als we nog iets nodig hebben.”',
+        scene: 'Het is begin december. Je zit bij een netbeheerder en sluit een project af dat het aantal afgezegde klussen omlaag bracht. De regiomanager zegt: “Mooi werk. We laten het weten als we nog iets nodig hebben.”',
         ask: 'Wat zeg je voordat je vertrekt?',
-        model: '“Dank je. Ik zou je over drie maanden graag bellen om te kijken hoe de cijfers zich houden, zonder verplichtingen. En twee dingen die ik buiten onze scope zag: de overdrachten met de aannemer en de kwaliteit van de storingsdata. Geen van beide is vandaag urgent, maar ze gaan beperken wat je hieruit haalt. Ik loop ze graag met je door wanneer het jou uitkomt.”',
+        model: '“Dank je. Ik zou je over drie maanden graag bellen om te kijken hoe het afzegcijfer zich houdt, zonder verplichtingen. En twee dingen die ik buiten onze scope zag: de overdrachten met de aannemer en de kwaliteit van de storingsdata. Geen van beide is vandaag urgent, maar ze gaan beperken wat je hieruit haalt. Ik loop ze graag met je door wanneer het jou uitkomt.”',
         rubric: [
           'Spreekt een concreet moment af om op te volgen, zonder verkooppraatje',
           'Noemt de aangrenzende problemen één keer en kort',
@@ -384,7 +397,7 @@ export default {
             '“Eerlijk gezegd hebben we dit jaar geen budget voor iets nieuws. Dus er valt niks te bespreken.”',
             '“Ik hou er niet van om op de laatste dag iets verkocht te krijgen. Laten we het gezellig houden.”',
           ],
-          model: '“Helder, en ik verkoop vandaag niks. Ik wil alleen over drie maanden even checken of het annuleringscijfer standhoudt. Doet het dat, mooi. Zo niet, dan praten we over waarom. Mag ik begin maart een halfuur in je agenda zetten?”',
+          model: '“Helder, en ik verkoop vandaag niks. Ik wil alleen over drie maanden even checken of het afzegcijfer standhoudt. Doet het dat, mooi. Zo niet, dan praten we over waarom. Mag ik begin maart een halfuur in je agenda zetten?”',
           rubric: [
             'Erkent het budget en dat hij niets verkocht wil krijgen',
             'Maakt duidelijk dat het om het blijvende resultaat gaat',
@@ -394,9 +407,11 @@ export default {
       },
       sayIt: 'Leg een collega-zzp’er in 60 seconden uit hoe je een klant laat groeien zonder te verkopen.',
       terms: [
-        { term: 'Klantrelatie (account)', def: 'Een klantorganisatie waar je langere tijd mee werkt, over meerdere projecten en mensen.' },
-        { term: 'Aangrenzend probleem', def: 'Een probleem dicht bij wat je oploste, dat je zag terwijl je het werk deed.' },
+        { term: 'Klantrelatie', def: 'Een klantorganisatie waar je langere tijd mee werkt, over meerdere projecten en mensen.' },
         { term: 'Opvolging', def: 'Onbetaald contact na een project om te checken of het resultaat standhoudt, zonder pitch.' },
+        { term: 'Aangrenzend probleem', def: 'Een probleem dicht bij wat je oploste, dat je zag terwijl je het werk deed.' },
+        { term: 'Afsluiting', def: 'Het laatste overleg van een project, waarin de resultaten worden overgedragen en vervolgstappen genoemd.' },
+        { term: 'Doorverwijzing', def: 'Een klant die je aanraadt bij iemand anders, vaak bij een ander bedrijf.' },
       ],
     },
     {
@@ -411,17 +426,17 @@ export default {
         },
       ],
       teach: [
-        'Doe eerst de capaciteitssom. Na vakantie, feestdagen en ziekte blijven er zo’n 200 dagen over. Acquisitie, administratie, schrijven en bijleren kosten 30 tot 40%. Dan houd je 120 tot 140 declarabele dagen over.\n\nBij € 1.200 per dag en 130 dagen is je omzet € 156k, vóór kosten en belasting. Reken de eerste jaren op minder, want je bent meer met acquisitie bezig. Het betekent ook: drie of vier klanten tegelijk, geen acht.',
-        'Positionering is kiezen voor wie je er bent: “Ik help netbeheerders en fabrikanten hun prestatiecijfers om te zetten in sturing waar het management op handelt.” Smal voelt riskant, maar een smalle positie is makkelijker te onthouden en door te vertellen. Een plantdirecteur onthoudt geen “adviseur”; hij onthoudt “die man die ons afzegpercentage heeft opgelost”.',
-        'Cases zijn je sterkste materiaal. Eén A4 per case: de situatie in getallen, wat je deed, het resultaat in getallen, en een zin van de klant, met toestemming. “Afzeggingen van 14% naar 9% in zes maanden.”\n\nDrie stevige cases zijn beter dan een website vol diensten. Verzamel de getallen en de toestemming bij de afsluiting; later is te laat.',
-        'Bouw je netwerk bewust op: oud-collega’s, klanten die verder zijn gegaan, twee of drie partners die werk naar jou doorsturen en jij naar hen. Wint één op de drie offertes en heb je zes projecten per jaar nodig, dan heb je zo’n 18 offertes nodig. Houd dat maandelijks bij; zakt het, dan komen de lege maanden ongeveer een kwartaal later.',
-        'Zeg nee tegen het verkeerde werk: buiten je positie, een sponsor die bevestiging wil in plaats van verandering, of een prijs die alleen werkt als alles meezit. Zo zeg je het: “Hier ben ik niet het sterkst in; ik raad je iemand aan die dat wel is.” Een verkeerd project kost niet alleen de dagen, maar ook de case die je in die tijd had kunnen bouwen.',
+        'Doe eerst de capaciteitssom. Na vakantie, feestdagen en ziekte blijven er zo’n 200 werkdagen over. Acquisitie (nieuw werk zoeken), administratie, schrijven en bijleren kosten 30 tot 40%. Dan houd je 120 tot 140 declarabele dagen over, de dagen die een klant betaalt: een bezettingsgraad van 60 tot 70%.\n\nBij € 1.200 per dag en 130 dagen is je omzet € 156k, vóór kosten en belasting. Reken de eerste jaren op minder. Het betekent ook: drie of vier klanten tegelijk, geen acht.',
+        'Positionering is kiezen voor wie je er bent: “Ik help netbeheerders en fabrikanten hun prestatiecijfers om te zetten in sturing waar het management op handelt.”\n\nSmal voelt riskant, maar een smalle positie is makkelijker te onthouden en door te vertellen. Een plantdirecteur onthoudt geen “adviseur”; hij onthoudt “die man die ons afzegpercentage heeft opgelost”.',
+        'Een case (case history) is je sterkste materiaal. Eén A4 per case: de situatie in getallen, wat je deed, het resultaat in getallen, en een zin van de klant, met toestemming. “Afzeggingen van 14% naar 9% in zes maanden.”\n\nDrie stevige cases zijn beter dan een website vol diensten. Verzamel de getallen en de toestemming bij de afsluiting; later is te laat.',
+        'Bouw je netwerk bewust op: oud-collega’s, klanten die verder zijn gegaan, twee of drie partners die werk naar jou doorsturen en jij naar hen.\n\nHoud dan je pijplijn in de gaten: de gesprekken en offertes die werk gaan worden. Is je hitrate één op de drie offertes en heb je zes projecten per jaar nodig, dan heb je zo’n 18 offertes nodig. Houd het maandelijks bij; zakt het, dan komen de lege maanden ongeveer een kwartaal later.',
+        'Zeg nee tegen het verkeerde werk: buiten je positie, een sponsor die bevestiging wil in plaats van verandering, of een prijs die alleen werkt als alles meezit. Zo zeg je het: “Hier ben ik niet het sterkst in; ik raad je iemand aan die dat wel is.” Een verkeerd project kost niet alleen de dagen, maar ook de case die je in die tijd had kunnen bouwen.\n\nEen scherpe vraag voordat je ja zegt: “Wordt dit een case die ik wil vertellen?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Je eerste jaar als Vantage. Je hebt voor de komende zes maanden 60 declarabele dagen geboekt, bij twee klanten.\n\nEen groot ingenieursbureau biedt je 100 dagen onderaanneming aan tegen € 850 per dag, voor algemene projectadministratie bij een IT-migratie. Een netbeheerder waar je heel graag voor wilt werken, heeft het over een diagnose over drie maanden, misschien 15 dagen à € 1.200.',
+        text: 'Je eerste jaar als Vantage. Je hebt voor de komende zes maanden 60 declarabele dagen geboekt, bij twee klanten.\n\nEen groot ingenieursbureau biedt je 100 dagen onderaanneming aan, werk onder hun contract met de eindklant, tegen € 850 per dag, voor algemene projectadministratie bij een IT-migratie in het komende jaar. Een netbeheerder waar je heel graag voor wilt werken, heeft het over een diagnose over drie maanden, misschien 15 dagen à € 1.200.',
         ask: 'Wat zou jij afwegen, en wat zou je besluiten?',
-        reveal: 'Reken het uit. De onderaanneming is € 85.000 en vult je agenda: vaste inkomsten, maar tegen € 850, buiten je positie, en met bijna geen ruimte meer voor de netbeheerder of voor acquisitie. Met 60 dagen al geboekt maken 100 extra er 160 in een jaar, meer dan je echt kunt declareren, en zonder tijd om cases te bouwen.\n\nOpties: onderhandel het omlaag, bijvoorbeeld twee dagen per week gedurende vier maanden, zo’n 35 dagen of € 29.750, dan blijft er ruimte voor de diagnose en je netwerk. Of zeg nee en steek de tijd in het binnenhalen van de netbeheerder.\n\nIs het geld krap, dan is de halve deal het eerlijke midden. Hoe dan ook: besluit op je positie, niet alleen op je agenda.',
+        reveal: 'Reken het uit. De onderaanneming is € 85.000 en vult je agenda: vaste inkomsten, maar tegen € 850, buiten je positie, en met bijna geen ruimte meer voor de netbeheerder of voor acquisitie. Met 60 dagen al geboekt maken 100 extra er 160 binnen ongeveer een jaar, meer dan de 120 tot 140 die je echt kunt declareren, en zonder tijd om cases te bouwen.\n\nOpties: onderhandel het omlaag, bijvoorbeeld twee dagen per week gedurende vier maanden, zo’n 35 dagen of € 29.750, dan blijft er ruimte voor de diagnose en je netwerk. Of zeg nee en steek de tijd in het binnenhalen van de netbeheerder.\n\nIs het geld krap, dan is de halve deal het eerlijke midden. Hoe dan ook: besluit op je positie, niet alleen op je agenda.',
       },
       said: 'Wat je hoort in projecten: “Dus wat doe je nou precies?”',
       recall: [
@@ -466,7 +481,7 @@ export default {
             '“Prestatiemanagement, dat zegt iedereen. Vorig jaar hadden we een groot bureau binnen en er veranderde niks.”',
             '“En hoe oud ben jij? Waarom zou ik mijn fabriek aan een klein bureau toevertrouwen?”',
           ],
-          model: '“Terecht; genoeg projecten laten niks achter. Wij werken op de vloer met je eigen mensen, en we blijven tot jouw team de review zonder ons draait. Kies één lijn waar de cijfers steeds wegzakken; na een halve dag daar zeg ik je eerlijk of we kunnen helpen.”',
+          model: '“Terecht; genoeg projecten laten niks achter. Wij werken op de vloer met je eigen mensen, en we blijven tot jouw team het prestatieoverleg zonder ons draait. Kies één lijn waar de cijfers steeds wegzakken; na een halve dag daar zeg ik je eerlijk of we kunnen helpen.”',
           rubric: [
             'Reageert rustig op zijn scepsis',
             'Zegt in gewone, concrete woorden wat Vantage doet',
@@ -476,10 +491,12 @@ export default {
       },
       sayIt: 'Leg een vriend in 60 seconden uit waarom een adviseur met 130 declarabele dagen per jaar toch nee moet zeggen tegen werk.',
       terms: [
-        { term: 'Positionering', def: 'Een heldere keuze voor welke klanten en welke problemen je er bent.' },
         { term: 'Declarabele dagen', def: 'De dagen die een klant betaalt, voor een zelfstandige meestal 120 tot 140 per jaar.' },
+        { term: 'Bezettingsgraad', def: 'Declarabele dagen als deel van de beschikbare werkdagen, voor een zelfstandige vaak 60 tot 70%.' },
+        { term: 'Positionering', def: 'Een heldere keuze voor welke klanten en welke problemen je er bent.' },
         { term: 'Case', def: 'Een verhaal van één A4 over een project, met getallen ervoor en erna, gebruikt met toestemming.' },
         { term: 'Pijplijn', def: 'De gesprekken en offertes die de komende maanden je werk worden.' },
+        { term: 'Hitrate', def: 'Het deel van je offertes dat werk oplevert, zoals één op de drie.' },
       ],
     },
   ],
