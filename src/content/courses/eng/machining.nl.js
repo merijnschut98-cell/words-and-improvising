@@ -561,6 +561,7 @@ export default {
     },
     {
       id: 'eng.machining.drill',
+      figure: 'eng.machining.drill',
       title: 'Boren: de basis',
       pre: [
         {
@@ -630,6 +631,7 @@ export default {
     },
     {
       id: 'eng.machining.holes',
+      figure: 'eng.machining.drill',
       title: 'Gaten op maat: ruimen, tappen, kotteren',
       pre: [
         {
@@ -699,6 +701,7 @@ export default {
     },
     {
       id: 'eng.machining.deephole',
+      figure: 'eng.machining.drill',
       title: 'Diep boren: spanen eruit krijgen',
       pre: [
         {
@@ -768,6 +771,7 @@ export default {
     },
     {
       id: 'eng.machining.holequality',
+      figure: 'eng.machining.drill',
       title: 'Gatkwaliteit: positie en haaksheid',
       pre: [
         {
