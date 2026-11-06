@@ -6,21 +6,22 @@ export default {
       title: 'Reading a technical drawing',
       pre: [
         {
-          q: 'You pick up a drawing at a machine. Where do you look first to know whether it’s the valid one?',
+          q: 'You pick up a drawing at a machine. Where do you look first to know whether it’s the valid version?',
           options: ['The largest view', 'The dimension with the tightest tolerance', 'The revision in the title block', 'The notes on the left'],
           answer: 'The revision in the title block',
-          why: 'Most drawing-related scrap comes from someone working to an old revision.',
+          why: 'The title block is the box bottom right; its revision letter says which version you hold. Most drawing-related scrap comes from someone working to an old revision.',
         },
       ],
       teach: [
-        'A part is shown in orthographic views: front, top and side, each looking from one direction.\n\nEurope uses first-angle projection, the US third-angle. A small symbol of a cone in the title block tells you which. Mix them up and you mirror the part: the top view sits below the front view in first angle, above it in third angle.',
-        'A section view shows the inside: an imaginary cut along a line marked A-A with arrows; hatching marks the cut material. A detail view enlarges a small area, for example “Detail B, scale 5:1”. An isometric view is there for orientation only; you never take dimensions from it.',
-        'Scale 1:2 means drawn at half size, 2:1 at double size.\n\nNever measure off a print with a ruler: paper stretches and prints get scaled. Use the dimensions. Many drawings say it outright: “do not scale”.',
-        'The title block, bottom right, is where you start: part number, name, material, scale, projection symbol, general tolerances (for example ISO 2768-mK), drawn, checked and approved by, and the revision letter. The revision table lists what changed in each revision and when.',
+        'A part is shown in orthographic views: flat, straight-on pictures from the front, top and side, each looking from one direction, without perspective.\n\nEurope uses first-angle projection, the US third-angle. A small symbol of a cone tells you which. Mix them up and you mirror the part: the top view sits below the front view in first angle, above it in third angle.',
+        'A section view shows the inside: an imaginary cut along a line marked A-A with arrows. Hatching, thin diagonal lines, marks the material the cut passes through.\n\nA detail view enlarges a small area, for example “Detail B, scale 5:1”. An isometric view, the 3D-looking picture in a corner, is there for orientation only; you never take dimensions from it.',
+        'Scale says how big the drawing is compared with the real part: 1:2 means drawn at half size, 2:1 at double size.\n\nNever measure off a print with a ruler: paper stretches and prints get shrunk to fit. Read the dimensions, the numbers on the drawing. Many drawings say it outright: “do not scale”.',
+        'The title block, bottom right, is where you start: part number, name, material, scale, projection symbol, the general tolerance, drawn, checked and approved by, and the revision letter. The revision table lists what changed in each revision and when.\n\nThe general tolerance covers every dimension without its own tolerance. Under ISO 2768-m, a 50 mm dimension may be 49.7 to 50.3 mm.',
+        'What goes wrong is rarely reading; it is version control. An old print in a plastic sleeve at the machine beats any procedure. Good plants show drawings on a screen, pulled from the PDM system (the database that holds the released drawings).\n\nEngineers now argue about dropping 2D drawings for a 3D model that carries its own tolerances. A sharp question: when a revision is released, how do the old prints leave the floor?',
       ],
       example: {
         kind: 'worked',
-        text: 'Drawing 4711-203, bracket, S235 steel, scale 1:1, ISO 2768-m, revision C. The revision table: rev B (March 2024) changed hole Ø8.5 to Ø9; rev C (January 2025) changed the bend radius from R2 to R3.\n\nAt the press brake, the setter works from a printed rev B kept in a plastic sleeve. Result: 400 brackets with R2 bends, rejected at the customer.\n\nThe fix is not “be more careful”: it’s drawings on a screen at the machine, pulled from the PDM system, so only the current revision exists on the floor.',
+        text: 'Drawing 4711-203, bracket, S235 steel (a common structural steel), scale 1:1, ISO 2768-m, revision C. The revision table: rev B (March 2024) changed hole Ø8.5 to Ø9; rev C (January 2025) changed the bend radius from R2 to R3.\n\nAt the press brake, the machine that bends sheet metal, the setter works from a printed rev B kept in a plastic sleeve. Result: 400 brackets with R2 bends, rejected at the customer.\n\nThe fix is not “be more careful”: it’s drawings on a screen at the machine, pulled from the PDM system, so only the current revision exists on the floor.',
       },
       said: 'What engineers say: “Which rev are you working from? Because the R3 came in with rev C and that print says B.”',
       recall: [
@@ -32,7 +33,7 @@ export default {
           why: '1:5 means the drawing is a fifth of real size: 40 × 5 = 200 mm. In practice you read the dimension instead.',
         },
         {
-          q: 'What does hatching in a view mean?',
+          q: 'What does hatching (thin diagonal lines) in a view mean?',
           options: ['The surface must be painted', 'Material that has been cut through in a section', 'A welded area', 'A hidden edge'],
           answer: 'Material that has been cut through in a section',
           why: 'Hatching shows the solid material where the imaginary cut passes.',
@@ -44,7 +45,7 @@ export default {
           why: 'The small cone symbol states the convention; never assume it.',
         },
         {
-          q: 'A dimension on the drawing has no tolerance. Where do you find what applies?',
+          q: 'A dimension on the drawing has no tolerance next to it. Where do you find what applies?',
           options: ['In the revision table', 'In the isometric view', 'In the material specification', 'In the general tolerance note in the title block'],
           answer: 'In the general tolerance note in the title block',
           why: 'The title block states the general tolerance, such as ISO 2768-m.',
@@ -66,6 +67,8 @@ export default {
         { term: 'Title block', def: 'Box bottom right with part number, material, scale, tolerances and revision.' },
         { term: 'Revision', def: 'The version of a drawing; each change gets a new letter and a line in the table.' },
         { term: 'First-angle projection', def: 'European view layout; the top view sits below the front view.' },
+        { term: 'Scale', def: 'Drawing size compared with real size: 1:2 is half size, 2:1 double.' },
+        { term: 'General tolerance', def: 'The tolerance for every dimension without its own, stated in the title block (for example ISO 2768-m).' },
       ],
     },
     {
@@ -73,17 +76,18 @@ export default {
       title: 'Tolerances on drawings and GD&T',
       pre: [
         {
-          q: 'A hole has a position tolerance of Ø0.2 relative to datums A, B and C. What shape is the zone its centre must fall in?',
+          q: 'A hole has a position tolerance of Ø0.2 mm relative to datums A, B and C (the reference surfaces the part is measured from). What shape is the zone its centre must fall in?',
           options: ['A square of 0.2 × 0.2', 'A circle of Ø0.2', 'A line 0.2 long', 'A rectangle 0.1 × 0.2'],
           answer: 'A circle of Ø0.2',
-          why: 'Position zones are round, which matches how a bolt actually fits a hole.',
+          why: 'Position zones are round, which matches how a bolt actually fits a hole: it can shift the same amount in every direction.',
         },
       ],
       teach: [
-        'A ± tolerance controls size. It does not control form (flat, round, straight) or where features sit relative to each other.\n\nGD&T (geometric dimensioning and tolerancing; ISO GPS in Europe, ASME Y14.5 in the US) adds that, in a feature control frame: a box with a symbol, a tolerance and the datums it refers to.',
-        'Datums A, B and C are the reference features, marked with a triangle. They’re the surfaces the part is located on, like the corner of a room.\n\nPrimary A: the part rests on it (three points). Secondary B: it’s pushed against it (two points). Tertiary C: one point. The order matters, because that’s how the part sits in the fixture and on the CMM (coordinate measuring machine).',
-        'Symbols in plain words. Flatness: the surface lies between two planes 0.05 apart. Perpendicularity: square to a datum. Parallelism: parallel to a datum.\n\nPosition: the centre of a hole within a round zone around its exact spot. Runout: how much a surface wobbles when the part turns on its axis. Profile: a surface within a band around its ideal shape.',
-        'Boxed dimensions are basic: exact theoretical values without ±; the tolerance sits in the frame. A round zone that just encloses a ±0.1 square (Ø0.28) has 57% more area, so more parts that will fit get accepted.\n\nAn Ⓜ in the frame means maximum material condition (MMC): the hole gets bonus tolerance as it measures bigger.',
+        'A ± tolerance, how much a size may deviate, controls size. It does not control form (flat, round, straight) or where features sit relative to each other.\n\nGD&T (geometric dimensioning and tolerancing; ISO GPS in Europe, ASME Y14.5 in the US) adds that, in a feature control frame: a small box with a symbol, a tolerance and the datums it refers to.',
+        'A datum is a reference feature the part is located on, marked with a triangle and a letter. Think of the corner of a room.\n\nPrimary A: the part rests on it (three points). Secondary B: it’s pushed against it (two points). Tertiary C: one point. The order matters, because that’s how the part sits in the fixture and on the CMM (coordinate measuring machine, a machine that touches the part with a probe and computes positions).',
+        'Symbols in plain words. Flatness: the surface lies between two planes 0.05 apart. Perpendicularity: square to a datum. Parallelism: parallel to a datum.\n\nA position tolerance: the centre of a hole within a round zone around its exact spot. Runout: how much a surface wobbles when the part turns on its axis. Profile: a surface within a band around its ideal shape.',
+        'A basic dimension is shown in a box: an exact theoretical value without ±; the tolerance sits in the frame. A round zone that just encloses a ±0.1 square (Ø0.28) has 57% more area, so more parts that will fit get accepted.\n\nAn Ⓜ in the frame means maximum material condition (MMC), the size with the most material: the smallest hole. As the hole measures bigger, it gets bonus tolerance.',
+        'Engineers argue about the default rules. Under ASME, size also limits form (Rule #1: at its maximum material size a feature must have perfect form); under ISO 8015, size and form are independent unless the drawing says otherwise. Same drawing, two readings.\n\nThe usual failure: supplier and customer measure from different datums, and both are right. A sharp question: which standard does this drawing invoke, and did we align on A, B and C in that order?',
       ],
       example: {
         kind: 'worked',
@@ -96,10 +100,10 @@ export default {
           number: 0.2,
           tolerance: 0.005,
           unit: 'mm',
-          why: '√(0.06² + 0.08²) = 0.10; as a diameter that is 2 × 0.10 = 0.20 mm.',
+          why: 'Distance √(0.06² + 0.08²) = 0.10 mm; position is stated as a diameter, so 2 × 0.10 = 0.20 mm.',
         },
         {
-          q: 'What is datum A in a frame that reads A B C?',
+          q: 'What is datum A in a feature control frame that reads A B C?',
           options: ['The tightest feature on the part', 'The primary datum the part is located on first', 'The feature being toleranced', 'The last surface machined'],
           answer: 'The primary datum the part is located on first',
           why: 'The order of datums is the order in which the part is located.',
@@ -133,6 +137,8 @@ export default {
         { term: 'Feature control frame', def: 'Box with a GD&T symbol, a tolerance and the datums it refers to.' },
         { term: 'Position tolerance', def: 'Round zone around the exact location in which a feature centre must lie.' },
         { term: 'Basic dimension', def: 'Exact boxed value without ±; its tolerance sits in a frame.' },
+        { term: 'Maximum material condition (MMC)', def: 'The size with the most material (smallest hole, biggest pin); with Ⓜ a feature gains bonus tolerance as it departs from it.' },
+        { term: 'CMM', def: 'Coordinate measuring machine: probes a part and computes positions relative to the datums.' },
       ],
     },
     {
@@ -140,26 +146,27 @@ export default {
       title: 'Reading a P&ID',
       pre: [
         {
-          q: 'An instrument bubble on a P&ID reads “PT 101”. What is it?',
+          q: 'An instrument bubble (a small circle with letters) on a P&ID, a process plant’s piping diagram, reads “PT 101”. What is it?',
           options: ['Pump 101', 'Pipe tee 101', 'Pressure transmitter in loop 101', 'Temperature probe on line 101'],
           answer: 'Pressure transmitter in loop 101',
           why: 'First letter is the measured variable (P, pressure); next letters the function (T, transmit); the number is the loop.',
         },
       ],
       teach: [
-        'A P&ID (piping and instrumentation diagram) is a schematic of pipes, equipment, valves and instruments in a process plant: food, chemicals, water, energy.\n\nIt is not to scale and doesn’t show real routing. It shows what is connected to what, and how it is measured and controlled. Changes to the plant start with a marked-up P&ID.',
-        'Lines: a thick solid line is process pipe, with a line number such as DN150-CW-1203 (size, medium, number). A dashed line is an electrical signal. A line with double slashes is pneumatic. Arrows show flow direction.\n\nEquipment has its own tags: P-101 a pump, T-101 a tank, E-101 a heat exchanger.',
-        'Valves are drawn as a bowtie. Filled in black: normally closed.\n\nA bowtie with a dome on top is a control valve with a pneumatic actuator. A check valve lets flow go one way. A PSV is a pressure safety valve, the last line of defence against overpressure.',
-        'Instrument tags follow ISA 5.1. First letter: what is measured: F flow, P pressure, T temperature, L level. Next letters: what it does: I indicate, T transmit, C control, A alarm, S switch, V valve.\n\nFT 201 is a flow transmitter; TIC 305 a temperature indicating controller; LAH a level alarm high. A plain circle is in the field; a circle in a square is on the screen of the DCS, the plant’s central control system.',
+        'A P&ID (piping and instrumentation diagram) is a schematic of pipes, equipment, valves and instruments in a process plant: food, chemicals, water, energy.\n\nIt is not to scale and doesn’t show the real pipe routes. It shows what is connected to what, and how it is measured and controlled. Changes to the plant start with a marked-up P&ID.',
+        'Lines: a thick solid line is process pipe, with a line number such as DN150-CW-1203 (nominal size 150 mm, cooling water, number 1203). A dashed line is an electrical signal. A line with double slashes is pneumatic, a compressed-air signal. Arrows show flow direction.\n\nEquipment has its own tags: P-101 a pump, T-101 a tank, E-101 a heat exchanger.',
+        'Valves are drawn as a bowtie. Filled in black: normally closed.\n\nA bowtie with a dome on top is a control valve: a valve that a controller opens and closes, moved by a pneumatic actuator (an air-driven piston or diaphragm). A check valve lets flow go one way only. A PSV, a pressure safety valve, is a spring-loaded valve that pops open at a set pressure: the last line of defence against overpressure.',
+        'Every instrument has a tag number, built by ISA 5.1. First letter: what is measured: F flow, P pressure, T temperature, L level. Next letters: what it does: I indicate, T transmit, C control, A alarm, S switch, V valve.\n\nFT 201 is a flow transmitter, sending a 4–20 mA signal; TIC 305 a temperature indicating controller. A plain circle is in the field; a circle in a square is on the screen of the DCS, the plant’s central control system.',
+        'The classic failure: the P&ID no longer matches the plant. A valve added in a weekend, a bypass never drawn. Engineers call an up-to-date drawing as-built, and walking the plant to check it a walkdown.\n\nCompanies also bend ISA 5.1 their own way, so always read the legend sheet, the first page that defines the symbols. A sharp question: when was this P&ID last walked down?',
       ],
       example: {
         kind: 'worked',
-        text: 'Tank T-101 holds 20 m³. On its side sits LT 101, a level transmitter. A dashed line runs to LIC 101, a circle in a square: the level controller on the DCS. Another dashed line runs to LV 101, a control valve on the outlet.\n\nReading: the controller keeps the level at setpoint by opening or closing the outlet. LAH 101 warns the operator at 80%, so 16 m³.\n\nSeparately, LSHH 102, a high-high switch at 95%, is wired to close inlet valve XV 103: an independent safety function, not part of normal control.',
+        text: 'Tank T-101 holds 20 m³. On its side sits LT 101, a level transmitter. A dashed line runs to LIC 101, a circle in a square: the level controller on the DCS. Another dashed line runs to LV 101, a control valve on the outlet.\n\nReading: the controller keeps the level at setpoint, its target value, by opening or closing the outlet. LAH 101, a level alarm high, warns the operator at 80%, so 16 m³.\n\nSeparately, LSHH 102, a high-high switch at 95%, is wired to close inlet valve XV 103: an independent safety function, not part of normal control.',
       },
       said: 'What engineers say: “LIC one-oh-one throttles the outlet, but the high-high on one-oh-two trips XV one-oh-three. Don’t confuse the control loop with the trip.”',
       recall: [
         {
-          q: 'A 20 m³ tank has its level alarm high (LAH) at 80%. At what volume does the alarm go off, in m³?',
+          q: 'A 20 m³ tank has its level alarm high (LAH) at 80% of its volume. At what volume does the alarm go off, in m³?',
           number: 16,
           tolerance: 0.1,
           unit: 'm³',
@@ -181,11 +188,11 @@ export default {
           q: 'What does LSHH stand for?',
           options: ['Level sensor, high heat', 'Level switch high-high', 'Line steam, high head', 'Low setpoint, hold high'],
           answer: 'Level switch high-high',
-          why: 'L level, S switch, HH the second, higher alarm point, usually a trip.',
+          why: 'L level, S switch, HH the second, higher alarm point, usually a trip that shuts something down.',
         },
       ],
       situation: {
-        scene: 'You’re in a project meeting at a dairy. A process engineer has the P&ID on the table and proposes removing a manual bypass valve around a control valve “because nobody uses it”.',
+        scene: 'You’re in a project meeting at a dairy. A process engineer has the P&ID on the table and proposes removing a manual bypass valve (a hand valve in a pipe that goes around the control valve) “because nobody uses it”.',
         ask: 'What do you ask before the change goes ahead?',
         model: 'Is this P&ID as-built, does it match what’s actually in the plant today? What happens when the control valve fails or needs maintenance: is the bypass how they keep running? And is anything in this loop part of a safety function or an interlock, so that this needs a formal change review?',
         rubric: [
@@ -200,6 +207,8 @@ export default {
         { term: 'Tag number', def: 'Code like PT 101: measured variable, function, loop number.' },
         { term: 'Transmitter', def: 'Instrument that measures and sends a signal, usually 4–20 mA, to the control system.' },
         { term: 'Control valve', def: 'Valve with an actuator that a controller opens and closes to steer the process.' },
+        { term: 'PSV', def: 'Pressure safety valve: opens by itself at a set pressure to protect equipment from overpressure.' },
+        { term: 'DCS', def: 'Distributed control system: the central control and operator screens of a process plant.' },
       ],
     },
     {
@@ -215,19 +224,20 @@ export default {
         },
       ],
       teach: [
-        'Every control loop has four parts. A sensor measures the process value (PV), say 72.4 °C. The controller compares it with the setpoint (SP), say 75 °C, and computes the error: 2.6 °C.\n\nAn actuator, for example a steam valve, changes the process: that’s the controller output (OP), 0 to 100%. And the process responds, with some delay.',
-        'Closed loop means feedback: measure, compare, correct, and again, many times a second.\n\nOpen loop means no measurement of the result: a timer, a fixed valve position, a recipe that says “heat for 10 minutes”. Open loop can’t correct for disturbances such as colder product or lower steam pressure.',
-        'Every controller faceplate shows three numbers: SP, PV and OP. Together they tell the story.\n\nPV below SP with OP at 100%: the actuator is saturated and the loop can’t do more; the valve is too small or the steam supply is low. OP at 0% and PV still above SP: the disturbance is bigger than the actuator can handle.',
-        'Modes: AUTO, the controller acts. MAN, the operator sets the output by hand. CAS, the setpoint comes from another controller.\n\nStudies keep finding around a third of loops in plants running in manual or performing badly. “How many loops run in manual, and why?” is a question that gets an engineer’s attention.',
+        'Every control loop has four parts. A sensor measures the process value (PV), say 72.4 °C. The controller compares it with the setpoint (SP), the target, say 75 °C, and computes the error: SP − PV = 2.6 °C.\n\nAn actuator, the part that acts, for example a steam valve, changes the process. What the controller sends it is the output (OP), 0 to 100%. And the process responds, with some delay.',
+        'Closed loop means feedback: measure, compare, correct, and again, many times a second.\n\nOpen loop means no measurement of the result: a timer, a fixed valve position, a recipe that says “heat for 10 minutes”. Open loop can’t correct for disturbances, outside changes such as colder product or lower steam pressure.',
+        'Every controller faceplate, its small window on the control screen, shows three numbers: SP, PV and OP. Together they tell the story.\n\nPV below SP with OP at 100%: the actuator is saturated, fully open, and the loop can’t do more; the valve is too small or the steam supply is low. OP at 0% and PV still above SP: the disturbance is bigger than the actuator can handle.',
+        'Modes: AUTO, the controller acts. MAN (manual), the operator sets the output by hand. CAS (cascade), the setpoint comes from another controller.\n\nSurveys since the 1990s keep finding around a third of loops in plants running in manual or performing badly. “How many loops run in manual, and why?” is a question that gets an engineer’s attention.',
+        'The delay matters. Dead time is the time before the PV starts to move at all; lag is how slowly it then follows. The longer the delays, the gentler the controller must be, or the loop swings.\n\nIn the figure you can try it: a tank level with a valve, a controller in Hand, P or PI, and a disturbance on the outlet. A sharp question on any loop: what happens to the PV when someone opens a valve downstream?',
       ],
       example: {
         kind: 'worked',
-        text: 'A milk pasteuriser must hold product at 72 °C for 15 seconds. TT 401 reads 71.2 °C. TIC 401 has a setpoint of 72.5 °C, so the error is 1.3 °C. The output rises from 45% to 58%, hot-water valve TV 401 opens further, and in about 40 seconds the temperature reaches 72.5.\n\nSeparately, if the temperature drops below 72.0 °C, a divert valve sends the milk back to the balance tank. That is a food safety function, independent of the control loop.',
+        text: 'A milk pasteuriser must hold product at 72 °C for 15 seconds. TT 401, the temperature transmitter, reads 71.2 °C. TIC 401, the controller, has a setpoint of 72.5 °C, so the error is 1.3 °C. The output rises from 45% to 58%, hot-water valve TV 401 opens further, and in about 40 seconds the temperature reaches 72.5.\n\nSeparately, if the temperature drops below 72.0 °C, a divert valve sends the milk back to the balance tank. That is a food safety function, independent of the control loop.',
       },
       said: 'What engineers say: “That loop’s been in manual at forty percent for months. Nobody trusts it in auto, so the operators just babysit it.”',
       recall: [
         {
-          q: 'The setpoint is 80 °C and the process value is 76.5 °C. What is the error, in °C?',
+          q: 'The setpoint is 80 °C and the process value is 76.5 °C. What is the error (SP − PV), in °C?',
           number: 3.5,
           tolerance: 0.05,
           unit: '°C',
@@ -253,7 +263,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a client with a spray dryer. Operators complain that the outlet temperature swings, which affects product moisture. On the DCS you see that TIC 210 is in MAN at 40% output.',
+        scene: 'You’re at a client with a spray dryer, which turns a liquid into powder with hot air. Operators complain that the outlet temperature swings, which affects product moisture. On the DCS you see that TIC 210 is in MAN at 40% output.',
         ask: 'What do you ask?',
         model: 'Why is this loop in manual, and since when? If it was put in manual because it oscillated in auto, the cause might be the tuning or a sticky valve, and that’s fixable. As long as it’s in manual, every change in feed or weather is corrected by hand, so the swings make sense. Who could look at it with the operators this week?',
         rubric: [
@@ -267,7 +277,9 @@ export default {
         { term: 'Setpoint (SP)', def: 'The value the controller is trying to reach.' },
         { term: 'Process value (PV)', def: 'The measured actual value.' },
         { term: 'Output (OP)', def: 'What the controller sends to the actuator, 0 to 100%.' },
+        { term: 'Error', def: 'Setpoint minus process value: how far the process is from its target.' },
         { term: 'Closed loop', def: 'Control with feedback: measure, compare, correct, repeat.' },
+        { term: 'Open loop', def: 'Control without measuring the result, such as a timer; it can’t correct disturbances.' },
       ],
     },
     {
@@ -275,30 +287,31 @@ export default {
       title: 'PID control intuition',
       pre: [
         {
-          q: 'A controller has only P action, no I. Where does the process value settle after a disturbance?',
+          q: 'A controller has only P action (it reacts in proportion to the error), no I. Where does the process value settle after a disturbance?',
           options: ['Exactly at the setpoint', 'Slightly away from the setpoint: an offset', 'It oscillates forever', 'At zero'],
           answer: 'Slightly away from the setpoint: an offset',
           why: 'P needs an error to produce output, so a small error always remains.',
         },
       ],
       teach: [
-        'P (proportional): output change in proportion to the current error. With a gain of 2, an error of 5% gives 10% more output. More gain means a stronger, faster reaction.\n\nPure P leaves an offset, because it needs some error to produce output. Too much gain makes the loop oscillate.',
-        'I (integral): adds up the error over time and keeps pushing until the error is zero. It removes the offset. Too much I gives overshoot and slow swinging.\n\nIntegral windup: if the actuator sits at its limit for a long time, the I term keeps growing, and the loop overshoots badly afterwards.',
-        'D (derivative): reacts to how fast the error is changing, so it brakes before overshoot. It’s sensitive to noise on the measurement, so most industrial loops run PI, with D switched off.',
-        'On a trend: a sluggish loop crawls to setpoint over minutes without overshoot. An aggressive loop overshoots and then swings, slowly dying out. An unstable loop swings bigger and bigger.\n\nBut oscillation isn’t always tuning: a sticking valve (stiction) gives a sawtooth on the output and square-ish steps in the process value. Check the valve before you retune.',
+        'A PID controller combines three actions, P, I, D. Each looks at the error, the gap between setpoint and process value, in its own way.\n\nP (proportional): the output changes in proportion to the current error. The gain sets how much: with a gain of 2, an error of 5% gives 10% more output. More gain means a stronger, faster reaction.',
+        'Pure P leaves an offset: a steady error that never goes away, because P needs some error to produce output. Too much gain makes the loop oscillate, swing up and down.\n\nI (integral): adds up the error over time and keeps pushing until the error is zero. It removes the offset. Too much I gives overshoot, the value shooting past the setpoint, and slow swinging.',
+        'Integral windup: if the actuator sits at its limit for a long time, the I term keeps growing, and the loop overshoots badly afterwards. Modern controllers have anti-windup that stops the growth.\n\nD (derivative): reacts to how fast the error is changing, so it brakes before overshoot. It’s sensitive to noise on the measurement, so most industrial loops run PI, with D switched off.',
+        'On a trend: a sluggish loop crawls to setpoint over minutes without overshoot. An aggressive loop overshoots and then swings, slowly dying out. An unstable loop swings bigger and bigger.\n\nBut oscillation isn’t always tuning: a sticking valve (stiction, from static friction) gives a sawtooth on the output and square-ish steps in the process value. Check the valve before you retune.',
+        'Tuning is choosing the gain and the integral time. Engineers argue about methods: the classic Ziegler-Nichols rules (1942) aim for each swing to be a quarter of the one before, which is aggressive. Many process plants now prefer lambda tuning, where you choose how fast the loop should settle.\n\nIn practice many loops still run on factory defaults. A sharp question: when was this loop last tuned, and was the valve tested first?',
       ],
       example: {
         kind: 'worked',
-        text: 'A PI level loop on a buffer tank, setpoint 60%. The trend shows the level swinging between 52 and 68% every 4 minutes, with the output swinging between 20 and 80%.\n\nThe control engineer puts the loop in manual at 50%: the swinging stops, so the loop itself causes it. Next, valve test: step the output from 50 to 51%, nothing moves; to 53%, the valve jumps. That’s about 2 to 3% stiction.\n\nThe fix is the valve (packing, positioner), not new tuning.',
+        text: 'A PI level loop on a buffer tank, setpoint 60%. The trend shows the level swinging between 52 and 68% every 4 minutes, with the output swinging between 20 and 80%.\n\nThe control engineer puts the loop in manual at 50%: the swinging stops, so the loop itself causes it. Next, valve test: step the output from 50 to 51%, nothing moves; to 53%, the valve jumps. That’s about 2 to 3% stiction.\n\nThe fix is the valve (packing, the seal around the valve stem, and the positioner, which sets the valve to the controller’s signal), not new tuning.',
       },
-      said: 'What engineers say: “Before you touch the tuning, put it in manual and step the valve. Nine times out of ten it’s a sticky valve, not the PID.”',
+      said: 'What engineers say: “Before you touch the tuning, put it in manual and step the valve. Very often it’s a sticky valve, not the PID.”',
       recall: [
         {
-          q: 'A P-only controller has a gain of 2. The error increases by 5%. By how many % does the output change?',
+          q: 'A P-only controller has a gain of 2. The error increases by 5% (of the measuring range). By how many % does the output change?',
           number: 10,
           tolerance: 0.1,
           unit: '%',
-          why: 'Output change = gain × error = 2 × 5 = 10%.',
+          why: 'Output change = gain × error change = 2 × 5 = 10%.',
         },
         {
           q: 'Which part of PID removes the steady offset?',
@@ -332,8 +345,10 @@ export default {
       sayIt: 'Explain to a production manager in 60 seconds what P, I and D each do, in plain words.',
       terms: [
         { term: 'P, I, D', def: 'Proportional (react to error), integral (remove offset), derivative (brake on fast change).' },
+        { term: 'Gain', def: 'How strongly the output reacts to the error: gain 2 turns a 5% error into 10% output.' },
         { term: 'Offset', def: 'A steady error that remains with P-only control.' },
         { term: 'Overshoot', def: 'The process value going past the setpoint before settling.' },
+        { term: 'Integral windup', def: 'The integral growing while the actuator is at its limit, causing a big overshoot afterwards.' },
         { term: 'Stiction', def: 'A valve that sticks and then jumps, causing oscillation.' },
       ],
     },
@@ -350,18 +365,19 @@ export default {
       ],
       teach: [
         'A PLC (programmable logic controller) is an industrial computer that reads inputs (sensors, buttons) and sets outputs (motors, valves) in a fast cycle, often every 10 ms. Common makes: Siemens, Rockwell (Allen-Bradley), Beckhoff, Omron.\n\nMachine sequences are written as steps: step 10 clamp, step 20 drill, step 30 unclamp, each waiting for a condition.',
-        'The HMI (human-machine interface) is the touchscreen at the machine: start, stop, recipes, alarms, setpoints.\n\nSCADA supervises many PLCs: overview screens, trends, alarms for a whole plant or a whole grid; grid operators run SCADA for their substations. In process plants a DCS combines control and screens in one system.',
-        'An interlock is a condition that blocks an action: the pump can’t start with the suction valve closed. Process interlocks protect equipment and product.\n\nSafety functions protect people and are designed separately: safety PLC or safety relays, rated to ISO 13849 (performance level a to e) or IEC 62061 and 61511 (SIL). They are never bypassed with a wire bridge.',
-        'Before changing a sequence, ask: what does this step protect? Is it part of a safety function, which needs a risk assessment and validation? Who owns the code, and is there a backup? How do we test and roll back?\n\nAnd ask for the bypass list: many plants have sensors “temporarily” bypassed for years.',
+        'The HMI (human-machine interface) is the touchscreen at the machine: start, stop, recipes, alarms, setpoints.\n\nSCADA (supervisory control and data acquisition) supervises many PLCs: overview screens, trends, alarms for a whole plant or a whole grid; grid operators run SCADA for their substations. In process plants a DCS combines control and screens in one system.',
+        'An interlock is a condition that blocks an action: the pump can’t start with the suction valve closed. Process interlocks protect equipment and product.\n\nA safety function protects people and is designed separately: a safety PLC or safety relays, rated to ISO 13849 (performance level, PL a to e) or IEC 62061 and 61511 (SIL, safety integrity level): the higher the level, the more reliable the function must be. It is never bypassed with a wire bridge.',
+        'Before changing a sequence, ask: what does this step protect? Is it part of a safety function, which needs a risk assessment and validation? Who owns the code, and is there a backup? How do we test and roll back?\n\nAnd ask for the bypass list. A bypass is a sensor or interlock deliberately switched off or bridged; many plants have them “temporarily” in place for years.',
+        'Defeating guards is common: a 2006 survey by the German statutory accident insurers (HVBG) estimated that over a third of protective devices on machines, about 37%, were manipulated, temporarily or permanently. Usually because the guard gets in the way of the job.\n\nSo the fix is often a better design, not a stricter rule. A sharp question on a plant walk: which bypasses are active right now, who approved them, and when do they expire?',
       ],
       example: {
         kind: 'worked',
-        text: 'A packaging machine runs at 28 seconds a cycle. The team wants to start the pusher before sensor B12 confirms “box in position”, saving 3 seconds.\n\nThe controls engineer checks: step 40 waits for B12 to prevent jams, a process interlock, not a safety function. The infeed light curtain is wired to the safety PLC (PL d) and stays untouched.\n\nPlan: back up program v2.3, change in test mode, run one shift, measure. Result: cycle 25 seconds, jams still 2 per shift. On an 8-hour shift that’s about 123 extra cycles.',
+        text: 'A packaging machine runs at 28 seconds a cycle. The team wants to start the pusher before sensor B12 confirms “box in position”, saving 3 seconds.\n\nThe controls engineer checks: step 40 waits for B12 to prevent jams, a process interlock, not a safety function. The infeed light curtain, a row of light beams that stops the machine when someone reaches in, is wired to the safety PLC (PL d) and stays untouched.\n\nPlan: back up program v2.3, change in test mode, run one shift, measure. Result: cycle 25 seconds, jams still 2 per shift. On an 8-hour shift that’s about 123 extra cycles.',
       },
       said: 'What engineers say: “Sure, we can skip that wait step, it’s just a process interlock. But the light curtain’s on the safety PLC, nobody touches that without a risk assessment.”',
       recall: [
         {
-          q: 'A machine’s cycle time goes from 28 to 25 seconds per cycle. How many extra cycles do you get in an 8-hour shift (28,800 seconds)?',
+          q: 'A machine’s cycle time goes from 28 to 25 seconds per cycle. How many extra cycles do you get in an 8-hour shift (28,800 seconds), assuming it runs the whole shift?',
           number: 123,
           tolerance: 2,
           unit: 'cycles',
@@ -387,7 +403,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re on a plant walk at a building materials client. At the palletiser, a sensor is bypassed with a wire bridge in the cabinet. The team leader says: “It gave false stops, so maintenance bridged it last year.”',
+        scene: 'You’re on a plant walk at a building materials client. At the palletiser, the machine that stacks products onto pallets, a sensor is bypassed with a wire bridge in the cabinet. The team leader says: “It gave false stops, so maintenance bridged it last year.”',
         ask: 'What do you ask?',
         model: 'What does that sensor protect: is it part of the guarding or just a process check? Who approved the bypass, and is it on a bypass register? If it’s safety-related, this needs fixing today; if not, it still needs a proper repair of the false stops rather than a permanent bridge. I’d like the maintenance lead and the safety officer to look at it now.',
         rubric: [
@@ -401,7 +417,9 @@ export default {
         { term: 'PLC', def: 'Industrial controller that runs machine logic in a fast cycle.' },
         { term: 'HMI', def: 'The operator screen at a machine.' },
         { term: 'SCADA', def: 'Supervisory system over many PLCs: overview, trends, alarms.' },
+        { term: 'Interlock', def: 'A condition that blocks an action to protect equipment or product, such as no pump start with a closed suction valve.' },
         { term: 'Safety function', def: 'Separately designed and rated function that protects people, such as a light curtain stop.' },
+        { term: 'Bypass', def: 'A sensor or interlock deliberately switched off or bridged; it needs approval, a register and an end date.' },
       ],
     },
   ],

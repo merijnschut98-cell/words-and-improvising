@@ -6,21 +6,22 @@ export default {
       title: 'Een technische tekening lezen',
       pre: [
         {
-          q: 'Je pakt een tekening bij een machine. Waar kijk je eerst om te weten of het de geldige is?',
+          q: 'Je pakt een tekening bij een machine. Waar kijk je eerst om te weten of het de geldige versie is?',
           options: ['Het grootste aanzicht', 'De maat met de nauwste tolerantie', 'De revisie in de stempel', 'De notities aan de linkerkant'],
           answer: 'De revisie in de stempel',
-          why: 'De meeste afkeur door tekeningen komt doordat iemand werkt met een oude revisie.',
+          why: 'De stempel is het vak rechtsonder; de revisieletter erin zegt welke versie je hebt. De meeste afkeur door tekeningen komt doordat iemand werkt met een oude revisie.',
         },
       ],
       teach: [
-        'Een onderdeel staat getekend in aanzichten: vooraanzicht, bovenaanzicht en zijaanzicht, elk vanuit één richting.\n\nEuropa gebruikt de Europese projectie (first angle), de VS de Amerikaanse (third angle). Een klein kegelsymbool in de stempel zegt welke. Haal je ze door elkaar, dan spiegel je het onderdeel: in de Europese projectie staat het bovenaanzicht ónder het vooraanzicht, in de Amerikaanse erboven.',
-        'Een doorsnede laat de binnenkant zien: een denkbeeldige snede langs een lijn A-A met pijlen; arcering markeert het doorgesneden materiaal. Een detail vergroot een klein stuk, bijvoorbeeld “Detail B, schaal 5:1”. Een isometrisch aanzicht is alleen voor de oriëntatie; daar haal je nooit maten uit.',
-        'Schaal 1:2 betekent op halve grootte getekend, 2:1 op dubbele grootte.\n\nMeet nooit met een liniaal op een print: papier rekt en prints worden geschaald. Gebruik de maten. Op veel tekeningen staat het er gewoon op: “niet schalen”.',
-        'De stempel (titelhoek) rechtsonder is waar je begint: tekeningnummer, benaming, materiaal, schaal, projectiesymbool, algemene toleranties (bijvoorbeeld ISO 2768-mK), getekend, gecontroleerd en vrijgegeven door, en de revisieletter. De revisietabel laat zien wat er per revisie veranderd is, en wanneer.',
+        'Een onderdeel staat getekend in aanzichten (views): platte plaatjes recht van voren, van boven en van opzij, elk vanuit één richting, zonder perspectief.\n\nEuropa gebruikt de Europese projectie, de VS de Amerikaanse (third angle). Een klein kegelsymbool zegt welke. Haal je ze door elkaar, dan spiegel je het onderdeel: in de Europese projectie staat het bovenaanzicht ónder het vooraanzicht, in de Amerikaanse erboven.',
+        'Een doorsnede laat de binnenkant zien: een denkbeeldige snede langs een lijn A-A met pijlen. Arcering (hatching), dunne schuine lijntjes, markeert het materiaal waar de snede doorheen gaat.\n\nEen detail vergroot een klein stuk, bijvoorbeeld “Detail B, schaal 5:1”. Een isometrisch aanzicht, het 3D-achtige plaatje in een hoek, is alleen voor de oriëntatie; daar haal je nooit maten uit.',
+        'De schaal zegt hoe groot de tekening is vergeleken met het echte onderdeel: 1:2 betekent op halve grootte getekend, 2:1 op dubbele grootte.\n\nMeet nooit met een liniaal op een print: papier rekt en prints worden verkleind om op het papier te passen. Lees de maten, de getallen op de tekening. Op veel tekeningen staat het er gewoon op: “niet schalen”.',
+        'De stempel (title block) rechtsonder is waar je begint: tekeningnummer, benaming, materiaal, schaal, projectiesymbool, de algemene tolerantie, getekend, gecontroleerd en vrijgegeven door, en de revisieletter. De revisietabel laat zien wat er per revisie veranderd is, en wanneer.\n\nDe algemene tolerantie geldt voor elke maat zonder eigen tolerantie. Volgens ISO 2768-m mag een maat van 50 mm tussen 49,7 en 50,3 mm liggen.',
+        'Wat misgaat is zelden het lezen; het is versiebeheer. Een oude print in een plastic hoesje bij de machine wint van elke procedure. Goede bedrijven tonen tekeningen op een scherm, uit het PDM-systeem (de database met de vrijgegeven tekeningen).\n\nEngineers discussiëren nu over 2D-tekeningen vervangen door een 3D-model dat zijn eigen toleranties bevat. Een scherpe vraag: als er een nieuwe revisie vrijkomt, hoe verdwijnen de oude prints van de vloer?',
       ],
       example: {
         kind: 'worked',
-        text: 'Tekening 4711-203, beugel, staal S235, schaal 1:1, ISO 2768-m, revisie C. De revisietabel: rev B (maart 2024) veranderde gat Ø8,5 in Ø9; rev C (januari 2025) veranderde de buigradius van R2 naar R3.\n\nBij de kantbank werkt de insteller met een geprinte rev B in een plastic hoesje. Resultaat: 400 beugels met R2, afgekeurd bij de klant.\n\nDe oplossing is niet “beter opletten”: het zijn tekeningen op een scherm bij de machine, rechtstreeks uit het PDM-systeem, zodat alleen de actuele revisie op de vloer bestaat.',
+        text: 'Tekening 4711-203, beugel, staal S235 (een gangbaar constructiestaal), schaal 1:1, ISO 2768-m, revisie C. De revisietabel: rev B (maart 2024) veranderde gat Ø8,5 in Ø9; rev C (januari 2025) veranderde de buigradius van R2 naar R3.\n\nBij de kantbank, de machine die plaat buigt, werkt de insteller met een geprinte rev B in een plastic hoesje. Resultaat: 400 beugels met R2, afgekeurd bij de klant.\n\nDe oplossing is niet “beter opletten”: het zijn tekeningen op een scherm bij de machine, rechtstreeks uit het PDM-systeem, zodat alleen de actuele revisie op de vloer bestaat.',
       },
       said: 'Wat engineers zeggen: “Met welke revisie werk je? Want die R3 kwam met rev C, en op die print staat B.”',
       recall: [
@@ -32,7 +33,7 @@ export default {
           why: '1:5 betekent dat de tekening een vijfde van het echte formaat is: 40 × 5 = 200 mm. In de praktijk lees je gewoon de maat af.',
         },
         {
-          q: 'Wat betekent arcering in een aanzicht?',
+          q: 'Wat betekent arcering (dunne schuine lijntjes) in een aanzicht?',
           options: ['Het oppervlak moet gelakt worden', 'Materiaal dat in een doorsnede is doorgesneden', 'Een gelast gebied', 'Een verborgen rand'],
           answer: 'Materiaal dat in een doorsnede is doorgesneden',
           why: 'Arcering toont het massieve materiaal waar de denkbeeldige snede doorheen gaat.',
@@ -57,7 +58,7 @@ export default {
         rubric: [
           'Vraagt aan beide kanten naar tekeningnummer en revisie',
           'Kijkt in de revisietabel in plaats van in discussie te gaan',
-          'Kijkt naar het systeem voor documentbeheer, niet naar schuld',
+          'Kijkt naar het systeem voor documentbeheer (document control), niet naar schuld',
         ],
       },
       sayIt: 'Leg een nieuwe operator in 60 seconden uit hoe hij controleert of een tekening de juiste is en waar hij de belangrijkste informatie vindt.',
@@ -66,6 +67,8 @@ export default {
         { term: 'Stempel', def: 'Vak rechtsonder met tekeningnummer, materiaal, schaal, toleranties en revisie.' },
         { term: 'Revisie', def: 'De versie van een tekening; elke wijziging krijgt een nieuwe letter en een regel in de tabel.' },
         { term: 'Europese projectie', def: 'First-angle-indeling; het bovenaanzicht staat onder het vooraanzicht.' },
+        { term: 'Schaal', def: 'Grootte van de tekening vergeleken met het echte onderdeel: 1:2 is half zo groot, 2:1 dubbel.' },
+        { term: 'Algemene tolerantie', def: 'De tolerantie voor elke maat zonder eigen tolerantie, vermeld in de stempel (bijvoorbeeld ISO 2768-m).' },
       ],
     },
     {
@@ -73,17 +76,18 @@ export default {
       title: 'Toleranties op tekening en GD&T',
       pre: [
         {
-          q: 'Een gat heeft een positietolerantie van Ø0,2 ten opzichte van referenties A, B en C. Welke vorm heeft de zone waarin het hart moet vallen?',
+          q: 'Een gat heeft een positietolerantie van Ø0,2 mm ten opzichte van referenties A, B en C (de vlakken waarvanaf het onderdeel gemeten wordt). Welke vorm heeft de zone waarin het hart moet vallen?',
           options: ['Een vierkant van 0,2 × 0,2', 'Een cirkel van Ø0,2', 'Een lijn van 0,2 lang', 'Een rechthoek van 0,1 × 0,2'],
           answer: 'Een cirkel van Ø0,2',
-          why: 'Positiezones zijn rond, en dat past bij hoe een bout echt in een gat valt.',
+          why: 'Positiezones zijn rond, en dat past bij hoe een bout echt in een gat valt: die kan in elke richting evenveel verschuiven.',
         },
       ],
       teach: [
-        'Een ±-tolerantie bepaalt de maat. Niet de vorm (vlak, rond, recht), en ook niet waar kenmerken ten opzichte van elkaar zitten.\n\nGD&T (vorm- en plaatstoleranties; ISO GPS in Europa, ASME Y14.5 in de VS) voegt dat toe, in een tolerantiekader: een vakje met een symbool, een tolerantie en de referenties waar het naar verwijst.',
-        'Referenties (datums) A, B en C zijn de vlakken waar het onderdeel op gepositioneerd wordt, aangeduid met een driehoekje. Denk aan de hoek van een kamer.\n\nPrimair A: het onderdeel ligt erop (drie punten). Secundair B: het wordt ertegenaan geduwd (twee punten). Tertiair C: één punt. De volgorde telt, want zo zit het onderdeel in de opspanning en op de 3D-meetmachine.',
-        'De symbolen in gewone taal. Vlakheid: het vlak ligt tussen twee vlakken die 0,05 uit elkaar liggen. Haaksheid: haaks op een referentie. Evenwijdigheid: evenwijdig aan een referentie.\n\nPositie: het hart van een gat binnen een ronde zone rond de exacte plek. Slag (runout): hoeveel een vlak slingert als het onderdeel om zijn as draait. Profiel: een vlak binnen een band rond de ideale vorm.',
-        'Maten in een kader zijn theoretisch exacte maten: zonder ±; de tolerantie staat in het tolerantiekader. Een ronde zone die precies om een vierkant van ±0,1 past (Ø0,28), heeft 57% meer oppervlak, dus meer delen die passen worden goedgekeurd.\n\nEen Ⓜ in het kader betekent maximum-materiaalvoorwaarde (MMC): het gat krijgt bonustolerantie naarmate het groter gemeten wordt.',
+        'Een ±-tolerantie, hoeveel een maat mag afwijken, bepaalt de maat. Niet de vorm (vlak, rond, recht), en ook niet waar kenmerken (features) ten opzichte van elkaar zitten.\n\nGD&T (vorm- en plaatstoleranties; ISO GPS in Europa, ASME Y14.5 in de VS) voegt dat toe, in een tolerantiekader: een vakje met een symbool, een tolerantie en de referenties waar het naar verwijst.',
+        'Een referentie (datum) is een vlak of kenmerk waar het onderdeel op gepositioneerd wordt, aangeduid met een driehoekje en een letter. Denk aan de hoek van een kamer.\n\nPrimair A: het onderdeel ligt erop (drie punten). Secundair B: het wordt ertegenaan geduwd (twee punten). Tertiair C: één punt. De volgorde telt, want zo zit het onderdeel in de opspanning en op de 3D-meetmachine, die het onderdeel met een taster aftast en posities berekent.',
+        'De symbolen in gewone taal. Vlakheid: het vlak ligt tussen twee vlakken die 0,05 uit elkaar liggen. Haaksheid: haaks op een referentie. Evenwijdigheid: evenwijdig aan een referentie.\n\nEen positietolerantie: het hart van een gat binnen een ronde zone rond de exacte plek. Slag (runout): hoeveel een vlak slingert als het onderdeel om zijn as draait. Profiel: een vlak binnen een band rond de ideale vorm.',
+        'Een theoretisch exacte maat (basic dimension) staat in een kadertje: een exacte waarde zonder ±; de tolerantie staat in het tolerantiekader. Een ronde zone die precies om een vierkant van ±0,1 past (Ø0,28), heeft 57% meer oppervlak, dus meer delen die passen worden goedgekeurd.\n\nEen Ⓜ in het kader betekent maximum-materiaalvoorwaarde (MMC), de maat met het meeste materiaal: het kleinste gat. Naarmate het gat groter gemeten wordt, krijgt het bonustolerantie.',
+        'Engineers discussiëren over de standaardregels. Volgens ASME begrenst de maat ook de vorm (Rule #1: op de maximum-materiaalmaat moet de vorm perfect zijn); volgens ISO 8015 staan maat en vorm los van elkaar, tenzij de tekening iets anders zegt. Dezelfde tekening, twee lezingen.\n\nDe gebruikelijke fout: leverancier en klant meten vanaf verschillende referenties, en allebei hebben ze gelijk. Een scherpe vraag: naar welke norm verwijst deze tekening, en hebben we uitgelijnd op A, B en C in die volgorde?',
       ],
       example: {
         kind: 'worked',
@@ -96,10 +100,10 @@ export default {
           number: 0.2,
           tolerance: 0.005,
           unit: 'mm',
-          why: '√(0,06² + 0,08²) = 0,10; als diameter is dat 2 × 0,10 = 0,20 mm.',
+          why: 'Afstand √(0,06² + 0,08²) = 0,10 mm; positie geef je als diameter, dus 2 × 0,10 = 0,20 mm.',
         },
         {
-          q: 'Wat is referentie A in een kader met A B C?',
+          q: 'Wat is referentie A in een tolerantiekader met A B C?',
           options: ['Het nauwst getolereerde kenmerk', 'De primaire referentie waar het onderdeel eerst op gepositioneerd wordt', 'Het kenmerk dat getolereerd wordt', 'Het laatst bewerkte vlak'],
           answer: 'De primaire referentie waar het onderdeel eerst op gepositioneerd wordt',
           why: 'De volgorde van de referenties is de volgorde waarin het onderdeel gepositioneerd wordt.',
@@ -129,10 +133,12 @@ export default {
       },
       sayIt: 'Leg een inkoper in 60 seconden uit wat referenties en een positietolerantie zijn, en waarom je die niet met een schuifmaat controleert.',
       terms: [
-        { term: 'Referentie (datum)', def: 'Een vlak of kenmerk waarop het onderdeel gepositioneerd wordt, aangeduid met A, B, C.' },
+        { term: 'Referentie', def: 'Een vlak of kenmerk waarop het onderdeel gepositioneerd wordt, aangeduid met A, B, C.' },
         { term: 'Tolerantiekader', def: 'Vakje met een GD&T-symbool, een tolerantie en de referenties.' },
         { term: 'Positietolerantie', def: 'Ronde zone rond de exacte plek waarbinnen het hart van een kenmerk moet liggen.' },
         { term: 'Theoretisch exacte maat', def: 'Maat in een kader zonder ±; de tolerantie staat in een tolerantiekader.' },
+        { term: 'Maximum-materiaalvoorwaarde', def: 'De maat met het meeste materiaal (kleinste gat, dikste pen); met Ⓜ krijgt een kenmerk bonustolerantie naarmate het daarvan afwijkt.' },
+        { term: '3D-meetmachine', def: 'Meetmachine die een onderdeel aftast en posities berekent ten opzichte van de referenties.' },
       ],
     },
     {
@@ -140,26 +146,27 @@ export default {
       title: 'Een P&ID lezen',
       pre: [
         {
-          q: 'Een instrumentbolletje op een P&ID zegt “PT 101”. Wat is het?',
+          q: 'Een instrumentbolletje (een rondje met letters) op een P&ID, het leidingschema van een procesinstallatie, zegt “PT 101”. Wat is het?',
           options: ['Pomp 101', 'T-stuk 101', 'Druktransmitter in kring 101', 'Temperatuurvoeler op leiding 101'],
           answer: 'Druktransmitter in kring 101',
           why: 'De eerste letter is de gemeten grootheid (P, druk); de volgende letters de functie (T, transmitter); het nummer is de kring.',
         },
       ],
       teach: [
-        'Een P&ID (piping and instrumentation diagram) is een schema van leidingen, apparatuur, appendages en instrumenten in een procesinstallatie: voeding, chemie, water, energie.\n\nHet is niet op schaal en laat de echte routing niet zien. Het laat zien wat met wat verbonden is, en hoe het gemeten en geregeld wordt. Een wijziging in de installatie begint met een bijgewerkte P&ID.',
-        'Lijnen: een dikke doorgetrokken lijn is procesleiding, met een leidingnummer zoals DN150-CW-1203 (maat, medium, nummer). Een stippellijn is een elektrisch signaal. Een lijn met dubbele schuine streepjes is pneumatisch. Pijlen geven de stroomrichting.\n\nApparatuur heeft eigen tags: P-101 een pomp, T-101 een tank, E-101 een warmtewisselaar.',
-        'Afsluiters worden getekend als een strikje. Zwart ingevuld: normaal dicht.\n\nEen strikje met een koepeltje erop is een regelklep met pneumatische aandrijving. Een terugslagklep laat maar één kant op door. Een PSV is een veiligheidsklep, de laatste verdediging tegen overdruk.',
-        'Instrumenttags volgen ISA 5.1. Eerste letter: wat je meet: F flow (debiet), P druk, T temperatuur, L niveau. Volgende letters: wat het doet: I aanwijzen, T transmitter, C regelen, A alarm, S schakelaar, V klep.\n\nFT 201 is een flowtransmitter; TIC 305 een temperatuurregelaar met aanwijzing; LAH een hoog-niveaualarm. Een los rondje zit in het veld; een rondje in een vierkant staat op het scherm van het DCS, het centrale besturingssysteem van de fabriek.',
+        'Een P&ID (piping and instrumentation diagram) is een schema van leidingen, apparatuur, appendages (kleppen en afsluiters) en instrumenten in een procesinstallatie: voeding, chemie, water, energie.\n\nHet is niet op schaal en laat niet zien hoe de leidingen echt lopen. Het laat zien wat met wat verbonden is, en hoe het gemeten en geregeld wordt. Een wijziging in de installatie begint met een bijgewerkte P&ID.',
+        'Lijnen: een dikke doorgetrokken lijn is procesleiding, met een leidingnummer zoals DN150-CW-1203 (nominale maat 150 mm, koelwater, nummer 1203). Een stippellijn is een elektrisch signaal. Een lijn met dubbele schuine streepjes is pneumatisch, een signaal met perslucht. Pijlen geven de stroomrichting.\n\nApparatuur heeft eigen tags: P-101 een pomp, T-101 een tank, E-101 een warmtewisselaar.',
+        'Afsluiters worden getekend als een strikje. Zwart ingevuld: normaal dicht.\n\nEen strikje met een koepeltje erop is een regelklep: een klep die een regelaar open en dicht stuurt, bewogen door een pneumatische aandrijving (actuator), een zuiger of membraan op perslucht. Een terugslagklep laat maar één kant op door. Een veiligheidsklep (PSV) is een klep met een veer die vanzelf opengaat bij een ingestelde druk: de laatste verdediging tegen overdruk.',
+        'Elk instrument heeft een tagnummer, opgebouwd volgens ISA 5.1. Eerste letter: wat je meet: F flow (debiet), P druk, T temperatuur, L niveau. Volgende letters: wat het doet: I aanwijzen, T transmitter, C regelen, A alarm, S schakelaar, V klep.\n\nFT 201 is een flowtransmitter die een signaal van 4–20 mA stuurt; TIC 305 een temperatuurregelaar met aanwijzing. Een los rondje zit in het veld; een rondje in een vierkant staat op het scherm van het DCS, het centrale besturingssysteem van de fabriek.',
+        'De klassieke fout: de P&ID klopt niet meer met de fabriek. Een klep die in een weekend is bijgeplaatst, een bypass die nooit getekend is. Een actuele tekening heet as-built, en de fabriek doorlopen om hem te controleren heet een walkdown.\n\nBedrijven passen ISA 5.1 ook op hun eigen manier aan, dus lees altijd het legendablad, de eerste pagina die de symbolen uitlegt. Een scherpe vraag: wanneer is deze P&ID voor het laatst in het veld gecontroleerd?',
       ],
       example: {
         kind: 'worked',
-        text: 'Tank T-101 bevat 20 m³. Op de zijkant zit LT 101, een niveautransmitter. Een stippellijn loopt naar LIC 101, een rondje in een vierkant: de niveauregelaar in het DCS. Nog een stippellijn loopt naar LV 101, een regelklep in de uitlaat.\n\nLezing: de regelaar houdt het niveau op setpoint door de uitlaat open of dicht te sturen. LAH 101 waarschuwt de operator bij 80%, dus 16 m³.\n\nLos daarvan is LSHH 102, een hoog-hoogschakelaar op 95%, bedraad om inlaatklep XV 103 te sluiten: een onafhankelijke veiligheidsfunctie, geen onderdeel van de normale regeling.',
+        text: 'Tank T-101 bevat 20 m³. Op de zijkant zit LT 101, een niveautransmitter. Een stippellijn loopt naar LIC 101, een rondje in een vierkant: de niveauregelaar in het DCS. Nog een stippellijn loopt naar LV 101, een regelklep in de uitlaat.\n\nLezing: de regelaar houdt het niveau op setpoint, de streefwaarde, door de uitlaat open of dicht te sturen. LAH 101, een hoog-niveaualarm, waarschuwt de operator bij 80%, dus 16 m³.\n\nLos daarvan is LSHH 102, een hoog-hoogschakelaar op 95%, bedraad om inlaatklep XV 103 te sluiten: een onafhankelijke veiligheidsfunctie, geen onderdeel van de normale regeling.',
       },
       said: 'Wat engineers zeggen: “LIC honderdeen knijpt de uitlaat, maar de hoog-hoog op honderdtwee trapt XV honderddrie dicht. Haal de regelkring en de beveiliging niet door elkaar.”',
       recall: [
         {
-          q: 'Een tank van 20 m³ heeft zijn hoog-niveaualarm (LAH) op 80%. Bij welk volume gaat het alarm af, in m³?',
+          q: 'Een tank van 20 m³ heeft zijn hoog-niveaualarm (LAH) op 80% van zijn volume. Bij welk volume gaat het alarm af, in m³?',
           number: 16,
           tolerance: 0.1,
           unit: 'm³',
@@ -181,13 +188,13 @@ export default {
           q: 'Waar staat LSHH voor?',
           options: ['Level sensor, high heat', 'Niveauschakelaar hoog-hoog', 'Stoomleiding, hoge opvoerhoogte', 'Laag setpoint, hoog vasthouden'],
           answer: 'Niveauschakelaar hoog-hoog',
-          why: 'L niveau, S schakelaar, HH het tweede, hogere alarmpunt, meestal een uitschakeling.',
+          why: 'L niveau, S schakelaar, HH het tweede, hogere alarmpunt, meestal een uitschakeling (trip) die iets stillegt.',
         },
       ],
       situation: {
-        scene: 'Je zit in een projectoverleg bij een zuivelfabriek. Een procesengineer heeft de P&ID op tafel en stelt voor een handbediende bypassklep rond een regelklep weg te halen, “want niemand gebruikt hem”.',
+        scene: 'Je zit in een projectoverleg bij een zuivelfabriek. Een procesengineer heeft de P&ID op tafel en stelt voor een handbediende bypassklep (een handklep in een leiding die om de regelklep heen loopt) weg te halen, “want niemand gebruikt hem”.',
         ask: 'Wat vraag je voordat de wijziging doorgaat?',
-        model: 'Is deze P&ID as-built, klopt hij met wat er vandaag echt in de fabriek staat? Wat gebeurt er als de regelklep faalt of onderhoud nodig heeft: is die bypass hoe ze dan blijven draaien? En zit er in deze kring iets wat onderdeel is van een veiligheidsfunctie of interlock, zodat dit via een formele wijzigingsprocedure moet?',
+        model: 'Is deze P&ID as-built, klopt hij met wat er vandaag echt in de fabriek staat? Wat gebeurt er als de regelklep faalt of onderhoud nodig heeft: is die bypass hoe ze dan blijven draaien? En zit er in deze kring iets wat onderdeel is van een veiligheidsfunctie of interlock, zodat dit via een formele wijzigingsprocedure (management of change) moet?',
         rubric: [
           'Vraagt of de P&ID actueel is (as-built)',
           'Vraagt waar de bypass voor is bij storing of onderhoud',
@@ -200,6 +207,8 @@ export default {
         { term: 'Tagnummer', def: 'Code zoals PT 101: gemeten grootheid, functie, kringnummer.' },
         { term: 'Transmitter', def: 'Instrument dat meet en een signaal, meestal 4–20 mA, naar het besturingssysteem stuurt.' },
         { term: 'Regelklep', def: 'Klep met een aandrijving die een regelaar open en dicht stuurt om het proces bij te sturen.' },
+        { term: 'Veiligheidsklep', def: 'Klep die vanzelf opengaat bij een ingestelde druk, om apparatuur tegen overdruk te beschermen.' },
+        { term: 'DCS', def: 'Distributed control system: de centrale besturing en bedieningsschermen van een procesfabriek.' },
       ],
     },
     {
@@ -215,19 +224,20 @@ export default {
         },
       ],
       teach: [
-        'Elke regelkring heeft vier delen. Een sensor meet de proceswaarde (PV), zeg 72,4 °C. De regelaar vergelijkt die met het setpoint (SP), zeg 75 °C, en berekent de regelafwijking: 2,6 °C.\n\nEen actuator, bijvoorbeeld een stoomklep, verandert het proces: dat is de uitgang van de regelaar (OP), 0 tot 100%. En het proces reageert, met enige vertraging.',
-        'Gesloten regelkring betekent terugkoppeling: meten, vergelijken, corrigeren, en weer opnieuw, vele keren per seconde.\n\nOpen sturing betekent dat het resultaat niet gemeten wordt: een timer, een vaste klepstand, een recept dat zegt “10 minuten verwarmen”. Open sturing kan niet corrigeren voor verstoringen zoals kouder product of lagere stoomdruk.',
-        'Elk regelaarvenster toont drie getallen: SP, PV en OP. Samen vertellen ze het verhaal.\n\nPV onder SP met OP op 100%: de actuator zit aan zijn maximum en de kring kan niet meer; de klep is te klein of de stoomtoevoer te laag. OP op 0% en PV nog steeds boven SP: de verstoring is groter dan de actuator aankan.',
-        'Standen: AUTO, de regelaar regelt. HAND (MAN), de operator zet de uitgang zelf. CAS, het setpoint komt van een andere regelaar.\n\nStudies vinden steeds weer dat zo’n derde van de regelkringen in fabrieken in hand staat of slecht presteert. “Hoeveel kringen staan er in hand, en waarom?” is een vraag waarmee je de aandacht van een engineer hebt.',
+        'Elke regelkring (control loop) heeft vier delen. Een sensor meet de proceswaarde (PV), zeg 72,4 °C. De regelaar (controller) vergelijkt die met het setpoint (SP), de streefwaarde, zeg 75 °C, en berekent de regelafwijking: SP − PV = 2,6 °C.\n\nEen actuator, het deel dat ingrijpt, bijvoorbeeld een stoomklep, verandert het proces. Wat de regelaar hem stuurt, is de uitgang (OP), 0 tot 100%. En het proces reageert, met enige vertraging.',
+        'Gesloten regelkring betekent terugkoppeling (feedback): meten, vergelijken, corrigeren, en weer opnieuw, vele keren per seconde.\n\nOpen sturing betekent dat het resultaat niet gemeten wordt: een timer, een vaste klepstand, een recept dat zegt “10 minuten verwarmen”. Open sturing kan niet corrigeren voor verstoringen (disturbances), veranderingen van buitenaf zoals kouder product of lagere stoomdruk.',
+        'Elk regelaarvenster (faceplate), het kleine venster op het bedieningsscherm, toont drie getallen: SP, PV en OP. Samen vertellen ze het verhaal.\n\nPV onder SP met OP op 100%: de actuator zit aan zijn maximum, helemaal open, en de kring kan niet meer; de klep is te klein of de stoomtoevoer te laag. OP op 0% en PV nog steeds boven SP: de verstoring is groter dan de actuator aankan.',
+        'Standen: AUTO, de regelaar regelt. HAND (MAN), de operator zet de uitgang zelf. CAS (cascade), het setpoint komt van een andere regelaar.\n\nOnderzoeken sinds de jaren negentig vinden steeds weer dat zo’n derde van de regelkringen in fabrieken in hand staat of slecht presteert. “Hoeveel kringen staan er in hand, en waarom?” is een vraag waarmee je de aandacht van een engineer hebt.',
+        'De vertraging doet ertoe. Dode tijd (dead time) is de tijd voordat de PV überhaupt begint te bewegen; traagheid (lag) is hoe langzaam hij daarna volgt. Hoe langer de vertragingen, hoe rustiger de regelaar moet zijn, anders gaat de kring slingeren.\n\nIn de figuur kun je het proberen: een tankniveau met een klep, een regelaar in Hand, P of PI, en een storing op de afvoer. Een scherpe vraag bij elke kring: wat doet de PV als iemand verderop een klep opendraait?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een melkpasteur moet het product 15 seconden op 72 °C houden. TT 401 meet 71,2 °C. TIC 401 heeft een setpoint van 72,5 °C, dus de regelafwijking is 1,3 °C. De uitgang stijgt van 45% naar 58%, heetwaterklep TV 401 gaat verder open, en in zo’n 40 seconden is de temperatuur 72,5.\n\nLos daarvan: als de temperatuur onder 72,0 °C zakt, stuurt een omschakelklep (divert valve) de melk terug naar de balanstank. Dat is een voedselveiligheidsfunctie, onafhankelijk van de regelkring.',
+        text: 'Een melkpasteur moet het product 15 seconden op 72 °C houden. TT 401, de temperatuurtransmitter, meet 71,2 °C. TIC 401, de regelaar, heeft een setpoint van 72,5 °C, dus de regelafwijking is 1,3 °C. De uitgang stijgt van 45% naar 58%, heetwaterklep TV 401 gaat verder open, en in zo’n 40 seconden is de temperatuur 72,5.\n\nLos daarvan: als de temperatuur onder 72,0 °C zakt, stuurt een omschakelklep (divert valve) de melk terug naar de balanstank. Dat is een voedselveiligheidsfunctie, onafhankelijk van de regelkring.',
       },
       said: 'Wat engineers zeggen: “Die kring staat al maanden in hand op veertig procent. Niemand vertrouwt hem in automaat, dus de operators zitten er maar bovenop.”',
       recall: [
         {
-          q: 'Het setpoint is 80 °C en de proceswaarde is 76,5 °C. Wat is de regelafwijking, in °C?',
+          q: 'Het setpoint is 80 °C en de proceswaarde is 76,5 °C. Wat is de regelafwijking (SP − PV), in °C?',
           number: 3.5,
           tolerance: 0.05,
           unit: '°C',
@@ -253,7 +263,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent bij een klant met een sproeidroger. Operators klagen dat de uitlaattemperatuur schommelt, en dat raakt het vochtgehalte van het product. In het DCS zie je dat TIC 210 in HAND staat, op 40% uitgang.',
+        scene: 'Je bent bij een klant met een sproeidroger, die een vloeistof met hete lucht tot poeder droogt. Operators klagen dat de uitlaattemperatuur schommelt, en dat raakt het vochtgehalte van het product. In het DCS zie je dat TIC 210 in HAND staat, op 40% uitgang.',
         ask: 'Wat vraag je?',
         model: 'Waarom staat deze kring in hand, en sinds wanneer? Als hij in hand is gezet omdat hij in automaat ging slingeren, kan de oorzaak de inregeling zijn of een plakkende klep, en dat is op te lossen. Zolang hij in hand staat, wordt elke verandering in voeding of weer met de hand gecorrigeerd, dus die schommelingen zijn logisch. Wie zou er deze week met de operators naar kunnen kijken?',
         rubric: [
@@ -267,7 +277,9 @@ export default {
         { term: 'Setpoint (SP)', def: 'De waarde die de regelaar probeert te bereiken.' },
         { term: 'Proceswaarde (PV)', def: 'De gemeten werkelijke waarde.' },
         { term: 'Uitgang (OP)', def: 'Wat de regelaar naar de actuator stuurt, 0 tot 100%.' },
+        { term: 'Regelafwijking', def: 'Setpoint min proceswaarde: hoe ver het proces van zijn streefwaarde zit.' },
         { term: 'Gesloten regelkring', def: 'Regelen met terugkoppeling: meten, vergelijken, corrigeren, herhalen.' },
+        { term: 'Open sturing', def: 'Sturen zonder het resultaat te meten, zoals een timer; kan verstoringen niet corrigeren.' },
       ],
     },
     {
@@ -275,30 +287,31 @@ export default {
       title: 'PID-regeling: het gevoel erachter',
       pre: [
         {
-          q: 'Een regelaar heeft alleen P-actie, geen I. Waar komt de proceswaarde na een verstoring tot rust?',
+          q: 'Een regelaar heeft alleen P-actie (hij reageert evenredig met de afwijking), geen I. Waar komt de proceswaarde na een verstoring tot rust?',
           options: ['Precies op het setpoint', 'Iets naast het setpoint: een blijvende afwijking', 'Hij blijft eeuwig slingeren', 'Op nul'],
           answer: 'Iets naast het setpoint: een blijvende afwijking',
           why: 'P heeft een afwijking nodig om uitgang te geven, dus er blijft altijd een kleine afwijking over.',
         },
       ],
       teach: [
-        'P (proportioneel): de uitgang verandert evenredig met de huidige afwijking. Met een versterking van 2 geeft een afwijking van 5% 10% meer uitgang. Meer versterking betekent een sterkere, snellere reactie.\n\nAlleen P laat een blijvende afwijking (offset) achter, omdat hij een afwijking nodig heeft om uitgang te geven. Te veel versterking laat de kring slingeren.',
-        'I (integrerend): telt de afwijking op in de tijd en blijft duwen tot de afwijking nul is. Dat haalt de offset weg. Te veel I geeft doorschot en langzaam slingeren.\n\nIntegrator-windup: als de actuator lang tegen zijn grens zit, blijft de I-term groeien, en daarna schiet de kring flink door.',
-        'D (differentiërend): reageert op hoe snel de afwijking verandert, en remt dus af vóór het doorschieten. Hij is gevoelig voor ruis op de meting, dus de meeste industriële kringen draaien PI, met D uit.',
-        'Op een trend: een trage kring kruipt in minuten naar het setpoint zonder doorschot. Een agressieve kring schiet door en slingert daarna langzaam uit. Een instabiele kring slingert steeds harder.\n\nMaar slingeren ligt niet altijd aan de inregeling: een plakkende klep (stiction) geeft een zaagtand op de uitgang en blokvormige stappen in de proceswaarde. Check de klep voordat je opnieuw inregelt.',
+        'Een PID-regelaar combineert drie acties, P, I, D. Elk kijkt op een eigen manier naar de afwijking (error), het verschil tussen setpoint en proceswaarde.\n\nP (proportioneel): de uitgang verandert evenredig met de huidige afwijking. De versterking (gain) bepaalt hoeveel: met een versterking van 2 geeft een afwijking van 5% 10% meer uitgang. Meer versterking betekent een sterkere, snellere reactie.',
+        'Alleen P laat een blijvende afwijking achter, de offset: die gaat nooit weg, omdat P een afwijking nodig heeft om uitgang te geven. Te veel versterking laat de kring slingeren (oscillate), op en neer gaan.\n\nI (integrerend): telt de afwijking op in de tijd en blijft duwen tot de afwijking nul is. Dat haalt de offset weg. Te veel I geeft doorschot, de waarde schiet voorbij het setpoint, en langzaam slingeren.',
+        'Integrator-windup: als de actuator lang tegen zijn grens zit, blijft de I-term groeien, en daarna schiet de kring flink door. Moderne regelaars hebben anti-windup die dat groeien stopt.\n\nD (differentiërend): reageert op hoe snel de afwijking verandert, en remt dus af vóór het doorschieten. Hij is gevoelig voor ruis op de meting, dus de meeste industriële kringen draaien PI, met D uit.',
+        'Op een trend: een trage kring kruipt in minuten naar het setpoint zonder doorschot. Een agressieve kring schiet door en slingert daarna langzaam uit. Een instabiele kring slingert steeds harder.\n\nMaar slingeren ligt niet altijd aan de inregeling (tuning): een plakkende klep (stiction, van static friction) geeft een zaagtand op de uitgang en blokvormige stappen in de proceswaarde. Check de klep voordat je opnieuw inregelt.',
+        'Inregelen is de versterking en de integratietijd kiezen. Engineers discussiëren over de methode: de klassieke regels van Ziegler-Nichols (1942) mikken erop dat elke slinger een kwart is van de vorige, en dat is agressief. Veel procesfabrieken kiezen nu voor lambda-tuning, waarbij je kiest hoe snel de kring tot rust moet komen.\n\nIn de praktijk draaien veel kringen nog op de fabrieksinstellingen. Een scherpe vraag: wanneer is deze kring voor het laatst ingeregeld, en is de klep eerst getest?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een PI-niveauregeling op een buffertank, setpoint 60%. De trend laat het niveau elke 4 minuten slingeren tussen 52 en 68%, met de uitgang tussen 20 en 80%.\n\nDe regeltechnicus zet de kring in hand op 50%: het slingeren stopt, dus de kring veroorzaakt het zelf. Daarna een kleptest: uitgang van 50 naar 51%, niets beweegt; naar 53%, de klep springt. Dat is zo’n 2 tot 3% stiction.\n\nDe oplossing is de klep (pakking, positioner), niet een nieuwe inregeling.',
+        text: 'Een PI-niveauregeling op een buffertank, setpoint 60%. De trend laat het niveau elke 4 minuten slingeren tussen 52 en 68%, met de uitgang tussen 20 en 80%.\n\nDe regeltechnicus zet de kring in hand op 50%: het slingeren stopt, dus de kring veroorzaakt het zelf. Daarna een kleptest: uitgang van 50 naar 51%, niets beweegt; naar 53%, de klep springt. Dat is zo’n 2 tot 3% stiction.\n\nDe oplossing is de klep (de pakking, de afdichting om de klepsteel, en de positioner, die de klep in de stand zet die de regelaar vraagt), niet een nieuwe inregeling.',
       },
-      said: 'Wat engineers zeggen: “Voordat je aan de inregeling zit: zet hem in hand en geef de klep een stapje. Negen van de tien keer is het een plakkende klep, niet de PID.”',
+      said: 'Wat engineers zeggen: “Voordat je aan de inregeling zit: zet hem in hand en geef de klep een stapje. Heel vaak is het een plakkende klep, niet de PID.”',
       recall: [
         {
-          q: 'Een P-regelaar heeft een versterking van 2. De afwijking neemt toe met 5%. Met hoeveel % verandert de uitgang?',
+          q: 'Een P-regelaar heeft een versterking van 2. De afwijking neemt toe met 5% (van het meetbereik). Met hoeveel % verandert de uitgang?',
           number: 10,
           tolerance: 0.1,
           unit: '%',
-          why: 'Verandering van de uitgang = versterking × afwijking = 2 × 5 = 10%.',
+          why: 'Verandering van de uitgang = versterking × verandering van de afwijking = 2 × 5 = 10%.',
         },
         {
           q: 'Welk deel van PID haalt de blijvende afwijking weg?',
@@ -332,8 +345,10 @@ export default {
       sayIt: 'Leg een productiemanager in 60 seconden in gewone woorden uit wat P, I en D elk doen.',
       terms: [
         { term: 'P, I, D', def: 'Proportioneel (reageer op afwijking), integrerend (haal offset weg), differentiërend (rem bij snelle verandering).' },
+        { term: 'Versterking', def: 'Hoe sterk de uitgang reageert op de afwijking: versterking 2 maakt van 5% afwijking 10% uitgang.' },
         { term: 'Offset', def: 'Een blijvende afwijking die overblijft bij alleen P-regeling.' },
         { term: 'Doorschot', def: 'De proceswaarde die voorbij het setpoint schiet voordat hij tot rust komt.' },
+        { term: 'Integrator-windup', def: 'De I-term die blijft groeien terwijl de actuator tegen zijn grens zit, met daarna flink doorschot.' },
         { term: 'Stiction', def: 'Een klep die blijft plakken en dan springt, waardoor de kring gaat slingeren.' },
       ],
     },
@@ -350,18 +365,19 @@ export default {
       ],
       teach: [
         'Een PLC (programmable logic controller) is een industriële computer die ingangen leest (sensoren, knoppen) en uitgangen stuurt (motoren, kleppen) in een snelle cyclus, vaak elke 10 ms. Bekende merken: Siemens, Rockwell (Allen-Bradley), Beckhoff, Omron.\n\nMachinesequenties zijn in stappen geschreven: stap 10 klemmen, stap 20 boren, stap 30 lossen, elk wachtend op een voorwaarde.',
-        'De HMI (human-machine interface) is het touchscreen bij de machine: start, stop, recepten, alarmen, setpoints.\n\nSCADA houdt toezicht op veel PLC’s: overzichtsschermen, trends, alarmen voor een hele fabriek of een heel net; netbeheerders draaien SCADA voor hun stations. In procesfabrieken combineert een DCS regeling en schermen in één systeem.',
-        'Een interlock is een voorwaarde die een actie blokkeert: de pomp mag niet starten als de zuigklep dicht is. Procesinterlocks beschermen machine en product.\n\nVeiligheidsfuncties beschermen mensen en worden apart ontworpen: veiligheids-PLC of veiligheidsrelais, volgens ISO 13849 (performance level a tot e) of IEC 62061 en 61511 (SIL). Die overbrug je nooit met een draadje.',
-        'Voordat je een sequentie verandert, vraag je: wat beschermt deze stap? Is hij onderdeel van een veiligheidsfunctie, waarvoor een risicobeoordeling en validatie nodig zijn? Wie is eigenaar van de code, en is er een back-up? Hoe testen we en hoe draaien we terug?\n\nEn vraag naar de overbruggingslijst: in veel fabrieken staan sensoren al jaren “tijdelijk” overbrugd.',
+        'De HMI (human-machine interface) is het touchscreen bij de machine: start, stop, recepten, alarmen, setpoints.\n\nSCADA (supervisory control and data acquisition) houdt toezicht op veel PLC’s: overzichtsschermen, trends, alarmen voor een hele fabriek of een heel net; netbeheerders draaien SCADA voor hun stations. In procesfabrieken combineert een DCS regeling en schermen in één systeem.',
+        'Een interlock is een voorwaarde die een actie blokkeert: de pomp mag niet starten als de zuigklep dicht is. Procesinterlocks beschermen machine en product.\n\nEen veiligheidsfunctie beschermt mensen en wordt apart ontworpen: een veiligheids-PLC of veiligheidsrelais, volgens ISO 13849 (performance level, PL a tot e) of IEC 62061 en 61511 (SIL, safety integrity level): hoe hoger het niveau, hoe betrouwbaarder de functie moet zijn. Die overbrug je nooit met een draadje.',
+        'Voordat je een sequentie verandert, vraag je: wat beschermt deze stap? Is hij onderdeel van een veiligheidsfunctie, waarvoor een risicobeoordeling en validatie nodig zijn? Wie is eigenaar van de code, en is er een back-up? Hoe testen we en hoe draaien we terug?\n\nEn vraag naar de overbruggingslijst. Een overbrugging (bypass) is een sensor of interlock die bewust uitgezet of doorverbonden is; in veel fabrieken staan ze al jaren “tijdelijk”.',
+        'Beveiligingen omzeilen gebeurt veel: een enquête uit 2006 van de Duitse wettelijke ongevallenverzekeraars (HVBG) schatte dat ruim een derde van de beschermingsvoorzieningen op machines, zo’n 37%, gemanipuleerd was, tijdelijk of blijvend. Meestal omdat de beveiliging het werk in de weg zit.\n\nDe oplossing is dus vaak een beter ontwerp, niet een strengere regel. Een scherpe vraag bij een rondgang: welke overbruggingen staan er nu actief, wie heeft ze goedgekeurd, en wanneer lopen ze af?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een verpakkingsmachine draait 28 seconden per cyclus. Het team wil de duwer laten starten voordat sensor B12 “doos op positie” bevestigt, wat 3 seconden scheelt.\n\nDe besturingsengineer checkt: stap 40 wacht op B12 om vastlopers te voorkomen, een procesinterlock, geen veiligheidsfunctie. Het lichtscherm op de invoer hangt aan de veiligheids-PLC (PL d) en blijft onaangeroerd.\n\nPlan: back-up van programma v2.3, wijziging in testmodus, één ploeg draaien, meten. Resultaat: cyclus 25 seconden, nog steeds 2 vastlopers per ploeg. Op een ploeg van 8 uur zijn dat zo’n 123 extra cycli.',
+        text: 'Een verpakkingsmachine draait 28 seconden per cyclus. Het team wil de duwer laten starten voordat sensor B12 “doos op positie” bevestigt, wat 3 seconden scheelt.\n\nDe besturingsengineer checkt: stap 40 wacht op B12 om vastlopers te voorkomen, een procesinterlock, geen veiligheidsfunctie. Het lichtscherm op de invoer, een rij lichtstralen die de machine stopt als iemand erin grijpt, hangt aan de veiligheids-PLC (PL d) en blijft onaangeroerd.\n\nPlan: back-up van programma v2.3, wijziging in testmodus, één ploeg draaien, meten. Resultaat: cyclus 25 seconden, nog steeds 2 vastlopers per ploeg. Op een ploeg van 8 uur zijn dat zo’n 123 extra cycli.',
       },
       said: 'Wat engineers zeggen: “Die wachtstap kunnen we best overslaan, dat is gewoon een procesinterlock. Maar het lichtscherm hangt aan de veiligheids-PLC, daar komt niemand aan zonder risicobeoordeling.”',
       recall: [
         {
-          q: 'De cyclustijd van een machine gaat van 28 naar 25 seconden per cyclus. Hoeveel extra cycli krijg je in een ploeg van 8 uur (28.800 seconden)?',
+          q: 'De cyclustijd van een machine gaat van 28 naar 25 seconden per cyclus. Hoeveel extra cycli krijg je in een ploeg van 8 uur (28.800 seconden), als hij de hele ploeg draait?',
           number: 123,
           tolerance: 2,
           unit: 'cycli',
@@ -387,7 +403,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je loopt door de fabriek bij een klant in de bouwmaterialen. Bij de palletizer is in de kast een sensor overbrugd met een draadje. De teamleider zegt: “Die gaf valse stops, dus onderhoud heeft hem vorig jaar overbrugd.”',
+        scene: 'Je loopt door de fabriek bij een klant in de bouwmaterialen. Bij de palletizer, de machine die producten op pallets stapelt, is in de kast een sensor overbrugd met een draadje. De teamleider zegt: “Die gaf valse stops, dus onderhoud heeft hem vorig jaar overbrugd.”',
         ask: 'Wat vraag je?',
         model: 'Wat beschermt die sensor: hoort hij bij de afscherming of is het alleen een procescheck? Wie heeft de overbrugging goedgekeurd, en staat hij op een overbruggingslijst? Als hij veiligheidsgerelateerd is, moet dit vandaag opgelost worden; zo niet, dan moeten de valse stops alsnog echt verholpen worden in plaats van een blijvende brug. Ik wil dat de onderhoudsleider en de veiligheidskundige er nu naar kijken.',
         rubric: [
@@ -401,7 +417,9 @@ export default {
         { term: 'PLC', def: 'Industriële besturing die de machinelogica in een snelle cyclus uitvoert.' },
         { term: 'HMI', def: 'Het bedieningsscherm bij een machine.' },
         { term: 'SCADA', def: 'Toezichtsysteem over veel PLC’s: overzicht, trends, alarmen.' },
+        { term: 'Interlock', def: 'Een voorwaarde die een actie blokkeert om machine of product te beschermen, zoals geen pompstart met een dichte zuigklep.' },
         { term: 'Veiligheidsfunctie', def: 'Apart ontworpen en gecertificeerde functie die mensen beschermt, zoals een stop via een lichtscherm.' },
+        { term: 'Overbrugging', def: 'Een sensor of interlock die bewust uitgezet of doorverbonden is; vraagt goedkeuring, registratie en een einddatum.' },
       ],
     },
   ],
