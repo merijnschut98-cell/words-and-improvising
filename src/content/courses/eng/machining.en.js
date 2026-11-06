@@ -288,6 +288,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      figure: 'eng.machining.mill',
       title: 'Milling: the machining centre',
       pre: [
         {
@@ -356,6 +357,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      figure: 'eng.machining.mill',
       title: 'Cutting data in milling',
       pre: [
         {
@@ -424,6 +426,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      figure: 'eng.machining.mill',
       title: 'Milling strategy: climb, chip thinning, trochoidal',
       pre: [
         {

@@ -288,6 +288,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      figure: 'eng.machining.mill',
       title: 'Frezen: het bewerkingscentrum',
       pre: [
         {
@@ -356,6 +357,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      figure: 'eng.machining.mill',
       title: 'Snijwaarden bij frezen',
       pre: [
         {
@@ -424,6 +426,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      figure: 'eng.machining.mill',
       title: 'Freesstrategie: meelopend, spaanverdunning, trochoïdaal',
       pre: [
         {
