@@ -2382,6 +2382,28 @@ await step('reminder meta is written for the service worker', async () => {
   if (!meta || !meta.lastDay || !meta.nudge || !meta.nudge.title) throw new Error(JSON.stringify(meta));
 });
 
+// Every lesson figure loads clean in the app's sandboxed frame: no console
+// errors (an invalid SVG d attribute, a script error) at any level or theme.
+await step('figures: every figure loads without console errors', async () => {
+  const cf = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const pf = await cf.newPage();
+  const bad = [];
+  pf.on('console', (m) => { if (m.type() === 'error' && !/favicon/.test(m.text())) bad.push(m.text()); });
+  pf.on('pageerror', (e) => bad.push(e.message));
+  await pf.goto(BASE);
+  const ids = fs.readdirSync('src/content/courses/figures').filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5));
+  for (const id of ids) {
+    for (const [lv, theme, lang] of [[1, 'light', 'nl'], [2, 'dark', 'en'], [3, 'light', 'nl'], [4, 'dark', 'nl']]) {
+      const before = bad.length;
+      await pf.evaluate((src) => { document.body.innerHTML = `<iframe sandbox="allow-scripts" width="390" height="600" src="${src}"></iframe>`; }, `src/content/courses/figures/${id}.html?theme=${theme}&lang=${lang}&level=${lv}`);
+      await pf.waitForTimeout(700);
+      if (bad.length > before) bad.splice(before, bad.length - before, `${id} L${lv} ${theme} ${lang}: ${bad.slice(before).join(' | ').slice(0, 200)}`);
+    }
+  }
+  await cf.close();
+  if (bad.length) throw new Error(bad.join('\n'));
+});
+
 await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });
