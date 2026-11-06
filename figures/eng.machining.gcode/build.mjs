@@ -253,7 +253,7 @@ function recess({ x0, x1, z0, z1, r, depth }, y, back = "", backClass = "gc-glas
     `<clipPath id="${id}"><path transform="${planeOf(y)}" d="${shape}"/></clipPath>`,
     `<g clip-path="url(#${id})">`,
     `<path class="iso-top" d="${tops.join("")}"/>`,
-    ...sides.map((d, shade) => (d.length ? `<path class="iso-shade" data-shade="${shade}" d="${d}"/>` : "")),
+    ...sides.map((d, shade) => (d.length ? `<path class="iso-shade" data-shade="${shade}" d="${d.join("")}"/>` : "")),
     `<g transform="${planeOf(y - depth)}"><path class="${backClass}" d="${shape}"/>${back}<path class="iso-line" data-tone="faint" d="${shape}"/></g>`,
     `</g>`,
     `<g transform="${planeOf(y)}"><path class="iso-line" data-tone="lo" d="${shape}"/></g>`,
