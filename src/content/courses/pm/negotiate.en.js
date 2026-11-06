@@ -13,16 +13,17 @@ export default {
         },
       ],
       teach: [
-        'A position is what someone says they want: “We need the report by Friday”, “The price must drop 10%”. An interest is why they want it: a board meeting on Monday, a budget cut they have to show. Fisher and Ury, in Getting to Yes (1981): bargaining over positions makes people dig in; looking at interests opens up options.',
+        'A position is what someone says they want: “We need the report by Friday”, “The price must drop 10%”. An interest is why they want it: a board meeting on Monday, a budget cut they have to show.\n\nRoger Fisher and William Ury call their method principled negotiation (Getting to Yes, 1981): bargaining over positions makes people dig in; looking at interests opens up options.',
         'Ask why, and why not. “What would that give you?” “What happens if it isn’t Friday?” “What worries you about this?”\n\nListen for needs such as security, recognition, control, money and time. Most interests can be met in more than one way. Write theirs down next to yours.',
-        'Shared and different interests both help. Shared: you both want the project to succeed. Different: one side cares most about timing, the other about cost.\n\nDifferences make trades possible: give what is cheap for you and valuable for them.',
+        'Shared and different interests both help. Shared: you both want the project to succeed. Different: one side cares most about timing, the other about cost.\n\nDifferences make trades possible: give what is cheap for you and valuable for them. Put several issues on the table at once, a package deal, so a give on one issue can be balanced by a gain on another. One issue at a time makes every step win or lose.',
         'Use fair standards instead of willpower: market rates, past data, an agreed norm. “What would be fair here, and how could we check it?” That moves the talk from who is stronger to what is reasonable, and it lets both sides say yes without losing face.',
+        'What you see in practice: positions dressed up as facts (“My crews won’t do it”), and people who split the difference early because it feels fair. Splitting is quick, but it rewards whoever opened most extreme.\n\nExperts argue about how rational this all is. Chris Voss, a former FBI hostage negotiator (Never Split the Difference, 2016), says emotions drive decisions, so first listen and name the feeling. A sharp question: “If you got exactly this, what would it solve for you?”',
       ],
       example: {
         kind: 'faded',
-        text: 'At a grid operator you want every job checked for readiness two days before it starts. The head of execution says: “Your readiness check adds a day to every job. My crews won’t do it.”',
+        text: 'At a grid operator, the company that runs the regional power grid, you want every job checked for readiness two days before it starts: are permits, materials and the switching plan in place? The head of execution, who runs the field crews, says: “Your readiness check adds a day to every job. My crews won’t do it.”',
         ask: 'What would you do next?',
-        reveal: 'His position is “no extra day”. Ask for the interest: “What would that day cost you?” Say it turns out he worries that crews sit idle and planners then blame them.\n\nYour interest is fewer wasted crew trips. An option that serves both: the planners do the check, and crews only get jobs that pass it. Propose a four-week pilot in one region and agree on a fair standard to judge it: the number of wasted trips before and after.',
+        reveal: 'His position is “no extra day”. Ask for the interest: “What would that day cost you?” Say it turns out he worries that crews sit idle and planners then blame them.\n\nYour interest is fewer wasted crew trips. An option that serves both: the planners do the check, and crews only get jobs that pass it. Propose a pilot, a four-week trial in one region, and agree on a fair standard to judge it: the number of wasted trips before and after.',
       },
       said: 'What you hear in projects: “Help me understand what’s behind that. What would Friday give you?”',
       recall: [
@@ -78,6 +79,8 @@ export default {
         { term: 'Position', def: 'What someone says they want; a demand that can only be accepted or refused.' },
         { term: 'Interest', def: 'Why someone wants it: the need behind the position.' },
         { term: 'Fair standard', def: 'A yardstick both sides can check, such as market rates or past data.' },
+        { term: 'Principled negotiation', def: 'Fisher and Ury’s method: separate people from the problem, look at interests, invent options, use fair standards.' },
+        { term: 'Package deal', def: 'Negotiating several issues together, so a give on one can be traded for a gain on another.' },
       ],
     },
     {
@@ -92,16 +95,17 @@ export default {
         },
       ],
       teach: [
-        'BATNA stands for Best Alternative To a Negotiated Agreement (Fisher and Ury). It is what you will actually do if you walk away. Your BATNA, not your wishes, sets your strength.\n\nWith a good alternative you can say no calmly. With a bad one, improve it before you negotiate.',
-        'Your walk-away point is the worst deal you will still accept, and it follows from your BATNA.\n\nSay a client offers €950 a day, and you have a firm offer for the same days elsewhere at €1,000 a day. If nothing else differs, accepting less than €1,000 leaves you worse off. Decide this before the meeting, not during it.',
+        'BATNA stands for Best Alternative To a Negotiated Agreement (Fisher and Ury, Getting to Yes, 1981). It is what you will actually do if you walk away. Your BATNA, not your wishes, sets your strength.\n\nWith a good alternative you can say no calmly. With a bad one, improve it before you negotiate.',
+        'Your walk-away point, also called the reservation point, is the worst deal you will still accept, and it follows from your BATNA.\n\nSay a client offers €950 a day, and you have a firm offer for the same days elsewhere at €1,000 a day. If nothing else differs, accepting less than €1,000 leaves you worse off. Decide this before the meeting, not during it.',
         'Estimate theirs too. What happens to them without a deal: another supplier, doing it themselves, waiting?\n\nThe range between your walk-away point and theirs is the ZOPA, the zone of possible agreement. If there is none, no clever wording will create a deal; change what is on the table instead.',
         'Don’t bluff with an alternative you don’t have. Mention a real one calmly, as information, not as a threat: “If we can’t make this work, we’ll do it next year instead.” And keep improving your BATNA in the background: a second real option is the strongest tool you have.',
+        'Switching cost is what it costs a side to change partner: time, learning, and for parts often qualification, testing and approving a new supplier’s parts before they may be used. High switching cost weakens an alternative, however tough the talk.\n\nCommon failure: overrating your own BATNA, or forgetting what reaching it costs. Experts disagree on revealing it; a usual line is to show a strong one calmly and keep a weak one to yourself. A sharp question: “What do we actually do on Monday if they say no?”',
       ],
       example: {
         kind: 'faded',
         text: 'A parts manufacturer buys coated brackets from one supplier, who announces a price rise of 12%. A second supplier has quoted 4% above today’s price, but needs 10 weeks to qualify the parts. Coating in-house is not possible.',
         ask: 'What would you do next?',
-        reveal: 'Your BATNA is switching to the second supplier after 10 weeks of qualification. Theirs is losing your volume.\n\nStart the qualification now: it improves your alternative whatever happens. Then negotiate: ask what drives the 12% (energy, raw material?) and propose, say, 4% now with a clause that follows the energy index. Your walk-away point is near the second supplier’s 4% plus the cost of qualifying.',
+        reveal: 'Your BATNA is switching to the second supplier after 10 weeks of qualification. Theirs is losing your volume.\n\nStart the qualification now: it improves your alternative whatever happens. Then negotiate: ask what drives the 12% (energy, raw material?) and propose, say, 4% now with an index clause: a contract line that moves part of the price up or down with a published energy price index. Your walk-away point is near the second supplier’s 4% plus the cost of qualifying.',
       },
       said: 'What you hear in projects: “Before we go in: what do we do if they say no?”',
       recall: [
@@ -119,7 +123,7 @@ export default {
           why: 'Any rate between €900 and €1,050 works for both: €1,050 − €900 = €150 per day.',
         },
         {
-          q: 'You have a firm offer to work the same days for another client at €1,000 a day. Client A offers €950 a day. Assume the two jobs are equal in every other way: travel, interest, relationship. What should you do?',
+          q: 'You have a firm offer to work the same days for another client at €1,000 a day. Client A offers €950 a day. Assume the two jobs are equal in every other way: travel, how interesting the work is, relationship. What should you do?',
           options: ['Accept: a deal is better than no deal', 'Turn it down or negotiate up: it is below your alternative', 'Accept and ask for more later', 'Split the difference at €975'],
           answer: 'Turn it down or negotiate up: it is below your alternative',
           why: 'With everything else equal, €950 leaves you worse off than your €1,000 alternative. Your BATNA sets your walk-away point.',
@@ -132,7 +136,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Your engagement manager tells you the client wants a 15% fee cut on the next phase, “or they’ll go elsewhere”. You know the client’s team depends on your data model, and another firm would need about three months to rebuild it.',
+        scene: 'Your engagement manager, the manager at your firm who is responsible for this client, tells you the client wants a 15% fee cut on the next phase, “or they’ll go elsewhere”. The call with the client is on Thursday. You know the client’s team depends on your data model, and another firm would need about three months to rebuild it.',
         ask: 'What do you advise your engagement manager?',
         model: 'I’d say their alternative is weaker than it sounds: switching costs them about three months. So we don’t need to accept 15% straight away. I’d ask what’s behind the request, maybe a budget cap, and offer a trade: a lower fee for a smaller scope, or the same fee with a handover of the model so they depend on us less. And we should agree our own walk-away point before the call.',
         rubric: [
@@ -158,6 +162,8 @@ export default {
         { term: 'BATNA', def: 'Best Alternative To a Negotiated Agreement: what you will actually do without a deal.' },
         { term: 'Walk-away point', def: 'The worst deal you will still accept; it follows from your BATNA.' },
         { term: 'ZOPA', def: 'Zone of possible agreement: the range between both sides’ walk-away points.' },
+        { term: 'Switching cost', def: 'What it costs to change supplier or partner: time, learning, qualification, lost output.' },
+        { term: 'Qualification', def: 'Testing and approving a new supplier’s parts or process before they may be used in production.' },
       ],
     },
     {
@@ -174,12 +180,13 @@ export default {
       teach: [
         'Anchoring (Tversky and Kahneman, 1974): the first number in the room pulls everyone’s estimates towards it, even when they know it is arbitrary. In negotiations, first offers strongly predict the final deal (Galinsky and Mussweiler, 2001). So if you know the market well, it usually pays to put the first number on the table.',
         'A good anchor is ambitious and defensible: you can explain where it comes from. An extreme number you can’t justify costs you credibility and can end the talk. Give the reason with the number: “Similar diagnostics took 18 to 22 days, so we propose 20.”',
-        'When they anchor first, don’t argue about their number: that keeps it at the centre. Ask how they arrived at it, explain your basis and put your own number on the table. Don’t make a counteroffer close to a number you think is unreasonable; that accepts their anchor.',
-        'Framing: the same fact lands differently. “95% of jobs on time” or “1 in 20 jobs late”. “€31,200” or “€600 a week for a year”.\n\nPeople weigh losses more heavily than equal gains (Kahneman and Tversky), so “without this you keep losing 300 crew hours a month” often lands harder than “this saves 300 hours”. Frame honestly, in terms the other side cares about.',
+        'When they anchor first, don’t argue about their number: that keeps it at the centre. Ask how they arrived at it, explain your basis and put your own number on the table. Don’t make a counteroffer, your reply with your own number, close to a number you think is unreasonable; that accepts their anchor.',
+        'Framing: the same fact lands differently. “95% of jobs on time” or “1 in 20 jobs late”. “€31,200” or “€600 a week for a year”.\n\nPeople weigh losses more heavily than equal gains, loss aversion (Kahneman and Tversky, 1979), so “without this you keep losing 300 crew hours a month” often lands harder than “this saves 300 hours”. Frame honestly, in terms the other side cares about.',
+        'Plan your concessions, the steps in which you give ground: make each one smaller than the last (20 days, then 19, then 18.5) and get something for each. Big or quick concessions signal there is much more room.\n\nExperts argue about going first. If they know the market better, letting them open can protect you. Some research (Ames and Mason, 2015) suggests a range whose bottom is your target, “20 to 22 days”, works at least as well as one number. A sharp question: “What is that number based on?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A client asks how many days you need for a planning diagnostic at three regional offices. Your last three similar diagnostics took 18, 22 and 20 days. On the phone, someone from purchasing mentioned “about 10 days”.',
+        text: 'A client asks how many days you need for a planning diagnostic, a short study of how work is planned and where it goes wrong, at three regional offices. Your last three similar diagnostics took 18, 22 and 20 days. On the phone, someone from purchasing mentioned “about 10 days”.',
         ask: 'What would you do next?',
         reveal: 'Put your own number on the table, with its basis: “Our last three diagnostics like this took 18 to 22 days, so we propose 20.” Don’t start from their 10, and don’t meet in the middle at 15 without a reason.\n\nIf they push back, trade scope instead of days: “With 12 days we can do one region thoroughly instead of three.” Then the client chooses what they get for the money.',
       },
@@ -212,9 +219,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'At a grid operator you propose a 6-week pilot of a readiness check. The sponsor likes it but says: “Purchasing will never approve 30 days of consulting. Can you do it in 10?” You estimate that 30 days is needed for three regions.',
+        scene: 'At a grid operator you propose a 6-week pilot of a readiness check, a check that each job has permits, materials and a switching plan before a crew goes out. The sponsor, the client manager who owns the project, likes it but says: “Purchasing will never approve 30 days of consulting. Can you do it in 10?” You estimate that 30 days is needed for three regions.',
         ask: 'How do you respond?',
-        model: 'I wouldn’t argue with the 10 or meet at 20 without reason. I’d explain the 30: “That’s three regions, 10 days each, based on the pilot we did in the north.” Then offer a trade: “With 10 days we can do one region well. If it works, the other two follow with the results in hand.” So the client chooses scope, not a cheaper version of everything.',
+        model: 'I wouldn’t argue with the 10 or meet at 20 without reason. I’d explain the 30: “That’s three regions, 10 days each, based on what one region took in our analysis in the north last year.” Then offer a trade: “With 10 days we can do one region well. If it works, the other two follow with the results in hand.” So the client chooses scope, not a cheaper version of everything.',
         rubric: [
           'Doesn’t negotiate inside the sponsor’s number',
           'Explains the basis of the estimate',
@@ -238,6 +245,8 @@ export default {
         { term: 'Anchor', def: 'The first number in a negotiation, which pulls the outcome towards it.' },
         { term: 'Framing', def: 'Presenting the same fact in a way that fits what the other side cares about.' },
         { term: 'Loss aversion', def: 'People weigh a loss more heavily than a gain of the same size.' },
+        { term: 'Counteroffer', def: 'Your reply to their number with a number of your own, ideally with its own basis.' },
+        { term: 'Concession', def: 'A step in which you give ground; plan them to get smaller and trade each one.' },
       ],
     },
     {
@@ -252,16 +261,17 @@ export default {
         },
       ],
       teach: [
-        'Scope, time and cost hang together. If one moves, something else has to.\n\nA client asking for more, in the same time, for the same budget, is asking you to cut quality without saying so. Your job is not to refuse but to make the trade visible.',
+        'Scope (what will be delivered), time and cost hang together; project managers call this the iron triangle. If one moves, something else has to.\n\nA client asking for more, in the same time, for the same budget, is asking you to cut quality without saying so. Your job is not to refuse but to make the trade visible.',
         'Small yeses add up. Five “quick” extras of a day each are a full week on a 20-day project.\n\nKeep a simple change log: what was asked, when, how much effort, what was decided. It makes the conversation about facts instead of about who is being difficult.',
         'Offer options, not a wall: “We can add it and move the final report two weeks, or add it and drop the second region, or do it as a follow-up for four extra days.” Let the client choose: it’s their priority. And always ask what decision the request serves; a lighter version is often enough.',
-        'Confirm in writing, briefly: an email after the conversation with what changes. And check with your own manager before you commit extra days. You may not be allowed to give them away, and your firm carries the cost.',
+        'Confirm in writing, briefly: an email after the conversation with what changes, or for bigger items a change request, a short document with the extra work, its days and its price that the client signs. And check with your own manager before you commit extra days. You may not be allowed to give them away, and your firm carries the cost.',
+        'On a fixed price the risk of extra effort sits with you; on a day rate, the client pays per day worked and carries that risk. Scope creep, work growing bit by bit beyond what was agreed, hurts most on a fixed price.\n\nExperts argue about free extras. Some give one small extra on purpose, named and logged (“this one’s on us”); others say every free extra teaches the client to ask again. A sharp question: “What would you drop to make room for this?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A fixed-price project at a grid operator: 20 days, three regions. In week 3, the sponsor asks to add a fourth region, “since you’re in the data anyway”. You estimate it at 4 extra days.',
+        text: 'A fixed-price project at a grid operator: 20 days, three regions. In week 3, the sponsor, the client manager who owns the project, asks to add a fourth region, “since you’re in the data anyway”. You estimate it at 4 extra days.',
         ask: 'What would you do next?',
-        reveal: 'First ask what the fourth region is for: is there a board question behind it? Then lay out options: add the region for 4 extra days at the agreed day rate; swap it for region 3; or a light version, one key number for region 4, in 1 day.\n\nCheck with your engagement manager before you name a price for the extra days. After the conversation, confirm the choice by email and add it to the change log.',
+        reveal: 'First ask what the fourth region is for: is there a board question behind it? Then lay out options: add the region for 4 extra days at the agreed day rate; swap it for region 3; or a light version, one key number for region 4, in 1 day.\n\nCheck with your engagement manager, who is responsible for this client at your firm, before you name a price for the extra days. After the conversation, confirm the choice by email and add it to the change log.',
       },
       said: 'What you hear in projects: “Happy to add it. Which would you like to move: the date, the scope, or the budget?”',
       recall: [
@@ -294,7 +304,7 @@ export default {
       situation: {
         scene: 'Two weeks before the end of a fixed-price project at a parts manufacturer, the plant manager asks you to “also quickly do the same analysis for the paint shop”. You estimate it at 6 days. Your plan has no slack left.',
         ask: 'What do you say to him?',
-        model: 'I’d say I’m glad he sees value in it, and ask what he wants to decide for the paint shop. Then: “That’s about six days. We can add it and move the final report three weeks, or do it as a short follow-up after this project. Within the current plan it would cost the quality of what you’ve asked for.” I’d check with my manager on the follow-up price and confirm by email.',
+        model: 'I’d say I’m glad he sees value in it, and ask what he wants to decide for the paint shop. Then: “That’s about six days. We can add it and move the final report about two weeks, or do it as a short follow-up after this project. Within the current plan it would cost the quality of what you’ve asked for.” I’d check with my manager on the follow-up price and confirm by email.',
         rubric: [
           'Asks what decision the extra analysis serves',
           'Makes the trade in time or scope visible',
@@ -318,6 +328,9 @@ export default {
         { term: 'Scope creep', def: 'Work that grows bit by bit beyond what was agreed, without changes to time or budget.' },
         { term: 'Change log', def: 'A list of requested changes with effort and the decision taken.' },
         { term: 'Fixed price', def: 'An agreed price for a defined scope; extra work needs a new agreement.' },
+        { term: 'Iron triangle', def: 'Scope, time and cost hang together: change one and at least one other must move.' },
+        { term: 'Change request', def: 'A short written proposal for extra or different work, with days and price, that the client approves.' },
+        { term: 'Day rate', def: 'A price per day worked; the client pays for the actual days and carries the risk of extra effort.' },
       ],
     },
     {
@@ -335,11 +348,12 @@ export default {
         'Saying yes to everything makes your yes worth less and your work late. William Ury’s “positive no” (2007) has three parts: Yes, No, Yes.\n\nFirst the yes to what you are protecting, such as a promise to a client or the quality of the work. Then a clear no. Then a yes to something else: an option, a trade, a later time.',
         'Be clear, short and calm. A no hidden in “I’ll try” is heard as yes, and then you disappoint later.\n\nGive one real reason, not five excuses: more reasons give more to argue with. Then stop talking.',
         'Offer a trade. “If I do this, what can drop?” “I can do it if Jan takes over the data pull.”\n\nA trade shows you take the request seriously, and it puts the choice with the person who sets the priorities.',
-        'Some things are not for trading: safety, integrity, rules you are bound by. Say so plainly: “That I can’t do. Here’s what I can do.” And prepare your no before a tense meeting; it is much easier to say when you have said it once in your head.',
+        'Some things are not for trading: safety, integrity, rules you are bound by. These are your red lines. Integrity here means honest numbers and honest advice: you don’t change data or hide a finding to please someone.\n\nSay so plainly: “That I can’t do. Here’s what I can do.” And prepare your no before a tense meeting; it is much easier to say when you have said it once in your head.',
+        'What you see: juniors say “I’ll try” and work nights, and the cost stays invisible until the quality drops. Other failure modes: apologising three times, over-explaining, or saying no by email to dodge the conversation.\n\nExperts differ on tone with clients. Some coach “never say no; say yes, and here’s what it takes”; Ury argues a clear no protects the relationship better than a vague yes. A sharp question for yourself: “What am I protecting by saying no?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Thursday, 16:00. Your engagement manager asks you to rework the steering committee deck tonight, for 08:00 tomorrow.\n\nYou have promised the client’s planning lead an analysis by Friday noon, which he needs for a capacity decision. You can’t do both well tonight.',
+        text: 'Thursday, 16:00. Your engagement manager, your boss on this client, asks you to rework the steering committee deck tonight, for 08:00 tomorrow. The steering committee is the group of client directors who oversee the project.\n\nYou have promised the client’s planning lead an analysis by Friday noon, which he needs for a capacity decision. You can’t do both well tonight.',
         ask: 'What would you do next?',
         reveal: 'Yes to the shared goal: “I want the steering deck to be strong too.” A clear no: “I can’t do both properly tonight.”\n\nThen a yes with options: “I can fix the three key slides tonight and keep the planning analysis on time. Or, if the deck has priority, I’ll tell the planning lead today that his analysis moves to Monday. Which do you prefer?” The person who sets the priorities makes the choice, with the cost visible.',
       },
@@ -371,7 +385,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'A client manager at a grid operator asks you to change two numbers in your analysis before it goes to the board: “Make the backlog look a bit smaller. The board will panic otherwise.”',
+        scene: 'A client manager at a grid operator asks you to change two numbers in your analysis before it goes to the board: “Make the backlog look a bit smaller. The board will panic otherwise.” The backlog is the pile of grid jobs that are waiting to be done.',
         ask: 'What do you say?',
         model: 'I’d say I understand he doesn’t want a panic, and I share that. But I can’t change the numbers; they have to match the data. What I can do is help present them well: put the trend next to it, show the actions already running, and maybe add a slide on what the backlog means for customers. Shall we work on that framing together tomorrow?',
         rubric: [
@@ -384,7 +398,7 @@ export default {
             'It’s not lying. It’s just rounding in our favour. Everybody does that.',
             'You’re the consultant. Your job is to help me, not to make my life harder.',
           ],
-          model: 'I do want to help you, and that’s exactly why I won’t do it: if the board finds out later, it hurts you far more than a hard number now. The numbers stay as they are. I will help you tell the story: the trend, the actions, and what you need from the board. Shall we sit down for an hour tomorrow and build those two slides together?',
+          model: 'I do want to help you, and that’s exactly why I won’t do it: if the board finds out later, it hurts you far more than a hard number now. The numbers stay as they are. I will help you tell the story: the trend, the actions, and what you need from the board. Shall we sit down for an hour tomorrow and build those slides together?',
           rubric: [
             'Acknowledges his worry and his wish for help',
             'Restates clearly that the numbers stay as they are',
@@ -395,7 +409,8 @@ export default {
       sayIt: 'Explain in 60 seconds how to say no to a senior person without damaging the relationship.',
       terms: [
         { term: 'Positive no', def: 'Yes to what you protect, a clear no, then yes to an alternative (Ury).' },
-        { term: 'Trade', def: 'Offering to do one thing in exchange for something else moving or dropping.' },
+        { term: 'Offer a trade', def: 'Offering to do one thing in exchange for something else moving or dropping, so the person who sets the priorities chooses.' },
+        { term: 'Red line', def: 'Something you will not trade, whatever is offered: safety, integrity (honest numbers and honest advice), binding rules.' },
       ],
     },
     {
@@ -410,14 +425,15 @@ export default {
         },
       ],
       teach: [
-        'Disagreeing upwards is part of what clients pay you for. They don’t hire a consultant to hear their own opinion back.\n\nAmy Edmondson’s research on psychological safety shows that teams learn more when people speak up. You help create that by doing it well.',
-        'Prepare three things and keep them apart: the fact, your view and your request.\n\n“The data from the last 12 weeks shows X” is the fact. “I think that means Y” is your view. “I’d like us to check Z before deciding” is the request.\n\nA clear request turns disagreement into a next step.',
+        'Disagreeing upwards is part of what clients pay you for. They don’t hire a consultant to hear their own opinion back.\n\nAmy Edmondson’s research on psychological safety (1999), the shared belief that it is safe to speak up, ask and disagree, shows that teams with more of it learn more. You help create it by speaking up well.',
+        'Use fact-view-request: prepare three things and keep them apart, the fact, your view and your request.\n\n“The data from the last 12 weeks shows X” is the fact. “I think that means Y” is your view. “I’d like us to check Z before deciding” is the request.\n\nA clear request turns disagreement into a next step.',
         'Choose the setting. For a big disagreement, go one-on-one first: never surprise a senior person in front of their team. In a meeting, ask a question rather than give a verdict: “Can I add one thing from the data?”\n\nKeep your voice low and your pace slow. Calm reads as confident.',
-        'Know when to stop. Say it clearly once, and a second time only with new information.\n\nIf they decide otherwise and it isn’t about safety or integrity, accept it and commit to the decision; note what you advised. If it is about safety or integrity, you escalate.',
+        'Know when to stop. Say it clearly once, and a second time only with new information.\n\nIf they decide otherwise and it isn’t about safety or integrity, disagree and commit: accept it, carry the decision out fully, and note what you advised. If it is about safety or integrity, use the escalation path: take it openly to the next level up, and tell the person first.',
+        'What you see: the most senior person speaks first and the room lines up behind them. Failure modes: hinting so softly nobody notices; winning the argument in public and losing the person; going to their boss behind their back.\n\n“Disagree and commit” comes from Intel and was made widely known by Jeff Bezos of Amazon. Critics say it can silence people; it only works if the disagreement was truly heard first. A sharp question: “What would you need to see to change your mind?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Steering committee at a parts manufacturer. The COO says: “Deliveries are late because operators don’t follow the schedule. We’ll make it a bonus criterion.”\n\nYour data: of the 120 late orders in the last 12 weeks, 84 started late because materials arrived late. You are the youngest in the room.',
+        text: 'Steering committee at a parts manufacturer. The COO, the director of operations, says: “Deliveries are late because operators don’t follow the schedule. We’ll make it a bonus criterion.”\n\nYour data: of the 120 late orders in the last 12 weeks, 84 started late because materials arrived late. You are the youngest in the room.',
         ask: 'What would you do next?',
         reveal: 'Ask for room, calmly: “Can I add one thing from the data?” The fact: “84 of the 120 late orders in the last 12 weeks, that’s 70%, started late because materials came in late.”\n\nYour view: “So a bonus for operators may not move it much.” Your request: “Could we look at materials first and decide on the bonus next month?”\n\nIf he holds his view, don’t argue a second time in the room. Ask for 15 minutes afterwards.',
       },
@@ -475,7 +491,8 @@ export default {
       terms: [
         { term: 'Psychological safety', def: 'A shared belief that it is safe to speak up, ask and disagree (Edmondson).' },
         { term: 'Disagree and commit', def: 'Make your case, and once the decision is made, carry it out fully.' },
-        { term: 'Fact, view, request', def: 'Three parts kept apart when disagreeing: what the data shows, what you think, what you ask.' },
+        { term: 'Fact-view-request', def: 'Three things you keep apart when you disagree: the fact anyone can check, your view of what it means, and the concrete next step you ask for.' },
+        { term: 'Escalation path', def: 'Taking an issue openly to the next level up, after telling the person first; for safety or integrity, not for a difference of taste.' },
       ],
     },
   ],
