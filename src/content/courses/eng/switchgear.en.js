@@ -1,4 +1,4 @@
-// eng.switchgear (EN): Switchgear and protection: switching devices, MS installations, protection relays, selectivity, working safely, distribution automation.
+// eng.switchgear (EN): Switchgear and protection: switching devices, MV switchgear, protection relays, selectivity, working safely, distribution automation.
 export default {
   lessons: [
     {
@@ -13,19 +13,20 @@ export default {
         },
       ],
       teach: [
-        'A circuit breaker (vermogensschakelaar) can switch normal load and interrupt short-circuit currents, in MS often 10 to 20 kA or more. A protection relay tells it to open when it sees a fault.\n\nBreakers sit in substations at the start of every MS feeder. Modern MS breakers interrupt the arc in a vacuum bottle.',
-        'A load-break switch (lastscheider) can switch normal load current on and off, and close onto a fault, but it cannot interrupt a short circuit. That is what you find in netstations for the ring cables: operators use them to switch sections in and out of the ring.',
-        'A disconnector (scheider) may only be operated without current. Its job is to create a safe, reliable gap so people can work behind it. An earthing switch connects a dead section to earth.\n\nA fuse (zekering) interrupts a fault by melting, once; then it must be replaced. In a netstation, the transformer is often protected by MS fuses combined with a load-break switch.',
-        'The key question for any device: what can it make and what can it break? Operating a disconnector under load, or a load-break switch onto a fault it cannot handle, can create an arc that injures the operator. Knowing what each device can do is basic safety, not trivia.',
+        'Switchgear is the equipment that switches, protects and isolates parts of the grid. For every device, ask two things: what can it make (switch on), and what can it break (switch off)?\n\nA circuit breaker can switch normal load and also interrupt a short-circuit current; MV breakers are typically rated for 16 to 25 kA. A protection relay watches the current and tells the breaker to open when it sees a fault. Modern MV breakers put out the arc in a vacuum bottle.',
+        'The fault level is the short-circuit power or current available at a point in the grid: how hard a fault hits there. In a 10 kV grid near a substation it is typically a few hundred MVA, roughly 15 to 20 kA. Every breaker must be rated above the fault level where it sits.\n\nBreakers sit in substations at the start of every medium-voltage (MV) feeder, and in switching stations and large customer stations.',
+        'A load-break switch can switch normal load current on and off, and close onto a fault, but it cannot interrupt a short circuit. It is the standard device for the ring cables in secondary substations, the small stations that feed the streets: operators use it to switch sections of the ring in and out.\n\nA fuse interrupts a fault by melting, once; then it must be replaced. The transformer in a secondary substation is often protected by MV fuses combined with a load-break switch.',
+        'A disconnector may only be operated without current. Its job is to create a safe, reliable gap, so people can work behind it.\n\nAn earthing switch connects a dead section to earth, so that if voltage comes back by mistake, the current flows to earth and not through a person. In modern units these functions are often combined in one switch, with mechanical interlocks that block the wrong sequence, such as earthing a cable that is still live.',
+        'Operating a disconnector under load, or closing a switch onto a fault it cannot handle, can cause an arc flash: a blast of heat, light and pressure that can badly burn the operator. Knowing what each device can do is basic safety, not trivia.\n\nExperts argue about interlocks versus training: interlocks stop most errors, but older installations lack some of them. A sharp question: “What can this switch break, and what stops someone using it wrong?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A 10 kV feeder in a substation is protected by a breaker rated 20 kA. The ring passes netstation 12, which has two load-break switches for the ring cables and a fuse-switch for its 400 kVA transformer. A digger hits the ring cable: the relay at the substation sees 8 kA and opens the breaker in about 0.3 s.\n\nThe load-break switches in netstation 12 could not have done that. Once the feeder is dead, a technician opens the load-break switches around the damaged section to isolate it, and the breaker is switched back on.',
+        text: 'A 10 kV feeder in a substation is protected by a breaker rated 20 kA. The ring passes secondary substation 12, which has two load-break switches for the ring cables and a fuse-switch for its 400 kVA transformer. A digger hits the ring cable: the relay at the substation sees 8 kA and opens the breaker in about 0.3 s.\n\nThe load-break switches in station 12 could not have done that. Once the feeder is dead, a technician opens the load-break switches around the damaged section to isolate it, and the breaker is switched back on.',
       },
-      said: 'What engineers say: “You can’t pull that under load, it’s a disconnector. Open the switch first.”',
+      said: 'What engineers say: “You can’t pull that under load, it’s a disconnector. Open the load-break switch first.”',
       recall: [
         {
-          q: 'A 10 kV network has a fault level of 300 MVA. What is the short-circuit current, in kA? (I = S / (1.73 × U))',
+          q: 'A 10 kV network has a fault level of 300 MVA. What is the three-phase short-circuit current, in kA? (I = S / (1.73 × U))',
           number: 17.3,
           tolerance: 0.5,
           unit: 'kA',
@@ -44,16 +45,16 @@ export default {
           why: 'The fuse element melts to interrupt the fault, so it works only once.',
         },
         {
-          q: 'Which device is typically used for the ring cables in a netstation?',
+          q: 'Which device is typically used for the ring cables in a secondary substation?',
           options: ['A circuit breaker with relay', 'A load-break switch', 'A fuse', 'A disconnector only'],
           answer: 'A load-break switch',
           why: 'Load-break switches let operators switch ring sections under normal load.',
         },
       ],
       situation: {
-        scene: 'You’re at a regional grid operator in a project to make fault restoration faster. Someone proposes that technicians “just switch the netstation while the fault is still on, to save time”.',
+        scene: 'You’re at a regional grid operator in a project to make fault restoration faster. Someone proposes that technicians “just switch the secondary substation while the fault is still on, to save time”.',
         ask: 'What do you ask?',
-        model: 'What can the switches in those netstations break? Load-break switches cannot interrupt a short-circuit current, so operating them while a fault is fed would create a dangerous arc. The breaker in the substation has to clear the fault first. Maybe the time can be won elsewhere, for example in finding the faulty section faster.',
+        model: 'What can the switches in those stations break? Load-break switches cannot interrupt a short-circuit current, so operating them while a fault is fed would create a dangerous arc. The breaker in the substation has to clear the fault first. Maybe the time can be won elsewhere, for example in finding the faulty section faster.',
         rubric: [
           'Asks what the devices can make and break',
           'Identifies the safety risk of switching a fault with a load-break switch',
@@ -62,37 +63,40 @@ export default {
       },
       sayIt: 'Explain to a project manager in 60 seconds the difference between a circuit breaker, a load-break switch, a disconnector and a fuse.',
       terms: [
-        { term: 'Vermogensschakelaar', def: 'Circuit breaker: switches load and interrupts short-circuit currents.' },
-        { term: 'Lastscheider', def: 'Load-break switch: switches normal load, not short circuits.' },
-        { term: 'Scheider', def: 'Disconnector: operated without current to create a safe gap.' },
-        { term: 'Fault level', def: 'The short-circuit power or current at a point in the network.' },
+        { term: 'Circuit breaker', def: 'Switches load and interrupts short-circuit currents, again and again, on a relay’s command.' },
+        { term: 'Fault level', def: 'The short-circuit power or current available at a point in the network.' },
+        { term: 'Load-break switch', def: 'Switches normal load and can close onto a fault, but cannot interrupt a short circuit.' },
+        { term: 'Fuse', def: 'Interrupts a fault by melting, once; then it must be replaced.' },
+        { term: 'Disconnector', def: 'Operated without current to create a safe gap for work.' },
+        { term: 'Earthing switch', def: 'Connects a dead section to earth, so returning voltage flows to earth instead of through a person.' },
       ],
     },
     {
       id: 'eng.switchgear.installations',
-      title: 'MS switchgear and ring main units',
+      title: 'MV switchgear and ring main units',
       pre: [
         {
-          q: 'SF6, the gas in much MS switchgear, is a greenhouse gas. Roughly how much stronger than CO2 is it, per kilogram?',
+          q: 'SF6, the gas in much MV switchgear, is a greenhouse gas. Roughly how much stronger than CO2 is it, per kilogram, over 100 years?',
           options: ['About 2 times', 'About 23,000 times', 'About 100 times', 'It is not a greenhouse gas'],
           answer: 'About 23,000 times',
-          why: 'SF6 has a global warming potential of roughly 23,500, the highest of any common industrial gas.',
+          why: 'SF6 has a global warming potential of roughly 23,500 (IPCC 2013; the 2021 report gives about 24,300), the highest of any common industrial gas.',
         },
       ],
       teach: [
-        'In a substation, MS switchgear is a row of cabinets (velden), one per feeder, each with a breaker, measurement transformers and a relay.\n\nOlder air-insulated switchgear (AIS) is large: air between the parts insulates them. Gas-insulated switchgear (GIS) puts the live parts in a sealed tank of SF6, which makes it much more compact.',
-        'In a netstation, the MS part is usually a ring main unit (RMU): a compact unit with two cable fields for the ring and one transformer field. Many RMUs from recent decades are SF6-insulated.\n\nOlder types, such as the Magnefix, are still very common in Dutch netstations. For some older types, grid operators have extra rules on how to operate them safely.',
-        'SF6 insulates and quenches arcs extremely well, but it is a very strong greenhouse gas: about 23,500 times CO2. Under the EU F-gas rules, new MS switchgear up to 24 kV may no longer use F-gases such as SF6 from 2026, and up to 52 kV from 2030. Alternatives use vacuum to interrupt the arc and dry air or solid insulation.',
-        'Switchgear choices are long-term: an installation stays 30 to 50 years. That makes them a big topic in standardisation, purchasing and safety. When grid people talk about “the installation”, ask what type it is; the answer tells you how it is operated, maintained and replaced.',
+        'In a substation, the MV switchgear is a row of steel cabinets. Each cabinet is a panel, one per feeder or transformer, with a circuit breaker, measuring transformers that scale current and voltage down, and a protection relay.\n\nOlder air-insulated switchgear (AIS) is large: air between the live parts insulates them, so they need distance. Gas-insulated switchgear (GIS) puts the live parts in a sealed tank filled with SF6, an insulating gas, which makes it much more compact.',
+        'In a secondary substation, the MV part is usually an RMU, a ring main unit: one compact block with two cable panels for the ring and one transformer panel. Many RMUs from recent decades are SF6-insulated.\n\nOlder types are still very common in Dutch stations, such as the Magnefix, which is insulated with solid resin instead of gas. For some older types, operators have extra rules on how and when they may be operated.',
+        'SF6 insulates and quenches arcs extremely well, but it is the strongest greenhouse gas in common use: about 23,500 times CO2 per kilogram. Under the EU F-gas Regulation (2024/573), new MV switchgear up to 24 kV may no longer use F-gases such as SF6 from 2026, and up to 52 kV from 2030.\n\nThe alternatives break the arc in a vacuum interrupter, a sealed bottle with a vacuum inside, and insulate with dry air or solid materials.',
+        'On site you see a mimic diagram on the front of the switchgear: a line drawing of the circuit with indicators that show which switch is open, closed or earthed. A pressure gauge shows the gas is still in. Interlocks and padlocks block wrong operations.\n\nThe main risk is an internal arc, a fault inside the cabinet. Good switchgear is tested for it (internal arc classification), so the blast is vented away from the operator.',
+        'Switchgear choices are long-term: an installation stays 30 to 50 years. That makes it a big topic in standardisation, purchasing and safety. Experts argue whether SF6-free units have proven themselves in the field yet; operators reply that the law leaves little room.\n\nA sharp question when someone says “the installation”: “Which type is it?” The answer tells you how it is operated, maintained and replaced.',
       ],
       example: {
         kind: 'worked',
-        text: 'A grid operator has 20,000 SF6 RMUs, each with about 1.5 kg of gas: 30 tonnes of SF6. If 0.1% leaks per year, that is 30 kg, which equals about 30 × 23,500 = 705,000 kg, roughly 700 tonnes of CO2 equivalent a year.\n\nFrom 2026, new RMUs must be SF6-free. The operator updates its standard netstation design to a vacuum and dry-air RMU, retrains technicians on the new operating steps, and keeps a plan for safely collecting SF6 from units it replaces.',
+        text: 'A grid operator has 20,000 SF6 RMUs, each with about 1.5 kg of gas: 30 tonnes of SF6. If 0.1% leaks per year, that is 30 kg, which equals about 30 × 23,500 = 705,000 kg, roughly 700 tonnes of CO2 equivalent a year.\n\nFrom 2026, new RMUs up to 24 kV must be free of F-gases. The operator updates its standard station design to a vacuum and dry-air RMU, retrains technicians on the new operating steps, and keeps a plan for safely collecting SF6 from units it replaces.',
       },
       said: 'What engineers say: “From now on it’s SF6-free for new stations. Same footprint, different operating steps, so we retrain everyone.”',
       recall: [
         {
-          q: 'An RMU contains 1.5 kg of SF6, with a warming effect of about 23,500 times CO2. If all of it leaked, how many tonnes of CO2 equivalent is that?',
+          q: 'An RMU contains 1.5 kg of SF6, with a warming effect of about 23,500 times CO2 per kilogram. If all of it leaked, how many tonnes of CO2 equivalent is that?',
           number: 35.3,
           tolerance: 1,
           unit: 't',
@@ -100,9 +104,9 @@ export default {
         },
         {
           q: 'What does a typical ring main unit contain?',
-          options: ['One breaker per house', 'A 150/10 kV transformer', 'Two cable fields for the ring and one transformer field', 'Only LS fuses'],
-          answer: 'Two cable fields for the ring and one transformer field',
-          why: 'The RMU connects the netstation into the ring and feeds the transformer.',
+          options: ['One breaker per house', 'A 150/10 kV transformer', 'Two cable panels for the ring and one transformer panel', 'Only LV fuses'],
+          answer: 'Two cable panels for the ring and one transformer panel',
+          why: 'The RMU connects the secondary substation into the ring and feeds the transformer.',
         },
         {
           q: 'What is the main advantage of gas-insulated switchgear over air-insulated?',
@@ -111,7 +115,7 @@ export default {
           why: 'SF6 insulates far better than air, so parts can sit closer together.',
         },
         {
-          q: 'What do SF6-free MS alternatives typically use?',
+          q: 'What do SF6-free MV alternatives typically use?',
           options: ['Oil for everything', 'Higher voltage', 'Hydrogen', 'Vacuum to interrupt the arc and dry air or solid insulation'],
           answer: 'Vacuum to interrupt the arc and dry air or solid insulation',
           why: 'Vacuum interrupters handle the arc; air or solid materials provide insulation.',
@@ -129,10 +133,12 @@ export default {
       },
       sayIt: 'Explain to a sustainability manager in 60 seconds why SF6 matters for grid operators and what replaces it.',
       terms: [
-        { term: 'RMU', def: 'Ring main unit: compact MS switchgear in a netstation with ring and transformer fields.' },
-        { term: 'GIS / AIS', def: 'Gas-insulated / air-insulated switchgear.' },
-        { term: 'SF6', def: 'Insulating gas with a very high greenhouse effect, being phased out in new MS switchgear.' },
-        { term: 'Veld', def: 'One cabinet in a switchgear row, for one feeder or transformer.' },
+        { term: 'Panel', def: 'One cabinet in a switchgear row, for one feeder or transformer.' },
+        { term: 'AIS', def: 'Air-insulated switchgear: air between the live parts insulates them; large.' },
+        { term: 'GIS', def: 'Gas-insulated switchgear: live parts in a sealed tank of insulating gas; compact.' },
+        { term: 'RMU', def: 'Ring main unit: compact MV switchgear in a secondary substation with two ring panels and a transformer panel.' },
+        { term: 'SF6', def: 'Insulating gas with a very high greenhouse effect, being phased out in new MV switchgear.' },
+        { term: 'Vacuum interrupter', def: 'Sealed bottle with a vacuum in which the contacts open and the arc goes out.' },
       ],
     },
     {
@@ -143,14 +149,15 @@ export default {
           q: 'A protection relay at a 10 kV feeder needs to know the current, which can be hundreds of amperes. How does it measure it?',
           options: ['It is wired directly into the 10 kV cable', 'From the smart meters', 'Someone reads it off and enters it', 'Through a current transformer that brings it down to about 1 or 5 A'],
           answer: 'Through a current transformer that brings it down to about 1 or 5 A',
-          why: 'CTs and VTs scale current and voltage down to safe, standard values for relays and meters.',
+          why: 'Current and voltage transformers scale current and voltage down to safe, standard values for relays and meters.',
         },
       ],
       teach: [
-        'A protection system has three parts.\n\nMeasurement transformers scale the real values down: a current transformer (CT, stroomtransformator) of 400/1 A turns 400 A into 1 A; a voltage transformer (VT, spanningstransformator) turns 10 kV into 100 V. A relay compares these values with its settings. A breaker opens when the relay sends a trip signal.',
-        'Overcurrent protection trips when the current stays above a set value for a set time.\n\nTypically there are two stages: a lower setting with a delay for overload and distant faults, and a high setting that trips almost instantly for heavy short circuits close by. The setting must be above the highest normal load and below the lowest fault current.',
-        'Earth-fault protection looks at the current that leaks to earth, measured as the sum of the three phases, which should be zero when all is well.\n\nHow large an earth fault current is depends on how the network’s star point is earthed, and that differs per network. Some networks need very sensitive or directional earth-fault relays.',
-        'Modern relays are digital: they also record events and fault currents, which helps after a trip. Settings are a managed engineering product.\n\nA wrong setting causes either unwanted trips or, worse, no trip at all. When the network changes, for example a new solar park, the settings must be checked.',
+        'A protection system has three parts. Measuring transformers scale the real values down to safe, standard values: a current transformer (CT) of 400/1 A turns 400 A in the cable into 1 A; a voltage transformer (VT) turns 10 kV into about 100 V.\n\nA protection relay compares these values with its settings. When it decides there is a fault, it sends a trip signal, and the circuit breaker opens.',
+        'Overcurrent protection trips when the current stays above a set value for a set time. Usually there are two stages: a lower setting with a delay, for overload and distant faults, and a high setting that trips almost instantly for heavy short circuits close by.\n\nThe lower setting must sit above the highest normal load and below the lowest fault current: the current of a fault at the far end of the feeder.',
+        'Earth-fault protection looks at current leaking to earth, measured as the sum of the three phase currents, which is zero when all is well.\n\nHow large that current gets depends on how the network’s star point, the common point of the three windings at the transformer, is earthed. Dutch MV networks differ: some earth it through a resistor, others through a coil, or not at all. Those need sensitive or directional relays, which also see which way the current flows.',
+        'Modern relays are digital: they also record events and fault currents, which helps after a trip. Settings are an engineering product with an owner and a version, like a drawing.\n\nA wrong setting causes either unwanted trips or, worse, no trip at all. When the network changes, the settings must be checked. The inverters of a solar or wind park feed some fault current of their own, which can hide part of a fault from a relay upstream.',
+        'In the substation you see relays with small screens and LEDs in the panel doors, and test sockets where technicians inject current to check a relay. Many operators test relays every few years.\n\nExperts argue about how often digital relays, which check themselves, still need testing. Typical failure: a setting changed on site and never recorded. A sharp question: “Who owns these settings, and when were they last checked against the network?”',
       ],
       example: {
         kind: 'worked',
@@ -159,14 +166,14 @@ export default {
       said: 'What engineers say: “Check the relay settings after that solar park connects. The fault currents on that feeder have changed.”',
       recall: [
         {
-          q: 'A CT has a ratio of 400/1 A. The primary current is 600 A. What current does the relay see, in amperes?',
+          q: 'A current transformer has a ratio of 400/1 A. The primary current, in the cable, is 600 A. What current does the relay see, in amperes?',
           number: 1.5,
           tolerance: 0.05,
           unit: 'A',
           why: '600 / 400 = 1.5 A on the secondary side.',
         },
         {
-          q: 'Where must an overcurrent setting lie?',
+          q: 'Where must the lower overcurrent setting lie?',
           options: ['Below the normal load current', 'Above the highest normal load and below the lowest fault current', 'Exactly at the cable rating', 'Above the highest fault current'],
           answer: 'Above the highest normal load and below the lowest fault current',
           why: 'Otherwise it either trips on normal load or misses real faults.',
@@ -196,10 +203,12 @@ export default {
       },
       sayIt: 'Explain to a non-technical manager in 60 seconds how a protection relay knows when to trip a breaker.',
       terms: [
-        { term: 'CT (stroomtransformator)', def: 'Scales high currents down to 1 or 5 A for relays and meters.' },
-        { term: 'VT (spanningstransformator)', def: 'Scales high voltages down to about 100 V.' },
+        { term: 'Current transformer', def: 'CT: scales high currents down to 1 or 5 A for relays and meters.' },
+        { term: 'Voltage transformer', def: 'VT: scales high voltages down to about 100 V.' },
+        { term: 'Protection relay', def: 'Device that compares measured current and voltage with its settings and sends the trip signal to the breaker.' },
         { term: 'Overcurrent protection', def: 'Trips when current stays above a set value for a set time.' },
-        { term: 'Earth-fault protection', def: 'Trips on current leaking to earth.' },
+        { term: 'Earth-fault protection', def: 'Trips on current leaking to earth, seen as the sum of the three phase currents.' },
+        { term: 'Star point', def: 'The common point of the three windings of a transformer; how it is earthed sets the earth-fault current.' },
       ],
     },
     {
@@ -208,26 +217,27 @@ export default {
       title: 'Selectivity',
       pre: [
         {
-          q: 'A short circuit occurs in one LS street cable. In a well-designed grid, what switches off?',
-          options: ['Only the fuse of that street cable', 'The whole netstation', 'The whole MS ring', 'The substation'],
+          q: 'A short circuit occurs in one LV street cable. In a well-designed grid, what switches off?',
+          options: ['Only the fuse of that street cable', 'The whole secondary substation', 'The whole MV ring', 'The substation'],
           answer: 'Only the fuse of that street cable',
           why: 'Selectivity means the protection closest to the fault clears it, and everything upstream stays on.',
         },
       ],
       teach: [
-        'Selectivity means that only the protection closest to the fault trips, so as few customers as possible lose power. A fault in a street cable should blow that cable’s fuse in the netstation, not the transformer fuse, and certainly not the feeder breaker in the substation.',
-        'Time grading is the most common method. The relay closest to the fault is set fastest; each relay upstream waits a bit longer, typically about 0.3 s more.\n\nThat grading margin covers the breaker’s opening time and measuring tolerances. If the nearest device fails to clear the fault, the next one up still will, just later: that is the backup.',
-        'Fuses are coordinated by size. For LS fuses of the same type, a rule of thumb is that the upstream fuse should be at least about 1.6 times the rating of the downstream one. Between a netstation’s MS fuse and its LS fuses, engineers check the curves to make sure the LS fuse goes first.',
-        'Without selectivity, a small fault turns into a big outage: one bad street cable takes out a whole ring of 2,000 customers. Selectivity can also break when the network changes: a new feed point, a cable section moved to another ring, or larger fuses fitted “because they kept blowing”.',
+        'Selectivity means that only the protection closest to the fault trips, so as few customers as possible lose power. Everything upstream, closer to the source, stays on.\n\nA fault in a low-voltage (LV) street cable should blow that cable’s fuse in the secondary substation, not the transformer’s MV fuse, and certainly not the feeder breaker in the substation.',
+        'Time grading is the most common method for relays. The relay closest to the fault is set fastest; each relay upstream waits a little longer. In Dutch MV grids, graded relays sit in substations, switching stations and large customer stations; ordinary secondary substations have none.\n\nThe extra delay per step is the grading margin, typically 0.3 to 0.4 s. It covers the breaker’s opening time, the relay’s small run-on after the current stops, and measuring tolerances.',
+        'Time grading also gives backup protection: if the nearest breaker fails to open, the next one upstream still clears the fault, just later and with more customers off.\n\nThe price is speed: the relay nearest the source waits longest, while faults there carry the highest current. Experts argue how far to push this; relays that talk to each other over a communication link can trip faster without losing selectivity.',
+        'Fuses are graded by size and by their time-current curve: a graph of how fast a fuse or relay trips at each current. For general-purpose LV fuses of the same type, a rule of thumb is that the upstream fuse should be at least about 1.6 times the rating of the downstream one.\n\nBetween a station’s MV fuse and its LV fuses, engineers compare the curves to make sure the LV fuse goes first.',
+        'Without selectivity, a small fault becomes a big outage: one bad street cable takes out a whole ring of 2,000 customers. Selectivity can also break when the network changes: a new feed point, a cable section moved to another ring, or larger fuses fitted “because they kept blowing”.\n\nA sharp question after a large outage: “Which device should have cleared this fault, and why didn’t it?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A netstation feeds six LS cables, each with a 250 A fuse. A technician replaces a fuse that keeps blowing on one cable with a 400 A one. Months later, a fault on that cable does not blow the 400 A fuse fast enough; the MS fuse of the transformer blows first.\n\nResult: all six cables, 180 homes, lose power instead of 30. The fix: back to 250 A on that cable, and find out why it kept blowing, probably an overloaded cable that needs splitting or reinforcing.',
+        text: 'A secondary substation feeds six LV cables, each with a 250 A fuse. A technician replaces a fuse that keeps blowing on one cable with a 400 A one. Months later, a fault on that cable does not blow the 400 A fuse fast enough; the MV fuse of the transformer blows first.\n\nResult: all six cables, 180 homes, lose power instead of 30. The fix: back to 250 A on that cable, and find out why it kept blowing, probably an overloaded cable that needs splitting or reinforcing.',
       },
-      said: 'What engineers say: “Someone put a bigger fuse in and now it’s not selective. The trafo fuse goes first.”',
+      said: 'What engineers say: “Someone put a bigger fuse in and now it’s not selective. The transformer fuse goes first.”',
       recall: [
         {
-          q: 'The relay closest to the fault trips at 0.3 s. The grading margin is 0.3 s. Two relays sit upstream of it. At what time should the top one trip, in seconds?',
+          q: 'The relay closest to the fault trips at 0.3 s. The grading margin is 0.3 s. Two relays sit upstream of it, each one margin slower than the one below. At what time should the top one trip, in seconds?',
           number: 0.9,
           tolerance: 0.05,
           unit: 's',
@@ -253,9 +263,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re reviewing outage data at a regional grid operator. Several LS faults led to the whole netstation going out instead of one street cable. The field team says: “That just happens sometimes.”',
+        scene: 'You’re reviewing outage data at a regional grid operator. Several LV faults led to the whole secondary substation going out instead of one street cable. The field team says: “That just happens sometimes.”',
         ask: 'What do you ask?',
-        model: 'In those cases, which fuse blew, and were the LS fuses on those cables the standard size? If larger fuses were fitted to stop nuisance blowing, the selectivity with the transformer fuse may be gone. Can we check the fitted fuses against the standard in those netstations, and look at why the original fuses blew in the first place?',
+        model: 'In those cases, which fuse blew, and were the LV fuses on those cables the standard size? If larger fuses were fitted to stop nuisance blowing, the selectivity with the transformer fuse may be gone. Can we check the fitted fuses against the standard in those stations, and look at why the original fuses blew in the first place?',
         rubric: [
           'Asks which device operated and which fuse sizes are fitted',
           'Links non-standard fuses to loss of selectivity',
@@ -264,9 +274,11 @@ export default {
       },
       sayIt: 'Explain to a customer service team lead in 60 seconds why a fault in one street sometimes takes out a whole neighbourhood.',
       terms: [
-        { term: 'Selectivity', def: 'Only the protection closest to the fault trips.' },
+        { term: 'Selectivity', def: 'Only the protection closest to the fault trips; everything upstream stays on.' },
         { term: 'Time grading', def: 'Upstream relays are set progressively slower than downstream ones.' },
-        { term: 'Grading margin', def: 'The extra delay per step, typically about 0.3 s.' },
+        { term: 'Grading margin', def: 'The extra delay per step, typically 0.3 to 0.4 s.' },
+        { term: 'Backup protection', def: 'The next device upstream that clears the fault, later, if the nearest one fails.' },
+        { term: 'Time-current curve', def: 'Graph of how fast a fuse or relay trips at each current; used to check selectivity.' },
       ],
     },
     {
@@ -274,21 +286,22 @@ export default {
       title: 'Working safely: the five rules and NEN 3140',
       pre: [
         {
-          q: 'A technician has switched off an MS cable and locked the switch. What must they do before touching it?',
+          q: 'A technician has switched off an MV cable and locked the switch. What must they do before touching it?',
           options: ['Nothing, it is off', 'Wait five minutes', 'Measure that it is dead, then earth and short-circuit it', 'Ask the control room if it is off'],
           answer: 'Measure that it is dead, then earth and short-circuit it',
           why: 'Switched off is not proven dead. Measuring and earthing protect against mistakes and back-feeds.',
         },
       ],
       teach: [
-        'The five safety rules for working dead, in this order: 1. vrijschakelen, disconnect on all sides.\n\n2. Vergrendelen, secure against switching back on, with a lock and a tag.\n\n3. Spanningsloos meten, verify that it is dead with a tester.\n\n4. Aarden en kortsluiten, earth and short-circuit.\n\n5. Afschermen, shield nearby parts that are still live.',
-        'Each rule covers a real failure. Switching the wrong field. Someone switching back on.\n\nA back-feed from a generator, solar panels or another ring. Induced or residual voltage. A neighbouring live part within reach.\n\nSkipping one step because “it’s definitely off” is how serious accidents happen.',
-        'NEN 3140 sets the rules for operating LS installations, up to 1,000 V AC; NEN 3840 does the same above that, so for MS and HS. Both build on the European NEN-EN 50110, and grid operators work with sector rules based on them (BEI).\n\nKey roles: the installatieverantwoordelijke (IV), who controls the installation, and the werkverantwoordelijke (WV), who leads the work on site. A VP (vakbekwaam persoon) is a skilled person; a VOP (voldoende onderricht persoon) is an instructed person.',
-        'The employer appoints people to these roles in writing, for specific work: the aanwijzing. A skilled technician without that appointment may not work on the installation as a VP. Skill alone is not enough; the appointment matters.\n\nAs a consultant you are a layperson in an installation: you go in only with a qualified person and you never touch anything.',
+        'Most work on the grid is done dead: with the part you work on switched off and made safe. For that, the European standard NEN-EN 50110 sets five safety rules, always in this order.\n\n1. Disconnect completely, on all sides power can come from. 2. Secure against reconnection, with a lock and a tag.\n\n3. Verify that it is dead, with a tester checked on a live source. 4. Earth and short-circuit.\n\n5. Protect against adjacent live parts, with shields or barriers.',
+        'Each rule covers a real failure: switching the wrong panel; someone switching back on; a back-feed, power coming in from the other side, from a generator, solar panels or another ring; induced or leftover voltage; a live part within reach.\n\nEarthing only comes after verifying dead: earthing a part that is still live causes a short circuit and an arc at the worker. Skipping a step because “it’s definitely off” is how serious accidents happen.',
+        'In the Netherlands, NEN 3140 applies these rules to low-voltage installations, up to 1,000 V AC, and NEN 3840 to higher voltages, so MV and HV. Both build on NEN-EN 50110, and grid operators add sector rules based on them (BEI).\n\nThe key roles: the IV, the person in control of the installation, who is responsible for its safe operation and gives permission for work on it; and the WV, the person in control of the work, who leads one job on site.',
+        'A VP, a skilled person, has the training and experience to judge the electrical risks; a VOP, an instructed person, has been taught enough for specific tasks. Everyone else is a layperson.\n\nThe employer gives each person a written appointment for a role, specific work and specific installations, after checking their competence. Skill alone does not let you work as a VP; the written appointment does. As a consultant you are a layperson: you enter only with a qualified person and touch nothing.',
+        'On site you see warning signs on the station door, padlocks and tags on switches, earthing sets clamped onto the conductors, and crews in arc-rated clothing.\n\nTypical failures: an appointment that expired, a switching step done from memory, a tester not checked. Experts argue how often appointments should be reassessed; many firms do it every few years. A sharp question: “Who is the IV here, and who is the WV for this job?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Work on an MS cable between netstations 8 and 9. The control room and the IV prepare a switching plan. A technician opens the switches in both stations (rule 1), locks them and hangs tags (rule 2).\n\nAt the work location, they test that all three cores are dead, after first checking the tester on a live source (rule 3). They close the earthing switches at both ends (rule 4) and cover nearby live parts in the netstation (rule 5). Only then does the WV release the cable for the jointing crew.',
+        text: 'Work on an MV cable between secondary substations 8 and 9. The control room and the IV prepare a switching plan. A technician opens the switches in both stations (rule 1), locks them and hangs tags (rule 2).\n\nAt the work location, they test that all three cores are dead, after first checking the tester on a live source (rule 3). They close the earthing switches at both ends (rule 4) and cover nearby live parts in the station (rule 5). Only then does the WV release the cable for the jointing crew.',
       },
       said: 'What engineers say: “It’s switched off, locked and earthed both sides. You can start, but measure first yourself.”',
       recall: [
@@ -303,17 +316,17 @@ export default {
           q: 'What is the correct order of the first three safety rules?',
           options: ['Disconnect, secure against reclosing, verify dead', 'Earth, disconnect, verify dead', 'Verify dead, disconnect, shield', 'Shield, earth, disconnect'],
           answer: 'Disconnect, secure against reclosing, verify dead',
-          why: 'First isolate, then make sure it stays isolated, then prove it is dead.',
+          why: 'First isolate, then make sure it stays isolated, then prove it is dead. Only then earth and short-circuit.',
         },
         {
           q: 'Under NEN 3140, what allows a skilled technician to work on an installation as a VP?',
           options: ['A technical diploma', 'Five years of experience', 'Passing a safety quiz', 'A written appointment by the employer for specific work'],
           answer: 'A written appointment by the employer for specific work',
-          why: 'Training and experience are needed, but the employer’s written appointment, the aanwijzing, is what makes someone a VP for that work.',
+          why: 'Training and experience are needed, but the employer’s written appointment is what makes someone a VP for that work.',
         },
         {
           q: 'Why earth and short-circuit after verifying it is dead?',
-          options: ['It is faster', 'To protect against a back-feed or someone switching on by mistake', 'To measure the current', 'It is only required for LS'],
+          options: ['It is faster', 'To protect against a back-feed or someone switching on by mistake', 'To measure the current', 'It is only required for LV'],
           answer: 'To protect against a back-feed or someone switching on by mistake',
           why: 'If voltage returns, the earth carries it away and the protection trips.',
         },
@@ -321,7 +334,7 @@ export default {
       situation: {
         scene: 'You’re leading a productivity project at a regional grid operator. A manager suggests that crews could “save twenty minutes per job by skipping the extra measurement when the control room has already confirmed it’s off”.',
         ask: 'How do you respond?',
-        model: 'I would not touch the safety steps: verifying it is dead on site is exactly what protects against a wrong field or a back-feed that the control room cannot see. Let’s look for the twenty minutes elsewhere, for example in waiting for the switching, travel between stations or preparing the switching plan. Can we ask the crews where they lose time?',
+        model: 'I would not touch the safety steps: verifying it is dead on site is exactly what protects against a wrong panel or a back-feed that the control room cannot see. Let’s look for the twenty minutes elsewhere, for example in waiting for the switching, travel between stations or preparing the switching plan. Can we ask the crews where they lose time?',
         rubric: [
           'Refuses to trade a safety rule for productivity',
           'Explains why on-site verification matters',
@@ -330,10 +343,12 @@ export default {
       },
       sayIt: 'Explain to a new consultant in 60 seconds the five safety rules and why each one matters.',
       terms: [
-        { term: 'Vrijschakelen', def: 'Disconnecting an installation part on all sides.' },
-        { term: 'NEN 3140', def: 'Dutch standard for safely operating LS electrical installations.' },
-        { term: 'IV', def: 'Installatieverantwoordelijke: the person responsible for the installation.' },
-        { term: 'Aanwijzing', def: 'The employer’s written appointment of a person to a NEN 3140 role, such as VP or WV, for specific work.' },
+        { term: 'Five safety rules', def: 'Disconnect, secure against reconnection, verify dead, earth and short-circuit, protect against adjacent live parts: always in this order.' },
+        { term: 'Back-feed', def: 'Power coming into a disconnected part from another side, such as a generator, solar panels or another ring.' },
+        { term: 'NEN 3140', def: 'Dutch standard for safely operating low-voltage electrical installations, built on NEN-EN 50110.' },
+        { term: 'IV', def: 'The person in control of the installation: responsible for its safe operation and gives permission for work on it.' },
+        { term: 'WV', def: 'The person in control of the work: leads one specific job on site.' },
+        { term: 'Written appointment', def: 'The employer’s written designation of a person to a role, such as VP or WV, for specific work and installations.' },
       ],
     },
     {
@@ -341,23 +356,24 @@ export default {
       title: 'Distribution automation',
       pre: [
         {
-          q: 'An MS ring has remote-controlled switches in a few netstations. After a cable fault, how long does restoring most customers typically take?',
+          q: 'An MV ring has remote-controlled switches in a few secondary substations. After a cable fault, how long does restoring most customers typically take?',
           options: ['About a day', 'Minutes instead of one to two hours', 'Exactly as long as without automation', 'Only until the cable is repaired'],
           answer: 'Minutes instead of one to two hours',
           why: 'The control room can isolate the fault and switch remotely, without waiting for a technician to drive out.',
         },
       ],
       teach: [
-        'Without automation, a technician drives to netstations, reads fault indicators and switches by hand: one to two hours of outage for most customers.\n\nWith distribution automation, some netstations get remote-controlled switches and fault indicators that report to the control room. The operator sees where the fault is and switches remotely, in minutes.',
-        'Fault indicators (kortsluitverklikkers) light up or send a signal when fault current has passed them. The fault lies between the last indicator that saw current and the first that did not. That is how the faulty section is found quickly, with or without remote control.',
-        'A self-healing ring goes one step further: the system locates the fault, opens the switches around it and closes the open point automatically, often within a minute. It needs reliable communication, good data on the network and well-tested logic, so it is introduced step by step.',
-        'Automating every netstation is too expensive. Operators choose a few key stations per ring, often two or three, where a remote switch splits the ring into sections.\n\nThat is a business case: cost per station against fewer outage minutes and less driving. Netstation monitoring of load and voltage is often added at the same time.',
+        'Without automation, a technician drives from station to station, reads the indicators and switches by hand: one to two hours without power for most customers.\n\nDistribution automation means remote control and monitoring of the MV grid. Some secondary substations get a remote-controlled switch: a motor-driven load-break switch that the control room can open and close over a communication link. The operator sees where the fault is and switches in minutes.',
+        'A fault indicator lights up or sends a signal when fault current has passed it. Fault current flows from the source to the fault and no further, so the fault lies between the last indicator that saw it and the first that did not.\n\nIndicators that report to the control room save the drive to read them. Even without remote switching, that alone can save many minutes.',
+        'A self-healing ring goes one step further: the system locates the fault, opens the switches around it and closes the open point by itself, often within a minute. It needs reliable communication, accurate network data and well-tested logic, so operators introduce it step by step.\n\nExperts argue about trust: some control rooms want an operator to confirm each step; others let the logic run.',
+        'Automating every station is too expensive. Operators choose a few key stations per ring, often two or three, where a remote-controlled switch splits the ring into sections.\n\nThat is a business case: cost per station against fewer customer minutes, the number of customers off times the minutes they are off, and less driving. Dutch customers lose power for around 20 to 25 minutes a year on average, and the regulator links part of the operators’ income to that.',
+        'On site you see a small cabinet in the station with a modem, a battery and the motor drive on the switch.\n\nTypical failures: batteries that are flat when needed, communication that drops during storms, network data that do not match reality. A sharp question: “Which rings cause the most customer minutes, and where would one remote switch help most?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A ring feeds 1,200 customers. Without automation, all are out for 90 minutes: 1,200 × 90 = 108,000 customer minutes. With remote switches in two key netstations, the control room isolates the faulty section in 3 minutes: 1,000 customers are back after 3 minutes and 200 stay out for 90 minutes.\n\nThat is 1,000 × 3 + 200 × 90 = 3,000 + 18,000 = 21,000 customer minutes, about 80% less, from two upgraded netstations.',
+        text: 'A ring feeds 1,200 customers. Without automation, all are out for 90 minutes: 1,200 × 90 = 108,000 customer minutes. With remote switches in two key stations, the control room isolates the faulty section in 3 minutes: 1,000 customers are back after 3 minutes and 200 stay out for 90 minutes.\n\nThat is 1,000 × 3 + 200 × 90 = 3,000 + 18,000 = 21,000 customer minutes, about 80% less, from two upgraded stations.',
       },
-      said: 'What engineers say: “The verklikkers show it’s between 6 and 7. I’ve switched it out remotely, most of them are back.”',
+      said: 'What engineers say: “The fault indicators show it’s between 6 and 7. I’ve switched it out remotely, most of them are back.”',
       recall: [
         {
           q: 'A ring of 900 customers. With automation, 750 are back after 2 minutes and 150 stay out 60 minutes. How many customer minutes is that?',
@@ -373,7 +389,7 @@ export default {
           why: 'Fault current flows from the source up to the fault, not beyond it.',
         },
         {
-          q: 'Why do operators not automate every netstation?',
+          q: 'Why do operators not automate every secondary substation?',
           options: ['It is forbidden', 'Remote switches do not work in rings', 'Automation increases outages', 'The cost is too high; a few key stations per ring give most of the benefit'],
           answer: 'The cost is too high; a few key stations per ring give most of the benefit',
           why: 'Two or three switch points split the ring into sections that can be restored separately.',
@@ -386,7 +402,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a regional grid operator. The team wants to install remote switches in 500 netstations next year, chosen “where installation is easiest”.',
+        scene: 'You’re at a regional grid operator. The team wants to install remote switches in 500 secondary substations next year, chosen “where installation is easiest”.',
         ask: 'What do you ask about the selection?',
         model: 'Which rings cause the most customer minutes today, and where in those rings would a switch point split them best? Easy installation is nice, but the benefit sits in rings with many customers, frequent faults and long travel times. Can we rank the candidates on expected customer minutes saved per euro, and then check installability?',
         rubric: [
@@ -395,12 +411,13 @@ export default {
           'Proposes ranking on benefit per euro before ease of installation',
         ],
       },
-      sayIt: 'Explain to a finance manager in 60 seconds why a few remote switches in the MS grid can cut outage time so much.',
+      sayIt: 'Explain to a finance manager in 60 seconds why a few remote switches in the MV grid can cut outage time so much.',
       terms: [
-        { term: 'Kortsluitverklikker', def: 'Fault indicator that shows whether fault current has passed.' },
-        { term: 'Distribution automation', def: 'Remote control and monitoring of the MS grid.' },
+        { term: 'Distribution automation', def: 'Remote control and monitoring of the MV grid.' },
+        { term: 'Remote-controlled switch', def: 'Motor-driven load-break switch that the control room opens and closes over a communication link.' },
+        { term: 'Fault indicator', def: 'Device that shows or reports whether fault current has passed it.' },
         { term: 'Self-healing ring', def: 'A ring that locates, isolates and restores faults automatically.' },
-        { term: 'Customer minutes', def: 'Number of customers out × minutes without power.' },
+        { term: 'Customer minutes', def: 'Number of customers off × minutes without power.' },
       ],
     },
   ],
