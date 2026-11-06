@@ -6,21 +6,22 @@ export default {
       title: 'A meeting rhythm that works',
       pre: [
         {
-          q: 'Which steering group agenda item is most likely to lead somewhere?',
+          q: 'Which agenda item for the steering group, the meeting where the sponsor takes the big decisions, is most likely to lead to a decision?',
           options: ['“Status pilot”', '“Update from the project team”', '“Any other business”', '“Pilot: extend to region North from week 12, yes or no?”'],
           answer: '“Pilot: extend to region North from week 12, yes or no?”',
           why: 'An item written as a decision question gets a decision; a topic title gets a discussion.',
         },
       ],
       teach: [
-        'Three layers. A short stand-up at the board, 15 minutes, two or three times a week for a part-time client team: what did I finish, what’s next, what’s blocking me.\n\nA weekly team meeting, 45 to 60 minutes: progress against the plan, blockers, decisions needed, next week. A steering group every four to six weeks, 60 to 90 minutes, for decisions only the sponsor can take.',
-        'Agendas that end in decisions. Label each item: to decide, to discuss or to inform.\n\nWrite decision items as a question: “Do we extend the pilot to region North from week 12?” Send the agenda and a one-page decision note two days before. Information items go in a written update, not in the meeting.',
-        'Minutes are decisions and actions, nothing else: what was decided, who does what by when. Send them the same day.\n\nStart the next meeting by checking the actions. When actions keep slipping, that tells you more about the project than any status slide.',
-        'The people side: client staff drown in meetings. Every meeting you add costs them. Keep yours short, start on time, end early when you can, and cancel when there’s nothing to decide.\n\nIf the sponsor keeps cancelling the steering group, that is a signal, not bad luck. Ask him: “Is this still the right moment, or should we find another way for you to decide?”',
+        'A project runs on three meetings. A stand-up: 15 minutes standing at a whiteboard, two or three times a week, where each person says what they finished, what’s next and what blocks them. It comes from agile methods such as Scrum: working in short cycles.\n\nA weekly team meeting, 45 to 60 minutes: progress, blockers, decisions needed. And a steering group every four to six weeks, 60 to 90 minutes: the sponsor, the senior manager who owns the goal and budget, plus a few department heads.',
+        'Agendas that end in decisions. Label each item: to decide, to discuss or to inform.\n\nWrite decision items as a question: “Do we extend the pilot to region North from week 12?” Send the agenda two days before, with a decision note: one page with the question, the options, your recommendation and the deadline. Information items go in a written update, not in the meeting.',
+        'The minutes are the written record of a meeting. Keep them to decisions and actions, nothing else: what was decided, who does what by when. Send them the same day.\n\nStart the next meeting by checking the actions. When actions keep slipping, that tells you more about the project than any status slide. Ask the sharp question: “Which of last week’s actions are done?”',
+        'The people side: client staff drown in meetings. Every meeting you add costs them hours. Keep yours short, start on time, end early when you can, and cancel when there’s nothing to decide.\n\nIf the sponsor keeps cancelling the steering group, that is a signal, not bad luck. Ask: “Is this still the right moment, or should we find another way for you to decide?”',
+        'What goes wrong: the weekly meeting grows to twelve people who only listen, and the steering group becomes a slideshow where nothing is decided.\n\nExperts disagree on how often to meet. Agile teams, which work in short cycles full-time, swear by a daily stand-up; client teams who work on the project part-time often find two a week enough. Test it: if a stand-up keeps running past 15 minutes, or nobody ever names a blocker, change the format.',
       ],
       example: {
         kind: 'worked',
-        text: 'Downtime project at a beverage plant. Stand-up Monday and Thursday 08:30 at the board on the shop floor, 15 minutes, five people.\n\nWeekly meeting Tuesday 13:00, 45 minutes: 10 minutes actions, 15 minutes progress against the one-page plan, 15 minutes two decisions (which line next, whether to involve the supplier), 5 minutes next week. Steering group every five weeks, 60 minutes, three decision items, a decision note sent on Friday before.\n\nAfter the first steering group, the minutes fit on half a page: three decisions, four actions, sent at 16:00 the same day.',
+        text: 'A project to cut downtime (the hours a line stands still when it should run) at a beverage plant. Stand-up Monday and Thursday 08:30 at the board on the shop floor, 15 minutes, five people.\n\nWeekly meeting Tuesday 13:00, 45 minutes: 10 minutes actions, 15 minutes progress against the one-page plan, 15 minutes two decisions (which line next, whether to involve the supplier), 5 minutes next week. Steering group every five weeks, 60 minutes, three decision items, a decision note sent on Friday before.\n\nAfter the first steering group, the minutes fit on half a page: three decisions, four actions, sent at 16:00 the same day.',
       },
       said: 'What you hear in projects: “Another meeting? I already spend half my week in meetings about meetings.”',
       recall: [
@@ -50,7 +51,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. Your weekly project meeting has grown to 90 minutes with twelve people, half of whom only listen. Decisions keep being postponed to “next week”.',
+        scene: 'You’re at a grid operator, the company that runs the regional power network. Your weekly project meeting has grown to 90 minutes with twelve people, half of whom only listen. Decisions keep being postponed to “next week”.',
         ask: 'What do you change?',
         model: 'I’d cut it back to the five people who do the work, 45 minutes, with every item labelled decide, discuss or inform. Information goes in a short written update for the others. Decision items get a one-page note two days before, and the minutes list only decisions and actions, sent the same day.',
         rubric: [
@@ -74,8 +75,10 @@ export default {
       sayIt: 'Explain to a client team lead in 60 seconds the meeting rhythm of your project and why each meeting exists.',
       terms: [
         { term: 'Stand-up', def: 'A 15-minute standing check at the board: done, next, blocked.' },
-        { term: 'Steering group', def: 'The sponsor and senior people who take the decisions the team can’t.' },
+        { term: 'Steering group', def: 'The sponsor and senior managers who meet every few weeks to take the decisions the team can’t.' },
+        { term: 'Sponsor', def: 'The senior manager who owns the project’s goal and budget and takes its big decisions.' },
         { term: 'Decision note', def: 'One page with the question, options, a recommendation and the deadline.' },
+        { term: 'Minutes', def: 'The written record of a meeting: decisions and actions with owner and date.' },
       ],
     },
     {
@@ -90,10 +93,11 @@ export default {
         },
       ],
       teach: [
-        'Agree what the colours mean at the start, or they mean nothing.\n\nA workable set: green, on track for the next milestone without extra help. Amber, at risk, but the team can recover with its own actions. Red, will miss unless the steering group acts.\n\nThen red is not a failure; it is a request for a decision.',
-        'The watermelon project: green outside, red inside. Reports stay green until two weeks before the deadline, then jump to red. It happens because people hope to catch up and fear the messenger gets shot.\n\nThe cost: by then the options are gone. Bad news early is cheap; bad news late is expensive.',
-        'Structure bad news in four parts: what happened, what it means for the milestone, what I propose, what I need from you. “The system access is six weeks late. That moves the pilot from week 8 to week 12. I propose we start the pilot on paper in week 8. I need your OK and a call from you to the IT manager.”',
+        'Most projects report a RAG status: red, amber or green. It only works if you agree at the start what the colours mean.\n\nA workable set: green, on track for the next milestone, a dated checkpoint such as “pilot starts”, without extra help. Amber, at risk, but the team can recover with its own actions. Red, will miss unless the steering group acts.\n\nThen red is not a failure; it is a request for a decision.',
+        'The watermelon project: green outside, red inside. Reports stay green until two weeks before the deadline, then jump to red. People hope to catch up, and fear the messenger gets shot. Psychologists call this reluctance to pass on bad news the MUM effect, from “keep mum”, stay silent (Rosen and Tesser, 1970).\n\nThe cost: by then the options are gone. Bad news early is cheap; bad news late is expensive.',
+        'Structure bad news in four parts: what happened, what it means for the milestone, what I propose, what I need from you.\n\n“The system access is six weeks late. That moves the pilot from week 8 to week 12. I propose we start the pilot on paper in week 8. I need your OK and a call from you to the IT manager.” That last part is an escalation: taking a problem to someone who can decide or help, with a proposal.',
         'The people side: client team members may ask you to “keep it green for now”. Don’t argue in the corridor. Say: “I get it, nobody likes red. But if we say it now, the sponsor can still help. In six weeks, he can’t.”\n\nAs an outsider you can often say what insiders can’t. Use that with care, and always tell the owner before the sponsor hears it.',
+        'Report a forecast, not only progress: where will we land at the end, given what we know today? “70% of tasks done” says little; “the savings will come out at 180,000 euro, not 300,000” says a lot.\n\nA common failure: colours set on gut feeling. Ask the sharp question in every review: “What would have to happen for this to turn red?” If nobody can answer, the green means nothing.',
       ],
       example: {
         kind: 'worked',
@@ -127,7 +131,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a packaging plant. Your project has been reported green for eight weeks. Today you calculate that the savings target of 300,000 euro a year will come out at about 180,000. The steering group is next Tuesday.',
+        scene: 'You’re at a packaging plant. Your project has been reported green for eight weeks and runs for another five months. Today you calculate that the savings target, the cost reduction of 300,000 euro a year promised at the start, will come out at about 180,000. The steering group is next Tuesday.',
         ask: 'What do you do before and in the steering group?',
         model: 'First tell the project owner and the team what I found and what I’ll report, so nobody is surprised. In the steering group: “Red on the savings. We’re heading for about 180,000 instead of 300,000, because line 2 won’t be in scope before the summer. Two options: accept 180 this year, or add line 2 with one extra technician for three months. I recommend option two. I need your decision today.”',
         rubric: [
@@ -137,10 +141,10 @@ export default {
         ],
         pushback: {
           lines: [
-            '“Why go amber now? It was green last week. The board will ask what went wrong, and I can’t explain that.”',
+            '“Why go red now? It was green last week. The board will ask what went wrong, and I can’t explain that.”',
             '“Can’t we keep it green until we know more? 180 is a forecast, not a result.”',
           ],
-          model: '“I see why that’s uncomfortable. But if we keep it green and it lands at 180, the question becomes why we didn’t say so. With eight weeks left we can still act. I’ll bring two options to close the gap, so the board hears a plan, not just a problem.”',
+          model: '“I see why that’s uncomfortable. But if we keep it green and it lands at 180, the question becomes why we didn’t say so. With five months left we can still act. I’ll bring two options to close the gap, so the board hears a plan, not just a problem.”',
           rubric: [
             'Acknowledges his discomfort with the board',
             'Holds to reporting the honest status now',
@@ -151,8 +155,10 @@ export default {
       sayIt: 'Explain to a new client team in 60 seconds what green, amber and red mean in your project and why red is not a failure.',
       terms: [
         { term: 'RAG status', def: 'Red, amber, green: agreed definitions of how a project is doing.' },
+        { term: 'Milestone', def: 'A dated checkpoint in the plan, such as “pilot starts” or “handover done”.' },
         { term: 'Watermelon project', def: 'A project reported green on the outside while it is red inside.' },
         { term: 'Escalation', def: 'Bringing a problem to someone who can decide or help, with a proposal.' },
+        { term: 'Forecast', def: 'Where the project will land at the end, given what you know today.' },
       ],
     },
     {
@@ -167,19 +173,20 @@ export default {
         },
       ],
       teach: [
-        'Scope creep rarely arrives as one big request. It comes as “while you’re at it, can you also look at line 4?”, “can the dashboard also show quality?”, “could you join the meeting about the new ERP?”. Each one is small and reasonable.\n\nSigns: new people at your meetings, the goal sentence shifting, and you working evenings while the plan says you’re on track.',
-        'Make every request visible. Write it down: what is asked, by whom, why, and the impact on time, cost, risk and the original goal.\n\nSmall things go on a list you review weekly. Bigger ones become a change request that the sponsor decides on. Never decide alone on scope; it’s not your project, it’s theirs.',
-        'Say “yes, and here is the cost”. “We can add line 4. That’s about three weeks extra, or we drop the shift handover. Which do you prefer?”\n\nYou’re not saying no; you’re making the trade-off visible. Most requests shrink or disappear once they have a price.',
-        'The people side: as a junior it feels risky to push back on a senior client. You don’t push back; you ask the sponsor to choose.\n\nSometimes the change is right because the original goal was wrong. Then change the scope officially, with a new goal sentence and plan, rather than letting it drift.',
+        'Scope is what the project will and won’t deliver. Scope creep is that scope growing bit by bit without anyone formally agreeing. It comes as “while you’re at it, can you also look at line 4?” or “could you join the meeting about the new ERP?”, the company-wide system for orders, stock and planning. Each request is small and reasonable.\n\nSigns: new people at your meetings, the goal sentence shifting, and you working evenings while the plan says you’re on track.',
+        'The goal sentence is one line that says what the project must achieve, for example “cut jobs cancelled in the week before they are due from 18% to under 8% by June”. Test every request against it.\n\nThen make each request visible: what is asked, by whom, why, and the impact on time, cost, risk and the goal. Small things go on a list you review weekly. Bigger ones become a change request: a written request with its impact, which the sponsor decides on.',
+        'Say “yes, and here is the cost”. “We can add line 4. That’s about three weeks extra, or we drop the shift handover. Which do you prefer?”\n\nYou’re not saying no; you’re showing the trade-off: what you give up to get something else. Most requests shrink or disappear once they have a price. Never decide alone on scope; it’s not your project, it’s theirs.',
+        'The people side: as a junior it feels risky to push back on a senior client. You don’t push back; you ask the sponsor to choose.\n\nSometimes the change is right, because the original goal was wrong. Then change the scope officially, with a new goal sentence and plan, rather than letting it drift. Formal projects have a change control board for this; in most improvement projects the steering group plays that role.',
+        'Watch your own side too. Gold plating is the team adding extras nobody asked for: a nicer dashboard, one more analysis. It feels like service, but it eats the same hours as creep.\n\nExperts argue about how strict to be. Some count every hour; others keep a small reserve for favours that build goodwill, often around 10% of the budget: a rule of thumb, not a standard. Either way, ask weekly: “Does everything we worked on this week serve the goal sentence?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Your project at a cable manufacturer is planned at 40 consultant days to improve the weekly planning.\n\nBy week 5 you have said yes to five small requests: a report for sales, a check on stock levels, a session with the new ERP team, and two extra analyses. Each was about 2 days. Together: 10 days, 25% extra, and the plan still shows green.\n\nYou write the list down with the impact, and bring it to the sponsor: “These five came in. Together they cost 10 days. Option A: we keep them and move the end date by two weeks. Option B: we drop the stock check and ERP session.” He chooses B and tells sales himself.',
+        text: 'Your project at a cable manufacturer is planned at 40 consultant days, the consultant time the client pays for, to improve the weekly planning.\n\nBy week 5 you have said yes to five small requests: a report for sales, a check on stock levels, a session with the new ERP team, and two extra analyses. Each was about 2 days. Together: 10 days, 25% extra, and the plan still shows green.\n\nYou write the list down with the impact, and bring it to the sponsor: “These five came in. Together they cost 10 days. Option A: we keep them and move the end date by two weeks. Option B: we drop the stock check and ERP session.” He chooses B and tells sales himself.',
       },
       said: 'What you hear in projects: “It’s just one small extra thing. You’re here anyway, right?”',
       recall: [
         {
-          q: 'A project has 40 days of budget. Five small requests of 2 days each are added. By what percentage has the scope grown?',
+          q: 'A project has 40 days of budget. Five small requests of 2 days each are added. By what percentage of the original 40 days has the scope grown?',
           number: 25,
           tolerance: 0.5,
           unit: '%',
@@ -205,7 +212,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. In the corridor, a regional manager asks: “Since you’re looking at planning anyway, could you also sort out our materials reservations? Shouldn’t be much work.”',
+        scene: 'You’re at a grid operator, the regional power network company. In the corridor, a regional manager asks: “Since you’re looking at planning anyway, could you also sort out our materials reservations?” He means booking cables and parts for planned jobs. “Shouldn’t be much work.”',
         ask: 'What do you say?',
         model: '“Interesting, and it probably affects planning too. I can’t judge yet how much work it is. Let me write down what you’d want from it and estimate the impact on the current plan. Then I’ll bring it to the sponsor, so she can decide whether we add it and what moves.”',
         rubric: [
@@ -228,9 +235,12 @@ export default {
       },
       sayIt: 'Explain to a team member in 60 seconds how you handle “small” extra requests from the client.',
       terms: [
+        { term: 'Scope', def: 'What the project will and won’t deliver.' },
         { term: 'Scope creep', def: 'The project slowly growing through small additions nobody formally agreed.' },
-        { term: 'Change request', def: 'A written request for a scope change with its impact, decided by the sponsor.' },
         { term: 'Goal sentence', def: 'One sentence stating what the project must achieve, used to test requests.' },
+        { term: 'Change request', def: 'A written request for a scope change with its impact, decided by the sponsor.' },
+        { term: 'Trade-off', def: 'What you give up to get something else: more scope costs time, money or another part of the plan.' },
+        { term: 'Gold plating', def: 'The project team adding extras nobody asked for.' },
       ],
     },
     {
@@ -245,14 +255,15 @@ export default {
         },
       ],
       teach: [
-        'Bring options with a recommendation, not a problem. Two or three real options, the criteria that matter (cost, time, risk, impact on people), the pros and cons, and what you recommend and why. Add what happens if no decision is taken.\n\nOne page. A manager can decide in ten minutes on a good page; a vague question takes three meetings.',
-        'Keep a decision log: date, decision, who decided, why, and what alternatives were rejected. It takes two minutes per decision. In month four, when someone says “who decided that?”, you open the log instead of reopening the discussion.',
-        'Escalation that works: escalate the decision, not the person. Agree the path at the start: team, project owner, sponsor, with a time limit at each level. “If we can’t agree by Friday, it goes to the sponsor.”\n\nTell the people involved before you escalate. And use a default: “If there’s no decision by the 15th, we continue with option A.”',
+        'Bring options with a recommendation, not a problem. A recommendation is the option you advise, with your reason. Give two or three real options, the decision criteria that matter (cost, time, risk, impact on people), and the pros and cons. Add what happens if no decision is taken.\n\nOne page. A manager can decide in ten minutes on a good page; a vague question takes three meetings.',
+        'Keep a decision log: date, decision, who decided, why, and which alternatives were rejected. It takes two minutes per decision.\n\nIn month four, when someone says “who decided that?”, you open the log instead of reopening the discussion. Keep it where everyone can see it, for example as a tab in the project file.',
+        'Agree an escalation path at the start: the levels a stuck decision goes through, team, project owner, sponsor, with a time limit at each. “If we can’t agree by Friday, it goes to the sponsor.” Escalate the decision, not the person.\n\nTell the people involved before you escalate. And set a default, what happens if nobody decides: “If there’s no decision by the 15th, we continue with option A.”',
         'The people side: managers postpone decisions because they fear being wrong, or because someone above them disagrees. Ask: “What would you need to see to decide?” If the answer is vague, ask: “Who else needs to be comfortable with this?”\n\nWhen you don’t know which option is best, say so and recommend a small test instead.',
+        'Not every decision deserves the same care. Jeff Bezos of Amazon (shareholder letter, 2015) split them into one-way doors, hard to reverse, and two-way doors, easy to undo. Take two-way doors fast, as low in the organisation as possible.\n\nA failure mode is the decision taken twice: agreed in the steering group, then quietly reopened in the corridor. Experts argue about consensus; many prefer “disagree and commit”, a phrase from Intel that Bezos made known at Amazon: argue openly, then everyone carries the decision.',
       ],
       example: {
         kind: 'worked',
-        text: 'At a plastics manufacturer the team can’t decide where to start: line 2 (most downtime, 14% of hours) or line 5 (smaller losses, but a supervisor keen to start). You write one page.\n\nOption A, line 2: biggest saving, about 90,000 euro a year, but the shift lead there is sceptical. Option B, line 5: about 40,000, quick start, willing team. Option C: start line 5 for four weeks to prove the approach, then line 2.\n\nRecommendation: C, because a visible success on line 5 will help convince line 2. If no decision by Friday, the team starts with C. The operations manager picks C in the meeting, and you log it with the reason.',
+        text: 'At a plastics manufacturer the team can’t decide where to start: line 2 (most downtime, 14% of planned production hours) or line 5 (smaller losses, but a supervisor keen to start). You write one page.\n\nOption A, line 2: biggest saving, about 90,000 euro a year, but the shift lead there is sceptical. Option B, line 5: about 40,000, quick start, willing team. Option C: start line 5 for four weeks to prove the approach, then line 2.\n\nRecommendation: C, because a visible success on line 5 will help convince line 2. If no decision by Friday, the team starts with C. The operations manager picks C in the meeting, and you log it with the reason.',
       },
       said: 'What you hear in projects: “Let’s take this offline and come back to it next week.”',
       recall: [
@@ -282,7 +293,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. For three weeks the heads of planning and execution have disagreed about who owns the new readiness check. The project waits.',
+        scene: 'You’re at a grid operator, the regional power network company. For three weeks the heads of planning and execution (the field crews) have disagreed about who owns the new readiness check, the check that a job has people, parts and permits before it is planned. The project waits. Your sponsor is the operations director.',
         ask: 'How do you get this decided?',
         model: 'I’d write one page with the options: planning owns it, execution owns it, or planning owns it with execution signing off. With pros and cons and my recommendation. I’d tell both heads I’m bringing it to the sponsor if they can’t agree by Friday, and I’d set a default. Then I’d log the decision with the reason.',
         rubric: [
@@ -305,6 +316,8 @@ export default {
       },
       sayIt: 'Explain to a client project owner in 60 seconds how you prepare a decision so the steering group can take it in ten minutes.',
       terms: [
+        { term: 'Recommendation', def: 'The option you advise in a decision note, with your reason.' },
+        { term: 'Decision criteria', def: 'What the options are judged on: cost, time, risk, impact on people.' },
         { term: 'Decision log', def: 'A list of decisions with date, who, why and rejected options.' },
         { term: 'Escalation path', def: 'Agreed levels and time limits for decisions the team can’t take.' },
         { term: 'Default', def: 'What happens if no decision is taken by the deadline.' },
@@ -322,10 +335,11 @@ export default {
         },
       ],
       teach: [
-        'Your team reports to their line managers, not to you. You lead with what you have: clarity, help and credit.\n\nPeople work on a project when it solves their own pain, when progress is visible, and when their name is on the success. Ask early: “What would make this project worth it for you?”',
-        'Commitments that hold are small, specific and in their own words. Not “can you look at the data?” but “what can you have by Thursday?”\n\nLet them say it aloud in the team meeting and write it on the board. Then check it at the next meeting. People keep promises they made in public.',
-        'When someone doesn’t deliver, assume capacity before attitude. One-on-one: “I noticed the analysis isn’t there. What’s in the way?”\n\nOften it’s the day job, a manager who doesn’t know, or a task that was unclear. Help remove it: smaller piece, clearer task, or a call to their manager for time.',
-        'If it keeps happening, talk to their manager, but tell the person first: “I’m going to ask your manager whether you can get the four hours a week we agreed. Is that OK with you?” Never go around someone. And give credit loudly: in the steering group, name who did the work.',
+        'Leading without authority means getting work done by people who don’t report to you. Your team reports to their line manager, the boss who sets their priorities and appraises them. You lead with what you have: clarity, help and credit.\n\nPeople work on a project when it solves their own pain, when progress is visible, and when their name is on the success. Ask early: “What would make this project worth it for you?”',
+        'A commitment that holds is small, specific and in their own words. Not “can you look at the data?” but “what can you have by Thursday?”\n\nLet them say it aloud in the team meeting and write it on the board. Then check it at the next meeting. People keep promises they made in public; the psychologist Robert Cialdini calls this commitment and consistency.',
+        'When someone doesn’t deliver, assume capacity before attitude. Capacity is the hours someone really has free for your project, next to the day job. Ask in a one-on-one, a private talk between the two of you: “I noticed the analysis isn’t there. What’s in the way?”\n\nOften it’s the day job, a manager who doesn’t know, or an unclear task. Help remove it: a smaller piece, a clearer task, or a call to their manager for time.',
+        'If it keeps happening, talk to their manager, but tell the person first: “I’m going to ask your manager whether you can get the four hours a week we agreed. Is that OK with you?” Never go around someone.\n\nAnd give credit loudly: in the steering group, name who did the work. Visible praise from senior people is one of the few rewards you can hand out.',
+        'Make capacity explicit at the start: “four hours a week, Tuesday morning, agreed with your manager” beats “he’ll help where he can”. Someone at 20% on your project has one day a week, minus meetings.\n\nA common failure: the consultant quietly does the client’s tasks to stay on schedule. The plan looks fine, but nobody at the client can run it later. Ask yourself weekly: “Whose hands did this week’s work?”',
       ],
       example: {
         kind: 'worked',
@@ -359,7 +373,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. A senior planner on your team is clearly capable, but stays silent in meetings and delivers late. A colleague tells you he wasn’t asked whether he wanted to join the project.',
+        scene: 'You’re at a grid operator, the regional power network company. A senior planner on your team is clearly capable, but stays silent in meetings and delivers late. A colleague tells you he wasn’t asked whether he wanted to join the project.',
         ask: 'What do you do?',
         model: 'Talk to him one-on-one, without blaming. “I heard you were put on this project without being asked. How is it for you?” Then ask what would make it worth his time, and whether his workload allows it. Agree something small and specific he wants to own, and if time is the problem, raise it with his manager after telling him.',
         rubric: [
@@ -383,8 +397,10 @@ export default {
       sayIt: 'Explain to a new consultant in 60 seconds how you get client staff to deliver when they don’t report to you.',
       terms: [
         { term: 'Leading without authority', def: 'Getting work done through clarity, help and credit, not hierarchy.' },
+        { term: 'Line manager', def: 'The boss a team member actually reports to, who sets their priorities.' },
         { term: 'Commitment', def: 'A small, specific promise someone makes in their own words.' },
-        { term: 'Line manager', def: 'The person a team member actually reports to.' },
+        { term: 'Capacity', def: 'The hours someone really has free for the project, next to the day job.' },
+        { term: 'One-on-one', def: 'A private conversation between two people, away from the group.' },
       ],
     },
     {
@@ -399,10 +415,11 @@ export default {
         },
       ],
       teach: [
-        'Positions versus interests (Fisher and Ury, Getting to Yes). A position is what someone says they want: “no stops during the week”. An interest is why: “we can’t miss the weekly delivery to our biggest customer”.\n\nPositions clash; interests often don’t. Maybe a four-hour stop on Monday morning, when the order is already shipped, works for both. Ask “what do you need it for?” and “what are you worried about?”',
-        'In the team: listen to both sides separately first. Don’t take sides, even when one is right.\n\nThen bring them together with the interests on the table, not the positions: “You both want the line to run reliably. You disagree on when to stop it.” Look for options that serve both, and decide on criteria, not on who shouts.',
-        'The difficult conversation, in four steps.\n\nWhat I saw, factual: “Twice this month the data wasn’t there on Monday.” The impact: “The planning meeting then decides on guesses.” Ask their view, and listen: “How do you see it?”\n\nAgree the next step together. Prepare the first sentence; the rest follows.',
+        'Positions versus interests, from Fisher and Ury’s book Getting to Yes (1981). A position is what someone says they want: “no stops during the week”. An interest is why: “we can’t miss the weekly delivery to our biggest customer”.\n\nPositions clash; interests often don’t. Maybe a four-hour stop on Monday morning, when the order has already shipped, works for both. Ask “what do you need it for?” and “what are you worried about?”',
+        'In the team: listen to both sides separately first. Don’t take sides, even when one is right.\n\nThen bring them together with the interests on the table: “You both want the line to run reliably. You disagree on when to stop it.” Look for options that serve both, and decide on objective criteria, facts both sides accept beforehand, such as downtime hours or missed deliveries, not on who shouts loudest.',
+        'A difficult conversation is the talk you’d rather avoid. Do it in four steps.\n\nWhat I saw, factually: “Twice this month the data wasn’t there on Monday.” The impact: “The planning meeting then decides on guesses.” Ask their view, and listen: “How do you see it?”\n\nAgree the next step together. Prepare the first sentence; the rest follows.',
         'With the client: when a manager blames your project, don’t defend in the room. “I hear you’re unhappy with how this is going. Can we take twenty minutes tomorrow to go through it?”\n\nThen use the same four steps. When you don’t know what to do, separate the people, talk to each alone, and ask a senior colleague before you act.',
+        'Know each side’s BATNA, another term from Getting to Yes: the best alternative to a negotiated agreement, what they do if there is no deal. Without a shared stop, maintenance’s alternative is a breakdown; production’s is a missed delivery. Seeing that makes a deal more attractive.\n\nA failure mode is splitting the difference: two hours instead of four satisfies nobody and fixes nothing. And some conflicts are about values or status, not interests; then escalate to someone who can decide.',
       ],
       example: {
         kind: 'worked',
@@ -436,7 +453,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. A team leader from execution says in your project meeting: “Planning sends us jobs that can’t be done, and now they want us to fill in another checklist?” The planners on your team go quiet.',
+        scene: 'You’re at a grid operator, the regional power network company. A team leader from execution, the field crews who carry out the jobs, says in your project meeting: “Planning sends us jobs that can’t be done, and now they want us to fill in another checklist?” The planners on your team go quiet.',
         ask: 'What do you do in the meeting and after?',
         model: 'In the meeting: “I hear real frustration about jobs that can’t be done. That’s exactly what this check should fix, so I want to understand it.” After, talk to him alone: what happened, what does he need from planning? Then talk to the planners. Bring them together on the shared interest, fewer wasted trips, and adjust the checklist with his input.',
         rubric: [
@@ -461,7 +478,9 @@ export default {
       terms: [
         { term: 'Position', def: 'What someone says they want.' },
         { term: 'Interest', def: 'Why they want it: the need or worry behind the position.' },
-        { term: 'Difficult conversation', def: 'Facts, impact, their view, next step, in that order.' },
+        { term: 'Objective criteria', def: 'Facts both sides accept beforehand to judge options, such as downtime hours.' },
+        { term: 'Difficult conversation', def: 'A talk you’d rather avoid, held in four steps: facts, impact, their view, next step.' },
+        { term: 'BATNA', def: 'Best alternative to a negotiated agreement: what you do if there is no deal.' },
       ],
     },
   ],
