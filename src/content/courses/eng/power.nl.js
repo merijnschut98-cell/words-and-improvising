@@ -13,14 +13,15 @@ export default {
         },
       ],
       teach: [
-        'Vermogen is hoe snel je energie verbruikt, in watt of kilowatt. Energie is vermogen × tijd, in kWh. Een motor die 8 uur 15 kW trekt, verbruikt 120 kWh.\n\nDe energierekening rekent in kWh; de netaansluiting en piekkosten gaan over kW. Die twee door elkaar halen is de meest gemaakte fout in energiegesprekken.',
-        'Rendement is nuttige output gedeeld door input. Een motor met 93% rendement zet 93% van zijn elektrische input om in asvermogen; de rest wordt warmte. Verliezen vermenigvuldigen zich in een keten: motor 93%, tandwielkast 95%, pomp 70% geeft 0,93 × 0,95 × 0,70 = 62% van stopcontact tot water.',
-        'De industrie draait op draaistroom: in Europa 400 V tussen de fasen bij 50 Hz (230 V tussen een fase en de nul). Het elektrisch vermogen van een driefasige belasting is √3 × spanning × stroom × arbeidsfactor. Een motor die 30 A trekt bij 400 V met een arbeidsfactor van 0,85 neemt zo’n 17,7 kW op.',
-        'De arbeidsfactor (cos φ) zegt welk deel van de stroom nuttig werk doet. Licht belaste motoren hebben een lage arbeidsfactor en een lager rendement.\n\nOp het typeplaatje staat het nominaal vermogen, en dat is het mechanisch vermogen aan de as, niet de elektrische input, plus spanning, stroom, toerental, arbeidsfactor en rendementsklasse. Noemt iemand “kW”, vraag dan: asvermogen of opgenomen vermogen?',
+        'Vermogen (power) is hoe snel je energie verbruikt, in watt (W) of kilowatt (kW, 1.000 W). Energie is vermogen × tijd, in kWh (kilowattuur). Een motor die 8 uur 15 kW trekt, verbruikt 120 kWh.\n\nDe energierekening rekent in kWh; de netaansluiting en piekkosten gaan over kW. Die twee door elkaar halen is de meest gemaakte fout in energiegesprekken.',
+        'Rendement is nuttige output gedeeld door input. Een motor met 93% rendement zet 93% van zijn elektrische input om in asvermogen; de rest wordt warmte. Verliezen vermenigvuldigen zich in een keten: motor 93%, tandwielkast 95%, pomp 70% geeft 0,93 × 0,95 × 0,70 = 62% van stopcontact tot water.\n\nDe zwakste schakel weegt dus het zwaarst: een slecht gekozen pomp verspilt meer dan een topmotor ooit kan besparen.',
+        'De industrie draait op draaistroom: drie draden, elk met een spanning die 50 keer per seconde heen en weer slingert (50 Hz), steeds een derde periode na de vorige. In Europa is dat 400 V tussen twee fasen en 230 V tussen een fase en de nul, de retourdraad.\n\nHet elektrisch vermogen van een driefasige belasting is √3 × spanning × stroom × arbeidsfactor. Een motor die 30 A trekt bij 400 V met een arbeidsfactor van 0,85 neemt zo’n 17,7 kW op.',
+        'De arbeidsfactor (cos φ) zegt welk deel van de stroom nuttig werk doet; de rest gaat alleen heen en weer om het magnetisch veld van de motor op te bouwen. Een vol belaste motor haalt zo’n 0,8 à 0,9; een licht belaste zakt daar ver onder, met ook een lager rendement.\n\nEen lage arbeidsfactor betekent meer stroom voor hetzelfde werk, dus dikkere kabels en grotere transformatoren. Sommige netcontracten rekenen extra voor dat blindvermogen (reactive power), en een condensatorbank, condensatoren die die veldstroom ter plekke leveren, is de gebruikelijke oplossing.',
+        'Op het typeplaatje, het metalen plaatje op de behuizing, staat het nominaal vermogen (rated power), en dat is het mechanisch vermogen aan de as, niet de elektrische input, plus spanning, stroom, toerental, arbeidsfactor en rendementsklasse.\n\nIn de praktijk draaien veel motoren ver onder hun nominaal vermogen, vaak op de helft of minder. Een stroomtang (clamp meter) om één kabel geeft in seconden de echte stroom. Noemt iemand “kW”, vraag dan: asvermogen of opgenomen vermogen, nominaal of gemeten?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een koelwaterpomp moet 11 kW hydraulisch vermogen leveren zolang hij draait, 6.000 uur per jaar. De pomp haalt 70% rendement, de motor 92%.\n\nOpgenomen vermogen: 11 / (0,70 × 0,92) = 17,1 kW. Energie per jaar: 17,1 × 6.000 = 102.600 kWh. Bij €0,15 per kWh is dat zo’n €15.400 per jaar, waarschijnlijk meer dan de pomp heeft gekost.\n\nEen pomp met 80% in plaats van 70% zou 11 / (0,80 × 0,92) = 14,9 kW nodig hebben: zo’n 13.000 kWh en €2.000 per jaar minder. Rendement is een lopende kostenpost, geen detail op een datasheet.',
+        text: 'Een koelwaterpomp moet 11 kW hydraulisch vermogen (het vermogen dat echt in het water gaat) leveren zolang hij draait, 6.000 uur per jaar. De pomp haalt 70% rendement, de motor 92%.\n\nOpgenomen vermogen: 11 / (0,70 × 0,92) = 17,1 kW. Energie per jaar: 17,1 × 6.000 = 102.600 kWh. Bij €0,15 per kWh is dat zo’n €15.400 per jaar, waarschijnlijk meer dan de pomp heeft gekost.\n\nEen pomp met 80% in plaats van 70% zou 11 / (0,80 × 0,92) = 14,9 kW nodig hebben: zo’n 13.000 kWh en €2.000 per jaar minder. Rendement is een lopende kostenpost, geen detail op een datasheet.',
       },
       said: 'Wat engineers zeggen: “Het is een motor van vijftien kW, maar hij trekt er maar negen. Dat is negen kW, geen vijftien, en met een belabberde cos phi.”',
       recall: [
@@ -64,10 +65,12 @@ export default {
       },
       sayIt: 'Leg een controller in 60 seconden het verschil uit tussen kW en kWh, en waarom ze allebei op de rekening staan.',
       terms: [
-        { term: 'kW en kWh', def: 'Vermogen (hoe snel je energie gebruikt) en energie (vermogen × tijd).' },
+        { term: 'kW', def: 'Kilowatt, 1.000 W: vermogen, hoe snel je energie gebruikt.' },
+        { term: 'kWh', def: 'Kilowattuur: energie, vermogen × tijd; daar rekent de energierekening mee.' },
         { term: 'Rendement', def: 'Nuttige output gedeeld door input; verliezen in een keten vermenigvuldigen zich.' },
-        { term: 'Arbeidsfactor (cos φ)', def: 'Het deel van de stroom dat nuttig werk doet.' },
         { term: 'Draaistroom', def: 'De industriële voeding: drie wisselspanningen, in Europa 400 V tussen de fasen bij 50 Hz.' },
+        { term: 'Arbeidsfactor', def: 'Cos φ: het deel van de stroom dat nuttig werk doet; laag bij licht belaste motoren.' },
+        { term: 'Typeplaatje', def: 'Het plaatje op een motor met nominaal asvermogen, spanning, stroom, toerental, arbeidsfactor en IE-klasse.' },
       ],
     },
     {
@@ -82,10 +85,11 @@ export default {
         },
       ],
       teach: [
-        'De driefasige asynchrone motor (ook kooiankermotor of inductiemotor) drijft de meeste pompen, ventilatoren, transportbanden en compressoren aan: robuust, goedkoop, weinig onderhoud. De statorwikkelingen maken een draaiend magnetisch veld; de rotor wordt daardoor meegesleept. Het toerental hangt af van de netfrequentie en het aantal polen.',
-        'Synchroon toerental = 120 × frequentie / aantal polen. Bij 50 Hz: 2 polen geven 3.000 toeren, 4 polen 1.500, 6 polen 1.000.\n\nDe rotor draait altijd iets langzamer: de slip, meestal 1 tot 5%. Een 4-polige motor draait zo’n 1.450 tot 1.480 toeren, en meer belasting geeft iets meer slip.',
-        'Koppel en vermogen hangen samen via het toerental: vermogen (kW) = koppel (Nm) × toerental (tpm) / 9.550. Een motor van 15 kW op 1.460 toeren levert zo’n 98 Nm. Een tandwielkast verlaagt het toerental en verhoogt het koppel met dezelfde verhouding, min zijn verliezen.',
-        'Rendementsklassen lopen van IE1 tot IE5 (IEC 60034-30-1). EU-verordening 2019/1781 eist voor de meeste nieuwe motoren van 0,75 tot 1.000 kW minstens IE3 (sinds juli 2021), en IE4 voor de meeste motoren van 75 tot 200 kW (sinds juli 2023).\n\nDe meeste motorstoringen zitten in lagers en wikkelisolatie. Warmte sloopt isolatie: als vuistregel halveert elke 10 °C boven de toegestane temperatuur ruwweg de levensduur van de wikkeling. Vraag naar motortemperatuur, trillingen en hoe vaak hij aanloopt.',
+        'De driefasige asynchrone motor (ook kooiankermotor of inductiemotor) drijft de meeste pompen, ventilatoren, transportbanden en compressoren aan: robuust, goedkoop, weinig onderhoud. De stator, het vaste buitendeel met koperen wikkelingen, maakt een draaiend magnetisch veld.\n\nDe rotor, het draaiende deel binnenin op de as, wordt door dat veld meegesleept. Het toerental hangt af van de netfrequentie en het aantal polen: de magnetische polen die de wikkelingen vormen, 2, 4, 6 of meer.',
+        'Synchroon toerental, de snelheid van het draaiende veld, = 120 × frequentie / aantal polen. Bij 50 Hz: 2 polen geven 3.000 toeren per minuut, 4 polen 1.500, 6 polen 1.000.\n\nDe rotor draait altijd iets langzamer: de slip, meestal 1 tot 5%. Zonder slip zou het veld niet door de rotor snijden, en ontstaat er geen stroom en geen koppel. Een 4-polige motor draait zo’n 1.450 tot 1.480 toeren; meer belasting geeft iets meer slip.',
+        'Koppel (torque) en vermogen hangen samen via het toerental: vermogen (kW) = koppel (Nm) × toerental (tpm) / 9.550. Een motor van 15 kW op 1.460 toeren levert zo’n 98 Nm. Een tandwielkast verlaagt het toerental en verhoogt het koppel met dezelfde verhouding, min zijn verliezen.\n\nEen motor die duidelijk langzamer draait dan het toerental op zijn typeplaatje, draagt meer dan zijn nominale belasting.',
+        'Rendementsklassen lopen van IE1 tot IE5 (IEC 60034-30-1); de IE-klasse staat op het typeplaatje. EU-verordening 2019/1781 eist voor de meeste nieuwe motoren van 0,75 tot 1.000 kW minstens IE3 (sinds juli 2021), en IE4 voor de meeste motoren van 75 tot 200 kW (sinds juli 2023).\n\nEen hogere klasse levert het meest op bij motoren die veel uren draaien: 1% van 75 kW over 6.000 uur is 4.500 kWh per jaar.',
+        'De meeste motorstoringen zitten in lagers en wikkelisolatie. De isolatieklasse geeft de hoogste temperatuur waarvoor de isolatie van de wikkeling gemaakt is: klasse F, de meest gangbare, is 155 °C. Warmte sloopt isolatie: als vuistregel halveert elke 10 °C boven de toegestane temperatuur ruwweg de levensduur van de wikkeling.\n\nLagerproblemen hoor je als gerommel of gejank, warmte voel je aan de behuizing. Experts discussiëren of herwikkelen (rewinding) van een doorgebrande motor loont, of dat een nieuwe IE3 over zijn levensduur goedkoper is. Vraag naar temperatuur, trillingen en starts per uur.',
       ],
       example: {
         kind: 'worked',
@@ -134,9 +138,11 @@ export default {
       sayIt: 'Leg een productiemanager in 60 seconden uit hoe het toerental van een asynchrone motor tot stand komt en waarom hij slipt.',
       terms: [
         { term: 'Asynchrone motor', def: 'De standaard driefasemotor; de rotor wordt meegesleept door een draaiend magnetisch veld.' },
+        { term: 'Rotor', def: 'Het draaiende deel van een motor, op de as, binnen in de vaste stator.' },
         { term: 'Synchroon toerental', def: '120 × frequentie / aantal polen; 1.500 toeren bij 4 polen op 50 Hz.' },
         { term: 'Slip', def: 'Hoeveel langzamer de rotor draait dan het veld, meestal 1 tot 5%.' },
         { term: 'IE-klasse', def: 'Rendementsklasse van een motor van IE1 tot IE5; IE3 is in de EU het minimum voor de meeste nieuwe motoren.' },
+        { term: 'Isolatieklasse', def: 'De hoogste temperatuur waarvoor de wikkelisolatie gemaakt is; klasse F is 155 °C.' },
       ],
     },
     {
@@ -151,14 +157,15 @@ export default {
         },
       ],
       teach: [
-        'Direct inschakelen (DOL, direct on line): de motor met een magneetschakelaar meteen op het net zetten. Simpel en goedkoop, maar de aanloopstroom is 6 tot 8 keer de nominale stroom, en het volle koppel klapt als een ruk op de mechaniek. Prima voor kleine motoren; bij grote kan het de spanning in de fabriek laten dippen en snaren, koppelingen en tandwielkasten slijten.',
-        'Een softstarter laat de spanning in een paar seconden oplopen, en dat beperkt de aanloopstroom en de ruk. Het toerental tijdens bedrijf verandert er niet door.\n\nEen ster-driehoekschakeling is de oudere, goedkopere manier om de aanloopstroom te beperken, voor motoren die zonder veel belasting starten. Een softstarter geeft ook minder aanloopkoppel, dus een machine die zwaar belast moet starten kan blijven hangen.',
-        'Een frequentieregelaar (VFD, omvormer) verandert de frequentie en daarmee het toerental, traploos. Hij laat de motor ook rustig aanlopen, met vol koppel vanaf een laag toerental.\n\nToepassingen: pomp- en ventilatortoerental afstemmen op de vraag, bandsnelheid, procesregeling. Bijwerkingen: harmonischen op het net, elektrische storing, en soms lagerschade; goede bekabeling en filters vangen dat op.',
-        'Servomotoren en servoregelaars sturen positie en snelheid precies aan, met een encoder die de werkelijke positie terugmeldt: robots, pick-and-place, op lengte knippen, verpakkingsmachines. Het gaat ze om nauwkeurige beweging, niet om energiebesparing. Vraag wat de aandrijving moet doen: alleen aanlopen, op wisselende snelheid draaien, of tot op een tiende millimeter positioneren.',
+        'Direct inschakelen (DOL): een magneetschakelaar, een elektrisch bediende zware schakelaar, zet de motor meteen op het net. Simpel en goedkoop, maar de aanloopstroom is 6 tot 8 keer de nominale stroom, de stroom op het typeplaatje, en het volle koppel klapt als een ruk op de mechaniek.\n\nPrima voor kleine motoren. Bij grote kan het de spanning in de fabriek laten dippen en snaren, koppelingen en tandwielkasten slijten.',
+        'Een softstarter laat de motorspanning in een paar seconden oplopen; dat beperkt de inschakelstroom (inrush current), de stroompiek bij het inschakelen, en de ruk. Het toerental tijdens bedrijf verandert er niet door, en hij geeft minder aanloopkoppel, dus een machine die zwaar belast moet starten kan blijven hangen.\n\nEen ster-driehoekschakeling is de oudere, goedkopere manier: de motor start met zijn wikkelingen in ster, met zo’n een derde van de stroom en het koppel van direct inschakelen, en schakelt dan om naar driehoek. Geschikt voor motoren die zonder veel belasting starten.',
+        'Een frequentieregelaar (VFD, ook omvormer) verandert de frequentie en daarmee het toerental, traploos. Hij laat de motor ook rustig aanlopen, met vol koppel vanaf een laag toerental en de stroom rond nominaal.\n\nToepassingen: pomp- en ventilatortoerental afstemmen op de vraag, bandsnelheid, procesregeling. Bij een centrifugaalpomp (het gangbare type met een draaiende waaier) of ventilator daalt het vermogen met ruwweg de derde macht van het toerental (de affiniteitswetten, affinity laws): op 80% toerental zo’n half vermogen, al valt de echte besparing lager uit.',
+        'Een frequentieregelaar heeft bijwerkingen. Zijn elektronica trekt stroom in pulsen, en dat zet harmonischen (harmonics), vervormde golven, op de voeding van de fabriek. Het snelle schakelen geeft elektrische storing en kan stroom door de motorlagers jagen, die er putjes van krijgen.\n\nAfgeschermde kabels, filters en goede aarding vangen dat op, als ze in het ontwerp zitten. Een veelgemaakte fout: een regelaar die het hele jaar op 50 Hz, vol toeren, staat, en dus alleen een paar procent verlies toevoegt.',
+        'Een servoregelaar stuurt positie en snelheid precies aan, met een encoder, een sensor op de motoras, die vele keren per seconde de werkelijke positie terugmeldt: robots, pick-and-place, op lengte knippen, verpakkingsmachines. Het gaat om nauwkeurige beweging, niet om energiebesparing.\n\nVraag wat de aandrijving moet doen: alleen aanlopen, op wisselende snelheid draaien, of tot op een tiende millimeter positioneren. Dat antwoord kiest tussen direct inschakelen, softstarter, frequentieregelaar of servo.',
       ],
       example: {
         kind: 'worked',
-        text: 'Een brekermotor van 90 kW wordt direct ingeschakeld. Zijn nominale stroom is zo’n 160 A bij 400 V, dus bij de start trekt hij een paar seconden ruwweg 1.000 tot 1.300 A. Elke start laat de spanning in de fabriek dippen: lampen knipperen en twee frequentieregelaars elders vallen uit op onderspanning.\n\nEen softstarter zou de aanloopstroom terugbrengen naar zo’n 3 à 4 keer nominaal, maar de breker moet vaak vol materiaal starten, en met het lagere koppel van een softstarter kan hij blijven hangen. Een frequentieregelaar houdt de stroom rond nominaal en geeft vol koppel vanuit stilstand. Hier past het duurdere apparaat.',
+        text: 'De motor van 90 kW van een breker (crusher), een machine die steen of schroot vergruist, wordt direct ingeschakeld. Zijn nominale stroom is zo’n 160 A bij 400 V, dus bij de start trekt hij een paar seconden ruwweg 1.000 tot 1.300 A. Elke start laat de spanning in de fabriek dippen: lampen knipperen en twee frequentieregelaars elders vallen uit op onderspanning.\n\nEen softstarter zou de aanloopstroom terugbrengen naar zo’n 3 à 4 keer nominaal, maar de breker moet vaak vol materiaal starten, en met het lagere koppel van een softstarter kan hij blijven hangen. Een frequentieregelaar houdt de stroom rond nominaal en geeft vol koppel vanuit stilstand. Hier past het duurdere apparaat.',
       },
       said: 'Wat engineers zeggen: “Elke keer dat die breker direct inschakelt, dipt de hele hal. Een softstarter trekt hem vol niet, daar moet een regelaar op.”',
       recall: [
@@ -201,9 +208,11 @@ export default {
       sayIt: 'Leg een projectmanager in 60 seconden het verschil uit tussen een softstarter, een frequentieregelaar en een servoregelaar.',
       terms: [
         { term: 'Direct inschakelen (DOL)', def: 'Een motor meteen op het net zetten; 6 tot 8 keer de nominale stroom bij de start.' },
+        { term: 'Magneetschakelaar', def: 'Een elektrisch bediende zware schakelaar die een motor op de voeding zet.' },
         { term: 'Softstarter', def: 'Laat de spanning oplopen om aanloopstroom en ruk te beperken; verandert het toerental niet.' },
+        { term: 'Ster-driehoekschakeling', def: 'Start een motor in ster met zo’n een derde van de stroom en het koppel van direct inschakelen, en schakelt dan naar driehoek.' },
         { term: 'Frequentieregelaar', def: 'Regelt het toerental door de frequentie te veranderen; ook VFD of omvormer.' },
-        { term: 'Servoregelaar', def: 'Een aandrijving met positieterugmelding die positie en snelheid precies regelt.' },
+        { term: 'Servoregelaar', def: 'Een aandrijving met positieterugmelding via een encoder, die positie en snelheid precies regelt.' },
       ],
     },
     {
@@ -218,14 +227,15 @@ export default {
         },
       ],
       teach: [
-        'Perslucht is schoon en handig, en daarom zit het overal: cilinders, blaaspistolen, gereedschap, ventielen. Het is ook de duurste manier om energie in een fabriek rond te brengen.\n\nHet grootste deel van de stroom van een compressor wordt warmte; maar zo’n 10% doet nuttig werk bij de gebruiker. De warmte van de compressor terugwinnen haalt daar een deel van terug. Onschuldig is het niet: blaas nooit perslucht op je huid of kleding.',
-        'Lekken zijn het grote verlies. In fabrieken zonder lekprogramma ontsnapt vaak 20 tot 30% van wat de compressor levert via koppelingen, slangen en ventielen.\n\nLuister eens in het weekend: draaien de compressoren nog terwijl de productie stilligt, dan is dat vooral lekkage. Met ultrasone detectoren vind je ze; labelen en repareren is een klassieke snelle winst.',
-        'Druk kost energie: elke bar extra opgewekte druk kost ruwweg 7% meer compressorenergie, en elk lek wordt er groter door. Veel fabrieken draaien op 7 of 8 bar omdat één machine dat nodig heeft. Los die machine lokaal op (een booster, een dikkere aanvoerleiding, een lokaal buffervat) en verlaag het hele net.',
-        'Lucht moet schoon en droog zijn: water en olie beschadigen ventielen en cilinders. Na de compressor zitten een droger en filters; vóór elke machine een verzorgingseenheid (filter, regelaar, olienevelaar).\n\nOneigenlijk gebruik is het derde verlies: open blaaspijpjes, koelen met lucht, vacuüm maken met perslucht, terwijl een elektrische ventilator of pomp een fractie van de energie zou gebruiken.',
+        'Perslucht (compressed air) is schoon en handig, en daarom zit het overal: cilinders, blaaspistolen, gereedschap, ventielen. Het is ook de duurste manier om energie in een fabriek rond te brengen.\n\nEen compressor perst buitenlucht samen tot zo’n 7 bar boven de atmosferische druk. Het grootste deel van zijn stroom wordt warmte; maar zo’n 10% doet nuttig werk bij de gebruiker. Warmteterugwinning, die warmte gebruiken voor warm water of ruimteverwarming, haalt daar een deel van terug. Blaas nooit perslucht op je huid of kleding.',
+        'Lekken zijn het grote verlies. In fabrieken zonder lekprogramma ontsnapt vaak 20 tot 30% van wat de compressor levert via koppelingen, slangen en ventielen.\n\nEen lektest laat het zien: kijk in het weekend, met de productie stil, hoeveel van de tijd de compressor nog in last draait, dus echt lucht samenperst. Dat deel van zijn levering is vooral lekkage. Ultrasone detectoren horen het sissen dat jij niet hoort; lekken labelen en repareren is een klassieke snelle winst.',
+        'Druk kost energie. De netdruk is de druk die de compressoren in de leidingen houden. Elke bar extra kost ruwweg 7% meer compressorenergie (schattingen lopen van zo’n 6 tot 8%), en elk lek wordt er groter door.\n\nVeel fabrieken draaien op 7 of 8 bar omdat één machine dat nodig heeft. Los die machine lokaal op (een booster, een kleine extra compressor voor die machine; een dikkere aanvoerleiding; een lokaal buffervat) en verlaag het hele net.',
+        'Lucht moet schoon en droog zijn: water en olie beschadigen ventielen en cilinders. Een droger na de compressor haalt het water eruit, anders verzamelt condenswater zich in de leidingen; filters halen olie en stof eruit.\n\nVóór elke machine zit een verzorgingseenheid (FRL: filter, regelaar, olienevelaar): die filtert nog eens, zet de druk die de machine nodig heeft, en voegt een olienevel toe waar componenten erom vragen. Veel moderne componenten draaien zonder olienevelaar.',
+        'Oneigenlijk gebruik is het derde verlies: open blaaspijpjes, koelen met lucht, vacuüm maken met perslucht, terwijl een elektrische ventilator, blower of vacuümpomp een fractie van de energie zou gebruiken.\n\nExperts discussiëren over de beste eerste stap: zuinigere compressoren met toerenregeling, of minder vraag. De vraag verlagen is meestal goedkoper. De scherpe vraag tijdens een rondgang: “Waarvoor is deze lucht, en wat kan dat zonder perslucht?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een weekendtest: de productie ligt stil, niks zou lucht moeten gebruiken. De compressor van 75 kW, die in last 10 m³ lucht per minuut levert, draait 40% van de tijd in last. De lekkage is dus zo’n 40% × 10 = 4 m³ per minuut.\n\nLekken lopen het hele jaar door. Als we 75 kW nemen als wat hij in last opneemt: 75 kW × 40% × 8.760 uur = zo’n 263.000 kWh, ruwweg €39.000 per jaar bij €0,15 per kWh, en dan tellen we het vermogen in nullast nog niet eens mee.\n\nEen ronde lekken zoeken en repareren kost meestal een paar duizend euro. Zet daarna de druk 1 bar lager en bespaar nog eens ruwweg 7%.',
+        text: 'Een weekendtest: de productie ligt stil, niks zou lucht moeten gebruiken. De compressor van 75 kW, die in last 10 m³ lucht per minuut levert, draait 40% van de tijd in last. De lekkage is dus zo’n 40% × 10 = 4 m³ per minuut.\n\nLekken lopen het hele jaar door. Als we 75 kW nemen als wat hij in last opneemt: 75 kW × 40% × 8.760 uur = zo’n 263.000 kWh, ruwweg €39.000 per jaar bij €0,15 per kWh, en dan tellen we het vermogen in nullast, draaien zonder samen te persen, nog niet eens mee.\n\nEen ronde lekken zoeken en repareren kost meestal een paar duizend euro. Zet daarna de druk 1 bar lager en bespaar nog eens ruwweg 7%.',
       },
       said: 'Wat engineers zeggen: “Zaterdag, alles stil, en de compressor zit nog veertig procent van de tijd in last. Dat is onze lekrekening.”',
       recall: [
@@ -268,7 +278,10 @@ export default {
       },
       sayIt: 'Leg een plantmanager in 60 seconden uit waarom perslucht zo duur is en waar je eerst kijkt.',
       terms: [
+        { term: 'Warmteterugwinning', def: 'De restwarmte van de compressor gebruiken voor warm water of ruimteverwarming.' },
         { term: 'Lektest', def: 'De compressorbelasting meten terwijl de productie stilligt, om te schatten hoeveel lucht weglekt.' },
+        { term: 'Netdruk', def: 'De druk die de compressoren in de leidingen houden; elke bar extra kost ruwweg 7% meer energie.' },
+        { term: 'Droger', def: 'Haalt na de compressor het water uit de lucht, zodat er geen condenswater in de leidingen komt.' },
         { term: 'Verzorgingseenheid', def: 'Filter, regelaar en olienevelaar vóór een machine, voor schone lucht op de juiste druk.' },
         { term: 'Oneigenlijk gebruik', def: 'Perslucht gebruiken waar een goedkopere bron volstaat, zoals open blaaspijpjes of koelen met lucht.' },
       ],
@@ -285,10 +298,11 @@ export default {
         },
       ],
       teach: [
-        'Hydrauliek gebruikt olie onder hoge druk, meestal 100 tot 350 bar, om grote krachten te maken in een kleine ruimte: persen, spuitgietmachines, graafmachines, heftafels.\n\nKracht = druk × zuigeroppervlak. 1 bar is 0,1 N/mm², dus 200 bar op een zuiger van 100 mm (7.854 mm²) geeft zo’n 157 kN, het gewicht van 16 ton.',
-        'Een hydraulische pomp (tandwiel, schoep of plunjer) maakt het debiet; de belasting maakt de druk. Ventielen sturen de olie: stuurventielen kiezen waar hij heen gaat, drukbegrenzingsventielen begrenzen de druk, smoorventielen bepalen de snelheid.\n\nCilindersnelheid = debiet / zuigeroppervlak. Accumulatoren slaan olie onder druk op voor snelle bewegingen.',
-        'Vervuiling is de grootste vijand: de meeste hydraulische storingen zijn terug te voeren op vuil, water of lucht in de olie. Reinheid wordt uitgedrukt volgens ISO 4406 met drie getallen, zoals 18/16/13; lager is schoner. Goede praktijk: filters gekozen op een streefcode, afgesloten ontluchters, olieanalyse, en nooit bijvullen uit een open vat.',
-        'Warmte is de tweede vijand. Elk drukverlies over een ventiel wordt warmte; olie die steeds boven zo’n 60 °C draait, veroudert snel en afdichtingen verharden.\n\nLekken zijn een veiligheidsrisico: een speldenprikstraal onder hoge druk kan olie onder de huid spuiten, dus voel nooit met je hand naar lekken, en behandel zo’n injectie altijd als medisch spoedgeval. Accumulatoren houden druk vast als de pomp stilstaat, dus een machine veilig stellen betekent ook die druk afblazen.',
+        'Hydrauliek gebruikt olie onder hoge druk, meestal 100 tot 350 bar, om grote krachten te maken in een kleine ruimte: persen, spuitgietmachines, graafmachines, heftafels.\n\nKracht = druk × zuigeroppervlak. 1 bar is 0,1 N/mm², dus 200 bar op een zuiger met een boring van 100 mm, de binnendiameter van de cilinder (oppervlak 7.854 mm²), geeft zo’n 157 kN, het gewicht van 16 ton.',
+        'Een hydraulische pomp (tandwiel-, schoepen- of zuigerpomp) maakt het debiet (flow), de liters per minuut; de belasting maakt de druk. Ventielen sturen de olie. Een stuurventiel kiest waar de olie heen gaat: uit of terug. Een drukbegrenzingsventiel begrenst de druk door boven een ingestelde waarde naar de tank te openen. Smoorventielen bepalen de snelheid.\n\nCilindersnelheid = debiet / zuigeroppervlak. Een versleten pomp of een lekkend ventiel verliest debiet, en de cilinder wordt trager.',
+        'Een accumulator is een vat met een blaas of zuiger met gas erin, dat olie onder druk opslaat: voor snelle bewegingen, of om druk te houden bij een stroomstoring. Hij blijft onder druk als de pomp stilstaat.\n\nEen machine veilig stellen voor onderhoud betekent dus ook de accumulator drukloos maken, en opgeheven lasten ondersteunen of laten zakken. Check dat de manometer op nul staat voordat je iets opendraait.',
+        'Vervuiling is de grootste vijand: de meeste hydraulische storingen zijn terug te voeren op vuil, water of lucht in de olie. Reinheid wordt uitgedrukt volgens ISO 4406 met drie getallen, zoals 18/16/13: het aantal deeltjes per milliliter groter dan 4, 6 en 14 micrometer. Eén stap lager halveert dat aantal ruwweg, dus lager is schoner.\n\nGoede praktijk: filters gekozen op een streefcode, afgesloten ontluchters (breathers, de luchtopeningen op de tank), olieanalyse, en nooit bijvullen uit een open vat.',
+        'Warmte is de tweede vijand. Elk drukverlies over een ventiel wordt warmte. Olie die steeds boven zo’n 60 °C draait, veroudert snel en afdichtingen verharden; een gangbare vuistregel zegt dat de levensduur van olie ruwweg halveert per 10 °C warmer.\n\nLekken zijn een veiligheidsrisico: een speldenprikstraal kan olie onder de huid spuiten, ook bij bescheiden druk. Zo’n injectieletsel lijkt een prikje, maar kan een vinger of hand kosten: altijd een medisch spoedgeval. Voel nooit met je hand naar lekken; gebruik een stuk karton.',
       ],
       example: {
         kind: 'worked',
@@ -318,8 +332,8 @@ export default {
         },
         {
           q: 'Een hydraulische machine heeft een accumulator. Voor onderhoud is de pomp uitgezet en vergrendeld. Wat moet er nog meer gebeuren?',
-          options: ['Niks, het systeem is nu veilig', 'De druk in de accumulator afblazen', 'De hele olietank aftappen', 'De filters vervangen'],
-          answer: 'De druk in de accumulator afblazen',
+          options: ['Niks, het systeem is nu veilig', 'De accumulator drukloos maken', 'De hele olietank aftappen', 'De filters vervangen'],
+          answer: 'De accumulator drukloos maken',
           why: 'Een accumulator houdt olie onder druk als de pomp stilstaat en kan delen laten bewegen of olie laten spuiten. Opgeheven lasten moet je ook ondersteunen of laten zakken.',
         },
       ],
@@ -335,10 +349,12 @@ export default {
       },
       sayIt: 'Leg een operationeel manager in 60 seconden uit hoe hydrauliek kracht maakt, en waar een hydraulisch systeem meestal aan doodgaat.',
       terms: [
-        { term: 'Drukbegrenzingsventiel', def: 'Een ventiel dat de systeemdruk begrenst door boven een ingestelde waarde te openen.' },
-        { term: 'Accumulator', def: 'Een vat dat olie onder druk opslaat; het blijft onder druk als de pomp stilstaat.' },
-        { term: 'ISO 4406', def: 'De code voor oliereinheid, drie getallen zoals 18/16/13; lager is schoner.' },
+        { term: 'Stuurventiel', def: 'Een ventiel dat kiest waar de olie heen gaat, bijvoorbeeld om een cilinder uit of in te laten schuiven.' },
+        { term: 'Drukbegrenzingsventiel', def: 'Een ventiel dat de systeemdruk begrenst door boven een ingestelde waarde naar de tank te openen.' },
         { term: 'Cilindersnelheid', def: 'Oliedebiet gedeeld door het zuigeroppervlak.' },
+        { term: 'Accumulator', def: 'Een vat dat olie onder gasdruk opslaat; het blijft onder druk als de pomp stilstaat.' },
+        { term: 'ISO 4406', def: 'De code voor oliereinheid, drie getallen zoals 18/16/13; lager is schoner.' },
+        { term: 'Injectieletsel', def: 'Olie die door een fijne straal onder hoge druk onder de huid wordt gespoten; altijd een medisch spoedgeval.' },
       ],
     },
     {
@@ -353,10 +369,11 @@ export default {
         },
       ],
       teach: [
-        'Begin met het belastingprofiel: het elektriciteitsverbruik per kwartier over een paar weken, uit de slimme meter van de netbeheerder of de eigen meters. Drie dingen springen eruit: de basislast als er niks gemaakt wordt, de pieken, en hoe het verbruik met de output meebeweegt.\n\nDe basislast is vaak verrassend hoog, en een deel ervan is te vermijden: compressoren die lekken voeden, afzuiging, verwarming en machines die stationair draaien.',
-        'Energie (kWh) en piekvermogen (kW) worden apart betaald. In Nederland betalen grotere aansluitingen de netbeheerder voor het gecontracteerd transportvermogen in kW en voor de maandpiek.\n\nMet netcongestie is extra kW soms jarenlang gewoon niet beschikbaar. Gespreid opstarten, een batterij of grote verbruikers om beurten schakelen kan een fabriek binnen haar gecontracteerd vermogen houden.',
-        'Meet energie per product: kWh per ton, per stuk of per m³. Dan wordt energie van overhead een procesgetal waar teams op kunnen sturen. Vergelijk ploegen, producten en lijnen; het verschil tussen de beste en de slechtste runs laat meestal de eerste besparingen zien.',
-        'De gebruikelijke volgorde: uitzetten wat niet nodig is (stationair draaien, weekenden), lekken en verliezen oplossen (perslucht, stoom), terugschroeven wat te hoog staat (druk, temperatuur, toerental), warmte terugwinnen, en pas dan nieuwe installaties kopen. Warmte elektrificeren met warmtepompen of elektrische ketels is hét transitieonderwerp, maar het vraagt kW die het net misschien niet heeft.',
+        'Begin met het belastingprofiel: het elektriciteitsverbruik per kwartier over een paar weken, uit de meter van de aansluiting of de eigen meters. Drie dingen springen eruit: de basislast, het vermogen als er niks gemaakt wordt; de pieken; en hoe het verbruik met de output meebeweegt.\n\nDe basislast is vaak verrassend hoog, en een deel ervan is te vermijden: compressoren die lekken voeden, afzuiging, verwarming en machines die stationair draaien.',
+        'Energie (kWh) en piekvermogen (kW) worden apart betaald. In Nederland betalen grotere aansluitingen de netbeheerder, het bedrijf dat de lokale kabels beheert, voor het gecontracteerd transportvermogen: het maximale aantal kW dat voor de aansluiting is afgesproken. Daarnaast betalen ze voor de maandpiek, het hoogste kwartier van elke maand.\n\nEén onhandig kwartier, maandagochtend alle grote machines tegelijk aan, kan die kosten voor de hele maand bepalen.',
+        'Netcongestie betekent dat het lokale net vol is: de netbeheerder kan op drukke momenten niet meer vermogen transporteren. In veel Nederlandse regio’s is extra kW soms jarenlang gewoon niet beschikbaar.\n\nGespreid opstarten, een batterij of grote verbruikers om beurten schakelen kan een fabriek binnen haar gecontracteerd vermogen houden. Netbeheerders bieden sommige klanten nu ook flexibele contracten: alleen capaciteit op bepaalde uren, tegen een lager tarief.',
+        'Meet de energie-intensiteit: energie per product, in kWh per ton, per stuk of per m³. Dan wordt energie van overhead een procesgetal waar teams op kunnen sturen.\n\nVergelijk ploegen, producten en lijnen; het verschil tussen de beste en de slechtste runs laat meestal de eerste besparingen zien. Een scherpe vraag: “Waarom gebruikte de nachtploeg 20% meer per ton?”',
+        'De gebruikelijke volgorde: uitzetten wat niet nodig is (stationair draaien, weekenden), lekken en verliezen oplossen (perslucht, stoom), terugschroeven wat te hoog staat (druk, temperatuur, toerental), warmte terugwinnen, en pas dan nieuwe installaties kopen.\n\nWarmte elektrificeren met warmtepompen, die laagwaardige warmte opwaarderen tot een bruikbare temperatuur, of elektrische ketels is hét transitieonderwerp, en experts discussiëren over het tempo: het scheelt CO₂, maar vraagt kW die het net misschien niet heeft. Eerst de vraag verkleinen maakt de nieuwe installatie, en de aansluiting die ze nodig heeft, kleiner.',
       ],
       example: {
         kind: 'worked',
@@ -394,7 +411,7 @@ export default {
       situation: {
         scene: 'Je zit bij een voedingsklant. Ze willen hun gasketel vervangen door een warmtepomp van 2 MW om CO₂ te besparen. De netbeheerder zegt dat er tot 2030 geen extra transportvermogen beschikbaar is.',
         ask: 'Wat vraag je?',
-        model: 'Wat is ons huidige gecontracteerd vermogen en hoe dicht zit onze echte piek daaronder: is er ruimte als we pieken afvlakken of verbruik verschuiven? Hoeveel warmte hebben we echt nodig na het oplossen van verliezen en het terugwinnen van warmte uit koelmachines en compressoren? Kan een kleinere warmtepomp met warmteopslag draaien als het net ruimte heeft, met de gasketel als back-up? En heeft de netbeheerder een flexibel of tijdgebonden contract aangeboden?',
+        model: 'Wat is ons huidige gecontracteerd vermogen en hoe dicht zit onze echte piek daaronder: is er ruimte als we pieken afvlakken of verbruik verschuiven? Hoeveel warmte hebben we echt nodig na het oplossen van verliezen en het terugwinnen van warmte uit koelmachines (chillers) en compressoren? Kan een kleinere warmtepomp met warmteopslag draaien als het net ruimte heeft, met de gasketel als back-up? En heeft de netbeheerder een flexibel of tijdgebonden contract aangeboden?',
         rubric: [
           'Vraagt naar het gecontracteerd vermogen tegenover het echte piekprofiel',
           'Verkleint eerst de warmtevraag: verliezen en warmteterugwinning',
@@ -406,6 +423,8 @@ export default {
         { term: 'Belastingprofiel', def: 'Het vermogen door de tijd, meestal per kwartier, met basislast en pieken.' },
         { term: 'Basislast', def: 'Het vermogen dat wordt opgenomen als er niks wordt gemaakt.' },
         { term: 'Gecontracteerd transportvermogen', def: 'Het maximale vermogen in kW dat de netbeheerder voor een aansluiting heeft afgesproken te transporteren.' },
+        { term: 'Maandpiek', def: 'Het hoogste kwartiervermogen van een maand; grotere Nederlandse aansluitingen betalen ervoor.' },
+        { term: 'Netcongestie', def: 'Het lokale net is vol: op drukke momenten geen extra transportvermogen, soms jarenlang.' },
         { term: 'Energie-intensiteit', def: 'Energie per eenheid product, zoals kWh per ton.' },
       ],
     },
