@@ -6,24 +6,24 @@ export default {
       title: 'Load flow in words',
       pre: [
         {
-          q: 'An HS/MS substation peaks at 55% of its transformer capacity. A business asks for a 2.5 MVA connection on one MS feeder from that station. What can still block it?',
+          q: 'An HV/MV substation (where high voltage, HV, is stepped down to medium voltage, MV) peaks at 55% of its transformer capacity. A business asks for a 2.5 MVA connection on one MV feeder, one outgoing cable route from that station. What can still block it?',
           options: ['Nothing, the station has room', 'Only TenneT’s grid upstream', 'The loading or voltage on that one feeder', 'The customer’s meter'],
           answer: 'The loading or voltage on that one feeder',
           why: 'The station sees the sum of all feeders; a single feeder can be full while the station has room.',
         },
       ],
       teach: [
-        'A load flow calculation answers one question: with everyone’s consumption and generation at a given moment, what current flows through each cable and transformer, and what voltage does each point in the grid get? Dutch planners run it in tools like Vision or PowerFactory.\n\nFor every asset you get two numbers back: loading as a % of its rating, and voltage as a % of nominal. Red means over 100% loading or outside the voltage band.',
-        'Loading. Every cable and transformer has a rating: the current it can carry without overheating. For a cable that depends on cross-section, soil, ground temperature and how many cables lie together in the trench.\n\nRule of thumb: a common aluminium MS cable carries roughly 250 to 300 A, which at 10 kV is about 4 to 5 MVA. Current from power: I = S / (√3 × U). So 2.5 MVA at 10 kV is about 144 A.',
-        'Voltage. Current through a cable’s resistance costs voltage along the way. Long, heavily loaded feeders end low on a winter evening; streets full of solar panels rise on a sunny afternoon.\n\nAt the customer, LS must stay within 230 V ±10%, so 207 to 253 V. When the voltage in a street gets too high, solar inverters switch themselves off. The planner splits the allowed band between the MS and LS parts of the grid.',
-        'Why a cable can be full while the station has room. The station transformer carries the sum of all its feeders, and they don’t peak at the same moment. One feeder with a new business park or three solar farms can hit 100% while the others sit at 40%.\n\nSo green on the capacity map at station level doesn’t mean room at your address. Planners check the station, the feeder and the voltage at the far end.',
-        'Two worst moments. Planners calculate at least two cases: the winter evening peak (heat pumps, EV charging, little solar) for offtake, and a sunny spring midday with low demand for feed-in.\n\nSame grid, two different problems: offtake congestion and feed-in congestion. A good question in any planning meeting: “Which case is limiting here, offtake or feed-in?”',
+        'A load flow calculation answers one question: with everyone’s consumption and generation at a given moment, what current flows through each cable and transformer, and what voltage does each point in the grid get? Dutch planners run it in tools like Vision or PowerFactory.\n\nFor every asset you get two numbers back: loading, the current as a % of what the asset may carry, and voltage as a % of nominal. Red means over 100% loading or outside the voltage band.',
+        'Every cable and transformer has a rating: the current it can carry continuously without overheating. For a cable it depends on cross-section, soil, ground temperature and how many cables share the trench.\n\nRule of thumb: a common aluminium MV cable (medium voltage, 10 or 20 kV) carries roughly 250 to 300 A, at 10 kV about 4 to 5 MVA. MVA (apparent power) is close to MW for most loads. Current: I = S / (√3 × U), so 2.5 MVA at 10 kV is about 144 A.',
+        'Voltage. Current through a cable’s resistance costs voltage along the way. Long, heavily loaded feeders end low on a winter evening; streets full of solar panels rise on a sunny afternoon.\n\nAt the customer, LV (low voltage) must stay within 230 V ±10%, measured as 10-minute averages (EN 50160), so 207 to 253 V: that is the voltage band. When the voltage in a street gets too high, solar inverters switch themselves off. The planner splits the allowed band between the MV and LV parts of the grid.',
+        'A feeder is one outgoing MV cable route from a substation, with the MV stations on it. The station transformer carries the sum of all its feeders, and they don’t peak at the same moment. One feeder with a new business park or three solar farms can hit 100% while the others sit at 40%.\n\nSo green on the public capacity map at station level doesn’t mean room at your address. Planners check the station, the feeder and the voltage at the far end.',
+        'Two worst moments: the winter evening peak (heat pumps, EV charging, little solar) for offtake, taking power from the grid; and a sunny spring midday with low demand for feed-in, putting power onto it.\n\nSame grid, two problems: offtake congestion and feed-in congestion. Experts argue whether worst-case calculations are too cautious now that smart-meter profiles show real simultaneity. Ask in any planning meeting: “Which case is limiting here, offtake or feed-in?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A 10 kV feeder is rated 300 A and peaks at 210 A on a winter evening. Its HS/MS station has 80 MVA of transformers and peaks at 45 MVA. A food factory at the end of the feeder asks for an extra 2.5 MVA of offtake, mostly in the evening.\n\nThe sales team says: “The station is barely half full, this should be easy.”',
+        text: 'A 10 kV feeder is rated 300 A and peaks at 210 A on a winter evening. Its HV/MV station has 80 MVA of transformers and peaks at 45 MVA. A food factory at the end of the feeder asks for an extra 2.5 MVA of offtake, mostly in the evening.\n\nThe sales team says: “The station is barely half full, this should be easy.”',
         ask: 'What would you do next?',
-        reveal: 'Convert the request to current: 2,500 / (1.732 × 10) ≈ 144 A. The feeder would peak at 210 + 144 = 354 A, 118% of its rating. So the feeder is the limit, not the station.\n\nNext, check the voltage at the far end, because the factory sits there. Then the options: move the normal open point so part of this feeder is fed from a neighbour, lay a new dedicated cable from the station, or offer the extra 2.5 MVA non-firm or outside the evening peak until a reinforcement is built.',
+        reveal: 'Convert the request to current: 2,500 kVA / (1.732 × 10 kV) ≈ 144 A. The feeder would peak at 210 + 144 = 354 A, 118% of its rating. So the feeder is the limit, not the station.\n\nNext, check the voltage at the far end, because the factory sits there. Then the options: move the normally open point (the switch where two feeders meet) so part of this feeder is fed from a neighbour, lay a new dedicated cable from the station, or offer the extra 2.5 MVA non-firm or outside the evening peak until a reinforcement is built.',
       },
       said: 'What engineers say: “The station has room, but that feeder is at 95% in the winter peak and the voltage at the end is already on the edge.”',
       recall: [
@@ -35,11 +35,11 @@ export default {
           why: '340 / 400 = 0.85, so 85% of its rating.',
         },
         {
-          q: 'Roughly how much current does a 3 MVA connection draw at 10 kV, in A?',
+          q: 'Roughly how much current does a 3 MVA connection draw at 10 kV (three-phase), in A?',
           number: 173,
           tolerance: 4,
           unit: 'A',
-          why: 'I = S / (√3 × U) = 3,000 / (1.732 × 10) ≈ 173 A.',
+          why: 'I = S / (√3 × U) = 3,000 kVA / (1.732 × 10 kV) ≈ 173 A.',
         },
         {
           q: 'On a sunny afternoon, solar inverters in a new housing estate keep switching off. What is the most likely cause?',
@@ -48,7 +48,7 @@ export default {
           why: 'Feed-in pushes the voltage up; above about 253 V inverters protect themselves by switching off.',
         },
         {
-          q: 'Why can a single MS feeder be overloaded while its substation still has room?',
+          q: 'Why can a single MV feeder be overloaded while its substation still has room?',
           options: ['Substations are always oversized by law', 'Feeders are rated higher than transformers', 'Cables don’t have a rating', 'The station carries the sum of all feeders, which don’t peak together'],
           answer: 'The station carries the sum of all feeders, which don’t peak together',
           why: 'Load and generation are unevenly spread; one feeder can be full while others have lots of room.',
@@ -67,9 +67,11 @@ export default {
       sayIt: 'Explain to a new account manager in 60 seconds why a station with room can still mean no for a customer.',
       terms: [
         { term: 'Load flow', def: 'A calculation of currents and voltages in every part of the grid for a given moment.' },
+        { term: 'Rating', def: 'The current a cable or transformer can carry continuously without overheating.' },
         { term: 'Loading', def: 'Current through a cable or transformer as a % of its rating.' },
-        { term: 'Voltage band', def: 'The allowed range at the customer: 230 V ±10% on LS, so 207 to 253 V.' },
-        { term: 'Feeder', def: 'One outgoing MS cable route from a substation, with the MS stations on it.' },
+        { term: 'Voltage band', def: 'The allowed range at the customer: 230 V ±10% on LV, so 207 to 253 V.' },
+        { term: 'Feeder', def: 'One outgoing MV cable route from a substation, with the MV stations on it.' },
+        { term: 'Feed-in', def: 'Putting power onto the grid, from solar panels, wind turbines or batteries; the opposite of offtake.' },
       ],
     },
     {
@@ -78,24 +80,24 @@ export default {
       title: 'N-1 and redundancy',
       pre: [
         {
-          q: 'An HS/MS substation has two 40 MVA transformers. Under strict N-1, how much load can it serve firmly?',
+          q: 'An HV/MV substation has two 40 MVA transformers. Under strict N-1 (the station must keep supplying if any one component fails), how much load can it serve firmly?',
           options: ['80 MVA', '60 MVA', '20 MVA', 'About 40 MVA'],
           answer: 'About 40 MVA',
           why: 'If one transformer fails, the other must carry everything. Half the installed capacity is reserve.',
         },
       ],
       teach: [
-        'N-1 means the grid keeps supplying when any single component fails: a transformer, a cable, a line, a busbar. N is everything in service; minus one is the worst single outage.\n\nIt does not cover two failures at once, or a failure while another part is out for maintenance. During planned work you often run without reserve, which is why maintenance is scheduled at low-load moments.',
-        'What it costs. A station with two 40 MVA transformers firmly delivers about 40 MVA, not 80. For most of the year half its capacity sits idle as reserve.\n\nThe same holds for a pair of cables. So “the station is half empty” and “the station is full” can both be true. Transformers can be overloaded for some hours in cold weather, so planners sometimes count a bit above 40.',
-        'It differs by voltage level (general picture, the details are in the Netcode).\n\nIn HS grids and HS/MS stations a single failure should cause no interruption, or only a very short one. MS rings are run open: a fault does cause an interruption, and the reserve is switching the healthy part over within hours. In LS there is little reserve: customers wait for the repair.',
-        'When operators relax it. With congestion everywhere, operators started using the reserve capacity: a customer may use it in normal operation, but gets curtailed or disconnected when a component fails or is out for maintenance. TenneT called this using the emergency lane (vluchtstrook).\n\nIt trades guaranteed supply for capacity now. The contract must say who carries that risk, and the control room must be able to act on it.',
-        'Two questions that show you understand it: “Is this limit thermal, or is it the N-1 reserve?” and “What happens when the other transformer is out for maintenance?” The first tells you whether non-firm capacity is possible; the second tells you how fragile the station really is.',
+        'N-1 means the grid keeps supplying when any single component fails: a transformer, a cable, a line, a busbar (the thick conductor in a station that all incoming and outgoing circuits connect to). N is everything in service; minus one is the worst single outage.\n\nIt does not cover two failures at once, or a failure while another part is out for maintenance. During planned work you often run without reserve, which is why maintenance is scheduled at low-load moments.',
+        'What it costs. A station with two 40 MVA transformers has a firm capacity of about 40 MVA, not 80: what it can deliver with its largest component out. For most of the year half its capacity sits idle as reserve.\n\nThe same holds for a pair of cables. So “the station is half empty” and “the station is full” can both be true. Transformers can be overloaded for some hours in cold weather, so planners sometimes count a bit above 40.',
+        'It differs by voltage level (general picture; the details are in the Netcode, the technical rules set by the regulator ACM).\n\nIn HV grids and HV/MV stations a single failure should cause no interruption, or only a limited one. MV rings are run open: a fault does cause an interruption, and the reserve is switching the healthy part over within hours. In LV there is little reserve: customers wait for the repair.',
+        'When operators relax it. With congestion everywhere, operators started handing out the reserve as non-firm capacity: a customer may use it in normal operation, but gets curtailed or disconnected when a component fails or is out for maintenance. TenneT called this using the emergency lane, like the hard shoulder of a motorway.\n\nIt trades guaranteed supply for capacity now. The contract must say who carries that risk, and the control room must be able to act on it within minutes.',
+        'Experts argue whether strict N-1 is still affordable everywhere, or whether some customers would rather accept a rare interruption than wait years. A failure mode: non-firm contracts sold, but nobody tested that the control room can actually curtail them.\n\nTwo sharp questions: “Is this limit thermal, or is it the N-1 reserve?” and “What happens when the other transformer is out for maintenance?” The first says whether non-firm is possible; the second how fragile the station is.',
       ],
       example: {
         kind: 'faded',
-        text: 'An HS/MS station has two 40 MVA transformers. Peak load is 46 MVA and grows by about 2 MVA a year. A new station nearby is planned, but it’s 6 years away.\n\nTwo new requests are waiting: a 3 MVA cold store and a 4 MVA battery.',
+        text: 'An HV/MV station has two 40 MVA transformers. Peak load is 46 MVA and grows by about 2 MVA a year. A new station nearby is planned, but it’s 6 years away.\n\nTwo new requests are waiting: a 3 MVA cold store and a 4 MVA battery.',
         ask: 'What would you do next?',
-        reveal: 'Firm capacity is about 40 MVA, so the station is already 6 MVA over N-1. If one transformer fails at peak, the other carries 46 MVA, 115%: survivable for a few cold hours only if load can be moved. So ask how many MVA can be switched over to neighbouring stations through the MS.\n\nFirm new requests: no. But 80 − 46 = 34 MVA sits idle in normal operation, so offer both requests non-firm: full capacity normally, curtailed when a transformer is out. Check the growth: in 3 years peak is 52 MVA and the reserve thins further.',
+        reveal: 'Firm capacity is about 40 MVA, so the station is already 6 MVA over N-1. If one transformer fails at peak, the other carries 46 MVA, 115%: survivable for a few cold hours only if load can be moved. So ask how many MVA can be switched over to neighbouring stations through the MV grid.\n\nFirm new requests: no. But 80 − 46 = 34 MVA sits idle in normal operation, so offer both requests non-firm: full capacity normally, curtailed when a transformer is out. Check the growth: in 3 years peak is 52 MVA and the reserve thins further.',
       },
       said: 'What engineers say: “On paper it’s half empty, but that’s our N-1 reserve. We can only give that out non-firm.”',
       recall: [
@@ -113,10 +115,10 @@ export default {
           why: 'N-1 covers one failure; two at once, or a failure during maintenance, is outside it.',
         },
         {
-          q: 'In an MS ring, what is the reserve after a cable fault?',
-          options: ['Switching the healthy part over through the normal open point', 'A second cable that takes over automatically without interruption', 'A battery in every MS station', 'There is none'],
-          answer: 'Switching the healthy part over through the normal open point',
-          why: 'MS rings are run open; customers are interrupted and then restored by switching.',
+          q: 'In an MV ring, what is the reserve after a cable fault?',
+          options: ['Switching the healthy part over through the normally open point', 'A second cable that takes over automatically without interruption', 'A battery in every MV station', 'There is none'],
+          answer: 'Switching the healthy part over through the normally open point',
+          why: 'MV rings are run open; customers are interrupted and then restored by closing the open point.',
         },
         {
           q: 'A customer gets capacity “from the emergency lane”. What does that mean for them?',
@@ -138,8 +140,10 @@ export default {
       sayIt: 'Explain to a business owner in 60 seconds why a half-empty substation can still be full.',
       terms: [
         { term: 'N-1', def: 'The grid keeps supplying when any single component fails.' },
+        { term: 'Busbar', def: 'The thick conductor in a station that all incoming and outgoing circuits connect to.' },
         { term: 'Firm capacity', def: 'What a station can deliver with its largest component out of service.' },
         { term: 'Non-firm', def: 'Capacity the operator may curtail, for example when the reserve is needed.' },
+        { term: 'Emergency lane', def: 'TenneT’s image for the N-1 reserve: capacity you may use until a failure or maintenance needs it back.' },
       ],
     },
     {
@@ -147,18 +151,18 @@ export default {
       title: 'Flexibility and congestion management',
       pre: [
         {
-          q: 'An MS feeder is over its limit in its peak. Roughly how many hours a year is a typical congested feeder actually over the limit?',
+          q: 'An MV feeder is over its limit in its peak. Roughly how many hours a year is a typical congested feeder actually over the limit?',
           options: ['Almost all the time', 'Often only a few hundred hours, or fewer', 'Every working day, 9 to 5', 'Exactly half the year'],
           answer: 'Often only a few hundred hours, or fewer',
-          why: 'Peaks are short. That is what makes flexibility worth so much.',
+          why: 'Peaks are short; a year has 8,760 hours. That is what makes flexibility worth so much.',
         },
       ],
       teach: [
-        'Congestion means requested transport exceeds what the grid can safely carry at some moments. But those moments are few: a congested feeder may be over its limit only a few hundred hours a year.\n\nFlexibility uses that. If some customers use less, or feed in less, in those hours, more customers fit on the same grid. Rule of thumb: limiting the top few percent of hours frees a much larger share of capacity.',
-        'Curtailment of generation. Solar panels rarely produce their full peak power, so operators and developers often connect a solar park at a fraction of it, for example 70%. The energy lost is small, a few percent a year, while the grid needs much less.\n\nWind and solar parks can also be asked to turn down on specific moments, sometimes for a fee.',
-        'Contract forms in the Netherlands (names and terms change, check the current rules): non-firm contracts, where the operator may limit you; time-dependent contracts, with guaranteed capacity outside certain hours, such as the evening peak; and capacity-limiting contracts, where a customer is paid to stay below a level when asked. Through the GOPACS platform operators buy redispatch: one party up outside the area, one down inside.',
-        'In practice. Before saying no to a request, Dutch rules require the operator to study whether congestion management can make room. If yes, the operator forecasts the peak a day ahead, calls the flexible customers, and checks with metering whether they delivered.\n\nA business park can also share one connection through a group contract, so one company’s peak fills another’s gap.',
-        'The limits. Flex only works if the flexible party really responds, needs forecasting and metering, and grows harder as the peak lengthens: heat pumps turn short peaks into long winter evenings. It buys time; it rarely replaces reinforcement.\n\nThe question to ask: “How many hours a year is this feeder actually over its limit, and is that number growing?”',
+        'Congestion means requested transport exceeds what the grid can safely carry at some moments. Those moments are few: a congested feeder may be over its limit only a few hundred of the 8,760 hours in a year.\n\nFlexibility uses that. If some customers take or feed in less in those hours, more customers fit on the same grid. Rule of thumb: limiting the top few percent of hours frees a much larger share of capacity.',
+        'Congestion management is the operator’s toolkit for steering use at those moments. Before saying no to a request, Dutch rules require a study of whether it can make room. If yes, the operator forecasts the peak a day ahead, calls the flexible customers, and checks with metering whether they delivered.\n\nThrough GOPACS, a platform of the Dutch grid operators, they buy redispatch: one party goes up outside the congested area and one goes down inside, so the national balance stays intact.',
+        'Curtailment means reducing feed-in or offtake at moments the grid is full. Solar panels rarely produce their full peak power, so a solar park is often connected at a fraction of it, typically 70%. The energy lost is small, a few percent a year, while the grid needs much less.\n\nWind and solar parks can also be asked to turn down at specific moments, sometimes for a fee.',
+        'Contract forms in the Netherlands (names and terms change, check the current ACM rules): non-firm contracts; a time-dependent contract, with guaranteed capacity only outside certain hours, such as the evening peak; and a capacity-limiting contract, where a customer is paid to stay below a level when asked.\n\nA business park can also share one connection through a group contract, so one company’s peak fills another’s gap.',
+        'The limits. Flex only works if the flexible party really responds; it needs forecasting and metering, and grows harder as the peak lengthens: heat pumps turn short peaks into long winter evenings. It buys time; it rarely replaces reinforcement.\n\nExperts argue whether payments for flex reward the right customers or just those who happen to be in a congested area. Ask: “How many hours a year is this feeder over its limit, and is that growing?”',
       ],
       example: {
         kind: 'faded',
@@ -166,10 +170,10 @@ export default {
         ask: 'What would you do next?',
         reveal: 'Firm, it doesn’t fit: 5.8 + 1.5 = 7.3 MW, well over 6. With a time-dependent contract that excludes 17:00 to 20:00, it does: during the peak the store adds 0, and outside it the feeder reaches at most 4.2 + 1.5 = 5.7 MW.\n\nNext, check that the store can really hold temperature for three hours, agree how compliance is measured, and plan for the window moving: as heat pumps arrive, the peak may stretch to 16:00 to 21:00 and the contract must allow that.',
       },
-      said: 'What engineers say: “We can connect them tomorrow if they sign a time-block contract and stay off between five and eight.”',
+      said: 'What engineers say: “We can connect them tomorrow if they sign a time-dependent contract and stay off between five and eight.”',
       recall: [
         {
-          q: 'A 10 MWp solar park is connected at 70% of its peak power. What is the connection capacity, in MW?',
+          q: 'A 10 MWp solar park (10 MW of panel peak power) is connected at 70% of its peak power. What is the connection capacity, in MW?',
           number: 7,
           tolerance: 0.1,
           unit: 'MW',
@@ -206,10 +210,12 @@ export default {
       },
       sayIt: 'Explain to a business owner in 60 seconds why a time-dependent contract can get him connected years earlier.',
       terms: [
-        { term: 'Curtailment', def: 'Reducing a customer’s feed-in or offtake at moments the grid is full.' },
-        { term: 'Time-dependent contract', def: 'Capacity guaranteed only outside certain hours or for part of the year.' },
+        { term: 'Congestion management', def: 'The operator’s tools to steer use at peak moments, so more customers fit on a full grid.' },
         { term: 'GOPACS', def: 'Dutch platform where grid operators buy redispatch to solve congestion.' },
         { term: 'Redispatch', def: 'Moving production or demand from inside a congested area to outside it.' },
+        { term: 'Curtailment', def: 'Reducing a customer’s feed-in or offtake at moments the grid is full.' },
+        { term: 'Time-dependent contract', def: 'Capacity guaranteed only outside certain hours or for part of the year.' },
+        { term: 'Capacity-limiting contract', def: 'A customer is paid to stay below an agreed level when the operator asks.' },
       ],
     },
     {
@@ -224,17 +230,17 @@ export default {
         },
       ],
       teach: [
-        'A battery moves energy in time: charge now, discharge later. It has two ratings: power in MW, and energy in MWh. A 10 MW / 20 MWh battery delivers 10 MW for 2 hours.\n\nMost grid batteries are 1 to 4 hours. To shave a 4-hour evening peak you need enough MWh, not just MW.',
-        'Where it helps. Placed behind the congested point and run for the local problem.\n\nIn a solar-heavy area it charges at midday and empties in the evening. At a factory it shaves the offtake peak behind the meter, so the company needs a smaller connection. At a busy LS station a small battery can postpone a transformer swap by a few years.',
-        'Where it makes things worse. A battery that trades on national markets reacts to prices, not to your feeder. Prices drop when the whole country has lots of wind, which may be exactly your local evening peak, so it charges at the worst moment.\n\nA battery connection also asks for both offtake and feed-in capacity, and stands in the same queue. Many batteries reacting to the same price at once create new peaks.',
-        'How operators handle it. Batteries are often offered non-firm or time-bound contracts: TenneT’s time-bound transport right (first called ATR85), for example, guarantees transport at least 85% of the time. The battery stays out of certain hours in return for a faster connection or a lower tariff.\n\nSharing a connection with a solar park works well: the battery fills the gap the park leaves and adds little extra load.',
-        'The question that cuts through: “At the peak hour, who decides what the battery does: the grid or the market?” If the answer is the market, ask what the contract says about those hours.',
+        'A battery moves energy in time: charge now, discharge later. It has two ratings. MW is its power: how fast it can charge or discharge. MWh is its energy: how much it holds. A 10 MW / 20 MWh battery delivers 10 MW for 2 hours.\n\nMost grid batteries hold 1 to 4 hours. To cover a 4-hour evening peak you need enough MWh, not just MW.',
+        'Where it helps: placed behind the congested point and run for the local problem. In a solar-heavy area it charges at midday and empties in the evening.\n\nPeak shaving means cutting the highest peaks of a connection. A battery behind the meter, on the customer’s side of the connection, can shave a factory’s offtake peak so the company needs a smaller connection. At a busy LV station a small battery can postpone a transformer swap by a few years.',
+        'Where it makes things worse. A battery that trades on the day-ahead market, where electricity for each hour or quarter of tomorrow is priced today, reacts to national prices, not to your feeder. Prices drop when the whole country has lots of wind, which may be exactly your local evening peak, so it charges at the worst moment.\n\nA battery also asks for both offtake and feed-in capacity, and many batteries reacting to the same price create new peaks.',
+        'How operators handle it. Batteries are often offered non-firm or time-bound contracts. A time-bound transport right guarantees transport in at least 85% of the hours of a year; it grew out of TenneT’s ATR85 proposal, and the ACM made it a standard product in 2024. In the other 15%, up to about 1,300 hours, the operator may limit it, announced at least a day ahead.\n\nSharing a connection with a solar park works well: the battery fills the gap the park leaves.',
+        'Experts argue who should steer batteries. The EU Electricity Directive (2019/944) bars grid operators from owning or running batteries, apart from narrow exceptions, so they have to steer through contracts and prices.\n\nA failure mode: a contract that limits the battery in the wrong hours, because the local peak moved. The question that cuts through: “At the peak hour, who decides what the battery does: the grid or the market?” If the market, ask what the contract says about those hours.',
       ],
       example: {
         kind: 'faded',
-        text: 'A village LS station has a 400 kVA transformer. On winter weekdays the peak is 460 kVA from 17:00 to 20:00.\n\nA local energy cooperative proposes a neighbourhood battery of 150 kW / 300 kWh, and wants to earn money by trading on the day-ahead market. Peak demand grows by about 20 kVA a year. Assume kVA and kW are roughly equal here.',
+        text: 'A village LV station has a 400 kVA transformer. On winter weekdays the peak is 460 kVA from 17:00 to 20:00.\n\nA local energy cooperative proposes a neighbourhood battery of 150 kW / 300 kWh, and wants to earn money by trading on the day-ahead market. Peak demand grows by about 20 kVA a year, and the peak window stays 3 hours. Assume kVA and kW are roughly equal here.',
         ask: 'What would you do next?',
-        reveal: 'The overload is 60 kW for 3 hours: 180 kWh. The battery has the power (150 kW) and the energy (300 kWh), so technically it fits, but only if it is full at 17:00 on a winter day, when there is little sun.\n\nIt must charge at night or early afternoon. And it must not trade during 17:00 to 20:00: write that window into the agreement with the cooperative.\n\nGrowth: in 3 years the overload is 120 kW, 360 kWh, more than the battery holds. So it buys about 2 to 3 years, then the transformer still goes to 630 kVA.',
+        reveal: 'The overload is 60 kW for 3 hours: 180 kWh. The battery has the power (150 kW) and the energy (300 kWh), so technically it fits, but only if it is full at 17:00 on a winter day, when there is little sun.\n\nIt must charge at night or early afternoon. And it must not trade during 17:00 to 20:00: write that window into the agreement with the cooperative.\n\nGrowth: in 3 years the overload is 120 kW, 360 kWh, more than the battery holds. In 2 years it is 100 kW × 3 h = 300 kWh, all the battery holds. So it buys about 2 years, then the transformer still goes to 630 kVA.',
       },
       said: 'What engineers say: “A battery helps if we can steer it at five o’clock. If it chases prices, it’s just another big connection.”',
       recall: [
@@ -277,9 +283,12 @@ export default {
       },
       sayIt: 'Explain to a colleague in 60 seconds when a battery helps the grid and when it makes congestion worse.',
       terms: [
-        { term: 'MW and MWh', def: 'Power (how fast) and energy (how much); MWh / MW gives the hours at full power.' },
+        { term: 'MW', def: 'Power: how fast a battery can charge or discharge.' },
+        { term: 'MWh', def: 'Energy: how much a battery holds; MWh / MW gives the hours at full power.' },
         { term: 'Peak shaving', def: 'Using a battery or flexible load to cut the highest peaks of a connection.' },
-        { term: 'Time-bound transport right', def: 'A contract where transport is guaranteed only part of the time, like 85%.' },
+        { term: 'Behind the meter', def: 'On the customer’s side of the connection, so it lowers what the grid sees.' },
+        { term: 'Day-ahead market', def: 'The market where electricity for each hour or quarter of tomorrow is priced today.' },
+        { term: 'Time-bound transport right', def: 'A contract where transport is guaranteed only part of the time, at least 85% of the hours of a year.' },
       ],
     },
     {
@@ -287,29 +296,29 @@ export default {
       title: 'Investment planning',
       pre: [
         {
-          q: 'Roughly how long does a new HS/MS substation take in the Netherlands, from first plan to energised?',
+          q: 'Roughly how long does a new HV/MV substation take in the Netherlands, from first plan to energised (switched on for the first time)?',
           options: ['About 6 months', 'About 1 year', 'Often 5 to 10 years', 'About 2 years'],
           answer: 'Often 5 to 10 years',
           why: 'Finding a site and getting permits take most of it; building is the shorter part.',
         },
       ],
       teach: [
-        'Grid operators plan against scenarios, not one forecast.\n\nNationally there are shared scenarios for 2030 to 2050 (II3050); regionally the energy strategies (RES), municipal heat plans and the real queue of connection requests. Planners turn these into load per station per year: how many heat pumps, chargers, solar roofs and large connections, at what simultaneity.',
-        'The bottleneck list. Run load flows per scenario per year, and you see where and when each asset goes over its limit. Each bottleneck gets a solution (an extra cable, a third transformer, a new station), a cost and a date.\n\nDutch operators publish an investment plan every two years, which turns this into a public programme.',
-        'Prioritising. There is more need than people and money. Bottlenecks are ranked on risk (overload, safety), customers waiting, and how ready the solution is.\n\nFor the connection queue, the ACM lets operators put projects with social value first (since 2024; a renewed framework is mandatory in congestion areas from 2026): projects that relieve congestion, then safety (acute care, defence, water management), then basic needs like housing, education and public transport.',
-        'Lead times (rule of thumb): LS reinforcement and new MS/LS stations, months to a year; MS cables and stations, one to three years; a new HS/MS substation, 5 to 10 years, mostly site and permits.\n\nThat means you must build before demand is certain, called anticipatory investment. Wait for certainty and you are always late.',
-        'Questions that land in planning meetings: “Which scenario is this based on?”, “What happens to the date if demand comes faster?” and “Which steps are no-regret: useful in every scenario?” Buying a site or starting permits early is often no-regret; building the full station is not.',
+        'Grid operators plan against a scenario, never one forecast: a consistent picture of future demand and generation.\n\nNationally there are shared scenarios for 2030 to 2050 (II3050, the grid operators’ joint outlook); regionally the regional energy strategies (RES), municipal heat plans and the real queue of requests. Planners turn these into load per station per year, at a given simultaneity: the share of devices that run at the same moment.',
+        'The bottleneck list. Run load flows per scenario per year and you see where and when each asset goes over its limit. Each bottleneck gets a solution (an extra cable, a third transformer, a new station), a cost and a date.\n\nDutch operators publish an investment plan every two years, which turns this into a public programme the ACM and municipalities can read. Ask: “Which bottlenecks moved since the last plan, and why?”',
+        'Prioritising. There is more need than people and money, so bottlenecks are ranked on risk (overload, safety), customers waiting and how ready the solution is.\n\nFor the connection queue, the ACM has allowed operators since 2024 to put projects with social value first: projects that relieve congestion, then safety (such as defence), then basic needs (such as health care, education and housing). A court annulled that first framework in March 2025; a revised one keeps the order and, since July 2026, also covers small connections.',
+        'Lead times (rule of thumb): LV reinforcement and new MV/LV stations, months to a year; MV cables and stations, one to three years; a new HV/MV substation, 5 to 10 years, mostly site and permits.\n\nSo you must build before demand is certain: anticipatory investment. The ACM has confirmed operators may do this when it follows from plausible scenarios. Experts argue about the balance: build too early and assets stand idle; wait for certainty and you are always late.',
+        'A no-regret measure is a step that pays off in every scenario. Buying a site or starting permits early often is; building the full station often is not.\n\nQuestions that land in planning meetings: “Which scenario is this based on?”, “What happens to the date if demand comes faster?” and “Which steps are no-regret?” A failure mode: a plan based on one scenario that everyone has forgotten was only one.',
       ],
       example: {
         kind: 'faded',
-        text: 'A region has one team of station engineers free to start one new HS/MS substation this year. Station A goes over its limit in 2029 in every scenario, and 15 MW of business requests wait behind it. Station B goes over only in the high scenario, around 2030, but the operator already owns a site there.\n\nSeparately, feeder C is over its limit today; the fix is a 2 km cable, 18 months, done by the cable team.',
+        text: 'A region has one team of station engineers free to start one new HV/MV substation this year. Station A goes over its limit in 2029 in every scenario, and 15 MW of business requests wait behind it. Station B goes over only in the high scenario, around 2030, but the operator already owns a site there.\n\nSeparately, feeder C (one MV cable route) is over its limit today; the fix is a 2 km cable, 18 months, done by the cable team.',
         ask: 'What would you do next?',
         reveal: 'C uses a different team, so it’s not a choice: start it now.\n\nBetween A and B: A’s need is certain and with a 5 to 10 year lead time it is already late, so the station team starts A, with non-firm contracts to serve the 15 MW queue meanwhile.\n\nB gets a no-regret step: start the permit procedure on the site you own, and decide on building when the scenarios get clearer. That keeps B’s lead time short without committing the scarce station engineers.',
       },
       said: 'What engineers say: “In the high scenario that station is full in 2030. If we wait until we’re sure, it’s 2036 before it’s there.”',
       recall: [
         {
-          q: 'A new substation takes 8 years and must be ready in 2033. In what year must work start at the latest?',
+          q: 'A new substation takes 8 years from start to energised and must be ready in 2033. In what year must work start at the latest?',
           number: 2025,
           tolerance: 0.5,
           unit: '',
@@ -331,7 +340,7 @@ export default {
           q: 'Under the ACM prioritisation rules for the connection queue, which kind of project goes first?',
           options: ['The oldest request', 'The largest request', 'Projects that pay the most', 'Projects that relieve congestion'],
           answer: 'Projects that relieve congestion',
-          why: 'They free room for others, so they come before safety, defence and basic needs.',
+          why: 'They free room for others, so they come before safety and basic needs; without a priority, the oldest request goes first.',
         },
       ],
       situation: {
@@ -347,6 +356,9 @@ export default {
       sayIt: 'Explain to a municipality official in 60 seconds why the grid operator builds before demand is certain.',
       terms: [
         { term: 'Scenario', def: 'A consistent picture of future demand and generation that planners calculate against.' },
+        { term: 'Simultaneity', def: 'The share of devices or customers that use power at the same moment.' },
+        { term: 'Bottleneck', def: 'A place and year where an asset goes over its limit in a scenario.' },
+        { term: 'Investment plan', def: 'The public plan every Dutch grid operator publishes every two years with its bottlenecks and projects.' },
         { term: 'Anticipatory investment', def: 'Building grid capacity before demand is certain, because lead times are long.' },
         { term: 'No-regret measure', def: 'A step that pays off in every scenario.' },
       ],
@@ -363,17 +375,17 @@ export default {
         },
       ],
       teach: [
-        'The capacity of the work chain. A plan is only as fast as the narrowest step: design, work preparation, permits, materials, switching, crews, commissioning.\n\nDutch grid operators have been short of technicians and preparers for years while the workload keeps rising. Doubling the budget does nothing if the preparers can only prepare so many jobs a week.',
-        'Standardisation. A standard design, such as a standard MS station, a standard substation layout or a standard materials kit, cuts design time, allows bulk ordering, lets material move to another job when one stalls, and makes crews faster because they know the work.\n\nEvery special design costs preparation hours and rework. Operators increasingly share standards.',
-        'Contractors. Much of the field work is done by contractors on long-term framework agreements; switching and control usually stay in-house.\n\nContractors need a steady, predictable flow: work packages released in time, complete, with permits sorted. An erratic release means idle crews, then overtime, then claims.',
-        'Permits and space. Finding a spot for an MS station in a neighbourhood, or a site for a substation, can take longer than building it.\n\nMunicipalities decide on space, so early agreements, like reserving station spots in new housing plans, save years. Cable work needs a KLIC notification and local digging permits.',
-        'Where improvement work helps most (rule of thumb): not in the field, which is often under 10% of the lead time, but in the waiting and rework around it.\n\nRelease only work that is ready, cut rework in preparation, bundle jobs per area and per outage, and level the flow to contractors. Measure jobs released ready, plan reliability per week and lead time per step.',
+        'A plan is only as fast as the narrowest step of the work chain: design, work preparation, permits, materials, switching, crews, commissioning. Work preparation turns a design into a complete, buildable job: drawings, materials, permits, switching plan.\n\nDutch grid operators have been short of technicians and preparers for years. Doubling the budget does nothing if the preparers can only prepare so many jobs a week.',
+        'Standardisation means one design for many jobs: a standard MV station, a standard substation layout, a standard materials kit. It cuts design time, allows bulk ordering, lets material move to another job when one stalls, and makes crews faster because they know the work.\n\nEvery special design costs preparation hours and rework: doing part of a job again because something was wrong or changed. Operators increasingly share standards with each other.',
+        'Much field work is done by a contractor, an outside firm, on a long-term framework agreement: one contract for a stream of jobs at agreed rates. Switching and control usually stay in-house.\n\nContractors need a steady, predictable flow: work packages released in time, complete, with permits sorted. An erratic release means idle crews, then overtime, then claims. Experts argue whether to let contractors prepare standard jobs themselves.',
+        'Permits and space. Finding a spot for an MV station in a neighbourhood, or a site for a substation, can take longer than building it.\n\nMunicipalities decide on space, so early agreements, like reserving station spots in new housing plans, save years. Cable work needs a KLIC notification (asking where other cables and pipes lie) and local digging permits.',
+        'Where improvement work helps most (rule of thumb): not in the field, often under 10% of the lead time, but in the waiting and rework around it.\n\nAim for first time right: a job prepared so it can be built without rework or a second visit. Release only ready work, bundle jobs per area and outage, level the flow to contractors. Measure jobs released ready, plan reliability per week and lead time per step.',
       ],
       example: {
         kind: 'faded',
-        text: 'A region plans 1,200 MS/LS station jobs next year. Contractors say they can build 1,300.\n\nThe region has 10 work preparers; each prepares 2 jobs a week, 44 weeks a year. 30% of prepared jobs come back for rework (design changes, wrong grid data), each costing half the original preparation time again.',
+        text: 'A region plans 1,200 MV/LV station jobs next year. Contractors say they can build 1,300.\n\nThe region has 10 work preparers; each prepares 2 jobs a week, 44 weeks a year. 30% of prepared jobs come back for rework (design changes, wrong grid data), each costing half the original preparation time again.',
         ask: 'What would you do next?',
-        reveal: 'Preparation capacity: 10 × 2 × 44 = 880 jobs gross. With rework every job costs on average 1 + 0.3 × 0.5 = 1.15 preparation units, so net 880 / 1.15 ≈ 765 jobs.\n\nPreparation is the bottleneck, not the contractors. The 1,200 isn’t going to happen; say so now and agree which jobs go first.\n\nThen work the bottleneck: find the top causes of rework (halving it to 15% gives about 820), use standard designs so a job takes less preparation, and consider giving standard jobs to contractors to prepare themselves.',
+        reveal: 'Preparation capacity: 10 × 2 × 44 = 880 jobs gross. With rework every job costs on average 1 + 0.3 × 0.5 = 1.15 preparation units, so net 880 / 1.15 ≈ 765 jobs.\n\nPreparation is the bottleneck, not the contractors. The 1,200 isn’t going to happen; say so now and agree which jobs go first.\n\nThen work the bottleneck: find the top causes of rework (halving it to 15% gives 880 / 1.075 ≈ 820), use standard designs so a job takes less preparation, and consider giving standard jobs to contractors to prepare themselves.',
       },
       said: 'What engineers say: “The contractors are hungry for work, but we can’t get the packages ready fast enough.”',
       recall: [
@@ -404,7 +416,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a regional grid operator. The board wants 30% more MS/LS stations built next year and has asked contractors for extra crews. You are asked to support the programme.',
+        scene: 'You’re at a regional grid operator. The board wants 30% more MV/LV stations built next year and has asked contractors for extra crews. You are asked to support the programme.',
         ask: 'What do you ask before the extra crews are contracted?',
         model: 'I’d ask where the narrowest step in the chain is: how many jobs a week do preparation, permits and switching actually deliver ready to build? If preparation delivers fewer than the crews can build already, extra crews will stand idle. Then I’d ask how much rework comes back from the field and from design changes, because cutting that is often the fastest gain.',
         rubric: [
@@ -416,6 +428,9 @@ export default {
       sayIt: 'Explain to a board member in 60 seconds why more crews doesn’t mean more grid built.',
       terms: [
         { term: 'Work preparation', def: 'Turning a design into a complete, buildable job: drawings, materials, permits, switching plan.' },
+        { term: 'Standardisation', def: 'Using one design or kit for many jobs, so each job needs less design and preparation.' },
+        { term: 'Rework', def: 'Doing part of a job again because something was wrong or changed.' },
+        { term: 'Contractor', def: 'An outside firm that builds for the grid operator.' },
         { term: 'Framework agreement', def: 'A long-term contract with a contractor for a stream of jobs at agreed terms.' },
         { term: 'First time right', def: 'A job prepared so it can be built without rework or a second visit.' },
       ],
