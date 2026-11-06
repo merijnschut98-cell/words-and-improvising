@@ -1125,6 +1125,7 @@ export default {
     },
     {
       id: 'eng.machining.toolbasics',
+      figure: 'eng.machining.insert',
       title: 'Snijgereedschap: materialen, wisselplaten en houders',
       pre: [
         {
@@ -1195,6 +1196,7 @@ export default {
     },
     {
       id: 'eng.machining.tools',
+      figure: 'eng.machining.insert',
       title: 'Slijtage, standtijd en koeling',
       pre: [
         {
@@ -1265,6 +1267,7 @@ export default {
     },
     {
       id: 'eng.machining.toollife',
+      figure: 'eng.machining.insert',
       title: 'Standtijd: Taylor, slijtagegrenzen en gereedschapsbeheer',
       pre: [
         {
@@ -1334,6 +1337,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
+      figure: 'eng.machining.insert',
       title: 'Gereedschapskosten per stuk: de economische snijsnelheid',
       pre: [
         {

@@ -1125,6 +1125,7 @@ export default {
     },
     {
       id: 'eng.machining.toolbasics',
+      figure: 'eng.machining.insert',
       title: 'Cutting tools: materials, inserts and holders',
       pre: [
         {
@@ -1195,6 +1196,7 @@ export default {
     },
     {
       id: 'eng.machining.tools',
+      figure: 'eng.machining.insert',
       title: 'Tool wear, tool life and coolant',
       pre: [
         {
@@ -1265,6 +1267,7 @@ export default {
     },
     {
       id: 'eng.machining.toollife',
+      figure: 'eng.machining.insert',
       title: 'Tool life: Taylor, wear limits and tool management',
       pre: [
         {
@@ -1334,6 +1337,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
+      figure: 'eng.machining.insert',
       title: 'Tool cost per part: the economic cutting speed',
       pre: [
         {
