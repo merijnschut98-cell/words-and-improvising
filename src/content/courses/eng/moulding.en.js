@@ -1412,6 +1412,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      figure: 'eng.moulding.mould',
       title: 'Moulds, changes and maintenance',
       pre: [
         {
@@ -1482,6 +1483,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      figure: 'eng.moulding.mould',
       title: 'Inside a mould',
       pre: [
         {
@@ -1551,6 +1553,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      figure: 'eng.moulding.mould',
       title: 'Planning mould maintenance and changes',
       pre: [
         {
@@ -1621,6 +1624,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      figure: 'eng.moulding.mould',
       title: 'A new mould: from design to release',
       pre: [
         {
