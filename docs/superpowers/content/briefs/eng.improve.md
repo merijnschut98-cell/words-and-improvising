@@ -1,0 +1,26 @@
+# eng.improve — Engineering problem solving (engineering, track basics, level 3, FADED examples)
+Index title: en 'Engineering problem solving' / nl 'Technisch probleemoplossen'. Blurb: en 'How engineers find root causes with data: 8D, is/is-not, experiments and proving the fix.' / nl 'Hoe engineers met data grondoorzaken vinden: 8D, is/is-niet, experimenten en de fix bewijzen.'
+1. `eng.improve.8d` — the 8D method as engineers run it: containment first, then root cause, then permanent action; why containment is not a fix.
+2. `eng.improve.isisnot` — is/is-not analysis and stratification: where, when, which machine, which batch; narrowing with data.
+3. `eng.improve.data` — measuring before concluding: sample sizes, before/after with variation, why one good day proves nothing.
+4. `eng.improve.doe` — design of experiments in plain words: factors, levels, interactions, a 2×2 example; one-factor-at-a-time pitfalls.
+5. `eng.improve.verify` — verifying the fix: turning the cause on and off, escape point, preventing recurrence elsewhere (read-across).
+6. `eng.improve.facilitate` — facilitating an engineering root-cause session as a non-engineer: questions that keep it factual, handling the expert who “already knows”.
+
+## Clarity round (2026-11-04)
+
+Every lesson now has 5 teach blocks (all ≤ 90 words); the new fifth block gives what you see in practice, what experts argue about, typical failures and a sharp question. Technical words are explained where they first appear (automotive, tier-2, short shot, vents, process window, cavity-pressure sensor, FMEA, control plan, PFMEA, stamping, die, burr, machining centre, porosity, port, tap, fixture, seal jaw, run chart, control chart, tolerance, AIAG, nozzle, newton, cure temperature, fractional factorial, spot welding, tip dressing, chisel test, crimp height, setter, bearing, alignment, design point, conveyor hooks). Ids, pre and recall order, answer positions and numbers unchanged (36 parts, 1.7%, 600 parts, 16 runs, 40 N, 10 defects). The `eng.improve.doe` figure is untouched and its asserted strings stay verbatim (example text and reveal unchanged in both languages; `node figures/eng.improve.doe/build.mjs --audit` passes and leaves the built page unchanged). No Dutch in the en file (“Containment (indammen)” and “Anchoring (verankering)” replaced by single English terms).
+
+Terms (en / nl, same order): 8d — 8D, Containment / Indammen, Root cause / Grondoorzaak, Occurrence cause / Ontstaansoorzaak, Escape cause / Ontsnappingsoorzaak, Permanent action / Blijvende maatregel; isisnot — Is/is-not / Is/is-niet, Distinction / Onderscheid, Stratification / Stratificatie, Cavity / Caviteit, Lot / Charge; data — Normal variation / Normale variatie, Run chart, Rule of three / Regel van drie, Confidence / Betrouwbaarheid, Gauge R&R; doe — Factor, Level / Niveau, Response / Respons, Main effect / Hoofdeffect, Interaction / Interactie, OFAT (“Factor and level” split in two); verify — On/off verification / Aan/uit-verificatie, Escape point, Read-across, PFMEA, Control plan; facilitate — Facilitator / Gespreksleider, Problem statement / Probleemstelling, Fact / Feit, Theory / Theorie, Anchoring / Ankereffect (“Theory versus fact” split in two). Every term appears literally in its lesson’s teach text; no term is defined twice in the module.
+
+Recalculations and sources:
+- 8D: Ford, Team Oriented Problem Solving (TOPS 8D), 1987 → “late 1980s”; D0 from Ford Global 8D. Typical OEM timing: containment within 24 h, D4–D5 within about 10 working days, closure within a few months (customer-specific, stated as typical). Visual 100% inspection catches roughly 80–90% (Juran’s Quality Handbook; Drury, inspection studies) → “misses 10–20%”. Recall 12,000 × 0.02 = 240; 240 × 0.15 = 36.
+- Is/is-not: Kepner, C. H. and Tregoe, B. B. (1965), The Rational Manager. Recall 400 − 280 = 120; 120 / 7,000 = 1.71%.
+- Data: 8 in a row on one given side by chance = 0.5^8 = 0.0039 ≈ 4 in 1,000. Rule of three (Hanley and Lippman-Hand, 1983): −ln(0.05) = 3.00; 3 / 50 = 6%, 3 / 300 = 1%, 3 / 0.005 = 600. AIAG MSA 4th ed.: %GRR under 10 / 10–30 / over 30%.
+- DOE: 2^k runs; 2^4 = 16; 2^7 = 128 vs a 2^(7−4) resolution III fraction of 8 runs (Box, Hunter and Hunter, Statistics for Experimenters). Recall (240 + 260) / 2 − (200 + 220) / 2 = 250 − 210 = 40 N. Figure numbers unchanged: 8, 9, 7, 2%; effects −2, −4; interaction +1 / −5; OFAT best 7%.
+- Verify: Poisson chance of zero defects when λ expected: λ = 15 → e^−15 = 3 × 10^−7 (“far less than once in a million”); λ = 1 → e^−1 = 37%; λ = 6 (1,200 × 0.005) → 0.25%; recall 2,000 × 0.005 = 10. Escape point as defined in Ford Global 8D (closest point to the root cause where the problem should have been detected).
+- Facilitate: anchoring (Tversky and Kahneman, 1974). Silent idea writing before discussion (nominal group technique / brainwriting) as the counter to rank steering.
+
+Facts fixed: none of substance; D6 stays “implement and validate” (Ford Global 8D) and the 8D term definition now says so too (it read “validation” only). Recall/pre wording now states what each percentage is a share of (parts per day, parts per week, parts since the fix).
+
+Uncertain: “Taguchi-style engineers aim at settings robust to noise” is a fair one-line summary of a long debate; the OEM 8D timings vary by customer.
