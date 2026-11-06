@@ -281,6 +281,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      figure: 'eng.lines.robotcell',
       title: 'What a robot is: axes, gripper and teach pendant',
       pre: [
         {
@@ -349,6 +350,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      figure: 'eng.lines.robotcell',
       title: 'Robots: types, reach and safety',
       pre: [
         {
@@ -419,6 +421,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      figure: 'eng.lines.robotcell',
       title: 'Designing a robot cell: cycle, feeding and safety distance',
       pre: [
         {
@@ -490,6 +493,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      figure: 'eng.lines.robotcell',
       title: 'Vision, offline programming and when a cobot fits',
       pre: [
         {
