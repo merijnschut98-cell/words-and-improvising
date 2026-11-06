@@ -104,7 +104,12 @@ await ctx.addInitScript(() => {
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
 const page = await ctx.newPage();
 let currentStep = 'setup';
-page.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message}`));
+// Playwright's serviceWorkers: 'block' patches navigator.serviceWorker in every
+// frame; in a sandboxed figure frame that read throws. The app's own frame is
+// never sandboxed, so this exact message is the harness, not the app.
+const HARNESS_SW = /Failed to read the 'serviceWorker' property from 'Navigator': Service worker is disabled because the context is sandboxed/;
+function onPageError(e) { if (!HARNESS_SW.test(e.message)) errors.push(`[${currentStep}] ${e.message}`); }
+page.on('pageerror', onPageError);
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 
 const step = async (name, fn) => {
@@ -153,7 +158,7 @@ const onePrimary = async (pg, where) => {
 await step('start screen: one card per subject with its reason, streak and level in one line; cards open each home', async () => {
   const c5 = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
   const p5 = await c5.newPage();
-  p5.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message}`));
+  p5.on('pageerror', onPageError);
   await c5.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, xp: 40, streak: { count: 0, lastDay: null } })); });
   const shot5 = async (n) => {
     const text = await p5.evaluate(() => document.body.innerText);
@@ -1883,7 +1888,7 @@ await step('english + progress + settings', async () => {
 async function v9Context(seed = {}) {
   const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
   const p = await c.newPage();
-  p.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message}`));
+  p.on('pageerror', onPageError);
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   await p.goto(BASE);
   await p.evaluate(async (s) => {
@@ -2259,7 +2264,7 @@ async function topicContext(seed = {}) {
   const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await routeModuleEntry(c, 'eng.machining', MACHINING_TOPIC_FIXTURE);
   const p = await c.newPage();
-  p.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message} frames=${p.frames().map((f) => f.url()).join(' ')}`));
+  p.on('pageerror', onPageError);
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   await p.goto(BASE);
   await p.evaluate(async (s) => {
