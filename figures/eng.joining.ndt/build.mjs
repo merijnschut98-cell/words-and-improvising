@@ -56,13 +56,25 @@ const OUT = join(ROOT, "src/content/courses/figures/eng.joining.ndt.html");
 // the pores stay under the recording level (rounded flaws: RT sees them better,
 // as the lesson says).
 //
-// Acceptance (level 4): ISO 5817:2014, Table 1, for t = s = 25 mm:
-//   gas pore 2011 d ≤ B 0.2s max 3 · C 0.3s max 4 · D 0.4s max 5 mm
-//   surface pore 2017 d ≤ B not permitted · C 0.2s max 2 · D 0.3s max 3
-//   undercut 5011 (smooth) h ≤ B 0.05t max 0.5 · C 0.1t max 0.5 · D 0.2t max 1
-//   slag 301 h ≤ B 0.2s max 2 · C 0.3s max 3 · D 0.4s max 4
-//   lack of fusion 401: B, C not permitted · D short, h ≤ 0.4s max 4
-//   incomplete root penetration 402: B, C not permitted · D short, h ≤ 0.2t max 2
+// Acceptance (level 4): ISO 5817:2023 (which supersedes the 2014 edition),
+// Table 1, checked row by row against the published text, for t = s = 25 mm:
+//   2011 gas pore (2.3 b, butt)         d ≤ B 0.2s max 3 · C 0.3s max 4 · D 0.4s max 5 mm
+//   2017 surface pore (1.3, t > 3, butt) d: B not permitted · C 0.2s max 2 · D 0.3s max 3
+//   5011/5012 undercut (1.7, t > 3, smooth transition)
+//                                       h ≤ B 0.05t max 0.5 · C 0.1t max 0.5 · D 0.2t max 1
+//   301 slag inclusion (2.9, butt)      h ≤ B 0.2s max 2 · C 0.3s max 3 · D 0.4s max 4,
+//                                       and l ≤ B s max 25 · C s max 50 · D s max 75 mm
+//   401 lack of fusion (2.12, internal) B, C not permitted · D short imperfections,
+//                                       butt h ≤ 0.4s max 4  (at the surface, 1.5: never)
+//   4021 incomplete root penetration (1.6, single-side butt weld)
+//                                       B, C not permitted · D short imperfections, h ≤ 0.2t max 2
+// "Short imperfections": total length ≤ 25 mm in the 100 mm of weld holding the
+// most. The build applies that conservatively, adding the lack of fusion and the
+// root together (12 + 10 = 22 mm), so level D holds whichever way it is read.
+// Simplified: the figure judges each indication on its own size only; the
+// porosity area percentages (2.3 a), clustered porosity and the
+// multiple-imperfection rules (4.1) are not modelled, and the internal pores are
+// never judged because UT does not record them.
 // EN 1090-2 links EXC1 → D, EXC2 → C, EXC3 → B (lesson ndt).
 const T_PL = 25;
 const GAP = 2;
@@ -81,8 +93,8 @@ const flankY = (d) => GAP / 2 + (T_PL - d) * Math.tan((BEVEL * Math.PI) / 180);
 const DEFECTS = [
   { key: "pores", code: 2011, kind: "round", x: [-80, -68], y: 0, d: 12, h: 3.5, R: 0.45 },
   { key: "slag", code: 301, kind: "round", x: [-36, -24], y: 4, d: 18, h: 2.5, R: 0.6 },
-  { key: "lof", code: 401, kind: "flank", x: [-8, 10], y: flankY(15), d: 15, h: 3, R: 1.25 },
-  { key: "root", code: 402, kind: "corner", x: [56, 72], y: 0, d: T_PL, h: 1.5, R: 1.0 },
+  { key: "lof", code: 401, kind: "flank", x: [-6, 6], y: flankY(15), d: 15, h: 3, R: 1.25 },
+  { key: "root", code: 4021, kind: "corner", x: [58, 68], y: 0, d: T_PL, h: 1.5, R: 1.0 },
 ];
 // what VT sees on the surface
 const SURFACE = [
@@ -96,7 +108,7 @@ const LIMIT = {
   5011: { B: Math.min(0.05 * T_PL, 0.5), C: Math.min(0.1 * T_PL, 0.5), D: Math.min(0.2 * T_PL, 1) },
   301: { B: Math.min(0.2 * T_PL, 2), C: Math.min(0.3 * T_PL, 3), D: Math.min(0.4 * T_PL, 4) },
   401: { B: 0, C: 0, D: Math.min(0.4 * T_PL, 4) },
-  402: { B: 0, C: 0, D: Math.min(0.2 * T_PL, 2) },
+  4021: { B: 0, C: 0, D: Math.min(0.2 * T_PL, 2) },
 };
 const passes = (code, h, q) => LIMIT[code][q] > 0 && h <= LIMIT[code][q] + 1e-9;
 
@@ -160,7 +172,18 @@ truth(!passes(2017, 1.5, "B") && passes(2017, 1.5, "C"), "surface pore B/C");
 truth(!passes(5011, 0.8, "C") && passes(5011, 0.8, "D"), "undercut C/D");
 truth(!passes(301, 2.5, "B") && passes(301, 2.5, "C"), "slag B/C");
 truth(!passes(401, 3, "C") && passes(401, 3, "D"), "lack of fusion C/D");
-truth(!passes(402, 1.5, "C") && passes(402, 1.5, "D"), "root C/D");
+truth(!passes(4021, 1.5, "C") && passes(4021, 1.5, "D"), "root C/D");
+// the cross-checked limits for t = s = 25 mm, as printed in ISO 5817:2023
+near(LIMIT[2011].B + LIMIT[2011].C + LIMIT[2011].D, 3 + 4 + 5, 1e-9, "2011 limits");
+near(LIMIT[2017].C + LIMIT[2017].D, 2 + 3, 1e-9, "2017 limits");
+near(LIMIT[5011].B + LIMIT[5011].C + LIMIT[5011].D, 0.5 + 0.5 + 1, 1e-9, "5011 limits");
+near(LIMIT[301].B + LIMIT[301].C + LIMIT[301].D, 2 + 3 + 4, 1e-9, "301 limits");
+near(LIMIT[401].D + LIMIT[4021].D, 4 + 2, 1e-9, "401/4021 D limits");
+// slag length within level B (l ≤ s, max 25 mm)
+const lenOf = (key) => { const D = DEFECTS.find((d) => d.key === key); return D.x[1] - D.x[0]; };
+truth(lenOf("slag") <= Math.min(T_PL, 25), "slag length within B");
+// short imperfections at D: lack of fusion and root together ≤ 25 mm in 100 mm
+truth(lenOf("lof") + lenOf("root") <= 25 && DEFECTS.find((d) => d.key === "root").x[1] - DEFECTS.find((d) => d.key === "lof").x[0] <= 100, "short imperfections ≤ 25 mm in 100 mm");
 
 // ---------------------------------------------------------------- the world
 // World units are millimetres, z up, x along the weld, +y toward the viewer
