@@ -13,14 +13,15 @@ export default {
         },
       ],
       teach: [
-        'Power is the rate of using energy, in watts or kilowatts. Energy is power × time, in kWh. A motor drawing 15 kW for 8 hours uses 120 kWh.\n\nThe energy bill charges kWh; the grid connection and peak charges are about kW. Mixing the two up is the most common error in energy discussions.',
-        'Efficiency is useful output divided by input. A motor at 93% turns 93% of its electrical input into shaft power; the rest becomes heat. Losses multiply along a chain: motor 93%, gearbox 95%, pump 70% gives 0.93 × 0.95 × 0.70 = 62% from the plug to the water.',
-        'Industry runs on three-phase alternating current: in Europe 400 V between phases at 50 Hz (230 V between a phase and neutral). The electrical power of a three-phase load is √3 × voltage × current × power factor. A motor drawing 30 A at 400 V with a power factor of 0.85 takes about 17.7 kW.',
-        'Power factor (cos φ) says how much of the current does useful work. Lightly loaded motors have a low power factor and lower efficiency.\n\nA motor nameplate gives the rated power, which is the mechanical output at the shaft, not the electrical input, plus voltage, current, speed, power factor and efficiency class. When someone quotes “kW”, ask: shaft output or electrical input?',
+        'Power is the rate of using energy, in watts (W) or kilowatts (kW, 1,000 W). Energy is power × time, in kWh (kilowatt-hours). A motor drawing 15 kW for 8 hours uses 120 kWh.\n\nThe energy bill charges kWh; the grid connection and peak charges are about kW. Mixing the two up is the most common error in energy discussions.',
+        'Efficiency is useful output divided by input. A motor at 93% turns 93% of its electrical input into shaft power; the rest becomes heat. Losses multiply along a chain: motor 93%, gearbox 95%, pump 70% gives 0.93 × 0.95 × 0.70 = 62% from the plug to the water.\n\nSo the weakest link dominates: a badly chosen pump wastes more than a premium motor can ever save.',
+        'Industry runs on three-phase alternating current: three wires, each with a voltage that swings back and forth 50 times a second (50 Hz), each a third of a cycle behind the other. In Europe that is 400 V between two phases and 230 V between a phase and neutral, the return wire.\n\nThe electrical power of a three-phase load is √3 × voltage × current × power factor. A motor drawing 30 A at 400 V with a power factor of 0.85 takes about 17.7 kW.',
+        'The power factor (cos φ) says how much of the current does useful work; the rest only flows back and forth to build the motor’s magnetic field. A fully loaded motor reaches about 0.8 to 0.9; a lightly loaded one drops well below that, with lower efficiency too.\n\nLow power factor means more current for the same work, so thicker cables and bigger transformers. Some grid contracts charge extra for it, and capacitor banks are the usual fix.',
+        'A motor nameplate, the metal plate on the housing, gives the rated power, which is the mechanical output at the shaft, not the electrical input, plus voltage, current, speed, power factor and efficiency class.\n\nIn practice many motors run well below their rating, often at half or less. A clamp meter around one cable gives the real current in seconds. When someone quotes “kW”, ask: shaft output or electrical input, rated or measured?',
       ],
       example: {
         kind: 'worked',
-        text: 'A cooling-water pump must deliver 11 kW of hydraulic power whenever it runs, 6,000 hours a year. The pump is 70% efficient and the motor 92%.\n\nElectrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy.\n\nA pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
+        text: 'A cooling-water pump must deliver 11 kW of hydraulic power (the power that actually goes into the water) whenever it runs, 6,000 hours a year. The pump is 70% efficient and the motor 92%.\n\nElectrical input: 11 / (0.70 × 0.92) = 17.1 kW. Yearly energy: 17.1 × 6,000 = 102,600 kWh. At €0.15 per kWh that is about €15,400 a year, likely more than the pump cost to buy.\n\nA pump at 80% instead of 70% would need 11 / (0.80 × 0.92) = 14.9 kW: about 13,000 kWh and €2,000 a year less. Efficiency is a running cost, not a spec-sheet detail.',
       },
       said: 'What engineers say: “It’s a fifteen kW motor, but it’s only drawing nine. That’s nine kW, not fifteen, and it’s running at a lousy power factor.”',
       recall: [
@@ -64,10 +65,12 @@ export default {
       },
       sayIt: 'Explain to a controller in 60 seconds the difference between kW and kWh, and why both matter on the bill.',
       terms: [
-        { term: 'kW and kWh', def: 'Power (rate of energy use) and energy (power × time).' },
+        { term: 'kW', def: 'Kilowatt, 1,000 W: power, the rate of using energy.' },
+        { term: 'kWh', def: 'Kilowatt-hour: energy, power × time; what the energy bill charges.' },
         { term: 'Efficiency', def: 'Useful output divided by input; losses along a chain multiply.' },
-        { term: 'Power factor (cos φ)', def: 'The share of the current that does useful work.' },
         { term: 'Three-phase', def: 'The industrial supply: three alternating voltages, in Europe 400 V between phases at 50 Hz.' },
+        { term: 'Power factor', def: 'Cos φ: the share of the current that does useful work; low on lightly loaded motors.' },
+        { term: 'Nameplate', def: 'The plate on a motor with its rated shaft power, voltage, current, speed, power factor and IE class.' },
       ],
     },
     {
@@ -82,10 +85,11 @@ export default {
         },
       ],
       teach: [
-        'The three-phase induction motor (also called asynchronous or squirrel-cage motor) drives most pumps, fans, conveyors and compressors: robust, cheap, little maintenance. The stator windings make a rotating magnetic field; the rotor is dragged along with it. Its speed is set by the grid frequency and the number of poles.',
-        'Synchronous speed = 120 × frequency / number of poles. At 50 Hz: 2 poles give 3,000 rpm, 4 poles 1,500, 6 poles 1,000.\n\nThe rotor always runs a little slower: the slip, typically 1 to 5%. A 4-pole motor turns at about 1,450 to 1,480 rpm, and more load means a little more slip.',
-        'Torque and power are linked by speed: power (kW) = torque (Nm) × speed (rpm) / 9,550. A 15 kW motor at 1,460 rpm delivers about 98 Nm. A gearbox lowers the speed and raises the torque by the same ratio, minus its losses.',
-        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1). EU Regulation 2019/1781 requires at least IE3 for most new motors from 0.75 to 1,000 kW (since July 2021), and IE4 for most 75 to 200 kW motors (since July 2023).\n\nMost motor failures are bearings and winding insulation. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life. Ask about motor temperature, vibration and how often it starts.',
+        'The three-phase induction motor (also called asynchronous or squirrel-cage motor) drives most pumps, fans, conveyors and compressors: robust, cheap, little maintenance. The stator, the fixed outer part with copper windings, makes a rotating magnetic field.\n\nThe rotor, the turning part inside on the shaft, is dragged along by that field. Its speed is set by the grid frequency and the number of poles: the magnetic poles the windings form, 2, 4, 6 or more.',
+        'Synchronous speed, the speed of the rotating field, = 120 × frequency / number of poles. At 50 Hz: 2 poles give 3,000 rpm, 4 poles 1,500, 6 poles 1,000.\n\nThe rotor always runs a little slower: the slip, typically 1 to 5%. Without slip the field would not cut through the rotor, and no current and no torque would be made. A 4-pole motor turns at about 1,450 to 1,480 rpm; more load means a little more slip.',
+        'Torque and power are linked by speed: power (kW) = torque (Nm) × speed (rpm) / 9,550. A 15 kW motor at 1,460 rpm delivers about 98 Nm. A gearbox lowers the speed and raises the torque by the same ratio, minus its losses.\n\nA motor that runs clearly slower than its nameplate speed is carrying more than its rated load.',
+        'Efficiency classes run from IE1 to IE5 (IEC 60034-30-1); the IE class is on the nameplate. EU Regulation 2019/1781 requires at least IE3 for most new motors from 0.75 to 1,000 kW (since July 2021), and IE4 for most 75 to 200 kW motors (since July 2023).\n\nA higher class pays most on motors that run many hours: 1% of 75 kW over 6,000 hours is 4,500 kWh a year.',
+        'Most motor failures are bearings and winding insulation. The insulation class gives the highest temperature the winding insulation is made for: class F, the most common, is 155 °C. Heat kills insulation: as a rule of thumb, every 10 °C above its rating roughly halves winding life.\n\nYou hear bearing trouble as a rumble or whine and feel heat on the housing. Experts argue whether rewinding a burnt-out motor pays, or a new IE3 is cheaper over its life. Ask about temperature, vibration and starts per hour.',
       ],
       example: {
         kind: 'worked',
@@ -134,9 +138,11 @@ export default {
       sayIt: 'Explain to a production manager in 60 seconds how an induction motor’s speed is set and why it slips.',
       terms: [
         { term: 'Induction motor', def: 'The standard three-phase motor; its rotor is dragged along by a rotating magnetic field.' },
+        { term: 'Rotor', def: 'The turning part of a motor, on the shaft, inside the fixed stator.' },
         { term: 'Synchronous speed', def: '120 × frequency / number of poles; 1,500 rpm for 4 poles at 50 Hz.' },
         { term: 'Slip', def: 'How much slower the rotor turns than the field, typically 1 to 5%.' },
         { term: 'IE class', def: 'Motor efficiency class from IE1 to IE5; IE3 is the EU minimum for most new motors.' },
+        { term: 'Insulation class', def: 'The highest temperature the winding insulation is made for; class F is 155 °C.' },
       ],
     },
     {
@@ -151,14 +157,15 @@ export default {
         },
       ],
       teach: [
-        'Direct on line (DOL): switch the motor straight onto the grid with a contactor. Simple and cheap, but the starting current is 6 to 8 times the rated current, and the full torque hits the mechanics as a jolt. Fine for small motors; for big ones it can dip the plant voltage and wear belts, couplings and gearboxes.',
-        'A soft starter ramps up the voltage over a few seconds, cutting the inrush current and the jolt. It does not change the running speed.\n\nA star-delta starter is the older, cheaper way to cut the starting current, for motors that start without much load. Soft starters also give less starting torque, so a machine that must start under heavy load may stall.',
-        'A variable frequency drive (VFD, also called inverter or frequency converter) changes the frequency and so the speed, smoothly. It also starts the motor gently, with full torque available from low speed.\n\nUses: matching pump and fan speed to demand, conveyor speed, process control. Side effects: harmonics on the grid, electrical noise, and sometimes bearing damage; proper cabling and filters handle these.',
-        'Servo motors and drives control position and speed precisely, with an encoder feeding back the actual position: robots, pick-and-place, cut-to-length, packaging machines. They are about motion accuracy, not energy saving. Ask what the drive must do: just start, run at variable speed, or position to a tenth of a millimetre.',
+        'Direct on line (DOL): a contactor, an electrically operated heavy-duty switch, connects the motor straight to the grid. Simple and cheap, but the starting current is 6 to 8 times the rated current, the current on the nameplate, and the full torque hits the mechanics as a jolt.\n\nFine for small motors. For big ones it can dip the plant voltage and wear belts, couplings and gearboxes.',
+        'A soft starter ramps up the motor voltage over a few seconds, cutting the inrush current, the surge at switch-on, and the jolt. It does not change the running speed, and it gives less starting torque, so a machine that must start under heavy load may stall.\n\nA star-delta starter is the older, cheaper way: it starts the motor with its windings in star, at about a third of the DOL current and torque, then switches to delta for running. It suits motors that start without much load.',
+        'A variable frequency drive (VFD, also called inverter or frequency converter) changes the frequency, and so the speed, smoothly. It also starts the motor gently, with full torque from low speed and the current kept near rated.\n\nUses: matching pump and fan speed to demand, conveyor speed, process control. On a centrifugal pump or fan, power falls with roughly the cube of speed (the affinity laws): at 80% speed about half the power, though real savings are smaller.',
+        'A VFD has side effects. Its electronics draw current in pulses, which puts harmonics, distorted waves, on the plant supply. Its fast switching creates electrical noise and can push current through the motor bearings, pitting them.\n\nShielded cables, filters and good earthing handle this, if they are designed in. A common failure: a VFD fitted but left at 50 Hz, full speed, all year, so it only adds a few percent of losses.',
+        'A servo drive controls position and speed precisely, with an encoder, a sensor on the motor shaft, feeding back the actual position many times a second: robots, pick-and-place, cut-to-length, packaging machines. It is about motion accuracy, not energy saving.\n\nAsk what the drive must do: just start, run at variable speed, or position to a tenth of a millimetre. That answer picks DOL, soft starter, VFD or servo.',
       ],
       example: {
         kind: 'worked',
-        text: 'A 90 kW crusher motor starts direct on line. Its rated current is about 160 A at 400 V, so the start draws roughly 1,000 to 1,300 A for a few seconds. Each start dips the voltage in the plant: lights flicker and two VFDs elsewhere trip on undervoltage.\n\nA soft starter would cut the inrush to about 3 to 4 times rated, but the crusher often has to start full of material, and a soft starter’s reduced torque may stall it. A VFD limits the current to about rated while giving full torque from standstill. The more expensive device is the one that fits here.',
+        text: 'The 90 kW motor of a crusher, a machine that breaks up stone or scrap, starts direct on line. Its rated current is about 160 A at 400 V, so the start draws roughly 1,000 to 1,300 A for a few seconds. Each start dips the voltage in the plant: lights flicker and two VFDs elsewhere trip, switch themselves off, on undervoltage.\n\nA soft starter would cut the inrush to about 3 to 4 times rated, but the crusher often has to start full of material, and a soft starter’s reduced torque may stall it. A VFD limits the current to about rated while giving full torque from standstill. The more expensive device is the one that fits here.',
       },
       said: 'What engineers say: “Every time that crusher starts DOL the whole hall dips. Soft starter won’t pull it loaded; it needs a drive.”',
       recall: [
@@ -200,10 +207,12 @@ export default {
       },
       sayIt: 'Explain to a project manager in 60 seconds the difference between a soft starter, a VFD and a servo drive.',
       terms: [
-        { term: 'DOL', def: 'Direct on line: switching a motor straight onto the grid; 6 to 8 times rated current at start.' },
+        { term: 'Direct on line (DOL)', def: 'Switching a motor straight onto the grid; 6 to 8 times rated current at start.' },
+        { term: 'Contactor', def: 'An electrically operated heavy-duty switch that connects a motor to the supply.' },
         { term: 'Soft starter', def: 'Ramps up the voltage to cut inrush current and jolt; does not change running speed.' },
+        { term: 'Star-delta starter', def: 'Starts a motor in star at about a third of the DOL current and torque, then switches to delta.' },
         { term: 'VFD', def: 'Variable frequency drive: controls speed by changing the frequency.' },
-        { term: 'Servo drive', def: 'A drive with position feedback that controls position and speed precisely.' },
+        { term: 'Servo drive', def: 'A drive with position feedback from an encoder that controls position and speed precisely.' },
       ],
     },
     {
@@ -218,14 +227,15 @@ export default {
         },
       ],
       teach: [
-        'Compressed air is clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant.\n\nMost of a compressor’s electricity becomes heat; only around 10% does useful work at the point of use. Recovering the compressor heat wins part of it back. It is not harmless: never blow air at skin or clothes.',
-        'Leaks are the big loss. In plants without a leak programme, often 20 to 30% of the compressor output escapes through couplings, hoses and valves.\n\nListen at a weekend: if compressors still run with production stopped, that is mostly leaks. Ultrasonic detectors find them; tagging and fixing them is a classic quick win.',
-        'Pressure costs energy: each extra bar of generated pressure costs roughly 7% more compressor energy, and it makes every leak bigger. Many plants run at 7 or 8 bar because one machine needs it. Solve that machine locally (a booster, a bigger supply line, a local tank) and lower the whole network.',
-        'Air must be clean and dry: water and oil damage valves and cylinders. A dryer and filters sit after the compressor; an FRL unit (filter, regulator, lubricator) sits before each machine.\n\nInappropriate use is the third loss: open blow-offs, cooling with air, vacuum made with air, where an electric fan or pump would use a fraction of the energy.',
+        'Compressed air is clean and handy, which is why it is everywhere: cylinders, blow-offs, tools, valves. It is also the most expensive way to deliver energy in a plant.\n\nA compressor squeezes outside air to around 7 bar above atmospheric pressure. Most of its electricity becomes heat; only around 10% does useful work at the point of use. Heat recovery, using that heat for hot water or space heating, wins part of it back. Never blow air at skin or clothes.',
+        'Leaks are the big loss. In plants without a leak programme, often 20 to 30% of the compressor output escapes through couplings, hoses and valves.\n\nA leak test shows it: at a weekend, with production stopped, check how much of the time the compressor still runs loaded, actually compressing. That share of its output is mostly leaks. Ultrasonic detectors hear the hiss you can’t; tagging and fixing leaks is a classic quick win.',
+        'Pressure costs energy. The network pressure is the pressure the compressors keep in the pipes. Each extra bar costs roughly 7% more compressor energy (estimates run from about 6 to 8%), and it makes every leak bigger.\n\nMany plants run at 7 or 8 bar because one machine needs it. Solve that machine locally (a booster, a small extra compressor for that machine; a bigger supply line; a local tank) and lower the whole network.',
+        'Air must be clean and dry: water and oil damage valves and cylinders. A dryer after the compressor takes the water out, or condensate collects in the pipes; filters take out oil and dust.\n\nAn FRL unit (filter, regulator, lubricator) sits before each machine: it filters again, sets the pressure the machine needs, and adds an oil mist where components ask for it. Many modern components run without the lubricator.',
+        'Inappropriate use is the third loss: open blow-offs, cooling with air, making vacuum with air, where an electric fan, blower or vacuum pump would use a fraction of the energy.\n\nExperts argue about the best first step: more efficient compressors with variable speed, or less demand. Cutting demand is usually cheaper. The sharp question on a walk: “What is this air used for, and what could do it without compressed air?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute.\n\nLeaks run all year. Taking 75 kW as its loaded power draw: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the unloaded running power.\n\nA leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
+        text: 'A weekend test: production stopped, nothing should use air. The 75 kW compressor, which delivers 10 m³ of air per minute when loaded, runs loaded 40% of the time. So leaks are about 40% × 10 = 4 m³ per minute.\n\nLeaks run all year. Taking 75 kW as its loaded power draw: 75 kW × 40% × 8,760 hours = about 263,000 kWh, roughly €39,000 a year at €0.15 per kWh, ignoring the power it draws running unloaded, idling without compressing.\n\nA leak survey and repair round typically costs a few thousand euros. Then lower the pressure by 1 bar and save roughly another 7%.',
       },
       said: 'What engineers say: “Saturday, nothing running, and the compressor still loads forty percent of the time. That’s our leak bill.”',
       recall: [
@@ -268,7 +278,10 @@ export default {
       },
       sayIt: 'Explain to a plant manager in 60 seconds why compressed air is so expensive and where to look first.',
       terms: [
+        { term: 'Heat recovery', def: 'Using the compressor’s waste heat for hot water or space heating.' },
         { term: 'Leak test', def: 'Measuring compressor load with production stopped to estimate how much air leaks away.' },
+        { term: 'Network pressure', def: 'The pressure the compressors keep in the pipes; each extra bar costs roughly 7% more energy.' },
+        { term: 'Dryer', def: 'Takes water out of the air after the compressor, so condensate doesn’t collect in the pipes.' },
         { term: 'FRL unit', def: 'Filter, regulator and lubricator before a machine, to deliver clean air at the right pressure.' },
         { term: 'Inappropriate use', def: 'Using compressed air where a cheaper source would do, such as open blow-offs or air cooling.' },
       ],
@@ -285,10 +298,11 @@ export default {
         },
       ],
       teach: [
-        'Hydraulics uses oil under high pressure, typically 100 to 350 bar, to make large forces in a small space: presses, injection moulding machines, excavators, lifting tables.\n\nForce = pressure × piston area. 1 bar is 0.1 N/mm², so 200 bar on a 100 mm piston (7,854 mm²) gives about 157 kN, the weight of 16 tonnes.',
-        'A hydraulic pump (gear, vane or piston) makes the flow; the load makes the pressure. Valves steer the oil: directional valves choose where it goes, pressure relief valves cap the pressure, flow control valves set the speed.\n\nCylinder speed = flow / piston area. Accumulators store oil under pressure for fast movements.',
-        'Contamination is the main enemy: most hydraulic failures trace back to dirt, water or air in the oil. Cleanliness is coded to ISO 4406 with three numbers such as 18/16/13; lower is cleaner. Good practice: filters chosen for a target code, sealed breathers, oil analysis, and never topping up from an open drum.',
-        'Heat is the second enemy. Every pressure drop across a valve turns into heat; oil kept above about 60 °C ages fast and seals harden.\n\nLeaks are a safety issue: a pinhole jet at high pressure can inject oil under the skin, so never feel for leaks by hand, and treat any injection as a medical emergency. Accumulators keep pressure after the pump stops, so making a machine safe includes bleeding them off.',
+        'Hydraulics uses oil under high pressure, typically 100 to 350 bar, to make large forces in a small space: presses, injection moulding machines, excavators, lifting tables.\n\nForce = pressure × piston area. 1 bar is 0.1 N/mm², so 200 bar on a piston of 100 mm bore, the inside diameter of the cylinder (area 7,854 mm²), gives about 157 kN, the weight of 16 tonnes.',
+        'A hydraulic pump (gear, vane or piston type) makes the flow, the litres per minute; the load makes the pressure. Valves steer the oil. A directional valve chooses where the oil goes: out or back. A pressure relief valve caps the pressure by opening to the tank above a set value. Flow control valves set the speed.\n\nCylinder speed = flow / piston area. A worn pump or a leaking valve loses flow, and the cylinder slows down.',
+        'An accumulator is a vessel with a gas-filled bladder or piston that stores oil under pressure, to supply fast movements or hold pressure during a power cut. It stays pressurised after the pump stops.\n\nSo making a machine safe for maintenance includes bleeding off the accumulator, and supporting or lowering any raised load. Check that the gauge reads zero before opening anything.',
+        'Contamination is the main enemy: most hydraulic failures trace back to dirt, water or air in the oil. Cleanliness is coded to ISO 4406 with three numbers such as 18/16/13: particle counts per millilitre above 4, 6 and 14 micrometres. One step lower roughly halves the count, so lower is cleaner.\n\nGood practice: filters chosen for a target code, sealed breathers (the air vents on the tank), oil analysis, and never topping up from an open drum.',
+        'Heat is the second enemy. Every pressure drop across a valve turns into heat. Oil kept above about 60 °C ages fast and seals harden; a common rule of thumb says oil life roughly halves for each 10 °C hotter.\n\nLeaks are a safety issue: a pinhole jet can inject oil under the skin, even at modest pressure. That injection injury looks like a small prick but can cost a finger or a hand: treat it as a medical emergency. Never feel for leaks by hand; use cardboard.',
       ],
       example: {
         kind: 'worked',
@@ -335,10 +349,12 @@ export default {
       },
       sayIt: 'Explain to an operations manager in 60 seconds how hydraulics makes force, and what usually kills a hydraulic system.',
       terms: [
-        { term: 'Pressure relief valve', def: 'A valve that caps the system pressure by opening above a set value.' },
-        { term: 'Accumulator', def: 'A vessel that stores oil under pressure; it stays pressurised after the pump stops.' },
-        { term: 'ISO 4406', def: 'The code for oil cleanliness, three numbers such as 18/16/13; lower is cleaner.' },
+        { term: 'Directional valve', def: 'A valve that chooses where the oil goes, for example to extend or retract a cylinder.' },
+        { term: 'Pressure relief valve', def: 'A valve that caps the system pressure by opening to the tank above a set value.' },
         { term: 'Cylinder speed', def: 'Oil flow divided by piston area.' },
+        { term: 'Accumulator', def: 'A vessel that stores oil under gas pressure; it stays pressurised after the pump stops.' },
+        { term: 'ISO 4406', def: 'The code for oil cleanliness, three numbers such as 18/16/13; lower is cleaner.' },
+        { term: 'Injection injury', def: 'Oil forced under the skin by a fine high-pressure jet; always a medical emergency.' },
       ],
     },
     {
@@ -353,10 +369,11 @@ export default {
         },
       ],
       teach: [
-        'Start with the load profile: electricity use per 15 minutes over a few weeks, from the utility’s smart meter or the plant’s own meters. Three things stand out: the base load when nothing is produced, the peaks, and how use moves with output.\n\nThe base load is often surprisingly high, and part of it is avoidable: compressors feeding leaks, extraction fans, heaters and idling machines.',
-        'Energy (kWh) and peak power (kW) are paid differently. In the Netherlands, larger connections pay the grid operator for the contracted transport capacity in kW and for the monthly peak.\n\nWith grid congestion, extra kW may simply not be available for years. Staggered start-ups, a battery or switching big loads in turn can keep a plant within its contracted capacity.',
-        'Measure energy per product: kWh per tonne, per part or per m³. It turns energy from overhead into a process number that teams can steer. Compare shifts, products and lines; the spread between the best and worst runs usually shows the first savings.',
-        'The usual order: switch off what isn’t needed (idling, weekends), fix leaks and losses (compressed air, steam), turn down what runs too high (pressure, temperature, speed), recover heat, and only then buy new equipment. Electrifying heat with heat pumps or electric boilers is the big transition topic, but it adds kW the grid may not have.',
+        'Start with the load profile: electricity use per 15 minutes over a few weeks, from the connection’s meter or the plant’s own meters. Three things stand out: the base load, the power drawn when nothing is produced; the peaks; and how use moves with output.\n\nThe base load is often surprisingly high, and part of it is avoidable: compressors feeding leaks, extraction fans, heaters and idling machines.',
+        'Energy (kWh) and peak power (kW) are paid differently. In the Netherlands, larger connections pay the grid operator, the company that runs the local cables, for the contracted transport capacity: the maximum kW agreed for the connection. They also pay for the monthly peak, the highest quarter-hour of each month.\n\nOne careless quarter-hour, every big machine starting at once on Monday morning, can set that charge for the whole month.',
+        'Grid congestion means the local grid is full: the operator cannot transport more power at busy times. In many Dutch regions extra kW may simply not be available for years.\n\nStaggered start-ups, a battery, or switching big loads in turn can keep a plant within its contracted capacity. Grid operators now also offer some customers flexible contracts: capacity only at certain hours, at a lower tariff.',
+        'Measure energy intensity: energy per product, in kWh per tonne, per part or per m³. It turns energy from overhead into a process number that teams can steer.\n\nCompare shifts, products and lines; the spread between the best and worst runs usually shows the first savings. A sharp question: “Why did the night shift use 20% more per tonne?”',
+        'The usual order: switch off what isn’t needed (idling, weekends), fix leaks and losses (compressed air, steam), turn down what runs too high (pressure, temperature, speed), recover heat, and only then buy new equipment.\n\nElectrifying heat with heat pumps or electric boilers is the big transition topic, and experts argue about the pace: it cuts CO₂ but adds kW the grid may not have. Shrinking the demand first makes the new unit, and the connection it needs, smaller.',
       ],
       example: {
         kind: 'worked',
@@ -394,7 +411,7 @@ export default {
       situation: {
         scene: 'You’re at a food client. They want to replace their gas boiler with a 2 MW heat pump to cut CO₂. The grid operator says no extra transport capacity is available until 2030.',
         ask: 'What do you ask?',
-        model: 'What is our current contracted capacity and how close is our real peak to it: is there room if we shave peaks or shift loads? How much heat do we really need after fixing losses and recovering heat from the chillers and compressors? Could a smaller heat pump plus heat storage run when the grid has room, with the gas boiler as backup? And has the grid operator offered a flexible or time-bound contract?',
+        model: 'What is our current contracted capacity and how close is our real peak to it: is there room if we shave peaks or shift loads? How much heat do we really need after fixing losses and recovering heat from the chillers (cooling machines) and compressors? Could a smaller heat pump plus heat storage run when the grid has room, with the gas boiler as backup? And has the grid operator offered a flexible or time-bound contract?',
         rubric: [
           'Asks for contracted capacity versus the real peak profile',
           'Reduces the heat demand first: losses and heat recovery',
@@ -406,6 +423,8 @@ export default {
         { term: 'Load profile', def: 'Power use over time, usually per 15 minutes, showing base load and peaks.' },
         { term: 'Base load', def: 'Power drawn when nothing is produced.' },
         { term: 'Contracted transport capacity', def: 'The maximum kW the grid operator has agreed to transport for a connection.' },
+        { term: 'Monthly peak', def: 'The highest quarter-hour of power in a month; larger Dutch connections pay for it.' },
+        { term: 'Grid congestion', def: 'The local grid is full: no extra transport capacity at busy times, sometimes for years.' },
         { term: 'Energy intensity', def: 'Energy per unit of product, such as kWh per tonne.' },
       ],
     },
