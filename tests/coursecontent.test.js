@@ -129,3 +129,18 @@ test('validator: a lesson may explain up to 6 terms, not 7', () => {
 test('every topic module in the index passes checkTopics', () => {
   for (const m of MODULES.filter((x) => Array.isArray(x.topics))) assert.deepEqual(checkTopics(m), [], m.id);
 });
+
+test('content: every term is tappable in its own lesson’s teach text (en and nl)', async () => {
+  const { linkTerms } = await import('../src/core/course.js');
+  const missing = [];
+  for (const m of MODULES) {
+    for (const lang of ['en', 'nl']) {
+      const mod = await loadModule(m.subject, m.id, lang);
+      for (const l of mod.lessons) {
+        const linked = new Set(l.teach.flatMap((b) => linkTerms(b, l.terms)).filter((p) => p.term).map((p) => p.term));
+        for (const t of l.terms || []) if (!linked.has(t.term)) missing.push(`${l.id} [${lang}] ${t.term}`);
+      }
+    }
+  }
+  assert.deepEqual(missing, []);
+});
