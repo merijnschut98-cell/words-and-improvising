@@ -287,6 +287,7 @@ export default {
     },
     {
       id: 'eng.joining.spot',
+      figure: 'eng.joining.spot',
       title: 'Resistance spot welding',
       pre: [
         {
@@ -358,6 +359,7 @@ export default {
     },
     {
       id: 'eng.joining.spotwear',
+      figure: 'eng.joining.spot',
       title: 'Tips, dressing and the stepper in practice',
       pre: [
         {
@@ -427,6 +429,7 @@ export default {
     },
     {
       id: 'eng.joining.spotquality',
+      figure: 'eng.joining.spot',
       title: 'Checking spot welds: peel test, ultrasonic and adaptive control',
       pre: [
         {
@@ -498,6 +501,7 @@ export default {
     },
     {
       id: 'eng.joining.spotlobe',
+      figure: 'eng.joining.spot',
       title: 'The weld lobe and difficult materials',
       pre: [
         {
