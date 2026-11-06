@@ -10,7 +10,7 @@ Index title: en 'Programmes and governance' / nl 'Programma’s en governance'. 
 ## Clarity round (2026-11-06)
 All six lessons deepened from 4 to 5 teach blocks (≤ 90 words) with what you see/hear, failure modes, what experts argue about and a sharp question; 5–6 terms per lesson, en and nl in the same order, each occurring as a whole word in its lesson's teach text; no term defined twice in the module. Ids, recall order, answer positions and numbers unchanged (checked against `git show HEAD`). Abbreviations explained at first use per lesson (COO, OEE, MES, KPI, MT, CFO, ERP, go-live, go/no-go, controller, scope, critical path, business case).
 
-Terms added: programme: Portfolio, Watermelon reporting/Watermeloenrapportage; prioritise: Bottleneck, Work in progress/Onderhanden werk; governance: Governance, Escalation/Escalatie, Mandate/Mandaat; benefits: Output, Benefit/Baten, Attribution/Toerekening; capacity: Resource conflict/Capaciteitsconflict, Lead time/Doorlooptijd; boardroom: Pyramid principle/Piramideprincipe, Board paper/Directiestuk. Existing terms that were missing from the teach text (Risk-adjusted value, Capacity line, Hidden objection, Contextswitch and others) are now written into it.
+Terms added: programme: Portfolio, Watermelon reporting/Watermeloeneffect; prioritise: Bottleneck, Work in progress/Onderhanden werk; governance: Governance, Escalation/Escalatie, Mandate/Mandaat; benefits: Output, Benefit/Baten, Attribution/Toerekening; capacity: Resource conflict/Capaciteitsconflict, Lead time/Doorlooptijd; boardroom: Pyramid principle/Piramideprincipe, Board paper/Directiestuk. Existing terms that were missing from the teach text (Risk-adjusted value, Capacity line, Hidden objection, Contextswitch and others) are now written into it.
 
 Recomputed numbers:
 - 0.9⁴ = 0.6561 → 66% (assumes independent projects; now stated).
@@ -25,9 +25,9 @@ Recomputed numbers:
 Sources:
 - PRINCE2 (AXELOS): tolerances and the principle "manage by exception".
 - RACI: common responsibility-assignment chart; no single author claimed.
-- Little, "A proof for the queuing formula L = λW" (1961).
+- Little, "A proof for the queuing formula L = λW" (1961); lead time explained at first use in the prioritise lesson.
 - Weinberg, *Quality Software Management, Vol. 1* (1992): context-switching rule of thumb (2 projects 20% lost, 3 → 40%, 5 → 75%), presented as an estimate.
 - Flyvbjerg's studies of large projects (e.g. 2003 *Megaprojects and Risk*; 2005 *JAPA* on demand forecasts): benefit shortfalls common, linked to optimism bias and strategic misrepresentation; wording hedged.
 - Minto, *The Pyramid Principle* (developed at McKinsey).
-- "Watermelon reporting": common practitioner term, no author.
+- "Watermelon reporting" (nl "watermeloeneffect", the usual Dutch phrase): common practitioner term, no author.
 - Rules of thumb hedged: 5–7 steering-group members, 80% planned load, "two or three red rows".

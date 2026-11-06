@@ -19,7 +19,7 @@ Sources and checks for new facts:
 - Stone, Patton & Heen, *Difficult Conversations* (1999): three conversations, third story, intent vs impact, contribution instead of blame.
 - Lencioni, *The Five Dysfunctions of a Team* (2002), a business fable; noted that it has little empirical backing.
 - Edmondson, "Psychological Safety and Learning Behavior in Work Teams", *Administrative Science Quarterly* (1999).
-- Google re:Work, Project Aristotle (2015): psychological safety the most important of five team dynamics.
+- Google re:Work, Project Aristotle (2015): psychological safety the most important of five team dynamics; stated in the lesson as an internal study published as a guide, not peer-reviewed.
 - Klein, "Performing a Project Premortem", *HBR* (2007), citing Mitchell, Russo & Pennington (1989): prospective hindsight increases the ability to identify reasons for outcomes by 30%.
 - Rogers & Farson, "Active Listening" (1957).
 - Rowe, wait-time research (1970s, e.g. 1974): teachers wait ~1 s; ≥ 3 s gives longer, better answers.

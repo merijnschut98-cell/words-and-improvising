@@ -55,7 +55,7 @@ export default {
       situation: {
         scene: 'You’re at a metal parts manufacturer. The maintenance manager, 20 years your senior, keeps postponing the two hours a week his technicians promised your project. He’s friendly about it: “Next week, it’s busy.”',
         ask: 'What do you say in your next one-on-one with him?',
-        model: 'I’d ask what’s eating his technicians’ time right now, and listen. Then link it: “If the changeover data, how long the presses stand still when they switch to another product, shows where your breakdowns come from, that’s fewer callouts for your people. Could we start with one hour on Thursday, on the press line you’re most worried about?” And I’d offer something concrete, like taking the downtime report off his plate.',
+        model: 'I’d ask what’s eating his technicians’ time right now, and listen. Then link it: “If the changeover data, how long the presses stand still when they switch to another product, shows where your breakdowns come from, that’s fewer breakdown calls for your people. Could we start with one hour on Thursday, on the press line you’re most worried about?” And I’d offer something concrete, like taking the downtime report off his plate.',
         rubric: [
           'Asks about his pressures before repeating the request',
           'Links the project to something he is judged on',
@@ -136,9 +136,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. The planning lead, your main contact, sends the weekly data two days late every week, which pushes your analysis into the weekend. You haven’t said anything yet.',
+        scene: 'You’re at a grid operator. The planning lead, your main contact, sends the weekly data two days late every week, which leaves you one day for your analysis before the Thursday review. You haven’t said anything yet.',
         ask: 'How do you raise it with him?',
-        model: 'I’d ask for ten minutes and say: “Can I raise something practical? The last three weeks (S), the data came in on Wednesday instead of Monday (B). That leaves me one day for the analysis, so the review gets thinner (I). What makes Monday hard?” Then I’d look for a fix with him, like an automatic export.',
+        model: 'I’d ask for ten minutes and say: “Can I raise something practical? The last three weeks (S), the data came in on Wednesday instead of Monday (B). That leaves me one day before the Thursday review, so the analysis gets thinner (I). What makes Monday hard?” Then I’d look for a fix with him, like an automatic export.',
         rubric: [
           'Uses situation, observable behaviour and impact',
           'Asks a question about his side instead of assuming',
@@ -149,7 +149,7 @@ export default {
             '“Two days, really? You get the data, don’t you? I have bigger fires to put out.”',
             '“Monday is impossible. The system only closes the week on Tuesday night.”',
           ],
-          model: '“I understand, and I do get it, thank you. The two days matter because the review gets thin. If the system closes on Tuesday, let’s move the review to Thursday, or set up an automatic export. Which works better for you?”',
+          model: '“I understand, and I do get it, thank you. The two days matter because the analysis gets thin. If the system closes on Tuesday night, let’s move the review to Friday, or set up an automatic export that’s ready first thing Wednesday. Which works better for you?”',
           rubric: [
             'Acknowledges his workload and the system constraint',
             'Restates the impact plainly',
@@ -179,7 +179,7 @@ export default {
       ],
       teach: [
         'Every difficult conversation is three conversations at once (Stone, Patton and Heen, Difficult Conversations, 1999).\n\nThe “what happened” conversation: the facts, who’s right. The feelings conversation: anger, embarrassment, hurt. The identity conversation: what this says about me. Am I competent? Am I taken seriously?\n\nUnder pressure the identity conversation runs loudest, especially when you’re the youngest in the room. You notice it in yourself as the urge to prove you’re right.',
-        'Prepare on paper; fifteen minutes is enough.\n\nWhat did you see? What is probably their story? What do you feel? What was your contribution: what did you do, or leave undone, that helped create this? The book swaps blame for contribution, because blame looks back and contribution helps you fix it.\n\nWhat do you want at the end: one concrete agreement? Then write the first two sentences and say them out loud; the opening is where most conversations go wrong.',
+        'Prepare on paper; fifteen minutes is usually enough.\n\nWhat did you see? What is probably their story? What do you feel? What was your contribution: what did you do, or leave undone, that helped create this? The book swaps blame for contribution, because blame looks back and contribution helps you fix it.\n\nWhat do you want at the end: one concrete agreement? Then write the first two sentences and say them out loud; the opening is where most conversations go wrong.',
         'Open straight, with the “third story”: how a neutral observer would describe the difference between you. “I’d like to talk about the downtime data. We see it differently, and I want to understand how you look at it.”\n\nNo long warm-up; people feel it coming and tense up. Opinions differ on small talk: in a Dutch workplace one sentence is plenty, in some cultures skipping it feels rude. Never open by e-mail; tone gets lost and positions harden in writing.',
         'Stay with facts and feelings. Separate what happened from what you made of it. Name emotions when they show: “You sound frustrated.”\n\nThen intent versus impact: you know your impact, only they know their intent. So don’t accuse; ask. “I don’t think you meant it this way, but it made it harder for me to get people to talk. What did you mean by it?”',
         'End with an agreement: who does what by when, and how you check. Say it out loud.\n\n“So you send the downtime log by Thursday, and I take out the shift comparison. Shall we look at it together Monday?” Then confirm it in two lines the same day.\n\nThe typical failure: a good talk, warm feelings, no agreement, and next week the same problem. A sharp closing question: “What will each of us do differently from tomorrow?”',
@@ -233,7 +233,7 @@ export default {
           ],
           model: '“Thanks for being direct; I’d rather hear it from you. You’re right that you haven’t seen anything back yet. On Friday I’ll show what your answers have produced so far. For the next two weeks: one fixed half hour a week, and I bring my questions as a list.”',
           rubric: [
-            'Acknowledges the criticism without defending himself',
+            'Acknowledges the criticism without getting defensive',
             'Makes clear the planners’ input is still needed',
             'Proposes a concrete, lighter way of working and shows results',
           ],
@@ -261,9 +261,9 @@ export default {
       ],
       teach: [
         'A widely used model comes from Patrick Lencioni’s The Five Dysfunctions of a Team (2002). Trust makes healthy conflict possible; conflict makes real commitment possible; commitment makes accountability and results possible.\n\nTrust here means saying “I don’t know” or “I got that wrong” without paying for it. Commitment means backing a decision, even one you argued against. Accountability means team members hold each other to what was agreed, instead of leaving that to the boss.',
-        'Amy Edmondson’s related term, from her research on work teams (1999), is psychological safety: the shared belief that it is safe to take that kind of risk in this team. Google’s Project Aristotle (2015) found it mattered most of the five team factors it studied.\n\nExperts point out that Lencioni’s pyramid is a business fable with little hard research behind it; Edmondson’s work has much more. Use Lencioni as a map for the conversation, not as science.',
+        'Amy Edmondson’s related term, from her research on work teams (1999), is psychological safety: the shared belief that it is safe to take that kind of risk in this team. Google’s Project Aristotle, an internal study of its own teams (2015, published as a guide, not peer-reviewed), named it the most important of five team dynamics it found.\n\nExperts point out that Lencioni’s pyramid is a business fable with little hard research behind it; Edmondson’s work has much more. Use Lencioni as a map for the conversation, not as science.',
         'Spot it.\n\nLow trust: people check with their boss after the meeting, nobody admits a mistake. No conflict: what Lencioni calls artificial harmony, where meetings feel smooth and the real discussion happens at the coffee machine. No commitment: “we’ll look into it”, actions without owners, decisions reopened next week. Low accountability: only the consultant chases missed actions.',
-        'As an outsider you’re not the boss, but you shape the meeting. Make disagreement safe: “What would go wrong with this?” “Who sees it differently?” Go round the table and let the quietest people speak first.\n\nA pre-mortem helps: “It’s three months from now and this has failed. Why?” Gary Klein, who made it popular (2007), cites research in which imagining the failure had already happened made people about 30% better at finding the reasons.',
+        'As an outsider you’re not the boss, but you shape the meeting. Make disagreement safe: “What would go wrong with this?” “Who sees it differently?” Go round the table and let the quietest people speak first.\n\nA pre-mortem helps: “It’s three months from now and this has failed. Why?” Gary Klein, who developed it, cites (2007) a study by Mitchell, Russo and Pennington (1989) in which imagining the failure had already happened made people about 30% better at finding the reasons.',
         'Lock in commitment. Close every decision with who, what and by when, and ask: “Can everyone live with this?” Silence isn’t yes, so ask the quiet ones by name. Send the decisions the same day.\n\nKnow your limits. If the real problem is two managers in a quiet war, you won’t fix it in the team meeting. Take what you saw, and its effect on the project, to the sponsor one-on-one. A sharp question for yourself: who talks after the meeting, and to whom?',
       ],
       example: {
@@ -406,7 +406,7 @@ export default {
       sayIt: 'Explain MORE PIES to a colleague in 60 seconds, with one example line for each letter you find hardest.',
       terms: [
         { term: 'Active listening', def: 'Listening to understand rather than to reply, and showing it (Rogers and Farson).' },
-        { term: 'MORE PIES', def: 'Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence.' },
+        { term: 'MORE PIES', def: 'A checklist for active listening: Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence.' },
         { term: 'Open question', def: 'A what or how question that can’t be answered with yes or no.' },
         { term: 'Reflecting', def: 'Giving back the feeling you hear: “That sounds frustrating.”' },
         { term: 'Paraphrasing', def: 'Restating the content in your own words to check you understood.' },
