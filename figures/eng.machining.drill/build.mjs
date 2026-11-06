@@ -450,7 +450,7 @@ const unit = (part) => ({ piece: "unit", attrs: ` data-unit="" data-part="${part
   const MZ = HOUSING_TOP + 4 + MR;
   const Fm = frameX([-182, 0, MZ]);
   turned("unit.motor", Fm, [[0, MR - 3], [3, MR], [52, MR], [55, MR - 3]], { tone: "mid", crease: "lo" }, {
-    inner: L(G.ribsOf(Fm, 5, 50, MR, 14, P, { fade: [0.06, 0.5], seams: true }), { tone: "lo" }),
+    inner: k.fadedSvg(G.ribsOf(Fm, 5, 50, MR, 14, P, { fade: [0.06, 0.5], seams: true }), { tone: "lo" }),
     ...unit("motor"),
   });
   const Ff = frameX([-192, 0, MZ]);
@@ -463,7 +463,7 @@ const unit = (part) => ({ piece: "unit", attrs: ` data-unit="" data-part="${part
   const Fc = frameX([X_SPINDLE + 6, 0, ZC]);
   turned("unit.chuck", Fc, [[0, 20], [9, 20], [20, 15]], { tone: "mid", crease: "lo" }, { inner: L(G.arcOf(Fc, 4.5, 20, P), { tone: "faint" }), ...unit("chuck") });
   turned("unit.nut", Fc, [[20, 16.5], [29, 16.5], [30, 15]], { tone: "mid", crease: "lo" }, {
-    inner: L(G.ribsOf(Fc, 20.6, 28.4, 16.5, 8, P, { fade: [0.05, 0.45], seams: true }), { tone: "lo" }),
+    inner: k.fadedSvg(G.ribsOf(Fc, 20.6, 28.4, 16.5, 8, P, { fade: [0.05, 0.45], seams: true }), { tone: "lo" }),
     extra: L(G.circleOf(Fc, 30, 9, P), { tone: "lo" }),
     ...unit("chuck"),
   });
@@ -488,7 +488,7 @@ const unit = (part) => ({ piece: "unit", attrs: ` data-unit="" data-part="${part
   box("block", BLOCK, BLOCK_Z, ZC, { tone: "mid" }, { steps: 2, bevel: 0, attrs: ' data-part="block"' });
   // vice screw and crank
   const Fs = frameY([96, jf, 74]);
-  discAt("vice.screw", Fs, 0, 18, 5, { tone: "mid", crease: "lo" }, { inner: L(G.ribsOf(Fs, 1, 17, 5, 10, P, { twist: 2.4, fade: [0.08, 0.5], seams: true }), { tone: "lo" }), attrs: ' data-part="vice"' });
+  discAt("vice.screw", Fs, 0, 18, 5, { tone: "mid", crease: "lo" }, { inner: k.fadedSvg(G.ribsOf(Fs, 1, 17, 5, 10, P, { twist: 2.4, fade: [0.08, 0.5], seams: true }), { tone: "lo" }), attrs: ' data-part="vice"' });
   discAt("vice.hub", Fs, 18, 26, 9, { tone: "mid" }, { extra: Dt([at(G.pointOf(Fs, 26, 0, 0))], { size: 0.55, tone: "hi" }), attrs: ' data-part="vice"' });
   box("vice.crank", { x: 96, y: jf + 26, w: 34, d: 4, r: 1.4 }, 71, 77, { tone: "mid", crease: "lo" }, { bevel: 0.3, attrs: ' data-part="vice"' });
   post("vice.grip", 126, jf + 28, 3.4, 77, 93, { tone: "hi", crease: "lo" }, { steps: 20, attrs: ' data-part="vice"' });
