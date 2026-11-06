@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.moulding.machine',
+      figure: 'eng.moulding.screw',
       title: 'De spuitgietmachine',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.moulding.screw',
+      figure: 'eng.moulding.screw',
       title: 'De schroef: smelten en doseren',
       pre: [
         {
@@ -141,6 +143,7 @@ export default {
     },
     {
       id: 'eng.moulding.clamp',
+      figure: 'eng.moulding.screw',
       title: 'De juiste pers kiezen',
       pre: [
         {
@@ -212,6 +215,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
+      figure: 'eng.moulding.screw',
       title: 'Hydraulisch, elektrisch en speciale persen',
       pre: [
         {

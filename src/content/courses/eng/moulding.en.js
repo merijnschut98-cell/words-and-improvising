@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.moulding.machine',
+      figure: 'eng.moulding.screw',
       title: 'The moulding machine',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.moulding.screw',
+      figure: 'eng.moulding.screw',
       title: 'The screw: melting and dosing',
       pre: [
         {
@@ -141,6 +143,7 @@ export default {
     },
     {
       id: 'eng.moulding.clamp',
+      figure: 'eng.moulding.screw',
       title: 'Choosing the right press',
       pre: [
         {
@@ -212,6 +215,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
+      figure: 'eng.moulding.screw',
       title: 'Hydraulic, electric and special presses',
       pre: [
         {
