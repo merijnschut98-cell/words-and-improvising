@@ -347,7 +347,7 @@ export default {
       teach: [
         'Als je overal ja op zegt, is je ja minder waard en is je werk te laat. William Ury’s “positieve nee” (2007) heeft drie delen: ja, nee, ja.\n\nEerst het ja tegen wat je beschermt, zoals een belofte aan een klant of de kwaliteit van het werk. Dan een duidelijk nee. Dan een ja tegen iets anders: een optie, een ruil, een later moment.',
         'Wees duidelijk, kort en rustig. Een nee verstopt in “ik ga het proberen” wordt als ja gehoord, en dan stel je later teleur.\n\nGeef één echte reden, geen vijf smoesjes: meer redenen geven meer om over te discussiëren. En houd dan je mond.',
-        'Bied een ruil. “Als ik dit doe, wat kan er dan vervallen?” “Ik kan het doen als Jan de data-uitdraai overneemt.”\n\nEen ruil laat zien dat je het verzoek serieus neemt, en legt de keuze bij degene die de prioriteiten bepaalt.',
+        'Je kunt ook een ruil aanbieden. “Als ik dit doe, wat kan er dan vervallen?” “Ik kan het doen als Jan de data-uitdraai overneemt.”\n\nEen ruil laat zien dat je het verzoek serieus neemt, en legt de keuze bij degene die de prioriteiten bepaalt.',
         'Sommige dingen ruil je niet: veiligheid, integriteit, regels waar je aan gebonden bent. Dat zijn je rode lijnen. Integriteit betekent hier eerlijke cijfers en eerlijk advies: je past geen data aan en verstopt geen bevinding om iemand te plezieren.\n\nZeg dat gewoon: “Dat kan ik niet doen. Dit kan ik wel doen.” En bereid je nee voor als je een gespannen overleg ingaat; hij is veel makkelijker te zeggen als je hem al een keer in je hoofd hebt gezegd.',
         'Wat je ziet: junioren zeggen “ik ga het proberen” en werken ’s nachts door, en de kosten blijven onzichtbaar tot de kwaliteit zakt. Andere valkuilen: drie keer sorry zeggen, te veel uitleggen, of per mail nee zeggen om het gesprek te ontlopen.\n\nDeskundigen verschillen over de toon bij klanten. Sommigen leren je “zeg nooit nee, zeg ja, en dit is wat ervoor nodig is”; Ury stelt dat een duidelijk nee de relatie beter beschermt dan een vaag ja. Scherpe vraag aan jezelf: “Wat bescherm ik met dit nee?”',
       ],
@@ -409,9 +409,8 @@ export default {
       sayIt: 'Leg in 60 seconden uit hoe je nee zegt tegen iemand die hoger staat, zonder de relatie te beschadigen.',
       terms: [
         { term: 'Positieve nee', def: 'Ja tegen wat je beschermt, een duidelijk nee, dan ja tegen een alternatief (Ury).' },
-        { term: 'Ruil', def: 'Aanbieden iets te doen in ruil voor iets anders dat schuift of vervalt.' },
-        { term: 'Rode lijn', def: 'Iets wat je niet ruilt, wat er ook geboden wordt: veiligheid, integriteit, bindende regels.' },
-        { term: 'Integriteit', def: 'Eerlijke cijfers en eerlijk advies: nooit data aanpassen of een bevinding verstoppen om iemand te plezieren.' },
+        { term: 'Ruil aanbieden', def: 'Aanbieden iets te doen in ruil voor iets anders dat schuift of vervalt, zodat degene die de prioriteiten bepaalt kiest.' },
+        { term: 'Rode lijn', def: 'Iets wat je niet ruilt, wat er ook geboden wordt: veiligheid, integriteit (eerlijke cijfers en eerlijk advies), bindende regels.' },
       ],
     },
     {
@@ -427,9 +426,9 @@ export default {
       ],
       teach: [
         'Het oneens zijn met wie boven je staat, hoort bij waar klanten je voor betalen. Ze huren geen consultant in om hun eigen mening terug te horen.\n\nHet onderzoek van Amy Edmondson naar psychologische veiligheid (1999), het gedeelde gevoel dat je veilig je mond kunt opendoen, vragen kunt stellen en het oneens kunt zijn, laat zien dat teams met meer daarvan meer leren. Jij helpt dat op gang door het zelf goed te doen.',
-        'Bereid drie dingen voor en houd ze uit elkaar: het feit, je visie en je verzoek.\n\n“De data van de laatste 12 weken laat X zien” is het feit. “Ik denk dat dat Y betekent” is je visie. “Ik wil voorstellen Z te checken voordat we besluiten” is je verzoek.\n\nEen helder verzoek maakt van onenigheid een volgende stap.',
+        'Gebruik feit-visie-verzoek: bereid drie dingen voor en houd ze uit elkaar, het feit, je visie en je verzoek.\n\n“De data van de laatste 12 weken laat X zien” is het feit. “Ik denk dat dat Y betekent” is je visie. “Ik wil voorstellen Z te checken voordat we besluiten” is je verzoek.\n\nEen helder verzoek maakt van onenigheid een volgende stap.',
         'Kies de setting. Bij een groot verschil van mening ga je eerst één-op-één: overval nooit iemand die hoger staat waar zijn team bij is. In een overleg stel je liever een vraag dan dat je een oordeel geeft: “Mag ik er één ding uit de data aan toevoegen?”\n\nHoud je stem laag en je tempo rustig. Kalmte komt over als zelfvertrouwen.',
-        'Weet wanneer je stopt. Zeg het één keer duidelijk, en een tweede keer alleen met nieuwe informatie.\n\nBesluit hij anders en gaat het niet over veiligheid of integriteit, dan geldt disagree and commit: accepteer het, voer het besluit volledig uit en noteer wat je hebt geadviseerd. Gaat het wel over veiligheid of integriteit, dan is escalatie op zijn plaats: je legt het open bij het niveau erboven, en je zegt dat eerst tegen de persoon zelf.',
+        'Weet wanneer je stopt. Zeg het één keer duidelijk, en een tweede keer alleen met nieuwe informatie.\n\nBesluit hij anders en gaat het niet over veiligheid of integriteit, dan geldt disagree and commit: accepteer het, voer het besluit volledig uit en noteer wat je hebt geadviseerd. Gaat het wel over veiligheid of integriteit, dan neem je het escalatiepad (escalation path): je legt het open bij het niveau erboven, en je zegt dat eerst tegen de persoon zelf.',
         'Wat je ziet: de hoogste in rang praat eerst en de rest van de kamer gaat erachter staan. Valkuilen: zo zacht hinten dat niemand het merkt; de discussie in het openbaar winnen en de persoon kwijtraken; achter iemands rug naar zijn baas stappen.\n\n“Disagree and commit” komt van Intel en werd bekend door Jeff Bezos van Amazon. Critici zeggen dat het mensen monddood kan maken; het werkt alleen als het bezwaar eerst echt gehoord is. Scherpe vraag: “Wat zou je moeten zien om van gedachten te veranderen?”',
       ],
       example: {
@@ -492,10 +491,8 @@ export default {
       terms: [
         { term: 'Psychologische veiligheid', def: 'Het gedeelde gevoel dat het veilig is om je uit te spreken, vragen te stellen en het oneens te zijn (Edmondson).' },
         { term: 'Disagree and commit', def: 'Je punt maken, en als het besluit genomen is, er volledig voor gaan.' },
-        { term: 'Feit', def: 'Wat iedereen kan checken, zoals “de data van de laatste 12 weken laat X zien”; het eerste van feit, visie, verzoek.' },
-        { term: 'Visie', def: 'Wat jij denkt dat het feit betekent; los van het feit, zodat de ander het een kan accepteren en aan het ander kan twijfelen.' },
-        { term: 'Verzoek', def: 'De concrete volgende stap die je vraagt, waarmee onenigheid een actie wordt.' },
-        { term: 'Escalatie', def: 'Een kwestie open bij het niveau erboven leggen, nadat je het de persoon eerst hebt gezegd; bij veiligheid of integriteit.' },
+        { term: 'Feit-visie-verzoek', def: 'Drie dingen die je uit elkaar houdt als je het oneens bent: het feit dat iedereen kan checken, jouw visie op wat het betekent, en de concrete volgende stap die je vraagt.' },
+        { term: 'Escalatiepad', def: 'Een kwestie open bij het niveau erboven leggen, nadat je het de persoon eerst hebt gezegd; bij veiligheid of integriteit, niet bij een verschil van smaak.' },
       ],
     },
   ],

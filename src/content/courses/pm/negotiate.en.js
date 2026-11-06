@@ -123,7 +123,7 @@ export default {
           why: 'Any rate between €900 and €1,050 works for both: €1,050 − €900 = €150 per day.',
         },
         {
-          q: 'You have a firm offer to work the same days for another client at €1,000 a day. Client A offers €950 a day. Assume the two jobs are equal in every other way: travel, interest, relationship. What should you do?',
+          q: 'You have a firm offer to work the same days for another client at €1,000 a day. Client A offers €950 a day. Assume the two jobs are equal in every other way: travel, how interesting the work is, relationship. What should you do?',
           options: ['Accept: a deal is better than no deal', 'Turn it down or negotiate up: it is below your alternative', 'Accept and ask for more later', 'Split the difference at €975'],
           answer: 'Turn it down or negotiate up: it is below your alternative',
           why: 'With everything else equal, €950 leaves you worse off than your €1,000 alternative. Your BATNA sets your walk-away point.',
@@ -182,7 +182,7 @@ export default {
         'A good anchor is ambitious and defensible: you can explain where it comes from. An extreme number you can’t justify costs you credibility and can end the talk. Give the reason with the number: “Similar diagnostics took 18 to 22 days, so we propose 20.”',
         'When they anchor first, don’t argue about their number: that keeps it at the centre. Ask how they arrived at it, explain your basis and put your own number on the table. Don’t make a counteroffer, your reply with your own number, close to a number you think is unreasonable; that accepts their anchor.',
         'Framing: the same fact lands differently. “95% of jobs on time” or “1 in 20 jobs late”. “€31,200” or “€600 a week for a year”.\n\nPeople weigh losses more heavily than equal gains, loss aversion (Kahneman and Tversky, 1979), so “without this you keep losing 300 crew hours a month” often lands harder than “this saves 300 hours”. Frame honestly, in terms the other side cares about.',
-        'Plan your concessions, the steps in which you give ground: make each one smaller than the last (20 days, then 19, then 18.5) and get something for each. Big or quick concessions signal there is much more room.\n\nExperts argue about going first. If they know the market better than you, letting them open can protect you. Some research (Ames and Mason, 2015) suggests a range whose bottom is your target, “20 to 22 days”, works as well as one number. A sharp question: “What is that number based on?”',
+        'Plan your concessions, the steps in which you give ground: make each one smaller than the last (20 days, then 19, then 18.5) and get something for each. Big or quick concessions signal there is much more room.\n\nExperts argue about going first. If they know the market better, letting them open can protect you. Some research (Ames and Mason, 2015) suggests a range whose bottom is your target, “20 to 22 days”, works at least as well as one number. A sharp question: “What is that number based on?”',
       ],
       example: {
         kind: 'faded',
@@ -409,9 +409,8 @@ export default {
       sayIt: 'Explain in 60 seconds how to say no to a senior person without damaging the relationship.',
       terms: [
         { term: 'Positive no', def: 'Yes to what you protect, a clear no, then yes to an alternative (Ury).' },
-        { term: 'Trade', def: 'Offering to do one thing in exchange for something else moving or dropping.' },
-        { term: 'Red line', def: 'Something you will not trade, whatever is offered: safety, integrity, binding rules.' },
-        { term: 'Integrity', def: 'Honest numbers and honest advice: never changing data or hiding a finding to please someone.' },
+        { term: 'Offer a trade', def: 'Offering to do one thing in exchange for something else moving or dropping, so the person who sets the priorities chooses.' },
+        { term: 'Red line', def: 'Something you will not trade, whatever is offered: safety, integrity (honest numbers and honest advice), binding rules.' },
       ],
     },
     {
@@ -427,9 +426,9 @@ export default {
       ],
       teach: [
         'Disagreeing upwards is part of what clients pay you for. They don’t hire a consultant to hear their own opinion back.\n\nAmy Edmondson’s research on psychological safety (1999), the shared belief that it is safe to speak up, ask and disagree, shows that teams with more of it learn more. You help create it by speaking up well.',
-        'Prepare three things and keep them apart: the fact, your view and your request.\n\n“The data from the last 12 weeks shows X” is the fact. “I think that means Y” is your view. “I’d like us to check Z before deciding” is the request.\n\nA clear request turns disagreement into a next step.',
+        'Use fact-view-request: prepare three things and keep them apart, the fact, your view and your request.\n\n“The data from the last 12 weeks shows X” is the fact. “I think that means Y” is your view. “I’d like us to check Z before deciding” is the request.\n\nA clear request turns disagreement into a next step.',
         'Choose the setting. For a big disagreement, go one-on-one first: never surprise a senior person in front of their team. In a meeting, ask a question rather than give a verdict: “Can I add one thing from the data?”\n\nKeep your voice low and your pace slow. Calm reads as confident.',
-        'Know when to stop. Say it clearly once, and a second time only with new information.\n\nIf they decide otherwise and it isn’t about safety or integrity, disagree and commit: accept it, carry the decision out fully, and note what you advised. If it is about safety or integrity, escalation is right: take it to the next level up, openly, and tell the person first.',
+        'Know when to stop. Say it clearly once, and a second time only with new information.\n\nIf they decide otherwise and it isn’t about safety or integrity, disagree and commit: accept it, carry the decision out fully, and note what you advised. If it is about safety or integrity, use the escalation path: take it openly to the next level up, and tell the person first.',
         'What you see: the most senior person speaks first and the room lines up behind them. Failure modes: hinting so softly nobody notices; winning the argument in public and losing the person; going to their boss behind their back.\n\n“Disagree and commit” comes from Intel and was made widely known by Jeff Bezos of Amazon. Critics say it can silence people; it only works if the disagreement was truly heard first. A sharp question: “What would you need to see to change your mind?”',
       ],
       example: {
@@ -492,10 +491,8 @@ export default {
       terms: [
         { term: 'Psychological safety', def: 'A shared belief that it is safe to speak up, ask and disagree (Edmondson).' },
         { term: 'Disagree and commit', def: 'Make your case, and once the decision is made, carry it out fully.' },
-        { term: 'Fact', def: 'What anyone can check, such as “the data from the last 12 weeks shows X”; the first of fact, view, request.' },
-        { term: 'View', def: 'What you think the fact means; kept apart from the fact so the other can accept one and doubt the other.' },
-        { term: 'Request', def: 'The concrete next step you ask for, which turns a disagreement into an action.' },
-        { term: 'Escalation', def: 'Taking an issue openly to the next level up, after telling the person first; for safety or integrity.' },
+        { term: 'Fact-view-request', def: 'Three things you keep apart when you disagree: the fact anyone can check, your view of what it means, and the concrete next step you ask for.' },
+        { term: 'Escalation path', def: 'Taking an issue openly to the next level up, after telling the person first; for safety or integrity, not for a difference of taste.' },
       ],
     },
   ],
