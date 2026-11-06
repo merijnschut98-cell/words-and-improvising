@@ -840,6 +840,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      figure: 'eng.machining.gcode',
       title: 'CNC: de basis',
       pre: [
         {
@@ -910,6 +911,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      figure: 'eng.machining.gcode',
       title: 'Een G-code-programma lezen',
       pre: [
         {
@@ -978,6 +980,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      figure: 'eng.machining.gcode',
       title: 'Correcties en offsets: waarom crashes gebeuren',
       pre: [
         {
@@ -1047,6 +1050,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      figure: 'eng.machining.gcode',
       title: 'CAM, simulatie en proefdraaien',
       pre: [
         {
