@@ -6,23 +6,24 @@ export default {
       title: 'Een paar indicatoren die sturen',
       pre: [
         {
-          q: 'Een fabrieksdirecteur heeft 46 KPI’s op één dashboard en bekijkt dat elke maand. Wat is het meest waarschijnlijke effect?',
+          q: 'Een fabrieksdirecteur heeft 46 KPI’s (kritieke prestatie-indicatoren, de cijfers waarop een bedrijf stuurt) op één dashboard en bekijkt dat elke maand. Wat is het meest waarschijnlijke effect?',
           options: ['Betere controle, want er wordt niks gemist', 'Niemand weet op welke cijfers hij moet handelen, dus maar weinig ervan leiden tot actie', 'Snellere besluiten, want alle data staat op één plek', 'Betere resultaten, want elke afdeling voelt zich bekeken'],
           answer: 'Niemand weet op welke cijfers hij moet handelen, dus maar weinig ervan leiden tot actie',
           why: 'Mensen kunnen op een handvol cijfers sturen. Bij 46 wordt de aandacht zo verdeeld dat de meeste cijfers alleen gelezen worden.',
         },
       ],
       teach: [
-        'Een KPI is een cijfer waar iemand op handelt. Als niemand iets anders gaat doen wanneer het beweegt, is het een rapportagecijfer, geen KPI.\n\nEen team kan sturen op drie tot zeven cijfers; een muur van veertig leest niemand. Kies per niveau: de directie heeft een paar resultaten nodig, een team de paar cijfers die het deze week kan beïnvloeden.',
-        'Achterlopende indicatoren meten het resultaat achteraf: leverbetrouwbaarheid vorige maand, verloren klantminuten, kosten per aansluiting. Voorlopende indicatoren bewegen vóór het resultaat en laten zien wat je moet doen: het aandeel klussen waarvan het materiaal twee dagen voor de start klaarligt, preventief onderhoud op tijd gedaan, de leeftijd van de werkvoorraad.\n\nAchterlopend zegt of je gewonnen hebt. Voorlopend zegt of je gaat winnen.',
-        'Een goede KPI heeft een opgeschreven definitie (wat telt mee en wat niet), één eigenaar, een bron waar niemand over twist, een frequentie die past bij hoe snel hij kan veranderen, en een bekende richting: is hoger beter of lager? De helft van alle KPI-discussies gaat over twee mensen die onder dezelfde naam iets anders meten.',
-        'Balans. Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Zet ze in paren: output met kwaliteit, snelheid met veiligheid, kosten met service.\n\nKaplan en Norton maakten dat punt in 1992 met de balanced scorecard: financiële resultaten alleen zeggen hoe het ging, niet waar je heen gaat. Daarom zetten ze er cijfers over klanten, processen en leren naast.',
+        'Een KPI, kort voor kritieke prestatie-indicator (key performance indicator), is een cijfer waar iemand op handelt. Als niemand iets anders gaat doen wanneer het beweegt, is het een rapportagecijfer, geen KPI.\n\nEen vuistregel uit de praktijk: een team kan sturen op zo’n drie tot zeven cijfers; een muur van veertig leest niemand. Kies per niveau: de directie heeft een paar resultaten nodig, een team de paar cijfers die het deze week kan beïnvloeden.',
+        'Een achterlopende indicator meet het resultaat achteraf: de leverbetrouwbaarheid (on-time delivery) van vorige maand, verloren klantminuten (customer minutes lost: minuten zonder stroom, opgeteld over alle klanten), kosten per aansluiting.\n\nEen voorlopende indicator beweegt vóór het resultaat en laat zien wat je moet doen: het aandeel klussen waarvan het materiaal twee dagen voor de start klaarligt, preventief onderhoud (gepland onderhoud voordat iets kapotgaat) op tijd gedaan, de leeftijd van de werkvoorraad (backlog).\n\nAchterlopend zegt of je gewonnen hebt. Voorlopend zegt of je gaat winnen.',
+        'Een goede KPI heeft een opgeschreven definitie: wat telt mee en wat niet. Bijvoorbeeld: “te laat” is één dag of meer na de datum die aan de klant is bevestigd.\n\nDaarnaast één eigenaar, een bron waar niemand over twist, een frequentie die past bij hoe snel het cijfer kan veranderen, en een bekende richting: is hoger beter of lager? In de praktijk blijken veel KPI-discussies te gaan over twee mensen die onder dezelfde naam iets anders meten.',
+        'Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Werk daarom met gekoppelde indicatoren: twee cijfers die elkaar bewaken, zoals output met kwaliteit, snelheid met veiligheid, kosten met service.\n\nKaplan en Norton maakten dat punt in 1992 met de balanced scorecard: een set cijfers vanuit vier invalshoeken, financieel, klant, interne processen, en leren en groeien. Financiële resultaten alleen zeggen hoe het ging, niet waar je heen gaat.',
+        'Wat je in de praktijk ziet: dashboards die elk jaar groeien, omdat een cijfer toevoegen makkelijk is en er een weghalen eng voelt. Voorlopende indicatoren zijn lastiger te vinden, dus veel teams houden alleen achterlopende over.\n\nDeskundigen discussiëren over standaardiseren: één KPI-set voor elk team maakt vergelijken makkelijk, maar dan stuurt een team soms op cijfers die het niet kan bewegen.\n\nEen scherpe vraag bij elk cijfer aan de muur: “Toen dit de vorige keer rood werd, wat deed iemand toen anders?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een onderdelenfabrikant krijgt klachten van klanten over late leveringen. De plantmanager wil één KPI op het bord: leverbetrouwbaarheid, in % van de orderregels, maandelijks gerapporteerd. Planning en de productieteams zien het cijfer in het maandoverleg.',
+        text: 'Een onderdelenfabrikant krijgt klachten van klanten over late leveringen. De plantmanager wil één KPI op het bord: leverbetrouwbaarheid, in % van de orderregels (één product op één klantorder), maandelijks gerapporteerd. Planning en de productieteams zien het cijfer in het maandoverleg.',
         ask: 'Wat zou jij toevoegen of veranderen voordat dit op het bord komt?',
-        reveal: 'Houd leverbetrouwbaarheid als achterlopend resultaat, maar definieer het: tegen de datum die aan de klant is bevestigd, per orderregel, nul dagen te laat toegestaan. Geef het één eigenaar, de planningsleider.\n\nVoeg dan een of twee voorlopende cijfers toe die de teams elke week kunnen bewegen, zoals planningsnaleving op de bottleneck per dag en het aandeel orders dat wordt vrijgegeven met al het materiaal op voorraad. Zet er first-pass yield naast, zodat de leverbetrouwbaarheid niet gekocht wordt door onderdelen er snel doorheen te jagen.',
+        reveal: 'Houd leverbetrouwbaarheid als achterlopend resultaat, maar definieer het: tegen de datum die aan de klant is bevestigd, per orderregel, nul dagen te laat toegestaan. Geef het één eigenaar, de planningsleider.\n\nVoeg dan een of twee voorlopende cijfers toe die de teams elke week kunnen bewegen, zoals de planningsnaleving (schedule adherence) op de bottleneck, het aandeel van het geplande werk dat de traagste machine die dag echt deed, en het aandeel orders dat wordt vrijgegeven met al het materiaal op voorraad. Zet er first-pass yield naast, het aandeel stuks dat in één keer goed is zonder herstelwerk, zodat de leverbetrouwbaarheid niet gekocht wordt door onderdelen er snel doorheen te jagen.',
       },
       said: 'Wat je hoort in projecten: “Dat is een achterlopend cijfer. Wat kan het team deze week bewegen dat laat zien waar het heen gaat?”',
       recall: [
@@ -34,7 +35,7 @@ export default {
         },
         {
           q: 'Wat maakt van een cijfer een KPI?',
-          options: ['Het staat op het dashboard', 'Iemand handelt erop als het beweegt', 'Het wordt elke dag gemeten', 'Het komt rechtstreeks uit het ERP-systeem'],
+          options: ['Het staat op het dashboard', 'Iemand handelt erop als het beweegt', 'Het wordt elke dag gemeten', 'Het komt rechtstreeks uit het ERP-systeem (het centrale systeem voor orders, voorraad en financiën)'],
           answer: 'Iemand handelt erop als het beweegt',
           why: 'Een KPI is er om te sturen. Een cijfer dat nergens tot actie leidt is informatie, hoe vaak je het ook meet.',
         },
@@ -79,6 +80,8 @@ export default {
         { term: 'KPI', def: 'Kritieke prestatie-indicator: een cijfer waar iemand op handelt als het beweegt.' },
         { term: 'Achterlopende indicator', def: 'Meet het resultaat achteraf, zoals de leverbetrouwbaarheid van vorige maand.' },
         { term: 'Voorlopende indicator', def: 'Beweegt vóór het resultaat en laat zien wat je moet doen, zoals materiaal dat voor de start klaarligt.' },
+        { term: 'Gekoppelde indicatoren', def: 'Twee cijfers die elkaar bewaken, zoals output en kwaliteit, zodat het ene niet ten koste van het andere omhoog kan.' },
+        { term: 'Balanced scorecard', def: 'De set cijfers van Kaplan en Norton vanuit vier invalshoeken: financieel, klant, interne processen, en leren en groeien.' },
       ],
     },
     {
@@ -86,23 +89,24 @@ export default {
       title: 'Van strategie naar de cijfers van een team',
       pre: [
         {
-          q: 'Het directiedoel van een netbeheerder is “kortere doorlooptijden voor nieuwe aansluitingen”. Een ploeg in het veld vraagt wat dat voor hen betekent. Wat is het nuttigste antwoord?',
+          q: 'Het directiedoel van een netbeheerder is “kortere doorlooptijden voor nieuwe aansluitingen” (doorlooptijd: de kalendertijd van de aanvraag van de klant tot een werkende aansluiting). Een ploeg in het veld vraagt wat dat voor hen betekent. Wat is het nuttigste antwoord?',
           options: ['Elke klus sneller doen', 'Het directiedoel, herhaald in het teamoverleg', 'De een of twee cijfers in hun eigen werk die de doorlooptijd bepalen, zoals klussen gestart op de geplande dag', 'Een link naar het jaarverslag'],
           answer: 'De een of twee cijfers in hun eigen werk die de doorlooptijd bepalen, zoals klussen gestart op de geplande dag',
           why: 'Een team kan alleen bewegen wat in zijn eigen werk zit. Een directiedoel dat harder wordt herhaald, zegt niemand wat hij maandag moet doen.',
         },
       ],
       teach: [
-        'Een KPI-boom, ook wel driverboom, deelt een doel op in de cijfers die het veroorzaken. Bovenaan staat een resultaat, zoals doorlooptijd of kosten per stuk. Elk niveau lager beantwoordt de vraag “waar hangt dit van af?”, tot je bij cijfers komt die een team in de hand heeft.\n\nEen rekenboom telt op of vermenigvuldigt exact; een logische boom noemt alleen de belangrijkste drivers. Reken waar het kan.',
-        'Voorbeeld. Goede output van een perslijn per week = beschikbare uren × aandeel van die uren dat hij draait × stuks per draaiuur × aandeel goede stuks.\n\nElke tak heeft een logische eigenaar: planning voor de uren, onderhoud voor het draaiaandeel, engineering voor de snelheid, kwaliteit voor het aandeel goed. Nu ziet elk team welke tak het beweegt.',
-        'Toets de boom met data voordat je erop vertrouwt. Beweegt die tak de top echt? Een tak die nauwelijks varieert, verklaart het gat niet.\n\nZoek de tak met het grootste gat ten opzichte van een realistisch niveau: daar gaat de inspanning heen. Stop met opdelen zodra je bij een cijfer bent waar een team wekelijks op kan handelen.',
-        'Doorvertalen is niet kopiëren. Het doel van een team moet zijn eigen driver zijn, geen plakje van het directiecijfer.\n\n“Doorlooptijd 20% omlaag” voor elk team is een slogan. “Klussen gestart op de geplande dag van 70% naar 85%” is een teamcijfer.',
+        'Een KPI-boom, ook wel driverboom (driver tree), deelt een doel op in de cijfers die het veroorzaken. Bovenaan staat een resultaat, zoals de doorlooptijd (lead time: kalendertijd van aanvraag tot klaar) of de kosten per stuk.\n\nElk niveau lager beantwoordt de vraag “waar hangt dit van af?”, tot je bij cijfers komt die een team in de hand heeft. Zo’n oorzaak heet een driver: een cijfer dat het cijfer erboven laat bewegen. De hele boom past op één pagina.',
+        'Er zijn twee soorten. Een rekenboom telt op of vermenigvuldigt exact, dus de takken rekenen de top na: goede output van een perslijn per week = beschikbare uren × aandeel van die uren dat hij draait × stuks per draaiuur × aandeel goede stuks.\n\nEen logische boom noemt alleen de belangrijkste drivers, zoals “klanttevredenheid hangt af van snelheid, kwaliteit en contact”, zonder formule. Reken waar het kan: dan weet je hoeveel elke tak waard is.',
+        'In de boom van de perslijn heeft elke tak een logische eigenaar: planning voor de uren, onderhoud voor het draaiaandeel, engineering voor de snelheid, kwaliteit voor het aandeel goed.\n\nToets de boom met data voordat je erop vertrouwt. Beweegt die tak de top echt? Een tak die nauwelijks varieert, verklaart het gat niet. Zoek de tak met het grootste gat ten opzichte van een realistisch niveau, en stop met opdelen zodra een team wekelijks op het cijfer kan handelen.',
+        'Doorvertalen (cascading) betekent een doel vertalen naar doelen voor de niveaus eronder. Goed gedaan is doorvertalen niet kopiëren: het doel van een team moet zijn eigen driver zijn, geen plakje van het directiecijfer.\n\n“Doorlooptijd 20% omlaag” voor elk team is een slogan. “Klussen gestart op de geplande dag van 70% naar 85%” is een teamcijfer.',
+        'Wat misgaat: bomen die één keer voor een slide getekend zijn en nooit met data getoetst; takken die overlappen, zodat twee teams dezelfde winst claimen; drivers zonder eigenaar.\n\nIn een rekenboom vermenigvuldigen kleine winsten: stijgen vier vermenigvuldigde takken elk 10%, dan stijgt de top zo’n 46% (1,1 × 1,1 × 1,1 × 1,1 ≈ 1,46). Over hoe diep je gaat, verschillen adviseurs van mening; praktisch: tot iemand er wekelijks op kan handelen.\n\nEen scherpe vraag: “Als deze tak 10% verbetert, wat gebeurt er dan bovenaan?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een netbeheerder wil de tijd verkorten van de aanvraag van een klant tot een werkende aansluiting voor kleinverbruikers. Gemiddeld is dat 26 weken. De stappen lopen na elkaar, en de data laat zien hoe lang elke stap gemiddeld duurt: intake 3 weken, ontwerp en vergunningen 9 weken, wachten op een ploeg 10 weken, uitvoering 1 week, meter plaatsen 3 weken.',
+        text: 'Een netbeheerder wil de tijd verkorten van de aanvraag van een klant tot een werkende aansluiting voor kleinverbruikers, zoals woningen en kleine winkels. Gemiddeld is dat 26 weken. De stappen lopen na elkaar, en de data laat zien hoe lang elke stap gemiddeld duurt: intake 3 weken, ontwerp en vergunningen 9 weken, wachten op een ploeg 10 weken, uitvoering 1 week, meter plaatsen 3 weken.',
         ask: 'Hoe zou jij de boom opbouwen, en waar kijk je als eerste?',
-        reveal: 'Omdat de stappen na elkaar lopen, is de doorlooptijd hun som: 3 + 9 + 10 + 1 + 3 = 26 weken. De grote takken zijn wachten op een ploeg (10) en ontwerp en vergunningen (9); in de uitvoering (1) valt weinig te halen.\n\nDeel “wachten op een ploeg” verder op: is het ploegcapaciteit, of klussen die terugkomen omdat ze niet klaar waren? Geef elke stap één eigenaar en één wekelijks teamcijfer, zoals het aandeel klussen dat door de gereedheidscheck komt.',
+        reveal: 'Omdat de stappen na elkaar lopen, is de doorlooptijd hun som: 3 + 9 + 10 + 1 + 3 = 26 weken. De grote takken zijn wachten op een ploeg (10) en ontwerp en vergunningen (9); in de uitvoering (1) valt weinig te halen.\n\nDeel “wachten op een ploeg” verder op: is het ploegcapaciteit, of klussen die terugkomen omdat ze niet klaar waren? Geef elke stap één eigenaar en één wekelijks teamcijfer, zoals het aandeel klussen dat door de gereedheidscheck (readiness check) komt: een check dat ontwerp, vergunning en materiaal er allemaal zijn voordat er een ploeg wordt ingepland.',
       },
       said: 'Wat je hoort in projecten: “Aan welke tak van de boom zitten we hier eigenlijk te draaien?”',
       recall: [
@@ -136,7 +140,7 @@ export default {
       situation: {
         scene: 'Bij een onderdelenfabrikant staat op de strategieslide “winstgevend groeien”. In je eerste week zegt een teamleider productie tegen je: “Ik heb geen idee wat wij daaraan bijdragen. Wij maken gewoon onderdelen.”',
         ask: 'Hoe help je hem de cijfers van zijn team te zien?',
-        model: 'Ik zou samen met hem een simpele boom op het whiteboard tekenen. De winst hangt onder meer af van de kosten per goed stuk. Die hangen af van de output per uur en de uitval. Op zijn cel zijn uitval en ongeplande stops wat zijn team beweegt. Dus de cijfers van zijn team kunnen zijn: uitval in % per week en minuten ongeplande stilstand per dienst. Dan zou ik met de data van vorige maand kijken welke van de twee het grootste gat heeft.',
+        model: 'Ik zou samen met hem een simpele boom op het whiteboard tekenen. De winst hangt onder meer af van de kosten per goed stuk. Die hangen af van de output per uur en de uitval (scrap), de stuks die weg moeten omdat ze buiten de maat zijn. Op zijn cel zijn uitval en ongeplande stops wat zijn team beweegt. Dus de cijfers van zijn team kunnen zijn: uitval in % per week en minuten ongeplande stilstand (unplanned downtime) per dienst. Dan zou ik met de data van vorige maand kijken welke van de twee het grootste gat heeft.',
         rubric: [
           'Legt stap voor stap de verbinding van de strategie naar zijn team',
           'Eindigt bij een of twee cijfers die zijn team kan bewegen',
@@ -147,7 +151,7 @@ export default {
             'Leuk getekend, maar de kostprijs wordt bepaald door inkoop en overhead. Mijn uitval is peanuts in dat plaatje.',
             'En als ik uitval op het bord zet, gebruikt het management het gewoon om mijn team de schuld te geven.',
           ],
-          model: 'Terecht: inkoop en overhead zijn grote takken, en die zijn niet van jou. Uitval is misschien klein, maar het is wel jouw tak. Laten we met de data van vorige maand kijken wat de uitval echt kostte. Is dat te weinig, dan kiezen we de ongeplande stops. En het bord is eerst voor jullie eigen overleg; dat spreken we af met je manager.',
+          model: 'Terecht: inkoop en overhead, de gedeelde kosten zoals kantoor en management, zijn grote takken, en die zijn niet van jou. Uitval is misschien klein, maar het is wel jouw tak. Laten we met de data van vorige maand kijken wat de uitval echt kostte. Is dat te weinig, dan kiezen we de ongeplande stops. En het bord is eerst voor jullie eigen overleg; dat spreken we af met je manager.',
           rubric: [
             'Erkent dat andere takken groter zijn en niet van hem',
             'Herhaalt waarom zijn team moet sturen op wat het in de hand heeft',
@@ -157,8 +161,10 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit hoe een KPI-boom een bedrijfsdoel verbindt met de cijfers van één team.',
       terms: [
-        { term: 'KPI-boom', def: 'Een doel opgedeeld in de cijfers die het bepalen, tot cijfers die een team in de hand heeft.' },
+        { term: 'KPI-boom', def: 'Een doel opgedeeld in de cijfers die het bepalen, tot cijfers die een team in de hand heeft. Ook wel driverboom.' },
         { term: 'Driver', def: 'Een cijfer dat het cijfer erboven in de boom laat bewegen.' },
+        { term: 'Rekenboom', def: 'Een KPI-boom waarvan de takken exact optellen of vermenigvuldigen tot het cijfer bovenaan.' },
+        { term: 'Logische boom', def: 'Een KPI-boom die de belangrijkste drivers noemt, zonder exacte formule.' },
         { term: 'Doorvertalen', def: 'Een doel vertalen naar doelen voor de niveaus eronder; goed gedaan krijgt elk niveau zijn eigen driver.' },
       ],
     },
@@ -174,16 +180,17 @@ export default {
         },
       ],
       teach: [
-        'Tientallen jaren onderzoek van Locke en Latham laten zien dat specifieke, moeilijke doelen beter werken dan “doe je best”, zolang mensen ze accepteren, de vaardigheden hebben en feedback krijgen op hun voortgang. Maak je het te moeilijk, dan haken mensen af of gaan ze met het cijfer schuiven. Een doel waar niemand in gelooft, is geen doel maar een wens.',
-        'Baseer een doel op data, niet op vorig jaar plus tien procent. Kijk naar de spreiding: welke weken waren het best, en waarom ging het toen goed?\n\nEen doel dicht bij de beste weken die je echt gehaald hebt, is geloofwaardig. Een doel voorbij alles wat je ooit hebt gezien, vraagt om een andere werkwijze. Zeg dan wat er verandert.',
-        'Werk met bandbreedtes, niet met één punt. Resultaten schommelen van week tot week.\n\n“Tussen 83 en 87%, mikpunt 85” laat een team een normale week onderscheiden van een echte verandering. Eén punt maakt van elke week eronder een mislukking, ook als het gewoon ruis is.\n\nHoud het doel (waar we heen willen) los van de actiegrens (wanneer we ingrijpen).',
-        'Betrek de mensen die het moeten halen. Vraag: wat is haalbaar over drie maanden, en wat moet er veranderen voor meer? Mensen verdedigen doelen die ze zelf mee hebben bepaald.\n\nDe ambitie blijft wel van jou: ligt hun voorstel onder hun eigen beste weken, vraag dan waarom.',
+        'De doelzettingstheorie (goal-setting theory) van Edwin Locke en Gary Latham, gebouwd op zo’n 400 studies (samengevat in hun overzicht uit 2002), laat zien dat specifieke, moeilijke doelen tot betere prestaties leiden dan “doe je best”.\n\nDat geldt zolang drie dingen geregeld zijn: doelacceptatie (mensen vinden het doel de moeite waard en haalbaar), de vaardigheden om het te doen, en feedback op de voortgang. Een doel waar niemand in gelooft, is geen doel maar een wens.',
+        'Maak je het te moeilijk, dan gebeuren er twee dingen. Mensen haken af zodra het doel buiten bereik voelt.\n\nEn gemiste doelen kunnen mensen laten sjoemelen: in experimenten van Schweitzer, Ordóñez en Douma (2004) logen mensen die een specifiek doel net niet haalden vaker over hun resultaat dan mensen die alleen hun best moesten doen. Een moeilijk doel heeft dus een geloofwaardige weg nodig, niet alleen druk.',
+        'Baseer een doel op data, niet op vorig jaar plus tien procent. Begin bij de nulmeting (baseline): het huidige niveau, gemeten over de laatste weken. Kijk dan naar de spreiding: welke weken waren het best, en waarom ging het toen goed?\n\nEen doel dicht bij de beste weken die je echt gehaald hebt, is geloofwaardig. Een doel voorbij alles wat je ooit hebt gezien, vraagt om een andere werkwijze. Zeg dan wat er verandert.',
+        'Werk met een bandbreedte, niet met één punt, want resultaten schommelen van week tot week. “Tussen 83 en 87%, mikpunt 85” laat een team een normale week onderscheiden van een echte verandering. Eén punt maakt van elke week eronder een mislukking, ook als het gewoon ruis is.\n\nHoud het doel (waar we heen willen) los van de actiegrens (trigger): het niveau waarop we stoppen en een oorzaak zoeken, zoals elke week onder de 80%.',
+        'Betrek de mensen die het moeten halen: wat is haalbaar over drie maanden, en wat moet er veranderen voor meer? Mensen verdedigen doelen die ze zelf mee hebben bepaald. De ambitie blijft wel van jou: ligt hun voorstel onder hun eigen beste weken, vraag dan waarom.\n\nDeskundigen discussiëren over stretchdoelen ver voorbij de data: de een zegt dat ze nieuwe werkwijzen uitlokken, de ander dat ze vooral cynisme kweken.\n\nEen scherpe vraag: “Wat moeten we veranderen om onze beste week een gewone week te maken?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een onderdelenfabrikant. De uitval op één verspaningscel, in % van de gemaakte stuks, over de laatste acht weken: 4,1, 3,6, 5,2, 3,9, 4,4, 3,3, 4,8, 3,7.\n\nHet gemiddelde is ongeveer 4,1%. Er is nog niks aan het proces veranderd. Het management wil vanaf volgende maand een doel van 1%.',
+        text: 'Een onderdelenfabrikant. De uitval (scrap: stuks die weg moeten omdat ze buiten de maat zijn) op één verspaningscel, in % van de gemaakte stuks, over de laatste acht weken: 4,1, 3,6, 5,2, 3,9, 4,4, 3,3, 4,8, 3,7.\n\nHet gemiddelde is ongeveer 4,1%. Er is nog niks aan het proces veranderd. Het management wil vanaf volgende maand een doel van 1%.',
         ask: 'Welk doel zou jij voorstellen, en hoe?',
-        reveal: 'Een doel van 1% ligt ver onder elke week die er ooit is geweest, en aan de werkwijze is niks veranderd, dus niemand gaat erin geloven.\n\nStel een eerste doel voor dicht bij de beste weken (3,3 en 3,6): een bandbreedte van 3,0 tot 4,0%, mikpunt 3,5, na acht weken evalueren. Een week boven 5% is de actiegrens om erin te duiken.\n\nOndertussen is het oorzakenonderzoek naar het grootste defect wat 1% later realistisch kan maken. Zeg dat hardop, zodat de ambitie niet verdwijnt.',
+        reveal: 'Een doel van 1% ligt ver onder elke week die er ooit is geweest, en aan de werkwijze is niks veranderd, dus niemand gaat erin geloven.\n\nStel een eerste doel voor dicht bij de beste weken (3,3 en 3,6): een bandbreedte van 3,0 tot 4,0%, mikpunt 3,5, na acht weken evalueren. Een week boven 5% is de actiegrens om erin te duiken.\n\nOndertussen is het oorzakenonderzoek (root-cause analysis) naar het grootste defect wat 1% later realistisch kan maken. Zeg dat hardop, zodat de ambitie niet verdwijnt.',
       },
       said: 'Wat je hoort in projecten: “Jullie beste weken zaten op 86. Wat moeten we veranderen om dat een gewone week te maken?”',
       recall: [
@@ -200,7 +207,7 @@ export default {
           why: 'Resultaten schommelen. Een bandbreedte laat zien wanneer een verandering echt is en actie verdient.',
         },
         {
-          q: 'De wekelijkse realisatie op tijd van een team was de laatste 10 weken, week voor week: 78, 81, 84, 79, 86, 80, 83, 85, 82 en 82%. Wat is het gemiddelde over die 10 weken, in %?',
+          q: 'De wekelijkse realisatie op tijd van een team (het aandeel klussen dat op de geplande datum klaar was) was de laatste 10 weken, week voor week: 78, 81, 84, 79, 86, 80, 83, 85, 82 en 82%. Wat is het gemiddelde over die 10 weken, in %?',
           number: 82,
           tolerance: 0.1,
           unit: '%',
@@ -214,9 +221,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Bij een netbeheerder zegt de sponsor tegen het planningsteam: “Nul te late klussen in juni.” Nu start ongeveer 18% van de klussen later dan gepland, en de beste week dit jaar zat op 11%. Na het overleg kijkt de planningsleider je aan en zucht.',
+        scene: 'Bij een netbeheerder zegt de sponsor (de manager die eigenaar is van het verbeterprogramma) tegen het planningsteam: “Nul te late klussen in juni.” Nu start ongeveer 18% van de klussen later dan gepland, en de beste week dit jaar zat op 11%. Na het overleg kijkt de planningsleider je aan en zucht.',
         ask: 'Wat stel je de sponsor voor?',
-        model: 'Ik zou de sponsor zeggen dat ik de ambitie deel, maar dat nul in juni onder alles ligt wat het team ooit heeft gedaan, dus dat ze er niet in gaan geloven. Ik zou voor juni een bandbreedte van 10 tot 14% te laat voorstellen, dicht bij hun beste week, met elke maand een evaluatie. En ik zou noemen wat er moet veranderen voor een grotere stap, zoals een gereedheidscheck twee dagen voor de start, zodat het volgende doel lager kan.',
+        model: 'Ik zou de sponsor zeggen dat ik de ambitie deel, maar dat nul in juni onder alles ligt wat het team ooit heeft gedaan, dus dat ze er niet in gaan geloven. Ik zou voor juni een bandbreedte van 10 tot 14% te laat voorstellen, mikpunt 12, dicht bij hun beste week, met elke maand een evaluatie. En ik zou noemen wat er moet veranderen voor een grotere stap, zoals een gereedheidscheck twee dagen voor de start, zodat het volgende doel lager kan.',
         rubric: [
           'Steunt de ambitie en laat zien dat het doel voorbij alles ligt wat gehaald is',
           'Stelt een bandbreedte voor op basis van de beste weken van het team zelf',
@@ -237,9 +244,11 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit hoe je met de eigen data van een team een doel stelt waar dat team in gelooft.',
       terms: [
-        { term: 'Bandbreedte', def: 'Een band met een mikpunt in het midden, zodat normale schommeling niet als succes of mislukking telt.' },
-        { term: 'Actiegrens', def: 'Het niveau waarop het team ingrijpt, los van het doel.' },
+        { term: 'Doelzettingstheorie', def: 'De bevinding van Locke en Latham dat specifieke, moeilijke doelen beter werken dan “doe je best”, mits er acceptatie, vaardigheid en feedback is.' },
         { term: 'Doelacceptatie', def: 'Mensen vinden een doel de moeite waard en haalbaar; nodig om een moeilijk doel te laten werken.' },
+        { term: 'Nulmeting', def: 'Het huidige niveau van een cijfer, gemeten over de laatste weken, voordat er iets verandert.' },
+        { term: 'Bandbreedte', def: 'Een band met een mikpunt in het midden, zodat normale schommeling niet als succes of mislukking telt.' },
+        { term: 'Actiegrens', def: 'Het niveau waarop het team stopt en een oorzaak zoekt, los van het doel.' },
       ],
     },
     {
@@ -247,17 +256,18 @@ export default {
       title: 'Het prestatiegesprek',
       pre: [
         {
-          q: 'Het weekcijfer van een team is rood geworden. Waar hoort de eerste vraag in een goed prestatiegesprek over te gaan?',
+          q: 'Het weekcijfer van een team is rood geworden, onder het doel op het bord. Waar hoort de eerste vraag in een goed prestatiegesprek over te gaan?',
           options: ['Wie er verantwoordelijk is', 'Wat de data laat zien, en of het een echte verandering is of een gewone week', 'Hoe snel het opgelost kan worden', 'Waarom niemand het zag aankomen'],
           answer: 'Wat de data laat zien, en of het een echte verandering is of een gewone week',
           why: 'Eerst eens worden over de feiten. Over oorzaken of schuld praten voordat je weet of er echt iets veranderd is, verspilt het overleg.',
         },
       ],
       teach: [
-        'Een prestatiegesprek is een kort, vast gesprek over de cijfers tussen een leidinggevende en het team of de persoon die er eigenaar van is. Het heeft drie stappen: feiten, oorzaak, afspraak. De meeste overleggen slaan het midden over en springen van een rood cijfer naar “beter je best doen”.',
-        'Feiten. Wat laat het cijfer zien, tegen welk doel, over welke periode? Is het een echte verandering of een gewone week?\n\nKijk naar de trend, niet naar één punt. Word het eerst eens over de feiten voordat je het over het waarom hebt. Wordt de data betwist, los dan eerst de data op, anders wordt het overleg een discussie over de data.',
-        'Oorzaak. Stel open vragen: “Wat gebeurde er in de weken die goed gingen?” “Waar bleven de klussen hangen?”\n\nGa kijken als het kan. Houd een eenmalige oorzaak, zoals een storm, apart van een patroon. Ligt de eerste verklaring buiten de invloed van het team, accepteer dat deel en vraag welk deel er wel binnen lag.',
-        'Afspraak. Eén of twee acties, elk met een eigenaar, een datum en een manier om te zien of het gewerkt heeft. Begin de volgende keer met die acties.\n\nDe toon: hard op de cijfers, zacht op de mensen. Het doel is leren wat je moet doen, niet uitzoeken wie de schuld heeft.',
+        'Een prestatiegesprek is een kort, vast gesprek over de cijfers tussen een leidinggevende en het team of de persoon die er eigenaar van is; op teamniveau vaak wekelijks, 15 tot 30 minuten. Het heeft drie stappen: feiten, oorzaak, afspraak.\n\nDe meeste overleggen slaan het midden over en springen van een rood cijfer, een cijfer onder het doel, naar “beter je best doen”.',
+        'Feiten. Wat laat het cijfer zien, tegen welk doel, over welke periode? Is het een echte verandering of een gewone week?\n\nKijk naar de trend, zes tot acht punten in plaats van één. Word het eerst eens over de feiten voordat je het over het waarom hebt. Wordt de data betwist, los dan eerst de data op, anders wordt het overleg een discussie over de data.',
+        'Oorzaak. Stel een open vraag, een vraag waar je geen ja of nee op kunt zeggen: “Wat gebeurde er in de weken die goed gingen?” “Waar bleven de klussen hangen?” Ga kijken als het kan.\n\nHoud een eenmalige oorzaak, die niet terugkomt, zoals een storm, apart van een patroon, een oorzaak die steeds terugkomt, zoals materiaal dat elke maandag te laat is. Ligt de eerste verklaring buiten de invloed van het team, accepteer dat deel en vraag welk deel er wel binnen lag.',
+        'Een afspraak sluit het gesprek af: één of twee acties, elk met een eigenaar, een datum en een manier om te zien of het gewerkt heeft. Begin de volgende keer met die acties.\n\nDe toon: hard op de cijfers, zacht op de mensen. Het doel is leren wat je moet doen, niet uitzoeken wie de schuld heeft.',
+        'Wat je ziet misgaan: het overleg wordt een statusrondje waarin iedereen zijn cijfers voorleest; acties stapelen zich op zonder eigenaar; de leidinggevende beantwoordt zijn eigen vragen. Een goede gewoonte: de eigenaar van het cijfer praat eerst, de leidinggevende als laatste.\n\nIn de praktijk verschillen de meningen over openbaar of onder vier ogen: een rood cijfer op een teambord is open, maar de prestatie van één persoon bespreek je apart.\n\nEen scherpe vraag: “Wat spraken we de vorige keer af, en werkte het?”',
       ],
       example: {
         kind: 'faded',
@@ -294,7 +304,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je begeleidt het maandelijkse prestatieoverleg bij een onderdelenfabrikant. De leverbetrouwbaarheid van één waardestroom is gezakt van 92% naar 81%. De plantmanager draait zich waar iedereen bij is naar de teamleider: “Dit is onacceptabel. Wat ga je eraan doen?” De teamleider valt stil.',
+        scene: 'Je begeleidt het maandelijkse prestatieoverleg bij een onderdelenfabrikant. De leverbetrouwbaarheid van één waardestroom (value stream: alle stappen die één productfamilie doorloopt, van order tot verzending) is gezakt van 92% naar 81%. De plantmanager draait zich waar iedereen bij is naar de teamleider: “Dit is onacceptabel. Wat ga je eraan doen?” De teamleider valt stil.',
         ask: 'Wat zeg je als begeleider?',
         model: 'Ik zou rustig ingrijpen: “Zullen we eerst kijken wat de data laat zien? Dan komen we daarna bij de acties.” Ik zou de trend laten zien en vragen of de daling over de hele maand verspreid zit of in één week. Dan stel ik de teamleider open vragen over waar orders zijn blijven hangen. En ik zou afsluiten met een of twee acties, elk met een eigenaar en een datum, die we volgende maand als eerste bespreken.',
         rubric: [
@@ -318,8 +328,10 @@ export default {
       sayIt: 'Leg in 60 seconden uit hoe je een goed prestatiegesprek voert als een cijfer rood is geworden.',
       terms: [
         { term: 'Prestatiegesprek', def: 'Een kort, vast gesprek over de cijfers: feiten, oorzaak, afspraak.' },
-        { term: 'Afspraak', def: 'Een actie met een eigenaar, een datum en een manier om te checken of het gewerkt heeft.' },
+        { term: 'Open vraag', def: 'Een vraag waar je geen ja of nee op kunt zeggen, zoals “Waar bleven de klussen hangen?”' },
         { term: 'Eenmalige oorzaak', def: 'Een oorzaak die niet terugkomt, zoals een storm, in tegenstelling tot een patroon.' },
+        { term: 'Patroon', def: 'Een oorzaak die steeds terugkomt, zoals materiaal dat elke maandag te laat is.' },
+        { term: 'Afspraak', def: 'Een actie met een eigenaar, een datum en een manier om te checken of het gewerkt heeft.' },
       ],
     },
     {
@@ -334,21 +346,22 @@ export default {
         },
       ],
       teach: [
-        'De wet van Goodhart, zoals Marilyn Strathern hem formuleerde: zodra een maatstaf een doel wordt, is het geen goede maatstaf meer. Zet druk op één cijfer en mensen vinden de goedkoopste manier om het te bewegen, en dat is niet altijd de manier die jij bedoelde.',
-        'Bekende vormen: werk, kosten of fouten net buiten de gemeten periode of scope schuiven; de makkelijke klussen eruit pikken om een aantal te halen; de definitie veranderen van wat meetelt; en gewoon sjoemelen. Steve Kerr noemde het in 1975 “A belonen terwijl je op B hoopt”. Het schoolvoorbeeld is Wells Fargo, waar agressieve verkoopdoelen ertoe leidden dat medewerkers miljoenen rekeningen openden waar klanten nooit om hadden gevraagd.',
-        'Hoe je het herkent: het cijfer wordt beter, maar niks eromheen.\n\nPlotselinge sprongen vlak voor de deadline. Resultaten die zich net boven de grens ophopen. Gekoppelde cijfers die de verkeerde kant op gaan, zoals leverbetrouwbaarheid omhoog terwijl de klachten ook stijgen. En vraag het op de vloer: “Wat doen mensen om dit cijfer groen te krijgen?”',
-        'Voorkomen: zet indicatoren in paren, houd sommige cijfers alleen om van te leren, zonder bonus eraan, pas de definitie aan als je gaming ziet, en kijk naar het werk zelf, niet alleen naar het cijfer. Gaming komt meestal niet van slechte mensen. Het is een redelijk antwoord op een slecht ontworpen systeem, dus pak eerst het systeem aan.',
+        'De wet van Goodhart gaat terug op econoom Charles Goodhart (1975), die waarschuwde dat een statistiek die je gebruikt om te sturen zich anders gaat gedragen. De zin die iedereen citeert is van antropoloog Marilyn Strathern (1997): “Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer.”\n\nZet druk op één cijfer en mensen vinden de goedkoopste manier om het te bewegen. Dat is gaming: het cijfer laten bewegen zonder te verbeteren wat het moest laten zien.',
+        'Bekende vormen: werk, kosten of fouten net buiten de gemeten periode of scope schuiven; de krenten uit de pap halen (cherry-picking), dus de makkelijke klussen doen om een aantal te halen en de lastige laten liggen; de definitie veranderen van wat meetelt; en gewoon sjoemelen met de data.\n\nEen verkeerde prikkel (perverse incentive) is een beloning die het tegenovergestelde uitlokt van wat je wilde. Steve Kerr noemde het in 1975 “de dwaasheid van A belonen terwijl je op B hoopt”.',
+        'Het schoolvoorbeeld is Wells Fargo. Onder agressieve verkoopdoelen openden medewerkers rekeningen waar klanten nooit om hadden gevraagd: zo’n 1,5 miljoen betaal- en spaarrekeningen en 565.000 creditcards volgens de toezichthouders in 2016, later geschat op tot 3,5 miljoen rekeningen. De bank betaalde in 2016 185 miljoen dollar aan boetes en in 2020 3 miljard dollar.\n\nNiemand ontwierp fraude; de doelen en de druk maakten het de makkelijkste manier om goed voor de dag te komen.',
+        'Hoe je het herkent: het cijfer wordt beter, maar niks eromheen.\n\nPlotselinge sprongen vlak voor de deadline. Resultaten die zich net boven de grenswaarde ophopen, de lijn tussen rood en groen. Gekoppelde cijfers die de verkeerde kant op gaan, zoals leverbetrouwbaarheid omhoog terwijl de klachten ook stijgen. En vraag het op de vloer: “Wat doen mensen om dit cijfer groen te krijgen?”',
+        'Voorkomen: zet indicatoren in paren, houd sommige cijfers alleen om van te leren, zonder bonus eraan, pas de definitie aan als je gaming ziet, en kijk naar het werk zelf. Gaming komt meestal niet van slechte mensen; het is een redelijk antwoord op een slecht ontworpen systeem, dus pak eerst het systeem aan.\n\nDeskundigen discussiëren of bonussen überhaupt aan losse KPI’s moeten hangen. Een scherpe vraag: “Als je dit cijfer wilde halen zonder iets te verbeteren, hoe zou je dat doen?”',
       ],
       example: {
         kind: 'faded',
         text: 'Een netbeheerder koppelt een teambonus aan “aandeel storingen binnen 4 uur verholpen”. In één kwartaal gaat dat van 88% naar 97%. In hetzelfde kwartaal stijgt het aantal storingen dat binnen 30 dagen op hetzelfde adres terugkomt van 6 naar 14 per 100 verholpen storingen.',
         ask: 'Wat vermoed je, en wat zou je doen?',
-        reveal: 'Vermoed dat de klok wordt stilgezet met tijdelijke oplossingen: de stroom is snel terug, maar de echte reparatie blijft liggen of gebeurt niet. Check het, beschuldig niet: leg de verholpen storingen naast de vervolgwerkorders, en vraag ploegen wat ze doen om de 4 uur te halen. Pas dan het systeem aan: koppel het 4-uurscijfer aan terugkerende storingen binnen 30 dagen, en overweeg de bonus los te maken van dat ene cijfer.',
+        reveal: 'Vermoed dat de klok wordt stilgezet met tijdelijke oplossingen: de stroom is snel terug, maar de echte reparatie blijft liggen of gebeurt niet. Check het, beschuldig niet: leg de verholpen storingen naast de vervolgwerkorders (de klussen die worden aangemaakt om een reparatie af te maken), en vraag ploegen wat ze doen om de 4 uur te halen. Pas dan het systeem aan: koppel het 4-uurscijfer aan terugkerende storingen binnen 30 dagen, en overweeg de bonus los te maken van dat ene cijfer.',
       },
       said: 'Wat je hoort in projecten: “Dat cijfer is heel snel heel veel beter geworden. Wat moesten mensen doen om het groen te krijgen?”',
       recall: [
         {
-          q: 'Wat zegt de wet van Goodhart?',
+          q: 'Wat zegt de wet van Goodhart, in de formulering die de meeste mensen citeren?',
           options: ['Wat gemeten wordt, wordt gedaan', 'Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer', 'De meeste resultaten komen uit een paar oorzaken', 'Werk dijt uit tot de beschikbare tijd vol is'],
           answer: 'Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer',
           why: 'Druk op een cijfer stuurt gedrag naar het cijfer, en dan laat het niet meer zien wat het moest laten zien.',
@@ -370,7 +383,7 @@ export default {
           number: 8,
           tolerance: 0.1,
           unit: 'procentpunt',
-          why: 'Van 6% naar 14% is een stijging van 14 − 6 = 8 procentpunt.',
+          why: 'Van 6% naar 14% is een stijging van 14 − 6 = 8 procentpunt. (Relatief is dat een stijging van zo’n 133%, daarom zeg je “procentpunt” om duidelijk te zijn.)',
         },
       ],
       situation: {
@@ -397,9 +410,11 @@ export default {
       },
       sayIt: 'Leg een plantmanager in 60 seconden de wet van Goodhart uit, met één voorbeeld van hoe met een KPI geschoven kan worden.',
       terms: [
-        { term: 'Wet van Goodhart', def: 'Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer.' },
+        { term: 'Wet van Goodhart', def: 'Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer (Goodhart 1975, in de formulering van Strathern uit 1997).' },
         { term: 'Gaming', def: 'Een cijfer laten bewegen op een manier die niet verbetert wat het moest laten zien.' },
+        { term: 'Krenten uit de pap halen', def: 'De makkelijke gevallen doen om een aantal te halen, en de lastige laten liggen.' },
         { term: 'Verkeerde prikkel', def: 'Een beloning die gedrag uitlokt dat het tegenovergestelde is van wat bedoeld was.' },
+        { term: 'Grenswaarde', def: 'De lijn tussen rood en groen bij een KPI; resultaten die zich net daarboven ophopen zijn een waarschuwing.' },
       ],
     },
     {
@@ -410,14 +425,15 @@ export default {
           q: 'Wat is zes maanden nadat een consultant is vertrokken de meest voorkomende reden dat een nieuw prestatieoverleg doodbloedt?',
           options: ['De KPI’s bleken verkeerd', 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert zodra de uitnodiging van de consultant wegvalt', 'De softwarelicentie verloopt', 'De doelen waren te laag'],
           answer: 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert zodra de uitnodiging van de consultant wegvalt',
-          why: 'Een overleg dat een buitenstaander draait, stopt als de buitenstaander stopt. Eigenaarschap bij een lijnmanager houdt het in leven.',
+          why: 'Een overleg dat een buitenstaander draait, stopt als de buitenstaander stopt. Eigenaarschap bij een lijnmanager, iemand die het dagelijkse werk aanstuurt, houdt het in leven.',
         },
       ],
       teach: [
-        'Bouw een keten van korte overleggen die elkaar voeden: dagelijks of wekelijks op teamniveau, zo’n 15 minuten aan het bord; wekelijks of tweewekelijks op afdelingsniveau; maandelijks voor het management. Dezelfde definities van onder tot boven. Problemen die een team niet kan oplossen gaan een niveau omhoog, besluiten komen weer terug.',
-        'Laat de frequentie passen bij het cijfer.\n\nDagelijks voor wat dagelijks verandert, zoals gestarte klussen of storingen. Maandelijks voor trage cijfers, zoals kosten per aansluiting of klanttevredenheid. Een traag cijfer elke dag bekijken levert alleen ruis en frustratie op.',
-        'Een vaste, korte agenda: acties van de vorige keer, de cijfers tegen het doel, een of twee problemen in de diepte, nieuwe acties. Zelfde tijd, zelfde plek.\n\nMaak het zichtbaar, zodat iedereen die langsloopt ziet waar het team staat. Een actielijst waar de volgende keer niemand naar kijkt, is hoe een ritme doodgaat.',
-        'Ontwerp vanaf dag één voor je vertrek. Een lijnmanager zit vanaf het begin voor; jij coacht vanaf de zijlijn en stapt dan terug.\n\nDe data ververst zonder jou: geen spreadsheet die alleen jij kunt bijwerken. Laat een beschrijving van één pagina achter: wie, wanneer, welke cijfers en hoe problemen omhoog gaan. Check na je vertrek of de overleggen nog plaatsvinden.',
+        'Bouw een overlegstructuur (review cascade): een keten van korte overleggen die elkaar voeden. Dagelijks of wekelijks op teamniveau, zo’n 15 minuten staand aan het bord; wekelijks of tweewekelijks op afdelingsniveau; maandelijks voor het management. Dezelfde definities van onder tot boven.\n\nEscaleren verbindt de niveaus: een probleem dat een team niet kan oplossen gaat een niveau omhoog, met een datum waarop er een besluit terugkomt.',
+        'Laat de frequentie passen bij het cijfer.\n\nDagelijks voor wat dagelijks verandert, zoals gestarte klussen of storingen. Maandelijks voor trage cijfers, zoals kosten per aansluiting of klanttevredenheid. Een traag cijfer elke dag bekijken levert alleen ruis en frustratie op.\n\nEen vuistregel: bekijk een cijfer ongeveer zo vaak als het echt kan veranderen en iemand erop kan handelen.',
+        'Werk met een vaste agenda, elke keer dezelfde korte volgorde: acties van de vorige keer, de cijfers tegen het doel, een of twee problemen in de diepte, nieuwe acties. Zelfde tijd, zelfde plek.\n\nHoud één actielijst bij: wie doet wat voor wanneer. Maak het zichtbaar, zodat iedereen die langsloopt ziet waar het team staat. Een actielijst waar de volgende keer niemand naar kijkt, is hoe een ritme doodgaat.',
+        'Ontwerp vanaf dag één voor je vertrek. Een lijnmanager zit vanaf het begin voor; jij coacht vanaf de zijlijn en stapt dan terug. Die geleidelijke overdracht aan de mensen die het werk draaien, is het echte resultaat.\n\nDe data ververst zonder jou: geen spreadsheet die alleen jij kunt bijwerken. Laat een beschrijving van één pagina achter: wie, wanneer, welke cijfers en hoe problemen omhoog gaan. Check na je vertrek of de overleggen nog plaatsvinden.',
+        'Wat je ziet als het misgaat: overleggen die in drukke weken “één keertje” vervallen, en dan voorgoed; dezelfde actie die zes weken wordt doorgeschoven; een bord dat één enthousiasteling bijhoudt, die dan op vakantie gaat.\n\nReken de kosten eerlijk uit: een dagelijks overleg van 15 minuten met een team van acht kost 10 manuren per week, dus het moet meer opleveren dan dat.\n\nEen scherpe vraag aan de eigenaar: “Als ik volgende week niet kom, gaat dit overleg dan door?”',
       ],
       example: {
         kind: 'faded',
@@ -456,7 +472,7 @@ export default {
       situation: {
         scene: 'Bij een netbeheerder zegt de operationeel directeur in je laatste maand: “Dit werkt goed. Als jij weg bent, gaan we gewoon door. Stuur ons de maandanalyse maar vanuit jullie kant, zoals je nu ook doet.”',
         ask: 'Wat antwoord je?',
-        model: 'Ik zou hem bedanken en zeggen dat als de analyse van mij komt, het overleg van mij afhangt. Ik zou voorstellen dat een van zijn analisten het nu al overneemt, terwijl ik er nog ben: twee weken samen, dan doet zij het alleen en kijk ik mee. En we spreken af dat de afdelingshoofden hun eigen overleg blijven voorzitten, en dat hij en ik over drie maanden even bijpraten.',
+        model: 'Ik zou hem bedanken en zeggen dat als de analyse van mij komt, het overleg van mij afhangt. Ik zou voorstellen dat een van zijn analisten het nu al overneemt, terwijl ik er nog ben: de komende twee maandanalyses doen we samen, daarna doet zij het alleen en kijk ik mee. En we spreken af dat de afdelingshoofden hun eigen overleg blijven voorzitten, en dat hij en ik over drie maanden even bijpraten.',
         rubric: [
           'Benoemt de afhankelijkheid van de consultant',
           'Stelt voor het werk naar iemand in de lijn te verplaatsen terwijl de consultant er nog is',
@@ -479,6 +495,8 @@ export default {
       terms: [
         { term: 'Overlegstructuur', def: 'Een keten van korte overleggen op team-, afdelings- en managementniveau die elkaar voeden.' },
         { term: 'Escaleren', def: 'Een probleem dat een team niet kan oplossen een niveau hoger leggen, met een besluit dat terugkomt.' },
+        { term: 'Vaste agenda', def: 'Elk overleg dezelfde korte volgorde: acties van vorige keer, cijfers tegen het doel, problemen, nieuwe acties.' },
+        { term: 'Actielijst', def: 'Eén zichtbare lijst van wie wat voor wanneer doet, die elk overleg als eerste opengaat.' },
         { term: 'Overdracht', def: 'Het eigenaarschap van een overleg in stappen naar de lijn brengen, terwijl de consultant nog kan coachen.' },
       ],
     },
