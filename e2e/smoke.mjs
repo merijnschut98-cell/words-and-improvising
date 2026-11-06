@@ -2259,7 +2259,7 @@ async function topicContext(seed = {}) {
   const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await routeModuleEntry(c, 'eng.machining', MACHINING_TOPIC_FIXTURE);
   const p = await c.newPage();
-  p.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message}`));
+  p.on('pageerror', (e) => errors.push(`[${currentStep}] ${e.message} frames=${p.frames().map((f) => f.url()).join(' ')}`));
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   await p.goto(BASE);
   await p.evaluate(async (s) => {
