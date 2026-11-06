@@ -13,16 +13,17 @@ export default {
         },
       ],
       teach: [
-        'A project delivers an output: a readiness check, a rebuilt line, a new planning tool. A programme delivers an outcome that needs several projects together: for example, cancelled grid jobs down from 14% to 8%, which needs a readiness check, a new materials process and a planning-tool change. Test: if you can drop one project and the goal still holds, it belongs in the portfolio, not in this programme.',
-        'Dependencies are the real work of a programme. Map them early: project B needs A’s data definition by week 10; C needs the same two planners as B in Q2. Keep one list with owner, date and what happens if it slips.\n\nThe maths is harsh: four projects that are each 90% likely to deliver on time give only a 66% chance that all four do.',
-        'The programme board: the sponsor, the project owners, the line manager who owns the outcome, and finance if money moves between projects. It meets monthly and decides on the seams: sequencing, shared people, moving scope between projects.\n\nProject decisions stay in the project steering groups. If the board is discussing one project’s test plan, it is a project steering group with too many people.',
-        'As programme lead you own the outcome story, the dependency list and the rhythm. You do not run the projects.\n\nA useful test of yourself: can you explain in two minutes, with numbers, how the projects add up to the goal? If you can’t, the board can’t either, and they will start managing each project separately.',
+        'A project delivers an output: a readiness check, a rebuilt line, a new planning tool. A programme is a group of projects run together because they deliver one outcome none of them reaches alone: for example, cancelled grid jobs down from 14% to 8%, which needs a readiness check, a new materials process and a planning-tool change.\n\nTest: if you can drop one project and the goal still holds, it belongs in the portfolio, the full list of projects competing for the same money and people, not in this programme.',
+        'A dependency is something one project needs from another by a date: B needs A’s data definition by week 10; C needs the same two planners as B in Q2. Keep one list with owner, date and what happens if it slips.\n\nThe maths is harsh: four independent projects that are each 90% likely to deliver on time give only a 66% chance that all four do (0.9 × 0.9 × 0.9 × 0.9 = 0.66). Shared people make it worse.',
+        'The programme board: the sponsor, the project owners, the line manager who owns the outcome, and finance if money moves between projects. It meets monthly and decides on the seams: sequencing, shared people, moving scope (what is in or out of a project) between projects.\n\nProject decisions stay in the project steering groups. If the board spends its hour on one project’s test plan, it is a steering group with too many people.',
+        'Watch for watermelon reporting: green on the outside, red inside. Each project reports green against its own plan while the shared goal doesn’t move, because nobody reports on the seams.\n\nThe fix: report the outcome number itself every month, next to the project statuses. Experts disagree on how much power a programme lead needs: some say control of the project budgets, others say a clear outcome and a strong board are enough.',
+        'As programme lead you own the outcome story, the dependency list and the rhythm. You do not run the projects.\n\nA useful test of yourself: can you explain in two minutes, with numbers, how the projects add up to the goal? If you can’t, the board can’t either, and they will start managing each project separately. The sharp question for any programme: which number moves, by how much, and which project moves which part?',
       ],
       example: {
         kind: 'faded',
         text: 'Vantage is brought in by a regional director at a grid operator. Three projects started separately in her region: a readiness check for planned jobs (team A), a new materials-kit process (team B) and a planning-tool upgrade (IT).\n\nAll three report green. Cancellations are still at 14%; her target is 8%.\n\nYou notice the readiness check reads material data that team B is redesigning, and the IT release in Q3 changes the field the readiness check uses.',
         ask: 'What would you do next?',
-        reveal: 'Make it a programme with one number: cancellations from 14% to 8%. Put the dependencies on one page: the material-data definition, the tool field change, and the planners all three teams need. Show the director that each project is green while the seams are red.\n\nPropose: team B owns the material-data definition and freezes it by week 6; IT tests its Q3 release against the readiness check before go-live; a monthly programme board with her, the three project owners and the planning manager. Report the outcome monthly, with an estimate of what each project contributes.',
+        reveal: 'Make it a programme with one number: cancellations from 14% to 8%. Put the dependencies on one page: the material-data definition, the tool field change, and the planners all three teams need. Show the director that each project is green while the seams are red.\n\nPropose: team B owns the material-data definition and freezes it by week 6; IT tests its Q3 release against the readiness check before go-live, the day it goes into use; a monthly programme board with her, the three project owners and the planning manager. Report the outcome monthly, with an estimate of what each project contributes.',
       },
       said: 'What you hear in projects: “Every project is green, so why isn’t the number moving?”',
       recall: [
@@ -47,13 +48,13 @@ export default {
         },
         {
           q: 'What does each line of a dependency list need?',
-          options: ['An owner, a date, and what happens if it slips', 'Only the items on the critical path', 'The budget of both projects', 'The names of both teams'],
+          options: ['An owner, a date, and what happens if it slips', 'Only the items on the critical path (the chain of tasks that sets the end date)', 'The budget of both projects', 'The names of both teams'],
           answer: 'An owner, a date, and what happens if it slips',
           why: 'Without an owner and a consequence, a dependency is just an observation.',
         },
       ],
       situation: {
-        scene: 'You’re at a metal parts manufacturer. The COO has three improvement projects running, on OEE, on planning and on maintenance, and asks Vantage: “Can you run these as a programme? I want one story for the board.”',
+        scene: 'You’re at a metal parts manufacturer. The COO (chief operating officer) has three improvement projects running, on OEE (how much of the planned time the machines make good parts), on planning and on maintenance, and asks Vantage: “Can you run these as a programme? I want one story for the board.”',
         ask: 'What do you set up in the first two weeks?',
         model: 'First I’d agree the single outcome with the COO, for example on-time delivery from 82% to 92%, and how each project contributes to it. Then a one-page dependency map with owners and dates, and a monthly programme board that only takes decisions on the seams. I’d tell the project leads plainly: “You keep running your projects; I look after what passes between them.”',
         rubric: [
@@ -77,8 +78,10 @@ export default {
       sayIt: 'Explain to a client operations director in 60 seconds why three green projects can still miss the goal.',
       terms: [
         { term: 'Programme', def: 'Several projects managed together because they deliver one shared outcome.' },
+        { term: 'Portfolio', def: 'All the projects that compete for the same money and people, ranked and managed as one list.' },
         { term: 'Dependency', def: 'Something one project needs from another, by a date, or it slips.' },
         { term: 'Programme board', def: 'The group that decides on sequencing, shared people and scope between projects.' },
+        { term: 'Watermelon reporting', def: 'Green on the outside, red inside: every project reports green while the shared goal is missed.' },
       ],
     },
     {
@@ -93,14 +96,15 @@ export default {
         },
       ],
       teach: [
-        'Score each project on four things: value (euros or a KPI moved per year), effort (days from the scarce people), risk (the chance it doesn’t deliver) and fit with strategy. Keep it rough; a 1–5 scale is fine.\n\nThe point is not precision. It is to move the conversation from “everything is important” to “this before that”.',
-        'Value per scarce day settles most debates. Project A: €300k a year for 120 days of the two process engineers, so €2.5k per day. Project B: €150k for 30 days, so €5k per day. B goes first, although A looks bigger.\n\nAdjust for risk: €300k at 50% confidence counts as €150k.',
-        'Capacity is the hard line. Count the scarce people, not the headcount. Two process engineers with 120 project days each give 240 days.\n\nRank the list and draw the line where the running total reaches 240. Everything below the line waits. Twelve projects at half speed deliver less than six at full speed, because switching and waiting eat the time.',
-        'Saying no at portfolio level is never a bare no. It is “not now, and here is what it would push out.”\n\nScript: “We can start this. With the people we have, it means project B stops or slips three months. Which do you prefer?” The choice goes to the person who owns both. Keep a visible waiting list, so “not now” doesn’t become “never”.',
+        'Score each project on four things: value (euros, or a KPI, a key performance indicator, moved per year), effort (days from the scarce people), risk (the chance it doesn’t deliver) and fit with strategy. Keep it rough; a 1–5 scale is fine.\n\nThe point is not precision but moving the conversation from “everything is important” to “this before that”. Experts argue about weighted scoring models: they look objective, but whoever sets the weights sets the outcome.',
+        'The bottleneck is the resource that limits how much gets done: usually a few scarce experts, not money. So value per scarce day settles most debates. Project A: €300k a year for 120 days of the two process engineers, so €2.5k per day. Project B: €150k for 30 days, so €5k per day. B goes first, although A looks bigger.\n\nThen use the risk-adjusted value: €300k at 50% confidence counts as €150k.',
+        'Capacity is the hard line. Count the scarce people, not the headcount. Two process engineers with 120 project days each give 240 days.\n\nRank the list and draw the capacity line where the running total reaches 240. Everything below the line waits. The typical failure: the line is drawn in January and quietly ignored by March, because every new request “only needs a few days”.',
+        'Work in progress is everything started and not yet finished. Little’s law (1961), from queueing theory, the maths of queues: average lead time (start to finish) = work in progress ÷ throughput (projects finished per period). If a plant finishes three projects a quarter, twelve open projects take about four quarters each; six open projects take about two.\n\nIn practice it is worse, because switching and waiting also cut throughput. So twelve projects at half speed deliver less than six at full speed.',
+        'Saying no at portfolio level is never a bare no. It is “not now, and here is what it would push out.”\n\n“We can start this. With the people we have, it means project B stops or slips three months. Which do you prefer?” The choice goes to the person who owns both. Keep a visible waiting list, so “not now” doesn’t become “never”. A sharp question for any new request: what do we stop to make room for this?',
       ],
       example: {
         kind: 'faded',
-        text: 'Management team of a food producer. Two process engineers have 240 project days between them this year.\n\nOn the table: A, energy saving, €200k a year, 80 days. B, changeover reduction, €180k, 40 days. C, a new MES, €400k but only 50% confidence, 200 days.\n\nD, packaging waste, €90k, 30 days. E, the plant director’s dashboard, value not stated, 40 days. Everyone wants all five.',
+        text: 'Management team (MT) of a food producer. Two process engineers have 240 project days between them this year.\n\nOn the table: A, energy saving, €200k a year, 80 days. B, changeover reduction, €180k, 40 days. C, a new MES (manufacturing execution system: software that steers and records the production orders on the floor), €400k but only 50% confidence, 200 days.\n\nD, packaging waste, €90k, 30 days. E, the plant director’s dashboard, value not stated, 40 days. Everyone wants all five.',
         ask: 'What would you advise?',
         reveal: 'Value per engineer day: B €4.5k, D €3k, A €2.5k, C €1k after the 50% risk adjustment, E unknown. B, D and A together take 150 days: start those.\n\nC does not fit and is the most uncertain, so propose a 60-day first phase that tests the big assumption before committing 200 days. That makes 210 days and leaves 30 as a buffer.\n\nFor E, ask the plant director to put a number on it: “If it beats €2.5k per day, it goes ahead of A.” Then the MT chooses, not you.',
       },
@@ -133,7 +137,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a packaging plant’s MT. The portfolio is ranked and the line is drawn. The plant director says: “My project goes in this quarter. It’s strategic.” It sits below the line.',
+        scene: 'You’re in the management team (MT) meeting of a packaging plant. The portfolio is ranked and the line is drawn. The plant director says: “My project goes in this quarter. It’s strategic.” It sits below the line.',
         ask: 'What do you say?',
         model: '“It may well be. Then let’s make it visible. If it goes in now, the changeover project, worth about €4k per engineer day, slips to Q3. Can you put a number on yours, so the MT can compare?” If he still insists, the MT decides with both numbers on the table. I don’t argue strategy with him; I show what the choice costs.',
         rubric: [
@@ -156,9 +160,11 @@ export default {
       },
       sayIt: 'Explain to an MT in 60 seconds why they should start fewer projects to finish more.',
       terms: [
+        { term: 'Bottleneck', def: 'The resource that limits how much gets done; in a portfolio, usually a few scarce experts.' },
         { term: 'Value per scarce day', def: 'Yearly value divided by the days of the bottleneck people a project needs.' },
         { term: 'Risk-adjusted value', def: 'Expected value times your confidence that it will actually be delivered.' },
         { term: 'Capacity line', def: 'The point in the ranked list where the scarce people’s days run out.' },
+        { term: 'Work in progress', def: 'Everything started and not yet finished; more of it means longer lead times (Little’s law).' },
       ],
     },
     {
@@ -166,17 +172,18 @@ export default {
       title: 'Governance that decides',
       pre: [
         {
-          q: 'A steering group of ten meets monthly. The discussions are good, but decisions keep ending with “let’s take it offline”. What is the most likely cause?',
+          q: 'A steering group of ten, the managers who oversee the project, meets monthly. The discussions are good, but decisions keep ending with “let’s take it offline”, meaning later, outside the meeting. What is the most likely cause?',
           options: ['They meet too rarely', 'The status reports are too short', 'The meeting is at the wrong time of day', 'Nobody knows who has the right to decide what'],
           answer: 'Nobody knows who has the right to decide what',
           why: 'Groups talk instead of decide when decision rights were never made explicit.',
         },
       ],
       teach: [
-        'Governance is one question, answered in advance: who decides what? Write decision rights for scope, budget, timeline and people.\n\nFor example: the project lead decides within 10% on budget and two weeks on timeline; the steering group decides beyond that; the board decides beyond 20% or on anything that touches strategy. One page, signed off by the sponsor.',
-        'A steering group that decides has five to seven people, each able to commit their department.\n\nThe agenda lists decisions, not updates. Papers go out three days before. The minutes are a decision log: what was decided, by whom, by when.\n\nIf there is no decision on the agenda, cancel the meeting and send an e-mail.',
-        'Escalation lines say in advance what goes up, how fast and to whom. A good rule: escalate when a tolerance is breached, or will be within two weeks, and bring options with a recommendation.\n\nEscalating is not failing; it is the system working. Escalating late is the failure.',
-        'The people side: a member who never decides often lacks a mandate from his own boss. Ask him privately: “When this comes up, can you decide for your department, or do you need to check first?” Then either help him get the mandate, or invite the person who has it.',
+        'Governance is the set of agreements on who decides what, made in advance. Write down decision rights for scope, budget, timeline and people.\n\nFor example: the project lead decides within 10% on budget and two weeks on timeline; the steering group decides beyond that; the board decides beyond 20% or on anything that touches strategy. One page, signed off by the sponsor. Those margins are tolerances; PRINCE2, a widely used project method, calls this management by exception.',
+        'A steering group that decides has five to seven people, each able to commit their department.\n\nThe agenda lists decisions, not updates. Papers go out three days before. The minutes are a decision log: what was decided, by whom, by when.\n\nIf there is no decision on the agenda, cancel the meeting and send an e-mail. The failure you see most: a 15-slide status update, good discussion, and “let’s take it offline”, meaning nobody decides.',
+        'Escalation means passing a problem up to the level that may decide on it. Escalation lines say in advance what goes up, how fast and to whom. A good rule: escalate when a tolerance is breached, or will be within two weeks, and bring options with a recommendation.\n\nEscalating is not failing; it is the system working. Escalating late is the failure.',
+        'The people side: a member who never decides often lacks a mandate, the authority from his own boss to commit his department. Ask him privately: “When this comes up, can you decide for your department, or do you need to check first?” Then either help him get the mandate, or invite the person who has it.',
+        'Experts argue about size and formality. Large groups feel inclusive but rarely decide. A RACI chart (who is Responsible, Accountable, Consulted and Informed) helps, but one that nobody reads changes nothing.\n\nWhat you see when governance works: short meetings, decisions in the first half hour, and project leads who know without asking what they may decide themselves. The sharp question to open any steering group: “Which decisions do we need from this group today?”',
       ],
       example: {
         kind: 'faded',
@@ -235,9 +242,12 @@ export default {
       },
       sayIt: 'Explain to a new sponsor in 60 seconds what makes a steering group decide instead of discuss.',
       terms: [
+        { term: 'Governance', def: 'The agreements, made in advance, on who decides what and how problems go up.' },
         { term: 'Decision rights', def: 'An agreed list of who decides what, on scope, budget, timeline and people.' },
         { term: 'Tolerance', def: 'The margin within which someone may decide without escalating.' },
         { term: 'Decision log', def: 'A running record of decisions: what, who, by when.' },
+        { term: 'Escalation', def: 'Passing a problem up to the level that may decide on it, ideally with options and a recommendation.' },
+        { term: 'Mandate', def: 'The authority, given by your own boss, to commit your department in a decision.' },
       ],
     },
     {
@@ -246,20 +256,21 @@ export default {
       pre: [
         {
           q: 'When are most project benefits lost?',
-          options: ['During the design', 'In the year after the project closes', 'During the pilot', 'When the business case is written'],
+          options: ['During the design', 'In the year after the project closes', 'During the pilot', 'When the business case (costs and benefits on paper, written to get approval) is written'],
           answer: 'In the year after the project closes',
           why: 'The team leaves, attention moves, and the old way creeps back while nobody watches the number.',
         },
       ],
       teach: [
-        'Output, outcome, benefit.\n\nOutput: the readiness check is live. Outcome: cancellations drop from 14% to 8%. Benefit: about 1,200 fewer wasted crew-days a year, worth €900k at €750 per crew-day.\n\nProjects deliver outputs; the line owns outcomes and benefits. Name the benefit owner before the project starts: a manager whose budget or KPI carries it, not the project lead.',
-        'Agree the baseline and the measure before you start.\n\nHow do you count a cancellation? Over which period? Are storm weeks in or out?\n\nWrite it down and get the controller to agree. Without an agreed baseline, every result becomes an argument about definitions instead of a conversation about performance.',
-        'Plan benefits tracking for 6–12 months after go-live. The owner reviews the measure monthly; there is a check-in at 3 and 6 months; and there is a trigger: if the number slips past an agreed level two months in a row, the owner acts. Put this in the close-out plan, with names and dates, or it will not happen.',
-        'Be honest about attribution. If cancellations dropped while a new contractor also started, you can’t claim it all.\n\nSay “we estimate 60–70% comes from the readiness check”, and show why. A board trusts a modest number it can defend more than a big one it can’t.',
+        'Output, outcome, benefit.\n\nOutput: what the project delivers, such as the readiness check going live. Outcome: the change in performance, such as cancellations dropping from 14% to 8%. Benefit: the measurable gain for the organisation, such as about 1,200 fewer wasted crew-days a year, worth €900k at €750 per crew-day.\n\nProjects deliver outputs; the line, the managers who run daily operations, owns outcomes and benefits.',
+        'Name the benefit owner before the project starts: a manager whose budget or KPI (key performance indicator) carries it, not the project lead, who leaves.\n\nAgree the baseline, the starting value and exactly how it is measured, before you start. How do you count a cancellation? Over which period? Are storm weeks in or out? Write it down and get the controller, the finance person who owns the numbers, to agree. Without it, every result becomes an argument about definitions.',
+        'Plan benefits tracking for 6–12 months after go-live, the day the change goes into use. The owner reviews the measure monthly; there is a check-in at 3 and 6 months; and there is a trigger: if the number slips past an agreed level two months in a row, the owner acts. Put this in the close-out plan, with names and dates, or it will not happen.',
+        'Be honest about attribution: how much of a change you can credit to your project. If cancellations dropped while a new contractor also started, you can’t claim it all.\n\nSay “we estimate 60–70% comes from the readiness check”, and show why. The cleanest evidence is a comparison: a region without the check over the same months. A board trusts a modest number it can defend more than a big one it can’t.',
+        'Why boards are sceptical: Bent Flyvbjerg’s studies of large projects found that benefits often fall short, sometimes far short. He links this to optimism bias, expecting things to go better than they do, and to strategic misrepresentation: business cases are written to get approval.\n\nWhat you see when benefits leak: the project closes, the team moves on, and the old way creeps back within months. The sharp question at every close-out: “Who looks at this number next month, and what do they do if it slips?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A changeover project at a manufacturer closed in March. Average changeover went from 90 to 45 minutes; the business case promised €300k a year.\n\nIn September the CFO asks where the €300k is. You find two things: changeovers have crept back to 70 minutes, and the capacity that was freed was never used, because sales did not add volume and the weekend shift kept running.',
+        text: 'A changeover project at a manufacturer closed in March. Average changeover went from 90 to 45 minutes; the business case promised €300k a year.\n\nIn September the CFO (chief financial officer) asks where the €300k is. You find two things: changeovers have crept back to 70 minutes, and the capacity that was freed was never used, because sales did not add volume and the weekend shift kept running.',
         ask: 'What would you do next?',
         reveal: 'Separate the two problems. First, the outcome slipped: that is for the operations manager, who restores the standard with a short audit and a monthly review. Second, even at 45 minutes there was no benefit, because freed capacity is only money when someone turns it into money.\n\nPut the choice to the MT: cut the weekend shift, or sell more volume. Each has a number.\n\nThen name one benefit owner, agree the measure with the controller, and book the €300k only once that decision is made. Tell the CFO this directly; don’t defend the old business case.',
       },
@@ -315,9 +326,12 @@ export default {
       },
       sayIt: 'Explain to a project lead in 60 seconds the difference between output, outcome and benefit, with one example.',
       terms: [
+        { term: 'Output', def: 'What a project delivers, such as a tool going live; it says nothing yet about performance.' },
         { term: 'Outcome', def: 'The change in performance that the outputs are meant to cause.' },
+        { term: 'Benefit', def: 'The measurable gain for the organisation, usually in money, that the outcome brings.' },
         { term: 'Benefit owner', def: 'The line manager accountable for realising the benefit after the project.' },
         { term: 'Baseline', def: 'The agreed starting value and the exact way it is measured.' },
+        { term: 'Attribution', def: 'How much of a measured change you can credit to your project, and why.' },
       ],
     },
     {
@@ -332,16 +346,17 @@ export default {
         },
       ],
       teach: [
-        'At most clients the problem is not total hours but the same five people: the senior process engineer, the planner who knows the system, the one data analyst. Build a simple matrix: names down, projects across, days per month in each cell, and their real available days at the bottom. Overbooked rows are your conflicts.',
-        'Real availability is lower than people think. Of about 260 weekdays, holidays, public holidays, sickness and training take roughly 50, and meetings and admin take more. About 190 real days remain.\n\nIf the day job takes 70%, there are 57 project days a year: about five a month. Booking that person “two days a week” on your project is planning fiction.',
-        'Switching costs. Someone on three or more projects loses a large part of the week to context switching and waiting, and each project waits for him, so lead times grow. Better: fewer projects in parallel, each with a real block of time, such as Tuesdays and Thursdays on project A.',
-        'Make trade-offs visible, then let the owner decide. Show the matrix with the red cells and two options: “Option 1: Jan works on A and B, C starts in May. Option 2: a contractor does C, 40 days at €1,000, so €40k.”\n\nDon’t solve conflicts quietly by asking people to work evenings. It hides the real cost and burns out your best people.',
+        'At most clients the problem is not total hours but the same five people: the senior process engineer, the planner who knows the system, the one data analyst. Build a capacity matrix: names down, projects across, days per month in each cell, and their real available days at the bottom.\n\nOverbooked rows are your resource conflicts: more days promised to projects than the person has. Often you find two or three red rows, and they explain most of the delay.',
+        'Real availability is lower than people think. Of about 260 weekdays a year, holidays, public holidays, sickness and training take roughly 50, and general meetings and admin about 20 more. About 190 real days remain.\n\nIf the day job takes 70%, there are 57 project days a year: about five a month. Booking that person “two days a week” on your project is planning fiction.',
+        'Context switching is the time lost when someone jumps between projects and has to pick up the thread again. Gerald Weinberg’s rule of thumb (1992): with two projects you lose about 20% of your time to switching, with three about 40%, with five about 75%. It is an estimate, not a measurement, but people recognise it.\n\nAnd each project waits for that person, so lead times, the calendar time from start to finish, grow.',
+        'Better: fewer projects in parallel, each with a real block of time, such as Tuesdays and Thursdays on project A.\n\nMake trade-offs visible, then let the owner decide. Show the matrix with the red cells and two options: “Option 1: Jan works on A and B, C starts in May. Option 2: a contractor does C, 40 days at €1,000, so €40k.”',
+        'Don’t solve conflicts quietly by asking people to work evenings. It hides the real cost and burns out your best people.\n\nWhat you hear when it is going wrong: “basically committed”, “she’ll manage”, “just borrow him for a few days”. Experts differ on how full to plan: some book scarce people to 80% and keep 20% for surprises, others plan only a quarter ahead. The sharp question: “Whose days are we counting on, and has she seen this plan?”',
       ],
       example: {
         kind: 'faded',
         text: 'At a grid operator, the senior planner Fatima is named on four projects, including yours. Each project lead assumed one day a week from her. Her manager says she has about four project days a month next to her normal planning work.\n\nYour project’s pilot needs her for 8 days in March. Two other leads are planning on her in March as well.',
         ask: 'What would you do next?',
-        reveal: 'Four projects at one day a week is about 16 days a month; she has 4. Build the matrix for her and the two or three other scarce people, and take it to the person who owns all four projects, not to Fatima.\n\nBring options: “March goes to the pilot, the others move her work to April and May; or the regional office lends a second planner for 10 days; or the pilot moves a month.” Ask Fatima beforehand what she thinks is realistic; she knows. Then plan on the decision, not on hope.',
+        reveal: 'Four projects at one day a week is four days a week, about 16 to 17 days a month; she has 4. Build the matrix for her and the two or three other scarce people, and take it to the person who owns all four projects, not to Fatima.\n\nBring options: “March goes to the pilot, the others move her work to April and May; or the regional office lends a second planner for 10 days; or the pilot moves a month.” Ask Fatima beforehand what she thinks is realistic; she knows. Then plan on the decision, not on hope.',
       },
       said: 'What you hear in projects: “Can’t we just borrow Fatima for a few days?”',
       recall: [
@@ -396,8 +411,10 @@ export default {
       sayIt: 'Explain to a project lead in 60 seconds why “two days a week of Fatima” is probably not real.',
       terms: [
         { term: 'Capacity matrix', def: 'Names down, projects across, days per cell, with real availability at the bottom.' },
-        { term: 'Real availability', def: 'Days left for projects after holidays, sickness, training and the day job.' },
+        { term: 'Resource conflict', def: 'More days promised to projects than a person actually has.' },
+        { term: 'Real availability', def: 'Days left for projects after holidays, sickness, training, meetings and the day job.' },
         { term: 'Context switching', def: 'Time lost when someone jumps between projects and has to pick up the thread again.' },
+        { term: 'Lead time', def: 'The calendar time from start to finish, including all the waiting.' },
       ],
     },
     {
@@ -405,23 +422,24 @@ export default {
       title: 'In front of the board',
       pre: [
         {
-          q: 'You have 20 minutes on the MT agenda. When do you say which decision you need?',
+          q: 'You have 20 minutes on the management team (MT) agenda. When do you say which decision you need?',
           options: ['At the end, after the evidence', 'Only if they ask', 'In the first minute', 'In an e-mail afterwards'],
           answer: 'In the first minute',
           why: 'Boards listen differently once they know what they are being asked to decide.',
         },
       ],
       teach: [
-        'One page, answer first. The top line is the decision you need.\n\nThen: why now, two or three options with cost, benefit and risk each, your recommendation, and what happens if they don’t decide. Detail goes in an appendix. A board reads the first paragraph and the numbers; write for that.',
-        'Twenty minutes on the agenda means about five minutes of talking and fifteen of discussion. Open with: “I need one decision today: X. I recommend Y, for three reasons.” Don’t walk through twenty slides; they will interrupt you at slide three anyway.',
-        'Pre-wire. The week before, walk the paper through one-on-one with the two or three people whose view carries weight. Nothing in the meeting should surprise them.\n\nMost board decisions are made before the meeting; the meeting confirms them. If someone will oppose, you want to know now, not in the room.',
-        'The tough question. Let it finish, repeat the core, answer in one sentence, then give the evidence.\n\nIf you don’t know: “I don’t have that number here; you’ll have it by Thursday.” If it hides an objection, such as “Is this really the priority?”, name it: “You’re asking whether this beats the ERP upgrade. Here’s the comparison.”\n\nNever argue with the chair in the room.',
+        'One page, answer first: the top line is the decision you need. This is the pyramid principle, which Barbara Minto developed at McKinsey: the conclusion first, then the arguments, then the evidence.\n\nA board paper then gives: why now, two or three options with cost, benefit and risk each, your recommendation, and what happens if they don’t decide. Detail goes in an appendix. A board reads the first paragraph and the numbers; write for that.',
+        'Twenty minutes on the agenda means about five minutes of talking and fifteen of discussion. Open with: “I need one decision today: X. I recommend Y, for three reasons.” Don’t walk through twenty slides; they will interrupt you at slide three anyway.\n\nThe typical failure: the background takes ten minutes, the ask comes in minute eighteen, and the chair says “let’s come back to this next month.”',
+        'Pre-wiring: the week before, walk the paper through one-on-one with the two or three people whose view carries weight. Nothing in the meeting should surprise them.\n\nMany board decisions are in effect made before the meeting; the meeting confirms them. If someone will oppose, you want to know now, not in the room. Experts disagree on where pre-wiring ends and backroom politics starts; a test: would you be comfortable if the whole board knew whom you met?',
+        'The tough question. Let it finish, repeat the core, answer in one sentence, then give the evidence.\n\nIf you don’t know: “I don’t have that number here; you’ll have it by Thursday.” Never argue with the chair in the room.\n\nWhat you hear when a board member is unconvinced: questions about details on page 6, or “interesting, but…”. Thank them and ask: “What would you need to see to support this?”',
+        'Often a question hides an objection. “Is this really the priority?” usually means “Is this better than what I care about?”: a hidden objection. Name it: “You’re asking whether this beats the ERP upgrade, the new company-wide system for orders, stock and finance. Here’s the comparison.”\n\nPrepare for it: list the projects competing for the same money, with one line on each. The sharp question before any board slot: what is the one decision I need, and who could block it?',
       ],
       example: {
         kind: 'faded',
-        text: 'Vantage has run a pilot in one region of a grid operator: cancellations from 14% to 9%. You will ask the board for €1.2M to roll it out to four regions over 18 months.\n\nYou have 20 minutes next Tuesday. The CFO is known for taking proposals apart, and last month she pushed back on another programme because “benefits are always overstated”.',
+        text: 'Vantage has run a pilot in one region of a grid operator: cancellations from 14% to 9%. You will ask the board for €1.2M to roll it out to four regions over 18 months.\n\nYou have 20 minutes next Tuesday. The CFO (chief financial officer) is known for taking proposals apart, and last month she pushed back on another programme because “benefits are always overstated”.',
         ask: 'How would you prepare and open?',
-        reveal: 'Write one page: the decision (€1.2M for four regions), the pilot result with the baseline the controller agreed, the expected benefit as a range with your attribution, and two options: full roll-out, or two regions first for €650k with a go or no-go after 9 months.\n\nMeet the CFO beforehand: “I know you’ve seen benefits overstated. Here is how we measured, and here is the conservative case.” Ask what would convince her.\n\nIn the room, open with the decision and the recommendation, and use the pilot numbers as evidence, not as a story.',
+        reveal: 'Write one page: the decision (€1.2M for four regions), the pilot result with the baseline the controller agreed, the expected benefit as a range with your attribution, and two options: full roll-out, or two regions first for €650k with a go or no-go decision, continue or stop, after 9 months.\n\nMeet the CFO beforehand: “I know you’ve seen benefits overstated. Here is how we measured, and here is the conservative case.” Ask what would convince her.\n\nIn the room, open with the decision and the recommendation, and use the pilot numbers as evidence, not as a story.',
       },
       said: 'What you hear in projects: “What exactly are you asking us to decide?”',
       recall: [
@@ -476,6 +494,8 @@ export default {
       sayIt: 'Explain to a project lead in 60 seconds how to get a decision from an MT in a 20-minute slot.',
       terms: [
         { term: 'Answer first', def: 'Put the decision and recommendation at the top, the evidence after it.' },
+        { term: 'Pyramid principle', def: 'Barbara Minto’s structure: conclusion first, then the supporting arguments, then the evidence.' },
+        { term: 'Board paper', def: 'The one-page document a board reads before it decides: the ask, options, recommendation.' },
         { term: 'Pre-wiring', def: 'Taking key people through a proposal one-on-one before the meeting.' },
         { term: 'Hidden objection', def: 'The real concern behind a question, often a comparison with something else.' },
       ],

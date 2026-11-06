@@ -13,16 +13,17 @@ export default {
         },
       ],
       teach: [
-        'Een project levert een output: een gereedheidscheck, een omgebouwde lijn, een nieuwe planningstool. Een programma levert een uitkomst waar meerdere projecten samen voor nodig zijn: bijvoorbeeld afgezegde netklussen van 14% naar 8%, en daarvoor heb je een gereedheidscheck, een nieuw materiaalproces én een aanpassing in de planningstool nodig. De test: kun je één project schrappen en blijft het doel overeind, dan hoort het in het portfolio, niet in dit programma.',
-        'Afhankelijkheden zijn het echte werk van een programma. Breng ze vroeg in kaart: project B heeft in week 10 de datadefinitie van A nodig; C heeft in Q2 dezelfde twee planners nodig als B. Houd één lijst bij met eigenaar, datum en wat er gebeurt als het uitloopt.\n\nDe rekensom is hard: vier projecten die elk 90% kans hebben om op tijd te leveren, halen het samen maar in 66% van de gevallen.',
-        'De programmaraad: de sponsor, de projecteigenaren, de lijnmanager die de uitkomst bezit, en finance als er geld tussen projecten schuift. Hij komt maandelijks bij elkaar en beslist over de naden: volgorde, gedeelde mensen, scope die van het ene naar het andere project gaat.\n\nProjectbesluiten blijven in de stuurgroepen van de projecten. Bespreekt de raad het testplan van één project, dan is het een stuurgroep met te veel mensen.',
-        'Als programmaleider bezit je het verhaal van de uitkomst, de lijst met afhankelijkheden en het ritme. Je draait de projecten niet zelf.\n\nEen goede test voor jezelf: kun je in twee minuten, met getallen, uitleggen hoe de projecten samen het doel halen? Lukt dat niet, dan lukt het de raad ook niet, en dan gaan ze elk project apart sturen.',
+        'Een project levert een output: een gereedheidscheck, een omgebouwde lijn, een nieuwe planningstool. Een programma is een groep projecten die je samen stuurt omdat ze één uitkomst leveren die geen van hen alleen haalt: bijvoorbeeld afgezegde netklussen van 14% naar 8%, met een gereedheidscheck, een nieuw materiaalproces én een aanpassing in de planningstool.\n\nDe test: kun je één project schrappen en blijft het doel overeind, dan hoort het in het portfolio, de hele lijst projecten die om hetzelfde geld en dezelfde mensen strijden, niet in dit programma.',
+        'Een afhankelijkheid is iets wat het ene project op een datum van het andere nodig heeft: B heeft in week 10 de datadefinitie van A nodig; C heeft in Q2 dezelfde twee planners nodig als B. Houd één lijst bij met eigenaar, datum en wat er gebeurt als het uitloopt.\n\nDe rekensom is hard: vier onafhankelijke projecten die elk 90% kans hebben om op tijd te leveren, halen het samen maar in 66% van de gevallen (0,9 × 0,9 × 0,9 × 0,9 = 0,66). Gedeelde mensen maken het erger.',
+        'De programmaraad: de sponsor, de projecteigenaren, de lijnmanager die eigenaar is van de uitkomst, en finance als er geld tussen projecten schuift. De raad komt maandelijks bij elkaar en beslist over de naden: volgorde, gedeelde mensen, scope (wat wel en niet in een project zit) die van het ene naar het andere project gaat.\n\nProjectbesluiten blijven in de stuurgroepen van de projecten. Besteedt de raad zijn uur aan het testplan van één project, dan is het een stuurgroep met te veel mensen.',
+        'Let op het watermeloeneffect (watermelon reporting): groen aan de buitenkant, rood vanbinnen. Elk project meldt groen op zijn eigen plan terwijl het gezamenlijke doel niet beweegt, omdat niemand over de naden rapporteert.\n\nDe oplossing: rapporteer elke maand het uitkomstgetal zelf, naast de projectstatussen. Experts zijn het oneens over hoeveel macht een programmaleider nodig heeft: sommigen zeggen zeggenschap over de projectbudgetten, anderen vinden een helder doel en een sterke raad genoeg.',
+        'Als programmaleider ben je eigenaar van het verhaal van de uitkomst, de lijst met afhankelijkheden en het ritme. Je draait de projecten niet zelf.\n\nEen goede test voor jezelf: kun je in twee minuten, met getallen, uitleggen hoe de projecten samen het doel halen? Lukt dat niet, dan lukt het de raad ook niet, en dan gaan ze elk project apart sturen. De scherpe vraag voor elk programma: welk getal beweegt, hoeveel, en welk project beweegt welk deel?',
       ],
       example: {
         kind: 'faded',
         text: 'Vantage wordt binnengehaald door een regiodirecteur bij een netbeheerder. In haar regio zijn los van elkaar drie projecten gestart: een gereedheidscheck voor geplande klussen (team A), een nieuw proces voor materiaalpakketten (team B) en een upgrade van de planningstool (IT).\n\nAlle drie staan op groen. De afzeggingen zitten nog steeds op 14%; haar doel is 8%.\n\nJij ziet dat de gereedheidscheck materiaaldata leest die team B aan het herontwerpen is, en dat de IT-release in Q3 het veld verandert dat de check gebruikt.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Maak er een programma van met één getal: afzeggingen van 14% naar 8%. Zet de afhankelijkheden op één A4: de definitie van de materiaaldata, de wijziging in het toolveld, en de planners die alle drie de teams nodig hebben. Laat de directeur zien dat elk project groen is terwijl de naden rood zijn.\n\nStel voor: team B is eigenaar van de materiaaldefinitie en bevriest die in week 6; IT test de Q3-release tegen de gereedheidscheck voor de livegang; een maandelijkse programmaraad met haar, de drie projecteigenaren en de planningsmanager. Rapporteer maandelijks over de uitkomst, met een schatting van wat elk project bijdraagt.',
+        reveal: 'Maak er een programma van met één getal: afzeggingen van 14% naar 8%. Zet de afhankelijkheden op één A4: de definitie van de materiaaldata, de wijziging in het toolveld, en de planners die alle drie de teams nodig hebben. Laat de directeur zien dat elk project groen is terwijl de naden rood zijn.\n\nStel voor: team B is eigenaar van de materiaaldefinitie en bevriest die in week 6; IT test de Q3-release tegen de gereedheidscheck vóór de livegang (go-live), de dag dat het in gebruik gaat; een maandelijkse programmaraad met haar, de drie projecteigenaren en de planningsmanager. Rapporteer maandelijks over de uitkomst, met een schatting van wat elk project bijdraagt.',
       },
       said: 'Wat je hoort in projecten: “Alle projecten staan op groen, dus waarom beweegt dat getal niet?”',
       recall: [
@@ -47,13 +48,13 @@ export default {
         },
         {
           q: 'Wat moet er in elke regel van een afhankelijkhedenlijst staan?',
-          options: ['Een eigenaar, een datum, en wat er gebeurt als het uitloopt', 'Alleen de punten op het kritieke pad', 'Het budget van beide projecten', 'De namen van beide teams'],
+          options: ['Een eigenaar, een datum, en wat er gebeurt als het uitloopt', 'Alleen de punten op het kritieke pad (de keten taken die de einddatum bepaalt)', 'Het budget van beide projecten', 'De namen van beide teams'],
           answer: 'Een eigenaar, een datum, en wat er gebeurt als het uitloopt',
           why: 'Zonder eigenaar en gevolg is een afhankelijkheid alleen een observatie.',
         },
       ],
       situation: {
-        scene: 'Je zit bij een maker van metalen onderdelen. De COO heeft drie verbeterprojecten lopen, op OEE, op planning en op onderhoud, en vraagt Vantage: “Kun je dit als programma draaien? Ik wil één verhaal voor de directie.”',
+        scene: 'Je zit bij een maker van metalen onderdelen. De COO (chief operating officer, de operationeel directeur) heeft drie verbeterprojecten lopen, op OEE (overall equipment effectiveness: hoeveel van de geplande tijd de machines goede producten maken), op planning en op onderhoud, en vraagt Vantage: “Kun je dit als programma draaien? Ik wil één verhaal voor de directie.”',
         ask: 'Wat zet je de eerste twee weken neer?',
         model: 'Eerst zou ik met de COO de ene uitkomst afspreken, bijvoorbeeld leverbetrouwbaarheid van 82% naar 92%, en hoe elk project daaraan bijdraagt. Dan een afhankelijkhedenkaart op één A4 met eigenaren en data, en een maandelijkse programmaraad die alleen over de naden beslist. Tegen de projectleiders zeg ik gewoon: “Jullie blijven je projecten draaien; ik let op wat er tussen jullie gebeurt.”',
         rubric: [
@@ -77,8 +78,10 @@ export default {
       sayIt: 'Leg een operationeel directeur bij een klant in 60 seconden uit waarom drie groene projecten toch het doel kunnen missen.',
       terms: [
         { term: 'Programma', def: 'Meerdere projecten die samen gestuurd worden omdat ze één gedeelde uitkomst leveren.' },
+        { term: 'Portfolio', def: 'Alle projecten die om hetzelfde geld en dezelfde mensen strijden, gerangschikt en gestuurd als één lijst.' },
         { term: 'Afhankelijkheid', def: 'Iets wat het ene project op een bepaalde datum van het andere nodig heeft, anders loopt het uit.' },
         { term: 'Programmaraad', def: 'De groep die beslist over volgorde, gedeelde mensen en scope tussen projecten.' },
+        { term: 'Watermeloeneffect', def: 'Groen aan de buitenkant, rood vanbinnen: elk project meldt groen terwijl het gezamenlijke doel gemist wordt.' },
       ],
     },
     {
@@ -93,14 +96,15 @@ export default {
         },
       ],
       teach: [
-        'Scoor elk project op vier dingen: waarde (euro’s of een KPI die per jaar beweegt), inspanning (dagen van de schaarse mensen), risico (de kans dat het niet levert) en fit met de strategie. Houd het grof; een schaal van 1 tot 5 is prima.\n\nHet gaat niet om precisie. Het gaat erom dat het gesprek verschuift van “alles is belangrijk” naar “dit vóór dat”.',
-        'Waarde per schaarse dag beslecht de meeste discussies. Project A: € 300k per jaar voor 120 dagen van de twee procesengineers, dus € 2,5k per dag. Project B: € 150k voor 30 dagen, dus € 5k per dag. B gaat eerst, al lijkt A groter.\n\nCorrigeer voor risico: € 300k bij 50% vertrouwen telt als € 150k.',
-        'Capaciteit is de harde grens. Tel de schaarse mensen, niet de headcount. Twee procesengineers met elk 120 projectdagen geven 240 dagen.\n\nRangschik de lijst en trek de streep waar het lopende totaal 240 bereikt. Alles onder de streep wacht. Twaalf projecten op halve snelheid leveren minder op dan zes op volle snelheid, omdat schakelen en wachten de tijd opeten.',
-        'Nee zeggen op portfolioniveau is nooit een kaal nee. Het is “niet nu, en dit is wat het zou verdringen.”\n\nZo zeg je het: “We kunnen hiermee starten. Met de mensen die we hebben, betekent dat dat project B stopt of drie maanden opschuift. Wat heeft je voorkeur?” De keuze ligt bij degene die over allebei gaat. Houd een zichtbare wachtlijst bij, zodat “niet nu” niet stilletjes “nooit” wordt.',
+        'Scoor elk project op vier dingen: waarde (euro’s, of een KPI, een kernprestatie-indicator, die per jaar beweegt), inspanning (dagen van de schaarse mensen), risico (de kans dat het niet levert) en fit met de strategie. Houd het grof; een schaal van 1 tot 5 is prima.\n\nHet gaat niet om precisie, maar om het gesprek te verschuiven van “alles is belangrijk” naar “dit vóór dat”. Experts twisten over gewogen scoremodellen: ze lijken objectief, maar wie de gewichten kiest, kiest de uitkomst.',
+        'De bottleneck is wat bepaalt hoeveel er af komt: meestal een paar schaarse experts, niet geld. Daarom beslecht waarde per schaarse dag de meeste discussies. Project A: € 300k per jaar voor 120 dagen van de twee procesengineers, dus € 2,5k per dag. Project B: € 150k voor 30 dagen, dus € 5k per dag. B gaat eerst, al lijkt A groter.\n\nGebruik dan de risicogecorrigeerde waarde: € 300k bij 50% vertrouwen telt als € 150k.',
+        'Capaciteit is de harde grens. Tel de schaarse mensen, niet de headcount (het totale aantal medewerkers). Twee procesengineers met elk 120 projectdagen geven 240 dagen.\n\nRangschik de lijst en trek de capaciteitsstreep waar het lopende totaal 240 bereikt. Alles onder de streep wacht. Typische valkuil: de streep wordt in januari getrokken en in maart stilletjes genegeerd, omdat elk nieuw verzoek “maar een paar dagen” kost.',
+        'Onderhanden werk (work in progress) is alles wat gestart en nog niet af is. De wet van Little (1961), uit de wachtrijtheorie: gemiddelde doorlooptijd (lead time: van start tot klaar) = onderhanden werk ÷ doorzet (throughput: projecten klaar per periode). Maakt een fabriek drie projecten per kwartaal af, dan duren twaalf open projecten elk zo’n vier kwartalen; zes open projecten zo’n twee.\n\nIn de praktijk is het erger, want schakelen en wachten verlagen ook de doorzet. Twaalf projecten op halve snelheid leveren dus minder op dan zes op volle snelheid.',
+        'Nee zeggen op portfolioniveau is nooit een kaal nee. Het is “niet nu, en dit is wat het zou verdringen.”\n\n“We kunnen hiermee starten. Met de mensen die we hebben, betekent dat dat project B stopt of drie maanden opschuift. Wat heeft je voorkeur?” De keuze ligt bij degene die over allebei gaat. Houd een zichtbare wachtlijst bij, zodat “niet nu” niet “nooit” wordt. Scherpe vraag bij elk nieuw verzoek: wat stoppen we om hier ruimte voor te maken?',
       ],
       example: {
         kind: 'faded',
-        text: 'MT van een levensmiddelenproducent. Twee procesengineers hebben dit jaar samen 240 projectdagen.\n\nOp tafel: A, energiebesparing, € 200k per jaar, 80 dagen. B, kortere omsteltijden, € 180k, 40 dagen. C, een nieuw MES, € 400k, maar slechts 50% vertrouwen, 200 dagen.\n\nD, verpakkingsafval, € 90k, 30 dagen. E, het dashboard van de plantdirecteur, waarde niet genoemd, 40 dagen. Iedereen wil ze alle vijf.',
+        text: 'MT (managementteam) van een levensmiddelenproducent. Twee procesengineers hebben dit jaar samen 240 projectdagen.\n\nOp tafel: A, energiebesparing, € 200k per jaar, 80 dagen. B, kortere omsteltijden, € 180k, 40 dagen. C, een nieuw MES (manufacturing execution system: software die de productieorders op de vloer aanstuurt en vastlegt), € 400k, maar slechts 50% vertrouwen, 200 dagen.\n\nD, verpakkingsafval, € 90k, 30 dagen. E, het dashboard van de plantdirecteur, waarde niet genoemd, 40 dagen. Iedereen wil ze alle vijf.',
         ask: 'Wat zou jij adviseren?',
         reveal: 'Waarde per engineersdag: B € 4,5k, D € 3k, A € 2,5k, C € 1k na de correctie voor 50% risico, E onbekend. B, D en A kosten samen 150 dagen: daarmee starten.\n\nC past niet en is het onzekerst, dus stel een eerste fase van 60 dagen voor die de grote aanname test voordat je 200 dagen vastlegt. Dan zit je op 210 dagen, met 30 als buffer.\n\nVraag de plantdirecteur voor E een getal te noemen: “Komt het boven € 2,5k per dag, dan gaat het vóór A.” Dan kiest het MT, niet jij.',
       },
@@ -156,9 +160,11 @@ export default {
       },
       sayIt: 'Leg een MT in 60 seconden uit waarom ze minder projecten moeten starten om er meer af te maken.',
       terms: [
+        { term: 'Bottleneck', def: 'Wat bepaalt hoeveel er af komt; in een portfolio meestal een paar schaarse experts.' },
         { term: 'Waarde per schaarse dag', def: 'Jaarwaarde gedeeld door de dagen van de bottleneckmensen die een project nodig heeft.' },
         { term: 'Risicogecorrigeerde waarde', def: 'Verwachte waarde maal je vertrouwen dat die ook echt geleverd wordt.' },
         { term: 'Capaciteitsstreep', def: 'Het punt in de gerangschikte lijst waar de dagen van de schaarse mensen op zijn.' },
+        { term: 'Onderhanden werk', def: 'Alles wat gestart en nog niet af is; hoe meer, hoe langer de doorlooptijd (wet van Little).' },
       ],
     },
     {
@@ -166,17 +172,18 @@ export default {
       title: 'Governance die beslist',
       pre: [
         {
-          q: 'Een stuurgroep van tien mensen komt maandelijks bij elkaar. De discussies zijn goed, maar besluiten eindigen steeds met “laten we dit offline oppakken”. Wat is de meest waarschijnlijke oorzaak?',
+          q: 'Een stuurgroep van tien mensen, de managers die het project bewaken, komt maandelijks bij elkaar. De discussies zijn goed, maar besluiten eindigen steeds met “laten we dit offline oppakken”, oftewel later, buiten het overleg. Wat is de meest waarschijnlijke oorzaak?',
           options: ['Ze komen te weinig bij elkaar', 'De statusrapporten zijn te kort', 'Het overleg zit op het verkeerde moment van de dag', 'Niemand weet wie waarover mag beslissen'],
           answer: 'Niemand weet wie waarover mag beslissen',
           why: 'Groepen praten in plaats van beslissen als beslisbevoegdheden nooit expliciet zijn gemaakt.',
         },
       ],
       teach: [
-        'Governance is één vraag, vooraf beantwoord: wie beslist wat? Leg beslisbevoegdheden vast voor scope, budget, planning en mensen.\n\nBijvoorbeeld: de projectleider beslist binnen 10% op budget en twee weken op planning; daarbuiten beslist de stuurgroep; boven 20%, of bij alles wat de strategie raakt, beslist de directie. Eén A4, afgetekend door de sponsor.',
-        'Een stuurgroep die beslist heeft vijf tot zeven mensen, die elk hun afdeling kunnen committeren.\n\nOp de agenda staan besluiten, geen updates. De stukken gaan drie dagen vooraf rond. De notulen zijn een besluitenlijst: wat is besloten, door wie, wanneer klaar.\n\nStaat er geen besluit op de agenda, zeg het overleg dan af en stuur een mail.',
-        'Escalatielijnen leggen vooraf vast wat omhoog gaat, hoe snel en naar wie. Een goede regel: escaleer als een tolerantie overschreden is, of binnen twee weken overschreden wordt, en kom met opties en een advies.\n\nEscaleren is geen falen; het is het systeem dat werkt. Te laat escaleren, dát is het falen.',
-        'De mensenkant: een lid dat nooit beslist, mist vaak mandaat van zijn eigen baas. Vraag het hem onder vier ogen: “Als dit straks op tafel komt, kun jij dan voor je afdeling beslissen, of moet je eerst terug?” Help hem dan aan dat mandaat, of nodig degene uit die het wel heeft.',
+        'Governance is het geheel van afspraken over wie wat beslist, vooraf vastgelegd. Leg beslisbevoegdheden vast voor scope, budget, planning en mensen.\n\nBijvoorbeeld: de projectleider beslist binnen 10% op budget en twee weken op planning; daarbuiten beslist de stuurgroep; boven 20%, of bij alles wat de strategie raakt, beslist de directie. Eén A4, afgetekend door de sponsor. Die marges zijn toleranties; PRINCE2, een veelgebruikte projectmethode, noemt dit management by exception: sturen op uitzonderingen.',
+        'Een stuurgroep die beslist heeft vijf tot zeven mensen, die elk hun afdeling kunnen committeren.\n\nOp de agenda staan besluiten, geen updates. De stukken gaan drie dagen vooraf rond. De notulen zijn een besluitenlijst: wat is besloten, door wie, wanneer klaar.\n\nStaat er geen besluit op de agenda, zeg het overleg dan af en stuur een mail. De valkuil die je het vaakst ziet: een statusupdate van 15 slides, een goede discussie, en “laten we dit offline oppakken”, oftewel: niemand beslist.',
+        'Escalatie betekent een probleem doorgeven aan het niveau dat erover mag beslissen. Escalatielijnen leggen vooraf vast wat omhoog gaat, hoe snel en naar wie. Een goede regel: escaleer als een tolerantie overschreden is, of binnen twee weken overschreden wordt, en kom met opties en een advies.\n\nEscaleren is geen falen; het is het systeem dat werkt. Te laat escaleren, dát is het falen.',
+        'De mensenkant: een lid dat nooit beslist, mist vaak mandaat: de bevoegdheid, van zijn eigen baas, om zijn afdeling ergens aan te binden. Vraag het hem onder vier ogen: “Als dit straks op tafel komt, kun jij dan voor je afdeling beslissen, of moet je eerst terug?” Help hem dan aan dat mandaat, of nodig degene uit die het wel heeft.',
+        'Experts twisten over omvang en vorm. Grote groepen voelen inclusief maar beslissen zelden. Een RACI-schema (wie is Responsible, Accountable, Consulted en Informed) helpt, maar een schema dat niemand leest verandert niks.\n\nZo zie je dat governance werkt: korte overleggen, besluiten in het eerste halfuur, en projectleiders die zonder te vragen weten wat ze zelf mogen beslissen. De scherpe vraag om elke stuurgroep mee te openen: “Welke besluiten hebben we vandaag van deze groep nodig?”',
       ],
       example: {
         kind: 'faded',
@@ -235,9 +242,12 @@ export default {
       },
       sayIt: 'Leg een nieuwe sponsor in 60 seconden uit waardoor een stuurgroep beslist in plaats van discussieert.',
       terms: [
+        { term: 'Governance', def: 'De afspraken, vooraf gemaakt, over wie wat beslist en hoe problemen omhoog gaan.' },
         { term: 'Beslisbevoegdheden', def: 'Een afgesproken lijst van wie wat beslist, op scope, budget, planning en mensen.' },
         { term: 'Tolerantie', def: 'De marge waarbinnen iemand mag beslissen zonder te escaleren.' },
         { term: 'Besluitenlijst', def: 'Een doorlopend overzicht van besluiten: wat, wie, wanneer.' },
+        { term: 'Escalatie', def: 'Een probleem doorgeven aan het niveau dat erover mag beslissen, liefst met opties en een advies.' },
+        { term: 'Mandaat', def: 'De bevoegdheid, van je eigen baas, om je afdeling aan een besluit te binden.' },
       ],
     },
     {
@@ -246,20 +256,21 @@ export default {
       pre: [
         {
           q: 'Wanneer gaan de meeste baten van een project verloren?',
-          options: ['Tijdens het ontwerp', 'In het jaar nadat het project is afgesloten', 'Tijdens de pilot', 'Als de business case geschreven wordt'],
+          options: ['Tijdens het ontwerp', 'In het jaar nadat het project is afgesloten', 'Tijdens de pilot', 'Als de business case (de onderbouwing van kosten en baten) geschreven wordt'],
           answer: 'In het jaar nadat het project is afgesloten',
           why: 'Het team vertrekt, de aandacht gaat ergens anders heen, en de oude manier sluipt terug terwijl niemand naar het getal kijkt.',
         },
       ],
       teach: [
-        'Output, uitkomst, baten.\n\nOutput: de gereedheidscheck is live. Uitkomst: de afzeggingen dalen van 14% naar 8%. Baten: zo’n 1.200 verspilde ploegdagen per jaar minder, € 900k waard bij € 750 per ploegdag.\n\nProjecten leveren output; de lijn bezit uitkomsten en baten. Benoem de batenhouder voordat het project start: een manager op wiens budget of KPI het landt, niet de projectleider.',
-        'Spreek de nulmeting en de meetwijze af voordat je begint.\n\nHoe tel je een afzegging? Over welke periode? Tellen stormweken mee of niet?\n\nSchrijf het op en laat de controller tekenen. Zonder afgesproken nulmeting wordt elk resultaat een discussie over definities in plaats van een gesprek over prestaties.',
-        'Plan het volgen van de baten voor 6 tot 12 maanden na de livegang. De eigenaar bekijkt het getal maandelijks; er is een check-in na 3 en na 6 maanden; en er is een trigger: zakt het getal twee maanden achter elkaar voorbij een afgesproken niveau, dan grijpt de eigenaar in. Zet dit in het afsluitplan, met namen en data, anders gebeurt het niet.',
-        'Wees eerlijk over toerekening. Daalden de afzeggingen terwijl er ook een nieuwe aannemer begon, dan kun je niet alles claimen.\n\nZeg “we schatten dat 60 tot 70% van de gereedheidscheck komt”, en laat zien waarom. Een directie vertrouwt een bescheiden getal dat je kunt verdedigen meer dan een groot getal dat je niet kunt verdedigen.',
+        'Output, uitkomst, baten.\n\nOutput: wat het project oplevert, zoals de gereedheidscheck die live gaat. Uitkomst: de verandering in prestatie, zoals afzeggingen die dalen van 14% naar 8%. Baten: de meetbare winst voor de organisatie, zoals zo’n 1.200 verspilde ploegdagen per jaar minder, € 900k waard bij € 750 per ploegdag.\n\nProjecten leveren output; de lijn, de managers die de dagelijkse operatie draaien, is eigenaar van uitkomsten en baten.',
+        'Benoem de batenhouder voordat het project start: een manager op wiens budget of KPI (kernprestatie-indicator) het landt, niet de projectleider, want die vertrekt.\n\nSpreek de nulmeting af, de startwaarde en precies hoe je die meet, voordat je begint. Hoe tel je een afzegging? Over welke periode? Tellen stormweken mee of niet? Schrijf het op en laat de controller, de financiële collega die over de cijfers gaat, het aftekenen. Zonder nulmeting wordt elk resultaat een discussie over definities.',
+        'Plan het volgen van de baten voor 6 tot 12 maanden na de livegang (go-live), de dag dat de verandering in gebruik gaat. De eigenaar bekijkt het getal maandelijks; er is een check-in na 3 en na 6 maanden; en er is een trigger: zakt het getal twee maanden achter elkaar voorbij een afgesproken niveau, dan grijpt de eigenaar in. Zet dit in het afsluitplan, met namen en data, anders gebeurt het niet.',
+        'Wees eerlijk over toerekening: hoeveel van een verandering je aan je project mag toeschrijven. Daalden de afzeggingen terwijl er ook een nieuwe aannemer begon, dan kun je niet alles claimen.\n\nZeg “we schatten dat 60 tot 70% van de gereedheidscheck komt”, en laat zien waarom. Het sterkste bewijs is een vergelijking: een regio zonder de check in dezelfde maanden. Een directie vertrouwt een bescheiden getal dat je kunt verdedigen meer dan een groot getal dat je niet kunt verdedigen.',
+        'Waarom directies sceptisch zijn: Bent Flyvbjerg zag in zijn onderzoek naar grote projecten dat baten vaak tegenvallen, soms fors, Hij koppelt dat aan optimisme (optimism bias: verwachten dat het beter gaat dan het gaat) en aan strategisch mooier voorstellen (strategic misrepresentation): businesscases worden geschreven om goedkeuring te krijgen.\n\nZo zie je baten weglekken: het project sluit, het team gaat verder, en binnen een paar maanden sluipt de oude manier terug. Scherpe vraag bij elke afsluiting: “Wie kijkt volgende maand naar dit getal, en wat doet die als het wegzakt?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een omstelproject bij een fabrikant is in maart afgesloten. De gemiddelde omsteltijd ging van 90 naar 45 minuten; de business case beloofde € 300k per jaar.\n\nIn september vraagt de CFO waar die € 300k is. Jij vindt twee dingen: de omstellingen zijn teruggekropen naar 70 minuten, en de vrijgekomen capaciteit is nooit benut, want sales heeft geen volume toegevoegd en de weekenddienst draaide gewoon door.',
+        text: 'Een omstelproject bij een fabrikant is in maart afgesloten. De gemiddelde omsteltijd ging van 90 naar 45 minuten; de business case beloofde € 300k per jaar.\n\nIn september vraagt de CFO (financieel directeur) waar die € 300k is. Jij vindt twee dingen: de omstellingen zijn teruggekropen naar 70 minuten, en de vrijgekomen capaciteit is nooit benut, want sales heeft geen volume toegevoegd en de weekenddienst draaide gewoon door.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Haal de twee problemen uit elkaar. Eén: de uitkomst is weggezakt. Dat is voor de operationeel manager, die de standaard herstelt met een korte audit en een maandelijkse review. Twee: zelfs bij 45 minuten waren er geen baten, want vrijgekomen capaciteit wordt pas geld als iemand er geld van maakt.\n\nLeg het MT de keuze voor: de weekenddienst schrappen, of meer volume verkopen. Bij allebei hoort een getal.\n\nBenoem dan één batenhouder, spreek de meetwijze af met de controller, en boek de € 300k pas als dat besluit genomen is. Zeg dit de CFO gewoon direct; ga de oude business case niet verdedigen.',
       },
@@ -269,7 +280,7 @@ export default {
           q: 'Wie hoort eigenaar te zijn van de baten van een project?',
           options: ['De projectleider', 'De consultant', 'De lijnmanager op wiens KPI of budget het landt', 'De afdeling finance'],
           answer: 'De lijnmanager op wiens KPI of budget het landt',
-          why: 'De baten ontstaan in de lijn nadat het project klaar is, dus de lijn moet ze bezitten.',
+          why: 'De baten ontstaan in de lijn nadat het project klaar is, dus moet de lijn er eigenaar van zijn.',
         },
         {
           q: 'Een project bespaart 1.200 ploegdagen per jaar tegen € 750 per ploegdag. Wat zijn de jaarlijkse baten, in duizenden euro’s?',
@@ -305,7 +316,7 @@ export default {
             '“We zitten op 9%. Het project is klaar. Een getal in de gaten houden is lijnwerk, geen project.”',
             '“Niemand heeft tijd voor nog een maandrapport. Als het oploopt, merken we dat heus.”',
           ],
-          model: '“Eens, het project is klaar, en het is nu lijnwerk. Daarom wil ik er een naam op: iemand die één keer per maand vijf minuten naar het annuleringscijfer kijkt. Komt het boven de 11%, dan trekt die aan de bel. Wie in je team past daarbij?”',
+          model: '“Eens, het project is klaar, en het is nu lijnwerk. Daarom wil ik er een naam op: iemand die één keer per maand vijf minuten naar het afzegpercentage kijkt. Komt het boven de 11%, dan trekt die aan de bel. Wie in je team past daarbij?”',
           rubric: [
             'Erkent dat het project zelf klaar is',
             'Houdt vast aan een eigenaar van de baten na de overdracht',
@@ -315,9 +326,12 @@ export default {
       },
       sayIt: 'Leg een projectleider in 60 seconden het verschil uit tussen output, uitkomst en baten, met één voorbeeld.',
       terms: [
+        { term: 'Output', def: 'Wat een project oplevert, zoals een tool die live gaat; het zegt nog niks over prestaties.' },
         { term: 'Uitkomst', def: 'De verandering in prestatie die de output moet veroorzaken.' },
+        { term: 'Baten', def: 'De meetbare winst voor de organisatie, meestal in geld, die de uitkomst oplevert.' },
         { term: 'Batenhouder', def: 'De lijnmanager die na het project verantwoordelijk is voor het binnenhalen van de baten.' },
         { term: 'Nulmeting', def: 'De afgesproken startwaarde en precies hoe die gemeten wordt.' },
+        { term: 'Toerekening', def: 'Hoeveel van een gemeten verandering je aan je project mag toeschrijven, en waarom.' },
       ],
     },
     {
@@ -332,16 +346,17 @@ export default {
         },
       ],
       teach: [
-        'Bij de meeste klanten is het probleem niet het totaal aan uren, maar dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist. Maak een simpele matrix: namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en onderaan hun echte beschikbare dagen. Overboekte rijen zijn je conflicten.',
-        'Echte beschikbaarheid is lager dan mensen denken. Van zo’n 260 werkdagen gaan er grofweg 50 af aan vakantie, feestdagen, ziekte en opleiding, en overleg en administratie nemen er nog meer. Er blijven zo’n 190 echte dagen over.\n\nKost het eigen werk 70%, dan zijn er 57 projectdagen per jaar: ongeveer vijf per maand. Die persoon “twee dagen per week” op je project inplannen is planningsfictie.',
-        'Schakelen kost. Wie op drie of meer projecten zit, verliest een flink deel van de week aan schakelen en wachten, en elk project wacht op hem, dus de doorlooptijden groeien. Beter: minder projecten tegelijk, elk met een echt blok tijd, zoals dinsdag en donderdag voor project A.',
-        'Maak afwegingen zichtbaar en laat de eigenaar beslissen. Laat de matrix zien met de rode vakjes en twee opties: “Optie 1: Jan werkt aan A en B, C start in mei. Optie 2: een externe doet C, 40 dagen à € 1.000, dus € 40k.”\n\nLos conflicten niet stilletjes op door mensen ’s avonds te laten doorwerken. Dat verstopt de echte kosten en je beste mensen branden op.',
+        'Bij de meeste klanten is het probleem niet het totaal aan uren, maar dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist. Maak een capaciteitsmatrix: namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en onderaan hun echte beschikbare dagen.\n\nOverboekte rijen zijn je capaciteitsconflicten: iemand heeft meer dagen aan projecten beloofd dan hij heeft. Vaak vind je twee of drie rode rijen, en die verklaren het grootste deel van de vertraging.',
+        'Echte beschikbaarheid is lager dan mensen denken. Van zo’n 260 werkdagen per jaar gaan er grofweg 50 af aan vakantie, feestdagen, ziekte en opleiding, en algemeen overleg en administratie kosten er nog zo’n 20. Er blijven zo’n 190 echte dagen over.\n\nKost het eigen werk 70%, dan zijn er 57 projectdagen per jaar: ongeveer vijf per maand. Die persoon “twee dagen per week” op je project inplannen is planningsfictie.',
+        'Bij elke contextswitch verlies je tijd: je springt naar een ander project en moet de draad weer oppakken. Vuistregel van Gerald Weinberg (1992): met twee projecten verlies je zo’n 20% van je tijd aan schakelen, met drie zo’n 40%, met vijf zo’n 75%. Het is een schatting, geen meting, maar mensen herkennen het.\n\nEn elk project wacht op die persoon, dus de doorlooptijd, de kalendertijd van start tot klaar, groeit.',
+        'Beter: minder projecten tegelijk, elk met een echt blok tijd, zoals dinsdag en donderdag voor project A.\n\nMaak afwegingen zichtbaar en laat de eigenaar beslissen. Laat de matrix zien met de rode vakjes en twee opties: “Optie 1: Jan werkt aan A en B, C start in mei. Optie 2: een externe doet C, 40 dagen à € 1.000, dus € 40k.”',
+        'Los conflicten niet stilletjes op door mensen ’s avonds te laten doorwerken. Dat verstopt de echte kosten en je beste mensen branden op.\n\nZo hoor je dat het misgaat: “ligt eigenlijk wel vast”, “ze redt het wel”, “leen hem gewoon een paar dagen”. Experts verschillen over hoe vol je plant: sommigen boeken schaarse mensen tot 80% en houden 20% achter de hand voor verrassingen, anderen plannen maar één kwartaal vooruit. Scherpe vraag: “Op wiens dagen rekenen we, en heeft zij dit plan gezien?”',
       ],
       example: {
         kind: 'faded',
         text: 'Bij een netbeheerder staat senior planner Fatima op vier projecten, waaronder het jouwe. Elke projectleider ging uit van één dag per week van haar. Haar manager zegt dat ze naast haar gewone planningswerk zo’n vier projectdagen per maand heeft.\n\nDe pilot van jouw project heeft haar in maart 8 dagen nodig. Twee andere projectleiders rekenen in maart ook op haar.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Vier projecten van één dag per week is zo’n 16 dagen per maand; ze heeft er 4. Maak de matrix voor haar en de twee of drie andere schaarse mensen, en neem hem mee naar degene die over alle vier de projecten gaat, niet naar Fatima.\n\nKom met opties: “Maart gaat naar de pilot en de anderen schuiven haar werk naar april en mei; of het regiokantoor leent 10 dagen een tweede planner uit; of de pilot schuift een maand op.” Vraag Fatima vooraf wat zij realistisch vindt; zij weet het. Plan daarna op het besluit, niet op hoop.',
+        reveal: 'Vier projecten van één dag per week is vier dagen per week, zo’n 16 à 17 dagen per maand; ze heeft er 4. Maak de matrix voor haar en de twee of drie andere schaarse mensen, en neem hem mee naar degene die over alle vier de projecten gaat, niet naar Fatima.\n\nKom met opties: “Maart gaat naar de pilot en de anderen schuiven haar werk naar april en mei; of het regiokantoor leent 10 dagen een tweede planner uit; of de pilot schuift een maand op.” Vraag Fatima vooraf wat zij realistisch vindt; zij weet het. Plan daarna op het besluit, niet op hoop.',
       },
       said: 'Wat je hoort in projecten: “Kunnen we Fatima niet gewoon een paar dagen lenen?”',
       recall: [
@@ -385,7 +400,7 @@ export default {
             '“Ze zei tegen mij dat juni prima was. Mijn project was eerst, dus ze is van mij.”',
             '“Waarom maak je er zo’n punt van? Ze redt het wel; dat doet ze altijd.”',
           ],
-          model: '“Dat geloof ik, en waarschijnlijk zei ze het tegen jullie alle drie. Drie keer ‘zo goed als toegezegd’ is meer dan één persoon. Ik wil deze week met de drie projectleiders en haar om tafel om juni per dag te verdelen. Dan weet iedereen wat hij krijgt.”',
+          model: '“Dat geloof ik, en waarschijnlijk zei ze het tegen jullie alle drie. Drie keer ‘ligt eigenlijk wel vast’ is meer dan één persoon. Ik wil deze week met de drie projectleiders en haar om tafel om juni per dag te verdelen. Dan weet iedereen wat hij krijgt.”',
           rubric: [
             'Erkent zijn claim zonder hem weg te wuiven',
             'Benoemt de overbelasting helder',
@@ -396,8 +411,10 @@ export default {
       sayIt: 'Leg een projectleider in 60 seconden uit waarom “twee dagen per week Fatima” waarschijnlijk niet bestaat.',
       terms: [
         { term: 'Capaciteitsmatrix', def: 'Namen verticaal, projecten horizontaal, dagen per vakje, met de echte beschikbaarheid onderaan.' },
-        { term: 'Echte beschikbaarheid', def: 'De dagen die overblijven voor projecten na vakantie, ziekte, opleiding en het eigen werk.' },
+        { term: 'Capaciteitsconflict', def: 'Meer dagen aan projecten beloofd dan iemand echt heeft.' },
+        { term: 'Echte beschikbaarheid', def: 'De dagen die overblijven voor projecten na vakantie, ziekte, opleiding, overleg en het eigen werk.' },
         { term: 'Contextswitch', def: 'Tijd die je verliest als iemand tussen projecten springt en de draad weer moet oppakken.' },
+        { term: 'Doorlooptijd', def: 'De kalendertijd van start tot klaar, inclusief al het wachten.' },
       ],
     },
     {
@@ -405,23 +422,24 @@ export default {
       title: 'Voor de directie',
       pre: [
         {
-          q: 'Je hebt 20 minuten op de MT-agenda. Wanneer zeg je welk besluit je nodig hebt?',
+          q: 'Je hebt 20 minuten op de agenda van het MT (managementteam). Wanneer zeg je welk besluit je nodig hebt?',
           options: ['Aan het eind, na het bewijs', 'Alleen als ze erom vragen', 'In de eerste minuut', 'Achteraf in een mail'],
           answer: 'In de eerste minuut',
           why: 'Een directie luistert anders zodra ze weet waarover ze moet beslissen.',
         },
       ],
       teach: [
-        'Eén A4, antwoord eerst. Bovenaan staat het besluit dat je nodig hebt.\n\nDan: waarom nu, twee of drie opties met elk kosten, baten en risico, jouw advies, en wat er gebeurt als ze niet beslissen. Detail gaat in een bijlage. Een directie leest de eerste alinea en de getallen; schrijf daarvoor.',
-        'Twintig minuten op de agenda betekent ongeveer vijf minuten praten en vijftien minuten discussie. Open met: “Ik heb vandaag één besluit nodig: X. Ik adviseer Y, om drie redenen.” Loop geen twintig slides door; ze onderbreken je toch bij slide drie.',
-        'Voorsorteren. De week ervoor loop je het stuk één-op-één door met de twee of drie mensen wiens mening zwaar weegt. Niks in het overleg mag hen verrassen.\n\nDe meeste directiebesluiten worden vóór het overleg genomen; het overleg bevestigt ze. Gaat iemand dwarsliggen, dan wil je dat nu weten, niet in de kamer.',
-        'De lastige vraag. Laat hem uitpraten, herhaal de kern, antwoord in één zin, en geef dan het bewijs.\n\nWeet je het niet: “Dat getal heb ik hier niet; je hebt het donderdag.” Zit er een bezwaar achter, zoals “Is dit echt de prioriteit?”, benoem het dan: “Je vraagt of dit belangrijker is dan de ERP-upgrade. Hier is de vergelijking.”\n\nGa in de kamer nooit in discussie met de voorzitter.',
+        'Eén A4, antwoord eerst: bovenaan staat het besluit dat je nodig hebt. Dit is het piramideprincipe, dat Barbara Minto bij McKinsey ontwikkelde: eerst de conclusie, dan de argumenten, dan het bewijs.\n\nEen directiestuk geeft daarna: waarom nu, twee of drie opties met elk kosten, baten en risico, jouw advies, en wat er gebeurt als ze niet beslissen. Detail gaat in een bijlage. Een directie leest de eerste alinea en de getallen; schrijf daarvoor.',
+        'Twintig minuten op de agenda betekent ongeveer vijf minuten praten en vijftien minuten discussie. Open met: “Ik heb vandaag één besluit nodig: X. Ik adviseer Y, om drie redenen.” Loop geen twintig slides door; ze onderbreken je toch bij slide drie.\n\nTypische valkuil: de achtergrond duurt tien minuten, de vraag komt in minuut achttien, en de voorzitter zegt “laten we hier volgende maand op terugkomen.”',
+        'Voorsorteren: de week ervoor loop je het stuk één-op-één door met de twee of drie mensen wiens mening zwaar weegt. Niks in het overleg mag hen verrassen.\n\nVeel directiebesluiten liggen in feite vóór het overleg al vast; het overleg bevestigt ze. Gaat iemand dwarsliggen, dan wil je dat nu weten, niet in de kamer. Experts verschillen over waar voorsorteren ophoudt en achterkamerpolitiek begint; een test: zou je het prima vinden als de hele directie wist wie je sprak?',
+        'De lastige vraag. Laat hem uitpraten, herhaal de kern, antwoord in één zin, en geef dan het bewijs.\n\nWeet je het niet: “Dat getal heb ik hier niet; je hebt het donderdag.” Ga in de kamer nooit in discussie met de voorzitter.\n\nZo hoor je dat een directielid niet overtuigd is: vragen over details op pagina 6, of “interessant, maar…”. Bedank hem en vraag: “Wat zou je moeten zien om dit te steunen?”',
+        'Vaak zit er een bezwaar achter een vraag. “Is dit echt de prioriteit?” betekent meestal “Is dit beter dan waar ik om geef?”: een verborgen bezwaar. Benoem het: “Je vraagt of dit belangrijker is dan de ERP-upgrade, het nieuwe bedrijfsbrede systeem voor orders, voorraad en financiën. Hier is de vergelijking.”\n\nBereid het voor: zet de projecten op een rij die om hetzelfde geld strijden, met één regel per project. Scherpe vraag vóór elk directieslot: welk ene besluit heb ik nodig, en wie kan het blokkeren?',
       ],
       example: {
         kind: 'faded',
-        text: 'Vantage heeft bij een netbeheerder een pilot gedraaid in één regio: afzeggingen van 14% naar 9%. Je gaat de directie € 1,2 miljoen vragen om het in 18 maanden uit te rollen naar vier regio’s.\n\nJe hebt volgende dinsdag 20 minuten. De CFO staat erom bekend voorstellen uit elkaar te trekken, en vorige maand schoot ze een ander programma af omdat “baten altijd te rooskleurig zijn”.',
+        text: 'Vantage heeft bij een netbeheerder een pilot gedraaid in één regio: afzeggingen van 14% naar 9%. Je gaat de directie € 1,2 miljoen vragen om het in 18 maanden uit te rollen naar vier regio’s.\n\nJe hebt volgende dinsdag 20 minuten. De CFO (financieel directeur) staat erom bekend voorstellen uit elkaar te trekken, en vorige maand schoot ze een ander programma af omdat “baten altijd te rooskleurig zijn”.',
         ask: 'Hoe zou jij je voorbereiden en openen?',
-        reveal: 'Schrijf één A4: het besluit (€ 1,2 miljoen voor vier regio’s), het pilotresultaat met de nulmeting waar de controller mee akkoord ging, de verwachte baten als bandbreedte met jouw toerekening, en twee opties: volledige uitrol, of eerst twee regio’s voor € 650k met een go/no-go na 9 maanden.\n\nSpreek de CFO vooraf: “Ik weet dat je vaker te rooskleurige baten hebt gezien. Zo hebben we gemeten, en dit is de voorzichtige variant.” Vraag wat haar zou overtuigen.\n\nOpen in de kamer met het besluit en het advies, en gebruik de pilotcijfers als bewijs, niet als verhaal.',
+        reveal: 'Schrijf één A4: het besluit (€ 1,2 miljoen voor vier regio’s), het pilotresultaat met de nulmeting waar de controller mee akkoord ging, de verwachte baten als bandbreedte met jouw toerekening, en twee opties: volledige uitrol, of eerst twee regio’s voor € 650k met na 9 maanden een go/no-go: het moment waarop je beslist om door te gaan of te stoppen.\n\nSpreek de CFO vooraf: “Ik weet dat je vaker te rooskleurige baten hebt gezien. Zo hebben we gemeten, en dit is de voorzichtige variant.” Vraag wat haar zou overtuigen.\n\nOpen in de kamer met het besluit en het advies, en gebruik de pilotcijfers als bewijs, niet als verhaal.',
       },
       said: 'Wat je hoort in projecten: “Waar vraag je ons nu precies over te beslissen?”',
       recall: [
@@ -476,6 +494,8 @@ export default {
       sayIt: 'Leg een projectleider in 60 seconden uit hoe je in een slot van 20 minuten een besluit van een MT krijgt.',
       terms: [
         { term: 'Antwoord eerst', def: 'Het besluit en het advies bovenaan, het bewijs erna.' },
+        { term: 'Piramideprincipe', def: 'De opbouw van Barbara Minto: eerst de conclusie, dan de argumenten, dan het bewijs.' },
+        { term: 'Directiestuk', def: 'Het stuk van één A4 dat een directie leest voordat ze beslist: de vraag, opties, advies.' },
         { term: 'Voorsorteren', def: 'Sleutelfiguren vóór het overleg één-op-één door een voorstel heen nemen.' },
         { term: 'Verborgen bezwaar', def: 'De echte zorg achter een vraag, vaak een vergelijking met iets anders.' },
       ],
