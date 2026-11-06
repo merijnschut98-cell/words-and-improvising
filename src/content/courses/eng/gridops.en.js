@@ -7,22 +7,22 @@ export default {
       title: 'Handling an outage',
       pre: [
         {
-          q: 'A cable fault on a medium-voltage (MS) ring trips the feeder breaker: the big switch in the substation at the start of that cable route. For most customers on that feeder, what gets the power back first?',
+          q: 'A cable fault on a medium-voltage (MV) ring trips the feeder breaker: the big switch in the substation at the start of that cable route. For most customers on that feeder, what gets the power back first?',
           options: ['Repairing the cable', 'A mobile generator', 'Switching around the faulty section', 'Waiting for the breaker to reclose itself'],
           answer: 'Switching around the faulty section',
           why: 'The faulty section is cut out on both sides and the rest is fed from another side; the repair comes later, often the next day.',
         },
       ],
       teach: [
-        'Detection. A fault on the medium-voltage grid (MS, called MV in international English: mostly 10 or 20 kV cables) shows up as a protection trip in the HS/MS substation, where high voltage is stepped down to MS. The feeder breaker, the big switch at the start of one outgoing cable route, opens.\n\nThe control room, the team that watches and switches the grid around the clock, sees it within seconds in SCADA, its remote monitoring and control system.',
-        'The low-voltage grid in the street (LS, 400/230 V) is barely measured. LS faults are often first noticed when customers call the national outage number, or increasingly through smart-meter and station sensor data.\n\nEvery minute before you know counts in the outage time. Experts argue how far to go with sensors: cheap for one station, expensive across tens of thousands. Ask: “How do we find out about an LS fault today, and how long does that take?”',
-        'MS grids are built as rings but run open: one switch in the ring, the normally open point, stays open. That keeps fault currents and protection simple, while leaving a backup route.\n\nWhen a section fails, the control room and the outage technician read the fault passage indicators: small devices in each MS station that flag whether fault current passed through. The fault lies between the last station that flagged and the first that did not. The technician opens the switches on both sides of that cable section.',
+        'Detection. A fault on the medium-voltage (MV) grid, in the Netherlands mostly 10 or 20 kV cables, shows up as a protection trip in the HV/MV substation, where high voltage (HV) is stepped down to MV. The feeder breaker, the big switch at the start of one outgoing cable route, opens.\n\nThe control room, the team that watches and switches the grid around the clock, sees it within seconds in SCADA, its remote monitoring and control system.',
+        'The low-voltage grid in the street (LV, 400/230 V) is barely measured. LV faults are often first noticed when customers call the national outage number, or increasingly through smart-meter and station sensor data.\n\nEvery minute before you know counts in the outage time. Experts argue how far to go with sensors: cheap for one station, expensive across tens of thousands. Ask: “How do we find out about an LV fault today, and how long does that take?”',
+        'MV grids are built as rings but run open: one switch in the ring, the normally open point, stays open. That keeps fault currents and protection simple, while leaving a backup route.\n\nWhen a section fails, the control room and the outage technician read the fault passage indicators: small devices in each MV station that flag whether fault current passed through. The fault lies between the last station that flagged and the first that did not. The technician opens the switches on both sides of that cable section.',
         'Restore by switching. With the faulty section isolated, the control room recloses the feeder breaker and closes the normally open point, after checking the other side can carry the extra load.\n\nMost customers are back within one to two hours; remote-controlled stations cut that to minutes. Only customers connected inside the isolated section wait for the repair: a measurement van pinpoints the fault, the crew digs, makes one or two joints and tests. That often takes a day, and meanwhile the ring has no backup.',
-        'The numbers. SAIFI is interruptions per customer per year. CAIDI is the average duration of one interruption for the customers affected. SAIDI = SAIFI × CAIDI: average outage minutes per customer per year.\n\nDutch operators have reported roughly 20 to 30 minutes of SAIDI a year, among the best in Europe, and the regulator ACM links part of their allowed revenue to quality. A failure mode: one long rural feeder can drive a whole region’s SAIDI.',
+        'The numbers. SAIFI is interruptions per customer per year. CAIDI is the average duration of one interruption for the customers affected. SAIDI = SAIFI × CAIDI: average outage minutes per customer per year.\n\nDutch SAIDI is roughly 20 to 25 minutes a year (about 19 in 2023, 23 in 2024), among the best in Europe, and the regulator ACM (Authority for Consumers and Markets) links part of their allowed revenue to quality. A failure mode: one long rural feeder can drive a whole region’s SAIDI.',
       ],
       example: {
         kind: 'faded',
-        text: 'At 07:40 a feeder breaker trips at a substation. The ring behind it has 12 MS stations (the street-level stations where MS is stepped down to LS) and 1,800 customers.\n\nFault passage indicators have triggered in stations 1 to 5, but not in station 6. Station 12 has a normally open point to a neighbouring ring. The outage technician is on site at 08:15.',
+        text: 'At 07:40 a feeder breaker trips at a substation. The ring behind it has 12 MV stations (the street-level stations where MV is stepped down to LV) and 1,800 customers.\n\nFault passage indicators have triggered in stations 1 to 5, but not in station 6. Station 12 has a normally open point to a neighbouring ring. The outage technician is on site at 08:15.',
         ask: 'What would you do next?',
         reveal: 'The fault current passed station 5 but not station 6, so the fault sits in the cable between 5 and 6. Open the switch in station 5 towards 6 and in station 6 towards 5.\n\nReclose the feeder breaker: stations 1 to 5 are back. Then close the normally open point in station 12, after checking the neighbouring ring can carry the extra morning load: stations 6 to 12 are back too.\n\nNo customer waits for the repair, because the fault is in a cable between stations. If all 1,800 were out for an average of 50 minutes, that is 90,000 customer minutes. The repair is planned for daytime; until then both rings have less backup.',
       },
@@ -36,7 +36,7 @@ export default {
           why: 'SAIDI is total customer minutes divided by all customers, affected or not: 1,600,000 / 100,000 = 16.',
         },
         {
-          q: 'Why are MS rings run open at a normally open point?',
+          q: 'Why are MV rings run open at a normally open point?',
           options: ['To keep fault currents and protection simple while keeping a backup route', 'Because closed rings are forbidden by law', 'To save cable', 'So the control room can see the load'],
           answer: 'To keep fault currents and protection simple while keeping a backup route',
           why: 'Run open, each half is a simple radial line that is easy to protect; the open point is the backup you close after a fault.',
@@ -55,7 +55,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a regional grid operator, in a project to shorten outages. The team wants to hire more outage technicians. The data shows an average restore time of 95 minutes per MS outage: 35 to get a technician on site, 40 to find the faulty section, 20 to switch.',
+        scene: 'You’re at a regional grid operator, in a project to shorten outages. The team wants to hire more outage technicians. The data shows an average restore time of 95 minutes per MV outage: 35 to get a technician on site, 40 to find the faulty section, 20 to switch.',
         ask: 'What do you ask before agreeing more technicians is the answer?',
         model: 'More technicians only shortens the 35 minutes of travel. The 40 minutes of searching is the biggest part, so I’d ask how many stations have fault passage indicators that the control room can read remotely, and how many can be switched remotely. Which feeders cause most of the customer minutes? Fixing those first might beat hiring.',
         rubric: [
@@ -64,11 +64,11 @@ export default {
           'Asks which feeders drive most of the customer minutes',
         ],
       },
-      sayIt: 'Explain to a new colleague in 60 seconds what happens between an MS cable fault and the last customer getting power back.',
+      sayIt: 'Explain to a new colleague in 60 seconds what happens between an MV cable fault and the last customer getting power back.',
       terms: [
         { term: 'Control room', def: 'The team and room that watch and switch the grid around the clock, using SCADA.' },
-        { term: 'Normally open point', def: 'The switch in an MS ring that is kept open; you close it to feed a section from the other side.' },
-        { term: 'Fault passage indicator', def: 'Device in an MS station that flags whether fault current passed through, to locate the faulty section.' },
+        { term: 'Normally open point', def: 'The switch in an MV ring that is kept open; you close it to feed a section from the other side.' },
+        { term: 'Fault passage indicator', def: 'Device in an MV station that flags whether fault current passed through, to locate the faulty section.' },
         { term: 'SAIFI', def: 'Number of interruptions per customer per year.' },
         { term: 'CAIDI', def: 'Average duration of one interruption for the customers affected.' },
         { term: 'SAIDI', def: 'Average outage minutes per customer per year: SAIFI × CAIDI.' },
@@ -79,7 +79,7 @@ export default {
       title: 'Switching plans',
       pre: [
         {
-          q: 'In planned work on the MS grid, what is often the scarcest resource?',
+          q: 'In planned work on the MV grid, what is often the scarcest resource?',
           options: ['People authorised to switch, and the slots to do it', 'Cable and joints', 'Excavators', 'Budget'],
           answer: 'People authorised to switch, and the slots to do it',
           why: 'Crews and materials can be ready while the job waits weeks for a moment when someone authorised can switch that section off and on.',
@@ -88,9 +88,9 @@ export default {
       teach: [
         'A switching plan is the step-by-step script to take part of the grid out of service, make it safe to work on, and bring it back.\n\nEach step says which switch, in which station, open or close, by whom, in what order, and what to check after. Order matters: the wrong order can drop customers, or make a switch break a current it was not built for. A load-break switch may interrupt normal load current; a disconnector may only open when no current flows.',
         'Every plan follows the five safety rules (EN 50110): disconnect; secure against reconnection with a lock and a tag; verify absence of voltage with a tested voltage detector; earth and short-circuit; protect against nearby live parts with covers or barriers.\n\nEarthing comes only after the test has proved the part dead. It connects the conductors to earth and to each other, so a mistaken switch-on trips the protection instead of hurting the crew. After the work, everything is undone in reverse order.',
-        'In the Netherlands the work follows NEN 3140 for low voltage and NEN 3840 for high voltage, which includes MS. Two named roles matter.\n\nThe person in control of the installation (IV) is responsible for the installation and gives permission for work on it. The person in control of the work activity (WV) leads the job on site and is responsible for the crew’s safety. Everyone who switches is appointed in writing by the employer for exactly the work they may do.',
-        'The approval chain. A work preparer or switching specialist writes the plan; a second qualified person checks it. The control room releases it and puts it in the switching calendar. Customers who lose power get a letter days ahead.\n\nOn the day, the switching technician executes step by step and reports each step to the control room, which keeps its live picture of the grid right. A step done but not reported is a classic near miss: the picture no longer matches the grid.',
-        'Why it becomes a bottleneck: few technicians are authorised to switch, the control room can handle only so many planned switching jobs a day, and interruptions must be announced. Crews ready, material on site, no switching slot until week 14.\n\nRemedies: bundle jobs into one outage, standard plans for standard situations, train more switching staff, plan slots as seriously as crews. Ask a planner: “When is the switching plan approved, compared with the job date?”',
+        'In the Netherlands the work follows NEN 3140 for low voltage and NEN 3840 for high voltage (above 1 kV, so MV too). Two named roles matter.\n\nThe person in control of the installation (IV) is responsible for the installation and gives permission for work on it. The person in control of the work activity (WV) leads the job on site and is responsible for the crew’s safety. Everyone who switches is appointed in writing by the employer for exactly the work they may do.',
+        'The approval chain. A work preparer (who readies jobs for crews) or a switching specialist writes the plan; a second qualified person checks it. The control room releases it and puts it in the switching calendar. Customers who lose power get a letter days ahead.\n\nOn the day, the switching technician carries out each step and reports it to the control room, which keeps its live picture of the grid right. A step done but not reported is a classic near miss: the picture no longer matches the grid.',
+        'Why it becomes a bottleneck: few technicians are authorised to switch, the control room can handle only so many planned switching jobs a day, and interruptions must be announced. Crews ready, material on site, no switching slot, a planned moment when an authorised technician switches the section, until week 14.\n\nRemedies: bundle jobs into one outage, standard plans for standard situations, train more switching staff, plan slots as seriously as crews. Ask a planner: “When is the switching plan approved, compared with the job date?”',
       ],
       example: {
         kind: 'faded',
@@ -102,8 +102,8 @@ export default {
       recall: [
         {
           q: 'Which are the first three of the five safety rules, in order?',
-          options: ['Earth, disconnect, verify', 'Disconnect, secure against re-closing, verify absence of voltage', 'Verify, disconnect, earth', 'Secure, earth, disconnect'],
-          answer: 'Disconnect, secure against re-closing, verify absence of voltage',
+          options: ['Earth, disconnect, verify', 'Disconnect, secure against reconnection, verify absence of voltage', 'Verify, disconnect, earth', 'Secure, earth, disconnect'],
+          answer: 'Disconnect, secure against reconnection, verify absence of voltage',
           why: 'Disconnect, lock it so nobody switches it back on, then prove it is dead. Only then earth and short-circuit (rule 4) and cover nearby live parts (rule 5).',
         },
         {
@@ -127,7 +127,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. Planners complain that 18% of planned MS jobs last month were cancelled in the week itself.',
+        scene: 'You’re at a grid operator. Planners complain that 18% of planned MV jobs last month were cancelled in the week itself.',
         ask: 'What do you ask to find out whether switching is behind it?',
         model: 'Of those cancelled jobs, how many fell over on the switching plan: not written, not approved, or no switching technician? And when is a plan normally approved, compared with the job date? If plans are written in the last week because design data comes late, I’d look at a rule like “no job in the week plan without an approved switching plan”.',
         rubric: [
@@ -151,7 +151,7 @@ export default {
       title: 'Asset management and risk',
       pre: [
         {
-          q: 'A 50-year-old paper-insulated MS cable (the older cable type, with oil-soaked paper inside a lead sheath) has no fault history and good test results. What does a risk-based asset manager usually do?',
+          q: 'A 50-year-old paper-insulated MV cable (the older cable type, with oil-soaked paper inside a lead sheath) has no fault history and good test results. What does a risk-based asset manager usually do?',
           options: ['Replace it, it is past its design life', 'Keep it in service and keep monitoring', 'Replace it within a year', 'Halve its load'],
           answer: 'Keep it in service and keep monitoring',
           why: 'Age alone is a poor trigger; many old paper-insulated cables are very reliable.',
@@ -160,15 +160,15 @@ export default {
       teach: [
         'Asset management means deciding what to inspect, repair and replace across all cables, stations and transformers. Its core is risk = likelihood × consequence.\n\nLikelihood is the chance of failure per year, from failure statistics per asset type, age and condition. Consequence is what happens if it fails, scored on several company values: safety, reliability (customer minutes lost), money, environment, compliance and reputation.',
         'A risk matrix turns this into a score: likelihood classes on one axis, consequence classes on the other, filled in per value. The company decides which cells are acceptable and which need action.\n\nExperts argue about the exchange rate between values: how many customer minutes weigh as much as one safety incident? A good asset manager puts that choice on the table instead of hiding it in the matrix colours.',
-        'ISO 55000 in one idea: get the most value from your assets over their whole life by balancing cost, risk and performance, with a clear line from company goals down to each decision about a cable or transformer.\n\nIt is not a technique but a management system: policy, strategy, plans, and learning from every failure. Dutch grid operators are also certified to NTA 8120, a Dutch requirement for their asset management that builds on the same ideas.',
-        'Consequence often varies more than likelihood. A 10/0.4 kV transformer feeding 150 houses and an MS cable feeding a hospital and 3,000 customers can have the same failure rate and very different priorities.\n\nSome problems are a type issue: a joint type, switchgear model or cable batch with a known weakness. It gets a programme across the whole population, with an interim measure meanwhile, such as switching it only remotely so nobody stands in front of it.',
+        'ISO 55000 in one idea: get the most value from your assets over their whole life by balancing cost, risk and performance, with a clear line from company goals down to each decision about a cable or transformer.\n\nIt is not a technique but a management system: policy, strategy, plans, and learning from every failure. Dutch grid operators are also certified to NTA 8120, the Dutch asset-management standard for electricity and gas grids, which builds on the same ideas.',
+        'Consequence often varies more than likelihood. A 10/0.4 kV transformer feeding 150 houses and an MV cable feeding a hospital and 3,000 customers can have the same failure rate and very different priorities.\n\nSome problems are a type issue: a joint type, a model of switchgear (the cabinet of switches in a station) or a cable batch with a known weakness. It gets a programme across the whole population, with an interim measure meanwhile, such as switching it only remotely so nobody stands in front of it.',
         'Replacement decisions compare options: keep running with more inspection, refurbish, replace now, or replace later together with other work in that street.\n\nThe question that gets you taken seriously: “Is this replacement driven by condition, by a type issue, or by capacity?” With the energy transition, much replacement is driven by assets being too small, not too old. That changes what you replace them with.',
       ],
       example: {
         kind: 'faded',
-        text: 'There is budget for one replacement this year.\n\nCandidate A: a type of MS switchgear (the cabinet of switches in a station) with a known failure mode, chance of failure 1 in 50 per year; if it fails there is a fire risk and 2,000 customers are out for 3 hours. Candidate B: an LS cable with a chance of 1 in 5 per year; if it fails 40 customers are out for 4 hours.',
+        text: 'There is budget for one replacement this year.\n\nCandidate A: a type of MV switchgear (the cabinet of switches in a station) with a known failure mode, chance of failure 1 in 50 per year; if it fails it can catch fire, and 2,000 customers are out for 3 hours. Candidate B: an LV cable with a chance of 1 in 5 per year; if it fails 40 customers are out for 4 hours.',
         ask: 'What would you do next?',
-        reveal: 'Compare expected customer minutes per year: chance × customers × minutes. A: 0.02 × 2,000 × 180 = 7,200. B: 0.2 × 40 × 240 = 1,920.\n\nA is higher on reliability alone, and it also carries a safety consequence, which dominates in most risk matrices. So A goes first.\n\nBecause it is a type issue, ask how many of the same type are still in the grid, and what interim measures apply to them, such as switching only remotely. For B: keep monitoring and try to bundle it with other work in that street.',
+        reveal: 'Compare expected customer minutes per year: chance × customers × minutes. A: 0.02 × 2,000 × 180 = 7,200. B: 0.2 × 40 × 240 = 1,920.\n\nA is higher on reliability alone, and it also carries a safety consequence, which weighs heaviest in almost every risk matrix. So A goes first.\n\nBecause it is a type issue, ask how many of the same type are still in the grid, and what interim measures apply to them, such as switching only remotely. For B: keep monitoring and try to bundle it with other work in that street.',
       },
       said: 'What engineers say: “It’s not about age. That switchgear type has a known failure mode, so the whole population is in the replacement programme.”',
       recall: [
@@ -199,7 +199,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. The asset manager shows a plan to replace 400 MS stations, selected mainly because they are older than 50 years.',
+        scene: 'You’re at a grid operator. The asset manager shows a plan to replace 400 MV stations, selected mainly because they are older than 50 years.',
         ask: 'What do you ask?',
         model: 'How much of this is driven by condition, by type issues, and by capacity? For the age-based part, what do the failure data say about these types after 50 years? And if capacity is the real driver in some areas, can we combine replacement with the upgrade, so we open those stations only once?',
         rubric: [
@@ -223,23 +223,23 @@ export default {
       pre: [
         {
           q: 'Which part of a grid operator’s network is least measured?',
-          options: ['The LS network in the street', 'The HS/MS substations', 'The MS feeders leaving the substation', 'The national transmission grid'],
-          answer: 'The LS network in the street',
-          why: 'Substations are measured; most low-voltage (LS) cables and stations historically had no measurement at all.',
+          options: ['The LV network in the street', 'The HV/MV substations', 'The MV feeders leaving the substation', 'The national transmission grid'],
+          answer: 'The LV network in the street',
+          why: 'Substations are measured; most low-voltage (LV) cables and stations historically had no measurement at all.',
         },
       ],
       teach: [
-        'Three kinds of data. Registration: what is where, kept in the GIS, the map-based register of cable routes, cable types, joints, stations and connections. Condition data: inspections, partial-discharge measurements (tiny sparks inside ageing insulation), oil analysis of transformers, failure history. Load: measurements in substations, more and more in MS and LS stations, and smart-meter data.\n\nRegistration feeds design, condition feeds replacement, load feeds capacity decisions.',
-        'Registration was built over decades, partly from paper drawings. Typical errors: unknown cable type, an unregistered joint, a wrong route, a house on the wrong LS cable.\n\nThen the designer has to check on site, the dig crew finds surprises, and the switching plan gets rewritten. Each surprise costs days, and planners learn to add slack to every job. You hear it as: “GIS says paper-insulated, the crew found XLPE”, the newer plastic-insulated cable.',
+        'Three kinds of data. Registration: what is where, kept in the GIS, the map-based register of cable routes, cable types, joints, stations and connections. Condition data: inspections, partial-discharge measurements (tiny sparks inside ageing insulation), oil analysis of transformers, failure history. Load: measurements in substations, more and more in MV and LV stations, and smart-meter data.\n\nRegistration feeds design, condition feeds replacement, load feeds capacity decisions.',
+        'Registration was built over decades, partly from paper drawings. Typical errors: unknown cable type, an unregistered joint, a wrong route, a house on the wrong LV cable.\n\nThen the designer has to check on site, the dig crew finds surprises, and the switching plan gets rewritten. Each surprise costs days, and planners learn to add slack to every job. You hear it as: “GIS says paper-insulated, the crew found XLPE”: the register shows the older oil-and-paper cable, the ground holds the newer plastic-insulated type.',
         'The loop that makes it worse: after each job, the crew hands in as-built drawings, showing what was really laid. If those come late or incomplete, the GIS gets worse with every job, and the as-built backlog becomes a hidden queue.\n\nFix it at the source: make as-built simple, with photos and an app, and close a job only when its drawings are processed. Ask: “How many weeks of as-built work are waiting?”',
-        'A digital twin is a connected computer model of the grid, topology plus asset data plus measured load, that lets you calculate loads and simulate switching or new connections. Topology means what is connected to what: which house on which cable, which cable to which station.\n\nA twin is only as good as its topology. One built on LS connections that are 85% right gives wrong congestion answers for whole streets.',
+        'A digital twin is a connected computer model of the grid, topology plus asset data plus measured load, that lets you calculate loads and simulate switching or new connections. Topology means what is connected to what: which house on which cable, which cable to which station.\n\nA twin is only as good as its topology. One built on LV connections that are 85% right gives wrong congestion answers for whole streets.',
         'Experts argue whether to clean data in one big project or fix it where it hurts. Big cleanups decay again unless the inflow is fixed.\n\nSmart meters could show which house sits on which cable, but privacy rules limit how operators may use their data, so it is often used per street or station. Ask: “How complete is the topology, and how do you know?”',
       ],
       example: {
         kind: 'faded',
         text: 'A region prepares 1,000 jobs a year. In 25% of them the work preparer hits a data error that needs an extra site visit: half a day of preparer time and about one week of delay.\n\nManagement proposes a two-year project to clean up all GIS data.',
         ask: 'What would you do next?',
-        reveal: '250 jobs × 0.5 day = 125 preparer days a year, more than half a full-time person (about 200 working days), plus 250 job-weeks of delay. That is worth fixing, but not blindly.\n\nTake the last 50 jobs with a data error and sort the errors by type: is it mostly LS connectivity, cable types, or missing joints? Fix the top one or two first, where they are used. Check the as-built backlog too: if drawings take months to process, any cleanup is undone within a year.',
+        reveal: '250 jobs × 0.5 day = 125 preparer days a year, more than half a full-time person (about 200 working days), plus 250 job-weeks of delay. That is worth fixing, but not blindly.\n\nTake the last 50 jobs with a data error and sort the errors by type: is it mostly LV connectivity, cable types, or missing joints? Fix the top one or two first, where they are used. Check the as-built backlog too: if drawings take months to process, any cleanup is undone within a year.',
       },
       said: 'What engineers say: “GIS says paper-insulated, the crew found XLPE and a joint nobody registered. Switching plan’s back to the drawing board.”',
       recall: [
@@ -301,11 +301,11 @@ export default {
         },
       ],
       teach: [
-        'Heat pumps, electric cars, solar panels and electrifying industry mean many neighbourhoods and MS feeders need reinforcement: a heavier cable, an extra transformer or a new station. That comes on top of new connections and replacing old assets.\n\nOperators plan to multiply their yearly investment, but technicians grow much slower; the sector warns of a shortage of thousands. Money is rarely the limit; people are.',
-        'In many regions there is grid congestion: at peak moments the grid would have to carry more than it safely can, so the operator says no to new or bigger large connections until reinforcement is done.\n\nThose customers land in a queue for transport capacity. In 2025 many thousands of businesses were waiting, for taking power from the grid and for feeding it in. The public capacity map, which is coloured per area, shows where.',
-        'When work exceeds capacity, the question is not whether work waits but which. Safety and legal duties come first.\n\nFor the queue, the default is first come, first served. Since 2024 the regulator ACM allows social prioritisation: projects that relieve congestion go first, then safety (such as defence and emergency services), then basic needs (such as health care, education and housing). Make your own rules explicit too, or the loudest customer wins.',
-        'Bundling: open a street once and do everything in it: LS reinforcement, new connections, replacing old cable, sometimes gas mains and municipal works too.\n\nIt saves digging, switching, permits and disruption for residents. The cost is more coordination and a longer run-up to align everyone. A typical failure: one party’s permit is late and the whole bundle waits.',
-        'A standard design is a fixed design for a common case: a standard MS station, standard LS feeder layouts, standard switching plans. Less design per job, faster checks, simpler training, bulk buying.\n\nEngineers push back that every situation is different. The answer: a standard for the 80%, a clear route for exceptions. And watch hands-on time: if 50% of a technician’s day is real work and that rises to 60%, you get 20% more output.',
+        'Heat pumps, electric cars, solar panels and electrifying industry mean many neighbourhoods and MV feeders (cable routes from a substation) need reinforcement: a heavier cable, an extra transformer or a new station. That comes on top of new connections and replacing old assets.\n\nOperators plan to multiply their yearly investment, but technicians grow much slower; the sector warns of a shortage of thousands. Money is rarely the limit; people are.',
+        'In many regions there is grid congestion: at peak moments the grid would have to carry more than it safely can, so the operator says no to new or bigger large connections (above 3 × 80 A, such as a factory or a charging hub) until reinforcement is done.\n\nThose customers land in a queue for transport capacity. In 2025 many thousands of businesses were waiting, for taking power from the grid and for feeding it in. The public capacity map, which is coloured per area, shows where.',
+        'When work exceeds capacity, the question is not whether work waits but which. Safety and legal duties come first.\n\nFor the queue, the default is first come, first served. Since 2024 the regulator ACM allows social prioritisation: projects that relieve congestion go first, then safety (such as defence), then basic needs (such as health care, education and housing). A court annulled it in March 2025; the revised framework keeps that order and, since July 2026, includes small connections. Make your own rules explicit, or the loudest customer wins.',
+        'Bundling: open a street once and do everything in it: LV reinforcement, new connections, replacing old cable, sometimes gas mains and municipal works too.\n\nIt saves digging, switching, permits and disruption for residents. The cost is more coordination and a longer run-up to align everyone. A typical failure: one party’s permit is late and the whole bundle waits.',
+        'A standard design is a fixed design for a common case: a standard MV station, standard LV feeder layouts, standard switching plans. Less design per job, faster checks, simpler training, bulk buying.\n\nEngineers push back that every situation is different. The answer: a standard for the 80%, a clear route for exceptions. And watch hands-on time: if 50% of a technician’s day is real work and that rises to 60%, you get 20% more output.',
       ],
       example: {
         kind: 'faded',
@@ -366,7 +366,7 @@ export default {
       title: 'From request to commissioning',
       pre: [
         {
-          q: 'For a typical grid reinforcement or new MS connection, what share of the total lead time (calendar time from request to working connection) is actual work in the field?',
+          q: 'For a typical grid reinforcement or new MV connection, what share of the total lead time (calendar time from request to working connection) is actual work in the field?',
           options: ['About a third', 'About half', 'Over 80%', 'Usually under 10%'],
           answer: 'Usually under 10%',
           why: 'Most of the lead time is waiting: for preparation, permits, materials and switching.',
@@ -374,8 +374,8 @@ export default {
       ],
       teach: [
         'The chain: request, offer and contract, work preparation (design, site survey, switching plan), permits (consent from the municipality, and a KLIC notification before any digging, which tells you where other cables and pipes lie), materials, crew planning (own staff or contractor), execution, commissioning, and finally as-built and administrative close.\n\nEach step is often another team and another system, and every handover loses information.',
-        'Lead time is the calendar time from request to working connection. For a reinforcement it is often months to years, while the field work takes days.\n\nFor small connections Dutch rules long set a term of 18 weeks; in practice it was often missed. The new Dutch Energy Act, in force since 1 January 2026, dropped that fixed term. A connection date now depends on the work and the queue.',
-        'Where flow breaks: queues before work preparation, permits that take weeks to months, long delivery times for transformers and MS switchgear, waiting for a switching slot, rework when data or designs change.\n\nLook at waiting, not just working. Follow ten orders end to end and write down for each step how long it waited and how long it was worked on. Steps often run one after another that could run in parallel.',
+        'Lead time is the calendar time from request to working connection. For a reinforcement it is often months to years, while the field work takes days.\n\nFor connections up to 10 MVA, Dutch law long set a maximum of 18 weeks, often missed in practice. Since 22 February 2025 the law asks only for a reasonable term, and the Energy Act, in force since 1 January 2026, keeps it that way; the ACM is working out concrete terms. The date now depends on the work and the queue.',
+        'Where flow breaks: queues before work preparation, permits that take weeks to months, long delivery times for transformers and MV switchgear, waiting for a switching slot, rework when data or designs change.\n\nLook at waiting, not just working. Follow ten orders end to end and write down for each step how long it waited and how long it was worked on. Steps often run one after another that could run in parallel.',
         'Release a job to execution only when everything is ready: design, permit, material, switching plan and crew. A simple readiness check stops crews arriving at jobs that cannot be done.\n\nIt feels slower at first; it makes the week plan reliable. Experts argue about how strict to be: a job 90% ready tempts everyone. Ask: “What share of jobs passes the check on its first try?”',
         'Commissioning closes the loop: tests such as an insulation test and a phase check (are the three phases in the right order?), protection settings, switching back in via the plan, and the as-built drawings into the GIS.\n\nSkip that last step and the next job starts on wrong data. A common failure: the job is “done” for the crew but stays open for months in the administration.',
       ],
@@ -414,7 +414,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'You’re at a grid operator. The head of a regional unit says: “Our lead time for MS reinforcements is 40 weeks, we need 25. My people already work overtime.”',
+        scene: 'You’re at a grid operator. The head of a regional unit says: “Our lead time for MV reinforcements is 40 weeks, we need 25. My people already work overtime.”',
         ask: 'What do you propose to find out where the time goes?',
         model: 'If people already work hard, the time is probably in the waiting. I’d propose to follow ten recent orders from request to commissioning with your team, and write down per step the waiting time and working time. Then we look at which steps run in sequence but could run in parallel, and how many jobs are started at once.',
         rubric: [
