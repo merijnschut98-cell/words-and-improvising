@@ -13,16 +13,17 @@ export default {
         },
       ],
       teach: [
-        'Een standpunt is wat iemand zegt te willen: “We moeten het rapport vrijdag hebben”, “De prijs moet 10% omlaag”. Een belang is waarom hij dat wil: een directieoverleg op maandag, een bezuiniging die hij moet laten zien. Fisher en Ury, in Getting to Yes (1981): wie over standpunten onderhandelt, graaft zich in; wie naar belangen kijkt, ziet ruimte voor opties.',
+        'Een standpunt is wat iemand zegt te willen: “We moeten het rapport vrijdag hebben”, “De prijs moet 10% omlaag”. Een belang is waarom hij dat wil: een directieoverleg op maandag, een bezuiniging die hij moet laten zien.\n\nRoger Fisher en William Ury noemen hun methode principieel onderhandelen, ook wel de Harvard-methode (Getting to Yes, 1981): wie over standpunten onderhandelt, graaft zich in; wie naar belangen kijkt, ziet ruimte voor opties.',
         'Vraag waarom, en waarom niet. “Wat levert dat je op?” “Wat gebeurt er als het geen vrijdag wordt?” “Waar maak je je zorgen over?”\n\nLuister naar behoeften als zekerheid, erkenning, grip, geld en tijd. De meeste belangen kun je op meer dan één manier dienen. Schrijf die van de ander op naast die van jezelf.',
-        'Gedeelde en verschillende belangen helpen allebei. Gedeeld: jullie willen allebei dat het project slaagt. Verschillend: de een vindt timing het belangrijkst, de ander de kosten.\n\nDoor verschillen kun je ruilen: geef wat voor jou goedkoop is en voor de ander veel waard.',
-        'Gebruik eerlijke maatstaven in plaats van wilskracht: marktprijzen, data uit het verleden, een afgesproken norm. “Wat zou hier redelijk zijn, en hoe kunnen we dat checken?” Dan gaat het gesprek niet meer over wie de sterkste is maar over wat redelijk is, en kunnen beide partijen ja zeggen zonder gezichtsverlies.',
+        'Gedeelde en verschillende belangen helpen allebei. Gedeeld: jullie willen allebei dat het project slaagt. Verschillend: de een vindt timing het belangrijkst, de ander de kosten.\n\nDoor verschillen kun je ruilen: geef wat voor jou goedkoop is en voor de ander veel waard. Leg meerdere punten tegelijk op tafel, een pakketdeal, zodat wat je op het ene punt geeft, terugkomt op een ander. Eén punt tegelijk maakt van elke stap winnen of verliezen.',
+        'Gebruik een eerlijke maatstaf in plaats van wilskracht: een marktprijs, data uit het verleden, een afgesproken norm. “Wat zou hier redelijk zijn, en hoe kunnen we dat checken?” Dan gaat het gesprek niet meer over wie de sterkste is maar over wat redelijk is, en kunnen beide partijen ja zeggen zonder gezichtsverlies.',
+        'Wat je in de praktijk ziet: standpunten die als feit worden gebracht (“Mijn ploegen gaan dat niet doen”), en mensen die al snel het verschil delen omdat dat eerlijk voelt. Dat gaat snel, maar beloont wie het extreemst opende.\n\nDeskundigen verschillen over hoe rationeel dit allemaal is. Chris Voss, oud-gijzelingsonderhandelaar van de FBI (Never Split the Difference, 2016), zegt dat emoties beslissen: luister eerst en benoem het gevoel. Een scherpe vraag: “Als je precies dit krijgt, wat lost dat dan voor je op?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een netbeheerder wil je dat elke klus twee dagen voor de start op gereedheid wordt gecheckt. Het hoofd uitvoering zegt: “Jouw gereedheidscheck kost bij elke klus een dag extra. Mijn ploegen gaan dat niet doen.”',
+        text: 'Bij een netbeheerder (grid operator), het bedrijf dat het regionale stroomnet beheert, wil je dat elke klus twee dagen voor de start op gereedheid wordt gecheckt: zijn vergunningen, materiaal en het schakelplan rond? Het hoofd uitvoering, de baas van de monteursploegen, zegt: “Jouw gereedheidscheck (readiness check) kost bij elke klus een dag extra. Mijn ploegen gaan dat niet doen.”',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Zijn standpunt is “geen dag extra”. Vraag naar het belang: “Wat zou die dag je kosten?” Stel dat blijkt dat hij bang is dat ploegen stilzitten en dat planners hen dan de schuld geven.\n\nJouw belang is minder ritten voor niks. Een optie die beide dient: de planners doen de check, en ploegen krijgen alleen klussen die erdoor komen. Stel een pilot van vier weken in één regio voor en spreek een eerlijke maatstaf af om hem te beoordelen: het aantal ritten voor niks, ervoor en erna.',
+        reveal: 'Zijn standpunt is “geen dag extra”. Vraag naar het belang: “Wat zou die dag je kosten?” Stel dat blijkt dat hij bang is dat ploegen stilzitten en dat planners hen dan de schuld geven.\n\nJouw belang is minder ritten voor niks. Een optie die beide dient: de planners doen de check, en ploegen krijgen alleen klussen die erdoor komen. Stel een pilot voor, een proef van vier weken in één regio, en spreek een eerlijke maatstaf af om hem te beoordelen: het aantal ritten voor niks, ervoor en erna.',
       },
       said: 'Wat je hoort in projecten: “Help me even begrijpen wat daarachter zit. Wat levert vrijdag je op?”',
       recall: [
@@ -78,6 +79,8 @@ export default {
         { term: 'Standpunt', def: 'Wat iemand zegt te willen; een eis die je alleen kunt accepteren of weigeren.' },
         { term: 'Belang', def: 'Waarom iemand het wil: de behoefte achter het standpunt.' },
         { term: 'Eerlijke maatstaf', def: 'Een meetlat die beide partijen kunnen checken, zoals marktprijzen of data uit het verleden.' },
+        { term: 'Principieel onderhandelen', def: 'De methode van Fisher en Ury (Harvard-methode): mens en probleem scheiden, naar belangen kijken, opties bedenken, eerlijke maatstaven gebruiken.' },
+        { term: 'Pakketdeal', def: 'Meerdere punten samen onderhandelen, zodat je wat je op het ene punt geeft kunt ruilen tegen winst op een ander.' },
       ],
     },
     {
@@ -92,16 +95,17 @@ export default {
         },
       ],
       teach: [
-        'BATNA staat voor Best Alternative To a Negotiated Agreement (Fisher en Ury). Het is wat je echt gaat doen als je wegloopt. Je BATNA, niet je wensen, bepaalt hoe sterk je staat.\n\nMet een goed alternatief kun je rustig nee zeggen. Met een slecht alternatief maak je dat eerst beter, voordat je gaat onderhandelen.',
-        'Je ondergrens is de slechtste deal die je nog accepteert, en die volgt uit je BATNA.\n\nStel dat een klant €950 per dag biedt, en je hebt voor dezelfde dagen een vast aanbod elders van €1.000 per dag. Als verder alles gelijk is, sta je er met minder dan €1.000 slechter voor. Bepaal dit vóór het gesprek, niet tijdens.',
+        'BATNA staat voor Best Alternative To a Negotiated Agreement, het beste alternatief zonder akkoord (Fisher en Ury, Getting to Yes, 1981). Het is wat je echt gaat doen als je wegloopt. Je BATNA, niet je wensen, bepaalt hoe sterk je staat.\n\nMet een goed alternatief kun je rustig nee zeggen. Met een slecht alternatief maak je dat eerst beter, voordat je gaat onderhandelen.',
+        'Je ondergrens (walk-away point, of reservation point) is de slechtste deal die je nog accepteert, en die volgt uit je BATNA.\n\nStel dat een klant €950 per dag biedt, en je hebt voor dezelfde dagen een vast aanbod elders van €1.000 per dag. Als verder alles gelijk is, sta je er met minder dan €1.000 slechter voor. Bepaal dit vóór het gesprek, niet tijdens.',
         'Schat ook die van hen in. Wat gebeurt er met hen zonder deal: een andere leverancier, het zelf doen, wachten?\n\nDe ruimte tussen jouw ondergrens en die van hen is de ZOPA, de zone waarin een akkoord mogelijk is. Is die er niet, dan maakt geen enkele slimme formulering een deal; verander dan wat er op tafel ligt.',
         'Bluf niet met een alternatief dat je niet hebt. Noem een echt alternatief rustig, als informatie, niet als dreigement: “Als we hier niet uitkomen, doen we het volgend jaar.” En werk op de achtergrond aan je BATNA: een tweede echte optie is het sterkste middel dat je hebt.',
+        'Overstapkosten zijn wat het een partij kost om van partner te wisselen: tijd, inwerken, en bij onderdelen vaak kwalificatie, het testen en goedkeuren van onderdelen van een nieuwe leverancier voordat ze gebruikt mogen worden. Hoge overstapkosten maken een alternatief zwakker, hoe stoer er ook gepraat wordt.\n\nVeelgemaakte fout: je eigen BATNA overschatten, of vergeten wat het kost om er te komen. Moet je hem noemen? Gangbaar advies: een sterke rustig laten zien, een zwakke voor je houden. Scherpe vraag: “Wat doen we maandag echt als ze nee zeggen?”',
       ],
       example: {
         kind: 'faded',
         text: 'Een onderdelenfabrikant koopt gecoate beugels bij één leverancier, en die kondigt een prijsverhoging van 12% aan. Een tweede leverancier heeft een prijs geoffreerd van 4% boven de huidige, maar heeft 10 weken nodig om de onderdelen te kwalificeren. Zelf coaten kan niet.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Je BATNA is overstappen naar de tweede leverancier na 10 weken kwalificatie. Die van hen is jouw volume kwijtraken.\n\nStart de kwalificatie nu al: dat verbetert je alternatief, hoe het ook loopt. Onderhandel dan: vraag wat achter de 12% zit (energie, grondstof?) en stel bijvoorbeeld 4% nu voor, met een clausule die de energie-index volgt. Je ondergrens ligt rond de 4% van de tweede leverancier plus de kosten van het kwalificeren.',
+        reveal: 'Je BATNA is overstappen naar de tweede leverancier na 10 weken kwalificatie. Die van hen is jouw volume kwijtraken.\n\nStart de kwalificatie nu al: dat verbetert je alternatief, hoe het ook loopt. Onderhandel dan: vraag wat achter de 12% zit (energie, grondstof?) en stel bijvoorbeeld 4% nu voor, met een indexclausule (index clause): een regel in het contract die een deel van de prijs laat meebewegen met een gepubliceerde energieprijsindex. Je ondergrens ligt rond de 4% van de tweede leverancier plus de kosten van het kwalificeren.',
       },
       said: 'Wat je hoort in projecten: “Voordat we naar binnen gaan: wat doen we als ze nee zeggen?”',
       recall: [
@@ -132,7 +136,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je engagement manager vertelt dat de klant 15% korting wil op het tarief voor de volgende fase, “anders gaan ze ergens anders heen”. Jij weet dat het team van de klant afhankelijk is van jullie datamodel, en dat een ander bureau zo’n drie maanden nodig heeft om het opnieuw te bouwen.',
+        scene: 'Je engagement manager, de manager bij jouw bureau die verantwoordelijk is voor deze klant, vertelt dat de klant 15% korting wil op het tarief voor de volgende fase, “anders gaan ze ergens anders heen”. Het gesprek met de klant is donderdag. Jij weet dat het team van de klant afhankelijk is van jullie datamodel, en dat een ander bureau zo’n drie maanden nodig heeft om het opnieuw te bouwen.',
         ask: 'Wat adviseer je je engagement manager?',
         model: 'Ik zou zeggen dat hun alternatief zwakker is dan het klinkt: overstappen kost ze ongeveer drie maanden. Dus we hoeven de 15% niet meteen te accepteren. Ik zou vragen wat erachter zit, misschien een budgetplafond, en een ruil aanbieden: een lager tarief voor een kleinere scope, of hetzelfde tarief met een overdracht van het model, zodat ze minder van ons afhangen. En we moeten vóór het gesprek onze eigen ondergrens afspreken.',
         rubric: [
@@ -158,6 +162,8 @@ export default {
         { term: 'BATNA', def: 'Best Alternative To a Negotiated Agreement: wat je echt gaat doen zonder deal.' },
         { term: 'Ondergrens', def: 'De slechtste deal die je nog accepteert; die volgt uit je BATNA.' },
         { term: 'ZOPA', def: 'Zone of possible agreement: de ruimte tussen de ondergrenzen van beide partijen.' },
+        { term: 'Overstapkosten', def: 'Wat het kost om van leverancier of partner te wisselen: tijd, inwerken, kwalificatie, gemiste productie.' },
+        { term: 'Kwalificatie', def: 'Het testen en goedkeuren van de onderdelen of het proces van een nieuwe leverancier voordat ze in productie gebruikt mogen worden.' },
       ],
     },
     {
@@ -174,12 +180,13 @@ export default {
       teach: [
         'Verankering (Tversky en Kahneman, 1974): het eerste getal in de kamer trekt ieders schatting naar zich toe, zelfs als iedereen weet dat het willekeurig is. Bij onderhandelen voorspelt het eerste bod sterk waar de deal uitkomt (Galinsky en Mussweiler, 2001). Ken je de markt goed, dan loont het meestal om zelf het eerste getal op tafel te leggen.',
         'Een goed anker is ambitieus en verdedigbaar: je kunt uitleggen waar het vandaan komt. Een extreem getal dat je niet kunt onderbouwen, kost je geloofwaardigheid en kan het gesprek beëindigen. Geef de reden mee met het getal: “Vergelijkbare diagnoses kostten 18 tot 22 dagen, dus we stellen er 20 voor.”',
-        'Ankert de ander eerst, ga dan niet over zijn getal in discussie: dan blijft het in het midden staan. Vraag hoe hij erop kwam, leg jouw basis uit en leg je eigen getal op tafel. Doe geen tegenbod vlak bij een getal dat je onredelijk vindt; daarmee accepteer je zijn anker.',
-        'Framing: hetzelfde feit komt anders binnen. “95% van de klussen op tijd” of “1 op de 20 klussen te laat”. “€31.200” of “€600 per week, een jaar lang”.\n\nMensen wegen verlies zwaarder dan een even grote winst (Kahneman en Tversky), dus “zonder dit blijf je 300 ploeguren per maand verliezen” komt vaak harder aan dan “dit bespaart 300 uur”. Frame eerlijk, in termen waar de ander om geeft.',
+        'Ankert de ander eerst, ga dan niet over zijn getal in discussie: dan blijft het in het midden staan. Vraag hoe hij erop kwam, leg jouw basis uit en leg je eigen getal op tafel. Doe geen tegenbod, je antwoord met een eigen getal, vlak bij een getal dat je onredelijk vindt; daarmee accepteer je zijn anker.',
+        'Framing: hetzelfde feit komt anders binnen. “95% van de klussen op tijd” of “1 op de 20 klussen te laat”. “€31.200” of “€600 per week, een jaar lang”.\n\nMensen wegen verlies zwaarder dan een even grote winst, verliesaversie (Kahneman en Tversky, 1979), dus “zonder dit blijf je 300 ploeguren per maand verliezen” komt vaak harder aan dan “dit bespaart 300 uur”. Frame eerlijk, in termen waar de ander om geeft.',
+        'Plan je concessies, de stappen waarin je toegeeft: maak elke stap kleiner (20 dagen, dan 19, dan 18,5) en vraag er telkens iets voor terug. Grote of snelle concessies verraden dat er nog veel ruimte is.\n\nWie gaat eerst? Kent de ander de markt beter dan jij, dan beschermt het je om hem te laten openen. Onderzoek van Ames en Mason (2015) suggereert dat een bandbreedte met je doel onderaan, “20 tot 22 dagen”, minstens zo goed werkt als één getal. Scherpe vraag: “Waar is dat getal op gebaseerd?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een klant vraagt hoeveel dagen je nodig hebt voor een planningsdiagnose bij drie regiokantoren. Je laatste drie vergelijkbare diagnoses kostten 18, 22 en 20 dagen. Aan de telefoon liet iemand van inkoop “een dag of 10” vallen.',
+        text: 'Een klant vraagt hoeveel dagen je nodig hebt voor een planningsdiagnose, een kort onderzoek naar hoe het werk gepland wordt en waar het misgaat, bij drie regiokantoren. Je laatste drie vergelijkbare diagnoses kostten 18, 22 en 20 dagen. Aan de telefoon liet iemand van inkoop “een dag of 10” vallen.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Leg je eigen getal op tafel, met de basis erbij: “Onze laatste drie diagnoses van dit type kostten 18 tot 22 dagen, dus we stellen er 20 voor.” Begin niet bij hun 10, en ga niet zonder reden in het midden zitten op 15.\n\nDuwen ze terug, ruil dan scope in plaats van dagen: “Met 12 dagen doen we één regio grondig in plaats van drie.” Dan kiest de klant wat hij voor zijn geld krijgt.',
       },
@@ -212,9 +219,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Bij een netbeheerder stel je een pilot van 6 weken voor met een gereedheidscheck. De sponsor vindt het goed, maar zegt: “Inkoop keurt nooit 30 adviesdagen goed. Kun je het in 10?” Jij schat dat er voor drie regio’s 30 dagen nodig zijn.',
+        scene: 'Bij een netbeheerder stel je een pilot van 6 weken voor met een gereedheidscheck: een check of elke klus vergunningen, materiaal en een schakelplan heeft voordat een ploeg op pad gaat. De sponsor, de manager bij de klant die eigenaar is van het project, vindt het goed, maar zegt: “Inkoop keurt nooit 30 adviesdagen goed. Kun je het in 10?” Jij schat dat er voor drie regio’s 30 dagen nodig zijn.',
         ask: 'Hoe reageer je?',
-        model: 'Ik zou niet over de 10 in discussie gaan en ook niet zonder reden op 20 gaan zitten. Ik leg de 30 uit: “Dat is drie regio’s, 10 dagen per regio, gebaseerd op de pilot die we in het noorden deden.” Dan bied ik een ruil: “Met 10 dagen kunnen we één regio goed doen. Werkt het, dan volgen de andere twee met de resultaten in de hand.” Zo kiest de klant scope, niet een goedkopere versie van alles.',
+        model: 'Ik zou niet over de 10 in discussie gaan en ook niet zonder reden op 20 gaan zitten. Ik leg de 30 uit: “Dat is drie regio’s, 10 dagen per regio, gebaseerd op wat één regio kostte bij onze analyse in het noorden vorig jaar.” Dan bied ik een ruil: “Met 10 dagen kunnen we één regio goed doen. Werkt het, dan volgen de andere twee met de resultaten in de hand.” Zo kiest de klant scope, niet een goedkopere versie van alles.',
         rubric: [
           'Onderhandelt niet binnen het getal van de sponsor',
           'Legt de basis van de schatting uit',
@@ -238,6 +245,8 @@ export default {
         { term: 'Anker', def: 'Het eerste getal in een onderhandeling, dat de uitkomst naar zich toe trekt.' },
         { term: 'Framing', def: 'Hetzelfde feit zo brengen dat het past bij waar de ander om geeft.' },
         { term: 'Verliesaversie', def: 'Mensen wegen een verlies zwaarder dan een even grote winst.' },
+        { term: 'Tegenbod', def: 'Je antwoord op hun getal met een eigen getal, liefst met een eigen onderbouwing.' },
+        { term: 'Concessie', def: 'Een stap waarin je toegeeft; plan ze steeds kleiner en ruil elke stap tegen iets.' },
       ],
     },
     {
@@ -252,16 +261,17 @@ export default {
         },
       ],
       teach: [
-        'Scope, tijd en kosten hangen aan elkaar. Beweegt er één, dan moet er iets anders mee.\n\nEen klant die meer vraagt, in dezelfde tijd, voor hetzelfde budget, vraagt je eigenlijk om op kwaliteit in te leveren zonder het te zeggen. Jouw taak is niet weigeren, maar de ruil zichtbaar maken.',
+        'Scope (wat er geleverd wordt), tijd en kosten hangen aan elkaar; projectmanagers noemen dat de duivelsdriehoek (iron triangle). Beweegt er één, dan moet er iets anders mee.\n\nEen klant die meer vraagt, in dezelfde tijd, voor hetzelfde budget, vraagt je eigenlijk om op kwaliteit in te leveren zonder het te zeggen. Jouw taak is niet weigeren, maar de ruil zichtbaar maken.',
         'Kleine ja’s tellen op. Vijf “snelle” extraatjes van een dag zijn samen een hele week op een project van 20 dagen.\n\nHoud een simpel wijzigingslog bij: wat werd gevraagd, wanneer, hoeveel werk, wat werd besloten. Dan gaat het gesprek over feiten in plaats van over wie er moeilijk doet.',
         'Bied opties, geen muur: “We kunnen het toevoegen en het eindrapport twee weken opschuiven, of toevoegen en de tweede regio laten vallen, of het als vervolg doen voor vier extra dagen.” Laat de klant kiezen: het is zijn prioriteit. En vraag altijd voor welk besluit het verzoek is; vaak volstaat een lichtere versie.',
-        'Leg het kort vast: een mail na het gesprek met wat er verandert. En check bij je eigen manager voordat je extra dagen toezegt. Misschien mag jij ze niet weggeven, en je bureau draait op voor de kosten.',
+        'Leg het kort vast: een mail na het gesprek met wat er verandert, of bij grotere dingen een wijzigingsverzoek, een kort document met het extra werk, de dagen en de prijs, dat de klant tekent. En check bij je eigen manager voordat je extra dagen toezegt. Misschien mag jij ze niet weggeven, en je bureau draait op voor de kosten.',
+        'Bij een vaste prijs ligt het risico van extra werk bij jou; bij een dagtarief betaalt de klant per gewerkte dag en draagt hij dat risico. Scope creep, werk dat beetje bij beetje groeit buiten de afspraak, doet het meeste pijn bij een vaste prijs.\n\nDeskundigen verschillen over gratis extraatjes. Sommigen geven er bewust één, benoemd en gelogd (“deze is van ons”); anderen zeggen dat elk gratis extraatje de klant leert om weer te vragen. Scherpe vraag: “Wat zou je laten vallen om hier ruimte voor te maken?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een project tegen vaste prijs bij een netbeheerder: 20 dagen, drie regio’s. In week 3 vraagt de sponsor om er een vierde regio bij te doen, “je zit toch al in de data”. Jij schat dat op 4 extra dagen.',
+        text: 'Een project tegen vaste prijs bij een netbeheerder: 20 dagen, drie regio’s. In week 3 vraagt de sponsor, de manager bij de klant die eigenaar is van het project, om er een vierde regio bij te doen, “je zit toch al in de data”. Jij schat dat op 4 extra dagen.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Vraag eerst waar de vierde regio voor is: zit er een vraag van de directie achter? Zet dan de opties neer: de regio erbij voor 4 extra dagen tegen het afgesproken dagtarief; hem ruilen tegen regio 3; of een lichte versie, één kerncijfer voor regio 4, in 1 dag.\n\nCheck bij je engagement manager voordat je een prijs noemt voor de extra dagen. Bevestig de keuze na het gesprek per mail en zet hem in het wijzigingslog.',
+        reveal: 'Vraag eerst waar de vierde regio voor is: zit er een vraag van de directie achter? Zet dan de opties neer: de regio erbij voor 4 extra dagen tegen het afgesproken dagtarief; hem ruilen tegen regio 3; of een lichte versie, één kerncijfer voor regio 4, in 1 dag.\n\nCheck bij je engagement manager, die bij jouw bureau verantwoordelijk is voor deze klant, voordat je een prijs noemt voor de extra dagen. Bevestig de keuze na het gesprek per mail en zet hem in het wijzigingslog.',
       },
       said: 'Wat je hoort in projecten: “Doe ik graag. Wat wil je laten schuiven: de datum, de scope of het budget?”',
       recall: [
@@ -292,9 +302,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Twee weken voor het einde van een project tegen vaste prijs bij een onderdelenfabrikant vraagt de plantmanager of je “even dezelfde analyse voor de spuiterij” wilt doen. Jij schat dat op 6 dagen. Je planning heeft geen ruimte meer.',
+        scene: 'Twee weken voor het einde van een project tegen vaste prijs bij een onderdelenfabrikant vraagt de plantmanager of je “even dezelfde analyse voor de spuiterij” (paint shop) wilt doen. Jij schat dat op 6 dagen. Je planning heeft geen ruimte meer.',
         ask: 'Wat zeg je tegen hem?',
-        model: 'Ik zou zeggen dat ik blij ben dat hij er waarde in ziet, en vragen wat hij voor de spuiterij wil besluiten. Dan: “Dat is ongeveer zes dagen. We kunnen het toevoegen en het eindrapport drie weken opschuiven, of het als kort vervolg doen na dit project. Binnen de huidige planning gaat het ten koste van de kwaliteit van wat je al gevraagd hebt.” Ik check de vervolgprijs bij mijn manager en bevestig per mail.',
+        model: 'Ik zou zeggen dat ik blij ben dat hij er waarde in ziet, en vragen wat hij voor de spuiterij wil besluiten. Dan: “Dat is ongeveer zes dagen. We kunnen het toevoegen en het eindrapport zo’n twee weken opschuiven, of het als kort vervolg doen na dit project. Binnen de huidige planning gaat het ten koste van de kwaliteit van wat je al gevraagd hebt.” Ik check de vervolgprijs bij mijn manager en bevestig per mail.',
         rubric: [
           'Vraagt voor welk besluit de extra analyse is',
           'Maakt de ruil in tijd of scope zichtbaar',
@@ -318,6 +328,9 @@ export default {
         { term: 'Scope creep', def: 'Werk dat beetje bij beetje groeit buiten wat is afgesproken, zonder dat tijd of budget meegaan.' },
         { term: 'Wijzigingslog', def: 'Een lijst van gevraagde wijzigingen met het werk dat ze kosten en het besluit dat is genomen.' },
         { term: 'Vaste prijs', def: 'Een afgesproken prijs voor een afgebakende scope; extra werk vraagt een nieuwe afspraak.' },
+        { term: 'Duivelsdriehoek', def: 'Scope, tijd en kosten hangen samen: verander je er één, dan moet minstens één andere mee.' },
+        { term: 'Wijzigingsverzoek', def: 'Een kort schriftelijk voorstel voor extra of ander werk, met dagen en prijs, dat de klant goedkeurt.' },
+        { term: 'Dagtarief', def: 'Een prijs per gewerkte dag; de klant betaalt de echte dagen en draagt het risico van extra werk.' },
       ],
     },
     {
@@ -335,11 +348,12 @@ export default {
         'Als je overal ja op zegt, is je ja minder waard en is je werk te laat. William Ury’s “positieve nee” (2007) heeft drie delen: ja, nee, ja.\n\nEerst het ja tegen wat je beschermt, zoals een belofte aan een klant of de kwaliteit van het werk. Dan een duidelijk nee. Dan een ja tegen iets anders: een optie, een ruil, een later moment.',
         'Wees duidelijk, kort en rustig. Een nee verstopt in “ik ga het proberen” wordt als ja gehoord, en dan stel je later teleur.\n\nGeef één echte reden, geen vijf smoesjes: meer redenen geven meer om over te discussiëren. En houd dan je mond.',
         'Bied een ruil. “Als ik dit doe, wat kan er dan vervallen?” “Ik kan het doen als Jan de data-uitdraai overneemt.”\n\nEen ruil laat zien dat je het verzoek serieus neemt, en legt de keuze bij degene die de prioriteiten bepaalt.',
-        'Sommige dingen ruil je niet: veiligheid, integriteit, regels waar je aan gebonden bent. Zeg dat gewoon: “Dat kan ik niet doen. Dit kan ik wel doen.” En bereid je nee voor als je een gespannen overleg ingaat; hij is veel makkelijker te zeggen als je hem al een keer in je hoofd hebt gezegd.',
+        'Sommige dingen ruil je niet: veiligheid, integriteit, regels waar je aan gebonden bent. Dat zijn je rode lijnen. Integriteit betekent hier eerlijke cijfers en eerlijk advies: je past geen data aan en verstopt geen bevinding om iemand te plezieren.\n\nZeg dat gewoon: “Dat kan ik niet doen. Dit kan ik wel doen.” En bereid je nee voor als je een gespannen overleg ingaat; hij is veel makkelijker te zeggen als je hem al een keer in je hoofd hebt gezegd.',
+        'Wat je ziet: junioren zeggen “ik ga het proberen” en werken ’s nachts door, en de kosten blijven onzichtbaar tot de kwaliteit zakt. Andere valkuilen: drie keer sorry zeggen, te veel uitleggen, of per mail nee zeggen om het gesprek te ontlopen.\n\nDeskundigen verschillen over de toon bij klanten. Sommigen leren je “zeg nooit nee, zeg ja, en dit is wat ervoor nodig is”; Ury stelt dat een duidelijk nee de relatie beter beschermt dan een vaag ja. Scherpe vraag aan jezelf: “Wat bescherm ik met dit nee?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Donderdag, 16.00 uur. Je engagement manager vraagt je om vanavond de presentatie voor de stuurgroep om te bouwen, voor morgen 8.00 uur.\n\nJe hebt de planningsleider van de klant een analyse beloofd voor vrijdag 12.00 uur, die hij nodig heeft voor een capaciteitsbesluit. Allebei goed doen lukt vanavond niet.',
+        text: 'Donderdag, 16.00 uur. Je engagement manager, je baas op deze klant, vraagt je om vanavond de presentatie voor de stuurgroep om te bouwen, voor morgen 8.00 uur. De stuurgroep (steering committee) is het groepje directeuren van de klant dat toezicht houdt op het project.\n\nJe hebt de planningsleider van de klant een analyse beloofd voor vrijdag 12.00 uur, die hij nodig heeft voor een capaciteitsbesluit. Allebei goed doen lukt vanavond niet.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Ja tegen het gedeelde doel: “Ik wil ook dat de stuurgroeppresentatie sterk is.” Een duidelijk nee: “Allebei goed doen lukt me vanavond niet.”\n\nDan een ja met opties: “Ik kan vanavond de drie belangrijkste slides verbeteren en de planningsanalyse op tijd leveren. Of, als de presentatie voorgaat, laat ik de planningsleider vandaag nog weten dat zijn analyse naar maandag schuift. Wat heeft jouw voorkeur?” Degene die de prioriteiten bepaalt, maakt de keuze, met de kosten in beeld.',
       },
@@ -371,7 +385,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Een manager bij een netbeheerder vraagt je twee cijfers in je analyse aan te passen voordat die naar de directie gaat: “Laat de werkvoorraad wat kleiner lijken. Anders slaat de directie in paniek.”',
+        scene: 'Een manager bij een netbeheerder vraagt je twee cijfers in je analyse aan te passen voordat die naar de directie gaat: “Laat de werkvoorraad wat kleiner lijken. Anders slaat de directie in paniek.” De werkvoorraad (backlog) is de stapel netklussen die nog gedaan moet worden.',
         ask: 'Wat zeg je?',
         model: 'Ik zou zeggen dat ik snap dat hij geen paniek wil, en dat ik dat ook niet wil. Maar de cijfers aanpassen kan ik niet; ze moeten kloppen met de data. Wat ik wel kan doen, is helpen ze goed te brengen: de trend erbij, de acties die al lopen, en misschien een slide over wat de werkvoorraad voor klanten betekent. Zullen we morgen samen aan die presentatie werken?',
         rubric: [
@@ -384,7 +398,7 @@ export default {
             'Het is geen liegen. Het is gewoon een beetje gunstig afronden. Dat doet iedereen.',
             'Jij bent de consultant. Je bent er om mij te helpen, niet om het me moeilijker te maken.',
           ],
-          model: 'Ik wil je juist helpen, en daarom doe ik het niet: als de directie er later achter komt, raakt het jou veel harder dan een vervelend cijfer nu. De cijfers blijven zoals ze zijn. Ik help je wel het verhaal te vertellen: de trend, de acties, en wat je van de directie nodig hebt. Zullen we morgen een uur gaan zitten en die twee slides samen maken?',
+          model: 'Ik wil je juist helpen, en daarom doe ik het niet: als de directie er later achter komt, raakt het jou veel harder dan een vervelend cijfer nu. De cijfers blijven zoals ze zijn. Ik help je wel het verhaal te vertellen: de trend, de acties, en wat je van de directie nodig hebt. Zullen we morgen een uur gaan zitten en die slides samen maken?',
           rubric: [
             'Erkent zijn zorg en zijn wens om geholpen te worden',
             'Herhaalt duidelijk dat de cijfers blijven zoals ze zijn',
@@ -396,6 +410,8 @@ export default {
       terms: [
         { term: 'Positieve nee', def: 'Ja tegen wat je beschermt, een duidelijk nee, dan ja tegen een alternatief (Ury).' },
         { term: 'Ruil', def: 'Aanbieden iets te doen in ruil voor iets anders dat schuift of vervalt.' },
+        { term: 'Rode lijn', def: 'Iets wat je niet ruilt, wat er ook geboden wordt: veiligheid, integriteit, bindende regels.' },
+        { term: 'Integriteit', def: 'Eerlijke cijfers en eerlijk advies: nooit data aanpassen of een bevinding verstoppen om iemand te plezieren.' },
       ],
     },
     {
@@ -410,14 +426,15 @@ export default {
         },
       ],
       teach: [
-        'Het oneens zijn met wie boven je staat, hoort bij waar klanten je voor betalen. Ze huren geen consultant in om hun eigen mening terug te horen.\n\nHet onderzoek van Amy Edmondson naar psychologische veiligheid laat zien dat teams meer leren als mensen zich uitspreken. Jij helpt dat op gang als je het goed doet.',
+        'Het oneens zijn met wie boven je staat, hoort bij waar klanten je voor betalen. Ze huren geen consultant in om hun eigen mening terug te horen.\n\nHet onderzoek van Amy Edmondson naar psychologische veiligheid (1999), het gedeelde gevoel dat je veilig je mond kunt opendoen, vragen kunt stellen en het oneens kunt zijn, laat zien dat teams met meer daarvan meer leren. Jij helpt dat op gang door het zelf goed te doen.',
         'Bereid drie dingen voor en houd ze uit elkaar: het feit, je visie en je verzoek.\n\n“De data van de laatste 12 weken laat X zien” is het feit. “Ik denk dat dat Y betekent” is je visie. “Ik wil voorstellen Z te checken voordat we besluiten” is je verzoek.\n\nEen helder verzoek maakt van onenigheid een volgende stap.',
         'Kies de setting. Bij een groot verschil van mening ga je eerst één-op-één: overval nooit iemand die hoger staat waar zijn team bij is. In een overleg stel je liever een vraag dan dat je een oordeel geeft: “Mag ik er één ding uit de data aan toevoegen?”\n\nHoud je stem laag en je tempo rustig. Kalmte komt over als zelfvertrouwen.',
-        'Weet wanneer je stopt. Zeg het één keer duidelijk, en een tweede keer alleen met nieuwe informatie.\n\nBesluit hij anders en gaat het niet over veiligheid of integriteit, accepteer het dan en ga er volledig voor; noteer wat je hebt geadviseerd. Gaat het wel over veiligheid of integriteit, dan escaleer je.',
+        'Weet wanneer je stopt. Zeg het één keer duidelijk, en een tweede keer alleen met nieuwe informatie.\n\nBesluit hij anders en gaat het niet over veiligheid of integriteit, dan geldt disagree and commit: accepteer het, voer het besluit volledig uit en noteer wat je hebt geadviseerd. Gaat het wel over veiligheid of integriteit, dan is escalatie op zijn plaats: je legt het open bij het niveau erboven, en je zegt dat eerst tegen de persoon zelf.',
+        'Wat je ziet: de hoogste in rang praat eerst en de rest van de kamer gaat erachter staan. Valkuilen: zo zacht hinten dat niemand het merkt; de discussie in het openbaar winnen en de persoon kwijtraken; achter iemands rug naar zijn baas stappen.\n\n“Disagree and commit” komt van Intel en werd bekend door Jeff Bezos van Amazon. Critici zeggen dat het mensen monddood kan maken; het werkt alleen als het bezwaar eerst echt gehoord is. Scherpe vraag: “Wat zou je moeten zien om van gedachten te veranderen?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Stuurgroep bij een onderdelenfabrikant. De COO zegt: “De leveringen zijn te laat omdat operators zich niet aan de planning houden. We maken er een bonuscriterium van.”\n\nJouw data: van de 120 te late orders in de laatste 12 weken startten er 84 te laat omdat het materiaal te laat binnenkwam. Je bent de jongste in de kamer.',
+        text: 'Stuurgroep bij een onderdelenfabrikant. De COO, de operationeel directeur, zegt: “De leveringen zijn te laat omdat operators zich niet aan de planning houden. We maken er een bonuscriterium van.”\n\nJouw data: van de 120 te late orders in de laatste 12 weken startten er 84 te laat omdat het materiaal te laat binnenkwam. Je bent de jongste in de kamer.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Vraag rustig om ruimte: “Mag ik er één ding uit de data aan toevoegen?” Het feit: “84 van de 120 te late orders in de laatste 12 weken, dat is 70%, startten te laat omdat het materiaal te laat binnenkwam.”\n\nJe visie: “Dus een bonus voor operators gaat het misschien niet veel veranderen.” Je verzoek: “Kunnen we eerst naar het materiaal kijken, en volgende maand over de bonus besluiten?”\n\nBlijft hij erbij, ga dan niet een tweede keer in de kamer in discussie. Vraag om een kwartier na afloop.',
       },
@@ -475,7 +492,10 @@ export default {
       terms: [
         { term: 'Psychologische veiligheid', def: 'Het gedeelde gevoel dat het veilig is om je uit te spreken, vragen te stellen en het oneens te zijn (Edmondson).' },
         { term: 'Disagree and commit', def: 'Je punt maken, en als het besluit genomen is, er volledig voor gaan.' },
-        { term: 'Feit, visie, verzoek', def: 'Drie delen die je uit elkaar houdt als je het oneens bent: wat de data laat zien, wat jij denkt, wat je vraagt.' },
+        { term: 'Feit', def: 'Wat iedereen kan checken, zoals “de data van de laatste 12 weken laat X zien”; het eerste van feit, visie, verzoek.' },
+        { term: 'Visie', def: 'Wat jij denkt dat het feit betekent; los van het feit, zodat de ander het een kan accepteren en aan het ander kan twijfelen.' },
+        { term: 'Verzoek', def: 'De concrete volgende stap die je vraagt, waarmee onenigheid een actie wordt.' },
+        { term: 'Escalatie', def: 'Een kwestie open bij het niveau erboven leggen, nadat je het de persoon eerst hebt gezegd; bij veiligheid of integriteit.' },
       ],
     },
   ],
