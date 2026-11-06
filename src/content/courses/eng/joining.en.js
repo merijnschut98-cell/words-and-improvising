@@ -572,6 +572,7 @@ export default {
     },
     {
       id: 'eng.joining.defects',
+      figure: 'eng.joining.ndt',
       title: 'Weld defects and their causes',
       pre: [
         {
@@ -642,6 +643,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
+      figure: 'eng.joining.ndt',
       title: 'Weld inspection, WPS and WPQR',
       pre: [
         {
@@ -711,6 +713,7 @@ export default {
     },
     {
       id: 'eng.joining.ndt',
+      figure: 'eng.joining.ndt',
       title: 'NDT in practice and who chooses the quality level',
       pre: [
         {
@@ -781,6 +784,7 @@ export default {
     },
     {
       id: 'eng.joining.weldrca',
+      figure: 'eng.joining.ndt',
       title: 'Recurring weld defects, distortion and residual stress',
       pre: [
         {
