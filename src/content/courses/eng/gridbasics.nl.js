@@ -13,10 +13,11 @@ export default {
         },
       ],
       teach: [
-        'Spanning (V, volt) is de druk, stroom (A, ampère) is de doorstroming, en vermogen (W, watt) is hoe snel energie wordt gebruikt: vermogen = spanning × stroom.\n\nEen waterkoker van 2.000 W op 230 V trekt zo’n 8,7 A. Energie is vermogen × tijd, in kilowattuur: die waterkoker gebruikt in 3 minuten 2 kW × 0,05 uur = 0,1 kWh.\n\nJe betaalt voor kWh; het net wordt gebouwd voor kW.',
-        'Het net werkt met wisselspanning (AC): de spanning gaat in Europa 50 keer per seconde heen en weer (50 Hz). Dat doen we omdat transformatoren wisselspanning makkelijk omhoog en omlaag kunnen zetten, en dat is de sleutel om vermogen met weinig verlies over grote afstanden te transporteren.',
-        'Het grootste deel van het net is driefasig: drie draden met elk wisselspanning, een derde periode ten opzichte van elkaar verschoven, plus een nul. In een Nederlands huis is de spanning tussen een fase en de nul 230 V; tussen twee fasen 400 V.\n\nDrie fasen leveren een gelijkmatig vermogen en gebruiken het koper efficiënt. Daarom gebruiken zware verbruikers zoals warmtepompen en laadpalen vaak alle drie.',
-        'Een gangbare huisaansluiting in Nederland is 3 × 25 A: drie fasen van elk 25 A, maximaal zo’n 3 × 230 × 25 ≈ 17 kVA (kVA, kilovoltampère, is de eenheid voor wat een kabel of zekering moet dragen; voor een woning ligt het dicht bij kW).\n\nOudere woningen hebben soms 1 × 35 A. Dat maximum is wat de hoofdzekering toelaat, niet wat het huis normaal gebruikt.',
+        'Spanning (V, volt) is de elektrische druk, zoals de waterdruk in een leiding. Stroomsterkte (A, ampère), kortweg stroom, is de doorstroming, zoals liters per seconde. Vermogen (W, watt) is hoe snel energie wordt gebruikt: vermogen = spanning × stroom.\n\nEen waterkoker van 2.000 W op 230 V trekt zo’n 2.000 / 230 ≈ 8,7 A. Vermogen geef je meestal in kilowatt: 1 kW = 1.000 W.',
+        'Energie is vermogen × tijd, in kilowattuur (kWh). Die waterkoker gebruikt in 3 minuten 2 kW × 0,05 uur = 0,1 kWh.\n\nJe betaalt je energieleverancier per kWh, maar het net wordt gebouwd voor kW: kabels en transformatoren moeten het hoogste vermogen op één moment dragen, niet het totaal over een jaar. Die twee door elkaar halen is de meest gemaakte fout in gesprekken over het net.',
+        'Het net werkt met wisselstroom (AC): de spanning gaat in Europa 50 keer per seconde heen en weer (50 hertz, Hz). Batterijen en zonnepanelen geven gelijkstroom (DC, direct current), die maar één kant op loopt.\n\nWisselstroom won omdat een transformator, twee draadspoelen om een ijzeren kern, wisselspanning makkelijk omhoog en omlaag kan zetten. Dat is de sleutel om vermogen met weinig verlies over grote afstanden te transporteren, zoals de volgende les laat zien.',
+        'Het grootste deel van het net is driefasig: drie spanningvoerende draden, de fasen, met elk wisselstroom, een derde periode ten opzichte van elkaar verschoven, plus een nul, de terugleider. In een Nederlands huis is fase-nul 230 V; tussen twee fasen 400 V (230 × √3).\n\nDrie fasen leveren een gelijkmatig vermogen en gebruiken het koper efficiënt. Daarom gebruiken zware verbruikers zoals warmtepompen en laadpalen vaak alle drie.',
+        'Een gangbare huisaansluiting in Nederland is 3 × 25 A: drie fasen van elk 25 A, maximaal zo’n 3 × 230 × 25 ≈ 17 kVA. kVA (kilovoltampère) is de eenheid voor wat een kabel of zekering moet dragen; voor een woning ligt het dicht bij kW.\n\nOudere woningen hebben soms 1 × 35 A. Dat maximum wordt bepaald door de hoofdzekering (main fuse); normaal gebruikt het huis veel minder. Vraag in elk netgesprek: hebben we het over de energie per jaar of over de piek?',
       ],
       example: {
         kind: 'worked',
@@ -45,8 +46,8 @@ export default {
           why: 'Fase-nul is 230 V; fase-fase is zo’n 400 V.',
         },
         {
-          q: 'Waarom werkt het net met wisselspanning?',
-          options: ['Transformatoren kunnen wisselspanning makkelijk omzetten, dus vermogen gaat met weinig verlies over het net', 'Wisselspanning is veiliger om aan te raken', 'Wisselspanning kun je opslaan in batterijen', 'Apparaten werken alleen op wisselspanning'],
+          q: 'Waarom werkt het net met wisselstroom?',
+          options: ['Transformatoren kunnen wisselspanning makkelijk omzetten, dus vermogen gaat met weinig verlies over het net', 'Wisselstroom is veiliger om aan te raken', 'Wisselstroom kun je opslaan in batterijen', 'Apparaten werken alleen op wisselstroom'],
           answer: 'Transformatoren kunnen wisselspanning makkelijk omzetten, dus vermogen gaat met weinig verlies over het net',
           why: 'Spanning omzetten met transformatoren is de basis van de hele netstructuur.',
         },
@@ -63,9 +64,12 @@ export default {
       },
       sayIt: 'Leg een vriend in 60 seconden het verschil uit tussen kW en kWh, en waarom het net om kW draait.',
       terms: [
+        { term: 'Spanning', def: 'De elektrische druk, in volt (V); 230 V tussen fase en nul in een Nederlands huis.' },
+        { term: 'Stroomsterkte', def: 'Hoeveel elektriciteit er doorstroomt, in ampère (A), kortweg stroom; die verwarmt kabels en laat zekeringen doorslaan.' },
         { term: 'kW', def: 'Vermogen: hoe snel energie op één moment wordt gebruikt of geleverd.' },
         { term: 'kWh', def: 'Energie: vermogen × tijd; waar je voor betaalt.' },
-        { term: 'Driefasig', def: 'Drie wisselspanningsdraden die in de tijd verschoven zijn, plus nul; 230 V fase-nul, 400 V fase-fase.' },
+        { term: 'Wisselstroom', def: 'AC: stroom die in Europa 50 keer per seconde (50 Hz) van richting wisselt; transformatoren kunnen de spanning ervan omzetten.' },
+        { term: 'Driefasig', def: 'Drie wisselstroomdraden die in de tijd verschoven zijn, plus nul; 230 V fase-nul, 400 V fase-fase.' },
       ],
     },
     {
@@ -81,10 +85,11 @@ export default {
         },
       ],
       teach: [
-        'Waarom hoogspanning: vermogen = spanning × stroom, en de verliezen in een kabel groeien met het kwadraat van de stroom. Maak de spanning 10 keer zo hoog en de stroom voor hetzelfde vermogen wordt 10 keer zo klein, dus de verliezen 100 keer zo klein.\n\nDaarom gaat vermogen over grote afstanden op heel hoge spanning en wordt het pas dicht bij de gebruiker omlaag gezet.',
-        'De Nederlandse niveaus: extra hoogspanning (EHS) van 380 en 220 kV en hoogspanning (HS) van 150 en 110 kV, allemaal beheerd door TenneT, de landelijke netbeheerder.\n\nDaaronder nemen de regionale netbeheerders het over. In sommige regio’s zit er nog een tussenspanning van zo’n 50 of 25 kV tussen.',
-        'Middenspanning (MS) is meestal 10 tot 20 kV. Die loopt van de onderstations door steden en dorpen naar de netstations, en rechtstreeks naar grote klanten zoals fabrieken.\n\nLaagspanning (LS) is 400/230 V: de kabels in je straat en de aansluiting van je huis.',
-        'De regionale netbeheerders zijn Enexis, Liander en Stedin, plus een paar kleinere zoals Westland Infra, Coteq en Rendo.\n\nElk heeft een monopolie in zijn eigen gebied. Enexis zit in grote delen van het noorden, oosten en zuiden. Zij bezitten en beheren het MS- en LS-net waar bijna elke woning en elk bedrijf op aangesloten is.',
+        'Waarom hoogspanning? Vermogen = spanning × stroom, en de warmte die in een kabel verloren gaat, groeit met het kwadraat van de stroom. Maak de spanning 10 keer zo hoog en de stroom voor hetzelfde vermogen wordt 10 keer zo klein, dus de verliezen 100 keer zo klein.\n\nDaarom gaat vermogen over grote afstanden op heel hoge spanning en zetten transformatoren het pas dicht bij de gebruiker omlaag.',
+        'De Nederlandse niveaus van boven naar beneden: extra hoogspanning (EHS) van 380 en 220 kV, en hoogspanning (HS) van 150 en 110 kV. Beide beheert TenneT, de landelijke netbeheerder (transmission system operator, TSO), eigendom van de Staat.\n\nDaaronder nemen de regionale netbeheerders het over. In sommige regio’s zit er nog een tussenspanning (TS) van zo’n 50 of 25 kV tussen hoog- en middenspanning.',
+        'Middenspanning (MS) is meestal 10 tot 20 kV. Die loopt van de onderstations door steden en dorpen naar de netstations in de straten, en rechtstreeks naar grote klanten zoals fabrieken en kassen.\n\nLaagspanning (LS) is 400/230 V: de kabels in je straat en de aansluiting van je huis. Bijna elke woning en elk klein bedrijf hangt aan laagspanning.',
+        'De regionale netbeheerders (distribution system operators, DSO’s) zijn Enexis, Liander en Stedin, plus een paar kleinere zoals Westland Infra, Coteq en Rendo.\n\nElk heeft een monopolie in zijn eigen gebied: Enexis in grote delen van het noorden, oosten en zuiden; Liander vooral in Gelderland, Noord-Holland, Flevoland en Friesland; Stedin vooral in Zuid-Holland, Utrecht en Zeeland. Zij bezitten en beheren het MS- en LS-net.',
+        'In overleggen telt de grens. TenneT en de regionale netbeheerder komen samen in het onderstation: TenneT beheert de HS-kant, de regionale netbeheerder de MS-kant en de uitgaande kabels, en wie eigenaar is van de transformator daartussen verschilt per station.\n\nLoopt een project vast, dan is de nuttige vraag: zit de grens aan de HS-kant van TenneT of aan onze MS-kant, en wie moet er in actie komen?',
       ],
       example: {
         kind: 'worked',
@@ -93,14 +98,14 @@ export default {
       said: 'Wat engineers zeggen: “Dat is de kant van TenneT in het station. Wij beginnen bij de 10 kV-rail.”',
       recall: [
         {
-          q: 'Een netbeheerder zet een MS-net om van 10 kV naar 20 kV en transporteert hetzelfde vermogen. Met welke factor veranderen de kabelverliezen? Geef de breuk als decimaal getal.',
+          q: 'Een netbeheerder zet een MS-net om van 10 kV naar 20 kV en transporteert hetzelfde vermogen over dezelfde kabels. Met welke factor veranderen de kabelverliezen? Geef de factor als decimaal getal.',
           number: 0.25,
           tolerance: 0.02,
           unit: '',
           why: 'Dubbele spanning halveert de stroom; verliezen schalen met het kwadraat van de stroom: 0,5² = 0,25.',
         },
         {
-          q: 'Welke spanning is typisch voor het MS-net?',
+          q: 'Welke spanning is typisch voor het MS-net in Nederland?',
           options: ['10 tot 20 kV', '380 kV', '230 V', '150 kV'],
           answer: '10 tot 20 kV',
           why: 'Middenspanning is in Nederland meestal 10 tot 20 kV.',
@@ -130,10 +135,11 @@ export default {
       },
       sayIt: 'Leg een nieuwe collega in 60 seconden de Nederlandse spanningsniveaus uit en wie welk niveau beheert.',
       terms: [
-        { term: 'TenneT', def: 'De landelijke netbeheerder; beheert 110 kV en hoger.' },
-        { term: 'MS (middenspanning)', def: 'Meestal 10 tot 20 kV, beheerd door de regionale netbeheerders.' },
-        { term: 'LS (laagspanning)', def: '400/230 V: straatkabels en huisaansluitingen.' },
-        { term: 'Regionale netbeheerder', def: 'Beheerder van het regionale MS- en LS-net, zoals Enexis.' },
+        { term: 'TenneT', def: 'De landelijke netbeheerder, eigendom van de Staat; beheert 110 kV en hoger.' },
+        { term: 'Hoogspanning', def: 'In Nederland 110 en 150 kV, plus extra hoogspanning van 220 en 380 kV; allemaal beheerd door TenneT.' },
+        { term: 'Middenspanning', def: 'MS: meestal 10 tot 20 kV, van onderstation naar de netstations en grote klanten; beheerd door de regionale netbeheerders.' },
+        { term: 'Laagspanning', def: 'LS: 400/230 V, de straatkabels en huisaansluitingen.' },
+        { term: 'Regionale netbeheerder', def: 'Beheerder van het regionale MS- en LS-net, zoals Enexis, Liander of Stedin.' },
       ],
     },
     {
@@ -148,19 +154,20 @@ export default {
         },
       ],
       teach: [
-        'De stroom komt van TenneT binnen in een onderstation, waar grote transformatoren de spanning van 150 of 110 kV omlaag zetten naar 10 of 20 kV. Vanaf daar vertrekken MS-kabels alle kanten op.\n\nIn het onderstation komen het landelijke en het regionale net samen, en daar ligt vaak de capaciteit voor een hele stad of regio vast.',
-        'MS-kabels liggen in ringen: ze vertrekken uit het onderstation, gaan langs een reeks netstations en komen terug. De ring wordt op één punt open bedreven, het normaal openpunt.\n\nValt een kabelstuk uit, dan schakelen de bedrijfsvoerders dat stuk vrij en sluiten ze het openpunt, zodat de meeste klanten weer stroom hebben terwijl de kabel gerepareerd wordt.',
-        'Het netstation, ook wel wijktrafo of trafohuisje, is het kleine gebouwtje of de kast in je straat.\n\nDaarin: een MS-installatie (de schakelaars) voor de ring, een transformator van 10 kV naar 400 V van meestal 250 tot 630 kVA, en een LS-rek met zekeringen voor elke uitgaande straatkabel. In gebouwen en bij grote klanten staat de MS-apparatuur vaak in een MS-ruimte.',
-        'Vanaf het netstation lopen LS-kabels door de straten, elk voor tientallen woningen. Naar elk huis loopt een aansluitkabel die eindigt bij de hoofdzekering en de meter in de meterkast.\n\nTot en met de meter is dat van de netbeheerder; daarna van de eigenaar.',
+        'De stroom komt van TenneT binnen in een onderstation: een omheind terrein waar grote transformatoren de spanning van 150 of 110 kV omlaag zetten naar 10 of 20 kV. Vanaf de MS-rail (busbar), een dikke koperen staaf waar alle kabels op aansluiten, vertrekken MS-kabels alle kanten op.\n\nIn het onderstation komen het landelijke en het regionale net samen, en daar ligt vaak de capaciteit voor een hele stad of regio vast.',
+        'MS-kabels liggen in ringen: een kabel vertrekt uit het onderstation, gaat langs een reeks netstations en komt terug. De ring wordt op één punt open bedreven, het normaal openpunt, zodat elke helft van één kant gevoed wordt; een gesloten ring vraagt een veel ingewikkelder beveiliging (protection) om fouten te vinden.\n\nNa een kabelstoring schakelen de bedrijfsvoerders het kapotte stuk vrij en sluiten ze het openpunt. Zo hebben de meeste klanten weer stroom terwijl de kabel gerepareerd wordt.',
+        'Het netstation, ook wel wijktrafo of trafohuisje, is het kleine stenen gebouwtje of de groene kast in je straat. Daarin: een MS-installatie (switchgear, de schakelaars) voor de ring, een transformator van 10 kV naar 400 V van meestal 400 of 630 kVA (oudere 250, sommige nieuwe 1.000), en een LS-rek met zekeringen voor elke uitgaande straatkabel.\n\nIn kantoorgebouwen en bij grote klanten staat de MS-apparatuur vaak in een aparte MS-ruimte.',
+        'Vanaf het netstation lopen LS-kabels door de straten, elk voor tientallen woningen. Naar elk huis loopt een aansluitkabel die eindigt bij de hoofdzekering, de zekering die de hele aansluiting beveiligt, en de meter in de meterkast.\n\nTot en met de meter is alles van de netbeheerder; alles daarna is van de eigenaar.',
+        'Wat je in het veld ziet: op veel plekken wordt het openpunt nog met de hand geschakeld, dus een monteur rijdt eerst naar het station. Nieuwere stations krijgen afstandsbediening en kortsluitverklikkers (fault passage indicators), kastjes die laten zien langs welk stuk de foutstroom ging. Daarom duurt herstel in het ene gebied 30 minuten en in het andere 2 uur.\n\nEen scherpe vraag: waar zit het openpunt, en kunnen we het op afstand schakelen?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een huis in Tilburg: TenneT levert 150 kV aan het onderstation, waar twee 150/10 kV-transformatoren een 10 kV-rail voeden. Een 10 kV-kabel vertrekt in een ring langs 12 netstations.\n\nNetstation 7 heeft een transformator van 400 kVA en zes LS-kabels; één daarvan loopt door de straat en voedt 35 woningen. De aansluitkabel van het huis eindigt bij een hoofdzekering van 3 × 25 A.\n\nValt de ringkabel tussen netstation 6 en 7 uit, dan openen de bedrijfsvoerders de schakelaars aan beide kanten en sluiten ze het normaal openpunt: netstation 7 krijgt weer stroom van de andere kant.',
+        text: 'Een huis in Tilburg: TenneT levert 150 kV aan het onderstation, waar twee 150/10 kV-transformatoren een 10 kV-rail voeden. Een 10 kV-kabel vertrekt in een ring langs 12 netstations.\n\nNetstation 7 heeft een transformator van 400 kVA en zes LS-kabels; één daarvan loopt door de straat en voedt 35 woningen. De aansluitkabel van het huis eindigt bij een hoofdzekering van 3 × 25 A.\n\nValt de ringkabel tussen netstation 6 en 7 uit, dan openen de bedrijfsvoerders de schakelaars aan beide kanten van dat stuk en sluiten ze het normaal openpunt: netstation 7 krijgt weer stroom van de andere kant.',
       },
       said: 'Wat engineers zeggen: “We hebben station 7 teruggevoed vanuit de andere helft van de ring. Het defecte stuk is vrijgeschakeld.”',
       recall: [
         {
-          q: 'Een netstation heeft een transformator van 400 kVA. De planners rekenen met 2 kVA piek per woning. Hoeveel woningen kan hij maximaal voeden?',
+          q: 'Een netstation heeft een transformator van 400 kVA. De planners rekenen met 2 kVA piekbelasting per woning. Hoeveel woningen kan hij maximaal voeden, zonder marge voor groei?',
           number: 200,
           tolerance: 5,
           unit: 'woningen',
@@ -188,7 +195,7 @@ export default {
       situation: {
         scene: 'Je bent bij een regionale netbeheerder. Een team wil sneller de stroom terug hebben bij klanten na een MS-storing. Ze laten hersteltijden zien van 2 à 3 uur in sommige gebieden en 30 minuten in andere.',
         ask: 'Wat vraag je over de netstructuur?',
-        model: 'Is het MS-net in de trage gebieden opgebouwd als ringen met een openpunt dat je kunt omschakelen, of liggen er radiale kabels zonder tweede voeding? En waar kan op afstand geschakeld worden, en waar moet een monteur eerst naar het netstation rijden? Het verschil zit misschien in de netstructuur en de reistijd, niet in de mensen.',
+        model: 'Is het MS-net in de trage gebieden opgebouwd als ringen met een openpunt dat je kunt omschakelen, of liggen er radiale kabels, enkele voedingen zonder tweede route? En waar kan op afstand geschakeld worden, en waar moet een monteur eerst naar het netstation rijden? Het verschil zit misschien in de netstructuur en de reistijd, niet in de mensen.',
         rubric: [
           'Vraagt of er een ring is met een schakelbaar openpunt',
           'Vraagt naar schakelen op afstand versus ter plaatse',
@@ -197,10 +204,11 @@ export default {
       },
       sayIt: 'Leg een familielid in 60 seconden uit hoe stroom van een onderstation in zijn stopcontact komt.',
       terms: [
-        { term: 'Onderstation', def: 'Station waar HS wordt omgezet naar MS.' },
-        { term: 'Netstation (wijktrafo)', def: 'Station in de straat dat MS omzet naar 400/230 V.' },
+        { term: 'Onderstation', def: 'Station waar de 150 of 110 kV van TenneT wordt omgezet naar middenspanning (10 tot 20 kV).' },
         { term: 'Normaal openpunt', def: 'Het punt waar een MS-ring open staat; wordt gesloten om na een storing weer te voeden.' },
+        { term: 'Netstation', def: 'Het kleine station in de straat (wijktrafo) dat MS omzet naar 400/230 V voor de straatkabels.' },
         { term: 'MS-ruimte', def: 'Een ruimte met MS-apparatuur, vaak in een gebouw of bij een grote klant.' },
+        { term: 'Hoofdzekering', def: 'De zekering aan het eind van de huisaansluiting die de aansluiting begrenst, bijvoorbeeld op 3 × 25 A.' },
       ],
     },
     {
@@ -215,14 +223,15 @@ export default {
         },
       ],
       teach: [
-        'Netcomponenten hebben een rating in kVA, schijnbaar vermogen: wat de kabel of transformator echt moet dragen, inclusief het deel dat geen nuttig werk doet. kW is het nuttige deel.\n\nDe verhouding heet de arbeidsfactor (cos φ), voor woningen meestal 0,9 tot 1. Een transformator van 400 kVA kan zo’n 360 tot 400 kW leveren.',
-        'Gelijktijdigheid is het kernbegrip in de netplanning.\n\nNiet elke woning gebruikt op hetzelfde moment zijn maximum. Traditioneel werd een straat gepland op zo’n 1 tot 1,5 kVA per woning in de avondpiek, ver onder de 17 kVA van elke aansluiting. Door die aanname zijn veel oude LS-netten relatief licht uitgevoerd.',
-        'Warmtepompen en elektrische auto’s veranderen dat. Op een koude avond draaien alle warmtepompen tegelijk: een gelijktijdigheid van bijna 1. Auto’s laden na het werk op 11 kW per stuk.\n\nZonnepanelen geven ’s middags een nieuwe piek de andere kant op: op een zonnige dag levert elk dak tegelijk terug. Het net moet nu ruimte hebben voor pieken waar het nooit voor ontworpen is.',
-        'Te veel teruglevering laat de spanning aan het eind van een lange LS-kabel stijgen. Boven zo’n 253 V (230 V plus 10%) schakelen omvormers (de kastjes die zonnestroom omzetten naar netspanning) af om het net te beschermen. “Mijn panelen vallen steeds uit” is dus vaak een spanningsprobleem, geen kapotte omvormer.',
+        'De capaciteit van netcomponenten geef je op in kVA, schijnbaar vermogen (apparent power): wat de kabel of transformator echt moet dragen, inclusief een deel dat alleen heen en weer stroomt (door motoren en elektronica) en geen nuttig werk doet. kW is het nuttige deel.\n\nDe verhouding kW / kVA heet de arbeidsfactor (cos φ), voor woningen meestal 0,9 tot 1. Een transformator van 400 kVA kan zo’n 360 tot 400 kW leveren.',
+        'Gelijktijdigheid is het kernbegrip in de netplanning: welk deel van ieders maximum op hetzelfde moment optreedt. Niet elke woning gebruikt tegelijk zijn maximum.\n\nTraditioneel rekenden planners met zo’n 1 tot 1,5 kVA per woning bij piekbelasting, de hoogste belasting van het jaar, meestal op een winteravond. Dat is ver onder de 17 kVA van elke aansluiting, en daarom zijn veel oude LS-netten relatief licht uitgevoerd.',
+        'Warmtepompen en elektrische auto’s veranderen dat. Op een koude avond draaien bijna alle warmtepompen tegelijk: een gelijktijdigheid van bijna 1. Auto’s laden na het werk op maximaal 11 kW per stuk.\n\nZonnepanelen geven ’s middags een nieuwe piek de andere kant op: op een zonnige dag levert elk dak tegelijk terug. Het net moet nu ruimte hebben voor pieken waar het nooit voor ontworpen is.',
+        'Te veel teruglevering laat de spanning aan het eind van een lange LS-kabel stijgen. Boven zo’n 253 V (230 V plus 10%, de bovengrens in de Europese norm voor spanningskwaliteit EN 50160) schakelt de omvormer, het kastje dat de gelijkstroom van de panelen omzet naar wisselstroom voor het net, af om het net te beschermen.\n\n“Mijn panelen vallen steeds uit” is dus vaak een spanningsprobleem, geen kapotte omvormer.',
+        'Waar experts over discussiëren: met welke gelijktijdigheid je rekent voor warmtepompen en laadpalen. Te laag, en het net raakt overbelast in de eerste koude week; te hoog, en straten gaan jaren te vroeg open. Slim laden (smart charging), dat het laden van auto’s over de nacht spreidt, kan de piek flink verlagen, maar alleen als mensen het toestaan.\n\nEen scherpe vraag: op welke gelijktijdigheid is dit plan gebaseerd, en waar komt dat getal vandaan?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een netstation van 400 kVA voedt 150 woningen. Oude piek: 1,5 kVA × 150 = 225 kVA, 56% belast.\n\nNu krijgen 50 woningen een warmtepomp van 3 kW, die op een koude avond allemaal op zo’n 80% van hun vermogen draaien: + 50 × 3 × 0,8 = 120 kVA. En 40 woningen laden een auto op 11 kW, waarvan zo’n 30% tegelijk: + 40 × 11 × 0,3 = 132 kVA.\n\nNieuwe piek: 225 + 120 + 132 = 477 kVA, 119% van de transformator. Het jaarverbruik steeg met ongeveer de helft; de piek werd meer dan twee keer zo hoog.',
+        text: 'Een netstation van 400 kVA voedt 150 woningen. Oude piek: 1,5 kVA × 150 = 225 kVA, 56% belast.\n\nNu krijgen 50 woningen een warmtepomp van 3 kW, die op een koude avond allemaal op zo’n 80% van hun vermogen draaien: + 50 × 3 × 0,8 = 120 kVA. En 40 woningen laden een auto op 11 kW, waarvan zo’n 30% tegelijk: + 40 × 11 × 0,3 = 132 kVA.\n\nNieuwe piek: 225 + 120 + 132 = 477 kVA, 119% van de transformator. Het jaarverbruik groeit veel minder hard: de piek wordt meer dan twee keer zo hoog.',
       },
       said: 'Wat engineers zeggen: “De gelijktijdigheid van die warmtepompen is bijna één. Als het vriest, draaien ze allemaal.”',
       recall: [
@@ -264,9 +273,11 @@ export default {
       },
       sayIt: 'Leg een beleidsmedewerker van een gemeente in 60 seconden uit waarom van het gas af gaan de belasting van het stroomnet zo sterk verandert.',
       terms: [
-        { term: 'kVA', def: 'Schijnbaar vermogen: wat kabels en transformatoren moeten dragen.' },
-        { term: 'Gelijktijdigheid', def: 'Het deel van de maximale belastingen dat op hetzelfde moment optreedt.' },
+        { term: 'kVA', def: 'Schijnbaar vermogen: wat kabels en transformatoren moeten dragen, inclusief het deel dat geen nuttig werk doet.' },
+        { term: 'Arbeidsfactor', def: 'Nuttig vermogen gedeeld door schijnbaar vermogen (kW / kVA), ook cos φ; 0,9 tot 1 voor woningen.' },
+        { term: 'Gelijktijdigheid', def: 'Het deel van ieders maximale belasting dat op hetzelfde moment optreedt.' },
         { term: 'Piekbelasting', def: 'De hoogste belasting in een periode; bepaalt hoe groot de componenten moeten zijn.' },
+        { term: 'Omvormer', def: 'Het kastje dat de gelijkstroom van zonnepanelen omzet naar wisselstroom voor het net; schakelt af als de spanning te hoog wordt.' },
       ],
     },
     {
@@ -274,17 +285,18 @@ export default {
       title: 'Netcongestie',
       pre: [
         {
-          q: 'Een onderstation is “congestiegebied”. Hoeveel uur per jaar is het meestal echt overbelast?',
+          q: 'Een onderstation is officieel “congestiegebied”. Hoeveel uur per jaar is het meestal echt overbelast?',
           options: ['Alle 8.760 uur', 'Vaak maar tientallen tot een paar honderd uur', 'Precies een half jaar', 'Nooit, het is een juridische status'],
           answer: 'Vaak maar tientallen tot een paar honderd uur',
           why: 'Congestie gaat over de piekuren; het grootste deel van het jaar is er nog ruimte.',
         },
       ],
       teach: [
-        'Netcongestie betekent dat op piekmomenten de vraag naar transportcapaciteit groter is dan wat een deel van het net veilig kan dragen.\n\nDat kan aan de afnamekant zijn, bijvoorbeeld een bedrijventerrein dat meer vermogen wil, of aan de invoedingskant, bijvoorbeeld zonneparken in een landelijk gebied. Grote delen van Nederland zitten inmiddels vol.',
-        'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A) en klanten die meer capaciteit willen op een wachtrij. Huishoudens en kleine bedrijven worden nog wel aangesloten.\n\nDe landelijke capaciteitskaart laat zien waar nog ruimte is en waar niet.',
-        'Het net verzwaren kost jaren: een nieuw onderstation duurt vaak 5 tot 10 jaar, met vergunningen, grond en ruimte voor kabels in de straat. MS-verzwaring gaat sneller, maar ook dat is maanden tot jaren. Mensen, materiaal en ruimte in de grond zijn allemaal schaars.',
-        'In de tussentijd gebruiken netbeheerders het bestaande net slimmer. Congestiemanagement: klanten worden betaald of gecontracteerd om op piekmomenten minder af te nemen of minder in te voeden, vaak via GOPACS, het landelijke platform waar netbeheerders die flexibiliteit inkopen. Flexibele of tijdsgebonden contracten geven capaciteit behalve op de piekuren, zodat een klant nu kan aansluiten in ruil voor beperkingen.\n\nOmdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
+        'Netcongestie betekent dat op piekmomenten de vraag naar transportcapaciteit groter is dan wat een deel van het net, een kabel, transformator of onderstation, veilig kan dragen.\n\nDat kan aan de afnamekant zijn, bijvoorbeeld een bedrijventerrein dat meer vermogen wil, of aan de invoedingskant (feed-in), bijvoorbeeld zonneparken in een landelijk gebied die stroom het net op duwen. Grote delen van Nederland zitten inmiddels vol voor een van beide of allebei.',
+        'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A, zo’n 55 kVA: een supermarkt, een fabriek, een laadplein) en bestaande die meer capaciteit willen op een wachtrij (waiting list). Duizenden bedrijven wachten.\n\nVoor kleine aansluitingen, zoals woningen en winkels, werd capaciteit apart gehouden; sinds juli 2026 vallen ook zij onder dezelfde voorrangsregels, dus in sommige regio’s kunnen ook zij moeten wachten. De openbare capaciteitskaart laat zien waar nog ruimte is en waar niet.',
+        'Het net verzwaren kost jaren: een nieuw onderstation duurt vaak 5 tot 10 jaar, met vergunningen, grond en ruimte voor kabels onder de straat. MS-verzwaring gaat sneller, maar ook dat is maanden tot jaren. Monteurs, transformatoren en ruimte in de grond zijn allemaal schaars.\n\nAlleen bouwen lost netcongestie dit decennium dus niet op; het bestaande net moet beter benut worden.',
+        'Congestiemanagement betekent dat klanten betaald of gecontracteerd worden om op piekmomenten minder af te nemen of minder in te voeden. Netbeheerders kopen die flexibiliteit vaak in via GOPACS, het gezamenlijke platform van de Nederlandse netbeheerders waar zij verzoeken plaatsen en bedrijven aanbieden om te schuiven.\n\nEen flexibel contract geeft een klant capaciteit behalve op de piekuren, of voor een vast deel van het jaar, meestal tegen een lager tarief. Omdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
+        'Waar experts over discussiëren: wie de schaarse capaciteit het eerst krijgt. Sinds 2024 mogen netbeheerders van de ACM, de toezichthouder, projecten met maatschappelijke waarde voorrang geven in de wachtrij, zoals scholen, zorg en projecten die congestie verlichten, in plaats van strikt wie het eerst komt. Een herzien kader houdt dat vast en geldt sinds juli 2026 ook voor kleine aansluitingen. Bedrijven verderop in de rij wachten daardoor langer.\n\nEen scherpe vraag: hoeveel uur per jaar zit dit station echt boven zijn grens, en hoeveel erboven?',
       ],
       example: {
         kind: 'worked',
@@ -293,7 +305,7 @@ export default {
       said: 'Wat engineers zeggen: “Het station zit maar 200 uur per jaar vol. Vind flex voor die uren en we kunnen mensen erop laten.”',
       recall: [
         {
-          q: 'Een onderstation is 150 uur per jaar overbelast. Welk percentage van het jaar is dat, afgerond op één decimaal?',
+          q: 'Een onderstation is 150 uur per jaar overbelast. Welk percentage van de 8.760 uur in een jaar is dat, afgerond op één decimaal?',
           number: 1.7,
           tolerance: 0.1,
           unit: '%',
@@ -303,7 +315,7 @@ export default {
           q: 'Wie komt er in een congestiegebied meestal op een wachtrij?',
           options: ['Elk huishouden', 'Niemand, de wet verbiedt wachtrijen', 'Alleen eigenaren van zonnepanelen', 'Nieuwe grootverbruikers en klanten die meer capaciteit willen'],
           answer: 'Nieuwe grootverbruikers en klanten die meer capaciteit willen',
-          why: 'Kleine aansluitingen worden nog gemaakt; grote wachten op capaciteit.',
+          why: 'Grote aansluitingen wachten op capaciteit; sinds juli 2026 kunnen in sommige regio’s ook kleine moeten wachten, maar niet elk huishouden.',
         },
         {
           q: 'Wat is congestiemanagement?',
@@ -330,10 +342,12 @@ export default {
       },
       sayIt: 'Leg een ondernemer in 60 seconden uit waarom hij nu geen grotere aansluiting kan krijgen, en welke opties er wel zijn.',
       terms: [
-        { term: 'Netcongestie', def: 'De piekvraag naar transport is groter dan het net veilig kan dragen.' },
-        { term: 'Congestiemanagement', def: 'Klanten contracteren om afname of invoeding weg te schuiven van piekmomenten.' },
-        { term: 'Grootverbruik', def: 'Grote aansluitingen, boven 3 × 80 A.' },
-        { term: 'Capaciteitskaart', def: 'Openbare kaart die laat zien waar het net nog ruimte heeft voor afname en invoeding.' },
+        { term: 'Netcongestie', def: 'Op piekmomenten is de vraag naar transport groter dan het net veilig kan dragen.' },
+        { term: 'Grootverbruiker', def: 'Een klant met een aansluiting boven 3 × 80 A; in congestiegebieden wachten die op capaciteit.' },
+        { term: 'Capaciteitskaart', def: 'Openbare kaart van de netbeheerders die laat zien waar het net nog ruimte heeft voor afname en invoeding.' },
+        { term: 'Congestiemanagement', def: 'Klanten betalen of contracteren om afname of invoeding weg te schuiven van piekmomenten.' },
+        { term: 'GOPACS', def: 'Het gezamenlijke platform van de Nederlandse netbeheerders om flexibiliteit tegen congestie in te kopen.' },
+        { term: 'Flexibel contract', def: 'Een aansluitcontract met capaciteit behalve op piekuren of voor een vast deel van het jaar, in ruil voor een lager tarief.' },
       ],
     },
     {
@@ -348,14 +362,15 @@ export default {
         },
       ],
       teach: [
-        'Een regionale netbeheerder heeft vijf kerntaken. Klanten aansluiten. Elektriciteit (en vaak gas) naar ze transporteren.\n\nHet net onderhouden zodat het veilig en betrouwbaar blijft. Storingen verhelpen, dag en nacht. En het net van de toekomst plannen en bouwen: elke twee jaar publiceert hij een investeringsplan.\n\nHij verkoopt geen energie; dat doen leveranciers.',
-        'De meeste storingen ontstaan in het MS- en LS-net: een graafmachine raakt een kabel, een oude mof begeeft het, een zekering slaat door.\n\nHet Nederlandse net is een van de betrouwbaarste van Europa: een gemiddelde klant zit zo’n 20 tot 30 minuten per jaar zonder stroom. Netbeheerders sturen hierop met de jaarlijkse uitvalduur per klant.',
-        'Netbeheerders zijn gereguleerde monopolies. Elk heeft zijn eigen gebied; klanten kunnen niet kiezen.\n\nDe ACM, de toezichthouder, bepaalt hoeveel inkomsten ze via de tarieven mogen halen, legt de technische en aansluitregels vast in de codes, en controleert de kwaliteit. Aandeelhouders zijn provincies en gemeenten, en volgens de wet mogen ze niet aan private partijen verkocht worden.',
-        'Het werk verandert snel. Door de energietransitie bouwen en aansluiten netbeheerders meer dan ooit, terwijl mensen en materiaal schaars zijn.\n\nDaarom zijn ze zo bezig met standaardiseren, werk in grotere pakketten plannen en elk uur efficiëntie in het veld.',
+        'Een regionale netbeheerder heeft vijf kerntaken: klanten aansluiten; elektriciteit (en vaak gas) naar ze transporteren; het net onderhouden zodat het veilig en betrouwbaar blijft; storingen verhelpen, dag en nacht; en het net van de toekomst plannen en bouwen. Elke twee jaar publiceert hij een investeringsplan dat laat zien wat hij gaat bouwen.\n\nHij verkoopt geen energie: dat doen energieleveranciers zoals Eneco of Vattenfall, en die kies je zelf.',
+        'De meeste storingen ontstaan in het MS- en LS-net: een graafmachine raakt een kabel, een oude mof (joint, de verbinding tussen twee kabelstukken) begeeft het, een zekering slaat door.\n\nHet Nederlandse net is een van de betrouwbaarste van Europa: een gemiddelde klant zit zo’n 20 tot 30 minuten per jaar zonder stroom. Netbeheerders sturen hierop met de jaarlijkse uitvalduur per klant, in de wandeling de uitvalminuten.',
+        'Een netbeheerder is een gereguleerd monopolie: elk heeft zijn eigen gebied, en klanten kunnen niet kiezen. De ACM (Autoriteit Consument & Markt), de toezichthouder, bepaalt hoeveel inkomsten ze via de tarieven mogen halen, legt de technische en aansluitregels vast in de codes, en controleert de kwaliteit.\n\nSinds 1 januari 2026 geeft de nieuwe Energiewet het wettelijke kader; die vervangt de Elektriciteitswet 1998.',
+        'De aandelen zijn publiek: provincies en gemeenten zijn eigenaar van de regionale netbeheerders, en volgens de wet mogen die niet aan private partijen verkocht worden. Omdat de netbeheerders miljarden moeten investeren in de energietransitie, is de Staat ook kapitaal gaan inbrengen, bijvoorbeeld bij Stedin.\n\nTenneT is eigendom van de Staat. Reken op politieke aandacht: tarieven, wachtrijen en investeringstempo zijn landelijk nieuws.',
+        'Het werk verandert snel. Door de energietransitie sluiten netbeheerders meer aan en bouwen ze meer dan ooit, terwijl monteurs en materiaal schaars zijn; de sector komt duizenden monteurs tekort.\n\nDaarom zijn ze zo bezig met standaardiseren, werk in grotere pakketten plannen en elk uur efficiëntie in het veld. Een scherpe vraag voor elk verbeterproject: waar gaat de dag van een monteur echt naartoe?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een regionale netbeheerder heeft 2,8 miljoen klanten. In een jaar tellen de storingen op tot 70 miljoen klantminuten, vooral door storingen in MS-kabels. Gemiddeld per klant: 70.000.000 / 2.800.000 = 25 minuten.\n\nEén grote MS-storing waarbij 3.000 klanten 90 minuten zonder stroom zitten, is al 270.000 klantminuten. Daarom telt het zo om de meeste klanten snel weer terug te schakelen, nog voordat de kabel gerepareerd is.',
+        text: 'Een regionale netbeheerder heeft 2,8 miljoen klanten. In een jaar tellen de storingen op tot 70 miljoen klantminuten, vooral door storingen in MS-kabels. Gemiddeld per klant: 70.000.000 / 2.800.000 = 25 minuten.\n\nEén grote MS-storing waarbij 3.000 klanten 90 minuten zonder stroom zitten, is al 3.000 × 90 = 270.000 klantminuten. Daarom telt het zo om de meeste klanten snel terug te schakelen, nog voordat de kabel gerepareerd is.',
       },
       said: 'Wat engineers zeggen: “We verkopen geen enkele kWh. We transporteren het, we sluiten aan, en we repareren het als het stukgaat.”',
       recall: [
@@ -382,7 +397,7 @@ export default {
           q: 'Wie zijn de eigenaren van de Nederlandse regionale netbeheerders?',
           options: ['Energieleveranciers', 'Provincies en gemeenten', 'Buitenlandse investeerders', 'TenneT'],
           answer: 'Provincies en gemeenten',
-          why: 'Ze zijn publiek eigendom en mogen volgens de wet niet geprivatiseerd worden.',
+          why: 'Ze zijn publiek eigendom en mogen volgens de wet niet geprivatiseerd worden; de Staat is recent ook kapitaal gaan inbrengen.',
         },
       ],
       situation: {
@@ -397,8 +412,10 @@ export default {
       },
       sayIt: 'Leg een vriend in 60 seconden uit wat een regionale netbeheerder wel en niet doet.',
       terms: [
-        { term: 'ACM', def: 'De Nederlandse toezichthouder die inkomsten en regels van netbeheerders vastlegt.' },
-        { term: 'Jaarlijkse uitvalduur', def: 'Gemiddeld aantal minuten zonder stroom per klant per jaar.' },
+        { term: 'Energieleverancier', def: 'Het bedrijf dat je energie verkoopt, zoals Eneco of Vattenfall; die kun je kiezen, je netbeheerder niet.' },
+        { term: 'Jaarlijkse uitvalduur', def: 'Gemiddeld aantal minuten zonder stroom per klant per jaar; ook wel uitvalminuten.' },
+        { term: 'Gereguleerd monopolie', def: 'Een bedrijf met een eigen gebied zonder concurrentie, waarvan een toezichthouder de inkomsten en regels vastlegt.' },
+        { term: 'ACM', def: 'De Autoriteit Consument & Markt: de toezichthouder die inkomsten en regels van netbeheerders vastlegt.' },
         { term: 'Investeringsplan', def: 'Plan voor netuitbreiding dat een netbeheerder elke twee jaar publiceert.' },
       ],
     },
