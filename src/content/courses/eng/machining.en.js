@@ -73,6 +73,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Cutting speed, feed and depth of cut',
       pre: [
@@ -145,6 +146,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
+      film: 'eng.machining.turning',
       title: 'Finish turning: roughness, chips and slender parts',
       pre: [
         {
@@ -216,6 +218,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
+      film: 'eng.machining.turning',
       title: 'Turn-mill centres: everything in one setup',
       pre: [
         {

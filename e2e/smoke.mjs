@@ -594,6 +594,62 @@ await step('a lesson with a figure shows it under the last reading block', async
   await page.evaluate(() => window.__app.go('home'));
 });
 
+// The turning lesson's explainer film: a quiet button under the first reading
+// block opens it in a sandboxed frame; it speaks through the app's voice.
+await step('films: the turning lesson opens its film in a sandboxed frame; narration speaks through the app', async () => {
+  await page.evaluate(() => {
+    window.__spoken = [];
+    const synth = window.speechSynthesis;
+    synth.speak = (u) => { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 600); };
+    synth.cancel = () => {};
+    try { localStorage.removeItem('vp:filmMuted'); } catch {}
+  });
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+  const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.cutting'));
+  for (const q of lesson.pre) {
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.lesson > .pre-next').click(); }
+    else await page.locator('.pre-card .opt').first().click();
+    await page.locator('.lesson > .pre-next').click();
+  }
+  // under the first reading block, a quiet button (never the primary)
+  const btn = page.locator('.teach-card .film-btn');
+  await btn.waitFor({ timeout: 5000 });
+  if ((await btn.innerText()).trim() !== 'Bekijk de film') throw new Error(`button: ${await btn.innerText()}`);
+  if (await page.locator('.film-btn.btn-primary').count()) throw new Error('film button is a primary');
+  if ((await page.locator('.lesson .btn-primary').count()) !== 1) throw new Error('more than one primary with the film button');
+  await btn.click();
+  const frame = page.locator('.film-wrap iframe.film-frame');
+  await frame.waitFor();
+  if ((await frame.getAttribute('sandbox')) !== 'allow-scripts') throw new Error('frame not sandboxed to allow-scripts');
+  const src = await frame.getAttribute('src');
+  if (!/^src\/content\/courses\/films\/eng\.machining\.turning\.html\?theme=(light|dark)&lang=nl&level=2$/.test(src)) throw new Error(`film src ${src}`);
+  const film = page.frameLocator('.film-frame');
+  await film.locator('#film-data').waitFor({ state: 'attached', timeout: 10000 });
+  await film.locator('.fp-poster-go').click();
+  // the film asks the app to speak; the app answers when the line is done
+  await page.waitForFunction(() => window.__spoken.length >= 1, null, { timeout: 8000 });
+  const first = await page.evaluate(() => window.__spoken[0]);
+  if (first.text !== 'Een hardmetalen wisselplaat snijdt de draaiende as.' || first.lang !== 'nl-NL') throw new Error(`spoken: ${JSON.stringify(first)}`);
+  await film.locator('html[data-narration="bridge"]').waitFor({ state: 'attached', timeout: 3000 });
+  await film.locator('html:not([data-said="0"])').waitFor({ state: 'attached', timeout: 8000 });
+  const cap = (await film.locator('.fp-cap').innerText()).trim();
+  if (!cap) throw new Error('caption empty after play');
+  // the frame grows to fit the film (the film reports its height)
+  const hgt = await frame.evaluate((f) => f.getBoundingClientRect().height);
+  if (hgt < 300 || hgt > 700) throw new Error(`frame height ${hgt}`);
+  await page.waitForTimeout(1200);
+  await shot('118-lesson-film');
+  // mute is remembered by the app; the next film opens muted
+  await film.locator('[data-act="mute"]').click();
+  await page.waitForFunction(() => localStorage.getItem('vp:filmMuted') === '1', null, { timeout: 3000 });
+  await film.locator('[data-act="mute"]').click();
+  await page.waitForFunction(() => localStorage.getItem('vp:filmMuted') === '0', null, { timeout: 3000 });
+  // closing the film removes the frame
+  await btn.click();
+  if (await page.locator('.film-frame').count()) throw new Error('film not closed');
+  await page.evaluate(() => window.__app.go('home'));
+});
+
 await step('sync: send a login link; a signed-in device merges the cloud state without losing local rounds', async () => {
   const FAKE_SUPABASE = `
     const store = JSON.parse(localStorage.getItem('__fakeCloud') || 'null') || { row: null };
@@ -2398,6 +2454,62 @@ await step('figures: every figure loads without console errors', async () => {
       await pf.evaluate((src) => { document.body.innerHTML = `<iframe sandbox="allow-scripts" width="390" height="600" src="${src}"></iframe>`; }, `src/content/courses/figures/${id}.html?theme=${theme}&lang=${lang}&level=${lv}`);
       await pf.waitForTimeout(700);
       if (bad.length > before) bad.splice(before, bad.length - before, `${id} L${lv} ${theme} ${lang}: ${bad.slice(before).join(' | ').slice(0, 200)}`);
+    }
+  }
+  await cf.close();
+  if (bad.length) throw new Error(bad.join('\n'));
+});
+
+// Every film page loads clean in a sandboxed frame, in both themes and languages
+// and with reduced motion; English captions carry no Dutch term.
+await step('films: every film loads without console errors (light/dark, nl/en, reduced motion)', async () => {
+  const cf = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const pf = await cf.newPage();
+  const bad = [];
+  pf.on('console', (m) => { if (m.type() === 'error' && !/favicon/.test(m.text())) bad.push(m.text()); });
+  pf.on('pageerror', (e) => bad.push(e.message));
+  await pf.goto(BASE);
+  const ids = fs.readdirSync('src/content/courses/films').filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5));
+  for (const id of ids) {
+    for (const [theme, lang, extra] of [['light', 'nl', '&level=2&muted=1'], ['dark', 'en', '&level=3'], ['dark', 'nl', '&motion=reduce'], ['light', 'en', '&motion=reduce&scene=5']]) {
+      const before = bad.length;
+      const where = `${id} ${theme} ${lang}${extra}`;
+      await pf.evaluate((src) => { document.body.innerHTML = `<iframe sandbox="allow-scripts" width="390" height="700" src="${src}"></iframe>`; }, `src/content/courses/films/${id}.html?theme=${theme}&lang=${lang}${extra}`);
+      const fr = pf.frameLocator('iframe');
+      await fr.locator('.fp-poster-go').click({ timeout: 5000 });
+      await pf.waitForTimeout(400);
+      const data = JSON.parse(await fr.locator('#film-data').textContent());
+      const caption = async () => (await fr.locator('.fp-cap').innerText()).trim();
+      if (!(await caption())) bad.push(`${where}: caption empty after play`);
+      // the last scene, then the end and replay
+      await fr.locator('[data-act="scenes"]').click();
+      await fr.locator('.fp-item').last().click();
+      await pf.waitForTimeout(300);
+      const n = await fr.locator('html').getAttribute('data-scene');
+      if (n !== String(data.scenes.length)) bad.push(`${where}: last scene shows ${n}`);
+      if (!(await caption())) bad.push(`${where}: caption empty in the last scene`);
+      if (lang === 'en') {
+        const dutch = data.scenes.flatMap((s) => s.terms).filter((t) => t.nl.toLowerCase() !== t.en.toLowerCase()).map((t) => t.nl.toLowerCase());
+        for (let i = 0; i < data.scenes.length; i++) {
+          await fr.locator('[data-act="scenes"]').click();
+          await fr.locator('.fp-item').nth(i).click();
+          await pf.waitForTimeout(120);
+          const text = (await caption()).toLowerCase();
+          const hit = dutch.find((w) => new RegExp(`(^|[^\\p{L}-])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^\\p{L}-])`, 'u').test(text));
+          if (hit) bad.push(`${where}: Dutch "${hit}" in the English caption of scene ${i + 1}`);
+        }
+      }
+      if (extra.includes('muted')) {
+        // muted, the clock runs freely: to the end, the end card, replay
+        await fr.locator('.fp-range').evaluate((r) => { r.value = r.max; r.dispatchEvent(new Event('input')); });
+        const ds = await fr.locator('.fp').evaluate((m) => ({ ...m.dataset }));
+        if (ds.ended !== '1' && ds.playing !== '1') await fr.locator('[data-act="play"]').click();
+        await fr.locator('.fp[data-ended="1"]').waitFor({ state: 'attached', timeout: 3000 });
+        await fr.locator('.fp-again').click();
+        await pf.waitForTimeout(300);
+        if ((await fr.locator('html').getAttribute('data-scene')) !== '1') bad.push(`${where}: replay did not start at scene 1`);
+      } else if (extra.includes('reduce') && !(await fr.locator('[data-act="next"]').isVisible())) bad.push(`${where}: reduced motion has no Next button`);
+      if (bad.length > before) bad.splice(before, bad.length - before, `${where}: ${bad.slice(before).join(' | ').slice(0, 300)}`);
     }
   }
   await cf.close();

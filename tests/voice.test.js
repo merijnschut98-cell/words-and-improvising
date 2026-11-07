@@ -34,3 +34,14 @@ test('say() reports failed on an error or an instant end (no voice)', async () =
   behaviour = 'instant';
   assert.equal(await say('Hallo daar', 'nl'), 'failed');
 });
+
+test('say() takes an optional rate (the film plays at 1.25×); the default is 1', async () => {
+  behaviour = 'end';
+  const seen = [];
+  const speak = window.speechSynthesis.speak;
+  window.speechSynthesis.speak = (u) => { seen.push(u.rate); speak(u); };
+  await say('Hallo daar', 'nl', 1.25);
+  await say('Hallo daar', 'nl');
+  window.speechSynthesis.speak = speak;
+  assert.deepEqual(seen, [1.25, 1]);
+});

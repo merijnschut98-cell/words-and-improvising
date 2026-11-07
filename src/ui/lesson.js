@@ -8,6 +8,7 @@ import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
+import { filmButton, closeFilms } from './film.js';
 
 // Where he is in the lesson: Guess · Read · Example · Check, the current one
 // marked. With onJump, a step already done is a button back to it.
@@ -79,7 +80,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     title.textContent = lesson.title;
     run(lesson, meta, glossary([{ ...mod, id: moduleId }]));
   }).catch(fail);
-  return () => { if (onLeave) onLeave(); };
+  return () => { closeFilms(); if (onLeave) onLeave(); };
 
   function run(lesson, meta, terms = []) {
     const phases = lessonPhases(lesson);
@@ -113,6 +114,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       stepIndicator(t, phases, finished ? 'done' : phases[p], jump), ...nodes].filter(Boolean));
 
     function draw() {
+      closeFilms(); // a film never plays on under another step
       const phase = phases[p];
       window.scrollTo(0, 0);
       if (phase === 'pre') {
@@ -148,6 +150,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         show(
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
             prose('teach-text', lesson.teach[block], terms),
+            // the explainer film: under the first block, before the reading gets heavy; never the primary
+            block === 0 && lesson.film ? filmButton(app, lesson.film, place && place.level) : null,
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),

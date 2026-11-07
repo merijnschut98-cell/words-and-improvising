@@ -1,0 +1,222 @@
+// The pure parts of the explainer films: the player kit's timeline (films/_kit)
+// and the app side of the film frame (src/ui/film.js).
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  wordsOf, minSceneDur, parseMarked, formatNumber, speakOf, plainOf, timelineOf, sceneIndexAt,
+  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span,
+} from '../films/_kit/timeline.mjs';
+import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref } from '../src/ui/film.js';
+
+test('reading pace: a scene lasts at least words / 2.5 + 2 seconds', () => {
+  assert.equal(wordsOf('  De snijsnelheid is  hoe snel '), 5);
+  assert.equal(wordsOf(''), 0);
+  assert.equal(minSceneDur(10), 6);
+  assert.equal(minSceneDur(25), 12);
+});
+
+test('marked captions: terms, terms with shown text, numbers', () => {
+  assert.deepEqual(parseMarked('De {t:Snijsnelheid} is {n:220} m/min.'), [
+    { text: 'De ' }, { term: 'Snijsnelheid', shown: 'Snijsnelheid' }, { text: ' is ' }, { num: '220' }, { text: ' m/min.' },
+  ]);
+  assert.deepEqual(parseMarked('{t:Toerental|toeren}'), [{ term: 'Toerental', shown: 'toeren' }]);
+  assert.throws(() => parseMarked('a {x:b} c'), /marker/);
+  assert.throws(() => parseMarked('a {t:b c'), /marker/);
+});
+
+test('numbers per language: Dutch 1.167 and 0,3; English 1,167 and 0.3; decimals kept', () => {
+  assert.equal(formatNumber('1167', 'nl'), '1.167');
+  assert.equal(formatNumber('1167', 'en'), '1,167');
+  assert.equal(formatNumber('0.3', 'nl'), '0,3');
+  assert.equal(formatNumber('0.3', 'en'), '0.3');
+  assert.equal(formatNumber('8.67', 'nl'), '8,67');
+  assert.equal(formatNumber('6.0', 'nl'), '6,0');
+  assert.equal(formatNumber('200000', 'nl'), '200.000');
+  assert.equal(formatNumber('350', 'en'), '350');
+  assert.throws(() => formatNumber('1,2', 'nl'), /number/);
+});
+
+test('speak variant: the English words in parentheses are not spoken', () => {
+  const seg = ['De ', { t: 'snijsnelheid', en: 'cutting speed', c: 'vc' }, ' is hoog.'];
+  assert.equal(plainOf(seg), 'De snijsnelheid (cutting speed) is hoog.');
+  assert.equal(speakOf(seg), 'De snijsnelheid is hoog.');
+  assert.equal(speakOf(['Ø60 at ', { t: 'cutting speed', c: 'vc' }]), 'Ø60 at cutting speed');
+});
+
+test('timeline: scene starts, total, the scene at a time', () => {
+  const tl = timelineOf([{ dur: 10 }, { dur: 5 }, { dur: 20 }]);
+  assert.deepEqual(tl.starts, [0, 10, 15]);
+  assert.equal(tl.total, 35);
+  assert.equal(sceneIndexAt(0, tl), 0);
+  assert.equal(sceneIndexAt(9.99, tl), 0);
+  assert.equal(sceneIndexAt(10, tl), 1);
+  assert.equal(sceneIndexAt(34, tl), 2);
+  assert.equal(sceneIndexAt(99, tl), 2);
+  assert.equal(sceneIndexAt(-3, tl), 0);
+});
+
+test('?scene clamps to the film: 1-based in, 0-based out, junk opens scene 1', () => {
+  assert.equal(clampScene('3', 8), 2);
+  assert.equal(clampScene(1, 8), 0);
+  assert.equal(clampScene('12', 8), 7);
+  assert.equal(clampScene('0', 8), 0);
+  assert.equal(clampScene('-2', 8), 0);
+  assert.equal(clampScene('abc', 8), 0);
+  assert.equal(clampScene(null, 8), 0);
+});
+
+test('beats split a scene by their share of the words; the clock never passes a boundary while speech runs', () => {
+  const scene = { dur: 20, beats: [{ text: { nl: 'een twee drie vier' } }, { text: { nl: 'vijf zes drie vier' } }] };
+  assert.deepEqual(beatStarts(scene, 'nl'), [0, 10]);
+  assert.equal(beatIndexAt(scene, 'nl', 9.9), 0);
+  assert.equal(beatIndexAt(scene, 'nl', 10), 1);
+  assert.deepEqual(beatStarts({ dur: 12, beats: [{ text: { nl: 'a' } }] }, 'nl'), [0]);
+  // speaking beat 0 of scene 1 (starts 30): hold at 40, the start of beat 1
+  const tl = timelineOf([{ dur: 30, beats: [{ text: { nl: 'x' } }] }, scene]);
+  assert.equal(holdLimit(tl, [{ dur: 30, beats: [{ text: { nl: 'x' } }] }, scene], 'nl', 1, 0), 40);
+  // the last beat holds at the end of its scene
+  assert.equal(holdLimit(tl, [{ dur: 30, beats: [{ text: { nl: 'x' } }] }, scene], 'nl', 1, 1), 50);
+});
+
+test('page parameters: theme, lang, scene, motion, muted', () => {
+  assert.deepEqual(parseParams('?theme=dark&lang=en&scene=3&motion=reduce&muted=1&level=2'), { theme: 'dark', lang: 'en', scene: '3', reduce: true, muted: true, level: 2 });
+  assert.deepEqual(parseParams(''), { theme: null, lang: 'nl', scene: null, reduce: false, muted: false, level: null });
+  assert.equal(parseParams('?theme=pink').theme, null);
+  assert.equal(parseParams('?lang=de').lang, 'nl');
+  assert.equal(parseParams('?level=9').level, null);
+});
+
+test('clock text and easing', () => {
+  assert.equal(fmtClock(0), '0:00');
+  assert.equal(fmtClock(65.4), '1:05');
+  assert.equal(fmtClock(140), '2:20');
+  assert.equal(ease(0), 0);
+  assert.equal(ease(1), 1);
+  assert.equal(ease(0.5), 0.5);
+  assert.equal(span(0.25, 0.5, 1), 0);
+  assert.equal(span(1, 0.5, 1), 1);
+  assert.equal(span(0.75, 0.5, 1), 0.5);
+});
+
+// ------------------------------------------------------------ app side
+test('film ref: an id with an optional start scene', () => {
+  assert.deepEqual(parseFilmRef('eng.machining.turning'), { id: 'eng.machining.turning', scene: null });
+  assert.deepEqual(parseFilmRef('eng.machining.turning#3'), { id: 'eng.machining.turning', scene: 3 });
+  assert.equal(parseFilmRef('../evil'), null);
+  assert.equal(parseFilmRef('eng.x#0'), null);
+  assert.equal(parseFilmRef(42), null);
+});
+
+test('filmSrc: theme, language, level, scene and the remembered mute', () => {
+  assert.equal(filmSrc('eng.machining.turning', 'dark', 'en'), 'src/content/courses/films/eng.machining.turning.html?theme=dark&lang=en');
+  assert.equal(filmSrc('x.y', 'light', 'nl', { level: 3, scene: 5, muted: true }), 'src/content/courses/films/x.y.html?theme=light&lang=nl&level=3&scene=5&muted=1');
+  assert.equal(filmSrc('x.y', 'light', 'fr', { level: 9, scene: null }), 'src/content/courses/films/x.y.html?theme=light&lang=nl');
+});
+
+test('the bridge accepts only well-formed messages from its own frame', () => {
+  const own = {};
+  const other = {};
+  const ok = (data, source = own) => filmMessage({ source, data }, own);
+  assert.deepEqual(ok({ type: 'vp-film', op: 'say', id: 4, text: 'Hallo', lang: 'nl' }), { op: 'say', id: 4, text: 'Hallo', lang: 'nl', rate: 1 });
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 4, text: 'Hallo', lang: 'nl' }, other), null);
+  assert.equal(ok({ type: 'other', op: 'say', id: 1, text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'format-disk' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 1, text: 'x'.repeat(901) }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 1, text: '' }), null);
+  assert.equal(ok('a string'), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 1, text: 'x', lang: 'de' }).lang, 'nl');
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 1, text: 'x', lang: 'en', rate: 1.25 }).rate, 1.25);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 1, text: 'x', rate: 9 }).rate, 1);
+  assert.deepEqual(ok({ type: 'vp-film', op: 'cancel' }), { op: 'cancel' });
+  assert.deepEqual(ok({ type: 'vp-film', op: 'mute', muted: true }), { op: 'mute', muted: true });
+  assert.deepEqual(ok({ type: 'vp-film', op: 'size', h: 412.4 }), { op: 'size', h: 412 });
+  assert.equal(ok({ type: 'vp-film', op: 'size', h: 'tall' }), null);
+  assert.deepEqual(ok({ type: 'vp-film', op: 'hello' }), { op: 'hello' });
+});
+
+test('the bridge speaks through the app voice and answers said; it ignores other frames', async () => {
+  const listeners = [];
+  const win = { addEventListener: (_, fn) => listeners.push(fn), removeEventListener: (_, fn) => listeners.splice(listeners.indexOf(fn), 1) };
+  const posted = [];
+  const frame = { isConnected: true, style: {}, contentWindow: { postMessage: (m) => posted.push(m) } };
+  const spoken = [];
+  let hushed = 0;
+  const stored = [];
+  const stop = filmBridge(frame, {
+    win,
+    say: async (text, lang, rate) => { spoken.push([text, lang, rate]); return 'spoken'; },
+    hush: () => { hushed += 1; },
+    remember: (m) => stored.push(m),
+  });
+  const send = async (data, source = frame.contentWindow) => { listeners.forEach((fn) => fn({ source, data })); await new Promise((r) => setTimeout(r, 0)); };
+  await send({ type: 'vp-film', op: 'hello' });
+  assert.deepEqual(posted.shift(), { type: 'vp-film', op: 'ready', voice: true });
+  await send({ type: 'vp-film', op: 'say', id: 7, text: 'De voeding', lang: 'nl' });
+  assert.deepEqual(spoken, [['De voeding', 'nl', 1]]);
+  assert.deepEqual(posted.shift(), { type: 'vp-film', op: 'said', id: 7, result: 'spoken' });
+  await send({ type: 'vp-film', op: 'say', id: 8, text: 'Evil', lang: 'nl' }, {});
+  assert.equal(spoken.length, 1);
+  await send({ type: 'vp-film', op: 'cancel' });
+  assert.equal(hushed, 1);
+  await send({ type: 'vp-film', op: 'mute', muted: true });
+  assert.deepEqual(stored, [true]);
+  assert.equal(hushed, 2); // muting stops the line being spoken
+  await send({ type: 'vp-film', op: 'size', h: 400 });
+  assert.equal(frame.style.height, '400px');
+  await send({ type: 'vp-film', op: 'size', h: 5000 });
+  assert.equal(frame.style.height, '900px');
+  stop();
+  assert.equal(listeners.length, 0);
+  assert.equal(hushed, 3); // stopping the bridge silences the film
+});
+
+test('a frame that left the page stops its bridge and silences speech', async () => {
+  const listeners = [];
+  const win = { addEventListener: (_, fn) => listeners.push(fn), removeEventListener: (_, fn) => listeners.splice(listeners.indexOf(fn), 1) };
+  const frame = { isConnected: false, style: {}, contentWindow: { postMessage() {} } };
+  let hushed = 0;
+  let spoke = 0;
+  filmBridge(frame, { win, say: async () => { spoke += 1; return 'spoken'; }, hush: () => { hushed += 1; }, remember() {} });
+  listeners.forEach((fn) => fn({ source: frame.contentWindow, data: { type: 'vp-film', op: 'say', id: 1, text: 'x', lang: 'nl' } }));
+  assert.equal(spoke, 0);
+  assert.equal(hushed, 1);
+  assert.equal(listeners.length, 0);
+});
+
+test('the remembered mute: off unless saved, and storage errors are harmless', () => {
+  const store = new Map();
+  const ls = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => store.set(k, v) };
+  assert.equal(mutedPref.read(ls), false);
+  mutedPref.write(true, ls);
+  assert.equal(mutedPref.read(ls), true);
+  mutedPref.write(false, ls);
+  assert.equal(mutedPref.read(ls), false);
+  const broken = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } };
+  assert.equal(mutedPref.read(broken), false);
+  assert.doesNotThrow(() => mutedPref.write(true, broken));
+});
+
+// ------------------------------------------------------------ the build's resolver
+test('resolveFilm: terms come from the served lessons, the English word by position, glossed once in Dutch', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const l = (lang) => ({ id: 'eng.fx.a', terms: lang === 'nl' ? [{ term: 'Voeding' }, { term: 'Bril' }] : [{ term: 'Feed' }, { term: 'Steady rest' }], teach: ['Voeding 0,3 mm en 1.167 omw/min.'] });
+  const lessons = { nl: new Map([['eng.fx.a', l('nl')]]), en: new Map([['eng.fx.a', l('en')]]) };
+  const scene = (beats) => ({ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats });
+  const spec = (beats) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['eng.fx.a'], scenes: [scene(beats)] });
+  const data = resolveFilm(spec([
+    { nl: 'De {t:Voeding|voeding} is {n:0.3} mm.', en: 'The {t:Feed|feed} is {n:0.3} mm.', cue: { Voeding: 'feed' } },
+    { nl: 'Weer {t:Voeding|voeding}.', en: 'Again {t:Feed|feed}.', cue: { Voeding: 'feed' } },
+  ]), lessons);
+  const [b1, b2] = data.scenes[0].beats;
+  assert.equal(b1.text.nl, 'De voeding (feed) is 0,3 mm.');
+  assert.equal(b1.speak.nl, 'De voeding is 0,3 mm.');
+  assert.equal(b1.text.en, 'The feed is 0.3 mm.');
+  assert.equal(b2.text.nl, 'Weer voeding.');
+  assert.deepEqual(data.scenes[0].terms, [{ lesson: 'eng.fx.a', index: 0, nl: 'Voeding', en: 'Feed', cue: 'feed' }]);
+  assert.deepEqual(data.numbers, [{ lesson: 'eng.fx.a', value: '0,3', scene: 's1' }]);
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Snijsnelheid}', en: '{t:Cutting speed}', cue: { Snijsnelheid: 'x' } }]), lessons), /none of the served/);
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Steady rest}', cue: { Voeding: 'x' } }]), lessons), /different terms/);
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Feed}' }]), lessons), /no cue/);
+  assert.throws(() => resolveFilm(spec([{ nl: '{n:7}', en: '{n:7}' }]), lessons), /number 7/);
+  assert.throws(() => resolveFilm(spec([{ nl: '{n:0.3}', en: '{n:0.4}' }]), lessons), /different numbers/);
+});
