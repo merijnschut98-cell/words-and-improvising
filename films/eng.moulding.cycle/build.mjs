@@ -470,9 +470,9 @@ const blockPts = [...k.boxCorners({ x: -BX, y: -BD, w: 2 * BX, d: BD }, -BZ - 4,
 const unitPts = [...blockPts, ...k.boxCorners(TCU, TCU_Z[0] - 6, 46)];
 const CAM = [
   { from: fitCam(FIT, [24, 54, 616, 318]), to: fitCam(FIT, [24, 54, 616, 318], 1.05) },
-  { from: cam([-24, 2, 52], 560), to: cam([-36, 4, 54], 320), a: 0.02, b: 0.3 },
-  { from: fitCam(blockPts, [40, 30, 600, 330]), to: fitCam(blockPts, [40, 30, 600, 330], 1.06) },
-  { from: fitCam(blockPts, [40, 50, 600, 320], 1.04), to: fitCam(blockPts, [40, 50, 600, 320]) },
+  { from: cam([-24, 2, 52], 560), to: cam([-36, 4, 54], 240), a: 0.02, b: 0.3 },
+  { from: fitCam(blockPts, [40, 30, 600, 330], 1.2), to: fitCam(blockPts, [40, 30, 600, 330], 1.27) },
+  { from: fitCam(blockPts, [40, 36, 600, 330], 1.04), to: fitCam(blockPts, [40, 36, 600, 330]) },
   { from: fitCam(blockPts, [60, 150, 600, 380]), to: fitCam(unitPts, [180, 150, 600, 392]), a: 0.02, b: 0.3 },
   { from: fitCam(k.boxCorners(PLATE4, -40, 18), [40, 40, 600, 380]), to: fitCam(k.boxCorners(PLATE8, -40, 18), [20, 60, 620, 390]), a: 0.12, b: 0.3 },
   { from: fitCam(k.boxCorners(COINS_BASE, -8, 56), [24, 50, 616, 392], 0.95), to: fitCam(k.boxCorners(COINS_BASE, -8, 56), [24, 50, 616, 392]) },
@@ -496,7 +496,7 @@ const spec = {
       id: 's2', lesson: 'eng.moulding.cycle', level: 1, dur: DUR[1], still: 0.5, title: { nl: 'Holtes', en: 'Cavities' },
       beats: [
         { nl: 'Elke {t:Holte|holte} in de matrijs vormt één dop per shot; deze matrijs heeft er {n:2}.', en: 'Each {t:Cavity|cavity} in the mould forms one cap per shot; this mould has {n:2}.', cue: { Holte: 'cavity' } },
-        { nl: 'Op {n:20} seconden per cyclus: {n:3600} / {n:20} × {n:2} = {n:360} doppen per uur.', en: 'At {n:20} seconds per cycle: {n:3600} / {n:20} × {n:2} = {n:360} caps per hour.', cues: ['cavity'], read: { nl: 'stuks per uur = {n:3600} / cyclustijd × holtes', en: 'parts per hour = {n:3600} / cycle time × cavities' } },
+        { nl: 'Deze dopmatrijs loopt op {n:20} seconden: {n:3600} / {n:20} × {n:2} = {n:360} doppen per uur.', en: 'This cap mould runs at {n:20} seconds: {n:3600} / {n:20} × {n:2} = {n:360} caps per hour.', cues: ['cavity'], read: { nl: 'stuks per uur = {n:3600} / cyclustijd × holtes', en: 'parts per hour = {n:3600} / cycle time × cavities' } },
       ],
     },
     {
@@ -507,7 +507,7 @@ const spec = {
       ],
     },
     {
-      id: 's4', lesson: 'eng.moulding.cycle', level: 1, dur: DUR[3], still: 0.8, title: { nl: 'Een dunnere wand', en: 'A thinner wall' },
+      id: 's4', lesson: 'eng.moulding.cycle', level: 1, dur: DUR[3], still: 0.9, title: { nl: 'Een dunnere wand', en: 'A thinner wall' },
       beats: [
         { nl: 'Een dop koelt {n:12} van zijn {n:20} seconden. De dikste wand gaat van {n:3} naar {n:2.4} mm.', en: 'A cap cools for {n:12} of its {n:20} seconds. The thickest wall goes from {n:3} to {n:2.4} mm.', read: { nl: 'wand {n:3} → {n:2.4} mm', en: 'wall {n:3} → {n:2.4} mm' } },
         { nl: 'Koelen zakt naar zo’n {n:7.7} seconden, de output van {n:360} naar {n:459} doppen per uur.', en: 'Cooling drops to about {n:7.7} seconds, output from {n:360} to {n:459} caps per hour.', read: { nl: '({n:2.4} / {n:3})² = {n:0.64} · {n:12} → {n:7.7} s · cyclus {n:15.7} s', en: '({n:2.4} / {n:3})² = {n:0.64} · {n:12} → {n:7.7} s · cycle {n:15.7} s' } },
@@ -526,17 +526,17 @@ const spec = {
       id: 's6', lesson: 'eng.moulding.cavities', level: 3, dur: DUR[5], still: 0.4, title: { nl: 'Meer holtes', en: 'More cavities' },
       beats: [
         { nl: 'Een 4-voudige matrijs op {n:20} s maakt {n:720} doppen per uur, een 8-voudige op {n:24} s er {n:1200}.', en: 'A 4-cavity mould at {n:20} s makes {n:720} caps per hour, an 8-cavity one at {n:24} s makes {n:1200}.', read: { nl: '{n:3600} / {n:24} × 8 = {n:1200} per uur', en: '{n:3600} / {n:24} × 8 = {n:1200} per hour' } },
-        { nl: 'Elke holte moet tegelijk vol: {t:Vulbalans|vulbalans}, met gelijke vloeiwegen in een H-patroon.', en: 'Every cavity must fill at once: {t:Fill balance|fill balance}, with equal flow paths in an H-pattern.', cue: { Vulbalans: 'balance' } },
-        { nl: 'Een {t:Naaldsluiting|naaldsluiting} opent en sluit elk aanspuitpunt op commando.', en: 'A {t:Valve gate|valve gate} opens and closes each gate on command.', cue: { Naaldsluiting: 'valve' } },
-        { nl: 'Een {t:Familiematrijs|familiematrijs} maakt deksel en bak in één shot, maar ze vullen zelden gelijk.', en: 'A {t:Family mould|family mould} makes a lid and its base in one shot, but they rarely fill alike.', cue: { Familiematrijs: 'family' } },
+        { nl: 'Elke holte moet tegelijk vollopen: {t:Vulbalans|vulbalans}, met gelijke vloeiwegen in een H-patroon.', en: 'Every cavity must fill at once: {t:Fill balance|fill balance}, with equal flow paths in an H-pattern.', cue: { Vulbalans: 'balance' }, still: 0.5 },
+        { nl: 'Een {t:Naaldsluiting|naaldsluiting} opent en sluit elk aanspuitpunt op commando.', en: 'A {t:Valve gate|valve gate} opens and closes each gate on command.', cue: { Naaldsluiting: 'valve' }, still: 0.68 },
+        { nl: 'Een {t:Familiematrijs|familiematrijs} maakt deksel en bak in één shot, maar ze vullen zelden gelijk.', en: 'A {t:Family mould|family mould} makes a lid and its base in one shot, but they rarely fill alike.', cue: { Familiematrijs: 'family' }, still: 0.86 },
       ],
     },
     {
       id: 's7', lesson: 'eng.moulding.partcost', level: 4, dur: DUR[6], still: 0.95, title: { nl: 'Wat een product kost', en: 'What a part costs' },
       beats: [
-        { nl: 'Materiaal: {n:40} g PP à € {n:2.00} per kg, met een {t:Afkeurpercentage|afkeurpercentage} van {n:3}%: € {n:0.082}.', en: 'Material: {n:40} g of PP at €{n:2.00} per kg, with a {t:Scrap rate|scrap rate} of {n:3}%: €{n:0.082}.', cue: { Afkeurpercentage: 'scrap' } },
-        { nl: 'Machine: het {t:Machine-uurtarief|machine-uurtarief} van € {n:60} gedeeld door {n:408} goede stuks per uur: € {n:0.147}.', en: 'Machine: the {t:Machine hour rate|machine hour rate} of €{n:60} divided by {n:408} good parts per hour: €{n:0.147}.', cue: { 'Machine-uurtarief': 'rate' } },
-        { nl: 'Matrijs: de {t:Matrijsafschrijving|matrijsafschrijving}, € {n:80000} over {n:1} miljoen stuks: € {n:0.080}.', en: 'Mould: the {t:Mould amortisation|mould amortisation}, €{n:80000} over {n:1} million parts: €{n:0.080}.', cue: { Matrijsafschrijving: 'amort' } },
+        { nl: 'Materiaal: {n:40} g PP à € {n:2.00} per kg, met een {t:Afkeurpercentage|afkeurpercentage} van {n:3}%: €\u00a0{n:0.082}.', en: 'Material: {n:40} g of PP at €{n:2.00} per kg, with a {t:Scrap rate|scrap rate} of {n:3}%: €{n:0.082}.', cue: { Afkeurpercentage: 'scrap' } },
+        { nl: 'Machine: het {t:Machine-uurtarief|machine-uurtarief} van € {n:60} gedeeld door {n:408} goede stuks per uur: €\u00a0{n:0.147}.', en: 'Machine: the {t:Machine hour rate|machine hour rate} of €{n:60} divided by {n:408} good parts per hour: €{n:0.147}.', cue: { 'Machine-uurtarief': 'rate' }, read: { nl: '{n:3600} / {n:30} × 4 × {n:0.85} = {n:408} goed per uur', en: '{n:3600} / {n:30} × 4 × {n:0.85} = {n:408} good per hour' } },
+        { nl: 'Matrijs: de {t:Matrijsafschrijving|matrijsafschrijving}, € {n:80000} over {n:1} miljoen stuks: €\u00a0{n:0.080}.', en: 'Mould: the {t:Mould amortisation|mould amortisation}, €{n:80000} over {n:1} million parts: €{n:0.080}.', cue: { Matrijsafschrijving: 'amort' } },
         { nl: 'Samen zo’n € {n:0.31}: de machinetijd is hier de grootste post.', en: 'Together about €{n:0.31}: machine time is the biggest line here.', cues: ['rate'] },
       ],
     },
@@ -584,10 +584,9 @@ const css = `
 .fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
 .fp-coin-face{fill:var(--anatomy-face)}
 [data-cue][data-on] .fp-hatch{stroke:var(--fp-accent)}
-[data-cue][data-on] .fp-steel{fill:var(--anatomy-lit-top)}
 [data-cue][data-on] .fp-water{fill:var(--anatomy-lit-shade)}
 [data-cue][data-on] .fp-swirl{stroke:var(--fp-accent)}
-[data-cue][data-on] .fp-meltline,[data-cue][data-on] .fp-pool{fill:var(--fp-accent);stroke:var(--fp-accent);opacity:.6}
+[data-cue][data-on] .fp-meltline,[data-cue][data-on] .fp-pool{fill:var(--fp-accent);stroke:var(--fp-accent);opacity:.45}
 [data-cue][data-on] .fp-meltline{fill:none}
 [data-cue][data-on] .fp-runline{opacity:1}
 [data-cue][data-on] .fp-bar-fill{fill:var(--fp-accent);opacity:.75}
@@ -609,6 +608,12 @@ const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss:
 if (process.argv.includes('--audit')) {
   console.log(auditReport(data));
   console.log(`press shot layer after item ${lastBack}; front items before it: ${early.join(', ') || 'none'}`);
+  // the trimmed press, proved again as the figure proves it (painter's order, supports, clearances)
+  const pressAudit = A.audit(R, P, { frames: STATES, apart: true });
+  console.log(A.report(pressAudit));
+  const pressFails = A.failures(pressAudit);
+  if (pressFails) throw new Error(`press audit: ${pressFails} problem(s)`);
+  console.log('press audit passed');
   const all = svg + SETS.section + SETS.tcu + SETS.plates + SETS.coins;
   const bad = [...all.matchAll(/ d="([^"]*)"/g)].filter(([, d]) => /NaN|undefined|Infinity|object/.test(d));
   if (bad.length) throw new Error(`${bad.length} static paths with NaN or undefined: ${bad.map((b) => b[1].slice(0, 120)).join(" | ")}`);

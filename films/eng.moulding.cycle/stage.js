@@ -133,7 +133,7 @@ const STAGE = (() => {
     const p = PH[i];
     const cx = clamp(bx(p.t0 + p.dur / 2), B.x0 + 50, B.x1 - 120);
     const now = bx(Math.min(t, C.CYCLE));
-    set(E.phasetext, text(cx, y0 - 10, NAMES[p.name], 20) + text(B.x1, y0 - 10, `${num(Math.min(t, C.CYCLE), 1)} / ${C.CYCLE} s`, 18, 'end', 'fp-ink fp-mono')
+    set(E.phasetext, text(cx, y0 - 10, NAMES[p.name], 20) + text(B.x1, y0 - 10, `${num(Math.min(t, C.CYCLE), 1)} / ${C.CYCLE} s`, 20, 'end', 'fp-ink fp-mono')
       + `<path class="fp-mark" style="stroke-width:2.4" d="M${f1(now)} ${y0 - 4}V${y1 + 4}"/>`);
   }
 
@@ -464,7 +464,7 @@ const STAGE = (() => {
       const x0 = 150;
       const sc = 22; // px per second
       const y = H - 56;
-      const bar = (yy, secs, f, lab) => `<path class="fp-bar-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-bar-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 18, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 18, 'start', 'fp-ink fp-mono') : ''}`;
+      const bar = (yy, secs, f, lab) => `<path class="fp-bar-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-bar-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 20, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 20, 'start', 'fp-ink fp-mono') : ''}`;
       labels += `<rect class="fp-hud-bg" x="${x0 - 92}" y="${y - 12}" width="${12 * sc + 160}" height="62" rx="8"/>`
         + bar(y, 12, run1, `${num(3, 1)} mm`) + (u > b2 ? bar(y + 22, 12 * 0.64, run2, `${num(2.4, 1)} mm`) : '');
     } else if (si === 4) {
