@@ -4,12 +4,12 @@
 // defines P (projection), C (world constants, the compiled slot program and
 // the beat starts per scene), CAM (one camera move per scene), W, H and the
 // HUD boxes LIST, TAB, INS, CAMS.
-/* global G, P, C, CAM, W, H, LIST, TAB, INS, CAMS, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, translateAlong, span */
+/* global searchOf, G, P, C, CAM, W, H, LIST, TAB, INS, CAMS, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, translateAlong, span */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const E = {};
   svg.querySelectorAll('[data-k]').forEach((el) => { E[el.getAttribute('data-k')] = el; });
-  const LANG = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'nl';
+  const LANG = new URLSearchParams(typeof searchOf === 'function' ? searchOf(location.search, window.name) : location.search).get('lang') === 'en' ? 'en' : 'nl';
   const X = [1, 0, 0];
   const Y = [0, 1, 0];
   const Z = [0, 0, 1];
