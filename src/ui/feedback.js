@@ -17,6 +17,8 @@ import { modelOverlap } from '../core/shadow.js';
 import { challengeLink, challengePrompt, shareText } from '../core/share.js';
 import { rateLink, askFriend, newNonce } from '../core/friend.js';
 import { baselineEntry } from '../core/programme.js';
+import { recordings, recordingMeta } from '../core/recordings.js';
+import { recorderSupported } from '../core/recorder.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -64,10 +66,16 @@ export function renderFeedback(app, params, root) {
     // The fix he chose last time has now been practised: clear it, unless he
     // already picked a new one on this screen.
     if (params.fixUsed && !st.fixChosen && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
+    const now = Date.now();
     const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [] } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier, selfFix: st.selfFix || '',
-    }, app.today(), Date.now());
+    }, app.today(), now);
+    // Recording on: keep it to listen back to (this device only, the last 20).
+    // Same timestamp as the history entry, so a listen-back can find its round.
+    if (audio && app.state.settings.record) {
+      recordings().save(recordingMeta({ ts: now, prompt, lang, durationS, rating: st.rating, coach: st.coach, transcript }), audio);
+    }
     // A say-it round from a course lesson also marks that lesson.
     const course = prompt.extra && prompt.extra.course;
     app.setState(course ? markSayIt(state, course.subject, course.lessonId, Date.now()) : state);
@@ -266,6 +274,23 @@ export function renderFeedback(app, params, root) {
 
   if (audio) audioUrl = URL.createObjectURL(audio);
 
+  // Recording is opt-in. After a spoken round, ask once, with the Android caveat.
+  const askRecord = mode === 'speak' && recorderSupported && !app.state.settings.record && !(app.state.ui || {}).recordAsked ? (() => {
+    const answer = (on) => {
+      app.setState({ ...app.state, ui: { ...(app.state.ui || {}), recordAsked: true } });
+      if (on) app.updateSettings({ record: true });
+      card.replaceChildren(h('p', { class: 'muted small' }, on ? t('lbAskYes') : t('lbAskNo')));
+    };
+    const card = h('section', { class: 'card record-ask' },
+      h('h2', { class: 'card-title' }, ico('headphones'), ' ', t('lbAskTitle')),
+      h('p', {}, t('lbAskBody')),
+      h('p', { class: 'muted small' }, t('recordHelp')),
+      h('div', { class: 'row' },
+        h('button', { class: 'btn btn-ghost small', onclick: () => answer(true) }, t('lbAskOn')),
+        h('button', { class: 'btn btn-ghost small', onclick: () => answer(false) }, t('lbAskOff'))));
+    return card;
+  })() : null;
+
   add(
     h('section', { class: 'stats' },
       chip(metrics.words, t('m_words')),
@@ -314,7 +339,9 @@ export function renderFeedback(app, params, root) {
       h('h2', { class: 'card-title' }, t('yourAnswer')),
       transcriptEl,
       wordsNote,
-      audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl })) : null),
+      audioUrl ? h('div', {}, h('p', { class: 'muted small' }, t('playback')), h('audio', { controls: true, src: audioUrl }),
+        app.state.settings.record ? h('p', { class: 'muted small' }, t('lbKept')) : null) : null),
+    askRecord,
     paceCard,
     voiceCard,
     h('section', { class: 'card' },

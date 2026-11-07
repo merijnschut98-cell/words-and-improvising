@@ -2528,6 +2528,130 @@ await step('films: every film loads without console errors (light/dark, nl/en, r
   if (bad.length) throw new Error(bad.join('\n'));
 });
 
+await step('listen back: ask once, rounds kept, Terugluisteren plays at 1.25x, checklist, rating, one point for the next round', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, record: false, mode: 'speak' };
+    st.ui = { ...st.ui, recordAsked: false, nextModifier: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.evaluate(async () => {
+    await new Promise((res) => { const r = indexedDB.deleteDatabase('vantage-recordings'); r.onsuccess = r.onerror = r.onblocked = () => res(); });
+    // Fake mic and MediaRecorder: each recording is one second of real (silent) WAV, so it plays.
+    const wav = () => {
+      const rate = 8000; const n = rate; const buf = new ArrayBuffer(44 + n * 2); const v = new DataView(buf);
+      const str = (o, x) => { for (let i = 0; i < x.length; i++) v.setUint8(o + i, x.charCodeAt(i)); };
+      str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); v.setUint32(16, 16, true);
+      v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true);
+      v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+      return new Blob([buf], { type: 'audio/wav' });
+    };
+    window.__mr = { starts: 0, stops: 0 };
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }) } });
+    window.MediaRecorder = class {
+      constructor() { this.state = 'inactive'; this.mimeType = 'audio/wav'; }
+      start() { this.state = 'recording'; window.__mr.starts += 1; }
+      stop() {
+        this.state = 'inactive'; window.__mr.stops += 1;
+        setTimeout(() => { if (this.ondataavailable) this.ondataavailable({ data: wav() }); if (this.onstop) this.onstop(); }, 20);
+      }
+    };
+  });
+  const round = async (rate) => {
+    await page.evaluate(async () => {
+      const { makePrompt } = await import('./src/core/lesson.js');
+      const { default: nl } = await import('./src/content/prompts.nl.js');
+      window.__lbPrompt = window.__lbPrompt || makePrompt('minute', nl, Math.random, {});
+      window.__app.session = null;
+      window.__app.go('round', { prompt: window.__lbPrompt, modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+    });
+    await page.getByRole('button', { name: 'Start' }).click();
+    await page.waitForTimeout(1300);
+    await page.getByRole('button', { name: 'Klaar' }).click();
+    await page.locator('.stats').first().waitFor({ timeout: 8000 });
+    if (rate) await page.locator('.rate-btn').nth(rate - 1).click();
+  };
+  // 1. Recording is off: the feedback asks once, with the Android caveat.
+  await round(4);
+  await page.locator('.record-ask', { hasText: 'Android' }).waitFor({ timeout: 3000 });
+  await page.locator('.record-ask').scrollIntoViewIfNeeded();
+  await shot('80-listen-ask');
+  await page.getByRole('button', { name: 'Ja, opnemen' }).click();
+  await page.locator('.record-ask', { hasText: 'Opnemen staat aan' }).waitFor();
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  // 2. Two recorded rounds on the same prompt; no second question.
+  for (const r of [4, 4]) {
+    await round(r);
+    if (await page.locator('.record-ask').count()) throw new Error('asked twice');
+    await page.locator('audio').waitFor({ state: 'attached', timeout: 3000 });
+    await page.getByRole('button', { name: 'Volgende' }).click();
+    await page.locator('.btn-hero').waitFor();
+  }
+  const mr = await page.evaluate(() => window.__mr);
+  if (mr.starts !== 2 || mr.stops !== 2) throw new Error(`recorder ${JSON.stringify(mr)}`);
+  // 3. Terugluisteren from the Spreken home: grouped by exercise, newest first.
+  await page.locator('.lb-entry', { hasText: '2 opnames' }).waitFor({ timeout: 3000 });
+  await page.locator('.lb-entry').click();
+  await page.locator('.lb-group .lb-item').nth(1).waitFor({ timeout: 3000 });
+  if ((await page.locator('.lb-group').count()) !== 1) throw new Error('expected one exercise group');
+  if ((await page.locator('main .btn-primary').count()) !== 1) throw new Error('one primary on the list');
+  await page.locator('.lb-item .lb-play').first().click();
+  await page.locator('.lb-item .lb-speed button', { hasText: '1,25×' }).click();
+  await page.waitForFunction(() => { const a = document.querySelector('.lb-item audio'); return a && a.currentTime > 0 && a.playbackRate === 1.25; }, null, { timeout: 4000 });
+  await shot('81-listen-list');
+  // 4. The exercise: listen, the checklist, rate after listening, one point.
+  await page.locator('.lb-start').click();
+  await page.locator('.lb-checks').waitFor();
+  if (!(await page.locator('.lb-after').isHidden())) throw new Error('rating after listening shown before listening');
+  if ((await page.locator('.lb-check').count()) !== 5) throw new Error('checklist needs five points');
+  await page.locator('.lb-listen .lb-speed button', { hasText: '1,25×' }).click();
+  await page.locator('.lb-listen audio').evaluate((a) => a.play());
+  await page.locator('.lb-after').waitFor({ state: 'visible', timeout: 4000 });
+  await page.locator('.lb-check', { hasText: 'Opening in één zin' }).locator('input').check();
+  await page.locator('.lb-check', { hasText: 'Rustig tempo' }).locator('input').check();
+  await page.locator('.lb-after .rate-btn').nth(2).click();
+  await page.locator('.lb-gap', { hasText: 'te hoog' }).waitFor();
+  await page.locator('.lb-fix button.on', { hasText: 'Weinig stopwoorden' }).waitFor();
+  await page.locator('.lb-compare .lb-col').nth(1).waitFor();
+  if (!(await page.locator('.lb-compare mark').count())) throw new Error('fillers not marked in the transcripts');
+  if ((await page.locator('main .btn-primary').count()) !== 1) throw new Error('one primary in the exercise');
+  await page.locator('.toast').waitFor({ state: 'detached', timeout: 6000 }).catch(() => {});
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await shot('82-listen-exercise');
+  await page.locator('.lb-compare').scrollIntoViewIfNeeded();
+  await shot('83-listen-compare');
+  await page.evaluate(() => { window.__app.updateSettings({ theme: 'dark' }); window.scrollTo(0, 0); });
+  await shot('84-listen-exercise-dark');
+  await page.locator('.lb-save').click();
+  await page.locator('.lb-item', { hasText: 'teruggeluisterd' }).waitFor({ timeout: 3000 });
+  await page.locator('.toast').waitFor({ state: 'detached', timeout: 6000 }).catch(() => {});
+  await shot('85-listen-list-dark');
+  await page.evaluate(() => { window.__app.updateSettings({ theme: 'auto' }); });
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const listened = st.history.find((e) => e.listen);
+  if (!listened || listened.listen.before !== 4 || listened.listen.after !== 3) throw new Error(`listen not in history: ${JSON.stringify(listened && listened.listen)}`);
+  if (!st.ui.nextModifier || st.ui.nextModifier.id !== 'noFillers') throw new Error(`next modifier ${JSON.stringify(st.ui.nextModifier)}`);
+  // 5. The point becomes the next round's modifier, once; the gap shows on Progress.
+  await page.evaluate(() => window.__app.startDrill('minute'));
+  await page.locator('.modifier-chip', { hasText: 'Geen stopwoorden' }).waitFor({ timeout: 3000 });
+  await page.locator('.modifier-chip .mod-from').waitFor();
+  await page.evaluate(() => window.__app.go('progress'));
+  await page.locator('.listen-calib', { hasText: 'Na het terugluisteren' }).waitFor({ timeout: 3000 });
+  // 6. Delete all from Settings.
+  await page.evaluate(() => window.__app.go('settings'));
+  page.once('dialog', (d) => d.accept());
+  await page.locator('.rec-clear', { hasText: '(2)' }).click();
+  await page.locator('.rec-clear').waitFor({ state: 'detached', timeout: 3000 });
+  const left = await page.evaluate(async () => (await (await import('./src/core/recordings.js')).recordings().list()).length);
+  if (left !== 0) throw new Error(`${left} recordings left`);
+  await page.evaluate(() => {
+    window.__app.setState({ ...window.__app.state, ui: { ...window.__app.state.ui, nextModifier: null } });
+    window.__app.updateSettings({ record: false });
+  });
+});
+
 await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });

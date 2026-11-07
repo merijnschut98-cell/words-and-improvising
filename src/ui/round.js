@@ -14,7 +14,7 @@ import { play } from '../core/sound.js';
 import { createRecorder } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
-import { pickModifier, applyModifierTiming, wordBudget } from '../core/modifiers.js';
+import { pickModifier, applyModifierTiming, wordBudget, takeQueuedModifier } from '../core/modifiers.js';
 
 // Optional loudness meter on a separate mic stream (settings.voiceStats).
 // Samples RMS every 100 ms. Any failure leaves samples empty; it never throws
@@ -253,8 +253,11 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   }
 
   // Varied conditions: sometimes added automatically, or on demand.
+  // A point he chose while listening back comes first; it is used up once the round starts.
   if (st.modifier === undefined) {
-    st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1, false, prompt.drill);
+    const queued = modifier === undefined ? takeQueuedModifier(app.state) : { modifier: null };
+    if (queued.modifier) { st.modifier = queued.modifier; st.modFrom = queued.from; }
+    else st.modifier = modifier !== undefined ? modifier : pickModifier(Math.random, app.state.drillLevels[prompt.drill] || 1, false, prompt.drill);
   }
   const prepFor = () => applyModifierTiming(timing, st.modifier).prepS;
 
@@ -294,13 +297,14 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
         prompt.reason && prompt.reason !== 'random' ? h('p', { class: 'reason-chip' }, t(`reason_${prompt.reason}`)) : null,
         st.modifier ? h('div', { class: 'modifier-chip' },
           h('b', {}, `${t('harderOnPurpose')}: ${t(`mod_${st.modifier}`)}`),
-          h('span', {}, t(`modHow_${st.modifier}`))) : null,
+          h('span', {}, t(`modHow_${st.modifier}`)),
+          st.modFrom === 'listen' ? h('small', { class: 'mod-from' }, ico('headphones'), ' ', t('lbFromListen')) : null) : null,
         h('p', { class: 'muted small timing-line' },
           prepFor() ? [ico('hourglass'), ` ${t('timingThink', secs(prepFor()))} · `] : null, ico('mic'), ` ${t('timingSpeak', secs(totalS))}`)),
       toggle,
       h('button', {
         class: `btn btn-ghost small harder${st.modifier ? ' on' : ''}`,
-        onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true, prompt.drill); showIntro(); },
+        onclick: () => { st.modifier = st.modifier ? null : pickModifier(Math.random, 5, true, prompt.drill); st.modFrom = null; showIntro(); },
       }, ico(st.modifier ? 'undo-2' : 'zap'), ' ', st.modifier ? t('harderOff') : t('harderOn')),
       st.notice ? h('p', { class: 'note' }, st.notice) : null,
       // Pinned to the bottom of the screen, so Start is visible without scrolling past the tip.
@@ -310,6 +314,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   }
 
   async function begin() {
+    if ((app.state.ui || {}).nextModifier && modifier === undefined) app.setState(takeQueuedModifier(app.state).state);
     // Spoken-cue drills would record the app's own voice: no recording there.
     if (st.mode === 'speak' && settings.record && !cued) {
       recorder = createRecorder();
