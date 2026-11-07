@@ -263,7 +263,7 @@ const spec = {
       id: 's2', lesson: 'eng.machining.cutting', level: 2, dur: DUR[1], still: 0.75, title: { nl: 'Het toerental', en: 'Spindle speed' },
       beats: [
         { nl: 'Het {t:Toerental|toerental} volgt uit de diameter: bij Ø{n:60} en {n:220} m/min draait de spil {n:1167} omw/min.', en: 'The {t:Spindle speed|spindle speed} follows from the diameter: at Ø{n:60} and {n:220} m/min the spindle turns at {n:1167} rpm.', cue: { Toerental: 'rpm' }, read: { nl: 'n = {n:220000} / (π × {n:60}) = {n:1167} omw/min', en: 'n = {n:220000} / (π × {n:60}) = {n:1167} rpm' } },
-        { nl: 'Dunner betekent sneller: de besturing houdt de snijsnelheid gelijk.', en: 'Thinner means faster: the control keeps the cutting speed the same.', cues: ['rpm'] },
+        { nl: 'Hoe dunner, hoe meer toeren: de besturing houdt de snijsnelheid gelijk.', en: 'The thinner it gets, the faster it spins: the control holds the cutting speed.', cues: ['rpm'] },
       ],
     },
     {
@@ -278,38 +278,39 @@ const spec = {
       id: 's4', lesson: 'eng.machining.cutting', level: 2, dur: DUR[3], still: 0.5, title: { nl: 'Standtijd', en: 'Tool life' },
       beats: [
         { nl: 'Sneller snijden geeft kortere cycli, maar een kortere {t:Standtijd|standtijd}: de snijkant slijt.', en: 'Cutting faster gives shorter cycles, but a shorter {t:Tool life|tool life}: the edge wears.', cue: { Standtijd: 'wear' } },
-        { nl: 'Daarom eerst meer voeding: f {n:0.4} geeft {n:467} mm/min en {n:26} seconden per snede.', en: 'So raise the feed first: f {n:0.4} gives {n:467} mm/min and {n:26} seconds per cut.', read: { nl: 'f {n:0.4} · {n:467} mm/min · {n:26} s', en: 'f {n:0.4} · {n:467} mm/min · {n:26} s' } },
+        { nl: 'Bij voordraaien daarom eerst meer voeding: f {n:0.4} geeft {n:467} mm/min en {n:26} seconden per snede.', en: 'So when roughing, raise the feed first: f {n:0.4} gives {n:467} mm/min and {n:26} seconds per cut.', read: { nl: 'f {n:0.4} · {n:467} mm/min · {n:26} s', en: 'f {n:0.4} · {n:467} mm/min · {n:26} s' } },
       ],
     },
     {
       id: 's5', lesson: 'eng.machining.turnfinish', level: 3, dur: DUR[4], still: 0.3, title: { nl: 'Hoekradius en ruwheid', en: 'Nose radius and roughness' },
       beats: [
         { nl: 'De ronde punt van de plaat is de {t:Hoekradius|hoekradius}: hij laat fijne groefjes na.', en: 'The rounded tip of the insert is the {t:Nose radius|nose radius}: it leaves fine grooves.', cue: { Hoekradius: 'nose' }, read: { nl: 'f {n:0.25} · r {n:0.8} → Ra {n:2.4} µm', en: 'f {n:0.25} · r {n:0.8} → Ra {n:2.4} µm' } },
-        { nl: 'Een grotere radius maakt ze ondieper; halveer de voeding en Ra wordt een kwart.', en: 'A larger radius makes them shallower; halve the feed and Ra drops to a quarter.', cues: ['nose'] },
-        { nl: 'Bij f {n:0.14} wordt Ra {n:0.77} µm in plaats van {n:2.4}.', en: 'At f {n:0.14}, Ra becomes {n:0.77} µm instead of {n:2.4}.', read: { nl: 'f {n:0.14} · r {n:0.8} → Ra {n:0.77} µm', en: 'f {n:0.14} · r {n:0.8} → Ra {n:0.77} µm' } },
+        { nl: 'Een grotere radius maakt ze ondieper; halveer de voeding en Ra wordt een kwart.', en: 'A larger radius makes them shallower; halve the feed and Ra drops to a quarter.', cues: ['nose'], read: { nl: 'Ra ≈ f² / ({n:32} × r) × {n:1000} µm', en: 'Ra ≈ f² / ({n:32} × r) × {n:1000} µm' } },
+        { nl: 'Bij f {n:0.14} wordt Ra theoretisch {n:0.77} µm in plaats van {n:2.4}.', en: 'At f {n:0.14}, the theoretical Ra is {n:0.77} µm instead of {n:2.4}.', read: { nl: 'f {n:0.14} · r {n:0.8} → Ra {n:0.77} µm', en: 'f {n:0.14} · r {n:0.8} → Ra {n:0.77} µm' } },
       ],
     },
     {
       id: 's6', lesson: 'eng.machining.turnfinish', level: 3, dur: DUR[5], still: 0.3, title: { nl: 'De spaan breken', en: 'Breaking the chip' },
       beats: [
-        { nl: 'De {t:Spaanbreker|spaanbreker} op de plaat krult de spaan tot een {n:6} en breekt hem.', en: 'The {t:Chip breaker|chip breaker} on the insert curls the chip into a {n:6} and breaks it.', cue: { Spaanbreker: 'breaker' } },
-        { nl: 'Snij je te licht, onder zijn venster, dan krijg je lange slierten om het werkstuk.', en: 'Cut too lightly, below its window, and you get long strings round the part.' },
+        { nl: 'De {t:Spaanbreker|spaanbreker} op de plaat krult de spaan tot een korte {n:6} of {n:9} en breekt hem.', en: 'The {t:Chip breaker|chip breaker} on the insert curls the chip into a short {n:6} or {n:9} and breaks it.', cue: { Spaanbreker: 'breaker' } },
+        { nl: 'Te weinig voeding of snedediepte? Dan krijg je lange slierten om het werkstuk.', en: 'Too little feed or depth of cut? Long, stringy chips wrap round the part.' },
       ],
     },
     {
       id: 's7', lesson: 'eng.machining.turnfinish', level: 3, dur: DUR[6], still: 0.92, title: { nl: 'Slanke assen', en: 'Slender shafts' },
       beats: [
         { nl: '{t:Slankheid|Slankheid} is de {t:Uitsteeklengte|uitsteeklengte} gedeeld door de diameter: {n:160} / {n:20} = {n:8} × D.', en: '{t:Slenderness|Slenderness} is the {t:Overhang|overhang} divided by the diameter: {n:160} / {n:20} = {n:8} × D.', cue: { Slankheid: 'ld', Uitsteeklengte: 'overhang' }, read: { nl: 'L / D = {n:160} / {n:20} = {n:8} × D', en: 'L / D = {n:160} / {n:20} = {n:8} × D' } },
-        { nl: 'Zo’n as buigt weg en gaat trillen. Boven {n:3} × D steunt de {t:Losse kop|losse kop} het eind.', en: 'Such a shaft bends away and chatters. Above {n:3} × D the {t:Tailstock|tailstock} supports the end.', cue: { 'Losse kop': 'tail' } },
-        { nl: 'Boven {n:6} × D komt er een {t:Bril|bril} bij: een steun met rollen halverwege.', en: 'Above {n:6} × D a {t:Steady rest|steady rest} is added: a support with rollers halfway.', cue: { Bril: 'steady' } },
+        { nl: 'Zo’n as buigt weg en trilt. Boven zo’n {n:3} × D steunt de {t:Losse kop|losse kop} het eind.', en: 'Such a shaft bends away and chatters. Above about {n:3} × D the {t:Tailstock|tailstock} supports the end.', cue: { 'Losse kop': 'tail' } },
+        { nl: 'Boven zo’n {n:6} × D komt er een {t:Bril|bril} bij: een steun met rollen halverwege.', en: 'Above about {n:6} × D a {t:Steady rest|steady rest} is added: a support with rollers halfway.', cue: { Bril: 'steady' } },
       ],
     },
     {
       id: 's8', lesson: 'eng.machining.turncell', level: 4, dur: DUR[7], still: 0.5, title: { nl: 'Het draaifreescentrum', en: 'The turn-mill centre' },
       beats: [
-        { nl: 'Een {t:Draaifreescentrum|draaifreescentrum} draait en freest: de revolver heeft {t:Aangedreven gereedschap|aangedreven gereedschap}.', en: 'A {t:Turn-mill centre|turn-mill centre} turns and mills: the turret carries {t:Driven tools|driven tools}.', cue: { Draaifreescentrum: 'millturn', 'Aangedreven gereedschap': 'live' } },
+        { nl: 'Een {t:Draaifreescentrum|draaifreescentrum} freest ook, met {t:Aangedreven gereedschap|aangedreven gereedschap}.', en: 'A {t:Turn-mill centre|turn-mill centre} turns and mills: the turret carries {t:Driven tools|driven tools}.', cue: { Draaifreescentrum: 'millturn', 'Aangedreven gereedschap': 'live' } },
         { nl: 'De {t:C-as|C-as} zet de spil op een hoek: zes gaten op {n:60}°. De {t:Y-as|Y-as} schuift de frees uit het hart.', en: 'The {t:C-axis|C-axis} holds the spindle at an angle: six holes at {n:60}°. The {t:Y-axis|Y-axis} moves the cutter off centre.', cue: { 'C-as': 'caxis', 'Y-as': 'yaxis' } },
-        { nl: 'Een {t:Staafaanvoer|staafaanvoer} duwt de staaf door; het deel valt er klaar af: {t:Compleetbewerking|compleetbewerking}.', en: 'A {t:Bar feeder|bar feeder} pushes the bar on; the part drops off finished: {t:Complete machining|complete machining}.', cue: { Staafaanvoer: 'barfeed', Compleetbewerking: 'complete' }, read: { nl: '2 machines € {n:8.67} · compleet {n:6.0} min', en: '2 machines € {n:8.67} · complete {n:6.0} min' } },
+        { nl: 'Het deel valt er klaar af: {t:Compleetbewerking|compleetbewerking}.', en: 'The part drops off finished: {t:Complete machining|complete machining}.', cue: { Compleetbewerking: 'complete' }, read: { nl: 'compleet {n:6.0} min · eerst {n:4.0} + {n:3.0}', en: 'complete {n:6.0} min · was {n:4.0} + {n:3.0}' } },
+        { nl: 'Een {t:Staafaanvoer|staafaanvoer} duwt de staaf steeds een stuk verder.', en: 'A {t:Bar feeder|bar feeder} keeps pushing the bar further in.', cue: { Staafaanvoer: 'barfeed' } },
       ],
     },
   ],

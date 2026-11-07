@@ -7,10 +7,10 @@
 // Narration: in the app the film asks the parent page to speak (postMessage,
 // {type:'vp-film'}); opened on its own it uses its own speechSynthesis. While a
 // line is spoken the clock may run to the next beat and then holds.
-/* global STAGE, parseParams, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
-  const PRM = parseParams(location.search);
+  const PRM = parseParams(searchOf(location.search, window.name));
   const LANG = PRM.lang;
   const STR = {
     nl: { play: 'Afspelen', pause: 'Pauzeren', replay: 'Opnieuw afspelen', mute: 'Gesproken uitleg uit', unmute: 'Gesproken uitleg aan', scenes: 'Scènes', close: 'Sluiten', prev: 'Vorige', next: 'Volgende', speed: 'Snelheid', scrub: 'Tijdlijn van de film', scene: (n, m) => `Scène ${n} van ${m}`, start: 'Bekijk de film', again: 'Nog een keer', voice: 'Geen stem op dit apparaat: lees de ondertitels mee.', label: 'Uitlegfilm' },

@@ -92,7 +92,7 @@ export function resolveFilm(spec, lessons) {
       return {
         seg,
         text: { nl: plainOf(seg.nl), en: plainOf(seg.en) },
-        speak: { nl: speakOf(seg.nl), en: speakOf(seg.en) },
+        speak: { nl: speakOf(seg.nl, 'nl'), en: speakOf(seg.en, 'en') },
         cues: [...cues],
         ...(readP ? { read: { nl: fmtRead('nl'), en: fmtRead('en') } } : {}),
       };
