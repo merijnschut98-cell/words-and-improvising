@@ -1407,6 +1407,7 @@ export default {
     },
     {
       id: 'eng.lines.autobasics',
+      figure: 'eng.lines.case',
       title: 'Automatiseren of niet: arbeid, volume, variatie en kwaliteit',
       pre: [
         {
@@ -1475,6 +1476,7 @@ export default {
     },
     {
       id: 'eng.lines.payback',
+      figure: 'eng.lines.case',
       title: 'Terugverdientijd: investering, jaarlijkse besparing en diensten',
       pre: [
         {
@@ -1542,6 +1544,7 @@ export default {
     },
     {
       id: 'eng.lines.business',
+      figure: 'eng.lines.case',
       title: 'De businesscase voor automatisering',
       pre: [
         {
@@ -1610,6 +1613,7 @@ export default {
     },
     {
       id: 'eng.lines.risk',
+      figure: 'eng.lines.case',
       title: 'Risico en waarde: NPV, opstartverlies en waarom automatiseringsprojecten mislukken',
       pre: [
         {

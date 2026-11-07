@@ -1407,6 +1407,7 @@ export default {
     },
     {
       id: 'eng.lines.autobasics',
+      figure: 'eng.lines.case',
       title: 'Automate or not: labour, volume, variation and quality',
       pre: [
         {
@@ -1475,6 +1476,7 @@ export default {
     },
     {
       id: 'eng.lines.payback',
+      figure: 'eng.lines.case',
       title: 'Payback time: investment, yearly saving and shifts',
       pre: [
         {
@@ -1542,6 +1544,7 @@ export default {
     },
     {
       id: 'eng.lines.business',
+      figure: 'eng.lines.case',
       title: 'The business case for automation',
       pre: [
         {
@@ -1610,6 +1613,7 @@ export default {
     },
     {
       id: 'eng.lines.risk',
+      figure: 'eng.lines.case',
       title: 'Risk and value: NPV, ramp-up loss and why automation projects fail',
       pre: [
         {
