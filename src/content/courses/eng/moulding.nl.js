@@ -565,6 +565,7 @@ export default {
     },
     {
       id: 'eng.moulding.materials',
+      figure: 'eng.moulding.dryer',
       title: 'Kunststoffen, drogen en maalgoed',
       pre: [
         {
@@ -635,6 +636,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
+      figure: 'eng.moulding.dryer',
       title: 'Amorfe en semi-kristallijne kunststoffen',
       pre: [
         {
@@ -703,6 +705,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
+      figure: 'eng.moulding.dryer',
       title: 'Drogen tot in detail',
       pre: [
         {
@@ -775,6 +778,7 @@ export default {
     },
     {
       id: 'eng.moulding.fillers',
+      figure: 'eng.moulding.dryer',
       title: 'Glasvezel, vulstoffen en recyclaat',
       pre: [
         {
