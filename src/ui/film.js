@@ -2,6 +2,12 @@
 // secondary button in the lesson. The film cannot speak reliably from its
 // opaque-origin frame, so it asks this page to speak through the app's voice
 // (src/core/voice.js) and is told when each line is done.
+//
+// The page goes in as srcdoc, not src: a sandboxed frame without
+// allow-same-origin navigates past the service worker, so a src would be an
+// empty frame offline. This page fetches it (the worker answers from its
+// cache) and the parameters travel in the frame's name (searchOf in
+// films/_kit/timeline.mjs).
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { figureTheme, figureAvailable } from './figure.js';
@@ -23,6 +29,7 @@ export const filmSrc = (id, theme, lang, { level = null, scene = null, muted = f
 
 const OPS = new Set(['hello', 'say', 'cancel', 'mute', 'size']);
 const MAX_TEXT = 900;
+const MAX_ID = 40;
 
 // A message from the film, checked: only from its own frame, only known
 // operations, only sane values. Returns the clean message or null.
@@ -32,13 +39,26 @@ export function filmMessage(event, frameWindow) {
   if (!d || typeof d !== 'object' || d.type !== 'vp-film' || !OPS.has(d.op)) return null;
   if (d.op === 'say') {
     if (typeof d.text !== 'string' || !d.text.trim() || d.text.length > MAX_TEXT) return null;
-    if (!(typeof d.id === 'number' || typeof d.id === 'string')) return null;
+    // the id goes back to the film in 'said': keep it small
+    if (!(Number.isFinite(d.id) || (typeof d.id === 'string' && d.id.length <= MAX_ID))) return null;
     const rate = d.rate === 1.25 ? 1.25 : 1;
     return { op: 'say', id: d.id, text: d.text, lang: d.lang === 'en' ? 'en' : 'nl', rate };
   }
   if (d.op === 'mute') return { op: 'mute', muted: d.muted === true };
   if (d.op === 'size') return typeof d.h === 'number' && Number.isFinite(d.h) ? { op: 'size', h: Math.round(d.h) } : null;
   return { op: d.op };
+}
+
+// Hands the page to the frame. Resolves false when it cannot be had.
+export async function loadFilm(frame, url, fetchFn = globalThis.fetch) {
+  try {
+    const res = await fetchFn(url);
+    if (!res || !res.ok) return false;
+    frame.srcdoc = await res.text();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // The muted choice, remembered on this device. Storage may be blocked.
@@ -104,11 +124,14 @@ export function filmButton(app, ref, level) {
   btn.onclick = () => {
     if (box) { close(); return; }
     closeFilms();
-    const frame = h('iframe', { class: 'film-frame', src: src(), sandbox: 'allow-scripts', title: t('filmTitle'), allow: 'autoplay' });
+    const url = src();
+    const frame = h('iframe', { class: 'film-frame', sandbox: 'allow-scripts', name: url.slice(url.indexOf('?')), title: t('filmTitle') });
     box = h('figure', { class: 'figure-wrap film-box' }, frame);
     wrap.append(box);
     const stop = filmBridge(frame);
     current = () => { stop(); };
+    const mine = box;
+    loadFilm(frame, url.slice(0, url.indexOf('?'))).then((ok) => { if (!ok && box === mine) close(); });
     btn.setAttribute('aria-expanded', 'true');
     label.textContent = t('filmClose');
   };

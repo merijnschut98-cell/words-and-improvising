@@ -7,6 +7,8 @@
 > - **Narration:** ON by default, with a mute toggle.
 > - **Length:** always the full film (no short cut by level); 60–150 s.
 > - **Older modules:** their films wait until the module is rebuilt as topics × levels.
+> - **Film tab (Merijn, 2026-11-07):** a lesson with a film gets its own step "Film", between Raden and Lezen (Raden · Film · Lezen · Voorbeeld · Check). It replaces the button under the first teach block, can be skipped, and you can go back to it like any step.
+> - **Every level has a film (Merijn, 2026-11-07):** Basis matters most, so every topic level must be served by a film. A test enforces this for topics whose films are built. eng.machining.overview is now in progress for Turning L1.
 > - **Still open (defaults until he says otherwise):**
 >   - the film button sits under the first teach block;
 >   - films are cached on first view plus an offline switch per subject;
