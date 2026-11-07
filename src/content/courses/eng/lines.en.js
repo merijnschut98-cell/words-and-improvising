@@ -846,6 +846,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
+      figure: 'eng.lines.mixed',
       title: 'Several products on one line: variants and what they cost',
       pre: [
         {
@@ -914,6 +915,7 @@ export default {
     },
     {
       id: 'eng.lines.linechange',
+      figure: 'eng.lines.mixed',
       title: 'Changeover on an automated line: recipes, change parts and SMED',
       pre: [
         {
@@ -982,6 +984,7 @@ export default {
     },
     {
       id: 'eng.lines.mixed',
+      figure: 'eng.lines.mixed',
       title: 'Mixed-model lines',
       pre: [
         {
@@ -1053,6 +1056,7 @@ export default {
     },
     {
       id: 'eng.lines.sequencing',
+      figure: 'eng.lines.mixed',
       title: 'Sequencing and heijunka: levelling the work on a line',
       pre: [
         {
