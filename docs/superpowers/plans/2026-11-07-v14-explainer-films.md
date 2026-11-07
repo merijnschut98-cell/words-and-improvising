@@ -958,3 +958,306 @@ These modules still have six lessons and no topics. v13 part 5 rebuilds them as 
 - **`eng.gridplanning.investment`** · numbers: investment: station A over its limit in 2029 in every scenario, with 15 MW waiting; B only in the high scenario.
   1. Scenario fan lines — "Scenario's in plaats van één prognose." — Scenario, Gelijktijdigheid, Knelpunt
   2. A over in every scenario, B only in high — "No-regret eerst: A." — Investeringsplan, Anticiperend investeren, No-regretmaatregel
+
+### 3.7 Projecten (pm, current modules), 20 films
+
+People films use the kit's flat-iso people (a few recurring characters: "jij" the consultant in petrol, a sponsor, a team lead, a planner and the floor), a meeting table, a wall board, documents that fill in, and a calendar strip. They are ranked by gain in understanding. P2 is the default for pm; P1 is reserved for the two films where watching the chain of cause and effect clearly beats reading it.
+
+| id | Title nl / en | Serves | Dur | Why a film | P |
+|---|---|---|---|---|---|
+| `pm.plan.schedule` | Het kritieke pad schuift / The critical path moves | plan.schedule | 100 | a delay propagating through the network, and slack appearing when a task moves | P1 |
+| `pm.run.escalation` | Van oranje naar rood: een escalatie die werkt / From amber to red: an escalation that works | run.status, run.decisions, portfolio.governance | 130 | the chain from a slipped date to a sponsor's call the same afternoon, with who is told first | P1 |
+| `pm.intake.firsttalk` | Het eerste gesprek / The first conversation | intake.ask, intake.firsttalk, lead.listen | 120 | the hour on a clock, talk time, the correction that reveals the real problem (MORE PIES) | P2 |
+| `pm.intake.stakeholders` | De stakeholderkaart komt tot leven / The stakeholder map comes alive | intake.stakeholders, lead.influence, plan.raci | 110 | people placed on the map, moving as the project goes, the RACI per result | P2 |
+| `pm.plan.wbs` | Het werk opdelen en schatten / Breaking down and estimating the work | intake.done, plan.wbs, plan.estimate | 110 | the goal splitting into deliverables and packages, then a range instead of one number | P2 |
+| `pm.plan.risk` | Een pre-mortem / A pre-mortem | plan.risk | 80 | "it failed: why?" turning into a used risk list | P2 |
+| `pm.plan.method` | Waterval of rondes / Waterfall or rounds | plan.method | 90 | the same project played both ways; hybrid milestones with two-week rounds | P2 |
+| `pm.run.scope` | Vijf kleine verzoeken / Five small requests | run.scope, negotiate.scope | 90 | requests piling up unseen while the status stays green, then the trade-off on one sheet | P2 |
+| `pm.run.rhythm` | Een overlegritme dat werkt / A meeting rhythm that works | intake.start, run.rhythm, perform.rhythm | 90 | a week calendar coming alive: stand-up, weekly, steering group, decision note | P2 |
+| `pm.land.adoption` | Van livegang tot gewoonte / From go-live to habit | land.change, land.resistance, land.communication | 120 | operators moving through ADKAR, resistance shown and worked with, the cascade | P2 |
+| `pm.land.training` | Instructie op de werkplek / On-the-job instruction | land.training | 90 | TWI in four steps at the workstation | P2 |
+| `pm.land.handover` | Overdragen en vasthouden / Handing over and holding on | land.handover, land.sustain, close.acceptance | 110 | watch, do with support, alone; the three-month dip and the audit that catches it | P2 |
+| `pm.close.results` | Is het echt beter? / Is it really better? | close.results | 90 | weekly values with their noise band, and the comparison line | P2 |
+| `pm.lead.feedback` | Feedback, ook naar boven / Feedback, upward too | lead.feedback, perform.dialogue, negotiate.senior | 110 | SBI built sentence by sentence, then a performance conversation and disagreeing with a senior | P2 |
+| `pm.perform.tree` | Van strategie tot teamcijfer / From strategy to team number | perform.kpis, perform.tree, perform.targets, perform.gaming, portfolio.benefits | 120 | a KPI tree growing, a target, gaming bending a number, output → outcome → benefits | P2 |
+| `pm.negotiate.batna` | BATNA, ZOPA en het eerste bod / BATNA, ZOPA and the first offer | negotiate.interests, negotiate.batna, negotiate.anchor, negotiate.no, run.conflict | 120 | the bars of both sides sliding until a zone appears; the anchor | P2 |
+| `pm.portfolio.prioritise` | Wat past onder de streep? / What fits under the line? | portfolio.programme, portfolio.prioritise, portfolio.capacity | 100 | projects sorted by value per scarce day and cut at the capacity line; Fatima's week | P2 |
+| `pm.stuck.diagnose` | Vastgelopen: welk soort probleem? / Stuck: which kind of problem? | stuck.diagnose, stuck.experiment, stuck.reset | 90 | four problem types sorted; a reversible experiment; a restart | P3 |
+| `pm.lead.difficult` | Drie gesprekken in één / Three conversations in one | lead.difficult | 80 | what happened, feelings, identity, shown as three layers | P3 |
+| `pm.consult.proposal` | Van telefoontje tot offerte / From phone call to proposal | consult.proposal, consult.pricing | 90 | a diagnosis phase with a go/no-go, and pricing options | P3 |
+
+- **`pm.plan.schedule`** · numbers: schedule example: A 3, B 4, D 2, C 6, E 6 weeks; A-B-D-E = 15 weeks, A-C-E = 15 weeks; C starting in week 1 gives 3 weeks of slack.
+  1. Tasks as cards; arrows for dependencies — "Wat heb je van een ander nodig voordat je kunt beginnen?" — Afhankelijkheid
+  2. The longest chain lights up — "Het kritieke pad bepaalt de einddatum." — Kritiek pad
+  3. A second chain is just as long: both critical — "Twee ketens van 15 weken: allebei kritiek."
+  4. IT access starts in week 1: that chain gets 3 weeks of slack — "Speling: uitlopen zonder dat het eind schuift." — Speling
+  5. The Gantt chart on one A4 with milestones and a go/no-go diamond — "Mijlpalen zijn momenten, het liefst besluiten." — Mijlpaal, Go/no-go, Gantt-chart
+- **`pm.run.escalation`** · numbers: status example: IT access promised for week 5, now week 11; pilot week 8 → 12; governance: the project lead decides within 10% budget and 2 weeks, the steering group beyond that, the board above 20%; escalate when a tolerance is crossed or will be within 2 weeks.
+  1. Week 6: the access ticket still open; the team lead wants amber — "Groen, oranje, rood: alleen bruikbaar als de definities vastliggen." — RAG-status, Mijlpaal
+  2. A watermelon: green outside, red inside — "Slecht nieuws vroeg is goedkoop." — Watermeloenproject
+  3. The tolerance table: two weeks blown → red; the forecast slides — "Dit is rood: het team kan IT niet zelf oplossen." — Tolerantie, Beslisbevoegdheden, Prognose, Governance, Mandaat
+  4. You tell the team lead and the IT contact first — "Eerst de eigenaar, dan de sponsor."
+  5. The steering group: four parts on one slide, options with an advice, a default option and date — "Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb." — Escalatie, Advies, Besluitcriteria, Standaardoptie, Escalatieroute
+  6. The sponsor calls the same afternoon; the decision log gets a line — "Escaleer het besluit, niet de persoon." — Besluitenlijst
+- **`pm.intake.firsttalk`** · numbers: firsttalk: 5 / 35 / 10 / 10 minutes, 70–80% client talk time; 6 changeovers × 50 min; "reinigen is het grotere probleem"; summary within 24 h; ask: the dashboard request leading back to permits.
+  1. A request for "a better dashboard"; questions peel it back to the real problem — "Achter het symptoom zit een probleem en een doel." — Symptoom, Probleem, Doel, Kosten van niksdoen, OEE
+  2. The hour as a clock: open, explore, check, close — "Een uur met vier delen." — Open vragen
+  3. Speech bubbles: the client talks most; MORE PIES letters appear as you use them — "Reflecteren, parafraseren, stilte." — MORE PIES, Reflecteren, Parafraseren, Actief luisteren, Open vraag
+  4. Your paraphrase is corrected: "No, cleaning is the bigger problem" — "In de correctie zit het echte punt."
+  5. The summary sent the same evening — "Een intakesamenvatting binnen 24 uur." — Intakesamenvatting
+- **`pm.intake.stakeholders`** · numbers: stakeholders example: project to shorten connection lead times; sponsor = director of customer connections; process owner = head of work preparation; raci: the weekly planning meeting R planner, A operations manager, C team leads and sales, I plant manager.
+  1. Faces placed on a power–interest map — "Wie beslist, wie kan het stoppen?" — Stakeholder, Sponsor, Proceseigenaar, Stakeholdermap, Blokkeerder, Stakeholderkaart
+  2. A blocker moves after a one-to-one; currencies exchanged — "Invloed zonder macht: wat kun je ruilen?" — Valuta, Wederkerigheid, Stuurgroep
+  3. The RACI grid fills per result — "Eén A per resultaat." — RACI, Responsible, Accountable, Consulted, Informed
+  4. A blocked decision goes up the line — "Escalatie via de sponsor." — Escalatie
+- **`pm.plan.wbs`** · numbers: done: scrap 3,2% ≈ 2.400 kg of 75.000 kg per week; wbs: cancellations 18% → under 8% in six months, four results on the wall; estimate: "3 days", best 2, worst 10 (the three-point figure asserted).
+  1. The baseline measured; the goal sentence; in and out of scope — "Eerst meten: 3,2% afkeur." — Nulmeting, Scope, Buiten scope, Acceptatiecriteria, Scope creep
+  2. The goal splits into four deliverables, then work packages — "Een WBS deelt resultaten op, geen activiteiten." — Deliverable, WBS, Werkpakket, 8–80-regel, Definition of done
+  3. "Three days" becomes a range of 2 to 10 — "Schat in bandbreedtes; de planning fallacy duwt je naar optimistisch." — Bandbreedte, Driepuntsschatting, Planning fallacy
+  4. Effort versus lead time; a buffer at the end — "Inspanning is uren, doorlooptijd is kalender." — Inspanning, Doorlooptijd, Buffer
+- **`pm.plan.risk`** · numbers: risk example: a 20-minute pre-mortem with six people.
+  1. "It's a year later and it failed. Why?" — post-its fill the wall — "Een pre-mortem haalt de echte zorgen boven." — Pre-mortem
+  2. Clusters become rows with an owner and a measure — "Elk risico een eigenaar en een maatregel." — Risicolijst, Risico-eigenaar, Beheersmaatregel
+  3. A risk happens and becomes an issue — "Een issue is een risico dat al gebeurd is." — Issue
+- **`pm.plan.method`** · numbers: method example: baseline week 4, pilot live week 8, go/no-go week 16; two-week rounds; 60 real jobs tested by week 8.
+  1. Waterfall phases in sequence, each signed off — "Waterval: voorspelbaar werk, vaste scope." — Waterval
+  2. Rounds of two weeks; users react each time — "Agile: kort, iets echts, feedback." — Agile, Scrum, Sprint
+  3. Steering-group milestones above, team rounds below — "Hybride: mijlpalen voor de stuurgroep, rondes voor het team." — Hybride
+  4. A small pilot with an end date and a way back — "Een pilot is een afgebakende proef." — Pilot
+- **`pm.run.scope`** · numbers: scope example: 40 consultant days; 5 requests × 2 days = 10 days (25%); A: end date +2 weeks, B: drop two.
+  1. The goal sentence on the wall — "Toets elk verzoek aan de doelzin." — Scope, Doelzin
+  2. Five small requests stack up while the status stays green — "Scope creep: klein, redelijk, ongemerkt." — Scope creep, Gold plating
+  3. One sheet: 10 days, option A or B — "Ja, en dit kost het." — Wijzigingsverzoek, Afweging
+  4. With a fixed-price client: the change log and the devil's triangle — "Tijd, geld, scope: kies er twee." — Wijzigingslog, Vaste prijs, Duivelsdriehoek, Dagtarief
+- **`pm.run.rhythm`** · numbers: rhythm example: stand-up Monday and Thursday 08:30, 15 min, five people; weekly Tuesday 13:00, 45 min (the steering group cadence asserted).
+  1. The kick-off; first quick wins and foundations — "De eerste weken: kick-off, quick wins, fundament." — Kick-off, Quick win, Fundament, Overlegritme
+  2. A week strip: stand-ups, weekly, the steering group monthly — "Elk overleg een doel en een vaste agenda." — Stand-up, Stuurgroep, Sponsor, Vaste agenda, Overlegstructuur
+  3. A decision note and the minutes as a decision list — "Notulen zijn besluiten met eigenaren." — Besluitnotitie, Notulen, Actielijst
+  4. Handing the rhythm over to the line; escalating by the agenda — "Een ritme dat blijft als jij weg bent." — Escaleren, Overdracht
+- **`pm.land.adoption`** · numbers: change example: stops longer than 2 min registered; after 6 weeks only 40%; 8 operators asked; resistance: Henk and the 40-minute warm-up rule.
+  1. Go-live; registrations at 40% — "Livegang is geen adoptie." — Livegang, Adoptie, Verandermanagement
+  2. Eight operators on the ADKAR steps; most stall at ability — "ADKAR laat zien waar het blijft hangen." — ADKAR, Kotter
+  3. Open, passive and hidden resistance as three figures — "Weerstand vertelt iets echts." — Open weerstand, Passieve weerstand, Verborgen weerstand, Verlies, Verandercurve
+  4. Coffee with Henk; his rule goes into the board — "Haal de criticus bij het ontwerp."
+  5. A cascade via the middle managers; key messages; a town hall — "Middenmanagers vertellen het verder." — Stakeholder, Communicatieplan, Cascade, Kernboodschappen, Middenmanager, Town hall
+- **`pm.land.training`** · numbers: training example: a one-page instruction, six steps with screen photos (the follow-up figures asserted from the lesson).
+  1. A one-page instruction with key points — "Een werkinstructie met kernpunten." — Werkinstructie, Kernpunt
+  2. TWI: prepare, show, let them do it, follow up — "Voordoen, nadoen, nalopen." — TWI, Training op de werkplek
+  3. Kirkpatrick levels from reaction to result — "Gebruiken ze het echt?" — Kirkpatrick-niveaus
+- **`pm.land.handover`** · numbers: handover example: 92% on-time delivery is normal; weeks 1–3 / 4–6 / 7–9; a breakdown in week 8; hypercare 2–6 weeks; sustain: 72% → 90% → 81% after three months.
+  1. The checklist for the process owner — "Eén proceseigenaar per proces." — Lijnorganisatie, Proceseigenaar, KPI, Overdrachtschecklist
+  2. Three steps on a calendar: watch, do with you beside, alone — "Overdragen in stappen." — Hypercare
+  3. Formal acceptance: criteria signed, open points listed — "Acceptatie op de criteria van de opdracht." — Acceptatiecriteria, Projectopdracht, Ondertekening, Openpuntenlijst, Batenreview
+  4. Three months later the line dips to 81% — "De dip na drie maanden." — Dip na drie maanden
+  5. A layered process audit and a trigger in the KPI review — "Een gelaagde audit vangt het op tijd." — Gelaagde procesaudit, KPI-review, Follow-up, Trigger
+- **`pm.close.results`** · numbers: results example: line 3 14% (11–17%) over 12 weeks → 9% (7–11%) over 10 weeks; line 4 stays at 13%.
+  1. Weekly values with their noise band — "Eén goede week is ruis." — Nulmeting, Ruis
+  2. After: the band moves; the comparison line stays — "Een vergelijkingsgroep maakt het hard." — Vergelijkingsgroep
+  3. An extreme week followed by a normal one — "Regressie naar het gemiddelde." — Regressie naar het gemiddelde
+  4. The controller turns hours into contribution — "De controller rekent het in euro's." — Controller, Dekkingsbijdrage
+- **`pm.lead.feedback`** · numbers: feedback example: the sponsor answered the first four questions; Peter and Sandra went quiet.
+  1. S, B, I build up as three blocks, then a question — "Situatie, gedrag, impact, en dan vragen." — SBI, Waarneembaar gedrag
+  2. "You're dominant" crossed out for "you answered the first four questions" — "Gedrag, geen etiket." — Feedbacksandwich
+  3. Asking permission upward; feedforward — "Mag ik iets delen?" — Feedback naar boven, Feedforward
+  4. A performance conversation: one-off or pattern, then an agreement — "Eenmalig of een patroon?" — Prestatiegesprek, Open vraag, Eenmalige oorzaak, Patroon, Afspraak
+  5. Disagreeing with a senior: fact, view, request; then disagree and commit — "Feit, visie, verzoek." — Psychologische veiligheid, Disagree and commit, Feit-visie-verzoek, Escalatiepad
+- **`pm.perform.tree`** · numbers: tree example: 26 weeks from request to connection, steps in series (intake 3 weeks …, asserted).
+  1. A few lagging and leading indicators on a scorecard — "Een paar indicatoren die sturen." — KPI, Achterlopende indicator, Voorlopende indicator, Gekoppelde indicatoren, Balanced scorecard
+  2. The tree grows from 26 weeks down to the steps' drivers — "Een KPI-boom vertaalt strategie naar teams." — KPI-boom, Driver, Rekenboom, Logische boom, Doorvertalen
+  3. A target set with the team, a band and an action limit — "Een doel waar ze in geloven." — Doelzettingstheorie, Doelacceptatie, Nulmeting, Bandbreedte, Actiegrens
+  4. A number bends: easy jobs first — "Wet van Goodhart: een doel wordt een spel." — Wet van Goodhart, Gaming, Krenten uit de pap halen, Verkeerde prikkel, Grenswaarde
+  5. Output → outcome → benefits with a benefit owner — "Opgeleverd is nog geen baat." — Output, Uitkomst, Baten, Batenhouder, Toerekening
+- **`pm.negotiate.batna`** · numbers: batna: €950 offered against €1.000 elsewhere; the coated brackets +12%, a second supplier +4% with 10 weeks of qualification; anchor: earlier diagnoses took 18, 22 and 20 days.
+  1. Positions on the table, interests underneath — "Standpunt is wat ze vragen, belang is waarom." — Standpunt, Belang, Eerlijke maatstaf, Principieel onderhandelen, Pakketdeal, Objectieve criteria, Lastig gesprek
+  2. Your walk-away from your BATNA; theirs estimated; the ZOPA appears — "De ZOPA: waar een akkoord kan." — BATNA, Ondergrens, ZOPA, Overstapkosten, Kwalificatie
+  3. Starting qualification now strengthens your alternative — "Verbeter je alternatief, en dan pas praten."
+  4. The first number anchors; framing; the counter offer — "Het eerste getal trekt alles naar zich toe." — Anker, Framing, Verliesaversie, Tegenbod, Concessie
+  5. A positive no with a trade offer; the red line — "Nee, en wat wel kan." — Positieve nee, Ruil aanbieden, Rode lijn
+- **`pm.portfolio.prioritise`** · numbers: prioritise: 240 project days; A €200k / 80 days, B €180k / 40 days (C onwards asserted); capacity: Fatima on four projects, each assuming a day a week, with 4 project days a month available.
+  1. Programme versus project; a dependency between two projects — "Een programma stuurt samenhang." — Programma, Portfolio, Afhankelijkheid, Programmaraad, Watermeloeneffect
+  2. Projects sorted by value per scarce day; the capacity line — "Waarde per schaarse dag: B eerst." — Bottleneck, Waarde per schaarse dag, Risicogecorrigeerde waarde, Capaciteitsstreep, Onderhanden werk
+  3. Fatima's month: four projects, four days — "Echte beschikbaarheid, geen aanname." — Capaciteitsmatrix, Capaciteitsconflict, Echte beschikbaarheid, Contextswitch, Doorlooptijd
+- **`pm.stuck.diagnose`** · numbers: diagnose example: week 7, the third design session.
+  1. Four boxes: unclear goal, unclear path, people, capacity — "Welk soort probleem is het?" — Onduidelijk doel, Onduidelijke weg, Mensenprobleem, Capaciteitsprobleem, Afweging
+  2. A reversible two-week experiment with a stop criterion — "Omkeerbaar: probeer het." — Omkeerbaar besluit, Onomkeerbaar besluit, Experiment, Hypothese, Stopcriterium
+  3. A restart: sunk cost set aside, re-contracting — "Herstarten is opnieuw beginnen." — Herstart, Verzonken kosten, RAG-status, Opnieuw contracteren, IJkmoment
+- **`pm.lead.difficult`** · numbers: none fixed (Henk's remark in week 3).
+  1. Three layers: what happened, feelings, identity — "Drie gesprekken tegelijk." — Drie gesprekken, Identiteitsgesprek
+  2. Contribution instead of blame; intention versus impact — "Wat was mijn bijdrage?" — Bijdrage, Bedoeling tegenover impact
+  3. Starting from the third story — "Begin bij het derde verhaal." — Derde verhaal
+- **`pm.consult.proposal`** · numbers: proposal: OEE of the thermoforming lines (asserted); pricing: scrap costs €400k per year; 30 days estimated when the data is clean.
+  1. The call; a diagnosis phase with a go/no-go — "Eerst een diagnose, dan een besluit." — Nulmeting, Diagnosefase, Go/no-go-besluit, Inzet van de klant, Opties
+  2. Day rate, fixed price, value-based on one slider; a risk mark-up — "Prijs naar risico." — Dagtarief, Vaste prijs, Waardegebaseerde prijs, Risico-opslag, Scope, Meerwerk
+
+**No film (pm), with reason:** these lessons are about judgement or reflection, with no sequence to show.
+- intake.no;
+- run.team;
+- close.retro (a P3 candidate later, see 6);
+- close.followup;
+- close.yourself;
+- stuck.buytime and stuck.askhelp (the lines themselves matter more than a picture);
+- lead.teams;
+- lead.self;
+- consult.trust (a static formula);
+- consult.independence;
+- consult.account;
+- consult.practice.
+
+`close.report` and `portfolio.boardroom` wire `talk.answer#4` (the answer-first scene).
+
+### 3.8 Spreken, 4 films
+
+| id | Title nl / en | Serves | Dur | Why a film | P |
+|---|---|---|---|---|---|
+| `talk.answer` | Een sterk antwoord van 60 seconden / A strong 60-second answer | drills prep and frame; pm close.report and portfolio.boardroom (scene 4) | 120 | the answer built block by block on a timeline while it is spoken; before versus after | P1 |
+| `talk.pressure` | Onderbroken en toch helder / Interrupted and still clear | drill pressure; pm stuck.pressure, negotiate.no | 90 | the interruption at 15 s and the four moves in 20 s | P2 |
+| `talk.pause` | Pauze in plaats van eh / A pause instead of um | drill pause | 60 | the waveform with fillers replaced by silences | P3 |
+| `talk.listenback` | Leren van je eigen opname / Learning from your own recording | the v13 listen-back lesson (after v13) | 80 | play, the checklist, rate, compare | P3 |
+
+- **`talk.answer`** · source: `src/content/tips.js` (prep tip, before and after) and the frame steps in `src/i18n.js` (PREP: Punt, Reden, Voorbeeld, Punt; STAR: Situatie, Taak, Actie, Resultaat; Antwoord eerst). No lesson numbers. For the pm lessons, the terms Antwoord eerst and Piramideprincipe are covered in scene 4; the other terms of those lessons are skipped as document parts.
+  1. A question appears, a 60 s timer, and a vague answer as a grey blob — "Zonder structuur dwaalt een antwoord."
+  2. PREP blocks drop in while the "dinsdag trainen" answer is spoken — "Punt, reden, voorbeeld, en hetzelfde punt."
+  3. STAR for "vertel over een keer dat…": four blocks on a timeline, Actie the widest — "Bij een verhaal: STAR, met de meeste tijd voor wat jij deed."
+  4. Answer first: the conclusion on top of a pyramid of reasons — "Voor een directie: antwoord eerst, onderbouwing eronder." — Antwoord eerst, Piramideprincipe
+  5. Choosing the frame by question type — "Mening? PREP. Verhaal? STAR. Advies? Antwoord eerst."
+- **`talk.pressure`** · source: `how_pressure` in `src/i18n.js` (cut off at about 15 s, then 20 s, four moves) and the pressure tip in tips.js.
+  1. You speak; at 15 s someone cuts in sharply — "Onderbroken. Nu heb je 20 seconden."
+  2. Acknowledge, bridge, one sentence, check back appear in turn — "Erken, brug, antwoord in één zin, check terug."
+  3. Bad versus good replay — "Erkennen voordat je verdedigt."
+- **`talk.pause`**:
+  1. A waveform with "eh" bumps — "Stopwoorden vullen de stilte."
+  2. The bumps become flat pauses; the timer shows 3 pauses and 0 fillers — "Een pauze klinkt zekerder dan eh."
+
+### 3.9 After v13: ICT, IT/OT, cyber, pm.outside (20 films)
+
+These are planned against the v13 topic list. Terms and numbers are filled in when the lessons exist; the build asserts them like the others. Each storyboard is provisional.
+
+| id | Title nl / en | Serves (v13 topic) | Dur | Why a film | P |
+|---|---|---|---|---|---|
+| `pm.agile.scrum` | Een sprint van twee weken / A two-week sprint | Scrum roles, events, artefacts | 130 | people and events in time: planning, dailies, review, retro | P1 |
+| `pm.agile.backlog` | Van idee tot sprintklaar / From idea to sprint-ready | backlog, user stories, refinement, estimating | 100 | a story being split, refined and estimated by the team | P2 |
+| `pm.agile.kanban` | Flow op een kanbanbord / Flow on a kanban board | Kanban and flow | 90 | cards moving, a WIP limit stopping a pile-up, cycle time and Little's law (the v13 board figure lets you play; this shows why) | P2 |
+| `pm.scaled.pi` | Een PI-planning in twee dagen / A two-day PI planning | SAFe basics: ART, PI planning, RTE, PO/PM | 140 | many teams, one room, the programme board filling, the confidence vote | P1 |
+| `pm.scaled.hybrid` | Stage-gate met sprints / Stage-gate with sprints | hybrid in manufacturing | 90 | gates above, sprints below, hardware lead times | P2 |
+| `pm.devops.pipeline` | Een commit door de pipeline / A commit through the pipeline | CI/CD and test automation, DORA metrics | 120 | a change from commit to production in minutes; a red test, a rollback; the four DORA meters | P1 |
+| `pm.devops.release` | Omgevingen en een release / Environments and a release | release and environment management | 90 | dev, test, acceptance, prod; a feature flag | P2 |
+| `pm.devops.incident` | Een storing volgens ITIL / An incident the ITIL way | ITSM and incidents | 100 | incident → major incident → problem → change, with the roles | P2 |
+| `pm.itproject.mvp` | MoSCoW en een MVP / MoSCoW and an MVP | requirements and scope | 90 | requirements sorted into four bins, the MVP cut line | P2 |
+| `pm.itproject.cutover` | Het cutover-weekend / The cutover weekend | ERP/MES implementation: data migration, cutover, go-live, hypercare | 140 | an hour-by-hour weekend with a go/no-go and a rollback point, then hypercare | P1 |
+| `pm.itproject.uat` | Testen tot adoptie / From testing to adoption | testing and adoption: UAT, training, change | 90 | users testing real scenarios; defects triaged | P2 |
+| `eng.itbasics.network` | Een datapakket op reis / A data packet's journey | networks: IP, LAN, VLAN, firewall | 110 | a packet travelling through switch, VLAN, router and firewall | P2 |
+| `eng.itbasics.cloud` | Server, cloud en SaaS / Server, cloud and SaaS | servers and cloud | 80 | who manages which layer in IaaS, PaaS and SaaS | P3 |
+| `eng.ot.isa95` | Van sensor tot ERP / From sensor to ERP | ISA-95 levels, PLC/SCADA/MES/ERP talking | 120 | a factory as layers; one order going down and its data coming up (reuses `eng.industry40.datapath` drawings) | P1 |
+| `eng.ot.protocols` | OPC UA en MQTT / OPC UA and MQTT | OPC UA and MQTT, IT/OT convergence | 90 | client–server reads versus publish–subscribe through a broker | P2 |
+| `eng.cyber.zones` | Zones en conduits in de fabriek / Zones and conduits in the plant | basics (CIA), OT security under IEC 62443 | 110 | an attack path through a flat network, then segmented | P2 |
+| `eng.cyber.incident` | Een OT-cyberincident / An OT cyber incident | incident response | 110 | from a phishing mail to recovery, the phases with roles | P2 |
+| `pm.outside.questions` | Vragen stellen buiten je vak / Asking questions outside your field | Vragen stellen | 90 | the question sets per phase; checking an estimate with a range and a reference class | P3 |
+| `pm.outside.experts` | Werken met experts / Working with experts | Werken met experts | 90 | trust and verify; red flags such as "almost done" with no demo | P2 |
+| `pm.outside.steering` | Voortgang zien zonder vakkennis / Seeing progress without the expertise | Sturen en besluiten | 100 | milestones with evidence, a demo, the definition of done; an escalation | P2 |
+
+Provisional storyboards (4–5 scenes each):
+- **`pm.agile.scrum`:** the roles introduced (product owner, scrum master, developers) → sprint planning pulls items from the backlog → the daily at the board, cards moving → the review with users who react → the retro picks one improvement → the next sprint starts.
+- **`pm.scaled.pi`:** the ART as teams of teams; the RTE opens → the business context and vision → team breakouts writing objectives → the programme board fills with dependencies as red strings → risks ROAMed → the fist-of-five confidence vote.
+- **`pm.devops.pipeline`:** commit → build → unit tests → integration tests → deploy to staging → deploy to production → a failing test stops a bad change → a rollback; the four DORA meters move.
+- **`pm.itproject.cutover`:** freeze → data migration with reconciliation counts → the go/no-go at the checkpoint → go-live → the rollback point passes → hypercare tickets fall over 2–6 weeks (2–6 weeks taken from pm.land.handover).
+- **`eng.ot.isa95`:** levels 0–4 as floors of the plant → an order from ERP to MES to the PLC → machine data back up → where the IT/OT boundary and the DMZ sit.
+- **Others:** the same pattern: the setting → the actors → the sequence → what goes wrong → the fix.
+
+## 4. Build order and waves
+
+**Wave 0, the player kit:** `films/_kit`, `src/ui/film.js`, the `film` field, the validator, the unit tests and the e2e step, plus the pilot film `eng.machining.turning`.
+- Spike first: narration through the parent bridge on Chrome Android, Safari iOS and desktop Firefox, and the frame height at 390 px.
+- Merijn watches the pilot before wave 1 (see open question 1).
+
+**After that, two films per wave:**
+- P1 first, grouped by module, in this order: Maakindustrie, then safety and grid, then the rest of engineering basics, then the two pm P1 films and `talk.answer`.
+- Each film is written by a content agent and checked by a second agent before merge, against the content check below.
+
+| Wave | Films |
+|---|---|
+| 1 | eng.machining.milling, eng.machining.drilling |
+| 2 | eng.machining.cnc, eng.machining.tooling |
+| 3 | eng.machining.overview, eng.machining.workholding |
+| 4 | eng.machining.measuring, eng.joining.arc |
+| 5 | eng.joining.spot, eng.joining.defects |
+| 6 | eng.joining.bolting, eng.joining.bonding |
+| 7 | eng.joining.production, eng.moulding.setting |
+| 8 | eng.moulding.machine, eng.moulding.cycle |
+| 9 | eng.moulding.materials, eng.moulding.defects |
+| 10 | eng.moulding.moulds, eng.lines.design |
+| 11 | eng.lines.robots, eng.lines.errorproof |
+| 12 | eng.lines.variants, eng.lines.control |
+| 13 | eng.safety.loto, eng.switchgear.fiverules |
+| 14 | eng.safety.permit, eng.transformers.principle |
+| 15 | eng.switchgear.devices, eng.switchgear.protection |
+| 16 | eng.transformers.faults, eng.gridops.outage |
+| 17 | eng.switchgear.automation, eng.transformers.cables |
+| 18 | eng.transformers.ageing, eng.gridbasics.path |
+| 19 | eng.gridbasics.load, eng.gridbasics.congestion |
+| 20 | eng.gridplanning.loadflow, eng.gridplanning.flex |
+| 21 | eng.fluids.cavitation, eng.fluids.pumping |
+| 22 | eng.fluids.heat, eng.fluids.steam |
+| 23 | eng.power.motor, eng.power.drives |
+| 24 | eng.power.air, eng.power.hydraulics |
+| 25 | eng.mechanics.fatigue, eng.mechanics.tensile |
+| 26 | eng.mechanics.load, eng.mechanics.heattreat |
+| 27 | eng.quality.spc, eng.quality.tolerance |
+| 28 | eng.flow.smed, eng.flow.bottleneck |
+| 29 | eng.flow.takt, eng.process.plant |
+| 30 | eng.process.batch, eng.maintenance.failure |
+| 31 | eng.maintenance.tpm, eng.drawings.reading |
+| 32 | eng.drawings.loop, pm.run.escalation |
+| 33 | pm.plan.schedule, talk.answer |
+| 34+ | P2 by module in the same order (Maakindustrie P2, engineering basics, grid, pm, speaking), then P3 |
+| after v13 | ICT P1 (pm.agile.scrum, pm.scaled.pi, pm.devops.pipeline, pm.itproject.cutover, eng.ot.isa95), then ICT P2/P3; each only once its lessons have passed their own review |
+
+Wave 0 plus 33 waves cover the 67 P1 films for current content (`eng.machining.turning` is the pilot). The other 5 P1 films are ICT, after v13.
+
+**Coordination with v13 part 5 (topics × levels for the older modules):** films for older modules are built after that module's rebuild where possible, so scene levels and terms match the topic lessons (see open question 4). The Maakindustrie and pm P1 films do not depend on it.
+
+**Content check by the second agent (per film):**
+- **Facts:** every caption against the lesson and, where the lesson hedges, the same hedge. Numbers are taken from the build's assert list.
+- **Dutch:** short sentences, no anglicisms beyond the terms, and the term's English word on first use only.
+- **English:** no Dutch at all.
+- **Terms:** the coverage report from `--audit`, a visual cue for each term, and the skip reasons.
+- **Order:** scenes follow the real order on the floor, and safety steps are never shown out of order, even in a scrub preview.
+- **Watch:** at 390 px in light, dark and reduced motion, with narration on in nl and en.
+- Merge only with `npm test`, `node src/content/courses/validate.js` and `bash scripts/shellcheck.sh` passing. The film e2e step runs when no agent is building (the standing rule).
+
+## 5. Effort and risks
+
+**Effort (rough):**
+- **Wave 0 (kit, wiring, tests, pilot):** about 3–4 agent sessions. It is the biggest single piece.
+- **A machine film that reuses a figure's drawing:** about half a session, plus a review. A machine film drawn from scratch: about one session.
+- **A people or board film:** about half a session once the people-and-board helpers exist.
+- **Totals:** 72 P1 films at two per wave is about 33 waves; all 134 films is about 65 waves.
+- **Reuse:**
+  - the figure builds' world geometry is imported, so the moulding press, lathe, mill, spot gun, MAG torch, robot cell and MV ring are not redrawn;
+  - the people, table, board, document and calendar helpers are written once in wave 0 and refined in the first pm wave.
+
+**Risks:**
+
+| Risk | Effect | Mitigation |
+|---|---|---|
+| Narration voice quality differs by browser (Dutch voices are robotic or missing on some Android builds; iOS has good nl-NL voices; desktop Firefox on Linux may have none) | narration sounds poor or silent | captions carry the content on their own; narration is off by default; voice picked through `voice.js` (prefers nl-NL and en-GB); a "no voice available" hint; the English words in Dutch captions are not spoken |
+| `speechSynthesis` is blocked or flaky in a sandboxed frame | silent films in the app | the parent-page bridge (2.2); spiked in wave 0 |
+| 150 s is long on a phone; attention drops | films are left halfway | Basiscut at 60–80 s for levels 1–2; the scene list to jump; each scene stands on its own; the end card offers the figure |
+| Captions overflow at 390 px | unreadable | build check: at most 3 lines at 390 px and 16 px (measured with the kit's text metrics), otherwise the build fails; a caption is at most about 25 words |
+| Lesson text changes and the film goes stale | wrong numbers or terms in a film | the build asserts numbers and terms; the content test re-checks the shipped film JSON against the lessons, so `npm test` fails until the film is rebuilt |
+| v13 part 5 renames or moves terms in older modules | coverage breaks | build those films after the rebuild; until then the tests show exactly which term moved |
+| Page size grows with many scenes | slow loading, cache bloat | the 300 KB target and 450 KB cap checked in the test; one drawing per film with overlays, no per-scene redraws; runtime caching plus the opt-in offline row |
+| Motion sickness or distraction | discomfort | calm eases, at most one camera move per scene, no flashing; reduced motion gives stills |
+| A safety film seen out of order while scrubbing | wrong lesson learned | in safety films the scrubber snaps to scene starts; each step carries a number badge; the reviewer checks order |
+| Simplified drawings read as real procedures (switching, LOTO) | false confidence | the end card in safety films says the site's own procedure and appointment rule apply, as the lessons say; the consultant-as-layperson rule shown in `eng.switchgear.fiverules` |
+| Scope (134 films) outruns the review capacity | backlog of unreviewed films | P1 first; P3 films only when Merijn asks for one; the build kit makes people films cheap |
+
+## 6. Open questions for Merijn
+
+1. **Narration:** off by default with captions as the main channel, or on by default? Should Dutch narration skip the English words (as planned)? Please judge the browser voice in the wave 0 pilot before we build more.
+2. **Cuts:** is a Basiscut (60–80 s) for levels 1–2 and a full cut (up to 150 s) for levels 3–4 right, or one full film everywhere?
+3. **Where the button sits:** under the first reading block (planned), or at the top of the lesson before the pre-question?
+4. **Older modules:** build their films after their topics × levels rebuild (v13 part 5), so the levels and terms are final, or now, accepting rework?
+5. **Order after Maakindustrie:** grid next (your work with the grid operator) or the rest of engineering basics next? The plan puts safety and grid next.
+6. **Offline:** is "cache on first view, plus a 'Films offline bewaren' switch per subject" fine, or must every film be available offline from install (about 9 MB on the wire)?
+7. **Speaking films:** is a button on the exercise intro card the right place, and do you want `talk.pressure` and `talk.pause` at all?
+8. **pm lessons without a film** (the list under 3.7): agree, or do you want a film for `close.retro` too?
