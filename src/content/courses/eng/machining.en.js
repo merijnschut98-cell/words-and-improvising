@@ -848,6 +848,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CNC basics',
       pre: [
@@ -919,6 +920,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Reading a G-code program',
       pre: [
@@ -988,6 +990,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Offsets and compensation: why crashes happen',
       pre: [
@@ -1058,6 +1061,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CAM, simulation and prove-out',
       pre: [
