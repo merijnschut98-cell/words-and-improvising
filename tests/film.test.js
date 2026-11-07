@@ -132,6 +132,11 @@ test('the bridge accepts only well-formed messages from its own frame', () => {
   assert.deepEqual(ok({ type: 'vp-film', op: 'size', h: 412.4 }), { op: 'size', h: 412 });
   assert.equal(ok({ type: 'vp-film', op: 'size', h: 'tall' }), null);
   assert.deepEqual(ok({ type: 'vp-film', op: 'hello' }), { op: 'hello' });
+  // the line id is echoed back to the film: a small finite number or a short string only
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 'x'.repeat(41), text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: Infinity, text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: NaN, text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 'line-3', text: 'x' }).id, 'line-3');
 });
 
 test('the bridge speaks through the app voice and answers said; it ignores other frames', async () => {

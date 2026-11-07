@@ -23,6 +23,7 @@ export const filmSrc = (id, theme, lang, { level = null, scene = null, muted = f
 
 const OPS = new Set(['hello', 'say', 'cancel', 'mute', 'size']);
 const MAX_TEXT = 900;
+const MAX_ID = 40;
 
 // A message from the film, checked: only from its own frame, only known
 // operations, only sane values. Returns the clean message or null.
@@ -32,7 +33,8 @@ export function filmMessage(event, frameWindow) {
   if (!d || typeof d !== 'object' || d.type !== 'vp-film' || !OPS.has(d.op)) return null;
   if (d.op === 'say') {
     if (typeof d.text !== 'string' || !d.text.trim() || d.text.length > MAX_TEXT) return null;
-    if (!(typeof d.id === 'number' || typeof d.id === 'string')) return null;
+    // the id goes back to the film in 'said': keep it small
+    if (!(Number.isFinite(d.id) || (typeof d.id === 'string' && d.id.length <= MAX_ID))) return null;
     const rate = d.rate === 1.25 ? 1.25 : 1;
     return { op: 'say', id: d.id, text: d.text, lang: d.lang === 'en' ? 'en' : 'nl', rate };
   }
