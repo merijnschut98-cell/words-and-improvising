@@ -1133,6 +1133,7 @@ export default {
     },
     {
       id: 'eng.moulding.setup',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'The five settings',
       pre: [
@@ -1203,6 +1204,7 @@ export default {
     },
     {
       id: 'eng.moulding.process',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'The process window',
       pre: [
@@ -1273,6 +1275,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: three studies',
       pre: [
@@ -1345,6 +1348,7 @@ export default {
     },
     {
       id: 'eng.moulding.validation',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Validating and monitoring a process',
       pre: [

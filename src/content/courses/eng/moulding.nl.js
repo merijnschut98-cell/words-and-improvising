@@ -1133,6 +1133,7 @@ export default {
     },
     {
       id: 'eng.moulding.setup',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'De vijf instellingen',
       pre: [
@@ -1203,6 +1204,7 @@ export default {
     },
     {
       id: 'eng.moulding.process',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Het procesvenster',
       pre: [
@@ -1273,6 +1275,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: drie studies',
       pre: [
@@ -1345,6 +1348,7 @@ export default {
     },
     {
       id: 'eng.moulding.validation',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Een proces valideren en bewaken',
       pre: [
