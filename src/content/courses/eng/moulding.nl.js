@@ -288,6 +288,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      film: 'eng.moulding.cycle',
       figure: 'eng.moulding.cycle',
       title: 'Cyclustijd en output',
       pre: [
@@ -359,6 +360,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
+      film: 'eng.moulding.cycle',
       title: 'Koelen: wat de insteller kan veranderen',
       pre: [
         {
@@ -427,6 +429,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
+      film: 'eng.moulding.cycle',
       title: 'Meer holtes of een snellere cyclus',
       pre: [
         {
@@ -496,6 +499,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
+      film: 'eng.moulding.cycle',
       title: 'Wat een spuitgietproduct kost',
       pre: [
         {
