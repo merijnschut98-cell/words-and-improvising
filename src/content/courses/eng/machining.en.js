@@ -1548,6 +1548,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      figure: 'eng.machining.cmm',
       title: 'Measuring you can trust: uncertainty and gauge R&R',
       pre: [
         {
@@ -1618,6 +1619,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      figure: 'eng.machining.cmm',
       title: 'A capable machining process',
       pre: [
         {

@@ -1548,6 +1548,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      figure: 'eng.machining.cmm',
       title: 'Meten waar je op kunt bouwen: meetonzekerheid en gauge R&R',
       pre: [
         {
@@ -1618,6 +1619,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      figure: 'eng.machining.cmm',
       title: 'Een capabel verspaningsproces',
       pre: [
         {
