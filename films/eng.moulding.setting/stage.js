@@ -10,7 +10,7 @@ const STAGE = (() => {
   const E = {};
   ['world', 'scale', 'lid', 'piston', 'ratioMark', 'screw', 'ring', 'cushion', 'fill', 'front', 'drop', 'speed', 'back',
     'sheet', 'ruler', 'rulerBody', 'rulerSw', 'rulerMk', 'clock', 'win', 'dec', 'ratioHud', 'visc', 'bars', 'barsBody', 'barsLimit', 'gfs',
-    'cards', 'cardsBody', 'cardsIq', 'spc', 'reval'].forEach((k) => { E[k] = el(k); });
+    'cards', 'cardsBody', 'cardsIq', 'spc', 'reval', 'lens', 'lensClip'].forEach((k) => { E[k] = el(k); });
   const EN = new URLSearchParams(location.search).get('lang') === 'en';
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -184,16 +184,45 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ camera
+  let cam = { cx: 0, cy: 0, s: 1 };
+  // reduced motion shows one still per scene while the captions run on: a
+  // scene whose camera moves on a caption then frames what that caption names
+  const isStill = () => document.querySelector('.fp').dataset.motion === 'reduce';
+  const cueOn = (name) => !!svg.querySelector(`[data-cue="${name}"][data-on]`);
   function camera(si, u) {
     const c = CAM[si];
-    const k = span(u, c.a ?? 0, c.b ?? 1);
+    let k = span(u, c.a ?? 0, c.b ?? 1);
+    if (isStill() && si === 0) k = cueOn('heat') ? 1 : 0;
+    if (isStill() && si === 4) k = cueOn('back') ? 0 : 1;
     const cx = lerp(c.from[0], c.to[0], k);
     const cy = lerp(c.from[1], c.to[1], k);
     const w = lerp(c.from[2], c.to[2], k);
     camW = w;
     const s = W / w;
+    cam = { cx, cy, s };
     const t = `translate(${f1(W / 2)} ${f1(H / 2)}) scale(${s.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`;
     if (E.world.__t !== t) { E.world.setAttribute('transform', t); E.world.__t = t; }
+  }
+
+  // ------------------------------------------------------------ the lens: a close-up of a small part
+  // p: world point in the section plane; w: how wide the lens looks (projection
+  // units); (lx, ly, r): where it sits on the stage; a: opacity
+  function lens(p, w, lx, ly, r, a) {
+    if (a <= 0.01) { set(E.lens, ''); return; }
+    const [px, py] = at(p);
+    const z = (2 * r) / w;
+    const c = E.lensClip;
+    if (c.__k !== `${lx},${ly},${r}`) { c.setAttribute('cx', lx); c.setAttribute('cy', ly); c.setAttribute('r', r); c.__k = `${lx},${ly},${r}`; }
+    // where the part is on the stage now, under the camera
+    const qx = W / 2 + (px - cam.cx) * cam.s;
+    const qy = H / 2 + (py - cam.cy) * cam.s;
+    const d = Math.hypot(qx - lx, qy - ly) || 1;
+    const ex = lx + ((qx - lx) / d) * r;
+    const ey = ly + ((qy - ly) / d) * r;
+    const lead = d > r + 14 ? `<path class="fp-lens-lead" d="M${f1(ex)} ${f1(ey)}L${f1(qx)} ${f1(qy)}"/><circle class="fp-lens-ring" cx="${f1(qx)}" cy="${f1(qy)}" r="9"/>` : '';
+    set(E.lens, `<g style="opacity:${(Math.round(clamp(a, 0, 1) * 100) / 100)}">${lead}<circle class="fp-lens-bg" cx="${lx}" cy="${ly}" r="${r}"/>`
+      + `<g clip-path="url(#fm-lens)"><use href="#fm-w" transform="translate(${lx} ${ly}) scale(${z.toFixed(4)}) translate(${f1(-px)} ${f1(-py)})"/></g>`
+      + `<circle class="fp-lens-ring" cx="${lx}" cy="${ly}" r="${r}"/></g>`);
   }
 
   // ------------------------------------------------------------ HUD drawings that change
@@ -285,6 +314,8 @@ const STAGE = (() => {
     const th = (214 - BY(tot)) * clamp(grow * 5 - 4, 0, 1);
     out += `<rect class="fp-bar2" x="580" y="${f1(214 - th)}" width="30" height="${f1(th)}" rx="2"/>` + hudText(595, 238, 'Σ', 18, 'middle', 'fp-label');
     out += mark(M([[572, BY(2000)], [620, BY(2000)]]), ' style="stroke-width:2"') + hudText(568, BY(2000) + 6, num(2000), 17, 'end');
+    // the lesson gives only the total; the split over the sections is an example
+    out += hudText(422, 38, EN ? 'example' : 'voorbeeld', 17, 'start', 'fp-label');
     return out;
   }
   const limitSvg = () => mark(M([[422, BY(1600)], [620, BY(1600)]]), ' stroke-dasharray="6 5"') + hudText(568, BY(1600) - 6, '80%', 17, 'end');
@@ -368,6 +399,7 @@ const STAGE = (() => {
     let solid = 0;
     let packing = 0;
     const clockS = u * C.dur[si];
+    let lensOn = null;
 
     if (si === 0) {
       // the sheet's rows come in one by one
@@ -384,6 +416,8 @@ const STAGE = (() => {
       const b = sp(xt - 22, -50);
       const lp = sp(xt - 46, -64);
       set(E.speed, mark(M([a, b]), ' style="stroke-width:2"') + mark(arrowHead(a, b, 9)) + label(lp[0], lp[1], `${C.CARD.v} mm/s`, 18, 'middle', false, 'fp-num'));
+      // close-up of the gate: the front enters the cavity and a skin forms on the steel
+      lensOn = [[56, 0, 20], 36, 530, 288, 84, span(u, B(1, 1) - 0.03, B(1, 1)) * (1 - span(u, 0.9, 0.95))];
     } else if (si === 2) {
       open = 0;
       s = u < 0.3 ? lerp(12.6, 12, span(u, 0, 0.3)) : lerp(12, 11, span(u, 0.3, 1));
@@ -397,6 +431,7 @@ const STAGE = (() => {
       packing = span(u, 0.02, 0.08) * (1 - span(u, 0.44, 0.52));
       skin = 0.4 + 0.6 * span(u, 0, 0.9);
       gateF = span(u, B(si, 1) + 0.05, 0.5);
+      lensOn = [[49, 0, 1], 15, 530, 288, 84, span(u, 0.02, 0.06) * (1 - span(u, B(si, 2) - 0.02, B(si, 2) + 0.02))];
       solid = span(u, 0.52, 1);
       const cool = u > 0.52;
       set(E.clock, cool
@@ -434,14 +469,17 @@ const STAGE = (() => {
         set(E.back, '');
       }
       void leakOn;
-      // the cushion: melt left between the tip and the barrel head
+      // the cushion: melt left between the tip and the barrel head, measured
+      // once the screw has stopped (not counted down while it moves)
       const xt = C.TIP0 - s;
-      if (s < 12) {
-        const z = -48;
+      const settled = u >= b1 && (() => { const k = (u - b1) / (1 - b1); const v = k * 3 - Math.min(2, Math.floor(k * 3)); return v >= 0.43 && v < 0.75; })();
+      if (settled) {
+        const z = -46;
         const a = sp(xt, z);
         const b = sp(C.BORE.x1, z);
-        const lp = sp((xt + C.BORE.x1) / 2 - 8, z - 18);
-        set(E.cushion, mark(M([sp(xt, -36), sp(xt, z - 5)])) + mark(M([sp(C.BORE.x1, -36), sp(C.BORE.x1, z - 5)])) + mark(M([a, b])) + label(lp[0], lp[1], `${num(s, 0)} mm`, 18, 'middle', false, 'fp-num'));
+        // the value sits right of the dimension line, so it stays on the stage in the close-up
+        const lp = sp(C.BORE.x1 + 5, z - 3);
+        set(E.cushion, mark(M([sp(xt, -36), sp(xt, z - 5)])) + mark(M([sp(C.BORE.x1, -36), sp(C.BORE.x1, z - 5)])) + mark(M([a, b])) + label(lp[0], lp[1], `${num(s, 0)} mm`, 18, 'start', false, 'fp-num'));
       } else set(E.cushion, '');
     } else if (si === 5) {
       const b1 = B(si, 1);
@@ -497,7 +535,13 @@ const STAGE = (() => {
           return `<g style="opacity:${clamp(g * 5 - i, 0, 1).toFixed(2)}">${mark(poly(box), ' style="stroke-width:1.8"')}<circle class="fp-hud-bg" cx="${f1(lp[0])}" cy="${f1(lp[1])}" r="${f1(r)}"/>${label(lp[0], lp[1] + 7 * camW / W, String(i + 1), 18)}</g>`;
         }).join(''));
       }
-      if (bi === 3) set(E.gfs, gfsSvg(full(span(u, b[3], b[3] + (1 - b[3]) * 0.7))));
+      if (bi === 3) {
+        const g = full(span(u, b[3], b[3] + (1 - b[3]) * 0.7));
+        set(E.gfs, gfsSvg(g));
+        // the weight levels off from about 3 s: that is when the gate is shut
+        gateF = clamp((g * 5 - 1.6) / 1.4, 0, 1);
+        lensOn = [[49, 0, 1], 15, 104, 300, 82, still ? 1 : span(u, b[3], b[3] + 0.03)];
+      }
     } else if (si === 7) {
       s = 60;
       F = 1;
@@ -529,6 +573,7 @@ const STAGE = (() => {
     set(E.fill, (m.melt ? `<path class="fp-melt" d="${m.melt}"/>` : '') + (m.skin ? `<path class="fp-skin" d="${m.skin}"/>` : '') + m.solid);
     set(E.front, si >= 1 && si <= 5 ? (m.front ? mark(m.front, ' style="stroke-width:2"') : '') + m.pack : '');
     if (si >= 1 && si <= 4) set(E.rulerMk, rulerMarker(s));
+    if (lensOn) lens(...lensOn); else set(E.lens, '');
   }
 
   return { render };

@@ -55,8 +55,10 @@ assert(VISC.map(([, e]) => e).join() === '1280,880,825', `viscosity ${VISC}`);
 assert(Math.round(((1280 - 880) / 1280) * 100) === 31 && Math.round(((880 - 825) / 880) * 100) === 6, 'drops 31 % then 6 %');
 const PRESS = { plastic: 150 * RATIO, max: 2000, rule: 0.8 };
 assert(PRESS.plastic === 1500 && near(PRESS.plastic / PRESS.max, 0.75) && PRESS.plastic / PRESS.max < PRESS.rule, '1.500 of 2.000 bar = 75 % < 80 %');
-// the pressure drop by section (illustrative split of the 1.500 bar): nozzle, runner, gate, part
-const DROP = [150, 450, 400, 500];
+// the pressure drop by section: nozzle, sprue, gate, part. The lesson gives only
+// the total (1.500 bar); this split is an example, so the chart says so. The gate
+// and the thin-walled part take most of it, the nozzle and the short sprue little.
+const DROP = [150, 250, 400, 700];
 assert(DROP.reduce((a, b) => a + b, 0) === PRESS.plastic, 'the sections add up to 1.500 bar');
 // gate freeze study: the lesson's recall weights at 1–5 s hold time
 const GATE = [[1, 20.1], [2, 20.35], [3, 20.48], [4, 20.49], [5, 20.49]];
@@ -95,7 +97,7 @@ const SPRUE = { x0: -14, x1: 45, r0: 3, r1: 4.6 };
 const GATEN = { x0: 45, x1: 51, r: 1.8 };
 const CAV = { x0: 51, x1: 63, h: 60, skirt: 22, t: 10 }; // lid top wall x0..x1, skirt into the core side
 const PL = 63; // parting plane
-const DUR = [15, 19, 14, 19, 22, 17, 26, 18];
+const DUR = [15, 19, 14, 19, 22.8, 17, 26.8, 16.4];
 
 const FIT = [
   ...k.boxCorners({ x: -490, y: -180, w: 790, d: 180 }, -270, 196),
@@ -321,6 +323,7 @@ const movingPlatenSec = steelSec(185, 215, -200, 196, 12);
 // ---------------------------------------------------------------- clip paths in the section
 const defs = `<defs>
 <clipPath id="fm-bore"><path d="${secPath(rect(BORE.x0, BORE.x1 + 0.2, -BORE.r, BORE.r))}"/></clipPath>
+<clipPath id="fm-lens"><circle data-k="lensClip" cx="0" cy="0" r="1"/></clipPath>
 <clipPath id="fm-cyl"><path d="${secPath(rect(CYL.x0 + 6, CYL.x1 + 4, -CYL.bore, CYL.bore))}"/></clipPath>
 </defs>`;
 
@@ -372,7 +375,9 @@ const hud = [
   g('spc', '', ' data-cue="weight"'),
   g('reval', '', ' data-cue="reval"'),
 ].join('');
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${defs}${g('world', world)}${g('hud', hud)}</svg>`;
+// the lens: a round close-up of a small part (gate, check ring) at the moment it
+// is named; it shows the same world again through <use>, so cues light up in it too
+const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${defs}${g('world', `<g id="fm-w">${world}</g>`)}${g('hud', hud)}${g('lens', '')}</svg>`;
 
 // ---------------------------------------------------------------- the film
 const spec = {
@@ -413,7 +418,7 @@ const spec = {
     {
       id: 's5', lesson: 'eng.moulding.process', level: 2, dur: DUR[4], still: 0.25, title: { nl: 'Doseren en het restkussen', en: 'Dosing and the cushion' },
       beats: [
-        { nl: 'Tijdens het koelen draait de schroef terug, tegen de {t:Stuwdruk|stuwdruk} in: dat mengt de smelt.', en: 'During cooling the screw turns and moves back against the {t:Back pressure|back pressure}: that mixes the melt.', cue: { Stuwdruk: 'back' } },
+        { nl: 'Tijdens het koelen draait de schroef en schuift terug, tegen de {t:Stuwdruk|stuwdruk} in: dat mengt de smelt.', en: 'During cooling the screw turns and moves back against the {t:Back pressure|back pressure}: that mixes the melt.', cue: { Stuwdruk: 'back' } },
         { nl: 'Op de schroefpunt zit de {t:Terugslagring|terugslagring}, een ventielringetje: bij het inspuiten sluit hij.', en: 'On the screw tip sits the {t:Check ring|check ring}, a valve ring: during injection it closes.', cue: { Terugslagring: 'ring' } },
         { nl: 'Vóór de schroef blijft een {t:Restkussen|restkussen}. Lekt de ring, dan schommelt dat van {n:2} tot {n:8} mm.', en: 'In front of the screw a {t:Cushion|cushion} remains. If the ring leaks, it wanders from {n:2} to {n:8} mm.', cue: { Restkussen: 'cushion' } },
       ],
@@ -430,7 +435,7 @@ const spec = {
       beats: [
         { nl: 'De {t:Viscositeitscurve|viscositeitscurve} daalt steil en loopt dan vlak: kies daar de snelheid.', en: 'The {t:Viscosity curve|viscosity curve} falls steeply, then runs flat: choose the speed there.', cue: { Viscositeitscurve: 'visc' }, read: { nl: '{n:1280} · {n:880} · {n:825} bar·s', en: '{n:1280} · {n:880} · {n:825} bar·s' } },
         { nl: 'De {t:Drukverhouding|drukverhouding} rekent oliedruk om naar kunststofdruk: vaak zo’n {n:10}.', en: 'The {t:Intensification ratio|intensification ratio} converts oil pressure to plastic pressure: often about {n:10}.', cue: { Drukverhouding: 'ratio' } },
-        { nl: 'Een {t:Drukvalstudie|drukvalstudie} meet wat elk deel kost; niet {t:Drukbegrensd|drukbegrensd}: {n:75}%, onder {n:80}%.', en: 'A {t:Pressure drop study|pressure drop study} measures what each section takes; not {t:Pressure-limited|pressure-limited}: {n:75}%, under {n:80}%.', cue: { Drukvalstudie: 'drop', Drukbegrensd: 'limit' }, read: { nl: '{n:1500} / {n:2000} bar = {n:75}%', en: '{n:1500} / {n:2000} bar = {n:75}%' } },
+        { nl: 'Een {t:Drukvalstudie|drukvalstudie} meet de druk per deel. {n:75}% is onder de {n:80}%-regel: niet {t:Drukbegrensd|drukbegrensd}.', en: 'A {t:Pressure drop study|pressure drop study} measures the pressure per section. {n:75}% is under the {n:80}% rule: not {t:Pressure-limited|pressure-limited}.', cue: { Drukvalstudie: 'drop', Drukbegrensd: 'limit' }, read: { nl: '{n:1500} / {n:2000} bar = {n:75}%', en: '{n:1500} / {n:2000} bar = {n:75}%' } },
         { nl: 'De {t:Gate-freeze-studie|gate-freeze-studie} weegt bij langere nadruktijd; loopt het gewicht vlak, dan is het aanspuitpunt dicht.', en: 'The {t:Gate freeze study|gate freeze study} weighs at longer holding times; once the weight levels off, the gate is shut.', cue: { 'Gate-freeze-studie': 'gfs' } },
       ],
     },
@@ -454,12 +459,16 @@ const BEATS = pre.scenes.map((s) => beatStarts(s, 'nl').map((t) => Math.round((t
 
 // ---------------------------------------------------------------- cameras (one move per scene)
 const cam = (p, w) => { const [x, y] = at(p); return [Math.round(x * 10) / 10, Math.round(y * 10) / 10, w]; };
+// the camera that puts world point p at stage point (sx, sy), w wide
+const camAt = (p, w, sx, sy) => { const [x, y] = at(p); const r = (v) => Math.round(v * 10) / 10; return [r(x + ((W / 2 - sx) * w) / W), r(y + ((H / 2 - sy) * w) / W), w]; };
 const CAM = [
-  { from: cam([40, 0, -30], 780), to: cam([60, 0, -30], 740) },
+  // the whole press left of the setting sheet, then in on the heater bands as the melt temperature is named
+  { from: camAt([40, 0, -30], 780, 260, 200), to: camAt([-150, 0, 20], 250, 205, 215), a: BEATS[0][1] - 0.03, b: BEATS[0][1] + 0.05 },
   { from: cam([-90, 0, 0], 300), to: cam([30, 0, 0], 210), a: 0.08, b: 0.5 },
   { from: cam([30, 0, 6], 200), to: cam([36, 0, 0], 190) },
   { from: cam([40, 0, 0], 180), to: cam([30, 0, 0], 240), a: 0.6, b: 0.8 },
-  { from: cam([-92, 0, 2], 160), to: cam([-104, 0, 2], 150) },
+  // dosing seen whole, then in close on the screw tip as the check ring is named
+  { from: cam([-100, 0, 2], 160), to: camAt([-104, 0, 0], 110, 290, 195), a: BEATS[4][1] - 0.03, b: BEATS[4][1] + 0.03 },
   { from: cam([110, 0, -20], 540), to: cam([100, 0, -20], 520) },
   { from: cam([-150, 0, -20], 560), to: cam([90, 0, 0], 300), a: BEATS[6][2] - 0.04, b: BEATS[6][2] + 0.06 },
   { from: cam([110, 0, -60], 480), to: cam([100, 0, -60], 460) },
@@ -474,6 +483,9 @@ const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)
 const stageScript = kitScript() + '\n' + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8');
 
 const css = `
+.fp-lens-ring{fill:none;stroke:var(--fp-accent);stroke-width:2;vector-effect:non-scaling-stroke}
+.fp-lens-bg{fill:var(--anatomy-card)}
+.fp-lens-lead{fill:none;stroke:var(--fp-accent);stroke-width:1.4;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
 .fp-svg .fp-label{font-family:var(--fp-sans);font-weight:600}
 .fp-svg .fp-num{font-family:var(--anatomy-mono);font-weight:600}
 .fp-sec{fill:var(--anatomy-top);stroke:none}
@@ -486,7 +498,8 @@ const css = `
 .fp-band{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
 .fp-water{fill:var(--anatomy-shade-1)}
 .fp-melt{fill:color-mix(in srgb,var(--anatomy-hi) 46%,var(--anatomy-card));stroke:none}
-.fp-solid{fill:var(--anatomy-lo);stroke:none}
+/* frozen plastic is darker than the melt, in both themes */
+.fp-solid{fill:color-mix(in srgb,var(--anatomy-hi) 80%,var(--anatomy-card));stroke:none}
 .fp-skin{fill:none;stroke:var(--anatomy-mid);stroke-width:1.6;vector-effect:non-scaling-stroke}
 .fp-pellet{fill:var(--anatomy-mid)}
 .fp-hud-bg{fill:var(--anatomy-card);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
