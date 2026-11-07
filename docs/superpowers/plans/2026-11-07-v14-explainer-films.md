@@ -459,3 +459,502 @@ Each page embeds `<script type="application/json" id="film-data">`. The validato
 2 · coins flow in per year; the payback line — "€280.000 terug in 2,9 jaar bij twee ploegen." — Terugverdientijd, Capex, Netto besparing, Lopende kosten
 3 · ramp-up eats year 1; scrap during start-up — "De opstartfase halveert het eerste jaar." — Opstartfase, Afkeur
 4 · future euros shrink with the discount factor; the NPV bar; sensitivity sliders — "Een euro over vier jaar is vandaag 0,735 waard." — NPV, Disconteringsvoet, Opstartverlies, Restwaarde, Gevoeligheidsanalyse
+
+### 3.5 Engineering basics (older modules)
+
+These modules still have six lessons and no topics. v13 part 5 rebuilds them as topics × levels, keeping lesson ids. Each film maps to lessons now, and its scenes get level tags when the module is rebuilt (see open question 4). One cut each unless stated otherwise.
+
+#### eng.flow (Capaciteit en flow), 5 films
+
+| id | Title nl / en | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.flow.takt` | Takt, cyclustijd, doorlooptijd / Takt, cycle and lead time | takt, capacity | 100 | none; a box travelling for days while it is worked on for minutes; a weekly capacity check | P1 |
+| `eng.flow.bottleneck` | De bottleneck / The bottleneck | bottleneck, balance | 110 | `line` (knobs); WIP piling up in front of the CNC, then the Yamazumi bars rebalanced | P1 |
+| `eng.flow.smed` | Een omstelling van 90 naar 35 minuten / A changeover from 90 to 35 minutes | changeover; also moulding mouldcare, machining fixtures | 110 | none; the filmed changeover split into internal and external work, then the batch-size trade-off | P1 |
+| `eng.flow.oee` | Waar een dienst blijft / Where a shift goes | oee; also lines oee_auto, maintenance tpm | 90 | none; a 480-minute shift drained into the six big losses | P2 |
+| `eng.flow.capacity` | Is er genoeg capaciteit? / Is there enough capacity? | capacity | 70 | none; demand hours against shift hours × OEE | P2 |
+
+- **`eng.flow.takt`** · numbers: takt example: 2.400 boxes per week, 5 days, 480 − 40 = 440 min = 26.400 s, 480 per day → takt 55 s, line 52 s, lead time 3 days; teach: 27.000 s / 450 = 60 s, plan at 85–90% → 51–54 s.
+  1. The customer orders per day; the shift clock minus breaks — "Takt = beschikbare tijd / klantvraag: 26.400 s / 480 = 55 seconden." — Takttijd, Beschikbare tijd
+  2. A stopwatch on the line: a box every 52 s — "Cyclustijd is wat de lijn echt doet." — Cyclustijd
+  3. A box's journey sped up: minutes at stations, days in buffers and the store — "Doorlooptijd is kalendertijd; bewerken is vaak minder dan 1%." — Doorlooptijd, Buffer
+  4. Two stops in an hour: the line falls behind its takt — "3 seconden marge is snel op."
+- **`eng.flow.bottleneck`** · numbers: bottleneck: saw 30, CNC 90, deburr 45, wash 40 → 40 per hour, 480 pieces in the cell (Little: 12 h); balance: takt 72, stations 65/80/50/70 = 265 → line 80 s, 45 per hour against 50; at least 4 stations.
+  1. Four stations; parts flow; the CNC is slowest — "De bottleneck bepaalt de throughput: 3.600 / 90 = 40 per uur." — Bottleneck, Throughput
+  2. WIP piles in front of the CNC; downstream starves — "Voor de bottleneck groeit WIP; erachter staat alles starved, ervoor blocked." — WIP, Starved, Blocked
+  3. Little's law on a counter: 480 pieces at 40 per hour = 12 h — "Wet van Little: doorlooptijd = WIP / throughput." — Wet van Little
+  4. Yamazumi bars per station against the takt line; station 2 at 80 s sticks out — "Lijnbalancering: werkinhoud zo verdelen dat niemand boven de takt komt." — Lijnbalancering, Werkinhoud, Yamazumi
+  5. Tasks move between bars within the assembly order; the balance loss shrinks — "Balansverlies is de lege ruimte onder de taktlijn." — Balansverlies, Montagevolgorde
+- **`eng.flow.smed`** · numbers: changeover example: 90 min = 25 fetching + 15 water + 20 heating + 30 trial shots; −25 (prepare), −20 (preheat station), water 15 → 5 → 35 min; 4 per day × 55 = 220 min, or 8 series per day for 280 min instead of 360.
+  1. The last good part A, the clock starts; the first good part B, it stops — "Omsteltijd loopt van laatste goede A tot eerste goede B." — Omstelling, Matrijs
+  2. The video timeline: people walking for a crane, the water hoses, heating, trial shots — "Film het en schrijf elke stap op." — SMED
+  3. Blocks coloured internal (machine stopped) or external (while running) — "Extern werk hoort niet in de stop." — Intern werk, Extern werk
+  4. External work moves before the stop; preheat at a separate station; quick couplings — "Klaarzetten −25, voorverwarmen −20, snelkoppelingen −10: 35 minuten."
+  5. Fixed stops and locating pins make the first shot good — "Afstellen weg: de instelling ligt vast."
+  6. Batch size halves; stock halves at the same time lost — "Halve omsteltijd, halve serie, halve voorraad." — Seriegrootte
+- **`eng.flow.oee`** · numbers: oee example: 480 − 30 = 450 planned; 30 breakdowns + 45 changeover → 375 run (83,3%); ideal 30 s × 600 = 300 min (80%); 570 good (95%); OEE 63,3%; losses 75 / 75 / 15 min; microstops 30 × 40 s = 20 min = 4%.
+  1. The shift bar of 450 planned minutes — "OEE: welk deel van de geplande tijd werd goede stuks op volle snelheid?" — OEE
+  2. Breakdowns and a changeover cut it to 375 — "Beschikbaarheid 83,3%." — Beschikbaarheid
+  3. Microstops and slow running cut 75 more — "Performance 80% tegen de ideale cyclustijd." — Performance, Ideale cyclustijd, Microstops
+  4. 30 bad parts take 15 minutes; the six losses stacked — "Zes grote verliezen; twee grote hefbomen, niet één." — Zes grote verliezen
+- **`eng.flow.capacity`** · numbers: capacity example: 1.200 per week × 4 min = 80 h demand; 2 shifts × 5 × 7,5 = 75 h, × 70% OEE = 52,5 h → 152% load; three shifts (assert the lesson's figure).
+  1. Paper capacity: hours on the shift roster — "Papieren capaciteit telt uren, geen goede stuks." — Capaciteit, Papieren capaciteit, Ploegenrooster
+  2. Times OEE: effective hours; the demand bar overflows to 152% — "Belasting 152%: dit gaat niet." — Belasting, Bezettingsgraad
+  3. A third shift added; the bar fits — "Een derde ploeg, of minder vraag op de bottleneck."
+
+#### eng.quality (Kwaliteit: de basis), 4 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.quality.tolerance` | Van maat tot spreiding / From dimension to spread | tolerance, variation, capability | 110 | `capability` (gates and knob); parts coming off a lathe and stacking into a bell curve | P1 |
+| `eng.quality.spc` | Een regelkaart slaat alarm / A control chart raises the alarm | spc; also spc.tampering, spc.charts | 120 | none; the chart filling hour by hour, the trend, the reaction plan; then the funnel | P1 |
+| `eng.quality.fmea` | Een FMEA-sessie / An FMEA session | fmea; also lines.detection, improve.verify | 100 | none; the team around the table filling one row and acting on it | P2 |
+| `eng.quality.controlplan` | Control plan, meten en PPAP / Control plan, gauges and PPAP | controlplan | 90 | none; choosing a gauge with the rule of ten, a gauge R&R study, the PPAP binder | P2 |
+
+- **`eng.quality.tolerance`** · numbers: tolerance: Ø12 +0,018/0 = 12,000–12,018, 15 of 500 at 12,021 = 3%, €67,50 at the machine; variation: Ø20 ±0,05, mean 20,003, σ 0,008 → 19,979–20,027; capability: Ø30 +0,04/0, mean 30,026, σ 0,004 → Cp 1,67, Cpk 1,17.
+  1. The drawing: nominal size, tolerance, spec limits; the general tolerance in the title block — "Nominaal 12, tolerantie +0,018: alles tussen 12,000 en 12,018 is goed." — Nominale maat, Tolerantie, Specgrenzen, Algemene tolerantie
+  2. A part at 12,021: tagged nonconforming; a deviation form — "Buiten spec is afwijkend; een deviatie is een tijdelijke uitzondering." — Afwijkend, Deviatie
+  3. Parts drop into a histogram; the mean and σ marked; the normal curve — "Gewone oorzaken geven deze spreiding." — Gemiddelde, Standaardafwijking, Normale verdeling, Gewone oorzaak
+  4. A worn insert shifts the pile; an operator adjusts after every part — "Een speciale oorzaak verschuift het proces; bijsturen op ruis is tampering." — Speciale oorzaak, Tampering
+  5. The curve against the gates: Cp, Cpk, ppm outside — "Cp kijkt naar de breedte, Cpk ook naar het midden: 1,67 tegen 1,17." — Procesgeschiktheid, Cp, Cpk, Ppk, ppm
+- **`eng.quality.spc`** · numbers: spc example: Ø20 ±0,05, n = 5, grand mean 20,000, R̄ 0,020, A2 0,577 → 19,9885–20,0115; means 20,002, 20,004, 20,005, 20,006, 20,008, 20,009, 20,011 from 10:00 to 16:00; insert changed at 16:10. tampering: funnel +41% σ, variance ×2; drop ≈ 29%.
+  1. Five shafts measured each hour; one point plotted — "Elk uur een steekproef van 5: het gemiddelde gaat op de X-bar-kaart, de range op de R-kaart." — SPC, Regelkaart, Steekproef, X-bar/R-kaart
+  2. Centre line and control limits drawn; the spec limits far outside — "Regelgrenzen zijn wat het proces doet, geen specgrenzen." — Regelgrenzen
+  3. Seven points climbing; the rule lights up — "Zeven keer op rij omhoog: een trend, nog ver binnen spec."
+  4. The operator follows the reaction plan: stop, check the insert, change it at 16:10, isolate suspect parts — "Een kaart zonder reactieplan is behang." — Reactieplan
+  5. The funnel: moving it after every drop widens the pattern by 41% — "Alleen bijstellen op een signaal."
+- **`eng.quality.fmea`** · numbers: fmea example: pressing a bearing; S 8, O 5, D 7 → RPN 280; force–displacement monitoring → D 2 → RPN 80; S stays 8.
+  1. Design, process, quality, maintenance and an operator around a table; the process step on the screen — "Een FMEA vindt risico's op papier in plaats van bij de klant." — Faalwijze
+  2. The row fills: effect, cause, current control; scores 8, 5, 7 — "Ernst, kans op optreden, detectie: 8 × 5 × 7 = 280." — Ernst, Kans op optreden, Detectie, RPN
+  3. The AP table looks at severity first: high — "Action Priority kijkt eerst naar ernst." — Action Priority (AP)
+  4. Proposal "train operators" crossed out; force–displacement monitoring added; D becomes 2 — "Detectie 2, RPN 80; de ernst blijft 8."
+- **`eng.quality.controlplan`** · numbers: controlplan example: Ø20 ±0,02 (0,04 band), calliper 0,01 fails the rule of ten (needs 0,004), micrometer 0,001.
+  1. The control plan row: characteristic, gauge, frequency, reaction — "Het control plan zegt wat, hoe en hoe vaak je meet." — Control plan
+  2. Calliper versus micrometer against the tolerance band (rule of ten) — "Een tiende van de tolerantie: de schuifmaat valt af."
+  3. Gauge R&R: three people, ten parts, three repeats — "Herhaalbaarheid is het instrument, reproduceerbaarheid de mensen." — Gauge R&R, Herhaalbaarheid, Reproduceerbaarheid
+  4. The PPAP binder closes with the PSW signature — "PPAP bewijst het proces; de PSW tekent het af." — PPAP, PSW
+
+#### eng.process (Procestechniek), 4 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.process.plant` | Een proceslijn lezen / Reading a process line | types, variables | 100 | a juice pasteuriser with its instruments, batch versus continuous | P1 |
+| `eng.process.balance` | Massa- en energiebalans / Mass and energy balance | mass, energy | 100 | streams in and out made visible, and heat recovery in the regeneration section | P2 |
+| `eng.process.batch` | Een batch van 300 minuten / A 300-minute batch | batch | 90 | the phases of a paint batch in time, and where the waiting sits | P1 |
+| `eng.process.scaleup` | Van kolf naar reactor / From flask to reactor | scaleup | 100 | volume growing faster than surface, and a runaway loop | P2 |
+
+- **`eng.process.plant`** · numbers: types: holding tube 0,1 m³ at 12 m³/h → 30 s; variables: syrup 1.250 kg/m³, 2,0 m → 24.525 Pa, a meter set for water reads 2,5 m.
+  1. Unit operations in a row: mix, heat, hold, cool, fill — "Een fabriek is een rij unit operations." — Unit operation
+  2. Batch vat versus continuous pipe at steady state — "Batch in cycli, continu in een stationaire toestand." — Batchproces, Continu proces, Stationaire toestand
+  3. The holding tube: a drop of juice takes 30 s through it — "Verblijftijd = volume / debiet." — Verblijftijd
+  4. Gauge pressure versus absolute; a Coriolis meter on the line; a Pt100 in a pocket — "Overdruk, massadebiet, temperatuur." — Overdruk, Absolute druk, Massadebiet, Coriolismeter, Pt100
+  5. Syrup in a tank calibrated for water reads 2,5 m — "De meter rekent met water: 25% te hoog."
+- **`eng.process.balance`** · numbers: mass: 1.000 + 500 = 1.500 kg in, 1.440 + 30 = 1.470 out, 30 kg missing (2%), yield 96%; energy: 10.000 kg/h × 3,9 × 68 = 737 kW without recovery (the regeneration share asserted from the lesson).
+  1. Arrows in and out of the vessel; a gap appears — "In = uit + ophoping: er mist 30 kg." — Massabalans, Ophoping
+  2. Sugar tracked on its own; a tie component — "Een componentbalans volgt één stof." — Componentbalans, Tie component, Opbrengst
+  3. Milk heated from 4 to 72 °C: the sensible-heat bar — "Voelbare warmte = massa × soortelijke warmte × ΔT: 737 kW." — Voelbare warmte, Soortelijke warmte
+  4. Hot milk leaving warms cold milk coming in — "De regeneratiesectie wint de meeste warmte terug." — Warmteterugwinning, Regeneratiesectie
+  5. Evaporation: water leaves as steam and carries latent heat — "Latente warmte zit in de faseovergang." — Latente warmte
+- **`eng.process.batch`** · numbers: batch: 4 t per 5 h = 0,8 t/h; the paint example: 40 + 90 + 50 + 20 + 60 + 40 = 300 min, 3.000 kg → 600 kg/h; QC wait 50 → 15 → 265 min → 679 kg/h (+13%); reactor 6 h feeding a filter 3 h.
+  1. The vessel's phases in a clock ring: fill, disperse, QC, adjust, drain, clean — "Batchcyclustijd: alles tussen twee starts." — Batchcyclustijd, Fase
+  2. The vessel sits waiting for the lab — "50 minuten wachten op QC-vrijgave." — QC-vrijgave
+  3. CIP sprays the tank — "CIP reinigt zonder uit elkaar halen." — CIP
+  4. An inline viscometer: wait 15 min, cycle 265 — "Zelfde vat, 13% meer."
+  5. Reactor 6 h into a filter 3 h; a second reactor; the bottleneck moves — "De bottleneck is de langste tijd per batch per parallel vat." — Bottleneck
+- **`eng.process.scaleup`** · numbers: scaleup: 10 L → 10 m³, dimensions ×10, surface ×100; 0,5 kW → 500 kW; jacket 25 m² × 10 kW/m² = 250 kW; dosing in 2 h = 250 kW (no margin), 2,5 h ≈ 200 kW.
+  1. Flask, pilot plant, reactor side by side — "Opschalen gaat via een proeffabriek." — Opschalen, Proeffabriek
+  2. A cube grows ×10: volume ×1.000, surface ×100 — "De oppervlak-volumeverhouding wordt tien keer kleiner." — Oppervlak-volumeverhouding
+  3. Heat production 500 kW against the jacket's 250 kW — "De mantel kan maar 250 kW kwijt." — Mantel
+  4. Runaway loop: warmer, faster, more heat — "Een exotherme reactie kan op hol slaan." — Exotherm
+  5. Dosing in 2,5 h: about 200 kW, with margin — "Langzamer doseren: een opschaalkost in de planning."
+
+#### eng.mechanics (Materialen en sterkte), 5 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.mechanics.load` | Kracht, moment en spanning / Force, moment and stress | forces, stress | 100 | a motor on a bracket, the moment growing with distance, a bar stretching | P1 |
+| `eng.mechanics.tensile` | De trekproef / The tensile test | strength | 90 | the bar necking while the curve draws | P1 |
+| `eng.mechanics.fatigue` | Hoe een as breekt / How a shaft breaks | fatigue | 110 | a crack growing over months, with beach marks | P1 |
+| `eng.mechanics.heattreat` | Harden, ontlaten, inzetharden / Hardening, tempering, case hardening | heattreat | 100 | the temperature–time path and what happens inside the steel | P1 |
+| `eng.mechanics.materials` | Welk materiaal waar / Which material where | materials | 80 | corrosion and creep in time | P2 |
+
+- **`eng.mechanics.load`** · numbers: forces: 50 kg → 490 N, 0,4 m → 196 Nm, 0,8 m → 392 Nm; stress: Ø20 → 314 mm², 31,4 kN → 100 MPa, strain 0,000476, 2.000 mm → 0,95 mm.
+  1. A motor hangs; the weight arrow in newtons — "50 kg weegt 490 newton." — Newton
+  2. The lever arm grows from 0,4 to 0,8 m; the moment doubles; the top bolts in tension — "Moment = kracht × arm." — Moment, Evenwicht
+  3. Static load versus a vibrating, dynamic one; the WLL plate on a hoist — "Een dynamische belasting telt zwaarder; de WLL staat op het hijsmiddel." — Statische belasting, Dynamische belasting, Werklast (WLL)
+  4. A rod's cross-section lights up; the stress number — "Spanning = kracht / doorsnede: 100 MPa." — Spanning, Doorsnede
+  5. The rod stretches 0,95 mm; E as the steepness — "Rek is relatief uitrekken; de elasticiteitsmodulus maakt het stijf." — Rek, Elasticiteitsmodulus, Stijfheid, Sterkte
+- **`eng.mechanics.tensile`** · numbers: strength: S235 / S355 (≤ 16 mm), bolt 8.8 = 800 and 640 MPa, impact test ≥ 27 J at −20 °C, safety factors 1,5 / 3 / 4–7; console 235 / 120 = 1,96, 240 MPa > yield, S355 → 1,48.
+  1. A test bar in the machine; the curve starts straight; release and it springs back — "Bij een trekproef loopt de lijn eerst recht: elastisch." — Trekproef
+  2. The curve bends at the yield point; permanent set — "Bij de vloeigrens vervormt hij blijvend." — Vloeigrens
+  3. The peak, then necking and fracture — "Hoogste punt: treksterkte. Daarna insnoeren en breken." — Treksterkte
+  4. Ductile steel versus brittle cast iron; a pendulum impact test — "Taai rekt en waarschuwt; bros breekt zomaar." — Taai, Bros
+  5. A console at 120 MPa, load doubles to 240 — "Veiligheidsfactor tegen wat? 235 / 120 = 1,96." — Veiligheidsfactor
+- **`eng.mechanics.fatigue`** · numbers: fatigue: 1.500 rpm → more than 2 million cycles per day; endurance limit about half the tensile strength at 10 million; a round hole triples the stress; agitator shaft broke twice in 18 months at the keyway end.
+  1. A rotating bent shaft; each turn one load cycle; a counter — "1.500 toeren is ruim 2 miljoen lastwisselingen per dag." — Vermoeiing, Lastwisseling
+  2. The sharp keyway corner glows: stress concentration — "Kerfwerking: de spanning piekt in de hoek." — Kerfwerking
+  3. A crack starts and grows a little per run; each stop leaves a ring — "Rustlijnen: elke stop laat een ring achter." — Rustlijnen
+  4. The remaining section snaps: rough final fracture — "Klein restvlak: lage spanning, lang gegroeid."
+  5. The S–N curve; steel's limit, aluminium without one — "De Wöhlerkromme en de vermoeiingsgrens." — Wöhlerkromme, Vermoeiingsgrens
+  6. The fix: rounded keyway, a balanced agitator — "Sterker staal hielp niet; een afronding wel."
+- **`eng.mechanics.heattreat`** · numbers: heattreat: 120 HB versus 60 HRC; 800–900 °C, temper 150–650 °C, stress relief 550–650 °C, carburise about 900 °C, nitride about 500 °C; gears 58–62 HRC, case 0,8–1,2 mm, measured 48 HRC.
+  1. Three indenters: ball, diamond, cone — "Hardheid: hoe diep de indruk gaat." — Hardheid
+  2. Heat to 850 °C, plunge into oil: hard and brittle; a quench crack at a corner — "Afschrikken maakt hard en bros." — Afschrikken
+  3. Reheat: trade hardness for toughness — "Ontlaten maakt het taai." — Ontlaten
+  4. Annealing (slow cool, soft); stress relief after welding — "Gloeien maakt zacht; spanningsarmgloeien haalt spanning weg." — Gloeien, Spanningsarmgloeien
+  5. Gear tooth: carbon enters the skin; the case depth cut and measured — "Harde huid, taaie kern; 48 HRC gemeten tegen 58–62 geëist." — Oppervlakteharden
+- **`eng.mechanics.materials`** · numbers: none fixed (the selection story in the example: wet cleaning with chlorinated foam and caustic).
+  1. Carbon steel, stainless, aluminium, cast iron on a rack — "Elk materiaal heeft zijn sterke en zwakke kant." — Koolstofstaal, Roestvast staal (rvs), Aluminium, Gietijzer
+  2. Steel bolt in aluminium with water: galvanic cell — "Galvanische corrosie: het onedele metaal lost op." — Galvanische corrosie
+  3. A hot part slowly stretches under constant load — "Kruip: vervormen onder blijvende last, vooral warm." — Kruip
+  4. The food machine: paint flakes out, stainless in — "In de productzone: rvs."
+
+#### eng.maintenance (Onderhoud), 3 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.maintenance.failure` | Hoe machines falen / How machines fail | strategies, failure, condition | 120 | `pf` (pick the interval); a bearing's life from new to failure, and which strategy catches it | P1 |
+| `eng.maintenance.tpm` | TPM: de eerste schoonmaak / TPM: the first clean | tpm | 80 | operators cleaning, finding and tagging | P1 |
+| `eng.maintenance.workorder` | Een werkorder en de backlog / A work order and the backlog | metrics, cmms | 100 | a work order's path through the CMMS, and MTBF and MTTR from a stop list | P2 |
+
+- **`eng.maintenance.failure`** · numbers: strategies: gearbox €60.000, 10 weeks lead time; failure: 24 servo bearings, €18.000 per year, 6 → 9 failures after yearly replacement; condition: 1,8 → 1,9 → 2,6 → 3,4 mm/s, +0,8 per month.
+  1. Run to failure, preventive, condition-based, predictive on one pump — "Vier strategieën; kies per machine." — Correctief onderhoud, Preventief onderhoud, Toestandsafhankelijk onderhoud, Predictief onderhoud, RCM
+  2. The bathtub curve: infant mortality, random, wear-out — "De meeste storingen komen niet met de leeftijd." — Badkuipkromme, Kindersterfte, Willekeurig falen, Slijtage, Weibull β
+  3. New bearings fail soon after a replacement — "Storing door onderhoud: 9 storingen in plaats van 6." — Storing door onderhoud
+  4. A bearing defect starts (P) and grows; vibration, heat and oil show it before failure (F) — "Het P-F-interval: tijd om in te grijpen." — P-F-interval, Trillingsanalyse, Thermografie, Olieanalyse, Ultrasoon
+  5. The trend 1,8 → 3,4 mm/s; the planned repair — "Over zo'n zes weken door de grens: plan het nu."
+- **`eng.maintenance.tpm`** · numbers: tpm: 37 tags = 12 oil leaks, 9 loose bolts, 6 missing guards, 10 other.
+  1. An operator team with cloths on a moulding machine — "Bij TPM zorgen operators mee voor hun machine." — TPM, Autonoom onderhoud
+  2. Each find gets a tag: 37 in one shift — "Elk lek, elke losse bout krijgt een label." — Label
+  3. The CILT card: clean, inspect, lubricate, tighten — "CILT: schoonmaken, inspecteren, smeren, aandraaien." — CILT
+  4. The OEE board improves — "Minder kleine storingen, hogere OEE." — OEE
+- **`eng.maintenance.workorder`** · numbers: metrics: 320 planned h, 8 failures, 12,5 h → MTBF 38,4 h, MTTR 1,56 h, availability 96%; cmms: 6 × 40 = 240 h per week, backlog 1.150 h = 4,8 weeks, PM compliance 68%, breakdown work 42%, one conveyor 31%.
+  1. The asset tree: plant, line, machine, part — "Het CMMS kent elke machine." — CMMS, Assetregister
+  2. A notification becomes a work order through its states; criticality A/B/C — "Melding, goedgekeurd, gepland, uitgevoerd, gesloten." — Werkorder, Kritikaliteit
+  3. The stop list; wrench time; MTBF and MTTR — "MTBF 38 uur, MTTR anderhalf uur." — MTBF, MTTR, Beschikbaarheid, Storingslijst, Sleuteltijd
+  4. The backlog pile in weeks; PM compliance gauge at 68% — "4,8 weken backlog en preventief schuift." — Backlog, PM-compliance
+
+#### eng.drawings (Tekeningen en regeling), 3 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.drawings.reading` | Een tekening lezen / Reading a drawing | views, gdt | 110 | a 3D part unfolding into views, a section, and the tolerance frame checked on a CMM | P1 |
+| `eng.drawings.loop` | Van P&ID tot regelkring / From P&ID to control loop | pid, loop, pid_control | 130 | `loop` (play with SP and gain); the P&ID symbols coming to life as real equipment, then P, I and D in a trend | P1 |
+| `eng.drawings.plc` | PLC, HMI, SCADA en interlocks / PLC, HMI, SCADA and interlocks | plc | 80 | layers lighting up; an interlock blocking a step; a bypass | P2 |
+
+- **`eng.drawings.reading`** · numbers: views: drawing 4711-203, S235, 1:1, ISO 2768-m, rev C (B: Ø8,5 → Ø9; C: R2 → R3); gdt: 4 holes Ø10,2 +0,1/0, position Ø0,3 Ⓜ to A B C, 25 from B and 40 from C, measured 0,12 off.
+  1. The bracket in 3D unfolds into front, top and side (European projection) — "Europese projectie: het bovenaanzicht staat eronder." — Europese projectie, Schaal
+  2. A cut through the part; the title block; the revision table — "De doorsnede toont binnenin; het stempel zegt materiaal en revisie." — Doorsnede, Stempel, Revisie, Algemene tolerantie
+  3. Datums A, B, C as surfaces touching a fixture — "Referenties zijn de vlakken waarop je meet." — Referentie
+  4. The tolerance frame read cell by cell; boxed basic dimensions — "Positie Ø0,3 rond de theoretisch exacte maat." — Tolerantiekader, Positietolerantie, Theoretisch exacte maat
+  5. The CMM measures 0,12 off; MMC bonus as the hole grows — "Met maximum-materiaalvoorwaarde groeit de zone mee." — Maximum-materiaalvoorwaarde, 3D-meetmachine
+- **`eng.drawings.loop`** · numbers: pid: T-101 20 m³, LT 101, LIC 101, LV 101; loop: 72 °C for 15 s, TT 401 71,2, SP 72,5, error 1,3, output 45 → 58%; pid_control: level 60%, swings 52–68% every 4 min, stiction 2–3%.
+  1. The P&ID symbols; each turns into the real thing — "Een P&ID toont leidingen, tags en signalen." — P&ID, Tagnummer, Transmitter, Regelklep, Veiligheidsklep, DCS
+  2. A pasteuriser: TT measures, TIC compares, TV opens — "SP, PV en OP: meten, vergelijken, bijsturen." — Setpoint (SP), Proceswaarde (PV), Uitgang (OP), Regelafwijking, Gesloten regelkring
+  3. Manual mode, open loop — "Open sturing: niemand kijkt of het klopt." — Open sturing
+  4. A trend: P leaves an offset, I removes it, too much gain overshoots — "P, I en D elk op hun manier." — P, I, D, Versterking, Offset, Doorschot
+  5. The valve at its limit: integrator wind-up — "Windup: na de grens schiet hij door." — Integrator-windup
+  6. A level loop swings; in manual it stops; the valve sticks — "Stiction: de klep, niet de inregeling." — Stiction
+- **`eng.drawings.plc`** · numbers: plc: 28 s cycle; starting the pusher before B12 saves 3 s; step 40 interlock.
+  1. PLC, HMI, SCADA as three layers — "De PLC stuurt, de HMI toont, SCADA overziet." — PLC, HMI, SCADA
+  2. Step 40 waits for B12 "doos op positie" — "Een interlock voorkomt vastlopers." — Interlock
+  3. A guard switch and a safety relay — "Een veiligheidsfunctie beschermt mensen." — Veiligheidsfunctie
+  4. Someone tapes a sensor: a bypass — "Een overbrugging zet de beveiliging stil weg." — Overbrugging
+
+#### eng.safety (Veilig werken), 4 films (electrical work is in `eng.switchgear.fiverules`)
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.safety.loto` | Vergrendelen en labelen / Lockout-tagout | loto; also power.hydraulics | 120 | the strict order on a hydraulic press, with every energy source | P1 |
+| `eng.safety.permit` | Een vergunning en een LMRA op het dak / A permit and a last-minute risk check on the roof | permit, lmra | 120 | two jobs on one roof: the permit roles and the LMRA that catches the clash | P1 |
+| `eng.safety.risk` | Van gevaar tot maatregel / From hazard to measure | risk | 80 | the hierarchy of controls worked through on a tank | P2 |
+| `eng.safety.incidents` | Leren van een bijna-ongeval / Learning from a near miss | incidents | 80 | the walk to the blind corner instead of a blame report | P2 |
+
+- **`eng.safety.loto`** · numbers: loto example: hydraulic press die change; ram parked at the top; main switch and air valve locked; safety block; accumulator bled to 0 bar; start attempt; NEN-EN-ISO 14118.
+  1. A press with its energy sources lit: electric, air, hydraulic, the raised ram — "Stoppen is niet scheiden: een noodstop kan worden teruggezet." — Noodstop, Opgeslagen energie
+  2. The fitter tells the operators and stops the press normally — "Eerst melden, dan normaal stoppen." — Vergrendelen en labelen
+  3. Main switch off, air valve closed; his own lock and tag on each isolation point — "Elk scheidingspunt een eigen slot met naam." — Scheidingspunt
+  4. Many workers: the keys into a group lock box, each puts a personal lock on it — "Met meer mensen: de groepsslotkast." — Groepsslotkast
+  5. A safety block under the ram, then the accumulator bled to 0 bar — "Eerst blokkeren, dan de druk eraf." (the order is shown with a number badge)
+  6. He presses start: nothing happens; the switch back to off — "Proberen te starten bewijst: energieloos." — Energieloos
+  7. Restart: tools out, guards closed, everyone clear, only he removes his locks — "Alleen wie het slot hing, haalt het eraf."
+- **`eng.safety.permit`** · numbers: permit example: hot work 08:00–16:00, finished 14:30, fire watch stays; Piper Alpha 1988, 167 deaths; lmra example: two mechanics, wet roof, unexpected welding.
+  1. The permit board in the control room; a hot-work permit — "Heet werk vraagt een werkvergunning." — Werkvergunning, Heet werk, Besloten ruimte
+  2. Issuer and holder walk the area; cover the hydraulic unit; extinguisher; both sign — "De afgever bevestigt dat het gebied klaar is; de houder neemt hem aan." — Afgever, Houder
+  3. The welding; a fire watch stays after 14:30 — "Een brandwacht blijft ook na de klus." — Brandwacht
+  4. Two mechanics at the ladder with their work order; the VCA card — "De LMRA: vlak voor de start, door wie het werk doet." — LMRA, VCA, Werkorder, Aannemer
+  5. Wet roof, a welder they did not expect: they stop and call — "Klopt het niet, dan begin je niet." — Werkonderbreking
+  6. They agree who works where; work starts an hour later — "Twee vergunningen die elk kloppen, kunnen samen gevaarlijk zijn."
+- **`eng.safety.risk`** · numbers: none fixed (the example works through the hierarchy for solvent cleaning).
+  1. A solvent tank, an operator with a headache — "Gevaar is de bron, risico is kans × gevolg." — Gevaar, Risico
+  2. The RI&E list — "De RI&E zet alle risico's op een rij." — RI&E
+  3. The hierarchy as steps: eliminate, substitute, engineer, organise, PPE — "Eerst de bron, PBM als laatste." — Arbeidshygiënische strategie, Technische maatregel, PBM
+- **`eng.safety.incidents`** · numbers: none fixed (the forklift near miss at a blind corner).
+  1. A forklift nearly hits a planner; she reports it — "Een bijna-ongeval is gratis les." — Bijna-ongeval, Meldplicht
+  2. Heinrich's pyramid, then the SIF view — "Tel niet alleen; zoek wat ernstig had kunnen worden." — Piramide van Heinrich, SIF, Verzuimongeval
+  3. The safety officer walks with her and the driver to the corner — "Just culture: wat maakte het moeilijk, niet wie." — Just culture
+  4. A mirror and a marked crossing — "De maatregel zit in de plek."
+
+#### eng.fluids (Pompen, stroming en warmte), 4 films, all P1
+
+| id | Title | Serves | Dur | Adds |
+|---|---|---|---|---|
+| `eng.fluids.pumping` | Pomp, leiding en werkpunt / Pump, pipe and duty point | flow, pumps, speed | 130 | water flowing, the two curves crossing, throttling versus a VFD |
+| `eng.fluids.cavitation` | Cavitatie / Cavitation | cavitation | 100 | the pressure dip at the impeller eye, bubbles imploding |
+| `eng.fluids.heat` | De warmtewisselaar / The heat exchanger | heat | 90 | counterflow plates, the temperature profiles, fouling building up |
+| `eng.fluids.steam` | Stoom, condenspot en waterslag / Steam, trap and water hammer | steam | 110 | steam condensing, a trap cycling, failed open and failed shut |
+
+- **`eng.fluids.pumping`** · numbers: flow: DN50, 10 m³/h → 1,4 m/s, 0,8 bar; pumps: BEP 100 m³/h, need 60, the pump makes 45 m where 25 m is needed; speed: 30 kW, 2.000 h full, 6.000 h at 70% (the saving is asserted from the lesson).
+  1. Water in a DN50 pipe; head as a column height; the pressure-drop gauge — "Opvoerhoogte in meters; drukval door wrijving." — Opvoerhoogte, Drukval, DN
+  2. Dye threads: laminar, then turbulent; Re counter — "Boven een getal van Reynolds van zo'n 4.000 wordt het turbulent." — Laminair, Turbulent, Getal van Reynolds
+  3. Centrifugal versus positive displacement pump (cutaways) — "Een centrifugaalpomp slingert, een verdringerpomp duwt." — Centrifugaalpomp, Verdringerpomp
+  4. Pump curve and system curve cross at the duty point; the BEP dot — "Het werkpunt ligt waar de curves kruisen." — Pompkarakteristiek, Leidingkarakteristiek, Werkpunt, BEP
+  5. A valve throttles the flow away; a VFD slows the pump instead — "Smoren verspilt; toerental omlaag scheelt met de derde macht." — Frequentieregelaar, Affiniteitswetten, Smoren, Statische opvoerhoogte, Belastingprofiel
+- **`eng.fluids.cavitation`** · numbers: cavitation: water boils at 0,023 bar(a) at 20 °C and 0,47 at 80 °C; 95 °C: 1,01 − 0,85 = 0,16 bar ≈ 1,7 m; NPSHa = 1,7 + 1,5 − 0,5 = 2,7 m < NPSHr 3,0; the tank 1 m higher → 3,7 m.
+  1. A pan boiling at low pressure, not by heat — "Koken hangt af van druk: onder de dampspanning kookt water ook koud." — Dampspanning
+  2. Tank, suction line, pump: the pressure line dips at the impeller eye — "De laagste druk zit bij de pompinlaat." — Zuigleiding
+  3. Bubbles form at the eye and implode on the vanes (slowed down); gravel noise; a pitted impeller — "Dat is cavitatie: imploderende dampbellen vreten de waaier aan." — Cavitatie
+  4. NPSHa as a stack of bars: surface pressure, height, minus friction, minus vapour — "NPSHa 2,7 m tegen NPSHr 3,0: hij caviteert." — NPSHa, NPSHr
+  5. The tank goes up 1 m: NPSHa 3,7 m, the noise stops — "De oplossing zit in de installatie, niet in het pompmerk."
+- **`eng.fluids.heat`** · numbers: heat: 5.000 kg/h, cp 3,8, 70 → 30 °C → 211 kW; water 15 → 25 °C (flow asserted from the lesson).
+  1. Plate heat exchanger opens up: plates, gaskets, two streams — "Twee stromen, gescheiden door dunne platen." — Platenwarmtewisselaar
+  2. Shell and tube beside it — "De pijpenbundel kan hogere druk en vuil aan." — Pijpenbundelwarmtewisselaar
+  3. The heat duty: 211 kW — "Warmtelast = massa × cp × ΔT." — Warmtelast
+  4. Counterflow temperature lines; the approach temperature at the end — "Tegenstroom haalt de meeste warmte over." — Tegenstroom, Naderingstemperatuur
+  5. Fouling layers grow over months; the outlet temperature drifts — "Vervuiling isoleert: de prestatie zakt langzaam." — Vervuiling
+- **`eng.fluids.steam`** · numbers: steam: 7 bar(g) ≈ 170 °C, 2.050 kJ/kg; flash steam about 13%; 30 of 200 traps open, 15 kg/h, 8.000 h → 120 t, €40/t → €4.800 per trap, €144.000.
+  1. Steam enters a heater and condenses on the wall — "Verzadigde stoom geeft zijn warmte af als hij condenseert." — Verzadigde stoom, Condensaat
+  2. A trap opens for water and closes for steam (cutaway) — "De condenspot laat water door en houdt stoom tegen." — Condenspot
+  3. A trap stuck open blows steam; one stuck shut floods; a slug of water hammers the pipe — "Dicht zittend: waterslag." — Waterslag
+  4. Condensate to a vent: a lazy white plume — "Flashstoom is geen lek." — Flashstoom
+  5. 30 open traps: the euro counter — "€144.000 per jaar voor potten van een paar honderd euro."
+
+#### eng.power (Motoren, aandrijvingen en perslucht), 5 films
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.power.motor` | Het draaiveld / The rotating field | basics, motors | 120 | three phases making a field that turns; the rotor slipping behind | P1 |
+| `eng.power.drives` | Een motor aanlopen / Starting a motor | drives | 100 | the current and torque traces of DOL, star-delta, soft starter and VFD | P1 |
+| `eng.power.air` | Perslucht: de dure utility / Compressed air | air | 90 | from compressor to tool, leaks hissing all weekend | P1 |
+| `eng.power.hydraulics` | Hydrauliek / Hydraulics | hydraulics | 110 | oil flow through pump, valve and cylinder; lost flow turning into heat | P1 |
+| `eng.power.energy` | Een week stroom in de fabriek / A week of power in the factory | energy | 80 | the load profile over a week, base load and the monthly peak | P2 |
+
+- **`eng.power.motor`** · numbers: basics: 11 kW / (0,70 × 0,92) = 17,1 kW, 6.000 h; motors: 120 × 50 / 4 = 1.500; 30 kW, 1.470 rpm → slip 2%, 195 Nm; IE1 90% → IE3 93,6%, 1,1 kW × 6.000 h ≈ 6.400 kWh, €960.
+  1. kW versus kWh: a power meter and an energy counter — "Vermogen is nu, energie is opgeteld." — kW, kWh, Rendement
+  2. Three phases as three sine waves; the field in the stator turns — "Draaistroom maakt een draaiend veld." — Draaistroom, Arbeidsfactor
+  3. Cutaway: stator windings, the squirrel-cage rotor dragged along — "De rotor loopt het veld net achterna." — Asynchrone motor, Rotor
+  4. The field at 1.500, the rotor at 1.470: slip 2% — "Synchroon toerental min slip." — Synchroon toerental, Slip
+  5. The nameplate read line by line; IE class; insulation class F 155 °C — "Het typeplaatje vertelt alles." — Typeplaatje, IE-klasse, Isolatieklasse
+- **`eng.power.drives`** · numbers: drives: inrush 6–8 × nominal; star-delta ≈ ⅓; crusher 90 kW, 160 A → 1.000–1.300 A at start; soft starter 3–4 ×; at 80% speed about half the power.
+  1. A contactor slams a motor on: the current spike, the jerk — "Direct inschakelen: 6 tot 8 keer de stroom." — Direct inschakelen (DOL), Magneetschakelaar
+  2. Star, then delta — "Ster-driehoek start met een derde van stroom en koppel." — Ster-driehoekschakeling
+  3. A soft starter ramps the voltage; a loaded crusher stalls — "Een softstarter beperkt de piek, maar ook het koppel." — Softstarter
+  4. A VFD: full torque from standstill at nominal current — "De frequentieregelaar: traploos en rustig." — Frequentieregelaar
+  5. A servo with encoder positions to a tenth of a millimetre — "Een servoregelaar gaat over precisie, niet over energie." — Servoregelaar
+- **`eng.power.air`** · numbers: air: 75 kW compressor, 10 m³/min, 40% loaded at the weekend → 4 m³/min leakage (the euros asserted from the lesson).
+  1. Compressor room: heat recovery on the cooler — "Het meeste van de compressorenergie wordt warmte." — Warmteterugwinning
+  2. Dryer, network, the regulator unit at the machine — "Droger, netdruk, verzorgingseenheid." — Droger, Netdruk, Verzorgingseenheid
+  3. The weekend test: nothing runs, the compressor still loads 40% — "Lektest: 4 m³ per minuut lekt weg." — Lektest
+  4. Someone blows chips off with air — "Oneigenlijk gebruik is ook verlies." — Oneigenlijk gebruik
+- **`eng.power.hydraulics`** · numbers: hydraulics: 200 bar × 7.854 mm² ≈ 157 kN; Ø125 bore = 12.272 mm², 60 L/min → 81 mm/s, measured 60 mm/s at 70 °C; ISO 4406 18/16/13.
+  1. Pressure on a piston: the force arrow, 157 kN — "Kracht = druk × oppervlak." — (intro)
+  2. Pump makes flow; the directional valve routes it; the cylinder moves — "Het stuurventiel kiest de richting." — Stuurventiel, Cilindersnelheid
+  3. The relief valve opens to tank above its setting — "Het drukbegrenzingsventiel begrenst de druk." — Drukbegrenzingsventiel
+  4. The accumulator holds pressure with the pump off — "De accumulator blijft onder druk: drukloos maken vóór onderhoud." — Accumulator
+  5. 81 mm/s expected, 60 measured, hot oil: internal leakage turns into heat — "Verloren debiet wordt warmte." 
+  6. Particles counted (18/16/13); a pinhole jet and the cardboard test — "Vuil is vijand één; een injectieletsel is een spoedgeval." — ISO 4406, Injectieletsel
+- **`eng.power.energy`** · numbers: energy: 1.200 kW × 80 h = 96.000 kWh; 400 kW × 88 h = 35.200 kWh → 27% without production.
+  1. A week's load profile — "Het belastingprofiel van een week." — Belastingprofiel
+  2. The floor of 400 kW at night and weekends — "Basislast: 27% van de kWh terwijl er niets gemaakt wordt." — Basislast
+  3. The monthly peak against the contracted transport capacity; congestion — "Eén piek bepaalt het hele maandtarief." — Gecontracteerd transportvermogen, Maandpiek, Netcongestie
+  4. kWh per product — "Energie-intensiteit: kWh per goed product." — Energie-intensiteit
+
+#### eng.improve, eng.spc, eng.reliability, eng.cost, eng.industry40 (13 films)
+
+| id | Title | Serves | Dur | Adds | P |
+|---|---|---|---|---|---|
+| `eng.improve.8d` | Een 8D van klacht tot afsluiting / An 8D from complaint to closure | 8d, verify, facilitate | 120 | the disciplines on a timeline of days and weeks, with the team in the room | P2 |
+| `eng.improve.evidence` | Bewijs zoeken: is/is-niet, data, DOE / Finding evidence | isisnot, data, doe | 110 | `doe`; a leak problem narrowed down machine by machine | P2 |
+| `eng.spc.msa` | Kun je dit meten? / Can you measure this? | msa, attribute | 90 | the GRR study and an attribute study, people and parts | P2 |
+| `eng.spc.ppk` | Eerst stabiel, dan capabel / First stable, then capable | charts, ppk, nonnormal | 90 | one morning against five weeks | P3 |
+| `eng.reliability.rcm` | De verborgen storing / The hidden failure | rcm, criticality, program | 100 | the standby pump that never starts until it must | P2 |
+| `eng.reliability.spares` | Reservedelen en levensduurkosten / Spares and life-cycle cost | spares, lcc | 90 | stock and risk over time; repair or replace | P3 |
+| `eng.cost.costprice` | Een kostprijs opbouwen / Building a cost price | costprice, hourrate, contribution, makebuy, shouldcost | 110 | a bracket going through the shop, euros stacking per step | P2 |
+| `eng.cost.capex` | Een investeringscase / An investment case | capex | 80 | cash over years, discounting | P3 |
+| `eng.industry40.datapath` | Van signaallamp tot dashboard / From stack light to dashboard | stack, mes, machinedata, twin, case | 120 | a signal travelling up the stack, cleaned and given context | P2 |
+| `eng.industry40.vision` | AI-inspectie in de praktijk / AI inspection in practice | vision | 90 | `vision` (threshold); labelling, training, shadow mode in time | P2 |
+
+(The module tables above hold 37 films: flow 5, quality 4, process 4, mechanics 5, maintenance 3, drawings 3, safety 4, fluids 4, power 5. With these 10, section 3.5 has 47.)
+
+- **`eng.improve.8d`** · numbers: 8d: 9.000 sorted, 140 rejected; D3 within 24 h; D4/D5 within about ten working days; visual sorting misses 10–20%; facilitate: 6 bearing failures in 4 months.
+  1. A customer complaint arrives; D0–D8 cards on the wall — "8D: acht stappen van klacht tot afsluiting." — 8D
+  2. D3: quarantine, 100% sorting of 9.000 — "Indammen beschermt de klant, maar lost niets op." — Indammen
+  3. D4 with two legs: why it was made, why it escaped — "Een grondoorzaak heeft twee poten." — Grondoorzaak, Ontstaansoorzaak, Ontsnappingsoorzaak
+  4. The facilitator writes the problem statement; facts and theories in two columns; the boss's anchor — "Feiten links, theorieën rechts." — Gespreksleider, Probleemstelling, Feit, Theorie, Ankereffect
+  5. On/off verification; escape point; read-across to similar machines; the PFMEA and control plan updated — "Aan, uit, weer aan: dan pas bewezen." — Blijvende maatregel, Aan/uit-verificatie, Escape point, Read-across, PFMEA, Control plan
+- **`eng.improve.evidence`** · numbers: isisnot: 3% leak failures from week 14, all from machining centre 2; data: 1,8% versus "normal 4%"; doe: 8 / 9 / 7 / 2%.
+  1. Is and is-not columns fill: centre 2 yes, centre 1 no — "Het onderscheid wijst naar de oorzaak." — Is/is-niet, Onderscheid
+  2. Split by cavity and by batch — "Stratificatie: splits de data." — Stratificatie, Caviteit, Charge
+  3. A run chart: one good day within normal variation — "Eén goede dag is nog geen effect." — Normale variatie, Run chart, Regel van drie, Betrouwbaarheid, Gauge R&R
+  4. The 2 × 2 grid; the interaction — "Twee factoren samen: 2%." — Factor, Niveau, Respons, Hoofdeffect, Interactie, OFAT
+- **`eng.spc.msa`** · numbers: msa: Ø12 ±0,02, R&R 28% of the tolerance, mostly repeatability; attribute: 40 panels, 3 inspectors, 2 rounds, about 90% self-agreement.
+  1. Ten parts, three operators, three repeats — "Studievariatie verdeeld over herhaalbaarheid en reproduceerbaarheid." — Herhaalbaarheid, Reproduceerbaarheid, Studievariatie
+  2. ndc, bias against a master, resolution — "Kan het systeem de delen uit elkaar houden?" — ndc, Bias, Resolutie
+  3. Inspectors judge orange peel; kappa — "Kappa: eens, en niet door toeval." — Overeenstemmingsanalyse, Kappa
+  4. Escapes and false rejects; a limit sample; a stopgap — "Een grensmonster maakt de grens zichtbaar." — Ontsnapping, Onterechte afkeur, Noodmaatregel, Grensmonster
+- **`eng.spc.ppk`** · numbers: charts: 4-cavity subgroups; ppk: Cpk 2,1 from 30 parts in one morning versus Ppk 1,05 over 5 weeks; nonnormal: Cpu 1,56 on skewed data.
+  1. The right chart per data type — "I-MR, p, np, c, u: kies op je data." — I-MR-kaart, p-kaart, np-kaart, c-kaart, u-kaart, Rationele subgroep
+  2. A morning study versus five weeks — "Kortetermijnsigma tegen totale sigma." — Cpk, Ppk, Kortetermijnsigma, Totale sigma, Stabiel proces, Processtudie
+  3. A skewed distribution and its probability plot — "Scheve data: rekenen met percentielen." — Scheve verdeling, Eenzijdige specificatie, Cpu, Kansplot, Percentielmethode
+- **`eng.reliability.rcm`** · numbers: rcm: standby pump B with a monthly visual check; criticality: 210 of 350 assets in class A; program: 2.000 work orders, 70% breakdown, 60% coded "overig".
+  1. Pump A runs; B waits; the function — "RCM begint bij de functie." — Functionele storing, Faalwijze
+  2. B has been broken for months; nobody knows — "Een verborgen storing zie je pas als je hem nodig hebt." — Verborgen storing
+  3. The monthly "looks fine" becomes a start test — "Een failure-finding-taak test of hij echt start." — Failure-finding-taak, P-F-interval
+  4. Criticality matrix: 210 of 350 in A is too many — "Kritikaliteit: waar richt je je op?" — Kritikaliteit, Risicomatrix, Redundantie, Buffer, Bottleneck, Ankerasset
+  5. Bad-actor list and leading indicators — "Een programma kijkt vooruit." — Bad actor, Wrench time, PM-compliance, Herhaalstoring, Voorlopende indicator, Achterlopende indicator
+- **`eng.reliability.spares`** · numbers: spares: €80.000 reducer, €1.500 per hour, 14 weeks lead time; lcc: compressor 90 kW, overhaul €18.000, 500.000 kWh at €0,20.
+  1. An insurance spare on the shelf against 14 weeks of standstill — "Een verzekeringsdeel koop je voor het risico." — Verzekeringsdeel, Levertijd, Voorraadkosten
+  2. Stock falls to the reorder point; min/max; dead stock gathers dust — "Bestelpunt, min/max, dode voorraad." — Bestelpunt, Min/max, Dode voorraad
+  3. Overhaul or a new VSD compressor: present value of each path — "Levensduurkosten: energie weegt het zwaarst." — Levensduurkosten, Discontovoet, Contante waarde, Equivalente jaarkosten, Sunk cost
+- **`eng.cost.costprice`** · numbers: costprice: €2,40 steel, laser 1,2 min and bending 1,8 min at €80/h, set-up 1 h per series of 50, 3% scrap; hourrate: €600.000, 8 years, €40.000 residual, 6% interest; contribution: 200.000 caps at €0,090; makebuy: €46 = 18 + 20 (12 fixed) + …; shouldcost: €17,50 offered against €4,05 + €7,00 + €0,40 + ….
+  1. The bracket moves laser → press brake; euros stack per step — "Kostprijs = materiaal + machinetijd + omstellen + uitval + opslag." — Kostprijs, Omstelkosten per stuk, Overheadopslag, Activity-based costing, Uitval, Materiaalrendement
+  2. The machine-hour rate built from depreciation, interest and productive hours — "Het uurtarief hangt aan de productieve uren." — Machine-uurtarief, Afschrijving, Productieve uren, Restwaarde, Calculatorische rente, Aanloop
+  3. Fixed and variable split; a night order — "Dekkingsbijdrage: wat er boven de variabele kosten overblijft." — Vaste kosten, Variabele kosten, Dekkingsbijdrage, Break-evenvolume, Integrale kostprijs, Bottleneck
+  4. Make or buy: only the relevant costs remain — "Vaste kosten blijven ook als je koopt." — Relevante kosten, Total cost of ownership, Opportuniteitskosten, Kerncompetentie, Veiligheidsvoorraad, Levertijd
+  5. A quote next to your should-cost — "Should-cost: wat het zou moeten kosten." — Should-cost, Kostenopbouw, Materiaalindexclausule, Leercurve, Bewerkingsvolgorde, Value engineering
+- **`eng.cost.capex`** · numbers: capex: €240.000; 4 × €55.000 = €220.000 − €20.000 = €200.000 per year → 1,2 years (as claimed in the lesson).
+  1. Payback line; the claim — "Terugverdientijd is de simpelste maat." — Terugverdientijd, Kasbesparing
+  2. Discounted bars shrink per year — "NCW telt de tijd mee." — NCW, Discontovoet, IRR
+  3. Sliders: what if only 2 people go? — "Gevoeligheidsanalyse: welke aanname draagt de case?" — Gevoeligheidsanalyse
+- **`eng.industry40.datapath`** · numbers: stack: SAP nightly versus a live OEE dashboard; mes: 82% OEE with the ideal cycle 2,4 s from the cost norm; machinedata: 61% versus 84%, yellow means waiting; twin: €2 million cell, 1.200 versus 1.000 per shift; case: 25 machines, €250.000, 10% benchmark → €1,2 million.
+  1. The pyramid builds up: PLC, SCADA, historian, MES, ERP; OT versus IT — "Elke laag heeft zijn eigen tempo." — PLC, SCADA, Historian, MES, ERP, OT
+  2. A stack-light sensor and an edge gateway; OPC UA and MQTT to a broker — "De gateway leest, buffert en stuurt door." — OPC UA, MQTT, Edge gateway, Samplefrequentie, Contextualisering
+  3. The MES dispatches orders, keeps genealogy, asks a reason code — "Het MES weet welke order, welk product, welke reden." — Dispatching, Genealogie, Redencode, Ideale cyclustijd, Stamdata
+  4. Yellow counted as stopped: 61% against 84% — "Valideer het signaal op de vloer."
+  5. A digital twin with no breakdowns promises 1.200 — "Een twin zonder storingen is te mooi." — Digital twin, Virtuele inbedrijfstelling, Discrete-event-simulatie, Validatie, Replicatie
+  6. The case: baseline, pilot purgatory, a DMZ between networks — "Nulmeting eerst; segmenteer het netwerk." — Total cost of ownership, Nulmeting, Pilot purgatory, Netwerksegmentatie, DMZ, NIS2
+- **`eng.industry40.vision`** · numbers: vision: 99,5% "accuracy" at a 1% defect rate, 400 demo images.
+  1. Rule-based vision measures an edge; deep learning learns from examples — "Regels of een getraind model." — Regelgebaseerde vision, Deep learning
+  2. People label images — "Labelen bepaalt wat het model leert." — Labelen
+  3. 99,5% at 1% defects: it could miss every one — "Kijk naar escapes en onterechte afkeur, niet naar nauwkeurigheid." — Onterechte afkeur, Escape
+  4. Shadow mode: the camera judges next to the inspector for weeks — "Eerst meekijken, dan pas beslissen." — Shadow mode
+
+### 3.6 Elektriciteitsnet (grid track), 17 films
+
+| id | Title nl / en | Serves | Dur | Existing figure; the film adds | P |
+|---|---|---|---|---|---|
+| `eng.gridbasics.path` | Van onderstation tot stopcontact / From substation to socket | levels, path | 110 | `levels` (voltage slider); the journey through every station with what you see there | P1 |
+| `eng.gridbasics.load` | Een avondpiek in de straat / An evening peak in the street | basics, load | 100 | none; a household's kW over a day, then 150 homes with heat pumps and EVs | P1 |
+| `eng.gridbasics.congestion` | Een vol net / A full grid | congestion, roles | 100 | none; the queue, the few peak hours, the flex deal | P1 |
+| `eng.transformers.principle` | Hoe een transformator werkt / How a transformer works | principle | 110 | `load` (that figure shows heating, not the principle); the magnetising flux, the turns ratio, losses, the tap changer | P1 |
+| `eng.transformers.ageing` | Warmte en veroudering / Heat and ageing | ageing | 90 | `load`; the evening peak through a day, hotspot and paper ageing; a DGA sample | P1 |
+| `eng.transformers.cables` | Een MS-kabel en een mof / An MV cable and a joint | cables | 100 | none; the cable's layers, making a joint, water treeing | P1 |
+| `eng.transformers.faults` | Een kabelfout vinden / Finding a cable fault | faults | 120 | `gridops.switching` covers isolating and restoring; the film adds the reflectometer echo, the thumper and the repair | P1 |
+| `eng.switchgear.devices` | Wat kan deze schakelaar? / What can this switch do? | devices, installations | 120 | none; breaker, load-break switch, fuse, disconnector and earthing switch; the arc quenched in vacuum; an RMU | P1 |
+| `eng.switchgear.protection` | Van kortsluiting tot uitschakeling / From short circuit to trip | protection, selectivity | 110 | `selectivity`; the milliseconds inside CT, relay and breaker | P1 |
+| `eng.switchgear.fiverules` | De vijf veiligheidsregels / The five safety rules | switchgear.safety, gridops.switching, safety.nen3140 | 140 | none; a planned cable job with the IV, the WV and the switching plan in strict order | P1 |
+| `eng.switchgear.automation` | Een ring die zichzelf herstelt / A self-healing ring | automation | 90 | `gridops.switching` (remote mode); a self-healing sequence and its customer minutes | P1 |
+| `eng.gridops.outage` | Een storing in de meldkamer / An outage in the control room | outage | 110 | `gridops.switching` (you switch); the control room's view: SCADA, calls, crews, SAIDI | P1 |
+| `eng.gridops.chain` | Van aanvraag tot inbedrijfname / From request to energising | chain, workload, transformers.connections, transformers.standard, gridplanning.execution | 110 | none; the queue of jobs, steps in series versus in parallel | P2 |
+| `eng.gridops.assets` | Assetmanagement en data / Asset management and data | assets, data | 90 | none; the risk matrix and the GIS out of date | P2 |
+| `eng.gridplanning.loadflow` | Loadflow en N-1 / Load flow and N-1 | loadflow, redundancy | 110 | `n1` (trip a transformer); current flowing along a feeder, the voltage band, then N-1 | P1 |
+| `eng.gridplanning.flex` | Flex en batterijen op een winteravond / Flex and batteries on a winter evening | flex, storage | 110 | none; the day profile with a cold store shifting and a battery charging and discharging | P1 |
+| `eng.gridplanning.investment` | Investeren onder onzekerheid / Investing under uncertainty | investment | 80 | none; scenarios as fan lines, no-regret first | P3 |
+
+- **`eng.gridbasics.path`** · numbers: levels: 100 MW at 10 kV ≈ 5.800 A, at 150 kV ≈ 385 A (15× less current, 225× less loss); path: Tilburg, 150 kV, two 150/10 kV transformers, 10 kV busbar, a ring of 12 netstations, station 7 with 400 kVA and six LV cables, 35 homes, main fuse 3 × 25 A.
+  1. Pylons at 150 kV into a substation fence — "TenneT brengt de hoogspanning; de regionale netbeheerder neemt het over." — TenneT, Hoogspanning, Regionale netbeheerder
+  2. The 150/10 kV transformers and the MV busbar — "Waarom hoog? 100 MW op 150 kV is 15 keer minder stroom." — Middenspanning, Onderstation
+  3. A cable ring past 12 stations; the normally open point glows — "De ring wordt op één punt open bedreven." — Normaal openpunt
+  4. Inside netstation 7: MV switchgear, transformer, the LV rack with fuses — "Het netstation zet 10 kV om naar 400 V." — Netstation, MS-ruimte, Laagspanning
+  5. The street cable to a house; the main fuse and meter — "Tot en met de meter is het van de netbeheerder." — Hoofdzekering
+- **`eng.gridbasics.load`** · numbers: basics: 2.700 kWh per year ≈ 0,31 kW on average, 7 kW at 18:00, +11 kW EV; load: 400 kVA, 150 homes, 1,5 kVA each → 225 kVA (56%); +50 heat pumps × 3 × 0,8 = 120 kVA; EVs (asserted from the lesson).
+  1. Volts as pressure, amps as flow, watts as power — "Spanning × stroom = vermogen." — Spanning, Stroomsterkte, kW
+  2. A day's kW line for one home; the kWh area — "Gemiddeld 0,31 kW, om 18:00 uur 7." — kWh, Wisselstroom, Driefasig
+  3. 150 homes don't peak together — "Gelijktijdigheid: niet iedereen tegelijk." — Gelijktijdigheid, Piekbelasting
+  4. Heat pumps and EVs stack up on a winter evening; kVA versus kW; an inverter at noon — "De piek groeit van 225 naar ver boven 400 kVA." — kVA, Arbeidsfactor, Omvormer
+- **`eng.gridbasics.congestion`** · numbers: congestion: connections above 3 × 80 A (≈ 55 kVA), substation 30 MVA, peak 29 MVA, 6 MVA requested, new substation in about 7 years, only 180 h per year above 24 MVA (2%), a cold store shifts 4 MVA; roles: 2,8 million customers, 70 million customer minutes → 25 minutes.
+  1. A business park; requests pile up in a queue; the capacity map turns red — "Netcongestie: op piekmomenten te weinig transportcapaciteit." — Netcongestie, Grootverbruiker, Capaciteitskaart
+  2. The year's load curve: only 180 hours above 24 MVA — "Het net zit maar een paar honderd uur per jaar vol."
+  3. GOPACS; a cold store shifts 4 MVA; a flexible contract — "Congestiemanagement: betaald schuiven." — Congestiemanagement, GOPACS, Flexibel contract
+  4. Supplier versus grid operator; the regulator; outage minutes; the investment plan — "De netbeheerder is een gereguleerd monopolie." — Energieleverancier, Jaarlijkse uitvalduur, Gereguleerd monopolie, ACM, Investeringsplan
+- **`eng.transformers.principle`** · numbers: principle: 10 kV / 400 V → ×25; 400 kVA = 577 A at 400 V and 23 A at 10 kV; 630 kVA: about 0,5 kW no-load and 5 kW full-load losses, about 99% efficiency; Dyn5 → 10.000 / 230 ≈ 43 per coil; tap step 2,5%, 252 V → about 246 V.
+  1. Two windings on an iron core; alternating current in the first — "Wisselstroom maakt een wisselend veld in de kern." — (intro)
+  2. The flux pulses around the core and induces a voltage in the second winding — "Het veld wekt spanning op in de tweede wikkeling." — Wikkelverhouding
+  3. Voltage ÷ 25, current × 25; 577 A versus 23 A — "Het vermogen blijft bijna gelijk."
+  4. The core warms a little all night; the windings warm with the load squared — "Nullastverliezen altijd, belastingverliezen met het kwadraat." — Nullastverliezen, Belastingverliezen
+  5. Oil rises, cools in the fins, sinks; the 100 Hz hum — "ONAN: olie en lucht stromen vanzelf." — ONAN
+  6. The tap changer one step down: 252 V becomes about 246 V; a substation unit doing it on load — "Een aftakschakelaar spanningsloos, een regelschakelaar onder last." — Aftakschakelaar, Regelschakelaar
+- **`eng.transformers.ageing`** · numbers: ageing: 40–60 years when cool, thermal time constant about 3 hours; DGA acetylene 0 → 3 → 9 ppm in a year on a 40 MVA unit.
+  1. Paper insulation in oil around copper — "Warmte breekt het papier langzaam af." — Hotspottemperatuur
+  2. An evening peak; the oil lags about 3 hours behind — "Thermische traagheid vangt een korte piek op." — Thermische traagheid, Belastingprofiel
+  3. An oil sample to the lab; gases per fault type — "DGA: de gassen in de olie vertellen wat er binnen gebeurt." — DGA, Partiële ontlading
+  4. Acetylene rising: monthly samples, inspect the tap changer — "Acetyleen betekent vlambogen: plan binnen zes weken."
+- **`eng.transformers.cables`** · numbers: cables: 2,4 km route, 600 m drums → 4 lengths, 3 joints, 2 terminations, one transition joint to the old paper cable.
+  1. Peeling an XLPE cable layer by layer; an old paper-insulated cable next to it — "XLPE nieuw, GPLK oud." — XLPE, GPLK
+  2. Drums of 600 m: lengths and joints along a route — "Elke lengte vraagt een mof." — Mof
+  3. The joint being built; a transition joint between the two types; a termination at the switchgear — "Een overgangsmof verbindt oud en nieuw." — Overgangsmof, Eindsluiting
+  4. Water trees grow in old XLPE over years — "Water treeing: vocht kruipt in de isolatie." — Water treeing
+- **`eng.transformers.faults`** · numbers: faults: 10–20 stations per feeder; pulse speed 160 m/µs, the echo halved; example: 14:10 trip, 1.800 customers; 14:40 crews at stations 4 and 5; 15:30 everyone back; fault 320 m from station 4; repaired next day by 17:00.
+  1. 14:10: the breaker trips; 1.800 customers off — "Een streng valt uit; het bedrijfsvoeringscentrum ziet het meteen." — Streng, Normaal openpunt
+  2. 14:40: indicators at station 4 lit, at 5 not — "De fout zit tussen de laatste die het zag en de eerste die niets zag." — Kortsluitverklikker
+  3. 15:30: switches open around the section, the open point closes, everyone back — "Herstel door schakelen; de ring draait nu zonder reserve."
+  4. The reflectometer pulse runs out and echoes back: 320 m — "Echotijd heen en terug, gedeeld door twee." — Reflectiemeter
+  5. The thumper cracks; a crew walks with a ground microphone to the driveway — "De stootgenerator laat de fout doorslaan." — Stootgenerator
+  6. Digging, two joints, testing; the KLIC map shown — "Graafschade: daarom eerst een KLIC-melding." — KLIC-melding
+- **`eng.switchgear.devices`** · numbers: devices: MV breakers rated 16–25 kA; fault level 15–20 kA near a substation; the example: a 20 kA breaker, 8 kA fault, opening in about 0,3 s; installations: 20.000 RMUs × 1,5 kg SF6 = 30 t, 0,1% leak = 30 kg ≈ 700 t CO₂-eq.
+  1. A breaker opens on a fault: the arc between the contacts dies in a vacuum bottle (slowed down) — "Een vermogensschakelaar kan een kortsluiting onderbreken." — Vermogensschakelaar, Vacuümschakelbuis
+  2. The fault level as a big arrow at the substation — "Hij moet zwaarder zijn dan het kortsluitvermogen op zijn plek." — Kortsluitvermogen
+  3. In a netstation: a load-break switch for the ring, a fuse for the transformer — "Een lastscheider schakelt last, een zekering smelt één keer." — Lastscheider, Zekering
+  4. A disconnector opens only dead; the earthing switch closes; an interlock blocks the wrong order — "Eerst scheiden, dan aarden; de vergrendeling bewaakt de volgorde." — Scheider, Aardingsschakelaar
+  5. Panels in a row: AIS versus GIS, an RMU, SF6 versus vacuum — "Een RMU: compact, vaak nog met SF6." — Veld, AIS, GIS, RMU, SF6
+- **`eng.switchgear.protection`** · numbers: protection: CT 400/1 A, VT 10 kV → 100 V; example: max load 300 A, smallest fault 2.000 A, stage 1 at 450 A (1,125 A secondary) with 0,5 s, stage 2 at 4.000 A instant, fault near the substation 12.000 A; selectivity: 250 A fuses, one swapped for 400 A.
+  1. A fault: the current jumps; the CT turns 400 A into 1 A; the VT gives 100 V — "Meettransformatoren schalen terug naar veilige waarden." — Stroomtransformator, Spanningstransformator
+  2. The relay compares with its settings; trip — "Het relais besluit; de vermogensschakelaar gaat open." — Beveiligingsrelais
+  3. Two stages on a time–current chart: 0,5 s at 450 A, instant at 4.000 A — "Ver weg vertraagd, dichtbij direct." — Overstroombeveiliging, Tijd-stroomkarakteristiek
+  4. Earth fault: the sum of three currents is not zero; the star point earthing — "Aardfoutbeveiliging ziet stroom die weglekt." — Aardfoutbeveiliging, Sterpunt
+  5. Selectivity: only the device nearest the fault trips; a time grade; backup — "Selectiviteit: de dichtstbijzijnde schakelt, de rest wacht." — Selectiviteit, Tijdselectiviteit, Tijdtrap, Reservebeveiliging
+  6. The 400 A fuse that should have been 250: the MV fuse goes instead — "Eén verkeerde zekering en een heel station gaat uit."
+- **`eng.switchgear.fiverules`** · numbers: safety: LV up to 1.000 V AC / 1.500 V DC (NEN 3140), above that NEN 3840, both on NEN-EN 50110; the example: an MV cable between netstations 8 and 9; switching: 6 switching technicians × 2 per day × 4 days × 12 weeks = 576 moments against 1.400 needed (2,4×).
+  1. The control room and the IV write the switching plan; a second person checks it — "Een schakelplan: welke schakelaar, waar, door wie, in welke volgorde." — Schakelplan, Installatieverantwoordelijke, IV
+  2. Roles as badges: IV, WV, VP, VOP, layperson; the written appointment — "Kunde is niet genoeg: de aanwijzing telt." — Werkverantwoordelijke, WV, VP, VOP, Leek, Aanwijzing
+  3. Rule 1: switch off on both sides — "Regel 1: vrijschakelen, aan alle kanten." — Vijf veiligheidsregels, Terugvoeding
+  4. Rule 2: lock and tag — "Regel 2: beveiligen tegen herinschakelen."
+  5. Rule 3: test the tester on a live source, then measure three cores in both stations — "Regel 3: spanningsloos meten, met een geteste zoeker."
+  6. Rule 4: earthing switches closed on both sides — "Regel 4: aarden en kortsluiten, pas na het meten." — Aarden
+  7. Rule 5: shield live parts nearby; the WV releases the cable; spiking in the trench — "Regel 5: afschermen. Dan pas geeft de WV vrij." — NEN 3140
+  8. Each step reported to the control room; back in reverse order — "Elke stap melden; terug in omgekeerde volgorde." — Schakelmoment
+  9. The consultant outside the barrier, touching nothing — "Als leek kom je nergens aan."
+- **`eng.switchgear.automation`** · numbers: automation: 1.200 customers × 90 min = 108.000 customer minutes; remote switches at 2 key stations: 1.000 × 3 + 200 × 90 = 21.000 (about 80% less); NL about 20 minutes per customer per year (19 in 2023, 23 in 2024).
+  1. Without automation: a van drives station to station — "Zonder automatisering: één à twee uur." 
+  2. A motorised switch and a modem in a key station — "Een afstandsbediende schakelaar zet de ring in stukken." — Distributieautomatisering, Afstandsbediende schakelaar
+  3. Indicators report in; the logic opens around the fault and closes the open point in under a minute — "Een zelfherstellende ring doet het zelf." — Kortsluitverklikker, Zelfherstellende ring
+  4. The customer-minutes counter: 108.000 versus 21.000 — "Klantminuten: 80% minder met twee stations." — Klantminuten
+- **`eng.gridops.outage`** · numbers: outage example: 07:40 trip, 12 stations, 1.800 customers, indicators 1–5 lit, 6 not, technician on site 08:15, open point in station 12; 1.800 × 50 min = 90.000 customer minutes; SAIDI = SAIFI × CAIDI, about 20–25 min per year.
+  1. 07:40: the control room screen; a feeder breaker trips in SCADA — "Het bedrijfsvoeringscentrum ziet het binnen seconden." — Bedrijfsvoeringscentrum
+  2. The LV side: calls to the outage number, smart meters going quiet — "Op laagspanning hoor je het vaak van klanten."
+  3. Indicators 1–5 lit; isolate 5–6; re-energise 1–5; check the neighbour ring, close the open point — "Eerst iedereen terug, dan repareren." — Normaal open punt, Kortsluitverklikker
+  4. The yearly numbers build: SAIFI, CAIDI, SAIDI — "SAIDI = SAIFI × CAIDI." — SAIFI, CAIDI, SAIDI
+- **`eng.gridops.chain`** · numbers: chain: 34 weeks = 8 waiting + 3 preparation + 9 permit + 13 material + 1 field work → 25 weeks in parallel; connections: a supermarket 3 × 250 A (step times asserted); standard: 300 stations per year × 32 h saved = 9.600 h; execution: 1.200 jobs, 10 work preparers × 2 per week × 44 weeks = 880, 30% sent back; workload: 120 fitters × 1.300 h = 156.000 h against 210.000.
+  1. A request enters a queue; steps as stations — "De keten van aanvraag tot inbedrijfname." — Werkvoorbereiding, Doorlooptijd, Aansluittermijn, Kleinverbruik, Capaciteitscheck, MS-ruimte
+  2. Permit and material in series, then in parallel — "Zelfde werk, 25 in plaats van 34 weken." — KLIC-melding
+  3. The readiness check before release — "Pas vrijgeven als alles klaar is." — Gereedheidscheck
+  4. Standard station designs roll out; a framework contract — "Standaardiseren scheelt 9.600 engineeringuren." — Standaard netstation, Raamovereenkomst, Serieproductie, Overdimensionering, Uitzonderingsproces, Standaardiseren, Raamcontract, Aannemer
+  5. Work pile against people; bundling; social priority — "Meer werk dan mensen: kiezen en bundelen." — Verzwaring, Netcongestie, Wachtrij, Maatschappelijk prioriteren, Bundelen, Standaardontwerp, Herstelwerk, First time right
+  6. Testing, switching back, as-built drawings into GIS — "Inbedrijfname sluit de lus." — Inbedrijfname
+- **`eng.gridops.assets`** · numbers: assets: switchgear type with 1 in 50 per year failure chance, 2.000 customers × 3 h (the comparison asserted); data: 1.000 jobs, 25% hit a data error → an extra survey.
+  1. The risk matrix: probability × consequence for two candidates — "Risico = kans × gevolg." — Risico, Risicomatrix, ISO 55000, Typeprobleem, Tussenmaatregel
+  2. GIS against the street: a cable not where the map says — "Revisieachterstand: de kaart loopt achter." — GIS, Conditiedata, Revisie, Revisieachterstand, Digital twin, Topologie
+- **`eng.gridplanning.loadflow`** · numbers: loadflow: feeder 300 A, peak 210 A, station 80 MVA with a 45 MVA peak, +2,5 MVA (the check asserted); redundancy: 2 × 40 MVA, peak 46 MVA, +2 MVA per year, new station in 6 years, requests of 3 and 4 MVA.
+  1. Current flows along a feeder; each cable's load as a bar against its rating — "Loadflow rekent stroom en spanning in elk stuk." — Loadflow, Belastbaarheid, Belasting, Streng
+  2. The voltage drops along the feeder, and rises with solar infeed; the band — "Spanningsband: binnen ±10%." — Spanningsband, Invoeding
+  3. One transformer trips: the other carries all; 46 MVA on 40 — "N-1: één uitval mag geen klanten kosten." — N-1, Rail
+  4. Firm capacity versus non-firm; the emergency lane — "Non-firm gebruikt de vluchtstrook." — Vaste capaciteit, Non-firm, Vluchtstrook
+- **`eng.gridplanning.flex`** · numbers: flex: feeder 6 MW, peak 5,8 MW 17:00–20:00, otherwise ≤ 4,2; cold store 1,5 MW → 7,3 firm, ≤ 5,7 with a time-based contract; solar capped at 70%; storage: 10 MW / 20 MWh = 2 h; village 400 kVA, peak 460 kVA, battery 150 kW / 300 kWh, 60 kW × 3 h = 180 kWh; growth 20 kVA per year → about 2 years; ATR85 = 85% of the hours, about 1.300 h curtailable.
+  1. A winter weekday profile hits 5,8 MW in the evening — "De piek duurt drie uur." — Congestiemanagement
+  2. The cold store pre-cools in the afternoon and stops 17–20 — "Tijdsafhankelijk contract: buiten de piek past hij." — Tijdsafhankelijk contract, Capaciteitsbeperkingscontract, Terugregelen, GOPACS, Redispatch
+  3. A battery: MW as the tap, MWh as the tank — "10 MW / 20 MWh levert twee uur." — MW, MWh
+  4. The village battery charges at night, discharges 17–20; a market price curve tempts it the wrong way — "Wie stuurt in het piekuur: het net of de markt?" — Peak shaving, Achter de meter, Day-aheadmarkt, Tijdsduurgebonden transportrecht
+  5. Years roll on: the peak outgrows the battery after 2 years — "Flex koopt tijd; verzwaren komt alsnog."
+- **`eng.gridplanning.investment`** · numbers: investment: station A over its limit in 2029 in every scenario, with 15 MW waiting; B only in the high scenario.
+  1. Scenario fan lines — "Scenario's in plaats van één prognose." — Scenario, Gelijktijdigheid, Knelpunt
+  2. A over in every scenario, B only in high — "No-regret eerst: A." — Investeringsplan, Anticiperend investeren, No-regretmaatregel
