@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.joining.arc',
+      film: 'eng.joining.arc',
       figure: 'eng.joining.mig',
       title: 'MIG/MAG and TIG welding',
       pre: [
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.joining.weldparams',
+      film: 'eng.joining.arc',
       figure: 'eng.joining.mig',
       title: 'Weld parameters: wire, voltage and speed',
       pre: [
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.joining.wps',
+      film: 'eng.joining.arc',
       figure: 'eng.joining.mig',
       title: 'Welding on paper: WPS, WPQR and qualified welders',
       pre: [
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
+      film: 'eng.joining.arc',
       figure: 'eng.joining.haz',
       title: 'What heat does to the steel: HAZ, preheat and difficult metals',
       pre: [
