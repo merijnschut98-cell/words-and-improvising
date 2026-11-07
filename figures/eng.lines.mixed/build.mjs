@@ -17,6 +17,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -859,7 +860,7 @@ var st=document.querySelector(".mx-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 console.log(`model: L1 output ${L1.counts.map(outputL1).join("/")} · L2 ${SMED.map(smedMin).join("/")} min · L3 mean ${meanOf(MIX.work, MIX.share)} s · L4 takt ${TAKT4} s, switches ${switchesOf(daySeq("blocks"))}/${switchesOf(daySeq("pattern"))}`);
 console.log(`wrote ${OUT} · ${(page.length / 1024).toFixed(1)} KB · ${solids} solids · ${R.items.length} items · viewBox ${WIDTH}×${HEIGHT} · scale ${KS.toFixed(3)}`);
 

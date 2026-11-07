@@ -17,6 +17,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -912,7 +913,7 @@ var st=document.querySelector(".cm-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 console.log(`model: %GRR ${grrOf(0.0015, 0.04)} · ${grrOf(0.002, 0.05)} · Cpk ${cpkOf(0.015, 0, 0.003).toFixed(2)} → ${cpkOf(0.015, 0.006, 0.003).toFixed(2)} · held ${cpkOf(0.015, 0.001, 0.003).toFixed(2)}`);
 console.log(`wrote ${OUT} · ${(page.length / 1024).toFixed(1)} KB · ${solids} solids · ${R.items.length} items · viewBox ${WIDTH}×${HEIGHT} · scale ${KS.toFixed(3)} · loupe r ${LOUPE.r}`);
 

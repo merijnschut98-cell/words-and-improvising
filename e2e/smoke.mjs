@@ -587,7 +587,10 @@ await step('a lesson with a figure shows it under the last reading block', async
   for (let i = 0; i < lesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
   const frame = page.locator('.figure-wrap iframe.figure-frame');
   await frame.waitFor();
-  if (!(await frame.getAttribute('src')).startsWith('src/content/courses/figures/eng.flow.line.html?theme=')) throw new Error('figure src');
+  // srcdoc with the parameters in the frame name: offline-safe, like the films
+  if (await frame.getAttribute('src')) throw new Error('figure frame has a src: offline it would be empty');
+  if (!(await frame.getAttribute('name')).startsWith('?theme=')) throw new Error('figure frame name');
+  if (!(await frame.evaluate((f) => f.srcdoc.includes('id="vp-phone"')))) throw new Error('figure srcdoc');
   await page.frameLocator('.figure-frame').locator('svg').first().waitFor({ timeout: 10000 });
   await page.waitForTimeout(800);
   await shot('67-figure');
@@ -2437,8 +2440,8 @@ await step('topics: where you are (fixture)', async () => {
     await p.locator('.lesson > .pre-next').click();
   }
   for (let i = 1; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
-  const src = await p.locator('.figure-frame').getAttribute('src', { timeout: 5000 });
-  if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure src without level=2: ${src}`);
+  const src = await p.locator('.figure-frame').getAttribute('name', { timeout: 5000 });
+  if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure frame name without level=2: ${src}`);
   await c.close();
 });
 
@@ -2470,6 +2473,123 @@ await step('figures: every figure loads without console errors', async () => {
   }
   await cf.close();
   if (bad.length) throw new Error(bad.join('\n'));
+});
+
+// Every figure on a phone: loaded the way the app loads it (srcdoc, parameters in
+// the frame name, the height the figure asks for), at the lesson's width on a
+// 360 × 640 and a 390 × 844 screen, at every level. No sideways scroll, the
+// drawing at least 60 % of the frame, no text under 11 px, no tap target under
+// 44 px; and the corner button opens and closes full screen.
+const PHONE_PROBE = () => {
+  const W = innerWidth, H = innerHeight;
+  const vis = (el) => el.checkVisibility({ opacityProperty: true, visibilityProperty: true });
+  const inView = (r) => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W;
+  const out = [];
+  const de = document.scrollingElement;
+  if (de.scrollWidth > de.clientWidth + 1) out.push(`sideways scroll ${de.scrollWidth}/${de.clientWidth}`);
+  if (!document.documentElement.classList.contains('vp-phone')) out.push('no phone layout');
+  const svg = [...document.querySelectorAll('svg.iso-svg')].sort((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return rb.width * rb.height - ra.width * ra.height; })[0];
+  if (svg) {
+    const box = svg.getBoundingClientRect();
+    const b = svg.getBBox(), m = svg.getScreenCTM();
+    const ys = [b.y, b.y + b.height].map((y) => m.d * y + m.f);
+    const h = Math.min(Math.max(...ys), box.bottom, H) - Math.max(Math.min(...ys), box.top, 0);
+    if (h < 0.6 * H) out.push(`drawing ${Math.round((h / H) * 100)} % of ${H} px`);
+  } else out.push('no drawing');
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    const el = n.parentElement;
+    if (!n.nodeValue.trim() || !el || !vis(el)) continue;
+    const range = document.createRange(); range.selectNodeContents(n);
+    const r = range.getBoundingClientRect();
+    if (!inView(r)) continue;
+    let px = parseFloat(getComputedStyle(el).fontSize);
+    if (el instanceof SVGElement) { const t = el.getScreenCTM(); if (t) px *= Math.hypot(t.a, t.b); }
+    if (px < 10.95) { out.push(`text ${px.toFixed(1)} px "${n.nodeValue.trim().slice(0, 16)}"`); break; }
+  }
+  for (const el of document.querySelectorAll('button,input:not([type=hidden]),select,a[href],[role=button]')) {
+    const r = el.getBoundingClientRect();
+    if (vis(el) && inView(r) && Math.min(r.width, r.height) < 43.5) { out.push(`tap target ${Math.round(r.width)}×${Math.round(r.height)} ${el.className || el.tagName}`); break; }
+  }
+  return out;
+};
+await step('figures: phone layout at 360×640 and 390×844, levels 1–4 (scroll, drawing share, text, tap targets)', async () => {
+  const ids = fs.readdirSync('src/content/courses/figures').filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5));
+  const bad = [];
+  for (const [vw, vh] of [[360, 640], [390, 844]]) {
+    const cf = await browser.newContext({ viewport: { width: vw, height: vh }, isMobile: true, hasTouch: true });
+    const jobs = ids.flatMap((id) => [1, 2, 3, 4].map((lv) => [id, lv]));
+    // four pages side by side, so the sweep stays quick
+    await Promise.all([0, 1, 2, 3].map(async (w) => {
+      const pf = await cf.newPage();
+      pf.on('pageerror', (e) => bad.push(`${vw}: ${e.message}`));
+      await pf.goto(BASE);
+      for (let j = w; j < jobs.length; j += 4) {
+        const [id, lv] = jobs[j];
+        await pf.evaluate(async ({ src, width }) => {
+          document.body.innerHTML = '';
+          document.body.style.margin = '0';
+          const m = await import('/src/ui/figure.js');
+          const wrap = document.createElement('figure');
+          wrap.className = 'figure-wrap';
+          wrap.style.cssText = `margin:0;width:${width}px`;
+          const f = document.createElement('iframe');
+          f.className = 'figure-frame';
+          f.setAttribute('sandbox', 'allow-scripts');
+          f.style.cssText = `display:block;border:0;width:${width}px;height:${Math.round(width * 1.05)}px`;
+          if (window.__stopFig) window.__stopFig();
+          if (!(await m.loadFigure(f, src))) throw new Error('not loaded');
+          wrap.append(f);
+          document.body.append(wrap);
+          window.__stopFig = m.figureBridge(f, wrap, {});
+        }, { src: `src/content/courses/figures/${id}.html?theme=${lv % 2 ? 'light' : 'dark'}&lang=${lv === 2 ? 'en' : 'nl'}&level=${lv}`, width: vw - 34 });
+        const fr = pf.frames().find((f) => f !== pf.mainFrame());
+        await fr.waitForSelector('html[data-vp-ready]', { timeout: 5000 });
+        await pf.waitForTimeout(1300);
+        const issues = await fr.evaluate(PHONE_PROBE);
+        if (issues.length) bad.push(`${id} L${lv} ${vw}×${vh}: ${issues.join('; ')}`);
+      }
+      await pf.close();
+    }));
+    await cf.close();
+  }
+  if (bad.length) throw new Error(`${bad.length} problems:\n${bad.slice(0, 40).join('\n')}`);
+});
+
+await step('figures: the corner button asks the app for full screen, and back', async () => {
+  const cf = await browser.newContext({ viewport: { width: 360, height: 640 }, isMobile: true, hasTouch: true });
+  const pf = await cf.newPage();
+  await pf.goto(BASE);
+  await pf.evaluate(async () => {
+    document.body.innerHTML = '<main class="screen"><section class="card teach-card"></section></main>';
+    const m = await import('/src/ui/figure.js');
+    const wrap = document.createElement('figure');
+    wrap.className = 'figure-wrap';
+    const f = document.createElement('iframe');
+    f.className = 'figure-frame';
+    f.setAttribute('sandbox', 'allow-scripts');
+    await m.loadFigure(f, 'src/content/courses/figures/eng.lines.mixed.html?theme=light&lang=nl&level=3');
+    wrap.append(f);
+    document.querySelector('.teach-card').append(wrap);
+    m.figureBridge(f, wrap, { label: 'Sluiten' });
+  });
+  const fr = pf.frameLocator('.figure-frame');
+  await fr.locator('html[data-vp-ready]').waitFor({ state: 'attached', timeout: 5000 });
+  const h0 = await pf.locator('.figure-frame').evaluate((f) => f.getBoundingClientRect().height);
+  if (Math.abs(h0 - 326 * 1.05) < 2) throw new Error(`the frame kept its default height ${h0}`);
+  await fr.locator('.vp-full').click();
+  await pf.locator('.figure-wrap.figure-full').waitFor({ timeout: 3000 });
+  const r = await pf.locator('.figure-frame').evaluate((f) => { const b = f.getBoundingClientRect(); return [b.left, b.top, b.width, b.height]; });
+  if (r[2] < 359 || r[3] < 600) throw new Error(`full screen frame ${r.join(',')}`);
+  await fr.locator('html[data-vp-full]').waitFor({ state: 'attached', timeout: 3000 });
+  // "meer" opens the rest of the readout and the title
+  await fr.locator('.vp-more').click();
+  await fr.locator('.vp-sheet .vp-head').waitFor({ timeout: 3000 });
+  await fr.locator('.vp-more').click();
+  await pf.locator('.figure-close').click();
+  await pf.locator('.figure-wrap.figure-full').waitFor({ state: 'detached', timeout: 3000 });
+  await fr.locator('html:not([data-vp-full])').waitFor({ state: 'attached', timeout: 3000 });
+  await cf.close();
 });
 
 // Every film page loads clean in a sandboxed frame, in both themes and languages
@@ -2549,6 +2669,16 @@ await step('offline after first load', async () => {
   await page.locator('.lesson > .pre-next').click();
   await page.locator('.teach-card .film-btn').click({ timeout: 5000 });
   await page.frameLocator('.film-frame').locator('.fp-poster-go').waitFor({ timeout: 5000 });
+  // A lesson figure shows offline too: srcdoc from the service worker's cache.
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
+  const figLesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck'));
+  for (const q of figLesson.pre) {
+    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.lesson > .pre-next').click(); }
+    else await page.locator('.pre-card .opt').first().click();
+    await page.locator('.lesson > .pre-next').click();
+  }
+  for (let i = 0; i < figLesson.teach.length - 1; i++) await page.locator('.lesson > .btn-primary').click();
+  await page.frameLocator('.figure-frame').locator('svg.iso-svg').first().waitFor({ timeout: 8000 });
   await page.evaluate(() => window.__app.go('home'));
   await page.locator('.drill-frame').click();
   await page.locator('.intro-card').waitFor({ timeout: 5000 });
