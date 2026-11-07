@@ -80,7 +80,7 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     const renamed = { nl: new Map(lessons.nl), en: lessons.en };
     const l = lessons.nl.get(t.lesson);
     renamed.nl.set(t.lesson, { ...l, terms: l.terms.map((x, i) => (i === t.index ? { ...x, term: `${x.term}x` } : x)) });
-    assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /term/);
+    assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /is no longer term \d+ of/);
     // a lesson that no longer has the number
     const n = data.numbers[0];
     const gone = { nl: new Map(lessons.nl), en: lessons.en };
@@ -88,11 +88,18 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     const strip = (s) => (typeof s === 'string' ? s.split(n.value).join('#') : s);
     gone.nl.set(n.lesson, JSON.parse(JSON.stringify(ln), (k, v) => strip(v)));
     assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
-    assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /number/);
+    assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /no longer in eng\./);
     // a Dutch term in the English caption
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
     const bad = JSON.parse(JSON.stringify(data));
     bad.scenes[0].beats[0].text.en += ` ${dutch.nl}`;
-    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch/);
+    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English caption/);
+    // a caption that would run past 3 lines in the lesson's film frame
+    const long = JSON.parse(JSON.stringify(data));
+    const beat = long.scenes[0].beats[0];
+    const pad = ' en nog wat meer woorden'.repeat(6);
+    beat.seg.nl = [...beat.seg.nl, pad];
+    beat.text.nl += pad;
+    assert.match(checkFilm(long, ctx).join('\n'), /nl caption has \d+ characters \(max \d+\)/);
   }
 });

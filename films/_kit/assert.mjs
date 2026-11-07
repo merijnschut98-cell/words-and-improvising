@@ -7,7 +7,9 @@ export const MAX_BYTES = 450 * 1024; // hard cap per page (plan 2.8)
 export const TARGET_BYTES = 300 * 1024;
 export const MIN_TOTAL = 60;
 export const MAX_TOTAL = 150;
-export const MAX_CAPTION_CHARS = 135; // about 3 lines of 16 px text at 390 px
+// 3 lines of 16 px text in the film's frame inside a lesson card on a 390 px
+// screen (about 320 px wide; measured: 117 characters ran to 4 lines)
+export const MAX_CAPTION_CHARS = 110;
 
 export function readFilmData(html) {
   const m = /<script type="application\/json" id="film-data">([\s\S]*?)<\/script>/.exec(html);
