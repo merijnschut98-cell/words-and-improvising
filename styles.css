@@ -828,9 +828,15 @@ details.explain-back > summary { font-family: var(--font-display); font-weight: 
 details.rw-topic { margin: 4px 0 8px; }
 details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-weight: 600; }
 .rw-refresh { margin-top: 6px; }
-/* Sure or guessing. */
-.sure-mark { margin: 0 0 4px; color: var(--bad); font-weight: 600; }
-.why-strong { font-weight: 600; color: var(--ink); }
+/* Hint: secondary, once per question; marked again in the review. */
+.quiz-hint:not(.on) { display: none; }
+.quiz-hint { margin: 0 0 12px; padding: 10px 12px; background: var(--tint); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); }
+.quiz-hint p { margin: 0 0 4px; }
+.quiz-hint p:last-child { margin-bottom: 0; }
+.quiz-hint .hint-title { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); }
+.quiz-hint .hint-step { font-family: var(--font-mono); font-size: 0.95rem; color: var(--heading); overflow-wrap: anywhere; }
+.opt.struck, .opt.struck:disabled { text-decoration: line-through; color: var(--muted); opacity: 0.6; cursor: default; border-color: var(--border-subtle); background: var(--card); }
+.hint-mark { margin: 0 0 4px; color: var(--accent-dark); font-weight: 600; }
 .mono-line { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
 .step-current { color: var(--heading); font-weight: 700; border-bottom-color: var(--primary); }
 
@@ -867,8 +873,6 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .quiz-actions { display: flex; flex-direction: column; gap: var(--space-2, 8px); margin-top: var(--space-3, 12px); }
 .quiz-actions .btn { width: 100%; }
 .quiz-picked { margin: 8px 0 0; }
-.guess-row.segmented { margin: 0 0 12px; }
-.guess-row.segmented button { font-size: 0.9rem; }
 .plan-foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .plan-saved { color: var(--good); font-weight: 500; white-space: nowrap; display: inline-flex; align-items: center; gap: 2px; margin-top: 6px; min-height: 1.2em; }
 .sticky-cta { position: sticky; bottom: 0; z-index: 5; margin: 0 -16px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--bg); }

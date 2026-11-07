@@ -1,8 +1,10 @@
 // Checks one course module (both languages) against the lesson schema. Used by
 // the content tests and by whoever writes content. Returns a list of problems;
 // an empty list means the module is valid. Pure.
+import { containsAnswer } from '../../core/hint.js';
 
 const MAX_BLOCK_WORDS = 90;
+const MAX_HINT_WORDS = 25;
 const words = (s) => String(s).trim().split(/\s+/).filter(Boolean).length;
 const str = (v) => typeof v === 'string' && v.trim().length > 0;
 
@@ -25,6 +27,12 @@ function checkQuestion(qn, where, errs) {
     if (!Array.isArray(qn.options) || qn.options.length !== 4 || !qn.options.every(str)) errs.push(`${where}: needs 4 options`);
     else if (new Set(qn.options).size !== 4) errs.push(`${where}: options must be distinct`);
     if (!Array.isArray(qn.options) || !qn.options.includes(qn.answer)) errs.push(`${where}: answer not in options`);
+  }
+  // Optional: the question's own hint, shown instead of the generated one.
+  if ('hint' in qn) {
+    if (!str(qn.hint)) errs.push(`${where}: hint must be text`);
+    else if (words(qn.hint) > MAX_HINT_WORDS) errs.push(`${where}: hint has ${words(qn.hint)} words (max ${MAX_HINT_WORDS})`);
+    else if (containsAnswer(qn, qn.hint)) errs.push(`${where}: hint gives the answer`);
   }
 }
 
