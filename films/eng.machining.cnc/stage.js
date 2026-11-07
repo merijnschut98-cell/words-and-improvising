@@ -243,8 +243,16 @@ const STAGE = (() => {
     const y = TAB.y + 64 + row * 0;
     const cut = (s, k) => s.slice(0, Math.round(s.length * clamp(k, 0, 1)));
     let out = mono(TAB.x + 16, y, t) + mono(TAB.x + 120, y, cut(l, typedL), 20, 'end') + mono(TAB.x + 196, y, cut(r, typedR), 20, 'end');
-    if (strike) out += mono(TAB.x + 284, y, strike, 18, 'end', 'fp-ink fp-code fp-ghost');
+    if (strike) out += mono(TAB.x + 132, y, strike, 18, 'start', 'fp-ink fp-code fp-ghost');
     return out;
+  }
+  // the close-ups are not to scale: say so
+  function bigTag(top) {
+    const t = LANG === 'nl' ? 'vergroot' : 'enlarged';
+    const w = 104;
+    const x = top ? INS.x + 8 : INS.x + INS.w - 8 - w;
+    const y = top ? INS.y + 8 : INS.y + INS.h - 38;
+    return `<path class="fp-panel" d="M${x} ${y}h${w}v30h${-w}z"/>` + label(x + w / 2, y + 21, t, 20, 'middle', true, 'fp-ink fp-label fp-dim');
   }
   // the inset: a top view of radius compensation
   function insetRadius(k1, wear) {
@@ -267,10 +275,11 @@ const STAGE = (() => {
     let w = '';
     if (wear > 0) {
       const dy = 7 * wear; // drawn far larger than true
-      w = `<path class="fp-mark" stroke-dasharray="3 4" d="M${INS.x + 10} ${f1(cyT - dy)}H${INS.x + INS.w - 10}"/>` + mark(arrowHead([INS.x + INS.w - 30, cyT], [INS.x + INS.w - 30, cyT - dy - 2], 7, true))
+      // a negative wear on a bore: the centre path moves toward the wall, which cuts the bore larger
+      w = `<path class="fp-mark" stroke-dasharray="3 4" d="M${INS.x + 10} ${f1(cyT + dy)}H${INS.x + INS.w - 10}"/>` + mark(arrowHead([INS.x + INS.w - 30, cyT], [INS.x + INS.w - 30, cyT + dy + 2], 7, true))
         + label(INS.x + INS.w - 16, INS.y + 34, `${LANG === 'nl' ? '−0,005' : '−0.005'}`, 20, 'end', true, 'fp-ink fp-code');
     }
-    return { body, rc, w };
+    return { body: body + bigTag(), rc, w };
   }
   // the inset: a section through the plate at the hole
   const SEC = { top: INS.y + 54, sc: 4.6 };
@@ -307,7 +316,7 @@ const STAGE = (() => {
       const rr = 8 + 26 * crashK;
       c = `<circle class="fp-touch" cx="${f1(cx)}" cy="${f1(vb)}" r="${f1(rr)}" style="opacity:${f1(1 - crashK * 0.6)}"/><circle class="fp-touch" cx="${f1(cx)}" cy="${f1(vb)}" r="${f1(rr * 0.55)}"/>`;
     }
-    return { body, s, c };
+    return { body: body + bigTag(true), s, c };
   }
   // the CAM screen: top view with the toolpath, the post, a side-view simulation
   const CV = { x: CAMS.x + 24, y: CAMS.y + 52, sc: 1.55 }; // top view: program mm → px
@@ -463,7 +472,7 @@ const STAGE = (() => {
       set(E.gauge, gaugeSvg(lift, needle));
       fade(E.gauge, span(u, 0, 0.08));
       const k1 = span(u, B[1], B[1] + 0.05);
-      set(E.counter, `<g style="opacity:${f1(k1)}">${mono(W - 18, H - 20, LANG === 'nl' ? '1 / 200' : '1 / 200', 26, 'end')}</g>`);
+      set(E.counter, `<g style="opacity:${f1(k1)}"><path class="fp-panel" d="M${W - 194} ${H - 62}h180v48h-180z"/>${mono(W - 28, H - 28, LANG === 'nl' ? 'stuk 1 / 200' : 'part 1 / 200', 22, 'end')}</g>`);
       fade(E.list, 1);
       set(E.cur, '');
       fade(E.stamp, span(u, B[2], B[2] + 0.06));

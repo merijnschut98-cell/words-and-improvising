@@ -345,7 +345,7 @@ const panel = (x, y, w, h) => `<path class="fp-panel" d="M${x + 8} ${y}h${w - 16
 
 // the program listing: one text per word, so words can carry cues
 const CW = 12; // char width of the mono font at 20 px (0.6 em)
-const LIST = { x: 14, y: 56, w: 292, lh: 27 };
+const LIST = { x: 14, y: 56, w: 312, lh: 27 };
 const listing = (() => {
   const out = [panel(LIST.x, LIST.y, LIST.w, 22 + PROG.length * LIST.lh)];
   out.push(`<g data-cue="line">${g('cur', '')}</g>`);
@@ -413,8 +413,8 @@ const world = [
   g('saddle', saddle),
   g('table', [
     table, vice, jawFixed, plate,
-    `<g data-cue="g54">${g('g54', '')}</g>`,
     g('slot', ''), g('hole', ''),
+    `<g data-cue="g54">${g('g54', '')}</g>`,
     `<g data-cue="abs">${g('absDim', '')}</g>`,
     `<g data-cue="inc">${g('incDim', '')}</g>`,
     jawMove,
@@ -494,13 +494,13 @@ const spec = {
       beats: [
         { nl: 'G43 H3 zet de {t:Lengtecorrectie|lengtecorrectie} aan: de gereedschapslengte telt mee.', en: 'G43 H3 switches on {t:Tool length compensation|tool length compensation}: the tool length counts.', cue: { Lengtecorrectie: 'toolL' } },
         { nl: 'Met G41, de {t:Radiuscorrectie|radiuscorrectie}, schuift de baan een straal opzij: {n:4.99} bij Ø{n:9.98}.', en: 'With G41, {t:Cutter radius compensation|cutter radius compensation}, the path shifts by one radius: {n:4.99} for Ø{n:9.98}.', cue: { Radiuscorrectie: 'rcomp' } },
-        { nl: '{n:0.01} te klein op de diameter? Dan een {t:Slijtagecorrectie|slijtagecorrectie} van {n:0.005} op de radius.', en: '{n:0.01} undersize on the diameter? Then a {t:Wear offset|wear offset} of {n:0.005} on the radius.', cue: { Slijtagecorrectie: 'wear' } },
+        { nl: 'Een boring {n:0.01} te klein? Dan een {t:Slijtagecorrectie|slijtagecorrectie} van {n:0.005} op de radius.', en: 'A bore {n:0.01} undersize? Then a {t:Wear offset|wear offset} of {n:0.005} on the radius.', cue: { Slijtagecorrectie: 'wear' } },
       ],
     },
     {
       id: 's6', lesson: 'eng.machining.offsets', level: 3, dur: DUR[5], still: 0.9, title: { nl: 'Zo ontstaat een crash', en: 'How a crash happens' },
       beats: [
-        { nl: 'Voor de boor tikt de insteller {n:112.43} in plaats van {n:121.43}.', en: 'For the drill, the setter types {n:112.43} instead of {n:121.43}.', cues: ['table'] },
+        { nl: 'Voor de boor typt de insteller {n:112.43} in plaats van {n:121.43}.', en: 'For the drill, the setter types {n:112.43} instead of {n:121.43}.', cues: ['table'] },
         { nl: 'De besturing denkt dat hij {n:9} mm korter is en laat hem {n:9} mm dieper zakken: door de bodem.', en: 'The control thinks it is {n:9} mm shorter and sends it {n:9} mm deeper: through the floor.', cues: ['section'] },
         { nl: 'Raakt hij de bankschroef, dan is het een {t:Crash|crash}. Meestal klopt het programma, maar de tabel niet.', en: 'If it hits the vice, that is a {t:Crash|crash}. Usually the program is right and the table is not.', cue: { Crash: 'crash' }, read: { nl: '{n:6} crashes: {n:3} lengte, {n:2} H-nummer, {n:1} nulpunt · €{n:12000} per stuk', en: '{n:6} crashes: {n:3} length, {n:2} H number, {n:1} work offset · €{n:12000} each' } },
       ],
@@ -531,7 +531,7 @@ C.dur = DUR;
 const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
 const latheScript = `const G = (() => {${latheSource}\nreturn { viewOf, scaleOf, frameOf, pointOf, radialOf, tangentOf, solidOf, prismOf, lathe, disc, dotsOf, arcOf, circleOf, dot3, add3, sub3, mul3 };})();\n`;
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst LIST = ${JSON.stringify(LIST)}, TAB = ${JSON.stringify(TAB)}, INS = ${JSON.stringify(INS)}, CAMS = ${JSON.stringify(CAMS)}, CW = ${CW};\n`;
-const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8');
+const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8').replace(/^[ \t]*\/\/.*\n/gm, ''); // whole-line comments stay in the source only
 
 const css = `
 .fp-svg .fp-label{font-family:var(--fp-sans);font-weight:600}
