@@ -123,8 +123,12 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 .fp-ink{fill:var(--anatomy-mid)}
 `;
 
+// The page's parameters as a plain inline script can read them (searchOf in
+// timeline.mjs): the URL, or the frame name when the app hands it over as srcdoc.
+const SEARCH = `(location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))`;
+
 // Sets the theme before first paint, as the figures do.
-const BOOT = `(function(){var q=new URLSearchParams(location.search),t=q.get("theme"),d=document.documentElement;
+const BOOT = `(function(){var q=new URLSearchParams(${SEARCH}),t=q.get("theme"),d=document.documentElement;
 function apply(){d.setAttribute("data-theme",t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));}
 apply();if(t!=="light"&&t!=="dark"){var m=matchMedia("(prefers-color-scheme: light)");m.addEventListener&&m.addEventListener("change",apply);}
 if(q.get("lang")==="en")d.setAttribute("lang","en");})();`;
@@ -156,6 +160,6 @@ export function pageHtml(data, stage) {
   const withLabel = { ...data, label: stage.label };
   const script = [strip('timeline.mjs'), stage.script, readFileSync(join(HERE, 'player-runtime.js'), 'utf8')].join('\n;\n');
   // The end card's replay label follows the language.
-  const again = `document.querySelector('.fp-again span').textContent=new URLSearchParams(location.search).get('lang')==='en'?'Watch again':'Nog een keer';`;
+  const again = `document.querySelector('.fp-again span').textContent=new URLSearchParams(${SEARCH}).get('lang')==='en'?'Watch again':'Nog een keer';`;
   return `<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${data.title.nl}</title><script>${BOOT}</script><style>${stage.kitCss || ''}${VANTAGE_CSS}${PLAYER_CSS}${stage.css || ''}</style></head><body>${playerHtml(data, stage.svg)}<script type="application/json" id="film-data">${json(withLabel)}</script><script>${again}</script><script type="module">${script.replace(/<\/(script)/gi, '<\\/$1')}</script></body></html>`;
 }

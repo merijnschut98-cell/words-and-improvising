@@ -11,7 +11,8 @@ const STAGE = (() => {
   ['world', 'scale', 'lid', 'piston', 'ratioMark', 'screw', 'ring', 'cushion', 'fill', 'front', 'drop', 'speed', 'back',
     'sheet', 'ruler', 'rulerBody', 'rulerSw', 'rulerMk', 'clock', 'win', 'dec', 'ratioHud', 'visc', 'bars', 'barsBody', 'barsLimit', 'gfs',
     'cards', 'cardsBody', 'cardsIq', 'spc', 'reval', 'lens', 'lensClip'].forEach((k) => { E[k] = el(k); });
-  const EN = new URLSearchParams(location.search).get('lang') === 'en';
+  // the boot script sets lang="en" from the URL or, under srcdoc, the frame name
+  const EN = document.documentElement.getAttribute('lang') === 'en';
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
   const f1 = (v) => (Math.round(v * 10) / 10).toString();
@@ -500,7 +501,9 @@ const STAGE = (() => {
       F = 1;
       solid = 0.3;
       gateF = 0;
-      const b = C.BEATS[6];
+      // beats: viscosity, ratio, pressure drop, limit, gate freeze (two captions)
+      const bb = C.BEATS[6];
+      const b = [bb[0], bb[1], bb[2], bb[4]];
       // reduced motion shows one still per scene while the captions run on:
       // the chart then follows the cue of the caption being shown
       const still = document.querySelector('.fp').dataset.motion === 'reduce';

@@ -418,7 +418,7 @@ const spec = {
     {
       id: 's5', lesson: 'eng.moulding.process', level: 2, dur: DUR[4], still: 0.25, title: { nl: 'Doseren en het restkussen', en: 'Dosing and the cushion' },
       beats: [
-        { nl: 'Tijdens het koelen draait de schroef en schuift terug, tegen de {t:Stuwdruk|stuwdruk} in: dat mengt de smelt.', en: 'During cooling the screw turns and moves back against the {t:Back pressure|back pressure}: that mixes the melt.', cue: { Stuwdruk: 'back' } },
+        { nl: 'Bij het koelen draait de schroef en schuift terug, tegen de {t:Stuwdruk|stuwdruk} in: dat mengt de smelt.', en: 'During cooling the screw turns and moves back against the {t:Back pressure|back pressure}: that mixes the melt.', cue: { Stuwdruk: 'back' } },
         { nl: 'Op de schroefpunt zit de {t:Terugslagring|terugslagring}, een ventielringetje: bij het inspuiten sluit hij.', en: 'On the screw tip sits the {t:Check ring|check ring}, a valve ring: during injection it closes.', cue: { Terugslagring: 'ring' } },
         { nl: 'Vóór de schroef blijft een {t:Restkussen|restkussen}. Lekt de ring, dan schommelt dat van {n:2} tot {n:8} mm.', en: 'In front of the screw a {t:Cushion|cushion} remains. If the ring leaks, it wanders from {n:2} to {n:8} mm.', cue: { Restkussen: 'cushion' } },
       ],
@@ -426,7 +426,7 @@ const spec = {
     {
       id: 's6', lesson: 'eng.moulding.process', level: 2, dur: DUR[5], still: 0.8, title: { nl: 'Het procesvenster', en: 'The process window' },
       beats: [
-        { nl: 'Het {t:Procesvenster|procesvenster} is het gebied waarin elk product goed is. Zit in het midden, niet op de rand.', en: 'The {t:Process window|process window} is the area where every part is good. Sit in the middle, not on the edge.', cue: { Procesvenster: 'window' } },
+        { nl: 'Het {t:Procesvenster|procesvenster}: het gebied waarin elk product goed is. Zit in het midden, niet op de rand.', en: 'The {t:Process window|process window} is the area where every part is good. Sit in the middle, not on the edge.', cue: { Procesvenster: 'window' } },
         { nl: '{t:Scientific moulding|Scientific moulding} vult zo’n {n:95} tot {n:98}% op snelheid en perst de rest na op druk.', en: '{t:Scientific moulding|Scientific moulding} fills about {n:95} to {n:98}% on speed and packs the rest on pressure.', cue: { 'Scientific moulding': 'decouple' } },
       ],
     },
@@ -435,8 +435,10 @@ const spec = {
       beats: [
         { nl: 'De {t:Viscositeitscurve|viscositeitscurve} daalt steil en loopt dan vlak: kies daar de snelheid.', en: 'The {t:Viscosity curve|viscosity curve} falls steeply, then runs flat: choose the speed there.', cue: { Viscositeitscurve: 'visc' }, read: { nl: '{n:1280} · {n:880} · {n:825} bar·s', en: '{n:1280} · {n:880} · {n:825} bar·s' } },
         { nl: 'De {t:Drukverhouding|drukverhouding} rekent oliedruk om naar kunststofdruk: vaak zo’n {n:10}.', en: 'The {t:Intensification ratio|intensification ratio} converts oil pressure to plastic pressure: often about {n:10}.', cue: { Drukverhouding: 'ratio' } },
-        { nl: 'Een {t:Drukvalstudie|drukvalstudie} meet de druk per deel. {n:75}% is onder de {n:80}%-regel: niet {t:Drukbegrensd|drukbegrensd}.', en: 'A {t:Pressure drop study|pressure drop study} measures the pressure per section. {n:75}% is under the {n:80}% rule: not {t:Pressure-limited|pressure-limited}.', cue: { Drukvalstudie: 'drop', Drukbegrensd: 'limit' }, read: { nl: '{n:1500} / {n:2000} bar = {n:75}%', en: '{n:1500} / {n:2000} bar = {n:75}%' } },
-        { nl: 'De {t:Gate-freeze-studie|gate-freeze-studie} weegt bij langere nadruktijd; loopt het gewicht vlak, dan is het aanspuitpunt dicht.', en: 'The {t:Gate freeze study|gate freeze study} weighs at longer holding times; once the weight levels off, the gate is shut.', cue: { 'Gate-freeze-studie': 'gfs' } },
+        { nl: 'Een {t:Drukvalstudie|drukvalstudie} meet de druk per deel.', en: 'A {t:Pressure drop study|pressure drop study} measures the pressure per section.', cue: { Drukvalstudie: 'drop' }, read: { nl: '{n:1500} / {n:2000} bar = {n:75}%', en: '{n:1500} / {n:2000} bar = {n:75}%' } },
+        { nl: '{n:75}% is onder de {n:80}%-regel: niet {t:Drukbegrensd|drukbegrensd}.', en: '{n:75}% is under the {n:80}% rule: not {t:Pressure-limited|pressure-limited}.', cue: { Drukbegrensd: 'limit' }, cues: ['drop'] },
+        { nl: 'De {t:Gate-freeze-studie|gate-freeze-studie} weegt bij langere nadruktijd.', en: 'The {t:Gate freeze study|gate freeze study} weighs at longer holding times.', cue: { 'Gate-freeze-studie': 'gfs' } },
+        { nl: 'Loopt het gewicht vlak, dan is het aanspuitpunt dicht.', en: 'Once the weight levels off, the gate is shut.', cues: ['gfs'] },
       ],
     },
     {
