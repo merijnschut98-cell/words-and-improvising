@@ -260,7 +260,9 @@ const STAGE = (() => {
       onCart = u < trip[4];
     }
     // the furnace scene: the part goes in, and comes back out on the cart
-    if (si === 5) onCart = u < 0.3 || u > beat(5, 1) + 0.08;
+    // the furnace door opens at the second caption, but never before u 0.62, so the clock can run
+    const fOpen = Math.max(beat(5, 1), 0.62);
+    if (si === 5) onCart = u < 0.3 || u > fOpen + 0.08;
     move(E.cart, [cx, 0, 0]);
     if (onCart) {
       const cDone = si === 1 ? 0 : si === 3 ? 1 : si === 5 ? 3 : 3;
@@ -453,7 +455,7 @@ const STAGE = (() => {
       let clock = 0;
       let alpha = 0;
       if (si === 5) {
-        const b1 = beat(5, 1);
+        const b1 = fOpen;
         open = 1 - span(u, 0.36, 0.46) + span(u, b1, b1 + 0.08);
         clock = 3 * span(u, 0.46, b1);
         alpha = span(u, 0.3, 0.36) * (1 - span(u, b1 + 0.1, b1 + 0.16));
