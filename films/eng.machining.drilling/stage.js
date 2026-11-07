@@ -54,11 +54,11 @@ const STAGE = (() => {
       }
       return runs.filter((x) => x.length > 1).map(fmt).join('');
     }
-    function band(rhoOf, width, s0, s1, rr, steps) {
+    function band(rhoOf, width, s0, s1, rr, steps, cls = 'dr-flute') {
       let out = '';
       let lo = [];
       let hi = [];
-      const flush = () => { if (lo.length > 1) out += `<path class="dr-flute" d="${fmt(lo.concat(hi.reverse()))}Z"/>`; lo = []; hi = []; };
+      const flush = () => { if (lo.length > 1) out += `<path class="${cls}" d="${fmt(lo.concat(hi.reverse()))}Z"/>`; lo = []; hi = []; };
       for (let i = 0; i <= steps; i++) {
         const s = s0 + ((s1 - s0) * i) / steps;
         const b0 = wrap(rhoOf(s));
@@ -131,8 +131,9 @@ const STAGE = (() => {
     } else if (t.kind === 'gun') {
       profile = [[0, 9], [28, 9], [30, 6], [34, 6], [35, r], [len - 1.2, r], [len, r * 0.35]];
       const steps = 40;
-      flutes += band(() => t.theta - fv, 0.5, 35, len - 1, r, steps);
-      lines += curve(() => t.theta - fv, 35, len - 1, r, steps) + curve(() => t.theta + 0.5 - fv, 35, len - 1, r, steps);
+      // the V groove is about a third of the circumference: wide enough to read
+      flutes += band(() => t.theta - fv, 1.5, 35, len - 1, r, steps, 'dr-flute dr-groove');
+      lines += curve(() => t.theta - fv, 35, len - 1, r, steps) + curve(() => t.theta + 1.5 - fv, 35, len - 1, r, steps);
     } else {
       profile = [[0, r], [len - 1, r], [len, r - 1], [len, 0]];
     }
@@ -412,14 +413,15 @@ const STAGE = (() => {
         st.secAlpha = 1 - span(u, 0.58, 0.6);
         if (u > 0.06 && u < 0.24) st.chips = chipsSvg(clockS, 2.6, 2.2);
       } else {
-        // boring: a pre-drilled Ø30 hole is opened up to Ø40 by a boring head
+        // boring: a pre-drilled Ø30 hole is opened up to Ø40 by a boring head,
+        // which then pulls back out so the step from Ø30 to Ø40 shows in the cut
         const pre = drilled(15, BX0 + 30 + 9);
-        const tip = u < 0.66 ? lerp(BX0 - 30, BX0, span(u, 0.62, 0.66)) : lerp(BX0, BX0 + 26, span(u, 0.66, 0.95));
-        const bored = Math.max(BX0, tip - 0.5);
+        const tip = u < 0.66 ? lerp(BX0 - 30, BX0, span(u, 0.62, 0.66)) : u < 0.88 ? lerp(BX0, BX0 + 26, span(u, 0.66, 0.88)) : lerp(BX0 + 26, BX0 - 30, span(u, 0.88, 0.94));
+        const bored = u < 0.88 ? Math.max(BX0, tip - 0.5) : BX0 + 25.5;
         st.secAlpha = span(u, 0.6, 0.62);
-        st.tool = { kind: 'boring', r: 13, reach: 20, tip, theta: spin(4.5), tilt: 0, alpha: span(u, 0.61, 0.64) };
+        st.tool = { kind: 'boring', r: 13, reach: 20, tip, theta: u < 0.88 ? spin(4.5) : 0, tilt: 0, alpha: span(u, 0.61, 0.64) * (1 - span(u, 0.92, 0.95)) };
         st.hole = { rOf: (x) => (x <= bored ? 20 : pre(x)), end: BX0 + 39 };
-        if (u > 0.67 && u < 0.95) st.chips = chipsSvg(clockS, 2.2, 2.6);
+        if (u > 0.67 && u < 0.88) st.chips = chipsSvg(clockS, 2.2, 2.6);
       }
     } else if (si === 4) {
       const r = 3;
@@ -438,13 +440,17 @@ const STAGE = (() => {
         const from = k * 6;
         if (u < 0.04) { tip = lerp(BX0 - 20, BX0, span(u, 0, 0.04)); depth = 0; } else if (ph < 0.12) { tip = lerp(BX0, BX0 + from + tl, ph / 0.12); depth = from; } else if (ph < 0.62) { depth = from + 6 * ((ph - 0.12) / 0.5); tip = BX0 + depth + tl; } else if (ph < 0.82) { depth = from + 6; tip = lerp(BX0 + depth + tl, BX0 - 2, (ph - 0.62) / 0.2); } else { depth = from + 6; tip = BX0 - 2; }
         if (u >= 0.58) { depth = D45; tip = lerp(BX0 - 2, BX0 - 24, span(u, 0.58, 0.6)); alpha = 1 - span(u, 0.59, 0.6); }
+        st.secAlpha = 1 - span(u, 0.58, 0.6);
         // chips burst out each time the drill pulls back
         st.chips = chipsSvg(clockS, 6, 2, (b) => { const q = span(b / C.dur[4], 0.04, 0.58) * n; const f = q - Math.floor(q); return b / C.dur[4] > 0.05 && b / C.dur[4] < 0.6 && f > 0.62 && f < 0.95; }, 1.2);
       } else {
+        // the other option, in a fresh hole: a carbide drill with coolant through
+        // the spindle goes the full 90 mm in one go, no pecking
         coolant = u > 0.62;
         alpha = span(u, 0.6, 0.63);
-        depth = D45 + (90 - D45) * span(u, 0.66, 0.96);
-        tip = u < 0.66 ? lerp(BX0 - 24, BX0 + D45 + tl, span(u, 0.62, 0.66)) : BX0 + depth + tl;
+        st.secAlpha = span(u, 0.6, 0.62);
+        depth = 90 * span(u, 0.66, 0.96);
+        tip = u < 0.66 ? lerp(BX0 - 24, BX0, span(u, 0.62, 0.66)) : BX0 + depth + tl;
         if (u > 0.66) st.chips = chipsSvg(clockS, 4.5, 2, (b) => b / C.dur[4] > 0.66 && b / C.dur[4] < 0.96, 1.8);
       }
       st.tool = { kind: 'drill', r, tip, theta: spin(9), tilt: 0, alpha };
@@ -453,7 +459,7 @@ const STAGE = (() => {
     } else if (si === 5) {
       const r = 3;
       const tip = u < 0.08 ? lerp(BX0 - 20, BX0, span(u, 0, 0.08)) : BX0 + 112 * span(u, 0.08, 0.92);
-      st.tool = { kind: 'gun', r, tip, theta: spin(5), tilt: 0, alpha: 1 };
+      st.tool = { kind: 'gun', r, tip, theta: spin(1.6), tilt: 0, alpha: 1 };
       st.hole = { rOf: (x) => (x <= tip ? r : 0), end: Math.max(BX0, tip) };
       if (u > 0.08) {
         st.coolant = coolantSvg(clockS, tip, r);

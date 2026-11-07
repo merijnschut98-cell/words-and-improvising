@@ -265,11 +265,11 @@ const CAM = [
   { from: cam([44, 0, 98], 140), to: cam([50, 0, 98], 125) },
   { from: cam([46, 0, 98], 125), to: cam([62, 0, 92], 190), a: 0.56, b: 0.7 },
   { from: cam([70, 0, 97], 210), to: cam([88, 0, 97], 200) },
-  { from: cam([76, 0, 97], 240), to: cam([110, 0, 97], 230) },
-  { from: cam([120, 10, 90], 380), to: cam([150, 20, 85], 400) },
+  { from: cam([34, 0, 99], 120), to: cam([110, 0, 97], 230), a: 0.3, b: 0.75 },
+  { from: cam([120, 10, 100], 380), to: cam([150, 20, 110], 400) },
   { from: cam([150, 20, 70], 380), to: cam([110, 0, 60], 330), a: 0.4, b: 0.6 },
 ];
-const DUR = [22, 15, 19, 21, 24, 15, 17, 17];
+const DUR = [22, 15, 19, 21, 24, 14, 18, 17];
 
 // ---------------------------------------------------------------- the film
 const spec = {
@@ -301,11 +301,11 @@ const spec = {
       ],
     },
     {
-      id: 's4', lesson: 'eng.machining.holes', level: 2, dur: DUR[3], still: 0.88, title: { nl: 'Tappen en kotteren', en: 'Tapping and boring' },
+      id: 's4', lesson: 'eng.machining.holes', level: 2, dur: DUR[3], still: 0.97, title: { nl: 'Tappen en kotteren', en: 'Tapping and boring' },
       beats: [
         { nl: 'Voor M{n:8} boor je eerst een {t:Kerngat|kerngat} van Ø{n:6.8}: de maat min de spoed van {n:1.25} mm.', en: 'For M{n:8} you first drill a {t:Tap drill hole|tap drill hole} of Ø{n:6.8}: the size minus the pitch of {n:1.25} mm.', cue: { Kerngat: 'rim' } },
         { nl: 'Daarna snijdt de tap de schroefdraad: {t:Tappen|tappen}.', en: 'Then the tap cuts the thread: {t:Tapping|tapping}.', cue: { Tappen: 'tool' } },
-        { nl: 'Een groot passend gat, zoals Ø{n:40} H7, draait een kotterkop uit: {t:Kotteren|kotteren}.', en: 'A large fitted hole, such as Ø{n:40} H7, is opened up by a boring head: {t:Boring|boring}.', cue: { Kotteren: 'tool' } },
+        { nl: 'Een groot passend gat, zoals Ø{n:40} H7, draait een kotterkop uit: {t:Kotteren|kotteren}.', en: 'A large fitted hole, such as Ø{n:40} H7, is opened up by a boring head: {t:Boring|boring}.', cue: { Kotteren: 'tool' }, read: { nl: 'Ø{n:40} H7: tolerantie {n:0} tot +{n:0.025} mm', en: 'Ø{n:40} H7: tolerance {n:0} to +{n:0.025} mm' } },
       ],
     },
     {
@@ -326,7 +326,7 @@ const spec = {
     {
       id: 's7', lesson: 'eng.machining.holequality', level: 4, dur: DUR[6], still: 0.86, title: { nl: 'Positie meten', en: 'Measuring position' },
       beats: [
-        { nl: 'De {t:Positietolerantie|positietolerantie} is een cirkel van Ø{n:0.1} rond de {t:Theoretisch exacte maat|theoretisch exacte maat}.', en: 'The {t:Position tolerance|position tolerance} is a circle of Ø{n:0.1} around the {t:Theoretically exact dimension|theoretically exact dimension}.', cue: { Positietolerantie: 'zone', 'Theoretisch exacte maat': 'ted' } },
+        { nl: '{t:Positietolerantie|Positietolerantie}: een cirkel van Ø{n:0.1} om de plek uit de {t:Theoretisch exacte maat|theoretisch exacte maten}.', en: 'The {t:Position tolerance|position tolerance}: a circle of Ø{n:0.1} around the spot set by the {t:Theoretically exact dimension|theoretically exact dimensions}.', cue: { Positietolerantie: 'zone', 'Theoretisch exacte maat': 'ted' } },
         { nl: 'De CMM meet gat {n:3}: dx {n:0.024} en dy {n:0.032}, dus {n:0.04} ernaast. Positie {n:2} × {n:0.04} = {n:0.08}.', en: 'The CMM measures hole {n:3}: dx {n:0.024} and dy {n:0.032}, so {n:0.04} off. Position {n:2} × {n:0.04} = {n:0.08}.', cues: ['zone'], read: { nl: '2 × √({n:0.024}² + {n:0.032}²) = {n:0.08} ≤ {n:0.1}', en: '2 × √({n:0.024}² + {n:0.032}²) = {n:0.08} ≤ {n:0.1}' } },
       ],
     },
@@ -363,6 +363,7 @@ const css = `
 .dr-dot{fill:var(--anatomy-hi);stroke:none}
 .dr-zone{fill:color-mix(in srgb,var(--fp-accent) 14%,transparent);stroke:var(--anatomy-mid);stroke-width:1.4;vector-effect:non-scaling-stroke}
 [data-cue][data-on] .dr-flute{fill:var(--anatomy-lit-shade)}
+.dr-groove,[data-cue][data-on] .dr-groove{fill:color-mix(in srgb,var(--fp-accent) 55%,var(--anatomy-shade-1))}
 [data-cue][data-on] .dr-zone{stroke:var(--fp-accent)}
 [data-cue][data-on] .dr-chipon{stroke:var(--fp-accent)}
 .fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
