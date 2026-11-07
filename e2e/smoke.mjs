@@ -621,8 +621,10 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
   const frame = page.locator('.film-wrap iframe.film-frame');
   await frame.waitFor();
   if ((await frame.getAttribute('sandbox')) !== 'allow-scripts') throw new Error('frame not sandboxed to allow-scripts');
-  const src = await frame.getAttribute('src');
-  if (!/^src\/content\/courses\/films\/eng\.machining\.turning\.html\?theme=(light|dark)&lang=nl&level=2$/.test(src)) throw new Error(`film src ${src}`);
+  // the page goes in as srcdoc (so it plays offline); its parameters ride in the frame name
+  const name = await frame.getAttribute('name');
+  if (!/^\?theme=(light|dark)&lang=nl&level=2$/.test(name)) throw new Error(`film params ${name}`);
+  if (await frame.getAttribute('src')) throw new Error('film frame has a src: offline it would be empty');
   const film = page.frameLocator('.film-frame');
   await film.locator('#film-data').waitFor({ state: 'attached', timeout: 10000 });
   await film.locator('.fp-poster-go').click();
@@ -2530,6 +2532,13 @@ await step('offline after first load', async () => {
   }
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await page.locator('.pre-card').waitFor({ timeout: 5000 });
+  // The explainer film plays offline too. A sandboxed frame's own navigation
+  // skips the service worker, so the button must not lead to an empty frame.
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+  await page.locator('.pre-card .opt').first().click();
+  await page.locator('.lesson > .pre-next').click();
+  await page.locator('.teach-card .film-btn').click({ timeout: 5000 });
+  await page.frameLocator('.film-frame').locator('.fp-poster-go').waitFor({ timeout: 5000 });
   await page.evaluate(() => window.__app.go('home'));
   await page.locator('.drill-frame').click();
   await page.locator('.intro-card').waitFor({ timeout: 5000 });

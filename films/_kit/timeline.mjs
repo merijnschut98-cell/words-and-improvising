@@ -95,6 +95,13 @@ export function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
   return tl.starts[sceneIndex] + local;
 }
 
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+export const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
+
 export function parseParams(search) {
   const q = new URLSearchParams(search || '');
   const theme = q.get('theme');

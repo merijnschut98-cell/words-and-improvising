@@ -4,9 +4,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   wordsOf, minSceneDur, parseMarked, formatNumber, speakOf, plainOf, timelineOf, sceneIndexAt,
-  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span,
+  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf,
 } from '../films/_kit/timeline.mjs';
-import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref } from '../src/ui/film.js';
+import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref, loadFilm } from '../src/ui/film.js';
 
 test('reading pace: a scene lasts at least words / 2.5 + 2 seconds', () => {
   assert.equal(wordsOf('  De snijsnelheid is  hoe snel '), 5);
@@ -86,6 +86,18 @@ test('page parameters: theme, lang, scene, motion, muted', () => {
   assert.equal(parseParams('?level=9').level, null);
 });
 
+// In the app the page arrives as srcdoc (so it plays offline: a sandboxed
+// frame's own navigation never goes through the service worker); its
+// parameters then come in the frame's name.
+test('page parameters come from the URL, or from the frame name when the page is srcdoc', () => {
+  assert.equal(searchOf('?theme=dark&lang=en', '?theme=light'), '?theme=dark&lang=en');
+  assert.equal(searchOf('', '?theme=dark&lang=en&level=3'), '?theme=dark&lang=en&level=3');
+  assert.equal(searchOf('', 'some-other-name'), '');
+  assert.equal(searchOf('', ''), '');
+  assert.equal(searchOf(undefined, undefined), '');
+  assert.equal(parseParams(searchOf('', '?lang=en&muted=1')).lang, 'en');
+});
+
 test('clock text and easing', () => {
   assert.equal(fmtClock(0), '0:00');
   assert.equal(fmtClock(65.4), '1:05');
@@ -111,6 +123,21 @@ test('filmSrc: theme, language, level, scene and the remembered mute', () => {
   assert.equal(filmSrc('eng.machining.turning', 'dark', 'en'), 'src/content/courses/films/eng.machining.turning.html?theme=dark&lang=en');
   assert.equal(filmSrc('x.y', 'light', 'nl', { level: 3, scene: 5, muted: true }), 'src/content/courses/films/x.y.html?theme=light&lang=nl&level=3&scene=5&muted=1');
   assert.equal(filmSrc('x.y', 'light', 'fr', { level: 9, scene: null }), 'src/content/courses/films/x.y.html?theme=light&lang=nl');
+});
+
+test('loadFilm: the page is fetched (the service worker answers offline) and handed to the frame as srcdoc', async () => {
+  const frame = {};
+  const asked = [];
+  const ok = await loadFilm(frame, 'src/content/courses/films/x.y.html', async (u) => { asked.push(u); return { ok: true, text: async () => '<p>film</p>' }; });
+  assert.equal(ok, true);
+  assert.deepEqual(asked, ['src/content/courses/films/x.y.html']);
+  assert.equal(frame.srcdoc, '<p>film</p>');
+  const missing = {};
+  assert.equal(await loadFilm(missing, 'a', async () => ({ ok: false, text: async () => 'Not found' })), false);
+  assert.equal('srcdoc' in missing, false);
+  const offline = {};
+  assert.equal(await loadFilm(offline, 'a', async () => { throw new TypeError('Failed to fetch'); }), false);
+  assert.equal('srcdoc' in offline, false);
 });
 
 test('the bridge accepts only well-formed messages from its own frame', () => {
