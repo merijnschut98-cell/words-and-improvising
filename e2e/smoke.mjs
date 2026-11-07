@@ -601,7 +601,7 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
     window.__spoken = [];
     const synth = window.speechSynthesis;
     synth.speak = (u) => { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 600); };
-    synth.cancel = () => {};
+    window.__cancels = 0; synth.cancel = () => { window.__cancels += 1; };
     try { localStorage.removeItem('vp:filmMuted'); } catch {}
   });
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
@@ -649,6 +649,16 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
   // closing the film removes the frame
   await btn.click();
   if (await page.locator('.film-frame').count()) throw new Error('film not closed');
+  // leaving the reading block while the film speaks removes it and silences the voice
+  await btn.click();
+  await page.frameLocator('.film-frame').locator('.fp-poster-go').click();
+  await page.waitForFunction(() => window.__spoken.length >= 2, null, { timeout: 8000 });
+  // voice.say() cancels too before each line: count only cancels beyond new lines
+  const before = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
+  await page.locator('.lesson > .btn-primary').click();
+  if (await page.locator('.film-frame').count()) throw new Error('film still open on the next reading block');
+  const after = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
+  if (after[0] - before[0] <= after[1] - before[1]) throw new Error('speech not cancelled when the reading block changed');
   await page.evaluate(() => window.__app.go('home'));
 });
 
