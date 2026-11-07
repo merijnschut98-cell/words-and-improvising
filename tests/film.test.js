@@ -43,6 +43,23 @@ test('speak variant: the English words in parentheses are not spoken', () => {
   assert.equal(speakOf(['Ø60 at ', { t: 'cutting speed', c: 'vc' }]), 'Ø60 at cutting speed');
 });
 
+// A voice reads "omw/min" as letters and a slash, and skips Ø and µ: with a
+// language, the speak variant says units and signs as words.
+test('speak variant: units and signs are said as words, per language', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  const en = (s) => speakOf([s], 'en');
+  assert.equal(nl('bij Ø60 en 220 m/min draait de spil 1.167 omw/min.'), 'bij diameter 60 en 220 meter per minuut draait de spil 1.167 omwentelingen per minuut.');
+  assert.equal(en('at Ø60 and 220 m/min the spindle turns at 1,167 rpm.'), 'at diameter 60 and 220 metres per minute the spindle turns at 1,167 revolutions per minute.');
+  assert.equal(nl('0,3 × 1.167 = 350 mm/min'), '0,3 maal 1.167 is 350 millimeter per minuut');
+  assert.equal(en('0.3 × 1,167 = 350 mm/min'), '0.3 times 1,167 is 350 millimetres per minute');
+  assert.equal(nl('160 / 20 = 8 × D.'), '160 gedeeld door 20 is 8 maal D.');
+  assert.equal(en('Above 6 × D'), 'Above 6 times D');
+  assert.equal(nl('Ra 0,77 µm, zes gaten op 60°.'), 'R a 0,77 micrometer, zes gaten op 60 graden.');
+  assert.equal(en('Ra 0.77 µm, six holes at 60°.'), 'R a 0.77 micrometres, six holes at 60 degrees.');
+  // words that merely contain the letters stay as they are
+  assert.equal(nl('Rand en rpmx en Radius'), 'Rand en rpmx en Radius');
+});
+
 test('timeline: scene starts, total, the scene at a time', () => {
   const tl = timelineOf([{ dur: 10 }, { dur: 5 }, { dur: 20 }]);
   assert.deepEqual(tl.starts, [0, 10, 15]);
@@ -238,14 +255,16 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   const data = resolveFilm(spec([
     { nl: 'De {t:Voeding|voeding} is {n:0.3} mm.', en: 'The {t:Feed|feed} is {n:0.3} mm.', cue: { Voeding: 'feed' } },
     { nl: 'Weer {t:Voeding|voeding}.', en: 'Again {t:Feed|feed}.', cue: { Voeding: 'feed' } },
+    { nl: 'Dan {n:1167} omw/min.', en: 'Then {n:1167} rpm.' },
   ]), lessons);
-  const [b1, b2] = data.scenes[0].beats;
+  const [b1, b2, b3] = data.scenes[0].beats;
+  assert.deepEqual(b3.speak, { nl: 'Dan 1.167 omwentelingen per minuut.', en: 'Then 1,167 revolutions per minute.' });
   assert.equal(b1.text.nl, 'De voeding (feed) is 0,3 mm.');
   assert.equal(b1.speak.nl, 'De voeding is 0,3 mm.');
   assert.equal(b1.text.en, 'The feed is 0.3 mm.');
   assert.equal(b2.text.nl, 'Weer voeding.');
   assert.deepEqual(data.scenes[0].terms, [{ lesson: 'eng.fx.a', index: 0, nl: 'Voeding', en: 'Feed', cue: 'feed' }]);
-  assert.deepEqual(data.numbers, [{ lesson: 'eng.fx.a', value: '0,3', scene: 's1' }]);
+  assert.deepEqual(data.numbers, [{ lesson: 'eng.fx.a', value: '0,3', scene: 's1' }, { lesson: 'eng.fx.a', value: '1.167', scene: 's1' }]);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Snijsnelheid}', en: '{t:Cutting speed}', cue: { Snijsnelheid: 'x' } }]), lessons), /none of the served/);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Steady rest}', cue: { Voeding: 'x' } }]), lessons), /different terms/);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Feed}' }]), lessons), /no cue/);
