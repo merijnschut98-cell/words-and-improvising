@@ -8,8 +8,8 @@ export default {
       pre: [
         {
           q: 'You lead the rollout of a new MES, the software that tracks orders and machines on the shop floor. The IT architect asks which database setup you prefer. What is your job here?',
-          options: ['Pick one, so you look decisive', 'Stay out of it entirely; it’s IT’s business', 'Make sure the choice is made by the right person, against the project’s goals, and recorded', 'Ask the supplier to decide'],
-          answer: 'Make sure the choice is made by the right person, against the project’s goals, and recorded',
+          options: ['Pick the option the architect seems to prefer, so the project keeps moving', 'Leave it to IT entirely; database choices aren’t a project leader’s business', 'See that the right person decides it against the project goals, and log it', 'Ask the supplier to choose, since they will have to support it later'],
+          answer: 'See that the right person decides it against the project goals, and log it',
           why: 'You don’t have to know the answer. You have to make sure a good answer gets made, by someone who can judge it, and that it fits the goal.',
         },
       ],
@@ -28,14 +28,14 @@ export default {
       recall: [
         {
           q: 'What does the project leader own when the content is outside his field?',
-          options: ['The process: who decides what, when, and how you know you’re on track', 'The technical solution', 'Nothing; the experts lead', 'The code review'],
-          answer: 'The process: who decides what, when, and how you know you’re on track',
+          options: ['The process: who decides what, when, and how progress is shown', 'The technical solution, since he answers for the overall result', 'Nothing beyond the schedule; the experts lead the content', 'The code review, so quality is checked independently'],
+          answer: 'The process: who decides what, when, and how progress is shown',
           why: 'The expert owns how it works; you own how the work gets done and whether it serves the goal.',
         },
         {
           q: 'Which split is right?',
-          options: ['Scope belongs to the experts, the solution to you', 'Both belong to the supplier', 'Both belong to the sponsor', 'Scope belongs to you and the sponsor, the solution to the experts'],
-          answer: 'Scope belongs to you and the sponsor, the solution to the experts',
+          options: ['Scope belongs to the experts, the solution to you and the sponsor', 'Scope and solution both belong to the supplier', 'Scope and solution both belong to the sponsor', 'Scope to you and the sponsor, the solution to the experts'],
+          answer: 'Scope to you and the sponsor, the solution to the experts',
           why: 'What the project delivers is a business choice; how it is built is a technical one.',
         },
         {
@@ -46,8 +46,8 @@ export default {
         },
         {
           q: 'Which is a typical failure of a project leader outside his field?',
-          options: ['Asking too many questions', 'Writing the goal down', 'Holding a weekly meeting', 'Trying to become a half-expert and losing the technical debates'],
-          answer: 'Trying to become a half-expert and losing the technical debates',
+          options: ['Asking the experts too many basic questions', 'Writing the goal down before the plan and the budget are ready', 'Holding a weekly meeting with every owner', 'Trying to become a half-expert and losing the debates'],
+          answer: 'Trying to become a half-expert and losing the debates',
           why: 'You burn credibility on ground you can’t hold, and neglect the planning and the people meanwhile.',
         },
       ],
@@ -88,13 +88,13 @@ export default {
       pre: [
         {
           q: 'In a meeting the engineers use a word you don’t know: “selectivity”. What is usually the best move?',
-          options: ['Nod and look it up afterwards', 'Change the subject', 'Ask: “What does selectivity mean here, and why does it matter for us?”', 'Pretend you know it and ask a general question'],
+          options: ['Nod along and look it up after the meeting, so you don’t slow them down', 'Ask them to send a written explanation of the term after the meeting', 'Ask: “What does selectivity mean here, and why does it matter for us?”', 'Ask a general question about the plan so it isn’t obvious you’re lost'],
           answer: 'Ask: “What does selectivity mean here, and why does it matter for us?”',
-          why: 'A short, genuine question costs ten seconds; nodding along means you miss what the next twenty minutes are about.',
+          why: 'A short, genuine question costs ten seconds; nodding along means you miss what the next twenty minutes are about. (Selectivity: in a fault, only the protection nearest to it switches off, so the rest of the factory keeps its power.)',
         },
       ],
       teach: [
-        'Curiosity is the wish to understand how something really works, and it is your main tool outside your field. Experts notice quickly whether you want to understand or just want a status.\n\nIntellectual humility is knowing, and saying, that your view might be wrong or incomplete. Psychologists such as Mark Leary (2017) describe it as recognising the limits of your own knowledge. In studies it goes with learning more and judging evidence better.',
+        'Curiosity is the wish to understand how something really works, and it is your main tool outside your field. Experts notice quickly whether you want to understand or just want a status.\n\nIntellectual humility is knowing, and saying, that your view might be wrong or incomplete. Psychologists such as Mark Leary (2017) describe it as recognising the limits of your own knowledge. In his studies it went with weighing evidence more carefully.',
         'The trap is the Dunning-Kruger effect: in experiments by David Dunning and Justin Kruger (1999), people with the least skill in a task tended to overestimate their score the most. Later researchers argue about how big the effect is, but the warning holds for you: after three weeks in a new field you feel you understand it, and that is exactly when you start making confident mistakes.',
         'Take a beginner’s mind: the attitude of someone who looks at a field fresh, without assuming he knows. In practice: ask naive questions out loud. A naive question is a basic question an insider wouldn’t ask, such as “Why does the cable have to be that thick?” or “What happens if this server goes down?”\n\nNaive questions often find what experts stopped seeing, because they take it for granted.',
         'How to ask without looking clueless: say why you ask. “I’m asking so I understand the risk, not to check you.” Ask about consequences, not mechanisms: “What does that mean for the date?” Then write the answer down and use it next time; that shows you listened.\n\nThe failure on the other side is fake humility: asking questions without ever building knowledge, so the experts have to explain the same thing every week.',
@@ -108,33 +108,33 @@ export default {
       recall: [
         {
           q: 'What is intellectual humility?',
-          options: ['Knowing and saying that your view might be wrong or incomplete', 'Never giving your opinion', 'Always agreeing with the experts', 'Not asking questions to save their time'],
+          options: ['Knowing and saying that your view might be wrong or incomplete', 'Keeping your opinion to yourself until the experts have spoken', 'Going along with the experts, since they know the field better', 'Not asking questions in meetings, to save the experts’ time'],
           answer: 'Knowing and saying that your view might be wrong or incomplete',
           why: 'It is about the limits of your knowledge, not about having no view.',
         },
         {
           q: 'What did Dunning and Kruger find, in short?',
-          options: ['Experts underestimate how long tasks take', 'People with the least skill tended to overestimate their score the most', 'Everyone rates themselves accurately', 'Beginners ask too many questions'],
+          options: ['Experts tended to underestimate how long their own tasks would take', 'People with the least skill tended to overestimate their score the most', 'Beginners rated themselves accurately once they had some feedback', 'The most skilled people overestimated their score more than beginners'],
           answer: 'People with the least skill tended to overestimate their score the most',
           why: 'Little knowledge also means little sense of what you are missing.',
         },
         {
           q: 'How do you ask a naive question without looking clueless?',
-          options: ['Ask it as a joke', 'Ask it by email afterwards', 'Say why you ask, and ask about consequences rather than mechanisms', 'Ask the most junior person instead'],
-          answer: 'Say why you ask, and ask about consequences rather than mechanisms',
+          options: ['Ask it as a joke, so nobody takes it too seriously', 'Ask it by email afterwards, so nobody in the room sees you don’t know', 'Say why you ask, and ask about consequences, not mechanisms', 'Ask the most junior person in the room to ask it for you'],
+          answer: 'Say why you ask, and ask about consequences, not mechanisms',
           why: '“I’m asking to understand the risk” and “what does that mean for the date?” keep the question on your role.',
         },
         {
           q: 'What is fake humility?',
-          options: ['Asking questions but never building knowledge, so experts explain the same thing each week', 'Asking too few questions', 'Admitting a mistake', 'Saying “I don’t know”'],
-          answer: 'Asking questions but never building knowledge, so experts explain the same thing each week',
+          options: ['Asking but never learning, so experts keep repeating themselves', 'Asking so few questions that experts assume you already know it all', 'Admitting a mistake only after someone else has pointed it out', 'Saying “I don’t know” to avoid taking a position in a meeting'],
+          answer: 'Asking but never learning, so experts keep repeating themselves',
           why: 'Real humility learns; asking the same thing again costs them time and you credibility.',
         },
       ],
       situation: {
         scene: 'Progress meeting with an automation supplier. Their PLC programmer explains a delay and uses three words you don’t know: “safety PLC”, “SIL” and “validation”. The client’s production manager is in the room and glances at you.',
         ask: 'What do you say?',
-        model: '“Let me check I follow, because this matters for the date. A safety PLC is the separate controller that stops the cell safely, right? And SIL, what does that stand for, and does the level change how much testing we need?” Then: “So in plain words: the safety part has to be proven separately, and that’s the two weeks. What would help you do it faster?”',
+        model: '“Let me check I follow, because this matters for the date. A safety PLC is the separate controller that stops the cell safely, right? And SIL, what does that stand for, and does the level change how much testing we need?” Then: “So in plain words: the safety part has to be proven separately, and that’s the two weeks. What would help you do it faster?” (For you: SIL, safety integrity level, says how reliable a safety function must be; a higher level means more proof and testing.)',
         rubric: [
           'Asks openly instead of nodding along',
           'Links the questions to the consequence for the project',
@@ -168,8 +168,8 @@ export default {
       pre: [
         {
           q: 'Why do experts trust some project leaders who know little of their field?',
-          options: ['Because they are senior', 'Because they use the right jargon', 'Because they agree with everything', 'Because they are reliable, prepared, and clearly on the side of the project rather than themselves'],
-          answer: 'Because they are reliable, prepared, and clearly on the side of the project rather than themselves',
+          options: ['Because they are senior and have led bigger projects before', 'Because they pick up the jargon fast and use it in meetings', 'Because they back the experts’ views in front of the sponsor', 'Because they deliver what they promise and put the project first'],
+          answer: 'Because they deliver what they promise and put the project first',
           why: 'Credibility outside your field comes from how you run things, not from what you know of the content.',
         },
       ],
@@ -196,19 +196,19 @@ export default {
         },
         {
           q: 'What does credibility mean for a project leader outside his field?',
-          options: ['Never admitting a gap', 'Knowing the technical content as well as the experts', 'Being the most senior person', 'Knowing the plan, risks and decisions best, and being honest about what he doesn’t know'],
-          answer: 'Knowing the plan, risks and decisions best, and being honest about what he doesn’t know',
+          options: ['Never admitting a gap, so the experts keep their confidence in him', 'Knowing the technical content almost as well as the experts', 'Having the most senior title in the room', 'Knowing plan, risks and decisions best, and being open about gaps'],
+          answer: 'Knowing plan, risks and decisions best, and being open about gaps',
           why: 'You can’t compete on content, so you lead on the process and on honesty.',
         },
         {
           q: 'What is the problem with borrowed authority (“the sponsor wants this”)?',
-          options: ['It is against the rules', 'It is too slow', 'It works once and weakens you every time after', 'Experts don’t know the sponsor'],
+          options: ['It breaks the project’s governance rules', 'It slows decisions down, because the sponsor must confirm', 'It works once and weakens you every time after', 'Experts don’t know who the sponsor is'],
           answer: 'It works once and weakens you every time after',
           why: 'People learn that you have no reasons of your own, only someone else’s weight.',
         },
         {
           q: 'You broke a promise to an expert. What repairs trust fastest?',
-          options: ['Naming it briefly, then keeping the next promises exactly', 'A gift', 'Asking the sponsor to smooth it over', 'A long explanation of why it happened'],
+          options: ['Naming it briefly, then keeping the next promises exactly', 'Offering a small favour to make up for it', 'Asking the sponsor to smooth things over with her', 'Explaining in detail why it happened, so she understands your side'],
           answer: 'Naming it briefly, then keeping the next promises exactly',
           why: 'Trust comes back through kept promises, not through explanations.',
         },
@@ -250,8 +250,8 @@ export default {
       pre: [
         {
           q: 'The automation supplier proposes to drop the second safety test “because the first one went fine”. Who should decide that?',
-          options: ['The supplier, they know the cell', 'Whoever is accountable for the project’s risks, with the expert advice on the table', 'The PLC programmer', 'Nobody; tests are always optional'],
-          answer: 'Whoever is accountable for the project’s risks, with the expert advice on the table',
+          options: ['The supplier, because they know the cell best', 'Whoever answers for the project’s risks, with expert advice', 'The PLC programmer, because he wrote the safety code', 'The safety engineer alone, because it is purely a safety question'],
+          answer: 'Whoever answers for the project’s risks, with expert advice',
           why: 'Experts advise on the risk; the decision to accept it stays with the person accountable for the project.',
         },
       ],
@@ -264,7 +264,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Grid operator project, month 5. The installer’s project manager emails you: “To keep the date we’ll energise the new switchgear without the full set of protection settings tests; we’ll do those in the first week of operation. Technically it’s fine.” Protection settings decide when the switchgear cuts the power in a fault. The factory’s production manager is copied in and replies: “Great, keep the date!”',
+        text: 'Grid operator project, month 5. The installer’s project manager emails you: “To keep the date we’ll energise the new switchgear without the full set of protection settings tests; we’ll do those in the first week of operation. Technically it’s fine.” Energising means switching the power on. Protection settings decide when the switchgear cuts the power in a fault. The factory’s production manager is copied in and replies: “Great, keep the date!”',
         ask: 'What do you do with this email?',
         reveal: 'This is presented as technical but it is a risk decision. Don’t approve it in the email thread and don’t let the production manager’s enthusiasm decide it.\n\nAsk the installer and the grid operator’s engineer in writing what the risk is, how likely and how bad: a wrong trip stops the factory; a missing trip can damage equipment. Put it on one page with the options (keep the date with that risk, or a week later fully tested) and have the sponsor decide. Record it in the decision log.',
       },
@@ -284,14 +284,14 @@ export default {
         },
         {
           q: 'Why is “the supplier handles the risks” dangerous?',
-          options: ['Suppliers don’t know about risks', 'It is against the contract', 'Risks don’t matter in IT', 'The risks then get managed against the supplier’s goals, not yours'],
-          answer: 'The risks then get managed against the supplier’s goals, not yours',
+          options: ['Suppliers rarely know enough about the client’s risks', 'It usually breaches the contract with the supplier', 'Risks in IT projects are mostly too small to matter', 'The risks then get managed against the supplier’s goals'],
+          answer: 'The risks then get managed against the supplier’s goals',
           why: 'The supplier’s goal, such as finishing on budget, isn’t always the client’s goal.',
         },
         {
           q: 'An expert says: “We’ll skip that test, it’s technical.” What is the better reading?',
-          options: ['A purely technical choice, so leave it to him', 'Possibly a trade-off between time, cost and risk that the accountable person should decide', 'An attempt to cheat', 'A sign the project is finished'],
-          answer: 'Possibly a trade-off between time, cost and risk that the accountable person should decide',
+          options: ['A purely technical choice, so leave it to him', 'A time-cost-risk trade-off for the accountable person to decide', 'A sign that the supplier is trying to cut corners', 'A routine step, since tests are often trimmed in the last weeks before go-live'],
+          answer: 'A time-cost-risk trade-off for the accountable person to decide',
           why: 'Skipping a test usually means accepting more risk to save time: a business decision.',
         },
       ],
@@ -333,8 +333,8 @@ export default {
       pre: [
         {
           q: 'The installer says the new cable will be ready in 6 weeks. Which question reveals the most?',
-          options: ['“Are you sure?”', '“Is that in working days?”', '“Can it be 5?”', '“What has to be true for it to be 6 weeks?”'],
-          answer: '“What has to be true for it to be 6 weeks?”',
+          options: ['“Are you confident you can hold the six weeks?”', '“Is that six weeks in working days or calendar weeks?”', '“Could your team do it in five if we push?”', '“What has to be true for it to be six weeks?”'],
+          answer: '“What has to be true for it to be six weeks?”',
           why: 'It brings out the assumptions behind the estimate, such as permits, materials and crews, which is where the risk sits.',
         },
       ],
@@ -347,31 +347,31 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Kick-off for an MES at a metal parts maker. You walk the five areas with the supplier and the IT lead.\n\nScope: “At go-live, which lines are on the MES?” “Lines 1 and 2. Line 3 isn’t included.”\nAssumption: “What are we assuming?” “That machine data comes in through the existing network.” You write: unchecked.\nRisk: “What has gone wrong elsewhere?” “Master data, the base data on products and routings, was dirty.”\nEstimate: “Data clean-up?” “Four to eight weeks, depending on the state.”\nDependency: “What do you need?” “An ERP interface from the client’s IT by 1 March.”\n\nFive questions, three new risks, one owner each.',
+        text: 'Kick-off for an MES at a metal parts maker. You walk the five areas with the supplier and the IT lead.\n\nScope: “At go-live, which lines are on the MES?” “Lines 1 and 2. Line 3 isn’t included.”\nAssumption: “What are we assuming?” “That machine data comes in through the existing network.” You write: unchecked.\nRisk: “What has gone wrong elsewhere?” “Master data, the base data on products and routings (the sequence of steps each product goes through), was dirty.”\nEstimate: “Data clean-up?” “Four to eight weeks, depending on the state.”\nDependency: “What do you need?” “An ERP interface from the client’s IT by 1 March.”\n\nFive questions, three new risks, one owner each.',
       },
       said: 'What you hear in projects: “That’s not in scope.” Good to hear early; terrible to hear at go-live.',
       recall: [
         {
           q: 'What are the five areas of the question set, in order?',
-          options: ['Budget, team, tools, timing, quality', 'Goal, method, test, launch, review', 'Scope, assumptions, risks, estimates, dependencies', 'Who, what, where, when, why'],
+          options: ['Budget, resources, milestones, quality, communication', 'Goals, stakeholders, constraints, methods, reviews', 'Scope, assumptions, risks, estimates, dependencies', 'Requirements, design, build, test, handover'],
           answer: 'Scope, assumptions, risks, estimates, dependencies',
           why: 'Each builds on the one before: you can’t estimate without knowing the scope and the assumptions.',
         },
         {
           q: 'Which half of the scope question matters most?',
-          options: ['What is explicitly not included', 'What it costs', 'What we will deliver', 'Who signs it off'],
+          options: ['What is explicitly not included', 'What the full scope will cost', 'What we will deliver at the end', 'Who signs the scope off'],
           answer: 'What is explicitly not included',
           why: 'Misunderstandings sit in what one party assumes is included and the other doesn’t.',
         },
         {
           q: 'Why ask experts about risks one by one rather than in a group?',
-          options: ['It is faster', 'In a group the most senior voice sets the tone', 'Experts don’t like groups', 'It is required by contract'],
+          options: ['It is quicker than a group session', 'In a group the most senior voice sets the tone', 'Experts prefer not to talk about risks in groups', 'It keeps the risk register confidential'],
           answer: 'In a group the most senior voice sets the tone',
           why: 'One-on-one, people name worries they’d keep to themselves in front of a senior colleague.',
         },
         {
           q: 'What causes most delays in projects outside your field, according to the lesson?',
-          options: ['Bad technology', 'Lazy experts', 'Dependencies nobody owned', 'Too many meetings'],
+          options: ['Technology that turns out not to work', 'Experts who underestimate their work', 'Dependencies nobody owned', 'Too many meetings and status reports eating up time'],
           answer: 'Dependencies nobody owned',
           why: 'The work often waits on something from another party that nobody was chasing.',
         },
@@ -413,17 +413,17 @@ export default {
       pre: [
         {
           q: 'The team says the go-live plan is solid. Which question tends to bring up the most risks?',
-          options: ['“Imagine it’s six months from now and the go-live failed. What happened?”', '“Is everyone happy with the plan?”', '“Any risks?”', '“Can we go faster?”'],
-          answer: '“Imagine it’s six months from now and the go-live failed. What happened?”',
+          options: ['“Imagine it’s six months on and the go-live failed. What happened?”', '“On a scale of one to ten, how confident is everyone here in this plan?”', '“Does anyone see any risks we haven’t put on the list yet?”', '“What could we do to go live a few weeks earlier?”'],
+          answer: '“Imagine it’s six months on and the go-live failed. What happened?”',
           why: 'Imagining the failure as already happened makes it easier for people to name causes than “any risks?”, which invites a quick no.',
         },
       ],
       teach: [
         'Two questions do more work than any others when you can’t judge the content: “What would make this fail?” and “How do you know?”\n\nThe first finds risks. The second checks the claims. Together they let you test a plan without understanding every detail of it.',
-        'A premortem is a structured version of the first question. Gary Klein described it in Harvard Business Review (2007): the team imagines the project has already failed and each person writes down why, before anyone speaks.\n\nKlein cites research (Mitchell, Russo and Pennington, 1989) in which imagining an event as already happened raised people’s ability to name reasons for it by about 30%. Writing first stops the senior voice from setting the tone.',
+        'A premortem is a structured version of the first question. Gary Klein described it in Harvard Business Review (2007): the team imagines the project has already failed and each person writes down why, before anyone speaks.\n\nKlein cites a study (Mitchell, Russo and Pennington, 1989) in which people who imagined an event had already happened came up with about 30% more reasons for it. It counted reasons, not their quality, but more candidates is what you want here. Writing first stops the senior voice from setting the tone.',
         'Look out for a single point of failure: one part, person or supplier that, if it fails, stops everything. One server with no backup, one programmer who knows the code, one cable feeding the whole factory.\n\nFor each serious risk, ask for the mitigation: what we do now to make it less likely or less bad, and who owns it. A risk without a mitigation and an owner is just a worry.',
         '“How do you know?” asks for evidence: something you or someone else can see, test or check, not an opinion. The ladder runs from weak to strong: “I think so”, “it worked before”, “we tested it here”, “here is the test report”.\n\nAsk it calmly and about the claim, not the person: “How do we know the network can carry the data?” rather than “Are you sure?”',
-        'The typical failure is asking the questions and accepting the first answer. The first answer is usually the comfortable one; the useful one comes after a pause or a second question: “And if that happened, what would we see first?”\n\nA rough rule many project leaders use: if a premortem produces no risk that surprises you, people haven’t been honest yet.',
+        'The typical failure is asking the questions and accepting the first answer. The first answer is usually the comfortable one; the useful one comes after a pause or a second question. That is Silence and Inquiry from MORE PIES, a listening checklist you’ll meet in full later: stay quiet, then ask one level deeper: “And if that happened, what would we see first?”\n\nA rough rule many project leaders use: if a premortem produces no risk that surprises you, people haven’t been honest yet.',
       ],
       example: {
         kind: 'worked',
@@ -433,26 +433,26 @@ export default {
       recall: [
         {
           q: 'What happens in a premortem?',
-          options: ['The team reviews a project after it ended', 'The supplier presents its test results', 'The sponsor lists the risks', 'The team imagines the project has failed and each person writes down why'],
-          answer: 'The team imagines the project has failed and each person writes down why',
+          options: ['The team reviews what went wrong after the project ended', 'The supplier walks the team through its test results', 'The sponsor lists the risks she wants the team to manage closely', 'The team imagines the project has failed and writes down why'],
+          answer: 'The team imagines the project has failed and writes down why',
           why: 'Imagined hindsight makes it easier to name causes; writing alone first keeps it honest.',
         },
         {
-          q: 'In the research Klein cites, by roughly how much did imagining an event as already happened raise the ability to name reasons for it?',
-          options: ['About 5%', 'About 30%', 'About 80%', 'It made no difference'],
-          answer: 'About 30%',
-          why: 'Mitchell, Russo and Pennington (1989), as cited by Klein (2007).',
+          q: 'In the 1989 study Klein cites, roughly how many more reasons did people come up with when they imagined the event had already happened?',
+          options: ['About 80% more', 'About 30% more', 'No more at all', 'About 5% more'],
+          answer: 'About 30% more',
+          why: 'Mitchell, Russo and Pennington (1989), cited by Klein (2007). Klein calls it a 30% better ability to identify reasons; the study counted how many reasons people gave, not how good they were.',
         },
         {
           q: 'Which is the strongest evidence that a scanner works on the line?',
-          options: ['“I think so”', '“It worked at another client”', '“We tested it in the office”', '“Here is the report of the test on line 2”'],
+          options: ['“I’m fairly sure it works; it’s a standard scanner”', '“It worked fine at another client last year”', '“We tested it in the office and it connected”', '“Here is the report of the test on line 2”'],
           answer: '“Here is the report of the test on line 2”',
           why: 'Tested here, in the real conditions, and written down: the top of the ladder.',
         },
         {
           q: 'What is a single point of failure?',
-          options: ['The biggest risk on the list', 'A risk nobody owns', 'One part, person or supplier that stops everything if it fails', 'A failed test'],
-          answer: 'One part, person or supplier that stops everything if it fails',
+          options: ['The risk with the highest score on the project’s risk register', 'A risk that has no owner or mitigation', 'One part, person or supplier whose failure stops everything', 'A test that fails and blocks the next milestone'],
+          answer: 'One part, person or supplier whose failure stops everything',
           why: 'One server, one expert, one cable: no backup means one failure stops the whole.',
         },
       ],
@@ -483,6 +483,7 @@ export default {
         { term: 'Premortem', def: 'A session where the team imagines the project has failed and writes down why, before it starts (Klein, 2007).' },
         { term: 'Single point of failure', def: 'One part, person or supplier that stops everything if it fails.' },
         { term: 'Mitigation', def: 'What you do now to make a risk less likely or less bad, with an owner.' },
+        { term: 'MORE PIES', def: 'A checklist for active listening: Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence.' },
         { term: 'Evidence', def: 'Something you can see, test or check, not an opinion; from “I think so” up to a test report.' },
       ],
     },
@@ -492,15 +493,15 @@ export default {
       pre: [
         {
           q: 'A programmer estimates the interface at “three weeks”. You can’t judge the code. What is the most useful next step?',
-          options: ['Ask for a range and for how long similar interfaces took before', 'Cut it to two weeks to create pressure', 'Accept it; he knows best', 'Double it'],
-          answer: 'Ask for a range and for how long similar interfaces took before',
+          options: ['Ask for a range and how long similar interfaces took before', 'Cut it to two weeks, so there is a stretch target to aim for', 'Accept it as it is, since he is the one who knows the code', 'Add a 50% buffer, the usual margin for software work'],
+          answer: 'Ask for a range and how long similar interfaces took before',
           why: 'A range shows the uncertainty, and past jobs are the best check you have without knowing the code.',
         },
       ],
       teach: [
         'You can’t check an estimate by judging the work, but you can check how it was made. Three tools: ranges, reference classes and a second estimate.\n\nThe reason you need them: Daniel Kahneman and Amos Tversky (1979) named the planning fallacy, the tendency to underestimate how long your own task will take, even when you know similar tasks ran late. Experts suffer from it too.',
-        'A range is a low and a high estimate instead of one number: “between 3 and 6 weeks”. It shows how uncertain someone is. A three-point estimate adds a most likely value; a common formula (from PERT, used by the US Navy from 1958) weights it: (optimistic + 4 × most likely + pessimistic) ÷ 6.\n\nIt is a convention, not a law, but it pulls the estimate towards the long tail.',
-        'A reference class is a group of similar past projects you use as a yardstick. Kahneman and Bent Flyvbjerg recommend it: instead of reasoning from the plan, ask “how long did the last five interfaces like this take?”\n\nFlyvbjerg and Gardner (How Big Things Get Done, 2023) report from about 16,000 projects that only 8.5% hit both budget and schedule. Base rates like that beat confident plans.',
+        'A range is a low and a high estimate instead of one number: “between 3 and 6 weeks”. It shows how uncertain someone is. A three-point estimate adds a most likely value; a common formula (from PERT, developed for the US Navy’s Polaris missile programme in 1958) weights it: (optimistic + 4 × most likely + pessimistic) ÷ 6.\n\nIt is a convention, not a law, but it pulls the estimate towards the long tail.',
+        'A reference class is a group of similar past projects you use as a yardstick. Kahneman and Bent Flyvbjerg recommend it: instead of reasoning from the plan, ask “how long did the last five interfaces like this take?”\n\nFlyvbjerg and Gardner (How Big Things Get Done, 2023) report from a database of about 16,000 projects, mostly large ones, that only 8.5% hit both budget and schedule, and only 0.5% also delivered the promised benefits. A base rate like that beats a confident plan.',
         'A second estimate: ask another expert, without showing the first number, and compare. If they’re close, good. If they’re far apart, the gap is the conversation: “What do you see that makes it longer?”\n\nWatch the language too. “Three weeks if nothing goes wrong” is the best case, not the estimate. And an estimate that never changes over months is often not being updated.',
         'Experts argue about how to use estimates. Some agile teams avoid time estimates and only forecast from their own track record. Others want a firm number for the contract. For you the question is simpler: is the estimate a forecast with its uncertainty, or a hope?\n\nA sharp question: “What would make it take twice as long?” If the answer comes instantly, put that in the range.',
       ],
@@ -514,8 +515,8 @@ export default {
       recall: [
         {
           q: 'What is the planning fallacy?',
-          options: ['Making plans without a budget', 'Underestimating how long your own task will take, even knowing similar tasks ran late', 'Planning too far ahead', 'Overestimating risks'],
-          answer: 'Underestimating how long your own task will take, even knowing similar tasks ran late',
+          options: ['Making a plan before the budget has been approved', 'Underestimating your own task, even knowing similar ones ran late', 'Planning so far ahead that the plan is already outdated before it starts', 'Overestimating risks, so plans carry too much buffer'],
+          answer: 'Underestimating your own task, even knowing similar ones ran late',
           why: 'Named by Kahneman and Tversky (1979); experts are not immune.',
         },
         {
@@ -527,13 +528,13 @@ export default {
         },
         {
           q: 'What is a reference class?',
-          options: ['A training course for estimators', 'The most senior expert’s opinion', 'A group of similar past projects used as a yardstick', 'The contract price'],
+          options: ['A training course that teaches experts to estimate', 'The estimate of the most senior expert, used as a benchmark', 'A group of similar past projects used as a yardstick', 'The price in the contract, used as a ceiling'],
           answer: 'A group of similar past projects used as a yardstick',
           why: 'Past outcomes of similar work are a better check than reasoning from the plan alone.',
         },
         {
           q: 'Two experts give independent estimates: 4 weeks and 10 weeks. What do you do?',
-          options: ['Ask what each sees that the other doesn’t', 'Take the shorter one', 'Take the longer one', 'Take the average'],
+          options: ['Ask what each sees that the other doesn’t', 'Take the shorter one, to keep pressure on the team', 'Take the longer one, to be safe', 'Take the average: 7 weeks'],
           answer: 'Ask what each sees that the other doesn’t',
           why: 'The gap shows different assumptions; that conversation is worth more than either number.',
         },
@@ -575,9 +576,9 @@ export default {
       pre: [
         {
           q: 'The grid engineer says: “The short-circuit level at the connection point is too high for that switchgear.” What is the best reply for a project leader?',
-          options: ['“Okay.”', '“Let’s take that offline.”', '“Can you send me the calculation?”', '“So, if I understand you, the switchgear the factory chose can’t safely handle a fault there. What does that mean for cost and date?”'],
-          answer: '“So, if I understand you, the switchgear the factory chose can’t safely handle a fault there. What does that mean for cost and date?”',
-          why: 'Paraphrasing in plain words checks you understood, and the follow-up turns jargon into a project consequence.',
+          options: ['“Okay, noted. Let’s keep going for now and pick this up again at the next meeting.”', '“Let’s take that offline; can you and the installer sort out a solution this week?”', '“Can you send me the calculation so I can go through it over the weekend?”', '“So that switchgear can’t take a fault there? What does it mean for cost and date?”'],
+          answer: '“So that switchgear can’t take a fault there? What does it mean for cost and date?”',
+          why: 'Paraphrasing in plain words checks you understood, and the follow-up turns jargon into a project consequence. (Short-circuit level: how much current flows in a fault; the switchgear must be able to switch it off safely.)',
         },
       ],
       teach: [
@@ -597,26 +598,26 @@ export default {
       recall: [
         {
           q: 'What do the letters of MORE PIES stand for?',
-          options: ['Meaning, Order, Results, Evidence, Planning, Issues, Estimates, Scope', 'Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence', 'Motivation, Openness, Respect, Energy, Patience, Interest, Empathy, Speed', 'Monitor, Organise, Review, Evaluate, Plan, Inform, Escalate, Sign off'],
+          options: ['Mood, Open questions, Reflecting, Empathy, Positivity, Interest, Evaluation, Summarising', 'Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence', 'Motivation, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Evaluation, Silence', 'Mood, Observing, Reflecting, Encouraging, Paraphrasing, Interest, Experience, Summarising'],
           answer: 'Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence',
           why: 'A checklist for active listening; Paraphrasing and Inquiry do most of the translating work.',
         },
         {
           q: 'Which three questions turn jargon into a project consequence?',
-          options: ['Who, what, where', 'Why, why, why', 'Is it in scope, is it tested, is it signed?', 'What does it mean for the date, the cost and the risk?'],
+          options: ['Who owns it, what does it need, where is it stuck?', 'Why, why and why again, until you reach the root cause?', 'Is it in scope, is it tested, is it signed off?', 'What does it mean for the date, the cost and the risk?'],
           answer: 'What does it mean for the date, the cost and the risk?',
           why: 'Those are the terms the sponsor decides in.',
         },
         {
           q: 'What is teach-back, used by a project leader?',
-          options: ['Sending the minutes for approval', 'Teaching the expert project management', 'Explaining the expert’s point back as you would to the sponsor, and letting him correct it', 'Asking the expert to train the operators'],
-          answer: 'Explaining the expert’s point back as you would to the sponsor, and letting him correct it',
+          options: ['Sending the meeting minutes to the expert for his review and approval', 'Teaching the expert the basics of project management', 'Retelling his point as you’d tell the sponsor, for him to correct', 'Asking the expert to explain the change to the operators'],
+          answer: 'Retelling his point as you’d tell the sponsor, for him to correct',
           why: 'It gives you a plain sentence the expert agrees with, so you don’t misquote him upstairs.',
         },
         {
           q: 'Which is a typical failure when translating jargon?',
-          options: ['Translating so loosely the meaning changes, such as “so it’s basically fine?”', 'Asking for a correction', 'Pausing after the paraphrase', 'Asking about cost'],
-          answer: 'Translating so loosely the meaning changes, such as “so it’s basically fine?”',
+          options: ['Translating so loosely the meaning shifts: “so it’s basically fine?”', 'Asking the expert to correct your paraphrase in front of the sponsor', 'Staying silent after the paraphrase until the expert fills the gap', 'Asking the expert for the one sentence the sponsor must really remember'],
+          answer: 'Translating so loosely the meaning shifts: “so it’s basically fine?”',
           why: 'A loose translation invites a polite yes and loses the risk.',
         },
       ],
@@ -645,7 +646,6 @@ export default {
       sayIt: 'Translate one piece of jargon from your own work in 60 seconds: paraphrase it, then say what it means for date, cost and risk.',
       terms: [
         { term: 'Jargon', def: 'The specialist language of a field: precise for insiders, opaque for others.' },
-        { term: 'MORE PIES', def: 'A checklist for active listening: Mood, Open questions, Reflecting, Empathy, Paraphrasing, Inquiry, Experience, Silence.' },
         { term: 'Active listening', def: 'Listening to understand rather than to reply, and showing it.' },
         { term: 'Paraphrasing', def: 'Restating the content in your own words to check you understood.' },
         { term: 'Inquiry', def: 'Asking one level deeper, until you reach the consequence.' },
@@ -659,8 +659,8 @@ export default {
       pre: [
         {
           q: 'The PLC programmer says the safety stops all work. You can’t read the code. What is a sensible check?',
-          options: ['Ask him if he is sure', 'Ask to see the safety test where each stop is triggered, with the results signed', 'Read the code yourself', 'Trust him; checking is insulting'],
-          answer: 'Ask to see the safety test where each stop is triggered, with the results signed',
+          options: ['Ask him to confirm in writing that every single stop has been checked', 'Watch the test where each stop is triggered, and get it signed', 'Read the safety part of the code yourself, with his help', 'Trust him, since asking for proof would undermine him'],
+          answer: 'Watch the test where each stop is triggered, and get it signed',
           why: 'You check the result, not the code, and you check most where the risk is highest.',
         },
       ],
@@ -673,25 +673,25 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Robot cell project. Forty items on the supplier’s checklist. You can’t judge any of them yourself.\n\nStep 1: sort by risk with the client’s safety engineer. Five items are safety (emergency stops, light curtain, fence interlocks), three are contract performance (speed, uptime), thirty-two are routine.\nStep 2: safety and performance get a full check: you watch the test, and the safety engineer signs.\nStep 3: routine gets a spot check: you pick three at random and ask to see them.\nStep 4: you agree this with the supplier at the start: “This is how I check, on every project.”\n\nResult: full grip on the eight items that matter, a light touch on the rest.',
+        text: 'Robot cell project. Forty items on the supplier’s checklist. You can’t judge any of them yourself.\n\nStep 1: sort by risk with the client’s safety engineer. Five items are safety (emergency stops; the light curtain, a beam that stops the robot when someone reaches in; fence interlocks that stop it when a gate opens), three are contract performance (speed, uptime), thirty-two are routine.\nStep 2: safety and performance get a full check: you watch the test, and the safety engineer signs.\nStep 3: routine gets a spot check: you pick three at random and ask to see them.\nStep 4: you agree this with the supplier at the start: “This is how I check, on every project.”\n\nResult: full grip on the eight items that matter, a light touch on the rest.',
       },
       said: 'What you hear in projects: “Just trust us, we’ve done this before.” And the answer: “I do. Show me the test anyway.”',
       recall: [
         {
           q: 'What do you verify when you can’t judge the method?',
-          options: ['The expert’s CV', 'Nothing; trust is enough', 'The results, and that a qualified second person checked them', 'Every line of the work'],
+          options: ['The expert’s CV and the references from his previous projects', 'Nothing more; trust is enough with a good expert', 'The results, and that a qualified second person checked them', 'Every step of the work, as far as you can follow it'],
           answer: 'The results, and that a qualified second person checked them',
           why: 'You check outcomes and make sure the four-eyes check exists, without being the second pair of eyes.',
         },
         {
           q: 'What is the four-eyes principle?',
-          options: ['Every important piece of work is checked by a second qualified person', 'Two suppliers for each part', 'Two meetings a week', 'Two signatures on every invoice'],
-          answer: 'Every important piece of work is checked by a second qualified person',
+          options: ['Important work is checked by a second qualified person', 'Every critical part is bought from two different suppliers', 'Every project has two leaders who share the role', 'Every expert works with a junior who watches over his shoulder'],
+          answer: 'Important work is checked by a second qualified person',
           why: 'A second qualified check catches what the first person can’t see in their own work.',
         },
         {
           q: 'Which items get a full check in risk-based checking?',
-          options: ['All items equally', 'The newest items', 'Whatever the expert suggests', 'Safety, money, and anything you can’t undo'],
+          options: ['All items equally, so nobody feels singled out', 'The newest items, because they are untested', 'Whatever the expert says is most important', 'Safety, money, and anything you can’t undo'],
           answer: 'Safety, money, and anything you can’t undo',
           why: 'Check hardest where a mistake hurts most; spot-check the routine.',
         },
@@ -738,7 +738,7 @@ export default {
       pre: [
         {
           q: 'Two engineers disagree on whether to repair or replace an old transformer. You can’t judge who is right. What is the best first step?',
-          options: ['Go with the more senior one', 'Ask them to sort it out between themselves', 'Toss a coin', 'Agree the decision criteria first: cost, risk, downtime, lifetime'],
+          options: ['Go with the more senior engineer, since experience counts most here', 'Ask them to sort it out between themselves and come back', 'Ask a third engineer to cast the deciding vote', 'Agree the decision criteria first: cost, risk, downtime, lifetime'],
           answer: 'Agree the decision criteria first: cost, risk, downtime, lifetime',
           why: 'With agreed criteria the argument becomes a comparison you can follow, not a battle of authority.',
         },
@@ -758,25 +758,25 @@ export default {
       recall: [
         {
           q: 'What do you put on the table first when experts disagree?',
-          options: ['The options', 'The budget', 'The decision criteria', 'The experts’ CVs'],
+          options: ['The options, so everyone sees what is on the table', 'The budget, since it limits every option', 'The decision criteria', 'Each expert’s track record'],
           answer: 'The decision criteria',
           why: 'Agreed criteria turn the argument into a comparison you can follow.',
         },
         {
           q: 'Where do most expert disagreements sit?',
-          options: ['In judgements and assumptions', 'In checked facts', 'In the meeting minutes', 'In the contract'],
+          options: ['In judgements and assumptions', 'In facts that can be checked', 'In what was said in earlier meetings', 'In the wording of the contract'],
           answer: 'In judgements and assumptions',
           why: 'Facts can be checked; experts differ on what they mean and what will happen.',
         },
         {
           q: 'Who should set the weights in a weighted score?',
-          options: ['The most senior expert', 'The sponsor, because the weights are a business choice', 'The supplier', 'Whoever builds the spreadsheet'],
+          options: ['The most senior expert, who knows what matters technically', 'The sponsor, because the weights are a business choice', 'The supplier, who has done this kind of scoring before', 'Whoever builds the spreadsheet, to keep it consistent'],
           answer: 'The sponsor, because the weights are a business choice',
           why: 'How much cost counts against risk is a business priority, not a technical fact.',
         },
         {
           q: 'How do you brief a second-opinion expert?',
-          options: ['Tell them who you think is right', 'Give them only the cheaper option', 'On the question and the criteria, not on who said what', 'Send them the whole email argument'],
+          options: ['Tell them which side you lean towards, to save time', 'Give them the cheaper option only, to keep it focused', 'On the question and the criteria, not on who said what', 'Forward the whole email thread so they see every view'],
           answer: 'On the question and the criteria, not on who said what',
           why: 'An independent view only helps if it is not steered.',
         },
@@ -817,8 +817,8 @@ export default {
       pre: [
         {
           q: 'The only PLC programmer on your project also works on three other projects. What is the likely effect?',
-          options: ['A big share of his time goes to switching between projects, so each gets less than you think', 'None; good programmers multitask', 'He’ll work faster under pressure', 'Your project gets priority because it’s newest'],
-          answer: 'A big share of his time goes to switching between projects, so each gets less than you think',
+          options: ['Much of his time goes to switching, so each project gets less than planned', 'Little effect, because experienced programmers are used to juggling several jobs', 'He works faster, because the pressure keeps him focused', 'Your project gets priority, because it is the newest'],
+          answer: 'Much of his time goes to switching, so each project gets less than planned',
           why: 'Switching between tasks costs time to get back into each one; spread over four projects, a lot of hours disappear.',
         },
       ],
@@ -831,21 +831,21 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Robot cell project. The supplier’s only safety specialist is on four projects and keeps missing your sessions. Your project needs about 40 hours of his time over the next 8 weeks. His manager says “he’s 25% on your project”.\n\nWith Weinberg’s rule of thumb in mind, 25% of a person spread over four projects is likely to be much less real time.',
+        text: 'Robot cell project. The supplier’s only safety specialist is on four projects and keeps missing your sessions. Your project needs about 40 hours of his time over the next 8 weeks. His manager says “he’s 25% on your project”.\n\nWeinberg’s rough table gives someone on four projects only about 10% of his time for each one; the rest goes on switching. Assume a 40-hour week.',
         ask: 'How would you secure his time and his attention?',
-        reveal: 'Translate the percentage into blocks: ask his manager for one fixed day every two weeks, plus two half days for the safety test, booked now. That covers about 40 hours in concentrated time.\n\nPrepare each day: questions, drawings and decisions ready, so no hour is wasted. Ask him what would make the project worth his while, perhaps fewer late calls from the site. Then credit his work in the steering meeting by name.',
+        reveal: 'On paper, 25% of 8 weeks × 40 hours is 80 hours. At Weinberg’s rough 10% it is about 32 hours, short of the 40 you need.\n\nTranslate the percentage into blocks: ask his manager for one fixed 8-hour day every two weeks (4 days, 32 hours), plus two half days for the safety test (8 hours), booked now. That is 40 hours of concentrated time.\n\nPrepare each day: questions, drawings and decisions ready, so no hour is wasted. Ask him what would make the project worth his while, perhaps fewer late calls from the site. Then credit his work in the steering meeting by name.',
       },
       said: 'What you hear in projects: “I’m on four projects. I’ll get to yours this week.” Translation: maybe.',
       recall: [
         {
           q: 'What is context switching?',
-          options: ['Changing suppliers', 'Changing the project scope', 'Switching from cloud to on-site servers', 'Moving between tasks or projects and losing time getting back into each'],
-          answer: 'Moving between tasks or projects and losing time getting back into each',
+          options: ['Changing suppliers halfway through a project', 'Changing the project scope after the plan has been agreed with the sponsor', 'Moving from on-site servers to the cloud', 'Moving between tasks and losing time getting back into each'],
+          answer: 'Moving between tasks and losing time getting back into each',
           why: 'Every switch costs time to get back up to speed.',
         },
         {
           q: 'How should you ask for an expert’s time?',
-          options: ['As a percentage', 'As blocks: fixed days or half days', 'Only when there is a problem', 'Through the sponsor, every week'],
+          options: ['As a percentage of his week', 'As blocks: fixed days or half days', 'Only when a problem comes up', 'Through the sponsor, every week, so it gets priority'],
           answer: 'As blocks: fixed days or half days',
           why: 'Blocks reduce switching and are easier to protect than a percentage.',
         },
@@ -857,8 +857,8 @@ export default {
         },
         {
           q: 'Where should you give an expert autonomy?',
-          options: ['On the scope', 'On the deadline', 'On the how, while being firm on the what and when', 'On everything'],
-          answer: 'On the how, while being firm on the what and when',
+          options: ['On the scope, so he feels ownership', 'On the deadline, so he can plan his own work', 'On the how, while firm on the what and when', 'On everything, because he is the expert'],
+          answer: 'On the how, while firm on the what and when',
           why: 'The method is their craft; the goal and timing are the project’s.',
         },
       ],
@@ -899,8 +899,8 @@ export default {
       pre: [
         {
           q: 'For six weeks running, the developer reports the interface as “90% done”. What is this most likely a sign of?',
-          options: ['Progress is being measured by effort, not by working results, and the hard part is still ahead', 'Nearly finished; patience', 'The developer is lazy', 'The plan was too short by one week'],
-          answer: 'Progress is being measured by effort, not by working results, and the hard part is still ahead',
+          options: ['Effort is being reported, not working results; the hard part is still ahead', 'The work is nearly finished; the last few details simply take a bit more patience', 'The developer is not putting enough hours into the interface', 'The plan was a week too short, so it will finish next week'],
+          answer: 'Effort is being reported, not working results; the hard part is still ahead',
           why: '“Almost done” for weeks usually means the last, hardest part hasn’t been faced yet.',
         },
       ],
@@ -921,25 +921,25 @@ export default {
       recall: [
         {
           q: 'What does the ninety-ninety rule warn about?',
-          options: ['That 90% of projects fail', 'That the last 10% of the work can take as long as the first 90%', 'That 90% of bugs are in 10% of the code', 'That experts are right 90% of the time'],
-          answer: 'That the last 10% of the work can take as long as the first 90%',
+          options: ['That about 90% of large projects overrun their budget', 'That the last 10% can take as long as the first 90%', 'That 90% of the bugs tend to sit in 10% of the code', 'That 90% of the value comes from the first 10% of work'],
+          answer: 'That the last 10% can take as long as the first 90%',
           why: 'Credited to Tom Cargill, popularised by Jon Bentley (1985): “almost done” can last a long time.',
         },
         {
           q: 'What is watermelon status?',
-          options: ['A project that is red but improving', 'A status nobody reads', 'A status that is reported green while the team knows it is red', 'A project with seasonal demand'],
-          answer: 'A status that is reported green while the team knows it is red',
+          options: ['A project that is red but slowly turning green', 'A status report that nobody reads to the end', 'A status reported green while the team knows it is red', 'A project whose demand changes with the season'],
+          answer: 'A status reported green while the team knows it is red',
           why: 'Green outside, red inside.',
         },
         {
           q: 'Which of the three red flags is the strongest after months of building?',
-          options: ['No demo of anything working', 'Always almost done', 'Many meetings', 'Vague answers'],
+          options: ['No demo of anything working', 'Weeks of “almost done” reports', 'A sudden increase in meetings', 'Vague answers to direct questions'],
           answer: 'No demo of anything working',
           why: 'Working results can’t be faked in a live demo; their absence after months says a lot.',
         },
         {
           q: 'You see one red flag. What is the right response?',
-          options: ['Escalate to the sponsor at once', 'Replace the supplier', 'Ignore it until there are three', 'Ask specific questions and ask for evidence'],
+          options: ['Escalate it to the sponsor straight away, before it grows', 'Start looking for a replacement supplier', 'Ignore it until you have seen three', 'Ask specific questions and ask for evidence'],
           answer: 'Ask specific questions and ask for evidence',
           why: 'One flag is a reason to ask, not proof; questions and evidence show whether there is a problem.',
         },
@@ -981,15 +981,15 @@ export default {
       pre: [
         {
           q: 'Which progress report gives you the most grip when you can’t judge the work?',
-          options: ['“We’re at 70%.”', '“Four of the six milestones are done, each with its test report; the fifth is due Friday.”', '“The team is working hard.”', '“We’ve spent 70% of the budget.”'],
-          answer: '“Four of the six milestones are done, each with its test report; the fifth is due Friday.”',
+          options: ['“We’re at 70% complete, slightly ahead of where we planned to be.”', '“Four of six milestones are done with test reports; the fifth is due Friday.”', '“The team has worked hard and put in extra hours this month.”', '“We’ve spent 70% of the budget, which is exactly in line with the plan for this month.”'],
+          answer: '“Four of six milestones are done with test reports; the fifth is due Friday.”',
           why: 'Completed milestones with evidence are checkable; percentages and effort are not.',
         },
       ],
       teach: [
         'Outside your field you can’t look at the work and judge how far along it is. So measure progress by things that are either done or not done, with evidence you can see.\n\nA milestone is a point in the project where a clear result has to exist: “interface tested with real orders”, “switchgear energised”. It’s a yes-or-no, not a percentage.',
         'Percent complete, the share of work said to be finished, is the weakest measure outside your field: it’s an opinion, and it tends to stall near 90%. Budget spent tells you about money, not progress.\n\nCount finished milestones instead, and only count a milestone when its evidence exists: a signed test report, a demo, an approved drawing.',
-        'Acceptance criteria are the conditions a result must meet to count as accepted, written before the work starts. “The label prints in under 3 seconds and all 12 fields match the order.” Agree them with the expert and the user, so “done” isn’t argued about later.\n\nThe definition of done is the shared checklist that every piece of work must meet to count as finished, such as tested, documented, reviewed. It comes from Scrum, but works on any project.',
+        'Acceptance criteria are the conditions a result must meet to count as accepted, written before the work starts. “The label prints in under 3 seconds and all 12 fields match the order.” Agree them with the expert and the user, so “done” isn’t argued about later.\n\nThe definition of done is the shared quality standard that work must meet to count as finished, such as tested, documented, reviewed. It comes from the Scrum Guide; most teams keep it as a short checklist, and it works on any project.',
         'In automation and electrical projects, two formal milestones are common. The factory acceptance test (FAT) is the test of a machine at the supplier’s site before shipping. The site acceptance test (SAT) is the test after installation at the client.\n\nA FAT passed with a list of open points is common; make sure the list has owners and dates before you ship.',
         'Demos are your best progress meter: regular, short, with real data. A two-weekly demo shows more than ten status reports.\n\nA typical failure: milestones so far apart that nothing can be checked for months. A rough rule many project leaders use is a checkable result at least every two to four weeks. A sharp question: “What will you be able to show me in two weeks?”',
       ],
@@ -1001,20 +1001,20 @@ export default {
       recall: [
         {
           q: 'Why is percent complete a weak measure outside your field?',
-          options: ['It is too precise', 'Sponsors don’t understand percentages', 'Suppliers can’t calculate it', 'It is an opinion and tends to stall near 90%'],
+          options: ['It is too precise for an estimate', 'Sponsors don’t understand percentages', 'Suppliers each calculate it differently, so you can’t compare', 'It is an opinion and tends to stall near 90%'],
           answer: 'It is an opinion and tends to stall near 90%',
           why: 'You can’t check it, and the last part of the work usually takes longest.',
         },
         {
           q: 'When does a milestone count as done?',
-          options: ['When the expert says so', 'When its date has passed', 'When its evidence exists, such as a signed test report or a demo', 'When the budget for it is spent'],
-          answer: 'When its evidence exists, such as a signed test report or a demo',
+          options: ['When the expert responsible says it is done', 'When its planned date has passed without issues', 'When its evidence exists, such as a signed test report', 'When the budget set aside for it has been spent'],
+          answer: 'When its evidence exists, such as a signed test report',
           why: 'Evidence makes progress checkable without judging the content.',
         },
         {
           q: 'What is the difference between FAT and SAT?',
-          options: ['FAT is at the supplier before shipping; SAT is after installation at the client', 'FAT is for software, SAT for hardware', 'They are the same test', 'FAT is optional, SAT is not'],
-          answer: 'FAT is at the supplier before shipping; SAT is after installation at the client',
+          options: ['FAT is at the supplier before shipping; SAT after installation on site', 'FAT tests the software; SAT tests the hardware and wiring', 'FAT is the formal contract test; SAT is an informal check by the operators', 'FAT is optional for standard machines; SAT is always required'],
+          answer: 'FAT is at the supplier before shipping; SAT after installation on site',
           why: 'Factory acceptance test and site acceptance test.',
         },
         {
@@ -1052,7 +1052,7 @@ export default {
         { term: 'Milestone', def: 'A point in the project where a clear result has to exist; yes or no, not a percentage.' },
         { term: 'Percent complete', def: 'The share of work said to be finished; an opinion that tends to stall near 90%.' },
         { term: 'Acceptance criteria', def: 'Conditions a result must meet to count as accepted, written before the work starts.' },
-        { term: 'Definition of done', def: 'A shared checklist that every piece of work must meet to count as finished; from Scrum.' },
+        { term: 'Definition of done', def: 'A shared quality standard, usually kept as a short checklist, that work must meet to count as finished; from the Scrum Guide.' },
         { term: 'Factory acceptance test', def: 'FAT: testing a machine at the supplier’s site before shipping; the site acceptance test (SAT) follows at the client.' },
       ],
     },
@@ -1062,14 +1062,14 @@ export default {
       pre: [
         {
           q: 'The team can’t agree whether to start the data migration this week or wait two weeks for more test results. The migration can be rerun if needed. What kind of decision is this?',
-          options: ['An irreversible one; wait for all the facts', 'A reversible one; decide fairly quickly with the information you have', 'Not your decision at all', 'One for the board'],
-          answer: 'A reversible one; decide fairly quickly with the information you have',
+          options: ['An irreversible one; wait until all the test results are in', 'A reversible one; decide fairly quickly with what you have', 'A technical one; leave it to the migration specialist', 'A strategic one; take it to the board for a decision'],
+          answer: 'A reversible one; decide fairly quickly with what you have',
           why: 'If a decision can be undone at low cost, waiting for certainty usually costs more than being a bit wrong.',
         },
       ],
       teach: [
-        'Outside your field you will rarely have certainty. The skill is deciding well with what you have, and knowing when it isn’t your decision to make.\n\nFirst ask: is it a reversible decision, one you can undo at low cost, or not? Jeff Bezos (letter to shareholders, 2015) called irreversible ones one-way doors: walk through and you can’t come back. Reversible ones are two-way doors.',
-        'For two-way doors, decide fairly fast and learn. Bezos (2016) suggested most decisions can be made with around 70% of the information you’d like; wait for 90% and you’re usually too slow. A rule of thumb, not a law.\n\nFor one-way doors, such as ordering switchgear with a long lead time (the time from order to delivery) or shutting down the old system, slow down: more evidence, a second opinion, the sponsor deciding.',
+        'Outside your field you will rarely have certainty. The skill is deciding well with what you have, and knowing when it isn’t your decision to make.\n\nFirst ask: is it a reversible decision, one you can undo at low cost, or not? Jeff Bezos (shareholder letter for 2015, published in 2016) called irreversible ones one-way doors: walk through and you can’t come back. Reversible ones are two-way doors.',
+        'For two-way doors, decide fairly fast and learn. In his letter for 2016 he suggested most decisions can be made with around 70% of the information you’d like; wait for 90% and you’re usually too slow. A rule of thumb, not a law.\n\nFor one-way doors, such as ordering switchgear with a long lead time (the time from order to delivery) or shutting down the old system, slow down: more evidence, a second opinion, the sponsor deciding.',
         'Escalation is taking a decision or problem to someone with more authority because it is beyond yours. It is not failure; it is the system working. Escalate when it’s outside your mandate, when experts are stuck, or when the goal, budget or date is at risk.\n\nEscalate early, with options, not just a problem: “Here are two options, what each costs, and my recommendation.”',
         'A decision memo makes this concrete: one page with the question, the options, the criteria, the expert advice, your recommendation and the deadline. It forces you to translate the technical part into consequences.\n\nThen communicate the decision clearly and without apology. Jeffrey Pfeffer’s 7 Rules of Power apply here: show up in powerful fashion, state it calmly and firmly, and don’t undercut it with “sorry, maybe”.',
         'Typical failures: escalating too late, when there are no options left; escalating without a recommendation, so the sponsor has to do your thinking; and revisiting decisions every week.\n\nA sharp question for any stuck decision: “If we can’t undo this, who should decide it, and by when? If we can, what’s the cost of waiting another week?”',
@@ -1082,19 +1082,19 @@ export default {
       recall: [
         {
           q: 'What is a one-way door decision?',
-          options: ['A decision only one person can make', 'A decision made in one meeting', 'An irreversible decision, hard or costly to undo', 'A yes-or-no decision'],
+          options: ['A decision only one person is allowed to make', 'A decision that has to be made in a single meeting', 'An irreversible decision, hard or costly to undo', 'A yes-or-no decision with no middle option'],
           answer: 'An irreversible decision, hard or costly to undo',
           why: 'Bezos’s term: walk through and you can’t come back, so take more care.',
         },
         {
           q: 'Roughly how much of the information you’d like did Bezos suggest is enough for most decisions?',
-          options: ['About 30%', 'About 50%', 'About 70%', 'About 100%'],
+          options: ['About 50%', 'About 100%', 'About 70%', 'About 30%'],
           answer: 'About 70%',
-          why: 'From his 2016 shareholder letter; a rule of thumb for reversible decisions.',
+          why: 'From his shareholder letter for 2016 (published 2017): wait for 90% and you’re usually too slow. For a one-way door you slow down anyway.',
         },
         {
           q: 'How should you escalate?',
-          options: ['Late, once you’re sure there is a problem', 'Only with the expert present', 'By email to everyone', 'Early, with options and a recommendation'],
+          options: ['Late, once you are sure there really is a problem', 'Only with the expert in the room to explain it', 'By email to everyone involved, so nobody is surprised', 'Early, with options and a recommendation'],
           answer: 'Early, with options and a recommendation',
           why: 'Early keeps options open; a recommendation saves the sponsor’s thinking time.',
         },
@@ -1130,7 +1130,7 @@ export default {
       sayIt: 'Explain in 60 seconds the difference between one-way and two-way doors, and when you escalate.',
       terms: [
         { term: 'Reversible decision', def: 'A decision you can undo at low cost; decide fairly quickly and learn.' },
-        { term: 'One-way door', def: 'An irreversible decision, hard or costly to undo (Bezos, 2015); slow down and get more evidence.' },
+        { term: 'One-way door', def: 'An irreversible decision, hard or costly to undo (Bezos, shareholder letter for 2015); slow down and get more evidence.' },
         { term: 'Escalation', def: 'Taking a decision or problem to someone with more authority because it is beyond yours; best early and with options.' },
         { term: 'Decision memo', def: 'One page with the question, options, criteria, expert advice, recommendation and deadline.' },
         { term: 'Lead time', def: 'The time from order to delivery.' },
@@ -1142,14 +1142,14 @@ export default {
       pre: [
         {
           q: 'You need to tell the factory director that energising slips by four weeks. How do you open?',
-          options: ['With the technical background, so he understands', 'With who is to blame', 'With an apology', 'With the conclusion: the date, what it means for him, and what you’re doing'],
-          answer: 'With the conclusion: the date, what it means for him, and what you’re doing',
+          options: ['With the technical background, so he understands exactly why it slipped', 'With how the delay came about and whose part caused it', 'With an apology, so he sees you take it seriously', 'With the conclusion: the new date, what it means for him, your plan'],
+          answer: 'With the conclusion: the new date, what it means for him, your plan',
           why: 'Senior people want the point first; the background comes if they ask for it.',
         },
       ],
       teach: [
         'A stakeholder is anyone who affects or is affected by the project: the sponsor, the factory director, the operators, the grid operator, the supplier. Outside your field, you are often the only person who speaks to all of them, so you are the translator.\n\nEach group needs the same facts in its own language: the director in money and dates, operators in what changes on their shift, experts in technical terms.',
-        'The pyramid principle, from Barbara Minto (McKinsey), says: start with the conclusion, then the main reasons, then the detail. Senior people read the first two lines and decide whether to read on.\n\nFor a decision or bad news: what happened, what it means for them, what we’re doing, what we need from them. Four sentences, then stop.',
+        'The pyramid principle, from Barbara Minto (The Pyramid Principle, 1987, written from her work at McKinsey), says: start with the conclusion, then the main reasons, then the detail. Senior people read the first two lines and decide whether to read on.\n\nFor a decision or bad news: what happened, what it means for them, what we’re doing, what we need from them. Four sentences, then stop.',
         'How you say it matters as much as what. Jeffrey Pfeffer’s 7 Rules of Power (2022) argue that people judge competence partly from how confident you appear. For you that means: announce a decision plainly, stand straight, don’t over-explain, and don’t apologise for a decision that was made properly.\n\nIt doesn’t mean pretending: confidence is about how you speak, honesty is about what you say.',
         'Use a hedge, a phrase that shows how certain you are, deliberately. “We expect” versus “we will” is useful precision. Hedging every sentence (“maybe”, “I think”, “sort of”) makes you sound unsure even about what you know.\n\nRule: hedge the forecast, not the facts. “The cable is laid and tested. We expect energising in week 42.”',
         'Typical failures: forwarding the expert’s email with “see below”; giving the director the full technical story; telling operators last. Another: good news to everyone, bad news only when asked.\n\nA sharp check before you send anything: “If he reads only the first two lines, does he know what he needs to know and what I need from him?”',
@@ -1164,13 +1164,13 @@ export default {
       recall: [
         {
           q: 'What does the pyramid principle say?',
-          options: ['Start with the background, build to the conclusion', 'Tell senior people last', 'Start with the conclusion, then the main reasons, then the detail', 'Use three slides at most'],
-          answer: 'Start with the conclusion, then the main reasons, then the detail',
+          options: ['Start with the background, then build up to the conclusion', 'Tell senior people last, once the detail is settled', 'Conclusion first, then the main reasons, then the detail', 'Use three slides at most, one idea per slide'],
+          answer: 'Conclusion first, then the main reasons, then the detail',
           why: 'Barbara Minto: senior readers decide from the first lines whether to read on.',
         },
         {
           q: 'What do Pfeffer’s 7 Rules of Power suggest about announcing a decision?',
-          options: ['Announce it plainly and confidently, without over-explaining', 'Apologise first to keep people on side', 'Let the expert announce it', 'Wait until everyone agrees'],
+          options: ['Announce it plainly and confidently, without over-explaining', 'Apologise first, to keep people on your side', 'Let the expert announce it, so it carries technical authority', 'Wait until everyone agrees before announcing it'],
           answer: 'Announce it plainly and confidently, without over-explaining',
           why: 'People judge competence partly from how confident you appear.',
         },
@@ -1182,7 +1182,7 @@ export default {
         },
         {
           q: 'Which is a typical communication failure outside your field?',
-          options: ['Opening with the conclusion', 'Telling operators in their own terms', 'Forwarding the expert’s email with “see below”', 'Saying what you need from the reader'],
+          options: ['Opening every message with the conclusion', 'Telling operators what changes on their shift', 'Forwarding the expert’s email with “see below”', 'Ending with what you need from the reader'],
           answer: 'Forwarding the expert’s email with “see below”',
           why: 'It hands the translation work to people who can’t do it.',
         },
@@ -1223,8 +1223,8 @@ export default {
       pre: [
         {
           q: 'You start next month on a project in a field you don’t know: grid connections. What is the most useful first step?',
-          options: ['Find the ten words everyone in the project uses and learn what they mean and why they matter', 'Read a textbook cover to cover', 'Wait until the kick-off', 'Take an online engineering course'],
-          answer: 'Find the ten words everyone in the project uses and learn what they mean and why they matter',
+          options: ['Find the ten words the project keeps using and learn why each matters', 'Read a grid engineering textbook cover to cover before your first day there', 'Wait for the kick-off, where the experts will explain the basics', 'Take an online course in electrical engineering first'],
+          answer: 'Find the ten words the project keeps using and learn why each matters',
           why: 'A small core vocabulary lets you follow the meetings fast; depth can come later.',
         },
       ],
@@ -1237,34 +1237,34 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'You’ll lead the client side of an MES project at a metal parts maker in six weeks. You know Lean and the shop floor, not IT.\n\nWeek 1 you collect the words from the tender and the supplier’s proposal: MES, ERP, interface, master data, routing, work order, integration, test environment, cutover, hypercare.',
+        text: 'You’ll lead the client side of an MES project at a metal parts maker in six weeks. You know Lean and the shop floor, not IT.\n\nWeek 1 you collect the words from the tender and the supplier’s proposal: MES, ERP, interface, master data, routing, work order, integration, test environment, cutover (switching from the old system to the new one), hypercare (extra support in the first weeks after go-live).',
         ask: 'How would you plan your first 90 days?',
         reveal: 'Days 1–30: a glossary of those ten words with the IT lead’s help; ask “why does this matter for us?” for each. Sit with a planner for a day to see the work orders.\n\nDays 31–60: draw the system: ERP sends work orders through the interface to the MES, the MES tracks them on the machines and sends back what was made. Have the architect correct it.\n\nDays 61–90: explain the project to the plant manager in five minutes; name the top three risks, such as master data, the interface and cutover weekend.',
       },
       said: 'What you hear in projects: “You’ll pick it up as you go.” Faster if you plan it.',
       recall: [
         {
-          q: 'What is a 30-60-90 plan?',
-          options: ['A budget split in three parts', 'A risk scale', 'A project with three phases', 'A plan for what you will learn and do in your first 30, 60 and 90 days'],
-          answer: 'A plan for what you will learn and do in your first 30, 60 and 90 days',
-          why: 'It makes your learning deliberate; Watkins’s The First 90 Days popularised planning the start this way.',
+          q: 'Day 45 of your 30-60-90 plan on a grid project. Which activity fits that phase best?',
+          options: ['Building your list of the ten core words', 'Reading the contract and the tender carefully for the first time', 'Presenting the top three technical risks to the board', 'Drawing how the system connects and having an expert correct it'],
+          answer: 'Drawing how the system connects and having an expert correct it',
+          why: 'Days 31–60 are for understanding the system: a mental model, corrected by an expert. The words come first (days 1–30); contributing comes last (days 61–90).',
         },
         {
           q: 'What should a glossary entry contain?',
-          options: ['Only the term', 'The term, a one-line meaning and an example', 'The full technical standard', 'The expert’s name'],
+          options: ['The term only, so the list stays short', 'The term, a one-line meaning and an example', 'The full definition from the technical standard', 'The term and the name of the expert who uses it'],
           answer: 'The term, a one-line meaning and an example',
           why: 'Short enough to keep up, concrete enough to remember.',
         },
         {
           q: 'Why ask an expert to correct your drawing of the system?',
-          options: ['To show you did your homework', 'To get it signed', 'Because experts like drawing', 'Wrong drawings reveal what you misunderstood, so you learn fast'],
-          answer: 'Wrong drawings reveal what you misunderstood, so you learn fast',
+          options: ['To show the expert you did your homework', 'To get the drawing signed off as an official project document', 'Because experts enjoy explaining their field', 'Because his corrections show what you misunderstood'],
+          answer: 'Because his corrections show what you misunderstood',
           why: 'Correcting a picture is quick for them and very instructive for you.',
         },
         {
           q: 'Which is a typical failure when learning a new field?',
-          options: ['Talking to experts too early', 'Drawing the system', 'Reading theory for weeks without talking to anyone', 'Keeping a glossary'],
-          answer: 'Reading theory for weeks without talking to anyone',
+          options: ['Asking experts basic questions in the first week', 'Drawing the system before you fully understand it', 'Reading theory for weeks before talking to anyone', 'Keeping a glossary that is still incomplete'],
+          answer: 'Reading theory for weeks before talking to anyone',
           why: 'You learn what matters for the project from the people in it.',
         },
       ],

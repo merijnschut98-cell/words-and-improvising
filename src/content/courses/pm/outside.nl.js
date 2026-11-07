@@ -8,14 +8,14 @@ export default {
       pre: [
         {
           q: 'Je leidt de invoering van een nieuw MES, de software die orders en machines op de werkvloer volgt. De IT-architect vraagt welke database-opzet jij wilt. Wat is hier jouw taak?',
-          options: ['Er een kiezen, zodat je daadkrachtig overkomt', 'Je er helemaal buiten houden; dat is iets van IT', 'Zorgen dat de juiste persoon kiest, tegen de doelen van het project, en dat het wordt vastgelegd', 'De leverancier laten beslissen'],
-          answer: 'Zorgen dat de juiste persoon kiest, tegen de doelen van het project, en dat het wordt vastgelegd',
+          options: ['Kiezen wat de architect lijkt te willen, zodat het project doorloopt', 'Het helemaal aan IT overlaten; over databases gaat een projectleider gewoon niet', 'Zorgen dat de juiste persoon kiest, passend bij het doel, en het vastleggen', 'De leverancier laten kiezen, want die moet het later ondersteunen'],
+          answer: 'Zorgen dat de juiste persoon kiest, passend bij het doel, en het vastleggen',
           why: 'Jij hoeft het antwoord niet te weten. Jij zorgt dat er een goed antwoord komt, van iemand die het kan beoordelen, en dat het past bij het doel.',
         },
       ],
       teach: [
         'Vroeg of laat leid je een project waarvan je de inhoud zelf niet kunt beoordelen: een IT-systeem, een elektrische installatie, een robotcel. Dat is normaal. De meeste projectleiders werken hun hele loopbaan buiten het vak waarvoor ze zijn opgeleid.\n\nDe omslag: zie jezelf als regisseur, niet als expert. Een filmregisseur bedient de camera niet en schrijft de muziek niet, maar bepaalt waar de film over gaat en zorgt dat iedereen daaraan werkt.',
-        'De vakexpert (subject matter expert) is degene die de inhoud kent: de PLC-programmeur, de netbeheerder-engineer, de databasespecialist. Hij is eigenaar van hoe iets werkt.\n\nJij bent de proceseigenaar: degene die verantwoordelijk is voor hoe het werk gebeurt. Wie beslist wat, in welke volgorde, met welke informatie, en hoe je weet dat je op koers ligt. Jij bent eigenaar van de route; zij van de motor.',
+        'De vakexpert (subject matter expert) is degene die de inhoud kent: de PLC-programmeur, de engineer van de netbeheerder, de databasespecialist. Hij is eigenaar van hoe iets werkt.\n\nJij bent de proceseigenaar: degene die verantwoordelijk is voor hoe het werk gebeurt. Wie beslist wat, in welke volgorde, met welke informatie, en hoe je weet dat je op koers ligt. Jij bent eigenaar van de route; zij van de motor.',
         'In de praktijk: je beantwoordt geen technische vragen; je zorgt dat ze beantwoord worden, door de juiste persoon, op een datum. Je controleert de code niet; je controleert dat iemand die het kan, hem heeft gecontroleerd, en dat hij doet wat het doel vraagt.\n\nHoud scherp onderscheid tussen scope, wat het project wel en niet oplevert, en oplossing, hoe het gebouwd wordt. De scope is van jou en de sponsor, de manager die eigenaar is van het project. De oplossing is van hen.',
         'Elke oplevering (deliverable), een concreet ding dat het project overdraagt, zoals een geteste koppeling of een in bedrijf genomen schakelkast, krijgt een eigenaar van de expertkant en een controle die je kunt zien. Zo heb je grip zonder de details te kennen.\n\nEen klassieke fout: in drie weken een halve expert willen worden, technische discussies aangaan die je verliest, en ondertussen de planning en de mensen laten liggen. Een andere: je verschuilen achter “ik ben niet technisch” en de experts het project laten trekken.',
         'Waar ervaren projectleiders over twisten: sommigen zeggen dat je minstens genoeg inhoud moet kennen om onzin te ruiken; anderen zeggen dat een sterk proces wint van oppervlakkige kennis. Allebei deels waar, en de lessen hierna geven je de vragen en controles die veel van die kennis vervangen.\n\nEen scherpe vraag aan jezelf aan het begin van elk overleg: “Wat moet hier besloten worden, en wie is de juiste persoon om dat te doen?”',
@@ -28,14 +28,14 @@ export default {
       recall: [
         {
           q: 'Waar is de projectleider eigenaar van als de inhoud buiten zijn vak ligt?',
-          options: ['Het proces: wie beslist wat, wanneer, en hoe je weet dat je op koers ligt', 'De technische oplossing', 'Niets; de experts leiden', 'De codereview'],
-          answer: 'Het proces: wie beslist wat, wanneer, en hoe je weet dat je op koers ligt',
+          options: ['Het proces: wie wat beslist, wanneer, en hoe voortgang zichtbaar wordt', 'De technische oplossing, want hij staat uiteindelijk voor het resultaat in', 'Alleen de planning; de experts leiden de inhoud', 'De codereview, zodat de kwaliteit onafhankelijk getoetst wordt'],
+          answer: 'Het proces: wie wat beslist, wanneer, en hoe voortgang zichtbaar wordt',
           why: 'De expert is eigenaar van hoe het werkt; jij van hoe het werk gebeurt en of het het doel dient.',
         },
         {
           q: 'Welke verdeling klopt?',
-          options: ['De scope is van de experts, de oplossing van jou', 'Allebei van de leverancier', 'Allebei van de sponsor', 'De scope is van jou en de sponsor, de oplossing van de experts'],
-          answer: 'De scope is van jou en de sponsor, de oplossing van de experts',
+          options: ['De scope is van de experts, de oplossing van jou en de sponsor', 'Scope en oplossing zijn allebei van de leverancier', 'Scope en oplossing zijn allebei van de sponsor', 'De scope van jou en de sponsor, de oplossing van de experts'],
+          answer: 'De scope van jou en de sponsor, de oplossing van de experts',
           why: 'Wat het project oplevert is een zakelijke keuze; hoe het gebouwd wordt een technische.',
         },
         {
@@ -46,8 +46,8 @@ export default {
         },
         {
           q: 'Wat is een klassieke fout van een projectleider buiten zijn vak?',
-          options: ['Te veel vragen stellen', 'Het doel opschrijven', 'Een wekelijks overleg houden', 'Een halve expert willen worden en de technische discussies verliezen'],
-          answer: 'Een halve expert willen worden en de technische discussies verliezen',
+          options: ['De experts te veel basisvragen stellen', 'Het doel opschrijven voordat de planning en het budget klaar zijn', 'Elke week overleggen met alle eigenaren', 'Een halve expert willen worden en de discussies verliezen'],
+          answer: 'Een halve expert willen worden en de discussies verliezen',
           why: 'Je verspeelt geloofwaardigheid op terrein dat je niet kunt houden, en laat ondertussen de planning en de mensen liggen.',
         },
       ],
@@ -88,13 +88,13 @@ export default {
       pre: [
         {
           q: 'In een overleg gebruiken de engineers een woord dat je niet kent: “selectiviteit”. Wat is meestal de beste zet?',
-          options: ['Knikken en het achteraf opzoeken', 'Van onderwerp veranderen', 'Vragen: “Wat betekent selectiviteit hier, en waarom doet het ertoe voor ons?”', 'Doen alsof je het kent en een algemene vraag stellen'],
-          answer: 'Vragen: “Wat betekent selectiviteit hier, en waarom doet het ertoe voor ons?”',
-          why: 'Een korte, echte vraag kost tien seconden; meeknikken betekent dat je mist waar de volgende twintig minuten over gaan.',
+          options: ['Meeknikken en het na het overleg opzoeken, zodat je ze niet ophoudt', 'Ze vragen de term na het overleg schriftelijk toe te lichten', 'Vragen: “Wat betekent selectiviteit hier, en waarom is dat belangrijk voor ons?”', 'Een algemene vraag over de planning stellen, zodat niet opvalt dat je het kwijt bent'],
+          answer: 'Vragen: “Wat betekent selectiviteit hier, en waarom is dat belangrijk voor ons?”',
+          why: 'Een korte, echte vraag kost tien seconden; meeknikken betekent dat je mist waar de volgende twintig minuten over gaan. (Selectiviteit: bij een storing schakelt alleen de beveiliging het dichtst bij de storing af, zodat de rest van de fabriek stroom houdt.)',
         },
       ],
       teach: [
-        'Nieuwsgierigheid is de wens om te begrijpen hoe iets echt werkt, en buiten je vak is het je belangrijkste gereedschap. Experts merken snel of je het wilt begrijpen of alleen een status wilt.\n\nIntellectuele bescheidenheid is weten, en zeggen, dat je beeld fout of onvolledig kan zijn. Psychologen zoals Mark Leary (2017) beschrijven het als de grenzen van je eigen kennis erkennen. In onderzoek gaat het samen met meer leren en bewijs beter wegen.',
+        'Nieuwsgierigheid is de wens om te begrijpen hoe iets echt werkt, en buiten je vak is het je belangrijkste gereedschap. Experts merken snel of je het wilt begrijpen of alleen een status wilt.\n\nIntellectuele bescheidenheid is weten, en zeggen, dat je beeld fout of onvolledig kan zijn. Psychologen zoals Mark Leary (2017) beschrijven het als de grenzen van je eigen kennis erkennen. In zijn onderzoek ging het samen met zorgvuldiger bewijs wegen.',
         'De valkuil is het Dunning-Krugereffect: in experimenten van David Dunning en Justin Kruger (1999) overschatten mensen met de minste vaardigheid in een taak hun score het meest. Latere onderzoekers twisten over hoe groot het effect is, maar de waarschuwing blijft staan: na drie weken in een nieuw vak heb je het gevoel dat je het snapt, en juist dan ga je zelfverzekerde fouten maken.',
         'Neem een beginnersgeest aan: de houding van iemand die fris naar een vak kijkt, zonder aan te nemen dat hij het al weet. In de praktijk: stel naïeve vragen hardop. Een naïeve vraag is een basisvraag die een insider niet zou stellen, zoals “Waarom moet die kabel zo dik?” of “Wat gebeurt er als deze server uitvalt?”\n\nNaïeve vragen vinden vaak wat experts niet meer zien, omdat het voor hen vanzelfsprekend is.',
         'Hoe vraag je zonder dom over te komen: zeg waarom je het vraagt. “Ik vraag het om het risico te snappen, niet om jou te controleren.” Vraag naar gevolgen, niet naar mechanismen: “Wat betekent dat voor de datum?” Schrijf het antwoord op en gebruik het de volgende keer; dan zien ze dat je luisterde.\n\nDe fout aan de andere kant is valse bescheidenheid: vragen blijven stellen zonder ooit kennis op te bouwen, zodat experts elke week hetzelfde moeten uitleggen.',
@@ -108,33 +108,33 @@ export default {
       recall: [
         {
           q: 'Wat is intellectuele bescheidenheid?',
-          options: ['Weten en zeggen dat je beeld fout of onvolledig kan zijn', 'Nooit je mening geven', 'Het altijd eens zijn met de experts', 'Geen vragen stellen om hun tijd te sparen'],
+          options: ['Weten en zeggen dat je beeld fout of onvolledig kan zijn', 'Je mening voor je houden tot de experts gesproken hebben', 'Meegaan met de experts, omdat zij het vak beter kennen', 'In overleggen geen vragen stellen, om de experts tijd te besparen'],
           answer: 'Weten en zeggen dat je beeld fout of onvolledig kan zijn',
           why: 'Het gaat om de grenzen van je kennis, niet om geen mening hebben.',
         },
         {
           q: 'Wat vonden Dunning en Kruger, kort gezegd?',
-          options: ['Experts onderschatten hoe lang taken duren', 'Mensen met de minste vaardigheid overschatten hun score het meest', 'Iedereen schat zichzelf goed in', 'Beginners stellen te veel vragen'],
+          options: ['Experts onderschatten meestal hoe lang hun eigen taken duren', 'Mensen met de minste vaardigheid overschatten hun score het meest', 'Beginners schatten zichzelf goed in zodra ze wat feedback krijgen', 'De meest vaardige mensen overschatten hun score meer dan beginners'],
           answer: 'Mensen met de minste vaardigheid overschatten hun score het meest',
           why: 'Weinig kennis betekent ook weinig besef van wat je mist.',
         },
         {
           q: 'Hoe stel je een naïeve vraag zonder dom over te komen?',
-          options: ['Stel hem als grap', 'Stel hem achteraf per mail', 'Zeg waarom je het vraagt, en vraag naar gevolgen in plaats van mechanismen', 'Vraag het aan de jongste in plaats daarvan'],
-          answer: 'Zeg waarom je het vraagt, en vraag naar gevolgen in plaats van mechanismen',
+          options: ['Stel hem als grap, zodat niemand hem te serieus neemt', 'Stel hem achteraf per mail, zodat niemand in de kamer ziet dat je het niet weet', 'Zeg waarom je het vraagt, en vraag naar gevolgen, niet naar mechanismen', 'Laat de jongste in de kamer hem voor je stellen'],
+          answer: 'Zeg waarom je het vraagt, en vraag naar gevolgen, niet naar mechanismen',
           why: '“Ik vraag het om het risico te snappen” en “wat betekent dat voor de datum?” houden de vraag bij jouw rol.',
         },
         {
           q: 'Wat is valse bescheidenheid?',
-          options: ['Vragen blijven stellen zonder kennis op te bouwen, zodat experts elke week hetzelfde uitleggen', 'Te weinig vragen stellen', 'Een fout toegeven', 'Zeggen “ik weet het niet”'],
-          answer: 'Vragen blijven stellen zonder kennis op te bouwen, zodat experts elke week hetzelfde uitleggen',
+          options: ['Vragen blijven stellen zonder te leren, zodat experts zich herhalen', 'Zo weinig vragen stellen dat de experts denken dat je alles allang weet', 'Een fout pas toegeven als iemand anders hem heeft aangewezen', '“Ik weet het niet” zeggen om geen standpunt in te nemen'],
+          answer: 'Vragen blijven stellen zonder te leren, zodat experts zich herhalen',
           why: 'Echte bescheidenheid leert; steeds hetzelfde vragen kost hun tijd en jou geloofwaardigheid.',
         },
       ],
       situation: {
         scene: 'Voortgangsoverleg met een automatiseringsleverancier. Hun PLC-programmeur legt een vertraging uit en gebruikt drie woorden die je niet kent: “safety-PLC”, “SIL” en “validatie”. De productiemanager van de klant zit erbij en kijkt even naar jou.',
         ask: 'Wat zeg je?',
-        model: '“Even checken of ik het volg, want dit doet ertoe voor de datum. Een safety-PLC is de aparte besturing die de cel veilig stopt, toch? En SIL, waar staat dat voor, en verandert het niveau hoeveel we moeten testen?” Dan: “Dus in gewone woorden: het veiligheidsdeel moet apart bewezen worden, en dat zijn de twee weken. Wat zou jou helpen het sneller te doen?”',
+        model: '“Even checken of ik het volg, want dit is belangrijk voor de datum. Een safety-PLC is de aparte besturing die de cel veilig stopt, toch? En SIL, waar staat dat voor, en verandert het niveau hoeveel we moeten testen?” Dan: “Dus in gewone woorden: het veiligheidsdeel moet apart bewezen worden, en dat zijn de twee weken. Wat zou jou helpen het sneller te doen?” (Voor jou: SIL, safety integrity level, zegt hoe betrouwbaar een veiligheidsfunctie moet zijn; een hoger niveau betekent meer bewijs en meer testen.)',
         rubric: [
           'Vraagt open in plaats van mee te knikken',
           'Koppelt de vragen aan het gevolg voor het project',
@@ -168,8 +168,8 @@ export default {
       pre: [
         {
           q: 'Waarom vertrouwen experts sommige projectleiders die weinig van hun vak weten?',
-          options: ['Omdat ze senior zijn', 'Omdat ze het juiste jargon gebruiken', 'Omdat ze het overal mee eens zijn', 'Omdat ze betrouwbaar en voorbereid zijn, en duidelijk voor het project staan in plaats van voor zichzelf'],
-          answer: 'Omdat ze betrouwbaar en voorbereid zijn, en duidelijk voor het project staan in plaats van voor zichzelf',
+          options: ['Omdat ze senior zijn en al grotere projecten hebben geleid', 'Omdat ze snel het jargon oppikken en het in overleggen gebruiken', 'Omdat ze de experts steunen waar de sponsor bij is', 'Omdat ze nakomen wat ze beloven en het project voorop zetten'],
+          answer: 'Omdat ze nakomen wat ze beloven en het project voorop zetten',
           why: 'Geloofwaardigheid buiten je vak komt uit hoe je de dingen aanpakt, niet uit wat je van de inhoud weet.',
         },
       ],
@@ -196,19 +196,19 @@ export default {
         },
         {
           q: 'Wat betekent geloofwaardigheid voor een projectleider buiten zijn vak?',
-          options: ['Nooit een gat toegeven', 'De technische inhoud net zo goed kennen als de experts', 'De meest senior persoon zijn', 'De planning, risico’s en besluiten het best kennen, en eerlijk zijn over wat hij niet weet'],
-          answer: 'De planning, risico’s en besluiten het best kennen, en eerlijk zijn over wat hij niet weet',
+          options: ['Nooit een gat toegeven, zodat de experts hun vertrouwen in hem blijven houden', 'De technische inhoud bijna net zo goed kennen als de experts', 'De hoogste functie in de kamer hebben', 'Planning, risico’s en besluiten het best kennen, en eerlijk over gaten'],
+          answer: 'Planning, risico’s en besluiten het best kennen, en eerlijk over gaten',
           why: 'Op inhoud kun je niet concurreren, dus je leidt op het proces en op eerlijkheid.',
         },
         {
           q: 'Wat is het probleem met geleend gezag (“de sponsor wil dit”)?',
-          options: ['Het mag niet volgens de regels', 'Het is te traag', 'Het werkt één keer en verzwakt je elke keer daarna', 'Experts kennen de sponsor niet'],
+          options: ['Het is in strijd met de projectafspraken', 'Het vertraagt besluiten, want de sponsor moet het bevestigen', 'Het werkt één keer en verzwakt je elke keer daarna', 'Experts weten niet wie de sponsor is'],
           answer: 'Het werkt één keer en verzwakt je elke keer daarna',
           why: 'Mensen leren dat je geen eigen redenen hebt, alleen het gewicht van een ander.',
         },
         {
           q: 'Je bent een belofte aan een expert niet nagekomen. Wat herstelt het vertrouwen het snelst?',
-          options: ['Het kort benoemen, en daarna de volgende beloftes precies nakomen', 'Een cadeautje', 'De sponsor vragen het glad te strijken', 'Een lange uitleg waarom het gebeurde'],
+          options: ['Het kort benoemen, en daarna de volgende beloftes precies nakomen', 'Een kleine wederdienst aanbieden om het goed te maken', 'De sponsor vragen het met haar glad te strijken', 'Uitgebreid uitleggen waarom het gebeurde, zodat ze jouw kant begrijpt'],
           answer: 'Het kort benoemen, en daarna de volgende beloftes precies nakomen',
           why: 'Vertrouwen komt terug via nagekomen beloftes, niet via uitleg.',
         },
@@ -250,8 +250,8 @@ export default {
       pre: [
         {
           q: 'De automatiseringsleverancier stelt voor de tweede veiligheidstest te schrappen “omdat de eerste goed ging”. Wie hoort dat te beslissen?',
-          options: ['De leverancier, die kent de cel', 'Wie eindverantwoordelijk is voor de risico’s van het project, met het advies van de experts erbij', 'De PLC-programmeur', 'Niemand; testen zijn altijd optioneel'],
-          answer: 'Wie eindverantwoordelijk is voor de risico’s van het project, met het advies van de experts erbij',
+          options: ['De leverancier, want die kent de cel het best', 'Wie voor de projectrisico’s instaat, met advies van de experts', 'De PLC-programmeur, want hij schreef de veiligheidscode', 'Alleen de veiligheidskundige, want het is puur een veiligheidsvraag'],
+          answer: 'Wie voor de projectrisico’s instaat, met advies van de experts',
           why: 'Experts adviseren over het risico; het besluit om het te aanvaarden blijft bij wie eindverantwoordelijk is voor het project.',
         },
       ],
@@ -284,14 +284,14 @@ export default {
         },
         {
           q: 'Waarom is “de leverancier regelt de risico’s” gevaarlijk?',
-          options: ['Leveranciers weten niks van risico’s', 'Het is in strijd met het contract', 'Risico’s doen er in IT niet toe', 'Dan worden de risico’s beheerst tegen de doelen van de leverancier, niet de jouwe'],
-          answer: 'Dan worden de risico’s beheerst tegen de doelen van de leverancier, niet de jouwe',
+          options: ['Leveranciers weten zelden genoeg van de risico’s van de klant', 'Het is meestal in strijd met het contract', 'Risico’s in IT-projecten zijn meestal te klein om mee te tellen', 'Dan worden de risico’s beheerst tegen de doelen van de leverancier'],
+          answer: 'Dan worden de risico’s beheerst tegen de doelen van de leverancier',
           why: 'Het doel van de leverancier, zoals binnen budget blijven, is niet altijd het doel van de klant.',
         },
         {
           q: 'Een expert zegt: “Die test slaan we over, dat is technisch.” Wat is de betere lezing?',
-          options: ['Een puur technische keuze, dus laat het aan hem', 'Mogelijk een afweging tussen tijd, kosten en risico die de eindverantwoordelijke moet maken', 'Een poging om vals te spelen', 'Een teken dat het project af is'],
-          answer: 'Mogelijk een afweging tussen tijd, kosten en risico die de eindverantwoordelijke moet maken',
+          options: ['Een puur technische keuze, dus laat het aan hem', 'Een afweging tussen tijd, kosten en risico voor de eindverantwoordelijke', 'Een teken dat de leverancier probeert te beknibbelen', 'Een routinestap, want testen worden in de laatste weken voor livegang vaak ingekort'],
+          answer: 'Een afweging tussen tijd, kosten en risico voor de eindverantwoordelijke',
           why: 'Een test overslaan betekent meestal meer risico aanvaarden om tijd te winnen: een zakelijk besluit.',
         },
       ],
@@ -333,45 +333,45 @@ export default {
       pre: [
         {
           q: 'De installateur zegt dat de nieuwe kabel over 6 weken klaar is. Welke vraag levert het meeste op?',
-          options: ['“Weet je het zeker?”', '“Is dat in werkdagen?”', '“Kan het 5 worden?”', '“Wat moet er waar zijn om het 6 weken te laten zijn?”'],
-          answer: '“Wat moet er waar zijn om het 6 weken te laten zijn?”',
+          options: ['“Weet je zeker dat je die zes weken haalt?”', '“Is dat zes weken in werkdagen of kalenderweken?”', '“Kan je team het in vijf als we duwen?”', '“Wat moet er kloppen om die zes weken te halen?”'],
+          answer: '“Wat moet er kloppen om die zes weken te halen?”',
           why: 'Die brengt de aannames achter de schatting boven, zoals vergunningen, materiaal en ploegen, en daar zit het risico.',
         },
       ],
       teach: [
         'Als je de antwoorden niet kunt beoordelen, is de kwaliteit van je vragen je vakkennis. Een vragenset is een korte, vaste lijst vragen die je in een bepaalde fase stelt, welk vak het ook is. Hij werkt voor een database, een kabel of een robot.\n\nVijf gebieden dekken het meeste: scope, aannames, risico’s, schattingen en afhankelijkheden. Stel ze in die volgorde; elk bouwt voort op de vorige.',
-        'Scope: “Wat hebben we precies aan het eind? Wat zit er uitdrukkelijk niet in?” De tweede helft doet het meest ertoe: daar zitten de misverstanden.\n\nEen aanname is iets wat je voorlopig als waar behandelt, zonder bewijs. “Wat nemen we aan dat, als het niet klopt, de planning verandert?” Voorbeeld: “We nemen aan dat het netwerk van de fabriek de nieuwe data aankan.” Schrijf aannames op; elke aanname is een risico tot hij gecheckt is.',
+        'Scope: “Wat hebben we precies aan het eind? Wat zit er uitdrukkelijk niet in?” De tweede helft is het belangrijkst: daar zitten de misverstanden.\n\nEen aanname is iets wat je voorlopig als waar behandelt, zonder bewijs. “Wat nemen we aan dat, als het niet klopt, de planning verandert?” Voorbeeld: “We nemen aan dat het netwerk van de fabriek de nieuwe data aankan.” Schrijf aannames op; elke aanname is een risico tot hij gecheckt is.',
         'Een risico is iets wat kan gebeuren en het doel zou schaden. “Waar maak je je het meest zorgen over? Wat ging er mis bij vergelijkbare klussen?” Vraag elke expert apart; in een groep zet de meest senior stem de toon.\n\nEen schatting is een voorspelling van tijd of kosten, geen belofte. “Hoe zeker ben je, en waar is het op gebaseerd?” Vraag om een bandbreedte (range) in plaats van één getal.',
         'Een afhankelijkheid is iets wat jouw werk van iemand anders nodig heeft voordat het verder kan. “Wat heb je van anderen nodig, en wanneer?” Voorbeelden: de netbeheerder heeft de belastinggegevens van de fabriek nodig voordat hij de kabel kan dimensioneren; de MES-leverancier heeft een koppeling (interface) van het ERP-team nodig.\n\nDe meeste vertragingen in projecten buiten je vak zijn niet technisch. Het zijn afhankelijkheden waar niemand eigenaar van was.',
         'Wanneer gebruik je de sets: bij de start, bij elke wijziging en voor elk go/no-go-moment. Stel elke keer dezelfde vragen; experts raken eraan gewend en gaan de antwoorden voorbereiden.\n\nEen klassieke fout is ze één keer stellen, bij de kick-off, en de antwoorden archiveren. Een scherpe vraag om elke planningssessie mee af te sluiten: “Wat hebben we vandaag aangenomen dat niemand gecheckt heeft?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Kick-off voor een MES bij een maker van metalen onderdelen. Je loopt met de leverancier en de IT-lead de vijf gebieden door.\n\nScope: “Welke lijnen draaien bij livegang op het MES?” “Lijn 1 en 2. Lijn 3 zit er niet in.”\nAanname: “Wat nemen we aan?” “Dat de machinedata binnenkomt via het bestaande netwerk.” Jij schrijft: niet gecheckt.\nRisico: “Wat ging er elders mis?” “De stamgegevens (master data), de basisgegevens over producten en routings, waren vervuild.”\nSchatting: “Data opschonen?” “Vier tot acht weken, afhankelijk van de staat.”\nAfhankelijkheid: “Wat heb je nodig?” “Een ERP-koppeling van de IT van de klant voor 1 maart.”\n\nVijf vragen, drie nieuwe risico’s, elk een eigenaar.',
+        text: 'Kick-off voor een MES bij een maker van metalen onderdelen. Je loopt met de leverancier en de IT-lead de vijf gebieden door.\n\nScope: “Welke lijnen draaien bij livegang op het MES?” “Lijn 1 en 2. Lijn 3 zit er niet in.”\nAanname: “Wat nemen we aan?” “Dat de machinedata binnenkomt via het bestaande netwerk.” Jij schrijft: niet gecheckt.\nRisico: “Wat ging er elders mis?” “De stamgegevens (master data), de basisgegevens over producten en routings (de volgorde van bewerkingen per product), waren vervuild.”\nSchatting: “Data opschonen?” “Vier tot acht weken, afhankelijk van de staat.”\nAfhankelijkheid: “Wat heb je nodig?” “Een ERP-koppeling van de IT van de klant voor 1 maart.”\n\nVijf vragen, drie nieuwe risico’s, elk een eigenaar.',
       },
       said: 'Wat je hoort in projecten: “Dat zit niet in de scope.” Fijn om vroeg te horen; vreselijk om bij livegang te horen.',
       recall: [
         {
           q: 'Wat zijn de vijf gebieden van de vragenset, op volgorde?',
-          options: ['Budget, team, tools, timing, kwaliteit', 'Doel, methode, test, lancering, evaluatie', 'Scope, aannames, risico’s, schattingen, afhankelijkheden', 'Wie, wat, waar, wanneer, waarom'],
+          options: ['Budget, middelen, mijlpalen, kwaliteit, communicatie', 'Doelen, stakeholders, randvoorwaarden, methodes, evaluaties', 'Scope, aannames, risico’s, schattingen, afhankelijkheden', 'Eisen, ontwerp, bouw, test, overdracht'],
           answer: 'Scope, aannames, risico’s, schattingen, afhankelijkheden',
           why: 'Elk bouwt voort op de vorige: je kunt niet schatten zonder de scope en de aannames te kennen.',
         },
         {
-          q: 'Welke helft van de scopevraag doet het meest ertoe?',
-          options: ['Wat er uitdrukkelijk niet in zit', 'Wat het kost', 'Wat we opleveren', 'Wie het aftekent'],
+          q: 'Welke helft van de scopevraag is het belangrijkst?',
+          options: ['Wat er uitdrukkelijk niet in zit', 'Wat de hele scope gaat kosten', 'Wat we aan het eind opleveren', 'Wie de scope aftekent'],
           answer: 'Wat er uitdrukkelijk niet in zit',
           why: 'Misverstanden zitten in wat de ene partij erbij denkt en de andere niet.',
         },
         {
           q: 'Waarom vraag je experts één voor één naar risico’s in plaats van in een groep?',
-          options: ['Het is sneller', 'In een groep zet de meest senior stem de toon', 'Experts houden niet van groepen', 'Het staat in het contract'],
+          options: ['Het gaat sneller dan een groepssessie', 'In een groep zet de meest senior stem de toon', 'Experts praten liever niet in groepen over risico’s', 'Zo blijft het risicoregister vertrouwelijk'],
           answer: 'In een groep zet de meest senior stem de toon',
           why: 'Eén op één noemen mensen zorgen die ze bij een senior collega voor zich houden.',
         },
         {
           q: 'Wat veroorzaakt volgens de les de meeste vertragingen in projecten buiten je vak?',
-          options: ['Slechte techniek', 'Luie experts', 'Afhankelijkheden waar niemand eigenaar van was', 'Te veel overleggen'],
+          options: ['Techniek die niet blijkt te werken', 'Experts die hun werk onderschatten', 'Afhankelijkheden waar niemand eigenaar van was', 'Te veel overleggen en statusrapporten die tijd kosten'],
           answer: 'Afhankelijkheden waar niemand eigenaar van was',
           why: 'Het werk wacht vaak op iets van een andere partij dat niemand najoeg.',
         },
@@ -413,17 +413,17 @@ export default {
       pre: [
         {
           q: 'Het team zegt dat het livegangplan staat. Welke vraag brengt meestal de meeste risico’s boven?',
-          options: ['“Stel, het is over zes maanden en de livegang is mislukt. Wat is er gebeurd?”', '“Is iedereen blij met het plan?”', '“Nog risico’s?”', '“Kan het sneller?”'],
-          answer: '“Stel, het is over zes maanden en de livegang is mislukt. Wat is er gebeurd?”',
+          options: ['“Stel, het is zes maanden later en de livegang mislukte. Wat gebeurde er?”', '“Hoe zeker is iedereen hier eigenlijk van dit plan, op een schaal van één tot tien?”', '“Ziet iemand nog risico’s die niet op de lijst staan?”', '“Wat kunnen we doen om een paar weken eerder live te gaan?”'],
+          answer: '“Stel, het is zes maanden later en de livegang mislukte. Wat gebeurde er?”',
           why: 'Doen alsof de mislukking al gebeurd is, maakt het makkelijker oorzaken te noemen dan “nog risico’s?”, waar je een snel nee op krijgt.',
         },
       ],
       teach: [
         'Twee vragen doen meer werk dan alle andere als je de inhoud niet kunt beoordelen: “Waardoor zou dit mislukken?” en “Hoe weet je dat?”\n\nDe eerste vindt risico’s. De tweede toetst de beweringen. Samen laten ze je een plan testen zonder elk detail ervan te snappen.',
-        'Een premortem is een gestructureerde versie van de eerste vraag. Gary Klein beschreef hem in Harvard Business Review (2007): het team stelt zich voor dat het project al mislukt is en iedereen schrijft op waarom, voordat iemand iets zegt.\n\nKlein haalt onderzoek aan (Mitchell, Russo en Pennington, 1989) waarin mensen die zich een gebeurtenis voorstelden als al gebeurd, ongeveer 30% beter redenen ervoor konden noemen. Eerst schrijven voorkomt dat de senior stem de toon zet.',
+        'Een premortem is een gestructureerde versie van de eerste vraag. Gary Klein beschreef hem in Harvard Business Review (2007): het team stelt zich voor dat het project al mislukt is en iedereen schrijft op waarom, voordat iemand iets zegt.\n\nKlein haalt een onderzoek aan (Mitchell, Russo en Pennington, 1989) waarin mensen die zich voorstelden dat een gebeurtenis al had plaatsgevonden, ongeveer 30% meer redenen ervoor bedachten. Het telde redenen, niet hun kwaliteit, maar meer kandidaten is wat je hier wilt. Eerst schrijven voorkomt dat de senior stem de toon zet.',
         'Let op een single point of failure: één onderdeel, persoon of leverancier die, als hij uitvalt, alles stillegt. Eén server zonder back-up, één programmeur die de code kent, één kabel die de hele fabriek voedt.\n\nVraag bij elk serieus risico naar de beheersmaatregel (mitigation): wat we nu doen om het minder waarschijnlijk of minder erg te maken, en wie eigenaar is. Een risico zonder beheersmaatregel en eigenaar is alleen een zorg.',
         '“Hoe weet je dat?” vraagt om bewijs: iets wat jij of een ander kan zien, testen of controleren, geen mening. De ladder loopt van zwak naar sterk: “ik denk het”, “het werkte eerder”, “we hebben het hier getest”, “hier is het testrapport”.\n\nVraag het rustig en over de bewering, niet over de persoon: “Hoe weten we dat het netwerk de data aankan?” in plaats van “Weet je het zeker?”',
-        'De klassieke fout is de vragen stellen en het eerste antwoord accepteren. Het eerste antwoord is meestal het comfortabele; het bruikbare komt na een pauze of een tweede vraag: “En als dat gebeurde, wat zouden we het eerst zien?”\n\nEen grove vuistregel die veel projectleiders gebruiken: levert een premortem geen enkel risico op dat je verrast, dan zijn mensen nog niet eerlijk geweest.',
+        'De klassieke fout is de vragen stellen en het eerste antwoord accepteren. Het eerste antwoord is meestal het comfortabele; het bruikbare komt na een pauze of een tweede vraag. Dat zijn Silence (stilte) en Inquiry (doorvragen) uit MORE PIES, een luisterchecklist die je later helemaal tegenkomt: zwijg even, en vraag dan één laag dieper: “En als dat gebeurde, wat zouden we het eerst zien?”\n\nEen grove vuistregel die veel projectleiders gebruiken: levert een premortem geen enkel risico op dat je verrast, dan zijn mensen nog niet eerlijk geweest.',
       ],
       example: {
         kind: 'worked',
@@ -433,26 +433,26 @@ export default {
       recall: [
         {
           q: 'Wat gebeurt er in een premortem?',
-          options: ['Het team evalueert een project na afloop', 'De leverancier presenteert zijn testresultaten', 'De sponsor somt de risico’s op', 'Het team stelt zich voor dat het project mislukt is en iedereen schrijft op waarom'],
-          answer: 'Het team stelt zich voor dat het project mislukt is en iedereen schrijft op waarom',
+          options: ['Het team bespreekt na afloop wat er misging', 'De leverancier loopt zijn testresultaten met het team door', 'De sponsor somt de risico’s op die het team de komende tijd moet beheersen', 'Het team stelt zich voor dat het project mislukt is en schrijft op waarom'],
+          answer: 'Het team stelt zich voor dat het project mislukt is en schrijft op waarom',
           why: 'Ingebeelde terugblik maakt het makkelijker oorzaken te noemen; eerst alleen schrijven houdt het eerlijk.',
         },
         {
-          q: 'Met hoeveel ongeveer verbeterde in het onderzoek dat Klein aanhaalt het vermogen om redenen te noemen, als mensen zich een gebeurtenis voorstelden als al gebeurd?',
-          options: ['Ongeveer 5%', 'Ongeveer 30%', 'Ongeveer 80%', 'Het maakte geen verschil'],
-          answer: 'Ongeveer 30%',
-          why: 'Mitchell, Russo en Pennington (1989), aangehaald door Klein (2007).',
+          q: 'Hoeveel meer redenen bedachten mensen ongeveer in het onderzoek uit 1989 dat Klein aanhaalt, als ze zich voorstelden dat de gebeurtenis al had plaatsgevonden?',
+          options: ['Ongeveer 80% meer', 'Ongeveer 30% meer', 'Helemaal niet meer', 'Ongeveer 5% meer'],
+          answer: 'Ongeveer 30% meer',
+          why: 'Mitchell, Russo en Pennington (1989), aangehaald door Klein (2007). Klein noemt het een 30% beter vermogen om redenen te vinden; het onderzoek telde hoeveel redenen mensen gaven, niet hoe goed ze waren.',
         },
         {
           q: 'Wat is het sterkste bewijs dat een scanner aan de lijn werkt?',
-          options: ['“Ik denk het”', '“Het werkte bij een andere klant”', '“We hebben het op kantoor getest”', '“Hier is het rapport van de test op lijn 2”'],
+          options: ['“Ik weet vrij zeker dat hij werkt; het is een standaardscanner”', '“Bij een andere klant werkte hij vorig jaar prima”', '“We hebben hem op kantoor getest en hij maakte verbinding”', '“Hier is het rapport van de test op lijn 2”'],
           answer: '“Hier is het rapport van de test op lijn 2”',
           why: 'Hier getest, onder echte omstandigheden, en vastgelegd: de top van de ladder.',
         },
         {
           q: 'Wat is een single point of failure?',
-          options: ['Het grootste risico op de lijst', 'Een risico zonder eigenaar', 'Eén onderdeel, persoon of leverancier die alles stillegt als hij uitvalt', 'Een mislukte test'],
-          answer: 'Eén onderdeel, persoon of leverancier die alles stillegt als hij uitvalt',
+          options: ['Het risico met de hoogste score op het risicoregister van het project', 'Een risico zonder eigenaar of beheersmaatregel', 'Eén onderdeel, persoon of leverancier waarvan uitval alles stillegt', 'Een test die faalt en de volgende mijlpaal blokkeert'],
+          answer: 'Eén onderdeel, persoon of leverancier waarvan uitval alles stillegt',
           why: 'Eén server, één expert, één kabel: geen back-up betekent dat één storing het geheel stillegt.',
         },
       ],
@@ -483,6 +483,7 @@ export default {
         { term: 'Premortem', def: 'Een sessie waarin het team zich voorstelt dat het project mislukt is en opschrijft waarom, voordat het begint (Klein, 2007).' },
         { term: 'Single point of failure', def: 'Eén onderdeel, persoon of leverancier die alles stillegt als hij uitvalt.' },
         { term: 'Beheersmaatregel', def: 'Wat je nu doet om een risico minder waarschijnlijk of minder erg te maken, met een eigenaar.' },
+        { term: 'MORE PIES', def: 'Een checklist voor actief luisteren: Mood (sfeer), Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry (doorvragen), Experience (ervaring), Silence (stilte).' },
         { term: 'Bewijs', def: 'Iets wat je kunt zien, testen of controleren, geen mening; van “ik denk het” tot een testrapport.' },
       ],
     },
@@ -492,15 +493,15 @@ export default {
       pre: [
         {
           q: 'Een programmeur schat de koppeling op “drie weken”. Jij kunt de code niet beoordelen. Wat is de nuttigste volgende stap?',
-          options: ['Vragen om een bandbreedte en hoe lang vergelijkbare koppelingen eerder duurden', 'Inkorten naar twee weken om druk te zetten', 'Accepteren; hij weet het het best', 'Verdubbelen'],
-          answer: 'Vragen om een bandbreedte en hoe lang vergelijkbare koppelingen eerder duurden',
+          options: ['Vragen om een bandbreedte en naar eerdere vergelijkbare koppelingen', 'Inkorten naar twee weken, zodat er een uitdagend doel ligt', 'Accepteren zoals het is, want hij kent de code', 'Er standaard 50% buffer bij doen, de gebruikelijke marge voor software'],
+          answer: 'Vragen om een bandbreedte en naar eerdere vergelijkbare koppelingen',
           why: 'Een bandbreedte laat de onzekerheid zien, en eerdere klussen zijn de beste toets die je hebt zonder de code te kennen.',
         },
       ],
       teach: [
         'Je kunt een schatting niet toetsen door het werk te beoordelen, maar wel door te kijken hoe hij gemaakt is. Drie gereedschappen: bandbreedtes, referentieklassen en een tweede schatting.\n\nWaarom je ze nodig hebt: Daniel Kahneman en Amos Tversky (1979) benoemden de planningsdrogreden (planning fallacy), de neiging om te onderschatten hoe lang je eigen taak duurt, zelfs als je weet dat vergelijkbare taken uitliepen. Experts hebben er ook last van.',
-        'Een bandbreedte is een lage en een hoge schatting in plaats van één getal: “tussen 3 en 6 weken”. Hij laat zien hoe onzeker iemand is. Een driepuntsschatting voegt een meest waarschijnlijke waarde toe; een gangbare formule (uit PERT, door de Amerikaanse marine gebruikt vanaf 1958) weegt die: (optimistisch + 4 × meest waarschijnlijk + pessimistisch) ÷ 6.\n\nHet is een afspraak, geen wet, maar het trekt de schatting naar de lange staart.',
-        'Een referentieklasse is een groep vergelijkbare eerdere projecten die je als maatstaf gebruikt. Kahneman en Bent Flyvbjerg raden het aan: in plaats van redeneren vanuit het plan vraag je “hoe lang duurden de laatste vijf koppelingen zoals deze?”\n\nFlyvbjerg en Gardner (How Big Things Get Done, 2023) melden uit ongeveer 16.000 projecten dat maar 8,5% zowel budget als planning haalde. Zulke basiscijfers (base rates) winnen van zelfverzekerde plannen.',
+        'Een bandbreedte is een lage en een hoge schatting in plaats van één getal: “tussen 3 en 6 weken”. Hij laat zien hoe onzeker iemand is. Een driepuntsschatting voegt een meest waarschijnlijke waarde toe; een gangbare formule (uit PERT, in 1958 ontwikkeld voor het Polaris-raketprogramma van de Amerikaanse marine) weegt die: (optimistisch + 4 × meest waarschijnlijk + pessimistisch) ÷ 6.\n\nHet is een afspraak, geen wet, maar het trekt de schatting naar de lange staart.',
+        'Een referentieklasse is een groep vergelijkbare eerdere projecten die je als maatstaf gebruikt. Kahneman en Bent Flyvbjerg raden het aan: in plaats van redeneren vanuit het plan vraag je “hoe lang duurden de laatste vijf koppelingen zoals deze?”\n\nFlyvbjerg en Gardner (How Big Things Get Done, 2023) melden uit een database van ongeveer 16.000 projecten, vooral grote, dat maar 8,5% zowel budget als planning haalde, en maar 0,5% ook de beloofde baten opleverde. Zo’n basiscijfer (base rate) wint van een zelfverzekerd plan.',
         'Een tweede schatting: vraag een andere expert, zonder het eerste getal te laten zien, en vergelijk. Liggen ze dicht bij elkaar, mooi. Liggen ze ver uit elkaar, dan is het verschil het gesprek: “Wat zie jij waardoor het langer duurt?”\n\nLet ook op de taal. “Drie weken als er niks misgaat” is het beste geval, niet de schatting. En een schatting die maandenlang niet verandert, wordt vaak niet bijgewerkt.',
         'Experts twisten over hoe je schattingen gebruikt. Sommige agile teams vermijden tijdschattingen en voorspellen alleen vanuit hun eigen trackrecord. Anderen willen een vast getal voor het contract. Voor jou is de vraag simpeler: is de schatting een voorspelling met haar onzekerheid, of een hoop?\n\nEen scherpe vraag: “Waardoor zou het twee keer zo lang duren?” Komt het antwoord meteen, zet dat dan in de bandbreedte.',
       ],
@@ -514,8 +515,8 @@ export default {
       recall: [
         {
           q: 'Wat is de planningsdrogreden?',
-          options: ['Plannen maken zonder budget', 'Onderschatten hoe lang je eigen taak duurt, zelfs als je weet dat vergelijkbare taken uitliepen', 'Te ver vooruit plannen', 'Risico’s overschatten'],
-          answer: 'Onderschatten hoe lang je eigen taak duurt, zelfs als je weet dat vergelijkbare taken uitliepen',
+          options: ['Een plan maken voordat het budget is goedgekeurd', 'Je eigen taak onderschatten, ook als je weet dat vergelijkbare uitliepen', 'Zo ver vooruit plannen dat het plan al achterhaald is voordat je goed en wel begint', 'Risico’s overschatten, zodat plannen te veel buffer krijgen'],
+          answer: 'Je eigen taak onderschatten, ook als je weet dat vergelijkbare uitliepen',
           why: 'Benoemd door Kahneman en Tversky (1979); experts zijn er niet immuun voor.',
         },
         {
@@ -527,13 +528,13 @@ export default {
         },
         {
           q: 'Wat is een referentieklasse?',
-          options: ['Een cursus voor schatters', 'De mening van de meest senior expert', 'Een groep vergelijkbare eerdere projecten die je als maatstaf gebruikt', 'De contractprijs'],
-          answer: 'Een groep vergelijkbare eerdere projecten die je als maatstaf gebruikt',
+          options: ['Een training waarin experts leren schatten', 'De schatting van de meest senior expert, als maatstaf', 'Een groep vergelijkbare eerdere projecten als maatstaf', 'De contractprijs, als bovengrens'],
+          answer: 'Een groep vergelijkbare eerdere projecten als maatstaf',
           why: 'Eerdere uitkomsten van vergelijkbaar werk zijn een betere toets dan alleen redeneren vanuit het plan.',
         },
         {
           q: 'Twee experts geven onafhankelijke schattingen: 4 weken en 10 weken. Wat doe je?',
-          options: ['Vragen wat de een ziet dat de ander niet ziet', 'De kortste nemen', 'De langste nemen', 'Het gemiddelde nemen'],
+          options: ['Vragen wat de een ziet dat de ander niet ziet', 'De kortste nemen, om de druk op het team te houden', 'De langste nemen, voor de zekerheid', 'Het gemiddelde nemen: 7 weken'],
           answer: 'Vragen wat de een ziet dat de ander niet ziet',
           why: 'Het verschil laat andere aannames zien; dat gesprek is meer waard dan elk van beide getallen.',
         },
@@ -575,9 +576,9 @@ export default {
       pre: [
         {
           q: 'De netengineer zegt: “Het kortsluitvermogen op het aansluitpunt is te hoog voor die schakelinstallatie.” Wat is het beste antwoord voor een projectleider?',
-          options: ['“Oké.”', '“Laten we dat buiten het overleg bespreken.”', '“Kun je me de berekening sturen?”', '“Dus als ik je goed begrijp, kan de schakelinstallatie die de fabriek koos daar een storing niet veilig aan. Wat betekent dat voor kosten en datum?”'],
-          answer: '“Dus als ik je goed begrijp, kan de schakelinstallatie die de fabriek koos daar een storing niet veilig aan. Wat betekent dat voor kosten en datum?”',
-          why: 'Parafraseren in gewone woorden checkt of je het begreep, en de vervolgvraag maakt van jargon een gevolg voor het project.',
+          options: ['“Oké, genoteerd. Laten we doorgaan en het volgend overleg weer oppakken.”', '“Laten we dat buiten dit overleg houden; kunnen jij en de installateur het deze week samen oplossen?”', '“Kun je me de berekening sturen, dan loop ik die in het weekend door?”', '“Dus die schakelinstallatie kan een storing daar niet aan? Wat betekent dat voor kosten en datum?”'],
+          answer: '“Dus die schakelinstallatie kan een storing daar niet aan? Wat betekent dat voor kosten en datum?”',
+          why: 'Parafraseren in gewone woorden checkt of je het begreep, en de vervolgvraag maakt van jargon een gevolg voor het project. (Kortsluitvermogen: hoeveel stroom er bij een kortsluiting gaat lopen; de schakelinstallatie moet die veilig kunnen afschakelen.)',
         },
       ],
       teach: [
@@ -593,30 +594,30 @@ export default {
         ask: 'Hoe pak je het tweede deel aan, en wat neem je mee naar de sponsor?',
         reveal: 'Vraag het eerlijk: “Idempotentie bij retries, wat betekent dat in gewone woorden, en wat is het gevolg?” Antwoord: “Als een bericht twee keer wordt verstuurd, kan een order dubbel verschijnen.”\n\nDoorvragen: “Wat zou dat ons op de vloer kosten, en hoe vaak?” Dan terugvertellen: “Dus ik zou de sponsor zeggen: orders kunnen tot 15 minuten te laat binnenkomen, en als de verbinding hapert kan een order dubbel komen, dus we hebben een check op dubbele orders nodig. Klopt dat?” Hij past één woord aan. Die zin gaat naar de stuurgroep.',
       },
-      said: 'Wat je hoort in projecten: “Dus wat je zegt is…” De vier nuttigste woorden die een projectleider heeft.',
+      said: 'Wat je hoort in projecten: “Dus wat je zegt is…” De vijf nuttigste woorden die een projectleider heeft.',
       recall: [
         {
           q: 'Waar staan de letters van MORE PIES voor?',
-          options: ['Meaning, Order, Results, Evidence, Planning, Issues, Estimates, Scope', 'Mood, Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry, Experience, Silence', 'Motivatie, Openheid, Respect, Energie, Precisie, Interesse, Empathie, Snelheid', 'Monitoren, Organiseren, Reviewen, Evalueren, Plannen, Informeren, Escaleren, Signeren'],
+          options: ['Mood, Open vragen, Reflecteren, Empathie, Positiviteit, Interesse, Evaluatie, Samenvatten', 'Mood, Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry, Experience, Silence', 'Motivatie, Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry, Evaluatie, Silence', 'Mood, Observeren, Reflecteren, Erkennen, Parafraseren, Interesse, Experience, Samenvatten'],
           answer: 'Mood, Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry, Experience, Silence',
           why: 'Een checklist voor actief luisteren; parafraseren en doorvragen (Inquiry) doen het meeste vertaalwerk.',
         },
         {
           q: 'Welke drie vragen maken van jargon een gevolg voor het project?',
-          options: ['Wie, wat, waar', 'Waarom, waarom, waarom', 'Zit het in de scope, is het getest, is het getekend?', 'Wat betekent het voor de datum, de kosten en het risico?'],
+          options: ['Wie is eigenaar, wat is er nodig, waar zit het vast?', 'Waarom, waarom en nog eens waarom, tot de grondoorzaak?', 'Zit het in de scope, is het getest, is het afgetekend?', 'Wat betekent het voor de datum, de kosten en het risico?'],
           answer: 'Wat betekent het voor de datum, de kosten en het risico?',
           why: 'Dat zijn de termen waarin de sponsor beslist.',
         },
         {
           q: 'Wat is terugvertellen, gebruikt door een projectleider?',
-          options: ['Het verslag ter goedkeuring sturen', 'De expert projectmanagement leren', 'Het punt van de expert terugvertellen zoals je het aan de sponsor zou vertellen, en hem het laten verbeteren', 'De expert de operators laten trainen'],
-          answer: 'Het punt van de expert terugvertellen zoals je het aan de sponsor zou vertellen, en hem het laten verbeteren',
+          options: ['Het verslag van het overleg ter controle en goedkeuring naar de expert sturen', 'De expert de basis van projectmanagement uitleggen', 'Zijn punt vertellen zoals aan de sponsor, zodat hij het kan verbeteren', 'De expert de wijziging aan de operators laten uitleggen'],
+          answer: 'Zijn punt vertellen zoals aan de sponsor, zodat hij het kan verbeteren',
           why: 'Zo krijg je een gewone zin waar de expert achter staat, zodat je hem hogerop niet verkeerd citeert.',
         },
         {
           q: 'Wat is een klassieke fout bij het vertalen van jargon?',
-          options: ['Zo los vertalen dat de betekenis verandert, zoals “dus eigenlijk is het prima?”', 'Om een verbetering vragen', 'Even stil zijn na de parafrase', 'Naar de kosten vragen'],
-          answer: 'Zo los vertalen dat de betekenis verandert, zoals “dus eigenlijk is het prima?”',
+          options: ['Zo los vertalen dat de betekenis verschuift: “dus eigenlijk is het prima?”', 'De expert je parafrase laten verbeteren waar de sponsor bij is', 'Na de parafrase stil blijven tot de expert het gat invult', 'De expert vragen om de ene zin die de sponsor echt moet onthouden van het verhaal'],
+          answer: 'Zo los vertalen dat de betekenis verschuift: “dus eigenlijk is het prima?”',
           why: 'Een losse vertaling lokt een beleefd ja uit en het risico verdwijnt.',
         },
       ],
@@ -634,9 +635,9 @@ export default {
             '“Dat is een versimpeling. Curtailment is genuanceerder dan ‘ons vermogen beperken’.”',
             '“Ik heb liever dat de directeur onze technische notitie leest dan jouw versie.”',
           ],
-          model: '“Je hebt gelijk, het is versimpeld, dus zeg me wat ik weglaat dat ertoe doet voor het besluit. De notitie moet ook naar de directeur. Wat ik nu van je nodig heb is één zin waarop hij kan beslissen: hoeveel uur per jaar we mogelijk beperkt worden, en hoeveel. Als je vandaag een bandbreedte kunt geven, kunnen de details in de notitie volgen.”',
+          model: '“Je hebt gelijk, het is versimpeld, dus zeg me wat ik weglaat dat telt voor het besluit. De notitie moet ook naar de directeur. Wat ik nu van je nodig heb is één zin waarop hij kan beslissen: hoeveel uur per jaar we mogelijk beperkt worden, en hoeveel. Als je vandaag een bandbreedte kunt geven, kunnen de details in de notitie volgen.”',
           rubric: [
-            'Accepteert de verbetering en vraagt wat ertoe doet',
+            'Accepteert de verbetering en vraagt wat telt voor het besluit',
             'Houdt de notitie maar vraagt om een zin om op te beslissen',
             'Vraagt om een bandbreedte in plaats van zekerheid',
           ],
@@ -645,7 +646,6 @@ export default {
       sayIt: 'Vertaal in 60 seconden één stuk jargon uit je eigen werk: parafraseer het, en zeg wat het betekent voor datum, kosten en risico.',
       terms: [
         { term: 'Jargon', def: 'De vaktaal van een vakgebied: precies voor insiders, ondoorzichtig voor anderen.' },
-        { term: 'MORE PIES', def: 'Een checklist voor actief luisteren: Mood (sfeer), Open vragen, Reflecteren, Empathie, Parafraseren, Inquiry (doorvragen), Experience (ervaring), Silence (stilte).' },
         { term: 'Actief luisteren', def: 'Luisteren om te begrijpen in plaats van om te antwoorden, en dat laten merken.' },
         { term: 'Parafraseren', def: 'De inhoud in je eigen woorden herhalen om te checken of je het begreep.' },
         { term: 'Doorvragen', def: 'Eén laag dieper vragen, tot je bij het gevolg bent (de Inquiry uit MORE PIES).' },
@@ -659,13 +659,13 @@ export default {
       pre: [
         {
           q: 'De PLC-programmeur zegt dat alle noodstoppen werken. Jij kunt de code niet lezen. Wat is een verstandige controle?',
-          options: ['Vragen of hij het zeker weet', 'Vragen om de veiligheidstest te zien waarin elke stop wordt geactiveerd, met de resultaten getekend', 'De code zelf lezen', 'Hem vertrouwen; controleren is beledigend'],
-          answer: 'Vragen om de veiligheidstest te zien waarin elke stop wordt geactiveerd, met de resultaten getekend',
+          options: ['Hem schriftelijk laten bevestigen dat elke stop afzonderlijk is gecontroleerd en werkt', 'Bij de test kijken waarin elke stop wordt geactiveerd, en hem laten aftekenen', 'Het veiligheidsdeel van de code zelf lezen, met zijn hulp', 'Hem vertrouwen, want om bewijs vragen ondermijnt hem'],
+          answer: 'Bij de test kijken waarin elke stop wordt geactiveerd, en hem laten aftekenen',
           why: 'Je controleert het resultaat, niet de code, en je controleert het meest waar het risico het grootst is.',
         },
       ],
       teach: [
-        'Vertrouwen maar controleren (trust but verify), een oud Russisch spreekwoord dat Ronald Reagan in de jaren tachtig beroemd maakte bij wapenonderhandelingen, is de werkregel met experts. Je vertrouwt hun vakmanschap en bedoelingen; je controleert de resultaten die ertoe doen.\n\nControleren is geen wantrouwen. Experts controleren elkaar voortdurend: codereviews, testrapporten, een tweede engineer die een tekening tekent. Jij vraagt hetzelfde.',
+        'Vertrouwen maar controleren (trust but verify), een oud Russisch spreekwoord dat Ronald Reagan in de jaren tachtig beroemd maakte bij wapenonderhandelingen, is de werkregel met experts. Je vertrouwt hun vakmanschap en bedoelingen; je controleert de resultaten die echt tellen.\n\nControleren is geen wantrouwen. Experts controleren elkaar voortdurend: codereviews, testrapporten, een tweede engineer die een tekening tekent. Jij vraagt hetzelfde.',
         'Controleer resultaten, geen methodes. Je kunt niet beoordelen hoe een kabel is berekend, maar je kunt vragen: “Wie heeft de berekening gecontroleerd, en waar is die getekend?” Je kunt geen code lezen, maar je kunt bij de test kijken.\n\nHet vier-ogenprincipe betekent dat elk belangrijk stuk werk door een tweede bevoegde persoon wordt gecontroleerd. Jouw taak is zorgen dat dat tweede paar ogen er is, niet het zelf zijn.',
         'Risicogestuurd controleren: controleer harder waar een fout het meest pijn doet. Veiligheid, geld en alles wat je niet terug kunt draaien krijgen een volledige controle. Routinezaken krijgen een steekproef (spot check): een controle van een klein willekeurig deel in plaats van alles, zoals drie van de veertig tekeningen.\n\nZo vermijd je twee fouten: niks controleren, en alles controleren zodat experts zich bekeken voelen en trager gaan werken.',
         'Hoe vraag je het zonder te beledigen: maak het over het proces, niet over de persoon, en zeg het vooraf. “In elk project vraag ik om de testresultaten van de veiligheidspunten. Het gaat niet om jou.” Vooraf afgesproken is het routine. Na een probleem ingevoerd voelt het als verdenking.\n\nEen klassieke fout: pas controleren als je iemand al wantrouwt. Dan komt de controle te laat.',
@@ -673,25 +673,25 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Robotcelproject. Veertig punten op de checklist van de leverancier. Geen ervan kun je zelf beoordelen.\n\nStap 1: sorteer op risico met de veiligheidskundige van de klant. Vijf punten zijn veiligheid (noodstoppen, lichtscherm, hekvergrendelingen), drie zijn contractprestaties (snelheid, beschikbaarheid), tweeëndertig zijn routine.\nStap 2: veiligheid en prestaties krijgen een volledige controle: jij kijkt bij de test, en de veiligheidskundige tekent.\nStap 3: routine krijgt een steekproef: je kiest er willekeurig drie en vraagt ze te zien.\nStap 4: je spreekt dit bij de start af met de leverancier: “Zo controleer ik, in elk project.”\n\nResultaat: volledige grip op de acht punten die ertoe doen, een lichte hand op de rest.',
+        text: 'Robotcelproject. Veertig punten op de checklist van de leverancier. Geen ervan kun je zelf beoordelen.\n\nStap 1: sorteer op risico met de veiligheidskundige van de klant. Vijf punten zijn veiligheid (noodstoppen; het lichtscherm, een lichtstraal die de robot stopt als iemand erin grijpt; hekvergrendelingen die hem stoppen als een deur opengaat), drie zijn contractprestaties (snelheid, beschikbaarheid), tweeëndertig zijn routine.\nStap 2: veiligheid en prestaties krijgen een volledige controle: jij kijkt bij de test, en de veiligheidskundige tekent.\nStap 3: routine krijgt een steekproef: je kiest er willekeurig drie en vraagt ze te zien.\nStap 4: je spreekt dit bij de start af met de leverancier: “Zo controleer ik, in elk project.”\n\nResultaat: volledige grip op de acht punten die echt tellen, een lichte hand op de rest.',
       },
       said: 'Wat je hoort in projecten: “Vertrouw ons nou maar, we hebben dit vaker gedaan.” En het antwoord: “Doe ik. Laat me de test toch zien.”',
       recall: [
         {
           q: 'Wat controleer je als je de methode niet kunt beoordelen?',
-          options: ['Het cv van de expert', 'Niets; vertrouwen is genoeg', 'De resultaten, en dat een tweede bevoegde persoon ze heeft gecontroleerd', 'Elke regel van het werk'],
-          answer: 'De resultaten, en dat een tweede bevoegde persoon ze heeft gecontroleerd',
+          options: ['Het cv van de expert en de referenties van zijn vorige drie projecten', 'Niets meer; bij een goede expert is vertrouwen genoeg', 'De resultaten, en dat een tweede bevoegde persoon ze controleerde', 'Elke stap van het werk, voor zover je die kunt volgen'],
+          answer: 'De resultaten, en dat een tweede bevoegde persoon ze controleerde',
           why: 'Je controleert uitkomsten en zorgt dat de vier-ogencontrole er is, zonder zelf het tweede paar ogen te zijn.',
         },
         {
           q: 'Wat is het vier-ogenprincipe?',
-          options: ['Elk belangrijk stuk werk wordt door een tweede bevoegde persoon gecontroleerd', 'Twee leveranciers per onderdeel', 'Twee overleggen per week', 'Twee handtekeningen op elke factuur'],
-          answer: 'Elk belangrijk stuk werk wordt door een tweede bevoegde persoon gecontroleerd',
+          options: ['Belangrijk werk wordt gecontroleerd door een tweede bevoegde persoon', 'Elk kritisch onderdeel wordt bij twee leveranciers gekocht', 'Elk project heeft twee leiders die de rol delen', 'Elke expert werkt samen met een junior die over zijn schouder meekijkt'],
+          answer: 'Belangrijk werk wordt gecontroleerd door een tweede bevoegde persoon',
           why: 'Een tweede bevoegde controle vangt wat de eerste persoon in zijn eigen werk niet ziet.',
         },
         {
           q: 'Welke punten krijgen bij risicogestuurd controleren een volledige controle?',
-          options: ['Alle punten even zwaar', 'De nieuwste punten', 'Wat de expert voorstelt', 'Veiligheid, geld en alles wat je niet terug kunt draaien'],
+          options: ['Alle punten even zwaar, zodat niemand zich aangewezen voelt', 'De nieuwste punten, omdat die nog niet getest zijn', 'Wat de expert het belangrijkst vindt', 'Veiligheid, geld en alles wat je niet terug kunt draaien'],
           answer: 'Veiligheid, geld en alles wat je niet terug kunt draaien',
           why: 'Controleer het hardst waar een fout het meest pijn doet; neem een steekproef van de routine.',
         },
@@ -726,7 +726,7 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit hoe je het werk van een expert controleert als je het zelf niet kunt beoordelen.',
       terms: [
-        { term: 'Vertrouwen maar controleren', def: 'Het vakmanschap en de bedoelingen van mensen vertrouwen, en toch de resultaten controleren die ertoe doen; een oud Russisch spreekwoord dat Reagan beroemd maakte.' },
+        { term: 'Vertrouwen maar controleren', def: 'Het vakmanschap en de bedoelingen van mensen vertrouwen, en toch de resultaten controleren die echt tellen; een oud Russisch spreekwoord dat Reagan beroemd maakte.' },
         { term: 'Vier-ogenprincipe', def: 'Elk belangrijk stuk werk wordt door een tweede bevoegde persoon gecontroleerd.' },
         { term: 'Risicogestuurd controleren', def: 'Harder controleren waar een fout het meest pijn doet, lichter bij routinezaken.' },
         { term: 'Steekproef', def: 'Een controle van een klein willekeurig deel in plaats van alles.' },
@@ -738,7 +738,7 @@ export default {
       pre: [
         {
           q: 'Twee engineers zijn het oneens of een oude transformator gereviseerd of vervangen moet worden. Jij kunt niet beoordelen wie gelijk heeft. Wat is de beste eerste stap?',
-          options: ['Meegaan met de meest senior', 'Ze het onderling laten uitzoeken', 'Een munt opgooien', 'Eerst de besliscriteria afspreken: kosten, risico, stilstand, levensduur'],
+          options: ['Meegaan met de meest senior engineer, want ervaring telt hier het zwaarst', 'Ze vragen het onderling uit te zoeken en dan terug te komen', 'Een derde engineer de doorslag laten geven', 'Eerst de besliscriteria afspreken: kosten, risico, stilstand, levensduur'],
           answer: 'Eerst de besliscriteria afspreken: kosten, risico, stilstand, levensduur',
           why: 'Met afgesproken criteria wordt de ruzie een vergelijking die je kunt volgen, geen strijd om gezag.',
         },
@@ -758,25 +758,25 @@ export default {
       recall: [
         {
           q: 'Wat zet je als eerste op tafel als experts het oneens zijn?',
-          options: ['De opties', 'Het budget', 'De besliscriteria', 'De cv’s van de experts'],
+          options: ['De opties, zodat iedereen ziet wat er ligt', 'Het budget, want dat begrenst elke optie', 'De besliscriteria', 'Het trackrecord van elke expert'],
           answer: 'De besliscriteria',
           why: 'Afgesproken criteria maken van de ruzie een vergelijking die je kunt volgen.',
         },
         {
           q: 'Waar zitten de meeste meningsverschillen tussen experts?',
-          options: ['In oordelen en aannames', 'In gecontroleerde feiten', 'In het verslag', 'In het contract'],
+          options: ['In oordelen en aannames', 'In feiten die je kunt controleren', 'In wat er in eerdere overleggen gezegd is', 'In de tekst van het contract'],
           answer: 'In oordelen en aannames',
           why: 'Feiten kun je controleren; experts verschillen in wat ze betekenen en wat er gaat gebeuren.',
         },
         {
           q: 'Wie hoort de gewichten in een gewogen score vast te stellen?',
-          options: ['De meest senior expert', 'De sponsor, want de gewichten zijn een zakelijke keuze', 'De leverancier', 'Wie de spreadsheet bouwt'],
+          options: ['De meest senior expert, die weet wat technisch telt', 'De sponsor, want de gewichten zijn een zakelijke keuze', 'De leverancier, die dit soort scores vaker heeft gedaan', 'Wie de spreadsheet bouwt, voor de consistentie'],
           answer: 'De sponsor, want de gewichten zijn een zakelijke keuze',
           why: 'Hoe zwaar kosten tegen risico wegen is een zakelijke prioriteit, geen technisch feit.',
         },
         {
           q: 'Hoe geef je een expert voor een second opinion zijn opdracht?',
-          options: ['Zeg wie volgens jou gelijk heeft', 'Geef hem alleen de goedkoopste optie', 'Met de vraag en de criteria, niet wie wat zei', 'Stuur hem de hele mailruzie'],
+          options: ['Zeg naar welke kant jij neigt, dat scheelt tijd', 'Geef alleen de goedkoopste optie, dan blijft het gericht', 'Met de vraag en de criteria, niet wie wat zei', 'Stuur de hele mailwisseling door, zodat hij alle standpunten ziet'],
           answer: 'Met de vraag en de criteria, niet wie wat zei',
           why: 'Een onafhankelijke kijk helpt alleen als hij niet gestuurd is.',
         },
@@ -817,8 +817,8 @@ export default {
       pre: [
         {
           q: 'De enige PLC-programmeur op je project werkt ook aan drie andere projecten. Wat is het waarschijnlijke effect?',
-          options: ['Een groot deel van zijn tijd gaat op aan wisselen tussen projecten, dus elk project krijgt minder dan je denkt', 'Geen; goede programmeurs kunnen multitasken', 'Hij werkt sneller onder druk', 'Jouw project krijgt voorrang omdat het het nieuwste is'],
-          answer: 'Een groot deel van zijn tijd gaat op aan wisselen tussen projecten, dus elk project krijgt minder dan je denkt',
+          options: ['Veel tijd gaat op aan wisselen, dus elk project krijgt minder dan gepland', 'Weinig effect, want ervaren programmeurs zijn gewend meerdere klussen te combineren', 'Hij werkt sneller, want de druk houdt hem scherp', 'Jouw project krijgt voorrang, omdat het het nieuwste is'],
+          answer: 'Veel tijd gaat op aan wisselen, dus elk project krijgt minder dan gepland',
           why: 'Wisselen tussen taken kost tijd om er weer in te komen; verdeeld over vier projecten verdwijnen er veel uren.',
         },
       ],
@@ -831,21 +831,21 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Robotcelproject. De enige veiligheidsspecialist van de leverancier zit op vier projecten en mist steeds jouw sessies. Je project heeft de komende 8 weken ongeveer 40 uur van hem nodig. Zijn manager zegt: “Hij zit voor 25% op jouw project.”\n\nMet de vuistregel van Weinberg in je achterhoofd is 25% van iemand die over vier projecten verdeeld is, waarschijnlijk veel minder echte tijd.',
+        text: 'Robotcelproject. De enige veiligheidsspecialist van de leverancier zit op vier projecten en mist steeds jouw sessies. Je project heeft de komende 8 weken ongeveer 40 uur van hem nodig. Zijn manager zegt: “Hij zit voor 25% op jouw project.”\n\nDe grove tabel van Weinberg geeft iemand op vier projecten maar ongeveer 10% van zijn tijd per project; de rest gaat op aan wisselen. Ga uit van een werkweek van 40 uur.',
         ask: 'Hoe regel je zijn tijd en zijn aandacht?',
-        reveal: 'Vertaal het percentage naar blokken: vraag zijn manager om één vaste dag per twee weken, plus twee halve dagen voor de veiligheidstest, nu ingepland. Dat dekt ongeveer 40 uur aan geconcentreerde tijd.\n\nBereid elke dag voor: vragen, tekeningen en besluiten klaar, zodat er geen uur verloren gaat. Vraag hem wat het project de moeite waard zou maken, misschien minder late telefoontjes van de bouwplaats. Noem zijn werk daarna bij naam in de stuurgroep.',
+        reveal: 'Op papier is 25% van 8 weken × 40 uur 80 uur. Met de grove 10% van Weinberg is het ongeveer 32 uur, minder dan de 40 die je nodig hebt.\n\nVertaal het percentage naar blokken: vraag zijn manager om één vaste dag van 8 uur per twee weken (4 dagen, 32 uur), plus twee halve dagen voor de veiligheidstest (8 uur), nu ingepland. Samen 40 uur aan geconcentreerde tijd.\n\nBereid elke dag voor: vragen, tekeningen en besluiten klaar, zodat er geen uur verloren gaat. Vraag hem wat het project de moeite waard zou maken, misschien minder late telefoontjes van de bouwplaats. Noem zijn werk daarna bij naam in de stuurgroep.',
       },
       said: 'Wat je hoort in projecten: “Ik zit op vier projecten. Ik kom deze week aan de jouwe toe.” Vertaling: misschien.',
       recall: [
         {
           q: 'Wat is contextwisseling?',
-          options: ['Van leverancier wisselen', 'De projectscope veranderen', 'Overstappen van cloud naar servers op locatie', 'Wisselen tussen taken of projecten en tijd verliezen om er weer in te komen'],
-          answer: 'Wisselen tussen taken of projecten en tijd verliezen om er weer in te komen',
+          options: ['Halverwege een project van leverancier wisselen', 'De scope veranderen nadat de planning met de sponsor is afgesproken', 'Overstappen van servers op locatie naar de cloud', 'Wisselen tussen taken en tijd verliezen om er weer in te komen'],
+          answer: 'Wisselen tussen taken en tijd verliezen om er weer in te komen',
           why: 'Elke wissel kost tijd om weer op snelheid te komen.',
         },
         {
           q: 'Hoe vraag je om de tijd van een expert?',
-          options: ['Als percentage', 'In blokken: vaste dagen of halve dagen', 'Alleen als er een probleem is', 'Elke week via de sponsor'],
+          options: ['Als percentage van zijn week', 'In blokken: vaste dagen of halve dagen', 'Alleen als er een probleem speelt', 'Elke week opnieuw via de sponsor, zodat het voorrang krijgt'],
           answer: 'In blokken: vaste dagen of halve dagen',
           why: 'Blokken verminderen het wisselen en zijn makkelijker te beschermen dan een percentage.',
         },
@@ -857,7 +857,7 @@ export default {
         },
         {
           q: 'Waarin geef je een expert autonomie?',
-          options: ['In de scope', 'In de deadline', 'In het hoe, terwijl je stevig bent over het wat en wanneer', 'In alles'],
+          options: ['In de scope, zodat hij zich eigenaar voelt', 'In de deadline, zodat hij zijn eigen werk helemaal zelf kan plannen', 'In het hoe, terwijl je stevig bent over het wat en wanneer', 'In alles, want hij is de expert'],
           answer: 'In het hoe, terwijl je stevig bent over het wat en wanneer',
           why: 'De methode is hun vak; het doel en de timing zijn van het project.',
         },
@@ -899,8 +899,8 @@ export default {
       pre: [
         {
           q: 'Zes weken achter elkaar meldt de developer de koppeling als “90% klaar”. Waar is dit waarschijnlijk een teken van?',
-          options: ['Voortgang wordt gemeten in inspanning, niet in werkende resultaten, en het moeilijke deel komt nog', 'Bijna klaar; geduld', 'De developer is lui', 'De planning was één week te kort'],
-          answer: 'Voortgang wordt gemeten in inspanning, niet in werkende resultaten, en het moeilijke deel komt nog',
+          options: ['Er wordt inspanning gemeld, geen werkend resultaat; het lastige komt nog', 'Het is bijna af; de laatste details vragen gewoon wat geduld', 'De developer steekt te weinig uren in de koppeling', 'De planning was een week te krap, dus volgende week is het waarschijnlijk af'],
+          answer: 'Er wordt inspanning gemeld, geen werkend resultaat; het lastige komt nog',
           why: 'Wekenlang “bijna klaar” betekent meestal dat het laatste, moeilijkste deel nog niet is aangepakt.',
         },
       ],
@@ -921,25 +921,25 @@ export default {
       recall: [
         {
           q: 'Waar waarschuwt de negentig-negentigregel voor?',
-          options: ['Dat 90% van de projecten mislukt', 'Dat de laatste 10% van het werk net zo lang kan duren als de eerste 90%', 'Dat 90% van de bugs in 10% van de code zit', 'Dat experts 90% van de tijd gelijk hebben'],
-          answer: 'Dat de laatste 10% van het werk net zo lang kan duren als de eerste 90%',
+          options: ['Dat ongeveer 90% van de grote projecten over budget gaat', 'Dat de laatste 10% net zo lang kan duren als de eerste 90%', 'Dat 90% van de bugs meestal in 10% van de code zit', 'Dat 90% van de waarde uit de eerste 10% van het werk komt'],
+          answer: 'Dat de laatste 10% net zo lang kan duren als de eerste 90%',
           why: 'Toegeschreven aan Tom Cargill, bekend gemaakt door Jon Bentley (1985): “bijna klaar” kan lang duren.',
         },
         {
           q: 'Wat is een watermeloenstatus?',
-          options: ['Een project dat rood is maar beter wordt', 'Een status die niemand leest', 'Een status die groen wordt gemeld terwijl het team weet dat het rood is', 'Een project met seizoensvraag'],
-          answer: 'Een status die groen wordt gemeld terwijl het team weet dat het rood is',
+          options: ['Een project dat rood is maar langzaam groen wordt', 'Een statusrapport dat niemand tot het eind leest', 'Groen gemeld, terwijl het team weet dat het rood is', 'Een project waarvan de vraag met het seizoen meebeweegt'],
+          answer: 'Groen gemeld, terwijl het team weet dat het rood is',
           why: 'Van buiten groen, van binnen rood.',
         },
         {
           q: 'Welke van de drie rode vlaggen is na maanden bouwen de sterkste?',
-          options: ['Geen demo van iets werkends', 'Altijd bijna klaar', 'Veel overleggen', 'Vage antwoorden'],
+          options: ['Geen demo van iets werkends', 'Wekenlang “bijna klaar” melden', 'Ineens veel meer overleggen', 'Vage antwoorden op directe vragen'],
           answer: 'Geen demo van iets werkends',
           why: 'Werkende resultaten kun je in een live demo niet faken; dat ze na maanden ontbreken zegt veel.',
         },
         {
           q: 'Je ziet één rode vlag. Wat is de juiste reactie?',
-          options: ['Meteen escaleren naar de sponsor', 'De leverancier vervangen', 'Negeren tot er drie zijn', 'Gerichte vragen stellen en om bewijs vragen'],
+          options: ['Het meteen naar de sponsor escaleren, voordat het groeit', 'Alvast naar een andere leverancier zoeken', 'Negeren tot je er drie hebt gezien', 'Gerichte vragen stellen en om bewijs vragen'],
           answer: 'Gerichte vragen stellen en om bewijs vragen',
           why: 'Eén vlag is een reden om te vragen, geen bewijs; vragen en bewijs laten zien of er een probleem is.',
         },
@@ -981,15 +981,15 @@ export default {
       pre: [
         {
           q: 'Welke voortgangsmelding geeft je de meeste grip als je het werk niet kunt beoordelen?',
-          options: ['“We zitten op 70%.”', '“Vier van de zes mijlpalen zijn af, elk met testrapport; de vijfde staat voor vrijdag.”', '“Het team werkt hard.”', '“We hebben 70% van het budget uitgegeven.”'],
-          answer: '“Vier van de zes mijlpalen zijn af, elk met testrapport; de vijfde staat voor vrijdag.”',
+          options: ['“We zitten op 70% gereed, iets voor op wat we gepland hadden.”', '“Vier van de zes mijlpalen zijn af met testrapport; de vijfde staat voor vrijdag.”', '“Het team heeft hard gewerkt en deze maand extra uren gemaakt.”', '“We hebben 70% van het budget uitgegeven, precies volgens de planning voor deze maand.”'],
+          answer: '“Vier van de zes mijlpalen zijn af met testrapport; de vijfde staat voor vrijdag.”',
           why: 'Afgeronde mijlpalen met bewijs zijn controleerbaar; percentages en inspanning niet.',
         },
       ],
       teach: [
         'Buiten je vak kun je niet naar het werk kijken en beoordelen hoe ver het is. Meet voortgang dus aan dingen die af zijn of niet af, met bewijs dat je kunt zien.\n\nEen mijlpaal (milestone) is een punt in het project waarop een duidelijk resultaat er moet zijn: “koppeling getest met echte orders”, “schakelinstallatie onder spanning”. Het is ja of nee, geen percentage.',
         'Percentage gereed, het deel van het werk dat af zou zijn, is buiten je vak de zwakste maat: het is een mening, en het blijft vaak rond de 90% hangen. Uitgegeven budget zegt iets over geld, niet over voortgang.\n\nTel in plaats daarvan afgeronde mijlpalen, en tel een mijlpaal pas als het bewijs er is: een getekend testrapport, een demo, een goedgekeurde tekening.',
-        'Acceptatiecriteria zijn de voorwaarden waaraan een resultaat moet voldoen om geaccepteerd te worden, opgeschreven voordat het werk begint. “Het label print in minder dan 3 seconden en alle 12 velden kloppen met de order.” Spreek ze af met de expert en de gebruiker, zodat er later geen discussie is over “klaar”.\n\nDe definition of done is de gedeelde checklist waaraan elk stuk werk moet voldoen om als af te tellen, zoals getest, gedocumenteerd, gereviewd. Hij komt uit Scrum, maar werkt in elk project.',
+        'Acceptatiecriteria zijn de voorwaarden waaraan een resultaat moet voldoen om geaccepteerd te worden, opgeschreven voordat het werk begint. “Het label print in minder dan 3 seconden en alle 12 velden kloppen met de order.” Spreek ze af met expert en gebruiker, dan is “klaar” later geen discussiepunt.\n\nDe definition of done is de gedeelde kwaliteitsnorm waaraan werk moet voldoen om als af te tellen, zoals getest, gedocumenteerd, gereviewd. Hij komt uit de Scrum Guide; de meeste teams houden hem bij als korte checklist, en hij werkt in elk project.',
         'In automatiserings- en elektrotechnische projecten zijn twee formele mijlpalen gangbaar. De fabrieksacceptatietest (FAT, factory acceptance test) is de test van een machine bij de leverancier, voor verzending. De locatieacceptatietest (SAT, site acceptance test) is de test na installatie bij de klant.\n\nEen FAT die geslaagd is met een lijst open punten is gewoon; zorg dat die lijst eigenaren en data heeft voordat je verzendt.',
         'Demo’s zijn je beste voortgangsmeter: regelmatig, kort, met echte data. Een demo om de twee weken laat meer zien dan tien statusrapporten.\n\nEen klassieke fout: mijlpalen zo ver uit elkaar dat er maandenlang niks te controleren valt. Een grove vuistregel die veel projectleiders gebruiken: minstens elke twee tot vier weken een controleerbaar resultaat. Een scherpe vraag: “Wat kun je me over twee weken laten zien?”',
       ],
@@ -1001,20 +1001,20 @@ export default {
       recall: [
         {
           q: 'Waarom is percentage gereed buiten je vak een zwakke maat?',
-          options: ['Het is te precies', 'Sponsors snappen geen percentages', 'Leveranciers kunnen het niet uitrekenen', 'Het is een mening en blijft vaak rond de 90% hangen'],
+          options: ['Het is te precies voor een schatting', 'Sponsors snappen geen percentages', 'Leveranciers rekenen het allemaal anders uit, dus je kunt niet vergelijken', 'Het is een mening en blijft vaak rond de 90% hangen'],
           answer: 'Het is een mening en blijft vaak rond de 90% hangen',
           why: 'Je kunt het niet controleren, en het laatste deel van het werk duurt meestal het langst.',
         },
         {
           q: 'Wanneer telt een mijlpaal als af?',
-          options: ['Als de expert het zegt', 'Als de datum voorbij is', 'Als het bewijs er is, zoals een getekend testrapport of een demo', 'Als het budget ervoor op is'],
-          answer: 'Als het bewijs er is, zoals een getekend testrapport of een demo',
+          options: ['Als de verantwoordelijke expert zegt dat hij af is', 'Als de geplande datum zonder problemen voorbij is', 'Als het bewijs er is, zoals een getekend testrapport', 'Als het budget dat ervoor stond op is'],
+          answer: 'Als het bewijs er is, zoals een getekend testrapport',
           why: 'Bewijs maakt voortgang controleerbaar zonder de inhoud te beoordelen.',
         },
         {
           q: 'Wat is het verschil tussen FAT en SAT?',
-          options: ['FAT is bij de leverancier voor verzending; SAT na installatie bij de klant', 'FAT is voor software, SAT voor hardware', 'Het is dezelfde test', 'FAT is optioneel, SAT niet'],
-          answer: 'FAT is bij de leverancier voor verzending; SAT na installatie bij de klant',
+          options: ['FAT is bij de leverancier voor verzending; SAT na installatie op locatie', 'FAT test de software; SAT test de hardware en bekabeling', 'FAT is de formele contracttest; SAT een informele check door de operators', 'FAT is optioneel bij standaardmachines; SAT is altijd verplicht'],
+          answer: 'FAT is bij de leverancier voor verzending; SAT na installatie op locatie',
           why: 'Fabrieksacceptatietest en locatieacceptatietest.',
         },
         {
@@ -1052,7 +1052,7 @@ export default {
         { term: 'Mijlpaal', def: 'Een punt in het project waarop een duidelijk resultaat er moet zijn; ja of nee, geen percentage.' },
         { term: 'Percentage gereed', def: 'Het deel van het werk dat af zou zijn; een mening die vaak rond de 90% blijft hangen.' },
         { term: 'Acceptatiecriteria', def: 'Voorwaarden waaraan een resultaat moet voldoen om geaccepteerd te worden, opgeschreven voordat het werk begint.' },
-        { term: 'Definition of done', def: 'Een gedeelde checklist waaraan elk stuk werk moet voldoen om als af te tellen; uit Scrum.' },
+        { term: 'Definition of done', def: 'Een gedeelde kwaliteitsnorm, meestal als korte checklist, waaraan werk moet voldoen om als af te tellen; uit de Scrum Guide.' },
         { term: 'Fabrieksacceptatietest', def: 'FAT: een machine testen bij de leverancier, voor verzending; de locatieacceptatietest (SAT) volgt bij de klant.' },
       ],
     },
@@ -1062,14 +1062,14 @@ export default {
       pre: [
         {
           q: 'Het team is het oneens of de datamigratie deze week moet starten of over twee weken, na meer testresultaten. De migratie kan zo nodig opnieuw gedraaid worden. Wat voor besluit is dit?',
-          options: ['Een onomkeerbaar besluit; wacht op alle feiten', 'Een omkeerbaar besluit; beslis vrij snel met de informatie die je hebt', 'Helemaal niet jouw besluit', 'Iets voor de directie'],
-          answer: 'Een omkeerbaar besluit; beslis vrij snel met de informatie die je hebt',
+          options: ['Een onomkeerbaar besluit; wacht tot alle testresultaten er zijn', 'Een omkeerbaar besluit; beslis vrij snel met wat je hebt', 'Een technisch besluit; laat het aan de migratiespecialist', 'Een strategisch besluit; leg het voor aan de directie'],
+          answer: 'Een omkeerbaar besluit; beslis vrij snel met wat je hebt',
           why: 'Als een besluit goedkoop terug te draaien is, kost wachten op zekerheid meestal meer dan er een beetje naast zitten.',
         },
       ],
       teach: [
-        'Buiten je vak heb je zelden zekerheid. Het vak is goed beslissen met wat je hebt, en weten wanneer het niet jouw besluit is.\n\nVraag eerst: is het een omkeerbaar besluit, een besluit dat je goedkoop terug kunt draaien, of niet? Jeff Bezos (brief aan aandeelhouders, 2015) noemde onomkeerbare besluiten eenrichtingsdeuren (one-way doors): eenmaal erdoor kun je niet terug. Omkeerbare zijn tweerichtingsdeuren.',
-        'Bij tweerichtingsdeuren: beslis vrij snel en leer. Bezos (2016) stelde dat de meeste besluiten genomen kunnen worden met ongeveer 70% van de informatie die je zou willen; wacht je op 90%, dan ben je meestal te laat. Een vuistregel, geen wet.\n\nBij eenrichtingsdeuren, zoals een schakelinstallatie met een lange levertijd (de tijd van bestelling tot levering) bestellen of het oude systeem uitzetten, vertraag je: meer bewijs, een second opinion, de sponsor die beslist.',
+        'Buiten je vak heb je zelden zekerheid. De kunst is goed beslissen met wat je hebt, en weten wanneer het niet jouw besluit is.\n\nVraag eerst: is het een omkeerbaar besluit, een besluit dat je goedkoop terug kunt draaien, of niet? Jeff Bezos (aandeelhoudersbrief over 2015, verschenen in 2016) noemde onomkeerbare besluiten eenrichtingsdeuren (one-way doors): eenmaal erdoor kun je niet terug. Omkeerbare zijn tweerichtingsdeuren.',
+        'Bij tweerichtingsdeuren: beslis vrij snel en leer. In zijn brief over 2016 stelde hij dat de meeste besluiten genomen kunnen worden met ongeveer 70% van de informatie die je zou willen; wacht je op 90%, dan ben je meestal te laat. Een vuistregel, geen wet.\n\nBij eenrichtingsdeuren, zoals een schakelinstallatie met een lange levertijd (de tijd van bestelling tot levering) bestellen of het oude systeem uitzetten, vertraag je: meer bewijs, een second opinion, de sponsor die beslist.',
         'Escalatie is een besluit of probleem voorleggen aan iemand met meer bevoegdheid omdat het buiten de jouwe valt. Het is geen falen; het is het systeem dat werkt. Escaleer als het buiten je mandaat valt, als experts vastzitten, of als het doel, het budget of de datum in gevaar is.\n\nEscaleer vroeg, met opties, niet alleen met een probleem: “Hier zijn twee opties, wat elk kost, en mijn advies.”',
         'Een beslisnotitie maakt dit concreet: één A4 met de vraag, de opties, de criteria, het advies van de experts, jouw aanbeveling en de deadline. Hij dwingt je het technische deel te vertalen naar gevolgen.\n\nBreng het besluit daarna helder en zonder excuus. De 7 Rules of Power van Jeffrey Pfeffer gelden hier: kom krachtig over (show up in powerful fashion), zeg het rustig en stevig, en ondergraaf het niet met “sorry, misschien”.',
         'Klassieke fouten: te laat escaleren, als er geen opties meer zijn; escaleren zonder advies, zodat de sponsor jouw denkwerk moet doen; en besluiten elke week weer openbreken.\n\nEen scherpe vraag bij elk vastgelopen besluit: “Als we dit niet terug kunnen draaien, wie moet het dan beslissen, en wanneer? Als het wel kan, wat kost het om nog een week te wachten?”',
@@ -1082,19 +1082,19 @@ export default {
       recall: [
         {
           q: 'Wat is een eenrichtingsdeurbesluit?',
-          options: ['Een besluit dat maar één persoon kan nemen', 'Een besluit genomen in één overleg', 'Een onomkeerbaar besluit, moeilijk of duur om terug te draaien', 'Een ja-of-neebesluit'],
+          options: ['Een besluit dat maar één persoon mag nemen', 'Een besluit dat in één en hetzelfde overleg genomen moet worden', 'Een onomkeerbaar besluit, moeilijk of duur om terug te draaien', 'Een ja-of-neebesluit zonder tussenweg'],
           answer: 'Een onomkeerbaar besluit, moeilijk of duur om terug te draaien',
           why: 'De term van Bezos: eenmaal erdoor kun je niet terug, dus wees zorgvuldiger.',
         },
         {
           q: 'Hoeveel van de informatie die je zou willen, is volgens Bezos ongeveer genoeg voor de meeste besluiten?',
-          options: ['Ongeveer 30%', 'Ongeveer 50%', 'Ongeveer 70%', 'Ongeveer 100%'],
+          options: ['Ongeveer 50%', 'Ongeveer 100%', 'Ongeveer 70%', 'Ongeveer 30%'],
           answer: 'Ongeveer 70%',
-          why: 'Uit zijn aandeelhoudersbrief van 2016; een vuistregel voor omkeerbare besluiten.',
+          why: 'Uit zijn aandeelhoudersbrief over 2016 (verschenen in 2017): wacht je op 90%, dan ben je meestal te laat. Bij een eenrichtingsdeur vertraag je toch.',
         },
         {
           q: 'Hoe escaleer je?',
-          options: ['Laat, als je zeker weet dat er een probleem is', 'Alleen met de expert erbij', 'Per mail aan iedereen', 'Vroeg, met opties en een advies'],
+          options: ['Laat, als je zeker weet dat er echt een probleem is', 'Alleen met de expert erbij om het uit te leggen', 'Per mail aan alle betrokkenen, zodat niemand verrast is', 'Vroeg, met opties en een advies'],
           answer: 'Vroeg, met opties en een advies',
           why: 'Vroeg houdt opties open; een advies spaart de denktijd van de sponsor.',
         },
@@ -1130,7 +1130,7 @@ export default {
       sayIt: 'Leg in 60 seconden het verschil uit tussen eenrichtings- en tweerichtingsdeuren, en wanneer je escaleert.',
       terms: [
         { term: 'Omkeerbaar besluit', def: 'Een besluit dat je goedkoop terug kunt draaien; beslis vrij snel en leer.' },
-        { term: 'Eenrichtingsdeur', def: 'Een onomkeerbaar besluit, moeilijk of duur om terug te draaien (Bezos, 2015); vertraag en verzamel meer bewijs.' },
+        { term: 'Eenrichtingsdeur', def: 'Een onomkeerbaar besluit, moeilijk of duur om terug te draaien (Bezos, aandeelhoudersbrief over 2015); vertraag en verzamel meer bewijs.' },
         { term: 'Escalatie', def: 'Een besluit of probleem voorleggen aan iemand met meer bevoegdheid omdat het buiten de jouwe valt; het best vroeg en met opties.' },
         { term: 'Beslisnotitie', def: 'Eén A4 met de vraag, opties, criteria, het advies van de experts, een aanbeveling en de deadline.' },
         { term: 'Levertijd', def: 'De tijd van bestelling tot levering.' },
@@ -1142,14 +1142,14 @@ export default {
       pre: [
         {
           q: 'Je moet de fabrieksdirecteur vertellen dat het inschakelen vier weken opschuift. Hoe begin je?',
-          options: ['Met de technische achtergrond, zodat hij het snapt', 'Met wie de schuldige is', 'Met een excuus', 'Met de conclusie: de datum, wat het voor hem betekent, en wat je eraan doet'],
-          answer: 'Met de conclusie: de datum, wat het voor hem betekent, en wat je eraan doet',
+          options: ['Met de technische achtergrond, zodat hij precies snapt waarom het uitloopt', 'Met hoe de vertraging ontstond en wiens deel het veroorzaakte', 'Met een excuus, zodat hij ziet dat je het serieus neemt', 'Met de conclusie: de nieuwe datum, wat het voor hem betekent, je plan'],
+          answer: 'Met de conclusie: de nieuwe datum, wat het voor hem betekent, je plan',
           why: 'Senior mensen willen eerst de kern; de achtergrond komt als ze erom vragen.',
         },
       ],
       teach: [
         'Een stakeholder is iedereen die het project beïnvloedt of erdoor geraakt wordt: de sponsor, de fabrieksdirecteur, de operators, de netbeheerder, de leverancier. Buiten je vak ben jij vaak de enige die met allemaal praat, dus jij bent de vertaler.\n\nElke groep heeft dezelfde feiten nodig in zijn eigen taal: de directeur in geld en data, operators in wat er op hun dienst verandert, experts in technische termen.',
-        'Het piramideprincipe, van Barbara Minto (McKinsey), zegt: begin met de conclusie, dan de belangrijkste redenen, dan het detail. Senior mensen lezen de eerste twee regels en beslissen of ze verder lezen.\n\nBij een besluit of slecht nieuws: wat er gebeurd is, wat het voor hen betekent, wat we doen, wat we van hen nodig hebben. Vier zinnen, dan stoppen.',
+        'Het piramideprincipe, van Barbara Minto (The Pyramid Principle, 1987, geschreven vanuit haar werk bij McKinsey), zegt: begin met de conclusie, dan de belangrijkste redenen, dan het detail. Senior mensen lezen de eerste twee regels en beslissen of ze verder lezen.\n\nBij een besluit of slecht nieuws: wat er gebeurd is, wat het voor hen betekent, wat we doen, wat we van hen nodig hebben. Vier zinnen, dan stoppen.',
         'Hoe je het zegt doet net zoveel als wat. De 7 Rules of Power van Jeffrey Pfeffer (2022) stellen dat mensen competentie deels afleiden uit hoe zeker je overkomt. Voor jou betekent dat: kondig een besluit helder aan, sta rechtop, leg niet te veel uit, en bied geen excuses aan voor een besluit dat goed genomen is.\n\nHet betekent niet doen alsof: zekerheid gaat over hoe je spreekt, eerlijkheid over wat je zegt.',
         'Gebruik een voorbehoud (hedge), een formulering die laat zien hoe zeker je bent, bewust. “We verwachten” tegenover “we gaan” is nuttige precisie. Elke zin indekken (“misschien”, “ik denk”, “een beetje”) laat je onzeker klinken, zelfs over wat je wel weet.\n\nRegel: maak een voorbehoud bij de voorspelling, niet bij de feiten. “De kabel ligt en is getest. We verwachten in week 42 in te schakelen.”',
         'Klassieke fouten: de mail van de expert doorsturen met “zie hieronder”; de directeur het hele technische verhaal geven; operators als laatste inlichten. Een andere: goed nieuws aan iedereen, slecht nieuws alleen als erom gevraagd wordt.\n\nEen scherpe check voordat je iets verstuurt: “Als hij alleen de eerste twee regels leest, weet hij dan wat hij moet weten en wat ik van hem nodig heb?”',
@@ -1164,13 +1164,13 @@ export default {
       recall: [
         {
           q: 'Wat zegt het piramideprincipe?',
-          options: ['Begin met de achtergrond, bouw op naar de conclusie', 'Vertel senior mensen het als laatste', 'Begin met de conclusie, dan de belangrijkste redenen, dan het detail', 'Gebruik hooguit drie slides'],
-          answer: 'Begin met de conclusie, dan de belangrijkste redenen, dan het detail',
+          options: ['Begin met de achtergrond en bouw op naar de conclusie', 'Vertel senior mensen het pas als laatste, als al het detail rond is', 'Eerst de conclusie, dan de belangrijkste redenen, dan het detail', 'Gebruik hooguit drie slides, één idee per slide'],
+          answer: 'Eerst de conclusie, dan de belangrijkste redenen, dan het detail',
           why: 'Barbara Minto: senior lezers beslissen op de eerste regels of ze verder lezen.',
         },
         {
           q: 'Wat suggereren de 7 Rules of Power van Pfeffer over het aankondigen van een besluit?',
-          options: ['Kondig het helder en zeker aan, zonder te veel uitleg', 'Bied eerst excuses aan om mensen mee te houden', 'Laat de expert het aankondigen', 'Wacht tot iedereen het eens is'],
+          options: ['Kondig het helder en zeker aan, zonder te veel uitleg', 'Bied eerst excuses aan, om mensen mee te houden', 'Laat de expert het aankondigen, dan heeft het meer gezag', 'Wacht met aankondigen tot iedereen het eens is'],
           answer: 'Kondig het helder en zeker aan, zonder te veel uitleg',
           why: 'Mensen leiden competentie deels af uit hoe zeker je overkomt.',
         },
@@ -1182,7 +1182,7 @@ export default {
         },
         {
           q: 'Wat is een klassieke communicatiefout buiten je vak?',
-          options: ['Openen met de conclusie', 'Operators inlichten in hun eigen termen', 'De mail van de expert doorsturen met “zie hieronder”', 'Zeggen wat je van de lezer nodig hebt'],
+          options: ['Elk bericht openen met de conclusie', 'Operators vertellen wat er op hun dienst verandert', 'De mail van de expert doorsturen met “zie hieronder”', 'Afsluiten met wat je van de lezer nodig hebt'],
           answer: 'De mail van de expert doorsturen met “zie hieronder”',
           why: 'Dan leg je het vertaalwerk bij mensen die het niet kunnen doen.',
         },
@@ -1223,49 +1223,49 @@ export default {
       pre: [
         {
           q: 'Volgende maand begin je aan een project in een vak dat je niet kent: netaansluitingen. Wat is de nuttigste eerste stap?',
-          options: ['De tien woorden vinden die iedereen in het project gebruikt en leren wat ze betekenen en waarom ze ertoe doen', 'Een studieboek van voor tot achter lezen', 'Wachten tot de kick-off', 'Een online engineeringcursus volgen'],
-          answer: 'De tien woorden vinden die iedereen in het project gebruikt en leren wat ze betekenen en waarom ze ertoe doen',
+          options: ['De tien woorden vinden die steeds terugkomen, en leren waarom ze tellen', 'Een studieboek over elektriciteitsnetten van voor tot achter lezen voor je begint', 'Wachten op de kick-off, waar de experts de basis uitleggen', 'Eerst een online cursus elektrotechniek volgen'],
+          answer: 'De tien woorden vinden die steeds terugkomen, en leren waarom ze tellen',
           why: 'Met een kleine kernwoordenschat volg je de overleggen snel; diepgang kan later.',
         },
       ],
       teach: [
         'Je hoeft geen expert te worden, maar je moet snel genoeg leren om te volgen, goede vragen te stellen en onzin te herkennen. Michael Watkins (The First 90 Days, 2003) stelt dat nieuwe leiders hun leren bewust moeten plannen in plaats van het toevallig op te pikken.\n\nEen gangbare manier is een 30-60-90-plan: wat je in je eerste 30, 60 en 90 dagen gaat leren en doen.',
-        'Eerste 30 dagen: leren. Bouw je vakwoordenschat op, de tien woorden die steeds terugkomen in de overleggen: voor een netproject bijvoorbeeld transportcapaciteit, netcongestie, middenspanning, schakelinstallatie, beveiliging, transformator, kabeltracé, inschakelen, onderbreking, belasting. Bij elk: wat het is, en waarom het ertoe doet voor het project.\n\nHoud een begrippenlijst (glossary) bij: je eigen lijst termen met een betekenis in één regel en een voorbeeld.',
+        'Eerste 30 dagen: leren. Bouw je vakwoordenschat op, de tien woorden die steeds terugkomen in de overleggen: voor een netproject bijvoorbeeld transportcapaciteit, netcongestie, middenspanning, schakelinstallatie, beveiliging, transformator, kabeltracé, inschakelen, onderbreking, belasting. Bij elk: wat het is, en waarom het belangrijk is voor het project.\n\nHoud een begrippenlijst (glossary) bij: je eigen lijst termen met een betekenis in één regel en een voorbeeld.',
         'Dag 31–60: het systeem snappen. Teken een mentaal model, een simpel beeld in je hoofd en op papier van hoe de delen samenhangen: waar de stroom vandaan komt, waardoor, naar welke machines. Vraag een expert je tekening te verbeteren; foute tekeningen leren snel.\n\nMeelopen (shadowing) is tijd doorbrengen naast een expert terwijl hij werkt: een dag met de installateur, een uur met de planner. Je leert wat voor hen telt, en zij leren jou kennen.',
         'Dag 61–90: bijdragen. Nu moet je het project in gewone woorden aan een buitenstaander kunnen uitleggen, de drie grootste technische risico’s kunnen noemen en waarom, en vragen stellen waar experts iets aan hebben.\n\nTest jezelf: leg het systeem in vijf minuten uit aan iemand buiten het project. Waar je hapert, is wat je hierna leert.',
         'Klassieke fouten: wekenlang theorie lezen zonder met iemand te praten; alles willen leren in plaats van wat het project nodig heeft; of stoppen op dag 30 omdat de woorden nu bekend klinken.\n\nExperts twisten over diepgang: sommigen zeggen dat je de hele tijd 10% van je tijd aan de inhoud besteedt; anderen zeggen dat je het vooraan moet doen. Hoe dan ook, een scherpe vraag aan elke expert in je eerste maand: “Wat doen nieuwe mensen hier altijd fout?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Over zes weken leid je de klantkant van een MES-project bij een maker van metalen onderdelen. Je kent Lean en de werkvloer, geen IT.\n\nIn week 1 verzamel je de woorden uit de aanbesteding en het voorstel van de leverancier: MES, ERP, koppeling, stamgegevens, routing, werkorder, integratie, testomgeving, cutover, hypercare.',
+        text: 'Over zes weken leid je de klantkant van een MES-project bij een maker van metalen onderdelen. Je kent Lean en de werkvloer, geen IT.\n\nIn week 1 verzamel je de woorden uit de aanbesteding en het voorstel van de leverancier: MES, ERP, koppeling, stamgegevens, routing, werkorder, integratie, testomgeving, cutover (de overstap van het oude naar het nieuwe systeem), hypercare (extra ondersteuning in de eerste weken na livegang).',
         ask: 'Hoe zou je je eerste 90 dagen plannen?',
-        reveal: 'Dag 1–30: een begrippenlijst van die tien woorden met hulp van de IT-lead; vraag bij elk “waarom doet dit ertoe voor ons?” Zit een dag naast een planner om de werkorders te zien.\n\nDag 31–60: teken het systeem: het ERP stuurt werkorders via de koppeling naar het MES, het MES volgt ze op de machines en stuurt terug wat er gemaakt is. Laat de architect het verbeteren.\n\nDag 61–90: leg het project in vijf minuten uit aan de plantmanager; noem de drie grootste risico’s, zoals stamgegevens, de koppeling en het cutoverweekend.',
+        reveal: 'Dag 1–30: een begrippenlijst van die tien woorden met hulp van de IT-lead; vraag bij elk “waarom is dit belangrijk voor ons?” Zit een dag naast een planner om de werkorders te zien.\n\nDag 31–60: teken het systeem: het ERP stuurt werkorders via de koppeling naar het MES, het MES volgt ze op de machines en stuurt terug wat er gemaakt is. Laat de architect het verbeteren.\n\nDag 61–90: leg het project in vijf minuten uit aan de plantmanager; noem de drie grootste risico’s, zoals stamgegevens, de koppeling en het cutoverweekend.',
       },
       said: 'Wat je hoort in projecten: “Dat pik je onderweg wel op.” Sneller als je het plant.',
       recall: [
         {
-          q: 'Wat is een 30-60-90-plan?',
-          options: ['Een budget in drie delen', 'Een risicoschaal', 'Een project met drie fases', 'Een plan voor wat je in je eerste 30, 60 en 90 dagen gaat leren en doen'],
-          answer: 'Een plan voor wat je in je eerste 30, 60 en 90 dagen gaat leren en doen',
-          why: 'Het maakt je leren bewust; The First 90 Days van Watkins maakte het plannen van de start zo bekend.',
+          q: 'Dag 45 van je 30-60-90-plan voor een netproject. Welke activiteit past het best bij die fase?',
+          options: ['Je lijst van de tien kernwoorden opbouwen', 'Het contract en de aanbesteding voor het eerst lezen', 'De drie grootste technische risico’s met onderbouwing aan de directie presenteren', 'Tekenen hoe het systeem samenhangt en het door een expert laten verbeteren'],
+          answer: 'Tekenen hoe het systeem samenhangt en het door een expert laten verbeteren',
+          why: 'Dag 31–60 is voor het systeem snappen: een mentaal model, verbeterd door een expert. Eerst de woorden (dag 1–30); bijdragen komt als laatste (dag 61–90).',
         },
         {
           q: 'Wat hoort er in een regel van je begrippenlijst?',
-          options: ['Alleen de term', 'De term, een betekenis in één regel en een voorbeeld', 'De volledige technische norm', 'De naam van de expert'],
+          options: ['Alleen de term, zodat de lijst kort blijft', 'De term, een betekenis in één regel en een voorbeeld', 'De volledige definitie uit de technische norm', 'De term en de naam van de expert die hem gebruikt'],
           answer: 'De term, een betekenis in één regel en een voorbeeld',
           why: 'Kort genoeg om bij te houden, concreet genoeg om te onthouden.',
         },
         {
           q: 'Waarom vraag je een expert je tekening van het systeem te verbeteren?',
-          options: ['Om te laten zien dat je je huiswerk deed', 'Om hem te laten aftekenen', 'Omdat experts graag tekenen', 'Foute tekeningen laten zien wat je verkeerd begreep, dus je leert snel'],
-          answer: 'Foute tekeningen laten zien wat je verkeerd begreep, dus je leert snel',
+          options: ['Om de expert te laten zien dat je je huiswerk deed', 'Om de tekening als officieel projectdocument te laten aftekenen', 'Omdat experts graag over hun vak vertellen', 'Omdat zijn verbeteringen laten zien wat je verkeerd begreep'],
+          answer: 'Omdat zijn verbeteringen laten zien wat je verkeerd begreep',
           why: 'Een tekening verbeteren is snel voor hen en heel leerzaam voor jou.',
         },
         {
           q: 'Wat is een klassieke fout bij het leren van een nieuw vak?',
-          options: ['Te vroeg met experts praten', 'Het systeem tekenen', 'Wekenlang theorie lezen zonder met iemand te praten', 'Een begrippenlijst bijhouden'],
-          answer: 'Wekenlang theorie lezen zonder met iemand te praten',
-          why: 'Wat ertoe doet voor het project leer je van de mensen erin.',
+          options: ['Experts in de eerste week basisvragen stellen', 'Het systeem tekenen voordat je het helemaal snapt', 'Wekenlang theorie lezen voordat je met iemand praat', 'Een begrippenlijst bijhouden die nog niet af is'],
+          answer: 'Wekenlang theorie lezen voordat je met iemand praat',
+          why: 'Wat belangrijk is voor het project, leer je van de mensen erin.',
         },
       ],
       situation: {
