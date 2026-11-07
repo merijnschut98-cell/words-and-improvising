@@ -329,15 +329,15 @@ const STAGE = (() => {
     set(E.docA, card(24, 26, 186, 234) + hudText(117, 62, title, 26) + rules(52, 96, 136, 6, 22)
       + (stamp > 0 ? `<g style="opacity:${stamp.toFixed(2)}"><circle class="fp-mark" style="stroke-width:2.4" cx="164" cy="228" r="28"/>${hudText(164, 233, T.wpqr, 14)}</g>` : ''));
     set(E.docEss, [96, 140, 184].map((y) => `<rect class="fp-fill" x="36" y="${y - 7}" width="8" height="14" rx="2"/>`).join(''));
-    op(E.docEss, span(u, 0.24, 0.3));
+    op(E.docEss, span(u, 0.18, 0.24));
     // thickness: 0–30 mm
     const t = C.WPS;
     const y1 = 118;
     const rangeA = `<rect class="fp-bar" x="${BAR.x0}" y="${y1 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${f1(barX(t.tMin, 0, 30))}" y="${y1 - 8}" width="${f1(barX(t.tMax, 0, 30) - barX(t.tMin, 0, 30))}" height="16" rx="8"/>`;
     const y2 = 224;
     const rangeB = `<rect class="fp-bar" x="${BAR.x0}" y="${y2 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${BAR.x0}" y="${y2 - 8}" width="${f1(barX(t.qMax, 0.6, 1.8) - BAR.x0)}" height="16" rx="8"/>`;
-    const rIn = span(u, 0.26, 0.34);
-    const oIn = span(u, 0.5, 0.56);
+    const rIn = span(u, 0.2, 0.28);
+    const oIn = span(u, 0.42, 0.48);
     const hIn = span(u, 0.58, 0.66);
     set(E.docRange, `<g style="opacity:${rIn.toFixed(2)}">${rangeA}${hudText(barX(t.tMin, 0, 30), y1 + 30, num(t.tMin), 18)}${hudText(barX(t.tMax, 0, 30), y1 + 30, num(t.tMax), 18)}</g>`
       + `<g style="opacity:${hIn.toFixed(2)}">${rangeB}${hudText(barX(t.qMax, 0.6, 1.8), y2 + 34, num(t.qMax, 1), 18)}</g>`);
@@ -422,7 +422,7 @@ const STAGE = (() => {
     const welding = [0, 1, 2, 3, 4].includes(si);
     let arcOn = welding;
     let gasAmount = 1;
-    let wfs = si === 3 ? 4 + 2 * span(u, 0.08, 0.25) + 4 * span(u, 0.47, 0.53) : 10;
+    let wfs = si === 3 ? 4 + 2 * span(u, 0.08, 0.25) + 4 * span(u, 0.52, 0.58) : 10; // crosses into spray just after the spray-arc beat starts
     let kink = 0;
 
     if (si === 4) {

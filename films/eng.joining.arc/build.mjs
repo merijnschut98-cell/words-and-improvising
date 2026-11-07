@@ -49,12 +49,21 @@ assert(near(WPS.qMax, 1.5, 1e-9) && WPS.want > WPS.qMax, '1,6 is outside the 1,5
 // metallurgy: CEV = C + Mn/6 + (Cr+Mo+V)/5 + (Ni+Cu)/15 for the 40 mm crane flange
 const CEV = 0.17 + 1.5 / 6 + 0.1 / 5 + 0.3 / 15;
 assert(near(CEV, 0.46, 1e-9), `CEV ${CEV}`);
-// t8/5 for the cooling curve drawn in scene 7 (EN 1011-2 annex D, 3D heat flow,
-// F3 = 0,9 for a butt weld, no preheat, Q 1,2 kJ/mm): about 6 s, short (hard).
-const t85Of = (T0, Q) => (6700 - 5 * T0) * Q * (1 / (500 - T0) - 1 / (800 - T0)) * 0.9;
-const T85 = t85Of(20, 1.2);
-assert(T85 > 4 && T85 < 8, `t8/5 ${T85}`);
-assert(t85Of(150, 1.2) > T85, 'preheat lengthens t8/5');
+// t8/5 for the cooling curve drawn in scene 7 (EN 1011-2 annex D, 3D heat flow).
+// The film's joint is a multi-run V butt weld: F3 = 0,9 (Table D.1, "between
+// beads in butt welds"). The figure eng.joining.haz shows a different joint, a
+// fillet weld on a T-joint (F3 = 0,67), so it cools faster. Both use the same
+// case otherwise (Q 1,0 kJ/mm, no preheat, thick plate: 3D flow), and both land
+// in the short (hard) band under about 7 s: the film about 4,8 s, the figure
+// about 3,5 s. The film shows no number on its chart, so the learner never sees
+// two values for one case; the figure is where t8/5 is computed and read.
+const F3_BUTT = 0.9;
+const F3_TJOINT = 0.67; // eng.joining.haz
+const t85Of = (T0, Q, F3 = F3_BUTT) => (6700 - 5 * T0) * Q * (1 / (500 - T0) - 1 / (800 - T0)) * F3;
+const T85 = t85Of(20, 1.0);
+assert(T85 > 4 && T85 < 7, `t8/5 ${T85}`);
+assert(t85Of(20, 1.0, F3_TJOINT) < T85, 'the T-joint of the figure cools faster than this butt weld');
+assert(t85Of(150, 1.0) > T85, 'preheat lengthens t8/5');
 
 // ---------------------------------------------------------------- the world (mm)
 // x along the weld (the torch travels toward -x), y toward the viewer, z up.
@@ -322,7 +331,8 @@ const CAM = [
   { from: cam([-62, -70, 46], 470), to: cam([-78, -66, 42], 450) },
   { from: cam([0, -40, 30], 640), to: cam([0, -40, 30], 620) },
   { from: cam([XE, 0, 10], 300, [170, 120]), to: cam([XE, 0, 10], 240, [160, 110]), a: 0, b: 0.4 },
-  { from: cam([XE, 0, 10], 240, [160, 110]), to: cam([C.PIPE.weld, C.PIPE.y, 17], 200), a: 0.66, b: 0.82 },
+  // scene 8 opens wider than scene 7 ends, so the whole preheat burner is in frame
+  { from: cam([60, 40, 60], 560, [150, 190]), to: cam([C.PIPE.weld, C.PIPE.y, 17], 200), a: 0.66, b: 0.82 },
 ];
 
 // ---------------------------------------------------------------- the film
@@ -362,7 +372,8 @@ const spec = {
       id: 's4', lesson: WP, level: 2, dur: DUR[3], still: 0.85, title: { nl: 'Draad en druppels', en: 'Wire and droplets' },
       beats: [
         { nl: 'De {t:Draadsnelheid|draadsnelheid} zet de stroom: meer draad trekt meer ampère.', en: 'The {t:Wire feed speed|wire feed speed} sets the current: more wire draws more amps.', cue: { Draadsnelheid: 'wfs' } },
-        { nl: 'Laag tikt de draad in het bad: {t:Kortsluitboog|kortsluitboog}. Hoog vliegt een straal druppels: {t:Sproeiboog|sproeiboog}.', en: 'Set low, the wire dips into the pool: {t:Short arc|short arc}. Set high, droplets stream across: {t:Spray arc|spray arc}.', cue: { Kortsluitboog: 'short', Sproeiboog: 'spray' } },
+        { nl: 'Laag tikt de draad in het bad: {t:Kortsluitboog|kortsluitboog}.', en: 'Set low, the wire keeps dipping into the pool: {t:Short arc|short arc}.', cue: { Kortsluitboog: 'short' }, still: 0.4 },
+        { nl: 'Hoog vliegt een fijne straal druppels: {t:Sproeiboog|sproeiboog}.', en: 'Set high, fine droplets fly across: {t:Spray arc|spray arc}.', cue: { Sproeiboog: 'spray' }, still: 0.62 },
         { nl: '{n:1.2} mm draad op {n:10} m/min: een {t:Neersmeltsnelheid|neersmeltsnelheid} van {n:5.3} kg/h.', en: '{n:1.2} mm wire at {n:10} m/min: a {t:Deposition rate|deposition rate} of {n:5.3} kg/h.', cue: { Neersmeltsnelheid: 'bead' }, read: { nl: 'π/4 × {n:1.2}² × {n:10} m/min × 7,85 → {n:5.3} kg/h', en: 'π/4 × {n:1.2}² × {n:10} m/min × 7.85 → {n:5.3} kg/h' } },
       ],
     },
@@ -377,10 +388,11 @@ const spec = {
     {
       id: 's6', lesson: WS, level: 3, dur: DUR[5], still: 0.95, title: { nl: 'Lassen op papier', en: 'Welding on paper' },
       beats: [
-        { nl: 'Eerst de {t:pLMB|pLMB}: het testrecept, gelast op een proefstuk van {n:12} mm.', en: 'First the {t:pWPS|pWPS}: the test recipe, welded on a {n:12} mm plate.', cue: { pLMB: 'pwps' } },
-        { nl: 'Elke {t:Essentiële variabele|essentiële variabele} heeft een {t:Geldigheidsgebied|geldigheidsgebied}: {n:12} mm dekt tot {n:24}.', en: 'Each {t:Essential variable|essential variable} has a {t:Range of qualification|range of qualification}: {n:12} mm covers up to {n:24}.', cue: { 'Essentiële variabele': 'ess', Geldigheidsgebied: 'range' } },
-        { nl: '{n:22} mm is gedekt. Warmte-inbreng: {n:1.2} getest, met kerfslageisen tot {n:1.5}; {n:1.6} valt erbuiten.', en: '{n:22} mm is covered. Heat input: {n:1.2} tested, with impact tests up to {n:1.5}; {n:1.6} is outside.', cues: ['range'] },
-        { nl: 'De lasser heeft een {t:ISO 9606-1|ISO 9606-1}-certificaat; de {t:Lascoördinator|lascoördinator} bewaakt alles.', en: 'The welder holds an {t:ISO 9606-1|ISO 9606-1} certificate; the {t:Welding coordinator|welding coordinator} oversees it.', cue: { 'ISO 9606-1': 'iso', Lascoördinator: 'coord' } },
+        { nl: 'Eerst de {t:pLMB|pLMB}: het testrecept voor een proefstuk.', en: 'First the {t:pWPS|pWPS}: the recipe for a test plate.', cue: { pLMB: 'pwps' }, still: 0.12 },
+        { nl: 'Elke {t:Essentiële variabele|essentiële variabele} heeft een {t:Geldigheidsgebied|geldigheidsgebied}.', en: 'Each {t:Essential variable|essential variable} has a {t:Range of qualification|range of qualification}.', cue: { 'Essentiële variabele': 'ess', Geldigheidsgebied: 'range' }, still: 0.34 },
+        { nl: 'Dikte: {n:12} mm dekt {n:3} tot {n:24} mm; {n:22} mm is gedekt.', en: 'Thickness: {n:12} mm covers {n:3} to {n:24} mm; {n:22} mm is covered.', cues: ['range'], still: 0.54 },
+        { nl: 'Getest op {n:1.2} kJ/mm; met kerfslageisen tot {n:1.5}: {n:1.6} valt erbuiten.', en: 'Tested at {n:1.2} kJ/mm; with impact requirements up to {n:1.5}: {n:1.6} is outside.', cues: ['range'], still: 0.7 },
+        { nl: 'De lasser heeft een {t:ISO 9606-1|ISO 9606-1}-certificaat; de {t:Lascoördinator|lascoördinator} bewaakt het.', en: 'The welder holds an {t:ISO 9606-1|ISO 9606-1} certificate; the {t:Welding coordinator|welding coordinator} oversees it.', cue: { 'ISO 9606-1': 'iso', Lascoördinator: 'coord' } },
       ],
     },
     {
@@ -394,9 +406,9 @@ const spec = {
     {
       id: 's8', lesson: MT, level: 4, dur: DUR[7], still: 0.56, title: { nl: 'Voorwarmen en wachten', en: 'Preheat and wait' },
       beats: [
-        { nl: 'Daarom voorwarmen, en de {t:Tussenlaagtemperatuur|tussenlaagtemperatuur} meten voor elke volgende laag.', en: 'So preheat, and measure the {t:Interpass temperature|interpass temperature} before each next pass.', cue: { Tussenlaagtemperatuur: 'interp' }, cues: ['preheat'] },
-        { nl: 'Een waterstofscheur kan uren later komen: de controle wacht vaak {n:16} tot {n:48} uur.', en: 'A hydrogen crack can come hours later: inspection often waits {n:16} to {n:48} hours.' },
-        { nl: 'Bij rvs moeten de {t:Aanloopkleuren|aanloopkleuren} naast de las eraf, anders roest het daar.', en: 'On stainless steel the {t:Heat tint|heat tint} beside the weld must come off, or it rusts there.', cue: { Aanloopkleuren: 'tint' } },
+        { nl: 'Daarom voorwarmen, en voor elke laag de {t:Tussenlaagtemperatuur|tussenlaagtemperatuur} meten.', en: 'So preheat, and measure the {t:Interpass temperature|interpass temperature} before each pass.', cue: { Tussenlaagtemperatuur: 'interp' }, cues: ['preheat'], still: 0.24 },
+        { nl: 'Een waterstofscheur kan uren of dagen later komen: de controle wacht vaak {n:16} tot {n:48} uur.', en: 'A hydrogen crack can come hours or days later: inspection often waits {n:16} to {n:48} hours.', still: 0.6 },
+        { nl: 'Bij rvs moeten de {t:Aanloopkleuren|aanloopkleuren} naast de las eraf, anders roest het daar.', en: 'On stainless steel the {t:Heat tint|heat tint} beside the weld must come off, or it rusts there.', cue: { Aanloopkleuren: 'tint' }, still: 0.95 },
       ],
     },
   ],

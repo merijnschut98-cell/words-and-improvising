@@ -105,6 +105,7 @@ The film is an **explainer player** page: one standalone HTML file per film.
 - **Reduced motion** (`prefers-reduced-motion: reduce` or `?motion=reduce`):
   - no tweening;
   - each scene shows its designed still (`still: u` in 0..1) with its caption, and "Vorige / Volgende" replace the scrubber;
+  - a beat may carry its own `still`, used for that beat's caption, when one still cannot show every part the scene's captions name;
   - narration still works.
 - **Page parameters:**
   - `?theme=light|dark` (default prefers-color-scheme) and `?lang=nl|en` (default nl);
