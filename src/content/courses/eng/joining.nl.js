@@ -1137,6 +1137,7 @@ export default {
     },
     {
       id: 'eng.joining.bonding',
+      figure: 'eng.joining.rivet',
       title: 'Lijmen, klinken en clinchen',
       pre: [
         {
@@ -1206,6 +1207,7 @@ export default {
     },
     {
       id: 'eng.joining.adhesives',
+      figure: 'eng.joining.rivet',
       title: 'Lijmen in productie: voorbehandelen, doseren, uitharden',
       pre: [
         {
@@ -1275,6 +1277,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
+      figure: 'eng.joining.rivet',
       title: 'Klinken en clinchen in serie: procesbewaking',
       pre: [
         {
@@ -1345,6 +1348,7 @@ export default {
     },
     {
       id: 'eng.joining.choosejoint',
+      figure: 'eng.joining.rivet',
       title: 'Een verbindingsmethode kiezen: materialen, corrosie, demontage en kosten',
       pre: [
         {
