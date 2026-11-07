@@ -496,6 +496,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      figure: 'eng.machining.fiveaxis',
       title: 'Five-axis milling: 3+2 or simultaneous',
       pre: [
         {

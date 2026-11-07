@@ -496,6 +496,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      figure: 'eng.machining.fiveaxis',
       title: 'Vijfassig frezen: 3+2 of simultaan',
       pre: [
         {
