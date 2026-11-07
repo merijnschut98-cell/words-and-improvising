@@ -1,0 +1,98 @@
+// Films against the lessons they serve. Every shipped film page embeds its data
+// as JSON; these tests re-run the build's term, number, coverage and language
+// checks on that JSON against the current lesson text. A lesson edit that
+// removes a number or renames a term fails here until the film is rebuilt.
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { MODULES, loadModule, placeOf } from '../src/content/courses/index.js';
+import { validateModule } from '../src/content/courses/validate.js';
+import { readFilmData, checkFilm, lessonTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
+
+const DIR = 'src/content/courses/films';
+const films = fs.existsSync(DIR) ? fs.readdirSync(DIR).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)) : [];
+
+const q = (n) => ({ q: `Question ${n}?`, options: ['a', 'b', 'c', 'd'], answer: 'b', why: 'Because b.' });
+const lesson = (id, extra = {}) => ({
+  id, title: 'A title', pre: [q(0)], teach: ['Block one.', 'Block two.', 'Block three.'],
+  example: { kind: 'worked', text: 'A worked example.' }, said: 'What engineers say.', recall: [q(1), q(2), q(3)],
+  situation: { scene: 'A scene.', ask: 'Ask?', model: 'A model answer.', rubric: ['one', 'two', 'three'] },
+  sayIt: 'Explain it.', terms: [{ term: 'Takt', def: 'Pace.' }, { term: 'WIP', def: 'Work.' }], ...extra,
+});
+const meta = { id: 'eng.fx', subject: 'eng', track: 'basics', level: 1, lessons: ['eng.fx.a', 'eng.fx.b'], questions: { 'eng.fx.a': 3, 'eng.fx.b': 3 } };
+const nl = { lessons: [lesson('eng.fx.a'), lesson('eng.fx.b')] };
+
+test('validateModule: a film is an id with an optional start scene #1–#9', () => {
+  for (const film of ['eng.machining.turning', 'eng.machining.turning#3', 'eng.fx.x1#9']) {
+    assert.deepEqual(validateModule({ lessons: [lesson('eng.fx.a', { film }), lesson('eng.fx.b')] }, nl, meta), [], film);
+  }
+  for (const film of ['../evil', 'eng.x#0', 'eng.x#10', 'Eng.x', 'eng', 7, 'eng.x#']) {
+    assert.match(validateModule({ lessons: [lesson('eng.fx.a', { film }), lesson('eng.fx.b')] }, nl, meta).join('\n'), /film/, String(film));
+  }
+});
+
+// All lessons, both languages, by id.
+async function allLessons() {
+  const out = { nl: new Map(), en: new Map() };
+  for (const m of MODULES) {
+    for (const lang of ['nl', 'en']) for (const l of (await loadModule(m.subject, m.id, lang)).lessons) out[lang].set(l.id, l);
+  }
+  return out;
+}
+
+test('every film a lesson wires exists, is in the shell, and lists that lesson', async () => {
+  const lessons = await allLessons();
+  const sw = fs.readFileSync('sw.js', 'utf8');
+  for (const lang of ['nl', 'en']) {
+    for (const l of lessons[lang].values()) {
+      if (!l.film) continue;
+      const id = l.film.split('#')[0];
+      const file = `${DIR}/${id}.html`;
+      assert.ok(fs.existsSync(file), `${l.id}: ${file} missing`);
+      assert.ok(sw.includes(`'${file}'`), `${file} missing from sw.js`);
+      assert.ok(readFilmData(fs.readFileSync(file, 'utf8')).lessons.includes(l.id), `${id} does not list ${l.id}`);
+      assert.equal(l.film, lessons[lang === 'nl' ? 'en' : 'nl'].get(l.id).film, `${l.id}: film differs between nl and en`);
+    }
+  }
+});
+
+test('every shipped film: its terms, numbers, coverage, language and length still match the lessons', async () => {
+  assert.ok(films.length >= 1, 'no films shipped');
+  const lessons = await allLessons();
+  for (const id of films) {
+    const html = fs.readFileSync(`${DIR}/${id}.html`, 'utf8');
+    const data = readFilmData(html);
+    assert.equal(data.id, id);
+    const wiredBy = [...lessons.nl.values()].filter((l) => l.film && l.film.split('#')[0] === id).map((l) => l.id);
+    const errs = checkFilm(data, { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy });
+    assert.deepEqual(errs, [], `${id}:\n${errs.join('\n')}`);
+    assert.ok(Buffer.byteLength(html) <= MAX_BYTES, `${id}: ${Buffer.byteLength(html)} bytes, over the cap`);
+  }
+});
+
+test('the sync check catches a renamed term, a removed number and a Dutch word in English', async () => {
+  const lessons = await allLessons();
+  for (const id of films) {
+    const data = readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'));
+    const ctx = { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy: data.lessons };
+    // a lesson whose first term was renamed
+    const t = data.scenes.flatMap((s) => s.terms)[0];
+    const renamed = { nl: new Map(lessons.nl), en: lessons.en };
+    const l = lessons.nl.get(t.lesson);
+    renamed.nl.set(t.lesson, { ...l, terms: l.terms.map((x, i) => (i === t.index ? { ...x, term: `${x.term}x` } : x)) });
+    assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /term/);
+    // a lesson that no longer has the number
+    const n = data.numbers[0];
+    const gone = { nl: new Map(lessons.nl), en: lessons.en };
+    const ln = lessons.nl.get(n.lesson);
+    const strip = (s) => (typeof s === 'string' ? s.split(n.value).join('#') : s);
+    gone.nl.set(n.lesson, JSON.parse(JSON.stringify(ln), (k, v) => strip(v)));
+    assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
+    assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /number/);
+    // a Dutch term in the English caption
+    const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
+    const bad = JSON.parse(JSON.stringify(data));
+    bad.scenes[0].beats[0].text.en += ` ${dutch.nl}`;
+    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch/);
+  }
+});

@@ -73,6 +73,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Snijsnelheid, voeding en snedediepte',
       pre: [
@@ -145,6 +146,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
+      film: 'eng.machining.turning',
       title: 'Nadraaien: ruwheid, spanen en slanke delen',
       pre: [
         {
@@ -216,6 +218,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
+      film: 'eng.machining.turning',
       title: 'Draaifreescentra: alles in één opspanning',
       pre: [
         {

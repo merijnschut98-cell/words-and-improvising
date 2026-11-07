@@ -771,6 +771,11 @@ details.explain-back > summary { font-family: var(--font-display); font-weight: 
 .figure-wrap { margin: var(--space-4, 16px) 0 0; }
 .figure-frame { display: block; width: 100%; aspect-ratio: 1 / 1.05; border: 1px solid var(--line); border-radius: var(--radius-md, 6px); background: var(--card); }
 .figure-wrap figcaption { margin-top: 6px; }
+.film-wrap { margin: var(--space-3, 12px) 0 0; }
+.film-btn { width: 100%; min-height: 44px; }
+.film-box { margin-top: var(--space-3, 12px); }
+/* The film reports its own height; until then 16:10 plus captions and controls. */
+.film-frame { display: block; width: 100%; aspect-ratio: 16 / 17; border: 0; border-radius: var(--radius-md, 6px); background: var(--card); }
 
 /* Start screen: one compact today card per subject. */
 .start-title { margin: 6px 0 0; font-size: 1.6rem; }

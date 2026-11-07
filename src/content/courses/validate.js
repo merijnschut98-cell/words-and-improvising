@@ -72,6 +72,8 @@ function checkLesson(l, meta, lang, errs, tier = meta.level) {
   if (terms.length < 2 || terms.length > 6 || !terms.every((x) => x && str(x.term) && str(x.def))) errs.push(`${at}: needs 2–6 terms with term and def`);
   if (strings(l).some((x) => /[<>]/.test(x))) errs.push(`${at}: no < or > allowed in text`);
   if ('figure' in l && !(typeof l.figure === 'string' && /^[a-z]+(\.[a-z0-9]+)+$/.test(l.figure))) errs.push(`${at}: figure must be an id like eng.flow.line`);
+  // An explainer film, optionally opened at a start scene: eng.machining.turning#3.
+  if ('film' in l && !(typeof l.film === 'string' && /^[a-z]+(\.[a-z0-9]+)+(#[1-9])?$/.test(l.film))) errs.push(`${at}: film must be an id like eng.machining.turning, optionally #1–#9`);
 }
 
 const TOPIC_ID = /^[a-z0-9]+$/;
