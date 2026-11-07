@@ -282,7 +282,7 @@ const CAM = [
   { from: cam([0, 22, 106], 300), to: cam([0, 22, 104], 262) },
   { from: cam([0, 22, 104], 300), to: cam([0, 22, 104], 270) },
   { from: cam([0, 14, 104], 280), to: cam([0, 0, 100], 190), a: 0.6, b: 0.8 },
-  { from: cam([0, 0, 124], 340), to: cam([0, 0, 128], 300) },
+  { from: cam([0, 0, 134], 320), to: cam([0, 0, 138], 250) },
 ];
 
 // ---------------------------------------------------------------- the film
@@ -294,7 +294,7 @@ const spec = {
     {
       id: 's1', lesson: 'eng.machining.mill', level: 1, dur: DUR[0], still: 0.85, title: { nl: 'Het bewerkingscentrum', en: 'The machining centre' },
       beats: [
-        { nl: 'Een {t:Bewerkingscentrum|bewerkingscentrum} is een CNC-freesmachine die zelf zijn gereedschap wisselt uit een magazijn.', en: 'A {t:Machining centre|machining centre} is a CNC milling machine that changes its own tools from a magazine.', cue: { Bewerkingscentrum: 'vmc' } },
+        { nl: 'Een {t:Bewerkingscentrum|bewerkingscentrum} is een CNC-freesmachine die zelf gereedschap pakt uit een magazijn.', en: 'A {t:Machining centre|machining centre} is a CNC milling machine that changes its own tools from a magazine.', cue: { Bewerkingscentrum: 'vmc' } },
         { nl: 'Op de tafel zit een blok aluminium van {n:100} × {n:80} × {n:25} mm in een bankschroef. De spil hangt erboven.', en: 'On the table, an aluminium block of {n:100} × {n:80} × {n:25} mm sits in a vice. The spindle hangs above it.', read: { nl: 'blok {n:100} × {n:80} × {n:25} mm', en: 'block {n:100} × {n:80} × {n:25} mm' } },
       ],
     },
@@ -316,7 +316,7 @@ const spec = {
     {
       id: 's4', lesson: 'eng.machining.millfeeds', level: 2, dur: DUR[3], still: 0.7, title: { nl: 'Snijwaarden', en: 'Cutting data' },
       beats: [
-        { nl: 'Nu een vingerfrees Ø{n:12}, {n:3} tanden, Vc {n:150} m/min: hij draait {n:3980} omw/min.', en: 'Now a Ø{n:12} end mill, {n:3} teeth, Vc {n:150} m/min: it turns at {n:3980} rpm.', read: { nl: 'n = {n:150000} / (π × {n:12}) = {n:3980} omw/min', en: 'n = {n:150000} / (π × {n:12}) = {n:3980} rpm' } },
+        { nl: 'Nu een stalen blok, vingerfrees Ø{n:12}, {n:3} tanden, Vc {n:150} m/min: {n:3980} omw/min.', en: 'Now a steel block, a Ø{n:12} end mill, {n:3} teeth, Vc {n:150} m/min: {n:3980} rpm.', read: { nl: 'n = {n:150000} / (π × {n:12}) = {n:3980} omw/min', en: 'n = {n:150000} / (π × {n:12}) = {n:3980} rpm' } },
         { nl: 'Elke tand neemt per omwenteling een hapje: de {t:Voeding per tand|voeding per tand}, fz {n:0.05} mm.', en: 'Each tooth takes one bite per revolution: the {t:Feed per tooth|feed per tooth}, fz {n:0.05} mm.', cue: { 'Voeding per tand': 'fz' } },
         { nl: 'fz × tanden × toeren is de {t:Tafelvoeding|tafelvoeding}: {n:597} mm/min.', en: 'fz × teeth × speed is the {t:Table feed|table feed}: {n:597} mm/min.', cue: { Tafelvoeding: 'vf' }, read: { nl: 'vf = {n:0.05} × {n:3} × {n:3980} = {n:597} mm/min', en: 'vf = {n:0.05} × {n:3} × {n:3980} = {n:597} mm/min' } },
         { nl: 'Hij zit {n:3} mm opzij in het blok: de {t:Snedebreedte|snedebreedte}.', en: 'It sits {n:3} mm sideways in the block: the {t:Width of cut|width of cut}.', cue: { Snedebreedte: 'ae' } },
@@ -327,7 +327,7 @@ const spec = {
       id: 's5', lesson: 'eng.machining.millstrategy', level: 3, dur: DUR[4], still: 0.5, title: { nl: 'Meelopend of tegenlopend', en: 'Climb or conventional' },
       beats: [
         { nl: 'Bij {t:Meelopend frezen|meelopend frezen} gaat de tand dik het materiaal in en komt hij er dun uit.', en: 'In {t:Climb milling|climb milling} the tooth enters the material thick and leaves thin.', cue: { 'Meelopend frezen': 'climb' } },
-        { nl: 'Bij {t:Tegenlopend frezen|tegenlopend frezen} begint hij op nul en schuurt hij eerst. Op een CNC is meelopend de standaard.', en: 'In {t:Conventional milling|conventional milling} it starts at zero and rubs first. On a CNC machine, climb is the standard.', cue: { 'Tegenlopend frezen': 'conv' } },
+        { nl: 'Bij {t:Tegenlopend frezen|tegenlopend frezen} begint hij op nul en schuurt hij. Op CNC is meelopend standaard.', en: 'In {t:Conventional milling|conventional milling} it starts at zero and rubs first. On CNC, climb is standard.', cue: { 'Tegenlopend frezen': 'conv' } },
       ],
     },
     {
@@ -339,12 +339,12 @@ const spec = {
       ],
     },
     {
-      id: 's7', lesson: 'eng.machining.fiveaxis', level: 4, dur: DUR[6], still: 0.5, title: { nl: 'Vijfassig', en: 'Five-axis' },
+      id: 's7', lesson: 'eng.machining.fiveaxis', level: 4, dur: DUR[6], still: 0.9, title: { nl: 'Vijfassig', en: 'Five-axis' },
       beats: [
         { nl: 'Een {t:Draai-kanteltafel|draai-kanteltafel} kantelt en draait het werkstuk: de frees bereikt vijf kanten.', en: 'A {t:Trunnion table|trunnion table} tilts and turns the part: the cutter reaches five sides.', cue: { 'Draai-kanteltafel': 'trunnion' } },
-        { nl: '{t:3+2-bewerking|3+2-bewerking}: kantelen, de draaiassen vastzetten, dan frezen met X, Y en Z.', en: '{t:3+2 machining|3+2 machining}: tilt, lock the rotary axes, then mill with X, Y and Z.', cue: { '3+2-bewerking': 'lock' } },
-        { nl: 'Van {n:4} opspanningen naar {n:1}: per serie scheelt dat {n:3} × {n:30} = {n:90} minuten ombouwen.', en: 'From {n:4} setups to {n:1}: per batch that saves {n:3} × {n:30} = {n:90} minutes of changeover.', read: { nl: '{n:4} → {n:1} opspanning · {n:3} × {n:30} = {n:90} min', en: '{n:4} → {n:1} setup · {n:3} × {n:30} = {n:90} min' } },
-        { nl: 'Bij {t:Simultaan vijfassig|simultaan vijfassig} bewegen alle vijf assen tegelijk, voor gekromde vormen.', en: 'In {t:Simultaneous 5-axis|simultaneous 5-axis} all five axes move at once, for curved shapes.', cue: { 'Simultaan vijfassig': 'simul' } },
+        { nl: '{t:3+2-bewerking|3+2-bewerking}: kantelen, vastzetten, dan frezen met X, Y en Z.', en: '{t:3+2 machining|3+2 machining}: tilt, lock, then mill with X, Y and Z.', cue: { '3+2-bewerking': 'lock' } },
+        { nl: 'Van {n:4} naar {n:1} opspanning: per serie {n:3} × {n:30} = {n:90} minuten minder ombouwen.', en: 'From {n:4} setups to {n:1}: per batch {n:3} × {n:30} = {n:90} minutes less changeover.', read: { nl: '{n:4} → {n:1} opspanning · {n:3} × {n:30} = {n:90} min', en: '{n:4} → {n:1} setup · {n:3} × {n:30} = {n:90} min' } },
+        { nl: '{t:Simultaan vijfassig|Simultaan vijfassig}: de assen bewegen tegelijk, de frees blijft haaks op het bolle vlak.', en: '{t:Simultaneous 5-axis|Simultaneous 5-axis}: the axes move at once, the cutter stays square to the domed face.', cue: { 'Simultaan vijfassig': 'simul' } },
       ],
     },
   ],
@@ -380,8 +380,8 @@ const css = `
 `;
 
 const label = {
-  nl: 'Een verticaal bewerkingscentrum: een kolom met gereedschapsmagazijn, een spilkop met frees, en een tafel met een bankschroef en een aluminium blok. Later een draai-kanteltafel die het werkstuk kantelt en draait.',
-  en: 'A vertical machining centre: a column with a tool magazine, a spindle head with a cutter, and a table with a vice and an aluminium block. Later a trunnion table that tilts and turns the part.',
+  nl: 'Een verticaal bewerkingscentrum: een kolom met gereedschapsmagazijn, een spilkop met frees, en een tafel met een bankschroef en een aluminium blok. Later een draai-kanteltafel die een werkstuk met een bolle bovenkant kantelt en draait.',
+  en: 'A vertical machining centre: a column with a tool magazine, a spindle head with a cutter, and a table with a vice and an aluminium block. Later a trunnion table that tilts and turns a part with a domed top.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

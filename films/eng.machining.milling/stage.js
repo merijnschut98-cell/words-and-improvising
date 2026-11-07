@@ -48,7 +48,9 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ the block in the vice
   // Block-local x, y (centre 0, 0); world = local + table offset (tx, ty).
-  // cut: a step along the front face (x from rx0 to BX, y from yb to BY, ap deep).
+  // cut: a step along the front face (x from -BX to rx1, y from yb to BY, ap
+  // deep). The cutter enters at the left end and travels toward +x: with the
+  // spindle turning clockwise and the material on its right, that is climb.
   function lShape(a0, a1, b0, b1, n0, n1, bn) {
     n0 = Math.max(n0, a0);
     n1 = Math.min(n1, a1);
@@ -61,8 +63,8 @@ const STAGE = (() => {
     return out;
   }
   function blockSvg(tx, ty, cut) {
-    const rx0 = cut ? clamp(cut.rx0, -BX, BX) : BX;
-    const rx1 = BX;
+    const rx0 = -BX;
+    const rx1 = cut ? clamp(cut.rx1, -BX, BX) : -BX;
     const yb = cut ? cut.yb : BY;
     const zc = TOP - (cut ? cut.ap : 0);
     const Wp = (x, y, z) => at([x + tx, y + ty, z]);
@@ -75,11 +77,10 @@ const STAGE = (() => {
     if (cutting) {
       add('fm-cut iso-top', [[rx0, yb], [rx1, yb], [rx1, BY], [rx0, BY]].map(([x, y]) => Wp(x, y, zc)));
       add('fm-cut ' + sy, [[rx0, TOP], [rx1, TOP], [rx1, zc], [rx0, zc]].map(([x, z]) => Wp(x, yb, z)));
-      if (rx0 > -BX + 1e-6) add('fm-cut ' + sx, [[yb, TOP], [BY, TOP], [BY, zc], [yb, zc]].map(([y, z]) => Wp(rx0, y, z)));
     }
     add('iso-top', lShape(-BX, BX, -BY, BY, rx0, rx1, yb).map(([x, y]) => Wp(x, y, TOP)));
     add(sy, lShape(-BX, BX, B0, TOP, rx0, rx1, zc).map(([x, z]) => Wp(x, BY, z)));
-    add(sx, (cutting ? lShape(-BY, BY, B0, TOP, yb, BY, zc) : [[-BY, B0], [BY, B0], [BY, TOP], [-BY, TOP]]).map(([y, z]) => Wp(BX, y, z)));
+    add(sx, (rx1 >= BX - 1e-6 ? lShape(-BY, BY, B0, TOP, yb, BY, zc) : [[-BY, B0], [BY, B0], [BY, TOP], [-BY, TOP]]).map(([y, z]) => Wp(BX, y, z)));
     return `<g class="iso-solid">${faces.join('')}<path class="iso-line iso-edge" data-tone="mid" d="${edges.join('')}"/></g>`;
   }
   // The face-milled top: each pass a swept disc, with the cutter's swirl marks.
@@ -221,9 +222,11 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ the loupe: a top view of the cutter in the cut
-  // Lens units: radius 46; u to the right (+x), v down (−y), so the material lies
-  // below the cutter. climb: the cutter travels toward −u with the material on
-  // its −y side and turns clockwise seen from above, so each tooth enters thick.
+  // Lens units: radius 46; u to the right (+x), v down (−y): a true top view, so
+  // the spindle (M3) turns clockwise here and the material lies below the cutter.
+  // climb: the cutter travels toward +u, so each tooth meets the uncut stock
+  // first (thick) and leaves along the new face (thin); conventional travels
+  // toward −u, so the tooth starts on the new face at zero and rubs.
   function loupeSvg(d, ae, teeth, phase, climb, fz, scale, opts = {}) {
     const R = 24;
     const kk = R / (d / 2);
@@ -231,7 +234,7 @@ const STAGE = (() => {
     const cy = -6;
     const edge = cy + R - a;
     const done = cy + R;
-    const dir = climb ? -1 : 1; // travel along u
+    const dir = climb ? 1 : -1; // travel along u
     const f2 = (v) => v.toFixed(2);
     const out = [];
     // the arc of the cut, from where the old face meets the circle to the new face
@@ -292,20 +295,32 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ the trunnion table (scene 7)
   // A tilts the cradle about the Y axis through the pivot (0, 0, ZA), so the
-  // part's right-hand face rises toward the cutter; C turns the platter about the
+  // part's +x side rises toward the cutter; C turns the platter about the
   // cradle's own z. Everything is offset by the table position (tx, ty).
+  // The part: a round insert with a domed (curved) top, a sphere of radius R
+  // about (0, 0, zc) in platter coordinates. A point on the dome at polar angle
+  // psi and azimuth phi has its normal straight up when C = -phi and A = psi:
+  // that is how the vertical cutter stays square to the curved face.
   const add3 = G.add3;
   const mul3 = G.mul3;
-  const BK = { hx: 28, hy: 22, s0: -18, s1: 12 }; // the part on the platter
+  const DOME = { r: 26, s0: -19, s1: -4, R: 36 };
+  DOME.zc = DOME.s1 - Math.sqrt(DOME.R * DOME.R - DOME.r * DOME.r);
+  DOME.rim = Math.asin(DOME.r / DOME.R);
+  const domeN = (psi, phi) => [Math.sin(psi) * Math.cos(phi), Math.sin(psi) * Math.sin(phi), Math.cos(psi)];
+  const domeAt = (psi, phi, lift = 0) => { const n = domeN(psi, phi); return [n[0] * (DOME.R + lift), n[1] * (DOME.R + lift), DOME.zc + n[2] * (DOME.R + lift)]; };
+  const PROFILE = [[DOME.s0, DOME.r], [DOME.s1, DOME.r]];
+  for (let i = 1; i <= 10; i++) { const psi = DOME.rim * (1 - i / 10); PROFILE.push([DOME.zc + DOME.R * Math.cos(psi), Math.max(0.4, DOME.R * Math.sin(psi))]); }
   function trunFrames(tx, ty, a, c) {
     const o = [tx, ty, C.ZA];
     const ex = [Math.cos(a), 0, Math.sin(a)];
     const ez = [-Math.sin(a), 0, Math.cos(a)];
     const bx = add3(mul3(ex, Math.cos(c)), mul3(Y, Math.sin(c)));
     const by = add3(mul3(ex, -Math.sin(c)), mul3(Y, Math.cos(c)));
-    return { o, ex, ez, bx, by, pt: (p) => add3(o, add3(add3(mul3(bx, p[0]), mul3(by, p[1])), mul3(ez, p[2]))) };
+    const vec = (p) => add3(add3(mul3(bx, p[0]), mul3(by, p[1])), mul3(ez, p[2]));
+    return { o, ex, ez, bx, by, vec, pt: (p) => add3(o, vec(p)) };
   }
-  function trunnionSvg(tx, ty, a, c, feats, trail) {
+  // holes: { psi, phi, r } on the dome; trail: dome points [psi, phi] in order
+  function trunnionSvg(tx, ty, a, c, holes, trail) {
     const T = trunFrames(tx, ty, a, c);
     const pv = T.o;
     const Fy = G.frameOf(pv, Y, [0, 0, 1], [1, 0, 0]);
@@ -323,36 +338,35 @@ const STAGE = (() => {
     const plate = solidSvg(G.prismOf(Fb, [[-34, -40], [34, -40], [34, 40], [-34, 40]], -36, -26, P), { tone: 'mid', crease: 'lo' });
     const Fp = G.frameOf(pv, T.ez, T.bx, T.by);
     const platter = solidSvg(G.disc(-26, -19, 30, Fp, P), { tone: 'mid', crease: 'lo' })
-      + (G.dot3(T.ez, V) > 0.05 ? lineSvg(G.circleOf(Fp, -19, 22, P), { tone: 'faint' }) + dotsSvg(G.dotsOf(Fp, -19, 26, 8, P, { least: -1 }), { size: 0.45 }) : '');
-    const part = solidSvg(G.prismOf(Fp, [[-BK.hx, -BK.hy], [BK.hx, -BK.hy], [BK.hx, BK.hy], [-BK.hx, BK.hy]], BK.s0, BK.s1, P), { tone: 'hi', crease: 'lo' });
-    // machined features on the part's faces, drawn when the face looks at us
+      + (G.dot3(T.ez, V) > 0.05 ? dotsSvg(G.dotsOf(Fp, -19, 28, 8, P, { least: -1 }), { size: 0.45 }) : '');
+    const part = solidSvg(G.solidOf(PROFILE, Fp, P), { tone: 'hi', crease: 'lo', lit: true });
+    // holes square to the dome, drawn when they look at us
     let marks = '';
-    for (const f of feats) {
-      const n = add3(add3(mul3(T.bx, f.n[0]), mul3(T.by, f.n[1])), mul3(T.ez, f.n[2]));
-      if (G.dot3(n, V) < 0.05 || f.r < 0.3) continue;
-      const u = T.ez;
+    for (const h of holes) {
+      if (h.r < 0.3) continue;
+      const n = T.vec(domeN(h.psi, h.phi));
+      if (G.dot3(n, V) < 0.08) continue;
+      let u = add3(T.ez, mul3(n, -G.dot3(T.ez, n)));
+      u = mul3(u, 1 / (Math.hypot(u[0], u[1], u[2]) || 1));
       const v = [n[1] * u[2] - n[2] * u[1], n[2] * u[0] - n[0] * u[2], n[0] * u[1] - n[1] * u[0]];
-      const Ff = G.frameOf(T.pt(f.c), n, u, v);
-      const d = G.circleOf(Ff, 0, f.r, P, 28);
-      marks += `<path class="fm-hole" d="${d}"/><path class="iso-line" data-tone="hi" d="${d}"/>`;
+      const d = G.circleOf(G.frameOf(T.pt(domeAt(h.psi, h.phi)), n, u, v), 0, h.r, P, 28);
+      marks += `<path class="fm-hole" d="${d}"/><path class="iso-line" data-tone="mid" d="${d}"/>`;
     }
     const back = [tower(-66, -52) + boss(-71, -66), cheek(-52, -40), plate, platter, part, marks];
     const front = [cheek(40, 52), tower(52, 66) + boss(66, 71)];
+    // the cutter's track on the dome: only the stretches that face us
     let tr = '';
-    if (trail && trail.length > 1) tr = `<path class="fm-path" d="${pathOf(trail.map((p) => at(T.pt(p))))}"/>`;
-    return { back: back.join(''), front: front.join(''), T, trail: tr };
-  }
-  // the top edge of the part, as a loop (block-local), t in 0..1
-  function edgeAt(t) {
-    const { hx, hy, s1 } = BK;
-    const per = 4 * (hx + hy);
-    let d = ((t % 1) + 1) % 1 * per;
-    const seg = [[hx * 2, [-hx, hy], [1, 0]], [hy * 2, [hx, hy], [0, -1]], [hx * 2, [hx, -hy], [-1, 0]], [hy * 2, [-hx, -hy], [0, 1]]];
-    for (const [len, p, dv] of seg) {
-      if (d <= len) return [p[0] + dv[0] * d, p[1] + dv[1] * d, s1];
-      d -= len;
+    if (trail && trail.length > 1) {
+      const runs = [];
+      let run = [];
+      for (const [psi, phi] of trail) {
+        if (G.dot3(T.vec(domeN(psi, phi)), V) > 0.02) run.push(at(T.pt(domeAt(psi, phi, 0.3))));
+        else if (run.length) { if (run.length > 1) runs.push(pathOf(run)); run = []; }
+      }
+      if (run.length > 1) runs.push(pathOf(run));
+      if (runs.length) tr = `<path class="fm-path" d="${runs.join('')}"/>`;
     }
-    return [-hx, hy, s1];
+    return { back: back.join(''), front: front.join(''), T, trail: tr };
   }
 
   // ------------------------------------------------------------ camera
@@ -432,10 +446,26 @@ const STAGE = (() => {
     ['trunB', 'trunF', 'tool', 'lock', 'simul'],
   ];
 
+  // where each loupe sits and how big it is, per scene (HUD units: centre x, y, radius)
+  const LP = [null, null, null, { lp1: [536, 296, 102] }, { lp1: [522, 282, 112], lp2: [118, 282, 112] }, { lp1: [536, 296, 102] }, null];
+  const EN = document.documentElement.lang === 'en';
+  const LPLAB = { lp1: EN ? 'climb' : 'meelopend', lp2: EN ? 'conventional' : 'tegenlopend' };
+  function placeLoupes(si) {
+    for (const key of ['lp1', 'lp2']) {
+      const spot = LP[si] && LP[si][key];
+      if (!spot) continue;
+      const [x0, y0] = key === 'lp1' ? C.L1 : C.L2;
+      const sc = spot[2] / C.LR;
+      E[key].setAttribute('transform', `translate(${spot[0]} ${spot[1]}) scale(${sc.toFixed(4)}) translate(${-x0} ${-y0})`);
+      set(E[key + 'Lab'], si === 4 ? `<text class="fp-ink fp-label" x="${x0}" y="${y0 - C.LR - 9}" font-size="15" text-anchor="middle">${LPLAB[key]}</text>` : '');
+    }
+  }
+
   function render(si, u) {
     if (si !== shown) {
       shown = si;
       for (const k of ALL) show(E[k], VIS[si].includes(k));
+      placeLoupes(si);
     }
     camera(si, u);
     const clockS = u * C.dur[si];
@@ -527,38 +557,37 @@ const STAGE = (() => {
       const yb = BY - ae;
       const yc = BY + 6 - ae;
       const t = span(u, 0.04, 0.96);
-      const x = lerp(BX + 14, -BX + 6, t);
+      const x = lerp(-BX - 14, BX - 6, t);
       tx = -x;
       ty = -yc;
       zTip = lerp(TOP + 14, TOP - ap, span(u, 0, 0.04));
       phase = clockS * 6;
-      blk = blockSvg(tx, ty, { rx0: x, yb, ap });
-      if (x < BX + 6) chips = chipsSvg([-4, -4, TOP - 4], [0.2, 1], clockS, 6, 2);
+      blk = blockSvg(tx, ty, { rx1: x, yb, ap });
+      if (x > -BX - 6) chips = chipsSvg([-4, -4, TOP - 4], [-0.2, 1], clockS, 6, 2);
       if (si === 3) {
         // ae: the band ahead of the cutter; Q: the band it has removed; vf: the table's travel
-        const a0 = at([-BX + tx, yb + ty, TOP]);
-        const a1 = at([Math.min(x, BX) - 8 + tx, yb + ty, TOP]);
-        const b0 = at([-BX + tx, BY + ty, TOP]);
-        const b1 = at([Math.min(x, BX) - 8 + tx, BY + ty, TOP]);
-        const lp = at([Math.min(x, BX) - 26 + tx, BY + ty + 12, TOP + 2]);
-        set(E.ae, mark(pathOf([a0, a1]) + pathOf([b0, b1]) + pathOf([a0, b0])) + label(lp[0], lp[1], 'ae', 20, 'middle'));
-        const q0 = Math.min(Math.max(x, -BX), BX);
-        const Q = [[q0, yb, TOP], [BX, yb, TOP], [BX, BY, TOP], [q0, BY, TOP]];
+        const xa = Math.max(x, -BX) + 8;
+        const a0 = at([BX + tx, yb + ty, TOP]);
+        const a1 = at([Math.min(xa, BX) + tx, yb + ty, TOP]);
+        const b0 = at([BX + tx, BY + ty, TOP]);
+        const b1 = at([Math.min(xa, BX) + tx, BY + ty, TOP]);
+        const lp = at([Math.min(xa + 18, BX - 6) + tx, BY + ty + 12, TOP + 2]);
+        set(E.ae, xa < BX - 2 ? mark(pathOf([a0, a1]) + pathOf([b0, b1]) + pathOf([a0, b0])) + label(lp[0], lp[1], 'ae', 20, 'middle') : '');
+        const q1 = Math.min(Math.max(x, -BX), BX);
+        const Q = [[-BX, yb, TOP], [q1, yb, TOP], [q1, BY, TOP], [-BX, BY, TOP]];
         const Qb = Q.map(([qx, qy]) => [qx, qy, TOP - ap]);
         const Wq = (p) => at([p[0] + tx, p[1] + ty, p[2]]);
-        const ql = Wq([(q0 + BX) / 2, BY + 4, TOP + 14]);
-        set(E.q, BX - q0 > 2 ? mark(poly(Q.map(Wq)) + pathOf([Wq(Q[3]), Wq(Qb[3]), Wq(Qb[2]), Wq(Q[2])]) + pathOf([Wq(Qb[2]), Wq(Qb[1]), Wq(Q[1])])) + label(ql[0], ql[1], 'Q', 22) : '');
-        const v0 = at([TABLE_X0 + tx, 62 + ty, 60]);
-        const v1 = at([TABLE_X0 + 60 + tx, 62 + ty, 60]);
+        const ql = Wq([(q1 - BX) / 2, BY + 4, TOP + 14]);
+        set(E.q, q1 + BX > 2 ? mark(poly(Q.map(Wq)) + pathOf([Wq(Q[3]), Wq(Qb[3]), Wq(Qb[2]), Wq(Q[2])]) + pathOf([Wq(Qb[2]), Wq(Qb[1]), Wq(Q[1])])) + label(ql[0], ql[1], 'Q', 22) : '');
+        // the table carries the block toward −x while the cutter climbs along +x
+        const v0 = at([TABLE_X0 + 60 + tx, 62 + ty, 60]);
+        const v1 = at([TABLE_X0 + tx, 62 + ty, 60]);
         const vl = at([TABLE_X0 + 30 + tx, 62 + ty, 44]);
         set(E.vf, mark(pathOf([v0, v1])) + mark(arrowHead(v0, v1, 9)) + label(vl[0], vl[1], 'vf', 20));
-        loupeIn('lp1', C.L1, loupeSvg(12, ae, 3, -clockS * 2.4, true, 0.05, 200, { marks: true }));
-        set(E.lp1Lab, '');
+        loupeIn('lp1', C.L1, loupeSvg(12, ae, 3, clockS * 2.4, true, 0.05, 200, { marks: true }));
       } else {
-        loupeIn('lp1', C.L1, loupeSvg(12, ae * 2, 3, -clockS * 2.4, true, 0.05, 200));
-        loupeIn('lp2', C.L2, loupeSvg(12, ae * 2, 3, -clockS * 2.4, false, 0.05, 200));
-        set(E.lp1Lab, '');
-        set(E.lp2Lab, '');
+        loupeIn('lp1', C.L1, loupeSvg(12, ae * 2, 3, clockS * 2.4, true, 0.05, 200));
+        loupeIn('lp2', C.L2, loupeSvg(12, ae * 2, 3, clockS * 2.4, false, 0.05, 200));
       }
     } else if (si === 5) {
       // beats 1–2: a light side cut, ae 1 of Ø10, and its thin chip; beat 3: a trochoidal slot
@@ -566,20 +595,22 @@ const STAGE = (() => {
       if (u < 0.68) {
         tool = 'end10';
         const yb = BY - 1;
-        const x = lerp(BX + 12, -BX + 10, span(u, 0.03, 0.66));
+        const x = lerp(-BX - 12, BX - 10, span(u, 0.03, 0.66));
         tx = -x;
         ty = -(BY + 5 - 1);
         zTip = TOP - 10;
-        blk = blockSvg(tx, ty, { rx0: x, yb, ap: 10 });
-        if (x < BX + 5) chips = chipsSvg([-4, -4, TOP - 4], [0.2, 1], clockS, 6, 1.6);
+        blk = blockSvg(tx, ty, { rx1: x, yb, ap: 10 });
+        if (x > -BX - 5) chips = chipsSvg([-4, -4, TOP - 4], [-0.2, 1], clockS, 6, 1.6);
         set(E.troch, '');
         set(E.pocket, '');
       } else {
         tool = 'end10';
         const depth = 18;
+        // the step per loop is the width of cut: 26 mm in 20 loops = 1,3 mm,
+        // 13 % of the Ø10 (the lesson: 5 to 15 %)
         const xs = 31;
-        const xe = -31;
-        const loops = 9;
+        const xe = 5;
+        const loops = 20;
         const rr = 3.5;
         const pathPt = (t) => [lerp(xs, xe, t) + rr * Math.cos(t * loops * TAU), rr * Math.sin(t * loops * TAU)];
         const p = pathPt(tr);
@@ -593,70 +624,57 @@ const STAGE = (() => {
         pocket = recessSvg(tx, ty, [xLo, xs + rr + 5, -(rr + 5), rr + 5], depth, open, 'fm-sl');
         clip = { z: TOP, d: poly(open.map(([x, y]) => at([x + tx, y + ty, TOP]))) };
         const ahead = [];
-        for (let i = 0; i <= 160; i++) { const t = tr + (1 - tr) * (i / 160); ahead.push(pathPt(t)); }
+        const end = Math.min(1, tr + 3 / loops); // the next three loops
+        for (let i = 0; i <= 72; i++) ahead.push(pathPt(tr + (end - tr) * (i / 72)));
         set(E.troch, `<path class="fm-path" d="${pathOf(ahead.map(([x, y]) => at([x + tx, y + ty, TOP + 0.2])))}"/>`);
         if (tr > 0 && tr < 1) chips = chipsSvg([0, 0, TOP], [0.3, 1], clockS, 6, 1.6);
       }
-      loupeIn('lp1', C.L1, loupeSvg(10, 1, 4, -clockS * 2.4, true, 0.05, 300, { nominal: true }));
-      set(E.lp1Lab, '');
+      loupeIn('lp1', C.L1, loupeSvg(10, 1, 4, clockS * 2.4, true, 0.05, 300, { nominal: true }));
     } else if (si === 6) {
-      // the trunnion: turn and tilt; 3+2 (lock, cut a feature); another face; then simultaneous
+      // beat 1: the table turns (C) and tilts (A); beat 2: 3+2, tilt to 30°, lock,
+      // drill a hole square to the dome; beat 3: index C 90°, lock, the next hole;
+      // beat 4: simultaneous, A and C keep moving while the cutter spirals over
+      // the dome and stays square to it
       tool = 'end10';
       const b2 = 0.27;
       const b3 = 0.5;
       const b4 = 0.74;
-      let a = 0;
-      let c = 0;
-      const feats = [];
-      const lockOn = u > b2 + 0.03 && u < b4;
-      c = span(u, 0.04, 0.14) * (Math.PI / 4) - span(u, 0.14, 0.2) * (Math.PI / 4);
-      a = span(u, 0.12, 0.24) * 30 * DEG;
-      // 3+2 on the front face
-      const cut1 = span(u, b2 + 0.06, b2 + 0.18);
-      const f1c = { n: [1, 0, 0], c: [BK.hx, 0, -3], r: 9 * cut1 };
-      // turn 90°: the part's −y face comes up to the cutter
-      const turn = span(u, b3 + 0.02, b3 + 0.08);
-      c += turn * (Math.PI / 2);
-      const cut2 = span(u, b3 + 0.1, b3 + 0.2);
-      const f2c = { n: [0, -1, 0], c: [0, -BK.hy, -3], r: 9 * cut2 };
-      feats.push(f1c, f2c);
-      // simultaneous: A and C move together while the cutter follows the top edge
-      const sim = span(u, b4 + 0.02, 0.98);
-      let target = null;
+      const PSI = 30 * DEG;
+      let a = (-20 * span(u, 0.14, 0.19) + 20 * span(u, 0.21, 0.26)) * DEG + PSI * span(u, b2 + 0.01, b2 + 0.06);
+      let c = (span(u, 0.03, 0.11) - span(u, 0.12, 0.2)) * (Math.PI / 3) + span(u, b3 + 0.01, b3 + 0.07) * (Math.PI / 2);
+      const lockOn = (u > b2 + 0.06 && u < b3) || (u > b3 + 0.08 && u < b4);
+      const dip1 = span(u, b2 + 0.07, b2 + 0.1) * (1 - span(u, b2 + 0.18, b2 + 0.21));
+      const dip2 = span(u, b3 + 0.09, b3 + 0.12) * (1 - span(u, b3 + 0.19, b3 + 0.22));
+      const holes = [
+        { psi: PSI, phi: 0, r: u > b2 + 0.1 ? 5 : 0 },
+        { psi: PSI, phi: -Math.PI / 2, r: u > b3 + 0.12 ? 5 : 0 },
+      ];
+      let goal;
+      let dip = 0;
       let trail = null;
+      if (u < b3) { goal = domeAt(PSI, 0); dip = dip1; } else { goal = domeAt(PSI, -Math.PI / 2); dip = dip2; }
       if (u >= b4) {
-        const tt = sim;
-        c = Math.PI / 2 + tt * TAU;
-        a = (30 - 14 * Math.sin(tt * TAU * 2) * span(u, b4, b4 + 0.05)) * DEG;
-        const e0 = 0.125;
-        target = edgeAt(e0 + tt);
+        // a spiral from psi 38° to 10°, one and a half turns; C = -phi, A = psi
+        const sim = span(u, b4 + 0.05, 0.97);
+        const spiral = (t) => [(38 - 28 * t) * DEG, -Math.PI / 2 - t * 3 * Math.PI];
+        const [psi, phi] = spiral(sim);
+        const pre = span(u, b4, b4 + 0.04);
+        a = lerp(PSI, psi, pre);
+        c = lerp(Math.PI / 2, -phi, pre);
+        goal = domeAt(psi, phi);
+        dip = span(u, b4 + 0.02, b4 + 0.05) * (1 - span(u, 0.975, 1));
         trail = [];
-        for (let i = 0; i <= 64; i++) trail.push(edgeAt(e0 + tt * (i / 64)));
+        for (let i = 0; i <= 90; i++) trail.push(spiral(sim * (i / 90)));
       }
-      // where the cutter works: its target point under the spindle
-      const T0 = trunFrames(0, 0, a, c);
-      let zt = TOP + 70;
-      let hover = null;
-      if (u > b2 && u < b3) hover = f1c.c;
-      else if (u > b3 + 0.08 && u < b4) hover = f2c.c;
-      const goal = target || hover;
-      if (goal) {
-        const gp = T0.pt(goal);
-        tx = -gp[0];
-        ty = -gp[1];
-        let dip = 1;
-        if (!target) {
-          const ph = u < b3 ? span(u, b2 + 0.02, b2 + 0.06) * (1 - span(u, b2 + 0.19, b2 + 0.22)) : span(u, b3 + 0.08, b3 + 0.1) * (1 - span(u, b3 + 0.21, b3 + 0.23));
-          dip = ph;
-        } else dip = span(u, b4, b4 + 0.03);
-        zt = lerp(gp[2] + 50, gp[2], dip);
-      }
-      zTip = zt;
-      const tr = trunnionSvg(tx, ty, a, c, feats, trail);
+      const gp = trunFrames(0, 0, a, c).pt(goal);
+      tx = -gp[0];
+      ty = -gp[1];
+      zTip = gp[2] + 50 * (1 - dip);
+      const tr = trunnionSvg(tx, ty, a, c, holes, trail);
       set(E.trunB, tr.back);
       set(E.trunF, tr.front);
       set(E.simul, tr.trail);
-      // the lock: rings at the A bosses and round the platter while the rotary axes stand
+      // the lock: rings at the A boss and round the platter while the rotary axes stand
       const T = tr.T;
       if (lockOn) {
         const Fy = G.frameOf(T.o, Y, Z, X);
@@ -666,7 +684,7 @@ const STAGE = (() => {
         set(E.lock, mark(G.circleOf(Fy, 71.5, 14, P, 32)) + mark(G.circleOf(Fp, -22.5, 33, P, 48)) + label(al[0], al[1], 'A', 20, 'middle') + label(cl[0], cl[1], 'C', 20, 'start'));
       } else set(E.lock, '');
       phase = clockS * 7;
-      if (goal && zTip < (target ? T.pt(target)[2] : T.pt(hover)[2]) + 1) chips = chipsSvg([0, 0, zTip], [0.3, 1], clockS, 5, 1.6);
+      if (dip > 0.98) chips = chipsSvg([0, 0, zTip], [0.3, 1], clockS, 5, 1.6);
     }
 
     // the machine follows: saddle in Y, table in X and Y, head in Z
@@ -693,8 +711,9 @@ const STAGE = (() => {
     }
     let toolHtml = '';
     if (toolOn > 0.02) {
-      if (tool === 'face') toolHtml = faceMillSvg(zn, phase);
-      else toolHtml = endMillSvg(zn, tool === 'end12' ? 12 : tool === 'end8' ? 8 : 10, tool === 'end12' ? 3 : 4, phase, clip);
+      // the spindle turns clockwise seen from above (M3); frame angles grow counter-clockwise
+      if (tool === 'face') toolHtml = faceMillSvg(zn, -phase);
+      else toolHtml = endMillSvg(zn, tool === 'end12' ? 12 : tool === 'end8' ? 8 : 10, tool === 'end12' ? 3 : 4, -phase, clip);
     }
     set(E.tool, toolHtml);
     fade(E.tool, toolOn);

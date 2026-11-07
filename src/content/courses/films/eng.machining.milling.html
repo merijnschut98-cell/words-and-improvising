@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Frezen</title><script>(function(){var q=new URLSearchParams(location.search),t=q.get("theme"),d=document.documentElement;
+<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Frezen</title><script>(function(){var q=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))),t=q.get("theme"),d=document.documentElement;
 function apply(){d.setAttribute("data-theme",t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));}
 apply();if(t!=="light"&&t!=="dark"){var m=matchMedia("(prefers-color-scheme: light)");m.addEventListener&&m.addEventListener("change",apply);}
 if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
@@ -238,7 +238,7 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 <button type="button" class="fp-btn" data-act="scenes" aria-expanded="false"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></button>
 </div>
 <div class="fp-sheet" hidden><div class="fp-sheet-head"><p class="fp-sheet-title"></p><button type="button" class="fp-speed" data-act="speed" aria-pressed="false"><span class="fp-speed-l"></span> <span class="fp-speed-v">1×</span></button><button type="button" class="fp-btn" data-act="close"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="fp-list"></div></div>
-</main><script type="application/json" id="film-data">{"id":"eng.machining.milling","title":{"nl":"Frezen","en":"Milling"},"lessons":["eng.machining.mill","eng.machining.millfeeds","eng.machining.millstrategy","eng.machining.fiveaxis"],"scenes":[{"id":"s1","n":1,"level":1,"dur":18,"still":0.85,"title":{"nl":"Het bewerkingscentrum","en":"The machining centre"},"beats":[{"seg":{"nl":["Een ",{"t":"bewerkingscentrum","c":"vmc","k":"eng.machining.mill#0","en":"machining centre"}," is een CNC-freesmachine die zelf zijn gereedschap wisselt uit een magazijn."],"en":["A ",{"t":"machining centre","c":"vmc","k":"eng.machining.mill#0"}," is a CNC milling machine that changes its own tools from a magazine."]},"text":{"nl":"Een bewerkingscentrum (machining centre) is een CNC-freesmachine die zelf zijn gereedschap wisselt uit een magazijn.","en":"A machining centre is a CNC milling machine that changes its own tools from a magazine."},"speak":{"nl":"Een bewerkingscentrum is een CNC-freesmachine die zelf zijn gereedschap wisselt uit een magazijn.","en":"A machining centre is a CNC milling machine that changes its own tools from a magazine."},"cues":["vmc"]},{"seg":{"nl":["Op de tafel zit een blok aluminium van ","100"," × ","80"," × ","25"," mm in een bankschroef. De spil hangt erboven."],"en":["On the table, an aluminium block of ","100"," × ","80"," × ","25"," mm sits in a vice. The spindle hangs above it."]},"text":{"nl":"Op de tafel zit een blok aluminium van 100 × 80 × 25 mm in een bankschroef. De spil hangt erboven.","en":"On the table, an aluminium block of 100 × 80 × 25 mm sits in a vice. The spindle hangs above it."},"speak":{"nl":"Op de tafel zit een blok aluminium van 100 × 80 × 25 mm in een bankschroef. De spil hangt erboven.","en":"On the table, an aluminium block of 100 × 80 × 25 mm sits in a vice. The spindle hangs above it."},"cues":[],"read":{"nl":"blok 100 × 80 × 25 mm","en":"block 100 × 80 × 25 mm"}}],"terms":[{"lesson":"eng.machining.mill","index":0,"nl":"Bewerkingscentrum","en":"Machining centre","cue":"vmc"}]},{"id":"s2","n":2,"level":1,"dur":15,"still":0.62,"title":{"nl":"De vlakfrees","en":"The face mill"},"beats":[{"seg":{"nl":["Eerst T1, de ",{"t":"vlakfrees","c":"facemill","k":"eng.machining.mill#1","en":"face mill"},": een brede schijf met wisselplaten rondom."],"en":["First T1, the ",{"t":"face mill","c":"facemill","k":"eng.machining.mill#1"},": a wide disc with inserts all around."]},"text":{"nl":"Eerst T1, de vlakfrees (face mill): een brede schijf met wisselplaten rondom.","en":"First T1, the face mill: a wide disc with inserts all around."},"speak":{"nl":"Eerst T1, de vlakfrees: een brede schijf met wisselplaten rondom.","en":"First T1, the face mill: a wide disc with inserts all around."},"cues":["facemill"]},{"seg":{"nl":["In twee banen maakt hij de bovenkant vlak, in ","1"," minuut."],"en":["In two passes it makes the top flat, in ","1"," minute."]},"text":{"nl":"In twee banen maakt hij de bovenkant vlak, in 1 minuut.","en":"In two passes it makes the top flat, in 1 minute."},"speak":{"nl":"In twee banen maakt hij de bovenkant vlak, in 1 minuut.","en":"In two passes it makes the top flat, in 1 minute."},"cues":["facemill"],"read":{"nl":"T1 vlakfrees · 1 min","en":"T1 face mill · 1 min"}}],"terms":[{"lesson":"eng.machining.mill","index":1,"nl":"Vlakfrees","en":"Face mill","cue":"facemill"}]},{"id":"s3","n":3,"level":1,"dur":22,"still":0.9,"title":{"nl":"Kamer en contour","en":"Pocket and contour"},"beats":[{"seg":{"nl":["Dan T2, een ",{"t":"vingerfrees","c":"endmill","k":"eng.machining.mill#2","en":"end mill"}," van Ø","10",": hij snijdt met zijkant en punt."],"en":["Then T2, a Ø","10"," ",{"t":"end mill","c":"endmill","k":"eng.machining.mill#2"},": it cuts with side and tip."]},"text":{"nl":"Dan T2, een vingerfrees (end mill) van Ø10: hij snijdt met zijkant en punt.","en":"Then T2, a Ø10 end mill: it cuts with side and tip."},"speak":{"nl":"Dan T2, een vingerfrees van Ø10: hij snijdt met zijkant en punt.","en":"Then T2, a Ø10 end mill: it cuts with side and tip."},"cues":["endmill"]},{"seg":{"nl":["Hij freest een ",{"t":"kamer","c":"pocket","k":"eng.machining.mill#3","en":"pocket"}," van ","60"," × ","40"," mm, ","8"," mm diep: een uitsparing met een bodem."],"en":["It mills a ",{"t":"pocket","c":"pocket","k":"eng.machining.mill#3"}," of ","60"," × ","40"," mm, ","8"," mm deep: a recess with a floor."]},"text":{"nl":"Hij freest een kamer (pocket) van 60 × 40 mm, 8 mm diep: een uitsparing met een bodem.","en":"It mills a pocket of 60 × 40 mm, 8 mm deep: a recess with a floor."},"speak":{"nl":"Hij freest een kamer van 60 × 40 mm, 8 mm diep: een uitsparing met een bodem.","en":"It mills a pocket of 60 × 40 mm, 8 mm deep: a recess with a floor."},"cues":["pocket"],"read":{"nl":"T2 Ø10 · kamer 60 × 40 × 8","en":"T2 Ø10 · pocket 60 × 40 × 8"}},{"seg":{"nl":["T3 volgt met zijn zijkant de vorm: de ",{"t":"contour","c":"contour","k":"eng.machining.mill#4"},". De hoeken worden zo rond als de frees."],"en":["T3 follows the shape with its side: the ",{"t":"contour","c":"contour","k":"eng.machining.mill#4"},". The corners get as round as the cutter."]},"text":{"nl":"T3 volgt met zijn zijkant de vorm: de contour. De hoeken worden zo rond als de frees.","en":"T3 follows the shape with its side: the contour. The corners get as round as the cutter."},"speak":{"nl":"T3 volgt met zijn zijkant de vorm: de contour. De hoeken worden zo rond als de frees.","en":"T3 follows the shape with its side: the contour. The corners get as round as the cutter."},"cues":["contour"],"read":{"nl":"T3 Ø8 · hoekradius 4 mm","en":"T3 Ø8 · corner radius 4 mm"}}],"terms":[{"lesson":"eng.machining.mill","index":2,"nl":"Vingerfrees","en":"End mill","cue":"endmill"},{"lesson":"eng.machining.mill","index":3,"nl":"Kamer","en":"Pocket","cue":"pocket"},{"lesson":"eng.machining.mill","index":4,"nl":"Contour","en":"Contour","cue":"contour"}]},{"id":"s4","n":4,"level":2,"dur":29,"still":0.7,"title":{"nl":"Snijwaarden","en":"Cutting data"},"beats":[{"seg":{"nl":["Nu een vingerfrees Ø","12",", ","3"," tanden, Vc ","150"," m/min: hij draait ","3.980"," omw/min."],"en":["Now a Ø","12"," end mill, ","3"," teeth, Vc ","150"," m/min: it turns at ","3,980"," rpm."]},"text":{"nl":"Nu een vingerfrees Ø12, 3 tanden, Vc 150 m/min: hij draait 3.980 omw/min.","en":"Now a Ø12 end mill, 3 teeth, Vc 150 m/min: it turns at 3,980 rpm."},"speak":{"nl":"Nu een vingerfrees Ø12, 3 tanden, Vc 150 m/min: hij draait 3.980 omw/min.","en":"Now a Ø12 end mill, 3 teeth, Vc 150 m/min: it turns at 3,980 rpm."},"cues":[],"read":{"nl":"n = 150.000 / (π × 12) = 3.980 omw/min","en":"n = 150,000 / (π × 12) = 3,980 rpm"}},{"seg":{"nl":["Elke tand neemt per omwenteling een hapje: de ",{"t":"voeding per tand","c":"fz","k":"eng.machining.millfeeds#0","en":"feed per tooth"},", fz ","0,05"," mm."],"en":["Each tooth takes one bite per revolution: the ",{"t":"feed per tooth","c":"fz","k":"eng.machining.millfeeds#0"},", fz ","0.05"," mm."]},"text":{"nl":"Elke tand neemt per omwenteling een hapje: de voeding per tand (feed per tooth), fz 0,05 mm.","en":"Each tooth takes one bite per revolution: the feed per tooth, fz 0.05 mm."},"speak":{"nl":"Elke tand neemt per omwenteling een hapje: de voeding per tand, fz 0,05 mm.","en":"Each tooth takes one bite per revolution: the feed per tooth, fz 0.05 mm."},"cues":["fz"]},{"seg":{"nl":["fz × tanden × toeren is de ",{"t":"tafelvoeding","c":"vf","k":"eng.machining.millfeeds#1","en":"table feed"},": ","597"," mm/min."],"en":["fz × teeth × speed is the ",{"t":"table feed","c":"vf","k":"eng.machining.millfeeds#1"},": ","597"," mm/min."]},"text":{"nl":"fz × tanden × toeren is de tafelvoeding (table feed): 597 mm/min.","en":"fz × teeth × speed is the table feed: 597 mm/min."},"speak":{"nl":"fz × tanden × toeren is de tafelvoeding: 597 mm/min.","en":"fz × teeth × speed is the table feed: 597 mm/min."},"cues":["vf"],"read":{"nl":"vf = 0,05 × 3 × 3.980 = 597 mm/min","en":"vf = 0.05 × 3 × 3,980 = 597 mm/min"}},{"seg":{"nl":["Hij zit ","3"," mm opzij in het blok: de ",{"t":"snedebreedte","c":"ae","k":"eng.machining.millfeeds#2","en":"width of cut"},"."],"en":["It sits ","3"," mm sideways in the block: the ",{"t":"width of cut","c":"ae","k":"eng.machining.millfeeds#2"},"."]},"text":{"nl":"Hij zit 3 mm opzij in het blok: de snedebreedte (width of cut).","en":"It sits 3 mm sideways in the block: the width of cut."},"speak":{"nl":"Hij zit 3 mm opzij in het blok: de snedebreedte.","en":"It sits 3 mm sideways in the block: the width of cut."},"cues":["ae"]},{"seg":{"nl":["Er gaat ","17,9"," cm³ per minuut af: het ",{"t":"verspaningsvolume","c":"q","k":"eng.machining.millfeeds#3","en":"metal removal rate"},"."],"en":["It removes ","17.9"," cm³ a minute: the ",{"t":"metal removal rate","c":"q","k":"eng.machining.millfeeds#3"},"."]},"text":{"nl":"Er gaat 17,9 cm³ per minuut af: het verspaningsvolume (metal removal rate).","en":"It removes 17.9 cm³ a minute: the metal removal rate."},"speak":{"nl":"Er gaat 17,9 cm³ per minuut af: het verspaningsvolume.","en":"It removes 17.9 cm³ a minute: the metal removal rate."},"cues":["q"],"read":{"nl":"Q = 10 × 3 × 597 / 1.000 = 17,9 cm³/min","en":"Q = 10 × 3 × 597 / 1,000 = 17.9 cm³/min"}}],"terms":[{"lesson":"eng.machining.millfeeds","index":0,"nl":"Voeding per tand","en":"Feed per tooth","cue":"fz"},{"lesson":"eng.machining.millfeeds","index":1,"nl":"Tafelvoeding","en":"Table feed","cue":"vf"},{"lesson":"eng.machining.millfeeds","index":2,"nl":"Snedebreedte","en":"Width of cut","cue":"ae"},{"lesson":"eng.machining.millfeeds","index":3,"nl":"Verspaningsvolume","en":"Metal removal rate","cue":"q"}]},{"id":"s5","n":5,"level":3,"dur":18,"still":0.5,"title":{"nl":"Meelopend of tegenlopend","en":"Climb or conventional"},"beats":[{"seg":{"nl":["Bij ",{"t":"meelopend frezen","c":"climb","k":"eng.machining.millstrategy#0","en":"climb milling"}," gaat de tand dik het materiaal in en komt hij er dun uit."],"en":["In ",{"t":"climb milling","c":"climb","k":"eng.machining.millstrategy#0"}," the tooth enters the material thick and leaves thin."]},"text":{"nl":"Bij meelopend frezen (climb milling) gaat de tand dik het materiaal in en komt hij er dun uit.","en":"In climb milling the tooth enters the material thick and leaves thin."},"speak":{"nl":"Bij meelopend frezen gaat de tand dik het materiaal in en komt hij er dun uit.","en":"In climb milling the tooth enters the material thick and leaves thin."},"cues":["climb"]},{"seg":{"nl":["Bij ",{"t":"tegenlopend frezen","c":"conv","k":"eng.machining.millstrategy#1","en":"conventional milling"}," begint hij op nul en schuurt hij eerst. Op een CNC is meelopend de standaard."],"en":["In ",{"t":"conventional milling","c":"conv","k":"eng.machining.millstrategy#1"}," it starts at zero and rubs first. On a CNC machine, climb is the standard."]},"text":{"nl":"Bij tegenlopend frezen (conventional milling) begint hij op nul en schuurt hij eerst. Op een CNC is meelopend de standaard.","en":"In conventional milling it starts at zero and rubs first. On a CNC machine, climb is the standard."},"speak":{"nl":"Bij tegenlopend frezen begint hij op nul en schuurt hij eerst. Op een CNC is meelopend de standaard.","en":"In conventional milling it starts at zero and rubs first. On a CNC machine, climb is the standard."},"cues":["conv"]}],"terms":[{"lesson":"eng.machining.millstrategy","index":0,"nl":"Meelopend frezen","en":"Climb milling","cue":"climb"},{"lesson":"eng.machining.millstrategy","index":1,"nl":"Tegenlopend frezen","en":"Conventional milling","cue":"conv"}]},{"id":"s6","n":6,"level":3,"dur":23,"still":0.85,"title":{"nl":"Spaanverdunning en trochoïdaal","en":"Chip thinning and trochoidal"},"beats":[{"seg":{"nl":["Zit een Ø","10"," maar ","1"," mm opzij, dan is de spaan ","0,6"," × fz: ",{"t":"spaanverdunning","c":"thin","k":"eng.machining.millstrategy#2","en":"chip thinning"},"."],"en":["If a Ø","10"," sits only ","1"," mm sideways, the chip is ","0.6"," × fz: ",{"t":"chip thinning","c":"thin","k":"eng.machining.millstrategy#2"},"."]},"text":{"nl":"Zit een Ø10 maar 1 mm opzij, dan is de spaan 0,6 × fz: spaanverdunning (chip thinning).","en":"If a Ø10 sits only 1 mm sideways, the chip is 0.6 × fz: chip thinning."},"speak":{"nl":"Zit een Ø10 maar 1 mm opzij, dan is de spaan 0,6 × fz: spaanverdunning.","en":"If a Ø10 sits only 1 mm sideways, the chip is 0.6 × fz: chip thinning."},"cues":["thin"]},{"seg":{"nl":["Dus fz omhoog van ","0,05"," naar ","0,083",": de voeding gaat van ","1.200"," naar ","2.000"," mm/min."],"en":["So raise fz from ","0.05"," to ","0.083",": the feed goes from ","1,200"," to ","2,000"," mm/min."]},"text":{"nl":"Dus fz omhoog van 0,05 naar 0,083: de voeding gaat van 1.200 naar 2.000 mm/min.","en":"So raise fz from 0.05 to 0.083: the feed goes from 1,200 to 2,000 mm/min."},"speak":{"nl":"Dus fz omhoog van 0,05 naar 0,083: de voeding gaat van 1.200 naar 2.000 mm/min.","en":"So raise fz from 0.05 to 0.083: the feed goes from 1,200 to 2,000 mm/min."},"cues":["thin"],"read":{"nl":"fz 0,05 / 0,6 = 0,083 · 1.200 → 2.000 mm/min","en":"fz 0.05 / 0.6 = 0.083 · 1,200 → 2,000 mm/min"}},{"seg":{"nl":[{"t":"Trochoïdaal frezen","c":"troch","k":"eng.machining.millstrategy#3","en":"trochoidal milling"},": kleine rondjes, smal opzij, over bijna de hele snijlengte."],"en":[{"t":"Trochoidal milling","c":"troch","k":"eng.machining.millstrategy#3"},": small loops, narrow sideways, along almost the whole cutting length."]},"text":{"nl":"Trochoïdaal frezen (trochoidal milling): kleine rondjes, smal opzij, over bijna de hele snijlengte.","en":"Trochoidal milling: small loops, narrow sideways, along almost the whole cutting length."},"speak":{"nl":"Trochoïdaal frezen: kleine rondjes, smal opzij, over bijna de hele snijlengte.","en":"Trochoidal milling: small loops, narrow sideways, along almost the whole cutting length."},"cues":["troch"]}],"terms":[{"lesson":"eng.machining.millstrategy","index":2,"nl":"Spaanverdunning","en":"Chip thinning","cue":"thin"},{"lesson":"eng.machining.millstrategy","index":3,"nl":"Trochoïdaal frezen","en":"Trochoidal milling","cue":"troch"}]},{"id":"s7","n":7,"level":4,"dur":25,"still":0.5,"title":{"nl":"Vijfassig","en":"Five-axis"},"beats":[{"seg":{"nl":["Een ",{"t":"draai-kanteltafel","c":"trunnion","k":"eng.machining.fiveaxis#0","en":"trunnion table"}," kantelt en draait het werkstuk: de frees bereikt vijf kanten."],"en":["A ",{"t":"trunnion table","c":"trunnion","k":"eng.machining.fiveaxis#0"}," tilts and turns the part: the cutter reaches five sides."]},"text":{"nl":"Een draai-kanteltafel (trunnion table) kantelt en draait het werkstuk: de frees bereikt vijf kanten.","en":"A trunnion table tilts and turns the part: the cutter reaches five sides."},"speak":{"nl":"Een draai-kanteltafel kantelt en draait het werkstuk: de frees bereikt vijf kanten.","en":"A trunnion table tilts and turns the part: the cutter reaches five sides."},"cues":["trunnion"]},{"seg":{"nl":[{"t":"3+2-bewerking","c":"lock","k":"eng.machining.fiveaxis#1","en":"3+2 machining"},": kantelen, de draaiassen vastzetten, dan frezen met X, Y en Z."],"en":[{"t":"3+2 machining","c":"lock","k":"eng.machining.fiveaxis#1"},": tilt, lock the rotary axes, then mill with X, Y and Z."]},"text":{"nl":"3+2-bewerking (3+2 machining): kantelen, de draaiassen vastzetten, dan frezen met X, Y en Z.","en":"3+2 machining: tilt, lock the rotary axes, then mill with X, Y and Z."},"speak":{"nl":"3+2-bewerking: kantelen, de draaiassen vastzetten, dan frezen met X, Y en Z.","en":"3+2 machining: tilt, lock the rotary axes, then mill with X, Y and Z."},"cues":["lock"]},{"seg":{"nl":["Van ","4"," opspanningen naar ","1",": per serie scheelt dat ","3"," × ","30"," = ","90"," minuten ombouwen."],"en":["From ","4"," setups to ","1",": per batch that saves ","3"," × ","30"," = ","90"," minutes of changeover."]},"text":{"nl":"Van 4 opspanningen naar 1: per serie scheelt dat 3 × 30 = 90 minuten ombouwen.","en":"From 4 setups to 1: per batch that saves 3 × 30 = 90 minutes of changeover."},"speak":{"nl":"Van 4 opspanningen naar 1: per serie scheelt dat 3 × 30 = 90 minuten ombouwen.","en":"From 4 setups to 1: per batch that saves 3 × 30 = 90 minutes of changeover."},"cues":[],"read":{"nl":"4 → 1 opspanning · 3 × 30 = 90 min","en":"4 → 1 setup · 3 × 30 = 90 min"}},{"seg":{"nl":["Bij ",{"t":"simultaan vijfassig","c":"simul","k":"eng.machining.fiveaxis#2","en":"simultaneous 5-axis"}," bewegen alle vijf assen tegelijk, voor gekromde vormen."],"en":["In ",{"t":"simultaneous 5-axis","c":"simul","k":"eng.machining.fiveaxis#2"}," all five axes move at once, for curved shapes."]},"text":{"nl":"Bij simultaan vijfassig (simultaneous 5-axis) bewegen alle vijf assen tegelijk, voor gekromde vormen.","en":"In simultaneous 5-axis all five axes move at once, for curved shapes."},"speak":{"nl":"Bij simultaan vijfassig bewegen alle vijf assen tegelijk, voor gekromde vormen.","en":"In simultaneous 5-axis all five axes move at once, for curved shapes."},"cues":["simul"]}],"terms":[{"lesson":"eng.machining.fiveaxis","index":0,"nl":"Draai-kanteltafel","en":"Trunnion table","cue":"trunnion"},{"lesson":"eng.machining.fiveaxis","index":1,"nl":"3+2-bewerking","en":"3+2 machining","cue":"lock"},{"lesson":"eng.machining.fiveaxis","index":2,"nl":"Simultaan vijfassig","en":"Simultaneous 5-axis","cue":"simul"}]}],"skip":[],"numbers":[{"lesson":"eng.machining.mill","value":"100","scene":"s1"},{"lesson":"eng.machining.mill","value":"80","scene":"s1"},{"lesson":"eng.machining.mill","value":"25","scene":"s1"},{"lesson":"eng.machining.mill","value":"1","scene":"s2"},{"lesson":"eng.machining.mill","value":"10","scene":"s3"},{"lesson":"eng.machining.mill","value":"60","scene":"s3"},{"lesson":"eng.machining.mill","value":"40","scene":"s3"},{"lesson":"eng.machining.mill","value":"8","scene":"s3"},{"lesson":"eng.machining.mill","value":"4","scene":"s3"},{"lesson":"eng.machining.millfeeds","value":"12","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"3","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"150","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"3.980","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"150.000","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"0,05","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"597","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"17,9","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"1.000","scene":"s4"},{"lesson":"eng.machining.millstrategy","value":"0,6","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"0,083","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"1.200","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"2.000","scene":"s6"},{"lesson":"eng.machining.fiveaxis","value":"30","scene":"s7"},{"lesson":"eng.machining.fiveaxis","value":"90","scene":"s7"}],"label":{"nl":"Een verticaal bewerkingscentrum: een kolom met gereedschapsmagazijn, een spilkop met frees, en een tafel met een bankschroef en een aluminium blok. Later een draai-kanteltafel die het werkstuk kantelt en draait.","en":"A vertical machining centre: a column with a tool magazine, a spindle head with a cutter, and a table with a vice and an aluminium block. Later a trunnion table that tilts and turns the part."}}</script><script>document.querySelector('.fp-again span').textContent=new URLSearchParams(location.search).get('lang')==='en'?'Watch again':'Nog een keer';</script><script type="module">// Pure parts of the film player: caption markers, number formats, the speak
+</main><script type="application/json" id="film-data">{"id":"eng.machining.milling","title":{"nl":"Frezen","en":"Milling"},"lessons":["eng.machining.mill","eng.machining.millfeeds","eng.machining.millstrategy","eng.machining.fiveaxis"],"scenes":[{"id":"s1","n":1,"level":1,"dur":18,"still":0.85,"title":{"nl":"Het bewerkingscentrum","en":"The machining centre"},"beats":[{"seg":{"nl":["Een ",{"t":"bewerkingscentrum","c":"vmc","k":"eng.machining.mill#0","en":"machining centre"}," is een CNC-freesmachine die zelf gereedschap pakt uit een magazijn."],"en":["A ",{"t":"machining centre","c":"vmc","k":"eng.machining.mill#0"}," is a CNC milling machine that changes its own tools from a magazine."]},"text":{"nl":"Een bewerkingscentrum (machining centre) is een CNC-freesmachine die zelf gereedschap pakt uit een magazijn.","en":"A machining centre is a CNC milling machine that changes its own tools from a magazine."},"speak":{"nl":"Een bewerkingscentrum is een CNC-freesmachine die zelf gereedschap pakt uit een magazijn.","en":"A machining centre is a CNC milling machine that changes its own tools from a magazine."},"cues":["vmc"]},{"seg":{"nl":["Op de tafel zit een blok aluminium van ","100"," × ","80"," × ","25"," mm in een bankschroef. De spil hangt erboven."],"en":["On the table, an aluminium block of ","100"," × ","80"," × ","25"," mm sits in a vice. The spindle hangs above it."]},"text":{"nl":"Op de tafel zit een blok aluminium van 100 × 80 × 25 mm in een bankschroef. De spil hangt erboven.","en":"On the table, an aluminium block of 100 × 80 × 25 mm sits in a vice. The spindle hangs above it."},"speak":{"nl":"Op de tafel zit een blok aluminium van 100 maal 80 maal 25 mm in een bankschroef. De spil hangt erboven.","en":"On the table, an aluminium block of 100 times 80 times 25 mm sits in a vice. The spindle hangs above it."},"cues":[],"read":{"nl":"blok 100 × 80 × 25 mm","en":"block 100 × 80 × 25 mm"}}],"terms":[{"lesson":"eng.machining.mill","index":0,"nl":"Bewerkingscentrum","en":"Machining centre","cue":"vmc"}]},{"id":"s2","n":2,"level":1,"dur":15,"still":0.62,"title":{"nl":"De vlakfrees","en":"The face mill"},"beats":[{"seg":{"nl":["Eerst T1, de ",{"t":"vlakfrees","c":"facemill","k":"eng.machining.mill#1","en":"face mill"},": een brede schijf met wisselplaten rondom."],"en":["First T1, the ",{"t":"face mill","c":"facemill","k":"eng.machining.mill#1"},": a wide disc with inserts all around."]},"text":{"nl":"Eerst T1, de vlakfrees (face mill): een brede schijf met wisselplaten rondom.","en":"First T1, the face mill: a wide disc with inserts all around."},"speak":{"nl":"Eerst T1, de vlakfrees: een brede schijf met wisselplaten rondom.","en":"First T1, the face mill: a wide disc with inserts all around."},"cues":["facemill"]},{"seg":{"nl":["In twee banen maakt hij de bovenkant vlak, in ","1"," minuut."],"en":["In two passes it makes the top flat, in ","1"," minute."]},"text":{"nl":"In twee banen maakt hij de bovenkant vlak, in 1 minuut.","en":"In two passes it makes the top flat, in 1 minute."},"speak":{"nl":"In twee banen maakt hij de bovenkant vlak, in 1 minuut.","en":"In two passes it makes the top flat, in 1 minute."},"cues":["facemill"],"read":{"nl":"T1 vlakfrees · 1 min","en":"T1 face mill · 1 min"}}],"terms":[{"lesson":"eng.machining.mill","index":1,"nl":"Vlakfrees","en":"Face mill","cue":"facemill"}]},{"id":"s3","n":3,"level":1,"dur":22,"still":0.9,"title":{"nl":"Kamer en contour","en":"Pocket and contour"},"beats":[{"seg":{"nl":["Dan T2, een ",{"t":"vingerfrees","c":"endmill","k":"eng.machining.mill#2","en":"end mill"}," van Ø","10",": hij snijdt met zijkant en punt."],"en":["Then T2, a Ø","10"," ",{"t":"end mill","c":"endmill","k":"eng.machining.mill#2"},": it cuts with side and tip."]},"text":{"nl":"Dan T2, een vingerfrees (end mill) van Ø10: hij snijdt met zijkant en punt.","en":"Then T2, a Ø10 end mill: it cuts with side and tip."},"speak":{"nl":"Dan T2, een vingerfrees van diameter 10: hij snijdt met zijkant en punt.","en":"Then T2, a diameter 10 end mill: it cuts with side and tip."},"cues":["endmill"]},{"seg":{"nl":["Hij freest een ",{"t":"kamer","c":"pocket","k":"eng.machining.mill#3","en":"pocket"}," van ","60"," × ","40"," mm, ","8"," mm diep: een uitsparing met een bodem."],"en":["It mills a ",{"t":"pocket","c":"pocket","k":"eng.machining.mill#3"}," of ","60"," × ","40"," mm, ","8"," mm deep: a recess with a floor."]},"text":{"nl":"Hij freest een kamer (pocket) van 60 × 40 mm, 8 mm diep: een uitsparing met een bodem.","en":"It mills a pocket of 60 × 40 mm, 8 mm deep: a recess with a floor."},"speak":{"nl":"Hij freest een kamer van 60 maal 40 mm, 8 mm diep: een uitsparing met een bodem.","en":"It mills a pocket of 60 times 40 mm, 8 mm deep: a recess with a floor."},"cues":["pocket"],"read":{"nl":"T2 Ø10 · kamer 60 × 40 × 8","en":"T2 Ø10 · pocket 60 × 40 × 8"}},{"seg":{"nl":["T3 volgt met zijn zijkant de vorm: de ",{"t":"contour","c":"contour","k":"eng.machining.mill#4"},". De hoeken worden zo rond als de frees."],"en":["T3 follows the shape with its side: the ",{"t":"contour","c":"contour","k":"eng.machining.mill#4"},". The corners get as round as the cutter."]},"text":{"nl":"T3 volgt met zijn zijkant de vorm: de contour. De hoeken worden zo rond als de frees.","en":"T3 follows the shape with its side: the contour. The corners get as round as the cutter."},"speak":{"nl":"T3 volgt met zijn zijkant de vorm: de contour. De hoeken worden zo rond als de frees.","en":"T3 follows the shape with its side: the contour. The corners get as round as the cutter."},"cues":["contour"],"read":{"nl":"T3 Ø8 · hoekradius 4 mm","en":"T3 Ø8 · corner radius 4 mm"}}],"terms":[{"lesson":"eng.machining.mill","index":2,"nl":"Vingerfrees","en":"End mill","cue":"endmill"},{"lesson":"eng.machining.mill","index":3,"nl":"Kamer","en":"Pocket","cue":"pocket"},{"lesson":"eng.machining.mill","index":4,"nl":"Contour","en":"Contour","cue":"contour"}]},{"id":"s4","n":4,"level":2,"dur":29,"still":0.7,"title":{"nl":"Snijwaarden","en":"Cutting data"},"beats":[{"seg":{"nl":["Nu een stalen blok, vingerfrees Ø","12",", ","3"," tanden, Vc ","150"," m/min: ","3.980"," omw/min."],"en":["Now a steel block, a Ø","12"," end mill, ","3"," teeth, Vc ","150"," m/min: ","3,980"," rpm."]},"text":{"nl":"Nu een stalen blok, vingerfrees Ø12, 3 tanden, Vc 150 m/min: 3.980 omw/min.","en":"Now a steel block, a Ø12 end mill, 3 teeth, Vc 150 m/min: 3,980 rpm."},"speak":{"nl":"Nu een stalen blok, vingerfrees diameter 12, 3 tanden, Vc 150 meter per minuut: 3.980 omwentelingen per minuut.","en":"Now a steel block, a diameter 12 end mill, 3 teeth, Vc 150 metres per minute: 3,980 revolutions per minute."},"cues":[],"read":{"nl":"n = 150.000 / (π × 12) = 3.980 omw/min","en":"n = 150,000 / (π × 12) = 3,980 rpm"}},{"seg":{"nl":["Elke tand neemt per omwenteling een hapje: de ",{"t":"voeding per tand","c":"fz","k":"eng.machining.millfeeds#0","en":"feed per tooth"},", fz ","0,05"," mm."],"en":["Each tooth takes one bite per revolution: the ",{"t":"feed per tooth","c":"fz","k":"eng.machining.millfeeds#0"},", fz ","0.05"," mm."]},"text":{"nl":"Elke tand neemt per omwenteling een hapje: de voeding per tand (feed per tooth), fz 0,05 mm.","en":"Each tooth takes one bite per revolution: the feed per tooth, fz 0.05 mm."},"speak":{"nl":"Elke tand neemt per omwenteling een hapje: de voeding per tand, fz 0,05 mm.","en":"Each tooth takes one bite per revolution: the feed per tooth, fz 0.05 mm."},"cues":["fz"]},{"seg":{"nl":["fz × tanden × toeren is de ",{"t":"tafelvoeding","c":"vf","k":"eng.machining.millfeeds#1","en":"table feed"},": ","597"," mm/min."],"en":["fz × teeth × speed is the ",{"t":"table feed","c":"vf","k":"eng.machining.millfeeds#1"},": ","597"," mm/min."]},"text":{"nl":"fz × tanden × toeren is de tafelvoeding (table feed): 597 mm/min.","en":"fz × teeth × speed is the table feed: 597 mm/min."},"speak":{"nl":"fz maal tanden maal toeren is de tafelvoeding: 597 millimeter per minuut.","en":"fz times teeth times speed is the table feed: 597 millimetres per minute."},"cues":["vf"],"read":{"nl":"vf = 0,05 × 3 × 3.980 = 597 mm/min","en":"vf = 0.05 × 3 × 3,980 = 597 mm/min"}},{"seg":{"nl":["Hij zit ","3"," mm opzij in het blok: de ",{"t":"snedebreedte","c":"ae","k":"eng.machining.millfeeds#2","en":"width of cut"},"."],"en":["It sits ","3"," mm sideways in the block: the ",{"t":"width of cut","c":"ae","k":"eng.machining.millfeeds#2"},"."]},"text":{"nl":"Hij zit 3 mm opzij in het blok: de snedebreedte (width of cut).","en":"It sits 3 mm sideways in the block: the width of cut."},"speak":{"nl":"Hij zit 3 mm opzij in het blok: de snedebreedte.","en":"It sits 3 mm sideways in the block: the width of cut."},"cues":["ae"]},{"seg":{"nl":["Er gaat ","17,9"," cm³ per minuut af: het ",{"t":"verspaningsvolume","c":"q","k":"eng.machining.millfeeds#3","en":"metal removal rate"},"."],"en":["It removes ","17.9"," cm³ a minute: the ",{"t":"metal removal rate","c":"q","k":"eng.machining.millfeeds#3"},"."]},"text":{"nl":"Er gaat 17,9 cm³ per minuut af: het verspaningsvolume (metal removal rate).","en":"It removes 17.9 cm³ a minute: the metal removal rate."},"speak":{"nl":"Er gaat 17,9 cm³ per minuut af: het verspaningsvolume.","en":"It removes 17.9 cm³ a minute: the metal removal rate."},"cues":["q"],"read":{"nl":"Q = 10 × 3 × 597 / 1.000 = 17,9 cm³/min","en":"Q = 10 × 3 × 597 / 1,000 = 17.9 cm³/min"}}],"terms":[{"lesson":"eng.machining.millfeeds","index":0,"nl":"Voeding per tand","en":"Feed per tooth","cue":"fz"},{"lesson":"eng.machining.millfeeds","index":1,"nl":"Tafelvoeding","en":"Table feed","cue":"vf"},{"lesson":"eng.machining.millfeeds","index":2,"nl":"Snedebreedte","en":"Width of cut","cue":"ae"},{"lesson":"eng.machining.millfeeds","index":3,"nl":"Verspaningsvolume","en":"Metal removal rate","cue":"q"}]},{"id":"s5","n":5,"level":3,"dur":18,"still":0.5,"title":{"nl":"Meelopend of tegenlopend","en":"Climb or conventional"},"beats":[{"seg":{"nl":["Bij ",{"t":"meelopend frezen","c":"climb","k":"eng.machining.millstrategy#0","en":"climb milling"}," gaat de tand dik het materiaal in en komt hij er dun uit."],"en":["In ",{"t":"climb milling","c":"climb","k":"eng.machining.millstrategy#0"}," the tooth enters the material thick and leaves thin."]},"text":{"nl":"Bij meelopend frezen (climb milling) gaat de tand dik het materiaal in en komt hij er dun uit.","en":"In climb milling the tooth enters the material thick and leaves thin."},"speak":{"nl":"Bij meelopend frezen gaat de tand dik het materiaal in en komt hij er dun uit.","en":"In climb milling the tooth enters the material thick and leaves thin."},"cues":["climb"]},{"seg":{"nl":["Bij ",{"t":"tegenlopend frezen","c":"conv","k":"eng.machining.millstrategy#1","en":"conventional milling"}," begint hij op nul en schuurt hij. Op CNC is meelopend standaard."],"en":["In ",{"t":"conventional milling","c":"conv","k":"eng.machining.millstrategy#1"}," it starts at zero and rubs first. On CNC, climb is standard."]},"text":{"nl":"Bij tegenlopend frezen (conventional milling) begint hij op nul en schuurt hij. Op CNC is meelopend standaard.","en":"In conventional milling it starts at zero and rubs first. On CNC, climb is standard."},"speak":{"nl":"Bij tegenlopend frezen begint hij op nul en schuurt hij. Op CNC is meelopend standaard.","en":"In conventional milling it starts at zero and rubs first. On CNC, climb is standard."},"cues":["conv"]}],"terms":[{"lesson":"eng.machining.millstrategy","index":0,"nl":"Meelopend frezen","en":"Climb milling","cue":"climb"},{"lesson":"eng.machining.millstrategy","index":1,"nl":"Tegenlopend frezen","en":"Conventional milling","cue":"conv"}]},{"id":"s6","n":6,"level":3,"dur":23,"still":0.85,"title":{"nl":"Spaanverdunning en trochoïdaal","en":"Chip thinning and trochoidal"},"beats":[{"seg":{"nl":["Zit een Ø","10"," maar ","1"," mm opzij, dan is de spaan ","0,6"," × fz: ",{"t":"spaanverdunning","c":"thin","k":"eng.machining.millstrategy#2","en":"chip thinning"},"."],"en":["If a Ø","10"," sits only ","1"," mm sideways, the chip is ","0.6"," × fz: ",{"t":"chip thinning","c":"thin","k":"eng.machining.millstrategy#2"},"."]},"text":{"nl":"Zit een Ø10 maar 1 mm opzij, dan is de spaan 0,6 × fz: spaanverdunning (chip thinning).","en":"If a Ø10 sits only 1 mm sideways, the chip is 0.6 × fz: chip thinning."},"speak":{"nl":"Zit een diameter 10 maar 1 mm opzij, dan is de spaan 0,6 maal fz: spaanverdunning.","en":"If a diameter 10 sits only 1 mm sideways, the chip is 0.6 times fz: chip thinning."},"cues":["thin"]},{"seg":{"nl":["Dus fz omhoog van ","0,05"," naar ","0,083",": de voeding gaat van ","1.200"," naar ","2.000"," mm/min."],"en":["So raise fz from ","0.05"," to ","0.083",": the feed goes from ","1,200"," to ","2,000"," mm/min."]},"text":{"nl":"Dus fz omhoog van 0,05 naar 0,083: de voeding gaat van 1.200 naar 2.000 mm/min.","en":"So raise fz from 0.05 to 0.083: the feed goes from 1,200 to 2,000 mm/min."},"speak":{"nl":"Dus fz omhoog van 0,05 naar 0,083: de voeding gaat van 1.200 naar 2.000 millimeter per minuut.","en":"So raise fz from 0.05 to 0.083: the feed goes from 1,200 to 2,000 millimetres per minute."},"cues":["thin"],"read":{"nl":"fz 0,05 / 0,6 = 0,083 · 1.200 → 2.000 mm/min","en":"fz 0.05 / 0.6 = 0.083 · 1,200 → 2,000 mm/min"}},{"seg":{"nl":[{"t":"Trochoïdaal frezen","c":"troch","k":"eng.machining.millstrategy#3","en":"trochoidal milling"},": kleine rondjes, smal opzij, over bijna de hele snijlengte."],"en":[{"t":"Trochoidal milling","c":"troch","k":"eng.machining.millstrategy#3"},": small loops, narrow sideways, along almost the whole cutting length."]},"text":{"nl":"Trochoïdaal frezen (trochoidal milling): kleine rondjes, smal opzij, over bijna de hele snijlengte.","en":"Trochoidal milling: small loops, narrow sideways, along almost the whole cutting length."},"speak":{"nl":"Trochoïdaal frezen: kleine rondjes, smal opzij, over bijna de hele snijlengte.","en":"Trochoidal milling: small loops, narrow sideways, along almost the whole cutting length."},"cues":["troch"]}],"terms":[{"lesson":"eng.machining.millstrategy","index":2,"nl":"Spaanverdunning","en":"Chip thinning","cue":"thin"},{"lesson":"eng.machining.millstrategy","index":3,"nl":"Trochoïdaal frezen","en":"Trochoidal milling","cue":"troch"}]},{"id":"s7","n":7,"level":4,"dur":25,"still":0.9,"title":{"nl":"Vijfassig","en":"Five-axis"},"beats":[{"seg":{"nl":["Een ",{"t":"draai-kanteltafel","c":"trunnion","k":"eng.machining.fiveaxis#0","en":"trunnion table"}," kantelt en draait het werkstuk: de frees bereikt vijf kanten."],"en":["A ",{"t":"trunnion table","c":"trunnion","k":"eng.machining.fiveaxis#0"}," tilts and turns the part: the cutter reaches five sides."]},"text":{"nl":"Een draai-kanteltafel (trunnion table) kantelt en draait het werkstuk: de frees bereikt vijf kanten.","en":"A trunnion table tilts and turns the part: the cutter reaches five sides."},"speak":{"nl":"Een draai-kanteltafel kantelt en draait het werkstuk: de frees bereikt vijf kanten.","en":"A trunnion table tilts and turns the part: the cutter reaches five sides."},"cues":["trunnion"]},{"seg":{"nl":[{"t":"3+2-bewerking","c":"lock","k":"eng.machining.fiveaxis#1","en":"3+2 machining"},": kantelen, vastzetten, dan frezen met X, Y en Z."],"en":[{"t":"3+2 machining","c":"lock","k":"eng.machining.fiveaxis#1"},": tilt, lock, then mill with X, Y and Z."]},"text":{"nl":"3+2-bewerking (3+2 machining): kantelen, vastzetten, dan frezen met X, Y en Z.","en":"3+2 machining: tilt, lock, then mill with X, Y and Z."},"speak":{"nl":"3+2-bewerking: kantelen, vastzetten, dan frezen met X, Y en Z.","en":"3+2 machining: tilt, lock, then mill with X, Y and Z."},"cues":["lock"]},{"seg":{"nl":["Van ","4"," naar ","1"," opspanning: per serie ","3"," × ","30"," = ","90"," minuten minder ombouwen."],"en":["From ","4"," setups to ","1",": per batch ","3"," × ","30"," = ","90"," minutes less changeover."]},"text":{"nl":"Van 4 naar 1 opspanning: per serie 3 × 30 = 90 minuten minder ombouwen.","en":"From 4 setups to 1: per batch 3 × 30 = 90 minutes less changeover."},"speak":{"nl":"Van 4 naar 1 opspanning: per serie 3 maal 30 is 90 minuten minder ombouwen.","en":"From 4 setups to 1: per batch 3 times 30 is 90 minutes less changeover."},"cues":[],"read":{"nl":"4 → 1 opspanning · 3 × 30 = 90 min","en":"4 → 1 setup · 3 × 30 = 90 min"}},{"seg":{"nl":[{"t":"Simultaan vijfassig","c":"simul","k":"eng.machining.fiveaxis#2","en":"simultaneous 5-axis"},": de assen bewegen tegelijk, de frees blijft haaks op het bolle vlak."],"en":[{"t":"Simultaneous 5-axis","c":"simul","k":"eng.machining.fiveaxis#2"},": the axes move at once, the cutter stays square to the domed face."]},"text":{"nl":"Simultaan vijfassig (simultaneous 5-axis): de assen bewegen tegelijk, de frees blijft haaks op het bolle vlak.","en":"Simultaneous 5-axis: the axes move at once, the cutter stays square to the domed face."},"speak":{"nl":"Simultaan vijfassig: de assen bewegen tegelijk, de frees blijft haaks op het bolle vlak.","en":"Simultaneous 5-axis: the axes move at once, the cutter stays square to the domed face."},"cues":["simul"]}],"terms":[{"lesson":"eng.machining.fiveaxis","index":0,"nl":"Draai-kanteltafel","en":"Trunnion table","cue":"trunnion"},{"lesson":"eng.machining.fiveaxis","index":1,"nl":"3+2-bewerking","en":"3+2 machining","cue":"lock"},{"lesson":"eng.machining.fiveaxis","index":2,"nl":"Simultaan vijfassig","en":"Simultaneous 5-axis","cue":"simul"}]}],"skip":[],"numbers":[{"lesson":"eng.machining.mill","value":"100","scene":"s1"},{"lesson":"eng.machining.mill","value":"80","scene":"s1"},{"lesson":"eng.machining.mill","value":"25","scene":"s1"},{"lesson":"eng.machining.mill","value":"1","scene":"s2"},{"lesson":"eng.machining.mill","value":"10","scene":"s3"},{"lesson":"eng.machining.mill","value":"60","scene":"s3"},{"lesson":"eng.machining.mill","value":"40","scene":"s3"},{"lesson":"eng.machining.mill","value":"8","scene":"s3"},{"lesson":"eng.machining.mill","value":"4","scene":"s3"},{"lesson":"eng.machining.millfeeds","value":"12","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"3","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"150","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"3.980","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"150.000","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"0,05","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"597","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"17,9","scene":"s4"},{"lesson":"eng.machining.millfeeds","value":"1.000","scene":"s4"},{"lesson":"eng.machining.millstrategy","value":"0,6","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"0,083","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"1.200","scene":"s6"},{"lesson":"eng.machining.millstrategy","value":"2.000","scene":"s6"},{"lesson":"eng.machining.fiveaxis","value":"30","scene":"s7"},{"lesson":"eng.machining.fiveaxis","value":"90","scene":"s7"}],"label":{"nl":"Een verticaal bewerkingscentrum: een kolom met gereedschapsmagazijn, een spilkop met frees, en een tafel met een bankschroef en een aluminium blok. Later een draai-kanteltafel die een werkstuk met een bolle bovenkant kantelt en draait.","en":"A vertical machining centre: a column with a tool magazine, a spindle head with a cutter, and a table with a vice and an aluminium block. Later a trunnion table that tilts and turns a part with a domed top."}}</script><script>document.querySelector('.fp-again span').textContent=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))).get('lang')==='en'?'Watch again':'Nog een keer';</script><script type="module">// Pure parts of the film player: caption markers, number formats, the speak
 // variant, the timeline, beats, the narration hold and the page parameters.
 // No imports and no DOM: the build inlines this file into every film page (with
 // its `export` words stripped), and tests/film.test.js imports it as it is.
@@ -287,7 +287,16 @@ function formatNumber(raw, lang) {
 // A resolved caption is a list of strings and term pieces {t, en?, c}. In Dutch
 // a term carries its English word (en) on first use only.
 const plainOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t + (p.en ? ` (${p.en})` : ''))).join('');
-const speakOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+// Units and signs a voice would spell out or skip, said as words. Longest first.
+const SAY = {
+  nl: [[/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
+    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a']],
+  en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
+    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a']],
+};
+const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
+// The words the voice says: no English gloss, and with a language, units as words.
+const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
 
 function timelineOf(scenes) {
   const starts = [];
@@ -334,6 +343,13 @@ function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
   const local = beatIndex + 1 < starts.length ? starts[beatIndex + 1] : scene.dur;
   return tl.starts[sceneIndex] + local;
 }
+
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
 
 function parseParams(search) {
   const q = new URLSearchParams(search || '');
@@ -2222,7 +2238,7 @@ function arcPoints(F, s, r, a0, a1, steps = 24) {
 return { viewOf, scaleOf, frameOf, pointOf, radialOf, solidOf, prismOf, disc, dotsOf, arcOf, circleOf, dot3, add3, sub3, mul3 };})();
 const P = {"origin":[312.6464897149964,306.68551476080967],"scale":0.6374818351229966,"azimuth":56,"elevation":30};
 const C = {"dur":[18,15,22,29,18,23,25],"TOP":107,"B0":82,"ZN0":185,"BX":50,"BY":40,"PW":30,"PD":20,"PDEPTH":8,"FACE_R":31.5,"TOOL_S":36,"END_L":42,"FACE_S":62,"MAG":[76,-120,250],"MAG_R":42,"ZA":128,"L1":[552,312],"L2":[88,312],"LR":78};
-const CAM = [{"from":[330.7,150.2,800],"to":[326.2,162.6,690],"a":0.05,"b":0.9},{"from":[312.6,219.4,330],"to":[308.1,231.8,280]},{"from":[312.6,228.5,250],"to":[312.6,231.3,210]},{"from":[302.7,240,300],"to":[302.7,241.4,262]},{"from":[302.7,241.4,300],"to":[302.7,241.4,270]},{"from":[306.3,238.7,280],"to":[312.6,236.9,190],"a":0.6,"b":0.8},{"from":[312.6,220.1,340],"to":[312.6,217.3,300]}];
+const CAM = [{"from":[330.7,150.2,800],"to":[326.2,162.6,690],"a":0.05,"b":0.9},{"from":[312.6,219.4,330],"to":[308.1,231.8,280]},{"from":[312.6,228.5,250],"to":[312.6,231.3,210]},{"from":[302.7,240,300],"to":[302.7,241.4,262]},{"from":[302.7,241.4,300],"to":[302.7,241.4,270]},{"from":[306.3,238.7,280],"to":[312.6,236.9,190],"a":0.6,"b":0.8},{"from":[312.6,213.1,320],"to":[312.6,210.3,250]}];
 const W = 640, H = 400;
 // The stage of the film "Frezen / Milling": a pure function of (scene, u).
 // Inlined into the page after the anatomy kit (iso-kit functions in scope, the
@@ -2274,7 +2290,9 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ the block in the vice
   // Block-local x, y (centre 0, 0); world = local + table offset (tx, ty).
-  // cut: a step along the front face (x from rx0 to BX, y from yb to BY, ap deep).
+  // cut: a step along the front face (x from -BX to rx1, y from yb to BY, ap
+  // deep). The cutter enters at the left end and travels toward +x: with the
+  // spindle turning clockwise and the material on its right, that is climb.
   function lShape(a0, a1, b0, b1, n0, n1, bn) {
     n0 = Math.max(n0, a0);
     n1 = Math.min(n1, a1);
@@ -2287,8 +2305,8 @@ const STAGE = (() => {
     return out;
   }
   function blockSvg(tx, ty, cut) {
-    const rx0 = cut ? clamp(cut.rx0, -BX, BX) : BX;
-    const rx1 = BX;
+    const rx0 = -BX;
+    const rx1 = cut ? clamp(cut.rx1, -BX, BX) : -BX;
     const yb = cut ? cut.yb : BY;
     const zc = TOP - (cut ? cut.ap : 0);
     const Wp = (x, y, z) => at([x + tx, y + ty, z]);
@@ -2301,11 +2319,10 @@ const STAGE = (() => {
     if (cutting) {
       add('fm-cut iso-top', [[rx0, yb], [rx1, yb], [rx1, BY], [rx0, BY]].map(([x, y]) => Wp(x, y, zc)));
       add('fm-cut ' + sy, [[rx0, TOP], [rx1, TOP], [rx1, zc], [rx0, zc]].map(([x, z]) => Wp(x, yb, z)));
-      if (rx0 > -BX + 1e-6) add('fm-cut ' + sx, [[yb, TOP], [BY, TOP], [BY, zc], [yb, zc]].map(([y, z]) => Wp(rx0, y, z)));
     }
     add('iso-top', lShape(-BX, BX, -BY, BY, rx0, rx1, yb).map(([x, y]) => Wp(x, y, TOP)));
     add(sy, lShape(-BX, BX, B0, TOP, rx0, rx1, zc).map(([x, z]) => Wp(x, BY, z)));
-    add(sx, (cutting ? lShape(-BY, BY, B0, TOP, yb, BY, zc) : [[-BY, B0], [BY, B0], [BY, TOP], [-BY, TOP]]).map(([y, z]) => Wp(BX, y, z)));
+    add(sx, (rx1 >= BX - 1e-6 ? lShape(-BY, BY, B0, TOP, yb, BY, zc) : [[-BY, B0], [BY, B0], [BY, TOP], [-BY, TOP]]).map(([y, z]) => Wp(BX, y, z)));
     return `<g class="iso-solid">${faces.join('')}<path class="iso-line iso-edge" data-tone="mid" d="${edges.join('')}"/></g>`;
   }
   // The face-milled top: each pass a swept disc, with the cutter's swirl marks.
@@ -2447,9 +2464,11 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ the loupe: a top view of the cutter in the cut
-  // Lens units: radius 46; u to the right (+x), v down (−y), so the material lies
-  // below the cutter. climb: the cutter travels toward −u with the material on
-  // its −y side and turns clockwise seen from above, so each tooth enters thick.
+  // Lens units: radius 46; u to the right (+x), v down (−y): a true top view, so
+  // the spindle (M3) turns clockwise here and the material lies below the cutter.
+  // climb: the cutter travels toward +u, so each tooth meets the uncut stock
+  // first (thick) and leaves along the new face (thin); conventional travels
+  // toward −u, so the tooth starts on the new face at zero and rubs.
   function loupeSvg(d, ae, teeth, phase, climb, fz, scale, opts = {}) {
     const R = 24;
     const kk = R / (d / 2);
@@ -2457,7 +2476,7 @@ const STAGE = (() => {
     const cy = -6;
     const edge = cy + R - a;
     const done = cy + R;
-    const dir = climb ? -1 : 1; // travel along u
+    const dir = climb ? 1 : -1; // travel along u
     const f2 = (v) => v.toFixed(2);
     const out = [];
     // the arc of the cut, from where the old face meets the circle to the new face
@@ -2518,20 +2537,32 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ the trunnion table (scene 7)
   // A tilts the cradle about the Y axis through the pivot (0, 0, ZA), so the
-  // part's right-hand face rises toward the cutter; C turns the platter about the
+  // part's +x side rises toward the cutter; C turns the platter about the
   // cradle's own z. Everything is offset by the table position (tx, ty).
+  // The part: a round insert with a domed (curved) top, a sphere of radius R
+  // about (0, 0, zc) in platter coordinates. A point on the dome at polar angle
+  // psi and azimuth phi has its normal straight up when C = -phi and A = psi:
+  // that is how the vertical cutter stays square to the curved face.
   const add3 = G.add3;
   const mul3 = G.mul3;
-  const BK = { hx: 28, hy: 22, s0: -18, s1: 12 }; // the part on the platter
+  const DOME = { r: 26, s0: -19, s1: -4, R: 36 };
+  DOME.zc = DOME.s1 - Math.sqrt(DOME.R * DOME.R - DOME.r * DOME.r);
+  DOME.rim = Math.asin(DOME.r / DOME.R);
+  const domeN = (psi, phi) => [Math.sin(psi) * Math.cos(phi), Math.sin(psi) * Math.sin(phi), Math.cos(psi)];
+  const domeAt = (psi, phi, lift = 0) => { const n = domeN(psi, phi); return [n[0] * (DOME.R + lift), n[1] * (DOME.R + lift), DOME.zc + n[2] * (DOME.R + lift)]; };
+  const PROFILE = [[DOME.s0, DOME.r], [DOME.s1, DOME.r]];
+  for (let i = 1; i <= 10; i++) { const psi = DOME.rim * (1 - i / 10); PROFILE.push([DOME.zc + DOME.R * Math.cos(psi), Math.max(0.4, DOME.R * Math.sin(psi))]); }
   function trunFrames(tx, ty, a, c) {
     const o = [tx, ty, C.ZA];
     const ex = [Math.cos(a), 0, Math.sin(a)];
     const ez = [-Math.sin(a), 0, Math.cos(a)];
     const bx = add3(mul3(ex, Math.cos(c)), mul3(Y, Math.sin(c)));
     const by = add3(mul3(ex, -Math.sin(c)), mul3(Y, Math.cos(c)));
-    return { o, ex, ez, bx, by, pt: (p) => add3(o, add3(add3(mul3(bx, p[0]), mul3(by, p[1])), mul3(ez, p[2]))) };
+    const vec = (p) => add3(add3(mul3(bx, p[0]), mul3(by, p[1])), mul3(ez, p[2]));
+    return { o, ex, ez, bx, by, vec, pt: (p) => add3(o, vec(p)) };
   }
-  function trunnionSvg(tx, ty, a, c, feats, trail) {
+  // holes: { psi, phi, r } on the dome; trail: dome points [psi, phi] in order
+  function trunnionSvg(tx, ty, a, c, holes, trail) {
     const T = trunFrames(tx, ty, a, c);
     const pv = T.o;
     const Fy = G.frameOf(pv, Y, [0, 0, 1], [1, 0, 0]);
@@ -2549,36 +2580,35 @@ const STAGE = (() => {
     const plate = solidSvg(G.prismOf(Fb, [[-34, -40], [34, -40], [34, 40], [-34, 40]], -36, -26, P), { tone: 'mid', crease: 'lo' });
     const Fp = G.frameOf(pv, T.ez, T.bx, T.by);
     const platter = solidSvg(G.disc(-26, -19, 30, Fp, P), { tone: 'mid', crease: 'lo' })
-      + (G.dot3(T.ez, V) > 0.05 ? lineSvg(G.circleOf(Fp, -19, 22, P), { tone: 'faint' }) + dotsSvg(G.dotsOf(Fp, -19, 26, 8, P, { least: -1 }), { size: 0.45 }) : '');
-    const part = solidSvg(G.prismOf(Fp, [[-BK.hx, -BK.hy], [BK.hx, -BK.hy], [BK.hx, BK.hy], [-BK.hx, BK.hy]], BK.s0, BK.s1, P), { tone: 'hi', crease: 'lo' });
-    // machined features on the part's faces, drawn when the face looks at us
+      + (G.dot3(T.ez, V) > 0.05 ? dotsSvg(G.dotsOf(Fp, -19, 28, 8, P, { least: -1 }), { size: 0.45 }) : '');
+    const part = solidSvg(G.solidOf(PROFILE, Fp, P), { tone: 'hi', crease: 'lo', lit: true });
+    // holes square to the dome, drawn when they look at us
     let marks = '';
-    for (const f of feats) {
-      const n = add3(add3(mul3(T.bx, f.n[0]), mul3(T.by, f.n[1])), mul3(T.ez, f.n[2]));
-      if (G.dot3(n, V) < 0.05 || f.r < 0.3) continue;
-      const u = T.ez;
+    for (const h of holes) {
+      if (h.r < 0.3) continue;
+      const n = T.vec(domeN(h.psi, h.phi));
+      if (G.dot3(n, V) < 0.08) continue;
+      let u = add3(T.ez, mul3(n, -G.dot3(T.ez, n)));
+      u = mul3(u, 1 / (Math.hypot(u[0], u[1], u[2]) || 1));
       const v = [n[1] * u[2] - n[2] * u[1], n[2] * u[0] - n[0] * u[2], n[0] * u[1] - n[1] * u[0]];
-      const Ff = G.frameOf(T.pt(f.c), n, u, v);
-      const d = G.circleOf(Ff, 0, f.r, P, 28);
-      marks += `<path class="fm-hole" d="${d}"/><path class="iso-line" data-tone="hi" d="${d}"/>`;
+      const d = G.circleOf(G.frameOf(T.pt(domeAt(h.psi, h.phi)), n, u, v), 0, h.r, P, 28);
+      marks += `<path class="fm-hole" d="${d}"/><path class="iso-line" data-tone="mid" d="${d}"/>`;
     }
     const back = [tower(-66, -52) + boss(-71, -66), cheek(-52, -40), plate, platter, part, marks];
     const front = [cheek(40, 52), tower(52, 66) + boss(66, 71)];
+    // the cutter's track on the dome: only the stretches that face us
     let tr = '';
-    if (trail && trail.length > 1) tr = `<path class="fm-path" d="${pathOf(trail.map((p) => at(T.pt(p))))}"/>`;
-    return { back: back.join(''), front: front.join(''), T, trail: tr };
-  }
-  // the top edge of the part, as a loop (block-local), t in 0..1
-  function edgeAt(t) {
-    const { hx, hy, s1 } = BK;
-    const per = 4 * (hx + hy);
-    let d = ((t % 1) + 1) % 1 * per;
-    const seg = [[hx * 2, [-hx, hy], [1, 0]], [hy * 2, [hx, hy], [0, -1]], [hx * 2, [hx, -hy], [-1, 0]], [hy * 2, [-hx, -hy], [0, 1]]];
-    for (const [len, p, dv] of seg) {
-      if (d <= len) return [p[0] + dv[0] * d, p[1] + dv[1] * d, s1];
-      d -= len;
+    if (trail && trail.length > 1) {
+      const runs = [];
+      let run = [];
+      for (const [psi, phi] of trail) {
+        if (G.dot3(T.vec(domeN(psi, phi)), V) > 0.02) run.push(at(T.pt(domeAt(psi, phi, 0.3))));
+        else if (run.length) { if (run.length > 1) runs.push(pathOf(run)); run = []; }
+      }
+      if (run.length > 1) runs.push(pathOf(run));
+      if (runs.length) tr = `<path class="fm-path" d="${runs.join('')}"/>`;
     }
-    return [-hx, hy, s1];
+    return { back: back.join(''), front: front.join(''), T, trail: tr };
   }
 
   // ------------------------------------------------------------ camera
@@ -2658,10 +2688,26 @@ const STAGE = (() => {
     ['trunB', 'trunF', 'tool', 'lock', 'simul'],
   ];
 
+  // where each loupe sits and how big it is, per scene (HUD units: centre x, y, radius)
+  const LP = [null, null, null, { lp1: [536, 296, 102] }, { lp1: [522, 282, 112], lp2: [118, 282, 112] }, { lp1: [536, 296, 102] }, null];
+  const EN = document.documentElement.lang === 'en';
+  const LPLAB = { lp1: EN ? 'climb' : 'meelopend', lp2: EN ? 'conventional' : 'tegenlopend' };
+  function placeLoupes(si) {
+    for (const key of ['lp1', 'lp2']) {
+      const spot = LP[si] && LP[si][key];
+      if (!spot) continue;
+      const [x0, y0] = key === 'lp1' ? C.L1 : C.L2;
+      const sc = spot[2] / C.LR;
+      E[key].setAttribute('transform', `translate(${spot[0]} ${spot[1]}) scale(${sc.toFixed(4)}) translate(${-x0} ${-y0})`);
+      set(E[key + 'Lab'], si === 4 ? `<text class="fp-ink fp-label" x="${x0}" y="${y0 - C.LR - 9}" font-size="15" text-anchor="middle">${LPLAB[key]}</text>` : '');
+    }
+  }
+
   function render(si, u) {
     if (si !== shown) {
       shown = si;
       for (const k of ALL) show(E[k], VIS[si].includes(k));
+      placeLoupes(si);
     }
     camera(si, u);
     const clockS = u * C.dur[si];
@@ -2753,38 +2799,37 @@ const STAGE = (() => {
       const yb = BY - ae;
       const yc = BY + 6 - ae;
       const t = span(u, 0.04, 0.96);
-      const x = lerp(BX + 14, -BX + 6, t);
+      const x = lerp(-BX - 14, BX - 6, t);
       tx = -x;
       ty = -yc;
       zTip = lerp(TOP + 14, TOP - ap, span(u, 0, 0.04));
       phase = clockS * 6;
-      blk = blockSvg(tx, ty, { rx0: x, yb, ap });
-      if (x < BX + 6) chips = chipsSvg([-4, -4, TOP - 4], [0.2, 1], clockS, 6, 2);
+      blk = blockSvg(tx, ty, { rx1: x, yb, ap });
+      if (x > -BX - 6) chips = chipsSvg([-4, -4, TOP - 4], [-0.2, 1], clockS, 6, 2);
       if (si === 3) {
         // ae: the band ahead of the cutter; Q: the band it has removed; vf: the table's travel
-        const a0 = at([-BX + tx, yb + ty, TOP]);
-        const a1 = at([Math.min(x, BX) - 8 + tx, yb + ty, TOP]);
-        const b0 = at([-BX + tx, BY + ty, TOP]);
-        const b1 = at([Math.min(x, BX) - 8 + tx, BY + ty, TOP]);
-        const lp = at([Math.min(x, BX) - 26 + tx, BY + ty + 12, TOP + 2]);
-        set(E.ae, mark(pathOf([a0, a1]) + pathOf([b0, b1]) + pathOf([a0, b0])) + label(lp[0], lp[1], 'ae', 20, 'middle'));
-        const q0 = Math.min(Math.max(x, -BX), BX);
-        const Q = [[q0, yb, TOP], [BX, yb, TOP], [BX, BY, TOP], [q0, BY, TOP]];
+        const xa = Math.max(x, -BX) + 8;
+        const a0 = at([BX + tx, yb + ty, TOP]);
+        const a1 = at([Math.min(xa, BX) + tx, yb + ty, TOP]);
+        const b0 = at([BX + tx, BY + ty, TOP]);
+        const b1 = at([Math.min(xa, BX) + tx, BY + ty, TOP]);
+        const lp = at([Math.min(xa + 18, BX - 6) + tx, BY + ty + 12, TOP + 2]);
+        set(E.ae, xa < BX - 2 ? mark(pathOf([a0, a1]) + pathOf([b0, b1]) + pathOf([a0, b0])) + label(lp[0], lp[1], 'ae', 20, 'middle') : '');
+        const q1 = Math.min(Math.max(x, -BX), BX);
+        const Q = [[-BX, yb, TOP], [q1, yb, TOP], [q1, BY, TOP], [-BX, BY, TOP]];
         const Qb = Q.map(([qx, qy]) => [qx, qy, TOP - ap]);
         const Wq = (p) => at([p[0] + tx, p[1] + ty, p[2]]);
-        const ql = Wq([(q0 + BX) / 2, BY + 4, TOP + 14]);
-        set(E.q, BX - q0 > 2 ? mark(poly(Q.map(Wq)) + pathOf([Wq(Q[3]), Wq(Qb[3]), Wq(Qb[2]), Wq(Q[2])]) + pathOf([Wq(Qb[2]), Wq(Qb[1]), Wq(Q[1])])) + label(ql[0], ql[1], 'Q', 22) : '');
-        const v0 = at([TABLE_X0 + tx, 62 + ty, 60]);
-        const v1 = at([TABLE_X0 + 60 + tx, 62 + ty, 60]);
+        const ql = Wq([(q1 - BX) / 2, BY + 4, TOP + 14]);
+        set(E.q, q1 + BX > 2 ? mark(poly(Q.map(Wq)) + pathOf([Wq(Q[3]), Wq(Qb[3]), Wq(Qb[2]), Wq(Q[2])]) + pathOf([Wq(Qb[2]), Wq(Qb[1]), Wq(Q[1])])) + label(ql[0], ql[1], 'Q', 22) : '');
+        // the table carries the block toward −x while the cutter climbs along +x
+        const v0 = at([TABLE_X0 + 60 + tx, 62 + ty, 60]);
+        const v1 = at([TABLE_X0 + tx, 62 + ty, 60]);
         const vl = at([TABLE_X0 + 30 + tx, 62 + ty, 44]);
         set(E.vf, mark(pathOf([v0, v1])) + mark(arrowHead(v0, v1, 9)) + label(vl[0], vl[1], 'vf', 20));
-        loupeIn('lp1', C.L1, loupeSvg(12, ae, 3, -clockS * 2.4, true, 0.05, 200, { marks: true }));
-        set(E.lp1Lab, '');
+        loupeIn('lp1', C.L1, loupeSvg(12, ae, 3, clockS * 2.4, true, 0.05, 200, { marks: true }));
       } else {
-        loupeIn('lp1', C.L1, loupeSvg(12, ae * 2, 3, -clockS * 2.4, true, 0.05, 200));
-        loupeIn('lp2', C.L2, loupeSvg(12, ae * 2, 3, -clockS * 2.4, false, 0.05, 200));
-        set(E.lp1Lab, '');
-        set(E.lp2Lab, '');
+        loupeIn('lp1', C.L1, loupeSvg(12, ae * 2, 3, clockS * 2.4, true, 0.05, 200));
+        loupeIn('lp2', C.L2, loupeSvg(12, ae * 2, 3, clockS * 2.4, false, 0.05, 200));
       }
     } else if (si === 5) {
       // beats 1–2: a light side cut, ae 1 of Ø10, and its thin chip; beat 3: a trochoidal slot
@@ -2792,20 +2837,22 @@ const STAGE = (() => {
       if (u < 0.68) {
         tool = 'end10';
         const yb = BY - 1;
-        const x = lerp(BX + 12, -BX + 10, span(u, 0.03, 0.66));
+        const x = lerp(-BX - 12, BX - 10, span(u, 0.03, 0.66));
         tx = -x;
         ty = -(BY + 5 - 1);
         zTip = TOP - 10;
-        blk = blockSvg(tx, ty, { rx0: x, yb, ap: 10 });
-        if (x < BX + 5) chips = chipsSvg([-4, -4, TOP - 4], [0.2, 1], clockS, 6, 1.6);
+        blk = blockSvg(tx, ty, { rx1: x, yb, ap: 10 });
+        if (x > -BX - 5) chips = chipsSvg([-4, -4, TOP - 4], [-0.2, 1], clockS, 6, 1.6);
         set(E.troch, '');
         set(E.pocket, '');
       } else {
         tool = 'end10';
         const depth = 18;
+        // the step per loop is the width of cut: 26 mm in 20 loops = 1,3 mm,
+        // 13 % of the Ø10 (the lesson: 5 to 15 %)
         const xs = 31;
-        const xe = -31;
-        const loops = 9;
+        const xe = 5;
+        const loops = 20;
         const rr = 3.5;
         const pathPt = (t) => [lerp(xs, xe, t) + rr * Math.cos(t * loops * TAU), rr * Math.sin(t * loops * TAU)];
         const p = pathPt(tr);
@@ -2819,70 +2866,57 @@ const STAGE = (() => {
         pocket = recessSvg(tx, ty, [xLo, xs + rr + 5, -(rr + 5), rr + 5], depth, open, 'fm-sl');
         clip = { z: TOP, d: poly(open.map(([x, y]) => at([x + tx, y + ty, TOP]))) };
         const ahead = [];
-        for (let i = 0; i <= 160; i++) { const t = tr + (1 - tr) * (i / 160); ahead.push(pathPt(t)); }
+        const end = Math.min(1, tr + 3 / loops); // the next three loops
+        for (let i = 0; i <= 72; i++) ahead.push(pathPt(tr + (end - tr) * (i / 72)));
         set(E.troch, `<path class="fm-path" d="${pathOf(ahead.map(([x, y]) => at([x + tx, y + ty, TOP + 0.2])))}"/>`);
         if (tr > 0 && tr < 1) chips = chipsSvg([0, 0, TOP], [0.3, 1], clockS, 6, 1.6);
       }
-      loupeIn('lp1', C.L1, loupeSvg(10, 1, 4, -clockS * 2.4, true, 0.05, 300, { nominal: true }));
-      set(E.lp1Lab, '');
+      loupeIn('lp1', C.L1, loupeSvg(10, 1, 4, clockS * 2.4, true, 0.05, 300, { nominal: true }));
     } else if (si === 6) {
-      // the trunnion: turn and tilt; 3+2 (lock, cut a feature); another face; then simultaneous
+      // beat 1: the table turns (C) and tilts (A); beat 2: 3+2, tilt to 30°, lock,
+      // drill a hole square to the dome; beat 3: index C 90°, lock, the next hole;
+      // beat 4: simultaneous, A and C keep moving while the cutter spirals over
+      // the dome and stays square to it
       tool = 'end10';
       const b2 = 0.27;
       const b3 = 0.5;
       const b4 = 0.74;
-      let a = 0;
-      let c = 0;
-      const feats = [];
-      const lockOn = u > b2 + 0.03 && u < b4;
-      c = span(u, 0.04, 0.14) * (Math.PI / 4) - span(u, 0.14, 0.2) * (Math.PI / 4);
-      a = span(u, 0.12, 0.24) * 30 * DEG;
-      // 3+2 on the front face
-      const cut1 = span(u, b2 + 0.06, b2 + 0.18);
-      const f1c = { n: [1, 0, 0], c: [BK.hx, 0, -3], r: 9 * cut1 };
-      // turn 90°: the part's −y face comes up to the cutter
-      const turn = span(u, b3 + 0.02, b3 + 0.08);
-      c += turn * (Math.PI / 2);
-      const cut2 = span(u, b3 + 0.1, b3 + 0.2);
-      const f2c = { n: [0, -1, 0], c: [0, -BK.hy, -3], r: 9 * cut2 };
-      feats.push(f1c, f2c);
-      // simultaneous: A and C move together while the cutter follows the top edge
-      const sim = span(u, b4 + 0.02, 0.98);
-      let target = null;
+      const PSI = 30 * DEG;
+      let a = (-20 * span(u, 0.14, 0.19) + 20 * span(u, 0.21, 0.26)) * DEG + PSI * span(u, b2 + 0.01, b2 + 0.06);
+      let c = (span(u, 0.03, 0.11) - span(u, 0.12, 0.2)) * (Math.PI / 3) + span(u, b3 + 0.01, b3 + 0.07) * (Math.PI / 2);
+      const lockOn = (u > b2 + 0.06 && u < b3) || (u > b3 + 0.08 && u < b4);
+      const dip1 = span(u, b2 + 0.07, b2 + 0.1) * (1 - span(u, b2 + 0.18, b2 + 0.21));
+      const dip2 = span(u, b3 + 0.09, b3 + 0.12) * (1 - span(u, b3 + 0.19, b3 + 0.22));
+      const holes = [
+        { psi: PSI, phi: 0, r: u > b2 + 0.1 ? 5 : 0 },
+        { psi: PSI, phi: -Math.PI / 2, r: u > b3 + 0.12 ? 5 : 0 },
+      ];
+      let goal;
+      let dip = 0;
       let trail = null;
+      if (u < b3) { goal = domeAt(PSI, 0); dip = dip1; } else { goal = domeAt(PSI, -Math.PI / 2); dip = dip2; }
       if (u >= b4) {
-        const tt = sim;
-        c = Math.PI / 2 + tt * TAU;
-        a = (30 - 14 * Math.sin(tt * TAU * 2) * span(u, b4, b4 + 0.05)) * DEG;
-        const e0 = 0.125;
-        target = edgeAt(e0 + tt);
+        // a spiral from psi 38° to 10°, one and a half turns; C = -phi, A = psi
+        const sim = span(u, b4 + 0.05, 0.97);
+        const spiral = (t) => [(38 - 28 * t) * DEG, -Math.PI / 2 - t * 3 * Math.PI];
+        const [psi, phi] = spiral(sim);
+        const pre = span(u, b4, b4 + 0.04);
+        a = lerp(PSI, psi, pre);
+        c = lerp(Math.PI / 2, -phi, pre);
+        goal = domeAt(psi, phi);
+        dip = span(u, b4 + 0.02, b4 + 0.05) * (1 - span(u, 0.975, 1));
         trail = [];
-        for (let i = 0; i <= 64; i++) trail.push(edgeAt(e0 + tt * (i / 64)));
+        for (let i = 0; i <= 90; i++) trail.push(spiral(sim * (i / 90)));
       }
-      // where the cutter works: its target point under the spindle
-      const T0 = trunFrames(0, 0, a, c);
-      let zt = TOP + 70;
-      let hover = null;
-      if (u > b2 && u < b3) hover = f1c.c;
-      else if (u > b3 + 0.08 && u < b4) hover = f2c.c;
-      const goal = target || hover;
-      if (goal) {
-        const gp = T0.pt(goal);
-        tx = -gp[0];
-        ty = -gp[1];
-        let dip = 1;
-        if (!target) {
-          const ph = u < b3 ? span(u, b2 + 0.02, b2 + 0.06) * (1 - span(u, b2 + 0.19, b2 + 0.22)) : span(u, b3 + 0.08, b3 + 0.1) * (1 - span(u, b3 + 0.21, b3 + 0.23));
-          dip = ph;
-        } else dip = span(u, b4, b4 + 0.03);
-        zt = lerp(gp[2] + 50, gp[2], dip);
-      }
-      zTip = zt;
-      const tr = trunnionSvg(tx, ty, a, c, feats, trail);
+      const gp = trunFrames(0, 0, a, c).pt(goal);
+      tx = -gp[0];
+      ty = -gp[1];
+      zTip = gp[2] + 50 * (1 - dip);
+      const tr = trunnionSvg(tx, ty, a, c, holes, trail);
       set(E.trunB, tr.back);
       set(E.trunF, tr.front);
       set(E.simul, tr.trail);
-      // the lock: rings at the A bosses and round the platter while the rotary axes stand
+      // the lock: rings at the A boss and round the platter while the rotary axes stand
       const T = tr.T;
       if (lockOn) {
         const Fy = G.frameOf(T.o, Y, Z, X);
@@ -2892,7 +2926,7 @@ const STAGE = (() => {
         set(E.lock, mark(G.circleOf(Fy, 71.5, 14, P, 32)) + mark(G.circleOf(Fp, -22.5, 33, P, 48)) + label(al[0], al[1], 'A', 20, 'middle') + label(cl[0], cl[1], 'C', 20, 'start'));
       } else set(E.lock, '');
       phase = clockS * 7;
-      if (goal && zTip < (target ? T.pt(target)[2] : T.pt(hover)[2]) + 1) chips = chipsSvg([0, 0, zTip], [0.3, 1], clockS, 5, 1.6);
+      if (dip > 0.98) chips = chipsSvg([0, 0, zTip], [0.3, 1], clockS, 5, 1.6);
     }
 
     // the machine follows: saddle in Y, table in X and Y, head in Z
@@ -2919,8 +2953,9 @@ const STAGE = (() => {
     }
     let toolHtml = '';
     if (toolOn > 0.02) {
-      if (tool === 'face') toolHtml = faceMillSvg(zn, phase);
-      else toolHtml = endMillSvg(zn, tool === 'end12' ? 12 : tool === 'end8' ? 8 : 10, tool === 'end12' ? 3 : 4, phase, clip);
+      // the spindle turns clockwise seen from above (M3); frame angles grow counter-clockwise
+      if (tool === 'face') toolHtml = faceMillSvg(zn, -phase);
+      else toolHtml = endMillSvg(zn, tool === 'end12' ? 12 : tool === 'end8' ? 8 : 10, tool === 'end12' ? 3 : 4, -phase, clip);
     }
     set(E.tool, toolHtml);
     fade(E.tool, toolOn);
@@ -2941,10 +2976,10 @@ const STAGE = (() => {
 // Narration: in the app the film asks the parent page to speak (postMessage,
 // {type:'vp-film'}); opened on its own it uses its own speechSynthesis. While a
 // line is spoken the clock may run to the next beat and then holds.
-/* global STAGE, parseParams, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
-  const PRM = parseParams(location.search);
+  const PRM = parseParams(searchOf(location.search, window.name));
   const LANG = PRM.lang;
   const STR = {
     nl: { play: 'Afspelen', pause: 'Pauzeren', replay: 'Opnieuw afspelen', mute: 'Gesproken uitleg uit', unmute: 'Gesproken uitleg aan', scenes: 'Scènes', close: 'Sluiten', prev: 'Vorige', next: 'Volgende', speed: 'Snelheid', scrub: 'Tijdlijn van de film', scene: (n, m) => `Scène ${n} van ${m}`, start: 'Bekijk de film', again: 'Nog een keer', voice: 'Geen stem op dit apparaat: lees de ondertitels mee.', label: 'Uitlegfilm' },
