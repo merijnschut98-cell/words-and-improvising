@@ -68,6 +68,35 @@ New:
    - unit tests for retention (20), grouping, and the before/after calculation;
    - e2e with a fake MediaRecorder: a round, then Terugluisteren, play, the checklist, then rate.
 
+## 2b. Hint for returning questions; the "I know it / I'm guessing" control goes (Merijn, 2026-11-07)
+
+What exists today:
+- Under every question (in a lesson check, due questions, refresh, recall) there is an "Ik weet het / Ik gok" control.
+- It feeds `sure` into `scheduleCourseReview` (`src/core/coursereview.js`). A correct answer you marked as a guess does not climb a box.
+- It also feeds the calibration stats on Voortgang (`calib` in `src/core/course.js`).
+- He finds that it adds too little.
+
+New:
+1. **Remove the control:**
+   - in `src/ui/quiz.js` and the screens that use it (due, apply, realweek, lesson);
+   - the calibration block on Voortgang that compares "sure vs guess";
+   - the matching i18n strings.
+   - Stored `cal` data stays readable, so old records do not break.
+2. **A "Hint" button** under each question, secondary and never the primary button. Tapping it shows one hint. Hint content, pure and tested in `src/core/hint.js`:
+   - **Multiple choice:** strike one clearly wrong option and show the definition of the lesson term that fits the question (via the lesson's `terms` and `linkTerms`).
+   - **Number question:** show the formula or the first step, and the unit, without the answer.
+   - **Optional:** a question can carry its own `hint` field in the content. When present it wins. The validator checks length (≤ 25 words) and that the hint does not contain the answer.
+3. **Scheduling:**
+   - a correct answer after a hint counts as the old "guess": the box stays the same and does not climb;
+   - correct without a hint climbs as before;
+   - wrong goes back to box 1;
+   - the `sure` argument becomes `!hinted`, with the same function and no migration.
+4. **The review screen** after a round marks the questions where you used a hint, so you see what is not really yours yet.
+5. **Tests:**
+   - unit tests for the hint choice (never strikes the right option, the same hint for the same question, the number hint never contains the answer) and for scheduling with and without a hint;
+   - `quizBack` keeps working, with the hint state remembered per question;
+   - in the e2e, the control is gone, a hint can be used once, and the box does not climb after a hint.
+
 ## 3. ICT, two parts, with the focus on project work
 
 **Placement:** the project side goes under Projecten as a new track, "Agile en IT-projecten". The technical side becomes a new Engineering track, "IT en OT", and eng.industry40 moves into it.
