@@ -291,6 +291,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling: the machining centre',
       pre: [
@@ -360,6 +361,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Cutting data in milling',
       pre: [
@@ -429,6 +431,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling strategy: climb, chip thinning, trochoidal',
       pre: [
@@ -499,6 +502,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.fiveaxis',
       title: 'Five-axis milling: 3+2 or simultaneous',
       pre: [
