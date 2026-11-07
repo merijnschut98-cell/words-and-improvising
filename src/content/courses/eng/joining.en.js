@@ -216,7 +216,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
-      figure: 'eng.joining.mig',
+      figure: 'eng.joining.haz',
       title: 'What heat does to the steel: HAZ, preheat and difficult metals',
       pre: [
         {
