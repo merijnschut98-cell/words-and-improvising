@@ -288,6 +288,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      film: 'eng.moulding.cycle',
       figure: 'eng.moulding.cycle',
       title: 'Cycle time and output',
       pre: [
@@ -359,6 +360,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
+      film: 'eng.moulding.cycle',
       title: 'Cooling: what the setter can change',
       pre: [
         {
@@ -427,6 +429,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
+      film: 'eng.moulding.cycle',
       title: 'More cavities or a faster cycle',
       pre: [
         {
@@ -496,6 +499,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
+      film: 'eng.moulding.cycle',
       title: 'What a moulded part costs',
       pre: [
         {
