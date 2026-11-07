@@ -2532,7 +2532,8 @@ await step('listen back: ask once, rounds kept, Terugluisteren plays at 1.25x, c
   await page.goto(BASE);
   await page.evaluate(() => {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
-    st.settings = { ...st.settings, record: false, mode: 'speak' };
+    window.name = JSON.stringify({ lbLang: st.settings.lang }); // put back at the end
+    st.settings = { ...st.settings, record: false, mode: 'speak', lang: 'nl' };
     st.ui = { ...st.ui, recordAsked: false, nextModifier: null };
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
@@ -2648,7 +2649,10 @@ await step('listen back: ask once, rounds kept, Terugluisteren plays at 1.25x, c
   if (left !== 0) throw new Error(`${left} recordings left`);
   await page.evaluate(() => {
     window.__app.setState({ ...window.__app.state, ui: { ...window.__app.state.ui, nextModifier: null } });
-    window.__app.updateSettings({ record: false });
+    let lang = 'nl';
+    try { lang = JSON.parse(window.name).lbLang || 'nl'; } catch { /* default */ }
+    window.name = '';
+    window.__app.updateSettings({ record: false, lang });
   });
 });
 
