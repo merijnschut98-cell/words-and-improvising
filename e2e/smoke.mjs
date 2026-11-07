@@ -601,7 +601,7 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
     window.__spoken = [];
     const synth = window.speechSynthesis;
     synth.speak = (u) => { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 600); };
-    synth.cancel = () => {};
+    window.__cancels = 0; synth.cancel = () => { window.__cancels += 1; };
     try { localStorage.removeItem('vp:filmMuted'); } catch {}
   });
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
@@ -621,8 +621,10 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
   const frame = page.locator('.film-wrap iframe.film-frame');
   await frame.waitFor();
   if ((await frame.getAttribute('sandbox')) !== 'allow-scripts') throw new Error('frame not sandboxed to allow-scripts');
-  const src = await frame.getAttribute('src');
-  if (!/^src\/content\/courses\/films\/eng\.machining\.turning\.html\?theme=(light|dark)&lang=nl&level=2$/.test(src)) throw new Error(`film src ${src}`);
+  // the page goes in as srcdoc (so it plays offline); its parameters ride in the frame name
+  const name = await frame.getAttribute('name');
+  if (!/^\?theme=(light|dark)&lang=nl&level=2$/.test(name)) throw new Error(`film params ${name}`);
+  if (await frame.getAttribute('src')) throw new Error('film frame has a src: offline it would be empty');
   const film = page.frameLocator('.film-frame');
   await film.locator('#film-data').waitFor({ state: 'attached', timeout: 10000 });
   await film.locator('.fp-poster-go').click();
@@ -647,6 +649,16 @@ await step('films: the turning lesson opens its film in a sandboxed frame; narra
   // closing the film removes the frame
   await btn.click();
   if (await page.locator('.film-frame').count()) throw new Error('film not closed');
+  // leaving the reading block while the film speaks removes it and silences the voice
+  await btn.click();
+  await page.frameLocator('.film-frame').locator('.fp-poster-go').click();
+  await page.waitForFunction(() => window.__spoken.length >= 2, null, { timeout: 8000 });
+  // voice.say() cancels too before each line: count only cancels beyond new lines
+  const before = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
+  await page.locator('.lesson > .btn-primary').click();
+  if (await page.locator('.film-frame').count()) throw new Error('film still open on the next reading block');
+  const after = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
+  if (after[0] - before[0] <= after[1] - before[1]) throw new Error('speech not cancelled when the reading block changed');
   await page.evaluate(() => window.__app.go('home'));
 });
 
@@ -2530,6 +2542,13 @@ await step('offline after first load', async () => {
   }
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await page.locator('.pre-card').waitFor({ timeout: 5000 });
+  // The explainer film plays offline too. A sandboxed frame's own navigation
+  // skips the service worker, so the button must not lead to an empty frame.
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+  await page.locator('.pre-card .opt').first().click();
+  await page.locator('.lesson > .pre-next').click();
+  await page.locator('.teach-card .film-btn').click({ timeout: 5000 });
+  await page.frameLocator('.film-frame').locator('.fp-poster-go').waitFor({ timeout: 5000 });
   await page.evaluate(() => window.__app.go('home'));
   await page.locator('.drill-frame').click();
   await page.locator('.intro-card').waitFor({ timeout: 5000 });

@@ -332,8 +332,7 @@ discAt('inj.seal', frameX([74, 0, ZC]), 0, 0.8, 4, { tone: 'mid' }, {});
     extra: recess(WIN, fy, screen) + Dt([[PANEL.x + 1.4, fy, PANEL_Z[0] + 1.4], [PANEL.x + PANEL.w - 1.4, fy, PANEL_Z[0] + 1.4], [PANEL.x + 1.4, fy, PANEL_Z[1] - 1.4], [PANEL.x + PANEL.w - 1.4, fy, PANEL_Z[1] - 1.4]].map(at), { size: 0.42 }),
   });
   const FL = (x) => frameY([x, fy, 86.2]);
-  discAt('panel.lamp-ring', FL(PANEL.x + 5), 0, 0.6, 1.8, { tone: 'mid' }, {});
-  discAt('panel.lamp', FL(PANEL.x + 5), 0.6, 1.3, 1.2, { tone: 'hi', crease: 'none' }, {});
+  discAt('panel.lamp', FL(PANEL.x + 5), 0, 1.2, 1.6, { tone: 'hi', crease: 'lo' }, {});
   for (const x of [PANEL.x + 11]) box('panel.key', { x: x - 1.6, y: fy, w: 3.2, d: 1, r: 0.3 }, 84.8, 87.6, { tone: 'mid' }, { steps: 1 });
   box('panel.hood', { x: PANEL.x - 1, y: PANEL.y - 0.6, w: PANEL.w + 2, d: PANEL.d + 2.2, r: 0.8 }, PANEL_Z[1], PANEL_Z[1] + 1.4, { tone: 'mid' }, { steps: 2, bevel: 0.3 });
 }

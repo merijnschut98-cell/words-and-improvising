@@ -3,7 +3,7 @@
 // (iso-kit functions in scope), a preamble from build.mjs that defines P
 // (projection), C (world constants), CAM (one camera move per scene), W and H,
 // and sets.js (buildSets), which draws the section, the plates and the coins.
-/* global buildSets, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, translateAlong, axisVector, holdStill, depthOf, span, ease, beatStarts */
+/* global buildSets, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, translateAlong, axisVector, holdStill, depthOf, span, ease, beatStarts, searchOf */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const el = (k) => svg.querySelector(`[data-k="${k}"]`);
@@ -22,9 +22,8 @@ const STAGE = (() => {
     'cMat', 'cScrap', 'cMach', 'cMould', 'phasebar', 'coolseg', 'phasetext', 'mag', 'therm', 'thmark', 'labels', 'coupL', 'coupU'].forEach((k) => { E[k] = el(k); });
   const platen = [...svg.querySelectorAll('[data-pc="platen"]')];
   const screw = [...svg.querySelectorAll('[data-pc="screw"]')];
-  const LANG = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'nl';
+  const LANG = new URLSearchParams(searchOf(location.search, window.name)).get('lang') === 'en' ? 'en' : 'nl';
   const FILM = JSON.parse(document.getElementById('film-data').textContent);
-  const TAU = Math.PI * 2;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lin = (u, a, b) => clamp((u - a) / (b - a), 0, 1);
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -457,7 +456,6 @@ const STAGE = (() => {
       const run1 = lin(u, 0.03, b2 - 0.08);
       const T1 = (b2 - 0.11);
       const run2 = lin(u, b2 + 0.03, b2 + 0.03 + T1 * 0.64);
-      const q = u < b2 - 0.06 ? run1 : (u < b2 + 0.03 ? 0 : run2 / 1);
       const delta = u < b2 - 0.06 ? (C.SWALL / 2) * Math.sqrt(run1) : (u < b2 + 0.03 ? 0 : (s / 2) * Math.sqrt(run2));
       section(s, false, delta, clock, false);
       bossDims(s, false);
@@ -469,7 +467,6 @@ const STAGE = (() => {
       const bar = (yy, secs, f, lab) => `<path class="fp-bar-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-bar-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 18, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 18, 'start', 'fp-ink fp-mono') : ''}`;
       labels += `<rect class="fp-hud-bg" x="${x0 - 92}" y="${y - 12}" width="${12 * sc + 160}" height="62" rx="8"/>`
         + bar(y, 12, run1, `${num(3, 1)} mm`) + (u > b2 ? bar(y + 22, 12 * 0.64, run2, `${num(2.4, 1)} mm`) : '');
-      void q;
     } else if (si === 4) {
       // the unit holds the steel warm; water swirls; the core cools to the ejection temperature
       const q = lin(u, 0.04, 0.82);
