@@ -1407,6 +1407,7 @@ export default {
     },
     {
       id: 'eng.machining.fixtures',
+      figure: 'eng.machining.fixture',
       title: 'Fixtures, clamping and setup',
       pre: [
         {
@@ -1478,6 +1479,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      figure: 'eng.machining.fixture',
       title: 'Surface finish, measuring and defects',
       pre: [
         {

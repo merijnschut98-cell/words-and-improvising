@@ -1407,6 +1407,7 @@ export default {
     },
     {
       id: 'eng.machining.fixtures',
+      figure: 'eng.machining.fixture',
       title: 'Opspanning en omstellen',
       pre: [
         {
@@ -1478,6 +1479,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      figure: 'eng.machining.fixture',
       title: 'Ruwheid, meten en fouten',
       pre: [
         {
