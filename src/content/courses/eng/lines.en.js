@@ -1131,6 +1131,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      figure: 'eng.lines.plc',
       title: 'PLC, sensors and actuators: how a machine thinks',
       pre: [
         {
@@ -1200,6 +1201,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      figure: 'eng.lines.plc',
       title: 'Machine safety: emergency stop, guarding and the rules',
       pre: [
         {
@@ -1338,6 +1340,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      figure: 'eng.lines.plc',
       title: 'Micro-stops and fault data: from alarm log to action',
       pre: [
         {

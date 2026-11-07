@@ -1131,6 +1131,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      figure: 'eng.lines.plc',
       title: 'PLC, sensoren en actuatoren: hoe een machine denkt',
       pre: [
         {
@@ -1200,6 +1201,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      figure: 'eng.lines.plc',
       title: 'Machineveiligheid: noodstop, afscherming en de regels',
       pre: [
         {
@@ -1338,6 +1340,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      figure: 'eng.lines.plc',
       title: 'Microstops en storingsdata: van alarmlog naar actie',
       pre: [
         {
