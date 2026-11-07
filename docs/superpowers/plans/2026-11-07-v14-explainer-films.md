@@ -1,5 +1,19 @@
 # v14: uitlegfilms (explainer films)
 
+> **Merijn's decisions (2026-11-07):**
+> - **Order:** P1 films come before v13. Older modules wait for their rebuild into topics × levels (v13 part 5).
+>   - Effective order: wave 0 (the player, the turning pilot), then all Maakindustrie P1 films, then v13 including the rebuild, then the P1 films of the rebuilt modules, then P2 and P3.
+>   - The five remaining v10 figures finish alongside wave 0.
+> - **Narration:** ON by default, with a mute toggle.
+> - **Length:** always the full film (no short cut by level); 60–150 s.
+> - **Older modules:** their films wait until the module is rebuilt as topics × levels.
+> - **Still open (defaults until he says otherwise):**
+>   - the film button sits under the first teach block;
+>   - films are cached on first view plus an offline switch per subject;
+>   - speaking films go on the exercise intro card;
+>   - no film for the pm retrospective lesson.
+
+
 Asked by Merijn on 2026-11-07. Scope widened the same day: a film is no longer only for things a figure can't show. **A figure is something you play with; a film is a guided, narrated look that shows and names things in order.** Every topic with physical objects, actions or sequences gets a film. Non-physical topics (projects, speaking, ICT project work) get one where people, roles, boards and documents show the process.
 
 Status: plan only. Nothing is built. Read with the v13 plan (`2026-11-07-v13-listen-ict-outside-layout.md`); films for v13 modules are marked **after v13**.
