@@ -568,6 +568,7 @@ export default {
     },
     {
       id: 'eng.machining.drill',
+      film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Drilling: the basics',
       pre: [
@@ -638,6 +639,7 @@ export default {
     },
     {
       id: 'eng.machining.holes',
+      film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Holes to size: reaming, tapping, boring',
       pre: [
@@ -708,6 +710,7 @@ export default {
     },
     {
       id: 'eng.machining.deephole',
+      film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Deep-hole drilling: getting the chips out',
       pre: [
@@ -778,6 +781,7 @@ export default {
     },
     {
       id: 'eng.machining.holequality',
+      film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Hole quality: position and perpendicularity',
       pre: [

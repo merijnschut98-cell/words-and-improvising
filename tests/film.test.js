@@ -4,9 +4,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   wordsOf, minSceneDur, parseMarked, formatNumber, speakOf, plainOf, timelineOf, sceneIndexAt,
-  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span,
+  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf,
 } from '../films/_kit/timeline.mjs';
-import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref } from '../src/ui/film.js';
+import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref, loadFilm } from '../src/ui/film.js';
 
 test('reading pace: a scene lasts at least words / 2.5 + 2 seconds', () => {
   assert.equal(wordsOf('  De snijsnelheid is  hoe snel '), 5);
@@ -41,6 +41,23 @@ test('speak variant: the English words in parentheses are not spoken', () => {
   assert.equal(plainOf(seg), 'De snijsnelheid (cutting speed) is hoog.');
   assert.equal(speakOf(seg), 'De snijsnelheid is hoog.');
   assert.equal(speakOf(['Ø60 at ', { t: 'cutting speed', c: 'vc' }]), 'Ø60 at cutting speed');
+});
+
+// A voice reads "omw/min" as letters and a slash, and skips Ø and µ: with a
+// language, the speak variant says units and signs as words.
+test('speak variant: units and signs are said as words, per language', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  const en = (s) => speakOf([s], 'en');
+  assert.equal(nl('bij Ø60 en 220 m/min draait de spil 1.167 omw/min.'), 'bij diameter 60 en 220 meter per minuut draait de spil 1.167 omwentelingen per minuut.');
+  assert.equal(en('at Ø60 and 220 m/min the spindle turns at 1,167 rpm.'), 'at diameter 60 and 220 metres per minute the spindle turns at 1,167 revolutions per minute.');
+  assert.equal(nl('0,3 × 1.167 = 350 mm/min'), '0,3 maal 1.167 is 350 millimeter per minuut');
+  assert.equal(en('0.3 × 1,167 = 350 mm/min'), '0.3 times 1,167 is 350 millimetres per minute');
+  assert.equal(nl('160 / 20 = 8 × D.'), '160 gedeeld door 20 is 8 maal D.');
+  assert.equal(en('Above 6 × D'), 'Above 6 times D');
+  assert.equal(nl('Ra 0,77 µm, zes gaten op 60°.'), 'R a 0,77 micrometer, zes gaten op 60 graden.');
+  assert.equal(en('Ra 0.77 µm, six holes at 60°.'), 'R a 0.77 micrometres, six holes at 60 degrees.');
+  // words that merely contain the letters stay as they are
+  assert.equal(nl('Rand en rpmx en Radius'), 'Rand en rpmx en Radius');
 });
 
 test('timeline: scene starts, total, the scene at a time', () => {
@@ -86,6 +103,18 @@ test('page parameters: theme, lang, scene, motion, muted', () => {
   assert.equal(parseParams('?level=9').level, null);
 });
 
+// In the app the page arrives as srcdoc (so it plays offline: a sandboxed
+// frame's own navigation never goes through the service worker); its
+// parameters then come in the frame's name.
+test('page parameters come from the URL, or from the frame name when the page is srcdoc', () => {
+  assert.equal(searchOf('?theme=dark&lang=en', '?theme=light'), '?theme=dark&lang=en');
+  assert.equal(searchOf('', '?theme=dark&lang=en&level=3'), '?theme=dark&lang=en&level=3');
+  assert.equal(searchOf('', 'some-other-name'), '');
+  assert.equal(searchOf('', ''), '');
+  assert.equal(searchOf(undefined, undefined), '');
+  assert.equal(parseParams(searchOf('', '?lang=en&muted=1')).lang, 'en');
+});
+
 test('clock text and easing', () => {
   assert.equal(fmtClock(0), '0:00');
   assert.equal(fmtClock(65.4), '1:05');
@@ -113,6 +142,21 @@ test('filmSrc: theme, language, level, scene and the remembered mute', () => {
   assert.equal(filmSrc('x.y', 'light', 'fr', { level: 9, scene: null }), 'src/content/courses/films/x.y.html?theme=light&lang=nl');
 });
 
+test('loadFilm: the page is fetched (the service worker answers offline) and handed to the frame as srcdoc', async () => {
+  const frame = {};
+  const asked = [];
+  const ok = await loadFilm(frame, 'src/content/courses/films/x.y.html', async (u) => { asked.push(u); return { ok: true, text: async () => '<p>film</p>' }; });
+  assert.equal(ok, true);
+  assert.deepEqual(asked, ['src/content/courses/films/x.y.html']);
+  assert.equal(frame.srcdoc, '<p>film</p>');
+  const missing = {};
+  assert.equal(await loadFilm(missing, 'a', async () => ({ ok: false, text: async () => 'Not found' })), false);
+  assert.equal('srcdoc' in missing, false);
+  const offline = {};
+  assert.equal(await loadFilm(offline, 'a', async () => { throw new TypeError('Failed to fetch'); }), false);
+  assert.equal('srcdoc' in offline, false);
+});
+
 test('the bridge accepts only well-formed messages from its own frame', () => {
   const own = {};
   const other = {};
@@ -132,6 +176,11 @@ test('the bridge accepts only well-formed messages from its own frame', () => {
   assert.deepEqual(ok({ type: 'vp-film', op: 'size', h: 412.4 }), { op: 'size', h: 412 });
   assert.equal(ok({ type: 'vp-film', op: 'size', h: 'tall' }), null);
   assert.deepEqual(ok({ type: 'vp-film', op: 'hello' }), { op: 'hello' });
+  // the line id is echoed back to the film: a small finite number or a short string only
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 'x'.repeat(41), text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: Infinity, text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: NaN, text: 'x' }), null);
+  assert.equal(ok({ type: 'vp-film', op: 'say', id: 'line-3', text: 'x' }).id, 'line-3');
 });
 
 test('the bridge speaks through the app voice and answers said; it ignores other frames', async () => {
@@ -206,14 +255,16 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   const data = resolveFilm(spec([
     { nl: 'De {t:Voeding|voeding} is {n:0.3} mm.', en: 'The {t:Feed|feed} is {n:0.3} mm.', cue: { Voeding: 'feed' } },
     { nl: 'Weer {t:Voeding|voeding}.', en: 'Again {t:Feed|feed}.', cue: { Voeding: 'feed' } },
+    { nl: 'Dan {n:1167} omw/min.', en: 'Then {n:1167} rpm.' },
   ]), lessons);
-  const [b1, b2] = data.scenes[0].beats;
+  const [b1, b2, b3] = data.scenes[0].beats;
+  assert.deepEqual(b3.speak, { nl: 'Dan 1.167 omwentelingen per minuut.', en: 'Then 1,167 revolutions per minute.' });
   assert.equal(b1.text.nl, 'De voeding (feed) is 0,3 mm.');
   assert.equal(b1.speak.nl, 'De voeding is 0,3 mm.');
   assert.equal(b1.text.en, 'The feed is 0.3 mm.');
   assert.equal(b2.text.nl, 'Weer voeding.');
   assert.deepEqual(data.scenes[0].terms, [{ lesson: 'eng.fx.a', index: 0, nl: 'Voeding', en: 'Feed', cue: 'feed' }]);
-  assert.deepEqual(data.numbers, [{ lesson: 'eng.fx.a', value: '0,3', scene: 's1' }]);
+  assert.deepEqual(data.numbers, [{ lesson: 'eng.fx.a', value: '0,3', scene: 's1' }, { lesson: 'eng.fx.a', value: '1.167', scene: 's1' }]);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Snijsnelheid}', en: '{t:Cutting speed}', cue: { Snijsnelheid: 'x' } }]), lessons), /none of the served/);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Steady rest}', cue: { Voeding: 'x' } }]), lessons), /different terms/);
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Feed}' }]), lessons), /no cue/);
