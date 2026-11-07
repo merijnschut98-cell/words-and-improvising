@@ -269,7 +269,7 @@ const CAM = [
   { from: cam([120, 10, 100], 380), to: cam([150, 20, 110], 400) },
   { from: cam([150, 20, 70], 380), to: cam([110, 0, 60], 330), a: 0.4, b: 0.6 },
 ];
-const DUR = [22, 15, 19, 21, 24, 14, 18, 17];
+const DUR = [21, 15, 18, 20, 24, 14, 21, 17];
 
 // ---------------------------------------------------------------- the film
 const spec = {
@@ -280,7 +280,7 @@ const spec = {
     {
       id: 's1', lesson: 'eng.machining.drill', level: 1, dur: DUR[0], still: 0.86, title: { nl: 'Aanboren, dan boren', en: 'Spot first, then drill' },
       beats: [
-        { nl: 'Een {t:Spiraalboor|spiraalboor} op een vlak blok glijdt bij het aansnijden opzij: dat heet {t:Weglopen|weglopen}.', en: 'A {t:Twist drill|twist drill} on a flat block slides sideways as it starts: that is called {t:Drill wander|drill wander}.', cue: { Spiraalboor: 'tool', Weglopen: 'wander' } },
+        { nl: 'Een {t:Spiraalboor|spiraalboor} op een vlak blok glijdt bij het aansnijden opzij: {t:Weglopen|weglopen}.', en: 'A {t:Twist drill|twist drill} on a flat block slides sideways as it starts: {t:Drill wander|drill wander}.', cue: { Spiraalboor: 'tool', Weglopen: 'wander' } },
         { nl: 'Daarom eerst een kuiltje met een {t:Centreerboor|centreerboor}: kort en stijf, met een brede punt.', en: 'So first a dimple with a {t:Centre drill|centre drill}: short and stiff, with a broad point.', cue: { Centreerboor: 'tool' } },
         { nl: 'Dan de spiraalboor. Langs elke {t:Spaangroef|spaangroef} draaien de spanen naar buiten.', en: 'Then the twist drill. Along each {t:Flute|flute} the chips turn their way out.', cue: { Spaangroef: 'flute' }, cues: ['chips'], read: { nl: 'Ø{n:8} HSS · {n:25} m/min → {n:995} omw/min · f {n:0.15}', en: 'Ø{n:8} HSS · {n:25} m/min → {n:995} rpm · f {n:0.15}' } },
       ],
@@ -313,7 +313,7 @@ const spec = {
       beats: [
         { nl: 'Ø{n:6} en {n:90} mm diep is {n:15} × D. Dan draait alles om {t:Spaanafvoer|spaanafvoer}.', en: 'Ø{n:6} and {n:90} mm deep is {n:15} × D. Then it is all about {t:Chip evacuation|chip evacuation}.', cue: { Spaanafvoer: 'chips' } },
         { nl: 'Bij {t:Pikboren|pikboren} trekt de boor zich steeds terug: {n:54} + {n:30} = {n:84} seconden per gat.', en: 'In {t:Peck drilling|peck drilling} the drill keeps pulling back: {n:54} + {n:30} = {n:84} seconds per hole.', cue: { Pikboren: 'tool' } },
-        { nl: 'Met {t:Koeling door de spil|koeling door de spil} spoelt vloeistof de spanen eruit: {n:13.5} seconden, zonder pikken.', en: 'With {t:Through-spindle coolant|through-spindle coolant}, coolant flushes the chips out: {n:13.5} seconds, no pecking.', cue: { 'Koeling door de spil': 'coolant' }, read: { nl: '{n:84} s → {n:13.5} s · {n:10000} stuks: {n:196} uur per jaar', en: '{n:84} s → {n:13.5} s · {n:10000} parts: {n:196} hours a year' } },
+        { nl: 'Met {t:Koeling door de spil|koeling door de spil} spoelen de spanen eruit: {n:13.5} seconden, zonder pikken.', en: 'With {t:Through-spindle coolant|through-spindle coolant}, coolant flushes the chips out: {n:13.5} seconds, no pecking.', cue: { 'Koeling door de spil': 'coolant' }, read: { nl: '{n:84} s → {n:13.5} s · {n:10000} stuks: {n:196} uur per jaar', en: '{n:84} s → {n:13.5} s · {n:10000} parts: {n:196} hours a year' } },
       ],
     },
     {
@@ -326,7 +326,8 @@ const spec = {
     {
       id: 's7', lesson: 'eng.machining.holequality', level: 4, dur: DUR[6], still: 0.86, title: { nl: 'Positie meten', en: 'Measuring position' },
       beats: [
-        { nl: '{t:Positietolerantie|Positietolerantie}: een cirkel van Ø{n:0.1} om de plek uit de {t:Theoretisch exacte maat|theoretisch exacte maten}.', en: 'The {t:Position tolerance|position tolerance}: a circle of Ø{n:0.1} around the spot set by the {t:Theoretically exact dimension|theoretically exact dimensions}.', cue: { Positietolerantie: 'zone', 'Theoretisch exacte maat': 'ted' } },
+        { nl: 'De {t:Positietolerantie|positietolerantie}: de as van het gat ligt binnen een cirkel van Ø{n:0.1}.', en: 'The {t:Position tolerance|position tolerance}: the hole’s axis lies within a circle of Ø{n:0.1}.', cue: { Positietolerantie: 'zone' } },
+        { nl: 'Die ligt om de plek uit de {t:Theoretisch exacte maat|theoretisch exacte maten}.', en: 'That circle sits on the spot set by the {t:Theoretically exact dimension|theoretically exact dimensions}.', cue: { 'Theoretisch exacte maat': 'ted' }, cues: ['zone'] },
         { nl: 'De CMM meet gat {n:3}: dx {n:0.024} en dy {n:0.032}, dus {n:0.04} ernaast. Positie {n:2} × {n:0.04} = {n:0.08}.', en: 'The CMM measures hole {n:3}: dx {n:0.024} and dy {n:0.032}, so {n:0.04} off. Position {n:2} × {n:0.04} = {n:0.08}.', cues: ['zone'], read: { nl: '2 × √({n:0.024}² + {n:0.032}²) = {n:0.08} ≤ {n:0.1}', en: '2 × √({n:0.024}² + {n:0.032}²) = {n:0.08} ≤ {n:0.1}' } },
       ],
     },
@@ -334,7 +335,8 @@ const spec = {
       id: 's8', lesson: 'eng.machining.holequality', level: 4, dur: DUR[7], still: 0.88, title: { nl: 'Haaks en functioneel', en: 'Square and functional' },
       beats: [
         { nl: '{t:Haaksheid|Haaksheid}: de as van het gat staat loodrecht op vlak A, binnen Ø{n:0.05}.', en: '{t:Perpendicularity|Perpendicularity}: the hole’s axis must stand square to face A, within Ø{n:0.05}.', cue: { Haaksheid: 'perp' } },
-        { nl: 'In serie gaat het deel op een {t:Functioneel kaliber|functioneel kaliber} met pennen op de exacte plekken. Past het, dan klopt de positie.', en: 'In series the part goes onto a {t:Functional gauge|functional gauge} with pins at the exact places. If it fits, the position is good.', cue: { 'Functioneel kaliber': 'gauge' } },
+        { nl: 'In serie gaat het deel op een {t:Functioneel kaliber|functioneel kaliber}: pennen op de exacte plekken.', en: 'In series the part goes onto a {t:Functional gauge|functional gauge}: pins at the exact places.', cue: { 'Functioneel kaliber': 'gauge' } },
+        { nl: 'Past het, dan klopt de positie.', en: 'If it fits, the position is good.', cues: ['gauge'] },
       ],
     },
   ],
