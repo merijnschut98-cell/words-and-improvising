@@ -1,54 +1,69 @@
 // Quiz: every question once, then a review with the answers, then the misses
-// again until each is right once. Shared by lessons and due sessions.
+// again until each is right once. Shared by lessons and due sessions. Under
+// each question a Hint (secondary, once); a correct answer after a hint does
+// not climb a box (sure = !hinted).
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { startQuiz, answerQuiz, backQuiz, continueQuiz, judge } from '../core/course.js';
+import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge } from '../core/course.js';
+import { questionHint } from '../core/hint.js';
 
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
 const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
 
-export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
+// termsOf(question): the terms of the question's lesson, for the hint.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [] }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
 
-  // "I know it" / "I'm guessing": sure on every new question; first pass only.
-  let guessing = false;
   const answer = (value) => {
     const q = questions[st.order[st.i]];
-    const sure = st.pass === 1 ? !guessing : true;
-    lastPass.push({ q, value, ok: judge(q, value), sure: st.pass === 1 ? sure : null });
-    st = answerQuiz(st, questions, value, sure);
-    guessing = false;
+    lastPass.push({ q, value, ok: judge(q, value), hinted: !!(st.hints || {})[q.id] });
+    st = answerQuiz(st, questions, value);
     draw();
   };
 
-  // Going back restores what he said the first time: the answer and the guess flag.
+  // Going back restores the answer he gave; a hint he took stays shown.
   const back = () => {
     st = backQuiz(st, questions);
     lastPass.pop();
-    guessing = !!(st.prev && st.prev.sure === false);
     draw();
   };
 
-  // Two plain options, sure selected unless he says otherwise.
-  const guessToggle = () => {
-    if (st.pass !== 1) return null;
-    const opt = (value, cls, label) => h('button', {
-      class: `${cls}${guessing === value ? ' on' : ''}`, 'aria-pressed': String(guessing === value),
-      onclick: () => {
-        guessing = value;
-        for (const b of row.querySelectorAll('button')) {
-          const on = b === sureBtn ? !guessing : guessing;
-          b.classList.toggle('on', on);
-          b.setAttribute('aria-pressed', String(on));
-        }
-      },
-    }, label);
-    const sureBtn = opt(false, 'guess-sure', t('guessSure'));
-    const row = h('div', { class: 'segmented guess-row', role: 'group', 'aria-label': t('guessLabel') }, sureBtn, opt(true, 'guess-toggle', t('guessToggle')));
-    return row;
+  // The hint's lines; a struck option is also struck in the list itself.
+  const hintLines = (hint) => {
+    if (!hint) return [];
+    const term = hint.term ? h('p', { class: 'hint-term' }, h('b', {}, hint.term.term), `: ${hint.term.def}`) : null;
+    if (hint.kind === 'own') return [h('p', {}, hint.text)];
+    if (hint.kind === 'choice') return [h('p', {}, t('hintStrike', hint.strike)), term];
+    return [hint.step ? h('p', { class: 'hint-step' }, t('hintStep', hint.step)) : null, hint.unit ? h('p', {}, t('hintUnit', hint.unit)) : null, term];
   };
+
+  // Secondary, never the primary button; once per question, then the hint stays.
+  function hintParts(q, opts) {
+    const hint = questionHint(q, termsOf(q) || []);
+    const panel = h('div', { class: 'quiz-hint', 'aria-live': 'polite' });
+    const strike = () => {
+      if (!opts || !hint || hint.kind !== 'choice') return;
+      for (const b of opts.children) {
+        if (b.textContent !== hint.strike) continue;
+        b.classList.add('struck');
+        b.disabled = true;
+        b.setAttribute('aria-disabled', 'true');
+      }
+    };
+    const show = () => {
+      panel.replaceChildren(h('p', { class: 'hint-title' }, t('hintTitle')), ...hintLines(hint).filter(Boolean));
+      panel.classList.add('on');
+      strike();
+    };
+    if ((st.hints || {})[q.id]) { show(); return { panel, btn: null }; }
+    const btn = hint ? h('button', {
+      class: 'btn btn-ghost small quiz-hint-btn',
+      onclick: () => { st = hintQuiz(st, questions); show(); btn.remove(); },
+    }, t('hintBtn')) : null;
+    return { panel, btn };
+  }
 
   function askCard() {
     const q = questions[st.order[st.i]];
@@ -67,37 +82,37 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
       const submit = () => { if (input.value.trim()) answer(input.value.trim()); };
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
       setTimeout(() => input.focus(), 0);
+      const hp = hintParts(q, null);
       return h('section', { class: 'card quiz-card' }, progress,
         h('p', { class: 'quiz-q' }, q.q),
-        guessToggle(),
+        hp.panel,
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         picked,
-        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), backBtn));
+        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn));
     }
+    const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
+      class: `opt${o === prev ? ' chosen' : ''}`, 'aria-pressed': o === prev ? 'true' : null, onclick: () => answer(o),
+    }, o)));
+    const hp = hintParts(q, opts);
     return h('section', { class: 'card quiz-card' }, progress,
       h('p', { class: 'quiz-q' }, q.q),
-      guessToggle(),
-      h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
-        class: `opt${o === prev ? ' chosen' : ''}`, 'aria-pressed': o === prev ? 'true' : null, onclick: () => answer(o),
-      }, o))),
+      hp.panel,
+      opts,
       picked,
-      backBtn ? h('div', { class: 'quiz-actions' }, backBtn) : null);
+      hp.btn || backBtn ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn) : null);
   }
 
   function reviewCard() {
     const misses = lastPass.filter((x) => !x.ok).length;
     return h('section', { class: 'card quiz-review' },
       h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean')),
-      lastPass.map(({ q, value, ok, sure }) => {
-        // A miss he did not mark as a guess: worth reading twice (errors made with confidence are the ones that get fixed).
-        const sureMiss = !ok && sure === true;
-        return h('div', { class: `review-row${ok ? ' ok' : ' miss'}${sureMiss ? ' sure-miss' : ''}` },
-          h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
-          sureMiss ? h('p', { class: 'sure-mark small' }, t('sureMiss')) : null,
-          ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
-          h('p', { class: 'small' }, h('b', {}, correct(q))),
-          h('p', { class: sureMiss ? 'small why-strong' : 'muted small' }, q.why));
-      }),
+      // Where he used a hint: marked, so he sees what is not really his yet.
+      lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}` },
+        h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
+        hinted ? h('p', { class: 'hint-mark small' }, t('hintUsed')) : null,
+        ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
+        h('p', { class: 'small' }, h('b', {}, correct(q))),
+        h('p', { class: 'muted small' }, q.why))),
       h('button', {
         class: 'btn btn-primary',
         onclick: () => { st = continueQuiz(st); lastPass = []; draw(); },
@@ -105,6 +120,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null }, box) {
   }
 
   function draw() {
+    // sure is !hinted: the screens pass it on to the scheduling as before.
     if (st.phase === 'done') { onDone(st.firstTry, st.sure || {}); return; }
     box.replaceChildren(st.phase === 'review' ? reviewCard() : askCard());
     window.scrollTo(0, 0);

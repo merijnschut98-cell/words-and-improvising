@@ -2106,7 +2106,7 @@ await step('before the meeting: event with a topic offers a refresh', async () =
   await c.close();
 });
 
-await step('guessing: a correct guess does not climb; a sure miss is marked', async () => {
+await step('hint: the sure/guess control is gone; one hint per question; correct after a hint does not climb', async () => {
   const lid = 'eng.flow.changeover';
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
@@ -2120,35 +2120,45 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
   await p.locator('.example-card').waitFor();
   await p.locator('.lesson > .btn-primary').click();
-  // Q1 (a choice): two plain options, "Ik weet het" selected; say "Ik gok", then answer it right.
-  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]', { hasText: 'Ik weet het' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]', { hasText: 'Ik gok' }).click();
-  await p.locator('.quiz-card .guess-sure[aria-pressed="false"]').waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
-  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the toggle');
-  await shotP('94-guess-toggle');
+  // Q1 (a choice): no "Ik weet het / Ik gok" control; a secondary Hint button.
+  await p.locator('.quiz-card .quiz-hint-btn', { hasText: 'Hint' }).waitFor();
+  if (await p.locator('.guess-row, .guess-sure, .guess-toggle').count()) throw new Error('the sure/guess control is still there');
+  if (await p.locator('.quiz-card .quiz-hint-btn.btn-primary').count()) throw new Error('Hint must not be the primary button');
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the hint');
+  await p.locator('.quiz-card .quiz-hint-btn').click();
+  await p.locator('.quiz-card .quiz-hint.on', { hasText: 'Deze valt af' }).waitFor();
+  if (await p.locator('.quiz-card .quiz-hint-btn').count()) throw new Error('a hint can be used once: the button should be gone');
+  const struck = p.locator('.quiz-card .opt.struck');
+  if (await struck.count() !== 1) throw new Error(`expected one struck option, got ${await struck.count()}`);
+  if (!(await struck.isDisabled())) throw new Error('the struck option can still be tapped');
+  const q1 = lesson.recall[0];
+  if ((await struck.innerText()).trim() === q1.answer) throw new Error('the hint struck the right answer');
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz with a hint: filled button next to the options');
+  await shotP('94-quiz-hint');
+  await dark('94-quiz-hint-dark', async () => { await p.locator('.quiz-card .quiz-hint.on').waitFor(); });
   await answerRight(p, lesson);
-  // Q2 (a number): the toggle is back to sure; one filled button; answer wrong while sure.
+  // Q2 (a number): a fresh question has its own Hint again; one filled button; answer wrong without a hint.
   await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').waitFor();
-  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]').waitFor();
-  await onePrimary(p, 'quiz card with the toggle');
+  await p.locator('.quiz-card .quiz-hint-btn').waitFor();
+  if (await p.locator('.quiz-card .quiz-hint.on').count()) throw new Error('the hint of Q1 carried over to Q2');
+  await onePrimary(p, 'quiz card with the hint button');
   const q2 = lesson.recall[1];
   await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
   await p.locator('.quiz-card .btn-primary').click();
   for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
   await p.locator('.quiz-review').waitFor();
-  if (await p.locator('.review-row.sure-miss').count() !== 1) throw new Error('expected one sure miss');
-  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Niet als gok aangegeven' }).waitFor();
-  await onePrimary(p, 'quiz review with a sure miss');
-  await shotP('95-sure-miss-review');
-  await dark('95-sure-miss-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
+  if (await p.locator('.review-row.hinted').count() !== 1) throw new Error('expected one hinted question in the review');
+  await p.locator('.review-row.hinted.ok .hint-mark', { hasText: 'Met een hint' }).waitFor();
+  await onePrimary(p, 'quiz review with a hinted question');
+  await shotP('95-hint-review');
+  await dark('95-hint-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
   await p.locator('.quiz-review .btn-primary').click();
   await answerRight(p, lesson);
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.lesson-done').waitFor();
   let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
   const box = (i) => st.courseReviews[`nl|${lid}#r${i}`].box;
+  // Correct after a hint: box 1 (no climb); wrong: box 1; correct without a hint: box 2.
   if (box(0) !== 1 || box(1) !== 1 || box(2) !== 2) throw new Error(`boxes: ${[0, 1, 2, 3].map(box)}`);
   // Back after a long break: a question due 90 days ago is still in the queue.
   const old = new Date(Date.now() - 90 * 86400000);
@@ -2238,16 +2248,23 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   if (backBox.y - (above.y + above.height) < 8) throw new Error('first question: back touches the answer controls');
   await shotP('99-quiz-first-spacing');
   await dark('99-quiz-first-spacing-dark', async () => { await p.locator('.quiz-card').waitFor(); });
-  // Answer the first question (a guess, wrong), then go back: the pick and the guess are shown again.
+  // Answer the first question (with a hint, wrong), then go back: the pick and the hint are shown again.
   const q1 = lesson.recall[0];
-  await p.locator('.quiz-card .guess-toggle').click();
+  await p.locator('.quiz-card .quiz-hint-btn').click();
+  await p.locator('.quiz-card .quiz-hint.on').waitFor();
   let mine;
   if ('number' in q1) { mine = String(q1.number + 7); await p.locator('.quiz-card .quiz-num').fill(mine); await p.locator('.quiz-card .btn-primary').click(); }
-  else { mine = q1.options.find((o) => o !== q1.answer); await p.locator('.quiz-card .opt', { hasText: mine }).first().click(); }
+  else {
+    // A wrong option the hint did not strike.
+    const gone = (await p.locator('.quiz-card .opt.struck').innerText()).trim();
+    mine = q1.options.find((o) => o !== q1.answer && o !== gone);
+    await p.locator('.quiz-card .opt', { hasText: mine }).first().click();
+  }
   await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
   await p.locator('.quiz-card .quiz-back').click();
   await p.locator('.quiz-card .quiz-picked', { hasText: 'Je koos:' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
+  await p.locator('.quiz-card .quiz-hint.on').waitFor();
+  if (await p.locator('.quiz-card .quiz-hint-btn').count()) throw new Error('quiz back: the hint was used, no second Hint button');
   if ('number' in q1) {
     if ((await p.locator('.quiz-card .quiz-num').inputValue()) !== mine) throw new Error('numeric answer not prefilled');
     await onePrimary(p, 'quiz back with the earlier answer');

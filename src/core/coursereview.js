@@ -1,7 +1,7 @@
 // Course relearning (successive relearning on Leitner boxes). The quiz is the
-// first session: right there → box 2, wrong → box 1. Each later sure, correct
-// recall moves a question up a box (due after 1, 3, 7, 21, 60, 120 days); a
-// correct guess keeps the box; a miss sends it back to box 1. Box 4 means
+// first session: right there → box 2, wrong → box 1. Each later correct recall
+// without a hint moves a question up a box (due after 1, 3, 7, 21, 60, 120
+// days); correct after a hint keeps the box; a miss sends it back to box 1. Box 4 means
 // owned: three correct recalls in three spaced sessions. Questions overdue by
 // more than 60 days come back as lapsed, a few per session.
 // Keys are 'lang|questionId', separate from the speaking reviews. Pure.
@@ -24,8 +24,9 @@ const toDate = (day) => { const [y, m, d] = day.split('-').map(Number); return n
 export const questionKey = (lang, questionId) => `${lang}|${questionId}`;
 const idOf = (key) => key.slice(key.indexOf('|') + 1);
 
-// sure = false: he said he was guessing. A correct guess is not retrieval, so
-// it does not climb (a first one starts at box 1).
+// sure = !hinted (it used to be "I know it" versus "I'm guessing"; stored
+// lastSure keeps its name). Correct after a hint is not full retrieval, so it
+// does not climb (a first one starts at box 1).
 export function scheduleCourseReview(reviews, { questionId, lessonId, subject, lang }, today, correct, sure = true) {
   const key = questionKey(lang, questionId);
   const cur = (reviews || {})[key];

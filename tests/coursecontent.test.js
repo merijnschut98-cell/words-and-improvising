@@ -60,6 +60,17 @@ test('validateModule: flags missing lessons, bad answers, numeric without tolera
   assert.match(errs, /[<>]/);
 });
 
+test('validateModule: an optional hint on a question is at most 25 words and never gives the answer', () => {
+  const withHint = (choiceHint, numHint) => ({ lessons: [lesson('eng.fx.a', {
+    recall: [{ ...q(1), hint: choiceHint }, q(2), { q: 'How much?', number: 0.85, tolerance: 0.02, unit: '', why: 'Because.', hint: numHint }],
+  }), lesson('eng.fx.b')] });
+  assert.deepEqual(validateModule(withHint('Think of the second letter.', 'Good time over planned time.'), fxNl, fxMeta), []);
+  assert.match(validateModule(withHint('word '.repeat(26), 'ok'), fxNl, fxMeta).join('\n'), /recall 0: hint has 26 words/);
+  assert.match(validateModule(withHint('It is b, obviously.', 'ok'), fxNl, fxMeta).join('\n'), /recall 0: hint gives the answer/);
+  assert.match(validateModule(withHint('ok', 'Around 0,85.'), fxNl, fxMeta).join('\n'), /recall 2: hint gives the answer/);
+  assert.match(validateModule(withHint('', 'ok'), fxNl, fxMeta).join('\n'), /recall 0: hint/);
+});
+
 test('validateModule: pushback is checked when present, and required on project (pm) lessons', () => {
   const pb = { lines: ['That is not how we do it here.', 'We have no budget for this.'], model: 'I hear you. Let us test it on one line for two weeks.', rubric: ['Acknowledges the point', 'Restates the ask', 'Proposes a next step'] };
   const withPb = (p) => ({ lessons: [lesson('eng.fx.a', { situation: { ...lesson('eng.fx.a').situation, pushback: p } }), lesson('eng.fx.b')] });

@@ -191,6 +191,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         show(box);
         renderQuiz(app, {
           questions: recallQuestions(lesson),
+          termsOf: () => terms,
           onBack: goBack,
           onDone: (firstTry, sure) => {
             const res = applyLesson(app.state, { subject, lessonId: lesson.id, firstTry, sure, lang: app.lang }, app.today(), Date.now());
