@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.machining.processes',
+      film: 'eng.machining.overview',
       title: 'Turning, milling, drilling, grinding',
       pre: [
         {
