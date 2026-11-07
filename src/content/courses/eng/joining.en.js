@@ -1137,6 +1137,7 @@ export default {
     },
     {
       id: 'eng.joining.bonding',
+      figure: 'eng.joining.rivet',
       title: 'Adhesives, rivets and clinching',
       pre: [
         {
@@ -1206,6 +1207,7 @@ export default {
     },
     {
       id: 'eng.joining.adhesives',
+      figure: 'eng.joining.rivet',
       title: 'Bonding in production: preparation, dispensing, curing',
       pre: [
         {
@@ -1275,6 +1277,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
+      figure: 'eng.joining.rivet',
       title: 'Riveting and clinching in series: process monitoring',
       pre: [
         {
@@ -1345,6 +1348,7 @@ export default {
     },
     {
       id: 'eng.joining.choosejoint',
+      figure: 'eng.joining.rivet',
       title: 'Choosing a joining method: materials, corrosion, disassembly and cost',
       pre: [
         {
