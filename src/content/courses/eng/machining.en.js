@@ -292,6 +292,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling: the machining centre',
       pre: [
@@ -361,6 +362,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Cutting data in milling',
       pre: [
@@ -430,6 +432,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling strategy: climb, chip thinning, trochoidal',
       pre: [
@@ -500,6 +503,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.fiveaxis',
       title: 'Five-axis milling: 3+2 or simultaneous',
       pre: [
@@ -853,6 +857,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CNC basics',
       pre: [
@@ -924,6 +929,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Reading a G-code program',
       pre: [
@@ -993,6 +999,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Offsets and compensation: why crashes happen',
       pre: [
@@ -1063,6 +1070,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CAM, simulation and prove-out',
       pre: [

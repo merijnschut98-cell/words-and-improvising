@@ -68,6 +68,24 @@ New:
    - unit tests for retention (20), grouping, and the before/after calculation;
    - e2e with a fake MediaRecorder: a round, then Terugluisteren, play, the checklist, then rate.
 
+## 1b. Figures on small screens (Merijn, 2026-11-07)
+
+Problem: in the mobile app some anatomy figures don't work, because the screen is too small for the amount of information. The drawing shrinks to about 200 px, several readout lines and two rows of controls take up the rest, chart labels are 5–7 px, and parts are hard to tap.
+
+Fix, as one shared pattern in the figure kit (applied to every figure in src/content/courses/figures):
+1. **Phone layout below about 480 px:**
+   - the drawing gets the full width, and the camera crops to the part that matters at that level (the build already knows the level);
+   - the readout shows 1–2 key lines, with "meer" opening the rest;
+   - controls move to one compact row or a bottom sheet;
+   - on-screen chart text is at least 11 px, or the chart moves into the readout.
+2. **Full screen:** a button in the corner opens the figure full screen (landscape where possible), with pinch-zoom, or tap to zoom on a part.
+3. **Offline:** figures load via srcdoc, like the films, because a sandboxed frame without allow-same-origin bypasses the service worker and shows blank when offline. The kit reads its parameters through `searchOf` (location.search, falling back to window.name).
+4. **Checks:**
+   - an e2e step renders every figure at 360 × 640 and 390 × 844 at all four levels;
+   - it asserts no horizontal scroll, the drawing at least 60 % of the frame height, text at least 11 px, and tap targets at least 44 px;
+   - the existing console-error sweep stays.
+5. **Order:** first the kit plus the five worst figures (to be chosen from screenshots), then the rest in waves.
+
 ## 2b. Hint for returning questions; the "I know it / I'm guessing" control goes (Merijn, 2026-11-07)
 
 What exists today:

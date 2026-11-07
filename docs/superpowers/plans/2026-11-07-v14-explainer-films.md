@@ -9,6 +9,13 @@
 > - **Older modules:** their films wait until the module is rebuilt as topics × levels.
 > - **Film tab (Merijn, 2026-11-07):** a lesson with a film gets its own step "Film", between Raden and Lezen (Raden · Film · Lezen · Voorbeeld · Check). It replaces the button under the first teach block, can be skipped, and you can go back to it like any step.
 > - **Every level has a film (Merijn, 2026-11-07):** Basis matters most, so every topic level must be served by a film. A test enforces this for topics whose films are built. eng.machining.overview is now in progress for Turning L1.
+> - **v14b, real video (Merijn, 2026-11-07, after watching the pilot):**
+>   1. **Basis always gets a "how it works" film:** a broad explanation of how the thing works, so the topic makes sense as a whole.
+>   2. **More explanation:** films explain fully, so he doesn't have to look things up. The narration is a fuller script than the captions. Length is no longer capped at 150 s: Basis about 3–5 min, higher levels about 2–4 min, as long as the content needs.
+>   3. **The film replaces the text:** in a lesson with a film, the Lezen step becomes the Film step (Raden · Film · Voorbeeld · Check). Under the film, a collapsed "Lees mee" holds the spoken script. Lessons without a film keep their text.
+>   4. **Human voice:** pre-recorded narration with Piper TTS (free, local, neural; Dutch and English voices), not the browser voice.
+>   5. **Real video files:** MP4 (H.264 + AAC, 720p), one per film per language, plus WebVTT captions. They are rendered from the film scenes with Playwright (a deterministic clock, frame capture) and ffmpeg, timed to the narration audio. Hosted in Supabase Storage (public bucket `films`), played with `<video>`, and cached after the first full view for offline use.
+>   - The HTML films built so far are the visual source for the videos; their scenes get a narration script and longer explanation.
 > - **Still open (defaults until he says otherwise):**
 >   - the film button sits under the first teach block;
 >   - films are cached on first view plus an offline switch per subject;
@@ -105,6 +112,7 @@ The film is an **explainer player** page: one standalone HTML file per film.
 - **Reduced motion** (`prefers-reduced-motion: reduce` or `?motion=reduce`):
   - no tweening;
   - each scene shows its designed still (`still: u` in 0..1) with its caption, and "Vorige / Volgende" replace the scrubber;
+  - a beat may carry its own `still`, used for that beat's caption, when one still cannot show every part the scene's captions name;
   - narration still works.
 - **Page parameters:**
   - `?theme=light|dark` (default prefers-color-scheme) and `?lang=nl|en` (default nl);
