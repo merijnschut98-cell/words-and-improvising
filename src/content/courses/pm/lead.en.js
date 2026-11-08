@@ -27,26 +27,26 @@ export default {
       recall: [
         {
           q: 'Which of these is a source of personal power, not position power?',
-          options: ['Reward power: handing out bonuses or good shifts', 'Legitimate power: the formal right to decide', 'Coercive power: being able to impose sanctions', 'Referent power: people respect you and want to work with you'],
+          options: ['Reward power: handing out bonuses or good shifts', 'Legitimate power: the formal right to decide what others work on', 'Coercive power: being able to impose sanctions', 'Referent power: people respect you and want to work with you'],
           answer: 'Referent power: people respect you and want to work with you',
           why: 'Reward, legitimate and coercive power come with a role. Referent power comes from how you work and treat people.',
         },
         {
           q: 'A shift lead does exactly what you asked and no more, and a problem he could easily have fixed stays unfixed. What did you get?',
-          options: ['Commitment, because he did what was agreed', 'Compliance: doing what was asked, with minimum effort', 'Resistance, because he refused the task', 'Referent power, because he followed your lead'],
+          options: ['Commitment, because he did exactly what was agreed with him', 'Compliance: doing what was asked, with minimum effort', 'Resistance, because he refused the task', 'Referent power, because he followed your lead'],
           answer: 'Compliance: doing what was asked, with minimum effort',
           why: 'Commitment would have meant he also fixed what nobody asked for. Doing the minimum is compliance.',
         },
         {
           q: 'Why does borrowing the sponsor’s authority too often weaken you?',
-          options: ['It wears thin each time, and you become a messenger instead of someone with your own weight', 'Sponsors are not allowed to give instructions to people on the shop floor', 'It makes the project cost more because every request needs an extra meeting', 'Most consulting firms forbid it in their code of conduct'],
-          answer: 'It wears thin each time, and you become a messenger instead of someone with your own weight',
+          options: ['It wears thin with use, and you become a messenger', 'Sponsors are not allowed to give instructions to people on the shop floor', 'It makes the project cost more because every request needs an extra meeting', 'Most consulting firms forbid it in their code of conduct'],
+          answer: 'It wears thin with use, and you become a messenger',
           why: 'Borrowed position power runs out, and people learn to wait for the sponsor instead of listening to you.',
         },
         {
           q: 'You are team captain. What gives you the most lasting influence over your team?',
-          options: ['The title, because it gives you legitimate power over the others', 'Being able to report people who miss actions to the manager', 'What you know and how you treat people: expert and referent power', 'Deciding who gets the interesting tasks, as a reward'],
-          answer: 'What you know and how you treat people: expert and referent power',
+          options: ['The title, because it gives you legitimate power over the others', 'Being able to report people who miss actions to the manager', 'What you know and how you treat people: personal power', 'Deciding who gets the interesting tasks, as a reward'],
+          answer: 'What you know and how you treat people: personal power',
           why: 'A captain’s title carries little position power. Personal power keeps working when the title doesn’t.',
         },
       ],
@@ -88,8 +88,8 @@ export default {
       pre: [
         {
           q: 'You want shift leads to start using a new start-of-shift board. Which line uses social proof?',
-          options: ['“The plant manager has made this mandatory from Monday.”', '“Shifts B and C have used it for a month, and their handovers went from 20 to 10 minutes.”', '“We only have three boards, so sign up before they’re gone.”', '“I helped you with the downtime report, so now help me with this.”'],
-          answer: '“Shifts B and C have used it for a month, and their handovers went from 20 to 10 minutes.”',
+          options: ['“The plant manager has made this board mandatory for every shift from Monday.”', '“Shifts B and C have used it for a month and now hand over in half the time.”', '“We only have three boards for the whole plant, so sign up before they’re gone.”', '“I helped you with the downtime report last month, so now you help me with this.”'],
+          answer: '“Shifts B and C have used it for a month and now hand over in half the time.”',
           why: 'Social proof: people follow what similar others do. The other lines lean on authority, scarcity and reciprocity.',
         },
       ],
@@ -120,14 +120,14 @@ export default {
         },
         {
           q: '“Everyone in the management team already agreed,” you say, but two of them haven’t been asked. What is this?',
-          options: ['Social proof used honestly, because most of them agreed', 'Unity, because it refers to the team as a whole', 'Manipulation: a false social proof that costs credibility when it comes out', 'Authority, because it refers to managers'],
-          answer: 'Manipulation: a false social proof that costs credibility when it comes out',
+          options: ['Social proof used honestly, because most of them agreed', 'Unity, because it refers to the team as a whole', 'Manipulation: a false claim of social proof', 'Authority, because it refers to managers'],
+          answer: 'Manipulation: a false claim of social proof',
           why: 'It isn’t true, and they wouldn’t agree if they knew. That is the line.',
         },
         {
           q: 'Which check separates persuasion from manipulation?',
-          options: ['Is it true, and would they still agree if they knew what you were doing?', 'Does it get a yes faster than an argument based on data would?', 'Did the sponsor approve the approach before you used it?', 'Is it allowed under the client’s code of conduct for staff?'],
-          answer: 'Is it true, and would they still agree if they knew what you were doing?',
+          options: ['Is it true, and would they agree if they knew what you were doing?', 'Does it get a yes faster than an argument based on data would?', 'Did the sponsor approve this approach before you tried it with his people?', 'Is it allowed under the client’s code of conduct for staff?'],
+          answer: 'Is it true, and would they agree if they knew what you were doing?',
           why: 'Speed, approval or rules don’t make a tactic honest; truth and openness do.',
         },
       ],
@@ -197,13 +197,13 @@ export default {
         },
         {
           q: 'Whom do you usually try to win first?',
-          options: ['The most senior person in the room, because the rest follow rank', 'The loudest critic, because turning him convinces everyone else', 'The person with high influence who is still neutral and whom others listen to', 'Whoever agrees already, because that is the quickest win'],
+          options: ['The most senior person in the room, because the rest of the team always follows rank', 'The loudest critic, because turning him convinces everyone else', 'The person with high influence who is still neutral and whom others listen to', 'Whoever agrees already, because that is the quickest win'],
           answer: 'The person with high influence who is still neutral and whom others listen to',
           why: 'They are movable and they move others; supporters are already there and loud critics rarely turn first.',
         },
         {
           q: 'Why do you talk to key people one-on-one before a group meeting?',
-          options: ['To save time, so the group meeting itself can be short and formal', 'Because real decisions are hardly ever made in group meetings anyway', 'To get the decision made before they can raise objections in public', 'People rarely change position in public, and nobody likes surprises in front of peers'],
+          options: ['To save time, so the group meeting itself can be short and formal', 'Because real decisions are hardly ever made in group meetings anyway, only before them', 'To get the decision through before they can raise objections in public, in front of their peers', 'People rarely change position in public, and nobody likes surprises in front of peers'],
           answer: 'People rarely change position in public, and nobody likes surprises in front of peers',
           why: 'In a one-on-one they can ask questions and shape it; in a group they defend.',
         },
@@ -257,10 +257,10 @@ export default {
       ],
       teach: [
         'The org chart shows who reports to whom. The informal network shows how work really gets done: whom people ask for advice, and whom they trust with bad news. David Krackhardt and Jeffrey Hanson (Harvard Business Review, 1993) called these the advice network and the trust network, and showed they can look very different from the chart.\n\nA broker is someone who connects groups that otherwise don’t talk, such as a planner who used to work in maintenance. Brokers spread a change fastest.',
-        'A coalition is a group of people who back the change together, so it doesn’t hang on you or on one sponsor. Build it in rings: first two or three respected people who help shape the plan, then their networks.\n\nJohn Kotter calls the top-level version a guiding coalition; how that drives adoption is covered in the Land module (What really drives adoption). Here the focus is the people work: who joins, in what order, and what each gets out of it.',
-        'Not everyone who resists is a blocker: some have a point you should hear (Land module, Working with resistance). A blocker is someone with the power to stop the change who has decided against it.\n\nFirst find his interest: lost budget, lost status, an old conflict. Then three options: change the plan so he loses less; make the coalition visible, so opposing it costs him more; or route around his area for now. Going behind his back to his boss is the move that usually backfires.',
+        'A coalition is a group of people who back the change together, so it doesn’t hang on you or on one sponsor. Build it in rings: first two or three respected people who help shape the plan, then their networks.\n\nJohn Kotter calls the top-level version a guiding coalition; forming one at the start is covered in the Intake module (Building a coalition). Here the focus is the people work: who joins, in what order, and what each gets out of it.',
+        'Not everyone who resists is a blocker; some have a point (Land, Working with resistance). A blocker can stop the change and has decided against it; the one-on-one with him is in When you’re stuck (The person who blocks).\n\nNetwork moves: find his interest (budget, status, an old conflict), then change the plan so he loses less, make the coalition visible so opposing it costs more, or route around his area for now. Going behind his back to his boss usually backfires.',
         'Organisational politics is the use of informal power to protect interests. Pretending it doesn’t exist is naïve; playing it dirty ruins your name. Gerald Ferris and colleagues call the useful middle political skill: reading people well, building networks, influencing, and coming across as sincere.\n\nSigns you are in a political fight: decisions taken in meetings you weren’t in, your data questioned by only one department, a sponsor who suddenly has no time.',
-        'When the sponsor fades. Sponsors change jobs and priorities move. Watch for cancelled one-on-ones and steering committees delegated to a deputy. Then ask directly: “Is this still one of your top three?” If not, re-contract (When you’re stuck module, Resetting a failing project) or find a second senior backer before the first one leaves.\n\nTypical failure: a coalition of supporters only, so the first critic in the steering committee surprises everyone. A sharp question: if my sponsor left tomorrow, who would still defend this project?',
+        'When the sponsor fades. Sponsors change jobs and priorities move. Watch for cancelled one-on-ones and steering committees delegated to a deputy. Then ask: “Is this still one of your top three?” If not, re-contract (When you’re stuck: Resetting a failing project; What you need from your sponsor) or find a second senior backer before the first one leaves.\n\nTypical failure: a coalition of supporters only, so the first critic in the steering committee surprises everyone. A sharp question: if my sponsor left tomorrow, who would still defend this project?',
       ],
       example: {
         kind: 'faded',
@@ -272,25 +272,25 @@ export default {
       recall: [
         {
           q: 'What does the advice network show?',
-          options: ['Who formally reports to whom on the org chart', 'Whom people actually go to for help with their work', 'Which managers sit on the steering committee', 'Who has access to which IT systems'],
+          options: ['Who formally reports to whom, as drawn on the org chart', 'Whom people actually go to for help with their work', 'Which managers sit on the steering committee', 'Who has access to which IT systems'],
           answer: 'Whom people actually go to for help with their work',
           why: 'Krackhardt and Hanson separated the advice network and the trust network from the formal chart.',
         },
         {
           q: 'A manager with the power to stop your project has decided against it. Which move usually backfires?',
-          options: ['Asking what he would lose if it goes ahead', 'Adjusting the plan so that his area loses less', 'Making the coalition behind the change visible to him', 'Going behind his back to his boss without telling him'],
+          options: ['Asking what he would lose if it goes ahead', 'Adjusting the plan so that his area loses less', 'Making the broad coalition behind the change visible to him', 'Going behind his back to his boss without telling him'],
           answer: 'Going behind his back to his boss without telling him',
           why: 'It confirms his worst view of the project and turns a blocker into an enemy.',
         },
         {
           q: 'Why build a coalition instead of relying on one strong sponsor?',
-          options: ['So the change doesn’t depend on one person who may move or lose interest', 'Because sponsors are usually not allowed to back a project alone', 'Because a coalition can take over the steering committee’s decisions', 'So you don’t have to talk to the critics at all'],
+          options: ['So the change doesn’t depend on one person who may move or lose interest', 'Because sponsors are usually not allowed to back a project alone', 'Because a coalition can take over the steering committee’s decisions when needed', 'So you don’t have to talk to the critics at all'],
           answer: 'So the change doesn’t depend on one person who may move or lose interest',
           why: 'Sponsors change jobs and priorities; a coalition keeps the change alive.',
         },
         {
           q: 'Which sign suggests your sponsor is fading?',
-          options: ['He suddenly asks hard questions in the steering committee', 'He now wants to see the data before every meeting', 'Cancelled one-on-ones and steering committees delegated to a deputy', 'He asks you to present the project to the board'],
+          options: ['He suddenly asks much harder questions about the numbers in the steering committee', 'He now wants to see the data before every meeting', 'Cancelled one-on-ones and steering committees delegated to a deputy', 'He asks you to present the project to the board'],
           answer: 'Cancelled one-on-ones and steering committees delegated to a deputy',
           why: 'Hard questions show interest. Losing his time shows the project slipping down his list.',
         },
@@ -333,7 +333,7 @@ export default {
       pre: [
         {
           q: 'A senior client manager kept checking his phone during your workshop, and the team noticed. When is the best moment to give feedback?',
-          options: ['Right then, in front of the group', 'At the next steering committee', 'Never: he’s the client', 'Soon after, one-on-one, after asking if he’s open to it'],
+          options: ['Right then, in front of the group, while it is fresh', 'At the next steering committee, where the sponsor is present', 'Never: he’s the client, and it isn’t your place', 'Soon after, one-on-one, after asking if he’s open to it'],
           answer: 'Soon after, one-on-one, after asking if he’s open to it',
           why: 'Private, soon, and with permission: the three things that make upward feedback hearable.',
         },
@@ -422,7 +422,7 @@ export default {
         'Radical Candor is a framework from Kim Scott, a former manager at Google and Apple, in her book of the same name (2017). It has two axes: care personally (you show you care about the person) and challenge directly (you say what isn’t working).\n\nBoth high is Radical Candor: “I want you to do well on Thursday, and your summary slide hides the main result.” Her point: caring and challenging are not opposites; you need both at once.',
         'The other three boxes. Obnoxious aggression: challenging without caring, the brutal “this is rubbish”. Ruinous empathy: caring without challenging, so the person never hears what holds them back. Manipulative insincerity: neither, such as praising someone to their face and criticising them behind their back.\n\nScott says most people fail through ruinous empathy, not aggression. Juniors who want to be liked, and new team captains, are especially prone to it.',
         'Her order: first ask for criticism, then give praise, then give criticism. Asking first shows you can take it: “What’s one thing I could do that would make working with me easier?” Then wait out the silence. Reward the answer, even if it stings.\n\nPraise should be as specific as criticism, using the SBI structure from the feedback lesson. Criticism goes in private, praise usually in public, though some people dislike public praise: ask them.',
-        'Limits. Radical Candor is a practitioner framework: built on experience, not tested in research. There is little peer-reviewed research on it. Scott herself says it gets misused as a licence to be harsh: people remember “radical” and forget “care”.\n\nCulture matters too. In Dutch workplaces directness is common, so the risk is sliding into obnoxious aggression; with some international colleagues the same words land much harder. Disagreeing with someone senior is covered in the Negotiating module.',
+        'Limits. Radical Candor is a practitioner framework: built on experience, with little peer-reviewed research behind it. Scott herself says it gets misused as a licence to be harsh: people remember “radical” and forget “care”.\n\nCulture matters too. In Dutch workplaces directness is common, so the risk is sliding into obnoxious aggression; with some international colleagues the same words land much harder. Disagreeing with someone senior is covered in the Negotiating module (Disagreeing with someone more senior).',
         'Lines side by side. Ruinous empathy: “It’s fine, don’t worry.” Radical Candor: “I’m telling you because I want this to land with the plant manager: the slide has three numbers and none of them is the result.”\n\nTypical failure: calling every harsh remark “candid”. The test is not how direct you were, but whether the other person could hear it and act on it. A sharp question before you speak: do they know I’m on their side?',
       ],
       example: {
@@ -451,8 +451,8 @@ export default {
         },
         {
           q: 'What is a fair caveat about Radical Candor?',
-          options: ['Google’s own research on its teams showed that it lowers trust', 'It was designed for American start-ups and fails in larger companies', 'It is built on experience rather than research, and it gets misused as a licence to be harsh', 'It forbids praise in public, which demotivates good performers'],
-          answer: 'It is built on experience rather than research, and it gets misused as a licence to be harsh',
+          options: ['Google’s own research on its teams showed that it lowers trust', 'It was designed for American start-ups and stops working once a company grows larger', 'It rests on experience, not research, and gets misused as a licence to be harsh', 'It forbids praise in public, which demotivates good performers'],
+          answer: 'It rests on experience, not research, and gets misused as a licence to be harsh',
           why: 'Scott built it on experience, and she warns against the “radical without care” reading herself.',
         },
       ],
@@ -521,19 +521,19 @@ export default {
         },
         {
           q: 'What is a “third story” opening?',
-          options: ['Describing the situation as a neutral observer would', 'Telling a story about a previous client', 'Starting with your own view', 'Quoting a third person who agrees with you'],
+          options: ['Describing the situation as a neutral observer would', 'Telling a story about a previous client with the same problem', 'Starting with your own view, so it is clear from the start', 'Quoting a third person who agrees with you, for support'],
           answer: 'Describing the situation as a neutral observer would',
           why: 'It names the difference without blaming, so both sides can start from it.',
         },
         {
           q: 'Someone’s remark hurt your project. What do you speak about, and what do you ask about?',
-          options: ['You state their intent, you ask about the facts', 'You speak about your impact, you ask about their intent', 'You speak about both, so nothing stays unsaid', 'You avoid both and stick to the planning'],
+          options: ['You state their intent, you ask about the facts', 'You speak about your impact, you ask about their intent', 'You speak about both, so that nothing stays unsaid between you', 'You avoid both and stick to the planning'],
           answer: 'You speak about your impact, you ask about their intent',
           why: 'You know the impact on you; you don’t know their intent, so you ask.',
         },
         {
           q: 'How do you end a difficult conversation well?',
-          options: ['With a joke, so you both leave without tension', 'By agreeing to talk again sometime soon', 'With a concrete agreement said out loud: who does what by when', 'By letting them have the last word, as a gesture'],
+          options: ['With a joke, so you both leave without tension', 'By agreeing to talk about it again sometime soon, when it suits you both', 'With a concrete agreement said out loud: who does what by when', 'By letting them have the last word, as a gesture'],
           answer: 'With a concrete agreement said out loud: who does what by when',
           why: 'Without a spoken agreement both leave with a different version of what was decided.',
         },
@@ -615,7 +615,7 @@ export default {
         },
         {
           q: 'Once you have understood a piece of feedback, what are you free to do?',
-          options: ['Only accept it, or you will look defensive', 'Try it, try part of it, or decline it with thanks', 'Ask your manager to decide for you', 'Ignore it unless it is put in writing'],
+          options: ['Only accept it, or you will look defensive to the person giving it', 'Try it, try part of it, or decline it with thanks', 'Ask your manager to decide for you', 'Ignore it unless it is put in writing'],
           answer: 'Try it, try part of it, or decline it with thanks',
           why: 'Understanding comes first; after that, the choice is yours.',
         },
@@ -657,7 +657,7 @@ export default {
       pre: [
         {
           q: 'A plant manager snaps: “This project is costing my people hours we don’t have.” What is the strongest first response?',
-          options: ['Explain the benefits of the project', 'Show that the hours are within the plan', '“Hours you don’t have. What’s eating them right now?”', 'Promise to cut the meetings'],
+          options: ['Explain the benefits of the project before he gets more upset', 'Show that the hours are within the plan', '“Hours you don’t have. What’s eating them right now?”', 'Promise to cut the meetings'],
           answer: '“Hours you don’t have. What’s eating them right now?”',
           why: 'Reflect, then ask: it lowers the heat and gets you the real problem before you answer.',
         },
@@ -665,9 +665,9 @@ export default {
       teach: [
         'Active listening, a term from the psychologists Carl Rogers and Richard Farson (1957), means listening to understand, not to reply. MORE PIES, a checklist from crisis negotiation that Scott Walker, a kidnap negotiator, teaches in Order Out of Chaos (2023), spells out how.\n\nMood: read the energy in the room before the content. Open questions: what and how, not yes or no, so the other person tells the story. Reflecting: give back the feeling. Empathy: show you get why it matters to them.',
         'Paraphrasing: restate the content in your own words. Inquiry: dig one level deeper. Experience: share your own only when it helps them. Silence: let it work.\n\nUnder pressure you skip straight to defending or solving. The rule: reflect or paraphrase first, then ask, then answer. Reflecting: “That sounds frustrating.” Paraphrasing: “So the forms took more time than the change saved.” When someone attacks the project, there’s usually a worry underneath: workload, blame, losing control.',
-        'Silence. After a question, count to five in your head.\n\nIn classroom research in the 1970s, Mary Budd Rowe found teachers waited about one second for an answer; when they waited three seconds or more, answers got longer and better thought out. Adults in meetings are no different: the real answer often comes after the first one. Being comfortable with silence reads as confidence, which helps when you’re the youngest in the room.',
+        'Silence. After a question, wait at least three seconds, as in Intake (The first conversation); under pressure, count to five.\n\nIn classroom research in the 1970s, Mary Budd Rowe found teachers waited about one second for an answer; when they waited three seconds or more, answers got longer and better thought out. Adults in meetings are no different: the real answer often comes after the first one. Being comfortable with silence reads as confidence, which helps when you’re the youngest in the room.',
         'Questions that open: “What worries you most about this?” “What would have to be true for this to work?” “What have you tried before?” “What am I missing?”\n\nAvoid “why” when emotions run high: it sounds like an accusation. Use “what made you…” instead.\n\nThe typical failure is the fake question: “Don’t you think we should…?” People hear the answer you want, give it to you, and you learn nothing.',
-        'Experience, used well. The trap is “At a previous client we had exactly that…”, which takes the floor away from them.\n\nUse it as a bridge: one sentence, then hand it back. (Versions of MORE PIES differ: in some, M is minimal encouragers and S is summarising.) “I’ve seen that go wrong when the people doing the work weren’t asked. Is that what happened here?”\n\nCheck yourself after a tough meeting: what did I learn that I didn’t know before? If nothing, you talked more than you listened.',
+        'Experience, used well. The trap is “At a previous client we had exactly that…”, which takes the floor away from them.\n\nUse it as a bridge: one sentence, then hand it back. “I’ve seen that go wrong when the people doing the work weren’t asked. Is that what happened here?”\n\nCheck yourself after a tough meeting: what did I learn that I didn’t know before? If nothing, you talked more than you listened. (Versions of MORE PIES differ: in some, M is minimal encouragers and S is summarising.)',
       ],
       example: {
         kind: 'worked',
@@ -677,7 +677,7 @@ export default {
       recall: [
         {
           q: 'What is the difference between reflecting and paraphrasing?',
-          options: ['There is no difference: both repeat what was said', 'Reflecting is a question, paraphrasing is a statement', 'Reflecting is for senior people, paraphrasing for peers', 'Reflecting gives back the feeling, paraphrasing the content'],
+          options: ['There is no difference: both repeat what was said', 'Reflecting is a question, paraphrasing is a statement', 'Reflecting is for senior people, paraphrasing is for your peers', 'Reflecting gives back the feeling, paraphrasing the content'],
           answer: 'Reflecting gives back the feeling, paraphrasing the content',
           why: '“That sounds frustrating” reflects; “so the forms cost more than they saved” paraphrases.',
         },
@@ -689,9 +689,9 @@ export default {
         },
         {
           q: 'After you ask a question, how long should you be willing to stay silent?',
-          options: ['Around five seconds, or longer', 'About one second, so the meeting keeps moving', 'Not at all; fill the gap before it gets awkward', 'Until the most senior person speaks'],
-          answer: 'Around five seconds, or longer',
-          why: 'The considered answer usually comes after the first quick one.',
+          options: ['At least three seconds; under pressure, count to five', 'About one second, so that the meeting keeps moving forward', 'Not at all; fill the gap before it gets awkward', 'Until the most senior person speaks'],
+          answer: 'At least three seconds; under pressure, count to five',
+          why: 'Rowe found that three seconds or more gave longer, better answers; the considered answer often comes after the first quick one.',
         },
         {
           q: 'How do you use your own experience without taking over?',
@@ -744,7 +744,7 @@ export default {
       ],
       teach: [
         'Toyota Kata is a way of making improvement a daily habit, described by Mike Rother in Toyota Kata (2009) from his research into how Toyota managers develop people. A kata is a small routine you practise until it becomes automatic, as in martial arts.\n\nThe improvement kata has four steps: understand the direction or challenge; grasp the current condition; set the next target condition; experiment towards it, step by step. The coaching kata is how a coach teaches someone to do that.',
-        'A target condition describes how the process should work at a date not far off, often one to a few weeks away: “Changeover on press 4 in under 30 minutes, every time, by the 20th.” The actual condition is how it works now: measured, not assumed.\n\nAn obstacle is anything that stands between the two. The learner works on one obstacle at a time, with one experiment at a time. Each experiment is a small PDCA cycle: plan, do, check, act.',
+        'A target condition describes how the process should work at a date not far off, between one week and three months away; beginners start with a week or two: “Changeover on press 4 in under 30 minutes, every time, by the 20th.” The actual condition is how it works now: measured, not assumed.\n\nAn obstacle is anything that stands between the two. The learner works on one obstacle at a time, with one experiment at a time. Each experiment is a small PDCA cycle: plan, do, check, act.',
         'The five coaching questions, asked in every coaching cycle, often daily, in about 15 to 20 minutes at the learner’s board:\n\n1. What is the target condition?\n2. What is the actual condition now?\n3. What obstacles do you think are preventing you from reaching the target condition? Which one are you addressing now?\n4. What is your next step? What do you expect?\n5. When can we go and see what we have learned from taking that step?',
         'Between questions 2 and 3, the coach has the learner reflect on the last step: what did you plan, what did you expect, what actually happened, what did you learn?\n\nRoles. The learner owns the process and the thinking. The coach owns the learner’s progress, asks, and doesn’t hand out answers. If the learner is stuck, the coach asks a smaller question or suggests going to look. The wording of the questions varies slightly between sources; the structure is the same.',
         'Why it suits a Lean consultant: when you leave, the habit stays, because the team leader learned to run the experiments, not you. It also suits a junior: you don’t need to know the answer, only to ask well, which is where the MORE PIES listening from the first lesson of this topic helps.\n\nTypical failure: the coach turns question 4 into advice. A sharp question for yourself after each cycle: did the learner say anything I didn’t expect?',
@@ -757,7 +757,7 @@ export default {
       recall: [
         {
           q: 'What is a target condition?',
-          options: ['The long-term challenge the board sets for the next three years', 'How the process should work at a date not far off, described concretely', 'A list of every obstacle the team can think of, in order of size', 'The yearly KPI target, the key figure the plant is judged on'],
+          options: ['The long-term challenge the board sets for the plant for the next three years', 'How the process should work at a date not far off, described concretely', 'A list of every obstacle the team can think of, in order of size', 'The yearly KPI target, the key figure the plant is judged on'],
           answer: 'How the process should work at a date not far off, described concretely',
           why: 'It is the next step towards the challenge, close enough to experiment towards.',
         },
@@ -769,7 +769,7 @@ export default {
         },
         {
           q: 'The learner says the trolley saved 6 minutes, not the 10 she expected. What do you ask next?',
-          options: ['What did you learn from the difference?', 'Why didn’t you plan it better?', 'Shall I tell you what I would do?', 'Whom should we escalate this to?'],
+          options: ['What did you learn from the difference?', 'Why didn’t you plan the trolley’s place better?', 'Shall I tell you what I would do?', 'Whom should we escalate this to?'],
           answer: 'What did you learn from the difference?',
           why: 'The gap between expected and actual is where the learning is.',
         },
@@ -818,7 +818,7 @@ export default {
       pre: [
         {
           q: 'A learner’s experiment “didn’t work”: the changeover took longer than before. What does a good coach do?',
-          options: ['Count it as a failed step and set an easier target condition', 'Take over the next experiment to make up for lost time', 'Move on to another obstacle that looks more promising', 'Ask what was learned, because an unexpected result is information'],
+          options: ['Count it as a failed step and set an easier target condition next time', 'Take over the next experiment to make up for lost time', 'Move on to another obstacle that looks more promising', 'Ask what was learned, because an unexpected result is information'],
           answer: 'Ask what was learned, because an unexpected result is information',
           why: 'An experiment that surprises you teaches more than one that confirms what you already thought.',
         },
@@ -852,7 +852,7 @@ export default {
         },
         {
           q: 'What does a second coach do?',
-          options: ['Watches the coaching cycle and coaches the coach afterwards, in private', 'Takes over the coaching cycles when the first coach is on holiday', 'Coaches a second learner on the same process, to compare progress', 'Reports the learners’ results to the steering committee each month'],
+          options: ['Watches the coaching cycle and coaches the coach afterwards, in private', 'Takes over the coaching cycles when the first coach is on holiday', 'Coaches a second learner on the same process, to compare progress', 'Reports the learners’ results to the steering committee at the end of each month'],
           answer: 'Watches the coaching cycle and coaches the coach afterwards, in private',
           why: 'That is how a plant builds its own coaches.',
         },
@@ -901,8 +901,8 @@ export default {
       pre: [
         {
           q: 'A new operator has never done a changeover. Is coaching with questions the best approach right now?',
-          options: ['Yes: always ask instead of tell, whatever the task', 'Yes, but only with the five coaching questions', 'No: delegate it and check the result afterwards', 'No: someone with no experience first needs instruction; questions work once there is something to build on'],
-          answer: 'No: someone with no experience first needs instruction; questions work once there is something to build on',
+          options: ['Yes: always ask instead of tell, whatever the task or the person', 'Yes, but only with the five coaching questions', 'No: delegate it to him and check the result afterwards', 'No: with no experience yet, he first needs clear instruction'],
+          answer: 'No: with no experience yet, he first needs clear instruction',
           why: 'Questions help people think with what they know. With no experience yet, clear instruction comes first.',
         },
       ],
@@ -929,7 +929,7 @@ export default {
         },
         {
           q: 'What does research say about Situational Leadership?',
-          options: ['It is one of the best-tested models in leadership research', 'Support is thin; tests found little support for its core predictions', 'It has been disproven and is no longer taught', 'It only works in manufacturing'],
+          options: ['It is one of the best-tested and best-supported models in leadership research', 'Support is thin; tests found little support for its core predictions', 'It has been disproven and is no longer taught', 'It only works in manufacturing'],
           answer: 'Support is thin; tests found little support for its core predictions',
           why: 'Thompson and Vecchio (2009) found little support, apart from more structure helping newer employees.',
         },
@@ -1009,7 +1009,7 @@ export default {
         },
         {
           q: 'A senior manager asks something you don’t know. What is the best answer?',
-          options: ['Give your best guess as if it were a fact', '“I don’t know yet. I’ll come back to you on Thursday.”', 'Change the subject to something you do know', 'Refer him to your manager, who knows more'],
+          options: ['Give your best guess with confidence, as if it were a fact', '“I don’t know yet. I’ll come back to you on Thursday.”', 'Change the subject to something you do know', 'Refer him to your manager, who knows more'],
           answer: '“I don’t know yet. I’ll come back to you on Thursday.”',
           why: 'It’s honest and comes with a commitment; bluffing gets found out.',
         },
@@ -1021,7 +1021,7 @@ export default {
         },
         {
           q: 'What do you do first after a meeting that went badly?',
-          options: ['Write down the facts, your part, and what you’d do differently', 'Avoid the person for a few days until it cools down', 'Explain to everyone why it wasn’t really your fault', 'Forget it and move straight on to the next task'],
+          options: ['Write down the facts, your part, and what you’d do differently', 'Avoid the person for a few days until things have cooled down a bit', 'Explain to everyone why it wasn’t really your fault', 'Forget it and move straight on to the next task'],
           answer: 'Write down the facts, your part, and what you’d do differently',
           why: 'Facts calm the replaying in your head and give you a concrete next step.',
         },
@@ -1063,8 +1063,8 @@ export default {
       pre: [
         {
           q: 'A new project team has been polite for two weeks; now people argue about how to measure downtime. What does this most likely mean?',
-          options: ['The team may be moving from forming into storming, which is normal', 'The team is failing and needs new members', 'The consultant has lost control of the meetings', 'The project scope is wrong and needs redoing'],
-          answer: 'The team may be moving from forming into storming, which is normal',
+          options: ['Possibly a move from forming into storming, which is normal', 'The team is failing and needs new members', 'The consultant has lost control of the meetings and should step in', 'The project scope is wrong and needs redoing'],
+          answer: 'Possibly a move from forming into storming, which is normal',
           why: 'After a polite start, disagreement about methods is a common next phase, and it can be healthy.',
         },
       ],
@@ -1097,13 +1097,13 @@ export default {
         },
         {
           q: 'What is a fair criticism of Tuckman’s model?',
-          options: ['It rests mainly on therapy, training and lab groups, not work teams', 'It was never published in a journal, only in a management book', 'It describes only two stages, which is too simple for real teams', 'It was based on sports teams, so it misses deadlines and budgets'],
+          options: ['It rests mainly on therapy, training and lab groups, not work teams', 'It was never published in a scientific journal, only in a management book', 'It describes only two stages, which is too simple for real teams', 'It was based on sports teams, so it misses deadlines and budgets'],
           answer: 'It rests mainly on therapy, training and lab groups, not work teams',
           why: 'Tuckman said so himself; Gersick’s project teams showed a different pattern.',
         },
         {
           q: 'A new member joins a team that works well. What often happens?',
-          options: ['Nothing: a performing team simply absorbs the new person', 'The team moves straight on to adjourning', 'The team drops back to storming and stays there', 'The team slips back into some forming, so you re-explain goal and rules'],
+          options: ['Nothing: a performing team simply absorbs the new person without any change', 'The team moves straight on to adjourning', 'The team drops back to storming and stays there', 'The team slips back into some forming, so you re-explain goal and rules'],
           answer: 'The team slips back into some forming, so you re-explain goal and rules',
           why: 'A new person changes the group, and the working rules have to be shared again.',
         },
@@ -1174,7 +1174,7 @@ export default {
         },
         {
           q: 'Which is a sign of missing commitment?',
-          options: ['Heated discussions in the meeting about the method', 'People asking critical questions before agreeing', 'Actions without owners and decisions reopened next week', 'A long agenda that never gets finished'],
+          options: ['Heated discussions in the meeting about the method', 'People asking critical questions before agreeing to the plan', 'Actions without owners and decisions reopened next week', 'A long agenda that never gets finished'],
           answer: 'Actions without owners and decisions reopened next week',
           why: 'People didn’t really buy in, so the decision doesn’t stick.',
         },
@@ -1186,7 +1186,7 @@ export default {
         },
         {
           q: 'What does a pre-mortem do?',
-          options: ['Brings doubts into the open by imagining the plan has already failed', 'Reviews a finished project to find out what went wrong', 'Checks the budget before the plan is approved', 'Assigns blame in advance, so nobody can dodge it later'],
+          options: ['Brings doubts into the open by imagining the plan has already failed', 'Reviews a project after it has finished to find out what went wrong and why', 'Checks the budget before the plan is approved', 'Assigns blame in advance, so nobody can dodge it later'],
           answer: 'Brings doubts into the open by imagining the plan has already failed',
           why: 'It makes voicing concerns the task, so nobody looks negative for raising them.',
         },
@@ -1238,7 +1238,7 @@ export default {
         'Edmondson’s toolkit for leaders has three parts. Set the stage: frame the work as a learning problem with real uncertainty, so input is needed (“we haven’t done this on this line before”). Invite participation: admit your own fallibility (“I may be missing something”) and ask real questions. Respond productively: thank people for raising things, treat failure as information, and act on clear rule-breaking.',
         'The response is where it is won or lost. The first time an operator raises a problem and gets a sigh, the team learns to stay quiet. A useful phrase: “Thanks for raising it. What do you see?”\n\nIt isn’t “anything goes”. Edmondson separates a blameworthy act, such as knowingly skipping a safety step, from honest mistakes and failed experiments. Being clear about that line makes people safer, because they know where it is.',
         'Measuring it. Edmondson’s 1999 survey used seven statements, such as “If you make a mistake on this team, it is often held against you”. Some are negatively worded, so you reverse them before averaging: on a 1–7 scale, a 6 becomes a 2. Low scores show where to look, not whom to blame.\n\nLater research, including a meta-analysis by Frazier and colleagues (2017), links it to learning behaviour and performance, though effect sizes vary.',
-        'As an outsider you can’t fix a culture, but you shape your own meetings: say “I got that wrong” first. As team captain you can do more: how you react to the first bad news sets the tone for months.\n\nTypical failure: announcing “this is a safe space”, which nobody believes until they see how you respond. Speaking up to someone senior is covered in the Negotiating module. A sharp question: when did someone last tell me something unwelcome, and what did I do?',
+        'As an outsider you can’t fix a culture, but you shape your own meetings: say “I got that wrong” first. As team captain you can do more: how you react to the first bad news sets the tone for months.\n\nTypical failure: announcing “this is a safe space”, which nobody believes until they see how you respond. Speaking up to seniors: Negotiating module (Disagreeing with someone more senior). A sharp question: when did someone last tell me something unwelcome, and what did I do?',
       ],
       example: {
         kind: 'faded',
