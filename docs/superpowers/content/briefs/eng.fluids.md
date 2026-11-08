@@ -46,3 +46,52 @@ Recalculated: DN50 0.00278 / 0.00196 = 1.42 m/s; DN80 at 20 m³/h: 0.00556 / 0.0
 Uncertain: “nastoom” is the Dutch word used in Dutch steam literature for flash steam, but many Dutch engineers simply say “flashstoom”; the nl text gives the English “flash steam” next to it. The 1.1–2.0 NPSH margin range is a summary of the HI 9.6.1 table, which varies by application.
 
 Review (2026-11-04): nl term “Nastoom” → “Flashstoom” (“ook wel nastoom genoemd” in the teach text): flashstoom is what most Dutch plant engineers say (flashvat, flashstoomterugwinning). Flash fraction rechecked with IAPWS-IF97: 8 bar(a) hf 720.9, 1.013 bar(a) hf 419.1, hfg 2,256.5 → 13.4%. NPSH margin text now says “roughly 1.1 to 2 times, depending on the application; more for large, fast pumps” (dropped “and hot water”, not a general HI rule); the example’s 1.2 ratio is flagged as the low end, to confirm with the pump maker; Hydraulic Institute explained as the American pump association. Explained in place: heat exchanger (flow lesson), condensate (heat lesson), live steam, vent. nl adds (approach), (fouling).
+
+## v13 topics (2026-11-08): 4 topics × 4 levels
+
+| Topic (id) | 1 Basis | 2 Werkkennis | 3 Gevorderd | 4 Expert |
+|---|---|---|---|---|
+| Flow and pressure in pipes (`pipes`) | `flow` (existing, worked) | `friction` (new): Darcy–Weisbach, velocity head, friction factor, laminar f = 64/Re, Moody chart, roughness, minor losses (K) | `valves` (new, faded): control valve, Kv/Cv, valve authority, pressure survey, Joukowsky pressure surge | `sizing` (new, faded): 1/D⁵, economic pipe diameter, life-cycle cost, friction power, shear-thinning food products, parallel line |
+| Pumps (`pumps`) | `pumps` (existing, worked) | `speed` (existing, worked) | `cavitation` (existing; example now faded) | `pumpsystem` (new, faded): wire-to-water efficiency, specific pumping energy, system imbalance, impeller trimming, parallel pumps, staging |
+| Heat transfer and heat exchangers (`heat`) | `transfer` (new): conduction, convection, U-value, thermal conductivity, insulation and bare-surface losses | `heat` (existing, worked; keeps Approach, the term eng.process’s pinch lesson points to) | `lmtd` (new, faded): LMTD, typical U, fouling resistance and margin (TEMA), rating from plant data, sensor error | `recovery` (new, faded): pasteuriser regeneration efficiency, cleaning-interval economics, thermal storage, economiser, pointer to pinch |
+| Steam and utilities (`utilities`) | `steam` (existing, worked) | `cooling` (new): once-through, cooling tower, wet bulb, cycles of concentration, blowdown, chiller COP, Legionella (Bal) | `steamloss` (new, faded): cost per tonne of steam, flue gas loss, blowdown, cycling, trap test intervals, flash vessel, condensate return, steam balance | `audit` (new, faded): weekend base-load walk, energy baseline (fixed + variable), demand-first order, payback, Dutch energy-saving obligation and recognised measures list |
+
+Why this split: the six existing lessons sit where their depth fits: flow, pumps, steam (1), speed and heat (2), cavitation (3, NPSH margins are the hardest of the six; its example became faded with the same story and numbers). Ten new lessons complete each topic. Compressed air stays in eng.power (pointed to from `audit` and `recovery`), motors and drives too (pointer in `speed`); vibration and seals in eng.maintenance (pointer in `pumps`).
+
+Existing lessons: ids, recall order, answer positions and numbers unchanged (pinned in `tests/fixtures/v13-eng.fluids-recall-keys.json`, built from the files before this change). Wording changes only: distractors rewritten where the correct option was the unique longest (all six lessons, en and nl), pre answers moved for balance, own hints on every numeric recall question, a pointer to Maintenance (pumps) and to Motors, drives and fluid power (speed), DOE source named for the 15–30% failed traps (steam).
+
+Shared definitions (checked by script against every eng module):
+- Identical to eng.power (which copied them from this module): VFD / Frequentieregelaar, Affinity laws / Affiniteitswetten, Throttling / Smoren; also Base load / Basislast.
+- Identical to eng.cost: Payback time / Terugverdientijd. Identical to eng.reliability: Life-cycle cost / Levensduurkosten. Identical to eng.process: Utility / Utilities, Regeneration section / Regeneratiesectie. Identical to eng.drawings: Control valve / Regelklep.
+- Same word, different meaning, left as is: Load profile (here hours per flow; power and transformers: load over time), Rating (here exchanger rating; gridplanning: current rating). eng.lines words Payback time differently from eng.cost; this module follows eng.cost.
+
+Answer positions (pre + recall MC, en = nl): 12 / 12 / 13 / 14. Correct option never the unique longest (script, en and nl). Length rank of the correct option over 51 MC (1 = longest, only ties): en 9 · 12 · 16 · 14; nl 5 · 17 · 10 · 19.
+
+Facts and sources (checked 2026-11-08):
+- US DOE / Hydraulic Institute, Improving Pumping System Performance: A Sourcebook for Industry (2nd ed., 2006): pumps 27% of industrial-system electricity in US manufacturing; pump efficiencies 50–60% or lower common; efficiency can degrade 10–25% before replacement; many control valves run under 50% open; flag pumps 30% or more from BEP and system imbalance above 20%; impeller trim 2% → about 2% flow, 4% head, 8% power, rarely below 70% of original diameter; Tip Sheet #9: 6-inch → 8-inch pipe cuts friction pumping cost about 4× ((8/6)⁵ = 4.2).
+- Hydraulic Institute NPSH margin guideline (ANSI/HI 9.6.1): NPSHa/NPSHr roughly 1.1–2 (as before).
+- Darcy–Weisbach and Moody (1944); laminar f = 64/Re; Moody-chart accuracy about ±15% (F. White, Fluid Mechanics); roughness drawn tubing 0.0015 mm, commercial steel 0.045 mm; K values hedged (elbow 0.2–1.5, open gate 0.2, open globe 5–10).
+- Kv (IEC 60534): m³/h of water at 1 bar; Cv ≈ 1.16 Kv. Joukowsky Δp = ρ·a·Δv; a ≈ 1,000–1,400 m/s in water-filled steel pipe.
+- US DOE Steam Tip Sheet #2: bare 2-inch line at 150 psig loses 480 MMBtu/yr per 100 ft (= 527 W/m, taught as roughly 500 W/m for about DN50 at about 10 bar(g)); insulation typically cuts losses 90%; insulate surfaces above 120 °F (about 50 °C). Tip Sheet #17: 4-inch valve at 300 °F saves 2,300 Btu/h with a cover (= 0.67 kW, taught as roughly 0.7 kW for DN100 at 150 °C).
+- US DOE Steam Tip Sheet #1: 15–30% of traps may have failed in systems not maintained for 3–5 years; test weekly–monthly at high, monthly–quarterly at medium, at least yearly at low pressure.
+- US DOE Compressed Air Tip Sheet / eng.power: leaks often 20–30% of output (pointer only).
+- Tetra Pak Dairy Processing Handbook (ch. 8.1): regenerative effect 90–94%.
+- FEMP cooling tower guidance and EPA WaterSense at Work 6.3: many towers 2–4 cycles, 6+ possible; blowdown = evaporation / (cycles − 1) derived from make-up = evaporation + blowdown. Evaporation rule from the energy balance (4.2/2,400 = 0.175% per °C, taught as roughly 1% per 6 °C).
+- Besluit activiteiten leefomgeving §4.46 (art. 4.570–4.572): Legionella risk analysis, management plan, logbook for wet cooling towers (RIVM, IPLO).
+- RVO, energiebesparingsplicht: from 50,000 kWh electricity or 25,000 m³ natural gas (equivalent) per year; all measures with payback ≤ 5 years by legal method and prices; report every 4 years (informatieplicht) with the Erkende maatregelenlijst; onderzoeksplicht from 10 million kWh or 170,000 m³.
+- Steam tables: 10 bar(g) saturated ≈ 2,780 kJ/kg, water 80 °C ≈ 335 kJ/kg; Dutch natural gas 31.65 MJ/m³ (LHV). Flash from 7 bar(g): (721 − 419)/2,257 = 13.4%.
+- Rules of thumb hedged in text, no single source: U ranges (plate 3,000–7,000, shell and tube 800–1,500 W/m²K), fouling margin 10–25%, valve authority 0.3–0.5, chiller COP 3–6 and a few percent per degree, tower approach a few degrees, CIP velocity about 1.5 m/s, economiser and blowdown “a few percent”.
+
+Recalculations (all by script, scratchpad fluids/calc.py):
+- friction: Re 160,000; 0.02 × 1,250 × 2,000 = 50,000 Pa; elbows 10,000; globe 16,000; 0.76 bar. r0 0.28125 bar; r1 64/800 = 0.08.
+- valves: Kv 20/√3 = 11.5 (29% of 40); 3.0/4.2 = 71%; 2 bar × 20 m³/h = 1.1 kW; r0 25 × 2 = 50; r1 1,000 × 1,200 × 1.5 = 18 bar; teach 12 bar at 1 m/s.
+- sizing: DN80 3.32 m/s, 4.12 bar; DN100 2.12 m/s, 1.35 bar (ratio 0.328 = 0.8⁵); 4.62 kW hyd, 7.1 kW el, 42,600 kWh, €6,400, payback 2.8 y; teach 1.39 kW → 17,100 kWh; r0 (50/65)⁵ = 26.9%; r1 14,815 kWh.
+- pumpsystem: 0.95 × 0.97 × 0.70 = 64%; delivered 34.3 kW, w2w 43%, need 22.9 kW, imbalance 50%, 32.7 kW, saving 47.3 kW → 378,400 kWh, €56,800; r0 60%; r1 0.2 kWh/m³; r2 1 − 0.95³ = 14.3%.
+- transfer: 21.2 + 5.4 = 26.6 kW; 212,800 kWh; /0.85 = 250,400; × 0.045 = €11,300; 90% = €10,100; r0 2.4 kW; r1 90,000 kWh.
+- lmtd: 20/ln 3 = 18.2; 780 kW, LMTD 15.96, U 4,071 (18.6% below 5,000), Rf 4.6e-5; r0 21.6; r1 10 m².
+- recovery: 63.5/69.1 °C, 233/109 kW, 124 kW each side, €24,900 + €24,900; r0 90%; r1 109.2 kW.
+- cooling: E 2,100 kg/h; make-up 3.15 → 2.63 m³/h; 3,150 m³/yr, €6,300; r0 1.4; r1 1.0.
+- steamloss: 2,445 MJ/t, 2,778 MJ gas, 87.8 m³, €39.5/t; 6,000 t × 12.0 m³ = 72,200 m³, €32,500 + €18,000; r0 94.8 m³; r1 60.
+- audit: paybacks 0.13, 0.24, 2.8, 6.7 y; r0 2 y; r1 570,000 kWh.
+
+Uncertain: Dutch term choices Lokale weerstand (minor loss), Drukprofiel (pressure survey), Klepautoriteit, Systeemrendement (wire-to-water), Bijschakelen (staging), Controleberekening (rating), Indikkingsfactor, Spui, Energiebaseline. The 0.7 kW valve and 500 W/m pipe figures are converted from DOE tables in US units and conditions (75 °F air, no wind).
