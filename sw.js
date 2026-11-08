@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v75';
+const CACHE = 'vantage-point-v76';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -29,7 +29,7 @@ const SHELL = [
   'src/content/courses/eng/spc.en.js', 'src/content/courses/eng/spc.nl.js',
   'src/content/courses/eng/fluids.en.js', 'src/content/courses/eng/fluids.nl.js',
   'src/content/courses/pm/stuck.en.js', 'src/content/courses/pm/stuck.nl.js',
-  'src/content/courses/pm/outside.en.js', 'src/content/courses/pm/outside.nl.js',
+  'src/content/courses/pm/outside.en.js', 'src/content/courses/pm/outside.nl.js', 'src/content/courses/pm/agile.en.js', 'src/content/courses/pm/agile.nl.js',
   'src/content/courses/pm/devops.en.js', 'src/content/courses/pm/devops.nl.js',
   'src/content/courses/eng/joining.en.js', 'src/content/courses/eng/joining.nl.js',
   'src/content/courses/eng/switchgear.en.js', 'src/content/courses/eng/switchgear.nl.js', 'src/content/courses/pm/close.en.js', 'src/content/courses/pm/close.nl.js',

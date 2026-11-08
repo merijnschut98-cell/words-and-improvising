@@ -277,7 +277,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.lesson-row').nth(5).waitFor();
   await shot('60b-module-open');
   await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
-  await page.locator('.course-pm .track').waitFor();
+  await page.locator('.course-pm .track').first().waitFor();
   await page.reload();
   await page.locator('.course-pm').waitFor();
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
