@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v75';
+const CACHE = 'vantage-point-v76';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -29,8 +29,8 @@ const SHELL = [
   'src/content/courses/eng/spc.en.js', 'src/content/courses/eng/spc.nl.js',
   'src/content/courses/eng/fluids.en.js', 'src/content/courses/eng/fluids.nl.js',
   'src/content/courses/pm/stuck.en.js', 'src/content/courses/pm/stuck.nl.js',
+  'src/content/courses/pm/outside.en.js', 'src/content/courses/pm/outside.nl.js', 'src/content/courses/pm/agile.en.js', 'src/content/courses/pm/agile.nl.js',
   'src/content/courses/pm/scaled.en.js', 'src/content/courses/pm/scaled.nl.js',
-  'src/content/courses/pm/outside.en.js', 'src/content/courses/pm/outside.nl.js',
   'src/content/courses/eng/joining.en.js', 'src/content/courses/eng/joining.nl.js',
   'src/content/courses/eng/switchgear.en.js', 'src/content/courses/eng/switchgear.nl.js', 'src/content/courses/pm/close.en.js', 'src/content/courses/pm/close.nl.js',
   'src/content/courses/eng/drawings.en.js', 'src/content/courses/eng/drawings.nl.js', 'src/content/courses/eng/gridbasics.en.js', 'src/content/courses/eng/gridbasics.nl.js', 'src/content/courses/eng/gridops.en.js', 'src/content/courses/eng/gridops.nl.js', 'src/content/courses/eng/lines.en.js', 'src/content/courses/eng/lines.nl.js', 'src/content/courses/eng/machining.en.js', 'src/content/courses/eng/machining.nl.js', 'src/content/courses/eng/maintenance.en.js', 'src/content/courses/eng/maintenance.nl.js', 'src/content/courses/eng/moulding.en.js', 'src/content/courses/eng/moulding.nl.js', 'src/content/courses/eng/quality.en.js', 'src/content/courses/eng/quality.nl.js', 'src/content/courses/eng/transformers.en.js', 'src/content/courses/eng/transformers.nl.js', 'src/content/courses/pm/land.en.js', 'src/content/courses/pm/land.nl.js', 'src/content/courses/pm/plan.en.js', 'src/content/courses/pm/plan.nl.js', 'src/content/courses/pm/run.en.js', 'src/content/courses/pm/run.nl.js',
