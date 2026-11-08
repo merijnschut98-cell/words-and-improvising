@@ -169,7 +169,7 @@ export default {
       pre: [
         {
           q: 'You have 30 minutes to prepare a fee talk with a client. Which step adds the most?',
-          options: ['Listing every issue, what it is worth to you and what it may be worth to them', 'Writing out the opening sentence you will use in the meeting, word for word', 'Rehearsing a counterargument to every objection you can possibly imagine', 'Looking up the client manager’s career, network and hobbies online'],
+          options: ['Listing every issue, what it is worth to you and what it may be worth to them', 'Writing out, word for word, the opening sentence you plan to use in the meeting itself', 'Rehearsing a counterargument to every objection you can possibly imagine', 'Looking up the client manager’s career, network and hobbies online'],
           answer: 'Listing every issue, what it is worth to you and what it may be worth to them',
           why: 'Most negotiation mistakes are made before the meeting. A list of issues and priorities for both sides shows where you can trade; a script or a rebuttal list does not.',
         },
@@ -191,13 +191,13 @@ export default {
       recall: [
         {
           q: 'What is the difference between your target point and your walk-away point?',
-          options: ['The target is the number you open with; the walk-away point is the last number you say out loud', 'The target is set by your own manager; the walk-away point is set by the client’s purchasing department', 'They are the same number, written in two places on the preparation sheet so you don’t forget it', 'The target is the ambitious outcome you aim for; the walk-away point is the worst deal you still accept'],
-          answer: 'The target is the ambitious outcome you aim for; the walk-away point is the worst deal you still accept',
+          options: ['The target is the number you open with; the walk-away point is the last number you say out loud', 'The target is set by your own manager; the walk-away point is set by the client’s purchasing department', 'They are the same number, written in two places on the preparation sheet so you don’t forget it', 'The target is what you aim for; the walk-away point is the worst deal you still accept'],
+          answer: 'The target is what you aim for; the walk-away point is the worst deal you still accept',
           why: 'You aim for the target and refuse anything below the walk-away point. Your opening offer is a third number again.',
         },
         {
           q: 'Why rank the issues for both sides before a negotiation?',
-          options: ['Where the rankings differ you can trade; where they match, a hard talk is coming', 'So you can open with the issue that matters least to you and save the rest', 'Because most purchasing departments ask suppliers for a ranked issue list', 'So you know which issues to drop when the other side ranks them low'],
+          options: ['Where the rankings differ you can trade; where they match, a hard talk is coming', 'So you can open with the issue that matters least to you and keep the rest back for later', 'Because most purchasing departments ask suppliers for a ranked issue list', 'So you know which issues to drop when the other side ranks them low'],
           answer: 'Where the rankings differ you can trade; where they match, a hard talk is coming',
           why: 'Different priorities let each side give what is cheap for it. Shared priorities mean dividing something both want.',
         },
@@ -209,7 +209,7 @@ export default {
         },
         {
           q: 'Which question fits investigative negotiation?',
-          options: ['“Is this really the best price you can give us?”', '“Why should we accept less than we got last year?”', '“Can you confirm that you have the budget for this?”', '“What will you need to report to your manager after this?”'],
+          options: ['“Is this really the best price you can give us on this job?”', '“Why should we accept less than we got from you last year?”', '“Can you confirm that you have the budget for this?”', '“What will you need to report to your manager after this?”'],
           answer: '“What will you need to report to your manager after this?”',
           why: 'It uncovers a constraint on their side that you can help solve. The others test their position.',
         },
@@ -250,7 +250,7 @@ export default {
       pre: [
         {
           q: 'Your client is a large utility and your small firm needs the work. What usually gives you the most room?',
-          options: ['Accepting their first terms quickly to show goodwill and start soon', 'Hinting at other offers, even if you don’t actually have any yet', 'Telling them openly how much your firm needs this contract now', 'Knowing what you bring that others can’t, and what failing costs them'],
+          options: ['Accepting their first terms quickly to show goodwill and start soon', 'Hinting at other offers on the table, even if you don’t actually have any yet', 'Telling them openly how much your firm needs this contract now', 'Knowing what you bring that others can’t, and what failing costs them'],
           answer: 'Knowing what you bring that others can’t, and what failing costs them',
           why: 'Power depends on how much each side needs the deal. The big client also has a problem to solve; your distinct value is what makes you hard to replace.',
         },
@@ -260,7 +260,7 @@ export default {
         'Your value proposition is what you offer that the other side can’t easily get elsewhere: knowledge of their line, a team they already trust, speed. Put it in their terms: “We can start next week, with people who already know your planning system.”\n\nThat changes the comparison from “your fee versus a cheaper firm” to “your fee versus three months of a new team learning the ropes”.',
         'Leverage is anything that makes the other side want the deal more, or makes walking away cost them more. Ethical leverage includes improving your own BATNA, timing your offer to their deadline, and an internal ally: someone inside the client who wants your work, such as the plant manager who asked for your team.\n\nA coalition is a group of parties who join up so they negotiate together. Small suppliers do it; so can several departments that want the same project.',
         'Don’t reveal weakness by accident. “We really need this one”, a yes in the first minute, or a discount before anyone asked: each tells the other side your alternative is poor.\n\nDon’t fake strength either. A bluff that is called leaves you weaker than before, and with a client you meet again it costs trust. Keep your ambition defensible: an offer you can explain survives a hard buyer better than a bold one you can’t.',
-        'Experts disagree on whether to reveal your BATNA at all. A common line: share a strong one calmly as information, keep a weak one to yourself, and never lie about it.\n\nTypical failures: arguing your price while ignoring what they lose without you, and treating one tough buyer as the whole client. Building trust that outlasts one deal is covered in the Consulting craft module (The trusted advisor). A sharp question: “What does it cost them if we are not there?”',
+        'Experts disagree on whether to reveal your BATNA at all. A common line: share a strong one calmly as information, keep a weak one to yourself, and never lie about it.\n\nTypical failures: arguing your price while ignoring what they lose without you, and treating one tough buyer as the whole client. Building trust that outlasts one deal is covered in The consulting craft (The trusted advisor). A sharp question: “What does it cost them if we are not there?”',
       ],
       example: {
         kind: 'faded',
@@ -272,7 +272,7 @@ export default {
       recall: [
         {
           q: 'What is a value proposition in a negotiation?',
-          options: ['What you offer that the other side can’t easily get elsewhere, in their terms', 'The lowest price at which your firm can still deliver the work well', 'A written list of every service your firm has provided to other clients', 'The discount you offer at the very end to close the deal a little faster'],
+          options: ['What you offer that the other side can’t easily get elsewhere, in their terms', 'The lowest price at which your firm can still deliver the work well', 'A written list of every service your firm has provided to other clients so far', 'The discount you offer at the very end, to close the deal a little faster than planned'],
           answer: 'What you offer that the other side can’t easily get elsewhere, in their terms',
           why: 'It moves the comparison from price alone to what replacing you would cost them.',
         },
@@ -413,7 +413,7 @@ export default {
       pre: [
         {
           q: 'A client asks you to lower your fee. Which reply trades rather than gives?',
-          options: ['“If you can confirm the start date this week, I can look at the rate.”', '“Fine, I’ll take 5% off the total to keep things moving.”', '“Let me see what I can do and I’ll come back to you on that.”', '“I’m afraid we never change our rates, for any of our clients.”'],
+          options: ['“If you can confirm the start date this week, I can look at the rate.”', '“Fine, I’ll take 5% off the total to keep things moving.”', '“Let me see what I can do and I’ll come back to you on that.”', '“I’m afraid we never change our rates, for any of our clients, whatever the project.”'],
           answer: '“If you can confirm the start date this week, I can look at the rate.”',
           why: 'It ties your step to one of theirs. The second gives for nothing, the third is heard as yes, and the fourth closes the talk.',
         },
@@ -423,7 +423,7 @@ export default {
         'The size and rhythm of your steps send a message. Your concession pattern is that rhythm. Steps that shrink, from 2 days to 1 to half a day, tell the other side you are close to your limit. Steps that stay the same or grow tell them there is plenty of room left. This is common advice from negotiation trainers, not a law.\n\nGive slowly too: a big concession in the first minutes makes your opening number look as if it was never meant.',
         'A quick yes has a cost for the other side as well. Galinsky, Seiden, Kim and Medvec (2002) found that negotiators whose first offer was accepted at once felt less satisfied, even when their deal was as good or better: they kept thinking they could have done better.\n\nSo a short, honest pause and a small counter can leave both sides happier than an instant yes.',
         'Splitting the difference means meeting halfway between two numbers. It feels fair, but it rewards whoever opened furthest away. Split only when both numbers are well founded.\n\nNibbling is asking for one small extra after the deal seems done: “Oh, and the report in Dutch and English?” Treat it as a new request with its own price: “Happy to. That’s half a day; shall I add it?”',
-        'What you see: juniors who concede to end an awkward silence, or who give three things at once. Another failure: a concession nobody notices, because you didn’t name it. Say what you give: “That’s a day off for you.”\n\nExperts differ on giving anything for free; some make one small unconditional gesture early to build goodwill. Discounts on a fee are covered in the Consulting craft module (Pricing and scope). A sharp question before each step: “What do I get for this?”',
+        'What you see: juniors who concede to end an awkward silence, or who give three things at once. Another failure: a concession nobody notices, because you didn’t name it. Say what you give: “That’s a day off for you.”\n\nExperts differ on giving anything for free; some make one small unconditional gesture early to build goodwill. Discounts on a fee are covered in The consulting craft (Pricing and scope). A sharp question before each step: “What do I get for this?”',
       ],
       example: {
         kind: 'worked',
@@ -433,7 +433,7 @@ export default {
       recall: [
         {
           q: 'What makes a concession conditional?',
-          options: ['It is only valid until the end of this particular meeting', 'It is written into the contract as an option for later', 'It is approved by your own manager before you offer it', 'It is phrased as “if you…, then I…”, so you get something back'],
+          options: ['It is only valid until the end of this particular meeting with the client', 'It is written into the contract as an option for later', 'It is approved by your own manager before you offer it', 'It is phrased as “if you…, then I…”, so you get something back'],
           answer: 'It is phrased as “if you…, then I…”, so you get something back',
           why: 'The condition ties your step to one of theirs, so nothing is given for free.',
         },
@@ -447,21 +447,21 @@ export default {
         },
         {
           q: 'What do concessions that get smaller each time signal?',
-          options: ['That you are getting close to your limit', 'That you are losing interest in the deal', 'That there is still a lot of room left', 'That you want to end the talk quickly'],
+          options: ['That you are getting close to your limit', 'That you are slowly losing interest in the deal', 'That there is still a lot of room left', 'That you want to end the talk quickly'],
           answer: 'That you are getting close to your limit',
           why: 'Shrinking steps suggest little room is left. Equal or growing steps suggest the opposite.',
         },
         {
           q: 'Right after the deal seems done, the client asks: “And the report in English as well?” What is this, and how do you answer?',
-          options: ['Anchoring; you answer with a higher number of your own', 'Framing; you restate the whole deal in the client’s terms', 'Splitting the difference; you offer to meet them halfway', 'Nibbling; you treat it as a new request with its own price'],
+          options: ['Anchoring; you answer with a higher number of your own instead', 'Framing; you restate the whole deal in the client’s own terms', 'Splitting the difference; you offer to meet them halfway', 'Nibbling; you treat it as a new request with its own price'],
           answer: 'Nibbling; you treat it as a new request with its own price',
           why: 'A small extra after the deal is still extra work. Naming its price keeps the deal intact.',
         },
       ],
       situation: {
-        scene: 'At a packaging plant, the operations manager says: “Your proposal says 12 days for the line study. I can sign today for 9.” You know 10 days is the least that still gives a sound result, and only if his team prepares the data.',
+        scene: 'At a packaging plant, the operations manager says: “Your proposal says 12 days for the line study. I can sign today for 8.” You know 10 days is the least that still gives a sound result, and only if his team prepares the data.',
         ask: 'How do you respond?',
-        model: 'I wouldn’t jump to 9 or split at 10.5. I’d say: “If your team has the downtime data ready before we start, I can do 11.” If he pushes again: “If your shift leads join the two workshops, 10, and that’s the lowest that still gives you a result you can use.” Each step smaller, and each one buys something.',
+        model: 'I wouldn’t jump to 8 or split at 10. I’d say: “If your team has the downtime data ready before we start, I can do 11.” If he pushes again: “If your shift leads join the two workshops, 10.5, and that’s as far as I can go.” One day, then half a day, each step bought, and still half a day above my limit.',
         rubric: [
           'Doesn’t accept or split straight away',
           'Makes each concession conditional',
@@ -470,9 +470,9 @@ export default {
         pushback: {
           lines: [
             'Why all these conditions? Just give me a number.',
-            'Another firm offered 9 days flat. No conditions.',
+            'Another firm offered 8 days flat. No conditions.',
           ],
-          model: 'Fair, here’s the number: 10 days, if your team prepares the data and the shift leads join two workshops. The conditions are what make 10 days enough; without them it’s 12. If another firm can do it in 9 without your data, I’d ask them how. Shall I put the 10-day version on paper today?',
+          model: 'Fair, here’s the number: 10.5 days, if your team prepares the data and the shift leads join two workshops. The conditions are what make 10.5 days enough; without them it’s 12. If another firm can do it in 8 without your data, I’d ask them how. Shall I put the 10.5-day version on paper today?',
           rubric: [
             'Gives a clear number',
             'Restates why the conditions make the shorter job possible',
@@ -502,7 +502,7 @@ export default {
       teach: [
         'Most deals hold two kinds of value. Claiming value is dividing what is there: every euro off the fee is yours or theirs. That is a distributive negotiation. Creating value is making the total bigger, by trading issues that the two sides value differently: an integrative negotiation.\n\nMost real deals have both. The mistake is treating a deal with five issues as five separate fights.',
         'Logrolling is trading across issues: you give way on what matters less to you and more to them, and they do the reverse. The negotiation researcher Dean Pruitt described it in the early 1980s; it is the engine of the package deal from the first lesson.\n\nExample: the client cares most about the start date, you care most about the scope. You start early; they keep the full scope. Both get their top priority.',
-        'MESOs, multiple equivalent simultaneous offers, are two or three packages worth the same to you, offered at once: “Option A: 20 days, start in March. Option B: 18 days, start in May, with your planner doing the data pull.” Their choice shows what they value.\n\nGeoffrey Leonardelli, Adam Galinsky and colleagues (2019) found in six experiments that MESOs anchored strongly, came across as more flexible, and led to better deals for both sides.',
+        'MESOs, multiple equivalent simultaneous offers, are two or three packages worth the same to you, offered at once: “Option A: 20 days, start in March. Option B: 18 days, start in May, with your planner doing the data pull.” Their choice shows what they value.\n\nGeoffrey Leonardelli, Adam Galinsky and colleagues (2019) found in six experiments that MESOs anchored more strongly than a single offer, came across as a more sincere and cooperative attempt to agree, and led to bigger joint gains.',
         'To build packages, score each issue for yourself, for example in points, and estimate their scores. Combine issues so that every package lands at the same total for you. Keep to two or three; one of the authors, Jun Gu, has said more can freeze the decision.\n\nAfter the deal, you can ask: “Is there a version that is better for both of us?” Howard Raiffa (1985) called this a post-settlement settlement.',
         'Typical failures: settling issues one by one, so there is nothing left to trade; offering a MESO whose options are not really equal for you; revealing your priorities so freely that a hard counterpart can use them. Loschelder and colleagues (2014) found that openly showing which issues you share with the other side can be exploited.\n\nShare enough about priorities to trade, never your walk-away point. A sharp question: “Which of these matters most to you, and where could you be flexible?”',
       ],
@@ -600,7 +600,7 @@ export default {
       recall: [
         {
           q: 'Fisher and Ury give three steps against a hard tactic. Which order is right?',
-          options: ['Ignore it, concede a little, then move on', 'Match it, raise the stakes, then offer a compromise', 'Leave the room, cool down, then return with a new offer', 'Recognise it, raise it openly, then question whether it is fair'],
+          options: ['Ignore it, concede a little, then move on', 'Match it, raise the stakes, then offer a compromise', 'Leave the room, cool down, then come back later with a new offer', 'Recognise it, raise it openly, then question whether it is fair'],
           answer: 'Recognise it, raise it openly, then question whether it is fair',
           why: 'Once a tactic is named and its fairness questioned, it usually loses its force.',
         },
@@ -612,13 +612,13 @@ export default {
         },
         {
           q: 'Which of these is a calibrated question in Chris Voss’s sense?',
-          options: ['“Is this really your final offer?”', '“How am I supposed to do that in 10 days?”', '“Can you go a little higher on this?”', '“Do you agree that this is fair?”'],
+          options: ['“Is this really your final offer on the table?”', '“How am I supposed to do that in 10 days?”', '“Can you go a little higher on this one for us?”', '“Do you agree that this is fair?”'],
           answer: '“How am I supposed to do that in 10 days?”',
           why: 'An open how or what question that asks them to solve your problem. The others can be answered with yes or no.',
         },
         {
           q: 'What is the main caveat when you use Voss’s tools with a client?',
-          options: ['They only work when both sides speak English as their first language', 'Most purchasing departments ban them explicitly in their codes of conduct', 'They need a second negotiator in the room to play the opposite role', 'They come from one-off hostage talks; with a repeat client, tricks cost trust'],
+          options: ['They only work when both sides speak English as their first language', 'Most purchasing departments ban them explicitly in their supplier codes of conduct', 'They need a second negotiator in the room to play the opposite role', 'They come from one-off hostage talks; with a repeat client, tricks cost trust'],
           answer: 'They come from one-off hostage talks; with a repeat client, tricks cost trust',
           why: 'The evidence is mostly stories from crisis talks. In a repeated relationship, how you negotiate shapes the next deal.',
         },
@@ -750,11 +750,11 @@ export default {
         },
       ],
       teach: [
-        'Fee pressure, a client pushing your price down, is normal and often part of a buyer’s job. Many purchasing departments have a savings target, an amount they must save on what they buy each year, and ask every supplier for a discount as routine. So a first “too expensive” is information, not a verdict.\n\nPricing models and the sums behind a discount are covered in the Consulting craft module (Pricing and scope). This lesson is about the conversation.',
+        'Fee pressure, a client pushing your price down, is normal and often part of a buyer’s job. Many purchasing departments have a savings target, an amount they must save on what they buy each year, and ask every supplier for a discount as routine. So a first “too expensive” is information, not a verdict.\n\nPricing models and the sums behind a discount are covered in The consulting craft (Pricing and scope). This lesson is about the conversation.',
         'Start by asking, not defending. “Too high compared with what?” “What budget do you have for this?” “Is it the total or the day rate?” The answers show which problem you are solving: a budget cap, a cheaper quote for less work, or a buyer who has to show a saving.\n\nThen argue from value, not hours: what the result is worth to them, in their own numbers.',
-        'Keep the rate and move the scope. Rate integrity means your day rate stays the same across clients and talks, so it stays believable. Lower the total by doing less: fewer sites, a lighter report, their planner doing the data pull.\n\n“Within that budget we can do two sites instead of three” keeps your rate and gives the buyer a real choice.',
-        'Other levers than price: payment terms, how soon you are paid (30 days instead of 60), a longer commitment, a named reference case, or a fixed start date that helps your planning. Each can be traded against a lower total.\n\nIf you give a discount, make it conditional and name it once: “For a three-phase commitment, 5% off phases two and three.” A bare discount on phase one teaches the client that your first price is only an opening.',
-        'Write it the same way you say it: short and confident. “Our fee for three sites is €48,000. Within €40,000 we can do two.” Then stop, without “we hope this is acceptable” or “sorry it’s a bit high”. The writing rules behind this are covered in Assertive, not aggressive.\n\nTypical failure: three paragraphs justifying every day, which invites a debate about each one. A sharp question: “What would you like to leave out?”',
+        'A common rule among consultants: keep the rate and move the scope. Rate integrity means your day rate stays the same across clients and talks, so it stays believable. Lower the total by doing less: fewer sites, a lighter report, their planner doing the data pull.\n\n“Within that budget we can do two sites instead of three” keeps your rate and gives the buyer a real choice.',
+        'Other levers than price, such as payment terms (how soon and in which steps you are paid), a longer commitment or a reference case, are listed there too. In the conversation, offer one at a time and say what it buys: “If you can pay within 30 days instead of 60, we can include the handover session at no charge.”\n\nIf you do give a discount, make it conditional and name it once, in one sentence, never as an opening gift.',
+        'Write it the same way you say it: short and confident. “Our fee for three sites is €48,000. Within €40,000 we can do two.” Then stop, without “we hope this is acceptable” or “sorry it’s a bit high”. The writing rules behind this are covered in Assertive, not aggressive.\n\nTypical failure: three paragraphs justifying every day, which invites a debate about each one. A sharp question before you reply: “Which problem am I solving: a budget, a comparison or a savings target?”',
       ],
       example: {
         kind: 'worked',
@@ -772,7 +772,7 @@ export default {
         },
         {
           q: 'What does rate integrity mean?',
-          options: ['Your rate is checked every year by an independent auditor of your choice', 'Your rate rises automatically with inflation every January, for every client', 'Your rate is set by the client’s purchasing rules for all of its suppliers', 'Your day rate stays the same across clients and talks, so it stays believable'],
+          options: ['Your rate is checked every year by an independent auditor of your choice', 'Your rate rises automatically with inflation every January, for every client you have', 'Your rate is set by the client’s purchasing rules for all of its suppliers', 'Your day rate stays the same across clients and talks, so it stays believable'],
           answer: 'Your day rate stays the same across clients and talks, so it stays believable',
           why: 'If your rate moves with every push, every client learns to push. Moving the scope keeps the rate credible.',
         },
@@ -825,7 +825,7 @@ export default {
       pre: [
         {
           q: 'Your proposal assumes the client delivers clean data in week 1. In week 3 there is still no data. What helps you most now?',
-          options: ['A friendly reminder email to the client’s data owner', 'Working the weekends to catch up the two lost weeks', 'Asking your own manager to call the sponsor about it', 'The written assumption, which turns this into a change'],
+          options: ['A friendly reminder email to the client’s data owner, copying the sponsor', 'Working the weekends to catch up the two lost weeks', 'Asking your own manager to call the sponsor about it this week', 'The written assumption, which turns this into a change'],
           answer: 'The written assumption, which turns this into a change',
           why: 'Because the condition is on paper, the delay is a change to discuss, not your problem to absorb. A reminder may help too, but it doesn’t protect the plan.',
         },
@@ -847,7 +847,7 @@ export default {
       recall: [
         {
           q: 'What is an assumption in a proposal?',
-          options: ['A guess about what the analysis will probably find in the end', 'A promise from the client to pay your invoices on time', 'A list of the methods the team plans to use in each phase', 'A written condition your price depends on, such as data in week 1'],
+          options: ['A guess about what the analysis will probably find in the end, written up front', 'A promise from the client to pay your invoices on time', 'A list of the methods the team plans to use in each phase', 'A written condition your price depends on, such as data in week 1'],
           answer: 'A written condition your price depends on, such as data in week 1',
           why: 'If the condition fails, the written assumption is the basis for a change request.',
         },
@@ -928,13 +928,13 @@ export default {
       recall: [
         {
           q: 'When is the best moment to reopen a deal because an assumption failed?',
-          options: ['As soon as you see it, while there are still options', 'At the end, when the full overrun is known', 'At the next steering committee, in front of everyone', 'Only if the client brings the subject up first'],
+          options: ['As soon as you see it, while there are still options', 'At the end of the project, when the full overrun is known', 'At the next steering committee, in front of everyone', 'Only if the client brings the subject up first'],
           answer: 'As soon as you see it, while there are still options',
           why: 'Early there is room to choose. Late, only the bill is left to argue about.',
         },
         {
           q: 'Why separate the cause from the solution?',
-          options: ['Because only the cause can be invoiced', 'Because the solution is your manager’s job', 'Because mixing them turns the talk into a fight about blame', 'Because the client owns the cause and you the solution'],
+          options: ['Because only the cause can be invoiced', 'Because the solution is your manager’s job', 'Because mixing them turns the talk into a fight about blame', 'Because the client owns the cause and you own the solution to it'],
           answer: 'Because mixing them turns the talk into a fight about blame',
           why: 'Agreeing on the facts first lets both sides look forward together.',
         },
@@ -1074,8 +1074,8 @@ export default {
         'Assertiveness is standing up for your view and your needs while respecting the other person’s. Passive is giving way to avoid friction; aggressive is pushing your view at the other’s expense.\n\nDaniel Ames and Francis Flynn (2007) found that colleagues rated leaders lower when they saw them as too little or too much assertive: the best spot lies in the middle. Most juniors start on the passive side.',
         'The line-crossing illusion: people whom others judged appropriately assertive often believed they had come across as too pushy (Ames and Wazlawek, 2014). Part of the cause: the other side sometimes shows displeasure on purpose, to get a better deal.\n\nFor you that means: when you feel you pushed too hard, check before you apologise. Usually you didn’t.',
         'Kenneth Thomas and Ralph Kilmann (1974) describe five conflict modes on two axes, assertiveness and cooperativeness: competing, collaborating, compromising, avoiding and accommodating. None is always right. Accommodate on what matters little to you, collaborate on what matters to both, compete only on your red lines.\n\nThe risk for a junior is defaulting to avoiding or accommodating everywhere, so your yes and your silence are taken for granted.',
-        'In writing, people read confidence from the words. In a court study, witnesses who spoke with hedges and hesitations (“sort of”, “I guess”, “um”) were judged less credible (Erickson and colleagues, 1978). Jeffrey Pfeffer’s 7 Rules of Power (2022) makes a related point: people judge competence partly from how confident you appear.\n\nFour writing rules for clients and seniors follow: confident framing, no apologetic hedging, appreciation without deference, efficiency over explanation.',
-        'Confident framing: put your position first. No apologetic hedging: drop “just”, “maybe”, “sorry to bother you”. Appreciation without deference: thank people for what they did without placing yourself below them. Efficiency over explanation: one reason, then stop.\n\nTypical failure: overcorrecting into cold or curt. Pfeffer’s rules draw on research and cases, and critics say they can reward self-promotion; use them for clarity, not dominance. A sharp question before you send: “Which words can go without losing anything?”',
+        'In a court study, witnesses who spoke with hedges and hesitations (“sort of”, “I guess”, “um”) were judged less credible (Erickson and colleagues, 1978). Jeffrey Pfeffer makes a related point in 7 Rules of Power (2022), under his rule “show up in powerful fashion”: people judge competence partly from how confident you appear.\n\nFrom this, the course draws four writing rules for clients and seniors, a practical application rather than a list from the book: confident framing, no apologetic hedging, appreciation without deference, efficiency over explanation.',
+        'Confident framing: put your position first. No apologetic hedging: drop “just”, “maybe”, “sorry to bother you”. Appreciation without deference: thank people for what they did without placing yourself below them. Efficiency over explanation: one reason, then stop.\n\nTypical failure: overcorrecting into cold or curt. Pfeffer’s seven rules draw on research and cases, and critics say they can reward self-promotion; use the four writing rules for clarity, not dominance. A sharp question before you send: “Which words can go without losing anything?”',
       ],
       example: {
         kind: 'worked',
@@ -1091,7 +1091,7 @@ export default {
         },
         {
           q: 'What is the line-crossing illusion?',
-          options: ['Believing you came across as too passive when others saw you as pushy', 'Believing you were too pushy when others judged you appropriately assertive', 'Believing the other side crossed one of your red lines when they did not', 'Believing a deadline is final when the other side could still move it'],
+          options: ['Believing you came across as too passive when others actually saw you as pushy', 'Believing you were too pushy when others judged you appropriately assertive', 'Believing the other side crossed one of your red lines when they did not', 'Believing a deadline is final when the other side could still move it'],
           answer: 'Believing you were too pushy when others judged you appropriately assertive',
           why: 'Ames and Wazlawek found people often overestimate how hard they pushed, partly because counterparts show displeasure on purpose.',
         },
@@ -1103,7 +1103,7 @@ export default {
         },
         {
           q: 'Which line follows “appreciation without deference”?',
-          options: ['“Sorry to take up your time; I know you’re far busier than me.”', '“You probably know best, but maybe we could look at it once more?”', '“No need to thank you; delivering the data was your job anyway.”', '“Thanks for the data. I need the last two weeks too, by Wednesday.”'],
+          options: ['“Sorry to take up your time; I know you’re far busier than me.”', '“You probably know best, but maybe we could look at it once more together?”', '“No need to thank you; delivering the data was your job anyway.”', '“Thanks for the data. I need the last two weeks too, by Wednesday.”'],
           answer: '“Thanks for the data. I need the last two weeks too, by Wednesday.”',
           why: 'It thanks for real work and then asks clearly, as an equal. The first two defer; the third withholds appreciation.',
         },
@@ -1228,7 +1228,7 @@ export default {
       pre: [
         {
           q: 'A client director presses you in a meeting to agree on the spot to a change that is outside your authority. What is best?',
-          options: ['Say you will answer by a set time, after checking with whoever can decide', 'Agree, to keep the meeting moving, and sort out the details afterwards', 'Refuse firmly and make clear the subject is closed for good', 'Promise him a final decision before the end of this meeting'],
+          options: ['Say you will answer by a set time, after checking with whoever can decide', 'Agree, to keep the meeting moving, and sort out the details afterwards', 'Refuse firmly and make it clear to him that the subject is now closed for good', 'Promise him a final decision before the end of this meeting'],
           answer: 'Say you will answer by a set time, after checking with whoever can decide',
           why: 'Pressure works by shrinking time. Naming a time gives it back, without a yes you can’t keep or a no that closes the door.',
         },
@@ -1236,8 +1236,8 @@ export default {
       teach: [
         'Under pressure, the first skill is not to decide in the room. Name a time instead: “I’ll come back to you by four.” Pressure works by shrinking time; you give it back. Handling a client who pushes is covered in When you’re stuck (When the client pushes).\n\nThe broken record technique, from Manuel Smith’s When I Say No, I Feel Guilty (1975), is calmly repeating the same short line instead of new arguments: “I understand. I’ll come back to you by four.”',
         'Escalation is taking a disagreement openly to someone with more authority, because the two of you can’t solve it. Done in the open, it is not a betrayal. The basics are in Leading projects outside your field (Deciding under uncertainty, and escalating).\n\nAt this level the craft is escalating without burning bridges: the working relationship should come out of it intact.',
-        'Joint escalation means both sides take the disagreement up together, with one shared description of the problem and both options. “We see it differently; let’s put both views to the sponsor on one page.” Neither side loses face, and the person who decides sees a fair picture.\n\nAlways tell the other person first: “I don’t think we’ll solve this between us. Shall we take it to the sponsor together?”',
-        'Build a golden bridge, Ury’s phrase from Getting Past No (1991): make it easy for the other side to say yes without losing face. Credit their concerns, leave them a way to change their mind (“with the new data it makes sense to look again”), and let them announce the decision.\n\nAfter the decision, close the loop: thank them, carry it out fully, and don’t replay the argument.',
+        'Joint escalation, common practitioner advice, means both sides take the disagreement up together, with one shared description of the problem and both options. “We see it differently; let’s put both views to the sponsor on one page.” Neither side loses face, and the person who decides sees a fair picture.\n\nAlways tell the other person first: “I don’t think we’ll solve this between us. Shall we take it to the sponsor together?”',
+        'Build a golden bridge, an image Ury borrows from the Chinese strategist Sun Tzu in Getting Past No (1991): make it easy for the other side to say yes without losing face. Credit their concerns, leave them a way to change their mind (“with the new data it makes sense to look again”), and let them announce the decision.\n\nAfter the decision, close the loop: thank them, carry it out fully, and don’t replay the argument.',
         'What you see: juniors who escalate by forwarding an angry email to their boss, or who never escalate and let a bad call stand. Another failure: escalating every small difference, so your escalations lose weight.\n\nExperts differ on when to go over someone’s head without asking; most reserve it for safety, integrity or a legal breach. A sharp question: “Will our working relationship be better or worse after this, and what can I do now to make it better?”',
       ],
       example: {
@@ -1250,21 +1250,21 @@ export default {
       recall: [
         {
           q: 'What is the broken record technique?',
-          options: ['Repeating your strongest argument a little louder each time', 'Writing down every objection so you can answer it later', 'Calmly repeating the same short line instead of new arguments', 'Restating the other side’s view word for word to show respect'],
+          options: ['Repeating your strongest argument a little louder each time', 'Writing down every objection so you can answer it later', 'Calmly repeating the same short line instead of new arguments', 'Restating the other side’s view word for word, to show respect for it'],
           answer: 'Calmly repeating the same short line instead of new arguments',
           why: 'New arguments give the other side more to push against. One calm line holds the ground.',
         },
         {
           q: 'What is joint escalation?',
-          options: ['Both sides take the disagreement up together, with one shared description', 'Both managers are copied on every email about the issue from now on', 'You escalate first, and the other side escalates in reply on the same day', 'The sponsor and you decide together, without the other side being present'],
-          answer: 'Both sides take the disagreement up together, with one shared description',
+          options: ['Both sides take it up together, with one shared description', 'Both managers are copied on every email about the issue from now on', 'You escalate first, and the other side escalates in reply on the same day', 'The sponsor and you decide together, without the other side being present'],
+          answer: 'Both sides take it up together, with one shared description',
           why: 'Neither side loses face, and the decider sees both options fairly.',
         },
         {
           q: 'What does building a golden bridge mean?',
-          options: ['Offering the other side a bonus if they agree quickly', 'Linking two separate deals so that both of them close together', 'Agreeing on a neutral outside person to settle the dispute', 'Making it easy for the other side to say yes without losing face'],
+          options: ['Offering the other side a bonus if they agree quickly and quietly', 'Linking two separate deals so that both of them close together on the same day', 'Agreeing on a neutral outside person to settle the dispute', 'Making it easy for the other side to say yes without losing face'],
           answer: 'Making it easy for the other side to say yes without losing face',
-          why: 'Ury’s image: people agree more easily when they can do so with their dignity intact.',
+          why: 'Ury’s image, after Sun Tzu: people agree more easily when they can do so with their dignity intact.',
         },
         {
           q: 'When do most experts accept going over someone’s head without telling them first?',
