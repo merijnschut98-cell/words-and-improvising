@@ -1,4 +1,4 @@
-# eng.industry40 — Data and digital manufacturing (engineering, track discrete, level 4, FADED examples)
+# eng.industry40 — Data and digital manufacturing (engineering, track it (was discrete until 2026-11-08), level 4, FADED examples)
 Index title: en 'Data and digital manufacturing' / nl 'Data en digitale productie'. Blurb: en 'Expert level: MES, sensors, machine data, vision and digital twins, and when they pay off.' / nl 'Expertniveau: MES, sensoren, machinedata, vision en digital twins, en wanneer ze lonen.'
 1. `eng.industry40.stack` — the automation stack: sensors, PLC, SCADA, MES, ERP; what lives where and who owns it.
 2. `eng.industry40.mes` — MES in practice: orders, traceability, downtime registration, OEE data quality.

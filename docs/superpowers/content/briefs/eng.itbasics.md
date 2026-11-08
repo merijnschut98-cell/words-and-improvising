@@ -23,7 +23,7 @@ Levels 1–2 have worked examples, levels 3–4 faded examples (ask + reveal). 5
 - **Overlap with other modules is kept light.** Purdue/ISA-95, OPC UA and MQTT get a single mention each (`segment`, `vlan`); they are taught in `eng.ot`. IEC 62443 and NIS2 are taught in `eng.cyber`. Environments, DORA and ITIL are taught in `pm.devops`. The DMZ, segmentation and OPC UA terms also appear in `eng.industry40`'s `case` lesson. Terms only have to be unique within a module.
 - **NL term choices:** “Synchrone koppeling” / “Asynchrone koppeling”, because the adjective form is what appears in the text. “Bron van waarheid”, because the text reads “één bron van waarheid” and a term starting “Eén” would not match it. “Koppeling” is used for interface and “Gereedmelding” for completion report. These are the normal Dutch words in plants.
 - **Numbers kept practical:** /24 subnets only. No CIDR arithmetic beyond “/24 = 256 addresses, 254 usable”. Data volumes use 20 bytes per value, which is stated as an assumption. Availability uses 8,760 hours per year.
-- **Answer positions** (pre + recall multiple choice, 65 questions): 16 / 16 / 16 / 17 over positions 0–3. The positions are the same in en and nl. No question has the correct option as the unique longest one in either language (checked by script). Distractors were lengthened, or answers shortened, where needed.
+- **Answer positions** (pre + recall multiple choice, 66 questions after the review): 16 / 17 / 17 / 16 over positions 0–3. The positions are the same in en and nl. No question has the correct option as the unique longest one in either language (checked by script). Distractors were lengthened, or answers shortened, where needed.
 - **Hints:** each of the 15 numeric recall questions gets a usable hint. Most hints are the generated first step, a formula with `= ?` or a sum without the result. Questions whose explanation has no sum get their own `hint`: `vlan#r2` (port number), `server#r2` (VMs down) and `tables#r2` (rows to change). `tests/hint.test.js` passes.
 
 ## Facts and sources (checked 2026-11-08)
@@ -34,7 +34,7 @@ Levels 1–2 have worked examples, levels 3–4 faded examples (ask + reveal). 5
 - Modbus has no authentication. The text says “without any password check”. This is a generally known protocol property, described in the Modbus specification and in NIST SP 800-82 Rev. 3 (OT security guide).
 - OT priority on availability and safety, and lifetimes of 15–25 years against 4–5 for office PCs. The lifetimes are hedged with “vaak” / “often”. Source: NIST SP 800-82 Rev. 3, https://csrc.nist.gov/pubs/sp/800/82/r3/final.
 - Purdue model with the iDMZ (level 3.5) between IT and OT. The DMZ was added by practitioners and was not in the original model. Sources: https://softwaretoolbox.com/resources/what-is-purdue-model and https://sentinelone.com/cybersecurity-101/cybersecurity/what-is-the-purdue-model/. IEC 62443 zones and conduits are taken from IEC 62443-3-2 / 3-3 as summarised there; the zone is defined as a group with the same security requirements. The text keeps both on the level of a way of thinking. It does not state normative requirements.
-- NotPetya, 2017: Maersk estimated its cost at 250–300 million US dollars, in its Q2 2017 interim report. The figure is widely reported, e.g. Wired, “The Untold Story of NotPetya” (2018). The text says “schatte” / “estimated”.
+- NotPetya, 2017: Maersk estimated its cost at 250–300 million US dollars, in its Q3 2017 interim report (November 2017; the Q2 report in August had said 200–300 million). The figure is widely reported, e.g. Wired, “The Untold Story of NotPetya” (2018). The text says “schatte” / “estimated”.
 - NIST cloud definitions: IaaS, PaaS and SaaS are the three service models. Source: NIST SP 800-145 (Mell & Grance, September 2011), https://csrc.nist.gov/pubs/sp/800/145/final.
 - Shared responsibility: in every model, identity/access and data stay with the customer. Source: Microsoft Learn, https://learn.microsoft.com/azure/security/fundamentals/shared-responsibility.
 - Latency: under 1 ms inside the LAN, and 10–50 ms to a cloud region. This is a practitioner range and is hedged with “vaak … afhankelijk van afstand en verbinding” / “often … depending on distance and connection”. It is not presented as a standard.
@@ -48,22 +48,32 @@ Levels 1–2 have worked examples, levels 3–4 faded examples (ask + reveal). 5
 - REST is from Fielding (2000). HTTP status codes 200, 400, 401, 404 and 500 are defined in RFC 9110, and the IANA registry is at https://www.iana.org/assignments/http-status-codes. 401 means not authenticated.
 - Middleware examples (SAP Integration Suite, MuleSoft, Boomi) are given as known names, not as recommendations.
 - Semantic Versioning 2.0.0: MAJOR = incompatible API changes, MINOR = backwards-compatible features, PATCH = backwards-compatible fixes. Source: https://semver.org/. The text adds that not every supplier follows it strictly.
-- Windows 10: regular support ended 14 October 2025. Windows 10 IoT Enterprise LTSC 2021 is supported until January 2032. Source: Microsoft lifecycle, https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise, plus the Microsoft IoT blog table.
+- Windows 10: regular support ended 14 October 2025. Organisations can buy paid Extended Security Updates (ESU) for at most three years, to October 2028 (Microsoft Learn, Windows 10 ESU). Windows 10 IoT Enterprise LTSC 2021 is supported until January 2032. Source: Microsoft lifecycle, https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise, plus the Microsoft IoT blog table.
 
 ## Recalculations
 
 - ipaddress: 2⁸ = 256, minus 2, gives 254. The example uses third octet 5 vs 8, which with /24 means a different subnet.
-- vlan: OPC UA uses port 4840.
-- netdesign: 2,000 × 20 B = 40,000 B/s, × 8 = 320,000 bit/s = 0.32 Mbit/s (r1). The teach rounds this to “about 0.3”. Example: 5,000 × 20 = 100,000 B/s, which is 0.8 Mbit/s; × 86,400 = 8.64 × 10⁹ B ≈ 8.6 GB/day, × 365 ≈ 3.15 TB, written as “about 3.2 TB”.
+- vlan: OPC UA uses port 4840; SQL Server 1433 (r2 is now multiple choice).
+- netdesign: 2,000 × 20 B = 40,000 B/s, × 8 = 320,000 bit/s = 0.32 Mbit/s (teach). r1: 3,000 × 2 × 20 = 120,000 B/s, × 8 = 960,000 bit/s = 0.96 Mbit/s. The teach rounds this to “about 0.3”. Example: 5,000 × 20 = 100,000 B/s, which is 0.8 Mbit/s; × 86,400 = 8.64 × 10⁹ B ≈ 8.6 GB/day, × 365 ≈ 3.15 TB, written as “about 3.2 TB”.
 - server: 12 VMs / 3 servers = 4 down (r2).
-- saas: 30 − 5 = 25 ms (r2).
-- backup: pre 02:00 to 15:00 = 13 h. r1: 2.5 + 1.5 = 4 h. Example: 3 + 1 = 4 h against a target of 2 h; the RPO with 6-hourly backups is almost 6 h.
-- availability: pre 0.1% × 8,760 = 8.76 h. r0: 0.005 × 8,760 = 43.8 h. Example: 0.0005 × 8,760 = 4.38, so 4.4 h; 43.8 − 4.4 = 39.4 h; 39.4 × €12,000 = €472,800, written as “about €473,000”, against €40,000.
-- tables: renaming changes 1 row (r2).
+- saas: r2: 4 × 30 + 80 = 200 ms, within 500 ms per product.
+- backup: pre 02:00 to 15:00 = 13 h. r1: 1.5 (02:00 to 03:30) + 2.5 + 1 = 5 h. Example: 3 + 1 = 4 h against a target of 2 h; the RPO with 6-hourly backups is almost 6 h.
+- availability: pre 0.1% × 8,760 = 8.76 h. Teach: 99.9% × 99.5% ≈ 99.4%. r0: 0.999 × 0.995 = 0.994005; 0.005995 × 8,760 = 52.5 h. Example: 0.0005 × 8,760 = 4.38, so 4.4 h; 43.8 − 4.4 = 39.4 h; 39.4 × €12,000 = €472,800, written as “about €473,000”, against €40,000.
+- tables: r2: 6 stop rows carry the wrong machine number (foreign key), so 6 rows; a rename would be 1 row.
 - sql: 12 × 3 + 2 × 45 = 36 + 90 = 126 min (r1), COUNT 14. Teach: 10 × 2 + 60 = 80 min with COUNT 11. Example: 410 / 260 / 180 min with 9 / 31 / 4 stops.
 - reports: 05:30 UTC + 2 h = 07:30, which is 7.5 (r1). Example: winter, so 00:00 UTC = 01:00 local. The DW day 01:00–01:00 against the MES day 06:00–06:00 is a 5 h shift that cancels out if both nights ran alike. The gap of 650 = 9,800 − 9,150.
-- datamodel: pre 4 × 3 = 12 rows. r0: 2 × 5 = 10 rows. Example: 1,260 / 420 = 3, and 18 stops × 3 = 54 rows.
-- clientserver: 24 − 6 = 18 terminals (r2).
-- api: 5 × 4 / 2 = 10 interfaces (r3).
+- datamodel: pre 4 × 3 = 12 rows. r0: 2 × 5 = 10 rows, so 2 × 70 = 140 min. Example: 1,260 / 420 = 3, and 18 stops × 3 = 54 rows.
+- clientserver: r2: 3 × 8 = 24 terminals on server A; 2 × 6 = 12 on B keep working.
+- api: r3: 6 × 5 / 2 = 15 direct, 6 with middleware, saving 9.
 - integration: r2: 600 × 12 = 7,200, and 7,200 − 600 = 6,600 pieces. Example: 4% × 150 = 6; 6 × 40 = 240 boxes per day; × 20 days = 4,800.
-- releases: 2028 − 2025 = 3 years (r2).
+- releases: r3: 5 + 3 = 8 h before Monday 06:00 = Sunday 22:00.
+
+## Review (2026-11-08)
+
+- NotPetya: the 250–300 M figure is right, but it comes from Maersk's Q3 2017 report (Q2 said 200–300 M). Text unchanged; source line fixed.
+- Windows 10 ESU added to the teach (paid, at most three years, to October 2028): without it, “no security updates” after October 2025 was too strong for companies.
+- Harder or reworked questions (levels must climb, no giveaway hints): vlan#r2 is now a judged rule request (port 4840 to a SQL Server) as multiple choice; tables#r2 (6 rows, foreign key per stop); clientserver#r2 (two servers, 24); saas#r2 (4 round trips + compute = 200 ms); backup#r1 (detection time counts, 5 h); availability#r0 (chain availability, 52.5 h; it duplicated the example); netdesign#r1 (0.96 Mbit/s; it duplicated the teach); datamodel#r0 (fan-out on minutes, 140); api#r3 (middleware saving, 9). These and reports#r1 now have their own hint; the generated ones gave the sum away.
+- Overlap with pm.devops: the releases recall no longer repeats pm.devops (“where do users check in DTAP”, “what belongs in a rollback plan”). New: release notes against semver (multiple choice), end of support with ESU (multiple choice), last moment to decide a rollback (numeric, 22).
+- Chain availability (multiply) added to the availability teach; SLA compensation hedged with “usually” (service credits).
+- The reports example reveal now names the trap 5 h × 130 = 650 before explaining why it cancels out.
+- nl: “elke gegeven” → “elk gegeven”.
