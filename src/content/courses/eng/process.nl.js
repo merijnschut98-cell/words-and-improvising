@@ -84,8 +84,8 @@ export default {
       teach: [
         'Procesfabrieken worden beschreven in drie soorten schema’s, van grof naar fijn (ISO 10628-1 legt ze vast).\n\nEen blokschema toont elke stap als een blok met de hoofdstromen ertussen: ontvangst, pasteuriseren, vullen. Een processchema (process flow diagram, PFD) toont de hoofdapparatuur als symbolen, de hoofdleidingen en de ontwerptemperaturen en -debieten. Een P&ID, het leiding- en instrumentatieschema, toont elke leiding, afsluiter en elk instrument. Hoe je de symbolen leest, staat in de module Tekeningen en regeling.',
         'Bij een PFD hoort meestal een stroomtabel (stream table): elke genummerde stroom met debiet, temperatuur, druk en samenstelling bij ontwerp. Engineers noemen het ook de warmte- en massabalans.\n\nHet is de ontwerpbelofte van de fabriek. Leg de trend van vandaag ernaast: is stroom 4 ontworpen op 20.000 kg per uur en loopt hij op 16.000, vraag dan waarom. Die ene vergelijking laat vaak zien waar de capaciteit gebleven is.',
-        'Leestips. Het product stroomt grofweg van links naar rechts. Hoofdleidingen zijn dik getekend; leidingen van nutsvoorzieningen dun en met een label. Een nutsvoorziening (utility) is een dienst die het proces nodig heeft maar niet verkoopt, zoals stoom, koelwater of perslucht. Op de vloer zeggen ze gewoon ‘utilities’.\n\nElk apparaat heeft een apparaatcode: een letter voor het type en een nummer voor het gebied, zoals P-101 voor een pomp of E-201 voor een warmtewisselaar. Gebruik die codes in gesprekken met engineers.',
-        'Een schema klopt alleen als het ‘as-built’ is: bijgewerkt na elke wijziging. Veel schema’s zijn dat niet: een bypass die in een nachtdienst is gelegd, een leiding die jaren geleden is verwijderd.\n\nZoek in voedingsbedrijven naar een dood leidingstuk (dead leg): een kort zijtakje waar het product stilstaat. Reinigingsvloeistof komt er nauwelijks in, dus kiemen kunnen er groeien. Ze verstoppen zich in oude aanpassingen. Ervaren engineers lopen de leiding na met de P&ID in de hand voordat ze erop vertrouwen.',
+        'Het product stroomt grofweg van links naar rechts. Productleidingen zijn dik getekend, leidingen van utilities dun. Utilities (hulpsystemen) zijn de diensten die het proces nodig heeft maar niet verkoopt, zoals stoom, koelwater of perslucht. Zo heten ze op elke Nederlandse site.\n\nElk apparaat heeft een apparaatcode (equipment tag), vaak gewoon tagnummer genoemd: een letter voor het type en een nummer dat vaak met het fabrieksgebied begint, zoals P-101 voor een pomp of E-201 voor een warmtewisselaar. Instrumentcodes zoals FT 201 staan in Tekeningen en regeling.',
+        'Zoals Tekeningen en regeling uitlegt, klopt een schema alleen als het ‘as-built’ is: bijgewerkt na elke wijziging. Veel schema’s zijn dat niet: een bypass die in een nachtdienst is gelegd, een leiding die jaren geleden is verwijderd.\n\nZoek in voedingsbedrijven naar een dood leidingstuk (dead leg): een kort zijtakje waar het product stilstaat. Reinigingsvloeistof komt er nauwelijks in, dus kiemen kunnen er groeien. Ze verstoppen zich in oude aanpassingen. Ervaren engineers lopen de leiding na met de P&ID in de hand voordat ze erop vertrouwen.',
         'Een Lean-consultant tekent vaak een value stream map (waardestroomkaart): stappen, wachten, voorraad en informatie. Een PFD toont de fysica: debieten, temperaturen, apparatuur. Je hebt ze allebei nodig. De waardestroomkaart laat zien waar de tijd heen gaat; de PFD wat de stroom beperkt.\n\nTypische fout: een stap verbeteren op een tekening die niet meer klopt met de fabriek. Scherpe vraag: “Is deze P&ID as-built, welke revisie is het, en wie werkt hem bij na een wijziging?”',
       ],
       example: {
@@ -136,8 +136,8 @@ export default {
         { term: 'Blokschema', def: 'Het grofste processchema: elke stap als blok met de hoofdstromen ertussen.' },
         { term: 'Processchema', def: 'PFD: de hoofdapparatuur als symbolen, de hoofdleidingen en de ontwerpdebieten en -temperaturen.' },
         { term: 'Stroomtabel', def: 'Tabel bij een PFD met ontwerpdebiet, temperatuur, druk en samenstelling van elke genummerde stroom.' },
-        { term: 'Apparaatcode', def: 'De code van een apparaat, een typeletter plus een gebiedsnummer, zoals P-101 voor een pomp.' },
-        { term: 'Nutsvoorziening', def: 'Een dienst die het proces nodig heeft maar niet verkoopt, zoals stoom, koelwater of perslucht.' },
+        { term: 'Apparaatcode', def: 'De code van een apparaat: een typeletter plus een nummer dat vaak met het gebied begint, zoals P-101 voor een pomp.' },
+        { term: 'Utilities', def: 'De hulpsystemen die het proces nodig heeft maar niet verkoopt, zoals stoom, koelwater of perslucht.' },
         { term: 'Dood leidingstuk', def: 'Een kort zijtakje van een leiding waar het product stilstaat en de reiniging nauwelijks komt.' },
       ],
     },
@@ -153,11 +153,11 @@ export default {
         },
       ],
       teach: [
-        'Veel fabrieken combineren batch- en continue stappen. Een batchmenger levert in klonten; een continue vuller of droger wil een gelijkmatige stroom. Een buffertank (surge tank) zit ertussen en vangt het verschil op.\n\nTwee regels. Gemiddeld moet de batchkant minstens leveren wat de continue kant afneemt: batchvolume / cyclustijd. En de tank moet de schommeling binnen één cyclus aankunnen, plus marge voor een batch die te laat is.',
+        'Veel fabrieken combineren batch- en continue stappen. Een batchmenger levert met horten en stoten, een hele batch tegelijk; een continue vuller of droger wil een gelijkmatige stroom. Een buffertank (surge tank) zit ertussen en vangt het verschil op.\n\nTwee regels. Gemiddeld moet de batchkant minstens leveren wat de continue kant afneemt: batchvolume / cyclustijd. En de tank moet de schommeling binnen één cyclus aankunnen, plus marge voor een batch die te laat is.',
         'De schommeling is wat het niveau binnen één cyclus doet. Stel: een batch van 6 m³ wordt in 15 minuten ingepompt terwijl de vuller 4 m³ per uur afneemt. In die 15 minuten komt er 6 m³ in en gaat er 1 m³ uit: het niveau stijgt 5 m³. Daarna zakt het weer tot de volgende batch.\n\nAlleen het bruikbaar volume telt: het deel tussen het minimumniveau, waaronder de pomp lucht zou zuigen, en het maximumniveau, dat ruimte laat voor schuim.',
-        'De niveauregelaar op een buffertank moet het niveau niet strak vasthouden. Doet hij dat wel, dan gaat elke klont van de batchkant meteen door naar de uitstroom, en krijgt de vuller precies de schokken die de tank moest opvangen.\n\nMiddelende niveauregeling (averaging level control) doet het omgekeerde: ze laat het niveau tussen twee grenzen schommelen en verandert de uitstroom maar langzaam. Regeltechnici noemen dat de echte taak van de tank: schommelingen dempen.',
+        'De niveauregelaar op een buffertank moet het niveau niet strak vasthouden. Doet hij dat wel, dan gaat elke golf van de batchkant meteen door naar de uitstroom, en krijgt de vuller precies de schokken die de tank moest opvangen.\n\nMiddelende niveauregeling (averaging level control) doet het omgekeerde: ze laat het niveau tussen twee grenzen schommelen en verandert de uitstroom maar langzaam. Regeltechnici noemen dat de echte taak van de tank: schommelingen dempen.',
         'Een buffer is ook tijd. Bruikbaar volume gedeeld door het afnamedebiet zegt hoe lang de continue kant doordraait als de batchkant stopt: 12 m³ bruikbaar bij 4 m³ per uur geeft 3 uur.\n\nMaar product mag niet eeuwig staan. Veel voedingsbedrijven hanteren een maximale wachttijd (hold time limit): de langste tijd dat product mag wachten voordat het gebruikt, opnieuw gekoeld of opnieuw behandeld moet worden. Het voedselveiligheidsplan van de site legt dat getal vast. Een grotere tank betekent ook meer product dat bij het reinigen weg moet.',
-        'Experts discussiëren over buffers. Lean zegt dat voorraad problemen verbergt: los de late batches op in plaats van een grotere tank te kopen. Procesengineers antwoorden dat sommige variatie ingebouwd is, omdat een batch in één klont komt, en dat een buffer de goedkoopste manier is om die op te vangen.\n\nBeide hebben deels gelijk: maak de buffer groot genoeg voor de ingebouwde schommeling en los de vertragingen op. Scherpe vraag: “Als de volgende batch een uur te laat is, hoe lang draait de vuller dan nog?”',
+        'Experts discussiëren over buffers. Lean zegt dat voorraad problemen verbergt: los de late batches op in plaats van een grotere tank te kopen. Procesengineers antwoorden dat sommige variatie ingebouwd is, omdat een batch in één keer binnenkomt, en dat een buffer de goedkoopste manier is om die op te vangen.\n\nBeide hebben deels gelijk: maak de buffer groot genoeg voor de ingebouwde schommeling en los de vertragingen op. Scherpe vraag: “Als de volgende batch een uur te laat is, hoe lang draait de vuller dan nog?”',
       ],
       example: {
         kind: 'faded',
@@ -185,8 +185,8 @@ export default {
         },
         {
           q: 'Waarom krijgt een buffertank tussen een batchmenger en een vuller middelende niveauregeling in plaats van strakke niveauregeling?',
-          options: ['Middelende regeling houdt het niveau de hele tijd precies op het setpoint', 'Strakke regeling zou een veel duurdere niveausensor nodig hebben', 'Strakke regeling geeft elke klont van de menger meteen door aan de vuller', 'Middelende regeling laat de tank tussen batches leeglopen zonder alarm'],
-          answer: 'Strakke regeling geeft elke klont van de menger meteen door aan de vuller',
+          options: ['Middelende regeling houdt het niveau de hele tijd precies op het setpoint', 'Strakke regeling zou een veel duurdere niveausensor nodig hebben', 'Strakke regeling geeft elke golf van de menger meteen door aan de vuller', 'Middelende regeling laat de tank tussen batches leeglopen zonder alarm'],
+          answer: 'Strakke regeling geeft elke golf van de menger meteen door aan de vuller',
           why: 'De tank is er om schommelingen op te vangen. Het niveau laten bewegen en de uitstroom langzaam aanpassen houdt de vuller rustig.',
         },
         {
@@ -216,7 +216,7 @@ export default {
     },
     {
       id: 'eng.process.continuous',
-      title: 'Batch of continu: systeeminhoud, opstarten en omstellen',
+      title: 'Batch of continu: lijninhoud, opstarten en omstellen',
       pre: [
         {
           q: 'Een continue saplijn bevat 2.000 liter product tussen menger en vuller. Bij elke wissel naar een ander sap mengt een deel daarvan met het volgende sap. Waar komen de kosten van een omstelling vooral vandaan?',
@@ -226,26 +226,26 @@ export default {
         },
       ],
       teach: [
-        'Batch of continu is een keuze met getallen erachter. Continu past bij grote volumes, weinig producten en constante kwaliteit. Batch past bij veel recepten, kleine volumes en strenge traceerbaarheid per partij.\n\nEen sleutelgetal is de systeeminhoud (hold-up): de hoeveelheid product die op elk moment in de apparatuur zit, in leidingen, tanks en warmtewisselaars. Een grote systeeminhoud betekent veel product dat risico loopt bij elke start, stop of wissel. Procesintensivering (process intensification), kleinere continue apparatuur bouwen, wil die verkleinen.',
-        'Bij een productwissel op een continue lijn wordt het oude product weggedrukt door water of door het volgende product. Waar ze elkaar raken ontstaat een mengfase (product interface): een zone gemengd product dat het een noch het ander is. Het gaat naar een lagere kwaliteit, naar diervoer of naar afval.\n\nAls vuistregel is de mengfase vaak één tot twee keer de systeeminhoud, afhankelijk van leidinglengte en debiet; de eigen registraties van de fabriek geven het echte getal.',
+        'Batch of continu is een keuze met getallen erachter. Continu past bij grote volumes, weinig producten en constante kwaliteit. Batch past bij veel recepten, kleine volumes en strenge traceerbaarheid per partij.\n\nEen sleutelgetal is de lijninhoud (hold-up): de hoeveelheid product die op elk moment in de apparatuur zit, in leidingen, tanks en warmtewisselaars. Een grote lijninhoud betekent veel product dat risico loopt bij elke start, stop of wissel. Procesintensivering (process intensification), kleinere continue apparatuur bouwen, draait deels om het verkleinen daarvan.',
+        'Bij een productwissel op een continue lijn wordt het oude product weggedrukt door water of door het volgende product. Waar ze elkaar raken ontstaat een mengfase (product interface): een zone gemengd product dat het een noch het ander is. Het gaat naar een lagere kwaliteit, naar diervoer of naar afval.\n\nAls vuistregel is de mengfase vaak één tot twee keer de lijninhoud, afhankelijk van leidinglengte en debiet; de eigen registraties van de fabriek geven het echte getal.',
         'Opstarten kost ook. Een droger of indamper kan uren nodig hebben om in stationaire toestand te komen, en wat hij intussen maakt is buiten spec. Dat opstartverlies is vaak groter dan het verlies van een hele batch.\n\nDaarom groeperen continue fabrieken producten in een campagne: een reeks gelijke of verwante producten vóór de volgende wissel of stop. Langere campagnes geven minder verlies, maar meer voorraad per product. De module Capaciteit en flow behandelt die afweging als seriegrootte.',
-        'Traceren werkt ook anders. Een batch heeft één nummer. In een continue lijn wordt een partij vaak in tijd gedefinieerd: alles wat tussen 08:00 en 12:00 gemaakt is, bijvoorbeeld. De farmarichtlijn ICH Q13 (2022) accepteert een batch die is gedefinieerd door een tijdvenster of een hoeveelheid.\n\nBij een verstoring rekenen engineers met de verblijftijd uit welk product op dat moment passeerde, en leiden ze alleen dat deel om.',
+        'Traceren werkt ook anders. Een batch heeft één nummer. In een continue lijn wordt een partij vaak in tijd gedefinieerd: alles wat tussen 08:00 en 12:00 gemaakt is, bijvoorbeeld. Met de farmarichtlijn ICH Q13 (2022) mag een continu proces een batch definiëren met een hoeveelheid materiaal of met de looptijd bij een vast debiet.\n\nBij een verstoring rekenen engineers met de verblijftijd uit welk product op dat moment passeerde, en leiden ze alleen dat deel om.',
         'Experts discussiëren of omschakelen naar continu loont. Leveranciers wijzen op kleinere apparatuur en constantere kwaliteit; plantmanagers op opstartverliezen en de vaardigheden die nodig zijn. Het antwoord hangt af van het volume per product en het aantal wissels.\n\nTypische fout: een business case die de apparatuur telt maar niet de mengfase en het opstartverlies. Scherpe vraag: “Hoeveel kg verliezen we per opstart en per wissel, en hoeveel per jaar?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een continue saplijn heeft een systeeminhoud van 2.000 liter. Volgens de registraties gaat bij elke productwissel ongeveer 1,5 keer de systeeminhoud naar een lagere kwaliteit: 3.000 liter per omstelling. De huidige planning heeft 8 wissels per week: 8 × 3.000 = 24.000 liter per week.\n\nDe planning stelt campagnes voor: eerst alle sinaasappel, dan appel, dan multifruit, zodat er nog maar 3 wissels per week zijn.',
+        text: 'Een continue saplijn heeft een lijninhoud van 2.000 liter. Volgens de registraties gaat bij elke productwissel ongeveer 1,5 keer de lijninhoud naar een lagere kwaliteit: 3.000 liter per omstelling. De huidige planning heeft 8 wissels per week: 8 × 3.000 = 24.000 liter per week.\n\nDe planning stelt campagnes voor: eerst alle sinaasappel, dan appel, dan multifruit, zodat er nog maar 3 wissels per week zijn.',
         ask: 'Hoeveel liter per week bespaart het campagneplan, en hoeveel per jaar bij 48 productieweken? Wat moet de planning daar tegenover accepteren?',
         reveal: 'Campagnes: 3 × 3.000 = 9.000 liter per week, dus 24.000 − 9.000 = 15.000 liter per week bespaard, en 15.000 × 48 = 720.000 liter per jaar.\n\nDaar staat tegenover dat elk sap minder vaak gemaakt wordt, dus het magazijn moet meer voorraad van elk sap houden om de dagen ertussen te overbruggen, en spoedorders wachten langer op hun plek.',
       },
-      said: 'Wat engineers zeggen: “Elke smaakwissel spoelt anderhalve systeeminhoud door het putje. Plan in campagnes.”',
+      said: 'Wat engineers zeggen: “Elke smaakwissel spoelt anderhalve lijninhoud door het putje. Plan in campagnes.”',
       recall: [
         {
-          q: 'Een continue lijn heeft een systeeminhoud van 1.200 liter. Elke productwissel verliest 1,5 keer de systeeminhoud als mengfase. De lijn wisselt 10 keer per week van product. Hoeveel liter per week gaat er verloren aan omstellingen?',
+          q: 'Een continue lijn heeft een lijninhoud van 1.200 liter. Elke productwissel verliest 1,5 keer de lijninhoud als mengfase. De lijn wisselt 10 keer per week van product. Hoeveel liter per week gaat er verloren aan omstellingen?',
           number: 18000,
           tolerance: 100,
           unit: 'liter/week',
-          hint: 'Reken eerst het verlies van één omstelling uit: systeeminhoud keer de factor.',
+          hint: 'Reken eerst het verlies van één omstelling uit: lijninhoud keer de factor.',
           why: 'Per wissel 1.200 × 1,5 = 1.800 liter; 10 × 1.800 = 18.000 liter per week.',
         },
         {
@@ -258,9 +258,9 @@ export default {
         },
         {
           q: 'Hoe kan een continu farmaceutisch proces volgens de richtlijn ICH Q13 een batch definiëren?',
-          options: ['Alleen als de inhoud van één vat, net als bij batchproductie', 'Aan de hand van het aantal operators dat tijdens de run dienst heeft', 'Dat kan niet: continue processen kennen helemaal geen batches', 'Met een tijdvenster of een geproduceerde hoeveelheid'],
-          answer: 'Met een tijdvenster of een geproduceerde hoeveelheid',
-          why: 'ICH Q13 laat een continu proces een batch definiëren met looptijd of hoeveelheid, zodat partijen toch te traceren en vrij te geven zijn.',
+          options: ['Alleen als de inhoud van één vat, net als bij batchproductie', 'Aan de hand van het aantal operators dat tijdens de run dienst heeft', 'Dat kan niet: continue processen kennen helemaal geen batches', 'Met een hoeveelheid materiaal of met looptijd bij vast debiet'],
+          answer: 'Met een hoeveelheid materiaal of met looptijd bij vast debiet',
+          why: 'ICH Q13 laat een continu proces een batch definiëren met de hoeveelheid in- of uitgaand materiaal, of met de looptijd bij een vastgelegd massadebiet, zodat partijen toch te traceren en vrij te geven zijn.',
         },
         {
           q: 'Welk product past het best bij een continue lijn?',
@@ -272,16 +272,16 @@ export default {
       situation: {
         scene: 'Je zit bij een klant in zuivelingrediënten. Een leverancier stelt voor drie batchmengers te vervangen door één continue menglijn, en de business case toont 30% lagere apparatuurkosten.',
         ask: 'Wat vraag je voordat de case naar de directie gaat?',
-        model: 'Hoeveel producten en wissels per week zou de continue lijn draaien, en hoe groot is de systeeminhoud? Hoeveel product gaat er per wissel en per opstart naar een lagere kwaliteit, en zit dat in de case? Hoe definiëren en traceren we een partij? En kunnen campagnes het aantal wissels laag houden zonder dat onze voorraad uit de hand loopt?',
+        model: 'Hoeveel producten en wissels per week zou de continue lijn draaien, en hoe groot is de lijninhoud? Hoeveel product gaat er per wissel en per opstart naar een lagere kwaliteit, en zit dat in de case? Hoe definiëren en traceren we een partij? En kunnen campagnes het aantal wissels laag houden zonder dat onze voorraad uit de hand loopt?',
         rubric: [
-          'Vraagt naar het aantal wissels en de systeeminhoud van de nieuwe lijn',
+          'Vraagt naar het aantal wissels en de lijninhoud van de nieuwe lijn',
           'Wil mengfase- en opstartverliezen in de business case',
           'Brengt de partijdefinitie en de afweging campagne tegen voorraad in',
         ],
       },
       sayIt: 'Leg een commercieel manager in 60 seconden uit waarom een continue lijn bij elke wissel en elke opstart product verliest.',
       terms: [
-        { term: 'Systeeminhoud', def: 'De hoeveelheid product die op elk moment in de apparatuur zit: in leidingen, tanks en warmtewisselaars.' },
+        { term: 'Lijninhoud', def: 'De hoeveelheid product die op elk moment in de apparatuur zit: in leidingen, tanks en warmtewisselaars.' },
         { term: 'Mengfase', def: 'De zone gemengd product waar het ene product het volgende raakt bij een wissel; die wordt afgewaardeerd of gaat verloren.' },
         { term: 'Opstartverlies', def: 'Product buiten spec dat een continue installatie maakt terwijl ze na een start naar stationaire toestand toewerkt.' },
         { term: 'Campagne', def: 'Een reeks gelijke of verwante producten vóór de volgende wissel of stop, om omstel- en opstartverlies te beperken.' },
@@ -372,7 +372,7 @@ export default {
         'Procesfabrieken draaien op honderden regelkringen. Een regelkring meet een grootheid, vergelijkt die met het setpoint (de gewenste waarde) en verstelt een regelorgaan (final element) om bij te sturen: een regelklep, of het toerental van een pomp.\n\nDe module Tekeningen en regeling legt de kring en het instellen van een PID-regelaar uit. Deze les gaat over waarom kringen in een procesfabriek zo verschillend reageren, en wat dat betekent voor operators en output.',
         'Kringen verschillen in snelheid. Een debietkring reageert in seconden. Een drukkring is meestal ook snel. Een temperatuurkring op een groot vat met mantel duurt vele minuten, omdat er veel massa moet opwarmen.\n\nDe tijdconstante beschrijft dat: de tijd die een grootheid nodig heeft om na een stap ongeveer 63% van haar eindverandering te maken. Niveaukringen zijn een geval apart: op een buffertank moeten ze juist traag zijn.',
         'Dode tijd is erger dan traagheid: de vertraging voordat de meting überhaupt iets ziet. In een leiding is het transportvertraging: leidingvolume tussen klep en sensor gedeeld door het debiet. Zestig liter leiding bij 1 liter per seconde geeft 60 seconden.\n\nIn die minuut ziet de regelaar niets en blijft hij duwen, en dan schiet hij door. Regeltechnici zeggen: is de dode tijd groot ten opzichte van de tijdconstante, dan moet een kring trager worden ingesteld; een vaste grens waarover iedereen het eens is, bestaat niet.',
-        'Gaat een kring slingeren, dan zetten operators hem in handbediening (manual mode): de regelaar grijpt niet meer in en de operator zet de klep met de hand. Dat werkt voor een dienst, en wordt dan blijvend.\n\nIn een onderzoek naar zo’n 26.000 PID-kringen (Desborough en Miller, Honeywell, 2002) werkte maar ongeveer een derde goed, en regelde 36% feitelijk niet: in handbediening of een groot deel van de tijd vast tegen een grens. Kringen in handbediening schuiven variatie door naar mensen.',
+        'Gaat een kring slingeren, dan zetten operators hem in handbediening (manual mode): de regelaar grijpt niet meer in en de operator zet de klep met de hand. Dat werkt voor een dienst, en wordt dan blijvend.\n\nIn een onderzoek naar zo’n 26.000 PID-kringen (Desborough en Miller, Honeywell, 2002) werkte maar ongeveer een derde goed, en regelde 36% feitelijk niet: in handbediening of meer dan 30% van de tijd vast tegen een grens. Dat past bij de onderzoeken in Tekeningen en regeling. Kringen in handbediening schuiven variatie door naar mensen.',
         'Veelvoorkomende oorzaken zijn fysiek, geen software: een klep die blijft hangen, een veel te grote klep die bijna dicht werkt, een sensor op de verkeerde plek, of een debiet dat ’s nachts halveert zodat de dode tijd verdubbelt.\n\nExperts discussiëren of je eerst opnieuw instelt of eerst de hardware repareert; de meesten beginnen bij de klep. Scherpe vraag: “Hoeveel kringen op dit scherm staan in handbediening, en waarom?”',
       ],
       example: {
@@ -444,7 +444,7 @@ export default {
         'Eén kring per grootheid is vaak niet genoeg. Cascaderegeling stapelt twee kringen. De buitenste kring, bijvoorbeeld de producttemperatuur in een reactor, stuurt de klep niet zelf; hij geeft het setpoint aan een snelle binnenste kring, bijvoorbeeld de manteltemperatuur of het stoomdebiet.\n\nDe binnenste kring haalt verstoringen weg, zoals een dip in de stoomdruk, voordat ze het product bereiken. Een gangbare richtlijn is dat de binnenste kring een aantal keer sneller moet zijn dan de buitenste.',
         'Verhoudingsregeling (ratio control) houdt twee stromen in een vaste verhouding: siroop op water, room op melk, een chemisch middel op afvalwater.\n\nDe hoofdstroom (wild flow) meet je wel maar regel je hier niet. De regelaar vermenigvuldigt hem met de receptverhouding en gebruikt de uitkomst als setpoint van het doseerdebiet. Zakt de hoofdstroom 10%, dan zakt de dosering ook 10%, vanzelf.',
         'Terugkoppeling (feedback) wacht op een afwijking voordat ze ingrijpt. Voorwaartskoppeling (feedforward) meet een verstoring en grijpt in voordat het product er last van heeft.\n\nVoorbeeld: het voedingsdebiet naar een verwarmer stijgt 20%. Voorwaartskoppeling verhoogt de stoom meteen met ongeveer 20%, in plaats van te wachten tot de temperatuur zakt. Ze heeft een model nodig van hoeveel er bijgestuurd moet worden, en wordt bijna altijd gecombineerd met terugkoppeling, die corrigeert wat het model mist.',
-        'Met een gesplitst bereik (split range) stuurt één regelaar twee kleppen. Op een vat dat verwarmd en gekoeld moet worden, beweegt de uitgang van 0 tot 50% bijvoorbeeld de koelklep van helemaal open naar dicht, en van 50 tot 100% de stoomklep van dicht naar helemaal open.\n\nHet splitspunt moet zo staan dat beide kleppen nooit tegelijk open zijn; anders verwarm en koel je tegelijk en betaal je voor allebei.',
+        'Met een split-range-regeling stuurt één regelaar twee kleppen, elk over een deel van zijn uitgang. Op een vat dat verwarmd en gekoeld moet worden, beweegt de uitgang van 0 tot 50% bijvoorbeeld de koelklep van helemaal open naar dicht, en van 50 tot 100% de stoomklep van dicht naar helemaal open.\n\nHet splitspunt moet zo staan dat beide kleppen nooit tegelijk open zijn; anders verwarm en koel je tegelijk en betaal je voor allebei.',
         'Deze structuren falen op typische manieren. Een cascade waarvan de binnenste kring in handbediening staat, doet helemaal niets. Voorwaartskoppeling met een verkeerd model maakt het erger dan terugkoppeling alleen. En soms bouwen engineers ingewikkelde regelingen om een probleem dat een betere klep zou oplossen.\n\nScherpe vraag bij elke regelstructuur: “Welke verstoring haalt dit weg, en staat elke binnenste kring echt in automatisch?”',
       ],
       example: {
@@ -476,7 +476,7 @@ export default {
           why: 'Voorwaartskoppeling meet de verstoring en corrigeert meteen; terugkoppeling wacht tot er een afwijking in het product zichtbaar is.',
         },
         {
-          q: 'Een regelaar met gesplitst bereik stuurt een koelklep met uitgang 0–50% (helemaal open bij 0%, dicht bij 50%) en een stoomklep met uitgang 50–100% (dicht bij 50%, helemaal open bij 100%). De uitgang staat op 80%. Hoe ver staat de stoomklep open, in procent?',
+          q: 'Een split-range-regelaar stuurt een koelklep met uitgang 0–50% (helemaal open bij 0%, dicht bij 50%) en een stoomklep met uitgang 50–100% (dicht bij 50%, helemaal open bij 100%). De uitgang staat op 80%. Hoe ver staat de stoomklep open, in procent?',
           number: 60,
           tolerance: 1,
           unit: '%',
@@ -500,7 +500,7 @@ export default {
         { term: 'Verhoudingsregeling', def: 'Een debiet in vaste verhouding tot een ander houden door het gemeten debiet met een verhouding te vermenigvuldigen.' },
         { term: 'Hoofdstroom', def: 'Bij verhoudingsregeling het hoofddebiet dat wel gemeten maar niet door deze kring geregeld wordt.' },
         { term: 'Voorwaartskoppeling', def: 'Een verstoring meten en bijsturen voordat ze het product raakt, meestal gecombineerd met terugkoppeling.' },
-        { term: 'Gesplitst bereik', def: 'Eén regelaaruitgang die twee kleppen na elkaar stuurt, bijvoorbeeld koelen bij lage en verwarmen bij hoge uitgang.' },
+        { term: 'Split-range-regeling', def: 'Eén regelaaruitgang die twee kleppen na elkaar stuurt, bijvoorbeeld koelen bij lage en verwarmen bij hoge uitgang.' },
       ],
     },
     {
@@ -515,10 +515,10 @@ export default {
         },
       ],
       teach: [
-        'Betere regeling betaalt zich pas terug als iemand het streefpunt verschuift. Eerst verklein je de spreiding (variability) rond het gemiddelde. Daarna schuif je het setpoint dichter naar de grens. In de praktijk heet dat knijpen en verschuiven (squeeze and shift); regelspecialisten benadrukken dat het geld pas bij het verschuiven komt.\n\nHet streefpunt ligt op veilige afstand van de grens, vaak drie standaardafwijkingen: setpoint = grens − 3 × standaardafwijking. Kleinere spreiding betekent kleinere afstand.',
-        'Weggegeven product (giveaway) geef je gratis weg: een zak die boven het etiketgewicht is gevuld, poeder dat droger is dan nodig, eiwit boven de specificatie. Het staat nooit in een afkeurrapport, want het product is goed.\n\nVoorbeeld: een vuller die gemiddeld 1.015 g vult op een etiket van 1.000 g geeft 15 g per zak weg. Bij 50.000 zakken per dag is dat 750 kg per dag.',
-        'Waar komt de spreiding vandaan? Vaak uit de basislaag: kleppen, sensoren en instelling. In het Honeywell-onderzoek naar zo’n 26.000 PID-kringen (Desborough en Miller, 2002) werkte maar ongeveer een derde goed; 36% stond in handbediening of een groot deel van de tijd vast tegen een grens.\n\nEen audit van de regelkringen is daarom vaak het goedkoopste begin. Modelgebaseerde regeling (model predictive control, MPC), software die met een procesmodel meerdere grootheden tegelijk stuurt, komt pas als de basislaag werkt.',
-        'Alarmen horen ook bij regelen. Een operator die elke minuut een alarm krijgt, leest ze niet meer. De richtlijn EEMUA 191 noemt ongeveer één alarm per 10 minuten per operator bij normaal bedrijf zeer waarschijnlijk acceptabel.\n\nEen alarmvloed (alarm flood) begint als er meer dan 10 alarmen in 10 minuten binnenkomen. In zo’n vloed verdrinkt het belangrijke alarm, en incidentrapporten in de procesindustrie noemen dat vaak.',
+        'Betere regeling betaalt zich pas terug als iemand het streefpunt verschuift. Eerst verklein je de spreiding (variability) rond het gemiddelde. Daarna schuif je het setpoint dichter naar de grens. In de praktijk heet dat squeeze and shift: eerst knijpen, dan opschuiven; regelspecialisten benadrukken dat het geld pas bij het verschuiven komt.\n\nHet streefpunt ligt op veilige afstand van de grens, vaak drie standaardafwijkingen: setpoint = grens − 3 × standaardafwijking. Kleinere spreiding betekent kleinere afstand.',
+        'Weggegeven product (giveaway) geef je gratis weg: een zak die boven het etiketgewicht is gevuld, poeder dat droger is dan nodig, eiwit boven de specificatie. Het staat nooit in een afkeurrapport, want het product is goed.\n\nEen beetje overvulling moet: de EU-regels voor voorverpakte waren (het ℮-teken) eisen dat het gemiddelde minstens het etiketgewicht is. Voorbeeld: een vuller die gemiddeld 1.015 g vult op een etiket van 1.000 g geeft 15 g per zak weg. Bij 50.000 zakken per dag is dat 750 kg per dag.',
+        'Waar komt de spreiding vandaan? Vaak uit de basislaag: kleppen, sensoren en instelling. In het Honeywell-onderzoek naar zo’n 26.000 PID-kringen (Desborough en Miller, 2002) werkte maar ongeveer een derde goed; 36% stond in handbediening of meer dan 30% van de tijd vast tegen een grens.\n\nEen audit van de regelkringen is daarom vaak het goedkoopste begin. Modelgebaseerde regeling (model predictive control, MPC), software die met een procesmodel meerdere grootheden tegelijk stuurt, komt pas als de basislaag werkt.',
+        'Alarmen horen ook bij regelen. Een operator die elke minuut een alarm krijgt, leest ze niet meer. De richtlijn EEMUA 191 noemt ongeveer één alarm per 10 minuten per operator bij normaal bedrijf zeer waarschijnlijk acceptabel.\n\nEen alarmvloed (alarm flood) begint als er meer dan 10 alarmen in 10 minuten binnenkomen. In zo’n vloed verdrinkt het belangrijke alarm: vóór de explosie in de raffinaderij van Milford Haven in 1994 kregen twee operators 275 alarmen in de laatste 11 minuten.',
         'Experts discussiëren over MPC: leveranciers melden grote winsten, maar die cijfers komen uit hun eigen praktijkvoorbeelden, en de winst verdwijnt als de basiskringen in handbediening staan. Anderen zeggen dat de grootste winst simpelweg zit in setpoints die operators ‘voor de zekerheid’ ver van de grens houden.\n\nTypische fout: de spreiding halveren en het streefpunt laten staan. Scherpe vraag: “Als we de variatie halveren, waar gaat het setpoint dan heen, en wie beslist dat?”',
       ],
       example: {
@@ -527,7 +527,7 @@ export default {
         ask: 'Hoeveel kg poeder per uur maakt dezelfde 1.935 kg droge stof bij 3,70% vocht? Wat is dat per jaar waard bij 6.000 draaiuren en, zeg, € 3 per kg?',
         reveal: '1.935 / (1 − 0,037) = 2.009,3 kg per uur: ongeveer 9,3 kg poeder per uur meer, uit water dat je tegen de prijs van poeder verkoopt.\n\nPer jaar: 9,3 × 6.000 × € 3 ≈ € 168.000, voor een klepreparatie en wat regelwerk. De winst bestaat alleen als het streefpunt echt naar 3,70% gaat.',
       },
-      said: 'Wat engineers zeggen: “We hebben de spreiding maanden geleden geknepen, maar niemand heeft het setpoint verschoven. Tot nu toe hebben we niks verdiend.”',
+      said: 'Wat engineers zeggen: “We hebben de spreiding maanden geleden verkleind, maar niemand heeft het setpoint verschoven. Tot nu toe hebben we niks verdiend.”',
       recall: [
         {
           q: 'Een product mag hooguit 5,0% vocht bevatten. De standaardafwijking is 0,2 procentpunt, en de site houdt drie standaardafwijkingen tussen streefpunt en grens. Wat is het streefvocht, in procent?',
@@ -572,7 +572,7 @@ export default {
       terms: [
         { term: 'Spreiding', def: 'Hoe ver een procesgrootheid rond haar gemiddelde schommelt, vaak uitgedrukt als standaardafwijking.' },
         { term: 'Weggegeven product', def: 'Product dat je gratis weggeeft door boven de specificatie te draaien: overvulling, extra droog, extra eiwit.' },
-        { term: 'Knijpen en verschuiven', def: 'Eerst de spreiding verkleinen, dan het setpoint dichter naar de grens schuiven om de winst te pakken.' },
+        { term: 'Squeeze and shift', def: 'Eerst de spreiding verkleinen, dan het setpoint dichter naar de grens schuiven om de winst te pakken.' },
         { term: 'Modelgebaseerde regeling', def: 'MPC: software die met een model van het proces meerdere grootheden tegelijk stuurt.' },
         { term: 'Alarmvloed', def: 'Meer dan 10 alarmen in 10 minuten voor één operator, zodat belangrijke alarmen verdrinken (EEMUA 191).' },
       ],
@@ -735,7 +735,7 @@ export default {
         'Het mengkruis (Pearson square) is de snelle route. Zet de streefwaarde in het midden, de gehaltes van de twee stromen links. Delen A = streefwaarde − gehalte B; delen B = gehalte A − streefwaarde.\n\nHet voorbeeld uit het handboek: room van 40% en ondermelk van 0,05% tot melk van 3%. Room: 3 − 0,05 = 2,95 delen; ondermelk: 40 − 3 = 37 delen. Dus 2,95 kg room met 37 kg ondermelk geeft 39,95 kg melk van 3%.',
         'Terugvoer (recycle) stuurt materiaal van verderop in het proces terug naar een eerder punt: product buiten spec dat in de volgende batch wordt verwerkt (rework), moederloog terug naar een kristallisator, condensaat terug naar de ketel.\n\nMet terugvoer krijgt de unit meer dan de verse voeding: voeding unit = verse voeding + terugvoer. Teken twee kaders: één om de hele fabriek, waar de terugvoer tegen elkaar wegvalt, en één om de unit, waar hij meetelt.',
         'Een terugvoerlus verzamelt wat ze niet kan verwijderen. Zout in hergebruikt reinigingswater of een verontreiniging in een oplosmiddel hoopt zich elke ronde op. Een spuistroom (purge), een kleine stroom die continu wordt afgetapt, houdt dat in toom.\n\nIn stationaire toestand voert de spuistroom precies af wat er binnenkomt: spuidebiet × concentratie in de spui = verontreiniging erin. Een kleinere spuistroom spaart materiaal maar laat de concentratie stijgen.',
-        'De totale opbrengst kan herbewerking verbergen. Eerste-keer-goed (first-pass yield) telt alleen wat in één keer goed is. Een lijn die van 1.000 kg er 900 in één keer goed maakt, 80 kg met succes herbewerkt en 20 kg verliest, haalt 90% eerste-keer-goed maar 98% totale opbrengst.\n\nHerbewerken kost capaciteit, vaak op de bottleneck. Scherpe vraag: “Hoeveel van wat door deze unit gaat is herbewerking?”',
+        'De totale opbrengst kan herbewerking verbergen. First time right (first-pass yield) telt alleen wat in één keer goed is. Een lijn die van 1.000 kg er 900 in één keer goed maakt, 80 kg met succes herbewerkt en 20 kg verliest, haalt 90% first time right maar 98% totale opbrengst.\n\nHerbewerken kost capaciteit, vaak op de bottleneck. Scherpe vraag: “Hoeveel van wat door deze unit gaat is herbewerking?”',
       ],
       example: {
         kind: 'faded',
@@ -743,7 +743,7 @@ export default {
         ask: 'Los de vetbalans op naar C. Hoeveel room gaat eraf, en hoeveel melk van 3,5% blijft over?',
         reveal: '420 = 0,40C + 350 − 0,035C, dus 70 = 0,365C en C = 191,8 kg room. Er blijft 10.000 − 191,8 = 9.808,2 kg melk van 3,5% vet over.\n\nControle: 0,40 × 191,8 + 0,035 × 9.808,2 = 76,7 + 343,3 = 420 kg vet. De room is geen afval: die gaat als room of boter de deur uit, en daarom standaardiseren zuivelfabrieken zo precies.',
       },
-      said: 'Wat engineers zeggen: “Onze melk zit gemiddeld op 3,56% bij een spec van 3,5%. Dat is zes honderdste procent vet weggegeven op elke liter.”',
+      said: 'Wat engineers zeggen: “Onze melk zit gemiddeld op 3,56% bij een spec van 3,5%. Dat is 0,06 procentpunt vet weggegeven op elke liter.”',
       recall: [
         {
           q: 'Je mengt room met 30% vet en ondermelk met 0% vet tot een product met 10% vet. Hoeveel kg room gaat er in elke 100 kg product?',
@@ -768,10 +768,10 @@ export default {
           why: 'Wat de lus niet kan verwijderen hoopt zich op; de spuistroom tapt zoveel af als er binnenkomt, zodat de concentratie niet blijft stijgen.',
         },
         {
-          q: 'Een lijn maakt 1.000 kg. 900 kg is in één keer goed, 80 kg wordt herbewerkt tot goed product en 20 kg gaat verloren. Wat is het eerste-keer-goedpercentage?',
+          q: 'Een lijn maakt 1.000 kg. 900 kg is in één keer goed, 80 kg wordt herbewerkt tot goed product en 20 kg gaat verloren. Wat is het first-time-right-percentage?',
           options: ['90%', '98%', '92%', '80%'],
           answer: '90%',
-          why: 'Eerste-keer-goed telt alleen wat in één keer goed is: 900 / 1.000 = 90%. De totale opbrengst zou 980 / 1.000 = 98% zijn.',
+          why: 'First time right telt alleen wat in één keer goed is: 900 / 1.000 = 90%. De totale opbrengst zou 980 / 1.000 = 98% zijn.',
         },
       ],
       situation: {
@@ -790,7 +790,7 @@ export default {
         { term: 'Mengkruis', def: 'Snelle route om twee stromen te mengen: delen A = streefwaarde − B, delen B = A − streefwaarde.' },
         { term: 'Terugvoer', def: 'Materiaal dat van verderop in het proces terug gaat naar een eerder punt, zoals herbewerkt product buiten spec.' },
         { term: 'Spuistroom', def: 'Een kleine stroom die uit een terugvoerlus wordt afgetapt, zodat verontreinigingen zich niet onbeperkt ophopen.' },
-        { term: 'Eerste-keer-goed', def: 'Het deel van de output dat in één keer goed is, zonder herbewerking.' },
+        { term: 'First time right', def: 'Het deel van de output dat in één keer goed is, zonder herbewerking.' },
       ],
     },
     {
@@ -806,7 +806,7 @@ export default {
       ],
       teach: [
         'Op fabrieksniveau volgen engineers het specifiek energieverbruik: energie per ton product, in kWh per ton of GJ per ton. Zo kun je weken, producten en locaties vergelijken, als je de productmix kent.\n\nEen Sankey-diagram laat zien waar de energie heen gaat: pijlen zo breed als elke stroom, van gas en elektriciteit erin naar product, verliezen, rookgas en warm water eruit. Je ziet in één oogopslag welk verlies de moeite waard is.',
-        'Pinch-analyse, vanaf eind jaren zeventig ontwikkeld door Bodo Linnhoff en collega’s, zet alle hete stromen die gekoeld moeten worden en alle koude stromen die verwarmd moeten worden op een rij, en berekent hoeveel warmte je er maximaal tussen kunt terugwinnen.\n\nHet antwoord hangt af van het minimaal temperatuurverschil dat je in elke wisselaar toestaat tussen heet en koud, geschreven als ΔTmin. Een kleiner verschil wint meer terug maar vraagt meer wisselaaroppervlak. 10 K is een gebruikelijk startpunt; de juiste waarde is een economische keuze.',
+        'Pinch-analyse, vanaf eind jaren zeventig ontwikkeld door Bodo Linnhoff en collega’s, zet de hete stromen die gekoeld en de koude stromen die verwarmd moeten worden op een rij, en berekent hoeveel warmte je er maximaal tussen terugwint.\n\nDat hangt af van het minimaal temperatuurverschil dat je in elke wisselaar toestaat, ΔTmin: de kleinste naderingstemperatuur uit Pompen, stroming en warmte. Een kleiner verschil wint meer terug maar vraagt meer oppervlak. 10 K is een gebruikelijke start (platenwisselaars gaan vaak lager); de juiste waarde is een economische keuze.',
         'Het simpelste geval: één hete en één koude stroom met hetzelfde debiet en dezelfde soortelijke warmte in een tegenstroomwisselaar (counterflow). Het temperatuurverschil is dan overal gelijk, dus de koude stroom kan worden opgewarmd tot de inlaattemperatuur van de hete stroom min ΔTmin.\n\nDe warmtewisselaar zelf, zijn oppervlak en vervuiling, staat in de module Pompen, stroming en warmte. Hier gaat het om welke stromen je aan elkaar koppelt.',
         'Pinch-analyse geeft simpele regels: geen warmte over de pinch heen (het punt waar de hete en koude curve elkaar het dichtst naderen), geen stoomverwarming eronder en geen koelwater erboven. Een regel breken kost altijd extra energie aan beide kanten.\n\nEen warmtepomp tilt restwarmte met elektriciteit naar een bruikbare temperatuur. Steeds meer voedings- en zuivelfabrieken kijken naar warmtepompen nu ze van het gas af gaan; of dat loont, hangt af van de gas- en stroomprijs.',
         'Gepubliceerde pinch-studies melden vaak energiebesparingen tussen 10 en 35%, maar de uitkomst verschilt sterk per fabriek. In batchfabrieken zit de adder in de tijd: de hete en de koude stroom zijn er vaak niet op hetzelfde moment, dus je hebt warmteopslag nodig, zoals een heetwatertank.\n\nScherpe vraag: “Welke hete stromen gaan naar het riool of de koeltoren, en welke koude stromen verwarmen we tegelijk met stoom?”',
@@ -837,7 +837,7 @@ export default {
         },
         {
           q: 'Welke is een van de basisregels van pinch-analyse?',
-          options: ['Kies altijd de kleinste ΔTmin die je kunt kopen', 'Gebruik koelwater alleen onder het ketelhuis', 'Verwarm onder de pinch niet met stoom', 'Verwarm elke stroom met de heetste stoom die er is'],
+          options: ['Kies altijd de kleinste ΔTmin die je kunt kopen', 'Koel boven de pinch met koelwater waar het kan', 'Verwarm onder de pinch niet met stoom', 'Verwarm elke stroom met de heetste stoom die er is'],
           answer: 'Verwarm onder de pinch niet met stoom',
           why: 'Onder de pinch is al een warmteoverschot; daar met stoom verwarmen betekent betalen voor warmte die je daarna weer moet wegkoelen.',
         },
@@ -1021,10 +1021,10 @@ export default {
         },
       ],
       teach: [
-        'De meeste batchfabrieken maken meerdere producten op gedeelde vaten. De volgorde telt, omdat de reiniging afhangt van wat ervoor en erna komt. Dat is volgordeafhankelijke reiniging: zelfde product, vaak alleen een spoeling; licht naar donker, een spoeling; donker naar licht, of een product met allergeen naar een zonder, een volledige reiniging.\n\nEen allergeen is een stof die bij gevoelige mensen een reactie kan geven; de EU-regels noemen er 14 die vermeld moeten worden, zoals noten, melk en gluten.',
+        'De meeste batchfabrieken maken meerdere producten op gedeelde vaten, en de reiniging hangt af van wat ervoor kwam. De module Capaciteit en flow behandelt dat als volgordeafhankelijke omstelling, met de omstelmatrix en het productwiel. In voedingsbedrijven zijn allergenen het lastigste geval.\n\nEen allergeen is een stof die bij gevoelige mensen een reactie kan geven; EU-verordening 1169/2011 noemt er 14 die vermeld moeten worden, zoals noten, melk en granen met gluten. Van een product met allergeen naar een zonder vraagt een volledige reiniging.',
         'Planners tekenen de week als een Gantt-diagram (Gantt chart): één rij per vat, een balk voor elke batch en elke reiniging langs een tijdlijn. Je ziet meteen waar vaten op elkaar wachten.\n\nOverlap is de truc. Voorafwegen bereidt de grondstoffen voor de volgende batch voor terwijl de huidige nog in het vat zit. Dan duurt het vullen minuten in plaats van een uur, en wordt de cyclus korter.',
         'Elk vat heeft een werkvolume: het bereik tussen de minimale vulling, waarbij de roerder onder staat en de sensoren werken, en de maximale vulling, die ruimte laat voor schuim en uitzetting. Het datablad van het vat geeft het.\n\nEen order die niet past, kost capaciteit. 20 m³ in een vat met hooguit 8 m³ per batch vraagt 3 batches, die samen 24 m³ hadden kunnen bevatten.',
-        'Allergeenvolgorde (allergen sequencing) zet allergeenvrije producten eerst en allergeenproducten als laatste, en groepeert de allergeenproducten in één run. Na de volledige reiniging controleert de site of die gewerkt heeft, bijvoorbeeld met een swabtest op allergeenresten.\n\nDezelfde logica werkt voor kleuren, smaken en koosjere of biologische productie: zet het gevoeligste product direct na de volledige reiniging.',
+        'Allergeenvolgorde zet allergeenvrije producten eerst en allergeenproducten als laatste, en groepeert de allergeenproducten in één run. Na de volledige reiniging controleert de site of die gewerkt heeft, bijvoorbeeld met een swabtest op allergeenresten.\n\nDezelfde logica werkt voor kleuren, smaken en koosjere of biologische productie: zet het gevoeligste product direct na de volledige reiniging.',
         'Experts discussiëren over planningssoftware tegenover het whiteboard van de planner. Software kan veel randvoorwaarden aan; het whiteboard is waar de dienst echt naar kijkt. Allebei falen ze als ze de vrijgavetijd van het lab of de echte reinigingstijden negeren.\n\nTypische fout: een planning die op papier vol zit maar elke dag uitloopt omdat de volledige reiniging 4 uur duurt, niet de geplande 3. Scherpe vraag: “Welke wissel in onze volgorde kost de meeste uren, en kunnen we die naar het eind van de week schuiven?”',
       ],
       example: {
@@ -1076,7 +1076,7 @@ export default {
       },
       sayIt: 'Leg een planner in 60 seconden uit waarom de volgorde van producten in een batchfabriek de capaciteit verandert.',
       terms: [
-        { term: 'Volgordeafhankelijke reiniging', def: 'Reiniging waarvan de duur afhangt van welk product ervoor en erna komt, van een korte spoeling tot een volledige reiniging.' },
+        { term: 'Allergeenvolgorde', def: 'Allergeenvrije producten eerst en allergeenproducten als laatste draaien, gegroepeerd in één run, zodat er minder volledige reinigingen nodig zijn.' },
         { term: 'Allergeen', def: 'Een stof die bij gevoelige mensen een reactie kan geven; de EU-regels noemen er 14 die vermeld moeten worden.' },
         { term: 'Gantt-diagram', def: 'Een planning met één rij per vat en een balk per batch of reiniging langs een tijdlijn.' },
         { term: 'Voorafwegen', def: 'De grondstoffen voor de volgende batch klaarzetten terwijl het vat nog bezig is met de huidige.' },
@@ -1095,10 +1095,10 @@ export default {
         },
       ],
       teach: [
-        'Debottlenecken is de capaciteit van een bestaande fabriek stap voor stap verhogen. Begin met een capaciteitsprofiel: de capaciteit van elke stap, inclusief de nutsvoorzieningen, in dezelfde eenheid, zoals uren per batch of ton per dag, naast de vraag.\n\nDe laagste is de bottleneck. Los je die op, dan duikt de volgende op, dus reken na elke stap uit waar de grens naartoe gaat.',
+        'Debottlenecken is de capaciteit van een bestaande fabriek stap voor stap verhogen. Begin met een capaciteitsprofiel: de capaciteit van elke stap, inclusief de utilities, in dezelfde eenheid, zoals uren per batch of ton per dag, naast de vraag.\n\nDe laagste is de bottleneck. Los je die op, dan duikt de volgende op, dus reken na elke stap uit waar de grens naartoe gaat.',
         'Werk de opties af van goedkoop naar duur. Eerst de tijd: wachten, reinigen en labvrijgave, te vinden in de batchrapporten (batch reports). Dan een grotere batch binnen het werkvolume, als warmteafvoer en menging het toelaten, zoals in de les over opschalen. Dan een parallelle unit. Een nieuwe lijn komt als laatste.\n\nEen eerste filter is de kosten per extra ton: investering gedeeld door de extra tonnen per jaar. Terugverdientijd en risico komen daarna.',
-        'In gereguleerde fabrieken is een wijziging niet alleen techniek. In de farma, en in een groot deel van de voeding, gaat een nieuwe batchgrootte of een nieuw apparaat door wijzigingsbeheer (change control): een formele beoordeling van het risico, de documenten en de testen die nodig zijn.\n\nIn de farma kan dat nieuwe validatiebatches vragen; de richtlijn van de Amerikaanse FDA uit 2011 over procesvalidatie beschrijft de fasen. Dat kan maanden kosten, dus vraag vroeg wat een wijziging in gang zet.',
-        'Nutsvoorzieningen zijn verborgen bottlenecks: stoom, koelwater, ijswater, perslucht, CIP-stations (reiniging ter plaatse), de afvalwaterzuivering. Een reactor die 20% sneller draait, heeft op zijn piek misschien 20% meer koeling nodig, en die heeft de koelmachine (chiller) misschien niet.\n\nGrenzen van pompen en warmtewisselaars staan in de module Pompen, stroming en warmte. Geef in een capaciteitsprofiel elke nutsvoorziening een eigen regel.',
+        'In gereguleerde fabrieken is een wijziging niet alleen techniek. In de farma, en in een groot deel van de voeding, gaat een nieuwe batchgrootte of een nieuw apparaat door wijzigingsbeheer (change control): een formele beoordeling van het risico, de documenten en de testen die nodig zijn.\n\nIn de farma kan dat nieuwe validatiebatches vragen; de richtlijn van de Amerikaanse FDA uit 2011 over procesvalidatie noemt drie fasen: procesontwerp, proceskwalificatie en doorlopende procesverificatie. Dat kan maanden kosten, dus vraag vroeg wat een wijziging in gang zet.',
+        'Utilities zijn verborgen bottlenecks: stoom, koelwater, ijswater, perslucht, CIP-stations (reiniging ter plaatse), de afvalwaterzuivering. Een reactor die 20% sneller draait, heeft op zijn piek misschien 20% meer koeling nodig, en die heeft de koelmachine (chiller) misschien niet.\n\nGrenzen van pompen en warmtewisselaars staan in de module Pompen, stroming en warmte. Geef in een capaciteitsprofiel elke utility een eigen regel.',
         'Experts discussiëren over welke capaciteit je gebruikt. Ontwerpcapaciteit is waarvoor de fabriek gebouwd is; aangetoonde capaciteit is het beste tempo dat ze werkelijk heeft volgehouden, bijvoorbeeld over een maand. Plannen op ontwerpcapaciteit vallen meestal tegen.\n\nTypische fout: een tweede unit kopen voor een stap die nooit de bottleneck was. Scherpe vraag: “Wat is onze aangetoonde capaciteit per stap, en welke stap is de volgende na deze oplossing?”',
       ],
       example: {
@@ -1133,17 +1133,17 @@ export default {
         },
         {
           q: 'Een team heeft net de bottleneck bij de reactoren weggenomen. Wat moet het capaciteitsprofiel hun nu vertellen?',
-          options: ['Welke stap of nutsvoorziening nu de grens wordt, en bij welk tempo', 'Dat de fabriek nu overal op haar volle ontwerpcapaciteit draait', 'Dat de reactoren binnenkort een tweede investeringsronde nodig hebben', 'Niets meer: een fabriek heeft maar één bottleneck om weg te nemen'],
-          answer: 'Welke stap of nutsvoorziening nu de grens wordt, en bij welk tempo',
-          why: 'Is één bottleneck weg, dan bepaalt de volgende stap of nutsvoorziening de grens; weten welke en hoeveel vertelt je wat de oplossing echt waard is.',
+          options: ['Welke stap of utility nu de grens wordt, en bij welk tempo', 'Dat de fabriek nu overal op haar volle ontwerpcapaciteit draait', 'Dat de reactoren binnenkort een tweede investeringsronde nodig hebben', 'Niets meer: een fabriek heeft maar één bottleneck om weg te nemen'],
+          answer: 'Welke stap of utility nu de grens wordt, en bij welk tempo',
+          why: 'Is één bottleneck weg, dan bepaalt de volgende stap of utility de grens; weten welke en hoeveel vertelt je wat de oplossing echt waard is.',
         },
       ],
       situation: {
         scene: 'Je zit bij een farmaklant. De vraag ligt 25% boven de capaciteit, en de site stelt een tweede granuleerlijn voor van € 8 miljoen. De batchrapporten laten lange wachttijden op QC-vrijgave zien, en niemand heeft een capaciteitsprofiel gemaakt.',
         ask: 'Wat vraag je voordat de € 8 miljoen naar de directie gaat?',
-        model: 'Wat is de aangetoonde capaciteit van elke stap, inclusief nutsvoorzieningen en QC, tegenover de vraag? Is granuleren echt de bottleneck, of is het het wachten op vrijgave? Welke goedkopere opties komen eerst, zoals kortere vrijgavetijd of beter gebruik van de lijn, en wat kost elke optie per extra ton? En wat zet elke optie in gang in wijzigingsbeheer en validatie, en hoe lang duurt dat?',
+        model: 'Wat is de aangetoonde capaciteit van elke stap, inclusief utilities en QC, tegenover de vraag? Is granuleren echt de bottleneck, of is het het wachten op vrijgave? Welke goedkopere opties komen eerst, zoals kortere vrijgavetijd of beter gebruik van de lijn, en wat kost elke optie per extra ton? En wat zet elke optie in gang in wijzigingsbeheer en validatie, en hoe lang duurt dat?',
         rubric: [
-          'Vraagt om een capaciteitsprofiel met aangetoonde capaciteit, nutsvoorzieningen en QC',
+          'Vraagt om een capaciteitsprofiel met aangetoonde capaciteit, utilities en QC',
           'Werkt van goedkope naar dure opties, met kosten per extra ton',
           'Vraagt wat elke wijziging in gang zet in wijzigingsbeheer en validatie',
         ],
@@ -1151,7 +1151,7 @@ export default {
       sayIt: 'Leg een directielid in 60 seconden uit waarom een debottleneckstudie begint met een capaciteitsprofiel, niet met een nieuwe machine.',
       terms: [
         { term: 'Debottlenecken', def: 'De capaciteit van een bestaande fabriek stap voor stap verhogen door de ene grens na de andere weg te nemen.' },
-        { term: 'Capaciteitsprofiel', def: 'De capaciteit van elke stap en nutsvoorziening in één eenheid, naast de vraag.' },
+        { term: 'Capaciteitsprofiel', def: 'De capaciteit van elke stap en utility in één eenheid, naast de vraag.' },
         { term: 'Wijzigingsbeheer', def: 'Een formele beoordeling van risico, documenten en testen voordat een gereguleerde fabriek iets wijzigt.' },
         { term: 'Aangetoonde capaciteit', def: 'Het beste tempo dat een fabriek werkelijk heeft volgehouden, bijvoorbeeld over een maand, in tegenstelling tot de ontwerpcapaciteit.' },
       ],
