@@ -1,0 +1,221 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:06.199
+This is a machining centre: a CNC milling machine that changes its own tools.
+
+2
+00:00:06.749 --> 00:00:11.488
+At the side hangs the magazine, with dozens of cutters and drills.
+
+3
+00:00:12.038 --> 00:00:17.764
+The program calls one up, and the changer puts it in the spindle in a few seconds.
+
+4
+00:00:18.664 --> 00:00:22.463
+In milling the tool spins, and the part stands still.
+
+5
+00:00:23.013 --> 00:00:30.031
+Here a block of aluminium, 100 by 80 by 25 millimetres, sits in a vice.
+
+6
+00:00:30.581 --> 00:00:33.994
+The table moves left and right and back and forth,
+
+7
+00:00:34.194 --> 00:00:36.586
+and the spindle moves up and down.
+
+8
+00:00:37.786 --> 00:00:43.849
+The first tool, T1, is the face mill: a wide disc with inserts all around it.
+
+9
+00:00:44.749 --> 00:00:48.734
+In two passes it makes the top flat, in 1 minute.
+
+10
+00:00:49.284 --> 00:00:53.208
+That face is the starting point for every size still to come.
+
+11
+00:00:54.408 --> 00:00:59.122
+Then T2, a end mill of 10 millimetres: a slim carbide rod,
+
+12
+00:00:59.322 --> 00:01:02.526
+with cutting edges on its side and on its tip.
+
+13
+00:01:03.426 --> 00:01:06.805
+It mills a pocket of 60 by 40 millimetres,
+
+14
+00:01:07.005 --> 00:01:12.151
+8 millimetres deep: a recess with a floor, like a small tray in the part.
+
+15
+00:01:13.051 --> 00:01:16.778
+T3 runs its side along the shape: that is the contour.
+
+16
+00:01:17.328 --> 00:01:20.498
+A round cutter never makes a sharp inside corner.
+
+17
+00:01:21.047 --> 00:01:24.855
+The corner gets as round as the cutter: here 4 millimetres.
+
+18
+00:01:26.055 --> 00:01:31.166
+Now a steel block, with an end mill of 12 millimetres and 3 teeth,
+
+19
+00:01:31.366 --> 00:01:34.013
+at 150 metres per minute.
+
+20
+00:01:34.563 --> 00:01:35.945
+Just as in turning,
+
+21
+00:01:36.145 --> 00:01:42.600
+the spindle speed follows from the diameter: 3,980 revolutions a minute.
+
+22
+00:01:43.500 --> 00:01:46.205
+Each tooth takes one bite per revolution.
+
+23
+00:01:46.755 --> 00:01:52.899
+How thick it is, is the feed per tooth: here 0.05 millimetres.
+
+24
+00:01:53.799 --> 00:01:56.353
+Times the teeth and the spindle speed,
+
+25
+00:01:56.553 --> 00:02:01.464
+that gives the table feed: 597 millimetres per minute.
+
+26
+00:02:02.014 --> 00:02:04.382
+That number is the F in the program.
+
+27
+00:02:05.282 --> 00:02:10.286
+The cutter sits 3 millimetres sideways in the material: the width of cut.
+
+28
+00:02:11.186 --> 00:02:17.595
+It removes 17.9 cubic centimetres of metal a minute: the metal removal rate.
+
+29
+00:02:18.145 --> 00:02:21.233
+That number lets you compare two approaches fairly.
+
+30
+00:02:22.433 --> 00:02:23.826
+Watch one tooth.
+
+31
+00:02:24.376 --> 00:02:28.393
+In climb milling the tooth enters the material thick and leaves it thin.
+
+32
+00:02:29.293 --> 00:02:33.264
+In conventional milling the tooth starts at zero thickness,
+
+33
+00:02:33.464 --> 00:02:35.902
+and rubs over the surface first.
+
+34
+00:02:36.452 --> 00:02:38.205
+That makes heat and wear.
+
+35
+00:02:38.755 --> 00:02:42.867
+So on a modern CNC machine, climb milling is the standard.
+
+36
+00:02:44.067 --> 00:02:48.165
+If a 10 millimetre cutter sits only 1 millimetre sideways,
+
+37
+00:02:48.365 --> 00:02:53.450
+the chip gets thinner than the feed per tooth: only 0.6 times as thick.
+
+38
+00:02:54.000 --> 00:02:55.382
+That is chip thinning.
+
+39
+00:02:55.932 --> 00:02:58.370
+The cutter then rubs instead of cutting.
+
+40
+00:02:59.270 --> 00:03:05.368
+So you raise the feed per tooth, from 0.05 to 0.083.
+
+41
+00:03:05.918 --> 00:03:11.444
+The feed then goes from 1,200 to 2,000 millimetres per minute,
+
+42
+00:03:11.644 --> 00:03:13.931
+and the cutter actually lasts longer.
+
+43
+00:03:14.831 --> 00:03:18.059
+That is how trochoidal milling works: small loops,
+
+44
+00:03:18.259 --> 00:03:22.508
+only about 5 to 15 percent of the diameter sideways,
+
+45
+00:03:22.708 --> 00:03:25.239
+along almost the whole cutting length.
+
+46
+00:03:25.789 --> 00:03:29.217
+Heat and force stay low, at a much higher feed.
+
+47
+00:03:30.417 --> 00:03:34.109
+A five-axis machine has two more rotary axes.
+
+48
+00:03:34.659 --> 00:03:39.445
+Here the part sits on a trunnion table, which tilts and turns.
+
+49
+00:03:39.995 --> 00:03:43.513
+That way the cutter reaches five sides in one setup.
+
+50
+00:03:44.413 --> 00:03:50.674
+In 3+2 machining it tilts the part to a fixed angle, locks the rotary axes,
+
+51
+00:03:50.873 --> 00:03:54.325
+and simply mills with X, Y and Z.
+
+52
+00:03:54.874 --> 00:03:56.836
+That keeps the machine stiff.
+
+53
+00:03:57.736 --> 00:04:04.159
+From 4 setups to 1: per batch, 3 times 30 is 90 minutes less changeover.
+
+54
+00:04:05.059 --> 00:04:09.647
+In simultaneous 5-axis machining, all axes move at once.
+
+55
+00:04:10.198 --> 00:04:15.483
+That keeps the cutter square to the domed face, as on the vanes of a pump impeller.

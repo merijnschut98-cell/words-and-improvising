@@ -1,0 +1,257 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:06.038
+Almost every part has holes: for bolts, pins, oil or cables.
+
+2
+00:00:06.589 --> 00:00:08.888
+The standard tool is the twist drill.
+
+3
+00:00:09.438 --> 00:00:15.083
+But start it on a flat block, and it slides a fraction sideways before it bites.
+
+4
+00:00:15.633 --> 00:00:17.479
+That is called drill wander.
+
+5
+00:00:18.379 --> 00:00:22.129
+So first you make a short dimple with a centre drill: a short,
+
+6
+00:00:22.329 --> 00:00:24.338
+stiff drill with a broad point.
+
+7
+00:00:24.888 --> 00:00:28.650
+In it, the twist drill finds its place straight away.
+
+8
+00:00:29.550 --> 00:00:33.439
+Then the twist drill itself: two cutting edges at the point,
+
+9
+00:00:33.639 --> 00:00:36.298
+and two grooves that spiral up the body.
+
+10
+00:00:36.848 --> 00:00:39.843
+Along each flute the chips turn their way out.
+
+11
+00:00:40.393 --> 00:00:47.256
+An 8 millimetre drill in high-speed steel runs at about 25 metres per minute:
+
+12
+00:00:47.256 --> 00:00:49.484
+995 revolutions a minute.
+
+13
+00:00:50.684 --> 00:00:52.762
+The point of the drill is a cone.
+
+14
+00:00:53.312 --> 00:00:56.601
+The angle of that cone is the point angle:
+
+15
+00:00:56.601 --> 00:01:00.359
+118 degrees on ordinary high-speed steel drills.
+
+16
+00:01:00.909 --> 00:01:03.277
+That point centres the drill in the hole.
+
+17
+00:01:04.177 --> 00:01:09.045
+This hole does not go through: it is a blind hole, with a cone-shaped bottom.
+
+18
+00:01:09.594 --> 00:01:13.147
+20 millimetres deep takes about 8 seconds a hole.
+
+19
+00:01:14.347 --> 00:01:17.856
+If it must be tighter, a second tool follows.
+
+20
+00:01:18.406 --> 00:01:23.096
+For a 10 millimetre hole in H7 you first drill 9.8.
+
+21
+00:01:23.646 --> 00:01:27.501
+A reamer then takes off the last 0.2 millimetres.
+
+22
+00:01:28.401 --> 00:01:31.571
+The H says the hole may never be smaller than 10.
+
+23
+00:01:32.121 --> 00:01:35.309
+The 7 says how wide the band is:
+
+24
+00:01:35.309 --> 00:01:40.887
+the hole measures between 10.000 and 10.015 millimetres.
+
+25
+00:01:41.787 --> 00:01:47.119
+Hole and pin together are called the fit: this pin slides in, a clearance fit.
+
+26
+00:01:48.319 --> 00:01:51.358
+For a thread you first drill the tap drill hole:
+
+27
+00:01:51.358 --> 00:01:53.764
+the size of the screw minus the pitch,
+
+28
+00:01:53.964 --> 00:01:56.147
+the distance between two threads.
+
+29
+00:01:56.697 --> 00:02:02.865
+For M8, with a pitch of 1.25 millimetres, that is a 6.8 drill.
+
+30
+00:02:03.765 --> 00:02:06.075
+Then the tap cuts the thread: tapping.
+
+31
+00:02:06.625 --> 00:02:12.238
+Taps break easily, above all in a blind hole, where the chips cannot get away.
+
+32
+00:02:13.138 --> 00:02:17.506
+A large fitted hole, such as 40 H7 for a bearing,
+
+33
+00:02:17.706 --> 00:02:20.341
+is opened up by a boring head: boring.
+
+34
+00:02:20.891 --> 00:02:25.372
+The band here is 0 to 0.025 millimetres.
+
+35
+00:02:26.572 --> 00:02:31.160
+In deep holes, what counts is the depth divided by the diameter.
+
+36
+00:02:31.711 --> 00:02:37.216
+A hole of 6 millimetres, 90 deep, is 15 times the diameter.
+
+37
+00:02:37.766 --> 00:02:42.541
+Then every flute fills up, and it is all about chip evacuation.
+
+38
+00:02:43.441 --> 00:02:48.413
+In peck drilling the drill goes in a little, pulls back to clear the chips,
+
+39
+00:02:48.613 --> 00:02:49.716
+and goes on.
+
+40
+00:02:50.266 --> 00:02:55.804
+54 seconds of cutting plus 30 seconds of pulling back: 84 seconds a hole.
+
+41
+00:02:56.704 --> 00:03:01.292
+With through-spindle coolant, coolant sprays through the drill at high pressure,
+
+42
+00:03:01.493 --> 00:03:03.409
+and flushes the chips out.
+
+43
+00:03:03.958 --> 00:03:06.884
+No pecking: 13.5 seconds.
+
+44
+00:03:07.434 --> 00:03:12.789
+At 10,000 parts, that saves 196 hours a year.
+
+45
+00:03:13.989 --> 00:03:16.218
+Deeper still, or extremely straight?
+
+46
+00:03:16.768 --> 00:03:21.331
+Then it is a gun drill: a drill with one cutting edge and a hollow shank.
+
+47
+00:03:22.231 --> 00:03:27.447
+The coolant runs through the shank at high pressure, and carries the chips back out,
+
+48
+00:03:27.647 --> 00:03:29.644
+along a groove on the outside.
+
+49
+00:03:30.844 --> 00:03:34.768
+A hole can have the right size and still be in the wrong place.
+
+50
+00:03:35.318 --> 00:03:38.323
+That is what the position tolerance is for:
+
+51
+00:03:38.323 --> 00:03:42.516
+the hole’s axis must lie within a circle of 0.1 millimetres.
+
+52
+00:03:43.416 --> 00:03:49.219
+That circle sits round the exact spot set by the theoretically exact dimensions:
+
+53
+00:03:49.219 --> 00:03:50.742
+sizes in a small box,
+
+54
+00:03:50.942 --> 00:03:52.916
+with no tolerance of their own.
+
+55
+00:03:53.816 --> 00:04:02.631
+The measuring machine measures hole 3: 0.024 millimetres off in X, and 0.032 in Y.
+
+56
+00:04:03.181 --> 00:04:06.757
+That is 0.04 from the exact spot.
+
+57
+00:04:07.306 --> 00:04:13.671
+Because the tolerance is a diameter, the position is 2 times that: 0.08.
+
+58
+00:04:14.871 --> 00:04:18.566
+Perpendicularity says whether the hole stands straight:
+
+59
+00:04:18.566 --> 00:04:20.850
+its axis must be square to face A,
+
+60
+00:04:21.050 --> 00:04:24.939
+within 0.05 millimetres over the depth.
+
+61
+00:04:25.839 --> 00:04:29.260
+In series the part goes onto a functional gauge:
+
+62
+00:04:29.260 --> 00:04:31.969
+a plate with pins at the exact places.
+
+63
+00:04:32.869 --> 00:04:36.006
+If the part fits, the position is good.
+
+64
+00:04:36.556 --> 00:04:38.483
+Quick, and hard to get wrong.

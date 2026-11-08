@@ -34,6 +34,134 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
       }
+    },
+    "eng.machining.overview": {
+      "poster": "src/content/courses/films/eng.machining.overview.jpg",
+      "nl": {
+        "dur": 298.4,
+        "bytes": 10172441,
+        "scenes": [
+          0,
+          51.26,
+          100.55,
+          123.56,
+          166.77,
+          192,
+          214.5,
+          261.95
+        ],
+        "vtt": "src/content/courses/films/eng.machining.overview.nl.vtt"
+      },
+      "en": {
+        "dur": 272.7,
+        "bytes": 9532654,
+        "scenes": [
+          0,
+          43.79,
+          87.42,
+          109.99,
+          148.11,
+          172.01,
+          193.89,
+          239.97
+        ],
+        "vtt": "src/content/courses/films/eng.machining.overview.en.vtt"
+      }
+    },
+    "eng.machining.milling": {
+      "poster": "src/content/courses/films/eng.machining.milling.jpg",
+      "nl": {
+        "dur": 267.7,
+        "bytes": 13098042,
+        "scenes": [
+          0,
+          38.75,
+          56.3,
+          90.84,
+          147.13,
+          171.5,
+          219.7
+        ],
+        "vtt": "src/content/courses/films/eng.machining.milling.nl.vtt"
+      },
+      "en": {
+        "dur": 257.1,
+        "bytes": 12837069,
+        "scenes": [
+          0,
+          37.39,
+          54.01,
+          85.66,
+          142.03,
+          163.67,
+          210.02
+        ],
+        "vtt": "src/content/courses/films/eng.machining.milling.en.vtt"
+      }
+    },
+    "eng.machining.drilling": {
+      "poster": "src/content/courses/films/eng.machining.drilling.jpg",
+      "nl": {
+        "dur": 288.2,
+        "bytes": 10828015,
+        "scenes": [
+          0,
+          52.94,
+          77.81,
+          114.08,
+          154.97,
+          203.15,
+          221.14,
+          263.12
+        ],
+        "vtt": "src/content/courses/films/eng.machining.drilling.nl.vtt"
+      },
+      "en": {
+        "dur": 280.1,
+        "bytes": 10800672,
+        "scenes": [
+          0,
+          50.28,
+          73.95,
+          107.92,
+          146.17,
+          193.59,
+          210.44,
+          254.47
+        ],
+        "vtt": "src/content/courses/films/eng.machining.drilling.en.vtt"
+      }
+    },
+    "eng.machining.cnc": {
+      "poster": "src/content/courses/films/eng.machining.cnc.jpg",
+      "nl": {
+        "dur": 303.7,
+        "bytes": 11777532,
+        "scenes": [
+          0,
+          40.43,
+          84.59,
+          117.9,
+          179.1,
+          223.02,
+          262.27
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.nl.vtt"
+      },
+      "en": {
+        "dur": 279.3,
+        "bytes": 11275449,
+        "scenes": [
+          0,
+          34.32,
+          76.05,
+          107.01,
+          164.84,
+          206.38,
+          241.18
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
+      }
     }
   }
 }
