@@ -8,21 +8,21 @@ export default {
       pre: [
         {
           q: 'Een pompas brak na twee jaar normaal draaien. Het breukvlak toont een gladde strook met gebogen lijnen, als rimpels op een strand, en aan één rand een kleine ruwe zone. Wat is er gebeurd?',
-          options: ['Eén plotselinge overbelasting, zoals een blokkade in de pomp', 'Een scheur groeide bij elke omwenteling tot de rest afbrak', 'Roest heeft de as in twee jaar langzaam van buitenaf weggevreten', 'Het staal was te zacht toen de as werd gemaakt'],
-          answer: 'Een scheur groeide bij elke omwenteling tot de rest afbrak',
+          options: ['Eén plotselinge overbelasting, zoals een blokkade in de pomp', 'Een scheur groeide door tot de as brak', 'Roest heeft de as in twee jaar langzaam van buitenaf weggevreten', 'Het staal was te zacht toen de as werd gemaakt'],
+          answer: 'Een scheur groeide door tot de as brak',
           why: 'Dat is vermoeiing: een scheur die bij elke belastingswissel groeit, laat gebogen lijnen achter op het gladde deel; de kleine ruwe zone is waar het laatste stuk staal in één keer scheurde.',
         },
       ],
       teach: [
-        'Drie woorden lopen vaak door elkaar. De faalwijze (failure mode) is wat je ziet falen: “het lager loopt vast”. Het faalmechanisme is het fysieke proces erachter: vermoeiing, slijtage, corrosie, overbelasting of veroudering. De grondoorzaak (root cause) is waarom dat proces begon: te weinig vet, een scheve as.\n\nReliability engineers willen alle drie weten, want de juiste taak hangt af van het mechanisme. Een groeiende scheur of slijtage kun je meten; een plotselinge overbelasting zie je niet aankomen.',
-        'Een handig beeld: een onderdeel faalt als de belasting hoger is dan de sterkte. Overbelasting is één belasting ver boven normaal, zoals een blokkade, een kortsluiting of blikseminslag. Die kan op elke leeftijd toeslaan en lijkt daardoor willekeurig.\n\nBij degradatie daalt de sterkte in de loop van de tijd door vermoeiing, slijtage, corrosie of veroudering, tot een normale belasting genoeg is. Degradatie geeft meestal een waarschuwing en hangt af van de leeftijd; daarom werken conditiebewaking en gepland vervangen daar.',
-        'Vermoeiing (fatigue) is scheurvorming door herhaalde belasting. Een scheur begint bij een kerf, zoals een scherpe hoek, een spiebaan (de gleuf voor de spie die een wiel op een as vastzet) of een kras, en groeit bij elke wisseling. Een as op 1.500 toeren per minuut krijgt 2,16 miljoen wisselingen per dag.\n\nOok kogellagers bezwijken door vermoeiing, net onder het oppervlak: er breken schilfers uit (spalling). De levensduur van een kogellager daalt met de derde macht van de belasting (ISO 281): dubbele belasting geeft een achtste van de levensduur.',
+        'Drie woorden lopen vaak door elkaar. De faalwijze (failure mode) is wat je ziet falen: “het lager loopt vast”. Het faalmechanisme (failure mechanism) is het fysieke proces erachter: vermoeiing, slijtage, corrosie, overbelasting of veroudering. De grondoorzaak (root cause) is waarom dat proces begon: te weinig vet, een scheve as.\n\nReliability engineers willen alle drie weten, want de juiste taak hangt af van het mechanisme. Een groeiende scheur of slijtage kun je meten; een plotselinge overbelasting zie je niet aankomen.',
+        'Een handig beeld: een onderdeel faalt als de belasting hoger is dan de sterkte. Overbelasting (overload) is één belasting ver boven normaal, zoals een blokkade, een kortsluiting of blikseminslag. Die kan op elke leeftijd toeslaan en lijkt daardoor willekeurig.\n\nBij degradatie daalt de sterkte in de loop van de tijd door vermoeiing, slijtage, corrosie of veroudering, tot een normale belasting genoeg is. Degradatie geeft meestal een waarschuwing en hangt af van de leeftijd; daarom werken conditiebewaking en gepland vervangen daar.',
+        'Vermoeiing (fatigue) is scheurvorming door herhaalde belasting. Een scheur begint bij een spanningsconcentratie: een scherpe hoek, een spiebaan (de gleuf die een wiel op de as vastzet) of een kras, en groeit bij elke wisseling. Een as op 1.500 toeren krijgt 2,16 miljoen wisselingen per etmaal.\n\nOok wentellagers bezwijken onder het oppervlak door vermoeiing: er breken schilfers uit (spalling). De levensduur daalt met de derde macht van de belasting bij kogellagers, met de macht 10/3 bij rollagers (ISO 281): bij dubbele belasting haalt een kogellager nog maar een achtste daarvan.',
         'Slijtage is materiaal dat wegslijt door wrijving: door harde deeltjes in de olie, of metaal op metaal als de smeerfilm breekt. Corrosie is chemische aantasting, zoals roest, en gaat sneller met vocht, zout en chemicaliën; putcorrosie (pitting) kan zich onder verf verstoppen.\n\nBeide gaan geleidelijk en zijn te meten: wanddikte, deeltjes in de olie, spelingen. Daarmee zijn ze goede kandidaten voor een inspectie- of conditietaak, zolang iemand iets doet met de meting.',
-        'Elektrische installaties falen vooral door isolatieveroudering: het papier in een transformator of het kunststof van een kabel verliest langzaam sterkte door warmte, vocht en elektrische belasting. Bij transformatorpapier verdubbelt de verouderingssnelheid ruwweg per 6 °C warmer (IEC 60076-7, de belastingsgids).\n\nIn kabelnetten zien veel netbeheerders dat moffen (joints, de verbindingen tussen twee kabelstukken) en eindsluitingen meer storingen geven dan de kabel zelf. De vraag na elke storing: “Wat was het mechanisme, en waarom was de belasting deze keer hoger dan de sterkte?”',
+        'Elektrische installaties falen vooral door isolatieveroudering (insulation ageing): het papier in een transformator of het kunststof van een kabel verliest langzaam sterkte door warmte, vocht en elektrische belasting. Bij transformatorpapier verdubbelt de verouderingssnelheid ruwweg per 6 °C dat het heetste punt boven 98 °C komt (IEC 60076-7, de belastingsgids).\n\nVeel netbeheerders zien dat moffen (joints, de verbindingen tussen twee kabelstukken) en eindsluitingen meer storingen geven dan de kabel zelf. De vraag na elke storing: “Wat was het mechanisme, en waarom was de belasting deze keer hoger dan de sterkte?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een chemische fabriek had in een jaar zes uitgevallen pomplagers. De reliability engineer zaagde de oude lagers open in plaats van ze weg te gooien.\n\nVier toonden spalling in een baan aan één kant van de buitenring: vermoeiing door extra belasting door uitlijnfouten, waarbij de as van motor en pomp niet in één lijn liggen. Een lasermeting op de andere pompen vond afwijkingen die de lagerbelasting met zo’n 25% verhoogden; de levensduur gaat met de derde macht van de belasting, dus (1 ÷ 1,25)³ = 0,51, ongeveer de helft van de normale levensduur.\n\nTwee toonden bruine, uitgesmeerde loopbanen: de smeerfilm was gebroken door te weinig vet. Twee mechanismen, twee oplossingen: laseruitlijnen na elke motorwissel, en een smeerronde met de juiste hoeveelheid per lager. Het jaar daarna viel er één lager uit.',
+        text: 'Een chemische fabriek had in een jaar zes uitgevallen pomplagers. De reliability engineer zaagde de oude lagers open in plaats van ze weg te gooien.\n\nVier toonden spalling in een baan aan één kant van de buitenring: vermoeiing door extra belasting door uitlijnfouten, waarbij de as van motor en pomp niet in één lijn liggen. Een lasermeting op de andere pompen vond afwijkingen die de lagerbelasting met zo’n 25% verhoogden; bij deze kogellagers gaat de levensduur met de derde macht van de belasting, dus (1 ÷ 1,25)³ = 0,51, ongeveer de helft van de normale levensduur.\n\nTwee toonden bruine, uitgesmeerde loopbanen: de smeerfilm was gebroken door te weinig vet. Twee mechanismen, twee oplossingen: laseruitlijnen na elke motorwissel, en een smeerronde met de juiste hoeveelheid per lager. Het jaar daarna viel er één lager uit.',
       },
       said: 'Wat engineers zeggen: “Zeg niet dat het lager kapot is. Zeg hoe: spalling, uitsmeren of roest?”',
       recall: [
@@ -36,8 +36,8 @@ export default {
         },
         {
           q: 'Welk mechanisme kan op elke leeftijd toeslaan, zonder geleidelijke waarschuwing die je kunt meten?',
-          options: ['Vermoeiingsscheur in een as bij een scherpe hoek', 'Slijtage van een stortgootbekleding door het product', 'Overbelasting door een plotselinge blokkade', 'Corrosie van een tankwand in een vochtige ruimte'],
-          answer: 'Overbelasting door een plotselinge blokkade',
+          options: ['Vermoeiingsscheur in een as bij een scherpe hoek', 'Slijtage van een stortgootbekleding door het product', 'Overbelasting door een plotselinge blokkade die de machine stillegt', 'Corrosie van een tankwand in een vochtige ruimte'],
+          answer: 'Overbelasting door een plotselinge blokkade die de machine stillegt',
           why: 'Overbelasting is één belasting boven de sterkte van het onderdeel; die bouwt niet op in de tijd en lijkt daardoor willekeurig. De andere verzwakken het onderdeel stap voor stap.',
         },
         {
@@ -50,8 +50,8 @@ export default {
         },
         {
           q: 'Waarom doet het faalmechanisme ertoe als je een onderhoudstaak kiest?',
-          options: ['Het laat zien of falen waarschuwt en van leeftijd afhangt', 'Het laat zien wie de storing in de eerste plaats veroorzaakte', 'Het bepaalt de prijs van het reservedeel dat je moet bestellen', 'Het bepaalt welke monteur de reparatie moet doen'],
-          answer: 'Het laat zien of falen waarschuwt en van leeftijd afhangt',
+          options: ['Of falen waarschuwt en van de leeftijd afhangt', 'Het laat zien wie de storing in de eerste plaats veroorzaakte', 'Het bepaalt de prijs van het reservedeel dat je moet bestellen', 'Het bepaalt welke monteur de reparatie moet doen'],
+          answer: 'Of falen waarschuwt en van de leeftijd afhangt',
           why: 'Degradatie is te meten en hangt vaak af van leeftijd; overbelasting zie je niet aankomen. Dat bepaalt de keuze tussen inspecteren, gepland vervangen en herontwerpen.',
         },
       ],
@@ -70,7 +70,7 @@ export default {
         { term: 'Faalwijze', def: 'De specifieke gebeurtenis die een functionele storing veroorzaakt, zoals een lager dat vastloopt door gebrek aan vet.' },
         { term: 'Faalmechanisme', def: 'Het fysieke proces achter een storing: vermoeiing, slijtage, corrosie, overbelasting of veroudering.' },
         { term: 'Overbelasting', def: 'Eén belasting boven de sterkte van het onderdeel, zoals een blokkade of kortsluiting; kan op elke leeftijd toeslaan.' },
-        { term: 'Vermoeiing', def: 'Scheurvorming door herhaalde belasting: een scheur groeit bij elke wisseling een stukje tot het onderdeel breekt.' },
+        { term: 'Vermoeiing', def: 'Scheurvorming door herhaalde belasting, ook ruim onder de belasting die het onderdeel in één keer zou breken: een scheur groeit bij elke wisseling een stukje tot het onderdeel breekt.' },
         { term: 'Corrosie', def: 'Chemische aantasting van een materiaal, zoals roest; gaat sneller met vocht, zout en chemicaliën.' },
         { term: 'Isolatieveroudering', def: 'Het langzame sterkteverlies van elektrische isolatie door warmte, vocht en elektrische belasting.' },
       ],
@@ -89,7 +89,7 @@ export default {
       ],
       teach: [
         'Betrouwbaarheidswerk begint met levensduurdata (time-to-failure data): hoe lang draaide elke unit tot hij uitviel, per faalwijze, de specifieke manier waarop een onderdeel stukgaat? Noteer ook elke suspensie: een unit die om een andere reden is weggehaald of nog draait, zonder storing. Laat je die weg, dan lijkt de levensduur korter dan hij is.\n\nEen Weibull-fit, een curve vernoemd naar de Zweedse ingenieur Waloddi Weibull, maakt van die lijst twee getallen die beschrijven hoe het onderdeel sterft.',
-        'De karakteristieke levensduur, èta, is een leeftijd: op dat moment is 63,2% van de units uitgevallen, welk patroon ook. Èta van 12 maanden op een pompafdichting betekent dat bijna twee op de drie afdichtingen binnen een jaar weg zijn.\n\nDe vormparameter, bèta, zegt hoe de faalkans verandert met de leeftijd. De faalkans (failure rate) is de kans dat een unit die nog draait de komende maand of het komende uur uitvalt. Onder 1, rond 1 of boven 1: elk vraagt een andere strategie.',
+        'De karakteristieke levensduur, èta, is een leeftijd: op dat moment is 63,2% van de units uitgevallen, welk patroon ook. Èta van 12 maanden op een pompafdichting betekent dat bijna twee op de drie afdichtingen binnen een jaar weg zijn.\n\nDe vormparameter, bèta (β, ook vormfactor genoemd), zegt hoe de faalkans verandert met de leeftijd. De faalkans (failure rate) is de kans dat een unit die nog draait de komende maand of het komende uur uitvalt. Onder 1, rond 1 of boven 1: elk vraagt een andere strategie.',
         'Bèta onder 1: vroege uitval, ook wel kindersterfte (infant mortality). De faalkans daalt met de leeftijd. Oorzaken: montagefouten, slechte inbedrijfname (de eerste opstart en controles), productiefouten en schade door onderhoud zelf. Oplossing: beter monteren, uitlijnen (assen in één lijn), smeren en opstarten; vervangen op een vast interval maakt het erger.\n\nBèta rond 1: willekeurige uitval. Een oud onderdeel valt net zo snel uit als een nieuw, dus een vast interval levert niets op. Opties: conditiebewaking (trillingen of olie volgen om uitval aan te zien komen), herontwerp, of doordraaien tot storing.',
         'Bèta boven 1: slijtage. Storingen clusteren rond een leeftijd, dus gepland vervangen kan werken, maar alleen als het cluster smal is. Slijtage en vermoeiing (scheurtjes door herhaalde belasting) geven vaak een bèta van ongeveer 2 tot 4 (een vuistregel uit de praktijk; vermoeiing van kogellagers zit vaak dichter bij 1,5).\n\nDe klassieke luchtvaartstudie van Nowlan en Heap (United Airlines-data, 1978) vond maar bij zo’n 11% van de onderdelen een duidelijk leeftijdspatroon. Neem dat getal niet over voor jouw fabriek; neem de les mee: slijtage is zeldzamer dan mensen denken.',
         'Wat je in de praktijk tegenkomt: een fit op vier storingen, of één fit op alle storingen van een tandwielkast. Onder grofweg 5 tot 10 storingen per faalwijze is bèta erg onzeker, en analisten zijn het niet eens over hoeveel data genoeg is.\n\nFaalwijzen mengen is erger: vroege lageruitval plus late tandwielslijtage kan uitkomen op een bèta rond 1 die geen van beide beschrijft. De vraag die een zwakke analyse blootlegt: “Op hoeveel storingen is dit gefit, per faalwijze, en zitten de units die niet uitvielen erin?”',
@@ -116,8 +116,8 @@ export default {
         },
         {
           q: 'Een fit op alle compressorstoringen geeft bèta rond 1, maar de data mengen klep-, afdichtings- en motorstoringen. Wat doe je?',
-          options: ['Accepteren: de compressor valt gewoon willekeurig uit', 'Een complexere verdeling fitten op alle gemengde data', 'Eerst nog vijf jaar data verzamelen voor je iets doet', 'De data per faalwijze splitsen en elk apart fitten'],
-          answer: 'De data per faalwijze splitsen en elk apart fitten',
+          options: ['Accepteren: de compressor valt gewoon willekeurig uit', 'Een complexere verdeling fitten op alle gemengde data', 'Eerst nog vijf jaar data verzamelen voor je iets doet', 'Per faalwijze splitsen en apart fitten'],
+          answer: 'Per faalwijze splitsen en apart fitten',
           why: 'Gemengde faalwijzen geven samen een misleidende bèta; elke wijze heeft zijn eigen patroon en zijn eigen taak.',
         },
         {
@@ -162,7 +162,7 @@ export default {
         'Een grondoorzaakanalyse van een storing (root cause failure analysis, RCFA) is een gestructureerde zoektocht naar waarom een asset uitviel, met als doel dat het niet weer gebeurt. Spreek triggers af: elk veiligheidsvoorval, elke storing boven een afgesproken bedrag (zeg €10.000), elke bottleneckstop boven vier uur, elke herhaalstoring.\n\nZonder triggers analyseert een site alles oppervlakkig of niets. De module Technisch probleemoplossen leert 5 keer waarom en het visgraatdiagram; deze les past ze toe op kapotte hardware.',
         'Bewaar het bewijs: het kapotte onderdeel is je beste getuige. Fotografeer het voordat het in de schrootbak belandt op zijn plek, bewaar alle stukken, markeer hoe ze zaten, neem een oliemonster en sla de trenddata en het log van de besturing op.\n\nEen breukvlak schoonmaken of het oude lager weggooien wist het verhaal uit. Veel sites hebben een quarantainebak in de werkplaats waar kapotte delen, met een label, wachten tot de analyse klaar is.',
         'Lees het onderdeel. Vermoeiing laat rustlijnen (beach marks) achter: gebogen lijnen op een glad vlak, en een ruwe restbreuk. Eén overbelasting geeft een ruw, korrelig of getordeerd vlak over het hele breukvlak. Slijtage geeft gepolijste of gegroefde banen; corrosie putjes en roest.\n\nLagers vertellen meer. Een spallingbaan die naar één kant verschoven is, wijst op een uitlijnfout. Riffels (fluting), een wasbordpatroon van groefjes, wijzen op elektrische stroom door het lager, vaak bij motoren aan een frequentieregelaar.',
-        'De PROACT-methode van Robert Latino onderscheidt drie niveaus. De fysieke oorzaak is het mechanisme, zoals een vermoeiingsscheur bij de spiebaan. De menselijke oorzaak is een beslissing of handeling, zoals een koppeling monteren zonder uit te lijnen. De latente oorzaak is het systeem dat het toeliet: geen uitlijngereedschap, geen standaard, druk om snel op te starten.\n\nDe fysieke oorzaak oplossen vervangt een onderdeel. De latente oorzaak oplossen stopt de storing op elke vergelijkbare asset. Een menselijke oorzaak is een beslissing om te begrijpen, geen schuldige.',
+        'De PROACT-methode van Robert Latino onderscheidt drie niveaus. De fysieke oorzaak (physical root) is het mechanisme, zoals een vermoeiingsscheur bij de spiebaan. De menselijke oorzaak (human root) is een beslissing of handeling, zoals een koppeling monteren zonder uit te lijnen. De latente oorzaak (latent root) is het systeem dat het toeliet: geen uitlijngereedschap, geen standaard, druk om snel op te starten.\n\nDe fysieke oorzaak oplossen vervangt een onderdeel. De latente oorzaak oplossen stopt de storing op elke vergelijkbare asset. Een menselijke oorzaak is een beslissing om te begrijpen, geen schuldige.',
         'Sluit de kring: elke actie krijgt een eigenaar en een datum, en na zes tot twaalf maanden kijk je of de storing terugkwam.\n\nTypische fouten: een RCFA-formulier na elke storing, als papierwerk; analyses die stoppen bij “bedieningsfout”; acties die alleen “opnieuw trainen” zeggen. Over aantallen verschillen vakmensen van mening, maar de meesten vinden een paar diepe analyses beter dan veel oppervlakkige. De scherpe vraag: “Welke latente oorzaak hebben we opgelost, en op hoeveel vergelijkbare assets?”',
       ],
       example: {
@@ -183,8 +183,8 @@ export default {
         },
         {
           q: 'Wat voor oorzaak is “de koppeling is gemonteerd zonder uit te lijnen” in PROACT-termen?',
-          options: ['Een fysieke oorzaak: het faalmechanisme zelf', 'Een menselijke oorzaak: een beslissing of handeling', 'Een latente oorzaak: het systeem erachter dat het toeliet', 'Geen oorzaak, alleen het symptoom'],
-          answer: 'Een menselijke oorzaak: een beslissing of handeling',
+          options: ['Een fysieke oorzaak: het faalmechanisme zelf', 'Een menselijke oorzaak: een beslissing of handeling van iemand', 'Een latente oorzaak: het systeem erachter dat het toeliet', 'Geen oorzaak, alleen het symptoom'],
+          answer: 'Een menselijke oorzaak: een beslissing of handeling van iemand',
           why: 'Monteren zonder uitlijnen is een handeling van iemand. De fysieke oorzaak is de vermoeiing die het gaf; de latente oorzaak is wat het mogelijk maakte, zoals geen standaard of gereedschap.',
         },
         {
@@ -215,7 +215,7 @@ export default {
       sayIt: 'Leg een onderhoudschef in 60 seconden uit waarom “bedieningsfout” geen grondoorzaak is, met de fysieke, menselijke en latente oorzaak.',
       terms: [
         { term: 'Grondoorzaakanalyse van een storing', def: 'Een gestructureerde zoektocht naar waarom een asset uitviel, met als doel dat het niet weer gebeurt. Kort: RCFA.' },
-        { term: 'Rustlijnen', def: 'Gebogen lijnen op het gladde deel van een vermoeiingsbreuk; elke lijn markeert een fase in de groei van de scheur.' },
+        { term: 'Rustlijnen', def: 'Gebogen lijnen op het gladde deel van een vermoeiingsbreuk, die uitwaaieren vanaf het startpunt van de scheur; elke lijn markeert een fase in de groei.' },
         { term: 'Fysieke oorzaak', def: 'Het fysieke mechanisme van een storing, zoals een vermoeiingsscheur bij een spiebaan.' },
         { term: 'Menselijke oorzaak', def: 'De beslissing of handeling die de storing in gang zette, zoals een koppeling monteren zonder uit te lijnen.' },
         { term: 'Latente oorzaak', def: 'Het systeem achter een menselijke oorzaak, zoals een ontbrekende standaard, gereedschap of controle, waardoor de storing elders terugkomt.' },
@@ -237,7 +237,7 @@ export default {
         'Suspensies, units die nog draaien of zonder storing zijn weggehaald, veranderen de rangen: ze duwen de rangen van latere storingen omlaag. Handmethoden passen de rangen aan (methode van Johnson); de meeste software gebruikt maximum likelihood (MLE), die de bèta en èta zoekt waarbij de waargenomen data het meest waarschijnlijk zijn.\n\nHet New Weibull Handbook van Abernethy kiest rangregressie bij kleine steekproeven en MLE bij veel suspensies. Analisten discussiëren erover; vraag welke methode is gebruikt.',
         'Voor besluiten is een B-levensduur vaak nuttiger dan èta. De B10-levensduur is de leeftijd waarop 10% van de units is uitgevallen: t = èta × (−ln 0,9)^(1/bèta), en −ln 0,9 = 0,105. Met èta 20.000 uur en bèta 2: 20.000 × 0,105^0,5 ≈ 6.490 uur.\n\nLagerfabrikanten geven de L10-levensduur op dezelfde manier. Gebruik een B-levensduur voor een vervangleeftijd of een garantie, niet èta: op èta zijn al bijna twee op de drie units weg.',
         'Elke fit heeft onzekerheid, uitgedrukt in een betrouwbaarheidsinterval (confidence interval): het bereik waarin de echte waarde waarschijnlijk ligt. Bij vijf storingen kan een gefitte bèta van 2 net zo goed ergens tussen ongeveer 1 en 4 liggen. Rapporteer bèta met zijn interval.\n\nKromme plots zijn een waarschuwing. Punten die aan het begin afbuigen, kunnen wijzen op een storingsvrije beginperiode, met een Weibull met drie parameters (three-parameter Weibull), of op gemengde faalwijzen. Een knik, twee rechte lijnen, betekent twee faalwijzen. Repareer de data voordat je een ingewikkelder model pakt.',
-        'Weibull beschrijft de levensduur van één onderdeel dat door een nieuw wordt vervangen. Een hele machine die steeds weer gerepareerd wordt, is een repareerbaar systeem: kijk dan of de tijd tussen storingen in kalendertijd korter of langer wordt.\n\nEen Crow-AMSAA-plot zet het cumulatieve aantal storingen tegen de cumulatieve tijd op log-log-assen: een helling onder 1 betekent verbetering, boven 1 verslechtering. Hij beantwoordt “werkt ons betrouwbaarheidsprogramma?”. De scherpe vraag: “Is dit een onderdeellevensduur of een systeemtrend, en wat is het interval op bèta?”',
+        'Weibull beschrijft de levensduur van één onderdeel dat door een nieuw wordt vervangen. Een hele machine die steeds weer gerepareerd wordt, is een repareerbaar systeem (repairable system): kijk dan of de tijd tussen storingen in kalendertijd korter of langer wordt.\n\nEen Crow-AMSAA-plot zet het cumulatieve aantal storingen tegen de cumulatieve tijd op log-log-assen: een helling onder 1 betekent verbetering, boven 1 verslechtering. Hij beantwoordt “werkt ons betrouwbaarheidsprogramma?”. De scherpe vraag: “Is dit een onderdeellevensduur of een systeemtrend, en wat is het interval op bèta?”',
       ],
       example: {
         kind: 'faded',
@@ -265,8 +265,8 @@ export default {
         },
         {
           q: 'Een Crow-AMSAA-plot van de storingen van een compressorpark heeft een helling van 1,4. Wat zegt dat?',
-          options: ['Storingen komen steeds sneller: betrouwbaarheid daalt', 'Eén onderdeel in de compressoren slijt langzaam', 'Het betrouwbaarheidsprogramma werkt inmiddels duidelijk goed', 'Er zijn te weinig storingen in de data om nu iets te zeggen'],
-          answer: 'Storingen komen steeds sneller: betrouwbaarheid daalt',
+          options: ['Storingen komen steeds sneller: de betrouwbaarheid van het park daalt', 'Eén onderdeel in de compressoren slijt langzaam', 'Het betrouwbaarheidsprogramma werkt inmiddels duidelijk goed', 'Er zijn te weinig storingen in de data om nu iets te zeggen'],
+          answer: 'Storingen komen steeds sneller: de betrouwbaarheid van het park daalt',
           why: 'Een helling boven 1 betekent dat de storingsintensiteit met de tijd toeneemt; onder 1 neemt hij af. Hij beschrijft het hele repareerbare systeem, niet de levensduur van één onderdeel.',
         },
         {
@@ -336,8 +336,8 @@ export default {
         },
         {
           q: 'Twee identieke machines draaien parallel en één kan de volle output aan. Wat gebeurt er met hun productiekritikaliteit?',
-          options: ['Die verdubbelt, want er zijn nu twee machines', 'Die blijft gelijk aan die van één machine', 'Die daalt: één storing stopt de output niet', 'Die is niet te scoren met een gewone risicomatrix'],
-          answer: 'Die daalt: één storing stopt de output niet',
+          options: ['Die verdubbelt, want er zijn nu twee machines', 'Die blijft gelijk aan die van één machine', 'Die daalt: één storing stopt niets', 'Die is niet te scoren met een gewone risicomatrix'],
+          answer: 'Die daalt: één storing stopt niets',
           why: 'Redundantie verlaagt het gevolg van één storing, al kan een gemeenschappelijke oorzaak ze allebei raken.',
         },
         {
@@ -380,10 +380,10 @@ export default {
       ],
       teach: [
         'Een machine-FMEA (equipment FMEA, failure mode and effects analysis) deelt een asset op in onderdelen of functies en zet per onderdeel de faalwijzen, hun effecten, oorzaken en huidige beheersmaatregelen op een rij. Een FMECA voegt per faalwijze een kritikaliteitsscore toe, zodat het team ziet welke faalwijzen het zwaarst wegen.\n\nIEC 60812 (2018) is de internationale norm voor FMEA en FMECA. Een machine-FMEA is de kern van RCM. De module Kwaliteit: de basis leert de proces- en ontwerp-FMEA vóór een productlancering.',
-        'De kolommen: onderdeel of functie, faalwijze, faaleffect, faaloorzaak, hoe je het ontdekt en de huidige taak. Schrijf het faaleffect als een verhaal dat een operator herkent: “lijn stopt binnen twee minuten, alarm op het scherm, 40 flessen op de vloer.”\n\nSplits het effect in lokaal (wat er bij het onderdeel gebeurt) en eindeffect (wat er met de lijn, veiligheid en milieu gebeurt). Het effect bepaalt het gevolg; de faaloorzaak bepaalt de kans en wijst naar de taak.',
+        'De kolommen: onderdeel of functie, faalwijze, faaleffect (failure effect), faaloorzaak (failure cause), hoe je het ontdekt en de huidige taak. Schrijf het faaleffect als een verhaal dat een operator herkent: “lijn stopt binnen twee minuten, alarm op het scherm, 40 flessen op de vloer.”\n\nSplits het effect in lokaal (wat er bij het onderdeel gebeurt) en eindeffect (wat er met de lijn, veiligheid en milieu gebeurt). Het effect bepaalt het gevolg; de faaloorzaak bepaalt de kans en wijst naar de taak.',
         'Het scoren verschilt. Veel fabrieken scoren ernst, kans op optreden en detectie van 1 tot 10 en vermenigvuldigen die tot een RPN, het risicoprioriteitsgetal. Het automotive-handboek van AIAG-VDA (2019) verving de RPN door Action Priority, die eerst naar de ernst kijkt.\n\nVoor installaties scoren veel sites gevolg en kans liever op hun eigen kritikaliteitsmatrix, zodat de FMECA en de assetranking dezelfde taal spreken. Welke methode ook: controleer dat een faalwijze met hoge ernst nooit wegvalt achter een laag totaal.',
         'Kies het juiste detailniveau. Te grof, “machine defect”, geeft geen taak; te fijn, elke bout, geeft 2.000 regels die niemand leest. Een gangbare regel: ga omlaag tot de onderhoudbare eenheid (maintainable item), het niveau waarop je een taak zou plannen of een reservedeel op voorraad zou leggen.\n\nEen centrifugaalpomp eindigt meestal met een paar dozijn faalwijzen. Gebruik de storingshistorie, de ervaring van de monteurs en de gegevens van de fabrikant; een sjabloon van een andere site is een begin, geen antwoord.',
-        'Typische fouten: de FMEA wordt één keer geschreven voor de inbedrijfname en dan opgeborgen; hij wordt gekopieerd voor een andere gebruikscontext; niemand van onderhoud of productie zat erbij; bij de oorzaak staat “slijtage” zonder te zeggen wat er slijt en waarom.\n\nEen levende FMECA wordt bijgewerkt na elke belangrijke storing die er nog niet in stond. De scherpe vraag: “Welke regel in deze FMECA leidde tot welke taak in het onderhoudsplan, en welke storingen van vorig jaar staan er niet in?”',
+        'Typische fouten: de FMEA wordt één keer geschreven voor de inbedrijfname en dan opgeborgen; hij wordt gekopieerd voor een andere operationele context (operating context); niemand van onderhoud of productie zat erbij; bij de oorzaak staat “slijtage” zonder te zeggen wat er slijt en waarom.\n\nEen levende FMECA wordt bijgewerkt na elke belangrijke storing die er nog niet in stond. De scherpe vraag: “Welke regel in deze FMECA leidde tot welke taak in het onderhoudsplan, en welke storingen van vorig jaar staan er niet in?”',
       ],
       example: {
         kind: 'worked',
@@ -423,9 +423,9 @@ export default {
       situation: {
         scene: 'Je bent bij een netbeheerder die 400 ringkabelschakelaars (RMU’s) van een nieuw type gaat plaatsen: compacte middenspanningsinstallaties in wijkstations. De leverancier biedt zijn eigen FMEA aan, en het team wil die zo overnemen.',
         ask: 'Wat vraag je voordat je hem overneemt?',
-        model: 'Is hij geschreven voor onze gebruikscontext: vochtige compacte stations, hoe vaak wij schakelen, onze monteurs en ons net? Welke effecten dekt hij op klanten, op het net en op de veiligheid van monteurs, bijvoorbeeld een interne boog? Kunnen we hem toetsen aan onze storingsdata van het vorige type? Ik wil twee van onze monteurs en iemand van de bedrijfsvoering hem samen met de leverancier laten doorlopen vóór de uitrol.',
+        model: 'Is hij geschreven voor onze operationele context: vochtige compacte stations, hoe vaak wij schakelen, onze monteurs en ons net? Welke effecten dekt hij op klanten, op het net en op de veiligheid van monteurs, bijvoorbeeld een interne boog? Kunnen we hem toetsen aan onze storingsdata van het vorige type? Ik wil twee van onze monteurs en iemand van de bedrijfsvoering hem samen met de leverancier laten doorlopen vóór de uitrol.',
         rubric: [
-          'Vraagt of de FMEA past bij de eigen gebruikscontext van de netbeheerder',
+          'Vraagt of de FMEA past bij de eigen operationele context van de netbeheerder',
           'Vraagt naar effecten op klanten, net en veiligheid van monteurs',
           'Stelt een review voor met eigen data en mensen uit het veld',
         ],
@@ -452,17 +452,17 @@ export default {
         },
       ],
       teach: [
-        'Engineers tekenen een systeem als een betrouwbaarheidsblokschema (reliability block diagram): blokken in serie waar elk deel nodig is, naast elkaar waar één het kan overnemen. In een seriesysteem vermenigvuldigen de beschikbaarheden: drie machines achter elkaar, elk 95% beschikbaar, geven 0,95³ = 85,7%.\n\nDaarom verliezen lange lijnen zonder buffers zoveel tijd; de module Capaciteit en flow laat zien hoe buffers ze ontkoppelen. Elk extra blok in serie maakt het geheel minder beschikbaar dan zijn zwakste deel.',
-        'Parallelle redundantie: twee units waarvan één genoeg is, geschreven als 1-uit-2. Het systeem ligt alleen stil als beide stilliggen: beschikbaarheid = 1 − (1 − A)². Twee pompen van 95% geven 1 − 0,05² = 99,75%. Algemener is k-uit-n: bijvoorbeeld drie van de vier gelijkrichters nodig.\n\nNetbeheerders ontwerpen op N-1: het net blijft leveren als één willekeurig component uitvalt. In Nederlandse netten geldt dat vooral op de hogere spanningsniveaus; de module Netplanning en de energietransitie behandelt waar.',
+        'Engineers tekenen een systeem als een betrouwbaarheidsblokschema (reliability block diagram): blokken in serie waar elk deel nodig is, naast elkaar waar één het kan overnemen. In een seriesysteem (series system) vermenigvuldigen de beschikbaarheden: drie machines achter elkaar, elk 95% beschikbaar, geven 0,95³ = 85,7%.\n\nDaarom verliezen lange lijnen zonder buffers zoveel tijd; de module Capaciteit en flow laat zien hoe buffers ze ontkoppelen. Elk extra blok in serie maakt het geheel minder beschikbaar dan zijn zwakste deel.',
+        'Parallelle redundantie (parallel redundancy): twee units waarvan één genoeg is, geschreven als 1-uit-2. Het systeem ligt alleen stil als beide stilliggen: beschikbaarheid = 1 − (1 − A)². Twee pompen van 95% geven 1 − 0,05² = 99,75%. Algemener is k-uit-n: bijvoorbeeld drie van de vier gelijkrichters nodig.\n\nNetbeheerders ontwerpen op N-1: het net blijft leveren als één willekeurig component uitvalt. In Nederlandse netten geldt dat vooral op de hogere spanningsniveaus; de module Netplanning en de energietransitie behandelt waar.',
         'Een reserve-unit (standby) staat stil en moet starten als hij nodig is, dus zijn storing is verborgen tot dat moment. Faalt hij willekeurig en test je hem elke T, dan is zijn gemiddelde onbeschikbaarheid ongeveer T ÷ (2 × MTBF). Een reserve met een MTBF van 10 jaar, elk halfjaar getest: 0,5 ÷ 20 = 2,5%.\n\nDat is hetzelfde verband als achter het failure-finding-interval in de RCM-les. Vaker testen verlaagt het, maar elke test belast de installatie en kan een klep of instelling verkeerd achterlaten.',
-        'Een common-cause-storing is één gebeurtenis die beide units uitschakelt: een gedeelde voeding, één koelcircuit, dezelfde monteur die op dezelfde dag dezelfde fout maakt op beide pompen, een overstroomde pompput.\n\nHet model van de bètafactor (beta factor) zegt dat een deel bèta van de storingen van een unit alle redundante units tegelijk raakt. IEC 61508-6 geeft waarden van ongeveer 1% tot 10%. Zelfs 5% telt: twee pompen van 95% halen dan ongeveer 99,5% in plaats van 99,75%, omdat common causes de stilstand verdubbelen.',
+        'Een common-cause-storing (common-cause failure) is één gebeurtenis die beide units uitschakelt: een gedeelde voeding, één koelcircuit, dezelfde monteur die op dezelfde dag dezelfde fout maakt op beide pompen, een overstroomde pompput.\n\nHet model van de bètafactor (beta factor) zegt dat een deel bèta van de storingen van een unit alle redundante units tegelijk raakt. IEC 61508-6 geeft waarden van ongeveer 1% tot 10%. Zelfs 5% telt: twee pompen van 95% halen dan ongeveer 99,5% in plaats van 99,75%, omdat common causes de stilstand ruwweg verdubbelen.',
         'In de praktijk: spreid het onderhoud van redundante units over verschillende dagen en verschillende mensen, geef ze aparte voedingen en kabelroutes, en test de reserve zoals hij straks moet werken, met een automatische start bij drukval, niet met een startknop.\n\nEen reserve die alleen ooit met de hand start, bewijst weinig. De scherpe vraag: “Welke ene gebeurtenis schakelt ze allebei uit, en wanneer hebben we voor het laatst bewezen dat de reserve vanzelf start?”',
       ],
       example: {
         kind: 'faded',
         text: 'Het koelwatersysteem van een chemische fabriek heeft twee pompen, elk 98% van de tijd beschikbaar; één is genoeg. Beide worden gevoed uit één motor control centre (MCC: de kast met de motorstarters), dat 99,5% van de tijd beschikbaar is.\n\nHet veiligheidsrapport van de site claimt 99,96% beschikbaarheid voor de koeling, alleen op basis van de twee pompen. Vorig jaar zijn beide pompen door dezelfde aannemer op dezelfde zaterdag onderhouden.',
         ask: 'Wat is de echte beschikbaarheid, wat bepaalt die vooral, en wat zou je veranderen?',
-        reveal: 'Pompen parallel: 1 − 0,02² = 99,96%. In serie met het MCC: 0,9996 × 0,995 ≈ 99,46%. De onbeschikbaarheid is zo’n 0,54%, ruwweg dertien keer de 0,04% uit het rapport, en bijna alles daarvan is dat ene MCC.\n\nVeranderingen: voed de tweede pomp uit een apart MCC of een aparte railsectie; test de automatische start van de reservepomp; onderhoud de twee pompen op verschillende dagen, met een controle na elke beurt. Zoek daarna naar andere gedeelde onderdelen, zoals één zuigleiding of één koeltorenbassin.',
+        reveal: 'Pompen parallel: 1 − 0,02² = 99,96%. In serie met het MCC: 0,9996 × 0,995 ≈ 99,46%. De onbeschikbaarheid is zo’n 0,54%, ruim dertien keer de 0,04% uit het rapport, en bijna alles daarvan is dat ene MCC.\n\nVeranderingen: voed de tweede pomp uit een apart MCC of een aparte railsectie; test de automatische start van de reservepomp; onderhoud de twee pompen op verschillende dagen, met een controle na elke beurt. Zoek daarna naar andere gedeelde onderdelen, zoals één zuigleiding of één koeltorenbassin.',
       },
       said: 'Wat engineers zeggen: “Twee pompen op één MCC is geen redundantie, dat is één storing die zich als twee voordoet.”',
       recall: [
@@ -484,8 +484,8 @@ export default {
         },
         {
           q: 'Wat is de grootste bedreiging voor een paar redundante pompen?',
-          options: ['Pompen van twee verschillende fabrikanten in het paar', 'De twee pompen elke week om beurten laten draaien', 'Eén gedeelde voeding voor beide pompen', 'Een reservewaaier in het magazijn'],
-          answer: 'Eén gedeelde voeding voor beide pompen',
+          options: ['Pompen van twee verschillende fabrikanten in het paar', 'De twee pompen elke week om beurten laten draaien', 'Eén gedeelde voeding die beide pompen tegelijk van stroom voorziet', 'Een reservewaaier in het magazijn'],
+          answer: 'Eén gedeelde voeding die beide pompen tegelijk van stroom voorziet',
           why: 'Een gedeelde voeding is een common cause: één storing stopt ze allebei. Verschillende fabrikanten en om beurten draaien verkleinen common causes juist.',
         },
         {
@@ -527,9 +527,9 @@ export default {
         },
       ],
       teach: [
-        'Risico in euro’s (monetised risk) maakt van kritikaliteit geld: de kans op falen per jaar maal het gevolg in euro’s geeft een risico in euro’s per jaar. Zo vergelijk je een zeldzame, grote storing met een vaak voorkomende kleine, en het risico dat je wegneemt met wat de ingreep kost.\n\nGevolgen zijn ook veiligheid, milieu en klanten, niet alleen reparatiekosten. Om daar euro’s op te zetten heb je een waardenkader (value framework) nodig: afgesproken bedragen per gevolg, zoals een prijs per verloren klantminuut. Daar begint de discussie.',
+        'Risico in euro’s (monetised risk) maakt van kritikaliteit geld: de kans op falen per jaar maal het gevolg in euro’s geeft een risico in euro’s per jaar. Zo vergelijk je een zeldzame, grote storing met een vaak voorkomende kleine, en het risico dat je wegneemt met wat de ingreep kost.\n\nGevolgen zijn ook veiligheid, milieu en klanten, niet alleen reparatiekosten. Om daar euro’s op te zetten heb je een waarderingskader (value framework) nodig: afgesproken bedragen per gevolg, zoals een prijs per verloren klantminuut. Daar begint de discussie.',
         'De kans komt vaak uit een health index: een score van de conditie van een asset op basis van leeftijd, inspecties, testresultaten en storingshistorie, waarmee je de kans op falen schat. Bij een transformator is de olietest op opgeloste gassen een typische bron.\n\nIn Groot-Brittannië gebruiken de distributienetbeheerders één gezamenlijke methode, vastgesteld door toezichthouder Ofgem: CNAIM (Common Network Asset Indices Methodology), om per asset de conditie en het risico in euro’s, daar ponden, te berekenen. De module Netbedrijf en assetmanagement laat de Nederlandse praktijk zien.',
-        'De beslisregel: grijp in als het risico dat je per jaar wegneemt groter is dan de jaarlijkse kosten van de ingreep. Spreid de prijs over de levensduur als equivalente jaarkosten, zoals een hypotheeklast.\n\nVoorbeeld: een kabelstuk vervangen kost €300.000 en gaat 40 jaar mee; bij 4% per jaar is het jaarbedrag 5,05% van de prijs, dus zo’n €15.200 per jaar. Het gevolg van falen blijft gelijk, maar de vervanging verlaagt het risico van €40.000 naar €5.000 per jaar. €35.000 wegnemen voor €15.200 per jaar: doen.',
+        'De beslisregel: grijp in als het risico dat je per jaar wegneemt groter is dan de jaarlijkse kosten van de ingreep. Spreid de prijs over de levensduur als equivalente jaarkosten, zoals een hypotheeklast.\n\nVoorbeeld: een kabelstuk vervangen kost €300.000 en gaat 40 jaar mee; bij 4% per jaar is het jaarbedrag 5,05% van de prijs, dus zo’n €15.200 per jaar. Het gevolg van falen (consequence of failure) blijft gelijk, maar de vervanging verlaagt het risico van €40.000 naar €5.000 per jaar. €35.000 wegnemen voor €15.200 per jaar: doen.',
         'Sommige risico’s ruil je niet tegen geld. Een veiligheidsrisico boven de grens van het bedrijf moet omlaag, wat de business case ook zegt. Het Britse principe ALARP, as low as reasonably practicable, vraagt een risico te blijven verlagen tot de kosten grof onevenredig zijn aan de winst.\n\nRisico in euro’s en de risicomatrix van de site horen dezelfde kant op te wijzen. Toets ze op ankergevallen die iedereen kent; zet het model een bekende bad actor laag, dan klopt het model niet.',
         'Valkuilen: schijnprecisie, zoals een kans van 0,37% uit een health index vol gokwerk; gevolgbedragen waar niemand voor tekende; en een model dat simpelweg zegt “vervang alles wat oud is”.\n\nGebruik het om opties te rangschikken en om het budget te bepleiten in capexrondes (de module Programma’s en governance behandelt de portfoliokant), niet als machine die beslist. De scherpe vraag: “Welke getallen hier zijn gemeten, welke geschat, en verandert de ranking als de schattingen een factor twee naast zitten?”',
       ],
@@ -559,8 +559,8 @@ export default {
         },
         {
           q: 'Wat vraagt het ALARP-principe?',
-          options: ['Elk risico accepteren dat onder €1 miljoen per jaar blijft', 'Elk afzonderlijk risico helemaal tot nul terugbrengen', 'Veiligheidsrisico’s aan de gewone business case overlaten', 'Een risico verlagen tot de kosten grof onevenredig zijn'],
-          answer: 'Een risico verlagen tot de kosten grof onevenredig zijn',
+          options: ['Elk risico accepteren dat onder €1 miljoen per jaar blijft', 'Elk afzonderlijk risico helemaal tot nul terugbrengen', 'Veiligheidsrisico’s aan de gewone business case overlaten', 'Een risico verlagen tot de kosten grof onevenredig zijn aan de winst'],
+          answer: 'Een risico verlagen tot de kosten grof onevenredig zijn aan de winst',
           why: 'ALARP, as low as reasonably practicable, legt de lat bij grove onevenredigheid tussen kosten en winst, niet bij nul risico en niet bij een gewone business case.',
         },
         {
@@ -583,7 +583,7 @@ export default {
       sayIt: 'Leg een capexcommissie in 60 seconden uit hoe risico in euro’s per jaar helpt kiezen tussen vervangingsaanvragen, en waar het je kan misleiden.',
       terms: [
         { term: 'Risico in euro’s', def: 'Kans op falen per jaar maal het gevolg in euro’s: risico in euro’s per jaar.' },
-        { term: 'Waardenkader', def: 'Afgesproken eurobedragen voor gevolgen zoals veiligheid, milieu en klantminuten, zodat risico’s vergelijkbaar worden.' },
+        { term: 'Waarderingskader', def: 'Afgesproken eurobedragen voor gevolgen zoals veiligheid, milieu en klantminuten, zodat risico’s vergelijkbaar worden.' },
         { term: 'Health index', def: 'Een score van de conditie van een asset uit leeftijd, inspecties, tests en historie, waarmee je de kans op falen schat.' },
         { term: 'Gevolg van falen', def: 'Wat een storing aanricht aan veiligheid, milieu, klanten en geld; de ene helft van risico, naast de kans.' },
         { term: 'ALARP', def: 'As low as reasonably practicable: een risico verlagen tot de kosten grof onevenredig zijn aan de winst.' },
@@ -603,9 +603,9 @@ export default {
       ],
       teach: [
         'Betrouwbaarheidswerk begint bij wat de asset voor zijn gebruikers moet doen, niet bij de asset zelf. Een functie is een werkwoord, een object en een eis: “perslucht leveren van 6,5 tot 7 bar, tot 900 m³/h (kubieke meter per uur), aan de verpakkingshal.”\n\nDe hoofdfunctie (primary function) is de belangrijkste reden dat de asset bestaat. Zonder getal kun je niet zien of hij werkt; met een getal kan iedereen dat.',
-        'Nevenfuncties zijn alles wat gebruikers verder verwachten. Insluiten: geen lekkage. Beveiligen: een overdrukventiel dat opengaat, een beveiliging die de motor stopt. Regelen, veiligheid, wettelijke grenzen voor geluid of uitstoot, zuinigheid.\n\nVeel storingen met grote gevolgen zijn storingen van nevenfuncties: een lekkende afdichting op een chemicaliënpomp, een overdrukventiel dat niet opengaat. Een goede analyse noemt ze allemaal, want elk kan eigen faalwijzen en een eigen taak hebben.',
-        'De prestatie-eis (performance standard) is het niveau dat de gebruikers nodig hebben, niet wat de machine kan. Wat hij kan, is zijn oorspronkelijk vermogen (initial capability). Een pomp die 150 m³/h kan waar het proces 120 nodig heeft, heeft marge; onderhoud houdt het vermogen boven de eis terwijl de pomp slijt.\n\nLigt het vermogen vanaf dag één onder de eis, dan helpt geen enkel onderhoud. Dat is een ontwerp- of capaciteitsprobleem, en het een onderhoudsprobleem noemen kost geld.',
-        'Een functionele storing betekent dat de asset de eis niet meer haalt, ook als hij nog draait. Een pomp die draait maar 90 van de 120 m³/h levert, is gefaald. Spreek met de gebruikers af wat als gefaald telt; de productie beslist, niet onderhoud alleen.\n\nDe gebruikscontext (operating context) verandert alles: dezelfde pomp alleen of met een reserve, dag en nacht of één dienst, op schoon water of slurry. Daarom gaat een onderhoudsplan kopiëren van een andere site zo vaak mis.',
+        'Nevenfuncties (secondary functions) zijn alles wat gebruikers verder verwachten. Insluiten: geen lekkage. Beveiligen: een overdrukventiel dat opengaat, een beveiliging die de motor stopt. Regelen, veiligheid, wettelijke grenzen voor geluid of uitstoot, zuinigheid.\n\nVeel storingen met grote gevolgen zijn storingen van nevenfuncties: een lekkende afdichting op een chemicaliënpomp, een overdrukventiel dat niet opengaat. Een goede analyse noemt ze allemaal, want elk kan eigen faalwijzen en een eigen taak hebben.',
+        'De prestatie-eis (performance standard) is het niveau dat de gebruikers nodig hebben, niet wat de machine kan. Wat hij kan, is zijn oorspronkelijke capaciteit (initial capability). Een pomp die 150 m³/h kan waar het proces 120 nodig heeft, heeft marge; onderhoud houdt de capaciteit boven de eis terwijl de pomp slijt.\n\nLigt de capaciteit vanaf dag één onder de eis, dan helpt geen enkel onderhoud. Dat is een ontwerp- of capaciteitsprobleem, en het een onderhoudsprobleem noemen kost geld.',
+        'Een functionele storing (functional failure) betekent dat de asset de eis niet meer haalt, ook als hij nog draait. Een pomp die draait maar 90 van de 120 m³/h levert, is gefaald. Spreek met de gebruikers af wat als gefaald telt; de productie beslist, niet onderhoud alleen.\n\nDe operationele context (operating context) verandert alles: dezelfde pomp alleen of met een reserve, dag en nacht of één dienst, op schoon water of slurry. Daarom gaat een onderhoudsplan kopiëren van een andere site zo vaak mis.',
         'In de praktijk vinden teams eisen lastig en schrijven ze “naar behoefte”. Vraag het de operators: welk debiet, welke druk of kwaliteit heb je nodig, en wat gebeurt er daaronder?\n\nDe volgende les, over RCM, begint bij deze functies en storingen om de faalwijzen te vinden en taken te kiezen. De scherpe vraag hier: “Bij welk getal noemen we deze asset gefaald, en wie heeft dat afgesproken?”',
       ],
       example: {
@@ -619,19 +619,19 @@ export default {
           number: 25,
           tolerance: 0.5,
           unit: '%',
-          hint: 'Trek de eis af van het vermogen en deel door de eis.',
+          hint: 'Trek de eis af van de capaciteit en deel door de eis.',
           why: '(150 − 120) ÷ 120 = 30 ÷ 120 = 0,25, dus 25%.',
         },
         {
           q: 'Een pomp draait nog, maar levert 90 m³/h waar de gebruikers 120 m³/h nodig hebben. Wat is dit?',
-          options: ['Geen storing, want de pomp draait nog gewoon', 'Een functionele storing: hij haalt de eis niet', 'Een verborgen storing die nog geen operator zag', 'Normale slijtage, dus nog niets aan te doen'],
-          answer: 'Een functionele storing: hij haalt de eis niet',
+          options: ['Geen storing, want de pomp draait nog gewoon', 'Een functionele storing: hij haalt de eis van de gebruikers niet', 'Een verborgen storing die nog geen operator zag', 'Normale slijtage, dus nog niets aan te doen'],
+          answer: 'Een functionele storing: hij haalt de eis van de gebruikers niet',
           why: 'Falen wordt gemeten tegen de eis van de gebruikers, niet tegen “hij draait”. Gedeeltelijk functieverlies telt mee.',
         },
         {
           q: 'Welke van deze is een nevenfunctie van een pomp die zuur verpompt?',
-          options: ['Het zuur binnenhouden, zonder lekkage', 'Zuur verpompen naar de reactor, 40 m³/h', 'Dag en nacht draaien in drie diensten', 'De nieuwste soort waaier hebben'],
-          answer: 'Het zuur binnenhouden, zonder lekkage',
+          options: ['Geen zuur laten lekken', 'Zuur verpompen naar de reactor, 40 m³/h', 'Dag en nacht draaien in drie diensten', 'De nieuwste soort waaier hebben'],
+          answer: 'Geen zuur laten lekken',
           why: 'De vloeistof insluiten is een nevenfunctie; 40 m³/h naar de reactor verpompen is de hoofdfunctie. Verlies van insluiting kan zwaarder wegen dan verlies van debiet.',
         },
         {
@@ -658,9 +658,9 @@ export default {
         { term: 'Hoofdfunctie', def: 'De belangrijkste reden dat een asset bestaat, geschreven als werkwoord, object en eis.' },
         { term: 'Nevenfunctie', def: 'Alles wat gebruikers verder van de asset verwachten, zoals insluiten, beveiligen, regelen of wettelijke grenzen halen.' },
         { term: 'Prestatie-eis', def: 'Het prestatieniveau dat de gebruikers nodig hebben, zoals een debiet of druk, waartegen falen wordt beoordeeld.' },
-        { term: 'Oorspronkelijk vermogen', def: 'Wat een nieuwe asset kan leveren; dat moet boven de prestatie-eis liggen, wil onderhoud hem werkend houden.' },
+        { term: 'Oorspronkelijke capaciteit', def: 'Wat een nieuwe asset kan leveren; dat moet boven de prestatie-eis liggen, wil onderhoud hem werkend houden.' },
         { term: 'Functionele storing', def: 'De asset haalt de prestatie-eis van zijn gebruikers niet meer, ook als hij nog draait.' },
-        { term: 'Gebruikscontext', def: 'De omstandigheden waarin een asset werkt, zoals in bedrijf of reserve, draaiuren en medium; die verandert gevolgen en taken.' },
+        { term: 'Operationele context', def: 'De omstandigheden waarin een asset werkt, zoals in bedrijf of reserve, draaiuren en medium; die verandert gevolgen en taken.' },
       ],
     },
     {
@@ -702,9 +702,9 @@ export default {
           why: 'De helft van een P-F-interval van 6 weken is 3 weken, zodat je na ontdekking nog tijd hebt om de reparatie te plannen.',
         },
         {
-          q: 'Een overdrukventiel is nog nooit aangesproken om open te gaan. Welk soort taak past erbij in RCM?',
-          options: ['Een failure-finding-test op een vast interval', 'Laten draaien tot hij faalt, dan vervangen', 'Een maandelijkse visuele inspectie door een monteur', 'Trillingsmeting in een maandelijkse ronde'],
-          answer: 'Een failure-finding-test op een vast interval',
+          q: 'Een overdrukventiel heeft nog nooit hoeven openen. Welk soort taak past erbij in RCM?',
+          options: ['Een failure-finding-test op interval', 'Laten draaien tot hij faalt, dan vervangen', 'Een maandelijkse visuele inspectie door een monteur', 'Trillingsmeting in een maandelijkse ronde'],
+          answer: 'Een failure-finding-test op interval',
           why: 'Zijn storing is verborgen; alleen een test laat zien of hij werkt als het moet.',
         },
         {
@@ -820,15 +820,15 @@ export default {
       pre: [
         {
           q: 'Een bedrijf wordt gecertificeerd volgens ISO 55001. Wat laat het certificaat zien?',
-          options: ['Dat elke afzonderlijke asset van het bedrijf in goede staat is', 'Dat het een systeem heeft om waarde uit zijn assets te halen', 'Dat het onderhoud de handleidingen van de bouwers volgt', 'Dat er een CMMS is met alle assets erin geladen'],
-          answer: 'Dat het een systeem heeft om waarde uit zijn assets te halen',
+          options: ['Dat elke afzonderlijke asset van het bedrijf in goede staat is', 'Dat het assets als systeem stuurt op waarde', 'Dat het onderhoud de handleidingen van de bouwers volgt', 'Dat er een CMMS is met alle assets erin geladen'],
+          answer: 'Dat het assets als systeem stuurt op waarde',
           why: 'ISO 55001 stelt eisen aan het managementsysteem: doelen, plannen, beslisregels, vakmanschap en evaluatie. Over de staat van één bepaalde asset zegt het niets direct.',
         },
       ],
       teach: [
         'Assetmanagement is wat een organisatie doet om waarde uit haar assets te halen over hun hele levensduur: plannen, kopen, gebruiken, onderhouden en afvoeren, met een afweging tussen kosten, risico en prestaties. Het is breder dan onderhoud.\n\nISO 55000 geeft de begrippen, het overzicht en de principes; ISO 55001 de eisen aan het managementsysteem waarop een bedrijf gecertificeerd kan worden; ISO 55002 de toelichting. ISO 55000 en 55001 zijn in 2024 herzien; de eerste edities zijn van 2014.',
         'Het kernidee is line of sight: een ononderbroken lijn van de bedrijfsdoelen, zoals leveringszekerheid, output of uitstoot, naar de assetmanagementdoelen, naar de plannen per assetklasse, tot aan de werkorders.\n\nHet document dat die vertaling maakt, is het SAMP, het strategic asset management plan (strategisch assetmanagementplan); daaronder hangen assetmanagementplannen per klasse, zoals pompen of MS-kabels. Is een taak niet terug te voeren op een doel, of heeft een doel geen plan, dan is de lijn gebroken.',
-        'ISO 55001 vraagt om criteria voor besluiten over risico, levensduurkosten en prestaties. Die criteria zijn de gereedschappen van deze module: kritikaliteit, FMECA, RCM, Weibull, reservedelen en levensduurkosten.\n\nEen buurnorm, IEC 60300-1, gaat over bedrijfszekerheid (dependability): betrouwbaarheid, onderhoudbaarheid (hoe makkelijk je repareert) en ondersteunbaarheid (reservedelen, gereedschap, mensen) samen, beheerd vanaf het ontwerp. De kern: betrouwbaarheid erin ontwerpen is goedkoper dan hem er later in onderhouden.',
+        'ISO 55001 vraagt om criteria voor besluiten over risico, levensduurkosten en prestaties. Die criteria zijn de gereedschappen van deze module: kritikaliteit, FMECA, RCM, Weibull, reservedelen en levensduurkosten.\n\nEen buurnorm, IEC 60300-1, gaat over bedrijfszekerheid (dependability), in de klassieke definitie: betrouwbaarheid, onderhoudbaarheid (hoe makkelijk je repareert) en ondersteunbaarheid (reservedelen, gereedschap, mensen) samen, beheerd vanaf het ontwerp. De kern: betrouwbaarheid erin ontwerpen is goedkoper dan hem er later in onderhouden.',
         'Netbeheerders zijn het schoolvoorbeeld: veel assets, lange levensduren, een toezichthouder die meekijkt. Nederlandse netbeheerders werken volgens NTA 8120, de Nederlandse norm voor assetmanagement van elektriciteits- en gasnetten, en een aantal, zoals Stedin en Enexis, heeft ook een ISO 55001-certificaat; de module Netbedrijf en assetmanagement laat zien hoe.\n\nMinder fabrikanten zijn gecertificeerd, maar de logica is dezelfde: capexbesluiten en onderhoudsstrategie horen in één systeem, beoordeeld met dezelfde criteria.',
         'Valkuilen: certificering als doel, met mappen vol procedures terwijl besluiten nog steeds naar wie het hardst roept gaan; een assetregister dat te onvolledig is om er iets op te besluiten; finance, productie en onderhoud die elk hun eigen budget optimaliseren.\n\nDe module Onderhoud behandelt de onderhouds-KPI’s; hier is het besluit de toets. De scherpe vraag: “Laat me één recent vervangingsbesluit zien: welk doel, welk risico en welke levensduurvergelijking gaven de doorslag?”',
       ],
@@ -842,12 +842,12 @@ export default {
       recall: [
         {
           q: 'Wat is de taak van het SAMP, het strategisch assetmanagementplan?',
-          options: ['Het noemt de reservedelen voor elke assetklasse', 'Het plant het onderhoudswerk van volgende week', 'Het vertaalt bedrijfsdoelen naar assetplannen', 'Het is het rapport van het ISO-auditteam'],
-          answer: 'Het vertaalt bedrijfsdoelen naar assetplannen',
+          options: ['Het noemt de reservedelen voor elke assetklasse', 'Het plant het onderhoudswerk van volgende week', 'Het vertaalt bedrijfsdoelen naar plannen per assetklasse', 'Het is het rapport van het ISO-auditteam'],
+          answer: 'Het vertaalt bedrijfsdoelen naar plannen per assetklasse',
           why: 'Het SAMP is de brug in de line of sight, van de doelen van de organisatie naar de plannen per assetklasse.',
         },
         {
-          q: 'Welke drie dingen combineert bedrijfszekerheid in IEC 60300?',
+          q: 'Welke drie dingen combineert bedrijfszekerheid in de klassieke definitie van IEC 60300?',
           options: ['Kosten, kwaliteit en levertijd voor de klant', 'Veiligheid, gezondheid en milieu op het werk', 'Beschikbaarheid, prestatie en kwaliteit, zoals in de OEE', 'Betrouwbaarheid, onderhoudbaarheid en ondersteunbaarheid'],
           answer: 'Betrouwbaarheid, onderhoudbaarheid en ondersteunbaarheid',
           why: 'Bedrijfszekerheid is hoe vaak het faalt, hoe makkelijk het te repareren is, en of reservedelen, gereedschap en mensen er zijn om het te repareren.',
@@ -885,7 +885,7 @@ export default {
         { term: 'ISO 55001', def: 'De norm met de eisen aan een assetmanagementsysteem; bedrijven kunnen erop gecertificeerd worden (herzien in 2024).' },
         { term: 'Line of sight', def: 'De ononderbroken lijn van bedrijfsdoelen naar assetplannen en verder tot aan de afzonderlijke werkorders.' },
         { term: 'SAMP', def: 'Strategic asset management plan (strategisch assetmanagementplan): vertaalt bedrijfsdoelen naar assetmanagementdoelen en plannen.' },
-        { term: 'Bedrijfszekerheid', def: 'Betrouwbaarheid, onderhoudbaarheid en ondersteunbaarheid samen, zoals in IEC 60300.' },
+        { term: 'Bedrijfszekerheid', def: 'Betrouwbaarheid, onderhoudbaarheid en ondersteunbaarheid samen, in de klassieke definitie van IEC 60300.' },
         { term: 'NTA 8120', def: 'De Nederlandse norm voor assetmanagement van elektriciteits- en gasnetten.' },
       ],
     },
@@ -902,10 +902,10 @@ export default {
         },
       ],
       teach: [
-        'Betrouwbaarheid als getal is de kans dat een asset na een bepaalde tijd onder vastgelegde omstandigheden nog werkt, geschreven als R(t). R(1 jaar) = 0,95 betekent dat 95 van de 100 units naar verwachting een jaar zonder storing draaien.\n\nDe module Onderhoud berekent MTBF en MTTR uit de storingslijst van een machine. Deze les kijkt wat die getallen betekenen voor een heel park, en wat ze niet betekenen.',
-        'Uit parkdata haal je een faalkans (failure rate): storingen gedeeld door de tijd die alle units samen draaiden. 2.000 transformatoren gedurende één jaar zijn 2.000 unitjaren; 10 storingen geven 10 ÷ 2.000 = 0,005 per unitjaar, 0,5% per jaar.\n\nDe MTBF (mean time between failures, gemiddelde tijd tussen storingen) is één gedeeld door die faalkans: 200 jaar. Voor onderdelen die je weggooit in plaats van repareert, zoals een lager of een zekering, zeggen engineers MTTF, mean time to failure.',
+        'Betrouwbaarheid (reliability) als getal is de kans dat een asset na een bepaalde tijd onder vastgelegde omstandigheden nog werkt, geschreven als R(t). R(1 jaar) = 0,95 betekent dat 95 van de 100 units naar verwachting een jaar zonder storing draaien.\n\nDe module Onderhoud berekent MTBF en MTTR uit de storingslijst van een machine. Deze les kijkt wat die getallen betekenen voor een heel park, en wat ze niet betekenen.',
+        'Uit parkdata haal je een faalkans (failure rate): storingen gedeeld door de tijd die alle units samen draaiden. 2.000 transformatoren gedurende één jaar zijn 2.000 unitjaren (unit-years); 10 storingen geven 10 ÷ 2.000 = 0,005 per unitjaar, 0,5% per jaar.\n\nDe MTBF (mean time between failures, gemiddelde tijd tussen storingen) is één gedeeld door die faalkans: 200 jaar. Voor onderdelen die je weggooit in plaats van repareert, zoals een lager of een zekering, zeggen engineers MTTF, mean time to failure.',
         'MTBF is geen levensduur. De 200 jaar beschrijft de willekeurige storingen van het huidige park, vooral jonge en middelbare units; slijtage na 40 tot 60 jaar zit er niet in.\n\nHetzelfde geldt voor een datasheet: een harde schijf met “1,2 miljoen uur MTBF” draait geen 137 jaar. Het betekent dat binnen zijn ontwerplevensduur ruwweg 8.760 ÷ 1.200.000 = 0,73% van de schijven per draaijaar uitvalt.',
-        'Is uitval willekeurig, dan heb je een constante faalkans (Weibull-bèta rond 1), en R(t) = e^(−t ÷ MTBF). Op t = MTBF is R = e^(−1) = 36,8%: maar ongeveer een derde van de units haalt de MTBF.\n\nVoor korte tijden is R ≈ 1 − t ÷ MTBF. Een pomp met een MTBF van 5 jaar heeft zo’n 82% kans op een jaar zonder storing: e^(−0,2) = 0,819. Bij een constante faalkans tellen de faalkansen van onderdelen in serie gewoon op.',
+        'Is uitval willekeurig, dan heb je een constante faalkans (constant failure rate, Weibull-bèta rond 1), en R(t) = e^(−t ÷ MTBF). Op t = MTBF is R = e^(−1) = 36,8%: maar ongeveer een derde van de units haalt de MTBF.\n\nVoor korte tijden is R ≈ 1 − t ÷ MTBF. Een pomp met een MTBF van 5 jaar heeft zo’n 82% kans op een jaar zonder storing: e^(−0,2) = 0,819. Bij een constante faalkans tellen de faalkansen van onderdelen in serie gewoon op.',
         'Valkuilen: een MTBF uit drie storingen, wat nauwelijks meer is dan een gok; kalenderuren en draaiuren door elkaar; en MTBF’s middelen in plaats van faalkansen optellen.\n\nDe scherpe vraag bij elke MTBF: “In welke uren, uit hoeveel storingen, en over welke leeftijden?” Een getal van een leverancier uit een handboekvoorspelling kan ver afliggen van wat jouw site ziet.',
       ],
       example: {
@@ -974,11 +974,11 @@ export default {
         },
       ],
       teach: [
-        'Beschikbaarheid is MTBF ÷ (MTBF + MTTR): het deel van de tijd dat de asset kan draaien. De module Onderhoud berekent hem uit de storingslijst.\n\nHandboeken splitsen hem in tweeën. Inherente beschikbaarheid telt alleen de actieve reparatietijd, het echte sleutelwerk: wat het ontwerp en de vaardigheid van de monteurs toelaten. Operationele beschikbaarheid telt de hele stop, van storing tot weer draaien, en dat is wat een MTTR uit de storingslijst je geeft.',
+        'Beschikbaarheid is MTBF ÷ (MTBF + MTTR): het deel van de tijd dat de asset kan draaien. De module Onderhoud berekent hem uit de storingslijst.\n\nHandboeken splitsen hem in tweeën. Inherente beschikbaarheid (inherent availability) telt alleen de actieve reparatietijd (active repair time), het echte sleutelwerk: wat het ontwerp en de vaardigheid van de monteurs toelaten. Operationele beschikbaarheid (operational availability) telt de hele stop, van storing tot weer draaien, en dat is wat een MTTR uit de storingslijst je geeft.',
         'Het verschil is het wachten: de storing opmerken, een monteur vinden, een werkvergunning krijgen, en de logistieke wachttijd (logistic delay) op onderdelen. Voorbeeld: MTBF 2.000 uur, actieve reparatie 4 uur: inherente beschikbaarheid 2.000 ÷ 2.004 = 99,80%.\n\nTel 20 uur wachten op en de hele stop is 24 uur: operationele beschikbaarheid 2.000 ÷ 2.024 = 98,81%. Bij 8.000 draaiuren per jaar zijn dat 4 storingen: 96 uur verloren in plaats van 16.',
         'In veel fabrieken is wachten het grootste deel van de stilstand, niet de reparatie. Daarmee zijn reservedelen en reactietijd net zo goed betrouwbaarheidshefbomen als de MTBF: een deel op de plank naast de lijn, een kit klaar voor de klus, een monteur met consignatiedienst (oproepbaar, on call) voor de bottleneck.\n\nDe volgende lessen in dit onderwerp werken uit welke reservedelen je op voorraad houdt en hoe je repareren en vervangen over de levensduur vergelijkt.',
         'Stilstandkosten per jaar = storingen per jaar × uren stil per storing × kosten per uur. De kosten per uur zijn alleen gemiste marge waar de productie echt verloren gaat, op een bottleneck of een uitverkochte lijn; elders zijn het vooral overuren om in te halen.\n\nVoorbeeld: 4 storingen × 24 uur × €1.200 = €115.200 per jaar. Breng het wachten terug naar 4 uur en de stop wordt 8 uur: €38.400, een besparing van €76.800 per jaar.',
-        'Beschikbaarheid alleen kan misleiden. 99% klinkt hoog, maar bij een asset die het hele jaar draait is dat 87,6 uur stil. Dezelfde 99% uit één lange stop of vijftig korte doet anders pijn: korte, vaak voorkomende stops verstoren kwaliteit en opstarten.\n\nNetbeheerders splitsen uitvalminuten net zo: in 2024 zat een Nederlandse klant zo’n 24 minuten zonder stroom, uit zo’n 0,34 onderbrekingen van elk zo’n 70 minuten (Netbeheer Nederland). Meld altijd hoe vaak en hoe lang, niet alleen het percentage.',
+        'Beschikbaarheid alleen kan misleiden. 99% klinkt hoog, maar bij een asset die het hele jaar draait is dat 87,6 uur stil. Dezelfde 99% uit één lange stop of vijftig korte doet anders pijn: korte, vaak voorkomende stops verstoren kwaliteit en opstarten.\n\nNetbeheerders splitsen uitvalminuten net zo: in 2024 zat een Nederlandse klant door onvoorziene onderbrekingen zo’n 24 minuten zonder stroom, uit zo’n 0,34 onderbrekingen van elk zo’n 70 minuten (Netbeheer Nederland); gepland werk kwam daar ongeveer evenveel bovenop. Meld altijd hoe vaak en hoe lang, niet alleen het percentage.',
       ],
       example: {
         kind: 'worked',

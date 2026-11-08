@@ -83,3 +83,10 @@ Recalculations (new lessons):
 - availability: 2,000/2,004 = 99.80%, 2,000/2,024 = 98.81%, 4 × 24 = 96 h vs 16 h; 4 × 24 × 1,200 = 115,200, 4 × 8 × 1,200 = 38,400, saving 76,800; 1% × 8,760 = 87.6 h; example 1,000/1,001.5 = 99.85%, 1,000/1,005 = 99.50%, 30 h × 2,000 = 60k, 15 h → 30k; r0 400/408 = 98.04%; r1 5 × 12 × 900 = 54k.
 
 Uncertain: Dutch term choices — Faalmechanisme, Rustlijnen (as in eng.mechanics), Fysieke/Menselijke/Latente oorzaak, Onderhoudbare eenheid (maintainable item), Oorspronkelijk vermogen (initial capability), Gebruikscontext (operating context), Bedrijfszekerheid (dependability), Logistieke wachttijd, Waardenkader, Unitjaren. "Health index", "Line of sight" and "SAMP" kept in English in nl (common in Dutch asset-management practice). Beta-factor range and "a few dozen failure modes per pump" are practice values, hedged in text.
+
+Review of the v13 topics (2026-11-08):
+- All numbers recomputed by script; all hold. Netbeheer Nederland 2024 (resultaten 2024, §2.1): 23.9 min = 0.343 × 69.8 min is for unplanned interruptions only; planned work added 23.3 min (§3.1). Text now says "unplanned" and "planned work added about as much".
+- ISO 281: exponent 3 for ball bearings, 10/3 for roller bearings, now both in mechanisms; the example names its bearings as ball bearings. IEC 60076-7: doubling per 6 K above a 98 °C hot spot (standard paper), now stated.
+- Length rank of the correct option over 54 MC (1 = longest, ties counted as 1): en 13 · 19 · 10 · 12, nl 10 · 15 · 15 · 14; positions unchanged 13 / 14 / 14 / 13.
+- nl terms: Oorspronkelijk vermogen → Oorspronkelijke capaciteit ("vermogen" reads as kW), Gebruikscontext → Operationele context, Waardenkader → Waarderingskader ("waarden" reads as ethics). Kept: Onderhoudbare eenheid, Bedrijfszekerheid (NEN-IEC term for dependability), Logistieke wachttijd, Unitjaren (matches "unit" used throughout the nl module).
+- Fatigue and Beach marks definitions now carry the same meaning as eng.mechanics (below the one-time breaking load; lines spread from the crack origin). The weibull teach names β "also called the shape factor" to match eng.maintenance's "Weibull β".
