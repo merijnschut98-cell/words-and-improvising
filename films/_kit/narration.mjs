@@ -129,10 +129,22 @@ export const spokenOf = (text, lang, lex) => applyLexicon(sayable(text, lang).re
 export const SUB_MAX = 84; // about 2 lines of video subtitles on a phone
 const MIN_PHRASE_WORDS = 3; // shorter phrases ride with the next one
 
-// The sentences of one resolved script (said text, as subtitled), each as its
-// phrases: [['De voeding is 0,3 mm.'], ['Hoe dunner,', 'hoe sneller.']].
-export function phrasesOf(seg) {
-  return String(saidOf(seg)).split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean).map((s) => {
+// The sentences of one resolved script (said text), each as its phrases:
+// [['De voeding is 0,3 mm.'], ['Hoe dunner,', 'hoe sneller.']].
+// With { gloss: true }, the same phrases as subtitled: a Dutch term carries its
+// English word in parentheses on its first use ("De voeding (feed) is 0,3 mm."),
+// which the voice skips. The gloss rides inside its term's word while the
+// phrases are cut, so both forms always have the same sentences and phrases.
+const GLOSS = { open: '\u0002', close: '\u0003', space: '\u0001' };
+const glossedOf = (seg) => seg.map((p) => (typeof p === 'string' ? p
+  : p.t + (p.en ? GLOSS.open + p.en.replace(/\s+/g, GLOSS.space) + GLOSS.close : ''))).join('').replace(/\s+/g, ' ').trim();
+const unmark = (s) => s.split(GLOSS.open).join(' (').split(GLOSS.close).join(')').split(GLOSS.space).join(' ');
+export function phrasesOf(seg, { gloss = false } = {}) {
+  const out = phrasesIn(gloss ? glossedOf(seg) : String(saidOf(seg)));
+  return gloss ? out.map((ph) => ph.map(unmark)) : out;
+}
+function phrasesIn(text) {
+  return text.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean).map((s) => {
     const out = [];
     let carry = '';
     for (const p of s.split(/(?<=,)\s+/)) {

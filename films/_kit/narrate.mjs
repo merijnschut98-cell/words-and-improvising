@@ -9,7 +9,8 @@
 //   films-out/<id>/<lang>.wav          the whole narration track, lines at their times
 //   films-out/<id>/<lang>.timing.json  the audio timeline (films/_kit/timeline.mjs, audioTimeline)
 //   films-out/<id>/<lang>.vtt          captions: the spoken script, sentence by sentence, each
-//                                      sentence recorded as its own clip so its cue is exact
+//                                      sentence recorded as its own clip so its cue is exact; in
+//                                      Dutch a term shows its English word once, in parentheses
 //   src/content/courses/films/<id>.<lang>.vtt   the same captions, committed (same origin, offline)
 // films-out/ is git-ignored. Lines are cached by text and voice in films-out/_cache.
 //
@@ -90,10 +91,14 @@ export function narrate(id, langs = ['nl', 'en']) {
     // one clip per phrase: the subtitles follow the measured length of each
     const lexFile = join(ROOT, 'films/_kit', `lexicon.${lang}.json`);
     const lex = existsSync(lexFile) ? JSON.parse(readFileSync(lexFile, 'utf8')) : {};
-    const clips = data.scenes.map((s) => s.beats.map((b) => phrasesOf(b.say[lang]).map((ph) => ph.map((text) => {
-      const wav = speak(spokenOf(text, lang, lex), lang);
-      return { text, wav, dur: wavInfo(wav).dur };
-    }))));
+    // the voice says each phrase without the gloss; its subtitle carries it
+    const clips = data.scenes.map((s) => s.beats.map((b) => {
+      const subs = phrasesOf(b.say[lang], { gloss: true });
+      return phrasesOf(b.say[lang]).map((ph, k) => ph.map((said, j) => {
+        const wav = speak(spokenOf(said, lang, lex), lang);
+        return { text: subs[k][j], wav, dur: wavInfo(wav).dur };
+      }));
+    }));
     const atl = audioTimeline(clips.map((beats) => beats.map((sents) => beatLength(sents.map((ph) => ph.map((c) => c.dur))))));
     const parts = [];
     const lines = [];

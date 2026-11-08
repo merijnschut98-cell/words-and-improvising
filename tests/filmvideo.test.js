@@ -50,6 +50,8 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['De ', { t: 'voeding', en: 'feed', c: 'f' }, ' is 0,3 mm.'], 'nl'), 'De voeding is 0,3 millimeter.');
   // the subtitles keep what is written, without the gloss
   assert.equal(saidOf(['De ', { t: 'voeding', en: 'feed', c: 'f' }, ' is 0,3 mm.']), 'De voeding is 0,3 mm.');
+  // MIG, MAG and TIG on their own as letters in Dutch (espeak-ng reads MAG as the verb), MAG-lassen as it is
+  assert.equal(speakOf(['Dit is MIG/MAG-lassen. Bij MAG, voor staal, bij TIG 0,6. Het product mag eruit.'], 'nl'), 'Dit is M I G MAG-lassen. Bij M A G, voor staal, bij T I G 0,6. Het product mag eruit.');
 });
 
 // ------------------------------------------------------------ WAV files
@@ -132,6 +134,13 @@ test('lexicon: the voice gets the phonemes, the subtitles keep the spelling', ()
   assert.equal(spokenOf(phrase, 'nl', lex), 'Het [[tˈurəntˌɑl]] is 11honderd 67 [[ˈɔmʋˌɛntəlɪŋən]] per minuut.');
   const cue = cuesOfLines([[{ start: 0, dur: 3, text: phrase }]])[0];
   assert.equal(cue.text, 'Het toerental is 1.167 omw/min.');
+  // the subtitle of a Dutch phrase carries the English word of a term (first use);
+  // the voice's phrases skip it, and both are cut into the same phrases
+  // (a short phrase rides with the next one by its spoken words, gloss or not)
+  const glossed = [{ t: 'Smeltbad', en: 'weld pool', k: 'a#1' }, ', zegt hij, is heet. Een ', { t: 'WBZ', en: 'HAZ', k: 'a#2' }, ' volgt.'];
+  assert.deepEqual(phrasesOf(glossed), [['Smeltbad, zegt hij,', 'is heet.'], ['Een WBZ volgt.']]);
+  assert.deepEqual(phrasesOf(glossed, { gloss: true }), [['Smeltbad (weld pool), zegt hij,', 'is heet.'], ['Een WBZ (HAZ) volgt.']]);
+  assert.deepEqual(phrasesOf(seg, { gloss: true }), phrasesOf(seg));
   // the committed lexicons: phonemes with a main stress, keys in lower case; the
   // compounds Merijn heard wrong take their stress on the first part
   for (const lang of ['nl', 'en']) {

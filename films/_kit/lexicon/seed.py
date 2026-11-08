@@ -63,10 +63,31 @@ KEEP = {
            'veiligheidskritisch', 'staalveilig', 'vrijwel'},
     'en': set(),
 }
-# words that are no compounds but that espeak-ng stresses wrong: phonemes by hand
+# phonemes by hand, kept over the search: words that are no compounds but that
+# espeak-ng stresses wrong (aluMInium, miNUUT, MILlimeter, letters such as CEV),
+# English words in Dutch speech, and compounds added for the films' narration
+# (v14b) whose parts the search would not find
 MANUAL = {
-    'nl': {'kotteren': 'kˈɔtərən', 'kottert': 'kˈɔtərt', 'kotterbaar': 'kˈɔtərbaːr'},
-    'en': {},
+    'nl': {'aluminium': 'aːlymˈiniɵm', 'argon': 'ˈɑrɣɔn', 'beitsen': 'bˈɛɪtsən', 'bijvoorbeeld': 'bɛɪvˈɔːrbeːlt',
+           'booglasenergie': 'bˈoːɣlɑseːnərʒˌi', 'cev': 'sˌeːeːvˈeː', 'drukregelaar': 'drˈɵkrˌeːɣəlaːr',
+           'drukvalstudie': 'drˈɵkvɑlstydˌi', 'freeze': 'frˈiːs', 'gasfles': 'ɣˈɑsflˌɛs', 'gate': 'ɡˈeːt',
+           'geldigheidsgebied': 'ɣˈɛldɪxhɛɪtsɣəbˌit', 'hetzelfde': 'hətsˈɛlvdə', 'installatie': 'ɪnstɑlˈaːtsi',
+           'iq': 'ˌiːkˈy', 'kilojoule': 'kˈiloːʒˌul', 'koolstofequivalent': 'kˈoːlstɔfeːkvivaːlˌɛnt',
+           'kortsluitboog': 'kˈɔrtslœytbˌoːx', 'kotterbaar': 'kˈɔtərbaːr', 'kotteren': 'kˈɔtərən', 'kottert': 'kˈɔtərt',
+           'kunststofkorrels': 'kˈɵnststɔfkˌɔɾrəls', 'lasapparaat': 'lˈɑsɑpaːrˌaːt',
+           'lasmethodebeschrijving': 'lˈɑsmɛtoːdəbəsxrˌɛɪvɪŋ', 'lasmethodekwalificatie': 'lˈɑsmɛtoːdəkʋaːlifikˌaːtsi',
+           'lasmethodes': 'lˈɑsmɛtˌoːdəs', 'laspistool': 'lˈɑspɪstˌoːl', 'lastafel': 'lˈɑstˌaːfəl',
+           'legeringselementen': 'leːɣˈɪːrɪŋseːləmˌɛntən', 'millimeter': 'mˈɪlimˌeːtər', 'minuten': 'minˈytən',
+           'minuut': 'minˈyt', 'moulding': 'mˈoːldɪŋ', 'neersmeltsnelheid': 'nˈɪːrsmɛltsnˌɛlhɛɪt',
+           'omschakelen': 'ˈɔmsxaːkələn', 'omschakelpunt': 'ˈɔmsxaːkəlpˌɵnt', 'opnieuw': 'ɔpnˈiw', 'oq': 'ˌoːkˈy',
+           'pq': 'ˌpeːkˈy', 'scientific': 'sɑjəntˈɪfɪk', 'sluiteenheid': 'slˈœytˌeːnhɛɪt', 'sproeiboog': 'sprˈujbˌoːx',
+           'spuiteenheid': 'spˈœytˌeːnhɛɪt', 'spuitgietmachine': 'spˈœytɣitmaːʃˌinə', 'studie': 'stˈydi',
+           'temperatuurregelaar': 'tɛmpɪːraːtˈyrrˌeːɣəlaːr', 'terwijl': 'tərʋˈɛɪl',
+           'tussenlaagtemperatuur': 'tˈɵsənlaːxtɛmpɪːraːtˌyr', 'ventielringetje': 'vɛntˈilrˌɪŋɛtʲə',
+           'verdeelkanaal': 'vərdˈeːlkaːnˌaːl', 'voetpedaal': 'vˈutpeːdˌaːl', 'vuistregel': 'vˈœystrˌeːɣəl',
+           'weegschaal': 'ʋˈeːxsxˌaːl'},
+    'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',
+           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ'},
 }
 # first parts that make adverbs or particles (daarmee, waardoor, hiermee)
 NOT_FIRST = {'nl': {'daar', 'waar', 'hier', 'hoe', 'met', 'een', 'van', 'ten', 'ter', 'zich', 'erom', 'alle', 'hele'}, 'en': set()}
