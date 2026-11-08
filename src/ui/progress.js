@@ -3,7 +3,7 @@ import { ico } from './icons.js';
 import { levelFromXp, DRILLS, dayKey } from '../core/progress.js';
 import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
-import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
+import { calibration, localCalibration, skillRadar, listenCalibration } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
 import { masteryOf } from '../core/mastery.js';
 import { masteryBadge } from './home.js';
@@ -212,10 +212,13 @@ function calibrationCard(app) {
     : (() => { const l = localCalibration(app.state.history); return l && t(`calibLocal_${l.verdict}`); })();
   const f = friendAverages(app.state);
   const friends = f && f.n >= 1 ? t('friendsCalib', f.n, f.clear, f.structured, f.confident) : null;
-  if (!text && !friends) return null;
+  const lc = listenCalibration(app.state.history);
+  const listened = lc ? t(`calibListen_${lc.verdict}`, lc.meanGap, lc.n) : null;
+  if (!text && !friends && !listened) return null;
   return h('section', { class: 'card calib-card' },
     h('h2', { class: 'card-title' }, t('calibTitle')),
     text ? h('p', {}, text) : null,
+    listened ? h('p', { class: 'listen-calib' }, ico('headphones'), ' ', listened) : null,
     friends ? h('p', { class: 'friend-calib' }, friends) : null,
     latestFriend(app));
 }
