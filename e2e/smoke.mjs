@@ -641,7 +641,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   };
   const lesson = await open();
   // the steps: Film instead of Lezen
-  const stepsOf = async () => (await p.locator('.steps .step').allInnerTexts()).map((x) => x.trim()).join('|');
+  const stepsOf = async () => (await p.locator('.steps .step').allTextContents()).map((x) => x.trim()).join('|');
   if ((await stepsOf()) !== 'Raden|Film|Voorbeeld|Check') throw new Error(`steps: ${await stepsOf()}`);
   if (await p.locator('.teach-card').count()) throw new Error('the reading is shown in a film lesson');
   // the video, with a captions track in the app language and a poster
@@ -2741,6 +2741,8 @@ await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });
   await page.waitForTimeout(800);
+  // the film stub stays online: offline the video request must really fail
+  await ctx.unroute(FILM_URL);
   await ctx.setOffline(true);
   await page.reload();
   await page.locator('.btn-hero').waitFor({ timeout: 5000 });
