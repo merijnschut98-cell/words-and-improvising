@@ -196,7 +196,7 @@ test('courseSummary: owned per track, due count, a 14-day strip ending today, re
     { day: '2026-10-01', kind: 'due', correct: 1, total: 1, ts: 1 },
   ];
   const sum = courseSummary(s, 'eng', 'nl', day, MODS);
-  assert.deepEqual(sum.tracks, [{ track: 'basics', owned: 1, total: 2 }, { track: 'discrete', owned: 0, total: 1 }, { track: 'grid', owned: 0, total: 0 }]);
+  assert.deepEqual(sum.tracks, [{ track: 'basics', owned: 1, total: 2 }, { track: 'discrete', owned: 0, total: 1 }, { track: 'grid', owned: 0, total: 0 }, { track: 'it', owned: 0, total: 0 }]);
   assert.equal(sum.due, 1);
   assert.equal(sum.strip.length, 14);
   assert.equal(sum.strip[13], 1);
