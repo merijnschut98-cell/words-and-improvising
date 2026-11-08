@@ -1,13 +1,14 @@
-// eng.mechanics (EN): Materials and strength: forces and torque, stress and stiffness, yield and safety factor, fatigue, materials, heat treatment.
+// eng.mechanics (EN): Materials and strength, 4 topics × 4 levels: forces, moments and stress; material strength and testing; fatigue and failure; heat treatment and material choice.
 export default {
   lessons: [
+    // Topic: Forces, moments and stress
     {
       id: 'eng.mechanics.forces',
       title: 'Force, weight and torque',
       pre: [
         {
           q: 'A crate with a mass of 100 kg hangs still from a hook. Roughly how large is the force on the hook?',
-          options: ['100 N', 'About 1,000 N (1 kN)', '10 N', '10,000 N'],
+          options: ['About 10,000 N', 'About 10 N', 'About 100 N (0.1 kN)', 'About 1,000 N (1 kN)'],
           answer: 'About 1,000 N (1 kN)',
           why: 'Weight = mass × 9.81 m/s²: 100 × 9.81 = 981 N, about 1 kN.',
         },
@@ -30,6 +31,7 @@ export default {
           number: 2452.5,
           tolerance: 10,
           unit: 'N',
+          hint: 'Multiply the mass in kg by the acceleration of gravity.',
           why: '250 × 9.81 = 2,452.5 N.',
         },
         {
@@ -37,6 +39,7 @@ export default {
           number: 60,
           tolerance: 0.5,
           unit: 'Nm',
+          hint: 'Torque is the force times the length of the lever arm.',
           why: 'Torque = force × arm = 150 × 0.4 = 60 Nm.',
         },
         {
@@ -44,6 +47,7 @@ export default {
           number: 3,
           tolerance: 0.05,
           unit: 'kN',
+          hint: 'With the load exactly in the middle, both supports carry the same share.',
           why: 'A load in the middle splits equally: 6 / 2 = 3 kN per support.',
         },
         {
@@ -79,9 +83,9 @@ export default {
       pre: [
         {
           q: 'Two rods of the same diameter, one steel and one aluminium, carry the same pulling force. Both stay elastic. Which stretches more?',
-          options: ['The steel rod', 'The aluminium rod, about three times as much', 'Both the same', 'Neither stretches'],
-          answer: 'The aluminium rod, about three times as much',
-          why: 'Aluminium is about a third as stiff as steel (E about 70,000 against 210,000 MPa).',
+          options: ['The aluminium rod', 'The steel rod', 'Both stretch exactly the same', 'Neither: elastic means no stretch'],
+          answer: 'The aluminium rod',
+          why: 'Aluminium is about a third as stiff as steel (E about 70,000 against 210,000 MPa), so it stretches about three times as much.',
         },
       ],
       teach: [
@@ -102,6 +106,7 @@ export default {
           number: 50,
           tolerance: 0.5,
           unit: 'MPa',
+          hint: 'Convert kN to N, then divide by the cross-section in mm².',
           why: '20,000 N / 400 mm² = 50 N/mm² = 50 MPa.',
         },
         {
@@ -109,17 +114,18 @@ export default {
           number: 3,
           tolerance: 0.1,
           unit: 'mm',
+          hint: 'Strain is stress divided by E; multiply the strain by the length.',
           why: 'Strain = 210 / 210,000 = 0.001; 0.001 × 3,000 mm = 3 mm.',
         },
         {
           q: 'A steel machine frame deflects too much under load, but nothing breaks. What helps?',
-          options: ['Swap to high-strength steel of the same dimensions', 'Make the section taller or add stiffeners', 'Paint it', 'Tighten the bolts harder'],
+          options: ['Swap to high-strength steel of the same dimensions', 'Make the section taller or add stiffeners', 'Paint it to protect against corrosion damage', 'Tighten all the frame bolts a lot harder than before'],
           answer: 'Make the section taller or add stiffeners',
           why: 'All steels have about the same E; only more material in the right place adds stiffness.',
         },
         {
           q: 'A beam is made twice as tall, with the same width and material. What happens to its bending stiffness?',
-          options: ['It doubles', 'It becomes four times as large', 'It becomes eight times as large', 'It stays the same'],
+          options: ['It doubles', 'It becomes four times as large', 'It becomes eight times as large', 'It stays the same, as only the width counts'],
           answer: 'It becomes eight times as large',
           why: 'Bending stiffness rises with height cubed: 2 × 2 × 2 = 8.',
         },
@@ -145,12 +151,163 @@ export default {
       ],
     },
     {
+      id: 'eng.mechanics.bending',
+      title: 'Bending and torsion in beams and shafts',
+      pre: [
+        {
+          q: 'A flat steel bar, 60 mm wide and 20 mm thick, bends easily when you load it on its flat side, but hardly when you stand it on its edge. Why?',
+          options: ['On edge, the bar is taller in the load direction', 'On edge, the steel is harder because it was rolled that way', 'On edge, the load is shared by more of the supports', 'It is the same bar, so it only feels stiffer'],
+          answer: 'On edge, the bar is taller in the load direction',
+          why: 'Bending strength rises with the height squared and stiffness with the height cubed; on edge the height in the load direction is 60 mm instead of 20 mm.',
+        },
+      ],
+      teach: [
+        'Most machine parts don’t simply get pulled; they bend or twist. A bending moment is the turning effect that bends a beam: force × distance. A cantilever, a beam fixed at one end and free at the other, like a wall bracket, has its largest bending moment at the wall: 2 kN at 0.5 m gives 1 kNm.\n\nThat is why brackets crack at the wall or at the first weld, not at the tip.',
+        'Bending stress is σ = M / W: the bending moment divided by the section modulus W, a number that says how well a cross-section resists bending. For a rectangle W = b × h² / 6 (b the width, h the height in the load direction); for a solid round shaft W ≈ 0.1 × d³.\n\nWork in N and mm: a moment in Nm × 1,000 gives Nmm, and Nmm / mm³ gives MPa. Most hand calculation errors are unit errors.',
+        'Torsion is twisting: a shaft that drives a pump carries the motor torque. The shear stress, the stress that tries to slide layers of material past each other, is τ = T / Wp, with Wp ≈ 0.2 × d³ for a solid shaft.\n\nBecause d is cubed, a slightly thicker shaft helps a lot: from 40 to 50 mm, the stress drops to about half. A torsional fatigue crack often runs at 45° along the shaft, like a spiral.',
+        'Deflection is how far a beam moves under load. For a cantilever with a load at the tip, δ = F × L³ / (3 × E × I). I is the moment of inertia (more exactly the second moment of area), the section’s resistance to bending deflection: b × h³ / 12 for a rectangle.\n\nLength is cubed too: a bracket twice as long deflects eight times as much. A camera arm or a sensor mount usually fails on deflection long before stress matters.',
+        'In practice an engineer checks three things: stress against the yield strength with a safety factor, deflection against what the function allows (often a fraction of a millimetre for alignment), and fatigue if the load varies.\n\nWhat you can ask without doing the sums: where is the largest moment, which way is the profile turned, and did the change make the part longer or thinner? Those three questions catch most of the surprises.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A steel bracket of S235, a flat bar 20 mm wide and 60 mm tall, sticks out 500 mm from a column and carries 2 kN at its tip. The moment at the column: 2,000 N × 500 mm = 1,000,000 Nmm. W = 20 × 60² / 6 = 12,000 mm³, so σ = 1,000,000 / 12,000 = 83 MPa: a safety factor of 235 / 83 = 2.8 against yield.\n\nDuring a rebuild a fitter mounts the same bar flat, 60 mm wide and 20 mm tall, because it fits better.',
+        ask: 'What is the bending stress with the bar mounted flat, and what happens to the bracket?',
+        reveal: 'W = 60 × 20² / 6 = 4,000 mm³, so σ = 1,000,000 / 4,000 = 250 MPa: above the 235 MPa yield of S235. The bracket bends permanently.\n\nThe deflection is worse still: I drops from 20 × 60³ / 12 to 60 × 20³ / 12, a factor of 9, so it would deflect nine times as much even before yielding. Same bar, same load, turned 90°.',
+      },
+      said: 'What engineers say: “It’s the same flat bar, but you’ve put it on its weak axis. Turn it on edge or it’ll fold.”',
+      recall: [
+        {
+          q: 'A cantilever bracket 0.8 m long carries a load of 1.5 kN at its free end. What bending moment does that give at the fixed end, in Nm?',
+          number: 1200,
+          tolerance: 1,
+          unit: 'Nm',
+          hint: 'Convert kN to N and multiply by the distance from the load to the fixed end.',
+          why: '1,500 N × 0.8 m = 1,200 Nm.',
+        },
+        {
+          q: 'A bar 30 mm wide and 40 mm tall (in the load direction) carries a bending moment of 600 Nm. Using W = b × h² / 6, what is the bending stress, in MPa?',
+          number: 75,
+          tolerance: 0.5,
+          unit: 'MPa',
+          hint: 'Work out W in mm³, convert the moment to Nmm, then divide the moment by W.',
+          why: 'W = 30 × 40² / 6 = 8,000 mm³; 600,000 Nmm / 8,000 mm³ = 75 MPa.',
+        },
+        {
+          q: 'A solid shaft is made thicker, from 40 to 50 mm diameter, with the same torque. What happens to the shear stress from torsion?',
+          options: ['It drops by about 20%, in line with the diameter', 'It drops to about a quarter of what it was', 'It stays the same, as torque does not change', 'It drops to about half'],
+          answer: 'It drops to about half',
+          why: 'Wp grows with d³: (40 / 50)³ = 0.51, so the stress roughly halves.',
+        },
+        {
+          q: 'A sensor arm is made twice as long, with the same profile and load at the tip. What happens to the deflection at the tip?',
+          options: ['About eight times as large', 'It doubles, in line with the length', 'It becomes four times as large', 'It stays the same, as the load is equal'],
+          answer: 'About eight times as large',
+          why: 'Cantilever deflection grows with the length cubed: 2³ = 8.',
+        },
+      ],
+      situation: {
+        scene: 'You’re on a gemba walk at a bottling plant. To give operators more room, the team wants to move a vision camera 300 mm further out on its existing aluminium arm. Nobody mentions a calculation.',
+        ask: 'What do you ask the engineer?',
+        model: 'A longer arm raises the bending moment at the clamp in proportion to the length, and the deflection with the length cubed: from, say, 400 to 700 mm that is (700 / 400)³, more than five times the deflection. Does the camera tolerate that, with the conveyor vibrating? Is the arm turned the strong way, and is the clamp still strong enough? Can we stiffen it with a deeper profile or a brace instead?',
+        rubric: [
+          'Links a longer arm to a larger moment and a much larger deflection',
+          'Asks whether the camera function tolerates the extra movement and vibration',
+          'Suggests a stiffer profile or brace and a quick check of the clamp',
+        ],
+      },
+      sayIt: 'Explain to a team leader in 60 seconds why a bracket that gets longer or is turned flat can suddenly bend or shake.',
+      terms: [
+        { term: 'Bending moment', def: 'The turning effect that bends a beam: force × distance, largest at the fixed end of a cantilever.' },
+        { term: 'Cantilever', def: 'A beam fixed at one end and free at the other, like a wall bracket or a sensor arm.' },
+        { term: 'Section modulus', def: 'W: how well a cross-section resists bending stress; b × h² / 6 for a rectangle. Bending stress = M / W.' },
+        { term: 'Torsion', def: 'Twisting of a shaft by a torque; gives shear stress τ = T / Wp.' },
+        { term: 'Deflection', def: 'How far a beam moves under load; for a cantilever it grows with the length cubed.' },
+        { term: 'Moment of inertia', def: 'I, the second moment of area: a section’s resistance to bending deflection; b × h³ / 12 for a rectangle.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.calccheck',
+      title: 'Reading a strength calculation and an FEA plot',
+      pre: [
+        {
+          q: 'An engineer shows a colourful FEA plot of a frame with one red spot. What does the red spot tell you on its own?',
+          options: ['That the frame will crack at that spot in service', 'That the steel there is of a lower grade than elsewhere', 'Little, without the scale, loads and supports', 'That the frame was modelled too coarsely'],
+          answer: 'Little, without the scale, loads and supports',
+          why: 'Colour only shows the highest value of that run. Whether it matters depends on the colour scale, what was loaded and held, and what the stress is compared with.',
+        },
+      ],
+      teach: [
+        'FEA (finite element analysis) cuts a 3D model of a part into thousands of small pieces and computes the stress in each. The result is a colour plot: blue low, red high.\n\nThe pieces together are the mesh. A coarse mesh, with big elements, smooths out peaks; a fine mesh in the right places catches them. A plot is only as good as its inputs: the geometry, the material, the loads and how the part is held.',
+        'The plot usually shows the von Mises stress: one number that combines tension, bending and shear into an equivalent stress you can compare with the yield strength. For bending plus torsion in a shaft, σv = √(σ² + 3τ²).\n\nSo 80 MPa of bending plus 40 MPa of torsional shear gives about 106 MPa, not 120. The units on the colour bar matter too: MPa, Pa or psi.',
+        'The boundary conditions are how the model is held and loaded: which faces are fixed, where the forces act, and how large they are. A frame modelled as rigidly fixed at its feet, while in reality it stands on rubber mounts, gives a different answer.\n\nMost wrong FEA results come from boundary conditions, not from the software. Ask to see them, and which load cases, the combinations of loads, were run.',
+        'A singularity is a spot where the model shows a stress that isn’t real: usually a perfectly sharp inside corner, or a point load. Refine the mesh and the peak keeps climbing, 300, 450, 700 MPa, without settling.\n\nEngineers handle it by modelling the real radius, or by reading the stress a small distance away. A peak that settles when the mesh is refined is real; one that keeps climbing is the model.',
+        'A good engineer checks FEA with a hand calculation: a quick sum with σ = F / A or M / W that should give the right order of magnitude. If the FEA says 500 MPa and the hand calculation 120, one of them is wrong, often a unit or a load entered as 1,000 times too big.\n\nAs a consultant you don’t judge the mesh. You ask: which loads and supports, which stress compared with what, and does a hand check agree?',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A gearbox output shaft of 42CrMo4, quenched and tempered, is 60 mm in diameter. At its most loaded section the engineer calculates a bending stress of 80 MPa and a torsional shear stress of 40 MPa. The material standard gives a minimum yield strength of 650 MPa for this diameter.\n\nThe FEA plot shows a red peak of 410 MPa in the sharp corner of a shoulder, the step where the diameter changes, modelled without a radius.',
+        ask: 'What is the von Mises stress at the section, the static safety factor, and how do you read the 410 MPa peak?',
+        reveal: 'σv = √(80² + 3 × 40²) = √11,200 = 106 MPa; 650 / 106 = 6.1 against yield, so a static failure is unlikely.\n\nThe 410 MPa sits in a corner modelled perfectly sharp: probably a singularity. Ask for a run with the real radius from the drawing. Because the shaft rotates, the question that remains is fatigue at that shoulder, not yield.',
+      },
+      said: 'What engineers say: “That red spot is a singularity, it’s a sharp corner in the model. Put the real radius in and run it again.”',
+      recall: [
+        {
+          q: 'A shaft section sees a bending stress of 60 MPa and a torsional shear stress of 30 MPa. Using σv = √(σ² + 3τ²), what is the von Mises stress, in MPa?',
+          number: 79.4,
+          tolerance: 0.5,
+          unit: 'MPa',
+          hint: 'Square the bending stress, add three times the squared shear stress, then take the square root.',
+          why: '√(60² + 3 × 30²) = √(3,600 + 2,700) = √6,300 = 79.4 MPa.',
+        },
+        {
+          q: 'An FEA run reports 520 MPa in a bracket section. Your hand check: 10 kN acting 0.3 m from that section, with a section modulus W of 25,000 mm³. What bending stress does the hand check give, in MPa?',
+          number: 120,
+          tolerance: 1,
+          unit: 'MPa',
+          hint: 'Work out the moment in Nmm from force and distance, then divide by W.',
+          why: 'M = 10,000 N × 300 mm = 3,000,000 Nmm; 3,000,000 / 25,000 = 120 MPa. A factor of four away from the FEA: check the loads and units in the model.',
+        },
+        {
+          q: 'The peak stress in a sharp inside corner rises from 280 to 410 to 590 MPa each time the mesh is refined. What is the best reading?',
+          options: ['A model singularity: add the real radius', 'The part really sees 590 MPa and will yield at once', 'The finest mesh is always right, so 590 MPa is the design value', 'The software is unreliable and FEA should be dropped'],
+          answer: 'A model singularity: add the real radius',
+          why: 'A real peak settles when the mesh is refined; one that keeps climbing at a sharp corner is an artefact of the model.',
+        },
+        {
+          q: 'You may only ask one question about an FEA result before a design review. Which gives most insight?',
+          options: ['How many elements did the mesh have in total?', 'Which software package and version was used?', 'Was the plot made in colour or in grey tones?', 'Which loads and supports, compared with what?'],
+          answer: 'Which loads and supports, compared with what?',
+          why: 'Most wrong results come from boundary conditions and from comparing with the wrong limit; the element count or software says little on its own.',
+        },
+      ],
+      situation: {
+        scene: 'At a machine builder, a design review for a lighter frame is stuck. The engineer says the FEA shows “everything green, max 140 MPa”. The production manager wants to release it today.',
+        ask: 'What do you ask before the release?',
+        model: 'Which load cases were run: only the static weight, or also the dynamic loads when the machine starts, stops and vibrates? How is the frame held in the model compared with the real feet or mounts? What is the 140 MPa compared with: yield with a safety factor, or a fatigue limit for the welds? And is there a hand check that lands in the same range? If those answers are solid, the release can go; if not, it’s a day’s extra work.',
+        rubric: [
+          'Asks which load cases, including dynamic ones, were modelled',
+          'Asks how the supports in the model match reality',
+          'Asks what the stress is compared with and whether a hand check agrees',
+        ],
+      },
+      sayIt: 'Explain to a production manager in 60 seconds why “the FEA is green” is not yet a reason to release a design.',
+      terms: [
+        { term: 'FEA', def: 'Finite element analysis: a computer model that splits a part into small elements and computes the stress in each.' },
+        { term: 'Mesh', def: 'The network of small elements in an FEA model; finer where stresses change quickly.' },
+        { term: 'Von Mises stress', def: 'One equivalent stress that combines tension, bending and shear, to compare with the yield strength.' },
+        { term: 'Boundary conditions', def: 'How an FEA model is held and loaded: fixed faces, forces and where they act.' },
+        { term: 'Singularity', def: 'A false stress peak in a model, at a perfectly sharp corner or point load, that keeps rising as the mesh gets finer.' },
+        { term: 'Hand calculation', def: 'A quick sum with basic formulas, used to check that an FEA result has the right order of magnitude.' },
+      ],
+    },
+    // Topic: Material strength and testing
+    {
       id: 'eng.mechanics.strength',
       title: 'Yield, tensile strength and safety factor',
       pre: [
         {
           q: 'A structural steel is called S355. What does the 355 stand for?',
-          options: ['The carbon content in percent', 'A minimum yield strength of 355 MPa', 'The maximum temperature in °C', 'The year of the standard'],
+          options: ['The carbon content, in hundredths of a percent', 'The maximum service temperature in °C', 'The year the grade was standardised', 'A minimum yield strength of 355 MPa'],
           answer: 'A minimum yield strength of 355 MPa',
           why: 'European structural steels carry their minimum yield strength in the name.',
         },
@@ -173,6 +330,7 @@ export default {
           number: 2.5,
           tolerance: 0.02,
           unit: '',
+          hint: 'Divide the yield strength by the working stress.',
           why: '355 / 142 = 2.5.',
         },
         {
@@ -180,6 +338,7 @@ export default {
           number: 900,
           tolerance: 1,
           unit: 'MPa',
+          hint: 'Find the tensile strength from the first number, then take the percentage the second number gives.',
           why: 'Tensile 10 × 100 = 1,000 MPa; yield 90% of that = 900 MPa.',
         },
         {
@@ -190,7 +349,7 @@ export default {
         },
         {
           q: 'What does the yield strength mark?',
-          options: ['The stress at which the part breaks', 'The stress at which permanent deformation starts', 'The maximum allowed working stress', 'The stiffness of the material'],
+          options: ['The stress at which the part finally breaks in two', 'The stress at which permanent deformation starts', 'The highest working stress the designer allows', 'The stiffness of the material in the elastic range'],
           answer: 'The stress at which permanent deformation starts',
           why: 'Below yield the material springs back; above it, it stays bent.',
         },
@@ -198,7 +357,7 @@ export default {
       situation: {
         scene: 'You’re at a food plant. A bolt on a mixer drive broke. Maintenance replaced it with “whatever was in the drawer” and restarted the line.',
         ask: 'What do you ask?',
-        model: 'What grade was the original bolt, for example 8.8 or 10.9, and what grade went in? A lower grade has a lower yield and may stretch or break at the same tightening torque. Was it tightened to the specified torque? And why did the first one break: overload, fatigue from vibration, or corrosion? Replacing it like for like without knowing that may just repeat the failure.',
+        model: 'What grade was the original bolt, for example 8.8 or 10.9, and what grade went in? A lower grade has a lower yield and may stretch or break at the same tightening torque. Was it tightened to the specified torque? And why did the first one break: overload, fatigue from vibration, or corrosion? Replacing it like for like without knowing that may just repeat the failure. (The module Welding and joining covers bolt grades, preload and tightening in depth.)',
         rubric: [
           'Asks for the original and replacement bolt grades',
           'Raises tightening torque',
@@ -216,12 +375,234 @@ export default {
       ],
     },
     {
+      id: 'eng.mechanics.testing',
+      title: 'The tensile test and hardness tests in practice',
+      pre: [
+        {
+          q: 'Aluminium and many hardened steels show no clear point where they start to yield. Which value does the lab report instead?',
+          options: ['Only the tensile strength, as yield cannot be measured', 'The hardness, converted to a yield value', 'The stress at the moment the bar breaks', 'The stress that leaves 0.2% permanent stretch'],
+          answer: 'The stress that leaves 0.2% permanent stretch',
+          why: 'For materials without a distinct yield point, EN ISO 6892-1 uses the 0.2% proof strength, Rp0.2.',
+        },
+      ],
+      teach: [
+        'The tensile test is done to EN ISO 6892-1. A test specimen, a machined round or flat bar cut from the material, is clamped in a test machine and pulled at a controlled rate while force and stretch are recorded.\n\nThe gauge length is the marked length over which stretch is measured. For round bars it is usually proportional: 5.65 × √(cross-section), so 50 mm for a 10 mm diameter specimen.',
+        'The report gives a few values. Rm, the tensile strength: maximum force / original cross-section. ReH, the upper yield strength, for steels with a clear yield point; otherwise Rp0.2, the 0.2% proof strength: the stress that leaves 0.2% permanent stretch.\n\nA, the elongation after fracture: how much longer the gauge length is after the break, in %. Z, the reduction of area at the neck. A and Z show how ductile the batch is.',
+        'Hardness tests press an indenter into the surface. Brinell (ISO 6506): a 10 mm carbide ball, often with a 3,000 kgf load, and the dent diameter is measured; written as HBW. Vickers (ISO 6507): a diamond pyramid, the diagonals are measured, any load from tiny to large, written as HV10 for 10 kgf.\n\nRockwell (ISO 6508): a diamond cone for HRC, the depth is measured automatically. Fast, so it suits the shop floor.',
+        'Each test has its place. Brinell averages over a large dent: good for castings and coarse material. Vickers with a small load can measure thin layers and case depth on a cut section. Rockwell is quick but needs a part thick enough, very roughly ten times the dent depth, and a clean, flat spot.\n\nA decarburised skin, where the surface lost carbon in the furnace, reads soft. Grind it off first, or the test lies.',
+        'A hardness conversion translates one scale into another, or into an estimated tensile strength, with tables in ISO 18265; for steels, very roughly Rm ≈ 3.3 × HB. The standard itself warns that these conversions are approximate and least reliable for strength.\n\nSo a hardness test is a cheap screening check: fine to spot a soft batch, not a replacement for a tensile test when the strength matters. A sharp question: “Converted or measured?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A batch of S355 plate is tested. The round specimen has a diameter of 10 mm: cross-section π × 5² = 78.5 mm², gauge length 5.65 × √78.5 = 50 mm. The force at yield is 29.0 kN: 29,000 / 78.5 = 369 MPa, above the 355 MPa minimum. The maximum force is 41.6 kN: 41,600 / 78.5 = 530 MPa, inside the 470 to 630 MPa range for this plate.\n\nAfter the break the gauge marks are 61 mm apart: (61 − 50) / 50 = 22% elongation, which just meets the 22% minimum. On the certificate this batch passes, without much margin on ductility.',
+      },
+      said: 'What engineers say: “Is that 260 HB measured, or converted from HRC? Converted is a guess; I want a proper tensile test on this heat.”',
+      recall: [
+        {
+          q: 'A tensile specimen has an original cross-section of 50 mm². The maximum force in the test is 26 kN. What is the tensile strength Rm, in MPa?',
+          number: 520,
+          tolerance: 1,
+          unit: 'MPa',
+          hint: 'Divide the maximum force in N by the original cross-section in mm².',
+          why: '26,000 N / 50 mm² = 520 MPa.',
+        },
+        {
+          q: 'A specimen has a gauge length of 50 mm. After fracture the two halves are fitted together and the gauge marks are 63 mm apart. What is the elongation after fracture A, in %?',
+          number: 26,
+          tolerance: 0.5,
+          unit: '%',
+          hint: 'Take the extra length after fracture as a share of the original gauge length.',
+          why: '(63 − 50) / 50 = 0.26 = 26%.',
+        },
+        {
+          q: 'You need to check the hardness of a 0.5 mm deep hardened layer on a cut, polished cross-section of a gear. Which test fits?',
+          options: ['Brinell with a 10 mm ball, for a big average dent', 'Rockwell C on the outside of the tooth', 'Vickers with a small load', 'A file test by the operator'],
+          answer: 'Vickers with a small load',
+          why: 'A small Vickers dent fits inside a thin layer and can be placed at steps from the surface inward.',
+        },
+        {
+          q: 'An incoming check measures 200 HB on a steel bar, and a table converts that to about 660 MPa tensile strength. How should you treat the 660 MPa?',
+          options: ['An estimate: confirm with a tensile test if needed', 'As a measured value, just as good as a full tensile test', 'As the yield strength of the bar, for the design check', 'As meaningless, since hardness has no link with strength'],
+          answer: 'An estimate: confirm with a tensile test if needed',
+          why: 'ISO 18265 conversions are approximate; they screen a batch but don’t replace a tensile test.',
+        },
+      ],
+      situation: {
+        scene: 'At a supplier audit for forged flanges, the quality manager proudly shows that every forging gets a Rockwell test, and that the result is converted to a tensile strength for the certificate. No tensile tests are done.',
+        ask: 'What do you ask?',
+        model: 'What does the order or the material standard require: a measured tensile test per heat, or is hardness accepted? Converted strength is an estimate, so if the customer specification asks for Rm, Rp0.2 and elongation, a conversion doesn’t meet it. Where on the forging is the hardness measured, and is the surface skin removed first? Hardness is a good 100% screening check; ask whether a tensile test per heat or per batch can be added.',
+        rubric: [
+          'Distinguishes measured tensile values from converted estimates',
+          'Checks the requirement in the order or standard',
+          'Keeps hardness as a screening check and asks about surface preparation',
+        ],
+      },
+      sayIt: 'Explain to a buyer in 60 seconds what a tensile test report tells you and why a converted hardness is not the same thing.',
+      terms: [
+        { term: 'Test specimen', def: 'A machined bar cut from the material, pulled in the tensile test.' },
+        { term: 'Gauge length', def: 'The marked length over which stretch is measured in a tensile test; usually 5.65 × √(cross-section).' },
+        { term: 'Proof strength', def: 'Rp0.2: the stress that leaves 0.2% permanent stretch; used when there is no clear yield point.' },
+        { term: 'Elongation after fracture', def: 'A: how much longer the gauge length is after the break, in %; a measure of ductility.' },
+        { term: 'Vickers', def: 'Hardness test with a diamond pyramid (HV); small loads can measure thin layers.' },
+        { term: 'Hardness conversion', def: 'Translating one hardness scale into another, or into an estimated tensile strength, with ISO 18265 tables; approximate.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.toughness',
+      title: 'Toughness, brittle fracture and the Charpy test',
+      pre: [
+        {
+          q: 'Two structural steels are called S355JR and S355J2. What is the difference?',
+          options: ['J2 is impact tested at −20 °C, JR at +20 °C', 'J2 has a higher yield strength than JR, by about 10%', 'J2 contains more chromium, so it rusts less', 'JR is for welding, J2 only for bolting'],
+          answer: 'J2 is impact tested at −20 °C, JR at +20 °C',
+          why: 'Both need 27 J in the Charpy test; JR at +20 °C, J2 at −20 °C (EN 10025-2). The yield strength is the same.',
+        },
+      ],
+      teach: [
+        'Toughness is the energy a material absorbs before it breaks, and its resistance to a crack running through it. Strength and toughness are different: very hard steel is strong but often not tough.\n\nThe Charpy test (EN ISO 148-1) measures it. A 10 × 10 × 55 mm bar with a 2 mm V-shaped notch is broken by a swinging pendulum; the energy it absorbs, in joules (J), is the impact energy.',
+        'Structural steels carry a quality grade after the yield number: JR means at least 27 J at +20 °C, J0 at 0 °C, J2 at −20 °C, and K2 means 40 J at −20 °C (EN 10025-2).\n\nThe certificate shows three specimens per test. EN 10025 takes the average against the minimum, and lets one value fall below it, but not below 70% of the minimum.',
+        'Ordinary carbon steels have a ductile-to-brittle transition: above a certain temperature they break tough and fibrous, below it they break like glass with little energy. The Liberty ships of the Second World War, some of which cracked in cold seas, made this famous.\n\nAustenitic stainless steels such as 304 and 316, and aluminium, have no such transition: they stay tough in the cold. That is why cryogenic tanks use them.',
+        'Brittle fracture becomes more likely with low temperature, thick sections, fast loading such as an impact, and a sharp notch or crack. A crane on an outdoor quay in winter, or a thick welded frame with a crack at a weld, has all of them.\n\nFracture toughness, a material property often written KIc, says how large a crack a part tolerates at a given stress. It matters for heavy, high-stress parts; most plant engineers meet it only in failure reports.',
+        'Hydrogen embrittlement is a separate trap. High-strength steels, roughly above 1,000 MPa tensile strength such as 10.9 and 12.9 bolts, can absorb hydrogen during pickling or electroplating and crack hours or days after they are tightened, without any overload.\n\nISO 4042 describes baking after plating to drive the hydrogen out; hot-dip galvanised bolts are in practice limited to class 10.9. The sharp question for broken plated bolts: “Which class, which coating, and was it baked?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A structural steel supplier delivers S355J2 plate for an outdoor conveyor bridge. The 3.1 certificate shows three Charpy V-notch results at −20 °C: 31, 24 and 35 J. The requirement for J2 is an average of at least 27 J; one single value may be lower, but not below 70% of that minimum.',
+        ask: 'Does this batch meet J2? Work out the average and the lowest value allowed.',
+        reveal: 'Average (31 + 24 + 35) / 3 = 30 J, above 27 J. The lowest allowed single value is 0.7 × 27 = 18.9 J, and 24 J is above it. The batch meets J2.\n\nThe margin is small, though. For a bridge outdoors in a Dutch winter that is fine; for a part that sees impact loads in the cold, an engineer might ask for K2 (40 J) instead.',
+      },
+      said: 'What engineers say: “It’s outside and it gets knocked by forklifts. I want J2 at least, and no plated 12.9 bolts on that bracket.”',
+      recall: [
+        {
+          q: 'Three Charpy specimens absorb 40, 30 and 32 J. What is the average impact energy, in J?',
+          number: 34,
+          tolerance: 0.5,
+          unit: 'J',
+          hint: 'Add the three impact energies and divide by the number of specimens.',
+          why: '(40 + 30 + 32) / 3 = 102 / 3 = 34 J.',
+        },
+        {
+          q: 'For a J2 grade the average must be at least 27 J, and one single value may be lower, but not below 70% of that minimum. What is the lowest single value allowed, in J?',
+          number: 18.9,
+          tolerance: 0.1,
+          unit: 'J',
+          hint: 'Take seventy percent of the required average energy.',
+          why: '0.7 × 27 = 18.9 J.',
+        },
+        {
+          q: 'Which of these materials shows no ductile-to-brittle transition and stays tough in deep cold?',
+          options: ['S235JR structural steel', 'Grey cast iron, as used for machine beds', 'Stainless steel 304', 'Hardened tool steel at 60 HRC'],
+          answer: 'Stainless steel 304',
+          why: 'Austenitic stainless steel and aluminium keep their toughness at low temperatures; carbon steels and cast iron lose it.',
+        },
+        {
+          q: 'Electroplated 12.9 bolts on a press tool crack two days after assembly, without any overload. What is the most likely cause?',
+          options: ['Fatigue from the press strokes in two days', 'A tightening torque that was set too low', 'Creep of the bolt steel at room temperature', 'Hydrogen embrittlement from the plating'],
+          answer: 'Hydrogen embrittlement from the plating',
+          why: 'High-strength bolts can take up hydrogen during plating and crack later under their own preload; baking after plating reduces the risk.',
+        },
+      ],
+      situation: {
+        scene: 'At a steel fabricator, purchasing wants to switch the steel for the frames of outdoor loading ramps from S355J2 to S355JR, which is cheaper and in stock. The ramps are used all winter and get hit by forklifts.',
+        ask: 'What do you ask?',
+        model: 'JR is only impact tested at +20 °C; J2 at −20 °C. The ramps stand outside in winter and see impacts, which is exactly where brittle fracture risk lies. Does the design standard or the customer ask for J2? What does the structural engineer say about the lowest service temperature? If the saving is small per ramp, is it worth the risk? Any change should be approved by engineering, not by purchasing alone.',
+        rubric: [
+          'Explains that JR and J2 differ in impact test temperature, not strength',
+          'Links outdoor winter use and impacts to brittle fracture risk',
+          'Asks for engineering approval and the requirement in the design standard',
+        ],
+      },
+      sayIt: 'Explain to a buyer in 60 seconds why S355JR and S355J2 have the same strength but are not interchangeable.',
+      terms: [
+        { term: 'Toughness', def: 'The energy a material absorbs before breaking; its resistance to a running crack.' },
+        { term: 'Charpy test', def: 'Impact test (EN ISO 148-1): a notched bar is broken by a pendulum and the absorbed energy, in J, is measured.' },
+        { term: 'Impact energy', def: 'The energy in joules a Charpy specimen absorbs when it breaks.' },
+        { term: 'Ductile-to-brittle transition', def: 'The temperature range in which carbon steel changes from tough to brittle fracture.' },
+        { term: 'Fracture toughness', def: 'KIc: how large a crack a material tolerates at a given stress before it runs.' },
+        { term: 'Hydrogen embrittlement', def: 'Delayed cracking of high-strength steel that took up hydrogen, for example during plating.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.traceability',
+      title: 'Material certificates, traceability and mix-ups',
+      pre: [
+        {
+          q: 'A steel bar has a painted code like “H 4417852” on its end. What is that?',
+          options: ['The order number of the customer, for the dispatch department', 'The bar’s weight in grams, for the stock system', 'The heat number, linking the bar to its certificate', 'The price code of the stockholder'],
+          answer: 'The heat number, linking the bar to its certificate',
+          why: 'The heat number identifies the melt the steel came from; the certificate gives the tests for that heat.',
+        },
+      ],
+      teach: [
+        'EN 10204 defines the types of inspection documents. A 2.1 is only a declaration that the product meets the order. A 2.2 test report gives typical results, not from your batch. An inspection certificate 3.1 gives test results of the actual delivered batch, signed by the maker’s inspector, independent of production. A 3.2 is also signed by an inspector of the buyer or a third party.\n\nSafety-critical parts usually ask for 3.1; pressure equipment and offshore often 3.2.',
+        'The heat number is the identity of the melt, the batch of steel cast at the mill. It is stamped or painted on the bar and printed on the certificate.\n\nTraceability means you can follow that number from the certificate through cutting, machining and assembly to the finished part. Each time a bar is cut, the number must move to the pieces; once it is lost, the certificate no longer proves anything about the part.',
+        'Reading a certificate: does it name the right grade, dimension and delivery condition, for example 42CrMo4 quenched and tempered, Ø50? Are the measured yield, tensile strength, elongation and impact values above the minimums of the standard for that size? Does the chemistry fit?\n\nA certificate can also be wrong or even forged. If numbers look too round, or identical across heats, ask questions.',
+        'A material mix-up is common and invisible: C45 and 42CrMo4 look the same, so do 304 and 316. PMI (positive material identification) checks the alloy on the spot, often with a handheld XRF analyser, a gun that reads the elements in seconds.\n\nXRF sees chromium, nickel and molybdenum well, but light elements such as carbon poorly; spark spectrometry (OES) can measure carbon. So XRF tells 304 from 316, but not a low-carbon steel from a medium-carbon one.',
+        'When a mix-up is found, the response follows the heat number: quarantine every bar of that heat, check which parts were already made from it, and ask the supplier for root cause.\n\nExperts argue about cost: 100% PMI on incoming bar costs time; skipping it costs a recall. Many plants do 100% PMI on stainless and alloy steel for critical parts, and sample checks elsewhere. A sharp question: “Can you show me the heat number on this part, and the certificate behind it?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A machine shop receives 40 bars of 42CrMo4 quenched and tempered, Ø60, for drive shafts. The 3.1 certificate shows Rp0.2 760 MPa and Rm 980 MPa; the standard asks for at least 650 MPa and 900 to 1,100 MPa at this size. A PMI check with a handheld XRF on all 40 bars finds 3 bars with almost no chromium and no molybdenum.',
+        ask: 'What share of the bars is suspect, what are they probably, and what do you do?',
+        reveal: '3 / 40 = 7.5% of the bars. Without chromium and molybdenum they are probably a plain carbon steel such as C45, which XRF cannot tell apart on carbon.\n\nQuarantine the whole delivery, mark the 3 bars, check whether shafts were already cut from this delivery and test them, and ask the stockholder how the bars got mixed. The certificate was right for the heat; the bars were not all from that heat.',
+      },
+      said: 'What engineers say: “The cert is fine, but three bars don’t have any chrome in them. Somebody mixed the racks.”',
+      recall: [
+        {
+          q: 'A PMI check on 120 incoming stainless bars finds 8 that are 304 instead of 316. What share of the bars is wrong, in %?',
+          number: 6.67,
+          tolerance: 0.1,
+          unit: '%',
+          hint: 'Divide the wrong bars by all bars checked and make it a percentage.',
+          why: '8 / 120 = 0.0667 = 6.67%.',
+        },
+        {
+          q: 'Which EN 10204 document gives test results of the delivered batch itself, signed by the maker’s inspector who is independent of production?',
+          options: ['Inspection certificate 3.1', 'Test report 2.2 with typical values', 'Declaration of compliance 2.1', 'A delivery note with the grade on it'],
+          answer: 'Inspection certificate 3.1',
+          why: 'A 3.1 gives specific test results for the batch; a 2.2 gives non-specific results, a 2.1 none at all.',
+        },
+        {
+          q: 'Which mix-up can a handheld XRF analyser not reliably detect?',
+          options: ['304 delivered instead of 316, both stainless', 'Brass delivered instead of bronze', 'Aluminium delivered instead of stainless, or the reverse', 'A low-carbon steel instead of C45'],
+          answer: 'A low-carbon steel instead of C45',
+          why: 'XRF reads heavier elements such as Cr, Ni and Mo well, but not carbon; C45 and a low-carbon steel differ mainly in carbon.',
+        },
+        {
+          q: 'A 3.1 certificate for 42CrMo4, quenched and tempered, Ø60, shows Rp0.2 = 620 MPa, while the standard asks for at least 650 MPa at this size. What do you do?',
+          options: ['Accept it: 620 is close enough to 650 for most use', 'Accept it, but tighten the bolts a little less', 'Hold the batch: it fails its own certificate', 'Retest the hardness and use that instead'],
+          answer: 'Hold the batch: it fails its own certificate',
+          why: 'The certificate itself shows non-conformity; the batch goes on hold until engineering and the supplier decide.',
+        },
+      ],
+      situation: {
+        scene: 'At a manufacturer of lifting equipment, a hook block failed a proof load test. During the investigation, nobody can find which heat of steel the hook was made from: the bar ends were cut off and thrown away.',
+        ask: 'What do you propose for the process?',
+        model: 'Traceability broke at the saw. Can we make transferring the heat number a fixed step at every cut, with a simple check, for example stamping the number on each piece or keeping it on the travel card? Safety-critical parts should carry the number to the end, and the certificate should be linked in the order file. PMI on incoming alloy bar is cheap compared with this investigation. Then we can look back for other parts from the same rack.',
+        rubric: [
+          'Finds the point where traceability was lost',
+          'Proposes a standard step to transfer the heat number at each cut',
+          'Suggests PMI or certificate checks at goods-in for critical material',
+        ],
+      },
+      sayIt: 'Explain to a warehouse lead in 60 seconds why the painted number on the end of a bar matters.',
+      terms: [
+        { term: 'EN 10204', def: 'The standard for types of inspection documents for metal products: 2.1, 2.2, 3.1 and 3.2.' },
+        { term: 'Inspection certificate 3.1', def: 'Document with test results of the delivered batch, signed by the maker’s inspector, independent of production.' },
+        { term: 'Heat number', def: 'The identity of the melt the steel came from; it links a bar to its certificate.' },
+        { term: 'Traceability', def: 'Being able to follow material from its certificate through every step to the finished part.' },
+        { term: 'PMI', def: 'Positive material identification: checking the alloy on the spot, often with a handheld XRF analyser.' },
+        { term: 'Material mix-up', def: 'A wrong grade delivered or used, often invisible because the steels look alike.' },
+      ],
+    },
+    // Topic: Fatigue and failure
+    {
       id: 'eng.mechanics.fatigue',
       title: 'Fatigue and stress concentrations',
       pre: [
         {
           q: 'A shaft breaks after two years in service. The calculated stress was always well below yield. What is the most likely mechanism?',
-          options: ['A single overload', 'Fatigue: millions of load cycles grew a crack', 'The steel melted', 'Corrosion only on the surface paint'],
+          options: ['Fatigue: millions of load cycles grew a crack', 'A single overload that went past the yield strength', 'The steel softened from heat in the bearing', 'Corrosion of the surface paint only'],
           answer: 'Fatigue: millions of load cycles grew a crack',
           why: 'Repeated stress far below yield can still grow a crack over time.',
         },
@@ -235,7 +616,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'The shaft of an agitator, a mixer in a tank, broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the impeller, the mixing blades on the shaft, is out of balance, so the shaft bends back and forth once per revolution, and the sharp keyway corner concentrates that stress. The fix: a rounded keyway end, a balanced impeller and an alignment check. Stronger steel alone did little, because high-strength steels are often more sensitive to notches.',
+        text: 'The shaft of an agitator, a mixer in a tank, broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the impeller, the mixing blades on the shaft, is out of balance, so the shaft bends back and forth once per revolution, and the sharp keyway corner concentrates that stress. The fix: a rounded keyway end, a balanced impeller and an alignment check. Stronger steel alone did little, because high-strength steels are often more sensitive to notches. How often such failures come back, and what that says about the asset, is a topic of the module Reliability and asset strategy.',
       },
       said: 'What engineers say: “Look at those beach marks. It started at the keyway corner. Stronger steel won’t fix a sharp corner.”',
       recall: [
@@ -244,11 +625,12 @@ export default {
           number: 960000,
           tolerance: 1000,
           unit: 'cycles/day',
+          hint: 'Revolutions per minute, times minutes per hour, times hours per day.',
           why: '1,000 per minute × 60 × 16 = 960,000 cycles a day.',
         },
         {
           q: 'What does a fatigue fracture surface typically show?',
-          options: ['A stretched, necked break (cup-and-cone), as after a single overload', 'Beach marks spreading from a start point, with a small rough final zone', 'Melted metal', 'No features at all'],
+          options: ['A stretched, necked break with a cup and cone shape, as after one overload', 'Beach marks spreading from a start point, with a small rough final zone', 'A flat, shiny break with arrow-shaped marks across the whole surface', 'Smooth, melted metal along the edge, as after overheating'],
           answer: 'Beach marks spreading from a start point, with a small rough final zone',
           why: 'The crack grows step by step, leaving rings, until the rest breaks suddenly.',
         },
@@ -260,8 +642,8 @@ export default {
         },
         {
           q: 'A part fails by fatigue again after it was replaced with a stronger grade. What is the best next step?',
-          options: ['Use an even stronger grade', 'Reduce the stress concentration and the vibration: radius, surface finish, balancing', 'Paint it', 'Replace it more often without changes'],
-          answer: 'Reduce the stress concentration and the vibration: radius, surface finish, balancing',
+          options: ['Fit an even stronger grade of steel and keep the same design', 'Remove the notch and the vibration: radius, finish, balance', 'Paint the part so cracks cannot start at the surface', 'Keep the design but replace the part twice as often'],
+          answer: 'Remove the notch and the vibration: radius, finish, balance',
           why: 'Fatigue is driven by repeated stress at a notch; removing either is more effective than a stronger material.',
         },
       ],
@@ -286,12 +668,232 @@ export default {
       ],
     },
     {
+      id: 'eng.mechanics.fracture',
+      title: 'Reading a broken part',
+      pre: [
+        {
+          q: 'A steel bolt broke. The fracture is dull grey and fibrous, and the bolt is visibly thinner just next to the break. What happened most likely?',
+          options: ['Fatigue over many months of vibration and load', 'Brittle fracture in the cold, without any warning', 'Hydrogen embrittlement after plating', 'A ductile overload: it was pulled too hard once'],
+          answer: 'A ductile overload: it was pulled too hard once',
+          why: 'Necking and a dull, fibrous surface are the signs of a ductile overload fracture.',
+        },
+      ],
+      teach: [
+        'The fracture surface, the face of the break, tells how a part failed. Fractography is the study of it, from the naked eye and a magnifier up to an electron microscope in a lab.\n\nThree basic types: an overload fracture, a single load too high for the part; a fatigue fracture, a crack that grew under repeated loads; and fracture helped by the environment, such as corrosion or hydrogen. Each leaves its own marks.',
+        'A ductile overload fracture shows necking, the part got thinner before it broke, and a dull, grey, fibrous surface. A round bar often breaks as cup and cone: one half hollow, the other pointed.\n\nA brittle overload fracture is flat, often shiny or grainy, with hardly any deformation. Chevron marks, V-shaped ridges on the surface, point back to where the crack started, like arrows.',
+        'A fatigue fracture shows beach marks spreading from the start, and a rough final zone where the rest broke at once. The size of that final zone shows the load: small means a low nominal stress and a long life; large means a high stress.\n\nRatchet marks, small steps on the edge between several crack starts, point to several origins: a high stress or a sharp stress concentration all around, such as a sharp shoulder on a shaft.',
+        'First aid for a broken part matters more than the analysis. Keep both halves dry and don’t fit them together: the surfaces get damaged. Don’t wire-brush, clean or oil them. Photograph the part in place before it is removed.\n\nWrite down the running hours, the load and anything unusual before the failure, and keep a sister part, an unbroken one from the same batch, for comparison. A lab can only read what is left.',
+        'A lab failure analysis typically adds a hardness test, a microscope look at the steel’s structure, and a chemical analysis, to check whether the material and heat treatment were right. Expect days to weeks, and a cost often in the low thousands of euros.\n\nThe module Reliability and asset strategy shows how to see whether failures are random or wear-out. Here you learn to read one broken part. The sharp question: “Where did the crack start, and why there?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'The drive shaft of a conveyor broke after 14 months. The motor runs at 1,450 rpm through a 25 : 1 gearbox, so the shaft turns 1,450 / 25 = 58 rpm, 24 hours a day: 58 × 60 × 24 = 83,520 revolutions a day. Over 14 months, about 425 days, that is 83,520 × 425 = about 35 million load cycles.\n\nThe fracture shows beach marks from one origin at the end of a keyway and a small final zone, about 15% of the section. Reading: one crack start, a low nominal stress, a long time growing. That points to the keyway corner and a bending load, perhaps a misaligned coupling, not to a material too weak.',
+      },
+      said: 'What engineers say: “Don’t touch the fracture. Bag both halves, take photos, and find me a sister shaft from the same batch.”',
+      recall: [
+        {
+          q: 'A shaft turns at 120 rpm, 20 hours a day, 300 days a year. Each revolution is one load cycle. How many load cycles does it see per year, in millions?',
+          number: 43.2,
+          tolerance: 0.1,
+          unit: 'million cycles',
+          hint: 'Revolutions per minute, times minutes per day, times days per year; then divide by a million.',
+          why: '120 × 60 × 20 × 300 = 43,200,000 = 43.2 million cycles.',
+        },
+        {
+          q: 'A fatigue fracture on a shaft shoulder shows ratchet marks all around the edge. What do they point to?',
+          options: ['Many crack starts: a high stress or a sharp notch all round', 'One crack start, with a very low stress over a long time', 'A brittle overload in the cold, from one single blow or impact', 'Corrosion only, without any cycling load'],
+          answer: 'Many crack starts: a high stress or a sharp notch all round',
+          why: 'Ratchet marks separate several crack origins; many origins mean the stress at the edge was high everywhere.',
+        },
+        {
+          q: 'A gearbox shaft has just broken. What should the technicians do first with the two halves?',
+          options: ['Fit them together straight away to see how well they match', 'Clean them with a wire brush so the surface is visible', 'Keep them dry and apart; photograph them', 'Oil them so they don’t rust before the lab sees them'],
+          answer: 'Keep them dry and apart; photograph them',
+          why: 'Fitting, brushing or oiling destroys the fine marks a lab needs to read the fracture.',
+        },
+        {
+          q: 'A flat, grainy fracture on a cold steel part shows chevron marks. What do they show?',
+          options: ['How many load cycles the part has seen', 'The hardness of the steel near the surface', 'The direction the weld was laid', 'Where the brittle crack started'],
+          answer: 'Where the brittle crack started',
+          why: 'Chevron marks are V-shaped ridges on a brittle fracture that point back to the origin.',
+        },
+      ],
+      situation: {
+        scene: 'At a feed mill, a bucket elevator shaft broke at night. The morning shift has already cleaned the pieces, put them in the scrap bin and fitted a new shaft. The plant manager asks you why it keeps happening.',
+        ask: 'What do you ask and propose?',
+        model: 'Can we get the pieces back out of the scrap bin, even if cleaned? Where did the crack start: at a keyway, a shoulder, a weld? Were there beach marks and a small final zone, or a single overload? How many hours did the shaft run, and what changed before? For next time, agree a simple rule: a broken part goes into a bag with a label and photos, not in the bin, and someone qualified looks at it before it is thrown away.',
+        rubric: [
+          'Tries to recover the evidence and reads the origin and fracture type',
+          'Asks for running hours and changes before the failure',
+          'Proposes a standard for keeping broken parts',
+        ],
+      },
+      sayIt: 'Explain to a shift leader in 60 seconds why you should never clean or fit together a broken part before someone has looked at it.',
+      terms: [
+        { term: 'Fracture surface', def: 'The face of a break; its marks show how and where the part failed.' },
+        { term: 'Fractography', def: 'The study of fracture surfaces, from the naked eye to the electron microscope.' },
+        { term: 'Overload fracture', def: 'A break from a single load too high for the part; ductile with necking, or brittle and flat.' },
+        { term: 'Chevron marks', def: 'V-shaped ridges on a brittle fracture that point back to where the crack started.' },
+        { term: 'Ratchet marks', def: 'Small steps on the edge of a fatigue fracture between several crack starts.' },
+        { term: 'Sister part', def: 'An unbroken part from the same batch, kept to compare with the failed one.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.snlife',
+      title: 'Calculating fatigue life',
+      pre: [
+        {
+          q: 'A part vibrates with the same stress swing as before, but now a steady pulling stress is added on top. What happens to its fatigue life?',
+          options: ['It gets shorter', 'It stays the same, as only the swing counts', 'It gets longer, as the part is held tight', 'It becomes unlimited, as the load is steadier'],
+          answer: 'It gets shorter',
+          why: 'For unwelded parts, a tensile mean stress lowers the stress swing a part can survive (Goodman and similar rules).',
+        },
+      ],
+      teach: [
+        'A fatigue calculation starts with the stress cycle. The stress range Δσ is the difference between the highest and lowest stress: σmax − σmin. The stress amplitude is half of that, and the mean stress is the middle: (σmax + σmin) / 2.\n\nA shaft that swings from −100 to +100 MPa has a range of 200, an amplitude of 100 and a mean of 0. A bolt swinging from 400 to 460 has a range of only 60 but a high mean.',
+        'For unwelded parts, a tensile mean stress lowers the amplitude a part survives; the Goodman line is the classic way to correct for it. A compressive mean stress helps, which is why shot peening and rolled threads last longer.\n\nWelds behave differently: they hold tensile residual stresses near yield, so codes for welds use the stress range only and ignore the mean.',
+        'On a log-log chart the S-N curve is close to a straight line: N = Nref × (Sref / S)^m. The slope m tells how sensitive life is to stress. For welded steel details m = 3: a 20% lower stress gives about twice the life. Smooth machined parts have a flatter curve, a larger m, so life is even more sensitive.\n\nFatigue life is the number of cycles a part survives at a stress level, read from that curve.',
+        'Real parts see a mix of loads: many small cycles and a few big ones. Miner’s rule (Palmgren-Miner) adds the damage: for each level, cycles applied / cycles to failure, summed into D. At D = 1 failure is predicted.\n\nIt is a rough rule: tests show failures anywhere from about D = 0.3 to 3, and the order of loads matters. Some designers use D = 0.5 for safety; codes use D = 1 with safety factors on the stress.',
+        'The polished-sample endurance limit is cut down for real parts: Shigley’s Marin factors reduce it for surface finish, size, load type, temperature and reliability. A machined surface may lose 20 to 30%; a rough forged surface can lose more than half.\n\nSo a fatigue calculation has big uncertainty: a factor of two in life is normal. Engineers argue less about the formula than about the load spectrum. The sharp question: “Where does the load data come from: measured or assumed?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A machine part follows the S-N line N = 2,000,000 × (80 / Δσ)³, assume one slope all the way. Per year it sees 200,000 cycles with a stress range of 120 MPa (start-stops) and 1,000,000 cycles at 80 MPa (normal running).',
+        ask: 'What is the Miner damage per year, and the expected life in years?',
+        reveal: 'At 120 MPa: N = 2,000,000 × (80 / 120)³ = 592,593 cycles; damage 200,000 / 592,593 = 0.34. At 80 MPa: N = 2,000,000; damage 1,000,000 / 2,000,000 = 0.50. D per year = 0.84, so life is about 1 / 0.84 = 1.2 years.\n\nThe few start-stops do 40% of the damage. Fewer stops or a softer start would buy more life than a stronger material.',
+      },
+      said: 'What engineers say: “The running load is harmless. It’s the start-stops: fifty a day at full torque eat up most of the life.”',
+      recall: [
+        {
+          q: 'A welded detail follows an S-N curve with slope m = 3. A redesign lowers its stress range by 20%, from 100 to 80 MPa. By what factor does the fatigue life grow?',
+          number: 1.95,
+          tolerance: 0.02,
+          unit: '×',
+          hint: 'Divide the old stress range by the new one and raise it to the power of the slope.',
+          why: '(100 / 80)³ = 1.25³ = 1.95.',
+        },
+        {
+          q: 'A part sees 300,000 cycles at a level where it would survive 1,000,000, and 100,000 cycles at a level where it would survive 250,000. What is the total Miner damage D?',
+          number: 0.7,
+          tolerance: 0.01,
+          unit: '',
+          hint: 'Per load level, divide the cycles applied by the cycles to failure, then add the levels.',
+          why: '300,000 / 1,000,000 + 100,000 / 250,000 = 0.3 + 0.4 = 0.7.',
+        },
+        {
+          q: 'The stress at a point swings between 50 and 150 MPa. What are the stress amplitude and the mean stress?',
+          options: ['Amplitude 100 MPa, mean 50 MPa', 'Amplitude 150 MPa, mean 100 MPa', 'Amplitude 50 MPa, mean 100 MPa', 'Amplitude 100 MPa, mean 100 MPa'],
+          answer: 'Amplitude 50 MPa, mean 100 MPa',
+          why: 'Range 150 − 50 = 100, amplitude half of it = 50; mean (150 + 50) / 2 = 100 MPa.',
+        },
+        {
+          q: 'A Miner calculation gives D = 1 at the end of the planned life. What does that mean?',
+          options: ['Predicted failure, with wide real-life scatter', 'The part is guaranteed to last exactly the planned life', 'The part has used none of its fatigue life', 'The stress is exactly at the endurance limit of the part'],
+          answer: 'Predicted failure, with wide real-life scatter',
+          why: 'Miner’s rule is approximate; failures in tests range from roughly D = 0.3 to 3.',
+        },
+      ],
+      situation: {
+        scene: 'At a packaging plant, a fatigue calculation by the machine builder says the new robot gripper arm lasts “22 years”. The plant wants to double the robot speed to raise output.',
+        ask: 'What do you ask?',
+        model: 'Doubling the speed doubles the cycles per year, so on the same stress the life roughly halves, to 11 years. But faster motion also means higher accelerations and so higher stresses: with m = 3, 26% more stress halves the life again. Which load spectrum did the calculation use: measured or assumed? Can the builder rerun it with the new speed and accelerations? And how will we check: an inspection for cracks at the weld or clamp after the first months?',
+        rubric: [
+          'Recognises that more cycles per year shortens the life in years',
+          'Notes that higher accelerations raise stress, which cuts life steeply',
+          'Asks for a rerun with real loads and an inspection plan',
+        ],
+      },
+      sayIt: 'Explain to an operations manager in 60 seconds why a fatigue life of “22 years” is not a promise.',
+      terms: [
+        { term: 'Stress range', def: 'Δσ: the difference between the highest and lowest stress in a load cycle.' },
+        { term: 'Stress amplitude', def: 'Half the stress range: how far the stress swings from the middle.' },
+        { term: 'Mean stress', def: 'The middle of the stress cycle; a tensile mean lowers the fatigue strength of unwelded parts.' },
+        { term: 'Fatigue life', def: 'The number of cycles a part survives at a given stress level.' },
+        { term: 'Miner’s rule', def: 'Adds fatigue damage over load levels: the sum of cycles applied / cycles to failure; failure predicted at D = 1.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.weldfatigue',
+      title: 'Fatigue of welded structures',
+      pre: [
+        {
+          q: 'On a vibrating frame, why does a fatigue crack almost always start at a weld and not in the plate next to it?',
+          options: ['Weld metal is always much softer than the plate around it', 'Welds are painted less well, so they corrode and then crack', 'The weld is always the thinnest part of the whole frame', 'The weld toe is a notch, with residual stress'],
+          answer: 'The weld toe is a notch, with residual stress',
+          why: 'The weld toe is a sharp change of shape, the weld leaves tensile residual stress, and small flaws act as ready-made crack starts.',
+        },
+      ],
+      teach: [
+        'Welds are the weak spots of a structure in fatigue. The weld toe, where weld metal meets the plate, is a notch; welding leaves residual stress, stress locked in by cooling, often near yield; and small flaws act as ready-made cracks.\n\nSo welded details are designed by stress range alone, with S-N curves from codes such as EN 1993-1-9 (Eurocode 3) or the IIW recommendations of the International Institute of Welding.',
+        'Each type of weld gets a detail category, also written FAT: the stress range in MPa it survives for 2 million cycles. A ground butt weld might be FAT 100 or more, a fillet-welded attachment 71 or 80, a poor detail 36.\n\nWith slope 3, life = 2 million × (FAT / Δσ)³. A better detail beats a stronger steel: as-welded details have about the same fatigue strength in S235 as in S690.',
+        'Real codes add more: a flatter slope or a cut-off at low stress ranges, partial safety factors, and a thickness correction for thick plates. The constant slope of 3 is a simplification for a first look.\n\nFor complex shapes where no category fits, engineers use the hot-spot stress: the stress at the weld toe read from FEA or strain gauges in a set way, compared with a hot-spot S-N curve.',
+        'Post-weld treatment can raise the fatigue strength of an existing weld toe: grinding it smooth, TIG dressing (remelting the toe), or hammer peening and HFMI (high-frequency mechanical impact), which leave compressive stress. The IIW gives credit for these, with conditions; they need a procedure and inspection.\n\nThe cheaper route is usually design: keep welds out of high-stress zones, avoid attachments ending on a tension flange, and give transitions a gentle shape.',
+        'Welded frames that vibrate need an inspection plan: where cracks will appear first, how often to look, and with which method. Visual and dye penetrant find surface cracks; the module Welding and joining explains the NDT methods.\n\nA crack ground out and rewelded without changing the detail or the stress usually returns, often faster. The sharp question: “Which detail category is this, what is the stress range, and who checks it?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A vibrating screen frame has a fillet-welded bracket, detail category 71. Strain gauges measure a stress range of 60 MPa, and the screen makes about 3 million cycles a year. Assume life = 2,000,000 × (FAT / Δσ)³ with a single slope.\n\nThe supplier proposes to switch the frame to S690. The engineer proposes instead a redesigned bracket with a smooth, ground transition, detail category 90, plus a stiffener that brings the stress range down to 45 MPa.',
+        ask: 'What is the life now, with S690, and with the engineer’s redesign?',
+        reveal: 'Now: 2,000,000 × (71 / 60)³ = 3.3 million cycles, about 1.1 years. S690 changes almost nothing: as-welded fatigue strength barely depends on the steel grade, so still about 1.1 years.\n\nRedesign: 2,000,000 × (90 / 45)³ = 16 million cycles, about 5.3 years. A better detail and a lower stress range multiply the life; a stronger steel doesn’t.',
+      },
+      said: 'What engineers say: “S690 won’t help a fillet weld in fatigue. Change the detail or bring the stress range down.”',
+      recall: [
+        {
+          q: 'A weld detail has category FAT 80 and sees a stress range of 100 MPa. With life = 2,000,000 × (FAT / Δσ)³, how many cycles does it survive, in millions?',
+          number: 1.024,
+          tolerance: 0.01,
+          unit: 'million cycles',
+          hint: 'Divide the FAT value by the stress range, cube it, then multiply by two million.',
+          why: '2,000,000 × (80 / 100)³ = 2,000,000 × 0.512 = 1,024,000 = 1.024 million.',
+        },
+        {
+          q: 'A fillet-welded frame cracks in fatigue. The supplier proposes the same design in S690 instead of S355. What does that do for fatigue at the welds?',
+          options: ['Little or nothing, for as-welded details', 'It doubles the fatigue life, in line with the yield strength', 'It removes the residual stress from welding', 'It makes the welds immune to cracking'],
+          answer: 'Little or nothing, for as-welded details',
+          why: 'The weld toe notch and residual stresses govern; codes give the same detail category for all structural steel grades.',
+        },
+        {
+          q: 'Which treatment raises the fatigue strength of an existing weld toe?',
+          options: ['Painting the weld with a thick coat', 'Adding an extra layer of weld on top', 'Toe grinding or HFMI peening', 'Heating the weld until red-hot and cooling it in water'],
+          answer: 'Toe grinding or HFMI peening',
+          why: 'Grinding removes the notch and flaws; peening adds compressive stress. Both are recognised by the IIW, with conditions.',
+        },
+        {
+          q: 'A new bracket must survive 5 million cycles at a stress range of 50 MPa. With life = 2,000,000 × (FAT / Δσ)³, which detail category FAT is needed at least, in MPa?',
+          number: 67.9,
+          tolerance: 0.5,
+          unit: 'MPa',
+          hint: 'Divide the cycles needed by two million, take the cube root, and multiply by the stress range.',
+          why: 'FAT = 50 × (5,000,000 / 2,000,000)^(1/3) = 50 × 1.357 = 67.9 MPa.',
+        },
+      ],
+      situation: {
+        scene: 'At a recycling plant, the welds on a shaker table crack every three to four months. Maintenance grinds them out and rewelds them. The plant manager wants to buy a new table in a higher-strength steel.',
+        ask: 'What do you propose before buying?',
+        model: 'A stronger steel won’t raise the fatigue strength of the welds. Where exactly do the cracks start, and what detail is that? Can we measure the stress range with strain gauges, or ask the maker for it? The fix is usually the detail and the stress: a smoother transition, the weld moved out of the peak, a stiffener, and perhaps toe grinding. Then an inspection plan with dye penetrant at the known spots, so cracks are caught early.',
+        rubric: [
+          'Explains that higher-strength steel does not help welded fatigue',
+          'Asks for the crack location, detail and stress range',
+          'Proposes detail redesign, possible toe treatment and an inspection plan',
+        ],
+      },
+      sayIt: 'Explain to a plant manager in 60 seconds why rewelding a fatigue crack, or buying stronger steel, doesn’t stop it coming back.',
+      terms: [
+        { term: 'Residual stress', def: 'Stress locked into a part by welding or other processes, without any outside load.' },
+        { term: 'Detail category', def: 'FAT: the stress range in MPa a weld detail survives for 2 million cycles in a fatigue code.' },
+        { term: 'EN 1993-1-9', def: 'The Eurocode part for fatigue of steel structures, with detail categories and S-N curves.' },
+        { term: 'Hot-spot stress', def: 'The stress at a weld toe read from FEA or strain gauges in a set way, for complex shapes.' },
+        { term: 'Post-weld treatment', def: 'Grinding, TIG dressing or peening a weld toe to raise its fatigue strength.' },
+      ],
+    },
+    // Topic: Heat treatment and material choice
+    {
       id: 'eng.mechanics.materials',
       title: 'Common engineering materials',
       pre: [
         {
           q: 'A steel part weighs 3 kg. An aluminium part of exactly the same shape weighs roughly how much?',
-          options: ['3 kg', 'About 1 kg', 'About 2 kg', 'About 0.3 kg'],
+          options: ['3 kg, as the shape is the same', 'About 2 kg', 'About 1 kg', 'About 0.3 kg'],
           answer: 'About 1 kg',
           why: 'Aluminium (2,700 kg/m³) is about a third as dense as steel (7,850 kg/m³).',
         },
@@ -305,7 +907,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A food client is choosing the frame material for a new washdown machine, cleaned daily with chlorinated foam and sometimes with caustic soda. Painted carbon steel: paint flakes can end up in food, not acceptable in the product zone. Aluminium: light, but caustic cleaners attack it.\n\nStainless 304: common, but chlorides in the foam can cause pitting over time. Stainless 316: better against chlorides, but noticeably more expensive than 304 (the gap moves with nickel and molybdenum prices). The engineer picks 316 in the splash zone and 304 for the parts away from the product.',
+        text: 'A food client is choosing the frame material for a new washdown machine, cleaned daily with chlorinated foam and sometimes with caustic soda. Painted carbon steel: paint flakes can end up in food, not acceptable in the product zone. Aluminium: light, but caustic cleaners attack it.\n\nStainless 304: common, but chlorides in the foam can cause pitting over time. Stainless 316: better against chlorides, but noticeably more expensive than 304 (the gap moves with nickel and molybdenum prices). The engineer picks 316 in the splash zone and 304 for the parts away from the product. For the plastic guides and wear strips, the module Injection moulding explains how polymers behave.',
       },
       said: 'What engineers say: “With chlorinated foam every day, 304 will pit in the splash zone. Spec 316 there, 304 is fine underneath.”',
       recall: [
@@ -314,12 +916,13 @@ export default {
           number: 2.7,
           tolerance: 0.05,
           unit: 'kg',
+          hint: 'Find the volume from the steel mass and density, then use the aluminium density.',
           why: 'The volume is 7.85 / 7,850 = 0.001 m³; × 2,700 = 2.7 kg.',
         },
         {
           q: 'Why do food plants often specify 316 rather than 304 stainless steel?',
-          options: ['316 is cheaper', 'The molybdenum in 316 gives better resistance to chlorides in salt and cleaning agents', '316 is magnetic', '316 is easier to weld than any other steel'],
-          answer: 'The molybdenum in 316 gives better resistance to chlorides in salt and cleaning agents',
+          options: ['316 is cheaper, and easier to buy in sheet, bar and tube sizes', 'Its molybdenum resists chlorides from salt and cleaners better', '316 is magnetic, so metal detectors find its fragments', '316 welds more easily than any other stainless grade on the market'],
+          answer: 'Its molybdenum resists chlorides from salt and cleaners better',
           why: 'Chlorides cause pitting; molybdenum improves resistance to it.',
         },
         {
@@ -330,8 +933,8 @@ export default {
         },
         {
           q: 'Stainless steel bolts hold an aluminium frame outdoors. After a year the aluminium around the bolts is badly corroded. Why?',
-          options: ['The bolts were too tight', 'Galvanic corrosion: in a wet environment the less noble aluminium corrodes against the stainless', 'Aluminium always corrodes outdoors at the same rate', 'The stainless bolts rusted'],
-          answer: 'Galvanic corrosion: in a wet environment the less noble aluminium corrodes against the stainless',
+          options: ['The bolts were overtightened and crushed the aluminium around them', 'Galvanic corrosion: wet contact with stainless attacks the aluminium', 'Aluminium corrodes this fast outdoors anyway, with or without bolts', 'The stainless bolts rusted first, and that rust then ate into the frame'],
+          answer: 'Galvanic corrosion: wet contact with stainless attacks the aluminium',
           why: 'Two different metals plus moisture form a cell; the less noble one corrodes.',
         },
       ],
@@ -361,7 +964,7 @@ export default {
       pre: [
         {
           q: 'A medium-carbon steel shaft is heated until red-hot and then quenched in water. What happens to it?',
-          options: ['It becomes soft and easy to machine', 'It becomes very hard and brittle', 'Nothing changes', 'It becomes stainless'],
+          options: ['It becomes soft and easy to machine', 'Nothing changes; only slow cooling matters', 'It becomes stainless at the surface', 'It becomes very hard and brittle'],
           answer: 'It becomes very hard and brittle',
           why: 'Fast cooling from the hardening temperature traps a hard, brittle structure; tempering is needed afterwards.',
         },
@@ -370,7 +973,7 @@ export default {
         'Hardness is a material’s resistance to being dented. A tester presses a hard ball, diamond or cone into the surface and measures the dent. Three common scales: Brinell (HB) for softer steels and castings, Vickers (HV) for any material and thin layers, Rockwell C (HRC) for hardened steel.\n\nMild steel is about 120 HB; a hardened tool steel 60 HRC or more. Hardness tracks strength and wear resistance, and the test is quick and cheap, so it is a common incoming check.',
         'Steel with enough carbon, roughly 0.3% or more, can be hardened. Heat it to roughly 800 to 900 °C, until its internal structure changes, then cool it very fast. That fast cooling is quenching: plunging the part into water, oil or a polymer solution. The steel becomes very hard, but also brittle.\n\nQuenching also causes distortion and sometimes quench cracks, especially at sharp corners and sudden changes in thickness.',
         'Then comes tempering: reheating to typically 150 to 650 °C, which trades some hardness back for toughness, the ability to take a blow without cracking. Low tempering keeps it hard (tools); high tempering makes it tough (shafts).\n\nQuench and temper together is how shafts, gears and tools get their properties. A quenched part that is never tempered can crack by itself, sometimes days later.',
-        'Annealing does the opposite: heating and then cooling slowly makes steel soft and easy to machine or form. Stress relieving is a gentler treatment, for steel typically around 550 to 650 °C, that removes internal stresses after welding or rough machining, so parts don’t warp (bend out of shape) later.\n\nYou see the need when a welded frame moves after machining: the stresses locked in by welding are released as material is cut away.',
+        'Annealing does the opposite: heating and then cooling slowly makes steel soft and easy to machine or form. Stress relieving is a gentler treatment, for steel typically around 550 to 650 °C, that removes internal stresses after welding or rough machining, so parts don’t warp (bend out of shape) later. The module Welding and joining explains what welding heat does to the steel.\n\nYou see the need when a welded frame moves after machining: the stresses locked in by welding are released as material is cut away.',
         'Case hardening gives a hard skin, the case, on a tough core: carburising (adding carbon to the surface at about 900 °C, then quenching), nitriding (nitrogen into the surface at around 500 °C, little distortion) and induction hardening (heating only the surface with an electric coil, then quenching). Gears and bearing seats use it.\n\nA drawing note like “58–62 HRC, case depth 0.8–1.2 mm” is a spec to check, not decoration. The sharp question to a supplier: “Show me the hardness profile and furnace record for this batch.”',
       ],
       example: {
@@ -387,19 +990,19 @@ export default {
         },
         {
           q: 'Why is steel tempered after quenching?',
-          options: ['To make it harder still', 'To regain toughness, because quenched steel is too brittle', 'To clean the surface', 'To make it stainless'],
+          options: ['To make it harder still, since quenching alone leaves it soft', 'To regain toughness, because quenched steel is too brittle', 'To clean the scale off the surface before it is painted', 'To make the surface stainless so it no longer rusts outdoors'],
           answer: 'To regain toughness, because quenched steel is too brittle',
           why: 'Tempering trades some hardness for toughness.',
         },
         {
           q: 'A welded steel frame warps after it is machined. Which step before machining would most likely have prevented that?',
-          options: ['Painting', 'Stress relieving after welding', 'Quenching in water', 'A hardness test'],
+          options: ['Painting the frame before machining', 'Stress relieving after welding', 'Quenching the frame in cold water', 'A hardness test on each of the welds'],
           answer: 'Stress relieving after welding',
           why: 'Welding leaves internal stresses; machining releases them and the part moves. Stress relieving removes them first.',
         },
         {
           q: 'Which treatment gives a hard surface on a tough core?',
-          options: ['Annealing', 'Case hardening, such as carburising or induction hardening', 'Stress relieving', 'Galvanising'],
+          options: ['Annealing: heating and cooling slowly so the whole part softens', 'Case hardening, such as carburising or induction hardening', 'Stress relieving at about 600 °C after welding or machining', 'Galvanising: dipping the part in a bath of molten zinc'],
           answer: 'Case hardening, such as carburising or induction hardening',
           why: 'Case hardening hardens only the surface layer, leaving the core tough.',
         },
@@ -422,6 +1025,155 @@ export default {
         { term: 'Annealing', def: 'Heating and slowly cooling steel to make it soft and easy to machine or form.' },
         { term: 'Stress relieving', def: 'A gentle heat treatment that removes internal stresses after welding or rough machining.' },
         { term: 'Case hardening', def: 'Hardening only the surface layer: carburising, nitriding or induction hardening.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.designation',
+      title: 'Reading steel names: EN 10027 and material numbers',
+      pre: [
+        {
+          q: 'A drawing calls for S355J2+N. What does the “+N” say?',
+          options: ['That the steel contains nitrogen', 'That it must be nickel-plated', 'The delivery condition: normalised', 'That it is a new grade, after 2019'],
+          answer: 'The delivery condition: normalised',
+          why: 'After the plus sign comes the delivery condition; N means normalised, a heat treatment that gives an even, fine structure.',
+        },
+      ],
+      teach: [
+        'EN 10027-1 sets how European steel names are built. Steels named by use start with a letter: S structural steel, E engineering steel, P for pressure equipment. The number is the minimum yield strength in MPa for the thinnest products: S355, P265.\n\nThe quality grade follows: JR, J0, J2 or K2 for the impact test. After a plus sign comes the delivery condition, how the steel is supplied: +N normalised, +AR as rolled, +QT quenched and tempered.',
+        'Steels named by chemistry tell you their composition. Unalloyed: C45 is carbon steel with 0.45% carbon. Low-alloyed: 42CrMo4 has 0.42% carbon; the 4 belongs to chromium, divided by a factor of 4: about 1% chromium, plus some molybdenum. The factors are 4 for Cr, Ni, Mn, Si, 10 for Mo, V and others.\n\nHigh-alloyed starts with X: X5CrNi18-10 has 0.05% carbon, 18% chromium, 10% nickel, in plain percent.',
+        'EN 10027-2 gives every steel a material number: 1.0577 for S355J2, 1.7225 for 42CrMo4, 1.4301 for X5CrNi18-10, which the US calls 304. The number is short, unambiguous and easy to search in a stock system.\n\nAmerican names such as AISI 4140 or 316L are common on the floor. 4140 is close to 42CrMo4, but close is not identical: chemistry ranges and test requirements differ.',
+        'Aluminium has its own system: EN AW-6082 is a wrought alloy (AW) of the 6000 series, aluminium with magnesium and silicon. The temper designation after it says how it was treated: O annealed and soft, T6 solution heat treated and artificially aged, the strong condition.\n\nWelding destroys T6 locally: next to the weld the alloy can lose a large part of its strength. The module Welding and joining explains the heat-affected zone.',
+        'Name, number and condition belong together. 42CrMo4 annealed and 42CrMo4+QT are the same steel, but the first is soft for machining and the second is about twice as strong.\n\nA common failure: an order says only “42CrMo4”, and the stockholder delivers whatever is on the rack. Also, S355 meets 355 MPa only up to 16 mm thick; at 16 to 40 mm the minimum is 345. The sharp question: “Grade, condition and size: are all three on the order?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A drawing for a drive shaft says: “42CrMo4+QT (1.7225), Ø80”. To save cost and lead time, a stockholder offers “AISI 4140, annealed, Ø80” from stock. For this size the standard gives 42CrMo4+QT a tensile strength of 900 to 1,100 MPa.',
+        ask: 'What does each part of the drawing’s name mean, and what is wrong with the offer?',
+        reveal: '42: 0.42% carbon; Cr with 4 / 4 = about 1% chromium; Mo: molybdenum; +QT: quenched and tempered; 1.7225: its material number.\n\nThe offer is close in chemistry, but annealed means soft: far below the 900 MPa the shaft was designed for. Either the shop has it hardened and tempered with a certificate, or it orders 42CrMo4+QT. Engineering approves any substitution in writing.',
+      },
+      said: 'What engineers say: “4140 annealed is not 42CrMo4 QT. Same family, half the strength. Send it to the heat treater or don’t use it.”',
+      recall: [
+        {
+          q: 'In the low-alloy steel 34CrNiMo6 the 6 belongs to chromium, with a factor of 4. About how much chromium does it contain, in %?',
+          number: 1.5,
+          tolerance: 0.05,
+          unit: '%',
+          hint: 'Divide the number after the element symbols by the factor that belongs to chromium.',
+          why: '6 / 4 = 1.5% chromium.',
+        },
+        {
+          q: 'A bracket is made of S355 plate 30 mm thick. For 16 to 40 mm the standard gives a minimum yield strength of 345 MPa. The working stress is 230 MPa. What is the safety factor against yield?',
+          number: 1.5,
+          tolerance: 0.02,
+          unit: '',
+          hint: 'Use the table value for this thickness, not the number in the name, and divide it by the working stress.',
+          why: '345 / 230 = 1.5. With the name’s 355 you would think 1.54.',
+        },
+        {
+          q: 'What does “+QT” behind a steel name mean?',
+          options: ['Quenched and tempered', 'Quality tested by a third party', 'Quick turning, a free-machining grade', 'Quarter-hard temper, as in aluminium'],
+          answer: 'Quenched and tempered',
+          why: 'QT is the delivery condition quenched and tempered: hardened, then tempered for toughness.',
+        },
+        {
+          q: 'What does the name X2CrNiMo17-12-2 tell you?',
+          options: ['A low-alloy steel with 2% carbon, 17% nickel and some chromium', 'A tool steel for cutting, hardened to 17 HRC', 'An aluminium alloy of the 2000 series', 'A stainless steel: 17% chromium, 12% nickel, 2% molybdenum'],
+          answer: 'A stainless steel: 17% chromium, 12% nickel, 2% molybdenum',
+          why: 'X marks a high-alloyed steel with plain percentages; the 2 at the start is 0.02% carbon. It is 1.4404, known as 316L.',
+        },
+      ],
+      situation: {
+        scene: 'At a machine builder’s goods-in, you see bars labelled only “42CrMo4” being booked into stock for drive shafts. The drawing says 42CrMo4+QT. The receiving clerk says, “It’s the right steel.”',
+        ask: 'What do you ask?',
+        model: 'Which delivery condition did we receive: QT or annealed? The name is the same, but the strength differs about twofold. Does the certificate show the condition and tensile values for this size? Does the purchase order state grade, condition and size, and does goods-in check all three? If the condition is missing, these bars should be held until it’s clear, before they become shafts.',
+        rubric: [
+          'Notices that the delivery condition is missing',
+          'Explains that the condition changes the strength a lot',
+          'Asks for order and goods-in checks on grade, condition and size',
+        ],
+      },
+      sayIt: 'Explain to a buyer in 60 seconds how to read a steel name like S355J2+N or 42CrMo4+QT.',
+      terms: [
+        { term: 'EN 10027', def: 'The European standard for steel names (part 1) and material numbers (part 2).' },
+        { term: 'Quality grade', def: 'The letters after a structural steel’s yield number, such as JR or J2, that set the impact test.' },
+        { term: 'Delivery condition', def: 'How the steel is supplied, after a plus sign: +N normalised, +AR as rolled, +QT quenched and tempered.' },
+        { term: 'Material number', def: 'The EN 10027-2 number of a steel, such as 1.7225 for 42CrMo4.' },
+        { term: 'Temper designation', def: 'The letters after an aluminium alloy, such as O or T6, that say how it was treated.' },
+      ],
+    },
+    {
+      id: 'eng.mechanics.selection',
+      title: 'Choosing and substituting materials',
+      pre: [
+        {
+          q: 'Aluminium costs several times more per kg than structural steel. Can an aluminium part still be the cheaper option?',
+          options: ['Yes, per part: less mass, faster machining', 'No: the price per kg always decides in the end', 'Only if it is welded rather than machined', 'Only for parts under 100 grams'],
+          answer: 'Yes, per part: less mass, faster machining',
+          why: 'Aluminium weighs about a third of steel and machines much faster, so the cost per part can come out lower.',
+        },
+      ],
+      teach: [
+        'Material choice starts from the function: strength, stiffness, wear, corrosion, temperature, weight. Then the process: can it be machined, welded, formed and heat treated in your shop? Then supply: standard sizes, lead time, more than one source. Then cost per part, not per kg.\n\nMichael Ashby’s method, from his book on materials selection, ranks materials on such combinations, for example strength per kg or stiffness per euro.',
+        'Specific stiffness, E divided by density, is almost the same for steel, aluminium and titanium: about 26 GPa per 1,000 kg/m³. So for a rod in tension, aluminium gives no weight gain at equal stiffness.\n\nIn bending, it does: stiffness grows with thickness cubed, so an aluminium plate about 44% thicker matches steel at about half the weight. Shape and load case decide, not the material alone.',
+        'Machinability is how easily a material cuts: tool life, speed, chips. Free-cutting steels with added sulphur, such as 11SMnPb30, cut fast but weld poorly. 303 stainless machines better than 304, but resists corrosion worse and is not meant for welding.\n\nWeldability is how easily a steel welds without cracking; it falls with carbon and alloy content. The module Welding and joining explains the carbon equivalent that engineers use for it.',
+        'Material substitution, swapping one material for another in an existing part, is a favourite of cost-down projects. Check all functions, not just strength: stiffness, fatigue, corrosion, temperature, wear, and the downstream processes such as heat treatment, welding procedure and coating.\n\nAn equivalent grade from another standard, such as AISI 4140 for 42CrMo4, is close but rarely identical. Treat every substitution as a design change.',
+        'In automotive and other regulated sectors the customer must approve a material change, often through a new PPAP (production part approval process) submission. Elsewhere it goes through engineering change control, with a test where a property is critical.\n\nExperts argue about how much testing is enough. A sound minimum: compare the data sheets per function, run the critical test, and document the decision. The sharp question: “Which functions did we check, and who signed off?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A machined bracket is made of S355: 2.4 kg, steel at €1.50 per kg, machining 12 minutes at a machine hour rate of €80. The proposal: the same shape in aluminium EN AW-6082-T6. It weighs 2.4 × 2,700 / 7,850 = 0.83 kg, at €5.00 per kg, and machines in 6 minutes.',
+        ask: 'What does each version cost per part, and what must be checked before the switch?',
+        reveal: 'Steel: 2.4 × 1.50 = €3.60 material + 12 / 60 × 80 = €16.00 machining = €19.60. Aluminium: 0.83 × 5.00 = €4.15 + 6 / 60 × 80 = €8.00 = €12.15. Aluminium is about €7.45 cheaper per part.\n\nBut it is a third as stiff with the same shape, has no endurance limit in fatigue, and needs insulation from stainless bolts. Check deflection, the load cycles, and corrosion, then approve it as a design change.',
+      },
+      said: 'What engineers say: “Cheaper per part, sure. Now show me the deflection and the fatigue check before it goes on the machine.”',
+      recall: [
+        {
+          q: 'A steel part weighs 1.8 kg at €2.50 per kg and machines in 10 minutes at a machine hour rate of €72. What does it cost per part, in euros?',
+          number: 16.5,
+          tolerance: 0.05,
+          unit: '€',
+          hint: 'Material: mass times price per kg. Machining: minutes as a share of an hour, times the hour rate. Add both.',
+          why: '1.8 × 2.50 = €4.50; 10 / 60 × 72 = €12.00; total €16.50.',
+        },
+        {
+          q: 'A steel cover plate is 4 mm thick. An aluminium plate must have the same bending stiffness. Bending stiffness goes with E × thickness³; E is 210,000 MPa for steel and 70,000 MPa for aluminium. How thick must the aluminium plate be, in mm?',
+          number: 5.77,
+          tolerance: 0.05,
+          unit: 'mm',
+          hint: 'The thickness ratio is the cube root of the ratio of the two E values.',
+          why: '4 × (210,000 / 70,000)^(1/3) = 4 × 1.442 = 5.77 mm; at about half the steel plate’s weight.',
+        },
+        {
+          q: 'To speed up machining, someone proposes 303 stainless instead of 316 for parts in a washdown zone that are welded to the frame. What is the answer?',
+          options: ['Yes: 303 is the same steel, only cheaper', 'Yes, as long as the parts are polished', 'Only if the welds are painted afterwards', 'No: 303 corrodes and welds worse'],
+          answer: 'No: 303 corrodes and welds worse',
+          why: 'The added sulphur that makes 303 cut well lowers its corrosion resistance and weldability.',
+        },
+        {
+          q: 'A cost-down team wants to switch a shaft from 42CrMo4+QT to a cheaper equivalent grade from another standard. How should the change be handled?',
+          options: ['The buyer decides, since the table says the grades are equivalent', 'Production tries it on one machine first, then decides', 'As a design change: check functions, test, approve', 'No action is needed as long as the hardness matches'],
+          answer: 'As a design change: check functions, test, approve',
+          why: 'Equivalent grades are close, not identical; a substitution needs engineering review, tests on critical properties and customer approval where required.',
+        },
+      ],
+      situation: {
+        scene: 'In a cost-down workshop at an automotive supplier, the team proposes to replace a 42CrMo4 shaft by C45, “because the stresses are low anyway”. The saving is €0.80 per part on 200,000 parts a year.',
+        ask: 'What do you ask before it goes into the plan?',
+        model: 'The saving is €160,000 a year, worth looking at. Which functions does the shaft have: static strength, fatigue at the shoulder, wear at the bearing seat, and the response to hardening? C45 hardens less deeply than 42CrMo4, so a larger shaft may come out softer inside. Who checked the fatigue, and on which loads? And because it’s automotive, the customer has to approve a material change, often with a new PPAP; how long does that take, and does it eat the saving?',
+        rubric: [
+          'Computes the saving and takes it seriously',
+          'Asks about all functions, including fatigue and hardenability',
+          'Raises customer approval and its lead time and cost',
+        ],
+      },
+      sayIt: 'Explain to a cost-down team in 60 seconds what you must check before swapping a material.',
+      terms: [
+        { term: 'Specific stiffness', def: 'E divided by density; about the same for steel, aluminium and titanium.' },
+        { term: 'Machinability', def: 'How easily a material cuts: tool life, speed and chip form.' },
+        { term: 'Weldability', def: 'How easily a material welds without cracking; it falls with carbon and alloy content.' },
+        { term: 'Material substitution', def: 'Swapping one material for another in an existing part; treated as a design change.' },
+        { term: 'Equivalent grade', def: 'A grade from another standard with similar properties, such as AISI 4140 for 42CrMo4; close but rarely identical.' },
+        { term: 'PPAP', def: 'Production part approval process: the automotive procedure to get customer approval for a new or changed part.' },
       ],
     },
   ],
