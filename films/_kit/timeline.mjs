@@ -69,7 +69,11 @@ export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t))
 // length of each beat's recorded line (s). Each scene opens with a short look
 // before the first line (the film itself with a longer lead), lines follow with
 // a breath in between, and a scene holds a moment after its last line.
-export const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: 0.35, hold: 0.8, tail: 1.6 };
+// The pauses of the narration, all in one place (seconds). Each phrase (up to
+// a comma) and sentence is recorded as its own clip (films/_kit/narrate.mjs):
+// comma after a phrase, sentence after a full stop, beat between two lines.
+export const PAUSES = { comma: 0.2, sentence: 0.55, beat: 0.9 };
+export const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: 0.8, tail: 1.6 };
 export function audioTimeline(durs, gaps = AUDIO_GAPS) {
   const g = { ...AUDIO_GAPS, ...gaps };
   const scenes = [];

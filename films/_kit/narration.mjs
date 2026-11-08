@@ -8,7 +8,8 @@
 //   cues spread over its line by length.
 // - The manifest: per film and language the duration, size and scene starts of
 //   the video, which the app reads to play it (src/content/courses/films/manifest.json).
-import { saidOf } from './timeline.mjs';
+import { saidOf, sayable, PAUSES } from './timeline.mjs';
+import { applyLexicon } from './lexicon.mjs';
 
 // ---------------------------------------------------------------- WAV (PCM, 16 bit)
 export function wavInfo(buf) {
@@ -114,6 +115,83 @@ export function cuesOf(data, atl, lang) {
   }));
   return cues;
 }
+
+// Exact timing: each phrase of a beat's script (a sentence, or the part of one
+// up to a comma) is recorded as its own clip, so the subtitle is exactly what
+// is being said, and the pauses after a comma and a full stop are ours
+// (PAUSES in timeline.mjs). The clip text keeps its comma, so the voice still
+// reads it as a clause that goes on.
+// What the voice gets for one phrase: units and signs as words, then the
+// lexicon's phonemes for the words espeak-ng would say wrong. The subtitle keeps
+// the phrase as written.
+export const spokenOf = (text, lang, lex) => applyLexicon(sayable(text, lang).replace(/\s+/g, ' ').trim(), lex);
+
+export const SUB_MAX = 84; // about 2 lines of video subtitles on a phone
+const MIN_PHRASE_WORDS = 3; // shorter phrases ride with the next one
+
+// The sentences of one resolved script (said text, as subtitled), each as its
+// phrases: [['De voeding is 0,3 mm.'], ['Hoe dunner,', 'hoe sneller.']].
+export function phrasesOf(seg) {
+  return String(saidOf(seg)).split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean).map((s) => {
+    const out = [];
+    let carry = '';
+    for (const p of s.split(/(?<=,)\s+/)) {
+      const piece = carry ? `${carry} ${p}` : p;
+      if (piece.split(/\s+/).length < MIN_PHRASE_WORDS && piece !== s && !/[.!?]$/.test(piece)) { carry = piece; continue; }
+      out.push(piece);
+      carry = '';
+    }
+    if (carry) { if (out.length) out[out.length - 1] += ` ${carry}`; else out.push(carry); }
+    return out;
+  });
+}
+
+// The clips of one beat from its start, by measured length: durs is per
+// sentence a list of phrase lengths. Returns per sentence [{ start, dur }].
+export function beatLayout(start, durs, pauses = PAUSES) {
+  let t = start;
+  return durs.map((ph, si) => ph.map((d, pi) => {
+    const c = { start: round3(t), dur: round3(d) };
+    t += d + (pi + 1 < ph.length ? pauses.comma : si + 1 < durs.length ? pauses.sentence : 0);
+    return c;
+  }));
+}
+// The length of one beat made of these clips.
+export function beatLength(durs, pauses = PAUSES) {
+  const lay = beatLayout(0, durs, pauses).flat();
+  return lay.length ? round3(lay[lay.length - 1].start + lay[lay.length - 1].dur) : 0;
+}
+
+// sentences: [[{ start, dur, text }]], the recorded phrases of each sentence.
+// A sentence that fits in SUB_MAX is one cue from its first word to its last;
+// a longer one is cut between phrases (greedy, each cue as long as fits), and a
+// phrase longer than SUB_MAX is cut at a space, timed by its length.
+export function cuesOfLines(sentences, max = SUB_MAX) {
+  const cues = [];
+  const push = (group) => cues.push({ start: group[0].start, end: round3(group[group.length - 1].start + group[group.length - 1].dur), text: group.map((p) => p.text).join(' ') });
+  for (const ph of sentences) {
+    let group = [];
+    for (const p of ph) {
+      if (p.text.length > max) {
+        if (group.length) { push(group); group = []; }
+        const chunks = cueChunks(p.text, max);
+        const all = chunks.reduce((a, c) => a + c.length, 0);
+        let t = p.start;
+        chunks.forEach((c, k) => {
+          const end = k + 1 === chunks.length ? p.start + p.dur : t + (p.dur * c.length) / all;
+          cues.push({ start: round3(t), end: round3(end), text: c });
+          t = end;
+        });
+        continue;
+      }
+      if (group.length && [...group, p].map((x) => x.text).join(' ').length > max) { push(group); group = []; }
+      group.push(p);
+    }
+    if (group.length) push(group);
+  }
+  return cues;
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 export const vttOf = (cues) => `WEBVTT\n\n${cues.map((c, i) => `${i + 1}\n${vttTime(c.start)} --> ${vttTime(c.end)}\n${esc(c.text)}\n`).join('\n')}`;

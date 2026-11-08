@@ -59,6 +59,7 @@ async function poster(page, id, atl, dir) {
   await page.evaluate((t) => {
     window.__film.seek(t);
     const { title } = JSON.parse(document.getElementById('film-data').textContent);
+    document.querySelector('.fp').dataset.poster = '1'; // the band is shown for the poster only
     const cap = document.querySelector('.fp-cap');
     const line = document.createElement('span');
     const nl = document.createElement('b');
@@ -72,6 +73,7 @@ async function poster(page, id, atl, dir) {
   }, s1.start + s1.dur * 0.8);
   const big = join(dir, 'poster.jpg');
   writeFileSync(big, await page.screenshot({ type: 'jpeg', quality: 92 }));
+  await page.evaluate(() => { delete document.querySelector('.fp').dataset.poster; });
   spawnSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', big, '-vf', 'scale=640:-2', '-q:v', '4', join(ROOT, 'src/content/courses/films', `${id}.jpg`)]);
 }
 
@@ -126,7 +128,7 @@ export async function render(id, { langs = ['nl', 'en'], seconds = null, theme =
       const dur = ffprobeDur(out);
       console.log(`\r${id} ${lang}: ${out} · ${(bytes / 1e6).toFixed(1)} MB · ${dur.toFixed(1)} s · rendered in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
 
-      // the 390 px phone check: the first line of scene 3, scaled down as a phone shows it
+      // the 390 px phone check: scene 3 at its first line, scaled down as a phone shows it
       const s3 = atl.scenes[Math.min(2, atl.scenes.length - 1)];
       await page.evaluate((t) => window.__film.seek(t), s3.beats[0].start + 1);
       const shot = join(dir, `${lang}.frame.jpg`);
