@@ -265,6 +265,41 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
       }
+    },
+    "eng.machining.tooling": {
+      "poster": "src/content/courses/films/eng.machining.tooling.jpg",
+      "nl": {
+        "dur": 345.8,
+        "bytes": 15650541,
+        "scenes": [
+          0,
+          33.57,
+          66.21,
+          123.06,
+          156.1,
+          185.89,
+          218.54,
+          272.52,
+          327.05
+        ],
+        "vtt": "src/content/courses/films/eng.machining.tooling.nl.vtt"
+      },
+      "en": {
+        "dur": 321.1,
+        "bytes": 14996416,
+        "scenes": [
+          0,
+          28.26,
+          58.14,
+          113.19,
+          141.37,
+          170.37,
+          200.52,
+          251.46,
+          304.61
+        ],
+        "vtt": "src/content/courses/films/eng.machining.tooling.en.vtt"
+      }
     }
   }
 }
