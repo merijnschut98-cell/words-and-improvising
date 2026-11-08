@@ -1,269 +1,309 @@
 WEBVTT
 
 1
-00:00:00.800 --> 00:00:02.623
+00:00:00.800 --> 00:00:02.669
 Hoe werkt booglassen?
 
 2
-00:00:03.173 --> 00:00:06.331
+00:00:03.219 --> 00:00:06.435
 Op de lastafel liggen twee stalen platen.
 
 3
-00:00:06.881 --> 00:00:09.737
-Booglassen smelt hun randen samen.
+00:00:06.985 --> 00:00:14.177
+Booglassen smelt hun randen samen, en als het metaal stolt, zijn ze één stuk.
 
 4
-00:00:10.287 --> 00:00:14.272
-Als het metaal stolt, zijn ze één stuk.
+00:00:15.077 --> 00:00:17.248
+De warmte komt van stroom.
 
 5
-00:00:15.172 --> 00:00:17.262
-De warmte komt uit stroom.
-
-6
-00:00:17.812 --> 00:00:24.514
+00:00:17.798 --> 00:00:24.604
 Het lasapparaat geeft maar 20 tot 35 volt, maar wel 100 tot 400 ampère.
 
-7
-00:00:25.063 --> 00:00:27.780
+6
+00:00:25.154 --> 00:00:27.859
 Een waterkoker trekt er zo’n 10.
 
-8
-00:00:28.680 --> 00:00:34.476
+7
+00:00:28.759 --> 00:00:34.531
 Tussen de draad en het staal springt een boog: een felle, doorlopende vonk.
 
-9
-00:00:35.026 --> 00:00:37.046
+8
+00:00:35.082 --> 00:00:37.114
 Daar smelt het metaal.
 
+9
+00:00:38.014 --> 00:00:43.752
+Rollen trekken de draad van een haspel, en duwen hem door de slang naar de toorts,
+
 10
-00:00:37.946 --> 00:00:43.533
-Een haspel duwt de draad door de slang naar het laspistool, de toorts.
+00:00:43.952 --> 00:00:45.496
+het laspistool.
 
 11
-00:00:44.083 --> 00:00:48.776
-Terwijl de draad afsmelt, komt er steeds nieuwe bij.
-
-12
-00:00:49.676 --> 00:00:53.577
+00:00:46.396 --> 00:00:50.471
 En uit de gasfles stroomt gas naar de punt van de toorts.
 
-13
-00:00:54.777 --> 00:00:57.308
+12
+00:00:51.671 --> 00:00:54.875
 Dit is MIG/MAG-lassen.
 
-14
-00:00:57.858 --> 00:01:04.223
-De draad, 0,8 tot 1,2 millimeter dik, is de elektrode,
+13
+00:00:55.425 --> 00:01:00.232
+De draad van 0,8 tot 1,2 millimeter is de elektrode,
 
-15
-00:01:04.423 --> 00:01:07.604
+14
+00:01:00.432 --> 00:01:03.578
 en smelt zelf mee: zo vult hij de naad.
 
-16
-00:01:08.504 --> 00:01:12.068
-Onder de boog ligt een gloeiend plasje: het smeltbad.
+15
+00:01:04.478 --> 00:01:08.019
+Onder de boog ligt een gloeiend plasje: het smeltbad (weld pool).
 
-17
-00:01:12.618 --> 00:01:15.277
+16
+00:01:08.569 --> 00:01:11.286
 Achter de boog stolt het tot de las.
 
-18
-00:01:16.177 --> 00:01:19.358
+17
+00:01:12.186 --> 00:01:15.356
 Lucht geeft gasbelletjes en een brosse las.
 
+18
+00:01:15.906 --> 00:01:19.087
+Daarom stroomt er beschermgas (shielding gas) uit het mondstuk,
+
 19
-00:01:19.908 --> 00:01:23.101
-Daarom stroomt er beschermgas uit het mondstuk.
+00:01:19.287 --> 00:01:22.294
+meestal 12 tot 18 liter per minuut.
 
 20
-00:01:23.651 --> 00:01:28.193
+00:01:22.844 --> 00:01:27.977
 Bij MAG, voor staal, argon met wat kooldioxide.
 
 21
-00:01:28.743 --> 00:01:32.878
+00:01:28.528 --> 00:01:33.325
 Bij MIG, voor aluminium, zuiver argon.
 
 22
-00:01:34.078 --> 00:01:36.621
+00:01:34.525 --> 00:01:37.044
 TIG-lassen werkt anders.
 
 23
-00:01:37.171 --> 00:01:40.584
+00:01:37.594 --> 00:01:41.112
 De elektrode is van wolfraam en smelt niet.
 
 24
-00:01:41.134 --> 00:01:45.279
-De lasser dipt met de andere hand een losse staaf in het smeltbad.
+00:01:41.662 --> 00:01:45.249
+De lasser dipt een losse staaf in het smeltbad.
 
 25
-00:01:46.179 --> 00:01:48.664
+00:01:46.149 --> 00:01:48.703
 Vaak drie tot vijf keer langzamer,
 
 26
-00:01:48.864 --> 00:01:54.810
+00:01:48.903 --> 00:01:54.816
 maar schoon en precies: voor roestvaste leidingen, dunne plaat en aluminium.
 
 27
-00:01:56.010 --> 00:01:59.818
-De booglasenergie is de warmte per millimeter las.
+00:01:56.016 --> 00:01:59.766
+De booglasenergie (arc energy) is de warmte per millimeter las.
 
 28
-00:02:00.368 --> 00:02:02.377
+00:02:00.316 --> 00:02:02.266
 Bij 24 volt,
 
 29
-00:02:02.577 --> 00:02:10.042
+00:02:02.466 --> 00:02:09.920
 220 ampère en 400 millimeter per minuut is dat 0,79 kilojoule per millimeter.
 
 30
-00:02:10.942 --> 00:02:17.177
-Bij MAG komt 0,8 deel daarvan in het werkstuk: een warmte-inbreng van 0,63.
+00:02:10.820 --> 00:02:16.137
+Bij MAG reken je maal 0,8: het deel dat echt in het werkstuk komt.
 
 31
-00:02:17.727 --> 00:02:22.255
-Binnen de 0,5 tot 0,9 van de lasmethode.
+00:02:16.687 --> 00:02:20.100
+Dat geeft een warmte-inbreng (heat input) van 0,63,
 
 32
-00:02:23.155 --> 00:02:29.880
-Het staal naast de las werd heet en veranderde: de WBZ, de warmtebeïnvloede zone.
+00:02:20.301 --> 00:02:24.864
+binnen de 0,5 tot 0,9 van de lasmethode.
 
 33
-00:02:30.430 --> 00:02:33.611
-Te veel warmte maakt die breder en zwakker.
+00:02:25.764 --> 00:02:29.886
+Het staal naast de las werd heet en veranderde: de WBZ (HAZ),
 
 34
-00:02:34.161 --> 00:02:36.913
-Te weinig, en de las smelt niet in.
+00:02:30.086 --> 00:02:32.257
+de warmtebeïnvloede zone.
 
 35
-00:02:38.113 --> 00:02:41.944
-De draadsnelheid is hoeveel meter draad er per minuut in gaat.
+00:02:32.807 --> 00:02:36.220
+Te veel warmte maakt die breder en vaak zwakker.
 
 36
-00:02:42.494 --> 00:02:44.804
-Meer draad trekt meer stroom.
+00:02:36.770 --> 00:02:39.313
+Bij te weinig smelt de las niet in.
 
 37
-00:02:45.704 --> 00:02:49.466
-Laag tikt de draad steeds in het bad: de kortsluitboog.
+00:02:40.513 --> 00:02:44.472
+De draadsnelheid (wire feed speed) is hoeveel meter draad er per minuut in gaat.
 
 38
-00:02:50.016 --> 00:02:52.791
-Weinig warmte, goed voor dunne plaat.
+00:02:45.022 --> 00:02:47.402
+Meer draad trekt meer stroom.
 
 39
-00:02:53.691 --> 00:02:57.638
-Hoog vliegt er een fijne straal druppels over: de sproeiboog.
+00:02:48.302 --> 00:02:51.472
+Op een lage stand tikt de draad steeds in het smeltbad:
 
 40
-00:02:58.188 --> 00:03:01.799
-Diepe inbranding, maar alleen vlak of horizontaal.
+00:02:51.472 --> 00:02:53.143
+de kortsluitboog (short arc).
 
 41
-00:03:02.699 --> 00:03:07.064
-De neersmeltsnelheid is hoeveel kilo lasmetaal er per uur bijkomt.
+00:02:53.693 --> 00:02:56.584
+Weinig warmte, goed voor dunne plaat.
 
 42
-00:03:07.614 --> 00:03:14.116
-Draad van 1,2 millimeter op 10 meter per minuut: zo’n 5,3 kilo per uur.
+00:02:57.484 --> 00:03:01.376
+Op een hoge stand, met argonrijk gas,
 
 43
-00:03:15.316 --> 00:03:17.928
-Achter een lasrobot knikt de gasslang.
+00:03:01.576 --> 00:03:05.280
+vliegt er een fijne straal druppels over: de sproeiboog (spray arc).
 
 44
-00:03:18.478 --> 00:03:22.228
-Het debiet zakt van 15 naar 5 liter per minuut.
+00:03:05.830 --> 00:03:09.325
+Diepe inbranding, maar alleen vlak of horizontaal.
 
 45
-00:03:23.128 --> 00:03:26.576
-Binnen een uur zitten de lassen vol poriën.
+00:03:10.225 --> 00:03:14.776
+De neersmeltsnelheid (deposition rate) is hoeveel kilo lasmetaal er per uur bijkomt.
 
 46
-00:03:27.476 --> 00:03:32.306
-De oplossing: een sensor stopt de robot onder de 10 liter per minuut.
+00:03:15.326 --> 00:03:21.793
+Draad van 1,2 millimeter op 10 meter per minuut: zo’n 5,3 kilo per uur.
 
 47
-00:03:33.506 --> 00:03:36.176
-Een las moet ook op papier kloppen.
+00:03:22.993 --> 00:03:25.710
+Achter een lasrobot knikt de gasslang.
 
 48
-00:03:36.726 --> 00:03:42.754
-Eerst komt de pLMB: het recept dat je wilt testen, op een proefstuk.
+00:03:26.260 --> 00:03:29.847
+Het debiet zakt van 15 naar 5 liter per minuut.
 
 49
-00:03:43.654 --> 00:03:48.765
-Elke essentiële variabele, zoals materiaal, gas of dikte,
+00:03:30.747 --> 00:03:34.230
+Binnen een uur zitten de lassen vol poriën.
 
 50
-00:03:48.965 --> 00:03:50.962
-heeft een geldigheidsgebied.
+00:03:35.130 --> 00:03:39.681
+De oplossing: een sensor stopt de robot onder de 10 liter per minuut.
 
 51
-00:03:51.512 --> 00:03:55.578
-Ga je erbuiten, dan moet je opnieuw testen.
+00:03:40.881 --> 00:03:43.656
+Een las moet ook op papier kloppen.
 
 52
-00:03:56.478 --> 00:04:01.412
-Een proefplaat van 12 millimeter dekt 3 tot 24 millimeter.
+00:03:44.206 --> 00:03:46.528
+Eerst komt de pLMB (pWPS),
 
 53
-00:04:01.962 --> 00:04:04.899
-22 millimeter is dus gedekt.
+00:03:46.728 --> 00:03:51.488
+de voorlopige lasmethodebeschrijving: het recept dat je op een proefstuk test.
 
 54
-00:04:05.799 --> 00:04:13.000
-Getest op 1,2 kilojoule per millimeter, met kerfslageisen tot 1,5.
+00:03:52.388 --> 00:03:57.569
+Elke essentiële variabele (essential variable), zoals materiaal, gas of dikte,
 
 55
-00:04:13.550 --> 00:04:16.429
-Dus 1,6 valt erbuiten.
+00:03:57.769 --> 00:03:59.859
+heeft een geldigheidsgebied (range of qualification).
 
 56
-00:04:17.329 --> 00:04:22.263
-De lasser heeft een certificaat volgens ISO 9606-1.
+00:04:00.408 --> 00:04:04.590
+Ga je erbuiten, dan moet je opnieuw testen.
 
 57
-00:04:22.813 --> 00:04:28.084
-De lascoördinator bewaakt welke lasser en welke lasmethode bij elke las horen.
+00:04:05.490 --> 00:04:11.295
+Een proefplaat van 12 millimeter dekt 3 tot 24 millimeter: tot twee keer zo dik.
 
 58
-00:04:29.284 --> 00:04:30.956
-De las koelt af.
+00:04:11.845 --> 00:04:14.724
+22 millimeter is dus gedekt.
 
 59
-00:04:31.506 --> 00:04:35.825
-t8/5 is de tijd van 800 naar 500 graden.
+00:04:15.624 --> 00:04:19.746
+Getest op 1,2 kilojoule per millimeter.
 
 60
-00:04:36.725 --> 00:04:42.974
-Is die kort, dan ontstaat martensiet: hard en bros staal dat makkelijk scheurt.
+00:04:20.296 --> 00:04:25.729
+Met kerfslageisen mag je tot 25 procent hoger: tot 1,5.
 
 61
-00:04:43.874 --> 00:04:47.427
-Het koolstofequivalent zegt hoe snel een staal hard wordt.
+00:04:26.279 --> 00:04:29.089
+Dus 1,6 valt erbuiten.
 
 62
-00:04:47.977 --> 00:04:52.249
-Een CEV van 0,46 op 40 millimeter is hoog.
+00:04:29.989 --> 00:04:35.063
+De lasser heeft een certificaat volgens ISO 9606-1.
 
 63
-00:04:53.449 --> 00:04:57.803
-Dus voorwarmen, en voor elke laag de tussenlaagtemperatuur meten.
+00:04:35.613 --> 00:04:38.104
+De lascoördinator (welding coordinator) bewaakt
 
 64
-00:04:58.703 --> 00:05:01.710
-Een waterstofscheur kan dagen later komen.
+00:04:38.104 --> 00:04:40.861
+welke lasser en welke lasmethode bij elke las horen.
 
 65
-00:05:02.260 --> 00:05:06.033
-De controle wacht vaak 16 tot 48 uur.
+00:04:42.061 --> 00:04:43.744
+De las koelt af.
 
 66
-00:05:06.933 --> 00:05:11.078
-Bij roestvast staal moeten de aanloopkleuren naast de las eraf,
+00:04:44.294 --> 00:04:48.984
+t8/5 is de tijd in seconden van 800 naar 500 graden.
 
 67
-00:05:11.278 --> 00:05:13.159
+00:04:49.884 --> 00:04:51.556
+Is die te kort,
+
+68
+00:04:51.756 --> 00:04:54.897
+dan kan in de WBZ martensiet (martensite) ontstaan:
+
+69
+00:04:54.897 --> 00:04:57.422
+hard en bros staal dat makkelijk scheurt.
+
+70
+00:04:58.322 --> 00:05:01.933
+Het koolstofequivalent (carbon equivalent) zegt hoe snel een staal hard wordt.
+
+71
+00:05:02.483 --> 00:05:09.846
+Een CEV van 0,46 is hoog, en plaat van 40 millimeter trekt de warmte snel weg.
+
+72
+00:05:11.046 --> 00:05:14.297
+Dus voorwarmen, zodat de las trager afkoelt.
+
+73
+00:05:14.847 --> 00:05:18.284
+En voor elke laag de tussenlaagtemperatuur (interpass temperature) meten.
+
+74
+00:05:19.184 --> 00:05:22.284
+Een waterstofscheur kan dagen later komen.
+
+75
+00:05:22.834 --> 00:05:26.630
+De controle wacht vaak 16 tot 48 uur.
+
+76
+00:05:27.530 --> 00:05:31.605
+Bij roestvast staal moeten de aanloopkleuren (heat tint) naast de las eraf,
+
+77
+00:05:31.805 --> 00:05:33.779
 anders roest het daar.
