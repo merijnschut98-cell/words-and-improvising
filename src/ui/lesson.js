@@ -1,5 +1,5 @@
-// A lesson: guess first (prequestions), read in short blocks, see an example,
-// then the quiz. Passing unlocks the situation and the say-it round.
+// A lesson: guess first (prequestions), read in short blocks (or, with a film,
+// watch it), see an example, then the quiz. Passing unlocks the situation and the say-it round.
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
@@ -8,9 +8,9 @@ import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
-import { filmButton, closeFilms } from './film.js';
+import { filmStep, closeFilms } from './film.js';
 
-// Where he is in the lesson: Guess · Read · Example · Check, the current one
+// Where he is in the lesson: Guess · Read (or Film) · Example · Check, the current one
 // marked. With onJump, a step already done is a button back to it.
 // Learning text: one <p> per paragraph (a blank line in the content).
 // Learning text: one <p> per paragraph (a blank line in the content). With
@@ -150,8 +150,6 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         show(
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
             prose('teach-text', lesson.teach[block], terms),
-            // the explainer film: under the first block, before the reading gets heavy; never the primary
-            block === 0 && lesson.film ? filmButton(app, lesson.film, place && place.level) : null,
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
@@ -159,6 +157,18 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
             class: 'btn btn-primary btn-big',
             onclick: () => { if (last) next(); else { block += 1; draw(); } },
           }, t('quizNext')), backBtn());
+        return;
+      }
+      if (phase === 'film') {
+        // the film replaces the reading (v14b): the video, "Lees mee" under it,
+        // and the lesson's text only when no film can be shown
+        show(
+          h('section', { class: 'card film-card' },
+            filmStep(app, lesson, place && place.level, { text: () => prose('teach-text', lesson.teach.join('\n\n'), terms) }),
+            lesson.said ? h('p', { class: 'said' }, lesson.said) : null,
+            lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
+            app.state.settings.apiKey ? explainBox(lesson) : null),
+          h('button', { class: 'btn btn-primary btn-big film-next', onclick: next }, t('quizNext')), backBtn());
         return;
       }
       if (phase === 'example') {

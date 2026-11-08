@@ -1,0 +1,39 @@
+{
+  "base": "https://ysybqtdzcutmyabfwijl.supabase.co/storage/v1/object/public/films",
+  "pattern": "{base}/{id}/{lang}.mp4",
+  "films": {
+    "eng.machining.turning": {
+      "poster": "src/content/courses/films/eng.machining.turning.jpg",
+      "nl": {
+        "dur": 242.4,
+        "bytes": 11741735,
+        "scenes": [
+          0,
+          24.04,
+          52.15,
+          82.02,
+          108.71,
+          148.47,
+          167.44,
+          199.01
+        ],
+        "vtt": "src/content/courses/films/eng.machining.turning.nl.vtt"
+      },
+      "en": {
+        "dur": 237.8,
+        "bytes": 11631019,
+        "scenes": [
+          0,
+          23.8,
+          56.26,
+          86.79,
+          111.22,
+          148.97,
+          166.65,
+          196.34
+        ],
+        "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
+      }
+    }
+  }
+}

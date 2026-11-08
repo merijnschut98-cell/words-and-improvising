@@ -48,15 +48,60 @@ export function formatNumber(raw, lang) {
 // a term carries its English word (en) on first use only.
 export const plainOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t + (p.en ? ` (${p.en})` : ''))).join('');
 // Units and signs a voice would spell out or skip, said as words. Longest first.
+// Also for Piper (espeak-ng reads "6,0" as "zes komma nul" and "€8,67" badly).
 const SAY = {
-  nl: [[/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a']],
+  // 1.167 is "elfhonderdzevenenzestig" (espeak-ng says "duizend honderd zevenenzestig")
+  nl: [[/\b([1-9])\.([1-9])(\d\d)\b/g, (m, a, b, cd) => `${a}${b}honderd${cd === '00' ? '' : ` ${Number(cd)}`}`],
+    [/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
+    [/€\s?(\d[\d.]*(?:,\d+)?)/g, '$1 euro'], [/(\d),0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimeter'], [/(\d)\s?min\b/g, '$1 minuten'], [/(\d)\s?%/g, '$1 procent'],
+    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a']],
+    [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
+    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
 export const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
+// What is said, as written (no gloss, units kept): the subtitles of the video.
+export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+
+// v14b, the timeline driven by the narration audio. durs[scene][beat] is the
+// length of each beat's recorded line (s). Each scene opens with a short look
+// before the first line (the film itself with a longer lead), lines follow with
+// a breath in between, and a scene holds a moment after its last line.
+export const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: 0.35, hold: 0.8, tail: 1.6 };
+export function audioTimeline(durs, gaps = AUDIO_GAPS) {
+  const g = { ...AUDIO_GAPS, ...gaps };
+  const scenes = [];
+  let t = 0;
+  durs.forEach((beats, si) => {
+    const start = t;
+    let at = start + (si === 0 ? g.lead : g.look);
+    const out = beats.map((d, bi) => {
+      if (!(d > 0)) throw new Error(`scene ${si + 1} beat ${bi + 1}: no audio`);
+      const b = { start: round3(at), dur: round3(d) };
+      at += d + (bi + 1 < beats.length ? g.gap : 0);
+      return b;
+    });
+    t = round3(at + (si + 1 < durs.length ? g.hold : g.tail));
+    scenes.push({ start: round3(start), dur: round3(t - start), beats: out });
+  });
+  return { scenes, total: t };
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
+
+// Where time t falls on an audio timeline: the scene, the beat on screen (the
+// last one started; the first while the scene opens) and the scene's progress u.
+export function timedAt(t, atl) {
+  const sc = atl.scenes;
+  let si = 0;
+  for (let k = 0; k < sc.length; k++) if (t >= sc[k].start) si = k;
+  const s = sc[si];
+  let bi = 0;
+  for (let k = 0; k < s.beats.length; k++) if (t >= s.beats[k].start) bi = k;
+  const u = Math.min(1, Math.max(0, (t - s.start) / s.dur));
+  return { si, bi, u };
+}
 
 export function timelineOf(scenes) {
   const starts = [];
@@ -122,6 +167,7 @@ export function parseParams(search) {
     reduce: q.get('motion') === 'reduce',
     muted: q.get('muted') === '1',
     level: [1, 2, 3, 4].includes(level) ? level : null,
+    render: q.get('render') === '1',
   };
 }
 

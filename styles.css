@@ -790,6 +790,18 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 .film-box { margin-top: var(--space-3, 12px); }
 /* The film reports its own height; until then 16:10 plus captions and controls. */
 .film-frame { display: block; width: 100%; aspect-ratio: 16 / 17; border: 0; border-radius: var(--radius-md, 6px); background: var(--card); }
+/* The Film step (v14b): the video in place of the reading, "Lees mee" under it. */
+.film-step .film-stage .film-box { margin-top: 0; }
+.film-video-wrap { margin: 0; }
+.film-video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-md, 6px); background: #0d252b; }
+.film-note { margin: 8px 0 0; }
+.film-keep { margin-top: 6px; }
+.read-along { margin: var(--space-3, 12px) 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--tint); border: 1px solid var(--border-subtle); }
+.read-along > summary { font-weight: 600; min-height: 28px; }
+.read-scene { margin-top: 10px; }
+.read-title { margin: 0 0 4px; font-size: 0.95rem; }
+.read-scene p { margin: 0 0 8px; line-height: 1.5; }
+.read-scene .term-in { font-weight: 650; color: var(--accent-dark); }
 
 /* Start screen: one compact today card per subject. */
 .start-title { margin: 6px 0 0; font-size: 1.6rem; }

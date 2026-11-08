@@ -317,6 +317,76 @@ const spec = {
   skip: [],
 };
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen. Same markers ({t:Term|shown}, {n:number}); the build
+// checks its terms and numbers against the lessons like the captions'.
+// films/_kit/narrate.mjs turns each line into speech with Piper.
+const SAY = [
+  [ // s1 the cut
+    { nl: 'Dit is een CNC-draaibank van dichtbij. De klauwplaat laat een stalen as ronddraaien, en de beitel staat stil. Hij snijdt met een kleine {t:Wisselplaat|wisselplaat} van heel hard hardmetaal.',
+      en: 'This is a CNC lathe up close. The chuck spins a steel shaft, and the tool stands still. It cuts with a small {t:Carbide insert|carbide insert}, made of very hard carbide.' },
+    { nl: 'De {t:Snijsnelheid|snijsnelheid} is hoe snel het materiaal langs de snijkant schuift, in meter per minuut. Hardmetaal in staal draait zo’n {n:150} tot {n:300} meter per minuut.',
+      en: 'The {t:Cutting speed|cutting speed} is how fast the material slides past the cutting edge, in metres per minute. Carbide in steel runs at about {n:150} to {n:300} metres per minute.' },
+  ],
+  [ // s2 spindle speed
+    { nl: 'Maar de spil draait in omwentelingen per minuut. Dat {t:Toerental|toerental} volgt uit de diameter. Bij een as van {n:60} millimeter en {n:220} meter per minuut is één omtrek zo’n {n:188.5} millimeter, dus draait de spil {n:1167} toeren.',
+      en: 'But the spindle turns in revolutions per minute. That {t:Spindle speed|spindle speed} follows from the diameter. For a shaft of {n:60} millimetres at {n:220} metres per minute, one circumference is about {n:188.5} millimetres, so the spindle turns at {n:1167} revolutions a minute.' },
+    { nl: 'Wordt de as dunner, dan moet de spil sneller draaien voor dezelfde snijsnelheid. Daarom hoor je een draaibank optoeren als de beitel naar het midden gaat.',
+      en: 'As the shaft gets thinner, the spindle must turn faster for the same cutting speed. That is why you hear a lathe speed up as the tool moves towards the centre.' },
+  ],
+  [ // s3 feed and depth of cut
+    { nl: 'Terwijl de as draait, schuift de beitel erlangs. De {t:Voeding|voeding} is hoe ver hij per omwenteling opschuift: hier {n:0.3} millimeter.',
+      en: 'As the shaft turns, the tool slides along it. The {t:Feed|feed} is how far it moves on per revolution: here {n:0.3} millimetres.' },
+    { nl: 'De {t:Snedediepte|snedediepte} is hoe diep de beitel erin gaat: je ziet hem als de stap in de as.',
+      en: 'The {t:Depth of cut|depth of cut} is how deep the tool goes in: you see it as the step in the shaft.' },
+    { nl: 'Voeding maal toerental geeft de voedingssnelheid: {n:0.3} maal {n:1167} is {n:350} millimeter per minuut. Een snede van {n:200} millimeter duurt dan {n:34} seconden.',
+      en: 'Feed times spindle speed gives the feed rate: {n:0.3} times {n:1167} is {n:350} millimetres per minute. A cut of {n:200} millimetres then takes {n:34} seconds.' },
+  ],
+  [ // s4 tool life
+    { nl: 'Waarom niet gewoon sneller snijden? Dan wordt de snijkant heter en slijt hij sneller. Hoe lang hij meegaat heet de {t:Standtijd|standtijd}. Vuistregel bij hardmetaal: {n:20} procent sneller halveert hem ruwweg.',
+      en: 'Why not simply cut faster? Then the edge runs hotter and wears faster. How long it lasts is its {t:Tool life|tool life}. Rule of thumb for carbide: {n:20} percent faster roughly halves it.' },
+    { nl: 'Daarom geven engineers bij het voordraaien eerst meer voeding. Met {n:0.4} wordt het {n:467} millimeter per minuut, en duurt de snede {n:26} seconden.',
+      en: 'So when roughing, engineers raise the feed first. At {n:0.4} it becomes {n:467} millimetres per minute, and the cut takes {n:26} seconds.' },
+  ],
+  [ // s5 nose radius and roughness
+    { nl: 'Kijk nu van heel dichtbij. De punt van de wisselplaat is afgerond: dat is de {t:Hoekradius|hoekradius}, meestal {n:0.4}, {n:0.8} of {n:1.2} millimeter. Hij laat een fijne schroeflijn achter.',
+      en: 'Now look very closely. The tip of the insert is rounded: that is the {t:Nose radius|nose radius}, usually {n:0.4}, {n:0.8} or {n:1.2} millimetres. It leaves a fine helix behind.' },
+    { nl: 'De afstand tussen de groefjes is de voeding. Een grotere radius maakt ze ondieper. En de voeding telt in het kwadraat: halveer je hem, dan wordt de ruwheid Ra een kwart.',
+      en: 'The distance between the grooves is the feed. A larger radius makes them shallower. And the feed counts squared: halve it, and the roughness Ra drops to a quarter.' },
+    { nl: 'Met voeding {n:0.25} en radius {n:0.8} wordt Ra theoretisch {n:2.4} micrometer. Bij voeding {n:0.14} zakt Ra naar {n:0.77}.',
+      en: 'With feed {n:0.25} and radius {n:0.8}, the theoretical Ra is {n:2.4} micrometres. At feed {n:0.14}, Ra drops to {n:0.77}.' },
+  ],
+  [ // s6 breaking the chip
+    { nl: 'Het metaal dat eraf komt is de spaan. De {t:Spaanbreker|spaanbreker}, een vormpje op de wisselplaat, krult hem om tot hij breekt: korte krulletjes, als een {n:6} of een {n:9}.',
+      en: 'The metal that comes off is the chip. The {t:Chip breaker|chip breaker}, a small shape on the insert, curls it until it breaks: short curls, like a {n:6} or a {n:9}.' },
+    { nl: 'Met te weinig voeding of snedediepte werkt hij niet: dan krijg je lange slierten die om het werkstuk draaien.',
+      en: 'With too little feed or depth of cut it does not work: then you get long, stringy chips that wrap round the part.' },
+  ],
+  [ // s7 slender shafts
+    { nl: 'Een lange, dunne as buigt weg onder de beitel. Wat telt is de {t:Slankheid|slankheid}: de {t:Uitsteeklengte|uitsteeklengte} gedeeld door de diameter. Hier {n:160} gedeeld door {n:20}: {n:8} keer de diameter.',
+      en: 'A long, thin shaft bends away under the tool. What counts is its {t:Slenderness|slenderness}: the {t:Overhang|overhang} divided by the diameter. Here {n:160} divided by {n:20}: {n:8} times the diameter.' },
+    { nl: 'Zo’n as gaat trillen. Boven zo’n {n:3} keer de diameter steunt de {t:Losse kop|losse kop} het vrije eind met een center.',
+      en: 'Such a shaft starts to chatter. Above about {n:3} times the diameter, the {t:Tailstock|tailstock} supports the free end with a centre.' },
+    { nl: 'Boven zo’n {n:6} keer de diameter komt er een {t:Bril|bril} bij: een steun met rollen halverwege. Deze as heeft ze dus allebei nodig.',
+      en: 'Above about {n:6} times the diameter, a {t:Steady rest|steady rest} is added: a support with rollers halfway. So this shaft needs both.' },
+  ],
+  [ // s8 the turn-mill centre
+    { nl: 'Tot slot het {t:Draaifreescentrum|draaifreescentrum}: een draaibank die ook freest en boort. De revolver draagt {t:Aangedreven gereedschap|aangedreven gereedschap}: frezen en boren met een eigen motortje.',
+      en: 'Finally, the {t:Turn-mill centre|turn-mill centre}: a lathe that also mills and drills. Its turret carries {t:Driven tools|driven tools}: cutters and drills with their own small motor.' },
+    { nl: 'De {t:C-as|C-as} zet de spil op een gestuurde hoek stil: zo boor je zes gaten op {n:60} graden. De {t:Y-as|Y-as} schuift het gereedschap uit het hart, voor een recht vlak.',
+      en: 'The {t:C-axis|C-axis} stops the spindle at a controlled angle: that is how you drill six holes {n:60} degrees apart. The {t:Y-axis|Y-axis} moves the tool off centre, for a straight flat.' },
+    { nl: 'Het deel valt er klaar af: {t:Compleetbewerking|compleetbewerking}, in één opspanning. Een flens die eerst {n:4.0} plus {n:3.0} minuten op twee machines kostte, is hier in {n:6.0} minuten klaar.',
+      en: 'The part drops off finished: {t:Complete machining|complete machining}, in one set-up. A flange that took {n:4.0} plus {n:3.0} minutes on two machines is done here in {n:6.0} minutes.' },
+    { nl: 'En een {t:Staafaanvoer|staafaanvoer} duwt een staaf van zo’n {n:3} meter steeds een stukje verder. Zo draait hij na de laatste ploeg onbemand door.',
+      en: 'And a {t:Bar feeder|bar feeder} keeps pushing a bar of about {n:3} metres a little further in. So it runs on unmanned after the last shift.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // ---------------------------------------------------------------- page script and styles
 const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
 const latheScript = `const G = (() => {${latheSource}\nreturn { viewOf, scaleOf, frameOf, pointOf, radialOf, tangentOf, solidOf, prismOf, lathe, disc, dotsOf, arcOf, circleOf, dot3, add3, sub3, mul3 };})();\n`;

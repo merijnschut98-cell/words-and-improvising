@@ -86,6 +86,16 @@ const FAKE_SDK = `
   }
 `;
 
+// v14b films: the public bucket's URL, and a tiny real MP4 to stand in for an
+// uploaded film (made with ffmpeg; without it the stub is an empty 200).
+const FILM_URL = /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/films\//;
+let STUB_MP4 = Buffer.alloc(0);
+try {
+  execSync(`ffmpeg -y -loglevel error -f lavfi -i color=c=0x0d252b:s=320x180:d=2 -f lavfi -i anullsrc=r=22050:cl=mono -t 2 -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart ${out}/stub-film.mp4`);
+  STUB_MP4 = fs.readFileSync(`${out}/stub-film.mp4`);
+} catch { /* no ffmpeg: the video stays empty */ }
+const fulfillStub = (r) => r.fulfill({ status: 200, contentType: 'video/mp4', headers: { 'access-control-allow-origin': '*' }, body: STUB_MP4 });
+
 const errors = [];
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
@@ -102,6 +112,7 @@ await ctx.addInitScript(() => {
   } catch { /* first run */ }
 });
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
+await ctx.route(FILM_URL, fulfillStub);
 const page = await ctx.newPage();
 let currentStep = 'setup';
 // Playwright's serviceWorkers: 'block' patches navigator.serviceWorker in every
@@ -110,7 +121,8 @@ let currentStep = 'setup';
 const HARNESS_SW = /Failed to read the 'serviceWorker' property from 'Navigator': Service worker is disabled because the context is sandboxed/;
 function onPageError(e) { if (!HARNESS_SW.test(e.message)) errors.push(`[${currentStep}] ${e.message}`); }
 page.on('pageerror', onPageError);
-page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+// Offline, a film video that was never cached fails to load: expected there, not an app error.
+page.on('console', (m) => m.type() === 'error' && !(currentStep.startsWith('offline') && /^Failed to load resource: net::ERR_/.test(m.text())) && errors.push(m.text()));
 
 const step = async (name, fn) => {
   currentStep = name;
@@ -597,72 +609,125 @@ await step('a lesson with a figure shows it under the last reading block', async
   await page.evaluate(() => window.__app.go('home'));
 });
 
-// The turning lesson's explainer film: a quiet button under the first reading
-// block opens it in a sandboxed frame; it speaks through the app's voice.
-await step('films: the turning lesson opens its film in a sandboxed frame; narration speaks through the app', async () => {
-  await page.evaluate(() => {
+// v14b: in a lesson with a film the Film step replaces the reading. The video
+// comes from the public Supabase bucket; the network is stubbed here: a tiny
+// real MP4 for "uploaded", an aborted request for "not there". Its own context
+// without the service worker, so the stubs see every request.
+await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, plays the video with captions, Lees mee opens, falls back to the HTML film', async () => {
+  const cf = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
+  await cf.addInitScript(FAKE_SPEECH);
+  let filmMode = 'ok';
+  const asked = [];
+  await cf.route(FILM_URL, (r) => { asked.push(r.request().url()); return filmMode === 'ok' ? fulfillStub(r) : r.abort('failed'); });
+  const p = await cf.newPage();
+  const bad = [];
+  p.on('pageerror', onPageError);
+  // the stubs fail on purpose: the aborted video (ERR_FAILED) and the missing film page (404)
+  p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource: (net::ERR_FAILED|the server responded with a status of 404)/.test(m.text())) bad.push(m.text()); });
+  const shotF = async (n) => {
+    const text = await p.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
+  };
+  await p.goto(BASE);
+  await p.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'eng' } })));
+  await p.reload();
+  const open = async () => {
+    await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+    const lang = await p.evaluate(() => window.__app.lang);
+    const lesson = await p.evaluate(async (l) => (await import(`/src/content/courses/eng/machining.${l}.js`)).default.lessons.find((x) => x.id === 'eng.machining.cutting'), lang);
+    await p.locator('.pre-card').waitFor();
+    for (const q of lesson.pre) {
+      if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
+      else await p.locator('.pre-card .opt').first().click();
+      await p.locator('.lesson > .pre-next').click();
+    }
+    return lesson;
+  };
+  const lesson = await open();
+  // the steps: Film instead of Lezen
+  const stepsOf = async () => (await p.locator('.steps .step').allTextContents()).map((x) => x.trim()).join('|');
+  if ((await stepsOf()) !== 'Raden|Film|Voorbeeld|Check') throw new Error(`steps: ${await stepsOf()}`);
+  if (await p.locator('.teach-card').count()) throw new Error('the reading is shown in a film lesson');
+  // the video, with a captions track in the app language and a poster
+  const video = p.locator('.film-card video.film-video');
+  await video.waitFor({ timeout: 5000 });
+  const v = await video.evaluate((el) => ({ controls: el.controls, inline: el.hasAttribute('playsinline'), poster: el.getAttribute('poster'), src: el.src, track: el.querySelector('track') && { kind: el.querySelector('track').kind, lang: el.querySelector('track').srclang, src: el.querySelector('track').getAttribute('src') } }));
+  if (!v.controls || !v.inline) throw new Error(`video attributes: ${JSON.stringify(v)}`);
+  if (!/\/storage\/v1\/object\/public\/films\/eng\.machining\.turning\/nl\.mp4$/.test(v.src)) throw new Error(`video src ${v.src}`);
+  if (!v.track || v.track.kind !== 'captions' || v.track.lang !== 'nl' || v.track.src !== 'src/content/courses/films/eng.machining.turning.nl.vtt') throw new Error(`track ${JSON.stringify(v.track)}`);
+  if (v.poster !== 'src/content/courses/films/eng.machining.turning.jpg') throw new Error(`poster ${v.poster}`);
+  if (STUB_MP4.length) await p.waitForFunction(() => document.querySelector('.film-video').readyState >= 1, null, { timeout: 8000 });
+  if (await p.locator('.film-card .film-frame').count()) throw new Error('fallback frame while the video plays');
+  // one primary; Lees mee is closed, opens, and holds the spoken script with terms
+  if ((await p.locator('.lesson .btn-primary').count()) !== 1) throw new Error('not exactly one primary on the Film step');
+  const read = p.locator('.film-card details.read-along');
+  await read.locator('summary').waitFor({ timeout: 5000 });
+  if ((await read.locator('summary').innerText()).trim() !== 'Lees mee') throw new Error('no Lees mee');
+  if (await read.evaluate((d) => d.open)) throw new Error('Lees mee open by default');
+  await read.locator('summary').click();
+  await read.locator('.read-scene').first().waitFor();
+  const script = await read.innerText();
+  if (!/wisselplaat \(carbide insert\)/.test(script) || (await read.locator('.read-scene').count()) !== 8) throw new Error(`read along: ${script.slice(0, 200)}`);
+  await p.waitForTimeout(400);
+  await shotF('118-lesson-film-step');
+  // forward to the example and back to the film
+  await p.locator('.lesson > .film-next').click();
+  await p.locator('.example-card').waitFor();
+  await p.locator('.lesson-back').click();
+  await p.locator('.film-card video.film-video').waitFor({ timeout: 5000 });
+  // the step indicator jumps back to it like any done step
+  await p.locator('.lesson > .film-next').click();
+  await p.locator('.example-card').waitFor();
+  await p.locator('.steps .step-jump', { hasText: 'Film' }).click();
+  await p.locator('.film-card').waitFor();
+  // a lesson without a film keeps Lezen
+  await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
+  await p.locator('.pre-card').waitFor();
+  if (!(await stepsOf()).includes('Lezen')) throw new Error(`a lesson without a film lost Lezen: ${await stepsOf()}`);
+  // English: the video, captions and script in English
+  await p.evaluate(() => window.__app.updateSettings({ lang: 'en' }));
+  await open();
+  await p.locator('.film-card video.film-video').waitFor({ timeout: 5000 });
+  const en = await p.locator('.film-video').evaluate((el) => [el.src, el.querySelector('track').srclang, el.querySelector('track').label]);
+  if (!en[0].endsWith('/eng.machining.turning/en.mp4') || en[1] !== 'en' || en[2] !== 'English captions') throw new Error(`en video ${en}`);
+  await p.locator('details.read-along summary').waitFor({ timeout: 5000 });
+  if ((await p.locator('details.read-along summary').innerText()).trim() !== 'Read along') throw new Error('no Read along');
+  if ((await stepsOf()) !== 'Guess|Film|Example|Check') throw new Error(`en steps ${await stepsOf()}`);
+  await p.evaluate(() => window.__app.updateSettings({ lang: 'nl' }));
+  // not uploaded (or offline and not cached): the HTML film plays in its sandboxed frame
+  filmMode = 'fail';
+  await open();
+  const frame = p.locator('.film-card iframe.film-frame');
+  await frame.waitFor({ timeout: 8000 });
+  if ((await frame.getAttribute('sandbox')) !== 'allow-scripts') throw new Error('fallback frame not sandboxed');
+  if (!/^\?theme=(light|dark)&lang=nl&level=2/.test(await frame.getAttribute('name'))) throw new Error(`fallback params ${await frame.getAttribute('name')}`);
+  await p.frameLocator('.film-card .film-frame').locator('.fp-poster-go').waitFor({ timeout: 8000 });
+  if (!(await p.locator('.film-note').innerText()).includes('geanimeerde versie')) throw new Error('no fallback note');
+  if (!(await p.locator('details.read-along').count())) throw new Error('Lees mee gone in the fallback');
+  if (await p.locator('.film-card video').count()) throw new Error('video still shown after it failed');
+  // the fallback film narrates through the app: it says the narration script
+  await p.evaluate(() => {
     window.__spoken = [];
-    const synth = window.speechSynthesis;
-    synth.speak = (u) => { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 600); };
-    window.__cancels = 0; synth.cancel = () => { window.__cancels += 1; };
-    try { localStorage.removeItem('vp:filmMuted'); } catch {}
+    window.speechSynthesis.speak = (u) => { window.__spoken.push(u.text); setTimeout(() => u.onend && u.onend(), 300); };
   });
-  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
-  const lesson = await page.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.cutting'));
-  for (const q of lesson.pre) {
-    if ('number' in q) { await page.locator('.pre-card .quiz-num').fill('1'); await page.locator('.lesson > .pre-next').click(); }
-    else await page.locator('.pre-card .opt').first().click();
-    await page.locator('.lesson > .pre-next').click();
-  }
-  // under the first reading block, a quiet button (never the primary)
-  const btn = page.locator('.teach-card .film-btn');
-  await btn.waitFor({ timeout: 5000 });
-  if ((await btn.innerText()).trim() !== 'Bekijk de film') throw new Error(`button: ${await btn.innerText()}`);
-  if (await page.locator('.film-btn.btn-primary').count()) throw new Error('film button is a primary');
-  if ((await page.locator('.lesson .btn-primary').count()) !== 1) throw new Error('more than one primary with the film button');
-  await btn.click();
-  const frame = page.locator('.film-wrap iframe.film-frame');
-  await frame.waitFor();
-  if ((await frame.getAttribute('sandbox')) !== 'allow-scripts') throw new Error('frame not sandboxed to allow-scripts');
-  // the page goes in as srcdoc (so it plays offline); its parameters ride in the frame name
-  const name = await frame.getAttribute('name');
-  if (!/^\?theme=(light|dark)&lang=nl&level=2$/.test(name)) throw new Error(`film params ${name}`);
-  if (await frame.getAttribute('src')) throw new Error('film frame has a src: offline it would be empty');
-  const film = page.frameLocator('.film-frame');
-  await film.locator('#film-data').waitFor({ state: 'attached', timeout: 10000 });
-  await film.locator('.fp-poster-go').click();
-  // the film asks the app to speak; the app answers when the line is done
-  await page.waitForFunction(() => window.__spoken.length >= 1, null, { timeout: 8000 });
-  const first = await page.evaluate(() => window.__spoken[0]);
-  if (first.text !== 'Een hardmetalen wisselplaat snijdt de draaiende as.' || first.lang !== 'nl-NL') throw new Error(`spoken: ${JSON.stringify(first)}`);
-  await film.locator('html[data-narration="bridge"]').waitFor({ state: 'attached', timeout: 3000 });
-  await film.locator('html:not([data-said="0"])').waitFor({ state: 'attached', timeout: 8000 });
-  const cap = (await film.locator('.fp-cap').innerText()).trim();
-  if (!cap) throw new Error('caption empty after play');
-  // the frame grows to fit the film (the film reports its height)
-  const hgt = await frame.evaluate((f) => f.getBoundingClientRect().height);
-  if (hgt < 300 || hgt > 700) throw new Error(`frame height ${hgt}`);
-  await page.waitForTimeout(1200);
-  await shot('118-lesson-film');
-  // mute is remembered by the app; the next film opens muted
-  await film.locator('[data-act="mute"]').click();
-  await page.waitForFunction(() => localStorage.getItem('vp:filmMuted') === '1', null, { timeout: 3000 });
-  await film.locator('[data-act="mute"]').click();
-  await page.waitForFunction(() => localStorage.getItem('vp:filmMuted') === '0', null, { timeout: 3000 });
-  // closing the film removes the frame
-  await btn.click();
-  if (await page.locator('.film-frame').count()) throw new Error('film not closed');
-  // leaving the reading block while the film speaks removes it and silences the voice
-  await btn.click();
-  await page.frameLocator('.film-frame').locator('.fp-poster-go').click();
-  await page.waitForFunction(() => window.__spoken.length >= 2, null, { timeout: 8000 });
-  // voice.say() cancels too before each line: count only cancels beyond new lines
-  const before = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
-  await page.locator('.lesson > .btn-primary').click();
-  if (await page.locator('.film-frame').count()) throw new Error('film still open on the next reading block');
-  const after = await page.evaluate(() => [window.__cancels, window.__spoken.length]);
-  if (after[0] - before[0] <= after[1] - before[1]) throw new Error('speech not cancelled when the reading block changed');
-  await page.evaluate(() => window.__app.go('home'));
+  await p.frameLocator('.film-card .film-frame').locator('.fp-poster-go').click();
+  await p.waitForFunction(() => window.__spoken.length >= 1, null, { timeout: 8000 });
+  const said = await p.evaluate(() => window.__spoken[0]);
+  if (!/^Dit is een CNC-draaibank van dichtbij\./.test(said)) throw new Error(`fallback narration: ${said}`);
+  await shotF('119-lesson-film-fallback');
+  // leaving the step closes the frame
+  await p.locator('.lesson > .film-next').click();
+  if (await p.locator('.film-frame').count()) throw new Error('film frame left open on the next step');
+  // no film page either: the lesson's own text, so he is never stuck
+  await cf.route(/films\/eng\.machining\.turning\.html/, (r) => r.fulfill({ status: 404, body: '' }));
+  await open();
+  await p.locator('.film-card .teach-text').waitFor({ timeout: 8000 });
+  if (!(await p.locator('.film-card .teach-text').innerText()).includes(lesson.teach.at(-1).slice(-25))) throw new Error('text fallback without the lesson text');
+  if (await p.locator('details.read-along:not([hidden])').count()) throw new Error('Lees mee without a script');
+  if (!asked.length) throw new Error('the video URL was never asked for');
+  await cf.close();
+  if (bad.length) throw new Error(`console errors: ${bad.join(' | ')}`);
 });
 
 await step('sync: send a login link; a signed-in device merges the cloud state without losing local rounds', async () => {
@@ -2351,6 +2416,7 @@ async function routeModuleEntry(c, moduleId, entry) {
 async function topicContext(seed = {}) {
   const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await routeModuleEntry(c, 'eng.machining', MACHINING_TOPIC_FIXTURE);
+  await c.route(FILM_URL, fulfillStub);
   const p = await c.newPage();
   p.on('pageerror', onPageError);
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
@@ -2456,8 +2522,8 @@ await step('topics: where you are (fixture)', async () => {
     else await p.locator('.pre-card .opt').first().click();
     await p.locator('.lesson > .pre-next').click();
   }
-  for (let i = 1; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
-  const src = await p.locator('.figure-frame').getAttribute('name', { timeout: 5000 });
+  // a film lesson: the figure sits in the Film step, under the film
+  const src = await p.locator('.film-card .figure-frame').getAttribute('name', { timeout: 5000 });
   if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure frame name without level=2: ${src}`);
   await c.close();
 });
@@ -2797,6 +2863,8 @@ await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });
   await page.waitForTimeout(800);
+  // the film stub stays online: offline the video request must really fail
+  await ctx.unroute(FILM_URL);
   await ctx.setOffline(true);
   await page.reload();
   await page.locator('.btn-hero').waitFor({ timeout: 5000 });
@@ -2807,13 +2875,15 @@ await step('offline after first load', async () => {
   }
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await page.locator('.pre-card').waitFor({ timeout: 5000 });
-  // The explainer film plays offline too. A sandboxed frame's own navigation
-  // skips the service worker, so the button must not lead to an empty frame.
+  // A film lesson offline, the video never cached: the Film step plays the
+  // HTML film instead. A sandboxed frame's own navigation skips the service
+  // worker, so the page goes in as srcdoc from the cache, never an empty frame.
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
   await page.locator('.pre-card .opt').first().click();
   await page.locator('.lesson > .pre-next').click();
-  await page.locator('.teach-card .film-btn').click({ timeout: 5000 });
-  await page.frameLocator('.film-frame').locator('.fp-poster-go').waitFor({ timeout: 5000 });
+  await page.frameLocator('.film-card .film-frame').locator('.fp-poster-go').waitFor({ timeout: 8000 });
+  await page.locator('details.read-along summary').click();
+  await page.locator('details.read-along .read-scene').first().waitFor();
   // A lesson figure shows offline too: srcdoc from the service worker's cache.
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
   const figLesson = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck'));

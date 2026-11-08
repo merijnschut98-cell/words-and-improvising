@@ -7,7 +7,10 @@
 // Narration: in the app the film asks the parent page to speak (postMessage,
 // {type:'vp-film'}); opened on its own it uses its own speechSynthesis. While a
 // line is spoken the clock may run to the next beat and then holds.
-/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock */
+// Render mode (?render=1, films/_kit/render.mjs): no clock, no controls and no
+// speech. The render script hands over the audio timeline and sets the time of
+// every frame through window.__film, so each frame is a pure function of t.
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
   const PRM = parseParams(searchOf(location.search, window.name));
@@ -21,7 +24,7 @@
   const scenes = DATA.scenes;
   const tl = timelineOf(scenes);
   const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
-  let reduce = PRM.reduce || reduceMq.matches;
+  let reduce = !PRM.render && (PRM.reduce || reduceMq.matches);
 
   // ---------------------------------------------------------------- state
   let t = tl.starts[clampScene(PRM.scene, scenes.length)];
@@ -122,7 +125,8 @@
     } catch (e) { setTimeout(() => lineDone(id, 'failed'), 0); }
   }
   function sayBeat(si, bi) {
-    const text = scenes[si].beats[bi].speak[LANG];
+    const b = scenes[si].beats[bi];
+    const text = (b.voice || b.speak)[LANG]; // the narration script when the film has one
     const id = nextId++;
     speaking = { id, scene: si, beat: bi };
     // never wait forever: some engines never end a line
@@ -154,7 +158,7 @@
     if (key === shownKey) return;
     shownKey = key;
     const b = scenes[si].beats[bi];
-    cap.replaceChildren(...b.seg[LANG].map((p) => {
+    const line = b.seg[LANG].map((p) => {
       if (typeof p === 'string') return document.createTextNode(p);
       const s = document.createElement('span');
       s.className = 'fp-term';
@@ -167,7 +171,9 @@
       en.textContent = ` (${p.en})`;
       f.append(s, en);
       return f;
-    }));
+    });
+    // in a video frame the line sits centred in a band of fixed height (one span)
+    if (PRM.render) { const one = document.createElement('span'); one.append(...line); cap.replaceChildren(one); } else cap.replaceChildren(...line);
     // the readout of this beat, or the last one before it in the scene
     let r = null;
     for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
@@ -326,6 +332,31 @@
     }).observe(main);
   }
 
+  if (PRM.render) {
+    // the frame is the video: no poster, controls or speech; time from the script
+    main.dataset.render = '1';
+    doc.dataset.render = '1';
+    poster.hidden = true;
+    started = true;
+    main.dataset.started = '1';
+    let atl = null;
+    window.__film = {
+      total: tl.total,
+      setTiming(next) { atl = next; return atl.total; },
+      seek(time) {
+        if (atl) {
+          const at = timedAt(time, atl);
+          STAGE.render(at.si, at.u);
+          caption(at.si, at.bi);
+        } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
+        // the cue's glow breathes with the film's own clock, not the wall clock
+        main.style.setProperty('--fp-b', `${(2.5 * (0.5 - 0.5 * Math.cos((2 * Math.PI * time) / 1.8))).toFixed(2)}px`);
+        return true;
+      },
+    };
+    window.__film.seek(0);
+    return;
+  }
   setMute(muted);
   setPlayBtn();
   setMotion();

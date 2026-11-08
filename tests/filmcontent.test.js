@@ -103,3 +103,38 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     assert.match(checkFilm(long, ctx).join('\n'), /nl caption has \d+ characters \(max \d+\)/);
   }
 });
+
+// v14b: the narration script is held to the lessons like the captions
+test('every narrated film: each beat has a script in both languages, and the sync check catches drift in it', async () => {
+  const lessons = await allLessons();
+  const narrated = films.map((id) => readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'))).filter((d) => d.scenes.some((s) => s.beats.some((b) => b.say)));
+  assert.ok(narrated.length >= 1, 'no narrated film');
+  for (const data of narrated) {
+    const ctx = { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy: data.lessons };
+    for (const s of data.scenes) for (const b of s.beats) for (const lang of ['nl', 'en']) assert.ok(b.say[lang].length && b.voice[lang].trim(), `${data.id} ${s.id}: ${lang} narration`);
+    // a beat without a script
+    const gap = JSON.parse(JSON.stringify(data));
+    delete gap.scenes[0].beats[0].say;
+    assert.match(checkFilm(gap, ctx).join('\n'), /narration: 1 beats have no script/);
+    // a Dutch term in the English narration
+    const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
+    const bad = JSON.parse(JSON.stringify(data));
+    bad.scenes[0].beats[0].say.en.push(` ${dutch.nl}`);
+    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English narration/);
+    // a narration term whose lesson term was renamed
+    const piece = data.scenes.flatMap((s) => s.beats.flatMap((b) => b.say.nl)).find((p) => typeof p !== 'string');
+    const [lid, ix] = piece.k.split('#');
+    const renamed = { nl: new Map(lessons.nl), en: lessons.en };
+    const ln = lessons.nl.get(lid);
+    renamed.nl.set(lid, { ...ln, terms: ln.terms.map((x, i) => (i === Number(ix) ? { ...x, term: `Zzz${x.term}` } : x)) });
+    assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /narration term ".*" no longer reads as/);
+    // the English narration never carries a gloss; the Dutch one glosses a term once
+    const gloss = JSON.parse(JSON.stringify(data));
+    gloss.scenes[0].beats[0].say.en.push({ t: 'x', k: piece.k, en: 'y' });
+    assert.match(checkFilm(gloss, ctx).join('\n'), /English narration carries a gloss/);
+    // far too short a script
+    const short = JSON.parse(JSON.stringify(data));
+    for (const s of short.scenes) for (const b of s.beats) b.voice = { nl: 'Kort.', en: 'Short.' };
+    assert.match(checkFilm(short, ctx).join('\n'), /narration nl would take about \d+ s/);
+  }
+});
