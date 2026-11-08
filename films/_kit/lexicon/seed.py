@@ -47,7 +47,8 @@ SPLITS = {
     'nl': {'toerental': 'toeren+tal', 'toerentallen': 'toeren+tallen', 'omwenteling': 'om+wenteling', 'omwentelingen': 'om+wentelingen',
            'spaanafvoer': 'spaan+afvoer', 'klauwplaat': 'klauw+plaat', 'wisselplaat': 'wissel+plaat', 'wisselplaten': 'wissel+platen',
            'datasheet': 'data+sheet', 'kanonboor': 'kanon+boor', 'kanonboren': 'kanon+boren', 'schachtfrees': 'schacht+frees',
-           'schachtfrezen': 'schacht+frezen', 'kogelkopfrees': 'kogel+kopfrees', 'vijfassig': 'vijf+assig', 'vijfassige': 'vijf+assige'},
+           'schachtfrezen': 'schacht+frezen', 'kogelkopfrees': 'kogel+kopfrees', 'vijfassig': 'vijf+assig', 'vijfassige': 'vijf+assige',
+           'vingerfrees': 'vinger+frees', 'vingerfrezen': 'vinger+frezen', 'kanteltafel': 'kantel+tafel'},
     'en': {'overhang': 'over+hang'},  # the noun: the OVERhang of a shaft
 }
 KEEP = {
@@ -60,7 +61,7 @@ KEEP = {
            'voldoet', 'volstaat', 'volautomatisch', 'volelektrische', 'halfautomatisch', 'halfautomatische', 'overbelast',
            'overbelasting', 'overbruggen', 'overbruggingssleutel', 'oververhit', 'overvol', 'overhead', 'middelgroot', 'tekortschiet',
            'langslopen', 'productspecifieke', 'procesgerichte', 'scheurgevoelige', 'warmtegevoelige', 'momentgestuurde',
-           'veiligheidskritisch', 'staalveilig', 'vrijwel'},
+           'veiligheidskritisch', 'staalveilig', 'vrijwel', 'bekend'},
     'en': set(),
 }
 # words that are no compounds but that espeak-ng stresses wrong: phonemes by hand

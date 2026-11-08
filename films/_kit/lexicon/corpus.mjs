@@ -1,6 +1,7 @@
 // Dev tool, not shipped. Prints the word list the pronunciation lexicon is
 // seeded from: every word (with its count) of the modules the films serve, in
-// one language, plus the spoken narration of every built film.
+// one language, plus the spoken narration of every built film. Words split at
+// hyphens, as films/_kit/lexicon.mjs reads them (CNC-draaibank: cnc, draaibank).
 //
 //   node films/_kit/lexicon/corpus.mjs nl > words.nl.tsv
 import { readdirSync, readFileSync } from 'node:fs';
@@ -24,5 +25,5 @@ for (const f of readdirSync(films).filter((x) => x.endsWith('.html'))) {
   for (const s of data.scenes) for (const b of s.beats) texts.push((b.voice || b.speak)[lang]);
 }
 const count = new Map();
-for (const t of texts) for (const w of t.toLowerCase().match(/\p{L}[\p{L}'’-]*\p{L}|\p{L}/gu) || []) count.set(w, (count.get(w) || 0) + 1);
+for (const t of texts) for (const w of t.toLowerCase().match(/\p{L}[\p{L}'’]*/gu) || []) count.set(w, (count.get(w) || 0) + 1);
 for (const [w, n] of [...count].sort()) console.log(`${w}\t${n}`);
