@@ -68,7 +68,7 @@ export default {
         { term: 'Uniciteit', def: 'Of elke echte gebeurtenis of elk object maar één keer is vastgelegd.' },
         { term: 'Tijdigheid', def: 'Of de data beschikbaar zijn op het moment dat de beslissing valt die ze nodig heeft.' },
         { term: 'Validiteit', def: 'Of een waarde in het afgesproken formaat en bereik past, zoals een cyclustijd boven nul.' },
-        { term: 'Juistheid', def: 'Of een waarde klopt met wat er in werkelijkheid gebeurde.' },
+        { term: 'Juistheid', def: 'Of een waarde klopt met wat er in werkelijkheid gebeurde. Bij een inspectiesysteem of ML-model betekent accuracy iets anders: het aandeel goede oordelen.' },
         { term: 'Consistentie', def: 'Of hetzelfde feit klopt tussen systemen en door de tijd heen.' },
       ],
     },
@@ -92,7 +92,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een klant heeft twaalf oude persen uitgerust met sensoren op de signaallamp. Na twee weken laten de data 61% beschikbaarheid zien; de handmatige logs over dezelfde periode zeggen 84%. De productiemanager zegt dat de sensoren niet kloppen.\n\nStap 1: ga een dienst lang met een stopwatch bij één pers staan en vergelijk jouw log stop voor stop met de data. Stap 2: je ziet dat geel als “gestopt” telt, terwijl geel op deze persen wachten op materiaal of op de operator betekent. Dat is nog steeds verloren tijd, maar een ander verlies dan een storing, dus het krijgt een eigen label. Stap 3: tel de korte stops op die het handmatige log miste. Stap 4: deel beide getallen met de uitleg, en daarna een paretodiagram van stopduur en oorzaak, grootste eerst.',
+        text: 'Een klant heeft twaalf oude persen uitgerust met sensoren op de signaallamp. Na twee weken laten de data 61% beschikbaarheid zien; de handmatige logs over dezelfde periode zeggen 84%. De productiemanager zegt dat de sensoren niet kloppen.\n\nStap 1: ga een dienst lang met een stopwatch bij één pers staan en vergelijk jouw log stop voor stop met de data. Stap 2: je ziet dat geel als “gestopt” telt, terwijl geel op deze persen wachten op materiaal of op de operator betekent. Dat is nog steeds verloren tijd, maar een ander verlies dan een storing, dus het krijgt een eigen categorie. Stap 3: tel de korte stops op die het handmatige log miste. Stap 4: deel beide getallen met de uitleg, en daarna een paretodiagram van stopduur en oorzaak, grootste eerst.',
       },
       said: 'Wat engineers zeggen: “Het handmatige log laat de lange stops zien. De PLC laat de honderden stops van twee minuten zien die niemand opschrijft.”',
       recall: [
@@ -112,7 +112,7 @@ export default {
         },
         {
           q: 'Je wilt trillingen tot 1 kHz zien op een reductor. Welke samplefrequentie heb je nodig?',
-          options: ['Zo’n 1 sample per seconde', 'Minstens 2 kHz, in de praktijk zo’n 2,56 kHz', 'Precies 1 kHz, gelijk aan het signaal', 'Zo’n 100 samples per seconde, dus 100 Hz, is genoeg'],
+          options: ['Zo’n 1 sample per seconde', 'Minstens 2 kHz, in de praktijk zo’n 2,56 kHz', 'Precies 1 kHz, dezelfde frequentie als het signaal', 'Zo’n 100 samples per seconde, dus 100 Hz, is genoeg'],
           answer: 'Minstens 2 kHz, in de praktijk zo’n 2,56 kHz',
           why: 'Je moet sneller samplen dan twee keer de hoogste frequentie; analysers gebruiken een factor 2,56.',
         },
@@ -178,8 +178,8 @@ export default {
         },
         {
           q: 'Waarom doet goede traceerbaarheid ertoe bij een recall?',
-          options: ['Het versnelt de grondoorzaakanalyse van het defect', 'Je beperkt de recall tot partijen met het foute materiaal', 'Je hoeft klanten en autoriteiten dan niet te informeren', 'De aansprakelijkheid voor de recall gaat naar de leverancier'],
-          answer: 'Je beperkt de recall tot partijen met het foute materiaal',
+          options: ['Het versnelt de grondoorzaakanalyse van het defect', 'Je beperkt de recall tot partijen met fout materiaal', 'Je hoeft klanten en autoriteiten dan niet te informeren', 'De aansprakelijkheid voor de recall gaat naar de leverancier'],
+          answer: 'Je beperkt de recall tot partijen met fout materiaal',
           why: 'Als je precies weet welke partijen welk materiaal kregen, blijft de recall klein en gericht.',
         },
         {
@@ -226,10 +226,10 @@ export default {
         },
       ],
       teach: [
-        'Datakwaliteit één keer meten is een audit; haar managen is een kringloop. Schrijf datakwaliteitsregels (data quality rules), controles die een computer bij elke laadronde draait: “elke stop boven twee minuten heeft een reden”, “cyclustijd tussen 0,5 en 10 seconden”, “elke MES-order bestaat in ERP”. Volg per regel, per lijn, per week welk aandeel records erdoor komt.\n\nEen scorekaart datakwaliteit toont die slagingspercentages naast het rapport dat ze voeden, zodat gebruikers zien hoeveel ze het kunnen vertrouwen.',
+        'Datakwaliteit één keer meten is een audit; datakwaliteit managen is een doorlopende cyclus. Schrijf datakwaliteitsregels (data quality rules), controles die een computer bij elke laadronde draait: “elke stop boven twee minuten heeft een reden”, “cyclustijd tussen 0,5 en 10 seconden”, “elke MES-order bestaat in ERP”. Volg per regel, per lijn, per week welk aandeel records erdoor komt.\n\nEen scorekaart datakwaliteit toont die slagingspercentages naast het rapport dat ze voeden, zodat gebruikers zien hoeveel ze het kunnen vertrouwen.',
         'Los het op bij de bron, niet in het rapport. Opschonen in Power BI gaat snel, maar verstopt de oorzaak, en elk nieuw rapport moet het opnieuw doen. Vraag waarom het foute record ontstond: een redenlijst die niet past, een terminal te ver van de machine, een veld dat niemand uitlegde.\n\nEen bekende vuistregel, de 1-10-100-regel (Labovitz en Chang, 1992), zegt dat een fout record voorkomen 1 kost, later corrigeren 10 en ermee leven 100. Zie de verhouding als illustratie, niet als meting.',
         'ISO 8000 is de internationale normenreeks over datakwaliteit. De delen over stamdata (de 100-serie) leggen vast hoe records zoals materialen en leveranciers beschreven en uitgewisseld worden, zodat een ander systeem ze kan lezen zonder te raden. ISO 8000-61 beschrijft de processen om datakwaliteit te managen, van plannen en beheersen tot verbeteren.\n\nWeinig fabrieken laten zich ertegen certificeren; de reeks dient vooral als checklist en als gedeelde taal met de leveranciers van stamdata.',
-        'Regels stapelen. Halen drie onafhankelijke controles 95%, 90% en 98% van de records, dan komt maar zo’n 84% door alle drie. Een rapport dat alle drie de velden nodig heeft, is zwakker dan elk los percentage doet denken.\n\nLet ook op stille fouten: een bevroren sensor stuurt nog steeds geldige waarden. Een versheidscontrole (is deze tag het afgelopen uur veranderd?) en een volumecontrole (bracht de laadronde van vannacht het gebruikelijke aantal rijen?) vangen wat bereikregels missen.',
+        'Fouten stapelen zich op. Halen drie onafhankelijke controles 95%, 90% en 98% van de records, dan komt maar zo’n 84% door alle drie. Een rapport dat alle drie de velden nodig heeft, is zwakker dan elk los percentage doet denken.\n\nLet ook op stille fouten: een bevroren sensor stuurt nog steeds geldige waarden. Een versheidscontrole (is deze tag het afgelopen uur veranderd?) en een volumecontrole (bracht de laadronde van vannacht het gebruikelijke aantal rijen?) vangen wat bereikregels missen.',
         'Waar experts over discussiëren: een centraal datateam dat eigenaar is van de kwaliteit, of elke afdeling die haar eigen data repareert. Centrale teams bouwen goede tools maar zien de vloer niet; afdelingen zien de oorzaak maar hebben geen tijd.\n\nTypische fout: een scorekaart die niemand leest, met regels waar niemand eigenaar van is. Elke regel heeft een eigenaar nodig die actie neemt als het percentage zakt. De scherpe vraag: “Wie krijgt bericht als dit percentage zakt, en wat doet die dan?”',
       ],
       example: {
@@ -250,19 +250,19 @@ export default {
         },
         {
           q: 'Wat laat een scorekaart datakwaliteit zien?',
-          options: ['Het aantal supporttickets over het MES deze maand', 'De slagingspercentages van de regels, naast het rapport', 'Een lijst van alle Power BI-rapporten en wie ze opende', 'Hoeveel gebruikers elk rapport de afgelopen maand openden'],
-          answer: 'De slagingspercentages van de regels, naast het rapport',
+          options: ['Het aantal supporttickets over het MES deze maand', 'De slagingspercentages van de regels, bij het rapport', 'Een lijst van alle Power BI-rapporten en wie ze opende', 'Hoeveel gebruikers elk rapport de afgelopen maand openden'],
+          answer: 'De slagingspercentages van de regels, bij het rapport',
           why: 'Gebruikers zien hoeveel ze een rapport kunnen vertrouwen, en eigenaren zien welke regel aandacht nodig heeft.',
         },
         {
           q: 'Waarom schiet slechte data opschonen in het rapport, in plaats van bij de bron, op de lange duur tekort?',
-          options: ['Power BI kan opgeschoonde waarden niet in zijn model bewaren', 'ISO 8000 verbiedt opschonen binnen een rapportagetool', 'De oorzaak blijft, en elk nieuw rapport moet het overdoen', 'Opgeschoonde data laden altijd trager dan de ruwe data'],
-          answer: 'De oorzaak blijft, en elk nieuw rapport moet het overdoen',
+          options: ['Power BI kan opgeschoonde waarden niet in zijn model bewaren', 'ISO 8000 verbiedt opschonen binnen een rapportagetool', 'De oorzaak blijft; elk rapport moet het opnieuw doen', 'Opgeschoonde data laden altijd trager dan de ruwe data'],
+          answer: 'De oorzaak blijft; elk rapport moet het opnieuw doen',
           why: 'De foute records blijven ontstaan, en elk rapport heeft zijn eigen kopie van de reparatie nodig.',
         },
         {
           q: 'Een temperatuursensor bevriest en blijft 72,0 °C sturen, wat binnen het geldige bereik valt. Welke controle vangt dat?',
-          options: ['Een versheidscontrole: veranderde de waarde onlangs?', 'Een bereikcontrole: ligt de waarde tussen de grenzen?', 'Een formaatcontrole: is de waarde opgeslagen als getal?', 'Een unieke-rijcontrole: staat elke rij er één keer in?'],
+          options: ['Een versheidscontrole: veranderde de waarde onlangs?', 'Een bereikcontrole: ligt de waarde tussen de grenzen?', 'Een formaatcontrole: is de waarde opgeslagen als getal?', 'Een uniciteitscontrole: staat elke rij er één keer in?'],
           answer: 'Een versheidscontrole: veranderde de waarde onlangs?',
           why: 'Een bevroren waarde is geldig en binnen het bereik; alleen een controle op verandering in de tijd ziet hem.',
         },
@@ -292,14 +292,14 @@ export default {
       pre: [
         {
           q: 'Een fabrieksdashboard heeft 24 tegels met meters, 3D-taartdiagrammen en het bedrijfslogo. De plantmanager kijkt er elke ochtend een paar seconden naar. Wat haalt hij er waarschijnlijk uit?',
-          options: ['Weinig: de belangrijke getallen verdrinken in de rest', 'Alles, want alle getallen van de fabriek staan erop', 'Alleen de trends, want meters tonen de historie', 'De exacte OEE per lijn, vergeleken met die van vorige maand'],
-          answer: 'Weinig: de belangrijke getallen verdrinken in de rest',
+          options: ['Weinig: de kerngetallen verdrinken in de rest', 'Alles, want alle getallen van de fabriek staan erop', 'Alleen de trends, want meters tonen de historie', 'De exacte OEE per lijn, vergeleken met die van vorige maand'],
+          answer: 'Weinig: de kerngetallen verdrinken in de rest',
           why: 'In een paar seconden leest niemand 24 tegels. Zonder duidelijke focus verdwijnen de getallen die ertoe doen.',
         },
       ],
       teach: [
         'Stephen Few, een bekende schrijver over dashboardontwerp, definieert een dashboard als een visuele weergave van de belangrijkste informatie die nodig is om een of meer doelen te halen, op één scherm, zodat je het in één oogopslag kunt volgen.\n\nDaar volgen drie dingen uit. Een dashboard dient een doel en een publiek. Het toont alleen de belangrijkste getallen. En het is om te volgen, niet om te graven; graven hoort in een apart rapport.',
-        'Een KPI, een key performance indicator, is een getal dat laat zien of je op koers ligt voor een doel: OEE, first pass yield (goed in één keer), leverbetrouwbaarheid. Een KPI zonder doelwaarde en trend zegt weinig: “OEE 71%” is pas goed of slecht naast “doel 75%, zes weken stijgend”.\n\nMensen uit het vak adviseren vaak een handvol KPI’s per dashboard, grofweg vijf tot negen; dat is een vuistregel uit de praktijk, geen wet.',
+        'Een KPI, een key performance indicator, is een getal dat laat zien of je op koers ligt voor een doel: OEE, first pass yield (goed in één keer), leverbetrouwbaarheid. Een KPI zonder doelwaarde en trend zegt weinig: “OEE 71%” is pas goed of slecht naast “doel 75%, zes weken stijgend”.\n\nMensen uit het vak adviseren vaak een handvol KPI’s per dashboard, grofweg vijf tot negen; dat is een vuistregel uit de praktijk, geen wet. Hoe je elke KPI zo definieert dat niemand discussieert, staat in Sturen op prestaties.',
         'Combineer achterlopende en voorlopende indicatoren. Een achterlopende indicator laat het resultaat achteraf zien, zoals het afkeurpercentage van vorige week. Een voorlopende indicator beweegt vóór het resultaat, zoals het aandeel omstellingen volgens de standaard, of het aantal openstaande onderhoudsacties.\n\nAchterlopende indicatoren vertellen of je gewonnen hebt; voorlopende vertellen wat je maandag moet doen.',
         'Edward Tufte, een statisticus die bekend is van zijn boeken over grafieken, bedacht de data-inktratio: het deel van de inkt in een grafiek dat data laat zien. Verhoog die door weg te halen wat geen data toont: 3D-effecten, zware rasterlijnen, achtergronden. Versiering die niets toevoegt noemde hij chartjunk.\n\nIn de praktijk: een simpele staaf of lijn met het doel als dunne lijn wint van een meter (gauge), die veel ruimte kost voor één getal.',
         'Waar experts over discussiëren: Few houdt vast aan één scherm zonder scrollen; anderen vinden dat achterhaald door telefoons en doorklikken. De meesten zijn het erover eens dat het eerste scherm de hoofdvraag moet beantwoorden.\n\nTypische fout: een dashboard gebouwd op welke data er zijn, niet op wat iemand moet beslissen. De scherpe vraag: “Wie kijkt hiernaar, in welk overleg, en wat beslist die ermee?”',
@@ -320,7 +320,7 @@ export default {
         },
         {
           q: 'Welke is een voorlopende indicator voor afkeur?',
-          options: ['De afkeurkosten van vorige maand in euro’s', 'Het aantal klachten van klanten dit kwartaal', 'Het aandeel omstellingen volgens de standaard', 'Het afkeurpercentage van vorige week, per lijn'],
+          options: ['De afkeurkosten van vorige maand in euro’s, voor de fabriek', 'Het aantal klachten van klanten dit kwartaal, per klant', 'Het aandeel omstellingen volgens de standaard', 'Het afkeurpercentage van vorige week, per lijn'],
           answer: 'Het aandeel omstellingen volgens de standaard',
           why: 'Slechte omstellingen veroorzaken later afkeur, dus dit getal beweegt vóór de afkeur. De andere melden resultaten achteraf.',
         },
@@ -371,9 +371,9 @@ export default {
       teach: [
         'Power BI, de rapportagetool van Microsoft, heeft drie lagen. Power Query haalt data op en vormt ze: verbinden met een database of bestand, kolommen verwijderen, tabellen samenvoegen. Het semantisch model bevat de opgeschoonde tabellen, hun relaties en de berekeningen; Microsoft noemde het tot 2023 een dataset. Het rapport is de pagina’s met visuals erbovenop.\n\nDe meeste fouten zitten in de eerste twee lagen, niet in de visuals.',
         'Een goed semantisch model is een stermodel (star schema): een feitentabel met gebeurtenissen, zoals stops of gemaakte stuks, met daaromheen dimensietabellen voor machine, product, datum en dienst. IT-fundamenten (eng.itbasics) legt het stermodel uit en waarom slordige koppelingen dubbel tellen.\n\nZet eerst het model goed; een rommelig model maakt elke visual traag en elk getal verdacht.',
-        'Berekeningen schrijf je in DAX, de formuletaal van Power BI. Een meting (measure) rekent op het moment dat je kijkt, voor het filter dat actief is: OEE voor lijn 3 in week 44. Een berekende kolom rekent één keer per rij als de data laden, zoals een kolom in Excel.\n\nVerhoudingen zoals OEE, afkeurpercentage en leverbetrouwbaarheid moeten metingen zijn die sommen delen. Dagpercentages middelen geeft een fout antwoord als dagen of lijnen verschillen in omvang.',
+        'Berekeningen schrijf je in DAX, de formuletaal van Power BI. Een DAX-meting (measure) rekent op het moment dat je kijkt, voor het filter dat actief is: OEE voor lijn 3 in week 44. Een berekende kolom rekent één keer per rij als de data laden, zoals een kolom in Excel.\n\nVerhoudingen zoals OEE, afkeurpercentage en leverbetrouwbaarheid moeten metingen zijn die sommen delen, in DAX: DIVIDE(som van de volledig productieve tijd, som van de geplande tijd). Dagpercentages middelen geeft een fout antwoord als dagen of lijnen verschillen in omvang.',
         'Data in de Power BI-service, de cloudkant, worden alleen bijgewerkt bij een vernieuwing. Een geplande vernieuwing draait op vaste tijden: tot 8 keer per dag met een Pro-licentie en tot 48 keer met Premium Per User of een Premium- of Fabric-capaciteit, volgens de documentatie van Microsoft. Data van servers in de fabriek gaan via een on-premises data gateway.\n\nEen rapport is dus nooit “live” tenzij het daarvoor gebouwd is; het toont de stand bij de laatste vernieuwing.',
-        'Waar experts over discussiëren: selfservice, waarbij elke analist een eigen model bouwt, of één gecertificeerd model dat veel rapporten delen. Selfservice gaat snel; een gedeeld model houdt één definitie van OEE.\n\nTypische fout: OEE als berekende kolom, samengevat met de standaardinstelling “gemiddelde”. De scherpe vraag: “Is deze KPI een meting die sommen deelt, en wanneer zijn de data voor het laatst vernieuwd?”',
+        'Waar experts over discussiëren: selfservice, waarbij elke analist een eigen model bouwt, of één gecertificeerd model dat veel rapporten delen. Selfservice gaat snel; een gedeeld model houdt één definitie van OEE.\n\nTypische fout: OEE als berekende kolom, samengevat met “gemiddelde”. De scherpe vraag: “Is deze KPI een meting die sommen deelt, en wanneer zijn de data voor het laatst vernieuwd?”',
       ],
       example: {
         kind: 'worked',
@@ -391,14 +391,14 @@ export default {
         },
         {
           q: 'Wat is het verschil tussen een meting en een berekende kolom in Power BI?',
-          options: ['Een meting volgt het actieve filter; een kolom ligt per rij vast', 'Een meting staat op schijf; een kolom wordt op het scherm berekend', 'Een meting werkt alleen in Excel; een kolom alleen in Power BI', 'Een meting vraagt een Premium-licentie; een kolom werkt met Pro'],
-          answer: 'Een meting volgt het actieve filter; een kolom ligt per rij vast',
+          options: ['Een meting volgt het filter; een kolom ligt per rij vast', 'Een meting staat op schijf; een kolom wordt op het scherm berekend', 'Een meting werkt alleen in Excel; een kolom alleen in Power BI', 'Een meting vraagt een Premium-licentie; een kolom werkt met Pro'],
+          answer: 'Een meting volgt het filter; een kolom ligt per rij vast',
           why: 'Een meting rekent voor wat je filtert; een berekende kolom ligt per rij vast zodra de data laden.',
         },
         {
           q: 'Een Pro-werkruimte vernieuwt om 06:00. Om 15:00 noemt de productiemanager het rapport “live”. Wat zeg je hem?',
-          options: ['Het is live, want Power BI streamt alle data', 'Het toont gisteren, want Pro vernieuwt één keer per dag', 'Het is alleen live voor lijnen met een gateway', 'Het toont de stand van 06:00, de laatste vernieuwing'],
-          answer: 'Het toont de stand van 06:00, de laatste vernieuwing',
+          options: ['Het is live, want Power BI streamt alle data', 'Het toont gisteren, want Pro vernieuwt één keer per dag', 'Het is alleen live voor lijnen met een gateway', 'De stand van 06:00, de laatste vernieuwing'],
+          answer: 'De stand van 06:00, de laatste vernieuwing',
           why: 'Een geplande vernieuwing kopieert de data op vaste tijden; daartussen verandert het rapport niet.',
         },
         {
@@ -423,7 +423,7 @@ export default {
         { term: 'Power Query', def: 'Het deel van Power BI dat data ophaalt en vormt: verbinden, opschonen en tabellen samenvoegen.' },
         { term: 'Semantisch model', def: 'De tabellen, relaties en berekeningen die Power BI-rapporten lezen; tot 2023 dataset genoemd.' },
         { term: 'DAX', def: 'Data Analysis Expressions: de formuletaal voor berekeningen in Power BI.' },
-        { term: 'Meting', def: 'Een DAX-berekening die bij het kijken gebeurt voor het actieve filter, zoals OEE voor één lijn en week.' },
+        { term: 'DAX-meting', def: 'Een DAX-berekening die bij het kijken gebeurt voor het actieve filter, zoals OEE voor één lijn en week.' },
         { term: 'Berekende kolom', def: 'Een DAX-berekening die één keer per rij wordt opgeslagen als de data laden, zoals een Excel-kolom.' },
         { term: 'Geplande vernieuwing', def: 'Een Power BI-model op vaste tijden bijwerken; tot 8 keer per dag met Pro, 48 met Premium.' },
       ],
@@ -441,8 +441,8 @@ export default {
       ],
       teach: [
         'Een scherm op de vloer en een managementrapport beantwoorden verschillende vragen. Het scherm bij de lijn vraagt: liggen we nu op plan, en zo niet, wat is het probleem? Het managementrapport vraagt: waar zitten de structurele verliezen, en waar zetten we aandacht en geld op in?\n\nDe twee door elkaar halen is de meest gemaakte fout: een managementrapport op een scherm van 55 inch boven de lijn, vol filters waar niemand op kan klikken.',
-        'Veel Lean-fabrieken werken met getrapt overleg (tiered meetings): tier 1 bij de lijn aan het begin van elke dienst, tier 2 voor de afdeling, tier 3 voor de fabriek, waarbij elke laag doorgeeft wat hij zelf niet kan oplossen.\n\nElke laag heeft een eigen beeld nodig. Tier 1 wil deze dienst en dit uur; tier 2 gisteren en deze week; tier 3 trends, paretodiagrammen en acties over weken.',
-        'De klassieke weergave voor tier 1 is het uur-tot-uurbord (hour-by-hour board): per uur het plan, het werkelijke aantal, het verschil en een korte reden. Het werkt op papier, een whiteboard of een scherm. De kracht is dat het team het ziet vollopen en binnen het uur ingrijpt.\n\nEen andon is het signaal dat een medewerker of machine geeft als er iets mis is, vaak een lamp of geluid, zodat er snel hulp komt. Een scherm kan andon-oproepen tonen, maar vervangt de oproep zelf niet.',
+        'Veel Lean-fabrieken werken met getrapt overleg (tiered meetings): tier 1 bij de lijn aan het begin van elke dienst, tier 2 voor de afdeling, tier 3 voor de fabriek, waarbij elke laag doorgeeft wat hij zelf niet kan oplossen. Hoe die ladder loopt, staat in Landen (Getrapt overleg en escaleren).\n\nElke laag heeft een eigen beeld nodig. Tier 1 wil deze dienst en dit uur; tier 2 gisteren en deze week; tier 3 trends, paretodiagrammen en acties over weken.',
+        'De klassieke weergave voor tier 1 is het uur-per-uurbord (hour-by-hour chart): per uur het plan, het werkelijke aantal, het verschil en een korte reden (zie Sturen op prestaties, Een prestatiebord dat stuurt). De kracht is dat het team het ziet vollopen en binnen het uur ingrijpt.\n\nEen andon is het signaal dat een medewerker of machine geeft als er iets mis is, vaak een lamp of geluid, zodat er snel hulp komt. Een scherm kan andon-oproepen tonen, maar vervangt de oproep zelf niet.',
         'Visueel management betekent normaal en afwijkend in één oogopslag zichtbaar maken. Vuistregel: iedereen die langsloopt, moet in een paar seconden zien of het op plan loopt. Dus: grote getallen, leesbaar op meters afstand, weinig kleuren, het doel zichtbaar, niet scrollen.\n\nVertrouw niet alleen op rood en groen: grofweg 1 op de 12 mannen heeft een rood-groene kleurzienstoornis. Voeg een symbool of tekst toe. Een managementrapport mag meer detail dragen en drill-down bieden: doorklikken van een totaal naar de delen.',
         'Waar experts over discussiëren: automatische schermen of borden met de hand. Schermen zijn altijd actueel; met de hand schrijven laat het team over elk uur nadenken en eigenaar van het getal zijn. Veel fabrieken automatiseren het tellen en houden de redenen handwerk.\n\nTypische fout: het scherm toont OEE, een getal dat het team binnen het uur niet kan veranderen. De scherpe vraag: “Wat kunnen de mensen die naar dit scherm kijken het komende uur veranderen, en laat het scherm dat zien?”',
       ],
@@ -455,7 +455,7 @@ export default {
       said: 'Wat de teamleider zegt: “Aan de OEE van gisteren heb ik niks. Vertel me of we dit uur achterlopen.”',
       recall: [
         {
-          q: 'Het dienstplan is 3.360 stuks in 7 productieve uren. Wat is het doel per uur op het uur-tot-uurbord?',
+          q: 'Het dienstplan is 3.360 stuks in 7 productieve uren. Wat is het doel per uur op het uur-per-uurbord?',
           number: 480,
           tolerance: 0.5,
           unit: 'stuks',
@@ -476,13 +476,13 @@ export default {
         },
         {
           q: 'Wat is een andon?',
-          options: ['Een bord dat het plan per dienst laat zien', 'Een signaal dat er iets mis is, zodat er hulp komt', 'Een Japanse naam voor een managementrapport', 'Een overleg bij de lijn aan het begin van elke dienst'],
-          answer: 'Een signaal dat er iets mis is, zodat er hulp komt',
+          options: ['Een bord dat het plan per dienst laat zien', 'Een signaal om hulp als er iets mis is', 'Een Japanse naam voor een managementrapport', 'Een overleg bij de lijn aan het begin van elke dienst'],
+          answer: 'Een signaal om hulp als er iets mis is',
           why: 'Een andon, vaak een lamp of geluid, roept direct hulp op als er een probleem is.',
         },
       ],
       situation: {
-        scene: 'Bij een kunststoffabriek wil de IT-manager de handgeschreven uur-tot-uurborden vervangen door schermen die door het MES gevoed worden. De teamleiders zijn tegen: “Dan kijkt niemand er meer naar.”',
+        scene: 'Bij een kunststoffabriek wil de IT-manager de handgeschreven uur-per-uurborden vervangen door schermen die door het MES gevoed worden. De teamleiders zijn tegen: “Dan kijkt niemand er meer naar.”',
         ask: 'Wat stel je voor?',
         model: 'Ze hebben allebei een punt. Het scherm kan het tellen doen, zodat het werkelijke aantal altijd klopt, terwijl het team zelf de reden invult bij elk gemist uur. Laten we het een maand op één lijn testen en kijken of de redenen ingevuld worden en er acties volgen. Zakt dat weg, dan gaan we terug naar het bord.',
         rubric: [
@@ -494,7 +494,7 @@ export default {
       sayIt: 'Leg een plantmanager in 60 seconden uit waarom een managementrapport niet thuishoort op een scherm boven de lijn.',
       terms: [
         { term: 'Getrapt overleg', def: 'Een ladder van korte overleggen, van de lijn (tier 1) tot afdeling en fabriek, waarbij elke laag doorgeeft wat hij niet kan oplossen.' },
-        { term: 'Uur-tot-uurbord', def: 'Een bord dat per uur het plan, het werkelijke aantal, het verschil en een reden toont.' },
+        { term: 'Uur-per-uurbord', def: 'Een bord, op papier, een whiteboard of een scherm, dat per uur het plan, het werkelijke aantal, het verschil en een reden toont.' },
         { term: 'Andon', def: 'Een signaal, vaak een lamp of geluid, dat een medewerker of machine geeft als er iets mis is, zodat er snel hulp komt.' },
         { term: 'Visueel management', def: 'Normaal en afwijkend in één oogopslag zichtbaar maken op de vloer, met borden, kleuren en markeringen.' },
         { term: 'Drill-down', def: 'In een rapport doorklikken van een totaal naar de delen waaruit het bestaat.' },
@@ -512,9 +512,9 @@ export default {
         },
       ],
       teach: [
-        'Zodra de data stromen, is het verleidelijk om bij elke afwijking een alert te sturen. Alertmoeheid (alert fatigue) is het gevolg: mensen krijgen zo veel alerts dat ze ze niet meer lezen, en de alert die ertoe doet verdrinkt.\n\nProcesbesturing kent hetzelfde probleem met alarmen; de richtlijn EEMUA 191 noemt ongeveer één alarm per 10 minuten per operator zeer waarschijnlijk acceptabel (zie Procestechniek, eng.process). Alerts uit een dataplatform verdienen dezelfde discipline.',
-        'Een goede alert slaagt voor drie tests. Hij is uitvoerbaar (actionable): iemand kan en moet nu iets doen. Hij heeft een eigenaar: één benoemde rol, geen mailinglijst. En hij is zeldzaam genoeg om serieus genomen te worden.\n\nAls niemand erop zou handelen, is het informatie. Dan hoort het op een dashboard of in een dagrapport, niet in een alert.',
-        'Leg de alertdrempel, de waarde waarbij hij afgaat, op de eigen variatie van het proces, niet op het doel. Een doel zegt waar je wilt zijn; normale variatie zegt wanneer er echt iets veranderd is. Regelgrenzen (control limits) uit statistische procesbeheersing (zie eng.spc) doen precies dat.\n\nVoeg persistentie toe: alleen alarmeren als een waarde bijvoorbeeld drie metingen achter elkaar buiten blijft, zodat één ruizige meting niemand wakker maakt.',
+        'Zodra de data stromen, is het verleidelijk om bij elke afwijking een alert te sturen. Alertmoeheid (alert fatigue) is het gevolg: mensen krijgen zo veel alerts dat ze ze niet meer lezen, en de alert die ertoe doet verdrinkt.\n\nProcesbesturing kent hetzelfde probleem met alarmen; de richtlijn EEMUA 191 noemt ongeveer één alarm per 10 minuten per operator bij normaal bedrijf zeer waarschijnlijk acceptabel (zie Procestechniek, eng.process). Alerts uit een dataplatform verdienen dezelfde discipline.',
+        'Een goede alert slaagt voor drie tests. Hij vraagt om actie (actionable): iemand kan en moet nu iets doen. Hij heeft een eigenaar: één benoemde rol, geen mailinglijst. En hij is zeldzaam genoeg om serieus genomen te worden.\n\nAls niemand erop zou handelen, is het informatie. Dan hoort het op een dashboard of in een dagrapport, niet in een alert.',
+        'Leg de alertdrempel, de waarde waarbij hij afgaat, op de eigen variatie van het proces, niet op het doel. Een doel zegt waar je wilt zijn; normale variatie zegt wanneer er echt iets veranderd is. Regelgrenzen (control limits) uit statistische procesbeheersing (zie eng.spc) doen precies dat; op een kaart met uur- of dagwaarden is één punt daarbuiten al een signaal.\n\nVoeg bij snelle sensorwaarden persistentie toe: alleen alarmeren als de waarde bijvoorbeeld drie aflezingen achter elkaar buiten de grens blijft, zodat één ruizige aflezing niemand wakker maakt.',
         'Ontwerp de route. Bundel verwante alerts in één bericht, zodat tien sensoren op één machine één alert geven, niet tien. Gebruik escalatie: reageert de eerste eigenaar niet binnen een afgesproken tijd, dan gaat de alert naar het volgende niveau.\n\nMeet de alertprecisie: het aandeel alerts dat tot een echte actie leidde. Een team dat op 5% van zijn alerts handelt, krijgt 95% ruis.',
         'Waar experts over discussiëren: wie alerts mag toevoegen. Mag iedereen het, dan vermenigvuldigen ze; mag alleen een centraal team het, dan komen nuttige alerts er nooit. Veel locaties lopen elke maand alle alerts na en schrappen die waar niemand op handelde.\n\nTypische fout: alerts op KPI-doelen, zoals OEE onder 75%, die elke dienst afgaan omdat het doel ambitieus is. De scherpe vraag: “Wat heeft iemand gedaan de laatste tien keer dat deze alert afging?”',
       ],
@@ -535,7 +535,7 @@ export default {
           why: '3 × 7 = 21 diensten; 1.260 ÷ 21 = 60 alerts per dienst, veel te veel om te lezen.',
         },
         {
-          q: 'Wat maakt een alert uitvoerbaar?',
+          q: 'Wanneer vraagt een alert echt om actie?',
           options: ['Hij gaat naar zo veel mogelijk mensen op de lijst tegelijk', 'Hij gebruikt rode tekst en een hard geluid', 'Hij toont een KPI vergeleken met het doel', 'Iemand kan en moet er nu iets mee doen'],
           answer: 'Iemand kan en moet er nu iets mee doen',
           why: 'Een alert waar niemand iets mee kan, is informatie; die hoort op een dashboard.',
@@ -567,7 +567,7 @@ export default {
       terms: [
         { term: 'Alertmoeheid', def: 'Mensen krijgen zo veel alerts dat ze ze niet meer lezen, waardoor de belangrijke gemist wordt.' },
         { term: 'Alertdrempel', def: 'De waarde waarbij een alert afgaat; het best gebaseerd op de normale variatie van het proces.' },
-        { term: 'Persistentie', def: 'Alleen alarmeren als een waarde een aantal metingen achter elkaar buiten de grenzen blijft.' },
+        { term: 'Persistentie', def: 'Alleen alarmeren als een waarde een aantal aflezingen achter elkaar buiten de grenzen blijft.' },
         { term: 'Escalatie', def: 'Een alert doorzetten naar het volgende niveau als de eerste eigenaar niet op tijd reageert.' },
         { term: 'Alertprecisie', def: 'Het aandeel alerts dat tot een echte actie leidde.' },
       ],
@@ -612,8 +612,8 @@ export default {
         },
         {
           q: 'Waarom patcht OT zijn systemen veel minder vaak dan IT?',
-          options: ['OT-systemen zijn van buiten de fabriek niet te hacken', 'Leveranciers brengen geen beveiligingspatches uit voor OT-systemen', 'IT-medewerkers mogen niet op de werkvloer komen', 'Een herstart kan een lijn stilleggen of de veiligheid raken'],
-          answer: 'Een herstart kan een lijn stilleggen of de veiligheid raken',
+          options: ['OT-systemen zijn van buiten de fabriek niet te hacken', 'Leveranciers brengen geen beveiligingspatches uit voor OT-systemen', 'IT-medewerkers mogen niet op de werkvloer komen', 'Een herstart kan de lijn stilleggen of onveilig zijn'],
+          answer: 'Een herstart kan de lijn stilleggen of onveilig zijn',
           why: 'OT zet beschikbaarheid en veiligheid voorop, dus elke wijziging wordt gepland en getest.',
         },
         {
@@ -651,12 +651,12 @@ export default {
           q: 'Een plantmanager noemt het Power BI-rapport “live”. Het MES exporteert één keer per nacht en Power BI vernieuwt om 06:00. Wat laat het rapport om 14:00 echt zien?',
           options: ['Alles tot een paar minuten geleden', 'De data tot de export van vannacht', 'Alleen wat er sinds 06:00 gebeurde', 'De data van de hele vorige week'],
           answer: 'De data tot de export van vannacht',
-          why: 'Data zijn zo vers als de oudste stap in de keten: een nachtelijke export betekent de stand van vannacht, hoe laat het rapport ook vernieuwt.',
+          why: 'Data zijn maar zo vers als de export aan het begin van de keten: een nachtelijke export betekent de stand van vannacht, hoe laat het rapport ook vernieuwt.',
         },
       ],
       teach: [
         'Een dataplatform is het geheel van tools dat data uit veel bronnen samenbrengt voor analyse: opslag, laadprocessen en de modellen die rapporten lezen. Typische lagen: bronnen (PLC, historian, MES, ERP); inname (ingestion), die de data binnenhaalt; opslag; transformatie, die opschoont en combineert; en een semantisch model dat Power BI leest.\n\nVoor de bouwstenen, zoals databases, SQL en API’s, zie IT-fundamenten (eng.itbasics).',
-        'ETL, extract, transform, load, schoont de data op voordat ze opgeslagen worden. ELT, extract, load, transform, laadt eerst de ruwe data en transformeert ze binnen het platform. Goedkope cloudopslag maakte ELT gangbaar: de ruwe kopie blijft, dus je kunt een transformatie overdoen als een definitie verandert.\n\nEen incrementele lading (incremental load) haalt alleen op wat nieuw of gewijzigd is sinds de vorige run; dat is sneller, maar mist correcties op oude records als hij daar niet voor ontworpen is.',
+        'ETL, extract, transform, load, schoont de data op voordat ze opgeslagen worden. ELT, extract, load, transform, laadt eerst de ruwe data en transformeert ze binnen het platform. Goedkope cloudopslag maakte ELT gangbaar: de ruwe kopie blijft, dus je kunt een transformatie overdoen als een definitie verandert.\n\nIncrementeel laden (incremental load) haalt alleen op wat nieuw of gewijzigd is sinds de vorige run; dat is sneller, maar mist correcties op oude records als het daar niet voor ontworpen is.',
         'Waar sla je het op? Een datawarehouse bevat gestructureerde, opgeschoonde tabellen met een vast ontwerp, gebouwd voor rapportage. Een data lake bewaart ruwe bestanden van elke soort, zoals exports, sensordata en beelden, goedkoop, en geeft ze pas structuur bij het lezen. Een lakehouse combineert beide: lake-opslag met tabelformaten, zoals Delta Lake of Apache Iceberg, die warehousefuncties toevoegen.\n\nMicrosoft Fabric en Databricks zijn voorbeelden van zulke platforms; namen zijn voorbeelden, geen advies.',
         'Latentie (latency) is de vertraging tussen een gebeurtenis op de vloer en het moment dat die in een rapport staat. Die stapelt zich op langs de keten: export, laden, transformeren, vernieuwen. Nachtelijke batches geven een rapport dat altijd een halve dag oud is: prima voor een weekreview, nutteloos binnen een dienst.\n\nVeel platforms noemen hun lagen brons (ruw), zilver (opgeschoond) en goud (klaar voor rapporten), de zogeheten medallion-architectuur; de namen verschillen.',
         'Waar experts over discussiëren: één platform voor alle data, of secondedata in de historian laten en alleen aggregaten kopiëren, zoals minuten per machinestatus per uur. Elke seconde van elke tag kopiëren is duur en wordt zelden gebruikt.\n\nTypische fout: niemand kan een getal terugvolgen dat raar lijkt. Data lineage, de vastlegging van waar elk getal vandaan komt en wat ermee gedaan is, is de oplossing. De scherpe vraag: “Kun je me het pad van dit getal laten zien, van de machine tot het scherm?”',
@@ -697,7 +697,7 @@ export default {
       situation: {
         scene: 'Bij een drankenfabriek stelt IT een clouddataplatform voor en vraagt productie om “alle data te sturen”. De productiemanager vraagt jou wat hij moet antwoorden.',
         ask: 'Wat adviseer je?',
-        model: 'Laten we beginnen bij de vragen: welke rapporten en beslissingen hebben welke data nodig, en hoe vers. Voor de dagstart willen we de nachtdienst om 07:30; voor de maandreview zijn nachtelijke ladingen prima. Dan kopiëren we wat die vragen dient, houden we de ruwe kopie zodat definities kunnen veranderen, en laten we de secondedata van sensoren in de historian tot iemand ze nodig heeft.',
+        model: 'Laten we beginnen bij de vragen: welke rapporten en beslissingen hebben welke data nodig, en hoe vers. Voor de dagstart willen we de nachtdienst om 07:30; voor de maandreview zijn nachtelijke laadrondes prima. Dan kopiëren we wat die vragen dient, houden we de ruwe kopie zodat definities kunnen veranderen, en laten we de secondedata van sensoren in de historian tot iemand ze nodig heeft.',
         rubric: [
           'Begint bij de vragen en de versheid die ze vragen',
           'Stelt voor te laden wat nodig is en de ruwe kopie te houden',
@@ -729,14 +729,14 @@ export default {
         'Data-eigenaarschap beantwoordt: wie beslist wat een gegeven betekent, en wie zorgt dat het klopt? Drie rollen zijn gangbaar. De data-eigenaar (data owner), meestal een manager in de business, is verantwoordelijk voor een datadomein, zoals productie voor stopredenen. Een data steward doet het dagelijkse werk: definities, regels, fouten herstellen. Een technisch databeheerder (data custodian), vaak IT, draait de systemen die de data opslaan en verplaatsen.\n\nIT houdt de database draaiend; het kan niet bepalen wat “geplande tijd” betekent.',
         'Een datacontract is een afspraak tussen het team dat data maakt en de teams die ze gebruiken: welke velden, hun betekenis en eenheden, hoe vers, hoe volledig, en wat er gebeurt voordat er iets verandert. Zie het als de opgeschreven specificatie van een koppeling, met een eigenaar.\n\nZonder zo’n afspraak kan elke MES-update, hernoemde tag of nieuwe redencode de rapporten verderop ongemerkt breken.',
         'Data mesh, een idee van Zhamak Dehghani (2019), trekt het eigenaarschap verder door: elk domein, zoals productie, onderhoud of kwaliteit, publiceert zijn data als product, met een eigenaar, documentatie en kwaliteitsbeloften, op een gedeeld platform.\n\nVoor één fabriek kan dat te zwaar zijn. Het bruikbare deel is het principe dat wie data maakt, ook eigenaar is van de kwaliteit voor anderen.',
-        'Toegang hoort bij eigenaarschap. Rolgebaseerde toegang (role-based access) geeft rechten per rol, niet per persoon: teamleiders zien hun lijn, controllers de kosten. Persoonsgegevens, zoals welke operator welke stop registreerde, vallen onder de AVG (GDPR); in Nederland heeft de ondernemingsraad instemmingsrecht als data gebruikt kunnen worden om personeel te volgen (WOR, artikel 27).\n\nSpreek vooraf af waar de data wel en niet voor gebruikt worden.',
+        'Toegang hoort bij eigenaarschap. Rolgebaseerde toegang (role-based access) geeft rechten per rol, niet per persoon: teamleiders zien hun lijn, controllers de kosten. Persoonsgegevens, zoals welke operator welke stop registreerde, vallen onder de AVG (GDPR); in Nederland heeft de ondernemingsraad instemmingsrecht als data gebruikt kunnen worden om personeel te volgen (WOR, artikel 27 lid 1 sub l).\n\nSpreek vooraf af waar de data wel en niet voor gebruikt worden.',
         'Waar experts over discussiëren: hoort eigenaarschap bij IT, dat de systemen kent, of bij de business, die de betekenis kent? De meeste kaders, waaronder dat van DAMA, leggen de verantwoordelijkheid bij de business en de technische zorg bij IT.\n\nTypische fout: een data-eigenaar die op papier staat maar nooit iets beslist. De scherpe vraag: “Als deze definitie moet veranderen, wie beslist dat, en wie hoort het voordat het live gaat?”',
       ],
       example: {
         kind: 'faded',
         text: 'Bij een verpakkingsfabriek tonen drie rapporten stilstand: één van onderhoud, één van productie, één van financiën. Vorige maand voegde de MES-leverancier in een update een stopcategorie toe; het financiële rapport boekt die stops nu als geplande tijd. Productie en financiën wijzen naar elkaar, en IT zegt dat het alleen “de servers draait”.\n\nDe plantmanager vraagt je het voorgoed op te lossen.',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Wijs een data-eigenaar aan voor stilstanddata, waarschijnlijk de productiemanager, en een steward die de redenlijst en de definities bijhoudt. IT blijft technisch beheerder.\n\nSchrijf een kort datacontract voor de stilstandfeed uit het MES: de velden, de betekenis van elke categorie, versheid en volledigheid, en de regel dat wijzigingen twee weken vooraf aan elke rapporteigenaar gemeld worden. Koppel daarna de nieuwe categorie één keer, in een gedeeld model, zodat alle drie de rapporten hem gebruiken. Controleer het contract na elke MES-update.',
+        reveal: 'Wijs een data-eigenaar aan voor stilstanddata, waarschijnlijk de productiemanager, en een steward die de redenlijst en de definities bijhoudt. IT blijft technisch databeheerder.\n\nSchrijf een kort datacontract voor de stilstandfeed uit het MES: de velden, de betekenis van elke categorie, versheid en volledigheid, en de regel dat wijzigingen twee weken vooraf aan elke rapporteigenaar gemeld worden. Koppel daarna de nieuwe categorie één keer, in een gedeeld model, zodat alle drie de rapporten hem gebruiken. Controleer het contract na elke MES-update.',
       },
       said: 'Wat de IT-manager zegt: “Wij draaien de database. Wat een stopreden betekent, beslist productie.”',
       recall: [
@@ -750,20 +750,20 @@ export default {
         },
         {
           q: 'Welke rol doet het dagelijkse werk aan definities, regels en het herstellen van fouten?',
-          options: ['De data-eigenaar', 'De technisch beheerder', 'De data steward', 'De rapportgebruiker'],
+          options: ['De data-eigenaar', 'De technisch databeheerder', 'De data steward', 'De rapportgebruiker'],
           answer: 'De data steward',
-          why: 'De eigenaar is verantwoordelijk, de technisch beheerder draait de systemen, de steward doet de dagelijkse zorg.',
+          why: 'De eigenaar is verantwoordelijk, de technisch databeheerder draait de systemen, de steward doet de dagelijkse zorg.',
         },
         {
           q: 'Wat legt een datacontract vast tussen de maker en de gebruikers van data?',
-          options: ['De prijs die gebruikers per rapport aan de IT-afdeling betalen', 'Velden, betekenis, versheid en hoe wijzigingen gemeld worden', 'De Power BI-licenties die elke gebruiker krijgt', 'De servers waarop de data staan opgeslagen'],
+          options: ['De prijs die gebruikers per rapport aan de IT-afdeling betalen', 'Velden, betekenis, versheid en hoe wijzigingen gemeld worden', 'De Power BI-licenties en toegangsrechten die elke gebruiker krijgt', 'De servers waarop de data staan opgeslagen'],
           answer: 'Velden, betekenis, versheid en hoe wijzigingen gemeld worden',
           why: 'Het is de opgeschreven specificatie van een koppeling, zodat wijzigingen rapporten niet meer ongemerkt breken.',
         },
         {
           q: 'Stopdata laten zien welke operator elke stop registreerde. Een manager wil operators daarop rangschikken. Wat moet er eerst gebeuren?',
-          options: ['Niets; de data staan al in het MES', 'IT vragen de manager leesrechten op het MES te geven', 'De ranglijst publiceren om de teams te motiveren', 'De AVG checken en de ondernemingsraad erbij halen'],
-          answer: 'De AVG checken en de ondernemingsraad erbij halen',
+          options: ['Niets; de data staan al in het MES', 'IT vragen de manager leesrechten op het MES te geven', 'De ranglijst publiceren om de teams te motiveren', 'De AVG checken en de OR erbij halen'],
+          answer: 'De AVG checken en de OR erbij halen',
           why: 'Personeel volgen met persoonsgegevens vraagt een rechtsgrond, en in Nederland de instemming van de ondernemingsraad.',
         },
       ],
@@ -777,7 +777,7 @@ export default {
           'Legt betekenis en gebruik vast in een kort contract',
         ],
       },
-      sayIt: 'Leg een plantmanager in 60 seconden de rollen van data-eigenaar, steward en technisch beheerder uit, en wat een datacontract doet.',
+      sayIt: 'Leg een plantmanager in 60 seconden de rollen van data-eigenaar, steward en technisch databeheerder uit, en wat een datacontract doet.',
       terms: [
         { term: 'Data-eigenaar', def: 'De manager die verantwoordelijk is voor een datadomein: wat de data betekenen en dat ze kloppen.' },
         { term: 'Data steward', def: 'Degene die de dagelijkse zorg voor data doet: definities, regels en fouten herstellen.' },
@@ -823,8 +823,8 @@ export default {
         },
         {
           q: 'Een project speelt 300 uur per jaar vrij op een machine die geen bottleneck is en overcapaciteit heeft. Wat is de baat in geld?',
-          options: ['300 uur vermenigvuldigd met de marge per uur van de hele lijn', 'Alleen echte besparing, zoals overuren, of extra verkoop', 'Helemaal niets, want uren zijn nooit geld', '300 uur × de aanschafprijs per uur van de machine'],
-          answer: 'Alleen echte besparing, zoals overuren, of extra verkoop',
+          options: ['300 uur vermenigvuldigd met de marge per uur van de hele lijn', 'Alleen echte besparing of extra verkoop', 'Helemaal niets, want uren zijn nooit geld', '300 uur × de aanschafprijs per uur van de machine'],
+          answer: 'Alleen echte besparing of extra verkoop',
           why: 'Vrijgespeelde capaciteit op een niet-bottleneck is pas geld als er kosten verdwijnen of verkoop bijkomt.',
         },
         {
@@ -866,8 +866,8 @@ export default {
       pre: [
         {
           q: 'Een leverancier zegt dat zijn AI “uw proces zelf leert” uit drie maanden data. In die tijd kwam het defect dat hij moet voorspellen twee keer voor. Wat is de realistische verwachting?',
-          options: ['Hij voorspelt het defect binnen weken betrouwbaar', 'Hij vindt de grondoorzaak van het defect voor je, zonder hulp', 'Hij heeft na de eerste maand geen data meer nodig', 'Twee gevallen zijn veel te weinig om dat defect te leren'],
-          answer: 'Twee gevallen zijn veel te weinig om dat defect te leren',
+          options: ['Hij voorspelt het defect binnen weken betrouwbaar', 'Hij vindt de grondoorzaak van het defect voor je, zonder hulp', 'Hij heeft na de eerste maand geen data meer nodig', 'Twee gevallen zijn te weinig om dat te leren'],
+          answer: 'Twee gevallen zijn te weinig om dat te leren',
           why: 'Een model leert van voorbeelden. Met twee gevallen van het defect valt er niets betrouwbaars te leren.',
         },
       ],
@@ -876,11 +876,11 @@ export default {
         'Gesuperviseerd leren leert van voorbeelden waar het antwoord bij staat, het label: deze batch was goed, die afkeur; dit lager faalde na 400 uur. Daarna voorspelt het het label voor nieuwe gevallen.\n\nOngesuperviseerd leren krijgt geen labels. Het vindt zelf structuur: groepen vergelijkbare producten, of datapunten die niet in het gewone patroon passen. Dat helpt als je weinig of geen voorbeelden hebt van het probleem dat je zoekt.',
         'Een model is zo goed als zijn data. Je hebt genoeg voorbeelden nodig van wat je wilt voorspellen, labels die je kunt vertrouwen, en data die de normale variatie dekken: diensten, materialen, seizoenen.\n\nOm een model eerlijk te toetsen, houd je een deel van de data apart als testset, vaak 20 tot 30%, en laat je het model die tijdens het trainen nooit zien. De score op de testset is wat je op nieuwe data mag verwachten.',
         'Overfitting is als een model de trainingsdata uit het hoofd leert, ruis inbegrepen, in plaats van het echte patroon. Het scoort briljant op data die het gezien heeft en slecht op nieuwe data. Waarschuwingstekens: een groot gat tussen de trainings- en testscore, en veel invoer bij weinig voorbeelden.\n\nDe remedie: meer data, een eenvoudiger model, en testen op data uit een latere periode, zoals het model ze in het echt tegenkomt.',
-        'De Europese AI-verordening (AI Act, Verordening (EU) 2024/1689) deelt AI in naar risico. De meeste toepassingen in de fabriek, zoals afkeur voorspellen of onderhoud, hebben weinig specifieke plichten; AI die werknemers beoordeelt of volgt, telt als hoog risico. Na een wijziging in 2026 gelden de plichten voor hoog risico vanaf december 2027, en vanaf augustus 2028 voor AI in gereguleerde producten zoals machines. Check de actuele tekst voordat je op data vertrouwt.\n\nDe scherpe vraag bij elk model: “Hoe scoorde het op data die het nooit zag?”',
+        'De Europese AI-verordening (AI Act, Verordening (EU) 2024/1689) deelt AI in naar risico. De meeste toepassingen in de fabriek, zoals afkeur voorspellen of onderhoud, hebben weinig specifieke plichten; AI die werknemers beoordeelt of volgt, telt als hoog risico. De Digital Omnibus (Verordening (EU) 2026/1744) schoof de plichten voor hoog risico op naar december 2027, en naar augustus 2028 voor AI in gereguleerde producten zoals machines. Check de actuele tekst voor je erop bouwt.\n\nDe scherpe vraag bij elk model: “Hoe scoorde het op data die het nooit zag?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een analist bij een spuitgieterij bouwt een model dat afkeur voorspelt uit 40 machine-instellingen, met 600 batches. Op die 600 batches zit het 97% van de tijd goed. De plantmanager wil het vanaf morgen gebruiken.\n\nStap 1: vraag hoe het scoort op batches die het niet gezien heeft. De analist test het op de 150 batches van vorige maand: 71%. Stap 2: de daling van 97% naar 71% wijst op overfitting: 40 invoervariabelen, maar 600 voorbeelden. Stap 3: vergelijk met een simpele basislijn: altijd “goed” voorspellen klopt 92% van de tijd, dus het model doet het slechter dan niets doen. Stap 4: vereenvoudig naar de 5 instellingen die procesengineers belangrijk vinden, en test opnieuw op vorige maand.',
+        text: 'Een analist bij een spuitgieterij bouwt een model dat afkeur voorspelt uit 40 machine-instellingen, met 600 batches. Op die 600 batches zit het 97% van de tijd goed. De plantmanager wil het vanaf morgen gebruiken.\n\nStap 1: vraag hoe het scoort op batches die het niet gezien heeft. De analist test het op de 150 batches van vorige maand: 71%. Stap 2: de daling van 97% naar 71% wijst op overfitting: 40 invoervariabelen, maar 600 voorbeelden. Stap 3: vergelijk met het simpelste model dat er is: altijd “goed” voorspellen klopt 92% van de tijd, dus het model doet het slechter dan niets doen. Stap 4: vereenvoudig naar de 5 instellingen die procesengineers belangrijk vinden, en test opnieuw op vorige maand.',
       },
       said: 'Wat de data scientist zegt: “Zevenennegentig procent op de trainingsdata zegt niks. Laat me vorige maand zien.”',
       recall: [
@@ -900,7 +900,7 @@ export default {
         },
         {
           q: 'Een model scoort 98% op zijn trainingsdata en 70% op nieuwe data. Wat is het waarschijnlijkste probleem?',
-          options: ['De nieuwe data zijn te laat geladen', 'Het model is veel te eenvoudig voor deze taak', 'Overfitting: het leerde de ruis ook', 'De testset was groter dan nodig'],
+          options: ['De nieuwe data zijn te laat in het model geladen', 'Het model is veel te eenvoudig voor deze taak', 'Overfitting: het leerde de ruis ook', 'De testset was groter dan nodig'],
           answer: 'Overfitting: het leerde de ruis ook',
           why: 'Een groot gat tussen geziene en ongeziene data is het klassieke teken van overfitting.',
         },
@@ -965,14 +965,14 @@ export default {
         },
         {
           q: 'Waarom past anomaliedetectie bij fabrieken waar storingen zeldzaam zijn?',
-          options: ['Het heeft een grote set oude storingen nodig om van te kunnen leren', 'Het leert hoe normaal eruitziet, niet hoe storingen eruitzien', 'Het vervangt alle losse sensoren door één camera', 'Het werkt alleen op gloednieuwe machines'],
-          answer: 'Het leert hoe normaal eruitziet, niet hoe storingen eruitzien',
+          options: ['Het heeft een grote set oude storingen nodig om van te kunnen leren', 'Het leert hoe normaal eruitziet, niet storingen', 'Het vervangt alle losse sensoren door één camera', 'Het werkt alleen op gloednieuwe machines'],
+          answer: 'Het leert hoe normaal eruitziet, niet storingen',
           why: 'Normale data zijn er volop; storingsdata niet. Anomaliedetectie heeft alleen de eerste nodig.',
         },
         {
           q: 'Een model markeert een lagerschade drie dagen vooraf. Het reservelager is twee weken onderweg. Wat zegt dat?',
-          options: ['Het model is perfect en hoeft niet te veranderen', 'Het lager moet meteen vervangen worden', 'De sensor moet veel trager samplen om opslag en data te sparen', 'De waarschuwing komt te laat om de reparatie te plannen'],
-          answer: 'De waarschuwing komt te laat om de reparatie te plannen',
+          options: ['Het model is perfect en hoeft niet te veranderen', 'Het lager moet meteen vervangen worden', 'De sensor moet veel trager samplen om opslag en data te sparen', 'Te laat gewaarschuwd om de reparatie te plannen'],
+          answer: 'Te laat gewaarschuwd om de reparatie te plannen',
           why: 'De waarschuwingstijd moet langer zijn dan de tijd om onderdelen te krijgen en de klus te plannen; anders houd je een reserve op voorraad of waarschuw je eerder.',
         },
         {
@@ -985,7 +985,7 @@ export default {
       situation: {
         scene: 'Een leverancier pitcht “voorspellend onderhoud op basis van AI” voor alle 60 motoren in een fabriek, met een dashboard van de resterende levensduur per motor. De fabriek heeft storingshistorie van maar een handvol motoren.',
         ask: 'Wat vraag je?',
-        model: 'Hoe schat het model de resterende levensduur zonder onze storingshistorie: is het getraind op vergelijkbare motoren elders, en hoe is het getest? Wat zijn de detectiegraad en de precisie bij vergelijkbare locaties? Kunnen we beginnen met de kritieke motoren op de bottleneck, met toestandsgrenzen of anomaliedetectie, en afspreken wie een melding controleert en hoe snel? Na zes maanden beoordelen we het op voorkomen stops.',
+        model: 'Hoe schat het model de resterende levensduur zonder onze storingshistorie: is het getraind op vergelijkbare motoren elders, en hoe is het getest? Wat zijn de detectiegraad en de precisie bij vergelijkbare locaties? Kunnen we beginnen met de kritieke motoren op de bottleneck, met toestandsgrenzen of anomaliedetectie, en afspreken wie een melding controleert en hoe snel? Na zes maanden beoordelen we het op vermeden stops.',
         rubric: [
           'Vraagt waar de storingsdata vandaan komen',
           'Vraagt naar detectiegraad en precisie',
@@ -1112,14 +1112,14 @@ export default {
         },
         {
           q: 'Wanneer voegt een discrete-event-simulatie het meest toe ten opzichte van een spreadsheet?',
-          options: ['Als de lijn één machine heeft die op vaste snelheid draait', 'Als de directie een overtuigend plaatje van de nieuwe lijn wil', 'Als storingen, buffers en andere variatie de output bepalen', 'Als er helemaal geen data over de huidige lijn zijn'],
-          answer: 'Als storingen, buffers en andere variatie de output bepalen',
+          options: ['Als de lijn één machine heeft die op vaste snelheid draait', 'Als de directie een overtuigend plaatje van de nieuwe lijn wil', 'Als storingen, buffers en variatie de output bepalen', 'Als er helemaal geen data over de huidige lijn zijn'],
+          answer: 'Als storingen, buffers en variatie de output bepalen',
           why: 'Spreadsheets rekenen met gemiddelden; DES laat blokkeren, leeglopen en wachtrijen door variatie zien.',
         },
         {
           q: 'Hoe weet je dat je een simulatiemodel kunt vertrouwen voor een nieuw scenario?',
-          options: ['Gevoed met de data van vandaag geeft het de output van vandaag', 'Het heeft een gedetailleerde 3D-animatie van elke machine', 'Het is gebouwd in een bekend simulatiepakket', 'De leverancier heeft het al bij verschillende andere fabrieken gebruikt'],
-          answer: 'Gevoed met de data van vandaag geeft het de output van vandaag',
+          options: ['Met de data van vandaag geeft het de output van vandaag', 'Het heeft een gedetailleerde 3D-animatie van elke machine', 'Het is gebouwd in een bekend simulatiepakket', 'De leverancier heeft het al bij verschillende andere fabrieken gebruikt'],
+          answer: 'Met de data van vandaag geeft het de output van vandaag',
           why: 'Validatie tegen de huidige werkelijkheid, binnen een paar procent, is de basis om wat-als-scenario’s te vertrouwen.',
         },
         {
