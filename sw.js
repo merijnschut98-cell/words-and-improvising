@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v112';
+const CACHE = 'vantage-point-v113';
 // Films (v14b): MP4s from the public Supabase bucket, put here by the page after
 // a first full view (src/ui/film.js, cacheFilm). Never precached; kept across
 // shell versions.
