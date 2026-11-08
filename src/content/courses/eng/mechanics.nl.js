@@ -162,17 +162,17 @@ export default {
         },
       ],
       teach: [
-        'De meeste machinedelen worden niet gewoon uitgetrokken; ze buigen of wringen. Een buigend moment is het draaiende effect dat een balk buigt: kracht × afstand. Een uitkragende ligger, een balk die aan één kant vastzit en aan de andere kant vrij is, zoals een wandbeugel, heeft het grootste buigend moment bij de wand: 2 kN op 0,5 m geeft 1 kNm.\n\nDaarom scheuren beugels bij de wand of bij de eerste las, niet bij de punt.',
-        'Buigspanning is σ = M / W: het buigend moment gedeeld door het weerstandsmoment W, een getal dat zegt hoe goed een doorsnede weerstand biedt tegen buigen. Voor een rechthoek W = b × h² / 6 (b de breedte, h de hoogte in de lastrichting); voor een massieve ronde as W ≈ 0,1 × d³.\n\nReken in N en mm: een moment in Nm × 1.000 geeft Nmm, en Nmm / mm³ geeft MPa. De meeste rekenfouten zijn eenheidsfouten.',
+        'De meeste machinedelen worden niet gewoon uitgetrokken; ze buigen of wringen. Een buigend moment (bending moment) is het draaiende effect dat een balk buigt: kracht × afstand. Een uitkragende ligger (cantilever, op de vloer vaak console), een balk die aan één kant vastzit en aan de andere kant vrij is, zoals een wandbeugel, heeft het grootste buigend moment bij de wand: 2 kN op 0,5 m geeft 1 kNm.\n\nDaarom scheuren beugels bij de wand of bij de eerste las, niet bij de punt.',
+        'Buigspanning is σ = M / W: het buigend moment gedeeld door het weerstandsmoment W (section modulus), een getal dat zegt hoe goed een doorsnede weerstand biedt tegen buigen. Voor een rechthoek W = b × h² / 6 (b de breedte, h de hoogte in de lastrichting); voor een massieve ronde as W ≈ 0,1 × d³.\n\nReken in N en mm: een moment in Nm × 1.000 geeft Nmm, en Nmm / mm³ geeft MPa. De meeste rekenfouten zijn eenheidsfouten.',
         'Torsie is wringing: een as die een pomp aandrijft, draagt het koppel van de motor. De schuifspanning (shear stress), de spanning die lagen materiaal langs elkaar probeert te schuiven, is τ = T / Wp, met Wp ≈ 0,2 × d³ voor een massieve as.\n\nOmdat d tot de derde gaat, helpt een iets dikkere as veel: van 40 naar 50 mm halveert de spanning ongeveer. Een vermoeiingsscheur door torsie loopt vaak onder 45° om de as, als een spiraal.',
-        'Doorbuiging is hoe ver een balk onder last beweegt. Voor een uitkragende ligger met een last op de punt is δ = F × L³ / (3 × E × I). I is het traagheidsmoment, preciezer het oppervlaktetraagheidsmoment (second moment of area): de weerstand van de doorsnede tegen doorbuigen, b × h³ / 12 voor een rechthoek.\n\nOok de lengte gaat tot de derde: een twee keer zo lange beugel buigt acht keer zo ver door. Een camera-arm of sensorhouder faalt meestal op doorbuiging lang voordat de spanning telt.',
+        'Doorbuiging (deflection) is hoe ver een balk onder last beweegt. Voor een uitkragende ligger met een last op de punt is δ = F × L³ / (3 × E × I). I is het traagheidsmoment, preciezer het oppervlaktetraagheidsmoment (second moment of area): de weerstand van de doorsnede tegen doorbuigen, b × h³ / 12 voor een rechthoek.\n\nOok de lengte gaat tot de derde: een twee keer zo lange beugel buigt acht keer zo ver door. Een camera-arm of sensorhouder faalt meestal op doorbuiging lang voordat de spanning telt.',
         'In de praktijk controleert een engineer drie dingen: spanning tegen de vloeigrens met een veiligheidsfactor, doorbuiging tegen wat de functie toelaat (voor uitlijning vaak een fractie van een millimeter), en vermoeiing als de last wisselt.\n\nWat je kunt vragen zonder te rekenen: waar zit het grootste moment, hoe is het profiel gedraaid, en is het onderdeel door de wijziging langer of dunner geworden? Die drie vragen vangen de meeste verrassingen.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een stalen beugel van S235, een platte strip van 20 mm breed en 60 mm hoog, steekt 500 mm uit een kolom en draagt 2 kN op de punt. Het moment bij de kolom: 2.000 N × 500 mm = 1.000.000 Nmm. W = 20 × 60² / 6 = 12.000 mm³, dus σ = 1.000.000 / 12.000 = 83 MPa: een veiligheidsfactor van 235 / 83 = 2,8 tegen vloeien.\n\nBij een ombouw monteert een monteur dezelfde strip plat, 60 mm breed en 20 mm hoog, omdat dat beter past.',
+        text: 'Een stalen beugel van S235, een platte strip van 20 mm breed en 60 mm hoog, steekt 500 mm uit een kolom en draagt 2 kN op de punt. Het moment bij de kolom: 2.000 N × 500 mm = 1.000.000 Nmm. W = 20 × 60² / 6 = 12.000 mm³, dus σ = 1.000.000 / 12.000 = 83 MPa. S235 garandeert bij 20 mm dikte maar 225 MPa vloeigrens, dus de veiligheidsfactor is 225 / 83 = 2,7 tegen vloeien.\n\nBij een ombouw monteert een monteur dezelfde strip plat, 60 mm breed en 20 mm hoog, omdat dat beter past.',
         ask: 'Wat is de buigspanning met de strip plat gemonteerd, en wat gebeurt er met de beugel?',
-        reveal: 'W = 60 × 20² / 6 = 4.000 mm³, dus σ = 1.000.000 / 4.000 = 250 MPa: boven de vloeigrens van 235 MPa van S235. De beugel buigt blijvend.\n\nDe doorbuiging is nog erger: I daalt van 20 × 60³ / 12 naar 60 × 20³ / 12, een factor 9, dus hij zou al negen keer zo ver doorbuigen voordat hij vloeit. Zelfde strip, zelfde last, 90° gedraaid.',
+        reveal: 'W = 60 × 20² / 6 = 4.000 mm³, dus σ = 1.000.000 / 4.000 = 250 MPa: boven de vloeigrens van 225 MPa van deze S235-strip. De beugel buigt blijvend.\n\nDe doorbuiging is nog erger: I daalt van 20 × 60³ / 12 naar 60 × 20³ / 12, een factor 9, dus hij zou al negen keer zo ver doorbuigen voordat hij vloeit. Zelfde strip, zelfde last, 90° gedraaid.',
       },
       said: 'Wat engineers zeggen: “Het is dezelfde strip, maar je hebt hem op zijn slappe as gezet. Zet hem op zijn kant, anders vouwt hij.”',
       recall: [
@@ -194,14 +194,14 @@ export default {
         },
         {
           q: 'Een massieve as wordt dikker gemaakt, van 40 naar 50 mm diameter, bij hetzelfde koppel. Wat gebeurt er met de schuifspanning door torsie?',
-          options: ['Die daalt zo’n 20%, net als de diameter stijgt', 'Die daalt tot ongeveer een kwart van wat hij was', 'Die blijft gelijk, want het koppel verandert niet', 'Die halveert ongeveer'],
-          answer: 'Die halveert ongeveer',
+          options: ['Die daalt zo’n 20%, net als de diameter stijgt', 'Die daalt tot ongeveer een kwart', 'Die blijft gelijk, want het koppel is hetzelfde', 'Die daalt tot ongeveer de helft van wat hij was'],
+          answer: 'Die daalt tot ongeveer de helft van wat hij was',
           why: 'Wp groeit met d³: (40 / 50)³ = 0,51, dus de spanning halveert ongeveer.',
         },
         {
           q: 'Een sensorarm wordt twee keer zo lang gemaakt, met hetzelfde profiel en dezelfde last op de punt. Wat gebeurt er met de doorbuiging aan de punt?',
-          options: ['Ongeveer acht keer zo groot', 'Die verdubbelt, net als de lengte', 'Die wordt vier keer zo groot', 'Die blijft gelijk, want de last is gelijk'],
-          answer: 'Ongeveer acht keer zo groot',
+          options: ['Ongeveer acht keer zo groot als eerst', 'Die verdubbelt, net als de lengte', 'Die wordt vier keer zo groot', 'Die blijft gelijk, want de last is gelijk'],
+          answer: 'Ongeveer acht keer zo groot als eerst',
           why: 'De doorbuiging van een uitkragende ligger groeit met de lengte tot de derde: 2³ = 8.',
         },
       ],
@@ -387,14 +387,14 @@ export default {
       ],
       teach: [
         'De trekproef gaat volgens EN ISO 6892-1. Een proefstaaf, een bewerkte ronde of platte staaf uit het materiaal, wordt in een trekbank geklemd en met een geregelde snelheid uitgetrokken, terwijl kracht en rek worden vastgelegd.\n\nDe meetlengte is de gemarkeerde lengte waarover de rek wordt gemeten. Bij ronde staven is die meestal proportioneel: 5,65 × √(doorsnede), dus 50 mm voor een proefstaaf van 10 mm diameter.',
-        'Het rapport geeft een paar waarden. Rm, de treksterkte: maximale kracht / oorspronkelijke doorsnede. ReH, de bovenste vloeigrens, voor staal met een duidelijk vloeipunt; anders Rp0,2, de rekgrens: de spanning die 0,2% blijvende rek achterlaat.\n\nA, de rek bij breuk: hoeveel langer de meetlengte na de breuk is, in %. Z, de insnoering (reduction of area) bij de hals. A en Z laten zien hoe taai de partij is.',
+        'Het rapport geeft een paar waarden. Rm, de treksterkte: maximale kracht / oorspronkelijke doorsnede. ReH, de bovenste vloeigrens, voor staal met een duidelijk vloeipunt; anders Rp0,2, de rekgrens: de spanning die 0,2% blijvende rek achterlaat.\n\nA, de rek bij breuk: hoeveel langer de meetlengte na de breuk is, in %. Z, de insnoering (reduction of area) bij de hals. A en Z laten zien hoe vervormbaar (ductiel) de partij is.',
         'Hardheidsmetingen drukken een indringer in het oppervlak. Brinell (ISO 6506): een hardmetalen kogel van 10 mm, vaak met 3.000 kgf, en je meet de diameter van de indruk; geschreven als HBW. Vickers (ISO 6507): een diamanten piramide, je meet de diagonalen, elke last van piepklein tot groot, geschreven als HV10 voor 10 kgf.\n\nRockwell (ISO 6508): een diamanten kegel voor HRC, de diepte wordt automatisch gemeten. Snel, dus geschikt voor de werkvloer.',
         'Elke meting heeft zijn plek. Brinell middelt over een grote indruk: goed voor gietstukken en grof materiaal. Vickers met een kleine last meet dunne lagen en de hardingsdiepte (case depth) op een doorgezaagde doorsnede. Rockwell is snel, maar het deel moet dik genoeg zijn, heel grof tien keer de indrukdiepte, met een schone, vlakke plek.\n\nEen ontkoolde huid (decarburised skin), waar het oppervlak in de oven koolstof verloor, meet zacht. Slijp die eerst weg, anders liegt de meting.',
-        'Een hardheidsomrekening vertaalt de ene schaal naar een andere, of naar een geschatte treksterkte, met tabellen uit ISO 18265; voor staal heel grof Rm ≈ 3,3 × HB. De norm waarschuwt zelf dat die omrekeningen benaderingen zijn en het minst betrouwbaar voor sterkte.\n\nEen hardheidsmeting is dus een goedkope screening: prima om een zachte partij te vinden, geen vervanging van een trekproef als de sterkte ertoe doet. Een scherpe vraag: “Omgerekend of gemeten?”',
+        'Een hardheidsomrekening vertaalt de ene schaal naar een andere, of naar een geschatte treksterkte, met tabellen uit ISO 18265; voor staal heel grof Rm ≈ 3,4 × HB (in MPa). De norm waarschuwt zelf dat die omrekeningen benaderingen zijn en het minst betrouwbaar voor sterkte.\n\nEen hardheidsmeting is dus een goedkope screening: prima om een zachte partij te vinden, geen vervanging van een trekproef als de sterkte ertoe doet. Een scherpe vraag: “Omgerekend of gemeten?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een partij S355-plaat wordt beproefd. De ronde proefstaaf heeft een diameter van 10 mm: doorsnede π × 5² = 78,5 mm², meetlengte 5,65 × √78,5 = 50 mm. De kracht bij vloeien is 29,0 kN: 29.000 / 78,5 = 369 MPa, boven het minimum van 355 MPa. De maximale kracht is 41,6 kN: 41.600 / 78,5 = 530 MPa, binnen het bereik van 470 tot 630 MPa voor deze plaat.\n\nNa de breuk liggen de meetstreepjes 61 mm uit elkaar: (61 − 50) / 50 = 22% rek, net genoeg voor het minimum van 22%. Op het certificaat komt deze partij erdoor, zonder veel marge op taaiheid.',
+        text: 'Een partij S355-plaat wordt beproefd. De ronde proefstaaf heeft een diameter van 10 mm: doorsnede π × 5² = 78,5 mm², meetlengte 5,65 × √78,5 = 50 mm. De kracht bij vloeien is 29,0 kN: 29.000 / 78,5 = 369 MPa, boven het minimum van 355 MPa. De maximale kracht is 41,6 kN: 41.600 / 78,5 = 530 MPa, binnen het bereik van 470 tot 630 MPa voor deze plaat.\n\nNa de breuk liggen de meetstreepjes 61 mm uit elkaar: (61 − 50) / 50 = 22% rek, net genoeg voor het minimum van 22%. Op het certificaat komt deze partij erdoor, zonder veel marge op de rek.',
       },
       said: 'Wat engineers zeggen: “Is die 260 HB gemeten, of omgerekend uit HRC? Omgerekend is een gok; ik wil een echte trekproef op deze charge.”',
       recall: [
@@ -421,8 +421,8 @@ export default {
           why: 'Een kleine Vickers-indruk past in een dunne laag en kan in stapjes van het oppervlak naar binnen worden gezet.',
         },
         {
-          q: 'Een ingangscontrole meet 200 HB op een stalen staaf, en een tabel rekent dat om naar zo’n 660 MPa treksterkte. Hoe behandel je die 660 MPa?',
-          options: ['Een schatting: bevestig met een trekproef als het moet', 'Als een gemeten waarde, net zo goed als een volledige trekproef', 'Als de vloeigrens van de staaf, voor de sterkteberekening', 'Als zinloos, want hardheid heeft niets met sterkte te maken'],
+          q: 'Een ingangscontrole meet 200 HB op een stalen staaf, en een tabel rekent dat om naar zo’n 675 MPa treksterkte. Hoe behandel je die 675 MPa?',
+          options: ['Een schatting: bevestig met een trekproef als het moet', 'Als een gemeten waarde, even goed als een trekproef', 'Als de vloeigrens, voor de sterkteberekening', 'Als zinloos: hardheid zegt helemaal niets over sterkte'],
           answer: 'Een schatting: bevestig met een trekproef als het moet',
           why: 'Omrekeningen volgens ISO 18265 zijn benaderingen; ze screenen een partij maar vervangen geen trekproef.',
         },
@@ -442,7 +442,7 @@ export default {
         { term: 'Proefstaaf', def: 'Een bewerkte staaf uit het materiaal, die bij de trekproef wordt uitgetrokken.' },
         { term: 'Meetlengte', def: 'De gemarkeerde lengte waarover bij de trekproef de rek wordt gemeten; meestal 5,65 × √(doorsnede).' },
         { term: 'Rekgrens', def: 'Rp0,2: de spanning die 0,2% blijvende rek achterlaat; gebruikt als er geen duidelijk vloeipunt is.' },
-        { term: 'Rek bij breuk', def: 'A: hoeveel langer de meetlengte na de breuk is, in %; een maat voor taaiheid.' },
+        { term: 'Rek bij breuk', def: 'A: hoeveel langer de meetlengte na de breuk is, in %; een maat voor vervormbaarheid (ductility).' },
         { term: 'Vickers', def: 'Hardheidsmeting met een diamanten piramide (HV); kleine lasten kunnen dunne lagen meten.' },
         { term: 'Hardheidsomrekening', def: 'De ene hardheidsschaal vertalen naar een andere, of naar een geschatte treksterkte, met tabellen uit ISO 18265; een benadering.' },
       ],
@@ -461,9 +461,9 @@ export default {
       teach: [
         'Taaiheid is de energie die een materiaal opneemt voordat het breekt, en zijn weerstand tegen een scheur die erdoorheen loopt. Sterkte en taaiheid zijn verschillend: heel hard staal is sterk maar vaak niet taai.\n\nDe kerfslagproef (Charpy test, EN ISO 148-1) meet het. Een staafje van 10 × 10 × 55 mm met een V-kerf van 2 mm wordt door een slingerende hamer gebroken; de opgenomen energie, in joule (J), is de kerfslagwaarde.',
         'Constructiestaal heeft na het vloeigrensgetal een kwaliteitsklasse: JR betekent minstens 27 J bij +20 °C, J0 bij 0 °C, J2 bij −20 °C, en K2 betekent 40 J bij −20 °C (EN 10025-2).\n\nHet certificaat toont drie staafjes per proef. EN 10025 legt het gemiddelde naast het minimum, en staat toe dat één waarde eronder zakt, maar niet onder 70% van het minimum.',
-        'Gewoon koolstofstaal heeft een taai-brosovergang: boven een bepaalde temperatuur breekt het taai en vezelig, eronder breekt het als glas met weinig energie. De Liberty-schepen uit de Tweede Wereldoorlog, waarvan sommige in koude zeeën scheurden, maakten dit beroemd.\n\nAustenitisch rvs zoals 304 en 316, en aluminium, hebben zo’n overgang niet: ze blijven taai in de kou. Daarom gebruiken cryogene tanks die.',
-        'Brosse breuk wordt waarschijnlijker bij lage temperatuur, dikke doorsneden, snelle belasting zoals een klap, en een scherpe kerf of scheur. Een kraan op een kade buiten in de winter, of een dik gelast frame met een scheur bij een las, heeft ze allemaal.\n\nBreuktaaiheid, een materiaaleigenschap die vaak als KIc wordt geschreven, zegt hoe grote scheur een onderdeel bij een gegeven spanning verdraagt. Dat telt voor zware, hoog belaste delen; de meeste fabrieksengineers zien het alleen in schaderapporten.',
-        'Waterstofbrosheid is een aparte valkuil. Hogesterktestaal, grofweg boven 1.000 MPa treksterkte zoals bouten 10.9 en 12.9, kan bij beitsen of galvaniseren (electroplating) waterstof opnemen en uren of dagen na het aanhalen scheuren, zonder enige overbelasting.\n\nISO 4042 beschrijft uitstoken (baking) na het galvaniseren om de waterstof eruit te halen; thermisch verzinkte bouten gaan in de praktijk tot klasse 10.9. De scherpe vraag bij gebroken verzinkte bouten: “Welke klasse, welke coating, en is er uitgestookt?”',
+        'Gewoon koolstofstaal heeft een taai-brosovergang (ductile-to-brittle transition): boven een bepaalde temperatuur breekt het taai en vezelig, eronder breekt het als glas met weinig energie. De Liberty-schepen uit de Tweede Wereldoorlog, waarvan sommige in koude zeeën scheurden, maakten dit beroemd.\n\nAustenitisch rvs zoals 304 en 316, en aluminium, hebben zo’n overgang niet: ze blijven taai in de kou. Daarom gebruiken cryogene tanks die.',
+        'Brosse breuk wordt waarschijnlijker bij lage temperatuur, dikke doorsneden, snelle belasting zoals een klap, en een scherpe kerf of scheur. Een kraan op een kade buiten in de winter, of een dik gelast frame met een scheur bij een las, heeft ze allemaal.\n\nBreuktaaiheid (fracture toughness), een materiaaleigenschap die vaak als KIc wordt geschreven, zegt hoe grote scheur een onderdeel bij een gegeven spanning verdraagt. Dat telt voor zware, hoog belaste delen; de meeste fabrieksengineers zien het alleen in schaderapporten.',
+        'Waterstofbrosheid (hydrogen embrittlement) is een aparte valkuil. Hogesterktestaal, grofweg boven 1.000 MPa treksterkte zoals bouten 10.9 en 12.9, kan bij beitsen of galvaniseren (electroplating) waterstof opnemen en uren of dagen na het aanhalen scheuren, zonder enige overbelasting.\n\nISO 4042 beschrijft uitstoken (baking) na het galvaniseren; dat verkleint het risico maar haalt het niet weg. Thermisch verzinkte bouten stoppen bij klasse 10.9 (ISO 10684). Waterstofscheuren in lassen behandelt Lassen en verbinden. De scherpe vraag bij gebroken verzinkte bouten: “Welke klasse, welke coating, en is er uitgestookt?”',
       ],
       example: {
         kind: 'faded',
@@ -491,8 +491,8 @@ export default {
         },
         {
           q: 'Welk van deze materialen heeft geen taai-brosovergang en blijft taai in diepe kou?',
-          options: ['Constructiestaal S235JR', 'Grijs gietijzer, zoals voor machinebedden', 'Austenitisch rvs 304', 'Gehard gereedschapsstaal van 60 HRC'],
-          answer: 'Austenitisch rvs 304',
+          options: ['Constructiestaal S235JR', 'Grijs gietijzer, zoals voor machinebedden', 'Austenitisch roestvast staal 304', 'Gereedschapsstaal van 60 HRC'],
+          answer: 'Austenitisch roestvast staal 304',
           why: 'Austenitisch rvs en aluminium houden hun taaiheid bij lage temperatuur; koolstofstaal en gietijzer verliezen die.',
         },
         {
@@ -534,10 +534,10 @@ export default {
         },
       ],
       teach: [
-        'EN 10204 bepaalt de soorten keuringsdocumenten. Een 2.1 is alleen een verklaring dat het product aan de order voldoet. Een 2.2-testrapport geeft typische uitslagen, niet van jouw partij. Een inspectiecertificaat 3.1 geeft uitslagen van de geleverde partij zelf, getekend door de keurder van de maker, onafhankelijk van de productie. Een 3.2 is ook getekend door een keurder van de koper of een derde partij.\n\nVeiligheidskritische delen vragen meestal 3.1; drukapparatuur en offshore vaak 3.2.',
+        'EN 10204 bepaalt de soorten keuringsdocumenten. Een 2.1 is alleen een verklaring dat het product aan de order voldoet. Een 2.2-testrapport geeft uitslagen van de routinecontroles van de maker, niet per se van jouw partij. Een inspectiecertificaat 3.1 geeft uitslagen van de geleverde partij zelf, getekend door de keurder van de maker, onafhankelijk van de productie. Een 3.2 is ook getekend door een keurder van de koper of een derde partij.\n\nVeiligheidskritische delen vragen meestal 3.1; drukapparatuur en offshore vaak 3.2.',
         'Het chargenummer (heat number) is de identiteit van de smelt, de partij staal die in de staalfabriek is gegoten. Het staat gestempeld of geverfd op de staaf en gedrukt op het certificaat.\n\nTraceerbaarheid betekent dat je dat nummer kunt volgen van certificaat via zagen, verspanen en montage tot het eindproduct. Elke keer dat een staaf gezaagd wordt, moet het nummer mee naar de stukken; is het weg, dan bewijst het certificaat niets meer over het onderdeel.',
         'Een certificaat lezen: noemt het de juiste soort, maat en leveringstoestand, bijvoorbeeld 42CrMo4 veredeld, Ø50? Liggen de gemeten vloeigrens, treksterkte, rek en kerfslagwaarden boven de minima van de norm voor die maat? Klopt de chemische samenstelling?\n\nEen certificaat kan ook fout zijn of zelfs vervalst. Lijken getallen te rond, of zijn ze gelijk over verschillende charges, stel dan vragen.',
-        'Een materiaalverwisseling komt vaak voor en is onzichtbaar: C45 en 42CrMo4 zien er hetzelfde uit, net als 304 en 316. PMI (positive material identification) controleert de legering ter plekke, vaak met een handheld XRF-analyser, een pistool dat in seconden de elementen leest.\n\nXRF ziet chroom, nikkel en molybdeen goed, maar lichte elementen zoals koolstof slecht; vonkspectrometrie (OES) kan koolstof meten. XRF onderscheidt dus 304 van 316, maar geen laag- van middelkoolstofstaal.',
+        'Een materiaalverwisseling (mix-up) komt vaak voor en is onzichtbaar: C45 en 42CrMo4 zien er hetzelfde uit, net als 304 en 316. PMI (positive material identification) controleert de legering ter plekke, vaak met een handheld XRF-analyser, een pistool dat in seconden de elementen leest.\n\nXRF ziet chroom, nikkel en molybdeen goed, maar lichte elementen zoals koolstof slecht; vonkspectrometrie (OES) kan koolstof meten. XRF onderscheidt dus 304 van 316, maar geen laag- van middelkoolstofstaal.',
         'Wordt er een verwisseling gevonden, dan volgt de aanpak het chargenummer: elke staaf van die charge in quarantaine, nagaan welke onderdelen er al van gemaakt zijn, en de leverancier om de oorzaak vragen.\n\nExperts discussiëren over de kosten: 100% PMI op binnenkomende staven kost tijd; overslaan kost een terugroepactie. Veel fabrieken doen 100% PMI op rvs en gelegeerd staal voor kritische delen, en steekproeven elders. Een scherpe vraag: “Kun je me het chargenummer op dit onderdeel laten zien, en het certificaat erachter?”',
       ],
       example: {
@@ -558,7 +558,7 @@ export default {
         },
         {
           q: 'Welk EN 10204-document geeft uitslagen van de geleverde partij zelf, getekend door de keurder van de maker die onafhankelijk is van de productie?',
-          options: ['Inspectiecertificaat 3.1', 'Testrapport 2.2 met typische waarden', 'Verklaring van overeenstemming 2.1', 'Een pakbon met de staalsoort erop'],
+          options: ['Inspectiecertificaat 3.1', 'Testrapport 2.2', 'Verklaring van overeenstemming 2.1', 'Een pakbon met de staalsoort erop'],
           answer: 'Inspectiecertificaat 3.1',
           why: 'Een 3.1 geeft specifieke uitslagen van de partij; een 2.2 niet-specifieke uitslagen, een 2.1 helemaal geen.',
         },
@@ -679,15 +679,15 @@ export default {
         },
       ],
       teach: [
-        'Het breukvlak, het vlak van de breuk, vertelt hoe een onderdeel bezweek. Fractografie is de studie ervan, van blote oog en loep tot een elektronenmicroscoop in een lab.\n\nDrie basistypen: een overbelastingsbreuk, één last die te hoog was voor het deel; een vermoeiingsbreuk, een scheur die groeide onder herhaalde lasten; en breuk geholpen door de omgeving, zoals corrosie of waterstof. Elk laat zijn eigen sporen achter.',
+        'Het breukvlak, het vlak van de breuk, vertelt hoe een onderdeel bezweek. Fractografie is de studie ervan, van het blote oog en de loep tot een elektronenmicroscoop in een lab.\n\nDrie basistypen: een overbelastingsbreuk, één last die te hoog was voor het deel; een vermoeiingsbreuk, een scheur die groeide onder herhaalde lasten; en breuk geholpen door de omgeving, zoals corrosie of waterstof. Elk laat zijn eigen sporen achter.',
         'Een taaie overbelastingsbreuk toont insnoering, het deel werd dunner voordat het brak, en een dof, grijs, vezelig vlak. Een ronde staaf breekt vaak als kom en kegel (cup and cone): de ene helft hol, de andere puntig.\n\nEen brosse overbelastingsbreuk is vlak, vaak glanzend of korrelig, met nauwelijks vervorming. Chevronlijnen, V-vormige richels op het vlak, wijzen terug naar waar de scheur begon, als pijlen.',
-        'Een vermoeiingsbreuk toont rustlijnen die uitwaaieren vanaf het begin, en een ruwe restbreuk waar de rest in één keer brak. De grootte van die restbreuk toont de last: klein betekent een lage nominale spanning en een lange levensduur; groot betekent een hoge spanning.\n\nRatchetlijnen, kleine trapjes aan de rand tussen meerdere scheurbegins, wijzen op meerdere startpunten: een hoge spanning of een scherpe kerfwerking rondom, zoals een scherpe asovergang.',
-        'Eerste hulp bij een gebroken onderdeel telt meer dan de analyse. Houd beide helften droog en zet ze niet tegen elkaar: dan beschadigen de vlakken. Niet staalborstelen, schoonmaken of oliën. Fotografeer het deel ter plekke voordat het eruit gaat.\n\nNoteer de draaiuren, de last en alles wat ongewoon was voor de breuk, en bewaar een zusterdeel, een heel onderdeel uit dezelfde partij, om te vergelijken. Een lab kan alleen lezen wat er over is.',
+        'Een vermoeiingsbreuk toont rustlijnen die uitwaaieren vanaf het begin, en een ruwe restbreuk waar de rest in één keer brak. De grootte van die restbreuk toont de last: klein betekent een lage nominale spanning en een lange levensduur; groot betekent een hoge spanning.\n\nRatchetlijnen (ratchet marks), kleine trapjes aan de rand tussen meerdere scheurstarts, wijzen op meerdere startpunten: een hoge spanning of een scherpe kerfwerking rondom, zoals een scherpe asovergang.',
+        'Eerste hulp bij een gebroken onderdeel telt meer dan de analyse. Houd beide helften droog en zet ze niet tegen elkaar: dan beschadigen de vlakken. Niet staalborstelen, schoonmaken of oliën. Fotografeer het deel ter plekke voordat het eruit gaat.\n\nNoteer de draaiuren, de last en alles wat ongewoon was voor de breuk, en bewaar een zusterdeel (sister part), een heel onderdeel uit dezelfde partij, om te vergelijken. Een lab kan alleen lezen wat er over is.',
         'Een schadeonderzoek in een lab voegt meestal een hardheidsmeting toe, een blik door de microscoop op de structuur van het staal, en een chemische analyse, om te zien of materiaal en warmtebehandeling klopten. Reken op dagen tot weken, en kosten vaak in de lage duizenden euro’s.\n\nDe module Betrouwbaarheid en assetstrategie laat zien of storingen toevallig zijn of door slijtage komen. Hier leer je één gebroken deel lezen. De scherpe vraag: “Waar begon de scheur, en waarom daar?”',
       ],
       example: {
         kind: 'worked',
-        text: 'De aandrijfas van een transportband brak na 14 maanden. De motor draait 1.450 tpm via een tandwielkast van 25 : 1, dus de as draait 1.450 / 25 = 58 tpm, 24 uur per dag: 58 × 60 × 24 = 83.520 omwentelingen per dag. Over 14 maanden, zo’n 425 dagen, is dat 83.520 × 425 = ongeveer 35 miljoen lastwisselingen.\n\nHet breukvlak toont rustlijnen vanaf één startpunt aan het eind van een spiebaan en een kleine restbreuk, zo’n 15% van de doorsnede. Lezing: één scheurbegin, een lage nominale spanning, lang gegroeid. Dat wijst naar de hoek van de spiebaan en een buigbelasting, misschien een slecht uitgelijnde koppeling, niet naar te zwak materiaal.',
+        text: 'De aandrijfas van een transportband brak na 14 maanden. De motor draait 1.450 tpm via een tandwielkast van 25 : 1, dus de as draait 1.450 / 25 = 58 tpm, 24 uur per dag: 58 × 60 × 24 = 83.520 omwentelingen per dag. Over 14 maanden, zo’n 425 dagen, is dat 83.520 × 425 = ongeveer 35 miljoen lastwisselingen.\n\nHet breukvlak toont rustlijnen vanaf één startpunt aan het eind van een spiebaan en een kleine restbreuk, zo’n 15% van de doorsnede. Lezing: één scheurstart, een lage nominale spanning, lang gegroeid. Dat wijst naar de hoek van de spiebaan en een buigbelasting, misschien een slecht uitgelijnde koppeling, niet naar te zwak materiaal.',
       },
       said: 'Wat engineers zeggen: “Niet aan het breukvlak komen. Beide helften in een zak, foto’s maken, en zoek een zusteras uit dezelfde partij.”',
       recall: [
@@ -701,14 +701,14 @@ export default {
         },
         {
           q: 'Een vermoeiingsbreuk bij een asovergang toont ratchetlijnen rondom de rand. Waar wijzen die op?',
-          options: ['Veel scheurbegins: een hoge spanning of een scherpe kerf rondom', 'Eén scheurbegin, met een heel lage spanning over lange tijd', 'Een brosse overbelasting in de kou, door één enkele klap of stoot', 'Alleen corrosie, zonder wisselende last'],
-          answer: 'Veel scheurbegins: een hoge spanning of een scherpe kerf rondom',
-          why: 'Ratchetlijnen scheiden meerdere scheurbegins; veel begins betekenen dat de spanning aan de rand overal hoog was.',
+          options: ['Veel scheurstarts: een hoge spanning of een scherpe kerf rondom', 'Eén scheurstart, met een heel lage spanning over lange tijd', 'Een brosse overbelasting in de kou, door één enkele klap of stoot', 'Alleen corrosie, zonder wisselende last'],
+          answer: 'Veel scheurstarts: een hoge spanning of een scherpe kerf rondom',
+          why: 'Ratchetlijnen scheiden meerdere scheurstarts; veel scheurstarts betekenen dat de spanning aan de rand overal hoog was.',
         },
         {
           q: 'Een as in een tandwielkast is net gebroken. Wat moeten de monteurs eerst met de twee helften doen?',
-          options: ['Ze meteen tegen elkaar zetten om te zien hoe goed ze passen', 'Ze schoonborstelen zodat het vlak zichtbaar is', 'Droog en apart houden; fotograferen', 'Ze oliën zodat ze niet roesten voordat het lab ze ziet'],
-          answer: 'Droog en apart houden; fotograferen',
+          options: ['Ze tegen elkaar zetten om te zien of ze passen', 'Ze eerst schoonborstelen', 'Droog en apart houden, en ze fotograferen', 'Ze oliën tegen roest, tot het lab ze ziet'],
+          answer: 'Droog en apart houden, en ze fotograferen',
           why: 'Passen, borstelen of oliën vernielt de fijne sporen die een lab nodig heeft om de breuk te lezen.',
         },
         {
@@ -731,10 +731,10 @@ export default {
       sayIt: 'Leg een ploegleider in 60 seconden uit waarom je een gebroken onderdeel nooit schoonmaakt of in elkaar past voordat iemand ernaar gekeken heeft.',
       terms: [
         { term: 'Breukvlak', def: 'Het vlak van een breuk; de sporen erop laten zien hoe en waar het deel bezweek.' },
-        { term: 'Fractografie', def: 'De studie van breukvlakken, van blote oog tot elektronenmicroscoop.' },
+        { term: 'Fractografie', def: 'De studie van breukvlakken, van het blote oog tot de elektronenmicroscoop.' },
         { term: 'Overbelastingsbreuk', def: 'Een breuk door één last die te hoog was voor het deel; taai met insnoering, of bros en vlak.' },
         { term: 'Chevronlijnen', def: 'V-vormige richels op een brosse breuk die terugwijzen naar waar de scheur begon.' },
-        { term: 'Ratchetlijnen', def: 'Kleine trapjes aan de rand van een vermoeiingsbreuk tussen meerdere scheurbegins.' },
+        { term: 'Ratchetlijnen', def: 'Kleine trapjes aan de rand van een vermoeiingsbreuk tussen meerdere scheurstarts.' },
         { term: 'Zusterdeel', def: 'Een heel onderdeel uit dezelfde partij, bewaard om met het gebroken deel te vergelijken.' },
       ],
     },
@@ -750,11 +750,11 @@ export default {
         },
       ],
       teach: [
-        'Een vermoeiingsberekening begint bij de spanningscyclus. De spanningswijdte Δσ is het verschil tussen de hoogste en laagste spanning: σmax − σmin. De spanningsamplitude is de helft daarvan, en de middenspanning is het midden: (σmax + σmin) / 2.\n\nEen as die van −100 naar +100 MPa slingert, heeft een wijdte van 200, een amplitude van 100 en een middenspanning van 0. Een bout die van 400 naar 460 gaat, heeft een wijdte van maar 60 maar een hoge middenspanning.',
+        'Een vermoeiingsberekening begint bij de spanningscyclus. De spanningswijdte (stress range) Δσ is het verschil tussen de hoogste en laagste spanning: σmax − σmin. De spanningsamplitude is de helft daarvan, en de middenspanning (mean stress) is het midden: (σmax + σmin) / 2.\n\nEen as die van −100 naar +100 MPa slingert, heeft een wijdte van 200, een amplitude van 100 en een middenspanning van 0. Een bout die van 400 naar 460 gaat, heeft een wijdte van maar 60 maar een hoge middenspanning.',
         'Bij niet-gelaste delen verlaagt een trekkende middenspanning de amplitude die een deel overleeft; de Goodman-lijn is de klassieke correctie. Een drukkende middenspanning helpt, daarom gaan kogelgestraalde delen en gerolde schroefdraad langer mee.\n\nLassen gedragen zich anders: ze bevatten trekkende restspanningen (residual stresses) tot rond de vloeigrens, dus normen voor lassen gebruiken alleen de spanningswijdte en negeren de middenspanning.',
         'Op een dubbellogaritmische grafiek is de S-N-curve bijna een rechte lijn: N = Nref × (Sref / S)^m. De helling m zegt hoe gevoelig de levensduur is voor spanning. Voor gelaste staaldetails is m = 3: 20% minder spanning geeft ongeveer twee keer de levensduur. Gladde, verspaande delen hebben een vlakkere curve, een grotere m, dus nog gevoeliger.\n\nDe vermoeiingslevensduur is het aantal lastwisselingen dat een deel bij een spanningsniveau overleeft, afgelezen van die curve.',
         'Echte delen krijgen een mix van lasten: veel kleine wisselingen en een paar grote. De regel van Miner (Palmgren-Miner) telt de schade op: per niveau aantal wisselingen / wisselingen tot breuk, opgeteld tot D. Bij D = 1 wordt breuk voorspeld.\n\nHet is een grove regel: proeven laten breuken zien ergens tussen ongeveer D = 0,3 en 3, en de volgorde van de lasten telt. Sommige ontwerpers gebruiken D = 0,5 voor de zekerheid; normen gebruiken D = 1 met veiligheidsfactoren op de spanning.',
-        'De vermoeiingsgrens van gepolijste proefstaven gaat voor echte delen omlaag: de Marin-factoren uit Shigley verlagen hem voor oppervlakteruwheid, grootte, belastingsoort, temperatuur en betrouwbaarheid. Een verspaand oppervlak kan 20 tot 30% verliezen; een ruw gesmeed oppervlak soms meer dan de helft.\n\nEen vermoeiingsberekening heeft dus grote onzekerheid: een factor twee in levensduur is normaal. Engineers discussiëren minder over de formule dan over het lastspectrum (load spectrum). De scherpe vraag: “Waar komen de lastgegevens vandaan: gemeten of aangenomen?”',
+        'De vermoeiingsgrens van gepolijste proefstaven gaat voor echte delen omlaag: de Marin-factoren uit Shigley verlagen hem voor oppervlakteruwheid, grootte, belastingsoort, temperatuur en betrouwbaarheid. Een verspaand oppervlak verliest meestal 15 tot 30%, meer bij sterker staal; een ruw gesmeed oppervlak soms meer dan de helft.\n\nEen vermoeiingsberekening heeft dus grote onzekerheid: een factor twee in levensduur is normaal. Engineers discussiëren minder over de formule dan over het lastspectrum (load spectrum). De scherpe vraag: “Waar komen de lastgegevens vandaan: gemeten of aangenomen?”',
       ],
       example: {
         kind: 'faded',
@@ -818,23 +818,23 @@ export default {
       pre: [
         {
           q: 'Waarom begint op een trillend frame een vermoeiingsscheur bijna altijd bij een las en niet in de plaat ernaast?',
-          options: ['Lasmetaal is altijd veel zachter dan de plaat eromheen', 'Lassen worden slechter geverfd, dus ze roesten en scheuren dan', 'De las is altijd het dunste deel van het hele frame', 'De lasteen is een kerf, met restspanning'],
+          options: ['Lasmetaal is altijd zachter dan de plaat', 'Lassen zijn slechter geverfd en roesten', 'De las is het dunste deel van het frame', 'De lasteen is een kerf, met restspanning'],
           answer: 'De lasteen is een kerf, met restspanning',
-          why: 'De lasteen is een scherpe vormovergang, de las laat trekkende restspanning achter, en kleine fouten zijn kant-en-klare scheurbegins.',
+          why: 'De lasteen is een scherpe vormovergang, de las laat trekkende restspanning achter, en kleine fouten zijn kant-en-klare scheurstarts.',
         },
       ],
       teach: [
         'Lassen zijn de zwakke plekken van een constructie bij vermoeiing. De lasteen (weld toe), waar lasmetaal en plaat elkaar raken, is een kerf; lassen laat restspanning achter, spanning die bij het afkoelen is ingevroren, vaak tot rond de vloeigrens; en kleine fouten werken als kant-en-klare scheuren.\n\nGelaste details worden dus alleen op spanningswijdte ontworpen, met S-N-curves uit normen zoals EN 1993-1-9 (Eurocode 3) of de IIW-aanbevelingen van het International Institute of Welding.',
-        'Elk type las krijgt een detailcategorie, ook geschreven als FAT: de spanningswijdte in MPa die hij 2 miljoen wisselingen overleeft. Een vlak geslepen stompe las is misschien FAT 100 of meer, een met hoeklassen bevestigd aanhangsel 71 of 80, een slecht detail 36.\n\nMet helling 3 is de levensduur = 2 miljoen × (FAT / Δσ)³. Een beter detail wint van sterker staal: gelaste details hebben in S235 ongeveer dezelfde vermoeiingssterkte als in S690.',
-        'Echte normen voegen meer toe: een vlakkere helling of een afkapgrens bij lage spanningswijdtes, partiële veiligheidsfactoren, en een diktecorrectie voor dikke plaat. De constante helling van 3 is een vereenvoudiging voor een eerste blik.\n\nVoor ingewikkelde vormen waar geen categorie past, gebruiken engineers de hot-spotspanning: de spanning bij de lasteen, op een vaste manier afgelezen uit FEM of rekstrookjes (strain gauges), vergeleken met een hot-spot-S-N-curve.',
-        'Een nabehandeling van de las kan de vermoeiingssterkte van een bestaande lasteen verhogen: gladslijpen, TIG-overgloeien (TIG dressing, de teen opnieuw omsmelten), of hameren en HFMI (high-frequency mechanical impact), die drukspanning achterlaten. Het IIW geeft daar onder voorwaarden credit voor; het vraagt een procedure en inspectie.\n\nGoedkoper is meestal het ontwerp: houd lassen uit zones met hoge spanning, laat aanhangsels niet eindigen op een getrokken flens, en geef overgangen een geleidelijke vorm.',
+        'Elk type las krijgt een detailcategorie, ook geschreven als FAT: de spanningswijdte in MPa die hij 2 miljoen wisselingen overleeft. Een vlak geslepen stompe las is misschien FAT 100 of meer, een met hoeklassen opgelast hulpstuk 71 of 80, een slecht detail 36.\n\nMet helling 3 is de levensduur = 2 miljoen × (FAT / Δσ)³. Een beter detail wint van sterker staal: gelaste details hebben in S235 ongeveer dezelfde vermoeiingssterkte als in S690.',
+        'Echte normen voegen meer toe: een vlakkere helling of een afkapgrens bij lage spanningswijdtes, partiële veiligheidsfactoren, en een diktecorrectie voor dikke plaat. De constante helling van 3 is een vereenvoudiging voor een eerste blik.\n\nVoor ingewikkelde vormen waar geen categorie past, gebruiken engineers de hot-spotspanning (hot-spot stress): de spanning bij de lasteen, op een vaste manier afgelezen uit FEM of rekstrookjes (strain gauges), vergeleken met een hot-spot-S-N-curve.',
+        'Een nabehandeling van de las (post-weld treatment) kan de vermoeiingssterkte van een bestaande lasteen verhogen: gladslijpen, TIG-nasmelten (TIG dressing: de teen opnieuw omsmelten), of hameren en HFMI (high-frequency mechanical impact), die drukspanning achterlaten. Het IIW staat daarvoor onder voorwaarden een hogere FAT-waarde toe; het vraagt een procedure en inspectie.\n\nGoedkoper is meestal het ontwerp: houd lassen uit zones met hoge spanning, laat opgelaste hulpstukken niet eindigen op een flens die op trek staat, en geef overgangen een geleidelijke vorm.',
         'Gelaste frames die trillen hebben een inspectieplan nodig: waar scheuren het eerst komen, hoe vaak je kijkt, en met welke methode. Visueel en penetrant vinden oppervlaktescheuren; de module Lassen en verbinden legt de NDO-methoden (NDT) uit.\n\nEen scheur die wordt uitgeslepen en dichtgelast zonder het detail of de spanning te veranderen, komt meestal terug, vaak sneller. De scherpe vraag: “Welke detailcategorie is dit, wat is de spanningswijdte, en wie controleert het?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een zeefframe (vibrating screen) heeft een met hoeklassen bevestigde beugel, detailcategorie 71. Rekstrookjes meten een spanningswijdte van 60 MPa, en de zeef maakt zo’n 3 miljoen wisselingen per jaar. Neem aan: levensduur = 2.000.000 × (FAT / Δσ)³ met één helling.\n\nDe leverancier stelt voor het frame in S690 te maken. De engineer stelt in plaats daarvan een herontworpen beugel voor met een gladde, geslepen overgang, detailcategorie 90, plus een verstijving die de spanningswijdte naar 45 MPa brengt.',
+        text: 'Het frame van een trilzeef (vibrating screen) heeft een met hoeklassen bevestigde beugel, detailcategorie 71. Rekstrookjes meten een spanningswijdte van 60 MPa, en de zeef maakt zo’n 3 miljoen wisselingen per jaar. Neem aan: levensduur = 2.000.000 × (FAT / Δσ)³ met één helling.\n\nDe leverancier stelt voor het frame in S690 te maken. De engineer stelt in plaats daarvan een herontworpen beugel voor met een gladde, geslepen overgang, detailcategorie 90, plus een verstijving die de spanningswijdte naar 45 MPa brengt.',
         ask: 'Wat is de levensduur nu, met S690, en met het herontwerp van de engineer?',
-        reveal: 'Nu: 2.000.000 × (71 / 60)³ = 3,3 miljoen wisselingen, ongeveer 1,1 jaar. S690 verandert bijna niets: de vermoeiingssterkte van een gelast detail hangt nauwelijks af van de staalsoort, dus nog steeds zo’n 1,1 jaar.\n\nHerontwerp: 2.000.000 × (90 / 45)³ = 16 miljoen wisselingen, ongeveer 5,3 jaar. Een beter detail en een lagere spanningswijdte vermenigvuldigen de levensduur; sterker staal niet.',
+        reveal: 'Nu: 2.000.000 × (71 / 60)³ = 3,3 miljoen wisselingen, ongeveer 1,1 jaar. S690 verandert bijna niets: de vermoeiingssterkte van een gelast detail hangt nauwelijks af van de staalsoort, dus nog steeds zo’n 1,1 jaar.\n\nHerontwerp: 2.000.000 × (90 / 45)³ = 16 miljoen wisselingen, ongeveer 5,3 jaar; met de vlakkere helling van de norm bij lage spanningswijdtes nog langer. Een beter detail en een lagere spanningswijdte vermenigvuldigen de levensduur; sterker staal niet.',
       },
       said: 'Wat engineers zeggen: “S690 helpt een hoeklas niet bij vermoeiing. Verander het detail of breng de spanningswijdte omlaag.”',
       recall: [
@@ -854,8 +854,8 @@ export default {
         },
         {
           q: 'Welke behandeling verhoogt de vermoeiingssterkte van een bestaande lasteen?',
-          options: ['De las verven met een dikke laag', 'Er een extra laslaag bovenop leggen', 'Teen slijpen of HFMI-hameren', 'De las roodgloeiend maken en in water afkoelen'],
-          answer: 'Teen slijpen of HFMI-hameren',
+          options: ['De las verven met een dikke laag', 'Er een extra laslaag bovenop leggen', 'De teen gladslijpen, of HFMI-hameren', 'De las roodgloeiend maken en in water afkoelen'],
+          answer: 'De teen gladslijpen, of HFMI-hameren',
           why: 'Slijpen haalt de kerf en fouten weg; hameren brengt drukspanning aan. Beide erkent het IIW, onder voorwaarden.',
         },
         {
@@ -1039,19 +1039,19 @@ export default {
         },
       ],
       teach: [
-        'EN 10027-1 legt vast hoe Europese staalnamen zijn opgebouwd. Staal dat naar gebruik heet, begint met een letter: S constructiestaal, E machinestaal, P voor drukapparatuur. Het getal is de minimale vloeigrens in MPa voor de dunste producten: S355, P265.\n\nDaarna volgt de kwaliteitsklasse: JR, J0, J2 of K2 voor de kerfslagproef. Na een plusteken komt de leveringstoestand, hoe het staal geleverd wordt: +N normaalgegloeid, +AR walsruw, +QT veredeld (gehard en ontlaten).',
-        'Staal dat naar samenstelling heet, vertelt wat erin zit. Ongelegeerd: C45 is koolstofstaal met 0,45% koolstof. Laaggelegeerd: 42CrMo4 heeft 0,42% koolstof; de 4 hoort bij chroom, gedeeld door een factor 4: zo’n 1% chroom, plus wat molybdeen. De factoren zijn 4 voor Cr, Ni, Mn, Si, 10 voor Mo, V en andere.\n\nHooggelegeerd begint met X: X5CrNi18-10 heeft 0,05% koolstof, 18% chroom, 10% nikkel, gewoon in procenten.',
+        'EN 10027-1 legt vast hoe Europese staalnamen zijn opgebouwd. Staal dat naar gebruik heet, begint met een letter: S constructiestaal, E machinestaal, P voor drukapparatuur. Het getal is de minimale vloeigrens in MPa voor de dunste producten: S355, P265.\n\nDaarna volgt de kwaliteitsklasse (quality grade): JR, J0, J2 of K2 voor de kerfslagproef. Na een plusteken komt de leveringstoestand (delivery condition), hoe het staal geleverd wordt: +N normaalgegloeid, +AR walsruw, +QT veredeld (gehard en ontlaten).',
+        'Staal dat naar samenstelling heet, vertelt wat erin zit. Ongelegeerd: C45 is koolstofstaal met 0,45% koolstof. Laaggelegeerd: 42CrMo4 heeft 0,42% koolstof; de 4 hoort bij chroom, gedeeld door een factor 4: zo’n 1% chroom, plus wat molybdeen. De factor is 4 voor Cr, Ni, Mn en Si, 10 voor Mo, V en Cu, 100 voor P, S en N.\n\nHooggelegeerd begint met X: X5CrNi18-10 heeft 0,05% koolstof, 18% chroom, 10% nikkel, gewoon in procenten.',
         'EN 10027-2 geeft elk staal een materiaalnummer: 1.0577 voor S355J2, 1.7225 voor 42CrMo4, 1.4301 voor X5CrNi18-10, dat de Amerikanen 304 noemen. Het nummer is kort, eenduidig en makkelijk te zoeken in een voorraadsysteem.\n\nAmerikaanse namen zoals AISI 4140 of 316L hoor je veel op de vloer. 4140 ligt dicht bij 42CrMo4, maar dichtbij is niet gelijk: samenstellingsgrenzen en beproevingseisen verschillen.',
         'Aluminium heeft een eigen systeem: EN AW-6082 is een kneedlegering (AW) uit de 6000-serie, aluminium met magnesium en silicium. De toestandsaanduiding erachter zegt hoe het behandeld is: O gegloeid en zacht, T6 oplosgegloeid en kunstmatig verouderd, de sterke toestand.\n\nLassen maakt T6 plaatselijk kapot: naast de las kan de legering een groot deel van haar sterkte verliezen. De module Lassen en verbinden legt de warmte-beïnvloede zone (HAZ) uit.',
-        'Naam, nummer en toestand horen bij elkaar. 42CrMo4 gegloeid en 42CrMo4+QT zijn hetzelfde staal, maar het eerste is zacht om te verspanen en het tweede ongeveer twee keer zo sterk.\n\nEen veelgemaakte fout: op de order staat alleen “42CrMo4”, en de staalhandel levert wat er in de stelling ligt. En S355 haalt 355 MPa alleen tot 16 mm dik; bij 16 tot 40 mm is het minimum 345. De scherpe vraag: “Soort, toestand en maat: staan ze alle drie op de order?”',
+        'Naam, nummer en toestand horen bij elkaar. 42CrMo4 gegloeid en 42CrMo4+QT zijn hetzelfde staal, maar het eerste is zacht om te verspanen en het tweede heeft grofweg anderhalf keer de vloeigrens, of meer.\n\nEen veelgemaakte fout: op de order staat alleen “42CrMo4”, en de staalhandel levert wat er in de stelling ligt. En S355 haalt 355 MPa alleen tot 16 mm dik; bij 16 tot 40 mm is het minimum 345. De scherpe vraag: “Soort, toestand en maat: staan ze alle drie op de order?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Op een tekening voor een aandrijfas staat: “42CrMo4+QT (1.7225), Ø80”. Om kosten en levertijd te sparen, biedt een staalhandel “AISI 4140, gegloeid, Ø80” uit voorraad aan. Voor deze maat geeft de norm 42CrMo4+QT een treksterkte van 900 tot 1.100 MPa.',
+        text: 'Op een tekening voor een aandrijfas staat: “42CrMo4+QT (1.7225), Ø80”. Om kosten en levertijd te besparen, biedt een staalhandel “AISI 4140, gegloeid, Ø80” uit voorraad aan. Voor deze maat geeft de norm 42CrMo4+QT een treksterkte van 900 tot 1.100 MPa.',
         ask: 'Wat betekent elk deel van de naam op de tekening, en wat is er mis met het aanbod?',
-        reveal: '42: 0,42% koolstof; Cr met 4 / 4 = zo’n 1% chroom; Mo: molybdeen; +QT: veredeld; 1.7225: het materiaalnummer.\n\nHet aanbod komt qua samenstelling dichtbij, maar gegloeid betekent zacht: ver onder de 900 MPa waarvoor de as is ontworpen. Of de werkplaats laat het harden en ontlaten met een certificaat, of hij bestelt 42CrMo4+QT. Engineering keurt elke vervanging schriftelijk goed.',
+        reveal: '42: 0,42% koolstof; Cr met 4 / 4 = zo’n 1% chroom; Mo: molybdeen; +QT: veredeld; 1.7225: het materiaalnummer.\n\nHet aanbod komt qua samenstelling dichtbij, maar gegloeid betekent zacht: onder de 900 MPa waarvoor de as is ontworpen, met een veel lagere vloeigrens. Of de werkplaats laat het harden en ontlaten met een certificaat, of hij bestelt 42CrMo4+QT. Engineering keurt elke vervanging schriftelijk goed.',
       },
-      said: 'Wat engineers zeggen: “4140 gegloeid is geen 42CrMo4 veredeld. Zelfde familie, half zo sterk. Naar de harder ermee, of niet gebruiken.”',
+      said: 'Wat engineers zeggen: “4140 gegloeid is geen 42CrMo4 veredeld. Zelfde familie, een stuk slapper. Naar de harderij ermee, of niet gebruiken.”',
       recall: [
         {
           q: 'In het laaggelegeerde staal 34CrNiMo6 hoort de 6 bij chroom, met een factor 4. Hoeveel chroom zit erin, ongeveer, in %?',
@@ -1085,7 +1085,7 @@ export default {
       situation: {
         scene: 'Bij de goederenontvangst van een machinebouwer zie je staven met alleen “42CrMo4” erop die voor aandrijfassen in voorraad worden geboekt. Op de tekening staat 42CrMo4+QT. De ontvangstmedewerker zegt: “Het is het goede staal.”',
         ask: 'Wat vraag je?',
-        model: 'Welke leveringstoestand hebben we ontvangen: veredeld of gegloeid? De naam is gelijk, maar de sterkte verschilt ongeveer een factor twee. Staan de toestand en de trekwaarden voor deze maat op het certificaat? Staan soort, toestand en maat op de inkooporder, en controleert de ontvangst alle drie? Ontbreekt de toestand, dan horen deze staven op hold tot het duidelijk is, voordat ze assen worden.',
+        model: 'Welke leveringstoestand hebben we ontvangen: veredeld of gegloeid? De naam is gelijk, maar de veredelde staaf heeft grofweg anderhalf keer de vloeigrens of meer. Staan de toestand en de trekwaarden voor deze maat op het certificaat? Staan soort, toestand en maat op de inkooporder, en controleert de ontvangst alle drie? Ontbreekt de toestand, dan horen deze staven op hold tot het duidelijk is, voordat ze assen worden.',
         rubric: [
           'Merkt op dat de leveringstoestand ontbreekt',
           'Legt uit dat de toestand de sterkte flink verandert',
@@ -1114,10 +1114,10 @@ export default {
       ],
       teach: [
         'Materiaalkeuze begint bij de functie: sterkte, stijfheid, slijtage, corrosie, temperatuur, gewicht. Dan het proces: kan het in jouw werkplaats verspaand, gelast, omgevormd en warmtebehandeld worden? Dan de levering: standaardmaten, levertijd, meer dan één bron. Dan de kosten per stuk, niet per kg.\n\nDe methode van Michael Ashby, uit zijn boek over materiaalkeuze, rangschikt materialen op zulke combinaties, bijvoorbeeld sterkte per kg of stijfheid per euro.',
-        'Specifieke stijfheid, E gedeeld door dichtheid, is bijna gelijk voor staal, aluminium en titaan: zo’n 26 GPa per 1.000 kg/m³. Voor een trekstaaf geeft aluminium dus geen gewichtswinst bij gelijke stijfheid.\n\nBij buigen wel: stijfheid groeit met de dikte tot de derde, dus een aluminium plaat die zo’n 44% dikker is, evenaart staal bij ongeveer de helft van het gewicht. Vorm en belastingsgeval beslissen, niet het materiaal alleen.',
+        'Specifieke stijfheid (specific stiffness), E gedeeld door dichtheid, is bijna gelijk voor staal, aluminium en titaan: zo’n 26 GPa per 1.000 kg/m³. Voor een trekstaaf geeft aluminium dus geen gewichtswinst bij gelijke stijfheid.\n\nBij buigen wel: stijfheid groeit met de dikte tot de derde, dus een aluminium plaat die zo’n 44% dikker is, evenaart staal bij ongeveer de helft van het gewicht. Vorm en belastingsgeval beslissen, niet het materiaal alleen.',
         'Verspaanbaarheid is hoe makkelijk een materiaal snijdt: standtijd (tool life), snelheid, spanen. Automatenstaal (free-cutting steel) met toegevoegd zwavel, zoals 11SMnPb30, snijdt snel maar last slecht. Rvs 303 verspaant beter dan 304, maar is minder corrosiebestendig en niet bedoeld om te lassen.\n\nLasbaarheid is hoe makkelijk een staal zonder scheuren last; die daalt met koolstof- en legeringsgehalte. De module Lassen en verbinden legt het koolstofequivalent uit dat engineers daarvoor gebruiken.',
-        'Materiaalvervanging, het ene materiaal ruilen voor een ander in een bestaand onderdeel, is geliefd in kostenbesparingsprojecten. Controleer alle functies, niet alleen sterkte: stijfheid, vermoeiing, corrosie, temperatuur, slijtage, en de processen erna zoals warmtebehandeling, lasmethode en coating.\n\nEen equivalente soort uit een andere norm, zoals AISI 4140 voor 42CrMo4, ligt dichtbij maar is zelden gelijk. Behandel elke vervanging als een ontwerpwijziging.',
-        'In de automotive en andere gereguleerde sectoren moet de klant een materiaalwijziging goedkeuren, vaak via een nieuwe PPAP-indiening (production part approval process). Elders gaat het via engineering change control, met een proef waar een eigenschap kritisch is.\n\nExperts discussiëren over hoeveel testen genoeg is. Een degelijk minimum: vergelijk de datasheets per functie, doe de kritische proef, en leg de beslissing vast. De scherpe vraag: “Welke functies hebben we gecontroleerd, en wie heeft getekend?”',
+        'Materiaalvervanging (substitution), het ene materiaal ruilen voor een ander in een bestaand onderdeel, is geliefd in kostenbesparingsprojecten. Controleer alle functies, niet alleen sterkte: stijfheid, vermoeiing, corrosie, temperatuur, slijtage, en de processen erna zoals warmtebehandeling, lasmethode en coating.\n\nEen equivalente soort uit een andere norm, zoals AISI 4140 voor 42CrMo4, ligt dichtbij maar is zelden gelijk. Behandel elke vervanging als een ontwerpwijziging.',
+        'In de automotive en andere gereguleerde sectoren moet de klant een materiaalwijziging goedkeuren, vaak via een nieuwe PPAP-indiening (production part approval process); de module Kwaliteit: de basis legt PPAP uit. Elders gaat het via engineering change control, met een proef waar een eigenschap kritisch is.\n\nExperts discussiëren over hoeveel testen genoeg is. Een degelijk minimum: vergelijk de datasheets per functie, doe de kritische proef, en leg de beslissing vast. De scherpe vraag: “Welke functies hebben we gecontroleerd, en wie heeft getekend?”',
       ],
       example: {
         kind: 'faded',
@@ -1145,8 +1145,8 @@ export default {
         },
         {
           q: 'Om sneller te verspanen stelt iemand rvs 303 voor in plaats van 316, voor delen in een natte reinigingszone die aan het frame gelast worden. Wat is het antwoord?',
-          options: ['Ja: 303 is hetzelfde staal, alleen goedkoper', 'Ja, als de delen maar gepolijst worden', 'Alleen als de lassen daarna geverfd worden', 'Nee: 303 roest en last slechter'],
-          answer: 'Nee: 303 roest en last slechter',
+          options: ['Ja: 303 is hetzelfde staal, net goedkoper', 'Ja, als ze gepolijst worden', 'Alleen als de lassen geverfd worden', 'Nee: 303 roest sneller en last slechter'],
+          answer: 'Nee: 303 roest sneller en last slechter',
           why: 'Het toegevoegde zwavel waardoor 303 goed snijdt, verlaagt de corrosiebestendigheid en de lasbaarheid.',
         },
         {

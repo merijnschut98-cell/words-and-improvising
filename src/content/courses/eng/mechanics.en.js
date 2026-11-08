@@ -170,9 +170,9 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'A steel bracket of S235, a flat bar 20 mm wide and 60 mm tall, sticks out 500 mm from a column and carries 2 kN at its tip. The moment at the column: 2,000 N × 500 mm = 1,000,000 Nmm. W = 20 × 60² / 6 = 12,000 mm³, so σ = 1,000,000 / 12,000 = 83 MPa: a safety factor of 235 / 83 = 2.8 against yield.\n\nDuring a rebuild a fitter mounts the same bar flat, 60 mm wide and 20 mm tall, because it fits better.',
+        text: 'A steel bracket of S235, a flat bar 20 mm wide and 60 mm tall, sticks out 500 mm from a column and carries 2 kN at its tip. The moment at the column: 2,000 N × 500 mm = 1,000,000 Nmm. W = 20 × 60² / 6 = 12,000 mm³, so σ = 1,000,000 / 12,000 = 83 MPa. S235 only guarantees 225 MPa yield at 20 mm thickness, so the safety factor is 225 / 83 = 2.7 against yield.\n\nDuring a rebuild a fitter mounts the same bar flat, 60 mm wide and 20 mm tall, because it fits better.',
         ask: 'What is the bending stress with the bar mounted flat, and what happens to the bracket?',
-        reveal: 'W = 60 × 20² / 6 = 4,000 mm³, so σ = 1,000,000 / 4,000 = 250 MPa: above the 235 MPa yield of S235. The bracket bends permanently.\n\nThe deflection is worse still: I drops from 20 × 60³ / 12 to 60 × 20³ / 12, a factor of 9, so it would deflect nine times as much even before yielding. Same bar, same load, turned 90°.',
+        reveal: 'W = 60 × 20² / 6 = 4,000 mm³, so σ = 1,000,000 / 4,000 = 250 MPa: above the 225 MPa yield of this S235 bar. The bracket bends permanently.\n\nThe deflection is worse still: I drops from 20 × 60³ / 12 to 60 × 20³ / 12, a factor of 9, so it would deflect nine times as much even before yielding. Same bar, same load, turned 90°.',
       },
       said: 'What engineers say: “It’s the same flat bar, but you’ve put it on its weak axis. Turn it on edge or it’ll fold.”',
       recall: [
@@ -194,14 +194,14 @@ export default {
         },
         {
           q: 'A solid shaft is made thicker, from 40 to 50 mm diameter, with the same torque. What happens to the shear stress from torsion?',
-          options: ['It drops by about 20%, in line with the diameter', 'It drops to about a quarter of what it was', 'It stays the same, as torque does not change', 'It drops to about half'],
-          answer: 'It drops to about half',
+          options: ['It drops by about 20%, like the diameter', 'It drops to about a quarter of what it was', 'It stays the same, as torque does not change', 'It drops to about half of what it was before'],
+          answer: 'It drops to about half of what it was before',
           why: 'Wp grows with d³: (40 / 50)³ = 0.51, so the stress roughly halves.',
         },
         {
           q: 'A sensor arm is made twice as long, with the same profile and load at the tip. What happens to the deflection at the tip?',
-          options: ['About eight times as large', 'It doubles, in line with the length', 'It becomes four times as large', 'It stays the same, as the load is equal'],
-          answer: 'About eight times as large',
+          options: ['About eight times as large as before', 'It doubles, in line with the length', 'It becomes four times as large', 'It stays the same, as the load is equal'],
+          answer: 'About eight times as large as before',
           why: 'Cantilever deflection grows with the length cubed: 2³ = 8.',
         },
       ],
@@ -390,7 +390,7 @@ export default {
         'The report gives a few values. Rm, the tensile strength: maximum force / original cross-section. ReH, the upper yield strength, for steels with a clear yield point; otherwise Rp0.2, the 0.2% proof strength: the stress that leaves 0.2% permanent stretch.\n\nA, the elongation after fracture: how much longer the gauge length is after the break, in %. Z, the reduction of area at the neck. A and Z show how ductile the batch is.',
         'Hardness tests press an indenter into the surface. Brinell (ISO 6506): a 10 mm carbide ball, often with a 3,000 kgf load, and the dent diameter is measured; written as HBW. Vickers (ISO 6507): a diamond pyramid, the diagonals are measured, any load from tiny to large, written as HV10 for 10 kgf.\n\nRockwell (ISO 6508): a diamond cone for HRC, the depth is measured automatically. Fast, so it suits the shop floor.',
         'Each test has its place. Brinell averages over a large dent: good for castings and coarse material. Vickers with a small load can measure thin layers and case depth on a cut section. Rockwell is quick but needs a part thick enough, very roughly ten times the dent depth, and a clean, flat spot.\n\nA decarburised skin, where the surface lost carbon in the furnace, reads soft. Grind it off first, or the test lies.',
-        'A hardness conversion translates one scale into another, or into an estimated tensile strength, with tables in ISO 18265; for steels, very roughly Rm ≈ 3.3 × HB. The standard itself warns that these conversions are approximate and least reliable for strength.\n\nSo a hardness test is a cheap screening check: fine to spot a soft batch, not a replacement for a tensile test when the strength matters. A sharp question: “Converted or measured?”',
+        'A hardness conversion translates one scale into another, or into an estimated tensile strength, with tables in ISO 18265; for steels, very roughly Rm ≈ 3.4 × HB (in MPa). The standard itself warns that these conversions are approximate and least reliable for strength.\n\nSo a hardness test is a cheap screening check: fine to spot a soft batch, not a replacement for a tensile test when the strength matters. A sharp question: “Converted or measured?”',
       ],
       example: {
         kind: 'worked',
@@ -421,8 +421,8 @@ export default {
           why: 'A small Vickers dent fits inside a thin layer and can be placed at steps from the surface inward.',
         },
         {
-          q: 'An incoming check measures 200 HB on a steel bar, and a table converts that to about 660 MPa tensile strength. How should you treat the 660 MPa?',
-          options: ['An estimate: confirm with a tensile test if needed', 'As a measured value, just as good as a full tensile test', 'As the yield strength of the bar, for the design check', 'As meaningless, since hardness has no link with strength'],
+          q: 'An incoming check measures 200 HB on a steel bar, and a table converts that to about 675 MPa tensile strength. How should you treat the 675 MPa?',
+          options: ['An estimate: confirm with a tensile test if needed', 'As a measured value, as good as a tensile test', 'As the yield strength, for the design check', 'As meaningless: hardness and strength are unlinked'],
           answer: 'An estimate: confirm with a tensile test if needed',
           why: 'ISO 18265 conversions are approximate; they screen a batch but don’t replace a tensile test.',
         },
@@ -463,7 +463,7 @@ export default {
         'Structural steels carry a quality grade after the yield number: JR means at least 27 J at +20 °C, J0 at 0 °C, J2 at −20 °C, and K2 means 40 J at −20 °C (EN 10025-2).\n\nThe certificate shows three specimens per test. EN 10025 takes the average against the minimum, and lets one value fall below it, but not below 70% of the minimum.',
         'Ordinary carbon steels have a ductile-to-brittle transition: above a certain temperature they break tough and fibrous, below it they break like glass with little energy. The Liberty ships of the Second World War, some of which cracked in cold seas, made this famous.\n\nAustenitic stainless steels such as 304 and 316, and aluminium, have no such transition: they stay tough in the cold. That is why cryogenic tanks use them.',
         'Brittle fracture becomes more likely with low temperature, thick sections, fast loading such as an impact, and a sharp notch or crack. A crane on an outdoor quay in winter, or a thick welded frame with a crack at a weld, has all of them.\n\nFracture toughness, a material property often written KIc, says how large a crack a part tolerates at a given stress. It matters for heavy, high-stress parts; most plant engineers meet it only in failure reports.',
-        'Hydrogen embrittlement is a separate trap. High-strength steels, roughly above 1,000 MPa tensile strength such as 10.9 and 12.9 bolts, can absorb hydrogen during pickling or electroplating and crack hours or days after they are tightened, without any overload.\n\nISO 4042 describes baking after plating to drive the hydrogen out; hot-dip galvanised bolts are in practice limited to class 10.9. The sharp question for broken plated bolts: “Which class, which coating, and was it baked?”',
+        'Hydrogen embrittlement is a separate trap. High-strength steels, roughly above 1,000 MPa tensile strength such as 10.9 and 12.9 bolts, can absorb hydrogen during pickling or electroplating and crack hours or days after they are tightened, without any overload.\n\nISO 4042 describes baking after plating, which lowers the risk but does not remove it; hot-dip galvanised bolts stop at class 10.9 (ISO 10684). Hydrogen cracks in welds are covered in Welding and joining. The sharp question for broken plated bolts: “Which class, which coating, and was it baked?”',
       ],
       example: {
         kind: 'faded',
@@ -534,7 +534,7 @@ export default {
         },
       ],
       teach: [
-        'EN 10204 defines the types of inspection documents. A 2.1 is only a declaration that the product meets the order. A 2.2 test report gives typical results, not from your batch. An inspection certificate 3.1 gives test results of the actual delivered batch, signed by the maker’s inspector, independent of production. A 3.2 is also signed by an inspector of the buyer or a third party.\n\nSafety-critical parts usually ask for 3.1; pressure equipment and offshore often 3.2.',
+        'EN 10204 defines the types of inspection documents. A 2.1 is only a declaration that the product meets the order. A 2.2 test report gives results of the maker’s routine tests, not necessarily from your batch. An inspection certificate 3.1 gives test results of the actual delivered batch, signed by the maker’s inspector, independent of production. A 3.2 is also signed by an inspector of the buyer or a third party.\n\nSafety-critical parts usually ask for 3.1; pressure equipment and offshore often 3.2.',
         'The heat number is the identity of the melt, the batch of steel cast at the mill. It is stamped or painted on the bar and printed on the certificate.\n\nTraceability means you can follow that number from the certificate through cutting, machining and assembly to the finished part. Each time a bar is cut, the number must move to the pieces; once it is lost, the certificate no longer proves anything about the part.',
         'Reading a certificate: does it name the right grade, dimension and delivery condition, for example 42CrMo4 quenched and tempered, Ø50? Are the measured yield, tensile strength, elongation and impact values above the minimums of the standard for that size? Does the chemistry fit?\n\nA certificate can also be wrong or even forged. If numbers look too round, or identical across heats, ask questions.',
         'A material mix-up is common and invisible: C45 and 42CrMo4 look the same, so do 304 and 316. PMI (positive material identification) checks the alloy on the spot, often with a handheld XRF analyser, a gun that reads the elements in seconds.\n\nXRF sees chromium, nickel and molybdenum well, but light elements such as carbon poorly; spark spectrometry (OES) can measure carbon. So XRF tells 304 from 316, but not a low-carbon steel from a medium-carbon one.',
@@ -558,7 +558,7 @@ export default {
         },
         {
           q: 'Which EN 10204 document gives test results of the delivered batch itself, signed by the maker’s inspector who is independent of production?',
-          options: ['Inspection certificate 3.1', 'Test report 2.2 with typical values', 'Declaration of compliance 2.1', 'A delivery note with the grade on it'],
+          options: ['Inspection certificate 3.1', 'Test report 2.2', 'Declaration of compliance 2.1', 'A delivery note with the grade on it'],
           answer: 'Inspection certificate 3.1',
           why: 'A 3.1 gives specific test results for the batch; a 2.2 gives non-specific results, a 2.1 none at all.',
         },
@@ -707,8 +707,8 @@ export default {
         },
         {
           q: 'A gearbox shaft has just broken. What should the technicians do first with the two halves?',
-          options: ['Fit them together straight away to see how well they match', 'Clean them with a wire brush so the surface is visible', 'Keep them dry and apart; photograph them', 'Oil them so they don’t rust before the lab sees them'],
-          answer: 'Keep them dry and apart; photograph them',
+          options: ['Fit them together to see how well they match', 'Clean them with a wire brush first', 'Keep them dry and apart, and photograph them', 'Oil them against rust till the lab sees them'],
+          answer: 'Keep them dry and apart, and photograph them',
           why: 'Fitting, brushing or oiling destroys the fine marks a lab needs to read the fracture.',
         },
         {
@@ -754,7 +754,7 @@ export default {
         'For unwelded parts, a tensile mean stress lowers the amplitude a part survives; the Goodman line is the classic way to correct for it. A compressive mean stress helps, which is why shot peening and rolled threads last longer.\n\nWelds behave differently: they hold tensile residual stresses near yield, so codes for welds use the stress range only and ignore the mean.',
         'On a log-log chart the S-N curve is close to a straight line: N = Nref × (Sref / S)^m. The slope m tells how sensitive life is to stress. For welded steel details m = 3: a 20% lower stress gives about twice the life. Smooth machined parts have a flatter curve, a larger m, so life is even more sensitive.\n\nFatigue life is the number of cycles a part survives at a stress level, read from that curve.',
         'Real parts see a mix of loads: many small cycles and a few big ones. Miner’s rule (Palmgren-Miner) adds the damage: for each level, cycles applied / cycles to failure, summed into D. At D = 1 failure is predicted.\n\nIt is a rough rule: tests show failures anywhere from about D = 0.3 to 3, and the order of loads matters. Some designers use D = 0.5 for safety; codes use D = 1 with safety factors on the stress.',
-        'The polished-sample endurance limit is cut down for real parts: Shigley’s Marin factors reduce it for surface finish, size, load type, temperature and reliability. A machined surface may lose 20 to 30%; a rough forged surface can lose more than half.\n\nSo a fatigue calculation has big uncertainty: a factor of two in life is normal. Engineers argue less about the formula than about the load spectrum. The sharp question: “Where does the load data come from: measured or assumed?”',
+        'The polished-sample endurance limit is cut down for real parts: Shigley’s Marin factors reduce it for surface finish, size, load type, temperature and reliability. A machined surface typically loses 15 to 30%, more in stronger steels; a rough forged surface can lose more than half.\n\nSo a fatigue calculation has big uncertainty: a factor of two in life is normal. Engineers argue less about the formula than about the load spectrum. The sharp question: “Where does the load data come from: measured or assumed?”',
       ],
       example: {
         kind: 'faded',
@@ -818,7 +818,7 @@ export default {
       pre: [
         {
           q: 'On a vibrating frame, why does a fatigue crack almost always start at a weld and not in the plate next to it?',
-          options: ['Weld metal is always much softer than the plate around it', 'Welds are painted less well, so they corrode and then crack', 'The weld is always the thinnest part of the whole frame', 'The weld toe is a notch, with residual stress'],
+          options: ['Weld metal is always much softer than the plate', 'Welds are painted less well, so they rust', 'The weld is the thinnest part of the frame', 'The weld toe is a notch, with residual stress'],
           answer: 'The weld toe is a notch, with residual stress',
           why: 'The weld toe is a sharp change of shape, the weld leaves tensile residual stress, and small flaws act as ready-made crack starts.',
         },
@@ -834,7 +834,7 @@ export default {
         kind: 'faded',
         text: 'A vibrating screen frame has a fillet-welded bracket, detail category 71. Strain gauges measure a stress range of 60 MPa, and the screen makes about 3 million cycles a year. Assume life = 2,000,000 × (FAT / Δσ)³ with a single slope.\n\nThe supplier proposes to switch the frame to S690. The engineer proposes instead a redesigned bracket with a smooth, ground transition, detail category 90, plus a stiffener that brings the stress range down to 45 MPa.',
         ask: 'What is the life now, with S690, and with the engineer’s redesign?',
-        reveal: 'Now: 2,000,000 × (71 / 60)³ = 3.3 million cycles, about 1.1 years. S690 changes almost nothing: as-welded fatigue strength barely depends on the steel grade, so still about 1.1 years.\n\nRedesign: 2,000,000 × (90 / 45)³ = 16 million cycles, about 5.3 years. A better detail and a lower stress range multiply the life; a stronger steel doesn’t.',
+        reveal: 'Now: 2,000,000 × (71 / 60)³ = 3.3 million cycles, about 1.1 years. S690 changes almost nothing: as-welded fatigue strength barely depends on the steel grade, so still about 1.1 years.\n\nRedesign: 2,000,000 × (90 / 45)³ = 16 million cycles, about 5.3 years; with the code’s flatter slope at low stress ranges, even longer. A better detail and a lower stress range multiply the life; a stronger steel doesn’t.',
       },
       said: 'What engineers say: “S690 won’t help a fillet weld in fatigue. Change the detail or bring the stress range down.”',
       recall: [
@@ -854,8 +854,8 @@ export default {
         },
         {
           q: 'Which treatment raises the fatigue strength of an existing weld toe?',
-          options: ['Painting the weld with a thick coat', 'Adding an extra layer of weld on top', 'Toe grinding or HFMI peening', 'Heating the weld until red-hot and cooling it in water'],
-          answer: 'Toe grinding or HFMI peening',
+          options: ['Painting the weld with a thick coat', 'Adding an extra layer of weld on top', 'Grinding the toe smooth, or HFMI peening', 'Heating the weld red-hot and quenching it in water'],
+          answer: 'Grinding the toe smooth, or HFMI peening',
           why: 'Grinding removes the notch and flaws; peening adds compressive stress. Both are recognised by the IIW, with conditions.',
         },
         {
@@ -1040,18 +1040,18 @@ export default {
       ],
       teach: [
         'EN 10027-1 sets how European steel names are built. Steels named by use start with a letter: S structural steel, E engineering steel, P for pressure equipment. The number is the minimum yield strength in MPa for the thinnest products: S355, P265.\n\nThe quality grade follows: JR, J0, J2 or K2 for the impact test. After a plus sign comes the delivery condition, how the steel is supplied: +N normalised, +AR as rolled, +QT quenched and tempered.',
-        'Steels named by chemistry tell you their composition. Unalloyed: C45 is carbon steel with 0.45% carbon. Low-alloyed: 42CrMo4 has 0.42% carbon; the 4 belongs to chromium, divided by a factor of 4: about 1% chromium, plus some molybdenum. The factors are 4 for Cr, Ni, Mn, Si, 10 for Mo, V and others.\n\nHigh-alloyed starts with X: X5CrNi18-10 has 0.05% carbon, 18% chromium, 10% nickel, in plain percent.',
+        'Steels named by chemistry tell you their composition. Unalloyed: C45 is carbon steel with 0.45% carbon. Low-alloyed: 42CrMo4 has 0.42% carbon; the 4 belongs to chromium, divided by a factor of 4: about 1% chromium, plus some molybdenum. The factor is 4 for Cr, Ni, Mn and Si, 10 for Mo, V and Cu, 100 for P, S and N.\n\nHigh-alloyed starts with X: X5CrNi18-10 has 0.05% carbon, 18% chromium, 10% nickel, in plain percent.',
         'EN 10027-2 gives every steel a material number: 1.0577 for S355J2, 1.7225 for 42CrMo4, 1.4301 for X5CrNi18-10, which the US calls 304. The number is short, unambiguous and easy to search in a stock system.\n\nAmerican names such as AISI 4140 or 316L are common on the floor. 4140 is close to 42CrMo4, but close is not identical: chemistry ranges and test requirements differ.',
         'Aluminium has its own system: EN AW-6082 is a wrought alloy (AW) of the 6000 series, aluminium with magnesium and silicon. The temper designation after it says how it was treated: O annealed and soft, T6 solution heat treated and artificially aged, the strong condition.\n\nWelding destroys T6 locally: next to the weld the alloy can lose a large part of its strength. The module Welding and joining explains the heat-affected zone.',
-        'Name, number and condition belong together. 42CrMo4 annealed and 42CrMo4+QT are the same steel, but the first is soft for machining and the second is about twice as strong.\n\nA common failure: an order says only “42CrMo4”, and the stockholder delivers whatever is on the rack. Also, S355 meets 355 MPa only up to 16 mm thick; at 16 to 40 mm the minimum is 345. The sharp question: “Grade, condition and size: are all three on the order?”',
+        'Name, number and condition belong together. 42CrMo4 annealed and 42CrMo4+QT are the same steel, but the first is soft for machining and the second has roughly one and a half times the yield strength, or more.\n\nA common failure: an order says only “42CrMo4”, and the stockholder delivers whatever is on the rack. Also, S355 meets 355 MPa only up to 16 mm thick; at 16 to 40 mm the minimum is 345. The sharp question: “Grade, condition and size: are all three on the order?”',
       ],
       example: {
         kind: 'faded',
         text: 'A drawing for a drive shaft says: “42CrMo4+QT (1.7225), Ø80”. To save cost and lead time, a stockholder offers “AISI 4140, annealed, Ø80” from stock. For this size the standard gives 42CrMo4+QT a tensile strength of 900 to 1,100 MPa.',
         ask: 'What does each part of the drawing’s name mean, and what is wrong with the offer?',
-        reveal: '42: 0.42% carbon; Cr with 4 / 4 = about 1% chromium; Mo: molybdenum; +QT: quenched and tempered; 1.7225: its material number.\n\nThe offer is close in chemistry, but annealed means soft: far below the 900 MPa the shaft was designed for. Either the shop has it hardened and tempered with a certificate, or it orders 42CrMo4+QT. Engineering approves any substitution in writing.',
+        reveal: '42: 0.42% carbon; Cr with 4 / 4 = about 1% chromium; Mo: molybdenum; +QT: quenched and tempered; 1.7225: its material number.\n\nThe offer is close in chemistry, but annealed means soft: below the 900 MPa the shaft was designed for, with a much lower yield strength. Either the shop has it hardened and tempered with a certificate, or it orders 42CrMo4+QT. Engineering approves any substitution in writing.',
       },
-      said: 'What engineers say: “4140 annealed is not 42CrMo4 QT. Same family, half the strength. Send it to the heat treater or don’t use it.”',
+      said: 'What engineers say: “4140 annealed is not 42CrMo4 QT. Same family, a lot weaker. Send it to the heat treater or don’t use it.”',
       recall: [
         {
           q: 'In the low-alloy steel 34CrNiMo6 the 6 belongs to chromium, with a factor of 4. About how much chromium does it contain, in %?',
@@ -1085,7 +1085,7 @@ export default {
       situation: {
         scene: 'At a machine builder’s goods-in, you see bars labelled only “42CrMo4” being booked into stock for drive shafts. The drawing says 42CrMo4+QT. The receiving clerk says, “It’s the right steel.”',
         ask: 'What do you ask?',
-        model: 'Which delivery condition did we receive: QT or annealed? The name is the same, but the strength differs about twofold. Does the certificate show the condition and tensile values for this size? Does the purchase order state grade, condition and size, and does goods-in check all three? If the condition is missing, these bars should be held until it’s clear, before they become shafts.',
+        model: 'Which delivery condition did we receive: QT or annealed? The name is the same, but the QT bar has roughly one and a half times the yield strength or more. Does the certificate show the condition and tensile values for this size? Does the purchase order state grade, condition and size, and does goods-in check all three? If the condition is missing, these bars should be held until it’s clear, before they become shafts.',
         rubric: [
           'Notices that the delivery condition is missing',
           'Explains that the condition changes the strength a lot',
@@ -1117,7 +1117,7 @@ export default {
         'Specific stiffness, E divided by density, is almost the same for steel, aluminium and titanium: about 26 GPa per 1,000 kg/m³. So for a rod in tension, aluminium gives no weight gain at equal stiffness.\n\nIn bending, it does: stiffness grows with thickness cubed, so an aluminium plate about 44% thicker matches steel at about half the weight. Shape and load case decide, not the material alone.',
         'Machinability is how easily a material cuts: tool life, speed, chips. Free-cutting steels with added sulphur, such as 11SMnPb30, cut fast but weld poorly. 303 stainless machines better than 304, but resists corrosion worse and is not meant for welding.\n\nWeldability is how easily a steel welds without cracking; it falls with carbon and alloy content. The module Welding and joining explains the carbon equivalent that engineers use for it.',
         'Material substitution, swapping one material for another in an existing part, is a favourite of cost-down projects. Check all functions, not just strength: stiffness, fatigue, corrosion, temperature, wear, and the downstream processes such as heat treatment, welding procedure and coating.\n\nAn equivalent grade from another standard, such as AISI 4140 for 42CrMo4, is close but rarely identical. Treat every substitution as a design change.',
-        'In automotive and other regulated sectors the customer must approve a material change, often through a new PPAP (production part approval process) submission. Elsewhere it goes through engineering change control, with a test where a property is critical.\n\nExperts argue about how much testing is enough. A sound minimum: compare the data sheets per function, run the critical test, and document the decision. The sharp question: “Which functions did we check, and who signed off?”',
+        'In automotive and other regulated sectors the customer must approve a material change, often through a new PPAP (production part approval process) submission; the module Quality basics explains PPAP. Elsewhere it goes through engineering change control, with a test where a property is critical.\n\nExperts argue about how much testing is enough. A sound minimum: compare the data sheets per function, run the critical test, and document the decision. The sharp question: “Which functions did we check, and who signed off?”',
       ],
       example: {
         kind: 'faded',
@@ -1145,8 +1145,8 @@ export default {
         },
         {
           q: 'To speed up machining, someone proposes 303 stainless instead of 316 for parts in a washdown zone that are welded to the frame. What is the answer?',
-          options: ['Yes: 303 is the same steel, only cheaper', 'Yes, as long as the parts are polished', 'Only if the welds are painted afterwards', 'No: 303 corrodes and welds worse'],
-          answer: 'No: 303 corrodes and welds worse',
+          options: ['Yes: 303 is the same steel, just cheaper', 'Yes, if the parts are polished', 'Only if the welds get painted', 'No: 303 corrodes faster and welds poorly'],
+          answer: 'No: 303 corrodes faster and welds poorly',
           why: 'The added sulphur that makes 303 cut well lowers its corrosion resistance and weldability.',
         },
         {
