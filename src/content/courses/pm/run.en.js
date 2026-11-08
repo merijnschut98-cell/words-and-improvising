@@ -33,19 +33,19 @@ export default {
         },
         {
           q: 'Why are watermelon projects costly?',
-          options: ['When the bad news finally comes, most options are gone', 'They use too many colours for anyone to follow', 'The reports get too long for anyone to read', 'Sponsors dislike green'],
+          options: ['When the bad news finally comes, most options are gone', 'They use too many colours for anyone to follow', 'The reports get too long for anyone to read', 'Sponsors distrust green and start asking awkward questions about it'],
           answer: 'When the bad news finally comes, most options are gone',
           why: 'Early bad news leaves room to act; late bad news leaves only damage control.',
         },
         {
           q: 'Which is the best order for bad news?',
-          options: ['Apology first, then background, problem and request', 'What happened, what it means, what I propose, what I need', 'Request, then explanation', 'Problem, blame, solution'],
+          options: ['Apology first, then background, problem and request', 'What happened, what it means, what I propose, what I need', 'Request, then explanation', 'The problem, then who caused it, and then the solution you want'],
           answer: 'What happened, what it means, what I propose, what I need',
           why: 'It is short, factual and ends with a clear ask.',
         },
         {
           q: 'A client team member asks you to keep the status green. What do you say?',
-          options: ['“Fine, it’s your project.”', '“I’ll report it to the sponsor myself today, with or without you.”', '“I get it, but if we say it now the sponsor can still help; later he can’t.”', '“The method requires red.”'],
+          options: ['“Fine, it’s your project and your call, so you decide which colour we report.”', '“I’ll report it to the sponsor myself today, with or without you.”', '“I get it, but if we say it now the sponsor can still help; later he can’t.”', '“The method requires red.”'],
           answer: '“I get it, but if we say it now the sponsor can still help; later he can’t.”',
           why: 'You acknowledge the fear and explain why early is in their interest too.',
         },
@@ -93,7 +93,7 @@ export default {
         },
       ],
       teach: [
-        'The steering group is the meeting where the sponsor and a few senior managers take the decisions the team cannot take. A good steering group is mostly won before the meeting.\n\nThree things decide that: the steering pack you send in advance, the talks you have in advance, and the order of the agenda. The Plan module covers how you set up the steering group; this lesson is about keeping it working.',
+        'The steering group is the meeting where the sponsor and a few senior managers take the decisions the team cannot take. A good steering group is mostly won before the meeting.\n\nThree things decide that: the steering pack you send in advance, the talks you have in advance, and the order of the agenda. The Plan module (Roles and the sponsor) covers who sits on it and what the sponsor commits to; this lesson is about keeping it working.',
         'The steering pack is what members receive two working days ahead: one page of status, plus a decision note for each decision. Nothing more.\n\nIn Lean companies that one page is often an A3 status report: the A3 format (two A4 sheets side by side) that Toyota uses for problem solving, proposals and status (John Shook, Managing to Learn, 2008). Left: goal, plan against actual, forecast. Right: problems, countermeasures and the decisions needed.',
         'Nemawashi is Japanese for “loosening the roots” before you move a tree. In Lean it means: briefly talking to each steering group member about the proposal in advance, hearing their concerns and adjusting the proposal where needed.\n\nIt takes ten to twenty minutes per member. In return, nobody in the room is surprised and objections are already on the table. Ask: “What would stop you from saying yes to this?”',
         'Keep to the no-surprises rule: nobody hears bad news for the first time in the steering group, least of all the sponsor. Call her the day before if a colour turns red.\n\nPut decisions at the top of the agenda, not below the status. People are still fresh and there is still time. Open with: “Today we need two decisions.”',
@@ -107,19 +107,19 @@ export default {
       recall: [
         {
           q: 'What is nemawashi in a project?',
-          options: ['Talking to each member about a proposal beforehand and taking their concerns on board', 'Having the sponsor approve the minutes of the steering group before they go out', 'Postponing a decision until everyone agrees', 'Ordering the agenda from small to large'],
+          options: ['Talking to each member about a proposal beforehand and taking their concerns on board', 'Having the sponsor approve the minutes of the steering group before they go out to the team', 'Postponing a decision until everyone agrees', 'Ordering the agenda from small to large'],
           answer: 'Talking to each member about a proposal beforehand and taking their concerns on board',
           why: 'Loosening the roots before moving the tree: objections come up in advance, so the meeting can decide.',
         },
         {
           q: 'Where do decisions go on a good steering group agenda?',
-          options: ['Below the status, so everyone is up to date first', 'Under any other business at the end', 'At the top, while people are fresh and there is still time', 'Nowhere, decisions go by email'],
+          options: ['Below the status update, so that everyone is fully up to date first', 'Under any other business at the end', 'At the top, while people are fresh and there is still time', 'Nowhere, decisions go by email'],
           answer: 'At the top, while people are fresh and there is still time',
           why: 'The status is already in the pack. Meeting time is for decisions.',
         },
         {
           q: 'A milestone goes red in tomorrow’s steering group. What do you do today?',
-          options: ['Nothing, that is what the steering group is for', 'Call the sponsor, so she doesn’t hear it in the room for the first time', 'Keep the colour at amber and explain it in the meeting itself', 'Ask the team to present it themselves'],
+          options: ['Nothing, that is what the steering group is for', 'Call the sponsor, so she doesn’t hear it in the room for the first time', 'Keep the colour at amber for now and explain the delay in the meeting itself', 'Ask the team to present it themselves'],
           answer: 'Call the sponsor, so she doesn’t hear it in the room for the first time',
           why: 'The no-surprises rule: bad news comes in advance, in person.',
         },
@@ -174,7 +174,7 @@ export default {
         },
       ],
       teach: [
-        'Earned value management (EVM) compares three numbers at the same moment, all in euros.\n\nPlanned value (PV): what should be done by now according to the plan, expressed as budget. Earned value (EV): the budget of the work that is really done. Actual cost (AC): what has really been spent.\n\nThe method comes from large defence and construction projects and is described in the PMI standard for earned value management.',
+        'Earned value management (EVM) compares three numbers at the same moment, all in euros.\n\nPlanned value (PV): what should be done by now according to the plan, expressed as budget. Earned value (EV): the budget of the work that is really done. Actual cost (AC): what has really been spent.\n\nThe method comes from American defence projects of the 1960s, is common in construction and is described in PMI’s Practice Standard for Earned Value Management.',
         'Two ratios tell the story. The SPI (schedule performance index) is EV divided by PV: below 1 you are behind schedule. The CPI (cost performance index) is EV divided by AC: below 1 the work costs more than budgeted.\n\nExample: PV 80,000 euros, EV 60,000, AC 75,000. SPI = 0.75, you have done three quarters of what was planned. CPI = 0.8, each euro buys 80 cents of work.',
         'The hard part is EV: how much work is really done? “We’re at 80%” is a feeling. Use a firm rule per work package instead, such as the 0/100 rule: a package only counts when it is finished and accepted. Or 50/50: half at the start, the rest on delivery.\n\nThis fits what you learn in Leading projects outside your field: milestones with evidence, not percentages.',
         'In improvement projects earned value is less common than in construction. The work is harder to cut into pieces and part of the value lies in behaviour that changes. Use it lightly there: count delivered work packages, not hours.\n\nIt is still useful for seeing one thing a RAG colour hides: whether you are behind, too expensive, or both.',
@@ -184,7 +184,7 @@ export default {
         kind: 'faded',
         text: 'You are a junior Lean consultant on a project at a plastics processor: a budget of 120,000 euros, 12 weeks, planned as equal work packages of 10,000 euros a week. It is the end of week 6.\n\nAccording to plan six packages should be done. Really done and accepted: four and a half packages, so 45,000 euros of work. Spent so far: 54,000 euros. The project owner says: “We’re at half the time and half the money, so we’re fine.”',
         ask: 'What are the SPI and the CPI, and what do you tell the project owner?',
-        reveal: 'PV = 60,000, EV = 45,000, AC = 54,000. SPI = 45 / 60 = 0.75: three quarters of the planned work is done. CPI = 45 / 54 ≈ 0.83: each euro buys about 83 cents of work.\n\nTo the project owner: “We’ve spent half the money but done only 37.5% of the work. If this continues, we’ll run short of both time and money. Let’s look at which packages are stuck and why.”',
+        reveal: 'PV = 60,000, EV = 45,000, AC = 54,000. SPI = 45 / 60 = 0.75: three quarters of the planned work is done. CPI = 45 / 54 ≈ 0.83: each euro buys about 83 cents of work. Spent: 54 / 120 = 45% of the budget; done: 45 / 120 = 37.5% of the work.\n\nTo the project owner: “We’ve spent 45% of the money but done only 37.5% of the work. If this continues, we’ll run short of both time and money. Let’s look at which packages are stuck and why.”',
       },
       said: 'What you hear in projects: “We’re at 90%.” For three weeks now.',
       recall: [
@@ -212,7 +212,7 @@ export default {
         },
         {
           q: 'Why use a rule such as 0/100 to determine earned value?',
-          options: ['Because it makes the SPI higher', 'Because it replaces the team’s percentages with work that is provably done', 'Because PMI requires it for all projects', 'Because then you no longer need to measure or track actual cost'],
+          options: ['Because it makes the SPI higher', 'Because it replaces the team’s percentages with work that is provably done', 'Because PMI requires it for all projects', 'Because then you no longer need to measure or track the actual cost of the work'],
           answer: 'Because it replaces the team’s percentages with work that is provably done',
           why: 'A package only counts once it is finished and accepted; feelings no longer play a part.',
         },
@@ -246,6 +246,7 @@ export default {
         { term: 'Actual cost', def: 'AC: what has really been spent so far.' },
         { term: 'SPI', def: 'Schedule performance index: EV divided by PV; below 1 you are behind schedule.' },
         { term: 'CPI', def: 'Cost performance index: EV divided by AC; below 1 the work costs more than budgeted.' },
+        { term: 'Work package', def: 'A piece of work with one owner and a clear result, small enough to count as done or not done.' },
       ],
     },
     {
@@ -254,14 +255,14 @@ export default {
       pre: [
         {
           q: 'The steering group agreed a cost tolerance of plus 10%. Right now you are 4% over budget, but the forecast comes out at 12% over. When do you report this?',
-          options: ['Only once you are really more than 10% over budget', 'Now, because the forecast falls outside the tolerance', 'At the end, in the final report', 'Not at all, 4% is within the agreement'],
+          options: ['Only once spending is really more than 10% over the budget', 'Now, because the forecast falls outside the tolerance', 'At the end, in the final report', 'Not at all, 4% is within the agreement'],
           answer: 'Now, because the forecast falls outside the tolerance',
           why: 'You escalate on the forecast, not only once the limit is actually exceeded. Then there are still options.',
         },
       ],
       teach: [
-        'Management by exception is a principle from PRINCE2, the British project method. The steering group agrees limits and lets the project manager steer within them. As long as the project stays within the limits, the steering group gets a short progress report and doesn’t need to act.\n\nThat saves senior people’s time and gives the project manager room. It only works if the limits are sharp from the start.',
-        'Those limits are called tolerances: the allowed deviation from the plan. PRINCE2 7 (2023) names seven aspects: time, cost, quality, scope, risk, benefits and sustainability. Example: “cost plus or minus 10%, time plus two weeks, scope: no must-have part may be dropped”.\n\nThe steering group sets the project tolerance; the project manager in turn passes smaller tolerances down to the teams.',
+        'Management by exception is a principle from PRINCE2, the British project method. You met it in Intake (Phasing and change control) and Plan (Baseline, tolerances and rolling wave planning): limits are agreed and the project manager steers within them. This lesson is about running it.\n\nAs long as the project stays within the limits, the steering group gets a short progress report (in PRINCE2: a highlight report) and doesn’t need to act. That saves senior people’s time and gives the project manager room.',
+        'Those limits are called tolerances: the allowed deviation from the plan. PRINCE2 7 (2023) names seven aspects: time, cost, quality, scope, risk, benefits and sustainability. Example: “cost plus or minus 10%, time plus two weeks, scope: no must-have part may be dropped”.\n\nTolerances cascade: management above the project sets the project tolerance, the steering group gives the project manager a tolerance per stage, and he gives each team a smaller one per work package.',
         'If a tolerance threatens to be exceeded, you write an exception report: what is happening, why, the consequences, the options and your recommendation. Key point: you report it when the forecast falls outside the limit, not only once it has happened.\n\nThe cost forecast is called the EAC (estimate at completion). A common formula is BAC divided by CPI, with BAC (budget at completion) as the total budget.',
         'That formula assumes the current cost efficiency continues. If the overrun was a one-off, use AC plus the remaining work at budget instead. Choose, and say which assumption you use.\n\nExample: BAC 200,000 euros, CPI 0.8. EAC = 200,000 / 0.8 = 250,000 euros. With a 10% tolerance the limit is 220,000: time for an exception report.',
         'What goes wrong: tolerances that were never agreed, so every deviation goes to the steering group, or none does. Or a project manager who “adjusts” a forecast until it falls just inside the limit.\n\nExperts differ on how wide tolerances should be: narrow gives control but many escalations, wide gives room but more surprises. A sharp question in the first steering group: “At what deviation do you want me to call you?”',
@@ -284,7 +285,7 @@ export default {
         },
         {
           q: 'What goes in an exception report?',
-          options: ['All the team’s hours per week, broken down by work package', 'An apology from the project manager', 'Only the new budget you need, with the date you need it by', 'What is happening, why, the consequences, the options and a recommendation'],
+          options: ['All the team’s hours per week, broken down by work package and by team member', 'An apology from the project manager', 'Only the new budget you need, with the date you need it by', 'What is happening, why, the consequences, the options and a recommendation'],
           answer: 'What is happening, why, the consequences, the options and a recommendation',
           why: 'The steering group must be able to choose; for that it needs options and a recommendation.',
         },
@@ -297,10 +298,10 @@ export default {
           why: 'Limit = 120 × 1.1 = 132; 135 − 132 = 3 thousand euros above it.',
         },
         {
-          q: 'Why is management by exception useful for a steering group?',
-          options: ['It never has to meet again', 'The project manager then also decides on the budget', 'It only has to step in when an agreed limit is at risk', 'Reports are then no longer needed'],
-          answer: 'It only has to step in when an agreed limit is at risk',
-          why: 'Within the tolerances the project manager steers; the steering group spends its time on real deviations.',
+          q: 'One expensive measurement made the stage 10 thousand euros dearer; it will not happen again. Budget (BAC) 200, earned value (EV) 100, actual cost (AC) 110, all in thousands of euros. Which forecast (EAC) fits best?',
+          options: ['200 thousand: the budget still stands', '220 thousand: the budget divided by the CPI, as if the overrun keeps going', '210 thousand: actual cost plus the remaining work at budget', '110 thousand: what has been spent so far, nothing more'],
+          answer: '210 thousand: actual cost plus the remaining work at budget',
+          why: 'The overrun was a one-off, so the remaining 100 of work costs what was budgeted: 110 + (200 − 100) = 210. BAC / CPI = 200 / 0.91 ≈ 220 assumes it keeps happening.',
         },
       ],
       situation: {
@@ -340,7 +341,7 @@ export default {
       pre: [
         {
           q: 'Where does most scope creep at clients come from?',
-          options: ['Many small, reasonable-sounding requests', 'Large formal change requests', 'The contract', 'The consultant’s own ideas only'],
+          options: ['Many small, reasonable-sounding requests', 'Large formal change requests from the steering group', 'The contract', 'The consultant’s own ideas only'],
           answer: 'Many small, reasonable-sounding requests',
           why: 'Each one sounds fine on its own; together they eat the project.',
         },
@@ -363,6 +364,7 @@ export default {
           number: 25,
           tolerance: 0.5,
           unit: '%',
+          hint: 'First add up the extra days, then divide by the original 40 and convert to a percentage.',
           why: '5 × 2 = 10 days; 10 / 40 = 25%.',
         },
         {
@@ -379,7 +381,7 @@ export default {
         },
         {
           q: 'Which is an early sign of scope creep?',
-          options: ['The team finishes early', 'The sponsor attends every steering group and asks many questions', 'Risks are reviewed weekly', 'New people at your meetings and a shifting goal sentence'],
+          options: ['The team finishes early', 'The sponsor attends every steering group and asks a lot of questions there', 'Risks are reviewed weekly', 'New people at your meetings and a shifting goal sentence'],
           answer: 'New people at your meetings and a shifting goal sentence',
           why: 'New stakeholders bring new wishes; a drifting goal shows the project is changing.',
         },
@@ -422,13 +424,13 @@ export default {
       pre: [
         {
           q: 'Your project has approved three small changes, each within the project manager’s authority. What do you watch for?',
-          options: ['Nothing, all three were approved', 'Whether the client is happy with them', 'Whether the team likes them', 'Whether together they cross the agreed limit'],
+          options: ['Nothing, all three were approved', 'Whether the client is happy with them and wants to keep them', 'Whether the team likes them', 'Whether together they cross the agreed limit'],
           answer: 'Whether together they cross the agreed limit',
           why: 'Small changes add up. What is within authority one by one can together need a decision from the sponsor.',
         },
       ],
       teach: [
-        'In the lesson on scope creep you learned to make changes visible. At this level you set up a fixed process for it: change control. Five steps: capture, analyse the impact, decide, implement and communicate.\n\nEvery request gets a line in the change log: number, date, who asks, what and why, the impact, the decision and who decided. One tab next to the decision log is enough.',
+        'In the lesson on scope creep you learned to make changes visible, and in Intake to write a change request. At this level you set up a fixed process for it: change control. Five steps: capture, analyse the impact, decide, implement and communicate.\n\nEvery request gets a line in the change log: number, date, who asks, what and why, the impact, the decision and who decided. One tab next to the decision log is enough.',
         'The impact analysis looks beyond time and money. Ask for each request: what does it do to the schedule, the budget, the quality, the risks and the benefits, the gains the project exists for?\n\nAlso ask: who else will notice? An extra line in a pilot also affects the planner, maintenance and the sensor supplier. Estimate it with the people who do the work, not just behind your laptop.',
         'Not every change needs to go to the steering group. Agree delegated authority: who may decide alone, up to which limit. For example: the project manager up to two days of work with no effect on the end date; the sponsor up to 10% of the budget; above that the steering group.\n\nAdd up approved changes. Three times “small” can together come out above the sponsor’s limit.',
         'Triage is quickly sorting requests before you spend much time on them: yes straight away (small, within authority, fits the goal sentence), analyse, or no straight away (outside the goal). Do it weekly with the project manager, in fifteen minutes.\n\nThat keeps the process light. A change process that takes three weeks per request gets bypassed in the corridor.',
@@ -450,19 +452,19 @@ export default {
         },
         {
           q: 'What belongs in an impact analysis of a change?',
-          options: ['Only the extra cost', 'The effects on schedule, budget, quality, risks and benefits', 'Who came up with the change and why that person wants it', 'A list of all earlier changes'],
+          options: ['Only the extra cost', 'The effects on schedule, budget, quality, risks and benefits', 'Who came up with the change, and why that person wants it so badly', 'A list of all earlier changes'],
           answer: 'The effects on schedule, budget, quality, risks and benefits',
           why: 'A change affects more than money; the decision maker must see the whole picture.',
         },
         {
           q: 'What is agreed delegated authority for changes for?',
-          options: ['Small changes decided quickly, big ones put with the right person', 'Preventing anything from ever changing', 'Giving the consultant more power', 'Showing every change, however small, to the steering group'],
+          options: ['Small changes decided quickly, big ones put with the right person', 'Preventing anything from ever changing', 'Giving the consultant more power', 'Showing every change, however small, to the steering group for approval'],
           answer: 'Small changes decided quickly, big ones put with the right person',
           why: 'The process stays light, and what matters reaches whoever is in charge of it.',
         },
         {
           q: 'Why do you triage new requests weekly?',
-          options: ['To keep the client waiting', 'To turn all requests down until the next stage', 'To handle only the requests that come in from the sponsor', 'To sort quickly: yes straight away, analyse first, or no straight away'],
+          options: ['To keep the client waiting', 'To turn all requests down until the next stage, so the plan stays stable', 'To handle only the requests that come in from the sponsor', 'To sort quickly: yes straight away, analyse first, or no straight away'],
           answer: 'To sort quickly: yes straight away, analyse first, or no straight away',
           why: 'That way you only spend analysis time on requests that deserve it.',
         },
@@ -504,16 +506,16 @@ export default {
       pre: [
         {
           q: 'A project is three weeks behind on the critical path. Two tasks on that path are now planned one after the other. What usually costs the least money to win time back?',
-          options: ['Overlapping the tasks partly, with more risk of rework', 'Hiring extra people for both tasks', 'Moving the end date without telling anyone', 'Replanning the whole project from scratch'],
+          options: ['Overlapping the tasks partly, with more risk of rework', 'Hiring extra people for both tasks, so each one finishes sooner', 'Moving the end date without telling anyone', 'Replanning the whole project from scratch'],
           answer: 'Overlapping the tasks partly, with more risk of rework',
           why: 'Overlapping (fast-tracking) mainly costs risk, not money. Extra people (crashing) cost money.',
         },
       ],
       teach: [
-        'The baseline plan is the approved version of scope, schedule and budget that you measure progress against. Note: this is not the same as the performance baseline (the measured starting point) from the Plan module.\n\nYou don’t change the baseline plan quietly. You measure against it, you report deviations, and only an approved change leads to a new baseline plan. Keep the old one, so you can show how the project changed.',
-        'A good budget has two reserves (PMI, PMBOK Guide). The contingency reserve is for risks you know about but that may not happen, such as a late supplier. The project manager manages it within the budget.\n\nThe management reserve is for what nobody saw coming. It sits outside the project budget and needs a decision from the sponsor. Sources differ in the details; agree at the start which reserve sits where.',
-        'Track how fast the contingency reserve is used up. If 60% is used when half the work is done, the rest is probably too tight. That is an early signal, even if the project is still green.\n\nIf the schedule slips, there are two ways to win back time on the critical path, the chain of tasks that sets the end date (see Plan).',
-        'Crashing means putting extra people or resources on critical-path tasks: it costs money. Fast-tracking means doing tasks that were planned in sequence partly at the same time: it costs little money, but more risk of rework. Both only help on the critical path.\n\nAnd remember Brooks (1975): adding people to a late project often makes it later, because bringing them up to speed takes time.',
+        'The baseline plan is the approved scope, schedule and budget together: the scope baseline and the schedule baseline from the Plan module, plus the budget. You measure progress against it. Note: this is not the baseline in the sense of the measured starting point of the process.\n\nYou don’t change the baseline plan quietly. You measure against it, you report deviations, and only an approved change leads to a new baseline plan. Keep the old one, so you can show how the project changed.',
+        'A good budget has two reserves (PMI, PMBOK Guide); how to size them is in Plan (Risks in money and reserves). The contingency reserve is for known risks that may not happen, such as a late supplier. It sits inside the cost baseline, the budget the project manager steers on, and he manages it.\n\nThe management reserve is for what nobody saw coming. It sits outside the cost baseline; using it needs a decision from the sponsor. Sources differ in the details; agree at the start which reserve sits where.',
+        'Track how fast the contingency reserve is used up. If 60% is used when half the work is done, the rest is probably too tight. That is an early signal, even if the project is still green.\n\nIf the schedule slips, you have the two levers from Plan (Speeding up and tracking the schedule) to win back time on the critical path, the chain of tasks that sets the end date.',
+        'Crashing means putting extra people, overtime or money on critical-path tasks: it costs money, often from the reserve. Fast-tracking means doing tasks that were planned in sequence partly at the same time: it costs little money, but more risk of rework. Both only help on the critical path.\n\nAnd remember Brooks (1975): adding people to a late project often makes it later, because bringing them up to speed takes time.',
         'When do you make a new baseline plan? When the deviation is structural and the steering group chooses a new course, for example after an exception report. Not every month to keep the colours green; then you measure nothing any more.\n\nExperts differ on how often that is acceptable. A rule of thumb from practice: at most at each stage boundary or after a major decision. A sharp question: “Which plan are we measuring against now, and who approved it?”',
       ],
       example: {
@@ -534,19 +536,19 @@ export default {
         },
         {
           q: 'What is the difference between crashing and fast-tracking?',
-          options: ['Crashing takes tasks off the critical path; fast-tracking puts them on it', 'Crashing mainly costs risk; fast-tracking mainly costs money', 'Crashing adds extra people and costs money; fast-tracking overlaps tasks and mainly costs risk', 'There is no difference, they are two words for the same thing'],
-          answer: 'Crashing adds extra people and costs money; fast-tracking overlaps tasks and mainly costs risk',
+          options: ['Crashing takes tasks off the critical path; fast-tracking puts them on it', 'Crashing mainly costs risk and rework; fast-tracking mainly costs extra money', 'Crashing adds people and costs money; fast-tracking overlaps tasks and costs risk', 'There is no difference, they are two words for the same thing'],
+          answer: 'Crashing adds people and costs money; fast-tracking overlaps tasks and costs risk',
           why: 'Both shorten the critical path, but at a different price.',
         },
         {
           q: 'Who manages the management reserve?',
-          options: ['The sponsor, outside the project budget', 'The project manager, within the project budget', 'The team, per work package', 'The supplier'],
-          answer: 'The sponsor, outside the project budget',
+          options: ['The sponsor, outside the project manager’s budget', 'The project manager, inside his own project budget', 'The team, divided over the work packages', 'The supplier, as part of the contract price'],
+          answer: 'The sponsor, outside the project manager’s budget',
           why: 'That reserve is for the unforeseen; deciding on it needs more authority.',
         },
         {
           q: 'When is a new baseline plan justified?',
-          options: ['Every month, so the schedule is up to date', 'After an approved structural change of course, with the old plan kept', 'When the status is about to turn red before a steering group', 'Never, the first plan always stands'],
+          options: ['Every month, so the schedule is up to date', 'After an approved structural change of course, with the old plan kept', 'When the status is about to turn red just before a steering group meeting', 'Never, the first plan always stands'],
           answer: 'After an approved structural change of course, with the old plan kept',
           why: 'That way you measure honestly and show how the project changed.',
         },
@@ -576,10 +578,11 @@ export default {
       sayIt: 'Explain to a project manager in 60 seconds what a baseline plan is and why you don’t adjust it quietly.',
       terms: [
         { term: 'Baseline plan', def: 'The approved scope, schedule and budget you measure progress against.' },
-        { term: 'Contingency reserve', def: 'Money and time within the budget for known risks, managed by the project manager.' },
-        { term: 'Management reserve', def: 'A reserve outside the project budget for what nobody saw coming; the sponsor decides on it.' },
-        { term: 'Crashing', def: 'Putting extra people or resources on the critical path to win time; costs money.' },
+        { term: 'Contingency reserve', def: 'Money and time inside the cost baseline for known risks, managed by the project manager.' },
+        { term: 'Management reserve', def: 'A reserve outside the cost baseline for what nobody saw coming; the sponsor decides on it.' },
+        { term: 'Crashing', def: 'Putting extra people, overtime or money on the critical path to win time; costs money.' },
         { term: 'Fast-tracking', def: 'Doing tasks planned in sequence partly at the same time; costs little money but more risk.' },
+        { term: 'Critical path', def: 'The chain of tasks that sets the end date: a delay there moves the end date.' },
       ],
     },
     {
@@ -588,7 +591,7 @@ export default {
       pre: [
         {
           q: '150,000 euros have already gone into a project. Finishing it costs another 90,000 euros, and the expected return has dropped to 60,000 euros. What counts in the decision to continue?',
-          options: ['Only the 150,000 euros already spent', 'The 150,000 plus the 90,000, against the return', 'The 90,000 euros still to come, against the 60,000 euros return', 'How much time and effort the team has already put in'],
+          options: ['Only the 150,000 euros already spent', 'The 150,000 already spent plus the 90,000 still to come, against the return', 'The 90,000 euros still to come, against the 60,000 euros return', 'How much time and effort the team has already put in'],
           answer: 'The 90,000 euros still to come, against the 60,000 euros return',
           why: 'What is spent will not come back. Only future costs and returns change because of your decision.',
         },
@@ -618,19 +621,19 @@ export default {
         },
         {
           q: 'What are sunk costs?',
-          options: ['Costs that went over budget', 'Costs already incurred that will not come back', 'Costs you still have to incur to finish', 'Costs that sit in the contingency reserve'],
+          options: ['Costs that went over budget', 'Costs already incurred that will not come back', 'Costs you still have to incur to finish', 'Costs that are set aside in the contingency reserve'],
           answer: 'Costs already incurred that will not come back',
           why: 'Your decision doesn’t change them, so they should not count in it.',
         },
         {
           q: 'Why agree kill criteria at the start?',
-          options: ['Because then the sponsor no longer has to decide', 'Because then the project never stops', 'Because they replace the business case', 'Because it is easier to agree in advance than mid-project'],
+          options: ['Because then the sponsor no longer has to decide anything himself', 'Because then the project never stops', 'Because they replace the business case', 'Because it is easier to agree in advance than mid-project'],
           answer: 'Because it is easier to agree in advance than mid-project',
           why: 'In advance, escalation of commitment doesn’t play a part yet.',
         },
         {
           q: 'Which question helps most against escalation of commitment?',
-          options: ['“Would we start this project today, knowing what we know now?”', '“How much money and time have we already put in?”', '“Who came up with this project?”', '“How long has this project been running?”'],
+          options: ['“Would we start this project today, knowing what we know now?”', '“How much money and time have we already put into this project so far?”', '“Who came up with this project?”', '“How long has this project been running?”'],
           answer: '“Would we start this project today, knowing what we know now?”',
           why: 'That question looks only at the future, without the weight of earlier choices.',
         },
@@ -698,7 +701,7 @@ export default {
         },
         {
           q: 'Where do pure information items go?',
-          options: ['At the start of the steering group', 'In a written update, not in the meeting', 'In the stand-up', 'Nowhere, they are not needed'],
+          options: ['At the start of the steering group, as a warm-up', 'In a written update, not in the meeting', 'In the stand-up', 'Nowhere, they are not needed'],
           answer: 'In a written update, not in the meeting',
           why: 'Meeting time is for discussing and deciding; reading can be done alone.',
         },
@@ -710,7 +713,7 @@ export default {
         },
         {
           q: 'What is the purpose of a stand-up at the board?',
-          options: ['Quick check on finished work, next steps and blockers', 'Discussing strategy and the plan with the whole team', 'Reporting to the sponsor', 'Training new team members'],
+          options: ['Quick check on finished work, next steps and blockers', 'Discussing strategy and the plan in depth with the whole team', 'Reporting to the sponsor', 'Training new team members'],
           answer: 'Quick check on finished work, next steps and blockers',
           why: 'Short and frequent, so blockers surface within days, not weeks.',
         },
@@ -778,19 +781,19 @@ export default {
         },
         {
           q: 'What makes a commitment more likely to hold?',
-          options: ['Small, specific, in their own words, said in front of the team', 'A formal e-mail from you', 'A big task with a deadline far away, so there is room', 'Approval from HR'],
+          options: ['Small, specific, in their own words, said in front of the team', 'A formal e-mail from you', 'A big task with a deadline far away, so there is plenty of room', 'Approval from HR'],
           answer: 'Small, specific, in their own words, said in front of the team',
           why: 'People keep concrete promises they made themselves in public.',
         },
         {
           q: 'You need to involve someone’s manager about his time. What do you do first?',
-          options: ['Go straight to the manager', 'Copy the manager on an e-mail', 'Wait until the end of the project', 'Tell the person you’re going to do it'],
+          options: ['Go straight to the manager', 'Copy the manager on an e-mail to the person', 'Wait until the end of the project', 'Tell the person you’re going to do it'],
           answer: 'Tell the person you’re going to do it',
           why: 'Going around someone destroys trust; telling him first keeps it.',
         },
         {
           q: 'Where should you give credit for good work?',
-          options: ['Privately, so nobody feels left out', 'Out loud, including in the steering group', 'Only in the final report', 'Nowhere, it is their job'],
+          options: ['Privately, so that nobody in the team feels left out', 'Out loud, including in the steering group', 'Only in the final report', 'Nowhere, it is their job'],
           answer: 'Out loud, including in the steering group',
           why: 'Visible credit from senior people is one of the few rewards you can give.',
         },
@@ -914,14 +917,14 @@ export default {
       pre: [
         {
           q: 'Your project team grows from 4 to 8 people. What happens to the number of possible lines between two people?',
-          options: ['It doubles, just like the team', 'It stays the same', 'It becomes almost five times as large', 'It halves'],
+          options: ['It doubles, just like the size of the team', 'It stays the same', 'It becomes almost five times as large', 'It halves'],
           answer: 'It becomes almost five times as large',
           why: 'With 4 people there are 6 pairs, with 8 people 28. The number of lines grows much faster than the team.',
         },
       ],
       teach: [
         'Larger projects split the work into workstreams: sub-teams with their own goal, such as “planning”, “data” and “training”. Each workstream has a workstream lead who runs its own rhythm and reports to the project manager.\n\nThat keeps teams small. But it moves the risk to the seams: what one workstream delivers, another needs.',
-        'Frederick Brooks showed in The Mythical Man-Month (1975) why large teams get slow. The number of communication channels between people is n × (n − 1) / 2. With 4 people that is 6, with 8 already 28, with 15 already 105.\n\nBrooks’s law says: adding people to a late project makes it later. He wrote about software; in other projects it holds as a rule of thumb.',
+        'Frederick Brooks showed in The Mythical Man-Month (1975) why large teams get slow. The number of communication channels between people is n × (n − 1) / 2. With 4 people that is 6, with 8 already 28, with 15 already 105.\n\nBrooks’s law says: adding people to a late software project makes it later. Outside software it holds as a rule of thumb.',
         'So steer on the dependencies: the places where one workstream waits for another. Put them on one board: who delivers what to whom, by which date. Discuss only those in the weekly leads meeting, not the details of each workstream.\n\nIn agile programmes such a board is called a programme board (see Scaling up: SAFe and beyond).',
         'The meeting system then becomes something to design in its own right. A stand-up per workstream; one leads meeting of 30 to 45 minutes with only the workstream leads; the steering group as usual. Everyone else gets a written update.\n\nWork out the cost: 10 people meeting an hour and a half every week for 30 weeks is 450 person-hours. That is a sizeable work package.',
         'What goes wrong: all workstream leads and their teams in one big weekly meeting. Or workstreams that are each green while the whole is red, because the handover between them isn’t working.\n\nExperts differ on how many workstreams are workable; in practice three to five is often mentioned, but that is a rule of thumb. A sharp question in the leads meeting: “Where is your workstream waiting on another one this week?”',
@@ -958,7 +961,7 @@ export default {
         },
         {
           q: 'All workstreams report green, but a delivery between two workstreams has slipped twice. How is the programme doing?',
-          options: ['Green, because all workstreams are green', 'Red, because something slipped', 'You can only tell once all the workstream leads agree on it', 'At least amber, because the handover between the workstreams isn’t working'],
+          options: ['Green, because all workstreams are green', 'Red, because something slipped', 'You can only tell once all the workstream leads have discussed it and agree', 'At least amber, because the handover between the workstreams isn’t working'],
           answer: 'At least amber, because the handover between the workstreams isn’t working',
           why: 'The whole can be red while every part is green. The handover deserves its own status.',
         },
@@ -1000,7 +1003,7 @@ export default {
       pre: [
         {
           q: 'The sensor supplier lets you know the delivery will be two weeks late. Is that a risk or an issue?',
-          options: ['A risk, because it may still work out', 'An issue, because it is happening now and needs action', 'A change request, because the schedule changes', 'Neither, it is just news'],
+          options: ['A risk, because it may still work out', 'An issue, because it is happening now and needs action', 'A change request, because the schedule now has to change', 'Neither, it is just news'],
           answer: 'An issue, because it is happening now and needs action',
           why: 'A risk may happen; an issue has happened or is happening now. This delay is a fact.',
         },
@@ -1026,7 +1029,7 @@ export default {
         },
         {
           q: 'Who is a good owner of an issue?',
-          options: ['The whole team, together', 'The IT department', 'The consultant, because they keep the log', 'One named person who makes sure it gets solved'],
+          options: ['The whole team, together', 'The IT department', 'The consultant, because they keep the issue log up to date', 'One named person who makes sure it gets solved'],
           answer: 'One named person who makes sure it gets solved',
           why: 'If everyone owns it, nobody does.',
         },
@@ -1040,7 +1043,7 @@ export default {
         },
         {
           q: 'An issue has been open for three weeks with no new action. What has it probably become?',
-          options: ['A decision nobody is taking, which belongs with the sponsor', 'A risk that will go away by itself', 'A change request that has to go to the supplier', 'Something best removed from the log'],
+          options: ['A decision nobody is taking, which belongs with the sponsor', 'A risk that will go away by itself', 'A change request that now has to go to the supplier for a price', 'Something best removed from the log'],
           answer: 'A decision nobody is taking, which belongs with the sponsor',
           why: 'When nobody acts, a decision or the authority is usually missing.',
         },
@@ -1108,19 +1111,19 @@ export default {
         },
         {
           q: 'Why keep a decision log?',
-          options: ['The auditor demands it', 'To avoid reopening settled discussions later', 'To be able to show later who was to blame', 'To replace the minutes'],
+          options: ['The auditor demands it', 'To avoid reopening settled discussions later', 'To be able to show later, in black and white, who was to blame', 'To replace the minutes'],
           answer: 'To avoid reopening settled discussions later',
           why: 'You can show what was decided, by whom and why.',
         },
         {
           q: 'What does “escalate the decision, not the person” mean?',
-          options: ['You complain about a colleague to his boss', 'You avoid escalating', 'You let the person escalate it himself to his own manager', 'You take the open decision a level up, after telling those involved'],
+          options: ['You complain about a colleague to his boss', 'You avoid escalating', 'You let the person escalate it himself, to his own manager and in his own way', 'You take the open decision a level up, after telling those involved'],
           answer: 'You take the open decision a level up, after telling those involved',
           why: 'It is about getting a decision, not about getting someone in trouble.',
         },
         {
           q: 'What is the purpose of a default in a decision note?',
-          options: ['It shows what happens if nobody decides in time', 'It replaces the sponsor', 'It hides the risks', 'It makes the note shorter and easier to read'],
+          options: ['It shows what happens if nobody decides in time', 'It replaces the sponsor', 'It hides the risks', 'It makes the note shorter and easier for everyone to read'],
           answer: 'It shows what happens if nobody decides in time',
           why: 'A default keeps the project moving and makes postponing visible.',
         },
@@ -1162,7 +1165,7 @@ export default {
       pre: [
         {
           q: 'In a plant with tier meetings, a shift lead cannot solve a problem himself. What happens according to the agreement?',
-          options: ['He waits for the monthly meeting', 'He solves it himself anyway, even if it takes long', 'He takes it one tier up within the agreed time', 'He emails the director'],
+          options: ['He waits for the monthly meeting', 'He solves it himself anyway, even if it takes much longer', 'He takes it one tier up within the agreed time', 'He emails the director'],
           answer: 'He takes it one tier up within the agreed time',
           why: 'Tier meetings are built on fixed escalation: what one tier cannot solve goes quickly to the next.',
         },
@@ -1204,7 +1207,7 @@ export default {
         },
         {
           q: 'What is an obeya?',
-          options: ['A daily fifteen-minute stand-up', 'A Japanese method for preventing mistakes on the line', 'A document that holds all of a project’s decisions', 'A room where all the boards of a project or programme hang together'],
+          options: ['A daily fifteen-minute stand-up', 'A Japanese method for preventing operator mistakes at the production line', 'A document that holds all of a project’s decisions', 'A room where all the boards of a project or programme hang together'],
           answer: 'A room where all the boards of a project or programme hang together',
           why: '“Big room”: everything visible in one place, so problems surface quickly.',
         },
@@ -1246,7 +1249,7 @@ export default {
       pre: [
         {
           q: 'An automation supplier delivers two weeks late. Your project manager wants to call the supplier’s director straight away. What is usually the better first step?',
-          options: ['Call the supplier’s director, then at least something happens', 'First talk to the supplier’s project manager, following the escalation matrix', 'Bring in a lawyer', 'Do nothing until the delivery arrives'],
+          options: ['Call the supplier’s director straight away, then at least something will happen', 'First talk to the supplier’s project manager, following the escalation matrix', 'Bring in a lawyer', 'Do nothing until the delivery arrives'],
           answer: 'First talk to the supplier’s project manager, following the escalation matrix',
           why: 'Going straight to the top damages the relationship at the level where the work happens, and leaves you no step to take afterwards.',
         },
@@ -1254,15 +1257,15 @@ export default {
       teach: [
         'Many projects cross company boundaries: a plant with an automation supplier, a grid operator with a contractor. The client buys the work; the contractor delivers it. Issues between them are harder, because each has its own interest, boss and contract.\n\nThe basis: one joint issue log that both parties can see and update, reviewed in the joint project meeting.',
         'Agree an escalation matrix at the start: for each level, who talks to whom on both sides, and after how long an issue moves up a level. For example: project manager with project manager, five working days; then account manager with sponsor; then director with director.\n\nThat way both sides escalate at the same time and to their equals. A director calling a project manager throws the relationship off balance.',
-        'Know the contract, or ask someone who does. Many contracts have a penalty clause: an amount agreed in advance for late delivery, often a percentage per week with a cap. Dutch contract law has its own rules for such clauses, and the details differ per contract.\n\nExample: 0.5% per week late, at most 10% of the contract value. With 400,000 euros and six weeks late, that is 12,000 euros.',
-        'Usually you must report a problem formally and in writing before such a clause applies. In the Netherlands a notice of default is the formal letter giving the other party a final reasonable deadline. That is legal work: bring in purchasing or lawyers, and don’t do it yourself by email.\n\nMost projects solve problems without the contract. But knowing the clauses helps you negotiate more calmly.',
+        'Know the contract, or ask someone who does. Many contracts have a penalty clause: an amount agreed in advance for late delivery, often a percentage per week with a cap. Dutch law has its own articles on it (Civil Code, BW 6:91–6:94); a court can reduce an excessive penalty, and the details differ per contract.\n\nExample: 0.5% per week late, at most 10% of the contract value. With 400,000 euros and six weeks late, that is 12,000 euros.',
+        'A notice of default (Dutch Civil Code, BW 6:82) is the formal letter giving the other party a final reasonable deadline. Often you need one before the supplier is in default (legally late, so the penalty starts to run); with a fixed delivery date the default can start without it (BW 6:83). And for delay the supplier can’t be blamed for, no penalty is due (BW 6:92).\n\nThat is legal work: bring in purchasing or lawyers, and don’t do it yourself by email. Knowing the clauses mainly helps you negotiate more calmly.',
         'What goes wrong: each party keeps its own issue log with a different version of the truth. Or a client who waves the contract at every problem, so the supplier only does the minimum.\n\nExperts differ on how soon to bring in the contract. Many advise: solve it together first, with the contract as a safety net. A sharp question to the supplier: “What do you need from us to make this date?”',
       ],
       example: {
         kind: 'faded',
         text: 'You are a junior Lean consultant at a food manufacturer. An automation supplier is building a new packaging cell; contract value 400,000 euros, penalty clause 0.5% per week late, at most 10%. The cell arrives six weeks late. The production manager wants to “claim the penalty straight away” and call the supplier’s director. The joint issue log shows that two of the six weeks come from the plant sending the floor drawings late.',
         ask: 'How large would the penalty be, and how do you handle this?',
-        reveal: '6 × 0.5% = 3% of 400,000 = 12,000 euros, well below the cap of 40,000. But two weeks come from the plant itself, so the penalty is probably legally weaker than the production manager thinks.\n\nFollow the escalation matrix: first the project managers, with the joint issue log on the table. Ask what the supplier needs to avoid slipping further. Hand the contract side to purchasing. Only escalate to the directors if the project managers can’t settle it within the agreed time.',
+        reveal: '6 × 0.5% = 3% of 400,000 = 12,000 euros, well below the cap of 40,000. But two weeks come from the plant itself. For delay the supplier can’t be blamed for, no penalty is due, so it may come out nearer 4 × 0.5% = 2%, or 8,000 euros.\n\nFollow the escalation matrix: first the project managers, with the joint issue log on the table. Ask what the supplier needs to avoid slipping further. Hand the contract side to purchasing. Only escalate to the directors if the project managers can’t settle it within the agreed time.',
       },
       said: 'What you hear in projects: “It’s in the contract. Let them sort it out.”',
       recall: [
@@ -1276,13 +1279,13 @@ export default {
         },
         {
           q: 'What is an escalation matrix between two companies for?',
-          options: ['To decide who gets the blame if an issue stays put', 'To calculate the penalty', 'To set out who talks to whom at each level, and when it moves up', 'To keep the directors out of the project'],
+          options: ['To decide in advance who gets the blame if an issue stays put too long', 'To calculate the penalty', 'To set out who talks to whom at each level, and when it moves up', 'To keep the directors out of the project'],
           answer: 'To set out who talks to whom at each level, and when it moves up',
           why: 'Both sides escalate at the same time and to their equals.',
         },
         {
           q: 'What is a notice of default?',
-          options: ['The formal letter giving the other party a final reasonable deadline', 'An email to the supplier’s project manager about the delay', 'The cap of a penalty clause', 'A joint issue log'],
+          options: ['The formal letter giving the other party a final reasonable deadline', 'An email to the supplier’s project manager about the delay and its cost', 'The cap of a penalty clause', 'A joint issue log'],
           answer: 'The formal letter giving the other party a final reasonable deadline',
           why: 'It is a legal step; bring in purchasing or lawyers for it.',
         },

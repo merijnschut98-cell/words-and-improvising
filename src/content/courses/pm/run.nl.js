@@ -33,19 +33,19 @@ export default {
         },
         {
           q: 'Waarom zijn watermeloenprojecten duur?',
-          options: ['Als het slechte nieuws eindelijk komt, zijn de meeste opties weg', 'Ze gebruiken te veel kleuren, zodat niemand de status nog snapt', 'De rapportages worden te lang en niemand leest ze nog', 'Sponsors houden niet van groen'],
+          options: ['Als het slechte nieuws eindelijk komt, zijn de meeste opties weg', 'Ze gebruiken te veel kleuren, zodat niemand de status nog snapt', 'De rapportages worden te lang en niemand leest ze nog', 'Sponsors wantrouwen groen en gaan dan lastige vragen stellen'],
           answer: 'Als het slechte nieuws eindelijk komt, zijn de meeste opties weg',
           why: 'Vroeg slecht nieuws laat ruimte om te handelen; laat slecht nieuws laat alleen schadebeperking over.',
         },
         {
           q: 'Wat is de beste volgorde voor slecht nieuws?',
-          options: ['Excuses, dan de achtergrond, dan het probleem en tot slot het verzoek', 'Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb', 'Eerst het verzoek, dan de uitleg', 'Het probleem, wie de schuld heeft, en daarna de oplossing'],
+          options: ['Excuses, dan de achtergrond, dan het probleem en tot slot het verzoek', 'Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb', 'Eerst het verzoek, dan de uitleg', 'Eerst het probleem, dan wie het veroorzaakt heeft, en daarna de oplossing'],
           answer: 'Wat er gebeurd is, wat het betekent, wat ik voorstel, wat ik nodig heb',
           why: 'Kort, feitelijk, en het eindigt met een duidelijke vraag.',
         },
         {
           q: 'Een teamlid bij de klant vraagt je de status op groen te houden. Wat zeg je?',
-          options: ['“Prima, het is jullie project, dus jullie bepalen de kleur.”', '“Ik meld het vandaag zelf bij de sponsor, met of zonder jou erbij.”', '“Snap ik, maar als we het nu zeggen kan de sponsor nog helpen; later niet meer.”', '“De methode schrijft rood voor.”'],
+          options: ['“Prima, het is jullie project en jullie besluit, dus jullie bepalen welke kleur we melden.”', '“Ik meld het vandaag zelf bij de sponsor, met of zonder jou erbij.”', '“Snap ik, maar als we het nu zeggen kan de sponsor nog helpen; later niet meer.”', '“De methode schrijft rood voor.”'],
           answer: '“Snap ik, maar als we het nu zeggen kan de sponsor nog helpen; later niet meer.”',
           why: 'Je erkent de angst en legt uit waarom vroeg ook in hun belang is.',
         },
@@ -93,8 +93,8 @@ export default {
         },
       ],
       teach: [
-        'De stuurgroep is het overleg waar de sponsor en een paar senior managers besluiten nemen die het team niet kan nemen. Een goede stuurgroep wordt grotendeels vóór de vergadering gewonnen.\n\nDrie dingen bepalen dat: het stuurgroepstuk dat je vooraf stuurt, de gesprekken die je vooraf voert, en de volgorde van de agenda. In de module Plannen leer je hoe je de stuurgroep samenstelt; hier gaat het om het draaiend houden ervan.',
-        'Het stuurgroepstuk (steering pack) is wat de leden twee werkdagen vooraf krijgen: één A4 status, plus per besluit een besluitnotitie. Meer niet.\n\nIn Lean-bedrijven heet die ene pagina vaak een A3-statusrapport: het A3-formaat (twee A4’tjes naast elkaar) dat Toyota gebruikt voor probleemoplossing, voorstellen en status (John Shook, Managing to Learn, 2008). Links: doel, planning tegen werkelijkheid, prognose. Rechts: problemen, tegenmaatregelen en de gevraagde besluiten.',
+        'De stuurgroep is het overleg waar de sponsor en een paar senior managers besluiten nemen die het team niet kan nemen. Een goede stuurgroep wordt grotendeels vóór de vergadering gewonnen.\n\nDrie dingen bepalen dat: het stuurgroepstuk dat je vooraf stuurt, de gesprekken die je vooraf voert, en de volgorde van de agenda. In de module Plannen (Rollen en de sponsor) leer je wie erin zit en wat de sponsor toezegt; hier gaat het om het draaiend houden ervan.',
+        'Het stuurgroepstuk (steering pack) is wat de leden twee werkdagen vooraf krijgen: één A4’tje met de status, plus per besluit een besluitnotitie. Meer niet.\n\nIn Lean-bedrijven heet die ene pagina vaak een A3-statusrapport: het A3-formaat (twee A4’tjes naast elkaar) dat Toyota gebruikt voor probleemoplossing, voorstellen en status (John Shook, Managing to Learn, 2008). Links: doel, planning tegen werkelijkheid, prognose. Rechts: problemen, tegenmaatregelen en de gevraagde besluiten.',
         'Nemawashi is Japans voor “de wortels losmaken” voordat je een boom verplant. In Lean betekent het: elk stuurgroeplid vooraf kort spreken over het voorstel, zijn zorgen horen en het voorstel waar nodig aanpassen.\n\nHet kost per lid tien tot twintig minuten. Het levert op dat niemand in de zaal verrast wordt en dat bezwaren al op tafel liggen. Vraag: “Wat zou jou tegenhouden om hier ja op te zeggen?”',
         'Houd je aan de geen-verrassingenregel: niemand hoort slecht nieuws voor het eerst in de stuurgroep, zeker de sponsor niet. Bel haar een dag vooraf als een kleur op rood gaat.\n\nZet besluiten bovenaan de agenda, niet onder de status. Mensen zijn dan nog fris en de tijd is er nog. Begin met: “Vandaag hebben we twee besluiten nodig.”',
         'Wat misgaat: een stuk van dertig slides dat niemand leest, waarna je het in de zaal alsnog voorleest. Of een nemawashi die doorslaat, zodat de vergadering alleen nog een stempel zet en echte discussie ontbreekt.\n\nExperts verschillen hier: sommigen willen elk besluit vooraf rond, anderen laten bewust één open vraag over voor het gesprek. Een scherpe vraag aan jezelf: “Weet ik van elk lid wat hij gaat zeggen?”',
@@ -107,19 +107,19 @@ export default {
       recall: [
         {
           q: 'Wat is nemawashi in een project?',
-          options: ['Stuurgroepleden vooraf apart spreken over een voorstel en hun zorgen meenemen', 'Het verslag van de stuurgroep laten goedkeuren door de sponsor', 'Een besluit uitstellen tot iedereen het eens is', 'De agenda ordenen van klein naar groot'],
+          options: ['Stuurgroepleden vooraf apart spreken over een voorstel en hun zorgen meenemen', 'Het verslag van de stuurgroep laten goedkeuren door de sponsor voordat het rondgaat', 'Een besluit uitstellen tot iedereen het eens is', 'De agenda ordenen van klein naar groot'],
           answer: 'Stuurgroepleden vooraf apart spreken over een voorstel en hun zorgen meenemen',
           why: 'De wortels losmaken voor het verplanten: bezwaren komen vooraf boven, zodat in de vergadering besloten kan worden.',
         },
         {
           q: 'Waar staan de besluiten op een goede stuurgroepagenda?',
-          options: ['Onder de status, zodat iedereen eerst bijgepraat is', 'Bij de rondvraag aan het eind', 'Bovenaan, als mensen nog fris zijn en de tijd er nog is', 'Nergens, besluiten gaan per mail'],
+          options: ['Onder de statusupdate, zodat iedereen eerst helemaal bijgepraat is', 'Bij de rondvraag aan het eind', 'Bovenaan, als mensen nog fris zijn en de tijd er nog is', 'Nergens, besluiten gaan per mail'],
           answer: 'Bovenaan, als mensen nog fris zijn en de tijd er nog is',
           why: 'De status staat al in het stuk. Vergadertijd is voor besluiten.',
         },
         {
           q: 'Een mijlpaal gaat morgen in de stuurgroep op rood. Wat doe je vandaag?',
-          options: ['Niks, de stuurgroep is er juist voor', 'De sponsor bellen, zodat ze het niet in de zaal voor het eerst hoort', 'De kleur nog op oranje zetten en het in de stuurgroep zelf toelichten', 'Het team vragen om het slechte nieuws zelf te presenteren'],
+          options: ['Niks, de stuurgroep is er juist voor', 'De sponsor bellen, zodat ze het niet in de zaal voor het eerst hoort', 'De kleur voorlopig op oranje laten en de vertraging in de stuurgroep zelf toelichten', 'Het team vragen om het slechte nieuws zelf te presenteren'],
           answer: 'De sponsor bellen, zodat ze het niet in de zaal voor het eerst hoort',
           why: 'De geen-verrassingenregel: slecht nieuws komt vooraf, persoonlijk.',
         },
@@ -174,7 +174,7 @@ export default {
         },
       ],
       teach: [
-        'Earned value (EVM: earned value management) vergelijkt drie getallen op hetzelfde moment, allemaal in euro’s.\n\nDe geplande waarde (planned value, PV): wat er volgens plan nu af had moeten zijn, uitgedrukt in budget. De verdiende waarde (earned value, EV): het budget van het werk dat echt af is. De werkelijke kosten (actual cost, AC): wat er echt is uitgegeven.\n\nDe methode komt uit grote defensie- en bouwprojecten en is beschreven in de PMI-standaard voor earned value.',
+        'Earned value (EVM: earned value management) vergelijkt drie getallen op hetzelfde moment, allemaal in euro’s.\n\nDe geplande waarde (planned value, PV): wat er volgens plan nu af had moeten zijn, uitgedrukt in budget. De verdiende waarde (earned value, EV): het budget van het werk dat echt af is. De werkelijke kosten (actual cost, AC): wat er echt is uitgegeven.\n\nDe methode komt uit Amerikaanse defensieprojecten van de jaren zestig, is gangbaar in de bouw en staat beschreven in de PMI-standaard voor earned value management.',
         'Twee verhoudingen vertellen het verhaal. De SPI (schedule performance index) is EV gedeeld door PV: onder 1 loop je achter op schema. De CPI (cost performance index) is EV gedeeld door AC: onder 1 kost het werk meer dan begroot.\n\nVoorbeeld: PV 80.000 euro, EV 60.000, AC 75.000. SPI = 0,75, je hebt driekwart gedaan van wat gepland was. CPI = 0,8, elke euro levert 80 cent aan werk op.',
         'Het lastige deel is EV: hoeveel werk is echt af? “We zijn op 80%” is een gevoel. Gebruik liever een harde regel per werkpakket, zoals de 0/100-regel: een pakket telt pas als het klaar en geaccepteerd is. Of 50/50: de helft bij de start, de rest bij oplevering.\n\nDat sluit aan bij wat je in Projecten leiden buiten je vakgebied leert: mijlpalen met bewijs, niet met procenten.',
         'In verbeterprojecten is earned value minder gangbaar dan in de bouw. Het werk is lastiger op te knippen en een deel van de waarde zit in gedrag dat verandert. Gebruik het daar licht: tel opgeleverde werkpakketten, niet uren.\n\nHet blijft nuttig om één ding te zien dat een RAG-kleur verbergt: of je achterloopt, te duur bent, of allebei.',
@@ -184,7 +184,7 @@ export default {
         kind: 'faded',
         text: 'Je bent junior Lean-consultant in een project bij een kunststofverwerker: 120.000 euro budget, 12 weken, met gelijke werkpakketten van 10.000 euro per week gepland. Het is eind week 6.\n\nVolgens plan zijn zes pakketten af. Echt af en geaccepteerd: vier en een half pakket, dus 45.000 euro aan werk. Uitgegeven tot nu toe: 54.000 euro. De projecteigenaar zegt: “We zitten op de helft van de tijd en de helft van het geld, dus prima.”',
         ask: 'Wat zijn de SPI en de CPI, en wat zeg je tegen de projecteigenaar?',
-        reveal: 'PV = 60.000, EV = 45.000, AC = 54.000. SPI = 45 / 60 = 0,75: driekwart van het geplande werk is af. CPI = 45 / 54 ≈ 0,83: elke euro levert ongeveer 83 cent aan werk op.\n\nTegen de projecteigenaar: “We hebben de helft van het geld uitgegeven, maar pas 37,5% van het werk gedaan. Blijft dit zo, dan komen we tijd en geld tekort. Laten we kijken welke pakketten vastzitten en waarom.”',
+        reveal: 'PV = 60.000, EV = 45.000, AC = 54.000. SPI = 45 / 60 = 0,75: driekwart van het geplande werk is af. CPI = 45 / 54 ≈ 0,83: elke euro levert ongeveer 83 cent aan werk op. Uitgegeven: 54 / 120 = 45% van het budget; af: 45 / 120 = 37,5% van het werk.\n\nTegen de projecteigenaar: “We hebben 45% van het geld uitgegeven, maar pas 37,5% van het werk gedaan. Blijft dit zo, dan komen we tijd en geld tekort. Laten we kijken welke pakketten vastzitten en waarom.”',
       },
       said: 'Wat je hoort in projecten: “We zitten op 90%.” Al drie weken.',
       recall: [
@@ -212,7 +212,7 @@ export default {
         },
         {
           q: 'Waarom gebruik je een regel als 0/100 om de verdiende waarde te bepalen?',
-          options: ['Omdat het de SPI hoger maakt', 'Omdat het de procenten van het team vervangt door werk dat aantoonbaar af is', 'Omdat PMI het verplicht stelt voor alle projecten met een vast budget', 'Omdat je dan geen werkelijke kosten meer hoeft te meten of bij te houden'],
+          options: ['Omdat het de SPI hoger maakt', 'Omdat het de procenten van het team vervangt door werk dat aantoonbaar af is', 'Omdat PMI het verplicht stelt voor alle projecten met een vast budget', 'Omdat je dan geen werkelijke kosten meer hoeft te meten of per werkpakket bij te houden'],
           answer: 'Omdat het de procenten van het team vervangt door werk dat aantoonbaar af is',
           why: 'Een pakket telt pas als het klaar en geaccepteerd is; gevoel speelt geen rol meer.',
         },
@@ -246,6 +246,7 @@ export default {
         { term: 'Werkelijke kosten', def: 'Actual cost (AC): wat er tot nu toe echt is uitgegeven.' },
         { term: 'SPI', def: 'Schedule performance index: EV gedeeld door PV; onder 1 loop je achter op schema.' },
         { term: 'CPI', def: 'Cost performance index: EV gedeeld door AC; onder 1 kost het werk meer dan begroot.' },
+        { term: 'Werkpakket', def: 'Een stuk werk met één eigenaar en een duidelijk resultaat, klein genoeg om als af of niet af te tellen.' },
       ],
     },
     {
@@ -254,14 +255,14 @@ export default {
       pre: [
         {
           q: 'De stuurgroep heeft een kostentolerantie van plus 10% afgesproken. Op dit moment zit je 4% over budget, maar de prognose komt uit op 12% over. Wanneer meld je dit?',
-          options: ['Pas als je echt meer dan 10% over budget bent', 'Nu, omdat de prognose buiten de tolerantie valt', 'Aan het eind, in het eindrapport', 'Niet, 4% valt binnen de afspraak'],
+          options: ['Pas als de uitgaven echt meer dan 10% boven het budget zitten', 'Nu, omdat de prognose buiten de tolerantie valt', 'Aan het eind, in het eindrapport', 'Niet, 4% valt binnen de afspraak'],
           answer: 'Nu, omdat de prognose buiten de tolerantie valt',
           why: 'Je escaleert op de prognose, niet pas als de grens echt overschreden is. Dan zijn er nog opties.',
         },
       ],
       teach: [
-        'Sturen op uitzondering (management by exception) is een principe uit PRINCE2, de Britse projectmethode. De stuurgroep spreekt grenzen af en laat de projectleider daarbinnen zelf sturen. Zolang het project binnen de grenzen blijft, krijgt de stuurgroep een korte voortgangsrapportage en hoeft ze niks te doen.\n\nDat spaart tijd van senior mensen en geeft de projectleider ruimte. Het werkt alleen als de grenzen vooraf scherp zijn.',
-        'Die grenzen heten toleranties: de toegestane afwijking van het plan. PRINCE2 7 (2023) noemt zeven aspecten: tijd, kosten, kwaliteit, scope, risico, baten en duurzaamheid. Voorbeeld: “kosten plus of min 10%, tijd plus twee weken, scope: geen enkel must-have deel mag vervallen”.\n\nDe stuurgroep stelt de projecttolerantie vast; de projectleider geeft op zijn beurt kleinere toleranties door aan de teams.',
+        'Sturen op uitzondering (management by exception) is een principe uit PRINCE2, de Britse projectmethode. Je kwam het tegen in Intake (Fasering en wijzigingen) en Plannen (Basislijn, toleranties en rollende planning): er worden grenzen afgesproken en de projectleider stuurt daarbinnen zelf. Deze les gaat over het uitvoeren ervan.\n\nZolang het project binnen de grenzen blijft, krijgt de stuurgroep een korte voortgangsrapportage (in PRINCE2: highlight report) en hoeft ze niks te doen. Dat spaart tijd van senior mensen en geeft de projectleider ruimte.',
+        'Die grenzen heten toleranties: de toegestane afwijking van het plan. PRINCE2 7 (2023) noemt zeven aspecten: tijd, kosten, kwaliteit, scope, risico, baten en duurzaamheid. Voorbeeld: “kosten plus of min 10%, tijd plus twee weken, scope: geen enkel must-have deel mag vervallen”.\n\nToleranties zijn getrapt: het management boven het project stelt de projecttolerantie vast, de stuurgroep geeft de projectleider per fase een tolerantie, en hij geeft elk team per werkpakket een kleinere.',
         'Dreigt een tolerantie overschreden te worden, dan schrijf je een uitzonderingsrapport (exception report): wat er gebeurt, waarom, de gevolgen, de opties en je advies. Belangrijk: je meldt het als de prognose buiten de grens valt, niet pas als het al gebeurd is.\n\nDe prognose van de kosten heet de EAC (estimate at completion). Een veelgebruikte formule is BAC gedeeld door CPI, met BAC (budget at completion) als het totale budget.',
         'Die formule veronderstelt dat de huidige kostenefficiëntie zo doorloopt. Was de overschrijding eenmalig, dan gebruik je liever AC plus het resterende werk tegen budget. Kies en zeg welke aanname je gebruikt.\n\nVoorbeeld: BAC 200.000 euro, CPI 0,8. EAC = 200.000 / 0,8 = 250.000 euro. Met een tolerantie van 10% ligt de grens op 220.000: tijd voor een uitzonderingsrapport.',
         'Wat misgaat: toleranties die nooit zijn afgesproken, zodat elke afwijking naar de stuurgroep gaat of geen enkele. Of een projectleider die een prognose “bijstelt” tot hij net binnen de grens valt.\n\nExperts verschillen over hoe breed de toleranties moeten zijn: smal geeft controle maar veel escalaties, breed geeft ruimte maar meer verrassingen. Een scherpe vraag in de eerste stuurgroep: “Bij welke afwijking willen jullie dat ik bel?”',
@@ -284,7 +285,7 @@ export default {
         },
         {
           q: 'Wat staat er in een uitzonderingsrapport?',
-          options: ['Alle uren van het team per week, per werkpakket uitgesplitst', 'Een excuus van de projectleider', 'Alleen het nieuwe budget dat je nodig hebt, met de datum', 'Wat er gebeurt, waarom, de gevolgen, de opties en een advies'],
+          options: ['Alle uren van het team per week, uitgesplitst per werkpakket en per teamlid', 'Een excuus van de projectleider', 'Alleen het nieuwe budget dat je nodig hebt, met de datum', 'Wat er gebeurt, waarom, de gevolgen, de opties en een advies'],
           answer: 'Wat er gebeurt, waarom, de gevolgen, de opties en een advies',
           why: 'De stuurgroep moet kunnen kiezen; daarvoor heeft ze opties en een advies nodig.',
         },
@@ -297,10 +298,10 @@ export default {
           why: 'Grens = 120 × 1,1 = 132; 135 − 132 = 3 duizend euro erboven.',
         },
         {
-          q: 'Waarom is “sturen op uitzondering” nuttig voor een stuurgroep?',
-          options: ['Ze hoeft nooit meer bij elkaar te komen, rapportages zijn genoeg', 'De projectleider beslist dan ook zelf over extra budget en scope', 'Ze hoeft alleen in te grijpen als een afgesproken grens in gevaar komt', 'Rapportages zijn dan niet meer nodig'],
-          answer: 'Ze hoeft alleen in te grijpen als een afgesproken grens in gevaar komt',
-          why: 'Binnen de toleranties stuurt de projectleider; de stuurgroep besteedt haar tijd aan echte afwijkingen.',
+          q: 'Eén dure meting maakte de fase 10 duizend euro duurder; dat gebeurt niet nog eens. Budget (BAC) 200, verdiende waarde (EV) 100, werkelijke kosten (AC) 110, alles in duizenden euro’s. Welke prognose (EAC) past het best?',
+          options: ['200 duizend: het budget blijft gewoon staan', '220 duizend: het budget gedeeld door de CPI, alsof de overschrijding doorgaat', '210 duizend: werkelijke kosten plus het resterende werk tegen budget', '110 duizend: wat er tot nu toe is uitgegeven, meer niet'],
+          answer: '210 duizend: werkelijke kosten plus het resterende werk tegen budget',
+          why: 'De overschrijding was eenmalig, dus het resterende werk van 100 kost wat begroot was: 110 + (200 − 100) = 210. BAC / CPI = 200 / 0,91 ≈ 220 gaat ervan uit dat het zo doorloopt.',
         },
       ],
       situation: {
@@ -317,7 +318,7 @@ export default {
             '“Dus jullie willen dat ik minder hoor? Dat voelt alsof jullie dingen willen verstoppen.”',
             '“10% van een half miljoen is vijftigduizend euro. Dat ga ik echt niet zomaar vrijgeven.”',
           ],
-          model: '“Je hoort niet minder, je hoort het belangrijke eerder: zodra een grens in gevaar komt, niet pas als hij overschreden is. En de hoogte bepaal jij. Zijn 10% te veel, dan maken we het 5%. Dan weet je dat je elke afwijking daarboven meteen hoort.”',
+          model: '“Je hoort niet minder, je hoort het belangrijke eerder: zodra een grens in gevaar komt, niet pas als hij overschreden is. En de hoogte bepaal jij. Is 10% te veel, dan maken we het 5%. Dan weet je dat je elke afwijking daarboven meteen hoort.”',
           rubric: [
             'Erkent zijn wantrouwen',
             'Legt uit dat melding op de prognose juist eerder is',
@@ -340,7 +341,7 @@ export default {
       pre: [
         {
           q: 'Waar komt de meeste scope creep bij klanten vandaan?',
-          options: ['Veel kleine verzoeken die redelijk klinken', 'Grote formele wijzigingsverzoeken', 'Het contract', 'Alleen de eigen ideeën van de consultant'],
+          options: ['Veel kleine verzoeken die redelijk klinken', 'Grote formele wijzigingsverzoeken vanuit de stuurgroep', 'Het contract', 'Alleen de eigen ideeën van de consultant'],
           answer: 'Veel kleine verzoeken die redelijk klinken',
           why: 'Elk verzoek klinkt los prima; samen eten ze het project op.',
         },
@@ -363,6 +364,7 @@ export default {
           number: 25,
           tolerance: 0.5,
           unit: '%',
+          hint: 'Tel eerst de extra dagen op, deel dan door de oorspronkelijke 40 en reken om naar procenten.',
           why: '5 × 2 = 10 dagen; 10 / 40 = 25%.',
         },
         {
@@ -379,7 +381,7 @@ export default {
         },
         {
           q: 'Wat is een vroeg signaal van scope creep?',
-          options: ['Het team is eerder klaar', 'De sponsor is bij elke stuurgroep en stelt veel vragen', 'Risico’s worden wekelijks besproken in het teamoverleg', 'Nieuwe mensen bij je overleggen en een doelzin die verschuift'],
+          options: ['Het team is eerder klaar', 'De sponsor is bij elke stuurgroep aanwezig en stelt daar veel vragen', 'Risico’s worden wekelijks besproken in het teamoverleg', 'Nieuwe mensen bij je overleggen en een doelzin die verschuift'],
           answer: 'Nieuwe mensen bij je overleggen en een doelzin die verschuift',
           why: 'Nieuwe stakeholders brengen nieuwe wensen; een verschuivend doel laat zien dat het project verandert.',
         },
@@ -422,15 +424,15 @@ export default {
       pre: [
         {
           q: 'Je project heeft drie kleine wijzigingen goedgekeurd, elk binnen het mandaat van de projectleider. Waar let je op?',
-          options: ['Niks, ze zijn alle drie apart goedgekeurd', 'Of de klant er blij mee is en ze wil houden', 'Of het team ze leuk vindt', 'Of ze samen de afgesproken grens overschrijden'],
+          options: ['Niks, ze zijn alle drie apart goedgekeurd', 'Of de klant er blij mee is en ze ook echt wil houden', 'Of het team ze leuk vindt', 'Of ze samen de afgesproken grens overschrijden'],
           answer: 'Of ze samen de afgesproken grens overschrijden',
           why: 'Kleine wijzigingen tellen op. Wat los binnen het mandaat valt, kan samen een besluit van de sponsor vragen.',
         },
       ],
       teach: [
-        'In de les over scope creep leerde je wijzigingen zichtbaar maken. Op dit niveau richt je daar een vast proces voor in: wijzigingsbeheer (change control). Vijf stappen: vastleggen, de impact analyseren, beslissen, uitvoeren en communiceren.\n\nElk verzoek krijgt een regel in de wijzigingslog: nummer, datum, wie vraagt het, wat en waarom, de impact, het besluit en wie besliste. Eén tabblad naast de besluitenlijst is genoeg.',
+        'In de les over scope creep leerde je wijzigingen zichtbaar maken, en in Intake een wijzigingsverzoek schrijven. Op dit niveau richt je daar een vast proces voor in: wijzigingsbeheer (change control). Vijf stappen: vastleggen, de impact analyseren, beslissen, uitvoeren en communiceren.\n\nElk verzoek krijgt een regel in de wijzigingslog: nummer, datum, wie vraagt het, wat en waarom, de impact, het besluit en wie besliste. Eén tabblad naast de besluitenlijst is genoeg.',
         'De impactanalyse kijkt verder dan tijd en geld. Vraag per verzoek: wat doet het met de planning, het budget, de kwaliteit, de risico’s en de baten, de opbrengst waarvoor het project bestaat?\n\nVraag ook: wie merkt het nog meer? Een extra lijn in een pilot raakt ook de planner, het onderhoud en de leverancier van de sensoren. Schat het in met de mensen die het werk doen, niet alleen achter je laptop.',
-        'Niet elke wijziging hoeft naar de stuurgroep. Spreek een mandaat af: wie mag tot welke grens zelf beslissen. Bijvoorbeeld: de projectleider tot twee dagen werk en geen gevolg voor de einddatum; de sponsor tot 10% van het budget; daarboven de stuurgroep.\n\nTel goedgekeurde wijzigingen op. Drie keer “klein” kan samen boven de grens van de sponsor uitkomen.',
+        'Niet elke wijziging hoeft naar de stuurgroep. Spreek een mandaat (delegated authority) af: wie mag tot welke grens zelf beslissen. Bijvoorbeeld: de projectleider tot twee dagen werk en geen gevolg voor de einddatum; de sponsor tot 10% van het budget; daarboven de stuurgroep.\n\nTel goedgekeurde wijzigingen op. Drie keer “klein” kan samen boven de grens van de sponsor uitkomen.',
         'Triage is het snel sorteren van verzoeken voordat je er veel tijd in steekt: direct ja (klein, binnen mandaat, past bij de doelzin), analyseren, of direct nee (buiten het doel). Doe het wekelijks met de projectleider, in een kwartier.\n\nZo blijft het proces licht. Een wijzigingsproces dat drie weken per verzoek kost, wordt omzeild via de gang.',
         'Wat misgaat: een log die alleen de grote verzoeken bevat, terwijl de kleine via de achterdeur binnenkomen. Of goedgekeurde wijzigingen die nooit in de planning terechtkomen, zodat de planning niet meer klopt met wat er gebeurt.\n\nIn agile projecten loopt dit anders: nieuwe wensen gaan op de backlog en de product owner kiest wat eraf gaat (zie de module Agile en Scrum). Een scherpe vraag: “Wat valt er af als dit erbij komt?”',
       ],
@@ -450,19 +452,19 @@ export default {
         },
         {
           q: 'Wat hoort in een impactanalyse van een wijziging?',
-          options: ['Alleen de extra kosten', 'De gevolgen voor planning, budget, kwaliteit, risico’s en baten', 'Wie de wijziging bedacht heeft en waarom die persoon het wil', 'Een lijst met alle eerdere wijzigingen'],
+          options: ['Alleen de extra kosten', 'De gevolgen voor planning, budget, kwaliteit, risico’s en baten', 'Wie de wijziging bedacht heeft en waarom die persoon het zo graag wil', 'Een lijst met alle eerdere wijzigingen'],
           answer: 'De gevolgen voor planning, budget, kwaliteit, risico’s en baten',
           why: 'Een wijziging raakt meer dan geld; de beslisser moet het hele plaatje zien.',
         },
         {
           q: 'Waar dient een afgesproken mandaat voor wijzigingen?',
-          options: ['Kleine wijzigingen snel laten beslissen, grote bij de juiste persoon', 'Om te voorkomen dat er tijdens het project nog iets verandert', 'Om de consultant meer macht te geven', 'Om de stuurgroep elke wijziging, hoe klein ook, te laten zien'],
+          options: ['Kleine wijzigingen snel laten beslissen, grote bij de juiste persoon', 'Om te voorkomen dat er tijdens het project nog iets verandert', 'Om de consultant meer macht te geven', 'Om de stuurgroep elke wijziging, hoe klein ook, te laten zien en goedkeuren'],
           answer: 'Kleine wijzigingen snel laten beslissen, grote bij de juiste persoon',
           why: 'Het proces blijft licht, en wat ertoe doet komt bij wie erover gaat.',
         },
         {
           q: 'Waarom doe je wekelijks triage op nieuwe verzoeken?',
-          options: ['Om de klant te laten wachten', 'Om alle verzoeken meteen te weigeren tot de volgende fase', 'Om alleen de verzoeken van de sponsor te behandelen', 'Om snel te sorteren: direct ja, eerst analyseren, of direct nee'],
+          options: ['Om de klant te laten wachten', 'Om alle verzoeken te weigeren tot de volgende fase, zodat de planning stabiel blijft', 'Om alleen de verzoeken van de sponsor te behandelen', 'Om snel te sorteren: direct ja, eerst analyseren, of direct nee'],
           answer: 'Om snel te sorteren: direct ja, eerst analyseren, of direct nee',
           why: 'Zo steek je analysetijd alleen in verzoeken die het verdienen.',
         },
@@ -504,28 +506,28 @@ export default {
       pre: [
         {
           q: 'Een project loopt drie weken achter op het kritieke pad. Twee taken op dat pad staan nu na elkaar gepland. Wat kost het meestal het minste geld om tijd terug te winnen?',
-          options: ['De taken deels overlappen, met meer risico op overdoen', 'Extra mensen inhuren voor beide taken', 'De einddatum verschuiven zonder iets te melden', 'Het hele project opnieuw plannen vanaf nul'],
+          options: ['De taken deels overlappen, met meer risico op overdoen', 'Extra mensen inhuren voor beide taken, zodat elke taak eerder klaar is', 'De einddatum verschuiven zonder iets te melden', 'Het hele project opnieuw plannen vanaf nul'],
           answer: 'De taken deels overlappen, met meer risico op overdoen',
           why: 'Overlappen (fast-tracken) kost vooral risico, niet geld. Extra mensen (crashen) kost geld.',
         },
       ],
       teach: [
-        'Het basisplan (baseline plan) is de goedgekeurde versie van scope, planning en budget waartegen je de voortgang meet. Let op: dat is iets anders dan de nulmeting (baseline) van de prestaties uit de module Plannen.\n\nHet basisplan verander je niet stilletjes. Je meet ertegen, je meldt afwijkingen, en alleen een goedgekeurde wijziging leidt tot een nieuw basisplan. Bewaar het oude, zodat je laat zien hoe het project veranderde.',
-        'Een goed budget heeft twee reserves (PMI, PMBOK). De post onvoorzien (contingency reserve) is voor risico’s die je kent maar die misschien niet gebeuren, zoals een leverancier die te laat is. De projectleider beheert die binnen het budget.\n\nDe managementreserve (management reserve) is voor wat niemand zag aankomen. Die valt buiten het projectbudget en vraagt een besluit van de sponsor. Bronnen verschillen in de details; spreek bij de start af welke reserve waar zit.',
-        'Volg hoe snel de post onvoorzien opraakt. Is halverwege het werk al 60% verbruikt, dan is de rest waarschijnlijk te krap. Dat is een vroeg signaal, ook als het project nog groen staat.\n\nLoopt de planning uit, dan zijn er twee manieren om tijd terug te winnen op het kritieke pad, de keten van taken die de einddatum bepaalt (zie Plannen).',
-        'Crashen (crashing) is extra mensen of middelen inzetten op taken van het kritieke pad: het kost geld. Fast-tracken (fast-tracking) is taken die na elkaar stonden deels tegelijk doen: het kost weinig geld, maar meer risico dat je werk moet overdoen. Beide helpen alleen op het kritieke pad.\n\nEn denk aan de wet van Brooks (1975): extra mensen op een laat project maken het vaak later, omdat inwerken tijd kost.',
+        'Het basisplan (baseline plan) is de goedgekeurde scope, planning en budget samen: de scopebasislijn en de basisplanning uit de module Plannen, plus het budget. Daartegen meet je de voortgang. Let op: dat is iets anders dan de nulmeting (baseline), het gemeten startpunt van het proces.\n\nHet basisplan verander je niet stilletjes. Je meet ertegen, je meldt afwijkingen, en alleen een goedgekeurde wijziging leidt tot een nieuw basisplan. Bewaar het oude, zodat je laat zien hoe het project veranderde.',
+        'Een goed budget heeft twee reserves (PMI, PMBOK); hoe je ze bepaalt staat in Plannen (Risico’s in geld en reserves). De risicoreserve (contingency reserve) is voor bekende risico’s die misschien niet gebeuren, zoals een late leverancier. Die zit in de kostenbasislijn (cost baseline), het budget waarop de projectleider stuurt, en hij beheert hem.\n\nDe managementreserve (management reserve) is voor wat niemand zag aankomen. Die valt buiten de kostenbasislijn; gebruiken vraagt een besluit van de sponsor. Bronnen verschillen in de details; spreek bij de start af welke reserve waar zit.',
+        'Volg hoe snel de risicoreserve opraakt. Is halverwege het werk al 60% verbruikt, dan is de rest waarschijnlijk te krap. Dat is een vroeg signaal, ook als het project nog groen staat.\n\nLoopt de planning uit, dan heb je de twee hefbomen uit Plannen (Versnellen en de planning bewaken) om tijd terug te winnen op het kritieke pad, de keten van taken die de einddatum bepaalt.',
+        'Crashen (crashing) is extra mensen, overwerk of geld inzetten op taken van het kritieke pad: het kost geld, vaak uit de reserve. Fast-tracken (fast-tracking) is taken die na elkaar stonden deels tegelijk doen: het kost weinig geld, maar meer risico dat je werk moet overdoen. Beide helpen alleen op het kritieke pad.\n\nEn denk aan de wet van Brooks (1975): extra mensen op een laat project maken het vaak later, omdat inwerken tijd kost.',
         'Wanneer maak je een nieuw basisplan? Als de afwijking structureel is en de stuurgroep een nieuwe koers kiest, bijvoorbeeld na een uitzonderingsrapport. Niet elke maand om de kleuren groen te houden; dan meet je niks meer.\n\nExperts verschillen over hoe vaak dat mag. Een vuistregel uit de praktijk: hooguit bij elke fasegrens of na een groot besluit. Een scherpe vraag: “Tegen welk plan meten we nu, en wie heeft het goedgekeurd?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Je bent junior Lean-consultant bij een frisdrankfabriek, in een project om een tweede vullijn te verbeteren. Budget 200.000 euro, waarvan 30.000 post onvoorzien. Het werk is voor 50% af. Er is 18.000 euro onvoorzien verbruikt aan twee late leveringen. Daarnaast loopt de planning twee weken achter op het kritieke pad: eerst de nieuwe sensoren installeren (3 weken), dan de operators trainen (2 weken). De projectleider stelt voor om twee extra monteurs in te huren.',
-        ask: 'Hoeveel van de post onvoorzien is verbruikt, wat zegt dat, en welke optie stel jij voor om tijd te winnen?',
+        text: 'Je bent junior Lean-consultant bij een frisdrankfabriek, in een project om een tweede vullijn te verbeteren. Budget 200.000 euro, waarvan 30.000 risicoreserve. Het werk is voor 50% af. Er is 18.000 euro van de risicoreserve verbruikt aan twee late leveringen. Daarnaast loopt de planning twee weken achter op het kritieke pad: eerst de nieuwe sensoren installeren (3 weken), dan de operators trainen (2 weken). De projectleider stelt voor om twee extra monteurs in te huren.',
+        ask: 'Hoeveel van de risicoreserve is verbruikt, wat zegt dat, en welke optie stel jij voor om tijd te winnen?',
         reveal: '18.000 / 30.000 = 60% verbruikt bij 50% van het werk: de reserve raakt sneller op dan het werk vordert. Meld dat nu in de status.\n\nVoor de tijd: kijk eerst naar fast-tracken. De training kan deels starten op de sensoren die al hangen, met minder geld en een klein risico op een herhaalsessie. Crashen met twee monteurs kost geld uit een reserve die al krap is, en inwerken kost ook tijd. Leg beide opties met kosten en risico bij de sponsor.',
       },
       said: 'Wat je hoort in projecten: “We passen de planning gewoon even aan, dan staan we weer op groen.”',
       recall: [
         {
-          q: 'De post onvoorzien is 30 duizend euro. Er is 18 duizend euro van verbruikt. Hoeveel procent van de reserve is op?',
+          q: 'De risicoreserve is 30 duizend euro. Er is 18 duizend euro van verbruikt. Hoeveel procent van de reserve is op?',
           number: 60,
           tolerance: 0.5,
           unit: '%',
@@ -534,19 +536,19 @@ export default {
         },
         {
           q: 'Wat is het verschil tussen crashen en fast-tracken?',
-          options: ['Crashen haalt taken van het kritieke pad af; fast-tracken zet ze erop', 'Crashen kost vooral risico; fast-tracken kost vooral geld', 'Crashen: extra mensen, kost geld; fast-tracken: overlappen, kost risico', 'Er is geen verschil, het zijn twee woorden voor hetzelfde'],
+          options: ['Crashen haalt taken van het kritieke pad af; fast-tracken zet ze erop', 'Crashen kost vooral risico en overdoen; fast-tracken kost vooral extra geld', 'Crashen: extra mensen, kost geld; fast-tracken: overlappen, kost risico', 'Er is geen verschil, het zijn twee woorden voor hetzelfde'],
           answer: 'Crashen: extra mensen, kost geld; fast-tracken: overlappen, kost risico',
           why: 'Beide verkorten het kritieke pad, maar met een andere prijs.',
         },
         {
           q: 'Wie beheert de managementreserve?',
-          options: ['De sponsor, buiten het projectbudget', 'De projectleider, binnen het projectbudget', 'Het team, per werkpakket', 'De leverancier'],
-          answer: 'De sponsor, buiten het projectbudget',
+          options: ['De sponsor, buiten het budget van de projectleider', 'De projectleider, binnen zijn eigen projectbudget', 'Het team, verdeeld over de werkpakketten', 'De leverancier, als deel van de contractprijs'],
+          answer: 'De sponsor, buiten het budget van de projectleider',
           why: 'Die reserve is voor onvoorziene zaken; erover beslissen vraagt meer bevoegdheid.',
         },
         {
           q: 'Wanneer is een nieuw basisplan terecht?',
-          options: ['Elke maand, zodat de planning actueel blijft voor het team', 'Na een goedgekeurde structurele koerswijziging, met het oude plan bewaard', 'Als de status rood dreigt te worden en de stuurgroep eraan komt', 'Nooit, het eerste plan blijft altijd gelden'],
+          options: ['Elke maand, zodat de planning actueel blijft voor het team', 'Na een goedgekeurde structurele koerswijziging, met het oude plan bewaard', 'Als de status rood dreigt te worden en de volgende stuurgroep er al bijna is', 'Nooit, het eerste plan blijft altijd gelden'],
           answer: 'Na een goedgekeurde structurele koerswijziging, met het oude plan bewaard',
           why: 'Zo meet je eerlijk en laat je zien hoe het project veranderde.',
         },
@@ -576,10 +578,11 @@ export default {
       sayIt: 'Leg een projectleider in 60 seconden uit wat een basisplan is en waarom je het niet stilletjes aanpast.',
       terms: [
         { term: 'Basisplan', def: 'Baseline plan: de goedgekeurde scope, planning en budget waartegen je voortgang meet.' },
-        { term: 'Post onvoorzien', def: 'Contingency reserve: geld en tijd binnen het budget voor bekende risico’s, beheerd door de projectleider.' },
-        { term: 'Managementreserve', def: 'Een reserve buiten het projectbudget voor wat niemand zag aankomen; de sponsor beslist erover.' },
-        { term: 'Crashen', def: 'Crashing: extra mensen of middelen op het kritieke pad zetten om tijd te winnen; kost geld.' },
+        { term: 'Risicoreserve', def: 'Contingency reserve, ook wel post onvoorzien: geld en tijd binnen de kostenbasislijn voor bekende risico’s, beheerd door de projectleider.' },
+        { term: 'Managementreserve', def: 'Een reserve buiten de kostenbasislijn voor wat niemand zag aankomen; de sponsor beslist erover.' },
+        { term: 'Crashen', def: 'Crashing: extra mensen, overwerk of geld op het kritieke pad zetten om tijd te winnen; kost geld.' },
         { term: 'Fast-tracken', def: 'Fast-tracking: taken die na elkaar stonden deels tegelijk doen; kost weinig geld maar meer risico.' },
+        { term: 'Kritieke pad', def: 'De keten van taken die de einddatum bepaalt: vertraging daar schuift de einddatum op.' },
       ],
     },
     {
@@ -588,7 +591,7 @@ export default {
       pre: [
         {
           q: 'Er is al 150.000 euro in een project gestoken. Afmaken kost nog 90.000 euro, en de verwachte opbrengst is gedaald tot 60.000 euro. Wat telt mee in het besluit om door te gaan?',
-          options: ['Alleen de 150.000 euro die al is uitgegeven', 'De 150.000 plus de 90.000, tegen de opbrengst', 'De 90.000 euro die nog komt, tegen de 60.000 euro opbrengst', 'Hoeveel tijd en moeite het team er al in heeft gestoken'],
+          options: ['Alleen de 150.000 euro die al is uitgegeven', 'De 150.000 die al op is plus de 90.000 die nog komt, tegen de opbrengst', 'De 90.000 euro die nog komt, tegen de 60.000 euro opbrengst', 'Hoeveel tijd en moeite het team er al in heeft gestoken'],
           answer: 'De 90.000 euro die nog komt, tegen de 60.000 euro opbrengst',
           why: 'Wat al is uitgegeven, komt niet terug. Alleen toekomstige kosten en opbrengsten veranderen door je besluit.',
         },
@@ -618,19 +621,19 @@ export default {
         },
         {
           q: 'Wat zijn verzonken kosten?',
-          options: ['Kosten die over budget zijn gegaan', 'Kosten die al gemaakt zijn en niet terugkomen', 'Kosten die je nog moet maken om af te ronden', 'Kosten die in de post onvoorzien zitten'],
+          options: ['Kosten die over budget zijn gegaan', 'Kosten die al gemaakt zijn en niet terugkomen', 'Kosten die je nog moet maken om af te ronden', 'Kosten die apart gezet zijn in de risicoreserve'],
           answer: 'Kosten die al gemaakt zijn en niet terugkomen',
           why: 'Ze veranderen niet door je besluit, dus ze horen er niet in mee te tellen.',
         },
         {
           q: 'Waarom spreek je stopcriteria bij de start af?',
-          options: ['Omdat de sponsor dan niet meer hoeft te beslissen', 'Omdat het project dan nooit stopt', 'Omdat ze de businesscase helemaal vervangen', 'Omdat dat vooraf makkelijker is dan midden in het project'],
+          options: ['Omdat de sponsor dan zelf helemaal niets meer hoeft te beslissen', 'Omdat het project dan nooit stopt', 'Omdat ze de businesscase helemaal vervangen', 'Omdat dat vooraf makkelijker is dan midden in het project'],
           answer: 'Omdat dat vooraf makkelijker is dan midden in het project',
           why: 'Vooraf speelt escalatie van commitment nog geen rol.',
         },
         {
           q: 'Welke vraag helpt het best tegen escalatie van commitment?',
-          options: ['“Zouden we dit project vandaag starten, met wat we nu weten?”', '“Hoeveel geld en tijd hebben we er al in gestoken?”', '“Wie heeft dit project bedacht?”', '“Hoe lang loopt dit project al, en wie zit erin?”'],
+          options: ['“Zouden we dit project vandaag starten, met wat we nu weten?”', '“Hoeveel geld en tijd hebben we tot nu toe al in dit project gestoken?”', '“Wie heeft dit project bedacht?”', '“Hoe lang loopt dit project al, en wie zit erin?”'],
           answer: '“Zouden we dit project vandaag starten, met wat we nu weten?”',
           why: 'Die vraag kijkt alleen naar de toekomst, zonder het gewicht van eerdere keuzes.',
         },
@@ -710,7 +713,7 @@ export default {
         },
         {
           q: 'Waar is een stand-up bij het bord voor?',
-          options: ['Snel checken wat af is, wat de volgende stap is en wat blokkeert', 'De strategie en de planning bespreken met het hele team', 'Kort rapporteren aan de sponsor over de voortgang', 'Nieuwe teamleden opleiden'],
+          options: ['Snel checken wat af is, wat de volgende stap is en wat blokkeert', 'De strategie en de planning uitgebreid bespreken met het hele team', 'Kort rapporteren aan de sponsor over de voortgang', 'Nieuwe teamleden opleiden'],
           answer: 'Snel checken wat af is, wat de volgende stap is en wat blokkeert',
           why: 'Kort en vaak, zodat blokkades binnen dagen boven komen, niet binnen weken.',
         },
@@ -778,7 +781,7 @@ export default {
         },
         {
           q: 'Wat maakt het waarschijnlijker dat een toezegging standhoudt?',
-          options: ['Klein, concreet, in eigen woorden, uitgesproken voor het team', 'Een formele mail van jou', 'Een grote taak met een verre deadline, zodat er ruimte is', 'Goedkeuring van HR'],
+          options: ['Klein, concreet, in eigen woorden, uitgesproken voor het team', 'Een formele mail van jou', 'Een grote taak met een verre deadline, zodat er ruimte genoeg is', 'Goedkeuring van HR'],
           answer: 'Klein, concreet, in eigen woorden, uitgesproken voor het team',
           why: 'Mensen houden zich aan concrete beloftes die ze zelf in het openbaar deden.',
         },
@@ -914,21 +917,21 @@ export default {
       pre: [
         {
           q: 'Je projectteam groeit van 4 naar 8 mensen. Wat gebeurt er met het aantal mogelijke lijnen tussen twee mensen?',
-          options: ['Het verdubbelt, net als het team', 'Het blijft ongeveer gelijk', 'Het wordt bijna vijf keer zo groot', 'Het halveert'],
+          options: ['Het verdubbelt, net als de omvang van het team', 'Het blijft ongeveer gelijk', 'Het wordt bijna vijf keer zo groot', 'Het halveert'],
           answer: 'Het wordt bijna vijf keer zo groot',
           why: 'Bij 4 mensen zijn er 6 paren, bij 8 mensen 28. Het aantal lijnen groeit veel sneller dan het team.',
         },
       ],
       teach: [
         'Grotere projecten splitsen het werk in werkstromen (workstreams): deelteams met een eigen doel, zoals “planning”, “data” en “training”. Elke werkstroom heeft een werkstroomleider (workstream lead) die zijn eigen ritme draait en aan de projectleider rapporteert.\n\nDat houdt teams klein. Maar het verplaatst het risico naar de naden: wat de ene werkstroom oplevert, heeft de andere nodig.',
-        'Frederick Brooks liet in The Mythical Man-Month (1975) zien waarom grote teams traag worden. Het aantal communicatielijnen (communication channels) tussen mensen is n × (n − 1) / 2. Bij 4 mensen zijn dat er 6, bij 8 al 28, bij 15 al 105.\n\nDe wet van Brooks (Brooks’s law) zegt: extra mensen op een laat project maken het later. Hij schreef over software; in andere projecten geldt het als vuistregel.',
+        'Frederick Brooks liet in The Mythical Man-Month (1975) zien waarom grote teams traag worden. Het aantal communicatielijnen (communication channels) tussen mensen is n × (n − 1) / 2. Bij 4 mensen zijn dat er 6, bij 8 al 28, bij 15 al 105.\n\nDe wet van Brooks (Brooks’s law) zegt: extra mensen op een laat softwareproject maken het later. Buiten software geldt het als vuistregel.',
         'Stuur daarom op de afhankelijkheden (dependencies): de plekken waar de ene werkstroom op de andere wacht. Zet ze op één bord: wie levert wat aan wie, voor welke datum. Bespreek alleen die in het wekelijkse leidersoverleg, niet de details van elke werkstroom.\n\nIn agile programma’s heet zo’n bord een programmabord (zie Opschalen: SAFe en verder).',
         'Het overlegsysteem wordt dan zelf iets om te ontwerpen. Per werkstroom een stand-up; één leidersoverleg van 30 tot 45 minuten met alleen de werkstroomleiders; de stuurgroep zoals altijd. De rest krijgt een schriftelijke update.\n\nReken de kosten uit: 10 mensen die wekelijks anderhalf uur vergaderen, 30 weken lang, zijn 450 persoonsuren. Dat is een flink werkpakket.',
         'Wat misgaat: alle werkstroomleiders én hun teams in één groot weekoverleg. Of werkstromen die elk groen zijn, terwijl het geheel rood is omdat de overdracht ertussen niet loopt.\n\nExperts verschillen over hoeveel werkstromen werkbaar zijn; in de praktijk worden vaak drie tot vijf genoemd, maar dat is een vuistregel. Een scherpe vraag in het leidersoverleg: “Waar wacht jouw werkstroom deze week op een ander?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Je bent junior Lean-consultant bij een netbeheerder, in een programma om de werkvoorbereiding te verbeteren. Drie werkstromen: planning (5 mensen), data (3 mensen) en training (3 mensen). Iedereen zit nu in één weekoverleg van 90 minuten: 11 mensen, plus jij en de projectleider. Datastroom levert de nieuwe klusgegevens die de planners nodig hebben voor hun pilot. Die levering is al twee keer geschoven, maar elke werkstroom meldt groen.',
+        text: 'Je bent junior Lean-consultant bij een netbeheerder, in een programma om de werkvoorbereiding te verbeteren. Drie werkstromen: planning (5 mensen), data (3 mensen) en training (3 mensen). Iedereen zit nu in één weekoverleg van 90 minuten: 11 mensen, plus jij en de projectleider. De datastroom levert de nieuwe klusgegevens die de planners nodig hebben voor hun pilot. Die levering is al twee keer geschoven, maar elke werkstroom meldt groen.',
         ask: 'Hoe richt jij het overlegsysteem opnieuw in, en hoe vang je de vertraagde levering op?',
         reveal: 'Elke werkstroom krijgt een eigen korte stand-up. Het weekoverleg wordt een leidersoverleg van 45 minuten met de drie werkstroomleiders, de projectleider en jij. De anderen krijgen op vrijdag een schriftelijke update.\n\nZet de afhankelijkheden op één bord, met de datalevering voor de planningspilot bovenaan: wie levert, wat, wanneer. Die levering krijgt een eigen status. Schuift hij opnieuw, dan is het programma oranje, ook al melden de werkstromen groen.',
       },
@@ -958,7 +961,7 @@ export default {
         },
         {
           q: 'Alle werkstromen melden groen, maar een levering tussen twee werkstromen is twee keer geschoven. Hoe staat het programma ervoor?',
-          options: ['Groen, want alle werkstromen zijn groen', 'Rood, want er is iets geschoven', 'Dat kun je pas zeggen als de werkstroomleiders het eens zijn', 'Minstens oranje, want de overdracht tussen de werkstromen loopt niet'],
+          options: ['Groen, want alle werkstromen zijn groen', 'Rood, want er is iets geschoven', 'Dat kun je pas zeggen als alle werkstroomleiders het besproken hebben en het eens zijn', 'Minstens oranje, want de overdracht tussen de werkstromen loopt niet'],
           answer: 'Minstens oranje, want de overdracht tussen de werkstromen loopt niet',
           why: 'Het geheel kan rood zijn terwijl elk deel groen is. De overdracht verdient een eigen status.',
         },
@@ -1000,7 +1003,7 @@ export default {
       pre: [
         {
           q: 'De leverancier van de sensoren laat weten dat de levering twee weken later komt. Is dat een risico of een issue?',
-          options: ['Een risico, want het kan nog goed komen', 'Een issue, want het gebeurt nu en vraagt actie', 'Een wijziging, want de planning verandert', 'Geen van beide, het is gewoon nieuws'],
+          options: ['Een risico, want het kan nog goed komen', 'Een issue, want het gebeurt nu en vraagt actie', 'Een wijzigingsverzoek, want de planning moet nu veranderen', 'Geen van beide, het is gewoon nieuws'],
           answer: 'Een issue, want het gebeurt nu en vraagt actie',
           why: 'Een risico kan gebeuren; een issue is al gebeurd of gebeurt nu. Deze vertraging is een feit.',
         },
@@ -1008,7 +1011,7 @@ export default {
       teach: [
         'Een issue is een probleem dat nu speelt en actie vraagt: een late levering, een zieke sleutelpersoon, een systeem dat niet werkt. Een risico is iets dat misschien gaat gebeuren. Risico’s houd je bij in de risicolijst uit de module Plannen.\n\nAls een risico werkelijkheid wordt, verhuist het van de risicolijst naar de issuelog. Een issue dat de scope verandert, wordt bovendien een wijzigingsverzoek.',
         'De issuelog (issue log) is de lijst van alle open problemen. Per issue: nummer, datum, korte omschrijving, gevolg, prioriteit, eigenaar, de volgende actie en een datum. Hij wordt elke week in het teamoverleg doorgelopen, niet alleen in de stuurgroep.\n\nPRINCE2 maakt nog onderscheid tussen soorten issues: een verzoek tot wijziging, een product dat niet aan de afspraak voldoet, en overige problemen of zorgen.',
-        'Elke issue heeft één eigenaar: de persoon die zorgt dat het opgelost wordt, niet per se degene die het werk doet. “Het team” of “IT” is geen eigenaar; een naam wel.\n\nGeef elk issue een prioriteit. Kijk naar het gevolg (wat gebeurt er als het blijft liggen?) en de urgentie (hoe snel wordt het erger?). Een issue dat de volgende mijlpaal raakt, gaat voor.',
+        'Elk issue heeft één eigenaar: de persoon die zorgt dat het opgelost wordt, niet per se degene die het werk doet. “Het team” of “IT” is geen eigenaar; een naam wel.\n\nGeef elk issue een prioriteit. Kijk naar het gevolg (wat gebeurt er als het blijft liggen?) en de urgentie (hoe snel wordt het erger?). Een issue dat de volgende mijlpaal raakt, gaat voor.',
         'Houd bij hoe oud issues zijn. Een issue dat drie weken openstaat zonder nieuwe actie, is geen issue meer, het is een besluit dat niemand neemt. Dan hoort het bij de sponsor.\n\nEen handig getal: welk deel van de open issues is over de datum? Staat een kwart over de datum, dan werkt de log niet.',
         'Wat misgaat: een log met zestig regels waarvan niemand weet welke er nog toe doen. Of issues die alleen in mails staan, zodat ze verdwijnen als iemand op vakantie gaat.\n\nHoud het klein: sluit issues hardop en zichtbaar. Een scherpe vraag in elk teamoverleg: “Welk issue houdt ons deze week het meest tegen, en wie is de eigenaar?”',
       ],
@@ -1020,13 +1023,13 @@ export default {
       recall: [
         {
           q: 'Wat is het verschil tussen een risico en een issue?',
-          options: ['Een risico is groot, een issue is klein', 'Een risico kan gebeuren; een issue speelt nu en vraagt actie', 'Een risico gaat over geld, een issue over mensen', 'Er is geen verschil'],
+          options: ['Een risico is groot, een issue is klein', 'Een risico kan gebeuren; een issue speelt nu en vraagt actie', 'Een risico gaat over geld, een issue over de mensen en het team', 'Er is geen verschil'],
           answer: 'Een risico kan gebeuren; een issue speelt nu en vraagt actie',
           why: 'Het onderscheid zit in de tijd: misschien later tegenover nu.',
         },
         {
           q: 'Wie is een goede eigenaar van een issue?',
-          options: ['Het hele team, samen', 'De afdeling IT', 'De consultant, want die houdt de issuelog bij', 'Eén persoon met naam, die zorgt dat het opgelost wordt'],
+          options: ['Het hele team, samen', 'De afdeling IT', 'De consultant, want die houdt de issuelog elke week bij', 'Eén persoon met naam, die zorgt dat het opgelost wordt'],
           answer: 'Eén persoon met naam, die zorgt dat het opgelost wordt',
           why: 'Als iedereen eigenaar is, is niemand het.',
         },
@@ -1040,7 +1043,7 @@ export default {
         },
         {
           q: 'Een issue staat drie weken open zonder nieuwe actie. Wat is het waarschijnlijk geworden?',
-          options: ['Een besluit dat niemand neemt, dat bij de sponsor hoort', 'Een risico dat vanzelf verdwijnt', 'Een wijzigingsverzoek dat naar de leverancier moet', 'Iets dat je beter uit de log kunt halen'],
+          options: ['Een besluit dat niemand neemt, dat bij de sponsor hoort', 'Een risico dat vanzelf verdwijnt', 'Een wijzigingsverzoek dat nu naar de leverancier moet voor een prijs', 'Iets dat je beter uit de log kunt halen'],
           answer: 'Een besluit dat niemand neemt, dat bij de sponsor hoort',
           why: 'Als niemand actie onderneemt, ontbreekt meestal een besluit of de bevoegdheid.',
         },
@@ -1102,25 +1105,25 @@ export default {
       recall: [
         {
           q: 'Wat hoort er in een goede besluitnotitie?',
-          options: ['Alle data die je verzameld hebt, met de bronnen erbij', 'Alleen jouw advies', 'Opties, criteria, een advies en wat er gebeurt zonder besluit', 'Een lijst met open vragen'],
+          options: ['Alle data die je verzameld hebt, met de bronnen en de analyse erbij', 'Alleen jouw advies', 'Opties, criteria, een advies en wat er gebeurt zonder besluit', 'Een lijst met open vragen'],
           answer: 'Opties, criteria, een advies en wat er gebeurt zonder besluit',
           why: 'Het maakt beslissen snel en laat zien wat niet beslissen kost.',
         },
         {
           q: 'Waarom houd je een besluitenlijst bij?',
-          options: ['De auditor eist het', 'Om te voorkomen dat afgesloten discussies later weer opengaan', 'Om later te kunnen laten zien wie de schuld heeft', 'Om het verslag van elk overleg te vervangen'],
+          options: ['De auditor eist het', 'Om te voorkomen dat afgesloten discussies later weer opengaan', 'Om later zwart op wit te kunnen laten zien wie de schuld heeft', 'Om het verslag van elk overleg te vervangen'],
           answer: 'Om te voorkomen dat afgesloten discussies later weer opengaan',
           why: 'Je kunt laten zien wat er besloten is, door wie en waarom.',
         },
         {
           q: 'Wat betekent “escaleer het besluit, niet de persoon”?',
-          options: ['Je klaagt over een collega bij zijn baas, zodat die ingrijpt', 'Je vermijdt escaleren', 'Je laat de persoon zelf escaleren naar zijn eigen leidinggevende', 'Je legt het open besluit hoger neer, na de betrokkenen te hebben ingelicht'],
+          options: ['Je klaagt over een collega bij zijn baas, zodat die ingrijpt', 'Je vermijdt escaleren', 'Je laat de persoon zelf escaleren naar zijn eigen leidinggevende, op zijn eigen manier', 'Je legt het open besluit hoger neer, na de betrokkenen te hebben ingelicht'],
           answer: 'Je legt het open besluit hoger neer, na de betrokkenen te hebben ingelicht',
           why: 'Het gaat om een besluit krijgen, niet om iemand in de problemen brengen.',
         },
         {
           q: 'Waar dient een standaardoptie in een besluitnotitie voor?',
-          options: ['Hij maakt zichtbaar wat er gebeurt als niemand op tijd beslist', 'Hij vervangt de sponsor', 'Hij verbergt de risico’s', 'Hij maakt de notitie korter en makkelijker te lezen'],
+          options: ['Hij maakt zichtbaar wat er gebeurt als niemand op tijd beslist', 'Hij vervangt de sponsor', 'Hij verbergt de risico’s', 'Hij maakt de notitie korter en voor iedereen makkelijker te lezen'],
           answer: 'Hij maakt zichtbaar wat er gebeurt als niemand op tijd beslist',
           why: 'Een standaardoptie houdt het project in beweging en maakt uitstel zichtbaar.',
         },
@@ -1162,7 +1165,7 @@ export default {
       pre: [
         {
           q: 'In een fabriek met tier-overleg kan een ploegleider een probleem niet zelf oplossen. Wat gebeurt er volgens de afspraak?',
-          options: ['Hij wacht tot de maandelijkse vergadering', 'Hij lost het toch zelf op, ook al duurt het lang', 'Hij brengt het binnen de afgesproken tijd naar de laag erboven', 'Hij mailt de directeur'],
+          options: ['Hij wacht tot de maandelijkse vergadering', 'Hij lost het toch zelf op, ook al duurt het dan een stuk langer', 'Hij brengt het binnen de afgesproken tijd naar de laag erboven', 'Hij mailt de directeur'],
           answer: 'Hij brengt het binnen de afgesproken tijd naar de laag erboven',
           why: 'Tier-overleg is gebouwd op vaste escalatie: wat de ene laag niet kan oplossen, gaat snel naar de volgende.',
         },
@@ -1204,7 +1207,7 @@ export default {
         },
         {
           q: 'Wat is een obeya?',
-          options: ['Een dagelijkse stand-up van vijftien minuten', 'Een Japanse methode om fouten aan de lijn te voorkomen', 'Een document waarin alle besluiten van een project staan', 'Een ruimte waar alle borden van een project of programma samen hangen'],
+          options: ['Een dagelijkse stand-up van vijftien minuten', 'Een Japanse methode om fouten van operators aan de productielijn te voorkomen', 'Een document waarin alle besluiten van een project staan', 'Een ruimte waar alle borden van een project of programma samen hangen'],
           answer: 'Een ruimte waar alle borden van een project of programma samen hangen',
           why: '“Grote kamer”: alles zichtbaar op één plek, zodat problemen snel boven komen.',
         },
@@ -1246,7 +1249,7 @@ export default {
       pre: [
         {
           q: 'Een automatiseringsleverancier levert twee weken te laat. Jouw projectleider wil meteen de directeur van de leverancier bellen. Wat is meestal de betere eerste stap?',
-          options: ['De directeur van de leverancier bellen, dan gebeurt er tenminste iets', 'Eerst de projectleider van de leverancier spreken, volgens de escalatiematrix', 'Een advocaat inschakelen', 'Niks doen tot de levering er is'],
+          options: ['De directeur van de leverancier meteen zelf bellen, dan gebeurt er tenminste iets', 'Eerst de projectleider van de leverancier spreken, volgens de escalatiematrix', 'Een advocaat inschakelen', 'Niks doen tot de levering er is'],
           answer: 'Eerst de projectleider van de leverancier spreken, volgens de escalatiematrix',
           why: 'Wie meteen naar de top gaat, beschadigt de relatie op het niveau waar het werk gebeurt, en heeft daarna geen stap meer over.',
         },
@@ -1254,15 +1257,15 @@ export default {
       teach: [
         'Veel projecten lopen over bedrijfsgrenzen heen: een fabriek met een automatiseringsleverancier, een netbeheerder met een aannemer. De opdrachtgever (client) koopt het werk; de opdrachtnemer (contractor) levert het. Issues tussen hen zijn lastiger, omdat ieder zijn eigen belang, baas en contract heeft.\n\nDe basis: één gezamenlijke issuelog (joint issue log) die beide partijen zien en bijwerken, en die in het gezamenlijke projectoverleg wordt doorgelopen.',
         'Spreek bij de start een escalatiematrix (escalation matrix) af: per niveau wie aan beide kanten met elkaar praat, en na hoeveel tijd een issue een niveau omhoog gaat. Bijvoorbeeld: projectleider met projectleider, vijf werkdagen; dan accountmanager met sponsor; dan directeur met directeur.\n\nZo escaleren beide kanten tegelijk en naar elkaars gelijke. Een directeur die een projectleider belt, zet de verhoudingen scheef.',
-        'Ken het contract, of vraag iemand die het kent. Veel contracten hebben een boeteclausule (penalty clause): een vooraf afgesproken bedrag bij te late levering, vaak een percentage per week met een maximum. In het Nederlands recht heet dat een boetebeding; de details verschillen per contract.\n\nVoorbeeld: 0,5% per week te laat, maximaal 10% van de contractwaarde. Bij 400.000 euro en zes weken te laat is dat 12.000 euro.',
-        'Meestal moet je een probleem formeel en schriftelijk melden voordat zo’n clausule geldt. Een ingebrekestelling (notice of default) is in Nederland de formele brief waarin je de andere partij een laatste redelijke termijn geeft. Dat is juridisch werk: schakel inkoop of juristen in, en doe dit niet zelf per mail.\n\nDe meeste projecten lossen het op zonder contract. Maar wie de clausules kent, onderhandelt rustiger.',
+        'Ken het contract, of vraag iemand die het kent. Veel contracten hebben een boeteclausule (penalty clause): een vooraf afgesproken bedrag bij te late levering, vaak een percentage per week met een maximum. In het Nederlands recht heet dat een boetebeding (BW 6:91–6:94); een rechter kan een buitensporige boete matigen, en de details verschillen per contract.\n\nVoorbeeld: 0,5% per week te laat, maximaal 10% van de contractwaarde. Bij 400.000 euro en zes weken te laat is dat 12.000 euro.',
+        'Een ingebrekestelling (notice of default, BW 6:82) is de formele brief waarin je de andere partij een laatste redelijke termijn geeft. Vaak is die nodig voordat de leverancier in verzuim is (juridisch te laat, zodat de boete gaat lopen); bij een vaste leverdatum kan het verzuim ook zonder ingaan (BW 6:83). En voor vertraging die de leverancier niet te verwijten is, is geen boete verschuldigd (BW 6:92).\n\nDat is juridisch werk: schakel inkoop of juristen in, en doe dit niet zelf per mail. Wie de clausules kent, onderhandelt vooral rustiger.',
         'Wat misgaat: elke partij houdt een eigen issuelog met een andere waarheid. Of een opdrachtgever die bij elk probleem met het contract zwaait, zodat de leverancier alleen nog het minimum doet.\n\nExperts verschillen over hoe snel je het contract erbij haalt. Velen adviseren: eerst samen oplossen, het contract als vangnet. Een scherpe vraag aan de leverancier: “Wat heb jij van ons nodig om deze datum te halen?”',
       ],
       example: {
         kind: 'faded',
         text: 'Je bent junior Lean-consultant bij een voedingsmiddelenfabriek. Een automatiseringsleverancier bouwt een nieuwe verpakkingscel; contractwaarde 400.000 euro, boeteclausule 0,5% per week te laat, maximaal 10%. De cel komt zes weken te laat. De productiemanager wil “meteen de boete eisen” en de directeur van de leverancier bellen. Uit de gezamenlijke issuelog blijkt dat twee van de zes weken komen doordat de fabriek de tekeningen van de vloer te laat aanleverde.',
         ask: 'Hoe hoog zou de boete zijn, en hoe pak je dit aan?',
-        reveal: '6 × 0,5% = 3% van 400.000 = 12.000 euro, ruim onder het maximum van 40.000. Maar twee weken komen door de fabriek zelf, dus de boete staat juridisch waarschijnlijk zwakker dan de productiemanager denkt.\n\nVolg de escalatiematrix: eerst de projectleiders, met de gezamenlijke issuelog op tafel. Vraag wat de leverancier nodig heeft om niet verder uit te lopen. Leg het contractdeel bij inkoop. Escaleer pas naar de directeuren als de projectleiders er binnen de afgesproken termijn niet uitkomen.',
+        reveal: '6 × 0,5% = 3% van 400.000 = 12.000 euro, ruim onder het maximum van 40.000. Maar twee weken komen door de fabriek zelf. Voor vertraging die de leverancier niet te verwijten is, is geen boete verschuldigd, dus het kan eerder 4 × 0,5% = 2% worden, of 8.000 euro.\n\nVolg de escalatiematrix: eerst de projectleiders, met de gezamenlijke issuelog op tafel. Vraag wat de leverancier nodig heeft om niet verder uit te lopen. Leg het contractdeel bij inkoop. Escaleer pas naar de directeuren als de projectleiders er binnen de afgesproken termijn niet uitkomen.',
       },
       said: 'Wat je hoort in projecten: “Dat staat in het contract. Laat hun dat maar oplossen.”',
       recall: [
@@ -1276,13 +1279,13 @@ export default {
         },
         {
           q: 'Waar dient een escalatiematrix tussen twee bedrijven voor?',
-          options: ['Vastleggen wie de schuld krijgt als een issue blijft liggen', 'Vastleggen hoe de boete berekend wordt', 'Vastleggen wie op welk niveau met wie praat, en wanneer het omhoog gaat', 'Vastleggen dat de directeuren buiten het project blijven'],
+          options: ['Vooraf vastleggen wie de schuld krijgt als een issue te lang blijft liggen', 'Vastleggen hoe de boete berekend wordt', 'Vastleggen wie op welk niveau met wie praat, en wanneer het omhoog gaat', 'Vastleggen dat de directeuren buiten het project blijven'],
           answer: 'Vastleggen wie op welk niveau met wie praat, en wanneer het omhoog gaat',
           why: 'Beide kanten escaleren tegelijk en naar elkaars gelijke.',
         },
         {
           q: 'Wat is een ingebrekestelling?',
-          options: ['De formele brief die de andere partij een laatste redelijke termijn geeft', 'Een mail aan de projectleider van de leverancier over de vertraging', 'Het maximum van een boeteclausule', 'Een gezamenlijke issuelog'],
+          options: ['De formele brief die de andere partij een laatste redelijke termijn geeft', 'Een mail aan de projectleider van de leverancier over de vertraging en wat die kost', 'Het maximum van een boeteclausule', 'Een gezamenlijke issuelog'],
           answer: 'De formele brief die de andere partij een laatste redelijke termijn geeft',
           why: 'Het is een juridische stap; daar schakel je inkoop of juristen voor in.',
         },
