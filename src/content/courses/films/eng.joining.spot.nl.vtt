@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.704
+Hoe werkt puntlassen?
+
+2
+00:00:03.254 --> 00:00:06.133
+Twee stalen platen liggen over elkaar.
+
+3
+00:00:06.683 --> 00:00:12.804
+Puntlassen verbindt ze op losse punten, als steken, zonder draad of gas.
+
+4
+00:00:13.704 --> 00:00:18.394
+Een lastang aan een robot knijpt de platen tussen twee koperen elektroden,
+
+5
+00:00:18.594 --> 00:00:19.906
+de kappen.
+
+6
+00:00:20.456 --> 00:00:26.307
+Zo hard als een gewicht van 200 tot 400 kilo: 2 tot 4 kilonewton.
+
+7
+00:00:27.207 --> 00:00:32.606
+De transformator op de tang maakt een enorme stroom: 8 tot 12 kiloampère,
+
+8
+00:00:32.806 --> 00:00:34.873
+bij maar een paar volt.
+
+9
+00:00:35.773 --> 00:00:40.489
+De stroom loopt van kap naar kap, door beide platen.
+
+10
+00:00:41.039 --> 00:00:47.218
+Waar ze elkaar raken, is de weerstand het grootst: daar smelt het staal.
+
+11
+00:00:48.118 --> 00:00:50.394
+Water koelt de kappen van binnen.
+
+12
+00:00:50.944 --> 00:00:53.939
+In minder dan een seconde is het punt klaar.
+
+13
+00:00:55.139 --> 00:00:58.332
+Een body-in-white, de kale carrosserie voor het lakken,
+
+14
+00:00:58.532 --> 00:01:01.585
+heeft 4.000 tot 5.000 laspunten.
+
+15
+00:01:02.135 --> 00:01:04.782
+Bijna allemaal door robots gezet.
+
+16
+00:01:05.682 --> 00:01:08.178
+Puntlassen is snel en goedkoop,
+
+17
+00:01:08.378 --> 00:01:12.894
+maar alleen voor overlappende plaat van 0,6 tot 3 millimeter.
+
+18
+00:01:13.444 --> 00:01:16.346
+Van buiten zie je niet of een punt goed is.
+
+19
+00:01:17.546 --> 00:01:19.113
+Nu vertraagd.
+
+20
+00:01:19.663 --> 00:01:21.358
+De tang knijpt.
+
+21
+00:01:21.908 --> 00:01:27.542
+Dan loopt 9,5 kiloampère, 300 milliseconden lang.
+
+22
+00:01:28.092 --> 00:01:30.426
+Daarna houdt hij nog even vast.
+
+23
+00:01:31.326 --> 00:01:35.587
+Tussen de platen groeit een lensje gesmolten staal: de laslens (nugget),
+
+24
+00:01:35.787 --> 00:01:38.608
+4 tot 7 millimeter breed.
+
+25
+00:01:39.158 --> 00:01:41.201
+Hij stolt tot de las.
+
+26
+00:01:42.101 --> 00:01:46.373
+De stroom per vierkante millimeter kapvlak is de stroomdichtheid (current density).
+
+27
+00:01:46.923 --> 00:01:53.425
+9.500 ampère door 28,3 vierkante millimeter geeft 336.
+
+28
+00:01:54.625 --> 00:01:57.904
+De warmte groeit met de stroom in het kwadraat:
+
+29
+00:01:57.904 --> 00:02:01.881
+10 procent meer stroom geeft zo’n 21 procent meer warmte.
+
+30
+00:02:02.781 --> 00:02:06.673
+Te veel stroom, of te weinig kracht,
+
+31
+00:02:06.873 --> 00:02:11.296
+en het gesmolten staal spuit eruit als vonken: uitspatten (expulsion).
+
+32
+00:02:11.846 --> 00:02:14.795
+Dat geeft deuken en een zwakker punt.
+
+33
+00:02:15.695 --> 00:02:21.363
+Te weinig warmte geeft een plakpunt: het ziet er goed uit, maar het houdt niets.
+
+34
+00:02:22.563 --> 00:02:26.232
+De kappen slijten: ze worden platter en breder.
+
+35
+00:02:26.782 --> 00:02:33.493
+Na 500 punten is het kapvlak 7,5 millimeter: 36 procent minder stroomdichtheid.
+
+36
+00:02:34.042 --> 00:02:35.876
+De lens wordt te klein.
+
+37
+00:02:36.776 --> 00:02:39.946
+Daarom gaat de tang geregeld naar de kappenfrees.
+
+38
+00:02:40.496 --> 00:02:44.513
+Een draaiend mesje snijdt de kappen weer op maat: kappenfrezen (tip dressing).
+
+39
+00:02:45.413 --> 00:02:49.839
+Tussendoor verhoogt de stepper de stroom, stap voor stap,
+
+40
+00:02:50.039 --> 00:02:52.651
+zodat de stroomdichtheid gelijk blijft.
+
+41
+00:02:53.551 --> 00:02:55.176
+Punten te klein?
+
+42
+00:02:55.726 --> 00:02:58.164
+Draai niet zomaar de stroom op.
+
+43
+00:02:58.714 --> 00:03:01.721
+Kijk eerst of de frees echt snijdt.
+
+44
+00:03:02.921 --> 00:03:06.706
+De puntenteller (weld counter) telt de punten sinds het laatste frezen.
+
+45
+00:03:07.256 --> 00:03:11.285
+Op verzinkt staal is dat vaak 100 tot 300 punten.
+
+46
+00:03:12.185 --> 00:03:15.424
+Op 9,0 kiloampère en 6,0 millimeter kapvlak
+
+47
+00:03:15.424 --> 00:03:18.663
+is dat 318 ampère per vierkante millimeter.
+
+48
+00:03:19.213 --> 00:03:23.973
+Bij 6,5 millimeter is 10,6 kiloampère nodig.
+
+49
+00:03:24.873 --> 00:03:27.474
+Elke freesbeurt kost koper.
+
+50
+00:03:28.024 --> 00:03:32.972
+Is de kap te kort, dan volgt een kappenwissel (cap change): oude kap eraf,
+
+51
+00:03:33.172 --> 00:03:34.646
+nieuwe erop.
+
+52
+00:03:35.546 --> 00:03:39.551
+Een kapafdruk (tip imprint) op carbonpapier laat zien of het kapvlak rond,
+
+53
+00:03:39.751 --> 00:03:42.212
+gecentreerd en op maat is.
+
+54
+00:03:43.112 --> 00:03:47.863
+Valt het koelwater (cooling water) weg, dan worden de kappen heet en zacht.
+
+55
+00:03:48.763 --> 00:03:51.909
+En de uitlijning (alignment): staan de kappen scheef,
+
+56
+00:03:52.109 --> 00:03:55.035
+dan wordt de lens ovaal en te klein.
+
+57
+00:03:56.235 --> 00:04:00.275
+Bij de peeltest (peel test) trek je twee gelaste stroken uit elkaar.
+
+58
+00:04:00.825 --> 00:04:04.494
+Een goed punt scheurt eruit als een rond propje: de knoop (button).
+
+59
+00:04:05.394 --> 00:04:08.819
+Meet hem twee kanten op en neem het gemiddelde.
+
+60
+00:04:09.369 --> 00:04:16.126
+De eis is vaak vier keer de wortel uit de dunste plaat: bij 1,5 millimeter 4,9.
+
+61
+00:04:16.676 --> 00:04:19.869
+Gemiddeld 5,4 is dus goed.
+
+62
+00:04:20.769 --> 00:04:23.126
+Breekt het punt door het lasvlak,
+
+63
+00:04:23.326 --> 00:04:26.519
+zonder knoop, dan is dat grensvlakbreuk (interfacial fracture).
+
+64
+00:04:27.069 --> 00:04:29.287
+In zacht staal: afkeur.
+
+65
+00:04:30.187 --> 00:04:33.391
+De beiteltest (chisel test) drijft een wig tussen de platen,
+
+66
+00:04:33.591 --> 00:04:38.180
+vaak maar tot een vaste spleet, zodat het deel heel blijft.
+
+67
+00:04:39.080 --> 00:04:42.969
+Een adaptieve regeling (adaptive control) meet elk punt tijdens het lassen,
+
+68
+00:04:43.169 --> 00:04:45.897
+en stuurt stroom of tijd bij.
+
+69
+00:04:46.448 --> 00:04:48.805
+Zo hoef je minder te slopen.
+
+70
+00:04:50.005 --> 00:04:53.233
+Het lasvenster (weld lobe): stroom tegen lastijd.
+
+71
+00:04:53.783 --> 00:04:57.756
+Links is de lens te klein, rechts spat het.
+
+72
+00:04:58.306 --> 00:05:00.280
+De breedte is je marge.
+
+73
+00:05:01.180 --> 00:05:04.512
+Elke plaatcombinatie (stack-up) heeft een eigen venster.
+
+74
+00:05:05.062 --> 00:05:10.626
+Hier 1,2 millimeter op 1,0, bij 300 milliseconden.
+
+75
+00:05:11.526 --> 00:05:17.218
+De bovenste plaat is verzinkt DP600, een AHSS.
+
+76
+00:05:17.768 --> 00:05:21.785
+Venster: 7,6 tot 9,0 kiloampère.
+
+77
+00:05:22.335 --> 00:05:28.186
+Zonder zink 6,9 tot 9,1: het zink maakt het 36 procent smaller.
+
+78
+00:05:29.086 --> 00:05:35.126
+Zet de stroom hoog, op 8,7: 0,3 onder het uitspatten.
+
+79
+00:05:35.676 --> 00:05:38.428
+De rest is marge voor slijtage.
+
+80
+00:05:39.328 --> 00:05:43.368
+AHSS vraagt vaak een meerpulsprogramma (multi-pulse schedule): een voorpuls,
+
+81
+00:05:43.568 --> 00:05:46.296
+een laspuls en een nawarmpuls.

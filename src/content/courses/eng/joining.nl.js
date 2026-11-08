@@ -291,6 +291,7 @@ export default {
     },
     {
       id: 'eng.joining.spot',
+      film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Weerstandspuntlassen',
       pre: [
@@ -363,6 +364,7 @@ export default {
     },
     {
       id: 'eng.joining.spotwear',
+      film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Kappen, frezen en de stepper in de praktijk',
       pre: [
@@ -433,6 +435,7 @@ export default {
     },
     {
       id: 'eng.joining.spotquality',
+      film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Laspunten controleren: peeltest, ultrasoon en adaptieve regeling',
       pre: [
@@ -505,6 +508,7 @@ export default {
     },
     {
       id: 'eng.joining.spotlobe',
+      film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Het lasvenster en lastige materialen',
       pre: [

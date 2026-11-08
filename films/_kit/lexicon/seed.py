@@ -93,9 +93,17 @@ MANUAL = {
            'klauwplaat': 'klˈaːʊplˌaːt',
            # TANDwielkast, not tandWIELkast; loanwords the seed read as Dutch
            'tandwielkast': 'tˈɑntʋilkˌɑst', 'weekend': 'wˈiːkɛnt', 'datasheet': 'dˈeːtəʃˌiːt',
-           'businesscase': 'bˈɪznɪskˌeːs'},
+           'businesscase': 'bˈɪznɪskˌeːs',
+           # spot welding (film eng.joining.spot): AHSS as letters, peel as the
+           # English word, kapafdruk with a short a (espeak-ng: kˈaːp), the e of
+           # beitel, lens and klem not reduced to a schwa, lasstroom without the
+           # stress on stroom, body-in-white as the English words
+           'ahss': 'ˌaːhaːˌɛsˈɛs', 'kapafdruk': 'kˈɑpɑvdrˌɵk', 'beiteltest': 'bˈɛɪtəltˌɛst',
+           'peeltest': 'pˈiːltˌɛst', 'laslens': 'lˈɑslˌɛns', 'lasklem': 'lˈɑsklˌɛm',
+           'lasstroom': 'lˈɑsstrˌoːm', 'elektrodekap': 'eːlɛktrˈoːdəkˌɑp', 'knooppunt': 'knˈoːpˌpɵnt',
+           'lasbaarheidsbereik': 'lˈɑzbaːrhɛɪtsbərˌɛɪk', 'body': 'bˈɔdi', 'white': 'ʋˈɑjt'},
     'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',
-           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ'},
+           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ', 'ahss': 'ˌeɪeɪtʃˌɛsˈɛs', 'kiloamps': 'kˈɪləʊˌæmps'},
 }
 # first parts that make adverbs or particles (daarmee, waardoor, hiermee)
 NOT_FIRST = {'nl': {'daar', 'waar', 'hier', 'hoe', 'met', 'een', 'van', 'ten', 'ter', 'zich', 'erom', 'alle', 'hele'}, 'en': set()}
