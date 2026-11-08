@@ -31,3 +31,7 @@ Facts and attributions checked:
 Uncertain: none of the numbers; the "OT under the IT director versus under engineering" debate is described as practitioner disagreement, not a finding.
 
 Review (2026-11-06): Profinet is not an "older protocol" (removed; Modbus dated to the 1970s). Payback €250,000 / €1.2 M a year = 2.5 months (was "three months"). NIS2: "several" (not "many") manufacturing sectors; Dutch Cyberbeveiligingswet in force 15 August 2026 (Stb. 2026, 187 and 189). SCADA, CMMS and Euromap now explained at first use; "poll" replaced by "sample"; nl "TD" spelled out.
+
+## Track move (2026-11-08)
+
+Moved from track `discrete` to the new Engineering track `it` ("IT en OT" / "IT and OT"), next to `eng.itbasics`, per section 3 of `docs/superpowers/plans/2026-11-07-v13-listen-ict-outside-layout.md`. Only the `track` field changed; lessons, ids and content are untouched. The rebuild as topics × levels follows later.
