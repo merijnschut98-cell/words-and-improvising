@@ -88,12 +88,12 @@ export default {
         'Every dimension on the drawing has to be measurable, and you choose the gauge to suit the tolerance. The caliper is the pocket knife of the shop floor: two jaws and a sliding rule, for outside, inside and depth dimensions. A digital one reads to 0.01 mm.\n\nThe micrometer clamps the part between two small anvils with a fine screw and reads to 0.001 mm. It measures over a small range, for example 25 to 50 mm.',
         'For holes you use a bore gauge that you first zero in a setting ring, or a fixed plug or ring gauge that either fits or not (go/no-go). A go/no-go gauge only says good or bad, no number, but it is fast and hard to use wrongly.\n\nFor shapes and the position of holes relative to each other, the part goes to the measuring room, onto a coordinate measuring machine (CMM): a probe that touches points and calculates the shape in 3D.',
         'Resolution is the smallest step the gauge can show. Accuracy is how close the reading is to the true value. A cheap digital caliper shows 0.01 mm but can easily be 0.02 off, especially if you squeeze hard.\n\nRule of ten: the resolution is at most a tenth of the tolerance band. For a band of 0.04 mm you want 0.004 mm or finer. More digits on the display are no guarantee of a better measurement.',
-        'Calibration is comparing the gauge with a reference of known size, such as a gauge block (a steel block with a very precise thickness), in a chain that can be traced back to a national standard. Every gauge has a number and a next calibration date.\n\nISO 9001 (clause 7.1.5) also requires that when a gauge fails, you check whether earlier acceptances can still be trusted. Factories often forget that last part.',
+        'Calibration is comparing the gauge with a reference of known size, such as a gauge block (a steel block with a very precise thickness), in a chain that can be traced back to a national or international standard. Every gauge has a number and a next calibration date.\n\nISO 9001 (clause 7.1.5.2) also requires that when a gauge fails, you check whether earlier acceptances can still be trusted. Factories often forget that last part.',
         'Temperature matters. Drawing dimensions apply at 20 °C (ISO 1). Steel expands about 0.0115 mm per metre of length per degree. A 100 mm shaft that comes out of the machine 10 degrees too warm therefore measures just over 0.01 mm too large. On a tolerance of ±0.01 mm that is the whole difference.\n\nSharp question at the machine: “Do you measure it straight away, still warm, or after it cools, and does the measuring room know?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A bush (a short metal tube) has an outside diameter of Ø30 ±0.015 mm: a tolerance band of 0.030 mm. Rule of ten: you need a resolution of 0.003 mm or finer. The caliper (0.01 mm) is out; a 25 to 50 mm micrometer (0.001 mm) fits.\n\nThe operator measures straight from the machine, while the part is about 8 degrees warmer than 20 °C. The expansion: 0.030 m × 8 degrees × 0.0115 mm = 0.0028 mm too large, nearly a tenth of the tolerance band. Agreement: leave the part in the coolant for two minutes, then measure.',
+        text: 'A bush (a short metal tube) has an outside diameter of Ø30 ±0.015 mm: a tolerance band of 0.030 mm. Rule of ten: you need a resolution of 0.003 mm or finer. The caliper (0.01 mm) is out; a 25 to 50 mm micrometer (0.001 mm) fits.\n\nThe operator measures straight from the machine, while the part is about 8 degrees warmer than 20 °C. The expansion: 0.030 m × 8 degrees × 0.0115 mm = 0.0028 mm too large, nearly a tenth of the tolerance band. Agreement: let the part cool to shop temperature first, for example ten minutes on a steel plate in the measuring room, then measure.',
       },
       said: 'What engineers say: “You’re not going to measure plus-minus fifteen microns with a caliper. Grab the micrometer, and let it cool down first.”',
       recall: [
@@ -115,7 +115,7 @@ export default {
           q: 'At the yearly calibration a bore gauge turns out to read 0.008 mm wrong. Besides adjusting it, what does ISO 9001 require?',
           options: ['Only a new sticker with the next calibration date on it', 'Checking whether parts accepted earlier can still be trusted', 'Writing the gauge off and buying a new one at once', 'Nothing: in ISO 9001 calibration is only a recommendation'],
           answer: 'Checking whether parts accepted earlier can still be trusted',
-          why: 'Clause 7.1.5 asks you to judge whether earlier measurement results are still valid, and to act on those parts if needed.',
+          why: 'Clause 7.1.5.2 asks you to judge whether earlier measurement results are still valid, and to act on those parts if needed.',
         },
         {
           q: 'Which gauge only says good or bad, without a number?',
@@ -140,7 +140,8 @@ export default {
         { term: 'Micrometer', def: 'Clamps the part with a fine screw and reads to 0.001 mm, over a small range.' },
         { term: 'Resolution', def: 'The smallest step a gauge can show; at most a tenth of the tolerance band.' },
         { term: 'Accuracy', def: 'How close the reading is to the true value.' },
-        { term: 'Calibration', def: 'Comparing a gauge with a known reference, traceable to a national standard.' },
+        { term: 'Calibration', def: 'Comparing a gauge with a known reference, traceable to a national or international standard.' },
+        { term: 'Rule of ten', def: 'The gauge resolution is at most a tenth of the tolerance band.' },
       ],
     },
     {
@@ -233,7 +234,7 @@ export default {
         'A tolerance stack-up calculates what the tolerances of individual parts do together in an assembly. You follow a dimension chain: a row of dimensions from one surface to the next, around the gap or overlap you want to know.\n\nThat gap or overlap is the closing dimension: the play between a bearing and a circlip, the gap between a door and its frame. It is often on no drawing at all, but that is where the customer notices it.',
         'The worst case method simply adds up all tolerances: every part at its worst limit at the same time. Four parts of ±0.1 mm give ±0.4 mm. That is certain: if every part is in spec, the assembly always fits.\n\nThe drawback: with many parts the tolerance per part becomes unaffordably tight, because you are covering a near-zero chance. All parts sitting at their upper limit at once practically never happens with centred processes.',
         'The statistical method, RSS (root sum of squares), adds up spreads the way probabilities do: √(0.1² + 0.1² + 0.1² + 0.1²) = ±0.2 mm. Half as wide as worst case.\n\nThe assumptions: every part comes from a centred, stable process with a normal distribution, and every tolerance is ±3σ. Then about 99.7% of assemblies fall within ±0.2. With ten parts of ±0.1, RSS gains even more: ±0.32 versus ±1.0.',
-        'What experts argue about: real processes are rarely exactly centred. So many engineers multiply the RSS result by a correction factor, often 1.5, after A. Bender, who saw in the 1960s that pure RSS was too optimistic in practice. Four parts then give ±0.3: between RSS and worst case.\n\nA rule of thumb, not a law: worst case with few parts or for safety; RSS only when you know and monitor the suppliers’ process capability.',
+        'What experts argue about: real processes are rarely exactly centred. So many engineers multiply the RSS result by a correction factor, often 1.5. It is usually credited to Arthur Bender (1962), who found pure RSS too optimistic in practice: a factor from experience, not from theory. Four parts then give ±0.3: between RSS and worst case.\n\nA rule of thumb, not a law: worst case with few parts or for safety; RSS only when you know and monitor the suppliers’ process capability.',
         'Typical mistakes: forgetting a dimension in the chain, such as the thickness of a gasket or the play in a bearing; getting the direction wrong (a dimension that makes the gap bigger counts plus, one that makes it smaller counts minus); and using RSS with parts from a supplier who sits against the upper limit all the time.\n\nSharp question for the designer: “Is this stack-up worst case or RSS, and what Cpk did you assume?”',
       ],
       example: {
@@ -451,31 +452,31 @@ export default {
       teach: [
         'A capability study is a small measuring campaign, in two kinds. A machine study measures about 50 parts made one after another, with one operator, one batch of material and one tool: what can the machine itself do? It gives the Cmk (machine capability index), for which customers such as Bosch often ask 1.67 or more.\n\nA process study measures over days or weeks, with all the normal changes: shifts, batches, tool changes. It gives Cpk and Ppk, with 1.33 as the usual minimum.',
         'The order: first check the gauge (a gauge R&R, see the control plan), then measure the parts and record them in sequence, then a control chart: was the process stable? Only then calculate a Cpk. Also look at the histogram, a bar chart of how often each size occurs: one neat hump, or two?\n\nTwo humps often means two machines, two mould cavities or two shifts mixed together. One Cpk over that mixture says little; split the data.',
-        'A Cpk from a sample is an estimate with a confidence interval: the band in which the true value probably lies. With a common approximation formula (see the NIST handbook on process capability), a measured Cpk of 1.33 from 30 parts gives a 95% lower bound of about 1.0. With 125 parts that lower bound is around 1.16.\n\nThat is why customers ask for more parts, or a higher Cpk when there are few parts.',
-        'Not every dimension has two limits. With a one-sided specification, such as flatness at most 0.05 mm or roughness at most Ra 1.6 µm, there is only an upper limit. Cp then means nothing; you calculate Cpk = (USL − mean) / 3σ.\n\nSuch characteristics often have a non-normal distribution: they can’t go below zero, so the data pile up at a low value with a long tail upwards. The normal formula then gives a misleading number.',
-        'What experts do then: choose a fitting distribution, or calculate with percentiles, as ISO 22514-2 describes: the width between the 0.135% and the 99.865% points of the data replaces the 6σ. Statistical software does it, if someone picks the right option.\n\nSharp questions for every study: “How many parts, over what period, was the process stable, and which distribution was assumed?”',
+        'A Cpk from a sample is an estimate with a confidence interval: the band in which the true value probably lies. With a common approximation formula (see the NIST handbook on process capability), a measured Cpk of 1.33 from 30 parts has a 95% interval whose lower end is about 1.0. With 125 parts that lower end is around 1.16.\n\nThat is why customers ask for more parts, or a higher Cpk when there are few parts.',
+        'Plan the study so you can split the data later. Record every reading in production order, with date and time, machine, mould cavity, shift, operator and material lot. Without those labels you can’t find out where a second hump comes from.\n\nHow many: at least 50 consecutive parts for a machine study. For a process study at least 100 readings in 25 or more subgroups (small groups of parts made one after another), spread over several days, as the AIAG PPAP manual asks.',
+        'Read the result as a comparison. Cmk high, Ppk low: the machine is fine; the extra spread comes from what changes between hours and days, such as lots, tool changes and shifts. Both low: look at the machine or fixture itself.\n\nWith a one-sided specification, such as flatness at most 0.05 mm, you calculate Cpk to that one limit only. Such data are often skewed; the module Measurement and SPC in depth shows how to handle that. Sharp question: “Over how many days, and was it stable?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A milled face on a pump cover has flatness at most 0.050 mm, a one-sided specification. The study: 60 covers over five days, control chart stable, gauge R&R 12% of tolerance. Mean flatness 0.020 mm, σ 0.006 mm.\n\nThe supplier calculates Cp = 0.050 / (6 × 0.006) = 1.39 and says “capable”. But Cp is meaningless with a one-sided limit, and the histogram is skewed: many covers around 0.015 mm, with a tail up to 0.040 mm.',
-        ask: 'What is the Cpk with the normal formula, and what still has to happen before you trust it?',
-        reveal: 'Cpk = (0.050 − 0.020) / (3 × 0.006) = 0.030 / 0.018 = 1.67. On paper well above 1.33.\n\nBut a skewed distribution with an upward tail means the normal formula underestimates the chance of an outlier above 0.050. Ask for an analysis with a fitting distribution or with the percentile method. Suppose that comes out at about 1.3: just under the requirement, so keep flatness on a control chart and improve the fixture.',
+        text: 'A new CNC lathe (a computer-controlled lathe) turns a shaft to Ø25 ±0.020 mm. Machine study: 50 consecutive parts, mean 25.004 mm, σ 0.003 mm. The nearest limit is 25.020, so Cmk = (25.020 − 25.004) / (3 × 0.003) = 0.016 / 0.009 = 1.78: above the 1.67 the customer asks.\n\nThree weeks later comes the process study: 125 readings in 25 subgroups, over all shifts and four material lots. Mean 25.006 mm, overall σ 0.005 mm.',
+        ask: 'What is the Ppk, and what does the difference from the Cmk tell you?',
+        reveal: 'Ppk = (25.020 − 25.006) / (3 × 0.005) = 0.014 / 0.015 = 0.93: well below 1.33.\n\nThe machine itself can do it; the extra spread comes from what changes over the weeks. Split the readings by shift, lot and tool change, and look at the control chart for jumps. A new machine would not help; a warm-up routine, a fixed offset after a tool change or a material agreement might.',
       },
-      said: 'What engineers say: “Flatness can’t go below zero, so I don’t believe that Cpk of 1.67 with a normal distribution. Run it with the right distribution, and tell me over how many days.”',
+      said: 'What engineers say: “The machine study gives a Cmk of 1.78, but over three weeks the Ppk is 0.93. It’s not the machine, it’s what changes between shifts and lots. Split the data.”',
       recall: [
         {
-          q: 'Roughness may be at most Ra 1.6 µm (only an upper limit). Mean Ra 1.0 µm, σ 0.12 µm. What is the Cpk, assuming a normal distribution?',
-          number: 1.67,
+          q: 'Machine study: spec limits 49.96 and 50.04 mm, mean 50.01 mm, σ 0.005 mm. What is the Cmk?',
+          number: 2,
           tolerance: 0.01,
           unit: '',
-          hint: 'With only an upper limit: (upper limit − mean) divided by 3σ.',
-          why: '(1.6 − 1.0) / (3 × 0.12) = 0.6 / 0.36 = 1.67.',
+          hint: 'Find the nearest spec limit, then divide the distance from the mean to that limit by three sigma.',
+          why: 'The nearest limit is 50.04: (50.04 − 50.01) / (3 × 0.005) = 0.03 / 0.015 = 2.0.',
         },
         {
-          q: 'The histogram of a capability study shows two clear humps. What do you do?',
-          options: ['Calculate the Cpk over all data and report it', 'Split the data by machine, cavity or shift', 'Leave out the outliers until there is one hump', 'Measure more parts until the humps merge'],
-          answer: 'Split the data by machine, cavity or shift',
-          why: 'Two humps point to two sources mixed together. One Cpk over the mixture hides which source is the problem.',
+          q: 'Before you measure parts for a capability study, what do you check first?',
+          options: ['That the Cpk will come out above 1.33', 'That the gauge is good enough, with a gauge R&R', 'That the parts are all measured on the CMM', 'That all parts come from the day shift'],
+          answer: 'That the gauge is good enough, with a gauge R&R',
+          why: 'A gauge that eats much of the tolerance adds its own spread to σ. First the gauge, then stability, then capability.',
         },
         {
           q: 'Which study measures about 50 parts made one after another, with one operator and one batch of material?',
@@ -503,9 +504,9 @@ export default {
       sayIt: 'Explain to a project manager in 60 seconds why a Cpk from 30 parts in one morning says little, and what a good study needs.',
       terms: [
         { term: 'Cmk', def: 'Machine capability index: Cpk from about 50 consecutive parts under constant conditions.' },
+        { term: 'Process study', def: 'A capability study over days or weeks, with all the normal changes; gives Cpk and Ppk.' },
         { term: 'Confidence interval', def: 'The band in which the true value probably lies; narrower with more parts.' },
         { term: 'One-sided specification', def: 'A characteristic with only one limit, such as flatness at most 0.05 mm; you calculate Cpk to that limit only.' },
-        { term: 'Non-normal distribution', def: 'Data that don’t follow the bell shape, such as skewed data that can’t go below zero; needs another method.' },
       ],
     },
     {
@@ -523,7 +524,7 @@ export default {
         'Six Sigma started around 1986 at Motorola, with engineer Bill Smith, and later grew big at GE. The sigma level says how many standard deviations fit between the process mean and the nearest spec limit. In the short term it is roughly 3 × Cpk.\n\nIn practice someone says “we’re at 4 sigma” and means a defect rate. Then you need to know how he calculates, because there are two conventions.',
         'DPMO (defects per million opportunities) counts defects per chance of a defect, not per product. A circuit board with 500 solder joints has 500 opportunities per piece. 1,000 boards with 35 bad joints in total: 35 / (1,000 × 500) × 1,000,000 = 70 DPMO.\n\nUseful for comparing unlike products, but also easy to game: count more opportunities per product and your DPMO drops while nothing gets better.',
         'The 1.5σ shift: Motorola assumed that a process mean can drift by up to 1.5σ in the long run. A “6 sigma” process is then treated in the long run as 4.5σ from the limit: 3.4 DPMO. Without that assumption, a centred 6σ process gives about 0.002 ppm.\n\nThe usual table, with the shift included: 3σ is 66,807 DPMO, 4σ is 6,210, 5σ is 233, 6σ is 3.4.',
-        'What experts argue about: the 1.5 is an empirical figure, not a law of nature. Statistician Donald Wheeler calls it indefensible to assume that an unpredictable process never drifts more than 1.5σ. A stable process with a good control chart may drift much less, an uncontrolled one much more.\n\nIn practice: always ask whether a sigma level was calculated with or without the shift, and prefer measured ppm and Ppk.',
+        'What experts argue about: the 1.5 is an empirical figure, not a law of nature. Statistician Donald Wheeler argues it has no sound basis: nothing guarantees that an unpredictable process drifts no more than 1.5σ. A stable process with a good control chart may drift much less, an uncontrolled one much more.\n\nIn practice: always ask whether a sigma level was calculated with or without the shift, and prefer measured ppm and Ppk.',
         'For a whole line you look at yield. First pass yield (FPY) is the share of products that go through a step without repair or scrap. Rolled throughput yield (RTY) multiplies the FPY of all steps: 95%, 98% and 97% give 0.95 × 0.98 × 0.97 = 90.3%.\n\nThe difference is the hidden factory: the repair station that shows up in no final figure, because a repaired product simply counts as good.',
       ],
       example: {
@@ -580,6 +581,7 @@ export default {
         { term: '1.5σ shift', def: 'Motorola’s assumption that the mean drifts 1.5σ in the long run; disputed.' },
         { term: 'First pass yield', def: 'FPY: share of products that go through a step without repair or scrap.' },
         { term: 'Rolled throughput yield', def: 'RTY: the FPY of all steps multiplied together.' },
+        { term: 'Hidden factory', def: 'The repair and rework that no final figure shows, because a repaired product counts as good.' },
       ],
     },
     {
@@ -594,10 +596,10 @@ export default {
         },
       ],
       teach: [
-        'Kaoru Ishikawa, a Japanese quality pioneer, named seven simple tools that he said could solve most quality problems. You use four of them almost every week.\n\nThe check sheet is the simplest: a form next to the machine on which the operator makes a tally mark for each defect he sees, and when. No software, but data. It only works if the defect types are clearly named in advance, otherwise everyone writes something different.',
+        'Kaoru Ishikawa, a Japanese quality pioneer, named seven simple tools that he said could solve most quality problems. Three of them you use almost every week: the check sheet, the histogram and the Pareto chart.\n\nThe check sheet is the simplest: a form next to the machine on which the operator makes a tally mark for each defect he sees, and when. It only works if the defect types are clearly named in advance, otherwise everyone writes something different.',
         'The histogram is a bar chart of how often each value occurs: the measured sizes in classes of, say, 0.005 mm, with a bar per class. It shows the shape of the spread at a glance: one neat bell, skewed, or two humps.\n\nDraw the spec limits in. Does the hump sit in the middle with room on both sides, or does it rub against a limit?',
         'The Pareto chart puts the defect types in order from large to small, with a line for the cumulative percentage. Often a small number of causes gives most of the problems: the well-known 80/20 rule, which quality guru Joseph Juran named after economist Vilfredo Pareto.\n\nNote: 80/20 is a pattern, not a law; it can be 60/40. And count by cost if you can: lots of small scratches sometimes cost less than one customer complaint.',
-        'The run chart plots a measurement over time, with the median as the centre line: the middle value, with as many points above as below. It is the forerunner of the control chart, without control limits.\n\nCommonly used rules, among others from the American IHI (Institute for Healthcare Improvement): 6 or more points in a row on one side of the median is a shift; 5 or more in a row going up or down is a trend. Other sources use slightly different counts.',
+        'The run chart plots a measurement over time, with the median as the centre line: the middle value, with as many points above as below. It is the forerunner of the control chart, one of Ishikawa’s seven, but without control limits.\n\nCommonly used rules, among others from the American IHI (Institute for Healthcare Improvement): 6 or more points in a row on one side of the median is a shift; 5 or more in a row going up or down is a trend. Other sources use slightly different counts.',
         'Why time has to be in it: a monthly average hides everything. A reject rate of about 3% a month can be 3% every day, or 1% on 27 days and 20% on three days. Those are two very different problems: the first lives in the system, the second in an event.\n\nSharp question for every monthly figure: “Can I see this by day, or by shift?”',
       ],
       example: {
@@ -727,10 +729,10 @@ export default {
       title: 'The right chart: I-MR, p chart and c chart',
       pre: [
         {
-          q: 'A chemical plant makes one batch of adhesive a day and measures one viscosity (how thick and syrupy it is) on it. Which control chart fits?',
-          options: ['An I-MR chart for individual readings', 'An X-bar/R chart with subgroups of 5', 'A p chart for the percentage defective', 'No chart: one reading a day is too few'],
-          answer: 'An I-MR chart for individual readings',
-          why: 'With one reading per batch there is no subgroup of several parts. The I-MR chart is made for individual readings.',
+          q: 'Every day a paint line inspects all panels and writes down how many were rejected. What kind of data is that?',
+          options: ['Attribute data: each panel is only good or bad', 'Variables data, because the result is a number', 'Variables data, once more than 100 panels are checked', 'No data at all, until someone calculates a percentage'],
+          answer: 'Attribute data: each panel is only good or bad',
+          why: 'Judging good or bad and counting gives attribute data. Variables data are readings on a scale, such as millimetres or degrees; they say more per piece.',
         },
       ],
       teach: [
@@ -738,7 +740,7 @@ export default {
         'The I-MR chart (individuals and moving range) is for individual readings: one batch a day, one temperature an hour, one density per tank. You plot each reading (I) and its difference from the previous one (MR, moving range).\n\nThe limits: mean ± 2.66 × the average moving range. That 2.66 is 3 / 1.128, a table constant. An I-MR chart is sensitive to skewed data; look at the histogram first.',
         'The p chart follows the percentage of defective pieces per sample, for example per day: 6 bad out of 300 is p = 2%. The limits are p̄ ± 3 × √(p̄ × (1 − p̄) / n), with p̄ the average percentage and n the number of pieces. If n changes by day, the limits move with it, as they should.\n\nThe c chart counts defects per unit of fixed size: scratches per car roof, leaks per 100 metres of weld. Limits: c̄ ± 3 × √c̄.',
         'Pitfalls: a p chart with very few defects, such as 0.1% at 100 pieces a day, gives a chart full of zeros; then tracking the time between defects is more useful. An X-bar chart on individual readings, with a made-up subgroup of five consecutive batches, gives wrong limits and so false alarms or missed signals.\n\nAnd attribute charts see a change late. If you can measure instead of count, do it.',
-        'In good plants the decision tree hangs next to the SPC board. Readings in subgroups of 2 to 10: X-bar/R. Individual readings: I-MR. Percentage defective: p chart. Number of defects per unit: c chart, or the u chart if the units differ in size.\n\nSharp question for every chart: “Why this chart, and what happens when it raises an alarm?”',
+        'In good plants the decision tree hangs next to the SPC board. Readings in subgroups of 2 to 10: X-bar/R. Individual readings: I-MR. Percentage defective: p chart. Number of defects per unit: c chart, or the u chart if the units differ in size.\n\nThe module Measurement and SPC in depth adds the np and X-bar/S charts and how large a p chart sample must be. Sharp question for every chart: “Why this chart, and what happens when it raises an alarm?”',
       ],
       example: {
         kind: 'faded',
@@ -765,10 +767,10 @@ export default {
           why: '√(0.02 × 0.98 / 200) = √0.000098 = 0.0099; 0.02 + 3 × 0.0099 = 0.0497, so 4.97%.',
         },
         {
-          q: 'You count the number of scratches per car roof, and all roofs are the same size. Which chart fits?',
-          options: ['An I-MR chart', 'An X-bar/R chart', 'A p chart', 'A c chart'],
-          answer: 'A c chart',
-          why: 'A c chart counts defects per unit of fixed size. A p chart counts defective pieces, not the number of defects per piece.',
+          q: 'What does the MR in an I-MR chart show?',
+          options: ['The mean range of a subgroup of five parts', 'The highest reading of the day', 'The resolution of the gauge used', 'The difference between a reading and the one before'],
+          answer: 'The difference between a reading and the one before',
+          why: 'MR is the moving range: how much each reading differs from the previous one. Its average sets the limits of the I chart.',
         },
         {
           q: 'Why measure rather than count, when you can?',
@@ -808,19 +810,19 @@ export default {
         },
       ],
       teach: [
-        'A control chart only works with well-chosen subgroups. A rational subgroup consists of parts made under conditions as alike as possible, such as five parts made one after another. The spread within the subgroup is then only short-term noise, and differences between subgroups become visible.\n\nMistake: five parts from five mould cavities in one subgroup. Then the difference between cavities sits in the range, the limits become too wide and the chart never sees anything.',
-        'You set the control limits in a Phase I study: collect 20 to 25 subgroups, remove points with a known special cause, and freeze the limits. After that, in Phase II, you monitor with those fixed limits.\n\nThe trap: recalculating the limits every week from the latest data. Then they move with every shift and the chart stops raising alarms. Recalculate only after a deliberate change, such as a new machine or method.',
-        'Every rule sometimes gives a false alarm: a signal while nothing has changed. The ARL (average run length) says after how many points that happens on average. With only the rule “one point outside 3σ” it is 1 / 0.0027, about 370 points.\n\nWith all four Western Electric rules added, the ARL drops to about 92 points according to Champ and Woodall (1987). At 8 subgroups a day that is a false alarm roughly every week and a half.',
+        'Two set-up choices make or break a chart; the module Measurement and SPC in depth covers them in detail. A rational subgroup holds parts made under conditions as alike as possible, such as five in a row from one cavity. The limits come from a Phase I study: 20 to 25 subgroups, points with a known special cause removed, then frozen. In Phase II you monitor with those fixed limits.\n\nLimits recalculated every week drift along with the problem.',
+        'Every rule sometimes gives a false alarm: a signal while nothing has changed. The ARL (average run length) says after how many points that happens on average. With only the rule “one point outside 3σ” it is 1 / 0.0027, about 370 points.\n\nThe four Western Electric rules (1956) add patterns: 2 of 3 points beyond 2σ, 4 of 5 beyond 1σ, 8 in a row on one side. With all four on, the ARL drops to about 92 points (Champ and Woodall, 1987).',
+        'False alarms add up across charts. Ten charts with 8 points a day each and all four rules on: 80 points a day / 92 ≈ almost one false alarm a day somewhere in the plant. Operators soon learn to ignore the charts.\n\nThe other side: the extra rules see a small shift much sooner than the 3σ rule alone. So switch them on where a small shift matters, such as a safety characteristic, and keep the single rule elsewhere.',
         'Pre-control is a simple alternative: green is the middle half of the tolerance, yellow the outer quarters, red out of spec. Two yellows in a row, or one red: stop and adjust. It was devised in 1954 at the consultancy Rath & Strong and later promoted by Dorian Shainin.\n\nCritics, including Ledolter and Swersey (1997), find it mainly useful for very capable processes; with a mediocre Cpk it leads to adjusting on noise.',
         'In an SPC roll-out an expert first asks: which characteristics? Not everything on a chart, only characteristics from the control plan that affect the customer or show a process change first, such as a press force or a temperature.\n\nAutomatic measurement changes the game. With a reading every second, consecutive points hang together (autocorrelation), and ordinary limits raise alarms all the time. Then other methods are needed, and a statistician.',
       ],
       example: {
         kind: 'faded',
-        text: 'An injection moulder with a four-cavity mould. Every hour four parts are measured, one from each cavity, as one subgroup on an X-bar/R chart. The average range is 0.060 mm; with A2 = 0.729 for n = 4 the limits are at the mean ± 0.729 × 0.060 = ±0.044 mm.\n\nThe chart hasn’t given a single signal for months, while the customer twice sent back parts with an oversize dimension from cavity 3.',
-        ask: 'Why does the chart see nothing, and how would you set up the subgroups?',
-        reveal: 'The range within each subgroup contains the fixed difference between cavities, not just short-term noise. So the limits are far too wide, and a shift in one cavity disappears in the average of four.\n\nBetter: a separate chart per cavity, with subgroups of, for example, three consecutive shots from that cavity. Or first fix the fixed difference between cavities with the toolmaker. Then a Phase I study of 20 to 25 subgroups, and freeze the limits.',
+        text: 'An aluminium die-caster (a plant that casts molten aluminium in steel moulds) has 15 X-bar/R charts, each with 8 subgroups a day and all four Western Electric rules on. That is 15 × 8 = 120 points a day. With an ARL of about 92 for a stable process: 120 / 92 ≈ 1.3 false alarms a day.\n\nThe team leaders say “the charts always cry wolf” and have stopped reacting.',
+        ask: 'How many false alarms a day would there be with only the 3σ rule, and what do you advise?',
+        reveal: '120 / 370 ≈ 0.3 a day: about one every three days. Few enough that every alarm gets a real look.\n\nAdvice: keep all four rules only on the two or three characteristics where a small shift matters, such as the wall thickness of a pressure-tight housing; use the single 3σ rule on the rest. Check against the control plan whether all 15 charts are needed. And make every alarm end in a note: found what, did what.',
       },
-      said: 'What engineers say: “You’re putting four cavities in one subgroup, so the range is the difference between cavities. No wonder that chart never sees anything. Per cavity, rational, and then freeze the limits.”',
+      said: 'What engineers say: “Fifteen charts with all the rules on, that’s a false alarm every day. No wonder nobody looks any more. All four rules only where a small shift hurts.”',
       recall: [
         {
           q: 'A chart uses only the rule “one point outside 3σ”: the chance of a false alarm is 0.27% per point. 10 points are added per day. After how many days do you get a false alarm on average?',
@@ -837,10 +839,10 @@ export default {
           why: 'The limits move with the process, so a drift always stays inside the limits.',
         },
         {
-          q: 'Why should a subgroup consist of parts made one after another?',
-          options: ['Then measuring is quicker', 'Then the parts are still warm', 'Every customer requires it in the contract', 'Then the range contains only short-term noise'],
-          answer: 'Then the range contains only short-term noise',
-          why: 'That keeps the limits narrow enough to see differences between subgroups, such as a shift.',
+          q: 'A sensor logs a temperature every second. A chart with ordinary limits raises alarms all day, while the product is fine. What is the likely reason?',
+          options: ['The sensor needs calibrating every day', 'The limits were calculated with the wrong A2', 'The process is unstable and must be stopped', 'Consecutive readings hang together'],
+          answer: 'Consecutive readings hang together',
+          why: 'At one reading a second each point is close to the one before (autocorrelation), so the ordinary limits come out too narrow. Such data need other methods.',
         },
         {
           q: 'In pre-control, what is the green zone?',
@@ -859,13 +861,14 @@ export default {
           'Asks how subgroups and limits were set',
         ],
       },
-      sayIt: 'Explain to a plant manager in 60 seconds why 40 control charts are not better than 8, and what a rational subgroup is.',
+      sayIt: 'Explain to a plant manager in 60 seconds why 40 control charts are not better than 8, and what false alarms cost.',
       terms: [
         { term: 'Rational subgroup', def: 'Parts made under conditions as alike as possible, so the range contains only short-term noise.' },
         { term: 'Phase I study', def: '20 to 25 subgroups to set and freeze the control limits.' },
         { term: 'False alarm', def: 'A signal on the chart while nothing has changed.' },
         { term: 'ARL', def: 'Average run length: after how many points a chart gives a signal on average; about 370 with a single 3σ rule.' },
         { term: 'Pre-control', def: 'Adjusting with zones in the tolerance: green the middle half, yellow the outer quarters, red out of spec.' },
+        { term: 'Autocorrelation', def: 'Consecutive readings that hang together, as with very frequent automatic measurement; ordinary limits then raise too many alarms.' },
       ],
     },
     {
@@ -883,7 +886,7 @@ export default {
         'A nonconforming part that has been found must first stop moving. Quarantine means setting it aside and marking it clearly, usually with a red tag, in a red bin or in a locked cage, so nobody sends it on by mistake.\n\nISO 9001, the international standard for quality management, requires in clause 8.7 that nonconforming product is identified and controlled, so that it is not used or delivered unintentionally.',
         'Containment is the quick action to protect the customer while you don’t yet know the cause. You go back to the last good measurement and put everything after it in quarantine: at the machine, in the warehouse, in transit and at the customer.\n\nThen you sort: check every part, often with extra people or an outside sorting company. The biggest mistake is not going back far enough, “just this morning’s bin”, while the defect started yesterday.',
         'Everything goes into a nonconformance report (NCR): what, how many, which order number, who found it, and which decision. The possible decisions: scrap, rework until the part meets the drawing again, repair until it is usable but not to drawing, or use as is with a deviation from the customer.\n\nRework and repair look alike, but only rework gives a part to drawing again.',
-        'Who decides? In many plants an MRB (material review board): quality, production and engineering together, sometimes with purchasing. They weigh function, risk and cost. You never release a safety characteristic without the customer.\n\nThe American quality society ASQ estimates the cost of poor quality at 15 to 20% of sales in many companies, up to 40% in some. That is a rough estimate, but a reason to measure it.',
+        'Who decides? In many plants an MRB (material review board): quality, production and engineering together, sometimes with purchasing. They weigh function, risk and cost. You never release a safety characteristic without the customer.\n\nThe American quality society ASQ quotes the cost of poor quality as high as 15 to 20% of sales in many companies, and up to 40% in some. Those are rough estimates, but a reason to measure it.',
         'A familiar sight on a Lean scan: the red cage full of “waiting for a decision”, for weeks. Every part in it is money and space, and information that goes stale: after three weeks nobody remembers which machine it came from.\n\nSharp questions: “How old is the oldest part in quarantine? Who decides, and within how many days?”',
       ],
       example: {
@@ -1151,6 +1154,7 @@ export default {
         { term: '5 whys', def: 'Keep asking why until you reach a cause you can change in the process.' },
         { term: 'Escape point', def: 'The first place where the defect should have been found and wasn’t.' },
         { term: 'Corrective action', def: 'Removes the cause permanently; different from containment, which only protects the customer.' },
+        { term: 'Poka-yoke', def: 'A device or design that makes an error impossible, or makes it show at once.' },
       ],
     },
   ],

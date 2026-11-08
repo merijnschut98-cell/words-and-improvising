@@ -87,13 +87,13 @@ export default {
       teach: [
         'Elke maat op de tekening moet iemand kunnen meten, en het meetmiddel (gauge) kies je bij de tolerantie. De schuifmaat (caliper) is het zakmes van de werkplaats: twee bekken en een schuivende lat, voor buitenmaten, binnenmaten en diepte. Digitaal leest hij af op 0,01 mm.\n\nDe micrometer, in de werkplaats ook schroefmaat genoemd, klemt het deel tussen twee vlakjes met een fijne schroef en leest af op 0,001 mm. Hij meet over een klein bereik, bijvoorbeeld 25 tot 50 mm.',
         'Voor gaten gebruik je een boringmeter (bore gauge) die je eerst op nul zet in een instelring, of een vaste kaliber: een pen of ring die er wel of niet in past (go/no-go). Een kaliber zegt alleen goed of fout, geen getal, maar is snel en moeilijk verkeerd te gebruiken.\n\nVoor vormen en de plaats van gaten ten opzichte van elkaar gaat het deel naar de meetkamer, op een coördinatenmeetmachine (CMM): een taster die punten aftast en de vorm in 3D uitrekent.',
-        'Resolutie is de kleinste stap die het meetmiddel kan tonen. Nauwkeurigheid is hoe dicht de uitlezing bij de echte waarde ligt. Een goedkope digitale schuifmaat toont 0,01 mm, maar kan er makkelijk 0,02 naast zitten, zeker als je hard knijpt.\n\nVuistregel van tien: de resolutie is hoogstens een tiende van het tolerantieveld. Bij een veld van 0,04 mm wil je dus 0,004 mm of fijner. Meer cijfers op het scherm zijn geen garantie voor een betere meting.',
-        'Kalibratie is het meetmiddel vergelijken met een referentie waarvan de maat bekend is, zoals een eindmaat (gauge block: een stalen blokje met een heel precieze dikte), in een keten die terug te voeren is tot een nationale standaard. Elk meetmiddel heeft een nummer en een volgende kalibratiedatum.\n\nISO 9001 (paragraaf 7.1.5) eist ook dat je bij een afgekeurd meetmiddel nagaat of je eerdere goedkeuringen nog kunt vertrouwen. Dat laatste vergeten fabrieken vaak.',
+        'Resolutie (resolution) is de kleinste stap die het meetmiddel kan tonen. Nauwkeurigheid (accuracy) is hoe dicht de uitlezing bij de echte waarde ligt. Een goedkope digitale schuifmaat toont 0,01 mm, maar kan er makkelijk 0,02 naast zitten, zeker als je hard knijpt.\n\nVuistregel van tien (rule of ten): de resolutie is hoogstens een tiende van het tolerantieveld. Bij een veld van 0,04 mm wil je dus 0,004 mm of fijner. Meer cijfers op het scherm zijn geen garantie voor een betere meting.',
+        'Kalibratie (calibration) is het meetmiddel vergelijken met een referentie waarvan de maat bekend is, zoals een eindmaat (gauge block: een stalen blokje met een heel precieze dikte), in een keten die terug te voeren is tot een nationale of internationale standaard. Elk meetmiddel heeft een nummer en een volgende kalibratiedatum.\n\nISO 9001 (paragraaf 7.1.5.2) eist ook dat je bij een afgekeurd meetmiddel nagaat of je eerdere goedkeuringen nog kunt vertrouwen. Dat laatste vergeten fabrieken vaak.',
         'Temperatuur telt. Maten op tekening gelden bij 20 °C (ISO 1). Staal zet zo’n 0,0115 mm uit per meter lengte per graad. Een as van 100 mm die 10 graden te warm uit de machine komt, meet daardoor ruim 0,01 mm te groot. Bij een tolerantie van ±0,01 mm is dat het hele verschil.\n\nScherpe vraag aan de machine: “Meet je hem direct, nog warm, of na het afkoelen, en weet de meetkamer dat?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een bus (een kort metalen buisje) heeft een buitendiameter van Ø30 ±0,015 mm: een tolerantieveld van 0,030 mm. Vuistregel van tien: je hebt een resolutie van 0,003 mm of fijner nodig. De schuifmaat (0,01 mm) valt af; een micrometer van 25 tot 50 mm (0,001 mm) past.\n\nDe operator meet direct uit de machine, terwijl het deel zo’n 8 graden warmer is dan 20 °C. De uitzetting: 0,030 m × 8 graden × 0,0115 mm = 0,0028 mm te groot, bijna een tiende van het tolerantieveld. Afspraak: het deel eerst twee minuten in de koelvloeistof (coolant) laten liggen, dan meten.',
+        text: 'Een bus (een kort metalen buisje) heeft een buitendiameter van Ø30 ±0,015 mm: een tolerantieveld van 0,030 mm. Vuistregel van tien: je hebt een resolutie van 0,003 mm of fijner nodig. De schuifmaat (0,01 mm) valt af; een micrometer van 25 tot 50 mm (0,001 mm) past.\n\nDe operator meet direct uit de machine, terwijl het deel zo’n 8 graden warmer is dan 20 °C. De uitzetting: 0,030 m × 8 graden × 0,0115 mm = 0,0028 mm te groot, bijna een tiende van het tolerantieveld. Afspraak: het deel eerst laten afkoelen tot werkplaatstemperatuur, bijvoorbeeld tien minuten op een stalen plaat in de meetkamer, en dan meten.',
       },
       said: 'Wat engineers zeggen: “Met een schuifmaat ga je geen plus-min vijftien micron meten. Pak de micrometer, en laat hem eerst even afkoelen.”',
       recall: [
@@ -115,7 +115,7 @@ export default {
           q: 'Bij de jaarlijkse kalibratie blijkt een boringmeter 0,008 mm verkeerd te meten. Wat eist ISO 9001 dan, naast het afstellen?',
           options: ['Alleen een nieuwe sticker met de volgende kalibratiedatum erop', 'Nagaan of eerder goedgekeurde delen nog te vertrouwen zijn', 'De meter meteen afschrijven en een nieuwe kopen', 'Niets: kalibratie is in ISO 9001 alleen een aanbeveling'],
           answer: 'Nagaan of eerder goedgekeurde delen nog te vertrouwen zijn',
-          why: 'Paragraaf 7.1.5 vraagt dat je beoordeelt of eerdere meetuitkomsten nog geldig zijn, en zo nodig actie neemt op die delen.',
+          why: 'Paragraaf 7.1.5.2 vraagt dat je beoordeelt of eerdere meetuitkomsten nog geldig zijn, en zo nodig actie neemt op die delen.',
         },
         {
           q: 'Welk meetmiddel zegt alleen goed of fout, zonder getal?',
@@ -140,7 +140,8 @@ export default {
         { term: 'Micrometer', def: 'Schroefmaat: klemt het deel met een fijne schroef en leest af op 0,001 mm, over een klein bereik.' },
         { term: 'Resolutie', def: 'De kleinste stap die een meetmiddel kan tonen; hoogstens een tiende van het tolerantieveld.' },
         { term: 'Nauwkeurigheid', def: 'Hoe dicht de uitlezing bij de echte waarde ligt.' },
-        { term: 'Kalibratie', def: 'Een meetmiddel vergelijken met een bekende referentie, herleidbaar tot een nationale standaard.' },
+        { term: 'Kalibratie', def: 'Een meetmiddel vergelijken met een bekende referentie, herleidbaar tot een nationale of internationale standaard.' },
+        { term: 'Vuistregel van tien', def: 'Rule of ten: de resolutie van het meetmiddel is hoogstens een tiende van het tolerantieveld.' },
       ],
     },
     {
@@ -233,7 +234,7 @@ export default {
         'Een tolerantiestapeling (tolerance stack-up) rekent uit wat de toleranties van losse delen samen doen in een samenstelling. Je volgt een maatketen (dimension chain): een rij maten van het ene vlak naar het andere, rond de spleet of overlap die je wilt weten.\n\nDie spleet of overlap heet de sluitmaat (closing dimension): de speling tussen een lager en een borgring, de spleet tussen een deur en het frame. Die maat staat vaak op geen enkele tekening, maar daar merkt de klant het.',
         'De worst case-methode telt alle toleranties gewoon op: elk deel tegelijk op zijn slechtste grens. Vier delen van ±0,1 mm geven ±0,4 mm. Dat is zeker: als elk deel binnen spec is, past de samenstelling altijd.\n\nHet nadeel: bij veel delen worden de toleranties per deel onbetaalbaar nauw, omdat je een kans van bijna nul afdekt. Dat alle delen tegelijk op hun bovengrens zitten, gebeurt bij gecentreerde processen vrijwel nooit.',
         'De statistische methode, RSS (root sum of squares, de wortel uit de som van de kwadraten), telt spreidingen op zoals kansen dat doen: √(0,1² + 0,1² + 0,1² + 0,1²) = ±0,2 mm. Half zo breed als worst case.\n\nDe aannames: elk deel komt uit een gecentreerd, stabiel proces met een normale verdeling, en elke tolerantie is ±3σ. Dan valt zo’n 99,7% van de samenstellingen binnen ±0,2. Met tien delen van ±0,1 wint RSS nog meer: ±0,32 tegen ±1,0.',
-        'Waar experts over discussiëren: echte processen zitten zelden precies in het midden. Daarom vermenigvuldigen veel engineers de RSS-uitkomst met een correctiefactor, vaak 1,5, naar A. Bender, die in de jaren zestig zag dat zuivere RSS in de praktijk te optimistisch was. Vier delen geven dan ±0,3: tussen RSS en worst case in.\n\nVuistregel, geen wet: worst case bij weinig delen of bij veiligheid; RSS alleen als je de procesgeschiktheid van de leveranciers kent en bewaakt.',
+        'Waar experts over discussiëren: echte processen zitten zelden precies in het midden. Daarom vermenigvuldigen veel engineers de RSS-uitkomst met een correctiefactor, vaak 1,5. Die wordt meestal toegeschreven aan Arthur Bender (1962), die zuivere RSS in de praktijk te optimistisch vond: een ervaringsfactor, niet afgeleid uit de theorie. Vier delen geven dan ±0,3: tussen RSS en worst case in.\n\nVuistregel, geen wet: worst case bij weinig delen of bij veiligheid; RSS alleen als je de procesgeschiktheid van de leveranciers kent en bewaakt.',
         'Typische fouten: een maat in de keten vergeten, zoals de dikte van een pakking (gasket) of de speling in een lager; met de verkeerde richting rekenen (een maat die de spleet groter maakt telt plus, eentje die hem kleiner maakt telt min); en RSS rekenen met delen van een leverancier die structureel tegen de bovengrens zit.\n\nScherpe vraag aan de ontwerper: “Is deze stapeling worst case of RSS, en met welke Cpk heb je gerekend?”',
       ],
       example: {
@@ -449,33 +450,33 @@ export default {
         },
       ],
       teach: [
-        'Een capability-studie is een kleine meetcampagne, in twee soorten. Een machinestudie meet zo’n 50 delen direct na elkaar, met één operator, één batch materiaal en één gereedschap: wat kan de machine zelf? Daar komt de Cmk uit (machine capability index), waarvoor klanten zoals Bosch vaak 1,67 of hoger vragen.\n\nEen processtudie meet over dagen of weken, met alle normale wisselingen: ploegen, batches, gereedschapswissels. Daar komen Cpk en Ppk uit, met als gangbaar minimum 1,33.',
+        'Een capability-studie is een kleine meetcampagne, in twee soorten. Een machinestudie (machine study) meet zo’n 50 delen direct na elkaar, met één operator, één batch materiaal en één gereedschap: wat kan de machine zelf? Daar komt de Cmk uit (machine capability index), waarvoor klanten zoals Bosch vaak 1,67 of hoger vragen.\n\nEen processtudie (process study) meet over dagen of weken, met alle normale wisselingen: ploegen, batches, gereedschapswissels. Daar komen Cpk en Ppk uit, met als gangbaar minimum 1,33.',
         'De volgorde: eerst het meetmiddel controleren (een gauge R&R, zie het control plan), dan de delen meten en in volgorde vastleggen, dan een regelkaart: was het proces stabiel? Pas daarna een Cpk uitrekenen. Kijk ook naar het histogram, een staafdiagram van hoe vaak elke maat voorkomt: één nette bult, of twee?\n\nTwee bulten betekent vaak twee machines, twee matrijsholtes (cavities) of twee ploegen door elkaar. Eén Cpk over dat mengsel zegt weinig; splits de data.',
-        'Een Cpk uit een steekproef is een schatting met een betrouwbaarheidsinterval (confidence interval): de band waarin de echte waarde waarschijnlijk ligt. Met een gangbare benaderingsformule (zie het NIST-handboek over procesgeschiktheid) geeft een gemeten Cpk van 1,33 uit 30 delen een 95%-ondergrens van ongeveer 1,0. Met 125 delen ligt die ondergrens rond de 1,16.\n\nDaarom vragen klanten meer delen, of een hogere Cpk als er weinig delen zijn.',
-        'Niet elke maat heeft twee grenzen. Bij een eenzijdige specificatie (one-sided specification), zoals vlakheid maximaal 0,05 mm of ruwheid maximaal Ra 1,6 µm, bestaat alleen een bovengrens. Cp heeft dan geen betekenis; je rekent Cpk = (USL − gemiddelde) / 3σ.\n\nZulke kenmerken hebben vaak een niet-normale verdeling (non-normal distribution): ze kunnen niet onder nul, dus de data hopen zich op bij een lage waarde met een lange staart naar boven. De normale formule geeft dan een misleidend getal.',
-        'Wat experts dan doen: een passende verdeling kiezen, of rekenen met percentielen, zoals ISO 22514-2 beschrijft: de breedte tussen het 0,135%- en het 99,865%-punt van de data vervangt de 6σ. Statistische software doet het, als iemand de juiste optie kiest.\n\nScherpe vragen bij elke studie: “Hoeveel delen, over welke periode, was het proces stabiel, en welke verdeling is aangenomen?”',
+        'Een Cpk uit een steekproef is een schatting met een betrouwbaarheidsinterval (confidence interval): de band waarin de echte waarde waarschijnlijk ligt. Met een gangbare benaderingsformule (zie het NIST-handboek over procesgeschiktheid) geeft een gemeten Cpk van 1,33 uit 30 delen een 95%-interval waarvan de onderkant rond de 1,0 ligt. Met 125 delen ligt die onderkant rond de 1,16.\n\nDaarom vragen klanten meer delen, of een hogere Cpk als er weinig delen zijn.',
+        'Plan de studie zo dat je de data later kunt splitsen. Leg elke meting vast in productievolgorde, met datum en tijd, machine, matrijsholte, ploeg, operator en materiaalbatch. Zonder die labels kom je er nooit achter waar een tweede bult vandaan komt.\n\nHoeveel: minstens 50 opeenvolgende delen voor een machinestudie. Voor een processtudie minstens 100 metingen in 25 of meer steekproeven (kleine groepjes delen direct na elkaar gemaakt), verspreid over een paar dagen, zoals het AIAG PPAP-handboek vraagt.',
+        'Lees de uitkomst als vergelijking. Cmk hoog, Ppk laag: de machine is in orde; de extra spreiding komt van wat er tussen uren en dagen verandert, zoals batches, gereedschapswissels en ploegen. Allebei laag: kijk naar de machine of de opspanning zelf.\n\nBij een eenzijdige specificatie (one-sided specification), zoals vlakheid maximaal 0,05 mm, reken je de Cpk alleen naar die ene grens. Zulke data zijn vaak scheef; de module Meten en SPC verdiept laat zien hoe je daarmee omgaat. Scherpe vraag: “Over hoeveel dagen, en was het stabiel?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een gefreesd vlak op een pompdeksel heeft vlakheid maximaal 0,050 mm, een eenzijdige specificatie. De studie: 60 deksels over vijf dagen, regelkaart stabiel, gauge R&R 12% van de tolerantie. Gemiddelde vlakheid 0,020 mm, σ 0,006 mm.\n\nDe leverancier rekent Cp = 0,050 / (6 × 0,006) = 1,39 en zegt “capabel”. Maar Cp is bij een eenzijdige grens zinloos, en het histogram is scheef: veel deksels rond 0,015 mm, met een staart tot 0,040 mm.',
-        ask: 'Wat is de Cpk met de normale formule, en wat moet er nog gebeuren voordat je hem vertrouwt?',
-        reveal: 'Cpk = (0,050 − 0,020) / (3 × 0,006) = 0,030 / 0,018 = 1,67. Op papier ruim boven de 1,33.\n\nMaar een scheve verdeling met een staart naar boven betekent dat de normale formule de kans op een uitschieter boven 0,050 onderschat. Vraag om een analyse met een passende verdeling of met de percentielmethode. Stel dat die op zo’n 1,3 uitkomt: net onder de eis, dus vlakheid op een regelkaart houden en de opspanning verbeteren.',
+        text: 'Een nieuwe CNC-draaibank (een computergestuurde draaibank) draait een as op Ø25 ±0,020 mm. Machinestudie: 50 opeenvolgende delen, gemiddelde 25,004 mm, σ 0,003 mm. De dichtstbijzijnde grens is 25,020, dus Cmk = (25,020 − 25,004) / (3 × 0,003) = 0,016 / 0,009 = 1,78: boven de 1,67 die de klant vraagt.\n\nDrie weken later volgt de processtudie: 125 metingen in 25 steekproeven, over alle ploegen en vier materiaalbatches. Gemiddelde 25,006 mm, totale σ 0,005 mm.',
+        ask: 'Wat is de Ppk, en wat zegt het verschil met de Cmk?',
+        reveal: 'Ppk = (25,020 − 25,006) / (3 × 0,005) = 0,014 / 0,015 = 0,93: ruim onder de 1,33.\n\nDe machine zelf kan het; de extra spreiding komt van wat er in die weken verandert. Splits de metingen per ploeg, batch en gereedschapswissel, en zoek op de regelkaart naar sprongen. Een nieuwe machine helpt niet; een opwarmroutine, een vaste offset na een gereedschapswissel of een afspraak over het materiaal misschien wel.',
       },
-      said: 'Wat engineers zeggen: “Vlakheid kan niet onder nul, dus die Cpk van 1,67 met een normale verdeling geloof ik niet. Draai hem met de juiste verdeling, en vertel erbij over hoeveel dagen.”',
+      said: 'Wat engineers zeggen: “De machinestudie geeft een Cmk van 1,78, maar over drie weken is de Ppk 0,93. Het is niet de machine, het is wat er tussen ploegen en batches verandert. Splits die data.”',
       recall: [
         {
-          q: 'Ruwheid mag maximaal Ra 1,6 µm zijn (alleen een bovengrens). Gemiddelde Ra 1,0 µm, σ 0,12 µm. Wat is de Cpk, aangenomen dat de verdeling normaal is?',
-          number: 1.67,
+          q: 'Machinestudie: specgrenzen 49,96 en 50,04 mm, gemiddelde 50,01 mm, σ 0,005 mm. Wat is de Cmk?',
+          number: 2,
           tolerance: 0.01,
           unit: '',
-          hint: 'Bij alleen een bovengrens: (bovengrens − gemiddelde) gedeeld door 3σ.',
-          why: '(1,6 − 1,0) / (3 × 0,12) = 0,6 / 0,36 = 1,67.',
+          hint: 'Zoek de dichtstbijzijnde specgrens en deel de afstand van het gemiddelde tot die grens door drie sigma.',
+          why: 'De dichtstbijzijnde grens is 50,04: (50,04 − 50,01) / (3 × 0,005) = 0,03 / 0,015 = 2,0.',
         },
         {
-          q: 'Het histogram van een capability-studie toont twee duidelijke bulten. Wat doe je?',
-          options: ['De Cpk over alle data uitrekenen en rapporteren', 'De data splitsen per machine, holte of ploeg', 'De uitschieters weglaten tot het één bult is', 'Meer delen meten tot de bulten samenvloeien'],
-          answer: 'De data splitsen per machine, holte of ploeg',
-          why: 'Twee bulten wijzen op twee bronnen door elkaar. Eén Cpk over het mengsel verbergt welke bron het probleem is.',
+          q: 'Wat controleer je eerst, voordat je delen meet voor een capability-studie?',
+          options: ['Dat de Cpk boven de 1,33 gaat uitkomen', 'Dat het meetmiddel goed genoeg is, met een gauge R&R', 'Dat alle delen op de CMM worden gemeten', 'Dat alle delen uit de dagploeg komen'],
+          answer: 'Dat het meetmiddel goed genoeg is, met een gauge R&R',
+          why: 'Een meetmiddel dat veel van de tolerantie opeet, telt zijn eigen spreiding bij de σ op. Eerst het meetmiddel, dan de stabiliteit, dan de procesgeschiktheid.',
         },
         {
           q: 'Welke studie meet zo’n 50 delen direct na elkaar, met één operator en één batch materiaal?',
@@ -503,9 +504,9 @@ export default {
       sayIt: 'Leg een projectleider in 60 seconden uit waarom een Cpk uit 30 delen op één ochtend weinig zegt, en wat een goede studie nodig heeft.',
       terms: [
         { term: 'Cmk', def: 'Machine capability index: Cpk uit zo’n 50 opeenvolgende delen onder constante omstandigheden.' },
+        { term: 'Processtudie', def: 'Process study: een capability-studie over dagen of weken, met alle normale wisselingen; geeft Cpk en Ppk.' },
         { term: 'Betrouwbaarheidsinterval', def: 'De band waarin de echte waarde waarschijnlijk ligt; smaller met meer delen.' },
         { term: 'Eenzijdige specificatie', def: 'Een kenmerk met maar één grens, zoals vlakheid maximaal 0,05 mm; je rekent alleen Cpk naar die grens.' },
-        { term: 'Niet-normale verdeling', def: 'Data die niet de klokvorm volgen, zoals scheve data die niet onder nul kunnen; vraagt een andere rekenmethode.' },
       ],
     },
     {
@@ -523,7 +524,7 @@ export default {
         'Six Sigma ontstond rond 1986 bij Motorola, met engineer Bill Smith, en werd later groot bij GE. Het sigma-niveau (sigma level) zegt hoeveel standaardafwijkingen er passen tussen het procesgemiddelde en de dichtstbijzijnde specgrens. Op korte termijn is het ruwweg 3 × Cpk.\n\nIn de praktijk zegt iemand “we zitten op 4 sigma” en bedoelt een foutpercentage. Dan moet je weten hoe hij rekent, want er zijn twee gebruiken.',
         'DPMO (defects per million opportunities, fouten per miljoen kansen) telt fouten per kans op een fout, niet per product. Een printplaat met 500 soldeerpunten heeft 500 kansen per stuk. 1.000 platen met samen 35 slechte soldeerpunten: 35 / (1.000 × 500) × 1.000.000 = 70 DPMO.\n\nHandig om ongelijke producten te vergelijken, maar ook te bespelen: tel meer kansen per product en je DPMO daalt, terwijl er niets beter wordt.',
         'De 1,5σ-verschuiving (1.5 sigma shift): Motorola nam aan dat het gemiddelde van een proces op lange termijn tot 1,5σ kan verlopen. Een “6 sigma”-proces wordt dan op lange termijn gerekend als 4,5σ van de grens: 3,4 DPMO. Zonder die aanname geeft een gecentreerd 6σ-proces zo’n 0,002 ppm.\n\nDe gebruikelijke tabel, met de verschuiving meegerekend: 3σ is 66.807 DPMO, 4σ is 6.210, 5σ is 233, 6σ is 3,4.',
-        'Waar experts over discussiëren: de 1,5 is een ervaringsgetal, geen natuurwet. Statisticus Donald Wheeler noemt het onverdedigbaar om aan te nemen dat een onvoorspelbaar proces nooit meer dan 1,5σ verloopt. Een stabiel proces met een goede regelkaart verloopt mogelijk veel minder, een onbeheerst proces veel meer.\n\nPraktisch: vraag altijd of een sigma-niveau met of zonder verschuiving is gerekend, en kijk liever naar gemeten ppm en Ppk.',
+        'Waar experts over discussiëren: de 1,5 is een ervaringsgetal, geen natuurwet. Statisticus Donald Wheeler vindt dat er geen goede grond voor is: niets garandeert dat een onvoorspelbaar proces niet meer dan 1,5σ verloopt. Een stabiel proces met een goede regelkaart verloopt mogelijk veel minder, een onbeheerst proces veel meer.\n\nPraktisch: vraag altijd of een sigma-niveau met of zonder verschuiving is gerekend, en kijk liever naar gemeten ppm en Ppk.',
         'Voor een hele lijn kijk je naar rendement. Goed-in-één-keer (first pass yield, FPY) is het deel van de producten dat een stap doorloopt zonder herstel of afkeur. Het ketenrendement (rolled throughput yield, RTY) vermenigvuldigt de FPY van alle stappen: 95%, 98% en 97% geven 0,95 × 0,98 × 0,97 = 90,3%.\n\nHet verschil zit in het verborgen fabriekje (hidden factory): de herstelplek die in geen eindcijfer opduikt, omdat een hersteld product gewoon als goed telt.',
       ],
       example: {
@@ -580,6 +581,7 @@ export default {
         { term: '1,5σ-verschuiving', def: 'Motorola’s aanname dat het gemiddelde op lange termijn 1,5σ verloopt; omstreden.' },
         { term: 'Goed-in-één-keer', def: 'First pass yield (FPY): deel van de producten dat een stap zonder herstel of afkeur doorloopt.' },
         { term: 'Ketenrendement', def: 'Rolled throughput yield (RTY): de FPY van alle stappen met elkaar vermenigvuldigd.' },
+        { term: 'Verborgen fabriekje', def: 'Hidden factory: het herstel en nabewerken dat in geen eindcijfer zichtbaar is, omdat een hersteld product als goed telt.' },
       ],
     },
     {
@@ -594,17 +596,17 @@ export default {
         },
       ],
       teach: [
-        'Kaoru Ishikawa, een Japanse kwaliteitspionier, noemde zeven eenvoudige hulpmiddelen waarmee volgens hem de meeste kwaliteitsproblemen op te lossen zijn. Vier ervan gebruik je bijna elke week.\n\nDe turflijst (check sheet) is de eenvoudigste: een formulier naast de machine waarop de operator met een streepje noteert welke fout hij ziet, en wanneer. Geen software, wel data. Het werkt alleen als de foutsoorten vooraf duidelijk benoemd zijn, anders schrijft iedereen iets anders op.',
+        'Kaoru Ishikawa, een Japanse kwaliteitspionier, noemde zeven eenvoudige hulpmiddelen waarmee volgens hem de meeste kwaliteitsproblemen op te lossen zijn. Drie ervan gebruik je bijna elke week: de turflijst, het histogram en het paretodiagram.\n\nDe turflijst (check sheet) is de eenvoudigste: een formulier naast de machine waarop de operator met een streepje noteert welke fout hij ziet, en wanneer. Het werkt alleen als de foutsoorten vooraf duidelijk benoemd zijn, anders schrijft iedereen iets anders op.',
         'Het histogram is een staafdiagram van hoe vaak elke waarde voorkomt: de gemeten maten in klassen van bijvoorbeeld 0,005 mm, met per klasse een staaf. Zo zie je in één blik de vorm van de spreiding: één nette klok, scheef, of twee bulten.\n\nTeken de specgrenzen erbij. Ligt de bult in het midden met ruimte aan beide kanten, of schuurt hij tegen een grens?',
         'Het paretodiagram (Pareto chart) zet de foutsoorten op volgorde van groot naar klein, met een lijn voor het opgetelde percentage. Vaak geeft een klein aantal oorzaken het grootste deel van de problemen: de bekende 80/20-regel, die kwaliteitsgoeroe Joseph Juran naar econoom Vilfredo Pareto noemde.\n\nLet op: 80/20 is een patroon, geen wet; het kan ook 60/40 zijn. En tel op kosten als dat kan: veel kleine krasjes kosten soms minder dan één klantklacht.',
-        'De verloopgrafiek (run chart) zet een meting uit in de tijd, met de mediaan als middellijn: de middelste waarde, met evenveel punten erboven als eronder. Het is de voorloper van de regelkaart, zonder regelgrenzen.\n\nVeelgebruikte regels, onder meer van het Amerikaanse IHI (Institute for Healthcare Improvement): 6 of meer punten op rij aan één kant van de mediaan is een verschuiving; 5 of meer op rij omhoog of omlaag is een trend. Andere bronnen gebruiken iets andere aantallen.',
+        'De verloopgrafiek (run chart) zet een meting uit in de tijd, met de mediaan (median) als middellijn: de middelste waarde, met evenveel punten erboven als eronder. Het is de voorloper van de regelkaart, een van Ishikawa’s zeven, maar zonder regelgrenzen.\n\nVeelgebruikte regels, onder meer van het Amerikaanse IHI (Institute for Healthcare Improvement): 6 of meer punten op rij aan één kant van de mediaan is een verschuiving; 5 of meer op rij omhoog of omlaag is een trend. Andere bronnen gebruiken iets andere aantallen.',
         'Waarom de tijd erbij moet: een maandgemiddelde verbergt alles. Een afkeur van zo’n 3% per maand kan elke dag 3% zijn, of 27 dagen 1% en drie dagen 20%. Dat zijn twee heel verschillende problemen: het eerste zit in het systeem, het tweede in een gebeurtenis.\n\nScherpe vraag bij elk maandcijfer: “Mag ik dit per dag zien, of per ploeg?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een stansbedrijf (een bedrijf dat plaatdelen uit metaal ponst) turft de operator een week lang de afkeur: braam (een scherpe rand) 62, maat buiten spec 25, kras 14, verkeerd materiaal 6, overig 13. Samen 120.\n\nIn het paretodiagram is braam 62 / 120 = 52%, braam en maat samen 87 / 120 = 73%. Daar begint het team. De verloopgrafiek van braam per dag: maandag tot woensdag 7, 8 en 8, donderdag 18, vrijdag 21. Woensdagavond is de stempel (het snijgereedschap in de pers) niet geslepen, terwijl dat volgens plan wel moest. Geen machineprobleem, maar een onderhoudsafspraak.',
+        text: 'Bij een stansbedrijf (een bedrijf dat plaatdelen uit metaal ponst) turft de operator een week lang de afkeur: braam (een scherpe rand) 62, maat buiten spec 25, kras 14, verkeerd materiaal 6, overig 13. Samen 120.\n\nIn het paretodiagram is braam 62 / 120 = 52%, braam en maat samen 87 / 120 = 73%. Daar begint het team. De verloopgrafiek van braam per dag: maandag tot woensdag 7, 8 en 8, donderdag 18, vrijdag 21. Woensdagavond is de pons (het snijgereedschap in de pers, punch) niet geslepen, terwijl dat volgens plan wel moest. Geen machineprobleem, maar een onderhoudsafspraak.',
       },
-      said: 'Wat engineers zeggen: “Eerst turven, dan een pareto. Braam is de helft van alles, en het piekt aan het eind van de week: wanneer wordt die stempel geslepen?”',
+      said: 'Wat engineers zeggen: “Eerst turven, dan een pareto. Braam is de helft van alles, en het piekt aan het eind van de week: wanneer wordt die pons geslepen?”',
       recall: [
         {
           q: 'Een turflijst telt 80 fouten: kras 36, deuk 20, maat 12, overig 12. Welk percentage van alle fouten zijn krassen en deuken samen?',
@@ -727,10 +729,10 @@ export default {
       title: 'De juiste kaart: I-MR, p-kaart en c-kaart',
       pre: [
         {
-          q: 'Een chemische fabriek maakt één batch lijm per dag en meet daar één viscositeit (hoe stroperig de lijm is) van. Welke regelkaart past?',
-          options: ['Een I-MR-kaart voor losse metingen', 'Een X-bar/R-kaart met steekproeven van 5', 'Een p-kaart voor het percentage fout', 'Geen kaart: één meting per dag is te weinig'],
-          answer: 'Een I-MR-kaart voor losse metingen',
-          why: 'Met één meting per batch is er geen steekproef van meerdere delen. De I-MR-kaart is gemaakt voor losse meetwaarden.',
+          q: 'Een lakstraat controleert elke dag alle panelen en schrijft op hoeveel er zijn afgekeurd. Wat voor data is dat?',
+          options: ['Attributieve data: elk paneel is alleen goed of fout', 'Continue data, want de uitkomst is een getal', 'Continue data, zodra er meer dan 100 panelen gecontroleerd zijn', 'Helemaal geen data, tot iemand een percentage uitrekent'],
+          answer: 'Attributieve data: elk paneel is alleen goed of fout',
+          why: 'Goed of fout beoordelen en tellen geeft attributieve data. Continue data zijn meetwaarden op een schaal, zoals millimeters of graden; die zeggen meer per stuk.',
         },
       ],
       teach: [
@@ -738,7 +740,7 @@ export default {
         'De I-MR-kaart (individuals and moving range) is voor losse metingen: één batch per dag, één temperatuur per uur, één dichtheid per tank. Je zet elke meting uit (I) en het verschil met de vorige meting (MR, moving range).\n\nDe grenzen: gemiddelde ± 2,66 × de gemiddelde moving range. Die 2,66 is 3 / 1,128, een tabelconstante. Een I-MR-kaart is gevoelig voor scheve data; kijk eerst naar het histogram.',
         'De p-kaart volgt het percentage foute stuks per steekproef, bijvoorbeeld per dag: 6 fout op 300 is p = 2%. De grenzen zijn p̄ ± 3 × √(p̄ × (1 − p̄) / n), met p̄ het gemiddelde percentage en n het aantal stuks. Wisselt n per dag, dan bewegen de grenzen mee: dat hoort zo.\n\nDe c-kaart telt fouten per eenheid van vaste grootte: krassen per autodak, lekken per 100 meter las. Grenzen: c̄ ± 3 × √c̄.',
         'Valkuilen: een p-kaart bij heel weinig fouten, zoals 0,1% bij 100 stuks per dag, geeft een kaart vol nullen; dan is de tijd tussen fouten bijhouden nuttiger. Een X-bar-kaart op losse metingen, met een verzonnen steekproef van vijf opeenvolgende batches, geeft verkeerde grenzen en dus loos alarm of gemiste signalen.\n\nEn attributieve kaarten zien een verandering pas laat. Kun je meten in plaats van tellen, doe dat.',
-        'In goede fabrieken hangt de keuzeboom naast het SPC-bord. Meetwaarden in steekproeven van 2 tot 10: X-bar/R. Losse meetwaarden: I-MR. Percentage fout: p-kaart. Aantal fouten per eenheid: c-kaart, of de u-kaart als de eenheden verschillen in grootte.\n\nScherpe vraag bij elke kaart: “Waarom deze kaart, en wat gebeurt er als hij alarm geeft?”',
+        'In goede fabrieken hangt de keuzeboom naast het SPC-bord. Meetwaarden in steekproeven van 2 tot 10: X-bar/R. Losse meetwaarden: I-MR. Percentage fout: p-kaart. Aantal fouten per eenheid: c-kaart, of de u-kaart als de eenheden verschillen in grootte.\n\nDe module Meten en SPC verdiept voegt de np- en X-bar/S-kaart toe, en hoe groot de steekproef van een p-kaart moet zijn. Scherpe vraag bij elke kaart: “Waarom deze kaart, en wat gebeurt er als hij alarm geeft?”',
       ],
       example: {
         kind: 'faded',
@@ -765,10 +767,10 @@ export default {
           why: '√(0,02 × 0,98 / 200) = √0,000098 = 0,0099; 0,02 + 3 × 0,0099 = 0,0497, dus 4,97%.',
         },
         {
-          q: 'Je telt het aantal krassen per autodak, en alle daken zijn even groot. Welke kaart past?',
-          options: ['Een I-MR-kaart', 'Een X-bar/R-kaart', 'Een p-kaart', 'Een c-kaart'],
-          answer: 'Een c-kaart',
-          why: 'Een c-kaart telt fouten per eenheid van vaste grootte. Een p-kaart telt foute stuks, niet het aantal fouten per stuk.',
+          q: 'Wat laat de MR in een I-MR-kaart zien?',
+          options: ['De gemiddelde range van een steekproef van vijf delen', 'De hoogste meting van de dag', 'De resolutie van het gebruikte meetmiddel', 'Het verschil tussen een meting en de vorige'],
+          answer: 'Het verschil tussen een meting en de vorige',
+          why: 'MR is de moving range: hoeveel elke meting verschilt van de vorige. Het gemiddelde daarvan bepaalt de grenzen van de I-kaart.',
         },
         {
           q: 'Waarom liever meten dan tellen, als het kan?',
@@ -808,19 +810,19 @@ export default {
         },
       ],
       teach: [
-        'Een regelkaart werkt alleen met goed gekozen steekproeven. Een rationele steekproef (rational subgroup) bestaat uit delen die onder zo gelijk mogelijke omstandigheden zijn gemaakt, zoals vijf delen direct na elkaar. De spreiding binnen de steekproef is dan alleen korte-termijnruis, en verschillen tussen steekproeven worden zichtbaar.\n\nFout: vijf delen uit vijf matrijsholtes in één steekproef. Dan zit het verschil tussen de holtes in de range, worden de grenzen te breed en ziet de kaart nooit iets.',
-        'Regelgrenzen bepaal je in een fase 1-studie (Phase I study): 20 tot 25 steekproeven verzamelen, punten met een bekende speciale oorzaak eruit halen, en de grenzen vastzetten. Daarna, in fase 2, bewaak je met die vaste grenzen.\n\nDe valkuil: elke week de grenzen opnieuw uitrekenen uit de laatste data. Dan schuiven ze mee met elke verschuiving en geeft de kaart geen alarm meer. Herbereken alleen na een bewuste verandering, zoals een nieuwe machine of methode.',
-        'Elke regel geeft soms loos alarm (false alarm): een signaal terwijl er niets veranderd is. De ARL (average run length, gemiddelde runlengte) zegt na hoeveel punten dat gemiddeld gebeurt. Met alleen de regel “één punt buiten 3σ” is dat 1 / 0,0027, zo’n 370 punten.\n\nMet alle vier de Western Electric-regels erbij daalt de ARL volgens Champ en Woodall (1987) naar zo’n 92 punten. Bij 8 steekproeven per dag is dat ongeveer elke anderhalve week een loos alarm.',
+        'Twee keuzes bij het opzetten maken of breken een kaart; de module Meten en SPC verdiept behandelt ze uitgebreid. Een rationele steekproef (rational subgroup) bevat delen die onder zo gelijk mogelijke omstandigheden zijn gemaakt, zoals vijf op rij uit één holte. De grenzen komen uit een fase 1-studie (Phase I study): 20 tot 25 steekproeven, punten met een bekende speciale oorzaak eruit, en dan vastzetten. In fase 2 bewaak je met die vaste grenzen.\n\nGrenzen die je elke week herberekent, schuiven mee met het probleem.',
+        'Elke regel geeft soms loos alarm (false alarm): een signaal terwijl er niets veranderd is. De ARL (average run length, gemiddelde runlengte) zegt na hoeveel punten dat gemiddeld gebeurt. Met alleen de regel “één punt buiten 3σ” is dat 1 / 0,0027, zo’n 370 punten.\n\nDe vier Western Electric-regels (1956) voegen patronen toe: 2 van 3 punten voorbij 2σ, 4 van 5 voorbij 1σ, 8 op rij aan één kant. Met alle vier aan daalt de ARL naar zo’n 92 punten (Champ en Woodall, 1987).',
+        'Loze alarmen tellen op over de kaarten. Tien kaarten met elk 8 punten per dag en alle vier de regels aan: 80 punten per dag / 92 ≈ bijna één loos alarm per dag, ergens in de fabriek. Operators leren dan snel de kaarten te negeren.\n\nDe andere kant: de extra regels zien een kleine verschuiving veel eerder dan de 3σ-regel alleen. Zet ze dus aan waar een kleine verschuiving telt, zoals bij een veiligheidskenmerk, en houd elders de ene regel.',
         'Pre-control is een eenvoudig alternatief: groen is de middelste helft van de tolerantie, geel de buitenste kwarten, rood buiten spec. Twee keer geel op rij, of één keer rood: stoppen en bijstellen. Het werd in 1954 bedacht bij adviesbureau Rath & Strong en later gepromoot door Dorian Shainin.\n\nCritici, onder anderen Ledolter en Swersey (1997), vinden het vooral bruikbaar bij heel capabele processen; bij een matige Cpk leidt het tot bijsturen op ruis.',
         'Bij een SPC-uitrol vraagt een expert eerst: welke kenmerken? Niet alles op een kaart, alleen kenmerken uit het control plan die de klant raken of die een procesverandering het eerst laten zien, zoals een perskracht of een temperatuur.\n\nAutomatisch meten verandert het spel. Met een meting per seconde hangen opeenvolgende punten aan elkaar (autocorrelatie, autocorrelation), en geven gewone grenzen steeds alarm. Dan zijn andere methodes nodig, en een statisticus.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een spuitgieter met een matrijs met vier holtes. Elk uur worden vier delen gemeten, één uit elke holte, als één steekproef op een X-bar/R-kaart. De gemiddelde range is 0,060 mm; met A2 = 0,729 voor n = 4 staan de grenzen op het gemiddelde ± 0,729 × 0,060 = ±0,044 mm.\n\nDe kaart geeft al maanden geen enkel signaal, terwijl de klant twee keer delen terugstuurde met een te grote maat uit holte 3.',
-        ask: 'Waarom ziet de kaart niets, en hoe zou jij de steekproeven indelen?',
-        reveal: 'De range binnen elke steekproef bevat het vaste verschil tussen de holtes, niet alleen korte-termijnruis. Daardoor zijn de grenzen veel te breed, en een verschuiving van één holte valt weg in het gemiddelde van vier.\n\nBeter: per holte een eigen kaart, met steekproeven van bijvoorbeeld drie opeenvolgende schoten uit die holte. Of eerst het vaste verschil tussen de holtes met de matrijsmaker oplossen. Daarna een fase 1-studie van 20 tot 25 steekproeven, en de grenzen vastzetten.',
+        text: 'Een aluminiumgieterij (een fabriek die gesmolten aluminium in stalen matrijzen giet) heeft 15 X-bar/R-kaarten, elk met 8 steekproeven per dag en alle vier de Western Electric-regels aan. Dat is 15 × 8 = 120 punten per dag. Met een ARL van zo’n 92 bij een stabiel proces: 120 / 92 ≈ 1,3 loze alarmen per dag.\n\nDe teamleiders zeggen “die kaarten geven toch altijd loos alarm” en reageren niet meer.',
+        ask: 'Hoeveel loze alarmen per dag zou je hebben met alleen de 3σ-regel, en wat adviseer je?',
+        reveal: '120 / 370 ≈ 0,3 per dag: ongeveer eens per drie dagen. Weinig genoeg om elk alarm echt te bekijken.\n\nAdvies: alle vier de regels alleen op de twee of drie kenmerken waar een kleine verschuiving telt, zoals de wanddikte van een drukdicht huis; op de rest de ene 3σ-regel. Check met het control plan of alle 15 kaarten nodig zijn. En laat elk alarm eindigen in een notitie: wat gevonden, wat gedaan.',
       },
-      said: 'Wat engineers zeggen: “Je stopt vier holtes in één steekproef, dus de range is het verschil tussen de holtes. Geen wonder dat die kaart nooit iets ziet. Per holte, rationeel, en dan de grenzen vastzetten.”',
+      said: 'Wat engineers zeggen: “Vijftien kaarten met alle regels aan, dat is elke dag een loos alarm. Geen wonder dat niemand meer kijkt. Alle vier de regels alleen waar een kleine verschuiving pijn doet.”',
       recall: [
         {
           q: 'Een kaart gebruikt alleen de regel “één punt buiten 3σ”: de kans op loos alarm is 0,27% per punt. Er komen 10 punten per dag bij. Na hoeveel dagen krijg je gemiddeld een loos alarm?',
@@ -837,10 +839,10 @@ export default {
           why: 'De grenzen schuiven mee met het proces, dus een verloop blijft altijd binnen de grenzen.',
         },
         {
-          q: 'Waarom hoort een steekproef te bestaan uit delen die direct na elkaar gemaakt zijn?',
-          options: ['Dan gaat het meten sneller', 'Dan zijn de delen nog even warm', 'Dat eist elke klant in zijn contract', 'Dan bevat de range alleen korte-termijnruis'],
-          answer: 'Dan bevat de range alleen korte-termijnruis',
-          why: 'Zo zijn de grenzen smal genoeg om verschillen tussen steekproeven, zoals een verschuiving, te zien.',
+          q: 'Een sensor logt elke seconde een temperatuur. Een kaart met gewone grenzen geeft de hele dag alarm, terwijl het product in orde is. Wat is de waarschijnlijke reden?',
+          options: ['De sensor moet elke dag gekalibreerd worden', 'De grenzen zijn met de verkeerde A2 berekend', 'Het proces is instabiel en moet stoppen', 'Opeenvolgende metingen hangen samen'],
+          answer: 'Opeenvolgende metingen hangen samen',
+          why: 'Bij één meting per seconde ligt elk punt dicht bij het vorige (autocorrelatie), dus komen de gewone grenzen te smal uit. Zulke data vragen andere methodes.',
         },
         {
           q: 'Wat is bij pre-control het groene veld?',
@@ -859,13 +861,14 @@ export default {
           'Vraagt hoe steekproeven en grenzen zijn bepaald',
         ],
       },
-      sayIt: 'Leg een plantmanager in 60 seconden uit waarom 40 regelkaarten niet beter zijn dan 8, en wat een rationele steekproef is.',
+      sayIt: 'Leg een plantmanager in 60 seconden uit waarom 40 regelkaarten niet beter zijn dan 8, en wat loze alarmen kosten.',
       terms: [
         { term: 'Rationele steekproef', def: 'Rational subgroup: delen gemaakt onder zo gelijk mogelijke omstandigheden, zodat de range alleen korte-termijnruis bevat.' },
         { term: 'Fase 1-studie', def: 'Phase I study: 20 tot 25 steekproeven om de regelgrenzen te bepalen en vast te zetten.' },
         { term: 'Loos alarm', def: 'False alarm: een signaal op de kaart terwijl er niets veranderd is.' },
         { term: 'ARL', def: 'Average run length: na hoeveel punten een kaart gemiddeld een signaal geeft; bij één 3σ-regel zo’n 370.' },
         { term: 'Pre-control', def: 'Bijsturen met zones in de tolerantie: groen de middelste helft, geel de buitenste kwarten, rood buiten spec.' },
+        { term: 'Autocorrelatie', def: 'Autocorrelation: opeenvolgende metingen die samenhangen, zoals bij heel vaak automatisch meten; gewone grenzen geven dan te veel alarm.' },
       ],
     },
     {
@@ -883,7 +886,7 @@ export default {
         'Een afwijkend deel dat ontdekt is, moet eerst stoppen met bewegen. Quarantaine (quarantine) betekent: apart zetten en duidelijk markeren, meestal met een rood label, in een rode bak of in een afgesloten kooi, zodat niemand het per ongeluk verder stuurt.\n\nISO 9001, de internationale norm voor kwaliteitsmanagement, eist in paragraaf 8.7 dat afwijkend product wordt herkend en beheerst, zodat het niet onbedoeld wordt gebruikt of geleverd.',
         'Inperking (containment) is de snelle actie om de klant te beschermen zolang je de oorzaak nog niet kent. Je gaat terug tot de laatste goede meting en zet alles daarna in quarantaine: bij de machine, in het magazijn, onderweg en bij de klant.\n\nDaarna sorteer je: elk deel controleren, vaak met extra mensen of een extern sorteerbedrijf. De grootste vergissing is te kort teruggaan, “alleen de bak van vanochtend”, terwijl de fout gisteren al begon.',
         'Alles komt in een afwijkingsrapport (nonconformance report, NCR): wat, hoeveel, welk ordernummer, wie het ontdekte, en welke beslissing. De mogelijke beslissingen: afkeuren (schroot), nabewerken (rework) tot het deel weer aan de tekening voldoet, repareren tot het bruikbaar is maar niet volgens tekening, of gebruiken zoals het is (“use as is”) met een deviatie van de klant.\n\nNabewerken en repareren lijken op elkaar, maar alleen nabewerken levert weer een deel volgens tekening op.',
-        'Wie beslist? In veel fabrieken een MRB (material review board): kwaliteit, productie en engineering samen, soms met inkoop. Ze wegen functie, risico en kosten. Een veiligheidskenmerk geef je nooit zonder de klant vrij.\n\nDe Amerikaanse kwaliteitsvereniging ASQ schat dat de kosten van slechte kwaliteit (cost of poor quality) bij veel bedrijven 15 tot 20% van de omzet zijn, bij sommige tot 40%. Dat is een ruwe schatting, maar wel een reden om het te meten.',
+        'Wie beslist? In veel fabrieken een MRB (material review board): kwaliteit, productie en engineering samen, soms met inkoop. Ze wegen functie, risico en kosten. Een veiligheidskenmerk geef je nooit zonder de klant vrij.\n\nDe Amerikaanse kwaliteitsvereniging ASQ noemt kosten van slechte kwaliteit (cost of poor quality) die bij veel bedrijven kunnen oplopen tot 15 à 20% van de omzet, bij sommige tot 40%. Dat zijn ruwe schattingen, maar wel een reden om het te meten.',
         'Een bekend beeld bij een Lean-scan: de rode kooi die vol staat met “even wachten op een beslissing”, wekenlang. Elk deel daarin is geld en ruimte, en informatie die veroudert: na drie weken weet niemand meer van welke machine het kwam.\n\nScherpe vragen: “Hoe oud is het oudste deel in quarantaine? Wie beslist, en binnen hoeveel dagen?”',
       ],
       example: {
@@ -1094,7 +1097,7 @@ export default {
       ],
       teach: [
         '8D (eight disciplines, acht stappen) is de standaardmethode om een klantklacht structureel op te lossen. Ford publiceerde hem in 1987 in het handboek Team Oriented Problem Solving; later kwam er een stap D0 bij, voorbereiden en noodmaatregelen.\n\nDe stappen: D1 team, D2 probleem beschrijven, D3 inperking, D4 oorzaak, D5 maatregel kiezen, D6 invoeren en controleren, D7 herhaling voorkomen, ook op andere producten, en D8 het team bedanken en afsluiten.',
-        'D2 wordt onderschat. Een goede probleembeschrijving zegt wat, waar, wanneer en hoeveel, én wat het niet is: “boring te groot, alleen op machine 4, alleen in de nachtdienst, niet op machine 5 met hetzelfde programma”. Dat “is / is niet” sluit al de helft van de oorzaken uit.\n\nVoor D4 gebruik je het Ishikawa-diagram (Ishikawa diagram), ook visgraat genoemd: de mogelijke oorzaken in groepen, de 6 M’s: mens, machine, methode, materiaal, meting en milieu (de omgeving).',
+        'D2 wordt onderschat. Een goede probleembeschrijving zegt wat, waar, wanneer en hoeveel, én wat het niet is: “boring te groot, alleen op machine 4, alleen in de nachtdienst, niet op machine 5 met hetzelfde programma”. Dat “is / is niet” sluit al de helft van de oorzaken uit.\n\nVoor D4 gebruik je het Ishikawa-diagram (Ishikawa diagram), ook visgraat (fishbone) genoemd: de mogelijke oorzaken in groepen, de 6 M’s: mens, machine, methode, materiaal, meting en milieu (de omgeving).',
         'Daarna graaf je door met 5 keer waarom (5 whys), een methode die Toyota groot maakte: blijf vragen waarom, tot je bij iets komt wat je in het proces kunt veranderen. Vijf is een richtgetal, geen regel.\n\nEen sterk 8D heeft twee oorzaken: waarom is de fout ontstaan, en waarom is hij ontsnapt? Het weglekpunt (escape point) is de eerste plek in het proces waar de fout gevonden had moeten worden en niet werd gevonden.',
         'Een oorzaak is pas bewezen als je het probleem aan en uit kunt zetten: oorzaak terug, fout terug; oorzaak weg, fout weg. Zonder die test is het een vermoeden.\n\nDe corrigerende maatregel (corrective action) neemt de oorzaak blijvend weg. Dat is iets anders dan de inperking, die alleen de klant beschermt. Klantrichtlijnen verschillen, maar vaak moet de inperking binnen 24 uur staan en het volledige 8D binnen enkele weken.',
         'Waar experts kritisch op zijn: 8D-rapporten die op papier kloppen, met “menselijke fout” als oorzaak en “training” als maatregel. Dat is een rode vlag: waarom kon een mens die fout maken, en waarom zag niets hem?\n\nSterke maatregelen staan hoog op de ladder: eerst het ontwerp aanpassen of een poka-yoke (een voorziening die de fout onmogelijk maakt), dan automatische detectie, en pas daarna instructie en training.',
@@ -1151,6 +1154,7 @@ export default {
         { term: '5 keer waarom', def: '5 whys: blijven vragen waarom, tot je bij een oorzaak komt die je in het proces kunt veranderen.' },
         { term: 'Weglekpunt', def: 'Escape point: de eerste plek waar de fout gevonden had moeten worden en niet werd gevonden.' },
         { term: 'Corrigerende maatregel', def: 'Corrective action: neemt de oorzaak blijvend weg; anders dan inperking, die alleen de klant beschermt.' },
+        { term: 'Poka-yoke', def: 'Een voorziening of ontwerp dat een fout onmogelijk maakt, of hem meteen zichtbaar maakt.' },
       ],
     },
   ],
