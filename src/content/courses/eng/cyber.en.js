@@ -14,7 +14,7 @@ export default {
       ],
       teach: [
         'Security is about three things, together the CIA triad. Confidentiality: only those allowed can see it, such as recipes, drawings and customer prices. Integrity: data and settings are correct and have not been changed unnoticed, such as a PLC program (the software that controls a machine) or a recipe. Availability: systems work when you need them, such as the MES (the system that tracks orders on the shop floor) and the line itself.',
-        'In the office, confidentiality often comes first; in the plant, availability and integrity, because a stopped or wrongly controlled machine costs output and sometimes safety. In IT fundamentals you saw that this is why the OT network is kept separate.\n\nRansomware (software that encrypts files for a ransom) hits availability. A tampered recipe hits integrity. Leaked drawings hit confidentiality.',
+        'In the office, confidentiality often comes first. In the plant, availability and safety come first, as you saw in IT fundamentals, with integrity close behind: a stopped or wrongly controlled machine costs output and sometimes safety. That is why the OT network is kept separate.\n\nRansomware (software that encrypts files for a ransom) hits availability. A tampered recipe hits integrity. Leaked drawings hit confidentiality.',
         'Three words security people use all the time. A threat is who or what can do harm: a criminal group with ransomware, but also a power cut. A vulnerability is a weak spot the threat can get through: a server without updates, a shared password. Risk is the chance that it goes wrong times the damage if it does.\n\nWithout a vulnerability a threat does not get in; that is why so much security work is about closing weak spots.',
         'You can calculate with risk. Say the chance of a ransomware attack that stops the plant is 10% per year, and the damage is then €2 million. The expected loss is €200,000 per year. A measure costing €50,000 per year that halves that chance is worth the money.\n\nPeople are almost always involved: according to Verizon’s 2025 data breach report, about 60% of the breaches studied involved a human action, such as a click or a mistake.',
         'Typical mistake: seeing security as secrecy only, so antivirus and encryption, while what stops the plant is an availability problem. Experts debate whether OT should add safety as a fourth leg; either way it weighs heavily.\n\nSharp question for management: “Which three systems stop the line within an hour if they fail, and what does an hour of downtime cost?” That is where a sensible security plan starts.',
@@ -47,8 +47,8 @@ export default {
         },
         {
           q: 'Why does integrity often rank next to availability at the top in OT?',
-          options: ['Because recipes in OT are almost never secret from competitors or others', 'Because OT systems cannot use passwords at all', 'Because the law prescribes integrity in plants', 'Because a changed setting quietly hits product or people'],
-          answer: 'Because a changed setting quietly hits product or people',
+          options: ['Because recipes in OT are almost never secret from competitors or others', 'Because OT systems cannot use passwords at all', 'Because the law prescribes integrity checks in every plant', 'Because a wrong setting can harm product or people'],
+          answer: 'Because a wrong setting can harm product or people',
           why: 'A wrong setpoint or a modified PLC program causes scrap, damage or unsafe situations, often without anyone noticing at once.',
         },
       ],
@@ -108,14 +108,14 @@ export default {
         },
         {
           q: 'What is the best fixed measure against CEO fraud with a changed bank account?',
-          options: ['Marking every external email with a red warning', 'A stronger password and a second login step for the finance mailbox', 'New antivirus software on all finance department PCs', 'Call back on a known number, and two signatures for large payments'],
-          answer: 'Call back on a known number, and two signatures for large payments',
+          options: ['Marking every external email with a red warning', 'A stronger password and a second login step for the finance mailbox', 'New antivirus software on all finance department PCs', 'Call back on a known number, plus two signatures'],
+          answer: 'Call back on a known number, plus two signatures',
           why: 'CEO fraud abuses trust, not technology. A fixed check through another channel defeats the trick.',
         },
         {
           q: 'You clicked a link and entered your password. Then you have doubts. What do you do?',
-          options: ['Report it to IT at once, so your password gets reset', 'Wait: if something is wrong, IT will notice anyway', 'Change your password yourself straight away and say nothing more', 'Delete the email, so nobody else clicks on it'],
-          answer: 'Report it to IT at once, so your password gets reset',
+          options: ['Report it to IT straight away', 'Wait: if something is wrong, IT will notice anyway', 'Change your password yourself straight away and say nothing more', 'Delete the email, so nobody else clicks on it'],
+          answer: 'Report it to IT straight away',
           why: 'Every minute counts. IT can end your sessions, check login attempts and warn colleagues. Changing it yourself leaves the rest open.',
         },
       ],
@@ -146,9 +146,9 @@ export default {
         },
       ],
       teach: [
-        'Passwords are attacked at scale. In credential stuffing, attackers automatically try leaked username and password pairs from other sites. It works because people reuse passwords.\n\nSo: a different password for each site, kept in a password manager, a program that stores them encrypted and fills them in. For what you must remember, use a passphrase: a few random words in a row. The US guideline NIST SP 800-63B says length counts more than odd characters, and do not force periodic changes without a reason.',
+        'Passwords are attacked at scale. In credential stuffing, attackers automatically try leaked username and password pairs from other sites. It works because people reuse passwords.\n\nSo: a different password for each site, kept in a password manager, a program that stores them encrypted and fills them in. For what you must remember, use a passphrase: a few random words in a row. The US guideline NIST SP 800-63B (latest version 2025) says length counts more than odd characters, and only force a change after signs of a leak.',
         'Why length wins, in numbers. Eight lowercase letters give 26⁸, about 209 billion combinations. A powerful cracking rig doing 10 billion guesses per second (possible when a stolen password file is weakly protected) tries them all in about 21 seconds.\n\nEach extra random word from a list of 7,776 words multiplies the number of combinations by 7,776. That makes a passphrase very strong quickly, while it stays memorable.',
-        'MFA (multi-factor authentication) asks for a second proof besides your password: something you have, like your phone or a key, or something you are, like your fingerprint. Microsoft reports that MFA stops more than 99% of attacks on accounts.\n\nBut not all MFA is equally strong. Text codes can be intercepted. Push notifications can be abused through MFA fatigue: the attacker sends dozens of prompts, often at night, until someone taps “approve” out of irritation. That is how attackers got into Uber in 2022.',
+        'MFA (multi-factor authentication) asks for a second proof besides your password: something you have, like your phone or a key, or something you are, like your fingerprint. According to Microsoft’s own research, MFA stops more than 99% of account takeover attacks.\n\nBut not all MFA is equally strong. Text codes can be intercepted. Push notifications can be abused through MFA fatigue: the attacker sends dozens of prompts, often at night, until someone taps “approve” out of irritation. That is how attackers got into Uber in 2022.',
         'Phishing-resistant MFA, such as a physical key or a passkey (both under the FIDO2 standard), is tied to the real web address. On a fake site it simply does not work. The US cyber agency CISA calls this the gold standard.\n\nAn intermediate step is number matching: you have to type a number from the screen into the app. That makes blind approval hard.',
         'In the plant: HMIs (operator screens) with a shared login and no MFA. MFA belongs at least on access from outside: VPN, the machine builder’s access, email and admin accounts. On the floor itself people debate: gloves and speed clash with login steps; a badge is often the compromise.\n\nTypical mistake: MFA on email, but not on the machine builder’s VPN. Sharp question: “Which access from outside still has no MFA?”',
       ],
@@ -162,8 +162,8 @@ export default {
       recall: [
         {
           q: 'What is credential stuffing?',
-          options: ['A password with many special characters and capitals', 'A password that must be changed every ninety days by every user', 'One account shared by a whole team of operators', 'Automatically logging in with leaked pairs from other sites'],
-          answer: 'Automatically logging in with leaked pairs from other sites',
+          options: ['A password with many special characters and capitals', 'A password that must be changed every ninety days by every user', 'One account shared by a whole team of operators', 'Trying leaked logins from other sites automatically'],
+          answer: 'Trying leaked logins from other sites automatically',
           why: 'Attackers use lists of leaked login details. Whoever reuses his password is then in elsewhere too.',
         },
         {
@@ -176,8 +176,8 @@ export default {
         },
         {
           q: 'An employee enters his details on a perfectly copied login page. Which MFA still stops the attacker getting in?',
-          options: ['A key or passkey, because it only works on the real web address', 'A push notification, because he must tap approve himself', 'A text code, because it only goes to his own phone', 'None of them: with the right password the attacker always gets in'],
-          answer: 'A key or passkey, because it only works on the real web address',
+          options: ['A key or passkey, tied to the real web address', 'A push notification, because he must tap approve himself', 'A text code, because it only goes to his own phone', 'None of them: with the right password the attacker always gets in'],
+          answer: 'A key or passkey, tied to the real web address',
           why: 'A text code or push can be passed on to the fake site or approved by the employee. A FIDO2 key checks the web address itself.',
         },
         {
@@ -251,8 +251,8 @@ export default {
         },
         {
           q: 'Operators share one login on a line’s HMI. What is a workable least-privilege compromise?',
-          options: ['Everyone gets a personal admin account on the HMI', 'The shared account gets a longer password that changes every month', 'Shared account for viewing, personal badge for changing settings', 'The HMI gets no login at all, so it is fair to everyone'],
-          answer: 'Shared account for viewing, personal badge for changing settings',
+          options: ['Everyone gets a personal admin account on the HMI', 'The shared account gets a longer password that changes every month', 'Shared for viewing, own badge for changing settings', 'The HMI gets no login at all, so it is fair to everyone'],
+          answer: 'Shared for viewing, own badge for changing settings',
           why: 'Viewing can be quick and shared. Whoever changes a setpoint must be traceable: that protects integrity and helps when looking for causes.',
         },
       ],
@@ -286,13 +286,13 @@ export default {
       teach: [
         'OT security is a field of its own. Installations last 15 to 25 years, old protocols often have no password check (see IT fundamentals), and the consequences are physical: broken machines, environmental damage, danger to people.\n\nWell-known examples: Stuxnet (discovered in 2010) sabotaged centrifuges in Iran by manipulating PLCs. TRITON (2017) targeted the safety system of a petrochemical plant in Saudi Arabia: the system that shuts an installation down safely when things go wrong.',
         'IEC 62443 is the international series of standards for securing an industrial automation and control system (IACS): PLCs, HMIs, SCADA and the networks between them. It comes from the US ISA99 committee and the IEC.\n\nIt has four groups: general (part 1), policies and procedures for the plant (part 2), system requirements (part 3) and component requirements (part 4). You do not need the numbers; you do need who does what.',
-        'The standard has three roles. The asset owner is the owner and user of the installation: the plant. It runs a security programme (part 2-1). The system integrator designs, builds and connects the system; part 2-4 describes what you may require of him. The product supplier makes the PLCs, HMIs and software; part 4-1 asks for a secure development process and part 4-2 describes what a component must be able to do.\n\nSo in a purchase contract you can ask for exactly what you need.',
+        'In IT/OT on the shop floor you met the three roles; here is what each delivers. The asset owner, the plant, owns the installation and runs a security programme (part 2-1). The service provider, such as the system integrator or maintenance firm, builds or maintains it; part 2-4 describes what you may require of him. The product supplier makes the PLCs, HMIs and software: a secure development process (part 4-1) and components that meet part 4-2.\n\nSo in a purchase contract you can ask for exactly what you need.',
         'The core idea is defence in depth: never rely on one measure. Layers are, for example, a locked cabinet (physical), zones and firewalls (network, see IT fundamentals), personal accounts, switching off unused services and USB ports (hardening), monitoring and procedures.\n\nIf one layer fails, the next still holds the attacker up. For the consultant this means: security belongs in the machine specification (URS, user requirement specification), not only at handover.',
         'Experts debate certification. There are certificates for components and development processes (such as ISASecure), but many plants mainly use the standard as a purchasing checklist.\n\nTypical mistake: buying a new line and only starting on security at the factory acceptance test (FAT). By then default passwords and open ports are built in. Sharp question: “Does our machine specification say which IEC 62443 requirements the supplier must meet?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A plant writes the specification (URS) for a new packaging line.\n\nStep 1: the plant is the asset owner and decides which zone the line goes into and how strictly that zone must be secured. Step 2: the system integrator must work to IEC 62443-2-4: no default passwords, unused ports closed, a list of all connections. Step 3: the components must demonstrably meet IEC 62443-4-2, or the supplier explains what is missing. Step 4: remote access only through the plant’s jump host. Step 5: all of this is tested at the FAT.',
+        text: 'A plant writes the specification (URS) for a new packaging line.\n\nStep 1: the plant is the asset owner and decides which zone the line goes into and how strictly that zone must be secured. Step 2: the system integrator, as service provider, must work to IEC 62443-2-4: no default passwords, unused ports closed, a list of all connections. Step 3: the components must demonstrably meet IEC 62443-4-2, or the supplier explains what is missing. Step 4: remote access only through the plant’s jump host. Step 5: all of this is tested at the FAT.',
       },
       said: 'What the OT engineer says: “If it is not in the URS, we get default passwords and an open USB port. Afterwards we pay for extras.”',
       recall: [
@@ -318,8 +318,8 @@ export default {
         },
         {
           q: 'What does defence in depth mean?',
-          options: ['Security is made one layer stricter every year', 'One very strong firewall at the edge of the plant network, with nothing behind it', 'Each floor of the building gets its own network', 'Several layers of measures, so one failing layer does not open everything'],
-          answer: 'Several layers of measures, so one failing layer does not open everything',
+          options: ['Security is made one layer stricter every year', 'One very strong firewall at the edge of the plant network, with nothing behind it', 'Each floor of the building gets its own network', 'Several layers of measures behind each other'],
+          answer: 'Several layers of measures behind each other',
           why: 'No measure is perfect. Physical, network, accounts, hardening and monitoring together hold an attacker up if one layer fails.',
         },
       ],
@@ -333,9 +333,9 @@ export default {
       terms: [
         { term: 'IEC 62443', def: 'International series of standards for securing industrial automation, for plant, integrator and supplier.' },
         { term: 'Industrial automation and control system', def: 'IACS: the PLCs, HMIs, SCADA and networks that together control an installation.' },
-        { term: 'Asset owner', def: 'Owner and user of the installation, usually the plant, who carries the risk.' },
-        { term: 'System integrator', def: 'Company that designs, builds and connects the automation system.' },
-        { term: 'Product supplier', def: 'Maker of components such as PLCs, HMIs and software.' },
+        { term: 'Asset owner', def: 'IEC 62443: the company that owns and operates the installation, usually the plant, and stays ultimately responsible.' },
+        { term: 'Service provider', def: 'IEC 62443: builds or maintains the installation, such as a system integrator; part 2-4 sets its requirements.' },
+        { term: 'Product supplier', def: 'IEC 62443: makes components such as PLCs, HMIs and software; parts 4-1 and 4-2 set its requirements.' },
         { term: 'Defence in depth', def: 'Several layers of measures, so one failing layer does not give an attacker a free run.' },
       ],
     },
@@ -351,7 +351,7 @@ export default {
         },
       ],
       teach: [
-        'In IT fundamentals you met zones and conduits: groups of devices and the controlled connections between them. IEC 62443-3-2 gives a fixed method to work them out.\n\nStep 1: define the system under consideration: which installation are we looking at, and where does it end? Step 2: an initial risk assessment: what is the worst that can happen? Step 3: divide into zones and conduits. Step 4: a detailed risk assessment per zone. Step 5: record the requirements.',
+        'In IT fundamentals you met zones and conduits: groups of devices and the controlled connections between them. IEC 62443-3-2 gives a fixed method to work them out, in short:\n\nStep 1: define the system under consideration: what belongs to it and where does it end? Step 2: an initial risk assessment: what is the worst that can happen? Step 3: divide into zones and conduits. Step 4: a detailed risk assessment per zone, which sets its security level (next lesson). Step 5: record the requirements; the asset owner approves them.',
         'A zone is a group of devices with the same security requirements. Rules of thumb for grouping: group what has the same function, the same risk and the same owner. Keep the office (IT) and control (OT) apart.\n\nPut a safety system (safety instrumented system, SIS) in a zone of its own. Treat wireless devices and service technicians’ temporarily connected laptops separately, as well as devices of outside parties.',
         'A conduit is the connection between two zones. For each conduit you record: which zones, which protocols and ports, which direction, and who the owner is. The fewer conduits, the less there is to manage.\n\nThe strictest form is a data diode: hardware that literally lets traffic go one way only, for example measurements from OT to the office. Nothing can physically get back through.',
         'A common layout in a plant: an office zone, a DMZ (in-between network), a zone for plant-wide systems such as MES, historian and SCADA server, a cell zone per line with PLCs and HMIs, and a zone of its own for the safety system.\n\nThe layers of the plant (ISA-95 and the Purdue model) are taught in the module IT/OT on the shop floor. Zones do not have to follow those layers exactly: they follow the risk.',
@@ -448,14 +448,14 @@ export default {
         },
         {
           q: 'Against which attacker does security level 2 protect?',
-          options: ['A deliberate attack with simple means and general skills', 'A state with extensive resources and plenty of patience', 'A technician who accidentally plugs in the wrong laptop', 'A group with deep knowledge of exactly this installation and its weak spots'],
-          answer: 'A deliberate attack with simple means and general skills',
+          options: ['A deliberate attacker with simple means', 'A state with extensive resources and plenty of patience', 'A technician who accidentally plugs in the wrong laptop', 'A group with deep knowledge of exactly this installation and its weak spots'],
+          answer: 'A deliberate attacker with simple means',
           why: 'SL 1 is accidental, SL 2 deliberate but simple, SL 3 sophisticated with OT knowledge, SL 4 with extensive resources.',
         },
         {
           q: 'A supplier says: “Our PLC is certified for SL 2, so your zone now reaches SL 2.” What is wrong with that?',
-          options: ['Certificates for PLCs do not exist within IEC 62443', 'One component’s capability says nothing about the achieved level', 'A PLC does not fall under IEC 62443 at all, only the network around it', 'SL 2 is too low for any zone in a plant'],
-          answer: 'One component’s capability says nothing about the achieved level',
+          options: ['Certificates for PLCs do not exist within IEC 62443', 'A component’s SL-C is not the zone’s SL-A', 'A PLC does not fall under IEC 62443 at all, only the network around it', 'SL 2 is too low for any zone in a plant'],
+          answer: 'A component’s SL-C is not the zone’s SL-A',
           why: 'The achieved level depends on the settings, the other components and the zone’s conduits. A certified PLC with a default password does not reach it.',
         },
       ],
@@ -488,8 +488,8 @@ export default {
       teach: [
         'Remote access runs through a jump host, as you saw in IT fundamentals. Good practice on top: a personal account per technician, MFA, a session the plant releases each time and then closes again, a time window, recording or logging of what happens, and access to only that one machine.\n\nIn incident reports, poorly secured remote access keeps coming back as a way in, often through software that is always on.',
         'A CVE (Common Vulnerabilities and Exposures) is the public number of a known vulnerability, such as CVE-2017-0144: the Windows flaw NotPetya used in 2017. The CVSS score (Common Vulnerability Scoring System) gives the severity from 0 to 10.\n\nBut in OT the score alone is not enough. What counts is: can an attacker reach the flaw from where he is, and is it already being exploited? CISA’s KEV catalogue (known exploited vulnerabilities) lists flaws that are demonstrably exploited: a stronger signal than the score.',
-        'A patch process for OT (described in IEC TR 62443-2-3) has fixed steps. Know what you have (the asset inventory). Follow advisories from suppliers and from CISA (ICS advisories). Assess whether the flaw affects you. Wait for the supplier’s approval, because a patch can break the control system. Test on a test system or one line. Install in a maintenance window: a planned stop. Make sure you can go back (back-out plan).',
-        'If patching is not possible, or not yet, you use a compensating control: something else that reduces the risk. Examples: a stricter firewall rule, switching off an unused service or port, letting only approved programs run (application whitelisting), removing the route to the internet, extra monitoring, or an intrusion prevention system that filters attacks on the flaw (virtual patching).\n\nRecord such a control with an end date, otherwise temporary becomes permanent.',
+        'In IT/OT on the shop floor you met the qualified patch, the patch window and the compensating control. IEC TR 62443-2-3 puts them in one process. Know what you have (the asset inventory). Follow advisories from suppliers and from CISA (ICS advisories). Assess whether the flaw affects you. Wait for the supplier’s approval. Test on a test system or one line. Install in the patch window, a planned stop. Make sure you can go back (back-out plan).',
+        'While patching is not possible, or not yet, a compensating control lowers the risk. Examples: a stricter firewall rule, switching off an unused service or port, letting only approved programs run (application whitelisting), removing the route to the internet, or extra monitoring.\n\nA stronger form is virtual patching: an intrusion prevention system in the network that recognises and blocks attacks on that specific flaw. Record every such control with an end date, otherwise temporary becomes permanent.',
         'Experts clash between “patch everything” and “if it runs, leave it”. The sensible middle is risk-based: first what is reachable and really exploited, the rest in ordinary stops.\n\nTypical mistakes: no asset inventory, so when an advisory comes nobody knows whether you are affected; and the builder’s remote support software that is always on. Sharp question: “How long from a critical advisory to the patch on our lines, and what do we do in the meantime?”',
       ],
       example: {
@@ -539,8 +539,8 @@ export default {
         { term: 'CVE', def: 'Public number of a known vulnerability, such as CVE-2017-0144.' },
         { term: 'CVSS', def: 'Score from 0 to 10 for the severity of a vulnerability.' },
         { term: 'KEV catalogue', def: 'CISA’s list of vulnerabilities that are demonstrably being exploited.' },
-        { term: 'Maintenance window', def: 'Planned stop in which you can do updates and maintenance.' },
-        { term: 'Compensating control', def: 'Another measure that reduces the risk while patching is not possible, preferably with an end date.' },
+        { term: 'Virtual patching', def: 'Blocking attacks on one known flaw in the network, for example with an intrusion prevention system, until the real patch is in.' },
+        { term: 'Compensating control', def: 'Another protection that lowers the risk while a system cannot be patched (yet); record it with an end date.' },
       ],
     },
     {
@@ -557,7 +557,7 @@ export default {
       teach: [
         'NIS2 is a European directive (Directive (EU) 2022/2555) on the cybersecurity of important organisations. It follows the first NIS directive of 2016 and covers many more sectors and companies.\n\nA directive does not work directly: each country must turn it into its own law. The deadline for that was 17 October 2024. Many countries, the Netherlands among them, were late.',
         'In the Netherlands that law is the Dutch Cybersecurity Act. It replaces the older Network and Information Systems Security Act. The House of Representatives passed it on 15 April 2026, the Senate on 7 July 2026, and according to the official Bulletin of Acts and Decrees (2026, 187 and 189) it has applied since 15 August 2026.\n\nThe details are in a supporting decree and ministerial regulations. Legislation can still be adjusted: check the current state with the NCSC.',
-        'The act imposes four things. The duty of care: take appropriate measures to secure your systems. The reporting obligation: report serious incidents quickly. The registration obligation: register with the NCSC (National Cyber Security Centre) with your details and sector. And supervision: per sector a regulator checks that you do it, for much of manufacturing the Dutch Authority for Digital Infrastructure (RDI).\n\nOn top of that, the board itself is responsible.',
+        'The act imposes four things. The duty of care: take appropriate measures to secure your systems. The reporting obligation: report serious incidents quickly. The registration obligation: register with the NCSC (National Cyber Security Centre) with your details and sector. And supervision: per sector a regulator checks that you do it; for makers of electronics, electrical equipment, machinery and vehicles that is the Dutch Authority for Digital Infrastructure (RDI).\n\nOn top of that, the board itself is responsible.',
         'For manufacturing this is new. According to reports from August 2026, an estimated 8,000-plus Dutch organisations fall under the act, and shortly after the start fewer than half had registered.\n\nEven those not covered feel it: customers who are covered must assess their suppliers. So a supplier gets questionnaires and contract requirements on security.',
         'Experts debate the burden on mid-sized companies against the need, now that ransomware stops plants.\n\nTypical mistake: treating it as an IT project. The act puts responsibility with the board, and the measures also touch purchasing, production and HR. Sharp question: “Have we established whether the Dutch Cybersecurity Act covers us, and are we registered with the NCSC?”',
       ],
@@ -589,15 +589,15 @@ export default {
         },
         {
           q: 'A supplier is not covered by the act itself, but its customer is. What will the supplier probably notice?',
-          options: ['Nothing, because the act only applies to organisations that are covered themselves', 'A mandatory registration with the NCSC through its customer', 'A fine if its customer has an incident', 'Questionnaires and contract requirements on security from the customer'],
-          answer: 'Questionnaires and contract requirements on security from the customer',
+          options: ['Nothing, because the act only applies to organisations that are covered themselves', 'A mandatory registration with the NCSC through its customer', 'A fine if its customer has an incident', 'Security requirements from the customer'],
+          answer: 'Security requirements from the customer',
           why: 'Under the duty of care the customer must secure its supply chain, and passes those requirements on to its suppliers.',
         },
       ],
       situation: {
         scene: 'During a board meeting at a maker of electrical equipment, the CFO says: “NIS2 is for energy companies and hospitals. We make switchgear cabinets.”',
         ask: 'How do you respond?',
-        model: 'I thought so at first too, but the new act also covers parts of manufacturing, including electrical equipment, from 50 employees. It has applied since 15 August 2026. Shall we have it checked this week whether we are covered? If so, we must register with the NCSC and the board must approve the measures.',
+        model: 'I thought so at first too, but the new act also covers parts of manufacturing, including electrical equipment, from medium-sized companies upwards. It has applied since 15 August 2026. Shall we have it checked this week whether we are covered? If so, we must register with the NCSC and the board must approve the measures.',
         rubric: ['Corrects the idea that only critical sectors are covered', 'Names the entry into force and the first obligations', 'Proposes a concrete first step: checking whether the company is covered'],
       },
       sayIt: 'Explain to a managing director in 60 seconds what NIS2 and the Dutch Cybersecurity Act are and which four things they impose.',
@@ -616,14 +616,14 @@ export default {
       pre: [
         {
           q: 'A plastic injection moulding company with 120 employees makes packaging for the food industry. Is it covered by the Dutch Cybersecurity Act itself?',
-          options: ['Yes, because every company from 50 employees is covered', 'Probably not itself, but through its customers’ requirements', 'Yes, because it supplies the food industry', 'No, because plastics are expressly excluded somewhere in the act'],
-          answer: 'Probably not itself, but through its customers’ requirements',
+          options: ['Yes, because every company from 50 employees is covered', 'Probably not, but its customers will set demands', 'Yes, because it supplies the food industry', 'No, because plastics are expressly excluded somewhere in the act'],
+          answer: 'Probably not, but its customers will set demands',
           why: 'Size alone is not enough: the sector must also be in the act. Plastic products are not on the manufacturing list. Its customers in the food sector are covered and set requirements.',
         },
       ],
       teach: [
         'Whether you are covered depends on two tests: sector and size. The sectors are in two annexes of NIS2.\n\nAnnex I lists sectors of high criticality, such as energy, transport, banking, health care, drinking water and digital infrastructure. Annex II lists other critical sectors, such as postal services, waste management, chemicals, food, manufacturing of certain products, digital providers and research.',
-        'Manufacturing in Annex II covers making: medical devices; computer, electronic and optical products; electrical equipment; machinery; motor vehicles and trailers; and other transport equipment. Chemicals and food (production, processing and wholesale) are separate sectors.\n\nNot listed are, for example, metal products, plastics and paper. The classification follows the European NACE codes, in the Netherlands the activity code in your Chamber of Commerce registration. The NCSC has a decision tree to work it through.',
+        'Manufacturing in Annex II covers making: medical devices; computer, electronic and optical products; electrical equipment; machinery; motor vehicles and trailers; and other transport equipment. Chemicals and food (production, processing and wholesale) are separate sectors.\n\nNot listed are, for example, metal products, plastics and paper. The classification follows the European NACE codes, in the Netherlands the activity code in your Chamber of Commerce registration. The NCSC has a referral chart per sector to work it through.',
         'Then size. From a medium-sized enterprise you are covered: 50 or more employees, or annual turnover and balance sheet total both above €10 million. Small and micro companies are generally outside the act, with a few exceptions, such as certain digital services.\n\nLarge is 250 or more employees, or turnover above €50 million and balance sheet above €43 million. Note: in a group, linked companies often count too, under the European SME definition.',
         'Whoever is covered is an essential entity or an important entity. Essential are mainly large organisations in Annex I. Important is the rest, including large manufacturers in Annex II, such as a big machine builder or food plant.\n\nThe obligations are the same: duty of care, reporting, registration. The difference is in supervision and the level of fines: for essential entities the regulator checks on its own initiative, for important ones usually only after a signal.',
         'Those outside the act can still get requirements as a supply chain partner: a covered customer must assess its suppliers.\n\nTypical mistakes: counting only the Dutch subsidiary while the group is much larger, or thinking “we make parts, so not us” when it is electrical equipment. Experts point out the boundary is sometimes unclear; if in doubt, get legal advice. Sharp question: “What is our activity code, and how big are we including the group?”',
@@ -636,8 +636,8 @@ export default {
       recall: [
         {
           q: 'From what size is a company in a listed sector covered by the act?',
-          options: ['From 10 employees, regardless of turnover and balance sheet', 'From 250 employees, or more than €50 million turnover and €43 million balance sheet', 'From 50 employees, or turnover and balance sheet both above €10 million', 'Every company in the sector, however small'],
-          answer: 'From 50 employees, or turnover and balance sheet both above €10 million',
+          options: ['From 10 employees, regardless of turnover and balance sheet', 'From 250 employees, or more than €50 million turnover and €43 million balance sheet', 'From 50 staff, or turnover and balance both over €10M', 'Every company in the sector, however small'],
+          answer: 'From 50 staff, or turnover and balance both over €10M',
           why: 'That is the threshold of a medium-sized enterprise. Small and micro companies are generally outside the act.',
         },
         {
@@ -664,8 +664,8 @@ export default {
       situation: {
         scene: 'A supplier of wiring harnesses for trucks, 70 employees, asks you: “Do we have to do anything with that new cyber law or not?”',
         ask: 'How do you help him find out?',
-        model: 'Two questions. Sector: wiring harnesses can fall under electrical equipment or under parts for motor vehicles; your activity code shows that, and the NCSC has a decision tree. Size: with 70 employees you are above the threshold of 50. If you find you are covered, register with the NCSC. If not, still expect requirements from your customers, because they are covered.',
-        rubric: ['Tests both sector and size', 'Refers to the activity code and the NCSC decision tree', 'Names the supply chain side if the company is not covered itself'],
+        model: 'Two questions. Sector: wiring harnesses can fall under electrical equipment or under parts for motor vehicles; your activity code shows that, and the NCSC has a referral chart per sector. Size: with 70 employees you are above the threshold of 50. If you find you are covered, register with the NCSC. If not, still expect requirements from your customers, because they are covered.',
+        rubric: ['Tests both sector and size', 'Refers to the activity code and the NCSC referral chart', 'Names the supply chain side if the company is not covered itself'],
       },
       sayIt: 'Explain to a managing director in 60 seconds how you determine whether a plant is covered by the Dutch Cybersecurity Act.',
       terms: [
@@ -691,8 +691,8 @@ export default {
       teach: [
         'The duty of care asks for appropriate measures: technical, operational and organisational, to manage the risks to your network and information systems and to prevent or limit the impact of incidents.\n\nAn appropriate measure is in proportion to the risk, the size of the company and the cost. A mid-sized plant does not have to do what a bank does. The approach is broad (all-hazards): fire or a power cut count too.',
         'NIS2 (Article 21) names ten topics you must at least cover: risk analysis and policy; incident handling; business continuity, with backups, recovery and crisis management; supply chain security; security in acquisition, development and maintenance, including vulnerabilities; testing whether the measures work; basic hygiene and training; encryption (cryptography); personnel, access control and asset management; and MFA and secured communication.\n\nIn the Netherlands a supporting decree works this out further.',
-        'Management accountability is new and sharp. The board approves the measures, oversees the implementation and takes training itself so it can judge risks. Board members can be held to account; for essential entities, under NIS2 a regulator can in the last resort temporarily suspend a director.\n\nFor the consultant: this is a topic for the board meeting, not only for IT.',
-        'Supervision differs. For essential entities the regulator checks even without cause. For important entities there is ex post supervision: usually only after an incident or signal.\n\nNIS2 sets maximum fines of at least €10 million or 2% of worldwide annual turnover for essential entities, and €7 million or 1.4% for important ones, whichever is higher. Each sector has its own regulator; for much of manufacturing the RDI.',
+        'Management accountability is new and sharp. The board approves the measures, oversees the implementation and takes training itself so it can judge risks. Board members can be held to account: the Dutch act allows a personal fine of up to €25,000, and for essential entities the regulator can, as a last resort, ask a court to suspend a director.\n\nFor the consultant: this is a topic for the board meeting, not only for IT.',
+        'Supervision differs. For essential entities the regulator checks even without cause. For important entities there is ex post supervision: usually only after an incident or signal.\n\nNIS2 sets maximum fines of at least €10 million or 2% of worldwide annual turnover for essential entities, and €7 million or 1.4% for important ones, whichever is higher. The Dutch act uses exactly these maxima for breaches of the duty of care and the reporting obligation, and up to €1 million for other breaches.',
         'In practice: lay the ten topics next to what exists, such as a quality system with PDCA (plan-do-check-act). ISO 27001 or IEC 62443-2-1 can serve as a framework; certification is not mandatory for most companies, and advisers disagree on it.\n\nTypical mistakes: buying a tool and calling it compliance, or a 200-page policy nobody reads. Sharp question: “Which of the ten topics can we show with evidence today?”',
       ],
       example: {
@@ -710,7 +710,7 @@ export default {
           why: 'Proportionality is in the law: a mid-sized plant does not have to do what a bank does, but must manage its own risks.',
         },
         {
-          q: 'An important entity has a worldwide annual turnover of €600 million. What is the maximum fine under NIS2, in millions of euros?',
+          q: 'An important entity has a worldwide annual turnover of €600 million. What is the maximum fine for breaching the duty of care, under NIS2 and the Dutch act, in millions of euros?',
           number: 8.4,
           tolerance: 0.05,
           unit: 'million €',
@@ -719,14 +719,14 @@ export default {
         },
         {
           q: 'What must the board do itself under the act?',
-          options: ['Approve the measures, oversee the implementation and take training', 'Run a phishing test on all the employees itself, every single month', 'Only approve the IT supplier’s yearly invoice', 'Personally report every incident to the NCSC'],
-          answer: 'Approve the measures, oversee the implementation and take training',
+          options: ['Approve, oversee and take training itself', 'Run a monthly phishing test on all staff itself', 'Only approve the IT supplier’s yearly invoice', 'Personally report every incident to the NCSC'],
+          answer: 'Approve, oversee and take training itself',
           why: 'The board does not have to do the work itself, but must approve it, monitor it and understand it.',
         },
         {
           q: 'Which measure falls under supply chain security?',
-          options: ['Laying a second fibre to the data centre in case the first one breaks', 'Setting requirements for the machine builder who logs in remotely', 'Making the director’s password longer', 'Installing sprinklers in the server room'],
-          answer: 'Setting requirements for the machine builder who logs in remotely',
+          options: ['Laying a second fibre to the data centre in case the first one breaks', 'Rules for the builder’s remote access', 'Making the director’s password longer', 'Installing sprinklers in the server room'],
+          answer: 'Rules for the builder’s remote access',
           why: 'Supply chain security is about the risks from suppliers and service providers, such as their access to your systems.',
         },
       ],
@@ -759,8 +759,8 @@ export default {
       teach: [
         'The reporting obligation applies to a significant incident: one that causes or can cause severe disruption of your service or financial loss, or can cause considerable damage to others. A ministerial regulation sets thresholds that decide when that is the case.\n\nIn practice, ransomware that stops a production line or deliveries is almost always significant. When in doubt, most lawyers advise: report.',
         'NIS2 (Article 23) has three steps. The early warning: within 24 hours of becoming aware of the incident, saying whether malicious intent is suspected and whether other countries may be affected. The incident notification: within 72 hours, with a first assessment of severity and impact and, if you have them, traces of the attack (indicators of compromise).\n\nThe final report: within one month of the incident notification, with description, cause, measures and any cross-border effects.',
-        'If the incident is not over after a month, you send a progress report, and the final report within a month after it has been handled. You report to the CSIRT (the team that helps with incidents; in the Netherlands the NCSC or a sector CSIRT) and the regulator; check the current reporting channel with the NCSC.\n\nIf the incident affects your customers, you must also inform them without delay where needed.',
-        'Other obligations often run alongside. If personal data leaked, it is also a personal data breach, which under the GDPR you report within 72 hours to the Dutch Data Protection Authority. On top: a police report, your insurer, which often has its own deadline, and customers under contract.\n\nThe clock starts when you become aware of the incident, not when the investigation is finished.',
+        'If the incident is not over after a month, you send a progress report, and the final report within a month after it has been handled. If the CSIRT or regulator asks, you also send an interim report in between.\n\nYou report to your CSIRT (the team that helps with incidents; for most manufacturers the NCSC) and to your regulator, through the government’s reporting portal. If the incident affects your customers, you must also inform them without delay where needed.',
+        'Other obligations often run alongside. If personal data leaked, it is also a personal data breach, which under the GDPR you report within 72 hours to the Dutch Data Protection Authority, unless it is unlikely to harm the people involved. On top: a police report, your insurer, which often has its own deadline, and customers under contract.\n\nThe clock starts when you become aware of the incident, not when the investigation is finished.',
         'Preparation is everything. Record who decides whether something is significant, who reports, where the login for the reporting portal is kept, and make sure that works at weekends too. Experts debate reporting early with half the information against waiting for certainty; the law chooses early.\n\nTypical mistake: finding out at hour 60 that nobody knows how to report. Sharp question: “Who decides within a few hours whether an incident is significant, on a Sunday too?”',
       ],
       example: {
@@ -773,8 +773,8 @@ export default {
       recall: [
         {
           q: 'What belongs in the early warning within 24 hours?',
-          options: ['Whether malicious intent is suspected and other countries may be affected', 'The full cause and all measures taken', 'An overview of the costs and the damage so far, for the insurer and the bank', 'The names of the employees who caused the incident'],
-          answer: 'Whether malicious intent is suspected and other countries may be affected',
+          options: ['Suspected malice and possible cross-border impact', 'The full cause and all measures taken', 'An overview of the costs and the damage so far, for the insurer and the bank', 'The names of the employees who caused the incident'],
+          answer: 'Suspected malice and possible cross-border impact',
           why: 'The first report is short and quick. The assessment follows after 72 hours, the cause in the final report.',
         },
         {
@@ -787,14 +787,14 @@ export default {
         },
         {
           q: 'When does the clock of the reporting obligation start?',
-          options: ['When the investigation into the cause is completely finished', 'When you become aware of a significant incident', 'When the regulator asks you for information', 'On the first working day after the incident'],
-          answer: 'When you become aware of a significant incident',
+          options: ['When the investigation into the cause is completely finished', 'On becoming aware of a significant incident', 'When the regulator asks you for information', 'On the first working day after the incident'],
+          answer: 'On becoming aware of a significant incident',
           why: 'Waiting until you know everything is not allowed. So the “significant or not” decision must be possible quickly.',
         },
         {
           q: 'In a ransomware attack, staff data was stolen too. What must happen besides the report under the Dutch Cybersecurity Act?',
-          options: ['Nothing, because one report to the NCSC covers everything', 'Only a message to the affected employees, once the investigation has been completed', 'A data breach report to the Dutch Data Protection Authority, within 72 hours', 'A report to the Chamber of Commerce within a week'],
-          answer: 'A data breach report to the Dutch Data Protection Authority, within 72 hours',
+          options: ['Nothing, because one report to the NCSC covers everything', 'Only a message to the affected employees, once the investigation has been completed', 'Report to the Dutch Data Protection Authority', 'A report to the Chamber of Commerce within a week'],
+          answer: 'Report to the Dutch Data Protection Authority',
           why: 'The GDPR has its own reporting obligation for personal data breaches. It runs alongside the reporting obligation of the Dutch Cybersecurity Act.',
         },
       ],
@@ -820,13 +820,13 @@ export default {
       pre: [
         {
           q: 'A ransom note appears on a planning PC. What do you do first?',
-          options: ['Pull the network cable and switch off Wi-Fi, leave it on, and report', 'Switch the PC off and restart it', 'Pay the ransom to get the files back', 'Restore a backup on the PC straight away and carry on working as normal'],
-          answer: 'Pull the network cable and switch off Wi-Fi, leave it on, and report',
+          options: ['Unplug the network and Wi-Fi, leave it on, report', 'Switch the PC off and restart it to clear the infection', 'Pay the ransom to get the files back', 'Restore a backup on the PC straight away and carry on working as normal'],
+          answer: 'Unplug the network and Wi-Fi, leave it on, report',
           why: 'Disconnecting stops the spread. Leaving it on keeps traces in memory. Reporting at once sets the rest in motion.',
         },
       ],
       teach: [
-        'Incident response is the fixed way of handling a security incident. The best-known breakdown comes from NIST (the US standards body, publication SP 800-61): preparation; detection and analysis; containment, eradication and recovery; and post-incident activity.\n\nThe newest version from 2025 hangs this on the broader NIST Cybersecurity Framework, but the phases remain a useful guide. You see them as a cycle: what you learn goes back into preparation.',
+        'Incident response is the fixed way of handling a security incident. The best-known breakdown is the classic cycle of NIST (the US standards body), from its guide SP 800-61 of 2012: preparation; detection and analysis; containment, eradication and recovery; and post-incident activity, or lessons learned. What you learn goes back into preparation.\n\nThe current version (Rev. 3, 2025) replaces that cycle with the six functions of the NIST Cybersecurity Framework 2.0. Most plans and people still talk in the classic phases, so this lesson uses them.',
         'Preparation is everything you arrange in advance: a plan, roles, a contact list on paper, offline backups and practice (more in the next lesson).\n\nDetection is noticing that something is wrong and working out what: an antivirus alert, strange behaviour of an HMI, a call from a customer who gets odd emails from you. The sooner you notice, the smaller the damage.',
         'Containment is stopping the spread: isolating a PC or part of the network, blocking an account, or closing the connection between office and plant. Then eradication: removing the cause, such as the malware and the flaw it came in through.\n\nThen recovery: putting systems back clean, reconnecting them and watching them extra closely.',
         'The last phase is lessons learned: within a few weeks, looking back with everyone involved. What went well, what did not, what was the cause, and which actions follow, with owner and date.\n\nFor a Lean consultant this feels familiar: it is an A3 or 5 whys, applied to a cyber incident.',
@@ -839,7 +839,7 @@ export default {
       said: 'What the IT manager says: “Don’t restart, pull the cable, call me. Those three things now hang next to every PC.”',
       recall: [
         {
-          q: 'What is the right order of the phases of incident response?',
+          q: 'What is the right order of the phases in the classic NIST incident response cycle?',
           options: ['Recovery, detection, containment and preparation, lessons learned', 'Preparation, detection, containment and recovery, lessons learned', 'Detection, lessons learned, preparation, containment and recovery', 'Lessons learned, preparation, containment and recovery, detection'],
           answer: 'Preparation, detection, containment and recovery, lessons learned',
           why: 'First be prepared, then notice, then stop and recover, and finally learn. What you learn goes back into preparation.',
@@ -887,8 +887,8 @@ export default {
       pre: [
         {
           q: 'In March 2019 aluminium company Norsk Hydro was hit by ransomware. What did the company do?',
-          options: ['It paid the ransom and had everything back within a day', 'It did not pay, ran by hand where it could and communicated openly', 'It closed every plant until all the systems fully worked again weeks later', 'It kept the attack secret from customers and press for months'],
-          answer: 'It did not pay, ran by hand where it could and communicated openly',
+          options: ['It paid the ransom and had everything back within a day', 'No ransom, manual work where possible, open communication', 'It closed every plant until all the systems fully worked again weeks later', 'It kept the attack secret from customers and press for months'],
+          answer: 'No ransom, manual work where possible, open communication',
           why: 'Hydro isolated its plants, switched to manual work where possible, restored from backups and kept press and investors informed daily.',
         },
       ],
@@ -927,8 +927,8 @@ export default {
         },
         {
           q: 'What does the Norsk Hydro case teach about communication in an incident?',
-          options: ['Communicating openly and often kept the trust of customers and investors', 'Only informing the regulator, nobody else', 'Staying silent until everything is restored prevents customer panic', 'Communication is best left entirely to the insurer and its own crisis lawyers'],
-          answer: 'Communicating openly and often kept the trust of customers and investors',
+          options: ['Open, frequent updates kept customers’ and investors’ trust', 'Only informing the regulator, nobody else', 'Staying silent until everything is restored prevents customer panic', 'Communication is best left entirely to the insurer and its own crisis lawyers'],
+          answer: 'Open, frequent updates kept customers’ and investors’ trust',
           why: 'Hydro gave daily updates from day one. It is often cited as an example of how to do it.',
         },
       ],
@@ -963,7 +963,7 @@ export default {
         'NotPetya, 27 June 2017: the malware came in through a hijacked update of M.E.Doc, Ukrainian tax software. Then it spread by itself, through the Windows flaw EternalBlue (the patch had existed since March 2017) and through admin passwords it pulled from memory.\n\nIt looked like ransomware, but was a wiper: software that destroys data beyond recovery. Shipping company Maersk reinstalled 45,000 PCs and 4,000 servers in about ten days (see IT fundamentals for the cost). Total damage is estimated at more than 10 billion dollars.',
         'To see attacks you need tools. EDR (endpoint detection and response) is software on PCs and servers that watches behaviour and can isolate an infected machine. A SIEM (security information and event management) collects logs centrally and looks for links.\n\nIn OT you use passive network monitoring: a system that listens in through a mirror port without disturbing PLCs. An indicator of compromise is a trace of an attack: a file fingerprint (hash), an IP address, an unknown account.',
         'Containing calls for quick decisions agreed in advance: isolate infected machines, block accounts, close the conduits between zones, especially between office and plant. In OT do not just switch off: an installation must stop in a controlled way, or can keep running safely in isolation.\n\nKeep forensic evidence before you reinstall: a copy of memory and disk, and the logs. You need it for the cause, the insurer, the police and the final report.',
-        'Eradication means removing the cause: the malware, but also the flaw and the stolen passwords. Reset all admin passwords and close the hole the attacker came in through. Otherwise you put clean systems back into an infected network and it starts again.\n\nAttackers are often inside for a while before anyone notices; according to Mandiant’s yearly reports, on average (median) just over a week, and often much longer.',
+        'Eradication means removing the cause: the malware, but also the flaw and the stolen passwords. Reset all admin passwords and close the hole the attacker came in through. Otherwise you put clean systems back into an infected network and it starts again.\n\nAttackers are often inside for a while before anyone notices; in Mandiant’s yearly reports the median was 10 to 11 days in 2023–2024 and 14 days in 2025, and often much longer.',
         'Experts debate speed against damage: separating office and plant early costs output, separating too late can cost the plant. That is why you agree it in advance.\n\nTypical mistakes: restoring backups before the way in is closed, and keeping logs for only a week, so you cannot look back to the first entry. Sharp question: “How long do we keep logs, and is that long enough to trace an attacker back to his first step?”',
       ],
       example: {
@@ -976,8 +976,8 @@ export default {
       recall: [
         {
           q: 'What does EDR do?',
-          options: ['It makes a backup of every server each night', 'It blocks traffic between zones with fixed rules', 'It collects logs from all systems in one central place for analysis', 'It watches behaviour on PCs and servers and can isolate them'],
-          answer: 'It watches behaviour on PCs and servers and can isolate them',
+          options: ['It makes a backup of every server each night', 'It blocks traffic between zones with fixed rules', 'It collects logs from all systems in one central place for analysis', 'It watches PCs and servers and can isolate them'],
+          answer: 'It watches PCs and servers and can isolate them',
           why: 'EDR runs on the machine itself. A SIEM collects logs centrally; a firewall controls traffic between zones.',
         },
         {
@@ -990,14 +990,14 @@ export default {
         },
         {
           q: 'Why do you restore backups only after the way in has been closed?',
-          options: ['Because the restored system will otherwise be infected again', 'Because backups are otherwise restored far too slowly to be useful', 'Because the insurer will otherwise not pay out', 'Because the reporting obligation prescribes it'],
-          answer: 'Because the restored system will otherwise be infected again',
+          options: ['Because it would be reinfected', 'Because backups are otherwise restored far too slowly to be useful', 'Because the insurer will otherwise not pay out', 'Because the reporting obligation prescribes it'],
+          answer: 'Because it would be reinfected',
           why: 'As long as the flaw or the stolen passwords work, the attacker comes back into your clean systems.',
         },
         {
           q: 'Why did paying the ransom not help with NotPetya?',
-          options: ['Because the police took the payment page offline almost at once', 'Because it was a wiper: the data was destroyed beyond recovery', 'Because the ransom was too high for most companies', 'Because only companies in Ukraine were allowed to pay'],
-          answer: 'Because it was a wiper: the data was destroyed beyond recovery',
+          options: ['Because the police took the payment page offline almost at once', 'Because it was a wiper that destroyed the data', 'Because the ransom was too high for most companies', 'Because only companies in Ukraine were allowed to pay'],
+          answer: 'Because it was a wiper that destroyed the data',
           why: 'NotPetya pretended to be ransomware, but there was no working way to get the data back. Only reinstalling and backups helped.',
         },
       ],
@@ -1023,13 +1023,13 @@ export default {
       pre: [
         {
           q: 'After a ransomware attack the way in has been closed. In what order do you restore systems?',
-          options: ['Email first, so everyone can communicate again with each other', 'Management’s systems first, then the rest', 'Everything at once, so nobody has to wait', 'Network and accounts first, then systems by business value'],
-          answer: 'Network and accounts first, then systems by business value',
+          options: ['Email first, so everyone can communicate again with each other', 'Management’s systems first, then the rest', 'Everything at once, so nobody has to wait', 'Network and login first, then by value'],
+          answer: 'Network and login first, then by value',
           why: 'Without network and login system nothing works. After that, first what hits the customer and the bottleneck most.',
         },
       ],
       teach: [
-        'The recovery order starts with the basics: network, the login system (Active Directory, which everyone logs in through) and the backup environment. Then systems by business value: what feeds the bottleneck and the customer orders, first.\n\nFor a Lean consultant this is a value stream question. Maersk could rebuild its login system because one server happened to be offline due to a power cut, and so was not hit. You do not want to count on such luck: keep an offline copy.',
+        'The recovery order starts with the basics: network, the login system (Active Directory, which everyone logs in through) and the backup environment. Then systems by business value: what feeds the bottleneck and the customer orders, first.\n\nFor a Lean consultant this is a value stream question. Maersk could rebuild its login system because one server happened to be offline due to a power cut, and so was not hit. You do not want to count on such luck: keep an offline or immutable copy (see IT fundamentals, backups).',
         'Clean restore means: restoring from a backup made before the infection, checking that the backup itself is clean, rebuilding rather than cleaning, and reconnecting step by step with extra monitoring.\n\nIn OT: compare PLC programs and recipes with a known good version before starting up. An attacker may have changed logic; that is integrity. Start up with production and safety together.',
         'The review afterwards works best as a blameless review: without blame, so people say honestly what happened. Do it within a few weeks. Build a timeline of facts, find the root cause with 5 whys, and record each improvement action with owner and date.\n\nFollow them up like any Lean action. A review without follow-up is theatre.',
         'The costs are large. Norsk Hydro estimated its damage at about 800 million Norwegian kroner; insurance covered part of it. After NotPetya, insurer Zurich refused Mondelez’s claim by invoking an exclusion for acts of war; the case was settled in 2022. Merck won its court case against its insurers.\n\nLesson: read the exclusions of your cyber insurance, and know what it requires in advance, such as MFA and offline backups.',
@@ -1065,8 +1065,8 @@ export default {
         },
         {
           q: 'What does the case of Mondelez against insurer Zurich after NotPetya teach?',
-          options: ['That cyber insurance always pays for everything', 'That insurers never bring up war', 'That you must know the exclusions of your cyber insurance', 'That insurance takes over the reporting obligation from the company'],
-          answer: 'That you must know the exclusions of your cyber insurance',
+          options: ['That cyber insurance always pays for everything', 'That insurers never bring up war', 'That you must know your policy’s exclusions', 'That insurance takes over the reporting obligation from the company'],
+          answer: 'That you must know your policy’s exclusions',
           why: 'Zurich invoked an exclusion for acts of war; the case was only settled in 2022. Insurance is only worth something if you know what it excludes.',
         },
       ],

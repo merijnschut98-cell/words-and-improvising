@@ -70,3 +70,15 @@ Levels 1–2 have worked examples and levels 3–4 faded examples (ask + reveal)
 - prepare: example 400 × 0.45 × 160 = 28,800; × 4 = €115,200; no-fallback 400 × 160 × 4 = €256,000. r1: 250 × 0.30 × 320 = 24,000.
 - contain: example 25 / 5 = 5, 300 / 40 = 7.5, total 12.5 days; Maersk 45,000 / 10 = 4,500 per day. r1: 23 − 14 = 9.
 - recover r1: 5 × 16 × 10,000 = 800,000; + 150,000 + 90,000 = 1,040,000; − 300,000 = 740,000, so 740.
+
+## Review round (2026-11-08)
+
+- **Dutch fines confirmed** in the Cbw text (wetten.overheid.nl, BWBR0052872, version 15-08-2026): Art. 80 essential €10M or 2% of worldwide turnover, Art. 87 important €7M or 1.4% (whichever is higher) for breaches of Art. 21, 21a and 25–30; €1M for other breaches; Art. 93 up to €25,000 for a board member personally; Art. 78 court suspension of board members of essential entities (on request of the authority). The text now states these as the Dutch act's own maxima.
+- **Reporting channel confirmed**: Cbw Art. 26–29 (24 h early warning to "haar CSIRT en haar bevoegde autoriteit", 72 h notification, interim report on request, final report one month after the notification, progress report if ongoing). Rijksoverheid (7 July 2026): report through the reporting portal. The "check the current channel" hedge is gone.
+- **Supervisors** per the NCSC referral chart (Doorverwijsboom Cbw 2026): C26–C30 manufacturing: CSIRT NCSC, supervisor RDI; medical devices Z-CERT/IGJ; chemicals NCSC/ILT; food NCSC/NVWA. Text names RDI for electronics, electrical equipment, machinery and vehicles only.
+- **NIST SP 800-61 Rev. 3** (April 2025) replaces the Rev. 2 (2012) life cycle with the six CSF 2.0 functions; the lesson now says so and frames the four phases as the classic cycle.
+- **Mandiant dwell time**: median 10 days (2023), 11 (2024), 14 (2025, M-Trends 2026). "Just over a week" replaced.
+- **Norsk Hydro** total cost "around 800 MNOK" confirmed on hydro.com (cyber-attack page).
+- **IEC 62443 roles aligned with `eng.ot.governance`**: asset owner, service provider (such as the system integrator; part 2-4), product supplier. NL terms Asseteigenaar / Dienstverlener / Productleverancier as in eng.ot.
+- **Patching aligned with `eng.ot.patching`**: otpatch refers back to qualified patch, patch window and compensating control; term "Maintenance window" replaced by "Virtual patching".
+- **Answer lengths**: besides "never the unique longest", the correct option was the second-longest in 42 of 64 questions (en). Options in 28 questions were rewritten (mostly shorter correct answers); the answer’s length rank is now spread (en 5/18/22/19, nl 6/11/26/21, longest to shortest). Positions stay 16/16/16/16, identical in en and nl.
