@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'Een fabriek laat een scherm bouwen dat machinestilstand per oorzaak toont. Bij welke aanpak zien de operators het eerst iets werken?',
-          options: ['Eerst acht maanden specificeren en bouwen, dan alles tegelijk opleveren', 'Elke twee weken een klein stuk dat al werkt, en hun reactie verwerken', 'Wachten tot IT tijd heeft', 'Een pakket kopen en het niet aanpassen'],
-          answer: 'Elke twee weken een klein stuk dat al werkt, en hun reactie verwerken',
+          options: ['Acht maanden specificeren en bouwen, en dan alles in één keer opleveren', 'Wachten tot IT tijd heeft, en het dan in één lange ruk bouwen', 'Een standaardpakket kopen en dat ongewijzigd uitrollen', 'Elke twee weken een klein werkend stuk, bijgestuurd op hun reacties'],
+          answer: 'Elke twee weken een klein werkend stuk, bijgestuurd op hun reacties',
           why: 'Dat is het kernidee van agile: kort cyclisch werken, met na elke ronde iets wat gebruikers echt kunnen proberen.',
         },
       ],
@@ -34,20 +34,20 @@ export default {
         },
         {
           q: 'Welke waarde staat in het Agile Manifesto?',
-          options: ['Plannen boven doen', 'Werkende software boven uitgebreide documentatie', 'Snelheid boven kwaliteit', 'Tools boven mensen'],
+          options: ['Een plan volgen boven inspelen op verandering', 'Uitgebreide documentatie boven werkende software', 'Werkende software boven uitgebreide documentatie', 'Processen en tools boven mensen en samenwerking'],
           answer: 'Werkende software boven uitgebreide documentatie',
-          why: 'Het is een van de vier waarden. Documentatie heeft volgens de slotzin ook waarde, maar werkende software weegt zwaarder.',
+          why: 'Het is een van de vier waarden. De andere drie draaien waarden om: het manifest zet steeds het linkerdeel voorop. Documentatie heeft volgens de slotzin ook waarde, maar werkende software weegt zwaarder.',
         },
         {
           q: 'Wat is het grootste risico van de watervalaanpak bij software?',
-          options: ['Hij is te goedkoop', 'Er wordt te vaak getest', 'Je ontdekt pas laat dat je het verkeerde bouwt, als veranderen duur is', 'Gebruikers zien te vroeg iets'],
-          answer: 'Je ontdekt pas laat dat je het verkeerde bouwt, als veranderen duur is',
+          options: ['Je merkt pas laat dat het het verkeerde is, als veranderen duur is', 'Gebruikers zien te vroeg werkende stukken en hun commentaar remt het team af', 'Er moet veel meer getest worden dan bij andere aanpakken, dus het is duurder', 'Het is niet te combineren met een vast budget of een vaste einddatum'],
+          answer: 'Je merkt pas laat dat het het verkeerde is, als veranderen duur is',
           why: 'Gebruikers weten vaak pas wat ze willen als ze iets zien. In een waterval zien ze het pas aan het eind.',
         },
         {
           q: 'Welk Lean-idee lijkt het meest op een agile iteratie?',
-          options: ['De PDCA-cyclus: klein proberen, kijken, bijsturen', 'Een grote seriegrootte', 'Een jaarbudget', 'Een 5S-audit'],
-          answer: 'De PDCA-cyclus: klein proberen, kijken, bijsturen',
+          options: ['Een 5S-audit: de werkplek sorteren en opruimen', 'Een grote seriegrootte om omsteltijd te besparen', 'PDCA: klein proberen, kijken, bijsturen', 'Een jaarbudget met een evaluatie per kwartaal'],
+          answer: 'PDCA: klein proberen, kijken, bijsturen',
           why: 'Allebei zijn het korte leerlussen: je test een idee in het echt en past aan op wat je ziet.',
         },
       ],
@@ -88,7 +88,7 @@ export default {
       pre: [
         {
           q: 'Een softwareteam werkt al drie maanden elk weekend door om een datum te halen. Wat zegt een van de agile principes daarover?',
-          options: ['Prima, zolang de datum gehaald wordt', 'Het team moet een tempo houden dat het onbeperkt kan volhouden', 'Weekendwerk hoort bij agile', 'De klant beslist over werktijden'],
+          options: ['Prima, zolang de datum gehaald wordt', 'Overwerk hoort bij agile als een sprint in gevaar komt', 'De klant bepaalt de werktijden', 'Het team moet een tempo houden dat het onbeperkt kan volhouden'],
           answer: 'Het team moet een tempo houden dat het onbeperkt kan volhouden',
           why: 'Principe 8 vraagt een duurzaam tempo. Wie maandenlang overwerkt, maakt meer fouten en raakt mensen kwijt.',
         },
@@ -114,19 +114,19 @@ export default {
         },
         {
           q: 'Een rapport heeft 40 velden; gebruikers gebruiken er 12. Welk principe zegt dat je de rest niet moet bouwen?',
-          options: ['Eenvoud: zo veel mogelijk werk níet doen', 'Duurzaam tempo', 'Zelforganiserende teams', 'Gesprekken van aangezicht tot aangezicht'],
+          options: ['Eenvoud: zo veel mogelijk werk níet doen', 'Duurzaam tempo: geen structureel overwerk', 'Zelforganiserende teams bepalen wat er gebouwd wordt', 'Veranderende eisen zijn welkom, ook laat'],
           answer: 'Eenvoud: zo veel mogelijk werk níet doen',
           why: 'Principe 10. Elk ongebruikt veld kost bouwen, testen en onderhoud: overbewerking in Lean-termen.',
         },
         {
           q: 'Wat is technische schuld?',
-          options: ['Geld dat IT nog moet betalen aan een leverancier', 'Snelle, rommelige oplossingen die later extra werk kosten', 'Licenties die verlopen zijn', 'Een tekort aan ontwikkelaars'],
+          options: ['Geld dat IT een leverancier nog schuldig is voor licenties', 'Overuren die het team nog moet opnemen', 'Budgetoverschrijding die naar volgend jaar doorschuift', 'Snelle, rommelige oplossingen die later extra werk kosten'],
           answer: 'Snelle, rommelige oplossingen die later extra werk kosten',
           why: 'Net als rente op een lening: hoe langer je het laat staan, hoe meer elke volgende aanpassing kost.',
         },
         {
           q: 'Een team werkt al maanden over om sprints te halen. Wat is de meest waarschijnlijke oorzaak?',
-          options: ['Het team is lui', 'Er wordt structureel te veel werk ingepland', 'De sprints zijn te lang', 'Er zijn te weinig vergaderingen'],
+          options: ['Er wordt structureel te veel werk ingepland', 'Het team is niet gemotiveerd genoeg', 'De sprints zijn te lang om overzicht te houden', 'Er zijn te weinig overleggen om het werk af te stemmen'],
           answer: 'Er wordt structureel te veel werk ingepland',
           why: 'Duurzaam tempo (principe 8) betekent plannen op wat het team echt kan. Structureel overwerk wijst op te veel werk, niet op te weinig inzet.',
         },
@@ -168,15 +168,15 @@ export default {
       pre: [
         {
           q: 'Scrum, de bekendste agile methode, ontleent zijn naam aan een artikel uit 1986. Waar keken de schrijvers naar?',
-          options: ['Naar Amerikaanse softwarebedrijven', 'Naar productontwikkeling bij onder meer Honda, Canon en Fuji-Xerox', 'Naar het leger', 'Naar ziekenhuizen'],
-          answer: 'Naar productontwikkeling bij onder meer Honda, Canon en Fuji-Xerox',
-          why: 'Takeuchi en Nonaka beschreven in Harvard Business Review hoe Japanse fabrikanten nieuwe producten ontwikkelden met kleine teams die samen het hele traject liepen, als een rugbyteam.',
+          options: ['Amerikaanse softwarebedrijven in Silicon Valley', 'Rugbyteams en hoe ze trainen voor wedstrijden', 'Commandostructuren in het Amerikaanse leger na de Tweede Wereldoorlog', 'Productontwikkeling bij onder meer Honda, Canon en Fuji-Xerox'],
+          answer: 'Productontwikkeling bij onder meer Honda, Canon en Fuji-Xerox',
+          why: 'Takeuchi en Nonaka beschreven in Harvard Business Review hoe Japanse fabrikanten nieuwe producten ontwikkelden met kleine teams die samen het hele traject liepen. Rugby was hun beeld daarvoor, niet hun onderwerp.',
         },
       ],
       teach: [
         'Agile heeft wortels in de maakindustrie. In 1986 schreven Takeuchi en Nonaka in Harvard Business Review over hoe onder meer Honda, Canon en Fuji-Xerox producten ontwikkelden: niet als een estafette waarin elke afdeling het stokje doorgeeft, maar als een rugbyteam dat samen naar voren beweegt. Jeff Sutherland nam daar begin jaren negentig de naam Scrum van over.\n\nDe Scrum Guide van 2020 zegt het letterlijk: Scrum is gebaseerd op empirisme en Lean-denken. Empirisme betekent beslissen op wat je waarneemt en meet, niet op aannames.',
         'Lean is het denken achter het Toyota-productiesysteem: waarde zien vanuit de klant en verspilling weghalen. Twee ideeën zijn direct overgenomen.\n\nFlow: werk soepel laten doorstromen, zonder stapels ertussen. En pull: pas nieuw werk beginnen als er ruimte is, in plaats van werk de keten in te duwen. Kanban, het bordsysteem uit topic 4, komt rechtstreeks uit Toyota’s pullsysteem.',
-        'Mary en Tom Poppendieck vertaalden in 2006 de zeven verspillingen naar software. Voorraad wordt half werk: code die geschreven is maar nog niet getest of in gebruik. Het verliest waarde, net als voorraad die veroudert.\n\nOverproductie wordt extra functies die niemand vraagt. Wachten blijft wachten. Transport wordt overdrachten tussen mensen, waarbij kennis weglekt. Verder: taakwisselingen, opnieuw leren wat iemand al wist, en fouten.',
+        'In hun boek uit 2006 vertaalden Mary en Tom Poppendieck de zeven verspillingen naar software. Voorraad wordt half werk: code die geschreven is maar nog niet getest of in gebruik. Het verliest waarde, net als voorraad die veroudert.\n\nOverproductie wordt extra functies die niemand vraagt. Wachten blijft wachten. Transport wordt overdrachten tussen mensen, waarbij kennis weglekt. Verder: taakwisselingen, opnieuw leren wat iemand al wist, en fouten.',
         'Kaizen en de retrospective, de vaste terugblik van een team op zijn werkwijze, lijken op elkaar: allebei kleine, continue verbeteringen door de mensen die het werk doen.\n\nHet verschil is eerlijk om te benoemen. Kaizen in de fabriek leunt op standaardwerk: eerst een vaste beste manier, dan die verbeteren. Een softwareteam doet elke keer ander werk en heeft minder standaard om op te bouwen. De retrospective verbetert daarom vooral samenwerking en afspraken, minder een vaste werkmethode.',
         'Nog een verschil: Lean in de fabriek wil variatie omlaag, want elk product moet hetzelfde zijn. In productontwikkeling is variatie deels het doel: je zoekt iets nieuws. Te veel standaardiseren doodt daar de ontdekking.\n\nWaar experts over discussiëren: sommigen noemen agile “Lean voor IT”, anderen zeggen dat dat het leerdeel tekortdoet. Een eerlijke zin voor een Lean-manager: “Flow, pull en continu verbeteren nemen we mee; standaardwerk en variatie omlaag werken hier anders.”',
       ],
@@ -196,14 +196,14 @@ export default {
         },
         {
           q: 'Welke softwareverspilling hoort volgens de Poppendiecks bij voorraad in de fabriek?',
-          options: ['Fouten', 'Half werk: code die geschreven is maar niet getest of in gebruik', 'Overdrachten', 'Taakwisselingen'],
-          answer: 'Half werk: code die geschreven is maar niet getest of in gebruik',
+          options: ['Fouten: werk dat over moet', 'Overdrachten: werk dat van persoon naar persoon gaat', 'Taakwisselingen: springen tussen klussen', 'Half werk: geschreven maar nog niet in gebruik'],
+          answer: 'Half werk: geschreven maar nog niet in gebruik',
           why: 'Net als voorraad levert het niets op en veroudert het, terwijl het wel geld en aandacht vasthoudt.',
         },
         {
           q: 'Wat is een eerlijk verschil tussen kaizen in de fabriek en een retrospective in een softwareteam?',
-          options: ['Kaizen is voor managers, de retrospective voor het team', 'Er is geen verschil', 'Kaizen bouwt op standaardwerk; een softwareteam heeft minder vaste standaard om te verbeteren', 'Een retrospective mag alleen over techniek gaan'],
-          answer: 'Kaizen bouwt op standaardwerk; een softwareteam heeft minder vaste standaard om te verbeteren',
+          options: ['Kaizen is voor managers; de retrospective voor het team', 'Er is geen echt verschil, alleen de naam', 'Kaizen bouwt op standaardwerk; software heeft minder vaste standaard', 'Een retrospective gaat alleen over techniek'],
+          answer: 'Kaizen bouwt op standaardwerk; software heeft minder vaste standaard',
           why: 'Daarom gaat een retrospective vaker over samenwerking en afspraken dan over een vaste werkmethode.',
         },
         {
@@ -227,7 +227,7 @@ export default {
             '“Elk werk heeft een standaard. Als zij die niet hebben, is dat precies het probleem.”',
             '“Ik heb twintig jaar Lean gedaan. Ik hoef van IT niet te horen hoe verbeteren werkt.”',
           ],
-          model: '“Klopt, en het herhaalbare deel kan zeker een standaard krijgen: testen, opleveren, de definitie van klaar. Daar kan jouw ervaring helpen. Het ontwerpwerk zelf blijft elke keer anders. Zullen we samen bij hun eerste retrospective aanschuiven? Dan zie je zelf waar het lijkt en waar niet.”',
+          model: '“Klopt, en het herhaalbare deel kan zeker een standaard krijgen: testen, opleveren, de Definition of Done. Daar kan jouw ervaring helpen. Het ontwerpwerk zelf blijft elke keer anders. Zullen we samen bij hun eerste retrospective aanschuiven? Dan zie je zelf waar het lijkt en waar niet.”',
           rubric: [
             'Geeft hem gelijk waar hij gelijk heeft: het herhaalbare werk',
             'Houdt vast aan het verschil voor ontwerpwerk',
@@ -250,7 +250,7 @@ export default {
       pre: [
         {
           q: 'Een fabriek vervangt op 20 lijnen dezelfde labelprinter door een bekend nieuw type. Welke aanpak past het best?',
-          options: ['Scrum met sprints van twee weken', 'Een plan op volgorde met een vaste uitrolplanning', 'Helemaal geen plan', 'Eerst een jaar onderzoek'],
+          options: ['Een plan op volgorde met een vaste uitrolplanning', 'Scrum met sprints van twee weken en na elke ronde een review', 'Geen plan: elke printer vervangen als hij kapotgaat', 'Eerst een jaar onderzoek naar printertypes'],
           answer: 'Een plan op volgorde met een vaste uitrolplanning',
           why: 'Wat er moet gebeuren en hoe is bekend en herhaalt zich 20 keer. Daar voegen korte leerrondes weinig toe.',
         },
@@ -272,7 +272,7 @@ export default {
       recall: [
         {
           q: 'Wanneer levert agile het meest op?',
-          options: ['Als alles vooraf bekend is', 'Als er veel onzeker is over wat je maakt of hoe', 'Als het contract een vaste prijs en vaste scope heeft', 'Als het team groot is'],
+          options: ['Als alles vooraf bekend is', 'Als er veel onzeker is over wat je maakt of hoe', 'Als het contract prijs en scope vastlegt', 'Als het team groot is'],
           answer: 'Als er veel onzeker is over wat je maakt of hoe',
           why: 'Korte feedbacklussen betalen zich terug als je moet leren. Bij bekend werk zijn ze vooral extra overleg.',
         },
@@ -284,13 +284,13 @@ export default {
         },
         {
           q: 'Wat is een stage-gate-proces?',
-          options: ['Een sprint van vier weken', 'Fases met bij elke poort een go/no-go-besluit', 'Een manier om software te testen', 'Een type contract'],
+          options: ['Een sprint van vier weken met een vaste scope', 'Een testaanpak die software in fases controleert', 'Fases met bij elke poort een go/no-go-besluit', 'Een contractvorm die de leverancier per fase betaalt'],
           answer: 'Fases met bij elke poort een go/no-go-besluit',
           why: 'Gangbaar in de maakindustrie voor productontwikkeling, en goed te combineren met iteraties voor software.',
         },
         {
           q: 'Een leverancier wil agile werken tegen een vaste prijs voor een vaste scope. Wat is de beste vraag?',
-          options: ['“Kunnen jullie het goedkoper?”', '“Hoeveel ontwikkelaars zetten jullie in?”', '“Gebruiken jullie Scrum of Kanban?”', '“Wat staat er in het contract als de scope verandert?”'],
+          options: ['“Kan het goedkoper als we de documentatie laten vallen?”', '“Hoeveel ontwikkelaars zetten jullie in, en hoe ervaren?”', '“Gebruiken jullie Scrum of Kanban, en welke tool?”', '“Wat staat er in het contract als de scope verandert?”'],
           answer: '“Wat staat er in het contract als de scope verandert?”',
           why: 'Vaste scope en beweeglijke scope botsen. Het contract bepaalt wie dan betaalt en beslist.',
         },
@@ -358,20 +358,20 @@ export default {
         },
         {
           q: 'Welke drie verantwoordelijkheden kent de Scrum Guide van 2020?',
-          options: ['Projectleider, teamleider, tester', 'Product Owner, Scrum Master, Developers', 'Opdrachtgever, architect, programmeur', 'Manager, coach, specialist'],
+          options: ['Product Owner, projectleider, Developers', 'Product Owner, Scrum Master, Development Team', 'Opdrachtgever, Scrum Master, Development Team', 'Product Owner, Scrum Master, Developers'],
           answer: 'Product Owner, Scrum Master, Developers',
-          why: 'Dat zijn de drie verantwoordelijkheden in het Scrum Team. Een projectleider komt in Scrum niet voor.',
+          why: '“Development Team” was de term van 2017; sinds 2020 zijn de Developers onderdeel van één Scrum Team. Een projectleider komt in Scrum niet voor.',
         },
         {
           q: 'Wat doet de Product Owner?',
-          options: ['Hij schrijft de code', 'Hij bewaakt de waarde van het product: wat eerst komt en waarom', 'Hij is de baas van de Developers', 'Hij notuleert de vergaderingen'],
-          answer: 'Hij bewaakt de waarde van het product: wat eerst komt en waarom',
+          options: ['Bewaakt de waarde: wat eerst komt en waarom', 'Schrijft mee aan de code', 'Verdeelt elke dag de taken over de Developers', 'Notuleert en plant de vergaderingen'],
+          answer: 'Bewaakt de waarde: wat eerst komt en waarom',
           why: 'De Product Owner is één persoon die bepaalt wat de meeste waarde heeft en dat uitlegt.',
         },
         {
           q: 'Waarom is één persoon als Product Owner én Scrum Master riskant?',
-          options: ['Het kost te veel geld', 'De Guide verbiedt het met boetes', 'Niemand houdt degene die beslist wat er gebouwd wordt een spiegel voor over het proces', 'Dan zijn er te veel vergaderingen'],
-          answer: 'Niemand houdt degene die beslist wat er gebouwd wordt een spiegel voor over het proces',
+          options: ['Het kost te veel, want je betaalt twee salarissen voor één baan', 'De Scrum Guide verbiedt het en certificeerders controleren het', 'Niemand houdt wie beslist wat er gebouwd wordt een spiegel voor', 'Je hebt dan twee keer zoveel vergaderingen'],
+          answer: 'Niemand houdt wie beslist wat er gebouwd wordt een spiegel voor',
           why: 'De rollen trekken verschillende kanten op: waarde en tempo tegenover een gezond proces. Gecombineerd verliest het proces meestal.',
         },
       ],
@@ -420,7 +420,7 @@ export default {
       ],
       teach: [
         'Scrum kent vijf events: vaste momenten om te plannen, te inspecteren en bij te sturen. De sprint zelf is het eerste; hij bevat de andere vier.\n\nElk event heeft een timebox: een maximale duur die vastligt. Voor een sprint van een maand geeft de Guide: Sprint Planning hooguit 8 uur, Daily Scrum 15 minuten, Sprint Review hooguit 4 uur, Sprint Retrospective hooguit 3 uur. Bij kortere sprints zijn ze “meestal korter”.',
-        'De Sprint Planning opent de sprint. Het hele Scrum Team beantwoordt drie vragen. Waarom is deze sprint waardevol? Daaruit komt het sprintdoel. Wat kan er deze sprint af? De Developers kiezen werk van de lijst. Hoe gaan we dat doen? Ze knippen het in stukken van meestal een dag of minder.\n\nDe Developers bepalen hoeveel ze aannemen. De Product Owner zegt wat het belangrijkst is, niet hoeveel erin moet.',
+        'De Sprint Planning opent de sprint. Het hele Scrum Team beantwoordt drie vragen. Waarom is deze sprint waardevol? Daaruit komt het sprintdoel (Sprint Goal). Wat kan er deze sprint af? De Developers kiezen werk van de lijst. Hoe gaan we dat doen? Ze knippen het in stukken van meestal een dag of minder.\n\nDe Developers bepalen hoeveel ze aannemen. De Product Owner zegt wat het belangrijkst is, niet hoeveel erin moet.',
         'De Daily Scrum is een overleg van 15 minuten voor de Developers, elke werkdag op dezelfde tijd en plek. Ze kijken hoe het gaat richting het sprintdoel en passen hun plan voor de komende dag aan.\n\nHet is geen statusoverleg voor een manager. De drie vaste vragen “wat deed ik gisteren, wat doe ik vandaag, wat zit in de weg” stonden in oudere versies; sinds 2020 kiest het team zelf de vorm.',
         'De Sprint Review sluit het werk van de sprint af. Het team laat belanghebbenden (stakeholders) zien wat er af is, en samen bespreken ze wat er nu het meest waardevol is. Het is een werksessie, geen presentatie met slides.\n\nDe Guide zegt er iets belangrijks bij: de review is nooit een poort om iets live te zetten. Wat af is, mag eerder in gebruik.',
         'De Sprint Retrospective is het laatste event: het team kijkt hoe het werkte, wat goed ging en wat beter kan, en kiest de belangrijkste verbeteringen. Die mogen direct op de lijst voor de volgende sprint.\n\nVoor jou: dit is de kaizenmotor van Scrum. Een retrospective zonder één concrete actie is als een kaizenbord zonder eigenaar. Refinement, het verfijnen van de lijst met werk, is overigens geen event; dat gebeurt doorlopend.',
@@ -446,8 +446,8 @@ export default {
         },
         {
           q: 'Wat is de Sprint Review?',
-          options: ['Een werksessie waarin het team belanghebbenden laat zien wat af is en samen bepaalt wat nu het meest waardevol is', 'Een beoordeling van de Developers door de manager', 'De poort waar alles langs moet voordat het live mag', 'Een presentatie met slides over de voortgang'],
-          answer: 'Een werksessie waarin het team belanghebbenden laat zien wat af is en samen bepaalt wat nu het meest waardevol is',
+          options: ['Een beoordeling waarin de manager de output van elke Developer over de sprint bespreekt', 'Een werksessie met belanghebbenden over wat af is en wat nu komt', 'De goedkeuringspoort waar elke wijziging door moet voordat hij live mag', 'Een presentatie met slides over voortgang, percentages en budget'],
+          answer: 'Een werksessie met belanghebbenden over wat af is en wat nu komt',
           why: 'Volgens de Guide een werksessie, en uitdrukkelijk geen poort om iets live te zetten.',
         },
         {
@@ -479,7 +479,7 @@ export default {
           ],
         },
       },
-      sayIt: 'Noem in 60 seconden de vijf Scrum-events en het doel van elk, met de timebox voor een sprint van twee weken.',
+      sayIt: 'Noem in 60 seconden de vijf Scrum-events en het doel van elk, met het maximum voor een sprint van een maand en wat gangbaar is bij twee weken.',
       terms: [
         { term: 'Timebox', def: 'Een vaste maximale duur voor een event. Is de tijd op, dan stopt het event.' },
         { term: 'Sprint Planning', def: 'Opent de sprint: waarom is deze sprint waardevol, wat kan er af, en hoe gaan we dat doen. Hooguit 8 uur bij een sprint van een maand.' },
@@ -494,8 +494,8 @@ export default {
       pre: [
         {
           q: 'Een team heeft vier functies af en één functie “bijna af, alleen nog testen”. Wat mag het team volgens de Scrum Guide in de Sprint Review laten zien?',
-          options: ['Alle vijf, met een disclaimer', 'Alleen de vier die voldoen aan de afspraak over wat af is', 'Niets, want de sprint is mislukt', 'Alleen wat de manager kiest'],
-          answer: 'Alleen de vier die voldoen aan de afspraak over wat af is',
+          options: ['Alle vijf, met een duidelijke kanttekening bij die ene in de test', 'Niets, want de sprint heeft niet alles geleverd wat gepland was', 'Alleen de vier die voldoen aan de afspraak over wat af betekent', 'Wat de manager het overtuigendst vindt voor de belanghebbenden'],
+          answer: 'Alleen de vier die voldoen aan de afspraak over wat af betekent',
           why: 'Werk dat niet voldoet aan de Definition of Done mag niet worden opgeleverd en zelfs niet worden getoond in de review. Het gaat terug naar de Product Backlog.',
         },
       ],
@@ -528,9 +528,9 @@ export default {
         },
         {
           q: 'Wat gebeurt er met werk dat niet voldoet aan de Definition of Done?',
-          options: ['Het wordt toch getoond, met een disclaimer', 'Het telt voor de helft mee', 'Het gaat automatisch mee naar de volgende sprint', 'Het mag niet worden opgeleverd of getoond en gaat terug naar de Product Backlog'],
-          answer: 'Het mag niet worden opgeleverd of getoond en gaat terug naar de Product Backlog',
-          why: 'Zo blijft half werk zichtbaar als half werk, net als bij een kwaliteitspoort aan het eind van een lijn.',
+          options: ['Het wordt toch getoond, met de kanttekening dat het testen nog loopt', 'Het telt voor de helft van zijn punten mee in de velocity', 'Het schuift automatisch door naar de volgende sprint, bovenaan de lijst', 'Het wordt niet getoond en gaat terug naar de Product Backlog'],
+          answer: 'Het wordt niet getoond en gaat terug naar de Product Backlog',
+          why: 'Het mag niet worden opgeleverd of in de review getoond. Zo blijft half werk zichtbaar als half werk, net als bij een kwaliteitspoort aan het eind van een lijn. De Product Owner bepaalt waar het in de volgorde komt.',
         },
         {
           q: 'Wie mag een sprint afbreken?',
@@ -583,10 +583,10 @@ export default {
         },
       ],
       teach: [
-        'De Scrum Guide van 2020 veranderde een paar dingen die je in oudere teams nog tegenkomt. Het aparte “Development Team” verdween: er is één Scrum Team, om wij-zij-denken tussen Product Owner en bouwers te stoppen.\n\nZelforganiserend werd zelfsturend: het team bepaalt zelf wie wat doet, wanneer en hoe. Het Product Goal en de drie toezeggingen kwamen erbij. En de Guide werd minder voorschrijvend: de drie vaste vragen van de Daily Scrum en de vuistregel van 10% tijd voor refinement verdwenen.',
+        'De Scrum Guide van 2020 veranderde een paar dingen die je in oudere teams nog tegenkomt. Het aparte “Development Team” verdween: er is één Scrum Team, om wij-zij-denken tussen Product Owner en bouwers te stoppen.\n\nZelforganiserend werd zelfsturend (self-managing): het team bepaalt zelf wie wat doet, wanneer en hoe. Het Product Goal en de drie toezeggingen kwamen erbij. En de Guide werd minder voorschrijvend: de drie vaste vragen van de Daily Scrum en de vuistregel van 10% tijd voor refinement verdwenen.',
         'Veel populaire praktijken staan níet in de Guide: user stories, story points, velocity, burndown charts. Ze kunnen helpen, maar wie zegt “dat moet volgens Scrum”, heeft het mis.\n\nDe Guide noemt burndowns en vergelijkbare grafieken nuttig, maar zegt dat ze empirisme niet vervangen: kijken naar wat er echt af is.',
         'Bekende fouten. De proxy Product Owner: iemand zonder mandaat die elke beslissing moet navragen bij de echte baas. Dat vertraagt alles. De Scrum Master als secretaris: notuleert, plant vergaderingen, maar pakt geen obstakels aan.\n\nEn de mini-waterval: week 1 analyseren, week 2 bouwen, en testen schuift naar de volgende sprint. Dan heb je een waterval in hokjes van twee weken, met alle nadelen.',
-        'Scrum-but is de term voor “we doen Scrum, maar…”: maar zonder retrospective, maar met sprints van drie maanden, maar zonder Product Owner. De Guide zegt het zelf: Scrum is onveranderlijk als geheel; alleen delen gebruiken kan, maar dan heet het geen Scrum.\n\nDat is geen dogma om het dogma. Elk weggelaten onderdeel haalt een stuk van de feedbacklus weg: zonder review geen klantreactie, zonder retrospective geen verbetering.',
+        'ScrumBut is de term voor “we doen Scrum, maar…”: maar zonder retrospective, maar met sprints van drie maanden, maar zonder Product Owner. De Guide zegt het zelf: Scrum is onveranderlijk als geheel; alleen delen gebruiken kan, maar dan heet het geen Scrum.\n\nDat is geen dogma om het dogma. Elk weggelaten onderdeel haalt een stuk van de feedbacklus weg: zonder review geen klantreactie, zonder retrospective geen verbetering.',
         'Waar experts over discussiëren: sommige ervaren coaches vinden dat teams na een paar jaar de Guide moeten ontgroeien; anderen zien dat “ontgroeien” vaak terugvallen betekent. Er is weinig hard onderzoek naar wat Scrum oplevert ten opzichte van andere aanpakken.\n\nVragen die werken: “Wanneer heeft een retrospective voor het laatst iets veranderd?” “Kan de Product Owner zelf beslissen?” “Hoeveel werk uit de vorige sprint was echt af?”',
       ],
       example: {
@@ -605,7 +605,7 @@ export default {
         },
         {
           q: 'Wat is een proxy Product Owner?',
-          options: ['Een tweede Product Owner voor de vakantie', 'Iemand zonder mandaat die elke beslissing moet navragen', 'Een Product Owner van de leverancier', 'Een tool die de backlog ordent'],
+          options: ['Een tweede Product Owner die invalt in de vakanties', 'Iemand zonder mandaat die elke beslissing moet navragen', 'Een Product Owner die bij de leverancier in dienst is in plaats van bij de klant', 'Een tool die de backlog automatisch ordent'],
           answer: 'Iemand zonder mandaat die elke beslissing moet navragen',
           why: 'Elk besluit wacht dan op iemand anders, en het team staat stil of gokt.',
         },
@@ -650,7 +650,7 @@ export default {
         { term: 'Zelfsturend', def: 'Het team bepaalt zelf wie wat doet, wanneer en hoe. Vervangt sinds 2020 “zelforganiserend” in de Scrum Guide.' },
         { term: 'Proxy Product Owner', def: 'Iemand die Product Owner heet maar geen mandaat heeft en elke beslissing moet navragen.' },
         { term: 'Mini-waterval', def: 'Analyseren, bouwen en testen na elkaar binnen of over sprints, zodat werk aan het eind van een sprint niet af is.' },
-        { term: 'Scrum-but', def: '“We doen Scrum, maar…”: Scrum met weggelaten onderdelen, waardoor stukken van de feedbacklus verdwijnen.' },
+        { term: 'ScrumBut', def: '“We doen Scrum, maar…”: Scrum met weggelaten onderdelen, waardoor stukken van de feedbacklus verdwijnen.' },
       ],
     },
     {
@@ -659,9 +659,9 @@ export default {
       pre: [
         {
           q: 'Welke beschrijving van werk zegt het meest over waarom het nodig is?',
-          options: ['“Database-tabel stilstandredenen aanmaken”', '“Als ploegleider wil ik aan het eind van de dienst de top 3 stilstandoorzaken zien, zodat ik de overdracht kort en gericht houd”', '“Scherm 4 bouwen”', '“Rapportage verbeteren”'],
-          answer: '“Als ploegleider wil ik aan het eind van de dienst de top 3 stilstandoorzaken zien, zodat ik de overdracht kort en gericht houd”',
-          why: 'Die zegt wie het nodig heeft, wat hij wil en waarom. De andere zeggen alleen wat er technisch gebeurt, of niets.',
+          options: ['“Maak een databasetabel voor stilstandsoorzaken met code, omschrijving en lijn”', '“Als ploegleider wil ik de top 3 stopoorzaken, zodat de overdracht kort blijft”', '“Bouw scherm 4 zoals beschreven in hoofdstuk 3 van het eisendocument”', '“Verbeter de stilstandsrapportage zodat die beter en sneller is dan nu”'],
+          answer: '“Als ploegleider wil ik de top 3 stopoorzaken, zodat de overdracht kort blijft”',
+          why: 'Het zegt wie het nodig heeft, wat die wil en waarom. De laatste optie heeft wel een “zodat”, maar “beter en sneller” is geen reden die iemand kan controleren.',
         },
       ],
       teach: [
@@ -679,26 +679,26 @@ export default {
       recall: [
         {
           q: 'Wat is het belangrijkste deel van “Als [rol] wil ik [iets], zodat [waarde]”?',
-          options: ['De rol', 'Het “zodat”: waarom het nodig is', 'Het woord “wil”', 'De lengte van de zin'],
+          options: ['De rol: wie het wil', 'Het “wil ik”: wat er gebouwd wordt', 'De lengte: het moet op één regel passen', 'Het “zodat”: waarom het nodig is'],
           answer: 'Het “zodat”: waarom het nodig is',
           why: 'Het waarom helpt het team kiezen tussen oplossingen en schrappen wat niet bijdraagt.',
         },
         {
           q: 'Waar staan de drie C’s van Ron Jeffries voor?',
-          options: ['Cost, Change, Control', 'Code, Check, Close', 'Card, Conversation, Confirmation', 'Customer, Contract, Commitment'],
+          options: ['Card, Conversation, Confirmation', 'Cost, Change, Control', 'Customer, Contract, Commitment', 'Code, Check, Close'],
           answer: 'Card, Conversation, Confirmation',
           why: 'Een kaartje als geheugensteun, de details uit een gesprek, en afspraken hoe je controleert dat het werkt.',
         },
         {
           q: 'Wat zijn acceptatiecriteria?',
-          options: ['Concrete, toetsbare voorwaarden waaraan een story moet voldoen', 'De handtekening van de klant op het contract', 'Het budget van een story', 'De volgorde in de backlog'],
+          options: ['De handtekening van de klant onder het contract voor de story', 'Het urenbudget dat het team voor de story afsprak', 'Concrete, toetsbare voorwaarden waaraan een story moet voldoen', 'De plek van de story in de volgorde van de backlog'],
           answer: 'Concrete, toetsbare voorwaarden waaraan een story moet voldoen',
           why: 'Ze maken duidelijk wanneer de story af is, nog voordat het team begint.',
         },
         {
           q: 'Wat is een epic?',
-          options: ['Een story die al af is', 'Een bug met hoge prioriteit', 'Een story die te groot is voor één sprint en later geknipt wordt', 'De naam van het sprintdoel'],
-          answer: 'Een story die te groot is voor één sprint en later geknipt wordt',
+          options: ['Een story die af is en in de review is getoond', 'Een story te groot voor één sprint, die je later knipt', 'Een bug met de hoogste prioriteit op de backlog', 'De naam van het sprintdoel voor een release'],
+          answer: 'Een story te groot voor één sprint, die je later knipt',
           why: 'Epics houden het overzicht op hoofdlijnen; de kleinere stories zijn wat het team echt oppakt.',
         },
       ],
@@ -738,14 +738,14 @@ export default {
       pre: [
         {
           q: 'Een story is zo groot dat het team denkt er drie sprints over te doen. Wat doe je in refinement?',
-          options: ['Hem zo laten en hopen', 'Hem in kleinere stories knippen die elk iets werkends opleveren', 'Hem aan één ontwikkelaar geven', 'Hem van de backlog halen'],
-          answer: 'Hem in kleinere stories knippen die elk iets werkends opleveren',
-          why: 'Volgens de Scrum Guide is een item klaar om te kiezen als het team het binnen één sprint af kan maken. Grote stories knip je dus.',
+          options: ['Laten staan en het team er drie sprints voor geven', 'Aan de meest ervaren ontwikkelaar geven om alleen af te maken', 'Opdelen in een databasedeel, een logicadeel en een schermdeel', 'Knippen in kleinere stories die elk op zichzelf werken'],
+          answer: 'Knippen in kleinere stories die elk op zichzelf werken',
+          why: 'Volgens de Scrum Guide is een item klaar voor selectie als het team het binnen één sprint af kan krijgen. Dus knip je grote stories, maar zo dat elk stuk werkt voor de gebruiker: alleen een databasedeel levert niemand iets op.',
         },
       ],
       teach: [
         'Refinement is het doorlopend verfijnen van de Product Backlog: items in kleinere, preciezere stukken knippen, details en acceptatiecriteria toevoegen, en de grootte inschatten. Het is geen apart Scrum-event; de meeste teams plannen er een vast moment voor, vaak een of twee uur per week.\n\nDe Developers die het werk gaan doen, schatten de grootte. De Product Owner legt uit wat er nodig is en waarom.',
-        'Een bekende checklist voor een goede story is INVEST, van Bill Wake uit 2003. Independent: zo los mogelijk van andere stories. Negotiable: details zijn bespreekbaar. Valuable: levert de gebruiker iets op. Estimable: het team kan de grootte inschatten. Small: past ruim in een sprint. Testable: je kunt controleren of hij werkt.\n\nValt een story op een letter, dan weet je wat je in refinement moet doen.',
+        'Een bekende checklist voor een goede story is INVEST, van Bill Wake uit 2003. Independent: zo los mogelijk van andere stories. Negotiable: details zijn bespreekbaar. Valuable: levert de gebruiker iets op. Estimable: het team kan de grootte inschatten. Small: past ruim in een sprint. Testable: je kunt controleren of hij werkt.\n\nScoort een story slecht op een letter, dan weet je wat je in refinement moet doen.',
         'Het lastigste is story splitsen: een grote story knippen in kleinere die elk nog steeds iets werkends opleveren. Niet horizontaal knippen in lagen (database, logica, scherm), want dan levert geen stuk iets op voor de gebruiker.\n\nWel verticaal, als plakjes van een taart: per stap in het werkproces, per regel, per lijn of per soort product. Eerst de eenvoudigste variant, dan de uitzonderingen.',
         'Veel teams gebruiken een Definition of Ready: een checklist wanneer een story klaar is om in een sprint te gaan, zoals “acceptatiecriteria bekend, afhankelijkheden geregeld”. Hij staat níet in de Scrum Guide. Pas op dat hij geen nieuwe poort wordt waar alles voor blijft wachten.\n\nOrdenen is het bepalen van de volgorde van de backlog. De Product Owner doet dat op waarde, risico en afhankelijkheden: vaak eerst wat veel oplevert of veel onzekerheid wegneemt.',
         'Voor jou als Lean-consultant: refinement lijkt op werkvoorbereiding (work preparation) in onderhoud. Een klus die zonder onderdelen en tekening de vloer op gaat, loopt vast; een story zonder criteria ook.\n\nTypische fouten: refinement als lange vergadering met het hele team over items voor over een half jaar; of helemaal geen refinement, zodat de Sprint Planning uren duurt. Vraag: “Zijn de bovenste items op de backlog klaar voor de komende twee sprints?”',
@@ -758,14 +758,14 @@ export default {
       recall: [
         {
           q: 'Waar staat de S in INVEST voor?',
-          options: ['Specific', 'Small: klein genoeg om ruim in een sprint te passen', 'Simple', 'Sprint'],
-          answer: 'Small: klein genoeg om ruim in een sprint te passen',
+          options: ['Small: past ruim in een sprint', 'Specific: duidelijk beschreven', 'Simple: geen technisch risico', 'Sprint-ready: verfijnd en geschat'],
+          answer: 'Small: past ruim in een sprint',
           why: 'Independent, Negotiable, Valuable, Estimable, Small, Testable.',
         },
         {
           q: 'Welke manier van knippen levert per stuk iets werkends op?',
-          options: ['Horizontaal: eerst de database, dan de logica, dan het scherm', 'Per ontwikkelaar', 'Per week', 'Verticaal: per stap, regel of variant, telkens door alle lagen heen'],
-          answer: 'Verticaal: per stap, regel of variant, telkens door alle lagen heen',
+          options: ['Horizontaal: eerst de database, dan de logica, dan het scherm', 'Verticaal: per stap, regel of variant, door alle lagen heen', 'Per ontwikkelaar, zodat iedereen een eigen stuk heeft', 'Per week, zodat elk stuk precies in de agenda past'],
+          answer: 'Verticaal: per stap, regel of variant, door alle lagen heen',
           why: 'Elk verticaal plakje kan een gebruiker al proberen. Een databaselaag alleen levert niemand iets op.',
         },
         {
@@ -776,7 +776,7 @@ export default {
         },
         {
           q: 'Wie schat de grootte van backlog-items volgens de Scrum Guide?',
-          options: ['De Product Owner', 'De Scrum Master', 'De Developers die het werk gaan doen', 'De manager'],
+          options: ['De Product Owner, die de waarde kent', 'De Scrum Master, die het proces bewaakt', 'De Developers die het werk gaan doen', 'De manager, die het budget draagt'],
           answer: 'De Developers die het werk gaan doen',
           why: 'Zij weten het best wat het werk inhoudt. De Product Owner kan helpen door afwegingen uit te leggen.',
         },
@@ -818,15 +818,15 @@ export default {
       pre: [
         {
           q: 'Een team schat stories in story points. Wat meten die punten?',
-          options: ['Uren werk per persoon', 'Hoe groot een story is ten opzichte van andere stories: werk, complexiteit en onzekerheid samen', 'De waarde voor de klant', 'Het aantal regels code'],
-          answer: 'Hoe groot een story is ten opzichte van andere stories: werk, complexiteit en onzekerheid samen',
-          why: 'Story points zijn relatief: een story van 5 is ongeveer twee keer zo groot als een van 2 of 3. Ze zijn bewust geen uren.',
+          options: ['Uren werk per persoon, afgerond op hele dagen', 'De waarde van de story voor de klant, in euro’s of punten', 'Grootte ten opzichte van andere stories, onzekerheid inbegrepen', 'Het aantal regels code dat de story ongeveer nodig heeft'],
+          answer: 'Grootte ten opzichte van andere stories, onzekerheid inbegrepen',
+          why: 'Story points zijn relatief: werk, complexiteit en onzekerheid samen, vergeleken met andere stories. Een 5 is ongeveer twee keer zo groot als een 2 of 3. Het zijn bewust geen uren.',
         },
       ],
       teach: [
         'Mensen zijn slecht in absoluut schatten (“hoeveel uur?”), maar redelijk in vergelijken (“is dit groter of kleiner dan dat?”). Relatief schatten gebruikt dat: je vergelijkt nieuw werk met werk dat je kent.\n\nStory points zijn een getal voor de relatieve grootte van een story: hoeveel werk, hoe complex en hoe onzeker samen. Een story van 8 is ongeveer vier keer zo groot als een van 2. Punten zijn per team; de 5 van team A is niet de 5 van team B.',
-        'Teams kiezen meestal uit een aangepaste Fibonacci-reeks: 1, 2, 3, 5, 8, 13, 20, 40, 100. De gaten worden groter naarmate de getallen groeien, omdat je bij groot werk ook minder precies kunt zijn. Twijfel tussen 8 en 13 betekent: het is groot en onzeker, knip hem misschien.\n\nPunten komen uit Extreme Programming: “ideale dagen” werden hernoemd, omdat opdrachtgevers niet snapten waarom een ideale dag drie echte dagen kostte. Ron Jeffries schreef in 2019 dat hij ze misschien heeft bedacht, en dat het hem nu spijt.',
-        'Planning poker is een manier om samen te schatten, beschreven door James Grenning in 2002. Ieder heeft kaarten met de reeks. De Product Owner leest een story voor, iedereen kiest stil een kaart, en tegelijk gaan ze om.\n\nLiggen ze ver uiteen, zeg 3 en 13, dan leggen de hoogste en laagste uit waarom. Juist dat gesprek is de waarde: de een ziet een risico dat de ander mist. Daarna nog een ronde.',
+        'Teams kiezen meestal uit een aangepaste Fibonacci-reeks: 1, 2, 3, 5, 8, 13, 20, 40, 100. De gaten worden groter naarmate de getallen groeien, omdat je bij groot werk ook minder precies kunt zijn. Twijfel tussen 8 en 13 betekent: het is groot en onzeker, knip hem misschien.\n\nPunten komen uit Extreme Programming: “ideale dagen” werden hernoemd, omdat opdrachtgevers niet snapten waarom een ideale dag zo’n drie echte dagen kostte. Ron Jeffries schreef in 2019, half als grap, dat hij ze misschien heeft bedacht en dat het hem nu spijt.',
+        'Planning poker is een manier om samen te schatten, beschreven door James Grenning in 2002. Ieder heeft kaarten met de reeks. De Product Owner leest een story voor, iedereen kiest stil een kaart, en dan draait iedereen tegelijk zijn kaart om.\n\nLiggen ze ver uiteen, zeg 3 en 13, dan leggen de hoogste en laagste uit waarom. Juist dat gesprek is de waarde: de een ziet een risico dat de ander mist. Daarna nog een ronde.',
         'Velocity is het aantal punten dat een team per sprint afmaakt, volgens de Definition of Done. Over meerdere sprints geeft dat een bandbreedte (range) voor hoe veel werk er in de komende sprints past.\n\nGebruik de spreiding, niet één gemiddelde. Een team dat 18 tot 30 punten haalt, plan je niet op 30. Velocity werkt alleen als de punten van hetzelfde team komen en de manier van schatten stabiel blijft.',
         'Voor jou als Lean-consultant: velocity lijkt op output per ploeg, maar het is geen productiviteitsmaat. Zodra een manager er een doel van maakt, gaan teams ruimer schatten en stijgt velocity zonder dat er meer af is.\n\nWaar experts over discussiëren: sommigen tellen liever gewoon items, omdat dat net zo goed voorspelt als punten wanneer de items klein en ongeveer even groot zijn. Vraag: “Waarvoor gebruiken we deze punten, en wie kijkt ernaar?”',
       ],
@@ -847,20 +847,20 @@ export default {
         },
         {
           q: 'Welk getal komt in de gangbare aangepaste Fibonacci-reeks na 8?',
-          options: ['10', '13', '16', '12'],
+          options: ['13', '16', '20', '21'],
           answer: '13',
-          why: 'De reeks is 1, 2, 3, 5, 8, 13, 20, 40, 100: de gaten groeien mee met de onzekerheid.',
+          why: 'Het spel is 1, 2, 3, 5, 8, 13, 20, 40, 100. 20 komt na 13; 21 is het volgende getal van de echte Fibonacci-reeks, die planningskaarten afronden op 20.',
         },
         {
           q: 'Bij planning poker kiest de één 3 en de ander 13. Wat gebeurt er?',
-          options: ['Je neemt het gemiddelde, 8', 'De Product Owner beslist', 'De hoogste en laagste leggen uit waarom, daarna schat iedereen opnieuw', 'De hoogste wint, voor de zekerheid'],
-          answer: 'De hoogste en laagste leggen uit waarom, daarna schat iedereen opnieuw',
+          options: ['Je neemt het gemiddelde, 8, en gaat door', 'De Product Owner beslist', 'De hoogste wint, voor de zekerheid', 'Die twee leggen hun redenen uit, dan schat iedereen opnieuw'],
+          answer: 'Die twee leggen hun redenen uit, dan schat iedereen opnieuw',
           why: 'Het verschil wijst op een risico of misverstand. Dat gesprek is de echte waarde van samen schatten.',
         },
         {
           q: 'Waarom kun je de velocity van twee teams niet vergelijken?',
-          options: ['Omdat story points per team relatief zijn; de 5 van het ene team is niet de 5 van het andere', 'Omdat velocity geheim is', 'Omdat het ene team langer werkt', 'Dat kan wel, als de sprints even lang zijn'],
-          answer: 'Omdat story points per team relatief zijn; de 5 van het ene team is niet de 5 van het andere',
+          options: ['Punten zijn per team geijkt: de 5 van het ene team is niet die van het andere', 'Velocity is vertrouwelijk en alleen voor het team zelf bedoeld', 'Het ene team werkt langere uren, dus de vergelijking is oneerlijk', 'Dat kan wel, zolang beide teams even lange sprints hebben'],
+          answer: 'Punten zijn per team geijkt: de 5 van het ene team is niet die van het andere',
           why: 'Elk team ijkt zijn punten op eigen werk. Vergelijken leidt vooral tot ruimer schatten.',
         },
       ],
@@ -901,7 +901,7 @@ export default {
       pre: [
         {
           q: 'Aan het begin van een project schat een team 6 maanden. Hoe nauwkeurig is zo’n vroege schatting volgens het bekende model van de onzekerheidskegel?',
-          options: ['Op een week na', 'Plus of min 10%', 'Ergens tussen een kwart en vier keer de schatting', 'Precies, als het team ervaren is'],
+          options: ['Binnen een week ernaast, als het team ervaren is', 'Plus of min 10%, de gebruikelijke marge in planning', 'Ergens tussen een kwart en vier keer de schatting', 'Precies, zolang de scope niet verandert'],
           answer: 'Ergens tussen een kwart en vier keer de schatting',
           why: 'McConnell, op basis van Boehm, geeft bij het eerste idee een bandbreedte van 0,25 tot 4 keer. Die smalt naarmate je meer weet.',
         },
@@ -915,9 +915,9 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Een team bij een fabrikant van verpakkingsfolie vervangt het oude labelsysteem. De stuurgroep wil een livegangdatum. Nog open: 48 items, allemaal klein, gemiddeld een paar dagen werk.\n\nThroughput van de laatste 10 weken, in afgemaakte items per week: 3, 6, 5, 4, 7, 5, 6, 4, 5, 5. Samen 50, gemiddeld 5 per week.\n\nEen Monte Carlo-simulatie met 10.000 runs geeft: 50% kans klaar binnen 10 weken, 85% kans binnen 11 weken, vrijwel zeker binnen 12 weken.',
+        text: 'Een team bij een fabrikant van verpakkingsfolie vervangt het oude labelsysteem. De stuurgroep wil een livegangdatum. Nog open: 48 items, allemaal klein, gemiddeld een paar dagen werk.\n\nThroughput van de laatste 10 weken, in afgemaakte items per week: 3, 6, 5, 4, 7, 5, 6, 4, 5, 5. Samen 50, gemiddeld 5 per week.\n\nEen Monte Carlo-simulatie met 10.000 runs geeft: ongeveer 3 op de 4 runs klaar binnen 10 weken, 98% binnen 11 weken, vrijwel alle binnen 12 weken.',
         ask: 'Welke datum adviseer je de stuurgroep, en wat zeg je erbij? Controleer eerst of de uitkomst van de simulatie klopt met een snelle eigen som.',
-        reveal: 'Snelle som: 48 / 5 = 9,6, dus rond 10 weken bij een gemiddelde week; dat past bij de 50% van de simulatie. Met de traagste week, 3 items: 48 / 3 = 16 weken, maar alle weken zo traag is onwaarschijnlijk. Adviseer de 85%-datum, 11 weken, als toezegging, en zeg erbij: dit geldt voor 48 items; groeit de lijst, dan schuift de datum. We werken de voorspelling elke week bij, zodat jullie een verschuiving vroeg zien.',
+        reveal: 'Snelle som: 48 / 5 = 9,6, dus rond 10 weken bij een gemiddelde week; dat past bij de simulatie, waarin de meeste runs in week 10 klaar zijn. Met de traagste week, 3 items: 48 / 3 = 16 weken, maar alle weken zo traag is onwaarschijnlijk. Binnen 10 weken is maar zo’n 75%, dus voor 85% zekerheid adviseer je 11 weken als toezegging. Tien weken historie is weinig, dus de echte spreiding is waarschijnlijk groter. Zeg erbij: dit geldt voor 48 items; groeit de lijst, dan schuift de datum. We werken de voorspelling elke week bij, zodat jullie een verschuiving vroeg zien.',
       },
       said: 'Wat je hoort in stuurgroepen: “Ik wil geen kansen, ik wil een datum.”',
       recall: [
@@ -930,20 +930,20 @@ export default {
         },
         {
           q: 'Wat is een probabilistische voorspelling?',
-          options: ['Een datum die het team zeker haalt', 'Een schatting in story points', 'Een voorspelling met een kans erbij, zoals 85% kans klaar voor 1 maart', 'Een gok van de Product Owner'],
-          answer: 'Een voorspelling met een kans erbij, zoals 85% kans klaar voor 1 maart',
+          options: ['Een voorspelling met een kans erbij, zoals 85% vóór 1 maart', 'Een datum die het team zeker haalt, omdat hij op data rust', 'Een schatting in story points, door het team omgerekend naar dagen', 'De beste gok van de Product Owner, gecorrigeerd voor vakanties'],
+          answer: 'Een voorspelling met een kans erbij, zoals 85% vóór 1 maart',
           why: 'De opdrachtgever ziet de onzekerheid en kiest zelf hoeveel zekerheid hij nodig heeft.',
         },
         {
           q: 'Wat zegt de wet van Goodhart?',
-          options: ['Werk groeit tot de beschikbare tijd vol is', 'Zodra een maat een doel wordt, is het geen goede maat meer', 'Kleine teams werken sneller', 'Elke schatting is te laag'],
+          options: ['Werk dijt uit tot de beschikbare tijd', 'Mensen toevoegen aan een softwareproject dat uitloopt, vertraagt het verder', 'Alles wat mis kan gaan, gaat ook mis', 'Zodra een maat een doel wordt, is het geen goede maat meer'],
           answer: 'Zodra een maat een doel wordt, is het geen goede maat meer',
-          why: 'Mensen gaan de maat bedienen, zoals ruimer schatten om de velocity op te krikken. Het eerste antwoord is de wet van Parkinson.',
+          why: 'Mensen gaan de maat bedienen, zoals ruimer schatten om de velocity op te krikken. Het eerste antwoord is de wet van Parkinson, het tweede de wet van Brooks, het derde de wet van Murphy.',
         },
         {
           q: 'Waar komen de getallen in een Monte Carlo-simulatie vandaan?',
-          options: ['Uit willekeurige weken uit de echte historie van het team', 'Uit het budget', 'Uit de schatting van de manager', 'Uit een landelijk gemiddelde'],
-          answer: 'Uit willekeurige weken uit de echte historie van het team',
+          options: ['Het budget gedeeld door de weekkosten', 'Willekeurig getrokken weken uit de eigen historie van het team', 'De schatting van de manager plus marge', 'Een landelijk gemiddelde voor vergelijkbare IT-projecten'],
+          answer: 'Willekeurig getrokken weken uit de eigen historie van het team',
           why: 'De simulatie trekt duizenden keren uit de eigen throughput en telt op tot het werk af is.',
         },
       ],
@@ -984,15 +984,15 @@ export default {
       pre: [
         {
           q: 'Kanban komt uit de fabriek. Waar was het oorspronkelijk voor?',
-          options: ['Voor het bijhouden van vakantiedagen', 'Bij Toyota: een kaart die het signaal gaf om onderdelen bij te maken of aan te vullen', 'Voor het plannen van software-releases', 'Voor kwaliteitskeuringen'],
-          answer: 'Bij Toyota: een kaart die het signaal gaf om onderdelen bij te maken of aan te vullen',
+          options: ['Bij Toyota: een kaart als signaal om onderdelen bij te maken', 'Het bijhouden van vakantiedagen per ploeg', 'Het plannen van de lanceringsdata van nieuwe automodellen', 'Het markeren van onderdelen die bij Toyota door de keuring zakten'],
+          answer: 'Bij Toyota: een kaart als signaal om onderdelen bij te maken',
           why: 'Kanban betekent ruwweg “kaart” of “bord”. Bij Toyota trok het verbruik van onderdelen nieuwe productie aan: pull.',
         },
       ],
       teach: [
         'Kanban komt uit het Toyota-productiesysteem van Taiichi Ohno: een kaart bij een bak onderdelen. Is de bak leeg, dan gaat de kaart terug en is dat het signaal om bij te maken. Zo trekt verbruik de productie aan, pull, en ontstaat er geen overproductie.\n\nIn kenniswerk, zoals IT en engineering, is Kanban een werkwijze om de stroom van werk zichtbaar te maken en te sturen. David Anderson maakte die vanaf 2004 bekend; zijn boek verscheen in 2010.',
         'De Kanban Guide van 2020 definieert Kanban als een strategie om de stroom van waarde door een proces te optimaliseren, met een visueel systeem gebaseerd op pull.\n\nHet hart is het kanbanbord: een bord met kolommen voor de stappen in het werk, bijvoorbeeld “te doen”, “analyse”, “bouwen”, “testen”, “klaar”. Elk werkitem, een stuk werk zoals een wens of een storing, is een kaart die van links naar rechts schuift.',
-        'Kanban begint waar je nu bent. Je tekent het werk zoals het echt loopt, niet zoals het op papier hoort. Er zijn geen vaste rollen of sprints; je kunt Kanban ook naast Scrum gebruiken.\n\nDe Definition of Workflow is de gedeelde afspraak over het bord: wat een werkitem is, wanneer werk begint en klaar is, welke stappen er zijn, hoe je onderhanden werk beperkt, en welke regels er gelden.',
+        'Kanban begint waar je nu bent. Je tekent het werk zoals het echt loopt, niet zoals het op papier hoort. Er zijn geen vaste rollen of sprints; je kunt Kanban ook naast Scrum gebruiken.\n\nDe Definition of Workflow is de gedeelde afspraak over het bord: wat een werkitem is, wanneer werk begint en klaar is, welke stappen er zijn, hoe je onderhanden werk beperkt, welke regels er gelden, en hoe lang een item meestal mag duren.',
         'Een kaart die niet verder kan, door wachten op een leverancier, een besluit of een testomgeving, markeer je als geblokkeerd, vaak met een rode sticker. Geblokkeerde kaarten zijn de goudmijn van het bord: ze laten zien waar het systeem hapert.\n\nVoor jou als Lean-consultant: dit is een visueel managementbord, en een geblokkeerde kaart is als een andon, het signaal dat een lijn stilstaat.',
         'Een eerlijk verschil met Toyota: daar is een kanbankaart een signaal voor een standaardonderdeel dat steeds hetzelfde is. In kenniswerk is elk item anders, en verschilt het werk per item enorm. De kaart beschrijft werk, geen voorraad.\n\nTypische fout: een bord vol kaarten zonder grens aan hoeveel werk er tegelijk loopt. Dan is het een takenlijst aan de muur, nog geen pullsysteem. Vraag: “Wanneer telt werk hier als begonnen, en wanneer als klaar?”',
       ],
@@ -1004,25 +1004,25 @@ export default {
       recall: [
         {
           q: 'Waar diende een kanbankaart bij Toyota oorspronkelijk voor?',
-          options: ['Als signaal om onderdelen bij te maken of aan te vullen', 'Als kwaliteitslabel', 'Als werkinstructie', 'Als tijdregistratie'],
-          answer: 'Als signaal om onderdelen bij te maken of aan te vullen',
+          options: ['Een kwaliteitslabel dat laat zien dat een onderdeel is goedgekeurd', 'Een werkinstructie die beschrijft hoe je een onderdeel monteert', 'Een signaal om onderdelen te maken of aan te vullen', 'Een prikkaart die de uren per operator vastlegt'],
+          answer: 'Een signaal om onderdelen te maken of aan te vullen',
           why: 'Verbruik trekt productie aan. Dat is pull: niets maken voordat er vraag is.',
         },
         {
           q: 'Hoe definieert de Kanban Guide Kanban?',
-          options: ['Als een methode met sprints en rollen', 'Als een strategie om de stroom van waarde te optimaliseren met een visueel systeem gebaseerd op pull', 'Als een softwarepakket', 'Als een vorm van projectplanning met een Gantt-chart'],
-          answer: 'Als een strategie om de stroom van waarde te optimaliseren met een visueel systeem gebaseerd op pull',
+          options: ['Als methode met vaste rollen, sprints van twee weken en een planningsoverleg', 'Als softwarepakket om taken en tickets op een scherm te beheren', 'Als vorm van projectplanning met een Gantt-chart en mijlpalen', 'Als visuele, op pull gebaseerde strategie om de stroom van waarde te optimaliseren'],
+          answer: 'Als visuele, op pull gebaseerde strategie om de stroom van waarde te optimaliseren',
           why: 'Kanban heeft geen vaste rollen of sprints; het draait om zichtbaar maken en sturen op flow.',
         },
         {
           q: 'Wat leg je vast in de Definition of Workflow?',
-          options: ['Alleen de kolommen van het bord', 'De namen van de teamleden', 'Wat een werkitem is, wanneer werk begint en klaar is, de stappen, hoe je onderhanden werk beperkt en de regels', 'De prijs per werkitem'],
-          answer: 'Wat een werkitem is, wanneer werk begint en klaar is, de stappen, hoe je onderhanden werk beperkt en de regels',
-          why: 'Zonder die afspraken betekent elke kaart voor iedereen iets anders.',
+          options: ['De kolommen van het bord en wie op elke kaart staat', 'Wat een werkitem is, begin en klaar, stappen, limieten en regels', 'De prijs en deadline van elk werkitem', 'De namen, rollen en werktijden van de teamleden'],
+          answer: 'Wat een werkitem is, begin en klaar, stappen, limieten en regels',
+          why: 'Zonder die afspraken betekent elke kaart voor iedereen iets anders. De Kanban Guide voegt er nog één aan toe: hoe lang een item meestal mag duren.',
         },
         {
           q: 'Waarom zijn geblokkeerde kaarten waardevol?',
-          options: ['Ze laten zien waar het systeem hapert', 'Ze tellen mee als klaar', 'Ze geven het team rust', 'Ze maken het bord kleurrijker'],
+          options: ['Ze tellen mee als afgerond werk voor die week', 'Ze geven het team even rust tussen klussen', 'Ze laten zien waar het systeem hapert', 'Ze maken het bord in één oogopslag leesbaarder'],
           answer: 'Ze laten zien waar het systeem hapert',
           why: 'Net als een andon op de lijn: het probleem wordt zichtbaar, zodat iemand het kan oplossen.',
         },
@@ -1054,7 +1054,7 @@ export default {
         { term: 'Kanban', def: 'Een strategie om de stroom van waarde door een proces te optimaliseren met een visueel systeem gebaseerd op pull. Oorspronkelijk de kaart bij Toyota.' },
         { term: 'Kanbanbord', def: 'Een bord met kolommen voor de stappen in het werk, waarop kaarten van links naar rechts schuiven.' },
         { term: 'Werkitem', def: 'Een stuk werk op het bord, zoals een wens, een tekening of een storing, meestal als één kaart.' },
-        { term: 'Definition of Workflow', def: 'De gedeelde afspraak over het bord: werkitems, begin en eind, stappen, beperking van onderhanden werk en regels.' },
+        { term: 'Definition of Workflow', def: 'De gedeelde afspraak over het bord: werkitems, begin en eind, stappen, beperking van onderhanden werk, regels en de verwachte tijd per item.' },
         { term: 'Geblokkeerd', def: 'Een werkitem dat niet verder kan door een externe oorzaak, zoals wachten op een besluit of leverancier.' },
       ],
     },
@@ -1064,14 +1064,14 @@ export default {
       pre: [
         {
           q: 'Een team van 5 mensen heeft 15 dingen tegelijk onderhanden. Wat gebeurt er meestal als het team afspreekt hooguit 6 dingen tegelijk te doen?',
-          options: ['Er komt minder af', 'Werk komt sneller af, omdat mensen minder schakelen en elkaar helpen', 'Er verandert niets', 'Het team verveelt zich'],
-          answer: 'Werk komt sneller af, omdat mensen minder schakelen en elkaar helpen',
+          options: ['Er komt minder af, omdat mensen wachten tot er een kolom vrij is', 'Er verandert niets, want de totale hoeveelheid werk blijft gelijk', 'Werk komt sneller af: minder schakelen, meer helpen', 'Het team verveelt zich en begint aan zijprojecten'],
+          answer: 'Werk komt sneller af: minder schakelen, meer helpen',
           why: 'Minder tegelijk betekent minder wachten en schakelen. Elk item gaat sneller door het systeem.',
         },
       ],
       teach: [
         'WIP staat voor work in progress: werk dat begonnen is maar nog niet af. In de fabriek heet dat onderhanden werk. Het kost geld, verbergt problemen en maakt alles trager.\n\nEen WIP-limiet is een afgesproken maximum aan werkitems tegelijk in een kolom of in het hele systeem, bijvoorbeeld “testen: hooguit 2”. Staat de kolom vol, dan mag je niets nieuws beginnen. Dat maakt het bord pas een pullsysteem.',
-        'Waarom het werkt: een mens die vijf dingen tegelijk doet, schakelt steeds tussen taken. Die contextwisseling kost tijd om weer in te komen. Gerald Weinberg gaf als vuistregel dat iemand bij elk extra project zo’n 20% van zijn tijd verliest aan schakelen; dat is een schatting uit ervaring, geen meting.\n\nBelangrijker nog: elk item ligt langer stil, omdat iedereen aan iets anders werkt. Klanten wachten langer, ook al is iedereen druk.',
+        'Waarom het werkt: een mens die vijf dingen tegelijk doet, schakelt steeds tussen taken. Die contextwisseling kost tijd om weer in te komen. Gerald Weinberg gaf in 1992 als vuistregel dat iemand bij elk extra project zo’n 20% van zijn tijd verliest aan schakelen; dat is een schatting uit ervaring, geen meting.\n\nBelangrijker nog: elk item ligt langer stil, omdat iedereen aan iets anders werkt. Klanten wachten langer, ook al is iedereen druk.',
         'Wat doe je als een kolom vol zit? Niet iets nieuws pakken, maar kijken wat je rechts op het bord kunt helpen afmaken. Dat heet swarming: met meerdere mensen tegelijk één item afmaken.\n\nEen ontwikkelaar helpt testen; een engineer doet de controle voor een collega. Dat voelt eerst onwennig, want je doet niet “je eigen werk”. Maar het team levert meer op.',
         'Het startgetal hoeft niet perfect te zijn. Een gangbare start is ongeveer het aantal mensen in de stap, of iets minder, en dan bijstellen. Te ruim en er verandert niets; te krap en mensen wachten.\n\nVoor jou als Lean-consultant: dit is hetzelfde als een supermarktvoorraad of een vaste buffer tussen twee machines. De limiet maakt de bottleneck zichtbaar, omdat het werk zich daar ophoopt.',
         'Typische fouten: limieten die bij elke drukte worden opgerekt; limieten per persoon in plaats van per stap; en geen afspraak wat je doet als een kolom vol zit.\n\nWaar experts over discussiëren: sommigen beginnen met een limiet op het hele systeem in plaats van per kolom, omdat dat eenvoudiger is. Vraag aan een team: “Wat doe jij als je klaar bent en de volgende kolom zit vol?”',
@@ -1091,20 +1091,20 @@ export default {
         },
         {
           q: 'Wat is een WIP-limiet?',
-          options: ['Een maximum aan werkuren per week', 'Een afgesproken maximum aan werkitems tegelijk in een stap of in het systeem', 'Een deadline per item', 'Het aantal mensen in het team'],
-          answer: 'Een afgesproken maximum aan werkitems tegelijk in een stap of in het systeem',
-          why: 'Staat de stap vol, dan begin je niets nieuws. Dat maakt het bord een pullsysteem.',
+          options: ['Een afgesproken maximum aan items tegelijk in een stap', 'Een maximum aan werkuren per week', 'Een deadline waaraan elk werkitem moet voldoen', 'Het aantal mensen dat in het team mag'],
+          answer: 'Een afgesproken maximum aan items tegelijk in een stap',
+          why: 'Staat de stap vol, dan begin je niets nieuws. Dat maakt het bord een pullsysteem. Een limiet kan ook op het hele systeem staan in plaats van per stap.',
         },
         {
           q: 'De kolom testen zit vol en jij bent klaar met bouwen. Wat doe je?',
-          options: ['Een nieuw item uit de backlog pakken', 'Naar huis gaan', 'Helpen met testen, zodat een item afkomt', 'De WIP-limiet verhogen'],
-          answer: 'Helpen met testen, zodat een item afkomt',
+          options: ['Een nieuw item van de backlog pakken om bezig te blijven', 'De WIP-limiet voor bouwen met één verhogen', 'Aan je bureau wachten tot testen jouw item trekt', 'Helpen met testen, zodat er een item afkomt'],
+          answer: 'Helpen met testen, zodat er een item afkomt',
           why: 'Swarming: samen afmaken in plaats van nieuw beginnen. Zo komt er sneller iets af.',
         },
         {
           q: 'Waarom maakt een WIP-limiet de bottleneck zichtbaar?',
-          options: ['Omdat de manager dan beter oplet', 'Omdat het werk zich ophoopt voor de stap die het niet bijhoudt', 'Omdat de bottleneck dan verdwijnt', 'Omdat iedereen dan even snel werkt'],
-          answer: 'Omdat het werk zich ophoopt voor de stap die het niet bijhoudt',
+          options: ['De manager let beter op de trage stap', 'Werk hoopt zich op vóór de stap die het niet bijhoudt', 'De bottleneck verdwijnt zodra de limiet er is', 'Iedereen werkt dan even snel'],
+          answer: 'Werk hoopt zich op vóór de stap die het niet bijhoudt',
           why: 'Net als voorraad voor een trage machine: waar de stapel staat, zit het probleem.',
         },
       ],
@@ -1150,7 +1150,7 @@ export default {
         },
       ],
       teach: [
-        'De Kanban Guide noemt vier basismaten voor flow. WIP: het aantal items dat begonnen is maar niet af. Throughput: het aantal items dat per tijdseenheid afkomt, bijvoorbeeld per week. Work item age: hoe lang een item dat nog niet af is al onderweg is. Cycle time: de tijd van begin tot klaar van een afgerond item.\n\nBegin en klaar zijn de punten die je in de Definition of Workflow hebt afgesproken.',
+        'De Kanban Guide noemt vier flowmaten die elk Kanban-systeem minimaal bijhoudt. WIP: het aantal items dat begonnen is maar niet af. Throughput: het aantal items dat per tijdseenheid afkomt, bijvoorbeeld per week. Work item age: hoe lang een item dat nog niet af is al onderweg is. Cycle time: de tijd van begin tot klaar van een afgerond item.\n\nBegin en klaar zijn de punten die je in de Definition of Workflow hebt afgesproken.',
         'Let op een valkuil in woorden. In Lean in de fabriek betekent cyclustijd (cycle time) meestal de tijd per stuk op één station, bijvoorbeeld 45 seconden per product op een machine.\n\nIn Kanban betekent cycle time de hele tijd van begin tot klaar van één item, wat in de fabriek eerder doorlooptijd heet. Lead time gebruiken veel teams voor de tijd vanaf de aanvraag van de klant, inclusief wachten voordat het werk begint. Spreek in elk gesprek af welke definitie je bedoelt.',
         'De wet van Little, in 1961 bewezen door John Little, verbindt de drie maten: gemiddelde cycle time = gemiddelde WIP / gemiddelde throughput.\n\nVoorbeeld: 12 items onderhanden, 3 items per week af, dan duurt een item gemiddeld 12 / 3 = 4 weken. Dezelfde wet ken je uit de fabriek: onderhanden werk gedeeld door uitstroom geeft de doorlooptijd. Hij geldt voor gemiddelden over een periode, niet voor één item.',
         'Wat de wet laat zien: bij gelijke throughput halveert de gemiddelde cycle time als je de WIP halveert. Daarom werken WIP-limieten.\n\nMaar hij heeft voorwaarden. Het systeem moet stabiel zijn: wat binnenkomt, gaat er gemiddeld ook weer uit, en de WIP is aan het begin en eind van de periode ongeveer gelijk. Groeit de stapel onderhanden werk, dan klopt de som niet meer. Vacanti benadrukt: het is een verband tussen gemiddelden achteraf, geen voorspelmachine.',
@@ -1173,21 +1173,21 @@ export default {
         },
         {
           q: 'Wat betekent cycle time in Kanban?',
-          options: ['De tijd per stuk op één machine', 'De tijd van begin tot klaar van één afgerond item', 'Het aantal items per week', 'De lengte van een sprint'],
-          answer: 'De tijd van begin tot klaar van één afgerond item',
-          why: 'Let op: in Lean in de fabriek betekent cyclustijd vaak de tijd per stuk op een station. Spreek de definitie af.',
+          options: ['De tijd per stuk op één station van de lijn', 'Het aantal items dat per week afkomt', 'De tijd van de aanvraag van de klant tot de levering', 'De tijd van begin tot klaar van één item'],
+          answer: 'De tijd van begin tot klaar van één item',
+          why: 'De eerste optie is Lean-cyclustijd op een station, de derde is lead time, inclusief wachten voordat het werk begint. Spreek in elk gesprek de definitie af.',
         },
         {
           q: 'Wat is work item age?',
-          options: ['Hoe lang een item dat nog niet af is al onderweg is', 'De leeftijd van de aanvrager', 'Hoe lang een item na oplevering meegaat', 'De gemiddelde cycle time'],
+          options: ['Hoe lang een afgerond item duurde', 'Hoe lang een item na levering in gebruik blijft', 'Hoe lang een item dat nog niet af is al onderweg is', 'Hoe oud de aanvraag was toen het werk begon'],
           answer: 'Hoe lang een item dat nog niet af is al onderweg is',
-          why: 'Cycle time meet je pas als iets af is; age laat nu al zien welk item te lang duurt.',
+          why: 'De eerste optie is cycle time, die ken je pas als iets af is; leeftijd laat nu al zien welk item te lang duurt.',
         },
         {
           q: 'Wanneer klopt de wet van Little niet goed?',
-          options: ['Als het team klein is', 'Als de sprints kort zijn', 'Als de items verschillend zijn', 'Als het onderhanden werk in de periode flink groeit'],
-          answer: 'Als het onderhanden werk in de periode flink groeit',
-          why: 'De wet vraagt een stabiel systeem: wat binnenkomt gaat er gemiddeld ook uit. Groeit de WIP, dan is die voorwaarde geschonden.',
+          options: ['Als de WIP flink groeit in de periode', 'Als het team minder dan vijf mensen telt', 'Als de sprints korter dan twee weken zijn', 'Als de items onderling sterk in grootte verschillen'],
+          answer: 'Als de WIP flink groeit in de periode',
+          why: 'De wet vraagt een stabiel systeem: wat binnenkomt, gaat er gemiddeld ook uit. Groeit de WIP, dan is die voorwaarde weg. Items van verschillende grootte zijn geen probleem: de wet geldt voor gemiddelden.',
         },
       ],
       situation: {
@@ -1227,8 +1227,8 @@ export default {
       pre: [
         {
           q: 'Een manager wil zijn PLC-programmeurs 100% bezet hebben, zodat er geen minuut verloren gaat. Wat gebeurt er volgens de wachtrijtheorie met de wachttijd voor nieuw werk?',
-          options: ['Die wordt korter', 'Die blijft gelijk', 'Die loopt sterk op, hoe dichter bij 100%, hoe harder', 'Die wordt nul'],
-          answer: 'Die loopt sterk op, hoe dichter bij 100%, hoe harder',
+          options: ['Die wordt korter, want niemand staat ooit stil', 'Die stijgt sterk, harder naarmate je dichter bij 100% komt', 'Die blijft gelijk, want de capaciteit wordt volledig benut', 'Die wordt nul, want werk begint meteen'],
+          answer: 'Die stijgt sterk, harder naarmate je dichter bij 100% komt',
           why: 'Bij variatie in aankomst en werk groeit de wachttijd steeds sneller naarmate de bezetting richting 100% gaat.',
         },
       ],
@@ -1256,20 +1256,20 @@ export default {
         },
         {
           q: 'Wat is een service level expectation?',
-          options: ['Een contract met boeteclausules', 'De gemiddelde cycle time', 'Een verwachting met een kans erbij, zoals 85% van de items binnen 8 dagen klaar', 'Het aantal items per week'],
-          answer: 'Een verwachting met een kans erbij, zoals 85% van de items binnen 8 dagen klaar',
+          options: ['Een contract met boeteclausules voor elk te laat item', 'De gemiddelde cycle time over het afgelopen kwartaal', 'Het aantal items dat het team per week belooft', 'Een tijd met een kans: 85% klaar binnen 8 dagen'],
+          answer: 'Een tijd met een kans: 85% klaar binnen 8 dagen',
           why: 'Zo staat het in de Kanban Guide: een tijd plus een kans, uit de eigen data.',
         },
         {
           q: 'Op een cumulatief stroomdiagram wordt de band van “testen” steeds dikker. Wat betekent dat?',
-          options: ['Het testen gaat sneller', 'Werk hoopt zich op in testen: daar zit waarschijnlijk de bottleneck', 'Er komt minder werk binnen', 'Het team is klaar'],
-          answer: 'Werk hoopt zich op in testen: daar zit waarschijnlijk de bottleneck',
+          options: ['Testen gaat sneller dan de andere stappen', 'Werk hoopt zich op in testen: waarschijnlijk de bottleneck', 'Er komt minder nieuw werk binnen', 'Het team heeft bijna al het werk af'],
+          answer: 'Werk hoopt zich op in testen: waarschijnlijk de bottleneck',
           why: 'Een dikkere band betekent meer items tegelijk in die stap: er gaat meer in dan uit.',
         },
         {
           q: 'Waarom stuur je dagelijks op work item age?',
-          options: ['Omdat cycle time pas bekend is als een item af is; age waarschuwt eerder', 'Omdat het de manager geruststelt', 'Omdat de Scrum Guide het voorschrijft', 'Omdat oude items vanzelf verdwijnen'],
-          answer: 'Omdat cycle time pas bekend is als een item af is; age waarschuwt eerder',
+          options: ['Het stelt de manager gerust dat iedereen bezig is', 'Cycle time ken je pas aan het eind; leeftijd waarschuwt eerder', 'De Scrum Guide eist het als onderdeel van de Daily Scrum', 'Oude items sluiten zich dan na een tijdje vanzelf'],
+          answer: 'Cycle time ken je pas aan het eind; leeftijd waarschuwt eerder',
           why: 'Zoals een regelkaart: ingrijpen voordat het te laat is.',
         },
       ],

@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'A factory has a screen built that shows machine downtime by cause. With which approach do the operators first see something working?',
-          options: ['Eight months of specifying and building, then delivering everything at once', 'Every two weeks a small piece that already works, and their reaction worked in', 'Waiting until IT has time', 'Buying a package and not adapting it'],
-          answer: 'Every two weeks a small piece that already works, and their reaction worked in',
+          options: ['Eight months of specifying and building, then delivering everything in one go', 'Waiting until IT has time, then building it in one long push', 'Buying a standard package and rolling it out unchanged', 'A small working piece every two weeks, adjusted to their reactions'],
+          answer: 'A small working piece every two weeks, adjusted to their reactions',
           why: 'That is the core idea of agile: short cycles, each ending with something users can actually try.',
         },
       ],
@@ -34,19 +34,19 @@ export default {
         },
         {
           q: 'Which value is in the Agile Manifesto?',
-          options: ['Planning over doing', 'Working software over comprehensive documentation', 'Speed over quality', 'Tools over people'],
+          options: ['Following a plan over responding to change', 'Comprehensive documentation over working software', 'Working software over comprehensive documentation', 'Processes and tools over individuals and interactions'],
           answer: 'Working software over comprehensive documentation',
-          why: 'It is one of the four values. By the closing line documentation has value too, but working software weighs more.',
+          why: 'It is one of the four values. The other three options turn values round: the manifesto puts the left-hand item first. By the closing line documentation has value too, but working software weighs more.',
         },
         {
           q: 'What is the biggest risk of the waterfall approach for software?',
-          options: ['It is too cheap', 'There is too much testing', 'You only find out late that you are building the wrong thing, when change is expensive', 'Users see something too early'],
-          answer: 'You only find out late that you are building the wrong thing, when change is expensive',
+          options: ['You learn late that it is the wrong thing, when change is costly', 'Users see working pieces too early and their comments slow the team down', 'It needs far more testing than other approaches, so it costs more', 'It cannot be combined with a fixed budget or a fixed end date'],
+          answer: 'You learn late that it is the wrong thing, when change is costly',
           why: 'Users often only know what they want when they see something. In a waterfall they see it at the end.',
         },
         {
           q: 'Which Lean idea most resembles an agile iteration?',
-          options: ['The PDCA cycle: try small, check, adjust', 'A large batch size', 'An annual budget', 'A 5S audit'],
+          options: ['A 5S audit: sorting and tidying the workplace', 'A large batch size to cut changeover time', 'The PDCA cycle: try small, check, adjust', 'An annual budget with quarterly reviews'],
           answer: 'The PDCA cycle: try small, check, adjust',
           why: 'Both are short learning loops: you test an idea for real and adjust to what you see.',
         },
@@ -88,7 +88,7 @@ export default {
       pre: [
         {
           q: 'A software team has worked every weekend for three months to hit a date. What does one of the agile principles say about that?',
-          options: ['Fine, as long as the date is met', 'The team should keep a pace it can sustain indefinitely', 'Weekend work is part of agile', 'The customer decides working hours'],
+          options: ['Fine, as long as the date is met', 'Overtime is part of agile when a sprint is at risk', 'The customer decides the working hours', 'The team should keep a pace it can sustain indefinitely'],
           answer: 'The team should keep a pace it can sustain indefinitely',
           why: 'Principle 8 asks for a sustainable pace. Months of overtime cause more mistakes and cost you people.',
         },
@@ -114,19 +114,19 @@ export default {
         },
         {
           q: 'A report has 40 fields; users use 12. Which principle says you should not build the rest?',
-          options: ['Simplicity: maximising the work not done', 'Sustainable pace', 'Self-organising teams', 'Face-to-face conversation'],
+          options: ['Simplicity: maximising the work not done', 'Sustainable pace: no structural overtime', 'Self-organising teams decide what to build', 'Welcome changing requirements, even late'],
           answer: 'Simplicity: maximising the work not done',
           why: 'Principle 10. Every unused field costs building, testing and maintenance: over-processing in Lean terms.',
         },
         {
           q: 'What is technical debt?',
-          options: ['Money IT still owes a supplier', 'Quick, messy solutions that cost extra work later', 'Expired licences', 'A shortage of developers'],
-          answer: 'Quick, messy solutions that cost extra work later',
+          options: ['Money IT still owes a supplier for licences', 'Hours of overtime the team still has to take off', 'Budget overrun carried over to the next year', 'Quick, messy fixes that cost extra work later'],
+          answer: 'Quick, messy fixes that cost extra work later',
           why: 'Like interest on a loan: the longer you leave it, the more every next change costs.',
         },
         {
           q: 'A team has worked overtime for months to finish sprints. What is the most likely cause?',
-          options: ['The team is lazy', 'Too much work is planned, structurally', 'The sprints are too long', 'There are too few meetings'],
+          options: ['Too much work is planned, structurally', 'The team is not motivated enough', 'The sprints are too long to keep an overview', 'There are too few meetings to align the work'],
           answer: 'Too much work is planned, structurally',
           why: 'Sustainable pace (principle 8) means planning on what the team can really do. Structural overtime points to too much work, not too little effort.',
         },
@@ -168,15 +168,15 @@ export default {
       pre: [
         {
           q: 'Scrum, the best-known agile method, takes its name from a 1986 article. What did the authors study?',
-          options: ['American software companies', 'Product development at companies including Honda, Canon and Fuji-Xerox', 'The army', 'Hospitals'],
-          answer: 'Product development at companies including Honda, Canon and Fuji-Xerox',
-          why: 'Takeuchi and Nonaka described in Harvard Business Review how Japanese manufacturers developed new products with small teams that ran the whole course together, like a rugby team.',
+          options: ['American software companies in Silicon Valley', 'Rugby teams and how they train for matches', 'Command structures in the American army after the Second World War', 'Product development at Honda, Canon, Fuji-Xerox and others'],
+          answer: 'Product development at Honda, Canon, Fuji-Xerox and others',
+          why: 'Takeuchi and Nonaka described in Harvard Business Review how Japanese manufacturers developed new products with small teams that ran the whole course together. Rugby was their image for it, not their subject.',
         },
       ],
       teach: [
         'Agile has roots in manufacturing. In 1986 Takeuchi and Nonaka wrote in Harvard Business Review about how companies including Honda, Canon and Fuji-Xerox developed products: not as a relay race in which each department passes the baton, but as a rugby team moving forward together. Jeff Sutherland took the name Scrum from it in the early nineties.\n\nThe 2020 Scrum Guide says it literally: Scrum is founded on empiricism and lean thinking. Empiricism means deciding on what you observe and measure, not on assumptions.',
         'Lean is the thinking behind the Toyota Production System: seeing value from the customer’s side and removing waste. Two ideas were taken over directly.\n\nFlow: letting work move smoothly, without piles in between. And pull: only starting new work when there is room, instead of pushing work into the chain. Kanban, the board system in topic 4, comes straight from Toyota’s pull system.',
-        'In 2006 Mary and Tom Poppendieck translated the seven wastes to software. Inventory becomes partially done work: code that is written but not yet tested or in use. It loses value, just like inventory that ages.\n\nOverproduction becomes extra features nobody asked for. Waiting stays waiting. Transport becomes handoffs between people, where knowledge leaks away. Then there is task switching, relearning what someone already knew, and defects.',
+        'In their 2006 book, Mary and Tom Poppendieck translated the seven wastes to software. Inventory becomes partially done work: code that is written but not yet tested or in use. It loses value, just like inventory that ages.\n\nOverproduction becomes extra features nobody asked for. Waiting stays waiting. Transport becomes handoffs between people, where knowledge leaks away. Then there is task switching, relearning what someone already knew, and defects.',
         'Kaizen and the retrospective, a team’s regular look back at how it works, are alike: both are small, continuous improvements by the people doing the work.\n\nThe difference is worth naming honestly. Kaizen in the factory leans on standard work: first a fixed best way, then improve it. A software team does different work each time and has less standard to build on. So the retrospective mostly improves collaboration and agreements, less a fixed work method.',
         'Another difference: Lean in the factory wants less variation, because every product must be the same. In product development variation is partly the point: you are looking for something new. Standardising too much kills the discovery.\n\nWhat experts argue about: some call agile “Lean for IT”, others say that undersells the learning part. An honest line for a Lean manager: “Flow, pull and continuous improvement we take along; standard work and reducing variation work differently here.”',
       ],
@@ -196,14 +196,14 @@ export default {
         },
         {
           q: 'Which software waste matches inventory in the factory, according to the Poppendiecks?',
-          options: ['Defects', 'Partially done work: code that is written but not tested or in use', 'Handoffs', 'Task switching'],
-          answer: 'Partially done work: code that is written but not tested or in use',
+          options: ['Defects: work that has to be redone', 'Handoffs: work passed from one person to the next', 'Task switching: jumping between several jobs', 'Partially done work: written but not yet in use'],
+          answer: 'Partially done work: written but not yet in use',
           why: 'Like inventory it delivers nothing and ages, while it ties up money and attention.',
         },
         {
           q: 'What is an honest difference between kaizen in the factory and a retrospective in a software team?',
-          options: ['Kaizen is for managers, the retrospective for the team', 'There is no difference', 'Kaizen builds on standard work; a software team has less fixed standard to improve', 'A retrospective may only be about technology'],
-          answer: 'Kaizen builds on standard work; a software team has less fixed standard to improve',
+          options: ['Kaizen is for managers; the retrospective is for the team', 'There is no real difference, only the name', 'Kaizen builds on standard work; software has less fixed standard', 'A retrospective is only about technology'],
+          answer: 'Kaizen builds on standard work; software has less fixed standard',
           why: 'That is why a retrospective is more often about collaboration and agreements than about a fixed work method.',
         },
         {
@@ -227,7 +227,7 @@ export default {
             '“All work has a standard. If they don’t have one, that is exactly the problem.”',
             '“I’ve done Lean for twenty years. I don’t need IT telling me how improvement works.”',
           ],
-          model: '“True, and the repeatable part can certainly get a standard: testing, delivering, the definition of done. Your experience can help there. The design work itself stays different every time. Shall we sit in on their first retrospective together? Then you see for yourself where it is alike and where it isn’t.”',
+          model: '“True, and the repeatable part can certainly get a standard: testing, delivering, the Definition of Done. Your experience can help there. The design work itself stays different every time. Shall we sit in on their first retrospective together? Then you see for yourself where it is alike and where it isn’t.”',
           rubric: [
             'Agrees where he is right: the repeatable work',
             'Holds to the difference for design work',
@@ -250,7 +250,7 @@ export default {
       pre: [
         {
           q: 'A factory replaces the same label printer on 20 lines with a known new model. Which approach fits best?',
-          options: ['Scrum with two-week sprints', 'A sequential plan with a fixed roll-out schedule', 'No plan at all', 'A year of research first'],
+          options: ['A sequential plan with a fixed roll-out schedule', 'Scrum with two-week sprints and a review after each round', 'No plan at all: replace each printer when it breaks down', 'First a year of research into printer types'],
           answer: 'A sequential plan with a fixed roll-out schedule',
           why: 'What has to happen and how is known and repeats 20 times. Short learning rounds add little there.',
         },
@@ -272,7 +272,7 @@ export default {
       recall: [
         {
           q: 'When does agile deliver the most?',
-          options: ['When everything is known up front', 'When a lot is uncertain about what you make or how', 'When the contract has a fixed price and fixed scope', 'When the team is large'],
+          options: ['When everything is known up front', 'When a lot is uncertain about what you make or how', 'When the contract fixes price and scope', 'When the team is large'],
           answer: 'When a lot is uncertain about what you make or how',
           why: 'Short feedback loops pay off when you have to learn. With known work they are mostly extra meetings.',
         },
@@ -284,13 +284,13 @@ export default {
         },
         {
           q: 'What is a stage-gate process?',
-          options: ['A four-week sprint', 'Phases with a go/no-go decision at each gate', 'A way of testing software', 'A type of contract'],
+          options: ['A four-week sprint with a fixed scope', 'A test approach that checks software in stages', 'Phases with a go/no-go decision at each gate', 'A contract type that pays the supplier per stage'],
           answer: 'Phases with a go/no-go decision at each gate',
           why: 'Common in manufacturing for product development, and easy to combine with iterations for software.',
         },
         {
           q: 'A supplier wants to work agile for a fixed price and a fixed scope. What is the best question?',
-          options: ['“Can you do it cheaper?”', '“How many developers will you put on it?”', '“Do you use Scrum or Kanban?”', '“What does the contract say when the scope changes?”'],
+          options: ['“Can you do it cheaper if we drop the documentation?”', '“How many developers will you put on it, and how senior?”', '“Do you use Scrum or Kanban, and which tool?”', '“What does the contract say when the scope changes?”'],
           answer: '“What does the contract say when the scope changes?”',
           why: 'Fixed scope and moving scope clash. The contract decides who then pays and decides.',
         },
@@ -358,20 +358,20 @@ export default {
         },
         {
           q: 'Which three accountabilities does the 2020 Scrum Guide name?',
-          options: ['Project manager, team lead, tester', 'Product Owner, Scrum Master, Developers', 'Sponsor, architect, programmer', 'Manager, coach, specialist'],
+          options: ['Product Owner, Project Manager, Developers', 'Product Owner, Scrum Master, Development Team', 'Sponsor, Scrum Master, Development Team', 'Product Owner, Scrum Master, Developers'],
           answer: 'Product Owner, Scrum Master, Developers',
-          why: 'Those are the three accountabilities in the Scrum Team. A project manager does not appear in Scrum.',
+          why: '“Development Team” was the 2017 term; since 2020 the Developers are part of one Scrum Team. A project manager does not appear in Scrum.',
         },
         {
           q: 'What does the Product Owner do?',
-          options: ['Writes the code', 'Looks after the value of the product: what comes first and why', 'Is the Developers’ boss', 'Takes the minutes of meetings'],
-          answer: 'Looks after the value of the product: what comes first and why',
+          options: ['Looks after value: what comes first and why', 'Writes code with the Developers', 'Assigns the tasks to the Developers each day', 'Takes the minutes and books the meetings'],
+          answer: 'Looks after value: what comes first and why',
           why: 'The Product Owner is one person who decides what has the most value and explains it.',
         },
         {
           q: 'Why is one person as both Product Owner and Scrum Master risky?',
-          options: ['It costs too much money', 'The Guide forbids it with fines', 'Nobody holds up a mirror on the process to the person who decides what gets built', 'Then there are too many meetings'],
-          answer: 'Nobody holds up a mirror on the process to the person who decides what gets built',
+          options: ['It costs too much, because you pay two salaries for one job', 'The Scrum Guide forbids it and certification bodies check it', 'Nobody holds up a mirror to whoever decides what is built', 'There are twice as many meetings to attend'],
+          answer: 'Nobody holds up a mirror to whoever decides what is built',
           why: 'The roles pull in different directions: value and speed against a healthy process. Combined, the process usually loses.',
         },
       ],
@@ -446,8 +446,8 @@ export default {
         },
         {
           q: 'What is the Sprint Review?',
-          options: ['A working session in which the team shows stakeholders what is done and together decides what is now most valuable', 'An appraisal of the Developers by the manager', 'The gate everything must pass before it may go live', 'A slide presentation on progress'],
-          answer: 'A working session in which the team shows stakeholders what is done and together decides what is now most valuable',
+          options: ['An appraisal in which the manager reviews each Developer’s output for the sprint', 'A working session with stakeholders on what is done and what comes next', 'The approval gate that every change must pass before it may go live', 'A slide presentation on progress, percentages and budget'],
+          answer: 'A working session with stakeholders on what is done and what comes next',
           why: 'By the Guide a working session, and explicitly not a gate to releasing value.',
         },
         {
@@ -479,7 +479,7 @@ export default {
           ],
         },
       },
-      sayIt: 'In 60 seconds, name the five Scrum events and the purpose of each, with the timebox for a two-week sprint.',
+      sayIt: 'In 60 seconds, name the five Scrum events and the purpose of each, with the maximum for a one-month sprint and what is usual for two weeks.',
       terms: [
         { term: 'Timebox', def: 'A fixed maximum duration for an event. When the time is up, the event stops.' },
         { term: 'Sprint Planning', def: 'Opens the sprint: why is this sprint valuable, what can be done, and how will it get done. At most 8 hours for a one-month sprint.' },
@@ -494,7 +494,7 @@ export default {
       pre: [
         {
           q: 'A team has four features done and one “almost done, just testing left”. What may the team show at the Sprint Review according to the Scrum Guide?',
-          options: ['All five, with a disclaimer', 'Only the four that meet the agreement on what done means', 'Nothing, because the sprint failed', 'Only what the manager picks'],
+          options: ['All five, with a clear disclaimer for the one still in testing', 'None, because the sprint did not deliver everything it planned', 'Only the four that meet the agreement on what done means', 'Whatever the manager finds most convincing for stakeholders'],
           answer: 'Only the four that meet the agreement on what done means',
           why: 'Work that does not meet the Definition of Done cannot be released or even presented at the review. It goes back to the Product Backlog.',
         },
@@ -528,9 +528,9 @@ export default {
         },
         {
           q: 'What happens to work that does not meet the Definition of Done?',
-          options: ['It is shown anyway, with a disclaimer', 'It counts for half', 'It automatically rolls into the next sprint', 'It may not be released or shown and goes back to the Product Backlog'],
-          answer: 'It may not be released or shown and goes back to the Product Backlog',
-          why: 'That keeps half-done work visible as half-done, like a quality gate at the end of a line.',
+          options: ['It is shown anyway, with a disclaimer that testing is still running', 'It counts for half its points in the velocity of the sprint', 'It rolls into the next sprint automatically, at the top of the list', 'It is not shown and goes back to the Product Backlog'],
+          answer: 'It is not shown and goes back to the Product Backlog',
+          why: 'It may not be released or shown at the review. That keeps half-done work visible as half-done, like a quality gate at the end of a line. The Product Owner decides where it comes in the order.',
         },
         {
           q: 'Who may cancel a sprint?',
@@ -605,8 +605,8 @@ export default {
         },
         {
           q: 'What is a proxy Product Owner?',
-          options: ['A second Product Owner for holidays', 'Someone without a mandate who has to check every decision', 'A Product Owner from the supplier', 'A tool that orders the backlog'],
-          answer: 'Someone without a mandate who has to check every decision',
+          options: ['A second Product Owner who stands in during holidays', 'Someone without a mandate who must check every decision', 'A Product Owner employed by the supplier instead of the client', 'A tool that orders the backlog automatically'],
+          answer: 'Someone without a mandate who must check every decision',
           why: 'Every decision then waits on someone else, and the team stands still or guesses.',
         },
         {
@@ -659,9 +659,9 @@ export default {
       pre: [
         {
           q: 'Which description of work says the most about why it is needed?',
-          options: ['“Create database table for downtime reasons”', '“As a shift leader I want to see the top 3 downtime causes at the end of the shift, so that I keep the handover short and focused”', '“Build screen 4”', '“Improve reporting”'],
-          answer: '“As a shift leader I want to see the top 3 downtime causes at the end of the shift, so that I keep the handover short and focused”',
-          why: 'It says who needs it, what they want and why. The others only say what happens technically, or nothing.',
+          options: ['“Create a database table for downtime reasons with a code, description and line”', '“As shift leader I want the top 3 stop causes, so that handovers stay short”', '“Build screen 4 as described in chapter 3 of the requirements document”', '“Improve the downtime reporting so that it is better and faster than now”'],
+          answer: '“As shift leader I want the top 3 stop causes, so that handovers stay short”',
+          why: 'It says who needs it, what they want and why. The last option has a “so that”, but “better and faster” is no reason anyone can check.',
         },
       ],
       teach: [
@@ -679,26 +679,26 @@ export default {
       recall: [
         {
           q: 'What is the most important part of “As a [role] I want [something], so that [value]”?',
-          options: ['The role', 'The “so that”: why it is needed', 'The word “want”', 'The length of the sentence'],
+          options: ['The role: who wants it', 'The “I want”: what gets built', 'The length: it must fit on one line', 'The “so that”: why it is needed'],
           answer: 'The “so that”: why it is needed',
           why: 'The why helps the team choose between solutions and drop what doesn’t contribute.',
         },
         {
           q: 'What do Ron Jeffries’s three Cs stand for?',
-          options: ['Cost, Change, Control', 'Code, Check, Close', 'Card, Conversation, Confirmation', 'Customer, Contract, Commitment'],
+          options: ['Card, Conversation, Confirmation', 'Cost, Change, Control', 'Customer, Contract, Commitment', 'Code, Check, Close'],
           answer: 'Card, Conversation, Confirmation',
           why: 'A card as a reminder, the details from a conversation, and agreements on how you check it works.',
         },
         {
           q: 'What are acceptance criteria?',
-          options: ['Concrete, testable conditions a story must meet', 'The customer’s signature on the contract', 'The budget of a story', 'The order in the backlog'],
+          options: ['The customer’s signature under the contract for the story', 'The hours budget the team agreed for the story', 'Concrete, testable conditions a story must meet', 'The place of the story in the backlog order'],
           answer: 'Concrete, testable conditions a story must meet',
           why: 'They make clear when the story is done, before the team starts.',
         },
         {
           q: 'What is an epic?',
-          options: ['A story that is already done', 'A high-priority bug', 'A story too big for one sprint that is cut up later', 'The name of the sprint goal'],
-          answer: 'A story too big for one sprint that is cut up later',
+          options: ['A story that is done and has been shown in the review', 'A story too big for one sprint, cut up later', 'A bug with the highest priority on the backlog', 'The name of the sprint goal for a release'],
+          answer: 'A story too big for one sprint, cut up later',
           why: 'Epics keep the overview at headline level; the smaller stories are what the team actually picks up.',
         },
       ],
@@ -738,9 +738,9 @@ export default {
       pre: [
         {
           q: 'A story is so big the team thinks it will take three sprints. What do you do in refinement?',
-          options: ['Leave it and hope', 'Cut it into smaller stories that each deliver something working', 'Give it to one developer', 'Take it off the backlog'],
-          answer: 'Cut it into smaller stories that each deliver something working',
-          why: 'By the Scrum Guide an item is ready for selection when the team can get it done within one sprint. So you cut big stories.',
+          options: ['Leave it as is and give the team three sprints for it', 'Give it to the most experienced developer to finish alone', 'Split it into a database part, a logic part and a screen part', 'Cut it into smaller stories that each work on their own'],
+          answer: 'Cut it into smaller stories that each work on their own',
+          why: 'By the Scrum Guide an item is ready for selection when the team can get it done within one sprint. So you cut big stories, but so that each piece works for the user: a database part alone gives nobody anything.',
         },
       ],
       teach: [
@@ -758,14 +758,14 @@ export default {
       recall: [
         {
           q: 'What does the S in INVEST stand for?',
-          options: ['Specific', 'Small: small enough to fit easily in a sprint', 'Simple', 'Sprint'],
-          answer: 'Small: small enough to fit easily in a sprint',
+          options: ['Small: fits easily in a sprint', 'Specific: clearly described', 'Simple: no technical risk', 'Sprint-ready: refined and estimated'],
+          answer: 'Small: fits easily in a sprint',
           why: 'Independent, Negotiable, Valuable, Estimable, Small, Testable.',
         },
         {
           q: 'Which way of cutting delivers something working per piece?',
-          options: ['Horizontally: first the database, then the logic, then the screen', 'Per developer', 'Per week', 'Vertically: by step, rule or variant, each time through all layers'],
-          answer: 'Vertically: by step, rule or variant, each time through all layers',
+          options: ['Horizontally: first the database, then the logic, then the screen', 'Vertically: by step, rule or variant, through all layers', 'Per developer, so everyone has their own piece to work on', 'Per week, so each piece fits exactly into the calendar'],
+          answer: 'Vertically: by step, rule or variant, through all layers',
           why: 'A user can already try each vertical slice. A database layer on its own gives nobody anything.',
         },
         {
@@ -776,7 +776,7 @@ export default {
         },
         {
           q: 'Who sizes backlog items according to the Scrum Guide?',
-          options: ['The Product Owner', 'The Scrum Master', 'The Developers who will do the work', 'The manager'],
+          options: ['The Product Owner, who knows the value', 'The Scrum Master, who guards the process', 'The Developers who will do the work', 'The manager, who carries the budget'],
           answer: 'The Developers who will do the work',
           why: 'They know best what the work involves. The Product Owner can help by explaining trade-offs.',
         },
@@ -818,14 +818,14 @@ export default {
       pre: [
         {
           q: 'A team estimates stories in story points. What do the points measure?',
-          options: ['Hours of work per person', 'How big a story is compared with other stories: work, complexity and uncertainty together', 'The value to the customer', 'The number of lines of code'],
-          answer: 'How big a story is compared with other stories: work, complexity and uncertainty together',
-          why: 'Story points are relative: a 5 is roughly twice as big as a 2 or 3. They are deliberately not hours.',
+          options: ['Hours of work per person, rounded up to whole days', 'The value of the story to the customer, in euros or points', 'Size relative to other stories, uncertainty included', 'The number of lines of code the story will roughly need'],
+          answer: 'Size relative to other stories, uncertainty included',
+          why: 'Story points are relative: work, complexity and uncertainty together, compared with other stories. A 5 is roughly twice as big as a 2 or 3. They are deliberately not hours.',
         },
       ],
       teach: [
         'People are bad at absolute estimates (“how many hours?”) but reasonable at comparing (“is this bigger or smaller than that?”). Relative estimation uses that: you compare new work with work you know.\n\nStory points are a number for the relative size of a story: how much work, how complex and how uncertain together. A story of 8 is about four times as big as one of 2. Points are per team; team A’s 5 is not team B’s 5.',
-        'Teams usually pick from a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100. The gaps grow with the numbers, because with big work you can be less precise too. Hesitating between 8 and 13 means: it is big and uncertain, maybe cut it.\n\nPoints come from Extreme Programming: “ideal days” were renamed, because stakeholders didn’t understand why an ideal day took three real days. Ron Jeffries wrote in 2019 that he may have invented them, and that he is sorry now.',
+        'Teams usually pick from a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100. The gaps grow with the numbers, because with big work you can be less precise too. Hesitating between 8 and 13 means: it is big and uncertain, maybe cut it.\n\nPoints come from Extreme Programming: “ideal days” were renamed, because stakeholders didn’t understand why an ideal day took about three real days. Ron Jeffries wrote in 2019, half joking, that he may have invented them and is sorry now.',
         'Planning poker is a way of estimating together, described by James Grenning in 2002. Everyone has cards with the sequence. The Product Owner reads out a story, everyone picks a card silently, and all turn them over at once.\n\nIf they are far apart, say 3 and 13, the highest and lowest explain why. That conversation is the value: one person sees a risk the other misses. Then another round.',
         'Velocity is the number of points a team finishes per sprint, by the Definition of Done. Over several sprints it gives a range for how much work fits in the coming sprints.\n\nUse the spread, not one average. A team that does 18 to 30 points should not be planned at 30. Velocity only works when the points come from the same team and the way of estimating stays stable.',
         'For you as a Lean consultant: velocity looks like output per shift, but it is not a productivity measure. As soon as a manager makes it a target, teams estimate more generously and velocity rises without more being done.\n\nWhat experts argue about: some prefer simply counting items, because that forecasts as well as points when items are small and roughly similar in size. Ask: “What do we use these points for, and who looks at them?”',
@@ -847,20 +847,20 @@ export default {
         },
         {
           q: 'Which number comes after 8 in the common modified Fibonacci sequence?',
-          options: ['10', '13', '16', '12'],
+          options: ['13', '16', '20', '21'],
           answer: '13',
-          why: 'The sequence is 1, 2, 3, 5, 8, 13, 20, 40, 100: the gaps grow with the uncertainty.',
+          why: 'The deck is 1, 2, 3, 5, 8, 13, 20, 40, 100. 20 comes after 13; 21 is the next number of the true Fibonacci sequence, which planning decks round to 20.',
         },
         {
           q: 'In planning poker one person picks 3 and another 13. What happens?',
-          options: ['You take the average, 8', 'The Product Owner decides', 'The highest and lowest explain why, then everyone estimates again', 'The highest wins, to be safe'],
-          answer: 'The highest and lowest explain why, then everyone estimates again',
+          options: ['You take the average, 8, and move on', 'The Product Owner decides', 'The highest wins, to be safe', 'The two explain their reasons, then all estimate again'],
+          answer: 'The two explain their reasons, then all estimate again',
           why: 'The gap points to a risk or a misunderstanding. That conversation is the real value of estimating together.',
         },
         {
           q: 'Why can’t you compare the velocity of two teams?',
-          options: ['Because story points are relative per team; one team’s 5 is not another team’s 5', 'Because velocity is secret', 'Because one team works longer hours', 'You can, if the sprints are equally long'],
-          answer: 'Because story points are relative per team; one team’s 5 is not another team’s 5',
+          options: ['Points are calibrated per team: one team’s 5 is not another’s', 'Velocity is confidential and may only be seen by the team itself', 'One team works longer hours, so the comparison is unfair', 'You can, as long as both teams have sprints of equal length'],
+          answer: 'Points are calibrated per team: one team’s 5 is not another’s',
           why: 'Each team calibrates its points on its own work. Comparing mostly leads to more generous estimates.',
         },
       ],
@@ -901,8 +901,8 @@ export default {
       pre: [
         {
           q: 'At the start of a project a team estimates 6 months. How accurate is such an early estimate according to the well-known cone of uncertainty model?',
-          options: ['Within a week', 'Plus or minus 10%', 'Somewhere between a quarter and four times the estimate', 'Exact, if the team is experienced'],
-          answer: 'Somewhere between a quarter and four times the estimate',
+          options: ['Within a week either way, if the team is experienced', 'Plus or minus 10%, the usual margin in planning', 'Anywhere from a quarter to four times the estimate', 'Exact, as long as the scope does not change'],
+          answer: 'Anywhere from a quarter to four times the estimate',
           why: 'McConnell, building on Boehm, gives a range of 0.25 to 4 times at the initial concept. It narrows as you learn more.',
         },
       ],
@@ -915,9 +915,9 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'A team at a packaging-film manufacturer is replacing the old labelling system. The steering committee wants a go-live date. Still open: 48 items, all small, a few days of work each on average.\n\nThroughput over the last 10 weeks, in items finished per week: 3, 6, 5, 4, 7, 5, 6, 4, 5, 5. Total 50, average 5 per week.\n\nA Monte Carlo simulation with 10,000 runs gives: 50% chance of being done within 10 weeks, 85% chance within 11 weeks, near certainty within 12 weeks.',
+        text: 'A team at a packaging-film manufacturer is replacing the old labelling system. The steering committee wants a go-live date. Still open: 48 items, all small, a few days of work each on average.\n\nThroughput over the last 10 weeks, in items finished per week: 3, 6, 5, 4, 7, 5, 6, 4, 5, 5. Total 50, average 5 per week.\n\nA Monte Carlo simulation with 10,000 runs gives: about 3 in 4 runs done within 10 weeks, 98% within 11 weeks, practically all within 12 weeks.',
         ask: 'Which date do you advise the steering committee, and what do you say with it? First check whether the simulation result matches a quick sum of your own.',
-        reveal: 'Quick sum: 48 / 5 = 9.6, so about 10 weeks at an average week; that matches the 50% from the simulation. With the slowest week, 3 items: 48 / 3 = 16 weeks, but every week that slow is unlikely. Advise the 85% date, 11 weeks, as the commitment, and add: this holds for 48 items; if the list grows, the date moves. We update the forecast every week, so you see a shift early.',
+        reveal: 'Quick sum: 48 / 5 = 9.6, so about 10 weeks at an average week; that matches the simulation, where most runs finish in week 10. With the slowest week, 3 items: 48 / 3 = 16 weeks, but every week that slow is unlikely. Within 10 weeks is only about 75%, so for 85% certainty advise 11 weeks as the commitment. Ten weeks of history is little, so the real spread is probably wider. Add: this holds for 48 items; if the list grows, the date moves. We update the forecast every week, so you see a shift early.',
       },
       said: 'What you hear in steering committees: “I don’t want probabilities, I want a date.”',
       recall: [
@@ -930,20 +930,20 @@ export default {
         },
         {
           q: 'What is a probabilistic forecast?',
-          options: ['A date the team will certainly hit', 'An estimate in story points', 'A forecast with a probability attached, such as an 85% chance of being done before 1 March', 'A guess by the Product Owner'],
-          answer: 'A forecast with a probability attached, such as an 85% chance of being done before 1 March',
+          options: ['A forecast with a chance attached, such as 85% by 1 March', 'A date the team will certainly hit, because it is based on data', 'An estimate in story points, converted into days by the team', 'The Product Owner’s best guess, adjusted for holidays'],
+          answer: 'A forecast with a chance attached, such as 85% by 1 March',
           why: 'The sponsor sees the uncertainty and chooses how much certainty he needs.',
         },
         {
           q: 'What does Goodhart’s law say?',
-          options: ['Work expands to fill the time available', 'When a measure becomes a target, it ceases to be a good measure', 'Small teams work faster', 'Every estimate is too low'],
+          options: ['Work expands to fill the time available', 'Adding people to a late software project makes it later', 'Anything that can go wrong, will go wrong', 'When a measure becomes a target, it ceases to be a good measure'],
           answer: 'When a measure becomes a target, it ceases to be a good measure',
-          why: 'People serve the measure, such as estimating more generously to push up velocity. The first option is Parkinson’s law.',
+          why: 'People serve the measure, such as estimating more generously to push up velocity. The first option is Parkinson’s law, the second Brooks’s law, the third Murphy’s law.',
         },
         {
           q: 'Where do the numbers in a Monte Carlo simulation come from?',
-          options: ['From random weeks out of the team’s real history', 'From the budget', 'From the manager’s estimate', 'From a national average'],
-          answer: 'From random weeks out of the team’s real history',
+          options: ['The budget divided by weekly cost', 'Random weeks drawn from the team’s own history', 'The manager’s estimate plus a margin', 'A national average for comparable IT projects'],
+          answer: 'Random weeks drawn from the team’s own history',
           why: 'The simulation draws thousands of times from the team’s own throughput and adds up until the work is done.',
         },
       ],
@@ -984,15 +984,15 @@ export default {
       pre: [
         {
           q: 'Kanban comes from the factory. What was it originally for?',
-          options: ['Tracking holiday days', 'At Toyota: a card that signalled to make or replenish parts', 'Planning software releases', 'Quality inspections'],
-          answer: 'At Toyota: a card that signalled to make or replenish parts',
+          options: ['At Toyota: a card signalling to make more parts', 'Tracking the holiday days of workers per shift', 'Planning the launch dates of new car models', 'Marking parts that failed the quality inspection at Toyota'],
+          answer: 'At Toyota: a card signalling to make more parts',
           why: 'Kanban roughly means “card” or “signboard”. At Toyota the use of parts pulled new production: pull.',
         },
       ],
       teach: [
         'Kanban comes from Taiichi Ohno’s Toyota Production System: a card with a bin of parts. When the bin is empty, the card goes back and that is the signal to make more. So consumption pulls production, and there is no overproduction.\n\nIn knowledge work, such as IT and engineering, Kanban is a way of making the flow of work visible and steering it. David Anderson made it known from 2004; his book came out in 2010.',
         'The 2020 Kanban Guide defines Kanban as a strategy for optimising the flow of value through a process using a visual, pull-based system.\n\nAt its heart is the Kanban board: a board with columns for the steps in the work, for example “to do”, “analysis”, “build”, “test”, “done”. Each work item, a piece of work such as a request or a fault, is a card that moves from left to right.',
-        'Kanban starts where you are. You draw the work as it really flows, not as it should on paper. There are no fixed roles or sprints; you can also use Kanban alongside Scrum.\n\nThe Definition of Workflow is the shared agreement about the board: what a work item is, when work starts and finishes, which steps there are, how you limit work in progress, and which rules apply.',
+        'Kanban starts where you are. You draw the work as it really flows, not as it should on paper. There are no fixed roles or sprints; you can also use Kanban alongside Scrum.\n\nThe Definition of Workflow is the shared agreement about the board: what a work item is, when work starts and finishes, which steps there are, how you limit work in progress, which rules apply, and how long an item should usually take.',
         'A card that can’t move on, because it waits for a supplier, a decision or a test environment, you mark as blocked, often with a red sticker. Blocked cards are the gold mine of the board: they show where the system stutters.\n\nFor you as a Lean consultant: this is a visual management board, and a blocked card is like an andon, the signal that a line has stopped.',
         'An honest difference from Toyota: there a kanban card signals a standard part that is always the same. In knowledge work each item is different, and the work per item varies hugely. The card describes work, not stock.\n\nTypical mistake: a board full of cards with no limit on how much work runs at once. Then it is a to-do list on the wall, not yet a pull system. Ask: “When does work count as started here, and when as done?”',
       ],
@@ -1004,25 +1004,25 @@ export default {
       recall: [
         {
           q: 'What was a kanban card at Toyota originally for?',
-          options: ['As a signal to make or replenish parts', 'As a quality label', 'As a work instruction', 'As time registration'],
-          answer: 'As a signal to make or replenish parts',
+          options: ['A quality label showing a part passed inspection', 'A work instruction describing how to assemble a part', 'A signal to make or replenish parts', 'A time card recording hours per operator'],
+          answer: 'A signal to make or replenish parts',
           why: 'Consumption pulls production. That is pull: make nothing before there is demand.',
         },
         {
           q: 'How does the Kanban Guide define Kanban?',
-          options: ['As a method with sprints and roles', 'As a strategy for optimising the flow of value using a visual, pull-based system', 'As a software package', 'As a form of project planning with a Gantt chart'],
-          answer: 'As a strategy for optimising the flow of value using a visual, pull-based system',
+          options: ['As a method with fixed roles, two-week sprints and a planning meeting', 'As a software package for managing tasks and tickets on screen', 'As a form of project planning with a Gantt chart and milestones', 'As a visual, pull-based strategy for optimising the flow of value'],
+          answer: 'As a visual, pull-based strategy for optimising the flow of value',
           why: 'Kanban has no fixed roles or sprints; it is about making flow visible and steering it.',
         },
         {
           q: 'What do you set down in the Definition of Workflow?',
-          options: ['Only the columns of the board', 'The names of the team members', 'What a work item is, when work starts and finishes, the steps, how you limit work in progress and the rules', 'The price per work item'],
-          answer: 'What a work item is, when work starts and finishes, the steps, how you limit work in progress and the rules',
-          why: 'Without those agreements every card means something different to everyone.',
+          options: ['The columns of the board and who is assigned to each card', 'What a work item is, start and finish, steps, limits and rules', 'The price and deadline of each work item', 'The names, roles and working hours of the team members'],
+          answer: 'What a work item is, start and finish, steps, limits and rules',
+          why: 'Without those agreements every card means something different to everyone. The Kanban Guide adds one more: how long an item should usually take.',
         },
         {
           q: 'Why are blocked cards valuable?',
-          options: ['They show where the system stutters', 'They count as done', 'They give the team a rest', 'They make the board more colourful'],
+          options: ['They count as finished work for the week', 'They give the team a breather between jobs', 'They show where the system stutters', 'They make the board easier to read at a glance'],
           answer: 'They show where the system stutters',
           why: 'Like an andon on the line: the problem becomes visible, so someone can solve it.',
         },
@@ -1054,7 +1054,7 @@ export default {
         { term: 'Kanban', def: 'A strategy for optimising the flow of value through a process using a visual, pull-based system. Originally the card at Toyota.' },
         { term: 'Kanban board', def: 'A board with columns for the steps in the work, on which cards move from left to right.' },
         { term: 'Work item', def: 'A piece of work on the board, such as a request, a drawing or a fault, usually one card.' },
-        { term: 'Definition of Workflow', def: 'The shared agreement about the board: work items, start and finish, steps, limits on work in progress and rules.' },
+        { term: 'Definition of Workflow', def: 'The shared agreement about the board: work items, start and finish, steps, limits on work in progress, rules and the expected time per item.' },
         { term: 'Blocked', def: 'A work item that can’t move on because of an outside cause, such as waiting on a decision or a supplier.' },
       ],
     },
@@ -1064,14 +1064,14 @@ export default {
       pre: [
         {
           q: 'A team of 5 people has 15 things in progress at once. What usually happens if the team agrees to do at most 6 things at once?',
-          options: ['Less gets done', 'Work gets done faster, because people switch less and help each other', 'Nothing changes', 'The team gets bored'],
-          answer: 'Work gets done faster, because people switch less and help each other',
+          options: ['Less gets done, because people sit waiting for free columns', 'Nothing changes, because the total amount of work stays the same', 'Work gets done faster: less switching, more helping', 'The team gets bored and starts on side projects'],
+          answer: 'Work gets done faster: less switching, more helping',
           why: 'Less at once means less waiting and switching. Each item goes through the system faster.',
         },
       ],
       teach: [
         'WIP stands for work in progress: work that has started but is not yet done. In the factory it is the same term. It costs money, hides problems and makes everything slower.\n\nA WIP limit is an agreed maximum number of work items at once in a column or in the whole system, for example “test: at most 2”. When the column is full, you may not start anything new. That is what makes the board a pull system.',
-        'Why it works: a person doing five things at once keeps switching between tasks. That context switching costs time to get back in. Gerald Weinberg gave as a rule of thumb that someone loses about 20% of their time to switching for each extra project; that is an estimate from experience, not a measurement.\n\nMore important still: each item lies idle longer, because everyone is working on something else. Customers wait longer, even though everyone is busy.',
+        'Why it works: a person doing five things at once keeps switching between tasks. That context switching costs time to get back in. Gerald Weinberg gave in 1992 as a rule of thumb that someone loses about 20% of their time to switching for each extra project; that is an estimate from experience, not a measurement.\n\nMore important still: each item lies idle longer, because everyone is working on something else. Customers wait longer, even though everyone is busy.',
         'What do you do when a column is full? Not pick something new, but look at what you can help finish further right on the board. That is called swarming: several people finishing one item together.\n\nA developer helps test; an engineer does the check for a colleague. It feels strange at first, because you are not doing “your own work”. But the team delivers more.',
         'The starting number doesn’t have to be perfect. A common start is about the number of people in the step, or slightly fewer, and then adjust. Too loose and nothing changes; too tight and people wait.\n\nFor you as a Lean consultant: this is the same as a supermarket stock or a fixed buffer between two machines. The limit makes the bottleneck visible, because work piles up there.',
         'Typical mistakes: limits that are stretched whenever it gets busy; limits per person instead of per step; and no agreement on what you do when a column is full.\n\nWhat experts argue about: some start with one limit on the whole system instead of per column, because that is simpler. Ask a team: “What do you do when you are finished and the next column is full?”',
@@ -1091,20 +1091,20 @@ export default {
         },
         {
           q: 'What is a WIP limit?',
-          options: ['A maximum of working hours per week', 'An agreed maximum number of work items at once in a step or in the system', 'A deadline per item', 'The number of people in the team'],
-          answer: 'An agreed maximum number of work items at once in a step or in the system',
-          why: 'When the step is full, you start nothing new. That makes the board a pull system.',
+          options: ['An agreed maximum of items at once in a step', 'A cap on working hours per week', 'A deadline that each work item must meet', 'The number of people allowed in the team'],
+          answer: 'An agreed maximum of items at once in a step',
+          why: 'When the step is full, you start nothing new. That makes the board a pull system. A limit can also be set on the whole system instead of per step.',
         },
         {
           q: 'The test column is full and you have finished building. What do you do?',
-          options: ['Pick a new item from the backlog', 'Go home', 'Help with testing, so an item gets done', 'Raise the WIP limit'],
+          options: ['Pick a new item from the backlog to keep busy', 'Raise the WIP limit for building by one', 'Wait at your desk until test pulls your item', 'Help with testing, so an item gets done'],
           answer: 'Help with testing, so an item gets done',
           why: 'Swarming: finishing together instead of starting something new. That way something gets done sooner.',
         },
         {
           q: 'Why does a WIP limit make the bottleneck visible?',
-          options: ['Because the manager pays more attention', 'Because work piles up in front of the step that can’t keep up', 'Because the bottleneck then disappears', 'Because everyone then works equally fast'],
-          answer: 'Because work piles up in front of the step that can’t keep up',
+          options: ['The manager pays more attention to the slow step', 'Work piles up before the step that can’t keep up', 'The bottleneck disappears as soon as the limit is in place', 'Everyone then works at the same speed'],
+          answer: 'Work piles up before the step that can’t keep up',
           why: 'Like stock in front of a slow machine: where the pile is, the problem is.',
         },
       ],
@@ -1150,7 +1150,7 @@ export default {
         },
       ],
       teach: [
-        'The Kanban Guide names four basic flow measures. WIP: the number of items started but not finished. Throughput: the number of items finished per unit of time, for example per week. Work item age: how long an unfinished item has been under way. Cycle time: the time from start to finish of a completed item.\n\nStart and finish are the points you agreed in the Definition of Workflow.',
+        'The Kanban Guide names four flow measures every Kanban system tracks at a minimum. WIP: the number of items started but not finished. Throughput: the number of items finished per unit of time, for example per week. Work item age: how long an unfinished item has been under way. Cycle time: the time from start to finish of a completed item.\n\nStart and finish are the points you agreed in the Definition of Workflow.',
         'Watch out for a trap in the words. In Lean in the factory, cycle time usually means the time per unit at one station, for example 45 seconds per product on a machine.\n\nIn Kanban, cycle time means the whole time from start to finish of one item, which in the factory would rather be called throughput time. Many teams use lead time for the time from the customer’s request, including waiting before work starts. Agree in every conversation which definition you mean.',
         'Little’s law, proved by John Little in 1961, connects the three measures: average cycle time = average WIP / average throughput.\n\nExample: 12 items in progress, 3 items a week done, so an item takes on average 12 / 3 = 4 weeks. You know the same law from the factory: work in progress divided by output gives the throughput time. It holds for averages over a period, not for a single item.',
         'What the law shows: at equal throughput, halving the WIP halves the average cycle time. That is why WIP limits work.\n\nBut it has conditions. The system must be stable: what comes in also goes out on average, and the WIP is roughly the same at the start and end of the period. If the pile of work in progress grows, the sum no longer holds. Vacanti stresses: it is a relationship between averages after the fact, not a forecasting machine.',
@@ -1173,21 +1173,21 @@ export default {
         },
         {
           q: 'What does cycle time mean in Kanban?',
-          options: ['The time per unit on one machine', 'The time from start to finish of one completed item', 'The number of items per week', 'The length of a sprint'],
-          answer: 'The time from start to finish of one completed item',
-          why: 'Careful: in Lean in the factory, cycle time often means the time per unit at a station. Agree the definition.',
+          options: ['The time per unit at one station on the line', 'The number of items finished per week', 'The time from the customer’s request to delivery', 'The time from start to finish of one item'],
+          answer: 'The time from start to finish of one item',
+          why: 'The first option is Lean cycle time at a station, the third is lead time, which includes waiting before work starts. Agree the definition in every conversation.',
         },
         {
           q: 'What is work item age?',
-          options: ['How long an unfinished item has been under way', 'The age of the requester', 'How long an item lasts after delivery', 'The average cycle time'],
+          options: ['How long a finished item took', 'How long an item stays in use after delivery', 'How long an unfinished item has been under way', 'How old the request was when work started'],
           answer: 'How long an unfinished item has been under way',
-          why: 'You only measure cycle time when something is done; age already shows which item is taking too long.',
+          why: 'The first option is cycle time, which you only know when something is done; age already shows which item is taking too long.',
         },
         {
           q: 'When does Little’s law not hold well?',
-          options: ['When the team is small', 'When the sprints are short', 'When the items differ', 'When the work in progress grows substantially over the period'],
-          answer: 'When the work in progress grows substantially over the period',
-          why: 'The law needs a stable system: what comes in goes out on average. If WIP grows, that condition is broken.',
+          options: ['When WIP grows substantially over the period', 'When the team has fewer than five people', 'When the sprints are shorter than two weeks', 'When the items differ a lot in size from each other'],
+          answer: 'When WIP grows substantially over the period',
+          why: 'The law needs a stable system: what comes in goes out on average. If WIP grows, that condition is broken. Items of different sizes are fine: the law holds for averages.',
         },
       ],
       situation: {
@@ -1227,8 +1227,8 @@ export default {
       pre: [
         {
           q: 'A manager wants his PLC programmers 100% busy, so not a minute is lost. According to queueing theory, what happens to the waiting time for new work?',
-          options: ['It gets shorter', 'It stays the same', 'It rises sharply, the closer to 100%, the harder', 'It becomes zero'],
-          answer: 'It rises sharply, the closer to 100%, the harder',
+          options: ['It gets shorter, because nobody is ever idle', 'It rises sharply, faster the closer to 100%', 'It stays the same, since capacity is fully used', 'It drops to zero, because work starts right away'],
+          answer: 'It rises sharply, faster the closer to 100%',
           why: 'With variation in arrivals and work, waiting time grows faster and faster as utilisation approaches 100%.',
         },
       ],
@@ -1256,20 +1256,20 @@ export default {
         },
         {
           q: 'What is a service level expectation?',
-          options: ['A contract with penalty clauses', 'The average cycle time', 'An expectation with a probability attached, such as 85% of items done within 8 days', 'The number of items per week'],
-          answer: 'An expectation with a probability attached, such as 85% of items done within 8 days',
+          options: ['A contract with penalty clauses for every late item', 'The average cycle time over the last quarter', 'The number of items the team promises per week', 'A time with a chance: 85% done within 8 days'],
+          answer: 'A time with a chance: 85% done within 8 days',
           why: 'That is how the Kanban Guide puts it: a time plus a probability, from your own data.',
         },
         {
           q: 'On a cumulative flow diagram the “test” band keeps getting thicker. What does that mean?',
-          options: ['Testing is getting faster', 'Work is piling up in test: that is probably the bottleneck', 'Less work is coming in', 'The team is done'],
-          answer: 'Work is piling up in test: that is probably the bottleneck',
+          options: ['Testing is getting faster than the other steps', 'Work is piling up in test: probably the bottleneck', 'Less new work is coming in', 'The team has nearly finished all the work'],
+          answer: 'Work is piling up in test: probably the bottleneck',
           why: 'A thicker band means more items at once in that step: more goes in than comes out.',
         },
         {
           q: 'Why do you steer daily on work item age?',
-          options: ['Because cycle time is only known when an item is done; age warns earlier', 'Because it reassures the manager', 'Because the Scrum Guide requires it', 'Because old items disappear by themselves'],
-          answer: 'Because cycle time is only known when an item is done; age warns earlier',
+          options: ['It reassures the manager that everyone is busy', 'Cycle time comes only at the end; age warns earlier', 'The Scrum Guide requires it as part of the Daily Scrum', 'Old items then close by themselves after a while'],
+          answer: 'Cycle time comes only at the end; age warns earlier',
           why: 'Like a control chart: step in before it is too late.',
         },
       ],
