@@ -121,7 +121,8 @@ let currentStep = 'setup';
 const HARNESS_SW = /Failed to read the 'serviceWorker' property from 'Navigator': Service worker is disabled because the context is sandboxed/;
 function onPageError(e) { if (!HARNESS_SW.test(e.message)) errors.push(`[${currentStep}] ${e.message}`); }
 page.on('pageerror', onPageError);
-page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+// Offline, a film video that was never cached fails to load: expected there, not an app error.
+page.on('console', (m) => m.type() === 'error' && !(currentStep.startsWith('offline') && /^Failed to load resource: net::ERR_/.test(m.text())) && errors.push(m.text()));
 
 const step = async (name, fn) => {
   currentStep = name;
@@ -718,7 +719,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   await cf.route(/films\/eng\.machining\.turning\.html/, (r) => r.fulfill({ status: 404, body: '' }));
   await open();
   await p.locator('.film-card .teach-text').waitFor({ timeout: 8000 });
-  if (!(await p.locator('.film-card .teach-text').innerText()).includes(lesson.teach[0].slice(0, 30))) throw new Error('text fallback without the lesson text');
+  if (!(await p.locator('.film-card .teach-text').innerText()).includes(lesson.teach.at(-1).slice(-25))) throw new Error('text fallback without the lesson text');
   if (await p.locator('details.read-along:not([hidden])').count()) throw new Error('Lees mee without a script');
   if (!asked.length) throw new Error('the video URL was never asked for');
   await cf.close();
