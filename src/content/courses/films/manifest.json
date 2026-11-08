@@ -5,32 +5,32 @@
     "eng.machining.turning": {
       "poster": "src/content/courses/films/eng.machining.turning.jpg",
       "nl": {
-        "dur": 242.4,
-        "bytes": 11741735,
+        "dur": 269.5,
+        "bytes": 13785225,
         "scenes": [
           0,
-          24.04,
-          52.15,
-          82.02,
-          108.71,
-          148.47,
-          167.44,
-          199.01
+          27.71,
+          59.39,
+          91.29,
+          120.78,
+          164.53,
+          186.04,
+          219.94
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.nl.vtt"
       },
       "en": {
-        "dur": 237.8,
-        "bytes": 11631019,
+        "dur": 262.9,
+        "bytes": 13732434,
         "scenes": [
           0,
-          23.8,
-          56.26,
-          86.79,
-          111.22,
-          148.97,
-          166.65,
-          196.34
+          27.1,
+          62.33,
+          94.71,
+          121.89,
+          163.92,
+          184.56,
+          217.53
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
       }
