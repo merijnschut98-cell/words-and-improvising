@@ -619,7 +619,8 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   const p = await cf.newPage();
   const bad = [];
   p.on('pageerror', onPageError);
-  p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource: net::ERR_FAILED/.test(m.text())) bad.push(m.text()); });
+  // the stubs fail on purpose: the aborted video (ERR_FAILED) and the missing film page (404)
+  p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource: (net::ERR_FAILED|the server responded with a status of 404)/.test(m.text())) bad.push(m.text()); });
   const shotF = async (n) => {
     const text = await p.evaluate(() => document.body.innerText);
     if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
