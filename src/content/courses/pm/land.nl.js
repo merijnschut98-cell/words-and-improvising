@@ -95,24 +95,24 @@ export default {
       ],
       teach: [
         'Standaardwerk (standardized work) is in Lean de vastgelegde huidige beste manier om een taak te doen: wie doet wat, in welke volgorde, in hoeveel tijd. Het is geen dikke procedure, maar een blad bij de werkplek.\n\nHet Lean Enterprise Institute noemt drie elementen: de takttijd, de werkvolgorde en het standaard onderhanden werk. Ontbreekt er één, dan heb je een werkinstructie, maar nog geen standaardwerk.',
-        'De takttijd is het tempo dat de klant vraagt: beschikbare tijd gedeeld door de vraag. Een dienst van 7,5 uur netto is 27.000 seconden; vraagt de klant 600 dozen per dienst, dan is de takt 27.000 / 600 = 45 seconden per doos.\n\nDe cyclustijd is hoe lang een operator echt over zijn rondje doet. Je meet hem op de vloer, tien keer achter elkaar, met een stopwatch. Ligt de cyclustijd boven de takt, dan haalt dat station de vraag niet.',
-        'De werkvolgorde is de vaste volgorde van de stappen, inclusief het lopen. Vaste volgorde betekent minder vergeten, minder zoeken en gelijke kwaliteit tussen ploegen.\n\nHet standaard onderhanden werk (standard work-in-process) is het kleinste aantal stuks dat tussen of in de machines moet liggen om soepel door te werken. Ligt er veel meer, dan verbergt de voorraad problemen; ligt er minder, dan staat iemand te wachten.',
-        'Standaardwerk is niet hetzelfde als de werkinstructie uit TWI. De werkinstructie leert een nieuwe medewerker hoe een taak moet, met kernpunten. Standaardwerk laat de leidinggevende in één oogopslag zien of het werk volgens plan loopt.\n\nTaiichi Ohno, de vader van het Toyota-productiesysteem, wordt vaak geciteerd met: “Waar geen standaard is, kan geen kaizen zijn.” Kaizen is stap voor stap verbeteren. Zonder standaard weet je niet waar je van uit gaat.',
+        'De takttijd (takt time) is het tempo dat de klant vraagt: beschikbare tijd gedeeld door de vraag, zoals 27.000 seconden / 600 dozen = 45 seconden per doos. Het rekenwerk staat in Capaciteit en flow; hier is de takt de maat waarop de standaard rust.\n\nDe cyclustijd (cycle time) is hoe lang een operator echt over zijn rondje doet. Meet tien rondjes achter elkaar op de vloer en noteer de laagste tijd die steeds terugkomt. Een rondje met een probleem hoort op de probleemlijst, niet in de standaard.',
+        'De werkvolgorde (work sequence) is de vaste volgorde van de stappen, inclusief het lopen. Vaste volgorde betekent minder vergeten, minder zoeken en gelijke kwaliteit tussen ploegen.\n\nHet standaard onderhanden werk (standard work-in-process) is het kleinste aantal stuks dat in het proces moet liggen om soepel door te werken: één in elke machine, plus de stuks die eerst moeten afkoelen, drogen of uitharden. Ligt er veel meer, dan verbergt de voorraad problemen; ligt er minder, dan staat iemand te wachten.',
+        'Standaardwerk is niet hetzelfde als de werkinstructie uit TWI. De werkinstructie leert een nieuwe medewerker hoe een taak moet, met kernpunten. Standaardwerk laat de leidinggevende in één oogopslag zien of het werk volgens plan loopt.\n\n“Waar geen standaard is, kan geen kaizen zijn” wordt vaak toegeschreven aan Taiichi Ohno, de vader van het Toyota-productiesysteem, al is er geen bron in zijn eigen werk bekend. Kaizen is stap voor stap verbeteren. Zonder standaard weet je niet waar je van uit gaat.',
         'Wat vaak misgaat: een consultant schrijft het standaardwerk achter een bureau, en de operators doen het na een week weer op hun eigen manier. Schrijf het met de mensen die het werk doen en meet het op de vloer.\n\nExperts twisten over hoe strak je moet zijn. Sommigen willen elke handgreep vastleggen; anderen alleen de stappen die kwaliteit en veiligheid bepalen. Een scherpe vraag aan de teamleider: “Waar zie jij hier dat iemand afwijkt van de standaard?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een levensmiddelenfabriek begeleid je de inpaklijn naar standaardwerk. Netto dienst: 27.000 seconden; vraag: 600 dozen. Takt: 27.000 / 600 = 45 seconden.\n\nStap 1: je meet met de teamleider tien rondjes per station. De werkinhoud (work content) van alle stappen samen is 171 seconden: 171 / 45 = 3,8, dus vier operators.\nStap 2: station 3 doet er 52 seconden over, station 4 maar 30. Het etiket plakken, 6 seconden, gaat naar station 4: nu 46 en 36. Station 3 zit nog net boven de takt; het bijvullen van folie gaat naar de waterspin (water spider), de aanvuller die materiaal brengt.\nStap 3: per station één blad met volgorde, tijd en twee dozen buffer. De teamleider hangt het op en checkt het elk uur.',
+        text: 'Bij een levensmiddelenfabriek begeleid je de inpaklijn voor soep naar standaardwerk. De takt komt uit de capaciteitsstudie: 27.000 seconden per dienst / 600 bakjes = 45 seconden per bakje.\n\nStap 1: je meet met de teamleider tien rondjes achter elkaar op station 3, het lopen inbegrepen. Negen rondjes duren 42 tot 45 seconden, de meeste 42; één duurt 58, omdat de folierol op was. Je noteert 42 seconden, de laagste tijd die steeds terugkomt, en zet de folierol op de probleemlijst.\nStap 2: de werkvolgorde. Halverwege loopt de operator weg om folie te halen; het folierek komt binnen handbereik en de volgorde ligt vast: bakje pakken, gewicht checken, folie leggen, sealen, op de koelbaan schuiven.\nStap 3: het standaard onderhanden werk. Een geseald bakje hete soep moet 90 seconden afkoelen voordat station 4 het etiketteert: 90 / 45 = 2 bakjes op de koelbaan, plus 1 in de sealer, dus 3. Meer verbergt alleen problemen.\nStap 4: per station één blad met volgorde, tijd en onderhanden werk. De teamleider checkt het elk uur.',
       },
       said: 'Wat je hoort in projecten: “Standaardwerk? Dan worden we robots. Iedereen heeft zijn eigen manier, en die werkt prima.”',
       recall: [
         {
-          q: 'De werkinhoud van een cel is 200 seconden per product en de takttijd is 50 seconden. Hoeveel operators heb je minimaal nodig?',
+          q: 'Na het spuitgieten moet elk onderdeel 135 seconden afkoelen voordat de volgende stap het kan pakken. De takt is 45 seconden, en er zit altijd één onderdeel in de matrijs. Hoeveel stuks vormen het standaard onderhanden werk voor deze stap, koelrek en matrijs samen?',
           number: 4,
           tolerance: 0.1,
-          unit: 'operators',
-          hint: 'Deel de totale werkinhoud door de takttijd.',
-          why: '200 / 50 = 4 operators, mits het werk goed te verdelen is.',
+          unit: 'stuks',
+          hint: 'Elke takt gaat er één onderdeel het rek in. Hoeveel takten blijft een onderdeel daar liggen? Tel daarna het stuk in de matrijs erbij.',
+          why: '135 / 45 = 3 stuks die afkoelen, plus 1 in de matrijs = 4 stuks. Minder en de volgende stap wacht; meer verbergt alleen problemen.',
         },
         {
           q: 'Welke drie elementen horen volgens het Lean Enterprise Institute bij standaardwerk?',
@@ -184,11 +184,11 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een kunststoffabriek draait een cel met vijf stations en acht operators. De matrix, net bijgewerkt met de teamleider, laat zien hoeveel mensen per station op L of hoger zitten: station 1: vier, station 2: twee, station 3: twee, station 4: één, station 5: nul. Eén operator, Kees, zit op O voor stations 2 en 4. Station 5 is de nieuwe lekdichtheidstester; die draait nu de procesengineer.',
+        text: 'Bij een kunststoffabriek draait een cel met vijf stations en acht operators. De matrix, net bijgewerkt met de teamleider, laat zien hoeveel mensen per station op L of hoger zitten: station 1: vier, station 2: twee, station 3: twee, station 4: één, station 5: nul. Eén operator, Kees, zit op O voor stations 2, 3 en 4. Station 5 is de nieuwe lekdichtheidstester; die draait nu de procesengineer.',
         ask: 'Hoeveel kwalificaties kom je tekort volgens de regel van drie, waar begin je, en hoe ziet je trainingsrooster eruit?',
-        reveal: 'Nodig: 5 × 3 = 15. Aanwezig, met een maximum van drie per station: 3 + 2 + 2 + 1 + 0 = 8. Tekort: 7.\n\nBegin bij het grootste risico: station 5, daar kan geen operator het, en station 4, dat hangt aan één persoon. De procesengineer leert eerst twee operators station 5 met Job Instruction; Kees traint er twee op station 4 en daarna één op stations 2 en 3.\n\nRooster: twee kwalificaties per maand, want elke leerling heeft weken oefening nodig. Na vier maanden zit elk station op drie, en de teamleider checkt de matrix elke week bij het teambord.',
+        reveal: 'Nodig: 5 × 3 = 15. Aanwezig, met een maximum van drie per station: 3 + 2 + 2 + 1 + 0 = 8. Tekort: 7.\n\nBegin bij het grootste risico: station 5, daar kan geen operator het, en station 4, dat hangt aan één persoon. De procesengineer, de enige op O daar, leert eerst drie operators station 5 met Job Instruction; Kees traint er twee op station 4 en daarna één op station 2 en één op station 3.\n\nRooster: twee kwalificaties per maand, want elke leerling heeft weken oefening nodig. Na vier maanden zit elk station op drie, en de teamleider checkt de matrix elke week bij het teambord.',
       },
-      said: 'Wat je hoort in projecten: “Alleen Kees kan die tester instellen. Als Kees op vakantie is, plannen we die order gewoon niet.”',
+      said: 'Wat je hoort in projecten: “Alleen Kees kan station 4 draaien. Als Kees op vakantie is, plannen we die order gewoon niet.”',
       recall: [
         {
           q: 'Wat betekent de O op een ILUO-matrix meestal?',
@@ -752,8 +752,8 @@ export default {
       ],
       teach: [
         'Na de overdracht moet iemand elke dag aandacht geven aan de nieuwe manier. Dat regel je met leiderstandaardwerk (leader standard work): een vaste lijst van wat een leidinggevende dagelijks en wekelijks doet om het proces te checken. Bijvoorbeeld: om 6:10 de dagstart, om 9:00 het bord bekijken, op dinsdag de vaardigheidsmatrix.\n\nDavid Mann beschrijft het in Creating a Lean Culture (2005) als het eerste van vier elementen van een Lean-managementsysteem.',
-        'De andere drie elementen van Mann: visueel management (visual management), borden en markeringen die in één oogopslag laten zien of het werk op schema ligt; dagelijkse verantwoording (daily accountability), korte overleggen waarin acties worden afgesproken en nagelopen; en leiderschapsdiscipline, dat leidinggevenden dit volhouden, ook in drukke weken.\n\nZonder dat laatste valt de rest om. Daarom is borgen vooral gedrag van leidinggevenden, niet van operators.',
-        'Hoeveel tijd? Mann geeft een vaak geciteerde grove verdeling: een teamleider besteedt ongeveer 80% van zijn dienst aan standaardwerk, een afdelingsleider ongeveer 50%, een value stream manager rond 25%. Hoe hoger, hoe meer tijd voor verbeteren en plannen.\n\nDat zijn richtgetallen uit één boek, geen norm. In de praktijk haal je ze lang niet altijd, maar ze laten zien dat standaardwerk niet alleen voor de vloer is.',
+        'De andere drie elementen van Mann: visuele sturing (visual controls), vaak visueel management genoemd, borden en markeringen die in één oogopslag laten zien of het werk op schema ligt; dagelijkse verantwoording (daily accountability), korte overleggen waarin acties worden afgesproken en nagelopen; en leiderschapsdiscipline, dat leidinggevenden dit volhouden, ook in drukke weken.\n\nZonder dat laatste valt de rest om. Daarom is borgen vooral gedrag van leidinggevenden, niet van operators.',
+        'Hoeveel tijd? Een grove verdeling die vaak uit het boek van Mann wordt geciteerd: een teamleider besteedt ongeveer 80% van zijn dienst aan standaardwerk, een afdelingsleider ongeveer 50%, een value stream manager rond 25%. Hoe hoger, hoe meer tijd voor verbeteren en plannen.\n\nDat zijn richtgetallen, die bronnen net iets verschillend citeren, geen norm. In de praktijk haal je ze lang niet altijd, maar ze laten zien dat standaardwerk niet alleen voor de vloer is.',
         'Een vast onderdeel is de gembawalk (gemba walk). Gemba is Japans voor “de plek waar het gebeurt”: de werkvloer. De leidinggevende loopt een vaste route, kijkt naar het proces en stelt vragen: “Wat is de standaard hier? Hoe zie je dat het goed gaat? Wat houdt je tegen?”\n\nHij lost niet alles zelf op en deelt geen preken uit. Wat hij ziet, gaat naar het actiebord, met een eigenaar en een datum.',
         'Wat vaak misgaat: leiderstandaardwerk wordt een afvinklijst die op vrijdag in één keer wordt ingevuld. Of de leidinggevende schrapt de gembawalk zodra er een crisis is, precies wanneer hij het meest nodig is.\n\nExperts discussiëren of je het streng moet afdwingen of moet laten groeien. Begin klein: drie vaste punten die echt gebeuren zijn beter dan vijftien die op papier staan. Scherpe vraag: “Wat heb je vandaag op je ronde gezien dat je niet verwachtte?”',
       ],
@@ -764,11 +764,11 @@ export default {
       said: 'Wat je hoort in projecten: “Ik heb geen tijd om rondjes te lopen. Ik zit de hele dag in overleggen.”',
       recall: [
         {
-          q: 'Een afdelingsleider werkt een dienst van 480 minuten. Neem de grove verdeling van Mann voor deze laag. Daarvan gaan 30 minuten naar de dagstart en 60 minuten naar de gembawalk. Hoeveel minuten standaardwerk blijven over voor zijn andere vaste checks?',
+          q: 'Een afdelingsleider werkt een dienst van 480 minuten. Neem de grove verdeling die van Mann geciteerd wordt voor deze laag. Daarvan gaan 30 minuten naar de dagstart en 60 minuten naar de gembawalk. Hoeveel minuten standaardwerk blijven over voor zijn andere vaste checks?',
           number: 150,
           tolerance: 1,
           unit: 'min',
-          hint: 'Neem eerst het aandeel van Mann voor een afdelingsleider van de dienst, en trek dan de vaste blokken eraf.',
+          hint: 'Neem eerst het aandeel van een afdelingsleider van de dienst (ongeveer de helft), en trek dan de vaste blokken eraf.',
           why: '50% van 480 = 240 minuten; 240 − 30 − 60 = 150 minuten.',
         },
         {
@@ -841,7 +841,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een kabelfabrikant draait sinds een maand getrapt overleg. Tier 1 om 6:15 bij elke lijn, tier 2 om 8:30 bij de afdelingsleider, tier 3 om 9:30 bij de plantmanager. De escalatieregel: wat het team niet binnen 24 uur zelf oplost, gaat dezelfde ochtend naar tier 2.\n\nMaandag meldt lijn 2 in tier 1: de koperdraad van een nieuwe leverancier breekt vaker, al drie keer dit weekend. Het team kan de leverancier niet zelf aanspreken. Woensdag staat het nog op het bord van lijn 2, en niemand weet of iemand er iets mee doet.',
+        text: 'Bij een kabelfabrikant draait sinds een maand getrapt overleg. Tier 1 om 6:15 bij elke lijn, tier 2 om 8:30 bij de afdelingsleider, tier 3 om 9:30 bij de plantmanager. De escalatieregel: wat het team niet binnen 24 uur zelf oplost, of wat een andere afdeling nodig heeft, gaat dezelfde ochtend naar tier 2.\n\nMaandag meldt lijn 2 in tier 1: de koperdraad van een nieuwe leverancier breekt vaker, al drie keer dit weekend. Het team kan de leverancier niet zelf aanspreken. Woensdag staat het nog op het bord van lijn 2, en niemand weet of iemand er iets mee doet.',
         ask: 'Hoe had dit door de trap moeten lopen, en wat moet je nu aanpassen?',
         reveal: 'Maandag om 6:15 had de teamleider het rood op het bord gezet en het om 8:30 in tier 2 ingebracht, want het team kan het niet zelf oplossen en inkoop is nodig. De afdelingsleider had het om 9:30 in tier 3 gebracht, waar de plantmanager inkoop een actie geeft, met een datum. Dinsdag om 6:15 had op het bord van lijn 2 gestaan: inkoop belt de leverancier vandaag, monsters naar kwaliteit.\n\nNu: check waar het stokte, waarschijnlijk tussen tier 1 en tier 2, en voeg een vaste vraag toe aan tier 2: “Welke rode punten van de teams moeten hier vandaag naartoe?” En het antwoord gaat altijd terug naar het teambord.',
       },
@@ -989,7 +989,7 @@ export default {
     // Onderwerp 4: baten en reflectie
     {
       id: 'pm.land.benefits',
-      title: 'Baten: van opgeleverd naar opgeleverd resultaat',
+      title: 'Baten: van opleveren naar opbrengen',
       pre: [
         {
           q: 'Je project heeft een nieuw omstelproces opgeleverd: standaardwerk, een omstelkar en getrainde operators. Is daarmee de baat gerealiseerd?',
@@ -1000,14 +1000,14 @@ export default {
       ],
       teach: [
         'Batenrealisatie (benefits realisation) is het werk om ervoor te zorgen dat de verbetering die een project belooft er na de oplevering ook echt komt. Het begrip komt uit het programmamanagement, onder meer van Gerald Bradley, die er in 2006 een boek over schreef.\n\nEen simpele keten helpt: output, uitkomst, baat. Output is wat het project oplevert: een standaard, een bord, een training. Op zichzelf levert dat nog niks op.',
-        'De uitkomst (outcome) is dat mensen anders werken: de omstellingen volgen de standaard, het team houdt elke ochtend een dagstart. De baat (benefit) is de meetbare verbetering die de organisatie daarvan heeft: 30% kortere omsteltijd, 2 procentpunt minder afkeur, € 40.000 per jaar.\n\nElke baat heeft een nulmeting (baseline) nodig, de stand van voor het project, anders kun je niets bewijzen. Spreek ook af hoe en wanneer je meet.',
+        'De uitkomst (outcome) is dat mensen anders werken: de omstellingen volgen de standaard, het team houdt elke ochtend een dagstart. De baat (benefit) is de meetbare verbetering die de organisatie daarvan heeft: 30% kortere omsteltijd, 2 procentpunt minder afkeur, € 40.000 per jaar.\n\nElke baat heeft een nulmeting (baseline) nodig, de stand van voor het project, en een afgesproken manier en moment van meten. Hoe je een echt effect van ruis onderscheidt, staat in Afsluiten: resultaat aantonen; hier gaat het om wie blijft meten als jij weg bent.',
         'Baten komen meestal na de livegang en groeien langzaam. Een nieuwe omstelmethode is in week één nog onwennig; pas na een paar maanden zie je de volle winst. Daarom is batenrealisatie vaak werk voor na het project.\n\nDe baateigenaar (benefit owner) is degene in de lijn die verantwoordelijk is dat de baat binnenkomt. Meestal de sponsor of de manager van het proces, nooit de consultant. Jij bent straks weg; de baat moet blijven.',
         'Leg per baat vast: wat het is, hoe je het meet, de nulmeting, het doel, wanneer je het verwacht, en wie de eigenaar is. Eén regel per baat in een tabel is genoeg.\n\nDit sluit aan bij Lean: in een A3, het probleemoplosblad op één A3-vel, staan het doel en de check ook vooraf. Je weet dan vooraf wat succes is, en niet pas als je achteraf het mooiste cijfer zoekt.',
         'Wat vaak misgaat: alle aandacht gaat naar de oplevering, en niemand meet een halfjaar later of de baat er is. Of het project claimt een besparing die eigenlijk door hogere volumes komt.\n\nExperts twisten of je baten in euro’s moet uitdrukken. Financiële mensen willen dat; anderen zeggen dat veiligheid of kwaliteit ook baten zijn, ook als het bedrag lastig is. Scherpe vraag aan de sponsor: “Aan welk getal zie jij over zes maanden dat dit project het waard was?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een verpakkingsbedrijf heeft je project een nieuwe instelprocedure voor de sealmachines opgeleverd.\n\nOutput: de procedure, een instelkaart per product en tien getrainde operators.\nUitkomst: elke omstelling volgt de kaart; de teamleider checkt het bij zijn ronde.\nBaat: minder afkeur. Nulmeting over drie maanden: 4,0% van 6.000.000 verpakkingen per jaar. Doel: 2,5%.\n\nReken de baat uit: 4,0% − 2,5% = 1,5 procentpunt. 1,5% van 6.000.000 = 90.000 verpakkingen minder afkeur per jaar. Materiaal kost € 0,30 per stuk: 90.000 × € 0,30 = € 27.000 per jaar.\n\nBaateigenaar: de productiemanager. Meetmoment: na drie en na zes maanden, in het maandrapport.',
+        text: 'Bij een verpakkingsbedrijf heeft je project een nieuwe instelprocedure voor de sealmachines opgeleverd.\n\nOutput: de procedure, een instelkaart per product en tien getrainde operators.\nUitkomst: elke omstelling volgt de kaart; de teamleider checkt het bij zijn ronde.\nBaat: minder afkeur. Nulmeting over drie maanden: 4,0% van 6.000.000 verpakkingen per jaar. Doel: 2,5%.\n\nReken de verwachte baat uit als het doel gehaald wordt: 4,0% − 2,5% = 1,5 procentpunt. 1,5% van 6.000.000 = 90.000 verpakkingen minder afkeur per jaar. Materiaal kost € 0,30 per stuk: 90.000 × € 0,30 = € 27.000 per jaar.\n\nBaateigenaar: de productiemanager. Meetmoment: na drie en na zes maanden, in het maandrapport.',
       },
       said: 'Wat je hoort in projecten: “Het project is af, alles is opgeleverd. Wat er daarna gebeurt, is niet meer ons probleem.”',
       recall: [
@@ -1081,9 +1081,9 @@ export default {
         },
       ],
       teach: [
-        'Na een Lean-project wil iedereen weten wat het oplevert. Controllers maken dan een scherp onderscheid. Een harde besparing (hard savings) is geld dat echt niet meer uitgegeven wordt en zichtbaar is in de winst-en-verliesrekening (profit and loss account): minder materiaal weggegooid, minder overwerk betaald, een ingehuurde opslag opgezegd.\n\nEen zachte besparing (soft savings) is waardevol, maar niet direct te zien in de kosten. Vermeden kosten en vrijgespeelde capaciteit zijn de bekendste vormen.',
+        'In Afsluiten zag je dat vrijgespeelde uren pas geld worden als er in de boeken iets verandert. Controllers maken hier een scherp onderscheid. Een harde besparing (hard savings) is geld dat echt niet meer uitgegeven wordt en zichtbaar is in de winst-en-verliesrekening (profit and loss account): minder materiaal weggegooid, minder overwerk betaald, een ingehuurde opslag opgezegd.\n\nEen zachte besparing (soft savings) is waardevol, maar niet direct te zien in de kosten. Vermeden kosten en vrijgespeelde capaciteit zijn de bekendste vormen.',
         'Vermeden kosten (cost avoidance): geld dat je niet hoeft uit te geven, zoals een tweede machine die je niet hoeft te kopen omdat de eerste nu genoeg kan. Echt geld, maar het staat nergens als daling in de kosten.\n\nVrijgespeelde capaciteit (freed capacity): uren van mensen of machines die vrijkomen. Die worden pas geld als je ze gebruikt: meer verkopen, overwerk stoppen, een uitzendkracht niet verlengen. Anders is het alleen ruimte.',
-        'Laat elke besparing narekenen door de controller, de financiële man of vrouw die de cijfers van het bedrijf bewaakt. Spreek vooraf met hem af hoe je rekent: welke uurtarieven, welke volumes, welke periode.\n\nEen besparing die de controller heeft goedgekeurd, is geloofwaardig in de stuurgroep. Een besparing uit jouw eigen spreadsheet wordt bij de eerste kritische vraag een discussie over aannames.',
+        'Laat elke besparing narekenen door de controller, de financiële man of vrouw die de cijfers van het bedrijf bewaakt. Die vraagt twee dingen. Terugkerend of eenmalig? Minder voorraad maakt één keer geld vrij; alleen de lagere voorraadkosten komen elk jaar terug. En vanaf wanneer? Stopt de zaterdagdienst in april, dan bespaar je dit jaar negen maanden; op jaarbasis (run rate), het volle jaarbedrag vanaf dan, is het twaalf.\n\nEen besparing die de controller heeft goedgekeurd, overleeft de stuurgroep; een uit je eigen spreadsheet wordt een discussie over aannames.',
         'Een Lean-principe hoort hier: verbeteren mag niet leiden tot ontslag van de mensen die verbeteren. Veel Lean-auteurs, onder wie James Womack en Daniel Jones in Lean Thinking (1996), raden aan dat vooraf te beloven. Wie zijn baan kwijtraakt door kaizen, doet nooit meer mee.\n\nVrijgespeelde mensen zet je dus in op groei, op vacatures die toch ontstaan, of in een verbeterteam. Het geld komt dan via groei of natuurlijk verloop, niet via ontslag.',
         'Wat vaak misgaat: een project telt vrijgespeelde uren maal een uurtarief op en noemt dat besparing. De controller ziet de kosten niet dalen, en het project verliest zijn geloofwaardigheid.\n\nExperts verschillen over zachte besparingen: sommigen tellen ze niet mee in het rendement van een project, anderen wel, apart vermeld. Wees open over welke soort je bedoelt. Scherpe vraag aan jezelf: “Welke kostenregel in het budget gaat hierdoor omlaag, en per wanneer?”',
       ],
@@ -1149,6 +1149,7 @@ export default {
         { term: 'Vermeden kosten', def: 'Geld dat je niet hoeft uit te geven, zoals een investering die niet meer nodig is.' },
         { term: 'Vrijgespeelde capaciteit', def: 'Uren van mensen of machines die vrijkomen; pas geld als je ze gebruikt.' },
         { term: 'Controller', def: 'De financiële functie die de cijfers van het bedrijf bewaakt en besparingen narekent.' },
+        { term: 'Jaarbasis', def: 'Het volle jaarbedrag van een besparing vanaf het moment dat ze ingaat, in plaats van wat ze dit jaar oplevert.' },
       ],
     },
     {
@@ -1164,14 +1165,14 @@ export default {
       ],
       teach: [
         'Hansei is Japans voor reflectie: eerlijk kijken naar wat je zelf beter had kunnen doen, ook als het goed ging. In The Toyota Way (2004) beschrijft Jeffrey Liker het als een kern van een lerende organisatie, naast kaizen.\n\nBij Toyota wordt vaak gezegd dat “geen problemen” zelf een probleem is: wie niets ziet om te verbeteren, kijkt niet goed. Na een project is hansei het moment om dat ook op je eigen werk toe te passen.',
-        'Een praktische vorm is de after-action review, ontwikkeld door het Amerikaanse leger. Vier vragen: Wat moest er gebeuren? Wat gebeurde er echt? Waarom was er verschil? Wat houden we vast en wat doen we anders?\n\nDe handleiding van het leger raadt aan het grootste deel van de tijd aan de laatste vraag te besteden, vaak samengevat als 25% voor de eerste twee, 25% voor de derde en 50% voor de vierde. Het gaat om leren, niet om het verleden navertellen.',
+        'Een praktische vorm is de after-action review, ontwikkeld door het Amerikaanse leger. Vier vragen, per handleiding net iets anders verwoord: Wat moest er gebeuren? Wat gebeurde er echt? Waarom was er verschil? Wat houden we vast en wat doen we anders?\n\nVeel handleidingen op basis van de legerpraktijk raden aan het grootste deel van de tijd aan de laatste vraag te besteden, vaak 25% voor de eerste twee, 25% voor de derde en 50% voor de vierde. Het gaat om leren, niet om het verleden navertellen.',
         'In Lean leg je het verhaal vaak vast in een A3-rapport: het probleem, de oorzaak, de maatregelen en het resultaat op één A3-vel. De laatste vakken, de check en de follow-up, zijn de plek voor reflectie: wat werkte, wat niet, en wat betekent dat voor de volgende keer.\n\nZo wordt reflectie geen los praatje, maar het laatste deel van PDCA: de A van Act.',
-        'Een leerpunt (learning point) is pas bruikbaar als het concreet is en iemand het overneemt. Niet “betere communicatie”, maar “bij een volgend project praten we de ploegleiders van de nacht apart bij, en dat staat in ons standaardplan”.\n\nReflecteer zonder schuld. Het gaat om het systeem en om je eigen rol, niet om wie het fout deed. Begin bij jezelf: als de consultant zegt wat hij anders zou doen, durven anderen het ook.',
+        'Hansei blijft alleen hangen als de lijn het zelf doet. Het leger houdt korte reviews direct na elke oefening, met de mensen die erbij waren. Doe dat ook op de vloer: een kwartier bij het bord na een omstelproef, een lijnstop of de eerste week van een nieuwe standaard, geleid door de teamleider.\n\nEen leerpunt (learning point) telt pas als het iets verandert dat blijft: de standaard, de checklist, het trainingsrooster. Hoe je een veilige terugblik op het project houdt en lessen tot acties maakt, staat in Afsluiten.',
         'Wat vaak misgaat: de evaluatie wordt een rondje complimenten, of een lijst van twintig leerpunten die niemand meer leest. Of alleen het projectteam reflecteert, zonder de lijn, die het verschil het best kent.\n\nExperts twisten of je een succes net zo grondig moet bespreken als een mislukking. Wie hansei serieus neemt, zegt ja. Scherpe vraag aan het team: “Als we dit project morgen opnieuw deden, wat zouden we als eerste anders doen?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een netbeheerder sluit je het project met de gereedheidscheck af. Doel: het aandeel afgezegde klussen van 20% naar 8%. Resultaat: 10%. De klant is tevreden. Twee dingen liepen anders dan gepland: de werkvoorbereiders gingen pas mee nadat ze de checklist zelf mochten herzien, wat zes weken kostte; en in de zomer zakte het tijdelijk terug omdat de vervangende planners niet getraind waren.\n\nJe organiseert een after-action review van een uur met de teamleider planning, twee werkvoorbereiders en de sponsor.',
+        text: 'Bij een netbeheerder sluit je het project met de gereedheidscheck (readiness check) in regio Noord af. Doel: het aandeel afgezegde klussen van 20% naar 8%. Resultaat: 10%. De klant is tevreden. Twee dingen liepen anders dan gepland: de werkvoorbereiders gingen pas mee nadat ze de checklist zelf mochten herzien, wat zes weken kostte; en in de zomer zakte het tijdelijk terug omdat de vervangende planners niet getraind waren.\n\nJe organiseert een after-action review van een uur met de teamleider planning, twee werkvoorbereiders en de sponsor.',
         ask: 'Loop de vier vragen door: wat zou je per vraag verwachten te horen, en welke leerpunten neem je mee?',
         reveal: 'Wat moest er gebeuren: 8% afgezegde klussen, met de check in week 6 in gebruik. Wat gebeurde er echt: 10%, en de check zat pas in week 12 goed in het werk. Waarom: de werkvoorbereiders werden te laat betrokken, en vervangers zaten niet in het trainingsplan.\n\nWat anders, de helft van het uur: bij een volgend project ontwerpen de mensen die het werk doen de checklist vanaf week 1 mee; en vervangers en vakantiekrachten staan standaard in het trainingsrooster. Elk leerpunt krijgt een eigenaar: de eerste jij, de tweede de teamleider planning. En je begint zelf: “Ik had de werkvoorbereiders eerder moeten opzoeken.”',
       },
@@ -1196,35 +1197,35 @@ export default {
           why: 'Reflectie hoort bij de Check en Act van PDCA: wat werkte, wat niet, en wat het betekent.',
         },
         {
-          q: 'Waarom begint de consultant bij een reflectie het liefst met zijn eigen fouten?',
-          options: ['Omdat hij het gesprek dan kan sturen waar hij het wil hebben', 'Omdat anderen dan durven te zeggen wat zij anders zouden doen', 'Omdat de klant anders de laatste factuur kan betwisten', 'Omdat hij zelf de meeste fouten heeft gemaakt'],
-          answer: 'Omdat anderen dan durven te zeggen wat zij anders zouden doen',
-          why: 'Wie zelf eerlijk begint, maakt het veilig voor de rest om ook eerlijk te zijn.',
+          q: 'Wanneer haalt een team het meeste uit een after-action review?',
+          options: ['Eens per jaar, in een grote sessie met alle afdelingen samen', 'Direct na de gebeurtenis, met de mensen die erbij waren', 'Alleen aan het eind van een project, geleid door de consultant', 'Als het maandrapport een rood KPI-cijfer laat zien'],
+          answer: 'Direct na de gebeurtenis, met de mensen die erbij waren',
+          why: 'Het geheugen is nog vers en wie erbij was, weet wat er echt gebeurde. Korte reviews na een gebeurtenis maken reflectie een gewoonte van de lijn.',
         },
       ],
       situation: {
-        scene: 'Bij een levensmiddelenfabriek is je project net afgesloten met een feestelijke presentatie. De plantmanager is tevreden. Jij wilt nog een after-action review met de ploegleiders, maar de plantmanager zegt: “Niet nodig, het is goed gegaan. Iedereen heeft het druk.”',
-        ask: 'Hoe overtuig je hem, in een paar zinnen?',
-        model: '“Juist omdat het goed ging, wil ik weten waarom, zodat jullie het volgende project zonder mij net zo goed doen. Een uur, met drie ploegleiders, vier vragen. Ik begin zelf met wat ik anders zou doen. Wat eruit komt, zijn twee of drie concrete afspraken met een eigenaar, geen rapport.”',
+        scene: 'Bij een levensmiddelenfabriek heb je twee maanden geleden de nieuwe omstelstandaard overgedragen. Gisteren probeerde teamleider Sandra op lijn 3 een nieuwe schoonmaakvolgorde die 10 minuten moest schelen; de omstelling duurde 40 minuten langer. De productiemanager zegt: “Werkt niet. Terug naar de oude manier en door.”',
+        ask: 'Hoe gebruik je hansei hier?',
+        model: '“Voordat we het schrappen: laten we een kwartier bij de lijn gaan staan met Sandra en de twee operators die het deden. Wat moest er gebeuren, wat gebeurde er, waarom het verschil, wat proberen we hierna. Een mislukte proef is goedkoop als we ervan leren. Sandra leidt het, niet ik. Ik heb de proef mee voorbereid, dus ik begin met wat ik over het hoofd zag.”',
         rubric: [
-          'Koppelt de reflectie aan het volgende project van de klant',
-          'Maakt het klein en concreet: een uur, vier vragen, een paar afspraken',
-          'Laat zien dat hij zelf eerlijk begint',
+          'Ziet de mislukte proef als iets om van te leren, niet om weg te stoppen',
+          'Stelt een korte after-action review bij de lijn voor met de mensen die erbij waren',
+          'Laat de teamleider het leiden en neemt zijn eigen deel',
         ],
         pushback: {
           lines: [
-            '“Evaluaties worden altijd klaagsessies. Daar heb ik nu geen zin in.”',
-            '“Jullie zijn de consultants. Jullie horen te weten wat er beter kon.”',
+            '“We hebben geen tijd om elke mislukking te bespreken. De lijn moet draaien.”',
+            '“Sandra had gewoon niet zonder te vragen moeten experimenteren.”',
           ],
-          model: '“Terecht, een klaagsessie wil ik ook niet. Daarom besteden we de helft van de tijd aan wat we anders doen, en elk punt krijgt een eigenaar. En ja, ik heb mijn eigen lijst. Maar jouw ploegleiders zien dingen die ik niet zie, en zij doen het volgende project.”',
+          model: '“Een kwartier bij het bord, terwijl de lijn draait. Ik wil niet weten wie de schuld heeft, maar waarom het langer duurde; misschien stond één stap in de verkeerde volgorde. Slaan we dit over, dan stopt Sandra met dingen proberen, en sneuvelt het volgende idee ook. Wat eruit komt, gaat in de volgende proef of in de standaard.”',
           rubric: [
-            'Erkent zijn zorg over klagen',
-            'Laat zien hoe de opzet dat voorkomt',
-            'Neemt zijn eigen deel en legt uit waarom de lijn nodig is',
+            'Erkent de tijdsdruk',
+            'Stuurt weg van schuld, naar de oorzaak',
+            'Koppelt de review aan levend verbeteren en aan de standaard',
           ],
         },
       },
-      sayIt: 'Leg een plantmanager in 60 seconden uit waarom je ook een geslaagd project evalueert, en hoe je dat in een uur doet.',
+      sayIt: 'Leg een productiemanager in 60 seconden uit waarom een mislukte proef een korte after-action review verdient, en hoe je die in een kwartier doet.',
       terms: [
         { term: 'Hansei', def: 'Japans voor reflectie: eerlijk kijken naar wat je zelf beter had kunnen doen, ook na een succes.' },
         { term: 'After-action review', def: 'Een korte evaluatie met vier vragen: wat moest er gebeuren, wat gebeurde er, waarom het verschil, wat doen we anders.' },
@@ -1297,7 +1298,7 @@ export default {
             '“Zes weken is wat de directie heeft toegezegd aan het hoofdkantoor.”',
             '“Jullie hebben het hier al uitgezocht. Waarom moeten zij het wiel opnieuw uitvinden?”',
           ],
-          model: '“Ze hoeven het wiel niet uit te vinden; ze nemen het denken over en passen het aan op hun lijnen. Over de zes weken: in zes weken kan de eerste vestiging live zijn, met een plan voor de tweede. Dat kun je het hoofdkantoor laten zien, en het blijft staan.”',
+          model: '“Ze hoeven het wiel niet opnieuw uit te vinden; ze nemen het denken over en passen het aan op hun lijnen. Over de zes weken: in zes weken kan de eerste vestiging live zijn, met een plan voor de tweede. Dat kun je het hoofdkantoor laten zien, en het blijft staan.”',
           rubric: [
             'Erkent de toezegging aan het hoofdkantoor',
             'Legt het verschil uit tussen kopiëren en zelf leren',
