@@ -70,14 +70,15 @@ export function joinTrack(parts, total) {
 
 // ---------------------------------------------------------------- captions
 // Sentences; a sentence longer than max is split at the comma (or colon,
-// semicolon, then space) nearest its middle, until every piece fits.
+// semicolon, then after an English gloss's closing parenthesis, then space)
+// nearest its middle, until every piece fits.
 export function cueChunks(text, max = 90) {
   const out = [];
   const split = (s) => {
     if (s.length <= max) { out.push(s); return; }
     const mid = s.length / 2;
     let best = -1;
-    for (const re of [/[,;:] /g, / /g]) {
+    for (const re of [/[,;:] /g, /\) /g, / /g]) {
       for (const m of s.matchAll(re)) if (best < 0 || Math.abs(m.index - mid) < Math.abs(best - mid)) best = m.index;
       if (best > 0) break;
     }
@@ -136,8 +137,9 @@ const MIN_PHRASE_WORDS = 3; // shorter phrases ride with the next one
 // which the voice skips. The gloss rides inside its term's word while the
 // phrases are cut, so both forms always have the same sentences and phrases.
 const GLOSS = { open: '\u0002', close: '\u0003', space: '\u0001' };
-const glossedOf = (seg) => seg.map((p) => (typeof p === 'string' ? p
-  : p.t + (p.en ? GLOSS.open + p.en.replace(/\s+/g, GLOSS.space) + GLOSS.close : ''))).join('').replace(/\s+/g, ' ').trim();
+// A gloss equal to the term as shown (CAM, H7) is left out.
+const glossOf = (p) => (p.en && p.en.toLowerCase() !== String(p.t).toLowerCase() ? GLOSS.open + p.en.replace(/\s+/g, GLOSS.space) + GLOSS.close : '');
+const glossedOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t + glossOf(p))).join('').replace(/\s+/g, ' ').trim();
 const unmark = (s) => s.split(GLOSS.open).join(' (').split(GLOSS.close).join(')').split(GLOSS.space).join(' ');
 export function phrasesOf(seg, { gloss = false } = {}) {
   const out = phrasesIn(gloss ? glossedOf(seg) : String(saidOf(seg)));

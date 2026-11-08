@@ -101,6 +101,18 @@ test('WebVTT: timestamps, cues per beat timed by length, the file format', () =>
   assert.equal(vttOf([{ start: 0, end: 1, text: 'a <b> & c' }]).split('\n')[4], 'a &lt;b&gt; &amp; c');
 });
 
+test('glossed subtitles: a Dutch term shows its English word once, in parentheses; the voice text is untouched', () => {
+  const seg = ['Een ', { t: 'wisselplaat', en: 'carbide insert' }, ' snijdt, en de ', { t: 'snijsnelheid', en: 'cutting speed' }, ' telt. Ook ', { t: 'H7', en: 'H7' }, '.'];
+  assert.deepEqual(phrasesOf(seg), [['Een wisselplaat snijdt,', 'en de snijsnelheid telt.'], ['Ook H7.']]);
+  // a gloss equal to the term as shown (H7, CAM) is left out
+  assert.deepEqual(phrasesOf(seg, { gloss: true }), [['Een wisselplaat (carbide insert) snijdt,', 'en de snijsnelheid (cutting speed) telt.'], ['Ook H7.']]);
+  // English scripts carry no gloss: unchanged
+  assert.deepEqual(phrasesOf(['A ', { t: 'carbide insert' }, ' cuts.'], { gloss: true }), [['A carbide insert cuts.']]);
+  // a glossed phrase too long for one cue is cut after the gloss
+  assert.deepEqual(cueChunks('Daarom bewaart de gereedschapscorrectie (tool offset) van elk gereedschap de lengte en de radius.', 84),
+    ['Daarom bewaart de gereedschapscorrectie (tool offset)', 'van elk gereedschap de lengte en de radius.']);
+});
+
 test('exact subtitles: one clip per phrase, cues at the measured clip times, the pauses from one place', () => {
   assert.ok(PAUSES.sentence >= 0.5 && PAUSES.sentence <= 0.6 && PAUSES.comma >= 0.15 && PAUSES.comma <= 0.25 && PAUSES.beat >= 0.8);
   assert.equal(AUDIO_GAPS.gap, PAUSES.beat);
@@ -151,7 +163,10 @@ test('lexicon: the voice gets the phonemes, the subtitles keep the spelling', ()
     }
   }
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  for (const w of ['toerental', 'omwenteling', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
+  for (const w of ['toerental', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
+  // omwenteling is no first-part compound: its main stress is on WEN (omWENteling)
+  for (const w of ['omwenteling', 'omwentelingen']) assert.ok(nl[w].includes('ʋˈɛn'), `${w}: ${nl[w]}`);
+  assert.ok(!('overleg' in nl), 'overLEG keeps espeak-ng’s own stress');
 });
 
 test('render mode shows no caption band: the video subtitles come from its WebVTT track only', () => {
@@ -173,6 +188,49 @@ test('manifest: the public URL pattern and an entry per film and language', () =
   assert.ok(!m1.films['eng.x.y'].en, 'the old manifest is not changed');
   assert.throws(() => manifestWith(null, '../x', 'nl', { dur: 1, bytes: 1, scenes: [0] }), /id/);
   assert.throws(() => manifestWith(null, 'eng.x.y', 'de', { dur: 1, bytes: 1, scenes: [0] }), /lang/);
+});
+
+// Merijn's rules for the shipped subtitles: they are exactly the spoken words;
+// in Dutch a term's English word is shown once, in parentheses, and never
+// spoken; English has no glosses. Checked for every film's committed VTT
+// against the narration script in its film page.
+const vttText = (vtt) => vtt.replace(/\r/g, '').split(/\n\n+/).slice(1)
+  .map((block) => block.split('\n').filter((l) => l && !/^\d+$/.test(l) && !l.includes('-->')).join(' '))
+  .join(' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+test('shipped subtitles: the spoken words exactly, a Dutch term’s English word once in parentheses, never spoken; no glosses in English', () => {
+  const m = JSON.parse(fs.readFileSync('src/content/courses/films/manifest.json', 'utf8'));
+  const ids = Object.keys(m.films);
+  assert.ok(ids.length >= 5);
+  for (const id of ids) {
+    const data = filmDataOf(fs.readFileSync(`src/content/courses/films/${id}.html`, 'utf8'));
+    assert.ok(data, `${id}: film data`);
+    const beats = data.scenes.flatMap((s) => s.beats).filter((b) => b.say);
+    for (const lang of ['nl', 'en']) {
+      const segs = beats.map((b) => b.say[lang]);
+      const terms = segs.flat().filter((p) => typeof p !== 'string');
+      const glossed = terms.filter((p) => p.en && p.en.toLowerCase() !== p.t.toLowerCase());
+      if (lang === 'en') assert.equal(terms.filter((p) => p.en).length, 0, `${id} en: a gloss in the English script`);
+      // the voice: the phrases as said, the same words as the script, no gloss
+      const said = segs.map((seg) => saidOf(seg)).join(' ');
+      assert.equal(segs.map((seg) => phrasesOf(seg).flat().join(' ')).join(' '), said, `${id} ${lang}: the clips say the script`);
+      for (const b of beats) assert.equal(b.voice[lang], speakOf(b.say[lang], lang), `${id} ${lang}: voice`);
+      for (const p of glossed) assert.ok(!said.includes(`(${p.en})`) && !beats.some((b) => b.voice[lang].includes(`(${p.en})`)), `${id} ${lang}: "${p.en}" is spoken`);
+      // the subtitles: the glossed phrases, cue by cue
+      const sub = vttText(fs.readFileSync(m.films[id][lang].vtt, 'utf8'));
+      assert.equal(sub, segs.map((seg) => phrasesOf(seg, { gloss: true }).flat().join(' ')).join(' '), `${id} ${lang}: subtitles = script with glosses`);
+      // with each gloss taken out, they are the spoken words exactly
+      let plain = sub;
+      for (const p of glossed) {
+        const at = plain.indexOf(`${p.t} (${p.en})`);
+        assert.ok(at >= 0, `${id} ${lang}: no "${p.t} (${p.en})" in the subtitles`);
+        plain = plain.slice(0, at) + p.t + plain.slice(at + p.t.length + p.en.length + 3);
+      }
+      assert.equal(plain, said, `${id} ${lang}: subtitles without glosses = the spoken words`);
+      // each term's English word once
+      const keys = glossed.map((p) => p.k);
+      assert.equal(new Set(keys).size, keys.length, `${id} ${lang}: a term glossed twice`);
+    }
+  }
 });
 
 test('the committed manifest: every film has nl and en, an https URL on the films bucket, sizes and durations', () => {
