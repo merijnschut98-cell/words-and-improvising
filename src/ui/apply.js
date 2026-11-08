@@ -59,6 +59,7 @@ export function renderApply(app, { subject, planId }, root) {
       main.replaceChildren(h('p', { class: 'muted small apply-recall' }, t('applyRecall')), box);
       renderQuiz(app, {
         questions: [q],
+        termsOf: () => ((mod.lessons || []).find((l) => l.id === plan.lessonId) || {}).terms || [],
         onDone: (firstTry, sure) => {
           app.setState(applyRecall(app.state, { subject, results: firstTry, sure, lang: app.lang }, app.today()).state);
           finish(true);

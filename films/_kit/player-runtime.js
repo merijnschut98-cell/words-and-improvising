@@ -186,7 +186,7 @@
     const { si, lt } = local();
     const s = scenes[si];
     const bi = beatIndexAt(s, LANG, lt);
-    const u = reduce ? s.still : Math.min(1, Math.max(0, lt / s.dur));
+    const u = reduce ? (s.beats[bi].still ?? s.still) : Math.min(1, Math.max(0, lt / s.dur)); // a beat may set its own still
     STAGE.render(si, u);
     caption(si, bi);
     if (!scrubbing) range.value = String(Math.round(t * 10) / 10);

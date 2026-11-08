@@ -30,6 +30,10 @@ const MODIFIER_TEXT = {
   eyesClosed: 'speak with eyes closed',
   endQuestion: 'end with a question to the listener',
   budget: 'stay within a word budget (30 to 60 words): answer first, then stop; judge concision',
+  oneLine: 'open with the answer in one sentence; judge whether the first sentence carries the point',
+  noFillers: 'no filler words (um, so, like); judge fluency strictly',
+  clearEnd: 'end with one clear closing sentence, then stop',
+  vary: 'vary the voice: louder and softer, a pause before the key word',
 };
 
 const FRAME_EN = {

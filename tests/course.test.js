@@ -56,7 +56,7 @@ test('applyLesson: 20 XP the first time, 0 on a retake; passed stays the first t
   assert.equal(again.state.days[TODAY], 2);
   assert.equal(again.state.courses.eng.lessons['eng.flow.takt'].passed, NOW);
   assert.equal(again.state.courses.eng.sessions.length, 2);
-  assert.deepEqual(again.state.courses.eng.sessions[1], { day: TODAY, kind: 'lesson', lessonId: 'eng.flow.takt', correct: 1, total: 2, cal: { sr: 1, st: 2, gr: 0, gt: 0 }, ts: NOW });
+  assert.deepEqual(again.state.courses.eng.sessions[1], { day: TODAY, kind: 'lesson', lessonId: 'eng.flow.takt', correct: 1, total: 2, ts: NOW });
 });
 
 test('applyDue: 10 XP plus 1 per correct, capped at 20; schedules each; logs the session', () => {
@@ -337,32 +337,67 @@ test('a prep session counts once, like a due session', () => {
   assert.deepEqual(again.state.courses.eng.prepped, ['ev1']);
 });
 
-import { calibrationLine } from '../src/core/course.js';
+import { hintQuiz } from '../src/core/course.js';
 
-// Sure or guessing.
-test('quiz: sure is recorded on the first pass only, defaults to sure, and back drops it', () => {
+// A hint instead of "I know it / I'm guessing": sure is !hinted.
+test('quiz: a hint is taken once per question; on the first pass the answer then counts as not sure', () => {
   const qs = [choice('l#r0'), choice('l#r1')];
   let s = startQuiz(qs);
-  s = answerQuiz(s, qs, 'b', false);
-  assert.deepEqual(s.sure, { 'l#r0': false });
-  s = backQuiz(s, qs);
-  assert.deepEqual(s.sure, {}, 'taking an answer back drops its guess flag');
+  assert.deepEqual(s.hints, {});
+  s = hintQuiz(s, qs);
+  assert.deepEqual(s.hints, { 'l#r0': true });
+  assert.equal(hintQuiz(s, qs), s, 'a second tap changes nothing');
   s = answerQuiz(s, qs, 'b');
-  s = answerQuiz(s, qs, 'a', false);
-  assert.deepEqual(s.sure, { 'l#r0': true, 'l#r1': false });
-  s = continueQuiz(s);
-  s = answerQuiz(s, qs, 'b', true);
-  assert.deepEqual(s.sure, { 'l#r0': true, 'l#r1': false }, 'later passes do not change it');
+  s = answerQuiz(s, qs, 'a');
+  assert.deepEqual(s.sure, { 'l#r0': false, 'l#r1': true }, 'hinted → not sure; no hint → sure');
   assert.deepEqual(s.firstTry, { 'l#r0': true, 'l#r1': false });
+  assert.equal(hintQuiz(s, qs), s, 'no hint once the answers are shown');
+  s = continueQuiz(s);
+  assert.deepEqual(s.hints, {}, 'a new pass starts without hints');
+  s = hintQuiz(s, qs);
+  assert.deepEqual(s.hints, { 'l#r1': true }, 'a hint on a retry is allowed');
+  s = answerQuiz(s, qs, 'b');
+  assert.deepEqual(s.sure, { 'l#r0': false, 'l#r1': true }, 'later passes do not change it');
 });
 
-test('applyLesson: a correct guess does not create box 2; a sure correct answer does', () => {
-  const firstTry = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true };
-  const s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, sure: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW).state;
+test('quiz: back remembers the hint per question, and answering again keeps it', () => {
+  const qs = [choice('l#r0'), choice('l#r1'), choice('l#r2')];
+  let s = startQuiz(qs);
+  s = hintQuiz(s, qs);
+  s = answerQuiz(s, qs, 'a');
+  s = answerQuiz(s, qs, 'b');
+  s = backQuiz(s, qs);
+  assert.deepEqual(s.hints, { 'l#r0': true }, 'no hint on r1, the hint on r0 stays');
+  s = backQuiz(s, qs);
+  assert.equal(s.i, 0);
+  assert.equal(s.hints['l#r0'], true, 'back on the hinted question: the hint is still shown');
+  assert.deepEqual(s.prev, { id: 'l#r0', value: 'a', sure: false });
+  s = answerQuiz(s, qs, 'b');
+  assert.deepEqual(s.sure, { 'l#r0': false }, 'a hint can’t be taken back');
+  s = answerQuiz(s, qs, 'b');
+  assert.deepEqual(s.sure, { 'l#r0': false, 'l#r1': true });
+});
+
+test('applyLesson / applyDue: correct after a hint keeps the box (a new one starts at 1); without a hint it climbs', () => {
+  const firstTry = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true, 'eng.flow.takt#r2': false };
+  const sure = { 'eng.flow.takt#r0': false, 'eng.flow.takt#r1': true, 'eng.flow.takt#r2': false };
+  const s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, sure, lang: 'nl' }, TODAY, NOW).state;
   assert.equal(s.courseReviews['nl|eng.flow.takt#r0'].box, 1);
   assert.equal(s.courseReviews['nl|eng.flow.takt#r1'].box, 2);
+  assert.equal(s.courseReviews['nl|eng.flow.takt#r2'].box, 1);
   const d = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r1': true }, sure: { 'eng.flow.takt#r1': false }, lang: 'nl' }, '2026-11-05', NOW).state;
-  assert.equal(d.courseReviews['nl|eng.flow.takt#r1'].box, 2, 'a due guess keeps its box');
+  assert.equal(d.courseReviews['nl|eng.flow.takt#r1'].box, 2, 'a hinted due answer keeps its box');
+  const d2 = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r1': true }, lang: 'nl' }, '2026-11-05', NOW).state;
+  assert.equal(d2.courseReviews['nl|eng.flow.takt#r1'].box, 3, 'without a hint it climbs');
+});
+
+test('old sessions with the calibration counts (cal) stay readable', () => {
+  const old = { day: TODAY, kind: 'lesson', lessonId: 'eng.flow.takt', correct: 1, total: 2, cal: { sr: 1, st: 2, gr: 0, gt: 0 }, ts: NOW };
+  const s = { ...defaultState(), courses: { eng: { lessons: {}, sessions: [old] } } };
+  const next = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW + 1).state;
+  assert.deepEqual(next.courses.eng.sessions[1], old, 'kept as it was');
+  assert.equal('cal' in next.courses.eng.sessions[0], false, 'new sessions no longer write it');
+  assert.ok(courseSummary(next, 'eng', 'nl', TODAY));
 });
 
 test('course today: lapsed questions count at most three toward "due"', () => {
@@ -372,16 +407,6 @@ test('course today: lapsed questions count at most three toward "due"', () => {
   assert.equal(courseTodayPick(s, 'eng', 'nl', day, MODS).reason, 'lesson', 'six lapsed count as three');
   const plus2 = { ...s, courseReviews: { ...lapsed, 'nl|eng.flow.b#r0': { box: 2, due: day, lesson: 'eng.flow.b', subject: 'eng' }, 'nl|eng.flow.b#r1': { box: 2, due: day, lesson: 'eng.flow.b', subject: 'eng' } } };
   assert.deepEqual(courseTodayPick(plus2, 'eng', 'nl', day, MODS), { reason: 'due', count: 5 });
-});
-
-test('calibration: sure and guessing answers, right and total, over the last 30 days', () => {
-  let s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', lang: 'nl',
-    firstTry: { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': false, 'eng.flow.takt#r2': true, 'eng.flow.takt#r3': false },
-    sure: { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true, 'eng.flow.takt#r2': false, 'eng.flow.takt#r3': false } }, TODAY, NOW).state;
-  s = applyDue(s, { subject: 'eng', results: { 'eng.flow.takt#r1': true }, lang: 'nl' }, TODAY, NOW + 1).state;
-  assert.deepEqual(calibrationLine(s.courses.eng.sessions, TODAY), { sureRight: 2, sureTotal: 3, guessRight: 1, guessTotal: 2 });
-  assert.deepEqual(calibrationLine(s.courses.eng.sessions, '2026-12-20'), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 });
-  assert.deepEqual(calibrationLine([{ day: TODAY, kind: 'lesson' }], TODAY), { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 }, 'v8 sessions count nothing');
 });
 
 test('applyDue: a correct answer on a question not yet due keeps its box (no same-day climb); a miss still resets', () => {

@@ -574,12 +574,12 @@ const STAGE = (() => {
       magOn = span(u, 0.02, 0.12);
     } else {
       // haaksheid in the magnifier, then the part goes onto the functional gauge
-      magOn = 1 - span(u, 0.42, 0.5);
-      const lift = span(u, 0.5, 0.62);
-      const down = span(u, 0.7, 0.9);
+      magOn = 1 - span(u, 0.36, 0.42);
+      const lift = span(u, 0.42, 0.52);
+      const down = span(u, 0.62, 0.82);
       const top = C.CMMZ + C.GAUGE_T + C.PIN_H + 6;
       partZ = down > 0 ? lerp(top, C.CMMZ + C.GAUGE_T, down) : lerp(C.CMMZ, top, lift);
-      const gOn = span(u, 0.6, 0.68);
+      const gOn = span(u, 0.44, 0.52);
       fade(E.gauge, gOn);
       fade(E.pinsLo, gOn);
       fade(E.pinsHi, gOn);

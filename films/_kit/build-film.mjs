@@ -128,6 +128,7 @@ export function resolveFilm(spec, lessons) {
         speak: { nl: speakOf(seg.nl, 'nl'), en: speakOf(seg.en, 'en') },
         cues: [...cues],
         ...(readP ? { read: { nl: fmtRead('nl'), en: fmtRead('en') } } : {}),
+        ...(b.still !== undefined ? { still: b.still } : {}),
         ...narration,
       };
     });
