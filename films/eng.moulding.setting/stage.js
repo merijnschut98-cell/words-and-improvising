@@ -3,7 +3,7 @@
 // functions in scope) and a preamble from build.mjs that defines P
 // (projection), C (world constants and the model), CAM (one camera move per
 // scene), W and H. span and ease come from the player's timeline.
-/* global P, C, CAM, W, H, iso, pathOf, translateAlong, span */
+/* global P, C, CAM, W, H, iso, pathOf, translateAlong, span, beatStarts, warpU, introBeat, introCamera */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const el = (k) => svg.querySelector(`[data-k="${k}"]`);
@@ -579,5 +579,33 @@ const STAGE = (() => {
     if (lensOn) lens(...lensOn); else set(E.lens, '');
   }
 
-  return { render };
+  // ------------------------------------------------------------ v14b: the intro, and the audio warp
+  // Scene 1 of the film is a "how it works" tour of the press, built from the
+  // stage's own states; the scenes after it are the stage's own scenes, one
+  // index on. In a video render each scene's progress is warped so the moves
+  // land on the spoken lines (designed: the Dutch beat shares, as C.BEATS).
+  const FILM = JSON.parse(document.getElementById('film-data').textContent);
+  const designed = (si) => { const s = FILM.scenes[si]; return beatStarts(s, 'nl').map((t) => t / s.dur); };
+  const hud = svg.querySelector('[data-k="hud"]');
+  const lensG = E.lens;
+  function intro(u) {
+    const d = designed(0);
+    const { k, p } = introBeat(u, d);
+    // the press at rest, dosing, injecting, cooling, and the lid dropping onto the scale
+    if (k === 0) render(0, 0);
+    else if (k === 1) render(4, lerp(0.04, C.BEATS[4][1] - 0.04, p));
+    else if (k === 2) render(1, lerp(0.06, 0.86, span(p, 0.1, 0.9)));
+    else if (k === 3) render(3, lerp(0.55, 0.95, p));
+    else render(7, lerp(0, 0.16, p));
+    set(E.lens, '');
+    introCamera(E.world, C.INTRO, d, u, W, H);
+  }
+  return {
+    render(si, u) {
+      show(hud, si !== 0);
+      show(lensG, si !== 0);
+      if (si === 0) intro(warpU(0, u, designed(0)));
+      else render(si - 1, warpU(si, u, designed(si)));
+    },
+  };
 })();

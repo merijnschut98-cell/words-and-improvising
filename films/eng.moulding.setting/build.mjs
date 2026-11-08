@@ -343,13 +343,13 @@ const world = [
   g('barrel', barrel),
   g('barrelSec', barrelSec),
   g('heat', heaters + heatSec, ' data-cue="heat"'),
-  g('hopper', hopper + hopperSec),
-  `<g clip-path="url(#fm-bore)">${g('screw', '')}</g>`,
+  g('hopper', hopper + hopperSec, ' data-cue="hopper"'),
+  `<g clip-path="url(#fm-bore)" data-cue="screw">${g('screw', '')}</g>`,
   g('ring', '', ' data-cue="ring"'),
   g('cushion', '', ' data-cue="cushion"'),
   g('fplaten', fixedPlaten + fixedPlatenSec + nozzleInPlaten),
-  g('fixed', fixedHalf + fixedSec),
-  g('moving', movingHalf + movingSec),
+  g('fixed', fixedHalf + fixedSec, ' data-cue="mould"'),
+  g('moving', movingHalf + movingSec, ' data-cue="mould"'),
   g('cool', coolSec, ' data-cue="cool"'),
   g('fill', ''),
   g('front', '', ' data-cue="front"'),
@@ -385,6 +385,17 @@ const spec = {
   title: { nl: 'Binnen in de matrijs', en: 'Inside the mould' },
   lessons: ['eng.moulding.setup', 'eng.moulding.process', 'eng.moulding.scientific', 'eng.moulding.validation'],
   scenes: [
+    {
+      // v14b: the Basis "how it works" tour of the press, before the terms
+      id: 's0', lesson: 'eng.moulding.setup', level: 1, dur: 34, still: 0.5, title: { nl: 'Hoe spuitgieten werkt', en: 'How injection moulding works' },
+      beats: [
+        { nl: 'Een spuitgietpers maakt kunststof producten: van korrels tot een klaar product in seconden.', en: 'An injection moulding press makes plastic parts: from pellets to a finished part in seconds.', still: 0.08 },
+        { nl: 'Korrels vallen uit de trechter in de hete cilinder; de draaiende schroef smelt en mengt ze.', en: 'Pellets drop from the hopper into the hot barrel; the turning screw melts and mixes them.', cues: ['hopper', 'screw'], still: 0.3 },
+        { nl: 'Dan schiet de schroef naar voren en spuit de smelt via de spuitmond in de matrijs.', en: 'Then the screw shoots forward and injects the melt through the nozzle into the mould.', cues: ['screw'], still: 0.55 },
+        { nl: 'De holte in de matrijs geeft het product zijn vorm; water in het staal koelt het af.', en: 'The cavity in the mould gives the part its shape; water in the steel cools it down.', cues: ['mould', 'cool'], still: 0.75 },
+        { nl: 'Is het product stijf, dan valt het uit de matrijs: hier op een weegschaal.', en: 'Once the part is stiff, it drops out of the mould: here onto a scale.', cues: ['mould'], still: 0.97 },
+      ],
+    },
     {
       id: 's1', lesson: 'eng.moulding.setup', level: 1, dur: DUR[0], still: 0.6, title: { nl: 'De instelkaart', en: 'The setting sheet' },
       beats: [
@@ -453,11 +464,100 @@ const spec = {
   skip: [],
 };
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen, so the film replaces the lesson text. Same markers
+// ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
+// the lessons like the captions'. A term is named while its cue is lit.
+// films/_kit/narrate.mjs turns each line into speech with Piper.
+const SAY = [
+  [ // s0 how injection moulding works
+    { nl: 'Hoe werkt spuitgieten? Dit is een spuitgietpers, opengewerkt zodat je erin kunt kijken. Links zit de spuiteenheid, rechts de matrijs. Zo maak je in een paar seconden een kunststof product, steeds weer hetzelfde.',
+      en: 'How does injection moulding work? This is an injection moulding press, cut open so you can look inside. On the left is the injection unit, on the right the mould. It makes a plastic part in a few seconds, the same every time.' },
+    { nl: 'Kunststofkorrels vallen uit de trechter in een stalen cilinder met verwarmingsbanden. Daarin draait een schroef. Die voert de korrels naar voren, en door de warmte en het kneden smelten ze tot een stroperige massa.',
+      en: 'Plastic pellets drop from the hopper into a steel barrel with heater bands. Inside it a screw turns. It carries the pellets forward, and the heat and the kneading melt them into a thick, syrupy mass.' },
+    { nl: 'Ligt er genoeg smelt voor de schroef, dan schiet de schroef als een zuiger naar voren. Hij spuit de smelt door de spuitmond in de matrijs.',
+      en: 'Once there is enough melt in front of the screw, the screw shoots forward like a piston. It injects the melt through the nozzle into the mould.' },
+    { nl: 'De matrijs is een stalen blok uit twee helften. De holte ertussen heeft de vorm van het product. Door kanalen in het staal stroomt water, dat de kunststof afkoelt tot hij stijf is.',
+      en: 'The mould is a steel block in two halves. The cavity between them has the shape of the part. Water flows through channels in the steel and cools the plastic until it is stiff.' },
+    { nl: 'Dan gaat de matrijs open en duwen pennen het product eruit; hier valt het op een weegschaal. De matrijs sluit weer voor het volgende shot. Hoe heet, hoe snel en hoe hard: dat staat allemaal op één kaart.',
+      en: 'Then the mould opens and pins push the part out; here it drops onto a scale. The mould closes again for the next shot. How hot, how fast and how hard: it is all on one sheet.' },
+  ],
+  [ // s1 the setting sheet
+    { nl: 'Dat is de {t:Instelkaart|instelkaart}: de goedgekeurde lijst instellingen voor één matrijs op één pers. De insteller, de technicus die de pers opbouwt, begint elke run vanaf deze kaart.',
+      en: 'That is the {t:Setting sheet|setting sheet}: the approved list of settings for one mould on one press. The setter, the technician who sets up the press, starts every run from this sheet.' },
+    { nl: 'Verwarmingszones langs de cilinder houden de {t:Smelttemperatuur|smelttemperatuur} vast: hoe heet de kunststof de cilinder verlaat. Voor PP is dat zo’n {n:230} graden. Het water houdt de matrijs op {n:40} graden.',
+      en: 'Heater zones along the barrel hold the {t:Melt temperature|melt temperature}: how hot the plastic leaves the barrel. For PP that is about {n:230} degrees. The water keeps the mould at {n:40} degrees.' },
+  ],
+  [ // s2 injection
+    { nl: 'De schroef duwt naar voren met de {t:Inspuitsnelheid|inspuitsnelheid}, in millimeter per seconde: hier {n:80}. Snel vullen houdt de kunststof heet, zodat hij ver vloeit. Te snel geeft brandplekken.',
+      en: 'The screw pushes forward at the {t:Injection speed|injection speed}, in millimetres per second: here {n:80}. Filling fast keeps the plastic hot, so it flows far. Too fast gives burn marks.' },
+    { nl: 'Vanaf het aanspuitpunt, de smalle ingang van de holte, loopt het vloeifront door de holte. Tegen het koelere staal stolt meteen een dun huidje.',
+      en: 'From the gate, the narrow entrance to the cavity, the flow front runs through the cavity. Against the cooler steel a thin skin freezes at once.' },
+    { nl: 'De schroef begint op {n:60} millimeter en vult op snelheid tot {n:12} millimeter. Dat is {n:48} millimeter, en bij {n:80} millimeter per seconde duurt dat {n:0.6} seconde.',
+      en: 'The screw starts at {n:60} millimetres and fills on speed down to {n:12} millimetres. That is {n:48} millimetres, and at {n:80} millimetres per second it takes {n:0.6} seconds.' },
+  ],
+  [ // s3 switchover
+    { nl: 'Op {n:12} millimeter ligt het {t:Omschakelpunt|omschakelpunt}. Daar stopt de machine met vullen op snelheid, en schakelt ze over op druk.',
+      en: 'At {n:12} millimetres lies the {t:Switchover point|switchover point}. There the machine stops filling on speed, and changes over to pressure.' },
+    { nl: 'De holte is dan zo’n {n:95} tot {n:98} procent vol. Schakel je te laat om, dan wordt hij overvol gespoten en perst er kunststof tussen de helften: braam.',
+      en: 'The cavity is then about {n:95} to {n:98} percent full. Switch too late, and it is overfilled and plastic squeezes out between the halves: flash.' },
+  ],
+  [ // s4 holding and cooling
+    { nl: 'Nu neemt de nadruk het over, hier {n:400} bar. De schroef blijft duwen en perst er kunststof bij, want het product krimpt terwijl het afkoelt.',
+      en: 'Now the holding pressure takes over, here {n:400} bar. The screw keeps pushing and packs in more plastic, because the part shrinks as it cools.' },
+    { nl: 'De {t:Nadruktijd|nadruktijd} is hoe lang hij duwt: tot het aanspuitpunt bevroren is. Daarna kan er niets meer bij. Hier is dat {n:4} seconden.',
+      en: 'The {t:Holding time|holding time} is how long it pushes: until the gate has frozen. After that nothing more can get in. Here that is {n:4} seconds.' },
+    { nl: 'Dan houdt de gesloten matrijs het product {n:10} seconden vast om te koelen. Met zo’n {n:4} seconden openen, uitwerpen en sluiten is de cyclus {n:18.6} seconden.',
+      en: 'Then the closed mould holds the part for {n:10} seconds to cool. With about {n:4} seconds to open, eject and close, the cycle is {n:18.6} seconds.' },
+  ],
+  [ // s5 dosing and the cushion
+    { nl: 'Terwijl het product koelt, maakt de schroef het volgende shot klaar. Hij draait en schuift terug, tegen de {t:Stuwdruk|stuwdruk} in: die weerstand laat de smelt beter mengen.',
+      en: 'While the part cools, the screw prepares the next shot. It turns and moves back against the {t:Back pressure|back pressure}: that resistance makes the melt mix better.' },
+    { nl: 'Op de schroefpunt zit de {t:Terugslagring|terugslagring}, een ventielringetje. Bij het inspuiten sluit hij, zodat de smelt niet terug langs de schroef stroomt.',
+      en: 'On the screw tip sits the {t:Check ring|check ring}, a small valve ring. During injection it closes, so the melt cannot flow back past the screw.' },
+    { nl: 'Na het inspuiten blijft er vóór de schroef een paar millimeter smelt over: het {t:Restkussen|restkussen}. Springt dat heen en weer, van {n:2} tot {n:8} millimeter, dan lekt de ring.',
+      en: 'After injection a few millimetres of melt remain in front of the screw: the {t:Cushion|cushion}. If it jumps back and forth, from {n:2} to {n:8} millimetres, the ring is leaking.' },
+  ],
+  [ // s6 the process window
+    { nl: 'Het {t:Procesvenster|procesvenster} is het gebied van instellingen waarin elk product goed is. Zit in het midden, niet op de rand. Dan vangt het proces schommelingen in materiaal en temperatuur op.',
+      en: 'The {t:Process window|process window} is the range of settings in which every part is good. Sit in the middle, not on the edge. Then the process absorbs swings in material and temperature.' },
+    { nl: '{t:Scientific moulding|Scientific moulding} knipt vullen en nadrukken los: vul zo’n {n:95} tot {n:98} procent op snelheid, en pers de rest na op druk.',
+      en: '{t:Scientific moulding|Scientific moulding} separates filling from packing: fill about {n:95} to {n:98} percent on speed, and pack the rest on pressure.' },
+  ],
+  [ // s7 three studies
+    { nl: 'Daarvoor zijn drie studies. De {t:Viscositeitscurve|viscositeitscurve} laat zien hoe stroperig de smelt is bij elke snelheid: {n:1280}, {n:880}, {n:825}. Eerst daalt hij steil, dan loopt hij vlak. Kies daar de snelheid.',
+      en: 'There are three studies for this. The {t:Viscosity curve|viscosity curve} shows how thick the melt is at each speed: {n:1280}, {n:880}, {n:825}. First it falls steeply, then it runs flat. Choose the speed there.' },
+    { nl: 'De {t:Drukverhouding|drukverhouding} rekent de oliedruk op het scherm om naar de kunststofdruk aan de schroefpunt. Vaak is die zo’n {n:10}.',
+      en: 'The {t:Intensification ratio|intensification ratio} converts the oil pressure on the screen into the plastic pressure at the screw tip. It is often about {n:10}.' },
+    { nl: 'Een {t:Drukvalstudie|drukvalstudie} meet hoeveel druk elk deel kost: spuitmond, verdeelkanaal, aanspuitpunt en product. Samen is dat hier {n:1500} van de tweeduizend bar die de pers kan geven.',
+      en: 'A {t:Pressure drop study|pressure drop study} measures how much pressure each section takes: nozzle, runner, gate and part. Together that is {n:1500} of the two thousand bar the press can give.' },
+    { nl: 'Dat is {n:75} procent, onder de regel van {n:80} procent. Het proces is dus niet {t:Drukbegrensd|drukbegrensd}: de pers haalt de ingestelde snelheid nog.',
+      en: 'That is {n:75} percent, under the {n:80} percent rule. So the process is not {t:Pressure-limited|pressure-limited}: the press can still reach the set speed.' },
+    { nl: 'Dan de {t:Gate-freeze-studie|gate-freeze-studie}: dezelfde nadruk, maar steeds een seconde langer nadrukken, en elk product wegen.',
+      en: 'Then the {t:Gate freeze study|gate freeze study}: the same holding pressure, but each time a second longer, weighing every part.' },
+    { nl: 'Het gewicht stijgt, en loopt dan vlak. Vanaf daar is het aanspuitpunt dicht. Zet de nadruktijd er iets boven.',
+      en: 'The weight rises, then levels off. From there on the gate is shut. Set the holding time a little above that.' },
+  ],
+  [ // s8 validating and monitoring
+    { nl: '{t:Validatie|Validatie} bewijst met data dat het proces steeds goede producten maakt, in drie stappen: {t:IQ/OQ/PQ|IQ/OQ/PQ}. Eerst de installatie, dan draaien op de randen van het venster, en tot slot gewone productie.',
+      en: '{t:Validation|Validation} proves with data that the process keeps making good parts, in three steps: {t:IQ/OQ/PQ|IQ/OQ/PQ}. First the installation, then running at the edges of the window, and finally normal production.' },
+    { nl: 'Daarna bewaak je het {t:Productgewicht|productgewicht}: verandert het vullen, dan verandert het gewicht. In de PQ wogen {n:125} shots gemiddeld {n:4.820} gram. Elk uur weeg je een shot, binnen {n:4.802} tot {n:4.838} gram.',
+      en: 'After that you watch the {t:Part weight|part weight}: if the filling changes, the weight changes. In the PQ, {n:125} shots weighed {n:4.820} grams on average. Every hour you weigh a shot, within {n:4.802} to {n:4.838} grams.' },
+    { nl: 'Gaat de matrijs naar een andere pers, of komt er een nieuwe materiaalleverancier, dan volgt {t:Hervalidatie|hervalidatie}: de validatie geheel of deels opnieuw.',
+      en: 'If the mould moves to another press, or a new material supplier comes in, {t:Revalidation|revalidation} follows: the validation repeated, in whole or in part.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // beat starts as fractions of each scene (Dutch word shares), so the stage can
 // time its moves to the caption that names them
 const lessons = await allLessons();
 const pre = resolveFilm(spec, lessons);
-const BEATS = pre.scenes.map((s) => beatStarts(s, 'nl').map((t) => Math.round((t / s.dur) * 1000) / 1000));
+const BEATS = pre.scenes.slice(1).map((s) => beatStarts(s, 'nl').map((t) => Math.round((t / s.dur) * 1000) / 1000));
 
 // ---------------------------------------------------------------- cameras (one move per scene)
 const cam = (p, w) => { const [x, y] = at(p); return [Math.round(x * 10) / 10, Math.round(y * 10) / 10, w]; };
@@ -481,8 +581,12 @@ const C = {
   dur: DUR, TIP0, BORE, BARREL_R, CYL, NOZ, SPRUE, GATEN, CAV, PL, CARD, FULL: FULL_AT_SWITCH, CUSHION,
   VISC, PRESS, DROP, GATE, SPC, NOISE, BEATS, PINS,
 };
+// v14b: the intro's framings, one per beat: the whole press, the hopper and
+// the barrel, screw to mould, the mould, the mould and the scale below it
+const INTRO = [camAt([-100, 0, -70], 600, 320, 205), cam([-225, 0, 40], 360), cam([-90, 0, 0], 400), camAt([60, 0, 0], 250, 320, 200), cam([70, 0, -90], 420)];
+C.INTRO = INTRO;
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\n`;
-const stageScript = kitScript() + '\n' + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8');
+const stageScript = kitScript() + '\n' + preamble + readFileSync(join(HERE, '../_kit/audio-warp.js'), 'utf8') + '\n' + readFileSync(join(HERE, 'stage.js'), 'utf8');
 
 const css = `
 .fp-lens-ring{fill:none;stroke:var(--fp-accent);stroke-width:2;vector-effect:non-scaling-stroke}
