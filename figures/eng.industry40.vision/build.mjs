@@ -15,6 +15,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -1014,7 +1015,7 @@ var st=document.querySelector(".vi-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 const r50 = rates(T_LESSON);
 console.log(`model: μg ${MG.toFixed(2)} σg ${SG} · μd ${MD.toFixed(2)} σd ${SD} · T=50 → detect ${(r50.detect * 100).toFixed(2)} %, false rejects ${r50.fr.toFixed(2)}/1000, escapes ${r50.esc.toFixed(3)}/1000, good share of rejects ${(r50.goodShare * 100).toFixed(1)} %`);
 for (const t of [30, 40, 45, 56, 62, 68, 75, 85]) { const r = rates(t); console.log(`  T=${t}: FR ${r.fr.toFixed(2)} esc ${r.esc.toFixed(3)} rej ${r.rej.toFixed(2)}`); }

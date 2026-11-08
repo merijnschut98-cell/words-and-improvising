@@ -771,6 +771,20 @@ details.explain-back > summary { font-family: var(--font-display); font-weight: 
 .figure-wrap { margin: var(--space-4, 16px) 0 0; }
 .figure-frame { display: block; width: 100%; aspect-ratio: 1 / 1.05; border: 1px solid var(--line); border-radius: var(--radius-md, 6px); background: var(--card); }
 .figure-wrap figcaption { margin-top: 6px; }
+.figure-wrap { position: relative; }
+.figure-close { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 4px); left: 4px; z-index: 2; min-width: 44px; min-height: 44px; padding: 0; background: var(--card); }
+.figure-close[hidden] { display: none; }
+/* Full screen, asked for by the figure's corner button: the frame fills the screen. */
+.figure-wrap.figure-full { position: fixed; inset: 0; z-index: 1000; margin: 0; display: flex; flex-direction: column; background: var(--card); padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+.figure-wrap.figure-full .figure-frame { flex: 1; height: auto !important; aspect-ratio: auto; border: 0; border-radius: 0; }
+.figure-wrap.figure-full figcaption { display: none; }
+html.figure-full-open, html.figure-full-open body { overflow: hidden; }
+/* On a phone the figure takes the card's full width and asks for its own height. */
+@media (max-width: 479px) {
+  .card .figure-wrap:not(.figure-full) { margin-left: -16px; margin-right: -16px; }
+  .card .figure-wrap:not(.figure-full) .figure-frame { border-left: 0; border-right: 0; border-radius: 0; }
+  .card .figure-wrap:not(.figure-full) figcaption { padding: 0 16px; }
+}
 .film-wrap { margin: var(--space-3, 12px) 0 0; }
 .film-btn { width: 100%; min-height: 44px; }
 .film-box { margin-top: var(--space-3, 12px); }

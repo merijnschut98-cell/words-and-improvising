@@ -16,6 +16,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -1260,7 +1261,7 @@ var st=document.querySelector(".sp-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 console.log(`model: J ${(9500 / areaOf(6)).toFixed(1)} d ${nugOf(9500 / areaOf(6), 300, 3).toFixed(2)} · worn J ${(9500 / areaOf(7.5)).toFixed(1)} d ${nugOf(9500 / areaOf(7.5), 300, 3).toFixed(2)} · min ${minOf(1.2).toFixed(2)} · L4 d ${lobeNugOf("galv", 8.7, 300).toFixed(2)}`);
 console.log(`wrote ${OUT} · ${(page.length / 1024).toFixed(1)} KB · ${solids} solids · ${R.items.length} items · viewBox ${WIDTH}×${HEIGHT} · scale ${KS.toFixed(3)} · inset ${INSET.w}×${INSET.h}`);
 

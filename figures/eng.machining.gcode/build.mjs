@@ -16,6 +16,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -1256,7 +1257,19 @@ var st=document.querySelector(".gc-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + latheScript + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+// On a phone the program listing goes under the drawing: five lines at 11 px,
+// the active line kept in view, so the machine gets the full width.
+const PHONE_CSS = `
+html.vp-phone .gc-stage{flex-direction:column!important;align-items:stretch!important;gap:4px!important}
+html.vp-phone .gc-art{flex:1 1 auto!important;min-height:0!important;width:100%!important;height:auto!important}
+html.vp-phone .gc-screen{position:relative;flex:none!important;width:auto!important;align-self:stretch!important;margin:0 6px!important;max-height:104px!important;overflow:auto!important;font-size:11px!important;line-height:15px!important}
+html.vp-phone .gc-screen *{font-size:11px!important}
+html.vp-phone .gc-head{position:sticky;top:-5px;z-index:1;background:var(--gc-glass)}
+`;
+const PHONE_JS = `(function(){var prog=document.querySelector(".gc-prog"),box=prog&&prog.closest(".gc-screen");if(!box)return;
+function keep(){if(!document.documentElement.classList.contains("vp-phone"))return;var on=prog.querySelector("[data-on]");if(on)box.scrollTop=Math.max(0,on.offsetTop-box.clientHeight/2+8);}
+new MutationObserver(keep).observe(prog,{subtree:true,childList:true,attributes:true,attributeFilter:["data-on"]});keep();})();`;
+writeFileSync(OUT, finishFigure(page, { css: PHONE_CSS, script: PHONE_JS }));
 console.log(`model: F ${0.05 * 4 * 3200} · N60 ${blk(BA, "N60").time.toFixed(2)} s · N70 ${blk(BA, "N70").time.toFixed(2)} s · N80 ${blk(BA, "N80").time.toFixed(2)} s · B N65 ${blk(BB, "N65").time.toFixed(2)} s · cycle A ${CYCLE.a.toFixed(2)} s · B ${CYCLE.b.toFixed(2)} s`);
 console.log(`wrote ${OUT} · ${(page.length / 1024).toFixed(1)} KB · ${solids} solids · ${R.items.length} items · viewBox ${WIDTH}×${HEIGHT} · scale ${KS.toFixed(3)}`);
 

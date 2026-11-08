@@ -17,6 +17,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -1032,7 +1033,7 @@ var st=document.querySelector(".hz-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 const rep = (T0, Q, d, H) => `T0 ${T0} Q ${Q} d ${d}: t8/5 ${t85Of(T0, Q, d).toFixed(1)} s (${flowOf(T0, Q, d)}D) HV ${hvOf(t85Of(T0, Q, d)).toFixed(0)} Tp(H${H}) ${tpOf(d, H, Q).toFixed(0)} °C`;
 console.log(`model: CEV ${CEV.toFixed(2)} CET ${CET.toFixed(3)} CEB ${CEB.toFixed(3)} · dt(20,1) ${dtOf(20, 1).toFixed(1)} mm`);
 for (const r of [[20, 1, 10, 10], [20, 1, 20, 10], [20, 1, 30, 10], [20, 1, 40, 10], [150, 1, 40, 10], [150, 1, 40, 5], [20, 2, 20, 10], [150, 1, 20, 10]]) console.log("  " + rep(...r));

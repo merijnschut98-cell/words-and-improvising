@@ -17,6 +17,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -936,7 +937,7 @@ var st=document.querySelector(".la-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 console.log(`L1 output /h by cover cycle ${L1.steps.join("/")}: ${TABLE1.join(" ")}`);
 console.log(`L2 per 4-min jam, places 0..6: lost ${TABLE2.map((r) => r.lost).join(" ")} · st.2 blocked s ${TABLE2.map((r) => r.blocked).join(" ")}`);
 console.log(`L3 output /h, places 0..6: every 20 min ${TABLE3[20].join(" ")} | every 10 min ${TABLE3[10].join(" ")} · refill 5 places ${REFILL3.toFixed(1)} min`);

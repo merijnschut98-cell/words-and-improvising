@@ -16,6 +16,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { finishFigure } from "../_kit/phone.mjs";
 
 const SKILL =
   process.env.ANATOMY_SKILL ??
@@ -1042,7 +1043,7 @@ var st=document.querySelector(".ti-stage");st.setAttribute("aria-label",s.aria);
 const page = `<!doctype html><html lang="nl" class="iso" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${STRINGS.nl.title}</title><script>${BOOT}</script><style>${k.ISO_CSS}${VANTAGE_CSS}</style></head><body><main>${plate}</main><script>${LANG}</script><script type="module">${(kitScript() + latheScript + live).replace(/<\/(script)/gi, "<\\/$1")}</script></body></html>`;
 
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, page);
+writeFileSync(OUT, finishFigure(page));
 console.log(`model: T(220) ${lifeOf(220).toFixed(2)} · parts ${(lifeOf(220) / tcOf(220, 0.5)).toFixed(1)} · T(160) ${lifeOf(160).toFixed(1)} · C ${econOf(2).C.toFixed(1)} · Te ${econOf(2).Te} → Ve ${econOf(2).Ve.toFixed(1)} · sister Te ${econOf(0.3).Te.toFixed(2)} → ${econOf(0.3).Ve.toFixed(1)}`);
 console.log(`wrote ${OUT} · ${(page.length / 1024).toFixed(1)} KB · ${solids} solids · ${R.items.length} items · viewBox ${WIDTH}×${HEIGHT} · scale ${KS.toFixed(3)}`);
 
