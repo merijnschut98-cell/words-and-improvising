@@ -93,8 +93,8 @@ export default {
         },
       ],
       teach: [
-        'The scope is what the project delivers and what it does to get there. Anything not in it doesn’t belong to it.\n\nA scope statement puts that on one page: the goal, the deliverables, what is out of scope, the assumptions and how you will know it’s done. You write that page before you break the work down. The WBS, the work breakdown from the previous lesson, then works it out in detail.',
-        'Out of scope is the most powerful line on that page. Write down what you won’t do: “the paint line is out of scope”, “we won’t buy new machines”, “we won’t change the ERP system (the central business system for orders and stock)”.\n\nWhatever isn’t excluded, someone will sooner or later expect. A director who hears “lead time” may think of the whole factory; you meant only the CNC department.',
+        'The scope is what the project delivers and what it does to get there. Anything not in it doesn’t belong to it.\n\nIn the module Intake you wrote the goal sentence and a first in/out list. A scope statement puts that on one page: the goal, the deliverables, what is out of scope, the assumptions and how you will know it’s done. The WBS, the work breakdown from the previous lesson, then works it out in detail.',
+        'Out of scope is the most powerful line on that page. Write down what you won’t do: “the paint line is out of scope”, “we won’t buy new machines”, “we won’t change the ERP system (the central business system for orders and stock)”.\n\nWhatever isn’t excluded, someone will sooner or later expect. A director who hears “lead time” may think of the whole factory; you meant only the CNC department. Requests that still come in later are scope creep: the module Run covers that conversation.',
         'An acceptance criterion is a checkable requirement a deliverable must meet to be accepted. Not “better planning”, but “the weekly plan is fixed every Friday at 12:00 and used by the shift leaders three weeks in a row”.\n\nAlso agree who accepts. Without criteria and a name, “done” becomes a feeling, and that feeling shifts when the project is nearly finished.',
         'An assumption is something you take as true without proof: “the data from the MES (the system that records what the machines make) is reliable from January”, “the shift leaders have 4 hours a week”. A constraint is a fixed limit: budget, end date, the summer shutdown.\n\nWrite assumptions down and put the important ones on the risk register. An assumption that turns out wrong is a risk that has already happened.',
         'Experts disagree on how fixed scope should be. Classic methods fix it and steer on deviations; others fix time and budget and let the content move. In improvement projects a middle way often works: the goal and what is out of scope are fixed, the solutions are not.\n\nHave the sponsor sign the page. A sharp question in that conversation: “What would disappoint you, even if we deliver everything on this list?”',
@@ -213,6 +213,7 @@ export default {
           tolerance: 0.1,
           unit: 'weeks',
           why: 'The way of working is ready after 3 + 4 = 7 weeks, the template only in week 9. So the pilot starts in week 9 and ends after 9 + 6 weeks.',
+          hint: 'The pilot can only start when both inputs are there. Which one arrives last?',
         },
       ],
       situation: {
@@ -582,22 +583,22 @@ export default {
       title: 'Speeding up and tracking the schedule',
       pre: [
         {
-          q: 'A project must finish three weeks earlier. Which activities do you speed up?',
-          options: ['Those with the most float', 'Those on the critical path', 'Those with the most people', 'Those that start first'],
-          answer: 'Those on the critical path',
-          why: 'Only the critical path sets the end date; speeding up anything else costs money and gains nothing.',
+          q: 'To finish earlier, you let the operator training overlap with the last machine changes. What is the main price you pay?',
+          options: ['Mainly extra money for overtime and extra fitters', 'The risk of rework if the machine changes still alter', 'A longer critical path, because two tasks now run together', 'Nothing, because overlapping only changes the order'],
+          answer: 'The risk of rework if the machine changes still alter',
+          why: 'Overlapping (fast-tracking) costs little money but starts work before its input is final; if the machine still changes, the training must be redone.',
         },
       ],
       teach: [
         'If the project must finish earlier, you have two classic levers, both only useful on the critical path. Crashing: adding people, overtime or money to make an activity shorter. Fast-tracking: doing activities that were planned one after the other partly at the same time.\n\nCrashing mainly costs money. Fast-tracking mainly costs risk, because you start something before its input is final.',
-        'When crashing, pick the activity that costs least per week gained, and watch for the moment another chain becomes critical. After that you must gain on two chains at once, so every week gets more expensive.\n\nBrooks’s law (Fred Brooks, The Mythical Man-Month, 1975) warns: adding people to a late software project makes it later, because of training and coordination. He wrote it about software, but it holds for much knowledge work.',
+        'When crashing, pick the activity that costs least per week gained, and watch for the moment another chain becomes critical. After that you must gain on two chains at once, so every week gets more expensive.\n\nBrooks’s law (Fred Brooks, The Mythical Man-Month, 1975) warns: adding people to a late software project makes it later, because of training and coordination. He wrote it about software, but many see the same effect in other knowledge work.',
         'Fast-tracking in a factory: training the operators while the last machine changes are still under way, or ordering a part before the drawing is fully fixed. It works when the chance of a change is small.\n\nSo always ask: “What has to be redone if the input still changes, and what does that cost?” If the answer is “almost everything”, overlapping is a gamble.',
         'The schedule baseline is the approved schedule against which you measure deviations. You don’t move it at every setback; you show the difference and change it only after a decision, such as an approved change.\n\nA milestone trend analysis makes the trend visible: at each reporting date you plot the expected date of every milestone. A line that keeps rising is an early alarm, even if nobody reports “red”.',
         'Experts disagree on speeding up. Some say: better to move the date honestly than to wear out the team. Others: a fixed date, such as a production shutdown or the season, justifies a lot.\n\nPeople forget the third lever: cutting scope. A sharp question for the sponsor: “What matters most: the date, the full scope or the budget? We can hold two.”',
       ],
       example: {
         kind: 'faded',
-        text: 'A food plant moves a packaging line during the summer shutdown. The critical path is 20 weeks; the shutdown starts in 17. A parallel chain, the electrics, has 2 weeks of float.\n\nOptions: enlarge the installation crew, 2 weeks gained for €12,000; an extra trainer, 1 week gained for €3,000; order the conveyor before the last drawing revision, 2 weeks gained at no extra cost, but if anything changes the conveyor must be modified.',
+        text: 'A food plant moves a packaging line during the summer shutdown. All preparation (drawings, ordering, pre-assembly) must be ready when the shutdown starts, in 17 weeks, but the critical path of that preparation is 20 weeks. A parallel chain, the electrics, has 2 weeks of float.\n\nOptions: enlarge the installation crew, 2 weeks gained for €12,000; an extra trainer, 1 week gained for €3,000; order the conveyor before the last drawing revision, 2 weeks gained at no extra cost, but if anything changes the conveyor must be modified.',
         ask: 'Which combination gains 3 weeks, and what do you watch out for?',
         reveal: 'First the cheapest week: the trainer, 1 week for €3,000. Then 2 more weeks: the installation crew (€12,000) or ordering early (no money, but risk).\n\nWatch the electrics: that chain takes 20 − 2 = 18 weeks. If the critical path becomes 17 weeks, the electrics at 18 weeks become the new critical path, so they must also lose a week. Ask the engineer how likely a drawing change is before you order early.',
       },
@@ -642,9 +643,9 @@ export default {
         pushback: {
           lines: [
             '“All I hear is objections. I want a solution, not a list of risks.”',
-            '“Those drawings have been “nearly ready” three times. Waiting is not an option.”',
+            '“Those drawings have been ‘nearly ready’ three times. Waiting is not an option.”',
           ],
-          model: '“The solution is there: with the extra trainer and the installation crew we gain three weeks on the critical path, for €15,000. If the drawings aren’t frozen by Friday, we build the simplest part now and the rest after the shutdown. Then you choose now between two concrete routes.”',
+          model: '“The solution is there: with the extra trainer and the installation crew we gain three weeks on the critical path, for €15,000, plus one week on the electrics, because otherwise that chain becomes the critical one. If the drawings aren’t frozen by Friday, we build the simplest part now and the rest after the shutdown. Then you choose now between two concrete routes.”',
           rubric: [
             'Comes with a concrete proposal with numbers',
             'Sets a hard condition with a date',
@@ -759,7 +760,7 @@ export default {
         'There are three common ways to estimate, from quick and rough to slow and accurate. The first is analogous estimating: you compare with an earlier, similar project. “The last 5S roll-out in a hall this size took eight weeks.”\n\nIt’s quick and useful at the start. It only works if the earlier project really is similar, and if someone knows how long it actually took, not how long it was planned to take.',
         'Parametric estimating: a norm figure times a quantity. “A value stream workshop takes about 3 days of preparation per product family; we have 4 families, so about 12 days.”\n\nIt is as good as the norm figure. Ask where it comes from, and whether the work grows in proportion: ten times as many workstations isn’t always ten times the work, because the first is more expensive and the last goes faster.',
         'Bottom-up estimating: have each work package from the WBS estimated by whoever does it, and add them up. It is the most accurate, but takes time and only works once the breakdown exists.\n\nThe trap: everyone quietly puts some reserve in their own package, and the total makes the project too heavy. Or everyone estimates the best case and forgets the waiting between packages, and it comes out too light. So ask for a range per package.',
-        'Kahneman and Lovallo (1993) described the difference between the inside and the outside view. The inside view reasons from the plan and its steps. The outside view asks: how did comparable projects go?\n\nBent Flyvbjerg turned this into a method in 2006: choose a reference class, a group of comparable finished projects, look at how much they overran, and place your own estimate in that spread.',
+        'Kahneman and Lovallo (1993) described the difference between the inside and the outside view. The inside view reasons from the plan and its steps. The outside view asks: how did comparable projects go?\n\nBent Flyvbjerg turned this into a method, described in a 2006 article: choose a reference class, a group of comparable finished projects, look at how much they overran, and place your own estimate in that spread. The module Leading projects outside your field uses it to check an expert’s estimate.',
         'Experts disagree on which method wins. Bottom-up feels thorough, but often misses the waiting between packages. Analogous feels rough, but already contains the real course of events.\n\nA common approach: two methods side by side, and discuss the difference. A sharp question for a team estimating bottom-up: “If we put the last three comparable projects next to this, do we come close?”',
       ],
       example: {
@@ -774,6 +775,7 @@ export default {
           tolerance: 0.1,
           unit: 'days',
           why: '6 × 3 = 18 days of preparation.',
+          hint: 'Parametric means a norm figure times a quantity. Which number is the norm, which the quantity?',
         },
         {
           q: 'What is the biggest risk of bottom-up estimating?',
@@ -796,9 +798,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Plastics processor. The team estimates the 5S roll-out bottom-up at 22 days. You know the same roll-out at the sister plant, with as many clusters, actually took 37 days. The operations manager wants to give the board a number tomorrow.',
+        scene: 'Plastics processor. The team estimates the 5S roll-out across 15 clusters bottom-up at 22 days. At the sister plant the same roll-out actually took 25 days for 10 clusters: scaled to 15 clusters, about 37 days. The operations manager wants to give the board a number tomorrow.',
         ask: 'What do you do with those two numbers?',
-        model: '“Your 22 days is a good basis. At the sister plant the same thing took 37 days. Before we promise anything: where is the difference? I suspect the audits after the roll-out and waiting for maintenance. Let’s add those steps and then give a range, say 25 to 37 days, with the reason attached.”',
+        model: '“Your 22 days is a good basis. Scaled to our 15 clusters, the same thing took about 37 days at the sister plant. Before we promise anything: where is the difference? I suspect the audits after the roll-out and waiting for maintenance. Let’s add those steps and then give a range, say 25 to 37 days, with the reason attached.”',
         rubric: [
           'Uses the outside view next to the team’s own estimate',
           'Looks for the cause of the difference instead of averaging',
@@ -841,7 +843,7 @@ export default {
         'A three-point estimate also gives a measure of uncertainty. In PERT the standard deviation (the usual spread around the average) of one activity is (P − O) / 6. For O = 4, M = 6 and P = 16 days that is (16 − 4) / 6 = 2 days.\n\nThat division by 6 is a convention from the 1958 PERT method, based on an assumed distribution, not a measurement.',
         'Along a chain you don’t add the spreads, you add the variances. The variance is the standard deviation squared. Three activities on the critical path, each with a standard deviation of 2 days: variances 4 + 4 + 4 = 12, and the square root of that is about 3.5 days.\n\nThat is less than 2 + 2 + 2 = 6, because not everything goes wrong at once. It only holds if the activities are independent.',
         'With an average and a spread you can state a confidence level. If you assume the project duration is roughly normally distributed, you have about a 50% chance at the average, and about 84% at the average plus one standard deviation.\n\nMany organisations plan at P80: the date you meet in about 80% of cases. A P50 date you miss as often as you meet it.',
-        'The weak spot: activities are often not independent. If the supplier is late, they are often late everywhere; if the data is poor, it hits every analysis. Then the real spread is larger than the formula says.\n\nA Monte Carlo simulation has the computer run the schedule thousands of times with random durations within each range. You see how often you meet a date, including where parallel chains merge.',
+        'The weak spot: activities are often not independent. If the supplier is late, they are often late everywhere; if the data is poor, it hits every analysis. Then the real spread is larger than the formula says.\n\nA Monte Carlo simulation has the computer run the schedule thousands of times with random durations within each range. You see how often you meet a date, including where parallel chains merge. The module Agile and Scrum does the same with a team’s throughput.',
         'Experts disagree on how much calculation makes sense. For a four-month improvement project a full simulation is often overkill; a three-point estimate on the critical path with a P80 is enough. On large projects clients sometimes require a simulation.\n\nA date without a confidence says little. A sharp question when someone names a date: “What percentage chance do you give that date?”',
       ],
       example: {
@@ -933,16 +935,17 @@ export default {
         kind: 'faded',
         text: 'At a grid operator you plan a chain of four tasks that all need the same specialist, the senior work planner. The original estimates, each with its own reserve: 10, 8, 6 and 12 weeks. At a duration you meet about half the time: 6, 5, 4 and 7 weeks. You use the rule of thumb of half of the time removed.',
         ask: 'How long are the chain and the project buffer, and what do you say if 5 weeks of buffer are used when the chain is half done?',
-        reveal: 'Originally 36 weeks. The chain is 6 + 5 + 4 + 7 = 22 weeks; 14 weeks removed, buffer 7 weeks, together 29 weeks: 7 weeks shorter than 36.\n\nWith the chain half done, 5 of the 7 weeks of buffer are used, over 70%, against 50% progress. That is red on the fever chart: you look for a fix now, such as a second work planner for the last task, instead of waiting until the buffer is gone.',
+        reveal: 'Originally 36 weeks. The chain is 6 + 5 + 4 + 7 = 22 weeks; 14 weeks removed, buffer 7 weeks, together 29 weeks: 7 weeks shorter than 36.\n\nWith the chain half done, 5 of the 7 weeks of buffer are used, over 70%, against 50% progress. On a typical fever chart that is red: you look for a fix now, such as a second work planner for the last task, instead of waiting until the buffer is gone.',
       },
       said: 'What you hear in projects: “We’ve built in a bit of margin everywhere, so it’ll be fine.”',
       recall: [
         {
-          q: 'Critical chain: the tasks, estimated at a duration you meet about half the time, add up to 20 weeks. 12 weeks of reserve were removed. How many weeks is the project buffer with the rule of thumb of half of the time removed?',
-          number: 6,
+          q: 'Critical chain: with each task’s own reserve, the chain was estimated at 32 weeks. Estimated at a duration you meet about half the time, the tasks add up to 20 weeks. The project buffer is half of the time removed. How many weeks are the chain plus the project buffer together?',
+          number: 26,
           tolerance: 0.1,
           unit: 'weeks',
-          why: '12 / 2 = 6 weeks of project buffer.',
+          why: 'Removed: 32 − 20 = 12 weeks; buffer 12 / 2 = 6 weeks; chain plus buffer 20 + 6 weeks.',
+          hint: 'First work out how many weeks of reserve were taken out of the tasks.',
         },
         {
           q: 'Where do you put a feeding buffer?',
@@ -977,7 +980,7 @@ export default {
             '“If I give up my margin, I get the blame when it goes wrong.”',
             '“The board will see that buffer and cut it at the first round of savings.”',
           ],
-          model: '“That’s why we agree up front that being late on one task is not a mistake; it only becomes a conversation when the buffer goes faster than the work. And the buffer sits in the plan with its reason: without it the end date is a fifty-fifty bet, and I’ll explain that to the board before anyone starts cutting.”',
+          model: '“That’s why we agree up front that being late on one task is not a mistake; it only becomes a conversation when the buffer goes faster than the work. And the buffer sits in the plan with its reason: without it the end date is at best a fifty-fifty bet, and I’ll explain that to the board before anyone starts cutting.”',
           rubric: [
             'Makes an agreement that protects the team leads',
             'Explains the buffer as part of the commitment',
@@ -1182,11 +1185,12 @@ export default {
       said: 'What you hear in projects: “Kees will just do it. Kees just does everything.”',
       recall: [
         {
-          q: 'A planner has 6 hours a week for the project. In week 7 there are 15 hours of project tasks in her name. By how many hours is she overallocated in week 7?',
+          q: 'A planner works 40 hours a week: 30 go to her normal planning work and 4 to meetings. In week 7 there are 15 hours of project tasks in her name. By how many hours is she overallocated in week 7?',
           number: 9,
           tolerance: 0.1,
           unit: 'hours',
-          why: '15 − 6 = 9 hours more work than there is time.',
+          why: 'Available for the project: 40 − 30 − 4 = 6 hours; 15 − 6 = 9 hours more work than there is time.',
+          hint: 'First work out how many hours she really has for the project.',
         },
         {
           q: 'What is the difference between resource leveling and resource smoothing?',
@@ -1254,7 +1258,7 @@ export default {
       teach: [
         'In the basic lesson you scored probability and impact from 1 to 5. At expert level you express the impact in money or time. The expected monetary value (EMV) is probability times impact: a 20% chance of €50,000 damage is an expected monetary value of €10,000.\n\nYou don’t really lose that amount: the risk happens or it doesn’t. It is a measure to compare risks and to size a reserve.',
         'For each risk you choose a risk response. For threats, PMI’s PMBOK Guide (6th edition, 2017) names five: avoid (change the plan so the risk disappears), transfer (for example through a contract or insurance), mitigate, accept and escalate.\n\nTo escalate means the risk is outside your authority and goes to the sponsor or the programme, because only they can do something about it.',
-        'An opportunity is an uncertainty that could help the project: the supplier may deliver early, a second line could piggyback. It has its own responses: exploit, share, enhance and accept.\n\nIf you only discuss threats, you miss half. In the risk session also ask: “What could unexpectedly go our way, and how do we make that more likely?”',
+        'An opportunity is an uncertainty that could help the project: the supplier may deliver early, a second line could piggyback. PMBOK gives it its own responses: escalate, exploit, share, enhance and accept.\n\nIf you only discuss threats, you miss half. In the risk session also ask: “What could unexpectedly go our way, and how do we make that more likely?”',
         'The contingency reserve is time or money for known risks you accept. A common way to size it: add up the expected monetary values of the accepted risks.\n\nThe contingency reserve belongs to the project; the management reserve from the lesson on buffers is for unknown risks and sits with the sponsor. Keep them apart, or nobody knows any more what the margin was for.',
         'Experts disagree on how far to calculate. Probabilities and impacts are often guesses, and a precise EMV suggests false certainty. On large projects cost and schedule are run together in a simulation.\n\nA workable middle way: express only the top five in money and keep the rest qualitative. A sharp question for the sponsor: “How much risk in euros are you willing to carry before you want to hear about it?”',
       ],
@@ -1272,6 +1276,7 @@ export default {
           tolerance: 1,
           unit: '€',
           why: '0.4 × 15,000 = €6,000.',
+          hint: 'Write 40% as a decimal and multiply it by the extra cost.',
         },
         {
           q: 'Which risk do you escalate?',
@@ -1280,11 +1285,12 @@ export default {
           why: 'Escalating is for risks outside your authority, not for risks that are merely large.',
         },
         {
-          q: 'Three accepted risks have expected monetary values of €6,000, €4,000 and €2,500. How large do you make the contingency reserve based on the expected monetary values, in euros?',
-          number: 12500,
+          q: 'You accept three risks: a 30% chance of €20,000 extra cost, a 10% chance of €25,000 and a 50% chance of €5,000. How large do you make the contingency reserve based on the expected monetary values, in euros?',
+          number: 11000,
           tolerance: 1,
           unit: '€',
-          why: '6,000 + 4,000 + 2,500 = €12,500.',
+          why: '0.3 × 20,000 = €6,000; 0.1 × 25,000 = €2,500; 0.5 × 5,000 = €2,500; together €11,000.',
+          hint: 'Work out the expected monetary value of each risk first, then add them up.',
         },
         {
           q: 'What is the difference between the contingency reserve and the management reserve?',
@@ -1296,7 +1302,7 @@ export default {
       situation: {
         scene: 'Dairy plant, steering group. Your risk register is full of amber boxes. The finance director asks: “What does this mean in money? Should I set something aside?” The plant manager wants no reserve: “It’ll just get used up.”',
         ask: 'What do you say?',
-        model: '“I’ve put the five biggest risks in money: together an expected monetary value of about €14,000. Two we can mitigate cheaply, such as involving the night shift early; then about €9,000 is left. I propose setting that aside as a contingency reserve, with a trigger per risk: the signal on which we may use it. Whatever isn’t needed goes back. The team doesn’t touch it on its own.”',
+        model: '“I’ve put the three risks we accept in money: together an expected monetary value of about €14,000. One we can mitigate cheaply by involving the night shift early; then about €10,000 is left. I propose setting that aside as a contingency reserve, with a trigger per risk: the signal on which we may use it. Whatever isn’t needed goes back. The team doesn’t touch it on its own.”',
         rubric: [
           'Translates risks into an amount',
           'Mitigates first where that is cheap',
@@ -1318,9 +1324,9 @@ export default {
       sayIt: 'Explain to a finance director in 60 seconds how you size a contingency reserve with the expected monetary value.',
       terms: [
         { term: 'Expected monetary value', def: 'Probability times impact of a risk, in money or time (EMV); a measure for comparing risks.' },
-        { term: 'Risk response', def: 'The chosen approach to a risk: avoid, transfer, mitigate, accept or escalate.' },
+        { term: 'Risk response', def: 'The chosen approach to a risk; for threats: avoid, transfer, mitigate, accept or escalate.' },
         { term: 'Escalate', def: 'To hand a risk to the sponsor or the programme because it is outside your authority.' },
-        { term: 'Opportunity', def: 'An uncertainty that could help the project, with its own responses: exploit, share, enhance, accept.' },
+        { term: 'Opportunity', def: 'An uncertainty that could help the project, with its own responses: escalate, exploit, share, enhance, accept.' },
         { term: 'Contingency reserve', def: 'Time or money for known, accepted risks, often the sum of their expected monetary values.' },
       ],
     },

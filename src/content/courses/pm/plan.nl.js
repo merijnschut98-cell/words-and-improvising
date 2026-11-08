@@ -93,8 +93,8 @@ export default {
         },
       ],
       teach: [
-        'De scope is wat het project oplevert en wat het daarvoor doet. Alles wat daar niet in staat, hoort er niet bij.\n\nEen scopeomschrijving (scope statement) zet dat op één A4: het doel, de deliverables, wat buiten scope valt, de aannames en hoe je weet dat het af is. Die A4 schrijf je voordat je gaat opdelen. De WBS, de werkopdeling uit de vorige les, is daarna de uitwerking ervan.',
-        'Buiten scope is de krachtigste regel op die A4. Schrijf op wat je niet doet: “de lakstraat valt buiten scope”, “we kopen geen nieuwe machines”, “het ERP-systeem (het centrale bedrijfssysteem voor orders en voorraad) passen we niet aan”.\n\nWat niet is uitgesloten, gaat iemand vroeg of laat verwachten. Een directeur die “doorlooptijd” hoort, denkt misschien aan de hele fabriek; jij bedoelde alleen de CNC-afdeling.',
+        'De scope is wat het project oplevert en wat het daarvoor doet. Alles wat daar niet in staat, hoort er niet bij.\n\nIn de module Intake schreef je de doelzin en een eerste lijstje wel/niet. Een scopeomschrijving (scope statement) zet dat op één A4: het doel, de deliverables, wat buiten scope valt, de aannames en hoe je weet dat het af is. De WBS, de werkopdeling uit de vorige les, werkt dat daarna uit.',
+        'Buiten scope is de krachtigste regel op die A4. Schrijf op wat je niet doet: “de lakstraat valt buiten scope”, “we kopen geen nieuwe machines”, “het ERP-systeem (het centrale bedrijfssysteem voor orders en voorraad) passen we niet aan”.\n\nWat niet is uitgesloten, gaat iemand vroeg of laat verwachten. Een directeur die “doorlooptijd” hoort, denkt misschien aan de hele fabriek; jij bedoelde alleen de CNC-afdeling. Komen er later toch verzoeken bij, dan is dat scope creep: dat gesprek staat in de module Uitvoeren.',
         'Een acceptatiecriterium (acceptance criterion) is een controleerbare eis waaraan een deliverable moet voldoen om geaccepteerd te worden. Niet “betere planning”, maar “de weekplanning staat elke vrijdag om 12.00 uur vast en wordt drie weken achter elkaar door de ploegleiders gebruikt”.\n\nSpreek ook af wie accepteert. Zonder criteria en een naam wordt “af” een gevoel, en dat gevoel verschuift als het project bijna klaar is.',
         'Een aanname is iets wat je voor waar aanneemt zonder dat het bewezen is: “de data uit het MES (het systeem dat registreert wat de machines maken) klopt vanaf januari”, “de ploegleiders hebben 4 uur per week”. Een randvoorwaarde (constraint) is een grens die vaststaat: budget, einddatum, de zomerstop.\n\nSchrijf aannames op en zet de belangrijkste op de risicolijst. Een aanname die niet klopt, is een risico dat al is uitgekomen.',
         'Experts verschillen over hoe vast scope moet zijn. Klassieke methodes leggen haar vast en sturen op afwijkingen; anderen houden tijd en budget vast en laten de inhoud meebewegen. In verbeterprojecten werkt vaak een middenweg: het doel en wat buiten scope valt staan vast, de oplossingen niet.\n\nLaat de sponsor de A4 tekenen. Scherpe vraag in dat gesprek: “Wat zou je teleurstellen, ook als we alles op deze lijst halen?”',
@@ -213,6 +213,7 @@ export default {
           tolerance: 0.1,
           unit: 'weken',
           why: 'De werkwijze is klaar na 3 + 4 = 7 weken, het sjabloon pas in week 9. De pilot start dus in week 9 en eindigt na 9 + 6 weken.',
+          hint: 'De pilot kan pas starten als beide er zijn. Welke komt als laatste binnen?',
         },
       ],
       situation: {
@@ -582,22 +583,22 @@ export default {
       title: 'Versnellen en de planning bewaken',
       pre: [
         {
-          q: 'Een project moet drie weken eerder klaar. Welke activiteiten versnel je?',
-          options: ['Die met de meeste speling', 'Die op het kritieke pad', 'Die met de meeste mensen', 'Die die het eerst beginnen'],
-          answer: 'Die op het kritieke pad',
-          why: 'Alleen het kritieke pad bepaalt de einddatum; versnellen ernaast kost geld en levert niets op.',
+          q: 'Om eerder klaar te zijn laat je de training van de operators overlappen met de laatste aanpassingen aan de machine. Wat is vooral de prijs?',
+          options: ['Vooral extra geld voor overwerk en extra monteurs', 'Het risico op dubbel werk als de machine nog verandert', 'Een langer kritiek pad, omdat twee taken nu tegelijk lopen', 'Niets, want overlappen verandert alleen de volgorde'],
+          answer: 'Het risico op dubbel werk als de machine nog verandert',
+          why: 'Overlappen (fast-tracking) kost weinig geld, maar je begint voordat de input definitief is; verandert de machine nog, dan moet de training opnieuw.',
         },
       ],
       teach: [
         'Moet het project eerder klaar, dan heb je twee klassieke knoppen, allebei alleen zinvol op het kritieke pad. Crashing: extra mensen, overwerk of geld inzetten om een activiteit korter te maken. Fast-tracking: activiteiten die na elkaar gepland stonden deels tegelijk doen.\n\nCrashing kost vooral geld. Fast-tracking kost vooral risico, want je begint aan iets voordat de input definitief is.',
-        'Bij crashing kies je de activiteit die per gewonnen week het minst kost, en je let op het moment dat een andere keten kritiek wordt. Daarna moet je op twee ketens tegelijk winnen, dus wordt elke week duurder.\n\nDe wet van Brooks (Fred Brooks, The Mythical Man-Month, 1975) waarschuwt: mensen toevoegen aan een softwareproject dat achterloopt, maakt het later, door inwerken en afstemmen. Hij schreef het over software, maar het geldt voor veel kenniswerk.',
+        'Bij crashing kies je de activiteit die per gewonnen week het minst kost, en je let op het moment dat een andere keten kritiek wordt. Daarna moet je op twee ketens tegelijk winnen, dus wordt elke week duurder.\n\nDe wet van Brooks (Fred Brooks, The Mythical Man-Month, 1975) waarschuwt: mensen toevoegen aan een softwareproject dat achterloopt, maakt het later, door inwerken en afstemmen. Hij schreef het over software, maar velen zien hetzelfde effect bij ander kenniswerk.',
         'Fast-tracking in een fabriek: de operators al trainen terwijl de laatste aanpassingen aan de machine nog lopen, of een onderdeel bestellen voordat de tekening helemaal vastligt. Het werkt als de kans op wijziging klein is.\n\nVraag daarom altijd: “Wat moet er opnieuw als de input nog verandert, en wat kost dat?” Is het antwoord “bijna alles”, dan is overlappen een gok.',
         'De basisplanning (schedule baseline) is de goedgekeurde planning waartegen je afwijkingen meet. Je verschuift haar niet bij elke tegenvaller; je laat het verschil zien en past haar alleen aan na een besluit, zoals een goedgekeurde wijziging.\n\nEen mijlpaaltrendanalyse (milestone trend analysis) maakt het verloop zichtbaar: per rapportagedatum zet je de verwachte datum van elke mijlpaal uit. Een lijn die steeds stijgt, is een vroeg alarm, ook als niemand “rood” meldt.',
         'Experts verschillen over versnellen. Sommigen zeggen: liever eerlijk de datum verschuiven dan een uitgeput team. Anderen: een vaste datum, zoals een productiestop of het seizoen, rechtvaardigt veel.\n\nDe derde knop vergeten mensen: scope verkleinen. Scherpe vraag aan de sponsor: “Wat is belangrijker: de datum, de volledige scope of het budget? Twee kunnen we vasthouden.”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een levensmiddelenfabriek verhuist een verpakkingslijn tijdens de zomerstop. Het kritieke pad is 20 weken; de stop begint over 17. Een parallelle keten, de elektra, heeft 2 weken speling.\n\nOpties: de installatieploeg uitbreiden, 2 weken winst voor € 12.000; een extra trainer, 1 week winst voor € 3.000; de transportband bestellen vóór de laatste tekeningrevisie, 2 weken winst zonder extra geld, maar bij een wijziging moet de band worden aangepast.',
+        text: 'Een levensmiddelenfabriek verhuist een verpakkingslijn tijdens de zomerstop. Alle voorbereiding (tekeningen, bestellen, voormontage) moet klaar zijn als de stop begint, over 17 weken, maar het kritieke pad van die voorbereiding is 20 weken. Een parallelle keten, de elektra, heeft 2 weken speling.\n\nOpties: de installatieploeg uitbreiden, 2 weken winst voor € 12.000; een extra trainer, 1 week winst voor € 3.000; de transportband bestellen vóór de laatste tekeningrevisie, 2 weken winst zonder extra geld, maar bij een wijziging moet de band worden aangepast.',
         ask: 'Welke combinatie haalt 3 weken, en waar let je op?',
         reveal: 'Eerst de goedkoopste week: de trainer, 1 week voor € 3.000. Dan nog 2 weken: de installatieploeg (€ 12.000) of vooruit bestellen (geen geld, wel risico).\n\nLet op de elektra: die keten duurt 20 − 2 = 18 weken. Is het kritieke pad 17 weken, dan wordt de elektra met 18 weken het nieuwe kritieke pad, dus ook die moet een week korter. Vraag de engineer hoe groot de kans op een tekeningwijziging is voordat je vooruit bestelt.',
       },
@@ -642,9 +643,9 @@ export default {
         pushback: {
           lines: [
             '“Ik hoor alleen bezwaren. Ik wil een oplossing, geen lijstje risico’s.”',
-            '“Die tekeningen zijn al drie keer “bijna klaar” geweest. Wachten is geen optie.”',
+            '“Die tekeningen zijn al drie keer ‘bijna klaar’ geweest. Wachten is geen optie.”',
           ],
-          model: '“De oplossing ligt er: met de extra trainer en de installatieploeg winnen we drie weken op het kritieke pad, voor € 15.000. Zijn de tekeningen vrijdag niet bevroren, dan bouwen we het eenvoudigste deel alvast en de rest na de stop. Dan kiest u nu tussen twee concrete routes.”',
+          model: '“De oplossing ligt er: met de extra trainer en de installatieploeg winnen we drie weken op het kritieke pad, voor € 15.000, plus één week op de elektra, want anders wordt die keten het kritieke pad. Zijn de tekeningen vrijdag niet bevroren, dan bouwen we het eenvoudigste deel alvast en de rest na de stop. Dan kiest u nu tussen twee concrete routes.”',
           rubric: [
             'Komt met een concreet voorstel met getallen',
             'Maakt een harde voorwaarde met een datum',
@@ -759,7 +760,7 @@ export default {
         'Er zijn drie gangbare manieren om te schatten, van snel en grof naar traag en nauwkeurig. De eerste is analoog schatten (analogous estimating): je vergelijkt met een eerder, vergelijkbaar project. “De vorige 5S-uitrol in een hal van deze grootte kostte acht weken.”\n\nDat is snel en goed bruikbaar aan het begin. Het werkt alleen als het vorige project echt lijkt, en als iemand weet hoe lang het echt duurde, niet hoe lang het gepland was.',
         'Parametrisch schatten (parametric estimating): een normgetal maal een aantal. “Een waardestroomworkshop kost per productfamilie ongeveer 3 dagen voorbereiding; we hebben 4 families, dus zo’n 12 dagen.”\n\nDat is zo goed als het normgetal. Vraag waar het vandaan komt, en of het werk evenredig groeit: tien keer zoveel werkplekken is niet altijd tien keer zoveel werk, want de eerste is duurder en de laatste gaat sneller.',
         'Bottom-up schatten: elk werkpakket uit de WBS laten schatten door wie het doet, en optellen. Het is het nauwkeurigst, maar kost tijd en kan pas als de opdeling er is.\n\nValkuil: iedereen stopt stilletjes reserve in zijn eigen pakket, en opgeteld wordt het project te zwaar. Of iedereen schat het beste geval en vergeet het wachten tussen pakketten, en dan wordt het te licht. Vraag daarom per pakket een bandbreedte.',
-        'Kahneman en Lovallo (1993) beschreven het verschil tussen binnen- en buitenperspectief. Het binnenperspectief redeneert vanuit het plan en zijn stappen. Het buitenperspectief (outside view) vraagt: hoe liep het bij vergelijkbare projecten?\n\nBent Flyvbjerg werkte dat in 2006 uit tot een methode: kies een referentieklasse, een groep vergelijkbare afgeronde projecten, kijk hoeveel die uitliepen, en zet je eigen schatting in die verdeling.',
+        'Kahneman en Lovallo (1993) beschreven het verschil tussen binnen- en buitenperspectief. Het binnenperspectief (inside view) redeneert vanuit het plan en zijn stappen. Het buitenperspectief (outside view) vraagt: hoe liep het bij vergelijkbare projecten?\n\nBent Flyvbjerg werkte dat uit tot een methode, beschreven in een artikel uit 2006: kies een referentieklasse (reference class), een groep vergelijkbare afgeronde projecten, kijk hoeveel die uitliepen, en zet je eigen schatting in die verdeling. De module Projecten leiden buiten je vakgebied gebruikt dat om de schatting van een expert te toetsen.',
         'Experts verschillen over welke methode wint. Bottom-up voelt grondig, maar mist vaak het wachten tussen pakketten. Analoog voelt grof, maar heeft het echte verloop al in zich.\n\nEen gangbare aanpak: twee methodes naast elkaar, en het verschil bespreken. Scherpe vraag aan een team dat bottom-up schat: “Als we de laatste drie vergelijkbare projecten ernaast leggen, komen we dan in de buurt?”',
       ],
       example: {
@@ -774,6 +775,7 @@ export default {
           tolerance: 0.1,
           unit: 'dagen',
           why: '6 × 3 = 18 dagen voorbereiding.',
+          hint: 'Parametrisch is een normgetal maal een aantal. Welk getal is de norm, welk het aantal?',
         },
         {
           q: 'Wat is het grootste risico van bottom-up schatten?',
@@ -796,9 +798,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Kunststofverwerker. Het team schat de 5S-uitrol bottom-up op 22 dagen. Jij weet dat dezelfde uitrol bij de zusterfabriek, met evenveel clusters, in werkelijkheid 37 dagen kostte. De operations manager wil morgen een getal aan de directie geven.',
+        scene: 'Kunststofverwerker. Het team schat de 5S-uitrol over 15 clusters bottom-up op 22 dagen. Bij de zusterfabriek kostte dezelfde uitrol in werkelijkheid 25 dagen voor 10 clusters: omgerekend naar 15 clusters zo’n 37 dagen. De operations manager wil morgen een getal aan de directie geven.',
         ask: 'Wat doe je met die twee getallen?',
-        model: '“Jullie 22 dagen is een goede basis. Bij de zusterfabriek kostte hetzelfde 37 dagen. Voordat we iets beloven: waar zit het verschil? Ik vermoed in de audits na de uitrol en in het wachten op de technische dienst. Laten we die stappen erbij zetten en dan een bandbreedte geven, bijvoorbeeld 25 tot 37 dagen, met de reden erbij.”',
+        model: '“Jullie 22 dagen is een goede basis. Omgerekend naar onze 15 clusters kostte hetzelfde bij de zusterfabriek zo’n 37 dagen. Voordat we iets beloven: waar zit het verschil? Ik vermoed in de audits na de uitrol en in het wachten op de technische dienst. Laten we die stappen erbij zetten en dan een bandbreedte geven, bijvoorbeeld 25 tot 37 dagen, met de reden erbij.”',
         rubric: [
           'Gebruikt het buitenperspectief naast de eigen schatting',
           'Zoekt de oorzaak van het verschil in plaats van te middelen',
@@ -841,7 +843,7 @@ export default {
         'Een driepuntsschatting geeft ook een maat voor de onzekerheid. In PERT is de standaarddeviatie (standard deviation, de gebruikelijke spreiding rond het gemiddelde) van één activiteit (P − O) / 6. Voor O = 4, M = 6 en P = 16 dagen is dat (16 − 4) / 6 = 2 dagen.\n\nDie deling door 6 is een afspraak uit de PERT-methode van 1958, gebaseerd op een aangenomen verdeling, geen meting.',
         'Over een keten tel je niet de spreidingen op, maar de varianties. De variantie (variance) is de standaarddeviatie in het kwadraat. Drie activiteiten op het kritieke pad met elk een standaarddeviatie van 2 dagen: varianties 4 + 4 + 4 = 12, en de wortel daarvan is ongeveer 3,5 dagen.\n\nDat is minder dan 2 + 2 + 2 = 6, omdat niet alles tegelijk tegenzit. Dat geldt alleen als de activiteiten onafhankelijk zijn.',
         'Met een gemiddelde en een spreiding kun je een zekerheidsniveau (confidence level) noemen. Neem je aan dat de projectduur ongeveer normaal verdeeld is, dan heb je op het gemiddelde zo’n 50% kans, en op gemiddelde plus één standaarddeviatie ongeveer 84%.\n\nVeel organisaties plannen op P80: de datum die je in ongeveer 80% van de gevallen haalt. Een P50-datum mis je net zo vaak als je hem haalt.',
-        'De zwakke plek: activiteiten zijn vaak niet onafhankelijk. Is de leverancier laat, dan is hij vaak overal laat; is de data slecht, dan raakt dat elke analyse. Dan is de echte spreiding groter dan de formule zegt.\n\nEen monte-carlosimulatie (Monte Carlo simulation) laat de computer de planning duizenden keren doorrekenen met willekeurige duren binnen elke bandbreedte. Je ziet hoe vaak je een datum haalt, ook met parallelle ketens die samenkomen.',
+        'De zwakke plek: activiteiten zijn vaak niet onafhankelijk. Is de leverancier laat, dan is hij vaak overal laat; is de data slecht, dan raakt dat elke analyse. Dan is de echte spreiding groter dan de formule zegt.\n\nEen monte-carlosimulatie (Monte Carlo simulation) laat de computer de planning duizenden keren doorrekenen met willekeurige duren binnen elke bandbreedte. Je ziet hoe vaak je een datum haalt, ook met parallelle ketens die samenkomen. De module Agile en Scrum doet hetzelfde met de doorzet (throughput) van een team.',
         'Experts verschillen over hoeveel rekenwerk zinvol is. Voor een verbeterproject van vier maanden is een volledige simulatie vaak overdreven; een driepuntsschatting op het kritieke pad met een P80 is genoeg. Bij grote projecten eisen opdrachtgevers soms een simulatie.\n\nEen datum zonder zekerheid zegt weinig. Scherpe vraag als iemand een datum noemt: “Hoeveel procent kans geef je die datum?”',
       ],
       example: {
@@ -933,16 +935,17 @@ export default {
         kind: 'faded',
         text: 'Bij een netbeheerder plan je een keten van vier taken die allemaal dezelfde specialist nodig hebben, de senior werkvoorbereider. De oorspronkelijke schattingen, met ieders eigen reserve: 10, 8, 6 en 12 weken. Op een duur die je ongeveer de helft van de keren haalt: 6, 5, 4 en 7 weken. Je gebruikt de vuistregel van de helft van de weggehaalde tijd.',
         ask: 'Hoe lang zijn de keten en de projectbuffer, en wat zeg je als na de helft van de keten 5 weken buffer op is?',
-        reveal: 'Oorspronkelijk 36 weken. De keten is 6 + 5 + 4 + 7 = 22 weken; weggehaald 14 weken, buffer 7 weken, samen 29 weken: 7 weken korter dan 36.\n\nNa de helft van de keten is 5 van de 7 weken buffer op, ruim 70%, tegen 50% voortgang. Dat is rood in de koortsgrafiek: je zoekt nu een oplossing, bijvoorbeeld een tweede werkvoorbereider voor de laatste taak, in plaats van te wachten tot de buffer op is.',
+        reveal: 'Oorspronkelijk 36 weken. De keten is 6 + 5 + 4 + 7 = 22 weken; weggehaald 14 weken, buffer 7 weken, samen 29 weken: 7 weken korter dan 36.\n\nNa de helft van de keten is 5 van de 7 weken buffer op, ruim 70%, tegen 50% voortgang. In een gebruikelijke koortsgrafiek is dat rood: je zoekt nu een oplossing, bijvoorbeeld een tweede werkvoorbereider voor de laatste taak, in plaats van te wachten tot de buffer op is.',
       },
       said: 'Wat je hoort in projecten: “We hebben overal een beetje marge ingebouwd, dus het komt wel goed.”',
       recall: [
         {
-          q: 'Kritieke keten: de taken, geschat op een duur die je ongeveer de helft van de keren haalt, zijn samen 20 weken. Er is 12 weken reserve weggehaald. Hoeveel weken wordt de projectbuffer met de vuistregel van de helft van de weggehaalde tijd?',
-          number: 6,
+          q: 'Kritieke keten: met ieders eigen reserve was de keten geschat op 32 weken. Geschat op een duur die je ongeveer de helft van de keren haalt, zijn de taken samen 20 weken. De projectbuffer is de helft van de weggehaalde tijd. Hoeveel weken zijn keten en projectbuffer samen?',
+          number: 26,
           tolerance: 0.1,
           unit: 'weken',
-          why: '12 / 2 = 6 weken projectbuffer.',
+          why: 'Weggehaald: 32 − 20 = 12 weken; buffer 12 / 2 = 6 weken; keten plus buffer 20 + 6 weken.',
+          hint: 'Reken eerst uit hoeveel weken reserve er uit de taken is gehaald.',
         },
         {
           q: 'Waar zet je een aanvoerbuffer?',
@@ -977,7 +980,7 @@ export default {
             '“Als ik mijn marge inlever, krijg ik de schuld als het misgaat.”',
             '“De directie ziet die buffer en schrapt hem bij de eerste bezuiniging.”',
           ],
-          model: '“Daarom spreken we vooraf af dat te laat zijn op één taak geen fout is; het wordt pas een gesprek als de buffer sneller opgaat dan het werk. En de buffer staat met de reden in het plan: zonder buffer is de einddatum een gok van vijftig procent, en dat leg ik de directie uit voordat iemand gaat schrappen.”',
+          model: '“Daarom spreken we vooraf af dat te laat zijn op één taak geen fout is; het wordt pas een gesprek als de buffer sneller opgaat dan het werk. En de buffer staat met de reden in het plan: zonder buffer is de einddatum hooguit een gok van vijftig procent, en dat leg ik de directie uit voordat iemand gaat schrappen.”',
           rubric: [
             'Maakt een afspraak die de teamleiders beschermt',
             'Legt de buffer uit als onderdeel van de toezegging',
@@ -1182,11 +1185,12 @@ export default {
       said: 'Wat je hoort in projecten: “Kees doet het wel even. Kees doet alles even.”',
       recall: [
         {
-          q: 'Een planner heeft 6 uur per week voor het project. In week 7 staan 15 uur aan projecttaken op haar naam. Hoeveel uur is ze in week 7 overbelast?',
+          q: 'Een planner werkt 40 uur per week: 30 gaan naar haar gewone planningswerk en 4 naar overleg. In week 7 staan 15 uur aan projecttaken op haar naam. Hoeveel uur is ze in week 7 overbelast?',
           number: 9,
           tolerance: 0.1,
           unit: 'uur',
-          why: '15 − 6 = 9 uur meer werk dan er tijd is.',
+          why: 'Beschikbaar voor het project: 40 − 30 − 4 = 6 uur; 15 − 6 = 9 uur meer werk dan er tijd is.',
+          hint: 'Reken eerst uit hoeveel uur ze echt voor het project heeft.',
         },
         {
           q: 'Wat is het verschil tussen resource leveling en resource smoothing?',
@@ -1254,7 +1258,7 @@ export default {
       teach: [
         'In de basisles scoorde je kans en impact van 1 tot 5. Op expertniveau druk je de impact uit in geld of tijd. De verwachte waarde (expected monetary value, EMV) is kans maal impact: 20% kans op € 50.000 schade is een verwachte waarde van € 10.000.\n\nDat bedrag raak je niet echt kwijt: het risico gebeurt of het gebeurt niet. Het is een maat om risico’s te vergelijken en een reserve te bepalen.',
         'Per risico kies je een risicorespons (risk response). Voor bedreigingen noemt de PMBOK Guide van PMI (6e editie, 2017) er vijf: vermijden (het plan zo veranderen dat het risico verdwijnt), overdragen (bijvoorbeeld via een contract of verzekering), verminderen, accepteren en escaleren.\n\nEscaleren betekent dat het risico buiten jouw bevoegdheid valt en naar de sponsor of het programma gaat, omdat alleen zij er iets aan kunnen doen.',
-        'Een positief risico (opportunity) is een onzekerheid die het project kan helpen: de leverancier levert misschien eerder, een tweede lijn kan meeliften. Daar horen eigen responsen bij: benutten, delen, vergroten en accepteren.\n\nWie alleen bedreigingen bespreekt, mist de helft. Vraag in de risicosessie ook: “Wat zou er onverwacht mee kunnen zitten, en hoe vergroten we die kans?”',
+        'Een positief risico (opportunity) is een onzekerheid die het project kan helpen: de leverancier levert misschien eerder, een tweede lijn kan meeliften. De PMBOK geeft daar eigen responsen voor: escaleren, benutten, delen, vergroten en accepteren.\n\nWie alleen bedreigingen bespreekt, mist de helft. Vraag in de risicosessie ook: “Wat zou er onverwacht mee kunnen zitten, en hoe vergroten we die kans?”',
         'De risicoreserve (contingency reserve) is tijd of geld voor bekende risico’s die je accepteert. Een gangbare manier om haar te bepalen: tel de verwachte waarden van de geaccepteerde risico’s op.\n\nDe risicoreserve hoort bij het project; de managementreserve uit de les over buffers is voor onbekende risico’s en valt onder de sponsor. Houd ze apart, anders weet niemand meer waar de marge voor was.',
         'Experts verschillen over hoe ver je moet rekenen. Kansen en impacts zijn vaak gissingen, en een precieze EMV wekt schijnzekerheid. Bij grote projecten rekent men kosten en planning samen door met een simulatie.\n\nEen werkbare middenweg: alleen de top vijf in geld uitdrukken en de rest kwalitatief houden. Scherpe vraag aan de sponsor: “Welk bedrag aan risico wil je dragen voordat je het wilt weten?”',
       ],
@@ -1272,6 +1276,7 @@ export default {
           tolerance: 1,
           unit: '€',
           why: '0,4 × 15.000 = € 6.000.',
+          hint: 'Schrijf 40% als decimaal getal en vermenigvuldig met de extra kosten.',
         },
         {
           q: 'Welk risico escaleer je?',
@@ -1280,11 +1285,12 @@ export default {
           why: 'Escaleren is voor risico’s buiten je bevoegdheid, niet voor risico’s die alleen groot zijn.',
         },
         {
-          q: 'Drie geaccepteerde risico’s hebben verwachte waarden van € 6.000, € 4.000 en € 2.500. Hoe groot maak je de risicoreserve volgens de verwachte waarden, in euro?',
-          number: 12500,
+          q: 'Je accepteert drie risico’s: 30% kans op € 20.000 extra kosten, 10% kans op € 25.000 en 50% kans op € 5.000. Hoe groot maak je de risicoreserve volgens de verwachte waarden, in euro?',
+          number: 11000,
           tolerance: 1,
           unit: '€',
-          why: '6.000 + 4.000 + 2.500 = € 12.500.',
+          why: '0,3 × 20.000 = € 6.000; 0,1 × 25.000 = € 2.500; 0,5 × 5.000 = € 2.500; samen € 11.000.',
+          hint: 'Reken eerst per risico de verwachte waarde uit en tel die dan op.',
         },
         {
           q: 'Wat is het verschil tussen de risicoreserve en de managementreserve?',
@@ -1296,11 +1302,11 @@ export default {
       situation: {
         scene: 'Zuivelfabriek, stuurgroep. Je risicolijst staat vol oranje vakjes. De financieel directeur vraagt: “Wat betekent dit in geld? Moet ik iets reserveren?” De plantmanager wil geen reserve: “Dan wordt hij toch opgemaakt.”',
         ask: 'Wat zeg je?',
-        model: '“De vijf grootste risico’s heb ik in geld uitgedrukt: samen een verwachte waarde van zo’n € 14.000. Twee kunnen we goedkoop verminderen, zoals de nachtploeg vroeg betrekken; dan blijft er ongeveer € 9.000 over. Ik stel voor dat als risicoreserve apart te zetten, met per risico een trigger: het signaal waarop we hem mogen gebruiken. Wat niet nodig is, gaat terug. Het team komt er niet zelf aan.”',
+        model: '“De drie risico’s die we accepteren heb ik in geld uitgedrukt: samen een verwachte waarde van zo’n € 14.000. Eén kunnen we goedkoop verminderen door de nachtploeg vroeg te betrekken; dan blijft er ongeveer € 10.000 over. Ik stel voor dat als risicoreserve apart te zetten, met per risico een trigger: het signaal waarop we hem mogen gebruiken. Wat niet nodig is, gaat terug. Het team komt er niet zelf aan.”',
         rubric: [
           'Vertaalt risico’s naar een bedrag',
           'Vermindert eerst waar dat goedkoop kan',
-          'Maakt de reserve controleerbaar met triggers en een terugvalregel',
+          'Maakt de reserve controleerbaar met triggers en de afspraak dat wat over is teruggaat',
         ],
         pushback: {
           lines: [
@@ -1318,9 +1324,9 @@ export default {
       sayIt: 'Leg een financieel directeur in 60 seconden uit hoe je een risicoreserve bepaalt met de verwachte waarde.',
       terms: [
         { term: 'Verwachte waarde', def: 'Kans maal impact van een risico, in geld of tijd (expected monetary value, EMV); een maat om te vergelijken.' },
-        { term: 'Risicorespons', def: 'De gekozen aanpak voor een risico: vermijden, overdragen, verminderen, accepteren of escaleren.' },
+        { term: 'Risicorespons', def: 'De gekozen aanpak voor een risico; bij bedreigingen: vermijden, overdragen, verminderen, accepteren of escaleren.' },
         { term: 'Escaleren', def: 'Een risico neerleggen bij de sponsor of het programma omdat het buiten je bevoegdheid valt.' },
-        { term: 'Positief risico', def: 'Een onzekerheid die het project kan helpen, met eigen responsen: benutten, delen, vergroten, accepteren.' },
+        { term: 'Positief risico', def: 'Een onzekerheid die het project kan helpen, met eigen responsen: escaleren, benutten, delen, vergroten, accepteren.' },
         { term: 'Risicoreserve', def: 'Tijd of geld voor bekende, geaccepteerde risico’s, vaak de som van hun verwachte waarden.' },
       ],
     },
