@@ -4,7 +4,7 @@ import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { applyDue, questionById } from '../core/course.js';
 import { dueSession, isOwned } from '../core/coursereview.js';
-import { moduleOf, subjectOf } from '../content/courses/index.js';
+import { moduleOf, subjectOf, lessonOf } from '../content/courses/index.js';
 import { seededRng } from '../core/lesson.js';
 
 const seedOf = (s) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
@@ -31,6 +31,8 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
     .then((loaded) => {
       if (seq !== app.navSeq) return;
       const questions = ids.map((id) => questionById(loaded.filter(Boolean), id)).filter(Boolean);
+      const lessons = loaded.filter(Boolean).flatMap((m) => m.lessons || []);
+      const termsOf = (q) => (lessons.find((l) => l.id === lessonOf(q.id)) || {}).terms || [];
       if (!questions.length) {
         main.replaceChildren(h('section', { class: 'card load-error' }, h('p', {}, t('loadError')),
           h('button', { class: 'btn btn-primary', onclick: () => app.go('due', { subject, questionIds, maintenance, prep }) }, t('retry'))));
@@ -40,6 +42,7 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
       main.replaceChildren(box);
       renderQuiz(app, {
         questions,
+        termsOf,
         onDone: (firstTry, sure) => {
           const before = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length;
           const res = applyDue(app.state, { subject, results: firstTry, sure, lang: app.lang, maintenance, prep }, app.today(), Date.now());

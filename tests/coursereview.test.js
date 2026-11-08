@@ -112,3 +112,15 @@ test('maintenance: oldest owned question, at most once per ISO week', () => {
   assert.equal(maintenanceQuestion(r, '2026-11-04', 'eng', 'nl', '2026-W45'), null);
   assert.equal(maintenanceQuestion({}, '2026-11-02', 'eng', 'nl', null), null);
 });
+
+// The hint replaced "I'm guessing": the sure argument is now !hinted.
+test('with a hint: correct keeps the box, wrong goes to box 1; without a hint correct climbs', () => {
+  const q = 'eng.flow.takt#r0';
+  let r = sched({}, q, '2026-11-02', true); // box 2
+  r = sched(r, q, '2026-11-03', true, 'nl', !true);
+  assert.equal(r[`nl|${q}`].box, 2, 'correct after a hint: stays');
+  r = sched(r, q, '2026-11-03', true, 'nl', !false);
+  assert.equal(r[`nl|${q}`].box, 3, 'correct without a hint: climbs');
+  r = sched(r, q, '2026-11-06', false, 'nl', !true);
+  assert.equal(r[`nl|${q}`].box, 1, 'wrong, hint or not: box 1');
+});

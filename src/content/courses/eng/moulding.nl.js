@@ -288,6 +288,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      film: 'eng.moulding.cycle',
       figure: 'eng.moulding.cycle',
       title: 'Cyclustijd en output',
       pre: [
@@ -359,6 +360,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
+      film: 'eng.moulding.cycle',
       title: 'Koelen: wat de insteller kan veranderen',
       pre: [
         {
@@ -427,6 +429,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
+      film: 'eng.moulding.cycle',
       title: 'Meer holtes of een snellere cyclus',
       pre: [
         {
@@ -496,6 +499,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
+      film: 'eng.moulding.cycle',
       title: 'Wat een spuitgietproduct kost',
       pre: [
         {
@@ -1133,6 +1137,7 @@ export default {
     },
     {
       id: 'eng.moulding.setup',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'De vijf instellingen',
       pre: [
@@ -1203,6 +1208,7 @@ export default {
     },
     {
       id: 'eng.moulding.process',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Het procesvenster',
       pre: [
@@ -1273,6 +1279,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: drie studies',
       pre: [
@@ -1345,6 +1352,7 @@ export default {
     },
     {
       id: 'eng.moulding.validation',
+      film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Een proces valideren en bewaken',
       pre: [

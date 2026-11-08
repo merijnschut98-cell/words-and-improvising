@@ -842,9 +842,15 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 details.rw-topic { margin: 4px 0 8px; }
 details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-weight: 600; }
 .rw-refresh { margin-top: 6px; }
-/* Sure or guessing. */
-.sure-mark { margin: 0 0 4px; color: var(--bad); font-weight: 600; }
-.why-strong { font-weight: 600; color: var(--ink); }
+/* Hint: secondary, once per question; marked again in the review. */
+.quiz-hint:not(.on) { display: none; }
+.quiz-hint { margin: 0 0 12px; padding: 10px 12px; background: var(--tint); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); }
+.quiz-hint p { margin: 0 0 4px; }
+.quiz-hint p:last-child { margin-bottom: 0; }
+.quiz-hint .hint-title { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); }
+.quiz-hint .hint-step { font-family: var(--font-mono); font-size: 0.95rem; color: var(--heading); overflow-wrap: anywhere; }
+.opt.struck, .opt.struck:disabled { text-decoration: line-through; color: var(--muted); opacity: 0.6; cursor: default; border-color: var(--border-subtle); background: var(--card); }
+.hint-mark { margin: 0 0 4px; color: var(--accent-dark); font-weight: 600; }
 .mono-line { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
 .step-current { color: var(--heading); font-weight: 700; border-bottom-color: var(--primary); }
 
@@ -881,8 +887,32 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .quiz-actions { display: flex; flex-direction: column; gap: var(--space-2, 8px); margin-top: var(--space-3, 12px); }
 .quiz-actions .btn { width: 100%; }
 .quiz-picked { margin: 8px 0 0; }
-.guess-row.segmented { margin: 0 0 12px; }
-.guess-row.segmented button { font-size: 0.9rem; }
 .plan-foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .plan-saved { color: var(--good); font-weight: 500; white-space: nowrap; display: inline-flex; align-items: center; gap: 2px; margin-top: 6px; min-height: 1.2em; }
 .sticky-cta { position: sticky; bottom: 0; z-index: 5; margin: 0 -16px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--bg); }
+
+/* Terugluisteren: kept recordings and the listen-back exercise */
+.lb-entry { margin-top: 0; }
+.lb-intro { margin: 0 0 4px; }
+.lb-group .lb-item + .lb-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+.lb-item-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.lb-body { margin: 4px 0 6px; overflow-wrap: anywhere; }
+.lb-actions { align-items: center; }
+.lb-delete { flex: none; min-width: 44px; min-height: 44px; }
+.lb-player { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.lb-audio { width: 100%; }
+.lb-speed { align-self: flex-start; }
+.lb-speed button { min-width: 64px; min-height: 40px; }
+.lb-check { display: flex; gap: 10px; align-items: center; min-height: 44px; }
+.lb-check input { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
+.lb-gap { margin: 10px 0 0; }
+.lb-fix-options { margin-top: 8px; }
+.lb-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.lb-col { min-width: 0; }
+.lb-col-head { margin: 0 0 4px; font-size: 0.9rem; }
+.lb-col .lb-player .lb-speed button { min-width: 0; padding-inline: 8px; }
+.lb-transcript { font-size: 0.9rem; overflow-wrap: anywhere; }
+.lb-compare mark, .record-ask mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 2px; }
+.mod-from { display: inline-flex; align-items: center; gap: 4px; color: var(--muted, inherit); }
+.listen-calib { display: block; }
+.rec-row { margin-top: 4px; }

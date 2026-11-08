@@ -26,6 +26,16 @@ export function localCalibration(history) {
   return { n: rated.length, ratingDelta, fillerDelta, verdict };
 }
 
+// Listening back: the rating right after the round against the rating after
+// hearing the recording, over the last 10 listen-backs. Positive: too generous.
+export function listenCalibration(history) {
+  const pairs = history.filter((e) => e.listen && e.listen.after != null && (e.listen.before ?? e.rating) != null).slice(0, 10);
+  if (!pairs.length) return null;
+  const meanGap = round1(mean(pairs.map((e) => (e.listen.before ?? e.rating) - e.listen.after)));
+  const verdict = meanGap >= 0.5 ? 'generous' : meanGap <= -0.5 ? 'harsh' : 'fair';
+  return { n: pairs.length, meanGap, verdict };
+}
+
 const AXES = ['clarity', 'structure', 'fluency', 'vocabulary'];
 
 // 0–5 per axis from the last 10 rounds. Coach scores when any exist;

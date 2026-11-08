@@ -28,10 +28,20 @@ export function judge(question, answer) {
 }
 
 // One pass asks every question; review shows them all; the next pass asks only
-// the misses, until every question has been right once. sure records, on the
-// first pass, whether he answered sure (true) or said he was guessing (false).
+// the misses, until every question has been right once. hints holds the
+// questions he asked a hint for in this pass. sure records, on the first pass,
+// whether he answered without a hint (true) or with one (false); it feeds the
+// box scheduling the way "I'm guessing" used to.
 export function startQuiz(questions) {
-  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, sure: {}, misses: [], phase: 'ask', prev: null };
+  return { order: questions.map((_, i) => i), i: 0, pass: 1, answers: {}, firstTry: {}, sure: {}, hints: {}, misses: [], phase: 'ask', prev: null };
+}
+
+// One hint for the question on screen; once only, and it can't be taken back.
+export function hintQuiz(state, questions) {
+  if (state.phase !== 'ask') return state;
+  const id = questions[state.order[state.i]].id;
+  if ((state.hints || {})[id]) return state;
+  return { ...state, hints: { ...(state.hints || {}), [id]: true } };
 }
 
 export function answerQuiz(state, questions, value, sure = true) {
@@ -43,7 +53,7 @@ export function answerQuiz(state, questions, value, sure = true) {
     ...state,
     answers: { ...state.answers, [q.id]: value },
     firstTry: state.pass === 1 ? { ...state.firstTry, [q.id]: ok } : state.firstTry,
-    sure: state.pass === 1 ? { ...(state.sure || {}), [q.id]: sure !== false } : (state.sure || {}),
+    sure: state.pass === 1 ? { ...(state.sure || {}), [q.id]: sure !== false && !(state.hints || {})[q.id] } : (state.sure || {}),
     misses: ok ? state.misses : [...state.misses, idx],
     i: state.i + 1,
     last: { ...(state.last || {}), [q.id]: ok },
@@ -54,8 +64,8 @@ export function answerQuiz(state, questions, value, sure = true) {
 
 // Take back the last answer in this pass (an accidental tap), so the
 // question is asked again. Not once the review with the answers is shown.
-// prev keeps what he picked (and whether he said he was guessing), so the
-// screen can show it.
+// prev keeps what he picked (and whether it was hinted), so the screen can
+// show it; the hint itself stays in hints, so it is shown again.
 export function backQuiz(state, questions) {
   if (state.phase !== 'ask' || state.i === 0) return state;
   const i = state.i - 1;
@@ -78,7 +88,7 @@ export function backQuiz(state, questions) {
 export function continueQuiz(state) {
   if (state.phase !== 'review') return state;
   if (!state.misses.length) return { ...state, phase: 'done' };
-  return { ...state, order: state.misses, misses: [], i: 0, pass: state.pass + 1, last: {}, phase: 'ask' };
+  return { ...state, order: state.misses, misses: [], i: 0, pass: state.pass + 1, last: {}, hints: {}, phase: 'ask' };
 }
 
 // The questions answered in the pass that just ended (for the review screen).
@@ -88,15 +98,6 @@ function withSubject(state, subject, fn) {
   const courses = state.courses || {};
   const c = courses[subject] || { lessons: {}, sessions: [] };
   return { ...state, courses: { ...courses, [subject]: fn(c) } };
-}
-
-// Sure and guessing answers of one session, for the calibration line.
-function calib(results, sure) {
-  const out = { sr: 0, st: 0, gr: 0, gt: 0 };
-  for (const [id, ok] of Object.entries(results || {})) {
-    if ((sure || {})[id] === false) { out.gt += 1; if (ok) out.gr += 1; } else { out.st += 1; if (ok) out.sr += 1; }
-  }
-  return out;
 }
 
 const logSession = (c, entry) => ({ ...c, sessions: [entry, ...(c.sessions || [])].slice(0, SESSIONS_CAP) });
@@ -124,7 +125,7 @@ export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lan
   next = withSubject(next, subject, (c) => logSession({
     ...c,
     lessons: { ...c.lessons, [lessonId]: { ...before, read: before.read || now, passed: before.passed || now } },
-  }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, cal: calib(firstTry, sure), ts: now }));
+  }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, ts: now }));
   return { state: next, xp };
 }
 
@@ -148,7 +149,7 @@ export function applyDue(state, { subject, results, sure = {}, lang, maintenance
   const marked = (c) => (prep ? { ...c, prepped: [prep, ...(c.prepped || []).filter((x) => x !== prep)].slice(0, PREPPED_CAP) } : c);
   next = withSubject(next, subject, (c) => logSession(
     marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
-    { day: today, kind: 'due', correct, total: entries.length, cal: calib(results, sure), ts: now },
+    { day: today, kind: 'due', correct, total: entries.length, ts: now },
   ));
   return { state: next, xp };
 }
@@ -483,19 +484,6 @@ export function applyRecall(state, { subject, results, sure = {}, lang }, today)
     reviews = scheduleCourseReview(reviews, { questionId, lessonId: lessonOf(questionId), subject, lang }, today, ok, (sure || {})[questionId] !== false);
   }
   return { state: { ...state, courseReviews: reviews }, xp: 0 };
-}
-
-// Sure versus guessing over the last 30 days: how often each was right.
-// Information for Progress, not a goal.
-export function calibrationLine(sessions, today) {
-  const since = shiftDay(today, -30);
-  const out = { sureRight: 0, sureTotal: 0, guessRight: 0, guessTotal: 0 };
-  for (const x of sessions || []) {
-    if (!x || !x.cal || !(x.day >= since && x.day <= today)) continue;
-    out.sureRight += x.cal.sr || 0; out.sureTotal += x.cal.st || 0;
-    out.guessRight += x.cal.gr || 0; out.guessTotal += x.cal.gt || 0;
-  }
-  return out;
 }
 
 // Learning text in paragraphs: a blank line in the content starts a new one.

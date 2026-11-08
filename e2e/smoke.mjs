@@ -2109,7 +2109,7 @@ await step('before the meeting: event with a topic offers a refresh', async () =
   await c.close();
 });
 
-await step('guessing: a correct guess does not climb; a sure miss is marked', async () => {
+await step('hint: the sure/guess control is gone; one hint per question; correct after a hint does not climb', async () => {
   const lid = 'eng.flow.changeover';
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
@@ -2123,35 +2123,45 @@ await step('guessing: a correct guess does not climb; a sure miss is marked', as
   for (let i = 0; i < lesson.teach.length; i++) await p.locator('.lesson > .btn-primary').click();
   await p.locator('.example-card').waitFor();
   await p.locator('.lesson > .btn-primary').click();
-  // Q1 (a choice): two plain options, "Ik weet het" selected; say "Ik gok", then answer it right.
-  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]', { hasText: 'Ik weet het' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]', { hasText: 'Ik gok' }).click();
-  await p.locator('.quiz-card .guess-sure[aria-pressed="false"]').waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
-  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the toggle');
-  await shotP('94-guess-toggle');
+  // Q1 (a choice): no "Ik weet het / Ik gok" control; a secondary Hint button.
+  await p.locator('.quiz-card .quiz-hint-btn', { hasText: 'Hint' }).waitFor();
+  if (await p.locator('.guess-row, .guess-sure, .guess-toggle').count()) throw new Error('the sure/guess control is still there');
+  if (await p.locator('.quiz-card .quiz-hint-btn.btn-primary').count()) throw new Error('Hint must not be the primary button');
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz: filled button next to the options and the hint');
+  await p.locator('.quiz-card .quiz-hint-btn').click();
+  await p.locator('.quiz-card .quiz-hint.on', { hasText: 'Deze valt af' }).waitFor();
+  if (await p.locator('.quiz-card .quiz-hint-btn').count()) throw new Error('a hint can be used once: the button should be gone');
+  const struck = p.locator('.quiz-card .opt.struck');
+  if (await struck.count() !== 1) throw new Error(`expected one struck option, got ${await struck.count()}`);
+  if (!(await struck.isDisabled())) throw new Error('the struck option can still be tapped');
+  const q1 = lesson.recall[0];
+  if ((await struck.innerText()).trim() === q1.answer) throw new Error('the hint struck the right answer');
+  if (await p.locator('.btn-primary:visible').count()) throw new Error('quiz with a hint: filled button next to the options');
+  await shotP('94-quiz-hint');
+  await dark('94-quiz-hint-dark', async () => { await p.locator('.quiz-card .quiz-hint.on').waitFor(); });
   await answerRight(p, lesson);
-  // Q2 (a number): the toggle is back to sure; one filled button; answer wrong while sure.
+  // Q2 (a number): a fresh question has its own Hint again; one filled button; answer wrong without a hint.
   await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="false"]').waitFor();
-  await p.locator('.quiz-card .guess-sure[aria-pressed="true"]').waitFor();
-  await onePrimary(p, 'quiz card with the toggle');
+  await p.locator('.quiz-card .quiz-hint-btn').waitFor();
+  if (await p.locator('.quiz-card .quiz-hint.on').count()) throw new Error('the hint of Q1 carried over to Q2');
+  await onePrimary(p, 'quiz card with the hint button');
   const q2 = lesson.recall[1];
   await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
   await p.locator('.quiz-card .btn-primary').click();
   for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
   await p.locator('.quiz-review').waitFor();
-  if (await p.locator('.review-row.sure-miss').count() !== 1) throw new Error('expected one sure miss');
-  await p.locator('.review-row.sure-miss .sure-mark', { hasText: 'Niet als gok aangegeven' }).waitFor();
-  await onePrimary(p, 'quiz review with a sure miss');
-  await shotP('95-sure-miss-review');
-  await dark('95-sure-miss-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
+  if (await p.locator('.review-row.hinted').count() !== 1) throw new Error('expected one hinted question in the review');
+  await p.locator('.review-row.hinted.ok .hint-mark', { hasText: 'Met een hint' }).waitFor();
+  await onePrimary(p, 'quiz review with a hinted question');
+  await shotP('95-hint-review');
+  await dark('95-hint-review-dark', async () => { await p.locator('.quiz-review').waitFor(); });
   await p.locator('.quiz-review .btn-primary').click();
   await answerRight(p, lesson);
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.lesson-done').waitFor();
   let st = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
   const box = (i) => st.courseReviews[`nl|${lid}#r${i}`].box;
+  // Correct after a hint: box 1 (no climb); wrong: box 1; correct without a hint: box 2.
   if (box(0) !== 1 || box(1) !== 1 || box(2) !== 2) throw new Error(`boxes: ${[0, 1, 2, 3].map(box)}`);
   // Back after a long break: a question due 90 days ago is still in the queue.
   const old = new Date(Date.now() - 90 * 86400000);
@@ -2241,16 +2251,23 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   if (backBox.y - (above.y + above.height) < 8) throw new Error('first question: back touches the answer controls');
   await shotP('99-quiz-first-spacing');
   await dark('99-quiz-first-spacing-dark', async () => { await p.locator('.quiz-card').waitFor(); });
-  // Answer the first question (a guess, wrong), then go back: the pick and the guess are shown again.
+  // Answer the first question (with a hint, wrong), then go back: the pick and the hint are shown again.
   const q1 = lesson.recall[0];
-  await p.locator('.quiz-card .guess-toggle').click();
+  await p.locator('.quiz-card .quiz-hint-btn').click();
+  await p.locator('.quiz-card .quiz-hint.on').waitFor();
   let mine;
   if ('number' in q1) { mine = String(q1.number + 7); await p.locator('.quiz-card .quiz-num').fill(mine); await p.locator('.quiz-card .btn-primary').click(); }
-  else { mine = q1.options.find((o) => o !== q1.answer); await p.locator('.quiz-card .opt', { hasText: mine }).first().click(); }
+  else {
+    // A wrong option the hint did not strike.
+    const gone = (await p.locator('.quiz-card .opt.struck').innerText()).trim();
+    mine = q1.options.find((o) => o !== q1.answer && o !== gone);
+    await p.locator('.quiz-card .opt', { hasText: mine }).first().click();
+  }
   await p.locator('.quiz-card .quiz-progress', { hasText: '2/' }).waitFor();
   await p.locator('.quiz-card .quiz-back').click();
   await p.locator('.quiz-card .quiz-picked', { hasText: 'Je koos:' }).waitFor();
-  await p.locator('.quiz-card .guess-toggle[aria-pressed="true"]').waitFor();
+  await p.locator('.quiz-card .quiz-hint.on').waitFor();
+  if (await p.locator('.quiz-card .quiz-hint-btn').count()) throw new Error('quiz back: the hint was used, no second Hint button');
   if ('number' in q1) {
     if ((await p.locator('.quiz-card .quiz-num').inputValue()) !== mine) throw new Error('numeric answer not prefilled');
     await onePrimary(p, 'quiz back with the earlier answer');
@@ -2646,6 +2663,134 @@ await step('films: every film loads without console errors (light/dark, nl/en, r
   }
   await cf.close();
   if (bad.length) throw new Error(bad.join('\n'));
+});
+
+await step('listen back: ask once, rounds kept, Terugluisteren plays at 1.25x, checklist, rating, one point for the next round', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    window.name = JSON.stringify({ lbLang: st.settings.lang }); // put back at the end
+    st.settings = { ...st.settings, record: false, mode: 'speak', lang: 'nl' };
+    st.ui = { ...st.ui, recordAsked: false, nextModifier: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.evaluate(async () => {
+    await new Promise((res) => { const r = indexedDB.deleteDatabase('vantage-recordings'); r.onsuccess = r.onerror = r.onblocked = () => res(); });
+    // Fake mic and MediaRecorder: each recording is one second of real (silent) WAV, so it plays.
+    const wav = () => {
+      const rate = 8000; const n = rate; const buf = new ArrayBuffer(44 + n * 2); const v = new DataView(buf);
+      const str = (o, x) => { for (let i = 0; i < x.length; i++) v.setUint8(o + i, x.charCodeAt(i)); };
+      str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); v.setUint32(16, 16, true);
+      v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true);
+      v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+      return new Blob([buf], { type: 'audio/wav' });
+    };
+    window.__mr = { starts: 0, stops: 0 };
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }) } });
+    window.MediaRecorder = class {
+      constructor() { this.state = 'inactive'; this.mimeType = 'audio/wav'; }
+      start() { this.state = 'recording'; window.__mr.starts += 1; }
+      stop() {
+        this.state = 'inactive'; window.__mr.stops += 1;
+        setTimeout(() => { if (this.ondataavailable) this.ondataavailable({ data: wav() }); if (this.onstop) this.onstop(); }, 20);
+      }
+    };
+  });
+  const round = async (rate) => {
+    await page.evaluate(async () => {
+      const { makePrompt } = await import('./src/core/lesson.js');
+      const { default: nl } = await import('./src/content/prompts.nl.js');
+      window.__lbPrompt = window.__lbPrompt || makePrompt('minute', nl, Math.random, {});
+      window.__app.session = null;
+      window.__app.go('round', { prompt: window.__lbPrompt, modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+    });
+    await page.getByRole('button', { name: 'Start' }).click();
+    await page.waitForTimeout(1300);
+    await page.getByRole('button', { name: 'Klaar' }).click();
+    await page.locator('.stats').first().waitFor({ timeout: 8000 });
+    if (rate) await page.locator('.rate-btn').nth(rate - 1).click();
+  };
+  // 1. Recording is off: the feedback asks once, with the Android caveat.
+  await round(4);
+  await page.locator('.record-ask', { hasText: 'Android' }).waitFor({ timeout: 3000 });
+  await page.locator('.record-ask').scrollIntoViewIfNeeded();
+  await shot('80-listen-ask');
+  await page.getByRole('button', { name: 'Ja, opnemen' }).click();
+  await page.locator('.record-ask', { hasText: 'Opnemen staat aan' }).waitFor();
+  await page.getByRole('button', { name: 'Volgende' }).click();
+  // 2. Two recorded rounds on the same prompt; no second question.
+  for (const r of [4, 4]) {
+    await round(r);
+    if (await page.locator('.record-ask').count()) throw new Error('asked twice');
+    await page.locator('audio').waitFor({ state: 'attached', timeout: 3000 });
+    await page.getByRole('button', { name: 'Volgende' }).click();
+    await page.locator('.btn-hero').waitFor();
+  }
+  const mr = await page.evaluate(() => window.__mr);
+  if (mr.starts !== 2 || mr.stops !== 2) throw new Error(`recorder ${JSON.stringify(mr)}`);
+  // 3. Terugluisteren from the Spreken home: grouped by exercise, newest first.
+  await page.locator('.lb-entry', { hasText: '2 opnames' }).waitFor({ timeout: 3000 });
+  await page.locator('.lb-entry').click();
+  await page.locator('.lb-group .lb-item').nth(1).waitFor({ timeout: 3000 });
+  if ((await page.locator('.lb-group').count()) !== 1) throw new Error('expected one exercise group');
+  if ((await page.locator('main .btn-primary').count()) !== 1) throw new Error('one primary on the list');
+  await page.locator('.lb-item .lb-play').first().click();
+  await page.locator('.lb-item .lb-speed button', { hasText: '1,25×' }).click();
+  await page.waitForFunction(() => { const a = document.querySelector('.lb-item audio'); return a && a.currentTime > 0 && a.playbackRate === 1.25; }, null, { timeout: 4000 });
+  await shot('81-listen-list');
+  // 4. The exercise: listen, the checklist, rate after listening, one point.
+  await page.locator('.lb-start').click();
+  await page.locator('.lb-checks').waitFor();
+  if (!(await page.locator('.lb-after').isHidden())) throw new Error('rating after listening shown before listening');
+  if ((await page.locator('.lb-check').count()) !== 5) throw new Error('checklist needs five points');
+  await page.locator('.lb-listen .lb-speed button', { hasText: '1,25×' }).click();
+  await page.locator('.lb-listen audio').evaluate((a) => a.play());
+  await page.locator('.lb-after').waitFor({ state: 'visible', timeout: 4000 });
+  await page.locator('.lb-check', { hasText: 'Opening in één zin' }).locator('input').check();
+  await page.locator('.lb-check', { hasText: 'Rustig tempo' }).locator('input').check();
+  await page.locator('.lb-after .rate-btn').nth(2).click();
+  await page.locator('.lb-gap', { hasText: 'te hoog' }).waitFor();
+  await page.locator('.lb-fix button.on', { hasText: 'Weinig stopwoorden' }).waitFor();
+  await page.locator('.lb-compare .lb-col').nth(1).waitFor();
+  if (!(await page.locator('.lb-compare mark').count())) throw new Error('fillers not marked in the transcripts');
+  if ((await page.locator('main .btn-primary').count()) !== 1) throw new Error('one primary in the exercise');
+  await page.locator('.toast').waitFor({ state: 'detached', timeout: 6000 }).catch(() => {});
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await shot('82-listen-exercise');
+  await page.locator('.lb-compare').scrollIntoViewIfNeeded();
+  await shot('83-listen-compare');
+  await page.evaluate(() => { window.__app.updateSettings({ theme: 'dark' }); window.scrollTo(0, 0); });
+  await shot('84-listen-exercise-dark');
+  await page.locator('.lb-save').click();
+  await page.locator('.lb-item', { hasText: 'teruggeluisterd' }).waitFor({ timeout: 3000 });
+  await page.locator('.toast').waitFor({ state: 'detached', timeout: 6000 }).catch(() => {});
+  await shot('85-listen-list-dark');
+  await page.evaluate(() => { window.__app.updateSettings({ theme: 'auto' }); });
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const listened = st.history.find((e) => e.listen);
+  if (!listened || listened.listen.before !== 4 || listened.listen.after !== 3) throw new Error(`listen not in history: ${JSON.stringify(listened && listened.listen)}`);
+  if (!st.ui.nextModifier || st.ui.nextModifier.id !== 'noFillers') throw new Error(`next modifier ${JSON.stringify(st.ui.nextModifier)}`);
+  // 5. The point becomes the next round's modifier, once; the gap shows on Progress.
+  await page.evaluate(() => window.__app.startDrill('minute'));
+  await page.locator('.modifier-chip', { hasText: 'Geen stopwoorden' }).waitFor({ timeout: 3000 });
+  await page.locator('.modifier-chip .mod-from').waitFor();
+  await page.evaluate(() => window.__app.go('progress'));
+  await page.locator('.listen-calib', { hasText: 'Na het terugluisteren' }).waitFor({ timeout: 3000 });
+  // 6. Delete all from Settings.
+  await page.evaluate(() => window.__app.go('settings'));
+  page.once('dialog', (d) => d.accept());
+  await page.locator('.rec-clear', { hasText: '(2)' }).click();
+  await page.locator('.rec-clear').waitFor({ state: 'detached', timeout: 3000 });
+  const left = await page.evaluate(async () => (await (await import('./src/core/recordings.js')).recordings().list()).length);
+  if (left !== 0) throw new Error(`${left} recordings left`);
+  await page.evaluate(() => {
+    window.__app.setState({ ...window.__app.state, ui: { ...window.__app.state.ui, nextModifier: null } });
+    let lang = 'nl';
+    try { lang = JSON.parse(window.name).lbLang || 'nl'; } catch { /* default */ }
+    window.name = '';
+    window.__app.updateSettings({ record: false, lang });
+  });
 });
 
 await step('offline after first load', async () => {

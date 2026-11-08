@@ -16,6 +16,7 @@ import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
 import { subjectBar, SUBJECT_TABS } from './subjectbar.js';
 import { courseHome, COURSE_ICON, openPick, pickWhy } from './coursehome.js';
+import { listenEntry } from './listenback.js';
 
 // The Vantage mark (one image per theme, CSS shows the right one) and the wordmark.
 export function brandLockup() {
@@ -341,6 +342,7 @@ export function renderHome(app, _params, root) {
       h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
         h('span', { class: 'hero-title' }, ico('layers'), ' ', doneToday ? t('lessonDone') : t('todayLesson')),
         h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
+      listenEntry(app),
       morePractice(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),

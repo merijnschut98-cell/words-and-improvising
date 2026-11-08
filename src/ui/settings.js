@@ -6,6 +6,7 @@ import { checkKey } from '../core/claude.js';
 import { parseBackup } from '../core/storage.js';
 import { navBar } from './home.js';
 import { planPicker } from './plan.js';
+import { recordings } from '../core/recordings.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -117,6 +118,27 @@ export function renderSettings(app, _params, root) {
   }
   const importInput = h('input', { type: 'file', accept: '.json,application/json', class: 'file-input', onchange: (e) => pickBackup(e.target) });
 
+  // Kept recordings (this device only): open them, or delete them all.
+  function recordingsRow() {
+    const row = h('div', { class: 'row rec-row' },
+      h('button', { class: 'btn btn-ghost small', onclick: () => app.go('listenback') }, ico('headphones'), ' ', t('lbTitle')));
+    recordings().list().then((list) => {
+      if (!list.length || !row.isConnected) return;
+      row.append(h('button', {
+        class: 'btn btn-danger small rec-clear',
+        onclick: async (e) => {
+          const btn = e.currentTarget;
+          if (!window.confirm(t('lbClearConfirm', list.length))) return;
+          btn.disabled = true;
+          await recordings().clear();
+          app.toast(t('lbCleared'));
+          btn.remove();
+        },
+      }, ico('trash-2'), ' ', t('lbClear', list.length)));
+    });
+    return row;
+  }
+
   // One labelled group per topic; rarely used options sit lower down.
   const group = (id, ...children) => h('section', { class: 'settings-group', 'data-section': id },
     h('h2', { class: 'group-title' }, t(`set_${id}`)),
@@ -154,6 +176,7 @@ export function renderSettings(app, _params, root) {
         toggle(s.remind, (e) => toggleReminder(e.target), t('remind'), remindNote),
         toggle(s.sound !== false, (e) => set({ sound: e.target.checked }), t('sound'), h('p', { class: 'muted small' }, t('soundHelp'))),
         toggle(s.record, (e) => set({ record: e.target.checked }), t('record'), h('p', { class: 'muted small' }, t('recordHelp'))),
+        recordingsRow(),
         toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp')))),
       group('appearance',
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),

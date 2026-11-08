@@ -35,6 +35,7 @@ import { renderDue } from './ui/due.js';
 import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
 import { renderApply } from './ui/apply.js';
+import { renderListenback } from './ui/listenback.js';
 
 const SCREENS = {
   home: renderHome,
@@ -53,6 +54,7 @@ const SCREENS = {
   situation: renderSituation,
   glossary: renderGlossary,
   apply: renderApply,
+  listenback: renderListenback,
 };
 
 const storage = (() => {

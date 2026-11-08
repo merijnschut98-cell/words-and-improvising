@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.machining.processes',
+      film: 'eng.machining.overview',
       title: 'Draaien, frezen, boren, slijpen',
       pre: [
         {
@@ -291,6 +292,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Frezen: het bewerkingscentrum',
       pre: [
@@ -360,6 +362,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Snijwaarden bij frezen',
       pre: [
@@ -429,6 +432,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Freesstrategie: meelopend, spaanverdunning, trochoïdaal',
       pre: [
@@ -499,6 +503,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      film: 'eng.machining.milling',
       figure: 'eng.machining.fiveaxis',
       title: 'Vijfassig frezen: 3+2 of simultaan',
       pre: [
@@ -852,6 +857,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CNC: de basis',
       pre: [
@@ -923,6 +929,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Een G-code-programma lezen',
       pre: [
@@ -992,6 +999,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'Correcties en offsets: waarom crashes gebeuren',
       pre: [
@@ -1062,6 +1070,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CAM, simulatie en proefdraaien',
       pre: [

@@ -3,12 +3,12 @@ import { ico } from './icons.js';
 import { levelFromXp, DRILLS, dayKey } from '../core/progress.js';
 import { navBar } from './home.js';
 import { weeklyReview } from '../core/review.js';
-import { calibration, localCalibration, skillRadar } from '../core/calibration.js';
+import { calibration, localCalibration, skillRadar, listenCalibration } from '../core/calibration.js';
 import { MILESTONES } from '../core/milestones.js';
 import { masteryOf } from '../core/mastery.js';
 import { masteryBadge } from './home.js';
 import { subjectBar } from './subjectbar.js';
-import { courseSummary, planStats, calibrationLine } from '../core/course.js';
+import { courseSummary, planStats } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
 
 // A course on Progress: modules owned per track, due now, the last 14 days and recent situations.
@@ -17,8 +17,6 @@ function courseProgress(app, subject) {
   const sum = courseSummary(app.state, subject, app.lang, app.today());
   const max = Math.max(1, ...sum.strip);
   const [y, m, d] = app.today().split('-').map(Number);
-  const cal = calibrationLine((((app.state.courses || {})[subject]) || {}).sessions || [], app.today());
-  const pct = (r, n) => (n ? `${Math.round((100 * r) / n)} %` : '–');
   const plans = planStats(app.state, subject, dayKey(new Date(y, m - 1, d - 30)));
   const lessonTitle = (id) => { const m = MODULES.find((x) => id.startsWith(`${x.id}.`)); return m ? (m.title[app.lang] || m.title.en) : id; };
   return h('main', { class: 'screen progress course-progress' },
@@ -27,8 +25,7 @@ function courseProgress(app, subject) {
       sum.tracks.filter((x) => x.total).map((x) => h('div', { class: 'week-row' },
         h('span', {}, t(`track_${x.track}`)), h('b', {}, `${x.owned}/${x.total}`))),
       h('div', { class: 'week-row' }, h('span', {}, t('dueTitle')), h('b', {}, sum.due)),
-      plans.made ? h('p', { class: 'mono-line plan-stats' }, t('planStats', plans.used, plans.made)) : null,
-      cal.sureTotal + cal.guessTotal ? h('p', { class: 'mono-line calib-line' }, t('sureLine', pct(cal.sureRight, cal.sureTotal), pct(cal.guessRight, cal.guessTotal))) : null),
+      plans.made ? h('p', { class: 'mono-line plan-stats' }, t('planStats', plans.used, plans.made)) : null),
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('courseDays')),
       h('div', { class: 'strip', role: 'img', 'aria-label': t('courseDaysLabel', sum.strip.reduce((a, b) => a + b, 0)) },
@@ -215,10 +212,13 @@ function calibrationCard(app) {
     : (() => { const l = localCalibration(app.state.history); return l && t(`calibLocal_${l.verdict}`); })();
   const f = friendAverages(app.state);
   const friends = f && f.n >= 1 ? t('friendsCalib', f.n, f.clear, f.structured, f.confident) : null;
-  if (!text && !friends) return null;
+  const lc = listenCalibration(app.state.history);
+  const listened = lc ? t(`calibListen_${lc.verdict}`, lc.meanGap, lc.n) : null;
+  if (!text && !friends && !listened) return null;
   return h('section', { class: 'card calib-card' },
     h('h2', { class: 'card-title' }, t('calibTitle')),
     text ? h('p', {}, text) : null,
+    listened ? h('p', { class: 'listen-calib' }, ico('headphones'), ' ', listened) : null,
     friends ? h('p', { class: 'friend-calib' }, friends) : null,
     latestFriend(app));
 }
