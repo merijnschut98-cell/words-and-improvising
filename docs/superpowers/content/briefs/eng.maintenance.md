@@ -75,3 +75,13 @@ Recalculations (new lessons):
 - condition (faded): (3.4 − 1.9) / 2 = 0.75 ≈ 0.8 per month; (4.5 − 3.4) / 0.8 = 1.4 months.
 
 Uncertain: Dutch term choices — Werkplan (job plan), Spoedwerk (break-in work), Planningsnaleving (schedule compliance; many sites just say schedule compliance), Vondstpercentage (find rate), Blind afvinken (pencil whipping), Ontdekkingswerk (discovery work), Restpuntenlijst (punch list), Tolerantievenster (grace period), Werksteekproef (work sampling). "Early equipment management" kept in English in nl (no settled Dutch term). nl "kritiek pad" written without the inflection so the term stays tappable. The EN 15341 current structure comes from secondary sources only.
+
+### v13 review (2026-11-08)
+
+- PM compliance windows now from the SMRP 6th-edition summary in reliamag.com/topics/guides/pm-compliance-rate-benchmarks (not the forum thread): metric 5.4.14 lets a plant choose the due date (or +1 day) or due date + 20% of the interval capped at 28 days; the separate PM-timing metric 5.4.10 recommends the "10% rule". Taught as "SMRP's PM compliance metric lets a plant choose … a related SMRP metric recommends a stricter 10% rule".
+- Schedule compliance: Palmer (plantservices.com, "What does schedule compliance measure?") expects 40–90% on a fully loaded schedule and reads above 90% as too little work; the earlier "~80%" had no source and is gone. SMRP best-in-class stays "above 90%", taught as a tension.
+- EN 15341:2019+A1:2022: KPIs grouped by maintenance sub-function (maintenance within physical asset management, HSE, maintenance management, personnel, maintenance engineering, organisation and support, administration and supply, ICT), from the published table of contents; taught with three examples.
+- AP-Networks 19% / 7%: still a secondary source (reliabilityacademy.com); taught as "summaries of it quote".
+- JIPM 16 losses now spelled out as 8 equipment, 5 people, 3 resource losses. Reactive share flagged as this module's definition (SMRP counts schedule break-ins).
+- nl terms changed to what Dutch sites say: Werkpakket (job plan), Schedule compliance (planrealisatie), Bevindingspercentage (find rate), Discovery work / Emergent work, Tolerantie (grace period, as in SAP NL), Multimomentopname (work sampling), Schaduwvoorraad (squirrel stores), Scope freeze, Wrench time (as in eng.reliability). Kept: Spoedwerk, Blind afvinken, Restpuntenlijst. nl "Kindersterfte" term became "Vroege uitval" with the eng.reliability definition word for word.
+- Length ranks of the correct option (pre + recall MC): en 1(tied) 4 · 2nd 15 · 3rd 17 · 4th 16; nl 3 · 15 · 15 · 19. Positions 13/13/13/13, en = nl.

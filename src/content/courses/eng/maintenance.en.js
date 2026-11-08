@@ -229,9 +229,9 @@ export default {
       ],
       teach: [
         'PM optimisation (PMO) reviews the PM plan you already have, task by task. The first question per task: which failure mode does this prevent or detect?\n\nMost plans grew from the OEM manuals (OEM: original equipment manufacturer, the machine builder) plus a task added after every incident. OEM intervals are written for an average customer and protect the builder too. Reviews often find tasks that address no credible failure mode, or that duplicate another task.',
-        'Each task gets one of four outcomes: keep, delete, change the interval, or convert. Converting means a time-based replacement becomes a condition check, or a simple check moves to the operators’ CILT round.\n\nThe interval follows from the earlier lessons: a condition check at about half the P-F interval, a fixed replacement only where the failures show wear-out. Protective devices that fail unseen need a test, not an inspection; the module Reliability and asset strategy explains this under RCM.',
+        'Each task gets one of four outcomes: keep, delete, change the interval, or convert. Converting means a time-based replacement becomes a condition check, or a simple check moves to the operators’ CILT round.\n\nThe interval follows from the earlier lessons: a condition check at about half the P-F interval, a fixed replacement only where the failures show wear-out. Protective devices that fail unseen need a test, not an inspection; the module Reliability and asset strategy explains this failure-finding task under RCM, and names PM optimisation as a quick win.',
         'A good task is specific: what to measure, where, with which tool, and the acceptance criterion, the value that tells you whether the result is good. “Measure vibration on both motor bearings, act above 4.5 mm/s” is a task. “Inspect pump” is not.\n\nWatch the find rate: the share of executions that found something to fix. A wear check that found nothing in 50 runs may be too frequent. A test on a safety device may rightly find nothing for years.',
-        'PMO and full RCM differ in where they start. RCM starts from the functions of the asset and works down to failure modes, as the standard SAE JA1011 describes; thorough but slow. PMO starts from the tasks you have: faster, but it can miss failure modes nobody ever wrote a task for.\n\nMany plants use RCM for the few class A assets, or for a new line, and PMO for the rest.',
+        'PMO and full RCM differ in where they start. RCM starts from the functions of the asset and works down to failure modes, the route the standard SAE JA1011 sets out; thorough but slow. PMO starts from the tasks you have: faster, but it can miss failure modes nobody ever wrote a task for.\n\nMany plants use RCM for the few class A assets, or for a new line, and PMO for the rest.',
         'Some tasks can never go: a statutory inspection, a check the law requires, such as on lifting gear or pressure vessels. Warranty conditions can also bind you for a while.\n\nDeleting tasks feels risky, and nobody gets blamed for doing too much PM. So write down per task why it changed, and watch breakdowns on those assets for a few months. A sharp question: which failure mode does this task address, and what did its last ten executions find?',
       ],
       example: {
@@ -367,7 +367,7 @@ export default {
       pre: [
         {
           q: 'Which line from a CILT standard can an operator carry out without asking anyone?',
-          options: ['Check the gearbox regularly and report any problems you find', 'Gearbox oil between the min and max marks, daily, 1 minute', 'Make sure the gearbox has enough oil at all times', 'Gearbox: inspect according to the machine manual'],
+          options: ['Check the gearbox regularly and report any problems you find', 'Gearbox oil between the min and max marks, daily, 1 minute', 'Make sure the gearbox has enough clean oil in it at all times', 'Gearbox: inspect according to the machine manual'],
           answer: 'Gearbox oil between the min and max marks, daily, 1 minute',
           why: 'It says what good looks like, how often and how long. The others leave the operator guessing.',
         },
@@ -477,7 +477,7 @@ export default {
         },
         {
           q: 'What is step 2 of autonomous maintenance about?',
-          options: ['Removing sources of dirt and making hard spots reachable', 'Cleaning the machine from top to bottom for the first time', 'Teaching operators how hydraulics and drives work', 'Writing the first cleaning and lubrication standards'],
+          options: ['Removing sources of dirt and making hard spots reachable', 'Cleaning the machine from top to bottom for the first time', 'Teaching operators how the machine’s hydraulics and drives work', 'Writing the first cleaning and lubrication standards'],
           answer: 'Removing sources of dirt and making hard spots reachable',
           why: 'Step 1 cleans, step 2 stops the dirt coming back and makes cleaning and checking easier, step 3 writes the standards.',
         },
@@ -520,7 +520,7 @@ export default {
       ],
       teach: [
         'JIPM lists eight pillars: autonomous maintenance, focused improvement, planned maintenance, quality maintenance, education and training, early equipment management, office TPM and safety, health and environment. 5S, a tidy and ordered workplace, is often drawn as the foundation.\n\nNakajima’s books in the 1980s spread TPM outside Japan. Nippondenso, a Toyota supplier, is often named as the first plant to win the Japanese PM Prize for TPM, in 1971; JIPM still runs TPM awards.',
-        'TPM starts from losses, not from tools. At machine level these are the six big losses; the module Capacity and flow covers them with OEE. JIPM later widened the list to 16 major losses, including people, material and energy losses.\n\nA loss tree breaks the total loss down by line, machine and loss type, so each pillar gets a loss with hours or euros on it.',
+        'TPM starts from losses, not from tools. At machine level these are the six big losses; the module Capacity and flow covers them with OEE. JIPM later widened the list to 16 major losses: 8 equipment losses, 5 losses of people’s time and 3 of resources (energy, tooling and material yield).\n\nA loss tree breaks the total loss down by line, machine and loss type, so each pillar gets a loss with hours or euros on it.',
         'Focused improvement means small teams attacking one specific loss with root cause tools, such as a changeover or a repeat jam. Quality maintenance finds the machine conditions behind defects (a worn guide, a drifting temperature) and puts them on a check.\n\nEarly equipment management feeds lessons from today’s machines into new ones: easy to clean, easy to inspect, easy to change over, before the purchase order is signed.',
         'A programme needs a master plan for several years, a pillar owner per pillar (usually a manager), a model line where all pillars work together first, and a steering group that reviews losses monthly. Expect years, not months, to an award level.\n\nWorld Class Manufacturing, developed in the 2000s at Fiat with Hajime Yamashina, grew from TPM and links every loss to cost; it calls that cost deployment.',
         'Experts argue whether TPM should run as its own programme or as part of one lean system. Either way the failure modes repeat: all eight pillars launched at once, pillar teams with meetings but no loss target, and AM without maintenance support behind it.\n\nA sharp question: which loss, in hours or euros, is each pillar attacking this year, and how much has it moved?',
@@ -551,7 +551,7 @@ export default {
         },
         {
           q: 'Which pillar makes sure new machines are easy to clean, inspect and change over?',
-          options: ['Safety, health and environment', 'Quality maintenance', 'Office TPM', 'Early equipment management'],
+          options: ['Safety, health and environment', 'Quality maintenance', 'Office TPM (TPM in the office)', 'Early equipment management'],
           answer: 'Early equipment management',
           why: 'It feeds lessons from current machines into the design and purchase of new ones.',
         },
@@ -670,7 +670,7 @@ export default {
         'Planning prepares a job before anyone picks up a spanner. The result is a job plan: the steps, the parts and their numbers, special tools, permits and safety steps, the crafts needed and the estimated hours.\n\nThe planner, a dedicated person in the maintenance team, builds job plans and reuses them: a pump seal swap done every year should not be prepared from scratch every year.',
         'Without a plan a technician walks to the store, waits for a permit, finds the wrong part and walks back. That is where wrench time, the hands-on share of a shift, leaks away.\n\nDoc Palmer’s Maintenance Planning and Scheduling Handbook puts one planner per about 20 to 30 technicians, a rule of thumb that assumes many simple jobs. Pull the planner into today’s breakdowns and nobody prepares next week.',
         'Scheduling decides when and who. Each week, start from the forecast hours per craft: the crew’s hours minus leave, training and meetings. Fill them with planned jobs in order of priority: the weekly schedule.\n\nPalmer argues for loading the full forecast hours. Break-in work, an urgent job that pushes into the schedule, will displace some jobs; that is expected, and those jobs roll to next week.',
-        'Schedule compliance is the share of scheduled hours, or jobs, actually done as scheduled. SMRP, the US maintenance professionals’ society, gives 90% as a best-in-class target.\n\nPalmer argues that a schedule loaded to the full hours often lands around 80%, and that a team scoring 95% week after week probably scheduled too little. So read the score next to the hours that were loaded.',
+        'Schedule compliance is the share of scheduled hours, or jobs, actually done as scheduled. SMRP, the US maintenance professionals’ society, gives above 90% as a best-in-class target.\n\nPalmer disagrees for a fully loaded schedule: he expects most plants to land between about 40% and 90%, and reads a score above 90% as a sign the crew got too little work. So read the score next to the hours that were loaded.',
         'Day to day, the supervisor turns the week into daily assignments, and urgent work enters through a short list of priority codes, such as “now”, “within 24 hours” and “this week”.\n\nThe failure modes: everything is priority 1, the planner spends the day chasing parts, a schedule is made and then ignored. A sharp question: what share of last week’s scheduled hours was done, and what broke in?',
       ],
       example: {
@@ -814,7 +814,7 @@ export default {
       ],
       teach: [
         'A shutdown, also called a turnaround or outage, stops a line or a whole plant for days or weeks to do work that cannot be done while running: internal inspections, big overhauls, statutory inspections and project tie-ins.\n\nIt runs in phases: collect and challenge the scope, plan, prepare, execute, start up, and close out with lessons learned. The cost is lost output plus labour, contractors and parts, so every hour counts.',
-        'Every job on the list is challenged: must it be done during the stop, or can it be done running? Then comes the scope freeze, a fixed date after which the list is closed and late jobs need a change procedure with sign-off.\n\nScope growth is the work added after the freeze. In AP-Networks’ database of over 1,350 turnarounds, mostly process industry, scope grew 19% on average and 7% for the best quarter.',
+        'Every job on the list is challenged: must it be done during the stop, or can it be done running? Then comes the scope freeze, a fixed date after which the list is closed and late jobs need a change procedure with sign-off.\n\nScope growth is the work added after the freeze. AP-Networks, a benchmarking firm, keeps a database of over 1,350 turnarounds, mostly in process industry; summaries of it quote scope growth from freeze to execution of 19% on average and 7% for the best quarter.',
         'Two kinds of growth. Emergent work: equipment that breaks between the freeze and the stop. Discovery work: what you only find once equipment is opened, such as a cracked shaft. You cannot freeze discovery away, so you plan a contingency for it.\n\nThe duration follows the critical path: the longest chain of dependent work, which sets the end date. A delay on a critical path job delays the restart; elsewhere it may not.',
         'Execution is dense: shifts around the clock, many contractors, many permits and lockouts (isolating energy before work; see the module Safety on the floor and in the substation). Daily progress meetings track critical path jobs.\n\nStart-up is a risk of its own: after so much opening and refitting, infant mortality shows up as leaks and misalignment. A punch list, the open points still to finish or check, is walked before the restart.',
         'Experts argue about frequency: fewer, longer stops against more, shorter ones. Inspection based on risk can stretch intervals, but stretching them blindly moves failures into production time.\n\nThe usual failure modes: late materials, scope growth through the back door, contractors waiting for permits, and a rough start-up. A sharp question: what was frozen when, and what was added after?',
@@ -962,7 +962,7 @@ export default {
       teach: [
         'EN 13306, the European standard for maintenance terms, splits all work into preventive maintenance, done before a failure to lower its chance, and corrective maintenance, done after a fault has been recognised.\n\nCorrective work comes in two kinds. Immediate corrective maintenance is done straight away, because the fault cannot wait. Deferred corrective maintenance is postponed to a later moment: the guard noticed on Monday and fixed on Thursday.',
         'Planned work is a different axis: work prepared by a planner before it starts, with a job plan and parts. A deferred corrective repair can be planned work; a preventive job started without preparation is not.\n\nSo “reactive” is not the same as “corrective”. The useful split for a consultant is planned against unplanned hours, and within that, how much was immediate.',
-        'In the CMMS each work order type, the category on the work order such as PM, condition-based, corrective or project, makes this visible.\n\nThe reactive share, immediate corrective hours divided by all maintenance hours, is the warning light. Practitioners often call under about 10 to 15% strong; above 30%, as in the struggling plant of the CMMS lesson, the team is firefighting. Overtime rises with it.',
+        'In the CMMS each work order type, the category on the work order such as PM, condition-based, corrective or project, makes this visible.\n\nThe reactive share, here immediate corrective hours divided by all maintenance hours, is the warning light; SMRP counts work that breaks into the weekly schedule instead. Practitioners often call under about 10 to 15% strong; above 30%, as in the struggling plant of the CMMS lesson, the team is firefighting. Overtime rises with it.',
         'Hours in the CMMS show what work was done, not how the time went. For that, plants run a work sampling study: an observer notes at random moments what each technician is doing: hands-on work, travel, waiting for parts, waiting for a permit, instructions, breaks.\n\nThe hands-on share is the wrench time. Announce the study beforehand and keep names out: it measures the system, not the people.',
         'The common failure modes: an emergency booked as PM, so the reactive share looks better; small jobs done without a work order, so they vanish; and “planned” that only means someone typed a date.\n\nA sharp question: if I take 20 work orders marked as planned, how many had a job plan and kitted parts before the start?',
       ],
@@ -990,7 +990,7 @@ export default {
         },
         {
           q: 'A damaged guard is noticed on Monday and fixed on Thursday, with a job plan and parts ready. How do you book it?',
-          options: ['Deferred corrective maintenance, planned work', 'Immediate corrective maintenance, unplanned work', 'Preventive maintenance, planned work', 'Condition-based maintenance, unplanned work'],
+          options: ['Deferred corrective maintenance, planned work', 'Immediate corrective maintenance, unplanned work', 'Preventive maintenance, planned in the PM plan', 'Condition-based maintenance, unplanned work'],
           answer: 'Deferred corrective maintenance, planned work',
           why: 'It fixes a recognised fault, so corrective; it was postponed and prepared, so deferred and planned.',
         },
@@ -1032,11 +1032,11 @@ export default {
         },
       ],
       teach: [
-        'You don’t have to invent maintenance KPIs. EN 15341 is the European standard for maintenance key performance indicators; its 2007 edition grouped them as economic, technical and organisational, and the 2019 edition, amended in 2022, regroups them. SMRP, the US maintenance professionals’ society, publishes its own metrics with formulas.\n\nThe two have been aligned for many indicators. Copy their definitions and note which you used.',
+        'You don’t have to invent maintenance KPIs. EN 15341 is the European standard for maintenance key performance indicators; its 2007 edition grouped them as economic, technical and organisational; the current edition (2019, amended in 2022) groups them by maintenance sub-function, such as maintenance management, maintenance engineering, and health, safety and environment. SMRP, the US maintenance professionals’ society, publishes its own metrics with formulas.\n\nThe two have been aligned for many indicators. Copy their definitions and note which you used.',
         'Keep the set small and balanced. Leading indicators that move first: PM compliance, schedule compliance, planned work share, backlog in weeks. Lagging indicators that show the result: MTBF on the critical assets, downtime, maintenance cost.\n\nThe module Performance management explains leading and lagging indicators and the KPI definition card; maintenance KPIs need exactly that card: formula, window, source, owner, trigger.',
-        'The window shows why. One SMRP metric counts a PM on time if done within 10% of its interval; another allows the due date plus 20% of the interval, capped at 28 days. That allowed lateness is the grace period.\n\nFor a monthly PM of 30 days that is 3 days against 6. Pick one, write it on the card, and don’t change it quietly.',
-        'Expect a time lag: PM compliance can rise this quarter while MTBF only follows months later, as the failures the PMs prevent stop coming.\n\nPair numbers that guard each other. PM compliance with the share of PMs that found work, so PMs are not closed unread. Planned work share with the reactive share, so emergencies are not booked as planned.',
-        'Experts argue about plant-wide MTBF. Averaging a pump, a robot and a conveyor hides the few bad actors; per critical asset it says much more.\n\nThe usual failure: a board of 15 KPIs nobody acts on. A sharp question for every number on the board: what decision does it drive, and who changes what when it turns red?',
+        'The window shows why. SMRP’s PM compliance metric lets a plant choose: done by the due date, or by the due date plus 20% of the interval, capped at 28 days. A related SMRP metric on PM timing recommends a stricter “10% rule”: within 10% of the interval. That allowed lateness is the grace period.\n\nFor a monthly PM of 30 days that is 3 days against 6. Pick one, write it on the card, and don’t change it quietly.',
+        'Expect a time lag: PM compliance can rise this quarter while MTBF only follows months later, as the failures the PMs prevent stop coming.\n\nPair numbers that guard each other. PM compliance with the find rate of the PMs, so PMs are not closed unread. Planned work share with the reactive share, so emergencies are not booked as planned.',
+        'Experts argue about plant-wide MTBF. Averaging a pump, a robot and a conveyor hides the bad actors, the few assets that cause most of the downtime; per critical asset it says much more.\n\nThe usual failure: a board of 15 KPIs nobody acts on. A sharp question for every number on the board: what decision does it drive, and who changes what when it turns red?',
       ],
       example: {
         kind: 'faded',
@@ -1099,7 +1099,7 @@ export default {
       pre: [
         {
           q: 'What is the replacement asset value (RAV) of a plant?',
-          options: ['The price the plant would fetch if it were sold', 'The book value of the assets as shown on the balance sheet', 'Today’s cost of replacing its assets with new ones', 'The yearly budget for spare parts and contractors'],
+          options: ['The price the plant would fetch if it were sold today', 'The book value of the assets as shown on the balance sheet', 'Today’s cost of replacing its assets with new ones', 'The yearly budget for spare parts and contractors'],
           answer: 'Today’s cost of replacing its assets with new ones',
           why: 'RAV is the base for comparing maintenance cost between plants; book value and sale price say little about how much there is to maintain.',
         },
