@@ -96,3 +96,14 @@ Recalculations (new lessons):
 - savings: 11,200 − 7,000 = 4,200 × 6.10 = 25,620; old total 65,000, new 7,000 × 6.10 = 42,700, drop 22,300; r0 0.15 × 400,000 × 0.20 = 12,000; r1 65,000 − 15,000 = 50,000.
 
 Uncertain / simplified: the whale-curve range is attributed to Kaplan (with Narayanan, 2001) via secondary sources; the original was not read. "Nacalculatie" stands for post-investment review; some plants say "evaluatie na ingebruikname". In `vsc` the volume variance and the overhead released from stock are presented as one €300,000 effect (two views of the same gap between overhead charged and spent in this example). The hurdle-rate range is a hedged practitioner range, not a sourced statistic.
+
+### Review of the v13 topics (2026-11-08)
+
+- `inventory` pre: the old answer said a stock cut "hardly" touches this year's profit, which contradicts `vsc` (absorption dip). The question now asks whether the cut is a P&L saving (no: one-off cash), with a pointer to `vsc`; teach and sayIt say the same.
+- `vsc` example: reveal now reconciles the €300,000: cost of sales carries €2.4 M overhead (€0.3 M of it released from stock), this year's €2.4 M is absorbed into 105,000 valves (€2.1 M), the €0.3 M left is the unfavourable bezettingsresultaat; €2.7 M charged vs €2.4 M spent. The two €300,000 figures match only because sales equal normal volume.
+- IAS 2 / RJ 220: "Dutch rules work the same way" softened to "IFRS requires it; most Dutch plants under RJ 220 do the same" (BW2 art. 2:388 says indirect costs *may* be included).
+- `waste`: cost of quality (PAF total) vs cost of poor quality (failure part only), per ASQ; nl kwaliteitskosten vs faalkosten, as pm.perform uses faalkosten.
+- nl "Nacalculatie" replaced by "Investeringsevaluatie (post-investment review)": pm.intake already defines Nacalculatie as a fee form (time and materials), and Dutch controllers use nacalculatie for job costing.
+- Shared definitions made identical: Capex (pm.portfolio), Opex (eng.maintenance), Optimism bias / Optimisme-bias (pm.intake), Onderhanden werk (eng.flow WIP). Pointers added: capexboard → Intake (optimism bias) and Close (benefits review); waste and inventory name the Capacity and flow module.
+- Tax shield given a number (€50,000 × 25.8% Vpb top rate = €12,900); whale curve attributed to Kaplan and Narayanan (2001); book-value loss notes the tax effect.
+- nl: English term in parentheses at first use for the new Dutch terms.
