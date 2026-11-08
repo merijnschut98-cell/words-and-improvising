@@ -27,3 +27,56 @@ Facts and sources:
 - Recall ids, order, answer positions and numbers unchanged; only clarifying words added to options (en and nl alike).
 
 Uncertain: the 85%/60% OEE figures are conventions, not measured norms; the “one or two quick wins a week in the first four weeks” balance is practitioner judgement.
+
+## v13 topics (2026-11-08)
+
+Rebuilt as 4 topics × 4 levels (1 Basis, 2 Werkkennis, 3 Gevorderd, 4 Expert); `levels[i]` in the index is level i + 1. Worked examples at levels 1–2, faded at 3–4. Situations are framed from Merijn’s work as a junior Lean consultant (grid operator, packaging, dairy, metal, pumps, plastics, machine builder).
+
+| Topic (id) | Basis | Werkkennis | Gevorderd | Expert |
+|---|---|---|---|---|
+| Van vraag naar probleem `problem` | `ask` (existing) | `firsttalk` (existing) | `problemstatement` (new) | `issuetree` (new) |
+| Stakeholders en vertrouwen `people` | `stakeholders` (existing) | `start` (existing) | `contracting` (new) | `coalition` (new) |
+| Scope en projectopdracht `scope` | `done` (existing) | `charter` (new) | `sipoc` (new) | `phasing` (new) |
+| Businesscase en voorstel `case` | `value` (new) | `proposal` (new) | `no` (existing) | `sensitivity` (new) |
+
+Existing lessons: ids, recall count, recall order, answer positions and numbers unchanged, pinned in `tests/fixtures/v13-pm.intake-recall-keys.json` (built from the files before this change). Only change to an existing lesson: `no` (now level 3) gets a faded example (same facts, split into text / ask / reveal).
+
+Scope per new lesson:
+- `problemstatement` — problem statement without cause, solution or culprit; gemba; 5 Whys; is/is-not analysis.
+- `issuetree` — hypothesis-driven diagnosis; issue tree; MECE; Pareto; data requests; guarding against confirmation bias.
+- `contracting` — Block’s contracting: wants and offers, fifty-fifty responsibility, recontracting.
+- `coalition` — Kotter’s guiding coalition, the informal network, works council advice and consent rights.
+- `charter` — one-page project charter: sections, deliverables, milestones, assumptions; A3 versus charter.
+- `sipoc` — SIPOC to agree process boundaries, customer requirements (CTQ), handovers.
+- `phasing` — diagnosis / pilot / roll-out, go/no-go decisions, tolerance, change requests.
+- `value` — business case basics: one-off costs, benefits (real versus paper), payback period.
+- `proposal` — proposal structure, SCQ opening, options, fixed price versus time and materials.
+- `sensitivity` — sensitivity analysis, optimism bias, NPV and discount rate, ranges.
+
+Facts and sources (hedged in the text where they are conventions):
+- Problem statement at the top of the A3: John Shook, Managing to Learn (Lean Enterprise Institute, 2008). A3 format from Toyota practice.
+- 5 Whys: popularised by Taiichi Ohno, Toyota Production System (1978; English 1988). “Five is a rule of thumb.” Criticism that it yields single causal chains is common in the RCA literature; phrased as “critics say”.
+- Is/is-not: Kepner, C. H. & Tregoe, B. B., The Rational Manager (1965).
+- Hypothesis-driven problem solving: Ethan Rasiel, The McKinsey Way (1999). MECE: Barbara Minto, The Pyramid Principle (developed at McKinsey; book 1987). Pareto 80/20 described as a rule of thumb, not a law.
+- Contracting, wants and offers, the contracting meeting, 50/50 responsibility: Peter Block, Flawless Consulting (1st ed. 1981; later editions 2000, 2011, 2023). Checked against designedlearning.com (Block’s training firm) summaries of “wants and offers”.
+- Guiding coalition: John Kotter, Leading Change (1996); criticism of the step model as too linear phrased as “also criticised”.
+- WOR art. 25 lid 1 sub e: advice right on a proposed decision on an important change to the organisation; art. 25 lid 2: advice must be asked when it can still have substantial influence (“wezenlijke invloed”) on the decision (checked: wetten.overheid.nl BWBR0002747 art. 25; AWVN summary). Art. 27 lid 1 sub b: consent right on working and rest time arrangements. Art. 26: the OR can appeal to the Ondernemingskamer against a decision taken against or without advice; the text says “can have the decision tested in court”.
+- Project charter “authorises the project and gives the project manager the mandate”: PMI, PMBOK Guide (definition of Develop Project Charter). Management by stages and tolerances: PRINCE2 principles (AXELOS). The 10% budget tolerance is an example, not a PRINCE2 default.
+- SIPOC: quality / Six Sigma tool (TQM origins, 1980s); 4–7 main steps is common practice. CTQ: Six Sigma term.
+- Planning fallacy: Kahneman & Tversky (1979, “Intuitive prediction: biases and corrective procedures”). Optimism bias and overruns in large projects: Bent Flyvbjerg (e.g. Flyvbjerg & Gardner, How Big Things Get Done, 2023); phrased without specific percentages. Reference class remedy: Flyvbjerg.
+- Discount rates “8 to 10% common, ask the controller”: hedged practitioner range (company WACC / hurdle rate varies).
+- Payback rule of thumb “under two years” given as an example that differs by company.
+
+Recomputed numbers:
+- problemstatement: 8 / 20 = 40%. Example: 33 / 220 = 15%; 6 / 110 = 5.5% (“5%”), 27 / 110 = 24.5% (“25%”).
+- issuetree: 18 + 12 = 30; 30 / 42 = 71.4%.
+- contracting: 2 × 4 × 8 = 64 h.
+- charter: 6 × 2 = 12 days × €1,100 = €13,200.
+- phasing: €40,000 × 1.10 = €44,000; 34 + 8 = 42 (within); 42 + 5 = 47 (above).
+- value: €30,000 / €2,500 = 12 months; 6 × €400 = €2,400 × 46 = €110,400; €45,000 / €110,400 = 0.41 yr ≈ 5 months; 100 h × €50 = €5,000.
+- proposal: 20 × €1,000 = €20,000 × 1.15 = €23,000.
+- sensitivity: €20,000 × 0.75 = €15,000; €60,000 / €15,000 = 4 years. NPV: 50,000/1.08 = 46,296; /1.1664 = 42,867; /1.259712 = 39,692; sum 128,855 − 100,000 = 28,855.
+
+Every recall number question gets a generated hint (first step plus unit) that does not contain the answer (tests/hint.test.js). MC answer positions over the 16 lessons (nl): 14 / 12 / 14 / 13.
+
+Uncertain: the “2 to 6 weeks” diagnostic phase and “3 to 5 pages” proposal are practitioner ranges; illustrative numbers in examples (costs, rates, percentages) are invented for teaching.
