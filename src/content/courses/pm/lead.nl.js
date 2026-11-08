@@ -13,7 +13,7 @@ export default {
         },
       ],
       teach: [
-        'Macht is, gewoon gezegd, het vermogen om anderen iets te laten doen. De psychologen John French en Bertram Raven (1959) beschreven vijf machtsbronnen (sources of power); Raven voegde er later een zesde aan toe.\n\nPositiemacht hoort bij een rol: legitieme macht (het recht om te besluiten), beloningsmacht (bonussen, lof, fijne diensten) en dwangmacht (sancties). Persoonlijke macht komt uit jezelf: deskundigheidsmacht (wat je weet) en referentiemacht (mensen respecteren je en willen met je werken). De zesde is informatiemacht: feiten hebben die anderen nodig hebben.',
+        'Macht is, gewoon gezegd, het vermogen om anderen iets te laten doen. De psychologen John French en Bertram Raven (1959) beschreven vijf machtsbronnen (sources of power); Raven voegde er later een zesde aan toe.\n\nPositiemacht (position power) hoort bij een rol: legitieme macht (het recht om te besluiten), beloningsmacht (bonussen, lof, fijne diensten) en dwangmacht (sancties). Persoonlijke macht komt uit jezelf: deskundigheidsmacht (expert power: wat je weet) en referentiemacht (referent power: mensen respecteren je en willen met je werken). De zesde is informatiemacht: feiten hebben die anderen nodig hebben.',
         'Als junior consultant heb je bijna geen positiemacht. Een stakeholder, iedereen die je project kan helpen of blokkeren of er de gevolgen van merkt, rapporteert niet aan jou. Zelfs de sponsor, de senior manager die het project liet starten en erachter staat, leent je maar een beetje van zijn positiemacht, en die slijt elke keer dat je hem gebruikt.\n\nJe invloed komt dus uit deskundigheid, referentie en informatie. Het goede nieuws: die drie groeien met je eigen werk, week na week.',
         'Deskundigheidsmacht is zichtbare kunde: je cijfers kloppen, je kent de lijn, je kunt een methode eenvoudig uitleggen. Referentiemacht is iemand zijn met wie mensen willen werken: je houdt je woord, deelt de eer en staat op de vloer, niet alleen in de vergaderruimte.\n\nGary Yukl vat het onderzoek samen in Leadership in Organizations: persoonlijke macht gaat vaker samen met commitment, en positiemacht, hard ingezet, met schoorvoetende meegaandheid of weerstand. Een neiging, geen wet.',
         'Meegaandheid (compliance) is doen wat gevraagd is, met zo min mogelijk moeite, omdat het moet. Commitment is het doen omdat je het ermee eens bent, zodat mensen ook de problemen oplossen die jij niet zag aankomen. Positiemacht koopt meegaandheid; verbeterwerk heeft commitment nodig, want de operators houden de verandering levend als jij weg bent.\n\nAls teamcaptain geldt hetzelfde. De titel geeft je een beetje legitieme macht, maar je team volgt je om wat je weet en hoe je met ze omgaat.',
@@ -27,26 +27,26 @@ export default {
       recall: [
         {
           q: 'Welke hiervan is een bron van persoonlijke macht, en geen positiemacht?',
-          options: ['Beloningsmacht: bonussen of fijne diensten uitdelen', 'Legitieme macht: het formele recht om te besluiten', 'Dwangmacht: sancties kunnen opleggen', 'Referentiemacht: mensen respecteren je en willen met je werken'],
+          options: ['Beloningsmacht: bonussen of fijne diensten uitdelen', 'Legitieme macht: het formele recht om te besluiten waar anderen aan werken', 'Dwangmacht: sancties kunnen opleggen', 'Referentiemacht: mensen respecteren je en willen met je werken'],
           answer: 'Referentiemacht: mensen respecteren je en willen met je werken',
           why: 'Belonings-, legitieme en dwangmacht horen bij een rol. Referentiemacht komt uit hoe je werkt en met mensen omgaat.',
         },
         {
           q: 'Een ploegleider doet precies wat je vroeg en niets meer, en een probleem dat hij makkelijk had kunnen oplossen blijft liggen. Wat heb je gekregen?',
-          options: ['Commitment, omdat hij deed wat was afgesproken', 'Meegaandheid: doen wat gevraagd is, met zo min mogelijk moeite', 'Weerstand, omdat hij de taak weigerde', 'Referentiemacht, omdat hij jou volgde'],
+          options: ['Commitment, omdat hij precies deed wat er met hem was afgesproken', 'Meegaandheid: doen wat gevraagd is, met zo min mogelijk moeite', 'Weerstand, omdat hij de taak weigerde', 'Referentiemacht, omdat hij jou volgde'],
           answer: 'Meegaandheid: doen wat gevraagd is, met zo min mogelijk moeite',
           why: 'Bij commitment had hij ook opgelost waar niemand om vroeg. Het minimum doen is meegaandheid.',
         },
         {
           q: 'Waarom maakt het je zwakker als je te vaak het gezag van de sponsor leent?',
-          options: ['Het slijt elke keer, en je wordt een boodschapper in plaats van iemand met eigen gewicht', 'Sponsors mogen mensen op de werkvloer geen opdrachten geven', 'Het project wordt duurder omdat elk verzoek een extra overleg kost', 'De meeste adviesbureaus verbieden het in hun gedragscode'],
-          answer: 'Het slijt elke keer, en je wordt een boodschapper in plaats van iemand met eigen gewicht',
+          options: ['Het slijt bij elk gebruik, en je wordt een boodschapper', 'Sponsors mogen mensen op de werkvloer geen opdrachten geven', 'Het project wordt duurder omdat elk verzoek een extra overleg kost', 'De meeste adviesbureaus verbieden het in hun gedragscode'],
+          answer: 'Het slijt bij elk gebruik, en je wordt een boodschapper',
           why: 'Geleende positiemacht raakt op, en mensen leren op de sponsor te wachten in plaats van naar jou te luisteren.',
         },
         {
           q: 'Je bent teamcaptain. Wat geeft je de meest blijvende invloed op je team?',
-          options: ['De titel, omdat die je legitieme macht over de anderen geeft', 'Mensen die acties missen bij de manager kunnen melden', 'Wat je weet en hoe je met mensen omgaat: deskundigheids- en referentiemacht', 'Bepalen wie de leuke klussen krijgt, als beloning'],
-          answer: 'Wat je weet en hoe je met mensen omgaat: deskundigheids- en referentiemacht',
+          options: ['De titel, omdat die je legitieme macht over de anderen geeft', 'Mensen die acties missen bij de manager kunnen melden', 'Wat je weet en hoe je met mensen omgaat: persoonlijke macht', 'Bepalen wie de leuke klussen krijgt, als beloning'],
+          answer: 'Wat je weet en hoe je met mensen omgaat: persoonlijke macht',
           why: 'De titel van captain draagt weinig positiemacht. Persoonlijke macht blijft werken als de titel dat niet doet.',
         },
       ],
@@ -88,13 +88,13 @@ export default {
       pre: [
         {
           q: 'Je wilt dat ploegleiders een nieuw bord voor de start van de dienst gaan gebruiken. Welke zin gebruikt sociaal bewijs?',
-          options: ['“De plantmanager heeft dit vanaf maandag verplicht gesteld.”', '“Ploeg B en C gebruiken het al een maand, en hun overdracht ging van 20 naar 10 minuten.”', '“We hebben maar drie borden, dus schrijf je in voordat ze op zijn.”', '“Ik heb je met de stilstandrapportage geholpen, dus help jij mij nu hiermee.”'],
-          answer: '“Ploeg B en C gebruiken het al een maand, en hun overdracht ging van 20 naar 10 minuten.”',
+          options: ['“De plantmanager heeft dit bord vanaf maandag voor elke ploeg verplicht gesteld.”', '“Ploeg B en C gebruiken het al een maand en dragen nu in de helft van de tijd over.”', '“We hebben maar drie borden voor de hele fabriek, dus schrijf je in voordat ze op zijn.”', '“Ik heb je vorige maand met de stilstandrapportage geholpen, dus help jij mij nu hiermee.”'],
+          answer: '“Ploeg B en C gebruiken het al een maand en dragen nu in de helft van de tijd over.”',
           why: 'Sociaal bewijs: mensen volgen wat vergelijkbare anderen doen. De andere zinnen leunen op gezag, schaarste en wederkerigheid.',
         },
       ],
       teach: [
-        'Robert Cialdini beschreef in Influence (1984) zes principes die mensen ja laten zeggen: wederkerigheid, commitment en consistentie, sociaal bewijs, gezag (authority), sympathie (liking) en schaarste. In Pre-Suasion (2016) voegde hij een zevende toe, eenheid: het gevoel van “wij”, van bij dezelfde groep horen.\n\nWederkerigheid is de sterke neiging om terug te geven wat je krijgt. Commitment en consistentie: wie iets in het openbaar heeft gezegd, handelt er meestal naar. Toezeggingen in het teamoverleg staan in de module Uitvoeren (Leidinggeven zonder macht).',
+        'Robert Cialdini beschreef in Influence (1984) zes principes die mensen ja laten zeggen: wederkerigheid (reciprocity), commitment en consistentie, sociaal bewijs (social proof), gezag (authority), sympathie (liking) en schaarste (scarcity). In Pre-Suasion (2016) voegde hij een zevende toe, eenheid (unity): het gevoel van “wij”, van bij dezelfde groep horen.\n\nWederkerigheid is de sterke neiging om terug te geven wat je krijgt. Commitment en consistentie: wie iets in het openbaar heeft gezegd, handelt er meestal naar. Toezeggingen in het teamoverleg staan in de module Uitvoeren (Leidinggeven zonder macht).',
         'Sociaal bewijs: mensen kijken naar wat vergelijkbare anderen doen, vooral als ze twijfelen. “Ploeg B werkt al zo” wint van “de methode zegt het”. Gezag: mensen volgen geloofwaardige experts, dus laat zien waar je kennis vandaan komt. Sympathie: we zeggen makkelijker ja tegen mensen die we aardig vinden en die op ons lijken. Schaarste: wat zeldzaam is, of bijna op, lijkt meer waard.\n\nEenheid gaat verder dan sympathie: “wij, de mensen van deze fabriek” in plaats van “jij en ik”.',
         'Hoe stevig is het? De principes zijn bekend, maar sommige beroemde onderzoeken houden minder goed stand dan het boek doet denken. Een replicatie is een herhaling van een onderzoek door andere onderzoekers. Een hotelonderzoek (Goldstein, Cialdini en Griskevicius, 2008) vond meer hergebruik van handdoeken als een kaartje zei dat de meeste gasten in die kamer dat deden; een replicatie in Duitsland (Bohner en Schlüter, 2014) vond dat niet, en een latere meta-analyse vond een klein effect.\n\nZie de principes dus als neigingen die per situatie verschillen, niet als knoppen.',
         'De grens tussen overtuigen en manipulatie: is het waar, en zou de ander nog instemmen als hij wist wat je deed? Echt sociaal bewijs, echte schaarste (“de lijn ligt alleen zaterdag stil”), echte deskundigheid: prima. Nepdeadlines, een verzonnen “iedereen is al akkoord”, vleien: dat is manipulatie, en het kost je geloofwaardigheid als het uitkomt.\n\nCialdini waarschuwt zelf tegen oneerlijk gebruik. Verankeren en framing, verwanten uit het onderhandelen, staan in de module Onderhandelen (Het eerste bod en framing).',
@@ -114,20 +114,20 @@ export default {
         },
         {
           q: 'Waarom zie je de principes van Cialdini als neigingen en niet als knoppen die altijd werken?',
-          options: ['Omdat ze alleen op Amerikaanse studenten zijn getest, dus niet gelden in fabrieken', 'Omdat sommige bekende onderzoeken zwak of niet repliceerden, en effecten per situatie verschillen', 'Omdat Cialdini het boek na de kritiek introk en verving door Pre-Suasion', 'Omdat ze niet meer werken als mensen ervan gehoord hebben, zoals de meeste managers'],
-          answer: 'Omdat sommige bekende onderzoeken zwak of niet repliceerden, en effecten per situatie verschillen',
+          options: ['Omdat ze alleen op Amerikaanse studenten zijn getest, en dus niet zomaar gelden in fabrieken', 'Omdat bekende onderzoeken soms zwak of niet repliceerden, en het effect per situatie verschilt', 'Omdat Cialdini het boek na de kritiek introk en verving door Pre-Suasion', 'Omdat ze niet meer werken zodra mensen ervan gehoord hebben, en de meeste managers kennen ze al'],
+          answer: 'Omdat bekende onderzoeken soms zwak of niet repliceerden, en het effect per situatie verschilt',
           why: 'Het handdoekenonderzoek is het klassieke voorbeeld: een mislukte replicatie, daarna een klein effect in een meta-analyse.',
         },
         {
           q: '“Het hele MT is al akkoord,” zeg je, maar twee van hen zijn het nog niet gevraagd. Wat is dit?',
-          options: ['Sociaal bewijs, eerlijk gebruikt, omdat de meesten akkoord zijn', 'Eenheid, omdat het naar het team als geheel verwijst', 'Manipulatie: vals sociaal bewijs dat geloofwaardigheid kost als het uitkomt', 'Gezag, omdat het naar managers verwijst'],
-          answer: 'Manipulatie: vals sociaal bewijs dat geloofwaardigheid kost als het uitkomt',
+          options: ['Sociaal bewijs, eerlijk gebruikt, omdat de meesten akkoord zijn', 'Eenheid, omdat het naar het team als geheel verwijst', 'Manipulatie: vals sociaal bewijs', 'Gezag, omdat het naar managers verwijst'],
+          answer: 'Manipulatie: vals sociaal bewijs',
           why: 'Het is niet waar, en ze zouden niet instemmen als ze het wisten. Dat is de grens.',
         },
         {
           q: 'Welke toets scheidt overtuigen van manipulatie?',
-          options: ['Is het waar, en zou hij nog instemmen als hij wist wat je deed?', 'Levert het sneller een ja op dan een argument met data?', 'Had de sponsor de aanpak goedgekeurd voordat je hem gebruikte?', 'Mag het volgens de gedragscode van de klant voor medewerkers?'],
-          answer: 'Is het waar, en zou hij nog instemmen als hij wist wat je deed?',
+          options: ['Is het waar, en zou hij instemmen als hij wist wat je deed?', 'Levert het sneller een ja op dan een argument met data?', 'Had de sponsor deze aanpak goedgekeurd voordat je hem bij zijn mensen gebruikte?', 'Mag het volgens de gedragscode van de klant voor medewerkers?'],
+          answer: 'Is het waar, en zou hij instemmen als hij wist wat je deed?',
           why: 'Snelheid, goedkeuring of regels maken een tactiek niet eerlijk; waarheid en openheid wel.',
         },
       ],
@@ -197,13 +197,13 @@ export default {
         },
         {
           q: 'Wie probeer je meestal als eerste te winnen?',
-          options: ['De hoogste in rang in de kamer, omdat de rest de rang volgt', 'De luidste criticus, omdat iedereen meegaat als hij draait', 'Degene met veel invloed die nog neutraal is en naar wie anderen luisteren', 'Wie het al met je eens is, omdat dat de snelste winst is'],
+          options: ['De hoogste in rang in de kamer, omdat de rest van het team altijd de rang volgt', 'De luidste criticus, omdat iedereen meegaat als hij draait', 'Degene met veel invloed die nog neutraal is en naar wie anderen luisteren', 'Wie het al met je eens is, omdat dat de snelste winst is'],
           answer: 'Degene met veel invloed die nog neutraal is en naar wie anderen luisteren',
           why: 'Die is nog te bewegen en neemt anderen mee; voorstanders heb je al en luide critici draaien zelden als eerste.',
         },
         {
           q: 'Waarom praat je vóór een groepsoverleg één-op-één met de belangrijkste mensen?',
-          options: ['Om tijd te besparen, zodat het groepsoverleg zelf kort en formeel kan blijven', 'Omdat in groepsoverleggen toch bijna nooit echt besloten wordt', 'Om het besluit erdoor te krijgen voordat ze in het openbaar bezwaar kunnen maken', 'Mensen veranderen zelden in het openbaar van standpunt, en niemand wil voor collega’s overvallen worden'],
+          options: ['Om tijd te besparen, zodat het groepsoverleg zelf kort en formeel kan blijven', 'Omdat in groepsoverleggen toch bijna nooit echt besloten wordt, alleen ervoor', 'Om het besluit erdoor te krijgen voordat ze in het openbaar, waar hun collega’s bij zijn, bezwaar kunnen maken', 'Mensen veranderen zelden in het openbaar van standpunt, en niemand wil voor collega’s overvallen worden'],
           answer: 'Mensen veranderen zelden in het openbaar van standpunt, en niemand wil voor collega’s overvallen worden',
           why: 'Eén-op-één kunnen ze vragen stellen en meedenken; in een groep gaan ze verdedigen.',
         },
@@ -256,11 +256,11 @@ export default {
         },
       ],
       teach: [
-        'Het organogram laat zien wie aan wie rapporteert. Daarnaast heeft elke organisatie een informeel netwerk, dat laat zien hoe het werk echt gebeurt: wie mensen om advies vragen, en wie ze slecht nieuws toevertrouwen. David Krackhardt en Jeffrey Hanson (Harvard Business Review, 1993) noemden dat het adviesnetwerk en het vertrouwensnetwerk (trust network), en lieten zien dat die er heel anders uit kunnen zien dan het organogram.\n\nEen bruggenbouwer verbindt groepen die anders niet met elkaar praten, zoals een planner die vroeger bij onderhoud werkte. Bruggenbouwers verspreiden een verandering het snelst.',
-        'Een coalitie is een groep mensen die samen achter de verandering staan, zodat die niet aan jou of aan één sponsor hangt. Bouw hem in ringen: eerst twee of drie gerespecteerde mensen die het plan mee vormgeven, dan hun netwerken.\n\nJohn Kotter noemt de versie aan de top een leidende coalitie (guiding coalition); hoe die adoptie drijft, staat in de module Landen (Wat adoptie echt drijft). Hier gaat het om het mensenwerk: wie doet mee, in welke volgorde, en wat levert het elk op.',
-        'Niet iedereen die weerstand biedt is een blokkeerder: sommigen hebben een punt dat je moet horen (module Landen, Werken met weerstand). Een blokkeerder is iemand met de macht om de verandering te stoppen die ertegen heeft besloten.\n\nZoek eerst zijn belang: budget kwijt, status kwijt, een oud conflict. Dan drie opties: pas het plan aan zodat hij minder verliest; maak de coalitie zichtbaar, zodat tegenwerken hem meer kost; of ga voorlopig om zijn afdeling heen. Achter zijn rug naar zijn baas stappen werkt meestal averechts.',
-        'Organisatiepolitiek is informele macht gebruiken om belangen te beschermen. Doen alsof het niet bestaat is naïef; het vuil spelen ruïneert je naam. Gerald Ferris en collega’s noemen het bruikbare midden politieke vaardigheid: mensen goed lezen, netwerken bouwen, invloed uitoefenen en oprecht overkomen.\n\nTekenen dat je in een politiek gevecht zit: besluiten in overleggen waar jij niet bij was, je data die door maar één afdeling wordt aangevochten, een sponsor die ineens geen tijd meer heeft.',
-        'Als de sponsor wegzakt. Sponsors wisselen van baan en prioriteiten schuiven. Let op afgezegde één-op-ééns en stuurgroepen die naar een plaatsvervanger gaan. Vraag dan direct: “Staat dit nog in je top drie?” Zo niet, maak dan nieuwe afspraken (module Als je vastzit, Een vastgelopen project herstarten) of zoek een tweede senior steunpilaar voordat de eerste vertrekt.\n\nTypische valkuil: een coalitie van alleen voorstanders, zodat de eerste criticus in de stuurgroep iedereen verrast. Een scherpe vraag: als mijn sponsor morgen vertrekt, wie verdedigt dit project dan nog?',
+        'Het organogram laat zien wie aan wie rapporteert. Een informeel netwerk laat zien hoe het werk echt gebeurt: wie mensen om advies vragen, en wie ze slecht nieuws toevertrouwen. David Krackhardt en Jeffrey Hanson (Harvard Business Review, 1993) noemden dat het adviesnetwerk (advice network) en het vertrouwensnetwerk (trust network), en lieten zien dat die er heel anders uit kunnen zien dan het organogram.\n\nEen bruggenbouwer (broker) verbindt groepen die anders niet met elkaar praten, zoals een planner die vroeger bij onderhoud werkte. Bruggenbouwers verspreiden een verandering het snelst.',
+        'Een coalitie is een groep mensen die samen achter de verandering staan, zodat die niet aan jou of aan één sponsor hangt. Bouw hem in ringen: eerst twee of drie gerespecteerde mensen die het plan mee vormgeven, dan hun netwerken.\n\nJohn Kotter noemt de versie aan de top een leidende coalitie (guiding coalition); hoe je die aan het begin vormt, staat in de module Intake (Een coalitie bouwen). Hier gaat het om het mensenwerk: wie doet mee, in welke volgorde, en wat levert het elk op.',
+        'Niet elke tegenstander is een blokkeerder (blocker); soms heeft hij gewoon een punt (Landen, Werken met weerstand). Een blokkeerder kan de verandering stoppen en heeft ertegen besloten; het gesprek met hem onder vier ogen staat in Als je vastzit (De persoon die blokkeert).\n\nIn het netwerk: zoek zijn belang (budget, status, een oud conflict), pas het plan aan zodat hij minder verliest, maak de coalitie zichtbaar zodat tegenwerken meer kost, of ga voorlopig om zijn afdeling heen. Achter zijn rug naar zijn baas stappen werkt meestal averechts.',
+        'Organisatiepolitiek is informele macht gebruiken om belangen te beschermen. Doen alsof het niet bestaat is naïef; het vuil spelen ruïneert je naam. Gerald Ferris en collega’s noemen het bruikbare midden politieke vaardigheid (political skill): mensen goed lezen, netwerken bouwen, invloed uitoefenen en oprecht overkomen.\n\nTekenen dat je in een politiek gevecht zit: besluiten in overleggen waar jij niet bij was, je data die door maar één afdeling wordt aangevochten, een sponsor die ineens geen tijd meer heeft.',
+        'Als de sponsor wegzakt. Sponsors wisselen van baan, prioriteiten schuiven. Let op afgezegde één-op-ééns en stuurgroepen die naar een plaatsvervanger gaan. Vraag dan: “Staat dit nog in je top drie?” Zo niet, maak dan nieuwe afspraken (Als je vastzit: Een vastgelopen project herstarten; Wat je van je sponsor nodig hebt) of zoek een tweede senior steunpilaar voordat de eerste vertrekt.\n\nTypische valkuil: een coalitie van alleen voorstanders, zodat de eerste criticus in de stuurgroep iedereen verrast. Een scherpe vraag: als mijn sponsor morgen vertrekt, wie verdedigt dit project dan nog?',
       ],
       example: {
         kind: 'faded',
@@ -278,19 +278,19 @@ export default {
         },
         {
           q: 'Een manager met de macht om je project te stoppen heeft ertegen besloten. Welke zet werkt meestal averechts?',
-          options: ['Vragen wat hij verliest als het doorgaat', 'Het plan aanpassen zodat zijn afdeling minder verliest', 'De coalitie achter de verandering voor hem zichtbaar maken', 'Achter zijn rug naar zijn baas stappen zonder het hem te zeggen'],
+          options: ['Vragen wat hij verliest als het doorgaat', 'Het plan aanpassen zodat zijn afdeling minder verliest', 'De brede coalitie achter de verandering voor hem zichtbaar maken', 'Achter zijn rug naar zijn baas stappen zonder het hem te zeggen'],
           answer: 'Achter zijn rug naar zijn baas stappen zonder het hem te zeggen',
           why: 'Het bevestigt zijn slechtste beeld van het project en maakt van een blokkeerder een vijand.',
         },
         {
           q: 'Waarom bouw je een coalitie in plaats van te leunen op één sterke sponsor?',
-          options: ['Zodat de verandering niet hangt aan één persoon die kan vertrekken of afhaken', 'Omdat sponsors een project meestal niet in hun eentje mogen steunen', 'Omdat een coalitie de besluiten van de stuurgroep kan overnemen', 'Zodat je helemaal niet meer met de critici hoeft te praten'],
+          options: ['Zodat de verandering niet hangt aan één persoon die kan vertrekken of afhaken', 'Omdat sponsors een project meestal niet in hun eentje mogen steunen', 'Omdat een coalitie de besluiten van de stuurgroep kan overnemen als dat nodig is', 'Zodat je helemaal niet meer met de critici hoeft te praten'],
           answer: 'Zodat de verandering niet hangt aan één persoon die kan vertrekken of afhaken',
           why: 'Sponsors wisselen van baan en prioriteit; een coalitie houdt de verandering levend.',
         },
         {
           q: 'Welk teken wijst erop dat je sponsor wegzakt?',
-          options: ['Hij stelt ineens lastige vragen in de stuurgroep', 'Hij wil de data voortaan vóór het overleg zien', 'Afgezegde één-op-ééns en stuurgroepen die naar een plaatsvervanger gaan', 'Hij vraagt je het project aan de directie te presenteren'],
+          options: ['Hij stelt in de stuurgroep ineens veel lastigere vragen over de cijfers', 'Hij wil de data voortaan vóór het overleg zien', 'Afgezegde één-op-ééns en stuurgroepen die naar een plaatsvervanger gaan', 'Hij vraagt je het project aan de directie te presenteren'],
           answer: 'Afgezegde één-op-ééns en stuurgroepen die naar een plaatsvervanger gaan',
           why: 'Lastige vragen tonen interesse. Zijn tijd kwijtraken laat zien dat het project op zijn lijst zakt.',
         },
@@ -333,7 +333,7 @@ export default {
       pre: [
         {
           q: 'Een senior manager van de klant zat tijdens je workshop steeds op zijn telefoon, en het team zag het. Wanneer geef je het best feedback?',
-          options: ['Meteen, waar de groep bij is', 'In de volgende stuurgroep', 'Nooit: hij is de klant', 'Kort erna, één-op-één, na de vraag of hij ervoor openstaat'],
+          options: ['Meteen, waar de groep bij is, nu het nog vers is', 'In de volgende stuurgroep, waar de sponsor bij is', 'Nooit: hij is de klant, en dat is niet jouw rol als consultant', 'Kort erna, één-op-één, na de vraag of hij ervoor openstaat'],
           answer: 'Kort erna, één-op-één, na de vraag of hij ervoor openstaat',
           why: 'Onder vier ogen, snel, en met toestemming: zo wordt feedback naar boven hoorbaar.',
         },
@@ -413,35 +413,35 @@ export default {
       pre: [
         {
           q: 'De analyse van een teamgenoot bevat een basisfout. Je mag hem graag, dus je zegt “ziet er goed uit” en verbetert het stilletjes zelf. Wat is dit in de termen van Kim Scott?',
-          options: ['Radical Candor, omdat je de relatie beschermde', 'Botte agressie, omdat je achter zijn rug om ging', 'Ruïneuze empathie: geven om zonder uit te dagen', 'Manipulatieve onoprechtheid, omdat je beleefd was'],
-          answer: 'Ruïneuze empathie: geven om zonder uit te dagen',
+          options: ['Radical Candor, omdat je de relatie beschermde', 'Botte agressie, omdat je achter zijn rug om ging', 'Ruïneuze empathie: betrokken zonder uit te dagen', 'Manipulatieve onoprechtheid, omdat je beleefd was'],
+          answer: 'Ruïneuze empathie: betrokken zonder uit te dagen',
           why: 'Het voelt aardig, maar hij maakt dezelfde fout opnieuw, misschien waar de klant bij is.',
         },
       ],
       teach: [
-        'Radical Candor is een model van Kim Scott, oud-manager bij Google en Apple, uit haar gelijknamige boek (2017). Het heeft twee assen: persoonlijk geven om (care personally: je laat zien dat de persoon je iets kan schelen) en direct uitdagen (challenge directly: je zegt wat niet werkt).\n\nAllebei hoog is Radical Candor: “Ik wil dat je donderdag goed overkomt, en je samenvattingsslide verstopt het belangrijkste resultaat.” Haar punt: geven om en uitdagen zijn geen tegenpolen; je hebt ze allebei tegelijk nodig.',
-        'De andere drie vakken. Botte agressie: uitdagen zonder geven om, het brute “dit is waardeloos”. Ruïneuze empathie: geven om zonder uitdagen, zodat iemand nooit hoort wat hem tegenhoudt. Manipulatieve onoprechtheid: geen van beide, zoals iemand in zijn gezicht prijzen en achter zijn rug bekritiseren.\n\nScott zegt dat de meeste mensen falen door ruïneuze empathie, niet door agressie. Junioren die aardig gevonden willen worden, en nieuwe teamcaptains, hebben er extra last van.',
+        'Radical Candor is een model van Kim Scott, oud-manager bij Google en Apple, uit haar gelijknamige boek (2017). Het heeft twee assen: persoonlijk betrokken zijn (care personally: je laat zien dat de persoon je iets kan schelen) en direct uitdagen (challenge directly: je zegt wat niet werkt).\n\nAllebei hoog is Radical Candor: “Ik wil dat je donderdag goed overkomt, en je samenvattingsslide verstopt het belangrijkste resultaat.” Haar punt: betrokkenheid en uitdagen zijn geen tegenpolen; je hebt ze allebei tegelijk nodig.',
+        'De andere drie vakken. Botte agressie (obnoxious aggression): uitdagen zonder betrokkenheid, het brute “dit is waardeloos”. Ruïneuze empathie (ruinous empathy): betrokken zonder uit te dagen, zodat iemand nooit hoort wat hem tegenhoudt. Manipulatieve onoprechtheid (manipulative insincerity): geen van beide, zoals iemand in zijn gezicht prijzen en achter zijn rug bekritiseren.\n\nScott zegt dat de meeste mensen falen door ruïneuze empathie, niet door agressie. Junioren die aardig gevonden willen worden, en nieuwe teamcaptains, hebben er extra last van.',
         'Haar volgorde: eerst om kritiek vragen, dan lof geven, dan kritiek geven. Eerst vragen laat zien dat je het kunt hebben: “Wat is één ding dat ik kan doen waardoor samenwerken met mij makkelijker wordt?” Verdraag dan de stilte. Beloon het antwoord, ook als het steekt.\n\nLof moet net zo concreet zijn als kritiek, met de SBI-opbouw uit de feedbackles. Kritiek geef je onder vier ogen, lof meestal in het openbaar, al houden sommige mensen daar niet van: vraag het.',
-        'Grenzen. Radical Candor is een praktijkmodel: gebouwd op ervaring, niet getoetst in onderzoek. Er is weinig wetenschappelijk getoetst onderzoek naar. Scott zegt zelf dat het wordt misbruikt als vrijbrief om hard te zijn: mensen onthouden “radical” en vergeten “care”.\n\nCultuur telt ook. Op Nederlandse werkvloeren is directheid gewoon, dus het risico is dat je afglijdt naar botte agressie; bij sommige internationale collega’s komen dezelfde woorden veel harder aan. Het oneens zijn met iemand die hoger staat, staat in de module Onderhandelen.',
+        'Grenzen. Radical Candor is een praktijkmodel (practitioner framework): gebouwd op ervaring, met weinig wetenschappelijk getoetst onderzoek erachter. Scott zegt zelf dat het wordt misbruikt als vrijbrief om hard te zijn: mensen onthouden “radical” en vergeten “care”.\n\nCultuur telt ook. Op Nederlandse werkvloeren is directheid gewoon, dus het risico is dat je afglijdt naar botte agressie; bij sommige internationale collega’s komen dezelfde woorden veel harder aan. Tegenspreken naar boven staat in de module Onderhandelen (Het oneens zijn met iemand die hoger staat).',
         'Zinnen naast elkaar. Ruïneuze empathie: “Geeft niks, maak je geen zorgen.” Radical Candor: “Ik zeg het omdat ik wil dat dit bij de plantmanager landt: de slide heeft drie getallen en geen daarvan is het resultaat.”\n\nTypische valkuil: elke harde opmerking “eerlijk” noemen. De toets is niet hoe direct jij was, maar of de ander het kon horen en ermee aan de slag kon. Een scherpe vraag voordat je iets zegt: weet hij dat ik aan zijn kant sta?',
       ],
       example: {
         kind: 'worked',
-        text: 'Je bent captain van je eigen consultancyteam. Sanne, een collega, stuurt klantrapporten vol typefouten. Je mag haar graag, zegt al weken niks en verbetert ze stilletjes. Dat is ruïneuze empathie.\n\nWat je doet: eerst vraag je zelf om kritiek in jullie wekelijkse één-op-één: “Wat kan ik beter doen als captain?” Je luistert en bedankt haar.\n\nDan de uitdaging, met het geven om hardop gezegd: “Ik wil dat je rapporten de waardering krijgen die je analyse verdient. In de laatste drie rapporten (S) stonden steeds vijf tot tien typefouten (G); de plantmanager zei er iets over tegen mij (I). Wat zou helpen?”\n\nZij stelt voor dat iemand anders elk rapport leest voordat het de deur uitgaat. Jullie spreken af een maand elkaars rapporten na te lezen.',
+        text: 'Je bent captain van je eigen consultancyteam. Sanne, een collega, stuurt klantrapporten vol typefouten. Je mag haar graag, zegt al weken niks en verbetert ze stilletjes. Dat is ruïneuze empathie.\n\nWat je doet: eerst vraag je zelf om kritiek in jullie wekelijkse één-op-één: “Wat kan ik beter doen als captain?” Je luistert en bedankt haar.\n\nDan de uitdaging, met je betrokkenheid hardop gezegd: “Ik wil dat je rapporten de waardering krijgen die je analyse verdient. In de laatste drie rapporten (S) stonden steeds vijf tot tien typefouten (G); de plantmanager zei er iets over tegen mij (I). Wat zou helpen?”\n\nZij stelt voor dat iemand anders elk rapport leest voordat het de deur uitgaat. Jullie spreken af een maand elkaars rapporten na te lezen.',
       },
       said: 'Wat je hoort in projecten: “Waarom heeft niemand me dit drie maanden geleden verteld?”',
       recall: [
         {
           q: 'Wat zijn de twee assen van Radical Candor?',
-          options: ['Snel praten en vaak praten', 'Persoonlijk geven om en direct uitdagen', 'In het openbaar prijzen en onder vier ogen bekritiseren', 'Eerst luisteren en later besluiten'],
-          answer: 'Persoonlijk geven om en direct uitdagen',
+          options: ['Snel praten en vaak praten', 'Persoonlijk betrokken zijn en direct uitdagen', 'In het openbaar prijzen en onder vier ogen bekritiseren', 'Eerst luisteren en later besluiten'],
+          answer: 'Persoonlijk betrokken zijn en direct uitdagen',
           why: 'Allebei hoog is Radical Candor; de andere drie vakken missen er één of allebei.',
         },
         {
           q: 'Iemand in zijn gezicht prijzen en tegen anderen over hem klagen is…',
-          options: ['Botte agressie, omdat de kritiek hard is', 'Ruïneuze empathie, omdat je zijn gevoelens spaart', 'Radical Candor, zolang de kritiek klopt', 'Manipulatieve onoprechtheid: geven om noch uitdagen'],
-          answer: 'Manipulatieve onoprechtheid: geven om noch uitdagen',
-          why: 'Je daagt hem niet direct uit, en achter zijn rug praten is geen geven om.',
+          options: ['Botte agressie, omdat de kritiek hard is', 'Ruïneuze empathie, omdat je zijn gevoelens in zijn gezicht spaart', 'Radical Candor, zolang de kritiek klopt', 'Manipulatieve onoprechtheid: betrokkenheid noch uitdaging'],
+          answer: 'Manipulatieve onoprechtheid: betrokkenheid noch uitdaging',
+          why: 'Je daagt hem niet direct uit, en achter zijn rug praten is geen betrokkenheid.',
         },
         {
           q: 'Wat doe je volgens Scott als eerste?',
@@ -451,15 +451,15 @@ export default {
         },
         {
           q: 'Wat is een terechte kanttekening bij Radical Candor?',
-          options: ['Googles eigen onderzoek naar zijn teams liet zien dat het vertrouwen verlaagt', 'Het is bedacht voor Amerikaanse start-ups en werkt niet in grotere bedrijven', 'Het is gebouwd op ervaring in plaats van onderzoek, en wordt misbruikt als vrijbrief om hard te zijn', 'Het verbiedt lof in het openbaar, wat goede presteerders demotiveert'],
-          answer: 'Het is gebouwd op ervaring in plaats van onderzoek, en wordt misbruikt als vrijbrief om hard te zijn',
+          options: ['Googles eigen onderzoek naar zijn teams liet zien dat het vertrouwen verlaagt', 'Het is bedacht voor Amerikaanse start-ups en werkt niet meer zodra een bedrijf groter wordt', 'Het rust op ervaring, niet op onderzoek, en wordt misbruikt als vrijbrief om hard te zijn', 'Het verbiedt lof in het openbaar, wat goede presteerders demotiveert'],
+          answer: 'Het rust op ervaring, niet op onderzoek, en wordt misbruikt als vrijbrief om hard te zijn',
           why: 'Scott baseerde het op ervaring, en waarschuwt zelf tegen de lezing “radical zonder care”.',
         },
       ],
       situation: {
         scene: 'Bij een kunststofverwerker vraagt de projectleider van de klant, Bas, je na een workshop: “Eerlijk, hoe deed ik het?” Hij praatte zo’n 40 van de 60 minuten; de operators zeiden bijna niks.',
         ask: 'Wat zeg je?',
-        model: 'Ik zou beginnen met iets wat waar en concreet goed ging, en dan de uitdaging, met het geven om hardop: “Je vroeg om eerlijk, dus hier komt het, omdat ik wil dat de operators hier eigenaar van worden. Je sprak zo’n 40 van de 60 minuten, en na de eerste ronde zeiden de operators weinig. Zullen we volgende keer afspreken dat jij de eerste vraag stelt en dan tien minuten inhoudt?”',
+        model: 'Ik zou beginnen met iets wat waar en concreet goed ging, en dan de uitdaging, met je betrokkenheid hardop gezegd: “Je vroeg om eerlijk, dus hier komt het, omdat ik wil dat de operators hier eigenaar van worden. Je sprak zo’n 40 van de 60 minuten, en na de eerste ronde zeiden de operators weinig. Zullen we volgende keer afspreken dat jij de eerste vraag stelt en dan tien minuten inhoudt?”',
         rubric: [
           'Laat zien dat hij om hem geeft en zegt waarom hij het vertelt',
           'Daagt direct uit met waarneembare feiten',
@@ -480,10 +480,10 @@ export default {
       },
       sayIt: 'Leg een nieuwe teamcaptain in 60 seconden Radical Candor uit, inclusief waarom “radical” niet hard betekent.',
       terms: [
-        { term: 'Radical Candor', def: 'Tegelijk persoonlijk geven om en direct uitdagen (Kim Scott).' },
-        { term: 'Ruïneuze empathie', def: 'Geven om zonder uitdagen, zodat iemand nooit hoort wat hem tegenhoudt.' },
-        { term: 'Botte agressie', def: 'Uitdagen zonder geven om: harde kritiek die mensen niet kunnen horen.' },
-        { term: 'Manipulatieve onoprechtheid', def: 'Geven om noch uitdagen, zoals lof in je gezicht en kritiek achter je rug.' },
+        { term: 'Radical Candor', def: 'Tegelijk persoonlijk betrokken zijn en direct uitdagen (Kim Scott).' },
+        { term: 'Ruïneuze empathie', def: 'Betrokken zijn zonder uit te dagen, zodat iemand nooit hoort wat hem tegenhoudt.' },
+        { term: 'Botte agressie', def: 'Uitdagen zonder betrokkenheid: harde kritiek die mensen niet kunnen horen.' },
+        { term: 'Manipulatieve onoprechtheid', def: 'Betrokkenheid noch uitdaging, zoals lof in je gezicht en kritiek achter je rug.' },
         { term: 'Praktijkmodel', def: 'Een model dat gebouwd is op iemands ervaring in plaats van getoetst in onderzoek.' },
       ],
     },
@@ -521,19 +521,19 @@ export default {
         },
         {
           q: 'Wat is een opening met het “derde verhaal”?',
-          options: ['De situatie beschrijven zoals een neutrale buitenstaander dat zou doen', 'Een verhaal vertellen over een vorige klant met hetzelfde probleem', 'Beginnen met je eigen kijk, zodat die meteen helder is', 'Een derde citeren die het met je eens is, als steun'],
+          options: ['De situatie beschrijven zoals een neutrale buitenstaander dat zou doen', 'Een verhaal vertellen over een vorige klant met hetzelfde probleem', 'Beginnen met je eigen kijk, zodat die vanaf het begin voor iedereen helder is', 'Een derde citeren die het met je eens is, als steun'],
           answer: 'De situatie beschrijven zoals een neutrale buitenstaander dat zou doen',
           why: 'Het benoemt het verschil zonder schuld, zodat jullie er allebei vanuit kunnen gaan.',
         },
         {
           q: 'Iemands opmerking heeft je project geschaad. Waar praat je over, en waar vraag je naar?',
-          options: ['Je benoemt zijn bedoeling, je vraagt naar de feiten', 'Je praat over jouw impact, je vraagt naar zijn bedoeling', 'Je praat over allebei, zodat er niks onbesproken blijft', 'Je vermijdt allebei en houdt het bij de planning'],
+          options: ['Je benoemt zijn bedoeling, je vraagt naar de feiten', 'Je praat over jouw impact, je vraagt naar zijn bedoeling', 'Je praat over allebei, zodat er niks onbesproken blijft tussen jullie', 'Je vermijdt allebei en houdt het bij de planning'],
           answer: 'Je praat over jouw impact, je vraagt naar zijn bedoeling',
           why: 'De impact op jou ken je; zijn bedoeling ken je niet, dus die vraag je.',
         },
         {
           q: 'Hoe sluit je een moeilijk gesprek goed af?',
-          options: ['Met een grap, zodat jullie zonder spanning weggaan', 'Door af te spreken dat jullie er binnenkort nog eens over praten', 'Met een concrete afspraak die je hardop zegt: wie doet wat wanneer', 'Door hem als gebaar het laatste woord te geven'],
+          options: ['Met een grap, zodat jullie zonder spanning weggaan', 'Door af te spreken dat jullie er binnenkort, als het jullie allebei uitkomt, nog eens over praten', 'Met een concrete afspraak die je hardop zegt: wie doet wat wanneer', 'Door hem als gebaar het laatste woord te geven'],
           answer: 'Met een concrete afspraak die je hardop zegt: wie doet wat wanneer',
           why: 'Zonder uitgesproken afspraak gaan jullie allebei weg met een andere versie van wat er besloten is.',
         },
@@ -581,10 +581,10 @@ export default {
         },
       ],
       teach: [
-        'Douglas Stone en Sheila Heen, twee van de auteurs van Difficult Conversations, schreven Thanks for the Feedback (2014) over de kant van de ontvanger. Hun stelling: de ontvanger, niet de gever, bepaalt of feedback tot verandering leidt.\n\nZe noemen drie triggers die het blokkeren. De waarheidstrigger: “dat klopt niet”. De relatietrigger: “wie ben jij om mij dat te vertellen?” De identiteitstrigger: “dit betekent dat ik slecht ben in mijn werk”. Elk ervan laat je discussiëren in plaats van leren.',
-        'Tegen de waarheidstrigger: eerst begrijpen, dan oordelen. Feedback komt vaak als vaag etiket: “chaotisch”, “nog niet senior genoeg”. Vraag waar het vandaan komt (wat zag je?) en waar het naartoe gaat (wat zou jij in plaats daarvan doen?). Vaak klopt het etiket niet en de data eronder wel.\n\nZoek je blinde vlek: wat anderen aan je zien en jij niet, zoals je gezicht als je het ergens niet mee eens bent. Vraag: “Wat doe ik waarmee ik mezelf in de weg zit?”',
-        'Tegen de relatietrigger: let op spoorwisselen. Hij zegt “je rapport was te laat”; jij antwoordt “jij stuurt de data nooit op tijd”. Misschien is allebei waar, maar nu zijn er twee onderwerpen en wordt geen van beide opgelost. Benoem het: “Laten we jouw punt over het rapport afmaken, daarna wil ik het over de data hebben.”\n\nTegen de identiteitstrigger: zie jezelf als iemand die nog leert, niet als een af product. Een oordeel over één overleg is geen oordeel over jou.',
-        'Drie soorten feedback: waardering (“ik zie je, dank je”), coaching (“zo kun je het beter doen”) en beoordeling (“hier sta je”). Stone en Heen zien dat mensen vaak om het ene vragen en het andere krijgen: je wilde coaching en kreeg een cijfer. Die mismatch veroorzaakt veel van de pijn.\n\nVraag het expliciet: “Is dit coaching of een beoordeling?” Een beoordeling overstemt coaching meestal, dus vraag na een beoordelingsgesprek op een andere dag om het coachingsdeel.',
+        'Douglas Stone en Sheila Heen, twee van de auteurs van Difficult Conversations, schreven Thanks for the Feedback (2014) over de kant van de ontvanger. Hun stelling: de ontvanger, niet de gever, bepaalt of feedback tot verandering leidt.\n\nZe noemen drie triggers die het blokkeren. De waarheidstrigger (truth trigger): “dat klopt niet”. De relatietrigger (relationship trigger): “wie ben jij om mij dat te vertellen?” De identiteitstrigger (identity trigger): “dit betekent dat ik slecht ben in mijn werk”. Elk ervan laat je discussiëren in plaats van leren.',
+        'Tegen de waarheidstrigger: eerst begrijpen, dan oordelen. Feedback komt vaak als vaag etiket: “chaotisch”, “nog niet senior genoeg”. Vraag waar het vandaan komt (wat zag je?) en waar het naartoe gaat (wat zou jij in plaats daarvan doen?). Vaak klopt het etiket niet en de data eronder wel.\n\nZoek je blinde vlek (blind spot): wat anderen aan je zien en jij niet, zoals je gezicht als je het ergens niet mee eens bent. Vraag: “Wat doe ik waarmee ik mezelf in de weg zit?”',
+        'Tegen de relatietrigger: let op spoorwisselen (switchtracking). Hij zegt “je rapport was te laat”; jij antwoordt “jij stuurt de data nooit op tijd”. Misschien is allebei waar, maar nu zijn er twee onderwerpen en wordt geen van beide opgelost. Benoem het: “Laten we jouw punt over het rapport afmaken, daarna wil ik het over de data hebben.”\n\nTegen de identiteitstrigger: zie jezelf als iemand die nog leert, niet als een af product. Een oordeel over één overleg is geen oordeel over jou.',
+        'Drie soorten feedback: waardering (appreciation: “ik zie je, dank je”), coaching (“zo kun je het beter doen”) en beoordeling (evaluation: “hier sta je”). Stone en Heen zien dat mensen vaak om het ene vragen en het andere krijgen: je wilde coaching en kreeg een cijfer. Die mismatch veroorzaakt veel van de pijn.\n\nVraag het expliciet: “Is dit coaching of een beoordeling?” Een beoordeling overstemt coaching meestal, dus vraag na een beoordelingsgesprek op een andere dag om het coachingsdeel.',
         'Je hoeft niet alle feedback over te nemen. Als je het begrepen hebt, beslis je: proberen, een deel proberen, of het met dank afwijzen. “Ik snap waarom je het voorstelt; ik blijf openen met de data, omdat de operators daarop reageren.”\n\nTypische valkuil: om feedback vragen en je dan verdedigen, waardoor mensen leren dat het geen zin heeft. Feedback verzamelen aan het eind van een project staat in de module Afsluiten (Je eigen reflectie). Een scherpe vraag: wat in deze feedback zou kunnen kloppen?',
       ],
       example: {
@@ -603,7 +603,7 @@ export default {
         },
         {
           q: 'Wat is spoorwisselen (switchtracking)?',
-          options: ['Op feedback reageren met een eigen klacht, zodat geen van beide onderwerpen wordt opgelost', 'Halverwege een gesprek ongemerkt overstappen van coaching naar beoordeling', 'Een moeilijk gesprek naar de mail verplaatsen zodat beide kanten kunnen afkoelen', 'Een tweede persoon om dezelfde feedback vragen om te checken of de eerste eerlijk was'],
+          options: ['Op feedback reageren met een eigen klacht, zodat geen van beide onderwerpen wordt opgelost', 'Halverwege een gesprek ongemerkt overstappen van coaching naar beoordeling, zonder het te zeggen', 'Een moeilijk gesprek naar de mail verplaatsen zodat beide kanten kunnen afkoelen', 'Een tweede persoon om dezelfde feedback vragen om te checken of de eerste eerlijk was'],
           answer: 'Op feedback reageren met een eigen klacht, zodat geen van beide onderwerpen wordt opgelost',
           why: 'Allebei kunnen ze terecht zijn; neem ze één voor één.',
         },
@@ -615,7 +615,7 @@ export default {
         },
         {
           q: 'Als je feedback hebt begrepen, wat mag je er dan mee doen?',
-          options: ['Alleen accepteren, anders kom je defensief over', 'Proberen, een deel proberen, of het met dank afwijzen', 'Je manager laten beslissen', 'Het negeren tenzij het op papier staat'],
+          options: ['Alleen accepteren, anders kom je defensief over bij degene die het geeft', 'Proberen, een deel proberen, of het met dank afwijzen', 'Je manager laten beslissen', 'Het negeren tenzij het op papier staat'],
           answer: 'Proberen, een deel proberen, of het met dank afwijzen',
           why: 'Begrijpen komt eerst; daarna is de keuze aan jou.',
         },
@@ -657,7 +657,7 @@ export default {
       pre: [
         {
           q: 'Een plantmanager snauwt: “Dit project kost mijn mensen uren die we niet hebben.” Wat is de sterkste eerste reactie?',
-          options: ['De voordelen van het project uitleggen', 'Laten zien dat de uren binnen de planning vallen', '“Uren die jullie niet hebben. Waar gaan ze nu in zitten?”', 'Beloven dat er minder overleggen komen'],
+          options: ['De voordelen van het project uitleggen voordat hij bozer wordt', 'Laten zien dat de uren binnen de planning vallen', '“Uren die jullie niet hebben. Waar gaan ze nu in zitten?”', 'Beloven dat er minder overleggen komen'],
           answer: '“Uren die jullie niet hebben. Waar gaan ze nu in zitten?”',
           why: 'Eerst terugspiegelen, dan vragen: dat haalt de hitte eraf en je hoort het echte probleem voordat je antwoordt.',
         },
@@ -665,9 +665,9 @@ export default {
       teach: [
         'Actief luisteren, een term van de psychologen Carl Rogers en Richard Farson (1957), betekent luisteren om te begrijpen, niet om te antwoorden. MORE PIES, een checklist uit de crisisonderhandeling (crisis negotiation) die ontvoeringsonderhandelaar Scott Walker uitlegt in Order Out of Chaos (2023), laat zien hoe.\n\nMood: lees de sfeer in de kamer vóór de inhoud. Open vragen: wat en hoe, geen ja of nee; met een open vraag vertelt de ander het verhaal. Reflecteren: geef het gevoel terug. Empathie: laat zien dat je snapt waarom het ertoe doet.',
         'Parafraseren: zeg de inhoud in je eigen woorden. Inquiry: vraag één laag dieper door. Experience: deel je eigen ervaring alleen als het de ander helpt. Silence: laat stilte werken.\n\nOnder druk schiet je meteen in verdedigen of oplossen. De regel: eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden. Reflecteren: “Dat klinkt frustrerend.” Parafraseren: “Dus die formulieren kostten meer tijd dan de verandering opleverde.” Wie het project aanvalt, heeft er meestal een zorg onder: werkdruk, schuld, controle kwijtraken.',
-        'Stilte. Tel na een vraag in je hoofd tot vijf.\n\nIn klasonderzoek uit de jaren zeventig zag Mary Budd Rowe dat leraren zo’n één seconde op een antwoord wachtten; wachtten ze drie seconden of langer, dan werden de antwoorden langer en doordachter. Volwassenen in een overleg zijn niet anders: het echte antwoord komt vaak na het eerste. Je op je gemak voelen bij stilte komt over als zelfvertrouwen, en dat helpt als je de jongste bent.',
+        'Stilte. Wacht na een vraag minstens drie seconden, zoals in Intake (Het eerste gesprek); tel onder druk tot vijf.\n\nIn klasonderzoek uit de jaren zeventig zag Mary Budd Rowe dat leraren zo’n één seconde op een antwoord wachtten; wachtten ze drie seconden of langer, dan werden de antwoorden langer en doordachter. Volwassenen in een overleg zijn niet anders: het echte antwoord komt vaak na het eerste. Je op je gemak voelen bij stilte komt over als zelfvertrouwen, en dat helpt als je de jongste bent.',
         'Vragen die openen: “Waar maak je je het meeste zorgen over?” “Wat moet er waar zijn om dit te laten werken?” “Wat hebben jullie eerder geprobeerd?” “Wat mis ik?”\n\nVermijd “waarom” als de emoties hoog zitten: het klinkt als een verwijt. Zeg liever “wat maakte dat je…”.\n\nDe typische valkuil is de nepvraag: “Vind je ook niet dat we…?” Mensen horen welk antwoord je wilt, geven het je, en je leert niks.',
-        'Ervaring, goed gebruikt. De valkuil is “Bij een vorige klant hadden we precies hetzelfde…”, en dan pak je de ander het woord af.\n\nGebruik het als brug: één zin, en geef het terug. (Er bestaan varianten: soms staat M voor minimal encouragers en S voor summarising.) “Ik heb dat zien misgaan als de mensen die het werk doen niet werden gevraagd. Is dat hier ook gebeurd?”\n\nCheck jezelf na een lastig overleg: wat heb ik geleerd dat ik nog niet wist? Niks? Dan heb je meer gepraat dan geluisterd.',
+        'Ervaring, goed gebruikt. De valkuil is “Bij een vorige klant hadden we precies hetzelfde…”, en dan pak je de ander het woord af.\n\nGebruik het als brug: één zin, en geef het terug. “Ik heb dat zien misgaan als de mensen die het werk doen niet werden gevraagd. Is dat hier ook gebeurd?”\n\nCheck jezelf na een lastig overleg: wat heb ik geleerd dat ik nog niet wist? Niks? Dan heb je meer gepraat dan geluisterd. (Er bestaan varianten: soms is M minimal encouragers en S summarising.)',
       ],
       example: {
         kind: 'worked',
@@ -677,7 +677,7 @@ export default {
       recall: [
         {
           q: 'Wat is het verschil tussen reflecteren en parafraseren?',
-          options: ['Er is geen verschil: allebei herhalen wat er gezegd is', 'Reflecteren is een vraag, parafraseren een stelling', 'Reflecteren is voor senioren, parafraseren voor collega’s', 'Reflecteren geeft het gevoel terug, parafraseren de inhoud'],
+          options: ['Er is geen verschil: allebei herhalen wat er gezegd is', 'Reflecteren is een vraag, parafraseren een stelling', 'Reflecteren is voor senioren, parafraseren voor collega’s op gelijk niveau', 'Reflecteren geeft het gevoel terug, parafraseren de inhoud'],
           answer: 'Reflecteren geeft het gevoel terug, parafraseren de inhoud',
           why: '“Dat klinkt frustrerend” is reflecteren; “dus de formulieren kostten meer dan ze opleverden” is parafraseren.',
         },
@@ -689,9 +689,9 @@ export default {
         },
         {
           q: 'Hoe lang moet je na een vraag stil kunnen blijven?',
-          options: ['Zo’n vijf seconden, of langer', 'Ongeveer één seconde, zodat het overleg doorloopt', 'Helemaal niet; vul het gat voordat het ongemakkelijk wordt', 'Tot de hoogste in rang iets zegt'],
-          answer: 'Zo’n vijf seconden, of langer',
-          why: 'Het doordachte antwoord komt meestal na het eerste snelle.',
+          options: ['Minstens drie seconden; onder druk tel je tot vijf', 'Ongeveer één seconde, zodat het overleg lekker blijft doorlopen', 'Helemaal niet; vul het gat voordat het ongemakkelijk wordt', 'Tot de hoogste in rang iets zegt'],
+          answer: 'Minstens drie seconden; onder druk tel je tot vijf',
+          why: 'Rowe zag dat drie seconden of meer langere, betere antwoorden gaf; het doordachte antwoord komt vaak na het eerste snelle.',
         },
         {
           q: 'Hoe gebruik je je eigen ervaring zonder het gesprek over te nemen?',
@@ -743,8 +743,8 @@ export default {
         },
       ],
       teach: [
-        'Toyota Kata is een manier om verbeteren een dagelijkse gewoonte te maken, beschreven door Mike Rother in Toyota Kata (2009) op basis van zijn onderzoek naar hoe managers bij Toyota mensen ontwikkelen. Een kata is een kleine routine die je oefent tot hij automatisch gaat, zoals in vechtsporten.\n\nDe verbeterkata heeft vier stappen: begrijp de richting of uitdaging (challenge); breng de huidige toestand in beeld; stel de volgende doeltoestand; experimenteer ernaartoe, stap voor stap. De coachingskata is hoe een coach iemand dat leert.',
-        'Een doeltoestand beschrijft hoe het proces moet werken op een datum die niet ver weg ligt, vaak één tot een paar weken: “Omstellen op pers 4 in minder dan 30 minuten, elke keer, op de 20e.” De huidige toestand (actual condition) is hoe het nu werkt: gemeten, niet aangenomen.\n\nEen obstakel is alles wat tussen die twee in staat. De leerling werkt aan één obstakel tegelijk, met één experiment tegelijk. Elk experiment is een kleine PDCA-cyclus: plan, do, check, act.',
+        'Toyota Kata is een manier om verbeteren een dagelijkse gewoonte te maken, beschreven door Mike Rother in Toyota Kata (2009) op basis van zijn onderzoek naar hoe managers bij Toyota mensen ontwikkelen. Een kata is een kleine routine die je oefent tot hij automatisch gaat, zoals in vechtsporten.\n\nDe verbeterkata (improvement kata) heeft vier stappen: begrijp de richting of uitdaging (challenge); breng de huidige toestand in beeld; stel de volgende doeltoestand; experimenteer ernaartoe, stap voor stap. De coachingskata (coaching kata) is hoe een coach iemand dat leert.',
+        'Een doeltoestand (target condition) beschrijft hoe het proces moet werken op een datum die niet ver weg ligt, tussen een week en drie maanden; beginners beginnen met een week of twee: “Omstellen op pers 4 in minder dan 30 minuten, elke keer, op de 20e.” De huidige toestand (actual condition) is hoe het nu werkt: gemeten, niet aangenomen.\n\nEen obstakel is alles wat tussen die twee in staat. De leerling werkt aan één obstakel tegelijk, met één experiment tegelijk. Elk experiment is een kleine PDCA-cyclus: plan, do, check, act.',
         'De vijf coachingsvragen, in elke coachingscyclus, vaak dagelijks, in zo’n 15 tot 20 minuten bij het bord van de leerling:\n\n1. Wat is de doeltoestand?\n2. Wat is de huidige toestand?\n3. Welke obstakels houden je volgens jou tegen om de doeltoestand te bereiken? Aan welke werk je nu?\n4. Wat is je volgende stap? Wat verwacht je?\n5. Wanneer kunnen we gaan kijken wat we van die stap hebben geleerd?',
         'Tussen vraag 2 en 3 laat de coach de leerling terugkijken op de vorige stap: wat was je plan, wat verwachtte je, wat gebeurde er echt, wat heb je geleerd?\n\nRollen. De leerling is eigenaar van het proces en het denken. De coach is eigenaar van de voortgang van de leerling, vraagt, en deelt geen antwoorden uit. Zit de leerling vast, dan stelt de coach een kleinere vraag of stelt voor te gaan kijken. De formulering van de vragen verschilt per bron een beetje; de opbouw is hetzelfde.',
         'Waarom dit past bij een Lean-consultant: als jij weggaat, blijft de gewoonte, want de teamleider leerde de experimenten te doen, niet jij. Het past ook bij een junior: je hoeft het antwoord niet te weten, alleen goed te vragen, en daar helpt het MORE PIES-luisteren uit de eerste les van dit onderwerp.\n\nTypische valkuil: de coach maakt van vraag 4 een advies. Een scherpe vraag voor jezelf na elke cyclus: zei de leerling iets wat ik niet verwachtte?',
@@ -757,7 +757,7 @@ export default {
       recall: [
         {
           q: 'Wat is een doeltoestand?',
-          options: ['De uitdaging voor de lange termijn die de directie voor drie jaar stelt', 'Hoe het proces moet werken op een datum die niet ver weg ligt, concreet beschreven', 'Een lijst van alle obstakels die het team kan bedenken, op volgorde van grootte', 'Het jaardoel voor de KPI, het kerncijfer waarop de fabriek wordt afgerekend'],
+          options: ['De uitdaging voor de lange termijn die de directie voor de fabriek voor drie jaar stelt', 'Hoe het proces moet werken op een datum die niet ver weg ligt, concreet beschreven', 'Een lijst van alle obstakels die het team kan bedenken, op volgorde van grootte', 'Het jaardoel voor de KPI, het kerncijfer waarop de fabriek wordt afgerekend'],
           answer: 'Hoe het proces moet werken op een datum die niet ver weg ligt, concreet beschreven',
           why: 'Het is de volgende stap richting de uitdaging, dichtbij genoeg om ernaartoe te experimenteren.',
         },
@@ -769,7 +769,7 @@ export default {
         },
         {
           q: 'De leerling zegt dat het karretje 6 minuten scheelde, niet de 10 die ze verwachtte. Wat vraag je dan?',
-          options: ['Wat heb je van het verschil geleerd?', 'Waarom had je het niet beter gepland?', 'Zal ik zeggen wat ik zou doen?', 'Naar wie moeten we dit escaleren?'],
+          options: ['Wat heb je van het verschil geleerd?', 'Waarom had je de plek van het karretje niet beter gepland?', 'Zal ik zeggen wat ik zou doen?', 'Naar wie moeten we dit escaleren?'],
           answer: 'Wat heb je van het verschil geleerd?',
           why: 'Het verschil tussen verwacht en werkelijk is waar het leren zit.',
         },
@@ -818,17 +818,17 @@ export default {
       pre: [
         {
           q: 'Het experiment van een leerling “werkte niet”: de omstelling duurde langer dan eerst. Wat doet een goede coach?',
-          options: ['Het als mislukte stap tellen en een makkelijkere doeltoestand stellen', 'Het volgende experiment overnemen om de verloren tijd in te halen', 'Doorgaan naar een ander obstakel dat kansrijker lijkt', 'Vragen wat er geleerd is, want een onverwacht resultaat is informatie'],
+          options: ['Het als mislukte stap tellen en voortaan een makkelijkere doeltoestand stellen', 'Het volgende experiment overnemen om de verloren tijd in te halen', 'Doorgaan naar een ander obstakel dat kansrijker lijkt', 'Vragen wat er geleerd is, want een onverwacht resultaat is informatie'],
           answer: 'Vragen wat er geleerd is, want een onverwacht resultaat is informatie',
           why: 'Een experiment dat je verrast, leert je meer dan een dat bevestigt wat je al dacht.',
         },
       ],
       teach: [
-        'De hulpmiddelen. Een storyboard is één bord per leerling: de uitdaging, de doeltoestand, de huidige toestand, de obstakellijst en het experimentenlogboek. De obstakellijst bevat de bekende obstakels; de leerling kiest er één, niet per se de grootste. Het experimentenlogboek legt elke stap vast: datum, wat je doet, wat je verwacht, wat er gebeurde, wat je leerde.\n\nDe coach leest het logboek voordat hij iets zegt. De kolom “wat verwacht je” is de kern: zonder voorspelling valt er niks te leren.',
+        'De hulpmiddelen. Een storyboard is één bord per leerling: de uitdaging, de doeltoestand, de huidige toestand, de obstakellijst (obstacle parking lot) en het experimentenlogboek (experiment record). De obstakellijst bevat de bekende obstakels; de leerling kiest er één, niet per se de grootste. Het experimentenlogboek legt elke stap vast: datum, wat je doet, wat je verwacht, wat er gebeurde, wat je leerde.\n\nDe coach leest het logboek voordat hij iets zegt. De kolom “wat verwacht je” is de kern: zonder voorspelling valt er niks te leren.',
         'Stapgrootte. Rother gebruikt het idee van de kennisgrens (threshold of knowledge): de lijn waarachter je niet meer kunt zien wat er gaat gebeuren. Experimenten gaan er net overheen. Grote stappen (“de cel opnieuw ontwerpen”) verbergen wat wat veroorzaakte; kleine stappen (“karretje verplaatsen, vijf omstellingen meten”) leren snel.\n\nVeel mensen uit de praktijk mikken op meerdere experimenten per week. Heeft een leerling in twee weken één experiment gedaan, dan zijn de stappen meestal te groot, niet de leerling te traag.',
         'Veelgemaakte coachfouten. Antwoorden geven die als vraag vermomd zijn: “Heb je erover nagedacht het rek te verplaatsen?” De terugblik op de vorige stap overslaan. “Communicatie verbeteren” laten staan als obstakel; vraag “wat zouden we dan precies zien?” “Ik denk het wel” accepteren als huidige toestand in plaats van gemeten data.\n\nEn coachen vanachter het bureau. De coach gaat zelf kijken wat de leerling zag, in elk geval een deel van de tijd.',
-        'De tweede coach. In Rothers latere Toyota Kata Practice Guide (2017) kijkt een tweede coach mee met de coachingscyclus en coacht daarna de coach, kort en onder vier ogen: welke vraag sloeg je over, waar gaf je een antwoord? Zo bouwt een fabriek coaches op, niet alleen leerlingen.\n\nAls consultant begin je vaak als coach, word je daarna tweede coach van de manager van de teamleider, en stap je dan uit. Die volgorde is je exitplan.',
-        'Starterkata zijn vaste oefenroutines voor beginners, zoals een vast format voor het experimentenlogboek of voor het timen van een proces. Rother raadt aan ze eerst strikt te volgen en later aan te passen, zoals toonladders op de piano.\n\nCritici merken op dat kata een ritueel kan worden: borden ingevuld, cycli gehouden, niks geleerd. Kijk naar de logboeken: worden de voorspellingen beter? De PDCA-cyclus achter elk experiment staat in de module Landen (De standaard levend houden).',
+        'De tweede coach (second coach). In Rothers latere Toyota Kata Practice Guide (2017) kijkt een tweede coach mee met de coachingscyclus en coacht daarna de coach, kort en onder vier ogen: welke vraag sloeg je over, waar gaf je een antwoord? Zo bouwt een fabriek coaches op, niet alleen leerlingen.\n\nAls consultant begin je vaak als coach, word je daarna tweede coach van de manager van de teamleider, en stap je dan uit. Die volgorde is je exitplan.',
+        'Starterkata (starter kata) zijn vaste oefenroutines voor beginners, zoals een vast format voor het experimentenlogboek of voor het timen van een proces. Rother raadt aan ze eerst strikt te volgen en later aan te passen, zoals toonladders op de piano.\n\nCritici merken op dat kata een ritueel kan worden: borden ingevuld, cycli gehouden, niks geleerd. Kijk naar de logboeken: worden de voorspellingen beter? De PDCA-cyclus achter elk experiment staat in de module Landen (De standaard levend houden).',
       ],
       example: {
         kind: 'faded',
@@ -852,7 +852,7 @@ export default {
         },
         {
           q: 'Wat doet een tweede coach?',
-          options: ['Kijkt mee met de coachingscyclus en coacht daarna de coach, onder vier ogen', 'Neemt de coachingscycli over als de eerste coach op vakantie is', 'Coacht een tweede leerling op hetzelfde proces, om de voortgang te vergelijken', 'Rapporteert de resultaten van de leerlingen elke maand aan de stuurgroep'],
+          options: ['Kijkt mee met de coachingscyclus en coacht daarna de coach, onder vier ogen', 'Neemt de coachingscycli over als de eerste coach op vakantie is', 'Coacht een tweede leerling op hetzelfde proces, om de voortgang te vergelijken', 'Rapporteert de resultaten van de leerlingen aan het eind van elke maand aan de stuurgroep'],
           answer: 'Kijkt mee met de coachingscyclus en coacht daarna de coach, onder vier ogen',
           why: 'Zo bouwt een fabriek zijn eigen coaches op.',
         },
@@ -901,13 +901,13 @@ export default {
       pre: [
         {
           q: 'Een nieuwe operator heeft nog nooit een omstelling gedaan. Is coachen met vragen nu de beste aanpak?',
-          options: ['Ja: altijd vragen in plaats van vertellen, wat de taak ook is', 'Ja, maar alleen met de vijf coachingsvragen', 'Nee: delegeer het en controleer achteraf het resultaat', 'Nee: wie nog geen ervaring heeft, heeft eerst instructie nodig; vragen werken als er iets is om op te bouwen'],
-          answer: 'Nee: wie nog geen ervaring heeft, heeft eerst instructie nodig; vragen werken als er iets is om op te bouwen',
+          options: ['Ja: altijd vragen in plaats van vertellen, wat de taak of de persoon ook is', 'Ja, maar alleen met de vijf coachingsvragen', 'Nee: delegeer het aan hem en controleer achteraf het resultaat', 'Nee: zonder ervaring heeft hij eerst duidelijke instructie nodig'],
+          answer: 'Nee: zonder ervaring heeft hij eerst duidelijke instructie nodig',
           why: 'Vragen helpen mensen denken met wat ze al weten. Zonder ervaring komt duidelijke instructie eerst.',
         },
       ],
       teach: [
-        'Coachen is niet altijd de juiste stijl. Situationeel leiderschap, van Paul Hersey en Ken Blanchard (eind jaren zestig), zegt dat je stijl moet passen bij het ontwikkelniveau van de persoon voor deze taak: hoe bekwaam en hoe gemotiveerd hij is.\n\nVier stijlen: instrueren (duidelijke opdrachten, dicht op de opvolging), coachen (nog steeds sturen, maar uitleggen en vragen), steunen (helpen besluiten, minder sturing) en delegeren (het overdragen). Blanchards latere versie, SLII, loopt van “enthousiaste beginner” tot “zelfstandige presteerder”.',
+        'Coachen is niet altijd de juiste stijl. Situationeel leiderschap (Situational Leadership), van Paul Hersey en Ken Blanchard (eind jaren zestig), zegt dat je stijl moet passen bij het ontwikkelniveau (development level) van de persoon voor deze taak: hoe bekwaam en hoe gemotiveerd hij is.\n\nVier stijlen: instrueren (directing: duidelijke opdrachten, dicht op de opvolging), coachen (nog steeds sturen, maar uitleggen en vragen), steunen (supporting: helpen besluiten, minder sturing) en delegeren (het overdragen). Blanchards latere versie, SLII, loopt van “enthousiaste beginner” tot “zelfstandige presteerder”.',
         'Wat overeind blijft: één persoon heeft per taak een andere stijl nodig. Je beste analist heeft misschien instructie nodig bij haar eerste presentatie voor de directie.\n\nDe kritiek: het model is populair in trainingen, maar de onderbouwing is dun. Een toets van drie versies door Thompson en Vecchio (2009) vond weinig steun voor de kernvoorspellingen, behalve enig voordeel van meer structuur voor nieuwe medewerkers. Gebruik het als geheugensteun voor de vraag “wat heeft deze persoon nodig voor deze taak?”, niet als regel.',
         'GROW, bekend gemaakt door John Whitmore in Coaching for Performance (1992), is een algemeen coachingsgesprek: Goal (wat wil je?), Reality (wat gebeurt er nu?), Options (wat zou je kunnen doen?), Will of way forward (wat ga je doen, en wanneer?).\n\nGROW past bij losse vragen, zoals een collega die vastzit op een klantkwestie; Toyota Kata past bij dagelijks oefenen op één proces. Beide rusten op dezelfde gewoonte: de ander doet het denkwerk.',
         'Naar boven en opzij coachen. Je kunt een senior klant coachen met vragen, zolang je niet als een leraar klinkt: “Wat moet er waar zijn om de directie ja te laten zeggen?” Vraag toestemming voor alles wat op coachen lijkt: “Mag ik een paar vragen stellen om het scherper te krijgen?”\n\nAls teamcaptain coach je collega’s. Je hebt geen gezag over ze, dus het werkt alleen als zij erom vroegen of ermee instemden. Bied aan, leg niet op.',
@@ -923,13 +923,13 @@ export default {
       recall: [
         {
           q: 'Wat bepaalt bij situationeel leiderschap welke stijl je gebruikt?',
-          options: ['De rang en het aantal dienstjaren van de persoon', 'Hoe lang je de persoon al kent en met hem werkt', 'De bekwaamheid en motivatie van de persoon voor deze specifieke taak', 'Hoe dicht de deadline is en hoeveel er op het spel staat'],
+          options: ['De rang en het aantal dienstjaren van de persoon', 'Hoe lang je de persoon al kent en met hem werkt', 'De bekwaamheid en motivatie van de persoon voor deze specifieke taak', 'Hoe dicht de deadline is en hoeveel er voor het project op het spel staat'],
           answer: 'De bekwaamheid en motivatie van de persoon voor deze specifieke taak',
           why: 'Het ontwikkelniveau geldt per taak, dus dezelfde persoon kan verschillende stijlen nodig hebben.',
         },
         {
           q: 'Wat zegt onderzoek over situationeel leiderschap?',
-          options: ['Het is een van de best getoetste modellen in leiderschapsonderzoek', 'De onderbouwing is dun; toetsen vonden weinig steun voor de kernvoorspellingen', 'Het is weerlegd en wordt niet meer onderwezen', 'Het werkt alleen in de maakindustrie'],
+          options: ['Het is een van de best getoetste en best onderbouwde modellen in leiderschapsonderzoek', 'De onderbouwing is dun; toetsen vonden weinig steun voor de kernvoorspellingen', 'Het is weerlegd en wordt niet meer onderwezen', 'Het werkt alleen in de maakindustrie'],
           answer: 'De onderbouwing is dun; toetsen vonden weinig steun voor de kernvoorspellingen',
           why: 'Thompson en Vecchio (2009) vonden weinig steun, behalve dat meer structuur nieuwe medewerkers hielp.',
         },
@@ -1009,7 +1009,7 @@ export default {
         },
         {
           q: 'Een senior manager vraagt iets wat je niet weet. Wat is het beste antwoord?',
-          options: ['Je beste gok brengen alsof het een feit is', '“Dat weet ik nog niet. Ik kom er donderdag bij je op terug.”', 'Over iets anders beginnen waar je wel iets van weet', 'Hem doorverwijzen naar je manager, die meer weet'],
+          options: ['Je beste gok met overtuiging brengen alsof het een vaststaand feit is', '“Dat weet ik nog niet. Ik kom er donderdag bij je op terug.”', 'Over iets anders beginnen waar je wel iets van weet', 'Hem doorverwijzen naar je manager, die meer weet'],
           answer: '“Dat weet ik nog niet. Ik kom er donderdag bij je op terug.”',
           why: 'Het is eerlijk en er zit een toezegging aan; bluffen valt vroeg of laat door de mand.',
         },
@@ -1021,7 +1021,7 @@ export default {
         },
         {
           q: 'Wat doe je als eerste na een overleg dat slecht ging?',
-          options: ['De feiten opschrijven, jouw aandeel, en wat je anders zou doen', 'De persoon een paar dagen ontlopen tot het is afgekoeld', 'Iedereen uitleggen waarom het eigenlijk niet aan jou lag', 'Het vergeten en meteen doorgaan met de volgende klus'],
+          options: ['De feiten opschrijven, jouw aandeel, en wat je anders zou doen', 'De persoon een paar dagen ontlopen tot het wat is afgekoeld tussen jullie', 'Iedereen uitleggen waarom het eigenlijk niet aan jou lag', 'Het vergeten en meteen doorgaan met de volgende klus'],
           answer: 'De feiten opschrijven, jouw aandeel, en wat je anders zou doen',
           why: 'Feiten stoppen het malen in je hoofd en geven je een concrete volgende stap.',
         },
@@ -1063,8 +1063,8 @@ export default {
       pre: [
         {
           q: 'Een nieuw projectteam is twee weken beleefd geweest; nu discussiëren mensen over hoe je stilstand meet. Wat betekent dit waarschijnlijk?',
-          options: ['Het team gaat misschien van forming naar storming, en dat is normaal', 'Het team faalt en heeft nieuwe leden nodig', 'De consultant heeft de grip op de overleggen verloren', 'De scope van het project klopt niet en moet opnieuw'],
-          answer: 'Het team gaat misschien van forming naar storming, en dat is normaal',
+          options: ['Misschien een overgang van forming naar storming, en dat is normaal', 'Het team faalt en heeft nieuwe leden nodig', 'De consultant heeft de grip op de overleggen verloren en moet ingrijpen', 'De scope van het project klopt niet en moet opnieuw'],
+          answer: 'Misschien een overgang van forming naar storming, en dat is normaal',
           why: 'Na een beleefde start is onenigheid over de aanpak een gewone volgende fase, en die kan gezond zijn.',
         },
       ],
@@ -1097,14 +1097,14 @@ export default {
         },
         {
           q: 'Wat is terechte kritiek op het model van Tuckman?',
-          options: ['Het rust vooral op therapie-, trainings- en laboratoriumgroepen, niet op werkteams', 'Het is nooit in een tijdschrift gepubliceerd, alleen in een managementboek', 'Het beschrijft maar twee fasen, en dat is te simpel voor echte teams', 'Het is gebaseerd op sportteams, dus het mist deadlines en budgetten'],
+          options: ['Het rust vooral op therapie-, trainings- en laboratoriumgroepen, niet op werkteams', 'Het is nooit in een wetenschappelijk tijdschrift gepubliceerd, alleen in een managementboek', 'Het beschrijft maar twee fasen, en dat is te simpel voor echte teams', 'Het is gebaseerd op sportteams, dus het mist deadlines en budgetten'],
           answer: 'Het rust vooral op therapie-, trainings- en laboratoriumgroepen, niet op werkteams',
           why: 'Tuckman zei dat zelf; de projectteams van Gersick lieten een ander patroon zien.',
         },
         {
           q: 'Er komt een nieuw lid bij een team dat goed draait. Wat gebeurt er vaak?',
-          options: ['Niks: een team in performing neemt de nieuwe persoon gewoon op', 'Het team gaat meteen door naar adjourning', 'Het team zakt terug naar storming en blijft daar hangen', 'Het team zakt een stukje terug naar forming, dus je legt doel en regels opnieuw uit'],
-          answer: 'Het team zakt een stukje terug naar forming, dus je legt doel en regels opnieuw uit',
+          options: ['Niks: een team in performing neemt de nieuwe persoon gewoon op, zonder verandering', 'Het team gaat meteen door naar adjourning', 'Het team zakt terug naar storming en blijft daar hangen', 'Het zakt een stukje terug naar forming, dus je legt doel en regels opnieuw uit'],
+          answer: 'Het zakt een stukje terug naar forming, dus je legt doel en regels opnieuw uit',
           why: 'Een nieuwe persoon verandert de groep, en de werkafspraken moeten opnieuw gedeeld worden.',
         },
       ],
@@ -1174,7 +1174,7 @@ export default {
         },
         {
           q: 'Wat is een teken van ontbrekend commitment?',
-          options: ['Felle discussies in het overleg over de aanpak', 'Mensen die kritische vragen stellen voordat ze instemmen', 'Acties zonder eigenaar en besluiten die de week erna weer opengaan', 'Een lange agenda die nooit af komt'],
+          options: ['Felle discussies in het overleg over de aanpak', 'Mensen die kritische vragen stellen voordat ze met het plan instemmen', 'Acties zonder eigenaar en besluiten die de week erna weer opengaan', 'Een lange agenda die nooit af komt'],
           answer: 'Acties zonder eigenaar en besluiten die de week erna weer opengaan',
           why: 'Mensen stonden er niet echt achter, dus het besluit blijft niet hangen.',
         },
@@ -1186,7 +1186,7 @@ export default {
         },
         {
           q: 'Wat doet een pre-mortem?',
-          options: ['Twijfels boven tafel halen door je voor te stellen dat het plan al mislukt is', 'Een afgerond project evalueren om te zien wat er misging', 'Het budget controleren voordat het plan wordt goedgekeurd', 'Vooraf de schuld verdelen, zodat niemand er later onderuit kan'],
+          options: ['Twijfels boven tafel halen door je voor te stellen dat het plan al mislukt is', 'Een project evalueren nadat het is afgerond, om te zien wat er misging en waarom', 'Het budget controleren voordat het plan wordt goedgekeurd', 'Vooraf de schuld verdelen, zodat niemand er later onderuit kan'],
           answer: 'Twijfels boven tafel halen door je voor te stellen dat het plan al mislukt is',
           why: 'Zorgen uitspreken wordt de opdracht, dus niemand lijkt negatief als hij ze noemt.',
         },
@@ -1234,17 +1234,17 @@ export default {
         },
       ],
       teach: [
-        'Psychologische veiligheid, zoals Amy Edmondson het bedoelt, is niet aardig doen. Het is het vertrouwen dat je een vraag, een fout of een zorg kunt uitspreken zonder gestraft of vernederd te worden. In The Fearless Organization (2018) zet ze het naast normen (standards): hoe veeleisend de doelen zijn.\n\nWeinig veiligheid, lage normen: de apathiezone. Veel veiligheid, lage normen: de comfortzone. Weinig veiligheid, hoge normen: de angstzone. Allebei hoog: de leerzone, waar mensen zich uitrekken en zeggen wat ze zien.',
-        'Edmondsons gereedschapskist voor leiders heeft drie delen. Zet het podium neer (set the stage): breng het werk als leerprobleem met echte onzekerheid, zodat inbreng nodig is (“dit hebben we op deze lijn nog nooit gedaan”). Nodig uit tot meedoen (invite participation): geef je eigen feilbaarheid toe (“misschien mis ik iets”) en stel echte vragen. Reageer productief (respond productively): bedank mensen die iets aankaarten, zie falen als informatie, en treed op bij duidelijke regelovertreding.',
-        'In de reactie wordt het gewonnen of verloren. De eerste keer dat een operator een probleem meldt en een zucht krijgt, leert het team te zwijgen. Een bruikbare zin: “Dank dat je het zegt. Wat zie je?”\n\nHet is geen “alles mag”. Edmondson onderscheidt verwijtbaar gedrag, zoals bewust een veiligheidsstap overslaan, van eerlijke fouten en mislukte experimenten. Duidelijk zijn over die grens maakt mensen juist veiliger, omdat ze weten waar hij ligt.',
+        'Psychologische veiligheid, zoals Amy Edmondson het bedoelt, is niet aardig doen. Het is het vertrouwen dat je een vraag, een fout of een zorg kunt uitspreken zonder gestraft of vernederd te worden. In The Fearless Organization (2018) zet ze het naast normen (standards): hoe veeleisend de doelen zijn.\n\nWeinig veiligheid, lage normen: de apathiezone (apathy zone). Veel veiligheid, lage normen: de comfortzone (comfort zone). Weinig veiligheid, hoge normen: de angstzone (anxiety zone). Allebei hoog: de leerzone (learning zone), waar mensen hun grenzen opzoeken en zeggen wat ze zien.',
+        'Edmondsons gereedschapskist voor leiders heeft drie delen. Schets het kader (set the stage): breng het werk als leerprobleem met echte onzekerheid, zodat inbreng nodig is (“dit hebben we op deze lijn nog nooit gedaan”). Nodig uit tot meedoen (invite participation): geef je eigen feilbaarheid (fallibility) toe (“misschien mis ik iets”) en stel echte vragen. Reageer productief (respond productively): bedank mensen die iets aankaarten, zie falen als informatie, en treed op bij duidelijke regelovertreding.',
+        'In de reactie wordt het gewonnen of verloren. De eerste keer dat een operator een probleem meldt en een zucht krijgt, leert het team te zwijgen. Een bruikbare zin: “Dank dat je het zegt. Wat zie je?”\n\nHet is geen “alles mag”. Edmondson onderscheidt verwijtbaar gedrag (blameworthy act), zoals bewust een veiligheidsstap overslaan, van eerlijke fouten en mislukte experimenten. Duidelijk zijn over die grens maakt mensen juist veiliger, omdat ze weten waar hij ligt.',
         'Meten. Edmondsons vragenlijst uit 1999 gebruikte zeven stellingen, zoals “Als je in dit team een fout maakt, wordt die je vaak kwalijk genomen”. Sommige zijn negatief geformuleerd, dus die draai je om voordat je middelt: op een schaal van 1 tot 7 wordt een 6 een 2. Lage scores laten zien waar je moet kijken, niet wie de schuld heeft.\n\nLater onderzoek, met een meta-analyse van Frazier en collega’s (2017), koppelt het aan leergedrag en prestaties, al verschilt de grootte van het effect.',
-        'Als buitenstaander kun je een cultuur niet repareren, maar je bepaalt wel je eigen overleggen: zeg als eerste “dat deed ik fout”. Als teamcaptain kun je meer: hoe je op het eerste slechte nieuws reageert, zet maandenlang de toon.\n\nTypische valkuil: aankondigen dat “dit een veilige ruimte is”, wat niemand gelooft tot ze zien hoe je reageert. Tegenspreken naar boven staat in de module Onderhandelen. Een scherpe vraag: wanneer vertelde iemand me voor het laatst iets wat ik niet wilde horen, en wat deed ik toen?',
+        'Als buitenstaander kun je een cultuur niet repareren, maar je bepaalt je eigen overleggen: zeg als eerste “dat deed ik fout”. Als teamcaptain kun je meer: hoe je op het eerste slechte nieuws reageert, zet maandenlang de toon.\n\nTypische valkuil: aankondigen dat “dit een veilige ruimte is”, wat niemand gelooft tot ze zien hoe je reageert. Tegenspreken naar boven: module Onderhandelen (Het oneens zijn met iemand die hoger staat). Een scherpe vraag: wanneer vertelde iemand me voor het laatst iets wat ik niet wilde horen, en wat deed ik toen?',
       ],
       example: {
         kind: 'faded',
         text: 'Bij een voedingsmiddelenfabriek coach je de teamleider van de inpakhal. Bijna-ongevallen (near-misses), voorvallen die bijna schade gaven, worden zelden gemeld: drie dit jaar, terwijl de veiligheidskundige er tientallen schat. Vorige maand meldde een operator er een, en de teamleider zei waar de ploeg bij stond: “Hoe kon je dat nou niet zien?”',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Dit is de angstzone: hoge normen, weinig veiligheid, en de reactie heeft het melden de kop ingedrukt. Coach de teamleider onder vier ogen. Zet het podium neer: “we hebben de bijna-ongevallen nodig om het echte ongeluk te voorkomen.” Nodig uit: bij elk startoverleg van de dienst vraagt hij “wat ging er gisteren bijna mis?” en deelt hij er zelf een. Reageer: bedank elke melding en los er zichtbaar één op.\n\nTrek de grens duidelijk: lockout overslaan, de procedure die de energie van een machine vergrendelt voor je eraan werkt, is verwijtbaar; een bijna-ongeval melden nooit. Volg het aantal meldingen per week als signaal.',
+        reveal: 'Dit is de angstzone: hoge normen, weinig veiligheid, en de reactie heeft het melden de kop ingedrukt. Coach de teamleider onder vier ogen. Schets het kader: “we hebben de bijna-ongevallen nodig om het echte ongeluk te voorkomen.” Nodig uit: bij elk startoverleg van de dienst vraagt hij “wat ging er gisteren bijna mis?” en deelt hij er zelf een. Reageer: bedank elke melding en los er zichtbaar één op.\n\nTrek de grens duidelijk: lockout overslaan, de procedure die de energie van een machine vergrendelt voor je eraan werkt, is verwijtbaar; een bijna-ongeval melden nooit. Volg het aantal meldingen per week als signaal.',
       },
       said: 'Wat je hoort in projecten: “Hier meldt niemand iets. Of we zijn perfect, of mensen zijn bang.”',
       recall: [
@@ -1270,7 +1270,7 @@ export default {
         },
         {
           q: 'Betekent psychologische veiligheid dat niemand ergens op wordt aangesproken?',
-          options: ['Ja: mensen aanspreken zou ze bang maken om iets te zeggen', 'Ja, voor fouten; alleen resultaten worden nog gecontroleerd', 'Nee, maar in de praktijk worden alleen managers aangesproken', 'Nee: eerlijke fouten zijn veilig, bewust een regel overtreden niet'],
+          options: ['Ja: mensen aanspreken zou ze bang maken om iets te zeggen', 'Ja, voor fouten; alleen resultaten worden nog gecontroleerd', 'Nee, maar in de praktijk worden alleen de managers nog echt aangesproken', 'Nee: eerlijke fouten zijn veilig, bewust een regel overtreden niet'],
           answer: 'Nee: eerlijke fouten zijn veilig, bewust een regel overtreden niet',
           why: 'Een duidelijke grens tussen eerlijke fouten en verwijtbaar gedrag maakt mensen veiliger, niet minder aanspreekbaar.',
         },
@@ -1299,10 +1299,10 @@ export default {
       },
       sayIt: 'Leg een teamleider in 60 seconden uit hoe je het veilig maakt om problemen te melden zonder de normen te verlagen.',
       terms: [
-        { term: 'Apathiezone', def: 'Weinig veiligheid en lage normen: mensen zeggen niks en rekken zich niet uit (Edmondson).' },
+        { term: 'Apathiezone', def: 'Weinig veiligheid en lage normen: mensen zeggen niks en doen geen extra moeite (Edmondson).' },
         { term: 'Comfortzone', def: 'Veel veiligheid en lage normen: prettig, maar niemand wordt uitgedaagd.' },
         { term: 'Angstzone', def: 'Hoge normen en weinig veiligheid: mensen werken hard maar verstoppen problemen.' },
-        { term: 'Leerzone', def: 'Veel veiligheid en hoge normen: mensen rekken zich uit en zeggen wat ze zien.' },
+        { term: 'Leerzone', def: 'Veel veiligheid en hoge normen: mensen zoeken hun grenzen op en zeggen wat ze zien.' },
         { term: 'Feilbaarheid', def: 'Ongelijk kunnen hebben; een leider die dat toegeeft, nodigt anderen uit hun mond open te doen.' },
         { term: 'Verwijtbaar gedrag', def: 'Bewust een duidelijke regel overtreden, zoals een veiligheidsstap overslaan; anders dan een eerlijke fout.' },
       ],
