@@ -44,7 +44,7 @@ test('index helpers: LEVELS, topicsOf and placeOf', () => {
   assert.equal(p.level, 1);
   assert.equal(p.topic, fx.topics[1]);
   assert.equal(placeOf('eng.fx.a4', [fx]).level, 4);
-  assert.equal(placeOf('eng.flow.takt'), null);
+  assert.equal(placeOf('eng.flow.takt', [fx]), null, 'a lesson outside the given topic modules');
   assert.equal(placeOf('eng.fx.zz', [fx]), null);
   assert.equal(placeOf(undefined, [fx]), null);
 });
