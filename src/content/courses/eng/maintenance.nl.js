@@ -84,7 +84,7 @@ export default {
         },
       ],
       teach: [
-        'Het schoolboekplaatje is de badkuipkromme (bathtub curve): een grafiek van de faalkans tegen de leeftijd. Eerst veel storingen (kindersterfte: storingen kort na montage, door montagefouten of slechte onderdelen), dan een lange vlakke periode met willekeurige storingen, dan oplopende slijtage als het onderdeel oud wordt.\n\nHet schoolboek suggereert dat alle apparatuur zo werkt. Dat klopt niet.',
+        'Het schoolboekplaatje is de badkuipkromme (bathtub curve): een grafiek van de faalkans tegen de leeftijd. Eerst veel storingen (vroege uitval, ook wel kindersterfte: storingen kort na montage, door montagefouten of slechte onderdelen), dan een lange vlakke periode met willekeurige storingen, dan oplopende slijtage als het onderdeel oud wordt.\n\nHet schoolboek suggereert dat alle apparatuur zo werkt. Dat klopt niet.',
         'Nowlan en Heap (United Airlines, 1978) vonden zes patronen. Maar zo’n 11% van de componenten sleet met de leeftijd. De andere 89% niet: 68% faalde vroeg, kort na montage of revisie, en bij het meeste van de rest zag je willekeurig falen: een gelijke kans, hoe oud ook.\n\nWat met de leeftijd slijt, is wat schuurt, snijdt of last draagt: banden, remblokken, snijgereedschap, riemen, slijtplaten. Elektronica, hydrauliek en complexe samenstellingen falen vooral willekeurig.',
         'Het gevolg: een onderdeel dat willekeurig faalt op schema vervangen, vermindert de storingen niet. Het kan ze zelfs verhogen, want elke ingreep geeft kans op kindersterfte: een verkeerd gemonteerde afdichting, vuil in de hydrauliek, een slecht uitgelijnde koppeling (de twee assen niet precies in lijn).\n\nDat heet een storing door onderhoud. Je ziet het in de data als een cluster storingen in de eerste dagen of weken na een onderhoudsbeurt.',
         'Engineers checken het patroon met een Weibull-analyse: een statistische fit op de leeftijden waarop onderdelen faalden. De belangrijkste uitkomst is de Weibull β (bèta), de vormfactor (shape factor).\n\nβ onder de 1: vroege uitval; pak montage en kwaliteit aan. β rond de 1: willekeurig; gebruik conditiemonitoring of ontwerp het eruit. β boven de 1, en zeker boven de 3: slijtage; vervangen op tijd heeft zin, met een interval uit de data. De module Betrouwbaarheid en assetstrategie maakt de fit zelf.',
@@ -136,7 +136,7 @@ export default {
       sayIt: 'Leg een onderhoudsmanager in 60 seconden uit waarom onderdelen op schema vervangen niet altijd minder storingen geeft.',
       terms: [
         { term: 'Badkuipkromme', def: 'Vroege uitval, dan een vlakke willekeurige periode, dan slijtage; geldt maar voor een deel van de apparatuur.' },
-        { term: 'Kindersterfte', def: 'Storingen kort na montage of onderhoud, door productiefouten, montage- of onderhoudsfouten, met een dalende faalkans (bèta onder 1).' },
+        { term: 'Vroege uitval', def: 'Storingen kort na montage of onderhoud, door productiefouten, montage- of onderhoudsfouten, met een dalende faalkans (bèta onder 1); ook wel kindersterfte.' },
         { term: 'Willekeurig falen', def: 'Falen met ongeveer dezelfde kans op elke leeftijd.' },
         { term: 'Slijtage', def: 'Storingen die rond een leeftijd clusteren, met een stijgende faalkans (bèta boven 1); alleen hier kan vast vervangen helpen.' },
         { term: 'Storing door onderhoud', def: 'Een storing die het onderhoudswerk zelf veroorzaakt, zoals een slecht gemonteerde afdichting.' },
@@ -229,16 +229,16 @@ export default {
       ],
       teach: [
         'PM-optimalisatie (PM optimisation, PMO) licht het PM-plan dat je al hebt taak voor taak door. De eerste vraag per taak: welke faalwijze (failure mode) voorkomt of ontdekt deze taak?\n\nDe meeste plannen zijn gegroeid uit de handleidingen van de OEM (original equipment manufacturer, de machinebouwer) plus een taak na elk incident. OEM-intervallen zijn geschreven voor een gemiddelde klant en beschermen ook de bouwer. Een doorlichting vindt vaak taken zonder geloofwaardige faalwijze, of dubbel met een andere taak.',
-        'Elke taak krijgt een van vier uitkomsten: houden, schrappen, interval aanpassen of omzetten. Omzetten betekent dat een vervanging op tijd een conditiecheck wordt, of dat een eenvoudige controle naar de CILT-ronde van de operators gaat.\n\nHet interval volgt uit de vorige lessen: een conditiecheck op ongeveer de helft van het P-F-interval, vast vervangen alleen waar de storingen slijtage laten zien. Beveiligingen die onzichtbaar falen hebben een test nodig, geen inspectie; de module Betrouwbaarheid en assetstrategie legt dat uit bij RCM.',
-        'Een goede taak is specifiek: wat meet je, waar, met welk gereedschap, en het acceptatiecriterium, de waarde die zegt of de uitkomst goed is. “Trilling meten op beide motorlagers, actie boven 4,5 mm/s” is een taak. “Pomp inspecteren” niet.\n\nLet op het vondstpercentage (find rate): het deel van de uitvoeringen dat iets te repareren vond. Een slijtagecheck die in 50 rondes niets vond, is misschien te vaak. Een test op een beveiliging mag terecht jarenlang niets vinden.',
-        'PMO en een volledige RCM verschillen in waar ze beginnen. RCM begint bij de functies van de asset en werkt naar de faalwijzen, zoals de norm SAE JA1011 beschrijft; grondig maar traag. PMO begint bij de taken die je hebt: sneller, maar het kan faalwijzen missen waarvoor nooit iemand een taak schreef.\n\nVeel fabrieken gebruiken RCM voor de paar A-assets of voor een nieuwe lijn, en PMO voor de rest.',
+        'Elke taak krijgt een van vier uitkomsten: houden, schrappen, interval aanpassen of omzetten. Omzetten betekent dat een vervanging op tijd een conditiecheck wordt, of dat een eenvoudige controle naar de CILT-ronde van de operators gaat.\n\nHet interval volgt uit de vorige lessen: een conditiecheck op ongeveer de helft van het P-F-interval, vast vervangen alleen waar de storingen slijtage laten zien. Beveiligingen die onzichtbaar falen hebben een test nodig, geen inspectie; de module Betrouwbaarheid en assetstrategie legt die failure-finding-taak uit bij RCM, en noemt PM-optimalisatie als snelle winst.',
+        'Een goede taak is specifiek: wat meet je, waar, met welk gereedschap, en het acceptatiecriterium, de waarde die zegt of de uitkomst goed is. “Trilling meten op beide motorlagers, actie boven 4,5 mm/s” is een taak. “Pomp inspecteren” niet.\n\nLet op het bevindingspercentage (find rate): het deel van de uitvoeringen dat iets te repareren vond. Een slijtagecheck die in 50 rondes niets vond, is misschien te vaak. Een test op een beveiliging mag terecht jarenlang niets vinden.',
+        'PMO en een volledige RCM verschillen in waar ze beginnen. RCM begint bij de functies van de asset en werkt naar de faalwijzen, de route die de norm SAE JA1011 vastlegt; grondig maar traag. PMO begint bij de taken die je hebt: sneller, maar het kan faalwijzen missen waarvoor nooit iemand een taak schreef.\n\nVeel fabrieken gebruiken RCM voor de paar A-assets of voor een nieuwe lijn, en PMO voor de rest.',
         'Sommige taken mogen nooit weg: een wettelijke keuring, een controle die de wet verplicht, zoals op hijsmiddelen of drukvaten. Ook garantievoorwaarden kunnen je een tijd binden.\n\nTaken schrappen voelt riskant, en niemand krijgt de schuld van te veel PM. Leg dus per taak vast waarom hij veranderde, en volg de storingen op die assets een paar maanden. Een scherpe vraag: welke faalwijze pakt deze taak aan, en wat vonden de laatste tien uitvoeringen?',
       ],
       example: {
         kind: 'faded',
         text: 'Een verpakkingslijn heeft 420 PM-taken die samen 1.600 uur per jaar kosten. De doorlichting vindt 90 taken (380 uur) zonder faalwijze of dubbel met een andere taak. Nog 60 taken (300 uur) vervangen willekeurig falende onderdelen op een vast schema; als conditiecheck zouden ze 100 uur per jaar kosten. 30 taken zijn wettelijke keuringen.',
         ask: 'Hoeveel uur per jaar maakt de doorlichting vrij, welk deel van het plan is dat, en wat gebeurt er met de 30 wettelijke taken?',
-        reveal: 'Geschrapt: 380 uur. Omgezet: 300 − 100 = 200 uur bespaard. Samen 580 uur, 580 / 1.600 = 36% van het plan.\n\nDe 30 wettelijke keuringen blijven, wat hun vondstpercentage ook is. De vrijgekomen uren gaan eerst naar de PM-taken die achterliepen en naar oorzaakanalyse op de slechtste assets, niet meteen uit het budget.',
+        reveal: 'Geschrapt: 380 uur. Omgezet: 300 − 100 = 200 uur bespaard. Samen 580 uur, 580 / 1.600 = 36% van het plan.\n\nDe 30 wettelijke keuringen blijven, wat hun bevindingspercentage ook is. De vrijgekomen uren gaan eerst naar de PM-taken die achterliepen en naar oorzaakanalyse op de slechtste assets, niet meteen uit het budget.',
       },
       said: 'Wat engineers zeggen: “De helft van die taken komt uit de handleiding van 2009, en niemand heeft ooit gevraagd wat ze voorkomen.”',
       recall: [
@@ -262,7 +262,7 @@ export default {
           q: 'Welke taak blijft in het plan, ook als hij al jaren niets vindt?',
           options: ['De wettelijke kraankeuring', 'Een maandelijkse visuele check van een bandafscherming', 'Een jaarlijkse wissel van een ventilator in een frequentieregelaar', 'Een wekelijkse schoonmaak van een inpaktafel'],
           answer: 'De wettelijke kraankeuring',
-          why: 'De wet verplicht hem, dus zijn vondstpercentage bepaalt niet of hij blijft.',
+          why: 'De wet verplicht hem, dus zijn bevindingspercentage bepaalt niet of hij blijft.',
         },
         {
           q: 'Wanneer is een volledige RCM-analyse zijn kosten waard, in plaats van een PMO?',
@@ -286,7 +286,7 @@ export default {
         { term: 'PM-optimalisatie', def: 'Een bestaand PM-plan taak voor taak doorlichten: houden, schrappen, interval aanpassen of omzetten, op basis van de faalwijze die elke taak aanpakt. Kort: PMO.' },
         { term: 'OEM', def: 'Original equipment manufacturer: de bouwer van de machine, wiens handleiding de eerste onderhoudsintervallen geeft.' },
         { term: 'Acceptatiecriterium', def: 'De waarde of toestand die zegt of de uitkomst van een taak goed is of actie vraagt.' },
-        { term: 'Vondstpercentage', def: 'Het deel van de uitvoeringen van een taak dat iets te repareren vond.' },
+        { term: 'Bevindingspercentage', def: 'Het deel van de uitvoeringen van een taak dat iets te repareren vond.' },
         { term: 'Wettelijke keuring', def: 'Een keuring die de wet verplicht, zoals op hijsmiddelen of drukvaten; die mag bij een doorlichting niet vervallen.' },
       ],
     },
@@ -367,7 +367,7 @@ export default {
       pre: [
         {
           q: 'Welke regel uit een CILT-standaard kan een operator uitvoeren zonder iemand iets te vragen?',
-          options: ['Tandwielkast regelmatig controleren en eventuele problemen melden', 'Olie tandwielkast tussen min en max, dagelijks, 1 minuut', 'Zorgen dat de tandwielkast altijd genoeg olie heeft', 'Tandwielkast: inspecteren volgens de handleiding'],
+          options: ['Tandwielkast regelmatig controleren en eventuele problemen melden', 'Olie tandwielkast tussen min en max, dagelijks, 1 minuut', 'Zorgen dat de tandwielkast altijd genoeg en schone olie heeft', 'Tandwielkast: inspecteren volgens de handleiding'],
           answer: 'Olie tandwielkast tussen min en max, dagelijks, 1 minuut',
           why: 'Er staat wat goed is, hoe vaak en hoe lang. Bij de andere moet de operator raden.',
         },
@@ -455,7 +455,7 @@ export default {
         kind: 'faded',
         text: 'Modelmachine, einde van stap 2. Drie ploegen, vijf dagen: 15 ploegen per week. Schoonmaken kostte na stap 1 45 minuten per ploeg; na kappen, nieuwe afdichtingen en een spaanscherm 18 minuten. In drie maanden hing het team 60 labels en sloot er 42; het oudste open label is 11 weken oud. De auditcriteria voor stap 3 zeggen: minstens 85% van de labels gesloten en geen label ouder dan 6 weken.',
         ask: 'Wat is het sluitpercentage, hoeveel schoonmaakuren per week heeft stap 2 opgeleverd, en haalt het team de audit?',
-        reveal: 'Sluitpercentage: 42 / 60 = 70%. Schoonmaak bespaard: (45 − 18) × 15 = 405 minuten, 6,75 uur per week.\n\nHet schoonmaakresultaat is sterk, maar het team haalt de audit niet: 70% is onder 85%, en een label van 11 weken breekt de regel van 6 weken. Het auditrapport noemt de open onderhoudslabels en wie ze bezit; het team blijft op stap 2 tot ze dicht zijn.',
+        reveal: 'Sluitpercentage: 42 / 60 = 70%. Schoonmaak bespaard: (45 − 18) × 15 = 405 minuten, 6,75 uur per week.\n\nHet schoonmaakresultaat is sterk, maar het team haalt de audit niet: 70% is onder 85%, en een label van 11 weken breekt de regel van 6 weken. Het auditrapport noemt de open onderhoudslabels en wie ze moet oplossen; het team blijft op stap 2 tot ze dicht zijn.',
       },
       said: 'Wat een TPM-coördinator zegt: “In stap 1 maakten ze prachtig schoon. Toen kwamen de lekken terug, want niemand had de afdichtingen vervangen.”',
       recall: [
@@ -477,7 +477,7 @@ export default {
         },
         {
           q: 'Waar gaat stap 2 van autonoom onderhoud over?',
-          options: ['Vuilbronnen wegnemen en lastige plekken bereikbaar maken', 'De machine voor het eerst van boven tot onder schoonmaken', 'Operators leren hoe hydrauliek en aandrijvingen werken', 'De eerste schoonmaak- en smeerstandaarden opschrijven'],
+          options: ['Vuilbronnen wegnemen en lastige plekken bereikbaar maken', 'De machine voor het eerst van boven tot onder schoonmaken', 'Operators leren hoe de hydrauliek en aandrijvingen van de machine werken', 'De eerste schoonmaak- en smeerstandaarden opschrijven'],
           answer: 'Vuilbronnen wegnemen en lastige plekken bereikbaar maken',
           why: 'Stap 1 maakt schoon, stap 2 zorgt dat het vuil niet terugkomt en dat schoonmaken en controleren makkelijker wordt, stap 3 schrijft de standaarden.',
         },
@@ -520,7 +520,7 @@ export default {
       ],
       teach: [
         'JIPM noemt acht pijlers: autonoom onderhoud, gericht verbeteren, gepland onderhoud, kwaliteitsonderhoud, opleiding en training, early equipment management, office-TPM en veiligheid, gezondheid en milieu. 5S, een opgeruimde en geordende werkplek, wordt vaak als fundament getekend.\n\nNakajima’s boeken in de jaren tachtig brachten TPM buiten Japan. Nippondenso, een toeleverancier van Toyota, wordt vaak genoemd als eerste fabriek die in 1971 de Japanse PM-prijs voor TPM won; JIPM reikt nog steeds TPM-awards uit.',
-        'TPM begint bij verliezen, niet bij gereedschappen. Op machineniveau zijn dat de zes grote verliezen; de module Capaciteit en flow behandelt die met de OEE. JIPM breidde de lijst later uit tot 16 grote verliezen, met ook verliezen in mensen, materiaal en energie.\n\nEen verliesboom (loss tree) splitst het totale verlies uit naar lijn, machine en soort verlies, zodat elke pijler een verlies krijgt met uren of euro’s erop.',
+        'TPM begint bij verliezen, niet bij gereedschappen. Op machineniveau zijn dat de zes grote verliezen; de module Capaciteit en flow behandelt die met de OEE. JIPM breidde de lijst later uit tot 16 grote verliezen: 8 machineverliezen, 5 verliezen in mensuren en 3 in middelen (energie, gereedschap en materiaalrendement).\n\nEen verliesboom (loss tree) splitst het totale verlies uit naar lijn, machine en soort verlies, zodat elke pijler een verlies krijgt met uren of euro’s erop.',
         'Gericht verbeteren (focused improvement) betekent kleine teams die één specifiek verlies aanpakken met oorzaakanalyse, zoals een omstelling of een terugkerende vastloper. Kwaliteitsonderhoud zoekt de machinecondities achter defecten (een versleten geleiding, een verlopende temperatuur) en zet ze op een controle.\n\nEarly equipment management brengt lessen van de huidige machines naar nieuwe: makkelijk schoon te maken, te inspecteren en om te stellen, voordat de inkooporder getekend is.',
         'Een programma heeft een masterplan voor een aantal jaren nodig, een pijlereigenaar per pijler (meestal een manager), een modellijn waar alle pijlers eerst samen werken, en een stuurgroep die maandelijks de verliezen bespreekt. Reken op jaren, niet maanden, tot een awardniveau.\n\nWorld Class Manufacturing, in de jaren 2000 bij Fiat ontwikkeld met Hajime Yamashina, groeide uit TPM en koppelt elk verlies aan kosten; dat heet daar cost deployment.',
         'Experts discussiëren of TPM een eigen programma moet zijn of onderdeel van één leansysteem. Hoe dan ook keren dezelfde fouten terug: alle acht pijlers tegelijk gestart, pijlerteams met vergaderingen maar zonder verliesdoel, en AM zonder onderhoud erachter.\n\nEen scherpe vraag: welk verlies, in uren of euro’s, pakt elke pijler dit jaar aan, en hoeveel is het al gedaald?',
@@ -551,7 +551,7 @@ export default {
         },
         {
           q: 'Welke pijler zorgt dat nieuwe machines makkelijk schoon te maken, te inspecteren en om te stellen zijn?',
-          options: ['Veiligheid, gezondheid en milieu', 'Kwaliteitsonderhoud', 'Office-TPM', 'Early equipment management'],
+          options: ['Veiligheid, gezondheid en milieu', 'Kwaliteitsonderhoud', 'Office-TPM (TPM op kantoor)', 'Early equipment management'],
           answer: 'Early equipment management',
           why: 'Die brengt lessen van de huidige machines naar het ontwerp en de inkoop van nieuwe.',
         },
@@ -598,7 +598,7 @@ export default {
         'Zo loopt een werkorder: melding (iemand meldt een probleem), goedgekeurd, gepland (taken, onderdelen, uren), ingepland (een datum), uitgevoerd, afgemeld met terugkoppeling (wat gevonden, wat gedaan, hoeveel tijd), gesloten.\n\nStoringsorders worden vaak achteraf aangemaakt. Terugkoppeling als “gemaakt” of “opgelost” maakt oorzaakanalyse (root cause analysis) onmogelijk. Goede fabrieken gebruiken storingscodes (failure codes): wat faalde, waarom, en wat is er gedaan, gekozen uit een korte lijst.',
         'De kritikaliteit van elke asset scoor je op veiligheid, kwaliteit, impact op output (is het de bottleneck?), kosten en redundantie (is er een tweede machine?), meestal in A, B en C. A krijgt conditiemonitoring en kritische reservedelen; C draait tot hij stuk gaat. De module Betrouwbaarheid en assetstrategie bouwt die rangorde verder uit.\n\nEen tandwielkast van €12.000 met 14 weken levertijd leg je op voorraad als hij op de bottleneck zit. Veel magazijnen hebben miljoenen aan onderdelen liggen, waarvan vaak een groot deel al jaren niet bewogen heeft.',
         'Backlog: goedgekeurd werk dat nog niet gedaan is, in uren. Deel door de uren van de ploeg per week en je hebt weken.\n\nTwee tot vier weken is gezond. Onder de twee: misschien vind je het werk niet. Boven de zes: het werk stapelt zich op en preventieve taken schuiven.\n\nZet er de PM-compliance naast: het deel van de PM-taken (preventive maintenance, preventief onderhoud) dat op tijd gedaan is. Streef naar 90% of meer.',
-        'Wat je ziet in een fabriek die het moeilijk heeft: een backlog die elke maand groeit, PM-compliance onder de 70%, en storingswerk boven de 30% van de uren.\n\nExperts discussiëren over de marge: is een maandtaak die 10 dagen te laat is nog “op tijd”? Sommige fabrieken verruimen die marge stilletjes, en de score springt omhoog. Een scherpe vraag: laat me de PM-taken zien die vorige maand geschrapt of uitgesteld zijn, en wie dat besloot.',
+        'Wat je ziet in een fabriek die het moeilijk heeft: een backlog die elke maand groeit, PM-compliance onder de 70%, en storingswerk boven de 30% van de uren.\n\nExperts discussiëren over de tolerantie: is een maandtaak die 10 dagen te laat is nog “op tijd”? Sommige fabrieken verruimen die tolerantie stilletjes, en de score springt omhoog. Een scherpe vraag: laat me de PM-taken zien die vorige maand geschrapt of uitgesteld zijn, en wie dat besloot.',
       ],
       example: {
         kind: 'worked',
@@ -667,17 +667,17 @@ export default {
         },
       ],
       teach: [
-        'Werkvoorbereiding (planning) maakt een klus klaar voordat iemand een sleutel pakt. Het resultaat is een werkplan (job plan): de stappen, de onderdelen met hun nummers, speciaal gereedschap, vergunningen en veiligheidsstappen, de benodigde vakmensen en de geschatte uren.\n\nDe werkvoorbereider, een vaste persoon in het onderhoudsteam, maakt werkplannen en gebruikt ze opnieuw: een afdichting van een pomp die elk jaar gewisseld wordt, bereid je niet elk jaar opnieuw voor.',
-        'Zonder plan loopt een monteur naar het magazijn, wacht op een vergunning, vindt het verkeerde onderdeel en loopt terug. Daar lekt de sleuteltijd (wrench time) weg, het deel van een dienst met echt handwerk.\n\nDoc Palmers Maintenance Planning and Scheduling Handbook noemt één werkvoorbereider per zo’n 20 tot 30 monteurs, een vuistregel die uitgaat van veel eenvoudige klussen. Trek de werkvoorbereider in de storingen van vandaag, en niemand bereidt volgende week voor.',
+        'Werkvoorbereiding (planning) maakt een klus klaar voordat iemand een sleutel pakt. Het resultaat is een werkpakket (job plan): de stappen, de onderdelen met hun nummers, speciaal gereedschap, vergunningen en veiligheidsstappen, de benodigde vakmensen en de geschatte uren.\n\nDe werkvoorbereider, een vaste persoon in het onderhoudsteam, maakt werkpakketten en gebruikt ze opnieuw: een afdichting van een pomp die elk jaar gewisseld wordt, bereid je niet elk jaar opnieuw voor.',
+        'Zonder plan loopt een monteur naar het magazijn, wacht op een vergunning, vindt het verkeerde onderdeel en loopt terug. Daar lekt de wrench time (sleuteltijd) weg, het deel van een dienst met echt handwerk.\n\nDoc Palmers Maintenance Planning and Scheduling Handbook noemt één werkvoorbereider per zo’n 20 tot 30 monteurs, een vuistregel die uitgaat van veel eenvoudige klussen. Trek de werkvoorbereider in de storingen van vandaag, en niemand bereidt volgende week voor.',
         'Inplannen bepaalt wanneer en wie. Begin elke week bij de beschikbare uren per vak: de uren van de ploeg min verlof, training en overleg. Vul ze met voorbereide klussen op volgorde van prioriteit: de weekplanning (weekly schedule).\n\nPalmer pleit ervoor de volle beschikbare uren te vullen. Spoedwerk (break-in work), dringend werk dat de planning binnendringt, verdringt dan wat klussen; dat is normaal, en die schuiven door naar volgende week.',
-        'Planningsnaleving (schedule compliance) is het deel van de ingeplande uren, of klussen, dat echt volgens planning is gedaan. SMRP, de Amerikaanse vereniging van onderhoudsprofessionals, noemt 90% als best-in-class-doel.\n\nPalmer stelt dat een planning die tot de volle uren is gevuld vaak rond de 80% uitkomt, en dat een team dat week na week 95% scoort waarschijnlijk te weinig inplande. Lees de score dus naast de uren die erin zaten.',
+        'Schedule compliance (planrealisatie) is het deel van de ingeplande uren, of klussen, dat echt volgens planning is gedaan. SMRP, de Amerikaanse vereniging van onderhoudsprofessionals, noemt boven de 90% als best-in-class-doel.\n\nPalmer is het daar bij een volle planning niet mee eens: hij verwacht dat de meeste fabrieken tussen zo’n 40% en 90% uitkomen, en leest een score boven de 90% als teken dat de ploeg te weinig werk kreeg. Lees de score dus naast de uren die erin zaten.',
         'Van dag tot dag maakt de leidinggevende van de week dagopdrachten, en dringend werk komt binnen via een korte lijst prioriteitscodes, zoals “nu”, “binnen 24 uur” en “deze week”.\n\nDe valkuilen: alles is prioriteit 1, de werkvoorbereider is de hele dag onderdelen aan het najagen, er wordt een planning gemaakt en dan genegeerd. Een scherpe vraag: welk deel van de ingeplande uren van vorige week is gedaan, en wat drong ertussen?',
       ],
       example: {
         kind: 'worked',
-        text: 'Zes monteurs × 40 uur = 240 uur. Volgende week: verlof 16 uur, training 8 uur, het dagelijkse overleg 2 uur per monteur (12 uur). Beschikbaar: 240 − 16 − 8 − 12 = 204 uur.\n\nDe werkvoorbereider vult 204 uur met voorbereide klussen, de dringendste eerst. In de loop van de week komt er 38 uur spoedwerk bij, dus wat klussen met lage prioriteit schuiven door. Op vrijdag is 160 van de 204 ingeplande uren volgens planning gedaan.\n\nPlanningsnaleving: 160 / 204 = 78%. Voor een volle week met zoveel spoedwerk een redelijk resultaat; de doorgeschoven klussen staan bovenaan de volgende weekplanning.',
+        text: 'Zes monteurs × 40 uur = 240 uur. Volgende week: verlof 16 uur, training 8 uur, het dagelijkse overleg 2 uur per monteur (12 uur). Beschikbaar: 240 − 16 − 8 − 12 = 204 uur.\n\nDe werkvoorbereider vult 204 uur met voorbereide klussen, de dringendste eerst. In de loop van de week komt er 38 uur spoedwerk bij, dus wat klussen met lage prioriteit schuiven door. Op vrijdag is 160 van de 204 ingeplande uren volgens planning gedaan.\n\nSchedule compliance: 160 / 204 = 78%. Voor een volle week met zoveel spoedwerk een redelijk resultaat; de doorgeschoven klussen staan bovenaan de volgende weekplanning.',
       },
-      said: 'Wat een werkvoorbereider zegt: “Als ik in de fabriek een storing loop te jagen, bereidt niemand volgende week voor. Dan is volgende week ook weer alleen storingen.”',
+      said: 'Wat een werkvoorbereider zegt: “Als ik in de fabriek achter een storing aan loop, bereidt niemand volgende week voor. Dan is volgende week ook weer alleen storingen.”',
       recall: [
         {
           q: '8 monteurs werken 40 uur per week. Volgende week is er 24 uur verlof, 16 uur training en 1,5 uur overleg per monteur. Hoeveel uur kan de werkvoorbereider inplannen?',
@@ -688,7 +688,7 @@ export default {
           why: '8 × 40 = 320; 8 × 1,5 = 12 uur overleg; 320 − 24 − 16 − 12 = 268 uur.',
         },
         {
-          q: 'De weekplanning bevatte 250 uur aan klussen; 195 van die uren zijn volgens planning gedaan. Wat is de planningsnaleving, in %?',
+          q: 'De weekplanning bevatte 250 uur aan klussen; 195 van die uren zijn volgens planning gedaan. Wat is de schedule compliance, in %?',
           number: 78,
           tolerance: 0.5,
           unit: '%',
@@ -697,34 +697,34 @@ export default {
         },
         {
           q: 'De vuistregel van Doc Palmer voor werkvoorbereiders is ongeveer…',
-          options: ['één werkvoorbereider per 3 tot 5 monteurs', 'één werkvoorbereider per 20 tot 30 monteurs', 'één werkvoorbereider op elke 100 monteurs', 'één werkvoorbereider voor elke ploeg op de site'],
+          options: ['één werkvoorbereider per 3 tot 5 monteurs', 'één werkvoorbereider per 20 tot 30 monteurs', 'één werkvoorbereider op elke 100 monteurs of meer', 'één werkvoorbereider voor elke ploeg op de site'],
           answer: 'één werkvoorbereider per 20 tot 30 monteurs',
           why: 'Die gaat uit van een mix met veel eenvoudige klussen; complex werk vraagt een lagere verhouding.',
         },
         {
-          q: 'Een team scoort elke week 98% planningsnaleving, maar de backlog blijft groeien. Wat is de waarschijnlijkste verklaring?',
-          options: ['De planning vraagt te weinig van het team', 'De monteurs werken veel te langzaam', 'Het CMMS rekent de naleving verkeerd uit', 'Spoedwerk is helemaal verdwenen uit de fabriek'],
+          q: 'Een team scoort elke week 98% schedule compliance, maar de backlog blijft groeien. Wat is de waarschijnlijkste verklaring?',
+          options: ['De planning vraagt te weinig van het team', 'De monteurs werken veel te langzaam', 'Het CMMS rekent de compliance verkeerd uit', 'Spoedwerk is helemaal verdwenen uit de fabriek'],
           answer: 'De planning vraagt te weinig van het team',
           why: 'Een bijna perfecte score met een groeiende backlog betekent dat de planning weinig vraagt; vul hem tot de beschikbare uren.',
         },
       ],
       situation: {
-        scene: 'Bij een chemiebedrijf is de enige werkvoorbereider het grootste deel van de dag onderdelen aan het halen voor storingen. Monteurs beginnen de meeste klussen zonder werkplan, en de onderhoudsmanager zegt dat werkvoorbereiding hier “niet werkt, we zijn te reactief”.',
+        scene: 'Bij een chemiebedrijf is de enige werkvoorbereider het grootste deel van de dag onderdelen aan het halen voor storingen. Monteurs beginnen de meeste klussen zonder werkpakket, en de onderhoudsmanager zegt dat werkvoorbereiding hier “niet werkt, we zijn te reactief”.',
         ask: 'Wat stel je voor?',
-        model: 'Volgens mij is het andersom: we zijn reactief, deels omdat niemand voorbereidt. Kunnen we de werkvoorbereider een paar weken weghouden bij storingen, die laten we bij de leidinggevende, en hem de belangrijkste klussen van volgende week laten voorbereiden met de onderdelen in kits? Dan vullen we een weekplanning tot de beschikbare uren en volgen we planningsnaleving en spoedwerk. Werkt het, dan kijken we of één werkvoorbereider genoeg is voor deze ploeg.',
+        model: 'Volgens mij is het andersom: we zijn reactief, deels omdat niemand voorbereidt. Kunnen we de werkvoorbereider een paar weken weghouden bij storingen, die laten we bij de leidinggevende, en hem de belangrijkste klussen van volgende week laten voorbereiden met de onderdelen in kits? Dan vullen we een weekplanning tot de beschikbare uren en volgen we schedule compliance en spoedwerk. Werkt het, dan kijken we of één werkvoorbereider genoeg is voor deze ploeg.',
         rubric: [
           'Haalt de werkvoorbereider weg bij storingswerk',
-          'Stelt werkplannen voor en een weekplanning gevuld tot de beschikbare uren',
-          'Meet planningsnaleving en spoedwerk, en toetst de verhouding werkvoorbereiders',
+          'Stelt werkpakketten voor en een weekplanning gevuld tot de beschikbare uren',
+          'Meet schedule compliance en spoedwerk, en toetst de verhouding werkvoorbereiders',
         ],
       },
       sayIt: 'Leg een onderhoudsmanager in 60 seconden het verschil uit tussen werkvoorbereiding en inplannen, en waarom de werkvoorbereider uit de storingen moet blijven.',
       terms: [
-        { term: 'Werkplan', def: 'De voorbereiding van een klus: stappen, onderdelen, gereedschap, vergunningen, veiligheidsstappen, vakmensen en geschatte uren.' },
+        { term: 'Werkpakket', def: 'De voorbereiding van een klus: stappen, onderdelen, gereedschap, vergunningen, veiligheidsstappen, vakmensen en geschatte uren.' },
         { term: 'Werkvoorbereider', def: 'De persoon die onderhoudsklussen voorbereidt en de weekplanning maakt; niet degene die storingen oplost.' },
         { term: 'Weekplanning', def: 'De voorbereide klussen voor volgende week, gevuld tot de beschikbare uren per vak, op volgorde van prioriteit.' },
         { term: 'Spoedwerk', def: 'Dringend werk dat de weekplanning binnendringt en voorbereide klussen verdringt.' },
-        { term: 'Planningsnaleving', def: 'Het deel van de ingeplande uren of klussen dat volgens planning is gedaan.' },
+        { term: 'Schedule compliance', def: 'Het deel van de ingeplande uren of klussen dat volgens planning is gedaan.' },
       ],
     },
     {
@@ -743,13 +743,13 @@ export default {
         'Kitting: voor een voorbereide klus reserveert de werkvoorbereider de onderdelen, en het magazijn pakt ze in een kit, een doos of zak met het werkordernummer erop, voordat de klus begint. De kit staat op een vaste plek klaar of gaat naar de machine.\n\nKitting haalt de loop naar het magazijn en het zoeken uit de klus. Voor een shutdown is het onmisbaar, want honderden klussen beginnen op dezelfde ochtend.',
         'De servicegraad (service level) van het magazijn is het deel van de aanvragen voor voorraadartikelen dat direct uit het schap geleverd wordt. Een misser betekent een wachtende monteur, een langere MTTR of een spoedbestelling. Veel fabrieken mikken op midden tot hoog in de 90% voor voorraadartikelen; dat is een vuistregel, per kritikaliteit bepaald.\n\nGoedkope verbruiksartikelen zoals tie-wraps en standaardbouten liggen vaak in vrije bakken op de werkplek, zonder boeking.',
         'Dit alles vraagt voorraadnauwkeurigheid (inventory accuracy): het deel van de locaties waar de telling in het schap klopt met het systeem. Gaan delen weg zonder boeking, dan denkt het systeem dat ze er zijn, gaat de bestelling nooit uit, en is het schap leeg in de nacht dat het ertoe doet.\n\nCyclisch tellen (cycle counting) controleert elke dag een paar locaties in plaats van één grote telling per jaar, en lost de oorzaak van elk verschil op.',
-        'Experts discussiëren over open magazijnen (snel, op vertrouwen) tegen gesloten magazijnen (met een magazijnmeester, nauwkeurig). Open werkt alleen met eenvoudig boeken, zoals scannen.\n\nEen veelzeggend teken zijn eekhoornvoorraden (squirrel stores): privévoorraadjes in kluisjes en gereedschapskisten. Ze laten zien dat het magazijn niet vertrouwd wordt. Een scherpe vraag: als deze asset vannacht uitvalt, vindt de nachtploeg dan binnen 15 minuten het juiste deel, onder het juiste nummer?',
+        'Experts discussiëren over open magazijnen (snel, op vertrouwen) tegen gesloten magazijnen (met een magazijnmeester, nauwkeurig). Open werkt alleen met eenvoudig boeken, zoals scannen.\n\nEen veelzeggend teken zijn schaduwvoorraden (squirrel stores): privévoorraadjes in kluisjes en gereedschapskisten. Ze laten zien dat het magazijn niet vertrouwd wordt. Een scherpe vraag: als deze asset vannacht uitvalt, vindt de nachtploeg dan binnen 15 minuten het juiste deel, onder het juiste nummer?',
       ],
       example: {
         kind: 'faded',
         text: 'Het magazijn van een fabriek kreeg afgelopen kwartaal 1.200 aanvragen voor voorraadartikelen; 1.104 werden direct uit het schap geleverd. Bij de 300 voorbereide klussen per maand besteden monteurs gemiddeld 25 minuten per klus aan onderdelen halen. Een kittingpilot moet dat terugbrengen naar 5 minuten per klus.',
         ask: 'Wat is de servicegraad van het magazijn, en hoeveel monteursuren per maand maakt kitting vrij?',
-        reveal: 'Servicegraad: 1.104 / 1.200 = 92%, onder het midden van de 90% waar veel fabrieken op mikken; check welke delen misten en of ze kritisch zijn.\n\nKitting: (25 − 5) × 300 = 6.000 minuten = 100 uur per maand, meer dan een halve monteur. Die uren worden pas sleuteltijd als de werkvoorbereider de klussen een dag vooraf laat kitten.',
+        reveal: 'Servicegraad: 1.104 / 1.200 = 92%, onder het midden van de 90% waar veel fabrieken op mikken; check welke delen misten en of ze kritisch zijn.\n\nKitting: (25 − 5) × 300 = 6.000 minuten = 100 uur per maand, meer dan een halve monteur. Die uren worden pas wrench time als de werkvoorbereider de klussen een dag vooraf laat kitten.',
       },
       said: 'Wat een monteur zegt: “Het systeem zegt dat er twee afdichtingen zijn. Die zijn er niet. Die zijn er nooit.”',
       recall: [
@@ -779,7 +779,7 @@ export default {
           q: 'Je ziet dat monteurs privévoorraadjes reservedelen in hun kluisjes bewaren. Wat zegt dat je in de eerste plaats?',
           options: ['De monteurs stelen onderdelen', 'Ze vertrouwen het magazijn niet', 'Het magazijn heeft in totaal te veel voorraad', 'De kluisjes in de werkplaats zijn te groot'],
           answer: 'Ze vertrouwen het magazijn niet',
-          why: 'Eekhoornvoorraden groeien als het magazijn vaak leeg of traag is; ze maken de voorraad ook minder nauwkeurig.',
+          why: 'Schaduwvoorraden groeien als het magazijn vaak leeg of traag is; ze maken de voorraad ook minder nauwkeurig.',
         },
       ],
       situation: {
@@ -814,16 +814,16 @@ export default {
       ],
       teach: [
         'Een shutdown, ook wel turnaround of revisiestop, legt een lijn of hele fabriek dagen tot weken stil voor werk dat niet kan terwijl hij draait: inwendige inspecties, grote revisies, wettelijke keuringen en aansluitingen van projecten (tie-ins).\n\nHij loopt in fasen: scope verzamelen en kritisch bekijken, plannen, voorbereiden, uitvoeren, opstarten en afsluiten met geleerde lessen. De kosten zijn gemiste output plus arbeid, aannemers en onderdelen, dus elk uur telt.',
-        'Elke klus op de lijst wordt kritisch bekeken: moet hij tijdens de stop, of kan het terwijl de lijn draait? Dan komt de scopebevriezing (scope freeze), een vaste datum waarna de lijst dicht is en late klussen een wijzigingsprocedure met handtekening nodig hebben.\n\nScopegroei (scope growth) is het werk dat na de bevriezing bijkomt. In de database van AP-Networks met ruim 1.350 turnarounds, vooral procesindustrie, groeide de scope gemiddeld 19%, en 7% bij het beste kwart.',
-        'Twee soorten groei. Opkomend werk (emergent work): installaties die stukgaan tussen de bevriezing en de stop. Ontdekkingswerk (discovery work): wat je pas vindt als je installaties openmaakt, zoals een gescheurde as. Ontdekkingswerk kun je niet wegbevriezen, dus je plant er een reserve (contingency) voor.\n\nDe duur volgt het kritiek pad (critical path): de langste keten van afhankelijk werk, die de einddatum bepaalt. Vertraging op het kritiek pad vertraagt de herstart; elders misschien niet.',
+        'Elke klus op de lijst wordt kritisch bekeken: moet hij in de stop, of kan het tijdens bedrijf? Dan komt de scope freeze (het bevriezen van de scope), een vaste datum waarna de lijst dicht is en late klussen een wijzigingsprocedure met handtekening nodig hebben.\n\nScopegroei (scope growth) is het werk dat na de bevriezing bijkomt. AP-Networks, een benchmarkbureau, heeft een database van ruim 1.350 turnarounds, vooral in de procesindustrie; samenvattingen daarvan noemen een groei van scope freeze tot uitvoering van gemiddeld 19%, en 7% bij het beste kwart.',
+        'Twee soorten groei. Emergent work: installaties die stukgaan tussen de scope freeze en de stop. Discovery work (werk uit inspectiebevindingen): wat je pas vindt als je installaties openmaakt, zoals een gescheurde as. Discovery work kun je niet wegbevriezen, dus je plant er een reserve (contingency) voor.\n\nDe duur volgt het kritiek pad (critical path): de langste keten van afhankelijk werk, die de einddatum bepaalt. Vertraging op het kritiek pad vertraagt de herstart; elders misschien niet.',
         'De uitvoering is druk: ploegen dag en nacht, veel aannemers, veel vergunningen en vergrendelingen (energie afschakelen voor het werk; zie de module Veilig werken op de vloer en in het station). Dagelijks overleg volgt de klussen op het kritiek pad.\n\nOpstarten is een risico apart: na zoveel openmaken en monteren komt kindersterfte als lekken en uitlijnfouten. Een restpuntenlijst (punch list), de open punten die nog af of gecontroleerd moeten, wordt voor de herstart gelopen.',
         'Experts discussiëren over de frequentie: minder, langere stops tegen meer, kortere. Inspecteren op basis van risico kan intervallen oprekken, maar blind oprekken verschuift storingen naar productietijd.\n\nDe bekende valkuilen: late materialen, scopegroei via de achterdeur, aannemers die op vergunningen wachten, en een moeizame opstart. Een scherpe vraag: wat is wanneer bevroren, en wat is er daarna bijgekomen?',
       ],
       example: {
         kind: 'faded',
-        text: 'Een lijnstop van vijf dagen heeft een bevroren scope van 2.400 klusuren en een reserve voor ontdekkingswerk van 10% (240 uur). Na de bevriezing komen er 300 uur klussen bij: een paar storingen vóór de stop, en verzoeken van het type “nu we er toch zijn”. Tijdens de stop laten geopende installaties 240 uur ontdekkingswerk zien.',
+        text: 'Een lijnstop van vijf dagen heeft een bevroren scope van 2.400 klusuren en een reserve voor discovery work van 10% (240 uur). Na de bevriezing komen er 300 uur klussen bij: een paar storingen vóór de stop, en verzoeken van het type “nu we er toch zijn”. Tijdens de stop laten geopende installaties 240 uur discovery work zien.',
         ask: 'Wat is de totale scopegroei, hoe verhoudt die zich tot de cijfers van AP-Networks, en welk deel had niet mogen gebeuren?',
-        reveal: 'Groei: (300 + 240) / 2.400 = 22,5%, boven het gemiddelde van 19% en ver boven de 7% van het beste kwart.\n\nDe 240 uur ontdekkingswerk gebruikte precies de reserve van 10%; daar was die voor. De 300 toegevoegde uren zijn het probleem: de echte storingen waren onvermijdelijk, maar de “nu we er toch zijn”-klussen hadden door de wijzigingsprocedure gemoeten. Les: rapporteer groei per bron.',
+        reveal: 'Groei: (300 + 240) / 2.400 = 22,5%, boven het gemiddelde van 19% en ver boven de 7% van het beste kwart.\n\nDe 240 uur discovery work gebruikte precies de reserve van 10%; daar was die voor. De 300 toegevoegde uren zijn het probleem: de echte storingen waren onvermijdelijk, maar de “nu we er toch zijn”-klussen hadden door de wijzigingsprocedure gemoeten. Les: rapporteer groei per bron.',
       },
       said: 'Wat een shutdownmanager zegt: “De bevriezing was in maart. Bij de stop hadden we tweehonderd klussen waar niemand onderdelen voor had geregeld.”',
       recall: [
@@ -844,8 +844,8 @@ export default {
           why: 'A + B + C = 12 + 20 + 8 = 40 uur; D + E = 34 uur. De langste keten, 40 uur, is het kritiek pad.',
         },
         {
-          q: 'Wat is ontdekkingswerk in een shutdown?',
-          options: ['Klussen waar productie na de bevriezing om vraagt', 'Werk aan installaties die vlak voor de stop stukgingen', 'Werk dat je pas vindt als je de installatie openmaakt', 'Keuringen die de wet elk jaar verplicht'],
+          q: 'Wat is discovery work in een shutdown?',
+          options: ['Klussen waar productie na de scope freeze nog om vraagt', 'Werk aan installaties die vlak voor de stop stukgingen', 'Werk dat je pas vindt als je de installatie openmaakt', 'Keuringen die de wet elk jaar verplicht'],
           answer: 'Werk dat je pas vindt als je de installatie openmaakt',
           why: 'Dat kun je vooraf niet weten, dus dat dek je af met een reserve, niet met de bevriezing.',
         },
@@ -859,18 +859,18 @@ export default {
       situation: {
         scene: 'Bij een staalbedrijf liep de jaarlijkse shutdown vorig jaar drie dagen uit. De plantmanager wil de shutdown van dit jaar plannen “met 20% extra tijd, voor de zekerheid”.',
         ask: 'Wat vraag je voordat je instemt?',
-        model: 'Waar kwamen die drie dagen van vorig jaar vandaan: werk dat na de bevriezing bijkwam, ontdekkingswerk, late onderdelen of een trage opstart? Was het toegevoegd werk, dan helpen een strakkere bevriezing en wijzigingsprocedure meer dan extra dagen. Ontdekkingswerk vraagt een reserve op basis van de vondsten van vorig jaar, en alleen vertraging op het kritiek pad schuift het einde op. Kunnen we de klussenlijst van vorig jaar nemen en elke uitloop een oorzaak geven?',
+        model: 'Waar kwamen die drie dagen van vorig jaar vandaan: werk dat na de bevriezing bijkwam, discovery work, late onderdelen of een trage opstart? Was het toegevoegd werk, dan helpen een strakkere bevriezing en wijzigingsprocedure meer dan extra dagen. Discovery work vraagt een reserve op basis van de bevindingen van vorig jaar, en alleen vertraging op het kritiek pad schuift het einde op. Kunnen we de klussenlijst van vorig jaar nemen en elke uitloop een oorzaak geven?',
         rubric: [
           'Vraagt naar de oorzaken van de uitloop van vorig jaar voordat er tijd bijkomt',
-          'Scheidt toegevoegd werk, ontdekkingswerk en opstartproblemen',
+          'Scheidt toegevoegd werk, discovery work en opstartproblemen',
           'Koppelt extra tijd aan het kritiek pad en een reserve op basis van data',
         ],
       },
-      sayIt: 'Leg een plantmanager in 60 seconden uit waarom een shutdown uitloopt en wat een scopebevriezing en het kritiek pad daarmee te maken hebben.',
+      sayIt: 'Leg een plantmanager in 60 seconden uit waarom een shutdown uitloopt en wat een scope freeze en het kritiek pad daarmee te maken hebben.',
       terms: [
-        { term: 'Scopebevriezing', def: 'De datum waarna de klussenlijst van de shutdown dicht is; latere klussen hebben een wijzigingsprocedure nodig.' },
-        { term: 'Scopegroei', def: 'Werk dat na de scopebevriezing bijkomt, als deel van de bevroren scope.' },
-        { term: 'Ontdekkingswerk', def: 'Werk dat je pas vindt als installaties tijdens de shutdown open zijn.' },
+        { term: 'Scope freeze', def: 'De datum waarna de klussenlijst van de shutdown dicht is; latere klussen hebben een wijzigingsprocedure nodig.' },
+        { term: 'Scopegroei', def: 'Werk dat na de scope freeze bijkomt, als deel van de bevroren scope.' },
+        { term: 'Discovery work', def: 'Werk dat je pas vindt als installaties tijdens de shutdown open zijn.' },
         { term: 'Kritiek pad', def: 'De langste keten van afhankelijk werk; die bepaalt de einddatum.' },
         { term: 'Restpuntenlijst', def: 'De open punten die nog af of gecontroleerd moeten voor een herstart.' },
       ],
@@ -889,7 +889,7 @@ export default {
       ],
       teach: [
         'MTBF (mean time between failures) = totale draaitijd / aantal storingen. Het meet betrouwbaarheid (reliability): hoe vaak gaat de machine stuk. Een pers die 600 uur draait met 12 storingen heeft een MTBF van 50 uur.\n\nMTTR (mean time to repair) = totale reparatietijd / aantal storingen. Het meet onderhoudbaarheid (maintainability): hoe snel heb je de machine weer draaiend.',
-        'MTTR omvat alles van stilstand tot herstart: merken dat hij stilstaat, de monteur bellen, ernaartoe lopen, diagnose, het onderdeel zoeken, de reparatie zelf, testen en opstarten.\n\nDe sleuteltijd, de minuten dat een monteur echt met gereedschap aan de machine werkt, is vaak het kleinste stuk; studies naar onderhoudsploegen komen vaak op 25 tot 35% van hun dag. Wachten op mensen, vergunningen en onderdelen is het grootste stuk. Daar zitten de snelle winsten.',
+        'MTTR omvat alles van stilstand tot herstart: merken dat hij stilstaat, de monteur bellen, ernaartoe lopen, diagnose, het onderdeel zoeken, de reparatie zelf, testen en opstarten.\n\nDe wrench time (sleuteltijd), de minuten dat een monteur echt met gereedschap aan de machine werkt, is vaak het kleinste stuk; studies naar onderhoudsploegen komen vaak op 25 tot 35% van hun dag. Wachten op mensen, vergunningen en onderdelen is het grootste stuk. Daar zitten de snelle winsten.',
         'De beschikbaarheid volgt uit de twee: MTBF / (MTBF + MTTR), het deel van de tijd dat de machine kan draaien. Met een MTBF van 40 uur en een MTTR van 2 uur is de beschikbaarheid 40 / 42 = 95,2%.\n\nJe verhoogt hem door storingen zeldzamer (MTBF omhoog) of korter (MTTR omlaag) te maken. Let op: de beschikbaarheid in de OEE (zie Capaciteit en flow) telt ook omstellingen en wachten op materiaal mee, dus die is meestal lager.',
         'Alles begint bij de storingslijst: het overzicht van elke stop met begintijd, duur en oorzaak, uit de besturing van de machine of door operators genoteerd.\n\nVraag altijd naar de definities. Telt een vastloper van 3 minuten als storing, of alleen stops boven de 10 minuten? Tel je draaitijd in productie-uren of kalenderuren? Micro-stops meetellen, korte vastlopers van seconden tot minuten, kan een MTBF van 40 uur veranderen in een van 2.',
         'MTBF is geen levensduur: een MTBF van 10.000 uur betekent niet dat elk onderdeel 10.000 uur meegaat. Het is een gemiddelde over veel onderdelen en storingen. Voor onderdelen die je weggooit in plaats van repareert, zeggen engineers MTTF (mean time to failure).\n\nEen bekende valkuil is sjoemelen: een lange storing geboekt als “gepland”, of één stop in tweeën geknipt. Een scherpe vraag: laat me de vijf langste stops van vorige maand zien, en hoe de klok bij elk liep.',
@@ -945,7 +945,7 @@ export default {
         { term: 'MTTR', def: 'Mean time to repair: van stilstand tot weer draaien, gedeeld door het aantal storingen.' },
         { term: 'Beschikbaarheid', def: 'MTBF / (MTBF + MTTR): het deel van de tijd dat de asset kan draaien. De beschikbaarheid in de OEE telt ook omstellen mee, dus die is meestal lager.' },
         { term: 'Storingslijst', def: 'Het overzicht van elke stop met begin, duur en oorzaak.' },
-        { term: 'Sleuteltijd', def: 'Het deel van een dienst dat een monteur echt aan handwerk besteedt.' },
+        { term: 'Wrench time', def: 'Het deel van een dienst dat een monteur echt aan handwerk besteedt.' },
       ],
     },
     {
@@ -961,14 +961,14 @@ export default {
       ],
       teach: [
         'EN 13306, de Europese norm voor onderhoudstermen, splitst al het werk in preventief onderhoud, gedaan voor een storing om de kans erop te verkleinen, en correctief onderhoud, gedaan nadat een fout is ontdekt.\n\nCorrectief werk is er in twee soorten. Direct correctief onderhoud (immediate) gebeurt meteen, omdat de fout niet kan wachten. Uitgesteld correctief onderhoud (deferred) wordt naar een later moment geschoven: de afscherming die maandag opvalt en donderdag gerepareerd wordt.',
-        'Gepland werk (planned work) is een andere as: werk dat een werkvoorbereider heeft klaargemaakt voordat het begint, met een werkplan en onderdelen. Een uitgestelde correctieve reparatie kan gepland werk zijn; een preventieve klus die zonder voorbereiding begint, niet.\n\nDus “reactief” is niet hetzelfde als “correctief”. De nuttige splitsing voor een consultant is geplande tegen ongeplande uren, en daarbinnen hoeveel direct was.',
-        'In het CMMS maakt de werkordersoort (work order type), de categorie op de werkorder zoals PM, toestandsafhankelijk, correctief of project, dit zichtbaar.\n\nHet reactieve aandeel, uren direct correctief onderhoud gedeeld door alle onderhoudsuren, is het waarschuwingslampje. Praktijkmensen noemen onder zo’n 10 tot 15% vaak sterk; boven de 30%, zoals in de worstelende fabriek uit de CMMS-les, is het team brandjes aan het blussen. Het overwerk stijgt mee.',
-        'Uren in het CMMS laten zien welk werk gedaan is, niet hoe de tijd verliep. Daarvoor doen fabrieken een werksteekproef (work sampling): een waarnemer noteert op willekeurige momenten wat elke monteur doet: handwerk, lopen, wachten op onderdelen, wachten op een vergunning, instructie, pauze.\n\nHet aandeel handwerk is de sleuteltijd. Kondig de studie vooraf aan en laat namen weg: hij meet het systeem, niet de mensen.',
-        'De bekende valkuilen: een storing geboekt als PM, zodat het reactieve aandeel er beter uitziet; kleine klussen zonder werkorder, zodat ze verdwijnen; en “gepland” dat alleen betekent dat iemand een datum intypte.\n\nEen scherpe vraag: als ik 20 werkorders pak die als gepland staan, hoeveel hadden er een werkplan en gekitte onderdelen voor de start?',
+        'Gepland werk (planned work) is een andere as: werk dat een werkvoorbereider heeft klaargemaakt voordat het begint, met een werkpakket en onderdelen. Een uitgestelde correctieve reparatie kan gepland werk zijn; een preventieve klus die zonder voorbereiding begint, niet.\n\nDus “reactief” is niet hetzelfde als “correctief”. De nuttige splitsing voor een consultant is geplande tegen ongeplande uren, en daarbinnen hoeveel direct was.',
+        'In het CMMS maakt de werkordersoort (work order type), de categorie op de werkorder zoals PM, toestandsafhankelijk, correctief of project, dit zichtbaar.\n\nHet reactieve aandeel, hier uren direct correctief onderhoud gedeeld door alle onderhoudsuren, is het waarschuwingslampje; SMRP telt in plaats daarvan het werk dat de weekplanning binnendringt. Praktijkmensen noemen onder zo’n 10 tot 15% vaak sterk; boven de 30%, zoals in de worstelende fabriek uit de CMMS-les, is het team brandjes aan het blussen. Het overwerk stijgt mee.',
+        'Uren in het CMMS laten zien welk werk gedaan is, niet hoe de tijd verliep. Daarvoor doen fabrieken een multimomentopname (work sampling): een waarnemer noteert op willekeurige momenten wat elke monteur doet: handwerk, lopen, wachten op onderdelen, wachten op een vergunning, instructie, pauze.\n\nHet aandeel handwerk is de wrench time. Kondig de studie vooraf aan en laat namen weg: hij meet het systeem, niet de mensen.',
+        'De bekende valkuilen: een storing geboekt als PM, zodat het reactieve aandeel er beter uitziet; kleine klussen zonder werkorder, zodat ze verdwijnen; en “gepland” dat alleen betekent dat iemand een datum intypte.\n\nEen scherpe vraag: als ik 20 werkorders pak die als gepland staan, hoeveel hadden er een werkpakket en gekitte onderdelen voor de start?',
       ],
       example: {
         kind: 'worked',
-        text: 'Een maand onderhoudsuren bij een voedingsmiddelenfabriek, 1.600 uur in totaal: PM 480, toestandsafhankelijke taken 160, uitgesteld correctief 400 (waarvan 360 met werkplan en onderdelen), direct correctief 520, verbeterprojecten 40.\n\nGepland werk: 480 + 160 + 360 + 40 = 1.040 uur, 1.040 / 1.600 = 65%. Reactief aandeel: 520 / 1.600 = 32,5%. Preventief en toestandsafhankelijk samen: 640 / 1.600 = 40%.\n\nLezing: ver onder de 85% gepland die goede fabrieken halen, en een derde van alle uren is brandjes blussen.',
+        text: 'Een maand onderhoudsuren bij een voedingsmiddelenfabriek, 1.600 uur in totaal: PM 480, toestandsafhankelijke taken 160, uitgesteld correctief 400 (waarvan 360 met werkpakket en onderdelen), direct correctief 520, verbeterprojecten 40.\n\nGepland werk: 480 + 160 + 360 + 40 = 1.040 uur, 1.040 / 1.600 = 65%. Reactief aandeel: 520 / 1.600 = 32,5%. Preventief en toestandsafhankelijk samen: 640 / 1.600 = 40%.\n\nLezing: ver onder de 85% gepland die goede fabrieken halen, en een derde van alle uren is brandjes blussen.',
       },
       said: 'Wat een onderhoudsleider zegt: “Op papier is de helft van ons werk gepland. In het echt betekent gepland dat iemand er een datum op zette.”',
       recall: [
@@ -981,7 +981,7 @@ export default {
           why: '560 / 2.000 = 28%.',
         },
         {
-          q: 'Een werksteekproef deed 400 waarnemingen bij monteurs; bij 140 daarvan was de monteur met handwerk bezig. Wat is de sleuteltijd, in %?',
+          q: 'Een multimomentopname deed 400 waarnemingen bij monteurs; bij 140 daarvan was de monteur met handwerk bezig. Wat is de wrench time, in %?',
           number: 35,
           tolerance: 0.5,
           unit: '%',
@@ -989,13 +989,13 @@ export default {
           why: '140 / 400 = 35%.',
         },
         {
-          q: 'Een beschadigde afscherming valt maandag op en wordt donderdag gerepareerd, met werkplan en onderdelen klaar. Hoe boek je dat?',
-          options: ['Uitgesteld correctief onderhoud, gepland werk', 'Direct correctief onderhoud, ongepland werk', 'Preventief onderhoud, gepland werk', 'Toestandsafhankelijk onderhoud, ongepland werk'],
+          q: 'Een beschadigde afscherming valt maandag op en wordt donderdag gerepareerd, met werkpakket en onderdelen klaar. Hoe boek je dat?',
+          options: ['Uitgesteld correctief onderhoud, gepland werk', 'Direct correctief onderhoud, ongepland storingswerk', 'Preventief onderhoud, gepland werk', 'Toestandsafhankelijk onderhoud, ongepland werk'],
           answer: 'Uitgesteld correctief onderhoud, gepland werk',
           why: 'Het herstelt een ontdekte fout, dus correctief; het is uitgesteld en voorbereid, dus uitgesteld en gepland.',
         },
         {
-          q: 'Waarom kondig je een werksteekproef aan en laat je de namen van monteurs weg?',
+          q: 'Waarom kondig je een multimomentopname aan en laat je de namen van monteurs weg?',
           options: ['De wet verbiedt namen in een studie', 'Monteurs worden tijdens de studie niet betaald', 'Hij meet het systeem, dus mensen moeten niet anders gaan werken', 'Het CMMS kan de namen van monteurs niet naast de waarnemingen opslaan'],
           answer: 'Hij meet het systeem, dus mensen moeten niet anders gaan werken',
           why: 'Het doel is wachten op onderdelen, vergunningen en lopen zien; angst voor een oordeel verandert gedrag en kost vertrouwen.',
@@ -1004,7 +1004,7 @@ export default {
       situation: {
         scene: 'Bij een kunststoffabriek zegt het maandrapport dat 70% van de onderhoudsuren gepland is. Je ziet dat de meeste storingsorders aan het eind van de ploeg worden aangemaakt en dat er veel als PM geboekt zijn.',
         ask: 'Hoe toets je die 70%?',
-        model: 'Ik zou een steekproef van 20 orders nemen die vorige maand als gepland staan en met de werkvoorbereider checken: was er een werkplan en waren de onderdelen gekit voor de start? En kunnen we een week lang elke storing aan de lijn noteren en vergelijken met wat er geboekt wordt? Als veel storingen als PM geboekt staan, zetten we eerst de werkordersoorten recht; anders sturen we op een getal dat niet klopt.',
+        model: 'Ik zou een steekproef van 20 orders nemen die vorige maand als gepland staan en met de werkvoorbereider checken: was er een werkpakket en waren de onderdelen gekit voor de start? En kunnen we een week lang elke storing aan de lijn noteren en vergelijken met wat er geboekt wordt? Als veel storingen als PM geboekt staan, zetten we eerst de werkordersoorten recht; anders sturen we op een getal dat niet klopt.',
         rubric: [
           'Toetst “gepland” aan echte voorbereiding in een steekproef van orders',
           'Vergelijkt storingen op de vloer met wat er geboekt wordt',
@@ -1015,9 +1015,9 @@ export default {
       terms: [
         { term: 'Direct correctief onderhoud', def: 'Correctief werk dat meteen na het ontdekken van een fout gebeurt, omdat het niet kan wachten (EN 13306).' },
         { term: 'Uitgesteld correctief onderhoud', def: 'Correctief werk dat na het ontdekken van de fout naar een later moment wordt geschoven (EN 13306).' },
-        { term: 'Gepland werk', def: 'Werk dat een werkvoorbereider met werkplan en onderdelen heeft klaargemaakt voordat het begint.' },
+        { term: 'Gepland werk', def: 'Werk dat een werkvoorbereider met werkpakket en onderdelen heeft klaargemaakt voordat het begint.' },
         { term: 'Werkordersoort', def: 'De categorie op een werkorder, zoals PM, toestandsafhankelijk, correctief of project.' },
-        { term: 'Werksteekproef', def: 'Monteurs op willekeurige momenten observeren om te zien hoe hun tijd besteed wordt.' },
+        { term: 'Multimomentopname', def: 'Monteurs op willekeurige momenten observeren om te zien hoe hun tijd besteed wordt.' },
       ],
     },
     {
@@ -1032,11 +1032,11 @@ export default {
         },
       ],
       teach: [
-        'Onderhouds-KPI’s hoef je niet te verzinnen. EN 15341 is de Europese norm voor kritieke prestatie-indicatoren van onderhoud; de editie van 2007 groepeerde ze als economisch, technisch en organisatorisch, en de editie van 2019, aangepast in 2022, deelt ze anders in. SMRP, de Amerikaanse vereniging van onderhoudsprofessionals, publiceert eigen metrics met formules.\n\nDe twee zijn voor veel indicatoren op elkaar afgestemd. Neem hun definities over en noteer welke je gebruikt.',
-        'Houd de set klein en in balans. Voorlopende indicatoren (leading) die eerst bewegen: PM-compliance, planningsnaleving, aandeel gepland werk, backlog in weken. Achterlopende indicatoren (lagging) die het resultaat tonen: MTBF op de kritische assets, stilstand, onderhoudskosten.\n\nDe module Sturen op prestaties legt voorlopende en achterlopende indicatoren en de KPI-definitiekaart uit; onderhouds-KPI’s hebben precies die kaart nodig: formule, venster, bron, eigenaar, trigger.',
-        'Het venster laat zien waarom. Eén SMRP-metric telt een PM als op tijd als hij binnen 10% van zijn interval gedaan is; een andere staat de vervaldatum plus 20% van het interval toe, met een maximum van 28 dagen. Die toegestane vertraging heet het tolerantievenster (grace period).\n\nVoor een maandelijkse PM van 30 dagen is dat 3 dagen tegen 6. Kies er één, zet hem op de kaart, en verander hem niet stilletjes.',
-        'Reken op vertraging (time lag): PM-compliance kan dit kwartaal stijgen terwijl de MTBF pas maanden later volgt, als de storingen die de PM voorkomt wegblijven.\n\nZet getallen naast elkaar die elkaar bewaken. PM-compliance met het deel van de PM-taken dat werk vond, zodat PM’s niet ongelezen worden afgemeld. Aandeel gepland werk met het reactieve aandeel, zodat storingen niet als gepland geboekt worden.',
-        'Experts discussiëren over een MTBF voor de hele fabriek. Een pomp, een robot en een transportband middelen verbergt de paar bad actors; per kritische asset zegt het veel meer.\n\nDe bekende valkuil: een bord met 15 KPI’s waar niemand op handelt. Een scherpe vraag bij elk getal op het bord: welke beslissing hangt eraan, en wie verandert wat als het rood wordt?',
+        'Onderhouds-KPI’s hoef je niet te verzinnen. EN 15341 is de Europese norm voor kritieke prestatie-indicatoren van onderhoud; de editie van 2007 groepeerde ze als economisch, technisch en organisatorisch; de huidige editie (2019, aangepast in 2022) deelt ze in naar deelfunctie van onderhoud, zoals onderhoudsmanagement, onderhoudsengineering, en veiligheid, gezondheid en milieu. SMRP, de Amerikaanse vereniging van onderhoudsprofessionals, publiceert eigen metrics met formules.\n\nDe twee zijn voor veel indicatoren op elkaar afgestemd. Neem hun definities over en noteer welke je gebruikt.',
+        'Houd de set klein en in balans. Voorlopende indicatoren (leading) die eerst bewegen: PM-compliance, schedule compliance, aandeel gepland werk, backlog in weken. Achterlopende indicatoren (lagging) die het resultaat tonen: MTBF op de kritische assets, stilstand, onderhoudskosten.\n\nDe module Sturen op prestaties legt voorlopende en achterlopende indicatoren en de KPI-definitiekaart uit; onderhouds-KPI’s hebben precies die kaart nodig: formule, venster, bron, eigenaar, trigger.',
+        'Het venster laat zien waarom. De SMRP-metric voor PM-compliance laat de fabriek kiezen: gedaan op de vervaldatum, of op de vervaldatum plus 20% van het interval, met een maximum van 28 dagen. Een verwante SMRP-metric over de timing van PM’s raadt een strengere “10%-regel” aan: binnen 10% van het interval. Die toegestane vertraging heet de tolerantie (grace period).\n\nVoor een maandelijkse PM van 30 dagen is dat 3 dagen tegen 6. Kies er één, zet hem op de kaart, en verander hem niet stilletjes.',
+        'Reken op vertraging (time lag): PM-compliance kan dit kwartaal stijgen terwijl de MTBF pas maanden later volgt, als de storingen die de PM voorkomt wegblijven.\n\nZet getallen naast elkaar die elkaar bewaken. PM-compliance met het bevindingspercentage van de PM’s, zodat PM’s niet ongelezen worden afgemeld. Aandeel gepland werk met het reactieve aandeel, zodat storingen niet als gepland geboekt worden.',
+        'Experts discussiëren over een MTBF voor de hele fabriek. Een pomp, een robot en een transportband middelen verbergt de bad actors, de paar assets die de meeste stilstand veroorzaken; per kritische asset zegt het veel meer.\n\nDe bekende valkuil: een bord met 15 KPI’s waar niemand op handelt. Een scherpe vraag bij elk getal op het bord: welke beslissing hangt eraan, en wie verandert wat als het rood wordt?',
       ],
       example: {
         kind: 'faded',
@@ -1064,8 +1064,8 @@ export default {
         },
         {
           q: 'Welke van deze is een voorlopende indicator voor onderhoudsresultaten?',
-          options: ['MTBF van de kritische assets', 'Planningsnaleving', 'Uren ongeplande stilstand', 'Jaarlijkse onderhoudskosten'],
-          answer: 'Planningsnaleving',
+          options: ['MTBF van de kritische assets', 'Schedule compliance', 'Uren ongeplande stilstand', 'Jaarlijkse onderhoudskosten'],
+          answer: 'Schedule compliance',
           why: 'Die laat zien of het geplande werk gebeurt, voordat het effect in MTBF, stilstand of kosten zichtbaar wordt.',
         },
         {
@@ -1089,7 +1089,7 @@ export default {
       terms: [
         { term: 'EN 15341', def: 'De Europese norm voor kritieke prestatie-indicatoren van onderhoud, met definities en formules.' },
         { term: 'SMRP', def: 'Society for Maintenance & Reliability Professionals: een Amerikaanse vereniging die onderhoudsmetrics met formules publiceert.' },
-        { term: 'Tolerantievenster', def: 'Hoe laat een PM gedaan mag worden en nog als op tijd telt, zoals 10% van zijn interval.' },
+        { term: 'Tolerantie', def: 'Hoe laat een PM gedaan mag worden en nog als op tijd telt, zoals 10% van zijn interval.' },
         { term: 'Vertraging', def: 'De tijd tussen een verandering in een voorlopende maatstaf en het effect op een achterlopende.' },
       ],
     },
@@ -1099,7 +1099,7 @@ export default {
       pre: [
         {
           q: 'Wat is de vervangingswaarde (replacement asset value, RAV) van een fabriek?',
-          options: ['De prijs die de fabriek bij verkoop zou opbrengen', 'De boekwaarde van de assets zoals die op de balans staat', 'De kosten om de assets nu door nieuwe te vervangen', 'Het jaarbudget voor reservedelen en aannemers'],
+          options: ['De prijs die de fabriek bij verkoop zou opbrengen', 'De boekwaarde van de assets zoals die op de balans staat', 'De kosten om de assets nu door nieuwe te vervangen', 'Het jaarbudget voor reservedelen, materialen en aannemers'],
           answer: 'De kosten om de assets nu door nieuwe te vervangen',
           why: 'De RAV is de basis om onderhoudskosten tussen fabrieken te vergelijken; boekwaarde en verkoopprijs zeggen weinig over hoeveel er te onderhouden is.',
         },

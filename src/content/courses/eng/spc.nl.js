@@ -47,8 +47,8 @@ export default {
         },
         {
           q: 'Een operator meet een twijfelachtig onderdeel steeds opnieuw tot de uitlezing binnen spec valt. Wat doet dat?',
-          options: ['Het maakt de meting nauwkeuriger, want meer metingen geven altijd een beter antwoord', 'Niks, zolang de laatste uitlezing die hij noteert maar binnen de spec valt', 'Het laat foute stuks door, want de ruis geeft vroeg of laat een goede uitlezing', 'Het kost alleen tijd, de beslissing blijft gelijk'],
-          answer: 'Het laat foute stuks door, want de ruis geeft vroeg of laat een goede uitlezing',
+          options: ['Het maakt de meting nauwkeuriger, want meer metingen geven altijd een beter antwoord', 'Niks, zolang de laatste uitlezing die hij noteert maar binnen de spec valt', 'Foute stuks komen door op een gelukstreffer', 'Het kost alleen tijd, de beslissing blijft gelijk'],
+          answer: 'Foute stuks komen door op een gelukstreffer',
           why: 'De uitlezing houden die je wilt zien, maakt van meetruis goedgekeurde foute stuks.',
         },
       ],
@@ -226,7 +226,7 @@ export default {
         },
       ],
       teach: [
-        'Vóór er mensen en onderdelen bij komen, vragen veel Duitse klanten een type-1-studie (Bosch-boekje 10, VDA 5): één operator meet één master 50 keer. Zo check je het meetmiddel alleen.\n\nTwee indexen, met T de tolerantiebreedte en s de standaardafwijking van de 50 metingen: Cg = 0,2 × T / (6 × s) voor de spreiding, en Cgk = (0,1 × T − |bias|) / (3 × s), die ook een afwijking van de master bestraft. De gangbare eis is 1,33 of meer; klanten verschillen.',
+        'Vóór er mensen en onderdelen bij komen, vragen veel Duitse klanten een type-1-studie (Bosch-boekje 10): één operator meet één master 50 keer (minstens 25). Zo check je het meetmiddel alleen.\n\nTwee indexen, met T de tolerantiebreedte en s de standaardafwijking van de 50 metingen: Cg = 0,2 × T / (6 × s) voor de spreiding, en Cgk = (0,1 × T − |bias|) / (3 × s), die ook een afwijking van de master bestraft. Bosch vraagt voor allebei 1,33 of meer; klanten verschillen.',
         'Destructieve en niet-herhaalbare proeven vragen een andere opzet: trek- en pelproeven, barstdruk, de grootte van een laslens, chemische analyse. In een geneste studie (nested study) krijgt elke operator eigen proefstukken, zo gelijk mogelijk gekozen: opeenvolgende stuks, één materiaalpartij.\n\nHet addertje: echte verschillen tussen proefstukken tellen nu als meetspreiding, dus de uitkomst ziet er slechter uit dan het meetmiddel is. De keuze van de proefstukken bepaalt of de studie iets zegt.',
         'Statisticus Donald Wheeler bekritiseert %GRR (“An Honest Gauge R&R Study”, 2006). Het is een verhouding van standaardafwijkingen, maar standaardafwijkingen tellen niet op; varianties wel. Bij 30% GRR heeft het meetmiddel 0,3² = 9% van de variantie; de onderdelen nog 91%.\n\nWheeler gebruikt de intraclass-correlatie (intraclass correlation), het deel van de variantie dat van de onderdelen komt, en volgens hem zijn de AIAG-grenzen te streng. De meeste fabrieken houden de AIAG-getallen, omdat het klanthandboek ze eist.',
         'Meetonzekerheid is de bredere blik (VDA 5, ISO 22514-7, de GUM-richtlijn): een begroting die elke bron optelt, zoals meetmiddel, master, temperatuur, operator en vorm van het onderdeel, tot een uitgebreide onzekerheid U, meestal bij zo’n 95% betrouwbaarheid.\n\nISO 14253-1 legt dan een veiligheidsband (guard band) op: een leverancier bewijst conformiteit alleen binnen de spec, aan beide kanten versmald met U. Tolerantie 10,00 ±0,02 mm met U = 0,003 mm laat 9,983 tot 10,017 mm over als bewijs.',
@@ -258,7 +258,7 @@ export default {
         },
         {
           q: 'Waarom ziet een geneste meetstudie op een destructieve proef er meestal slechter uit dan het meetmiddel echt is?',
-          options: ['Operators zijn minder zorgvuldig met stuks die toch gaan breken', 'Geneste studies gebruiken altijd minder metingen dan een klassieke', 'De testbank slijt sneller als de proefstukken breken', 'Verschillen tussen proefstukken tellen als meetspreiding'],
+          options: ['Operators zijn minder zorgvuldig met stuks die toch gaan breken', 'Geneste studies gebruiken altijd minder metingen', 'De testbank slijt sneller als de proefstukken breken', 'Verschillen tussen proefstukken tellen als meetspreiding'],
           answer: 'Verschillen tussen proefstukken tellen als meetspreiding',
           why: 'Elk proefstuk wordt één keer gemeten, dus echte verschillen tussen proefstukken zijn niet te scheiden van de meetspreiding.',
         },
@@ -295,8 +295,8 @@ export default {
       pre: [
         {
           q: 'Een fabriek legt de regelgrenzen op het gemiddelde ± 3 × de standaardafwijking van alle metingen van vorige maand. Halverwege die maand verschoof het proces. Wat gebeurt er?',
-          options: ['De grenzen worden te smal en geven loos alarm', 'Er verandert niks, want drie sigma is drie sigma hoe je hem ook berekent', 'De kaart wordt gevoeliger voor elke verdere verschuiving van het gemiddelde', 'De grenzen worden te breed en verbergen juist de verschuiving'],
-          answer: 'De grenzen worden te breed en verbergen juist de verschuiving',
+          options: ['De grenzen worden te smal en geven loos alarm', 'Er verandert niks, want drie sigma is drie sigma hoe je hem ook berekent', 'De kaart wordt gevoeliger voor elke verdere verschuiving van het gemiddelde', 'Te brede grenzen verbergen de verschuiving'],
+          answer: 'Te brede grenzen verbergen de verschuiving',
           why: 'De totale standaardafwijking bevat de verschuiving zelf, dus worden de grenzen opgeblazen door de verandering die ze moeten laten zien.',
         },
       ],
@@ -304,12 +304,12 @@ export default {
         'Een regelkaart zet een uitkomst in de tijd uit met een middellijn en twee regelgrenzen. De grenzen zijn de stem van het proces (voice of the process): wat dit proces uit zichzelf doet, berekend uit zijn eigen data. Ze zijn niet de spec, de stem van de klant.\n\nW. Edwards Deming noemde twee fouten. Fout 1: reageren op gewone ruis alsof er iets veranderd is. Fout 2: een echte verandering missen. Elke grens is een afweging tussen die twee.',
         'Walter Shewhart koos in de jaren twintig bij Bell Labs voor driesigmagrenzen (Economic Control of Quality of Manufactured Product, 1931) als economisch compromis: breed genoeg dat een stabiel proces er zelden overheen gaat, zo’n 3 punten op 1.000 bij normale data, smal genoeg om echte veranderingen te vangen.\n\nHij bedoelde het als praktische regel, niet als exacte kans. Wheeler benadrukt dat het voor de meeste vormen van data goed werkt.',
         'De belangrijkste keuze is welke sigma. Grenzen komen uit de kortetermijnvariatie: de spreiding binnen subgroepen, of tussen opeenvolgende waarden. Niet uit de standaardafwijking van alle data, want daar zitten de verschuivingen en het verloop al in die je wilt vinden.\n\nVoor één waarde tegelijk gebruikt de I-MR-kaart (individuele waarden en bewegend bereik, ook XmR genoemd) het bewegend bereik (moving range): het verschil tussen elke waarde en de waarde ervoor, zonder op het teken te letten.',
-        'De natuurlijke procesgrenzen (natural process limits) van de kaart met individuele waarden zijn het gemiddelde ± 2,66 × het gemiddelde bewegend bereik. De 2,66 is 3 / 1,128, een vaste tabelconstante. De kaart van het bewegend bereik krijgt een bovengrens van 3,27 × het gemiddelde bewegend bereik.\n\nDat zijn dezelfde getallen als in Kwaliteit: de basis (De juiste kaart) en in de les over signaal en ruis in de projectmodule, waar Wheelers XmR-kaart voor weekcijfers wordt gebruikt.',
+        'De natuurlijke procesgrenzen (natural process limits) van de kaart met individuele waarden zijn het gemiddelde ± 2,66 × het gemiddelde bewegend bereik. De 2,66 is 3 / 1,128, een vaste tabelconstante. De kaart van het bewegend bereik krijgt een bovengrens van 3,27 × het gemiddelde bewegend bereik.\n\nDat zijn dezelfde getallen als in Kwaliteit: de basis (De juiste kaart) en in Sturen op prestaties (Signaal en ruis in het overleg), waar Wheelers XmR-kaart voor weekcijfers wordt gebruikt en de 3,27 onafgerond als 3,268 staat.',
         'Signaalregels staan in de hele cursus op dezelfde manier: een punt buiten een grens, of een lange reeks aan één kant van de middellijn (7, 8 of 9 op rij, afhankelijk van de regelset: AIAG, Western Electric of Nelson). Kwaliteit: de basis (SPC in de praktijk) behandelt de andere regels en loos alarm.\n\nMet minder dan zo’n 20 waarden zijn de grenzen voorlopig. Scherpe vraag: “Waar komen deze grenzen vandaan, en uit welke periode?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een harde-oven (een oven voor warmtebehandeling) geeft één hardheidsmeting per batch, in HRC (Rockwell C, een hardheidsschaal). Tien batches: 58, 60, 59, 61, 60, 58, 59, 62, 61, 60. Het gemiddelde is 598 / 10 = 59,8 HRC.\n\nDe negen bewegende bereiken: 2, 1, 2, 1, 2, 1, 3, 1, 1, samen 14, dus het gemiddelde bewegend bereik is 14 / 9 = 1,56. Grenzen: 59,8 ± 2,66 × 1,56 = 59,8 ± 4,1, dus 55,7 tot 63,9 HRC. De grens van het bewegend bereik is 3,27 × 1,56 = 5,1.\n\nConclusie: geen signaal; deze oven varieert uit zichzelf met zo’n ±4 HRC. Een batch op 56 is geen reden om bij te stellen; een batch op 55 wel. Met maar tien waarden zijn deze grenzen voorlopig.',
+        text: 'Een hardingsoven (een oven voor warmtebehandeling) geeft één hardheidsmeting per batch, in HRC (Rockwell C, een hardheidsschaal). Tien batches: 58, 60, 59, 61, 60, 58, 59, 62, 61, 60. Het gemiddelde is 598 / 10 = 59,8 HRC.\n\nDe negen bewegende bereiken: 2, 1, 2, 1, 2, 1, 3, 1, 1, samen 14, dus het gemiddelde bewegend bereik is 14 / 9 = 1,56. Grenzen: 59,8 ± 2,66 × 1,56 = 59,8 ± 4,1, dus 55,7 tot 63,9 HRC. De grens van het bewegend bereik is 3,27 × 1,56 = 5,1.\n\nConclusie: geen signaal; deze oven varieert uit zichzelf met zo’n ±4 HRC. Een batch op 56 is geen reden om bij te stellen; een batch op 55 is een signaal om de oorzaak te zoeken. Met maar tien waarden zijn deze grenzen voorlopig.',
       },
       said: 'Wat engineers zeggen: “Die grenzen komen uit het hele jaar, verschuiving en al. Geen wonder dat de kaart nooit iets zegt.”',
       recall: [
@@ -337,7 +337,7 @@ export default {
         },
         {
           q: 'Wat is Demings fout 1?',
-          options: ['Reageren op gewone ruis alsof er iets veranderd is', 'Een echte verandering missen omdat de grenzen te breed zijn', 'Specgrenzen op de regelkaart tekenen', 'De grenzen na elke wijziging in het proces opnieuw berekenen'],
+          options: ['Reageren op gewone ruis alsof er iets veranderd is', 'Een echte verandering missen omdat de grenzen te breed zijn', 'Specgrenzen op de regelkaart tekenen', 'De grenzen na elke wijziging herberekenen'],
           answer: 'Reageren op gewone ruis alsof er iets veranderd is',
           why: 'Fout 1 is gewone ruis behandelen als een speciale oorzaak; fout 2 is een echte speciale oorzaak missen.',
         },
@@ -437,14 +437,14 @@ export default {
       pre: [
         {
           q: 'Een kaart met individuele waarden heeft haar grenzen op ±3σ. Het procesgemiddelde verschuift 1σ en blijft daar. Hoeveel punten duurt het gemiddeld voordat er een punt buiten een grens valt?',
-          options: ['Zo’n 44', 'Zo’n 3', 'Zo’n 370', 'Het eerstvolgende punt'],
+          options: ['Zo’n 44', 'Zo’n 3', 'Zo’n 370', 'Meteen'],
           answer: 'Zo’n 44',
           why: 'Na een verschuiving van 1σ is de kans per punt om over een 3σ-grens te gaan zo’n 2,3%, dus gemiddeld 1 / 0,023 ≈ 44 punten.',
         },
       ],
       teach: [
         'Een Shewhart-kaart beoordeelt elk punt op zich, dus is ze snel bij grote sprongen en traag bij kleine verschuivingen. De ARL (average run length, gemiddelde runlengte) is hoeveel punten het gemiddeld duurt tot een signaal. Na een verschuiving van 1σ heeft een kaart met individuele waarden zo’n 44 punten nodig (Montgomery, Introduction to Statistical Quality Control).\n\nExtra regels helpen, maar geven meer loos alarm (Kwaliteit: de basis, SPC in de praktijk). Telt een kleine verschuiving, zoals een vulgewicht op een snelle lijn, gebruik dan een kaart met geheugen.',
-        'De CUSUM (cumulatieve som; E. S. Page, 1954) telt de afwijkingen van het doel op, min een speling k (slack), en geeft een signaal als de som een beslisgrens h passeert. Bovenste som: C = max(0, x − (doel + k) + vorige C).\n\nGangbaar: k = 0,5σ en h = 4 of 5σ. Met h = 5σ geeft een stabiel proces zo’n eens per 465 punten loos alarm, terwijl een verschuiving van 1σ in zo’n 10 punten wordt gevangen (ARL-tabellen van Montgomery).',
+        'De CUSUM (cumulatieve som; E. S. Page, 1954) telt de afwijkingen van het doel op, min een speling k (slack), en geeft een signaal als de som een beslisgrens h passeert. Bovenste som: C = max(0, x − (doel + k) + vorige C).\n\nGangbaar: k = 0,5σ en h = 4 of 5σ. Met h = 5σ geeft een tweezijdige CUSUM bij een stabiel proces zo’n eens per 465 punten loos alarm, terwijl een verschuiving van 1σ in zo’n 10 punten wordt gevangen (ARL-tabellen van Montgomery).',
         'De EWMA (exponentially weighted moving average, een exponentieel gewogen voortschrijdend gemiddelde; S. W. Roberts, 1959) zet z = λ × x + (1 − λ) × vorige z uit. De wegingsfactor λ (smoothing constant), meestal 0,05 tot 0,25, bepaalt hoeveel elke nieuwe waarde telt; oude waarden vervagen.\n\nOmdat z middelt, zijn de grenzen smaller: op den duur ±3σ × √(λ / (2 − λ)), dus ±1σ bij λ = 0,2. EWMA kan goed tegen data die niet klokvormig is.',
         'De prijs. Beide reageren trager op een grote plotselinge sprong dan een Shewhart-kaart, dus veel fabrieken draaien ze naast elkaar. Ze vragen een doelwaarde, een goede schatting van σ, en software. De kaart toont geen ruwe metingen meer, dus operators lezen hem moeilijker.\n\nEen handige extra: als een CUSUM een signaal geeft, schat het laatste punt waar de som nul was wanneer de verschuiving begon. Dat versmalt de zoektocht naar de oorzaak en naar verdachte stuks.',
         'De procesengineer beslist met getallen: welke verschuiving, in σ, kost geld, en binnen hoeveel punten moeten we die zien? Vergelijk de ARL’s van de opties voordat je kiest.\n\nCUSUM en EWMA zijn gangbaar in de procesindustrie, zoals chemie en voeding, waar verloop langzaam is en elk monster duur. Scherpe vraag: “Welke verschuiving moeten we vangen, en in hoeveel monsters?”',
@@ -475,13 +475,13 @@ export default {
         },
         {
           q: 'Wanneer is een CUSUM- of EWMA-kaart duidelijk beter dan een Shewhart-kaart?',
-          options: ['Als losse metingen vaak heel ver buiten de regelgrenzen vallen', 'Als de operators de ruwe waarden willen zien', 'Als er geen doelwaarde en ook geen goede schatting van σ is', 'Bij kleine, blijvende verschuivingen van zo’n 1σ of minder'],
+          options: ['Als losse metingen vaak heel ver buiten de regelgrenzen vallen', 'Als de operators de ruwe waarden willen zien', 'Als er geen doel en geen goede σ is', 'Bij kleine, blijvende verschuivingen van zo’n 1σ of minder'],
           answer: 'Bij kleine, blijvende verschuivingen van zo’n 1σ of minder',
           why: 'Hun geheugen telt kleine afwijkingen op; bij grote sprongen is een Shewhart-kaart even snel of sneller.',
         },
         {
           q: 'Wat is een bekende zwakte van CUSUM- en EWMA-kaarten?',
-          options: ['Ze geven bij een stabiel proces veel meer loos alarm', 'Ze werken alleen met attributieve data zoals tellingen', 'Ze reageren trager op een grote plotselinge sprong', 'Ze hebben subgroepen van minstens tien stuks nodig'],
+          options: ['Ze geven bij een stabiel proces veel meer loos alarm', 'Ze werken alleen met attributieve data zoals tellingen', 'Ze reageren trager op een grote plotselinge sprong', 'Ze hebben subgroepen van minstens tien stuks per keer nodig'],
           answer: 'Ze reageren trager op een grote plotselinge sprong',
           why: 'Middelen en speling dempen één groot punt, dus draaien fabrieken er vaak een Shewhart-kaart naast.',
         },
@@ -517,7 +517,7 @@ export default {
       ],
       teach: [
         'Grenzen bepalen vraagt 20 tot 25 subgroepen. Een serie van 40 is weg voordat je ze hebt, en de volgende serie van dat artikel komt pas maanden later. Een kleine serie (short run) is zo’n te kleine serie. Het antwoord: volg het proces, niet het artikel: dezelfde machine en bewerking, over artikelnummers heen.\n\nHet AIAG-handboek SPC (2e editie, 2005) en Montgomery beschrijven de gangbare opties.',
-        'De DNOM-kaart (deviation from nominal, afwijking van nominaal) zet elke meting min haar doelwaarde uit: een as van 20 mm, van 35 mm en van 50 mm komen allemaal rond nul uit op één kaart. Markeer elke artikelwissel op de kaart.\n\nDat werkt als de artikelen een vergelijkbare spreiding hebben. Neem het midden van de tolerantie als doel als de tolerantie eenzijdig is, zoals +0,03/0, anders lijken alle afwijkingen te hoog.',
+        'De DNOM-kaart (deviation from nominal, afwijking van nominaal) zet elke meting min haar doelwaarde uit: een as van 20 mm, van 35 mm en van 50 mm komen allemaal rond nul uit op één kaart. Markeer elke artikelwissel op de kaart.\n\nDat werkt als de artikelen een vergelijkbare spreiding hebben. Neem het midden van de tolerantie als doel als de tolerantie asymmetrisch is, zoals +0,03/0, anders lijken alle afwijkingen te hoog.',
         'Verschillen de spreidingen, dan deelt een gestandaardiseerde kaart (standardised chart, ook Z-kaart) elke afwijking door de eigen σ van dat artikel: z = (x − doel) / σ artikel. Elk artikel heeft dan grenzen van ±3. Daarvoor heb je per artikel een σ uit de historie nodig, die een bedrijf met kleine series moet opbouwen.\n\nEen andere check is een eerstestukcontrole per serie met een smal venster, maar die test de instelling, niet de stabiliteit van het proces.',
         'Automatische data geeft het omgekeerde probleem: duizenden metingen. Opeenvolgende metingen hangen samen (autocorrelatie, zie Kwaliteit: de basis, SPC in de praktijk), en gewone grenzen geven de hele dag alarm.\n\nOpties: minder vaak bemonsteren, zodat de punten onafhankelijk zijn; of het patroon modelleren en het residu uitzetten (residual), wat overblijft na het model. Waar een regelaar automatisch bijstelt, volg je wat de regelaar doet: een steeds grotere correctie is het signaal.',
         'Wat de manufacturing engineer afweegt: welke artikelen een kaart mogen delen (zelfde machine, materiaal en bewerking, vergelijkbare maat en spreiding), en of de kosten van SPC opwegen tegen artikelen die twee keer per jaar langskomen.\n\nVoor veel loonbedrijven is een DNOM-kaart per machine plus eerstestukcontroles het verstandige midden. Scherpe vraag: “Welke artikelen delen een spreiding, zodat ze een kaart kunnen delen?”',
@@ -526,7 +526,7 @@ export default {
         kind: 'faded',
         text: 'Een CNC-draaibank (een computergestuurde draaibank) draait drie artikelen op één DNOM-kaart van de diameter, met de doelen in het midden van de tolerantie. Het gemiddelde bewegend bereik is voor alle drie 0,004 mm, dus de grenzen zijn 0 ± 2,66 × 0,004 = ±0,011 mm.\n\nAfwijkingen in recente series: artikel A +0,002, −0,001, +0,003; artikel B +0,006, +0,008, +0,007; artikel C +0,001, 0,000, +0,002 mm. Artikel B zat ook in zijn vorige vijf series steeds hoog.',
         ask: 'Mogen deze drie één kaart delen, en wat vertelt artikel B je?',
-        reveal: 'Ja: vergelijkbare bewegende bereiken betekenen vergelijkbare spreidingen, dus DNOM is eerlijk. Geen punt valt buiten de grenzen, maar artikel B zit serie na serie zo’n +0,007 mm boven het doel: een reeks aan één kant.\n\nDat wijst op iets wat specifiek is voor B, zoals een gereedschapscorrectie in zijn programma of een andere wisselplaat (insert), niet op de machine. Corrigeer het in het programma van B. Had je nominaal als doel genomen in plaats van het midden van de tolerantie, dan had elk artikel met een eenzijdige tolerantie op B geleken.',
+        reveal: 'Ja: vergelijkbare bewegende bereiken betekenen vergelijkbare spreidingen, dus DNOM is eerlijk. Geen punt valt buiten de grenzen, maar artikel B zit serie na serie zo’n +0,007 mm boven het doel: een reeks aan één kant.\n\nDat wijst op iets wat specifiek is voor B, zoals een gereedschapscorrectie in zijn programma of een andere wisselplaat (insert), niet op de machine. Corrigeer het in het programma van B. Had je nominaal als doel genomen in plaats van het midden van de tolerantie, dan had elk artikel met een asymmetrische tolerantie op B geleken.',
       },
       said: 'Wat engineers zeggen: “We volgen niet het artikel, we volgen de machine. Dertig artikelnummers, één DNOM-kaart.”',
       recall: [
@@ -548,7 +548,7 @@ export default {
         },
         {
           q: 'Wanneer is een DNOM-kaart over artikelen heen niet eerlijk?',
-          options: ['Als de artikelen duidelijk verschillende spreidingen hebben', 'Als de artikelen onderling heel verschillende nominale maten hebben', 'Als de series kleiner zijn dan ongeveer 50 stuks per keer', 'Als de onderdelen op dezelfde machine worden gemaakt'],
+          options: ['Als de artikelen duidelijk verschillende spreidingen hebben', 'Als de artikelen onderling heel verschillende nominale maten hebben', 'Als de series kleiner zijn dan zo’n 50 stuks', 'Als de onderdelen op dezelfde machine worden gemaakt'],
           answer: 'Als de artikelen duidelijk verschillende spreidingen hebben',
           why: 'DNOM gaat uit van een gemeenschappelijke spreiding; bij verschillende spreidingen gebruik je een gestandaardiseerde kaart.',
         },
@@ -611,14 +611,14 @@ export default {
         },
         {
           q: 'Het histogram heeft een scherpe klif precies bij de bovenste specgrens, zonder onderdelen erachter. Wat is de meest waarschijnlijke reden?',
-          options: ['Het proces is perfect gecentreerd op de doelwaarde van de tekening', 'Het meetmiddel heeft een te fijne resolutie', 'De tolerantie is veel ruimer dan het proces echt nodig heeft', 'Stuks boven de grens zijn vóór het meten eruit gesorteerd'],
+          options: ['Het proces is perfect gecentreerd op de doelwaarde van de tekening', 'Het meetmiddel heeft een te fijne resolutie', 'De tolerantie is veel ruimer dan nodig', 'Stuks boven de grens zijn vóór het meten eruit gesorteerd'],
           answer: 'Stuks boven de grens zijn vóór het meten eruit gesorteerd',
           why: 'Een natuurlijk proces loopt geleidelijk af; een harde klif bij een grens betekent meestal dat de data door sorteren is afgekapt.',
         },
         {
           q: 'Het histogram lijkt op een kam: metingen alleen op 10,00, 10,01, 10,02 mm enzovoort, met lege staven ertussen. Waar wijst dat op?',
-          options: ['Twee processtromen zijn gemengd', 'Slijtage verschuift het gemiddelde langzaam', 'Het meetmiddel rondt af in grove stappen', 'De onderdelen zijn op verschillende dagen gemaakt'],
-          answer: 'Het meetmiddel rondt af in grove stappen',
+          options: ['Twee processtromen zijn gemengd', 'Slijtage verschuift het gemiddelde langzaam', 'Het meetmiddel rondt grof af', 'De onderdelen zijn op verschillende dagen gemaakt'],
+          answer: 'Het meetmiddel rondt grof af',
           why: 'Gaten op regelmatige stappen komen van de resolutie van het meetmiddel, niet van het proces.',
         },
         {
@@ -631,7 +631,7 @@ export default {
       situation: {
         scene: 'Je zit in een startoverleg bij een leverancier van stuuronderdelen. De kwaliteitsengineer presenteert een capability-rapport: “Nul afkeur op 125 stuks, dus we zijn capabel.” De Ppk op het rapport is 1,05.',
         ask: 'Wat vraag je?',
-        model: 'Nul op 125 zegt alleen dat het percentage waarschijnlijk onder de 2,4% ligt. De Ppk van 1,05 op het rapport zegt dat de spreiding bijna de hele tolerantie gebruikt, wat een paar duizend ppm voorspelt. Over welke periode en uit hoeveel partijen komen deze onderdelen? Is de kaart ernaast stabiel? En waarom is de totale spreiding breder dan de spreiding binnen?',
+        model: 'Nul op 125 zegt alleen dat het percentage waarschijnlijk onder de 2,4% ligt. De Ppk van 1,05 op het rapport zegt dat de spreiding bijna de hele tolerantie gebruikt, wat zo’n duizend ppm of meer voorspelt. Over welke periode en uit hoeveel partijen komen deze onderdelen? Is de kaart ernaast stabiel? En waarom is de totale spreiding breder dan de spreiding binnen?',
         rubric: [
           'Legt uit waarom nul afkeur in een kleine steekproef weinig bewijst',
           'Wijst op de Ppk en de verwachte ppm',
@@ -802,7 +802,7 @@ export default {
         },
       ],
       teach: [
-        'Een capability-eis is meer dan een getal. Hij noemt de kenmerken: elk bijzonder kenmerk (special characteristic), aangegeven op de tekening of uit de FMEA (de risicoanalyse) omdat het veiligheid, wetgeving of functie raakt. Hij noemt de index, de minimale steekproef en periode, en wat er gebeurt als het doel niet wordt gehaald.\n\nAIAG PPAP vraagt Ppk voor de startstudie en Cpk voor lopende productie. Een kale “Cpk ≥ 1,33” lokt de studie van één ochtend uit de les Cpk tegen Ppk uit.',
+        'Een capability-eis is meer dan een getal. Hij noemt de kenmerken: elk bijzonder kenmerk (special characteristic), aangegeven op de tekening of uit de FMEA (de risicoanalyse) omdat het veiligheid, wetgeving of functie raakt. Hij noemt de index, de minimale steekproef en periode, en wat er gebeurt als het doel niet wordt gehaald.\n\nAIAG PPAP vraagt doorgaans Ppk voor de startstudie en Cpk voor lopende productie. Een kale “Cpk ≥ 1,33” lokt de studie van één ochtend uit de les Cpk tegen Ppk uit.',
         'Sigma-niveaus verbergen een afspraak. Motorola nam aan dat het gemiddelde op lange termijn tot 1,5σ verloopt (de 1,5-sigmaverschuiving, zie Kwaliteit: de basis, Sigma-niveau). Opgegeven niveau min 1,5, gedeeld door 3, geeft ruwweg de Ppk op lange termijn: “six sigma” is zo’n Ppk 1,5, “five sigma” zo’n 1,17.\n\nWheeler en anderen vinden dat die vaste 1,5 geen goede basis heeft: een goed beheerst proces verloopt minder, een onbeheerst proces meer. Vraag om een gemeten Ppk en ppm in plaats van een sigmalabel.',
         'Niet elk proces is één klokvorm. Bij gereedschapsslijtage verschuift het gemiddelde bewust binnen elke standtijd (de levensduur van het gereedschap) en springt het terug bij de wissel. ISO 22514-2 beschrijft zo’n proces met een tijdsafhankelijk model (time-dependent model): het sorteert processen naar hoe ligging en spreiding in de tijd veranderen en berekent de capability uit de percentielen van het geheel.\n\nVoor zo’n proces is Ppk of de percentielspreiding het eerlijke getal. Spreek het model vóór de studie af met de klant.',
         'Cpm, de Taguchi-index, bestraft ook de afstand tot het doel, niet alleen tot de grens: Cpm = (USL − LSL) / (6 × √(σ² + (gemiddelde − doel)²)). Je gebruikt hem waar uit het midden zitten geld kost, ook binnen spec, zoals bij passingen en samenbouw.\n\nVoorbeeld: tolerantie 0,06 mm, σ 0,008 mm, gemiddelde 0,006 mm naast het doel. √(0,000064 + 0,000036) = 0,010, dus Cpm = 0,06 / 0,06 = 1,0, terwijl Cp 0,06 / 0,048 = 1,25 is.',
@@ -812,7 +812,7 @@ export default {
         kind: 'faded',
         text: 'De offerteaanvraag van een klant eist “Cpk ≥ 1,67 op alle 48 maten, uit 30 onderdelen”. Eén ervan is een boring met geplande gereedschapsslijtage: in elke standtijd loopt de diameter omhoog door de tolerantie, dan wordt het gereedschap gewisseld. Tolerantie 0,040 mm, gecentreerd. σ binnen 0,002 mm, σ totaal over meerdere standtijden 0,004 mm.\n\nCp binnen = 0,040 / (6 × 0,002) = 3,33. Pp totaal = 0,040 / (6 × 0,004) = 1,67.',
         ask: 'Wat stel je de klant voor?',
-        reveal: 'Beperk de 48 tot de bijzondere kenmerken en een paar sleutelmaten; de rest gaat naar het control plan zonder capability-eis. Vraag Ppk over meerdere partijen en standtijden in plaats van Cpk uit 30 onderdelen.\n\nVoor de boring: 30 opeenvolgende onderdelen dekken een snippertje van één standtijd en tonen de mooie 3,33. Spreek een tijdsafhankelijk model af, beoordeel op Pp of Ppk over hele standtijden (hier 1,67), en leg de slijtagecompensatie vast.',
+        reveal: 'Beperk de 48 tot de bijzondere kenmerken en een paar sleutelmaten; de rest gaat naar het control plan zonder capability-eis. Vraag Ppk over meerdere partijen en standtijden in plaats van Cpk uit 30 onderdelen.\n\nVoor de boring: 30 opeenvolgende onderdelen dekken een snippertje van één standtijd en tonen een flatteuze Cp van 3,33. Spreek een tijdsafhankelijk model af, beoordeel op Pp of Ppk over hele standtijden (hier Pp 1,67), en leg de slijtagecompensatie vast.',
       },
       said: 'Wat engineers zeggen: “Cpk op 48 maten uit 30 stuks? Laten we afspreken welke ertoe doen, en die beoordelen op Ppk over echte productie.”',
       recall: [
@@ -840,7 +840,7 @@ export default {
         },
         {
           q: 'Wat moet een degelijke capability-eis naast de waarde van de index noemen?',
-          options: ['Het merk SPC-software dat gebruikt wordt', 'De naam van de kwaliteitsengineer die de eis ondertekent', 'De steekproef, de periode en wat er gebeurt bij missen', 'De kleur van de papieren kaarten die aan de machine hangen'],
+          options: ['Het merk SPC-software dat gebruikt wordt', 'De naam van de kwaliteitsengineer die de eis ondertekent', 'De steekproef, de periode en wat er gebeurt bij missen', 'De kleur van de papieren kaarten'],
           answer: 'De steekproef, de periode en wat er gebeurt bij missen',
           why: 'Zonder steekproef, periode en gevolg haal je elke index met een korte, flatteuze studie.',
         },
@@ -878,12 +878,12 @@ export default {
         'Op de vloer is SPC een routine. De regel in het control plan zegt welk kenmerk, welk meetmiddel, hoeveel stuks en hoe vaak (Kwaliteit: de basis, Control plan). De operator meet, zet het punt uit of tikt het in op een terminal, checkt de regels, en reageert.\n\nPapieren kaarten aan de machine of SPC-software: software rekent de grenzen en regels uit, maar een punt met de hand zetten laat mensen kijken. Veel fabrieken gebruiken software met een groot scherm aan de lijn.',
         'Je kunt het onderdeel volgen of het proces. Een productkenmerk (product characteristic) meet je aan het onderdeel, zoals een diameter of wanddikte: het vertelt wat de klant krijgt. Een procesparameter is een instelling of omstandigheid die het onderdeel bepaalt, zoals perskracht, smelttemperatuur of lasstroom: die geeft vaak eerder een signaal, en machines kunnen hem elke cyclus loggen.\n\nGoede plannen volgen van allebei een paar, gekozen met de procesengineer.',
         'De meetfrequentie (sampling frequency) weegt de kosten van meten af tegen stuks die risico lopen. Komt er een signaal, dan is alles sinds de laatste goede controle verdacht. Bij 600 stuks per uur en een meting elke twee uur zijn dat tot 1.200 stuks.\n\nMeet vaker waar dingen veranderen: na een gereedschapswissel, bij het opstarten, bij een nieuwe materiaalpartij. Een eerstestukcontrole (first-off check), het eerste stuk na een omstelling meten voordat de serie doorloopt, vangt instelfouten voordat ze zich vermenigvuldigen.',
-        'Subgroepen zijn meestal 3 tot 5 opeenvolgende stuks, uit één stroom (de rationele subgroep, zie het onderwerp Regelkaarten). Grotere subgroepen zien kleinere verschuivingen maar kosten meer meettijd. Montgomery merkt op dat kleine subgroepen vaak meestal beter werken dan grote af en toe.\n\nSpreek de frequentie af en check haar dan: met hoeveel verdachte stuks zou je kunnen leven als er nu een signaal kwam?',
+        'Subgroepen zijn meestal 3 tot 5 opeenvolgende stuks, uit één stroom (de rationele subgroep, zie het onderwerp Regelkaarten). Grotere subgroepen zien kleinere verschuivingen maar kosten meer meettijd. Montgomery merkt op dat vaak een kleine subgroep meestal beter werkt dan af en toe een grote.\n\nSpreek de frequentie af en check haar dan: met hoeveel verdachte stuks zou je kunnen leven als er nu een signaal kwam?',
         'Wat je ziet in zwakke fabrieken: kaarten die aan het eind van de dienst uit het hoofd worden ingevuld, keurige punten zonder één notitie, operators die niet kunnen zeggen wat de lijnen betekenen. In sterke fabrieken legt de operator het laatste signaal uit en wat er is gedaan.\n\nScherpe vraag bij het bord: “Wat deed je de laatste keer dat een punt buiten de grens viel, en wie heb je gebeld?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een spuitgietcel (gesmolten kunststof wordt in een stalen matrijs gespoten) maakt 240 schoten per uur met een matrijs met 4 holtes: 960 stuks per uur. Het control plan zegt: wanddikte, 5 stuks elke 4 uur.\n\nEr komt een klantklacht binnen. Alles sinds de laatste goede controle is verdacht: 4 × 960 = 3.840 stuks om tegen te houden en te sorteren.\n\nDe verandering: de machine logt elk schot de smelttemperatuur en het restkussen (cushion, het kleine restje kunststof voor de schroef), met grenzen, en de operator meet elk uur één schot, per holte uitgezet, plus een eerstestukcontrole na elke matrijsstart en materiaalwissel. Verdachte stuks na een signaal: hooguit 960.',
+        text: 'Een spuitgietcel (gesmolten kunststof wordt in een stalen matrijs gespoten) maakt 240 schoten per uur met een matrijs met 4 holtes: 960 stuks per uur. Het control plan zegt: wanddikte, 5 stuks elke 4 uur.\n\nDan geeft een meting van de wanddikte een signaal. Alles sinds de laatste goede controle is verdacht: 4 × 960 = 3.840 stuks om tegen te houden en te sorteren.\n\nDe verandering: de machine logt elk schot de smelttemperatuur en het restkussen (cushion, het kleine restje kunststof voor de schroef), met grenzen, en de operator meet elk uur één schot, per holte uitgezet, plus een eerstestukcontrole na elke matrijsstart en materiaalwissel. Verdachte stuks na een signaal: hooguit 960.',
       },
       said: 'Wat engineers zeggen: “Elke vier uur is 3.840 stuks in quarantaine als het misgaat. Meet elk uur en laat de machine het kussen bewaken.”',
       recall: [
@@ -897,19 +897,19 @@ export default {
         },
         {
           q: 'Welke hiervan is een procesparameter en geen productkenmerk?',
-          options: ['De nadruk van een spuitgietmachine', 'De wanddikte van het gespoten kunststof onderdeel', 'De buitendiameter van een as die op een draaibank is gedraaid', 'Het gewicht van een gevulde zak'],
+          options: ['De nadruk van een spuitgietmachine', 'De wanddikte van het gespoten kunststof onderdeel', 'De buitendiameter van een as die op een draaibank is gedraaid', 'Het gewicht van een gevulde zak chips'],
           answer: 'De nadruk van een spuitgietmachine',
           why: 'Nadruk (holding pressure) is een machine-instelling die het onderdeel bepaalt; de andere meet je aan het product.',
         },
         {
           q: 'Wanneer is een extra meting het nuttigst?',
-          options: ['Op willekeurige momenten verspreid over de hele dienst heen', 'Halverwege een lange, stabiele run zonder enige wijziging erin', 'Direct na een gereedschapswissel of nieuwe materiaalpartij', 'Alleen aan het eind van elke dienst'],
+          options: ['Op willekeurige momenten in de dienst', 'Halverwege een lange, stabiele run zonder enige wijziging erin', 'Direct na een gereedschapswissel of nieuwe materiaalpartij', 'Alleen aan het eind van elke dienst'],
           answer: 'Direct na een gereedschapswissel of nieuwe materiaalpartij',
           why: 'Bij wijzigingen beginnen verschuivingen; dan meten vangt ze voordat er veel stuks zijn gemaakt.',
         },
         {
           q: 'Welk teken bij het SPC-bord wijst erop dat de kaart wordt ingevuld maar niet gebruikt?',
-          options: ['Een omcirkeld signaal in rood, met een notitie van wat eraan is gedaan', 'Grenzen die een jaar geleden voor het laatst zijn bepaald', 'Een operator die het laatste signaal uitlegt en wat er is gedaan', 'Keurige punten voor de hele dienst, maar geen notities'],
+          options: ['Een omcirkeld signaal in rood, met een notitie van wat eraan is gedaan', 'Regelgrenzen die meer dan een jaar geleden voor het laatst zijn bepaald', 'Een operator die het laatste signaal uitlegt en wat er is gedaan', 'Keurige punten voor de hele dienst, maar geen notities'],
           answer: 'Keurige punten voor de hele dienst, maar geen notities',
           why: 'Een gebruikte kaart toont reacties; een perfect nette kaart zonder notities is vaak achteraf ingevuld.',
         },
@@ -1008,7 +1008,7 @@ export default {
       pre: [
         {
           q: 'Op een X-gemiddelde-kaart kleeft bijna elk punt wekenlang aan de middellijn; geen punt komt in de buurt van de grenzen. Wat is de meest waarschijnlijke verklaring?',
-          options: ['Het proces is veel beter geworden dan voorheen', 'De operators stellen de machine heel handig en heel vaak bij', 'Elke subgroep mengt stromen, dus de grenzen zijn te breed', 'Het meetmiddel is veel preciezer dan dit kenmerk nodig heeft'],
+          options: ['Het proces is veel beter geworden dan voorheen', 'De operators stellen de machine heel handig en heel vaak bij', 'Elke subgroep mengt stromen, dus de grenzen zijn te breed', 'Het meetmiddel is veel preciezer dan nodig'],
           answer: 'Elke subgroep mengt stromen, dus de grenzen zijn te breed',
           why: 'Als elke subgroep meerdere stromen bevat, is de range opgeblazen en liggen de grenzen ver van de uitgezette gemiddelden.',
         },
@@ -1030,7 +1030,7 @@ export default {
       recall: [
         {
           q: 'Op een kaart mijden de punten de middellijn en zitten ze bij beide grenzen. Waar wijst dat op?',
-          options: ['De resolutie van het meetmiddel is veel te fijn', 'Het proces is heel stabiel en capabel', 'Een gereedschap slijt langzaam tijdens de hele run', 'Twee stromen leveren om de beurt een subgroep'],
+          options: ['Het meetmiddel is veel te fijn', 'Het proces is heel stabiel en capabel', 'Een gereedschap slijt langzaam tijdens de hele run', 'Twee stromen leveren om de beurt een subgroep'],
           answer: 'Twee stromen leveren om de beurt een subgroep',
           why: 'Dat is het mengpatroon: afwisselende subgroepen van twee machines of instellingen zitten hoog en laag.',
         },
@@ -1050,7 +1050,7 @@ export default {
         },
         {
           q: 'Waarom houd je een proceslogboek naast de regelkaart bij?',
-          options: ['Omdat auditors het aantal regels erin tellen', 'Om op drukke dagen de regelgrenzen te vervangen', 'Om een signaal te koppelen aan de wijziging vlak ervoor', 'Zodat operators een deel van de metingen kunnen overslaan'],
+          options: ['Omdat auditors het aantal regels erin tellen', 'Om op heel drukke dagen de regelgrenzen te vervangen', 'Om een signaal te koppelen aan de wijziging vlak ervoor', 'Zodat operators een deel van de metingen kunnen overslaan'],
           answer: 'Om een signaal te koppelen aan de wijziging vlak ervoor',
           why: 'De meeste oorzaken zijn wijzigingen; een notitie met tijd van elke wijziging legt snel het verband.',
         },
@@ -1079,17 +1079,17 @@ export default {
       pre: [
         {
           q: 'Een fabriek heeft 120 regelkaarten. Een audit laat zien dat over drie maanden maar 9% van de signalen een vastgelegde reactie heeft. Wat is de beste eerste stap?',
-          options: ['Een tweede auditor die alle 120 kaarten elke week nakijkt', 'Alle regelgrenzen zo herberekenen dat er van nu af aan veel minder signalen komen', 'Alle papieren kaarten vervangen door SPC-software', 'De kaarten houden die ertoe doen en elk signaal laten eindigen in een notitie'],
+          options: ['Een tweede auditor die alle 120 kaarten elke week nakijkt', 'Alle regelgrenzen zo herberekenen dat er van nu af aan veel minder signalen komen', 'Alle papieren kaarten vervangen door nieuwe SPC-software aan elke lijn', 'De kaarten houden die ertoe doen en elk signaal laten eindigen in een notitie'],
           answer: 'De kaarten houden die ertoe doen en elk signaal laten eindigen in een notitie',
           why: 'Te veel kaarten en geen gewoonte om te reageren is de gebruikelijke fout; minder kaarten met echte reacties werkt beter dan meer kaarten.',
         },
       ],
       teach: [
-        'In automotive vraagt IATF 16949 (de kwaliteitsnorm voor toeleveranciers in de auto-industrie, clausule 9.1.1.1) processtudies op elk productieproces, capability op het niveau dat in PPAP is goedgekeurd, en reactieplannen uit het control plan als een kenmerk instabiel of niet capabel is. Het AIAG-handboek SPC is de gangbare referentie.\n\nAuditors vragen de kaart én het bewijs van de reactie, niet alleen de kaart.',
+        'In automotive vraagt IATF 16949 (de kwaliteitsnorm voor toeleveranciers in de auto-industrie, clausule 9.1.1.1) processtudies op elk nieuw productieproces, capability op het niveau dat in PPAP is goedgekeurd, en reactieplannen uit het control plan als een kenmerk instabiel of niet capabel is. Het AIAG-handboek SPC is de gangbare referentie.\n\nAuditors vragen de kaart én het bewijs van de reactie, niet alleen de kaart.',
         'Kaarten kiezen begint bij de bijzondere kenmerken en de FMEA-punten met hoog risico, met een voorkeur voor procesparameters stroomopwaarts. Hef een kaart op als het kenmerk lang stabiel en zeer capabel is, zeg Ppk boven 2 gedurende een jaar: zet het om naar een periodieke audit, een check per week of maand. Spreek dat af met de klant als het control plan de kaart noemt.\n\nEen kaart waar niemand op reageert, kost tijd en leert mensen alle kaarten te negeren.',
         'Meet het programma zelf. De reactiegraad (reaction rate) is het deel van de signalen met een vastgelegde reactie en oorzaak. Voeg toe: de tijd van signaal tot reactie, het verloop van de capability van sleutelkenmerken, en klachten op kenmerken met een kaart.\n\nEen reactiegraad van 9% betekent dat de kaarten decoratie zijn; boven 90% sturen ze. Bespreek signalen kort in het dagelijkse of wekelijkse werkvloeroverleg, zodat teamleiders zien dat reacties ertoe doen.',
         'SPC-software gekoppeld aan de meetmiddelen verzamelt data, past regels toe en stuurt alarmen. De risico’s: duizenden kaarten die niemand opent, overal alle regels aan (Kwaliteit: de basis, SPC in de praktijk, over loos alarm), en operators die het gevoel voor hun proces kwijtraken.\n\nHoud een mens in de lus: elk alarm gaat naar iemand die de machine mag stilzetten, en de software legt vast wat die persoon deed.',
-        'Deming en Wheeler zeggen allebei dat SPC meer een manier van denken is dan een stapel kaarten. Het management moet ophouden operators ruis te laten verklaren (de les over signaal en ruis in de projectmodule), tijd geven om signalen uit te zoeken, en systeemwijzigingen betalen als een proces stabiel maar niet capabel is.\n\nScherpe vraag aan de plantmanager: “Wie heeft deze maand een machine stilgezet vanwege een kaart, en wat gebeurde er met die persoon?”',
+        'Deming en Wheeler zeggen allebei dat SPC meer een manier van denken is dan een stapel kaarten. Het management moet ophouden operators ruis te laten verklaren (Sturen op prestaties, Signaal en ruis in het overleg), tijd geven om signalen uit te zoeken, en systeemwijzigingen betalen als een proces stabiel maar niet capabel is.\n\nScherpe vraag aan de plantmanager: “Wie heeft deze maand een machine stilgezet vanwege een kaart, en wat gebeurde er met die persoon?”',
       ],
       example: {
         kind: 'faded',
