@@ -620,23 +620,45 @@ details > summary::before {
   transform: rotate(-45deg); transition: transform var(--motion-fast) var(--ease-standard);
 }
 details[open] > summary::before { transform: rotate(45deg); }
-/* More practice: one disclosure, grouped and labelled. */
-details.more > summary {
-  cursor: pointer; list-style: none; min-height: 56px; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: center;
-  padding: 10px 14px; border: 1px solid var(--border-subtle); border-radius: var(--radius); background: var(--card);
-}
-details.more > summary::-webkit-details-marker { display: none; }
-.more-label { font-weight: 600; color: var(--heading); font-size: 1.05rem; }
-.more-sub { grid-column: 2; }
-details.more > summary::before { grid-row: span 2; }
-details.more[open] > summary { border-color: var(--accent); }
-.more-group { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-.more-title {
+/* Speaking home: four labelled bands (Vandaag, Oefenen, Uitdagen, Echt en terugkijken). */
+.band { display: flex; flex-direction: column; gap: 10px; }
+.band + .band { margin-top: 10px; }
+.band-title {
   font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; text-transform: uppercase;
   letter-spacing: var(--tracking-label); color: var(--muted); margin: 0; line-height: 1.4;
 }
-.more-group .programme-card .btn { width: 100%; }
-.more-group .programme-card .prog-stop { width: auto; }
+.band .programme-card .btn { width: 100%; }
+.band .programme-card .prog-stop { width: auto; }
+.band .rw-entry, .band .lb-entry { margin-top: 0; }
+/* Single cards in a band read as rows: icon left, name and line beside it. */
+.band .convo-card { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px; align-items: center; padding: 12px 14px; }
+.band .convo-card .drill-icon { grid-row: span 2; }
+.band .programme-card .prog-intro { margin: 4px 0 10px; }
+/* A thin progress bar (decorative; the text beside it carries the number). */
+.pbar { display: block; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.pbar > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+/* Drill groups fold open; the summary names the group and its progress. */
+.drill-groups { display: flex; flex-direction: column; gap: 8px; }
+.drill-group { border: 1px solid var(--border-subtle); border-radius: var(--radius); background: var(--card); }
+.drill-group[open] { border-color: var(--accent); }
+.group-head { min-height: 52px; display: grid; grid-template-columns: auto 1fr auto; column-gap: 6px; row-gap: 6px; align-items: center; padding: 10px 14px; }
+.group-head::before { grid-row: span 2; }
+.group-name { font-weight: 600; color: var(--heading); font-size: 1.02rem; }
+.group-meta { font-family: var(--font-mono); font-size: 0.75rem; justify-self: end; }
+.group-head .pbar { grid-column: 2 / 4; }
+.drill-group > .drill-grid { padding: 0 10px 10px; }
+/* Course homes: tracks fold open, with progress in the header. */
+.track { padding-top: 4px; padding-bottom: 4px; }
+.track-head { display: grid; grid-template-columns: auto 1fr; column-gap: 2px; row-gap: 4px; align-items: center; min-height: 52px; padding: 8px 0; }
+.track-head::before { grid-row: span 3; }
+.track-head > * { grid-column: 2; }
+.track > .track-head .card-title { margin: 0; }
+.track-meta { font-family: var(--font-mono); font-size: 0.75rem; }
+.track[open] > .track-head { margin-bottom: 2px; }
+.module-meta .pbar { width: 56px; }
+/* Begrippen and Mijn echte week: one compact row under the next step. */
+.quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.quick-row .btn { margin: 0; min-height: 44px; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 4px; }
 
 /* Micro-lessons and situation finder */
 details.tip { margin: 8px 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--tint); border: 1px solid var(--border-subtle); text-align: left; }

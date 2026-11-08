@@ -1,10 +1,11 @@
 // Course home: one next thing, the due questions, and the module map.
 import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
-import { masteryBadge, realWeekEntry } from './home.js';
+import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson, topicRows, levelsDone } from '../core/course.js';
 import { dueCount } from '../core/coursereview.js';
+import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
 export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
@@ -39,9 +40,8 @@ export function openPick(app, subject, pick) {
   return null;
 }
 
-function todayCard(app, subject) {
+function todayCard(app, subject, pick) {
   const t = app.t;
-  const pick = courseTodayPick(app.state, subject, app.lang, app.today());
   const meta = pick.moduleId ? MODULES.find((m) => m.id === pick.moduleId) : null;
   const what = h('p', { class: 'today-what' }, ico(COURSE_ICON[pick.reason]), ' ',
     meta ? modTitle(app, meta) : t(`courseWhat_${pick.reason}`, pick.count || 0));
@@ -69,6 +69,21 @@ export function chipModel(t, topicTitle, lv, isNext) {
   const label = t(`level_${lv.level}`);
   const aria = t('chipLabel', topicTitle, label, t(`chipState_${lv.state}`));
   return { cls: `level-chip s-${lv.state}${isNext ? ' next' : ''}`, label, aria: isNext ? `${aria} (${t('chipNext')})` : aria, icon: CHIP_ICON[lv.state] || null };
+}
+
+// The meta line every module shares: difficulty (Instap / Verdieping /
+// Specialist), mastery once it is more than "learn", and progress as a bar
+// with its count.
+function moduleMeta(app, meta, count) {
+  const t = app.t;
+  const { done, total } = levelsDone(app.state, meta);
+  const m = moduleMastery(app.state, meta, app.lang);
+  return [
+    h('span', { class: 'pill tier' }, t(`tier_${moduleTier(meta.level)}`)),
+    m === 'learn' ? null : masteryBadge(t, m),
+    progressBar(total ? done / total : 0),
+    h('span', { class: 'muted small module-count' }, count),
+  ];
 }
 
 const topicTitle = (app, topic) => topic.title[app.lang] || topic.title.en;
@@ -105,9 +120,7 @@ function topicModuleRow(app, meta) {
       })));
   });
   return h('details', { class: 'module topic-module' },
-    modSummary(app, meta,
-      masteryBadge(t, moduleMastery(app.state, meta, app.lang)),
-      h('span', { class: 'muted small' }, t('moduleLevels', done, total))),
+    modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLevels', done, total))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     h('section', { class: 'topics' }, rows),
     next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
@@ -130,10 +143,7 @@ function moduleRow(app, meta) {
     }));
   }).catch(() => list.replaceChildren(h('p', { class: 'note' }, t('loadError'))));
   return h('details', { class: 'module', ontoggle: (e) => { if (e.currentTarget.open && !list.childElementCount) fill(); } },
-    modSummary(app, meta,
-      h('span', { class: 'pill' }, t(`level_${meta.level}`)),
-      masteryBadge(t, moduleMastery(app.state, meta, app.lang)),
-      h('span', { class: 'muted small' }, t('moduleLessons', done, meta.lessons.length))),
+    modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLessons', done, meta.lessons.length))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     list,
     nextLesson(app.state, meta) ? h('button', {
@@ -142,23 +152,37 @@ function moduleRow(app, meta) {
     }, ico('play'), ' ', t('moduleContinue')) : null);
 }
 
+// One track: a header with its progress; folds open. The track with the next
+// step starts open, the others closed.
+function trackSection(app, subject, track, open) {
+  const t = app.t;
+  const mods = MODULES.filter((m) => m.subject === subject && m.track === track);
+  if (!mods.length) return null;
+  const { done, total } = trackProgress(app.state, mods);
+  return h('details', { class: `card track track-${track}`, open },
+    h('summary', { class: 'track-head' },
+      h('h2', { class: 'card-title' }, t(`track_${track}`)),
+      h('span', { class: 'track-meta muted small' }, t('trackModules', mods.length), ' · ', t('trackDone', done, total)),
+      progressBar(total ? done / total : 0)),
+    mods.map((m) => moduleRow(app, m)));
+}
+
 export function courseHome(app, subject) {
   const t = app.t;
   const due = dueCount(app.state.courseReviews, app.today(), subject, app.lang);
-  const tracks = TRACKS[subject].map((track) => {
-    const mods = MODULES.filter((m) => m.subject === subject && m.track === track);
-    return mods.length ? h('section', { class: 'card track' },
-      h('h2', { class: 'card-title' }, t(`track_${track}`)),
-      mods.map((m) => moduleRow(app, m))) : null;
-  });
+  const pick = courseTodayPick(app.state, subject, app.lang, app.today());
+  const first = openTrack(app.state, subject, pick);
+  const tracks = TRACKS[subject].map((track) => trackSection(app, subject, track, track === first));
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
-    todayCard(app, subject),
+    todayCard(app, subject, pick),
+    // Begrippen and Mijn echte week: one compact row under the next step.
+    h('div', { class: 'quick-row' },
+      h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
+      realWeekEntry(app, true)),
     due ? h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
       h('span', { class: 'hero-sub' }, t('dueCard', due))) : null,
     ...tracks,
-    tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty')),
-    h('button', { class: 'btn btn-ghost', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
-    realWeekEntry(app));
+    tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty')));
 }

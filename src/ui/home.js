@@ -1,7 +1,8 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf, ownedDrills } from '../core/mastery.js';
-import { todayPick, startCards, MORE_GROUPS } from '../core/today.js';
+import { todayPick, startCards } from '../core/today.js';
+import { SPEAK_BANDS, DRILL_GROUPS, groupProgress, openGroups, toggleGroup } from '../core/layout.js';
 import { programmeWeek, PROGRAMME, startProgramme, stopProgramme, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
 import { MODULES } from '../content/courses/index.js';
@@ -10,7 +11,7 @@ import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
-import { levelFromXp, isStreakAlive, DRILLS, daysPractised } from '../core/progress.js';
+import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
@@ -124,7 +125,7 @@ function programmeCard(app) {
     const finished = !!(s.programme && s.programme.start);
     return h('section', { class: 'card programme-card' },
       h('h3', { class: 'card-title' }, t('progTitle')),
-      h('p', {}, finished ? t('progDone') : t('progIntro')),
+      h('p', { class: 'prog-intro' }, finished ? t('progDone') : t('progShort')),
       h('button', {
         class: 'btn btn-ghost',
         onclick: () => {
@@ -149,28 +150,66 @@ function programmeCard(app) {
     h('button', { class: 'btn btn-ghost small prog-stop', onclick: () => { app.setState(stopProgramme(app.state)); app.go('home'); } }, t('progStop')));
 }
 
-// Everything that is not the one next thing, behind one labelled disclosure.
-export function morePractice(app) {
+// A drill tile: icon, name, mastery and level pips.
+function drillTile(app, d) {
   const t = app.t;
   const s = app.state;
-  const dueCount = app.dueReviews().length;
-  const ITEMS = {
-    quick: () => h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
-    drills: () => h('div', { class: 'drill-grid' }, DRILLS.map((d) => h('button', {
-      class: `drill drill-${d}`, onclick: () => app.startDrill(d),
-    },
+  return h('button', { class: `drill drill-${d}`, onclick: () => app.startDrill(d) },
     h('span', { class: 'drill-icon' }, ico(DRILL_ICON[d])),
     h('span', { class: 'drill-name' }, t(`drill_${d}`)),
     masteryBadge(t, masteryOf(s.history, d)),
     h('span', { class: 'pips', 'aria-label': `${t('level')} ${s.drillLevels[d]}` },
-      [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' })))))),
+      [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= s.drillLevels[d] ? 'on' : '' }))));
+}
+
+// A thin progress bar; the share is 0–1. Decorative: the text next to it says it.
+export const progressBar = (share) => h('span', { class: 'pbar', 'aria-hidden': 'true' },
+  h('i', { style: `width:${Math.round(Math.max(0, Math.min(1, share)) * 100)}%` }));
+
+// One drill group that folds open; its open state is remembered in ui.drillGroups.
+function drillGroup(app, g, open) {
+  const t = app.t;
+  const p = groupProgress(app.state.history, g);
+  return h('details', {
+    class: `drill-group group-${g.id}`, open,
+    ontoggle: (e) => {
+      const isOpen = e.currentTarget.open;
+      if (openGroups(app.state.ui).includes(g.id) === isOpen) return;
+      app.setState({ ...app.state, ui: toggleGroup(app.state.ui, g.id, isOpen) });
+    },
+  },
+  h('summary', { class: 'group-head' },
+    h('span', { class: 'group-name' }, t(`group_${g.id}`)),
+    h('span', { class: 'group-meta muted small' }, t('groupProgress', p.owned, p.total)),
+    progressBar(p.share)),
+  h('div', { class: 'drill-grid' }, g.drills.map((d) => drillTile(app, d))));
+}
+
+// The speaking home below the header: four bands (SPEAK_BANDS), one primary button.
+function speakBands(app) {
+  const t = app.t;
+  const s = app.state;
+  const today = app.today();
+  const doneToday = (s.days[today] || 0) >= 3;
+  const weak = weekFocus(s, new Date()) || weakestDrill(s.history, ownedDrills(s.history));
+  const dueCount = app.dueReviews().length;
+  const open = openGroups(s.ui);
+  const ITEMS = {
+    next: () => todayCard(app),
+    quests: () => questCard(app),
+    lesson: () => h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
+      h('span', { class: 'hero-title' }, ico('layers'), ' ', doneToday ? t('lessonDone') : t('todayLesson')),
+      h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
     reviews: () => (dueCount ? h('button', { class: 'btn review-card', onclick: () => app.startReviews() },
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('reviewTitle')),
       h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null),
+    quick: () => h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
+    groups: () => h('div', { class: 'drill-groups' }, DRILL_GROUPS.map((g) => drillGroup(app, g, open.includes(g.id)))),
     boss: () => (bossAvailable(s, new Date()) ? h('button', {
       class: 'btn boss-card',
       onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
     }, h('span', { class: 'hero-title' }, ico('crown'), ' ', t('bossTitle')), h('span', { class: 'hero-sub' }, t('bossSub'))) : null),
+    programme: () => programmeCard(app),
     targeted: () => h('button', {
       class: 'drill convo-card target-card',
       onclick: async (e) => {
@@ -183,6 +222,7 @@ export function morePractice(app) {
     h('span', { class: 'drill-icon' }, ico('crosshair')),
     h('span', { class: 'drill-name' }, t('targetTitle')),
     h('span', { class: 'muted small' }, s.settings.apiKey ? t('targetSubAI') : t('targetSub'))),
+    realweek: () => realWeekCard(app),
     conversation: () => h('button', {
       class: 'drill convo-card',
       onclick: () => app.go(s.settings.apiKey ? 'conversation' : 'settings'),
@@ -190,21 +230,14 @@ export function morePractice(app) {
     h('span', { class: 'drill-icon' }, ico('message-circle')),
     h('span', { class: 'drill-name' }, t('convoTitle')),
     h('span', { class: 'muted small' }, s.settings.apiKey ? t('convoSub') : t('convoNeedsKey'))),
-    realweek: () => realWeekCard(app),
     finder: () => situationFinder(app),
-    quests: () => questCard(app),
-    programme: () => programmeCard(app),
+    listen: () => listenEntry(app),
   };
-  const groups = MORE_GROUPS.map((g) => {
-    const items = g.items.map((id) => ITEMS[id]()).filter(Boolean);
-    return items.length ? h('div', { class: `more-group more-${g.id}` }, h('h2', { class: 'more-title' }, t(`more_${g.id}`)), items) : null;
+  return SPEAK_BANDS.map((b) => {
+    const items = b.items.map((id) => ITEMS[id]()).filter(Boolean);
+    return items.length ? h('section', { class: `band band-${b.id}`, 'aria-labelledby': `band-${b.id}` },
+      h('h2', { class: 'band-title', id: `band-${b.id}` }, t(`band_${b.id}`)), items) : null;
   });
-  return h('details', {
-    class: 'more', open: !!(s.ui || {}).moreOpen,
-    ontoggle: (e) => { app.setState({ ...app.state, ui: { ...(app.state.ui || {}), moreOpen: e.currentTarget.open } }); },
-  },
-  h('summary', {}, h('span', { class: 'more-label' }, t('moreTitle')), h('span', { class: 'muted small more-sub' }, t('moreSub'))),
-  groups);
 }
 
 // One compact card per subject: its next step and why. Tapping opens that subject's home.
@@ -274,11 +307,11 @@ function renderStart(app, root, showBreak) {
 }
 
 // A quiet way into "My real week" from the start screen and the course homes.
-export function realWeekEntry(app) {
+export function realWeekEntry(app, compact = false) {
   const t = app.t;
-  return h('button', { class: 'btn btn-ghost rw-entry', onclick: () => app.go('realweek') },
+  return h('button', { class: `btn btn-ghost rw-entry${compact ? ' small' : ''}`, onclick: () => app.go('realweek') },
     h('span', { class: 'rw-entry-title' }, ico('calendar'), ' ', t('rwTitle')),
-    h('span', { class: 'muted small' }, t('rwEntry')));
+    compact ? null : h('span', { class: 'muted small' }, t('rwEntry')));
 }
 
 // The one primary action of the app: start the recommended next step now.
@@ -319,8 +352,6 @@ export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  const doneToday = (s.days[today] || 0) >= 3;
-  const weak = weekFocus(s, new Date()) || weakestDrill(s.history, ownedDrills(s.history));
   // Gentle, once a day: the streak broke, but the total never resets.
   const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
   if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
@@ -331,19 +362,14 @@ export function renderHome(app, _params, root) {
     root.append(subjectHeader(app), subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
     return;
   }
-  // Speaking: the Today card, the daily lesson, then "More practice".
+  // Speaking: four bands, Vandaag first.
   root.append(
     subjectHeader(app),
     subjectBar(app),
-    h('main', { class: 'screen home' },
+    h('main', { class: 'screen home speak-home' },
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
-      todayCard(app),
-      h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
-        h('span', { class: 'hero-title' }, ico('layers'), ' ', doneToday ? t('lessonDone') : t('todayLesson')),
-        h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
-      listenEntry(app),
-      morePractice(app),
+      ...speakBands(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),
   );
