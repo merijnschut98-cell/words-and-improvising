@@ -10,7 +10,7 @@ export default {
           q: 'Je pakt een tekening bij een machine. Waar kijk je eerst om te weten of het de geldige versie is?',
           options: ['Het grootste aanzicht op het blad, meestal het vooraanzicht', 'De maat met de nauwste tolerantie', 'De revisie in de stempel', 'De notities aan de linkerkant'],
           answer: 'De revisie in de stempel',
-          why: 'De stempel is het vak rechtsonder; de revisieletter erin zegt welke versie je hebt. De meeste afkeur door tekeningen komt doordat iemand werkt met een oude revisie.',
+          why: 'De stempel is het vak rechtsonder; de revisieletter erin zegt welke versie je hebt. Veel afkeur door tekeningen komt doordat iemand werkt met een oude revisie.',
         },
       ],
       teach: [
@@ -85,9 +85,9 @@ export default {
         },
       ],
       teach: [
-        'Elke lijn op een tekening betekent iets, vastgelegd in ISO 128. Een dikke doorgetrokken lijn is een zichtbare rand. Een dunne streeplijn is een verborgen lijn: een rand achter materiaal. Een dunne streep-puntlijn is een hartlijn (centre line): de as van een gat of as.\n\nDunne doorgetrokken lijnen dragen maten en arcering. Een dunne lijn met twee puntjes tussen de streepjes toont een naastgelegen onderdeel of de uiterste stand van een bewegend deel.',
-        'Een onderdeeltekening (part drawing, ook detailtekening) toont één onderdeel met elke maat die je nodig hebt om het te maken. Een samenstellingstekening (assembly drawing) toont hoe onderdelen in elkaar gaan. Er staan weinig maten op, vooral die na de montage tellen.\n\nElk onderdeel krijgt een positienummer in een ballonnetje: een rondje aan een dun verwijslijntje. Een explosietekening (exploded view) trekt de onderdelen uit elkaar in de montagerichting, handig voor wie het bouwt.',
-        'De onderdelenlijst (parts list) is de tabel op de samenstellingstekening: positienummer, aantal, artikelnummer, omschrijving, en materiaal of norm. Een ingekocht normdeel heeft geen eigen tekening; de normaanduiding zegt alles, zoals “ISO 4762 M8×25”: een inbusbout, M8-draad, 25 mm lang.\n\nDe stuklijst (bill of materials, BOM) in het ERP-systeem hoort hiermee overeen te komen; het ERP-systeem bestelt en kit vanuit die stuklijst, niet vanaf het papier.',
+        'Elke lijn op een tekening betekent iets, vastgelegd in ISO 128. Een dikke doorgetrokken lijn is een zichtbare rand. Een dunne streeplijn is een verborgen lijn (hidden line): een rand achter materiaal. Een dunne streep-puntlijn is een hartlijn (centre line): de as van een gat of as.\n\nDunne doorgetrokken lijnen dragen maten en arcering. Een dunne lijn met twee puntjes tussen de streepjes toont een naastgelegen onderdeel of de uiterste stand van een bewegend deel.',
+        'Een onderdeeltekening (part drawing, ook detailtekening) toont één onderdeel met elke maat die je nodig hebt om het te maken. Een samenstellingstekening (assembly drawing) toont hoe onderdelen in elkaar gaan. Er staan weinig maten op, vooral die na de montage tellen.\n\nElk onderdeel krijgt een positienummer (item number) in een ballonnetje: een rondje aan een dun verwijslijntje. Een explosietekening (exploded view) trekt de onderdelen uit elkaar in de montagerichting, handig voor wie het bouwt.',
+        'De onderdelenlijst (parts list) is de tabel op de samenstellingstekening: positienummer, aantal, artikelnummer, omschrijving, en materiaal of norm. Een ingekocht normdeel heeft geen eigen tekening; de normaanduiding zegt alles, zoals “ISO 4762 M8×25”: een inbusbout, M8-draad, 25 mm lang.\n\nDe stuklijst (bill of materials, BOM) in het ERP-systeem hoort hiermee overeen te komen; het ERP-systeem bestelt en verzamelt de onderdelen per order (kitting) vanuit die stuklijst, niet vanaf het papier.',
         'Algemene opmerkingen (general notes) gelden voor de hele tekening, tenzij een maat iets anders zegt: “alle maten in mm”, “scherpe kanten breken”, “tenzij anders vermeld”, een coating of warmtebehandeling. Een samenstellingstekening kan montage-instructies toevoegen: een aanhaalmoment, een draadborging, een controle na montage.\n\nLees de opmerkingen voordat je begint. Daar zit vaak de dure eis, zoals “alle kanten ontbramen” op 400 gaten.',
         'De klassieke fout is niet het lezen maar het synchroniseren: de tekening krijgt een nieuwe revisie, de stuklijst in het ERP niet, en de kit voor de montage komt met de oude bout. Positienummers die na een wijziging opnieuw gebruikt worden, geven dezelfde puinhoop.\n\nEen scherpe vraag: wie houdt de stuklijst in het ERP gelijk met de onderdelenlijst op de tekening, en hoeveel dagen na een revisie is hij bijgewerkt?',
       ],
@@ -113,7 +113,7 @@ export default {
         },
         {
           q: 'Waar vind je hoeveel van elk onderdeel er in een samenstelling gaan?',
-          options: ['In de algemene opmerkingen naast de stempel', 'In de stempel, naast de schaal', 'In de onderdelenlijst op de samenstellingstekening', 'In de explosietekening, door de getoonde delen te tellen'],
+          options: ['In de algemene opmerkingen naast de stempel', 'In de stempel, vlak naast de schaal van de tekening', 'In de onderdelenlijst op de samenstellingstekening', 'In de explosietekening, door de getoonde delen te tellen'],
           answer: 'In de onderdelenlijst op de samenstellingstekening',
           why: 'De onderdelenlijst geeft per onderdeel positienummer, aantal, artikelnummer en omschrijving.',
         },
@@ -156,10 +156,10 @@ export default {
         },
       ],
       teach: [
-        'Schroefdraad: “M10” is metrische draad met een nominale diameter van 10 mm en de grove spoed, de afstand tussen twee draadtoppen, van 1,5 mm. Fijne draad wordt uitgeschreven: M10×1,25. Daarna volgt een tolerantieklasse: 6H voor binnendraad (hoofdletter), 6g voor buitendraad.\n\nEen tapgat staat vaak als “M8 – 16 diep, boren Ø6,8 – 20 diep”: de boor gaat dieper dan de draad. De kernboor is ongeveer nominaal min spoed: 8 − 1,25 = 6,75, dus Ø6,8.',
+        'Schroefdraad: “M10” is metrische draad met een nominale diameter van 10 mm en de grove spoed (pitch), de afstand tussen twee draadtoppen, van 1,5 mm. Fijne draad wordt uitgeschreven: M10×1,25. Daarna volgt een tolerantieklasse: 6H voor binnendraad (hoofdletter), 6g voor buitendraad.\n\nEen tapgat staat vaak als “M8 – 16 diep, boren Ø6,8 – 20 diep”: de boor gaat dieper dan de draad. De kernboor is ongeveer nominaal min spoed: 8 − 1,25 = 6,75, dus Ø6,8.',
         'Gaten voor boutkoppen: een kamerboring (counterbore) is een verwijding met een vlakke bodem, zodat de kop van een inbusbout onder het oppervlak zit; een verzinking (countersink) is een kegel voor een platkopschroef. ASME-tekeningen gebruiken voor beide symbolen, met een ↧ voor de diepte; ISO-tekeningen tonen ze vaak in een doorsnede of schrijven ze uit.\n\n“4× Ø9, kamerboring Ø15, 9 diep” betekent vier gaten voor M8-inbusbouten, elk met een kamer voor de kop.',
         'Het ruwheidssymbool (surface texture symbol) is een vinkje met een waarde, zoals Ra 1,6: een gemiddelde ruwheid van 1,6 µm. Een streep over het vinkje betekent dat er materiaal af moet, door verspanen; een rondje erin betekent dat er geen materiaal af mag.\n\nISO 21920-1 verving in 2021 ISO 1302 voor dit symbool, en de tekening legt nu ook vast hoe het oppervlak gemeten wordt. Welk proces welke Ra haalt, staat in Verspanen.',
-        'Een lassymbool (weld symbol, ISO 2553) heeft een pijllijn die naar de naad wijst en eindigt op een referentielijn. In het Europese systeem staat onder de referentielijn een streeplijn. Een symbool op de doorgetrokken lijn betekent: las aan de pijlzijde; op de streeplijn: aan de andere kant.\n\nEen driehoekje is een hoeklas (fillet weld), de las in de hoek tussen twee platen. “a5” betekent een a-maat (throat) van 5 mm; “z7” een beenlengte van 7 mm. Een vlaggetje betekent lassen op locatie; een rondje, rondom.',
+        'Een lassymbool (weld symbol, ISO 2553) heeft een pijllijn die naar de naad wijst en eindigt op een referentielijn. In het Europese systeem loopt er een streeplijn naast, erboven of eronder. Een symbool op de doorgetrokken lijn betekent: las aan de pijlzijde; op de streeplijn: aan de andere kant.\n\nEen driehoekje is een hoeklas (fillet weld), de las in de hoek tussen twee platen. “a5” betekent een a-maat (throat) van 5 mm; “z7” een beenlengte van 7 mm. Een vlaggetje betekent lassen op locatie; een rondje, rondom.',
         'De dure verwarring is a tegenover z. De a-maat van een hoeklas is de beenlengte gedeeld door ongeveer 1,41 (√2), dus z7 is maar zo’n a5. Lassers die z5 als a5 lezen, leggen twee keer zoveel lasmetaal; andersom is de las te zwak. Lasgrootte en wat die kost staan in Lassen en verbinden.\n\nAmerikaanse tekeningen (AWS A2.4) hebben geen streeplijn: onder de lijn is pijlzijde. Een scherpe vraag: is deze maat a of z, en welke norm gebruikt de tekening?',
       ],
       example: {
@@ -194,7 +194,7 @@ export default {
         },
         {
           q: 'Op een ISO-tekening (Europees systeem) staat een lassymbool op de streeplijn onder de referentielijn. Waar zit de las?',
-          options: ['Aan de pijlzijde van de naad', 'Aan de andere kant dan de pijl', 'Aan beide kanten van de naad tegelijk', 'Rondom het deel, als één gesloten ring'],
+          options: ['Alleen aan de pijlzijde van de naad', 'Aan de andere kant dan de pijl', 'Aan beide kanten van de naad tegelijk', 'Rondom het deel, als één gesloten ring'],
           answer: 'Aan de andere kant dan de pijl',
           why: 'Doorgetrokken lijn: pijlzijde. Streeplijn: andere kant. Symbolen op beide: beide kanten.',
         },
@@ -224,7 +224,7 @@ export default {
       pre: [
         {
           q: 'Een technische wijziging maakt een gat iets groter; het nieuwe deel past nog overal waar het oude zat. Wat krijgt het meestal?',
-          options: ['Een nieuw artikelnummer in het ERP-systeem', 'Helemaal niets: kleine wijzigingen hoeven niet vastgelegd', 'Een nieuwe revisie op hetzelfde artikelnummer', 'Een getekende deviatie van het kwaliteitsteam van de klant'],
+          options: ['Een gloednieuw artikelnummer in het ERP-systeem', 'Helemaal niets: kleine wijzigingen hoeven niet vastgelegd', 'Een nieuwe revisie op hetzelfde artikelnummer', 'Een getekende deviatie van het kwaliteitsteam van de klant'],
           answer: 'Een nieuwe revisie op hetzelfde artikelnummer',
           why: 'Blijven vorm, passing en functie uitwisselbaar, dan is de gangbare regel een nieuwe revisie; een niet-uitwisselbare wijziging krijgt een nieuw artikelnummer. Bedrijven leggen hun eigen regel vast.',
         },
@@ -299,7 +299,7 @@ export default {
       pre: [
         {
           q: 'Een maat op een tekening staat tussen haakjes: (25). Wat betekent dat?',
-          options: ['Een referentiemaat, alleen ter informatie', 'Hij moet op elk deel gemeten worden, niet steekproefsgewijs', 'Hij is in inches, niet in millimeters', 'Zijn tolerantie is twee keer de algemene tolerantie'],
+          options: ['Een referentiemaat, alleen ter informatie', 'Hij moet op elk deel gemeten worden, niet steekproefsgewijs', 'Hij staat in inches in plaats van millimeters', 'Zijn tolerantie is twee keer de algemene tolerantie'],
           answer: 'Een referentiemaat, alleen ter informatie',
           why: 'Een referentiemaat volgt uit andere maten; hij is niet getolereerd en wordt niet gecontroleerd.',
         },
@@ -442,13 +442,13 @@ export default {
       pre: [
         {
           q: 'Een vlak heeft een vlakheidstolerantie van 0,05 mm. Hoeveel mag het vlak in totaal uit het vlak zijn?',
-          options: ['0,10 mm, want het is ±0,05', '0,025 mm aan elke kant van het vlak', 'Zoveel als de maattolerantie toestaat', '0,05 mm in totaal: de bandbreedte'],
+          options: ['0,10 mm in totaal, want het is ±0,05', '0,025 mm aan elke kant van het vlak', 'Zoveel als de maattolerantie toestaat', '0,05 mm in totaal: de bandbreedte'],
           answer: '0,05 mm in totaal: de bandbreedte',
           why: 'Een geometrische tolerantie is de volle breedte van zijn zone, geen ±-waarde.',
         },
       ],
       teach: [
-        'ISO 1101 deelt de symbolen in families. Vorm, zonder referentie: vlakheid, rechtheid, rondheid, cilindriciteit. Richting, met referentie: haaksheid, evenwijdigheid, hoekzuiverheid. Plaats: positie, en in ISO ook concentriciteit en symmetrie. Slag: rondloop en totale slag.\n\nASME Y14.5-2018 schrapte concentriciteit en symmetrie, zodat er 12 symbolen overblijven; ISO houdt ze. Oudere tekeningen dragen ze nog, en die lees je volgens de norm waarnaar ze getekend zijn.',
+        'ISO 1101 deelt de symbolen in families. Vorm, zonder referentie: vlakheid, rechtheid, rondheid, cilindriciteit. Richting, met referentie: haaksheid, evenwijdigheid, hoekzuiverheid. Plaats: positie, en in ISO ook concentriciteit en symmetrie. Slag: rondloop en totale slag. Profiel, van een lijn of een vlak, kan als vorm, richting of plaats werken.\n\nASME Y14.5-2018 schrapte concentriciteit en symmetrie, zodat er 12 symbolen overblijven; ISO houdt ze. Oudere tekeningen dragen ze nog, en die lees je volgens de norm waarnaar ze getekend zijn.',
         'De tolerantiezone (tolerance zone) is de ruimte waarin het kenmerk moet liggen. Een waarde met Ø ervoor betekent een cilinder, voor een as. Zonder Ø zijn het twee evenwijdige vlakken of lijnen. Rondheid ligt tussen twee cirkels met hetzelfde middelpunt; cilindriciteit tussen twee coaxiale cilinders.\n\nDe waarde is altijd de volle breedte: vlakheid 0,05 is een band van 0,05 breed, niet ±0,05.',
         'Slag (runout) meet je met een meetklok, een meter met een wijzer, terwijl het deel om zijn referentie-as draait, vaak twee lagerzittingen samen A-B. Rondloop (circular runout) checkt elke doorsnede apart; totale slag (total runout) bestrijkt het hele vlak, en vangt dus ook een conus.\n\nDe uitkomst is de totale wijzeruitslag (full indicator movement, FIM): hoogste aflezing min laagste. Slag hangt direct samen met slingeren bij lagers en afdichtingen.',
         'Profieltolerantie van een vlak (profile of a surface): het vlak moet in een band rond de exacte CAD-vorm liggen, vastgelegd met theoretisch exacte maten. Met referenties legt hij ook de plaats vast; zonder alleen de vorm. Veel gebruikt bij gietstukken, plaatwerk en kunststof delen.\n\nEen profieltolerantie van 0,4 is een band van 0,4 breed, standaard 0,2 aan elke kant van de ideale vorm. Een toevoeging kan de band naar één kant schuiven: UZ in ISO, U in ASME.',
@@ -579,7 +579,7 @@ export default {
       terms: [
         { term: 'ISO 8015', def: 'De ISO GPS-standaardregels, met het onafhankelijkheidsbeginsel: maat en vorm staan los, tenzij anders vermeld.' },
         { term: 'Enveloppe-eis', def: 'Ⓔ in ISO, standaard Rule #1 in ASME: op de maximum-materiaalmaat moet de vorm perfect zijn.' },
-        { term: 'Functioneel kaliber', def: 'Een vast kaliber met pennen op de virtuele maat dat positie op MMC in één keer checkt.' },
+        { term: 'Functioneel kaliber', def: 'Een meetmal met pennen op de exacte plekken: past het deel erop, dan is de positie goed.' },
         { term: 'Virtuele maat', def: 'De worst-case grens van een kenmerk op MMC: bij een gat de kleinste maat min de positietolerantie.' },
         { term: 'Beslisregel', def: 'De afgesproken regel wanneer een meting conformiteit bewijst, zoals bij ISO 14253-1 de spec versmald met de meetonzekerheid.' },
       ],
@@ -742,8 +742,8 @@ export default {
         'Een stroomloopschema (circuit diagram) laat zien hoe een schakeling werkt, met symbolen uit IEC 60617; een aansluitschema (wiring diagram) toont de echte draden en klemmen; een kastindeling waar de componenten in de kast zitten. Contacten staan getekend in rust: geen spanning op de spoel, niets ingedrukt.\n\nDe meeste machineschema’s scheiden een hoofdstroomkring (voeding, beveiliging, magneetschakelaar, thermisch relais, motor) van een stuurstroomkring op 24 V DC of 230 V AC: knoppen, spoelen en PLC-in- en uitgangen.',
         'Elke component heeft een referentieaanduiding (reference designation, IEC 81346). Het teken zegt welk aspect: “=” wat het doet (functie), “+” waar het zit (locatie, zoals +CAB1), “−” welk apparaat het is (product).\n\nGangbare letters: −Q1 een magneetschakelaar, −M1 een motor, −K1 een relais, −F1 een zekering of thermisch relais, −S1 een drukknop. Oudere tekeningen gebruiken andere codes, zoals K1M voor een magneetschakelaar. Die zware motorschakelaar zelf staat in Motoren, aandrijvingen en perslucht.',
         'Contactnummers vertellen het type. Een maakcontact (normally open, NO) sluit als hij bediend wordt; zijn klemmen eindigen op 3-4, zoals 13-14. Een verbreekcontact (normally closed, NC) opent; hij eindigt op 1-2, zoals 11-12. Een spoel is A1-A2; hoofdcontacten 1-2, 3-4, 5-6; het verbreekcontact van het thermisch relais 95-96.\n\nOnder elke spoel zegt een tabelletje, de kruisverwijzing (cross-reference), op welke pagina en kolom elk van zijn contacten staat: /5.3 is pagina 5, kolom 3.',
-        'De klassieke start-stopschakeling: het verbreekcontact 95-96 van het thermisch relais en de stopknop (verbreek) in serie, dan de startknop (maak), met een maakcontact van de magneetschakelaar zelf parallel. Druk op start, de spoel trekt op, en dat eigen contact houdt hem vast als je loslaat: zelfhouding (self-holding).\n\nStop is bewust een verbreekcontact: een gebroken draad stopt de machine. Spoelen hebben ook genoeg spanning nodig: IEC 60947 verwacht dat een magneetschakelaar sluit tussen 85% en 110% van zijn nominale spoelspanning.',
-        'In de praktijk: klem X1:12 is klem 12 op klemmenstrook X1, dus de tekening zegt een elektricien precies waar hij moet meten. Jij leest; een bevoegd persoon meet, volgens NEN 3140 (Veilig werken op de vloer en in het station).\n\nDe gebruikelijke fout is dezelfde als bij P&ID’s: de kast is aangepast en het schema in het deurvak niet. Een scherpe vraag: is het schema in deze kast de as-built revisie?',
+        'De klassieke start-stopschakeling: het verbreekcontact 95-96 van het thermisch relais en de stopknop (verbreek) in serie, dan de startknop (maak), met een maakcontact van de magneetschakelaar zelf parallel. Druk op start, de spoel trekt op, en dat eigen contact houdt hem vast als je loslaat: zelfhouding (self-holding).\n\nStop is bewust een verbreekcontact: een gebroken draad stopt de machine. Spoelen hebben ook genoeg spanning nodig: IEC 60947 eist dat een magneetschakelaar sluit overal tussen 85% en 110% van zijn nominale spoelspanning; daaronder is sluiten niet gegarandeerd.',
+        'In de praktijk: klem X1:12 is klem 12 op klemmenstrook X1, dus de tekening zegt een elektricien precies waar hij moet meten. Jij leest; een daartoe aangewezen vakbekwaam persoon meet, volgens NEN 3140 (Veilig werken op de vloer en in het station).\n\nDe gebruikelijke fout is dezelfde als bij P&ID’s: de kast is aangepast en het schema in het deurvak niet. Een scherpe vraag: is het schema in deze kast de as-built revisie?',
       ],
       example: {
         kind: 'faded',
@@ -759,11 +759,11 @@ export default {
           tolerance: 0.5,
           unit: '%',
           hint: 'Deel de gemeten spanning door de nominale spoelspanning.',
-          why: '19,2 / 24 = 0,80, dus 80%: onder de 85% waarbij een magneetschakelaar betrouwbaar hoort te sluiten.',
+          why: '19,2 / 24 = 0,80, dus 80%: onder de 85% vanaf waar IEC 60947 eist dat een magneetschakelaar sluit, dus sluiten is niet meer gegarandeerd.',
         },
         {
           q: 'Een hulpcontact heeft de nummers 21-22. Wat voor contact is het?',
-          options: ['Maakcontact: sluit als hij bediend wordt', 'Een spoelaansluiting van de magneetschakelaar of het relais', 'Verbreekcontact: opent bij bediening', 'Een hoofdcontact voor de motor'],
+          options: ['Maakcontact: sluit als hij bediend wordt', 'Een spoelaansluiting van de magneetschakelaar of het relais', 'Verbreekcontact: opent bij bediening', 'Een hoofdcontact voor de motorstroom zelf'],
           answer: 'Verbreekcontact: opent bij bediening',
           why: 'Tweede cijfers 1-2 betekenen verbreek, 3-4 maak; het eerste cijfer nummert alleen het contact.',
         },
@@ -806,23 +806,23 @@ export default {
       pre: [
         {
           q: 'Waarom gebruiken ontwerpers voor één beveiliging vaak drie transmitters met 2oo3-stemming (twee van de drie moeten het eens zijn)?',
-          options: ['Om de beveiliging veel sneller te laten ingrijpen', 'Omdat de wet van alles drie exemplaren eist', 'Minder valse trips, nog veilig als er één faalt', 'Om te besparen op de jaarlijkse functietest van de beveiliging'],
+          options: ['Om de beveiliging veel sneller te laten ingrijpen', 'Omdat de wet van elk instrument drie exemplaren eist', 'Minder valse trips, nog veilig als er één faalt', 'Om te besparen op de jaarlijkse functietest van de beveiliging'],
           answer: 'Minder valse trips, nog veilig als er één faalt',
           why: 'Eén defecte transmitter kan in zijn eentje geen trip veroorzaken en ook geen echte trip tegenhouden.',
         },
       ],
       teach: [
-        'Een procesfabriek beschermt in lagen: de basisregeling (de DCS-kringen), alarmen met een operator die reageert, dan een instrumenteel beveiligingssysteem (safety instrumented system, SIS) met eigen sensoren, logica en kleppen, en daarna mechanische ontlasting zoals een veiligheidsklep.\n\nIEC 61511 is de norm voor het SIS in procesfabrieken. Op de P&ID hebben de SIS-instrumenten vaak een eigen tagreeks of markering; het legendablad zegt welke.',
-        'Elke instrumentele beveiligingsfunctie (safety instrumented function, SIF) is sensor, logica en eindelement: LSHH 102 ziet hoog-hoog niveau, de logica sluit XV 103. Het SIL volgt uit de risicoreductie die nodig is: SIL 1 een factor 10 tot 100, SIL 2 100 tot 1.000, SIL 3 1.000 tot 10.000.\n\nDie factor is 1 gedeeld door de faalkans bij aanspraak (probability of failure on demand, PFD). Een risicostudie zoals een HAZOP of LOPA bepaalt het doel. Een SIF hoort zijn sensor niet te delen met een regelkring.',
+        'Een procesfabriek beschermt in lagen: de basisregeling (de DCS-kringen), alarmen met een operator die reageert, dan een instrumenteel beveiligingssysteem (safety instrumented system; op de vloer zeggen ze meestal gewoon SIS) met eigen sensoren, logica en kleppen, en daarna mechanische ontlasting zoals een veiligheidsklep.\n\nIEC 61511 is de norm voor het SIS in procesfabrieken. Op de P&ID hebben de SIS-instrumenten vaak een eigen tagreeks of markering; het legendablad zegt welke.',
+        'Elke instrumentele beveiligingsfunctie (safety instrumented function, SIF) is sensor, logica en eindelement: LSHH 102 ziet hoog-hoog niveau, de logica sluit XV 103. Het SIL (safety integrity level) volgt uit de benodigde risicoreductie; voor zelden aangesproken functies: SIL 1 een factor 10 tot 100, SIL 2 100 tot 1.000, SIL 3 1.000 tot 10.000.\n\nDie factor is 1/PFD, de gemiddelde faalkans bij aanspraak (probability of failure on demand). Een HAZOP (een gestructureerde wat-als-review) vindt gevaren; een LOPA (layer of protection analysis) bepaalt het doel. Een SIF heeft meestal een eigen sensor.',
         'De cause-and-effectmatrix (C&E) toont alle beveiligingen op één blad. Rijen zijn oorzaken (causes), de initiators zoals LSHH 102 of PSHH 205; kolommen zijn gevolgen (effects), zoals XV 103 sluiten of P-101 stoppen. Een X op het kruispunt betekent dat die oorzaak dat gevolg geeft.\n\nLees een rij om alles te zien wat één beveiliging doet; lees een kolom om alles te zien wat één pomp stopt.',
-        'Faalveilig: beveiligingskleppen staan getekend met een faalstand (fail position), FC (fail closed, valt dicht), FO (fail open, valt open) of FL (fail last, blijft staan), volgens ISA 5.1. Beveiligingen werken meestal spanningsloos-om-te-trippen, zodat ook uitval van stroom of lucht de klep naar veilig stuurt.\n\nEen periodieke functietest (proof test) bewijst dat een SIF echt werkt, bijvoorbeeld jaarlijks: de sensor naar zijn trippunt, en zien dat de klep beweegt. Een overbrugging tijdens de test wordt vastgelegd en weer opgeheven.',
+        'Faalveilig: beveiligingskleppen staan getekend met een faalstand (fail position), FC (fail closed, valt dicht), FO (fail open, valt open) of FL (fail last, blijft staan), volgens ISA 5.1. Beveiligingen werken meestal volgens het ruststroomprincipe (de-energise-to-trip): spanning weg is trippen, zodat ook uitval van stroom of lucht de klep naar veilig stuurt.\n\nEen periodieke functietest (proof test) bewijst dat een SIF echt werkt, bijvoorbeeld jaarlijks: de sensor naar zijn trippunt, en zien dat de klep beweegt. Een overbrugging tijdens de test wordt vastgelegd en weer opgeheven.',
         'Faalwijzen: een beveiliging overbrugd voor het opstarten en vergeten; valse trips die operators leren te overbruggen; een tripwaarde in het DCS veranderd zonder review; een C&E-matrix die na een wijziging niet is bijgewerkt en niet meer klopt met de logica.\n\nDe overbruggingslijst uit de PLC-les geldt hier dubbel. Een scherpe vraag: welke beveiligingen staan nu in overbrugging, sinds wanneer, en is de C&E-matrix as-built?',
       ],
       example: {
         kind: 'faded',
         text: 'De overvulbeveiliging LSHH 102 van tank T-101 is één niveauschakelaar. Vorig jaar trapte hij 6 keer uit, allemaal vals: de schakelaar was vervuild. Elke valse trip legt de fabriek 3 uur stil, bij 12 ton per uur. Het team stelt drie niveautransmitters met 2oo3-stemming voor.',
         ask: 'Wat kostten de valse trips aan gemiste productie, wat verandert 2oo3, en wat moet er gebeuren vóór de wijziging?',
-        reveal: 'Gemiste productie: 6 trips × 3 uur × 12 t/u = 216 ton per jaar.\n\n2oo3: één vervuilde transmitter legt de fabriek niet meer stil, en als er één gevaarlijk faalt, trippen de andere twee nog. Vóór de wijziging: een MOC-review, de SIL-verificatie opnieuw berekend, P&ID, C&E-matrix en procedure voor de functietest bijgewerkt, en de beveiliging getest vóór het opstarten.',
+        reveal: 'Gemiste productie: 6 trips × 3 uur × 12 t/u = 216 ton per jaar.\n\n2oo3: één vervuilde transmitter legt de fabriek niet meer stil, en als er één gevaarlijk faalt, trippen de andere twee nog. Vóór de wijziging: een MOC-review (management of change, wijzigingsbeheer), de SIL-verificatie opnieuw berekend, P&ID, C&E-matrix en procedure voor de functietest bijgewerkt, en de beveiliging getest vóór het opstarten.',
       },
       said: 'Wat engineers zeggen: “Die hoog-hoog heeft ons zes keer voor niks stilgelegd. Prima, ga naar twee-uit-drie, maar het gaat via MOC en de C&E wordt dezelfde dag bijgewerkt.”',
       recall: [
@@ -891,7 +891,7 @@ export default {
         'Elke regelkring (control loop) heeft vier delen. Een sensor meet de proceswaarde (PV), zeg 72,4 °C. De regelaar (controller) vergelijkt die met het setpoint (SP), de streefwaarde, zeg 75 °C, en berekent de regelafwijking: SP − PV = 2,6 °C.\n\nEen actuator, het deel dat ingrijpt, bijvoorbeeld een stoomklep, verandert het proces. Wat de regelaar hem stuurt, is de uitgang (OP), 0 tot 100%. En het proces reageert, met enige vertraging.',
         'Gesloten regelkring betekent terugkoppeling (feedback): meten, vergelijken, corrigeren, en weer opnieuw, vele keren per seconde.\n\nOpen sturing betekent dat het resultaat niet gemeten wordt: een timer, een vaste klepstand, een recept dat zegt “10 minuten verwarmen”. Open sturing kan niet corrigeren voor verstoringen (disturbances), veranderingen van buitenaf zoals kouder product of lagere stoomdruk.',
         'Elk regelaarvenster (faceplate), het kleine venster op het bedieningsscherm, toont drie getallen: SP, PV en OP. Samen vertellen ze het verhaal.\n\nPV onder SP met OP op 100%: de actuator zit aan zijn maximum, helemaal open, en de kring kan niet meer; de klep is te klein of de stoomtoevoer te laag. OP op 0% en PV nog steeds boven SP: de verstoring is groter dan de actuator aankan.',
-        'Standen: AUTO, de regelaar regelt. HAND (MAN), de operator zet de uitgang zelf. CAS (cascade), het setpoint komt van een andere regelaar.\n\nOnderzoeken sinds de jaren negentig vinden steeds weer dat zo’n derde van de regelkringen in fabrieken in hand staat of slecht presteert. “Hoeveel kringen staan er in hand, en waarom?” is een vraag waarmee je de aandacht van een engineer hebt.',
+        'Standen: AUTO, de regelaar regelt. HAND (MAN), de operator zet de uitgang zelf. CAS (cascade), het setpoint komt van een andere regelaar.\n\nOnderzoeken sinds de jaren negentig vinden steeds weer dat maar zo’n derde van de regelkringen goed presteert, en dat veel kringen in hand staan; Procestechniek: de basis geeft de getallen. “Hoeveel kringen staan er in hand, en waarom?” is een vraag waarmee je de aandacht van een engineer hebt.',
         'De vertraging doet ertoe. Dode tijd (dead time) is de tijd voordat de PV überhaupt begint te bewegen; traagheid (lag) is hoe langzaam hij daarna volgt. Hoe langer de vertragingen, hoe rustiger de regelaar moet zijn, anders gaat de kring slingeren.\n\nIn de figuur kun je het proberen: een tankniveau met een klep, een regelaar in Hand, P of PI, en een storing op de afvoer. Een scherpe vraag bij elke kring: wat doet de PV als iemand verderop een klep opendraait?',
       ],
       example: {
@@ -1020,13 +1020,13 @@ export default {
     },
     {
       id: 'eng.drawings.tuning',
-      title: 'Een kring inregelen: staptest en inregelregels',
+      title: 'Een kring inregelen: staptest en inregelmethodes',
       pre: [
         {
           q: 'Een regeltechnicus wil een temperatuurkring goed inregelen. Wat doet ze eerst, nadat ze de klep heeft gecheckt?',
           options: ['De instellingen overnemen van een vergelijkbare kring elders', 'De versterking opvoeren tot de operators beginnen te klagen', 'D-actie aanzetten zodat hij sneller reageert', 'In hand de uitgang een stap geven en de PV vastleggen'],
           answer: 'In hand de uitgang een stap geven en de PV vastleggen',
-          why: 'Die staptest levert de procesversterking, dode tijd en tijdconstante die de inregelregels nodig hebben.',
+          why: 'Die staptest levert de procesversterking, dode tijd en tijdconstante die de inregelmethodes nodig hebben.',
         },
       ],
       teach: [
@@ -1068,7 +1068,7 @@ export default {
         },
         {
           q: 'Wat is het belangrijkste bezwaar van de Ziegler-Nichols-methode met kritische versterking op een draaiende fabriek?',
-          options: ['Hij laat de kring blijvend slingeren en geeft agressieve instellingen', 'Hij werkt alleen op niveaukringen van buffertanks', 'Hij heeft vooraf een volledig dynamisch model van de fabriek nodig', 'Hij negeert de procesversterking van de kring volledig, anders dan lambda-tuning'],
+          options: ['Hij laat de kring blijvend slingeren en geeft agressieve instellingen', 'Hij werkt alleen op niveaukringen, zoals die op buffertanks en andere vaten', 'Hij heeft vooraf een volledig dynamisch model van de fabriek nodig', 'Hij negeert de procesversterking van de kring volledig, anders dan lambda-tuning'],
           answer: 'Hij laat de kring blijvend slingeren en geeft agressieve instellingen',
           why: 'Ku vinden betekent de kring met opzet laten slingeren, en de regels mikken op kwart-amplitude-uitdemping, wat doorschiet.',
         },
@@ -1105,17 +1105,17 @@ export default {
         },
       ],
       teach: [
-        'Een fabriek heeft honderden kringen en niemand kan ze allemaal inregelen. Een kringaudit (loop audit) rangschikt ze op een paar getallen uit de historian: aandeel tijd in normale stand, tijd met de uitgang vast op 0 of 100%, slingeren, de spreiding van de afwijking, en klepslag en omkeringen.\n\nVeel DCS-leveranciers verkopen software voor regelkwaliteitsbewaking (control performance monitoring) die dit dagelijks doet. Procestechniek: de basis noemt het grote onderzoek naar hoeveel kringen in hand staan.',
+        'Een fabriek heeft honderden kringen en niemand kan ze allemaal inregelen. Een kringaudit (loop audit) rangschikt ze op een paar getallen uit de historian, de database die elke meting in de tijd bewaart: aandeel tijd in normale stand, tijd met de uitgang vast op 0 of 100%, slingeren, de spreiding van de afwijking, en klepslag en omkeringen.\n\nVeel DCS-leveranciers verkopen software voor regelkwaliteitsbewaking (control performance monitoring) die dit dagelijks doet. Procestechniek: de basis noemt het grote onderzoek naar hoeveel kringen in hand staan.',
         'Rangschik daarna op waarde, niet op aantal. Kringen op de bottleneck, kringen die een kwaliteitsgrootheid bepalen zoals het vocht uit een droger, en kringen die energie sturen komen eerst.\n\nMinder spreiding betaalt zich uit als je het setpoint dichter naar een grens kunt schuiven: squeeze and shift, in Procestechniek: de basis. Tien kringen gerepareerd waar het geld zit, verslaan honderd willekeurig ingeregelde.',
-        'Diagnose uit het patroon. Slingert hij in hand nog: een verstoring of een andere kring. Alleen in automaat: inregeling of stiction. Veel kringen in één gebied die met dezelfde periode slingeren: één bron die zich verspreidt; zoek de kring die als eerste begint.\n\nKlepdimensionering zie je ook in de data: een klep die alleen tussen 5 en 15% open werkt, is te groot en regelt grof; een klep op 100% is te klein.',
-        'Soms is de opbouw het probleem, niet de inregeling. Een lange dode tijd ten opzichte van de tijdconstante vraagt rustig inregelen of dodetijdcompensatie, zoals een Smith-predictor, een model dat het vertraagde effect voorspelt. Een grote verstoring die je kunt meten vraagt voorwaartskoppeling (feedforward); een snelle binnenverstoring cascade; meerdere kringen die elkaar beïnvloeden MPC.\n\nProcestechniek: de basis legt cascade, verhouding en voorwaartskoppeling uit; hier leer je zien wanneer je er een nodig hebt.',
-        'Verbeteringen slijten. Een eenmalige inregelactie ziet er maanden goed uit, dan slijten kleppen, veranderen producten en gaan kringen terug in hand. Wat blijft: een KPI voor kringgezondheid, zoals het aandeel belangrijke kringen in normale stand, maandelijks besproken; een eigenaar, meestal een regeltechnicus; klepwerk in het CMMS.\n\nEen scherpe vraag: wie is na het project eigenaar van de kringprestaties, en naar welk getal kijkt die elke maand?',
+        'Diagnose uit het patroon. Slingert hij in hand nog: een verstoring of een andere kring. Alleen in automaat: inregeling of stiction. Veel kringen in één gebied die met dezelfde periode slingeren: één bron die zich verspreidt; zoek de kring die als eerste begint.\n\nKlepdimensionering zie je ook in de data: een klep die alleen tussen 5 en 15% open werkt, is waarschijnlijk te groot en regelt grof; een klep die vaak op 100% staat, is waarschijnlijk te klein.',
+        'Soms is de opbouw het probleem, niet de inregeling. Een lange dode tijd ten opzichte van de tijdconstante vraagt rustig inregelen of dodetijdcompensatie, zoals een Smith-predictor, een model dat het vertraagde effect voorspelt. Een grote verstoring die je kunt meten vraagt voorwaartskoppeling (feedforward); een snelle binnenverstoring cascade; meerdere kringen die elkaar beïnvloeden modelgebaseerde regeling (MPC).\n\nProcestechniek: de basis legt cascade, verhouding en voorwaartskoppeling uit; hier leer je zien wanneer je er een nodig hebt.',
+        'Verbeteringen slijten. Een eenmalige inregelactie ziet er maanden goed uit, dan slijten kleppen, veranderen producten en gaan kringen terug in hand. Wat blijft: een KPI voor kringgezondheid (loop health KPI), zoals het aandeel belangrijke kringen in normale stand, maandelijks besproken; een eigenaar, meestal een regeltechnicus; klepwerk ingepland in het CMMS, het onderhoudssysteem.\n\nEen scherpe vraag: wie is na het project eigenaar van de kringprestaties, en naar welk getal kijkt die elke maand?',
       ],
       example: {
         kind: 'faded',
-        text: 'Een audit van 240 kringen bij een melkpoederfabriek: 58 in hand, 31 meer dan 30% van de tijd tegen een grens, 44 slingerend. Bovenaan de waarderangschikking staat het uitlaatvocht van de droger: spec hoogstens 4,0%, standaardafwijking 0,6%, gedraaid op 2,8% om twee standaardafwijkingen marge te houden. Inregelen plus een klepreparatie zou de standaardafwijking kunnen halveren.',
-        ask: 'Welk deel van de kringen staat in hand, en waar kan het vochtsetpoint heen als de spreiding halveert en de marge twee standaardafwijkingen blijft?',
-        reveal: 'In hand: 58 / 240 = 24%.\n\nNieuwe spreiding 0,3%, dus setpoint 4,0 − 2 × 0,3 = 3,4%: 0,6 procentpunt meer vocht, verkocht als poeder tegen poederprijs. Bij 10 ton per uur is dat grofweg 60 kg per uur extra verkoopbaar product. De 58 kringen in hand komen op de tweede plaats: ze zijn een symptoom, de droger is het geld.',
+        text: 'Een audit van 240 kringen bij een melkpoederfabriek: 58 in hand, 31 meer dan 30% van de tijd tegen een grens, 44 slingerend. Bovenaan de waarderangschikking staat het uitlaatvocht van de droger: spec hoogstens 4,0%, standaardafwijking 0,4%, gedraaid op 2,8% om drie standaardafwijkingen marge te houden, zoals bij squeeze and shift (Procestechniek: de basis). Inregelen plus een klepreparatie zou de standaardafwijking kunnen halveren.',
+        ask: 'Welk deel van de kringen staat in hand, en waar kan het vochtsetpoint heen als de spreiding halveert en de marge drie standaardafwijkingen blijft?',
+        reveal: 'In hand: 58 / 240 = 24%.\n\nNieuwe spreiding 0,2%, dus setpoint 4,0 − 3 × 0,2 = 3,4%: 0,6 procentpunt meer vocht, verkocht als poeder tegen poederprijs. Bij 10 ton per uur is dat grofweg 60 kg per uur extra verkoopbaar product. De 58 kringen in hand komen op de tweede plaats: ze zijn een symptoom, de droger is het geld.',
       },
       said: 'Wat regeltechnici zeggen: “Kom niet met een lijst van 240 kringen. Kom met de tien die geld kosten, met hun trends.”',
       recall: [
@@ -1128,12 +1128,12 @@ export default {
           why: '75 / 300 = 25%.',
         },
         {
-          q: 'Een vochtspec is hoogstens 5,0%. Betere regeling halveert de standaardafwijking van 0,5% naar 0,25%, en de marge blijft twee standaardafwijkingen. Waar kan het setpoint heen, in %?',
-          number: 4.5,
+          q: 'Een vochtspec is hoogstens 5,0%. Betere regeling halveert de standaardafwijking van 0,5% naar 0,25%, en de marge blijft drie standaardafwijkingen. Waar kan het setpoint heen, in %?',
+          number: 4.25,
           tolerance: 0.01,
           unit: '%',
-          hint: 'Trek twee van de nieuwe standaardafwijkingen af van de specgrens.',
-          why: '5,0 − 2 × 0,25 = 4,5%.',
+          hint: 'Trek drie van de nieuwe standaardafwijkingen af van de specgrens.',
+          why: '5,0 − 3 × 0,25 = 4,25%.',
         },
         {
           q: 'Veel kringen in één gebied slingeren met dezelfde periode. Waar zoek je eerst naar?',

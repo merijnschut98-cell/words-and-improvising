@@ -10,7 +10,7 @@ export default {
           q: 'You pick up a drawing at a machine. Where do you look first to know whether it’s the valid version?',
           options: ['The largest view on the sheet, usually the front', 'The dimension with the tightest tolerance', 'The revision in the title block', 'The notes on the left'],
           answer: 'The revision in the title block',
-          why: 'The title block is the box bottom right; its revision letter says which version you hold. Most drawing-related scrap comes from someone working to an old revision.',
+          why: 'The title block is the box bottom right; its revision letter says which version you hold. Much drawing-related scrap comes from someone working to an old revision.',
         },
       ],
       teach: [
@@ -113,7 +113,7 @@ export default {
         },
         {
           q: 'Where do you find how many of each part go into an assembly?',
-          options: ['In the general notes beside the title block', 'In the title block, next to the scale', 'In the parts list on the assembly drawing', 'In the exploded view, by counting the parts shown'],
+          options: ['In the general notes beside the title block', 'In the title block, right next to the drawing scale', 'In the parts list on the assembly drawing', 'In the exploded view, by counting the parts shown'],
           answer: 'In the parts list on the assembly drawing',
           why: 'The parts list gives item number, quantity, part number and description per part.',
         },
@@ -159,7 +159,7 @@ export default {
         'Threads: “M10” is a metric thread of 10 mm nominal diameter with the coarse thread pitch, the distance between two crests, of 1.5 mm. A fine thread is written out: M10×1.25. A tolerance class follows: 6H for an internal thread (capital), 6g for an external one.\n\nA tapped hole callout often reads “M8 – 16 deep, drill Ø6.8 – 20 deep”: the drill goes deeper than the thread. The tap drill is roughly nominal minus pitch: 8 − 1.25 = 6.75, so Ø6.8.',
         'Holes for screw heads: a counterbore is a flat-bottomed widening so a cap screw head sits below the surface; a countersink is a cone for a flat-head screw. ASME drawings use symbols for both, with a ↧ for depth; ISO drawings often show them in a section or write them out.\n\n“4× Ø9, counterbore Ø15, 9 deep” means four holes for M8 cap screws, each with a pocket for the head.',
         'The surface texture symbol is a tick with a value, such as Ra 1.6: an average roughness of 1.6 µm. A bar across the tick means material must be removed, by machining; a circle in it means no material may be removed.\n\nISO 21920-1 replaced ISO 1302 for this symbol in 2021, and the drawing now also fixes how the surface is measured. Which process reaches which Ra is in Machining.',
-        'Weld symbols (ISO 2553): an arrow line points to the joint and ends on a reference line. In the European system the reference line has a dashed line under it. A symbol on the solid line means the weld is on the arrow side; on the dashed line, the other side.\n\nA triangle is a fillet weld, the weld in a corner between two plates. “a5” means a throat of 5 mm; “z7” a leg length of 7 mm. A flag means weld on site; a circle, all around.',
+        'Weld symbols (ISO 2553): an arrow line points to the joint and ends on a reference line. In the European system a dashed line runs beside it, above or below. A symbol on the solid line means the weld is on the arrow side; on the dashed line, the other side.\n\nA triangle is a fillet weld, the weld in a corner between two plates. “a5” means a throat of 5 mm; “z7” a leg length of 7 mm. A flag means weld on site; a circle, all around.',
         'The expensive mix-up is a versus z. The throat of a fillet is the leg divided by about 1.41 (√2), so z7 is only about a5. Welders who read z5 as a5 put in twice the weld metal; the other way round, the weld is too weak. Weld size and its cost are in Welding and joining.\n\nUS drawings (AWS A2.4) have no dashed line: below the line is arrow side. A sharp question: is this size a or z, and which standard does the drawing use?',
       ],
       example: {
@@ -194,7 +194,7 @@ export default {
         },
         {
           q: 'On an ISO drawing (European system), a weld symbol sits on the dashed line under the reference line. Where is the weld?',
-          options: ['On the arrow side of the joint', 'On the other side from the arrow', 'On both sides of the joint at once', 'All around the part, as one closed ring'],
+          options: ['On the arrow side of the joint only', 'On the other side from the arrow', 'On both sides of the joint at once', 'All around the part, as one closed ring'],
           answer: 'On the other side from the arrow',
           why: 'Solid line: arrow side. Dashed line: other side. Symbols on both: both sides.',
         },
@@ -224,7 +224,7 @@ export default {
       pre: [
         {
           q: 'An engineering change makes a hole slightly bigger; the new part still fits wherever the old one went. What does it usually get?',
-          options: ['A new part number in the ERP system', 'Nothing at all: small changes need no record', 'A new revision on the same part number', 'A signed deviation from the customer’s quality team'],
+          options: ['A brand-new part number in the ERP system', 'Nothing at all: small changes need no record', 'A new revision on the same part number', 'A signed deviation from the customer’s quality team'],
           answer: 'A new revision on the same part number',
           why: 'If form, fit and function stay interchangeable, the common rule is a new revision; a non-interchangeable change needs a new part number. Companies set their own rule.',
         },
@@ -299,7 +299,7 @@ export default {
       pre: [
         {
           q: 'A dimension on a drawing is written in brackets: (25). What does that mean?',
-          options: ['A reference dimension, for information only', 'It must be checked on every single part, not a sample', 'It is in inches, not in millimetres', 'Its tolerance is twice the general tolerance'],
+          options: ['A reference dimension, for information only', 'It must be checked on every single part, not a sample', 'It is given in inches instead of millimetres', 'Its tolerance is twice the general tolerance'],
           answer: 'A reference dimension, for information only',
           why: 'A reference dimension follows from other dimensions; it is not toleranced and not inspected.',
         },
@@ -442,13 +442,13 @@ export default {
       pre: [
         {
           q: 'A face carries a flatness tolerance of 0.05 mm. How much may the face be out of flat in total?',
-          options: ['0.10 mm, because it is ±0.05', '0.025 mm on each side of the face', 'As much as the size tolerance allows', '0.05 mm in total: the band width'],
+          options: ['0.10 mm in total, because it is ±0.05', '0.025 mm on each side of the face', 'As much as the size tolerance allows', '0.05 mm in total: the band width'],
           answer: '0.05 mm in total: the band width',
           why: 'A geometric tolerance is the full width of its zone, not a ± value.',
         },
       ],
       teach: [
-        'ISO 1101 groups the symbols in families. Form, which needs no datum: flatness, straightness, roundness, cylindricity. Orientation, which needs one: perpendicularity, parallelism, angularity. Location: position, and in ISO also concentricity and symmetry. Runout: circular and total.\n\nASME Y14.5-2018 dropped concentricity and symmetry, leaving 12 symbols; ISO keeps them. Older drawings still carry them, and they are read by the standard they were drawn to.',
+        'ISO 1101 groups the symbols in families. Form, which needs no datum: flatness, straightness, roundness, cylindricity. Orientation, which needs one: perpendicularity, parallelism, angularity. Location: position, and in ISO also concentricity and symmetry. Runout: circular and total. Profile, of a line or a surface, can act as form, orientation or location.\n\nASME Y14.5-2018 dropped concentricity and symmetry, leaving 12 symbols; ISO keeps them. Older drawings still carry them, and they are read by the standard they were drawn to.',
         'The tolerance zone is the space the feature must lie in. A value with Ø in front means a cylinder, used for an axis. Without Ø it is two parallel planes or lines. Roundness lies between two circles with the same centre; cylindricity between two coaxial cylinders.\n\nThe value is always the full width: flatness 0.05 is a band 0.05 wide, not ±0.05.',
         'Runout is checked with a dial indicator, a gauge with a needle, while the part turns on its datum axis, often two bearing seats called A-B. Circular runout checks each cross-section on its own; total runout sweeps the whole surface, so it also catches a taper.\n\nThe result is the full indicator movement (FIM): highest reading minus lowest. Runout ties straight to wobble at bearings and seals.',
         'Profile of a surface: the surface must lie in a band around the exact CAD shape, set by basic dimensions. With datums it controls location too; without, only shape. It is common on castings, sheet metal and plastic parts.\n\nA profile of 0.4 is a band 0.4 wide, by default 0.2 on each side of the true shape. A modifier can shift the band to one side: UZ in ISO, U in ASME.',
@@ -579,7 +579,7 @@ export default {
       terms: [
         { term: 'ISO 8015', def: 'The ISO GPS default rules, including the independency principle: size and form are independent unless stated.' },
         { term: 'Envelope requirement', def: 'Ⓔ in ISO, the default Rule #1 in ASME: at maximum material size the form must be perfect.' },
-        { term: 'Functional gauge', def: 'A fixed gauge with pins at virtual condition that checks position at MMC in one go.' },
+        { term: 'Functional gauge', def: 'A gauge with pins at the exact places: if the part fits on it, the position is good.' },
         { term: 'Virtual condition', def: 'The worst-case boundary of a feature at MMC: for a hole, smallest size minus position tolerance.' },
         { term: 'Decision rule', def: 'The agreed rule for when a reading proves conformity, such as ISO 14253-1’s spec narrowed by the uncertainty.' },
       ],
@@ -742,8 +742,8 @@ export default {
         'A circuit diagram shows how a circuit works, with symbols from IEC 60617; a wiring diagram shows the physical wires and terminals; a layout shows where devices sit in the cabinet. Contacts are drawn in rest: no power on the coil, nothing pressed.\n\nMost machine schematics split a power circuit (supply, breaker, contactor, overload relay, motor) from a control circuit at 24 V DC or 230 V AC: buttons, coils and PLC inputs and outputs.',
         'Each device has a reference designation (IEC 81346). The sign tells you the aspect: “=” what it does (function), “+” where it is (location, such as +CAB1), “−” which device it is (product).\n\nCommon letters: −Q1 a contactor, −M1 a motor, −K1 a relay, −F1 a fuse or overload relay, −S1 a push button. Older drawings use other codes, such as K1M for a contactor. The contactor, the heavy switch for the motor, is in Motors, drives and fluid power.',
         'Contact numbers tell the type. A normally open contact (NO) closes when actuated; its terminals end in 3-4, such as 13-14. A normally closed contact (NC) opens; it ends in 1-2, such as 11-12. A coil is A1-A2; main contacts 1-2, 3-4, 5-6; the overload relay’s NC is 95-96.\n\nUnder each coil a small table, the cross-reference, says on which page and column each of its contacts is drawn: /5.3 is page 5, column 3.',
-        'The classic start–stop circuit: the overload NC 95-96 and the stop button NC in series, then the start button NO, with a NO contact of the contactor itself in parallel. Press start, the coil pulls in, and that own contact keeps it on after you let go: self-holding.\n\nStop is NC on purpose: a broken wire stops the machine. Coils also need enough voltage: IEC 60947 expects a contactor to close between 85% and 110% of its rated coil voltage.',
-        'In practice: terminal X1:12 is terminal 12 on strip X1, so the drawing tells an electrician exactly where to measure. You read; a qualified person measures, under NEN 3140 (Safety on the floor and in the substation).\n\nThe usual failure is the same as on P&IDs: the cabinet was changed and the schematic in its door pocket was not. A sharp question: is the schematic in this cabinet the as-built revision?',
+        'The classic start–stop circuit: the overload NC 95-96 and the stop button NC in series, then the start button NO, with a NO contact of the contactor itself in parallel. Press start, the coil pulls in, and that own contact keeps it on after you let go: self-holding.\n\nStop is NC on purpose: a broken wire stops the machine. Coils also need enough voltage: IEC 60947 requires a contactor to close anywhere between 85% and 110% of its rated coil voltage; below that, closing is not guaranteed.',
+        'In practice: terminal X1:12 is terminal 12 on strip X1, so the drawing tells an electrician exactly where to measure. You read; a skilled person appointed under NEN 3140 measures (Safety on the floor and in the substation).\n\nThe usual failure is the same as on P&IDs: the cabinet was changed and the schematic in its door pocket was not. A sharp question: is the schematic in this cabinet the as-built revision?',
       ],
       example: {
         kind: 'faded',
@@ -759,11 +759,11 @@ export default {
           tolerance: 0.5,
           unit: '%',
           hint: 'Divide the measured voltage by the rated coil voltage.',
-          why: '19.2 / 24 = 0.80, so 80%: below the 85% at which a contactor is expected to close reliably.',
+          why: '19.2 / 24 = 0.80, so 80%: below the 85% from which IEC 60947 requires a contactor to close, so closing is no longer guaranteed.',
         },
         {
           q: 'An auxiliary contact is numbered 21-22. What type is it?',
-          options: ['Normally open: it closes when actuated', 'A coil connection of the contactor or relay', 'Normally closed: opens when actuated', 'A main power contact for the motor'],
+          options: ['Normally open: it closes when actuated', 'A coil connection of the contactor or relay', 'Normally closed: opens when actuated', 'A main power contact for the motor current'],
           answer: 'Normally closed: opens when actuated',
           why: 'Second digits 1-2 mean NC, 3-4 mean NO; the first digit just numbers the contact.',
         },
@@ -806,14 +806,14 @@ export default {
       pre: [
         {
           q: 'Why do designers often use three transmitters with 2oo3 voting (two out of three must agree) for one trip?',
-          options: ['To make the trip act a lot faster', 'Because the law requires three of everything', 'Fewer false trips, still safe if one fails', 'To save on the yearly proof testing of the trip'],
+          options: ['To make the trip act a lot faster on demand', 'Because the law requires three of everything', 'Fewer false trips, still safe if one fails', 'To save on the yearly proof testing of the trip'],
           answer: 'Fewer false trips, still safe if one fails',
           why: 'One faulty transmitter can neither cause a trip on its own nor block a real one.',
         },
       ],
       teach: [
         'A process plant protects in layers: basic control (the DCS loops), alarms with an operator who responds, the safety instrumented system (SIS) with its own sensors, logic and valves, then mechanical relief such as a PSV.\n\nIEC 61511 is the standard for the SIS in process plants. On the P&ID its instruments often have their own tag series or marking; the legend sheet tells you which.',
-        'Each safety instrumented function (SIF) is sensor, logic and final element: LSHH 102 sees high-high level, the logic closes XV 103. Its SIL follows from the risk reduction needed: SIL 1 a factor 10 to 100, SIL 2 100 to 1,000, SIL 3 1,000 to 10,000.\n\nThe factor is 1 divided by the probability of failure on demand (PFD). A hazard study such as a HAZOP or LOPA sets the target. A SIF should not share its sensor with a control loop.',
+        'Each safety instrumented function (SIF) is sensor, logic and final element: LSHH 102 sees high-high level, the logic closes XV 103. Its SIL (safety integrity level) follows from the risk reduction needed; for rarely demanded functions: SIL 1 a factor 10 to 100, SIL 2 100 to 1,000, SIL 3 1,000 to 10,000.\n\nThe factor is 1/PFD, the average probability of failure on demand. A HAZOP (a structured what-if review) finds hazards; a LOPA (layer of protection analysis) sets the target. A SIF usually has its own sensor.',
         'The cause and effect matrix (C&E) shows all trips on one sheet. Rows are causes, the trip initiators such as LSHH 102 or PSHH 205; columns are effects, such as close XV 103 or stop P-101. An X where they cross means that cause triggers that effect.\n\nRead a row to see everything one trip does; read a column to see everything that stops one pump.',
         'Fail-safe: trip valves are drawn with a fail position, FC (fail closed), FO (fail open) or FL (fail last), per ISA 5.1. Trips usually work de-energise-to-trip, so a power or air failure also drives the valve to safe.\n\nA proof test is the periodic test that a SIF really works, for example yearly, with the sensor driven to its trip point and the valve seen to move. Any bypass during the test is logged and removed.',
         'Failure modes: a trip bypassed for start-up and forgotten; false trips that teach operators to bypass; a trip setpoint changed in the DCS without review; a C&E matrix not updated after a change, so it no longer matches the logic.\n\nThe bypass register from the PLC lesson applies here twice over. A sharp question: which trips are bypassed right now, since when, and is the C&E matrix as-built?',
@@ -822,7 +822,7 @@ export default {
         kind: 'faded',
         text: 'Tank T-101’s overfill trip LSHH 102 is a single level switch. Last year it tripped 6 times, all false: the switch was fouled. Each false trip stops the plant for 3 hours at 12 tonnes per hour. The team proposes three level transmitters with 2oo3 voting.',
         ask: 'What did the false trips cost in lost output, what does 2oo3 change, and what must happen before the change?',
-        reveal: 'Lost output: 6 trips × 3 h × 12 t/h = 216 tonnes a year.\n\n2oo3: one fouled transmitter no longer trips the plant, and if one fails dangerously the other two still trip. Before the change: an MOC review, the SIL verification recalculated, the P&ID, C&E matrix and proof test procedure updated, and the trip tested before start-up.',
+        reveal: 'Lost output: 6 trips × 3 h × 12 t/h = 216 tonnes a year.\n\n2oo3: one fouled transmitter no longer trips the plant, and if one fails dangerously the other two still trip. Before the change: an MOC (management of change) review, the SIL verification recalculated, the P&ID, C&E matrix and proof test procedure updated, and the trip tested before start-up.',
       },
       said: 'What engineers say: “That high-high has tripped us six times for nothing. Fine, go two-out-of-three, but it goes through MOC and the C&E gets updated the same day.”',
       recall: [
@@ -891,7 +891,7 @@ export default {
         'Every control loop has four parts. A sensor measures the process value (PV), say 72.4 °C. The controller compares it with the setpoint (SP), the target, say 75 °C, and computes the error: SP − PV = 2.6 °C.\n\nAn actuator, the part that acts, for example a steam valve, changes the process. What the controller sends it is the output (OP), 0 to 100%. And the process responds, with some delay.',
         'Closed loop means feedback: measure, compare, correct, and again, many times a second.\n\nOpen loop means no measurement of the result: a timer, a fixed valve position, a recipe that says “heat for 10 minutes”. Open loop can’t correct for disturbances, outside changes such as colder product or lower steam pressure.',
         'Every controller faceplate, its small window on the control screen, shows three numbers: SP, PV and OP. Together they tell the story.\n\nPV below SP with OP at 100%: the actuator is saturated, fully open, and the loop can’t do more; the valve is too small or the steam supply is low. OP at 0% and PV still above SP: the disturbance is bigger than the actuator can handle.',
-        'Modes: AUTO, the controller acts. MAN (manual), the operator sets the output by hand. CAS (cascade), the setpoint comes from another controller.\n\nSurveys since the 1990s keep finding around a third of loops in plants running in manual or performing badly. “How many loops run in manual, and why?” is a question that gets an engineer’s attention.',
+        'Modes: AUTO, the controller acts. MAN (manual), the operator sets the output by hand. CAS (cascade), the setpoint comes from another controller.\n\nSurveys since the 1990s keep finding that only about a third of loops perform well, and that many run in manual; Process engineering basics gives the numbers. “How many loops run in manual, and why?” is a question that gets an engineer’s attention.',
         'The delay matters. Dead time is the time before the PV starts to move at all; lag is how slowly it then follows. The longer the delays, the gentler the controller must be, or the loop swings.\n\nIn the figure you can try it: a tank level with a valve, a controller in Hand, P or PI, and a disturbance on the outlet. A sharp question on any loop: what happens to the PV when someone opens a valve downstream?',
       ],
       example: {
@@ -1068,7 +1068,7 @@ export default {
         },
         {
           q: 'What is the main caveat of the Ziegler–Nichols ultimate gain method on a running plant?',
-          options: ['It forces steady swinging and gives aggressive settings', 'It only works on level loops on buffer tanks', 'It needs a full dynamic model of the whole plant before use', 'It ignores the process gain of the loop entirely, unlike lambda'],
+          options: ['It forces steady swinging and gives aggressive settings', 'It only works on level loops, such as those on buffer tanks', 'It needs a full dynamic model of the whole plant before use', 'It ignores the process gain of the loop entirely, unlike lambda'],
           answer: 'It forces steady swinging and gives aggressive settings',
           why: 'Finding Ku means making the loop oscillate on purpose, and the rules aim for quarter-amplitude decay, which overshoots.',
         },
@@ -1105,17 +1105,17 @@ export default {
         },
       ],
       teach: [
-        'A plant has hundreds of loops and nobody can tune them all. A loop audit ranks them on a few numbers from the historian: share of time in normal mode, time with the output stuck at 0 or 100%, oscillation, the spread of the error, and valve travel and reversals.\n\nMany DCS suppliers sell control performance monitoring software that does this daily. Process engineering basics quotes the big survey of how many loops run in manual.',
+        'A plant has hundreds of loops and nobody can tune them all. A loop audit ranks them on a few numbers from the historian, the database that stores every measurement over time: share of time in normal mode, time with the output stuck at 0 or 100%, oscillation, the spread of the error, and valve travel and reversals.\n\nMany DCS suppliers sell control performance monitoring software that does this daily. Process engineering basics quotes the big survey of how many loops run in manual.',
         'Then rank by value, not by count. Loops on the bottleneck, loops that set a quality variable such as dryer moisture, and loops that steer energy come first.\n\nLess variation pays when it lets you move the setpoint closer to a limit: squeeze and shift, in Process engineering basics. Ten loops fixed where the money is beat a hundred tuned at random.',
-        'Diagnose from the pattern. Still swinging in manual: a disturbance or another loop. Swinging only in auto: tuning or stiction. Many loops in one area swinging with the same period: one source spreading; find the loop that starts first.\n\nValve sizing shows in the data too: a valve that only ever works between 5 and 15% open is oversized and controls coarsely; one at 100% is too small.',
-        'Sometimes the structure, not the tuning, is the problem. A long dead time compared with the time constant means slow tuning or dead-time compensation, such as a Smith predictor, a model that predicts the delayed effect. A big disturbance you can measure calls for feedforward; a fast inner disturbance for cascade; several interacting loops for MPC.\n\nProcess engineering basics explains cascade, ratio and feedforward; here you learn to spot when one is needed.',
-        'Fixes decay. A one-off tuning blitz looks good for months, then valves wear, products change and loops go back to manual. What lasts: a loop health KPI, such as the share of key loops in normal mode, reviewed monthly; an owner, usually a control engineer; valve work in the CMMS.\n\nA sharp question: who owns loop performance after the project, and which number do they look at every month?',
+        'Diagnose from the pattern. Still swinging in manual: a disturbance or another loop. Swinging only in auto: tuning or stiction. Many loops in one area swinging with the same period: one source spreading; find the loop that starts first.\n\nValve sizing shows in the data too: a valve that only ever works between 5 and 15% open is probably oversized and controls coarsely; one often at 100% is probably too small.',
+        'Sometimes the structure, not the tuning, is the problem. A long dead time compared with the time constant means slow tuning or dead-time compensation, such as a Smith predictor, a model that predicts the delayed effect. A big disturbance you can measure calls for feedforward; a fast inner disturbance for cascade; several interacting loops for MPC (model predictive control).\n\nProcess engineering basics explains cascade, ratio and feedforward; here you learn to spot when one is needed.',
+        'Fixes decay. A one-off tuning blitz looks good for months, then valves wear, products change and loops go back to manual. What lasts: a loop health KPI, such as the share of key loops in normal mode, reviewed monthly; an owner, usually a control engineer; valve work planned in the CMMS, the maintenance system.\n\nA sharp question: who owns loop performance after the project, and which number do they look at every month?',
       ],
       example: {
         kind: 'faded',
-        text: 'An audit of 240 loops at a dairy powder plant: 58 in manual, 31 saturated more than 30% of the time, 44 oscillating. Top of the value ranking is the dryer’s outlet moisture: spec at most 4.0%, standard deviation 0.6%, run at 2.8% to keep two standard deviations of margin. Tuning plus a valve repair could halve the standard deviation.',
-        ask: 'What share of loops is in manual, and where can the moisture setpoint go if the spread halves and the margin stays two standard deviations?',
-        reveal: 'In manual: 58 / 240 = 24%.\n\nNew spread 0.3%, so setpoint 4.0 − 2 × 0.3 = 3.4%: 0.6 percentage points more moisture, sold as powder at powder prices. At 10 tonnes an hour that is roughly 60 kg an hour of extra saleable product. The 58 loops in manual come second: they are a symptom, the dryer is the money.',
+        text: 'An audit of 240 loops at a dairy powder plant: 58 in manual, 31 saturated more than 30% of the time, 44 oscillating. Top of the value ranking is the dryer’s outlet moisture: spec at most 4.0%, standard deviation 0.4%, run at 2.8% to keep three standard deviations of margin, as in squeeze and shift (Process engineering basics). Tuning plus a valve repair could halve the standard deviation.',
+        ask: 'What share of loops is in manual, and where can the moisture setpoint go if the spread halves and the margin stays three standard deviations?',
+        reveal: 'In manual: 58 / 240 = 24%.\n\nNew spread 0.2%, so setpoint 4.0 − 3 × 0.2 = 3.4%: 0.6 percentage points more moisture, sold as powder at powder prices. At 10 tonnes an hour that is roughly 60 kg an hour of extra saleable product. The 58 loops in manual come second: they are a symptom, the dryer is the money.',
       },
       said: 'What control engineers say: “Don’t bring me a list of 240 loops. Bring me the ten that cost money, with their trends.”',
       recall: [
@@ -1128,12 +1128,12 @@ export default {
           why: '75 / 300 = 25%.',
         },
         {
-          q: 'A moisture spec is at most 5.0%. Better control halves the standard deviation from 0.5% to 0.25%, and the margin stays two standard deviations. Where can the setpoint go, in %?',
-          number: 4.5,
+          q: 'A moisture spec is at most 5.0%. Better control halves the standard deviation from 0.5% to 0.25%, and the margin stays three standard deviations. Where can the setpoint go, in %?',
+          number: 4.25,
           tolerance: 0.01,
           unit: '%',
-          hint: 'Subtract two of the new standard deviations from the spec limit.',
-          why: '5.0 − 2 × 0.25 = 4.5%.',
+          hint: 'Subtract three of the new standard deviations from the spec limit.',
+          why: '5.0 − 3 × 0.25 = 4.25%.',
         },
         {
           q: 'Many loops in one area swing with the same period. What do you look for first?',
