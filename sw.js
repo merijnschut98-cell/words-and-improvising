@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v90';
+const CACHE = 'vantage-point-v91';
 // Films (v14b): MP4s from the public Supabase bucket, put here by the page after
 // a first full view (src/ui/film.js, cacheFilm). Never precached; kept across
 // shell versions.
@@ -66,7 +66,7 @@ self.addEventListener('fetch', (e) => {
   // (a <video> always asks for ranges); else straight from the network.
   if (e.request.method === 'GET' && isFilmUrl(e.request.url)) {
     e.respondWith(caches.open(FILMS)
-      .then((c) => c.match(url.origin + url.pathname))
+      .then((c) => c.match(e.request.url))
       .then((cached) => (cached ? rangeResponse(e.request, cached) : fetch(e.request)))
       .catch(() => fetch(e.request)));
     return;

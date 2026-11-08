@@ -659,7 +659,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   await video.waitFor({ timeout: 5000 });
   const v = await video.evaluate((el) => ({ controls: el.controls, inline: el.hasAttribute('playsinline'), poster: el.getAttribute('poster'), src: el.src, track: el.querySelector('track') && { kind: el.querySelector('track').kind, lang: el.querySelector('track').srclang, src: el.querySelector('track').getAttribute('src') } }));
   if (!v.controls || !v.inline) throw new Error(`video attributes: ${JSON.stringify(v)}`);
-  if (!/\/storage\/v1\/object\/public\/films\/eng\.machining\.turning\/nl\.mp4$/.test(v.src)) throw new Error(`video src ${v.src}`);
+  if (!/\/storage\/v1\/object\/public\/films\/eng\.machining\.turning\/nl\.mp4\?v=\d+$/.test(v.src)) throw new Error(`video src ${v.src}`);
   if (!v.track || v.track.kind !== 'captions' || v.track.lang !== 'nl' || v.track.src !== 'src/content/courses/films/eng.machining.turning.nl.vtt') throw new Error(`track ${JSON.stringify(v.track)}`);
   if (v.poster !== 'src/content/courses/films/eng.machining.turning.jpg') throw new Error(`poster ${v.poster}`);
   if (STUB_MP4.length) await p.waitForFunction(() => document.querySelector('.film-video').readyState >= 1, null, { timeout: 8000 });
@@ -695,7 +695,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   await open();
   await p.locator('.film-card video.film-video').waitFor({ timeout: 5000 });
   const en = await p.locator('.film-video').evaluate((el) => [el.src, el.querySelector('track').srclang, el.querySelector('track').label]);
-  if (!en[0].endsWith('/eng.machining.turning/en.mp4') || en[1] !== 'en' || en[2] !== 'English captions') throw new Error(`en video ${en}`);
+  if (!/\/eng\.machining\.turning\/en\.mp4\?v=\d+$/.test(en[0]) || en[1] !== 'en' || en[2] !== 'English captions') throw new Error(`en video ${en}`);
   await p.locator('details.read-along summary').waitFor({ timeout: 5000 });
   if ((await p.locator('details.read-along summary').innerText()).trim() !== 'Read along') throw new Error('no Read along');
   if ((await stepsOf()) !== 'Guess|Film|Example|Check') throw new Error(`en steps ${await stepsOf()}`);

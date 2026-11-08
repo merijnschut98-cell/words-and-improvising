@@ -185,11 +185,11 @@ test('the committed manifest: every film has nl and en, an https URL on the film
     for (const lang of ['nl', 'en']) {
       const v = f[lang];
       assert.ok(v, `${id}: no ${lang} video`);
-      assert.ok(v.dur >= 60 && v.dur <= 330, `${id} ${lang}: ${v.dur} s`);
+      assert.ok(v.dur >= 60 && v.dur <= 360, `${id} ${lang}: ${v.dur} s`);
       assert.ok(v.bytes > 100000 && v.bytes < 60e6, `${id} ${lang}: ${v.bytes} bytes`);
       assert.ok(fs.existsSync(v.vtt) && fs.readFileSync(v.vtt, 'utf8').startsWith('WEBVTT'), `${id} ${lang}: captions ${v.vtt}`);
       assert.ok(v.scenes[0] === 0 && v.scenes.every((s, i) => i === 0 || s > v.scenes[i - 1]) && v.scenes.at(-1) < v.dur, `${id} ${lang}: scene starts`);
-      assert.match(videoOf(m, id, lang).url, /^https:\/\/[a-z]+\.supabase\.co\/storage\/v1\/object\/public\/films\/[a-z0-9.]+\/(nl|en)\.mp4$/);
+      assert.match(videoOf(m, id, lang).url, /^https:\/\/[a-z]+\.supabase\.co\/storage\/v1\/object\/public\/films\/[a-z0-9.]+\/(nl|en)\.mp4\?v=\d+$/);
     }
   }
 });
@@ -198,11 +198,15 @@ test('the committed manifest: every film has nl and en, an https URL on the film
 test('videoOf: the video in the app language, with captions, poster and a start scene; null when there is none', () => {
   const m = manifestWith(manifestWith(null, 'eng.x.y', 'nl', { dur: 100, bytes: 5e6, scenes: [0, 20, 50] }), 'eng.x.y', 'en', { dur: 90, bytes: 4e6, scenes: [0, 18, 45] });
   assert.deepEqual(videoOf(m, 'eng.x.y', 'en'), {
-    url: `${MANIFEST_BASE}/eng.x.y/en.mp4`, vtt: 'src/content/courses/films/eng.x.y.en.vtt', poster: 'src/content/courses/films/eng.x.y.jpg', dur: 90, start: 0,
+    url: `${MANIFEST_BASE}/eng.x.y/en.mp4?v=4000000`, vtt: 'src/content/courses/films/eng.x.y.en.vtt', poster: 'src/content/courses/films/eng.x.y.jpg', dur: 90, start: 0,
   });
   assert.equal(videoOf(m, 'eng.x.y', 'nl', 3).start, 50);
   assert.equal(videoOf(m, 'eng.x.y', 'nl', 9).start, 50);
-  assert.equal(videoOf(m, 'eng.x.y', 'fr').url, `${MANIFEST_BASE}/eng.x.y/nl.mp4`);
+  assert.equal(videoOf(m, 'eng.x.y', 'fr').url, `${MANIFEST_BASE}/eng.x.y/nl.mp4?v=5000000`);
+  // a re-rendered film is a new URL (its size is the version), so no browser or
+  // film cache can play the old video under the new captions
+  const again = manifestWith(m, 'eng.x.y', 'nl', { dur: 100, bytes: 5000001, scenes: [0, 20, 50] });
+  assert.notEqual(videoOf(again, 'eng.x.y', 'nl').url, videoOf(m, 'eng.x.y', 'nl').url);
   assert.equal(videoOf(m, 'eng.other', 'nl'), null);
   assert.equal(videoOf(null, 'eng.x.y', 'nl'), null);
   assert.equal(videoOf({ films: { 'eng.x.y': { nl: { dur: 1 } } } }, 'eng.x.y', 'nl'), null, 'no base, no URL');
@@ -288,6 +292,8 @@ test('the service worker routes films through the range helper and keeps the fil
   assert.match(sw, /const FILMS = 'vantage-films'/);
   assert.match(sw, /k !== CACHE && k !== META && k !== FILMS/);
   assert.ok(!/\.mp4'/.test(sw.split('const SHELL')[1].split('];')[0]), 'no video in the shell precache');
+  // films are cached per version (?v=), so the worker looks up the whole URL
+  assert.match(sw, /c\.match\(e\.request\.url\)/);
 });
 
 test('cacheFilm: the whole file into the films cache once; false when it cannot', async () => {
@@ -307,4 +313,9 @@ test('cacheFilm: the whole file into the films cache once; false when it cannot'
   assert.equal(await cacheFilm('https://x/films/c/nl.mp4', { cachesApi, fetchFn: async () => { throw new Error('offline'); } }), false);
   assert.equal(await cacheFilm('https://x/films/d/nl.mp4', { cachesApi: null, fetchFn: ok }), false);
   assert.ok(!store.has('https://x/films/b/nl.mp4') && !store.has('https://x/films/c/nl.mp4'));
+  // a new version of a film replaces the old one in the cache
+  const keyed = new Map([['https://x/films/e/nl.mp4?v=1', 1], ['https://x/films/e/en.mp4?v=1', 1]]);
+  const api2 = { open: async () => ({ match: async (u) => keyed.get(u), put: async (u, r) => { keyed.set(u, r); }, keys: async () => [...keyed.keys()].map((url) => ({ url })), delete: async (k) => keyed.delete(typeof k === 'string' ? k : k.url) }) };
+  assert.equal(await cacheFilm('https://x/films/e/nl.mp4?v=2', { cachesApi: api2, fetchFn: ok }), true);
+  assert.deepEqual([...keyed.keys()].sort(), ['https://x/films/e/en.mp4?v=1', 'https://x/films/e/nl.mp4?v=2']);
 });

@@ -167,7 +167,7 @@ export function videoOf(manifest, id, lang, scene = null) {
   if (!v || typeof manifest.base !== 'string' || !BASE.test(manifest.base)) return null;
   const starts = Array.isArray(v.scenes) && v.scenes.length ? v.scenes : [0];
   const start = Number.isInteger(scene) && scene >= 1 ? starts[Math.min(scene, starts.length) - 1] || 0 : 0;
-  return { url: `${manifest.base}/${id}/${l}.mp4`, vtt: v.vtt, poster: film.poster, dur: v.dur, start };
+  return { url: `${manifest.base}/${id}/${l}.mp4?v=${Number(v.bytes) || 0}`, vtt: v.vtt, poster: film.poster, dur: v.dur, start };
 }
 
 // The film page's data block (as readFilmData in films/_kit/assert.mjs), or null.
@@ -201,6 +201,9 @@ export async function cacheFilm(url, { cachesApi = globalThis.caches, fetchFn = 
     const res = await fetchFn(url, { mode: 'cors' });
     if (!res || res.status !== 200) return false;
     await cache.put(url, res);
+    // drop older versions of the same file (same path, other ?v=)
+    const path = url.split('?')[0];
+    if (cache.keys) for (const k of await cache.keys()) if (k.url !== url && k.url.split('?')[0] === path) await cache.delete(k);
     return true;
   } catch {
     return false;
