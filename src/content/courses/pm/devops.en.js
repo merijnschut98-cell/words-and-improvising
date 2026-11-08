@@ -262,7 +262,7 @@ export default {
       ],
       teach: [
         'The CD in CI/CD has two meanings. Continuous delivery: every version that comes through the pipeline can go live at any moment, but a person chooses when. Continuous deployment: every version that passes all tests goes live by itself, without a button.\n\nThe book Continuous Delivery by Jez Humble and David Farley (2010) made the first idea popular. The core: going live is a boring routine, not a project.',
-        'In a factory continuous deployment rarely fits everywhere. Software that controls a machine, such as PLC code (the programmable controller in a machine) or SCADA (the system with which operators monitor and operate a plant), you don’t change in the middle of a production run.\n\nThere you work with a maintenance window: an agreed moment, for example at a shift change or planned stop, when an update is allowed. Continuous delivery is still possible: the version is ready, tested, and waits for the window.',
+        'In a factory continuous deployment rarely fits everywhere. Software that controls a machine, such as PLC code (the programmable controller in a machine) or SCADA (the system with which operators monitor and operate a plant), you preferably don’t change during a production run, even if the PLC allows changes while running.\n\nThere you work with a maintenance window: an agreed moment, for example at a shift change or planned stop, when an update is allowed. Continuous delivery is still possible: the version is ready, tested, and waits for the window.',
         'A second difference from office IT: in production, safety or food safety depends on software. In the pharmaceutical industry software must also be validated: demonstrably tested according to fixed rules, with documentation.\n\nThat does not mean automation is forbidden. A pipeline that records every test delivers exactly the evidence an auditor wants to see. Much validation work is manual work a pipeline can take over.',
         'Within a team one rule applies: a broken build, a pipeline that shows red, takes priority over all other work. Nobody adds new code until it is green again.\n\nThat is Toyota’s andon cord in software: the line stops, the team swarms on the problem, and only when it is solved does work continue. A team that leaves a red pipeline for days is working without a safety net.',
         'What experts argue about: how far to bring OT (operational technology: the systems that control machines and processes) into the same pipeline as IT. Some vendors offer version control and automated tests for PLC code; many factories still do it by hand with a USB stick.\n\nA sharp question: “If we find a fault in the line control tomorrow, how long until the fix is safely on the machine?”',
@@ -271,7 +271,7 @@ export default {
         kind: 'faded',
         text: 'A soft-drinks plant has three kinds of software. The question per kind: continuous deployment, continuous delivery or manual with a fixed window?\n\nKind 1, the dashboard showing OEE (Overall Equipment Effectiveness, how well a line uses its time) in the canteen. If it goes wrong for an hour, nothing stops. Advice: continuous deployment, every approved version goes live by itself.\n\nKind 2, the MES that sends orders to the lines. A fault can stop production. Advice: continuous delivery, the version waits tested and goes live in an agreed window at the shift change, with someone from production present.',
         ask: 'Kind 3 is the PLC code of the filling machine, which controls fill height and the dosing pump. What do you advise?',
-        reveal: 'No continuous deployment. Update only in a planned maintenance window during a stop, after a test on a simulation or test rig, with a recorded version you can restore. Version control and automated checks do help here: you know exactly which code is on the machine. The pace is lower because a fault here touches product quality or safety.',
+        reveal: 'No continuous deployment. Update only in a planned maintenance window during a stop, after a test on a simulation or test rig, with a recorded version you can restore, and a check with production before the line restarts. Version control and automated checks do help here: you know exactly which code is on the machine. The pace is lower because a fault here touches product quality or safety.',
       },
       said: 'What you hear from an OT engineer: “Here a PLC update goes to the machine on a laptop, and the latest version is on Henk’s USB stick.”',
       recall: [
@@ -507,16 +507,16 @@ export default {
       ],
       teach: [
         'For years DORA divided participants into groups: performance clusters named low, medium, high and elite. Those groups come from a statistical analysis of the answers, not from fixed thresholds. So the thresholds shift from year to year.\n\nIn 2022 DORA did not even find an elite group; in 2023 it came back. So you always quote a benchmark with the year.',
-        'The 2023 report gave for the elite group, about 18% of participants: deploying on demand, often several times a day; change lead time under a day; change fail rate around 5%; recovery within an hour.\n\nThe lowest group, also around 18%: deploying between once a week and once a month, recovery in one to six months, and a change fail rate that came out at 64% that year.',
+        'The 2023 report gave for the elite group, about 18% of participants: deploying on demand, often several times a day; change lead time under a day; change fail rate around 5%; recovery within an hour.\n\nThe lowest group, about 17%: deploying between once a week and once a month, recovery in one to six months, and a change fail rate that came out at 64% that year.',
         'The numbers in every State of DevOps report come from a survey: people estimate which category their team falls into. They are not measured figures from pipelines. And the participants are mostly software teams, many from tech companies. A team writing PLC code for a factory lives in a different world.\n\nIn 2025 DORA let go of the four groups. The report, now about AI-assisted software development, describes seven named team profiles, based on performance, stability and well-being.',
         'Besides the delivery metrics DORA looks at reliability: whether a service does what users expect, in availability, speed and scale. In 2018 this was called availability; in 2021 it became reliability and the report called it a fifth metric.\n\nDORA now writes itself that it is more an operational measure than a delivery measure. A team can deliver fast and still have a service that keeps stalling.',
         'What experts argue about: does “elite” drive teams crazy? The label invites comparison with Google, while the context is completely different. DORA itself advises looking mainly at your own trend.\n\nA sharp question when someone says “we are elite”: “According to which year, and measured or estimated?”',
       ],
       example: {
         kind: 'faded',
-        text: 'A supplier of MES software (MES: the system that tracks orders and production on the floor) says in a proposal: “We are a DORA elite team.” You check it in three steps.\n\nStep 1, the year: the supplier refers to the 2023 thresholds. Those were the last published in that form; in 2025 DORA worked with team profiles.\n\nStep 2, the source: you ask for their own numbers. They send an export from their pipeline: 40 deployments a month, median lead time 2 days, change fail rate 4%, median recovery 45 minutes.',
+        text: 'A supplier of MES software (MES: the system that tracks orders and production on the floor) says in a proposal: “We are a DORA elite team.” You check it in three steps.\n\nStep 1, the year: the supplier refers to the 2023 thresholds. The 2024 report set new thresholds again, and in 2025 DORA switched to team profiles.\n\nStep 2, the source: you ask for their own numbers. They send an export from their pipeline: 40 deployments a month, median lead time 2 days, change fail rate 4%, median recovery 45 minutes.',
         ask: 'Does the claim match the 2023 thresholds, and what else do you ask?',
-        reveal: 'Nearly, but not quite. Deployment frequency (more than 1 per working day), fail rate (4%, around 5%) and recovery (45 minutes, within an hour) fit the 2023 elite group, but the lead time of 2 days does not; that threshold was under a day. Also ask: does this apply to the product we buy, or to their whole company? And how do they define a failed deployment? “Nearly elite, with a clear point to improve” is a fairer summary.',
+        reveal: 'Nearly, but not quite. Deployment frequency (about 2 per working day), fail rate (4%, around 5%) and recovery (45 minutes, within an hour) fit the 2023 elite group, but the lead time of 2 days does not; that threshold was under a day. Also ask: does this apply to the product we buy, or to their whole company? And how do they define a failed deployment? “Nearly elite, with a clear point to improve” is a fairer summary.',
       },
       said: 'What you read in a proposal: “We belong to the top 18% elite performers according to DORA.”',
       recall: [
@@ -591,7 +591,7 @@ export default {
         'DORA metrics are outcomes. They improve through the way of working, not by staring at them. DORA calls those ways of working capabilities: skills and practices such as trunk-based development, test automation, a loosely coupled architecture and a culture in which mistakes can be discussed.\n\nSo the question after a measurement is not “how do we push this number up?” but “which capability is holding us back?”.',
         'Gaming a metric means hitting the number without anything really improving. Examples: deploying every text change separately to push the frequency up, or calling a failed deployment a “planned change” to push the fail rate down.\n\nThat is why you always look at all the metrics together. If frequency goes up and the fail rate goes up too, nothing has been gained.',
         'A second trap is local optimisation: making one step faster while the whole chain doesn’t get faster. A team that can deploy in an hour, but then waits two weeks for approval from the security department, has a lead time of two weeks.\n\nFor Lean people this is familiar: the lead time of the chain determines the result, not the fastest machine. A value stream map of the route from commit to production shows where it waits.',
-        'Don’t expect a straight line up. DORA describes the J-curve: with a change, such as automating tests, the numbers first get worse, because the team is learning and clearing old work. Only after that do they rise.\n\nThat matters for a board’s expectations. Whoever stops after three months because things got worse often stops right in the dip.',
+        'Don’t expect a straight line up. DORA described the J-curve in its 2018 report: with a change, such as automating tests, the numbers first get worse, because the team is learning and clearing old work. Only after that do they rise.\n\nThat matters for a board’s expectations. Whoever stops after three months because things got worse often stops right in the dip.',
         'What experts argue about: do DORA numbers belong on a board dashboard? For: it makes IT performance visible. Against: as soon as teams are compared or judged on them, the numbers lose their value. Many advisers recommend letting the numbers first belong to the team itself, as a learning tool.\n\nA sharp question: “Which decision will we take based on this number?” If the answer is “nobody knows”, it is decoration.',
       ],
       example: {
@@ -874,7 +874,7 @@ export default {
       situation: {
         scene: 'At a glass factory SCADA (the system with which operators monitor and operate the furnaces) needs a security update. The supplier wants to update all eight workstations in the control room in one night. The shift leader is nervous: the furnaces run 24 hours a day and must never be unmonitored.',
         ask: 'Which approach do you propose?',
-        model: '“Let’s do it as a rolling update: first one workstation, while the other seven monitor the furnaces. Watch for a shift whether everything works, alarms included. Then the next two, and so on. That way there is always monitoring, and if the update causes problems, it hits one screen. Agree beforehand how we restore that one workstation.”',
+        model: '“First we check that the SCADA vendor has approved this patch for our version. Then we do it as a rolling update: first one workstation, while the other seven monitor the furnaces. Watch for a shift whether everything works, alarms included. Then the next two, and so on. That way there is always monitoring, and if the update causes problems, it hits one screen. Agree beforehand how we restore that one workstation.”',
         rubric: [
           'Chooses a step-by-step approach with constant monitoring',
           'Runs a full shift as a check, alarms included',
@@ -916,7 +916,7 @@ export default {
       teach: [
         'If an update goes wrong, you have two roads. A rollback: going back to the previous version that did work. Or roll forward: quickly making a new version that fixes the fault, and sending it through the pipeline.\n\nRollback is often the safest, because the previous version is proven to work. Roll forward makes sense when the pipeline is fast and the fault small and clear.',
         'The hard part is in the data. A database migration changes the structure of the database, for example splitting a column. The old code no longer understands the new structure, and data that came in after the migration doesn’t fit back.\n\nThat is why good teams work with expand-contract: first expand the database so old and new code both work, then the new code goes live, and only when everything is stable remove the old part.',
-        'Feature flags have a downside too: flag debt, old switches nobody cleans up. A notorious example is Knight Capital in August 2012: an old flag was reused for new code, but one of the eight servers still had the old code. It went to work. The trading firm lost some 440 million dollars in about 45 minutes.\n\nThe lesson: clean up temporary flags, and deploy to all servers the same way.',
+        'Feature flags have a downside too: flag debt, old switches nobody cleans up. A notorious example is Knight Capital in August 2012: an old flag was reused for new code, but one of the eight servers still had the old code. It went to work. The trading firm lost an estimated 440 to 460 million dollars in about 45 minutes.\n\nThe lesson: clean up temporary flags, and deploy to all servers the same way.',
         'In the factory the previous working version is often called the last known good version. For PLCs and SCADA it belongs in a fixed place, with a date, and tested that you can restore it.\n\nA rollback plan describes beforehand: who decides to roll back, on which signal, how long it takes and who does it. Whoever only works that out during the outage loses precious time.',
         'What experts argue about: must every change be reversible? Some say yes, always. Others say: with a fast pipeline fixing forward is often faster and safer, and some changes, such as deleted data, cannot be rolled back.\n\nA sharp question for every go-live: “On which signal do we roll back, who decides, and have we practised going back?”',
       ],
@@ -944,7 +944,7 @@ export default {
           q: 'What went wrong at Knight Capital in 2012?',
           options: ['A power cut stopped all trading servers at once', 'A hacker used a leak to switch on a hidden feature in the trading software', 'A database filled up and refused new orders', 'A reused flag switched on old code on a server that wasn’t updated'],
           answer: 'A reused flag switched on old code on a server that wasn’t updated',
-          why: 'In about 45 minutes the firm lost some 440 million dollars. A lesson about flag debt and identical deploys.',
+          why: 'In about 45 minutes the firm lost an estimated 440 to 460 million dollars. A lesson about flag debt and identical deploys.',
         },
         {
           q: 'What belongs in a rollback plan?',
@@ -1000,7 +1000,7 @@ export default {
         'ITIL is the best-known collection of good practice for IT service management: organising IT so that users can work reliably. It began in the late 1980s at the British government. The current version, ITIL 4, appeared in 2019 and is now owned by the company PeopleCert.\n\nYou don’t need to know it by heart. But you must keep three words sharply apart: incident, problem and change.',
         'An incident is an unplanned interruption of a service, or a service working worse than it should. The MES doesn’t respond, the label printer doesn’t print. The goal with an incident is: working again as fast as possible, even if you don’t know the cause yet.\n\nIncidents come in at the service desk: the central point where users report outages and questions, by phone, email or portal.',
         'A problem in ITIL is the cause, or potential cause, of one or more incidents. With a problem the goal is different: understanding why it happens, so it doesn’t come back.\n\nThe printer that fails every week: that is 52 incidents a year, but maybe only one problem, for example a power supply that dips briefly when the press starts up. Problem management looks for that cause.',
-        'A change is the addition, modification or removal of anything that could affect a service. A new MES version, a different printer driver, an adjusted firewall rule.\n\nMany incidents are caused by a change. That is why the first question at an outage is often: “What changed recently?” ITIL 4 calls managing changes change enablement, making changes possible, not stopping them.',
+        'A change is the addition, modification or removal of anything that could affect a service. A new MES version, a different printer driver, an adjusted firewall rule.\n\nMany incidents are caused by a change. That is why the first question at an outage is often: “What changed recently?” ITIL 4 now calls managing changes change enablement (at first: change control), making changes possible, not stopping them.',
         'For you as a Lean consultant: handling an incident is like quickly fixing a breakdown on the line, problem management like doing a root-cause analysis so it doesn’t return. The difference is in the goal: working again, versus never again.\n\nWhat you often see: a service desk that is good at incidents, while nobody has time for problems. A sharp question: “Which five outages came back most often last month, and who is looking for the cause?”',
       ],
       example: {
@@ -1015,6 +1015,7 @@ export default {
           tolerance: 0.5,
           unit: 'incidents',
           why: '1 per week × 52 weeks = 52 incidents. Possibly all from the same single problem.',
+          hint: 'Count the failures per week, then multiply by the number of weeks in a year.',
         },
         {
           q: 'What is a problem in ITIL?',
@@ -1086,7 +1087,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A food plant runs 24 hours a day, 7 days a week. The MES is in the cloud with a supplier. You read through the SLA.\n\nAvailability: 99.5% per month. Over 30 days × 24 hours = 720 hours it may be down 0.005 × 720 = 3.6 hours.\nResponse for priority 1: within 30 minutes, but only on working days between 8:00 and 17:00.\nResolution time: not specified.\nPlanned maintenance: does not count as downtime.\n\nWhat this means: an outage on Saturday night only gets a response on Monday at 8:00. That can be more than 48 hours. You advise: 24/7 response for priority 1, and a maximum resolution time.',
+        text: 'A food plant runs 24 hours a day, 7 days a week. The MES is in the cloud with a supplier. You read through the SLA.\n\nAvailability: 99.5% per month. Over 30 days × 24 hours = 720 hours it may be down 0.005 × 720 = 3.6 hours.\nResponse for priority 1: within 30 minutes, but only on working days between 8:00 and 17:00.\nResolution time: not specified.\nPlanned maintenance: does not count as downtime.\n\nWhat this means: an outage at 02:00 on Saturday only gets a response on Monday at 8:00, 54 hours later. You advise: 24/7 response for priority 1, and a maximum resolution time.',
       },
       said: 'What you hear from a plant manager: “According to the report they meet the SLA every month. So why does my line keep stopping?”',
       recall: [
@@ -1237,8 +1238,8 @@ export default {
       pre: [
         {
           q: 'Every IT change must pass a weekly meeting of managers who don’t know the technology. What did DORA find in 2019 about such heavyweight approval?',
-          options: ['It prevents most outages, but costs time', 'It is mandatory for every organisation that follows ITIL', 'No evidence it prevents outages, but it does slow delivery', 'It makes teams faster, because there is less discussion after the meeting'],
-          answer: 'No evidence it prevents outages, but it does slow delivery',
+          options: ['It prevents most outages, but costs time', 'It is mandatory for every organisation that follows ITIL', 'No evidence of fewer failed changes, but it slows delivery', 'It makes teams faster, because there is less discussion after the meeting'],
+          answer: 'No evidence of fewer failed changes, but it slows delivery',
           why: 'Heavyweight external approval leads to bigger, rarer changes, and those are riskier.',
         },
       ],
@@ -1286,7 +1287,7 @@ export default {
       situation: {
         scene: 'The IT director of a group with four plants wants to make the CAB “stricter” after two outages caused by changes: from now on every change needs the signature of two managers. He asks you to set up that process.',
         ask: 'What do you say, and what do you propose?',
-        model: '“I understand you want grip after two outages. My worry: if every change has to wait longer, teams will bundle them, and big bundles fail more often. DORA research found no evidence that heavyweight approval prevents outages. Let’s first use a post-mortem to see why those two changes went wrong. Then we make routine changes standard and give the risky ones more attention.”',
+        model: '“I understand you want grip after two outages. My worry: if every change has to wait longer, teams will bundle them, and big bundles fail more often. DORA research found no evidence that heavyweight approval means fewer failed changes. Let’s first use a post-mortem to see why those two changes went wrong. Then we make routine changes standard and give the risky ones more attention.”',
         rubric: [
           'Acknowledges the wish for grip',
           'Explains the bundling mechanism, with the DORA finding',
