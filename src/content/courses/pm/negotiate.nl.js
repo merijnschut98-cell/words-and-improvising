@@ -169,17 +169,17 @@ export default {
       pre: [
         {
           q: 'Je hebt 30 minuten om een prijsgesprek met een klant voor te bereiden. Welke stap levert het meest op?',
-          options: ['Elk onderhandelpunt opschrijven, wat het jou waard is en wat het de ander waard kan zijn', 'De openingszin uitschrijven die je in het gesprek woord voor woord gaat gebruiken', 'Een tegenargument oefenen voor elk bezwaar dat je maar kunt bedenken', 'De loopbaan, het netwerk en de hobby’s van de manager bij de klant online opzoeken'],
+          options: ['Elk onderhandelpunt opschrijven, wat het jou waard is en wat het de ander waard kan zijn', 'Woord voor woord de openingszin uitschrijven die je straks in het gesprek zelf wilt gebruiken', 'Een tegenargument oefenen voor elk bezwaar dat je maar kunt bedenken', 'De loopbaan, het netwerk en de hobby’s van de manager bij de klant online opzoeken'],
           answer: 'Elk onderhandelpunt opschrijven, wat het jou waard is en wat het de ander waard kan zijn',
           why: 'De meeste fouten in een onderhandeling ontstaan vóór het gesprek. Een lijst met punten en prioriteiten voor beide kanten laat zien waar je kunt ruilen; een script of een lijst weerleggingen doet dat niet.',
         },
       ],
       teach: [
-        'Op dit niveau bereid je voor op papier, niet in je hoofd. Deepak Malhotra en Max Bazerman (Negotiation Genius, 2007) stellen dat veel fouten vóór het gesprek ontstaan: mensen bereiden hun eigen verhaal voor en gokken naar dat van de ander.\n\nEen voorbereidingsblad heeft per kant vijf regels: de onderhandelpunten (issues), de prioriteiten, de BATNA, de ondergrens en het streefpunt, de uitkomst waar je op mikt. Vul de kant van de ander in als schatting, en markeer wat je nog moet uitzoeken.',
+        'Op dit niveau bereid je voor op papier, niet in je hoofd. Deepak Malhotra en Max Bazerman (Negotiation Genius, 2007) stellen dat veel fouten vóór het gesprek ontstaan: mensen bereiden hun eigen verhaal voor en gokken naar dat van de ander.\n\nEen voorbereidingsblad heeft per kant vijf regels: de onderhandelpunten (issues), de prioriteiten, de BATNA, de ondergrens en het streefpunt (target point), de uitkomst waar je op mikt. Vul de kant van de ander in als schatting, en markeer wat je nog moet uitzoeken.',
         'Onderhandelpunten zijn de losse dingen waarover je afspraken kunt maken: tarief, dagen, startdatum, scope, betaaltermijn, wie de data aanlevert. Zet ze allemaal op een rij, niet alleen de prijs.\n\nRangschik ze dan: welke drie zijn voor jou het belangrijkst, en welke denk je voor hen? Waar de volgorde verschilt, kun je later ruilen. Waar die gelijk is, verwacht je een stevig gesprek en bereid je een eerlijke maatstaf voor, een meetlat die beide partijen kunnen checken.',
         'Houd je streefpunt los van je ondergrens. Het streefpunt is ambitieus maar verdedigbaar; de ondergrens volgt uit je BATNA.\n\nAdam Galinsky, Thomas Mussweiler en Victoria Medvec (2002) vonden dat onderhandelaars die hun streefpunt voor ogen hielden betere deals sloten dan wie zich op de ondergrens richtte, al waren ze achteraf minder tevreden. Schrijf beide getallen op, elk met de reden erbij, zodat geen van beide tijdens het gesprek wegzakt.',
         'Onderzoekend onderhandelen, de term van Malhotra en Bazerman (investigative negotiation), betekent dat je het gesprek ziet als feiten verzamelen. Bereid vragen voor, niet alleen argumenten: wat beperkt hen (een budgetcyclus, een inkoopregel, een baas), wat kost een nee hen, en wat moeten ze achteraf aan hun eigen manager melden?\n\nZet ook op een rij wat jij kunt geven dat voor jou goedkoop is en voor hen nuttig: een korter rapport, een overdracht aan hun planner, een flexibele start.',
-        'Wat je ziet: een blad met alleen het tarief erop, of een streefpunt dat niemand opschreef. Een andere valkuil is vaste-taartdenken: de aanname dat wat de een wint, de ander verliest. Leigh Thompson en Reid Hastie (1990) vonden dat de meeste onderhandelaars zo beginnen, en daardoor ruilmogelijkheden missen.\n\nDeskundigen verschillen over hoeveel je moet uitschrijven; de meesten raden vragen en opties aan, geen tekst. Een scherpe vraag voor je naar binnen gaat: “Wat weten we nog niet over hen?”',
+        'Wat je ziet: een blad met alleen het tarief erop, of een streefpunt dat niemand opschreef. Een andere valkuil is vaste-taartdenken (fixed-pie belief): de aanname dat wat de een wint, de ander verliest. Leigh Thompson en Reid Hastie (1990) vonden dat de meeste onderhandelaars zo beginnen, en daardoor ruilmogelijkheden missen.\n\nDeskundigen verschillen over hoeveel je moet uitschrijven; de meesten raden vragen en opties aan, geen tekst. Een scherpe vraag voor je naar binnen gaat: “Wat weten we nog niet over hen?”',
       ],
       example: {
         kind: 'faded',
@@ -191,13 +191,13 @@ export default {
       recall: [
         {
           q: 'Wat is het verschil tussen je streefpunt en je ondergrens?',
-          options: ['Het streefpunt is het getal waarmee je opent; de ondergrens is het laatste getal dat je hardop noemt', 'Het streefpunt bepaalt je eigen manager; de ondergrens bepaalt de inkoopafdeling van de klant', 'Het is hetzelfde getal, op twee plekken op het voorbereidingsblad gezet zodat je het niet vergeet', 'Het streefpunt is de ambitieuze uitkomst waar je op mikt; de ondergrens is de slechtste deal die je nog accepteert'],
-          answer: 'Het streefpunt is de ambitieuze uitkomst waar je op mikt; de ondergrens is de slechtste deal die je nog accepteert',
+          options: ['Het streefpunt is het getal waarmee je opent; de ondergrens is het laatste getal dat je hardop noemt', 'Het streefpunt bepaalt je eigen manager; de ondergrens bepaalt de inkoopafdeling van de klant', 'Het is hetzelfde getal, op twee plekken op het voorbereidingsblad gezet zodat je het niet vergeet', 'Het streefpunt is waar je op mikt; de ondergrens is de slechtste deal die je nog accepteert'],
+          answer: 'Het streefpunt is waar je op mikt; de ondergrens is de slechtste deal die je nog accepteert',
           why: 'Je mikt op het streefpunt en weigert alles onder de ondergrens. Je openingsbod is weer een derde getal.',
         },
         {
           q: 'Waarom rangschik je vóór een onderhandeling de onderhandelpunten voor beide kanten?',
-          options: ['Waar de volgorde verschilt kun je ruilen; waar die gelijk is, komt een stevig gesprek', 'Zodat je kunt openen met het punt dat jou het minst kan schelen en de rest bewaart', 'Omdat de meeste inkoopafdelingen leveranciers om een gerangschikte lijst vragen', 'Zodat je weet welke punten je laat vallen als de ander ze laag rangschikt'],
+          options: ['Waar de volgorde verschilt kun je ruilen; waar die gelijk is, komt een stevig gesprek', 'Zodat je kunt openen met het punt dat jou het minst kan schelen en de rest voor later bewaart', 'Omdat de meeste inkoopafdelingen leveranciers om een gerangschikte lijst vragen', 'Zodat je weet welke punten je laat vallen als de ander ze laag rangschikt'],
           answer: 'Waar de volgorde verschilt kun je ruilen; waar die gelijk is, komt een stevig gesprek',
           why: 'Verschillende prioriteiten laten elke kant geven wat voor haar goedkoop is. Gelijke prioriteiten betekenen iets verdelen wat beiden willen.',
         },
@@ -209,7 +209,7 @@ export default {
         },
         {
           q: 'Welke vraag past bij onderzoekend onderhandelen?',
-          options: ['“Is dit echt de beste prijs die jullie kunnen geven?”', '“Waarom zouden we minder accepteren dan vorig jaar?”', '“Kun je bevestigen dat je hier budget voor hebt?”', '“Wat moet je na dit gesprek aan je manager melden?”'],
+          options: ['“Is dit echt de beste prijs die jullie ons voor deze klus kunnen geven?”', '“Waarom zouden we minder accepteren dan we vorig jaar van jullie kregen?”', '“Kun je bevestigen dat je hier budget voor hebt?”', '“Wat moet je na dit gesprek aan je manager melden?”'],
           answer: '“Wat moet je na dit gesprek aan je manager melden?”',
           why: 'Die legt een beperking aan hun kant bloot die jij kunt helpen oplossen. De andere vragen testen hun standpunt.',
         },
@@ -257,8 +257,8 @@ export default {
       ],
       teach: [
         'Macht in een onderhandeling is, simpel gezegd, hoe hard elke kant deze deal nodig heeft vergeleken met haar alternatief. Vaak is het minder scheef dan het voelt: de grote klant heeft ook een probleem, een deadline, en kosten als het misgaat.\n\nMalhotra en Bazerman (Negotiation Genius, 2007) beschrijven zetten voor de zwakkere kant: verraad geen zwakke BATNA, zoek de zwakke plekken van de ander, vind wat jouw aanbod onderscheidt, en vorm een coalitie.',
-        'Je waardepropositie is wat jij biedt dat de ander niet makkelijk ergens anders krijgt: kennis van hun lijn, een team dat ze al vertrouwen, snelheid. Zeg het in hun termen: “We kunnen volgende week starten, met mensen die jullie planningssysteem al kennen.”\n\nDan verandert de vergelijking van “jouw tarief tegen een goedkoper bureau” in “jouw tarief tegen drie maanden waarin een nieuw team zich inwerkt”.',
-        'Een hefboom is alles waardoor de ander de deal meer wil, of waardoor weglopen hem meer kost. Eerlijke hefbomen zijn je eigen BATNA verbeteren, je aanbod laten samenvallen met hun deadline, en een interne bondgenoot: iemand bij de klant die jouw werk wil, zoals de fabrieksmanager die om jouw team vroeg.\n\nEen coalitie is een groep partijen die zich aaneensluiten om samen te onderhandelen. Kleine leveranciers doen dat; dat kunnen ook een paar afdelingen die hetzelfde project willen.',
+        'Je waardepropositie (value proposition) is wat jij biedt dat de ander niet makkelijk ergens anders krijgt: kennis van hun lijn, een team dat ze al vertrouwen, snelheid. Zeg het in hun termen: “We kunnen volgende week starten, met mensen die jullie planningssysteem al kennen.”\n\nDan verandert de vergelijking van “jouw tarief tegen een goedkoper bureau” in “jouw tarief tegen drie maanden waarin een nieuw team zich inwerkt”.',
+        'Een hefboom (leverage) is alles waardoor de ander de deal meer wil, of waardoor weglopen hem meer kost. Eerlijke hefbomen zijn je eigen BATNA verbeteren, je aanbod laten samenvallen met hun deadline, en een interne bondgenoot (internal ally): iemand bij de klant die jouw werk wil, zoals de fabrieksmanager die om jouw team vroeg.\n\nEen coalitie is een groep partijen die zich aaneensluiten om samen te onderhandelen. Kleine leveranciers doen dat; dat kunnen ook een paar afdelingen die hetzelfde project willen.',
         'Verraad je zwakte niet per ongeluk. “We hebben deze echt nodig”, een ja in de eerste minuut, of korting voordat iemand erom vroeg: elk ervan vertelt de ander dat je alternatief zwak is.\n\nSpeel ook geen sterkte die je niet hebt. Een bluf die wordt doorzien, maakt je zwakker dan ervoor, en bij een klant die je terugziet kost het vertrouwen. Houd je ambitie verdedigbaar: een bod dat je kunt uitleggen houdt beter stand bij een harde inkoper dan een gedurfd bod dat je niet kunt onderbouwen.',
         'Deskundigen verschillen over of je je BATNA überhaupt moet noemen. Een gangbare lijn: deel een sterke rustig als informatie, houd een zwakke voor je, en lieg er nooit over.\n\nTypische valkuilen: over je prijs discussiëren en vergeten wat zij zonder jou kwijtraken, en één harde inkoper zien als de hele klant. Vertrouwen dat langer meegaat dan één deal staat in de module Het adviesvak (De vertrouwde adviseur). Een scherpe vraag: “Wat kost het hen als wij er niet zijn?”',
       ],
@@ -413,16 +413,16 @@ export default {
       pre: [
         {
           q: 'Een klant vraagt je je tarief te verlagen. Welk antwoord ruilt in plaats van weggeeft?',
-          options: ['“Als je deze week de startdatum bevestigt, kan ik naar het tarief kijken.”', '“Goed, ik haal 5% van het totaal af, dan komen we verder.”', '“Ik zal kijken wat ik kan doen en kom er bij je op terug.”', '“Helaas veranderen wij onze tarieven nooit, voor geen enkele klant.”'],
+          options: ['“Als je deze week de startdatum bevestigt, kan ik naar het tarief kijken.”', '“Goed, ik haal 5% van het totaal af, dan komen we verder.”', '“Ik zal kijken wat ik kan doen en kom er bij je op terug.”', '“Helaas veranderen wij onze tarieven nooit, voor geen enkele klant, wat het project ook is.”'],
           answer: '“Als je deze week de startdatum bevestigt, kan ik naar het tarief kijken.”',
           why: 'Die koppelt jouw stap aan een stap van hen. De tweede geeft voor niets, de derde wordt als ja gehoord, en de vierde sluit het gesprek af.',
         },
       ],
       teach: [
-        'Een concessie is een stap waarin je toegeeft, zoals je zag bij Het eerste bod en framing. Deze les gaat over hoe je die geeft. Drie gewoontes doen het meeste werk: maak concessies voorwaardelijk, maak ze elke keer kleiner, en krijg voor elke concessie iets terug.\n\nEen voorwaardelijke concessie formuleer je als “als jij…, dan ik…”: “Als je deze week de startdatum bevestigt, kan ik 19 dagen doen in plaats van 20.”',
-        'De grootte en het ritme van je stappen zenden een boodschap. Je concessiepatroon is dat ritme. Stappen die kleiner worden, van 2 dagen naar 1 naar een halve, vertellen de ander dat je dicht bij je grens zit. Stappen die gelijk blijven of groeien, vertellen dat er nog genoeg ruimte is. Dat is gangbaar advies van onderhandeltrainers, geen wet.\n\nGeef ook langzaam: een grote concessie in de eerste minuten laat je openingsbod lijken alsof je het nooit meende.',
+        'Een concessie is een stap waarin je toegeeft, zoals je zag bij Het eerste bod en framing. Deze les gaat over hoe je die geeft. Drie gewoontes doen het meeste werk: maak concessies voorwaardelijk, maak ze elke keer kleiner, en krijg voor elke concessie iets terug.\n\nEen voorwaardelijke concessie (conditional concession) formuleer je als “als jij…, dan ik…”: “Als je deze week de startdatum bevestigt, kan ik 19 dagen doen in plaats van 20.”',
+        'De grootte en het ritme van je stappen zenden een boodschap. Je concessiepatroon (concession pattern) is dat ritme. Stappen die kleiner worden, van 2 dagen naar 1 naar een halve, vertellen de ander dat je dicht bij je grens zit. Stappen die gelijk blijven of groeien, vertellen dat er nog genoeg ruimte is. Dat is gangbaar advies van onderhandeltrainers, geen wet.\n\nGeef ook langzaam: een grote concessie in de eerste minuten laat je openingsbod lijken alsof je het nooit meende.',
         'Een snel ja heeft ook voor de ander een prijs. Galinsky, Seiden, Kim en Medvec (2002) vonden dat onderhandelaars van wie het eerste bod meteen werd geaccepteerd minder tevreden waren, ook als hun deal even goed of beter was: ze bleven denken dat het beter had gekund.\n\nEen korte, eerlijke pauze en een klein tegenvoorstel kunnen beide kanten dus blijer maken dan een direct ja.',
-        'Het verschil delen is in het midden tussen twee getallen gaan zitten. Het voelt eerlijk, maar beloont wie het verst weg opende. Deel alleen als beide getallen goed onderbouwd zijn.\n\nKnabbelen (nibbling) is om één kleine extra vragen als de deal rond lijkt: “O, en het rapport in het Nederlands én het Engels?” Behandel het als een nieuw verzoek met een eigen prijs: “Doe ik graag. Dat is een halve dag; zal ik hem toevoegen?”',
+        'Het verschil delen (splitting the difference) is in het midden tussen twee getallen gaan zitten. Het voelt eerlijk, maar beloont wie het verst weg opende. Deel alleen als beide getallen goed onderbouwd zijn.\n\nKnabbelen (nibbling) is om één kleine extra vragen als de deal rond lijkt: “O, en het rapport in het Nederlands én het Engels?” Behandel het als een nieuw verzoek met een eigen prijs: “Doe ik graag. Dat is een halve dag; zal ik hem toevoegen?”',
         'Wat je ziet: junioren die toegeven om een ongemakkelijke stilte te beëindigen, of die drie dingen tegelijk weggeven. Een andere valkuil: een concessie die niemand opmerkt, omdat je hem niet benoemde. Zeg wat je geeft: “Dat is een dag minder voor jullie.”\n\nDeskundigen verschillen over iets gratis geven; sommigen doen vroeg één klein onvoorwaardelijk gebaar voor de goede wil. Korting op een tarief staat in de module Het adviesvak (Prijs en scope). Een scherpe vraag vóór elke stap: “Wat krijg ik hiervoor?”',
       ],
       example: {
@@ -433,8 +433,8 @@ export default {
       recall: [
         {
           q: 'Wat maakt een concessie voorwaardelijk?',
-          options: ['Hij geldt alleen tot het eind van dit specifieke gesprek', 'Hij staat in het contract als optie voor later', 'Je eigen manager keurt hem goed voordat je hem aanbiedt', 'Hij luidt “als jij…, dan ik…”, zodat je iets terugkrijgt'],
-          answer: 'Hij luidt “als jij…, dan ik…”, zodat je iets terugkrijgt',
+          options: ['Hij geldt alleen tot het eind van dit specifieke gesprek', 'Hij staat in het contract als optie voor later', 'Je eigen manager keurt hem goed voordat je hem aanbiedt', 'Hij luidt “als jij…, dan ik…”'],
+          answer: 'Hij luidt “als jij…, dan ik…”',
           why: 'De voorwaarde koppelt jouw stap aan een stap van hen, zodat niets gratis weggaat.',
         },
         {
@@ -447,21 +447,21 @@ export default {
         },
         {
           q: 'Wat zeggen concessies die elke keer kleiner worden?',
-          options: ['Dat je dicht bij je grens komt', 'Dat je je interesse in de deal verliest', 'Dat er nog veel ruimte over is', 'Dat je het gesprek snel wilt afronden'],
+          options: ['Dat je dicht bij je grens komt', 'Dat je langzaam je interesse in de deal verliest', 'Dat er nog veel ruimte over is', 'Dat je het gesprek snel wilt afronden'],
           answer: 'Dat je dicht bij je grens komt',
           why: 'Kleiner wordende stappen suggereren dat er weinig ruimte over is. Gelijke of groeiende stappen suggereren het omgekeerde.',
         },
         {
           q: 'Vlak nadat de deal rond lijkt, vraagt de klant: “En het rapport ook in het Engels?” Wat is dit, en hoe antwoord je?',
-          options: ['Verankeren; je antwoordt met een hoger getal van jezelf', 'Framing; je vat de hele deal samen in de termen van de klant', 'Het verschil delen; je biedt aan in het midden te gaan zitten', 'Knabbelen; je behandelt het als een nieuw verzoek met een eigen prijs'],
+          options: ['Verankeren; je antwoordt meteen met een hoger getal van jezelf', 'Framing; je vat de hele deal nog eens samen in de eigen termen van de klant', 'Het verschil delen; je biedt aan in het midden te gaan zitten', 'Knabbelen; je behandelt het als een nieuw verzoek met een eigen prijs'],
           answer: 'Knabbelen; je behandelt het als een nieuw verzoek met een eigen prijs',
           why: 'Een kleine extra na de deal is nog steeds extra werk. Door de prijs te noemen blijft de deal heel.',
         },
       ],
       situation: {
-        scene: 'Bij een verpakkingsfabriek zegt de operationeel manager: “In je voorstel staan 12 dagen voor het lijnonderzoek. Ik kan vandaag tekenen voor 9.” Je weet dat 10 dagen het minimum is voor een degelijk resultaat, en alleen als zijn team de data voorbereidt.',
+        scene: 'Bij een verpakkingsfabriek zegt de operationeel manager: “In je voorstel staan 12 dagen voor het lijnonderzoek. Ik kan vandaag tekenen voor 8.” Je weet dat 10 dagen het minimum is voor een degelijk resultaat, en alleen als zijn team de data voorbereidt.',
         ask: 'Hoe reageer je?',
-        model: 'Ik zou niet naar 9 springen of op 10,5 gaan zitten. Ik zou zeggen: “Als jullie team de stilstanddata klaar heeft voordat we beginnen, kan ik 11 doen.” Duwt hij weer: “Als je ploegleiders bij de twee workshops zijn, 10, en lager kan niet als je een bruikbaar resultaat wilt.” Elke stap kleiner, en elke stap koopt iets.',
+        model: 'Ik zou niet naar 8 springen of op 10 in het midden gaan zitten. Ik zou zeggen: “Als jullie team de stilstanddata klaar heeft voordat we beginnen, kan ik 11 doen.” Duwt hij weer: “Als je ploegleiders bij de twee workshops zijn, 10,5, en verder kan ik niet.” Eén dag, dan een halve, elke stap gekocht, en nog een halve dag boven mijn grens.',
         rubric: [
           'Accepteert of deelt niet meteen',
           'Maakt elke concessie voorwaardelijk',
@@ -470,9 +470,9 @@ export default {
         pushback: {
           lines: [
             'Waarom al die voorwaarden? Geef me gewoon een getal.',
-            'Een ander bureau bood 9 dagen, zonder voorwaarden.',
+            'Een ander bureau bood 8 dagen, zonder voorwaarden.',
           ],
-          model: 'Prima, hier is het getal: 10 dagen, als jullie team de data voorbereidt en de ploegleiders bij twee workshops zijn. Juist die voorwaarden maken 10 dagen genoeg; zonder is het 12. Als een ander bureau het in 9 kan zonder jullie data, zou ik vragen hoe. Zal ik de versie van 10 dagen vandaag op papier zetten?',
+          model: 'Prima, hier is het getal: 10,5 dag, als jullie team de data voorbereidt en de ploegleiders bij twee workshops zijn. Juist die voorwaarden maken 10,5 dag genoeg; zonder is het 12. Als een ander bureau het in 8 kan zonder jullie data, zou ik vragen hoe. Zal ik de versie van 10,5 dag vandaag op papier zetten?',
           rubric: [
             'Geeft een duidelijk getal',
             'Herhaalt waarom de voorwaarden de kortere klus mogelijk maken',
@@ -500,9 +500,9 @@ export default {
         },
       ],
       teach: [
-        'In de meeste deals zitten twee soorten waarde. Waarde claimen is verdelen wat er is: elke euro van het tarief af is van jou of van hen. Dat is verdelend onderhandelen (distributive). Waarde creëren is het geheel groter maken, door punten te ruilen die de twee kanten verschillend waarderen: integratief onderhandelen.\n\nDe meeste echte deals hebben allebei. De fout is een deal met vijf punten behandelen als vijf losse gevechten.',
+        'In de meeste deals zitten twee soorten waarde. Waarde claimen is verdelen wat er is: elke euro van het tarief af is van jou of van hen. Dat is verdelend onderhandelen (distributive). Waarde creëren is het geheel groter maken, door punten te ruilen die de twee kanten verschillend waarderen: integratief onderhandelen (integrative).\n\nDe meeste echte deals hebben allebei. De fout is een deal met vijf punten behandelen als vijf losse gevechten.',
         'Uitruilen (logrolling) is ruilen tussen punten: jij geeft toe op wat voor jou minder belangrijk is en voor hen meer, en zij omgekeerd. De onderhandelingsonderzoeker Dean Pruitt beschreef het begin jaren tachtig; het is de motor van de pakketdeal uit de eerste les.\n\nVoorbeeld: de klant vindt de startdatum het belangrijkst, jij de scope. Je start vroeg; zij houden de volledige scope. Allebei krijgen ze hun hoogste prioriteit.',
-        'MESO’s, multiple equivalent simultaneous offers, zijn twee of drie pakketten die voor jou evenveel waard zijn en die je tegelijk aanbiedt: “Optie A: 20 dagen, start in maart. Optie B: 18 dagen, start in mei, en jullie planner haalt de data op.” Hun keuze laat zien wat zij waarderen.\n\nGeoffrey Leonardelli, Adam Galinsky en collega’s (2019) vonden in zes experimenten dat MESO’s sterk verankerden, flexibeler overkwamen en voor beide kanten tot betere deals leidden.',
+        'MESO’s, multiple equivalent simultaneous offers, zijn twee of drie pakketten die voor jou evenveel waard zijn en die je tegelijk aanbiedt: “Optie A: 20 dagen, start in maart. Optie B: 18 dagen, start in mei, en jullie planner haalt de data op.” Hun keuze laat zien wat zij waarderen.\n\nGeoffrey Leonardelli, Adam Galinsky en collega’s (2019) vonden in zes experimenten dat MESO’s sterker verankerden dan één bod, overkwamen als een oprechtere en coöperatievere poging om eruit te komen, en tot een grotere gezamenlijke winst leidden.',
         'Om pakketten te bouwen, geef je elk punt voor jezelf een score, bijvoorbeeld in punten, en schat je hun scores. Combineer de punten zo dat elk pakket voor jou op hetzelfde totaal uitkomt. Houd het bij twee of drie; een van de auteurs, Jun Gu, zegt dat meer de keuze kan verlammen.\n\nNa de deal kun je vragen: “Is er een versie die voor ons allebei beter is?” Howard Raiffa (1985) noemde dat een verbeterronde na de deal (post-settlement settlement).',
         'Typische valkuilen: punten één voor één afhandelen, zodat er niets meer te ruilen valt; een MESO waarvan de opties voor jou niet echt gelijk zijn; je prioriteiten zo vrij delen dat een harde tegenpartij ze kan gebruiken. Loschelder en collega’s (2014) vonden dat openlijk laten zien welke belangen je met de ander deelt, kan worden uitgebuit.\n\nDeel genoeg over je prioriteiten om te ruilen, nooit je ondergrens. Een scherpe vraag: “Welke van deze vind je het belangrijkst, en waar kun je meebewegen?”',
       ],
@@ -584,9 +584,9 @@ export default {
         },
       ],
       teach: [
-        'Harde tactieken zijn zetten die bedoeld zijn om je onder druk te zetten in plaats van het probleem op te lossen: graag of niet, een plotselinge deadline, good cop en bad cop, een belediging, weglopen, of een beperkt mandaat: “mijn baas staat het niet toe”.\n\nFisher en Ury (Getting to Yes) raden drie stappen aan: herken de tactiek, benoem hem openlijk, en vraag of hij eerlijk is. “Ik merk dat we een deadline hebben die er vanochtend nog niet was. Waar is die op gebaseerd?”',
-        'William Ury voegt in Getting Past No (1991) toe: naar het balkon gaan. Stel je voor dat je van het toneel stapt en het gesprek van bovenaf bekijkt, zodat je niet op de automatische piloot reageert. In de praktijk: pauzeer, schrijf iets op, vat samen wat je hoorde, of vraag om een korte onderbreking.\n\nDe meeste tactieken verzwakken zodra ze benoemd zijn. Een echte deadline wordt uitgelegd; een die niet echt is, schuift vaak.',
-        'Chris Voss, oud-gijzelingsonderhandelaar van de FBI, leert tactische empathie in Never Split the Difference (2016): laten zien dat je snapt hoe de ander het ziet, om een betere deal te krijgen. Zijn gereedschap: spiegelen (mirroring), hun laatste één tot drie woorden als vraag herhalen (“Een laatste bod?”); labelen, het gevoel benoemen dat je hoort (“Het klinkt alsof je van boven onder druk staat”); en de gekalibreerde vraag, een open hoe- of wat-vraag die hen jouw probleem laat oplossen: “Hoe moet ik dat in 10 dagen doen?”',
+        'Harde tactieken (hard tactics) zijn zetten die bedoeld zijn om je onder druk te zetten in plaats van het probleem op te lossen: graag of niet, een plotselinge deadline, good cop en bad cop, een belediging, weglopen, of een beperkt mandaat (limited authority): “mijn baas staat het niet toe”.\n\nFisher en Ury (Getting to Yes) raden drie stappen aan: herken de tactiek, benoem hem openlijk, en vraag of hij eerlijk is. “Ik merk dat we een deadline hebben die er vanochtend nog niet was. Waar is die op gebaseerd?”',
+        'William Ury voegt in Getting Past No (1991) toe: naar het balkon gaan (go to the balcony). Stel je voor dat je van het toneel stapt en het gesprek van bovenaf bekijkt, zodat je niet op de automatische piloot reageert. In de praktijk: pauzeer, schrijf iets op, vat samen wat je hoorde, of vraag om een korte onderbreking.\n\nDe meeste tactieken verzwakken zodra ze benoemd zijn. Een echte deadline wordt uitgelegd; een die niet echt is, schuift vaak.',
+        'Chris Voss, oud-gijzelingsonderhandelaar van de FBI, leert tactische empathie (tactical empathy) in Never Split the Difference (2016): laten zien dat je snapt hoe de ander het ziet, voor een betere deal. Zijn gereedschap: spiegelen (mirroring), hun laatste één tot drie woorden als vraag herhalen (“Een laatste bod?”); labelen (labelling), het gevoel benoemen dat je hoort (“Het klinkt alsof je van boven druk krijgt”); en de gekalibreerde vraag (calibrated question), een open hoe- of wat-vraag die hen jouw probleem laat oplossen: “Hoe moet ik dat in 10 dagen doen?”',
         'Kanttekeningen. Het boek van Voss leunt op gijzelingszaken en verhalen, niet op gecontroleerd onderzoek naar zakelijke deals. Een gijzeling is eenmalig; een klant zie je terug, dus een middel dat als truc voelt kost vertrouwen. Labonderzoek ondersteunt een deel: gevoelens onder woorden brengen kan emotie dempen (Lieberman en collega’s, 2007).\n\nOok verankeren heeft grenzen. Extreme eerste biedingen verankeren, maar in één studie eindigden ze vaak zonder deal, vooral omdat de zwakkere kant wegliep (Schweinsberg en collega’s, 2012).',
         'Wat je ziet: junioren die toegeven aan een deadline die niemand testte, of die een belediging met een belediging beantwoorden. Een andere valkuil: zinnen van Voss letterlijk overnemen, wat ingestudeerd klinkt. Gebruik het idee, in je eigen woorden.\n\nZet je zelf harde tactieken in? Fisher en Ury zeggen nee, en de meeste adviesbureaus zijn het daarmee eens, omdat je de klant terugziet. Voet bij stuk houden onder persoonlijke druk staat in Onder druk: escaleren zonder bruggen te verbranden. Een scherpe vraag: “Waar is deze deadline op gebaseerd?”',
       ],
@@ -600,26 +600,26 @@ export default {
       recall: [
         {
           q: 'Fisher en Ury geven drie stappen tegen een harde tactiek. Welke volgorde klopt?',
-          options: ['Negeren, een beetje toegeven, dan doorgaan', 'Meedoen, de inzet verhogen, dan een compromis bieden', 'De kamer verlaten, afkoelen, dan terugkomen met een nieuw bod', 'Herkennen, openlijk benoemen, dan vragen of hij eerlijk is'],
+          options: ['Negeren, een beetje toegeven, dan doorgaan', 'Meedoen, de inzet verhogen, dan een compromis bieden', 'De kamer verlaten, afkoelen, dan later terugkomen met een nieuw bod', 'Herkennen, openlijk benoemen, dan vragen of hij eerlijk is'],
           answer: 'Herkennen, openlijk benoemen, dan vragen of hij eerlijk is',
           why: 'Zodra een tactiek benoemd is en de eerlijkheid ervan ter discussie staat, verliest hij meestal zijn kracht.',
         },
         {
           q: 'Wat betekent “naar het balkon gaan”?',
-          options: ['In je hoofd een stap terug doen, zodat je niet impulsief reageert', 'Het gesprek meteen naar een hoger niveau in de organisatie tillen', 'Om een pauze vragen zodat je je eigen manager kunt bellen voor advies', 'Het overleg naar een meer neutrale ruimte of locatie verplaatsen'],
-          answer: 'In je hoofd een stap terug doen, zodat je niet impulsief reageert',
+          options: ['In je hoofd afstand nemen, zodat je niet impulsief reageert', 'Het gesprek meteen naar een hoger niveau in de organisatie tillen', 'Om een pauze vragen zodat je je eigen manager kunt bellen voor advies', 'Het overleg naar een meer neutrale ruimte of locatie verplaatsen'],
+          answer: 'In je hoofd afstand nemen, zodat je niet impulsief reageert',
           why: 'Ury’s beeld voor het gesprek van bovenaf bekijken. Een pauze kan helpen, maar het gaat om de afstand.',
         },
         {
           q: 'Welke van deze is een gekalibreerde vraag in de zin van Chris Voss?',
-          options: ['“Is dit echt jullie laatste bod?”', '“Hoe moet ik dat in 10 dagen doen?”', '“Kun je hier iets hoger gaan?”', '“Ben je het eens dat dit eerlijk is?”'],
+          options: ['“Is dit echt jullie laatste bod op tafel?”', '“Hoe moet ik dat in 10 dagen doen?”', '“Kun je hier voor ons iets hoger gaan?”', '“Ben je het eens dat dit eerlijk is?”'],
           answer: '“Hoe moet ik dat in 10 dagen doen?”',
           why: 'Een open hoe- of wat-vraag die de ander vraagt jouw probleem op te lossen. De andere kun je met ja of nee beantwoorden.',
         },
         {
           q: 'Wat is de belangrijkste kanttekening als je het gereedschap van Voss bij een klant gebruikt?',
-          options: ['Het werkt alleen als beide kanten Engels als moedertaal spreken in het gesprek', 'De meeste inkoopafdelingen verbieden het uitdrukkelijk in hun gedragscode', 'Je hebt een tweede onderhandelaar in de kamer nodig die de tegenovergestelde rol speelt', 'Het komt uit eenmalige gijzelingszaken; bij een klant die je terugziet kost een truc vertrouwen'],
-          answer: 'Het komt uit eenmalige gijzelingszaken; bij een klant die je terugziet kost een truc vertrouwen',
+          options: ['Het werkt alleen als beide kanten Engels als moedertaal spreken in het gesprek', 'De meeste inkoopafdelingen verbieden het uitdrukkelijk in hun gedragscode', 'Je hebt een tweede onderhandelaar in de kamer nodig die de tegenovergestelde rol speelt', 'Het komt uit eenmalige gijzelingen; bij een vaste klant kost een truc vertrouwen'],
+          answer: 'Het komt uit eenmalige gijzelingen; bij een vaste klant kost een truc vertrouwen',
           why: 'Het bewijs bestaat vooral uit verhalen uit crisisgesprekken. In een relatie die doorloopt, bepaalt hoe je onderhandelt de volgende deal.',
         },
       ],
@@ -750,11 +750,11 @@ export default {
         },
       ],
       teach: [
-        'Prijsdruk, een klant die je prijs omlaag duwt, is normaal en vaak deel van het werk van een inkoper. Veel inkoopafdelingen hebben een besparingsdoel, een bedrag dat ze per jaar moeten besparen op wat ze inkopen, en vragen elke leverancier routinematig om korting. Een eerste “te duur” is dus informatie, geen oordeel.\n\nPrijsmodellen en de sommen achter een korting staan in de module Het adviesvak (Prijs en scope). Deze les gaat over het gesprek.',
+        'Prijsdruk (fee pressure), een klant die je prijs omlaag duwt, is normaal en vaak deel van het werk van een inkoper. Veel inkoopafdelingen hebben een besparingsdoel (savings target), een bedrag dat ze per jaar moeten besparen op wat ze inkopen, en vragen elke leverancier routinematig om korting. Een eerste “te duur” is dus informatie, geen oordeel.\n\nPrijsmodellen en de sommen achter een korting staan in de module Het adviesvak (Prijs en scope). Deze les gaat over het gesprek.',
         'Begin met vragen, niet met verdedigen. “Te hoog vergeleken met wat?” “Welk budget hebben jullie hiervoor?” “Gaat het om het totaal of om het dagtarief?” De antwoorden laten zien welk probleem je oplost: een budgetplafond, een goedkopere offerte voor minder werk, of een inkoper die een besparing moet laten zien.\n\nArgumenteer daarna vanuit waarde, niet vanuit uren: wat het resultaat hen waard is, in hun eigen cijfers.',
-        'Houd het tarief vast en beweeg de scope. Tariefvastheid betekent dat je dagtarief hetzelfde blijft bij alle klanten en gesprekken, zodat het geloofwaardig blijft. Verlaag het totaal door minder te doen: minder locaties, een lichter rapport, hun planner die de data ophaalt.\n\n“Binnen dat budget kunnen we twee locaties doen in plaats van drie” houdt je tarief heel en geeft de inkoper een echte keuze.',
-        'Andere hefbomen dan de prijs: de betalingstermijn, hoe snel je betaald wordt (30 dagen in plaats van 60), een langere verbintenis, een referentiecase met naam, of een vaste startdatum die jouw planning helpt. Elk ervan kun je ruilen tegen een lager totaal.\n\nGeef je toch korting, maak hem dan voorwaardelijk en noem hem één keer: “Bij een verbintenis voor drie fases 5% op fase twee en drie.” Kale korting op fase één leert de klant dat je eerste prijs alleen een opening is.',
-        'Schrijf het zoals je het zegt: kort en zeker. “Ons tarief voor drie locaties is €48.000. Binnen €40.000 kunnen we er twee doen.” Stop dan, zonder “we hopen dat dit acceptabel is” of “sorry dat het wat hoog is”. De schrijfregels hierachter staan in Assertief, niet agressief.\n\nTypische valkuil: drie alinea’s die elke dag rechtvaardigen, wat uitnodigt tot discussie over elke dag. Een scherpe vraag: “Wat zou je eruit willen laten?”',
+        'Een gangbare regel onder consultants: houd het tarief vast en beweeg de scope. Tariefvastheid (rate integrity) betekent dat je dagtarief hetzelfde blijft bij alle klanten en gesprekken, zodat het geloofwaardig blijft. Verlaag het totaal door minder te doen: minder locaties, een lichter rapport, hun planner die de data ophaalt.\n\n“Binnen dat budget kunnen we twee locaties doen in plaats van drie” houdt je tarief heel en geeft de inkoper een echte keuze.',
+        'Andere hefbomen dan de prijs, zoals de betalingstermijn (payment terms: hoe snel en in welke stappen je betaald wordt), een langere verbintenis of een referentiecase, staan daar ook. Bied ze in het gesprek één voor één aan en zeg wat ze opleveren: “Als jullie binnen 30 dagen betalen in plaats van 60, nemen we de overdrachtssessie kosteloos mee.”\n\nGeef je toch korting, maak hem dan voorwaardelijk en noem hem één keer, in één zin, nooit als openingscadeau.',
+        'Schrijf het zoals je het zegt: kort en zeker. “Ons tarief voor drie locaties is €48.000. Binnen €40.000 kunnen we er twee doen.” Stop dan, zonder “we hopen dat dit acceptabel is” of “sorry dat het wat hoog is”. De schrijfregels hierachter staan in Assertief, niet agressief.\n\nTypische valkuil: drie alinea’s die elke dag rechtvaardigen, wat uitnodigt tot discussie over elke dag. Een scherpe vraag voordat je antwoordt: “Welk probleem los ik op: een budget, een vergelijking of een besparingsdoel?”',
       ],
       example: {
         kind: 'worked',
@@ -772,7 +772,7 @@ export default {
         },
         {
           q: 'Wat betekent tariefvastheid?',
-          options: ['Je tarief wordt elk jaar gecontroleerd door een onafhankelijke accountant naar keuze', 'Je tarief stijgt elke januari automatisch mee met de inflatie, voor elke klant', 'Je tarief wordt bepaald door de inkoopregels die de klant voor al zijn leveranciers heeft', 'Je dagtarief blijft gelijk bij alle klanten en gesprekken, zodat het geloofwaardig blijft'],
+          options: ['Je tarief wordt elk jaar gecontroleerd door een onafhankelijke accountant naar keuze', 'Je tarief stijgt elke januari automatisch mee met de inflatie, voor elke klant die je hebt', 'Je tarief wordt bepaald door de inkoopregels die de klant voor al zijn leveranciers heeft', 'Je dagtarief blijft gelijk bij alle klanten en gesprekken, zodat het geloofwaardig blijft'],
           answer: 'Je dagtarief blijft gelijk bij alle klanten en gesprekken, zodat het geloofwaardig blijft',
           why: 'Als je tarief bij elke duw beweegt, leert elke klant te duwen. De scope bewegen houdt het tarief geloofwaardig.',
         },
@@ -825,16 +825,16 @@ export default {
       pre: [
         {
           q: 'In je voorstel staat de aanname dat de klant in week 1 schone data aanlevert. In week 3 is er nog steeds geen data. Wat helpt je nu het meest?',
-          options: ['Een vriendelijke herinneringsmail aan de data-eigenaar bij de klant', 'In de weekenden werken om de twee verloren weken in te halen', 'Je eigen manager vragen de sponsor erover te bellen', 'De opgeschreven aanname, die dit tot een wijziging maakt'],
+          options: ['Een vriendelijke herinneringsmail aan de data-eigenaar bij de klant, met de sponsor in cc', 'In de weekenden werken om de twee verloren weken in te halen', 'Je eigen manager vragen de sponsor erover te bellen', 'De opgeschreven aanname, die dit tot een wijziging maakt'],
           answer: 'De opgeschreven aanname, die dit tot een wijziging maakt',
           why: 'Omdat de voorwaarde op papier staat, is de vertraging een wijziging om te bespreken, niet jouw probleem om op te vangen. Een herinnering kan ook helpen, maar beschermt de planning niet.',
         },
       ],
       teach: [
         'De prijs is één regel van een deal. De voorwaarden (terms) zijn alle andere afspraken: wat jij levert, wat de klant aanlevert, wanneer je betaald wordt, hoe een resultaat wordt geaccepteerd, en wat er gebeurt als er iets verandert. Bij een vaste prijs kosten zwakke voorwaarden je vaak meer dan een zwakke prijs.\n\nDanny Ertel en Mark Gordon (The Point of the Deal, 2007) stellen dat onderhandelaars moeten mikken op een deal die in de praktijk werkt, niet alleen op een handtekening.',
-        'Een aanname is een voorwaarde waar je prijs van afhangt, opgeschreven: “Data uit het planningssysteem is beschikbaar in week 1”, “Bij elke workshop zijn twee ploegleiders”. Valt er een weg, dan is die aanname de basis voor een wijzigingsverzoek.\n\nEen klantafhankelijkheid is iets wat de klant moet leveren om de planning te laten kloppen: data, mensen, toegang, een besluit. Zet elk ervan met een datum in het voorstel, net zo duidelijk als je eigen opleveringen.',
-        'Acceptatiecriteria zeggen wanneer een oplevering af is: “Het rapport is geaccepteerd als de stuurgroep het heeft besproken, of tien werkdagen na oplevering zonder schriftelijk commentaar.” Zonder die criteria heeft “nog één ronde” geen eind.\n\nBetaalafspraken zijn belangrijk voor een klein bureau: factureren per fase of per maand, betaald binnen 30 dagen, houdt je geld in de pas met je werk.',
-        'Onderhandel voorwaarden vroeg, als de goede wil het grootst is, niet na het eerste probleem. Breng ze als bescherming voor beide kanten: “Zo weet jij precies wat je krijgt, en weten we allebei wat er gebeurt als de data te laat is.”\n\nCheck juridische voorwaarden, zoals aansprakelijkheid (liability) of intellectueel eigendom, wie eigenaar is van wat je maakt, bij je eigen bureau; een junior tekent die niet alleen. Wijzigingsbeheer tijdens het project staat in de module Uitvoeren (Wijzigingen beheersen).',
+        'Een aanname (assumption) is een voorwaarde waar je prijs van afhangt, opgeschreven: “Data uit het planningssysteem is beschikbaar in week 1”, “Bij elke workshop zijn twee ploegleiders”. Valt er een weg, dan is die aanname de basis voor een wijzigingsverzoek.\n\nEen klantafhankelijkheid (client dependency) is iets wat de klant moet leveren om de planning te laten kloppen: data, mensen, toegang, een besluit. Zet elk ervan met een datum in het voorstel, net zo duidelijk als je eigen opleveringen.',
+        'Acceptatiecriteria (acceptance criteria) zeggen wanneer een oplevering af is: “Het rapport is geaccepteerd als de stuurgroep het heeft besproken, of tien werkdagen na oplevering zonder schriftelijk commentaar.” Zonder die criteria heeft “nog één ronde” geen eind.\n\nBetaalafspraken zijn belangrijk voor een klein bureau: factureren per fase of per maand, betaald binnen 30 dagen, houdt je geld in de pas met je werk.',
+        'Onderhandel voorwaarden vroeg, als de goede wil het grootst is, niet na het eerste probleem. Breng ze als bescherming voor beide kanten: “Zo weet jij precies wat je krijgt, en weten we allebei wat er gebeurt als de data te laat is.”\n\nCheck juridische voorwaarden, zoals aansprakelijkheid (liability) of intellectueel eigendom (intellectual property), wie eigenaar is van wat je maakt, bij je eigen bureau; een junior tekent die niet alleen. Wijzigingsbeheer tijdens het project staat in de module Uitvoeren (Wijzigingen beheersen).',
         'Wat je ziet: voorstellen vol methode en zonder aannames, of aannames zo vaag (“goede samenwerking”) dat ze niets beschermen. Een andere valkuil: voorwaarden laten vallen in de laatste ronde om de deal rond te krijgen.\n\nDeskundigen verschillen over hoeveel je opschrijft; een lang contract kan wantrouwen uitstralen, en sommige vertrouwde relaties draaien op twee pagina’s. De meesten raden aan om minstens aannames, afhankelijkheden en acceptatie op papier te zetten. Een scherpe vraag: “Als dit in week 4 misgaat, wat hadden we dan willen opschrijven?”',
       ],
       example: {
@@ -847,7 +847,7 @@ export default {
       recall: [
         {
           q: 'Wat is een aanname in een voorstel?',
-          options: ['Een gok over wat de analyse uiteindelijk waarschijnlijk zal opleveren', 'Een belofte van de klant om jouw facturen op tijd te betalen', 'Een lijst van de methodes die het team in elke fase wil gebruiken', 'Een opgeschreven voorwaarde waar je prijs van afhangt, zoals data in week 1'],
+          options: ['Een gok over wat de analyse uiteindelijk waarschijnlijk zal opleveren, vooraf opgeschreven', 'Een belofte van de klant om jouw facturen op tijd te betalen', 'Een lijst van de methodes die het team in elke fase wil gebruiken', 'Een opgeschreven voorwaarde waar je prijs van afhangt, zoals data in week 1'],
           answer: 'Een opgeschreven voorwaarde waar je prijs van afhangt, zoals data in week 1',
           why: 'Valt de voorwaarde weg, dan is de opgeschreven aanname de basis voor een wijzigingsverzoek.',
         },
@@ -912,7 +912,7 @@ export default {
         },
       ],
       teach: [
-        'Soms moet een deal open: een aanname viel weg, het doel van de klant veranderde, of je eigen schatting klopte niet. Heronderhandelen is normaal in projecten; wat vertrouwen schaadt, is verrassing.\n\nEen bruikbare vuistregel: kaart het aan zodra je het ziet, met feiten, zolang er nog opties zijn. Een prognose in week 3 opent een gesprek; een overschrijding op de eindfactuur opent een conflict.',
+        'Soms moet een deal open: een aanname viel weg, het doel van de klant veranderde, of je eigen schatting klopte niet. Heronderhandelen is normaal in projecten; wat vertrouwen schaadt, is verrassing.\n\nEen bruikbare vuistregel: kaart het aan zodra je het ziet, met feiten, zolang er nog opties zijn. Een prognose (forecast) in week 3 opent een gesprek; een overschrijding (overrun) op de eindfactuur opent een conflict.',
         'Scheid de oorzaak van de oplossing. Spreek eerst af wat er gebeurd is, met het wijzigingslog en de opgeschreven aannames: “De data kwam in week 4 in plaats van week 1.” Bespreek daarna wat je doet. Haal je die twee door elkaar, dan wordt het een gevecht over schuld.\n\nLigt een deel van de oorzaak bij jou, zeg dat dan eerst en zonder omwegen. Dan is het voor hen makkelijker hun deel te nemen.',
         'De schaduw van de toekomst (shadow of the future), een uitdrukking die politicoloog Robert Axelrod bekend maakte (The Evolution of Cooperation, 1984), betekent dat mensen beter samenwerken als ze verwachten elkaar terug te zien. Met een klant die je wilt houden, is elke heronderhandeling één ronde van een lang spel.\n\nVraag dus wat eerlijk is, niet alles wat je zou kunnen krijgen, en geef iets waar het je minder kost dan de goede wil waard is.',
         'Opties bij een weggevallen aanname: meer tijd, meer geld, minder scope, of de extra kosten delen. Delen past als beide kanten bijdroegen, bijvoorbeeld: jij draagt twee dagen, zij betalen er zes.\n\nSpreek je ondergrens vóór het gesprek af met je eigen manager, en bepaal wie het woord voert: vaak je engagement manager, met jou voor de feiten. Een rood project weer op koers krijgen staat in Als je vastzit (Een rood project redden).',
@@ -928,13 +928,13 @@ export default {
       recall: [
         {
           q: 'Wanneer heropen je een deal het best omdat een aanname wegviel?',
-          options: ['Zodra je het ziet, zolang er nog opties zijn', 'Aan het eind, als de hele overschrijding bekend is', 'In de volgende stuurgroep, waar iedereen bij is', 'Alleen als de klant er zelf over begint'],
+          options: ['Zodra je het ziet, zolang er nog opties zijn', 'Aan het eind van het project, als de hele overschrijding bekend is', 'In de volgende stuurgroep, waar iedereen bij is', 'Alleen als de klant er zelf over begint'],
           answer: 'Zodra je het ziet, zolang er nog opties zijn',
           why: 'Vroeg is er ruimte om te kiezen. Laat blijft alleen de rekening over om over te twisten.',
         },
         {
           q: 'Waarom scheid je de oorzaak van de oplossing?',
-          options: ['Omdat alleen de oorzaak gefactureerd kan worden', 'Omdat de oplossing het werk van je manager is', 'Omdat het gesprek anders een gevecht over schuld wordt', 'Omdat de klant de oorzaak bezit en jij de oplossing'],
+          options: ['Omdat alleen de oorzaak gefactureerd kan worden', 'Omdat de oplossing het werk van je manager is', 'Omdat het gesprek anders een gevecht over schuld wordt', 'Omdat de klant eigenaar is van de oorzaak en jij van de oplossing'],
           answer: 'Omdat het gesprek anders een gevecht over schuld wordt',
           why: 'Eerst de feiten afspreken laat beide kanten samen vooruitkijken.',
         },
@@ -1073,9 +1073,9 @@ export default {
       teach: [
         'Assertiviteit is opkomen voor je mening en je behoeften en tegelijk die van de ander respecteren. Passief is toegeven om wrijving te vermijden; agressief is je mening doordrukken ten koste van de ander.\n\nDaniel Ames en Francis Flynn (2007) vonden dat collega’s leiders lager beoordeelden als ze hen te weinig of te veel assertief vonden: het beste punt ligt in het midden. De meeste junioren beginnen aan de passieve kant.',
         'De grensillusie (line-crossing illusion): mensen die anderen juist passend assertief vonden, dachten vaak dat ze te opdringerig waren overgekomen (Ames en Wazlawek, 2014). Een deel van de oorzaak: de ander laat soms met opzet ongenoegen zien, om een betere deal te krijgen.\n\nVoor jou betekent dat: als je het gevoel hebt dat je te hard duwde, check het voordat je je excuses aanbiedt. Meestal deed je dat niet.',
-        'Kenneth Thomas en Ralph Kilmann (1974) beschrijven vijf conflictstijlen op twee assen, assertiviteit en coöperativiteit: concurreren, samenwerken, compromis sluiten, vermijden en toegeven. Geen ervan is altijd goed. Geef toe op wat jou weinig kan schelen, werk samen op wat voor allebei telt, en concurreer alleen op je rode lijnen.\n\nHet risico voor een junior is overal standaard vermijden of toegeven, zodat je ja en je stilte als vanzelfsprekend worden gezien.',
-        'Op papier lezen mensen zekerheid af aan je woorden. In een studie in de rechtszaal vond men getuigen die met voorbehouden en aarzelingen spraken (“zeg maar”, “ik denk”, “eh”) minder geloofwaardig (Erickson en collega’s, 1978). De 7 Rules of Power van Jeffrey Pfeffer (2022) maken een verwant punt: mensen beoordelen competentie deels op hoe zeker je overkomt.\n\nDaaruit volgen vier schrijfregels voor klanten en senioren: zeker formuleren, niet verontschuldigend afzwakken, waardering zonder onderdanigheid, efficiëntie boven uitleg.',
-        'Zeker formuleren: zet je standpunt voorop. Niet verontschuldigend afzwakken: schrap “even”, “misschien”, “sorry dat ik stoor”. Waardering zonder onderdanigheid: bedank mensen voor wat ze deden, zonder jezelf onder hen te plaatsen. Efficiëntie boven uitleg: één reden, en dan stoppen.\n\nTypische valkuil: doorschieten naar koel of kortaf. De regels van Pfeffer steunen op onderzoek en praktijkvoorbeelden, en critici zeggen dat ze zelfpromotie kunnen belonen; gebruik ze voor helderheid, niet voor dominantie. Een scherpe vraag voor je verstuurt: “Welke woorden kunnen weg zonder dat er iets verloren gaat?”',
+        'Kenneth Thomas en Ralph Kilmann (1974) beschrijven vijf conflictstijlen (conflict modes) op twee assen, assertiviteit en coöperativiteit: concurreren, samenwerken, compromis sluiten, vermijden en toegeven. Geen ervan is altijd goed. Geef toe op wat jou weinig kan schelen, werk samen op wat voor allebei telt, en concurreer alleen op je rode lijnen.\n\nHet risico voor een junior is overal standaard vermijden of toegeven, zodat je ja en je stilte als vanzelfsprekend worden gezien.',
+        'In een studie in de rechtszaal vonden proefpersonen getuigen die met voorbehouden en aarzelingen spraken (“zeg maar”, “ik denk”, “eh”) minder geloofwaardig (Erickson en collega’s, 1978). Jeffrey Pfeffer maakt in 7 Rules of Power (2022) een verwant punt, bij zijn regel “kom krachtig over” (show up in powerful fashion): mensen beoordelen competentie deels op hoe zeker je overkomt.\n\nDaaruit haalt deze cursus vier schrijfregels, een toepassing en geen lijst uit het boek: zeker formuleren (confident framing), niet verontschuldigend afzwakken (apologetic hedging), waardering zonder onderdanigheid, efficiëntie boven uitleg (efficiency over explanation).',
+        'Zeker formuleren: zet je standpunt voorop. Niet verontschuldigend afzwakken: schrap “even”, “misschien”, “sorry dat ik stoor”. Waardering zonder onderdanigheid: bedank mensen voor wat ze deden, zonder jezelf onder hen te plaatsen. Efficiëntie boven uitleg: één reden, en dan stoppen.\n\nTypische valkuil: doorschieten naar koel of kortaf. De zeven regels van Pfeffer steunen op onderzoek en praktijkvoorbeelden, en critici zeggen dat ze zelfpromotie kunnen belonen; gebruik de vier schrijfregels voor helderheid, niet voor dominantie. Een scherpe vraag voor je verstuurt: “Welke woorden kunnen weg zonder dat er iets verloren gaat?”',
       ],
       example: {
         kind: 'worked',
@@ -1103,7 +1103,7 @@ export default {
         },
         {
           q: 'Welke zin volgt “waardering zonder onderdanigheid”?',
-          options: ['“Sorry dat ik je tijd neem; ik weet dat jij het veel drukker hebt dan ik.”', '“Jij weet het vast beter, maar misschien kunnen we er nog eens naar kijken?”', '“Bedanken hoeft niet; de data aanleveren was toch al jouw werk.”', '“Dank voor de data. Ik heb ook de laatste twee weken nodig, uiterlijk woensdag.”'],
+          options: ['“Sorry dat ik je tijd neem; ik weet dat jij het veel drukker hebt dan ik.”', '“Jij weet het vast beter, maar misschien kunnen we er samen nog eens naar kijken?”', '“Bedanken hoeft niet; de data aanleveren was toch al jouw werk.”', '“Dank voor de data. Ik heb ook de laatste twee weken nodig, uiterlijk woensdag.”'],
           answer: '“Dank voor de data. Ik heb ook de laatste twee weken nodig, uiterlijk woensdag.”',
           why: 'Die bedankt voor echt werk en vraagt dan helder, als gelijke. De eerste twee buigen; de derde houdt waardering achter.',
         },
@@ -1228,23 +1228,23 @@ export default {
       pre: [
         {
           q: 'Een directeur bij de klant zet je in een overleg onder druk om ter plekke in te stemmen met een wijziging die buiten jouw mandaat valt. Wat is het best?',
-          options: ['Zeggen dat je op een vast moment antwoordt, na overleg met wie erover gaat', 'Instemmen, zodat het overleg doorgaat, en de details achteraf rechtzetten', 'Stevig weigeren en duidelijk maken dat het onderwerp voorgoed gesloten is', 'Hem een definitief besluit beloven vóór het eind van dit overleg'],
+          options: ['Zeggen dat je op een vast moment antwoordt, na overleg met wie erover gaat', 'Instemmen, zodat het overleg doorgaat, en de details achteraf rechtzetten', 'Stevig weigeren en hem duidelijk maken dat het onderwerp nu voorgoed gesloten is', 'Hem een definitief besluit beloven vóór het eind van dit overleg'],
           answer: 'Zeggen dat je op een vast moment antwoordt, na overleg met wie erover gaat',
           why: 'Druk werkt door tijd te laten krimpen. Een tijdstip noemen geeft die tijd terug, zonder een ja die je niet kunt waarmaken of een nee die de deur dichtgooit.',
         },
       ],
       teach: [
         'Onder druk is de eerste vaardigheid: niet in de kamer beslissen. Noem in plaats daarvan een tijdstip: “Ik kom er om vier uur bij je op terug.” Druk laat tijd krimpen; jij geeft die terug. Een klant die doordrukt staat in Als je vastzit (Als de klant druk zet).\n\nDe kapotte-plaattechniek (broken record), uit When I Say No, I Feel Guilty van Manuel Smith (1975), is rustig dezelfde korte zin herhalen in plaats van nieuwe argumenten: “Ik begrijp het. Ik kom er om vier uur op terug.”',
-        'Escaleren is een meningsverschil openlijk voorleggen aan iemand met meer zeggenschap, omdat jullie het samen niet oplossen. In de openbaarheid is het geen verraad. De basis staat in Projecten leiden buiten je vakgebied (Besluiten onder onzekerheid, en escaleren).\n\nOp dit niveau is het vak: escaleren zonder bruggen te verbranden. De werkrelatie moet er heel uit komen.',
-        'Gezamenlijke escalatie betekent dat beide kanten het meningsverschil samen voorleggen, met één gedeelde beschrijving van het probleem en beide opties. “We zien het verschillend; laten we beide visies op één pagina aan de sponsor voorleggen.” Niemand verliest gezicht, en wie beslist ziet een eerlijk beeld.\n\nZeg het altijd eerst tegen de ander: “Ik denk niet dat we hier samen uitkomen. Zullen we het samen aan de sponsor voorleggen?”',
-        'Bouw een gouden brug, de uitdrukking van Ury uit Getting Past No (1991): maak het de ander makkelijk om ja te zeggen zonder gezichtsverlies. Erken hun zorgen, laat ze een manier om van mening te veranderen (“met de nieuwe data is het logisch om er opnieuw naar te kijken”), en laat hen het besluit aankondigen.\n\nNa het besluit: de cirkel sluiten. Bedank ze, voer het volledig uit, en speel de discussie niet opnieuw af.',
+        'Escaleren is een meningsverschil openlijk voorleggen aan iemand met meer zeggenschap, omdat jullie het samen niet oplossen. Gebeurt het openlijk, dan is het geen verraad. De basis staat in Projecten leiden buiten je vakgebied (Besluiten onder onzekerheid, en escaleren).\n\nOp dit niveau is het vak: escaleren zonder bruggen te verbranden. De werkrelatie moet er heel uit komen.',
+        'Gezamenlijke escalatie (joint escalation), gangbaar advies uit de praktijk, betekent dat beide kanten het meningsverschil samen voorleggen, met één gedeelde beschrijving van het probleem en beide opties. “We zien het verschillend; laten we beide visies op één pagina aan de sponsor voorleggen.” Niemand verliest gezicht, en wie beslist ziet een eerlijk beeld.\n\nZeg het altijd eerst tegen de ander: “Ik denk niet dat we hier samen uitkomen. Zullen we het samen aan de sponsor voorleggen?”',
+        'Bouw een gouden brug (golden bridge), een beeld dat Ury in Getting Past No (1991) ontleent aan de Chinese strateeg Sun Tzu: maak het de ander makkelijk om ja te zeggen zonder gezichtsverlies. Erken hun zorgen, laat ze een manier om van mening te veranderen (“met de nieuwe data is het logisch om er opnieuw naar te kijken”), en laat hen het besluit aankondigen.\n\nNa het besluit: de cirkel sluiten (close the loop). Bedank ze, voer het volledig uit, en speel de discussie niet opnieuw af.',
         'Wat je ziet: junioren die escaleren door een boze mail door te sturen naar hun baas, of die nooit escaleren en een slecht besluit laten staan. Een andere valkuil: elk klein verschil escaleren, zodat je escalaties hun gewicht verliezen.\n\nDeskundigen verschillen over wanneer je zonder te vragen over iemands hoofd heen mag; de meesten bewaren dat voor veiligheid, integriteit of een wetsovertreding. Een scherpe vraag: “Is onze werkrelatie hierna beter of slechter, en wat kan ik nu doen om haar beter te maken?”',
       ],
       example: {
         kind: 'faded',
         text: 'Jij en de onderhoudsleider van de klant zijn het oneens over het pilotplan voor een verpakkingslijn. Hij wil de lijn twee volle dagen stilzetten; jij wilt vier halve dagen, zodat de productie doorloopt. Jullie hebben twee keer gepraat en niemand is opgeschoven. Donderdag vergadert de stuurgroep.',
         ask: 'Hoe escaleer je zonder de brug te verbranden?',
-        reveal: 'Zeg het hem eerst: “Ik denk niet dat we hier samen uitkomen. Zullen we beide opties samen aan de stuurgroep voorleggen?” Schrijf samen één pagina: het probleem, beide opties, en de kosten en risico’s van elk.\n\nLaat hem zijn eigen optie presenteren. Wat er ook besloten wordt, bedank hem en voer het volledig uit. Wint zijn optie, steun haar dan voor het team.',
+        reveal: 'Zeg het hem eerst: “Ik denk niet dat we hier samen uitkomen. Zullen we beide opties samen aan de stuurgroep voorleggen?” Schrijf samen één pagina: het probleem, beide opties, en de kosten en risico’s van elk.\n\nLaat hem zijn eigen optie presenteren. Wat er ook besloten wordt, bedank hem en voer het volledig uit. Wint zijn optie, steun die dan voor het team.',
       },
       said: 'Wat je hoort in projecten: “We zien dit verschillend. Laten we beide opties op één pagina zetten en de sponsor laten kiezen.”',
       recall: [
@@ -1256,15 +1256,15 @@ export default {
         },
         {
           q: 'Wat is gezamenlijke escalatie?',
-          options: ['Beide kanten leggen het meningsverschil samen voor, met één gedeelde beschrijving', 'Beide managers staan vanaf nu in de cc bij elke mail over dit punt', 'Jij escaleert eerst, en de ander escaleert op dezelfde dag terug naar boven', 'De sponsor en jij beslissen samen, zonder dat de andere kant erbij is'],
-          answer: 'Beide kanten leggen het meningsverschil samen voor, met één gedeelde beschrijving',
+          options: ['Beide kanten leggen het samen voor, met één gedeelde beschrijving', 'Beide managers staan vanaf nu in de cc bij elke mail over dit punt', 'Jij escaleert eerst, en de ander escaleert op dezelfde dag terug naar boven', 'De sponsor en jij beslissen samen, zonder dat de andere kant erbij is'],
+          answer: 'Beide kanten leggen het samen voor, met één gedeelde beschrijving',
           why: 'Niemand verliest gezicht, en wie beslist ziet beide opties eerlijk.',
         },
         {
           q: 'Wat betekent een gouden brug bouwen?',
-          options: ['De ander een bonus bieden als hij snel instemt', 'Twee losse deals koppelen zodat ze allebei tegelijk rondkomen', 'Een neutrale buitenstaander afspreken die het geschil beslecht', 'Het de ander makkelijk maken om ja te zeggen zonder gezichtsverlies'],
+          options: ['De ander een bonus bieden als hij snel en stil instemt', 'Twee losse deals koppelen zodat ze allebei tegelijk rondkomen, op dezelfde dag', 'Een neutrale buitenstaander afspreken die het geschil beslecht', 'Het de ander makkelijk maken om ja te zeggen zonder gezichtsverlies'],
           answer: 'Het de ander makkelijk maken om ja te zeggen zonder gezichtsverlies',
-          why: 'Het beeld van Ury: mensen stemmen makkelijker in als ze dat met hun waardigheid intact kunnen doen.',
+          why: 'Het beeld van Ury, naar Sun Tzu: mensen stemmen makkelijker in als ze dat met hun waardigheid intact kunnen doen.',
         },
         {
           q: 'Wanneer vinden de meeste deskundigen het acceptabel om over iemands hoofd heen te gaan zonder het eerst te zeggen?',
