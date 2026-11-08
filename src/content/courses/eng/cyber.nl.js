@@ -13,9 +13,9 @@ export default {
         },
       ],
       teach: [
-        'Beveiliging draait om drie dingen, samen de CIA-driehoek (CIA triad). Vertrouwelijkheid: alleen wie het mag, kan het zien, zoals recepturen, tekeningen en klantprijzen. Integriteit: gegevens en instellingen kloppen en zijn niet ongemerkt veranderd, zoals een PLC-programma (de software die een machine bestuurt) of een receptuur. Beschikbaarheid: systemen werken als je ze nodig hebt, zoals het MES (het systeem dat orders op de vloer volgt) en de lijn zelf.',
-        'Op kantoor staat vertrouwelijkheid vaak voorop; in de fabriek beschikbaarheid en integriteit, omdat een stilstaande of verkeerd sturende machine productie en soms veiligheid kost. In IT-fundamenten zag je dat dit de reden is dat het OT-netwerk apart staat.\n\nRansomware (software die bestanden versleutelt voor losgeld) raakt de beschikbaarheid. Een gemanipuleerd recept raakt de integriteit. Uitgelekte tekeningen raken de vertrouwelijkheid.',
-        'Drie woorden die beveiligers steeds gebruiken. Een dreiging is wie of wat schade kan doen: een criminele groep met ransomware, maar ook een stroomstoring. Een kwetsbaarheid is een zwakke plek waar die dreiging doorheen kan: een server zonder updates, een gedeeld wachtwoord. Risico is de kans dat het misgaat maal de schade als het gebeurt.\n\nZonder kwetsbaarheid komt een dreiging niet binnen; daarom gaat veel beveiligingswerk over zwakke plekken dichten.',
+        'Beveiliging draait om drie dingen, samen de CIA-driehoek (CIA triad). Vertrouwelijkheid (confidentiality): alleen wie het mag, kan het zien, zoals recepturen, tekeningen en klantprijzen. Integriteit (integrity): gegevens en instellingen kloppen en zijn niet ongemerkt veranderd, zoals een PLC-programma (de software die een machine bestuurt) of een receptuur. Beschikbaarheid (availability): systemen werken als je ze nodig hebt, zoals het MES (het systeem dat orders op de vloer volgt) en de lijn zelf.',
+        'Op kantoor staat vertrouwelijkheid vaak voorop. In de fabriek gaan beschikbaarheid en veiligheid voor, zoals je in IT-fundamenten zag, met integriteit vlak daarachter: een stilstaande of verkeerd sturende machine kost productie en soms veiligheid. Daarom staat het OT-netwerk apart.\n\nRansomware (software die bestanden versleutelt voor losgeld) raakt de beschikbaarheid. Een gemanipuleerd recept raakt de integriteit. Uitgelekte tekeningen raken de vertrouwelijkheid.',
+        'Drie woorden die beveiligers steeds gebruiken. Een dreiging (threat) is wie of wat schade kan doen: een criminele groep met ransomware, maar ook een stroomstoring. Een kwetsbaarheid (vulnerability) is een zwakke plek waar die dreiging doorheen kan: een server zonder updates, een gedeeld wachtwoord. Risico (risk) is de kans dat het misgaat maal de schade als het gebeurt.\n\nZonder kwetsbaarheid komt een dreiging niet binnen; daarom gaat veel beveiligingswerk over zwakke plekken dichten.',
         'Met risico kun je rekenen. Stel: de kans op een ransomware-aanval die de fabriek stillegt is 10% per jaar, en de schade is dan €2 miljoen. Dan is het verwachte verlies €200.000 per jaar. Een maatregel van €50.000 per jaar die die kans halveert, is dan het geld waard.\n\nDe mens speelt bijna altijd mee: volgens het Verizon-rapport over datalekken van 2025 zat bij ongeveer 60% van de onderzochte lekken een menselijke handeling, zoals een klik of een fout.',
         'Typische fout: beveiliging zien als alleen geheimhouding, dus virusscanner en versleuteling, terwijl wat de fabriek stillegt een beschikbaarheidsprobleem is. Experts discussiëren of je in OT veiligheid (safety) als vierde poot moet toevoegen; in elk geval weegt die zwaar.\n\nScherpe vraag aan de directie: “Welke drie systemen leggen bij uitval binnen een uur de lijn stil, en wat kost een uur stilstand?” Daar begint een zinnig beveiligingsplan.',
       ],
@@ -47,9 +47,9 @@ export default {
         },
         {
           q: 'Waarom staat in OT integriteit vaak naast beschikbaarheid bovenaan?',
-          options: ['Omdat recepten in OT bijna nooit geheim zijn voor concurrenten of anderen', 'Omdat OT-systemen geen wachtwoorden kunnen gebruiken', 'Omdat de wet integriteit in fabrieken voorschrijft', 'Omdat een veranderde instelling ongemerkt product of mensen raakt'],
-          answer: 'Omdat een veranderde instelling ongemerkt product of mensen raakt',
-          why: 'Een verkeerde setpoint (instelwaarde) of een aangepast PLC-programma geeft afkeur, schade of onveilige situaties, vaak zonder dat iemand het meteen ziet.',
+          options: ['Omdat recepten in OT bijna nooit geheim zijn voor concurrenten of anderen', 'Omdat OT-systemen geen wachtwoorden kunnen gebruiken', 'Omdat de wet integriteitscontroles in elke fabriek voorschrijft', 'Omdat een verkeerde instelling product of mensen schaadt'],
+          answer: 'Omdat een verkeerde instelling product of mensen schaadt',
+          why: 'Een verkeerd setpoint (instelwaarde) of een aangepast PLC-programma geeft afkeur, schade of onveilige situaties, vaak zonder dat iemand het meteen ziet.',
         },
       ],
       situation: {
@@ -83,7 +83,7 @@ export default {
         'Phishing is een nepbericht, per mail, sms, Teams of telefoon, dat je wil laten klikken op een link, een bijlage openen of je wachtwoord geven. Het is de meest gebruikte manier om binnen te komen, omdat het goedkoop is.\n\nSignalen: haast (“vandaag nog”), iets wat je niet verwacht, een afzender die net niet klopt (staalhandel-brouwer.co in plaats van .nl), en een link die naar een andere site wijst dan de tekst zegt. Ga met de muis op de link staan zonder te klikken.',
         'Spear-phishing is phishing gericht op één persoon of functie, met kennis die de aanvaller vooraf verzamelde, bijvoorbeeld via LinkedIn: “inkoper bij een machinebouwer”. Zo’n mail lijkt op een echte factuur van een echte leverancier.\n\nSocial engineering is het bredere begrip: mensen manipuleren in plaats van techniek kraken. Een telefoontje “van de helpdesk” die je code vraagt, of iemand in een hesje die achter je aan door de poort loopt (tailgating).',
         'CEO-fraude, in het Engels ook business email compromise, is een mail of telefoontje waarin iemand zich voordoet als directeur of leverancier, meestal om geld over te laten maken of een rekeningnummer te laten wijzigen. Volgens de FBI kost dit bedrijven wereldwijd jaarlijks miljarden dollars.\n\nDe beste verdediging is een vaste werkwijze (procedure): een rekeningnummerwijziging altijd controleren door terug te bellen op een nummer dat je al had, en grote betalingen met twee handtekeningen.',
-        'Iedereen klikt weleens. Daarom telt vooral hoe snel iemand het meldt. Met een meldknop in Outlook stuur je een verdachte mail met één klik naar IT. Eén melding kan genoeg zijn om dezelfde mail uit alle mailboxen te halen.\n\nMeld ook als je al geklikt hebt. Een cultuur waarin melden zonder straf kan, is beter dan een waarin mensen uit schaamte zwijgen.',
+        'Iedereen klikt weleens. Daarom telt vooral hoe snel iemand het meldt. Met een meldknop (report button) in Outlook stuur je een verdachte mail met één klik naar IT. Eén melding kan genoeg zijn om dezelfde mail uit alle mailboxen te halen.\n\nMeld ook als je al geklikt hebt. Een cultuur waarin melden zonder straf kan, is beter dan een waarin mensen uit schaamte zwijgen.',
         'Bedrijven testen dit met nep-phishingmails (phishingsimulaties). Experts zijn het oneens over het nut: ze meten wel iets, maar kunnen mensen ook boos maken. Steeds meer kijkt men naar het meldpercentage in plaats van het klikpercentage.\n\nTypische fout: één verplichte training per jaar, afvinken en klaar. Nieuw zijn QR-codes in mails die naar een nepsite leiden. Scherpe vraag: “Hoe snel na een melding haalt IT dezelfde mail uit alle mailboxen?”',
       ],
       example: {
@@ -108,14 +108,14 @@ export default {
         },
         {
           q: 'Wat is de beste vaste maatregel tegen CEO-fraude met een gewijzigd rekeningnummer?',
-          options: ['Alle mails van buiten met een rode waarschuwing markeren', 'Een sterker wachtwoord en een extra inlogstap voor de mailbox van de financiële afdeling', 'Een nieuwe virusscanner op alle pc’s van de financiële afdeling', 'Terugbellen op een bekend nummer, en grote betalingen met twee handtekeningen'],
-          answer: 'Terugbellen op een bekend nummer, en grote betalingen met twee handtekeningen',
+          options: ['Alle mails van buiten met een rode waarschuwing markeren', 'Een sterker wachtwoord en een extra inlogstap voor de mailbox van de financiële afdeling', 'Een nieuwe virusscanner op alle pc’s van de financiële afdeling', 'Terugbellen op een bekend nummer, plus twee handtekeningen'],
+          answer: 'Terugbellen op een bekend nummer, plus twee handtekeningen',
           why: 'CEO-fraude misbruikt vertrouwen, niet techniek. Een vaste controle via een ander kanaal haalt de truc onderuit.',
         },
         {
           q: 'Je hebt op een link geklikt en je wachtwoord ingevuld. Daarna twijfel je. Wat doe je?',
-          options: ['Meteen melden bij IT, zodat je wachtwoord gereset wordt', 'Afwachten: als er iets mis is, merkt IT het vanzelf', 'Zelf meteen je wachtwoord wijzigen en er verder niets over zeggen', 'De mail verwijderen, zodat niemand anders erop klikt'],
-          answer: 'Meteen melden bij IT, zodat je wachtwoord gereset wordt',
+          options: ['Meteen melden bij IT', 'Afwachten: als er iets mis is, merkt IT het vanzelf', 'Zelf meteen je wachtwoord wijzigen en er verder niets over zeggen', 'De mail verwijderen, zodat niemand anders erop klikt'],
+          answer: 'Meteen melden bij IT',
           why: 'Elke minuut telt. IT kan je sessies afsluiten, inlogpogingen nakijken en collega’s waarschuwen. Zelf wijzigen laat de rest open.',
         },
       ],
@@ -146,11 +146,11 @@ export default {
         },
       ],
       teach: [
-        'Wachtwoorden worden op grote schaal aangevallen. Bij credential stuffing proberen aanvallers automatisch gelekte combinaties van gebruikersnaam en wachtwoord van andere sites. Dat werkt omdat mensen hetzelfde wachtwoord hergebruiken.\n\nDaarom: per site een eigen wachtwoord, bewaard in een wachtwoordmanager, een programma dat ze versleuteld opslaat en invult. Voor wat je moet onthouden, gebruik je een wachtwoordzin: een paar willekeurige woorden achter elkaar. De Amerikaanse richtlijn NIST SP 800-63B zegt: lengte telt meer dan rare tekens, en dwing geen periodieke wijziging af zonder reden.',
+        'Wachtwoorden worden massaal aangevallen. Bij credential stuffing proberen aanvallers automatisch gelekte combinaties van gebruikersnaam en wachtwoord van andere sites. Dat werkt omdat mensen hetzelfde wachtwoord hergebruiken.\n\nDaarom: per site een eigen wachtwoord, bewaard in een wachtwoordmanager (password manager), een programma dat ze versleuteld opslaat en invult. Voor wat je moet onthouden, gebruik je een wachtwoordzin (passphrase): een paar willekeurige woorden achter elkaar. De Amerikaanse richtlijn NIST SP 800-63B (nieuwste versie 2025) zegt: lengte telt meer dan rare tekens, en dwing alleen een wijziging af bij tekenen van een lek.',
         'Waarom lengte wint, in getallen. Acht kleine letters geven 26⁸, ongeveer 209 miljard combinaties. Een krachtige kraakopstelling die 10 miljard pogingen per seconde doet (mogelijk als een gestolen wachtwoordbestand zwak versleuteld is), probeert ze allemaal in zo’n 21 seconden.\n\nElk extra willekeurig woord uit een lijst van 7.776 woorden vermenigvuldigt het aantal combinaties met 7.776. Dat maakt een wachtwoordzin snel heel sterk, terwijl hij toch te onthouden is.',
-        'MFA (multifactorauthenticatie) vraagt naast je wachtwoord een tweede bewijs: iets wat je hebt, zoals je telefoon of een sleutel, of iets wat je bent, zoals je vingerafdruk. Microsoft meldt dat MFA meer dan 99% van de aanvallen op accounts tegenhoudt.\n\nMaar niet elke MFA is even sterk. Sms-codes kunnen onderschept worden. Pushmeldingen kun je misbruiken via MFA-moeheid: de aanvaller stuurt tientallen meldingen, vaak ’s nachts, tot iemand uit irritatie op “goedkeuren” drukt. Zo kwamen aanvallers in 2022 bij Uber binnen.',
-        'Phishingbestendige MFA, zoals een fysieke sleutel of een passkey (beide volgens de FIDO2-standaard), is gekoppeld aan het echte webadres. Op een nepsite werkt hij gewoon niet. De Amerikaanse cyberdienst CISA noemt dit de gouden standaard.\n\nEen tussenstap is nummervergelijking (number matching): je moet een getal van het scherm overtypen in de app. Dat maakt blind goedkeuren lastig.',
-        'In de fabriek: HMI’s (bedieningsschermen) met een gedeelde login en zonder MFA. MFA hoort er minstens op voor toegang van buitenaf: VPN, toegang van de machinebouwer, mail en beheerdersaccounts. Op de vloer zelf discussieert men: handschoenen en snelheid botsen met inlogstappen; een badge met pas is dan vaak het compromis.\n\nTypische fout: MFA op de mail, maar niet op de VPN van de machinebouwer. Scherpe vraag: “Op welke toegang van buitenaf zit nog geen MFA?”',
+        'MFA (multifactorauthenticatie) vraagt naast je wachtwoord een tweede bewijs: iets wat je hebt, zoals je telefoon of een sleutel, of iets wat je bent, zoals je vingerafdruk. Volgens eigen onderzoek van Microsoft houdt MFA meer dan 99% van de aanvallen tegen waarmee accounts worden overgenomen.\n\nMaar niet elke MFA is even sterk. Sms-codes kunnen onderschept worden. Pushmeldingen kun je misbruiken via MFA-moeheid (MFA fatigue): de aanvaller stuurt tientallen meldingen, vaak ’s nachts, tot iemand uit irritatie op “goedkeuren” drukt. Zo kwamen aanvallers in 2022 bij Uber binnen.',
+        'Phishingbestendige MFA (phishing-resistant MFA), zoals een fysieke sleutel of een passkey (beide volgens de FIDO2-standaard), is gekoppeld aan het echte webadres. Op een nepsite werkt hij gewoon niet. De Amerikaanse cyberdienst CISA noemt dit de gouden standaard.\n\nEen tussenstap is nummervergelijking (number matching): je moet een getal van het scherm overtypen in de app. Dat maakt blind goedkeuren lastig.',
+        'In de fabriek: HMI’s (bedieningsschermen) met een gedeelde login en zonder MFA. MFA hoort er minstens op voor toegang van buitenaf: VPN, toegang van de machinebouwer, mail en beheerdersaccounts. Op de vloer zelf discussieert men: handschoenen en snelheid botsen met inlogstappen; inloggen met een pasje (badge) is dan vaak het compromis.\n\nTypische fout: MFA op de mail, maar niet op de VPN van de machinebouwer. Scherpe vraag: “Op welke toegang van buitenaf zit nog geen MFA?”',
       ],
       example: {
         kind: 'faded',
@@ -162,8 +162,8 @@ export default {
       recall: [
         {
           q: 'Wat is credential stuffing?',
-          options: ['Een wachtwoord met veel speciale tekens en hoofdletters', 'Een wachtwoord dat elke negentig dagen door iedereen moet worden gewijzigd', 'Het delen van één account door een heel team operators', 'Automatisch inloggen met gelekte combinaties van andere sites'],
-          answer: 'Automatisch inloggen met gelekte combinaties van andere sites',
+          options: ['Een wachtwoord met veel speciale tekens en hoofdletters', 'Een wachtwoord dat elke negentig dagen door iedereen moet worden gewijzigd', 'Het delen van één account door een heel team operators', 'Automatisch gelekte logins van andere sites proberen'],
+          answer: 'Automatisch gelekte logins van andere sites proberen',
           why: 'Aanvallers gebruiken lijsten met gelekte inloggegevens. Wie zijn wachtwoord hergebruikt, is dan ook elders binnen.',
         },
         {
@@ -176,8 +176,8 @@ export default {
         },
         {
           q: 'Een medewerker vult zijn gegevens in op een perfect nagemaakte inlogpagina. Welke MFA voorkomt dan nog dat de aanvaller binnenkomt?',
-          options: ['Een sleutel of passkey, want die werkt alleen op het echte webadres', 'Een pushmelding, want hij moet zelf op goedkeuren drukken', 'Een sms-code, want die komt alleen op zijn eigen telefoon', 'Geen van alle: met het juiste wachtwoord komt de aanvaller altijd binnen'],
-          answer: 'Een sleutel of passkey, want die werkt alleen op het echte webadres',
+          options: ['Een sleutel of passkey, gekoppeld aan het echte webadres', 'Een pushmelding, want hij moet zelf op goedkeuren drukken', 'Een sms-code, want die komt alleen op zijn eigen telefoon', 'Geen van alle: met het juiste wachtwoord komt de aanvaller altijd binnen'],
+          answer: 'Een sleutel of passkey, gekoppeld aan het echte webadres',
           why: 'Een sms-code of push kan de medewerker aan de nepsite doorgeven of goedkeuren. Een FIDO2-sleutel controleert het webadres zelf.',
         },
         {
@@ -217,9 +217,9 @@ export default {
       teach: [
         'Het principe van minimale rechten (least privilege): elke persoon en elk systeem krijgt alleen de rechten die nodig zijn voor de taak, niet meer, en alleen zolang het nodig is.\n\nDat telt omdat aanvallers en ransomware zich verspreiden met de rechten van het account dat ze overnemen. Neemt een aanvaller het account van een operator over die alleen zijn eigen HMI mag bedienen, dan is de schade klein. Neemt hij een account over dat overal bij kan, dan ligt de hele fabriek open.',
         'Rolgebaseerde toegang (role-based access control, RBAC) koppelt rechten aan rollen, niet aan personen: operator, teamleider, procesengineer, onderhoudsmonteur. Iemand krijgt een rol en daarmee de rechten.\n\nDat werkt alleen met een goed proces voor in, door en uit (joiner-mover-leaver): een nieuwe medewerker krijgt zijn rol, wie van functie wisselt krijgt de nieuwe rol en verliest de oude, en wie vertrekt verliest alles op zijn laatste werkdag. Koppel dat aan HR, anders vergeet iemand het.',
-        'Rechtenophoping (privilege creep) ontstaat als mensen bij elke functiewissel nieuwe rechten krijgen en de oude houden. Na tien jaar kan de teamleider die ooit planner en engineer was overal bij.\n\nDe remedie is een toegangsreview: de eigenaar van een systeem kijkt geregeld, bijvoorbeeld elk kwartaal of jaar, wie welke rechten heeft, en haalt weg wat niet meer nodig is. Het is saai werk, en daarom wordt het vaak overgeslagen.',
+        'Rechtenophoping (privilege creep) ontstaat als mensen bij elke functiewissel nieuwe rechten krijgen en de oude houden. Na tien jaar kan de teamleider die ooit planner en engineer was overal bij.\n\nDe remedie is een toegangsreview (access review): de eigenaar van een systeem kijkt geregeld, bijvoorbeeld elk kwartaal of jaar, wie welke rechten heeft, en haalt weg wat niet meer nodig is. Het is saai werk, en daarom wordt het vaak overgeslagen.',
         'Een beheerdersaccount (admin account) is een apart account met beheerrechten, alleen voor beheerwerk; mail en internet doe je met je gewone account. Hoe minder mensen het hoogste niveau hebben (domeinbeheerder, domain admin), hoe beter.\n\nNotPetya haalde in 2017 beheerderswachtwoorden uit het geheugen van besmette pc’s en ging daarmee verder; daarover meer in het onderwerp incidentrespons. Grote bedrijven gebruiken software voor beheer van bevoorrechte toegang (privileged access management, PAM) die beheerwachtwoorden per keer uitgeeft.',
-        'In OT zie je een gedeeld account op HMI’s (“operator / operator”), een engineeringwerkstation waarmee iedereen PLC-programma’s kan wijzigen, en accounts van machinebouwers die jaren actief blijven. Experts discussiëren: een gedeelde login op de vloer is praktisch; een veelgebruikt compromis is gedeeld voor kijken, persoonlijk (badge) voor het wijzigen van instellingen.\n\nScherpe vraag: “Wie kan vandaag een PLC-programma wijzigen, en hoe zouden we dat merken?”',
+        'In OT zie je een gedeeld account (shared account) op HMI’s (“operator / operator”), een engineeringwerkstation waarmee iedereen PLC-programma’s kan wijzigen, en accounts van machinebouwers die jaren actief blijven. Experts discussiëren: een gedeelde login op de vloer is praktisch; een veelgebruikt compromis is gedeeld voor kijken, persoonlijk (badge) voor het wijzigen van instellingen.\n\nScherpe vraag: “Wie kan vandaag een PLC-programma wijzigen, en hoe zouden we dat merken?”',
       ],
       example: {
         kind: 'faded',
@@ -251,8 +251,8 @@ export default {
         },
         {
           q: 'Operators delen één login op de HMI van een lijn. Wat is een werkbaar compromis met minimale rechten?',
-          options: ['Iedereen krijgt een persoonlijk beheerdersaccount op de HMI', 'Het gedeelde account krijgt een langer wachtwoord dat elke maand wordt gewijzigd', 'Gedeeld account voor kijken, persoonlijke badge voor instellingen wijzigen', 'De HMI krijgt helemaal geen login meer, dan is het eerlijk'],
-          answer: 'Gedeeld account voor kijken, persoonlijke badge voor instellingen wijzigen',
+          options: ['Iedereen krijgt een persoonlijk beheerdersaccount op de HMI', 'Het gedeelde account krijgt een langer wachtwoord dat elke maand wordt gewijzigd', 'Gedeeld om te kijken, eigen badge om te wijzigen', 'De HMI krijgt helemaal geen login meer, dan is het eerlijk'],
+          answer: 'Gedeeld om te kijken, eigen badge om te wijzigen',
           why: 'Kijken mag snel en gedeeld. Wie een instelling (setpoint) wijzigt, moet herleidbaar zijn: dat beschermt de integriteit en helpt bij het zoeken naar oorzaken.',
         },
       ],
@@ -286,13 +286,13 @@ export default {
       teach: [
         'OT-beveiliging is een vak apart. Installaties gaan 15 tot 25 jaar mee, oude protocollen kennen vaak geen wachtwoordcontrole (zie IT-fundamenten), en de gevolgen zijn fysiek: kapotte machines, milieuschade, gevaar voor mensen.\n\nBekende voorbeelden: Stuxnet (ontdekt in 2010) saboteerde centrifuges in Iran door PLC’s te manipuleren. TRITON (2017) richtte zich op het veiligheidssysteem van een petrochemische fabriek in Saudi-Arabië: het systeem dat een installatie veilig stillegt als het misgaat.',
         'IEC 62443 is de internationale normenreeks voor de beveiliging van een industrieel automatiseringssysteem (industrial automation and control system, IACS): PLC’s, HMI’s, SCADA en de netwerken ertussen. De reeks komt uit de Amerikaanse ISA99-commissie en de IEC.\n\nHij heeft vier groepen: algemeen (deel 1), beleid en procedures voor de fabriek (deel 2), eisen aan het systeem (deel 3) en eisen aan componenten (deel 4). Je hoeft de nummers niet te kennen; wel wie wat doet.',
-        'De norm kent drie rollen. De assetowner is de eigenaar en gebruiker van de installatie: de fabriek. Die regelt een beveiligingsprogramma (deel 2-1). De systeemintegrator ontwerpt, bouwt en koppelt het systeem; deel 2-4 beschrijft wat je van hem mag eisen. De productleverancier maakt de PLC’s, HMI’s en software; deel 4-1 vraagt een veilig ontwikkelproces en deel 4-2 beschrijft wat een component moet kunnen.\n\nZo kun je in een inkoopcontract precies vragen wat je nodig hebt.',
+        'In IT/OT op de fabrieksvloer zag je de drie rollen; hier wat elk levert. De asseteigenaar (asset owner), de fabriek, bezit de installatie en regelt een beveiligingsprogramma (deel 2-1). De dienstverlener (service provider), zoals de systeemintegrator of het onderhoudsbedrijf, bouwt of onderhoudt hem; deel 2-4 beschrijft wat je van hem mag eisen. De productleverancier (product supplier) maakt de PLC’s, HMI’s en software: een veilig ontwikkelproces (deel 4-1) en componenten die aan deel 4-2 voldoen.\n\nZo kun je in een inkoopcontract precies vragen wat je nodig hebt.',
         'Kerngedachte is gelaagde verdediging (defence in depth): nooit vertrouwen op één maatregel. Lagen zijn bijvoorbeeld een afgesloten kast (fysiek), zones en firewalls (netwerk, zie IT-fundamenten), persoonlijke accounts, het uitzetten van ongebruikte diensten en usb-poorten (hardening), bewaking en procedures.\n\nValt één laag weg, dan houdt de volgende de aanvaller nog op. Voor de consultant betekent het: beveiliging hoort in de machinespecificatie (URS, user requirement specification), niet pas bij de oplevering.',
         'Experts discussiëren over certificering. Er bestaan certificaten voor componenten en ontwikkelprocessen (zoals ISASecure), maar veel fabrieken gebruiken de norm vooral als checklist bij inkoop.\n\nTypische fout: een nieuwe lijn kopen en pas bij de fabrieksacceptatietest (FAT, factory acceptance test) over beveiliging beginnen. Dan zijn standaardwachtwoorden en open poorten al ingebouwd. Scherpe vraag: “Staat in onze machinespecificatie welke IEC 62443-eisen de leverancier moet halen?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een fabriek schrijft de specificatie (URS) voor een nieuwe verpakkingslijn.\n\nStap 1: de fabriek is assetowner en bepaalt in welke zone de lijn komt en hoe streng die zone beveiligd moet zijn. Stap 2: de systeemintegrator moet werken volgens IEC 62443-2-4: geen standaardwachtwoorden, ongebruikte poorten dicht, een lijst van alle verbindingen. Stap 3: de componenten moeten aantoonbaar voldoen aan IEC 62443-4-2, of de leverancier legt uit wat ontbreekt. Stap 4: toegang op afstand alleen via de jumphost van de fabriek. Stap 5: dit alles wordt getest bij de FAT.',
+        text: 'Een fabriek schrijft de specificatie (URS) voor een nieuwe verpakkingslijn.\n\nStap 1: de fabriek is asseteigenaar en bepaalt in welke zone de lijn komt en hoe streng die zone beveiligd moet zijn. Stap 2: de systeemintegrator moet als dienstverlener werken volgens IEC 62443-2-4: geen standaardwachtwoorden, ongebruikte poorten dicht, een lijst van alle verbindingen. Stap 3: de componenten moeten aantoonbaar voldoen aan IEC 62443-4-2, of de leverancier legt uit wat ontbreekt. Stap 4: toegang op afstand alleen via de jumphost van de fabriek. Stap 5: dit alles wordt getest bij de FAT.',
       },
       said: 'Wat de OT-engineer zegt: “Als het niet in de URS staat, krijgen we standaardwachtwoorden en een open usb-poort. Achteraf betalen we meerwerk.”',
       recall: [
@@ -318,8 +318,8 @@ export default {
         },
         {
           q: 'Wat betekent gelaagde verdediging?',
-          options: ['De beveiliging wordt per jaar een laag strenger gemaakt', 'Eén zeer sterke firewall aan de rand van het netwerk van de fabriek, met niets erachter', 'Elke verdieping van het gebouw krijgt een eigen netwerk', 'Meerdere lagen maatregelen, zodat één falende laag niet alles opent'],
-          answer: 'Meerdere lagen maatregelen, zodat één falende laag niet alles opent',
+          options: ['De beveiliging wordt per jaar een laag strenger gemaakt', 'Eén zeer sterke firewall aan de rand van het netwerk van de fabriek, met niets erachter', 'Elke verdieping van het gebouw krijgt een eigen netwerk', 'Meerdere lagen maatregelen achter elkaar'],
+          answer: 'Meerdere lagen maatregelen achter elkaar',
           why: 'Geen maatregel is perfect. Fysiek, netwerk, accounts, hardening en bewaking samen houden een aanvaller op als één laag faalt.',
         },
       ],
@@ -333,9 +333,9 @@ export default {
       terms: [
         { term: 'IEC 62443', def: 'Internationale normenreeks voor beveiliging van industriële automatisering, voor fabriek, integrator en leverancier.' },
         { term: 'Industrieel automatiseringssysteem', def: 'IACS: het geheel van PLC’s, HMI’s, SCADA en netwerken dat een installatie bestuurt.' },
-        { term: 'Assetowner', def: 'Eigenaar en gebruiker van de installatie, meestal de fabriek, die het risico draagt.' },
-        { term: 'Systeemintegrator', def: 'Bedrijf dat het automatiseringssysteem ontwerpt, bouwt en koppelt.' },
-        { term: 'Productleverancier', def: 'Maker van componenten zoals PLC’s, HMI’s en software.' },
+        { term: 'Asseteigenaar', def: 'Asset owner (IEC 62443): het bedrijf dat de installatie bezit en gebruikt, meestal de fabriek, en eindverantwoordelijk blijft.' },
+        { term: 'Dienstverlener', def: 'Service provider (IEC 62443): bouwt of onderhoudt de installatie, zoals een systeemintegrator; deel 2-4 stelt de eisen.' },
+        { term: 'Productleverancier', def: 'Product supplier (IEC 62443): maakt componenten zoals PLC’s, HMI’s en software; delen 4-1 en 4-2 stellen de eisen.' },
         { term: 'Gelaagde verdediging', def: 'Meerdere lagen maatregelen, zodat één falende laag een aanvaller niet vrij baan geeft.' },
       ],
     },
@@ -351,7 +351,7 @@ export default {
         },
       ],
       teach: [
-        'In IT-fundamenten zag je zones en conduits: groepen apparaten en de gecontroleerde verbindingen ertussen. IEC 62443-3-2 geeft een vaste methode om ze te bepalen.\n\nStap 1: het systeem in scope bepalen (system under consideration): welke installatie bekijken we, en waar houdt het op? Stap 2: een eerste risicobeoordeling: wat is het ergste dat kan gebeuren? Stap 3: indelen in zones en conduits. Stap 4: per zone een gedetailleerde risicobeoordeling. Stap 5: de eisen vastleggen.',
+        'In IT-fundamenten zag je zones en conduits: groepen apparaten en de gecontroleerde verbindingen ertussen. IEC 62443-3-2 geeft een vaste methode om ze te bepalen, in het kort:\n\nStap 1: het systeem in scope bepalen (system under consideration): wat hoort erbij en waar houdt het op? Stap 2: een eerste risicobeoordeling (risk assessment): wat is het ergste dat kan gebeuren? Stap 3: indelen in zones en conduits. Stap 4: per zone een gedetailleerde risicobeoordeling, die het securitylevel bepaalt (volgende les). Stap 5: de eisen vastleggen; de asseteigenaar keurt ze goed.',
         'Een zone is een groep apparaten met dezelfde beveiligingseisen. Vuistregels voor het indelen: groepeer wat dezelfde functie, hetzelfde risico en dezelfde eigenaar heeft. Houd kantoor (IT) en besturing (OT) gescheiden.\n\nZet een veiligheidssysteem (safety instrumented system, SIS) in een eigen zone. Behandel draadloze apparaten en tijdelijk aangesloten laptops van servicemonteurs apart, net als apparaten van externe partijen.',
         'Een conduit is de verbinding tussen twee zones. Per conduit leg je vast: welke zones, welke protocollen en poorten, welke richting en wie de eigenaar is. Hoe minder conduits, hoe minder er te beheren valt.\n\nDe strengste vorm is een data-diode: hardware die verkeer letterlijk maar één kant op laat, bijvoorbeeld meetwaarden van OT naar kantoor. Terug kan er fysiek niets doorheen.',
         'Een gangbare indeling in een fabriek: een zone kantoor, een DMZ (tussennetwerk), een zone voor de fabrieksbrede systemen zoals MES, historian en SCADA-server, per lijn een celzone met PLC’s en HMI’s, en een eigen zone voor het veiligheidssysteem.\n\nDe lagen van de fabriek (ISA-95 en het Purdue-model) leer je in de module IT/OT op de fabrieksvloer. De zones hoeven niet precies die lagen te volgen: ze volgen het risico.',
@@ -448,14 +448,14 @@ export default {
         },
         {
           q: 'Tegen welke aanvaller beschermt securitylevel 2?',
-          options: ['Een opzettelijke aanval met eenvoudige middelen en algemene kennis', 'Een staat met ruime middelen en veel geduld', 'Een monteur die per ongeluk de verkeerde laptop aansluit', 'Een groep met diepe kennis van precies deze installatie en zijn zwakke plekken'],
-          answer: 'Een opzettelijke aanval met eenvoudige middelen en algemene kennis',
+          options: ['Een opzettelijke aanvaller met eenvoudige middelen', 'Een staat met ruime middelen en veel geduld', 'Een monteur die per ongeluk de verkeerde laptop aansluit', 'Een groep met diepe kennis van precies deze installatie en zijn zwakke plekken'],
+          answer: 'Een opzettelijke aanvaller met eenvoudige middelen',
           why: 'SL 1 is toevallig, SL 2 opzettelijk maar eenvoudig, SL 3 geavanceerd met OT-kennis, SL 4 met ruime middelen.',
         },
         {
           q: 'Een leverancier zegt: “Onze PLC is gecertificeerd voor SL 2, dus jullie zone haalt nu SL 2.” Wat klopt daar niet aan?',
-          options: ['Certificaten voor PLC’s bestaan niet binnen IEC 62443', 'Capaciteit van één component zegt niets over het bereikte niveau', 'Een PLC valt helemaal niet onder IEC 62443, alleen het netwerk eromheen', 'SL 2 is te laag voor elke zone in een fabriek'],
-          answer: 'Capaciteit van één component zegt niets over het bereikte niveau',
+          options: ['Certificaten voor PLC’s bestaan niet binnen IEC 62443', 'SL-C van een component is niet de SL-A van de zone', 'Een PLC valt helemaal niet onder IEC 62443, alleen het netwerk eromheen', 'SL 2 is te laag voor elke zone in een fabriek'],
+          answer: 'SL-C van een component is niet de SL-A van de zone',
           why: 'Het bereikte niveau hangt af van de instellingen, de andere componenten en de conduits van de zone. Een gecertificeerde PLC met standaardwachtwoord haalt het niet.',
         },
       ],
@@ -488,8 +488,8 @@ export default {
       teach: [
         'Toegang op afstand (remote access) loopt via een jumphost, zag je in IT-fundamenten. Goede praktijk daarbovenop: een persoonlijk account per monteur, MFA, een sessie die de fabriek per keer vrijgeeft en daarna weer dichtzet, een tijdvenster, opname of logging van wat er gebeurt, en toegang tot alleen die ene machine.\n\nIn incidentrapporten komt slecht beveiligde toegang op afstand steeds terug als manier om binnen te komen, vaak via software die altijd aan staat.',
         'Een CVE (Common Vulnerabilities and Exposures) is het openbare nummer van een bekende kwetsbaarheid, zoals CVE-2017-0144: het Windows-lek dat NotPetya in 2017 gebruikte. De CVSS-score (Common Vulnerability Scoring System) geeft de ernst van 0 tot 10.\n\nMaar in OT is de score alleen niet genoeg. Wat telt is: is het lek bereikbaar vanaf waar een aanvaller zit, en wordt het al misbruikt? De KEV-catalogus van CISA (known exploited vulnerabilities) somt lekken op die aantoonbaar worden misbruikt: een sterker signaal dan de score.',
-        'Een patchproces voor OT (beschreven in IEC TR 62443-2-3) heeft vaste stappen. Weet wat je hebt (de assetinventaris). Volg meldingen van leveranciers en van CISA (ICS advisories). Beoordeel of het lek jou raakt. Wacht op goedkeuring van de leverancier, omdat een patch de besturing kan breken. Test op een testsysteem of één lijn. Installeer in een onderhoudsvenster: een geplande stop. Zorg dat je terug kunt (back-out plan).',
-        'Kan patchen niet of nog niet, dan neem je een compenserende maatregel: iets anders dat het risico verkleint. Voorbeelden: een strengere firewallregel, een ongebruikte dienst of poort uitzetten, alleen goedgekeurde programma’s laten draaien (application whitelisting), de route naar internet weghalen, extra bewaking, of een inbraakpreventiesysteem dat aanvallen op het lek filtert (virtual patching).\n\nLeg zo’n maatregel vast met een einddatum, anders wordt tijdelijk permanent.',
+        'In IT/OT op de fabrieksvloer zag je de gekwalificeerde patch, het patchvenster en de compenserende maatregel. IEC TR 62443-2-3 zet ze in één proces. Weet wat je hebt (de assetinventaris). Volg meldingen van leveranciers en van CISA (ICS advisories). Beoordeel of het lek jou raakt. Wacht op goedkeuring van de leverancier. Test op een testsysteem of één lijn. Installeer in het patchvenster, een geplande stop. Zorg dat je terug kunt (back-out plan).',
+        'Zolang patchen niet of nog niet kan, verkleint een compenserende maatregel (compensating control) het risico. Voorbeelden: een strengere firewallregel, een ongebruikte dienst of poort uitzetten, alleen goedgekeurde programma’s laten draaien (application whitelisting), de route naar internet weghalen, of extra bewaking.\n\nEen sterkere vorm is virtueel patchen (virtual patching): een inbraakpreventiesysteem in het netwerk dat aanvallen op juist dat lek herkent en tegenhoudt. Leg elke zo’n maatregel vast met een einddatum, anders wordt tijdelijk permanent.',
         'Experts botsen tussen “alles patchen” en “draait het, blijf eraf”. De verstandige middenweg is risicogestuurd: eerst wat bereikbaar is en echt misbruikt wordt, de rest in gewone stops.\n\nTypische fouten: geen assetinventaris, waardoor bij een melding niemand weet of je geraakt bent; en hulpsoftware van de bouwer voor toegang op afstand die altijd aanstaat. Scherpe vraag: “Hoe lang duurt het van een kritieke melding tot de patch op onze lijnen, en wat doen we in de tussentijd?”',
       ],
       example: {
@@ -539,8 +539,8 @@ export default {
         { term: 'CVE', def: 'Openbaar nummer van een bekende kwetsbaarheid, zoals CVE-2017-0144.' },
         { term: 'CVSS', def: 'Score van 0 tot 10 voor de ernst van een kwetsbaarheid.' },
         { term: 'KEV-catalogus', def: 'Lijst van CISA met kwetsbaarheden die aantoonbaar worden misbruikt.' },
-        { term: 'Onderhoudsvenster', def: 'Geplande stop waarin je updates en onderhoud kunt doen.' },
-        { term: 'Compenserende maatregel', def: 'Andere maatregel die het risico verkleint zolang patchen niet kan, liefst met einddatum.' },
+        { term: 'Virtueel patchen', def: 'Aanvallen op één bekend lek in het netwerk tegenhouden, bijvoorbeeld met een inbraakpreventiesysteem, tot de echte patch erop zit.' },
+        { term: 'Compenserende maatregel', def: 'Andere bescherming die het risico verkleint zolang een systeem (nog) niet gepatcht kan worden; leg hem vast met een einddatum.' },
       ],
     },
     {
@@ -557,7 +557,7 @@ export default {
       teach: [
         'NIS2 is een Europese richtlijn (Richtlijn (EU) 2022/2555) voor de cyberbeveiliging van belangrijke organisaties. Hij volgt de eerste NIS-richtlijn uit 2016 op en geldt voor veel meer sectoren en bedrijven.\n\nEen richtlijn werkt niet rechtstreeks: elk land moet hem omzetten in een eigen wet. De deadline daarvoor was 17 oktober 2024. Veel landen, waaronder Nederland, waren te laat.',
         'In Nederland heet die wet de Cyberbeveiligingswet (Cbw). Hij vervangt de oudere Wet beveiliging netwerk- en informatiesystemen (Wbni). De Tweede Kamer stemde in op 15 april 2026, de Eerste Kamer op 7 juli 2026, en volgens het Staatsblad (2026, 187 en 189) geldt de wet sinds 15 augustus 2026.\n\nDe details staan in het Cyberbeveiligingsbesluit en ministeriële regelingen. Wetgeving kan nog bijgesteld worden: controleer de actuele stand bij het NCSC.',
-        'De wet legt vier dingen op. De zorgplicht: passende maatregelen nemen om je systemen te beveiligen. De meldplicht: ernstige incidenten snel melden. De registratieplicht: je inschrijven bij het NCSC (Nationaal Cyber Security Centrum) met je gegevens en sector. En toezicht: per sector houdt een toezichthouder in de gaten of je het doet, voor een groot deel van de maakindustrie de Rijksinspectie Digitale Infrastructuur (RDI).\n\nDaarbovenop is het bestuur zelf verantwoordelijk.',
+        'De wet legt vier dingen op. De zorgplicht (duty of care): passende maatregelen nemen om je systemen te beveiligen. De meldplicht (reporting obligation): ernstige incidenten snel melden. De registratieplicht (registration obligation): je inschrijven bij het NCSC (Nationaal Cyber Security Centrum) met je gegevens en sector. En toezicht: per sector houdt een toezichthouder in de gaten of je het doet; voor makers van elektronica, elektrische apparatuur, machines en voertuigen is dat de Rijksinspectie Digitale Infrastructuur (RDI).\n\nDaarbovenop is het bestuur zelf verantwoordelijk.',
         'Voor de maakindustrie is dit nieuw. Volgens berichten van augustus 2026 vallen naar schatting ruim 8.000 Nederlandse organisaties onder de wet, en had kort na de start nog geen helft zich geregistreerd.\n\nOok wie er zelf niet onder valt, merkt het: klanten die wel onder de wet vallen, moeten hun leveranciers beoordelen. Een toeleverancier krijgt dus vragenlijsten en contracteisen over beveiliging.',
         'Experts discussiëren over de lasten voor middelgrote bedrijven tegen de noodzaak, nu ransomware fabrieken stillegt.\n\nTypische fout: het zien als een IT-project. De wet legt de verantwoordelijkheid juist bij het bestuur, en de maatregelen raken ook inkoop, productie en HR. Scherpe vraag: “Hebben we vastgesteld of we onder de Cyberbeveiligingswet vallen, en staan we geregistreerd bij het NCSC?”',
       ],
@@ -589,15 +589,15 @@ export default {
         },
         {
           q: 'Een toeleverancier valt zelf niet onder de wet, maar zijn klant wel. Wat merkt de toeleverancier waarschijnlijk?',
-          options: ['Niets, want de wet geldt alleen voor organisaties die er zelf onder vallen', 'Een verplichte registratie bij het NCSC via zijn klant', 'Een boete als zijn klant een incident krijgt', 'Vragenlijsten en contracteisen over beveiliging van de klant'],
-          answer: 'Vragenlijsten en contracteisen over beveiliging van de klant',
+          options: ['Niets, want de wet geldt alleen voor organisaties die er zelf onder vallen', 'Een verplichte registratie bij het NCSC via zijn klant', 'Een boete als zijn klant een incident krijgt', 'Vragenlijsten en beveiligingseisen van zijn klant'],
+          answer: 'Vragenlijsten en beveiligingseisen van zijn klant',
           why: 'De klant moet onder de zorgplicht zijn keten beveiligen, en geeft die eisen door aan zijn leveranciers.',
         },
       ],
       situation: {
         scene: 'Tijdens een directieoverleg bij een producent van elektrische apparatuur zegt de CFO: “NIS2 is voor energiebedrijven en ziekenhuizen. Wij maken schakelkasten.”',
         ask: 'Hoe reageer je?',
-        model: 'Dat dacht ik eerst ook, maar de nieuwe wet geldt ook voor delen van de maakindustrie, waaronder elektrische apparatuur, vanaf 50 medewerkers. Sinds 15 augustus 2026 is de wet van kracht. Zullen we deze week laten nagaan of we eronder vallen? Zo ja, dan moeten we ons registreren bij het NCSC en moet de directie de maatregelen goedkeuren.',
+        model: 'Dat dacht ik eerst ook, maar de nieuwe wet geldt ook voor delen van de maakindustrie, waaronder elektrische apparatuur, vanaf middelgrote bedrijven. Sinds 15 augustus 2026 is de wet van kracht. Zullen we deze week laten nagaan of we eronder vallen? Zo ja, dan moeten we ons registreren bij het NCSC en moet de directie de maatregelen goedkeuren.',
         rubric: ['Corrigeert het misverstand dat alleen vitale sectoren eronder vallen', 'Noemt de inwerkingtreding en de eerste verplichtingen', 'Stelt een concrete eerste stap voor: nagaan of het bedrijf eronder valt'],
       },
       sayIt: 'Leg een directeur in 60 seconden uit wat NIS2 en de Cyberbeveiligingswet zijn en welke vier dingen ze opleggen.',
@@ -616,17 +616,17 @@ export default {
       pre: [
         {
           q: 'Een kunststof spuitgieterij met 120 medewerkers maakt verpakkingen voor de voedingsindustrie. Valt hij zelf onder de Cyberbeveiligingswet?',
-          options: ['Ja, want elk bedrijf vanaf 50 medewerkers valt eronder', 'Waarschijnlijk niet zelf, wel via eisen van zijn klanten', 'Ja, want hij levert aan de voedingsindustrie', 'Nee, want kunststof wordt ergens in de wet uitdrukkelijk uitgezonderd'],
-          answer: 'Waarschijnlijk niet zelf, wel via eisen van zijn klanten',
+          options: ['Ja, want elk bedrijf vanaf 50 medewerkers valt eronder', 'Waarschijnlijk niet zelf, wel via zijn klanten', 'Ja, want hij levert aan de voedingsindustrie', 'Nee, want kunststof wordt ergens in de wet uitdrukkelijk uitgezonderd'],
+          answer: 'Waarschijnlijk niet zelf, wel via zijn klanten',
           why: 'Omvang alleen is niet genoeg: de sector moet ook in de wet staan. Kunststofproducten staan niet in de lijst van de maakindustrie. Zijn klanten in de voedingssector vallen er wel onder en stellen eisen.',
         },
       ],
       teach: [
-        'Of je eronder valt, hangt af van twee toetsen: sector en omvang. De sectoren staan in twee bijlagen van NIS2.\n\nBijlage I bevat sectoren met hoge kritikaliteit, zoals energie, transport, banken, gezondheidszorg, drinkwater en digitale infrastructuur. Bijlage II bevat andere kritieke sectoren, zoals post, afvalbeheer, chemische stoffen, levensmiddelen, de maakindustrie voor bepaalde producten, digitale aanbieders en onderzoek.',
+        'Of je eronder valt, hangt af van twee toetsen: sector en omvang. De sectoren staan in twee bijlagen van NIS2 (Annex I en II).\n\nBijlage I bevat sectoren met hoge kritikaliteit, zoals energie, transport, banken, gezondheidszorg, drinkwater en digitale infrastructuur. Bijlage II bevat andere kritieke sectoren, zoals post, afvalbeheer, chemische stoffen, levensmiddelen, de maakindustrie voor bepaalde producten, digitale aanbieders en onderzoek.',
         'De maakindustrie in bijlage II gaat over het maken van: medische hulpmiddelen; computers, elektronische en optische producten; elektrische apparatuur; machines; motorvoertuigen en aanhangers; en andere transportmiddelen. Daarnaast zijn chemie en levensmiddelen (productie, verwerking en groothandel) aparte sectoren.\n\nNiet genoemd zijn bijvoorbeeld metaalproducten, kunststof en papier. De indeling volgt de Europese NACE-codes, in Nederland de SBI-code van je inschrijving bij de KvK. Het NCSC heeft een verwijsboom om het na te lopen.',
-        'Dan de omvang. Vanaf een middelgrote onderneming val je eronder: 50 of meer medewerkers, of een jaaromzet én een balanstotaal van elk meer dan €10 miljoen. Klein en micro vallen in de regel buiten de wet, op een paar uitzonderingen na, zoals bepaalde digitale diensten.\n\nGroot is 250 of meer medewerkers, of meer dan €50 miljoen omzet en meer dan €43 miljoen balans. Let op: bij een concern tellen gekoppelde bedrijven vaak mee, volgens de Europese definitie van het mkb.',
-        'Wie eronder valt, is een essentiële entiteit of een belangrijke entiteit. Essentieel zijn vooral grote organisaties in bijlage I. Belangrijk is de rest, ook grote fabrikanten in bijlage II, zoals een grote machinebouwer of voedingsfabriek.\n\nDe plichten zijn dezelfde: zorgplicht, meldplicht, registratie. Het verschil zit in het toezicht en de hoogte van boetes: bij essentiële entiteiten controleert de toezichthouder uit zichzelf, bij belangrijke meestal pas na een signaal.',
-        'Wie zelf buiten de wet valt, kan als ketenpartner toch eisen krijgen: een klant onder de wet moet zijn toeleveranciers beoordelen.\n\nTypische fouten: alleen de Nederlandse BV tellen terwijl het concern veel groter is, of denken “wij maken onderdelen, dus niet wij” terwijl het om elektrische apparatuur gaat. Experts wijzen erop dat de grens soms onduidelijk is; laat het bij twijfel juridisch toetsen. Scherpe vraag: “Wat is onze SBI-code, en hoe groot zijn we inclusief het concern?”',
+        'Dan de omvang. Vanaf een middelgrote onderneming (medium-sized enterprise) val je eronder: 50 of meer medewerkers, of een jaaromzet én een balanstotaal van elk meer dan €10 miljoen. Klein en micro vallen in de regel buiten de wet, op een paar uitzonderingen na, zoals bepaalde digitale diensten.\n\nGroot is 250 of meer medewerkers, of meer dan €50 miljoen omzet en meer dan €43 miljoen balans. Let op: bij een concern tellen gekoppelde bedrijven vaak mee, volgens de Europese definitie van het mkb.',
+        'Wie eronder valt, is een essentiële entiteit (essential entity) of een belangrijke entiteit (important entity). Essentieel zijn vooral grote organisaties in bijlage I. Belangrijk is de rest, ook grote fabrikanten in bijlage II, zoals een grote machinebouwer of voedingsfabriek.\n\nDe plichten zijn dezelfde: zorgplicht, meldplicht, registratie. Het verschil zit in het toezicht en de hoogte van boetes: bij essentiële entiteiten controleert de toezichthouder uit zichzelf, bij belangrijke meestal pas na een signaal.',
+        'Wie zelf buiten de wet valt, kan als ketenpartner (supply chain partner) toch eisen krijgen: een klant onder de wet moet zijn toeleveranciers beoordelen.\n\nTypische fouten: alleen de Nederlandse BV tellen terwijl het concern veel groter is, of denken “wij maken onderdelen, dus niet wij” terwijl het om elektrische apparatuur gaat. Experts wijzen erop dat de grens soms onduidelijk is; laat het bij twijfel juridisch toetsen. Scherpe vraag: “Wat is onze SBI-code, en hoe groot zijn we inclusief het concern?”',
       ],
       example: {
         kind: 'worked',
@@ -636,8 +636,8 @@ export default {
       recall: [
         {
           q: 'Vanaf welke omvang valt een bedrijf in een genoemde sector onder de wet?',
-          options: ['Vanaf 10 medewerkers, ongeacht omzet en balans', 'Vanaf 250 medewerkers, of meer dan €50 miljoen omzet en €43 miljoen balans', 'Vanaf 50 medewerkers, of omzet én balans elk boven €10 miljoen', 'Elk bedrijf in de sector, hoe klein ook'],
-          answer: 'Vanaf 50 medewerkers, of omzet én balans elk boven €10 miljoen',
+          options: ['Vanaf 10 medewerkers, ongeacht de omzet en het balanstotaal', 'Vanaf 250 medewerkers, of meer dan €50 miljoen omzet en €43 miljoen balans', 'Vanaf 50 medewerkers, of omzet én balans boven €10 mln', 'Elk bedrijf in de sector, hoe klein ook'],
+          answer: 'Vanaf 50 medewerkers, of omzet én balans boven €10 mln',
           why: 'Dat is de grens van een middelgrote onderneming. Klein en micro vallen in de regel buiten de wet.',
         },
         {
@@ -655,7 +655,7 @@ export default {
           why: 'Essentieel zijn vooral grote organisaties in bijlage I. Levensmiddelen staat in bijlage II, dus ook een grote voedingsfabriek is in de regel belangrijk.',
         },
         {
-          q: 'De CFO zegt: “Onze Nederlandse BV heeft 48 medewerkers, dus we vallen eronder niet.” Het bedrijf hoort bij een Duits concern met 600 medewerkers. Wat zeg je?',
+          q: 'De CFO zegt: “Onze Nederlandse BV heeft 48 medewerkers, dus we vallen er niet onder.” Het bedrijf hoort bij een Duits concern met 600 medewerkers. Wat zeg je?',
           options: ['Laat het toetsen: gekoppelde bedrijven tellen vaak mee', 'Klopt, want het Duitse concern valt onder de Duitse wet', 'Klopt niet, want 48 ligt al boven de grens van 25', 'Klopt, alleen de Nederlandse BV telt voor de wet'],
           answer: 'Laat het toetsen: gekoppelde bedrijven tellen vaak mee',
           why: 'Voor de omvang volgt de wet de Europese mkb-definitie, waarin gekoppelde en partnerbedrijven vaak meetellen. Dan kan de BV toch boven de grens komen.',
@@ -689,10 +689,10 @@ export default {
         },
       ],
       teach: [
-        'De zorgplicht vraagt passende maatregelen: technisch, operationeel en organisatorisch, om risico’s voor je netwerk- en informatiesystemen te beheersen en de gevolgen van incidenten te voorkomen of te beperken.\n\nEen passende maatregel staat in verhouding tot het risico, de omvang van het bedrijf en de kosten. Een middelgrote fabriek hoeft niet te doen wat een bank doet. De aanpak is breed (all-hazards): ook brand of een stroomstoring tellen mee.',
-        'NIS2 (artikel 21) noemt tien onderwerpen die je minstens moet regelen: risicoanalyse en beleid; incidentbehandeling; bedrijfscontinuïteit, met back-ups, herstel en crisisbeheer; ketenbeveiliging; beveiliging bij aanschaf, ontwikkeling en onderhoud, inclusief kwetsbaarheden; toetsen of de maatregelen werken; basishygiëne en training; versleuteling (cryptografie); personeel, toegangsbeheer en assetbeheer; en MFA en beveiligde communicatie.\n\nIn Nederland werkt het Cyberbeveiligingsbesluit dit verder uit.',
-        'De bestuursverantwoordelijkheid is nieuw en scherp. Het bestuur keurt de maatregelen goed, ziet toe op de uitvoering en volgt zelf een training om risico’s te kunnen beoordelen. Bestuurders kunnen erop worden aangesproken; bij essentiële entiteiten kan een toezichthouder volgens NIS2 in het uiterste geval een bestuurder tijdelijk schorsen.\n\nVoor de consultant: dit is een onderwerp voor de directievergadering, niet alleen voor IT.',
-        'Het toezicht verschilt. Bij essentiële entiteiten controleert de toezichthouder ook zonder aanleiding. Bij belangrijke entiteiten is er toezicht achteraf: meestal pas na een incident of signaal.\n\nNIS2 zet de maximale boetes op minstens €10 miljoen of 2% van de wereldwijde jaaromzet voor essentiële entiteiten, en €7 miljoen of 1,4% voor belangrijke, telkens het hoogste bedrag. Per sector is er een eigen toezichthouder; voor veel van de maakindustrie de RDI.',
+        'De zorgplicht vraagt passende maatregelen (appropriate measures): technisch, operationeel en organisatorisch, om risico’s voor je netwerk- en informatiesystemen te beheersen en de gevolgen van incidenten te voorkomen of te beperken.\n\nEen passende maatregel staat in verhouding tot het risico, de omvang van het bedrijf en de kosten. Een middelgrote fabriek hoeft niet te doen wat een bank doet. De aanpak is breed (all-hazards): ook brand of een stroomstoring tellen mee.',
+        'NIS2 (artikel 21) noemt tien onderwerpen die je minstens moet regelen: risicoanalyse en beleid; incidentbehandeling; bedrijfscontinuïteit (business continuity), met back-ups, herstel en crisisbeheer; ketenbeveiliging (supply chain security); beveiliging bij aanschaf, ontwikkeling en onderhoud, inclusief kwetsbaarheden; toetsen of de maatregelen werken; basishygiëne en training; versleuteling (cryptografie); personeel, toegangsbeheer en assetbeheer; en MFA en beveiligde communicatie.\n\nIn Nederland werkt het Cyberbeveiligingsbesluit dit verder uit.',
+        'De bestuursverantwoordelijkheid (management accountability) is nieuw en scherp. Het bestuur keurt de maatregelen goed, ziet toe op de uitvoering en volgt zelf een training om risico’s te kunnen beoordelen. Bestuurders kunnen erop worden aangesproken: de Cyberbeveiligingswet kent een persoonlijke boete tot €25.000, en bij essentiële entiteiten kan de toezichthouder in het uiterste geval de rechter vragen een bestuurder te schorsen.\n\nVoor de consultant: dit is een onderwerp voor de directievergadering, niet alleen voor IT.',
+        'Het toezicht verschilt. Bij essentiële entiteiten controleert de toezichthouder ook zonder aanleiding. Bij belangrijke entiteiten is er toezicht achteraf (ex post supervision): meestal pas na een incident of signaal.\n\nNIS2 zet de maximale boetes op minstens €10 miljoen of 2% van de wereldwijde jaaromzet voor essentiële entiteiten, en €7 miljoen of 1,4% voor belangrijke, telkens het hoogste bedrag. De Cyberbeveiligingswet neemt precies deze maxima over voor overtreding van de zorgplicht en de meldplicht, en tot €1 miljoen voor andere overtredingen.',
         'Praktisch: leg de tien onderwerpen naast wat er al is, zoals een kwaliteitssysteem met PDCA (plan-do-check-act). ISO 27001 of IEC 62443-2-1 kunnen als kader dienen; certificering is voor de meeste bedrijven niet verplicht, en daarover verschillen adviseurs van mening.\n\nTypische fouten: een tool kopen en het compliance noemen, of een beleid van 200 pagina’s dat niemand leest. Scherpe vraag: “Welke van de tien onderwerpen kunnen we vandaag met bewijs laten zien?”',
       ],
       example: {
@@ -710,7 +710,7 @@ export default {
           why: 'Proportionaliteit staat in de wet: een middelgrote fabriek hoeft niet te doen wat een bank doet, maar moet zijn eigen risico’s wel beheersen.',
         },
         {
-          q: 'Een belangrijke entiteit heeft een wereldwijde jaaromzet van €600 miljoen. Wat is het maximum van de boete volgens NIS2, in miljoenen euro’s?',
+          q: 'Een belangrijke entiteit heeft een wereldwijde jaaromzet van €600 miljoen. Wat is het maximum van de boete voor overtreding van de zorgplicht, volgens NIS2 en de Cyberbeveiligingswet, in miljoenen euro’s?',
           number: 8.4,
           tolerance: 0.05,
           unit: 'miljoen euro',
@@ -719,14 +719,14 @@ export default {
         },
         {
           q: 'Wat moet het bestuur volgens de wet zelf doen?',
-          options: ['De maatregelen goedkeuren, toezien op de uitvoering en training volgen', 'Elke maand zelf een phishingtest uitvoeren bij alle medewerkers van het bedrijf', 'Alleen de jaarlijkse rekening van de IT-leverancier goedkeuren', 'Persoonlijk elk incident melden bij het NCSC'],
-          answer: 'De maatregelen goedkeuren, toezien op de uitvoering en training volgen',
+          options: ['Goedkeuren, toezien en zelf training volgen', 'Elke maand zelf een phishingtest bij alle medewerkers doen', 'Alleen de jaarlijkse rekening van de IT-leverancier goedkeuren', 'Persoonlijk elk incident melden bij het NCSC'],
+          answer: 'Goedkeuren, toezien en zelf training volgen',
           why: 'Het bestuur hoeft het werk niet zelf te doen, maar moet het goedkeuren, bewaken en begrijpen.',
         },
         {
           q: 'Welke maatregel valt onder ketenbeveiliging?',
-          options: ['Een tweede glasvezel naar het datacenter aanleggen voor als de eerste breekt', 'Eisen stellen aan de machinebouwer die op afstand inlogt', 'Het wachtwoord van de directeur langer maken', 'Een sprinklerinstallatie in de serverruimte plaatsen'],
-          answer: 'Eisen stellen aan de machinebouwer die op afstand inlogt',
+          options: ['Een tweede glasvezel naar het datacenter aanleggen voor als de eerste breekt', 'Eisen aan de toegang op afstand van de bouwer', 'Het wachtwoord van de directeur langer maken', 'Een sprinklerinstallatie in de serverruimte plaatsen'],
+          answer: 'Eisen aan de toegang op afstand van de bouwer',
           why: 'Ketenbeveiliging gaat over de risico’s van leveranciers en dienstverleners, zoals hun toegang tot je systemen.',
         },
       ],
@@ -758,9 +758,9 @@ export default {
       ],
       teach: [
         'De meldplicht geldt voor een significant incident: een incident dat ernstige verstoring van je dienst of financieel verlies veroorzaakt of kan veroorzaken, of anderen aanzienlijke schade kan berokkenen. Een ministeriële regeling geeft drempelwaarden die bepalen wanneer dat zo is.\n\nIn de praktijk is ransomware die een productielijn of de levering stillegt bijna altijd significant. Bij twijfel adviseren de meeste juristen: melden.',
-        'NIS2 (artikel 23) kent drie stappen. De vroegtijdige waarschuwing: binnen 24 uur nadat je je bewust werd van het incident, met de vraag of er vermoedelijk kwade opzet is en of het andere landen kan raken. De incidentmelding: binnen 72 uur, met een eerste inschatting van ernst en gevolgen en, als je die hebt, sporen van de aanval (indicators of compromise).\n\nHet eindrapport: binnen een maand na de incidentmelding, met beschrijving, oorzaak, maatregelen en eventuele grensoverschrijdende gevolgen.',
-        'Is het incident na een maand nog niet voorbij, dan stuur je een voortgangsrapport, en het eindrapport binnen een maand nadat het is afgehandeld. Je meldt bij het CSIRT (het team dat helpt bij incidenten; in Nederland het NCSC of een sectoraal CSIRT) en de toezichthouder; controleer het actuele meldkanaal bij het NCSC.\n\nRaakt het incident je klanten, dan moet je ook hen waar nodig zonder vertraging informeren.',
-        'Er lopen vaak andere plichten naast. Zijn persoonsgegevens gelekt, dan is het ook een datalek, dat je volgens de AVG (de privacywet, GDPR) binnen 72 uur meldt bij de Autoriteit Persoonsgegevens. Daarnaast: aangifte bij de politie, je verzekeraar, die vaak een eigen termijn heeft, en klanten volgens contract.\n\nDe klok begint als je je bewust wordt van het incident, niet als het onderzoek klaar is.',
+        'NIS2 (artikel 23) kent drie stappen. De vroegtijdige waarschuwing (early warning): binnen 24 uur nadat je je bewust werd van het incident, met de vraag of er vermoedelijk kwade opzet is en of het andere landen kan raken. De incidentmelding (incident notification): binnen 72 uur, met een eerste inschatting van ernst en gevolgen en, als je die hebt, sporen van de aanval (indicators of compromise).\n\nHet eindrapport (final report): binnen een maand na de incidentmelding, met beschrijving, oorzaak, maatregelen en eventuele grensoverschrijdende gevolgen.',
+        'Is het incident na een maand nog niet voorbij, dan stuur je een voortgangsrapport, en het eindrapport binnen een maand nadat het is afgehandeld. Vraagt het CSIRT of de toezichthouder erom, dan stuur je ook een tussentijds verslag.\n\nJe meldt bij je CSIRT (het team dat helpt bij incidenten; voor de meeste fabrikanten het NCSC) en bij je toezichthouder, via het meldportaal van de overheid. Raakt het incident je klanten, dan moet je ook hen waar nodig zonder vertraging informeren.',
+        'Er lopen vaak andere plichten naast. Zijn persoonsgegevens gelekt, dan is het ook een datalek (personal data breach), dat je volgens de AVG (de privacywet, GDPR) binnen 72 uur meldt bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico geeft voor de betrokkenen. Daarnaast: aangifte bij de politie, je verzekeraar, die vaak een eigen termijn heeft, en klanten volgens contract.\n\nDe klok begint als je je bewust wordt van het incident, niet als het onderzoek klaar is.',
         'Voorbereiden is alles. Leg vast wie beslist of iets significant is, wie meldt, waar de inloggegevens van het meldportaal liggen, en zorg dat dat ook in het weekend werkt. Experts discussiëren over vroeg melden met halve informatie of wachten op zekerheid; de wet kiest voor vroeg.\n\nTypische fout: op uur 60 ontdekken dat niemand weet hoe je moet melden. Scherpe vraag: “Wie beslist bij ons binnen een paar uur of een incident significant is, ook op zondag?”',
       ],
       example: {
@@ -773,8 +773,8 @@ export default {
       recall: [
         {
           q: 'Wat hoort in de vroegtijdige waarschuwing binnen 24 uur?',
-          options: ['Of er vermoedelijk kwade opzet is en of andere landen geraakt kunnen worden', 'De volledige oorzaak en alle genomen maatregelen', 'Een overzicht van de kosten en de schade tot nu toe, voor de verzekeraar en de bank', 'De namen van de medewerkers die het incident veroorzaakten'],
-          answer: 'Of er vermoedelijk kwade opzet is en of andere landen geraakt kunnen worden',
+          options: ['Vermoeden van kwade opzet en grensoverschrijdende gevolgen', 'De volledige oorzaak en alle genomen maatregelen', 'Een overzicht van de kosten en de schade tot nu toe, voor de verzekeraar en de bank', 'De namen van de medewerkers die het incident veroorzaakten'],
+          answer: 'Vermoeden van kwade opzet en grensoverschrijdende gevolgen',
           why: 'De eerste melding is kort en snel. De inschatting volgt na 72 uur, de oorzaak in het eindrapport.',
         },
         {
@@ -787,14 +787,14 @@ export default {
         },
         {
           q: 'Wanneer begint de klok van de meldplicht te lopen?',
-          options: ['Als het onderzoek naar de oorzaak volledig is afgerond', 'Als je je bewust wordt van een significant incident', 'Als de toezichthouder je om informatie vraagt', 'Op de eerste werkdag na het incident'],
-          answer: 'Als je je bewust wordt van een significant incident',
+          options: ['Als het onderzoek naar de oorzaak volledig is afgerond', 'Zodra je weet van een significant incident', 'Als de toezichthouder je om informatie vraagt', 'Op de eerste werkdag na het incident'],
+          answer: 'Zodra je weet van een significant incident',
           why: 'Wachten tot je alles weet, mag niet. Daarom moet de beslissing “significant of niet” snel genomen kunnen worden.',
         },
         {
           q: 'Bij een ransomware-aanval zijn ook personeelsgegevens buitgemaakt. Wat moet er naast de melding onder de Cyberbeveiligingswet nog gebeuren?',
-          options: ['Niets, want één melding bij het NCSC dekt alles', 'Alleen een bericht aan de getroffen medewerkers, als het onderzoek is afgerond', 'Een datalekmelding bij de Autoriteit Persoonsgegevens, binnen 72 uur', 'Een melding bij de Kamer van Koophandel binnen een week'],
-          answer: 'Een datalekmelding bij de Autoriteit Persoonsgegevens, binnen 72 uur',
+          options: ['Niets, want één melding bij het NCSC dekt alles', 'Alleen een bericht aan de getroffen medewerkers, als het onderzoek is afgerond', 'Een datalekmelding bij de Autoriteit Persoonsgegevens', 'Een melding bij de Kamer van Koophandel binnen een week'],
+          answer: 'Een datalekmelding bij de Autoriteit Persoonsgegevens',
           why: 'De AVG heeft een eigen meldplicht voor datalekken. Die loopt naast de meldplicht van de Cyberbeveiligingswet.',
         },
       ],
@@ -820,13 +820,13 @@ export default {
       pre: [
         {
           q: 'Op een planningspc verschijnt een losgeldbericht. Wat doe je als eerste?',
-          options: ['De netwerkkabel eruit en wifi uit, laten aanstaan, en melden', 'De pc uitzetten en opnieuw opstarten', 'Het losgeld betalen om de bestanden terug te krijgen', 'Meteen een back-up terugzetten op de pc en gewoon verder werken'],
-          answer: 'De netwerkkabel eruit en wifi uit, laten aanstaan, en melden',
+          options: ['Netwerk en wifi los, pc aan laten, en melden', 'De pc uitzetten en opnieuw opstarten om de besmetting te wissen', 'Het losgeld betalen om de bestanden terug te krijgen', 'Meteen een back-up terugzetten op de pc en gewoon verder werken'],
+          answer: 'Netwerk en wifi los, pc aan laten, en melden',
           why: 'Loskoppelen stopt verspreiding. Aan laten bewaart sporen in het geheugen. Meteen melden zet de rest in gang.',
         },
       ],
       teach: [
-        'Incidentrespons is de vaste manier om een beveiligingsincident aan te pakken. De bekendste indeling komt van NIST (de Amerikaanse standaardenorganisatie, publicatie SP 800-61): voorbereiding; detectie en analyse; indamming, uitroeiing en herstel; en evaluatie na afloop.\n\nDe nieuwste versie uit 2025 hangt dit op aan het bredere NIST Cybersecurity Framework, maar de fases blijven een bruikbaar houvast. Je ziet ze terug als een cyclus: wat je leert, gaat terug naar de voorbereiding.',
+        'Incidentrespons (incident response) is de vaste manier om een beveiligingsincident aan te pakken. De bekendste indeling is de klassieke cyclus van NIST (de Amerikaanse standaardenorganisatie), uit de handleiding SP 800-61 van 2012: voorbereiding (preparation); detectie en analyse (detection); indamming, uitroeiing en herstel (recovery); en evaluatie na afloop. Wat je leert, gaat terug naar de voorbereiding.\n\nDe huidige versie (Rev. 3, 2025) vervangt die cyclus door de zes functies van het NIST Cybersecurity Framework 2.0. De meeste plannen en mensen praten nog in de klassieke fases, dus deze les gebruikt die.',
         'Voorbereiding is alles wat je vooraf regelt: een plan, rollen, een contactlijst op papier, offline back-ups en oefenen (meer in de volgende les).\n\nDetectie is merken dat er iets mis is en uitzoeken wat: een melding van de virusscanner, een vreemd gedrag van een HMI, een telefoontje van een klant die rare mails van je krijgt. Hoe eerder je het merkt, hoe kleiner de schade.',
         'Indamming (containment) is de verspreiding stoppen: een pc of netwerkdeel isoleren, een account blokkeren, of de verbinding tussen kantoor en fabriek dichtzetten. Daarna uitroeien (eradication): de oorzaak weghalen, zoals malware en het lek waarlangs hij binnenkwam.\n\nDan herstel (recovery): systemen schoon terugzetten, weer aansluiten en extra in de gaten houden.',
         'De laatste fase is de evaluatie (lessons learned): binnen een paar weken met alle betrokkenen terugkijken. Wat ging goed, wat niet, wat was de oorzaak, en welke acties volgen eruit, met eigenaar en datum.\n\nVoor een Lean-consultant voelt dat bekend: het is een A3 of een 5 keer waarom (5 whys), toegepast op een cyberincident.',
@@ -839,7 +839,7 @@ export default {
       said: 'Wat de IT-manager zegt: “Niet herstarten, kabel eruit, mij bellen. Die drie dingen hangen nu bij elke pc.”',
       recall: [
         {
-          q: 'Wat is de juiste volgorde van de fases van incidentrespons?',
+          q: 'Wat is de juiste volgorde van de fases in de klassieke incidentresponscyclus van NIST?',
           options: ['Herstel, detectie, indamming en voorbereiding, evaluatie', 'Voorbereiding, detectie, indamming en herstel, evaluatie', 'Detectie, evaluatie, voorbereiding, indamming en herstel', 'Evaluatie, voorbereiding, indamming en herstel, detectie'],
           answer: 'Voorbereiding, detectie, indamming en herstel, evaluatie',
           why: 'Eerst voorbereid zijn, dan merken, dan stoppen en herstellen, en tot slot leren. Wat je leert, gaat terug naar de voorbereiding.',
@@ -887,8 +887,8 @@ export default {
       pre: [
         {
           q: 'In maart 2019 werd aluminiumbedrijf Norsk Hydro getroffen door ransomware. Wat deed het bedrijf?',
-          options: ['Het betaalde het losgeld en had binnen een dag alles terug', 'Het betaalde niet, draaide waar kon met de hand en communiceerde open', 'Het sloot alle fabrieken tot alle systemen weken later weer helemaal werkten', 'Het hield de aanval maandenlang geheim voor klanten en pers'],
-          answer: 'Het betaalde niet, draaide waar kon met de hand en communiceerde open',
+          options: ['Het betaalde het losgeld en had binnen een dag alles terug', 'Geen losgeld, handwerk waar het kon, open communicatie', 'Het sloot alle fabrieken tot alle systemen weken later weer helemaal werkten', 'Het hield de aanval maandenlang geheim voor klanten en pers'],
+          answer: 'Geen losgeld, handwerk waar het kon, open communicatie',
           why: 'Hydro isoleerde zijn fabrieken, schakelde waar mogelijk over op handmatig werken, herstelde uit back-ups en hield pers en beleggers dagelijks op de hoogte.',
         },
       ],
@@ -896,8 +896,8 @@ export default {
         'Het voorbeeld van Norsk Hydro: op 19 maart 2019 versleutelde de ransomware LockerGoga volgens latere analyses zo’n 22.000 computers op 170 locaties. Hydro koppelde fabrieken los en schakelde waar mogelijk over op handmatig werk; sommige lijnen stonden stil.\n\nHet bedrijf betaalde geen losgeld, herstelde uit back-ups en communiceerde open, met dagelijkse persmomenten. De schade schatte Hydro later op ongeveer 800 miljoen Noorse kronen, grofweg €80 miljoen; eerdere schattingen lagen lager.',
         'Een incidentresponsplan legt vooraf vast wie wat beslist. Wie leidt (de incidentmanager), wanneer gaat het crisisteam van start, en wie zit erin: directie, IT, OT, productie, communicatie, juridisch. Plus een contactlijst met externe partijen: verzekeraar, forensisch bureau, NCSC, belangrijke klanten.\n\nBewaar die op papier en regel out-of-band communicatie: een kanaal dat niet afhangt van je eigen netwerk, zoals een aparte telefoonboom. Mail en Teams kunnen plat liggen of meegelezen worden.',
         'Een playbook is een stappenplan per scenario: ransomware, overgenomen account, malware in OT, gestolen laptop. Wie doet wat, in welke volgorde, met welke beslismomenten.\n\nVoor een Lean-consultant: het is standaardwerk (standard work) voor een crisis. Net als bij omstellen geldt: wat je vooraf uitwerkt, hoef je onder druk niet te bedenken.',
-        'Een noodprocedure beschrijft hoe productie doorgaat zonder MES of ERP: papieren werkorders, uitgeprinte stuklijsten en recepten, handgeschreven etiketten, tellen op papier. Hydro kon dat deels omdat ervaren mensen de oude handmatige werkwijze nog kenden.\n\nVraag ook: welke klanten krijgen voorrang als je maar de helft kunt maken? Die keuze wil je niet midden in de nacht voor het eerst maken.',
-        'Een tabletopoefening is een scenario dat je met het crisisteam aan tafel doorpraat, in twee à drie uur, zonder systemen te raken. Veel bedrijven doen dat minstens één keer per jaar.\n\nTypische fouten: het plan ligt in een la; de noodprocedure is aangenomen maar nooit geprobeerd; de back-ups zitten in hetzelfde domein en worden meeversleuteld. Scherpe vraag: “Hoeveel uur kunnen we leveren zonder MES en ERP, en hebben we dat ooit geoefend?”',
+        'Een noodprocedure (manual fallback procedure) beschrijft hoe productie doorgaat zonder MES of ERP: papieren werkorders, uitgeprinte stuklijsten en recepten, handgeschreven etiketten, tellen op papier. Hydro kon dat deels omdat ervaren mensen de oude handmatige werkwijze nog kenden.\n\nVraag ook: welke klanten krijgen voorrang als je maar de helft kunt maken? Die keuze wil je niet midden in de nacht voor het eerst maken.',
+        'Een tabletopoefening (tabletop exercise) is een scenario dat je met het crisisteam aan tafel doorpraat, in twee à drie uur, zonder systemen te raken. Veel bedrijven doen dat minstens één keer per jaar.\n\nTypische fouten: het plan ligt in een la; de noodprocedure is aangenomen maar nooit geprobeerd; de back-ups zitten in hetzelfde domein en worden meeversleuteld. Scherpe vraag: “Hoeveel uur kunnen we leveren zonder MES en ERP, en hebben we dat ooit geoefend?”',
       ],
       example: {
         kind: 'worked',
@@ -927,8 +927,8 @@ export default {
         },
         {
           q: 'Wat leert het geval Norsk Hydro over communicatie bij een incident?',
-          options: ['Open en vaak communiceren hield het vertrouwen van klanten en beleggers', 'Alleen de toezichthouder informeren, verder niemand', 'Zwijgen tot alles hersteld is, voorkomt paniek bij klanten', 'Communicatie kun je beter helemaal aan de verzekeraar en zijn advocaten overlaten'],
-          answer: 'Open en vaak communiceren hield het vertrouwen van klanten en beleggers',
+          options: ['Open en vaak communiceren hield het vertrouwen vast', 'Alleen de toezichthouder informeren, verder niemand', 'Zwijgen tot alles hersteld is, voorkomt paniek bij klanten', 'Communicatie kun je beter helemaal aan de verzekeraar en zijn advocaten overlaten'],
+          answer: 'Open en vaak communiceren hield het vertrouwen vast',
           why: 'Hydro gaf vanaf dag één dagelijks updates. Dat wordt vaak genoemd als voorbeeld van hoe het moet.',
         },
       ],
@@ -962,8 +962,8 @@ export default {
       teach: [
         'NotPetya, 27 juni 2017: de malware kwam binnen via een gekaapte update van M.E.Doc, Oekraïense belastingsoftware. Daarna verspreidde hij zich zelf, via het Windows-lek EternalBlue (de patch bestond al sinds maart 2017) en via beheerderswachtwoorden die hij uit het geheugen haalde.\n\nHij leek op ransomware, maar was een wiper: software die data onherstelbaar vernietigt. Rederij Maersk herinstalleerde in ongeveer tien dagen 45.000 pc’s en 4.000 servers (zie IT-fundamenten voor de kosten). De totale schade wordt geschat op meer dan 10 miljard dollar.',
         'Om aanvallen te zien heb je gereedschap nodig. EDR (endpoint detection and response) is software op pc’s en servers die gedrag bewaakt en een besmette machine kan isoleren. Een SIEM (security information and event management) verzamelt logboeken centraal en zoekt verbanden.\n\nIn OT gebruik je passieve netwerkbewaking (network monitoring): een systeem dat via een spiegelpoort meeluistert zonder PLC’s te storen. Een indicator of compromise is een spoor van een aanval: een bestandskenmerk (hash), een IP-adres, een onbekend account.',
-        'Indammen vraagt snelle beslissingen die je vooraf hebt afgesproken: besmette machines isoleren, accounts blokkeren, de conduits tussen zones dichtzetten, vooral tussen kantoor en fabriek. In OT niet zomaar uitzetten: een installatie moet gecontroleerd stoppen, of kan geïsoleerd veilig doordraaien.\n\nBewaar forensisch bewijs voordat je herinstalleert: een kopie van geheugen en schijf, en de logboeken. Je hebt het nodig voor de oorzaak, de verzekeraar, de politie en het eindrapport.',
-        'Uitroeien betekent de oorzaak weghalen: de malware, maar ook het lek en de gestolen wachtwoorden. Reset alle beheerderswachtwoorden en dicht het gat waarlangs de aanvaller binnenkwam. Anders zet je schone systemen terug in een besmet netwerk en begint het opnieuw.\n\nAanvallers zitten vaak al een tijd binnen voordat iemand het merkt; volgens jaarlijkse rapporten van Mandiant gemiddeld (mediaan) ruim een week, en vaak veel langer.',
+        'Indammen vraagt snelle beslissingen die je vooraf hebt afgesproken: besmette machines isoleren, accounts blokkeren, de conduits tussen zones dichtzetten, vooral tussen kantoor en fabriek. In OT niet zomaar uitzetten: een installatie moet gecontroleerd stoppen, of kan geïsoleerd veilig doordraaien.\n\nBewaar forensisch bewijs (forensic evidence) voordat je herinstalleert: een kopie van geheugen en schijf, en de logboeken. Je hebt het nodig voor de oorzaak, de verzekeraar, de politie en het eindrapport.',
+        'Uitroeien betekent de oorzaak weghalen: de malware, maar ook het lek en de gestolen wachtwoorden. Reset alle beheerderswachtwoorden en dicht het gat waarlangs de aanvaller binnenkwam. Anders zet je schone systemen terug in een besmet netwerk en begint het opnieuw.\n\nAanvallers zitten vaak al een tijd binnen voordat iemand het merkt; in de jaarlijkse rapporten van Mandiant was de mediaan 10 tot 11 dagen in 2023–2024 en 14 dagen in 2025, en vaak veel langer.',
         'Experts discussiëren over snelheid tegen schade: kantoor en fabriek vroeg scheiden kost productie, te laat scheiden kan de fabriek kosten. Daarom spreek je het vooraf af.\n\nTypische fouten: back-ups terugzetten voordat de binnenkomstroute dicht is, en logboeken maar een week bewaren, zodat je niet kunt terugkijken tot de eerste binnenkomst. Scherpe vraag: “Hoe lang bewaren we logboeken, en is dat lang genoeg om een aanvaller tot zijn eerste stap terug te volgen?”',
       ],
       example: {
@@ -976,8 +976,8 @@ export default {
       recall: [
         {
           q: 'Wat doet EDR?',
-          options: ['Het maakt elke nacht een back-up van alle servers', 'Het blokkeert verkeer tussen zones met vaste regels', 'Het verzamelt logboeken van alle systemen op één centrale plek voor analyse', 'Het bewaakt gedrag op pc’s en servers en kan ze isoleren'],
-          answer: 'Het bewaakt gedrag op pc’s en servers en kan ze isoleren',
+          options: ['Het maakt elke nacht een back-up van alle servers', 'Het blokkeert verkeer tussen zones met vaste regels', 'Het verzamelt logboeken van alle systemen op één centrale plek voor analyse', 'Het bewaakt pc’s en servers en kan ze isoleren'],
+          answer: 'Het bewaakt pc’s en servers en kan ze isoleren',
           why: 'EDR draait op de machine zelf. Een SIEM verzamelt logboeken centraal; een firewall regelt verkeer tussen zones.',
         },
         {
@@ -990,14 +990,14 @@ export default {
         },
         {
           q: 'Waarom zet je back-ups pas terug nadat de binnenkomstroute dicht is?',
-          options: ['Omdat het herstelde systeem anders opnieuw besmet raakt', 'Omdat back-ups anders veel te langzaam teruggezet worden om te helpen', 'Omdat de verzekeraar anders niet uitkeert', 'Omdat de meldplicht dat zo voorschrijft'],
-          answer: 'Omdat het herstelde systeem anders opnieuw besmet raakt',
+          options: ['Omdat het anders opnieuw besmet raakt', 'Omdat back-ups anders veel te langzaam teruggezet worden om te helpen', 'Omdat de verzekeraar anders niet uitkeert', 'Omdat de meldplicht dat zo voorschrijft'],
+          answer: 'Omdat het anders opnieuw besmet raakt',
           why: 'Zolang het lek of de gestolen wachtwoorden bruikbaar zijn, komt de aanvaller terug in je schone systemen.',
         },
         {
           q: 'Waarom hielp losgeld betalen bij NotPetya niet?',
-          options: ['Omdat de politie de betaalpagina van de aanvallers bijna meteen offline haalde', 'Omdat het een wiper was: de data was onherstelbaar vernietigd', 'Omdat het losgeld te hoog was voor de meeste bedrijven', 'Omdat alleen bedrijven in Oekraïne mochten betalen'],
-          answer: 'Omdat het een wiper was: de data was onherstelbaar vernietigd',
+          options: ['Omdat de politie de betaalpagina van de aanvallers bijna meteen offline haalde', 'Omdat het een wiper was die data vernietigde', 'Omdat het losgeld te hoog was voor de meeste bedrijven', 'Omdat alleen bedrijven in Oekraïne mochten betalen'],
+          answer: 'Omdat het een wiper was die data vernietigde',
           why: 'NotPetya deed alsof het ransomware was, maar er bestond geen werkende manier om de data terug te krijgen. Alleen herinstalleren en back-ups hielpen.',
         },
       ],
@@ -1023,16 +1023,16 @@ export default {
       pre: [
         {
           q: 'Na een ransomware-aanval is de binnenkomstroute dicht. In welke volgorde zet je systemen terug?',
-          options: ['Eerst de mail, zodat iedereen weer met elkaar en met klanten kan communiceren', 'Eerst de systemen van de directie, dan de rest', 'Alles tegelijk, zodat niemand hoeft te wachten', 'Eerst netwerk en accounts, dan de systemen naar bedrijfsbelang'],
-          answer: 'Eerst netwerk en accounts, dan de systemen naar bedrijfsbelang',
+          options: ['Eerst de mail, zodat iedereen weer met elkaar en met klanten kan communiceren', 'Eerst de systemen van de directie, dan de rest', 'Alles tegelijk, zodat niemand hoeft te wachten', 'Eerst netwerk en inloggen, dan naar bedrijfsbelang'],
+          answer: 'Eerst netwerk en inloggen, dan naar bedrijfsbelang',
           why: 'Zonder netwerk en inlogsysteem werkt niets. Daarna eerst wat de klant en de bottleneck het meest raakt.',
         },
       ],
       teach: [
-        'De herstelvolgorde begint bij de basis: netwerk, het inlogsysteem (Active Directory, waarmee iedereen inlogt) en de back-upomgeving. Daarna de systemen naar bedrijfsbelang: wat de bottleneck en de klantorders voedt, eerst.\n\nVoor een Lean-consultant is dat een waardestroomvraag. Maersk kon zijn inlogsysteem herbouwen omdat één server toevallig offline was door een stroomstoring, en dus niet geraakt. Op zo’n toeval wil je niet rekenen: zorg voor een offline kopie.',
-        'Schoon herstel betekent: terugzetten vanaf een back-up van vóór de besmetting, controleren dat die back-up zelf schoon is, liever opnieuw opbouwen dan schoonmaken, en stap voor stap weer aansluiten met extra bewaking.\n\nIn OT: vergelijk PLC-programma’s en recepten met een bekende goede versie voordat je opstart. Een aanvaller kan logica veranderd hebben; dat is integriteit. Start op met productie en veiligheid samen.',
-        'De evaluatie na afloop werkt het best als blameless evaluatie: zonder schuldvraag, zodat mensen eerlijk vertellen wat er gebeurde. Doe het binnen een paar weken. Maak een tijdlijn met feiten, zoek de hoofdoorzaak met 5 keer waarom, en leg elke verbeteractie vast met eigenaar en datum.\n\nVolg ze op zoals elke Lean-actie. Een evaluatie zonder opvolging is theater.',
-        'De kosten zijn fors. Norsk Hydro schatte zijn schade op ongeveer 800 miljoen Noorse kronen; de verzekering vergoedde een deel. Bij NotPetya weigerde verzekeraar Zurich de claim van Mondelez met een beroep op een uitsluiting voor oorlogshandelingen; de zaak werd in 2022 geschikt. Merck won in de rechtszaak tegen zijn verzekeraars.\n\nLes: lees de uitsluitingen van je cyberverzekering, en weet wat die vooraf eist, zoals MFA en offline back-ups.',
+        'De herstelvolgorde (recovery order) begint bij de basis: netwerk, het inlogsysteem (Active Directory, waarmee iedereen inlogt) en de back-upomgeving. Daarna de systemen naar bedrijfsbelang: wat de bottleneck en de klantorders voedt, eerst.\n\nVoor een Lean-consultant is dat een waardestroomvraag. Maersk kon zijn inlogsysteem herbouwen omdat één server toevallig offline was door een stroomstoring, en dus niet geraakt. Op zo’n toeval wil je niet rekenen: zorg voor een offline of onveranderbare kopie (zie IT-fundamenten, back-ups).',
+        'Schoon herstel (clean restore) betekent: terugzetten vanaf een back-up van vóór de besmetting, controleren dat die back-up zelf schoon is, liever opnieuw opbouwen dan schoonmaken, en stap voor stap weer aansluiten met extra bewaking.\n\nIn OT: vergelijk PLC-programma’s en recepten met een bekende goede versie voordat je opstart. Een aanvaller kan logica veranderd hebben; dat is integriteit. Start op met productie en veiligheid samen.',
+        'De evaluatie na afloop werkt het best als blameless evaluatie: zonder schuldvraag, zodat mensen eerlijk vertellen wat er gebeurde. Doe het binnen een paar weken. Maak een tijdlijn met feiten, zoek de hoofdoorzaak (root cause) met 5 keer waarom, en leg elke verbeteractie (improvement action) vast met eigenaar en datum.\n\nVolg ze op zoals elke Lean-actie. Een evaluatie zonder opvolging is theater.',
+        'De kosten zijn fors. Norsk Hydro schatte zijn schade op ongeveer 800 miljoen Noorse kronen; de verzekering vergoedde een deel. Bij NotPetya weigerde verzekeraar Zurich de claim van Mondelez met een beroep op een uitsluiting voor oorlogshandelingen; de zaak werd in 2022 geschikt. Merck won in de rechtszaak tegen zijn verzekeraars.\n\nLes: lees de uitsluitingen van je cyberverzekering (cyber insurance), en weet wat die vooraf eist, zoals MFA en offline back-ups.',
         'Losgeld betalen? Politie en NCSC raden het af: er is geen garantie dat je je data terugkrijgt, en je financiert de volgende aanval. Hydro betaalde niet. Toch betalen sommige bedrijven als er geen back-up is; dat blijft een bestuursbeslissing met juridisch advies.\n\nTypische fouten: terug naar de oude situatie zonder de oorzaak te repareren, en acties zonder eigenaar. Scherpe vraag: “Welke drie verbeteracties uit het vorige incident of de vorige oefening zijn echt af?”',
       ],
       example: {
@@ -1065,8 +1065,8 @@ export default {
         },
         {
           q: 'Wat leert de zaak van Mondelez tegen verzekeraar Zurich na NotPetya?',
-          options: ['Dat cyberverzekeringen altijd alles vergoeden', 'Dat verzekeraars nooit over oorlog beginnen', 'Dat je de uitsluitingen van je cyberverzekering moet kennen', 'Dat een verzekering de meldplicht van het bedrijf helemaal overneemt'],
-          answer: 'Dat je de uitsluitingen van je cyberverzekering moet kennen',
+          options: ['Dat cyberverzekeringen altijd alles vergoeden', 'Dat verzekeraars nooit over oorlog beginnen', 'Dat je moet weten wat je cyberpolis uitsluit', 'Dat een verzekering de meldplicht van het bedrijf helemaal overneemt'],
+          answer: 'Dat je moet weten wat je cyberpolis uitsluit',
           why: 'Zurich beriep zich op een uitsluiting voor oorlogshandelingen; de zaak werd pas in 2022 geschikt. Een verzekering is pas iets waard als je weet wat ze uitsluit.',
         },
       ],
