@@ -245,7 +245,7 @@ export function filmStep(app, lesson, level, { text } = {}) {
     const script = readAlong(data, lang);
     if (script.length) {
       read.replaceChildren(h('summary', {}, t('filmReadAlong')),
-        script.map((s) => h('section', { class: 'read-scene' },
+        ...script.map((s) => h('section', { class: 'read-scene' },
           h('h3', { class: 'read-title' }, `${s.n}. ${s.title}`),
           s.paras.map((seg) => h('p', {}, segNodes(seg))))));
       read.hidden = false;
