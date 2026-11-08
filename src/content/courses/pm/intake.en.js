@@ -167,7 +167,7 @@ export default {
       pre: [
         {
           q: 'Which sentence is the best problem statement?',
-          options: ['Line 2 misses the plan because the operators are not trained enough', 'We need to bring in a new planning system on line 2', 'In May line 2 missed the daily plan on 8 of 20 working days, against 2 of 20 last year', 'Line 2 performs badly and that has to improve'],
+          options: ['Line 2 misses the daily plan because the night-shift operators have not been trained enough', 'We need to bring in a new planning system on line 2 before the summer peak', 'In May line 2 missed the daily plan on 8 of 20 working days, against 2 of 20 last year', 'Line 2 performs badly and that really has to improve this quarter'],
           answer: 'In May line 2 missed the daily plan on 8 of 20 working days, against 2 of 20 last year',
           why: 'It says what, where, when and how much, with no cause, solution or culprit.',
         },
@@ -175,7 +175,7 @@ export default {
       teach: [
         'A problem statement is one or two sentences that describe what goes wrong: what, where, when, how much, and compared with which standard. It holds no cause, no solution and no culprit.\n\n“In May line 2 missed the daily plan on 8 of 20 working days; last year it was 2.” Anyone can check that. “The planners aren’t doing it right” is a judgement, and it closes the investigation before it starts.',
         'Why so strict? As soon as a cause sits in the sentence, everyone sets out to prove that cause. Put a solution in it, and the project becomes “bring in the tool” instead of “hit the plan”.\n\nIn Lean (the improvement approach that comes from Toyota’s production system) the problem statement sits at the top of the A3 report. John Shook describes this in Managing to Learn (Lean Enterprise Institute, 2008): first a clear problem, only then causes.',
-        'Go and look first. Gemba is Japanese for “the place where it happens”: the line, the warehouse, the fitter’s van. What you see and count there makes the problem statement sharp.\n\nThen you look for causes, for example with the 5 Whys: at each answer you ask “why?” again until you reach something you can act on. Taiichi Ohno, the architect of the Toyota Production System, made the method known; five is a rule of thumb, not a law.',
+        'Go and look first. Gemba is Japanese for “the place where it happens”: the line, the warehouse, the fitter’s van. What you see and count there makes the problem statement sharp.\n\nThen you look for causes, for example with the 5 Whys: at each answer you ask “why?” again until you reach something you can act on. Taiichi Ohno, the architect of the Toyota Production System, made the method known in his 1978 book; five is a rule of thumb, not a law.',
         'An is/is-not analysis makes the problem smaller. You set side by side where the problem does and doesn’t occur: which line does, which doesn’t; which shift does, which doesn’t; since when it does, and before that not.\n\nThe method comes from Kepner and Tregoe (The Rational Manager, 1965). The differences are your clues: if it only happens on the night shift, you look for what is different at night.',
         'Where experts disagree: critics say the 5 Whys too easily produce a single chain of causes, while several causes often act at once. So use it as a conversation technique as well, not as proof, and check each step with data.\n\nA common mistake is a problem statement that quietly contains a solution: “there is no dashboard”. A sharp question: “If we did everything right tomorrow, which number would be different?”',
       ],
@@ -194,11 +194,11 @@ export default {
           why: 'A cause or solution in the sentence sends the investigation the wrong way before it starts.',
         },
         {
-          q: 'A line missed the daily plan on 8 of 20 working days. On what percentage of working days did the line miss the plan?',
-          number: 40,
-          tolerance: 1,
-          unit: '%',
-          why: '8 / 20 = 0.4; that is 0.4 × 100 percent of the days.',
+          q: 'Of 180 orders in a month, 27 left the plant late. The standard is at most 5% late. By how many percentage points does the plant miss that standard?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'percentage points',
+          why: '27 / 180 = 0.15, so 15% of orders left late; from that 15% you take off the 5% standard.',
         },
         {
           q: 'The scrap only occurs on the night shift. Which method helps you exploit that difference?',
@@ -208,8 +208,8 @@ export default {
         },
         {
           q: 'What is the main criticism of the 5 Whys?',
-          options: ['Five questions take too much time in a busy plant', 'It only works in the car industry, where it comes from', 'It easily produces a single chain of causes while there are often more causes', 'Operators don’t understand the question and get annoyed'],
-          answer: 'It easily produces a single chain of causes while there are often more causes',
+          options: ['Five questions take too much time on a busy shop floor', 'It only works in the car industry, because that is where it comes from', 'It tends to give one chain of causes, while several often act at once', 'Operators don’t understand the question and quickly get annoyed by it'],
+          answer: 'It tends to give one chain of causes, while several often act at once',
           why: 'That is why you check each step with data and use it as a conversation technique, not as proof.',
         },
       ],
@@ -249,14 +249,14 @@ export default {
       pre: [
         {
           q: 'You have two weeks for a diagnosis. What is the smartest approach?',
-          options: ['Collect all available data and then see what stands out', 'Write down a few suspicions and look specifically for the data that could disprove them', 'Work out the client’s solution', 'Interview everyone in the plant'],
-          answer: 'Write down a few suspicions and look specifically for the data that could disprove them',
+          options: ['Collect all available data first and then see what stands out', 'Write down a few suspicions and look for data that could disprove them', 'Work out the solution the client already has in mind', 'Interview everyone in the plant before you look at any data'],
+          answer: 'Write down a few suspicions and look for data that could disprove them',
           why: 'A targeted search fits in two weeks; collecting everything doesn’t.',
         },
       ],
       teach: [
         'A hypothesis is a suspicion about the cause that you can test with data: “Most downtime on line 3 comes from waiting for material.” You start with it early, right after the intake, and you let the data decide.\n\nMany consulting firms work this way. Ethan Rasiel describes it in The McKinsey Way (1999): start with a suspicion, because finding out everything without direction takes months and gives a pile of data with no conclusion.',
-        'An issue tree breaks the main question into sub-questions. “Why does line 3 reach only 58% OEE?” splits into availability, speed and quality; each of those splits again, for example availability into breakdowns, changeovers and waiting.\n\nThe branches must be MECE: mutually exclusive, collectively exhaustive. No overlap between branches, and together they cover everything. Barbara Minto made the idea known in The Pyramid Principle (from her McKinsey years, book 1987).',
+        'An issue tree breaks the main question into sub-questions. “Why does line 3 reach only 58% OEE?” splits into availability, speed and quality; each of those splits again, for example availability into breakdowns, changeovers and waiting.\n\nThe branches must be MECE: mutually exclusive, collectively exhaustive. No overlap between branches, and together they cover everything. Barbara Minto made the idea known in The Pyramid Principle (from her McKinsey years; book 1985).',
         'Then choose the branches that can yield the most. Often most of the loss sits in a few branches; that is called the Pareto principle (the 80/20 rule of thumb, a pattern that often holds but is no law).\n\nFor each hypothesis you write a data request: which data, from whom, over which period, and what result would mean your suspicion is wrong. “Stop log line 3, 8 weeks, from the team lead; if waiting for material is under 15% of downtime, we drop this branch.”',
         'Work at the client’s pace. A data request on day one, with a name and a date, saves a week. IT often needs a few days to make an export, so ask early.\n\nShow the tree to the process owner too: “Am I missing a branch?” People from the floor often see right away what is missing, such as “waiting for quality release”, and then the tree is a little bit theirs as well.',
         'Where experts disagree: working with hypotheses can lead to confirmation bias: you mostly see what supports your suspicion. Others say that exploring everything openly simply doesn’t fit a short project.\n\nA workable middle: for each hypothesis, write down beforehand what would disprove it, and actively look for that data. A sharp question to ask yourself after week one: “Which hypothesis have I already dropped?” If the answer is none, you may not be looking honestly.',
@@ -276,16 +276,16 @@ export default {
           why: 'Mutually exclusive, collectively exhaustive: no double work and no gap.',
         },
         {
-          q: 'Of 42 lost OEE points, 18 are in breakdowns and 12 in changeovers. What percentage of the loss is in those two branches together?',
-          number: 71.4,
+          q: 'Line 5 reaches 62% OEE, so 38 points are lost: breakdowns 14, running slow 10, changeovers 9, scrap 5. What percentage of the loss sits in the two biggest branches together?',
+          number: 63.2,
           tolerance: 1,
           unit: '%',
-          why: '18 + 12 = 30 points; 30 / 42 is the share of the loss, times 100 percent.',
+          why: 'The two biggest branches are breakdowns and running slow: 14 + 10 = 24 points; 24 / 38 is their share of the loss, times 100 percent.',
         },
         {
           q: 'What protects you best against confirmation bias when working with hypotheses?',
-          options: ['Writing down beforehand which data would disprove your hypothesis', 'Only testing hypotheses the client puts forward', 'Holding more interviews before asking for data', 'Writing hypotheses down only once the data is in'],
-          answer: 'Writing down beforehand which data would disprove your hypothesis',
+          options: ['Writing down beforehand what data would disprove it', 'Only testing the hypotheses the client puts forward himself', 'Holding more interviews before you ask for any data', 'Writing hypotheses down only once the data is in'],
+          answer: 'Writing down beforehand what data would disprove it',
           why: 'Then you actively look for counter-evidence instead of only for support.',
         },
         {
@@ -515,26 +515,26 @@ export default {
       recall: [
         {
           q: 'What does Block mean by wants and offers?',
-          options: ['The price and the discount in the proposal', 'What you need from the client and what you offer, and the other way round', 'The wants of the users and what the suppliers offer', 'The list of quick wins the floor puts forward'],
-          answer: 'What you need from the client and what you offer, and the other way round',
+          options: ['The price and the discount written into the proposal', 'What you need and what you offer, and the same from the client', 'What the users want and what the suppliers can offer them', 'The list of quick wins that the people on the floor put forward'],
+          answer: 'What you need and what you offer, and the same from the client',
           why: 'Both sides say what they want and what they give; that makes it an agreement.',
         },
         {
-          q: 'You ask for 2 operators for 4 hours a week, for 8 weeks. How many operator hours are you asking for in total?',
-          number: 64,
+          q: 'You ask for 3 operators for 3 hours a week over 10 weeks, plus the shift leader at 4 workshops of 2 hours each. How many hours of the client’s people is that in total?',
+          number: 98,
           tolerance: 1,
           unit: 'hours',
-          why: '2 × 4 = 8 hours a week; those 8 hours a week times the 8 weeks.',
+          why: '3 × 3 × 10 = 90 operator hours; the shift leader’s 4 × 2 hours come on top.',
         },
         {
           q: 'When do you recontract?',
-          options: ['Only when the price has to go up, because that touches the contract', 'Never; an agreement is an agreement, even when it gets hard', 'At the end of the project, at the review', 'When circumstances change, for example the agreed time of people isn’t there'],
-          answer: 'When circumstances change, for example the agreed time of people isn’t there',
+          options: ['Only when the price has to go up, because that touches the contract', 'Never; an agreement is an agreement, even when it gets hard', 'At the end of the project, at the review', 'When circumstances change, such as agreed people not being available'],
+          answer: 'When circumstances change, such as agreed people not being available',
           why: 'Then you make goal, date or scope fit what is really there.',
         },
         {
           q: 'Why does fifty-fifty responsibility matter?',
-          options: ['Because a change made only by the consultant disappears when he leaves', 'Because it splits the costs fairly between client and firm', 'Because it is a required clause in every consulting contract', 'Because the client then has less to do during the project'],
+          options: ['Because a change made only by the consultant disappears when he leaves', 'Because it splits the costs fairly between the client and the firm', 'Because it is a required clause in every consulting contract', 'Because the client then has less to do during the project'],
           answer: 'Because a change made only by the consultant disappears when he leaves',
           why: 'The client owns the change; his people have to make it.',
         },
@@ -574,16 +574,16 @@ export default {
       title: 'Building a coalition',
       pre: [
         {
-          q: 'A project changes the shift rosters in a Dutch plant. What does the law require?',
+          q: 'A project changes the shift roster arrangement in a Dutch plant of 200 people. The collective labour agreement doesn’t settle rosters. What does the law require?',
           options: ['Nothing, rosters are up to the employer', 'The works council must consent', 'The trade union must sign', 'Every employee must agree personally'],
           answer: 'The works council must consent',
-          why: 'The Dutch Works Councils Act gives the works council a consent right on working and rest time arrangements (art. 27).',
+          why: 'The Dutch Works Councils Act gives the works council a consent right on working and rest time arrangements (art. 27), unless the collective agreement already settles the matter.',
         },
       ],
       teach: [
-        'A sponsor alone is not enough for a change that touches several departments. John Kotter (Leading Change, 1996) calls forming a guiding coalition an early step: a small group with enough position, expertise and credibility to carry the change.\n\nIn a plant that might be the plant manager, the maintenance manager, a respected shift leader and someone from planning. Together they cover power, know-how and the floor.',
+        'A sponsor alone is not enough for a change that touches several departments. John Kotter (Leading Change, 1996) makes forming a guiding coalition the second of his eight steps: a small group with enough position, expertise and credibility to carry the change.\n\nIn a plant that might be the plant manager, the maintenance manager, a respected shift leader and someone from planning. Together they cover power, know-how and the floor.',
         'Look beyond the org chart. The informal network is who goes to whom for advice, who trusts whom and whose opinion the crew follows. Ask on the floor: “Who do you go to when something really doesn’t work?” The same two or three names keep coming back.\n\nBring those people in early. An operator with twenty years’ service who thinks along convinces his colleagues faster than any presentation from the board.',
-        'In the Netherlands the works council (the elected employee body) often belongs in your coalition. The Dutch Works Councils Act (WOR) gives a right of advice on, among other things, a major change to the organisation (art. 25), and a right of consent on, among other things, working and rest time arrangements (art. 27).\n\nAdvice must be asked at a moment when it can still substantially influence the decision (art. 25(2)). A works council told only once everything is fixed can have the decision tested in court.',
+        'Dutch companies with 50 or more people must have a works council (elected staff representatives), and it often belongs in your coalition. The Works Councils Act (WOR) gives it a right of advice on, for example, a major change to the organisation (art. 25), and a right of consent on working and rest time rules (art. 27), unless the collective agreement settles them.\n\nAsk for advice while it can still substantially influence the decision (art. 25(2)). If not, the council can appeal to the Enterprise Chamber in Amsterdam (art. 26).',
         'How do you go about it? Talk to everyone one-to-one first, before they sit at the table together: what is their interest, what is their worry? Decisions in a meeting are usually prepared in the corridors beforehand.\n\nThen set up the first joint moment, for example a gemba walk (going to look on the floor together) and a conversation about the numbers. Once everyone sees the same problem, agreeing on the approach gets much easier.',
         'Where experts disagree: some find coalition building political fuss and want only the content to speak. Others say good content without support almost never lands. Kotter’s step model is also criticised as too linear; in practice you run the steps in parallel.\n\nA sharp question for the sponsor: “If you were away for three months, who would keep this going?” If he can’t name anyone, there is no coalition yet.',
       ],
@@ -591,31 +591,31 @@ export default {
         kind: 'faded',
         text: 'At a food plant the packaging department has to go from three shifts to two, with longer shifts, to bundle changeovers. The plant manager is sponsor. The packaging manager has doubts, the works council knows nothing yet, and a shift leader with 25 years’ service says on the floor: “They’ve tried this before.” The plant manager wants the decision in the management team in three weeks.',
         ask: 'Whom do you take into the coalition, in what order do you talk to them, and what do you say about the three-week timeline?',
-        reveal: 'Coalition: plant manager, packaging manager, the experienced shift leader and someone from planning. Talk to the packaging manager and the shift leader one-to-one first: what went wrong last time?\n\nThe roster change falls under working and rest times, so the works council must consent (WOR art. 27). Say to the plant manager: “Three weeks to a management decision can work, but as a proposed decision. Let’s brief the works council informally this week, so it thinks along instead of blocking afterwards.” A few extra weeks now prevents months of delay later.',
+        reveal: 'Coalition: plant manager, packaging manager, the experienced shift leader and someone from planning. Talk to the packaging manager and the shift leader one-to-one first: what went wrong last time?\n\nThe roster change falls under working and rest times, so the works council must consent (WOR art. 27), unless the collective agreement already settles it; ask HR. Say to the plant manager: “Three weeks to a management decision can work, but as a proposed decision. Let’s brief the works council informally this week, so it thinks along instead of blocking afterwards.” A few extra weeks now prevents months of delay later.',
       },
       said: 'What you hear in projects: “The works council? We’ll inform them once it’s settled.” That is often exactly when the project stalls for months.',
       recall: [
         {
           q: 'What is a guiding coalition for a change, according to Kotter?',
-          options: ['All employees who openly support the project', 'The steering group, joined by the supplier', 'A small group with enough position, expertise and credibility to carry the change', 'The works council and the trade union, who together represent the staff'],
-          answer: 'A small group with enough position, expertise and credibility to carry the change',
+          options: ['All employees who openly support the project, from floor to board', 'The project’s steering group, joined by the main supplier', 'A small group with enough position, expertise and credibility', 'The works council and the trade union, who represent the staff'],
+          answer: 'A small group with enough position, expertise and credibility',
           why: 'Power, know-how and trust on the floor together; the sponsor alone is not enough.',
         },
         {
           q: 'When must a Dutch employer ask the works council for advice on a major organisational change?',
-          options: ['At a moment when the advice can still substantially influence the decision', 'After the decision, so the council can explain it to staff', 'Only if people are made redundant by the change', 'Only when the works council asks for it'],
-          answer: 'At a moment when the advice can still substantially influence the decision',
+          options: ['While the advice can still substantially influence the decision', 'After the decision, so the council can explain it to the staff', 'Only if people will be made redundant because of the change', 'Only when the works council itself asks to be consulted'],
+          answer: 'While the advice can still substantially influence the decision',
           why: 'That is WOR art. 25(2); asking afterwards is too late.',
         },
         {
           q: 'How do you find the informal network on the floor?',
-          options: ['From the org chart and the job descriptions', 'By asking who people go to when something really doesn’t work', 'Through HR, who know the appraisals', 'By looking at who has been there longest'],
-          answer: 'By asking who people go to when something really doesn’t work',
+          options: ['From the org chart and the official job descriptions', 'By asking who people go to when something doesn’t work', 'Through HR, who know the appraisals of every employee', 'By looking at who has worked there the longest'],
+          answer: 'By asking who people go to when something doesn’t work',
           why: 'The same few names keep coming back; those are the people others follow.',
         },
         {
           q: 'Why do you talk to the members of your coalition one-to-one first?',
-          options: ['To win them over separately before they meet', 'Because group meetings are not allowed without the works council', 'To save meeting time in a busy period', 'To hear their interest and worry before they take a position together'],
+          options: ['To win them over separately before they meet in the group', 'Because group meetings are not allowed without the works council', 'To save meeting time in a busy period for everyone', 'To hear their interest and worry before they take a position together'],
           answer: 'To hear their interest and worry before they take a position together',
           why: 'In the group nobody says his real worry; one-to-one they do.',
         },
@@ -737,17 +737,17 @@ export default {
       pre: [
         {
           q: 'What is the main purpose of a project charter?',
-          options: ['Covering the consultant against claims if things go wrong', 'Giving an overview of all risks in the company', 'Fixing the department’s budget for the whole year', 'Setting down in one place what the project must deliver, within which limits, and who does what'],
-          answer: 'Setting down in one place what the project must deliver, within which limits, and who does what',
+          options: ['Covering the consultant against claims if the project goes wrong later', 'Giving an overview of all the risks the company runs this year', 'Fixing the department’s budget for the whole year, line by line', 'Setting down what the project delivers, within which limits, and who does what'],
+          answer: 'Setting down what the project delivers, within which limits, and who does what',
           why: 'It is the agreement everyone can point back to.',
         },
       ],
       teach: [
-        'The project charter is the document with which the sponsor officially starts the project. The PMBOK Guide of PMI (Project Management Institute) describes it as the document that authorises the project and gives the project manager the mandate.\n\nKeep it to one page. A twenty-page document nobody reads; one page hangs on the wall and gets pulled out when there is a discussion.',
+        'The project charter is the document with which the sponsor officially starts the project. The PMBOK Guide of PMI (Project Management Institute) describes it as the document that formally authorises the project and gives the project manager the authority to use the organisation’s resources.\n\nKeep it to one page. A twenty-page document nobody reads; one page hangs on the wall and gets pulled out when there is a discussion.',
         'A good layout: background (why now), goal (from X to Y by when), scope (in and out), deliverables (what you hand over, for example a baseline, a new way of working, a training), milestones, roles, and assumptions and risks.\n\nA milestone is a point in the plan when something must be done: “week 2: baseline ready”, “week 6: pilot on line 3 started”. Milestones make progress visible without planning every task.',
-        'In Lean many teams use an A3: one sheet of A3 paper that tells the whole story, from problem and current situation through causes to countermeasures and follow-up. The format comes from Toyota practice.\n\nA project charter and an A3 look alike. The difference: the charter fixes the agreement; the A3 grows with what you learn. Many Lean consultants start with an A3 that replaces the charter.',
+        'In Lean many teams use an A3: one sheet of A3 paper that tells the whole story, from problem and current situation through causes to countermeasures and follow-up. The format comes from Toyota practice.\n\nA project charter and an A3 look alike. The difference: the charter fixes the agreement; the A3 grows with what you learn. Some Lean teams let an A3 do the job of the charter, as long as goal, scope and sponsor are on it.',
         'An assumption is something you take as true in order to plan, without it being certain: “The stop data in the MES is reliable”, “Two operators are available four hours a week.” Write them down.\n\nIf an assumption turns out wrong, that is not a project failure but a reason to revisit the agreement. Without written assumptions it becomes an argument about who promised what.',
-        'Where experts disagree: in agile settings some find a project charter too rigid; they work with a short vision document and adjust scope each sprint. Others say agile projects also need a clear goal and a sponsor.\n\nA common mistake: writing the charter without the process owner. A sharp test: have the process owner retell the charter in his own words. If he can’t, it is either unclear or not owned.',
+        'Where experts disagree: in agile settings (working in short cycles of a few weeks, called sprints) some find a project charter too rigid; they work with a short vision document and adjust scope each sprint. Others say agile projects also need a clear goal and a sponsor.\n\nA common mistake: writing the charter without the process owner. A sharp test: have the process owner retell the charter in his own words. If he can’t, it is either unclear or not owned.',
       ],
       example: {
         kind: 'worked',
@@ -757,21 +757,21 @@ export default {
       recall: [
         {
           q: 'What is a milestone?',
-          options: ['A point in the plan when something must be done', 'Every task in the plan, with a date', 'The end date of the whole project', 'A risk that has occurred in the project'],
+          options: ['A point in the plan when something must be done', 'Every task in the plan, each with its own date', 'The end date of the whole project, set by the sponsor', 'A risk that has actually occurred in the project'],
           answer: 'A point in the plan when something must be done',
           why: 'Milestones make progress visible without planning every task.',
         },
         {
-          q: 'A consultant works 6 weeks, 2 days a week, at €1,100 a day. What does the consultant’s time cost?',
-          number: 13200,
+          q: 'A consultant works 10 weeks, 1.5 days a week, at €1,050 a day. What does the consultant’s time cost?',
+          number: 15750,
           tolerance: 50,
           unit: '€',
-          why: '6 × 2 = 12 days; those 12 days times the day rate of €1,100.',
+          why: '10 × 1.5 = 15 days; those 15 days times the day rate of €1,050.',
         },
         {
           q: 'Why do you write assumptions into the charter?',
-          options: ['Because PRINCE2 requires it for every charter', 'So the consultant isn’t liable if things go wrong', 'So you can revisit the agreement if an assumption is wrong, without an argument about blame', 'To show the sponsor how uncertain the project is'],
-          answer: 'So you can revisit the agreement if an assumption is wrong, without an argument about blame',
+          options: ['Because PRINCE2 requires assumptions in every project charter', 'So the consultant isn’t liable if the project goes wrong', 'So a wrong assumption leads to revisiting the deal, not to blame', 'To show the sponsor how uncertain the whole project really is'],
+          answer: 'So a wrong assumption leads to revisiting the deal, not to blame',
           why: 'A written assumption turns a setback into a reason to revisit.',
         },
         {
@@ -818,8 +818,8 @@ export default {
       pre: [
         {
           q: 'A team has been arguing for an hour about where “the order process” starts. What helps most?',
-          options: ['Agreeing a start and end point for the process, with who feeds into it and who gets the result', 'Mapping the whole company', 'Letting the sponsor decide without discussion', 'Parking the topic until the pilot'],
-          answer: 'Agreeing a start and end point for the process, with who feeds into it and who gets the result',
+          options: ['Mapping every process in the whole company in detail first', 'Letting the sponsor decide where it starts, without discussion', 'Parking the topic until the pilot shows where it starts', 'Agreeing start and end points, who feeds in and who gets the result'],
+          answer: 'Agreeing start and end points, who feeds in and who gets the result',
           why: 'Without agreed boundaries everyone talks about a different process.',
         },
       ],
@@ -827,7 +827,7 @@ export default {
         'SIPOC is a one-page overview of a process: Suppliers, Inputs, Process (4 to 7 main steps), Outputs and Customers. It comes from the quality world and is widely used in Six Sigma (an improvement approach that tackles variation with statistics) and Lean.\n\nThe aim is not to draw the process in detail. The aim is to agree where the process starts and ends, and who belongs to it.',
         'Start in the middle, with the main steps, and then set the process boundary: the first and last step that belong to the project. “From order received to order confirmation sent” is something else than “from quote to payment”.\n\nThen the edges. Who supplies what to the first step? What comes out at the end, and for whom? Suppliers and customers can be internal: planning is a customer of work preparation.',
         'Each output has a customer requirement: what the customer needs from that output, preferably measurable. “Order confirmation within 24 hours, with a delivery date we meet.” Customer requirements show what “good” is, and so what the project must steer on.\n\nIn Six Sigma a critical customer requirement is called a CTQ (critical to quality). Ask the customer: what the department thinks the customer wants is often something else.',
-        'Most problems sit at a handover: where work passes from one department to another. That is where information gets lost, work waits in a queue, or nobody knows who owns it.\n\nA SIPOC shows those handovers at once. Mark them, and ask at each handover: who owns it, what goes with it, and how long does it sit there? Those are often your first measurement points.',
+        'Many problems sit at a handover: where work passes from one department to another. That is where information gets lost, work waits in a queue, or nobody knows who owns it.\n\nA SIPOC shows those handovers at once. Mark them, and ask at each handover: who owns it, what goes with it, and how long does it sit there? Those are often your first measurement points.',
         'Where experts disagree: some Lean consultants skip SIPOC and go straight to a value stream map, a detailed drawing of material and information flow with times. Others find SIPOC useful precisely to get a group to agree the boundaries in an hour.\n\nA common mistake is a SIPOC with twenty steps. A sharp question: “Which step falls just outside the project, and who is going to complain about it?”',
       ],
       example: {
@@ -845,20 +845,20 @@ export default {
           why: 'SIPOC is an overview; the detailed drawing comes later.',
         },
         {
-          q: 'Where, in practice, do most problems in a process sit?',
+          q: 'Where, in practice, do problems in a process often sit?',
           options: ['In the first step of the process', 'With the end customer', 'At handovers between departments', 'In the departments’ IT systems'],
           answer: 'At handovers between departments',
           why: 'That is where information gets lost and work waits without an owner.',
         },
         {
           q: 'What is a customer requirement in a SIPOC?',
-          options: ['What the customer needs from an output, preferably measurable', 'A complaint a customer has filed about the process', 'The price the customer pays for the output', 'A demand the sponsor places on the project'],
+          options: ['What the customer needs from an output, preferably measurable', 'A complaint a customer has filed about the process', 'The price the customer pays for the output, after discounts', 'A demand that the sponsor places on the project team'],
           answer: 'What the customer needs from an output, preferably measurable',
           why: 'Customer requirements define what good is, and so what the project steers on.',
         },
         {
           q: 'How do you best choose the process boundaries?',
-          options: ['As wide as possible, so you miss nothing important', 'Exactly along the boundaries of the sponsor’s department', 'Wherever data happens to be available already', 'From what the customer experiences, and what the project can influence'],
+          options: ['As wide as possible, so that you miss nothing important', 'Exactly along the boundaries of the sponsor’s own department', 'Wherever data happens to be available already in the systems', 'From what the customer experiences, and what the project can influence'],
           answer: 'From what the customer experiences, and what the project can influence',
           why: 'Department boundaries often cut the problem right down the middle.',
         },
@@ -899,17 +899,17 @@ export default {
       pre: [
         {
           q: 'Why do many consulting projects split the work into a diagnostic phase and an implementation phase?',
-          options: ['So the client decides on facts after the diagnosis whether and how to continue', 'So the firm can invoice twice', 'Because the law requires it', 'So the consultant can start later'],
-          answer: 'So the client decides on facts after the diagnosis whether and how to continue',
+          options: ['So the firm can send two invoices instead of one', 'Because Dutch law requires it for larger assignments', 'So the client decides on facts whether and how to continue', 'So the consultant can start later and plan his time'],
+          answer: 'So the client decides on facts whether and how to continue',
           why: 'You only promise a result once you know where the problem sits.',
         },
       ],
       teach: [
-        'Phasing is cutting the project into pieces, with a decision at the end of each piece. A common set-up for improvement projects: diagnosis, pilot, roll-out. PRINCE2, a widely used project method from the United Kingdom, calls this management by stages.\n\nThe diagnostic phase often lasts two to six weeks. In it you map where the loss sits. Only then do you promise a concrete goal and an approach.',
+        'Phasing is cutting the project into pieces, with a decision at the end of each piece. A common set-up for improvement projects: diagnosis, pilot, roll-out. PRINCE2, a widely used project method from the United Kingdom, calls this managing by stages.\n\nThe diagnostic phase often lasts two to six weeks. In it you map where the loss sits. Only then do you promise a concrete goal and an approach.',
         'At the end of each phase comes a go/no-go decision: continue, adjust or stop. That is more than a checkpoint in a running project: it is a moment when the sponsor chooses again whether the money and time are worth it.\n\nGive three things with each decision: what we know, what the next step costs, and what it yields. So the sponsor decides on facts, not on enthusiasm.',
-        'Within a phase you work with tolerance: how much time or money may deviate before you must escalate. PRINCE2 works like this: the steering group gives the project manager, for example, 10% room on budget. Within that room he adjusts himself; beyond it he reports at once.\n\nThat brings calm: the sponsor doesn’t have to decide on every small deviation, and you know exactly when to call.',
-        'A change request is a recorded request to change scope, time or budget. Someone asks “line 2 as well?”: you write down what it is, what it costs in time and money, what it yields, and what it does to the rest.\n\nThe sponsor decides. So scope creep becomes visible and a choice instead of a creeping problem. Small and quick is fine: half a page, discussed in the weekly check.',
-        'Where experts disagree: strict phasing can become slow and bureaucratic, and agile supporters prefer short cycles with a fixed priority list. Others point out that the go/no-go moments are exactly what keeps a hopeless project from running on forever.\n\nA common mistake is a diagnosis that quietly slides into implementation, without a decision. A sharp question at the end of the diagnosis: “If we didn’t continue now, what would you miss?”',
+        'Within a phase you work with tolerance: how much time or money may deviate before you must escalate. PRINCE2 calls this managing by exception: the steering group gives the project manager, for example, 10% room on budget. Within that room he adjusts himself; as soon as he forecasts going beyond it, he reports at once.\n\nThat brings calm: the sponsor doesn’t have to decide on every small deviation, and you know exactly when to call.',
+        'A change request is a recorded request to change scope, time or budget. Someone asks “line 2 as well?”: you write down what it is, what it costs in time and money, what it yields, and what it does to the rest.\n\nThe sponsor decides. So scope creep (the scope quietly growing, one small request at a time) becomes visible and a choice. Small and quick is fine: half a page, discussed in the weekly check.',
+        'Where experts disagree: strict phasing can become slow and bureaucratic, and agile supporters prefer short cycles with a ranked priority list. Others point out that the go/no-go moments are exactly what keeps a hopeless project from running on forever.\n\nA common mistake is a diagnosis that quietly slides into implementation, without a decision. A sharp question at the end of the diagnosis: “If we didn’t continue now, what would you miss?”',
       ],
       example: {
         kind: 'faded',
@@ -926,23 +926,23 @@ export default {
           why: 'Based on what you know now: continue, adjust or stop.',
         },
         {
-          q: 'A phase has a budget of €40,000 with a tolerance of 10%. Up to what amount may the project manager adjust on his own?',
-          number: 44000,
-          tolerance: 100,
+          q: 'A phase has a budget of €50,000 with a budget tolerance of 10%. The current forecast is €52,000. By how much may the forecast still rise before the project manager must escalate?',
+          number: 3000,
+          tolerance: 50,
           unit: '€',
-          why: '€40,000 × 0.10 = €4,000 of room; that room comes on top of the budget.',
+          why: '€50,000 × 1.10 = €55,000 as the upper limit; from that limit you take off the €52,000 forecast.',
         },
         {
           q: 'What goes into a good change request?',
-          options: ['What changes, what it costs in time and money, what it yields and what it does to the rest', 'The name of who asked, the date and the reason for the request', 'A rewritten ten-page charter with all the details', 'The signatures of the works council and the sponsor'],
-          answer: 'What changes, what it costs in time and money, what it yields and what it does to the rest',
+          options: ['What changes, what it costs and yields, and what it does to the rest', 'The name of who asked, the date and the reason for the request', 'A rewritten ten-page charter with all the details worked out', 'The signatures of the works council and of the sponsor'],
+          answer: 'What changes, what it costs and yields, and what it does to the rest',
           why: 'Then the sponsor can make a real choice.',
         },
         {
           q: 'What is the risk when a diagnosis slides unnoticed into implementation?',
-          options: ['The diagnosis data gets too old to use', 'Nobody decides consciously whether the next step is worth it, and the scope grows unnoticed', 'The works council has to advise on the whole project again', 'The consultant earns less because no new proposal follows'],
-          answer: 'Nobody decides consciously whether the next step is worth it, and the scope grows unnoticed',
-          why: 'The go/no-go moment exists precisely to take that decision consciously.',
+          options: ['The diagnosis data gets too old to use in the next phase', 'Nobody consciously decides whether the next step is worth it', 'The works council has to advise on the whole project again', 'The consultant earns less because no new proposal follows'],
+          answer: 'Nobody consciously decides whether the next step is worth it',
+          why: 'The go/no-go moment exists precisely to take that decision consciously; without it the scope grows unnoticed.',
         },
       ],
       situation: {
@@ -982,7 +982,7 @@ export default {
       pre: [
         {
           q: 'A project costs €30,000 and yields €2,500 a month. What does that say about the project?',
-          options: ['It pays for itself in about a year', 'It is too expensive', 'It only yields something after five years', 'You can’t say without the OEE'],
+          options: ['It pays for itself in about a year', 'It is too expensive for a project of that size', 'It only yields something after about five years', 'You can’t say without the OEE'],
           answer: 'It pays for itself in about a year',
           why: '€30,000 divided by €2,500 a month is 12 months.',
         },
@@ -991,7 +991,7 @@ export default {
         'A business case is the sum that shows whether a project is worth it: what it costs, what it yields, and how certain that is. For a small improvement project that is often one table, not a report.\n\nAs a junior you don’t make it alone. But you need to understand the sum, because every sponsor asks: “What does it yield?” Preferably in euros.',
         'Split the costs into two kinds. One-off costs you pay once: consultant, training, a new tool. On top of that come costs that stay, such as a licence per year or extra maintenance.\n\nDon’t forget your own people’s time. Two operators four hours a week for eight weeks is 64 hours; they don’t run those hours in production. Many business cases leave that out and look cheaper than they are.',
         'Benefits are what the project yields, expressed in money where possible. Less scrap: kilos times the material price. Less downtime: hours times what an hour of production is worth. Less overtime: hours times the overtime rate.\n\nBe honest about the difference between real and paper benefits. Two hours less downtime a week only yields money if you can also sell those hours. Otherwise it is capacity, not euros.',
-        'The simplest measure is the payback period: one-off costs divided by the benefits per month or per year. If a project costs €30,000 and yields €2,500 a month, it has paid for itself after 12 months.\n\nMany companies use a rule of thumb, such as “under two years”, but that differs by company and sector. Ask the controller: “What payback period do you consider good?”',
+        'The simplest measure is the payback period: one-off costs divided by the net benefits per month or per year (benefits minus the costs that stay). If a project costs €30,000 and yields €2,500 a month net, it has paid for itself after 12 months.\n\nMany companies use a rule of thumb, such as “under two years”, but that differs by company and sector. Ask the controller: “What payback period do you consider good?”',
         'Where experts disagree: the payback period ignores what happens after payback and how certain the benefits are. Finance people therefore often also use net present value, which comes later. For a first conversation the payback period is clear.\n\nA common mistake: adding up benefits that overlap, such as less downtime and more output from the same hours. A sharp question: “On which line of the income statement will I see this?”',
       ],
       example: {
@@ -1001,11 +1001,11 @@ export default {
       said: 'What you hear in projects: “That easily yields a hundred grand.” Then ask: “Show me the sum.”',
       recall: [
         {
-          q: 'A project costs €30,000 one-off and yields €2,500 a month. What is the payback period in months?',
-          number: 12,
+          q: 'A project costs €36,000 one-off. It yields €2,300 a month but adds a licence of €300 a month. What is the payback period in months?',
+          number: 18,
           tolerance: 0.5,
           unit: 'months',
-          why: '€30,000 / €2,500 a month = 12 months.',
+          why: '€2,300 − €300 = €2,000 net a month; the €36,000 divided by that net amount.',
         },
         {
           q: 'When does less downtime really yield money?',
@@ -1014,11 +1014,11 @@ export default {
           why: 'Otherwise it is capacity, not euros.',
         },
         {
-          q: 'A project saves 6 hours of downtime a week; an hour of production yields €400. What are the benefits over 46 production weeks?',
-          number: 110400,
+          q: 'A project saves 4 hours of downtime a week. The plant can sell the extra output, and an hour of production yields €350 contribution margin. What are the benefits over 46 production weeks?',
+          number: 64400,
           tolerance: 100,
           unit: '€',
-          why: '6 × €400 = €2,400 a week; that €2,400 times the 46 weeks.',
+          why: '4 × €350 = €1,400 a week; that €1,400 times the 46 weeks.',
         },
         {
           q: 'Which costs are often forgotten in business cases?',
@@ -1054,7 +1054,7 @@ export default {
         { term: 'Business case', def: 'The sum that shows whether a project is worth it: costs, benefits and how certain they are.' },
         { term: 'One-off costs', def: 'Costs you incur once, such as consultant, training or tooling.' },
         { term: 'Benefits', def: 'What the project yields, expressed in money where possible.' },
-        { term: 'Payback period', def: 'One-off costs divided by the benefits per month or year: how long until the project pays for itself.' },
+        { term: 'Payback period', def: 'One-off costs divided by the net benefits per month or year: how long until the project pays for itself.' },
       ],
     },
     {
@@ -1063,17 +1063,17 @@ export default {
       pre: [
         {
           q: 'What does a strong proposal to a client start with?',
-          options: ['The team’s CVs', 'The client’s situation and problem, in his words', 'The price', 'The firm’s method'],
+          options: ['The team’s CVs and the firm’s references', 'The client’s situation and problem, in his words', 'The price and the payment terms', 'The firm’s method and its track record'],
           answer: 'The client’s situation and problem, in his words',
           why: 'The client only reads on if he recognises his own problem.',
         },
       ],
       teach: [
         'A proposal is the document in which you offer the client an approach, a result and a price. It follows the intake and often forms the basis of the assignment.\n\nA good proposal is short, often three to five pages. After the first page the client must know: they understand my problem, this is what they will do, this is what it yields, and this is what it costs.',
-        'A well-known structure for the opening is SCQ: situation, complication, question. Barbara Minto describes it in The Pyramid Principle. Situation: “You deliver 92% of orders on time.” Complication: “Customers demand 98%, and two large customers threaten to leave.” Question: “How do you reach 98% within a year?”\n\nUse the words the client used in the intake. Then he recognises his own story.',
+        'A well-known structure for the opening is SCQ: situation, complication, question; your answer follows. Barbara Minto describes it in The Pyramid Principle. Situation: “You deliver 92% of orders on time.” Complication: “Customers demand 98%, and two large customers threaten to leave.” Question: “How do you reach 98% within a year?”\n\nUse the words the client used in the intake. Then he recognises his own story.',
         'Next: the approach in phases, with what you deliver per phase; what you need from the client (people, data, time); team; plan; price; and assumptions. Make the approach concrete: “weeks 1 to 3: baseline and diagnosis on lines 2 and 3”, not “a thorough analysis”.\n\nOffer options where you can: a small and a large variant. Then the client’s question is no longer “yes or no?” but “which one?”',
         'There are two common pricing forms. With a fixed price the client pays an agreed amount for an agreed result; the risk of overrun lies with the firm, which therefore often adds a margin. With time and materials the client pays for the hours worked.\n\nA fixed price gives the client certainty but needs a sharp scope. Time and materials is flexible, but the client carries the risk.',
-        'Where experts disagree: some advisers argue for value-based pricing, a share of the yield, instead of hours. Others find that hard to measure and a source of disputes.\n\nA common mistake: a proposal that is mostly about the firm. A sharp test: count how often “we” appears and how often the client’s name does. And read it to your sponsor before it is sent officially; surprises don’t belong in a proposal.',
+        'Where experts disagree: some advisers argue for value-based pricing, a price based on what the result is worth to the client, sometimes a share of the measured savings. Others find that hard to measure and a source of disputes.\n\nA common mistake: a proposal that is mostly about the firm. A sharp test: count how often “we” appears and how often the client’s name does. And read it to your sponsor before it is sent officially; surprises don’t belong in a proposal.',
       ],
       example: {
         kind: 'worked',
@@ -1094,11 +1094,11 @@ export default {
           why: 'The client pays an agreed amount; overrun is for the firm.',
         },
         {
-          q: 'A proposal charges 20 consulting days at €1,000, with a 15% margin for a fixed price. What is the fixed price?',
-          number: 23000,
+          q: 'A proposal charges 24 consulting days at €950, with a 10% margin for a fixed price. What is the fixed price?',
+          number: 25080,
           tolerance: 50,
           unit: '€',
-          why: '20 × €1,000 = €20,000; that amount times 1.15 for the margin.',
+          why: '24 × €950 = €22,800; that amount times 1.10 for the margin.',
         },
         {
           q: 'Why do you preferably offer two options in a proposal?',
@@ -1224,14 +1224,14 @@ export default {
       pre: [
         {
           q: 'A business case uses exactly one number for the benefits. What is the problem with that?',
-          options: ['Nothing, one number is clearest', 'It doesn’t show what happens if the benefits fall short', 'It is too much work for the controller', 'The auditor doesn’t allow it'],
+          options: ['Nothing, one number is the clearest for the board', 'It doesn’t show what happens if the benefits fall short', 'It makes too much work for the controller to check', 'The external auditor doesn’t allow a single number'],
           answer: 'It doesn’t show what happens if the benefits fall short',
           why: 'A decision depends on how sensitive the outcome is to setbacks.',
         },
       ],
       teach: [
         'A sensitivity analysis shows how the outcome changes if an assumption turns out differently. What if the benefits are 25% lower? What if the project starts two months later?\n\nPick the two or three assumptions that matter most and work them through. Often one assumption turns out decisive, for example whether the extra capacity can be sold. That is where your diagnosis should focus.',
-        'People systematically overestimate benefits and underestimate costs and time. Kahneman and Tversky called this the planning fallacy (1979); Bent Flyvbjerg showed with large datasets of projects that optimism bias is widespread and that most large projects overrun.\n\nThe remedy is to look at comparable projects: how did they really go? Adjust your numbers to that, instead of to your own best guess.',
+        'People systematically overestimate benefits and underestimate costs and time. Kahneman and Tversky called this the planning fallacy (1979); Bent Flyvbjerg showed with large datasets of projects that optimism bias is widespread and that most large projects overrun.\n\nHis remedy is reference class forecasting: take a reference class, a group of comparable projects, and look at how they really went. Adjust your numbers to that, instead of to your own best guess.',
         'Finance people often calculate with net present value (NPV). A euro in three years is worth less than a euro now, because you can invest the euro now or because borrowing costs money. So you divide future benefits by (1 + r) to the power of the year.\n\nThe r is the discount rate: the minimum return the company expects. It differs by company; 8 to 10% is common, but ask the controller.',
         'An example of the sum: investment €100,000, benefits €50,000 a year, three years, discount rate 8%. Year 1: 50,000 / 1.08 = €46,296. Year 2: 50,000 / 1.08² = €42,867. Year 3: €39,692. Together €128,855, minus the investment: NPV about €28,855.\n\nA positive NPV means the project yields more than the minimum return. Let the controller do the sums; you need to understand what the number says.',
         'Where experts disagree: some find NPV false precision for small improvement projects, because the benefits themselves are uncertain; they use payback with a range. Others want every project compared the same way.\n\nAlways present a range: low, expected, high. A sharp question to ask yourself: “At what setback does this project become a bad idea, and how likely is that?”',
@@ -1251,22 +1251,22 @@ export default {
           why: 'That way you see which assumption the decision hangs on.',
         },
         {
-          q: 'An investment of €60,000 would yield €20,000 a year. If the benefits come out 25% lower, what is the payback period in years?',
-          number: 4,
+          q: 'An investment of €80,000 would yield €32,000 a year. If the benefits come out 20% lower, what is the payback period in years?',
+          number: 3.1,
           tolerance: 0.1,
           unit: 'years',
-          why: '€20,000 × 0.75 = €15,000 a year; the investment divided by those lower yearly benefits.',
+          why: '€32,000 × 0.80 = €25,600 a year; the investment divided by those lower yearly benefits.',
         },
         {
           q: 'Why do you divide future benefits by (1 + r) to the power of the year?',
-          options: ['To take inflation out of the expected revenue', 'Because a euro later is worth less than a euro now', 'Because the tax authority requires it', 'To make the benefits in later years look bigger'],
+          options: ['To spread the investment evenly over the years', 'Because a euro later is worth less than a euro now', 'Because the tax authority requires it', 'To make the benefits in later years look bigger'],
           answer: 'Because a euro later is worth less than a euro now',
           why: 'Money now can be invested; that is why money later counts for less.',
         },
         {
           q: 'What is the best remedy against optimism bias in a business case?',
-          options: ['Choosing a higher discount rate to be safe', 'Following the sponsor’s estimate, since he knows the process', 'Choosing a longer horizon so the benefits add up', 'Looking at how comparable projects really went and adjusting your numbers to that'],
-          answer: 'Looking at how comparable projects really went and adjusting your numbers to that',
+          options: ['Choosing a higher discount rate to be on the safe side', 'Following the sponsor’s estimate, since he knows the process best', 'Choosing a longer horizon so that the benefits add up', 'Checking how comparable projects really went, and adjusting to that'],
+          answer: 'Checking how comparable projects really went, and adjusting to that',
           why: 'The real outcomes of comparable projects correct your own optimism.',
         },
       ],
@@ -1296,6 +1296,7 @@ export default {
       terms: [
         { term: 'Sensitivity analysis', def: 'Working out how the outcome changes if an assumption turns out differently.' },
         { term: 'Optimism bias', def: 'The tendency to estimate benefits too high and costs and time too low.' },
+        { term: 'Reference class', def: 'A group of comparable past projects whose real outcomes you use to correct your own estimate (Flyvbjerg).' },
         { term: 'Net present value', def: 'All future benefits and costs converted to money of today, minus the investment.' },
         { term: 'Discount rate', def: 'The minimum return used to convert future euros to today; differs by company.' },
       ],

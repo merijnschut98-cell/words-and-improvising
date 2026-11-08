@@ -167,15 +167,15 @@ export default {
       pre: [
         {
           q: 'Welke zin is de beste probleemstelling?',
-          options: ['Lijn 2 haalt het plan niet omdat de operators te weinig getraind zijn', 'We moeten een nieuw planningssysteem invoeren op lijn 2', 'Lijn 2 haalde in mei op 8 van de 20 werkdagen het dagplan niet, tegen 2 van de 20 vorig jaar', 'Lijn 2 presteert slecht en dat moet beter'],
+          options: ['Lijn 2 haalt het dagplan niet omdat de operators van de nachtdienst te weinig getraind zijn', 'We moeten vóór de zomerpiek een nieuw planningssysteem invoeren op lijn 2', 'Lijn 2 haalde in mei op 8 van de 20 werkdagen het dagplan niet, tegen 2 van de 20 vorig jaar', 'Lijn 2 presteert slecht en dat moet dit kwartaal echt beter'],
           answer: 'Lijn 2 haalde in mei op 8 van de 20 werkdagen het dagplan niet, tegen 2 van de 20 vorig jaar',
           why: 'Die zegt wat, waar, wanneer en hoeveel, zonder oorzaak, oplossing of schuldige.',
         },
       ],
       teach: [
-        'Een probleemstelling is één of twee zinnen die beschrijven wat er misgaat: wat, waar, wanneer, hoeveel, en vergeleken met welke norm. Er staat geen oorzaak in, geen oplossing en geen schuldige.\n\n“Lijn 2 haalde in mei op 8 van de 20 werkdagen het dagplan niet; vorig jaar waren dat er 2.” Dat kan iedereen controleren. “De planners doen het niet goed” is een oordeel, en het sluit het onderzoek voordat het begint.',
+        'Een probleemstelling (problem statement) is één of twee zinnen die beschrijven wat er misgaat: wat, waar, wanneer, hoeveel, en vergeleken met welke norm. Er staat geen oorzaak in, geen oplossing en geen schuldige.\n\n“Lijn 2 haalde in mei op 8 van de 20 werkdagen het dagplan niet; vorig jaar waren dat er 2.” Dat kan iedereen controleren. “De planners doen het niet goed” is een oordeel, en het sluit het onderzoek voordat het begint.',
         'Waarom zo streng? Zodra er een oorzaak in de zin staat, gaat iedereen die oorzaak bewijzen. Zet je er een oplossing in, dan wordt het project “de tool invoeren” in plaats van “het plan halen”.\n\nIn Lean (de verbeteraanpak die uit het productiesysteem van Toyota komt) staat de probleemstelling bovenaan het A3-rapport (A3 report). John Shook beschrijft dat in Managing to Learn (Lean Enterprise Institute, 2008): eerst het probleem helder, dan pas oorzaken.',
-        'Ga eerst kijken. Gemba is Japans voor “de plek waar het gebeurt”: de lijn, het magazijn, de bus van de monteur. Wat je daar ziet en telt, maakt de probleemstelling scherp.\n\nDaarna zoek je oorzaken, bijvoorbeeld met 5 keer waarom: je vraagt bij elk antwoord opnieuw “waarom?” tot je bij iets komt waar je wat aan kunt doen. Taiichi Ohno, de bedenker van het Toyota-productiesysteem, maakte de methode bekend; vijf is een vuistregel, geen wet.',
+        'Ga eerst kijken. Gemba is Japans voor “de plek waar het gebeurt”: de lijn, het magazijn, de bus van de monteur. Wat je daar ziet en telt, maakt de probleemstelling scherp.\n\nDaarna zoek je oorzaken, bijvoorbeeld met 5 keer waarom (5 Whys): je vraagt bij elk antwoord opnieuw “waarom?” tot je bij iets komt waar je wat aan kunt doen. Taiichi Ohno, de bedenker van het Toyota-productiesysteem, maakte de methode bekend in zijn boek uit 1978; vijf is een vuistregel, geen wet.',
         'Een is/is-niet-analyse (is/is-not analysis) maakt het probleem kleiner. Je zet naast elkaar waar het probleem wel en niet optreedt: welke lijn wel, welke niet; welke dienst wel, welke niet; sinds wanneer wel, daarvoor niet.\n\nDe methode komt van Kepner en Tregoe (The Rational Manager, 1965). De verschillen zijn je aanwijzingen: gebeurt het alleen in de nachtdienst, dan zoek je naar wat er ’s nachts anders is.',
         'Waar experts het over oneens zijn: critici zeggen dat 5 keer waarom te makkelijk één oorzakenketen oplevert, terwijl er vaak meerdere oorzaken tegelijk spelen. Gebruik het dan ook als gesprekstechniek, niet als bewijs, en check elke stap met data.\n\nEen veelgemaakte fout is een probleemstelling die stiekem al een oplossing bevat: “er is geen dashboard”. Scherpe vraag: “Als we morgen alles goed deden, welk getal zou er dan anders zijn?”',
       ],
@@ -194,11 +194,11 @@ export default {
           why: 'Een oorzaak of oplossing in de zin stuurt het onderzoek de verkeerde kant op voordat het begint.',
         },
         {
-          q: 'Een lijn haalde in 8 van de 20 werkdagen het dagplan niet. Op hoeveel procent van de werkdagen miste de lijn het plan?',
-          number: 40,
-          tolerance: 1,
-          unit: '%',
-          why: '8 / 20 = 0,4; dat is 0,4 × 100 procent van de dagen.',
+          q: 'Van 180 orders in een maand gingen er 27 te laat de deur uit. De norm is hoogstens 5% te laat. Hoeveel procentpunt zit de fabriek boven die norm?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'procentpunt',
+          why: '27 / 180 = 0,15, dus 15% van de orders ging te laat weg; van die 15% haal je de norm van 5% af.',
         },
         {
           q: 'De afkeur zit alleen in de nachtdienst. Welke methode helpt je dat verschil uit te buiten?',
@@ -208,8 +208,8 @@ export default {
         },
         {
           q: 'Wat is de belangrijkste kritiek op 5 keer waarom?',
-          options: ['Vijf vragen kosten te veel tijd in een drukke fabriek', 'Het werkt alleen in de auto-industrie, waar het vandaan komt', 'Het levert makkelijk één oorzakenketen op terwijl er vaak meer oorzaken zijn', 'Operators begrijpen de vraag niet en raken geïrriteerd'],
-          answer: 'Het levert makkelijk één oorzakenketen op terwijl er vaak meer oorzaken zijn',
+          options: ['Vijf vragen kosten te veel tijd op een drukke werkvloer', 'Het werkt alleen in de auto-industrie, omdat het daar vandaan komt', 'Het geeft vaak één oorzakenketen, terwijl er meestal meer spelen', 'Operators snappen de vraag niet en raken er snel door geïrriteerd'],
+          answer: 'Het geeft vaak één oorzakenketen, terwijl er meestal meer spelen',
           why: 'Daarom check je elke stap met data en gebruik je het als gesprekstechniek, niet als bewijs.',
         },
       ],
@@ -249,17 +249,17 @@ export default {
       pre: [
         {
           q: 'Je hebt twee weken voor een diagnose. Wat is de slimste aanpak?',
-          options: ['Alle beschikbare data verzamelen en dan kijken wat opvalt', 'Een paar vermoedens opschrijven en gericht de data zoeken die ze kan weerleggen', 'De oplossing van de klant uitwerken', 'Met iedereen in de fabriek een interview houden'],
-          answer: 'Een paar vermoedens opschrijven en gericht de data zoeken die ze kan weerleggen',
+          options: ['Eerst alle beschikbare data verzamelen en dan kijken wat opvalt', 'Een paar vermoedens opschrijven en data zoeken die ze kan weerleggen', 'De oplossing uitwerken die de klant al in zijn hoofd heeft', 'Iedereen in de fabriek interviewen voordat je naar data kijkt'],
+          answer: 'Een paar vermoedens opschrijven en data zoeken die ze kan weerleggen',
           why: 'Gericht zoeken past in twee weken; alles verzamelen niet.',
         },
       ],
       teach: [
         'Een hypothese is een vermoeden over de oorzaak dat je met data kunt toetsen: “De meeste stilstand op lijn 3 komt door wachten op materiaal.” Je begint er vroeg mee, al na de intake, en je laat de data beslissen.\n\nZo werken veel adviesbureaus. Ethan Rasiel beschrijft het in The McKinsey Way (1999): begin met een vermoeden, want alles uitzoeken zonder richting kost maanden en levert een stapel data zonder conclusie.',
-        'Een vragenboom (issue tree) breekt de hoofdvraag op in deelvragen. “Waarom haalt lijn 3 maar 58% OEE?” splitst in beschikbaarheid, snelheid en kwaliteit; elk daarvan splitst weer, bijvoorbeeld beschikbaarheid in storingen, omstellen en wachten.\n\nDe takken moeten MECE zijn: mutually exclusive, collectively exhaustive. Geen overlap tussen takken, en samen dekken ze alles. Barbara Minto maakte het begrip bekend in The Pyramid Principle (oorspronkelijk uit haar McKinsey-tijd, boek 1987).',
-        'Kies daarna de takken die het meeste kunnen opleveren. Vaak zit het grootste deel van het verlies in een paar takken; dat heet het Pareto-principe (de 80/20-vuistregel, een patroon dat vaak opgaat maar geen wet is).\n\nPer hypothese schrijf je een datavraag: welke data, van wie, over welke periode, en wat de uitkomst zou zijn als je vermoeden niet klopt. “Stoplog lijn 3, 8 weken, van de teamleider; als wachten op materiaal onder 15% van de stilstand zit, laten we deze tak vallen.”',
+        'Een vragenboom (issue tree) breekt de hoofdvraag op in deelvragen. “Waarom haalt lijn 3 maar 58% OEE?” splitst in beschikbaarheid, snelheid en kwaliteit; elk daarvan splitst weer, bijvoorbeeld beschikbaarheid in storingen, omstellen en wachten.\n\nDe takken moeten MECE zijn: mutually exclusive, collectively exhaustive. Geen overlap tussen takken, en samen dekken ze alles. Barbara Minto maakte het begrip bekend in The Pyramid Principle (oorspronkelijk uit haar McKinsey-tijd; boek 1985).',
+        'Kies daarna de takken die het meeste kunnen opleveren. Vaak zit het grootste deel van het verlies in een paar takken; dat heet het Pareto-principe (de 80/20-vuistregel, een patroon dat vaak opgaat maar geen wet is).\n\nPer hypothese schrijf je een datavraag (data request): welke data, van wie, over welke periode, en wat de uitkomst zou zijn als je vermoeden niet klopt. “Stoplog lijn 3, 8 weken, van de teamleider; als wachten op materiaal onder 15% van de stilstand zit, laten we deze tak vallen.”',
         'Werk in het tempo van de klant. Een datavraag op dag één, met een naam en een datum erbij, scheelt een week. IT heeft vaak een paar dagen nodig om een export te maken; vraag dus vroeg.\n\nLaat de boom ook aan de proceseigenaar zien: “Mis ik een tak?” Mensen van de vloer zien vaak meteen wat er ontbreekt, zoals “wachten op de kwaliteitsvrijgave”, en dan is de boom ook een beetje van hen.',
-        'Waar experts het over oneens zijn: werken met hypotheses kan leiden tot bevestigingsdrang (confirmation bias): je ziet vooral wat je vermoeden steunt. Anderen zeggen dat alles open verkennen in een kort project gewoon niet past.\n\nEen werkbaar midden: schrijf bij elke hypothese vooraf op wat hem zou weerleggen, en zoek die data actief. Scherpe vraag aan jezelf na week één: “Welke hypothese heb ik al laten vallen?” Is het antwoord geen enkele, dan kijk je misschien niet eerlijk.',
+        'Waar experts het over oneens zijn: werken met hypotheses kan leiden tot bevestigingsvooroordeel (confirmation bias): je ziet vooral wat je vermoeden steunt. Anderen zeggen dat alles open verkennen in een kort project gewoon niet past.\n\nEen werkbaar midden: schrijf bij elke hypothese vooraf op wat hem zou weerleggen, en zoek die data actief. Scherpe vraag aan jezelf na week één: “Welke hypothese heb ik al laten vallen?” Is het antwoord geen enkele, dan kijk je misschien niet eerlijk.',
       ],
       example: {
         kind: 'faded',
@@ -276,16 +276,16 @@ export default {
           why: 'Mutually exclusive, collectively exhaustive: geen dubbel werk en geen gat.',
         },
         {
-          q: 'Van 42 verloren OEE-punten zitten er 18 in storingen en 12 in omstellen. Welk percentage van het verlies zit in die twee takken samen?',
-          number: 71.4,
+          q: 'Lijn 5 haalt 62% OEE, dus 38 punten gaan verloren: storingen 14, langzaam draaien 10, omstellen 9, afkeur 5. Welk percentage van het verlies zit in de twee grootste takken samen?',
+          number: 63.2,
           tolerance: 1,
           unit: '%',
-          why: '18 + 12 = 30 punten; 30 / 42 is het deel van het verlies, keer 100 procent.',
+          why: 'De twee grootste takken zijn storingen en langzaam draaien: 14 + 10 = 24 punten; 24 / 38 is hun deel van het verlies, keer 100 procent.',
         },
         {
-          q: 'Wat beschermt je het best tegen bevestigingsdrang bij werken met hypotheses?',
-          options: ['Vooraf opschrijven welke data je hypothese zou weerleggen', 'Alleen hypotheses toetsen die de klant zelf aandraagt', 'Meer interviews houden voordat je data opvraagt', 'Hypotheses pas opschrijven als de data binnen is'],
-          answer: 'Vooraf opschrijven welke data je hypothese zou weerleggen',
+          q: 'Wat beschermt je het best tegen bevestigingsvooroordeel bij werken met hypotheses?',
+          options: ['Vooraf opschrijven welke data hem zou weerleggen', 'Alleen de hypotheses toetsen die de klant zelf aandraagt', 'Meer interviews houden voordat je om data vraagt', 'Hypotheses pas opschrijven als de data binnen is'],
+          answer: 'Vooraf opschrijven welke data hem zou weerleggen',
           why: 'Dan zoek je actief naar tegenbewijs in plaats van alleen naar steun.',
         },
         {
@@ -296,7 +296,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je bent junior Lean-consultant in week één bij een netbeheerder. De vraag: waarom duurt een nieuwe aansluiting voor een bedrijf gemiddeld 18 weken? Je manager vraagt je vrijdag een vragenboom en drie datavragen klaar te hebben. De hoofd werkvoorbereiding zegt: “Je hoeft geen boom te tekenen, het ligt aan de vergunningen.”',
+        scene: 'Je bent junior Lean-consultant in week één bij een netbeheerder. De vraag: waarom duurt een nieuwe aansluiting voor een bedrijf gemiddeld 18 weken? Je manager vraagt je vrijdag een vragenboom en drie datavragen klaar te hebben. Het hoofd werkvoorbereiding zegt: “Je hoeft geen boom te tekenen, het ligt aan de vergunningen.”',
         ask: 'Hoe ga je om met zijn stelling, en hoe ziet je eerste opzet eruit?',
         model: '“Dat kan heel goed. Dan wil ik de vergunningen als eerste tak uitwerken.” Je boom: de 18 weken splitsen in fasen (aanvraag tot ontwerp, ontwerp tot vergunning, vergunning tot materiaal, uitvoering), MECE en samen 18 weken. Datavraag één: per fase de doorlooptijd van de laatste 100 aansluitingen uit het werkordersysteem, van de data-analist, uiterlijk woensdag. Zijn vermoeden is hypothese nummer één, met wat hem zou weerleggen.',
         rubric: [
@@ -499,7 +499,7 @@ export default {
         },
       ],
       teach: [
-        'Contracteren is meer dan de offerte tekenen. Peter Block (Flawless Consulting, eerste druk 1981) bedoelt ermee: samen afspreken wat jullie gaan doen, wat ieder inbrengt en hoe jullie samenwerken. Dat gaat over de inhoud én over de relatie.\n\nHet gebeurt in een gesprek met de sponsor, niet alleen op papier. Dat contractgesprek (contracting meeting) houd je bij de start, maar je komt er later steeds op terug.',
+        'Contracteren (contracting) is meer dan de offerte tekenen. Peter Block (Flawless Consulting, eerste druk 1981) bedoelt ermee: samen afspreken wat jullie gaan doen, wat ieder inbrengt en hoe jullie samenwerken. Dat gaat over de inhoud én over de relatie.\n\nHet gebeurt in een gesprek met de sponsor, niet alleen op papier. Dat contractgesprek (contracting meeting) houd je bij de start, maar je komt er later steeds op terug.',
         'De kern is wensen en aanbod (wants and offers). Jij zegt wat je van de klant nodig hebt: “Twee operators vier uur per week, toegang tot de stopdata, en een uur per twee weken met jou.” En wat je biedt: “Een diagnose in vier weken, en elke vrijdag een update van een halve pagina.”\n\nDaarna vraag je de sponsor hetzelfde: “Wat wil jij van mij? Hoe wil je dat ik met je samenwerk?” Zo wordt het geen bestelling maar een afspraak.',
         'Block stelt dat de verantwoordelijkheid vijftig-vijftig is: de klant is eigenaar van zijn organisatie en de verandering, de consultant van zijn deel van het werk. Neemt een consultant alles op zich, dan verandert er niks als hij weggaat.\n\nZeg het ook hardop: “Ik kan analyseren en begeleiden, maar de verandering maken jouw mensen. Daarom vraag ik om hun tijd.” Een sponsor die dat niet wil, zegt iets belangrijks over het project.',
         'Bespreek ook de lastige dingen vooraf: wat doen we als een afspraak niet nagekomen wordt? Wie mag ik bellen als ik vastloop? Hoe wil je slecht nieuws horen? Dat voelt ongemakkelijk in week één, maar in week zes is het te laat.\n\nVeranderen de omstandigheden, dan is hercontracteren (recontracting) normaal: de afspraken opnieuw maken. “We spraken twee operators af; het zijn er nul geworden. Laten we kijken wat dat betekent voor het doel en de datum.”',
@@ -515,27 +515,27 @@ export default {
       recall: [
         {
           q: 'Wat bedoelt Block met wensen en aanbod?',
-          options: ['De prijs en de korting die in de offerte staan', 'Wat jij van de klant nodig hebt en wat je biedt, en andersom', 'De wensen van de gebruikers en het aanbod van de leveranciers', 'De lijst met quick wins die de vloer aandraagt'],
-          answer: 'Wat jij van de klant nodig hebt en wat je biedt, en andersom',
+          options: ['De prijs en de korting die in de offerte zijn opgenomen', 'Wat jij nodig hebt en wat je biedt, en hetzelfde van de klant', 'Wat de gebruikers willen en wat de leveranciers kunnen bieden', 'De lijst met quick wins die de mensen op de vloer aandragen'],
+          answer: 'Wat jij nodig hebt en wat je biedt, en hetzelfde van de klant',
           why: 'Beide kanten zeggen wat ze willen en wat ze geven; zo wordt het een afspraak.',
         },
         {
-          q: 'Je vraagt 2 operators voor 4 uur per week, 8 weken lang. Hoeveel operatoruren vraag je in totaal?',
-          number: 64,
+          q: 'Je vraagt 3 operators voor 3 uur per week, 10 weken lang, plus de ploegleider bij 4 workshops van elk 2 uur. Hoeveel uur van de mensen van de klant is dat in totaal?',
+          number: 98,
           tolerance: 1,
           unit: 'uur',
-          why: '2 × 4 = 8 uur per week; die 8 uur per week maal de 8 weken.',
+          why: '3 × 3 × 10 = 90 operatoruren; de 4 × 2 uur van de ploegleider komen daar nog bij.',
         },
         {
           q: 'Wanneer hercontracteer je?',
-          options: ['Alleen als de prijs omhoog moet, want dat raakt het contract', 'Nooit; een afspraak is een afspraak, ook als het tegenzit', 'Aan het eind van het project, bij de evaluatie', 'Als de omstandigheden veranderen, bijvoorbeeld de afgesproken tijd van mensen er niet is'],
-          answer: 'Als de omstandigheden veranderen, bijvoorbeeld de afgesproken tijd van mensen er niet is',
+          options: ['Alleen als de prijs omhoog moet, want dat raakt het contract', 'Nooit; een afspraak is een afspraak, ook als het tegenzit', 'Aan het eind van het project, bij de evaluatie', 'Als de omstandigheden veranderen, zoals afgesproken mensen die er niet zijn'],
+          answer: 'Als de omstandigheden veranderen, zoals afgesproken mensen die er niet zijn',
           why: 'Dan maak je doel, datum of scope opnieuw passend bij wat er echt is.',
         },
         {
           q: 'Waarom is vijftig-vijftigverantwoordelijkheid belangrijk?',
-          options: ['Omdat een verandering die alleen de consultant maakt, verdwijnt als hij weggaat', 'Omdat het de kosten eerlijk verdeelt over klant en bureau', 'Omdat het in elk adviescontract verplicht is opgenomen', 'Omdat de klant dan minder hoeft te doen tijdens het project'],
-          answer: 'Omdat een verandering die alleen de consultant maakt, verdwijnt als hij weggaat',
+          options: ['Omdat wat alleen de consultant verandert, verdwijnt als hij weggaat', 'Omdat het de kosten eerlijk verdeelt over de klant en het bureau', 'Omdat het in elk adviescontract verplicht als clausule is opgenomen', 'Omdat de klant dan tijdens het project minder hoeft te doen'],
+          answer: 'Omdat wat alleen de consultant verandert, verdwijnt als hij weggaat',
           why: 'De klant is eigenaar van de verandering; zijn mensen moeten haar maken.',
         },
       ],
@@ -574,16 +574,16 @@ export default {
       title: 'Een coalitie bouwen',
       pre: [
         {
-          q: 'Een project verandert de ploegenroosters in een Nederlandse fabriek. Wat moet er volgens de wet gebeuren?',
+          q: 'Een project verandert de roosterregeling in een Nederlandse fabriek met 200 mensen. De cao regelt de roosters niet. Wat moet er volgens de wet gebeuren?',
           options: ['Niks, roosters zijn aan de werkgever', 'De ondernemingsraad moet instemmen', 'De vakbond moet tekenen', 'Elke werknemer moet persoonlijk akkoord geven'],
           answer: 'De ondernemingsraad moet instemmen',
-          why: 'De WOR geeft de OR instemmingsrecht bij regelingen over werk- en rusttijden (art. 27).',
+          why: 'De WOR geeft de OR instemmingsrecht bij regelingen over werk- en rusttijden (art. 27), tenzij de cao het onderwerp al regelt.',
         },
       ],
       teach: [
-        'Een sponsor alleen is te weinig voor een verandering die meerdere afdelingen raakt. John Kotter (Leading Change, 1996) noemt het vormen van een coalitie (guiding coalition) een vroege stap: een kleine groep met genoeg positie, kennis en geloofwaardigheid om de verandering te dragen.\n\nIn een fabriek is dat bijvoorbeeld de plantmanager, de manager TD (technische dienst), een gerespecteerde ploegleider en iemand van planning. Samen dekken ze macht, vakkennis en de vloer.',
-        'Kijk verder dan het organogram. Het informeel netwerk is wie bij wie om raad gaat, wie elkaar vertrouwt en wiens mening de ploeg volgt. Vraag op de vloer: “Bij wie ga je langs als iets echt niet werkt?” Dezelfde twee of drie namen komen steeds terug.\n\nDie mensen haal je er vroeg bij. Een operator met twintig dienstjaren die meedenkt, overtuigt zijn collega’s sneller dan elke presentatie van de directie.',
-        'In Nederland hoort de ondernemingsraad (OR, works council) vaak bij je coalitie. De Wet op de ondernemingsraden (WOR) geeft adviesrecht bij onder meer een belangrijke wijziging van de organisatie (art. 25), en instemmingsrecht bij onder meer werk- en rusttijdenregelingen (art. 27).\n\nAdvies moet je vragen op een moment dat het nog wezenlijke invloed kan hebben op het besluit (art. 25 lid 2). Een OR die je pas meldt als alles vastligt, kan het besluit laten toetsen bij de rechter.',
+        'Een sponsor alleen is te weinig voor een verandering die meerdere afdelingen raakt. John Kotter (Leading Change, 1996) maakt het vormen van een coalitie (guiding coalition) de tweede van zijn acht stappen: een kleine groep met genoeg positie, kennis en geloofwaardigheid om de verandering te dragen.\n\nIn een fabriek is dat bijvoorbeeld de plantmanager, de manager TD (technische dienst), een gerespecteerde ploegleider en iemand van planning. Samen dekken ze macht, vakkennis en de vloer.',
+        'Kijk verder dan het organogram. Er is ook een informeel netwerk (informal network): wie bij wie om raad gaat, wie elkaar vertrouwt en wiens mening de ploeg volgt. Vraag op de vloer: “Bij wie ga je langs als iets echt niet werkt?” Dezelfde twee of drie namen komen steeds terug.\n\nDie mensen haal je er vroeg bij. Een operator met twintig dienstjaren die meedenkt, overtuigt zijn collega’s sneller dan elke presentatie van de directie.',
+        'In Nederland moet een bedrijf met 50 of meer mensen een ondernemingsraad (OR, works council) hebben; die hoort vaak bij je coalitie. De WOR (Wet op de ondernemingsraden) geeft de OR adviesrecht (right of advice) bij onder meer een belangrijke organisatiewijziging (art. 25), en instemmingsrecht (right of consent) bij werk- en rusttijdenregelingen (art. 27), tenzij de cao die regelt.\n\nVraag advies terwijl het nog wezenlijke invloed op het besluit kan hebben (art. 25 lid 2). Zo niet, dan kan de OR in beroep bij de Ondernemingskamer in Amsterdam (art. 26).',
         'Hoe pak je het aan? Spreek iedereen eerst één op één, voordat ze samen aan tafel zitten: wat is hun belang, wat is hun zorg? Besluiten in een overleg worden meestal daarvoor al in de gangen voorbereid.\n\nZet daarna het eerste gezamenlijke moment neer, bijvoorbeeld een gemba-ronde (samen gaan kijken op de vloer) en een gesprek over de cijfers. Ziet iedereen hetzelfde probleem, dan wordt overeenstemming over de aanpak veel makkelijker.',
         'Waar experts het over oneens zijn: sommigen vinden een coalitie bouwen politiek gedoe en willen alleen de inhoud laten spreken. Anderen zeggen dat goede inhoud zonder steun bijna nooit landt. Kotters stappenmodel wordt ook bekritiseerd als te lineair; in de praktijk loop je de stappen door elkaar.\n\nScherpe vraag aan de sponsor: “Als jij drie maanden weg bent, wie houdt dit dan overeind?” Weet hij geen naam, dan is er nog geen coalitie.',
       ],
@@ -591,31 +591,31 @@ export default {
         kind: 'faded',
         text: 'Bij een voedingsmiddelenfabriek moet de verpakkingsafdeling van drie naar twee ploegen, met langere diensten, om omstellingen te bundelen. De plantmanager is sponsor. De manager verpakking twijfelt, de OR weet nog van niks, en een ploegleider met 25 dienstjaren zegt op de vloer: “Dit hebben ze al eens geprobeerd.” De plantmanager wil het besluit over drie weken in het MT (managementteam).',
         ask: 'Wie neem je op in de coalitie, in welke volgorde spreek je ze, en wat zeg je over de planning van drie weken?',
-        reveal: 'Coalitie: plantmanager, manager verpakking, de ervaren ploegleider en iemand van planning. Spreek eerst de manager verpakking en de ploegleider één op één: wat ging er de vorige keer mis?\n\nDe roosterwijziging valt onder werk- en rusttijden, dus de OR moet instemmen (WOR art. 27). Zeg tegen de plantmanager: “Drie weken tot een MT-besluit kan, maar dan als voorgenomen besluit. Laten we de OR deze week informeel bijpraten, zodat hij meedenkt in plaats van achteraf blokkeert.” Een paar weken extra nu voorkomt maanden vertraging later.',
+        reveal: 'Coalitie: plantmanager, manager verpakking, de ervaren ploegleider en iemand van planning. Spreek eerst de manager verpakking en de ploegleider één op één: wat ging er de vorige keer mis?\n\nDe roosterwijziging valt onder werk- en rusttijden, dus de OR moet instemmen (WOR art. 27), tenzij de cao het al regelt; vraag het HR. Zeg tegen de plantmanager: “Drie weken tot een MT-besluit kan, maar dan als voorgenomen besluit. Laten we de OR deze week informeel bijpraten, zodat hij meedenkt in plaats van achteraf blokkeert.” Een paar weken extra nu voorkomt maanden vertraging later.',
       },
       said: 'Wat je hoort in projecten: “De OR? Die lichten we in als het rond is.” Dat is vaak precies het moment waarop het project maanden stil komt te liggen.',
       recall: [
         {
           q: 'Wat is volgens Kotter een coalitie bij een verandering?',
-          options: ['Alle medewerkers die het project openlijk steunen', 'De stuurgroep, aangevuld met de leverancier', 'Een kleine groep met genoeg positie, kennis en geloofwaardigheid om de verandering te dragen', 'De OR en de vakbond, die samen de werknemers vertegenwoordigen'],
-          answer: 'Een kleine groep met genoeg positie, kennis en geloofwaardigheid om de verandering te dragen',
+          options: ['Alle medewerkers die het project openlijk steunen, van vloer tot directie', 'De stuurgroep van het project, aangevuld met de grootste leverancier', 'Een kleine groep met genoeg positie, kennis en geloofwaardigheid', 'De OR en de vakbond, die samen de werknemers vertegenwoordigen'],
+          answer: 'Een kleine groep met genoeg positie, kennis en geloofwaardigheid',
           why: 'Macht, vakkennis en vertrouwen op de vloer samen; de sponsor alleen is niet genoeg.',
         },
         {
           q: 'Wanneer moet een bestuurder de OR om advies vragen bij een belangrijke organisatiewijziging?',
-          options: ['Op een moment dat het advies nog wezenlijke invloed op het besluit kan hebben', 'Na het besluit, zodat de OR het aan de achterban kan uitleggen', 'Alleen als er door de wijziging mensen ontslagen worden', 'Pas als de OR er zelf om vraagt'],
-          answer: 'Op een moment dat het advies nog wezenlijke invloed op het besluit kan hebben',
+          options: ['Terwijl het advies nog wezenlijke invloed op het besluit kan hebben', 'Na het besluit, zodat de OR het aan de achterban kan uitleggen', 'Alleen als er door de wijziging mensen ontslagen worden', 'Pas als de OR er zelf om vraagt om gehoord te worden'],
+          answer: 'Terwijl het advies nog wezenlijke invloed op het besluit kan hebben',
           why: 'Dat staat in WOR art. 25 lid 2; achteraf vragen is te laat.',
         },
         {
           q: 'Hoe vind je het informele netwerk op de vloer?',
-          options: ['Uit het organogram en de functiebeschrijvingen', 'Door te vragen bij wie mensen langsgaan als iets echt niet werkt', 'Via de HR-afdeling, die de beoordelingen kent', 'Door te kijken wie het langst in dienst is'],
-          answer: 'Door te vragen bij wie mensen langsgaan als iets echt niet werkt',
+          options: ['Uit het organogram en de officiële functiebeschrijvingen', 'Door te vragen bij wie mensen langsgaan als iets niet werkt', 'Via HR, die de beoordelingen van iedereen kent', 'Door te kijken wie er het langst in dienst is'],
+          answer: 'Door te vragen bij wie mensen langsgaan als iets niet werkt',
           why: 'Dezelfde paar namen komen steeds terug; dat zijn de mensen die anderen volgen.',
         },
         {
           q: 'Waarom spreek je de leden van je coalitie eerst één op één?',
-          options: ['Om ze apart te overtuigen voordat ze elkaar spreken', 'Omdat groepsoverleg zonder de OR niet mag', 'Om vergadertijd te besparen in een drukke periode', 'Om hun belang en zorg te horen voordat ze samen een standpunt innemen'],
+          options: ['Om ze apart te overtuigen voordat ze elkaar in het overleg spreken', 'Omdat groepsoverleg zonder de OR erbij niet is toegestaan', 'Om vergadertijd te besparen in een drukke periode voor iedereen', 'Om hun belang en zorg te horen voordat ze samen een standpunt innemen'],
           answer: 'Om hun belang en zorg te horen voordat ze samen een standpunt innemen',
           why: 'In de groep zegt niemand zijn echte zorg; één op één wel.',
         },
@@ -631,7 +631,7 @@ export default {
         ],
         pushback: {
           lines: [
-            '“De directeur heeft het besloten. Waarom zouden we teamleiders gaan rondpraten?”',
+            '“De directeur heeft het besloten. Waarom zouden we nog langs de teamleiders gaan?”',
             '“Als we de OR er nu bij halen, gaat het een jaar duren.”',
           ],
           model: '“Het besluit is van de directeur, dat staat. Maar de teamleiders en monteurs moeten het morgen doen, en zonder hen gebeurt het alleen op papier. Over de OR: als die achteraf hoort dat zijn rechten zijn overgeslagen, duurt het pas echt lang. Nu informeel bijpraten kost een paar weken, geen jaar.”',
@@ -737,17 +737,17 @@ export default {
       pre: [
         {
           q: 'Wat is het belangrijkste doel van een projectopdracht?',
-          options: ['De consultant indekken tegen claims als het tegenvalt', 'Een overzicht geven van alle risico’s in het bedrijf', 'Het budget van de afdeling vastleggen voor het hele jaar', 'Op één plek vastleggen wat het project moet opleveren, binnen welke grenzen, en wie wat doet'],
-          answer: 'Op één plek vastleggen wat het project moet opleveren, binnen welke grenzen, en wie wat doet',
+          options: ['De consultant indekken tegen claims als het project later tegenvalt', 'Een overzicht geven van alle risico’s die het bedrijf dit jaar loopt', 'Het budget van de afdeling voor het hele jaar per post vastleggen', 'Vastleggen wat het project oplevert, binnen welke grenzen, en wie wat doet'],
+          answer: 'Vastleggen wat het project oplevert, binnen welke grenzen, en wie wat doet',
           why: 'Het is de afspraak waar iedereen naar kan terugwijzen.',
         },
       ],
       teach: [
-        'De projectopdracht (project charter) is het document waarmee de sponsor het project officieel start. De PMBOK Guide van PMI (Project Management Institute) beschrijft hem als het document dat het project autoriseert en de projectleider het mandaat geeft.\n\nHoud hem op één A4. Een document van twintig pagina’s leest niemand; één pagina hangt aan de muur en wordt erbij gepakt als er discussie is.',
+        'De projectopdracht (project charter) is het document waarmee de sponsor het project officieel start. De PMBOK Guide van PMI (Project Management Institute) beschrijft hem als het document dat het project formeel autoriseert en de projectleider de bevoegdheid geeft om mensen en middelen van de organisatie in te zetten.\n\nHoud hem op één A4. Een document van twintig pagina’s leest niemand; één pagina hangt aan de muur en wordt erbij gepakt als er discussie is.',
         'Een goede indeling: aanleiding (waarom nu), doel (van X naar Y voor wanneer), scope (erin en eruit), deliverables (wat je oplevert, bijvoorbeeld een nulmeting, een nieuwe werkwijze, een training), mijlpalen, rollen, en aannames en risico’s.\n\nEen mijlpaal is een moment in de planning waarop iets af moet zijn: “week 2: nulmeting klaar”, “week 6: pilot op lijn 3 gestart”. Mijlpalen maken voortgang zichtbaar zonder dat je elke taak hoeft te plannen.',
-        'In Lean gebruiken veel teams een A3: één vel A3-papier dat het hele verhaal vertelt, van probleem en huidige situatie via oorzaken naar maatregelen en opvolging. Het formaat komt uit de Toyota-praktijk.\n\nEen projectopdracht en een A3 lijken op elkaar. Het verschil: de projectopdracht legt de afspraak vast; de A3 groeit mee met wat je leert. Veel Lean-consultants beginnen met een A3 die de projectopdracht vervangt.',
+        'In Lean gebruiken veel teams een A3: één vel A3-papier dat het hele verhaal vertelt, van probleem en huidige situatie via oorzaken naar maatregelen en opvolging. Het formaat komt uit de Toyota-praktijk.\n\nEen projectopdracht en een A3 lijken op elkaar. Het verschil: de projectopdracht legt de afspraak vast; de A3 groeit mee met wat je leert. Sommige Lean-teams laten een A3 het werk van de projectopdracht doen, als doel, scope en sponsor er maar op staan.',
         'Een aanname is iets wat je voor waar aanneemt om te kunnen plannen, zonder dat het zeker is: “De stopdata in het MES is betrouwbaar”, “Twee operators zijn vier uur per week beschikbaar.” Schrijf ze op.\n\nBlijkt een aanname niet te kloppen, dan is dat geen falen van het project maar een reden om de afspraak te herzien. Zonder opgeschreven aannames wordt dat een discussie over wie het beloofd had.',
-        'Waar experts het over oneens zijn: in agile omgevingen vinden sommigen een projectopdracht te star; zij werken met een kort visiedocument en passen de scope per sprint aan. Anderen zeggen dat ook agile projecten een duidelijk doel en een sponsor nodig hebben.\n\nEen veelgemaakte fout: de projectopdracht schrijven zonder de proceseigenaar. Scherpe test: laat de proceseigenaar de opdracht in eigen woorden navertellen. Lukt dat niet, dan is hij niet helder of niet gedragen.',
+        'Waar experts het over oneens zijn: in agile omgevingen (werken in korte cycli van een paar weken, sprints) vinden sommigen een projectopdracht te star; zij werken met een kort visiedocument en passen de scope per sprint aan. Anderen zeggen dat ook agile projecten een duidelijk doel en een sponsor nodig hebben.\n\nEen veelgemaakte fout: de projectopdracht schrijven zonder de proceseigenaar. Scherpe test: laat de proceseigenaar de opdracht in eigen woorden navertellen. Lukt dat niet, dan is hij niet helder of niet gedragen.',
       ],
       example: {
         kind: 'worked',
@@ -757,21 +757,21 @@ export default {
       recall: [
         {
           q: 'Wat is een mijlpaal?',
-          options: ['Een moment in de planning waarop iets af moet zijn', 'Elke taak in de planning, met een datum erbij', 'De einddatum van het hele project', 'Een risico dat zich in het project heeft voorgedaan'],
+          options: ['Een moment in de planning waarop iets af moet zijn', 'Elke taak in de planning, elk met een eigen datum', 'De einddatum van het hele project, gezet door de sponsor', 'Een risico dat zich in het project echt heeft voorgedaan'],
           answer: 'Een moment in de planning waarop iets af moet zijn',
           why: 'Mijlpalen maken voortgang zichtbaar zonder elke taak te plannen.',
         },
         {
-          q: 'Een consultant werkt 6 weken, 2 dagen per week, tegen €1.100 per dag. Wat kost de inzet van de consultant?',
-          number: 13200,
+          q: 'Een consultant werkt 10 weken, 1,5 dag per week, tegen €1.050 per dag. Wat kost de inzet van de consultant?',
+          number: 15750,
           tolerance: 50,
           unit: '€',
-          why: '6 × 2 = 12 dagen; die 12 dagen maal het dagtarief van €1.100.',
+          why: '10 × 1,5 = 15 dagen; die 15 dagen maal het dagtarief van €1.050.',
         },
         {
           q: 'Waarom schrijf je aannames op in de projectopdracht?',
-          options: ['Omdat PRINCE2 dat voorschrijft voor elke projectopdracht', 'Zodat de consultant niet aansprakelijk is als het tegenvalt', 'Zodat je de afspraak kunt herzien als een aanname niet klopt, zonder discussie over schuld', 'Om de sponsor te laten zien hoe onzeker het project is'],
-          answer: 'Zodat je de afspraak kunt herzien als een aanname niet klopt, zonder discussie over schuld',
+          options: ['Omdat PRINCE2 aannames voorschrijft in elke projectopdracht', 'Zodat de consultant niet aansprakelijk is als het tegenvalt', 'Zodat een foute aanname leidt tot herzien, niet tot schuld zoeken', 'Om de sponsor te laten zien hoe onzeker het hele project eigenlijk is'],
+          answer: 'Zodat een foute aanname leidt tot herzien, niet tot schuld zoeken',
           why: 'Een opgeschreven aanname maakt een tegenvaller tot een reden om te herzien.',
         },
         {
@@ -818,8 +818,8 @@ export default {
       pre: [
         {
           q: 'Een team discussieert al een uur over waar “het orderproces” begint. Wat helpt het meest?',
-          options: ['Een begin- en eindpunt van het proces afspreken, met wie erin levert en wie het resultaat krijgt', 'Het hele bedrijf in kaart brengen', 'De sponsor laten beslissen zonder overleg', 'Het onderwerp parkeren tot de pilot'],
-          answer: 'Een begin- en eindpunt van het proces afspreken, met wie erin levert en wie het resultaat krijgt',
+          options: ['Eerst elk proces in het hele bedrijf in detail in kaart brengen', 'De sponsor zonder overleg laten beslissen waar het begint', 'Het onderwerp parkeren tot de pilot laat zien waar het begint', 'Begin en eind afspreken, wie erin levert en wie het resultaat krijgt'],
+          answer: 'Begin en eind afspreken, wie erin levert en wie het resultaat krijgt',
           why: 'Zonder afgesproken grenzen praat iedereen over een ander proces.',
         },
       ],
@@ -827,7 +827,7 @@ export default {
         'SIPOC is een overzicht van een proces op één pagina: Suppliers (leveranciers), Inputs, Process (4 tot 7 hoofdstappen), Outputs en Customers (klanten). Het komt uit de kwaliteitswereld en wordt veel gebruikt in Six Sigma (een verbeteraanpak die variatie met statistiek te lijf gaat) en Lean.\n\nHet doel is niet het proces tot in detail tekenen. Het doel is afspreken waar het proces begint en eindigt, en wie erbij hoort.',
         'Begin in het midden, bij de hoofdstappen, en zet dan de procesgrens: het eerste en het laatste stapje dat bij het project hoort. “Van order binnen tot orderbevestiging verstuurd” is iets anders dan “van offerte tot betaling”.\n\nDaarna de randen. Wie levert wat aan de eerste stap? Wat komt er aan het eind uit, en voor wie? Leveranciers en klanten kunnen intern zijn: de planning is klant van de werkvoorbereiding.',
         'Bij elke output hoort een klanteis: wat de klant van die output nodig heeft, liefst meetbaar. “Orderbevestiging binnen 24 uur, met een leverdatum die we halen.” Klanteisen laten zien wat “goed” is, en dus waar het project op moet sturen.\n\nIn Six Sigma heet een kritieke klanteis een CTQ (critical to quality). Vraag het de klant zelf: wat de afdeling denkt dat de klant wil, is vaak iets anders.',
-        'De meeste problemen zitten bij een overdracht (handover): waar werk van de ene afdeling naar de andere gaat. Daar raakt informatie kwijt, wacht werk in een bak, of weet niemand wie eigenaar is.\n\nMet een SIPOC zie je die overdrachten meteen. Zet ze erbij, en vraag bij elke overdracht: wie is eigenaar, wat gaat er mee, en hoe lang ligt het daar? Dat zijn vaak je eerste meetpunten.',
+        'Veel problemen zitten bij een overdracht (handover): waar werk van de ene afdeling naar de andere gaat. Daar raakt informatie kwijt, wacht werk in een bak, of weet niemand wie eigenaar is.\n\nMet een SIPOC zie je die overdrachten meteen. Zet ze erbij, en vraag bij elke overdracht: wie is eigenaar, wat gaat er mee, en hoe lang ligt het daar? Dat zijn vaak je eerste meetpunten.',
         'Waar experts het over oneens zijn: sommige Lean-consultants slaan SIPOC over en gaan direct naar een waardestroomkaart (value stream map), een gedetailleerde tekening van materiaal- en informatiestroom met tijden. Anderen vinden SIPOC juist nuttig om met een groep in een uur de grenzen te laten afspreken.\n\nEen veelgemaakte fout is een SIPOC met twintig stappen. Scherpe vraag: “Welke stap valt net buiten het project, en wie gaat daarover klagen?”',
       ],
       example: {
@@ -845,20 +845,20 @@ export default {
           why: 'SIPOC is een overzicht; de detailtekening komt later.',
         },
         {
-          q: 'Waar zitten volgens de praktijk de meeste problemen in een proces?',
+          q: 'Waar zitten in de praktijk vaak de problemen in een proces?',
           options: ['In de eerste stap van het proces', 'Bij de eindklant zelf', 'Bij overdrachten tussen afdelingen', 'In de IT-systemen van de afdelingen'],
           answer: 'Bij overdrachten tussen afdelingen',
           why: 'Daar raakt informatie kwijt en wacht werk zonder eigenaar.',
         },
         {
           q: 'Wat is een klanteis in een SIPOC?',
-          options: ['Wat de klant van een output nodig heeft, liefst meetbaar', 'Een klacht die een klant over het proces heeft ingediend', 'De prijs die de klant voor de output betaalt', 'Een eis die de sponsor aan het project stelt'],
+          options: ['Wat de klant van een output nodig heeft, liefst meetbaar', 'Een klacht die een klant over het proces heeft ingediend', 'De prijs die de klant na korting voor de output betaalt', 'Een eis die de sponsor aan het projectteam stelt'],
           answer: 'Wat de klant van een output nodig heeft, liefst meetbaar',
           why: 'Klanteisen bepalen wat goed is, en dus waar het project op stuurt.',
         },
         {
           q: 'Hoe kies je de procesgrenzen het best?',
-          options: ['Zo breed mogelijk, dan mis je niks belangrijks', 'Precies langs de grenzen van de afdeling van de sponsor', 'Waar de data toevallig al beschikbaar is', 'Vanuit wat de klant ervaart, en wat het project kan beïnvloeden'],
+          options: ['Zo breed mogelijk, zodat je niks belangrijks mist', 'Precies langs de grenzen van de eigen afdeling van de sponsor', 'Waar de data toevallig al in de systemen beschikbaar is', 'Vanuit wat de klant ervaart, en wat het project kan beïnvloeden'],
           answer: 'Vanuit wat de klant ervaart, en wat het project kan beïnvloeden',
           why: 'Afdelingsgrenzen knippen het probleem vaak precies doormidden.',
         },
@@ -899,17 +899,17 @@ export default {
       pre: [
         {
           q: 'Waarom knippen veel adviesprojecten het werk op in een diagnosefase en een uitvoeringsfase?',
-          options: ['Zodat de klant na de diagnose op basis van feiten beslist of en hoe het verdergaat', 'Om twee keer te kunnen factureren', 'Omdat de wet dat vraagt', 'Zodat de consultant later kan beginnen'],
-          answer: 'Zodat de klant na de diagnose op basis van feiten beslist of en hoe het verdergaat',
+          options: ['Zodat het bureau twee facturen kan sturen in plaats van één', 'Omdat de Nederlandse wet dat vraagt bij grotere opdrachten', 'Zodat de klant op feiten beslist of en hoe het verdergaat', 'Zodat de consultant later kan beginnen en zijn tijd kan plannen'],
+          answer: 'Zodat de klant op feiten beslist of en hoe het verdergaat',
           why: 'Je belooft pas een resultaat als je weet waar het probleem zit.',
         },
       ],
       teach: [
-        'Fasering is het project opknippen in stukken met aan het eind van elk stuk een besluit. Een gangbare opzet bij verbeterprojecten: diagnose, pilot, uitrol. PRINCE2, een veelgebruikte projectmethode uit het Verenigd Koninkrijk, noemt dit management by stages.\n\nDe diagnosefase (diagnostic phase) duurt vaak twee tot zes weken. Daarin breng je in kaart waar het verlies zit. Pas daarna beloof je een concreet doel en een aanpak.',
+        'Fasering is het project opknippen in stukken met aan het eind van elk stuk een besluit. Een gangbare opzet bij verbeterprojecten: diagnose, pilot, uitrol. PRINCE2, een veelgebruikte projectmethode uit het Verenigd Koninkrijk, noemt dit managen in fasen (manage by stages).\n\nDe diagnosefase (diagnostic phase) duurt vaak twee tot zes weken. Daarin breng je in kaart waar het verlies zit. Pas daarna beloof je een concreet doel en een aanpak.',
         'Aan het eind van elke fase volgt een go/no-go-besluit: doorgaan, bijsturen of stoppen. Dat is meer dan een checkpoint in een lopend project: het is een moment waarop de sponsor opnieuw kiest of het geld en de tijd het waard zijn.\n\nGeef bij elk besluit drie dingen mee: wat we weten, wat het vervolg kost, en wat het oplevert. Zo beslist de sponsor op feiten, niet op enthousiasme.',
-        'Binnen een fase werk je met tolerantie: hoeveel tijd of geld er mag afwijken voordat je moet escaleren. PRINCE2 werkt zo: de stuurgroep geeft de projectleider bijvoorbeeld 10% ruimte op budget. Binnen die ruimte stuurt hij zelf bij; daarbuiten meldt hij het meteen.\n\nDat geeft rust: de sponsor hoeft niet over elke kleine afwijking te beslissen, en jij weet precies wanneer je moet bellen.',
-        'Een wijzigingsverzoek (change request) is een vastgelegd verzoek om scope, tijd of budget te veranderen. Iemand vraagt “ook lijn 2 erbij?”: je schrijft op wat het is, wat het kost aan tijd en geld, wat het oplevert, en wat het met de rest doet.\n\nDe sponsor beslist. Zo wordt scope creep zichtbaar en een keuze in plaats van een sluipend probleem. Klein en snel kan: een halve pagina, besproken in de wekelijkse check.',
-        'Waar experts het over oneens zijn: strikte fasering kan traag en bureaucratisch worden, en agile aanhangers werken liever in korte cycli met een vaste prioriteitenlijst. Anderen wijzen erop dat juist de go/no-go-momenten voorkomen dat een kansloos project eindeloos doorloopt.\n\nEen veelgemaakte fout is een diagnose die stilletjes overloopt in uitvoering, zonder besluit. Scherpe vraag aan het eind van de diagnose: “Als we nu niet verder zouden gaan, wat zou je dan missen?”',
+        'Binnen een fase werk je met tolerantie: hoeveel tijd of geld er mag afwijken voordat je moet escaleren. PRINCE2 noemt dit managen bij uitzondering (manage by exception): de stuurgroep geeft de projectleider bijvoorbeeld 10% ruimte op budget. Binnen die ruimte stuurt hij zelf bij; ziet hij aankomen dat hij erbuiten gaat, dan meldt hij het meteen.\n\nDat geeft rust: de sponsor hoeft niet over elke kleine afwijking te beslissen, en jij weet precies wanneer je moet bellen.',
+        'Een wijzigingsverzoek (change request) is een vastgelegd verzoek om scope, tijd of budget te veranderen. Iemand vraagt “ook lijn 2 erbij?”: je schrijft op wat het is, wat het kost aan tijd en geld, wat het oplevert, en wat het met de rest doet.\n\nDe sponsor beslist. Zo wordt scope creep (de scope die ongemerkt groeit, verzoekje voor verzoekje) zichtbaar en een keuze. Klein en snel kan: een halve pagina, besproken in de wekelijkse check.',
+        'Waar experts het over oneens zijn: strikte fasering kan traag en bureaucratisch worden, en agile aanhangers werken liever in korte cycli met een geordende prioriteitenlijst. Anderen wijzen erop dat juist de go/no-go-momenten voorkomen dat een kansloos project eindeloos doorloopt.\n\nEen veelgemaakte fout is een diagnose die stilletjes overloopt in uitvoering, zonder besluit. Scherpe vraag aan het eind van de diagnose: “Als we nu niet verder zouden gaan, wat zou je dan missen?”',
       ],
       example: {
         kind: 'faded',
@@ -926,23 +926,23 @@ export default {
           why: 'Op basis van wat je nu weet: doorgaan, bijsturen of stoppen.',
         },
         {
-          q: 'Een fase heeft een budget van €40.000 met een tolerantie van 10%. Tot welk bedrag mag de projectleider zelf bijsturen?',
-          number: 44000,
-          tolerance: 100,
+          q: 'Een fase heeft een budget van €50.000 met een budgettolerantie van 10%. De huidige prognose is €52.000. Hoeveel mag de prognose nog stijgen voordat de projectleider moet escaleren?',
+          number: 3000,
+          tolerance: 50,
           unit: '€',
-          why: '€40.000 × 0,10 = €4.000 ruimte; die ruimte komt boven op het budget.',
+          why: '€50.000 × 1,10 = €55.000 als bovengrens; van die grens haal je de prognose van €52.000 af.',
         },
         {
           q: 'Wat staat er in een goed wijzigingsverzoek?',
-          options: ['Wat er verandert, wat het kost aan tijd en geld, wat het oplevert en wat het met de rest doet', 'De naam van wie het vroeg, de datum en de reden van het verzoek', 'Een herschreven projectopdracht van tien pagina’s met alle details', 'De handtekeningen van de OR en van de sponsor'],
-          answer: 'Wat er verandert, wat het kost aan tijd en geld, wat het oplevert en wat het met de rest doet',
+          options: ['Wat er verandert, wat het kost en oplevert, en wat het met de rest doet', 'De naam van wie het vroeg, de datum en de reden van het verzoek', 'Een herschreven projectopdracht van tien pagina’s met alle details', 'De handtekeningen van de OR en van de sponsor eronder'],
+          answer: 'Wat er verandert, wat het kost en oplevert, en wat het met de rest doet',
           why: 'Dan kan de sponsor een echte keuze maken.',
         },
         {
           q: 'Wat is het risico als een diagnose ongemerkt overloopt in uitvoering?',
-          options: ['De data uit de diagnose wordt te oud om nog te gebruiken', 'Niemand besluit bewust of het vervolg het waard is, en de scope groeit ongemerkt', 'De OR moet opnieuw advies geven over het hele project', 'De consultant verdient minder omdat er geen nieuw voorstel komt'],
-          answer: 'Niemand besluit bewust of het vervolg het waard is, en de scope groeit ongemerkt',
-          why: 'Het go/no-go-moment is er juist om dat besluit bewust te nemen.',
+          options: ['De data uit de diagnose wordt te oud voor de volgende fase', 'Niemand besluit bewust of de volgende stap het waard is', 'De OR moet opnieuw advies geven over het hele project', 'De consultant verdient minder omdat er geen nieuw voorstel komt'],
+          answer: 'Niemand besluit bewust of de volgende stap het waard is',
+          why: 'Het go/no-go-moment is er juist om dat besluit bewust te nemen; zonder groeit de scope ongemerkt.',
         },
       ],
       situation: {
@@ -982,7 +982,7 @@ export default {
       pre: [
         {
           q: 'Een project kost €30.000 en levert €2.500 per maand op. Wat zegt dat over het project?',
-          options: ['Het verdient zichzelf in ongeveer een jaar terug', 'Het is te duur', 'Het levert pas na vijf jaar iets op', 'Dat kun je niet zeggen zonder de OEE'],
+          options: ['Het verdient zichzelf in ongeveer een jaar terug', 'Het is te duur voor een project van die omvang', 'Het levert pas na een jaar of vijf iets op', 'Dat kun je niet zeggen zonder de OEE'],
           answer: 'Het verdient zichzelf in ongeveer een jaar terug',
           why: '€30.000 gedeeld door €2.500 per maand is 12 maanden.',
         },
@@ -991,7 +991,7 @@ export default {
         'Een businesscase (business case) is de som die laat zien of een project het waard is: wat het kost, wat het oplevert, en hoe zeker dat is. Voor een klein verbeterproject is dat vaak één tabel, geen rapport.\n\nAls junior maak je hem niet alleen. Maar je moet de som snappen, want elke sponsor stelt de vraag: “Wat levert het op?” En liefst in euro’s.',
         'De kosten splits je in twee soorten. Eenmalige kosten betaal je één keer: consultant, training, een nieuw gereedschap. Daarnaast zijn er kosten die blijven, zoals een licentie per jaar of extra onderhoud.\n\nVergeet de tijd van de eigen mensen niet. Twee operators vier uur per week gedurende acht weken is 64 uur; die uren draaien ze niet in productie. Veel businesscases laten dat weg en lijken daardoor goedkoper dan ze zijn.',
         'Baten zijn wat het project oplevert, uitgedrukt in geld waar het kan. Minder afkeur: kilo’s maal de materiaalprijs. Minder stilstand: uren maal wat een uur productie waard is. Minder overwerk: uren maal het overwerktarief.\n\nWees eerlijk over het verschil tussen echte en papieren baten. Twee uur minder stilstand per week levert alleen geld op als je die uren ook kunt verkopen. Anders is het capaciteit, geen euro’s.',
-        'De eenvoudigste maat is de terugverdientijd (payback period): eenmalige kosten gedeeld door de baten per maand of per jaar. Kost een project €30.000 en levert het €2.500 per maand op, dan is het na 12 maanden terugverdiend.\n\nVeel bedrijven hanteren een vuistregel, zoals “onder de twee jaar”, maar dat verschilt per bedrijf en sector. Vraag het de controller: “Welke terugverdientijd vinden jullie goed?”',
+        'De eenvoudigste maat is de terugverdientijd (payback period): eenmalige kosten gedeeld door de netto baten per maand of per jaar (baten min de kosten die blijven). Kost een project €30.000 en levert het netto €2.500 per maand op, dan is het na 12 maanden terugverdiend.\n\nVeel bedrijven hanteren een vuistregel, zoals “onder de twee jaar”, maar dat verschilt per bedrijf en sector. Vraag het de controller: “Welke terugverdientijd vinden jullie goed?”',
         'Waar experts het over oneens zijn: de terugverdientijd negeert wat er na het terugverdienen gebeurt en hoe zeker de baten zijn. Financiële mensen gebruiken daarom vaak ook netto contante waarde, die later komt. Voor een eerste gesprek is de terugverdientijd wel helder.\n\nEen veelgemaakte fout: baten optellen die elkaar overlappen, zoals minder stilstand en meer output van dezelfde uren. Scherpe vraag: “Op welke regel in de resultatenrekening zie ik dit terug?”',
       ],
       example: {
@@ -1001,11 +1001,11 @@ export default {
       said: 'Wat je hoort in projecten: “Dat levert makkelijk een ton op.” Vraag dan: “Laat me de som zien.”',
       recall: [
         {
-          q: 'Een project kost eenmalig €30.000 en levert €2.500 per maand op. Wat is de terugverdientijd in maanden?',
-          number: 12,
+          q: 'Een project kost eenmalig €36.000. Het levert €2.300 per maand op, maar er komt een licentie van €300 per maand bij. Wat is de terugverdientijd in maanden?',
+          number: 18,
           tolerance: 0.5,
           unit: 'maanden',
-          why: '€30.000 / €2.500 per maand = 12 maanden.',
+          why: '€2.300 − €300 = €2.000 netto per maand; de €36.000 gedeeld door dat netto bedrag.',
         },
         {
           q: 'Wanneer levert minder stilstand echt geld op?',
@@ -1014,11 +1014,11 @@ export default {
           why: 'Anders is het capaciteit, geen euro’s.',
         },
         {
-          q: 'Een project bespaart 6 uur stilstand per week; een uur productie levert €400 op. Wat zijn de baten over 46 productieweken?',
-          number: 110400,
+          q: 'Een project bespaart 4 uur stilstand per week. De fabriek kan de extra output verkopen, en een uur productie levert €350 dekkingsbijdrage op. Wat zijn de baten over 46 productieweken?',
+          number: 64400,
           tolerance: 100,
           unit: '€',
-          why: '6 × €400 = €2.400 per week; die €2.400 maal de 46 weken.',
+          why: '4 × €350 = €1.400 per week; die €1.400 maal de 46 weken.',
         },
         {
           q: 'Welke kosten worden in businesscases vaak vergeten?',
@@ -1054,7 +1054,7 @@ export default {
         { term: 'Businesscase', def: 'De som die laat zien of een project het waard is: kosten, baten en hoe zeker die zijn.' },
         { term: 'Eenmalige kosten', def: 'Kosten die je één keer maakt, zoals consultant, training of gereedschap.' },
         { term: 'Baten', def: 'Wat het project oplevert, in geld uitgedrukt waar het kan.' },
-        { term: 'Terugverdientijd', def: 'Eenmalige kosten gedeeld door de baten per maand of jaar: hoe lang het duurt voor het project zich terugbetaalt.' },
+        { term: 'Terugverdientijd', def: 'Eenmalige kosten gedeeld door de netto baten per maand of jaar: hoe lang het duurt voor het project zich terugbetaalt.' },
       ],
     },
     {
@@ -1063,17 +1063,17 @@ export default {
       pre: [
         {
           q: 'Waarmee begint een sterk voorstel aan een klant?',
-          options: ['Met het cv van het team', 'Met de situatie en het probleem van de klant, in zijn woorden', 'Met de prijs', 'Met de methode van het bureau'],
+          options: ['Met de cv’s van het team en de referenties van het bureau', 'Met de situatie en het probleem van de klant, in zijn woorden', 'Met de prijs en de betalingsvoorwaarden', 'Met de methode van het bureau en zijn staat van dienst'],
           answer: 'Met de situatie en het probleem van de klant, in zijn woorden',
           why: 'De klant leest pas verder als hij zijn eigen probleem herkent.',
         },
       ],
       teach: [
         'Een voorstel (proposal) is het document waarin je de klant een aanpak, een resultaat en een prijs aanbiedt. Het volgt op de intake en vormt vaak de basis voor de opdracht.\n\nEen goed voorstel is kort, vaak drie tot vijf pagina’s. De klant moet na de eerste pagina weten: ze snappen mijn probleem, dit gaan ze doen, dit levert het op, en dit kost het.',
-        'Een bekende opbouw voor de opening is SCQ: situatie, complicatie, vraag (situation, complication, question). Barbara Minto beschrijft die in The Pyramid Principle. Situatie: “Jullie leveren 92% van de orders op tijd.” Complicatie: “Klanten eisen 98%, en twee grote klanten dreigen te vertrekken.” Vraag: “Hoe halen jullie binnen een jaar 98%?”\n\nGebruik de woorden die de klant in de intake gebruikte. Dan herkent hij zijn eigen verhaal.',
+        'Een bekende opbouw voor de opening is SCQ: situatie, complicatie, vraag (situation, complication, question); daarna volgt jouw antwoord. Barbara Minto beschrijft die in The Pyramid Principle. Situatie: “Jullie leveren 92% van de orders op tijd.” Complicatie: “Klanten eisen 98%, en twee grote klanten dreigen te vertrekken.” Vraag: “Hoe halen jullie binnen een jaar 98%?”\n\nGebruik de woorden die de klant in de intake gebruikte. Dan herkent hij zijn eigen verhaal.',
         'Daarna: aanpak in fasen, met per fase wat je oplevert; wat je van de klant nodig hebt (mensen, data, tijd); team; planning; prijs; en aannames. Maak de aanpak concreet: “week 1 tot 3: nulmeting en diagnose op lijn 2 en 3”, niet “een grondige analyse”.\n\nBied waar het kan opties: een kleine en een grote variant. Dan wordt de vraag van de klant niet “ja of nee?” maar “welke?”',
         'Er zijn twee gangbare prijsvormen. Bij een vaste prijs (fixed price) betaalt de klant een afgesproken bedrag voor een afgesproken resultaat; het risico van uitloop ligt bij het bureau, dat daarom vaak een opslag rekent. Bij nacalculatie (time and materials) betaalt de klant de gewerkte uren.\n\nVaste prijs geeft de klant zekerheid, maar vraagt een scherpe scope. Nacalculatie is flexibel, maar de klant draagt het risico.',
-        'Waar experts het over oneens zijn: sommige adviseurs pleiten voor prijzen op basis van waarde (value-based pricing), een deel van de opbrengst, in plaats van uren. Anderen vinden dat lastig te meten en een bron van ruzie.\n\nEen veelgemaakte fout: een voorstel dat vooral over het bureau gaat. Scherpe test: tel hoe vaak “wij” en hoe vaak de naam van de klant voorkomt. En lees het voor aan je sponsor voordat het officieel verstuurd wordt; verrassingen horen niet in een voorstel.',
+        'Waar experts het over oneens zijn: sommige adviseurs pleiten voor prijzen op basis van waarde (value-based pricing): een prijs naar wat het resultaat de klant waard is, soms een deel van de gemeten besparing. Anderen vinden dat lastig te meten en een bron van ruzie.\n\nEen veelgemaakte fout: een voorstel dat vooral over het bureau gaat. Scherpe test: tel hoe vaak “wij” en hoe vaak de naam van de klant voorkomt. En lees het voor aan je sponsor voordat het officieel verstuurd wordt; verrassingen horen niet in een voorstel.',
       ],
       example: {
         kind: 'worked',
@@ -1094,11 +1094,11 @@ export default {
           why: 'De klant betaalt een afgesproken bedrag; uitloop is voor het bureau.',
         },
         {
-          q: 'Een voorstel rekent 20 adviesdagen à €1.000, met 15% opslag voor een vaste prijs. Wat is de vaste prijs?',
-          number: 23000,
+          q: 'Een voorstel rekent 24 adviesdagen à €950, met 10% opslag voor een vaste prijs. Wat is de vaste prijs?',
+          number: 25080,
           tolerance: 50,
           unit: '€',
-          why: '20 × €1.000 = €20.000; dat bedrag maal 1,15 voor de opslag.',
+          why: '24 × €950 = €22.800; dat bedrag maal 1,10 voor de opslag.',
         },
         {
           q: 'Waarom bied je in een voorstel bij voorkeur twee opties?',
@@ -1224,14 +1224,14 @@ export default {
       pre: [
         {
           q: 'Een businesscase rekent met precies één getal voor de baten. Wat is daar het probleem mee?',
-          options: ['Niks, één getal is het duidelijkst', 'Het laat niet zien wat er gebeurt als de baten tegenvallen', 'Het is te veel werk voor de controller', 'Het mag niet van de accountant'],
+          options: ['Niks, één getal is voor de directie het duidelijkst', 'Het laat niet zien wat er gebeurt als de baten tegenvallen', 'Het is te veel controlewerk voor de controller', 'De accountant staat geen enkel getal toe'],
           answer: 'Het laat niet zien wat er gebeurt als de baten tegenvallen',
           why: 'Een besluit hangt af van hoe gevoelig de uitkomst is voor tegenvallers.',
         },
       ],
       teach: [
         'Een gevoeligheidsanalyse (sensitivity analysis) laat zien hoe de uitkomst verandert als een aanname anders uitvalt. Wat als de baten 25% lager zijn? Wat als het project twee maanden later start?\n\nKies de twee of drie aannames waar het meest van afhangt en reken ze door. Vaak blijkt één aanname bepalend, bijvoorbeeld of de extra capaciteit verkocht kan worden. Daar hoort je diagnose zich op te richten.',
-        'Mensen schatten baten structureel te hoog en kosten en tijd te laag. Kahneman en Tversky noemden dat de planningsdwaling (planning fallacy, 1979); Bent Flyvbjerg toonde met grote datasets van projecten aan dat optimisme-bias (optimism bias) wijdverbreid is en dat de meeste grote projecten uitlopen.\n\nDe remedie is kijken naar vergelijkbare projecten: hoe liepen die echt? Pas je getallen daarop aan, in plaats van op je eigen beste schatting.',
+        'Mensen schatten baten structureel te hoog en kosten en tijd te laag. Kahneman en Tversky noemden dat de planningsdwaling (planning fallacy, 1979); Bent Flyvbjerg toonde met grote datasets van projecten aan dat optimisme-bias (optimism bias) wijdverbreid is en dat de meeste grote projecten uitlopen.\n\nZijn remedie heet referentieklasse-prognose (reference class forecasting): neem een referentieklasse, een groep vergelijkbare projecten, en kijk hoe die echt liepen. Pas je getallen daarop aan, in plaats van op je eigen beste schatting.',
         'Financiële mensen rekenen vaak met netto contante waarde (net present value, NPV). Een euro over drie jaar is minder waard dan een euro nu, omdat je die euro nu kunt beleggen of omdat lenen geld kost. Je deelt toekomstige baten daarom door (1 + r) tot de macht van het jaar.\n\nDe r is de disconteringsvoet (discount rate): het rendement dat het bedrijf minimaal verwacht. Die verschilt per bedrijf; 8 tot 10% is gangbaar, maar vraag het de controller.',
         'Een voorbeeld van de som: investering €100.000, baten €50.000 per jaar, drie jaar, disconteringsvoet 8%. Jaar 1: 50.000 / 1,08 = €46.296. Jaar 2: 50.000 / 1,08² = €42.867. Jaar 3: €39.692. Samen €128.855, min de investering: NPV ongeveer €28.855.\n\nEen positieve NPV betekent dat het project meer oplevert dan het minimale rendement. Laat de controller rekenen; jij moet snappen wat het getal zegt.',
         'Waar experts het over oneens zijn: sommigen vinden NPV voor kleine verbeterprojecten schijnprecisie, omdat de baten zelf onzeker zijn; zij gebruiken terugverdientijd met een bandbreedte. Anderen willen elk project op dezelfde manier vergelijken.\n\nPresenteer altijd een bandbreedte: laag, verwacht, hoog. Scherpe vraag aan jezelf: “Bij welke tegenvaller wordt dit project een slecht idee, en hoe waarschijnlijk is dat?”',
@@ -1251,22 +1251,22 @@ export default {
           why: 'Zo zie je van welke aanname het besluit afhangt.',
         },
         {
-          q: 'Een investering van €60.000 zou €20.000 per jaar opleveren. Als de baten 25% lager uitvallen, wat is dan de terugverdientijd in jaren?',
-          number: 4,
+          q: 'Een investering van €80.000 zou €32.000 per jaar opleveren. Als de baten 20% lager uitvallen, wat is dan de terugverdientijd in jaren?',
+          number: 3.1,
           tolerance: 0.1,
           unit: 'jaar',
-          why: '€20.000 × 0,75 = €15.000 per jaar; de investering gedeeld door die lagere jaarbaten.',
+          why: '€32.000 × 0,80 = €25.600 per jaar; de investering gedeeld door die lagere jaarbaten.',
         },
         {
           q: 'Waarom deel je toekomstige baten door (1 + r) tot de macht van het jaar?',
-          options: ['Om de inflatie uit de verwachte omzet te halen', 'Omdat een euro later minder waard is dan een euro nu', 'Omdat de Belastingdienst dat voorschrijft', 'Om de baten in latere jaren groter te laten lijken'],
+          options: ['Om de investering gelijk over de jaren te spreiden', 'Omdat een euro later minder waard is dan een euro nu', 'Omdat de Belastingdienst dat voorschrijft', 'Om de baten in latere jaren groter te laten lijken'],
           answer: 'Omdat een euro later minder waard is dan een euro nu',
           why: 'Geld nu kun je beleggen; daarom telt geld later minder zwaar.',
         },
         {
           q: 'Wat is de beste remedie tegen optimisme-bias in een businesscase?',
-          options: ['Een hogere disconteringsvoet kiezen voor de zekerheid', 'De schatting van de sponsor volgen, die het proces kent', 'Een langere looptijd kiezen zodat de baten oplopen', 'Kijken hoe vergelijkbare projecten echt liepen en je getallen daarop aanpassen'],
-          answer: 'Kijken hoe vergelijkbare projecten echt liepen en je getallen daarop aanpassen',
+          options: ['Voor de zekerheid een hogere disconteringsvoet kiezen', 'De schatting van de sponsor volgen, die het proces het best kent', 'Een langere looptijd kiezen zodat de baten verder oplopen', 'Kijken hoe vergelijkbare projecten echt liepen, en daarop bijstellen'],
+          answer: 'Kijken hoe vergelijkbare projecten echt liepen, en daarop bijstellen',
           why: 'De echte uitkomsten van vergelijkbare projecten corrigeren je eigen optimisme.',
         },
       ],
@@ -1296,6 +1296,7 @@ export default {
       terms: [
         { term: 'Gevoeligheidsanalyse', def: 'Doorrekenen hoe de uitkomst verandert als een aanname anders uitvalt.' },
         { term: 'Optimisme-bias', def: 'De neiging baten te hoog en kosten en tijd te laag te schatten.' },
+        { term: 'Referentieklasse', def: 'Een groep vergelijkbare eerdere projecten waarvan je de echte uitkomsten gebruikt om je eigen schatting te corrigeren (Flyvbjerg).' },
         { term: 'Netto contante waarde', def: 'Alle toekomstige baten en kosten teruggerekend naar geld van nu, min de investering.' },
         { term: 'Disconteringsvoet', def: 'Het minimale rendement waarmee je toekomstige euro’s terugrekent naar nu; verschilt per bedrijf.' },
       ],
