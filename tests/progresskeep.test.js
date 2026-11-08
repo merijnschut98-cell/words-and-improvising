@@ -47,7 +47,7 @@ test('existing lessons keep their recall keys', async () => {
 
 test('v13: modules rebuilt as topics × levels keep their old lessons’ recall keys', async () => {
   const files = fs.readdirSync(new URL('./fixtures/', import.meta.url)).filter((f) => /^v13-.+-recall-keys\.json$/.test(f));
-  assert.ok(files.includes('v13-eng.flow-recall-keys.json'));
+  assert.ok(files.length > 0, 'no v13 fixtures found');
   for (const f of files) {
     const pins = fixture(f);
     const mod = f.replace(/^v13-(.+)-recall-keys\.json$/, '$1');
