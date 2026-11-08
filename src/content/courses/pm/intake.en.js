@@ -162,6 +162,170 @@ export default {
       ],
     },
     {
+      id: 'pm.intake.problemstatement',
+      title: 'A sharp problem statement',
+      pre: [
+        {
+          q: 'Which sentence is the best problem statement?',
+          options: ['Line 2 misses the daily plan because the night-shift operators have not been trained enough', 'We need to bring in a new planning system on line 2 before the summer peak', 'In May line 2 missed the daily plan on 8 of 20 working days, against 2 of 20 last year', 'Line 2 performs badly and that really has to improve this quarter'],
+          answer: 'In May line 2 missed the daily plan on 8 of 20 working days, against 2 of 20 last year',
+          why: 'It says what, where, when and how much, with no cause, solution or culprit.',
+        },
+      ],
+      teach: [
+        'A problem statement is one or two sentences that describe what goes wrong: what, where, when, how much, and compared with which standard. It holds no cause, no solution and no culprit.\n\n“In May line 2 missed the daily plan on 8 of 20 working days; last year it was 2.” Anyone can check that. “The planners aren’t doing it right” is a judgement, and it closes the investigation before it starts.',
+        'Why so strict? As soon as a cause sits in the sentence, everyone sets out to prove that cause. Put a solution in it, and the project becomes “bring in the tool” instead of “hit the plan”.\n\nIn Lean (the improvement approach that comes from Toyota’s production system) the problem statement sits at the top of the A3 report. John Shook describes this in Managing to Learn (Lean Enterprise Institute, 2008): first a clear problem, only then causes.',
+        'Go and look first. Gemba is Japanese for “the place where it happens”: the line, the warehouse, the fitter’s van. What you see and count there makes the problem statement sharp.\n\nThen you look for causes, for example with the 5 Whys: at each answer you ask “why?” again until you reach something you can act on. Taiichi Ohno, the architect of the Toyota Production System, made the method known in his 1978 book; five is a rule of thumb, not a law.',
+        'An is/is-not analysis makes the problem smaller. You set side by side where the problem does and doesn’t occur: which line does, which doesn’t; which shift does, which doesn’t; since when it does, and before that not.\n\nThe method comes from Kepner and Tregoe (The Rational Manager, 1965). The differences are your clues: if it only happens on the night shift, you look for what is different at night.',
+        'Where experts disagree: critics say the 5 Whys too easily produce a single chain of causes, while several causes often act at once. So use it as a conversation technique as well, not as proof, and check each step with data.\n\nA common mistake is a problem statement that quietly contains a solution: “there is no dashboard”. A sharp question: “If we did everything right tomorrow, which number would be different?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a grid operator the team lead of work preparation says: “The contractors deliver poor work, we need to check them more strictly.” You count in the system: of the 220 connections completed in the first quarter, 33 needed a second visit. For contractor A that was 6 of 110, for contractor B 27 of 110. At B the repeat visits sit mostly with connections that have a second meter.',
+        ask: 'Write the problem statement and say what the is/is-not analysis tells you.',
+        reveal: 'Problem statement: “In Q1, 15% of completed connections (33 of 220) needed a second visit, against a standard of 5%.” Not a word about poor work or stricter checks.\n\nIs/is-not: it happens at contractor B (25%) and hardly at A (5%), and mostly with connections that have a second meter. So the question becomes: what does B do differently on those connections? Perhaps a different work instruction or a different meter type. Go along with B on two of those jobs before anyone talks about checks.',
+      },
+      said: 'What you hear in projects: “The problem is simply that we don’t have a good system.” That isn’t a problem; it’s a solution in disguise.',
+      recall: [
+        {
+          q: 'What does not belong in a problem statement?',
+          options: ['Where the problem occurs', 'The cause or the solution', 'How big the problem is', 'Since when it has been happening'],
+          answer: 'The cause or the solution',
+          why: 'A cause or solution in the sentence sends the investigation the wrong way before it starts.',
+        },
+        {
+          q: 'Of 180 orders in a month, 27 left the plant late. The standard is at most 5% late. By how many percentage points does the plant miss that standard?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'percentage points',
+          why: '27 / 180 = 0.15, so 15% of orders left late; from that 15% you take off the 5% standard.',
+        },
+        {
+          q: 'The scrap only occurs on the night shift. Which method helps you exploit that difference?',
+          options: ['A stakeholder map', 'A kick-off', 'A satisfaction survey', 'An is/is-not analysis'],
+          answer: 'An is/is-not analysis',
+          why: 'You set side by side where it does and doesn’t happen; the difference is your clue.',
+        },
+        {
+          q: 'What is the main criticism of the 5 Whys?',
+          options: ['Five questions take too much time on a busy shop floor', 'It only works in the car industry, because that is where it comes from', 'It tends to give one chain of causes, while several often act at once', 'Operators don’t understand the question and quickly get annoyed by it'],
+          answer: 'It tends to give one chain of causes, while several often act at once',
+          why: 'That is why you check each step with data and use it as a conversation technique, not as proof.',
+        },
+      ],
+      situation: {
+        scene: 'You are in week two at a packaging plant. The plant manager wants you to present the problem statement at the steering group. His draft reads: “Maintenance responds too slowly to breakdowns, which is why we miss our delivery reliability.”',
+        ask: 'What do you do with his draft?',
+        model: '“I see where it comes from. If we name maintenance in it, maintenance will defend itself and we stop looking for the cause. May I make it a factual sentence: delivery reliability in Q3 87% against a target of 95%, with most missed orders on line 4? What maintenance response time does in that, let the breakdown data tell us.”',
+        rubric: [
+          'Takes the cause and the culprit out of the sentence',
+          'Makes it measurable: what, where, when, how much, against which standard',
+          'Keeps his suspicion as something to check with data',
+        ],
+        pushback: {
+          lines: [
+            '“Everyone knows maintenance is too slow. Why wouldn’t we just write that down?”',
+            '“A factual sentence like that is weak. The steering group wants to know what’s going on, not a number.”',
+          ],
+          model: '“Maybe you’re right about maintenance, and then the data will show it within two weeks. If it’s in the sentence now, the maintenance manager is on the defensive from day one and I won’t get his breakdown log. The number is why the steering group is here; we bring the cause once we’ve proven it.”',
+          rubric: [
+            'Takes his suspicion seriously',
+            'Explains what a culprit in the sentence costs in cooperation',
+            'Promises the cause with evidence and a timeframe',
+          ],
+        },
+      },
+      sayIt: 'Explain to a colleague in 60 seconds what does and doesn’t belong in a problem statement, with an example from a plant.',
+      terms: [
+        { term: 'Problem statement', def: 'One or two sentences on what goes wrong: what, where, when, how much and against which standard, with no cause or solution.' },
+        { term: 'Gemba', def: 'Japanese for “the place where it happens”: going to look on the floor instead of in the meeting room.' },
+        { term: '5 Whys', def: 'Asking “why?” again at each answer until you reach a cause you can act on.' },
+        { term: 'Is/is-not analysis', def: 'Setting side by side where, when and with whom a problem does and doesn’t occur, to find the cause.' },
+      ],
+    },
+    {
+      id: 'pm.intake.issuetree',
+      title: 'Working with hypotheses',
+      pre: [
+        {
+          q: 'You have two weeks for a diagnosis. What is the smartest approach?',
+          options: ['Collect all available data first and then see what stands out', 'Write down a few suspicions and look for data that could disprove them', 'Work out the solution the client already has in mind', 'Interview everyone in the plant before you look at any data'],
+          answer: 'Write down a few suspicions and look for data that could disprove them',
+          why: 'A targeted search fits in two weeks; collecting everything doesn’t.',
+        },
+      ],
+      teach: [
+        'A hypothesis is a suspicion about the cause that you can test with data: “Most downtime on line 3 comes from waiting for material.” You start with it early, right after the intake, and you let the data decide.\n\nMany consulting firms work this way. Ethan Rasiel describes it in The McKinsey Way (1999): start with a suspicion, because finding out everything without direction takes months and gives a pile of data with no conclusion.',
+        'An issue tree breaks the main question into sub-questions. “Why does line 3 reach only 58% OEE?” splits into availability, speed and quality; each of those splits again, for example availability into breakdowns, changeovers and waiting.\n\nThe branches must be MECE: mutually exclusive, collectively exhaustive. No overlap between branches, and together they cover everything. Barbara Minto made the idea known in The Pyramid Principle (from her McKinsey years; book 1985).',
+        'Then choose the branches that can yield the most. Often most of the loss sits in a few branches; that is called the Pareto principle (the 80/20 rule of thumb, a pattern that often holds but is no law).\n\nFor each hypothesis you write a data request: which data, from whom, over which period, and what result would mean your suspicion is wrong. “Stop log line 3, 8 weeks, from the team lead; if waiting for material is under 15% of downtime, we drop this branch.”',
+        'Work at the client’s pace. A data request on day one, with a name and a date, saves a week. IT often needs a few days to make an export, so ask early.\n\nShow the tree to the process owner too: “Am I missing a branch?” People from the floor often see right away what is missing, such as “waiting for quality release”, and then the tree is a little bit theirs as well.',
+        'Where experts disagree: working with hypotheses can lead to confirmation bias: you mostly see what supports your suspicion. Others say that exploring everything openly simply doesn’t fit a short project.\n\nA workable middle: for each hypothesis, write down beforehand what would disprove it, and actively look for that data. A sharp question to ask yourself after week one: “Which hypothesis have I already dropped?” If the answer is none, you may not be looking honestly.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a metal stamping company the OEE is 58%, so 42 percentage points are lost. The first week of stop data shows roughly: breakdowns 18 points, changeovers 12, running slow 8, scrap 4. The operations manager is convinced that scrap is the big problem, “because that’s what customers complain about”.',
+        ask: 'Which branches of your issue tree do you work out first, and how do you handle his conviction about scrap?',
+        reveal: 'Breakdowns and changeovers together are 30 of the 42 points, over 70% of the loss. That is where you start, with a hypothesis and a data request per branch, for example: “Most breakdown hours sit with two presses.”\n\nYou don’t drop scrap: for the customer it weighs heavily, even if it is only 4 OEE points. Name it: “Scrap costs little capacity but a lot of customer trust. I’ll take it as a separate question, but the big capacity loss is in breakdowns and changeovers.” So his point becomes a branch, not the whole project.',
+      },
+      said: 'What you hear in projects: “We have plenty of data, we just don’t know what it says.” Usually that means: nobody asked a question first.',
+      recall: [
+        {
+          q: 'What does it mean that the branches of an issue tree are MECE?',
+          options: ['They are in order of importance, the biggest branch on top', 'They don’t overlap and together cover the whole problem', 'Each branch has an owner at the client', 'They have all already been proven with data'],
+          answer: 'They don’t overlap and together cover the whole problem',
+          why: 'Mutually exclusive, collectively exhaustive: no double work and no gap.',
+        },
+        {
+          q: 'Line 5 reaches 62% OEE, so 38 points are lost: breakdowns 14, running slow 10, changeovers 9, scrap 5. What percentage of the loss sits in the two biggest branches together?',
+          number: 63.2,
+          tolerance: 1,
+          unit: '%',
+          why: 'The two biggest branches are breakdowns and running slow: 14 + 10 = 24 points; 24 / 38 is their share of the loss, times 100 percent.',
+        },
+        {
+          q: 'What protects you best against confirmation bias when working with hypotheses?',
+          options: ['Writing down beforehand what data would disprove it', 'Only testing the hypotheses the client puts forward himself', 'Holding more interviews before you ask for any data', 'Writing hypotheses down only once the data is in'],
+          answer: 'Writing down beforehand what data would disprove it',
+          why: 'Then you actively look for counter-evidence instead of only for support.',
+        },
+        {
+          q: 'What belongs in a good data request?',
+          options: ['Only the name of the system that holds the data', 'A request for all data of the past year, to be safe', 'The conclusion you expect, so the other person knows what you’re after', 'Which data, from whom, over which period and when you need it'],
+          answer: 'Which data, from whom, over which period and when you need it',
+          why: 'A concrete request with a name and a date gets answered faster and better.',
+        },
+      ],
+      situation: {
+        scene: 'You are a junior Lean consultant in week one at a grid operator. The question: why does a new business connection take 18 weeks on average? Your manager asks you to have an issue tree and three data requests ready by Friday. The head of work preparation says: “You don’t need to draw a tree, it’s the permits.”',
+        ask: 'How do you handle his claim, and what does your first draft look like?',
+        model: '“That may well be. Then I want to work out permits as the first branch.” Your tree: split the 18 weeks into phases (application to design, design to permit, permit to material, execution), MECE and adding up to 18 weeks. Data request one: lead time per phase for the last 100 connections from the work order system, from the data analyst, by Wednesday. His suspicion is hypothesis number one, with what would disprove it.',
+        rubric: [
+          'Takes his claim as a hypothesis without adopting or rejecting it',
+          'Builds a tree with branches that don’t overlap and together cover everything',
+          'Writes concrete data requests with source, period and date',
+        ],
+        pushback: {
+          lines: [
+            '“I’ve been here fifteen years. I’m telling you: permits. Drawing a tree is consultant work.”',
+            '“And that data in the system isn’t right anyway. It’s no use to you.”',
+          ],
+          model: '“Fifteen years of experience says a lot, and that’s why your suspicion is at the top. If the data confirms it, you have evidence to take to the board. On data quality: which fields do you trust? Then I’ll start with those and check ten files by hand.”',
+          rubric: [
+            'Acknowledges his experience and gives his suspicion a place',
+            'Shows what evidence gives him personally',
+            'Meets the data worry with a concrete check',
+          ],
+        },
+      },
+      sayIt: 'Explain to a colleague in 60 seconds how you reach a diagnosis in two weeks with an issue tree and hypotheses.',
+      terms: [
+        { term: 'Hypothesis', def: 'A suspicion about the cause that you can confirm or disprove with data.' },
+        { term: 'Issue tree', def: 'The main question split into sub-questions, so you see where the loss can sit.' },
+        { term: 'MECE', def: 'Mutually exclusive, collectively exhaustive: branches without overlap that together cover everything.' },
+        { term: 'Data request', def: 'A request for data: which, from whom, over which period, by when, and what would disprove your hypothesis.' },
+      ],
+    },
+    {
       id: 'pm.intake.stakeholders',
       title: 'Who decides, who can stop it',
       pre: [
@@ -240,87 +404,6 @@ export default {
         { term: 'Stakeholder map', def: 'Everyone involved placed on influence and interest, to decide how to engage each.' },
         { term: 'Blocker', def: 'Someone who can slow or stop the project, often without saying no.' },
         { term: 'Escalation', def: 'Taking a blocked decision to someone higher up who can make it, openly and as a last step.' },
-      ],
-    },
-    {
-      id: 'pm.intake.done',
-      title: 'Defining done',
-      pre: [
-        {
-          q: 'Which of these is a usable project goal?',
-          options: ['Improve the planning process', 'Make the line more efficient', 'Cut the average connection lead time (weeks from request to working connection) for small business customers from 18 to 12 weeks by June', 'Implement a new planning tool'],
-          answer: 'Cut the average connection lead time (weeks from request to working connection) for small business customers from 18 to 12 weeks by June',
-          why: 'Only this one has a starting value, a target and a date that someone can check.',
-        },
-      ],
-      teach: [
-        'Write a one-sentence goal: from X to Y by when, measured how. “Reduce unplanned stops on line 3 from 14 to 8 hours a week by 1 April, measured in the MES stop log.” (MES: the manufacturing execution system, the software on the floor that logs every stop.)\n\nIf you can’t write that sentence, you don’t have a project yet, you have a wish. Write it with the client, in their words, and read it back to them.',
-        'Baseline first: the measured starting value you compare against later. Without it nobody can say you succeeded, and every result gets disputed.\n\nIf the data doesn’t exist, measuring for two weeks is your first deliverable (something you hand over that can be checked). Say it plainly: “I don’t know the current number yet, and honestly neither do you. Let’s measure before we promise anything.” Two weeks catches a normal weekly pattern; a seasonal business may need longer.',
-        'Scope is what the project covers. Write down in scope and out of scope. Out matters more: “Line 3 only, not lines 1 and 2. Process and planning, not a new ERP system (the company-wide software for orders, stock and finance). No changes to shift patterns.”\n\nList the out-of-scope items people are likely to raise. When they come up later, you point to the list instead of having the argument again.',
-        'Scope creep is the slow widening of a project, one reasonable request at a time: “while you’re at it, could you also look at line 2?” Each one sounds small; together they eat your weeks.\n\nDon’t just say no. Say: “Good idea. It’s out of scope now, so either we swap it for something, or the sponsor adds time.” A sharp question when someone adds work: “What do we drop to make room?”',
-        'Acceptance criteria: who signs off, on what evidence, and when. “The plant manager accepts when the average over four consecutive weeks is 8 hours or less.” Four weeks guards against one lucky week.\n\nAgree this at the start. By the end the mood in the room will be different and everyone will remember the promise differently. Experts argue about stretch targets; an ambitious number motivates some teams, but a target nobody believes gets quietly ignored.',
-      ],
-      example: {
-        kind: 'worked',
-        text: 'A food plant asks you to “reduce waste”. You measure first: 3.2% of output is scrapped, about 2,400 kg a week out of 75,000 kg, mostly at start-up after changeovers (switching the line to another product). Goal sentence: “Reduce scrap on the two filling lines from 3.2% to 2.0% by the end of Q2 (April to June), measured in the weekly scrap report.”\n\nIn scope: start-up after changeovers, machine settings, work instructions. Out of scope: the packaging supplier and recipes. Acceptance: the production manager signs off on four consecutive weeks at 2.0% or lower.\n\nThat saves 900 kg a week.',
-      },
-      said: 'What you hear in projects: “Let’s not pin ourselves down on a number yet.” Sometimes that’s fair caution; often it’s a way to never be measured.',
-      recall: [
-        {
-          q: 'What makes the strongest goal sentence?',
-          options: ['A baseline, a target and a date, plus how it’s measured', 'An ambitious target that motivates the team', 'A list of the activities you will carry out', 'The solution the client asked for'],
-          answer: 'A baseline, a target and a date, plus how it’s measured',
-          why: 'From X to Y by when, measured how: anyone can check it.',
-        },
-        {
-          q: 'Why write down what is out of scope?',
-          options: ['To lower your fee', 'Because the contract requires it', 'So you can point to it when people try to widen the project', 'To keep stakeholders at a distance'],
-          answer: 'So you can point to it when people try to widen the project',
-          why: 'An agreed list ends the discussion faster than an argument.',
-        },
-        {
-          q: 'Scrap is 3.2% of a weekly output of 75,000 kg. The goal is 2.0% of the same weekly output. How many kg of scrap per week does reaching the goal save?',
-          number: 900,
-          tolerance: 10,
-          unit: 'kg',
-          why: '3.2% of 75,000 is 2,400 kg; 2.0% is 1,500 kg; the difference is 900 kg.',
-        },
-        {
-          q: 'There is no data on the current situation. What do you do?',
-          options: ['Use the client’s estimate as the baseline', 'Skip the baseline and focus on the target', 'Borrow a benchmark (a figure from another company) from another plant', 'Make measuring for a short period the first deliverable'],
-          answer: 'Make measuring for a short period the first deliverable',
-          why: 'A measured baseline is the only one nobody can dispute at the end.',
-        },
-      ],
-      situation: {
-        scene: 'You’re at a grid operator. The sponsor wants the project goal to be “better collaboration between planning and the field teams”, the crews who do the work on site.',
-        ask: 'How do you turn this into something measurable without losing the sponsor?',
-        model: '“I like that, and I want us to be able to show it worked. When collaboration is better, what would you see happen? Fewer jobs rescheduled on the day? Crews arriving with the right material?” Pick one with him, for example “Reduce same-day rescheduled jobs from 22% to 10% by the end of Q3 (September), from the planning system”, and keep collaboration as the reason why.',
-        rubric: [
-          'Keeps the sponsor’s intent and asks what he would observe',
-          'Turns it into from, to, by when, with a data source',
-          'Agrees who signs off and on what evidence',
-        ],
-        pushback: {
-          lines: [
-            '“You consultants always want a number. Collaboration isn’t a number. Everyone knows what I mean.”',
-            '“If we put a hard target in, the teams will feel judged. I don’t want that.”',
-          ],
-          model: '“Agreed, collaboration itself isn’t a number. But you’ll notice it somewhere: fewer jobs bounced back, fewer trips for nothing. If we pick one of those, we can show the board it worked. We measure the process, not the people. Shall I bring two options on Friday?”',
-          rubric: [
-            'Acknowledges that collaboration is not a number in itself',
-            'Holds to one observable measure of done',
-            'Proposes concrete options and a moment to choose',
-          ],
-        },
-      },
-      sayIt: 'Explain to a sponsor in 60 seconds why you want a measured baseline before you commit to a target.',
-      terms: [
-        { term: 'Baseline', def: 'The measured starting value that progress is compared against.' },
-        { term: 'Scope', def: 'What the project covers and, just as important, what it explicitly does not.' },
-        { term: 'Out of scope', def: 'The written list of things the project will not do, to point to when they come up.' },
-        { term: 'Scope creep', def: 'The slow widening of a project through small extra requests, without extra time or money.' },
-        { term: 'Acceptance criteria', def: 'Who signs off, on which evidence, and when the result counts as done.' },
       ],
     },
     {
@@ -405,6 +488,656 @@ export default {
       ],
     },
     {
+      id: 'pm.intake.contracting',
+      title: 'Agreements with the sponsor',
+      pre: [
+        {
+          q: 'According to Peter Block, who is responsible for the success of a consulting assignment?',
+          options: ['Mainly the consultant, because he is paid', 'Mainly the client, because it is his organisation', 'Client and consultant, half each', 'The steering group'],
+          answer: 'Client and consultant, half each',
+          why: 'Block speaks of a fifty-fifty split: both sides have to bring something.',
+        },
+      ],
+      teach: [
+        'Contracting is more than signing the proposal. Peter Block (Flawless Consulting, first edition 1981) means by it: agreeing together what you will do, what each side brings and how you will work together. It covers the content and the relationship.\n\nIt happens in a conversation with the sponsor, not only on paper. You hold that contracting meeting at the start, but you keep coming back to it later.',
+        'The core is wants and offers. You say what you need from the client: “Two operators four hours a week, access to the stop data, and an hour every two weeks with you.” And what you offer: “A diagnosis in four weeks, and every Friday a half-page update.”\n\nThen you ask the sponsor the same: “What do you want from me? How do you want me to work with you?” So it becomes an agreement, not an order.',
+        'Block argues that responsibility is fifty-fifty: the client owns his organisation and the change, the consultant owns his part of the work. If a consultant takes everything on, nothing changes once he leaves.\n\nSay it out loud as well: “I can analyse and guide, but your people make the change. That’s why I’m asking for their time.” A sponsor who doesn’t want that is telling you something important about the project.',
+        'Discuss the awkward things up front too: what do we do if an agreement isn’t kept? Whom may I call if I get stuck? How do you want to hear bad news? That feels uncomfortable in week one, but in week six it is too late.\n\nIf circumstances change, recontracting is normal: making the agreements again. “We agreed on two operators; it has become zero. Let’s see what that means for the goal and the date.”',
+        'Where experts disagree: in large firms a partner handles the contract, and a junior “just does the work”. Block would say that every consultant contracts with his own contact, even within a bigger contract. A middle way: discuss your wants and offers with your own manager and with your day-to-day contact.\n\nA sharp question at the end of the contracting meeting: “What would make you regret this agreement three months from now?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a dairy plant you start a project to shorten changeover time on the filling line. The proposal says: “The client provides a core team.” In the first conversation the production manager says: “My people are fully booked, so you do the groundwork and they’ll look at it at the end.” You have eight weeks.',
+        ask: 'Which wants and offers do you bring, and what do you say about his suggestion?',
+        reveal: 'First name what is happening: “If I do the groundwork alone, you get a report on your changeovers written by someone who has never done one.” Then your wants, concretely: 2 operators × 4 hours a week × 8 weeks = 64 hours, plus the shift leader at three workshops.\n\nYour offer: “I’ll plan everything around changeovers that happen anyway, so no extra downtime, and a half-page update every Friday.” And ask: “What do you need from me to free up those hours?” If it truly can’t be done, recontract: smaller scope or a later start.',
+      },
+      said: 'What you hear in projects: “You’re the experts, so you tell us.” Sounds like trust, but often means: we’re not taking part.',
+      recall: [
+        {
+          q: 'What does Block mean by wants and offers?',
+          options: ['The price and the discount written into the proposal', 'What you need and what you offer, and the same from the client', 'What the users want and what the suppliers can offer them', 'The list of quick wins that the people on the floor put forward'],
+          answer: 'What you need and what you offer, and the same from the client',
+          why: 'Both sides say what they want and what they give; that makes it an agreement.',
+        },
+        {
+          q: 'You ask for 3 operators for 3 hours a week over 10 weeks, plus the shift leader at 4 workshops of 2 hours each. How many hours of the client’s people is that in total?',
+          number: 98,
+          tolerance: 1,
+          unit: 'hours',
+          why: '3 × 3 × 10 = 90 operator hours; the shift leader’s 4 × 2 hours come on top.',
+        },
+        {
+          q: 'When do you recontract?',
+          options: ['Only when the price has to go up, because that touches the contract', 'Never; an agreement is an agreement, even when it gets hard', 'At the end of the project, at the review', 'When circumstances change, such as agreed people not being available'],
+          answer: 'When circumstances change, such as agreed people not being available',
+          why: 'Then you make goal, date or scope fit what is really there.',
+        },
+        {
+          q: 'Why does fifty-fifty responsibility matter?',
+          options: ['Because a change made only by the consultant disappears when he leaves', 'Because it splits the costs fairly between the client and the firm', 'Because it is a required clause in every consulting contract', 'Because the client then has less to do during the project'],
+          answer: 'Because a change made only by the consultant disappears when he leaves',
+          why: 'The client owns the change; his people have to make it.',
+        },
+      ],
+      situation: {
+        scene: 'You have just started as a junior Lean consultant at a pump factory. Your first meeting with the sponsor, the operations director, lasts half an hour. He says: “Good to have you. I’m busy, so email me when it’s done.”',
+        ask: 'What do you discuss in that half hour?',
+        model: '“Thanks. I’ll keep it short and agree three things. What I need: half an hour every two weeks with you, and the team leads getting time. What I offer: five lines every Friday on progress and what’s stuck. And what do you want from me? How do you want to hear bad news?” Close with: “May I call you when something needs your decision?”',
+        rubric: [
+          'Brings concrete wants, including his time and that of his people',
+          'Offers something concrete in return that fits how busy he is',
+          'Asks for his wants and agrees how bad news travels',
+        ],
+        pushback: {
+          lines: [
+            '“Half an hour every two weeks? I hired you so I wouldn’t have to spend time on this.”',
+            '“The team leads are fully booked. Work with what you have.”',
+          ],
+          model: '“I understand, and I’ll be sparing with your time. The half hour is for decisions only you can take; without it things sit still and you pay me to wait. For the team leads: what if I ask for one hour a week, around their regular meeting? Then we check after four weeks whether it’s enough.”',
+          rubric: [
+            'Acknowledges how busy he is',
+            'Explains what his time gives him personally',
+            'Proposes a smaller, concrete ask with a review point',
+          ],
+        },
+      },
+      sayIt: 'Explain to a colleague in 60 seconds what contracting is according to Block and why you also state your own wants.',
+      terms: [
+        { term: 'Contracting', def: 'Agreeing together what you will do, what each side brings and how you work together; content and relationship.' },
+        { term: 'Wants and offers', def: 'What you need from the client and what you offer, and the same from his side.' },
+        { term: 'Fifty-fifty', def: 'Block: client and consultant are each half responsible for the success of the assignment.' },
+        { term: 'Recontracting', def: 'Making the agreements again when circumstances change.' },
+      ],
+    },
+    {
+      id: 'pm.intake.coalition',
+      title: 'Building a coalition',
+      pre: [
+        {
+          q: 'A project changes the shift roster arrangement in a Dutch plant of 200 people. The collective labour agreement doesn’t settle rosters. What does the law require?',
+          options: ['Nothing, rosters are up to the employer', 'The works council must consent', 'The trade union must sign', 'Every employee must agree personally'],
+          answer: 'The works council must consent',
+          why: 'The Dutch Works Councils Act gives the works council a consent right on working and rest time arrangements (art. 27), unless the collective agreement already settles the matter.',
+        },
+      ],
+      teach: [
+        'A sponsor alone is not enough for a change that touches several departments. John Kotter (Leading Change, 1996) makes forming a guiding coalition the second of his eight steps: a small group with enough position, expertise and credibility to carry the change.\n\nIn a plant that might be the plant manager, the maintenance manager, a respected shift leader and someone from planning. Together they cover power, know-how and the floor.',
+        'Look beyond the org chart. The informal network is who goes to whom for advice, who trusts whom and whose opinion the crew follows. Ask on the floor: “Who do you go to when something really doesn’t work?” The same two or three names keep coming back.\n\nBring those people in early. An operator with twenty years’ service who thinks along convinces his colleagues faster than any presentation from the board.',
+        'Dutch companies with 50 or more people must have a works council (elected staff representatives), and it often belongs in your coalition. The Works Councils Act (WOR) gives it a right of advice on, for example, a major change to the organisation (art. 25), and a right of consent on working and rest time rules (art. 27), unless the collective agreement settles them.\n\nAsk for advice while it can still substantially influence the decision (art. 25(2)). If not, the council can appeal to the Enterprise Chamber in Amsterdam (art. 26).',
+        'How do you go about it? Talk to everyone one-to-one first, before they sit at the table together: what is their interest, what is their worry? Decisions in a meeting are usually prepared in the corridors beforehand.\n\nThen set up the first joint moment, for example a gemba walk (going to look on the floor together) and a conversation about the numbers. Once everyone sees the same problem, agreeing on the approach gets much easier.',
+        'Where experts disagree: some find coalition building political fuss and want only the content to speak. Others say good content without support almost never lands. Kotter’s step model is also criticised as too linear; in practice you run the steps in parallel.\n\nA sharp question for the sponsor: “If you were away for three months, who would keep this going?” If he can’t name anyone, there is no coalition yet.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a food plant the packaging department has to go from three shifts to two, with longer shifts, to bundle changeovers. The plant manager is sponsor. The packaging manager has doubts, the works council knows nothing yet, and a shift leader with 25 years’ service says on the floor: “They’ve tried this before.” The plant manager wants the decision in the management team in three weeks.',
+        ask: 'Whom do you take into the coalition, in what order do you talk to them, and what do you say about the three-week timeline?',
+        reveal: 'Coalition: plant manager, packaging manager, the experienced shift leader and someone from planning. Talk to the packaging manager and the shift leader one-to-one first: what went wrong last time?\n\nThe roster change falls under working and rest times, so the works council must consent (WOR art. 27), unless the collective agreement already settles it; ask HR. Say to the plant manager: “Three weeks to a management decision can work, but as a proposed decision. Let’s brief the works council informally this week, so it thinks along instead of blocking afterwards.” A few extra weeks now prevents months of delay later.',
+      },
+      said: 'What you hear in projects: “The works council? We’ll inform them once it’s settled.” That is often exactly when the project stalls for months.',
+      recall: [
+        {
+          q: 'What is a guiding coalition for a change, according to Kotter?',
+          options: ['All employees who openly support the project, from floor to board', 'The project’s steering group, joined by the main supplier', 'A small group with enough position, expertise and credibility', 'The works council and the trade union, who represent the staff'],
+          answer: 'A small group with enough position, expertise and credibility',
+          why: 'Power, know-how and trust on the floor together; the sponsor alone is not enough.',
+        },
+        {
+          q: 'When must a Dutch employer ask the works council for advice on a major organisational change?',
+          options: ['While the advice can still substantially influence the decision', 'After the decision, so the council can explain it to the staff', 'Only if people will be made redundant because of the change', 'Only when the works council itself asks to be consulted'],
+          answer: 'While the advice can still substantially influence the decision',
+          why: 'That is WOR art. 25(2); asking afterwards is too late.',
+        },
+        {
+          q: 'How do you find the informal network on the floor?',
+          options: ['From the org chart and the official job descriptions', 'By asking who people go to when something doesn’t work', 'Through HR, who know the appraisals of every employee', 'By looking at who has worked there the longest'],
+          answer: 'By asking who people go to when something doesn’t work',
+          why: 'The same few names keep coming back; those are the people others follow.',
+        },
+        {
+          q: 'Why do you talk to the members of your coalition one-to-one first?',
+          options: ['To win them over separately before they meet in the group', 'Because group meetings are not allowed without the works council', 'To save meeting time in a busy period for everyone', 'To hear their interest and worry before they take a position together'],
+          answer: 'To hear their interest and worry before they take a position together',
+          why: 'In the group nobody says his real worry; one-to-one they do.',
+        },
+      ],
+      situation: {
+        scene: 'As a junior Lean consultant at a grid operator you are working on a new way of planning fitters: crews get fixed areas instead of driving all over the region. The director is enthusiastic. The regional team leads are split, and the fitters hear about it through the grapevine.',
+        ask: 'How do you build support over the next three weeks?',
+        model: 'Find out whom the fitters follow: ask a few fitters who they go to when the planning is wrong. Talk to the doubting team leads and those informal leaders one-to-one. Check with HR whether the change touches working hours or travel time, so the works council is involved in time. Then set up one joint moment: a day riding along together and looking at the travel time figures.',
+        rubric: [
+          'Finds the informal leaders and talks to doubters one-to-one',
+          'Checks whether the works council has a right of advice or consent and involves it in time',
+          'Organises a joint moment around facts or the floor',
+        ],
+        pushback: {
+          lines: [
+            '“The director has decided. Why would we go round talking to team leads?”',
+            '“If we bring in the works council now, it’ll take a year.”',
+          ],
+          model: '“The decision is the director’s, that stands. But the team leads and fitters have to do it tomorrow, and without them it only happens on paper. On the works council: if it hears afterwards that its rights were skipped, that is when it really takes long. Briefing it informally now costs a few weeks, not a year.”',
+          rubric: [
+            'Respects the director’s decision',
+            'Explains what support on the floor and the works council give the project',
+            'Weighs the time of involving early against the delay of later',
+          ],
+        },
+      },
+      sayIt: 'Explain to a sponsor in 60 seconds why you want to involve the works council and a few experienced people from the floor now.',
+      terms: [
+        { term: 'Guiding coalition', def: 'A small group with enough position, expertise and credibility to carry a change.' },
+        { term: 'Informal network', def: 'Who goes to whom for advice and whom others follow, apart from the org chart.' },
+        { term: 'Right of advice', def: 'The Dutch works council’s right to advise on, among other things, a major organisational change (WOR art. 25), in time.' },
+        { term: 'Right of consent', def: 'The Dutch works council’s right to consent to, among other things, working and rest time arrangements (WOR art. 27).' },
+      ],
+    },
+    {
+      id: 'pm.intake.done',
+      title: 'Defining done',
+      pre: [
+        {
+          q: 'Which of these is a usable project goal?',
+          options: ['Improve the planning process', 'Make the line more efficient', 'Cut the average connection lead time (weeks from request to working connection) for small business customers from 18 to 12 weeks by June', 'Implement a new planning tool'],
+          answer: 'Cut the average connection lead time (weeks from request to working connection) for small business customers from 18 to 12 weeks by June',
+          why: 'Only this one has a starting value, a target and a date that someone can check.',
+        },
+      ],
+      teach: [
+        'Write a one-sentence goal: from X to Y by when, measured how. “Reduce unplanned stops on line 3 from 14 to 8 hours a week by 1 April, measured in the MES stop log.” (MES: the manufacturing execution system, the software on the floor that logs every stop.)\n\nIf you can’t write that sentence, you don’t have a project yet, you have a wish. Write it with the client, in their words, and read it back to them.',
+        'Baseline first: the measured starting value you compare against later. Without it nobody can say you succeeded, and every result gets disputed.\n\nIf the data doesn’t exist, measuring for two weeks is your first deliverable (something you hand over that can be checked). Say it plainly: “I don’t know the current number yet, and honestly neither do you. Let’s measure before we promise anything.” Two weeks catches a normal weekly pattern; a seasonal business may need longer.',
+        'Scope is what the project covers. Write down in scope and out of scope. Out matters more: “Line 3 only, not lines 1 and 2. Process and planning, not a new ERP system (the company-wide software for orders, stock and finance). No changes to shift patterns.”\n\nList the out-of-scope items people are likely to raise. When they come up later, you point to the list instead of having the argument again.',
+        'Scope creep is the slow widening of a project, one reasonable request at a time: “while you’re at it, could you also look at line 2?” Each one sounds small; together they eat your weeks.\n\nDon’t just say no. Say: “Good idea. It’s out of scope now, so either we swap it for something, or the sponsor adds time.” A sharp question when someone adds work: “What do we drop to make room?”',
+        'Acceptance criteria: who signs off, on what evidence, and when. “The plant manager accepts when the average over four consecutive weeks is 8 hours or less.” Four weeks guards against one lucky week.\n\nAgree this at the start. By the end the mood in the room will be different and everyone will remember the promise differently. Experts argue about stretch targets; an ambitious number motivates some teams, but a target nobody believes gets quietly ignored.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A food plant asks you to “reduce waste”. You measure first: 3.2% of output is scrapped, about 2,400 kg a week out of 75,000 kg, mostly at start-up after changeovers (switching the line to another product). Goal sentence: “Reduce scrap on the two filling lines from 3.2% to 2.0% by the end of Q2 (April to June), measured in the weekly scrap report.”\n\nIn scope: start-up after changeovers, machine settings, work instructions. Out of scope: the packaging supplier and recipes. Acceptance: the production manager signs off on four consecutive weeks at 2.0% or lower.\n\nThat saves 900 kg a week.',
+      },
+      said: 'What you hear in projects: “Let’s not pin ourselves down on a number yet.” Sometimes that’s fair caution; often it’s a way to never be measured.',
+      recall: [
+        {
+          q: 'What makes the strongest goal sentence?',
+          options: ['A baseline, a target and a date, plus how it’s measured', 'An ambitious target that motivates the team', 'A list of the activities you will carry out', 'The solution the client asked for'],
+          answer: 'A baseline, a target and a date, plus how it’s measured',
+          why: 'From X to Y by when, measured how: anyone can check it.',
+        },
+        {
+          q: 'Why write down what is out of scope?',
+          options: ['To lower your fee', 'Because the contract requires it', 'So you can point to it when people try to widen the project', 'To keep stakeholders at a distance'],
+          answer: 'So you can point to it when people try to widen the project',
+          why: 'An agreed list ends the discussion faster than an argument.',
+        },
+        {
+          q: 'Scrap is 3.2% of a weekly output of 75,000 kg. The goal is 2.0% of the same weekly output. How many kg of scrap per week does reaching the goal save?',
+          number: 900,
+          tolerance: 10,
+          unit: 'kg',
+          why: '3.2% of 75,000 is 2,400 kg; 2.0% is 1,500 kg; the difference is 900 kg.',
+        },
+        {
+          q: 'There is no data on the current situation. What do you do?',
+          options: ['Use the client’s estimate as the baseline', 'Skip the baseline and focus on the target', 'Borrow a benchmark (a figure from another company) from another plant', 'Make measuring for a short period the first deliverable'],
+          answer: 'Make measuring for a short period the first deliverable',
+          why: 'A measured baseline is the only one nobody can dispute at the end.',
+        },
+      ],
+      situation: {
+        scene: 'You’re at a grid operator. The sponsor wants the project goal to be “better collaboration between planning and the field teams”, the crews who do the work on site.',
+        ask: 'How do you turn this into something measurable without losing the sponsor?',
+        model: '“I like that, and I want us to be able to show it worked. When collaboration is better, what would you see happen? Fewer jobs rescheduled on the day? Crews arriving with the right material?” Pick one with him, for example “Reduce same-day rescheduled jobs from 22% to 10% by the end of Q3 (September), from the planning system”, and keep collaboration as the reason why.',
+        rubric: [
+          'Keeps the sponsor’s intent and asks what he would observe',
+          'Turns it into from, to, by when, with a data source',
+          'Agrees who signs off and on what evidence',
+        ],
+        pushback: {
+          lines: [
+            '“You consultants always want a number. Collaboration isn’t a number. Everyone knows what I mean.”',
+            '“If we put a hard target in, the teams will feel judged. I don’t want that.”',
+          ],
+          model: '“Agreed, collaboration itself isn’t a number. But you’ll notice it somewhere: fewer jobs bounced back, fewer trips for nothing. If we pick one of those, we can show the board it worked. We measure the process, not the people. Shall I bring two options on Friday?”',
+          rubric: [
+            'Acknowledges that collaboration is not a number in itself',
+            'Holds to one observable measure of done',
+            'Proposes concrete options and a moment to choose',
+          ],
+        },
+      },
+      sayIt: 'Explain to a sponsor in 60 seconds why you want a measured baseline before you commit to a target.',
+      terms: [
+        { term: 'Baseline', def: 'The measured starting value that progress is compared against.' },
+        { term: 'Scope', def: 'What the project covers and, just as important, what it explicitly does not.' },
+        { term: 'Out of scope', def: 'The written list of things the project will not do, to point to when they come up.' },
+        { term: 'Scope creep', def: 'The slow widening of a project through small extra requests, without extra time or money.' },
+        { term: 'Acceptance criteria', def: 'Who signs off, on which evidence, and when the result counts as done.' },
+      ],
+    },
+    {
+      id: 'pm.intake.charter',
+      title: 'The one-page charter',
+      pre: [
+        {
+          q: 'What is the main purpose of a project charter?',
+          options: ['Covering the consultant against claims if the project goes wrong later', 'Giving an overview of all the risks the company runs this year', 'Fixing the department’s budget for the whole year, line by line', 'Setting down what the project delivers, within which limits, and who does what'],
+          answer: 'Setting down what the project delivers, within which limits, and who does what',
+          why: 'It is the agreement everyone can point back to.',
+        },
+      ],
+      teach: [
+        'The project charter is the document with which the sponsor officially starts the project. The PMBOK Guide of PMI (Project Management Institute) describes it as the document that formally authorises the project and gives the project manager the authority to use the organisation’s resources.\n\nKeep it to one page. A twenty-page document nobody reads; one page hangs on the wall and gets pulled out when there is a discussion.',
+        'A good layout: background (why now), goal (from X to Y by when), scope (in and out), deliverables (what you hand over, for example a baseline, a new way of working, a training), milestones, roles, and assumptions and risks.\n\nA milestone is a point in the plan when something must be done: “week 2: baseline ready”, “week 6: pilot on line 3 started”. Milestones make progress visible without planning every task.',
+        'In Lean many teams use an A3: one sheet of A3 paper that tells the whole story, from problem and current situation through causes to countermeasures and follow-up. The format comes from Toyota practice.\n\nA project charter and an A3 look alike. The difference: the charter fixes the agreement; the A3 grows with what you learn. Some Lean teams let an A3 do the job of the charter, as long as goal, scope and sponsor are on it.',
+        'An assumption is something you take as true in order to plan, without it being certain: “The stop data in the MES is reliable”, “Two operators are available four hours a week.” Write them down.\n\nIf an assumption turns out wrong, that is not a project failure but a reason to revisit the agreement. Without written assumptions it becomes an argument about who promised what.',
+        'Where experts disagree: in agile settings (working in short cycles of a few weeks, called sprints) some find a project charter too rigid; they work with a short vision document and adjust scope each sprint. Others say agile projects also need a clear goal and a sponsor.\n\nA common mistake: writing the charter without the process owner. A sharp test: have the process owner retell the charter in his own words. If he can’t, it is either unclear or not owned.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'At a metalworking company you write the charter for shorter changeover times on the press brakes (machines that bend sheet metal). Background: customers order smaller batches, so changeovers are more frequent. Goal: average changeover time from 45 to 25 minutes by 1 June, measured in the changeover log.\n\nScope: the four press brakes, not the welding department. Deliverables: baseline, standard changeover method, training of 12 operators. Milestones: week 2 baseline, week 5 pilot on press brake 1, week 10 all four.\n\nAssumption: the tooling supplier delivers quick-change parts within 4 weeks. Consultant: 6 weeks, 2 days a week, at €1,100 a day: €13,200.',
+      },
+      said: 'What you hear in projects: “A charter? We all know what we’re aiming for.” Until week five, when it turns out everyone meant something different.',
+      recall: [
+        {
+          q: 'What is a milestone?',
+          options: ['A point in the plan when something must be done', 'Every task in the plan, each with its own date', 'The end date of the whole project, set by the sponsor', 'A risk that has actually occurred in the project'],
+          answer: 'A point in the plan when something must be done',
+          why: 'Milestones make progress visible without planning every task.',
+        },
+        {
+          q: 'A consultant works 10 weeks, 1.5 days a week, at €1,050 a day. What does the consultant’s time cost?',
+          number: 15750,
+          tolerance: 50,
+          unit: '€',
+          why: '10 × 1.5 = 15 days; those 15 days times the day rate of €1,050.',
+        },
+        {
+          q: 'Why do you write assumptions into the charter?',
+          options: ['Because PRINCE2 requires assumptions in every project charter', 'So the consultant isn’t liable if the project goes wrong', 'So a wrong assumption leads to revisiting the deal, not to blame', 'To show the sponsor how uncertain the whole project really is'],
+          answer: 'So a wrong assumption leads to revisiting the deal, not to blame',
+          why: 'A written assumption turns a setback into a reason to revisit.',
+        },
+        {
+          q: 'What is a good test of whether a charter is owned?',
+          options: ['The sponsor has signed and dated it', 'It describes every task to the day', 'It sits in the client’s project management system', 'The process owner can retell it in his own words'],
+          answer: 'The process owner can retell it in his own words',
+          why: 'Whoever has to live with the change must understand and want the charter.',
+        },
+      ],
+      situation: {
+        scene: 'You are a junior Lean consultant at a grid operator. After the intake your manager asks you to draft a charter for shortening the time to restore faults in the medium-voltage network. The sponsor emails: “Keep it simple: the goal is faster restoration. We’ll see about the rest.”',
+        ask: 'What goes on that one page, and what do you still ask the sponsor?',
+        model: 'Goal as from X to Y: “Average restoration time of medium-voltage faults from 3.5 to 2.5 hours by end of Q4, measured in the fault system.” Scope: medium voltage only, not low voltage. Deliverables, milestones, roles and assumptions, such as “the 2025 fault data is complete”. Ask the sponsor: “Is 2.5 hours the right ambition, and who signs off?” Have the process owner read the draft before the sponsor gets it.',
+        rubric: [
+          'Makes the goal measurable with baseline, target, date and source',
+          'Puts scope, deliverables, milestones, roles and assumptions on it',
+          'Checks ambition and sign-off with the sponsor and has the process owner read along',
+        ],
+        pushback: {
+          lines: [
+            '“I asked for simple. This is another consultant document.”',
+            '“I’m not promising 2.5 hours to the board. What if we don’t make it?”',
+          ],
+          model: '“It’s one page, and simple is exactly the point: if someone asks in three months what we set out to do, we point to this. On the 2.5 hours: we can call it an ambition, with the assumption that the data is right. After the baseline in week 3 we set the final number together.”',
+          rubric: [
+            'Acknowledges his wish for simplicity',
+            'Explains what the charter gives him later',
+            'Offers a way out of the uncertainty through the baseline',
+          ],
+        },
+      },
+      sayIt: 'Explain to a sponsor in 60 seconds what a one-page charter contains and why it is worth his time.',
+      terms: [
+        { term: 'Project charter', def: 'The document with which the sponsor starts the project: background, goal, scope, deliverables, milestones, roles and assumptions.' },
+        { term: 'Deliverables', def: 'What the project concretely hands over and what can be checked, such as a baseline or a training.' },
+        { term: 'Milestone', def: 'A point in the plan when something must be done.' },
+        { term: 'A3', def: 'One sheet of A3 paper with the whole story of an improvement, from problem to follow-up; comes from Toyota practice.' },
+        { term: 'Assumption', def: 'Something you take as true in order to plan, without it being certain.' },
+      ],
+    },
+    {
+      id: 'pm.intake.sipoc',
+      title: 'Drawing boundaries with SIPOC',
+      pre: [
+        {
+          q: 'A team has been arguing for an hour about where “the order process” starts. What helps most?',
+          options: ['Mapping every process in the whole company in detail first', 'Letting the sponsor decide where it starts, without discussion', 'Parking the topic until the pilot shows where it starts', 'Agreeing start and end points, who feeds in and who gets the result'],
+          answer: 'Agreeing start and end points, who feeds in and who gets the result',
+          why: 'Without agreed boundaries everyone talks about a different process.',
+        },
+      ],
+      teach: [
+        'SIPOC is a one-page overview of a process: Suppliers, Inputs, Process (4 to 7 main steps), Outputs and Customers. It comes from the quality world and is widely used in Six Sigma (an improvement approach that tackles variation with statistics) and Lean.\n\nThe aim is not to draw the process in detail. The aim is to agree where the process starts and ends, and who belongs to it.',
+        'Start in the middle, with the main steps, and then set the process boundary: the first and last step that belong to the project. “From order received to order confirmation sent” is something else than “from quote to payment”.\n\nThen the edges. Who supplies what to the first step? What comes out at the end, and for whom? Suppliers and customers can be internal: planning is a customer of work preparation.',
+        'Each output has a customer requirement: what the customer needs from that output, preferably measurable. “Order confirmation within 24 hours, with a delivery date we meet.” Customer requirements show what “good” is, and so what the project must steer on.\n\nIn Six Sigma a critical customer requirement is called a CTQ (critical to quality). Ask the customer: what the department thinks the customer wants is often something else.',
+        'Many problems sit at a handover: where work passes from one department to another. That is where information gets lost, work waits in a queue, or nobody knows who owns it.\n\nA SIPOC shows those handovers at once. Mark them, and ask at each handover: who owns it, what goes with it, and how long does it sit there? Those are often your first measurement points.',
+        'Where experts disagree: some Lean consultants skip SIPOC and go straight to a value stream map, a detailed drawing of material and information flow with times. Others find SIPOC useful precisely to get a group to agree the boundaries in an hour.\n\nA common mistake is a SIPOC with twenty steps. A sharp question: “Which step falls just outside the project, and who is going to complain about it?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a grid operator the sponsor wants to improve “the connection process” for small business customers. In the first session one person names the application on the website as the start, another the moment work preparation gets a file. The end is “cable laid” for some, “meter in place and customer has power” for others. The fitters point out that they often drive out for nothing because the customer’s meter cupboard isn’t ready.',
+        ask: 'How do you set the process boundaries in the SIPOC, and which handover and customer requirement do you pull out?',
+        reveal: 'Choose the boundaries from the customer’s side: start at “complete application received”, end at “customer has power”. That is the lead time the customer experiences. Main steps: assess application, design, permit and material, execution, install meter.\n\nThe customer is also a supplier here: he has to get the meter cupboard ready. That handover, customer to fitter, is a known bottleneck. Customer requirement for the output: “power on the agreed date”. Measurement point: how often a fitter drives out for nothing because the meter cupboard isn’t ready.',
+      },
+      said: 'What you hear in projects: “That’s not our process, that belongs to sales.” Right at such a boundary is often where the problem sits.',
+      recall: [
+        {
+          q: 'What does the P in SIPOC stand for, and how many steps do you usually put in it?',
+          options: ['Planning, as many as needed', 'Process, 4 to 7 main steps', 'Performance, one number', 'Project, all tasks'],
+          answer: 'Process, 4 to 7 main steps',
+          why: 'SIPOC is an overview; the detailed drawing comes later.',
+        },
+        {
+          q: 'Where, in practice, do problems in a process often sit?',
+          options: ['In the first step of the process', 'With the end customer', 'At handovers between departments', 'In the departments’ IT systems'],
+          answer: 'At handovers between departments',
+          why: 'That is where information gets lost and work waits without an owner.',
+        },
+        {
+          q: 'What is a customer requirement in a SIPOC?',
+          options: ['What the customer needs from an output, preferably measurable', 'A complaint a customer has filed about the process', 'The price the customer pays for the output, after discounts', 'A demand that the sponsor places on the project team'],
+          answer: 'What the customer needs from an output, preferably measurable',
+          why: 'Customer requirements define what good is, and so what the project steers on.',
+        },
+        {
+          q: 'How do you best choose the process boundaries?',
+          options: ['As wide as possible, so that you miss nothing important', 'Exactly along the boundaries of the sponsor’s own department', 'Wherever data happens to be available already in the systems', 'From what the customer experiences, and what the project can influence'],
+          answer: 'From what the customer experiences, and what the project can influence',
+          why: 'Department boundaries often cut the problem right down the middle.',
+        },
+      ],
+      situation: {
+        scene: 'As a junior Lean consultant you facilitate a first session at a machine builder on “the quotation process”, which takes too long. At the table: sales, engineering, purchasing and planning. After half an hour sales accuses engineering of letting quotes sit, and engineering says sales passes on incomplete requests.',
+        ask: 'How do you use SIPOC to make the session useful again?',
+        model: 'Stop the argument kindly: “I’m hearing two sides of the same handover. Let’s first set out the process together.” Have the group stick 5 main steps on the wall, from “request in” to “quote sent”. Then ask at each handover: what has to go with it, who owns it? At the handover from sales to engineering, add a customer requirement: “request complete according to checklist”. That becomes the first measurement point.',
+        rubric: [
+          'Moves the discussion from blame to the process',
+          'Has the group set boundaries and main steps together',
+          'Turns the conflict into a handover with an owner and a customer requirement',
+        ],
+        pushback: {
+          lines: [
+            '“Are we going to stick post-its now? We know how our process works.”',
+            '“The problem is just engineering. We don’t need a diagram for that.”',
+          ],
+          model: '“Everyone knows his own part, but I just heard three versions of where it starts. Twenty minutes to set it out together, and then we’re talking about the same thing. And if it is engineering, we’ll see it at that handover in the numbers.”',
+          rubric: [
+            'Acknowledges their knowledge of their own part',
+            'Points to the different pictures as the reason',
+            'Promises that facts will answer the blame question, within a short time',
+          ],
+        },
+      },
+      sayIt: 'Explain to a process owner in 60 seconds what a SIPOC is and why you make one with the group in the first week.',
+      terms: [
+        { term: 'SIPOC', def: 'One-page process overview: Suppliers, Inputs, Process, Outputs, Customers.' },
+        { term: 'Process boundary', def: 'The first and last step that belong to the project.' },
+        { term: 'Customer requirement', def: 'What the customer needs from an output, preferably measurable.' },
+        { term: 'Handover', def: 'The moment work passes from one department or person to another.' },
+      ],
+    },
+    {
+      id: 'pm.intake.phasing',
+      title: 'Phasing and change control',
+      pre: [
+        {
+          q: 'Why do many consulting projects split the work into a diagnostic phase and an implementation phase?',
+          options: ['So the firm can send two invoices instead of one', 'Because Dutch law requires it for larger assignments', 'So the client decides on facts whether and how to continue', 'So the consultant can start later and plan his time'],
+          answer: 'So the client decides on facts whether and how to continue',
+          why: 'You only promise a result once you know where the problem sits.',
+        },
+      ],
+      teach: [
+        'Phasing is cutting the project into pieces, with a decision at the end of each piece. A common set-up for improvement projects: diagnosis, pilot, roll-out. PRINCE2, a widely used project method from the United Kingdom, calls this managing by stages.\n\nThe diagnostic phase often lasts two to six weeks. In it you map where the loss sits. Only then do you promise a concrete goal and an approach.',
+        'At the end of each phase comes a go/no-go decision: continue, adjust or stop. That is more than a checkpoint in a running project: it is a moment when the sponsor chooses again whether the money and time are worth it.\n\nGive three things with each decision: what we know, what the next step costs, and what it yields. So the sponsor decides on facts, not on enthusiasm.',
+        'Within a phase you work with tolerance: how much time or money may deviate before you must escalate. PRINCE2 calls this managing by exception: the steering group gives the project manager, for example, 10% room on budget. Within that room he adjusts himself; as soon as he forecasts going beyond it, he reports at once.\n\nThat brings calm: the sponsor doesn’t have to decide on every small deviation, and you know exactly when to call.',
+        'A change request is a recorded request to change scope, time or budget. Someone asks “line 2 as well?”: you write down what it is, what it costs in time and money, what it yields, and what it does to the rest.\n\nThe sponsor decides. So scope creep (the scope quietly growing, one small request at a time) becomes visible and a choice. Small and quick is fine: half a page, discussed in the weekly check.',
+        'Where experts disagree: strict phasing can become slow and bureaucratic, and agile supporters prefer short cycles with a ranked priority list. Others point out that the go/no-go moments are exactly what keeps a hopeless project from running on forever.\n\nA common mistake is a diagnosis that quietly slides into implementation, without a decision. A sharp question at the end of the diagnosis: “If we didn’t continue now, what would you miss?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'At a plastics processor a four-week diagnosis is running into the causes of high scrap on the injection moulding machines. Budget for this phase: €40,000, tolerance 10%. In week 3 the production manager asks whether you could “just” include the scrap in assembly; by your estimate that costs 5 extra consulting days at €1,000. You have now spent €34,000, with €8,000 of work still planned.',
+        ask: 'Does the request fit within the tolerance, and how do you handle it?',
+        reveal: 'The upper limit is €40,000 × 1.10 = €44,000. Planned without the request: €34,000 + €8,000 = €42,000, within tolerance. With the request: €42,000 + €5,000 = €47,000, above it.\n\nSo don’t do it quietly. Write a half-page change request: what it is, €5,000 and an extra week, what it yields, and that the go/no-go date moves. Put it to the sponsor. An alternative: take assembly along as a sub-question in the next phase.',
+      },
+      said: 'What you hear in projects: “While you’re at it…” The most expensive four words in any project.',
+      recall: [
+        {
+          q: 'What happens at a go/no-go decision at the end of a phase?',
+          options: ['The consultant sends the invoice for the finished phase', 'The team celebrates the milestone and carries on with the plan', 'The sponsor chooses again whether continuing is worth the money and time', 'The scope grows with what the phase uncovered'],
+          answer: 'The sponsor chooses again whether continuing is worth the money and time',
+          why: 'Based on what you know now: continue, adjust or stop.',
+        },
+        {
+          q: 'A phase has a budget of €50,000 with a budget tolerance of 10%. The current forecast is €52,000. By how much may the forecast still rise before the project manager must escalate?',
+          number: 3000,
+          tolerance: 50,
+          unit: '€',
+          why: '€50,000 × 1.10 = €55,000 as the upper limit; from that limit you take off the €52,000 forecast.',
+        },
+        {
+          q: 'What goes into a good change request?',
+          options: ['What changes, what it costs and yields, and what it does to the rest', 'The name of who asked, the date and the reason for the request', 'A rewritten ten-page charter with all the details worked out', 'The signatures of the works council and of the sponsor'],
+          answer: 'What changes, what it costs and yields, and what it does to the rest',
+          why: 'Then the sponsor can make a real choice.',
+        },
+        {
+          q: 'What is the risk when a diagnosis slides unnoticed into implementation?',
+          options: ['The diagnosis data gets too old to use in the next phase', 'Nobody consciously decides whether the next step is worth it', 'The works council has to advise on the whole project again', 'The consultant earns less because no new proposal follows'],
+          answer: 'Nobody consciously decides whether the next step is worth it',
+          why: 'The go/no-go moment exists precisely to take that decision consciously; without it the scope grows unnoticed.',
+        },
+      ],
+      situation: {
+        scene: 'As a junior Lean consultant you are in week 4 of a diagnosis at a grid operator on the backlog of connections. The diagnosis is nearly done. The sponsor says in the corridor: “Good work. Just carry on straight into the improvements, so we keep momentum. We’ll sort the proposal out later.”',
+        ask: 'What do you do?',
+        model: '“Great that you want to keep momentum, so do I. Let’s take an hour next week for the decision: what we found, what the next phase yields and costs, and which people we need. Then I start the week after. That way everyone knows what we’re saying yes to.” Prepare half a page with three options: large, small, or stop.',
+        rubric: [
+          'Values the wish to keep momentum',
+          'Holds on to a conscious go/no-go decision with cost and yield',
+          'Makes the decision light and quick, with options',
+        ],
+        pushback: {
+          lines: [
+            '“That decision is a formality. I just want you to carry on.”',
+            '“If we wait a week for a meeting, we lose the momentum on the floor.”',
+          ],
+          model: '“If it’s a formality, it costs us an hour. But the next phase asks for people from the team leads, and they want to know you’re behind it. On the floor I’ll carry on this week with the quick wins already in the diagnosis, so the momentum stays.”',
+          rubric: [
+            'Keeps the decision small in time',
+            'Explains what the decision means for others',
+            'Offers a way to keep the momentum',
+          ],
+        },
+      },
+      sayIt: 'Explain to a sponsor in 60 seconds why you want a separate go/no-go decision after the diagnosis.',
+      terms: [
+        { term: 'Phasing', def: 'Cutting the project into pieces, with a decision at the end of each piece.' },
+        { term: 'Diagnostic phase', def: 'The first phase, often two to six weeks, in which you find out where the loss sits before you promise a result.' },
+        { term: 'Go/no-go decision', def: 'The decision at the end of a phase: continue, adjust or stop.' },
+        { term: 'Tolerance', def: 'How much time or money may deviate before the project manager must escalate.' },
+        { term: 'Change request', def: 'A recorded request to change scope, time or budget, with its consequences, for a decision by the sponsor.' },
+      ],
+    },
+    {
+      id: 'pm.intake.value',
+      title: 'What it’s worth',
+      pre: [
+        {
+          q: 'A project costs €30,000 and yields €2,500 a month. What does that say about the project?',
+          options: ['It pays for itself in about a year', 'It is too expensive for a project of that size', 'It only yields something after about five years', 'You can’t say without the OEE'],
+          answer: 'It pays for itself in about a year',
+          why: '€30,000 divided by €2,500 a month is 12 months.',
+        },
+      ],
+      teach: [
+        'A business case is the sum that shows whether a project is worth it: what it costs, what it yields, and how certain that is. For a small improvement project that is often one table, not a report.\n\nAs a junior you don’t make it alone. But you need to understand the sum, because every sponsor asks: “What does it yield?” Preferably in euros.',
+        'Split the costs into two kinds. One-off costs you pay once: consultant, training, a new tool. On top of that come costs that stay, such as a licence per year or extra maintenance.\n\nDon’t forget your own people’s time. Two operators four hours a week for eight weeks is 64 hours; they don’t run those hours in production. Many business cases leave that out and look cheaper than they are.',
+        'Benefits are what the project yields, expressed in money where possible. Less scrap: kilos times the material price. Less downtime: hours times what an hour of production is worth. Less overtime: hours times the overtime rate.\n\nBe honest about the difference between real and paper benefits. Two hours less downtime a week only yields money if you can also sell those hours. Otherwise it is capacity, not euros.',
+        'The simplest measure is the payback period: one-off costs divided by the net benefits per month or per year (benefits minus the costs that stay). If a project costs €30,000 and yields €2,500 a month net, it has paid for itself after 12 months.\n\nMany companies use a rule of thumb, such as “under two years”, but that differs by company and sector. Ask the controller: “What payback period do you consider good?”',
+        'Where experts disagree: the payback period ignores what happens after payback and how certain the benefits are. Finance people therefore often also use net present value, which comes later. For a first conversation the payback period is clear.\n\nA common mistake: adding up benefits that overlap, such as less downtime and more output from the same hours. A sharp question: “On which line of the income statement will I see this?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'At a packaging plant a changeover project costs €45,000 one-off: consultant €30,000, quick-change tooling €10,000 and 100 operator hours at €50 = €5,000. The project cuts downtime by 6 hours a week. The plant can sell everything it makes, and an hour of production yields €400 contribution margin (revenue minus variable costs).\n\nBenefits: 6 × €400 = €2,400 a week; over 46 production weeks that is €110,400 a year. Payback period: €45,000 / €110,400 = 0.41 years, about 5 months.\n\nYou still ask the controller: can we really sell those extra hours? If not, it is capacity, not money.',
+      },
+      said: 'What you hear in projects: “That easily yields a hundred grand.” Then ask: “Show me the sum.”',
+      recall: [
+        {
+          q: 'A project costs €36,000 one-off. It yields €2,300 a month but adds a licence of €300 a month. What is the payback period in months?',
+          number: 18,
+          tolerance: 0.5,
+          unit: 'months',
+          why: '€2,300 − €300 = €2,000 net a month; the €36,000 divided by that net amount.',
+        },
+        {
+          q: 'When does less downtime really yield money?',
+          options: ['Always, because every stoppage costs money', 'When the extra capacity can also be sold', 'Only when the OEE then rises above 85%', 'When the sponsor books it as a saving'],
+          answer: 'When the extra capacity can also be sold',
+          why: 'Otherwise it is capacity, not euros.',
+        },
+        {
+          q: 'A project saves 4 hours of downtime a week. The plant can sell the extra output, and an hour of production yields €350 contribution margin. What are the benefits over 46 production weeks?',
+          number: 64400,
+          tolerance: 100,
+          unit: '€',
+          why: '4 × €350 = €1,400 a week; that €1,400 times the 46 weeks.',
+        },
+        {
+          q: 'Which costs are often forgotten in business cases?',
+          options: ['The consultant’s days', 'The new tooling', 'Your own people’s time', 'The yearly licences'],
+          answer: 'Your own people’s time',
+          why: 'Hours in workshops are hours they don’t run in production; that costs money too.',
+        },
+      ],
+      situation: {
+        scene: 'You are a junior Lean consultant at a sheet metal company. The production manager wants a project to halve changeover time on the laser cutters. The finance director says in the management team: “Nice, but what does it yield? I only see costs.” The production manager looks at you.',
+        ask: 'How do you handle that question?',
+        model: '“Fair question. A first sum: the lasers now spend about 10 hours a week on changeovers; halving that gives 5 hours of extra capacity. If you can sell those hours, and the order book says you can, that yields roughly this much a year at your hourly rate. Against that stand the one-off costs. May I go through the sum with the controller this week, so they are your numbers?”',
+        rubric: [
+          'Makes a first sum with costs and benefits in euros',
+          'Names the condition: capacity must be sellable',
+          'Proposes checking the sum together with finance',
+        ],
+        pushback: {
+          lines: [
+            '“Consultants always make the numbers look good. Why would I believe yours?”',
+            '“We don’t need that extra capacity. So it yields nothing.”',
+          ],
+          model: '“That’s why I want them to be your numbers: your hourly rate, your order book. If the capacity isn’t needed, you’re right that downtime alone yields no money. Then the value may lie in less overtime or smaller batches. Let’s see which line in your figures really moves.”',
+          rubric: [
+            'Acknowledges his scepticism and lets him supply the numbers',
+            'Admits that capacity without demand is not money',
+            'Looks together for a benefit that really shows in his figures',
+          ],
+        },
+      },
+      sayIt: 'Explain to a production manager in 60 seconds how you work out the payback period of an improvement project.',
+      terms: [
+        { term: 'Business case', def: 'The sum that shows whether a project is worth it: costs, benefits and how certain they are.' },
+        { term: 'One-off costs', def: 'Costs you incur once, such as consultant, training or tooling.' },
+        { term: 'Benefits', def: 'What the project yields, expressed in money where possible.' },
+        { term: 'Payback period', def: 'One-off costs divided by the net benefits per month or year: how long until the project pays for itself.' },
+      ],
+    },
+    {
+      id: 'pm.intake.proposal',
+      title: 'Writing the proposal',
+      pre: [
+        {
+          q: 'What does a strong proposal to a client start with?',
+          options: ['The team’s CVs and the firm’s references', 'The client’s situation and problem, in his words', 'The price and the payment terms', 'The firm’s method and its track record'],
+          answer: 'The client’s situation and problem, in his words',
+          why: 'The client only reads on if he recognises his own problem.',
+        },
+      ],
+      teach: [
+        'A proposal is the document in which you offer the client an approach, a result and a price. It follows the intake and often forms the basis of the assignment.\n\nA good proposal is short, often three to five pages. After the first page the client must know: they understand my problem, this is what they will do, this is what it yields, and this is what it costs.',
+        'A well-known structure for the opening is SCQ: situation, complication, question; your answer follows. Barbara Minto describes it in The Pyramid Principle. Situation: “You deliver 92% of orders on time.” Complication: “Customers demand 98%, and two large customers threaten to leave.” Question: “How do you reach 98% within a year?”\n\nUse the words the client used in the intake. Then he recognises his own story.',
+        'Next: the approach in phases, with what you deliver per phase; what you need from the client (people, data, time); team; plan; price; and assumptions. Make the approach concrete: “weeks 1 to 3: baseline and diagnosis on lines 2 and 3”, not “a thorough analysis”.\n\nOffer options where you can: a small and a large variant. Then the client’s question is no longer “yes or no?” but “which one?”',
+        'There are two common pricing forms. With a fixed price the client pays an agreed amount for an agreed result; the risk of overrun lies with the firm, which therefore often adds a margin. With time and materials the client pays for the hours worked.\n\nA fixed price gives the client certainty but needs a sharp scope. Time and materials is flexible, but the client carries the risk.',
+        'Where experts disagree: some advisers argue for value-based pricing, a price based on what the result is worth to the client, sometimes a share of the measured savings. Others find that hard to measure and a source of disputes.\n\nA common mistake: a proposal that is mostly about the firm. A sharp test: count how often “we” appears and how often the client’s name does. And read it to your sponsor before it is sent officially; surprises don’t belong in a proposal.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'After an intake at a dairy plant you write a proposal with your manager. SCQ: “The filling line runs 3 shifts (situation). With more small orders the line now changes over 6 times a day, and the extra volume for a new customer no longer fits (complication). How do you make room for that volume within 4 months without a fourth shift? (question)”\n\nApproach: phase 1 diagnosis (3 weeks), phase 2 pilot on changeover and cleaning (6 weeks). From the client: 2 operators and a shift leader. Two options: diagnosis only, or both phases.\n\nPrice: 20 consulting days at €1,000 with a 15% margin for a fixed price, so €23,000.',
+      },
+      said: 'What you hear in projects: “Just send a proposal and we’ll look at it.” Better to call first: a proposal nobody expects ends up at the bottom of the pile.',
+      recall: [
+        {
+          q: 'What does SCQ mean in the opening of a proposal?',
+          options: ['Scope, cost, quality', 'Sponsor, customer, quarter', 'Situation, complication, question', 'Summary, conclusion, follow-up'],
+          answer: 'Situation, complication, question',
+          why: 'That way the client recognises his own problem before you give the approach.',
+        },
+        {
+          q: 'With which pricing form does the firm carry the risk of overrun?',
+          options: ['Time and materials', 'An hourly rate', 'A fixed price', 'A prepaid block of hours'],
+          answer: 'A fixed price',
+          why: 'The client pays an agreed amount; overrun is for the firm.',
+        },
+        {
+          q: 'A proposal charges 24 consulting days at €950, with a 10% margin for a fixed price. What is the fixed price?',
+          number: 25080,
+          tolerance: 50,
+          unit: '€',
+          why: '24 × €950 = €22,800; that amount times 1.10 for the margin.',
+        },
+        {
+          q: 'Why do you preferably offer two options in a proposal?',
+          options: ['So the client chooses between options instead of saying yes or no', 'Because two options are always cheaper for the client', 'To make the proposal look more complete and professional', 'So you can more easily invoice extra work later'],
+          answer: 'So the client chooses between options instead of saying yes or no',
+          why: 'A choice between variants also fits different budgets and risks.',
+        },
+      ],
+      situation: {
+        scene: 'Your manager asks you, as a junior Lean consultant, to write the first draft of a proposal for a grid operator: shorten the lead time of business connections. In the intake the director said: “We’re judged on 18 weeks on average; the regulator and customers want 12.” Your manager wants a draft on Monday.',
+        ask: 'How do you set up the first page?',
+        model: 'SCQ in their words. Situation: business connections take 18 weeks on average. Complication: customers and regulator want 12, and the backlog is growing. Question: how do you reach 12 weeks within a year, with the people you have? Then in one paragraph the approach in two phases, what it yields, what we need from them, and two options with a price.',
+        rubric: [
+          'Opens with situation, complication and question in the client’s words',
+          'Gives approach, result and the client’s required input concretely',
+          'Offers options with a price',
+        ],
+        pushback: {
+          lines: [
+            '“Why start with their situation? They know it. Start with what we can do.”',
+            '“Two options? Then they pick the small one and we earn less.”',
+          ],
+          model: '“True, they know their situation. That’s exactly why: if they see their own words back, they know we listened, and they read on. On the options: if they pick the small one, we’re in, and the diagnosis shows what the next step yields. Without a choice, ‘no’ is an option too.”',
+          rubric: [
+            'Acknowledges the manager’s point',
+            'Explains what the opening and the options give the client and the firm',
+            'Holds on to the structure without pushing too hard',
+          ],
+        },
+      },
+      sayIt: 'Explain to a colleague in 60 seconds how you build a proposal, from SCQ to price.',
+      terms: [
+        { term: 'Proposal', def: 'The document in which you offer the client an approach, result and price.' },
+        { term: 'SCQ', def: 'Situation, complication, question: an opening that sets out the client’s problem in his words (Minto).' },
+        { term: 'Fixed price', def: 'The client pays an agreed amount for an agreed result; the firm carries the risk of overrun.' },
+        { term: 'Time and materials', def: 'The client pays for the hours actually worked; he carries the risk of overrun.' },
+      ],
+    },
+    {
       id: 'pm.intake.no',
       title: 'Saying no, or reshaping',
       pre: [
@@ -423,8 +1156,10 @@ export default {
         'If they still insist, put the conditions in writing and agree a checkpoint: a fixed moment to decide whether to continue, stop or rescope. “If the planners aren’t involved by week 4, we stop or rescope.”\n\nWhen you’re unsure whether to say no, involve your own manager before you commit. Saying no well often raises your credibility; clients remember who was honest with them. A sharp question to yourself: “Would I bet my own money that this works?”',
       ],
       example: {
-        kind: 'worked',
-        text: 'A machine builder asks you to “halve lead times (the weeks from order to delivery) across the whole plant in three months”. There is no time budgeted for their people, and the director will be away for half that period. Red flags: no sponsor present, no time, unrealistic scope.\n\nYou propose one product family (a group of similar products made the same way, here 35% of volume), eight weeks, a named deputy sponsor, and 4 hours a week from the planner and one team lead. Target: lead time for that family from 6 to 4 weeks. The director agrees, and the result becomes the case for the rest of the plant.',
+        kind: 'faded',
+        text: 'A machine builder asks you to “halve lead times (the weeks from order to delivery) across the whole plant in three months”. There is no time budgeted for their people, and the director will be away for half that period. One product family (a group of similar products made the same way) accounts for 35% of volume and now has a lead time of 6 weeks.',
+        ask: 'Which red flags do you see, and how do you reshape the project?',
+        reveal: 'Red flags: no sponsor present, no time from their people, unrealistic scope. Three flags: as it stands, it will probably fail.\n\nReshape instead of refusing: one product family, eight weeks, a named deputy sponsor, and 4 hours a week from the planner and one team lead. Target: lead time for that family from 6 to 4 weeks. If the director agrees, the result becomes the case for the rest of the plant.',
       },
       said: 'What you hear in projects: “Can you just put it in a report? Then we can move forward.”',
       recall: [
@@ -481,6 +1216,89 @@ export default {
         { term: 'Hidden agenda', def: 'A real reason for the project that differs from the one you are told.' },
         { term: 'Rescope', def: 'Reshape the project to a smaller or different scope that can actually succeed.' },
         { term: 'Checkpoint', def: 'An agreed moment to decide whether to continue, stop or rescope.' },
+      ],
+    },
+    {
+      id: 'pm.intake.sensitivity',
+      title: 'A business case that holds',
+      pre: [
+        {
+          q: 'A business case uses exactly one number for the benefits. What is the problem with that?',
+          options: ['Nothing, one number is the clearest for the board', 'It doesn’t show what happens if the benefits fall short', 'It makes too much work for the controller to check', 'The external auditor doesn’t allow a single number'],
+          answer: 'It doesn’t show what happens if the benefits fall short',
+          why: 'A decision depends on how sensitive the outcome is to setbacks.',
+        },
+      ],
+      teach: [
+        'A sensitivity analysis shows how the outcome changes if an assumption turns out differently. What if the benefits are 25% lower? What if the project starts two months later?\n\nPick the two or three assumptions that matter most and work them through. Often one assumption turns out decisive, for example whether the extra capacity can be sold. That is where your diagnosis should focus.',
+        'People systematically overestimate benefits and underestimate costs and time. Kahneman and Tversky called this the planning fallacy (1979); Bent Flyvbjerg showed with large datasets of projects that optimism bias is widespread and that most large projects overrun.\n\nHis remedy is reference class forecasting: take a reference class, a group of comparable projects, and look at how they really went. Adjust your numbers to that, instead of to your own best guess.',
+        'Finance people often calculate with net present value (NPV). A euro in three years is worth less than a euro now, because you can invest the euro now or because borrowing costs money. So you divide future benefits by (1 + r) to the power of the year.\n\nThe r is the discount rate: the minimum return the company expects. It differs by company; 8 to 10% is common, but ask the controller.',
+        'An example of the sum: investment €100,000, benefits €50,000 a year, three years, discount rate 8%. Year 1: 50,000 / 1.08 = €46,296. Year 2: 50,000 / 1.08² = €42,867. Year 3: €39,692. Together €128,855, minus the investment: NPV about €28,855.\n\nA positive NPV means the project yields more than the minimum return. Let the controller do the sums; you need to understand what the number says.',
+        'Where experts disagree: some find NPV false precision for small improvement projects, because the benefits themselves are uncertain; they use payback with a range. Others want every project compared the same way.\n\nAlways present a range: low, expected, high. A sharp question to ask yourself: “At what setback does this project become a bad idea, and how likely is that?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'An investment in quick-change systems in an injection moulding department costs €60,000. The production manager expects €20,000 of benefits a year, so a payback period of 3 years; the company’s limit is 3 years. Two earlier projects in the plant show that benefits came out about 25% lower than estimated. The finance director asks: “How certain is that 3 years?”',
+        ask: 'Work through the setback and say what you answer the finance director.',
+        reveal: 'With 25% lower benefits: €20,000 × 0.75 = €15,000 a year. Payback period: €60,000 / €15,000 = 4 years, above the limit.\n\nAnswer: “In the expected case 3 years, right on the limit. If the benefits fall short like on the last two projects, 4 years. So it depends mainly on those benefits. Proposal: first convert one machine for €15,000 and measure for three months. Then you know before you invest in the rest.” So an uncertain yes becomes a small, smart step.',
+      },
+      said: 'What you hear in projects: “This is a conservative estimate.” Then ask: “Compared with what?”',
+      recall: [
+        {
+          q: 'What does a sensitivity analysis show?',
+          options: ['How the outcome changes if an assumption turns out differently', 'How satisfied the stakeholders are with the approach', 'The exact yield of the project per year', 'Which department earns most from the project'],
+          answer: 'How the outcome changes if an assumption turns out differently',
+          why: 'That way you see which assumption the decision hangs on.',
+        },
+        {
+          q: 'An investment of €80,000 would yield €32,000 a year. If the benefits come out 20% lower, what is the payback period in years?',
+          number: 3.1,
+          tolerance: 0.1,
+          unit: 'years',
+          why: '€32,000 × 0.80 = €25,600 a year; the investment divided by those lower yearly benefits.',
+        },
+        {
+          q: 'Why do you divide future benefits by (1 + r) to the power of the year?',
+          options: ['To spread the investment evenly over the years', 'Because a euro later is worth less than a euro now', 'Because the tax authority requires it', 'To make the benefits in later years look bigger'],
+          answer: 'Because a euro later is worth less than a euro now',
+          why: 'Money now can be invested; that is why money later counts for less.',
+        },
+        {
+          q: 'What is the best remedy against optimism bias in a business case?',
+          options: ['Choosing a higher discount rate to be on the safe side', 'Following the sponsor’s estimate, since he knows the process best', 'Choosing a longer horizon so that the benefits add up', 'Checking how comparable projects really went, and adjusting to that'],
+          answer: 'Checking how comparable projects really went, and adjusting to that',
+          why: 'The real outcomes of comparable projects correct your own optimism.',
+        },
+      ],
+      situation: {
+        scene: 'As a junior Lean consultant you have built a business case with your manager for a grid operator: a new planning method should give 8% more jobs per fitter per week. The sponsor wants to present it to the board as a “certain saving of €1.2 million a year”.',
+        ask: 'What do you advise about that presentation?',
+        model: '“€1.2 million is our expected case, and you can show it. But it depends mainly on that 8%. At 4% it’s about half. I’d show a range: low, expected, high, with what it depends on. And a pilot in one region to test the 8%. Then you stand stronger when someone digs in.”',
+        rubric: [
+          'Names the decisive assumption',
+          'Proposes a range instead of one certain number',
+          'Offers a way to reduce the uncertainty, such as a pilot',
+        ],
+        pushback: {
+          lines: [
+            '“A range sounds uncertain. The board wants a number.”',
+            '“If I say it might be half, I won’t get the budget.”',
+          ],
+          model: '“You do give them a number: €1.2 million expected. The range shows you know what it depends on, and that makes you more credible when the finance director digs in. And with the pilot you first ask for a smaller budget, with a clear decision point.”',
+          rubric: [
+            'Acknowledges that the board wants a number',
+            'Shows how the range strengthens his credibility',
+            'Offers a smaller first step with a decision point',
+          ],
+        },
+      },
+      sayIt: 'Explain to a sponsor in 60 seconds why you present a business case with a range instead of one number.',
+      terms: [
+        { term: 'Sensitivity analysis', def: 'Working out how the outcome changes if an assumption turns out differently.' },
+        { term: 'Optimism bias', def: 'The tendency to estimate benefits too high and costs and time too low.' },
+        { term: 'Reference class', def: 'A group of comparable past projects whose real outcomes you use to correct your own estimate (Flyvbjerg).' },
+        { term: 'Net present value', def: 'All future benefits and costs converted to money of today, minus the investment.' },
+        { term: 'Discount rate', def: 'The minimum return used to convert future euros to today; differs by company.' },
       ],
     },
   ],
