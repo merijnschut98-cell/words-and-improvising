@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'Een klant leest je offerte (proposal: het stuk waarin je je werk en je prijs aanbiedt) van acht pagina’s. Welk deel bepaalt het meest of je hem wint?',
-          options: ['Je aanpak, je modellen en de fases van het werk', 'Je cv, referenties en vergelijkbare projecten', 'De eerste pagina: hun probleem, in hun eigen getallen', 'De prijstabel en de betalingsvoorwaarden achterin'],
-          answer: 'De eerste pagina: hun probleem, in hun eigen getallen',
+          options: ['Je aanpak, je modellen en de fases', 'Je cv, referenties en vergelijkbare projecten', 'Pagina één: hun probleem, in hun eigen getallen', 'De prijstabel en de betaaltermijnen achterin'],
+          answer: 'Pagina één: hun probleem, in hun eigen getallen',
           why: 'Niemand koopt een methode. Ze kopen hun eigen probleem opgelost, en op pagina één beslissen ze of je het begrepen hebt.',
         },
       ],
@@ -41,8 +41,8 @@ export default {
         },
         {
           q: 'Waarom zet je in de offerte wat je van de klant nodig hebt?',
-          options: ['Om je juridisch in te dekken als het project misgaat', 'Zodat de prijs voor de klant lager lijkt dan hij is', 'Om de klant te laten zien dat je goed georganiseerd bent', 'De klantkant laat projecten vaak uitlopen, dus het is gedeeld'],
-          answer: 'De klantkant laat projecten vaak uitlopen, dus het is gedeeld',
+          options: ['Om je juridisch in te dekken als het project misgaat', 'Zodat de prijs voor de klant lager lijkt dan hij is', 'Om de klant te laten zien dat je goed georganiseerd bent', 'Veel uitloop begint aan de kant van de klant'],
+          answer: 'Veel uitloop begint aan de kant van de klant',
           why: 'Benoemde afspraken worden ingepland; onbenoemde worden in maand twee het excuus.',
         },
         {
@@ -89,8 +89,8 @@ export default {
       pre: [
         {
           q: 'Een klant vraagt 10% korting op je dagtarief van € 1.200, en je zegt meteen ja. Wat zegt dat meestal?',
-          options: ['Dat er lucht in je prijs zat, dus de volgende wordt betwist', 'Dat je flexibel bent en makkelijk zaken doet', 'Niet veel; kleine kortingen zijn normaal in deze markt', 'Dat je de relatie belangrijker vindt dan het geld'],
-          answer: 'Dat er lucht in je prijs zat, dus de volgende wordt betwist',
+          options: ['Je prijs had lucht, dus de volgende wordt betwist', 'Dat je flexibel bent en makkelijk zaken doet', 'Niet veel; kleine kortingen zijn normaal in deze markt', 'Dat je de relatie belangrijker vindt dan het geld'],
+          answer: 'Je prijs had lucht, dus de volgende wordt betwist',
           why: 'Korting voor niks leert de klant dat je prijs een openingsbod is.',
         },
       ],
@@ -117,14 +117,14 @@ export default {
         },
         {
           q: 'Wanneer past een waardegebaseerde prijs goed?',
-          options: ['Als de scope nog onduidelijk is en waarschijnlijk verandert', 'Als je zelf geen enkel risico wilt dragen', 'Als de klant klein is en een krap budget heeft', 'Als de waarde meetbaar is en jij er genoeg invloed op hebt'],
+          options: ['Als de scope nog vaag is en waarschijnlijk verandert', 'Als je zelf geen enkel risico wilt dragen', 'Als de klant klein is en een krap budget heeft', 'Als de waarde meetbaar is en jij er genoeg invloed op hebt'],
           answer: 'Als de waarde meetbaar is en jij er genoeg invloed op hebt',
           why: 'Kun je de waarde niet meten of beïnvloeden, dan wordt een waardefee een gok voor beide kanten.',
         },
         {
           q: 'Halverwege vraagt de klant om “nog één analyse” buiten de scope. Wat is de beste reactie?',
-          options: ['Gratis doen: “Natuurlijk, dat passen we wel ergens in, dan ben je tevreden.”', '“Dat valt buiten wat we afspraken; zo’n drie dagen. Als meerwerk, of ruilen?”', 'Weigeren: “Scope is scope. We spraken de lijst af, en dit staat er niet op.”', 'Het stilletjes doen en de dagen zonder iets te zeggen op de eindfactuur zetten'],
-          answer: '“Dat valt buiten wat we afspraken; zo’n drie dagen. Als meerwerk, of ruilen?”',
+          options: ['Gratis doen: “Natuurlijk, dat passen we wel ergens in, dan ben je tevreden.”', '“Dat valt buiten de scope; zo’n drie dagen. Meerwerk, of ruilen?”', 'Weigeren: “Scope is scope. We spraken de lijst af, en dit staat er niet op.”', 'Het stilletjes doen en de dagen zonder iets te zeggen op de eindfactuur zetten'],
+          answer: '“Dat valt buiten de scope; zo’n drie dagen. Meerwerk, of ruilen?”',
           why: 'Je zegt ja tegen de klant, noemt de kosten en laat hem kiezen.',
         },
         {
@@ -178,8 +178,8 @@ export default {
         },
       ],
       teach: [
-        'Bij prijzen op waarde (value pricing) bepaalt wat het resultaat waard is de fee, niet het aantal dagen. De bekendste voorstander, Alan Weiss (Value-Based Fees, 2002, derde druk 2021), geeft een vuistregel: de fee moet de klant in het eerste jaar minstens tien keer terugverdienen. Dat is het rendement op investering (ROI): de jaarlijkse waarde gedeeld door de fee.\n\nEen verandering van € 900k per jaar draagt dan een fee tot € 90k. Het is zijn richtlijn, geen marktnorm.',
-        'Het begint met het waardegesprek, vóór elke prijs: wat zijn de doelen, hoe meten we of het gelukt is, en wat is dat je waard? “Als de afzeggingen van 14% naar 9% gaan, wat betekent dat in ploegdagen en euro’s?”\n\nGebruik een voorzichtige schatting, afgestemd met de controller, degene bij financiën die de cijfers bewaakt. Bied dan twee of drie opties op verschillende waardeniveaus, zoals in Een offerte die wint.',
+        'Bij prijzen op waarde (value pricing) bepaalt wat het resultaat waard is de fee, niet het aantal dagen. De bekendste voorstander, Alan Weiss (Value-Based Fees, 2002, derde druk 2021), geeft een vuistregel: de klant moet de fee minstens tien keer terugverdienen. Dat is het rendement op investering (return on investment, ROI): wat hij eraan overhoudt, meestal een voorzichtige schatting van de baten in één jaar, gedeeld door de fee.\n\nEen verandering van € 900k per jaar rechtvaardigt dan een fee tot € 90k. Het is zijn richtlijn, geen marktnorm.',
+        'Het begint met het waardegesprek (value conversation), vóór elke prijs: wat zijn de doelen, hoe meten we of het gelukt is, en wat is dat je waard? “Als de afzeggingen van 14% naar 9% gaan, wat betekent dat in ploegdagen en euro’s?”\n\nGebruik een voorzichtige schatting, afgestemd met de controller, degene bij financiën die de cijfers bewaakt. Bied dan twee of drie opties op verschillende waardeniveaus, zoals in Een offerte die wint.',
         'Varianten delen het risico. Bij een succesfee hangt een deel van de fee af van het gemeten resultaat, bijvoorbeeld € 20k vast plus € 10k als de uitval drie maanden achter elkaar onder een afgesproken niveau blijft. Een hybride fee is die mix van vast en variabel.\n\nAlle varianten vragen een nulmeting, een meetperiode en één persoon die meet. Hoe je je eigen effect scheidt van de rest, staat in Afsluiten (Je eigen effect scheiden).',
         'De critici hebben een punt. Toerekening (attribution), laten zien welk deel van het resultaat van jou kwam, is lastig: een nieuwe machine, een vraagdip of een tweede leverancier verandert hetzelfde getal. Het gedoe komt dan aan het eind, juist als de relatie op zijn best zou moeten zijn.\n\nDe baten komen vaak pas na het contract. Inkoop vergelijkt dagtarieven. En een grote succesfee zet je onafhankelijkheid onder druk: je inkomen hangt af van een getal dat je zelf helpt meten.',
         'In de praktijk werkt prijzen op waarde het best als het resultaat meetbaar is, de weg van jouw werk naar het resultaat kort is, en de klant je al vertrouwt. Veel zelfstandigen kiezen een hybride: een vaste fee voor het werk dat jij in de hand hebt, een bescheiden bonus voor het resultaat dat je deelt.\n\nBeloof geen waardefee die je niet met data kunt onderbouwen. Een scherpe vraag in het waardegesprek: “Hoe weten we over zes maanden allebei dat dit het waard was?”',
@@ -188,27 +188,27 @@ export default {
         kind: 'faded',
         text: 'Een zuivelfabriek verliest folie en product op de bekervullijn, de lijn die yoghurtbekers vult en sluit: zo’n € 600k per jaar aan verspilling. Het doel is die te halveren, dus ongeveer € 300k per jaar.\n\nDe operationeel directeur stelt voor: “No cure, no pay. Je krijgt 20% van wat we in twee jaar besparen.” In dezelfde maanden stapt inkoop over op een nieuwe folieleverancier, en in de zomer zijn de volumes altijd hoger.',
         ask: 'Hoe reageer je, en wat stel je voor?',
-        reveal: 'Eerst de getallen: 20% × € 300k × 2 jaar is tot € 120k als het volledig lukt, en niks als het niet lukt. Weiss’ 10 op 1 over de waarde van het eerste jaar wijst op zo’n € 30k.\n\nDan de problemen: de folieleverancier en de zomervolumes veranderen hetzelfde verspillingscijfer, dus over de toerekening ontstaat discussie; en met 20% van de besparing op het spel is jouw eigen analyse van die besparing niet meer neutraal.\n\nStel een hybride voor: € 24k vast voor de diagnose en de veranderingen die jij in de hand hebt, plus € 12k als de verspilling per duizend bekers drie maanden onder een afgesproken niveau blijft, gecorrigeerd voor volume en gemeten door de controller.',
+        reveal: 'Eerst de getallen: 20% × € 300k × 2 jaar is tot € 120k als het volledig lukt, en niks als het niet lukt. Weiss’ 10 op 1 over de waarde van één jaar zet de fee op hooguit zo’n € 30k.\n\nDan de problemen: de folieleverancier en de zomervolumes veranderen hetzelfde verspillingscijfer, dus over de toerekening ontstaat discussie; en met 20% van de besparing op het spel is jouw eigen analyse van die besparing niet meer neutraal.\n\nStel een hybride voor: € 20k vast voor de diagnose en de veranderingen die jij in de hand hebt, plus € 10k als de verspilling per duizend bekers drie maanden onder een afgesproken niveau blijft, gecorrigeerd voor volume en gemeten door de controller. Samen hooguit € 30k, binnen Weiss’ 10 op 1.',
       },
       said: 'Wat je hoort in projecten: “Als je zo zeker bent dat het werkt, waarom neem je dan geen deel van de besparing?”',
       recall: [
         {
-          q: 'Een verandering is de klant € 450.000 per jaar waard. Met Weiss’ vuistregel van minstens tien keer terugverdienen in het eerste jaar: wat is de hoogste fee die je vraagt, in duizenden euro’s?',
+          q: 'De klant schat een verandering op € 600.000 per jaar. Met de controller spreek je af daar maar 75% van te tellen, als voorzichtige schatting. Met Weiss’ vuistregel van minstens tien keer terugverdienen op de waarde van één jaar: wat is de hoogste fee die je vraagt, in duizenden euro’s?',
           number: 45,
           tolerance: 0.5,
           unit: 'k€',
-          hint: 'Deel de jaarlijkse waarde door wat de klant per euro fee terug moet krijgen.',
-          why: '€ 450.000 / 10 = € 45.000, dus hooguit € 45k.',
+          hint: 'Neem eerst het voorzichtige deel van de schatting, en deel dat door wat de klant per euro fee terug moet krijgen.',
+          why: '75% × € 600.000 = € 450.000 per jaar; € 450.000 / 10 = € 45.000, dus hooguit € 45k.',
         },
         {
           q: 'Wat is de belangrijkste kritiek op prijzen op waarde bij operationeel werk?',
-          options: ['Het levert altijd minder op dan een vast dagtarief', 'Klanten weigeren met adviseurs over waarde te praten', 'Het is niet toegestaan volgens de Nederlandse inkoopregels', 'Lastig te bewijzen welk deel van het resultaat van jou is'],
+          options: ['Het levert altijd minder op dan een vast dagtarief', 'Klanten weigeren met adviseurs over waarde te praten', 'Het mag niet volgens de Nederlandse inkoopregels', 'Lastig te bewijzen welk deel van het resultaat van jou is'],
           answer: 'Lastig te bewijzen welk deel van het resultaat van jou is',
           why: 'Andere veranderingen bewegen hetzelfde getal, dus de fee wordt een discussie over toerekening.',
         },
         {
           q: 'Waarom kan een grote succesfee je onafhankelijkheid onder druk zetten?',
-          options: ['Je inkomen hangt dan af van een getal dat je zelf helpt meten', 'Succesfees zijn in Nederland verboden voor organisatieadviseurs', 'De klant betaalt dan meer dan het werk eigenlijk waard is', 'De offerte wordt er te lang en te ingewikkeld van voor inkoop'],
+          options: ['Je inkomen hangt dan af van een getal dat je zelf helpt meten', 'Succesfees zijn verboden voor organisatieadviseurs', 'De klant betaalt dan meer dan het werk eigenlijk waard is', 'De offerte wordt er te lang van voor inkoop'],
           answer: 'Je inkomen hangt dan af van een getal dat je zelf helpt meten',
           why: 'Als je verdient aan een hoger besparingscijfer, is je analyse van dat cijfer niet meer neutraal.',
         },
@@ -262,11 +262,11 @@ export default {
         },
       ],
       teach: [
-        'Een vaste prijsofferte (fixed bid), de prijs die je biedt voor een afgesproken scope, heeft drie lagen: de basisschatting, dagen maal tarief; een risicoreservering voor wat mis kan gaan; en voorwaarden die het risico leggen bij wie het het best kan dragen.\n\nDe basisschatting rust op bandbreedtes en driepuntsschattingen uit Plannen (Eerlijk schatten). Deze les gaat over de twee lagen daarboven.',
-        'Prijs de risico’s één voor één in plaats van met een vaste opslag. Schat per risico de kans en de extra dagen. De verwachte dagen zijn kans maal extra dagen: 40% kans op 10 extra dagen door rommelige data is 4 verwachte dagen.\n\nTel ze op voor de risicoreservering. Plannen (Risico’s in geld en reserves) noemt dit de verwachte geldwaarde (expected monetary value). Bij een helder klusje is het misschien 5%, bij een rommelig project 30%.',
-        'Sommige risico’s kun je beter verplaatsen dan prijzen. Schrijf ze op als aanname: “data beschikbaar in week 1”; klopt dat niet, dan volgt meerwerk.\n\nOf kies een contractvorm die het risico deelt: nacalculatie met plafond, dus uren tegen tarief tot een maximum waarboven je stopt of opnieuw afspreekt; een vaste prijs per fase; of een plafond waarboven de klant de helft van je tarief betaalt.',
-        'Dan de voorwaarden. Een betaalschema, deels vooraf en deels per mijlpaal, beschermt een eenmanszaak tegen maanden onbetaald werk. In Nederland is de wettelijke betaaltermijn tussen bedrijven 30 dagen als je niets afspreekt, en een groot bedrijf moet een kleine leverancier, zoals een zzp’er, binnen 30 dagen betalen; een langere afgesproken termijn is nietig.\n\nVoeg een annuleringsregeling en een aansprakelijkheidsbeperking toe, uit Terugtreden, en de beroepscodes.',
-        'Bepaal vóór het prijsgesprek je ondergrens: de laagste prijs die je accepteert; daaronder zeg je nee. Die volgt uit je alternatieven, zoals in Onderhandelen en voet bij stuk houden (Jouw alternatief en dat van hen).\n\nWaar mensen verschillen: de een laat de risicoreservering open zien, om te bespreken wie welk risico draagt; de ander houdt hem in de prijs, omdat een zichtbare regel uitnodigt tot schrappen.\n\nEen scherpe vraag: “Welk risico in deze offerte geef ik liever terug aan de klant?”',
+        'Een vaste prijsofferte (fixed bid), de prijs die je biedt voor een afgesproken scope, heeft drie lagen: de basisschatting, dagen maal tarief; een risicoreservering (risk allowance) voor wat mis kan gaan; en voorwaarden die het risico leggen bij wie het het best kan dragen.\n\nDe basisschatting rust op bandbreedtes en driepuntsschattingen uit Plannen (Eerlijk schatten). Deze les gaat over de twee lagen daarboven.',
+        'Prijs de risico’s één voor één in plaats van met een vaste opslag. Schat per risico de kans en de extra dagen. De verwachte dagen (expected days) zijn kans maal extra dagen: 40% kans op 10 extra dagen door rommelige data is 4 verwachte dagen.\n\nTel ze op voor de risicoreservering. Plannen (Risico’s in geld en reserves) noemt dit de verwachte geldwaarde (expected monetary value). Bij een helder klusje is het misschien 5%, bij een rommelig project 30%.',
+        'Sommige risico’s kun je beter verplaatsen dan prijzen. Schrijf ze op als aanname: “data beschikbaar in week 1”; klopt dat niet, dan volgt meerwerk.\n\nOf kies een contractvorm die het risico deelt: nacalculatie met plafond (not-to-exceed), dus gewerkte dagen tegen tarief tot een maximum waarboven je stopt of opnieuw afspreekt; een vaste prijs per fase; of gedeelde uitloop: boven een afgesproken bedrag betaalt de klant de helft van je tarief.',
+        'Dan de voorwaarden. Een betaalschema (payment schedule), deels vooraf en deels per mijlpaal, beschermt een eenmanszaak tegen maanden onbetaald werk. In Nederland is de wettelijke betaaltermijn tussen bedrijven 30 dagen als je niets afspreekt (artikel 6:119a BW). Sinds 1 juli 2022 moet een groot bedrijf een kleine leverancier, zoals een zzp’er, binnen 30 dagen betalen; een langere afgesproken termijn is nietig.\n\nVoeg een annuleringsregeling en een aansprakelijkheidsbeperking toe, uit Terugtreden, en de beroepscodes.',
+        'Bepaal vóór het prijsgesprek je ondergrens (walk-away price): de laagste prijs die je accepteert; daaronder zeg je nee. Die volgt uit je alternatieven, zoals in Onderhandelen en voet bij stuk houden (Jouw alternatief en dat van hen).\n\nWaar mensen verschillen: de een laat de risicoreservering open zien, om te bespreken wie welk risico draagt; de ander houdt hem in de prijs, omdat een zichtbare regel uitnodigt tot schrappen.\n\nEen scherpe vraag: “Welk risico in deze offerte geef ik liever terug aan de klant?”',
       ],
       example: {
         kind: 'faded',
@@ -277,23 +277,23 @@ export default {
       said: 'Wat je hoort in projecten: “Je prijs ligt hoger dan de andere offerte. Kun je dat risicostuk eruit halen?”',
       recall: [
         {
-          q: 'Basisschatting 30 dagen. Risico A: 50% kans op 6 extra dagen. Risico B: 20% kans op 10 extra dagen. Hoe groot is de risicoreservering, in verwachte dagen?',
-          number: 5,
-          tolerance: 0.1,
-          unit: 'dagen',
-          hint: 'Vermenigvuldig per risico de kans met de extra dagen, en tel de uitkomsten op.',
-          why: '0,5 × 6 = 3 en 0,2 × 10 = 2; 3 + 2 = 5 verwachte dagen.',
+          q: 'Basisschatting 30 dagen à € 1.200 per dag. Risico A: 50% kans op 6 extra dagen. Risico B: 20% kans op 10 extra dagen. Wat is je vaste prijs, basis plus risicoreservering, in euro’s?',
+          number: 42000,
+          tolerance: 1,
+          unit: '€',
+          hint: 'Tel per risico de kans maal de extra dagen op bij de basisdagen, en vermenigvuldig met het dagtarief.',
+          why: '0,5 × 6 = 3 en 0,2 × 10 = 2, dus 5 verwachte dagen; (30 + 5) × € 1.200 = € 42.000.',
         },
         {
           q: 'Wat doet nacalculatie met plafond?',
-          options: ['Het legt de fee vast, hoe de scope ook uitpakt', 'De adviseur mag extra dagen tegen een lager tarief rekenen', 'Je rekent de gewerkte dagen, tot een afgesproken maximum', 'De hele fee hangt aan de gemeten besparing van de klant'],
+          options: ['Het legt de fee vast, hoe de scope ook uitpakt', 'Extra dagen gaan tegen een lager tarief', 'Je rekent de gewerkte dagen, tot een afgesproken maximum', 'De hele fee hangt aan de gemeten besparing van de klant'],
           answer: 'Je rekent de gewerkte dagen, tot een afgesproken maximum',
           why: 'De klant betaalt de echte inzet maar kent het plafond; daarboven stop je of spreek je opnieuw af.',
         },
         {
           q: 'Waarom vraagt een eenmanszaak om betaling per mijlpaal in plaats van aan het eind?',
-          options: ['De Nederlandse wet verbiedt alleen aan het eind factureren', 'Maanden onbetaald werk knijpen je kas af en leggen het risico bij jou', 'Klanten willen liever meer kleine facturen, dat spreidt hun budget', 'Dan kun je halverwege het project de prijs verhogen'],
-          answer: 'Maanden onbetaald werk knijpen je kas af en leggen het risico bij jou',
+          options: ['De Nederlandse wet verbiedt alleen aan het eind factureren', 'Maanden onbetaald werk knijpen je kas af; jij draagt het risico', 'Klanten willen liever meer kleine facturen, dat spreidt hun budget', 'Dan kun je halverwege het project de prijs verhogen'],
+          answer: 'Maanden onbetaald werk knijpen je kas af; jij draagt het risico',
           why: 'Betalen per mijlpaal spreidt het risico en houdt je kas gezond.',
         },
         {
@@ -361,14 +361,14 @@ export default {
       recall: [
         {
           q: 'Wat doet zelfgerichtheid in de vertrouwensformule?',
-          options: ['Het telt op bij geloofwaardigheid, dus een zelfverzekerde adviseur scoort hoger', 'Het deelt de andere drie, dus veel zelfgerichtheid verlaagt het vertrouwen', 'Het telt alleen in verkoopgesprekken, niet tijdens het project', 'Het meet je expertise in het eigen vakgebied van de klant'],
+          options: ['Het telt op bij geloofwaardigheid, dus zelfvertrouwen scoort hoger', 'Het deelt de andere drie, dus veel zelfgerichtheid verlaagt het vertrouwen', 'Het telt alleen in verkoopgesprekken, niet tijdens het project', 'Het meet je expertise in het eigen vakgebied van de klant'],
           answer: 'Het deelt de andere drie, dus veel zelfgerichtheid verlaagt het vertrouwen',
           why: 'Hoe geloofwaardig je ook bent, een klant die voelt dat je voor jezelf werkt, houdt zich in.',
         },
         {
           q: 'De sponsor vertelt je in vertrouwen dat ze twijfelt aan haar plantmanager. Wat bouwt intimiteit op?',
-          options: ['Het in de stuurgroep aankaarten zodat het opgelost wordt', 'Het tegen de plantmanager zeggen zodat hij kan verbeteren', 'Het in het projectrapport noteren zodat het vastligt', 'Het voor je houden en alleen je eigen aanpak erop afstemmen'],
-          answer: 'Het voor je houden en alleen je eigen aanpak erop afstemmen',
+          options: ['Het in de stuurgroep aankaarten zodat het opgelost wordt', 'Het tegen de plantmanager zeggen zodat hij kan verbeteren', 'Het in het projectrapport noteren zodat het vastligt', 'Het voor je houden; het stuurt alleen je eigen aanpak'],
+          answer: 'Het voor je houden; het stuurt alleen je eigen aanpak',
           why: 'Een vertrouwen dat je bewaart, maakt het volgende vertrouwen mogelijk.',
         },
         {
@@ -379,8 +379,8 @@ export default {
         },
         {
           q: 'Waarom kan minder betaald werk adviseren een klantrelatie (een klant met wie je over meerdere projecten werkt) laten groeien?',
-          options: ['Het laat zien dat het belang van de klant vóór je fee gaat', 'Het verlaagt je dagtarief, en dat ziet inkoop graag', 'Klanten willen goedkope adviseurs met kleine facturen', 'Zo ontloop je de lastige delen van het werk'],
-          answer: 'Het laat zien dat het belang van de klant vóór je fee gaat',
+          options: ['Het klantbelang gaat dan zichtbaar vóór je fee', 'Het verlaagt je dagtarief, en dat ziet inkoop graag', 'Klanten willen goedkope adviseurs met kleine facturen', 'Zo ontloop je de lastige delen van het werk'],
+          answer: 'Het klantbelang gaat dan zichtbaar vóór je fee',
           why: 'Lage zelfgerichtheid is zichtbaar en zeldzaam, en klanten onthouden het.',
         },
       ],
@@ -427,8 +427,8 @@ export default {
         },
       ],
       teach: [
-        'Peter Block (Flawless Consulting, eerste druk 1981) onderscheidt drie rollen. In de expertrol geeft de klant je het probleem en los jij het op. Als extra handen (pair of hands) doe je wat de klant vraagt; hij houdt de regie en jij levert capaciteit.\n\nIn de samenwerkingsrol los je het samen op: de klant brengt kennis van het bedrijf, jij de methode, en besluiten neem je samen. Volgens Block laat de samenwerkingsrol het meest achter.',
-        'Edgar Schein (Helping, 2009) ziet drie manieren van helpen. De expert levert informatie of een dienst. In de doktersrol stel je een diagnose en schrijf je iets voor. Als procesadviseur help je de klant het probleem zelf te zien en op te lossen.\n\nSchein raadt aan te beginnen als procesadviseur, meer vragen dan vertellen, omdat je aan het begin nog niet weet wat er echt mis is. Afsluiten (Weggaan zonder afhankelijkheid) laat zien waarom dat ook minder afhankelijkheid oplevert.',
+        'Peter Block (Flawless Consulting, eerste druk 1981) onderscheidt drie rollen. In de expertrol (expert role) geeft de klant je het probleem en los jij het op. Als extra handen (pair of hands) doe je wat de klant vraagt; hij houdt de regie en jij levert capaciteit.\n\nIn de samenwerkingsrol (collaborative role) los je het samen op: de klant brengt kennis van het bedrijf, jij de methode, en besluiten neem je samen. Volgens Block laat de samenwerkingsrol het meest achter.',
+        'Edgar Schein (Helping, 2009) ziet drie manieren van helpen. De expert levert informatie of een dienst. In de doktersrol (doctor role) stel je een diagnose en schrijf je iets voor. Als procesadviseur (process consultant) help je de klant het probleem zelf te zien en op te lossen.\n\nSchein raadt aan te beginnen als procesadviseur, meer vragen dan vertellen, omdat je aan het begin nog niet weet wat er echt mis is. Afsluiten (Weggaan zonder afhankelijkheid) laat zien waarom dat ook minder afhankelijkheid oplevert.',
         'Elke rol heeft een prijs. De oplossing van de expert is vaak niet van de klant. Extra handen worden ingehuurde capaciteit met weinig invloed. De dokter riskeert een diagnose die de klant niet accepteert.\n\nDe samenwerkingsrol start trager, omdat je mensen betrekt, maar er blijft meer hangen als je weggaat.',
         'Luister welke rol je wordt aangeboden. “Zeg ons gewoon wat we moeten doen” vraagt om de expert. “We zoeken iemand die het rapport invult” vraagt om extra handen.\n\nZeg het hardop en spreek de rol af, in het contracteergesprek uit Intake (Afspraken met de sponsor): “Ik kan dit voor jullie doen, of we doen het samen. Samen kost iets meer tijd van jullie mensen, en dan kunnen zij het draaien als ik weg ben.”',
         'Waar mensen verschillen: Block kiest duidelijk voor samenwerken. Anderen vinden de expertrol prima als de klant de kennis en de tijd mist, zoals in een crisis of bij een eenmalige technische vraag. De meeste opdrachten mengen rollen in de loop van de tijd.\n\nEen veelgemaakte fout van juniors: de rol van extra handen aannemen om aardig gevonden te worden, en dan verbaasd zijn dat niemand je advies volgt.\n\nEen scherpe vraag: “Wie is eigenaar van deze oplossing als ik weg ben?”',
@@ -453,14 +453,14 @@ export default {
         },
         {
           q: 'Wie brengt wat in de samenwerkingsrol?',
-          options: ['De klant brengt het bedrijf, jij brengt de methode', 'Jij brengt alles, en de klant beslist alleen', 'De klant brengt alles, en jij schrijft alleen', 'Jij en de klant brengen precies dezelfde kennis'],
-          answer: 'De klant brengt het bedrijf, jij brengt de methode',
+          options: ['De klant brengt het bedrijf, jij de methode', 'Jij brengt alles, en de klant beslist alleen', 'De klant brengt alles, en jij schrijft alleen', 'Jij en de klant brengen precies dezelfde kennis'],
+          answer: 'De klant brengt het bedrijf, jij de methode',
           why: 'Elke kant brengt in wat hij het best kent, en besluiten worden gedeeld.',
         },
         {
           q: 'Welk risico hoort bij de doktersrol?',
-          options: ['De klant bemoeit zich veel te veel met de analyse', 'Je mag nooit je eigen mening geven', 'Een diagnose die de klant niet accepteert of omarmt', 'De fee ligt vast voordat het werk begint'],
-          answer: 'Een diagnose die de klant niet accepteert of omarmt',
+          options: ['De klant bemoeit zich veel te veel met de analyse', 'Je mag nooit je eigen mening geven', 'Een diagnose die de klant niet accepteert', 'De fee ligt vast voordat het werk begint'],
+          answer: 'Een diagnose die de klant niet accepteert',
           why: 'Een diagnose die wordt overhandigd zonder dat de klant eraan meedeed, is makkelijk af te wijzen.',
         },
       ],
@@ -501,15 +501,15 @@ export default {
       pre: [
         {
           q: 'De sponsor vraagt voor de derde keer om meer data over een bevinding die de data al ondersteunt. Wat speelt er waarschijnlijk?',
-          options: ['Weerstand tegen wat de bevinding voor hem betekent', 'Hij heeft je eerdere analyse nog niet gelezen', 'De data is echt te mager om op te besluiten', 'Hij wil het projectbudget verhogen'],
-          answer: 'Weerstand tegen wat de bevinding voor hem betekent',
+          options: ['Weerstand tegen wat de bevinding betekent', 'Hij heeft je eerdere analyse nog niet gelezen', 'De data is echt te mager om op te besluiten', 'Hij wil het projectbudget verhogen'],
+          answer: 'Weerstand tegen wat de bevinding betekent',
           why: 'Als beantwoorde vragen steeds terugkomen, is het probleem meestal emotioneel, niet feitelijk.',
         },
       ],
       teach: [
-        'Block (Flawless Consulting) ziet weerstand als een voorspelbare, emotionele reactie wanneer een klant iets lastigs onder ogen moet zien: angst om controle te verliezen of kwetsbaar over te komen. Het is geen logisch bezwaar, dus meer logica maakt het vaak erger.\n\nEen echt bezwaar verdwijnt als je het beantwoordt. Weerstand komt terug in een andere vorm. Voor iemand die het project blokkeert, zie Als je vastzit (De persoon die blokkeert); voor weerstand op de vloer, Landen (Werken met weerstand).',
-        'Block noemt veel vormen. Een stroom details, of de vraag om meer details. Tijd: “nu even niet”. Onuitvoerbaarheid: “dat werkt hier niet”. Stilte. Moraliseren: “mensen moeten gewoon hun werk doen”. Aandringen op oplossingen: “zeg ons gewoon wat we moeten doen”. Aanval.\n\nHet lastigst te zien is meegaandheid (compliance): overal ja op zeggen, en dan verandert er niks.',
-        'De drie stappen van Block. Eén: herken in je eigen hoofd welke vorm de weerstand heeft. Twee: benoem hem in neutrale taal: beschrijf wat je ziet, zonder verwijt. “We zijn drie keer teruggegaan naar de data. Mijn gevoel is dat de conclusie zelf ongemakkelijk is.”\n\nDrie: zwijg. Laat de klant reageren, hoe lang de stilte ook voelt. De meeste mensen zeggen dan wat hen echt dwarszit.',
+        'Block (Flawless Consulting) ziet weerstand (resistance) als een voorspelbare, emotionele reactie wanneer een klant iets lastigs onder ogen moet zien: angst om controle te verliezen of kwetsbaar over te komen. Het is geen logisch bezwaar, dus meer logica maakt het vaak erger.\n\nEen echt bezwaar (genuine objection) verdwijnt als je het beantwoordt. Weerstand komt terug in een andere vorm. Voor iemand die het project blokkeert, zie Als je vastzit (De persoon die blokkeert); voor weerstand op de vloer, Landen (Werken met weerstand).',
+        'Block noemt veel vormen. Een stroom details, of de vraag om meer details. Tijd: “nu even niet”. Onuitvoerbaarheid: “dat werkt hier niet”. Stilte. Moraliseren: “mensen moeten gewoon hun werk doen”. Aandringen op oplossingen: “zeg ons gewoon wat we moeten doen”. Aanval.\n\nEen van de lastigste om te zien is meegaandheid (compliance): overal ja op zeggen, en dan verandert er niks.',
+        'De drie stappen van Block. Eén: herken in je eigen hoofd welke vorm de weerstand heeft. Twee: benoem hem in neutrale taal (neutral language): beschrijf wat je ziet, zonder verwijt. “We zijn drie keer teruggegaan naar de data. Mijn gevoel is dat de conclusie zelf ongemakkelijk is.”\n\nDrie: zwijg. Laat de klant reageren, hoe lang de stilte ook voelt. De meeste mensen zeggen dan wat hen echt dwarszit.',
         'Wat bovenkomt, gaat vaak over controle: “Als dit klopt, is mijn overleg het probleem.” Contracteer dan opnieuw, zoals in Intake (Afspraken met de sponsor): geef de klant echte keuzes in hoe hij de verandering test of invoert.\n\nNeem het niet persoonlijk. Weerstand richt zich op de situatie, niet op jou, ook als het klinkt als een aanval op je methode.',
         'Waar mensen verschillen: sommigen vinden benoemen te bot in een hiërarchische omgeving en brengen het eerst onder vier ogen in, bij de koffie. Block zou zeggen dat een rustig gesprek onder vier ogen ook benoemen is, zolang je het gedrag gewoon beschrijft.\n\nEen veelgemaakte fout: op de tiende vraag om data de tiende analyse leveren.\n\nEen scherpe vraag aan jezelf: “Wat is deze persoon bang om kwijt te raken?”',
       ],
@@ -535,14 +535,14 @@ export default {
         },
         {
           q: 'Welke zin benoemt weerstand in neutrale taal?',
-          options: ['“Je bent defensief omdat het over je eigen overleg gaat.”', '“Met alle respect, de data is glashelder en dat weet je.”', '“We blijven teruggaan naar de data. Zit je iets anders dwars?”', '“Als je deze bevinding niet accepteert, mislukt het hele project.”'],
-          answer: '“We blijven teruggaan naar de data. Zit je iets anders dwars?”',
+          options: ['“Je bent defensief omdat het over je eigen overleg gaat.”', '“Met alle respect, de data is glashelder en dat weet je.”', '“We gaan steeds terug naar de data. Zit je iets dwars?”', '“Als je deze bevinding niet accepteert, mislukt het hele project.”'],
+          answer: '“We gaan steeds terug naar de data. Zit je iets dwars?”',
           why: 'Het beschrijft wat er gebeurt zonder verwijt, en nodigt uit tot de echte zorg.',
         },
         {
           q: 'Welke vorm van weerstand lijkt het meest op instemming?',
-          options: ['Aanval: openlijke kritiek op je methode en je data', 'Moraliseren over hoe anderen zich horen te gedragen', 'Een stroom details over hoe het proces echt werkt', 'Meegaandheid: overal ja op, en dan verandert er niks'],
-          answer: 'Meegaandheid: overal ja op, en dan verandert er niks',
+          options: ['Aanval: openlijke kritiek op je methode en je data', 'Moraliseren over hoe anderen zich horen te gedragen', 'Een stroom details over hoe het proces echt werkt', 'Meegaandheid: overal ja op, en er verandert niks'],
+          answer: 'Meegaandheid: overal ja op, en er verandert niks',
           why: 'Het klinkt als steun, dus je merkt het pas als er niets gebeurt.',
         },
       ],
@@ -588,10 +588,10 @@ export default {
         },
       ],
       teach: [
-        'In Humble Consulting (2016) stelt Schein dat veel problemen van klanten een warboel zijn, geen puzzel: ze veranderen steeds, hebben veel oorzaken en geen enkele oplossing. Een diagnose door de expert met een voorschrift erachteraan mislukt dan vaak, omdat de situatie verschuift terwijl jij je rapport schrijft.\n\nWat dan wel helpt, is een ander soort relatie, en kleine stappen die je samen zet.',
-        'Schein beschrijft niveaus van relaties. Een niveau 1-relatie is rolgebonden en zakelijk, met professionele afstand: de klassieke adviseur. Een niveau 2-relatie is persoonlijk: je ziet elkaar als hele mensen, dus is ze open en vol vertrouwen.\n\nHij pleit ervoor niveau 2 vanaf het allereerste contact op te bouwen, omdat klanten je dan eerder vertellen wat er echt speelt. Het sluit aan op intimiteit in de vertrouwensformule uit De vertrouwde adviseur.',
-        'Hoe? Personaliseren (personization): laat iets van jezelf zien en toon interesse in de ander als mens, niet alleen in zijn rol. En nederig vragen (humble inquiry): vragen stellen waarop je het antwoord niet weet, uit echte nieuwsgierigheid. Schein vat de houding samen als toegankelijk, nieuwsgierig en betrokken.\n\nDe luistervaardigheden zelf, zoals MORE PIES, staan in Intake (Het eerste gesprek).',
-        'In plaats van een volledig plan stelt Schein de adaptieve stap voor: een kleine stap die je samen zet, waarna je het effect bekijkt en de volgende kiest. In een warboel zijn gevolgen moeilijk te voorspellen, dus de stap zelf is de diagnose.\n\nHet lijkt op de safe-to-fail-proef uit Als je vastzit (Welk soort probleem is dit? Cynefin).',
+        'In Humble Consulting (2016) stelt Schein dat veel problemen van klanten een warboel (mess) zijn, geen puzzel: ze veranderen steeds, hebben veel oorzaken en geen pasklare oplossing. Een diagnose door de expert met een voorschrift erachteraan mislukt dan vaak, omdat de situatie verschuift terwijl jij je rapport schrijft.\n\nWat dan wel helpt, is een ander soort relatie, en kleine stappen die je samen zet.',
+        'Schein beschrijft niveaus van relaties. Een niveau 1-relatie (Level 1 relationship) is rolgebonden en zakelijk, met professionele afstand: de klassieke adviseur. Een niveau 2-relatie is persoonlijk: je ziet elkaar als hele mensen, dus is ze open en vol vertrouwen.\n\nHij pleit ervoor niveau 2 vanaf het allereerste contact op te bouwen, omdat klanten je dan eerder vertellen wat er echt speelt. Het sluit aan op intimiteit in de vertrouwensformule uit De vertrouwde adviseur.',
+        'Hoe? Personaliseren (personization): laat iets van jezelf zien en toon interesse in de ander als mens, niet alleen in zijn rol. En nederig vragen (humble inquiry): vragen stellen waarop je het antwoord niet weet, uit echte nieuwsgierigheid. Schein vat de houding samen als de wil om te helpen, nieuwsgierigheid en zorg voor de ander.\n\nLuistervaardigheden zoals MORE PIES staan in Intake (Het eerste gesprek); naïeve vragen buiten je vak in Projecten leiden buiten je vakgebied (Nieuwsgierig en bescheiden).',
+        'In plaats van een volledig plan stelt Schein de adaptieve stap (adaptive move) voor: een kleine stap die je samen zet, waarna je het effect bekijkt en de volgende kiest. In een warboel zijn gevolgen moeilijk te voorspellen, dus de stap zelf is de diagnose.\n\nHet lijkt op de safe-to-fail-proef uit Als je vastzit (Welk soort probleem is dit? Cynefin).',
         'De grenzen: het bewijs bestaat vooral uit casusverhalen uit Scheins eigen praktijk. Een relatie op niveau 2 kost tijd waar inkoop misschien niet voor betaalt. En nabijheid kan grenzen vervagen: slecht nieuws brengen is lastiger bij iemand die als een vriend voelt.\n\nBlijf dus persoonlijk en onafhankelijk tegelijk. Een scherpe vraag na een eerste gesprek: “Wat leerde ik over deze persoon, en niet alleen over het probleem?”',
       ],
       example: {
@@ -604,7 +604,7 @@ export default {
       recall: [
         {
           q: 'Waarom pleit Schein voor een relatie op niveau 2 vanaf het eerste contact?',
-          options: ['Klanten vertellen je dan eerder wat er echt speelt', 'Dan kun je een hoger dagtarief vragen', 'Dan heb je geen schriftelijk contract meer nodig', 'Dan kun je de diagnose helemaal overslaan'],
+          options: ['Klanten vertellen je dan eerder wat er echt speelt', 'Dan kun je een hoger dagtarief vragen voor het werk', 'Dan heb je geen schriftelijk contract meer met ze nodig', 'Dan kun je de diagnose helemaal overslaan'],
           answer: 'Klanten vertellen je dan eerder wat er echt speelt',
           why: 'In een persoonlijke relatie met vertrouwen komt het echte probleem eerder boven.',
         },
@@ -616,8 +616,8 @@ export default {
         },
         {
           q: 'Wat maakt een probleem een warboel in plaats van een puzzel?',
-          options: ['Het heeft één duidelijke oorzaak die experts kunnen vinden', 'Het verandert steeds, met veel oorzaken en geen enkele oplossing', 'Er zijn meer dan drie afdelingen tegelijk bij betrokken', 'Het kost meer dan het jaarbudget van de klant'],
-          answer: 'Het verandert steeds, met veel oorzaken en geen enkele oplossing',
+          options: ['Het heeft één duidelijke oorzaak die experts kunnen vinden', 'Steeds anders, veel oorzaken, geen pasklare oplossing', 'Er zijn meer dan drie afdelingen tegelijk bij betrokken', 'Het kost meer dan het jaarbudget van de klant'],
+          answer: 'Steeds anders, veel oorzaken, geen pasklare oplossing',
           why: 'Een puzzel heeft een antwoord; een warboel heeft alleen betere en slechtere volgende stappen.',
         },
         {
@@ -651,7 +651,7 @@ export default {
       },
       sayIt: 'Leg een junior adviseur in 60 seconden uit wat Schein bedoelt met een relatie op niveau 2 en waarom die helpt.',
       terms: [
-        { term: 'Warboel', def: 'Een veranderend probleem met veel oorzaken en geen enkele oplossing (Schein).' },
+        { term: 'Warboel', def: 'Een veranderend probleem met veel oorzaken en geen pasklare oplossing (Schein).' },
         { term: 'Niveau 1-relatie', def: 'Een rolgebonden, zakelijke relatie met professionele afstand (Schein).' },
         { term: 'Niveau 2-relatie', def: 'Een persoonlijke, open relatie vol vertrouwen, waarin je elkaar als hele mensen ziet (Schein).' },
         { term: 'Personaliseren', def: 'Iets van jezelf laten zien en interesse tonen in de ander als mens, niet alleen in zijn rol.' },
@@ -665,7 +665,7 @@ export default {
       pre: [
         {
           q: 'Een softwareleverancier biedt Vantage 10% van de licentiewaarde voor elke klant die je doorverwijst. Wat is het probleem?',
-          options: ['Geen, zolang de software echt het best past', 'Alleen een probleem als de klant van de fee hoort', 'Je advies is niet meer onafhankelijk, ook al voelt het zo', 'Het is voor adviseurs in Nederland altijd verboden'],
+          options: ['Geen, zolang de software echt het best past bij de klant', 'Alleen een probleem als de klant van de fee hoort', 'Je advies is niet meer onafhankelijk, ook al voelt het zo', 'Het is voor adviseurs in Nederland altijd verboden'],
           answer: 'Je advies is niet meer onafhankelijk, ook al voelt het zo',
           why: 'Geld van een derde buigt advies, en de klant kan niet meer zien of dat gebeurd is.',
         },
@@ -685,8 +685,8 @@ export default {
       recall: [
         {
           q: 'Wanneer meld je een band met een leverancier die je misschien gaat aanraden?',
-          options: ['Schriftelijk, voordat je adviseert', 'Alleen als ernaar gevraagd wordt', 'Nadat het advies is overgenomen', 'Nooit, als het advies toch klopt'],
-          answer: 'Schriftelijk, voordat je adviseert',
+          options: ['Schriftelijk, vóór je adviseert', 'Alleen als ernaar gevraagd wordt', 'Nadat het advies is overgenomen', 'Nooit, als het advies toch klopt'],
+          answer: 'Schriftelijk, vóór je adviseert',
           why: 'Vooraf gemeld is het een feit dat de klant kan meewegen; later ontdekt is het vertrouwensbreuk.',
         },
         {
@@ -697,14 +697,14 @@ export default {
         },
         {
           q: 'Welke test helpt je belangenverstrengeling te herkennen?',
-          options: ['Is het legaal volgens de Nederlandse wet en het contract?', 'Doen andere adviesbureaus in de markt precies hetzelfde?', 'Is de sponsor akkoord, schriftelijk of mondeling?', 'Kan de klant je redenering en je factuur naast elkaar leggen?'],
-          answer: 'Kan de klant je redenering en je factuur naast elkaar leggen?',
+          options: ['Is het legaal volgens de Nederlandse wet en het contract?', 'Doen andere adviesbureaus in de markt precies hetzelfde?', 'Is de sponsor akkoord, schriftelijk of mondeling?', 'Kan de klant je redenering naast je factuur leggen?'],
+          answer: 'Kan de klant je redenering naast je factuur leggen?',
           why: 'Het legt elke plek bloot waar je inkomen en je advies verschillende kanten op wijzen.',
         },
         {
           q: 'Je wilt het project van een oud-klant als case op je website zetten. Wat doe je?',
-          options: ['Gebruiken, maar zonder de getallen', 'Toestemming vragen en ze eerst de tekst laten zien', 'Gebruiken als het project meer dan een jaar oud is', 'Alleen de sector noemen'],
-          answer: 'Toestemming vragen en ze eerst de tekst laten zien',
+          options: ['Gebruiken, maar zonder de getallen en de namen', 'Toestemming vragen en eerst de tekst laten zien', 'Gebruiken als het project een jaar oud is', 'Alleen de sector noemen'],
+          answer: 'Toestemming vragen en eerst de tekst laten zien',
           why: 'Het verhaal is deels van hen; met toestemming blijven de relatie en de vertrouwelijkheid heel.',
         },
       ],
@@ -745,15 +745,15 @@ export default {
       pre: [
         {
           q: 'De stoptijden van een operator, gekoppeld aan zijn naam, zijn…',
-          options: ['Productiedata, dus er gelden geen bijzondere regels', 'Alleen vertrouwelijk als hij erom vraagt', 'Eigendom van de adviseur die ze analyseert', 'Persoonsgegevens volgens de AVG'],
-          answer: 'Persoonsgegevens volgens de AVG',
+          options: ['Productiedata, dus er gelden geen bijzondere regels', 'Alleen vertrouwelijk als hij erom vraagt', 'Eigendom van de adviseur die ze analyseert', 'Persoonsgegevens, die onder de AVG vallen'],
+          answer: 'Persoonsgegevens, die onder de AVG vallen',
           why: 'Alles over een herkenbaar persoon is een persoonsgegeven, ook werkdata.',
         },
       ],
       teach: [
-        'Je werkt met veel klantdata: productiecijfers, kosten, klantnamen, en vaak persoonsgegevens: alles over een persoon die je kunt herkennen, zoals de stoptijden van een operator, de output van een planner of iemands verzuim.\n\nPersoonsgegevens vallen onder de AVG, de Algemene verordening gegevensbescherming (GDPR). Die geldt ook voor werkdata, niet alleen voor privézaken.',
-        'Verwerk je persoonsgegevens in opdracht van de klant, dan blijft de klant meestal verantwoordelijk en werk jij voor hem. De AVG eist dan een verwerkersovereenkomst (artikel 28): wat je met de data mag, hoe je ze beschermt en wanneer je ze wist.\n\nVeel klanten vragen je ook een geheimhoudingsovereenkomst (NDA) te tekenen voor al hun informatie. Lees ze allebei vóór week 1, niet erna.',
-        'Dataminimalisatie: vraag alleen de data die je vraag nodig heeft. Om te zien of omstellingen de stops veroorzaken, heb je stops per dienst nodig, niet per operator met naam.\n\nHeb je toch detail nodig, dan is pseudonimiseren de route: vervang namen door codes zoals “operator A”. Bewaar data waar de afspraak zegt, meestal in de systemen van de klant, niet op je eigen laptop of in een gratis cloudtool, en wis ze aan het eind.',
+        'Je werkt met veel klantdata: productiecijfers, kosten, klantnamen, en vaak persoonsgegevens (personal data): alles over een persoon die je kunt herkennen, zoals de stoptijden van een operator, de output van een planner of iemands verzuim.\n\nPersoonsgegevens vallen onder de AVG, de Algemene verordening gegevensbescherming (GDPR). Die geldt ook voor werkdata, niet alleen voor privézaken.',
+        'Verwerk je persoonsgegevens in opdracht van de klant, dan blijft de klant meestal verantwoordelijk en werk jij voor hem. De AVG eist dan een verwerkersovereenkomst (processor agreement, artikel 28): wat je met de data mag, hoe je ze beschermt en wanneer je ze wist.\n\nVeel klanten vragen je ook een geheimhoudingsovereenkomst (NDA) te tekenen voor al hun informatie. Lees ze allebei vóór week 1, niet erna.',
+        'Dataminimalisatie (data minimisation): vraag alleen de data die je vraag nodig heeft. Om te zien of omstellingen de stops veroorzaken, heb je stops per dienst nodig, niet per operator met naam.\n\nHeb je toch detail nodig, dan is pseudonimiseren de route: vervang namen door codes zoals “operator A”. Bewaar data waar de afspraak zegt, meestal in de systemen van de klant, niet op je eigen laptop of in een gratis cloudtool, en wis ze aan het eind.',
         'Let ook op de OR. Een systeem dat prestaties van medewerkers kan volgen, of een regeling over het verwerken van personeelsgegevens, kan instemming van de ondernemingsraad vragen (Wet op de ondernemingsraden, artikel 27 lid 1 onder k en l).\n\nVraag dus HR, voordat je een prestatiedashboard per persoon bouwt, of de OR erbij moet. Netbeheerders hebben daarnaast beveiligingsregels voor netdata; vraag dat op dag één.',
         'Deel je later lessen, anonimiseer dan goed: in een kleine sector kan “een kabelfabrikant in Twente” de klant al verraden. En plak geen klantdata in een openbare AI-tool, tenzij de klant ermee heeft ingestemd.\n\nWaar mensen verschillen: sommige klanten willen dat alle data in huis blijft; andere accepteren een beveiligde gedeelde map.\n\nEen scherpe vraag: “Als dit bestand morgen uitlekt, wie wordt er dan geschaad?”',
       ],
@@ -765,8 +765,8 @@ export default {
       recall: [
         {
           q: 'Je verwerkt personeelsgegevens in opdracht van de klant. Wat eist de AVG tussen jou en de klant?',
-          options: ['Een concurrentiebeding in je contract', 'Een verwerkersovereenkomst', 'Een vergunning van de Autoriteit Persoonsgegevens', 'Schriftelijke toestemming van elke medewerker'],
-          answer: 'Een verwerkersovereenkomst',
+          options: ['Een concurrentiebeding in je contract', 'Een verwerkersovereenkomst met de klant', 'Een vergunning van de Autoriteit Persoonsgegevens', 'Schriftelijke toestemming van elke medewerker'],
+          answer: 'Een verwerkersovereenkomst met de klant',
           why: 'Artikel 28 AVG eist een overeenkomst over wat de verwerker met de data mag en hoe ze beschermd worden.',
         },
         {
@@ -783,7 +783,7 @@ export default {
         },
         {
           q: 'Waar bewaar je de data van een klant tijdens het project?',
-          options: ['Op je eigen laptop, zodat je ook offline kunt werken', 'In een gratis cloudtool die makkelijk met de klant te delen is', 'In een mailmap, gesorteerd per klant', 'Waar afgesproken, bijvoorbeeld in de systemen van de klant'],
+          options: ['Op je eigen laptop, zodat je ook offline kunt werken', 'In een gratis cloudtool die makkelijk te delen is', 'In een mailmap, gesorteerd per klant', 'Waar afgesproken, bijvoorbeeld in de systemen van de klant'],
           answer: 'Waar afgesproken, bijvoorbeeld in de systemen van de klant',
           why: 'De verwerkersovereenkomst of NDA bepaalt waar data mag staan; privétools zijn een bekend lek.',
         },
@@ -826,17 +826,17 @@ export default {
       pre: [
         {
           q: 'Wat maakt een ethisch dilemma anders dan iets wat gewoon fout is?',
-          options: ['Een dilemma gaat altijd over geld', 'Twee legitieme waarden botsen, dus geen optie is schoon', 'Een dilemma raakt alleen mensen buiten de klantorganisatie', 'Gewoon fout is alleen wat de wet verbiedt'],
+          options: ['Een dilemma gaat altijd over geld', 'Twee legitieme waarden botsen, dus geen optie is schoon', 'Een dilemma raakt alleen mensen buiten het bedrijf', 'Gewoon fout is alleen wat de wet verbiedt'],
           answer: 'Twee legitieme waarden botsen, dus geen optie is schoon',
           why: 'Bij iets wat gewoon fout is, weet je wat je moet doen; bij een dilemma kost elke optie iets.',
         },
       ],
       teach: [
         'Een ethisch dilemma is een keuze waarin twee legitieme waarden botsen: loyaliteit aan de sponsor tegenover eerlijkheid naar het team, snel helpen tegenover onafhankelijk blijven. Regels beslissen dat zelden, dus je hebt een manier nodig om het te doordenken.\n\nIets wat gewoon fout is, zoals data vervalsen, is geen dilemma. Dat doe je simpelweg niet, zoals in Onafhankelijkheid en ethiek.',
-        'Vier stappen. Benoem het dilemma in één zin. Zet op een rij wie erdoor geraakt wordt: de sponsor, de medewerkers, een andere klant, jij. Zoek minstens drie opties, niet alleen ja of nee.\n\nToets dan elke optie. Kan ik het uitleggen aan wie het hardst geraakt wordt? De krantentest: zou ik het rustig in de krant van morgen kunnen lezen? En de factuurtest uit Onafhankelijkheid en ethiek. Beslis, en schrijf op waarom.',
-        'Veelvoorkomende gevallen. De sponsor vraagt welke teamleider weg moet: je bent niet ingehuurd om mensen te beoordelen, dus zeg dat en beschrijf wat de rollen vragen. Een leverancier die je misschien aanraadt, biedt relatiegeschenken aan, zoals kaartjes voor een wedstrijd of een diner: sla ze af zolang het advies loopt.\n\nJe ziet een veiligheidsregel overtreden worden: dat is geen dilemma. Je grijpt in en meldt het.',
+        'Vier stappen. Benoem het dilemma in één zin. Zet op een rij wie erdoor geraakt wordt: de sponsor, de medewerkers, een andere klant, jij. Zoek minstens drie opties, niet alleen ja of nee.\n\nToets dan elke optie. Kan ik het uitleggen aan wie het hardst geraakt wordt? De krantentest (newspaper test): zou ik het rustig in de krant van morgen kunnen lezen? En de factuurtest uit Onafhankelijkheid en ethiek. Beslis, en schrijf op waarom.',
+        'Veelvoorkomende gevallen. De sponsor vraagt welke teamleider weg moet: je bent niet ingehuurd om mensen te beoordelen, dus zeg dat en beschrijf wat de rollen vragen. Een leverancier die je misschien aanraadt, biedt relatiegeschenken (hospitality) aan, zoals kaartjes voor een wedstrijd of een diner: sla ze af zolang het advies loopt.\n\nJe ziet een veiligheidsregel overtreden worden: dat is geen dilemma. Je grijpt in en meldt het.',
         'Stillere gevallen: een succesfee die een hoog besparingscijfer beloont dat je zelf helpt berekenen, uit Prijzen op waarde, en de kritiek erop; een concurrent van je klant die hetzelfde project wil; gevraagd worden een besluit opener te presenteren dan het is.\n\nMeld het in elk geval vroeg en geef de klant een echte keuze.',
-        'Praat met een vakgenoot voordat je beslist. Intervisie, een gestructureerd gesprek met collega-adviseurs over een casus, legt blinde vlekken bloot en de verhalen die we onszelf vertellen. Beroepsverenigingen zoals de Ooa, de Nederlandse beroepsvereniging van organisatieadviseurs, stimuleren het.\n\nWaar mensen verschillen: de een wil gedetailleerde regels voor elk geval; de ander zegt dat oordeelsvermogen niet op papier past.\n\nEen scherpe vraag: “Welke optie zou ik kiezen als iedereen kon meekijken?”',
+        'Praat met een vakgenoot voordat je beslist. Intervisie (peer consultation), een gestructureerd gesprek met collega-adviseurs over een casus, legt blinde vlekken bloot en de verhalen die we onszelf vertellen. Beroepsverenigingen zoals de Ooa, de Nederlandse beroepsvereniging van organisatieadviseurs, stimuleren het.\n\nWaar mensen verschillen: de een wil gedetailleerde regels voor elk geval; de ander zegt dat oordeelsvermogen niet op papier past.\n\nEen scherpe vraag: “Welke optie zou ik kiezen als iedereen kon meekijken?”',
       ],
       example: {
         kind: 'faded',
@@ -860,8 +860,8 @@ export default {
         },
         {
           q: 'Waarom praat je met een vakgenoot voordat je over een dilemma beslist?',
-          options: ['Een vakgenoot kan het besluit van je overnemen', 'De gedragscode eist een tweede handtekening', 'Dan deel je de schuld als het misgaat', 'Hardop uitleggen legt je eigen blinde vlekken bloot'],
-          answer: 'Hardop uitleggen legt je eigen blinde vlekken bloot',
+          options: ['Een vakgenoot kan het besluit van je overnemen', 'De gedragscode eist een tweede handtekening', 'Dan deel je de schuld als het misgaat', 'Hardop uitleggen toont je blinde vlekken'],
+          answer: 'Hardop uitleggen toont je blinde vlekken',
           why: 'Een casus aan een vakgenoot uitleggen laat zien waar je jezelf iets wijsmaakt.',
         },
         {
@@ -907,30 +907,30 @@ export default {
       pre: [
         {
           q: 'Wanneer is terugtreden uit een opdracht de juiste stap?',
-          options: ['Als je moet instaan voor iets wat niet waar is', 'Als de sponsor het oneens is met een van je bevindingen', 'Als er een interessantere opdracht voorbijkomt', 'Als het project een week achterloopt op schema'],
-          answer: 'Als je moet instaan voor iets wat niet waar is',
+          options: ['Als je moet instaan voor iets wat niet klopt', 'Als de sponsor het oneens is met een van je bevindingen', 'Als er een interessantere opdracht voorbijkomt', 'Als het project een week achterloopt op schema'],
+          answer: 'Als je moet instaan voor iets wat niet klopt',
           why: 'Onenigheid is normaal; gevraagd worden je naam onder iets onwaars te zetten is de grens.',
         },
       ],
       teach: [
         'Soms is de juiste ethische keuze de opdracht te beëindigen: terugtreden (withdrawal). Typische redenen: de klant blijft eisen dat je data verkeerd voorstelt, je rapport wordt gebruikt om een besluit te rechtvaardigen dat je bewijs tegenspreekt, of je kunt geen waarde meer toevoegen.\n\nEen project stoppen om zakelijke redenen staat in Afsluiten (Voortijdig stoppen). Deze les gaat over jou die eruit stapt.',
         'Terugtreden is de laatste stap, niet de eerste. Breng het eerst onder vier ogen in bij de sponsor. Zet je zorg feitelijk op papier. Bied een alternatief waar je wel achter staat. Geef een redelijk moment om te beslissen.\n\nPraat met een vakgenoot vóór de laatste stap. De meeste conflicten eindigen eerder, omdat een helder, rustig “Dit kan ik niet tekenen; dat wel” vaak genoeg is.',
-        'Treed je toch terug, kijk dan naar de opzegclausule in je contract: de opzegtermijn en wat je krijgt voor verricht werk. Draag over wat je hebt, zodat de klant niets kwijtraakt. Schrijf een korte, feitelijke brief, zonder beschuldigingen.\n\nDe vertrouwelijkheid loopt door nadat je weg bent. Geen publieke ruzie, geen verhalen op de volgende netwerkbijeenkomst.',
-        'Beroepscodes helpen je de lijn te houden. In Nederland heeft de Ooa, de beroepsvereniging van organisatieadviseurs, een gedragscode en een tuchtregeling, en kent ze de titel Certified Management Consultant (CMC) toe volgens de internationale CMC-Global-standaard.\n\nLidmaatschap is vrijwillig: anders dan advocaat of registeraccountant is organisatieadviseur geen beschermde titel. Kijk voor de actuele code op ooa.nl.',
-        'Bescherm ook jezelf. Een beroepsaansprakelijkheidsverzekering dekt claims voor fouten in je advies. Een aansprakelijkheidsbeperking in je algemene voorwaarden begrenst wat een klant kan claimen, vaak tot het honorarium van de opdracht.\n\nWaar mensen verschillen: de een stapt vroeg op om zijn naam te beschermen; de ander blijft langer om de schade voor de klant te beperken.\n\nEen scherpe vraag: “Wat zou ik moeten tekenen dat ik niet kan verdedigen?”',
+        'Treed je toch terug, kijk dan naar de opzegclausule (termination clause) in je contract: de opzegtermijn en wat je krijgt voor verricht werk. Draag over wat je hebt, zodat de klant niets kwijtraakt. Schrijf een korte, feitelijke brief, zonder beschuldigingen.\n\nDe vertrouwelijkheid loopt door nadat je weg bent. Geen publieke ruzie, geen verhalen op de volgende netwerkbijeenkomst.',
+        'Beroepscodes helpen je de lijn te houden. In Nederland heeft de Ooa, de beroepsvereniging van organisatieadviseurs, een gedragscode (code of conduct) en een tuchtregeling. Ook biedt ze de internationale titel Certified Management Consultant (CMC) aan, in Nederland gecertificeerd door de instelling CIIO.\n\nLidmaatschap is vrijwillig: anders dan advocaat of registeraccountant is organisatieadviseur geen beschermde titel. Kijk voor de actuele code op ooa.nl.',
+        'Bescherm ook jezelf. Een beroepsaansprakelijkheidsverzekering (professional liability insurance) dekt claims voor fouten in je advies. Een aansprakelijkheidsbeperking (liability cap) in je algemene voorwaarden begrenst wat een klant kan claimen, vaak tot het honorarium van de opdracht.\n\nWaar mensen verschillen: de een stapt vroeg op om zijn naam te beschermen; de ander blijft langer om de schade voor de klant te beperken.\n\nEen scherpe vraag: “Wat zou ik moeten tekenen dat ik niet kan verdedigen?”',
       ],
       example: {
         kind: 'faded',
         text: 'Week 10 bij een netbeheerder. Je diagnose laat zien dat de aannemer in het veld zo’n derde van de afgezegde klussen veroorzaakt. De sponsor wil je rapport gebruiken om juist die aannemer de hele veldplanning te geven. Hij vraagt je dat hoofdstuk te schrappen: “Anders zoek ik een adviseur die wat flexibeler is.”\n\nJe contract heeft een opzegtermijn van 30 dagen en betaling voor gewerkte dagen. Twaalf van de 20 dagen zijn gedaan.',
         ask: 'Wat zou jij doen?',
-        reveal: 'Eerst de stappen: vraag een uur met hem alleen, laat de data zien, bied een feitelijke formulering die ook de recente verbetering van de aannemer noemt. Zet je standpunt op papier.\n\nBlijft hij erbij: praat met een vakgenoot, en treed dan terug. Een korte brief: “Ik kan het rapport niet leveren zonder dit hoofdstuk.” Zeg op volgens het contract, draag de data en de gedane analyse over, factureer de twaalf gewerkte dagen.\n\nHoud daarna alles vertrouwelijk. Tien dagen werk kwijtraken kost minder dan een rapport met jouw naam erop dat je niet kunt verdedigen.',
+        reveal: 'Eerst de stappen: vraag een uur met hem alleen, laat de data zien, bied een feitelijke formulering die ook de recente verbetering van de aannemer noemt. Zet je standpunt op papier.\n\nBlijft hij erbij: praat met een vakgenoot, en treed dan terug. Een korte brief: “Ik kan het rapport niet leveren zonder dit hoofdstuk.” Zeg op volgens het contract, draag de data en de gedane analyse over, factureer de twaalf gewerkte dagen.\n\nHoud daarna alles vertrouwelijk. De laatste acht dagen werk kwijtraken kost minder dan een rapport met jouw naam erop dat je niet kunt verdedigen.',
       },
       said: 'Wat je hoort in projecten: “Als jij het niet aanpast, zoek ik iemand die het wel doet.”',
       recall: [
         {
           q: 'Wat komt er meestal eerst, voordat je terugtreedt?',
-          options: ['Een publieke verklaring met je redenen voor het vertrek', 'Een formele klacht bij de Ooa over de klant', 'Meteen stoppen met al het werk, zonder enige waarschuwing', 'Het onder vier ogen bij de sponsor inbrengen, dan op papier'],
-          answer: 'Het onder vier ogen bij de sponsor inbrengen, dan op papier',
+          options: ['Een publieke verklaring met je redenen voor het vertrek', 'Een formele klacht bij de Ooa over de klant', 'Meteen stoppen met al het werk, zonder enige waarschuwing', 'Het eerst onder vier ogen inbrengen, dan op papier'],
+          answer: 'Het eerst onder vier ogen inbrengen, dan op papier',
           why: 'De meeste conflicten eindigen zodra het probleem helder benoemd is en er een alternatief ligt.',
         },
         {
@@ -941,8 +941,8 @@ export default {
         },
         {
           q: 'Wat beschermt de klant als jij terugtreedt?',
-          options: ['Je analyse vasthouden tot de factuur helemaal betaald is', 'Het gedane werk overdragen, zodat er niets verloren gaat', 'Hun concurrenten vertellen waarom je wegging', 'Het rapport onder je eigen naam afmaken'],
-          answer: 'Het gedane werk overdragen, zodat er niets verloren gaat',
+          options: ['Je analyse vasthouden tot de factuur betaald is', 'Het gedane werk overdragen, zodat niets verloren gaat', 'Hun concurrenten vertellen waarom je wegging', 'Het rapport onder je eigen naam afmaken'],
+          answer: 'Het gedane werk overdragen, zodat niets verloren gaat',
           why: 'Je verlaat de opdracht, niet het belang van de klant.',
         },
         {
@@ -979,7 +979,7 @@ export default {
         { term: 'Terugtreden', def: 'Je deel in een opdracht beëindigen omdat je niet kunt instaan voor wat er gevraagd wordt.' },
         { term: 'Opzegclausule', def: 'Het deel van een contract dat de opzegtermijn en de betaling bij voortijdig einde regelt.' },
         { term: 'Gedragscode', def: 'De schriftelijke regels van een beroepsvereniging over onafhankelijkheid, vertrouwelijkheid en integriteit.' },
-        { term: 'Certified Management Consultant', def: 'Een internationale titel, CMC, die in Nederland via de Ooa wordt toegekend.' },
+        { term: 'Certified Management Consultant', def: 'Een internationale titel, CMC, die je in Nederland via de Ooa haalt en die CIIO certificeert.' },
         { term: 'Beroepsaansprakelijkheidsverzekering', def: 'Een verzekering die claims voor fouten in je advies dekt.' },
         { term: 'Aansprakelijkheidsbeperking', def: 'Een grens in je algemene voorwaarden op wat een klant kan claimen, vaak het honorarium.' },
       ],
@@ -990,8 +990,8 @@ export default {
       pre: [
         {
           q: 'Waar komt het meeste nieuwe werk van een gevestigde zelfstandige adviseur vandaan?',
-          options: ['Bestaande klanten en mensen naar wie zij je doorverwijzen', 'Koude acquisitie bij bedrijven waar je nooit werkte', 'Openbare aanbestedingen van grote organisaties', 'LinkedIn-posts en andere berichten op sociale media'],
-          answer: 'Bestaande klanten en mensen naar wie zij je doorverwijzen',
+          options: ['Bestaande klanten en wie zij naar je doorverwijzen', 'Koude acquisitie bij bedrijven waar je nooit werkte', 'Openbare aanbestedingen van grote organisaties', 'LinkedIn-posts en andere berichten op sociale media'],
+          answer: 'Bestaande klanten en wie zij naar je doorverwijzen',
           why: 'Mensen huren in wie ze hebben zien werken, of wie iemand die ze vertrouwen heeft zien werken.',
         },
       ],
@@ -1010,20 +1010,20 @@ export default {
       recall: [
         {
           q: 'Wat is het beste moment om problemen in te brengen die je buiten je scope zag?',
-          options: ['Midden in het project, om het te laten groeien', 'Nooit; het inbrengen lijkt altijd op verkopen', 'Bij de afsluiting, één keer, en de klant laten beslissen', 'In een apart verkoopgesprek, een paar weken na afloop'],
-          answer: 'Bij de afsluiting, één keer, en de klant laten beslissen',
+          options: ['Midden in het project, om het te laten groeien', 'Nooit; het inbrengen lijkt altijd op verkopen', 'Bij de afsluiting, één keer; de klant beslist', 'In een apart verkoopgesprek, een paar weken na afloop'],
+          answer: 'Bij de afsluiting, één keer; de klant beslist',
           why: 'Eén keer op het goede moment is het advies; steeds opnieuw pushen is verkopen.',
         },
         {
           q: 'Waarom neem je 3 en 6 maanden na een project contact op?',
-          options: ['Om een factuur te sturen voor de extra ondersteuning sindsdien', 'Om het resultaat te beschermen; dan komt vaak het volgende probleem', 'Omdat de meeste adviescontracten het op dat moment voorschrijven', 'Om om een testimonial voor de website te vragen nu het vers is'],
-          answer: 'Om het resultaat te beschermen; dan komt vaak het volgende probleem',
+          options: ['Om een factuur te sturen voor de extra ondersteuning sindsdien', 'Om het resultaat te borgen; dan komt vaak de volgende vraag', 'Omdat de meeste adviescontracten het op dat moment voorschrijven', 'Om om een testimonial voor de website te vragen nu het vers is'],
+          answer: 'Om het resultaat te borgen; dan komt vaak de volgende vraag',
           why: 'Het contact dient eerst de klant; de volgende vraag volgt daar vaak uit.',
         },
         {
           q: 'Je enige contact bij een klant is de sponsor. Wat is het risico?',
-          options: ['Geen; de sponsor is toch degene die beslist', 'Het project wordt duurder omdat zij het druk heeft', 'De klant raakt elke week uitgekeken op hetzelfde gezicht', 'De klantrelatie stopt als zij vertrekt of van rol wisselt'],
-          answer: 'De klantrelatie stopt als zij vertrekt of van rol wisselt',
+          options: ['Geen; de sponsor is toch degene die beslist', 'Het project wordt duurder omdat zij het druk heeft', 'De klant raakt elke week uitgekeken op hetzelfde gezicht', 'De klantrelatie stopt als zij vertrekt of wisselt'],
+          answer: 'De klantrelatie stopt als zij vertrekt of wisselt',
           why: 'Een relatie die aan één persoon hangt, is maar zo stabiel als die persoon zijn baan.',
         },
         {
@@ -1106,8 +1106,8 @@ export default {
         },
         {
           q: 'Wat maakt een case sterk?',
-          options: ['Een volledige lijst van alle diensten die de praktijk biedt', 'Ervoor en erna in getallen, wat je deed, en een quote van de klant', 'Een uitgebreide beschrijving van je methode en modellen', 'Het logo van de klant met een korte lofzin eronder'],
-          answer: 'Ervoor en erna in getallen, wat je deed, en een quote van de klant',
+          options: ['Een volledige lijst van alle diensten die de praktijk biedt', 'Voor en na in getallen, wat je deed, een klantquote', 'Een uitgebreide beschrijving van je methode en modellen', 'Het logo van de klant met een korte lofzin eronder'],
+          answer: 'Voor en na in getallen, wat je deed, een klantquote',
           why: 'Getallen en de eigen woorden van een klant zijn bewijs; een lijst diensten is een bewering.',
         },
         {
@@ -1155,14 +1155,14 @@ export default {
       pre: [
         {
           q: 'Wat maakt van een post thought leadership?',
-          options: ['Hij krijgt veel likes en shares in het eerste uur', 'Hij vat een populair boek of een nieuwe trend netjes samen', 'Hij staat op een bekende zakelijke website', 'Hij neemt een standpunt in waar klanten het oneens mee kunnen zijn'],
-          answer: 'Hij neemt een standpunt in waar klanten het oneens mee kunnen zijn',
+          options: ['Hij krijgt veel likes en shares in het eerste uur', 'Hij vat een populair boek of een trend samen', 'Hij staat op een bekende zakelijke website', 'Hij kiest een standpunt waar klanten tegenin kunnen gaan'],
+          answer: 'Hij kiest een standpunt waar klanten tegenin kunnen gaan',
           why: 'Een standpunt is een bewering; een samenvatting van trends niet.',
         },
       ],
       teach: [
-        'Thought leadership betekent een helder, bruikbaar standpunt delen over een probleem dat je klanten hebben, zodat ze aan je denken voordat ze je nodig hebben. Een standpunt zegt iets waar mensen het oneens mee kunnen zijn.\n\n“Prestatiemanagement is belangrijk” is er geen. “De meeste OEE-dashboards mislukken omdat niemand eigenaar is van het wekelijkse gesprek, niet door de data” wel.',
-        'Vormen, van klein naar groot: een kort artikel per maand; een praatje op een sectorbijeenkomst; een ontbijtsessie voor klanten; een klein benchmarkonderzoek, bijvoorbeeld vijf vragen aan twintig planners over hoe zij met afzeggingen omgaan.\n\nDavid Maister, die veel schreef over adviesbureaus, raadde vrijgevigheid aan: geef je ideeën weg. Mensen huren je in om ze toe te passen, niet om ze te horen.',
+        'Thought leadership betekent een helder, bruikbaar standpunt (point of view) delen over een probleem dat je klanten hebben, zodat ze aan je denken voordat ze je nodig hebben. Een standpunt zegt iets waar mensen het oneens mee kunnen zijn.\n\n“Prestatiemanagement is belangrijk” is er geen. “De meeste OEE-dashboards mislukken omdat niemand eigenaar is van het wekelijkse gesprek, niet door de data” wel.',
+        'Vormen, van klein naar groot: een kort artikel per maand; een praatje op een sectorbijeenkomst; een ontbijtsessie voor klanten; een klein benchmarkonderzoek, bijvoorbeeld vijf vragen aan twintig planners over hoe zij met afzeggingen omgaan.\n\nVeel adviseurs raden, in het spoor van auteurs over adviesbureaus zoals David Maister, vrijgevigheid (generosity) aan: geef je ideeën weg. Mensen huren je in om ze toe te passen, niet om ze te horen.',
         'Bouw elk stuk op je eigen cases, geanonimiseerd en met toestemming, zoals in Klantdata en vertrouwelijkheid. Met drie cases schrijf je over wat je in die cases zag en waar het misschien niet opgaat. Verkoop geen grote theorie.\n\nDat is ook het verschil met een case uit Je eigen praktijk opbouwen: de case bewijst een resultaat; thought leadership verklaart een patroon.',
         'Het kost tijd. Schrijven en spreken gaan af van de 30 tot 40% niet-declarabele tijd, naast acquisitie en administratie. Begroot het: twee dagen per maand is 24 dagen per jaar, ongeveer een achtste van je werkdagen.\n\nMeet gesprekken, geen likes: klanten die een stuk noemen, uitnodigingen om te spreken, telefoontjes die beginnen met “ik las je artikel”. Het kan een jaar duren voordat dat groeit.',
         'Waar mensen verschillen: de een zegt dat elke zelfstandige wekelijks online zichtbaar moet zijn; de ander vindt één sterk stuk per kwartaal, persoonlijk gedeeld met twintig klanten, beter werken.\n\nVeelgemaakte fouten: opgewarmde trends, posten over jezelf in plaats van over het probleem van de klant, en na drie maanden stoppen.\n\nEen scherpe vraag voordat je publiceert: “Zou een plantmanager dit doorsturen naar een collega?”',
@@ -1191,14 +1191,14 @@ export default {
         },
         {
           q: 'Hoe meet je het best of het werkt?',
-          options: ['De gesprekken die het start: uitnodigingen, telefoontjes', 'Het aantal nieuwe volgers dat je per maand wint', 'Het aantal posts dat je elke week weet te publiceren', 'De gemiddelde leestijd van bezoekers op je eigen website'],
-          answer: 'De gesprekken die het start: uitnodigingen, telefoontjes',
+          options: ['Gesprekken: wie het noemt, uitnodigingen, telefoontjes', 'Het aantal nieuwe volgers dat je per maand wint', 'Het aantal posts dat je elke week weet te publiceren', 'De gemiddelde leestijd op je eigen website'],
+          answer: 'Gesprekken: wie het noemt, uitnodigingen, telefoontjes',
           why: 'Werk komt uit gesprekken; likes en volgers worden zelden opdrachten.',
         },
         {
           q: 'Je hebt drie cases achter de rug. Over welke bewering kun je verantwoord schrijven?',
-          options: ['Een algemene theorie van prestatiemanagement', 'Een ranglijst van de beste fabrieken van het land', 'Wat je in die cases zag, en de grenzen ervan', 'Een garantie dat je methode altijd werkt'],
-          answer: 'Wat je in die cases zag, en de grenzen ervan',
+          options: ['Een algemene theorie van prestatiemanagement', 'Een ranglijst van de beste fabrieken van het land', 'Wat je in die cases zag, met de grenzen', 'Een garantie dat je methode altijd werkt'],
+          answer: 'Wat je in die cases zag, met de grenzen',
           why: 'Beweer niet meer dan je bewijs draagt; zo blijf je geloofwaardig.',
         },
       ],
@@ -1229,7 +1229,7 @@ export default {
         { term: 'Thought leadership', def: 'Een helder, bruikbaar standpunt over een klantprobleem delen, zodat klanten als eerste aan jou denken.' },
         { term: 'Standpunt', def: 'Een bewering over een probleem waar mensen het oneens mee kunnen zijn.' },
         { term: 'Benchmarkonderzoek', def: 'Een kleine enquête die vergelijkt hoe verschillende organisaties met hetzelfde vraagstuk omgaan.' },
-        { term: 'Vrijgevigheid', def: 'Je ideeën vrij weggeven, omdat klanten je inhuren om ze toe te passen (Maister).' },
+        { term: 'Vrijgevigheid', def: 'Je ideeën vrij weggeven, omdat klanten je inhuren om ze toe te passen.' },
       ],
     },
     {
@@ -1246,8 +1246,8 @@ export default {
       teach: [
         'David Maister (Managing the Professional Service Firm, 1993) deelt werk in drie soorten in. Denkwerk (brains): nieuwe, complexe problemen, hoge tarieven, weinig mensen. Ervaringswerk (grey hair): problemen die de klant elders al zag, dus hij betaalt voor ervaring. Procedurewerk (procedure): bekende, herhaalbare problemen waarbij de klant efficiëntie koopt.\n\nNaarmate een soort werk bekender wordt, schuift het van denkwerk naar procedurewerk, en dalen de prijzen.',
         'Hefboom (leverage) is hoeveel werk je via anderen levert: bij grote bureaus het aantal juniors per partner. Procedurewerk leent zich goed voor een hefboom, denkwerk nauwelijks.\n\nVoor een eenmanszaak betekent hefboom: associates, andere zelfstandigen die onder jouw contract werken; een vast product, zoals een diagnose van drie weken; of tools die uren schelen. Met een associate reken je bijvoorbeeld € 1.150 per dag, betaal je € 900 en houd je € 250 voor acquisitie, kwaliteit en het risico dat je draagt.',
-        'Klantconcentratie is het deel van je omzet dat van je grootste klant komt. Veel adviseurs hanteren de vuistregel dat één klant boven ongeveer een derde, en zeker boven de helft, een risico is: als je hem verliest doet dat pijn, en nee zeggen tegen hem wordt lastig, wat je onafhankelijkheid kost.\n\nHet is een vuistregel, geen wet. Houd het elk kwartaal bij.',
-        'In Nederland is er een tweede risico: schijnzelfstandigheid, werken als zelfstandige terwijl de relatie op een dienstverband lijkt. Signalen: lang voor één klant werken, onder diens leiding, ingebed in diens team.\n\nDe Belastingdienst handhaaft de regels (de Wet DBA) sinds 2025 weer, en veel opdrachtgevers beperken nu hoe lang ze dezelfde zelfstandige inhuren. Check de actuele regels bij een belastingadviseur; ze veranderen steeds.',
+        'Klantconcentratie (client concentration) is het deel van je omzet dat van je grootste klant komt. Veel adviseurs hanteren de vuistregel dat één klant boven ongeveer een derde, en zeker boven de helft, een risico is: als je hem verliest doet dat pijn, en nee zeggen tegen hem wordt lastig, wat je onafhankelijkheid kost.\n\nHet is een vuistregel, geen wet. Houd het elk kwartaal bij.',
+        'In Nederland is er een tweede risico: schijnzelfstandigheid (false self-employment), werken als zelfstandige terwijl de relatie op een dienstverband lijkt. Signalen: lang voor één klant werken, onder diens leiding, ingebed in diens team.\n\nDe Belastingdienst handhaaft deze regels (onder de Wet DBA) sinds 1 januari 2025 weer, met boetes die stap voor stap terugkomen, en veel opdrachtgevers beperken nu hoe lang ze dezelfde zelfstandige inhuren. Check de actuele regels bij een belastingadviseur; ze veranderen steeds.',
         'De keuze: solo blijven met denk- en ervaringswerk tegen een hoog tarief, of een klein bureau bouwen met associates en procedurewerk tegen een lager tarief en meer volume. Allebei werkt; mengen zonder te kiezen meestal niet.\n\nWaar mensen verschillen: de een zegt dat een zelfstandige nooit associates moet nemen, omdat kwaliteit je naam is; de ander ziet het als de enige manier om te groeien.\n\nEen scherpe vraag: “Welk deel van mijn werk kan iemand anders net zo goed?”',
       ],
       example: {
@@ -1268,19 +1268,19 @@ export default {
         },
         {
           q: 'Waarom is een hoge klantconcentratie meer dan een omzetrisico?',
-          options: ['Je dagtarief stijgt dan sneller dan de markt', 'Je offertes worden er langer en trager van', 'Je kunt dan helemaal geen cases meer schrijven', 'Nee zeggen tegen die klant wordt veel lastiger'],
-          answer: 'Nee zeggen tegen die klant wordt veel lastiger',
+          options: ['Je dagtarief stijgt dan sneller dan de markt', 'Je offertes worden er langer en trager van', 'Je kunt dan helemaal geen cases meer schrijven', 'Nee zeggen tegen die klant wordt lastiger'],
+          answer: 'Nee zeggen tegen die klant wordt lastiger',
           why: 'Als één klant de meeste rekeningen betaalt, krimpt je onafhankelijkheid tegenover hem.',
         },
         {
           q: 'Welk patroon vergroot voor een zelfstandige in Nederland het risico op schijnzelfstandigheid?',
-          options: ['Lang voor één klant werken, onder diens leiding', 'Drie klanten tegelijk in verschillende sectoren', 'Elk project tegen een vaste prijs doen', 'Je eigen laptop en je eigen methodes gebruiken'],
+          options: ['Lang voor één klant werken, onder diens leiding', 'Drie klanten tegelijk hebben in verschillende sectoren', 'Elk project tegen een vaste prijs doen', 'Je eigen laptop en je eigen methodes gebruiken'],
           answer: 'Lang voor één klant werken, onder diens leiding',
           why: 'Lang werk onder leiding, ingebed bij één klant, lijkt op een dienstverband.',
         },
         {
           q: 'Wat gebeurt er meestal als een soort werk bekender wordt?',
-          options: ['Het schuift van procedurewerk naar denkwerk, en de prijzen stijgen', 'Het schuift van denkwerk naar procedurewerk, en de prijzen dalen', 'Het blijft denkwerk zolang klanten ervoor betalen', 'Alleen grote bureaus kunnen het dan nog doen'],
+          options: ['Het schuift van procedure- naar denkwerk, en prijzen stijgen', 'Het schuift van denkwerk naar procedurewerk, en de prijzen dalen', 'Het blijft denkwerk zolang klanten ervoor betalen', 'Alleen grote bureaus kunnen het dan nog doen'],
           answer: 'Het schuift van denkwerk naar procedurewerk, en de prijzen dalen',
           why: 'Bekend werk kan door meer mensen herhaald worden, dus klanten betalen voor efficiëntie.',
         },
