@@ -53,9 +53,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'A plant manager at a dairy wants a downtime Pareto chart by Friday. The analyst says: “The data are a mess, we can’t do it.” You have the export open in front of you.',
+        scene: 'A plant manager at a dairy wants a downtime Pareto chart by Friday. The analyst says: “The data are useless, we can’t do it.” You have the export open in front of you.',
         ask: 'What do you say?',
-        model: 'Let’s make “a mess” concrete. What share of stops has a reason, how many are duplicates, how many have impossible durations? If 85% have a reason and we remove the duplicates, a Pareto is useful as long as we print those numbers next to it. Meanwhile we start fixing the biggest gap at the source.',
+        model: 'Let’s make “useless” concrete. What share of stops has a reason, how many are duplicates, how many have impossible durations? If 85% have a reason and we remove the duplicates, a Pareto is useful as long as we print those numbers next to it. Meanwhile we start fixing the biggest gap at the source.',
         rubric: [
           'Turns “bad data” into named dimensions',
           'Measures each dimension as a share of records',
@@ -68,7 +68,7 @@ export default {
         { term: 'Uniqueness', def: 'Whether each real event or object is recorded only once.' },
         { term: 'Timeliness', def: 'Whether data are available when the decision that needs them is made.' },
         { term: 'Validity', def: 'Whether a value fits the agreed format and range, such as a cycle time above zero.' },
-        { term: 'Accuracy', def: 'Whether a value matches what really happened in the real world.' },
+        { term: 'Accuracy', def: 'Whether a value matches what really happened in the real world. For an inspection system or an ML model, “accuracy” means something else: the share of correct verdicts.' },
         { term: 'Consistency', def: 'Whether the same fact agrees across systems and over time.' },
       ],
     },
@@ -92,7 +92,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A client retrofitted stack-light sensors on twelve old presses. After two weeks the data show 61% availability; the manual logs for the same period say 84%. The production manager says the sensors are wrong.\n\nStep 1: stand at one press for a shift with a stopwatch and compare your log with the data, stop by stop. Step 2: you find that yellow counts as “stopped”, while on these presses yellow means waiting for material or for the operator. That is still lost time, but a different loss from a breakdown, so it gets its own label. Step 3: add up the short stops the manual log missed. Step 4: share both numbers with the explanation, then a Pareto chart of stop lengths and causes, biggest first.',
+        text: 'A client retrofitted stack-light sensors on twelve old presses. After two weeks the data show 61% availability; the manual logs for the same period say 84%. The production manager says the sensors are wrong.\n\nStep 1: stand at one press for a shift with a stopwatch and compare your log with the data, stop by stop. Step 2: you find that yellow counts as “stopped”, while on these presses yellow means waiting for material or for the operator. That is still lost time, but a different loss from a breakdown, so it gets its own category. Step 3: add up the short stops the manual log missed. Step 4: share both numbers with the explanation, then a Pareto chart of stop lengths and causes, biggest first.',
       },
       said: 'What engineers say: “The manual log shows the long stops. The PLC shows the hundreds of two-minute stops nobody writes down.”',
       recall: [
@@ -112,7 +112,7 @@ export default {
         },
         {
           q: 'You want to see vibration up to 1 kHz on a gearbox. What sampling rate do you need?',
-          options: ['About 1 sample per second', 'At least 2 kHz, in practice about 2.56 kHz', 'Exactly 1 kHz, the same as the signal', 'About 100 samples per second, so 100 Hz, is enough'],
+          options: ['About 1 sample per second', 'At least 2 kHz, in practice about 2.56 kHz', 'Exactly 1 kHz, the same frequency as the signal', 'About 100 samples per second, so 100 Hz, is enough'],
           answer: 'At least 2 kHz, in practice about 2.56 kHz',
           why: 'You must sample at more than twice the highest frequency; analysers use a factor of 2.56.',
         },
@@ -178,8 +178,8 @@ export default {
         },
         {
           q: 'Why does tight traceability matter in a recall?',
-          options: ['It speeds up the root-cause analysis of the defect', 'It limits the recall to lots that used the bad material', 'It lets you skip notifying the customers and authorities', 'It moves the liability for the recall to the supplier'],
-          answer: 'It limits the recall to lots that used the bad material',
+          options: ['It speeds up the root-cause analysis of the defect', 'It limits the recall to the lots with bad material', 'It lets you skip notifying the customers and authorities', 'It moves the liability for the recall to the supplier'],
+          answer: 'It limits the recall to the lots with bad material',
           why: 'Knowing exactly which lots used which material keeps the recall small and specific.',
         },
         {
@@ -292,14 +292,14 @@ export default {
       pre: [
         {
           q: 'A plant dashboard has 24 tiles with gauges, 3D pie charts and the company logo. The plant manager looks at it for a few seconds each morning. What does he most likely take away?',
-          options: ['Little: the important numbers drown in the rest', 'Everything, because all the numbers are shown', 'Only the trends, because gauges show history', 'The exact OEE per line, compared with last month'],
-          answer: 'Little: the important numbers drown in the rest',
+          options: ['Little: the key numbers drown in the rest', 'Everything, because all the numbers are shown', 'Only the trends, because gauges show history', 'The exact OEE per line, compared with last month'],
+          answer: 'Little: the key numbers drown in the rest',
           why: 'In a few seconds nobody reads 24 tiles. Without a clear focus, the numbers that matter disappear.',
         },
       ],
       teach: [
         'Stephen Few, a well-known writer on dashboard design, defines a dashboard as a visual display of the most important information needed to reach one or more objectives, arranged on a single screen so it can be monitored at a glance.\n\nThree things follow. A dashboard serves a purpose and an audience. It shows only the most important numbers. And it is for monitoring, not for digging; digging belongs in a separate report.',
-        'A KPI, a key performance indicator, is a number that shows whether you are on track for a goal: OEE, first-pass yield, on-time delivery. A KPI without a target and a trend says little: “OEE 71%” is good or bad only next to “target 75%, rising for six weeks”.\n\nPractitioners often advise a handful of KPIs per dashboard, roughly five to nine; that is a rule of thumb from experience, not a law.',
+        'A KPI, a key performance indicator, is a number that shows whether you are on track for a goal: OEE, first-pass yield, on-time delivery. A KPI without a target and a trend says little: “OEE 71%” is good or bad only next to “target 75%, rising for six weeks”.\n\nPractitioners often advise a handful of KPIs per dashboard, roughly five to nine; that is a rule of thumb from experience, not a law. How to define each KPI so nobody argues is in Performance management.',
         'Mix lagging and leading indicators. A lagging indicator shows the result after the fact, such as last week’s scrap rate. A leading indicator moves before the result does, such as the share of changeovers done to the standard, or the number of open maintenance actions.\n\nLagging indicators tell you whether you won; leading indicators tell you what to do on Monday.',
         'Edward Tufte, a statistician known for his books on charts, coined the data-ink ratio: the share of the ink on a chart that shows data. Raise it by removing what does not: 3D effects, heavy gridlines, backgrounds. Decoration that adds nothing he called chartjunk.\n\nIn practice: a simple bar or line with the target as a thin line beats a gauge, which uses a lot of space for one number.',
         'What experts argue about: Few insists on one screen without scrolling; others say phones and drill-downs make that outdated. Most agree that the first screen must answer the main question.\n\nTypical failure: a dashboard built from what data exist, not from what someone must decide. The sharp question: “Who looks at this, in which meeting, and what do they decide with it?”',
@@ -320,20 +320,20 @@ export default {
         },
         {
           q: 'Which is a leading indicator for scrap?',
-          options: ['Last month’s scrap cost in euros', 'The number of customer complaints this quarter', 'The share of changeovers done to the standard', 'The scrap rate of last week, per line'],
+          options: ['Last month’s scrap cost in euros, for the plant', 'The number of customer complaints this quarter', 'The share of changeovers done to the standard', 'The scrap rate of last week, per line and shift'],
           answer: 'The share of changeovers done to the standard',
           why: 'Poor changeovers cause scrap later, so this number moves before the scrap does. The others report results after the fact.',
         },
         {
           q: 'What does raising the data-ink ratio of a chart mean?',
-          options: ['Adding more series so more data fit on one chart', 'Printing the chart in darker colours for contrast', 'Making the chart bigger so the numbers are easier to read', 'Removing ink that shows no data, such as 3D effects'],
+          options: ['Adding more series so more data fit on one chart', 'Printing the chart in darker colours for more contrast', 'Making the chart bigger so the numbers are easier to read', 'Removing ink that shows no data, such as 3D effects'],
           answer: 'Removing ink that shows no data, such as 3D effects',
           why: 'Tufte’s idea: the more of the ink shows data, the easier the chart is to read.',
         },
         {
           q: 'According to Few, what is a dashboard mainly for?',
-          options: ['Exploring data in depth to find new causes of losses', 'Monitoring the most important numbers at a glance', 'Storing every KPI the plant has ever defined', 'Replacing the daily meeting on the shop floor'],
-          answer: 'Monitoring the most important numbers at a glance',
+          options: ['Exploring data in depth to find new causes of losses', 'Monitoring the key numbers at a glance', 'Storing every KPI the plant has ever defined', 'Replacing the daily meeting on the shop floor'],
+          answer: 'Monitoring the key numbers at a glance',
           why: 'Few separates monitoring, which is what a dashboard is for, from analysis, which belongs in reports.',
         },
       ],
@@ -371,9 +371,9 @@ export default {
       teach: [
         'Power BI, Microsoft’s reporting tool, has three layers. Power Query fetches and shapes data: connecting to a database or file, removing columns, merging tables. The semantic model holds the cleaned tables, their relationships and the calculations; Microsoft called it a dataset until 2023. The report is the pages of visuals on top.\n\nMost errors live in the first two layers, not in the visuals.',
         'A good semantic model is a star schema: a fact table of events, such as stops or produced parts, surrounded by dimension tables for machine, product, date and shift. IT fundamentals (eng.itbasics) explains the star schema and why careless joins double-count.\n\nGet the model right first; a messy model makes every visual slow and every number suspect.',
-        'Calculations are written in DAX, Power BI’s formula language. A measure calculates at the moment you look, for whatever filter is active: OEE for line 3 in week 44. A calculated column calculates once per row when the data load, like a column in Excel.\n\nRatios such as OEE, scrap rate and on-time delivery must be measures that divide sums. Averaging daily percentages gives the wrong answer when days or lines differ in size.',
+        'Calculations are written in DAX, Power BI’s formula language. A DAX measure calculates at the moment you look, for whatever filter is active: OEE for line 3 in week 44. A calculated column calculates once per row when the data load, like a column in Excel.\n\nRatios such as OEE, scrap rate and on-time delivery must be measures that divide sums, in DAX: DIVIDE(sum of fully productive time, sum of planned time). Averaging daily percentages gives the wrong answer when days or lines differ in size.',
         'Data in the Power BI service, the cloud side, only update on refresh. A scheduled refresh runs at set times: up to 8 a day with a Pro licence and up to 48 with Premium Per User or a Premium or Fabric capacity, according to Microsoft’s documentation. Data from servers inside the plant pass through an on-premises data gateway.\n\nSo a report is never “live” unless it is built for it; it shows the state at the last refresh.',
-        'What experts argue about: self-service, where every analyst builds a model, versus one certified model that many reports share. Self-service is fast; a shared model keeps one definition of OEE.\n\nTypical failure: OEE as a calculated column, summarised with the default “average”. The sharp question: “Is this KPI a measure that divides sums, and when was the data last refreshed?”',
+        'What experts argue about: self-service, where every analyst builds a model, versus one certified model that many reports share. Self-service is fast; a shared model keeps one definition of OEE.\n\nTypical failure: OEE as a calculated column, summarised with “average”. The sharp question: “Is this KPI a measure that divides sums, and when was the data last refreshed?”',
       ],
       example: {
         kind: 'worked',
@@ -391,14 +391,14 @@ export default {
         },
         {
           q: 'What is the difference between a measure and a calculated column in Power BI?',
-          options: ['A measure follows the active filter; a column is set per row', 'A measure is stored on disk; a column is calculated on screen', 'A measure works only in Excel; a column only in Power BI', 'A measure needs a Premium licence; a column works with Pro'],
-          answer: 'A measure follows the active filter; a column is set per row',
+          options: ['A measure follows the filter; a column is fixed per row', 'A measure is stored on disk; a column is calculated on screen', 'A measure works only in Excel; a column only in Power BI', 'A measure needs a Premium licence; a column works with Pro'],
+          answer: 'A measure follows the filter; a column is fixed per row',
           why: 'A measure is calculated for whatever you filter on; a calculated column is fixed per row when the data load.',
         },
         {
           q: 'A Pro workspace refreshes at 06:00. At 15:00 the production manager calls the report “live”. What do you tell him?',
-          options: ['It is live, because Power BI streams all data', 'It shows yesterday, because Pro refreshes once a day', 'It is live only for the lines with a gateway', 'It shows the state at 06:00, the last refresh'],
-          answer: 'It shows the state at 06:00, the last refresh',
+          options: ['It is live, because Power BI streams all data', 'It shows yesterday, because Pro refreshes once a day', 'It is live only for the lines with a gateway', 'It shows the 06:00 state, the last refresh'],
+          answer: 'It shows the 06:00 state, the last refresh',
           why: 'A scheduled refresh copies the data at set times; between refreshes the report does not change.',
         },
         {
@@ -423,7 +423,7 @@ export default {
         { term: 'Power Query', def: 'The part of Power BI that fetches and shapes data: connecting, cleaning and merging tables.' },
         { term: 'Semantic model', def: 'The tables, relationships and calculations that Power BI reports read; called a dataset until 2023.' },
         { term: 'DAX', def: 'Data Analysis Expressions: the formula language for calculations in Power BI.' },
-        { term: 'Measure', def: 'A DAX calculation done at viewing time for the active filter, such as OEE for one line and week.' },
+        { term: 'DAX measure', def: 'A DAX calculation done at viewing time for the active filter, such as OEE for one line and week.' },
         { term: 'Calculated column', def: 'A DAX calculation stored once per row when the data load, like an Excel column.' },
         { term: 'Scheduled refresh', def: 'Updating a Power BI semantic model at set times; up to 8 a day with Pro, 48 with Premium.' },
       ],
@@ -441,8 +441,8 @@ export default {
       ],
       teach: [
         'A shop-floor screen and a management report answer different questions. The screen at the line asks: are we on plan right now, and if not, what is the problem? The management report asks: where are the structural losses, and where do we put attention and money?\n\nMixing them is the most common mistake: a management report on a 55-inch screen above the line, full of filters nobody can click.',
-        'Many Lean plants run tiered meetings: tier 1 at the line at the start of each shift, tier 2 for the department, tier 3 for the plant, each passing up the problems it cannot solve.\n\nEach tier needs its own view. Tier 1 needs this shift and this hour; tier 2 yesterday and this week; tier 3 trends, Pareto charts and actions over weeks.',
-        'The classic tier-1 display is the hour-by-hour board: per hour the plan, the actual, the gap and a short reason. It works on paper, a whiteboard or a screen. Its power is that the team sees it fill and acts within the hour.\n\nAn andon is the signal a worker or machine gives when something is wrong, often a light or a sound, so help comes fast. A screen can show andon calls, but should not replace the call itself.',
+        'Many Lean plants run tiered meetings: tier 1 at the line at the start of each shift, tier 2 for the department, tier 3 for the plant, each passing up the problems it cannot solve. How the ladder runs is in Land (Tiered meetings and escalation).\n\nEach tier needs its own view. Tier 1 needs this shift and this hour; tier 2 yesterday and this week; tier 3 trends, Pareto charts and actions over weeks.',
+        'The classic tier-1 display is the hour-by-hour chart: per hour the plan, the actual, the gap and a short reason (see Performance management, A performance board that steers). Its power is that the team sees it fill and acts within the hour.\n\nAn andon is the signal a worker or machine gives when something is wrong, often a light or a sound, so help comes fast. A screen can show andon calls, but should not replace the call itself.',
         'Visual management means making normal and abnormal visible at a glance. Rule of thumb: anyone walking past should see in a few seconds whether things are on plan. So: large numbers readable from several metres, few colours, the target visible, no scrolling.\n\nDo not rely on red and green alone: roughly 1 in 12 men has a red-green colour vision deficiency. Add a symbol or text. A management report can carry more detail and allow drill-down: clicking from a total into its parts.',
         'What experts argue about: automatic screens or hand-written boards. Screens are always up to date; writing by hand makes the team think about each hour and own the number. Many plants automate the counting and keep the reasons by hand.\n\nTypical failure: the screen shows OEE, a number the team cannot change within the hour. The sharp question: “What can the people who look at this screen change in the next hour, and does the screen show it?”',
       ],
@@ -455,7 +455,7 @@ export default {
       said: 'What the team leader says: “Yesterday’s OEE doesn’t help me. Tell me if we’re behind this hour.”',
       recall: [
         {
-          q: 'A shift plan is 3,360 parts in 7 productive hours. What is the target per hour on the hour-by-hour board?',
+          q: 'A shift plan is 3,360 parts in 7 productive hours. What is the target per hour on the hour-by-hour chart?',
           number: 480,
           tolerance: 0.5,
           unit: 'parts',
@@ -476,13 +476,13 @@ export default {
         },
         {
           q: 'What is an andon?',
-          options: ['A board that shows the plan for each shift', 'A signal that something is wrong, so help comes', 'A Japanese name for a management report', 'A meeting held at the line at the start of each shift'],
-          answer: 'A signal that something is wrong, so help comes',
+          options: ['A board that shows the plan for each shift', 'A signal for help when something is wrong', 'A Japanese name for a management report', 'A meeting held at the line at the start of each shift'],
+          answer: 'A signal for help when something is wrong',
           why: 'An andon, often a light or a sound, calls for help at once when there is a problem.',
         },
       ],
       situation: {
-        scene: 'At a plastics plant the IT manager wants to replace the hand-written hour-by-hour boards with screens fed by the MES. The team leaders are against it: “Then nobody looks at it any more.”',
+        scene: 'At a plastics plant the IT manager wants to replace the hand-written hour-by-hour charts with screens fed by the MES. The team leaders are against it: “Then nobody looks at it any more.”',
         ask: 'What do you propose?',
         model: 'Both have a point. The screen can do the counting, so the actual is always right, while the team still enters the reason for each missed hour. Let’s test it on one line for a month and see whether reasons get filled in and actions follow. If they drop, we go back to the board.',
         rubric: [
@@ -494,7 +494,7 @@ export default {
       sayIt: 'Explain to a plant manager in 60 seconds why a management report does not belong on a screen above the line.',
       terms: [
         { term: 'Tiered meetings', def: 'A ladder of short meetings, from the line (tier 1) to department and plant, each passing up what it cannot solve.' },
-        { term: 'Hour-by-hour board', def: 'A board showing per hour the plan, the actual, the gap and a reason.' },
+        { term: 'Hour-by-hour chart', def: 'A chart, on paper, a whiteboard or a screen, showing per hour the plan, the actual, the gap and a reason.' },
         { term: 'Andon', def: 'A signal, often a light or sound, that a worker or machine gives when something is wrong, so help comes fast.' },
         { term: 'Visual management', def: 'Making normal and abnormal visible at a glance on the floor, with boards, colours and markings.' },
         { term: 'Drill-down', def: 'Clicking from a total in a report into the parts that make it up.' },
@@ -512,9 +512,9 @@ export default {
         },
       ],
       teach: [
-        'Once data flow, it is tempting to send an alert for every deviation. Alert fatigue is what follows: people get so many alerts that they stop reading them, and the one that matters drowns.\n\nProcess control has the same problem with alarms; the guideline EEMUA 191 treats about one alarm per 10 minutes per operator as very likely acceptable (see Process technology, eng.process). Alerts from a data platform deserve the same discipline.',
+        'Once data flow, it is tempting to send an alert for every deviation. Alert fatigue is what follows: people get so many alerts that they stop reading them, and the one that matters drowns.\n\nProcess control has the same problem with alarms; the guideline EEMUA 191 treats about one alarm per 10 minutes per operator in normal running as very likely acceptable (see Process technology, eng.process). Alerts from a data platform deserve the same discipline.',
         'A good alert passes three tests. It is actionable: someone can and must do something now. It has an owner: one named role, not a mailing list. And it is rare enough to be taken seriously.\n\nIf no one would act on it, it is information. It belongs on a dashboard or in a daily report, not in an alert.',
-        'Set the alert threshold, the value that triggers it, on the process’s own variation, not on the target. A target says where you want to be; normal variation says when something has really changed. Control limits from statistical process control (see eng.spc) do exactly that.\n\nAdd persistence: alert only when a value stays out for, say, three readings in a row, so one noisy reading wakes nobody.',
+        'Set the alert threshold, the value that triggers it, on the process’s own variation, not on the target. A target says where you want to be; normal variation says when something has really changed. Control limits from statistical process control (see eng.spc) do exactly that; on a chart of hourly or daily values, one point outside them is already a signal.\n\nFor fast sensor readings, add persistence: alert only when a value stays out for, say, three readings in a row, so one noisy reading wakes nobody.',
         'Design the route. Group related alerts into one message, so ten sensors on one machine give one alert, not ten. Use escalation: if the first owner does not respond within a set time, the alert goes to the next level.\n\nMeasure alert precision: the share of alerts that led to a real action. A team that acts on 5% of its alerts gets 95% noise.',
         'What experts argue about: who may add alerts. If anyone can, they multiply; if only a central team can, useful ones never get made. Many sites review all alerts monthly and remove those nobody acted on.\n\nTypical failure: alerts on KPI targets, such as OEE below 75%, that fire every shift because the target is ambitious. The sharp question: “What did someone do the last ten times this alert fired?”',
       ],
@@ -536,14 +536,14 @@ export default {
         },
         {
           q: 'What makes an alert actionable?',
-          options: ['It is sent to as many people on the list as possible', 'It uses red text and a loud sound', 'It shows a KPI compared with its target', 'Someone can and must do something about it now'],
+          options: ['It is sent to as many people on the list as possible', 'It uses red text and a loud sound', 'It shows a KPI compared with its target for the shift', 'Someone can and must do something about it now'],
           answer: 'Someone can and must do something about it now',
           why: 'An alert nobody can act on is information; it belongs on a dashboard.',
         },
         {
           q: 'Where should an alert threshold usually come from?',
-          options: ['The yearly target for the KPI concerned', 'The normal variation of the process itself', 'The best value ever recorded on the line', 'The value the supplier advises in the manual'],
-          answer: 'The normal variation of the process itself',
+          options: ['The yearly target for the KPI concerned', 'The process’s own normal variation', 'The best value ever recorded on the line', 'The value the supplier advises in the manual'],
+          answer: 'The process’s own normal variation',
           why: 'Normal variation shows when something has really changed; a target only says where you want to be.',
         },
         {
@@ -651,14 +651,14 @@ export default {
           q: 'A plant manager says the Power BI report is “live”. The MES exports once a night and Power BI refreshes at 06:00. What does the report really show at 14:00?',
           options: ['Everything up to a few minutes ago', 'The data up to last night’s export', 'Only what happened since 06:00 today', 'The data of the previous whole week'],
           answer: 'The data up to last night’s export',
-          why: 'Data are as fresh as the oldest step in the chain: a nightly export means last night’s state, whatever time the report refreshes.',
+          why: 'Data are only as fresh as the export at the start of the chain: a nightly export means last night’s state, whatever time the report refreshes.',
         },
       ],
       teach: [
         'A data platform is the set of tools that brings data from many sources together for analysis: storage, loading jobs and the models that reports read. Typical layers: sources (PLC, historian, MES, ERP); ingestion, which copies the data in; storage; transformation, which cleans and combines; and a semantic model that Power BI reads.\n\nFor the building blocks, such as databases, SQL and APIs, see IT fundamentals (eng.itbasics).',
         'ETL, extract, transform, load, cleans the data before storing them. ELT, extract, load, transform, first loads the raw data and transforms them inside the platform. Cheap cloud storage made ELT common: the raw copy stays, so you can redo a transformation when a definition changes.\n\nAn incremental load fetches only what is new or changed since the last run; it is faster, but misses corrections to old records unless it is designed for them.',
         'Where to store? A data warehouse holds structured, cleaned tables with a fixed design, built for reporting. A data lake holds raw files of any kind, such as exports, sensor data and images, cheaply, and gives them structure only when read. A lakehouse combines both: lake storage with table formats, such as Delta Lake or Apache Iceberg, that add warehouse features.\n\nMicrosoft Fabric and Databricks are examples of such platforms; names are examples, not advice.',
-        'Latency is the delay between an event on the floor and its appearance in a report. It adds up along the chain: export, load, transform, refresh. Nightly batches give a report that is always half a day old: fine for a weekly review, useless within a shift.\n\nMany platforms label their layers bronze (raw), silver (cleaned) and gold (ready for reports), the so-called medallion architecture; the names vary.',
+        'Latency is the delay between an event on the floor and its appearance in a report. It adds up along the chain: export, load, transform, refresh. Nightly batches give a report that is always half a day old: fine for a weekly review, useless within a shift.\n\nMany platforms name their layers bronze (raw), silver (cleaned) and gold (ready for reports), the so-called medallion architecture; the names vary.',
         'What experts argue about: one platform for all data, or keeping second-by-second data in the historian and copying only aggregates, such as minutes per machine state per hour. Copying every second of every tag is expensive and rarely used.\n\nTypical failure: nobody can trace a number that looks wrong. Data lineage, the record of where each number came from and what was done to it, is the fix. The sharp question: “Can you show me the path of this number from the machine to the screen?”',
       ],
       example: {
@@ -729,7 +729,7 @@ export default {
         'Data ownership answers: who decides what a piece of data means, and who makes sure it is right? Three roles are common. The data owner, usually a business manager, is accountable for a data domain, such as production for stop reasons. A data steward does the daily work: definitions, rules, fixing errors. A data custodian, often IT, runs the systems that store and move the data.\n\nIT keeps the database running; it cannot decide what “planned time” means.',
         'A data contract is an agreement between the team that produces data and the teams that use them: which fields, their meaning and units, how fresh, how complete, and what happens before something changes. Think of it as the written specification of an interface, with an owner.\n\nWithout one, every MES update, renamed tag or new reason code can silently break the reports downstream.',
         'Data mesh, an idea from Zhamak Dehghani (2019), pushes ownership further: each domain, such as production, maintenance or quality, publishes its data as a product with an owner, documentation and quality promises, on a shared platform.\n\nFor a single plant that can be too heavy. The useful part is the principle that the people who create data also own its quality for others.',
-        'Access is part of ownership. Role-based access gives rights by role, not by person: team leaders see their line, controllers see costs. Personal data, such as which operator logged which stop, fall under the GDPR; in the Netherlands the works council has a right of consent when data can be used to monitor staff (Works Councils Act, article 27).\n\nAgree up front what the data will and will not be used for.',
+        'Access is part of ownership. Role-based access gives rights by role, not by person: team leaders see their line, controllers see costs. Personal data, such as which operator logged which stop, fall under the GDPR; in the Netherlands the works council has a right of consent when data can be used to monitor staff (Works Councils Act, article 27(1)(l)).\n\nAgree up front what the data will and will not be used for.',
         'What experts argue about: should ownership sit with IT, which knows the systems, or with the business, which knows the meaning? Most frameworks, DAMA’s among them, put accountability in the business and technical care in IT.\n\nTypical failure: a data owner named on paper who never decides anything. The sharp question: “When this definition must change, who decides, and who is told before it goes live?”',
       ],
       example: {
@@ -756,14 +756,14 @@ export default {
         },
         {
           q: 'What does a data contract fix between the producer and the users of data?',
-          options: ['The price that users pay the IT department for each report', 'Fields, meaning, freshness and how changes are announced', 'The Power BI licences each user is given', 'The servers on which the data are stored'],
+          options: ['The price that users pay the IT department for each report', 'Fields, meaning, freshness and how changes are announced', 'The Power BI licences and access rights each user is given', 'The servers on which the data are stored'],
           answer: 'Fields, meaning, freshness and how changes are announced',
           why: 'It is the written specification of an interface, so changes no longer break reports silently.',
         },
         {
           q: 'Stop data show which operator logged each stop. A manager wants to rank operators on it. What should happen first?',
-          options: ['Nothing; the data already exist in the MES', 'Ask IT to give the manager read access to the MES', 'Publish the ranking to motivate the teams', 'Check the GDPR and involve the works council'],
-          answer: 'Check the GDPR and involve the works council',
+          options: ['Nothing; the data already exist in the MES', 'Ask IT to give the manager read access to the MES', 'Publish the ranking to motivate the teams', 'Check the GDPR, ask the works council'],
+          answer: 'Check the GDPR, ask the works council',
           why: 'Monitoring staff with personal data needs a lawful basis, and in the Netherlands the consent of the works council.',
         },
       ],
@@ -823,8 +823,8 @@ export default {
         },
         {
           q: 'A project frees 300 hours a year on a machine that is not the bottleneck and has spare capacity. What is the money benefit?',
-          options: ['300 hours multiplied by the whole line’s margin per hour', 'Only real savings, such as overtime, or extra sales', 'Nothing at all, because hours are never money', '300 hours × the machine’s purchase price per hour'],
-          answer: 'Only real savings, such as overtime, or extra sales',
+          options: ['300 hours multiplied by the whole line’s margin per hour', 'Only real savings, like overtime, or extra sales', 'Nothing at all, because hours are never money', '300 hours × the machine’s purchase price per hour'],
+          answer: 'Only real savings, like overtime, or extra sales',
           why: 'Freed capacity on a non-bottleneck is not money until a cost goes away or a sale is added.',
         },
         {
@@ -876,11 +876,11 @@ export default {
         'Supervised learning learns from examples with the answer attached, the label: this batch was good, that one scrap; this bearing failed after 400 hours. It then predicts the label for new cases.\n\nUnsupervised learning gets no labels. It finds structure on its own: groups of similar products, or data points that do not fit the usual pattern. That helps when you have few or no examples of the problem you are looking for.',
         'A model is only as good as its data. You need enough examples of what you want to predict, labels you can trust, and data that cover normal variation: shifts, materials, seasons.\n\nTo check a model honestly, keep part of the data apart as a test set, often 20 to 30%, and never let the model see it during training. Its score on the test set is what to expect on new data.',
         'Overfitting is when a model learns the training data by heart, noise included, instead of the real pattern. It scores brilliantly on data it has seen and poorly on new data. Warning signs: a big gap between training and test scores, and many inputs with few examples.\n\nThe cure: more data, a simpler model, and testing on data from a later period, as the model will meet it in real use.',
-        'The EU AI Act (Regulation (EU) 2024/1689) sorts AI by risk. Most plant uses, such as scrap prediction or maintenance, carry few specific duties; AI that judges or monitors workers counts as high-risk. After a 2026 amendment, high-risk duties apply from December 2027, and from August 2028 for AI built into regulated products such as machinery. Check the current text before relying on dates.\n\nThe sharp question for any model: “How did it score on data it never saw?”',
+        'The EU AI Act (Regulation (EU) 2024/1689) sorts AI by risk. Most plant uses, such as scrap prediction or maintenance, carry few specific duties; AI that judges or monitors workers counts as high-risk. The Digital Omnibus on AI (Regulation (EU) 2026/1744) moved high-risk duties to December 2027, and to August 2028 for AI built into regulated products such as machinery. Check the current text before relying on dates.\n\nThe sharp question for any model: “How did it score on data it never saw?”',
       ],
       example: {
         kind: 'worked',
-        text: 'An analyst at a moulding plant builds a model that predicts scrap from 40 machine settings, using 600 batches. On those 600 batches it is right 97% of the time. The plant manager wants to use it from tomorrow.\n\nStep 1: ask how it scores on batches it has not seen. The analyst tests it on last month’s 150 batches: 71%. Step 2: the drop from 97% to 71% points to overfitting: 40 inputs, only 600 examples. Step 3: compare with a simple baseline: always predicting “good” is right 92% of the time, so the model is worse than doing nothing. Step 4: simplify to the 5 settings process engineers think matter, and test again on last month.',
+        text: 'An analyst at a moulding plant builds a model that predicts scrap from 40 machine settings, using 600 batches. On those 600 batches it is right 97% of the time. The plant manager wants to use it from tomorrow.\n\nStep 1: ask how it scores on batches it has not seen. The analyst tests it on last month’s 150 batches: 71%. Step 2: the drop from 97% to 71% points to overfitting: 40 inputs, only 600 examples. Step 3: compare with the simplest possible model: always predicting “good” is right 92% of the time, so the model is worse than doing nothing. Step 4: simplify to the 5 settings process engineers think matter, and test again on last month.',
       },
       said: 'What the data scientist says: “Ninety-seven percent on the training data means nothing. Show me last month.”',
       recall: [
@@ -900,14 +900,14 @@ export default {
         },
         {
           q: 'A model scores 98% on its training data and 70% on new data. What is the most likely problem?',
-          options: ['The new data were loaded too late', 'The model is far too simple for the task at hand', 'Overfitting: it learned the noise as well', 'The test set was larger than needed'],
+          options: ['The new data were loaded too late into the model', 'The model is far too simple for the task at hand', 'Overfitting: it learned the noise as well', 'The test set was larger than needed'],
           answer: 'Overfitting: it learned the noise as well',
           why: 'A big gap between seen and unseen data is the classic sign of overfitting.',
         },
         {
           q: 'Under the EU AI Act, which plant use is most likely high-risk?',
-          options: ['Predicting scrap from machine settings', 'AI that ranks operators on their performance', 'Detecting anomalies in compressor vibration', 'Forecasting the plant’s energy use for next week'],
-          answer: 'AI that ranks operators on their performance',
+          options: ['Predicting scrap from machine settings', 'AI ranking operators on performance', 'Detecting anomalies in compressor vibration', 'Forecasting the plant’s energy use for next week'],
+          answer: 'AI ranking operators on performance',
           why: 'AI used to evaluate or monitor workers is listed as high-risk; process and machine uses mostly are not.',
         },
       ],
@@ -965,14 +965,14 @@ export default {
         },
         {
           q: 'Why does anomaly detection suit plants where failures are rare?',
-          options: ['It needs a large set of past failures to learn', 'It learns what normal looks like, not failures', 'It replaces all the separate sensors with one camera', 'It only works on brand-new machines'],
+          options: ['It needs a large set of past failures to learn from', 'It learns what normal looks like, not failures', 'It replaces all the separate sensors with one camera', 'It only works on brand-new machines'],
           answer: 'It learns what normal looks like, not failures',
           why: 'Normal data are plentiful; failure data are not. Anomaly detection only needs the first.',
         },
         {
           q: 'A model flags a bearing fault three days ahead. The spare bearing takes two weeks to arrive. What does that tell you?',
-          options: ['The model is perfect and needs no change', 'The bearing should be replaced at once', 'The sensor should sample far more slowly to save data', 'The warning comes too late to plan the repair'],
-          answer: 'The warning comes too late to plan the repair',
+          options: ['The model is perfect and needs no change', 'The bearing should be replaced at once', 'The sensor should sample far more slowly to save data', 'It warns too late to plan the repair'],
+          answer: 'It warns too late to plan the repair',
           why: 'Warning time must exceed the time to get parts and plan the job; otherwise keep a spare or warn earlier.',
         },
         {
@@ -1051,8 +1051,8 @@ export default {
         },
         {
           q: 'What does running a vision system in shadow mode mean?',
-          options: ['Testing it only at night, when the line runs slowly', 'It judges real parts, but nobody acts on its verdict', 'Running it with the lights off to test the camera', 'Using it only on parts that inspectors already rejected'],
-          answer: 'It judges real parts, but nobody acts on its verdict',
+          options: ['Testing it only at night, when the line runs slowly', 'It judges real parts; nobody acts on its verdict', 'Running it with the lights off to test the camera', 'Using it only on parts that inspectors already rejected'],
+          answer: 'It judges real parts; nobody acts on its verdict',
           why: 'Shadow mode compares the system with the existing inspection on real production without risking escapes.',
         },
       ],

@@ -65,8 +65,8 @@ Terms (en / nl, same order and count, each literally in its lesson’s teach tex
 - mes: Dispatching, Master data, Ideal cycle time, Reason code, Genealogy / Dispatching, Stamdata, Ideale cyclustijd, Redencode, Genealogie.
 - dqrules: Data quality rule, Data quality scorecard, 1-10-100 rule, ISO 8000, Freshness check / Datakwaliteitsregel, Scorekaart datakwaliteit, 1-10-100-regel, ISO 8000, Versheidscontrole.
 - kpi: Dashboard, KPI, Lagging indicator, Leading indicator, Data-ink ratio, Chartjunk / Dashboard, KPI, Achterlopende indicator, Voorlopende indicator, Data-inktratio, Chartjunk.
-- powerbi: Power Query, Semantic model, DAX, Measure, Calculated column, Scheduled refresh / Power Query, Semantisch model, DAX, Meting, Berekende kolom, Geplande vernieuwing (Microsoft’s Dutch UI terms).
-- floor: Tiered meetings, Hour-by-hour board, Andon, Visual management, Drill-down / Getrapt overleg, Uur-tot-uurbord, Andon, Visueel management, Drill-down.
+- powerbi: Power Query, Semantic model, DAX, DAX measure, Calculated column, Scheduled refresh / Power Query, Semantisch model, DAX, DAX-meting, Berekende kolom, Geplande vernieuwing (Microsoft’s Dutch UI terms).
+- floor: Tiered meetings, Hour-by-hour chart, Andon, Visual management, Drill-down / Getrapt overleg, Uur-per-uurbord, Andon, Visueel management, Drill-down.
 - alerts: Alert fatigue, Alert threshold, Persistence, Escalation, Alert precision / Alertmoeheid, Alertdrempel, Persistentie, Escalatie, Alertprecisie.
 - stack, vision, twin, case: unchanged.
 - pipeline: Data platform, ELT, Data warehouse, Data lake, Lakehouse, Data lineage / Dataplatform, ELT, Datawarehouse, Data lake, Lakehouse, Data lineage.
@@ -102,3 +102,5 @@ Recalculations (new lessons):
 - predictive: example 10 / 40 = 25%, 10 / 12 = 83.3%. r0 15 / 50 = 30%.
 
 Uncertain: Dutch term choices Getrapt overleg (tiered meetings; many sites just say “tier-overleg”), Technisch databeheerder (data custodian; no settled Dutch term), Telleroverloop, Scorekaart datakwaliteit. The app shows the English word next to each. ISO 8000 part titles beyond -8 and -61 not verified against the ISO catalogue, so not taught.
+
+Review (2026-11-08): verified on eur-lex that Regulation (EU) 2026/1744 (Digital Omnibus on AI, adopted 8 July 2026, OJ 24 July 2026) sets 2 December 2027 (Annex III) and 2 August 2028 (Annex I); now named in `ml`. Power BI refresh limits re-checked on Microsoft Learn (8 Pro, 48 PPU/Premium/Fabric). “Measure” renamed “DAX measure” / “DAX-meting” because the module-wide term linking tied the verb “measure” and Dutch “meting(en)” to the DAX definition; hour-by-hour chart and tiered meetings now use pm.perform’s and pm.land’s names and point there; EEMUA wording matches eng.process (“in normal running”); persistence scoped to fast sensor readings so it does not contradict the XmR rule that one point outside the limits is a signal. Length ranks of correct options spread (en: longest-tied 4, 2nd 16, 3rd 22, shortest 22; nl: 3 / 21 / 23 / 17; never the unique longest).
