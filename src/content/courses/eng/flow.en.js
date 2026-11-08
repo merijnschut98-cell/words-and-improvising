@@ -226,8 +226,8 @@ export default {
         },
       ],
       teach: [
-        'When demand changes, the takt changes, and the line has to follow. On a manual line where each operator mans one station: number of operators = work content / takt, rounded up.\n\nExample: 300 seconds of work per product. At a takt of 55 seconds that is 300 / 55 = 5.5, so 6 people. If demand drops to a takt of 75 seconds, it is 300 / 75 = 4.',
-        'Good plants balance in advance for three or four demand levels: a line with 4, 5 or 6 operators. Each level has its own standard work: the fixed order and time of the tasks per station.\n\nThat takes people who can work several stations. A skills matrix shows per operator which stations he has mastered. Anyone stuck on one station makes every rebalance harder.',
+        'When demand changes, the takt changes, and the line has to follow. On a manual line where each operator mans one station: number of operators = work content / takt, rounded up.\n\nExample: 300 seconds of work per product. At a takt of 55 seconds that is 300 / 55 = 5.5, so 6 people. If demand drops to a takt of 75 seconds, it is 300 / 75 = 4. If you fill stations to a planned cycle time below takt, divide by that time instead.',
+        'Good plants balance in advance for three or four demand levels: a line with 4, 5 or 6 operators. Each level has its own standard work: the fixed order and time of the tasks per station.\n\nThat takes people who can work several stations. A skills matrix shows per operator which stations they have mastered. Anyone stuck on one station makes every rebalance harder.',
         'On a mixed-model line, variants with different work content run mixed together. You then balance on the weighted work content: the average, weighted by the volumes. 70% of 200 seconds plus 30% of 300 seconds is 230 seconds.\n\nBut if five heavy variants come in a row, a station is over takt five times and the backlog builds. A good sequence, heavy and light in turn, keeps the line in step. More on that in Lines and automation.',
         'What the manager weighs: balance loss is money. With 6 operators and 10% balance loss you pay 0.6 FTE to wait (FTE: one full-time job).\n\nIf the sum comes out at 5.2 people, you choose between 6 people with waiting time, or 5 with overtime and a better balance. Overtime carries a premium that varies by collective labour agreement; ask HR for your own figure before you calculate.',
         'Experts differ on how to deal with fluctuating demand. Lean says: level demand first with heijunka (planning about the same mix and quantity each day), so the line doesn’t have to change every week. Finance wants as few people per part as possible.\n\nThe trap: staffing up only once the backlog is there, with agency workers who don’t know the stations. Sharp question: “At what demand level do we go from 5 to 6 people, and is that balance ready?”',
@@ -241,18 +241,19 @@ export default {
       said: 'What engineers say: “The five-person balance is ready. When demand picks up in March, we switch over within a day.”',
       recall: [
         {
-          q: 'The work content is 330 seconds per product and the takt is 60 seconds. How many operators do you need at least, on a manual line where each operator mans one station?',
-          number: 6,
+          q: 'The work content is 330 seconds per product and the takt is 60 seconds. You fill each station to a planned cycle time of 90% of takt. How many operators do you need at least, on a manual line where each operator mans one station?',
+          number: 7,
           tolerance: 0.1,
           unit: 'operators',
-          hint: 'Divide the work content by the takt. Half an operator doesn’t exist.',
-          why: '330 / 60 = 5.5; rounded up that is 6 operators.',
+          hint: 'First work out the planned cycle time per station. Half an operator doesn’t exist.',
+          why: 'Planned cycle time = 0.9 × 60 = 54 seconds; 330 / 54 = 6.1; rounded up that is 7 operators.',
         },
         {
           q: 'Two variants on one line: variant A has 200 seconds of work content and is 70% of the volume; variant B has 300 seconds and is 30%. What is the weighted work content, in seconds per product?',
           number: 230,
           tolerance: 1,
           unit: 's',
+          hint: 'Weigh each variant’s work content by its share of the volume, then add the two.',
           why: '0.7 × 200 + 0.3 × 300 = 140 + 90 = 230 seconds.',
         },
         {
@@ -659,14 +660,14 @@ export default {
       ],
       teach: [
         'OEE tells you how much time you lose, not why. For that you need a downtime log: for every stop the start time, the duration, the machine and a reason code.\n\nThat happens on a form, a tablet at the line, or automatically: the machine’s controller (the PLC, a small industrial computer) reports the stop, and the operator only picks the reason.',
-        'A reason code is a fixed choice from a short list, such as “labeller breakdown”, “waiting for material” or “changeover”. Keep it to about 10 to 20 codes per machine, in the operators’ own words, grouped by the six big losses.\n\nToo many codes and everyone picks “other”. Rule of thumb: if more than about 10% of downtime is booked as other, the code list is not working.',
+        'A reason code is a fixed choice from a short list, such as “labeller breakdown”, “waiting for material” or “changeover”. A common guideline is about 10 to 20 codes per machine, in the operators’ own words, grouped by the six big losses.\n\nToo many codes and everyone picks “other”. Rule of thumb: if more than about 10% of downtime is booked as other, the code list is not working.',
         'A Pareto chart puts the causes in order of minutes lost, the biggest on the left, with a line showing the cumulative percentage. Usually a handful of causes cost most of the time; the familiar 80/20 rule is a rule of thumb, not a law.\n\nSort by minutes, not by count. Sixty one-minute jams weigh more than one forty-minute breakdown.',
         'Micro-stops (short jams of less than a few minutes) are rarely written down. You can still find them: work out how many parts the run time should have produced at ideal speed, and compare that with the counter.\n\nExample: 400 minutes of run time at an ideal cycle time of 20 seconds is 1,200 parts. The counter says 1,020: the 180 missing parts are 60 minutes of micro-stops and slow running.',
         'The rhythm makes the difference. An hourly board next to the line shows per hour the plan, the actual count and a short reason when it falls behind. In the start-of-shift meeting you discuss yesterday’s biggest causes, with an owner per action.\n\nSharp question: “Which three causes cost the most minutes last week, and who is working on them?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A week of downtime on a filling line: changeovers 400 minutes (12 times), labeller breakdowns 310 minutes (14 times), waiting for material 220 minutes (9 times), jams 180 minutes (about 270 stops of 40 seconds, worked out from the counter), other 90 minutes. Total 1,200 minutes.\n\nPareto: changeovers 33%, labeller 26%, material 18%, jams 15%, other 7.5%. The top two together are 59%, the top three 77%.\n\nOther is under 10%: the codes are usable. Two actions have the biggest leverage: a SMED round on the changeovers, and the labeller breakdowns.',
+        text: 'A week of downtime on a filling line: changeovers 400 minutes (12 times), labeller breakdowns 310 minutes (14 times), waiting for material 220 minutes (9 times), jams 180 minutes (about 270 stops of 40 seconds, worked out from the counter), other 90 minutes. Total 1,200 minutes.\n\nPareto: changeovers 33%, labeller 26%, material 18%, jams 15%, other 7.5%. The top two together are 59%, the top three 77.5%.\n\nOther is under 10%: the codes are usable. Two actions have the biggest leverage: a SMED round on the changeovers, and the labeller breakdowns.',
       },
       said: 'What engineers say: “Nobody logs those jams, but the counter doesn’t lie: we’re missing an hour’s worth of parts every shift.”',
       recall: [
@@ -712,6 +713,7 @@ export default {
         { term: 'Downtime log', def: 'A list of all stops with time, duration, machine and cause.' },
         { term: 'Reason code', def: 'A fixed choice from a short list to give a stop a cause.' },
         { term: 'Pareto chart', def: 'Causes in order of lost time, the biggest first, with the cumulative percentage.' },
+        { term: 'Micro-stop', def: 'A short jam of under a few minutes that nobody writes down; you find it from the counter.' },
         { term: 'Hourly board', def: 'A board at the line with the plan, the actual count and the reason for any shortfall, per hour.' },
       ],
     },
@@ -728,7 +730,7 @@ export default {
       ],
       teach: [
         'OEE (availability × performance × quality) depends on choices. The biggest: what counts in planned production time? Almost everyone leaves out breaks and “no orders”. Some plants put changeovers and planned maintenance inside, others outside.\n\nNeither is wrong, as long as you choose and stick to it. Write down an OEE definition: what falls inside and outside planned time, and which ideal cycle time applies per product.',
-        'The ideal cycle time is the second choice. Do you take the maker’s design speed, or the fastest time you have ever reached? A standard that is too slow makes performance look better than it is.\n\nA performance above 100% is the proof: the machine runs faster than its own “ideal” time. Then the standard is wrong, not the machine.',
+        'The ideal cycle time is the second choice. Do you take the maker’s design speed, or the fastest time you have ever reached? A standard that is too slow makes performance look better than it is.\n\nA performance above 100% is the proof: the machine runs faster than its own “ideal” time. Then the fault is in the standard, not in the machine.',
         'TEEP (total effective equipment performance) looks at all the time in the calendar: TEEP = OEE × calendar utilisation. Calendar utilisation is planned time divided by all time; a week has 168 hours.\n\nExample from oee.com: 80 planned hours out of 168 is 47.6%. At 65% OEE the TEEP is 31%. TEEP shows how much capacity is still in nights and weekends, before you buy a machine.',
         'On a line with several machines in a row you don’t average the individual OEEs. You measure line OEE: the good output at the end of the line against the ideal cycle time of the bottleneck (the slowest machine).\n\nComparing plants is only fair with the same definition. Otherwise the plant that defines most cleverly wins, not the one that runs best.',
         'Experts argue whether changeovers belong inside planned time. Inside is stricter: OEE is lower, but every minute of SMED gain (faster changeover) shows. Outside looks better, but then changeovers hide.\n\nThe typical mistake is a quiet shift: leaving changeovers out for a month and OEE “improves” by 8 points. Sharp question: “Are changeovers inside or outside planned time, and since when?”',
@@ -817,7 +819,7 @@ export default {
           number: 32,
           tolerance: 0.5,
           unit: 'parts',
-          why: '80 × 40 = 3,200 parts at ideal speed; 1% of that per week.',
+          why: '80 × 40 = 3,200 parts at ideal speed; 1% of that is 32 parts per week.',
         },
         {
           q: 'OEE goes from 50% to 60%, with the same planned time. By what percentage does good output rise?',
@@ -843,7 +845,7 @@ export default {
       situation: {
         scene: 'The plant director of a plastics processor wants to buy a second injection moulding machine for €350,000. The current machine is the bottleneck and runs at 58% OEE. He asks you, as a junior consultant, to check the business case.',
         ask: 'What do you put next to that investment?',
-        model: 'May I first work out what the OEE points on this machine are worth? Each point is planned time times ideal speed times 1%, and because it is the bottleneck, that becomes sales. From 58% to 68% is almost 17% more output. If the loss tree shows that changeovers and breakdowns are the biggest branches, a SMED round and a maintenance plan may be cheaper. And then we’ll know better whether that second machine is needed.',
+        model: 'May I first work out what the OEE points on this machine are worth? Each point is planned time times ideal speed times 1%, and because it is the bottleneck, that becomes sales. From 58% to 68% is about 17% more output. If the loss tree shows that changeovers and breakdowns are the biggest branches, a SMED round and a maintenance plan may be cheaper. And then we’ll know better whether that second machine is needed.',
         rubric: [
           'Works out what an OEE point brings in parts and money',
           'Compares the OEE gain with the capacity of an extra machine',
@@ -945,7 +947,7 @@ export default {
         'Then you watch the video together. In a changeover analysis you write down every step with its start and end time, and whether it is internal (machine must stop) or external (can happen while it runs).\n\nAlso draw the walking route on a floor plan: a spaghetti diagram. A setter who walks 400 metres for one changeover is no exception; every line on the drawing is time without the machine running.',
         'The quick gains come from moving external work to before the stop. A checklist of what must be ready. A changeover cart with all tools, clamps and the setting sheet in fixed places. The next die already at the machine.\n\nParallel working, two people at once on the internal work, shortens the downtime but not the labour hours. Do it on the bottleneck, where every minute of downtime costs output.',
         'Capture the new way of working in a standard changeover sheet: the steps in order, who does what, and the target time. Measure the next changeovers and put the time on the board at the line.\n\nIn a first round, 30 to 50% shorter is a commonly reported result, with no investment. After that it gets more technical: quick clamps, fixed stops, presetting away from the machine.',
-        'The best-known trap: the workshop gain fades within a few months, because nobody owns the standard and the changeover cart goes empty.\n\nResistance is normal too. A setter who has done changeovers for twenty years hears from a camera that he is too slow. Let him point out the waste in the video himself. Sharp question: “Who owns the standard changeover sheet, and when do we measure the next five changeovers?”',
+        'The best-known trap: the workshop gain fades within a few months, because nobody owns the standard and the changeover cart goes empty.\n\nResistance is normal too. A setter with twenty years of changeovers behind him can feel the camera is there to prove he is too slow. Let him point out the waste in the video himself. Sharp question: “Who owns the standard changeover sheet, and when do we measure the next five changeovers?”',
       ],
       example: {
         kind: 'worked',
@@ -965,7 +967,7 @@ export default {
           number: 5,
           tolerance: 0.1,
           unit: 'hours',
-          why: '50 − 30 = 20 minutes per changeover; 20 × 3 × 5 = 300 minutes per week, in hours.',
+          why: '50 − 30 = 20 minutes per changeover; 20 × 3 × 5 = 300 minutes per week, which is 5 hours.',
         },
         {
           q: 'What makes a SMED improvement last?',
@@ -1012,7 +1014,7 @@ export default {
       ],
       teach: [
         'With batch size (the number of parts between two changeovers) two costs pull against each other. Setup cost: what each changeover costs in hours, start-up scrap and lost output. Big batches mean fewer changeovers.\n\nHolding cost: what a part in stock costs per year in tied-up money, space, insurance and the risk of it becoming obsolete. Often quoted: 20 to 30% of the stock value per year, but ask the controller for your own figure.',
-        'The classic formula is the EOQ (economic order quantity), from Ford Harris in 1913: Q = √(2 × D × S / H). D is annual demand, S the setup cost per changeover, H the holding cost per part per year.\n\nExample: 12,000 parts a year, €150 per changeover, €2 per part per year. 2 × 12,000 × 150 / 2 = 1,800,000; its square root is about 1,340 parts.',
+        'The classic formula is the EOQ (economic order quantity), from Ford Harris in 1913: Q = √(2 × D × S / H). D is annual demand, S the setup cost per changeover, H the holding cost per part per year.\n\nExample: 12,000 parts a year, €150 per changeover, €2 per part per year. 2 × 12,000 × 150 / 2 = 1,800,000; its square root is about 1,340 parts.\n\nWhen the machine makes its own batch, a variant (economic production quantity) gives a slightly bigger batch.',
         'The average stock from making in batches is called cycle stock: about half a batch. A batch of 1,340 gives about 670 parts sitting on the shelf on average.\n\nThe formula assumes even demand, and setup costs that are real money. On a machine with plenty of spare capacity, a changeover only costs the setter’s hour and some start-up scrap: no lost output. Then S is small, and so is the right batch.',
         'On the bottleneck (the slowest step) it is the other way round: every changeover minute costs output for the whole plant. There you first work with a changeover time budget: available time minus production time is the time left for changeovers.\n\n80 hours available, 68 hours of production: a 12-hour budget. At 45 minutes per changeover, 16 fit per week. With 8 products, each product runs twice a week.',
         'Lean and the EOQ start from different places. The EOQ takes setup cost as given; lean says: make the changeover shorter with SMED, and the right batch gets smaller by itself.\n\nThe typical mistake: a batch size set years ago in the ERP system (the software for planning and stock) and never reviewed. Sharp question: “Which changeover time and holding cost are in that batch size, and is this the bottleneck?”',
@@ -1030,20 +1032,21 @@ export default {
           number: 632,
           tolerance: 5,
           unit: 'parts',
-          why: '2 × 8,000 × 100 / 4 = 400,000; its square root is the EOQ.',
+          why: '2 × 8,000 × 100 / 4 = 400,000; √400,000 ≈ 632 parts.',
         },
         {
           q: 'A machine has 75 hours per week available and production needs 66 hours. One changeover takes 45 minutes. What is the maximum number of changeovers per week?',
           number: 12,
           tolerance: 0.1,
           unit: 'changeovers',
-          why: '75 − 66 = 9 hours = 540 minutes; 540 / 45 gives the number of changeovers.',
+          hint: 'The time left over for changeovers, in minutes, divided by one changeover.',
+          why: '75 − 66 = 9 hours = 540 minutes; 540 / 45 = 12 changeovers.',
         },
         {
-          q: 'Setup cost halves; demand and holding cost stay the same. What does the EOQ do?',
-          options: ['It drops by about 30%', 'It halves exactly', 'It doubles', 'It stays exactly the same'],
-          answer: 'It drops by about 30%',
-          why: 'The EOQ depends on the square root of the setup cost: √0.5 = 0.71.',
+          q: 'Through SMED the setup cost drops to a quarter; demand and holding cost stay the same. What does the EOQ do?',
+          options: ['It halves', 'It drops to a quarter', 'It drops by about 30%', 'It stays exactly the same'],
+          answer: 'It halves',
+          why: 'The EOQ depends on the square root of the setup cost: √0.25 = 0.5, so half the batch.',
         },
         {
           q: 'A machine has a lot of spare capacity. How do you look at setup cost there?',
@@ -1103,13 +1106,14 @@ export default {
           tolerance: 0.1,
           unit: 'days',
           hint: 'First work out the number of changeovers per week, then the number of turns.',
-          why: '15 hours = 900 minutes; 900 / 30 = 30 changeovers per week; 30 / 10 = 3 turns per week; 5 working days divided by 3 turns.',
+          why: '15 hours = 900 minutes; 900 / 30 = 30 changeovers per week; 30 / 10 = 3 turns per week; 5 / 3 = 1.67 working days.',
         },
         {
           q: 'A product wheel takes 4 working days. Product X is made every turn and demand is 250 parts per working day. How big must the batch of X be, in parts?',
           number: 1000,
           tolerance: 1,
           unit: 'parts',
+          hint: 'The batch must last until X comes round again. How many working days is that?',
           why: 'Each batch must cover demand until the next turn: 4 × 250 = 1,000 parts.',
         },
         {

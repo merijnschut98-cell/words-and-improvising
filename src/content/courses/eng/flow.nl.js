@@ -152,11 +152,11 @@ export default {
         },
       ],
       teach: [
-        'Een volgordediagram (precedence diagram) tekent elk werkelement als een hokje met zijn taaktijd, en een pijl voor “moet vóór”. De beugel moet vast zitten voordat de motor erop kan; dat is een pijl van beugel naar motor.\n\nTaken zonder pijl ertussen mogen in elke volgorde, of op verschillende stations tegelijk. Hoe minder pijlen, hoe meer vrijheid je hebt om te balanceren.',
+        'Een volgordediagram (precedence diagram) tekent elk werkelement als een hokje met zijn taaktijd, en een pijl voor “moet vóór”. De beugel moet vastzitten voordat de motor erop kan; dat is een pijl van beugel naar motor.\n\nTaken zonder pijl ertussen mogen in elke volgorde, of op verschillende stations tegelijk. Hoe minder pijlen, hoe meer vrijheid je hebt om te balanceren.',
         'Het positionele gewicht (positional weight) van een taak is zijn eigen tijd plus de tijd van alle taken die erna moeten komen. De RPW-methode (ranked positional weight) van Helgeson en Birnie, uit 1961 bij General Electric, gebruikt dat gewicht.\n\nSorteer de taken van zwaar naar licht. Vul station 1 met de zwaarste taken waarvan de voorgangers al geplaatst zijn, tot het vol is. Dan station 2. Het is een vuistregel: snel en meestal goed, maar niet gegarandeerd de beste verdeling.',
         '“Vol” is niet de takt zelf. Je plant op een geplande cyclustijd (planned cycle time) van zo’n 85 tot 90% van de takt (het tempo dat de klant vraagt), zodat er ruimte is voor kleine stops.\n\nSpreiding telt mee: een taak die soms 10 en soms 25 seconden duurt, zet je niet op een station dat al tegen de grens zit. Zo’n station krijgt meer marge, of een kleine buffer erachter.',
         'Volgorde is niet de enige grens. Een zonebeperking (zone constraint) zegt waar een taak moet gebeuren: werk aan de onderkant van een kast op het station met de kantelaar, of alle aanhaalmomenten op het station met de momentsleutel (een sleutel die op een ingestelde kracht stopt).\n\nOok veiligheid en de lengte van de lijn beperken wat kan. Een balans die alleen naar de pijlen kijkt, valt op de vloer vaak om.',
-        'De bekendste fout: een balans op papier die klopt, met taaktijden zonder lopen en pakken. Een operator die per product 4 meter loopt naar een rek, verliest al snel 3 tot 5 seconden.\n\nExperts verschillen over software: voor lijnen met tientallen taken loont een optimalisatieprogramma, voor een kleine lijn is een whiteboard met een Yamazumi (gestapelde balk per station) genoeg. Scherpe vraag: “Zitten loop- en pakttijden in deze taaktijden?”',
+        'De bekendste fout: een balans op papier die klopt, met taaktijden zonder lopen en pakken. Een operator die per product 4 meter loopt naar een rek, verliest al snel 3 tot 5 seconden.\n\nExperts verschillen over software: voor lijnen met tientallen taken loont een optimalisatieprogramma, voor een kleine lijn is een whiteboard met een Yamazumi (gestapelde balk per station) genoeg. Scherpe vraag: “Zitten loop- en paktijden in deze taaktijden?”',
       ],
       example: {
         kind: 'faded',
@@ -190,18 +190,18 @@ export default {
         },
         {
           q: 'Een station zit volgens de balans op 44 seconden bij een geplande cyclustijd van 48. De operator loopt per product 6 meter naar een rek, en dat lopen staat niet in de taaktijden. Wat doe je eerst?',
-          options: ['Loop- en pakttijd meten en in de balans opnemen', 'Niets: 4 seconden marge vangt dat beetje lopen wel op', 'De takt van de hele lijn verlengen', 'Een robot op dit station laten offreren'],
-          answer: 'Loop- en pakttijd meten en in de balans opnemen',
+          options: ['Loop- en paktijd meten en in de balans opnemen', 'Niets: 4 seconden marge vangt dat beetje lopen wel op', 'De takt van de hele lijn verlengen', 'Een robot op dit station laten offreren'],
+          answer: 'Loop- en paktijd meten en in de balans opnemen',
           why: '6 meter heen en terug kost al snel meer dan 4 seconden. Eerst de echte tijd, dan pas beslissen.',
         },
       ],
       situation: {
         scene: 'Je bent als junior Lean-consultant bij een fabrikant van schakelkasten (stalen kasten vol elektrische componenten). Er komt een nieuw kastmodel op de lijn. De engineer laat een Excel-balans zien met nul procent balansverlies en zegt: “Klaar, dit werkt.”',
         ask: 'Wat check je voordat de nieuwe balans op de vloer gaat?',
-        model: 'Mooie balans. Drie dingen check ik graag. Klopt de volgorde, en zijn er zones: werk dat alleen op een station met de kantelaar of de momentsleutel kan? Zitten loop- en pakttijden in de taaktijden, en zijn ze op de lijn gemeten? En welke taken schommelen sterk? Die wil ik niet op een station dat al tegen de 48 seconden zit.',
+        model: 'Mooie balans. Drie dingen check ik graag. Klopt de volgorde, en zijn er zones: werk dat alleen op een station met de kantelaar of de momentsleutel kan? Zitten loop- en paktijden in de taaktijden, en zijn ze op de lijn gemeten? En welke taken schommelen sterk? Die wil ik niet op een station dat al tegen de 48 seconden zit.',
         rubric: [
           'Checkt volgorde en zonebeperkingen, niet alleen de optelsom',
-          'Vraagt of loop- en pakttijden gemeten en meegenomen zijn',
+          'Vraagt of loop- en paktijden gemeten en meegenomen zijn',
           'Kijkt naar spreiding per taak, niet alleen naar gemiddelden',
         ],
       },
@@ -226,8 +226,8 @@ export default {
         },
       ],
       teach: [
-        'Als de vraag verandert, verandert de takt, en dan moet de lijn mee. Op een handmatige lijn waar elke operator één station bemant, geldt: aantal operators = werkinhoud / takt, naar boven afgerond.\n\nVoorbeeld: 300 seconden werk per product. Bij een takt van 55 seconden is dat 300 / 55 = 5,5, dus 6 mensen. Zakt de vraag tot een takt van 75 seconden, dan is het 300 / 75 = 4.',
-        'Goede fabrieken balanceren vooraf voor drie of vier vraagniveaus: een lijn met 4, 5 of 6 operators. Elk niveau heeft zijn eigen standaardwerk (standard work): de vastgelegde volgorde en tijd van de taken per station.\n\nDaar heb je mensen voor nodig die meerdere stations kunnen. Een skillsmatrix (skills matrix) laat per operator zien welke stations hij beheerst. Wie op één station vastzit, maakt elke herbalancering lastig.',
+        'Als de vraag verandert, verandert de takt, en dan moet de lijn mee. Op een handmatige lijn waar elke operator één station bemant, geldt: aantal operators = werkinhoud / takt, naar boven afgerond.\n\nVoorbeeld: 300 seconden werk per product. Bij een takt van 55 seconden is dat 300 / 55 = 5,5, dus 6 mensen. Zakt de vraag tot een takt van 75 seconden, dan is het 300 / 75 = 4. Vul je stations tot een geplande cyclustijd onder de takt, deel dan door die tijd.',
+        'Goede fabrieken balanceren vooraf voor drie of vier vraagniveaus: een lijn met 4, 5 of 6 operators. Elk niveau heeft zijn eigen standaardwerk (standard work): de vastgelegde volgorde en tijd van de taken per station.\n\nDaar heb je mensen voor nodig die meerdere stations kunnen. Een skillsmatrix (skills matrix) laat per operator zien welke stations iemand beheerst. Wie op één station vastzit, maakt elke herbalancering lastig.',
         'Op een mixed-model lijn rijden varianten met verschillende werkinhoud door elkaar. Je balanceert dan op de gewogen werkinhoud: het gemiddelde, gewogen naar de aantallen. 70% van 200 seconden plus 30% van 300 seconden is 230 seconden.\n\nMaar komen er vijf zware varianten achter elkaar, dan zit een station vijf keer boven de takt en loopt de achterstand op. Een goede volgorde, zwaar en licht om en om, houdt de lijn in de maat. Meer daarover in Lijnen en automatisering.',
         'Wat de manager weegt: balansverlies is geld. Met 6 operators en 10% balansverlies betaal je 0,6 fte om te wachten (fte: één voltijdbaan).\n\nKomt de berekening uit op 5,2 mensen, dan kies je tussen 6 mensen met wachttijd, of 5 met overwerk en een betere balans. Overwerk kost een toeslag die per cao verschilt; vraag HR naar het eigen getal voordat je rekent.',
         'Experts verschillen over hoe je met schommelende vraag omgaat. Lean zegt: vlak de vraag eerst af met heijunka (levelling: elke dag ongeveer dezelfde mix en hoeveelheid plannen), zodat de lijn niet elke week om hoeft. Finance wil zo weinig mogelijk mensen per stuk.\n\nDe valkuil: pas bemensen als de achterstand er al is, met uitzendkrachten die de stations niet kennen. Scherpe vraag: “Bij welk vraagniveau gaan we van 5 naar 6 mensen, en ligt die balans al klaar?”',
@@ -241,18 +241,19 @@ export default {
       said: 'Wat engineers zeggen: “We hebben de vijfmansbalans al klaarliggen. Als de vraag in maart aantrekt, schakelen we binnen een dag om.”',
       recall: [
         {
-          q: 'De werkinhoud is 330 seconden per product en de takt is 60 seconden. Hoeveel operators heb je minimaal nodig, op een handmatige lijn waar elke operator één station bemant?',
-          number: 6,
+          q: 'De werkinhoud is 330 seconden per product en de takt is 60 seconden. Je vult elk station tot een geplande cyclustijd van 90% van de takt. Hoeveel operators heb je minimaal nodig, op een handmatige lijn waar elke operator één station bemant?',
+          number: 7,
           tolerance: 0.1,
           unit: 'operators',
-          hint: 'Deel de werkinhoud door de takt. Een halve operator bestaat niet.',
-          why: '330 / 60 = 5,5; naar boven afgerond zijn dat 6 operators.',
+          hint: 'Reken eerst de geplande cyclustijd per station uit. Een halve operator bestaat niet.',
+          why: 'Geplande cyclustijd = 0,9 × 60 = 54 seconden; 330 / 54 = 6,1; naar boven afgerond zijn dat 7 operators.',
         },
         {
           q: 'Twee varianten op één lijn: variant A heeft 200 seconden werkinhoud en is 70% van de aantallen; variant B heeft 300 seconden en is 30%. Wat is de gewogen werkinhoud, in seconden per product?',
           number: 230,
           tolerance: 1,
           unit: 's',
+          hint: 'Weeg de werkinhoud van elke variant met zijn aandeel in de aantallen, en tel ze op.',
           why: '0,7 × 200 + 0,3 × 300 = 140 + 90 = 230 seconden.',
         },
         {
@@ -659,14 +660,14 @@ export default {
       ],
       teach: [
         'OEE zegt hoeveel tijd je verliest, niet waarom. Daarvoor heb je stilstandregistratie (downtime log): bij elke stop de begintijd, de duur, de machine en een oorzaakcode.\n\nDat gebeurt op een formulier, een tablet bij de lijn, of automatisch: de besturing van de machine (de PLC, een kleine industriële computer) meldt de stop, en de operator kiest alleen nog de oorzaak.',
-        'Een oorzaakcode (reason code) is een vaste keuze uit een korte lijst, zoals “storing etiketteerder”, “wachten op materiaal” of “omstellen”. Houd het bij zo’n 10 tot 20 codes per machine, in de woorden van de operators, gegroepeerd naar de zes grote verliezen.\n\nTe veel codes en iedereen kiest “overig”. Vuistregel: staat meer dan zo’n 10% van de stilstand op overig, dan deugt de codelijst niet.',
+        'Een oorzaakcode (reason code) is een vaste keuze uit een korte lijst, zoals “storing etiketteerder”, “wachten op materiaal” of “omstellen”. Een gangbare richtlijn is zo’n 10 tot 20 codes per machine, in de woorden van de operators, gegroepeerd naar de zes grote verliezen.\n\nTe veel codes en iedereen kiest “overig”. Vuistregel: staat meer dan zo’n 10% van de stilstand op overig, dan deugt de codelijst niet.',
         'Een Pareto-diagram (Pareto chart) zet de oorzaken op volgorde van verloren minuten, de grootste links, met een lijn die het opgetelde percentage toont. Meestal kost een handvol oorzaken het grootste deel van de tijd; de bekende 80/20-regel is een vuistregel, geen wet.\n\nSorteer op minuten, niet op aantal. Zestig vastlopers van een minuut wegen zwaarder dan één storing van veertig minuten.',
         'Microstops (korte vastlopers van minder dan een paar minuten) schrijft bijna niemand op. Je vindt ze toch: reken uit hoeveel stuks de looptijd had moeten opleveren op ideale snelheid, en vergelijk dat met de teller.\n\nVoorbeeld: 400 minuten looptijd met een ideale cyclustijd van 20 seconden is 1.200 stuks. De teller zegt 1.020: de 180 ontbrekende stuks zijn 60 minuten aan microstops en langzaam draaien.',
         'Het ritme maakt het verschil. Een uurbord (hourly board) naast de lijn toont per uur het plan, het werkelijke aantal en een korte reden als het achterloopt. In de dagstart (het korte overleg aan het begin van de dienst) bespreek je de grootste oorzaken van gisteren, met een eigenaar per actie.\n\nScherpe vraag: “Welke drie oorzaken kostten vorige week de meeste minuten, en wie werkt eraan?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een week stilstand op een afvullijn: omstellen 400 minuten (12 keer), storing etiketteerder 310 minuten (14 keer), wachten op materiaal 220 minuten (9 keer), vastlopers 180 minuten (zo’n 270 stops van 40 seconden, berekend uit de teller), overig 90 minuten. Totaal 1.200 minuten.\n\nPareto: omstellen 33%, etiketteerder 26%, materiaal 18%, vastlopers 15%, overig 7,5%. De top twee is samen 59%, de top drie 77%.\n\nOverig zit onder de 10%: de codes zijn bruikbaar. Twee acties hebben de grootste hefboom: een SMED-ronde op het omstellen, en de storingen aan de etiketteerder.',
+        text: 'Een week stilstand op een afvullijn: omstellen 400 minuten (12 keer), storing etiketteerder 310 minuten (14 keer), wachten op materiaal 220 minuten (9 keer), vastlopers 180 minuten (zo’n 270 stops van 40 seconden, berekend uit de teller), overig 90 minuten. Totaal 1.200 minuten.\n\nPareto: omstellen 33%, etiketteerder 26%, materiaal 18%, vastlopers 15%, overig 7,5%. De top twee is samen 59%, de top drie 77,5%.\n\nOverig zit onder de 10%: de codes zijn bruikbaar. Twee acties hebben de grootste hefboom: een SMED-ronde op het omstellen, en de storingen aan de etiketteerder.',
       },
       said: 'Wat engineers zeggen: “Die vastlopers registreert niemand, maar de teller liegt niet: we missen elke dienst een uur aan stuks.”',
       recall: [
@@ -712,6 +713,7 @@ export default {
         { term: 'Stilstandregistratie', def: 'Een lijst van alle stops met tijd, duur, machine en oorzaak.' },
         { term: 'Oorzaakcode', def: 'Een vaste keuze uit een korte lijst om een stop een oorzaak te geven.' },
         { term: 'Pareto-diagram', def: 'Oorzaken op volgorde van verloren tijd, de grootste eerst, met het opgetelde percentage.' },
+        { term: 'Microstop', def: 'Een korte vastloper van minder dan een paar minuten die niemand opschrijft; je vindt hem via de teller.' },
         { term: 'Uurbord', def: 'Een bord bij de lijn met per uur het plan, het werkelijke aantal en de reden van achterstand.' },
       ],
     },
@@ -727,8 +729,8 @@ export default {
         },
       ],
       teach: [
-        'OEE (beschikbaarheid × performance × kwaliteit) hangt af van keuzes. De grootste: wat telt in de geplande productietijd? Pauzes en “geen orders” laat bijna iedereen erbuiten. Omstellen en gepland onderhoud zetten sommige fabrieken erbinnen, andere erbuiten.\n\nGeen van beide is fout, zolang je kiest en blijft kiezen. Leg een OEE-definitie (OEE definition) vast: wat binnen en buiten de geplande tijd valt, en welke ideale cyclustijd per product geldt.',
-        'De ideale cyclustijd is de tweede keuze. Neem je de ontwerpsnelheid van de fabrikant, of de snelste tijd die je ooit hebt gehaald? Een te trage standaard maakt de performance mooier dan hij is.\n\nEen performance boven de 100% is het bewijs: de machine draait sneller dan zijn eigen “ideale” tijd. Dan klopt de standaard niet, niet de machine.',
+        'OEE (beschikbaarheid × performance × kwaliteit) hangt af van keuzes. De grootste: wat telt in de geplande productietijd? Pauzes en “geen orders” laat bijna iedereen erbuiten. Omstellen en gepland onderhoud zetten sommige fabrieken erbinnen, andere erbuiten.\n\nGeen van beide is fout, zolang je één keuze maakt en daaraan vasthoudt. Leg een OEE-definitie (OEE definition) vast: wat binnen en buiten de geplande tijd valt, en welke ideale cyclustijd per product geldt.',
+        'De ideale cyclustijd is de tweede keuze. Neem je de ontwerpsnelheid van de fabrikant, of de snelste tijd die je ooit hebt gehaald? Een te trage standaard maakt de performance mooier dan hij is.\n\nEen performance boven de 100% is het bewijs: de machine draait sneller dan zijn eigen “ideale” tijd. Dan zit de fout in de standaard, niet in de machine.',
         'TEEP (total effective equipment performance) kijkt naar alle tijd in de kalender: TEEP = OEE × kalenderbezetting. De kalenderbezetting (calendar utilisation) is geplande tijd gedeeld door alle tijd; een week heeft 168 uur.\n\nVoorbeeld van oee.com: 80 geplande uren van de 168 is 47,6%. Bij 65% OEE is de TEEP 31%. TEEP laat zien hoeveel capaciteit er nog zit in nachten en weekenden, vóór je een machine koopt.',
         'Bij een lijn met meerdere machines achter elkaar middel je de losse OEE’s niet. Je meet de lijn-OEE (line OEE): de goede output aan het eind van de lijn tegen de ideale cyclustijd van de bottleneck (de langzaamste machine).\n\nVergelijken tussen fabrieken mag alleen met dezelfde definitie. Anders wint de fabriek die het slimst definieert, niet die het best draait.',
         'Experts discussiëren of omstellen binnen de geplande tijd hoort. Erbinnen is strenger: de OEE is lager, maar elke minuut SMED-winst (sneller omstellen) wordt zichtbaar. Erbuiten oogt beter, maar dan verstopt het omstellen zich.\n\nDe typische fout is stil schuiven: een maand omstellen erbuiten laten en de OEE “verbetert” met 8 punten. Scherpe vraag: “Staat omstellen binnen of buiten de geplande tijd, en sinds wanneer?”',
@@ -817,7 +819,7 @@ export default {
           number: 32,
           tolerance: 0.5,
           unit: 'stuks',
-          why: '80 × 40 = 3.200 stuks op ideale snelheid; 1% daarvan per week.',
+          why: '80 × 40 = 3.200 stuks op ideale snelheid; 1% daarvan is 32 stuks per week.',
         },
         {
           q: 'De OEE gaat van 50% naar 60%, bij dezelfde geplande tijd. Met hoeveel procent stijgt de goede output?',
@@ -843,7 +845,7 @@ export default {
       situation: {
         scene: 'De plantdirecteur van een kunststofverwerker wil een tweede spuitgietmachine kopen van €350.000. De huidige machine is de bottleneck en draait op 58% OEE. Hij vraagt jou, als junior consultant, om de businesscase te checken.',
         ask: 'Wat zet je naast die investering?',
-        model: 'Mag ik eerst uitrekenen wat de OEE-punten op deze machine waard zijn? Elk punt is geplande tijd keer ideale snelheid keer 1%, en omdat hij de bottleneck is, wordt dat omzet. Van 58% naar 68% is bijna 17% meer output. Als de verliesboom laat zien dat omstellen en storingen de grootste takken zijn, is een SMED-ronde en een onderhoudsplan misschien goedkoper. En dan weten we beter of die tweede machine nodig is.',
+        model: 'Mag ik eerst uitrekenen wat de OEE-punten op deze machine waard zijn? Elk punt is geplande tijd keer ideale snelheid keer 1%, en omdat hij de bottleneck is, wordt dat omzet. Van 58% naar 68% is zo’n 17% meer output. Als de verliesboom laat zien dat omstellen en storingen de grootste takken zijn, zijn een SMED-ronde en een onderhoudsplan misschien goedkoper. En dan weten we beter of die tweede machine nodig is.',
         rubric: [
           'Rekent uit wat een OEE-punt oplevert in stuks en geld',
           'Vergelijkt de OEE-winst met de capaciteit van een extra machine',
@@ -941,11 +943,11 @@ export default {
         },
       ],
       teach: [
-        'Een SMED-workshop begint met een keuze: de machine waar omstellen het meeste kost, meestal de bottleneck of de machine met de meeste omstellingen. Het team: de operator, de omsteller (wie de machine ombouwt), iemand van onderhoud en een begeleider.\n\nJe filmt één hele omstelling, van het laatste goede product tot het eerste goede product van de volgende order. Film het proces, niet de persoon, en zeg dat vooraf hardop.',
+        'Een SMED-workshop begint met een keuze: de machine waar omstellen het meeste kost, meestal de bottleneck of de machine met de meeste omstellingen. Het team: de operator, de omsteller (die de machine ombouwt), iemand van onderhoud en een begeleider.\n\nJe filmt één hele omstelling, van het laatste goede product tot het eerste goede product van de volgende order. Film het proces, niet de persoon, en zeg dat vooraf hardop.',
         'Daarna kijk je samen de video. In een omstelanalyse (changeover analysis) schrijf je elke stap op met begin- en eindtijd, en of hij intern is (machine moet stil) of extern (kan terwijl hij draait).\n\nTeken ook het looppad op een plattegrond: een spaghettidiagram (spaghetti diagram). Een omsteller die 400 meter loopt voor één omstelling is geen uitzondering; elke lijn op de tekening is tijd zonder dat de machine draait.',
         'De snelle winst zit in extern werk naar vóór de stop halen. Een checklist van wat klaar moet staan. Een omstelkar (changeover cart) met alle gereedschap, klemmen en de instelkaart op vaste plekken. De volgende matrijs al bij de machine.\n\nParallel werken (parallel working), twee mensen tegelijk aan het interne werk, verkort de stilstand maar niet de mensuren. Doe het op de bottleneck, waar elke minuut stilstand output kost.',
         'Leg het nieuwe werk vast in een omstelstandaard (standard changeover sheet): de stappen in volgorde, wie wat doet, en de doeltijd. Meet de volgende omstellingen en zet de tijd op het bord bij de lijn.\n\nIn een eerste ronde is 30 tot 50% korter een veelgehoorde uitkomst, zonder investering. Daarna wordt het technischer: snelspanners, vaste aanslagen, voorinstellen buiten de machine.',
-        'De bekendste valkuil: de workshopwinst zakt binnen een paar maanden weg, omdat niemand eigenaar is van de standaard en de omstelkar leeg raakt.\n\nOok weerstand is normaal. Een omsteller die al twintig jaar omstelt, hoort in een camera dat hij te langzaam is. Laat hem zelf de verspilling in de video aanwijzen. Scherpe vraag: “Wie is eigenaar van de omstelstandaard, en wanneer meten we de volgende vijf omstellingen?”',
+        'De bekendste valkuil: de workshopwinst zakt binnen een paar maanden weg, omdat niemand eigenaar is van de standaard en de omstelkar leeg raakt.\n\nOok weerstand is normaal. Een omsteller die al twintig jaar omstelt, kan de camera opvatten als bewijs dat hij te langzaam is. Laat hem zelf de verspilling in de video aanwijzen. Scherpe vraag: “Wie is eigenaar van de omstelstandaard, en wanneer meten we de volgende vijf omstellingen?”',
       ],
       example: {
         kind: 'worked',
@@ -965,7 +967,7 @@ export default {
           number: 5,
           tolerance: 0.1,
           unit: 'uur',
-          why: '50 − 30 = 20 minuten per omstelling; 20 × 3 × 5 = 300 minuten per week, in uren.',
+          why: '50 − 30 = 20 minuten per omstelling; 20 × 3 × 5 = 300 minuten per week, dat is 5 uur.',
         },
         {
           q: 'Wat maakt een SMED-verbetering blijvend?',
@@ -1012,14 +1014,14 @@ export default {
       ],
       teach: [
         'Bij de seriegrootte (het aantal stuks tussen twee omstellingen) trekken twee kosten tegen elkaar in. Omstelkosten (setup cost): wat elke omstelling kost aan uren, opstartafval en verloren output. Grote series betekenen minder omstellingen.\n\nVoorraadkosten (holding cost): wat een stuk op voorraad per jaar kost aan geld dat vastzit, ruimte, verzekering en het risico dat het verouderd raakt. Vaak genoemd: 20 tot 30% van de voorraadwaarde per jaar, maar vraag de controller naar het eigen getal.',
-        'De klassieke formule is de EOQ (economic order quantity), van Ford Harris uit 1913: Q = √(2 × D × S / H). D is de vraag per jaar, S de omstelkosten per keer, H de voorraadkosten per stuk per jaar.\n\nVoorbeeld: 12.000 stuks per jaar, €150 per omstelling, €2 per stuk per jaar. 2 × 12.000 × 150 / 2 = 1.800.000; de wortel daarvan is zo’n 1.340 stuks.',
+        'De klassieke formule is de EOQ (economic order quantity), van Ford Harris uit 1913: Q = √(2 × D × S / H). D is de vraag per jaar, S de omstelkosten per keer, H de voorraadkosten per stuk per jaar.\n\nVoorbeeld: 12.000 stuks per jaar, €150 per omstelling, €2 per stuk per jaar. 2 × 12.000 × 150 / 2 = 1.800.000; de wortel daarvan is zo’n 1.340 stuks.\n\nMaakt de machine de serie zelf, dan geeft een variant (economic production quantity) een iets grotere serie.',
         'De gemiddelde voorraad door het seriegewijs maken heet de cyclusvoorraad (cycle stock): ongeveer een halve serie. Een serie van 1.340 geeft zo’n 670 stuks die gemiddeld op de plank liggen.\n\nDe formule neemt een gelijkmatige vraag aan, en omstelkosten die echt geld zijn. Op een machine met ruim reserve kost een omstelling alleen het uur van de omsteller en wat opstartafval: geen verloren output. Dan is S klein en de juiste serie ook.',
         'Op de bottleneck (de langzaamste stap) is het andersom: elke omstelminuut kost output van de hele fabriek. Daar reken je eerst met een omsteltijdbudget (changeover time budget): beschikbare tijd min productietijd is de tijd die overblijft voor omstellen.\n\n80 uur beschikbaar, 68 uur productie: 12 uur budget. Bij 45 minuten per omstelling passen er 16 per week. Met 8 producten draait elk product twee keer per week.',
         'Lean en de EOQ verschillen van uitgangspunt. De EOQ neemt de omstelkosten als gegeven; lean zegt: maak de omstelling korter met SMED, dan wordt de juiste serie vanzelf kleiner.\n\nDe typische fout: een seriegrootte die jaren geleden in het ERP-systeem (de software voor planning en voorraad) is gezet en nooit meer is herzien. Scherpe vraag: “Welke omsteltijd en voorraadkosten zitten in die seriegrootte, en is dit de bottleneck?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een machine heeft 75 uur per week beschikbaar. De vraag van deze week vraagt 63 uur productie. Een omstelling duurt 40 minuten. Er draaien 6 producten.\n\nOmsteltijdbudget = 75 − 63 = 12 uur = 720 minuten; 720 / 40 = 18 omstellingen per week.',
+        text: 'Een machine heeft 75 uur per week beschikbaar. Voor de vraag van deze week is 63 uur productie nodig. Een omstelling duurt 40 minuten. Er draaien 6 producten.\n\nOmsteltijdbudget = 75 − 63 = 12 uur = 720 minuten; 720 / 40 = 18 omstellingen per week.',
         ask: 'Hoe vaak per week kan elk product draaien, als elk even vaak langskomt? En wat zijn de serie en de cyclusvoorraad van een product met een vraag van 1.200 stuks per week?',
         reveal: '18 / 6 = 3 keer per week per product. Serie: 1.200 / 3 = 400 stuks; cyclusvoorraad ongeveer de helft, 200 stuks.\n\nMet SMED van 40 naar 20 minuten passen er 36 omstellingen: elk product 6 keer per week, series van 200, cyclusvoorraad 100. Of je houdt de series en wint 6 uur capaciteit, maar dat loont alleen op de bottleneck.',
       },
@@ -1030,20 +1032,21 @@ export default {
           number: 632,
           tolerance: 5,
           unit: 'stuks',
-          why: '2 × 8.000 × 100 / 4 = 400.000; de wortel daarvan is de EOQ.',
+          why: '2 × 8.000 × 100 / 4 = 400.000; √400.000 ≈ 632 stuks.',
         },
         {
           q: 'Een machine heeft 75 uur per week beschikbaar en de productie vraagt 66 uur. Eén omstelling duurt 45 minuten. Hoeveel omstellingen passen er maximaal per week?',
           number: 12,
           tolerance: 0.1,
           unit: 'omstellingen',
-          why: '75 − 66 = 9 uur = 540 minuten; 540 / 45 geeft het aantal omstellingen.',
+          hint: 'De tijd die overblijft voor omstellen, in minuten, gedeeld door één omstelling.',
+          why: '75 − 66 = 9 uur = 540 minuten; 540 / 45 = 12 omstellingen.',
         },
         {
-          q: 'De omstelkosten halveren, de vraag en de voorraadkosten blijven gelijk. Wat doet de EOQ?',
-          options: ['Die daalt met zo’n 30%', 'Die halveert precies', 'Die verdubbelt', 'Die blijft precies gelijk'],
-          answer: 'Die daalt met zo’n 30%',
-          why: 'De EOQ hangt af van de wortel van de omstelkosten: √0,5 = 0,71.',
+          q: 'Door SMED dalen de omstelkosten tot een kwart; de vraag en de voorraadkosten blijven gelijk. Wat doet de EOQ?',
+          options: ['Die halveert', 'Die daalt tot een kwart', 'Die daalt met zo’n 30%', 'Die blijft precies gelijk'],
+          answer: 'Die halveert',
+          why: 'De EOQ hangt af van de wortel van de omstelkosten: √0,25 = 0,5, dus een halve serie.',
         },
         {
           q: 'Een machine heeft veel reservecapaciteit. Hoe kijk je daar naar de omstelkosten?',
@@ -1084,7 +1087,7 @@ export default {
       ],
       teach: [
         'EPEI (every part every interval; het Lean Enterprise Institute schrijft EPEx) is hoe vaak elk product langskomt op een machine. Draait een machine al zijn producten in 2 dagen, dan is de EPEI 2 dagen.\n\nEen kortere EPEI betekent kleinere series, minder voorraad en sneller kunnen reageren. Maar het kost meer omstellingen. Lange omsteltijden en veel producten maken de EPEI vanzelf lang.',
-        'Een productwiel (product wheel) is een vaste volgorde die steeds herhaald wordt op een machine die meerdere producten maakt. Peter King beschrijft het in The Product Wheel Handbook. De lengte van één rondje is de EPEI.\n\nHardlopers komen elke ronde langs. Langzame lopers draaien elke tweede of vierde ronde, met wat meer voorraad om de tussentijd te overbruggen. Zo blijven de omstellingen binnen het omsteltijdbudget (de tijd die naast productie overblijft).',
+        'Een productwiel (product wheel) is een vaste volgorde die steeds herhaald wordt op een machine die meerdere producten maakt. Peter King beschrijft het in The Product Wheel Handbook. De lengte van één ronde is de EPEI.\n\nHardlopers (high runners) komen elke ronde langs. Langzaamlopers (slow movers) draaien elke tweede of vierde ronde, met wat meer voorraad om de tussentijd te overbruggen. Zo blijven de omstellingen binnen het omsteltijdbudget (de tijd die naast productie overblijft).',
         'Vaak hangt de omsteltijd af van de volgorde: een volgordeafhankelijke omstelling (sequence-dependent changeover). Een omstelmatrix (changeover matrix) zet de tijd van elk product naar elk ander product in een tabel.\n\nLicht naar donker, allergeenvrij naar allergeen (stoffen waar mensen allergisch voor zijn), dun naar dik: kort. Andersom: lang reinigen. De volgorde van het wiel volgt de korte route door de matrix.',
         'De lengte van het wiel kies je met twee getallen. Het omsteltijdbudget bepaalt hoeveel rondes er per week passen. De voorraad die je wilt houden bepaalt hoe lang een ronde mag duren: elke serie moet de vraag dekken tot de volgende ronde.\n\nReserveer per ronde wat tijd voor storingen en spoed, anders schuift het hele wiel elke keer op. Het idee lijkt op heijunka (afvlakken: elke periode dezelfde mix plannen).',
         'Planners en lean-mensen verschillen hierover. Een vast wiel geeft rust, kleinere series en voorspelbare omstellingen. Plannen op klantorder via het ERP-systeem voelt flexibeler, maar geeft willekeurige volgordes en lange reinigingen.\n\nDe valkuil: elke spoedorder breekt het wiel, tot er niets van over is. Spreek af wanneer spoed mag. Scherpe vraag: “Wat is onze EPEI nu, en wat zou hij zijn met de omsteltijd na SMED?”',
@@ -1103,13 +1106,14 @@ export default {
           tolerance: 0.1,
           unit: 'dagen',
           hint: 'Reken eerst het aantal omstellingen per week uit, dan het aantal rondes.',
-          why: '15 uur = 900 minuten; 900 / 30 = 30 omstellingen per week; 30 / 10 = 3 rondes per week; 5 werkdagen gedeeld door 3 rondes.',
+          why: '15 uur = 900 minuten; 900 / 30 = 30 omstellingen per week; 30 / 10 = 3 rondes per week; 5 / 3 = 1,67 werkdagen.',
         },
         {
           q: 'Een productwiel duurt 4 werkdagen. Product X wordt elke ronde gemaakt en de vraag is 250 stuks per werkdag. Hoe groot moet de serie van X zijn, in stuks?',
           number: 1000,
           tolerance: 1,
           unit: 'stuks',
+          hint: 'De serie moet het uithouden tot X weer langskomt. Hoeveel werkdagen is dat?',
           why: 'Elke serie moet de vraag tot de volgende ronde dekken: 4 × 250 = 1.000 stuks.',
         },
         {
@@ -1131,7 +1135,7 @@ export default {
         model: 'Kunnen we samen een omstelmatrix maken: hoe lang duurt reinigen van elke kleur naar elke andere? Dan zien we welke volgorde het kortst is, van licht naar donker. Met een vast wiel van bijvoorbeeld een week komt elke grote kleur elke ronde langs en de kleine om de ronde, met wat voorraad. We spreken af wanneer een spoedorder het wiel mag breken, zodat jij nog steeds kunt ingrijpen.',
         rubric: [
           'Stelt een omstelmatrix voor om de volgorde te kiezen',
-          'Stelt een vast productwiel voor met hardlopers en langzame lopers',
+          'Stelt een vast productwiel voor met hardlopers en langzaamlopers',
           'Houdt rekening met de planner door spoedregels af te spreken',
         ],
       },
