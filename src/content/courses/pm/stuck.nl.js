@@ -1,4 +1,4 @@
-// pm.stuck (Nederlands): als je vastzit: het probleem benoemen, tijd kopen, hulp vragen, experimenteren, omgaan met druk en een project herstarten.
+// pm.stuck (Nederlands): als je vastzit: diagnose, als je het niet weet, weerstand en politiek, herstarten en de sponsor. Vier onderwerpen, elk vier niveaus.
 export default {
   lessons: [
     {
@@ -20,10 +20,8 @@ export default {
         'Zie het vroeg. Een bruikbaar signaal: je staat al twee weken “op het punt” hetzelfde te doen. Het in week 3 zien in plaats van in week 9 is het vak.\n\nWaar experts over twisten: sommigen zeggen dat bijna elk vastgelopen project eigenlijk een mensenprobleem is; anderen waarschuwen dat je met het woord “weerstand” (resistance) mensen de schuld geeft van een besluit dat niemand nam. Een scherpe vraag: “Welk besluit neemt niemand?”',
       ],
       example: {
-        kind: 'faded',
-        text: 'Week 7 bij een netbeheerder. Je ontwerpt een gereedheidscheck (readiness check) voor geplande klussen: een check dat een klus alles heeft wat hij nodig heeft voordat hij wordt vrijgegeven, aan een monteursploeg overgedragen. Dit is de derde ontwerpsessie.\n\nHet hoofd planning wil een strenge check die elke klus tegenhoudt zonder bevestigd schakelplan (switching plan), het stappenplan om netdelen veilig uit en in te schakelen, en zonder materiaal. Het hoofd uitvoering wil een lichte check, want “streng betekent dat klussen nog later worden vrijgegeven”. De sponsor zei bij de start: “Zorg gewoon dat het werkt.”\n\nHet team raakt moe.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Dit lijkt een ontwerpdiscussie, maar het is een onduidelijk doel. Streng dient “minder afzeggingen”; licht dient “sneller vrijgeven”. Nog een sessie lost het niet op, want ze optimaliseren voor verschillende dingen.\n\nSchrijf één A4 met de twee doelen en wat elk ontwerp doet met afzeggingen en vrijgavetijd, en vraag de sponsor te kiezen, of een doel voor allebei te stellen, bijvoorbeeld: afzeggingen onder de 8% terwijl het vrijgeven hooguit 2 dagen langer duurt. Vertel beide hoofden vooraf dat je dit doet. Ontwerp daarna tegen het gekozen doel.',
+        kind: 'worked',
+        text: 'Week 7 bij een netbeheerder. Je ontwerpt een gereedheidscheck (readiness check) voor geplande klussen: een check dat een klus alles heeft wat hij nodig heeft voordat hij wordt vrijgegeven, aan een monteursploeg overgedragen. Dit is de derde ontwerpsessie.\n\nHet hoofd planning wil een strenge check die elke klus tegenhoudt zonder bevestigd schakelplan (switching plan), het stappenplan om netdelen veilig uit en in te schakelen, en zonder materiaal. Het hoofd uitvoering wil een lichte check, want “streng betekent dat klussen nog later worden vrijgegeven”. De sponsor zei bij de start: “Zorg gewoon dat het werkt.”\n\nHet team raakt moe.\n\nDit lijkt een ontwerpdiscussie, maar het is een onduidelijk doel. Streng dient “minder afzeggingen”; licht dient “sneller vrijgeven”. Nog een sessie lost het niet op, want ze optimaliseren voor verschillende dingen.\n\nSchrijf één A4 met de twee doelen en wat elk ontwerp doet met afzeggingen en vrijgavetijd, en vraag de sponsor te kiezen, of een doel voor allebei te stellen, bijvoorbeeld: afzeggingen onder de 8% terwijl het vrijgeven hooguit 2 dagen langer duurt. Vertel beide hoofden vooraf dat je dit doet. Ontwerp daarna tegen het gekozen doel.',
       },
       said: 'Wat je hoort in projecten: “We hebben dit nu drie keer besproken. Kunnen we niet gewoon iets kiezen?”',
       recall: [
@@ -47,8 +45,8 @@ export default {
         },
         {
           q: 'Wat is een bruikbaar vroeg signaal dat jij zelf vastzit?',
-          options: ['Je staat al twee weken “op het punt” hetzelfde te doen', 'De klant is vriendelijk', 'Je werkt normale uren', 'De stuurgroep is volgende week'],
-          answer: 'Je staat al twee weken “op het punt” hetzelfde te doen',
+          options: ['Al twee weken “op het punt” staan het te doen', 'De klant is vriendelijk en ontspannen', 'Je werkt weer gewoon je normale uren', 'De stuurgroep komt volgende week weer bij elkaar'],
+          answer: 'Al twee weken “op het punt” staan het te doen',
           why: 'Steeds uitstellen betekent meestal dat iets je tegenhoudt wat je nog niet benoemd hebt.',
         },
       ],
@@ -84,6 +82,252 @@ export default {
       ],
     },
     {
+      id: 'pm.stuck.facts',
+      title: 'Feiten verzamelen',
+      pre: [
+        {
+          q: 'Je wilt weten waarom acties in je project uitlopen. Wat geeft het eerlijkste beeld?',
+          options: ['Het statusrapport van vorige maand nog eens lezen', 'De sponsor vragen hoe hij het zelf ziet', 'Nagaan wat af is, en met de mensen praten', 'Een korte enquête naar het hele team sturen'],
+          answer: 'Nagaan wat af is, en met de mensen praten',
+          why: 'Cijfers uit de actielijst plus wat mensen zelf zeggen geven twee bronnen die je naast elkaar kunt leggen. Een oud rapport of één mening geeft er maar één.',
+        },
+      ],
+      teach: [
+        'Een diagnose op gevoel overtuigt niemand, jezelf ook niet. Voordat je zegt welke soort vastzitten het is (zie Het probleem benoemen), verzamel je feiten uit drie bronnen: wat er op papier staat, wat je ziet, en wat mensen zeggen.\n\nKomen die drie overeen, dan heb je een stevig beeld. Spreken ze elkaar tegen, dan zit daar vaak precies het probleem. Dat naast elkaar leggen heet triangulatie (triangulation).',
+        'Op papier: de actielijst. Tel per week hoeveel toezeggingen er gedaan zijn en hoeveel er echt af zijn. In het Last Planner System, een planningsmethode uit de bouw van Glenn Ballard (proefschrift, 2000), heet dat PPC (percent plan complete): afgeronde toezeggingen gedeeld door geplande toezeggingen. Alleen helemaal af telt.\n\n18 van de 30 af is een PPC van 60%. Teams die met Last Planner werken, mikken vaak op 80% of meer; een richtgetal uit de praktijk, geen norm.',
+        'Kijk ook naar het patroon: wie loopt uit, op welk soort werk, sinds wanneer? En naar de besluitenlijst (decision log), het overzicht van genomen en openstaande besluiten. Een besluit dat drie stuurgroepen achter elkaar wordt doorgeschoven, zegt vaak meer dan tien uitgelopen acties.\n\nIssues die te lang openstaan, volg je met de issuelog uit Uitvoeren (Issues bijhouden en oplossen); hier gebruik je hem als bewijs voor je diagnose.',
+        'Wat je ziet: ga naar de gemba, de plek waar het werk gebeurt. Hangt het planbord vol oude kaartjes? Ligt de nieuwe werkinstructie in een la? Dat zijn feiten die geen rapport laat zien.\n\nWat mensen zeggen: korte gesprekken onder vier ogen, niet in de groep. Drie vragen werken goed: “Wat houdt je tegen?”, “Wat zou jij doen als je het project leidde?” en “Wat zegt niemand hardop?”',
+        'Valkuilen: alleen praten met mensen die het met je eens zijn; één verhaal als patroon zien; de cijfers uit een systeem geloven zonder te kijken hoe ze ontstaan.\n\nWaar experts over twisten: PPC meet of het team zijn beloftes nakomt, niet of het project opschiet. Onderzoekers merken op dat het daarom een zwakke maat voor voortgang is. Kijk dus ook naar de mijlpalen. Een scherpe vraag aan jezelf: “Welk feit zou mijn diagnose onderuithalen?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Week 6 bij een kabelfabrikant, in een project om de omsteltijd (changeover time) te verkorten. Het voelt traag. Je verzamelt eerst feiten.\n\nPapier: in drie weken zijn 30 acties toegezegd en 18 af, een PPC van 60%. Van de 12 open acties staan er 9 op naam van de twee ploegleiders van de nachtploeg. Op de besluitenlijst staat “extra wisselkar” al vier weken open.\n\nGemba: om 23:00 sta je bij lijn 4. De nachtploeg kent de nieuwe omstelvolgorde niet; het bord hangt bij de dagploeg.\n\nGesprekken: een ploegleider zegt: “Wij zijn nooit uitgenodigd.”\n\nConclusie: geen capaciteitsprobleem, maar een gat in de communicatie met de nachtploeg, plus één besluit dat bij de sponsor ligt. Je nodigt de nachtploeg uit en zet de wisselkar op de agenda van de stuurgroep.',
+      },
+      said: 'Wat je hoort in projecten: “Iedereen is gewoon druk. Dat is hier altijd zo.”',
+      recall: [
+        {
+          q: 'In een week zijn 25 acties toegezegd. Er zijn er 15 helemaal af en 4 half af. Wat is de PPC, in procent?',
+          number: 60,
+          tolerance: 0.5,
+          unit: '%',
+          hint: 'Alleen acties die helemaal af zijn tellen mee; deel ze door alle toegezegde acties.',
+          why: 'Half af telt niet: 15 / 25 = 0,6, dus 60%.',
+        },
+        {
+          q: 'Wat de actielijst zegt en wat je op de vloer ziet, spreekt elkaar tegen. Wat betekent dat meestal?',
+          options: ['Dat daar vaak precies het probleem zit', 'Dat de actielijst fout is en je hem kunt negeren', 'Dat je eerst nog tien gesprekken moet voeren', 'Dat je de vloer op het verkeerde moment bekeek'],
+          answer: 'Dat daar vaak precies het probleem zit',
+          why: 'Een tegenspraak tussen bronnen wijst naar wat niemand benoemt, zoals een ploeg die nooit is meegenomen.',
+        },
+        {
+          q: 'Welke vraag werkt goed in een gesprek onder vier ogen over een vastgelopen project?',
+          options: ['“Ben je het eens met de planning?”', '“Waarom loop jij achter met je acties?”', '“Kun je je acties voortaan op tijd afmaken?”', '“Wat zegt niemand hier hardop?”'],
+          answer: '“Wat zegt niemand hier hardop?”',
+          why: 'Een open vraag naar wat onbesproken blijft, haalt informatie boven die in de groep niet komt.',
+        },
+        {
+          q: 'Een team haalt week na week een PPC van 90%, maar de mijlpalen schuiven. Wat is een waarschijnlijke verklaring?',
+          options: ['Het team zegt vooral makkelijke dingen toe', 'De mijlpalen waren veel te krap gepland', 'De PPC wordt verkeerd uitgerekend', 'Het team rapporteert bewust te hoog'],
+          answer: 'Het team zegt vooral makkelijke dingen toe',
+          why: 'PPC meet of beloftes worden nagekomen, niet of het werk het project verder brengt.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een zuivelfabriek, week 5 van een project om storingen aan de vulmachines te verminderen. De sponsor, de plantmanager, vraagt: “Klopt het dat het team niet meewerkt? Dat hoor ik van de onderhoudsmanager.”',
+        ask: 'Hoe zoek je uit wat er echt speelt, en wat antwoord je nu?',
+        model: '“Dat weet ik nog niet, en ik wil het niet op een indruk zeggen. Ik leg deze week drie dingen naast elkaar: de actielijst, wie wat afmaakt; wat ik bij de vulmachines zie; en korte gesprekken met vier teamleden en de onderhoudsmanager. Vrijdag krijg je van mij één A4 met de feiten.”',
+        rubric: [
+          'Geeft geen oordeel op basis van één bron',
+          'Gebruikt papier, de vloer en gesprekken naast elkaar',
+          'Belooft een concreet moment met feiten',
+        ],
+        pushback: {
+          lines: [
+            '“Ik heb geen week. De onderhoudsmanager zit hier twintig jaar; als hij het zegt, klopt het.”',
+            '“Gesprekken onder vier ogen? Dan krijg je alleen klachten te horen.”',
+          ],
+          model: '“Zijn ervaring neem ik serieus; ik spreek hem als eerste. Een week is lang, dat snap ik: woensdag heb je de actielijst en mijn eerste gesprekken. Klachten horen erbij, daarom leg ik ze naast de cijfers en wat ik zelf zie. Pas als die drie kloppen, zeg ik dat het team niet meewerkt.”',
+          rubric: [
+            'Erkent de ervaring van de onderhoudsmanager',
+            'Houdt vast aan meer dan één bron',
+            'Komt het tempo tegemoet met een eerder moment',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit hoe je feiten verzamelt voordat je zegt waarom een project vastzit.',
+      terms: [
+        { term: 'Triangulatie', def: 'Drie bronnen naast elkaar leggen (papier, wat je ziet, wat mensen zeggen) om te zien waar ze overeenkomen en waar niet.' },
+        { term: 'Last Planner System', def: 'Een planningsmethode uit de bouw van Glenn Ballard, waarin de mensen die het werk doen wekelijks toezeggen wat ze afmaken.' },
+        { term: 'PPC', def: 'Percent plan complete: afgeronde toezeggingen gedeeld door geplande toezeggingen in een week; alleen helemaal af telt.' },
+        { term: 'Besluitenlijst', def: 'Het overzicht van genomen en openstaande besluiten, met wie besluit en wanneer.' },
+        { term: 'Gemba', def: 'De plek waar het werk echt gebeurt, zoals de vloer bij de lijn; daar ga je kijken in plaats van alleen rapporten te lezen.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.rootcause',
+      title: 'Oorzaken onder de oppervlakte',
+      pre: [
+        {
+          q: 'Een planner vergeet steeds de materiaalcheck. Wat is in de lijn van Deming de beste eerste vraag?',
+          options: ['“Wie moet hier persoonlijk op aangesproken worden?”', '“Wat in het systeem maakt dat dit steeds gebeurt?”', '“Moet deze planner extra training krijgen?”', '“Hoe vaak ging het deze maand precies mis?”'],
+          answer: '“Wat in het systeem maakt dat dit steeds gebeurt?”',
+          why: 'Deming schatte dat de meeste problemen uit het systeem komen, niet uit de persoon. Training of aanspreken kan later nog.',
+        },
+      ],
+      teach: [
+        'Een symptoom is wat je ziet: acties lopen uit, overleggen worden afgezegd. Een oorzaak is wat het symptoom maakt. Wie op symptomen stuurt, met “iedereen moet zijn acties halen”, krijgt hetzelfde probleem volgende maand terug.\n\nDe vier soorten vastzitten (onduidelijk doel, onduidelijke weg, mensen, capaciteit) liggen al een laag onder de symptomen. Op dit niveau vraag je verder: waarom is het doel onduidelijk, en waarom heeft niemand dat opgelost?',
+        'Een handig beeld is het ijsbergmodel (iceberg model) uit het systeemdenken. Boven water de gebeurtenissen, daaronder de patronen, daaronder de structuren die ze maken, en onderin het mentale model, wat mensen geloven. Het wordt vaak aan Peter Senge toegeschreven; de herkomst is onzeker.\n\nVoorbeeld: een actie loopt uit (gebeurtenis); dat gebeurt elke week bij onderhoud (patroon); onderhoud wordt alleen afgerekend op storingen (structuur); “projectwerk is extra” (mentaal model).',
+        'W. Edwards Deming, de Amerikaanse kwaliteitspionier, schatte in Out of the Crisis (1986) dat ongeveer 94% van de problemen bij het systeem hoort, de verantwoordelijkheid van het management, en zo’n 6% bij bijzondere oorzaken. Het is zijn schatting uit ervaring, geen meting.\n\nDe les voor een vastgelopen project: zoek eerst wat het systeem doet (rollen, prioriteiten, beloning, uren) voordat je een persoon de schuld geeft. Zo’n oorzaak in de manier van werken heet een systeemoorzaak.',
+        'Doorvragen kan met vijf keer waarom (5 whys), dat je kent uit Intake (Een scherpe probleemstelling), nu toegepast op het project zelf. Stop pas bij iets wat iemand kan veranderen: een besluit, een regel, een afspraak.\n\nEen tweede vraag: “Welk besluit neemt niemand?” Achter veel vastzitten ligt een keuze die blijft liggen, bijvoorbeeld tussen twee afdelingen. Schrijf die keuze in één zin op; vaak is dat al de halve oplossing.',
+        'Typische fouten: stoppen bij “mensen hebben geen tijd” (waarom niet?), of doorvragen tot “de cultuur”, te groot om iets mee te doen. Een goede oorzaak is concreet genoeg om morgen iets aan te veranderen.\n\nWaar experts over twisten: Demings 94% wordt soms gebruikt om mensen nooit aan te spreken. Het Deming Institute waarschuwt zelf tegen citaten zonder hun verband. Een scherpe vraag: “Als we morgen andere mensen neerzetten, loopt het dan ook vast?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 8 bij een verpakkingsbedrijf. Je project moet de omsteltijd op de flexodrukpersen, die de folie bedrukken, verkorten. De acties van de onderhoudsmonteurs lopen al vijf weken uit. Het hoofd techniek zegt: “Mijn mensen zijn niet gemotiveerd.”\n\nJe weet: monteurs worden beoordeeld op het aantal opgeloste storingen per week. Projectacties staan niet in hun weekplanning. De sponsor heeft nooit gezegd wat voorgaat als er een storing is.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Loop het ijsbergmodel af. Gebeurtenis: acties lopen uit. Patroon: elke week, bij alle monteurs, dus niet één persoon. Structuur: ze worden alleen afgerekend op storingen en projectwerk staat niet in hun planning. Mentaal model: “projectwerk is extra”.\n\nHet is een systeemoorzaak, geen gebrek aan motivatie. Het besluit dat niemand neemt: hoeveel monteursuren per week naar het project gaan, en wat voorgaat bij een storing. Leg die keuze samen met het hoofd techniek bij de sponsor, en stel voor de projectacties in de weekplanning en de beoordeling op te nemen.',
+      },
+      said: 'Wat je hoort in projecten: “Het ligt aan de mentaliteit hier. Daar kun je als project niks aan doen.”',
+      recall: [
+        {
+          q: 'Wat is het verschil tussen een symptoom en een oorzaak?',
+          options: ['Een symptoom zie je; een oorzaak maakt het', 'Een symptoom is klein; een oorzaak is groot', 'Een symptoom komt van mensen; een oorzaak van machines', 'Geen verschil, het zijn twee woorden voor hetzelfde'],
+          answer: 'Een symptoom zie je; een oorzaak maakt het',
+          why: 'Wie alleen het zichtbare aanpakt, ziet het probleem terugkomen.',
+        },
+        {
+          q: 'Monteurs worden alleen afgerekend op opgeloste storingen. Op welke laag van het ijsbergmodel zit dat?',
+          options: ['Gebeurtenis', 'Patroon', 'Structuur', 'Mentaal model'],
+          answer: 'Structuur',
+          why: 'Een beoordelingsregel is een structuur: hij maakt het patroon van uitlopende projectacties.',
+        },
+        {
+          q: 'Wanneer stop je met doorvragen naar de oorzaak?',
+          options: ['Bij iets concreets wat iemand kan veranderen', 'Na precies vijf keer waarom', 'Als je uitkomt bij de cultuur van het bedrijf', 'Als iemand zegt dat hij het niet weet'],
+          answer: 'Bij iets concreets wat iemand kan veranderen',
+          why: 'Een oorzaak waar niemand iets mee kan, brengt het project niet verder.',
+        },
+        {
+          q: 'Hoe gebruik je Demings schatting dat ongeveer 94% bij het systeem hoort het best?',
+          options: ['Als bewijs dat je mensen nooit mag aanspreken', 'Als meetwaarde die je in elk project herhaalt', 'Als argument dat het management faalt', 'Eerst het systeem onderzoeken, dan pas een persoon'],
+          answer: 'Eerst het systeem onderzoeken, dan pas een persoon',
+          why: 'Het is een schatting uit ervaring die de volgorde van je onderzoek bepaalt, geen meting en geen vrijbrief.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een metaalbedrijf. In het weekoverleg zegt de productiemanager over je 5S-project, een methode om werkplekken op orde te brengen: “Die ploeg van Kees doet gewoon niet mee. Ik spreek hem er maandag op aan.” Het is de derde ploeg met dezelfde achterstand.',
+        ask: 'Wat zeg je?',
+        model: '“Voor je Kees aanspreekt: het is de derde ploeg met precies dezelfde achterstand. Dan zit het waarschijnlijk niet in Kees. Mag ik deze week met twee ploegleiders kijken wat er in de weg zit? Ik vermoed dat de 5S-ronde niet in de ploegplanning staat. Vrijdag laat ik je zien wat ik vond, en dan beslissen we samen.”',
+        rubric: [
+          'Wijst op het patroon over meerdere ploegen',
+          'Zoekt eerst een systeemoorzaak voor hij een persoon de schuld geeft',
+          'Stelt een korte, concrete check voor met een moment',
+        ],
+        pushback: {
+          lines: [
+            '“Systeem, systeem. Uiteindelijk moet iemand het gewoon doen. Kees is ploegleider, dit is zijn werk.”',
+            '“Als ik op jou wacht, verlies ik weer een week.”',
+          ],
+          model: '“Klopt, Kees blijft verantwoordelijk, en doet hij niet mee, dan spreek je hem aan. Maar drie ploegen met dezelfde achterstand wijzen op iets wat ze alle drie raakt. Ik heb geen week nodig: donderdag weet ik of de 5S-ronde in hun planning staat. Staat hij erin en doet Kees toch niet mee, dan sta ik achter je gesprek.”',
+          rubric: [
+            'Erkent de verantwoordelijkheid van de ploegleider',
+            'Houdt vast aan het patroon als bewijs',
+            'Biedt een snelle check met een duidelijke afspraak',
+          ],
+        },
+      },
+      sayIt: 'Leg een productiemanager in 60 seconden uit waarom je eerst naar het systeem kijkt voordat je iemand aanspreekt.',
+      terms: [
+        { term: 'Symptoom', def: 'Wat je ziet gebeuren, zoals uitlopende acties; het teken van een probleem, niet het probleem zelf.' },
+        { term: 'IJsbergmodel', def: 'Een beeld uit het systeemdenken: gebeurtenissen boven water, daaronder patronen, structuren en mentale modellen.' },
+        { term: 'Mentaal model', def: 'Wat mensen geloven over hoe het werkt, zoals “projectwerk is extra”; de diepste laag van het ijsbergmodel.' },
+        { term: 'Systeemoorzaak', def: 'Een oorzaak in de manier van werken (rollen, prioriteiten, beloning, uren) in plaats van in één persoon.' },
+        { term: 'Vijf keer waarom', def: 'Blijven doorvragen naar het waarom tot je bij iets komt wat iemand kan veranderen; vijf is een richtgetal.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.healthcheck',
+      title: 'Een projectreview leiden',
+      pre: [
+        {
+          q: 'Een sponsor vraagt je een vastgelopen project van een collega door te lichten. Wat maakt zo’n review het meest geloofwaardig?',
+          options: ['Dat je de projectleider al lang goed kent', 'Dat je onafhankelijk bent en meerdere bronnen gebruikt', 'Dat je je beperkt tot het lezen van de documenten', 'Dat de review binnen één dag klaar is'],
+          answer: 'Dat je onafhankelijk bent en meerdere bronnen gebruikt',
+          why: 'Zonder belang bij de uitkomst en met meer dan één bron is je oordeel moeilijk weg te zetten.',
+        },
+      ],
+      teach: [
+        'Soms moet je niet je eigen project ontwarren, maar dat van een ander. Een sponsor vraagt: “Kun jij eens kijken wat daar mis is?” Dat heet een projectreview of gezondheidscheck (health check): een korte, onafhankelijke doorlichting met een oordeel en advies.\n\nDe Britse overheid doet dit sinds het begin van deze eeuw met de Gateway-review: een klein team ervaren reviewers, enkele dagen interviews en documenten, en een rapport met een oordeel over hoe zeker het is dat het project levert.',
+        'Onafhankelijk betekent: je hebt geen belang bij de uitkomst. Je zat niet in het project en je verdient niet aan het vervolg. Kan dat niet, zeg het dan vooraf.\n\nSpreek met de sponsor af: de vraag (“haalt dit project zijn doel, en wat is ervoor nodig?”), wie het rapport krijgt, en dat de projectleider het als eerste ziet. Zonder die afspraak voelt een review als een afrekening, en krijg je geen eerlijke antwoorden.',
+        'De opzet, naar de Gateway-praktijk: lees eerst de projectopdracht, de planning, de laatste statusrapporten en de besluitenlijst. Interview dan mensen op alle lagen, vaak acht tot twaalf: sponsor, projectleider, teamleden, gebruikers, een leverancier. Een Gateway-review duurt meestal drie à vier dagen ter plaatse; bij een klein project is twee dagen vaak genoeg.\n\nVraag iedereen hetzelfde: “Wat gaat goed? Wat houdt het tegen? Wat zou jij doen? Hoe zeker ben je dat het lukt?”',
+        'Het oordeel: in plaats van alleen groen of rood geef je een leveringszekerheid (delivery confidence): hoe zeker het is dat het project zijn doel haalt, op een schaal van “zeer waarschijnlijk” tot “onhaalbaar zonder grote ingreep”. De Britse overheid gebruikt zo’n schaal; de stappen veranderden door de jaren.\n\nGroen op papier bij een rood beeld is de watermeloen uit Uitvoeren (Eerlijke status). Geef daarna drie tot vijf aanbevelingen met wie, wat en wanneer. Een vuistregel: tien aanbevelingen worden er nul.',
+        'Valkuilen: de projectleider pas bij het eindrapport spreken; schuld zoeken in plaats van oorzaken; een rapport dat de sponsor spaart terwijl die deel van het probleem is.\n\nWaar experts over twisten: een buitenstaander ziet meer, maar mist context; een peer review, door een collega uit hetzelfde vak, kent de inhoud, maar is minder vrij. Een scherpe vraag aan elke geïnterviewde: “Wat weet jij dat de sponsor niet weet?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Een netbeheerder. De sponsor van een project om de vrijgave van klussen te digitaliseren vraagt je, via je partner, om in twee weken te kijken waarom het al drie maanden stilstaat. Projectleider is Sanne, een senior adviseur van een ander bureau. Zij rapporteert al acht weken oranje.\n\nJe hebt de projectopdracht, de planning en zes statusrapporten. De sponsor zegt: “Ik wil gewoon weten of Sanne het kan.”',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Stel eerst de vraag bij: niet “kan Sanne het?” maar “haalt dit project zijn doel, en wat is ervoor nodig?” Spreek af dat Sanne het rapport als eerste ziet, en vertel haar zelf wat je komt doen.\n\nLees de stukken en interview in vier dagen tien mensen: sponsor, Sanne, drie planners, twee monteurs, IT, de leverancier van de app en de controller. Iedereen krijgt dezelfde vier vragen.\n\nRapport: een leveringszekerheid, bijvoorbeeld “twijfelachtig zonder ingreep”, de belangrijkste oorzaken, en vier aanbevelingen met eigenaar en datum. Hoort de sponsor bij de oorzaken, bijvoorbeeld door twee stuurgroepen af te zeggen, dan staat dat er ook in, en bespreek je het eerst met hem.',
+      },
+      said: 'Wat je hoort in projecten: “Kom jij eens even kijken wat er mis is? Maar niet te veel ophef, hè.”',
+      recall: [
+        {
+          q: 'Waarom ziet de projectleider het reviewrapport als eerste?',
+          options: ['Omdat zij het rapport moet goedkeuren', 'Zodat zij de oordelen nog kan aanpassen', 'Omdat de sponsor het anders niet leest', 'Zodat het niet als een afrekening voelt'],
+          answer: 'Zodat het niet als een afrekening voelt',
+          why: 'Wie weet dat hij niet verrast wordt, geeft eerlijker antwoorden; feitelijke fouten mag zij eruit halen, het oordeel blijft van jou.',
+        },
+        {
+          q: 'Hoeveel mensen interview je bij een projectreview vaak?',
+          options: ['Alleen de sponsor en de projectleider', 'Twee of drie mensen uit het team', 'Acht tot twaalf, verspreid over alle lagen', 'Iedereen die met het project te maken heeft'],
+          answer: 'Acht tot twaalf, verspreid over alle lagen',
+          why: 'Genoeg om patronen te zien, en van sponsor tot gebruiker, zodat je niet één laag hoort.',
+        },
+        {
+          q: 'Wat geeft een leveringszekerheid aan?',
+          options: ['Hoe zeker het is dat het project zijn doel haalt', 'Hoeveel budget er nog over is in het project', 'Of de leverancier zijn onderdelen op tijd levert', 'Hoe tevreden de sponsor over het team is'],
+          answer: 'Hoe zeker het is dat het project zijn doel haalt',
+          why: 'Het is een oordeel over de kans op succes, niet over budget of tevredenheid.',
+        },
+        {
+          q: 'Waarom beperk je een review tot drie tot vijf aanbevelingen?',
+          options: ['Omdat het rapport op één pagina moet', 'Omdat de Britse overheid het zo voorschrijft', 'Omdat een lange lijst meestal niet wordt uitgevoerd', 'Omdat meer aanbevelingen de projectleider schaden'],
+          answer: 'Omdat een lange lijst meestal niet wordt uitgevoerd',
+          why: 'Een korte lijst met eigenaar en datum wordt opgepakt; een lange lijst verdwijnt in een la.',
+        },
+      ],
+      situation: {
+        scene: 'Je bent halverwege een review bij een kunststoffabriek. In het interview zegt de projectleider, een ervaren engineer: “Ik weet wat je komt doen. De sponsor zoekt een zondebok.”',
+        ask: 'Wat zeg je?',
+        model: '“Ik snap dat het zo voelt. Mijn vraag van de sponsor is of het project zijn doel haalt en wat ervoor nodig is, niet wie de schuld heeft. Jij ziet mijn rapport als eerste en mag er feitelijke fouten uit halen. Wat ik van je wil weten: wat houdt het project tegen, en wat zou jij doen als je alles mocht besluiten?”',
+        rubric: [
+          'Erkent zijn wantrouwen zonder het weg te praten',
+          'Legt de vraag en de afspraken van de review uit',
+          'Brengt het gesprek terug naar oorzaken en zijn kijk',
+        ],
+        pushback: {
+          lines: [
+            '“Mooi praatje. Maar jij wordt betaald door de sponsor. Hoe onafhankelijk ben je nou echt?”',
+            '“Als ik eerlijk zeg dat de sponsor zelf het probleem is, sta ik volgende maand op straat.”',
+          ],
+          model: '“Terechte vraag. De sponsor betaalt, maar ik heb geen belang bij de uitkomst, ook niet bij een vervolgopdracht. Wat jij zegt, komt zonder naam in het rapport, alleen als meer mensen het noemen. Ligt een oorzaak bij de sponsor, dan bespreek ik dat zelf met hem.”',
+          rubric: [
+            'Beantwoordt de vraag over onafhankelijkheid eerlijk',
+            'Belooft vertrouwelijkheid zonder te overdrijven',
+            'Neemt de lastige boodschap naar de sponsor zelf op zich',
+          ],
+        },
+      },
+      sayIt: 'Leg een sponsor in 60 seconden uit hoe je een projectreview opzet en wat hij ervan krijgt.',
+      terms: [
+        { term: 'Projectreview', def: 'Een korte, onafhankelijke doorlichting van een project met een oordeel en een paar aanbevelingen.' },
+        { term: 'Gateway-review', def: 'De onafhankelijke review van de Britse overheid: een klein team, enkele dagen interviews en documenten, een oordeel over de leveringszekerheid.' },
+        { term: 'Onafhankelijk', def: 'Zonder belang bij de uitkomst: niet in het project, en niet verdienend aan het vervolg.' },
+        { term: 'Leveringszekerheid', def: 'Een oordeel over hoe zeker het is dat een project zijn doel haalt, op een schaal van zeer waarschijnlijk tot onhaalbaar.' },
+        { term: 'Peer review', def: 'Een review door een collega uit hetzelfde vak: kent de inhoud, maar staat minder vrij dan een buitenstaander.' },
+      ],
+    },
+    {
       id: 'pm.stuck.buytime',
       title: 'Professioneel tijd kopen',
       pre: [
@@ -102,10 +346,8 @@ export default {
         'Bluf nooit. Bluffen, een gok als feit brengen, valt sneller op dan je denkt: engineers en controllers testen je, en na één verzonnen getal wordt elk volgend getal betwijfeld.\n\nWaar experts over twisten: sommige seniors zeggen dat klanten betalen voor zekerheid, niet voor “ik zoek het uit”. Het midden: zeg erbij hoe zeker je bent (calibrated confidence). Een scherpe vraag aan jezelf: “Wat moet ik weten om het zeker te weten, en wie weet dat?”',
       ],
       example: {
-        kind: 'faded',
-        text: 'Stuurgroep (steering group), het maandelijkse overleg waar de sponsor en senior managers beslissen, bij een maker van metalen onderdelen. De CFO, de financieel directeur, draait zich naar je toe: “Dus wat is de besparing volgend jaar? Ik heb vrijdag een getal nodig voor de begroting.”\n\nHet is dinsdag. Jij schat tussen de 100.000 en 250.000 euro per jaar. Het verschil hangt af van of lijn 2 volgend jaar in scope zit, dus bij het project hoort, en dat heeft niemand besloten.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Geef de bandbreedte en waar die van afhangt, en beloof een moment voor zijn deadline. “Tussen de 100 en 250 duizend. Het verschil is lijn 2. Ik check morgen bij de productiemanager of lijn 2 volgend jaar meedoet, en donderdag stuur ik je één getal met de aannames, een dag voor je deadline.”\n\nDoe dan precies dat. Is lijn 2 donderdag nog niet besloten, adviseer hem dan de voorzichtige 100.000 te begroten en de 150.000 extra apart te laten zien, met wat ervoor moet gebeuren.',
+        kind: 'worked',
+        text: 'Stuurgroep (steering group), het maandelijkse overleg waar de sponsor en senior managers beslissen, bij een maker van metalen onderdelen. De CFO, de financieel directeur, draait zich naar je toe: “Dus wat is de besparing volgend jaar? Ik heb vrijdag een getal nodig voor de begroting.”\n\nHet is dinsdag. Jij schat tussen de 100.000 en 250.000 euro per jaar. Het verschil hangt af van of lijn 2 volgend jaar in scope zit, dus bij het project hoort, en dat heeft niemand besloten.\n\nGeef de bandbreedte en waar die van afhangt, en beloof een moment voor zijn deadline. “Tussen de 100 en 250 duizend. Het verschil is lijn 2. Ik check morgen bij de productiemanager of lijn 2 volgend jaar meedoet, en donderdag stuur ik je één getal met de aannames, een dag voor je deadline.”\n\nDoe dan precies dat. Is lijn 2 donderdag nog niet besloten, adviseer hem dan de voorzichtige 100.000 te begroten en de 150.000 extra apart te laten zien, met wat ervoor moet gebeuren.',
       },
       said: 'Wat je hoort in projecten: “Ik heb een getal nodig, geen bandbreedte. Geef me gewoon je beste gok.”',
       recall: [
@@ -123,14 +365,14 @@ export default {
         },
         {
           q: 'Een klant wil nu één getal, maar jij hebt alleen een bandbreedte. Wat is het beste?',
-          options: ['Het midden noemen alsof het zeker is', 'Weigeren een getal te geven', 'Het hoogste getal noemen zodat hij tevreden is', 'De bandbreedte geven met waar die van afhangt, en wanneer je hem kleiner maakt'],
-          answer: 'De bandbreedte geven met waar die van afhangt, en wanneer je hem kleiner maakt',
+          options: ['Het midden noemen alsof het helemaal zeker is', 'Weigeren een getal te geven tot je het zeker weet', 'Het hoogste getal noemen, zodat hij in elk geval voorlopig tevreden is', 'De bandbreedte, waar die van afhangt, en wanneer die kleiner wordt'],
+          answer: 'De bandbreedte, waar die van afhangt, en wanneer die kleiner wordt',
           why: 'Eerlijk over de onzekerheid, en toch bruikbaar voor zijn besluit.',
         },
         {
           q: 'Waarom vertrouwen senior mensen een consultant die scheidt wat hij weet, denkt en niet weet?',
-          options: ['Het laat oordeelsvermogen zien over hoe hard elke bewering is', 'Het maakt rapporten langer', 'Zo neemt hij nergens een standpunt in', 'Het staat in adviescontracten'],
-          answer: 'Het laat oordeelsvermogen zien over hoe hard elke bewering is',
+          options: ['Het toont oordeel over hoe hard elke bewering is', 'Het maakt rapporten langer en vollediger', 'Zo hoeft hij nergens een standpunt in te nemen', 'Het staat in de meeste adviescontracten'],
+          answer: 'Het toont oordeel over hoe hard elke bewering is',
           why: 'Over alles even zeker klinken laat zien dat je het verschil niet ziet.',
         },
       ],
@@ -171,8 +413,8 @@ export default {
       pre: [
         {
           q: 'Wanneer willen senior consultants het liefst dat een junior om hulp vraagt?',
-          options: ['Alleen als het project echt in de problemen zit', 'Nooit, junioren moeten het zelf oplossen', 'Vroeg, zodra ze een of twee dingen geprobeerd hebben en vastzitten', 'Bij de maandelijkse review'],
-          answer: 'Vroeg, zodra ze een of twee dingen geprobeerd hebben en vastzitten',
+          options: ['Alleen als het project echt in de problemen zit', 'Nooit, junioren moeten het zelf oplossen', 'Vroeg, na een of twee eigen pogingen', 'Bij de maandelijkse review'],
+          answer: 'Vroeg, na een of twee eigen pogingen',
           why: 'Hulp in week 2 is goedkoop; hulp in week 8 is een reddingsoperatie.',
         },
       ],
@@ -184,35 +426,33 @@ export default {
         'De lus sluiten: vertel wat je met het advies gedaan hebt en hoe het ging. Het kost één bericht en zorgt dat ze je de volgende keer graag weer helpen.\n\nWaar experts over twisten: zelf worstelen bouwt vaardigheid, maar wachten kost de klant geld. Een gangbaar midden is een timebox: probeer het een vaste tijd alleen, zeg een halve dag, en vraag dan. Een scherpe vraag aan jezelf: “Wat zou ik vragen als ik niet bang was junior over te komen?”',
       ],
       example: {
-        kind: 'faded',
-        text: 'Week 4 bij een levensmiddelenfabriek. Je analyse laat zien dat de OEE, het deel van de geplande tijd waarin de lijnen goed product maken op volle snelheid, in het systeem 71% is, maar de stoplogs van de operators wijzen op ongeveer 60%. Je bent al drie dagen bezig die twee kloppend te krijgen.\n\nJe manager heeft het erg druk. Over acht dagen is de stuurgroep, die de nulmeting (baseline), de meting van het startpunt, verwacht.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Stop met alleen puzzelen. Stuur je manager vier regels: context, wat je geprobeerd hebt, de vraag, en een verzoek om een kwartier deze week.\n\nVraag tegelijk de procesengineer van de klant: “Wie weet precies hoe de OEE in het systeem berekend wordt?” Waarschijnlijk iemand bij IT of het MES-team, en het antwoord is misschien één instelling, zoals korte stops die niet meetellen.\n\nIn de stuurgroep breng je het eerlijk als bevinding: “Het systeem zegt 71%, de vloer registreert ongeveer 60%. We zoeken uit welke definitie klopt, en dat verschil is op zich al belangrijk.”',
+        kind: 'worked',
+        text: 'Week 4 bij een levensmiddelenfabriek. Je analyse laat zien dat de OEE, het deel van de geplande tijd waarin de lijnen goed product maken op volle snelheid, in het systeem 71% is, maar de stoplogs van de operators wijzen op ongeveer 60%. Je bent al drie dagen bezig die twee kloppend te krijgen.\n\nJe manager heeft het erg druk. Over acht dagen is de stuurgroep, die de nulmeting (baseline), de meting van het startpunt, verwacht.\n\nStop met alleen puzzelen. Stuur je manager vier regels: context, wat je geprobeerd hebt, de vraag, en een verzoek om een kwartier deze week.\n\nVraag tegelijk de procesengineer van de klant: “Wie weet precies hoe de OEE in het systeem berekend wordt?” Waarschijnlijk iemand bij IT of het MES-team, en het antwoord is misschien één instelling, zoals korte stops die niet meetellen.\n\nIn de stuurgroep breng je het eerlijk als bevinding: “Het systeem zegt 71%, de vloer registreert ongeveer 60%. We zoeken uit welke definitie klopt, en dat verschil is op zich al belangrijk.”',
       },
       said: 'Wat je hoort in projecten: “Waarom kwam je niet twee weken geleden bij me? Dit was een vraag van tien minuten.”',
       recall: [
         {
           q: 'Wat is de beste manier om een drukke senior om hulp te vragen?',
-          options: ['“Heb je een keer tijd om te praten?”', '“Ik zit vast op X. Ik heb A en B geprobeerd. Mijn vraag is C. Heb je een kwartier voor donderdag?”', 'Een lange mail met alle achtergrond', '“Kun jij dit stuk overnemen?”'],
-          answer: '“Ik zit vast op X. Ik heb A en B geprobeerd. Mijn vraag is C. Heb je een kwartier voor donderdag?”',
+          options: ['“Heb je deze of volgende week een keer tijd om te praten?”', '“Vast op X; A en B geprobeerd; vraag C. Kwartier voor donderdag?”', 'Een lange mail met alle achtergrond en de hele geschiedenis', '“Kun jij dit stuk voor een tijdje van me overnemen?”'],
+          answer: '“Vast op X; A en B geprobeerd; vraag C. Kwartier voor donderdag?”',
           why: 'Het is kort, laat je eigen inspanning zien, en maakt helpen makkelijk.',
         },
         {
           q: 'Je wilt weten hoe de organisatie van de klant echt over budgetten beslist. Wie vraag je eerst?',
-          options: ['Een technisch specialist', 'Iemand bij de klant die de organisatie kent', 'Een collega bij een andere klant', 'Niemand, je gokt'],
+          options: ['Een technisch specialist op het onderwerp', 'Iemand bij de klant die de organisatie kent', 'Een collega die bij een andere klant werkt', 'Niemand, je maakt je eigen beste gok'],
           answer: 'Iemand bij de klant die de organisatie kent',
           why: 'Voor hoe hun organisatie werkt, is de klant de beste bron.',
         },
         {
           q: 'Waarom vraag je de klant “Met wie zou jij hierover praten?”',
-          options: ['Zo schuif je het werk naar hen', 'Het is beleefde smalltalk', 'Het laat zien dat je je vak niet kent', 'Zij kennen de kortste weg, en gevraagd worden bouwt hun eigenaarschap'],
-          answer: 'Zij kennen de kortste weg, en gevraagd worden bouwt hun eigenaarschap',
+          options: ['Zo schuif je het werk stilletjes naar hen door', 'Het is beleefde smalltalk voor de sfeer', 'Het laat zien dat je je vak niet goed kent', 'Zij kennen de weg, en het bouwt eigenaarschap'],
+          answer: 'Zij kennen de weg, en het bouwt eigenaarschap',
           why: 'Hun kennis gebruiken is effectief en versterkt de relatie.',
         },
         {
           q: 'Een senior gaf je advies dat hielp. Wat doe je daarna?',
-          options: ['Vertellen wat je ermee gedaan hebt en hoe het ging', 'Niks, hij heeft het druk', 'Meteen om meer advies vragen', 'Het noemen in je jaargesprek'],
-          answer: 'Vertellen wat je ermee gedaan hebt en hoe het ging',
+          options: ['Vertellen wat je deed en hoe het ging', 'Niks, hij heeft het al druk genoeg', 'Meteen om nog meer advies vragen', 'Het noemen in je volgende jaargesprek'],
+          answer: 'Vertellen wat je deed en hoe het ging',
           why: 'De lus sluiten zorgt dat hij je de volgende keer graag weer helpt.',
         },
       ],
@@ -253,8 +493,8 @@ export default {
       pre: [
         {
           q: 'Je weet niet zeker of een nieuwe planningsregel helpt. Welke aanpak is meestal het best?',
-          options: ['Meer data analyseren tot je het zeker weet', 'Het overal invoeren en kijken wat er gebeurt', 'De meest senior persoon laten beslissen', 'Het twee weken klein uitproberen met een duidelijke meting, dan beslissen'],
-          answer: 'Het twee weken klein uitproberen met een duidelijke meting, dan beslissen',
+          options: ['Meer data analyseren tot je het helemaal zeker weet', 'Het meteen overal invoeren en kijken wat er gebeurt', 'De meest senior persoon voor iedereen laten beslissen', 'Klein uitproberen met een duidelijke meting, dan beslissen'],
+          answer: 'Klein uitproberen met een duidelijke meting, dan beslissen',
           why: 'Een kleine test beantwoordt de vraag sneller en overtuigender dan nog meer discussie.',
         },
       ],
@@ -278,6 +518,7 @@ export default {
           number: 4,
           tolerance: 0.1,
           unit: 'uur',
+          hint: 'Reken eerst alle minuten uit, en zet die dan om in uren.',
           why: '40 × 6 = 240 minuten; 240 / 60 = 4 uur.',
         },
         {
@@ -332,6 +573,167 @@ export default {
       ],
     },
     {
+      id: 'pm.stuck.cynefin',
+      title: 'Welk soort probleem is dit? Cynefin',
+      pre: [
+        {
+          q: 'Een team analyseert al twee maanden waarom de afzeggingen van klussen schommelen, en vindt steeds nieuwe oorzaken die samenhangen. Wat past het best?',
+          options: ['Nog meer data verzamelen tot het patroon zichtbaar wordt', 'Een paar kleine, veilige proeven doen en kijken wat werkt', 'Een externe expert de echte oorzaak laten bepalen', 'De beste werkwijze van een andere regio kopiëren'],
+          answer: 'Een paar kleine, veilige proeven doen en kijken wat werkt',
+          why: 'Als oorzaken op elkaar reageren, vind je het antwoord sneller door uit te proberen dan door verder te analyseren.',
+        },
+      ],
+      teach: [
+        'Projecten lopen vaak vast omdat de aanpak niet past bij het soort probleem. Het Cynefin-raamwerk (spreek uit: kuh-NEV-in, Welsh voor “leefgebied”) van Dave Snowden helpt dat te zien. Het werd bekend door een artikel van Snowden en Mary Boone in Harvard Business Review (2007).\n\nHet onderscheidt vier soorten situaties, plus een vijfde: wanorde (disorder), als je niet weet in welke je zit.',
+        'Eenvoudig (simple, later “clear” genoemd): oorzaak en gevolg zijn voor iedereen duidelijk. Je herkent de situatie, ordent haar en past de bekende werkwijze toe.\n\nGecompliceerd (complicated): er is een antwoord, maar je hebt een expert of een analyse nodig. Je onderzoekt, analyseert en handelt dan. Een trillende pomp of een OEE-berekening die niet klopt, is meestal gecompliceerd: zoek de specialist.',
+        'Complex: oorzaak en gevolg zie je pas achteraf, omdat mensen en factoren op elkaar reageren. Analyse helpt weinig. Je doet kleine proeven: een safe-to-fail-proef is veilig en mag mislukken. Je kijkt wat ze opleveren en versterkt wat werkt. Snowden en Boone noemen dat aftasten, waarnemen, reageren (probe, sense, respond).\n\nHoe een nieuwe werkwijze in een organisatie landt, is bijna altijd complex. Daar past het experiment uit Handelen onder onzekerheid.',
+        'Chaotisch (chaotic): geen tijd om te begrijpen. Eerst handelen om te stabiliseren, zoals bij een grote storing of een veiligheidsincident; daarna pas analyseren.\n\nDe typische fout in een vastgelopen project: een complex probleem behandelen als gecompliceerd. Het team blijft analyseren en wacht op het ene juiste antwoord, terwijl dat er vooraf niet is. Het omgekeerde gebeurt ook: experimenteren waar een expert het antwoord gewoon weet.',
+        'Waar experts over twisten: critici vinden Cynefin te vaag om mee te sorteren, en mensen plaatsen hetzelfde probleem in verschillende domeinen. Gebruik het dus als gesprek, niet als stempel: “Weten we het antwoord, kan een expert het vinden, of moeten we het uitproberen?”\n\nVaak zit een project in meer domeinen tegelijk: de techniek is gecompliceerd, de adoptie complex. Knip het probleem dan op, zoals Snowden en Boone aanraden bij wanorde.',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 9 bij een levensmiddelenfabriek. Je project moet de verspilling (waste) van folie op de inpaklijnen halveren. Het team heeft twee maanden data geanalyseerd: de verspilling hangt samen met de ploeg, het product, de folieleverancier, de temperatuur in de hal en de ervaring van de operator. Elke analyse vindt een nieuwe samenhang. De sponsor vraagt om “eindelijk de echte oorzaak”.\n\nEén ding is wel duidelijk: lijn 3 verspilt veel folie bij het inleggen van een nieuwe rol, en de leverancier van de inpakmachine heeft daar een instelprocedure voor.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Knip het probleem op. Het inleggen van de rol op lijn 3 is gecompliceerd: er is een antwoord en de machineleverancier heeft het. Laat die procedure invoeren en meet het effect.\n\nDe rest is waarschijnlijk complex: veel factoren die op elkaar reageren, zonder één echte oorzaak. Stop daar met analyseren. Kies met het team drie kleine safe-to-fail-proeven van twee weken, zoals een vaste startcheck per ploeg, een andere productvolgorde en een ervaren operator naast een nieuwe. Meet de verspilling per proef en ga door met wat werkt.\n\nZeg de sponsor eerlijk: “Er is waarschijnlijk niet één oorzaak. Uitproberen brengt ons sneller verder dan nog meer analyse.”',
+      },
+      said: 'Wat je hoort in projecten: “We moeten eerst precies begrijpen hoe het zit, anders doen we iets verkeerds.”',
+      recall: [
+        {
+          q: 'In welk domein van Cynefin zoek je vooral een expert of een grondige analyse?',
+          options: ['Eenvoudig', 'Gecompliceerd', 'Complex', 'Chaotisch'],
+          answer: 'Gecompliceerd',
+          why: 'Daar is een antwoord, maar je hebt kennis of analyse nodig om het te vinden.',
+        },
+        {
+          q: 'Welke aanpak past bij een complex probleem?',
+          options: ['Herkennen, ordenen, de bekende werkwijze toepassen', 'Onderzoeken, analyseren, dan pas handelen', 'Eerst handelen om de situatie te stabiliseren', 'Aftasten met kleine proeven, waarnemen, reageren'],
+          answer: 'Aftasten met kleine proeven, waarnemen, reageren',
+          why: 'Oorzaak en gevolg zie je pas achteraf, dus je leert door kleine, veilige proeven.',
+        },
+        {
+          q: 'Wat is volgens deze les de typische fout in een vastgelopen project?',
+          options: ['Te snel een expert inschakelen bij een storing', 'Blijven analyseren waar je moet uitproberen', 'Te weinig data verzamelen voor een besluit', 'De bekende werkwijze te strak volgen'],
+          answer: 'Blijven analyseren waar je moet uitproberen',
+          why: 'Een complex probleem behandelen als gecompliceerd houdt het team in een eindeloze analyse.',
+        },
+        {
+          q: 'Een project heeft een technisch deel met een duidelijk antwoord en een adoptiedeel waar mensen onvoorspelbaar reageren. Wat doe je?',
+          options: ['Het opknippen: de techniek analyseren, de adoptie uitproberen', 'Het hele project behandelen als een complex probleem', 'Eerst de adoptie analyseren tot die helemaal duidelijk is', 'Het hele project overdragen aan de technische expert'],
+          answer: 'Het opknippen: de techniek analyseren, de adoptie uitproberen',
+          why: 'Elk deel krijgt de aanpak die bij zijn domein past.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder. Het team wil nog zes weken data analyseren om te begrijpen waarom monteursploegen in de ene regio de nieuwe werkorder-app wel gebruiken en in de andere niet. De sponsor twijfelt.',
+        ask: 'Wat stel je voor?',
+        model: '“Ik denk dat analyse hier weinig oplevert. Of ploegen een app gebruiken, hangt af van veel dingen die op elkaar reageren: de ploegleider, de dekking, gewoontes. Dat is complex. Ik stel drie kleine proeven van twee weken voor in de achterblijvende regio: een ploegleider als app-coach, papieren werkorders weg op één locatie, en uitleg in de dagstart. We meten het gebruik per proef en breiden uit wat werkt.”',
+        rubric: [
+          'Herkent het probleem als complex',
+          'Stelt kleine, veilige proeven voor in plaats van meer analyse',
+          'Zegt wat er gemeten wordt en wat er daarna gebeurt',
+        ],
+        pushback: {
+          lines: [
+            '“Proeven zonder te begrijpen wat er speelt? Dat is gokken met mijn monteurs.”',
+            '“Zes weken analyse is toch zorgvuldiger dan zomaar wat proberen?”',
+          ],
+          model: '“Gokken zou het zijn als we groot uitrollen. Deze proeven zijn klein, kort en terug te draaien, en we meten ze. Zes weken analyse levert waarschijnlijk weer een lijst samenhangen op, geen antwoord. Over zes weken hebben we drie echte uitkomsten. Wat mag er volgens jou zeker niet misgaan? Dat zetten we als grens in de proeven.”',
+          rubric: [
+            'Erkent zijn zorg om zijn monteurs',
+            'Legt uit waarom kleine proeven hier zorgvuldiger zijn',
+            'Nodigt hem uit grenzen voor de proeven te stellen',
+          ],
+        },
+      },
+      sayIt: 'Leg een sponsor in 60 seconden uit waarom niet elk probleem met meer analyse op te lossen is.',
+      terms: [
+        { term: 'Cynefin', def: 'Een raamwerk van Dave Snowden dat situaties indeelt in eenvoudig, gecompliceerd, complex en chaotisch, elk met een eigen aanpak.' },
+        { term: 'Gecompliceerd', def: 'Een situatie met een antwoord dat een expert of analyse kan vinden.' },
+        { term: 'Complex', def: 'Een situatie waarin oorzaak en gevolg pas achteraf zichtbaar zijn; je leert door kleine proeven.' },
+        { term: 'Safe-to-fail-proef', def: 'Een kleine, veilige proef die mag mislukken en je iets leert over een complex probleem.' },
+        { term: 'Wanorde', def: 'Het vijfde domein van Cynefin: je weet niet in welk soort situatie je zit; knip het probleem dan op.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.blocker',
+      title: 'De persoon die blokkeert',
+      pre: [
+        {
+          q: 'Een afdelingshoofd wiens steun je nodig hebt, zegt in elk overleg “ja”, maar doet niks. Wat is de beste eerste stap?',
+          options: ['Hem in het volgende overleg erop aanspreken', 'Meteen naar de sponsor stappen met het probleem', 'Hem om een gesprek onder vier ogen vragen en luisteren', 'Om hem heen werken via zijn eigen mensen'],
+          answer: 'Hem om een gesprek onder vier ogen vragen en luisteren',
+          why: 'Eerst begrijpen waarom hij niet meewerkt; aanspreken in de groep of escaleren maakt het meestal erger.',
+        },
+      ],
+      teach: [
+        'Een blokkeerder is iemand wiens steun je nodig hebt en die hem niet geeft: een afdelingshoofd dat geen mensen vrijmaakt, een planner die de nieuwe regel negeert. Blokkeren gebeurt zelden met een hard nee. Meestal zie je uitstel, stilte of “goed idee, maar nu even niet”.\n\nDe eerste reflex is duwen, of eromheen werken. Allebei maken het meestal erger. Begin met begrijpen waarom.',
+        'Rick Maurer, een Amerikaanse veranderadviseur, onderscheidt drie niveaus van weerstand (resistance), onder meer in zijn boek Why Don’t You Want What I Want? (2002). Weerstand is hier: niet meewerken aan een verandering, openlijk of stil.\n\nNiveau 1, “ik snap het niet”: er ontbreekt informatie. Niveau 2, “ik vind het niks”: een emotionele reactie, zoals angst voor verlies van status of werk. Niveau 3, “ik vertrouw jou niet”: het gaat om de relatie, met jou of met wie je vertegenwoordigt.',
+        'Elk niveau vraagt iets anders. Niveau 1: uitleg, cijfers, laten zien. Niveau 2: luisteren naar wat iemand vreest, en kijken wat je daaraan kunt doen. Niveau 3: vertrouwen opbouwen, kleine afspraken nakomen, of iemand anders het gesprek laten voeren.\n\nDe klassieke fout: niveau 2 of 3 behandelen als niveau 1, en nog een presentatie geven. Meer uitleg aan iemand die zich bedreigd voelt, klinkt als druk.',
+        'Het gesprek voer je onder vier ogen, niet in de groep. Open met een feit en een vraag: “De planners zijn nog niet vrijgemaakt. Wat maakt het lastig?” Luister, en vat samen wat je hoort.\n\nEen sterke vraag: “Wat zou er moeten veranderen zodat je dit wel kunt steunen?” Een bezwaar (objection) is vaak een voorwaarde in vermomming. Is het bezwaar terecht, pas dan het plan aan; dat is geen verlies.',
+        'Werkt het gesprek niet, dan pas escaleer je, en je zegt het hem eerst: “Ik leg dit bij de sponsor neer, omdat we het samen niet oplossen.”\n\nWeerstand op de werkvloer bij een livegang behandelt Landen (Werken met weerstand); hier gaat het om één persoon wiens ja je nodig hebt. Waar experts over twisten: is “weerstand” een nuttig woord, of een etiket dat de schuld bij de ander legt? Een scherpe vraag aan jezelf: “Waarin heeft hij gelijk?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Week 4 bij een netbeheerder. Je project moet de afzeggingen van geplande klussen verlagen. Het hoofd werkvoorbereiding, Ronald, zou twee werkvoorbereiders (work preparers, die klussen klaarzetten) een dag per week vrijmaken. Drie weken later: niks. In het overleg zegt hij steeds: “Komt goed.”\n\nJe vraagt hem mee voor koffie, onder vier ogen: “De twee werkvoorbereiders zijn nog niet vrijgemaakt. Wat maakt het lastig?” Hij aarzelt, dan: “Mijn mensen krijgen de schuld van elke afzegging. Jullie project gaat dat zwart op wit zetten.”\n\nDat is niveau 2: angst, geen onbegrip. Je vat samen en vraagt wat hij nodig heeft. Afspraak: de cijfers gaan over de keten, niet over personen, en hij ziet ze als eerste. De maandag erna zijn de twee vrijgemaakt.',
+      },
+      said: 'Wat je hoort in projecten: “Goed idee hoor, echt. Alleen nu even niet, het is bij ons gewoon te druk.”',
+      recall: [
+        {
+          q: '“Ik snap niet waarom dit nodig is.” Welk niveau van weerstand is dit volgens Maurer?',
+          options: ['Niveau 1: er ontbreekt informatie', 'Niveau 2: een emotionele reactie', 'Niveau 3: geen vertrouwen in jou', 'Geen weerstand, alleen een vraag'],
+          answer: 'Niveau 1: er ontbreekt informatie',
+          why: 'Niet snappen wijst op ontbrekende informatie; uitleg en cijfers helpen dan.',
+        },
+        {
+          q: 'Een manager vreest dat het project zijn afdeling slecht laat lijken. Wat helpt het minst?',
+          options: ['Luisteren naar wat hij precies vreest', 'Afspreken hoe de cijfers gebracht worden', 'Nog een presentatie met de voordelen geven', 'Hem de cijfers als eerste laten zien'],
+          answer: 'Nog een presentatie met de voordelen geven',
+          why: 'Dit is niveau 2, angst. Meer uitleg voelt dan als druk.',
+        },
+        {
+          q: 'Waarom voer je het gesprek met een blokkeerder onder vier ogen?',
+          options: ['Omdat het veel sneller gaat dan in een groep', 'Omdat de sponsor er niks van mag weten', 'Omdat het zo in de projectopdracht staat', 'Omdat hij in een groep zijn gezicht moet redden'],
+          answer: 'Omdat hij in een groep zijn gezicht moet redden',
+          why: 'Alleen is hij eerlijker over wat hem tegenhoudt.',
+        },
+        {
+          q: 'Het gesprek levert niks op. Wat doe je voordat je escaleert naar de sponsor?',
+          options: ['Het hem eerst zelf zeggen', 'Zijn mensen direct benaderen', 'Wachten tot het vanzelf goedkomt', 'Het in het teamoverleg aankaarten'],
+          answer: 'Het hem eerst zelf zeggen',
+          why: 'Escaleren zonder het hem te zeggen beschadigt het vertrouwen voorgoed.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een kunststoffabriek. De logistiek manager blokkeert al weken een proef met kleinere series op de spuitgietmachines, die kunststof in een matrijs spuiten: “Dan krijg ik meer omstellingen en een vollere vloer.” De productiemanager, je sponsor, wil dat je “gewoon doorzet”.',
+        ask: 'Hoe pak je het aan?',
+        model: 'Ik vraag hem onder vier ogen wat hij precies verwacht: hoeveel meer omstellingen, hoeveel meer pallets op de vloer. Dan zie ik of het niveau 1 is (hij mist cijfers) of niveau 2 (hij vreest dat zijn magazijn vastloopt en hij erop wordt afgerekend). Zijn bezwaar zet ik als voorwaarde in de proef: een maximum aantal pallets in de hal; komen we daarboven, dan stoppen we. Zo wordt hij medeontwerper in plaats van tegenstander.',
+        rubric: [
+          'Vraagt naar het echte bezwaar in plaats van door te duwen',
+          'Herkent het niveau van weerstand',
+          'Maakt van het bezwaar een voorwaarde in het plan',
+        ],
+        pushback: {
+          lines: [
+            '“Die man blokkeert alles. Elk gesprek met hem is tijdverspilling. Gewoon doorzetten.”',
+            '“Als jij zijn bezwaren in de proef stopt, heeft hij gewonnen en loopt het project nog verder uit.”',
+          ],
+          model: '“Ik snap je frustratie. Doorzetten zonder hem kan, maar hij stuurt de vrachtwagens en de pallets, en dan loopt de proef op zijn vloer vast. Zijn bezwaar is meetbaar: pallets in de hal. Zetten we dat als grens in de proef, dan start die volgende week, met hem erbij. Lukt dat niet, dan leg ik het met jou bij de plantmanager.”',
+          rubric: [
+            'Erkent de frustratie van de sponsor',
+            'Legt uit wat doorzetten kost',
+            'Biedt een snelle route en een terugvaloptie',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit hoe je omgaat met iemand die je project blokkeert.',
+      terms: [
+        { term: 'Blokkeerder', def: 'Iemand wiens steun je nodig hebt en die hem niet geeft, meestal door uitstel of stilte in plaats van een hard nee.' },
+        { term: 'Weerstand', def: 'Niet meewerken aan een verandering, openlijk of stil; vaak een signaal dat er iets ontbreekt of iets op het spel staat.' },
+        { term: 'Drie niveaus van weerstand', def: 'Rick Maurers indeling: ik snap het niet (informatie), ik vind het niks (emotie), ik vertrouw jou niet (relatie).' },
+        { term: 'Bezwaar', def: 'Een concrete tegenwerping tegen het plan; vaak een voorwaarde waaronder iemand wel kan meewerken.' },
+      ],
+    },
+    {
       id: 'pm.stuck.pressure',
       title: 'Als de klant druk zet',
       pre: [
@@ -350,17 +752,15 @@ export default {
         'Soms heeft de klant gelijk en ben jij uitgelopen. Neem dat dan snel en ronduit op je, en zeg wat je eraan doet.\n\nTypische fouten: een ja aan de telefoon waar je maandag spijt van hebt, of zo hard verdedigen dat je de discussie wint en de klant verliest. Een scherpe vraag voor het terugbellen: “Wat gebeurt er maandag als we niks veranderen?”',
       ],
       example: {
-        kind: 'faded',
-        text: 'Vrijdag 16:30. De productiedirecteur van een metaalbedrijf belt: “Maandag vergadert het bestuur. Dan moet de nieuwe planning op lijn 2 live zijn, anders wordt dit project stopgezet.”\n\nVolgens de planning gaat het in week 12 live; het is week 9. De dagploeg is getraind, de nachtploeg niet. Je manager is tot maandag op vakantie.',
-        ask: 'Wat zou jij nu doen?',
-        reveal: 'Zeg aan de telefoon geen ja en geen nee. “Ik hoor dat dit voor maandag urgent is. Laat me kijken wat realistisch kan, dan bel ik je om 18:00 terug.” Zoek dan uit wat het drijft: waarschijnlijk moet hij het bestuur voortgang laten zien, niet letterlijk een volledige livegang.\n\nBereid opties voor. A: vanaf maandag alleen in de dagploeg live, met jou op de vloer; de nachtploeg volgt in week 11 na de training. B: geen livegang, maar je geeft hem één A4 voor het bestuur met de pilotresultaten en een vaste datum. Volledig live met een ongetrainde nachtploeg riskeert een slechte week waar het bestuur over hoort.\n\nAdviseer A. Stuur voor 18:00 een bericht aan de vervanger van je manager of je partner. Bel op tijd terug, en bied aan hem voor te bereiden op het bestuur.',
+        kind: 'worked',
+        text: 'Vrijdag 16:30. De productiedirecteur van een metaalbedrijf belt: “Maandag vergadert het bestuur. Dan moet de nieuwe planning op lijn 2 live zijn, anders wordt dit project stopgezet.”\n\nVolgens de planning gaat het in week 12 live; het is week 9. De dagploeg is getraind, de nachtploeg niet. Je manager is tot maandag op vakantie.\n\nZeg aan de telefoon geen ja en geen nee. “Ik hoor dat dit voor maandag urgent is. Laat me kijken wat realistisch kan, dan bel ik je om 18:00 terug.” Zoek dan uit wat het drijft: waarschijnlijk moet hij het bestuur voortgang laten zien, niet letterlijk een volledige livegang.\n\nBereid opties voor. A: vanaf maandag alleen in de dagploeg live, met jou op de vloer; de nachtploeg volgt in week 11 na de training. B: geen livegang, maar je geeft hem één A4 voor het bestuur met de pilotresultaten en een vaste datum. Volledig live met een ongetrainde nachtploeg riskeert een slechte week waar het bestuur over hoort.\n\nAdviseer A. Stuur voor 18:00 een bericht aan de vervanger van je manager of je partner. Bel op tijd terug, en bied aan hem voor te bereiden op het bestuur.',
       },
       said: 'Wat je hoort in projecten: “Het kan me niet schelen hoe, maandag moet dit af zijn. Anders bel ik je baas.”',
       recall: [
         {
           q: 'Wat doe je als eerste als een klant flink druk zet?',
-          options: ['Uitleggen waarom de vertraging niet jouw schuld is', 'Beloven dat je je best doet', 'Het tempo eruit halen, de druk erkennen en zeggen wanneer je terugkomt', 'Meteen naar zijn baas escaleren'],
-          answer: 'Het tempo eruit halen, de druk erkennen en zeggen wanneer je terugkomt',
+          options: ['Uitleggen waarom de vertraging niet jouw schuld is', 'Beloven dat je je uiterste best doet om het te halen', 'Tempo eruit, de druk erkennen, zeggen wanneer je terugbelt', 'Meteen naar zijn baas escaleren voor steun'],
+          answer: 'Tempo eruit, de druk erkennen, zeggen wanneer je terugbelt',
           why: 'Rust en een duidelijk terugbelmoment werken beter dan verdedigen of beloven in het heetst van de strijd.',
         },
         {
@@ -377,8 +777,8 @@ export default {
         },
         {
           q: 'De klant dreigt je partner, de senior mede-eigenaar van je bureau, te bellen. Wat doe je?',
-          options: ['Hopen dat hij het niet doet', 'Je partner zelf eerst inlichten, met de feiten', 'Toegeven aan de eis', 'De klant vragen het niet te doen'],
-          answer: 'Je partner zelf eerst inlichten, met de feiten',
+          options: ['Hopen dat hij het uiteindelijk niet doet', 'Je partner eerst inlichten, met de feiten', 'Toegeven aan de eis om de rust te bewaren', 'De klant vragen je partner niet te bellen'],
+          answer: 'Je partner eerst inlichten, met de feiten',
           why: 'Je partner moet het van jou horen, met context, voordat de klant belt.',
         },
       ],
@@ -414,6 +814,331 @@ export default {
       ],
     },
     {
+      id: 'pm.stuck.hidden',
+      title: 'Ja zeggen, nee doen',
+      pre: [
+        {
+          q: 'In de stuurgroep stemt een directeur in met het plan. Daarna gebeurt er in zijn afdeling niks, en hij zegt dat het “even moet landen”. Hoe heet dit gedrag?',
+          options: ['Een open conflict', 'Een stil veto', 'Een wijzigingsverzoek', 'Een formele escalatie'],
+          answer: 'Een stil veto',
+          why: 'Het besluit staat, maar wie het moet uitvoeren, houdt het tegen door niet te handelen.',
+        },
+      ],
+      teach: [
+        'Op managementniveau blokkeren mensen zelden openlijk. Ze zeggen ja in het overleg en doen daarna niks. Dat heet wel een stil veto (pocket veto): het besluit is genomen, maar wie het moet uitvoeren, houdt het tegen door niet te handelen.\n\nHet is lastiger dan open weerstand, want er is niks om op te reageren. Ga niet meteen uit van kwade wil: vaak wil iemand in het openbaar geen nee zeggen tegen zijn baas.',
+        'Signalen: algemene toezeggingen (“we gaan ermee aan de slag”) zonder naam en datum; besluiten die in het verslag anders klinken dan in de kamer; het overleg na het overleg, waar mensen op de gang hun echte mening delen; steeds nieuwe vragen om “nog even uit te zoeken”.\n\nWat het vaak drijft: het besluit kost die persoon iets (mensen, budget, status), en dat is in het overleg niet besproken.',
+        'Maak toezeggingen specifiek. Na elk besluit: wie doet wat, voor wanneer, en hoe zien we dat het gebeurd is? Lees het hardop voor en zet het dezelfde dag op papier. Een specifieke toezegging maakt van een vage ja een afspraak, of brengt het bezwaar alsnog op tafel.\n\nWerk vooraf. Grote besluiten win je in gesprekken vóór de stuurgroep, met nemawashi uit Uitvoeren (De stuurgroep voorbereiden). Vraag daar: “Wat kost dit jouw afdeling?”',
+        'Zoek de echte beslisser. Soms blokkeert iemand omdat zijn eigen baas er anders over denkt. Vraag: “Wie moet hier nog meer achter staan?” Een stakeholdermap met formele en informele invloed, zoals in Intake (Wie beslist, wie kan het stoppen), helpt.\n\nBlijft de toezegging liggen, bespreek het dan eerst onder vier ogen, met feiten: “We spraken af dat de planners op 1 maart vrij waren. Ze zijn er niet. Wat is er veranderd?”',
+        'Komt er dan nog niks, dan gaat het terug naar de stuurgroep als feit, niet als beschuldiging: “Het besluit van februari is niet uitgevoerd; dit is het gevolg. Houden we het besluit, of passen we het aan?”\n\nDe grens: speel zelf geen spelletjes, geen geruchten en geen coalities achter iemands rug. Waar experts over twisten: hoort politiek bij het vak, of is het een teken van een slecht ingericht project? Een scherpe vraag: “Wat verliest hij als dit lukt?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 11 bij een zuivelfabriek. In de stuurgroep van februari besloot het managementteam dat de technische dienst twee monteurs vrijmaakt om de omstellingen op de verpakkingslijnen te verkorten. Het hoofd technische dienst, Erik, knikte. Nu is het half maart. De monteurs zijn er niet. Erik zegt: “We zijn ermee bezig, maar de storingen gaan voor.”\n\nEen ploegleider vertelt je dat Erik na de stuurgroep tegen zijn mensen zei: “Dat project waait wel over.” Eriks baas, de plantmanager, is ook je sponsor.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Dit lijkt een stil veto. Speel het niet via de ploegleider, en ga niet meteen naar de plantmanager.\n\nVraag Erik om een gesprek onder vier ogen, met feiten: “In februari spraken we twee monteurs af vanaf 1 maart. Ze zijn er niet. Wat kost dit jouw dienst?” Waarschijnlijk komt het echte bezwaar dan op tafel: de storingen lopen op en hij wordt daarop afgerekend.\n\nMaak het specifiek: wie, vanaf welke datum, en wat er gebeurt bij een grote storing. Lukt dat niet, zeg hem dan dat je het in de volgende stuurgroep als feit terugbrengt: “Het besluit is niet uitgevoerd. Houden we het, of passen we het aan?” Dan kiest de plantmanager, met Erik erbij.',
+      },
+      said: 'Wat je hoort in projecten: “Ja, ja, prima, doen we. Stuur me de details maar even.”',
+      recall: [
+        {
+          q: 'Wat maakt een toezegging specifiek?',
+          options: ['Dat hij letterlijk in de notulen staat', 'Dat iedereen in de kamer instemde', 'Dat de sponsor erbij aanwezig was', 'Wie, wat, voor wanneer, en hoe je het ziet'],
+          answer: 'Wie, wat, voor wanneer, en hoe je het ziet',
+          why: 'Met naam, datum en een zichtbaar resultaat kan een vage ja zich niet meer verstoppen.',
+        },
+        {
+          q: 'Welke vraag in een gesprek vóór de stuurgroep helpt een stil veto te voorkomen?',
+          options: ['“Ben je het eens met het plan?”', '“Kun je dit voor maart regelen?”', '“Wil je in de stuurgroep ja zeggen?”', '“Wat kost dit jouw afdeling?”'],
+          answer: '“Wat kost dit jouw afdeling?”',
+          why: 'Het brengt de verborgen prijs van het besluit op tafel voordat iemand ja zegt.',
+        },
+        {
+          q: 'Een toezegging blijft liggen, ook na een gesprek onder vier ogen. Hoe breng je het in de stuurgroep?',
+          options: ['Als beschuldiging, zodat iedereen ziet wie het tegenhoudt', 'Niet, je lost het altijd buiten de stuurgroep op', 'Als feit met het gevolg, en de vraag of het besluit blijft', 'Via een collega van die persoon, om hem te sparen'],
+          answer: 'Als feit met het gevolg, en de vraag of het besluit blijft',
+          why: 'Zo gaat het over het besluit, niet over de persoon, en kan de stuurgroep kiezen.',
+        },
+        {
+          q: 'Wat is volgens deze les de grens in politiek gedrag?',
+          options: ['Geen geruchten of coalities achter iemands rug', 'Nooit gesprekken vooraf voeren met stuurgroepleden', 'Nooit iets naar de stuurgroep terugbrengen', 'Alles uitsluitend schriftelijk afspreken'],
+          answer: 'Geen geruchten of coalities achter iemands rug',
+          why: 'Gesprekken vooraf zijn open werk; spelletjes achter iemands rug kosten je je geloofwaardigheid.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een metaalbedrijf. De verkoopdirecteur heeft in de stuurgroep ingestemd met vaste invoegmomenten voor spoedorders, zodat de planning rustiger wordt. Twee weken later zet zijn binnendienst weer dagelijks spoedorders tussendoor. Hij zegt tegen jou: “Klanten gaan voor, dat snap je.”',
+        ask: 'Wat doe je?',
+        model: 'Ik vraag hem om een half uur onder vier ogen. Ik begin met de feiten: tien spoedorders buiten de vaste momenten in twee weken, en wat dat met de planning deed. Dan: “Wat kost de afspraak jouw afdeling?” Waarschijnlijk vreest hij klanten te verliezen; misschien moet er een uitzondering in voor de drie grootste klanten. Lukt het niet, dan zeg ik dat ik het in de stuurgroep als feit terugbreng, met de vraag of het besluit blijft.',
+        rubric: [
+          'Spreekt hem eerst zelf aan, onder vier ogen en met feiten',
+          'Zoekt wat het besluit hem kost',
+          'Kondigt de route naar de stuurgroep open aan',
+        ],
+        pushback: {
+          lines: [
+            '“Jij bent een consultant van buiten. Mijn klanten betalen jouw factuur, niet jouw planning.”',
+            '“Ik heb ja gezegd tegen het principe, niet tegen elke regel ervan.”',
+          ],
+          model: '“Klopt, klanten gaan voor, en daarom wil ik dit met jou oplossen. Die tien spoedorders kostten in twee weken twaalf uur omsteltijd, en daardoor kwamen andere klanten te laat. Als het principe staat maar de regel niet werkt, passen we de regel aan. Welke uitzondering heb je nodig?”',
+          rubric: [
+            'Erkent het belang van klanten',
+            'Zet de feiten en de gevolgen neer',
+            'Nodigt uit de regel aan te passen in plaats van te negeren',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit wat een stil veto is en hoe je ermee omgaat.',
+      terms: [
+        { term: 'Stil veto', def: 'Een besluit tegenhouden door het niet uit te voeren, nadat je er in het overleg mee hebt ingestemd.' },
+        { term: 'Overleg na het overleg', def: 'Het gesprek op de gang na een vergadering, waar mensen hun echte mening delen.' },
+        { term: 'Specifieke toezegging', def: 'Een afspraak met wie, wat, voor wanneer en hoe je ziet dat het gebeurd is.' },
+        { term: 'Echte beslisser', def: 'De persoon wiens oordeel uiteindelijk telt, soms iemand boven of naast degene die aan tafel zit.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.turf',
+      title: 'Vast tussen twee afdelingen',
+      pre: [
+        {
+          q: 'Twee afdelingshoofden zijn het al weken oneens over je project, en elk heeft vanuit zijn eigen doelen gelijk. Wat werkt meestal het best?',
+          options: ['Een compromis uitwerken waar je zelf achter staat', 'Kiezen voor de afdeling met de meeste invloed', 'Blijven bemiddelen tot ze er samen uitkomen', 'Met beiden de keuze voorleggen aan hun gezamenlijke baas'],
+          answer: 'Met beiden de keuze voorleggen aan hun gezamenlijke baas',
+          why: 'Een keuze tussen de doelen van twee afdelingen hoort bij wie boven beide staat.',
+        },
+      ],
+      teach: [
+        'Een lastige vorm van vastzitten: twee afdelingen die allebei gelijk hebben. Planning wil stabiele weken, verkoop wil spoed kunnen aannemen. Onderhoud wil stilstand inplannen, productie wil draaien. Dat is geen karakterprobleem: elk stuurt op zijn eigen KPI, het getal waarop hij wordt afgerekend.\n\nHet gevolg heet suboptimalisatie (local optimisation): elk onderdeel doet het beste voor zichzelf, en het geheel lijdt. Hoe verkeerde prikkels ontstaan, behandelt Sturen op prestaties (Gaming en verkeerde prikkels).',
+        'Wat niet werkt: eindeloos bemiddelen, of een compromis dat geen van beiden steunt. Pas ook op voor pendeldiplomatie (shuttle diplomacy): jij die tussen de kamers heen en weer loopt met boodschappen. Dan word jij het probleem, en hoort elk hoofd een gekleurde versie van de ander.\n\nHet gesprek over belangen in plaats van standpunten ken je uit Uitvoeren (Conflict en het lastige gesprek). Lost dat het niet op, dan is het een keuze die boven hen ligt.',
+        'Dan escaleer je samen: beide hoofden gaan met één A4 naar hun gezamenlijke baas, de eerste persoon boven hen allebei. Dat heet gezamenlijk escaleren. Op het A4: beide standpunten in hun eigen woorden, wat elke keuze doet met de doelen van het geheel, en de vraag.\n\nLaat beide hoofden het A4 goedkeuren voordat het naar boven gaat. Dan escaleer je geen persoon, maar een keuze.',
+        'Help de keuze met een gedeelde maatstaf, een getal dat boven beide afdelingen staat, zoals levertrouw aan de klant of kosten per product. Laat met cijfers zien wat elke optie daarmee doet.\n\nVaak is de echte oplossing structureel: de KPI van een afdeling aanpassen, of een gedeeld doel invoeren. Dat kan alleen de gezamenlijke baas. Jij levert het inzicht; zij besluit.',
+        'Typische fouten: de baas alleen benaderen, zodat een van beiden zich verraden voelt; de keuze zo verpakken dat jouw voorkeur wint; of wachten tot de deadline de keuze maakt.\n\nWaar experts over twisten: geeft een consultant hier advies, of organiseert hij alleen het besluit? Een gangbaar midden: geef je advies, maar apart van de opties, zodat die eerlijk vergeleken worden. Een scherpe vraag: “Welk getal willen ze allebei verbeteren?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 9 bij een netbeheerder, in het project over de gereedheidscheck (readiness check) uit Het probleem benoemen. De sponsor koos een doel: afzeggingen onder 8%, vrijgeven hooguit 2 dagen langer. Toch zit het weer vast.\n\nHet hoofd planning wil dat zijn planners de check doen; het hoofd uitvoering wil dat de ploegleiders hem doen. Elk zegt: “Bij de ander wordt het niks.” Planning wordt afgerekend op vrijgavetijd, uitvoering op productieve uren van de ploegen. Beiden vallen onder de directeur netbeheer.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Stop met heen en weer lopen; dat is pendeldiplomatie. Voer eerst één gesprek met beide hoofden samen over hun belangen: planning vreest langere vrijgavetijd, uitvoering verloren ploeguren.\n\nKomen ze er niet uit, escaleer dan samen. Eén A4 voor de directeur netbeheer, hun gezamenlijke baas: beide opties in hun eigen woorden, en per optie wat het doet met de gedeelde maatstaf, het percentage afzeggingen, plus vrijgavetijd en ploeguren. Beide hoofden keuren het A4 goed.\n\nZet je advies apart onderaan. Wijs erop dat de KPI’s botsen; misschien moeten beide afdelingen ook op afzeggingen worden afgerekend. Dat besluit ligt bij de directeur.',
+      },
+      said: 'Wat je hoort in projecten: “Als het bij mij komt te liggen, wordt het niks. Vraag het hem maar, maar je weet wat hij zegt.”',
+      recall: [
+        {
+          q: 'Wat is suboptimalisatie?',
+          options: ['Een project dat net zijn doel mist', 'Een afdeling met te weinig mensen', 'Elk deel wint, het geheel verliest', 'Een KPI die verkeerd gemeten wordt'],
+          answer: 'Elk deel wint, het geheel verliest',
+          why: 'Elk onderdeel doet het beste voor zijn eigen getal, en het geheel betaalt de rekening.',
+        },
+        {
+          q: 'Waarom keuren beide hoofden het A4 goed voordat het naar boven gaat?',
+          options: ['Omdat de baas het anders niet leest', 'Omdat dat in de projectopdracht staat', 'Zodat jij nergens verantwoordelijk voor bent', 'Zo escaleer je een keuze, geen persoon'],
+          answer: 'Zo escaleer je een keuze, geen persoon',
+          why: 'Niemand voelt zich verraden, en de baas ziet beide kanten eerlijk.',
+        },
+        {
+          q: 'Bij wie leg je een gezamenlijke escalatie neer?',
+          options: ['Bij de sponsor van je project, wie dat ook is', 'Bij de directeur met de meeste invloed', 'Bij je eigen partner bij het bureau', 'Bij de eerste persoon boven hen allebei'],
+          answer: 'Bij de eerste persoon boven hen allebei',
+          why: 'Alleen wie boven beide afdelingen staat, kan tussen hun doelen kiezen.',
+        },
+        {
+          q: 'Wat is vaak de structurele oplossing als afdelingen blijven botsen?',
+          options: ['Een KPI aanpassen of een gedeeld doel invoeren', 'Een van de twee hoofden laten vervangen', 'Het project kleiner en eenvoudiger maken', 'Elke week een extra overleg met beide hoofden'],
+          answer: 'Een KPI aanpassen of een gedeeld doel invoeren',
+          why: 'Zolang de getallen botsen, blijven de mensen botsen.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een levensmiddelenfabriek. Onderhoud wil elke week vier uur geplande stilstand per lijn voor preventief onderhoud; productie weigert, want de orders zijn krap. Je project om storingen te verminderen staat al vier weken stil. Beide managers vragen jou apart om de ander “even te overtuigen”.',
+        ask: 'Wat doe je?',
+        model: 'Ik ga niet heen en weer lopen. Ik vraag beide managers om één gesprek samen, over wat ze allebei willen: minder ongeplande stilstand. Komen we er niet uit, dan stel ik voor samen naar de plantmanager te gaan, hun gezamenlijke baas, met één A4: beide opties, wat elk doet met de totale productietijd, en hun goedkeuring erop. Mijn advies zet ik er apart onder.',
+        rubric: [
+          'Weigert de rol van boodschapper',
+          'Zoekt een gedeelde maatstaf',
+          'Stelt een gezamenlijke escalatie voor met één A4',
+        ],
+        pushback: {
+          lines: [
+            '“Samen naar de plantmanager? Dan lijkt het alsof wij het niet kunnen. Kun jij het niet gewoon even regelen?”',
+            '“Jij bent toch de expert? Zeg gewoon wie gelijk heeft.”',
+          ],
+          model: '“Ik snap dat het als falen voelt, maar het is geen ruzie: jullie hebben allebei gelijk vanuit je eigen doel. De keuze tussen die doelen hoort bij de plantmanager. Mijn advies krijgen jullie zeker, op hetzelfde A4, apart van de opties. Zullen we het donderdag samen opstellen?”',
+          rubric: [
+            'Erkent de zorg om gezichtsverlies',
+            'Legt uit waarom de keuze boven hen ligt',
+            'Geeft zijn advies zonder de opties te kleuren, met een concrete stap',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit wat je doet als je project vastzit tussen twee afdelingen.',
+      terms: [
+        { term: 'Suboptimalisatie', def: 'Elk onderdeel doet het beste voor zijn eigen getal, en het geheel lijdt eronder.' },
+        { term: 'Pendeldiplomatie', def: 'Tussen twee partijen heen en weer lopen met boodschappen; maakt de bemiddelaar vaak zelf deel van het probleem.' },
+        { term: 'Gezamenlijk escaleren', def: 'Twee partijen leggen samen, met één goedgekeurd A4, een keuze voor aan hun gezamenlijke baas.' },
+        { term: 'Gezamenlijke baas', def: 'De eerste persoon in de organisatie die boven beide partijen staat en tussen hun doelen kan kiezen.' },
+        { term: 'Gedeelde maatstaf', def: 'Een getal dat boven beide afdelingen staat, zoals levertrouw of kosten per product, om opties eerlijk te vergelijken.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.sponsor',
+      title: 'Wat je van je sponsor nodig hebt',
+      pre: [
+        {
+          q: 'Welke activiteit van de sponsor draagt volgens de enquêtes van adviesbureau Prosci het meest bij aan het slagen van een verandering?',
+          options: ['Het budget op tijd goedkeuren', 'Actief en zichtbaar meedoen', 'De juiste projectleider kiezen', 'De eindpresentatie zelf geven'],
+          answer: 'Actief en zichtbaar meedoen',
+          why: 'In alle Prosci-rapporten sinds 1998 staat actieve en zichtbare sponsoring op nummer één.',
+        },
+      ],
+      teach: [
+        'De sponsor is de manager die eigenaar is van het project: hij wil het resultaat, heeft het budget en neemt de grote besluiten. Zit een project vast, dan kan de sponsor het meestal los krijgen. Maar alleen als jij vraagt wat je nodig hebt.\n\nJunioren gebruiken hun sponsor te weinig, uit angst lastig te zijn. Een sponsor hoort liever vroeg dan laat dat zijn project vastzit.',
+        'Wat een sponsor doet om een project los te krijgen, in drie taken. Beslissen: keuzes maken die het team niet kan maken. Ruimte maken: mensen en uren vrijmaken, andere prioriteiten laten wijken. Rugdekking geven (air cover): het project beschermen tegen tegenwerking en laten zien dat het belangrijk is.\n\nVraag concreet, met naam en datum: niet “meer steun”, maar “zeg jij maandag in het MT dat de planners een dag per week vrij zijn?”',
+        'Prosci, een adviesbureau voor verandermanagement, vraagt sinds 1998 aan grote groepen projectmensen wat succes bepaalt. Actieve en zichtbare sponsoring (active and visible sponsorship) staat in al die rapporten op nummer één. Het zijn enquêtes van een commercieel bureau, geen experimenten, maar het beeld is consistent.\n\nZichtbaar betekent: op de vloer komen, in overleggen zelf het doel uitleggen, naar voortgang vragen. Een sponsor die alleen tekent, is niet genoeg.',
+        'Een vast ritme helpt: een sponsorgesprek van twintig minuten, elke twee weken. Drie vragen: wat gaat goed, waar zitten we vast, wat heb ik van jou nodig? Stuur de dag ervoor één alinea, en begin met het besluit dat je vraagt.\n\nLeg vast wat hij toezegt, en kom erop terug. Hoe je via de vaste route escaleert, behandelt Uitvoeren (Besluiten voor elkaar krijgen).',
+        'Typische fouten: alleen goed nieuws brengen tot het te laat is; vragen om “steun” zonder te zeggen welke; om de sponsor heen werken omdat hij druk is.\n\nWaar experts over twisten: is een afwezige sponsor een reden om het project te pauzeren? Sommigen zeggen ja: zonder sponsor geen project. Anderen zoeken eerst een plaatsvervanger met mandaat. Een scherpe vraag aan je sponsor: “Wat wil jij over drie maanden aan je baas laten zien?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Week 5 bij een verpakkingsbedrijf. Je project moet de omsteltijd op de drukpersen verkorten. De sponsor is de operationeel directeur. Het hoofd techniek zou twee monteurs vier uur per week vrijmaken, maar storingen gaan steeds voor. De sponsor heb je sinds de kick-off niet gesproken.\n\nJe vraagt twintig minuten en stuurt de dag ervoor één alinea: “Besluit gevraagd: vier monteursuren per week, vast in de planning. Zonder dat halen we de 30% kortere omsteltijd niet voor de zomer.”\n\nIn het gesprek: wat goed gaat (de eerste omstelling van 90 naar 70 minuten), waar het vastzit, wat je vraagt. Hij belt het hoofd techniek terwijl je erbij zit, en zegt: “Laten we dit elke twee weken doen.” Je zet de afspraak dezelfde dag in een mail.',
+      },
+      said: 'Wat je hoort in projecten: “Ik wil hem er niet mee lastigvallen. Hij heeft het al zo druk.”',
+      recall: [
+        {
+          q: 'Je plant een sponsorgesprek van 20 minuten, elke twee weken, in een project van 16 weken. Hoeveel minuten sponsortijd vraag je in totaal?',
+          number: 160,
+          tolerance: 1,
+          unit: 'minuten',
+          hint: 'Tel eerst hoeveel gesprekken er in 16 weken passen bij één gesprek per twee weken.',
+          why: '16 / 2 = 8 gesprekken; 8 × 20 = 160 minuten, nog geen drie uur over het hele project.',
+        },
+        {
+          q: 'Welke vraag aan de sponsor is het meest concreet?',
+          options: ['“Kun je het project de komende weken wat meer steunen?”', '“Zeg je maandag in het MT dat de planners een dag vrij zijn?”', '“Heb je deze maand een keer tijd om bij te praten?”', '“Wil je de voortgang van het team goed in de gaten houden?”'],
+          answer: '“Zeg je maandag in het MT dat de planners een dag vrij zijn?”',
+          why: 'Wie, wat en wanneer zijn duidelijk; hij kan ja of nee zeggen.',
+        },
+        {
+          q: 'Wat is rugdekking door de sponsor?',
+          options: ['Het budget van het project flink verhogen', 'De planning van het team wekelijks controleren', 'Het project beschermen en laten zien dat het telt', 'De projectleider elk jaar formeel beoordelen'],
+          answer: 'Het project beschermen en laten zien dat het telt',
+          why: 'Rugdekking is bescherming tegen tegenwerking, plus zichtbaar belang.',
+        },
+        {
+          q: 'Hoe sterk is Prosci’s bevinding over sponsoring?',
+          options: ['Bewezen in gecontroleerde experimenten', 'Consistent in enquêtes van een adviesbureau', 'Een mening zonder enig onderzoek', 'Een eis uit een Europese norm'],
+          answer: 'Consistent in enquêtes van een adviesbureau',
+          why: 'Het beeld is steeds hetzelfde, maar het zijn enquêtes van een commercieel bureau, geen experimenten.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder, week 6. Je sponsor, de regiomanager, heeft twee stuurgroepen afgezegd. Het project wacht op zijn besluit over welke wijk de pilot krijgt. Zijn secretaresse zegt: “Hij zit tot eind van de maand vol.”',
+        ask: 'Wat doe je?',
+        model: 'Ik vraag de secretaresse om tien minuten deze week, telefonisch mag ook, en stuur hem vooraf één alinea: “Besluit gevraagd: pilotwijk A of B. Mijn advies: A, daar zijn de meeste klussen. Zonder besluit voor vrijdag schuift de pilot twee weken.” Lukt dat niet, dan vraag ik wie namens hem mag beslissen. En ik stel een vast sponsorgesprek van twintig minuten om de twee weken voor.',
+        rubric: [
+          'Maakt het hem makkelijk: kort, met het gevraagde besluit en een advies',
+          'Noemt het gevolg van uitstel',
+          'Regelt een plaatsvervanger of een vast ritme',
+        ],
+        pushback: {
+          lines: [
+            '“Ik heb jou ingehuurd om dit soort dingen op te lossen, niet om mij erbij te halen.”',
+            '“Kies jij gewoon een wijk. Ik vertrouw je wel.”',
+          ],
+          model: '“Dank voor het vertrouwen. Alles wat binnen het project kan, regel ik. Maar de pilotwijk raakt twee teamleiders die onder jou vallen, en als ik kies, gaat de andere wijk ertegenin. Eén zin van jou voorkomt dat. Mijn advies is A; mag ik zeggen dat jij dat besloten hebt?”',
+          rubric: [
+            'Erkent zijn wens het niet zelf te doen',
+            'Legt uit waarom dit besluit bij hem hoort',
+            'Maakt het besluit zo klein mogelijk',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit wat je van een sponsor vraagt als je project vastzit.',
+      terms: [
+        { term: 'Sponsor', def: 'De manager die eigenaar is van het project: wil het resultaat, heeft het budget en neemt de grote besluiten.' },
+        { term: 'Rugdekking', def: 'De sponsor beschermt het project tegen tegenwerking en laat zichtbaar zien dat het belangrijk is.' },
+        { term: 'Actieve en zichtbare sponsoring', def: 'Een sponsor die meedoet, op de vloer komt en zelf het doel uitlegt; in Prosci-enquêtes de belangrijkste succesfactor.' },
+        { term: 'Sponsorgesprek', def: 'Een kort, vast gesprek met de sponsor, bijvoorbeeld twintig minuten om de twee weken: wat gaat goed, waar zit het vast, wat is nodig.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.smallwins',
+      title: 'Weer in beweging: kleine successen',
+      pre: [
+        {
+          q: 'Een team zit al weken vast en is moe. Wat geeft volgens het onderzoek van Teresa Amabile de meeste energie terug?',
+          options: ['Een teamuitje na de volgende mijlpaal', 'Merken dat je vooruitgaat, ook in kleine stappen', 'Een bonus als het eindresultaat gehaald wordt', 'Een nieuwe, ervaren projectleider'],
+          answer: 'Merken dat je vooruitgaat, ook in kleine stappen',
+          why: 'In haar dagboekonderzoek was vooruitgang in betekenisvol werk de sterkste factor voor een goede werkdag.',
+        },
+      ],
+      teach: [
+        'Een vastgelopen project verliest energie: mensen komen niet meer naar overleggen, acties worden klein gemaakt of vergeten. Een nieuw plan alleen brengt die energie niet terug. Wat wel helpt: snel iets zichtbaars bereiken.\n\nTeresa Amabile en Steven Kramer van Harvard lieten 238 mensen uit 26 projectteams in zeven bedrijven dagelijks een dagboek bijhouden, bijna 12.000 dagboekdagen in totaal (The Progress Principle, 2011).',
+        'Hun conclusie, het vooruitgangsprincipe (progress principle): van alles wat een werkdag goed maakt, is vooruitgang merken in betekenisvol werk het sterkst, ook als de stap klein is. Een tegenslag (setback) weegt volgens hen zwaarder dan een even groot succes.\n\nEen klein succes (small win) is een concrete, zichtbare stap die mensen zelf als vooruitgang zien: een omstelling die echt korter is, een bord dat werkt, een week zonder afzegging.',
+        'Zo plan je ze. Maak de volgende stap zo klein dat hij binnen één à twee weken lukt. Kies iets wat de mensen zelf belangrijk vinden, niet alleen de sponsor. En maak het zichtbaar: op het bord, in de dagstart, in het weekbericht.\n\nEen klein succes is geen quick win om de stuurgroep mee te overtuigen; het is voor het team. Dat de stuurgroep het ook graag ziet, is mooi meegenomen.',
+        'Haal ook de obstakels weg die mensen elke dag tegenhouden. Amabile en Kramer noemen wat het werk helpt een katalysator (catalyst): duidelijke doelen, tijd, hulp, middelen. Een monteur die drie keer per week op een sleutel wacht, krijgt meer energie van die sleutel dan van een toespraak.\n\nVraag in de stand-up: “Wat hield je gisteren tegen?” en los er dezelfde dag één op.',
+        'Valkuilen: een klein succes groter maken dan het is, want mensen prikken daar doorheen; alleen makkelijke dingen doen die het doel niet dichterbij brengen; vieren zonder de volgende stap.\n\nWaar experts over twisten: het onderzoek ging over teams in creatief kenniswerk. Of het even sterk geldt voor ploegen op de werkvloer, is minder onderzocht. Een scherpe vraag: “Wat kunnen we deze week afmaken dat iedereen ziet?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'Week 9 bij een levensmiddelenfabriek. Je project om de verspilling van folie te verminderen ligt al vier weken stil na een conflict over de aanpak. Nog maar drie van de zeven teamleden komen naar het weekoverleg.\n\nJe kiest één kleine stap: de folierol op lijn 2 wisselen met een vaste instelkaart, twee weken lang, alleen in de dagploeg. De operators hadden zelf om zo’n kaart gevraagd. Je lost meteen één obstakel op: het meetlint dat steeds kwijt was, hangt nu aan de machine.\n\nNa twee weken: de verspilling bij een rolwissel is gedaald van 14 naar 9 meter. Je zet het op het bord bij de lijn, en de operator die de kaart maakte, vertelt het in het weekoverleg. De week erna zitten er zes mensen.',
+      },
+      said: 'Wat je hoort in projecten: “Wat heeft het voor zin? Er verandert hier toch nooit iets.”',
+      recall: [
+        {
+          q: 'Wat is volgens Amabile en Kramer de sterkste factor voor een goede werkdag?',
+          options: ['Een goed salaris en baanzekerheid', 'Vooruitgang merken in betekenisvol werk', 'Een gezellig en hecht team om je heen', 'Een baas die duidelijk is over doelen'],
+          answer: 'Vooruitgang merken in betekenisvol werk',
+          why: 'Dat is het vooruitgangsprincipe uit hun dagboekonderzoek.',
+        },
+        {
+          q: 'De verspilling bij een rolwissel daalt van 14 naar 9 meter folie. De lijn wisselt 30 rollen per week. Hoeveel meter folie per week bespaart dat?',
+          number: 150,
+          tolerance: 1,
+          unit: 'meter',
+          hint: 'Bereken eerst de besparing per rol, en vermenigvuldig die met het aantal rollen per week.',
+          why: '14 − 9 = 5 meter per rol; 5 × 30 = 150 meter per week.',
+        },
+        {
+          q: 'Wanneer is een stap goed gekozen als klein succes?',
+          options: ['Groot genoeg om de stuurgroep te imponeren', 'Zo makkelijk dat hij zeker niet mislukt', 'Klein, snel haalbaar, en voor het team belangrijk', 'Gekozen door de sponsor, niet door het team'],
+          answer: 'Klein, snel haalbaar, en voor het team belangrijk',
+          why: 'Het gaat om vooruitgang die de mensen zelf zien en belangrijk vinden.',
+        },
+        {
+          q: 'Een monteur wacht drie keer per week op gereedschap. Hoe noemen Amabile en Kramer het wegnemen van zo’n obstakel?',
+          options: ['Een quick win', 'Een tegenslag', 'Een klein succes vieren', 'Een katalysator bieden'],
+          answer: 'Een katalysator bieden',
+          why: 'Katalysatoren zijn wat het werk helpt: doelen, tijd, hulp en middelen.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een kabelfabrikant. Na een mislukte proef met een nieuwe planning is het team cynisch: “Wéér een project.” De sponsor wil meteen een nieuw, groter plan voor de hele fabriek.',
+        ask: 'Wat stel je voor?',
+        model: '“Een groot plan is nu te vroeg; het team gelooft er niet meer in. Ik stel voor dat we eerst twee weken één kleine stap zetten die de planners zelf willen: een vaste volgorde van kabeldiktes op extrusielijn 1, waar ze om vroegen. We meten de omsteltijd, maken het resultaat zichtbaar bij de lijn, en de planners presenteren het. Daarna bouwen we het grotere plan, met hen.”',
+        rubric: [
+          'Kiest een kleine, snelle stap boven een groot plan',
+          'Laat het team kiezen en het resultaat zelf brengen',
+          'Maakt vooruitgang zichtbaar en bouwt erop verder',
+        ],
+        pushback: {
+          lines: [
+            '“Twee weken voor één lijn? We lopen al achter. Ik wil een plan voor de hele fabriek.”',
+            '“Kleine stapjes zijn leuk, maar de directie wil grote resultaten.”',
+          ],
+          model: '“Dat plan komt, binnen vier weken. Maar een groot plan met een cynisch team loopt weer vast, en dan verliezen we meer. Twee weken op lijn 1 geven ons een echt resultaat en planners die het zelf verkopen. Dat is het sterkste begin van een fabrieksbreed plan. Mag ik het je over twee weken laten zien?”',
+          rubric: [
+            'Erkent de achterstand en de wens van de directie',
+            'Legt uit waarom een klein succes het grote plan versnelt',
+            'Belooft het grotere plan met een datum',
+          ],
+        },
+      },
+      sayIt: 'Leg een sponsor in 60 seconden uit waarom een klein succes een vastgelopen team meer helpt dan een nieuw plan.',
+      terms: [
+        { term: 'Vooruitgangsprincipe', def: 'Amabile en Kramers bevinding dat vooruitgang merken in betekenisvol werk het sterkst bijdraagt aan een goede werkdag.' },
+        { term: 'Tegenslag', def: 'Een stap terug in het werk; weegt volgens Amabile en Kramer zwaarder dan een even groot succes.' },
+        { term: 'Klein succes', def: 'Een concrete, zichtbare stap die het team zelf als vooruitgang ziet, haalbaar binnen een of twee weken.' },
+        { term: 'Katalysator', def: 'Wat het werk direct helpt, zoals duidelijke doelen, tijd, hulp en middelen.' },
+      ],
+    },
+    {
       id: 'pm.stuck.reset',
       title: 'Een vastgelopen project herstarten',
       pre: [
@@ -441,7 +1166,7 @@ export default {
       recall: [
         {
           q: 'Waarom benoem je je eigen aandeel in de eerlijke analyse?',
-          options: ['Je bureau eist het', 'Het maakt de rest van de analyse geloofwaardig', 'Het beschermt de klant tegen schuld', 'Het maakt het gesprek korter'],
+          options: ['Je bureau eist het altijd in zijn methode', 'Het maakt de rest van de analyse geloofwaardig', 'Het beschermt de klant tegen elke schuld', 'Het maakt het gesprek een stuk korter'],
           answer: 'Het maakt de rest van de analyse geloofwaardig',
           why: 'Als jij je eigen fouten noemt, vertrouwt de sponsor je kijk op de rest.',
         },
@@ -453,13 +1178,13 @@ export default {
         },
         {
           q: 'Wat staat er in een goede nieuwe afspraak na een herstart?',
-          options: ['Een nieuw doel, scope, einddatum, rollen, toezeggingen van de sponsor en een ijkmoment', 'Alleen een nieuwe einddatum', 'Een excuusbrief', 'Een belofte om harder te werken'],
-          answer: 'Een nieuw doel, scope, einddatum, rollen, toezeggingen van de sponsor en een ijkmoment',
+          options: ['Nieuw doel, scope, datum, rollen, toezeggingen sponsor, ijkmoment', 'Alleen een nieuwe einddatum, verder blijft het plan gelijk', 'Een excuusbrief aan de sponsor, getekend door je partner', 'Een belofte van het team om de laatste weken harder te werken'],
+          answer: 'Nieuw doel, scope, datum, rollen, toezeggingen sponsor, ijkmoment',
           why: 'Een herstart werkt alleen als de voorwaarden veranderen, niet alleen de datums.',
         },
         {
           q: 'Halverwege is het doel duidelijk buiten bereik. Wat is de meest gemaakte maar duurste keuze?',
-          options: ['Het project stoppen', 'De scope verkleinen', 'Om meer mensen vragen', 'Hopen het in de laatste weken in te halen'],
+          options: ['Het project nu meteen stoppen en overdragen', 'De scope verkleinen tot het allerbelangrijkste', 'De sponsor om extra mensen en uren vragen', 'Hopen het in de laatste weken in te halen'],
           answer: 'Hopen het in de laatste weken in te halen',
           why: 'Het schuift het probleem door tot er geen opties meer zijn.',
         },
@@ -493,6 +1218,89 @@ export default {
         { term: 'RAG-status', def: 'Rood, oranje of groen (red, amber, green) in een statusrapport: in de problemen, risico, of op koers.' },
         { term: 'Opnieuw contracteren', def: 'Een nieuw doel, scope, rollen en toezeggingen op papier afspreken.' },
         { term: 'IJkmoment', def: 'Een afgesproken moment en criterium om te beslissen over doorgaan of stoppen.' },
+      ],
+    },
+    {
+      id: 'pm.stuck.recovery',
+      title: 'Een rood project redden',
+      pre: [
+        {
+          q: 'Na een herstartgesprek heeft de sponsor gekozen voor een kleinere scope. Wat is het grootste risico in de weken daarna?',
+          options: ['Dat het team te snel en slordig gaat werken', 'Dat het oude ritme terugkomt en het weer afdrijft', 'Dat de sponsor zich te veel met details bemoeit', 'Dat de nieuwe scope achteraf te klein blijkt'],
+          answer: 'Dat het oude ritme terugkomt en het weer afdrijft',
+          why: 'Dezelfde mensen en gewoontes trekken het project terug in het oude patroon als het herstel niet strak wordt aangepakt.',
+        },
+      ],
+      teach: [
+        'Na het herstartgesprek uit Een vastgelopen project herstarten begint het echte werk: het herstel (recovery). De nieuwe afspraak staat op papier, maar het project heeft nog dezelfde mensen, hetzelfde ritme en dezelfde gewoontes. Zonder strakke aanpak drijft het binnen een paar weken weer af.\n\nEen herstelplan is kort: wat er in de komende vier tot zes weken af moet, met wekelijkse mijlpalen, wie wat doet, en hoe we elke week zien of het lukt.',
+        'Snijd eerst in de scope met MoSCoW, een indeling uit de agile methode DSDM. Must have: zonder dit geen resultaat. Should have: belangrijk, niet essentieel. Could have: mooi als het lukt. Won’t have: nu niet.\n\nDSDM raadt aan dat de must haves niet meer dan ongeveer 60% van de beschikbare inspanning vragen; de rest is ruimte voor tegenvallers. Is alles must, dan heb je niet gekozen.',
+        'Zet het ritme strakker: een korte wekelijkse check met de sponsor in plaats van een maandelijkse stuurgroep, en een stand-up twee of drie keer per week. Meet op mijlpalen met bewijs, niet op een percentage gereed.\n\nTijd terugwinnen op het kritieke pad met crashen of fast-tracken behandelt Uitvoeren (Herplannen en reserves). Spreek ook vooraf af wanneer je stopt, met de stopcriteria uit Uitvoeren (Bijsturen of stoppen).',
+        'Bescherm het team. Haal werk weg dat niet bijdraagt aan de must haves, ook rapportages die niemand leest. Houd nieuwe wensen buiten de deur tot het herstel klaar is; zet ze op een lijst voor daarna.\n\nKijk ook eerlijk naar de bezetting. Soms moet iemand anders op een sleutelrol, of komt er iemand bij met de juiste kennis. Doe dat vroeg en met respect; uitstel helpt niemand.',
+        'Typische fouten: herstel aankondigen en op de oude manier doorwerken; elke week een nieuwe prioriteit; het project na twee goede weken weer los laten lopen. Spreek af wanneer het herstel klaar is en het project terug naar het normale ritme gaat.\n\nWaar experts over twisten: hoe strak? Een te strak regime put een moe team verder uit; te los en het drijft af. Een scherpe vraag voor elke maandag: “Wat moet er vrijdag af zijn?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'Week 11 van 16 bij een levensmiddelenfabriek, net na het herstartgesprek uit Een vastgelopen project herstarten. De sponsor koos: mikken op 68% OEE met het huidige team, einddatum gelijk. Er zijn nog zes weken; het team heeft samen ongeveer 50 werkdagen beschikbaar.\n\nOp de lijst staan twaalf acties, samen geschat op 70 dagen, onder meer: snel omstellen (SMED) op de twee drukste lijnen, een storingsanalyse, een nieuw dashboard, training voor alle ploegen en een app voor de stoplogs. De productiemanager wil ook een tweede pilot op lijn 5. Iedereen noemt alles “essentieel”.',
+        ask: 'Wat zou jij nu doen?',
+        reveal: 'Maak een herstelplan voor zes weken. Sorteer de twaalf acties met MoSCoW, samen met de productiemanager en het team. Must haves mogen ongeveer 60% van de 50 dagen vragen: zo’n 30 dagen. Waarschijnlijk zijn dat SMED op de twee drukste lijnen en de storingsanalyse, omdat die het meest aan de OEE doen. Training voor de ploegen van die lijnen is should; het dashboard en de app zijn could; de pilot op lijn 5 is won’t, voor na het project.\n\nZet elke week een mijlpaal met bewijs, zoals “lijn 2: drie omstellingen onder 40 minuten”, en een check van twintig minuten met de sponsor op vrijdag. Spreek een ijkmoment af: zit de OEE in week 14 niet boven 66%, dan bespreken we stoppen en overdragen.',
+      },
+      said: 'Wat je hoort in projecten: “Alles op die lijst is essentieel. Als we iets schrappen, heeft het hele project geen zin.”',
+      recall: [
+        {
+          q: 'Het team heeft nog 40 werkdagen. Volgens de DSDM-richtlijn mogen de must haves ongeveer 60% daarvan vragen. Hoeveel werkdagen is dat?',
+          number: 24,
+          tolerance: 0.5,
+          unit: 'werkdagen',
+          hint: 'Neem het genoemde percentage van de beschikbare werkdagen.',
+          why: '60% × 40 = 24 werkdagen; de overige 16 zijn ruimte voor tegenvallers en de should en could haves.',
+        },
+        {
+          q: 'Wat staat er in een goed herstelplan?',
+          options: ['Een nieuwe visie voor de komende twee jaar', 'Een volledige lijst van alles wat misging', 'Een paar weken werk met wekelijkse mijlpalen', 'Een nieuwe einddatum met dezelfde aanpak'],
+          answer: 'Een paar weken werk met wekelijkse mijlpalen',
+          why: 'Kort en concreet: wat er in vier tot zes weken af moet, wie het doet en hoe je het elke week ziet.',
+        },
+        {
+          q: 'Wat betekent het als alle wensen “must have” zijn?',
+          options: ['Dat er niet gekozen is', 'Dat het team ambitieus is', 'Dat het project goed is voorbereid', 'Dat er meer budget nodig is'],
+          answer: 'Dat er niet gekozen is',
+          why: 'MoSCoW werkt alleen als een groot deel geen must is; dat is de ruimte voor tegenvallers.',
+        },
+        {
+          q: 'Tijdens het herstel komt een nieuwe wens binnen. Wat doe je meestal?',
+          options: ['Meteen oppakken als hij klein genoeg is', 'Het hele herstelplan opnieuw opstellen', 'De sponsor laten kiezen tussen wens en herstel', 'Op een lijst zetten voor na het herstel'],
+          answer: 'Op een lijst zetten voor na het herstel',
+          why: 'Nieuwe wensen buiten de deur houden beschermt de must haves en het team.',
+        },
+      ],
+      situation: {
+        scene: 'Je zit bij een netbeheerder, week 3 van een herstel na een herstart. Het ging twee weken goed. Nu vraagt de regiomanager of het team “even” een rapportage voor de directie kan maken, en een planner valt drie weken uit.',
+        ask: 'Wat doe je?',
+        model: 'Ik pak de rapportage niet zomaar op. Ik vraag de regiomanager wat de directie precies wil zien; misschien is één A4 uit het herstelplan genoeg, met de gehaalde mijlpalen. De uitgevallen planner leg ik in de vrijdagcheck bij de sponsor neer: een vervanger, of een should have schuift naar later. Aan de must haves laat ik niet komen.',
+        rubric: [
+          'Beschermt de must haves tegen nieuw werk',
+          'Zoekt de echte behoefte achter het verzoek',
+          'Legt het capaciteitsverlies met opties bij de sponsor',
+        ],
+        pushback: {
+          lines: [
+            '“Het is maar een rapportje. De directie vraagt het, dan doe je dat gewoon.”',
+            '“Een vervanger? Die heb ik niet. Jullie moeten het gewoon met minder doen.”',
+          ],
+          model: '“De directie krijgt een update, dat is terecht. Vrijdag lever ik één A4 uit het herstelplan met de mijlpalen en wat ervoor nodig is; dat kost een uur, geen twee dagen. Zonder vervanger kan het ook: dan schuift de training van de ploegen naar na het herstel. Akkoord?”',
+          rubric: [
+            'Komt de directie tegemoet zonder de must haves op te geven',
+            'Biedt een lichtere vorm van het verzoek',
+            'Maakt de afweging bij capaciteitsverlies expliciet',
+          ],
+        },
+      },
+      sayIt: 'Leg een junior collega in 60 seconden uit wat je in de eerste weken van een herstel doet.',
+      terms: [
+        { term: 'Herstel', def: 'De weken na een herstart waarin je het project strak terugbrengt op de nieuwe afspraak.' },
+        { term: 'Herstelplan', def: 'Een kort plan voor vier tot zes weken: wat er af moet, wekelijkse mijlpalen, wie wat doet en hoe je het meet.' },
+        { term: 'MoSCoW', def: 'Een indeling uit DSDM: must, should, could en won’t have; dwingt je te kiezen wat echt nodig is.' },
+        { term: 'Must have', def: 'Wat er moet zijn om resultaat te hebben; volgens DSDM liefst niet meer dan ongeveer 60% van de inspanning.' },
       ],
     },
   ],
