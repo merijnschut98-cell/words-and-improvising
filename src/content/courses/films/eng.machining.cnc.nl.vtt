@@ -1,0 +1,249 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:05.595
+CNC betekent dat een computer de motoren van de machine aanstuurt,
+
+2
+00:00:05.795 --> 00:00:07.734
+volgens een programma.
+
+3
+00:00:08.284 --> 00:00:10.606
+Dit is een bewerkingscentrum.
+
+4
+00:00:11.156 --> 00:00:15.219
+De spil is de draaiende as die het gereedschap vasthoudt.
+
+5
+00:00:15.769 --> 00:00:18.880
+Nu zit er een taster in: een meetpen.
+
+6
+00:00:19.780 --> 00:00:23.008
+De taster tikt de vaste bek van de bankschroef aan,
+
+7
+00:00:23.208 --> 00:00:25.902
+en daarna de bovenkant van de plaat.
+
+8
+00:00:26.802 --> 00:00:31.368
+Daaruit volgt het werkstuknulpunt, G54.
+
+9
+00:00:31.917 --> 00:00:35.586
+Het vertelt de machine waar het werkstuk op de tafel ligt.
+
+10
+00:00:36.136 --> 00:00:39.631
+Alle maten in het programma tellen vanaf dat punt.
+
+11
+00:00:40.831 --> 00:00:44.314
+Elk gereedschap steekt anders ver uit de spil.
+
+12
+00:00:44.864 --> 00:00:50.228
+Daarom bewaart de gereedschapscorrectie van elk gereedschap de lengte en de radius.
+
+13
+00:00:51.128 --> 00:00:55.705
+Gereedschap 5, een boor, raakt de gereedschapsmeter.
+
+14
+00:00:56.255 --> 00:01:02.457
+Zijn lengte, 121,43 millimeter, gaat de tabel in.
+
+15
+00:01:03.007 --> 00:01:05.805
+Samen heten die getallen de offsets.
+
+16
+00:01:06.705 --> 00:01:10.885
+Het programma zelf is G-code: een lijst korte commando’s.
+
+17
+00:01:11.435 --> 00:01:19.149
+G00 is snel verplaatsen, G01 een rechte snede, M03 zet de spil aan.
+
+18
+00:01:19.699 --> 00:01:23.786
+Meestal maakt CAM-software die code uit het 3D-model.
+
+19
+00:01:24.986 --> 00:01:28.724
+Na elke omstelling wordt het eerste stuk helemaal gemeten,
+
+20
+00:01:28.924 --> 00:01:32.744
+voordat de serie draait: de eerste-stukcontrole.
+
+21
+00:01:33.294 --> 00:01:34.699
+Klopt de sleuf?
+
+22
+00:01:35.249 --> 00:01:37.176
+Zitten de gaten op diepte?
+
+23
+00:01:38.076 --> 00:01:40.561
+Dat kost 10 tot 20 minuten.
+
+24
+00:01:41.111 --> 00:01:44.855
+Maar één fout getal herhaalt zich op elk stuk:
+
+25
+00:01:44.855 --> 00:01:48.437
+200 stuks maal 35 euro is 7.000 euro afkeur.
+
+26
+00:01:49.337 --> 00:01:51.415
+Pas dan draait de serie.
+
+27
+00:01:51.965 --> 00:01:57.099
+Een programma dat al eens zonder problemen liep, heet beproefd.
+
+28
+00:01:58.299 --> 00:02:03.898
+De besturing leest het programma van boven naar beneden, één regel tegelijk.
+
+29
+00:02:04.448 --> 00:02:09.558
+Elke programmaregel is één stap, met een nummer als N10.
+
+30
+00:02:10.458 --> 00:02:13.059
+Een M-functie is een schakelaar.
+
+31
+00:02:13.609 --> 00:02:22.321
+M06 wisselt naar gereedschap 3, M03 zet de spil aan op 3.200 toeren, M08 de koeling.
+
+32
+00:02:23.221 --> 00:02:31.537
+G90 zet absoluut programmeren aan: X0, Y min 10 telt vanaf het nulpunt G54.
+
+33
+00:02:32.437 --> 00:02:39.615
+Bij G91, incrementeel programmeren, telt een maat vanaf waar het gereedschap nu is.
+
+34
+00:02:40.165 --> 00:02:43.102
+Die twee verwarren is een klassieke crash.
+
+35
+00:02:44.002 --> 00:02:48.994
+G01 is modaal: hij blijft gelden tot een andere code hem vervangt.
+
+36
+00:02:49.544 --> 00:02:58.303
+Regel N70 zegt alleen Y40, en snijdt toch recht, op 640 millimeter per minuut.
+
+37
+00:02:59.503 --> 00:03:04.254
+Het programma beschrijft het werkstuk, niet het gereedschap.
+
+38
+00:03:04.804 --> 00:03:10.609
+G43 H3 zet de lengtecorrectie aan: de lengte van gereedschap 3 telt mee.
+
+39
+00:03:11.509 --> 00:03:17.735
+Met G41, de radiuscorrectie, schuift de baan een straal opzij.
+
+40
+00:03:18.285 --> 00:03:24.963
+Meet een nieuwe frees 9,98, dan voert de insteller 4,99 in,
+
+41
+00:03:25.163 --> 00:03:28.205
+en klopt hetzelfde programma nog steeds.
+
+42
+00:03:29.105 --> 00:03:32.007
+Meet een boring 0,01 te klein,
+
+43
+00:03:32.207 --> 00:03:38.000
+dan voert de operator een slijtagecorrectie in: 0,005 op de radius,
+
+44
+00:03:38.201 --> 00:03:42.218
+de helft, want een straal telt twee keer in een diameter.
+
+45
+00:03:43.418 --> 00:03:45.276
+Nu gaat het mis.
+
+46
+00:03:45.826 --> 00:03:53.653
+Voor de boor typt de insteller 112,43 in, in plaats van 121,43.
+
+47
+00:03:54.553 --> 00:03:58.489
+De besturing denkt dat de boor 9 millimeter korter is,
+
+48
+00:03:58.689 --> 00:04:03.147
+en laat hem 9 millimeter dieper zakken: dwars door de bodem.
+
+49
+00:04:04.047 --> 00:04:08.044
+Raakt hij de bankschroef, dan is het een crash.
+
+50
+00:04:08.593 --> 00:04:13.016
+Van 6 crashes in een jaar kwamen er 3 door een ingetypte lengte,
+
+51
+00:04:13.217 --> 00:04:17.188
+2 door een verkeerd H-nummer en 1 door het nulpunt.
+
+52
+00:04:17.737 --> 00:04:21.467
+Het programma klopte, de tabel niet.
+
+53
+00:04:22.667 --> 00:04:26.799
+CAM-software maakt van het 3D-model een gereedschapsbaan:
+
+54
+00:04:26.799 --> 00:04:28.902
+de route van het gereedschap,
+
+55
+00:04:29.102 --> 00:04:31.320
+met voedingen en toerentallen.
+
+56
+00:04:32.220 --> 00:04:37.456
+Een postprocessor vertaalt die baan naar de G-code van deze ene machine.
+
+57
+00:04:38.006 --> 00:04:41.071
+Twee machines, twee programma’s.
+
+58
+00:04:41.971 --> 00:04:46.476
+De simulatie draait die code op een digitale kopie van de machine,
+
+59
+00:04:46.676 --> 00:04:49.335
+en vangt vooraf de botsing met de bek.
+
+60
+00:04:50.235 --> 00:04:55.148
+Dan proefdraaien: de eerste echte run, regel voor regel,
+
+61
+00:04:55.349 --> 00:04:57.613
+tot het eerste stuk goed is.
+
+62
+00:04:58.163 --> 00:05:02.076
+Bij 150 programma’s per jaar telt elk uur daarvan.

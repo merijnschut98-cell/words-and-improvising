@@ -527,11 +527,87 @@ C.B = spec.scenes.map((s) => {
 });
 C.dur = DUR;
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen, so the learner needs nothing else. Same markers
+// ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
+// the lessons like the captions'. films/_kit/narrate.mjs turns each phrase into
+// speech with Piper.
+const SAY = [
+  [ // s1 the zero point (Basis: how it works)
+    { nl: 'CNC betekent dat een computer de motoren van de machine aanstuurt, volgens een programma. Dit is een bewerkingscentrum. De {t:Spil|spil} is de draaiende as die het gereedschap vasthoudt. Nu zit er een taster in: een meetpen.',
+      en: 'CNC means that a computer drives the machine’s motors, following a program. This is a machining centre. The {t:Spindle|spindle} is the turning shaft that holds the tool. Right now it holds a probe: a measuring stylus.' },
+    { nl: 'De taster tikt de vaste bek van de bankschroef aan, en daarna de bovenkant van de plaat.',
+      en: 'The probe touches the fixed jaw of the vice, and then the top of the plate.' },
+    { nl: 'Daaruit volgt het {t:Werkstuknulpunt|werkstuknulpunt}, G54. Het vertelt de machine waar het werkstuk op de tafel ligt. Alle maten in het programma tellen vanaf dat punt.',
+      en: 'From that comes the {t:Work offset|work offset}, G54. It tells the machine where the part sits on the table. Every position in the program counts from that point.' },
+  ],
+  [ // s2 measuring the tools
+    { nl: 'Elk gereedschap steekt anders ver uit de spil. Daarom bewaart de {t:Gereedschapscorrectie|gereedschapscorrectie} van elk gereedschap de lengte en de radius.',
+      en: 'Every tool sticks out of the spindle by a different amount. So the {t:Tool offset|tool offset} of each tool stores its length and its radius.' },
+    { nl: 'Gereedschap {n:5}, een boor, raakt de gereedschapsmeter. Zijn lengte, {n:121.43} millimeter, gaat de tabel in. Samen heten die getallen de offsets.',
+      en: 'Tool {n:5}, a drill, touches the tool setter. Its length, {n:121.43} millimetres, goes into the table. Together those numbers are called the offsets.' },
+    { nl: 'Het programma zelf is {t:G-code|G-code}: een lijst korte commando’s. G00 is snel verplaatsen, G01 een rechte snede, M03 zet de spil aan. Meestal maakt CAM-software die code uit het 3D-model.',
+      en: 'The program itself is {t:G-code|G-code}: a list of short commands. G00 is a rapid move, G01 a straight cut, M03 starts the spindle. Usually CAM software writes that code from the 3D model.' },
+  ],
+  [ // s3 the first part
+    { nl: 'Na elke omstelling wordt het eerste stuk helemaal gemeten, voordat de serie draait: de {t:Eerste-stukcontrole|eerste-stukcontrole}. Klopt de sleuf? Zitten de gaten op diepte?',
+      en: 'After every changeover, the first part is measured in full before the run starts: the {t:First-off|first-off} check. Is the slot right? Are the holes at depth?' },
+    { nl: 'Dat kost {n:10} tot {n:20} minuten. Maar één fout getal herhaalt zich op elk stuk: {n:200} stuks maal {n:35} euro is {n:7000} euro afkeur.',
+      en: 'That takes {n:10} to {n:20} minutes. But one wrong number repeats on every part: {n:200} parts times {n:35} euros is {n:7000} euros of scrap.' },
+    { nl: 'Pas dan draait de serie. Een programma dat al eens zonder problemen liep, heet {t:Beproefd|beproefd}.',
+      en: 'Only then does the run start. A program that has already run without problems is called {t:Proven|proven}.' },
+  ],
+  [ // s4 block by block
+    { nl: 'De besturing leest het programma van boven naar beneden, één regel tegelijk. Elke {t:Programmaregel|programmaregel} is één stap, met een nummer als N10.',
+      en: 'The control reads the program from top to bottom, one line at a time. Each {t:Block|block} is one step, with a number such as N10.' },
+    { nl: 'Een {t:M-functie|M-functie} is een schakelaar. M06 wisselt naar gereedschap 3, M03 zet de spil aan op {n:3200} toeren, M08 de koeling.',
+      en: 'An {t:M-code|M-code} is a switch. M06 changes to tool 3, M03 starts the spindle at {n:3200} revolutions a minute, M08 the coolant.' },
+    { nl: 'G90 zet {t:Absoluut programmeren|absoluut programmeren} aan: X0, Y min 10 telt vanaf het nulpunt G54.',
+      en: 'G90 switches on {t:Absolute programming|absolute programming}: X0, Y minus 10 counts from the zero point G54.' },
+    { nl: 'Bij G91, {t:Incrementeel programmeren|incrementeel programmeren}, telt een maat vanaf waar het gereedschap nu is. Die twee verwarren is een klassieke crash.',
+      en: 'With G91, {t:Incremental programming|incremental programming}, a position counts from where the tool is now. Mixing up the two is a classic crash.' },
+    { nl: 'G01 is {t:Modaal|modaal}: hij blijft gelden tot een andere code hem vervangt. Regel N70 zegt alleen Y40, en snijdt toch recht, op {n:640} millimeter per minuut.',
+      en: 'G01 is {t:Modal|modal}: it stays active until another code replaces it. Block N70 only says Y40, and still cuts straight, at {n:640} millimetres per minute.' },
+  ],
+  [ // s5 the offsets
+    { nl: 'Het programma beschrijft het werkstuk, niet het gereedschap. G43 H3 zet de {t:Lengtecorrectie|lengtecorrectie} aan: de lengte van gereedschap 3 telt mee.',
+      en: 'The program describes the part, not the tool. G43 H3 switches on {t:Tool length compensation|tool length compensation}: the length of tool 3 is added in.' },
+    { nl: 'Met G41, de {t:Radiuscorrectie|radiuscorrectie}, schuift de baan een straal opzij. Meet een nieuwe frees {n:9.98}, dan voert de insteller {n:4.99} in, en klopt hetzelfde programma nog steeds.',
+      en: 'With G41, {t:Cutter radius compensation|cutter radius compensation}, the path shifts sideways by one radius. If a new cutter measures {n:9.98}, the setter enters {n:4.99}, and the same program is still right.' },
+    { nl: 'Meet een boring {n:0.01} te klein, dan voert de operator een {t:Slijtagecorrectie|slijtagecorrectie} in: {n:0.005} op de radius, de helft, want een straal telt twee keer in een diameter.',
+      en: 'If a bore measures {n:0.01} undersize, the operator enters a {t:Wear offset|wear offset}: {n:0.005} on the radius, half, because a radius counts twice in a diameter.' },
+  ],
+  [ // s6 how a crash happens
+    { nl: 'Nu gaat het mis. Voor de boor typt de insteller {n:112.43} in, in plaats van {n:121.43}.',
+      en: 'Now it goes wrong. For the drill, the setter types {n:112.43}, instead of {n:121.43}.' },
+    { nl: 'De besturing denkt dat de boor {n:9} millimeter korter is, en laat hem {n:9} millimeter dieper zakken: dwars door de bodem.',
+      en: 'The control thinks the drill is {n:9} millimetres shorter, and sends it {n:9} millimetres deeper: right through the floor.' },
+    { nl: 'Raakt hij de bankschroef, dan is het een {t:Crash|crash}. Van {n:6} crashes in een jaar kwamen er {n:3} door een ingetypte lengte, {n:2} door een verkeerd H-nummer en {n:1} door het nulpunt. Het programma klopte, de tabel niet.',
+      en: 'If it hits the vice, that is a {t:Crash|crash}. Of {n:6} crashes in a year, {n:3} came from a typed length, {n:2} from a wrong H number and {n:1} from the zero point. The program was right; the table was not.' },
+  ],
+  [ // s7 from model to program
+    { nl: '{t:CAM|CAM}-software maakt van het 3D-model een {t:Gereedschapsbaan|gereedschapsbaan}: de route van het gereedschap, met voedingen en toerentallen.',
+      en: '{t:CAM|CAM} software turns the 3D model into a {t:Toolpath|toolpath}: the route of the tool, with feeds and speeds.' },
+    { nl: 'Een {t:Postprocessor|postprocessor} vertaalt die baan naar de G-code van deze ene machine. Twee machines, twee programma’s.',
+      en: 'A {t:Post-processor|post-processor} translates that path into the G-code of this one machine. Two machines, two programs.' },
+    { nl: 'De {t:Simulatie|simulatie} draait die code op een digitale kopie van de machine, en vangt vooraf de botsing met de bek.',
+      en: 'The {t:Simulation|simulation} runs that code on a digital copy of the machine, and catches the collision with the jaw first.' },
+    { nl: 'Dan {t:Proefdraaien|proefdraaien}: de eerste echte run, regel voor regel, tot het eerste stuk goed is. Bij {n:150} programma’s per jaar telt elk uur daarvan.',
+      en: 'Then the {t:Prove-out|prove-out}: the first real run, block by block, until the first part is good. At {n:150} programs a year, every hour of it counts.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // ---------------------------------------------------------------- page script and styles
 const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
 const latheScript = `const G = (() => {${latheSource}\nreturn { viewOf, scaleOf, frameOf, pointOf, radialOf, tangentOf, solidOf, prismOf, lathe, disc, dotsOf, arcOf, circleOf, dot3, add3, sub3, mul3 };})();\n`;
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst LIST = ${JSON.stringify(LIST)}, TAB = ${JSON.stringify(TAB)}, INS = ${JSON.stringify(INS)}, CAMS = ${JSON.stringify(CAMS)}, CW = ${CW};\n`;
-const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8').replace(/^[ \t]*\/\/.*\n/gm, ''); // whole-line comments stay in the source only
+const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8').replace(/^[ \t]*\/\/.*\n/gm, '') // whole-line comments stay in the source only
+  + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
 const css = `
 .fp-svg .fp-label{font-family:var(--fp-sans);font-weight:600}

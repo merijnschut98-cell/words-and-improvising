@@ -343,6 +343,79 @@ const spec = {
   skip: [],
 };
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen, so the learner needs nothing else. Same markers
+// ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
+// the lessons like the captions'. films/_kit/narrate.mjs turns each phrase into
+// speech with Piper.
+const SAY = [
+  [ // s1 spot first, then drill (Basis: how it works)
+    { nl: 'Bijna elk onderdeel heeft gaten: voor bouten, pennen, olie of kabels. Het standaardgereedschap is de {t:Spiraalboor|spiraalboor}. Maar zet je hem op een vlak blok, dan glijdt hij een fractie opzij voordat hij grijpt. Dat heet {t:Weglopen|weglopen}.',
+      en: 'Almost every part has holes: for bolts, pins, oil or cables. The standard tool is the {t:Twist drill|twist drill}. But start it on a flat block, and it slides a fraction sideways before it bites. That is called {t:Drill wander|drill wander}.' },
+    { nl: 'Daarom zet je eerst een kort kuiltje met een {t:Centreerboor|centreerboor}: een korte, stijve boor met een brede punt. Daarin vindt de spiraalboor meteen zijn plek.',
+      en: 'So first you make a short dimple with a {t:Centre drill|centre drill}: a short, stiff drill with a broad point. In it, the twist drill finds its place straight away.' },
+    { nl: 'Dan de spiraalboor zelf: twee snijkanten aan de punt, en twee groeven die als een spiraal omhoog lopen. Langs elke {t:Spaangroef|spaangroef} draaien de spanen naar buiten. Een boor van {n:8} millimeter in snelstaal loopt op zo’n {n:25} meter per minuut: {n:995} toeren.',
+      en: 'Then the twist drill itself: two cutting edges at the point, and two grooves that spiral up the body. Along each {t:Flute|flute} the chips turn their way out. An {n:8} millimetre drill in high-speed steel runs at about {n:25} metres per minute: {n:995} revolutions a minute.' },
+  ],
+  [ // s2 point angle and blind hole
+    { nl: 'De punt van de boor is een kegel. De hoek van die kegel heet de {t:Tophoek|tophoek}: bij gewone boren van snelstaal {n:118} graden. Die punt centreert de boor in het gat.',
+      en: 'The point of the drill is a cone. The angle of that cone is the {t:Point angle|point angle}: {n:118} degrees on ordinary high-speed steel drills. That point centres the drill in the hole.' },
+    { nl: 'Dit gat gaat er niet doorheen: het is een {t:Blind gat|blind gat}, met een kegelvormige bodem. {n:20} millimeter diep kost zo’n {n:8} seconden per gat.',
+      en: 'This hole does not go through: it is a {t:Blind hole|blind hole}, with a cone-shaped bottom. {n:20} millimetres deep takes about {n:8} seconds a hole.' },
+  ],
+  [ // s3 reaming to H7
+    { nl: 'Moet het nauwer, dan komt er een tweede gereedschap achteraan. Voor een gat van {n:10} millimeter in {t:H7|H7} boor je eerst {n:9.8}. Een ruimer haalt dan de laatste {n:0.2} millimeter weg.',
+      en: 'If it must be tighter, a second tool follows. For a {n:10} millimetre hole in {t:H7|H7} you first drill {n:9.8}. A reamer then takes off the last {n:0.2} millimetres.' },
+    { nl: 'De H zegt dat het gat nooit kleiner mag zijn dan {n:10}. De 7 zegt hoe breed de band is: het gat meet tussen {n:10.000} en {n:10.015} millimeter.',
+      en: 'The H says the hole may never be smaller than {n:10}. The 7 says how wide the band is: the hole measures between {n:10.000} and {n:10.015} millimetres.' },
+    { nl: 'Gat en pen samen heten de {t:Passing|passing}: deze pen schuift erin, een spelingspassing.',
+      en: 'Hole and pin together are called the {t:Fit|fit}: this pin slides in, a clearance fit.' },
+  ],
+  [ // s4 tapping and boring
+    { nl: 'Voor schroefdraad boor je eerst het {t:Kerngat|kerngat}: de maat van de schroef min de spoed, de afstand tussen twee gangen. Voor M{n:8}, met een spoed van {n:1.25} millimeter, is dat een boor van {n:6.8}.',
+      en: 'For a thread you first drill the {t:Tap drill hole|tap drill hole}: the size of the screw minus the pitch, the distance between two threads. For M{n:8}, with a pitch of {n:1.25} millimetres, that is a {n:6.8} drill.' },
+    { nl: 'Daarna snijdt de tap de draad: {t:Tappen|tappen}. Taps breken makkelijk, vooral in een blind gat, waar de spanen niet weg kunnen.',
+      en: 'Then the tap cuts the thread: {t:Tapping|tapping}. Taps break easily, above all in a blind hole, where the chips cannot get away.' },
+    { nl: 'Een groot passend gat, zoals {n:40} H7 voor een lager, draait een kotterkop uit: {t:Kotteren|kotteren}. De band is hier {n:0} tot {n:0.025} millimeter.',
+      en: 'A large fitted hole, such as {n:40} H7 for a bearing, is opened up by a boring head: {t:Boring|boring}. The band here is {n:0} to {n:0.025} millimetres.' },
+  ],
+  [ // s5 deep drilling
+    { nl: 'Bij diepe gaten telt de diepte gedeeld door de diameter. Een gat van {n:6} millimeter en {n:90} diep is {n:15} keer de diameter. Dan raakt elke groef vol, en draait alles om {t:Spaanafvoer|spaanafvoer}.',
+      en: 'In deep holes, what counts is the depth divided by the diameter. A hole of {n:6} millimetres, {n:90} deep, is {n:15} times the diameter. Then every flute fills up, and it is all about {t:Chip evacuation|chip evacuation}.' },
+    { nl: 'Bij {t:Pikboren|pikboren} gaat de boor een stukje in, trekt zich terug om de spanen te lossen, en gaat verder. {n:54} seconden snijden plus {n:30} seconden terugtrekken: {n:84} seconden per gat.',
+      en: 'In {t:Peck drilling|peck drilling} the drill goes in a little, pulls back to clear the chips, and goes on. {n:54} seconds of cutting plus {n:30} seconds of pulling back: {n:84} seconds a hole.' },
+    { nl: 'Met {t:Koeling door de spil|koeling door de spil} spuit koelvloeistof onder hoge druk door de boor, en spoelt de spanen eruit. Zonder pikken: {n:13.5} seconden. Bij {n:10000} stuks scheelt dat {n:196} uur per jaar.',
+      en: 'With {t:Through-spindle coolant|through-spindle coolant}, coolant sprays through the drill at high pressure, and flushes the chips out. No pecking: {n:13.5} seconds. At {n:10000} parts, that saves {n:196} hours a year.' },
+  ],
+  [ // s6 the gun drill
+    { nl: 'Nog dieper, of extreem recht? Dan wordt het een {t:Kanonboor|kanonboor}: een boor met één snijkant en een holle schacht.',
+      en: 'Deeper still, or extremely straight? Then it is a {t:Gun drill|gun drill}: a drill with one cutting edge and a hollow shank.' },
+    { nl: 'De vloeistof gaat met hoge druk door de schacht, en neemt de spanen mee terug, via een groef aan de buitenkant.',
+      en: 'The coolant runs through the shank at high pressure, and carries the chips back out, along a groove on the outside.' },
+  ],
+  [ // s7 measuring position
+    { nl: 'Een gat kan de goede maat hebben en toch op de verkeerde plek zitten. Daarvoor is de {t:Positietolerantie|positietolerantie}: de as van het gat moet binnen een cirkel van {n:0.1} millimeter liggen.',
+      en: 'A hole can have the right size and still be in the wrong place. That is what the {t:Position tolerance|position tolerance} is for: the hole’s axis must lie within a circle of {n:0.1} millimetres.' },
+    { nl: 'Die cirkel ligt om de exacte plek uit de {t:Theoretisch exacte maat|theoretisch exacte maten}: maten in een rechthoekje, zonder eigen tolerantie.',
+      en: 'That circle sits round the exact spot set by the {t:Theoretically exact dimension|theoretically exact dimensions}: sizes in a small box, with no tolerance of their own.' },
+    { nl: 'De meetmachine meet gat {n:3}: {n:0.024} millimeter opzij in X, en {n:0.032} in Y. Dat is {n:0.04} van de exacte plek. Omdat de tolerantie een diameter is, is de positie {n:2} keer zo veel: {n:0.08}.',
+      en: 'The measuring machine measures hole {n:3}: {n:0.024} millimetres off in X, and {n:0.032} in Y. That is {n:0.04} from the exact spot. Because the tolerance is a diameter, the position is {n:2} times that: {n:0.08}.' },
+  ],
+  [ // s8 square and functional
+    { nl: '{t:Haaksheid|Haaksheid} zegt of het gat recht staat: de as moet loodrecht op vlak A staan, binnen {n:0.05} millimeter over de diepte.',
+      en: '{t:Perpendicularity|Perpendicularity} says whether the hole stands straight: its axis must be square to face A, within {n:0.05} millimetres over the depth.' },
+    { nl: 'In serie gaat het deel op een {t:Functioneel kaliber|functioneel kaliber}: een plaat met pennen op de exacte plekken.',
+      en: 'In series the part goes onto a {t:Functional gauge|functional gauge}: a plate with pins at the exact places.' },
+    { nl: 'Past het deel, dan klopt de positie. Snel, en moeilijk fout te doen.',
+      en: 'If the part fits, the position is good. Quick, and hard to get wrong.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // ---------------------------------------------------------------- page script and styles
 const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
 const latheScript = `const G = (() => {${latheSource}\nreturn { viewOf, scaleOf, frameOf, pointOf, radialOf, tangentOf, angleToward, solidOf, prismOf, lathe, disc, dotsOf, arcOf, circleOf, sphereOf, dot3, add3, sub3, mul3 };})();\n`;
@@ -351,7 +424,8 @@ const C = {
   dur: DUR, MAG, MAG_R, DX, DY, PART, PART_T, HOLES, HOLE_R, GAUGE, GAUGE_T, PIN_H, LEGS, BEAM_Z, CMMZ: CMM.tableZ[1],
 };
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\n`;
-const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8');
+const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8')
+  + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
 const css = `
 .iso{--dr-bore:#081A1E;--dr-wall:#0E262C}

@@ -54,14 +54,14 @@ const SAY = {
   nl: [[/\b([1-9])\.([1-9])(\d\d)\b/g, (m, a, b, cd) => `${a}${b}honderd${cd === '00' ? '' : ` ${Number(cd)}`}`],
     [/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
     [/€\s?(\d[\d.]*(?:,\d+)?)/g, '$1 euro'], [/(\d),0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimeter'], [/(\d)\s?min\b/g, '$1 minuten'], [/(\d)\s?%/g, '$1 procent'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
     [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
