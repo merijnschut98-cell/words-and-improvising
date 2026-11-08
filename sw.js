@@ -29,6 +29,7 @@ const SHELL = [
   'src/content/courses/eng/spc.en.js', 'src/content/courses/eng/spc.nl.js',
   'src/content/courses/eng/fluids.en.js', 'src/content/courses/eng/fluids.nl.js',
   'src/content/courses/pm/stuck.en.js', 'src/content/courses/pm/stuck.nl.js',
+  'src/content/courses/pm/scaled.en.js', 'src/content/courses/pm/scaled.nl.js',
   'src/content/courses/pm/outside.en.js', 'src/content/courses/pm/outside.nl.js',
   'src/content/courses/eng/joining.en.js', 'src/content/courses/eng/joining.nl.js',
   'src/content/courses/eng/switchgear.en.js', 'src/content/courses/eng/switchgear.nl.js', 'src/content/courses/pm/close.en.js', 'src/content/courses/pm/close.nl.js',
