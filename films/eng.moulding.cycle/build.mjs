@@ -375,7 +375,14 @@ const wellClip = (() => {
   return k.pathOf([...lower.slice(0, -1), ...upper.slice(0, -1)], true);
 })();
 if (process.env.SIZES) { const m = {}; for (const it of R.items) { const n = it.name.split('.')[0] + '.' + it.name.split('.')[1]; m[n] = (m[n] || 0) + it.svg.length; } console.log(Object.entries(m).sort((a, b) => b[1] - a[1]).slice(0, 25)); }
-const pressItems = R.items.map((item) => (item.attrs ? `<g${item.attrs}>${item.svg}</g>` : item.svg));
+// v14b: the intro lights up the machine's units, so each item carries the cue of its unit
+const UNIT = [[/^(clamp\.|platen\.moving)/, 'clampunit'], [/^(mould\.|platen\.(mould|coupling))/, 'mould'], [/^(inj\.|screw\.)/, 'injunit']];
+const unitOf = (name) => (UNIT.find(([re]) => re.test(name)) || [])[1];
+const pressItems = R.items.map((item) => {
+  const body = item.attrs ? `<g${item.attrs}>${item.svg}</g>` : item.svg;
+  const unit = unitOf(item.name);
+  return unit ? `<g data-cue="${unit}">${body}</g>` : body;
+});
 pressItems.splice(lastBack + 1, 0, `<clipPath id="fp-well-clip"><path d="${wellClip}"/></clipPath><g clip-path="url(#fp-well-clip)"><g data-k="shot">${SHOT}</g></g>`);
 const pressSet = g('press', pressHalo.join('') + pressItems.join(''));
 
@@ -486,6 +493,17 @@ const spec = {
   lessons: ['eng.moulding.cycle', 'eng.moulding.cooling', 'eng.moulding.cavities', 'eng.moulding.partcost'],
   scenes: [
     {
+      // v14b: the Basis "how it works" tour of the machine, before the terms
+      id: 's0', lesson: 'eng.moulding.cycle', level: 1, dur: 30, still: 0.5, title: { nl: 'Hoe spuitgieten werkt', en: 'How injection moulding works' },
+      beats: [
+        { nl: 'Een spuitgietmachine maakt doppen in een vast rondje, steeds opnieuw.', en: 'An injection moulding machine makes caps in a fixed round, again and again.', still: 0.08 },
+        { nl: 'De sluiteenheid drukt de twee helften van de matrijs stevig dicht.', en: 'The clamp unit presses the two halves of the mould firmly shut.', cues: ['clampunit'], still: 0.3 },
+        { nl: 'De spuiteenheid smelt de korrels en spuit de smelt in de matrijs.', en: 'The injection unit melts the pellets and injects the melt into the mould.', cues: ['injunit'], still: 0.5 },
+        { nl: 'In de matrijs koelt de kunststof af tot een stijve dop.', en: 'In the mould the plastic cools into a stiff cap.', cues: ['mould'], still: 0.7 },
+        { nl: 'Dan gaat de matrijs open en vallen de doppen eruit.', en: 'Then the mould opens and the caps drop out.', cues: ['mould'], still: 0.9 },
+      ],
+    },
+    {
       id: 's1', lesson: 'eng.moulding.cycle', level: 1, dur: DUR[0], still: 0.55, title: { nl: 'De cyclus', en: 'The cycle' },
       beats: [
         { nl: 'Sluiten, inspuiten, nadruk, koelen, openen, uitwerpen: samen de {t:Cyclustijd|cyclustijd}, hier {n:30} seconden.', en: 'Close, inject, hold, cool, open, eject: together the {t:Cycle time|cycle time}, here {n:30} seconds.', cue: { Cyclustijd: 'cycle' }, read: { nl: '{n:2} + {n:1.5} + {n:6} + {n:15} + {n:2} + {n:3.5} = {n:30} s', en: '{n:2} + {n:1.5} + {n:6} + {n:15} + {n:2} + {n:3.5} = {n:30} s' } },
@@ -495,7 +513,7 @@ const spec = {
     {
       id: 's2', lesson: 'eng.moulding.cycle', level: 1, dur: DUR[1], still: 0.5, title: { nl: 'Holtes', en: 'Cavities' },
       beats: [
-        { nl: 'Elke {t:Holte|holte} in de matrijs vormt één dop per shot; deze matrijs heeft er {n:2}.', en: 'Each {t:Cavity|cavity} in the mould forms one cap per shot; this mould has {n:2}.', cue: { Holte: 'cavity' } },
+        { nl: 'Elke {t:Holte|holte} in de matrijs vormt één dop per cyclus; deze matrijs heeft er {n:2}.', en: 'Each {t:Cavity|cavity} in the mould forms one cap per shot; this mould has {n:2}.', cue: { Holte: 'cavity' } },
         { nl: 'Deze dopmatrijs loopt op {n:20} seconden: {n:3600} / {n:20} × {n:2} = {n:360} doppen per uur.', en: 'This cap mould runs at {n:20} seconds: {n:3600} / {n:20} × {n:2} = {n:360} caps per hour.', cues: ['cavity'], read: { nl: 'stuks per uur = {n:3600} / cyclustijd × holtes', en: 'parts per hour = {n:3600} / cycle time × cavities' } },
       ],
     },
@@ -528,7 +546,7 @@ const spec = {
         { nl: 'Een 4-voudige matrijs op {n:20} s maakt {n:720} doppen per uur, een 8-voudige op {n:24} s er {n:1200}.', en: 'A 4-cavity mould at {n:20} s makes {n:720} caps per hour, an 8-cavity one at {n:24} s makes {n:1200}.', read: { nl: '{n:3600} / {n:24} × 8 = {n:1200} per uur', en: '{n:3600} / {n:24} × 8 = {n:1200} per hour' } },
         { nl: 'Elke holte moet tegelijk vollopen: {t:Vulbalans|vulbalans}, met gelijke vloeiwegen in een H-patroon.', en: 'Every cavity must fill at once: {t:Fill balance|fill balance}, with equal flow paths in an H-pattern.', cue: { Vulbalans: 'balance' }, still: 0.5 },
         { nl: 'Een {t:Naaldsluiting|naaldsluiting} opent en sluit elk aanspuitpunt op commando.', en: 'A {t:Valve gate|valve gate} opens and closes each gate on command.', cue: { Naaldsluiting: 'valve' }, still: 0.68 },
-        { nl: 'Een {t:Familiematrijs|familiematrijs} maakt deksel en bak in één shot, maar ze vullen zelden gelijk.', en: 'A {t:Family mould|family mould} makes a lid and its base in one shot, but they rarely fill alike.', cue: { Familiematrijs: 'family' }, still: 0.86 },
+        { nl: 'Een {t:Familiematrijs|familiematrijs} maakt deksel en bak in één cyclus, maar ze vullen zelden gelijk.', en: 'A {t:Family mould|family mould} makes a lid and its base in one shot, but they rarely fill alike.', cue: { Familiematrijs: 'family' }, still: 0.86 },
       ],
     },
     {
@@ -544,6 +562,85 @@ const spec = {
   skip: [],
 };
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen, so the film replaces the lesson text. Same markers
+// ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
+// the lessons like the captions'. A term is named while its cue is lit.
+// films/_kit/narrate.mjs turns each line into speech with Piper.
+const SAY = [
+  [ // s0 how injection moulding works
+    { nl: 'Hoe werkt spuitgieten? Deze machine maakt flessendoppen van kunststof. Ze doet steeds hetzelfde rondje.',
+      en: 'How does injection moulding work? This machine makes plastic bottle caps. It runs the same round again and again.' },
+    { nl: 'Links zit de sluiteenheid. Die schuift de beweegbare helft van de matrijs tegen de vaste helft, en houdt ze met grote kracht dicht.',
+      en: 'On the left is the clamp unit. It slides the moving half of the mould against the fixed half, and holds them shut with great force.' },
+    { nl: 'Rechts zit de spuiteenheid. Korrels uit de trechter smelten in een verwarmde cilinder, en een schroef spuit de hete smelt in de gesloten matrijs.',
+      en: 'On the right is the injection unit. Pellets from the hopper melt in a heated barrel, and a screw injects the hot melt into the closed mould.' },
+    { nl: 'In de matrijs zitten holle vormen van de dop. De smelt vult ze en koelt af, tot de dop stijf is.',
+      en: 'Inside the mould are hollow shapes of the cap. The melt fills them and cools, until the cap is stiff.' },
+    { nl: 'Dan gaat de matrijs open, duwen pennen de doppen eruit, en vallen ze in de bak. De matrijs sluit, en het rondje begint opnieuw.',
+      en: 'Then the mould opens, pins push the caps out, and they drop into the bin. The mould closes, and the round starts again.' },
+  ],
+  [ // s1 the cycle
+    { nl: 'Dat rondje heeft zes stappen: sluiten, inspuiten, nadruk, koelen, openen en uitwerpen. Samen is dat de {t:Cyclustijd|cyclustijd}, hier {n:30} seconden.',
+      en: 'That round has six steps: close, inject, hold, cool, open and eject. Together they make the {t:Cycle time|cycle time}, here {n:30} seconds.' },
+    { nl: 'Het inspuiten zelf duurt maar {n:1.5} seconde. De {t:Koeltijd|koeltijd} is {n:15} seconden: de helft van de cyclus, en vaak is het nog meer.',
+      en: 'The injection itself takes only {n:1.5} seconds. The {t:Cooling time|cooling time} is {n:15} seconds: half the cycle, and often it is even more.' },
+  ],
+  [ // s2 cavities
+    { nl: 'Elke {t:Holte|holte} in de matrijs is een ruimte in de vorm van het product, en maakt één dop per cyclus. Deze matrijs heeft er {n:2}.',
+      en: 'Each {t:Cavity|cavity} in the mould is a space in the shape of the part, and makes one cap per cycle. This mould has {n:2}.' },
+    { nl: 'Hij loopt op {n:20} seconden. Een uur heeft {n:3600} seconden. Gedeeld door {n:20}, maal {n:2} holtes, is dat {n:360} doppen per uur.',
+      en: 'It runs at {n:20} seconds. An hour has {n:3600} seconds. Divided by {n:20}, times {n:2} cavities, that is {n:360} caps per hour.' },
+  ],
+  [ // s3 cooling through the wall
+    { nl: 'Hoe koelt een product af? Water stroomt door de {t:Koelkanalen|koelkanalen}, gaten in het staal, en voert de warmte af. De kunststof stolt van buiten naar binnen.',
+      en: 'How does a part cool? Water flows through the {t:Cooling channels|cooling channels}, holes in the steel, and carries the heat away. The plastic sets from the outside in.' },
+    { nl: 'Kunststof geleidt warmte slecht. Twee keer zo dik is daarom ruwweg vier keer zo lang koelen. Zo bepaalt één dikke {t:Bus|bus}, een massief nokje voor een schroef, de cyclus van het hele product.',
+      en: 'Plastic conducts heat poorly. So twice as thick means roughly four times the cooling. That is how one thick {t:Boss|boss}, a solid stud for a screw, sets the cycle of the whole part.' },
+  ],
+  [ // s4 a thinner wall
+    { nl: 'Een voorbeeld. Deze dop koelt {n:12} van zijn {n:20} seconden. De dikste wand is {n:3} millimeter, en de ontwerper brengt die naar {n:2.4}.',
+      en: 'An example. This cap cools for {n:12} of its {n:20} seconds. The thickest wall is {n:3} millimetres, and the designer brings it down to {n:2.4}.' },
+    { nl: 'De koeltijd gaat met het kwadraat van de dikte: maal {n:0.64}. Hij zakt naar zo’n {n:7.7} seconden, de cyclus naar {n:15.7}, en de productie stijgt van {n:360} naar {n:459} doppen per uur. Op dezelfde machine.',
+      en: 'Cooling time goes with the square of the thickness: times {n:0.64}. It drops to about {n:7.7} seconds, the cycle to {n:15.7}, and output rises from {n:360} to {n:459} caps per hour. On the same machine.' },
+  ],
+  [ // s5 mould temperature
+    { nl: 'Een {t:Temperatuurregelaar|temperatuurregelaar}, een kast naast de pers, verwarmt of koelt het water en pompt het door de kanalen.',
+      en: 'A {t:Temperature control unit|temperature control unit}, a cabinet beside the press, heats or cools the water and pumps it through the channels.' },
+    { nl: 'Zo houdt hij de {t:Matrijstemperatuur|matrijstemperatuur} vast. Het datablad noemt voor PA6 bijvoorbeeld {n:80} graden. Te koud geeft een dof oppervlak.',
+      en: 'That is how it holds the {t:Mould temperature|mould temperature}. For PA6 the datasheet gives {n:80} degrees, for example. Too cold gives a dull surface.' },
+    { nl: 'Het water moet hard genoeg stromen voor {t:Turbulente stroming|turbulente stroming}: wervelend in plaats van in laagjes. Wervelend water voert veel meer warmte af.',
+      en: 'The water must flow hard enough for {t:Turbulent flow|turbulent flow}: swirling instead of sliding in layers. Swirling water carries far more heat away.' },
+    { nl: 'Het product mag eruit op de {t:Uitwerptemperatuur|uitwerptemperatuur}: dan is het dikste deel stijf genoeg om eruit geduwd te worden zonder te vervormen.',
+      en: 'The part may come out at the {t:Ejection temperature|ejection temperature}: then its thickest section is stiff enough to be pushed out without bending.' },
+  ],
+  [ // s6 more cavities
+    { nl: 'Meer stuks per uur kan ook met meer holtes. Een 4-voudige matrijs op {n:20} seconden maakt {n:720} doppen per uur. Een 8-voudige loopt trager, op {n:24} seconden, maar maakt er {n:1200}.',
+      en: 'More parts per hour can also come from more cavities. A 4-cavity mould at {n:20} seconds makes {n:720} caps per hour. An 8-cavity one runs slower, at {n:24} seconds, but makes {n:1200}.' },
+    { nl: 'Elke holte moet tegelijk en met dezelfde druk vollopen: {t:Vulbalans|vulbalans}. Een H-patroon geeft elke holte een even lange vloeiweg.',
+      en: 'Every cavity must fill at the same time and pressure: {t:Fill balance|fill balance}. An H-pattern gives each cavity an equal flow path.' },
+    { nl: 'In een heetkanaal blijft de kunststof vloeibaar tot aan de holtes. Een {t:Naaldsluiting|naaldsluiting} gaat verder: een naald in elke spuitmond opent en sluit het aanspuitpunt op commando.',
+      en: 'In a hot runner the plastic stays molten right up to the cavities. A {t:Valve gate|valve gate} goes further: a needle in each nozzle opens and closes the gate on command.' },
+    { nl: 'Een {t:Familiematrijs|familiematrijs} maakt verschillende producten in één cyclus, zoals een deksel en een bak. Handig, maar ze vullen zelden gelijk.',
+      en: 'A {t:Family mould|family mould} makes different parts in one shot, such as a lid and a base. Handy, but they rarely fill alike.' },
+  ],
+  [ // s7 what a part costs
+    { nl: 'Wat kost één product? Neem {n:40} gram PP, uit een 4-voudige matrijs op {n:30} seconden. Bij twee euro per kilo en een {t:Afkeurpercentage|afkeurpercentage} van {n:3} procent kost het materiaal ruim acht cent.',
+      en: 'What does one part cost? Take {n:40} grams of PP, from a 4-cavity mould at {n:30} seconds. At two euros a kilo and a {t:Scrap rate|scrap rate} of {n:3} percent, the material costs just over eight cents.' },
+    { nl: 'Dan de machine. Het {t:Machine-uurtarief|machine-uurtarief} is {n:60} euro: wat een uur perstijd kost. Bij {n:85} procent rendement maakt de pers {n:408} goede stuks per uur: bijna vijftien cent per stuk.',
+      en: 'Then the machine. The {t:Machine hour rate|machine hour rate} is {n:60} euros: what an hour of press time costs. At {n:85} percent efficiency the press makes {n:408} good parts an hour: almost fifteen cents each.' },
+    { nl: 'Dan de matrijs. De {t:Matrijsafschrijving|matrijsafschrijving} verdeelt de {n:80000} euro die hij kost over een miljoen stuks: acht cent per stuk.',
+      en: 'Then the mould. The {t:Mould amortisation|mould amortisation} spreads the {n:80000} euros it costs over a million parts: eight cents each.' },
+    { nl: 'Samen zo’n eenendertig cent. De machinetijd is hier de grootste post, dus elke seconde cyclus zie je terug in de prijs.',
+      en: 'Together about thirty-one cents. Machine time is the biggest line here, so every second of cycle shows up in the price.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // ---------------------------------------------------------------- page script and styles
 const C = {
   dur: DUR, PHASES, CYCLE, OPEN, STROKE, CAP_H, MOULD_M, ZC, BAR,
@@ -552,10 +649,19 @@ const C = {
   COIN_R, COIN_H, STACKS, CENTS, COST: [MAT, MACH, MOULD],
   SETC,
 };
+// v14b: the intro's framings, one per beat: the whole machine, the clamp unit,
+// the injection unit, the mould, the mould opening (as scene 3 frames it)
+C.INTRO = [
+  fitCam(FIT, [24, 40, 616, 360], 1.2),
+  fitCam(k.boxCorners({ x: -120, y: -22, w: 104, d: 44 }, 34, 82), [90, 40, 550, 330]),
+  cam([56, 0, 62], 400),
+  cam([-30, 0, 57], 210),
+  cam([-36, 4, 54], 240),
+];
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\n`;
 // Leading indentation goes (and, in this film's own two scripts, whole-line comments): about 15 KB less.
 const lean = (src, dropComments) => src.split('\n').map((line) => line.trim()).filter((line) => line && !(dropComments && line.startsWith('//'))).join('\n');
-const stageScript = lean(kitScript(), false) + '\n' + preamble + lean(setsSource, true) + '\n' + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'), true);
+const stageScript = lean(kitScript(), false) + '\n' + preamble + lean(setsSource, true) + '\n' + lean(readFileSync(join(HERE, '../_kit/audio-warp.js'), 'utf8'), true) + '\n' + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'), true);
 
 const css = `
 .iso{--mc-glass:#081A1E;--mc-well:#06161A;--mc-seg:#2A4A4A;--mc-segc:#45615D;--fp-steel:#16353D;--fp-water:#0A1E23;--fp-solid:#45615D;--fp-melt:#E4DDCC}

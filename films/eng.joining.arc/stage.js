@@ -3,7 +3,7 @@
 // functions in scope, the lathe module as G) and a preamble from build.mjs that
 // defines P (projection), C (world constants), CAM (one camera move per scene),
 // W and H.
-/* global G, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, translateAlong, span */
+/* global G, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, translateAlong, span, beatStarts, warpU, introBeat, introCamera */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const el = (k) => svg.querySelector(`[data-k="${k}"]`);
@@ -574,5 +574,22 @@ const STAGE = (() => {
     return d;
   }
 
-  return { render };
+  // ------------------------------------------------------------ v14b: the intro, and the audio warp
+  // Scene 1 of the film is a "how it works" tour of this bench; the scenes
+  // after it are the stage's own scenes, one index on. In a video render each
+  // scene's progress is warped so the moves land on the spoken lines.
+  const FILM = JSON.parse(document.getElementById('film-data').textContent);
+  const designed = (si) => { const s = FILM.scenes[si]; return beatStarts(s, 'nl').map((t) => t / s.dur); };
+  function intro(u) {
+    const d = designed(0);
+    const { k } = introBeat(u, d);
+    render(0, k >= 2 ? 0.055 : 0); // the bench as scene 2 opens; the arc lit from the third beat
+    introCamera(E.world, C.INTRO, d, u, W, H);
+  }
+  return {
+    render(si, u) {
+      if (si === 0) intro(warpU(0, u, designed(0)));
+      else render(si - 1, warpU(si, u, designed(si)));
+    },
+  };
 })();

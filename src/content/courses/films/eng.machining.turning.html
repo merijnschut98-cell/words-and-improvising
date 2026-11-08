@@ -200,11 +200,12 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 @keyframes fp-breathe{0%,100%{filter:none}50%{filter:drop-shadow(0 0 2.5px var(--fp-glow))}}
 .fp[data-motion="reduce"] [data-cue][data-on]{animation:none}
 @media (prefers-reduced-motion:reduce){[data-cue][data-on]{animation:none}}
-/* render mode (?render=1): the page is one 16:9 video frame; stage on top, the caption band under it, big enough for a phone */
+/* render mode (?render=1): the page is one 16:9 video frame, the stage only. No caption band: the video's subtitles come from its WebVTT track alone (the poster shows the band once, for the title) */
 html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
 .fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
 .fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
 .fp[data-render="1"] .fp-cap{flex:0 0 auto;height:calc(3 * 1.25em + 24px);min-height:0;margin:0;padding:12px 48px;font-size:clamp(16px,6.1vh,44px);line-height:1.25;text-align:center;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--fp-hair)}
+.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}
 .fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
 .fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
 .fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
@@ -294,10 +295,10 @@ const SAY = {
   nl: [[/\b([1-9])\.([1-9])(\d\d)\b/g, (m, a, b, cd) => `${a}${b}honderd${cd === '00' ? '' : ` ${Number(cd)}`}`],
     [/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
     [/€\s?(\d[\d.]*(?:,\d+)?)/g, '$1 euro'], [/(\d),0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimeter'], [/(\d)\s?min\b/g, '$1 minuten'], [/(\d)\s?%/g, '$1 procent'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
-    [/Ø\s*/g, 'diameter '], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"]],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -309,7 +310,11 @@ const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('
 // length of each beat's recorded line (s). Each scene opens with a short look
 // before the first line (the film itself with a longer lead), lines follow with
 // a breath in between, and a scene holds a moment after its last line.
-const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: 0.35, hold: 0.8, tail: 1.6 };
+// The pauses of the narration, all in one place (seconds). Each phrase (up to
+// a comma) and sentence is recorded as its own clip (films/_kit/narrate.mjs):
+// comma after a phrase, sentence after a full stop, beat between two lines.
+const PAUSES = { comma: 0.2, sentence: 0.55, beat: 0.9 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: 0.8, tail: 1.6 };
 function audioTimeline(durs, gaps = AUDIO_GAPS) {
   const g = { ...AUDIO_GAPS, ...gaps };
   const scenes = [];

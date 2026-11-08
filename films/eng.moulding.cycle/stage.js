@@ -3,7 +3,7 @@
 // (iso-kit functions in scope), a preamble from build.mjs that defines P
 // (projection), C (world constants), CAM (one camera move per scene), W and H,
 // and sets.js (buildSets), which draws the section, the plates and the coins.
-/* global buildSets, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, translateAlong, axisVector, holdStill, depthOf, span, ease, beatStarts, searchOf */
+/* global buildSets, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, translateAlong, axisVector, holdStill, depthOf, span, ease, beatStarts, searchOf, warpU, introBeat, introCamera */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const el = (k) => svg.querySelector(`[data-k="${k}"]`);
@@ -39,7 +39,8 @@ const STAGE = (() => {
   const mark = (d, extra = '') => `<path class="fp-mark" d="${d}"${extra}/>`;
   const text = (x, y, t, size = 20, anchor = 'middle', cls = 'fp-ink') => `<text class="${cls} fp-label" x="${f1(x)}" y="${f1(y)}" font-size="${size}" text-anchor="${anchor}">${t}</text>`;
   // beat start of scene si, beat bi, as a share of the scene (follows the caption language)
-  const beatU = (si, bi) => { const s = FILM.scenes[si]; return beatStarts(s, LANG)[bi] / s.dur; };
+  // (the film's scene si + 1: its first scene is the intro below)
+  const beatU = (si, bi) => { const s = FILM.scenes[si + 1]; return beatStarts(s, LANG)[bi] / s.dur; };
 
   // ------------------------------------------------------------ camera
   let camNow = { cx: W / 2, cy: H / 2, s: 1 };
@@ -483,5 +484,30 @@ const STAGE = (() => {
     set(E.labels, labels);
   }
 
-  return { render };
+  // ------------------------------------------------------------ v14b: the intro, and the audio warp
+  // Scene 1 of the film is a "how it works" tour of the machine, built from the
+  // stage's own press states; the scenes after it are the stage's own scenes,
+  // one index on. In a video render each scene's progress is warped so the
+  // moves land on the spoken lines (designed: the beat shares beatU uses).
+  const designed = (si) => { const s = FILM.scenes[si]; return beatStarts(s, LANG).map((t) => t / s.dur); };
+  const hud = svg.querySelector('[data-k="hud"]');
+  function intro(u) {
+    const d = designed(0);
+    const { k, p } = introBeat(u, d);
+    const T = C.CYCLE;
+    // at rest; closing; injecting; holding and cooling; opening and ejecting (as scene 3)
+    if (k === 0) render(0, 0);
+    else if (k === 1) render(0, lerp(0, 2 / T, span(p, 0.1, 0.9)));
+    else if (k === 2) render(0, lerp(2 / T, 3.5 / T, span(p, 0.1, 0.9)));
+    else if (k === 3) render(0, lerp(3.5 / T, 24.4 / T, p));
+    else render(1, lerp(0.04, 0.48, p));
+    introCamera(E.world, C.INTRO, d, u, W, H);
+  }
+  return {
+    render(si, u) {
+      show(hud, si !== 0);
+      if (si === 0) intro(warpU(0, u, designed(0)));
+      else render(si - 1, warpU(si, u, designed(si)));
+    },
+  };
 })();

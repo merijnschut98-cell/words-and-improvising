@@ -5,8 +5,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { audioTimeline, timedAt, speakOf, saidOf, parseParams } from '../films/_kit/timeline.mjs';
-import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE } from '../films/_kit/narration.mjs';
+import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAPS } from '../films/_kit/timeline.mjs';
+import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX } from '../films/_kit/narration.mjs';
+import { applyLexicon } from '../films/_kit/lexicon.mjs';
 import { videoOf, readAlong, filmDataOf } from '../src/ui/film.js';
 import { lessonPhases, lessonSteps, lessonBack } from '../src/core/course.js';
 
@@ -49,6 +50,8 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['De ', { t: 'voeding', en: 'feed', c: 'f' }, ' is 0,3 mm.'], 'nl'), 'De voeding is 0,3 millimeter.');
   // the subtitles keep what is written, without the gloss
   assert.equal(saidOf(['De ', { t: 'voeding', en: 'feed', c: 'f' }, ' is 0,3 mm.']), 'De voeding is 0,3 mm.');
+  // MIG, MAG and TIG on their own as letters in Dutch (espeak-ng reads MAG as the verb), MAG-lassen as it is
+  assert.equal(speakOf(['Dit is MIG/MAG-lassen. Bij MAG, voor staal, bij TIG 0,6. Het product mag eruit.'], 'nl'), 'Dit is M I G MAG-lassen. Bij M A G, voor staal, bij T I G 0,6. Het product mag eruit.');
 });
 
 // ------------------------------------------------------------ WAV files
@@ -96,6 +99,64 @@ test('WebVTT: timestamps, cues per beat timed by length, the file format', () =>
   assert.ok(vtt.endsWith('Langer en nog langer.\n'));
   // a cue text never carries markup
   assert.equal(vttOf([{ start: 0, end: 1, text: 'a <b> & c' }]).split('\n')[4], 'a &lt;b&gt; &amp; c');
+});
+
+test('exact subtitles: one clip per phrase, cues at the measured clip times, the pauses from one place', () => {
+  assert.ok(PAUSES.sentence >= 0.5 && PAUSES.sentence <= 0.6 && PAUSES.comma >= 0.15 && PAUSES.comma <= 0.25 && PAUSES.beat >= 0.8);
+  assert.equal(AUDIO_GAPS.gap, PAUSES.beat);
+  const seg = ['De ', { t: 'Voeding', k: 'x#0', en: 'feed' }, ' is 0,3 mm. Hoe dunner de as wordt, hoe sneller hij draait. Zo ver.'];
+  assert.deepEqual(phrasesOf(seg), [['De Voeding is 0,3 mm.'], ['Hoe dunner de as wordt,', 'hoe sneller hij draait.'], ['Zo ver.']]);
+  // a decimal comma is no phrase break; a short phrase rides with the next one
+  assert.deepEqual(phrasesOf(['Hier, bij 1.167 toeren, is f 0,3 mm.']), [['Hier, bij 1.167 toeren,', 'is f 0,3 mm.']]);
+  const lay = beatLayout(2, [[1.5], [2, 1], [0.5]]);
+  const p = PAUSES;
+  assert.deepEqual(lay.flat().map((c) => c.start), [2, 2 + 1.5 + p.sentence, 2 + 3.5 + p.sentence + p.comma, 2 + 4.5 + 2 * p.sentence + p.comma]);
+  assert.equal(beatLength([[1.5], [2, 1], [0.5]]), Math.round((5 + 2 * p.sentence + p.comma) * 1000) / 1000);
+  const cues = cuesOfLines([
+    [{ start: 1, dur: 2, text: 'Kort.' }],
+    [{ start: 3.5, dur: 2.5, text: 'Dit is een lange zin met heel veel woorden erin,' }, { start: 6.2, dur: 3, text: 'die na de komma nog een flink eind doorgaat.' }],
+  ]);
+  assert.deepEqual(cues[0], { start: 1, end: 3, text: 'Kort.' });
+  assert.deepEqual(cues.slice(1).map((c) => [c.start, c.end]), [[3.5, 6], [6.2, 9.2]], 'a long sentence is cut between its phrases, at their real times');
+  assert.ok(cues.every((c) => c.text.length <= SUB_MAX));
+  assert.equal(cuesOfLines([[{ start: 0, dur: 2, text: 'Een korte zin,' }, { start: 2.2, dur: 1, text: 'die kort blijft.' }]]).length, 1);
+});
+
+test('lexicon: the voice gets the phonemes, the subtitles keep the spelling', () => {
+  const lex = { toerental: 'tˈurəntˌɑl', omwentelingen: 'ˈɔmʋˌɛntəlɪŋən' };
+  assert.equal(applyLexicon('Het Toerental, in omwentelingen per minuut.', lex), 'Het [[tˈurəntˌɑl]], in [[ˈɔmʋˌɛntəlɪŋən]] per minuut.');
+  assert.equal(applyLexicon('toerentallen', lex), 'toerentallen', 'whole words only');
+  assert.equal(applyLexicon('CNC-toerental', lex), 'CNC-[[tˈurəntˌɑl]]');
+  // the voice: units as words, then the lexicon; the subtitle: as written
+  const seg = ['Het ', { t: 'toerental', k: 'x#0' }, ' is 1.167 omw/min.'];
+  const [[phrase]] = phrasesOf(seg);
+  assert.equal(phrase, 'Het toerental is 1.167 omw/min.');
+  assert.equal(spokenOf(phrase, 'nl', lex), 'Het [[tˈurəntˌɑl]] is 11honderd 67 [[ˈɔmʋˌɛntəlɪŋən]] per minuut.');
+  const cue = cuesOfLines([[{ start: 0, dur: 3, text: phrase }]])[0];
+  assert.equal(cue.text, 'Het toerental is 1.167 omw/min.');
+  // the subtitle of a Dutch phrase carries the English word of a term (first use);
+  // the voice's phrases skip it, and both are cut into the same phrases
+  // (a short phrase rides with the next one by its spoken words, gloss or not)
+  const glossed = [{ t: 'Smeltbad', en: 'weld pool', k: 'a#1' }, ', zegt hij, is heet. Een ', { t: 'WBZ', en: 'HAZ', k: 'a#2' }, ' volgt.'];
+  assert.deepEqual(phrasesOf(glossed), [['Smeltbad, zegt hij,', 'is heet.'], ['Een WBZ volgt.']]);
+  assert.deepEqual(phrasesOf(glossed, { gloss: true }), [['Smeltbad (weld pool), zegt hij,', 'is heet.'], ['Een WBZ (HAZ) volgt.']]);
+  assert.deepEqual(phrasesOf(seg, { gloss: true }), phrasesOf(seg));
+  // the committed lexicons: phonemes with a main stress, keys in lower case; the
+  // compounds Merijn heard wrong take their stress on the first part
+  for (const lang of ['nl', 'en']) {
+    const l = JSON.parse(fs.readFileSync(`films/_kit/lexicon.${lang}.json`, 'utf8'));
+    for (const [w, ipa] of Object.entries(l)) {
+      assert.equal(w, w.toLowerCase());
+      assert.ok(ipa.includes('ˈ') && !/[[\]]/.test(ipa), `${lang} ${w}: ${ipa}`);
+    }
+  }
+  const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
+  for (const w of ['toerental', 'omwenteling', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
+});
+
+test('render mode shows no caption band: the video subtitles come from its WebVTT track only', () => {
+  const src = fs.readFileSync('films/_kit/player.mjs', 'utf8');
+  assert.ok(src.includes('.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}'));
 });
 
 // ------------------------------------------------------------ the manifest

@@ -1,0 +1,293 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.530
+How does arc welding work?
+
+2
+00:00:03.080 --> 00:00:05.936
+On the welding table lie two steel plates.
+
+3
+00:00:06.486 --> 00:00:08.901
+Arc welding melts their edges together.
+
+4
+00:00:09.451 --> 00:00:12.693
+When the metal sets, they are one piece.
+
+5
+00:00:13.593 --> 00:00:15.683
+The heat comes from electricity.
+
+6
+00:00:16.233 --> 00:00:22.690
+The power source gives only 20 to 35 volts, but 100 to 400 amps.
+
+7
+00:00:23.241 --> 00:00:25.041
+A kettle draws about 10.
+
+8
+00:00:25.941 --> 00:00:31.575
+Between the wire and the steel an arc jumps across: a bright, continuous spark.
+
+9
+00:00:32.124 --> 00:00:33.924
+That is where the metal melts.
+
+10
+00:00:34.824 --> 00:00:39.668
+Rolls pull the wire off a spool, and push it through the hose to the torch,
+
+11
+00:00:39.868 --> 00:00:40.948
+the welding gun.
+
+12
+00:00:41.848 --> 00:00:45.041
+And gas flows from the bottle to the tip of the torch.
+
+13
+00:00:46.241 --> 00:00:47.843
+This is MIG/MAG welding.
+
+14
+00:00:48.393 --> 00:00:53.246
+The wire of 0.8 to 1.2 millimetres is the electrode,
+
+15
+00:00:53.446 --> 00:00:56.465
+and melts too: that is how it fills the groove.
+
+16
+00:00:57.365 --> 00:01:00.546
+Under the arc lies a glowing puddle: the weld pool.
+
+17
+00:01:01.096 --> 00:01:03.940
+Behind the arc it freezes into the weld.
+
+18
+00:01:04.840 --> 00:01:07.731
+Air causes gas bubbles and a brittle weld.
+
+19
+00:01:08.281 --> 00:01:13.914
+So shielding gas flows from the nozzle, usually 12 to 18 litres per minute.
+
+20
+00:01:14.464 --> 00:01:18.403
+In MAG, for steel, argon with some carbon dioxide.
+
+21
+00:01:18.953 --> 00:01:21.777
+In MIG, for aluminium, pure argon.
+
+22
+00:01:22.977 --> 00:01:24.811
+TIG welding works differently.
+
+23
+00:01:25.361 --> 00:01:28.322
+The electrode is tungsten and does not melt.
+
+24
+00:01:28.872 --> 00:01:31.925
+The welder dips a separate rod into the weld pool.
+
+25
+00:01:32.825 --> 00:01:38.505
+Often three to five times slower, but clean and precise: for stainless pipework,
+
+26
+00:01:38.705 --> 00:01:40.470
+thin sheet and aluminium.
+
+27
+00:01:41.670 --> 00:01:44.990
+The arc energy is the heat per millimetre of weld.
+
+28
+00:01:45.540 --> 00:01:51.662
+At 24 volts, 220 amps and 400 millimetres per minute,
+
+29
+00:01:51.862 --> 00:01:55.624
+that is 0.79 kilojoules per millimetre.
+
+30
+00:01:56.524 --> 00:02:01.957
+In MAG you multiply by 0.8: the share that really reaches the workpiece.
+
+31
+00:02:02.507 --> 00:02:10.567
+That gives a heat input of 0.63, inside the 0.5 to 0.9 of the welding procedure.
+
+32
+00:02:11.467 --> 00:02:17.077
+The steel beside the weld got hot and changed: the HAZ, the heat-affected zone.
+
+33
+00:02:17.627 --> 00:02:20.553
+Too much heat makes it wider and often weaker.
+
+34
+00:02:21.103 --> 00:02:24.043
+With too little, the weld does not fuse.
+
+35
+00:02:25.243 --> 00:02:29.597
+The wire feed speed is how many metres of wire go in each minute.
+
+36
+00:02:30.147 --> 00:02:32.272
+More wire draws more current.
+
+37
+00:02:33.172 --> 00:02:37.444
+On a low setting the wire keeps dipping into the pool: the short arc.
+
+38
+00:02:37.994 --> 00:02:40.200
+Little heat, good for thin sheet.
+
+39
+00:02:41.100 --> 00:02:44.318
+On a high setting, with argon-rich gas,
+
+40
+00:02:44.519 --> 00:02:48.513
+a fine stream of droplets flies across: the spray arc.
+
+41
+00:02:49.062 --> 00:02:52.081
+Deep penetration, but only flat or horizontal.
+
+42
+00:02:52.981 --> 00:02:57.788
+The deposition rate is how many kilos of weld metal are added per hour.
+
+43
+00:02:58.338 --> 00:03:04.793
+Wire of 1.2 millimetres at 10 metres per minute: about 5.3 kilos an hour.
+
+44
+00:03:05.993 --> 00:03:08.930
+Behind a welding robot the gas hose kinks.
+
+45
+00:03:09.480 --> 00:03:12.998
+The flow drops from 15 to 5 litres per minute.
+
+46
+00:03:13.898 --> 00:03:16.626
+Within an hour the welds are full of pores.
+
+47
+00:03:17.526 --> 00:03:21.659
+The fix: a sensor stops the robot below 10 litres per minute.
+
+48
+00:03:22.859 --> 00:03:25.541
+A weld must also be right on paper.
+
+49
+00:03:26.091 --> 00:03:28.378
+First comes the pWPS,
+
+50
+00:03:28.578 --> 00:03:31.729
+the preliminary welding procedure specification:
+
+51
+00:03:31.729 --> 00:03:34.093
+the recipe you test on a test piece.
+
+52
+00:03:34.993 --> 00:03:39.828
+Each essential variable, such as material, gas or thickness,
+
+53
+00:03:40.028 --> 00:03:42.002
+has a range of qualification.
+
+54
+00:03:42.552 --> 00:03:45.631
+Step outside it, and you must test again.
+
+55
+00:03:46.531 --> 00:03:52.510
+A test plate of 12 millimetres covers 3 to 24 millimetres: up to twice as thick.
+
+56
+00:03:53.060 --> 00:03:55.428
+So 22 millimetres is covered.
+
+57
+00:03:56.328 --> 00:03:59.614
+Tested at 1.2 kilojoules per millimetre.
+
+58
+00:04:00.164 --> 00:04:05.795
+With impact requirements you may go up to 25 percent higher: up to 1.5.
+
+59
+00:04:06.344 --> 00:04:08.538
+So 1.6 is outside.
+
+60
+00:04:09.438 --> 00:04:14.198
+The welder holds a certificate to ISO 9606-1.
+
+61
+00:04:14.748 --> 00:04:17.828
+The welding coordinator oversees which welder
+
+62
+00:04:17.828 --> 00:04:20.565
+and which procedure belong to each weld.
+
+63
+00:04:21.765 --> 00:04:23.239
+The weld cools down.
+
+64
+00:04:23.789 --> 00:04:29.002
+t8/5 is the time in seconds from 800 to 500 degrees.
+
+65
+00:04:29.902 --> 00:04:34.943
+If it is too short, martensite can form in the HAZ: hard,
+
+66
+00:04:35.143 --> 00:04:37.384
+brittle steel that cracks easily.
+
+67
+00:04:38.284 --> 00:04:41.941
+The carbon equivalent says how readily a steel hardens.
+
+68
+00:04:42.491 --> 00:04:49.495
+A CEV of 0.46 is high, and plate of 40 millimetres draws the heat away fast.
+
+69
+00:04:50.695 --> 00:04:53.609
+So preheat, so the weld cools more slowly.
+
+70
+00:04:54.159 --> 00:04:57.607
+And measure the interpass temperature before every pass.
+
+71
+00:04:58.507 --> 00:05:01.317
+A hydrogen crack can appear days later.
+
+72
+00:05:01.867 --> 00:05:05.431
+Inspection often waits 16 to 48 hours.
+
+73
+00:05:06.331 --> 00:05:11.744
+On stainless steel the heat tint beside the weld must come off, or it rusts there.

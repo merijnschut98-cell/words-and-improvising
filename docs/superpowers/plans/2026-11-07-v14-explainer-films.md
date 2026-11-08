@@ -1300,6 +1300,12 @@ Built on 2026-11-07 for the turning pilot. It overrides the older format rules a
    - the duration, size and scene starts in `src/content/courses/films/manifest.json`.
    - `--stills` writes one frame per beat for review.
 
+**Revision after Merijn watched the pilot (2026-11-08):**
+- The video has no burned-in caption band any more (`?render=1` hides `.fp-cap`; only the poster shows it, for the title). Subtitles come only from the WebVTT track, which the viewer turns on or off.
+- Exact subtitles: each phrase of `say` (a sentence, or its part up to a comma; a phrase under 3 words rides with the next) is recorded as its own Piper clip. The beat's audio and the VTT cues are built from the measured clip lengths, so a cue is exactly the words being spoken, at that moment. A sentence of up to 84 characters (about 2 lines) is one cue; a longer one is cut between its phrases, and only a single phrase over 84 characters is cut at a space, timed by length.
+- Pauses, in one place (`PAUSES` in `films/_kit/timeline.mjs`): 0.2 s after a comma, 0.55 s after a full stop, 0.9 s between beats. Piper adds no silence of its own.
+- Pronunciation lexicon `films/_kit/lexicon.{nl,en}.json`: word → espeak-ng phonemes, passed to Piper as `[[ … ]]` (piper-tts 1.8 reads raw phonemes) in the spoken text only, never in subtitles or "Lees mee". Seeded by `films/_kit/lexicon/seed.py` from the words of the machining, joining, moulding and lines modules plus every film's narration (`films/_kit/lexicon/corpus.mjs`): a Dutch compound whose stress espeak-ng puts on a later part gets its first part's stress and the head's as a secondary one (TOERental, OMwenteling, KLAUWplaat, WISSELplaat, SPAANafvoer), after a hand review that keeps adverbs, adjectives, inseparable verbs and numbers out. Whisper check on single words: toerental, omwenteling, staafaanvoer and snijsnelheid are now recognised; espeak-ng's own reading was not. Re-seed after writing new narration.
+
 **Voices** (compared on the pilot's first scenes: Whisper round trip, pitch spread, accent):
 
 | Language | Voice | Settings | Why |

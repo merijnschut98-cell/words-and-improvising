@@ -293,13 +293,13 @@ const hud = [
 // ---------------------------------------------------------------- the drawing
 const world = [
   g('table', table),
-  g('machine', machine),
+  g('machine', machine, ' data-cue="source"'),
   g('bottle', `<g data-cue="gas">${bottle}</g>`),
   g('ghose', ''),
   g('pipe', pipe),
   g('clampsB', clamp(-60, -1)),
-  g('platesFar', plates.far),
-  g('platesNear', plates.near),
+  g('platesFar', plates.far, ' data-cue="plates"'),
+  g('platesNear', plates.near, ' data-cue="plates"'),
   g('section', ''),
   g('haz', '', ' data-cue="haz"'),
   g('heat', '', ' data-cue="heat"'),
@@ -345,6 +345,17 @@ const spec = {
   title: { nl: 'Van boog tot scheur', en: 'From arc to crack' },
   lessons: [A, WP, WS, MT],
   scenes: [
+    {
+      // v14b: the Basis "how it works" tour of the bench, before the terms
+      id: 's0', lesson: A, level: 1, dur: 30, still: 0.5, title: { nl: 'Hoe booglassen werkt', en: 'How arc welding works' },
+      beats: [
+        { nl: 'Booglassen verbindt twee stalen delen door hun randen samen te smelten.', en: 'Arc welding joins two steel parts by melting their edges together.', cues: ['plates'], still: 0.08 },
+        { nl: 'Het lasapparaat levert de stroom: {n:20} tot {n:35} volt en {n:100} tot {n:400} ampère.', en: 'The power source delivers the current: {n:20} to {n:35} volts and {n:100} to {n:400} amps.', cues: ['source'], still: 0.3 },
+        { nl: 'Tussen de draad en het werkstuk brandt de boog: een doorlopende vonk die het staal smelt.', en: 'Between the wire and the workpiece burns the arc: a continuous spark that melts the steel.', cues: ['torch'], still: 0.55 },
+        { nl: 'Van een haspel gaat de draad door de slang naar de toorts, het laspistool.', en: 'Wire runs from a spool through the hose to the torch, the welding gun.', cues: ['wfs', 'torch'], still: 0.78 },
+        { nl: 'Uit de fles stroomt gas via de slang en de toorts naar de lasplek.', en: 'Gas flows from the bottle, through the hose and the torch, to the weld.', cues: ['gas'], still: 0.95 },
+      ],
+    },
     {
       id: 's1', lesson: A, level: 1, dur: DUR[0], still: 0.85, title: { nl: 'De boog', en: 'The arc' },
       beats: [
@@ -415,11 +426,107 @@ const spec = {
   skip: [],
 };
 
+// ---------------------------------------------------------------- the narration (v14b)
+// What the voice says, per scene and beat: a fuller explanation than the
+// caption on screen, so the film replaces the lesson text. Same markers
+// ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
+// the lessons like the captions'. A term is named while its cue is lit.
+// films/_kit/narrate.mjs turns each line into speech with Piper.
+const SAY = [
+  [ // s0 how arc welding works
+    { nl: 'Hoe werkt booglassen? Op de lastafel liggen twee stalen platen. Booglassen smelt hun randen samen, en als het metaal stolt, zijn ze één stuk.',
+      en: 'How does arc welding work? On the welding table lie two steel plates. Arc welding melts their edges together. When the metal sets, they are one piece.' },
+    { nl: 'De warmte komt van stroom. Het lasapparaat geeft maar {n:20} tot {n:35} volt, maar wel {n:100} tot {n:400} ampère. Een waterkoker trekt er zo’n {n:10}.',
+      en: 'The heat comes from electricity. The power source gives only {n:20} to {n:35} volts, but {n:100} to {n:400} amps. A kettle draws about {n:10}.' },
+    { nl: 'Tussen de draad en het staal springt een boog: een felle, doorlopende vonk. Daar smelt het metaal.',
+      en: 'Between the wire and the steel an arc jumps across: a bright, continuous spark. That is where the metal melts.' },
+    { nl: 'Rollen trekken de draad van een haspel, en duwen hem door de slang naar de toorts, het laspistool.',
+      en: 'Rolls pull the wire off a spool, and push it through the hose to the torch, the welding gun.' },
+    { nl: 'En uit de gasfles stroomt gas naar de punt van de toorts.',
+      en: 'And gas flows from the bottle to the tip of the torch.' },
+  ],
+  [ // s1 the arc
+    { nl: 'Dit is {t:MIG/MAG|MIG/MAG-lassen}. De draad van {n:0.8} tot {n:1.2} millimeter is de elektrode, en smelt zelf mee: zo vult hij de naad.',
+      en: 'This is {t:MIG/MAG|MIG/MAG welding}. The wire of {n:0.8} to {n:1.2} millimetres is the electrode, and melts too: that is how it fills the groove.' },
+    { nl: 'Onder de boog ligt een gloeiend plasje: het {t:Smeltbad|smeltbad}. Achter de boog stolt het tot de las.',
+      en: 'Under the arc lies a glowing puddle: the {t:Weld pool|weld pool}. Behind the arc it freezes into the weld.' },
+    { nl: 'Lucht geeft gasbelletjes en een brosse las. Daarom stroomt er {t:Beschermgas|beschermgas} uit het mondstuk, meestal {n:12} tot {n:18} liter per minuut. Bij MAG, voor staal, argon met wat kooldioxide. Bij MIG, voor aluminium, zuiver argon.',
+      en: 'Air causes gas bubbles and a brittle weld. So {t:Shielding gas|shielding gas} flows from the nozzle, usually {n:12} to {n:18} litres per minute. In MAG, for steel, argon with some carbon dioxide. In MIG, for aluminium, pure argon.' },
+  ],
+  [ // s2 TIG
+    { nl: '{t:TIG|TIG-lassen} werkt anders. De elektrode is van wolfraam en smelt niet. De lasser dipt een losse staaf in het smeltbad.',
+      en: '{t:TIG|TIG welding} works differently. The electrode is tungsten and does not melt. The welder dips a separate rod into the weld pool.' },
+    { nl: 'Vaak drie tot vijf keer langzamer, maar schoon en precies: voor roestvaste leidingen, dunne plaat en aluminium.',
+      en: 'Often three to five times slower, but clean and precise: for stainless pipework, thin sheet and aluminium.' },
+  ],
+  [ // s3 heat per millimetre
+    { nl: 'De {t:Booglasenergie|booglasenergie} is de warmte per millimeter las. Bij {n:24} volt, {n:220} ampère en {n:400} millimeter per minuut is dat {n:0.79} kilojoule per millimeter.',
+      en: 'The {t:Arc energy|arc energy} is the heat per millimetre of weld. At {n:24} volts, {n:220} amps and {n:400} millimetres per minute, that is {n:0.79} kilojoules per millimetre.' },
+    { nl: 'Bij MAG reken je maal {n:0.8}: het deel dat echt in het werkstuk komt. Dat geeft een {t:Warmte-inbreng|warmte-inbreng} van {n:0.63}, binnen de {n:0.5} tot {n:0.9} van de lasmethode.',
+      en: 'In MAG you multiply by {n:0.8}: the share that really reaches the workpiece. That gives a {t:Heat input|heat input} of {n:0.63}, inside the {n:0.5} to {n:0.9} of the welding procedure.' },
+    { nl: 'Het staal naast de las werd heet en veranderde: de {t:WBZ|WBZ}, de warmtebeïnvloede zone. Te veel warmte maakt die breder en vaak zwakker. Bij te weinig smelt de las niet in.',
+      en: 'The steel beside the weld got hot and changed: the {t:HAZ|HAZ}, the heat-affected zone. Too much heat makes it wider and often weaker. With too little, the weld does not fuse.' },
+  ],
+  [ // s4 wire and droplets
+    { nl: 'De {t:Draadsnelheid|draadsnelheid} is hoeveel meter draad er per minuut in gaat. Meer draad trekt meer stroom.',
+      en: 'The {t:Wire feed speed|wire feed speed} is how many metres of wire go in each minute. More wire draws more current.' },
+    { nl: 'Op een lage stand tikt de draad steeds in het smeltbad: de {t:Kortsluitboog|kortsluitboog}. Weinig warmte, goed voor dunne plaat.',
+      en: 'On a low setting the wire keeps dipping into the pool: the {t:Short arc|short arc}. Little heat, good for thin sheet.' },
+    { nl: 'Op een hoge stand, met argonrijk gas, vliegt er een fijne straal druppels over: de {t:Sproeiboog|sproeiboog}. Diepe inbranding, maar alleen vlak of horizontaal.',
+      en: 'On a high setting, with argon-rich gas, a fine stream of droplets flies across: the {t:Spray arc|spray arc}. Deep penetration, but only flat or horizontal.' },
+    { nl: 'De {t:Neersmeltsnelheid|neersmeltsnelheid} is hoeveel kilo lasmetaal er per uur bijkomt. Draad van {n:1.2} millimeter op {n:10} meter per minuut: zo’n {n:5.3} kilo per uur.',
+      en: 'The {t:Deposition rate|deposition rate} is how many kilos of weld metal are added per hour. Wire of {n:1.2} millimetres at {n:10} metres per minute: about {n:5.3} kilos an hour.' },
+  ],
+  [ // s5 too little gas
+    { nl: 'Achter een lasrobot knikt de gasslang. Het debiet zakt van {n:15} naar {n:5} liter per minuut.',
+      en: 'Behind a welding robot the gas hose kinks. The flow drops from {n:15} to {n:5} litres per minute.' },
+    { nl: 'Binnen een uur zitten de lassen vol poriën.',
+      en: 'Within an hour the welds are full of pores.' },
+    { nl: 'De oplossing: een sensor stopt de robot onder de {n:10} liter per minuut.',
+      en: 'The fix: a sensor stops the robot below {n:10} litres per minute.' },
+  ],
+  [ // s6 welding on paper
+    { nl: 'Een las moet ook op papier kloppen. Eerst komt de {t:pLMB|pLMB}, de voorlopige lasmethodebeschrijving: het recept dat je op een proefstuk test.',
+      en: 'A weld must also be right on paper. First comes the {t:pWPS|pWPS}, the preliminary welding procedure specification: the recipe you test on a test piece.' },
+    { nl: 'Elke {t:Essentiële variabele|essentiële variabele}, zoals materiaal, gas of dikte, heeft een {t:Geldigheidsgebied|geldigheidsgebied}. Ga je erbuiten, dan moet je opnieuw testen.',
+      en: 'Each {t:Essential variable|essential variable}, such as material, gas or thickness, has a {t:Range of qualification|range of qualification}. Step outside it, and you must test again.' },
+    { nl: 'Een proefplaat van {n:12} millimeter dekt {n:3} tot {n:24} millimeter: tot twee keer zo dik. {n:22} millimeter is dus gedekt.',
+      en: 'A test plate of {n:12} millimetres covers {n:3} to {n:24} millimetres: up to twice as thick. So {n:22} millimetres is covered.' },
+    { nl: 'Getest op {n:1.2} kilojoule per millimeter. Met kerfslageisen mag je tot {n:25} procent hoger: tot {n:1.5}. Dus {n:1.6} valt erbuiten.',
+      en: 'Tested at {n:1.2} kilojoules per millimetre. With impact requirements you may go up to {n:25} percent higher: up to {n:1.5}. So {n:1.6} is outside.' },
+    { nl: 'De lasser heeft een certificaat volgens {t:ISO 9606-1|ISO 9606-1}. De {t:Lascoördinator|lascoördinator} bewaakt welke lasser en welke lasmethode bij elke las horen.',
+      en: 'The welder holds a certificate to {t:ISO 9606-1|ISO 9606-1}. The {t:Welding coordinator|welding coordinator} oversees which welder and which procedure belong to each weld.' },
+  ],
+  [ // s7 cooling fast
+    { nl: 'De las koelt af. {t:t8/5|t8/5} is de tijd in seconden van {n:800} naar {n:500} graden.',
+      en: 'The weld cools down. {t:t8/5|t8/5} is the time in seconds from {n:800} to {n:500} degrees.' },
+    { nl: 'Is die te kort, dan kan in de WBZ {t:Martensiet|martensiet} ontstaan: hard en bros staal dat makkelijk scheurt.',
+      en: 'If it is too short, {t:Martensite|martensite} can form in the HAZ: hard, brittle steel that cracks easily.' },
+    { nl: 'Het {t:Koolstofequivalent|koolstofequivalent} zegt hoe snel een staal hard wordt. Een CEV van {n:0.46} is hoog, en plaat van {n:40} millimeter trekt de warmte snel weg.',
+      en: 'The {t:Carbon equivalent|carbon equivalent} says how readily a steel hardens. A CEV of {n:0.46} is high, and plate of {n:40} millimetres draws the heat away fast.' },
+  ],
+  [ // s8 preheat and wait
+    { nl: 'Dus voorwarmen, zodat de las trager afkoelt. En voor elke laag de {t:Tussenlaagtemperatuur|tussenlaagtemperatuur} meten.',
+      en: 'So preheat, so the weld cools more slowly. And measure the {t:Interpass temperature|interpass temperature} before every pass.' },
+    { nl: 'Een waterstofscheur kan dagen later komen. De controle wacht vaak {n:16} tot {n:48} uur.',
+      en: 'A hydrogen crack can appear days later. Inspection often waits {n:16} to {n:48} hours.' },
+    { nl: 'Bij roestvast staal moeten de {t:Aanloopkleuren|aanloopkleuren} naast de las eraf, anders roest het daar.',
+      en: 'On stainless steel the {t:Heat tint|heat tint} beside the weld must come off, or it rusts there.' },
+  ],
+];
+spec.scenes.forEach((s, si) => {
+  if (!SAY[si] || SAY[si].length !== s.beats.length) throw new Error(`narration: scene ${si + 1} needs ${s.beats.length} lines`);
+  s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
+});
+
 // ---------------------------------------------------------------- page script and styles
 const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
 const latheScript = `const G = (() => {${latheSource}\nreturn { viewOf, scaleOf, frameOf, frameAlong, pointOf, radialOf, tangentOf, solidOf, prismOf, lathe, disc, dotsOf, arcOf, circleOf, dot3, add3, sub3, mul3 };})();\n`;
+// v14b: the intro's framings, one per beat: the whole bench, the power source,
+// the torch at the start of the weld, the wire's way from spool to torch, the gas bottle
+C.INTRO = [cam([-14, -40, 44], 560), cam([-117, -123, 40], 270), cam([XE - 6, 0, 34], 250), cam([-30, -70, 60], 470), cam([-48, -138, 80], 300)];
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\n`;
-const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, 'stage.js'), 'utf8');
+const stageScript = kitScript() + '\n' + latheScript + preamble + readFileSync(join(HERE, '../_kit/audio-warp.js'), 'utf8') + '\n' + readFileSync(join(HERE, 'stage.js'), 'utf8');
 
 const css = `
 :root{--fp-hot:#FFF4DC}

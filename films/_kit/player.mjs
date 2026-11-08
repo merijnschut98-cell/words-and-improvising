@@ -119,11 +119,12 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 @keyframes fp-breathe{0%,100%{filter:none}50%{filter:drop-shadow(0 0 2.5px var(--fp-glow))}}
 .fp[data-motion="reduce"] [data-cue][data-on]{animation:none}
 @media (prefers-reduced-motion:reduce){[data-cue][data-on]{animation:none}}
-/* render mode (?render=1): the page is one 16:9 video frame; stage on top, the caption band under it, big enough for a phone */
+/* render mode (?render=1): the page is one 16:9 video frame, the stage only. No caption band: the video's subtitles come from its WebVTT track alone (the poster shows the band once, for the title) */
 html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
 .fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
 .fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
 .fp[data-render="1"] .fp-cap{flex:0 0 auto;height:calc(3 * 1.25em + 24px);min-height:0;margin:0;padding:12px 48px;font-size:clamp(16px,6.1vh,44px);line-height:1.25;text-align:center;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--fp-hair)}
+.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}
 .fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
 .fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
 .fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
