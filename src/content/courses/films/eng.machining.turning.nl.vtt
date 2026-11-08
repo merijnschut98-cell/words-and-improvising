@@ -1,225 +1,261 @@
 WEBVTT
 
 1
-00:00:00.800 --> 00:00:03.795
-Dit is een CNC-draaibank van dichtbij.
+00:00:00.800 --> 00:00:03.586
+Een CNC-draaibank van dichtbij.
 
 2
-00:00:04.345 --> 00:00:09.735
-De klauwplaat laat een stalen as ronddraaien, en de beitel staat stil.
+00:00:04.136 --> 00:00:09.479
+De klauwplaat laat een stalen as draaien, de beitel staat stil.
 
 3
-00:00:10.285 --> 00:00:13.954
-Hij snijdt met een kleine wisselplaat van heel hard hardmetaal.
+00:00:10.030 --> 00:00:13.571
+Hij snijdt met een kleine wisselplaat (carbide insert) van heel hard hardmetaal.
 
 4
-00:00:14.854 --> 00:00:19.359
-De snijsnelheid is hoe snel het materiaal langs de snijkant schuift,
+00:00:14.471 --> 00:00:18.871
+De snijsnelheid (cutting speed) is hoe snel het materiaal langs de snijkant schuift,
 
 5
-00:00:19.559 --> 00:00:21.637
+00:00:19.071 --> 00:00:20.963
 in meter per minuut.
 
 6
-00:00:22.187 --> 00:00:26.912
+00:00:21.514 --> 00:00:26.019
 Hardmetaal in staal draait zo’n 150 tot 300 meter per minuut.
 
 7
-00:00:28.112 --> 00:00:31.444
+00:00:27.219 --> 00:00:30.272
 Maar de spil draait in omwentelingen per minuut.
 
 8
-00:00:31.994 --> 00:00:34.838
-Dat toerental volgt uit de diameter.
+00:00:30.822 --> 00:00:34.177
+Dat toerental (spindle speed) hangt af van de diameter.
 
 9
-00:00:35.389 --> 00:00:39.402
-Bij een as van 60 millimeter en 220 meter per
+00:00:34.728 --> 00:00:40.707
+Een as van 60 millimeter heeft een omtrek van zo’n 188,5 millimeter.
 
 10
-00:00:39.402 --> 00:00:43.237
-minuut is één omtrek zo’n 188,5 millimeter,
+00:00:41.257 --> 00:00:47.097
+Bij 220 meter per minuut draait de spil dus 1.167 toeren.
 
 11
-00:00:43.437 --> 00:00:47.036
-dus draait de spil 1.167 toeren.
+00:00:47.997 --> 00:00:53.097
+Hoe dunner de as, hoe sneller de spil draait voor dezelfde snijsnelheid.
 
 12
-00:00:47.936 --> 00:00:53.685
-Wordt de as dunner, dan moet de spil sneller draaien voor dezelfde snijsnelheid.
+00:00:53.646 --> 00:00:57.466
+Daarom toert een draaibank op als de beitel naar het midden gaat,
 
 13
-00:00:54.236 --> 00:00:58.590
-Daarom hoor je een draaibank optoeren als de beitel naar het midden gaat.
+00:00:57.666 --> 00:00:59.942
+tot een ingesteld maximum.
 
 14
-00:00:59.790 --> 00:01:04.285
+00:01:01.142 --> 00:01:05.557
 Terwijl de as draait, schuift de beitel erlangs.
 
 15
-00:01:04.836 --> 00:01:10.211
-De voeding is hoe ver hij per omwenteling opschuift: hier 0,3 millimeter.
+00:01:06.106 --> 00:01:11.609
+De voeding (feed) is hoe ver hij per omwenteling opschuift: hier 0,3 millimeter.
 
 16
-00:01:11.111 --> 00:01:16.614
-De snedediepte is hoe diep de beitel erin gaat: je ziet hem als de stap in de as.
+00:01:12.509 --> 00:01:17.118
+De snedediepte (depth of cut) is hoe diep de beitel erin gaat: de stap in de as.
 
 17
-00:01:17.514 --> 00:01:21.576
-Voeding maal toerental geeft de voedingssnelheid:
+00:01:18.018 --> 00:01:23.324
+Voeding maal toerental is de voedingssnelheid: 0,3 maal 1.167,
 
 18
-00:01:21.576 --> 00:01:25.223
-0,3 maal 1.167 is 350 millimeter per minuut.
+00:01:23.524 --> 00:01:26.589
+dus 350 millimeter per minuut.
 
 19
-00:01:25.773 --> 00:01:30.487
+00:01:27.139 --> 00:01:31.690
 Een snede van 200 millimeter duurt dan 34 seconden.
 
 20
-00:01:31.687 --> 00:01:34.102
+00:01:32.890 --> 00:01:35.270
 Waarom niet gewoon sneller snijden?
 
 21
-00:01:34.652 --> 00:01:38.147
+00:01:35.820 --> 00:01:39.280
 Dan wordt de snijkant heter en slijt hij sneller.
 
 22
-00:01:38.696 --> 00:01:41.239
-Hoe lang hij meegaat heet de standtijd.
+00:01:39.830 --> 00:01:42.291
+Hoe lang hij meegaat heet de standtijd (tool life).
 
 23
-00:01:41.789 --> 00:01:46.491
+00:01:42.841 --> 00:01:47.392
 Vuistregel bij hardmetaal: 20 procent sneller halveert hem ruwweg.
 
 24
-00:01:47.391 --> 00:01:51.454
-Daarom geven engineers bij het voordraaien eerst meer voeding.
+00:01:48.292 --> 00:01:53.450
+Meer voeding kost minder standtijd, maar maakt het oppervlak ruwer.
 
 25
-00:01:52.004 --> 00:01:59.983
-Met 0,4 wordt het 467 millimeter per minuut, en duurt de snede 26 seconden.
+00:01:53.999 --> 00:01:57.366
+Daarom verhoog je bij het voordraaien eerst de voeding.
 
 26
-00:02:01.183 --> 00:02:03.099
-Kijk nu van heel dichtbij.
+00:01:57.916 --> 00:02:05.953
+Met 0,4 wordt het 467 millimeter per minuut, en duurt de snede 26 seconden.
 
 27
-00:02:03.649 --> 00:02:07.956
-De punt van de wisselplaat is afgerond: dat is de hoekradius,
+00:02:07.153 --> 00:02:11.402
+De punt van de wisselplaat is afgerond: dat is de hoekradius (nose radius),
 
 28
-00:02:08.156 --> 00:02:12.684
+00:02:11.602 --> 00:02:16.223
 meestal 0,4, 0,8 of 1,2 millimeter.
 
 29
-00:02:13.234 --> 00:02:15.811
+00:02:16.773 --> 00:02:19.397
 Hij laat een fijne schroeflijn achter.
 
 30
-00:02:16.711 --> 00:02:20.031
+00:02:20.297 --> 00:02:23.525
 De afstand tussen de groefjes is de voeding.
 
 31
-00:02:20.581 --> 00:02:23.565
+00:02:24.075 --> 00:02:27.047
 Een grotere radius maakt ze ondieper.
 
 32
-00:02:24.115 --> 00:02:27.726
+00:02:27.597 --> 00:02:31.138
 En de voeding telt in het kwadraat: halveer je hem,
 
 33
-00:02:27.926 --> 00:02:30.759
+00:02:31.338 --> 00:02:34.148
 dan wordt de ruwheid Ra een kwart.
 
 34
-00:02:31.659 --> 00:02:38.625
+00:02:35.048 --> 00:02:42.200
 Met voeding 0,25 en radius 0,8 wordt Ra theoretisch 2,4 micrometer.
 
 35
-00:02:39.175 --> 00:02:43.726
+00:02:42.750 --> 00:02:47.382
 Bij voeding 0,14 zakt Ra naar 0,77.
 
 36
-00:02:44.926 --> 00:02:47.805
-Het metaal dat eraf komt is de spaan.
+00:02:47.932 --> 00:02:52.266
+In de praktijk meet je vaak hoger, tot zo’n twee keer.
 
 37
-00:02:48.355 --> 00:02:51.687
-De spaanbreker, een vormpje op de wisselplaat,
+00:02:53.466 --> 00:02:56.206
+Het metaal dat eraf komt is de spaan.
 
 38
-00:02:51.887 --> 00:02:57.718
-krult hem om tot hij breekt: korte krulletjes, als een 6 of een 9.
+00:02:56.756 --> 00:03:00.042
+De spaanbreker (chip breaker), een vormpje op de wisselplaat,
 
 39
-00:02:58.618 --> 00:03:01.804
-Met te weinig voeding of snedediepte werkt hij niet:
+00:03:00.242 --> 00:03:06.072
+krult hem om tot hij breekt: korte krulletjes, als een 6 of een 9.
 
 40
-00:03:01.804 --> 00:03:05.236
-dan krijg je lange slierten die om het werkstuk draaien.
+00:03:06.972 --> 00:03:10.606
+Met te weinig voeding of snedediepte werkt hij niet.
 
 41
-00:03:06.436 --> 00:03:09.687
-Een lange, dunne as buigt weg onder de beitel.
+00:03:11.156 --> 00:03:14.720
+Dan krijg je lange slierten die om het werkstuk draaien.
 
 42
-00:03:10.237 --> 00:03:14.939
-Wat telt is de slankheid: de uitsteeklengte gedeeld door de diameter.
+00:03:15.920 --> 00:03:19.275
+Een lange, dunne as buigt weg onder de beitel.
 
 43
-00:03:15.489 --> 00:03:20.040
-Hier 160 gedeeld door 20: 8 keer de diameter.
+00:03:19.825 --> 00:03:21.802
+Wat telt is de slankheid (slenderness):
 
 44
-00:03:20.940 --> 00:03:23.053
-Zo’n as gaat trillen.
+00:03:21.802 --> 00:03:24.539
+de uitsteeklengte (overhang) gedeeld door de diameter.
 
 45
-00:03:23.603 --> 00:03:28.944
-Boven zo’n 3 keer de diameter steunt de losse kop het vrije eind met een center.
+00:03:25.089 --> 00:03:29.582
+Hier 160 gedeeld door 20: 8 keer de diameter.
 
 46
-00:03:29.844 --> 00:03:35.753
-Boven zo’n 6 keer de diameter komt er een bril bij: een steun met rollen halverwege.
+00:03:30.482 --> 00:03:32.653
+Zo’n as gaat trillen.
 
 47
-00:03:36.303 --> 00:03:39.136
-Deze as heeft ze dus allebei nodig.
+00:03:33.203 --> 00:03:36.822
+Boven zo’n 3 keer de diameter steunt de losse kop (tailstock)
 
 48
-00:03:40.336 --> 00:03:45.189
-Tot slot het draaifreescentrum: een draaibank die ook freest en boort.
+00:03:36.822 --> 00:03:38.602
+het vrije eind met een center.
 
 49
-00:03:45.739 --> 00:03:51.602
-De revolver draagt aangedreven gereedschap: frezen en boren met een eigen motortje.
+00:03:39.502 --> 00:03:43.563
+Boven zo’n 6 keer de diameter komt er een bril (steady rest) bij:
 
 50
-00:03:52.502 --> 00:03:58.377
-De C-as zet de spil op een gestuurde hoek stil: zo boor je zes gaten op 60 graden.
+00:03:43.563 --> 00:03:45.562
+een steun met rollen halverwege.
 
 51
-00:03:58.927 --> 00:04:04.188
-De Y-as schuift het gereedschap uit het hart, voor een recht vlak.
+00:03:46.112 --> 00:03:48.991
+Deze as heeft ze dus allebei nodig.
 
 52
-00:04:05.088 --> 00:04:10.478
-Het deel valt er klaar af: compleetbewerking, in één opspanning.
+00:03:50.191 --> 00:03:52.981
+Tot slot het draaifreescentrum (turn-mill centre):
 
 53
-00:04:11.028 --> 00:04:15.672
-Een flens die eerst 4,0 plus 3,0 minuten op twee machines kostte,
+00:03:52.981 --> 00:03:55.102
+een draaibank die ook freest en boort.
 
 54
-00:04:15.872 --> 00:04:18.403
-is hier in 6,0 minuten klaar.
+00:03:55.652 --> 00:03:59.171
+De revolver draagt aangedreven gereedschap (driven tools):
 
 55
-00:04:19.303 --> 00:04:24.237
-En een staafaanvoer duwt een staaf van zo’n 3 meter steeds een stukje verder.
+00:03:59.171 --> 00:04:01.538
+frezen en boren met een eigen motortje.
 
 56
-00:04:24.787 --> 00:04:27.898
+00:04:02.438 --> 00:04:06.014
+De C-as (C-axis) zet de spil op een gestuurde hoek stil:
+
+57
+00:04:06.014 --> 00:04:08.185
+zo boor je zes gaten op 60 graden.
+
+58
+00:04:08.735 --> 00:04:14.009
+De Y-as (Y-axis) schuift het gereedschap uit het hart, voor een recht vlak.
+
+59
+00:04:14.909 --> 00:04:18.171
+Het deel valt er klaar af: compleetbewerking (complete machining),
+
+60
+00:04:18.371 --> 00:04:20.298
+in één opspanning.
+
+61
+00:04:20.849 --> 00:04:25.226
+Een flens die eerst 4,0 plus 3,0 minuten op twee machines kostte,
+
+62
+00:04:25.426 --> 00:04:27.829
+is hier in 6,0 minuten klaar.
+
+63
+00:04:28.729 --> 00:04:30.528
+En een staafaanvoer (bar feeder)
+
+64
+00:04:30.528 --> 00:04:33.733
+duwt een staaf van zo’n 3 meter steeds een stukje verder.
+
+65
+00:04:34.283 --> 00:04:37.383
 Zo draait hij na de laatste ploeg onbemand door.
