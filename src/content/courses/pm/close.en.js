@@ -90,7 +90,7 @@ export default {
       pre: [
         {
           q: 'You plot the weekly scrap rate, the share of production that is thrown away, over time and draw a centre line through it. Why do many improvement people use the median for that line rather than the mean?',
-          options: ['The median is always lower, so the result looks better', 'One extreme week hardly moves the median, and half the points lie above it', 'The mean may only be used in large plants', 'The median does not need recalculating when new data arrives'],
+          options: ['The median is always lower than the mean, so the result looks better', 'One extreme week hardly moves the median, and half the points lie above it', 'The mean is only allowed in large plants that collect data every hour', 'The median never needs recalculating when new weekly data comes in'],
           answer: 'One extreme week hardly moves the median, and half the points lie above it',
           why: 'The median is the middle value: half lie above, half below. That is why the counting rules of a run chart use it, and why one outlier barely shifts it.',
         },
@@ -99,7 +99,7 @@ export default {
         'A run chart is the simplest chart for showing a result: weekly values in time order, with one horizontal line through them. That line is the median: the middle value when you sort the values from low to high. With an even number of values, take the mean of the two middle ones.\n\nDraw the median of the baseline and extend it into the weeks after the change. Then you see whether the new points sit differently from before.',
         'You do not look at one point but at patterns that rarely happen by chance. Perla, Provost and Murray described a set of rules in 2011 that is widely used in healthcare and works in factories too.\n\nThe most important is the shift: six or more points in a row on the same side of the median. Points exactly on the median are skipped; they neither count nor break the run.',
         'The second rule is the trend: five or more points in a row that all rise or all fall. Two equal values in a row count as one.\n\nThe third is the astronomical point: a point so clearly different that everyone looking at the chart agrees. Look for its cause, such as a breakdown or a counting error. There is also a rule about too few or too many crossings of the median; you usually leave that to software.',
-        'What experts argue about. The thresholds are conventions, not laws of nature: some sources use eight points for a shift on long series, or six for a trend. It is also often said that the rules only work after about ten points.\n\nStatisticians with a control chart, a chart with calculated limits, find the run chart crude. For closing a project it is usually enough: everyone understands it in a minute.',
+        'What experts argue about. The thresholds are conventions, not laws of nature: some sources use eight points for a shift on long series, or six for a trend. It is also often said that the rules only work after about ten points.\n\nStatisticians who prefer a control chart, a chart with calculated limits, find the run chart crude. For closing a project it is usually enough: everyone understands it in a minute.',
         'Typical mistakes: presenting one good week as proof; changing the definition halfway, so before and after can no longer be compared; or starting the y-axis at 4% so a small drop looks dramatic.\n\nWhen you show the chart in the closing presentation, say which rule you see: “Since week 13, all nine points are below the old median.” A sharp question to ask yourself: “Would I see this pattern if nothing had changed?”',
       ],
       example: {
@@ -118,7 +118,7 @@ export default {
         },
         {
           q: 'When do you call it a shift on a run chart?',
-          options: ['When the last point is the lowest ever', 'When the mean after the change is lower than before', 'When six or more points in a row lie on the same side of the median', 'When three points in a row fall'],
+          options: ['When the last point is the lowest since the start of the baseline', 'When the mean after the change is lower than the mean before it', 'When six or more points in a row lie on the same side of the median', 'When three points in a row fall, each lower than the one before'],
           answer: 'When six or more points in a row lie on the same side of the median',
           why: 'Such a run rarely happens by chance; one low point or a lower mean can just be noise.',
         },
@@ -129,14 +129,14 @@ export default {
           why: 'Points on the median are skipped. That leaves seven points in a row below the median, more than six.',
         },
         {
-          q: 'Three months after closing, downtime rises a little five weeks in a row, but every point is still below the old median. What do you do?',
-          options: ['Nothing, all points are still below the median', 'Treat it as a signal and ask the owner what has changed', 'Wait until downtime goes above the median', 'Recalculate the median including the new points'],
+          q: 'Three months after closing, five weekly downtime points in a row are each a little higher than the one before, but every point is still below the old median. What do you do?',
+          options: ['Nothing, because all points are still below the old median', 'Treat it as a signal and ask the owner what has changed', 'Wait until downtime goes above the median before acting', 'Recalculate the median with the new points included'],
           answer: 'Treat it as a signal and ask the owner what has changed',
           why: 'Five points in a row rising is a trend, even below the median. You ask the owner in the line organisation; you do not fix it yourself.',
         },
       ],
       situation: {
-        scene: 'You are at a plastics processor. The production manager wants to tell the steering group, the meeting where the sponsor and managers take decisions, that scrap has been “halved”. He shows one bar: the best week after the change, 3.1%, next to the baseline mean, 6.3%.',
+        scene: 'You are at a plastics processor. The production manager wants to tell the steering group, the meeting where the sponsor and managers take decisions, that scrap is down “by a third”. He shows one bar: the best week after the change, 4.2%, next to the baseline mean, 6.3%.',
         ask: 'What do you suggest?',
         model: '“The result is real, so let’s show it in a way nobody can argue away. I’d show the run chart with every week: seven in a row below the old median, median now 4.9%. That is a drop of about a fifth, and it is holding. The best week on its own can be dismissed as luck.”',
         rubric: [
@@ -146,10 +146,10 @@ export default {
         ],
         pushback: {
           lines: [
-            '“Halved sounds much better than a fifth. The director only remembers the number.”',
+            '“A third sounds much better than a fifth. The director only remembers the number.”',
             '“Nobody in the steering group understands a chart full of dots.”',
           ],
-          model: '“True, halved sounds better, until the controller asks which week that was. A fifth that holds for seven weeks is stronger. I’ll keep the chart simple: one line for before, today’s points below it, and one sentence. Shall I show it to you tomorrow?”',
+          model: '“True, a third sounds better, until the controller asks which week that was. A fifth that holds for seven weeks is stronger. I’ll keep the chart simple: one line for before, today’s points below it, and one sentence. Shall I show it to you tomorrow?”',
           rubric: [
             'Acknowledges the wish for a big number',
             'Holds on to an honest, defensible claim',
@@ -257,17 +257,17 @@ export default {
       title: 'A claim that holds',
       pre: [
         {
-          q: 'Thanks to your project there is 200,000 euro less stock in the warehouse. The sponsor wants “200,000 euro savings per year” in the closing report. What is most honest?',
-          options: ['Correct, because the stock would otherwise have been bought again every year', 'It is 400,000 euro, because the lower stock level stays for at least two years', 'It does not count, because stock is not money', 'It is 200,000 euro of cash freed once; per year you only save the cost of holding that stock'],
-          answer: 'It is 200,000 euro of cash freed once; per year you only save the cost of holding that stock',
-          why: 'Less stock frees cash once. Only the holding costs come back every year: interest, space, obsolescence.',
+          q: 'The new daily review brings 10,000 euro a month in extra output and costs 3,000 euro a month in people’s time. What do you put in the closing report as the yearly benefit?',
+          options: ['120,000 euro gross, because the review time is time people spend anyway', '36,000 euro, because only the cost of the review is really certain', '156,000 euro, because the review also prevents costs elsewhere in the plant', '84,000 euro net, with the gross calculation of 120,000 euro alongside'],
+          answer: '84,000 euro net, with the gross calculation of 120,000 euro alongside',
+          why: 'Net is 10,000 − 3,000 = 7,000 euro a month, 84,000 a year. Review time is real time from real people; with the gross sum alongside, the controller can check it.',
         },
       ],
       teach: [
         'At the end everyone wants one number: what does it bring per year? That is called annualising: turning an effect from a few weeks into a year. Use the median of all weeks after the change, not the best weeks.\n\nCorrect for season: ten weeks in a quiet summer say little about a busy autumn. And count the weeks the plant actually runs, not 52.',
-        'Separate one-off from recurring. A one-off effect, such as less stock or a machine you no longer need to buy, counts once. Less overtime or more output sold comes back every year.\n\nNever add them into one annual figure. Put them separately in your closing report, each on its own line.',
-        'Count net. The net benefit is the gross benefit minus what the new way of working costs on an ongoing basis: the daily fifteen-minute review with five people, an extra sensor, licences.\n\nThen the payback period: project cost divided by net benefit per month. Most managers find under a year convincing, but every company has its own norm.',
-        'Give a range, not a falsely precise number: “between 80,000 and 110,000 euro a year, probably around 100,000”, with the assumptions alongside. Think of ramp-up too: in the first year you often do not get the full effect.\n\nWhether the money really comes in after closing, and how controllers separate hard from soft savings, is covered in the Land module. Here it is about the number you state at the closing moment itself.',
+        'Separate one-off from recurring. That is the controller’s first question, covered in the Land module (Hard and soft savings): less stock frees cash once, less overtime comes back every year. A one-off effect counts once.\n\nAt the closing moment this means: never add the two into one annual figure. Put them separately in your closing report, each on its own line.',
+        'Count net. The net benefit is the gross benefit minus what the new way of working costs on an ongoing basis: the daily fifteen-minute review with five people, an extra sensor, licences.\n\nThen the payback period, which you met in the Intake module: project cost divided by net benefit per month. At the close you recalculate it with measured numbers instead of the estimate. On a small improvement project many managers hope for under a year; every company has its own norm.',
+        'Give a range, not a falsely precise number: “between 80,000 and 110,000 euro a year, probably around 100,000”, with the assumptions alongside. Think of ramp-up too: in the first year you often do not get the full effect.\n\nWhether the money really comes in after closing, and who keeps measuring, is covered in the Land module (Benefits). Here it is about the number you state at the closing moment itself.',
         'What experts argue about: report gross or net? Consultancies like to quote gross; controllers want net. Choose net and show the gross calculation.\n\nTypical mistake: taking ten weeks of effect times 52, forgetting the running costs, and adding the one-off stock cash on top. Then the number collapses at the first question. A sharp question to ask yourself: “Which assumption halves this number if it is wrong?”',
       ],
       example: {
@@ -425,15 +425,15 @@ export default {
       pre: [
         {
           q: 'For your analysis you recorded per operator, by name, how often he reported a breakdown. The project is finished. What do you do with that data?',
-          options: ['Delete it or make it anonymous, and keep only the totals', 'Keep it on your laptop for a future project', 'Send it to the plant manager for appraisal talks', 'Keep it as long as there is room on the drive'],
+          options: ['Delete it or make it anonymous, and keep only the totals', 'Keep it on your laptop, in case a future project needs it', 'Send it to the plant manager for the appraisal talks', 'Keep it as long as there is room left on the shared drive'],
           answer: 'Delete it or make it anonymous, and keep only the totals',
           why: 'Personal data may not be kept longer than needed for the purpose it was collected for. Totals without names you can archive.',
         },
       ],
       teach: [
-        'After sign-off the project is not yet closed. Administrative work follows that easily gets left. PMBOK, the handbook of the American PMI, calls this “Close Project or Phase”; in PRINCE2 the process is Closing a Project.\n\nWork with a close-out checklist: a fixed list of what must be closed, each item with an owner and a date. It usually takes a few hours, spread over two weeks.',
+        'After sign-off the project is not yet closed. Administrative work follows that easily gets left. PMBOK, the guide of the American Project Management Institute (PMI), calls this “Close Project or Phase”; in PRINCE2 the process is Closing a Project.\n\nWork with a close-out checklist: a fixed list of what must be closed, each item with an owner and a date. It usually takes a few hours, spread over two weeks.',
         'Money and hours first. Close the time code, the number people book their project hours on, so nobody books on it after closing. Close open purchase orders.\n\nSend the final invoice: the last part of the agreed amount, plus the changes the sponsor approved in writing, and nothing he never saw. Tell team members and their managers the end date, so they can be fully planned again.',
-        'Then the project archive: one place, at the client, with the project charter, the acceptance criteria, the sign-off, the definitions of the measures, the raw data and the closing report. Not on your laptop: nobody will find anything there in a year.\n\nMind the retention period. In the Netherlands, financial records such as invoices must be kept for seven years for tax purposes (article 52 of the Dutch General Tax Act).',
+        'Then the project archive: one place, at the client, with the project charter, the acceptance criteria, the sign-off, the definitions of the measures, the raw data and the closing report. Not on your laptop: nobody will find anything there in a year.\n\nMind the retention period. In the Netherlands, financial records such as invoices must be kept for seven years for tax purposes (article 52 of the Dutch General State Taxes Act, the AWR).',
         'Personal data is the opposite: under the GDPR, the European privacy law, you may not keep it longer than needed. Lists with operators’ names and their breakdowns you delete or anonymise; the totals you keep.\n\nRevoking access belongs here too: badges, IT accounts, shared folders and the project’s Teams group. Do it yourself on the last day, not when IT finds out six months later.',
         'Typical mistake: the time code stays open, and three months later it holds 60 hours from people who “still did a bit for the project”. Or the definition of downtime lived only in your head.\n\nClose with people: a thank-you mail to the team and their managers, saying what each contributed. A sharp question for your last day: “Can someone find in a year how we defined downtime?”',
       ],
@@ -445,14 +445,14 @@ export default {
       recall: [
         {
           q: 'Why do you close the project’s time code right after closing?',
-          options: ['Because the tax office requires it', 'To punish team members who booked late', 'So nobody books hours on it that the project no longer ordered', 'Because the closing report is not finished otherwise'],
+          options: ['Because the tax office requires every project code to be closed', 'To stop team members correcting their hours of earlier months', 'So nobody books hours on it that the project no longer ordered', 'Because the closing report is only final once all hours are fixed'],
           answer: 'So nobody books hours on it that the project no longer ordered',
           why: 'An open time code attracts hours from work that is no longer a project, and then the final account is wrong.',
         },
         {
           q: 'Where do you keep the project archive?',
-          options: ['On your own laptop, then you know where it is and can send it when someone asks', 'In one place at the client, with charter, criteria, sign-off, definitions, data and closing report', 'In the project team’s mailboxes, because everything was sent by mail anyway', 'Nowhere, the closing report is enough'],
-          answer: 'In one place at the client, with charter, criteria, sign-off, definitions, data and closing report',
+          options: ['On your own laptop, then you know where it is and can send it when someone asks', 'In one place at the client: charter, criteria, sign-off, definitions, data, closing report', 'In the project team’s mailboxes, because everything was sent by mail anyway', 'Nowhere separate: the closing report holds everything that matters'],
+          answer: 'In one place at the client: charter, criteria, sign-off, definitions, data, closing report',
           why: 'The line organisation must be able to check in a year what was agreed and how it was measured, even after you have gone.',
         },
         {
@@ -506,83 +506,83 @@ export default {
       title: 'Stopping early',
       pre: [
         {
-          q: 'A project has cost 80,000 euro and has stalled because the client is closing the line in six months. Finishing it costs another 30,000 euro. Which argument does not belong in the decision?',
-          options: ['What finishing still costs', '“We have already put 80,000 euro into it”', 'What the result still brings in the six months', 'What of the work stays useful after the closure'],
-          answer: '“We have already put 80,000 euro into it”',
-          why: 'What has been spent will not come back, whatever you decide. Only future costs and benefits belong in the decision.',
+          q: 'The steering group stops a project halfway. Half the operators already work with the new changeover standard, the other half still use the old one. What do you do before you leave?',
+          options: ['Agree with the owner on one way of working for everyone, old or new, and write it down', 'Leave it as it is: the operators will sort out between themselves which standard wins', 'Finish rolling out the new standard everywhere, because so much work has already gone into it', 'Remove the new standard everywhere, because a stopped project may leave nothing behind'],
+          answer: 'Agree with the owner on one way of working for everyone, old or new, and write it down',
+          why: 'Two standards side by side is the most dangerous state a stopped project can leave behind. Pick one with the owner, based on what works, not on what was spent.',
         },
       ],
       teach: [
-        'Sometimes a project must stop before it is finished. The reason has gone: the line is closing, a new owner arrives, the question has changed. Or the business case, the reasoning for why the project is worth its cost, no longer holds.\n\nPRINCE2 calls this premature closure: the steering group decides to stop, and the project manager then closes the project as orderly as at a normal end.',
-        'The biggest thinking error is sunk costs: money and time already spent. “We have put so much into it” feels like a reason to continue, but that money does not come back, whatever you decide.\n\nArkes and Blumer (1985) showed that people push on with a project after a large investment and rate its chance of success higher. Only look forward: what does finishing still cost, and what will it still bring?',
-        'Organisations often throw in even more money when things go wrong: escalation of commitment. Barry Staw described it in 1976. Whoever once defended the project does not want to admit it is not working.\n\nA kill criterion agreed in advance helps against this: “If by week 8 the pilot has not cut changeover time by at least 20%, we stop or choose another approach.” Annie Duke describes the idea in her book Quit (2022).',
-        'Stopping does not mean walking away. Hand over what is usable: a standard that also works on the old machines, data, an analysis. Write a short closing report on what was and was not achieved, and why. Hold a retrospective.\n\nAs a junior you do not decide on stopping alone. Your job is to put the facts in front of the sponsor: “This is what finishing still costs, this is what it brings. I would stop, but it is your decision.”',
-        'What experts argue about. Duke says most people stop too late. Others warn that many improvements dip before they work, and that you then give up too early.\n\nA kill criterion agreed in advance settles much of that debate. The people side: stopping feels like failure. Call it a decision, thank the team, and tell them what does remain. Sharp question: “Would we start this today, knowing what we know now?”',
+        'Sometimes a project must stop before it is finished: the line closes, a new owner arrives, or the business case, the reasoning for why the project is worth its cost, no longer holds. Whether to stop is the steering group’s decision. How to make it without sunk costs, money already spent, steering you is covered in the Run module (Adjust course or stop).\n\nThis lesson starts after that decision. PRINCE2 calls it premature closure: you close the project just as orderly as at a normal end.',
+        'First take stock of all the work: what is finished, what is half done, what never started? Half-done work is the risk. A standard used on half the shifts, or a machine half rebuilt, is worse than either the old or the new state.\n\nSo bring every half-done item to a safe stopping point: a stable, written-down state the line can run without you. Sometimes that means finishing one small piece, sometimes going back to the old way.',
+        'Watch for sunk costs creeping back in here: “let’s at least finish the cell, half of it is paid for.” Finish a piece only if, from now on, it is worth what it still costs.\n\nThen the money. Read the contract: many have an early termination clause that says what the client pays when a project stops early, often the work done plus a notice period. Close the time code and send the final invoice according to that clause.',
+        'Hand over what is usable, each piece with an owner: a standard that also works on the old machines, data, an analysis. Write a short closing report: what was achieved and what was not, why the project stopped, and whether a stop condition agreed in advance was met. That last point teaches the next business case the most.\n\nAs a junior you do not decide on stopping. Your job is an orderly closure once the decision is made.',
+        'What experts argue about: Annie Duke (Quit, 2022) says most people stop too late; others warn that many improvements dip before they work. At closure that debate is over. What matters now is that the team hears the decision from the sponsor, not through the grapevine.\n\nThe people side: stopping feels like failure. Call it a decision, thank the team, and say what remains of their work. A sharp question for your last day: “Which half-finished thing will confuse the operators next month?”',
       ],
       example: {
         kind: 'faded',
-        text: 'At a metalworking company a project is combining three machines into a cell. After four months the parent company decides to move the product family to Poland in six months. 70,000 euro has been spent. Finishing costs another 40,000 euro; in the six months the cell would still run, it would bring an estimated 15,000 euro.\n\nMeanwhile the new set-up standard and the 5S layout, a fixed place for every tool, already work on the existing machines.',
-        ask: 'What do you advise the sponsor, and how do you close the project?',
-        reveal: 'The 70,000 euro is sunk; it does not count. Looking forward: spending 40,000 euro for 15,000 euro of benefit is a loss of 25,000. Advice: stop the cell.\n\nPremature closure: hand over the set-up standard and the 5S layout to the team leader, because they keep their value, also for the products that stay. A short closing report, a retrospective with the team, and let the steering group decide. To the team: “Your work on the standard stays; only the cell is not going ahead.”',
+        text: 'At a metalworking company a project was combining three machines into a cell. After four months the parent company decided to move the product family to Poland in six months, and the steering group stopped the project.\n\nThe state of the work: two of the three machines already stand in the cell layout, the third is still in the old hall; the new set-up standard is used on the day shift only; the 5S layout, a fixed place for every tool, is finished at all machines. The contract has an early termination clause.',
+        ask: 'How do you close this project in an orderly way?',
+        reveal: 'Take stock, then a safe stopping point for each item. The cell: nothing more is moved; the two moved machines stay, because moving them back costs money and the flow works, and the routing in the planning system is updated to match. The set-up standard: two training sessions for the night shift, so one standard runs on all shifts. The 5S layout is done: hand it to the team leader.\n\nThen invoice according to the termination clause, write a one-page closing report with why it stopped, and hold a short retrospective. To the team: “Your standard and the 5S stay; only the cell is not going ahead.”',
       },
-      said: 'What you hear on projects: “We’re this far already, we might as well finish it.”',
+      said: 'What you hear on projects: “It’s been stopped, so why would we still write anything down?”',
       recall: [
         {
-          q: 'A project has cost 90,000 euro so far. Finishing costs another 50,000 euro. After that it brings 30,000 euro in the one year the line still runs. What is the net value of continuing, in thousands of euro (a loss is negative)?',
-          number: -20,
-          tolerance: 0.5,
+          q: 'After the stop decision three pieces of work are half done. Finishing the set-up standard costs 4,000 euro and brings 10,000 euro in the months the line still runs. Finishing the cell layout costs 6,000 euro and brings 5,000 euro. Finishing the work instructions costs 2,000 euro and brings 3,000 euro. You finish only the pieces that are worth it. What is their total net value, in thousands of euro?',
+          number: 7,
+          tolerance: 0.1,
           unit: 'thousand euro',
-          why: 'The 90,000 euro is sunk and does not count. Looking forward: 30,000 benefit minus 50,000 cost.',
-          hint: 'Leave out the money already spent and compare only what is still to come.',
+          why: 'Standard: 10 − 4 = 6. Cell: 5 − 6 = −1, so you leave it. Work instructions: 3 − 2 = 1. Together 6 + 1 thousand euro; what was already spent does not count.',
+          hint: 'For each piece, subtract what finishing costs from what it brings, and leave out the pieces that lose money.',
         },
         {
-          q: 'Which is a good kill criterion?',
-          options: ['“We stop if it doesn’t feel right.”', '“We stop when the sponsor feels the project is no longer worth the effort for the plant.”', '“We carry on until the budget is gone, then the steering group decides on the rest.”', '“If by week 8 the pilot has not cut changeover time by at least 20%, we stop or choose another approach.”'],
-          answer: '“If by week 8 the pilot has not cut changeover time by at least 20%, we stop or choose another approach.”',
-          why: 'It is agreed in advance, measurable, and has a moment. Then stopping is an agreement, not a loss of face.',
+          q: 'What is a safe stopping point?',
+          options: ['The moment the budget runs out and the steering group meets', 'The last milestone that the client was invoiced for and paid', 'The point where the team has finished all the work in the plan', 'A stable, written-down state the line can run without you'],
+          answer: 'A stable, written-down state the line can run without you',
+          why: 'Half-done work, such as two standards side by side, confuses the line once you have gone. A safe stopping point is a state that holds on its own.',
         },
         {
-          q: 'What is escalation of commitment?',
-          options: ['Putting more money and time into a failing project because you already invested in it', 'Taking a problem to the steering group when the team cannot solve it', 'Giving the team more and more responsibility', 'Updating the sponsor more often and in more detail when a project gets into trouble'],
-          answer: 'Putting more money and time into a failing project because you already invested in it',
-          why: 'Whoever defended the project does not want to admit it is not working, and so pushes on. Staw described it in 1976.',
+          q: 'The client wants to finish the half-built cell “because half of it is paid for already”. What do you say?',
+          options: ['“Only if it is worth its remaining cost; what we spent stays spent.”', '“Yes, otherwise the money we spent so far was wasted for nothing.”', '“No, a stopped project may never finish any part of its work.”', '“That is for the operators to decide, they work with it every day.”'],
+          answer: '“Only if it is worth its remaining cost; what we spent stays spent.”',
+          why: 'The money already spent does not come back either way. Only what finishing still costs and still brings belongs in the choice.',
         },
         {
-          q: 'The steering group decides to stop a project early. What do you still do?',
-          options: ['Nothing, the project has stopped', 'Move the team quickly to another project, so nobody loses time on a stopped one', 'Hand over usable work, write a short closing report and hold a retrospective', 'Keep working until the first part is finished anyway'],
-          answer: 'Hand over usable work, write a short closing report and hold a retrospective',
-          why: 'A stopped project is closed just as orderly: what has value stays, and what you learned is not lost.',
+          q: 'What does an early termination clause in the contract settle?',
+          options: ['Who in the steering group may decide to stop the project', 'Which stop condition applies to the pilot, and in which week', 'What the client pays when the project stops before the end', 'How long the project archive must be kept after a stop'],
+          answer: 'What the client pays when the project stops before the end',
+          why: 'It says what is invoiced after an early stop, often the work done plus a notice period. Who decides to stop is the steering group’s business, not the contract’s.',
         },
       ],
       situation: {
-        scene: 'You are at a grid operator. Your project was to introduce a new planning tool, but head office will choose a different system nationwide in three months. Your sponsor wants to carry on: “We have already put six months of work and 120,000 euro into this tool.”',
+        scene: 'You are at a grid operator. The steering group has stopped your planning-tool project, because head office is choosing one national system. Two planners spent six months on it. The sponsor says: “Let’s just let it go quietly. No closing report, no retro; nobody wants to dwell on it.”',
         ask: 'What do you say?',
-        model: '“Those six months of work are not lost, but the money will not come back, whatever we decide. The question is: what does finishing still cost, and what does the tool bring in three months before it is replaced? I’ll put that on one page, with what we can take to the new system, such as the working agreements and the data. Then you decide in the steering group.”',
+        model: '“I understand, nobody wants to make a big thing of it. But the planners deserve to hear it properly, and their working agreements and data are useful for the new system. I suggest one page: what we achieved, why we stopped, what goes to head office’s team. Plus a short retro of an hour, and you tell the planners yourself this week.”',
         rubric: [
-          'Names the sunk costs without dismissing the work',
-          'Focuses the decision on future costs and benefits',
-          'Leaves the decision with the sponsor and steering group, with facts on one page',
+          'Acknowledges the wish to keep it low-key',
+          'Argues for a short, orderly closure with a closing report and a retro',
+          'Has the sponsor tell the team and hands over what is usable',
         ],
         pushback: {
           lines: [
-            '“If we stop now, it looks as if we threw away six months. I can’t explain that.”',
-            '“Maybe head office will choose our tool after all, once it’s in place.”',
+            '“A report on a project that failed? That only hurts people.”',
+            '“Head office doesn’t care about our working agreements anyway.”',
           ],
-          model: '“You don’t have to explain six wasted months: the working agreements and the data move to the new system, and I’ll show that. If there is a real chance head office changes its mind, check it this week. Then we decide on that information, not on hope.”',
+          model: '“It didn’t fail, it was overtaken, and the page will say exactly that. And nobody has to take it: I’ll offer the agreements and data to head office’s project lead, and if they don’t want them, they stay in the archive. One page and one hour, that’s all. Shall I draft it for Thursday?”',
           rubric: [
-            'Acknowledges his worry about losing face',
-            'Holds on to deciding on facts, not on what was spent',
-            'Proposes a concrete step to resolve the uncertainty',
+            'Acknowledges the worry about hurting people',
+            'Holds on to a short closing report and a handover',
+            'Proposes a small, concrete step with a date',
           ],
         },
       },
-      sayIt: 'Explain to a sponsor in 60 seconds why, when deciding to stop, you do not look at what has already been spent.',
+      sayIt: 'Explain to a sponsor in 60 seconds how you close a project in an orderly way once the steering group has decided to stop it.',
       terms: [
         { term: 'Business case', def: 'The reasoning for why a project is worth its cost and effort.' },
-        { term: 'Premature closure', def: 'Closing a project in an orderly way before it is finished, on the steering group’s decision.' },
+        { term: 'Premature closure', def: 'Closing a project in an orderly way before it is finished, once the steering group has decided to stop.' },
         { term: 'Sunk costs', def: 'Money and time already spent that will not come back, whatever you decide.' },
-        { term: 'Escalation of commitment', def: 'Investing more in a failing project because you already invested in it.' },
-        { term: 'Kill criterion', def: 'A measurable condition agreed in advance at which you stop or change approach.' },
+        { term: 'Safe stopping point', def: 'A stable, written-down state of half-done work that the line can run without the project.' },
+        { term: 'Early termination clause', def: 'The part of the contract that says what the client pays when a project stops before the end.' },
       ],
     },
     {
@@ -591,7 +591,7 @@ export default {
       pre: [
         {
           q: 'At the close of a line move one risk is still open: the cleaning validation after an allergen changeover, the check that no traces of, say, nuts remain, has not yet been repeated at the new location. What do you do with it?',
-          options: ['Close it, because the project is finished', 'Mention it in the closing report and nothing more', 'Transfer it to the line’s risk register, with an owner and a date', 'Keep the project open until the risk is gone'],
+          options: ['Close it, because the project is finished and the risk goes with it', 'Mention it in the closing report, so the sponsor knows when he reads it', 'Transfer it to the line’s risk register, with an owner and a date', 'Keep the project open until the validation is done, then close it all at once'],
           answer: 'Transfer it to the line’s risk register, with an owner and a date',
           why: 'A risk does not disappear when the project stops. In the line’s register it has an owner who is still there after you.',
         },
@@ -613,7 +613,7 @@ export default {
       recall: [
         {
           q: 'Who decides in PRINCE2 that a project is actually closed?',
-          options: ['The project manager, as soon as the work is done', 'The steering group, on the project manager’s recommendation', 'The controller, after the final invoice', 'The team, in the retrospective'],
+          options: ['The project manager, as soon as the last work package is done', 'The steering group, on the project manager’s recommendation', 'The controller, once the final invoice has been paid', 'The team, together in the retrospective'],
           answer: 'The steering group, on the project manager’s recommendation',
           why: 'The project manager prepares and recommends closure; the steering group, which once started the project, decides.',
         },
@@ -625,8 +625,8 @@ export default {
         },
         {
           q: 'Why does the decision log go to the archive?',
-          options: ['So the line knows later why something was set up that way, and a good decision is not simply reversed', 'Because the auditor needs it at year end to check the project costs', 'To be able to show later who decided what, in case something goes wrong', 'Because PRINCE2 forbids deleting project documents before the benefits review'],
-          answer: 'So the line knows later why something was set up that way, and a good decision is not simply reversed',
+          options: ['So the line knows later why it was set up that way, and a good decision is not reversed', 'Because the auditor needs it at year end to check the project costs and hours', 'To be able to prove later who decided what, in case something goes wrong after you leave', 'Because PRINCE2 forbids deleting project documents before the benefits review'],
+          answer: 'So the line knows later why it was set up that way, and a good decision is not reversed',
           why: 'The reason behind a decision is forgotten after a year. Whoever can read it back will not reverse it by accident.',
         },
         {
@@ -707,7 +707,7 @@ export default {
         },
         {
           q: 'Why have people write before they talk?',
-          options: ['It is faster', 'To have a written record for the closing report', 'So quiet voices count, not only the first one spoken', 'Because the sponsor wants to read the notes afterwards'],
+          options: ['It is faster than a round where everyone speaks in turn', 'To have a written record for the closing report', 'So quiet voices count, not only the first one spoken', 'Because the sponsor wants to read the notes afterwards'],
           answer: 'So quiet voices count, not only the first one spoken',
           why: 'Writing first gets everyone’s view before the group converges on one story.',
         },
@@ -755,7 +755,7 @@ export default {
       pre: [
         {
           q: 'Which feedback question usually gets the most useful answer?',
-          options: ['“How did I do overall, on a scale from one to ten?”', '“Do you have any feedback for me on the project?”', '“Was it OK?”', '“What is one thing I should do differently in my next project?”'],
+          options: ['“How did I do overall, on a scale from one to ten?”', '“Do you have any feedback for me on the project?”', '“Was everything OK with how I worked on this project?”', '“What is one thing I should do differently in my next project?”'],
           answer: '“What is one thing I should do differently in my next project?”',
           why: 'A specific question gets a specific answer; a general one gets “fine”.',
         },
@@ -775,7 +775,7 @@ export default {
       recall: [
         {
           q: 'Someone gives you feedback that stings. What do you do?',
-          options: ['Explain why it happened', 'Listen, thank them, and ask for an example if needed', 'Ignore it', 'Ask someone else for a second opinion right away'],
+          options: ['Explain why it happened', 'Listen, thank them, and ask for an example if needed', 'Ignore it and carry on with your work', 'Ask someone else for a second opinion right away'],
           answer: 'Listen, thank them, and ask for an example if needed',
           why: 'Defending stops the feedback; curiosity gets you more of it.',
         },
@@ -841,7 +841,7 @@ export default {
         },
       ],
       teach: [
-        'A good retrospective has a fixed structure. Esther Derby and Diana Larsen described five phases in Agile Retrospectives (2006): set the stage, gather data, generate insights, decide what to do, and close the retrospective.\n\nSplit the time in advance. For 90 minutes, for example: 10, 25, 25, 20 and 10. That leaves time for the part that matters: deciding.',
+        'A good retrospective has a fixed structure. Esther Derby and Diana Larsen described five phases in Agile Retrospectives (2006): set the stage, gather data, generate insights, decide what to do, and close the retrospective. The book comes from software teams that hold a retrospective every sprint (see the Agile and Scrum module); the structure works just as well at the end of a project.\n\nSplit the time in advance. For 90 minutes, for example: 10, 25, 25, 20 and 10. That leaves time for the part that matters: deciding.',
         'You set the stage with a check-in: a short round where everyone says in one word or sentence how they are. Whoever speaks in the first five minutes joins in more easily later.\n\nFor gathering data, pick a format that fits the group. The timeline works for long projects. For short projects the 4Ls work well: what you liked, what you learned, what you lacked, what you longed for. The format is credited to Mary Gorman and Ellen Gottesdiener.',
         'When generating insights you keep asking “why?” and group the sticky notes into themes. Then you choose what to tackle with dot voting: everyone gets three dots and sticks them on the themes they find most important. That way the group chooses, not the loudest voice.\n\nDecide on two or three actions, each with an owner and a moment.',
         'Close with ROTI, return on time invested: everyone shows with their fingers a score from 0 to 4 for what the session was worth for the time. 0 is wasted time, 2 is break-even, 4 is worth much more than the time. Some teams use 1 to 5.\n\nAsk those who scored low what they missed. That improves your next retrospective too. The short four-question review, the after-action review, is covered in the Land module.',
@@ -865,14 +865,14 @@ export default {
         },
         {
           q: 'What is the order of the five phases according to Derby and Larsen?',
-          options: ['Decide, gather data, set the stage, generate insights, close', 'Gather data, decide, generate insights, set the stage, close', 'Set the stage, gather data, generate insights, decide what to do, close', 'Set the stage, decide, gather data, generate insights, close'],
+          options: ['Decide what to do, gather data, set the stage, generate insights, close', 'Gather data, decide what to do, generate insights, set the stage, close', 'Set the stage, gather data, generate insights, decide what to do, close', 'Set the stage, decide what to do, gather data, generate insights, close'],
           answer: 'Set the stage, gather data, generate insights, decide what to do, close',
           why: 'First get everyone in, then facts, then understanding, and only then choose. Whoever decides earlier decides on the first story.',
         },
         {
           q: 'What do you use dot voting for?',
-          options: ['To measure how satisfied people are with the project and the team', 'To let the group choose which themes to tackle, instead of the loudest voice', 'To decide quickly which person takes which action home', 'To split the time per phase'],
-          answer: 'To let the group choose which themes to tackle, instead of the loudest voice',
+          options: ['To measure how satisfied people are with the project and the team', 'To let the group choose the themes to tackle, not the loudest voice', 'To decide quickly which person takes which action home', 'To split the available time between the five phases'],
+          answer: 'To let the group choose the themes to tackle, not the loudest voice',
           why: 'Everyone has the same number of dots, so the quiet voices count just as much.',
         },
         {
@@ -941,25 +941,25 @@ export default {
       recall: [
         {
           q: 'Which is an example of double-loop learning?',
-          options: ['Questioning whether you really must start every client with a full value stream map', 'Requesting system access a week earlier at the next client', 'Fixing an error in a spreadsheet', 'Having the closing report ready a day earlier so the sponsor can read it'],
+          options: ['Questioning whether you really must start every client with a full value stream map', 'Requesting system access a week earlier at the next client, so the project starts sooner', 'Fixing a formula error in the planning spreadsheet before the steering group sees it', 'Having the closing report ready a day earlier so the sponsor can read it'],
           answer: 'Questioning whether you really must start every client with a full value stream map',
           why: 'Double-loop learning questions the assumption behind how you work. The other options only improve the execution.',
         },
         {
           q: 'When does PRINCE2 capture the lessons of earlier projects?',
-          options: ['Only when something goes wrong', 'In the closing report', 'At every steering group', 'At the start of a new project'],
+          options: ['Only when something goes wrong in the project', 'Only at the end, when the lessons report is written', 'At every steering group of the current project', 'At the start of a new project'],
           answer: 'At the start of a new project',
           why: 'The lessons report at the end supplies them; the start of the next project is the moment to use them.',
         },
         {
           q: 'Why does a knowledge base of lessons often fail?',
-          options: ['Because lessons are secret', 'Because the lessons are vague, nobody maintains it and nobody searches it under time pressure', 'Because the software is too expensive to give every consultant a licence', 'Because only seniors may write in it, so juniors’ lessons never get in'],
-          answer: 'Because the lessons are vague, nobody maintains it and nobody searches it under time pressure',
+          options: ['Because lessons are confidential and may not be shared outside the project', 'Because the lessons are vague, unmaintained and not searched under time pressure', 'Because the software is too expensive to give every consultant a licence', 'Because only seniors may write in it, so juniors’ lessons never get in'],
+          answer: 'Because the lessons are vague, unmaintained and not searched under time pressure',
           why: 'A lesson must come to the work, not the other way round. Building it into templates works better than looking it up.',
         },
         {
           q: 'Your team has fifteen lessons from a project. What do you do with them?',
-          options: ['Put all fifteen in the lessons report in equal detail', 'Keep only the positive ones', 'Pick three, each with an owner and a place in the standard approach', 'Mail them to all colleagues'],
+          options: ['Put all fifteen in the lessons report in equal detail', 'Keep only the positive ones, so the team ends on a high', 'Pick three, each with an owner and a place in the standard approach', 'Mail all fifteen to every colleague in the firm, so nobody misses one'],
           answer: 'Pick three, each with an owner and a place in the standard approach',
           why: 'Three lessons that land in the work change more than fifteen that stay in a report.',
         },
@@ -1002,7 +1002,7 @@ export default {
       pre: [
         {
           q: 'In a closing presentation to the management team, the group of senior managers who run the company, what should come first?',
-          options: ['The project background and approach', 'A thank you to everyone involved', 'The planning of the project', 'The result against the goal, in one sentence'],
+          options: ['The project background and the approach you chose', 'A thank you to everyone involved in the project', 'The planning of the project, phase by phase', 'The result against the goal, in one sentence'],
           answer: 'The result against the goal, in one sentence',
           why: 'Senior people want the answer first; the rest is support.',
         },
@@ -1022,7 +1022,7 @@ export default {
       recall: [
         {
           q: 'What must the one-page closing summary contain?',
-          options: ['The full project history, week by week, so nothing is missed', 'Goal, result in numbers, what changed, open points with owners, and next steps', 'All the analyses and charts, so the client sees the work done', 'Only the savings'],
+          options: ['The full project history, week by week, so nothing is missed', 'Goal, result in numbers, what changed, open points with owners, and next steps', 'All the analyses and charts, so the client sees the work done', 'Only the savings, since that is what the management team asks about'],
           answer: 'Goal, result in numbers, what changed, open points with owners, and next steps',
           why: 'It lets anyone see what the project delivered and what happens now.',
         },
@@ -1102,7 +1102,7 @@ export default {
       recall: [
         {
           q: 'What is the difference between helping and selling, in follow-up?',
-          options: ['Helping is free, selling is paid; so helping means not sending an invoice', 'Helping responds to a problem the client named; selling pushes one you named', 'There is no difference', 'Selling is done by partners only; juniors should stick to helping the client'],
+          options: ['Helping is free, selling is paid; so helping means not sending an invoice', 'Helping responds to a problem the client named; selling pushes one you named', 'There is no difference, both are about winning new work', 'Selling is done by partners only; juniors should stick to helping the client'],
           answer: 'Helping responds to a problem the client named; selling pushes one you named',
           why: 'Proposals to a problem the client recognises are welcome.',
         },
@@ -1163,7 +1163,7 @@ export default {
       pre: [
         {
           q: 'Your firm wants to know what the client thought of the project. Who is best placed to hold the evaluation with the sponsor?',
-          options: ['You as project manager, because you know the project best', 'A colleague who was not on the project, such as a partner or manager', 'The sponsor himself, with a form', 'The client’s project team, without the sponsor'],
+          options: ['You as project manager, because you know the project and the sponsor best', 'A colleague who was not on the project, such as a partner or manager', 'The sponsor himself, with a short online form he fills in alone', 'The client’s project team, without the sponsor in the room'],
           answer: 'A colleague who was not on the project, such as a partner or manager',
           why: 'Clients are polite to the person who did the work. To someone else they say sooner what could have been better.',
         },
@@ -1256,7 +1256,7 @@ export default {
         'Peter Block describes five phases of a consulting assignment in Flawless Consulting (first edition 1981). The last is called extension, recycle or termination. Choose there deliberately, instead of letting the project simmer on.\n\nThe test is simple: can the client do it without you? How you prepare the line to take over the work is covered in the Land module. Here it is about your departure as adviser.',
         'In Process Consultation (1969) Edgar Schein distinguished the expert who solves the problem for the client from process consultation: helping the client see and solve his own problem. With the second, more remains when you leave.\n\nKnowledge transfer is then not a side issue but a goal: who can do the analysis after you, lead the meeting, adapt the standard?',
         'Dependency is the opposite: the work only runs when you are there. Signs: the daily meeting drops when you are ill, the client calls you instead of his own owner, nobody else understands the spreadsheet.\n\nMariana Mazzucato and Rosie Collington argue in The Big Con (2023) that leaning on consultancies for a long time can cost organisations their own know-how. Consultancies dispute that picture, but the question is fair.',
-        'A conflict of interest lurks when you advise a follow-on project that you would deliver yourself. That is allowed, but be open: name it, and also give the option that the client does it himself or asks another firm.\n\nIf a request to extend comes, first ask what would go wrong without you. Often a phase-out is better: less presence every few weeks, until the owner does it alone.',
+        'A conflict of interest lurks when you advise a follow-on project that you would deliver yourself. That is allowed, but be open: name it, and also give the option that the client does it himself or asks another firm.\n\nIf a request to extend comes, first ask what would go wrong without you. Often a phase-out is better: less presence every few weeks, until the owner does it alone, following the stepwise handover from the Land module.',
         'What experts argue about: is long-term support bad? Some say coaching over a year can add real value, if the client’s capability visibly grows. Others see every extension as a sign the handover failed.\n\nSay goodbye properly: thank the team, leave your contact details, and say when the agreed follow-up is. A sharp question to ask yourself: “What happens if I don’t come in tomorrow?”',
       ],
       example: {
@@ -1269,13 +1269,13 @@ export default {
       recall: [
         {
           q: 'Which sign points to dependency on the adviser?',
-          options: ['The client asks critical questions about your approach', 'The daily meeting drops when the adviser is not there', 'The client asks for a closing report', 'The sponsor wants a follow-up after three months'],
+          options: ['The client asks critical questions about your approach and planning', 'The daily meeting drops when the adviser is not there', 'The client asks for a closing report with all the analyses', 'The sponsor wants a follow-up visit three months after closing'],
           answer: 'The daily meeting drops when the adviser is not there',
           why: 'If the work only runs with you there, the capability has not reached the client.',
         },
         {
           q: 'You advise a follow-on project that your firm would deliver. How do you handle the conflict of interest?',
-          options: ['Not mention it, because the client knows anyway that you earn from it', 'Stop advising follow-on projects', 'Name it and also give the options that the client does it himself or asks someone else', 'Give a discount on the follow-on project so the interest is balanced out'],
+          options: ['Not mention it, because the client knows anyway that you earn from it', 'Stop advising follow-on projects altogether, so the question never comes up', 'Name it and also give the options that the client does it himself or asks someone else', 'Give a discount on the follow-on project so the interest is balanced out'],
           answer: 'Name it and also give the options that the client does it himself or asks someone else',
           why: 'Openness and real alternatives make your advice credible, even if it means more work for you.',
         },
@@ -1299,7 +1299,7 @@ export default {
         ask: 'What do you say?',
         model: '“Thank you, I appreciate that. But if it only runs with me there, my work isn’t done yet. I suggest the production lead runs the weekly meeting for the next four weeks with me beside him, and after that I only come to the follow-ups. If it still doesn’t run then, we look together at what is really needed.”',
         rubric: [
-          'Accepts the compliment without taking it up',
+          'Thanks him for the compliment without accepting the offer',
           'Names the dependency as something to be solved',
           'Proposes a concrete phase-out with an owner at the client',
         ],

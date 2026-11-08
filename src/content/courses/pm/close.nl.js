@@ -7,7 +7,7 @@ export default {
       pre: [
         {
           q: 'De stilstand, het deel van de geplande uren dat een lijn stilstaat, daalde in de vier weken na je project van 12% naar 9%. In de nulmeting, de weken die je vóór de verandering mat, schommelden de weekwaarden tussen 8% en 15%. Wat kun je eerlijk zeggen?',
-          options: ['Het project heeft de stilstand met 25% verlaagd', 'Het project is mislukt', 'Nog niet veel: de daling valt binnen de normale spreiding', 'De stilstand is nu onder controle'],
+          options: ['Het project heeft de stilstand met 25% verlaagd, want van 12 naar 9% is een kwart', 'Het project is mislukt', 'Nog niet veel: de daling valt binnen de normale spreiding', 'De stilstand is nu onder controle op het nieuwe, lagere niveau'],
           answer: 'Nog niet veel: de daling valt binnen de normale spreiding',
           why: 'Met weekwaarden tussen 8 en 15% kunnen vier weken op 9% gewoon ruis zijn: het normale op en neer. Je hebt meer weken of een vergelijkingslijn nodig voordat je iets claimt.',
         },
@@ -41,7 +41,7 @@ export default {
         },
         {
           q: 'Wat is het sterkste bewijs dat de verandering, en niet iets anders, de verbetering veroorzaakte?',
-          options: ['Het team heeft het gevoel dat het beter gaat', 'Eén heel goede week vlak na de verandering, zonder storingen', 'De sponsor die de verbetering in de stuurgroep bevestigt', 'Een vergelijkingslijn of -regio zonder de verandering die niet verbeterde'],
+          options: ['Het team en de ploegleiders zeggen allemaal dat het nu beter voelt', 'Eén heel goede week vlak na de verandering, zonder storingen', 'De sponsor die de verbetering in de stuurgroep bevestigt', 'Een vergelijkingslijn of -regio zonder de verandering die niet verbeterde'],
           answer: 'Een vergelijkingslijn of -regio zonder de verandering die niet verbeterde',
           why: 'Bleef de lijn zonder verandering vlak, dan verklaren seizoen of volume jouw verbetering niet.',
         },
@@ -90,8 +90,8 @@ export default {
       pre: [
         {
           q: 'Je zet de weekcijfers van de afkeur, het deel van de productie dat wordt weggegooid, uit in de tijd en trekt er een middenlijn door. Waarom kiezen veel verbeteraars daarvoor de mediaan en niet het gemiddelde?',
-          options: ['De mediaan is altijd lager, dus het resultaat lijkt mooier', 'Eén extreme week trekt de mediaan nauwelijks mee, en de helft van de punten ligt erboven', 'Het gemiddelde mag je alleen bij grote fabrieken gebruiken', 'De mediaan hoeft niet opnieuw berekend te worden als er data bijkomt'],
-          answer: 'Eén extreme week trekt de mediaan nauwelijks mee, en de helft van de punten ligt erboven',
+          options: ['De mediaan is altijd lager dan het gemiddelde, dus het resultaat lijkt mooier', 'Eén extreme week trekt de mediaan nauwelijks mee; de helft van de punten ligt erboven', 'Het gemiddelde mag je alleen gebruiken in grote fabrieken die elk uur meten', 'De mediaan hoeft nooit opnieuw berekend te worden als er weken bijkomen'],
+          answer: 'Eén extreme week trekt de mediaan nauwelijks mee; de helft van de punten ligt erboven',
           why: 'De mediaan is het middelste getal: de helft ligt erboven, de helft eronder. Daarom werken de telregels van een run chart ermee, en verschuift één uitschieter hem bijna niet.',
         },
       ],
@@ -99,7 +99,7 @@ export default {
         'Een run chart is de eenvoudigste grafiek om een resultaat te laten zien: weekwaarden op volgorde in de tijd, met één horizontale lijn erdoor. Die lijn is de mediaan: het middelste getal als je de waarden van laag naar hoog zet. Bij een even aantal neem je het gemiddelde van de twee middelste.\n\nTeken de mediaan van de nulmeting (baseline) en trek hem door naar de weken na de verandering. Zo zie je of de nieuwe punten anders liggen dan vroeger.',
         'Je kijkt niet naar één punt, maar naar patronen die bij toeval zelden voorkomen. Perla, Provost en Murray beschreven in 2011 een set regels die in de zorg veel gebruikt worden en ook in fabrieken werken.\n\nDe belangrijkste is de verschuiving (shift): zes of meer punten op rij aan dezelfde kant van de mediaan. Punten precies op de mediaan sla je over; ze tellen niet mee en breken de reeks ook niet.',
         'De tweede regel is de trend: vijf of meer punten op rij die allemaal stijgen of allemaal dalen. Twee gelijke waarden na elkaar tel je als één.\n\nDe derde is de uitschieter (astronomical point): een punt dat zo duidelijk afwijkt dat iedereen die naar de grafiek kijkt het ermee eens is. Zoek daar de oorzaak van, zoals een storing of een telfout. Er is ook een regel over te weinig of te veel kruisingen van de mediaan; die laat je meestal aan de software over.',
-        'Waar experts over discussiëren. De grenzen zijn afspraken, geen natuurwetten: sommige bronnen gebruiken acht punten voor een verschuiving bij lange reeksen, of zes voor een trend. Ook wordt vaak gezegd dat je pas na een stuk of tien punten iets met de regels kunt.\n\nStatistici met een controlekaart, een grafiek met berekende grenzen, vinden de run chart grof. Voor een afsluiting is hij meestal genoeg: iedereen snapt hem in één minuut.',
+        'Waar experts over discussiëren. De grenzen zijn afspraken, geen natuurwetten: sommige bronnen gebruiken acht punten voor een verschuiving bij lange reeksen, of zes voor een trend. Ook wordt vaak gezegd dat je pas na een stuk of tien punten iets met de regels kunt.\n\nStatistici die liever een regelkaart (control chart) gebruiken, een grafiek met berekende grenzen, vinden de run chart grof. Voor een afsluiting is hij meestal genoeg: iedereen snapt hem in één minuut.',
         'Typische fouten: één goede week als bewijs brengen; halverwege de definitie wijzigen, zodat voor en na niet meer te vergelijken zijn; of de y-as laten beginnen bij 4% zodat een kleine daling dramatisch lijkt.\n\nAls je de grafiek in de eindpresentatie laat zien, zeg dan welke regel je ziet: “Sinds week 13 liggen alle negen punten onder de oude mediaan.” Een scherpe vraag aan jezelf: “Zou ik dit patroon ook zien als er niets veranderd was?”',
       ],
       example: {
@@ -118,7 +118,7 @@ export default {
         },
         {
           q: 'Wanneer spreek je op een run chart van een verschuiving?',
-          options: ['Als het laatste punt het laagste ooit is', 'Als het gemiddelde na de verandering lager is dan ervoor', 'Als zes of meer punten op rij aan dezelfde kant van de mediaan liggen', 'Als drie punten op rij dalen'],
+          options: ['Als het laatste punt het laagste is sinds het begin van de nulmeting', 'Als het gemiddelde na de verandering lager is dan het gemiddelde ervoor', 'Als zes of meer punten op rij aan dezelfde kant van de mediaan liggen', 'Als drie punten op rij dalen, elk lager dan het punt ervoor'],
           answer: 'Als zes of meer punten op rij aan dezelfde kant van de mediaan liggen',
           why: 'Zo’n reeks komt bij toeval zelden voor; een laag punt of een lager gemiddelde kan gewoon ruis zijn.',
         },
@@ -129,14 +129,14 @@ export default {
           why: 'Punten op de mediaan sla je over. Er liggen dan zeven punten op rij onder de mediaan, dus meer dan zes.',
         },
         {
-          q: 'Drie maanden na de afsluiting stijgt de stilstand vijf weken op rij een beetje, maar elk punt ligt nog onder de oude mediaan. Wat doe je?',
-          options: ['Niets, alle punten liggen nog onder de mediaan', 'Het als signaal zien en de eigenaar vragen wat er veranderd is', 'Wachten tot de stilstand boven de mediaan komt', 'De mediaan opnieuw berekenen met de nieuwe punten erbij'],
+          q: 'Drie maanden na de afsluiting liggen vijf weekpunten van de stilstand op rij elk iets hoger dan het punt ervoor, maar elk punt ligt nog onder de oude mediaan. Wat doe je?',
+          options: ['Niets, want alle punten liggen nog onder de oude mediaan', 'Het als signaal zien en de eigenaar vragen wat er veranderd is', 'Wachten tot de stilstand boven de mediaan komt, dan pas ingrijpen', 'De mediaan opnieuw berekenen met de nieuwe punten erbij'],
           answer: 'Het als signaal zien en de eigenaar vragen wat er veranderd is',
           why: 'Vijf punten op rij die stijgen is een trend, ook onder de mediaan. Je vraagt het de eigenaar in de lijn, je lost het niet zelf op.',
         },
       ],
       situation: {
-        scene: 'Je zit bij een kunststofverwerker. De productiemanager wil in de stuurgroep (steering group), het overleg waar de sponsor en managers besluiten nemen, melden dat de afkeur “gehalveerd” is. Hij laat één staaf zien: de beste week na de verandering, 3,1%, naast het gemiddelde van de nulmeting, 6,3%.',
+        scene: 'Je zit bij een kunststofverwerker. De productiemanager wil in de stuurgroep (steering group), het overleg waar de sponsor en managers besluiten nemen, melden dat de afkeur “met een derde” omlaag is. Hij laat één staaf zien: de beste week na de verandering, 4,2%, naast het gemiddelde van de nulmeting, 6,3%.',
         ask: 'Wat stel je voor?',
         model: '“Het resultaat is echt, dus laten we het zo laten zien dat niemand het kan wegpraten. Ik zou de run chart tonen met alle weken: zeven op rij onder de oude mediaan, de mediaan nu 4,9%. Dat is een daling van ongeveer een vijfde, en die houdt stand. De beste week alleen kan iemand afdoen als toeval.”',
         rubric: [
@@ -146,10 +146,10 @@ export default {
         ],
         pushback: {
           lines: [
-            '“Gehalveerd klinkt veel beter dan een vijfde. De directeur onthoudt alleen het getal.”',
+            '“Een derde klinkt veel beter dan een vijfde. De directeur onthoudt alleen het getal.”',
             '“Die grafiek met al die puntjes snapt niemand in de stuurgroep.”',
           ],
-          model: '“Klopt, gehalveerd klinkt beter, tot de controller vraagt welke week dat was. Een vijfde dat zeven weken standhoudt is sterker. Ik maak de grafiek simpel: één lijn voor vroeger, de punten van nu eronder, en één zin erbij. Zal ik hem morgen laten zien?”',
+          model: '“Klopt, een derde klinkt beter, tot de controller vraagt welke week dat was. Een vijfde dat zeven weken standhoudt is sterker. Ik maak de grafiek simpel: één lijn voor vroeger, de punten van nu eronder, en één zin erbij. Zal ik hem morgen laten zien?”',
           rubric: [
             'Erkent de wens om een groot getal te noemen',
             'Houdt vast aan een eerlijke, verdedigbare claim',
@@ -257,17 +257,17 @@ export default {
       title: 'Een claim die standhoudt',
       pre: [
         {
-          q: 'Door je project ligt er 200.000 euro minder voorraad in het magazijn. De sponsor wil “200.000 euro besparing per jaar” in het eindrapport. Wat is het eerlijkst?',
-          options: ['Klopt, want die voorraad was anders elk jaar opnieuw ingekocht en had elk jaar geld gekost', 'Het is 400.000 euro, want de lagere voorraad blijft minstens twee jaar zo', 'Het telt niet, want voorraad is geen geld', 'Het is eenmalig 200.000 euro vrijgekomen geld; per jaar bespaar je alleen de kosten van die voorraad aanhouden'],
-          answer: 'Het is eenmalig 200.000 euro vrijgekomen geld; per jaar bespaar je alleen de kosten van die voorraad aanhouden',
-          why: 'Minder voorraad maakt één keer geld vrij. Elk jaar terug komen alleen de kosten van het aanhouden: rente, ruimte, veroudering.',
+          q: 'De nieuwe dagelijkse review levert 10.000 euro per maand aan extra output op en kost 3.000 euro per maand aan tijd van mensen. Wat zet je in het eindrapport als opbrengst per jaar?',
+          options: ['120.000 euro bruto, want de reviewtijd is tijd die mensen toch al maken', '36.000 euro, want alleen de kosten van de review zijn echt zeker', '156.000 euro, want de review voorkomt ook elders in de fabriek kosten', '84.000 euro netto, met de bruto berekening van 120.000 euro ernaast'],
+          answer: '84.000 euro netto, met de bruto berekening van 120.000 euro ernaast',
+          why: 'Netto is 10.000 − 3.000 = 7.000 euro per maand, 84.000 per jaar. Reviewtijd is echte tijd van echte mensen; met de bruto som ernaast kan de controller het narekenen.',
         },
       ],
       teach: [
         'Aan het eind wil iedereen één getal: wat levert het per jaar op? Dat heet annualiseren (annualising): een effect uit een paar weken omrekenen naar een jaar. Gebruik de mediaan van alle weken na de verandering, niet de beste weken.\n\nCorrigeer voor seizoen: tien weken in een rustige zomer zeggen weinig over een druk najaar. En reken met het aantal weken dat de fabriek echt draait, niet met 52.',
-        'Scheid eenmalig van terugkerend. Een eenmalig effect (one-off effect), zoals minder voorraad of een machine die je niet hoeft te kopen, telt één keer. Minder overwerk of meer verkochte output komt elk jaar terug.\n\nTel ze nooit bij elkaar op tot één jaarbedrag. Zet ze apart in je eindrapport, elk met zijn eigen regel.',
-        'Reken netto. De netto opbrengst (net benefit) is de bruto opbrengst min wat de nieuwe werkwijze blijvend kost: de dagelijkse review van een kwartier met vijf mensen, een extra sensor, licenties.\n\nDan de terugverdientijd (payback period): de projectkosten gedeeld door de netto opbrengst per maand. Onder een jaar vinden de meeste managers overtuigend; maar elk bedrijf heeft zijn eigen norm.',
-        'Geef een bandbreedte (range), geen schijnzeker getal: “tussen de 80.000 en 110.000 euro per jaar, waarschijnlijk rond de 100.000”, met de aannames erbij. Bedenk ook de aanloop: in het eerste jaar haal je vaak niet het volle effect.\n\nOf het geld na de afsluiting echt binnenkomt, en hoe controllers harde en zachte besparingen onderscheiden, staat in de module Landen. Hier gaat het om het getal dat je bij de afsluiting zelf noemt.',
+        'Scheid eenmalig van terugkerend. Dat is de eerste vraag van de controller, uitgelegd in de module Landen (Harde en zachte besparingen): minder voorraad maakt één keer geld vrij, minder overwerk komt elk jaar terug. Een eenmalig effect (one-off effect) telt één keer.\n\nBij de afsluiting betekent dat: tel de twee nooit op tot één jaarbedrag. Zet ze apart in je eindrapport, elk op een eigen regel.',
+        'Reken netto. De netto opbrengst (net benefit) is de bruto opbrengst min wat de nieuwe werkwijze blijvend kost: de dagelijkse review van een kwartier met vijf mensen, een extra sensor, licenties.\n\nDan de terugverdientijd (payback period), die je kent uit de module Intake: projectkosten gedeeld door de netto opbrengst per maand. Bij de afsluiting reken je hem opnieuw uit met gemeten cijfers in plaats van de schatting. Bij een klein verbeterproject hopen veel managers op minder dan een jaar; elk bedrijf heeft zijn eigen norm.',
+        'Geef een bandbreedte (range), geen schijnzeker getal: “tussen de 80.000 en 110.000 euro per jaar, waarschijnlijk rond de 100.000”, met de aannames erbij. Bedenk ook de aanloop: in het eerste jaar haal je vaak niet het volle effect.\n\nOf het geld na de afsluiting echt binnenkomt, en wie blijft meten, staat in de module Landen (Baten). Hier gaat het om het getal dat je bij de afsluiting zelf noemt.',
         'Waar experts over discussiëren: bruto of netto melden? Adviesbureaus noemen graag bruto; controllers willen netto. Kies netto en laat de bruto som zien.\n\nTypische fout: het effect van tien weken maal 52 doen, de lopende kosten vergeten, en het eenmalige voorraadgeld erbij tellen. Dan staat er een getal dat bij de eerste vraag omvalt. Een scherpe vraag aan jezelf: “Welke aanname halveert dit getal als hij niet klopt?”',
       ],
       example: {
@@ -425,15 +425,15 @@ export default {
       pre: [
         {
           q: 'Voor je analyse heb je per operator bijgehouden hoe vaak hij een storing meldde, met naam. Het project is afgerond. Wat doe je met die gegevens?',
-          options: ['Verwijderen of anoniem maken, en alleen de opgetelde cijfers bewaren', 'Op je laptop bewaren voor een volgend project', 'Naar de plantmanager sturen voor de beoordelingsgesprekken', 'Bewaren zolang er ruimte op de schijf is'],
+          options: ['Verwijderen of anoniem maken, en alleen de opgetelde cijfers bewaren', 'Op je laptop bewaren, voor het geval een volgend project het nodig heeft', 'Naar de plantmanager sturen voor de beoordelingsgesprekken', 'Bewaren zolang er nog ruimte is op de gedeelde schijf'],
           answer: 'Verwijderen of anoniem maken, en alleen de opgetelde cijfers bewaren',
           why: 'Persoonsgegevens mag je niet langer bewaren dan nodig is voor het doel waarvoor je ze verzamelde. Opgetelde cijfers zonder namen kun je wel archiveren.',
         },
       ],
       teach: [
-        'Na de ondertekening is het project nog niet dicht. Er volgt administratief werk dat makkelijk blijft liggen. PMBOK, het handboek van het Amerikaanse PMI, noemt dit “Close Project or Phase”; in PRINCE2 heet het proces Closing a Project.\n\nWerk met een afsluitchecklist (close-out checklist): een vaste lijst van wat er dicht moet, elk punt met een eigenaar en een datum. Meestal kost dat een paar uur, verspreid over twee weken.',
+        'Na de ondertekening is het project nog niet dicht. Er volgt administratief werk dat makkelijk blijft liggen. PMBOK, de gids van het Amerikaanse Project Management Institute (PMI), noemt dit “Close Project or Phase”; in PRINCE2 heet het proces Closing a Project.\n\nWerk met een afsluitchecklist (close-out checklist): een vaste lijst van wat er dicht moet, elk punt met een eigenaar en een datum. Meestal kost dat een paar uur, verspreid over twee weken.',
         'Geld en uren eerst. Sluit de urencode, het nummer waarop mensen hun projecturen boeken, zodat niemand er na de afsluiting nog op boekt. Sluit openstaande inkooporders.\n\nStuur de eindfactuur (final invoice): het laatste deel van het afgesproken bedrag, plus de wijzigingen die de sponsor schriftelijk goedkeurde, en niks wat hij nooit zag. Meld de teamleden en hun leidinggevenden de einddatum, zodat ze weer volledig ingepland kunnen worden.',
-        'Dan het projectarchief (project archive): één plek, bij de klant, met de projectopdracht, de acceptatiecriteria, de ondertekening, de definities van de meetwaarden, de ruwe data en het eindrapport. Niet op jouw laptop: daar vindt over een jaar niemand iets terug.\n\nLet op de bewaartermijn (retention period). Financiële stukken zoals facturen moeten in Nederland voor de belasting zeven jaar bewaard worden (artikel 52 van de Algemene wet inzake rijksbelastingen).',
+        'Dan het projectarchief (project archive): één plek, bij de klant, met de projectopdracht, de acceptatiecriteria, de ondertekening, de definities van de meetwaarden, de ruwe data en het eindrapport. Niet op jouw laptop: daar vindt over een jaar niemand iets terug.\n\nLet op de bewaartermijn (retention period). Financiële stukken zoals facturen moeten in Nederland voor de belasting zeven jaar bewaard worden (artikel 52 van de Algemene wet inzake rijksbelastingen, de AWR).',
         'Persoonsgegevens zijn het omgekeerde: die mag je volgens de AVG, de Europese privacywet (GDPR), niet langer bewaren dan nodig is. Lijsten met namen van operators en hun storingen verwijder je of maak je anoniem; de opgetelde cijfers bewaar je.\n\nToegang intrekken (revoking access) hoort er ook bij: pasjes, IT-accounts, gedeelde mappen en de Teams-groep van het project. Doe het zelf op de laatste dag, niet als IT het een halfjaar later ontdekt.',
         'Typische fout: de urencode blijft open, en drie maanden later staan er 60 uur op van mensen die “nog even iets voor het project deden”. Of de definitie van stilstand zat alleen in jouw hoofd.\n\nSluit af met mensen: een bedankmail aan het team en hun leidinggevenden, met wat ieder bijdroeg. Een scherpe vraag voor je laatste dag: “Kan iemand over een jaar vinden hoe we stilstand hebben gedefinieerd?”',
       ],
@@ -445,14 +445,14 @@ export default {
       recall: [
         {
           q: 'Waarom sluit je de urencode van het project direct na de afsluiting?',
-          options: ['Omdat de belastingdienst dat eist', 'Om te voorkomen dat teamleden hun uren van vorige maanden nog corrigeren', 'Zodat niemand er nog uren op boekt die het project niet meer bestelde', 'Omdat het eindrapport pas klaar is als alle uren definitief vaststaan'],
+          options: ['Omdat de Belastingdienst eist dat elke projectcode dichtgaat', 'Om te voorkomen dat teamleden hun uren van vorige maanden nog corrigeren', 'Zodat niemand er nog uren op boekt die het project niet meer bestelde', 'Omdat het eindrapport pas klaar is als alle uren definitief vaststaan'],
           answer: 'Zodat niemand er nog uren op boekt die het project niet meer bestelde',
           why: 'Een open urencode trekt uren aan van werk dat geen project meer is, en dan klopt de eindafrekening niet.',
         },
         {
           q: 'Waar bewaar je het projectarchief?',
-          options: ['Op je eigen laptop, dan weet je waar het is en kun je het sturen als iemand erom vraagt', 'Op één plek bij de klant, met opdracht, criteria, ondertekening, definities, data en eindrapport', 'In de mailboxen van het projectteam, want alles is toch per mail verstuurd', 'Nergens, het eindrapport is genoeg'],
-          answer: 'Op één plek bij de klant, met opdracht, criteria, ondertekening, definities, data en eindrapport',
+          options: ['Op je eigen laptop, dan weet je waar het is en kun je het sturen als iemand erom vraagt', 'Op één plek bij de klant: opdracht, criteria, ondertekening, definities, data, eindrapport', 'In de mailboxen van het projectteam, want alles is toch per mail verstuurd', 'Nergens apart: in het eindrapport staat alles wat ertoe doet'],
+          answer: 'Op één plek bij de klant: opdracht, criteria, ondertekening, definities, data, eindrapport',
           why: 'De lijn moet over een jaar kunnen nagaan wat er is afgesproken en hoe er gemeten is, ook als jij weg bent.',
         },
         {
@@ -506,83 +506,83 @@ export default {
       title: 'Voortijdig stoppen',
       pre: [
         {
-          q: 'Een project heeft 80.000 euro gekost en ligt stil omdat de klant de lijn over een halfjaar sluit. Afmaken kost nog 30.000 euro. Welk argument hoort niet in het besluit?',
-          options: ['Wat afmaken nog kost', '“We hebben er al 80.000 euro in gestoken”', 'Wat het resultaat in het halfjaar nog oplevert', 'Wat er van het werk ook na de sluiting bruikbaar blijft'],
-          answer: '“We hebben er al 80.000 euro in gestoken”',
-          why: 'Wat al is uitgegeven krijg je niet terug, wat je ook besluit. Alleen toekomstige kosten en opbrengsten horen in het besluit.',
+          q: 'De stuurgroep stopt een project halverwege. De helft van de operators werkt al met de nieuwe omstelstandaard, de andere helft nog met de oude. Wat doe je voordat je weggaat?',
+          options: ['Met de eigenaar één werkwijze voor iedereen afspreken, oud of nieuw, en die vastleggen', 'Het zo laten: de operators zoeken onderling wel uit welke standaard het wint', 'De nieuwe standaard toch overal invoeren, want er is al zoveel werk in gestoken', 'De nieuwe standaard overal weghalen, want een gestopt project mag niets achterlaten'],
+          answer: 'Met de eigenaar één werkwijze voor iedereen afspreken, oud of nieuw, en die vastleggen',
+          why: 'Twee standaarden naast elkaar is de gevaarlijkste toestand die een gestopt project kan achterlaten. Kies er samen met de eigenaar één, op basis van wat werkt, niet van wat er al is uitgegeven.',
         },
       ],
       teach: [
-        'Soms moet een project stoppen voordat het af is. De reden is weg: de lijn sluit, er komt een nieuwe eigenaar, de vraag is veranderd. Of de business case, de onderbouwing waarom het project de kosten waard is, klopt niet meer.\n\nPRINCE2 noemt dat voortijdige afsluiting (premature closure): de stuurgroep besluit te stoppen, en de projectleider sluit het project dan net zo ordelijk af als bij een gewoon einde.',
-        'Het grootste denkfoutje heet verzonken kosten (sunk costs): geld en tijd die al op zijn. “We hebben er al zoveel in gestoken” voelt als een reden om door te gaan, maar dat geld komt niet terug, wat je ook besluit.\n\nArkes en Blumer (1985) lieten zien dat mensen een project na een grote investering eerder doorzetten en de kans op succes hoger schatten. Kijk alleen vooruit: wat kost afmaken nog, en wat levert het dan nog op?',
-        'Organisaties gooien er vaak juist meer geld tegenaan als het misgaat: escalatie van betrokkenheid (escalation of commitment). Barry Staw beschreef het in 1976. Wie het project ooit verdedigde, wil niet toegeven dat het niet werkt.\n\nDaartegen helpt een stopcriterium (kill criterion), vooraf afgesproken: “Als de pilot in week 8 de omsteltijd niet met minstens 20% verkort, stoppen we of kiezen we een andere aanpak.” Annie Duke beschrijft dat idee in haar boek Quit (2022).',
-        'Stoppen betekent niet weglopen. Lever op wat bruikbaar is: een standaard die ook op de oude machines werkt, data, een analyse. Schrijf een kort eindrapport met wat er wel en niet bereikt is en waarom. Houd een terugblik.\n\nAls junior besluit jij niet alleen over stoppen. Jouw taak is de feiten op tafel leggen bij de sponsor: “Dit kost afmaken nog, dit levert het op. Ik zou stoppen, maar het is jouw besluit.”',
-        'Waar experts over discussiëren. Duke zegt dat de meeste mensen te laat stoppen. Anderen waarschuwen dat veel verbeteringen eerst een dip geven voordat ze werken, en dat je dan te vroeg opgeeft.\n\nEen stopcriterium dat je vooraf afspreekt, lost veel van die discussie op. De mensenkant: stoppen voelt als falen. Noem het een besluit, bedank het team, en vertel wat er wel blijft. Scherpe vraag: “Zouden we hier vandaag aan beginnen, met wat we nu weten?”',
+        'Soms moet een project stoppen voordat het af is: de lijn sluit, er komt een nieuwe eigenaar, of de businesscase, de onderbouwing waarom het project de kosten waard is, klopt niet meer. Óf je stopt, besluit de stuurgroep. Hoe je dat besluit neemt zonder dat verzonken kosten (sunk costs), geld dat al op is, je sturen, staat in de module Uitvoeren (Bijsturen of stoppen).\n\nDeze les begint na dat besluit. PRINCE2 noemt het voortijdige afsluiting (premature closure): je sluit het project net zo ordelijk af als bij een gewoon einde.',
+        'Maak eerst de balans op van al het werk: wat is af, wat is half af, waar is nooit aan begonnen? Half werk is het risico. Een standaard die maar in de helft van de ploegen draait, of een half omgebouwde machine, is erger dan de oude of de nieuwe toestand.\n\nBreng daarom elk half af punt naar een veilig stoppunt (safe stopping point): een stabiele, vastgelegde toestand waarin de lijn zonder jou kan draaien. Soms betekent dat een klein stuk afmaken, soms terug naar de oude manier.',
+        'Let op dat de verzonken kosten hier niet terugsluipen: “laten we de cel in elk geval afmaken, de helft is al betaald.” Maak een stuk alleen af als het vanaf nu waard is wat het nog kost.\n\nDan het geld. Lees het contract: vaak staat er een beëindigingsclausule (early termination clause) in, die zegt wat de klant betaalt als een project voortijdig stopt, vaak het gedane werk plus een opzegtermijn. Sluit de urencode en stuur de eindfactuur volgens die clausule.',
+        'Draag over wat bruikbaar is, elk stuk met een eigenaar: een standaard die ook op de oude machines werkt, data, een analyse. Schrijf een kort eindrapport: wat er wel en niet bereikt is, waarom het project stopte, en of een vooraf afgesproken stopvoorwaarde gehaald is. Van dat laatste leert de volgende businesscase het meest.\n\nAls junior besluit jij niet over stoppen. Jouw taak is een ordelijke afsluiting als het besluit er ligt.',
+        'Waar experts over discussiëren: Annie Duke (Quit, 2022) zegt dat de meeste mensen te laat stoppen; anderen waarschuwen dat veel verbeteringen eerst een dip geven voordat ze werken. Bij de afsluiting is die discussie voorbij. Nu telt dat het team het besluit van de sponsor hoort, niet via de wandelgangen.\n\nDe mensenkant: stoppen voelt als falen. Noem het een besluit, bedank het team, en vertel wat er van hun werk blijft. Een scherpe vraag voor je laatste dag: “Welk half af ding brengt de operators volgende maand in de war?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Bij een metaalbewerker loopt een project om drie machines tot een cel samen te voegen. Na vier maanden besluit het moederbedrijf de productfamilie over een halfjaar naar Polen te verhuizen. Er is 70.000 euro uitgegeven. Afmaken kost nog 40.000 euro; in het halfjaar dat de cel nog zou draaien levert hij naar schatting 15.000 euro op.\n\nIntussen werken de nieuwe instelstandaard en de 5S-indeling, een vaste plek voor elk gereedschap, al op de bestaande machines.',
-        ask: 'Wat adviseer je de sponsor, en hoe sluit je het project af?',
-        reveal: 'De 70.000 euro is verzonken; die telt niet mee. Vooruit gekeken: 40.000 euro uitgeven voor 15.000 euro opbrengst is een verlies van 25.000. Advies: stoppen met de cel.\n\nVoortijdig afsluiten: de instelstandaard en de 5S-indeling overdragen aan de teamleider, want die blijven waarde hebben, ook voor de producten die blijven. Een kort eindrapport, een terugblik met het team, en de stuurgroep laten besluiten. Aan het team: “Jullie werk aan de standaard blijft; alleen de cel gaat niet door.”',
+        text: 'Bij een metaalbewerker liep een project om drie machines tot een cel samen te voegen. Na vier maanden besloot het moederbedrijf de productfamilie over een halfjaar naar Polen te verhuizen, en de stuurgroep stopte het project.\n\nDe stand van het werk: twee van de drie machines staan al in de opstelling van de cel, de derde staat nog in de oude hal; de nieuwe instelstandaard wordt alleen in de dagploeg gebruikt; de 5S-indeling, een vaste plek voor elk gereedschap, is bij alle machines klaar. Het contract heeft een beëindigingsclausule.',
+        ask: 'Hoe sluit je dit project ordelijk af?',
+        reveal: 'Balans opmaken, dan per punt een veilig stoppunt. De cel: er wordt niets meer verplaatst; de twee verplaatste machines blijven staan, want terugzetten kost geld en de doorstroming werkt, en de routing in het planningssysteem wordt daarop aangepast. De instelstandaard: twee trainingen voor de nachtploeg, zodat in alle ploegen één standaard draait. De 5S-indeling is af: overdragen aan de teamleider.\n\nDan factureren volgens de beëindigingsclausule, een eindrapport van één A4 met waarom het stopte, en een korte terugblik. Aan het team: “Jullie standaard en de 5S blijven; alleen de cel gaat niet door.”',
       },
-      said: 'Wat je hoort in projecten: “We zijn nu al zo ver, dan kunnen we het net zo goed afmaken.”',
+      said: 'Wat je hoort in projecten: “Het is toch gestopt, waarom zouden we nog iets opschrijven?”',
       recall: [
         {
-          q: 'Een project kostte tot nu toe 90.000 euro. Afmaken kost nog 50.000 euro. Daarna levert het 30.000 euro op in het ene jaar dat de lijn nog draait. Wat is de netto waarde van doorgaan, in duizenden euro (een verlies is negatief)?',
-          number: -20,
-          tolerance: 0.5,
+          q: 'Na het stopbesluit zijn drie stukken werk half af. De instelstandaard afmaken kost 4.000 euro en levert in de maanden dat de lijn nog draait 10.000 euro op. De opstelling van de cel afmaken kost 6.000 euro en levert 5.000 euro op. De werkinstructies afmaken kost 2.000 euro en levert 3.000 euro op. Je maakt alleen de stukken af die het waard zijn. Wat is hun netto waarde samen, in duizenden euro?',
+          number: 7,
+          tolerance: 0.1,
           unit: 'duizend euro',
-          why: 'De 90.000 euro is verzonken en telt niet mee. Vooruit: 30.000 opbrengst min 50.000 kosten.',
-          hint: 'Laat het geld dat al is uitgegeven weg en vergelijk alleen wat nog komt.',
+          why: 'Standaard: 10 − 4 = 6. Cel: 5 − 6 = −1, die laat je liggen. Werkinstructies: 3 − 2 = 1. Samen 6 + 1 duizend euro; wat al is uitgegeven telt niet mee.',
+          hint: 'Trek per stuk de kosten van afmaken af van wat het oplevert, en laat de stukken weg die geld kosten.',
         },
         {
-          q: 'Welke is een goed stopcriterium?',
-          options: ['“We stoppen als het niet goed voelt.”', '“We stoppen als de sponsor vindt dat het project de moeite voor de fabriek niet meer waard is.”', '“We gaan door tot het budget op is, en dan besluit de stuurgroep over de rest.”', '“Als de pilot in week 8 de omsteltijd niet met minstens 20% verkort, stoppen we of kiezen we een andere aanpak.”'],
-          answer: '“Als de pilot in week 8 de omsteltijd niet met minstens 20% verkort, stoppen we of kiezen we een andere aanpak.”',
-          why: 'Het is vooraf afgesproken, meetbaar, en heeft een moment. Dan is stoppen een afspraak, geen gezichtsverlies.',
+          q: 'Wat is een veilig stoppunt?',
+          options: ['Het moment waarop het budget op is en de stuurgroep bijeenkomt', 'De laatste mijlpaal die gefactureerd is en door de klant betaald', 'Het punt waarop het team al het werk uit de planning af heeft', 'Een stabiele, vastgelegde toestand waarin de lijn zonder jou draait'],
+          answer: 'Een stabiele, vastgelegde toestand waarin de lijn zonder jou draait',
+          why: 'Half werk, zoals twee standaarden naast elkaar, brengt de lijn in de war als jij weg bent. Een veilig stoppunt is een toestand die op zichzelf standhoudt.',
         },
         {
-          q: 'Wat is escalatie van betrokkenheid?',
-          options: ['Meer geld en tijd in een falend project steken omdat je er al in investeerde', 'Een probleem naar de stuurgroep brengen als het team het niet oplost', 'Het team steeds meer verantwoordelijkheid geven', 'De sponsor vaker en uitgebreider bijpraten als een project in de problemen komt'],
-          answer: 'Meer geld en tijd in een falend project steken omdat je er al in investeerde',
-          why: 'Wie het project verdedigde, wil niet toegeven dat het niet werkt, en zet daarom door. Staw beschreef het in 1976.',
+          q: 'De klant wil de half gebouwde cel afmaken “omdat de helft toch al betaald is”. Wat zeg je?',
+          options: ['“Alleen als hij de resterende kosten waard is; uitgegeven is uitgegeven.”', '“Ja, anders is het geld dat we tot nu toe uitgaven voor niets geweest.”', '“Nee, een gestopt project mag geen enkel deel van het werk meer afmaken.”', '“Dat mogen de operators beslissen, die werken er elke dag mee.”'],
+          answer: '“Alleen als hij de resterende kosten waard is; uitgegeven is uitgegeven.”',
+          why: 'Het geld dat al op is, komt hoe dan ook niet terug. Alleen wat afmaken nog kost en nog oplevert hoort in de keuze.',
         },
         {
-          q: 'De stuurgroep besluit een project voortijdig te stoppen. Wat doe je nog?',
-          options: ['Niets, het project is gestopt', 'Het team snel op een ander project zetten, zodat niemand tijd verliest aan een gestopt project', 'Bruikbaar werk overdragen, een kort eindrapport schrijven en een terugblik houden', 'Doorwerken tot het eerste deel toch af is'],
-          answer: 'Bruikbaar werk overdragen, een kort eindrapport schrijven en een terugblik houden',
-          why: 'Een gestopt project sluit je net zo ordelijk af: wat waarde heeft blijft, en wat je leerde gaat niet verloren.',
+          q: 'Wat regelt een beëindigingsclausule in het contract?',
+          options: ['Wie in de stuurgroep mag besluiten het project te stoppen', 'Welke stopvoorwaarde voor de pilot geldt, en in welke week', 'Wat de klant betaalt als het project voor het einde stopt', 'Hoe lang het projectarchief na een stop bewaard moet worden'],
+          answer: 'Wat de klant betaalt als het project voor het einde stopt',
+          why: 'Ze zegt wat er na een voortijdige stop gefactureerd wordt, vaak het gedane werk plus een opzegtermijn. Wie besluit te stoppen, regelt de stuurgroep, niet het contract.',
         },
       ],
       situation: {
-        scene: 'Je zit bij een netbeheerder. Je project zou een nieuwe planningstool invoeren, maar het hoofdkantoor kiest over drie maanden landelijk een ander systeem. Je sponsor wil toch doorgaan: “We hebben al een halfjaar werk en 120.000 euro gestoken in deze tool.”',
+        scene: 'Je zit bij een netbeheerder. De stuurgroep heeft je project voor een planningstool gestopt, omdat het hoofdkantoor één landelijk systeem kiest. Twee planners hebben er een halfjaar aan gewerkt. De sponsor zegt: “Laten we het gewoon stilletjes laten gaan. Geen eindrapport, geen terugblik; niemand wil erbij stilstaan.”',
         ask: 'Wat zeg je?',
-        model: '“Dat halfjaar werk is niet weg, maar het geld komt niet terug, wat we ook besluiten. De vraag is: wat kost afmaken nog, en wat levert de tool in drie maanden op voordat hij vervangen wordt? Ik zet dat op één A4, met wat we kunnen meenemen naar het nieuwe systeem, zoals de werkafspraken en de data. Dan besluit jij in de stuurgroep.”',
+        model: '“Ik snap het, niemand wil er een groot ding van maken. Maar de planners verdienen het om het goed te horen, en hun werkafspraken en data zijn bruikbaar voor het nieuwe systeem. Ik stel één A4 voor: wat we bereikten, waarom we stoppen, wat naar het team van het hoofdkantoor gaat. Plus een korte terugblik van een uur, en jij vertelt het de planners deze week zelf.”',
         rubric: [
-          'Benoemt de verzonken kosten zonder het werk af te kraken',
-          'Richt het besluit op toekomstige kosten en opbrengsten',
-          'Laat het besluit bij de sponsor en de stuurgroep, met feiten op één A4',
+          'Erkent de wens om het klein te houden',
+          'Pleit voor een korte, ordelijke afsluiting met eindrapport en terugblik',
+          'Laat de sponsor het team inlichten en draagt over wat bruikbaar is',
         ],
         pushback: {
           lines: [
-            '“Als we nu stoppen, lijkt het alsof we een halfjaar hebben weggegooid. Dat kan ik niet uitleggen.”',
-            '“Misschien kiest het hoofdkantoor straks toch voor onze tool, als hij er eenmaal staat.”',
+            '“Een rapport over een project dat mislukt is? Daar doe je alleen mensen pijn mee.”',
+            '“Het hoofdkantoor geeft toch niks om onze werkafspraken.”',
           ],
-          model: '“Je hoeft geen weggegooid halfjaar uit te leggen: de werkafspraken en de data gaan mee naar het nieuwe systeem, en dat laat ik zien. Als er een echte kans is dat het hoofdkantoor omgaat, vraag het dan deze week na. Dan besluiten we op die informatie, niet op hoop.”',
+          model: '“Het is niet mislukt, het is ingehaald, en dat staat er precies zo op. En niemand hoeft het over te nemen: ik bied de afspraken en data aan bij de projectleider van het hoofdkantoor, en willen ze het niet, dan blijft het in het archief. Eén A4 en één uur, meer niet. Zal ik donderdag een opzet hebben?”',
           rubric: [
-            'Erkent zijn zorg over gezichtsverlies',
-            'Houdt vast aan besluiten op feiten, niet op wat al is uitgegeven',
-            'Stelt een concrete stap voor om de onzekerheid op te lossen',
+            'Erkent de zorg om mensen pijn te doen',
+            'Houdt vast aan een kort eindrapport en een overdracht',
+            'Stelt een kleine, concrete stap met een datum voor',
           ],
         },
       },
-      sayIt: 'Leg een sponsor in 60 seconden uit waarom je bij het besluit om te stoppen niet kijkt naar wat al is uitgegeven.',
+      sayIt: 'Leg een sponsor in 60 seconden uit hoe je een project ordelijk afsluit als de stuurgroep heeft besloten te stoppen.',
       terms: [
-        { term: 'Business case', def: 'De onderbouwing waarom een project de kosten en moeite waard is.' },
-        { term: 'Voortijdige afsluiting', def: 'Een project ordelijk afsluiten voordat het af is, op besluit van de stuurgroep.' },
+        { term: 'Businesscase', def: 'De onderbouwing waarom een project de kosten en moeite waard is.' },
+        { term: 'Voortijdige afsluiting', def: 'Een project ordelijk afsluiten voordat het af is, nadat de stuurgroep heeft besloten te stoppen.' },
         { term: 'Verzonken kosten', def: 'Geld en tijd die al zijn uitgegeven en niet terugkomen, wat je ook besluit.' },
-        { term: 'Escalatie van betrokkenheid', def: 'Meer investeren in een falend project omdat je er al in investeerde.' },
-        { term: 'Stopcriterium', def: 'Een vooraf afgesproken, meetbare voorwaarde waarbij je stopt of van aanpak wisselt.' },
+        { term: 'Veilig stoppunt', def: 'Een stabiele, vastgelegde toestand van half werk waarin de lijn zonder het project kan draaien.' },
+        { term: 'Beëindigingsclausule', def: 'Het deel van het contract dat zegt wat de klant betaalt als een project voor het einde stopt.' },
       ],
     },
     {
@@ -591,7 +591,7 @@ export default {
       pre: [
         {
           q: 'Bij de afsluiting van een lijnverhuizing staat er nog een open risico: de schoonmaakvalidatie na een allergenenwissel, de check dat er geen sporen van bijvoorbeeld noten achterblijven, is nog niet herhaald op de nieuwe plek. Wat doe je ermee?',
-          options: ['Afsluiten, want het project is klaar', 'In het eindrapport noemen, zodat de sponsor ervan weet als hij het leest', 'Overdragen aan het risicoregister van de lijn, met een eigenaar en een datum', 'Het project openhouden tot de validatie gedaan is, dan sluit je alles in één keer'],
+          options: ['Afsluiten, want het project is klaar en het risico gaat mee', 'In het eindrapport noemen, zodat de sponsor ervan weet als hij het leest', 'Overdragen aan het risicoregister van de lijn, met een eigenaar en een datum', 'Het project openhouden tot de validatie gedaan is, dan sluit je alles in één keer'],
           answer: 'Overdragen aan het risicoregister van de lijn, met een eigenaar en een datum',
           why: 'Een risico verdwijnt niet als het project stopt. In het register van de lijn heeft het een eigenaar die er na jou nog is.',
         },
@@ -613,7 +613,7 @@ export default {
       recall: [
         {
           q: 'Wie besluit in PRINCE2 dat een project echt wordt afgesloten?',
-          options: ['De projectleider, zodra het werk af is', 'De stuurgroep, op voorstel van de projectleider', 'De controller, na de eindfactuur', 'Het team, in de terugblik'],
+          options: ['De projectleider, zodra het laatste werkpakket af is', 'De stuurgroep, op voorstel van de projectleider', 'De controller, zodra de eindfactuur betaald is', 'Het team, samen in de terugblik'],
           answer: 'De stuurgroep, op voorstel van de projectleider',
           why: 'De projectleider bereidt de afsluiting voor en stelt hem voor; de stuurgroep, die het project ook ooit startte, besluit.',
         },
@@ -625,8 +625,8 @@ export default {
         },
         {
           q: 'Waarom gaat de besluitenlijst naar het archief?',
-          options: ['Zodat de lijn later weet waarom iets zo is ingericht, en een goed besluit niet zomaar wordt teruggedraaid', 'Omdat de accountant hem bij de jaarafsluiting nodig heeft om de projectkosten te controleren', 'Om later te kunnen aantonen wie wat besloot, voor als er iets misgaat', 'Omdat PRINCE2 verbiedt projectstukken te verwijderen vóór de batenreview'],
-          answer: 'Zodat de lijn later weet waarom iets zo is ingericht, en een goed besluit niet zomaar wordt teruggedraaid',
+          options: ['Zodat de lijn later weet waarom iets zo is ingericht, en een goed besluit niet wordt teruggedraaid', 'Omdat de accountant hem bij de jaarafsluiting nodig heeft om de projectkosten te controleren', 'Om later te kunnen bewijzen wie wat besloot, voor als er na jouw vertrek iets misgaat', 'Omdat PRINCE2 verbiedt projectstukken te verwijderen vóór de batenreview'],
+          answer: 'Zodat de lijn later weet waarom iets zo is ingericht, en een goed besluit niet wordt teruggedraaid',
           why: 'De reden achter een besluit is na een jaar vergeten. Wie hem kan nalezen, draait hem niet per ongeluk terug.',
         },
         {
@@ -707,7 +707,7 @@ export default {
         },
         {
           q: 'Waarom laat je mensen eerst schrijven en dan praten?',
-          options: ['Het gaat sneller', 'Om een schriftelijk verslag voor het eindrapport te hebben', 'Zodat stille stemmen meetellen, niet alleen de eerste die iets zegt', 'Omdat de sponsor de aantekeningen achteraf wil lezen'],
+          options: ['Het gaat sneller dan een rondje waarin iedereen om de beurt praat', 'Om een schriftelijk verslag voor het eindrapport te hebben', 'Zodat stille stemmen meetellen, niet alleen de eerste die iets zegt', 'Omdat de sponsor de aantekeningen achteraf wil lezen'],
           answer: 'Zodat stille stemmen meetellen, niet alleen de eerste die iets zegt',
           why: 'Eerst schrijven haalt ieders kijk op voordat de groep naar één verhaal trekt.',
         },
@@ -755,7 +755,7 @@ export default {
       pre: [
         {
           q: 'Welke feedbackvraag levert meestal het nuttigste antwoord op?',
-          options: ['“Hoe heb ik het gedaan, op een schaal van één tot tien?”', '“Heb je nog feedback voor mij over het project?”', '“Was het oké?”', '“Wat is één ding dat ik in mijn volgende project anders moet doen?”'],
+          options: ['“Hoe heb ik het gedaan, op een schaal van één tot tien?”', '“Heb je nog feedback voor mij over het project?”', '“Was alles oké met hoe ik in dit project werkte?”', '“Wat is één ding dat ik in mijn volgende project anders moet doen?”'],
           answer: '“Wat is één ding dat ik in mijn volgende project anders moet doen?”',
           why: 'Een concrete vraag krijgt een concreet antwoord; een algemene krijgt “prima”.',
         },
@@ -775,7 +775,7 @@ export default {
       recall: [
         {
           q: 'Iemand geeft je feedback die schuurt. Wat doe je?',
-          options: ['Uitleggen waarom het zo ging', 'Luisteren, bedanken, en zo nodig om een voorbeeld vragen', 'Het negeren', 'Meteen iemand anders om een tweede mening vragen'],
+          options: ['Uitleggen waarom het zo ging', 'Luisteren, bedanken, en zo nodig om een voorbeeld vragen', 'Het negeren en gewoon doorgaan met je werk', 'Meteen iemand anders om een tweede mening vragen'],
           answer: 'Luisteren, bedanken, en zo nodig om een voorbeeld vragen',
           why: 'Verdedigen stopt de feedback; nieuwsgierigheid levert je er meer van op.',
         },
@@ -841,7 +841,7 @@ export default {
         },
       ],
       teach: [
-        'Een goede terugblik heeft een vaste opbouw. Esther Derby en Diana Larsen beschreven in Agile Retrospectives (2006) vijf fases: de toon zetten (set the stage), gegevens verzamelen, inzichten zoeken, besluiten wat je gaat doen, en afsluiten.\n\nVerdeel de tijd vooraf. Voor 90 minuten bijvoorbeeld: 10, 25, 25, 20 en 10. Zo blijft er tijd over voor het deel waar het om gaat: besluiten.',
+        'Een goede terugblik heeft een vaste opbouw. Esther Derby en Diana Larsen beschreven in Agile Retrospectives (2006) vijf fases: de toon zetten (set the stage), gegevens verzamelen, inzichten zoeken, besluiten wat je gaat doen, en afsluiten. Het boek komt van softwareteams die elke sprint een terugblik houden (zie de module Agile en Scrum); de opbouw werkt ook aan het eind van een project.\n\nVerdeel de tijd vooraf. Voor 90 minuten bijvoorbeeld: 10, 25, 25, 20 en 10. Zo blijft er tijd over voor het deel waar het om gaat: besluiten.',
         'De toon zet je met een check-in: een kort rondje waarin iedereen in één woord of zin zegt hoe hij erbij zit. Wie in de eerste vijf minuten iets zegt, praat later makkelijker mee.\n\nVoor het verzamelen kies je een format dat bij de groep past. De tijdlijn werkt bij lange projecten. Bij korte projecten werkt de 4L (4Ls) goed: wat vond je goed (liked), wat leerde je (learned), wat miste je (lacked), waar verlangde je naar (longed for). Het format wordt toegeschreven aan Mary Gorman en Ellen Gottesdiener.',
         'Bij inzichten zoeken vraag je steeds “waarom?” en groepeer je de post-its in thema’s. Daarna kies je wat je aanpakt met stippenstemmen (dot voting): iedereen krijgt drie stippen en plakt ze bij de thema’s die hij het belangrijkst vindt. Zo kiest de groep, niet de luidste stem.\n\nBesluit over twee of drie acties, elk met een eigenaar en een moment.',
         'Sluit af met ROTI, return on time invested: iedereen geeft met zijn vingers een score van 0 tot 4 voor wat de sessie waard was voor de tijd. 0 is verspilde tijd, 2 is quitte, 4 is veel meer waard dan de tijd. Sommige teams gebruiken 1 tot 5.\n\nVraag wie laag scoorde wat hij miste. Zo verbeter je ook je volgende terugblik. De korte evaluatie met vier vragen, de after-action review, staat in de module Landen.',
@@ -865,19 +865,19 @@ export default {
         },
         {
           q: 'Wat is de volgorde van de vijf fases volgens Derby en Larsen?',
-          options: ['Besluiten, verzamelen, toon zetten, inzichten, afsluiten', 'Verzamelen, besluiten, inzichten, toon zetten, afsluiten', 'Toon zetten, gegevens verzamelen, inzichten zoeken, besluiten, afsluiten', 'Toon zetten, besluiten, gegevens verzamelen, inzichten zoeken, afsluiten'],
+          options: ['Besluiten, gegevens verzamelen, toon zetten, inzichten zoeken, afsluiten', 'Gegevens verzamelen, besluiten, inzichten zoeken, toon zetten, afsluiten', 'Toon zetten, gegevens verzamelen, inzichten zoeken, besluiten, afsluiten', 'Toon zetten, besluiten, gegevens verzamelen, inzichten zoeken, afsluiten'],
           answer: 'Toon zetten, gegevens verzamelen, inzichten zoeken, besluiten, afsluiten',
           why: 'Eerst iedereen erbij, dan feiten, dan begrijpen, dan pas kiezen. Wie eerder besluit, besluit op het eerste verhaal.',
         },
         {
           q: 'Waarvoor gebruik je stippenstemmen?',
-          options: ['Om te meten hoe tevreden mensen zijn over het project en het team', 'Om de groep te laten kiezen welke thema’s je aanpakt, in plaats van de luidste stem', 'Om snel te bepalen welke persoon welke actie mee naar huis neemt', 'Om de tijd per fase te verdelen'],
-          answer: 'Om de groep te laten kiezen welke thema’s je aanpakt, in plaats van de luidste stem',
+          options: ['Om te meten hoe tevreden mensen zijn over het project en het team', 'Om de groep de thema’s te laten kiezen, niet de luidste stem', 'Om snel te bepalen welke persoon welke actie mee naar huis neemt', 'Om de beschikbare tijd over de vijf fases te verdelen'],
+          answer: 'Om de groep de thema’s te laten kiezen, niet de luidste stem',
           why: 'Iedereen heeft evenveel stippen, dus de stille stemmen tellen even zwaar mee.',
         },
         {
           q: 'Waar staan de vier letters van de 4L voor?',
-          options: ['Luisteren, leren, leiden, loslaten', 'Lijn, last, lead time, levering', 'Lessen, lijst, leider, lancering', 'Goed gevonden, geleerd, gemist, naar verlangd'],
+          options: ['Luisteren, leren, leidinggeven, loslaten', 'Lijn, laadtijd, levertijd, lotgrootte', 'Lessen, lijsten, leiders, lanceringen', 'Goed gevonden, geleerd, gemist, naar verlangd'],
           answer: 'Goed gevonden, geleerd, gemist, naar verlangd',
           why: 'In het Engels: liked, learned, lacked, longed for. Het format haalt op wat je wilt houden en wat je volgende keer wilt.',
         },
@@ -941,25 +941,25 @@ export default {
       recall: [
         {
           q: 'Welke is een voorbeeld van dubbele-lusleren?',
-          options: ['Bevragen of je echt bij elke klant met een volledige waardestroomkaart moet beginnen', 'De toegang de volgende keer een week eerder aanvragen', 'Een fout in een rekenblad herstellen', 'Het eindrapport een dag eerder klaar hebben zodat de sponsor het kan lezen'],
+          options: ['Bevragen of je echt bij elke klant met een volledige waardestroomkaart moet beginnen', 'De toegang bij de volgende klant een week eerder aanvragen, zodat het project sneller start', 'Een formulefout in het planningsrekenblad herstellen voordat de stuurgroep het ziet', 'Het eindrapport een dag eerder klaar hebben zodat de sponsor het kan lezen'],
           answer: 'Bevragen of je echt bij elke klant met een volledige waardestroomkaart moet beginnen',
           why: 'Dubbele-lusleren bevraagt de aanname achter hoe je werkt. De andere opties verbeteren alleen de uitvoering.',
         },
         {
           q: 'Wanneer haalt PRINCE2 de lessen van eerdere projecten op?',
-          options: ['Alleen als er iets misgaat', 'In het eindrapport', 'Bij elke stuurgroep', 'Bij de start van een nieuw project'],
+          options: ['Alleen als er iets misgaat in het project', 'Pas aan het eind, als het lessenrapport geschreven wordt', 'Bij elke stuurgroep van het lopende project', 'Bij de start van een nieuw project'],
           answer: 'Bij de start van een nieuw project',
           why: 'Het lessenrapport aan het eind levert ze; de start van het volgende project is het moment om ze te gebruiken.',
         },
         {
           q: 'Waarom werkt een kennisbank met lessen vaak niet?',
-          options: ['Omdat lessen geheim zijn', 'Omdat de lessen vaag zijn, niemand hem bijhoudt en niemand erin zoekt onder tijdsdruk', 'Omdat de software te duur is om elke consultant een licentie te geven', 'Omdat alleen senioren erin mogen schrijven, dus lessen van junioren komen er nooit in'],
-          answer: 'Omdat de lessen vaag zijn, niemand hem bijhoudt en niemand erin zoekt onder tijdsdruk',
+          options: ['Omdat lessen vertrouwelijk zijn en niet buiten het project gedeeld mogen worden', 'Omdat de lessen vaag zijn, niet bijgehouden worden en niemand er onder tijdsdruk in zoekt', 'Omdat de software te duur is om elke consultant een licentie te geven', 'Omdat alleen senioren erin mogen schrijven, dus lessen van junioren komen er nooit in'],
+          answer: 'Omdat de lessen vaag zijn, niet bijgehouden worden en niemand er onder tijdsdruk in zoekt',
           why: 'Een les moet naar het werk komen, niet andersom. Inbouwen in sjablonen werkt beter dan opzoeken.',
         },
         {
           q: 'Je team heeft vijftien lessen uit een project. Wat doe je ermee?',
-          options: ['Alle vijftien even uitgebreid in het lessenrapport zetten', 'Alleen de positieve houden', 'Er drie kiezen, elk met een eigenaar en een plek in de standaardaanpak', 'Ze naar alle collega’s mailen'],
+          options: ['Alle vijftien even uitgebreid in het lessenrapport zetten', 'Alleen de positieve houden, zodat het team positief afsluit', 'Er drie kiezen, elk met een eigenaar en een plek in de standaardaanpak', 'Alle vijftien naar elke collega van het bureau mailen, zodat niemand er een mist'],
           answer: 'Er drie kiezen, elk met een eigenaar en een plek in de standaardaanpak',
           why: 'Drie lessen die in het werk landen veranderen meer dan vijftien die in een rapport blijven staan.',
         },
@@ -1002,7 +1002,7 @@ export default {
       pre: [
         {
           q: 'Wat komt als eerste in een eindpresentatie voor het managementteam, de groep senior managers die het bedrijf leidt?',
-          options: ['De achtergrond en aanpak van het project', 'Een bedankje aan iedereen die meedeed', 'De planning van het project', 'Het resultaat tegen het doel, in één zin'],
+          options: ['De achtergrond van het project en de gekozen aanpak', 'Een bedankje aan iedereen die aan het project meedeed', 'De planning van het project, fase voor fase', 'Het resultaat tegen het doel, in één zin'],
           answer: 'Het resultaat tegen het doel, in één zin',
           why: 'Senior mensen willen eerst het antwoord; de rest is onderbouwing.',
         },
@@ -1022,7 +1022,7 @@ export default {
       recall: [
         {
           q: 'Wat moet er op het A4 van het eindrapport staan?',
-          options: ['De volledige projectgeschiedenis, week voor week, zodat er niets ontbreekt', 'Doel, resultaat in cijfers, wat veranderd is, open punten met eigenaren, en volgende stappen', 'Alle analyses en grafieken, zodat de klant ziet hoeveel werk er is gedaan', 'Alleen de besparing'],
+          options: ['De volledige projectgeschiedenis, week voor week, zodat er niets ontbreekt', 'Doel, resultaat in cijfers, wat veranderd is, open punten met eigenaren, en volgende stappen', 'Alle analyses en grafieken, zodat de klant ziet hoeveel werk er is gedaan', 'Alleen de besparing, want daar vraagt het managementteam naar'],
           answer: 'Doel, resultaat in cijfers, wat veranderd is, open punten met eigenaren, en volgende stappen',
           why: 'Zo ziet iedereen wat het project heeft opgeleverd en wat er nu gebeurt.',
         },
@@ -1102,13 +1102,13 @@ export default {
       recall: [
         {
           q: 'Wat is bij opvolging het verschil tussen helpen en verkopen?',
-          options: ['Helpen is gratis, verkopen betaald; helpen betekent dus geen factuur sturen', 'Helpen reageert op een probleem dat de klant noemde; verkopen pusht een probleem dat jij noemde', 'Er is geen verschil', 'Verkopen doen alleen partners; junioren houden zich bij het helpen van de klant'],
+          options: ['Helpen is gratis, verkopen betaald; helpen betekent dus geen factuur sturen', 'Helpen reageert op een probleem dat de klant noemde; verkopen pusht een probleem dat jij noemde', 'Er is geen verschil, het gaat allebei om nieuw werk binnenhalen', 'Verkopen doen alleen partners; junioren houden zich bij het helpen van de klant'],
           answer: 'Helpen reageert op een probleem dat de klant noemde; verkopen pusht een probleem dat jij noemde',
           why: 'Voorstellen bij een probleem dat de klant herkent zijn welkom.',
         },
         {
           q: 'Wat is een natuurlijke manier om na een project in contact te blijven?',
-          options: ['Wekelijkse verkoopmails', 'Elke maand bellen om nieuw werk te vragen', 'Wachten tot ze jou bellen', 'De afgesproken follow-ups plus af en toe iets nuttigs'],
+          options: ['Wekelijkse verkoopmails', 'Elke maand bellen om te vragen of er nieuw werk is waarbij je kunt helpen', 'Wachten tot ze jou bellen, zodat je niet opdringerig overkomt', 'De afgesproken follow-ups plus af en toe iets nuttigs'],
           answer: 'De afgesproken follow-ups plus af en toe iets nuttigs',
           why: 'Geplande contactmomenten en relevante hulp houden de relatie warm.',
         },
@@ -1163,7 +1163,7 @@ export default {
       pre: [
         {
           q: 'Je bureau wil weten hoe de klant het project vond. Wie kan het evaluatiegesprek met de sponsor het best voeren?',
-          options: ['Jij als projectleider, want jij kent het project het best', 'Een collega die niet in het project zat, zoals een partner of manager', 'De sponsor zelf, met een formulier', 'Het projectteam van de klant, zonder de sponsor'],
+          options: ['Jij als projectleider, want jij kent het project en de sponsor het best', 'Een collega die niet in het project zat, zoals een partner of manager', 'De sponsor zelf, met een kort onlineformulier dat hij alleen invult', 'Het projectteam van de klant, zonder de sponsor erbij'],
           answer: 'Een collega die niet in het project zat, zoals een partner of manager',
           why: 'Tegen degene die het werk deed zijn klanten beleefd. Tegen iemand anders zeggen ze sneller wat beter had gekund.',
         },
@@ -1256,7 +1256,7 @@ export default {
         'Peter Block beschrijft in Flawless Consulting (eerste druk 1981) vijf fases van een adviesopdracht. De laatste heet verlengen, opnieuw beginnen of beëindigen (extension, recycle or termination). Kies daar bewust, in plaats van het project te laten doorsudderen.\n\nDe toets is eenvoudig: kan de klant het zonder jou? Hoe je de lijn klaarmaakt om het werk over te nemen, staat in de module Landen. Hier gaat het om jouw vertrek als adviseur.',
         'Edgar Schein maakte in Process Consultation (1969) onderscheid tussen de expert die het probleem voor de klant oplost en procesadvies (process consultation): de klant helpen zijn eigen probleem te zien en op te lossen. Bij de tweede blijft er meer achter als jij weg bent.\n\nKennisoverdracht (knowledge transfer) is dan geen bijzaak maar een doel: wie kan na jou de analyse doen, het overleg leiden, de standaard aanpassen?',
         'Afhankelijkheid (dependency) is het omgekeerde: het werk loopt alleen als jij er bent. Signalen: het dagelijkse overleg valt uit als jij ziek bent, de klant belt jou in plaats van zijn eigen eigenaar, niemand anders snapt het rekenblad.\n\nMariana Mazzucato en Rosie Collington stellen in The Big Con (2023) dat langdurig leunen op adviesbureaus organisaties kennis kan kosten. Adviesbureaus bestrijden dat beeld, maar de vraag is terecht.',
-        'Een belangenconflict (conflict of interest) ligt op de loer als je een vervolgproject adviseert dat jij zelf zou uitvoeren. Dat mag, maar wees open: noem het, en geef ook de optie dat de klant het zelf doet of een ander bureau vraagt.\n\nKomt er een verzoek om te verlengen, vraag dan eerst wat er mis zou gaan zonder jou. Vaak is een afbouw beter: elke paar weken minder aanwezig, tot de eigenaar het alleen doet.',
+        'Een belangenconflict (conflict of interest) ligt op de loer als je een vervolgproject adviseert dat jij zelf zou uitvoeren. Dat mag, maar wees open: noem het, en geef ook de optie dat de klant het zelf doet of een ander bureau vraagt.\n\nKomt er een verzoek om te verlengen, vraag dan eerst wat er mis zou gaan zonder jou. Vaak is een afbouw beter: elke paar weken minder aanwezig, tot de eigenaar het alleen doet, volgens de stapsgewijze overdracht uit de module Landen.',
         'Waar experts over discussiëren: is langdurige begeleiding slecht? Sommigen zeggen dat coaching over een jaar echt waarde kan hebben, als het vermogen van de klant zichtbaar groeit. Anderen zien elke verlenging als teken dat de overdracht mislukte.\n\nNeem netjes afscheid: bedank het team, laat je contactgegevens achter, en zeg wanneer de afgesproken follow-up is. Een scherpe vraag aan jezelf: “Wat gebeurt er als ik morgen niet meer kom?”',
       ],
       example: {
@@ -1269,13 +1269,13 @@ export default {
       recall: [
         {
           q: 'Welk signaal wijst op afhankelijkheid van de adviseur?',
-          options: ['De klant stelt kritische vragen over je aanpak', 'Het dagelijkse overleg valt uit als de adviseur er niet is', 'De klant vraagt om een eindrapport', 'De sponsor wil een follow-up na drie maanden'],
+          options: ['De klant stelt kritische vragen over je aanpak en planning', 'Het dagelijkse overleg valt uit als de adviseur er niet is', 'De klant vraagt om een eindrapport met alle analyses', 'De sponsor wil drie maanden na de afsluiting een follow-up'],
           answer: 'Het dagelijkse overleg valt uit als de adviseur er niet is',
           why: 'Als het werk alleen loopt met jou erbij, is het vermogen niet bij de klant terechtgekomen.',
         },
         {
           q: 'Je adviseert een vervolgproject dat jouw bureau zou uitvoeren. Hoe ga je om met het belangenconflict?',
-          options: ['Het niet noemen, want de klant weet toch wel dat je eraan verdient', 'Geen vervolgproject meer adviseren', 'Het noemen en ook de opties geven dat de klant het zelf doet of een ander vraagt', 'Een korting geven op het vervolgproject, zodat het belang in evenwicht is'],
+          options: ['Het niet noemen, want de klant weet toch wel dat je eraan verdient', 'Helemaal geen vervolgprojecten meer adviseren, dan speelt de vraag niet', 'Het noemen en ook de opties geven dat de klant het zelf doet of een ander vraagt', 'Een korting geven op het vervolgproject, zodat het belang in evenwicht is'],
           answer: 'Het noemen en ook de opties geven dat de klant het zelf doet of een ander vraagt',
           why: 'Openheid en echte alternatieven maken je advies geloofwaardig, ook als het meer werk voor jou betekent.',
         },
@@ -1299,7 +1299,7 @@ export default {
         ask: 'Wat zeg je?',
         model: '“Dank je, dat waardeer ik. Maar als het alleen loopt met mij erbij, heb ik mijn werk nog niet af. Ik stel voor dat de productieleider de komende vier weken het weekoverleg leidt en ik ernaast zit, daarna kom ik alleen nog naar de follow-ups. Als het dan nog niet loopt, kijken we samen wat er echt nodig is.”',
         rubric: [
-          'Neemt het compliment aan zonder erop in te gaan',
+          'Bedankt voor het compliment zonder op het aanbod in te gaan',
           'Benoemt de afhankelijkheid als iets wat opgelost moet worden',
           'Stelt een concrete afbouw voor met een eigenaar bij de klant',
         ],
