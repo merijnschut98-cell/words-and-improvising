@@ -1164,7 +1164,7 @@ export default {
       sayIt: 'Leg een vestigingsmanager in 60 seconden uit wat de Nederlandse energiebesparingsplicht vraagt en hoe een weekendronde verspilling in de utilities vindt.',
       terms: [
         { term: 'Basislast', def: 'Het vermogen dat wordt opgenomen als er niks wordt gemaakt.' },
-        { term: 'Energiebaseline', def: 'De energie die een fabriek zonder een verandering had gebruikt, gecorrigeerd voor de productie; de maatstaf voor besparingen.' },
+        { term: 'Energiebaseline', def: 'Een model van het energieverbruik in een referentieperiode, waarmee je voorspelt wat de fabriek later zou hebben gebruikt; het verschil is de besparing.' },
         { term: 'Terugverdientijd', def: 'Investering gedeeld door de jaarlijkse kasbesparing.' },
         { term: 'Energiebesparingsplicht', def: 'Nederlandse regel: locaties boven 50.000 kWh of 25.000 m³ gas per jaar moeten alle maatregelen nemen die zich in vijf jaar of minder terugverdienen.' },
         { term: 'Erkende maatregelenlijst', def: 'De lijst van RVO met geaccepteerde energiebesparende maatregelen per sector, gebruikt voor de plicht.' },

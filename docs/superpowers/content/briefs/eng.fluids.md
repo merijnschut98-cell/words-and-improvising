@@ -61,7 +61,7 @@ Why this split: the six existing lessons sit where their depth fits: flow, pumps
 Existing lessons: ids, recall order, answer positions and numbers unchanged (pinned in `tests/fixtures/v13-eng.fluids-recall-keys.json`, built from the files before this change). Wording changes only: distractors rewritten where the correct option was the unique longest (all six lessons, en and nl), pre answers moved for balance, own hints on every numeric recall question, a pointer to Maintenance (pumps) and to Motors, drives and fluid power (speed), DOE source named for the 15–30% failed traps (steam).
 
 Shared definitions (checked by script against every eng module):
-- Identical to eng.power (which copied them from this module): VFD / Frequentieregelaar, Affinity laws / Affiniteitswetten, Throttling / Smoren; also Base load / Basislast.
+- Identical to eng.power (rebuilt v124, which copied the first three and the affinity-law sentence from this module): VFD / Frequentieregelaar, Affinity laws / Affiniteitswetten, Throttling / Smoren; also Base load / Basislast, Energy baseline / Energiebaseline, Life-cycle cost / Levensduurkosten, Payback time / Terugverdientijd.
 - Identical to eng.cost: Payback time / Terugverdientijd. Identical to eng.reliability: Life-cycle cost / Levensduurkosten. Identical to eng.process: Utility / Utilities, Regeneration section / Regeneratiesectie. Identical to eng.drawings: Control valve / Regelklep.
 - Same word, different meaning, left as is: Load profile (here hours per flow; power and transformers: load over time), Rating (here exchanger rating; gridplanning: current rating). eng.lines words Payback time differently from eng.cost; this module follows eng.cost.
 

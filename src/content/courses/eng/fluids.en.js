@@ -1164,7 +1164,7 @@ export default {
       sayIt: 'Explain to a site manager in 60 seconds what the Dutch energy-saving obligation asks and how a weekend walk finds utility waste.',
       terms: [
         { term: 'Base load', def: 'Power drawn when nothing is produced.' },
-        { term: 'Energy baseline', def: 'The energy a plant would have used without a change, normalised for output; the yardstick for savings.' },
+        { term: 'Energy baseline', def: 'A model of energy use in a reference period, used to predict what the plant would have used later; the gap is the saving.' },
         { term: 'Payback time', def: 'Investment divided by yearly cash saving.' },
         { term: 'Energy-saving obligation', def: 'Dutch rule: sites above 50,000 kWh or 25,000 m³ of gas a year must take all measures that pay back in five years or less.' },
         { term: 'Recognised measures list', def: 'RVO’s list of accepted energy-saving measures per sector, used for the obligation.' },
