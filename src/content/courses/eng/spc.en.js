@@ -47,8 +47,8 @@ export default {
         },
         {
           q: 'An operator measures a borderline part again and again until the reading falls inside the spec. What does that do?',
-          options: ['It improves accuracy, since more readings always give a better answer', 'Nothing changes, as long as the last reading falls inside the spec', 'It lets bad parts through, since noise will give a good reading', 'It only costs time, the decision stays the same'],
-          answer: 'It lets bad parts through, since noise will give a good reading',
+          options: ['It improves accuracy, since more readings always give a better answer', 'Nothing changes, as long as the last reading falls inside the spec', 'Bad parts get through on a lucky reading', 'It only costs time, the decision stays the same'],
+          answer: 'Bad parts get through on a lucky reading',
           why: 'Keeping the reading you like turns measurement noise into accepted bad parts.',
         },
       ],
@@ -226,7 +226,7 @@ export default {
         },
       ],
       teach: [
-        'Before people and parts come in, many German customers ask for a type-1 study (Bosch booklet 10, VDA 5): one operator measures one master part 50 times. It checks the gauge alone.\n\nTwo indices, with T the tolerance width and s the standard deviation of the 50 readings: Cg = 0.2 × T / (6 × s) for spread, and Cgk = (0.1 × T − |bias|) / (3 × s), which also punishes an offset from the master. The usual requirement is 1.33 or more; customers differ.',
+        'Before people and parts come in, many German customers ask for a type-1 study (Bosch booklet 10): one operator measures one master part 50 times (at least 25). It checks the gauge alone.\n\nTwo indices, with T the tolerance width and s the standard deviation of the 50 readings: Cg = 0.2 × T / (6 × s) for spread, and Cgk = (0.1 × T − |bias|) / (3 × s), which also punishes an offset from the master. Bosch asks 1.33 or more for both; customers differ.',
         'Destructive and non-repeatable tests need another layout: tensile and peel tests, burst pressure, weld-nugget size, chemical analysis. In a nested study each operator gets their own samples, taken so they are as alike as possible: consecutive parts, one batch of material.\n\nThe catch: real differences between samples now count as measurement spread, so the result looks worse than the gauge is. Sample choice decides whether the study means anything.',
         'Statistician Donald Wheeler criticises %GRR (“An Honest Gauge R&R Study”, 2006). It is a ratio of standard deviations, but standard deviations don’t add; variances do. At 30% GRR the gauge holds 0.3² = 9% of the variance; the parts still hold 91%.\n\nWheeler uses the intraclass correlation, the share of the variance that comes from the parts, and by his reading the AIAG bands are too strict. Most plants keep the AIAG numbers because the customer manual requires them.',
         'Measurement uncertainty is the wider view (VDA 5, ISO 22514-7, the GUM guide): a budget that adds every source, such as gauge, master, temperature, operator and part form, into an expanded uncertainty U, usually at about 95% confidence.\n\nISO 14253-1 then sets a guard band: a supplier proves conformity only inside the spec narrowed by U at both ends. Tolerance 10.00 ±0.02 mm with U = 0.003 mm leaves 9.983 to 10.017 mm as proof.',
@@ -258,7 +258,7 @@ export default {
         },
         {
           q: 'Why does a nested gauge study on a destructive test usually look worse than the gauge really is?',
-          options: ['Operators are less careful with parts that are going to break anyway', 'Nested studies always use fewer readings than a classic study', 'The test machine wears faster when samples break', 'Differences between the samples count as measurement spread'],
+          options: ['Operators are less careful with parts that are going to break anyway', 'Nested studies always use fewer readings', 'The test machine wears faster when samples break', 'Differences between the samples count as measurement spread'],
           answer: 'Differences between the samples count as measurement spread',
           why: 'Each sample is measured once, so real sample-to-sample differences cannot be separated from gauge spread.',
         },
@@ -295,8 +295,8 @@ export default {
       pre: [
         {
           q: 'A plant sets its control limits at the average ± 3 × the standard deviation of all last month’s readings. Halfway through the month the process shifted. What happens?',
-          options: ['The limits become too narrow and give false alarms', 'Nothing changes, since three sigma is three sigma however you compute it', 'The chart becomes more sensitive to any further shifts of the mean', 'The limits get too wide and hide the very shift you want to see'],
-          answer: 'The limits get too wide and hide the very shift you want to see',
+          options: ['The limits become too narrow and give false alarms', 'Nothing changes, since three sigma is three sigma however you compute it', 'The chart becomes more sensitive to any further shifts of the mean', 'The limits get too wide and hide the shift'],
+          answer: 'The limits get too wide and hide the shift',
           why: 'The overall standard deviation includes the shift itself, so the limits are inflated by the change they should reveal.',
         },
       ],
@@ -304,12 +304,12 @@ export default {
         'A control chart plots a result over time with a centre line and two control limits. The limits are the voice of the process: what this process does by itself, computed from its own data. They are not the spec, the voice of the customer.\n\nW. Edwards Deming named two mistakes. Mistake 1: reacting to routine noise as if something changed. Mistake 2: missing a real change. Every limit is a trade-off between the two.',
         'Walter Shewhart chose three-sigma limits in the 1920s at Bell Labs (Economic Control of Quality of Manufactured Product, 1931) as an economic compromise: wide enough that a stable process rarely crosses them, about 3 points in 1,000 for normal data, narrow enough to catch real changes.\n\nHe meant it as a practical rule, not an exact probability. Wheeler stresses that it works well for most data shapes.',
         'The key choice is which sigma. Limits come from short-term variation: the spread within subgroups, or between consecutive values. Not from the standard deviation of all the data, because that already contains the shifts and drift you want to find.\n\nFor one value at a time, the I-MR chart (individuals and moving range, also called XmR) uses the moving range: the difference between each value and the one before it, ignoring the sign.',
-        'The natural process limits of the individuals chart are the average ± 2.66 × the average moving range. The 2.66 is 3 / 1.128, a fixed table constant. The moving range chart gets an upper limit of 3.27 × the average moving range.\n\nThese are the same numbers as in Quality basics (The right chart) and in the project module’s lesson on signals and noise, where Wheeler’s XmR chart is used for weekly KPIs.',
+        'The natural process limits of the individuals chart are the average ± 2.66 × the average moving range. The 2.66 is 3 / 1.128, a fixed table constant. The moving range chart gets an upper limit of 3.27 × the average moving range.\n\nThese are the same numbers as in Quality basics (The right chart) and in Performance management (Signals and noise in the review), where Wheeler’s XmR chart is used for weekly KPIs and the 3.27 appears unrounded as 3.268.',
         'Signal rules are stated the same way across the course: a point outside a limit, or a long run on one side of the centre line (7, 8 or 9 in a row, depending on the rule set: AIAG, Western Electric or Nelson). Quality basics (SPC in practice) covers the other rules and false alarms.\n\nWith fewer than about 20 values, treat limits as provisional. Sharp question: “Where did these limits come from, and from which period?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A heat-treatment furnace gives one hardness reading per batch, in HRC (Rockwell C, a hardness scale). Ten batches: 58, 60, 59, 61, 60, 58, 59, 62, 61, 60. The average is 598 / 10 = 59.8 HRC.\n\nThe nine moving ranges: 2, 1, 2, 1, 2, 1, 3, 1, 1, total 14, so the average moving range is 14 / 9 = 1.56. Limits: 59.8 ± 2.66 × 1.56 = 59.8 ± 4.1, so 55.7 to 63.9 HRC. The moving range limit is 3.27 × 1.56 = 5.1.\n\nConclusion: no signal; this furnace varies by about ±4 HRC by itself. A batch at 56 is not a reason to adjust it; a batch at 55 is. With only ten values, these limits are provisional.',
+        text: 'A heat-treatment furnace gives one hardness reading per batch, in HRC (Rockwell C, a hardness scale). Ten batches: 58, 60, 59, 61, 60, 58, 59, 62, 61, 60. The average is 598 / 10 = 59.8 HRC.\n\nThe nine moving ranges: 2, 1, 2, 1, 2, 1, 3, 1, 1, total 14, so the average moving range is 14 / 9 = 1.56. Limits: 59.8 ± 2.66 × 1.56 = 59.8 ± 4.1, so 55.7 to 63.9 HRC. The moving range limit is 3.27 × 1.56 = 5.1.\n\nConclusion: no signal; this furnace varies by about ±4 HRC by itself. A batch at 56 is not a reason to adjust it; a batch at 55 is a signal to look for the cause. With only ten values, these limits are provisional.',
       },
       said: 'What engineers say: “Those limits are from the whole year, shift included. No wonder the chart never says anything.”',
       recall: [
@@ -437,14 +437,14 @@ export default {
       pre: [
         {
           q: 'An individuals chart has its limits at ±3σ. The process mean shifts by 1σ and stays there. On average, how many points does it take before a point falls outside a limit?',
-          options: ['About 44', 'About 3', 'About 370', 'The very next point'],
+          options: ['About 44', 'About 3', 'About 370', 'At once'],
           answer: 'About 44',
           why: 'After a 1σ shift the chance per point of crossing a 3σ limit is about 2.3%, so on average 1 / 0.023 ≈ 44 points.',
         },
       ],
       teach: [
         'A Shewhart chart judges each point on its own, so it is quick on big jumps and slow on small shifts. The ARL (average run length) is how many points it takes on average to signal. After a 1σ shift an individuals chart needs about 44 points (Montgomery, Introduction to Statistical Quality Control).\n\nExtra run rules help but add false alarms (Quality basics, SPC in practice). When a small shift matters, such as a filling weight on a high-volume line, use a chart with memory.',
-        'The CUSUM (cumulative sum; E. S. Page, 1954) adds up deviations from the target, minus a slack k, and signals when the sum passes a decision value h. Upper sum: C = max(0, x − (target + k) + previous C).\n\nCommon choice: k = 0.5σ and h = 4 or 5σ. With h = 5σ a stable process gives a false alarm about once in 465 points, yet a 1σ shift is caught in about 10 points (Montgomery’s ARL tables).',
+        'The CUSUM (cumulative sum; E. S. Page, 1954) adds up deviations from the target, minus a slack k, and signals when the sum passes a decision value h. Upper sum: C = max(0, x − (target + k) + previous C).\n\nCommon choice: k = 0.5σ and h = 4 or 5σ. With h = 5σ a two-sided CUSUM on a stable process gives a false alarm about once in 465 points, yet a 1σ shift is caught in about 10 points (Montgomery’s ARL tables).',
         'The EWMA (exponentially weighted moving average; S. W. Roberts, 1959) plots z = λ × x + (1 − λ) × previous z. The smoothing constant λ, usually 0.05 to 0.25, sets how much each new value counts; old values fade.\n\nBecause z averages, its limits are narrower: in the long run ±3σ × √(λ / (2 − λ)), so ±1σ at λ = 0.2. EWMA copes well with data that is not bell-shaped.',
         'The price. Both react more slowly to a big sudden jump than a Shewhart chart, so many plants run both. They need a target and a good σ estimate, and software. The chart no longer shows raw readings, so operators find it harder to read.\n\nA useful extra: when a CUSUM signals, the last point where the sum was zero estimates when the shift began. That narrows the search for the cause and the suspect parts.',
         'The process engineer decides with numbers: what shift, in σ, costs money, and within how many points must we see it? Compare the ARLs of the options before choosing.\n\nCUSUM and EWMA are common in process industries, such as chemicals and food, where drift is slow and every sample is costly. Sharp question: “What size of shift do we need to catch, and in how many samples?”',
@@ -481,7 +481,7 @@ export default {
         },
         {
           q: 'What is a known weakness of CUSUM and EWMA charts?',
-          options: ['They give far more false alarms on a stable process', 'They only work with attribute data such as counts', 'They react more slowly to a big sudden jump', 'They need subgroups of at least ten parts'],
+          options: ['They give far more false alarms on a stable process', 'They only work with attribute data such as counts', 'They react more slowly to a big sudden jump', 'They need subgroups of at least ten parts each'],
           answer: 'They react more slowly to a big sudden jump',
           why: 'Smoothing and slack dampen a single large point, so plants often run a Shewhart chart alongside.',
         },
@@ -517,7 +517,7 @@ export default {
       ],
       teach: [
         'Setting limits needs 20 to 25 subgroups. A batch of 40 is gone before you have them, and the next batch of that part comes months later. A short run is such a small batch. The answer is to chart the process, not the part: the same machine and operation, across part numbers.\n\nThe AIAG SPC manual (2nd edition, 2005) and Montgomery describe the usual options.',
-        'The DNOM chart (deviation from nominal) plots each reading minus its target: a 20 mm, a 35 mm and a 50 mm shaft all land around zero on one chart. Mark each part-number change on it.\n\nIt works when the part numbers have a similar spread. Use the middle of the tolerance as target when the tolerance is one-sided, such as +0.03/0, or the deviations will all look high.',
+        'The DNOM chart (deviation from nominal) plots each reading minus its target: a 20 mm, a 35 mm and a 50 mm shaft all land around zero on one chart. Mark each part-number change on it.\n\nIt works when the part numbers have a similar spread. Use the middle of the tolerance as target when the tolerance is asymmetric, such as +0.03/0, or the deviations will all look high.',
         'When spreads differ, a standardised chart (also Z chart) divides each deviation by that part number’s own σ: z = (x − target) / σ part. Every part then has limits of ±3. It needs a σ per part number from history, which a short-run shop must build up.\n\nAnother check is a first-off check per batch with a narrow window, but that tests the setup, not the stability of the process.',
         'Automatic data brings the opposite problem: thousands of readings. Consecutive readings hang together (autocorrelation, see Quality basics, SPC in practice), and normal limits raise alarms all day.\n\nOptions: sample less often, so points are independent; or model the pattern and chart the residuals, what is left after the model. Where a controller adjusts automatically, chart what the controller does: a steadily growing correction is the signal.',
         'What the manufacturing engineer weighs: which parts may share a chart (same machine, material and operation, similar size and spread), and whether the cost of SPC pays on parts made twice a year.\n\nFor many job shops, a DNOM chart per machine plus first-off checks is the sound middle. Sharp question: “Which part numbers share a spread, so they can share a chart?”',
@@ -526,7 +526,7 @@ export default {
         kind: 'faded',
         text: 'A CNC lathe (a computer-controlled lathe) runs three part numbers on one DNOM chart of diameter, targets at mid-tolerance. The average moving range is 0.004 mm for all three, so the limits are 0 ± 2.66 × 0.004 = ±0.011 mm.\n\nDeviations over recent batches: part A +0.002, −0.001, +0.003; part B +0.006, +0.008, +0.007; part C +0.001, 0.000, +0.002 mm. Part B has run high in each of its last five batches as well.',
         ask: 'Can these three share one chart, and what does part B tell you?',
-        reveal: 'Yes: similar moving ranges mean similar spreads, so DNOM is fair. No point is outside, but part B sits about +0.007 mm above target batch after batch: a run on one side.\n\nThat points at something specific to B, such as a tool offset in its program or a different insert (the replaceable cutting tip), not at the machine. Correct it in B’s program. Had the targets been nominal instead of mid-tolerance, every one-sided part would have looked like B.',
+        reveal: 'Yes: similar moving ranges mean similar spreads, so DNOM is fair. No point is outside, but part B sits about +0.007 mm above target batch after batch: a run on one side.\n\nThat points at something specific to B, such as a tool offset in its program or a different insert (the replaceable cutting tip), not at the machine. Correct it in B’s program. Had the targets been nominal instead of mid-tolerance, every part with an asymmetric tolerance would have looked like B.',
       },
       said: 'What engineers say: “We don’t chart the part, we chart the machine. Thirty part numbers, one DNOM chart.”',
       recall: [
@@ -548,7 +548,7 @@ export default {
         },
         {
           q: 'When is a DNOM chart across part numbers not fair?',
-          options: ['When the part numbers have clearly different spreads', 'When the part numbers have quite different nominal sizes', 'When the batches are smaller than about 50 pieces each', 'When the parts are made on the same machine'],
+          options: ['When the part numbers have clearly different spreads', 'When the part numbers have quite different nominal sizes', 'When batches are under about 50 pieces', 'When the parts are made on the same machine'],
           answer: 'When the part numbers have clearly different spreads',
           why: 'DNOM assumes a common spread; with different spreads, use a standardised chart.',
         },
@@ -611,7 +611,7 @@ export default {
         },
         {
           q: 'The histogram has a sharp cliff right at the upper spec limit, with no parts beyond it. What is the most likely reason?',
-          options: ['The process is perfectly centred on the target value of the drawing', 'The gauge has too fine a resolution', 'The tolerance is much wider than the process really needs', 'Parts above the limit were sorted out before measuring'],
+          options: ['The process is perfectly centred on the target value of the drawing', 'The gauge has too fine a resolution', 'The tolerance is much wider than needed', 'Parts above the limit were sorted out before measuring'],
           answer: 'Parts above the limit were sorted out before measuring',
           why: 'A natural process tails off; a hard cliff at a limit usually means the data was cut off by sorting.',
         },
@@ -631,7 +631,7 @@ export default {
       situation: {
         scene: 'You’re in a launch meeting at a supplier of steering parts. The quality engineer presents a capability report: “Zero rejects in 125 parts, so we’re capable.” The Ppk on the report is 1.05.',
         ask: 'What do you ask?',
-        model: 'Zero out of 125 only tells us the rate is probably under 2.4%. The report’s Ppk of 1.05 says the spread uses almost the whole tolerance, which predicts a few thousand ppm. Over what period and how many lots were these parts made? Is the chart beside it stable? And why is the overall spread wider than the within spread?',
+        model: 'Zero out of 125 only tells us the rate is probably under 2.4%. The report’s Ppk of 1.05 says the spread uses almost the whole tolerance, which predicts roughly a thousand ppm or more. Over what period and how many lots were these parts made? Is the chart beside it stable? And why is the overall spread wider than the within spread?',
         rubric: [
           'Explains why zero rejects in a small sample proves little',
           'Points to the Ppk and the expected ppm',
@@ -802,7 +802,7 @@ export default {
         },
       ],
       teach: [
-        'A capability requirement is more than a number. It names the characteristics: the special characteristics, marked on the drawing or from the FMEA (the risk analysis) because they affect safety, law or function. It names the index, the minimum sample and period, and what happens if the target is missed.\n\nAIAG PPAP asks Ppk for the launch study and Cpk for running production. A bare “Cpk ≥ 1.33” invites the one-morning study from the Cpk versus Ppk lesson.',
+        'A capability requirement is more than a number. It names the characteristics: the special characteristics, marked on the drawing or from the FMEA (the risk analysis) because they affect safety, law or function. It names the index, the minimum sample and period, and what happens if the target is missed.\n\nAIAG PPAP typically asks Ppk for the launch study and Cpk for running production. A bare “Cpk ≥ 1.33” invites the one-morning study from the Cpk versus Ppk lesson.',
         'Sigma levels hide a convention. Motorola assumed the mean drifts by up to 1.5σ in the long run (the 1.5-sigma shift, see Quality basics, Sigma level). Quoted level minus 1.5, divided by 3, gives roughly the long-term Ppk: “six sigma” is about Ppk 1.5, “five sigma” about 1.17.\n\nWheeler and others argue the fixed 1.5 has no sound basis: a well-controlled process drifts less, an uncontrolled one more. Ask for a measured Ppk and ppm instead of a sigma label.',
         'Not every process is one bell curve. With tool wear the mean moves on purpose within each tool life, then jumps back at the tool change. ISO 22514-2 calls these time-dependent models: it sorts processes by how their location and spread change over time and computes capability from the percentiles of the whole.\n\nFor such a process, Ppk or the percentile spread is the honest figure. Agree the model with the customer before the study.',
         'Cpm, the Taguchi index, also punishes distance from the target, not just from the limit: Cpm = (USL − LSL) / (6 × √(σ² + (mean − target)²)). It is used where sitting off-centre costs money even inside the spec, as in fits and assemblies.\n\nExample: tolerance 0.06 mm, σ 0.008 mm, mean 0.006 mm off target. √(0.000064 + 0.000036) = 0.010, so Cpm = 0.06 / 0.06 = 1.0, while Cp is 0.06 / 0.048 = 1.25.',
@@ -812,7 +812,7 @@ export default {
         kind: 'faded',
         text: 'A customer’s request for quotation demands “Cpk ≥ 1.67 on all 48 dimensions, from 30 parts”. One of them is a bore machined with planned tool wear: each tool life moves the diameter up through the tolerance, then the tool is changed. Tolerance 0.040 mm, centred. Within σ 0.002 mm, overall σ over several tool lives 0.004 mm.\n\nCp within = 0.040 / (6 × 0.002) = 3.33. Pp overall = 0.040 / (6 × 0.004) = 1.67.',
         ask: 'What do you propose to the customer?',
-        reveal: 'Narrow the 48 to the special characteristics and a few key dimensions; the rest go to the control plan without a capability demand. Ask for Ppk over several lots and tool lives rather than Cpk from 30 parts.\n\nFor the bore, 30 consecutive parts cover a sliver of one tool life and show the flattering 3.33. Agree a time-dependent model, judge it on Pp or Ppk over whole tool lives (1.67 here), and document the wear compensation.',
+        reveal: 'Narrow the 48 to the special characteristics and a few key dimensions; the rest go to the control plan without a capability demand. Ask for Ppk over several lots and tool lives rather than Cpk from 30 parts.\n\nFor the bore, 30 consecutive parts cover a sliver of one tool life and show a flattering Cp of 3.33. Agree a time-dependent model, judge it on Pp or Ppk over whole tool lives (Pp 1.67 here), and document the wear compensation.',
       },
       said: 'What engineers say: “Cpk on 48 dimensions from 30 parts? Let’s agree which ones matter and judge them on Ppk over real production.”',
       recall: [
@@ -883,7 +883,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'An injection moulding cell (molten plastic is injected into a steel mould) makes 240 shots an hour with a 4-cavity mould: 960 parts an hour. The control plan says: wall thickness, 5 parts every 4 hours.\n\nA customer complaint comes in. Everything since the last good check is suspect: 4 × 960 = 3,840 parts to hold and sort.\n\nThe change: the machine logs melt temperature and cushion (the small rest of plastic left in front of the screw) every shot, with limits, and the operator measures one shot every hour, charted per cavity, plus a first-off check after every mould start and material change. Suspect parts after a signal: at most 960.',
+        text: 'An injection moulding cell (molten plastic is injected into a steel mould) makes 240 shots an hour with a 4-cavity mould: 960 parts an hour. The control plan says: wall thickness, 5 parts every 4 hours.\n\nThen a check of the wall thickness gives a signal. Everything since the last good check is suspect: 4 × 960 = 3,840 parts to hold and sort.\n\nThe change: the machine logs melt temperature and cushion (the small rest of plastic left in front of the screw) every shot, with limits, and the operator measures one shot every hour, charted per cavity, plus a first-off check after every mould start and material change. Suspect parts after a signal: at most 960.',
       },
       said: 'What engineers say: “Every four hours is 3,840 parts in quarantine when it goes wrong. Measure hourly and let the machine watch the cushion.”',
       recall: [
@@ -909,7 +909,7 @@ export default {
         },
         {
           q: 'Which sign at the SPC board suggests the chart is filled in but not used?',
-          options: ['A signal circled in red, with a note of what was done about it', 'Limits that were last set a year ago', 'An operator who explains the last signal and what was done', 'Neat points for the whole shift, but no notes at all'],
+          options: ['A signal circled in red, with a note of what was done about it', 'Control limits that were last set over a year ago', 'An operator who explains the last signal and what was done', 'Neat points for the whole shift, but no notes at all'],
           answer: 'Neat points for the whole shift, but no notes at all',
           why: 'A used chart shows reactions; a perfectly neat chart without notes is often filled in afterwards.',
         },
@@ -1008,7 +1008,7 @@ export default {
       pre: [
         {
           q: 'On an X-bar chart, almost every point hugs the centre line for weeks; no point comes near the limits. What is the most likely explanation?',
-          options: ['The process has become far better than before', 'The operators adjust the machine very skilfully and very often', 'Each subgroup mixes streams, so the limits are too wide', 'The gauge is far more precise than this characteristic needs'],
+          options: ['The process has become far better than before', 'The operators adjust the machine very skilfully and very often', 'Each subgroup mixes streams, so the limits are too wide', 'The gauge is far more precise than needed'],
           answer: 'Each subgroup mixes streams, so the limits are too wide',
           why: 'When each subgroup holds several streams, the range is inflated and the limits sit far from the plotted averages.',
         },
@@ -1050,7 +1050,7 @@ export default {
         },
         {
           q: 'Why keep a process log beside the control chart?',
-          options: ['Because auditors count the number of entries in it', 'To replace the control limits on busy days', 'To link a signal to the change just before it', 'So that operators can skip some of the measurements'],
+          options: ['Because auditors count the number of entries in it', 'To replace the control limits on very busy days', 'To link a signal to the change just before it', 'So that operators can skip some of the measurements'],
           answer: 'To link a signal to the change just before it',
           why: 'Most causes are changes; a timed note of each change makes the link fast.',
         },
@@ -1079,17 +1079,17 @@ export default {
       pre: [
         {
           q: 'A plant has 120 control charts. An audit shows that over three months only 9% of signals have a recorded reaction. What is the best first step?',
-          options: ['Add a second auditor who checks all 120 charts every single week', 'Recalculate all the control limits so that far fewer signals occur at all', 'Replace all paper charts with SPC software', 'Keep the charts that matter and make each signal end in a note'],
+          options: ['Add a second auditor who checks all 120 charts every single week', 'Recalculate all the control limits so that far fewer signals occur at all', 'Replace all the paper charts with new SPC software at every line', 'Keep the charts that matter and make each signal end in a note'],
           answer: 'Keep the charts that matter and make each signal end in a note',
           why: 'Too many charts and no habit of reacting is the usual failure; fewer charts with real reactions beats more charts.',
         },
       ],
       teach: [
-        'In automotive, IATF 16949 (the quality-system standard for car suppliers, clause 9.1.1.1) asks for process studies on every manufacturing process, capability kept at the level approved in PPAP, and reaction plans from the control plan when a characteristic is unstable or not capable. The AIAG SPC manual is the usual reference.\n\nAuditors ask for the chart and the evidence of reaction, not just the chart.',
+        'In automotive, IATF 16949 (the quality-system standard for car suppliers, clause 9.1.1.1) asks for process studies on every new manufacturing process, capability kept at the level approved in PPAP, and reaction plans from the control plan when a characteristic is unstable or not capable. The AIAG SPC manual is the usual reference.\n\nAuditors ask for the chart and the evidence of reaction, not just the chart.',
         'Choosing charts starts from the special characteristics and the high-risk FMEA items, preferring process parameters upstream. Retire a chart when the characteristic has been stable and highly capable for a long time, say Ppk above 2 for a year: move it to a periodic audit, a check every week or month. Agree that with the customer if the control plan names the chart.\n\nA chart nobody reacts to costs time and teaches people to ignore all charts.',
         'Measure the programme itself. The reaction rate is the share of signals with a recorded reaction and cause. Add the time from signal to reaction, the capability trend of key characteristics, and complaints on charted characteristics.\n\nA reaction rate of 9% means the charts are decoration; above 90% they steer. Review signals briefly in the daily or weekly shop-floor meeting, so team leaders see that reactions matter.',
         'SPC software linked to the gauges collects data, applies rules and pushes alarms. The risks: thousands of charts that nobody opens, all rules switched on everywhere (Quality basics, SPC in practice, on false alarms), and operators who lose the feel for their process.\n\nKeep a person in the loop: every alarm goes to someone with the authority to stop the machine, and the software records what they did.',
-        'Deming and Wheeler both say SPC is a way of thinking more than a set of charts. Management must stop asking operators to explain noise (the project module’s lesson on signals and noise), give time to investigate signals, and fund system changes when a process is stable but not capable.\n\nSharp question for the plant manager: “Who stopped a machine because of a chart this month, and what happened to them?”',
+        'Deming and Wheeler both say SPC is a way of thinking more than a set of charts. Management must stop asking operators to explain noise (Performance management, Signals and noise in the review), give time to investigate signals, and fund system changes when a process is stable but not capable.\n\nSharp question for the plant manager: “Who stopped a machine because of a chart this month, and what happened to them?”',
       ],
       example: {
         kind: 'faded',
