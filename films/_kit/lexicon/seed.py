@@ -105,6 +105,9 @@ MANUAL = {
            'zustergereedschap': 'zˈɵstərɣərˌeːdsxɑp', 'gereedschapsbewaking': 'ɣərˈeːdsxɑpsbəʋˌaːkɪŋ',
            'gereedschapsstandaardisatie': 'ɣərˈeːdsxɑpstˌɑndaːrdizaːtsi', 'legeringen': 'leːɣˈɪːrɪŋən',
            'revolver': 'reːvˈɔlvər', 'kobalt': 'koːbˈɑlt', 'koelsmeermiddel': 'kˈulsmɪːrmˌɪdəl',
+           # review of the tooling film: VIERdemachtswortel (espeak-ng: -worTEL), bovenOP
+           # (espeak-ng: BOvenop), WISSELtijd with a schwa as in wisselplaat
+           'vierdemachtswortel': 'vˈirdəmˌɑxtsʋɔrtəl', 'bovenop': 'boːvənˈɔp', 'wisseltijd': 'ʋˈɪsəltˌɛɪt',
            # kept from the earlier seed: their first parts (dop, haar) left the corpus
            'dopmatrijs': 'dˈɔpmɑtrˌɛɪs', 'haarbreed': 'ˈhaːrbrˌeːt', 'haarlijn': 'ˈhaːrlˌɛɪn'},
     'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',

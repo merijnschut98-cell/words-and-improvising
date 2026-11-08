@@ -40,13 +40,13 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // Te = (1/n − 1)·(tch + Ce/M).
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
 const near = (a, b, tol) => Math.abs(a - b) <= tol;
-// toolbasics: CNMG 120408 → 80° rhombus, 12,7 mm inscribed circle, 4,76 mm thick, r 0,8
+// toolbasics: CNMG 120408 → 80° rhombus, edge 12,9 mm (code 12) on a 12,7 mm inscribed circle, 4,76 mm thick, r 0,8
 const IC = 12.7;
 const THICK = 4.76;
 const RE = 0.8;
 const SIDE = IC / Math.sin((80 * Math.PI) / 180);
 assert(near(SIDE, 12.9, 0.05), 'side of a 12,7 mm IC 80° rhombus');
-assert(Number('12') / 10 === 1.2 && near(IC / 10, 1.27, 1e-9), '12 is the IC in mm, rounded down');
+assert(Math.floor(SIDE) === 12, '12 is the cutting edge length in whole mm (ISO 1832); for a C insert it goes with IC 12,7');
 assert(Number('08') / 10 === RE, '08 is the nose radius in tenths of a mm');
 assert(near(THICK / 25.4, 3 / 16, 1e-3), '04 is 4,76 mm (3/16 inch)');
 const EDGES = 2 * 2; // two 80° corners per face, two faces (0° clearance)
@@ -453,8 +453,8 @@ const spec = {
 // records each phrase with Piper.
 const SAY = [
   [ // s1 how it works (Basis)
-    { nl: 'De as draait, en een klein, hard plaatje schuift erlangs. Zijn snijkant schilt een spaan van het staal. Dat plaatje heet een wisselplaat.',
-      en: 'The bar turns, and a small, hard plate moves along it. Its cutting edge peels a chip off the steel. That plate is called an insert.' },
+    { nl: 'De as draait, en de snijkant van een klein, hard plaatje schilt er een spaan staal af. Dat plaatje heet een wisselplaat.',
+      en: 'The bar turns, and the cutting edge of a small, hard plate peels a chip of steel off it. That plate is called an insert.' },
     { nl: 'Het zit in een {t:Gereedschapshouder|gereedschapshouder}: een stalen lichaam met een klem, dat in de revolver past.',
       en: 'It sits in a {t:Tool holder|tool holder}: a steel body with a clamp, which fits into the turret.' },
     { nl: 'De snijkant wordt heet, dus het gereedschap moet hard blijven als het heet is. Versleten? Dan draai je de plaat naar de volgende kant.',
@@ -463,18 +463,18 @@ const SAY = [
   [ // s2 HSS or carbide
     { nl: '{t:HSS|HSS} is snelstaal: taai, goedkoop en makkelijk te slijpen, voor kleine boren en tappen.',
       en: '{t:HSS|HSS} is high-speed steel: tough, cheap and easy to grind, for small drills and taps.' },
-    { nl: '{t:Hardmetaal|Hardmetaal} is korrels wolfraamcarbide, gebonden met kobalt. Het blijft hard als het heet wordt, en snijdt zo’n drie tot vier keer sneller. Maar het is bros.',
-      en: '{t:Cemented carbide|Cemented carbide} is grains of tungsten carbide, bound with cobalt. It stays hard when it gets hot, and cuts about three to four times faster. But it is brittle.' },
+    { nl: '{t:Hardmetaal|Hardmetaal} bestaat uit korrels wolfraamcarbide, gebonden met kobalt. Het blijft hard als het heet wordt, en snijdt zo’n drie tot vier keer sneller. Maar het is bros.',
+      en: '{t:Cemented carbide|Cemented carbide} is made of grains of tungsten carbide, bound with cobalt. It stays hard when it gets hot, and cuts about three to four times faster. But it is brittle.' },
     { nl: 'Bijna elk hardmetalen gereedschap heeft een {t:Coating|coating}: een laagje van een paar duizendste millimeter, tegen hitte en slijtage.',
       en: 'Almost every carbide tool has a {t:Coating|coating}: a layer a few thousandths of a millimetre thick, against heat and wear.' },
   ],
   [ // s3 the ISO code
-    { nl: 'Op de doos staat een {t:ISO-code|ISO-code}: CNMG 12 04 08. Je leest hem van links naar rechts.',
-      en: 'The box carries an {t:ISO insert code|ISO insert code}: CNMG 12 04 08. You read it from left to right.' },
-    { nl: 'C is de vorm: een ruit met hoeken van {n:80} graden. N: geen vrijloophoek, dus beide kanten zijn bruikbaar. M is de tolerantie, en G: een gat om te klemmen, en spaanbrekers.',
-      en: 'C is the shape: a diamond with {n:80} degree corners. N: no clearance angle, so both faces can be used. M is the tolerance, and G: a hole for clamping, and chip breakers.' },
-    { nl: '12 is de maat: een ingeschreven cirkel van {n:12.7} millimeter. 04 is de dikte: {n:4.76} millimeter. En 08 is de hoekradius: {n:0.8} millimeter.',
-      en: '12 is the size: an inscribed circle of {n:12.7} millimetres. 04 is the thickness: {n:4.76} millimetres. And 08 is the nose radius: {n:0.8} millimetres.' },
+    { nl: 'Op de doos staat een {t:ISO-code|ISO-code}: CNMG 12 04 08.',
+      en: 'The box carries an {t:ISO insert code|ISO insert code}: CNMG 12 04 08.' },
+    { nl: 'C is de vorm: een ruit met hoeken van {n:80} graden. N: geen vrijloophoek, dus beide kanten zijn bruikbaar. M is de tolerantieklasse, en G: een gat om te klemmen, en spaanbrekers.',
+      en: 'C is the shape: a diamond with {n:80} degree corners. N: no clearance angle, so both faces can be used. M is the tolerance class, and G: a hole for clamping, and chip breakers.' },
+    { nl: '12 is de lengte van de snijkant in hele millimeters: bij deze ruit een ingeschreven cirkel van {n:12.7} millimeter. 04 is de dikte: {n:4.76} millimeter. En 08 is de hoekradius: {n:0.8} millimeter.',
+      en: '12 is the cutting edge length in whole millimetres: for this diamond, an inscribed circle of {n:12.7} millimetres. 04 is the thickness: {n:4.76} millimetres. And 08 is the nose radius: {n:0.8} millimetres.' },
     { nl: 'Twee hoeken per kant, twee kanten: {n:4} snijkanten. Bij €{n:14} per plaat is dat 3 euro 50 per kant, en bij {n:70} stuks per kant 5 cent per stuk.',
       en: 'Two corners per face, two faces: {n:4} edges. At €{n:14} an insert, that is 3 euros 50 an edge, and at {n:70} parts an edge, 5 cents a part.' },
   ],
@@ -487,8 +487,8 @@ const SAY = [
       en: 'A P grade in stainless steel works, but badly. Does the grade on the box match this job?' },
   ],
   [ // s5 how an edge wears
-    { nl: 'Elke snijkant slijt. Bij {t:Vrijloopslijtage|vrijloopslijtage} groeit langs de kant een dof randje: eerst langzaam, dan steeds sneller.',
-      en: 'Every edge wears. With {t:Flank wear|flank wear}, a dull band grows along the edge: slowly at first, then faster and faster.' },
+    { nl: 'Bij {t:Vrijloopslijtage|vrijloopslijtage} groeit langs de snijkant een dof randje: eerst langzaam, dan steeds sneller. Bij kolkslijtage slijt er bovenop een kuiltje, waar de hete spaan overheen schuurt.',
+      en: 'With {t:Flank wear|flank wear}, a dull band grows along the cutting edge: slowly at first, then faster and faster. With crater wear, a hollow wears into the top, where the hot chip slides over it.' },
     { nl: 'Bij aluminium en zacht staal last materiaal zich vast op de kant: een {t:Opbouwsnede|opbouwsnede}. Dat verpest de maat en het oppervlak.',
       en: 'On aluminium and soft steel, material welds onto the edge: a {t:Built-up edge|built-up edge}. That spoils the size and the surface.' },
     { nl: 'Slijtage zie je aan verlopende maten en bramen. En de {t:Spilbelasting|spilbelasting} stijgt: de motor moet harder werken.',
@@ -497,15 +497,15 @@ const SAY = [
   [ // s6 coolant, presetting and the sister tool
     { nl: '{t:Emulsie|Emulsie} koelt, smeert en spoelt de spanen weg: olie in water, meestal {n:5} tot {n:8} procent olie.',
       en: '{t:Emulsion|Emulsion} cools, lubricates and flushes the chips away: oil in water, usually {n:5} to {n:8} percent oil.' },
-    { nl: 'Bij {t:Voorinstellen|voorinstellen} meet je de lengte en de radius van een gereedschap buiten de machine. Zo blijft de machine verspanen.',
-      en: 'With {t:Presetting|presetting} you measure the length and radius of a tool outside the machine. So the machine keeps cutting.' },
-    { nl: 'Op de grens neemt een {t:Zustergereedschap|zustergereedschap} het over: een identiek reservegereedschap. Een plaat van €{n:12} met {n:4} kanten is €{n:3} per kant: bij {n:80} stuks 3,75 cent per stuk.',
-      en: 'At the limit a {t:Sister tool|sister tool} takes over: an identical spare tool. An insert of €{n:12} with {n:4} edges is €{n:3} an edge: at {n:80} parts, 3.75 cents a part.' },
+    { nl: 'Bij {t:Voorinstellen|voorinstellen} meet je de lengte en de radius van een gereedschap buiten de machine, zodat die blijft verspanen.',
+      en: 'With {t:Presetting|presetting} you measure the length and radius of a tool outside the machine, so the machine keeps cutting.' },
+    { nl: 'Is de standtijd op, dan neemt een {t:Zustergereedschap|zustergereedschap} het over: een identiek reservegereedschap. Een plaat van €{n:12} met {n:4} kanten is €{n:3} per kant: bij {n:80} stuks drie en driekwart cent per stuk.',
+      en: 'When the tool life is up, a {t:Sister tool|sister tool} takes over: an identical spare tool. A €{n:12} insert with {n:4} edges is €{n:3} an edge: at {n:80} parts, 3.75 cents a part.' },
   ],
   [ // s7 the Taylor equation
-    { nl: 'De {t:Taylorvergelijking|Taylorvergelijking} uit 1907 koppelt de standtijd aan de snelheid: V maal T tot de macht n is constant.',
-      en: 'The {t:Taylor equation|Taylor equation} from 1907 links tool life to speed: V times T to the power n is constant.' },
-    { nl: 'De {t:Taylor-exponent|Taylor-exponent} n is voor hardmetaal vaak zo’n {n:0.25}. Dan laat {n:25} procent sneller, van {n:200} naar {n:250}, maar {n:0.41} van de standtijd over.',
+    { nl: 'De {t:Taylorvergelijking|Taylorvergelijking} koppelt de standtijd aan de snelheid: V maal T tot de macht n is gelijk aan een constante C.',
+      en: 'The {t:Taylor equation|Taylor equation} links tool life to speed: V times T to the power n equals a constant C.' },
+    { nl: 'De {t:Taylor-exponent|Taylor-exponent} n is voor hardmetaal vaak zo’n {n:0.25}. Ga je dan {n:25} procent sneller, van {n:200} naar {n:250}, dan blijft er maar {n:0.41} van de standtijd over.',
       en: 'The {t:Taylor exponent|Taylor exponent} n is often about {n:0.25} for carbide. Then {n:25} percent faster, from {n:200} to {n:250}, leaves only {n:0.41} of the tool life.' },
     { nl: 'Bij {n:200} meter per minuut gaat een kant {n:15} minuten mee: {n:30} stuks. Bij {n:220} wordt dat {n:10.2} minuten, en zo’n {n:22} stuks.',
       en: 'At {n:200} metres a minute an edge lasts {n:15} minutes: {n:30} parts. At {n:220} that becomes {n:10.2} minutes, and about {n:22} parts.' },
@@ -519,10 +519,10 @@ const SAY = [
       en: 'A part costs machine time, tool changes and tools. Cutting faster shrinks the machine time, but grows the rest.' },
     { nl: 'De {t:Wisseltijd|wisseltijd} is {n:2} minuten. Een kant van €{n:4} is bij 1 euro 50 per minuut {n:2.67} machineminuten. Samen {n:4.67} minuten.',
       en: 'The {t:Change time|change time} is {n:2} minutes. An edge of €{n:4}, at 1 euro 50 a minute, is {n:2.67} machine minutes. Together, {n:4.67} minutes.' },
-    { nl: 'Bij n is {n:0.25} is de {t:Economische standtijd|economische standtijd} {n:3} keer {n:4.67}: {n:14} minuten.',
-      en: 'With n at {n:0.25}, the {t:Economic tool life|economic tool life} is {n:3} times {n:4.67}: {n:14} minutes.' },
-    { nl: 'Dat geeft de {t:Economische snijsnelheid|economische snijsnelheid}: zo’n {n:204} meter per minuut, het laagste punt van de kosten.',
-      en: 'That gives the {t:Economic cutting speed|economic cutting speed}: about {n:204} metres a minute, the lowest point of the cost.' },
+    { nl: 'De {t:Economische standtijd|economische standtijd} is 1 gedeeld door n, min 1, keer die {n:4.67} minuten. Met n is {n:0.25} is dat {n:3} keer {n:4.67}: {n:14} minuten.',
+      en: 'The {t:Economic tool life|economic tool life} is 1 over n, minus 1, times those {n:4.67} minutes. With n at {n:0.25}, that is {n:3} times {n:4.67}: {n:14} minutes.' },
+    { nl: 'Met Taylor volgt de {t:Economische snijsnelheid|economische snijsnelheid}: C gedeeld door de vierdemachtswortel van {n:14}, zo’n {n:204} meter per minuut: daar zijn de kosten het laagst.',
+      en: 'Taylor then gives the {t:Economic cutting speed|economic cutting speed}: C divided by the fourth root of {n:14}, about {n:204} metres a minute: where the cost is lowest.' },
     { nl: 'Met een zustergereedschap zakt de stop naar {n:0.3} minuut: {n:8.9} minuten, bij {n:228} meter per minuut. Sneller loont pas als wisselen goedkoop is.',
       en: 'With a sister tool, the stop drops to {n:0.3} minutes: {n:8.9} minutes, at {n:228} metres a minute. Faster only pays when changing is cheap.' },
   ],
