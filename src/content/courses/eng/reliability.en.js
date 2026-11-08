@@ -8,21 +8,21 @@ export default {
       pre: [
         {
           q: 'A pump shaft broke after two years of normal running. The fracture surface shows a smooth band with curved lines, like ripples on a beach, and a small rough zone at one edge. What happened?',
-          options: ['One sudden overload, such as a jam in the pump housing', 'A crack grew with every turn until the rest snapped', 'Rust slowly ate the shaft away from the outside in', 'The steel was too soft when the shaft was first made'],
-          answer: 'A crack grew with every turn until the rest snapped',
+          options: ['One sudden overload, such as a jam in the pump housing', 'A crack grew with each turn, then snapped', 'Rust slowly ate the shaft away from the outside in', 'The steel was too soft when the shaft was first made'],
+          answer: 'A crack grew with each turn, then snapped',
           why: 'That is fatigue: a crack that grows with each load cycle leaves curved lines on the smooth part; the small rough zone is where the last bit of steel tore in one go.',
         },
       ],
       teach: [
         'Three words get mixed up. The failure mode is what you see fail: “the bearing seizes”. The failure mechanism is the physical process behind it: fatigue, wear, corrosion, overload or ageing. The root cause is why that process started: too little grease, a misaligned shaft.\n\nReliability engineers want all three, because the right task depends on the mechanism. You can measure a crack or wear growing; you cannot measure a sudden overload coming.',
         'A useful picture: a part fails when the load on it is higher than its strength. An overload is one load far above normal, such as a jam, a short circuit or lightning. It can strike at any age, so it looks random.\n\nIn degradation, the strength drops over time through fatigue, wear, corrosion or ageing, until a normal load is enough. Degradation usually gives a warning and depends on age, which is why condition monitoring and planned replacement can work there.',
-        'Fatigue is cracking from repeated loading. A crack starts at a stress raiser, such as a sharp corner, a keyway (the slot for the key that locks a wheel to a shaft) or a scratch, and grows a little with every cycle. A shaft at 1,500 rpm sees 2.16 million cycles a day.\n\nRolling bearings also die of fatigue, just below the surface: flakes break out, called spalling. Ball-bearing life falls with the cube of the load (ISO 281): double the load and the life drops to one-eighth.',
+        'Fatigue is cracking from repeated loading. A crack starts at a stress raiser: a sharp corner, a keyway (the slot that locks a wheel to a shaft) or a scratch, and grows with every cycle. A shaft at 1,500 rpm sees 2.16 million cycles a day.\n\nRolling bearings fail by fatigue too, below the surface: flakes break out (spalling). Life falls with the cube of the load for ball bearings, the power 10/3 for roller bearings (ISO 281): double the load and a ball bearing lasts one-eighth as long.',
         'Wear is material removed by rubbing: by hard particles in the oil, or metal on metal when the lubricant film breaks down. Corrosion is chemical attack, such as rust, and runs faster with moisture, salt and chemicals; pitting can hide under paint.\n\nBoth progress gradually and can be measured: wall thickness, oil particles, clearances. That makes them good candidates for an inspection or condition task, as long as someone acts on the reading.',
-        'Electrical equipment fails mostly through insulation ageing: the paper in a transformer or the plastic of a cable slowly loses strength under heat, moisture and electrical stress. For transformer paper the ageing rate roughly doubles for every 6 °C hotter (IEC 60076-7, the loading guide).\n\nIn cable networks, many grid operators find that joints and terminations cause more faults than the cable itself. The question to ask after any failure: “What was the mechanism, and why was the load higher than the strength this time?”',
+        'Electrical equipment fails mostly through insulation ageing: the paper in a transformer or the plastic of a cable slowly loses strength under heat, moisture and electrical stress. For transformer paper the ageing rate roughly doubles for every 6 °C the hot spot runs above 98 °C (IEC 60076-7, the loading guide).\n\nMany grid operators find that cable joints and terminations cause more faults than the cable itself. The question to ask after any failure: “What was the mechanism, and why was the load higher than the strength this time?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A chemical plant had six pump-bearing failures in a year. The reliability engineer cut the old bearings open instead of throwing them away.\n\nFour showed spalling in a band on one side of the outer ring: fatigue under extra load from misalignment, the motor and pump shafts not in line. A laser check on the other pumps found offsets that raised the bearing load by about 25%; life goes with the cube of the load, so (1 ÷ 1.25)³ = 0.51, about half the normal life.\n\nTwo showed brown, smeared tracks: the lubricant film had broken down, from too little grease. Two mechanisms, two fixes: laser alignment after every motor change, and a greasing route with the right quantity per bearing. The next year there was one failure.',
+        text: 'A chemical plant had six pump-bearing failures in a year. The reliability engineer cut the old bearings open instead of throwing them away.\n\nFour showed spalling in a band on one side of the outer ring: fatigue under extra load from misalignment, the motor and pump shafts not in line. A laser check on the other pumps found offsets that raised the bearing load by about 25%; for these ball bearings life goes with the cube of the load, so (1 ÷ 1.25)³ = 0.51, about half the normal life.\n\nTwo showed brown, smeared tracks: the lubricant film had broken down, from too little grease. Two mechanisms, two fixes: laser alignment after every motor change, and a greasing route with the right quantity per bearing. The next year there was one failure.',
       },
       said: 'What engineers say: “Don’t tell me the bearing failed. Tell me how: spalling, smearing or rust?”',
       recall: [
@@ -36,8 +36,8 @@ export default {
         },
         {
           q: 'Which mechanism can strike at any age, without a gradual warning you could measure?',
-          options: ['Fatigue cracking of a shaft at a sharp corner', 'Abrasive wear of a chute liner by the product', 'Overload from a sudden jam in the machine', 'Corrosion of a tank wall in a humid room'],
-          answer: 'Overload from a sudden jam in the machine',
+          options: ['Fatigue cracking of a shaft at a sharp corner', 'Abrasive wear of a chute liner by the product', 'Overload from a sudden jam that stalls the machine', 'Corrosion of a tank wall in a humid room'],
+          answer: 'Overload from a sudden jam that stalls the machine',
           why: 'An overload is one load above the part’s strength; it does not build up over time, so it looks random. The others weaken the part step by step.',
         },
         {
@@ -50,8 +50,8 @@ export default {
         },
         {
           q: 'Why does the failure mechanism matter when you choose a maintenance task?',
-          options: ['It shows whether failure warns you and depends on age', 'It shows which person caused the failure in the first place', 'It sets the price of the spare part you will need to order', 'It decides which technician should do the repair'],
-          answer: 'It shows whether failure warns you and depends on age',
+          options: ['It tells you if failure warns and depends on age', 'It shows which person caused the failure in the first place', 'It sets the price of the spare part you will need to order', 'It decides which technician should do the repair'],
+          answer: 'It tells you if failure warns and depends on age',
           why: 'Degradation can be measured and often depends on age; an overload cannot be seen coming. That decides between inspection, planned replacement and redesign.',
         },
       ],
@@ -70,7 +70,7 @@ export default {
         { term: 'Failure mode', def: 'The specific event that causes a functional failure, such as a bearing seizing for lack of grease.' },
         { term: 'Failure mechanism', def: 'The physical process behind a failure: fatigue, wear, corrosion, overload or ageing.' },
         { term: 'Overload', def: 'A single load above the part’s strength, such as a jam or a short circuit; it can strike at any age.' },
-        { term: 'Fatigue', def: 'Cracking from repeated loading: a crack grows a little with each cycle until the part breaks.' },
+        { term: 'Fatigue', def: 'Cracking from repeated loading, even well below the load that would break the part at once: a crack grows a little with each cycle until the part breaks.' },
         { term: 'Corrosion', def: 'Chemical attack on a material, such as rust; faster with moisture, salt and chemicals.' },
         { term: 'Insulation ageing', def: 'The slow loss of strength of electrical insulation under heat, moisture and electrical stress.' },
       ],
@@ -89,7 +89,7 @@ export default {
       ],
       teach: [
         'Reliability work starts from time-to-failure data: for one failure mode, the specific way a part breaks, how long did each unit run before it failed? Also record every suspension: a unit removed for another reason, or still running, without having failed. Leaving them out makes life look shorter than it is.\n\nA Weibull fit, a curve named after the Swedish engineer Waloddi Weibull, then turns that list into two numbers that describe how the part dies.',
-        'The characteristic life, eta, is an age: by then 63.2% of the units have failed, whatever the pattern. Eta of 12 months on a pump seal means nearly two in three seals are gone within a year.\n\nThe shape parameter, beta, tells you how the failure rate changes with age. The failure rate is the chance that a unit still running fails in the next month or hour. Below 1, around 1 or above 1: each asks for a different strategy.',
+        'The characteristic life, eta, is an age: by then 63.2% of the units have failed, whatever the pattern. Eta of 12 months on a pump seal means nearly two in three seals are gone within a year.\n\nThe shape parameter, beta (β, also called the shape factor), tells you how the failure rate changes with age. The failure rate is the chance that a unit still running fails in the next month or hour. Below 1, around 1 or above 1: each asks for a different strategy.',
         'Beta below 1: infant mortality, early failures. The failure rate falls with age. Causes: fitting errors, poor commissioning (the first start-up and checks), manufacturing defects and damage from maintenance itself. The fix is better fitting, alignment (shafts lined up), lubrication and start-up checks; replacing on a fixed interval makes it worse.\n\nBeta around 1: random failure. An old part is as likely to fail as a new one, so a fixed interval buys nothing. Options: condition monitoring (tracking vibration or oil to see failure coming), redesign, or run to failure.',
         'Beta above 1: wear-out. Failures cluster around an age, so scheduled replacement can work, but only if the cluster is tight. Wear and fatigue (cracking from repeated loading) often show beta of about 2 to 4 (a practitioners’ rule of thumb; rolling-bearing fatigue is often nearer 1.5).\n\nThe classic airline study by Nowlan and Heap (United Airlines data, published 1978) found clear age-related patterns in only about 11% of the components studied. Don’t copy that number to your plant; take the lesson: wear-out is rarer than people assume.',
         'What you meet in practice: a fit on four failures, or one fit on every failure of a gearbox. With fewer than roughly 5 to 10 failures per mode, beta is very uncertain, and analysts argue about how much data is enough.\n\nMixing modes is worse: early bearing failures plus late gear wear can blur into a beta near 1 that describes neither. The question that exposes a weak analysis: “How many failures is this fitted on, per failure mode, and did you include the units that didn’t fail?”',
@@ -116,8 +116,8 @@ export default {
         },
         {
           q: 'A fit on all compressor failures gives beta near 1, but the data mixes valve, seal and motor failures. What do you do?',
-          options: ['Accept it: the compressor simply fails at random', 'Fit a more complex distribution to all the mixed data', 'Collect five more years of data before doing anything', 'Split the data per failure mode and fit each one'],
-          answer: 'Split the data per failure mode and fit each one',
+          options: ['Accept it: the compressor simply fails at random', 'Fit a more complex distribution to all the mixed data', 'Collect five more years of data before doing anything', 'Split the data per failure mode, fit each'],
+          answer: 'Split the data per failure mode, fit each',
           why: 'Mixed failure modes blur into a misleading beta; each mode has its own pattern and its own task.',
         },
         {
@@ -183,8 +183,8 @@ export default {
         },
         {
           q: 'In PROACT terms, what kind of root is “the coupling was fitted without alignment”?',
-          options: ['A physical root: the mechanism itself', 'A human root: a decision or action', 'A latent root: the system behind it', 'No root at all, only the symptom'],
-          answer: 'A human root: a decision or action',
+          options: ['A physical root: the mechanism itself', 'A human root: a decision or an action someone took', 'A latent root: the system behind it', 'No root at all, only the symptom'],
+          answer: 'A human root: a decision or an action someone took',
           why: 'Fitting without alignment is an action someone took. The physical root is the fatigue it caused; the latent root is whatever let it happen, such as no standard or tool.',
         },
         {
@@ -215,7 +215,7 @@ export default {
       sayIt: 'Explain to a maintenance supervisor in 60 seconds why “operator error” is not a root cause, using physical, human and latent roots.',
       terms: [
         { term: 'Root cause failure analysis', def: 'A structured search for why an asset failed, aimed at stopping it happening again. Short: RCFA.' },
-        { term: 'Beach marks', def: 'Curved lines on the smooth part of a fatigue fracture, each marking a stage in the crack’s growth.' },
+        { term: 'Beach marks', def: 'Curved lines on the smooth part of a fatigue fracture, spreading from where the crack started; each marks a stage in its growth.' },
         { term: 'Physical root', def: 'The physical mechanism of a failure, such as a fatigue crack at a keyway.' },
         { term: 'Human root', def: 'The decision or action that set the failure going, such as fitting a coupling without aligning it.' },
         { term: 'Latent root', def: 'The system behind a human root, such as a missing standard, tool or check, that lets the failure repeat elsewhere.' },
@@ -265,8 +265,8 @@ export default {
         },
         {
           q: 'A Crow-AMSAA plot of a compressor fleet’s failures has a slope of 1.4. What does that tell you?',
-          options: ['Failures come ever faster: reliability is getting worse', 'One part in the compressors is slowly wearing out', 'The reliability programme is clearly working well by now', 'There are too few failures in the data to say anything yet'],
-          answer: 'Failures come ever faster: reliability is getting worse',
+          options: ['Failures come ever faster: the fleet’s reliability is getting worse', 'One part in the compressors is slowly wearing out', 'The reliability programme is clearly working well by now', 'There are too few failures in the data to say anything yet'],
+          answer: 'Failures come ever faster: the fleet’s reliability is getting worse',
           why: 'A slope above 1 means the failure intensity grows with time; below 1 it falls. It describes the whole repairable system, not one part’s life.',
         },
         {
@@ -336,8 +336,8 @@ export default {
         },
         {
           q: 'Two identical machines run in parallel and one can carry full output. What happens to their production criticality?',
-          options: ['It doubles, because there are now two machines', 'It stays the same as for a single machine', 'It drops: one failure does not stop output', 'It cannot be scored with a normal risk matrix'],
-          answer: 'It drops: one failure does not stop output',
+          options: ['It doubles, because there are now two machines', 'It stays the same as for a single machine', 'It drops: one failure won’t stop output', 'It cannot be scored with a normal risk matrix'],
+          answer: 'It drops: one failure won’t stop output',
           why: 'Redundancy lowers the consequence of a single failure, though a common cause can still take out both.',
         },
         {
@@ -455,14 +455,14 @@ export default {
         'Engineers draw a system as a reliability block diagram: boxes in series where every part is needed, side by side where one can take over. In a series system the availabilities multiply: three machines in a line, each 95% available, give 0.95³ = 85.7%.\n\nThat is why long lines without buffers lose so much time; the module Capacity and flow shows how buffers decouple them. Every extra box in series makes the whole less available than its weakest part.',
         'Parallel redundancy: two units where one is enough, written 1-out-of-2. The system is down only when both are down: availability = 1 − (1 − A)². Two pumps at 95% give 1 − 0.05² = 99.75%. More general is k-out-of-n: three of four rectifiers needed, for example.\n\nGrid operators design to N-1: the grid keeps supplying when any single component fails. In Dutch networks it applies mainly to the higher voltage levels; the module Grid planning and the transition covers where.',
         'A standby unit sits idle and must start on demand, so its failure is hidden until it is needed. If it fails at random and you test it every T, its average unavailability is about T ÷ (2 × MTBF). A standby with an MTBF of 10 years, tested every 6 months: 0.5 ÷ 20 = 2.5%.\n\nThat is the same relation behind the failure-finding interval in the RCM lesson. Testing more often lowers it, but every test wears the equipment and can leave a valve or setting wrong.',
-        'A common-cause failure is one event that takes out both units: a shared power feed, one cooling circuit, the same technician making the same mistake on both pumps on the same day, a flood in the pump pit.\n\nThe beta factor model says a share beta of a unit’s failures hit all redundant units at once. IEC 61508-6 gives values from about 1% to 10%. Even 5% matters: two pumps at 95% then reach about 99.5%, not 99.75%, because common causes double the downtime.',
+        'A common-cause failure is one event that takes out both units: a shared power feed, one cooling circuit, the same technician making the same mistake on both pumps on the same day, a flood in the pump pit.\n\nThe beta factor model says a share beta of a unit’s failures hit all redundant units at once. IEC 61508-6 gives values from about 1% to 10%. Even 5% matters: two pumps at 95% then reach about 99.5%, not 99.75%, because common causes roughly double the downtime.',
         'In practice: stagger the maintenance of redundant units over different days and different people, give them separate power feeds and cable routes, and test the standby the way it will be called, by automatic start on a pressure drop, not by a manual start button.\n\nA standby that only ever starts by hand proves little. The sharp question: “What single event takes out both, and when did we last prove that the standby starts on its own?”',
       ],
       example: {
         kind: 'faded',
         text: 'A chemical plant’s cooling-water system has two pumps, each available 98% of the time; one is enough. Both are fed from one motor control centre (MCC: the cabinet with the motor starters), which is available 99.5% of the time.\n\nThe site’s safety report claims 99.96% availability for cooling, from the two pumps alone. Last year both pumps were serviced by the same contractor on the same Saturday.',
         ask: 'What is the real availability, what dominates it, and what would you change?',
-        reveal: 'Pumps in parallel: 1 − 0.02² = 99.96%. In series with the MCC: 0.9996 × 0.995 ≈ 99.46%. The unavailability is about 0.54%, roughly thirteen times the 0.04% in the report, and almost all of it is the single MCC.\n\nChanges: feed the second pump from a separate MCC or busbar section; test the automatic start of the standby pump; service the two pumps on different days with a check after each. Then look for other shared items, such as one suction line or one cooling tower basin.',
+        reveal: 'Pumps in parallel: 1 − 0.02² = 99.96%. In series with the MCC: 0.9996 × 0.995 ≈ 99.46%. The unavailability is about 0.54%, more than thirteen times the 0.04% in the report, and almost all of it is the single MCC.\n\nChanges: feed the second pump from a separate MCC or busbar section; test the automatic start of the standby pump; service the two pumps on different days with a check after each. Then look for other shared items, such as one suction line or one cooling tower basin.',
       },
       said: 'What engineers say: “Two pumps on one MCC isn’t redundancy, it’s one failure waiting to look like two.”',
       recall: [
@@ -484,8 +484,8 @@ export default {
         },
         {
           q: 'Which of these is the biggest threat to a pair of redundant pumps?',
-          options: ['Pumps from two different makers in the pair', 'Running the two pumps in turn each week', 'One shared power feed for both pumps', 'A spare impeller kept in the store'],
-          answer: 'One shared power feed for both pumps',
+          options: ['Pumps from two different makers in the pair', 'Running the two pumps in turn each week', 'One shared power feed supplying both of the pumps', 'A spare impeller kept in the store'],
+          answer: 'One shared power feed supplying both of the pumps',
           why: 'A shared feed is a common cause: one fault stops both. Different makers and alternating duty actually reduce common causes.',
         },
         {
@@ -559,8 +559,8 @@ export default {
         },
         {
           q: 'What does the ALARP principle ask?',
-          options: ['Accept any risk that stays below €1 million a year in value', 'Reduce every single risk all the way down to zero', 'Leave safety risks to the normal business case like any other', 'Reduce a risk until the cost is grossly out of proportion'],
-          answer: 'Reduce a risk until the cost is grossly out of proportion',
+          options: ['Accept any risk that stays below €1 million a year in value', 'Reduce every single risk all the way down to zero', 'Leave safety risks to the normal business case like any other', 'Reduce a risk until the cost is grossly out of proportion to the gain'],
+          answer: 'Reduce a risk until the cost is grossly out of proportion to the gain',
           why: 'ALARP, as low as reasonably practicable, sets the bar at gross disproportion between cost and gain, not at zero risk and not at a plain business case.',
         },
         {
@@ -624,14 +624,14 @@ export default {
         },
         {
           q: 'A pump still runs but delivers 90 m³/h, where the users need 120 m³/h. What is this?',
-          options: ['No failure, because the pump is still running', 'A functional failure: it misses the standard', 'A hidden failure that no operator has noticed yet', 'Normal wear, so nothing to act on yet'],
-          answer: 'A functional failure: it misses the standard',
+          options: ['No failure, because the pump is still running', 'A functional failure: it misses the users’ standard', 'A hidden failure that no operator has noticed yet', 'Normal wear, so nothing to act on yet'],
+          answer: 'A functional failure: it misses the users’ standard',
           why: 'Failure is defined against the users’ standard, not against “running”. Partial loss of function counts.',
         },
         {
           q: 'Which of these is a secondary function of a pump that moves acid?',
-          options: ['Keep the acid inside, without leaks', 'Pump 40 m³/h of acid to the reactor', 'Run around the clock in three shifts', 'Have the newest type of impeller'],
-          answer: 'Keep the acid inside, without leaks',
+          options: ['Keep the acid in, without leaks', 'Pump 40 m³/h of acid to the reactor', 'Run around the clock in three shifts', 'Have the newest type of impeller'],
+          answer: 'Keep the acid in, without leaks',
           why: 'Containing the liquid is a secondary function; moving 40 m³/h to the reactor is the primary one. Losing containment can matter more than losing flow.',
         },
         {
@@ -703,7 +703,7 @@ export default {
         },
         {
           q: 'A pressure relief valve has never been called on to open. What kind of task fits it in RCM?',
-          options: ['A failure-finding test on an interval', 'Run it to failure, then replace it', 'A monthly visual inspection by a technician', 'Vibration monitoring on a monthly route'],
+          options: ['A failure-finding test on an interval', 'Run it to failure, then replace it with a new one', 'A monthly visual inspection by a technician', 'Vibration monitoring on a monthly route'],
           answer: 'A failure-finding test on an interval',
           why: 'Its failure is hidden; only a test shows whether it will work on demand.',
         },
@@ -820,15 +820,15 @@ export default {
       pre: [
         {
           q: 'A company gets certified to ISO 55001. What does the certificate show?',
-          options: ['That every single one of its assets is in good condition', 'That it has a system for getting value from its assets', 'That its maintenance follows the makers’ manuals', 'That it has a CMMS with all its assets loaded in it'],
-          answer: 'That it has a system for getting value from its assets',
+          options: ['That every single one of its assets is in good condition', 'That it has a system to get value from assets', 'That its maintenance follows the makers’ manuals', 'That it has a CMMS with all its assets loaded in it'],
+          answer: 'That it has a system to get value from assets',
           why: 'ISO 55001 sets requirements for the management system: objectives, plans, decision criteria, competence and review. It says nothing directly about the condition of any one asset.',
         },
       ],
       teach: [
         'Asset management is what an organisation does to get value from its assets over their whole life: planning, buying, running, maintaining and disposing, balancing cost, risk and performance. It is wider than maintenance.\n\nISO 55000 gives the vocabulary, overview and principles; ISO 55001 the requirements for the management system that a company can be certified to; ISO 55002 the guidance. ISO 55000 and 55001 were revised in 2024; the first editions date from 2014.',
         'The core idea is line of sight: an unbroken chain from the company’s objectives, such as supply security, output or emissions, to asset management objectives, to plans per asset class, down to the work orders.\n\nThe document that makes the translation is the SAMP, the strategic asset management plan; below it sit asset management plans per class, such as pumps or MV cables. If a task cannot be traced to an objective, or an objective has no plan, the line is broken.',
-        'ISO 55001 asks for criteria for decisions about risk, life-cycle cost and performance. Those criteria are the tools of this module: criticality, FMECA, RCM, Weibull, spares and life-cycle cost.\n\nA neighbouring standard, IEC 60300-1, covers dependability: reliability, maintainability (how easily it is repaired) and supportability (spares, tools, people) together, managed from design onwards. Its point: designing reliability in is cheaper than maintaining it in later.',
+        'ISO 55001 asks for criteria for decisions about risk, life-cycle cost and performance. Those criteria are the tools of this module: criticality, FMECA, RCM, Weibull, spares and life-cycle cost.\n\nA neighbouring standard, IEC 60300-1, covers dependability, in its classic definition: reliability, maintainability (how easily it is repaired) and supportability (spares, tools, people) together, managed from design onwards. Its point: designing reliability in is cheaper than maintaining it in later.',
         'Grid operators are the textbook case: many assets, long lives, a regulator watching. Dutch operators work to NTA 8120, the Dutch asset-management standard for electricity and gas grids, and several, such as Stedin and Enexis, also hold ISO 55001 certificates; the module Grid operations and assets shows how.\n\nFewer manufacturers are certified, but the logic is the same: capex decisions and maintenance strategy belong in one system, judged by the same criteria.',
         'Pitfalls: certification as the goal, with binders of procedures while decisions still go to whoever shouts loudest; an asset register too incomplete to support any decision; finance, operations and maintenance each optimising their own budget.\n\nThe module Maintenance covers maintenance KPIs; here the test is the decision. The sharp question: “Show me one recent replacement decision: which objective, which risk and which life-cycle comparison drove it?”',
       ],
@@ -842,12 +842,12 @@ export default {
       recall: [
         {
           q: 'What is the job of the SAMP, the strategic asset management plan?',
-          options: ['It lists the spare parts for every asset class', 'It schedules next week’s maintenance work', 'It turns company objectives into asset plans', 'It is the report written by the ISO audit team'],
-          answer: 'It turns company objectives into asset plans',
+          options: ['It lists the spare parts for every asset class', 'It schedules next week’s maintenance work', 'It turns company objectives into plans per asset class', 'It is the report written by the ISO audit team'],
+          answer: 'It turns company objectives into plans per asset class',
           why: 'The SAMP is the bridge in the line of sight, from organisational objectives to the plans per asset class.',
         },
         {
-          q: 'Which three things does dependability combine, in IEC 60300?',
+          q: 'Which three things does dependability combine, in the classic definition of IEC 60300?',
           options: ['Cost, quality and delivery time', 'Safety, health and the environment', 'Availability, performance and quality, as in OEE', 'Reliability, maintainability and supportability'],
           answer: 'Reliability, maintainability and supportability',
           why: 'Dependability is how often it fails, how easily it is repaired and whether spares, tools and people are there to repair it.',
@@ -885,7 +885,7 @@ export default {
         { term: 'ISO 55001', def: 'The standard with the requirements for an asset management system; companies can be certified to it (revised 2024).' },
         { term: 'Line of sight', def: 'The unbroken chain from company objectives to asset plans and down to individual work orders.' },
         { term: 'SAMP', def: 'Strategic asset management plan: turns company objectives into asset management objectives and plans.' },
-        { term: 'Dependability', def: 'Reliability, maintainability and supportability together, as in IEC 60300.' },
+        { term: 'Dependability', def: 'Reliability, maintainability and supportability together, in the classic definition of IEC 60300.' },
         { term: 'NTA 8120', def: 'The Dutch asset-management standard for electricity and gas grids.' },
       ],
     },
@@ -978,7 +978,7 @@ export default {
         'The difference is the waiting: noticing the failure, finding a technician, getting a permit and the logistic delay of waiting for parts. Example: MTBF 2,000 hours, active repair 4 hours: inherent availability 2,000 ÷ 2,004 = 99.80%.\n\nAdd 20 hours of waiting and the whole stop is 24 hours: operational availability 2,000 ÷ 2,024 = 98.81%. At 8,000 running hours a year that is 4 failures: 96 hours lost instead of 16.',
         'In many plants waiting is the biggest share of downtime, not the repair. That makes spares and response time reliability levers, just like MTBF: a part on the shelf next to the line, a kit ready for the job, a technician on call for the bottleneck.\n\nThe next lessons in this topic work out which spares to stock and how to compare repair and replacement over the life.',
         'Downtime cost per year = failures per year × hours down per failure × cost per hour. The cost per hour is lost margin only where output is really lost, on a bottleneck or a sold-out line; elsewhere it is mostly overtime to catch up.\n\nExample: 4 failures × 24 hours × €1,200 = €115,200 a year. Cut the waiting to 4 hours and the stop drops to 8 hours: €38,400, a saving of €76,800 a year.',
-        'Availability alone can mislead. 99% sounds high, but on an asset that runs all year it is 87.6 hours down. The same 99% from one long stop or fifty short ones hurts differently: short, frequent stops upset quality and start-ups.\n\nGrid operators split outage minutes the same way: in 2024 a Dutch customer was without power about 24 minutes, from about 0.34 interruptions of about 70 minutes each (Netbeheer Nederland). Always report how often and how long, not just the percentage.',
+        'Availability alone can mislead. 99% sounds high, but on an asset that runs all year it is 87.6 hours down. The same 99% from one long stop or fifty short ones hurts differently: short, frequent stops upset quality and start-ups.\n\nGrid operators split outage minutes the same way: in 2024 unplanned outages left a Dutch customer without power for about 24 minutes, from about 0.34 interruptions of about 70 minutes each (Netbeheer Nederland); planned work added about as much. Report how often and how long, not just the percentage.',
       ],
       example: {
         kind: 'worked',
