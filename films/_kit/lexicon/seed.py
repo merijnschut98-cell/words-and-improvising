@@ -44,8 +44,7 @@ HEADS = {
 }
 # forced splits ("first+head") and words left to espeak-ng
 SPLITS = {
-    'nl': {'toerental': 'toeren+tal', 'toerentallen': 'toeren+tallen', 'omwenteling': 'om+wenteling', 'omwentelingen': 'om+wentelingen',
-           'spaanafvoer': 'spaan+afvoer', 'klauwplaat': 'klauw+plaat', 'wisselplaat': 'wissel+plaat', 'wisselplaten': 'wissel+platen',
+    'nl': {'toerental': 'toeren+tal', 'toerentallen': 'toeren+tallen', 'spaanafvoer': 'spaan+afvoer', 'wisselplaat': 'wissel+plaat', 'wisselplaten': 'wissel+platen',
            'datasheet': 'data+sheet', 'kanonboor': 'kanon+boor', 'kanonboren': 'kanon+boren', 'schachtfrees': 'schacht+frees',
            'schachtfrezen': 'schacht+frezen', 'kogelkopfrees': 'kogel+kopfrees', 'vijfassig': 'vijf+assig', 'vijfassige': 'vijf+assige',
            'vingerfrees': 'vinger+frees', 'vingerfrezen': 'vinger+frezen', 'kanteltafel': 'kantel+tafel'},
@@ -61,12 +60,20 @@ KEEP = {
            'voldoet', 'volstaat', 'volautomatisch', 'volelektrische', 'halfautomatisch', 'halfautomatische', 'overbelast',
            'overbelasting', 'overbruggen', 'overbruggingssleutel', 'oververhit', 'overvol', 'overhead', 'middelgroot', 'tekortschiet',
            'langslopen', 'productspecifieke', 'procesgerichte', 'scheurgevoelige', 'warmtegevoelige', 'momentgestuurde',
-           'veiligheidskritisch', 'staalveilig', 'vrijwel', 'bekend'},
+           'veiligheidskritisch', 'staalveilig', 'vrijwel', 'bekend', 'overleg'},
     'en': set(),
 }
 # words that are no compounds but that espeak-ng stresses wrong: phonemes by hand
 MANUAL = {
-    'nl': {'kotteren': 'kˈɔtərən', 'kottert': 'kˈɔtərt', 'kotterbaar': 'kˈɔtərbaːr'},
+    'nl': {'kotteren': 'kˈɔtərən', 'kottert': 'kˈɔtərt', 'kotterbaar': 'kˈɔtərbaːr',
+           # omWENteling: the noun keeps the stress of wentelen, not OMwenteling
+           'omwenteling': 'ˌɔmʋˈɛntəlɪŋ', 'omwentelingen': 'ˌɔmʋˈɛntəlɪŋən',
+           # KLAUWplaat: with ʌʊ Piper says "kloopplaat" (Whisper heard kloplaat, klooplad,
+           # never klauwplaat); a long aː before the glide is heard as klauwplaat
+           'klauwplaat': 'klˈaːʊplˌaːt',
+           # TANDwielkast, not tandWIELkast; loanwords the seed read as Dutch
+           'tandwielkast': 'tˈɑntʋilkˌɑst', 'weekend': 'wˈiːkɛnt', 'datasheet': 'dˈeːtəʃˌiːt',
+           'businesscase': 'bˈɪznɪskˌeːs'},
     'en': {},
 }
 # first parts that make adverbs or particles (daarmee, waardoor, hiermee)

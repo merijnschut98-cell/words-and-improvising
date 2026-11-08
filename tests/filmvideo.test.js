@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAPS } from '../films/_kit/timeline.mjs';
-import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX } from '../films/_kit/narration.mjs';
+import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, subtitlesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX } from '../films/_kit/narration.mjs';
 import { applyLexicon } from '../films/_kit/lexicon.mjs';
 import { videoOf, readAlong, filmDataOf } from '../src/ui/film.js';
 import { lessonPhases, lessonSteps, lessonBack } from '../src/core/course.js';
@@ -99,6 +99,18 @@ test('WebVTT: timestamps, cues per beat timed by length, the file format', () =>
   assert.equal(vttOf([{ start: 0, end: 1, text: 'a <b> & c' }]).split('\n')[4], 'a &lt;b&gt; &amp; c');
 });
 
+test('subtitlesOf: a Dutch term shows its English word once, in parentheses; the voice text is untouched', () => {
+  const seg = ['Een ', { t: 'wisselplaat', en: 'carbide insert' }, ' snijdt, en de ', { t: 'snijsnelheid', en: 'cutting speed' }, ' telt. Ook ', { t: 'H7', en: 'H7' }, '.'];
+  const sents = phrasesOf(seg);
+  assert.deepEqual(sents, [['Een wisselplaat snijdt,', 'en de snijsnelheid telt.'], ['Ook H7.']]);
+  assert.deepEqual(subtitlesOf(seg, sents), [['Een wisselplaat (carbide insert) snijdt,', 'en de snijsnelheid (cutting speed) telt.'], ['Ook H7.']]);
+  // English scripts carry no gloss: unchanged
+  assert.deepEqual(subtitlesOf(['A ', { t: 'carbide insert' }, ' cuts.'], [['A carbide insert cuts.']]), [['A carbide insert cuts.']]);
+  // a glossed phrase too long for one cue is cut after the gloss
+  assert.deepEqual(cueChunks('Daarom bewaart de gereedschapscorrectie (tool offset) van elk gereedschap de lengte en de radius.', 84),
+    ['Daarom bewaart de gereedschapscorrectie (tool offset)', 'van elk gereedschap de lengte en de radius.']);
+});
+
 test('exact subtitles: one clip per phrase, cues at the measured clip times, the pauses from one place', () => {
   assert.ok(PAUSES.sentence >= 0.5 && PAUSES.sentence <= 0.6 && PAUSES.comma >= 0.15 && PAUSES.comma <= 0.25 && PAUSES.beat >= 0.8);
   assert.equal(AUDIO_GAPS.gap, PAUSES.beat);
@@ -142,7 +154,10 @@ test('lexicon: the voice gets the phonemes, the subtitles keep the spelling', ()
     }
   }
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  for (const w of ['toerental', 'omwenteling', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
+  for (const w of ['toerental', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
+  // omwenteling is no first-part compound: its main stress is on WEN (omWENteling)
+  for (const w of ['omwenteling', 'omwentelingen']) assert.ok(nl[w].includes('ʋˈɛn'), `${w}: ${nl[w]}`);
+  assert.ok(!('overleg' in nl), 'overLEG keeps espeak-ng’s own stress');
 });
 
 test('render mode shows no caption band: the video subtitles come from its WebVTT track only', () => {

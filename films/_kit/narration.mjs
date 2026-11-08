@@ -70,14 +70,15 @@ export function joinTrack(parts, total) {
 
 // ---------------------------------------------------------------- captions
 // Sentences; a sentence longer than max is split at the comma (or colon,
-// semicolon, then space) nearest its middle, until every piece fits.
+// semicolon, then after an English gloss's closing parenthesis, then space)
+// nearest its middle, until every piece fits.
 export function cueChunks(text, max = 90) {
   const out = [];
   const split = (s) => {
     if (s.length <= max) { out.push(s); return; }
     const mid = s.length / 2;
     let best = -1;
-    for (const re of [/[,;:] /g, / /g]) {
+    for (const re of [/[,;:] /g, /\) /g, / /g]) {
       for (const m of s.matchAll(re)) if (best < 0 || Math.abs(m.index - mid) < Math.abs(best - mid)) best = m.index;
       if (best > 0) break;
     }
@@ -144,6 +145,39 @@ export function phrasesOf(seg) {
     if (carry) { if (out.length) out[out.length - 1] += ` ${carry}`; else out.push(carry); }
     return out;
   });
+}
+
+// The subtitle of each phrase: the phrase as spoken, and in Dutch a term's
+// English word in parentheses on its first use (the resolved script carries it
+// as `en`), so the English term is read once and never said. sentences is
+// phrasesOf(seg); returns the same shape. A gloss equal to the term (CAM, H7)
+// is left out.
+export function subtitlesOf(seg, sentences) {
+  const G = '\u0001';
+  const E = '\u0002';
+  const marked = String((seg || []).map((p) => (typeof p === 'string' ? p
+    : p.t + (p.en && p.en.toLowerCase() !== String(p.t).toLowerCase() ? `${G}${p.en}${E}` : ''))).join('')).replace(/\s+/g, ' ').trim();
+  let at = 0;
+  const gloss = () => {
+    let out = '';
+    while (marked[at] === G) {
+      const end = marked.indexOf(E, at);
+      out += ` (${marked.slice(at + 1, end)})`;
+      at = end + 1;
+    }
+    return out;
+  };
+  return sentences.map((ph) => ph.map((text) => {
+    while (marked[at] === ' ') at++;
+    let out = '';
+    for (const ch of text) {
+      out += gloss();
+      if (marked[at] !== ch) return text; // not in step with the script: no gloss
+      out += ch;
+      at++;
+    }
+    return out + gloss();
+  }));
 }
 
 // The clips of one beat from its start, by measured length: durs is per

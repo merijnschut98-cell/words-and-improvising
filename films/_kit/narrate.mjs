@@ -22,7 +22,7 @@ import { join } from 'node:path';
 import { ROOT } from './build-film.mjs';
 import { readFilmData } from './assert.mjs';
 import { audioTimeline } from './timeline.mjs';
-import { wavInfo, joinTrack, vttOf, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf } from './narration.mjs';
+import { wavInfo, joinTrack, vttOf, phrasesOf, subtitlesOf, beatLayout, beatLength, cuesOfLines, spokenOf } from './narration.mjs';
 
 // The voices, chosen on 2026-11-07 by comparing candidates on the pilot's first
 // scenes (Whisper round trip for intelligibility, pitch spread for liveliness,
@@ -90,10 +90,15 @@ export function narrate(id, langs = ['nl', 'en']) {
     // one clip per phrase: the subtitles follow the measured length of each
     const lexFile = join(ROOT, 'films/_kit', `lexicon.${lang}.json`);
     const lex = existsSync(lexFile) ? JSON.parse(readFileSync(lexFile, 'utf8')) : {};
-    const clips = data.scenes.map((s) => s.beats.map((b) => phrasesOf(b.say[lang]).map((ph) => ph.map((text) => {
-      const wav = speak(spokenOf(text, lang, lex), lang);
-      return { text, wav, dur: wavInfo(wav).dur };
-    }))));
+    // the subtitle (sub) is the phrase as said, with a Dutch term's English word on first use
+    const clips = data.scenes.map((s) => s.beats.map((b) => {
+      const sents = phrasesOf(b.say[lang]);
+      const subs = subtitlesOf(b.say[lang], sents);
+      return sents.map((ph, k) => ph.map((text, j) => {
+        const wav = speak(spokenOf(text, lang, lex), lang);
+        return { text, sub: subs[k][j], wav, dur: wavInfo(wav).dur };
+      }));
+    }));
     const atl = audioTimeline(clips.map((beats) => beats.map((sents) => beatLength(sents.map((ph) => ph.map((c) => c.dur))))));
     const parts = [];
     const lines = [];
@@ -101,7 +106,7 @@ export function narrate(id, langs = ['nl', 'en']) {
       beatLayout(atl.scenes[si].beats[bi].start, sents.map((ph) => ph.map((c) => c.dur))).forEach((ph, k) => {
         lines.push(ph.map((at, j) => {
           parts.push({ at: at.start, wav: sents[k][j].wav });
-          return { ...at, text: sents[k][j].text };
+          return { ...at, text: sents[k][j].sub };
         }));
       });
     }));
