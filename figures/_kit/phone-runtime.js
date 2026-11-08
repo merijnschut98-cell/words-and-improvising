@@ -70,6 +70,15 @@
     move(fig, head); move(title, head);
     sheet.append(head);
     move(hint, sheet); move(readout, sheet);
+    // other notes pinned on the plate (a model line, a legend) would land on
+    // the rows: they wait in the sheet too
+    for (const n of [...plate.children]) {
+      if (n === stage || n === corners || n === controls || n === read || n.hidden) continue;
+      const cs = getComputedStyle(n);
+      if ((cs.position !== 'absolute' && cs.position !== 'fixed') || n.matches('[aria-live]') || n.getBoundingClientRect().width <= 2 || !n.textContent.trim()) continue;
+      n.classList.add('vp-extra');
+      move(n, sheet);
+    }
     read.append(moreBtn);
     if (stage) stage.classList.add('vp-stage');
     stage && stage.after(read);
@@ -114,7 +123,7 @@
   function needMore() {
     if (!phone || !readout) return;
     if (doc.hasAttribute('data-vp-more')) { read.classList.add('vp-has-more'); return; }
-    const over = readout.scrollHeight > readout.clientHeight + 2 || [...readout.children].some((c) => c.scrollWidth > c.clientWidth + 1) || (hint && hint.textContent.trim());
+    const over = readout.scrollHeight > readout.clientHeight + 2 || [...readout.children].some((c) => c.scrollWidth > c.clientWidth + 1) || (hint && hint.textContent.trim()) || sheet.querySelector('.vp-extra');
     read.classList.toggle('vp-has-more', !!over);
   }
 
