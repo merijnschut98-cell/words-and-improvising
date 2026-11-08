@@ -264,8 +264,8 @@ export default {
         'SAFe has four configurations, from small to large. According to SAFe, Essential SAFe contains the minimal elements for release trains to deliver solutions: one or more trains, their roles, PI Planning and the fixed events. It is the simplest starting point.\n\nLarge Solution SAFe adds a layer for systems too big for one train, such as a complete production line or an aircraft system with hundreds of developers.',
         'That layer is the Solution Train: several trains and suppliers that together build one large system, with their own roles such as the Solution Train Engineer (the RTE of trains) and Solution Management.\n\nPortfolio SAFe adds the portfolio layer to Essential: strategy, funding per value stream and governance. Full SAFe combines everything. Bigger is not better: it only fits very large organisations.',
         'At the end of each PI the train holds Inspect and Adapt (I&A): a demo of the integrated result, a look back at the numbers and a workshop to tackle one or two big problems at the root.\n\nOne number is the ART predictability measure: the business value actually delivered divided by the planned value of the committed objectives. Common SAFe guidance: 80 to 100% is healthy. Always 100% often points to overly cautious planning.',
-        'SAFe 6.0 dropped the word “program” everywhere: program board became ART Planning Board, program backlog became ART Backlog, Program Increment became Planning Interval. The Scrum of Scrums is now Coach Sync and the daily stand-up Team Sync.\n\nSo if you see an organisation working with old SAFe words, you know it was set up on a version from before 2023. That is no disaster, but worth a question: what has been learned since?',
-        'A difference that matters for machine builders: SAFe has a separate part for large cyber-physical systems (machines with mechanics, electronics and software), with attention to suppliers, models and compliance. In version 6.0 it is called Enterprise Solution Delivery.\n\nA sharp question for a client: “Which problem does each extra layer you have now solve?” If you cannot name it, it is organisation for the sake of organisation.',
+        'SAFe 6.0 dropped the word “program” from most names: program board became ART Planning Board, program backlog became ART Backlog, Program Increment became Planning Interval. The Scrum of Scrums is now Coach Sync and the daily stand-up Team Sync.\n\nSo if you see an organisation working with old SAFe words, you know it was set up on a version from before 2023. That is no disaster, but worth a question: what has been learned since?',
+        'A difference that matters for machine builders: SAFe has a separate part for large cyber-physical systems (machines with mechanics, electronics and software), with attention to suppliers, models and compliance. SAFe calls this competency Enterprise Solution Delivery.\n\nA sharp question for a client: “Which problem does each extra layer you have now solve?” If you cannot name it, it is organisation for the sake of organisation.',
       ],
       example: {
         kind: 'faded',
@@ -280,7 +280,7 @@ export default {
           number: 84,
           tolerance: 0.5,
           unit: '%',
-          why: '126 / 150 = 0.84 = 84%. That falls in the 80 to 100% band SAFe calls healthy.',
+          why: '126 / 150 = 0.84 = 84%. That falls in the 80 to 100% band that common SAFe guidance calls healthy.',
         },
         {
           q: 'Which configuration does SAFe call the simplest starting point?',
@@ -362,6 +362,7 @@ export default {
           number: 10,
           tolerance: 0.5,
           unit: 'months',
+          hint: 'Count the months from March to October first, then add the time until the team starts.',
           why: 'From March to October is 7 months, plus 3 months until the start: 10 months of waiting before anyone works on it.',
         },
         {
@@ -429,7 +430,7 @@ export default {
         'According to SAFe an epic is a significant solution development initiative, bigger than a feature and often spread over several PIs. There are two kinds.\n\nBusiness epics deliver value directly to the customer, such as remote service for all machines. An enabler delivers technical preparation that makes later value possible, for example a new data platform. SAFe calls that extending the architectural runway: the technical base on which future features can land.',
         'According to SAFe each epic needs three things: an MVP, a Lean business case and a cost estimate. A Lean business case is short, often one page: the problem, the hypothesis, what it costs and how you measure whether it works.\n\nYou write the hypothesis in a fixed form, roughly: “We believe that [this initiative] will result in [this outcome]. We will know we are right when we see [this measurement].” An Epic Owner shepherds the epic from idea to result.',
         'The MVP, minimum viable product, is the smallest version that lets you test the hypothesis. The idea comes from Lean Startup, Eric Ries’s 2011 book.\n\nAfter the MVP you decide: persevere if the measurement supports the hypothesis, or pivot (change course) or stop if it does not. That is exactly the difference with a classic project, where stopping halfway feels like failure.',
-        'Epics flow through a Portfolio Kanban: a board with fixed steps, in SAFe roughly Funnel (incoming ideas), Reviewing, Analyzing, Ready, Implementing and Done. The Reviewing and Analyzing steps carry a WIP limit (Work In Progress, the maximum number at once).\n\nThat limit stops the portfolio from analysing more epics than it can ever carry out. Approval to build comes from portfolio leadership.',
+        'Epics flow through a Portfolio Kanban: a board with fixed steps, in SAFe roughly Funnel (incoming ideas), Reviewing, Analyzing, Ready, Implementing and Done. Steps such as Reviewing and Analyzing carry a WIP limit (Work In Progress, the maximum number at once).\n\nThat limit stops the portfolio from analysing more epics than it can ever carry out. Approval to build comes from portfolio leadership.',
         'What you see in practice: old projects that just get a new label. It is called an epic now, but the business case is still 80 pages and the MVP is “phase 1 of 3”, after which phases 2 and 3 come no matter what.\n\nA sharp question: “What is the smallest thing we can build to learn whether this idea holds, and which number decides whether we continue?” If nobody names a number, it is not an MVP but a first phase.',
       ],
       example: {
@@ -447,8 +448,8 @@ export default {
         },
         {
           q: 'What is the difference between a business epic and an enabler epic?',
-          options: ['Business delivers customer value directly, an enabler lays technical groundwork', 'Business epics are bigger and always last several PIs', 'Enablers are only for hardware and business epics for software', 'There is no difference, they are two names for the same thing'],
-          answer: 'Business delivers customer value directly, an enabler lays technical groundwork',
+          options: ['Business: direct customer value; enabler: technical groundwork', 'Business epics are bigger and always last several PIs', 'Enablers are only for hardware and business epics for software', 'There is no difference, they are two names for the same thing'],
+          answer: 'Business: direct customer value; enabler: technical groundwork',
           why: 'Enablers extend the architectural runway: technical preparation on which future features can land.',
         },
         {
@@ -504,13 +505,13 @@ export default {
           q: 'Two features each bring in 10,000 euros a week once they are done. One takes 2 weeks of work, the other 8 weeks. Which do you do first, if you want to keep the total missed income as small as possible?',
           options: ['The 8-week one, because it is bigger', 'The 2-week one', 'Both at the same time', 'It does not matter'],
           answer: 'The 2-week one',
-          why: 'The short one first: it pays off after 2 weeks, while the long one is only 2 weeks later. That is the idea behind Shortest Job First.',
+          why: 'The short one first: it pays off after 2 weeks, and the long one is delayed by only 2 weeks. The other way round, the short one waits 8 weeks. That is the idea behind Shortest Job First.',
         },
       ],
       teach: [
         'Cost of Delay is what it costs to have something later, per unit of time. If a new function brings 20,000 euros of margin a week, every week of delay costs 20,000 euros. The concept was popularised mainly by Don Reinertsen, in The Principles of Product Development Flow (2009).\n\nSAFe quotes him: “If you only quantify one thing, quantify the Cost of Delay.” Whoever looks only at cost and not at the price of waiting often chooses wrongly.',
         'WSJF, Weighted Shortest Job First, is the Cost of Delay divided by the duration of the work. With equal Cost of Delay the short work goes first; with equal duration the work with the highest Cost of Delay.\n\nWSJF ignores sunk costs: money already spent that will not come back. That is a Lean principle: what is already in an epic does not count when asking what delivers the most now.',
-        'SAFe estimates the Cost of Delay relatively, as the sum of three scores: business value for user and company, time criticality (does the value drop if you wait, is there a deadline?) and risk reduction or enabling new opportunities. The denominator is the job size, as a proxy for duration.\n\nIn the public SAFe article you score with the series 1, 2, 3, 5, 8, 13, 20, one column at a time, with the smallest item in each column getting a 1.',
+        'SAFe estimates the Cost of Delay relatively, as the sum of three scores: business value for user and company, time criticality (does the value drop if you wait, is there a deadline?) and risk reduction or enabling new opportunities. The denominator is the job size, as a proxy for duration.\n\nIn SAFe’s guidance, as widely quoted, you score with the series 1, 2, 3, 5, 8, 13, 20, one column at a time, with the smallest item in each column getting a 1.',
         'The criticism is serious. The scores are ranks, not real numbers: whether an 8 really is four times a 2, nobody knows, and still you add and divide them. Critics such as Joshua Arnold therefore argue for Cost of Delay in real euros per week, divided by duration (CD3).\n\nAlso: job size is not the same as duration if the people are not available, and whoever fills in the scores can steer them.',
         'Practical advice many experienced coaches give: use WSJF as a conversation tool, not as an oracle. It forces the question “what does waiting cost?” onto the table, and that alone changes conversations.\n\nThen look at the top of the list with common sense. A sharp question in the room: “What happens if we do this three months later? Who notices, and what does it cost?”',
       ],
@@ -543,7 +544,7 @@ export default {
         },
         {
           q: 'What is the main substantive criticism of the way SAFe scores WSJF?',
-          options: ['It takes too long to calculate by hand', 'It takes no account of time or deadlines', 'Ranks are added and divided as if they were real numbers', 'Only the Release Train Engineer may fill it in'],
+          options: ['It takes too long to calculate by hand', 'It takes no account of time or deadlines', 'Ranks are added and divided as if they were real numbers', 'Only the Release Train Engineer is allowed to fill in the scores'],
           answer: 'Ranks are added and divided as if they were real numbers',
           why: 'Whether an 8 is four times a 2 is unknown. That is why some argue for Cost of Delay in real euros.',
         },
@@ -758,7 +759,7 @@ export default {
       ],
       teach: [
         'According to the Nexus Guide, a Nexus is a group of approximately three to nine Scrum teams that together deliver one product. It was developed by Ken Schwaber, one of the creators of Scrum, and Scrum.org; the current guide is from January 2021.\n\nNexus stays close to ordinary Scrum. There is one Product Owner and one Product Backlog, and all teams work in the same sprint.',
-        'New is the Nexus Integration Team: the Product Owner, a Scrum Master and a few fixed members, often experienced developers. It is accountable for the Nexus delivering a usable Integrated Increment every sprint: one working whole of what all teams made together.\n\nThe team does not necessarily do the integration work itself, but makes sure it happens: tools, agreements, coaching.',
+        'New is the Nexus Integration Team: the Product Owner, a Scrum Master and one or more members, often experienced developers from the teams. It is accountable for the Nexus delivering a usable Integrated Increment every sprint: one working whole of what all teams made together.\n\nThe team does not necessarily do the integration work itself, but makes sure it happens: tools, agreements, coaching.',
         'Nexus adds a few events. In Cross-Team Refinement the teams refine the work together and look for dependencies before they surface in the sprint. Nexus Sprint Planning aligns the work of all teams.\n\nIn the Nexus Daily Scrum representatives of the teams look at the integrated result and at new dependencies. Each team’s ordinary Daily Scrum stays.',
         'According to the guide, the Nexus Sprint Review replaces the separate team reviews: you show one whole, not four separate pieces. There is also a Nexus Sprint Retrospective.\n\nThe artefacts include the Nexus Sprint Goal, one goal for all teams together, and the Nexus Sprint Backlog, which shows which work of which team depends on what.',
         'How do you choose? Nexus is the smallest step from Scrum: few new roles. LeSS asks for more organisational change, such as feature teams. SAFe has the most structure above the teams, with portfolio and budgets.\n\nFor you as a Lean consultant: the integration team resembles a final inspection that does not inspect itself, but makes sure every step builds quality in. A sharp question: “When did you last see everything work together?”',
@@ -784,7 +785,7 @@ export default {
         },
         {
           q: 'What is the Nexus Integration Team accountable for?',
-          options: ['Writing all the teams’ code itself', 'A usable Integrated Increment every sprint', 'The budget and staffing of the teams', 'Recruiting and selecting new developers'],
+          options: ['Writing all the teams’ code itself', 'A usable Integrated Increment every sprint', 'The budget and staffing of the teams', 'Recruiting and selecting new developers for the teams'],
           answer: 'A usable Integrated Increment every sprint',
           why: 'The team makes sure everything works together every sprint. It does not have to do the integration work itself, but makes sure it happens.',
         },
@@ -820,7 +821,7 @@ export default {
       sayIt: 'Explain in 60 seconds what Nexus adds to ordinary Scrum.',
       terms: [
         { term: 'Nexus', def: 'Framework by Ken Schwaber and Scrum.org for approximately three to nine Scrum teams that together deliver one product.' },
-        { term: 'Nexus Integration Team', def: 'Product Owner, Scrum Master and fixed members who make sure the Nexus delivers a usable Integrated Increment every sprint.' },
+        { term: 'Nexus Integration Team', def: 'Product Owner, Scrum Master and one or more members who make sure the Nexus delivers a usable Integrated Increment every sprint.' },
         { term: 'Integrated Increment', def: 'The integrated, working whole of what all teams of a Nexus made in the sprint.' },
         { term: 'Cross-Team Refinement', def: 'Event in Nexus where teams refine the work together and look for dependencies before they surface in the sprint.' },
         { term: 'Nexus Daily Scrum', def: 'Daily meeting of team representatives about the integrated result and new dependencies.' },
@@ -861,7 +862,7 @@ export default {
         },
         {
           q: 'What is a chapter in the article about Spotify?',
-          options: ['Peers in one discipline within a tribe, with a line manager', 'A group of squads working in a related area', 'A voluntary community across the whole organisation', 'A small self-organising team with its own mission'],
+          options: ['Peers in one discipline within a tribe, with a line manager', 'A group of several squads working together in a related area', 'A voluntary community across the whole organisation', 'A small self-organising team with its own mission'],
           answer: 'Peers in one discipline within a tribe, with a line manager',
           why: 'Squad is the team, tribe the group of squads, chapter the discipline within the tribe and guild the voluntary community.',
         },
@@ -1006,7 +1007,7 @@ export default {
       teach: [
         'Stage-gate is the classic way to develop new products, worked out by Robert G. Cooper from the 1980s onwards. The work runs in stages, such as scoping, business case, development, testing and launch.\n\nBetween the stages sits a gate: a decision moment where management chooses based on agreed deliverables. That is called a go/kill decision: continue, stop, hold or redo a stage.',
         'For hardware that is not old-fashioned but sensible. The cost of change rises the further along you are: changing a drawing in CAD (Computer Aided Design, the drawing software) costs a few hours, changing a hardened steel mould can cost tens of thousands of euros, and a change after delivery can mean a recall.\n\nOn top of that come long lead times for tooling and requirements like the CE marking (the European declaration that a product meets the safety requirements).',
-        'Still, there is a lot of uncertainty within the stages: does the customer really want this, does the design work? That is where agile helps. Cooper described in 2016 and, with Sommer, in 2018 how companies place agile sprints inside the stages of stage-gate: Agile-Stage-Gate.\n\nThe sprints, short daily meetings, demos and retrospectives sit inside the stages; the gates stay for the big investment decisions. The first experiences in a handful of companies were positive, with faster lead times.',
+        'Still, there is a lot of uncertainty within the stages: does the customer really want this, does the design work? That is where agile helps. Cooper described in 2016 and, with Sommer, in 2018 how companies place agile sprints inside the stages of stage-gate: Agile-Stage-Gate.\n\nThe sprints, short daily meetings, demos and retrospectives sit inside the stages; the gates stay for the big investment decisions. Cooper reports positive first results in a handful of companies, such as faster time to market, but also struggles. The evidence is still limited.',
         'What is “done” after a hardware sprint? Usually not a shippable product, but something you can test or show: a CAD model you walk through with a customer, a 3D-printed model, a test result from a prototype, a piece of control software on a test rig.\n\nThe question stays the same as in software: what did we learn these two weeks that we did not know before?',
         'For you as a Lean consultant: a gate resembles a quality gate, with the pitfall that it becomes a paperwork check. Then people check whether all documents are there, not whether the product works.\n\nA sharp question for a project team: “What must be proven at the next gate, and which sprint delivers that evidence?” If the answer is “the design file”, the gate has become a formality.',
       ],
@@ -1112,7 +1113,7 @@ export default {
         },
         {
           q: 'What is set-based design?',
-          options: ['A fixed set of parts that recurs in all products', 'Fixing the design in one go as early as possible', 'Designing in fixed sets of two weeks', 'Keeping several options open until there is enough knowledge'],
+          options: ['A fixed set of parts that recurs in all products', 'Fixing the design in one go, as early as possible, to save cost', 'Designing in fixed sets of two weeks', 'Keeping several options open until there is enough knowledge'],
           answer: 'Keeping several options open until there is enough knowledge',
           why: 'That way you avoid choosing one design early and having to repair it again and again. Known from research on Toyota.',
         },
@@ -1167,7 +1168,7 @@ export default {
       ],
       teach: [
         'An integration point is a moment when mechanics, electronics and software come together and are tested as one system. In software you ideally integrate daily. In hardware physical prototypes are expensive, so you plan those moments deliberately.\n\nSAFe says roughly: integrate as often as is economically sensible. The more often, the earlier you find out something does not fit; but every physical round costs money and time.',
-        'Many companies work with fixed prototype rounds. In the automotive supply industry A, B and C samples are common: an A sample tests the function, a B sample comes from tooling close to production, a C sample from the real production tooling and process. The exact definitions differ per company.\n\nEach prototype round is a natural integration point, and often also a gate.',
+        'Many companies work with fixed prototype rounds. In the automotive supply industry A, B and C samples are common: an A sample tests the function, a B sample is close to the final design, often from early tooling, a C sample comes from production tooling. Some add a D sample from the full series process; definitions differ per company.\n\nEach prototype round is a natural integration point, and often also a gate.',
         'Between the physical rounds you can do virtual integration: testing with models instead of real parts. Examples are simulation of mechanics, a digital twin (a model that behaves like the real machine) and hardware-in-the-loop.\n\nWith hardware-in-the-loop the real controller, for example a PLC, runs against a simulated machine on a computer. That way the software team can integrate every sprint without a machine.',
         'In SAFe the train shows a System Demo at the end of each iteration: the integrated system, not separate pieces per team. In hardware that is partly simulated, and physical at fixed moments.\n\nA practical choice is to align the PI cadence with the prototype rounds: every PI ends with a physical integration on a test rig.',
         'The biggest pitfall is integration at the end: all teams build separately, and only in the last months does everything come together. Then problems pile up, just like with big batches in the factory: the bigger the batch, the later you see defects.\n\nA sharp question for a machine builder: “When did the controls and the mechanics last run together, and what did you learn from it?”',
