@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'A client reads your eight-page proposal (the document that offers your work and its price). Which part most decides whether you win?',
-          options: ['Your method, models and the phases of the approach', 'Your CV, references and similar projects you did', 'The first page: their problem, in their own numbers', 'The price table and the payment terms at the end'],
-          answer: 'The first page: their problem, in their own numbers',
+          options: ['Your method, models and the phases of the approach', 'Your CV, references and similar projects you did', 'Page one: their problem, in their own numbers', 'The price table and the payment terms at the end'],
+          answer: 'Page one: their problem, in their own numbers',
           why: 'Nobody buys a method. They buy their own problem solved, and they decide on the first page whether you understood it.',
         },
       ],
@@ -35,14 +35,14 @@ export default {
         },
         {
           q: 'Why offer two or three options instead of one?',
-          options: ['It makes the proposal look more substantial', 'It turns a yes-or-no into a choice between yeses', 'Purchasing departments always require at least two', 'It hides your real price among several numbers'],
+          options: ['It makes the proposal look more substantial', 'It turns a yes-or-no into a choice between yeses', 'Purchasing always requires at least two quotes', 'It hides your real price among several numbers'],
           answer: 'It turns a yes-or-no into a choice between yeses',
           why: 'With options, the client compares ways of working with you instead of deciding whether to work with you at all.',
         },
         {
           q: 'Why list what you need from the client in the proposal?',
-          options: ['To cover yourself legally if the project goes wrong', 'To make the price look lower than it really is', 'To show the client you are well organised', 'The client side often causes slips, so it must be shared'],
-          answer: 'The client side often causes slips, so it must be shared',
+          options: ['To cover yourself legally if the project goes wrong', 'To make the price look lower than it really is', 'To show the client you are well organised', 'Many projects slip on the client side'],
+          answer: 'Many projects slip on the client side',
           why: 'Named commitments get planned; unnamed ones become the excuse in month two.',
         },
         {
@@ -89,8 +89,8 @@ export default {
       pre: [
         {
           q: 'A client asks for 10% off your €1,200 day rate, and you say yes straight away. What does that usually signal?',
-          options: ['That your price had room, so the next one gets questioned', 'That you are flexible and easy to do business with', 'Nothing much; small discounts are normal in this market', 'That you value the relationship more than the money'],
-          answer: 'That your price had room, so the next one gets questioned',
+          options: ['That your price had room, so the next is questioned', 'That you are flexible and easy to do business with', 'Nothing much; small discounts are normal in this market', 'That you value the relationship more than the money'],
+          answer: 'That your price had room, so the next is questioned',
           why: 'A discount given for nothing teaches the client that your price is an opening bid.',
         },
       ],
@@ -117,19 +117,19 @@ export default {
         },
         {
           q: 'When is value-based pricing a good fit?',
-          options: ['When the scope is still unclear and likely to change', 'When you want to avoid carrying any risk yourself', 'When the client is small and has a tight budget', 'When the value is measurable and you control enough of it'],
-          answer: 'When the value is measurable and you control enough of it',
+          options: ['When the scope is still unclear and likely to change', 'When you want to avoid carrying any risk yourself', 'When the client is small and has a tight budget', 'When the value is measurable and you control enough'],
+          answer: 'When the value is measurable and you control enough',
           why: 'If you can’t measure the value or influence it, a value fee becomes a gamble for both sides.',
         },
         {
           q: 'Mid-project, the client asks for “one more analysis” outside the scope. What is the best response?',
-          options: ['Do it for free: “Of course, we’ll fit it in somewhere to keep you happy.”', '“It’s outside what we agreed; about three days. Add it as a change, or swap it?”', 'Refuse: “Scope is scope. We agreed the list, and this is not on it.”', 'Do it quietly and add the days to the final invoice without saying'],
-          answer: '“It’s outside what we agreed; about three days. Add it as a change, or swap it?”',
+          options: ['Do it for free: “Of course, we’ll fit it in somewhere to keep you happy.”', '“It’s outside our scope; about three days. A change, or a swap?”', 'Refuse: “Scope is scope. We agreed the list, and this is not on it.”', 'Do it quietly and add the days to the final invoice without saying'],
+          answer: '“It’s outside our scope; about three days. A change, or a swap?”',
           why: 'It says yes to the client, names the cost, and lets them choose.',
         },
         {
           q: 'If you give a discount, what should you get in return?',
-          options: ['Something of value, such as a reference or less scope', 'Nothing; it is a goodwill gesture to the client', 'A verbal hint that more work will follow later', 'A thank-you and a better mood in the next meeting'],
+          options: ['Something of value, such as a reference or less scope', 'Nothing; it is a goodwill gesture to the client, freely given', 'A verbal hint that more work will follow later', 'A thank-you and a better mood in the next meeting or two'],
           answer: 'Something of value, such as a reference or less scope',
           why: 'A traded discount keeps your price credible; a free one undermines it.',
         },
@@ -172,13 +172,13 @@ export default {
       pre: [
         {
           q: 'What does a value-based fee start from?',
-          options: ['The number of days you expect to work', 'The rates your competitors charge', 'What the result is worth to the client', 'Your own costs plus a fixed margin'],
-          answer: 'What the result is worth to the client',
+          options: ['The number of days you expect to work', 'The rates your competitors charge', 'What the result is worth to them', 'Your own costs plus a fixed margin'],
+          answer: 'What the result is worth to them',
           why: 'The fee follows the value of the outcome, which you agree with the client before you name a price.',
         },
       ],
       teach: [
-        'Value pricing sets the fee by what the result is worth, not by the days. Its best-known advocate, Alan Weiss (Value-Based Fees, 2002, third edition 2021), suggests a rule of thumb: the fee should give the client at least a tenfold return on investment, ROI, the yearly value divided by the fee, in the first year.\n\nA change worth €900k a year then supports a fee up to €90k. It is his guideline, not a market norm.',
+        'Value pricing sets the fee by what the result is worth, not by the days. Its best-known advocate, Alan Weiss (Value-Based Fees, 2002, third edition 2021), suggests a rule of thumb: the fee should give the client at least a tenfold return on investment, ROI: the value he gets, usually a conservative estimate of one year’s benefit, divided by the fee.\n\nA change worth €900k a year then supports a fee up to €90k. It is his guideline, not a market norm.',
         'It starts with the value conversation, before any price: what are the objectives, how will we measure success, and what is that worth to you? “If cancellations fall from 14% to 9%, what does that mean in crew-days and euros?”\n\nUse a conservative estimate, agreed with the controller, the finance person who checks the numbers. Then offer two or three options at different levels of value, as you learned in A proposal that wins.',
         'Variants share the risk. With a success fee, part of the fee depends on the measured result, for example €20k fixed plus €10k if scrap falls below an agreed level for three months running. A hybrid fee is that mix of fixed and variable.\n\nAll of them need a baseline, a measurement window and one person who measures. How to separate your effect from everything else is in Close (Separating your own effect).',
         'The critics have a point. Attribution, showing which part of the result came from you, is hard: a new machine, a demand dip or a second supplier changes the same number. Disputes then come at the end, when the relationship should be best.\n\nBenefits often arrive after the contract ends. Purchasing departments compare day rates. And a large success fee strains independence: your income depends on a number you help to measure.',
@@ -188,33 +188,33 @@ export default {
         kind: 'faded',
         text: 'A dairy plant loses film and product on its cup-filling line, the line that fills and seals yoghurt cups: about €600k a year in waste. The target is to halve it, so roughly €300k a year.\n\nThe operations director proposes: “No cure, no pay. You get 20% of whatever we save over two years.” In the same months, purchasing is switching to a new film supplier, and summer volumes are always higher.',
         ask: 'How would you respond, and what would you propose?',
-        reveal: 'First the numbers: 20% × €300k × 2 years is up to €120k if it fully works, and nothing if it doesn’t. Weiss’s 10:1 on the first year’s value would point to about €30k.\n\nThen the problems: the film supplier and the summer volumes change the same waste figure, so attribution will be disputed; and with 20% of the savings at stake, your own analysis of the savings is no longer neutral.\n\nPropose a hybrid: €24k fixed for the diagnosis and the changes you control, plus €12k if waste per thousand cups stays below an agreed level for three months, normalised for volume and measured by the controller.',
+        reveal: 'First the numbers: 20% × €300k × 2 years is up to €120k if it fully works, and nothing if it doesn’t. Weiss’s 10:1 on one year’s value would put the fee at no more than about €30k.\n\nThen the problems: the film supplier and the summer volumes change the same waste figure, so attribution will be disputed; and with 20% of the savings at stake, your own analysis of the savings is no longer neutral.\n\nPropose a hybrid: €20k fixed for the diagnosis and the changes you control, plus €10k if waste per thousand cups stays below an agreed level for three months, corrected for volume and measured by the controller. At most €30k in total, within Weiss’s 10:1.',
       },
       said: 'What you hear in projects: “If you’re so sure it works, why not take a share of the savings?”',
       recall: [
         {
-          q: 'A change is worth €450,000 a year to the client. Using Weiss’s rule of thumb of at least a tenfold return in the first year, what is the highest fee you would ask, in thousands of euros?',
+          q: 'The client estimates a change at €600,000 a year. With the controller you agree to count only 75% of that, as a conservative estimate. Using Weiss’s rule of thumb of at least a tenfold return on one year’s value, what is the highest fee you would ask, in thousands of euros?',
           number: 45,
           tolerance: 0.5,
           unit: 'k€',
-          hint: 'Divide the yearly value by the return the client should get for each euro of fee.',
-          why: '€450,000 / 10 = €45,000, so at most €45k.',
+          hint: 'First take the conservative share of the estimate, then divide by the return the client should get for each euro of fee.',
+          why: '75% × €600,000 = €450,000 a year; €450,000 / 10 = €45,000, so at most €45k.',
         },
         {
           q: 'What is the main criticism of value pricing for operations work?',
-          options: ['It always yields lower fees than a day rate', 'Clients refuse to talk about value with consultants', 'It is not allowed under Dutch procurement rules', 'It is hard to prove which part of the result is yours'],
-          answer: 'It is hard to prove which part of the result is yours',
+          options: ['It always yields lower fees than a day rate', 'Clients refuse to talk about value with consultants', 'It is not allowed under Dutch procurement rules', 'Hard to prove which part of the result is yours'],
+          answer: 'Hard to prove which part of the result is yours',
           why: 'Other changes move the same number, so the fee becomes a dispute about attribution.',
         },
         {
           q: 'Why can a large success fee strain your independence?',
-          options: ['Your income then depends on a number you help measure', 'Success fees are illegal for management consultants', 'The client then pays more than the work is worth', 'It makes the proposal too long for purchasing'],
+          options: ['Your income then depends on a number you help measure', 'Success fees are illegal for management consultants', 'The client then pays far more than the work is really worth', 'It makes the proposal too long and complex for purchasing'],
           answer: 'Your income then depends on a number you help measure',
           why: 'When you gain from a higher savings figure, your analysis of that figure is no longer neutral.',
         },
         {
           q: 'In the value conversation, what do you agree with the client before you name a fee?',
-          options: ['Your day rate, the number of days and the travel costs', 'The objectives, how they are measured, and their worth', 'Which competitors quoted, and what they asked for it', 'The payment terms, the invoice address and the PO number'],
+          options: ['Your day rate, the number of days and travel costs', 'The objectives, how they are measured, and their worth', 'Which competitors quoted, and what they asked for it', 'The payment terms, invoice address and PO number'],
           answer: 'The objectives, how they are measured, and their worth',
           why: 'The fee is anchored in an agreed value; without that, it is just a high price.',
         },
@@ -264,8 +264,8 @@ export default {
       teach: [
         'A fixed bid, the price you offer for an agreed scope, has three layers: the base estimate, days times rate; a risk allowance for what can go wrong; and terms that move risk to whoever can best carry it.\n\nThe base estimate rests on ranges and three-point estimates, covered in Plan (Estimating honestly). This lesson is about the two layers above it.',
         'Price the risks one by one instead of with a flat margin. For each, estimate the chance and the extra days. The expected days are chance times extra days: a 40% chance of 10 extra days for messy data is 4 expected days.\n\nAdd them up for the risk allowance. Plan (Risks in money and reserves) calls this expected monetary value. On a clear job it may be 5%; on a messy one 30%.',
-        'Some risks are better moved than priced. Write them as assumptions: “data available in week 1”; if that fails, a change request follows.\n\nOr choose a contract form that shares risk: time and materials with a not-to-exceed amount, a cap above which you stop or agree more; a fixed price per phase; or a cap above which the client pays half your rate.',
-        'Then the terms. A payment schedule, part at the start, part per milestone, protects a one-person firm from months of unpaid work. In the Netherlands the legal payment term between companies is 30 days when nothing is agreed, and a large company must pay a small supplier, such as a one-person firm, within 30 days; a longer agreed term is void.\n\nAdd a cancellation clause and a liability cap, covered in Walking away, and the professional codes.',
+        'Some risks are better moved than priced. Write them as assumptions: “data available in week 1”; if that fails, a change request follows.\n\nOr choose a contract form that shares risk: time and materials (billing the days worked) with a not-to-exceed amount, a cap above which you stop or agree more; a fixed price per phase; or a shared overrun: above an agreed amount the client pays half your rate.',
+        'Then the terms. A payment schedule, part at the start, part per milestone, protects a one-person firm from months of unpaid work. In the Netherlands the legal payment term between companies is 30 days when nothing is agreed (Civil Code, art. 6:119a). Since 1 July 2022 a large company must pay a small supplier, such as a one-person firm, within 30 days; a longer agreed term is void.\n\nAdd a cancellation clause and a liability cap, covered in Walking away, and the professional codes.',
         'Before you talk price, decide your walk-away price: the lowest bid you will accept, below which you decline. It follows from your alternatives, as in Negotiating and holding your ground (Your alternative and theirs).\n\nWhere people disagree: some show the risk allowance openly, to discuss who carries which risk; others keep it inside the price, because a visible line invites a cut.\n\nA sharp question: “Which risk in this bid would I rather give back to the client?”',
       ],
       example: {
@@ -277,12 +277,12 @@ export default {
       said: 'What you hear in projects: “Your price is higher than the other bid. Can you take out the risk part?”',
       recall: [
         {
-          q: 'Base estimate 30 days. Risk A: a 50% chance of 6 extra days. Risk B: a 20% chance of 10 extra days. What is the risk allowance, in expected days?',
-          number: 5,
-          tolerance: 0.1,
-          unit: 'days',
-          hint: 'For each risk, multiply its chance by its extra days, then add the results.',
-          why: '0.5 × 6 = 3 and 0.2 × 10 = 2; 3 + 2 = 5 expected days.',
+          q: 'Base estimate 30 days at €1,200 a day. Risk A: a 50% chance of 6 extra days. Risk B: a 20% chance of 10 extra days. What is your fixed bid, base plus risk allowance, in euros?',
+          number: 42000,
+          tolerance: 1,
+          unit: '€',
+          hint: 'Add each risk’s chance times its extra days to the base days, then multiply by the day rate.',
+          why: '0.5 × 6 = 3 and 0.2 × 10 = 2, so 5 expected days; (30 + 5) × €1,200 = €42,000.',
         },
         {
           q: 'What does a not-to-exceed contract do?',
@@ -292,13 +292,13 @@ export default {
         },
         {
           q: 'Why does a one-person firm ask for payment per milestone instead of at the end?',
-          options: ['Dutch law forbids invoicing only at the end of a project', 'Months of unpaid work strain cash and put the risk on you', 'Clients prefer more invoices because it eases their budget', 'It lets you raise the price halfway through the project'],
+          options: ['Dutch law forbids invoicing only at the end of a project', 'Months of unpaid work strain cash and put the risk on you', 'Clients prefer more invoices, to spread their budget', 'It lets you raise the price halfway through the project'],
           answer: 'Months of unpaid work strain cash and put the risk on you',
           why: 'Paying per milestone spreads the risk and keeps your cash flow healthy.',
         },
         {
           q: 'Before you negotiate a fixed bid, what do you decide first?',
-          options: ['Your walk-away price, below which you decline', 'The discount you will give when they push', 'Which competitor you expect to undercut', 'How many pages the proposal will have'],
+          options: ['Your walk-away price, below which you decline', 'The discount you will give when they push back hard', 'Which competitor you expect to undercut, and by how much', 'How many pages the proposal will have'],
           answer: 'Your walk-away price, below which you decline',
           why: 'Decided in advance, it keeps you from agreeing to a loss under pressure.',
         },
@@ -361,19 +361,19 @@ export default {
       recall: [
         {
           q: 'In the trust equation, what does self-orientation do?',
-          options: ['It adds to credibility, so a confident consultant scores higher', 'It divides the other three, so high self-orientation lowers trust', 'It only matters in sales meetings, not during the project', 'It measures your expertise in the client’s own field'],
+          options: ['It adds to credibility, so a confident consultant scores higher', 'It divides the other three, so high self-orientation lowers trust', 'It only matters in sales meetings, not once the project is running', 'It measures how much expertise you have in the client’s own field'],
           answer: 'It divides the other three, so high self-orientation lowers trust',
           why: 'However credible you are, a client who senses you are working for yourself holds back.',
         },
         {
           q: 'The sponsor tells you in confidence that she doubts her plant manager. What builds intimacy?',
-          options: ['Raising it in the steering group to get it solved', 'Mentioning it to the plant manager so he can improve', 'Noting it in the project report so the issue is on record', 'Keeping it to yourself, using it only to shape your approach'],
-          answer: 'Keeping it to yourself, using it only to shape your approach',
+          options: ['Raising it in the steering group to get it solved', 'Mentioning it to the plant manager so he can improve', 'Noting it in the project report so the issue is on record', 'Keeping it to yourself; it only shapes your approach'],
+          answer: 'Keeping it to yourself; it only shapes your approach',
           why: 'A confidence kept is what makes the next confidence possible.',
         },
         {
           q: 'Which of these most clearly signals high self-orientation?',
-          options: ['Asking about the client’s goals for the year', 'Sending the minutes the same day', 'Turning each meeting toward your next phase', 'Admitting you don’t know a number'],
+          options: ['Asking the client about goals for the year', 'Sending the minutes the same day', 'Turning each meeting toward your next phase', 'Admitting you don’t know a number'],
           answer: 'Turning each meeting toward your next phase',
           why: 'It shows the client that your interest is in your next invoice.',
         },
@@ -441,7 +441,7 @@ export default {
       recall: [
         {
           q: 'What is the main risk of the pair-of-hands role?',
-          options: ['You carry all responsibility for the result', 'The client has to learn too much at once', 'You become extra capacity with little influence', 'The work becomes too expensive for the client'],
+          options: ['You carry all the responsibility for the final result', 'The client has to learn too much at once', 'You become extra capacity with little influence', 'The work becomes much too expensive for the client'],
           answer: 'You become extra capacity with little influence',
           why: 'The client keeps control and uses your time; your advice has little weight.',
         },
@@ -453,14 +453,14 @@ export default {
         },
         {
           q: 'In the collaborative role, who brings what?',
-          options: ['The client brings the business, you bring the method', 'You bring everything, and the client only decides', 'The client brings everything, and you only write', 'You and the client bring exactly the same expertise'],
-          answer: 'The client brings the business, you bring the method',
+          options: ['The client brings the business, you the method', 'You bring everything, and the client only decides', 'The client brings everything, and you only write', 'You and the client bring exactly the same expertise'],
+          answer: 'The client brings the business, you the method',
           why: 'Each side brings what it knows best, and decisions are shared.',
         },
         {
           q: 'What risk comes with the doctor role?',
-          options: ['The client gets too involved in the analysis', 'You never get to give your own opinion', 'A diagnosis the client does not accept or own', 'The fee is fixed before the work starts'],
-          answer: 'A diagnosis the client does not accept or own',
+          options: ['The client gets too involved in the analysis', 'You are never allowed to give your own opinion', 'A diagnosis the client won’t accept or own', 'The fee is fixed before the work starts'],
+          answer: 'A diagnosis the client won’t accept or own',
           why: 'A diagnosis handed over without the client’s part in it is easy to reject.',
         },
       ],
@@ -501,14 +501,14 @@ export default {
       pre: [
         {
           q: 'The sponsor asks for more data for the third time on a finding the data already supports. What is most likely going on?',
-          options: ['Resistance to what the finding means for him', 'He has not yet read your earlier analysis', 'The data really is too thin to decide on', 'He wants to raise the project budget'],
-          answer: 'Resistance to what the finding means for him',
+          options: ['Resistance to what the finding means', 'He has not yet read your earlier analysis', 'The data really is too thin to decide on', 'He wants to raise the project budget'],
+          answer: 'Resistance to what the finding means',
           why: 'When answered questions keep returning, the issue is usually emotional, not factual.',
         },
       ],
       teach: [
         'Block (Flawless Consulting) treats resistance as a predictable, emotional reaction when a client must face something difficult: a fear of losing control or of looking vulnerable. It is not a logical objection, so more logic tends to make it worse.\n\nA genuine objection goes away when you answer it. Resistance comes back in another form. For a blocker on the project, see When you’re stuck (The person who blocks); for resistance on the floor, Land (Working with resistance).',
-        'Block lists many forms. A flood of detail, or a request for more detail. Time: “not now”. Impracticality: “it won’t work here”. Silence. Moralising: “people should just do their job”. Pressing for solutions: “just tell us what to do”. Attack.\n\nThe hardest to see is compliance: yes to everything, then nothing changes.',
+        'Block lists many forms. A flood of detail, or a request for more detail. Time: “not now”. Impracticality: “it won’t work here”. Silence. Moralising: “people should just do their job”. Pressing for solutions: “just tell us what to do”. Attack.\n\nOne of the hardest to see is compliance: yes to everything, then nothing changes.',
         'Block’s three steps. First, identify in your own mind which form the resistance takes. Second, name it in neutral language: describe what you see, without blame. “We’ve gone back to the data three times. My sense is the conclusion itself is uncomfortable.”\n\nThird, be quiet. Let the client respond, however long the silence feels. Most people then say what is really bothering them.',
         'What comes up is often about control: “If this is true, my meeting is the problem.” Then recontract, as in Intake (Agreements with the sponsor): give the client real choices about how to test or introduce the change.\n\nDon’t take it personally. Resistance is aimed at the situation, not at you, even when it sounds like an attack on your method.',
         'Where people disagree: some find naming too blunt in hierarchical settings and first raise it alone, over coffee. Block would say a quiet one-to-one is still naming, as long as you describe the behaviour plainly.\n\nA common mistake is to answer the tenth request for data with the tenth analysis.\n\nA sharp question to ask yourself: “What is this person afraid of losing?”',
@@ -523,20 +523,20 @@ export default {
       recall: [
         {
           q: 'What are Block’s three steps for dealing with resistance?',
-          options: ['Explain again, add data, escalate to the sponsor', 'Ignore it, push on, and wait until it passes', 'Ask for help, recontract, then restart the project', 'Identify its form, name it neutrally, then be quiet'],
-          answer: 'Identify its form, name it neutrally, then be quiet',
+          options: ['Explain again, add data, escalate to the sponsor', 'Ignore it, push on, and wait until it passes', 'Ask for help, recontract, then restart the project', 'Identify the form, name it neutrally, be quiet'],
+          answer: 'Identify the form, name it neutrally, be quiet',
           why: 'You don’t fight resistance with logic; you make it visible and let the client respond.',
         },
         {
           q: 'How can you tell a genuine objection from resistance?',
-          options: ['A genuine objection is always raised by a senior', 'A genuine objection goes away when you answer it', 'Resistance is always loud and openly hostile', 'Resistance only appears at the start of a project'],
+          options: ['A genuine objection always comes from a senior', 'A genuine objection goes away when you answer it', 'Resistance is always loud and openly hostile', 'Resistance only shows at the start of a project'],
           answer: 'A genuine objection goes away when you answer it',
           why: 'Resistance returns in another form, however good your answer was.',
         },
         {
           q: 'Which sentence names resistance in neutral language?',
-          options: ['“You’re being defensive because it’s about your own meeting.”', '“With respect, the data is perfectly clear and you know it.”', '“We keep returning to the data. Is something else bothering you?”', '“If you don’t accept this finding, the whole project will fail.”'],
-          answer: '“We keep returning to the data. Is something else bothering you?”',
+          options: ['“You’re being defensive because it’s about your own meeting.”', '“With respect, the data is perfectly clear and you know it.”', '“We keep returning to the data. Is something else up?”', '“If you don’t accept this finding, the whole project will fail.”'],
+          answer: '“We keep returning to the data. Is something else up?”',
           why: 'It describes what is happening without blaming, and invites the real concern.',
         },
         {
@@ -582,7 +582,7 @@ export default {
       pre: [
         {
           q: 'In Schein’s terms, what is a Level 1 relationship?',
-          options: ['A personal bond where you share private worries', 'A relationship in which one side exploits the other', 'A role-based, transactional relation at a distance', 'A long-term retainer contract with a client'],
+          options: ['A personal bond where you share private worries', 'A relationship where one side exploits the other', 'A role-based, transactional relation at a distance', 'A long-term retainer contract with a client'],
           answer: 'A role-based, transactional relation at a distance',
           why: 'Level 1 is the classic professional relationship: roles, a transaction and professional distance.',
         },
@@ -590,7 +590,7 @@ export default {
       teach: [
         'In Humble Consulting (2016) Schein argues that many client problems are messes, not puzzles: they keep changing, have many causes and no single fix. Expert diagnosis followed by prescription often fails there, because the situation shifts while you write your report.\n\nWhat helps instead is a different relationship, and small steps taken together.',
         'Schein describes levels of relationship. A Level 1 relationship is role-based and transactional, with professional distance: the classic consultant. A Level 2 relationship is personal: you see each other as whole people, so it is open and trusting.\n\nHe argues for building Level 2 from the very first contact, because clients then tell you sooner what is really going on. It ties to intimacy in the trust equation from The trusted advisor.',
-        'How? Personization: show something of yourself and take an interest in the other person, not just in the role. And humble inquiry: asking questions you don’t know the answer to, out of real curiosity. Schein sums up the attitude as accessible, curious and caring.\n\nThe listening skills themselves, such as MORE PIES, are in Intake (The first conversation).',
+        'How? Personization: show something of yourself and take an interest in the other person, not just in the role. And humble inquiry: asking questions you don’t know the answer to, out of real curiosity. Schein sums up the attitude as commitment to help, curiosity and caring.\n\nListening skills such as MORE PIES are in Intake (The first conversation); naive questions outside your field in Leading projects outside your field (Curious and humble).',
         'Instead of a full plan, Schein proposes adaptive moves: a small step you take together, after which you watch the effect and decide the next one. In a mess, consequences are hard to predict, so the step itself is the diagnosis.\n\nIt resembles the safe-to-fail probe in When you’re stuck (What kind of problem is this? Cynefin).',
         'The limits: the evidence is mostly case stories from Schein’s own practice. A Level 2 relationship takes time that purchasing may not pay for. And closeness can blur boundaries: it is harder to bring bad news to someone who feels like a friend.\n\nSo stay personal and independent at once. A sharp question after a first meeting: “What did I learn about this person, and not just about the problem?”',
       ],
@@ -610,13 +610,13 @@ export default {
         },
         {
           q: 'What is an adaptive move?',
-          options: ['A full change plan adapted to the client’s budget', 'A sudden change of consultant halfway through', 'Adapting your slides to the client’s house style', 'A small joint step whose effect you watch together'],
+          options: ['A full change plan adapted to the client’s budget', 'A sudden change of consultant halfway through the work', 'Adapting your slides to the client’s own house style', 'A small joint step whose effect you watch together'],
           answer: 'A small joint step whose effect you watch together',
           why: 'In a mess you can’t plan everything, so each step also teaches you what the next should be.',
         },
         {
           q: 'What makes a problem a mess rather than a puzzle?',
-          options: ['It has one clear cause that experts can find', 'It keeps changing, with many causes and no single fix', 'It involves more than three departments at once', 'It costs more than the client’s yearly budget'],
+          options: ['It has one clear root cause that an expert can find and fix', 'It keeps changing, with many causes and no single fix', 'It involves more than three departments at the same time', 'It costs more than the client’s yearly budget'],
           answer: 'It keeps changing, with many causes and no single fix',
           why: 'A puzzle has an answer; a mess has only better and worse next steps.',
         },
@@ -665,8 +665,8 @@ export default {
       pre: [
         {
           q: 'A software vendor offers Vantage 10% of the licence value for every client you refer. What is the problem?',
-          options: ['None, as long as the software really is the best fit', 'Only a problem if the client finds out about the fee', 'Your advice is no longer independent, even if it feels so', 'It is always illegal for consultants in the Netherlands'],
-          answer: 'Your advice is no longer independent, even if it feels so',
+          options: ['None, as long as the software really is the best fit', 'Only a problem if the client finds out about the fee', 'Your advice is no longer independent, however it feels', 'It is always illegal for Dutch consultants'],
+          answer: 'Your advice is no longer independent, however it feels',
           why: 'Money from a third party bends advice, and the client can no longer tell whether it has.',
         },
       ],
@@ -697,13 +697,13 @@ export default {
         },
         {
           q: 'Which test helps you spot a conflict of interest?',
-          options: ['Is it legal under Dutch law and within the contract terms?', 'Do other consultancies in the market do exactly the same?', 'Has the sponsor agreed to it, either in writing or verbally?', 'Could the client read your reasoning and invoice side by side?'],
-          answer: 'Could the client read your reasoning and invoice side by side?',
+          options: ['Is it legal under Dutch law and within the contract terms?', 'Do other consultancies in the market do exactly the same?', 'Has the sponsor agreed to it, either in writing or verbally?', 'Could the client read your reasoning next to your invoice?'],
+          answer: 'Could the client read your reasoning next to your invoice?',
           why: 'It exposes any place where your income and your advice point in different directions.',
         },
         {
           q: 'You want to use a former client’s project as a case on your website. What do you do?',
-          options: ['Use it, but leave out the numbers', 'Ask permission and show them the text first', 'Use it if the project is over a year old', 'Mention only the sector'],
+          options: ['Use it, but leave out all the numbers and names', 'Ask permission and show them the text first', 'Use it if the project is over a year old', 'Mention only the sector'],
           answer: 'Ask permission and show them the text first',
           why: 'The story is partly theirs; permission keeps the relationship and the confidentiality intact.',
         },
@@ -745,8 +745,8 @@ export default {
       pre: [
         {
           q: 'An operator’s stop times, linked to his name, are…',
-          options: ['Production data, so no special rules apply', 'Confidential only if he asks for it', 'Owned by the consultant who analyses them', 'Personal data under the GDPR'],
-          answer: 'Personal data under the GDPR',
+          options: ['Production data, so no special rules apply', 'Confidential only if he asks for it', 'Owned by the consultant who analyses them', 'Personal data, protected under the GDPR'],
+          answer: 'Personal data, protected under the GDPR',
           why: 'Anything about an identifiable person is personal data, also work data.',
         },
       ],
@@ -765,8 +765,8 @@ export default {
       recall: [
         {
           q: 'You process staff data on the client’s behalf. What does the GDPR require between you and the client?',
-          options: ['A non-compete clause in your contract', 'A processor agreement', 'A permit from the data protection authority', 'Written consent from every single employee'],
-          answer: 'A processor agreement',
+          options: ['A non-compete clause in your contract', 'A processor agreement with the client', 'A permit from the data protection authority', 'Written consent from every single employee'],
+          answer: 'A processor agreement with the client',
           why: 'Article 28 GDPR requires an agreement on what the processor may do with the data and how it is protected.',
         },
         {
@@ -777,13 +777,13 @@ export default {
         },
         {
           q: 'A client wants a dashboard showing each operator’s performance by name. What do you check first?',
-          options: ['Whether the data refreshes every minute', 'Whether the operators like dashboards', 'Whether the works council has a consent right', 'Whether IT can host it on its own server'],
+          options: ['Whether the data refreshes every single minute', 'Whether the operators like dashboards', 'Whether the works council has a consent right', 'Whether IT can host it on its own internal server'],
           answer: 'Whether the works council has a consent right',
           why: 'A system that can monitor staff performance may need the works council’s consent.',
         },
         {
           q: 'Where do you keep a client’s data during the project?',
-          options: ['On your own laptop, so you can work offline', 'In a free cloud tool that is easy to share', 'In an e-mail folder, sorted per client', 'Where agreed, such as on the client’s own systems'],
+          options: ['On your own laptop, so you can keep working offline', 'In a free cloud tool that is easy to share with the client', 'In an e-mail folder, sorted per client', 'Where agreed, such as on the client’s own systems'],
           answer: 'Where agreed, such as on the client’s own systems',
           why: 'The processor agreement or NDA sets where data may live; private tools are a common leak.',
         },
@@ -826,7 +826,7 @@ export default {
       pre: [
         {
           q: 'What makes an ethical dilemma different from a plain wrong?',
-          options: ['A dilemma is always about money', 'Two legitimate values clash, so no option is clean', 'A dilemma only affects people outside the client', 'A plain wrong is only what the law forbids'],
+          options: ['A dilemma is always about money', 'Two legitimate values clash, so no option is clean', 'A dilemma only affects people outside the client organisation', 'A plain wrong is only what the law forbids'],
           answer: 'Two legitimate values clash, so no option is clean',
           why: 'With a plain wrong you know what to do; with a dilemma every option costs something.',
         },
@@ -854,7 +854,7 @@ export default {
         },
         {
           q: 'A supplier you may recommend offers you tickets to a sold-out match. What is the best response?',
-          options: ['Decline, and say why given the advice you give', 'Accept, since refusing would insult the supplier', 'Accept, but pay for the tickets yourself later', 'Accept and mention it in your final report'],
+          options: ['Decline, and say why given the advice you give', 'Accept; refusing would insult the supplier', 'Accept, but pay for the tickets yourself', 'Accept and mention it in your final report'],
           answer: 'Decline, and say why given the advice you give',
           why: 'While your advice is open, a gift from an interested party bends it, or looks as if it does.',
         },
@@ -907,7 +907,7 @@ export default {
       pre: [
         {
           q: 'When is withdrawing from an assignment the right step?',
-          options: ['When you are asked to stand behind something untrue', 'When the sponsor disagrees with one of your findings', 'When a more interesting assignment comes along', 'When the project falls one week behind plan'],
+          options: ['When you are asked to stand behind something untrue', 'When the sponsor disagrees with a finding', 'When a more interesting assignment comes along', 'When the project falls one week behind plan'],
           answer: 'When you are asked to stand behind something untrue',
           why: 'Disagreement is normal; being asked to put your name to something false is the line.',
         },
@@ -916,14 +916,14 @@ export default {
         'Sometimes the right ethical choice is to end the assignment: withdrawal. Typical reasons: the client insists you misrepresent data, your report is used to justify a decision your evidence contradicts, or you can no longer add value.\n\nStopping a project for business reasons is in Close (Stopping early). This lesson is about you stepping out.',
         'Walking away is the last step, not the first. Raise it alone with the sponsor. Put your concern in writing, factually. Offer an alternative you can stand behind. Give a reasonable moment to decide.\n\nTalk to a peer before the final step. Most conflicts end earlier, because a clear, calm “I can’t sign this; I can sign that” is often enough.',
         'If you do withdraw, check the termination clause in your contract: the notice period and what is paid for work done. Hand over what you have, so the client loses nothing. Write a short, factual letter, without accusations.\n\nConfidentiality continues after you leave. No public fight, no stories at the next networking event.',
-        'Professional codes help you hold the line. In the Netherlands the Ooa, the association of management consultants, has a code of conduct and a disciplinary procedure, and awards the Certified Management Consultant title, CMC, under the international CMC-Global standard.\n\nMembership is voluntary: unlike lawyer or chartered accountant, management consultant is not a protected title. Check the current code on ooa.nl.',
+        'Professional codes help you hold the line. In the Netherlands the Ooa, the association of management consultants, has a code of conduct and a disciplinary procedure. It also offers the international Certified Management Consultant title, CMC, certified in the Netherlands by the body CIIO.\n\nMembership is voluntary: unlike lawyer or chartered accountant, management consultant is not a protected title. Check the current code on ooa.nl.',
         'Protect yourself too. Professional liability insurance covers claims for mistakes in your advice. A liability cap in your general terms limits what a client can claim, often to the fee of the assignment.\n\nWhere people disagree: some walk early to protect their name; others stay longer to limit the damage for the client.\n\nA sharp question: “What would I have to sign that I couldn’t defend?”',
       ],
       example: {
         kind: 'faded',
         text: 'Week 10 at a grid operator. Your diagnosis shows the field contractor causes about a third of the cancelled jobs. The sponsor wants to use your report to justify giving that same contractor all field planning. He asks you to drop that chapter: “Or I’ll find a consultant who is more flexible.”\n\nYour contract has a 30-day notice period and payment for days worked. Twelve of 20 days are done.',
         ask: 'What would you do?',
-        reveal: 'First the steps: ask for an hour alone, show the data, offer a factual wording that also names the contractor’s recent improvement. Put your position in writing.\n\nIf he still insists: talk to a peer, then withdraw. A short letter: “I can’t deliver the report without this chapter.” Give notice under the contract, hand over the data and the analysis done, invoice the twelve days worked.\n\nAfterwards, keep everything confidential. Losing ten days of work costs less than a report with your name on it that you can’t defend.',
+        reveal: 'First the steps: ask for an hour alone, show the data, offer a factual wording that also names the contractor’s recent improvement. Put your position in writing.\n\nIf he still insists: talk to a peer, then withdraw. A short letter: “I can’t deliver the report without this chapter.” Give notice under the contract, hand over the data and the analysis done, invoice the twelve days worked.\n\nAfterwards, keep everything confidential. Losing the last eight days of work costs less than a report with your name on it that you can’t defend.',
       },
       said: 'What you hear in projects: “If you won’t change it, I’ll find someone who will.”',
       recall: [
@@ -947,7 +947,7 @@ export default {
         },
         {
           q: 'What does a liability cap in your general terms do?',
-          options: ['It limits what the client can claim from you', 'It caps the number of days you may bill', 'It sets the most the client must pay you', 'It replaces your professional insurance'],
+          options: ['It limits what the client can claim from you', 'It caps the number of days you may bill the client', 'It sets the most the client must ever pay you', 'It replaces your professional insurance'],
           answer: 'It limits what the client can claim from you',
           why: 'It sets a ceiling on damages, often the fee of the assignment.',
         },
@@ -979,7 +979,7 @@ export default {
         { term: 'Withdrawal', def: 'Ending your part in an assignment because you can’t stand behind what is asked.' },
         { term: 'Termination clause', def: 'The part of a contract that sets the notice period and payment when it ends early.' },
         { term: 'Code of conduct', def: 'A professional body’s written rules on independence, confidentiality and integrity.' },
-        { term: 'Certified Management Consultant', def: 'An international title, CMC, awarded in the Netherlands through the Ooa.' },
+        { term: 'Certified Management Consultant', def: 'An international title, CMC, offered in the Netherlands through the Ooa and certified by CIIO.' },
         { term: 'Professional liability insurance', def: 'Insurance that covers claims for mistakes in your advice.' },
         { term: 'Liability cap', def: 'A limit in your general terms on what a client can claim, often the fee.' },
       ],
@@ -1010,14 +1010,14 @@ export default {
       recall: [
         {
           q: 'When is the best moment to raise problems you saw outside your scope?',
-          options: ['In the middle of the project, to grow it', 'Never; raising them always looks like selling', 'At close-out, once, and let the client decide', 'In a separate sales meeting a few weeks later'],
-          answer: 'At close-out, once, and let the client decide',
+          options: ['In the middle of the project, to grow it', 'Never; raising them always looks like selling', 'At close-out, once; the client decides', 'In a separate sales meeting a few weeks later'],
+          answer: 'At close-out, once; the client decides',
           why: 'Raised once at the right time, it is advice; pushed repeatedly, it is selling.',
         },
         {
           q: 'Why make contact at 3 and 6 months after a project ends?',
-          options: ['To send an invoice for the extra support given since', 'To protect the result; clients often mention the next problem then', 'Because most consulting contracts require it at that point', 'To ask for a testimonial for the website while it is fresh'],
-          answer: 'To protect the result; clients often mention the next problem then',
+          options: ['To send an invoice for the extra support given since', 'To protect the result, and hear the next problem', 'Because most consulting contracts require it at that point', 'To ask for a testimonial for the website while it is fresh'],
+          answer: 'To protect the result, and hear the next problem',
           why: 'The check-in serves the client first; the next question tends to follow from it.',
         },
         {
@@ -1028,8 +1028,8 @@ export default {
         },
         {
           q: 'What is an adjacent problem?',
-          options: ['A problem near the one you solved, seen during the work', 'A problem you saw at the client’s nearest competitor', 'Any new sales opportunity you spot at the client', 'A problem the client has already solved on its own'],
-          answer: 'A problem near the one you solved, seen during the work',
+          options: ['A problem near the one you solved, seen in the work', 'A problem you saw at the client’s competitor', 'Any new sales opportunity you spot at the client', 'A problem the client has already solved on its own'],
+          answer: 'A problem near the one you solved, seen in the work',
           why: 'You have evidence for it and context the client trusts, so raising it is advice, not a pitch.',
         },
       ],
@@ -1106,13 +1106,13 @@ export default {
         },
         {
           q: 'What makes a strong case history?',
-          options: ['A complete list of all the services the practice offers', 'Before and after in numbers, what you did, and a client quote', 'A detailed description of your method and its models', 'The client’s logo with a short line of praise under it'],
-          answer: 'Before and after in numbers, what you did, and a client quote',
+          options: ['A full list of the services the practice offers', 'Before and after in numbers, your part, a client quote', 'A detailed description of your method and its models', 'The client’s logo with a short line of praise'],
+          answer: 'Before and after in numbers, your part, a client quote',
           why: 'Numbers and a client’s own words are proof; a list of services is a claim.',
         },
         {
           q: 'Why choose a narrow position for a new practice?',
-          options: ['It means fewer clients, so less work', 'It keeps every type of client open to you', 'It lets you charge any price you like', 'It is easier to remember and to recommend'],
+          options: ['It means fewer clients, so less work', 'It keeps every type of client and problem open to you', 'It lets you charge any price you like', 'It is easier to remember and to recommend'],
           answer: 'It is easier to remember and to recommend',
           why: 'Referrals depend on people knowing exactly when to think of you.',
         },
@@ -1155,14 +1155,14 @@ export default {
       pre: [
         {
           q: 'What turns a post into thought leadership?',
-          options: ['It gets many likes and shares in the first hour', 'It neatly sums up a popular book or a new trend', 'It is published on a well-known business site', 'It takes a position clients could disagree with'],
-          answer: 'It takes a position clients could disagree with',
+          options: ['It gets many likes and shares in the first hour', 'It neatly sums up a popular book or a new trend', 'It is published on a well-known business site', 'It takes a position clients could dispute'],
+          answer: 'It takes a position clients could dispute',
           why: 'A point of view is a claim; a summary of trends is not.',
         },
       ],
       teach: [
         'Thought leadership means sharing a clear, useful point of view on a problem your clients have, so they think of you before they need you. A point of view says something people could disagree with.\n\n“Performance management matters” is not one. “Most OEE dashboards fail because nobody owns the weekly conversation, not because of the data” is.',
-        'Formats, from small to large: a short article once a month; a talk at a sector event; a breakfast session for clients; a small benchmark study, for example five questions to twenty planners on how they handle cancellations.\n\nDavid Maister, who wrote widely on professional firms, advised generosity: give your ideas away. People hire you to apply them, not to hear them.',
+        'Formats, from small to large: a short article once a month; a talk at a sector event; a breakfast session for clients; a small benchmark study, for example five questions to twenty planners on how they handle cancellations.\n\nMany advisers, following writers on professional firms such as David Maister, recommend generosity: give your ideas away. People hire you to apply them, not to hear them.',
         'Build every piece from your own cases, anonymised and with permission, as in Client data and confidentiality. With three cases, write about what you saw in those cases and where it might not hold. Don’t sell a grand theory.\n\nThat is also the difference with a case history, from Building your own practice: the case proves a result; thought leadership explains a pattern.',
         'It costs time. Writing and speaking come out of the 30–40% of non-billable time, alongside selling and admin. Budget it: two days a month is 24 days a year, roughly an eighth of your working days.\n\nMeasure conversations, not likes: clients who mention a piece, invitations to speak, calls that start with “I read your article”. It can take a year before that grows.',
         'Where people disagree: some say every independent needs a weekly online presence; others find one strong piece a quarter, shared personally with twenty clients, works better.\n\nCommon failures: recycled trends, posting about yourself instead of the client’s problem, and stopping after three months.\n\nA sharp question before you publish: “Would a plant manager forward this to a colleague?”',
@@ -1191,13 +1191,13 @@ export default {
         },
         {
           q: 'How do you best measure whether it works?',
-          options: ['Conversations it starts: mentions, invitations, calls', 'The number of new followers you gain each month', 'The number of posts you manage to publish every week', 'The average reading time of visitors on your website'],
-          answer: 'Conversations it starts: mentions, invitations, calls',
+          options: ['Conversations: mentions, invitations, calls', 'The number of new followers you gain each month', 'The number of posts you manage to publish every week', 'The average reading time of visitors on your website'],
+          answer: 'Conversations: mentions, invitations, calls',
           why: 'Work comes from conversations; likes and followers rarely turn into assignments.',
         },
         {
           q: 'With three cases behind you, what is a sound claim to write about?',
-          options: ['A general theory of performance management', 'A ranking of the best plants in the country', 'What you saw in those cases, and its limits', 'A guarantee that your method always works'],
+          options: ['A general theory of performance management', 'A ranking of the best plants in the country', 'What you saw in those cases, and its limits', 'A guarantee that your method always works everywhere'],
           answer: 'What you saw in those cases, and its limits',
           why: 'Claim no more than your evidence supports; it keeps you credible.',
         },
@@ -1229,7 +1229,7 @@ export default {
         { term: 'Thought leadership', def: 'Sharing a clear, useful point of view on a client problem, so clients think of you first.' },
         { term: 'Point of view', def: 'A claim about a problem that people could disagree with.' },
         { term: 'Benchmark study', def: 'A small survey that compares how several organisations handle the same issue.' },
-        { term: 'Generosity', def: 'Giving your ideas away freely, because clients hire you to apply them (Maister).' },
+        { term: 'Generosity', def: 'Giving your ideas away freely, because clients hire you to apply them.' },
       ],
     },
     {
@@ -1247,7 +1247,7 @@ export default {
         'David Maister (Managing the Professional Service Firm, 1993) splits work into three kinds. Brains work: new, complex problems, high fees, few people. Grey-hair work: problems the client has seen elsewhere, so he pays for experience. Procedure work: known, repeatable problems where the client buys efficiency.\n\nAs a type of work becomes well known, it moves from brains towards procedure, and prices fall.',
         'Leverage is how much work you deliver through others: in large firms, the number of juniors per partner. Procedure work leverages well, brains work hardly.\n\nFor a one-person firm, leverage means associates, other independents who work under your contract; a packaged offer, such as a fixed three-week diagnostic; or tools that save hours. With an associate you might bill €1,150 a day, pay €900 and keep €250 for selling, quality and the risk you carry.',
         'Client concentration is the share of your revenue that comes from your biggest client. Many advisers use a rule of thumb that one client above about a third, certainly above half, is a risk: losing it hurts, and saying no to it gets hard, which costs independence.\n\nIt is a rule of thumb, not a law. Track it every quarter.',
-        'In the Netherlands there is a second risk: false self-employment, working as an independent while the relationship looks like employment. Signals: long work for one client, under its direction, embedded in its team.\n\nThe tax authority resumed enforcing the rules (the DBA Act) in 2025, and many clients now limit how long they hire the same independent. Check the current rules with a tax adviser; they keep changing.',
+        'In the Netherlands there is a second risk: false self-employment, working as an independent while the relationship looks like employment. Signals: long work for one client, under its direction, embedded in its team.\n\nThe tax authority resumed enforcing these rules (under the DBA Act) on 1 January 2025, with fines phased in, and many clients now limit how long they hire the same independent. Check the current rules with a tax adviser; they keep changing.',
         'The choice: stay solo with brains and grey-hair work at a high rate, or build a small firm with associates and procedure work at a lower rate and more volume. Both work; mixing them without choosing usually doesn’t.\n\nWhere people disagree: some say an independent should never take associates, because quality is your name; others see it as the only way to grow.\n\nA sharp question: “Which part of my work could someone else do just as well?”',
       ],
       example: {
@@ -1268,13 +1268,13 @@ export default {
         },
         {
           q: 'Why is high client concentration a risk beyond revenue?',
-          options: ['It raises your day rate faster than the market', 'It makes your proposals longer and slower', 'It means you can no longer write any cases', 'It makes saying no to that client much harder'],
+          options: ['It raises your rate faster than the market', 'It makes your proposals longer and slower', 'It means you can no longer write any cases', 'It makes saying no to that client much harder'],
           answer: 'It makes saying no to that client much harder',
           why: 'When one client pays most of your bills, your independence towards it shrinks.',
         },
         {
           q: 'Which pattern raises the risk of false self-employment for an independent in the Netherlands?',
-          options: ['Working long for one client, under its direction', 'Having three clients at once in different sectors', 'Pricing every project at a fixed fee', 'Using your own laptop and your own methods'],
+          options: ['Working long for one client, under its direction', 'Three clients at once in different sectors', 'Pricing every project at a fixed fee', 'Using your own laptop and your own methods'],
           answer: 'Working long for one client, under its direction',
           why: 'Long, directed work embedded in one client looks like employment.',
         },
