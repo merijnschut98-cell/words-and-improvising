@@ -8,7 +8,7 @@ export default {
       pre: [
         {
           q: 'What turns a set of projects into a programme, rather than just a list of projects?',
-          options: ['They share one budget, approved once by the board', 'They share one sponsor who signs off all of them', 'Together they deliver an outcome none of them achieves alone', 'They run in the same period with the same team'],
+          options: ['They share one budget, approved once by the board for all of them', 'They share one sponsor who signs off all of them', 'Together they deliver an outcome none of them achieves alone', 'They run in the same period with the same team'],
           answer: 'Together they deliver an outcome none of them achieves alone',
           why: 'A shared budget or sponsor is administration. A programme exists because the goal needs the projects together.',
         },
@@ -28,7 +28,7 @@ export default {
       recall: [
         {
           q: 'The programme board spends 40 minutes on one project’s test plan. What is wrong?',
-          options: ['The board is too small to cover all the projects properly', 'The board is doing project work that belongs in that project’s steering group', 'The test plan should have gone to finance before the board saw it', 'Nothing, because this level of detail shows commitment'],
+          options: ['The board is too small to cover all the projects properly', 'The board is doing project work that belongs in that project’s steering group', 'The test plan should have gone to finance and quality before the board saw it', 'Nothing, because this level of detail shows commitment'],
           answer: 'The board is doing project work that belongs in that project’s steering group',
           why: 'The board decides on the seams between projects; project detail drowns that out.',
         },
@@ -97,7 +97,7 @@ export default {
       ],
       teach: [
         'MSP, Managing Successful Programmes, is the British programme method from the same family as PRINCE2, the project method; the current version is the 5th edition (2020). PRINCE2 runs one project. MSP runs a set of projects plus the change in the business that turns their outputs into benefits.\n\nUse it when a change is too big or too uncertain for one project, such as an ERP programme: a new company-wide system for orders, stock, purchasing and finance, rolled out over several plants.',
-        'It starts with a vision statement: a short picture of the future, written for the people on the floor, not for the board. For example: “In 2028 every order is planned in one system and the planner sees live stock.”\n\nThe target operating model, called the blueprint in older editions, describes that future in detail: processes, organisation, technology, information and data, culture. The gap between today and that model is what the programme must deliver.',
+        'It starts with a vision statement: a short picture of the future, written for the people on the floor, not for the board. For example: “In 2028 every order is planned in one system and the planner sees live stock.”\n\nThe target operating model, called the blueprint in older editions, describes that future in detail, for example processes, organisation, technology, information and data, culture. The gap between today and that model is what the programme must deliver.',
         'A tranche is a block of projects that ends in a step change the business can use, followed by a review where the board decides whether to go on.\n\nERP example: tranche 1, finance and purchasing live in plant A; tranche 2, planning and production in plant A; tranche 3, the other two plants. Each tranche brings benefits before the next starts, so the programme partly pays for itself and can be stopped with value in hand.',
         'Three roles matter most. The Senior Responsible Owner (SRO) is a senior business manager accountable for the programme and its benefits. The programme manager runs the projects, the plan, the budget and the dependencies. The business change manager comes from the line and prepares the business: training, new procedures, and making sure the new way is used.\n\nThe typical failure: no business change manager, so IT delivers the system and the plant keeps its spreadsheets.',
         'What experts argue about: MSP is thorough and heavy on documents, and critics say it fits government better than a plant of 300 people. Many practitioners use the ideas (vision, tranches, the three roles) without all the paperwork.\n\nWhat you see when it works: a board that talks about benefits and readiness, not only about the plan. A sharp question for any programme: “Who is the SRO, and how much of her time does she actually give it?”',
@@ -130,7 +130,7 @@ export default {
         },
         {
           q: 'What does the target operating model (earlier called the blueprint) describe?',
-          options: ['How the business will work afterwards: processes, people, systems, data', 'The order, dates and milestones of all projects in the programme', 'The budget per tranche and the managers who approve each part', 'The risks of the programme with an owner and a response for each'],
+          options: ['How the business will work afterwards: processes, people, systems, data', 'The order, dates and milestones of all the projects, tranche by tranche', 'The budget per tranche and the managers who approve each part', 'The risks of the programme with an owner and a response for each'],
           answer: 'How the business will work afterwards: processes, people, systems, data',
           why: 'It is the detailed picture of the future state; the gap with today defines the programme.',
         },
@@ -182,7 +182,7 @@ export default {
         'At programme scale a simple list is not enough. A dependency register records every dependency with the giver, the receiver, exactly what passes, by when, and a status both sides agree on.\n\nSort them by type: a deliverable (B needs A’s output), a shared resource (the same engineer or test rig), a technical interface, or an external dependency on a supplier, a permit or the grid operator. External ones you cannot steer; you can only watch them early and protect yourself with time.',
         'An interface is where the work of two projects must fit together: the data fields between the ERP system and the MES (the software that steers orders on the shop floor), or the conveyor between a new machine and the existing line.\n\nGive every interface one owner and a written agreement: what passes, in which format, and how and when it is tested. Many go-live surprises sit in interfaces nobody owned.',
         'When several paths come together in one milestone, the milestone is late if any one path is late. Schedule-risk analysts call this merge bias: a plan that shows each path’s most likely date hides it.\n\nShared people make it worse in a hidden way. If two paths need the same engineer in the same weeks, they are not two independent paths but one queue, and the plan is wrong before it starts.',
-        'Keep an integrated plan: one level above the projects, showing only the key milestones and the dependencies between them. Some practitioners keep it to a few dozen lines, so the board can read it. Each month, ask which dependencies turn red in the next six weeks.\n\nYour options: decouple (a temporary interface or a test stub), put a buffer before the merge point, change the sequence, or move the dependency into one project.',
+        'Keep an integrated plan: one level above the projects, showing only the key milestones and the dependencies between them. Some practitioners keep it to a few dozen lines, so the board can read it. Each month, ask which dependencies turn red in the next six weeks.\n\nYour options: decouple (a temporary interface, or a test stub: a stand-in that mimics the other side for testing), put a buffer before the merge point, change the sequence, or move the dependency into one project.',
         'What experts argue about: some want every task in one big scheduling tool; others say such a schedule becomes unreadable and prefer a wall of milestones with the teams around it.\n\nWhat you see when dependencies are managed: givers who warn early, because they know who waits for them. A sharp question for any programme plan: “Which milestone has the most arrows coming in, and what protects it?”',
       ],
       example: {
@@ -195,7 +195,7 @@ export default {
       recall: [
         {
           q: 'Which type of dependency can you not steer, only watch early and buffer?',
-          options: ['A deliverable from another project in your own programme', 'A shared planner who works for two of your own projects', 'An external one, such as a grid connection or a supplier delivery', 'A data interface between two systems your programme builds'],
+          options: ['A deliverable from another project in your own programme', 'A shared planner who works for two of your own projects', 'An external one, such as a grid connection or a supplier delivery', 'A data interface between two systems your own programme builds itself'],
           answer: 'An external one, such as a grid connection or a supplier delivery',
           why: 'You have no authority over outside parties, so you monitor them closely and protect the plan with time.',
         },
@@ -209,7 +209,7 @@ export default {
         },
         {
           q: 'Two paths into a milestone need the same engineer in the same weeks. What does that mean for your plan?',
-          options: ['Nothing, as long as each path has its own buffer of two weeks', 'They are really one queue, so plan them in sequence or find a second engineer', 'The milestone becomes more likely, because one person sees both paths', 'The paths should be merged into one project to save on reporting'],
+          options: ['Nothing, as long as each path has its own buffer of two weeks', 'They are really one queue, so plan them in sequence or find a second engineer', 'The milestone becomes more likely, because one person keeps an eye on both paths', 'The paths should be merged into one project to save on reporting'],
           answer: 'They are really one queue, so plan them in sequence or find a second engineer',
           why: 'One person cannot do two things in the same week; the paths are not independent.',
         },
@@ -257,7 +257,7 @@ export default {
       pre: [
         {
           q: 'A plant has five improvement projects and an ERP go-live all landing on the shop floor in the same quarter. What is the most likely result?',
-          options: ['Everything goes live and the benefits simply arrive sooner', 'Supervisors cannot absorb it all, and several changes don’t stick', 'The projects share training sessions and so save money', 'Only the ERP slips, and the improvement projects go fine'],
+          options: ['Everything goes live together and the benefits simply arrive sooner', 'Supervisors cannot absorb it all, and several changes don’t stick', 'The projects share training sessions and so save money', 'Only the ERP slips, and the improvement projects go fine'],
           answer: 'Supervisors cannot absorb it all, and several changes don’t stick',
           why: 'Each plan looks fine on its own, but the same people carry all of them while still running production.',
         },
@@ -279,13 +279,13 @@ export default {
       recall: [
         {
           q: 'What is change saturation?',
-          options: ['More change hitting one group than it can absorb while running production', 'More projects in the portfolio than the budget can pay for this year', 'The point at which a project has delivered all of its outputs', 'A workforce that resists every change on principle, whatever it is'],
+          options: ['More change hitting one group than it can absorb while running production', 'More projects in the portfolio than the capex budget can pay for this year', 'The point at which a project has delivered all of its outputs', 'A workforce that resists every change on principle, whatever it is'],
           answer: 'More change hitting one group than it can absorb while running production',
           why: 'Saturation is about one group’s absorption limit, not about budget or attitude.',
         },
         {
           q: 'What does an end-of-tranche review decide?',
-          options: ['Continue, change, pause or stop, based on capabilities, use and benefits', 'Which supplier gets the contract for the next tranche of work', 'How the remaining budget is split across the project teams', 'Who gets a bonus for delivering the tranche on time and budget'],
+          options: ['Continue, change, pause or stop, based on capabilities, use and benefits', 'Which supplier gets the contract for the next tranche of work', 'How the remaining budget is split across the project teams and suppliers', 'Who gets a bonus for delivering the tranche on time and within budget'],
           answer: 'Continue, change, pause or stop, based on capabilities, use and benefits',
           why: 'The review turns a tranche end into a real decision about the rest of the programme.',
         },
@@ -377,7 +377,7 @@ export default {
         },
         {
           q: 'The CEO wants a new project started now. How do you say no at portfolio level?',
-          options: ['“No, we don’t have the capacity for it this year, sorry.”', '“We’ll try to squeeze it in next to the other projects.”', '“Yes, if the team is willing to work some weekends for it.”', '“We can start it; then project B slips three months. Your choice?”'],
+          options: ['“No, we don’t have the capacity for it this year, sorry about that.”', '“We’ll try to squeeze it in next to the other projects.”', '“Yes, if the team is willing to work some weekends for it.”', '“We can start it; then project B slips three months. Your choice?”'],
           answer: '“We can start it; then project B slips three months. Your choice?”',
           why: 'It makes the trade-off visible and gives the choice to the person who owns both.',
         },
@@ -425,7 +425,7 @@ export default {
       pre: [
         {
           q: 'A key engineer is booked for a quarter of his time on each of four projects. What usually happens?',
-          options: ['Each project waits for him, and switching eats much of his week', 'He delivers full value on all four, as long as he is senior', 'The projects finish sooner, because they run in parallel', 'Nothing changes, as long as he keeps a good personal plan'],
+          options: ['Each project waits for him, and switching eats much of his week', 'He delivers full value on all four, as long as he is senior enough', 'The projects finish sooner, because they run in parallel', 'Nothing changes, as long as he keeps a good personal plan'],
           answer: 'Each project waits for him, and switching eats much of his week',
           why: 'Spreading one expert thin turns him into the bottleneck of four projects at once.',
         },
@@ -453,7 +453,7 @@ export default {
         },
         {
           q: 'What do you put in a capacity matrix?',
-          options: ['The total headcount of each department involved in the projects', 'The scarce people, their days per project and their real availability', 'The budget per project and how much of it has already been spent', 'The hours each person booked on projects last year, per month'],
+          options: ['The total headcount of each department involved in the projects', 'The scarce people, their days per project and their real availability', 'The budget per project and how much of it has already been spent so far', 'The hours each person booked on projects last year, per month'],
           answer: 'The scarce people, their days per project and their real availability',
           why: 'Conflicts live in a few named people, not in the totals.',
         },
@@ -465,7 +465,7 @@ export default {
         },
         {
           q: 'Why run fewer projects in parallel with the same experts?',
-          options: ['It looks tidier on the monthly portfolio report', 'Most managers simply prefer a shorter list', 'It reduces the number of meetings, nothing else', 'Less switching and waiting, so each finishes sooner'],
+          options: ['It looks tidier on the monthly portfolio report to the MT', 'Most managers simply prefer a shorter list', 'It reduces the number of meetings, nothing else', 'Less switching and waiting, so each finishes sooner'],
           answer: 'Less switching and waiting, so each finishes sooner',
           why: 'Focused blocks of time cut lead times for every project.',
         },
@@ -514,7 +514,7 @@ export default {
       ],
       teach: [
         'Cost of delay is the value lost for each unit of time something is not yet live. A press-line project that will save €40k a month costs €40k for every month it waits. Don Reinertsen (The Principles of Product Development Flow, 2009) calls it the one number to quantify if you quantify only one.\n\npm.scaled shows SAFe’s relative WSJF scores. A capex and improvement portfolio usually has savings in euros already, so you can use real money.',
-        'The urgency profile describes how the cost of delay changes over time. Black Swan Farming (Joshua Arnold) names common shapes. Standard: about the same cost every month. Fixed date: little cost until a deadline, then a big one, such as a customer’s start of production or a new legal requirement. Expedite: very high right now, such as a line that is down.\n\nThe profile decides whether “later” is cheap or expensive.',
+        'The urgency profile describes how the cost of delay changes over time. Kanban practitioners (David Anderson’s classes of service) name common shapes. Standard: about the same cost every month. Fixed date: little cost until a deadline, then a big one, such as a customer’s start of production or a new legal requirement. Expedite: very high right now, such as a line that is down. Joshua Arnold (Black Swan Farming) draws them as curves.\n\nThe profile decides whether “later” is cheap or expensive.',
         'CD3, cost of delay divided by duration, orders a queue when one team does one job at a time: highest first. The sequence matters in euros, and you can check it with a calculation.\n\nWhat you check: with one team, whatever goes second waits for whatever goes first, and loses its monthly cost of delay for that time. Compare the total for each order and pick the lowest.',
         'Limits: estimates are rough, and Arnold argues that in most portfolios a few items carry most of the cost of delay, so the order of magnitude matters more than the decimals. CD3 is for sequencing, not for deciding whether something is worth doing at all.\n\nIt does not fit when work runs in parallel on different people. A fixed-date item needs a latest start date, not just a rank.',
         'The people side: a euro figure on waiting moves the debate from “my project is strategic” to “what does a month later cost, and who pays?”\n\nWatch for the hidden queue: projects waiting for approval, a quote or an engineer also lose money, but nobody sees that queue. A sharp question for any capex committee: “If this starts three months later, what do we lose, in euros per month?”',
@@ -591,15 +591,15 @@ export default {
       pre: [
         {
           q: 'A plant’s list has 22 open projects. Seven have not moved in six months, but nobody stopped them. What are they costing?',
-          options: ['Attention and time, and they hide how full the portfolio is', 'Nothing at all, because nobody is working on them now', 'Only the budget that was already spent on them before', 'They save money, because they are officially on hold'],
+          options: ['Attention and time, and they hide how full the portfolio is', 'Nothing at all, because nobody is actually working on them now', 'Only the budget that was already spent on them before', 'They save money, because they are officially on hold'],
           answer: 'Attention and time, and they hide how full the portfolio is',
           why: 'Stalled projects still take meeting time, reporting and people’s attention, and make the list look like work that will happen.',
         },
       ],
       teach: [
         'PMI’s Standard for Portfolio Management defines a portfolio as projects, programmes and operational work managed as a group to meet strategic objectives. Portfolio management asks three questions: are we doing the right projects, in the right mix, and are they still worth it?\n\nRanking by value per scarce day or cost of delay answers only part of that. This lesson is about the mix and the clean-up.',
-        'Take mandatory projects off the top before you rank: safety, legal compliance, keeping a permit. They use capacity whatever their score.\n\nBut challenge the label. “Mandatory” is a popular way to jump the queue. Ask: which law or customer requirement, by which date, and what is the minimum scope that meets it? Often the mandatory part is a third of what was asked.',
-        'Strategic buckets split the capacity in advance across types of work, for example 50% run (keeping the plant running: replacements, maintenance), 30% improve (cost and quality) and 20% grow (new products, new markets). You rank within each bucket.\n\nRobert Cooper recommends this so that many small, safe projects don’t crowd out the strategic ones. The split is a yearly management choice, not a formula. Lean budgets in pm.scaled use the same idea.',
+        'Take mandatory projects off the top before you rank: safety, legal compliance, keeping a permit. They use capacity whatever their score.\n\nBut challenge the label. “Mandatory” is a popular way to jump the queue. Ask: which law or customer requirement, by which date, and what is the minimum scope that meets it? Often the mandatory part turns out much smaller than what was asked.',
+        'Strategic buckets split the capacity in advance across types of work, for example 50% run (keeping the plant running: replacements, maintenance), 30% improve (cost and quality) and 20% grow (new products, new markets). You rank within each bucket.\n\nRobert Cooper recommends this so that many small, safe projects don’t crowd out the strategic ones. The split is a yearly management choice, not a formula. SAFe’s capacity allocation, one of the Lean budget guardrails in pm.scaled, uses the same idea.',
         'Hold a portfolio review every quarter: for each running project, is it still aligned, still worth it, still possible? Stop zombie projects: officially alive, but not moving or without a realistic business case. Signs: no progress for three months, no sponsor in sight, a team “waiting for” something.\n\nEvery stop frees capacity. A portfolio Kanban with a limit on active initiatives, as in pm.scaled, makes this visible.',
         'What experts argue about: balance charts, such as bubbles of risk against value, look neat, but the real fights are political. A board that never stops anything has no portfolio management, only a list.\n\nWhat you see when it works: a shorter list each quarter, and managers who propose stopping their own projects. A sharp question at every review: “If we hadn’t started this, would we start it today?”',
       ],
@@ -619,7 +619,7 @@ export default {
         },
         {
           q: 'What are strategic buckets?',
-          options: ['Groups of projects that share one sponsor and one budget line', 'Capacity split in advance across types of work, ranked within each', 'The three largest projects that together carry the strategy', 'Reserves kept back for projects that come up during the year'],
+          options: ['Groups of projects that share one sponsor and one budget line', 'Capacity split in advance across types of work, ranked within each', 'The three largest projects that together carry the strategy', 'Reserves kept back for urgent projects that come up during the year'],
           answer: 'Capacity split in advance across types of work, ranked within each',
           why: 'Buckets protect strategic work from being crowded out by small, safe projects.',
         },
@@ -633,7 +633,7 @@ export default {
         },
         {
           q: 'Which question best exposes a zombie project at a portfolio review?',
-          options: ['How much have we spent on it so far?', 'Who started this project, and in which year?', 'Is it still on the strategy slide this year?', 'If we hadn’t started this, would we start it today?'],
+          options: ['How much have we spent on it so far?', 'Who started this project, and in which year?', 'Is it still on the strategy slide the board saw this year?', 'If we hadn’t started this, would we start it today?'],
           answer: 'If we hadn’t started this, would we start it today?',
           why: 'It ignores money already spent and asks whether the project earns its place now.',
         },
@@ -715,7 +715,7 @@ export default {
         },
         {
           q: 'One steering group member never commits to anything. What is the most likely reason?',
-          options: ['He is not interested', 'The meeting is too long', 'He disagrees with the project', 'He lacks a mandate from his own boss'],
+          options: ['He is not interested', 'The meeting is too long', 'He quietly disagrees with the project goal', 'He lacks a mandate from his own boss'],
           answer: 'He lacks a mandate from his own boss',
           why: 'People who cannot commit their department avoid deciding; fix the mandate, not the person.',
         },
@@ -758,7 +758,7 @@ export default {
       pre: [
         {
           q: 'A capex project reaches its approval gate. The business case holds, but one quote from a supplier is still missing. What fits best?',
-          options: ['Kill, because not every gate criterion has been met', 'Go, because the quote will surely come in anyway', 'Hold every project until the next budget round', 'A conditional go: continue once the quote is in by a set date'],
+          options: ['Kill, because not every gate criterion has been met in full', 'Go, because the quote will surely come in anyway', 'Hold every project until the next budget round in the autumn', 'A conditional go: continue once the quote is in by a set date'],
           answer: 'A conditional go: continue once the quote is in by a set date',
           why: 'The case is sound and one item is open, so you approve with a condition and a date rather than stopping or ignoring it.',
         },
@@ -877,13 +877,13 @@ export default {
         },
         {
           q: 'Why pre-wire a board paper with key members?',
-          options: ['So that you don’t have to present it in the meeting at all', 'Because company law requires it for every board decision', 'So that the paper itself can be shorter and less detailed', 'Decisions are largely made before the meeting; avoid surprises'],
+          options: ['So that you don’t have to present it in the meeting at all', 'Because company law requires it for every board decision', 'So that the paper itself can be shorter and a lot less detailed', 'Decisions are largely made before the meeting; avoid surprises'],
           answer: 'Decisions are largely made before the meeting; avoid surprises',
           why: 'Surprised board members defend themselves; prepared ones decide.',
         },
         {
           q: 'A board member asks: “Is this really the priority right now?” What is the best response?',
-          options: ['Name the hidden comparison: “You’re asking if this beats X. Here’s how.”', 'Repeat the main benefits of your project once more, more firmly', 'Say that the sponsor has already agreed to the proposal', 'Promise to come back next quarter with a fuller analysis'],
+          options: ['Name the hidden comparison: “You’re asking if this beats X. Here’s how.”', 'Repeat the main benefits of your project once more, and say them more firmly', 'Say that the sponsor has already agreed to the proposal', 'Promise to come back next quarter with a fuller analysis'],
           answer: 'Name the hidden comparison: “You’re asking if this beats X. Here’s how.”',
           why: 'It answers the real objection instead of the words.',
         },
@@ -925,15 +925,15 @@ export default {
       pre: [
         {
           q: 'A €6M ERP programme has reported green for nine months. Who is best placed to tell the board whether that green is real?',
-          options: ['The programme manager, who knows the details best', 'The ERP supplier, whose consultants are on site daily', 'Someone independent of the programme, such as a reviewer', 'The finance department, which checks all the invoices'],
+          options: ['The programme manager, who knows the details best', 'The ERP supplier, whose consultants are on site every day', 'Someone independent of the programme, such as a reviewer', 'The finance department, which checks all the invoices'],
           answer: 'Someone independent of the programme, such as a reviewer',
           why: 'Those who run and report on the work have a stake in the outcome; an independent view tests whether the green holds.',
         },
       ],
       teach: [
-        'Assurance is an independent check that gives the decision makers confidence that a programme is on track and reports honestly. It differs from audit, which mostly looks back at compliance, and from the PMO, which supports the work.\n\nMSP and PRINCE2 both separate assurance from the people who do the work: whoever reports progress should not be the only one judging it.',
+        'Assurance is an independent check that gives the decision makers confidence that a programme is on track and reports honestly. A compliance audit, which mostly looks back, is one form of it. The PMO, which supports the work, is usually not independent enough to give it.\n\nMSP and PRINCE2 both separate assurance from the people who do the work: whoever reports progress should not be the only one judging it.',
         'The Three Lines Model of the IIA, the international body of internal auditors (2020 update): management runs the work and owns its risks (first line, here the programme); expert functions support and challenge it (second line: risk, quality, finance, often the PMO); internal audit gives independent assurance (third line). The board stays accountable for governance.\n\nFor a plant: who challenges the programme’s green, and does that person report to the programme manager? Then it isn’t independent.',
-        'The Gateway review comes from UK government (2001, now run by the Infrastructure and Projects Authority): short reviews by experienced peers from outside the programme at key points, from Gate 0 (strategic assessment) to Gate 5 (benefits realisation), with a delivery confidence rating from green to red.\n\nCompanies copy the idea as a health check before a big decision such as an ERP go-live: interviews, documents, a rating and the top recommendations.',
+        'The Gateway review comes from UK government (2001; today run by NISTA, which took over from the Infrastructure and Projects Authority): short reviews by experienced peers from outside the programme at key points, from Gate 0 (strategic assessment) to Gate 5 (operations review and benefits realisation), each with a delivery confidence rating from green to red.\n\nCompanies copy the idea as a health check before a big decision such as an ERP go-live. How to lead such a review yourself is in pm.stuck.',
         'The PMO, the project or programme management office, comes in three types in PMI’s description: supportive (templates, reporting), controlling (demands that methods are followed) and directive (manages projects itself).\n\nA PMO that only collects status slides adds cost, not confidence. A good one checks the data behind the colours: dates that moved, milestones that were re-planned, forecasts against actuals.',
         'What experts argue about: too much assurance breeds paperwork and defensive reporting; too little leaves watermelons. A common rule is assurance in proportion to size and risk, planned in advance, which MSP calls an integrated assurance approach, so reviews don’t pile up in the same month.\n\nA sharp question for any board: “When did someone outside the programme last check this green?”',
       ],
@@ -953,7 +953,7 @@ export default {
         },
         {
           q: 'What is the main purpose of a gateway review or health check?',
-          options: ['To replace the steering group for one important meeting', 'To give decision makers an independent view before a key decision', 'To audit the supplier’s invoices against the signed contract', 'To train the project team in the company’s project method'],
+          options: ['To replace the steering group for one important meeting', 'To give decision makers an independent view before a key decision', 'To audit the supplier’s invoices and hours against the signed contract', 'To train the project team in the company’s project method'],
           answer: 'To give decision makers an independent view before a key decision',
           why: 'It tests readiness and confidence from outside, at the moment it matters.',
         },
@@ -1031,7 +1031,7 @@ export default {
       recall: [
         {
           q: 'Who should own the benefit of a project?',
-          options: ['The project lead who delivered the change', 'The consultant who designed the solution', 'The line manager whose KPI or budget carries it', 'The finance department that books the result'],
+          options: ['The project lead who delivered the change', 'The consultant who designed the solution', 'The line manager whose KPI or budget carries it', 'The finance department that books the result each month'],
           answer: 'The line manager whose KPI or budget carries it',
           why: 'The benefit happens in the line after the project ends, so the line must own it.',
         },
@@ -1108,13 +1108,13 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'An ERP programme at a metal parts plant has the objective “free up €1.5M of cash”. Merijn builds the map with the supply chain manager, from right to left.\n\nEnd benefits: stock from €6.0M to €4.8M, and on-time delivery from 82% to 92%. Business changes: planners plan weekly on the system’s material proposals, the warehouse counts a part of the stock every day (cycle counting) instead of once a year, and buyers order on system proposals. Enablers: the planning module, a cleaned item master, training and a new planning procedure. Dis-benefits: buyers lose some freedom, and operators scan every pallet.\n\nThe working: the stock drop is €1.2M of cash, once. The controller puts the yearly cost of holding stock at 15% of its value, so the plant also saves 0.15 × €1.2M = €180k a year. The supply chain manager owns both end benefits.',
+        text: 'An ERP programme at a metal parts plant has the objective “free up more than €1M of cash”. Merijn builds the map with the supply chain manager, from right to left.\n\nEnd benefits: stock from €6.0M to €4.8M, and on-time delivery from 82% to 92%. Business changes: planners plan weekly on the system’s material proposals, the warehouse counts a part of the stock every day (cycle counting) instead of once a year, and buyers order on system proposals. Enablers: the planning module, a cleaned item master, training and a new planning procedure. Dis-benefits: buyers lose some freedom, and operators scan every pallet.\n\nThe working: the stock drop is €1.2M of cash, once. The controller puts the yearly cost of holding stock at 15% of its value, so the plant also saves 0.15 × €1.2M = €180k a year. The supply chain manager owns both end benefits.',
       },
       said: 'What you hear in IT-led programmes: “The benefit is real-time data.”',
       recall: [
         {
           q: 'In a benefits map, what is a business change?',
-          options: ['A deliverable from a project, such as a new system module', 'A new way of working people must adopt for the benefit to appear', 'A measurable gain for the organisation, such as lower stock', 'A change request that alters the scope of one of the projects'],
+          options: ['A deliverable from a project, such as a new system module', 'A new way of working people must adopt for the benefit to appear', 'A measurable gain for the organisation, such as lower stock', 'A formal change request that alters the scope of one of the projects'],
           answer: 'A new way of working people must adopt for the benefit to appear',
           why: 'Business changes sit between enablers and benefits: people working differently.',
         },
@@ -1176,7 +1176,7 @@ export default {
       pre: [
         {
           q: 'Three projects at one plant each claim the same €200k saving in overtime. What is the most likely problem?',
-          options: ['Double counting: the same saving is claimed more than once', 'The saving is too small to be worth tracking at all', 'The projects should have been merged into one project', 'Overtime cannot be measured reliably in a plant'],
+          options: ['Double counting: the same saving is claimed more than once', 'The saving is too small to be worth tracking at all', 'The projects should have been merged into one project', 'Overtime cannot be measured reliably enough in a plant like this'],
           answer: 'Double counting: the same saving is claimed more than once',
           why: 'Several projects working on the same cost line tend to claim the same euro.',
         },
@@ -1186,7 +1186,7 @@ export default {
         'Double counting happens when several projects claim the same euro: the changeover, OEE and maintenance projects all claim the same freed press hours. The rule: each benefit has one home, and a shared benefit is split by a key agreed before the start.\n\nCheck the sum against the P&L, the profit and loss account: if all claims add up to €2M but the cost lines moved €0.8M, part was double counted or never turned into money.',
         'Benefits ramp up rather than jumping to full on day one, for example 25% in the first quarter, 50% in the second, full from the third. Track actuals against that ramp-up, not against the full number.\n\nA leading indicator moves first and tells you early whether the chain works, such as the share of orders planned in the system. A lagging indicator shows the end result later, such as stock or on-time delivery.',
         'Review benefits at every gate and portfolio review: does the business case still hold? Benefits erode when volume changes the baseline or people slip back. pm.close shows how to normalise for volume and separate your own effect.\n\nTreat a benefit shortfall like a budget overrun, with a tolerance and escalation, instead of a footnote.',
-        'What experts argue about: some boards only count savings visible in the P&L (hard savings); others also track freed capacity and soft gains, which pm.land.savings explains. Many practitioners say benefits tracking is the most neglected step in portfolio management.\n\nA sharp question for every benefit in the register: “Where in the P&L will we see this, and in which month?”',
+        'What experts argue about: some boards only count savings visible in the P&L (hard savings); others also track freed capacity and soft gains, which pm.land explains. Many practitioners say benefits tracking is the most neglected step in portfolio management.\n\nA sharp question for every benefit in the register: “Where in the P&L will we see this, and in which month?”',
       ],
       example: {
         kind: 'faded',
@@ -1206,7 +1206,7 @@ export default {
         },
         {
           q: 'Which is a leading indicator for the benefits of an ERP planning module?',
-          options: ['The stock value at the end of the financial year', 'On-time delivery to customers over the full year', 'The yearly write-off of obsolete and slow stock', 'The share of orders planned in the system each week'],
+          options: ['The total stock value at the end of each financial year', 'On-time delivery to customers over the full year', 'The yearly write-off of obsolete and slow stock', 'The share of orders planned in the system each week'],
           answer: 'The share of orders planned in the system each week',
           why: 'It moves early and shows whether the business change happens; the others are end results.',
         },
@@ -1270,7 +1270,7 @@ export default {
         'There are two explanations. Optimism bias: people genuinely expect things to go better than they do, the planning fallacy Kahneman and Tversky described. Strategic misrepresentation: rosy numbers on purpose, to win approval when departments compete for the same capex.\n\nThe cures differ. The first needs better methods; the second needs incentives and accountability, such as a benefit owner who signs the case.',
         'Reference class forecasting, Kahneman’s outside view as applied by Flyvbjerg, judges a case by how similar past projects actually did. If your last five automation projects delivered on average 60% of the promised benefits, say so and correct the new case.\n\npm.plan teaches it for estimates of time and cost; here it is for benefits. The UK Treasury’s Green Book asks appraisers to adjust for optimism bias in the same spirit.',
         'Challenge a case at the gate: who wrote it, and who gains from approval? Which assumptions carry most of the value? What happens if the benefit is 30% lower, or six months later? Is there a benefit owner who signs?\n\nHold a post-investment review 12–18 months after start-up: actual against the case. Feed the result into your reference class; without it nobody learns, and the same optimism returns next year.',
-        'The people side: challenging a manager’s case can feel like calling him a liar. Frame it as method, not distrust: “We apply the same correction to every case.”\n\nWhat experts argue about: Flyvbjerg’s critics, such as Love and Ahiaga-Dagbui, say he overstates deliberate misrepresentation; he holds that both causes are real. A sharp question for any business case: “How did the last three projects like this one actually do?”',
+        'The people side: challenging a manager’s case can feel like calling him a liar. Frame it as method, not distrust: “We apply the same correction to every case.”\n\nWhat experts argue about: critics such as Love and Ahiaga-Dagbui (2018) say overruns come mostly from scope changes and errors during the project, and question how Flyvbjerg measures them; he replies that bias and misrepresentation sit behind those changes. A sharp question for any business case: “How did the last three projects like this one actually do?”',
       ],
       example: {
         kind: 'faded',
@@ -1282,7 +1282,7 @@ export default {
       recall: [
         {
           q: 'A manager inflates the benefits on purpose to win capex against other departments. What is this called?',
-          options: ['Strategic misrepresentation', 'Optimism bias', 'Regression to the mean', 'Scope creep'],
+          options: ['Strategic misrepresentation', 'Optimism bias', 'Anchoring on last year’s figures', 'Scope creep'],
           answer: 'Strategic misrepresentation',
           why: 'Deliberate inflation to win approval; optimism bias is the honest version.',
         },
@@ -1302,7 +1302,7 @@ export default {
         },
         {
           q: 'Why hold a post-investment review 12–18 months after start-up?',
-          options: ['To decide on the bonus of the project manager', 'To close the cost centre of the project formally', 'To restart the project if the benefits are low', 'To compare actual with promised and feed future cases'],
+          options: ['To decide on the bonus of the project manager', 'To close the cost centre of the project formally', 'To restart the project if the benefits come in too low', 'To compare actual with promised and feed future cases'],
           answer: 'To compare actual with promised and feed future cases',
           why: 'It builds the reference class that makes the next business cases more realistic.',
         },

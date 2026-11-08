@@ -28,7 +28,7 @@ export default {
       recall: [
         {
           q: 'De programmaraad besteedt 40 minuten aan het testplan van één project. Wat gaat er mis?',
-          options: ['De raad is te klein om alle projecten goed te volgen', 'De raad doet projectwerk dat in de stuurgroep van dat project hoort', 'Het testplan had eerst langs finance gemoeten, vóór de raad', 'Niks, want dit niveau van detail laat betrokkenheid zien'],
+          options: ['De raad is te klein om alle projecten goed te volgen', 'De raad doet projectwerk dat in de stuurgroep van dat project hoort', 'Het testplan had eerst langs finance en kwaliteit gemoeten, vóór de raad', 'Niks, want dit niveau van detail laat betrokkenheid zien'],
           answer: 'De raad doet projectwerk dat in de stuurgroep van dat project hoort',
           why: 'De raad beslist over de naden tussen projecten; projectdetail drukt dat weg.',
         },
@@ -56,10 +56,10 @@ export default {
       situation: {
         scene: 'Je zit bij een maker van metalen onderdelen. De COO (chief operating officer, de operationeel directeur) heeft drie verbeterprojecten lopen, op OEE (overall equipment effectiveness: hoeveel van de geplande tijd de machines goede producten maken), op planning en op onderhoud, en vraagt Vantage: “Kun je dit als programma draaien? Ik wil één verhaal voor de directie.”',
         ask: 'Wat zet je de eerste twee weken neer?',
-        model: 'Eerst zou ik met de COO de ene uitkomst afspreken, bijvoorbeeld leverbetrouwbaarheid van 82% naar 92%, en hoe elk project daaraan bijdraagt. Dan een afhankelijkhedenkaart op één A4 met eigenaren en data, en een maandelijkse programmaraad die alleen over de naden beslist. Tegen de projectleiders zeg ik gewoon: “Jullie blijven je projecten draaien; ik let op wat er tussen jullie gebeurt.”',
+        model: 'Eerst zou ik met de COO de ene uitkomst afspreken, bijvoorbeeld leverbetrouwbaarheid van 82% naar 92%, en hoe elk project daaraan bijdraagt. Dan een afhankelijkhedenkaart op één A4 met eigenaren en datums, en een maandelijkse programmaraad die alleen over de naden beslist. Tegen de projectleiders zeg ik gewoon: “Jullie blijven je projecten draaien; ik let op wat er tussen jullie gebeurt.”',
         rubric: [
           'Begint bij één meetbare uitkomst, niet bij de lijst projecten',
-          'Maakt afhankelijkheden zichtbaar met eigenaren en data',
+          'Maakt afhankelijkheden zichtbaar met eigenaren en datums',
           'Scheidt programmabesluiten van projectbesluiten',
         ],
         pushback: {
@@ -97,7 +97,7 @@ export default {
       ],
       teach: [
         'MSP, Managing Successful Programmes, is de Britse programmamethode uit dezelfde familie als PRINCE2, de projectmethode; de huidige versie is de 5e editie (2020). PRINCE2 stuurt één project. MSP stuurt een set projecten plus de verandering in de business die hun output omzet in baten.\n\nGebruik het als een verandering te groot of te onzeker is voor één project, zoals een ERP-programma: een nieuw bedrijfsbreed systeem voor orders, voorraad, inkoop en financiën, uitgerold over meerdere fabrieken.',
-        'Het begint met een visie (vision statement): een kort beeld van de toekomst, geschreven voor de mensen op de vloer, niet voor de directie. Bijvoorbeeld: “In 2028 wordt elke order in één systeem gepland en ziet de planner de voorraad live.”\n\nHet doelbedrijfsmodel, in oudere edities de blauwdruk (blueprint), beschrijft die toekomst in detail: processen, organisatie, techniek, informatie en data, cultuur. Het gat tussen vandaag en dat model is wat het programma moet leveren.',
+        'Het begint met een visie (vision statement): een kort beeld van de toekomst, geschreven voor de mensen op de vloer, niet voor de directie. Bijvoorbeeld: “In 2028 wordt elke order in één systeem gepland en ziet de planner de voorraad live.”\n\nHet doelbedrijfsmodel (target operating model), in oudere edities de blauwdruk (blueprint), beschrijft die toekomst in detail, bijvoorbeeld processen, organisatie, techniek, informatie en data, cultuur. Het gat tussen vandaag en dat model is wat het programma moet leveren.',
         'Een tranche is een blok projecten dat eindigt in een stap die de business kan gebruiken, gevolgd door een review waarin de raad beslist of je doorgaat.\n\nERP-voorbeeld: tranche 1, financiën en inkoop live in fabriek A; tranche 2, planning en productie in fabriek A; tranche 3, de andere twee fabrieken. Elke tranche levert baten voordat de volgende start, dus het programma betaalt zichzelf deels terug en kan gestopt worden met waarde in handen.',
         'Drie rollen doen er het meest toe. De Senior Responsible Owner (SRO) is een senior manager uit de business, eindverantwoordelijk voor het programma en de baten. De programmamanager stuurt de projecten, de planning, het budget en de afhankelijkheden. De business change manager komt uit de lijn en bereidt de business voor: training, nieuwe procedures, en zorgen dat de nieuwe manier ook gebruikt wordt.\n\nTypische valkuil: geen business change manager, dus IT levert het systeem en de fabriek houdt haar spreadsheets.',
         'Waar experts over twisten: MSP is grondig en documentzwaar, en critici zeggen dat het beter past bij de overheid dan bij een fabriek van 300 mensen. Veel praktijkmensen gebruiken de ideeën (visie, tranches, de drie rollen) zonder al het papierwerk.\n\nZo zie je dat het werkt: een raad die over baten en gereedheid praat, niet alleen over de planning. Scherpe vraag bij elk programma: “Wie is de SRO, en hoeveel van haar tijd geeft ze er echt aan?”',
@@ -124,7 +124,7 @@ export default {
         },
         {
           q: 'Wat is een tranche in MSP?',
-          options: ['Een deel van het budget dat finance elk kwartaal vrijgeeft', 'Een team specialisten dat alle projecten in het programma delen', 'Een fase van één project met een eigen faseplan en toleranties', 'Een blok projecten dat eindigt in een bruikbare stap en een review'],
+          options: ['Een deel van het budget dat finance elk kwartaal vrijgeeft', 'Een vast team specialisten dat alle projecten in het programma delen', 'Een fase van één project met een eigen faseplan en toleranties', 'Een blok projecten dat eindigt in een bruikbare stap en een review'],
           answer: 'Een blok projecten dat eindigt in een bruikbare stap en een review',
           why: 'Elke tranche levert iets wat de business kan gebruiken, en daarna beslist de raad of je doorgaat.',
         },
@@ -179,10 +179,10 @@ export default {
         },
       ],
       teach: [
-        'Op programmaniveau is een simpele lijst niet genoeg. Een afhankelijkhedenregister legt elke afhankelijkheid vast met de gever, de ontvanger, wat er precies overgaat, wanneer, en een status waar beide kanten het over eens zijn.\n\nSorteer ze op soort: een product (B heeft de output van A nodig), een gedeelde mens of machine (dezelfde engineer of testopstelling), een technische koppeling, of een externe afhankelijkheid van een leverancier, een vergunning of de netbeheerder. Externe kun je niet sturen; je kunt ze alleen vroeg volgen en je met tijd indekken.',
+        'Op programmaniveau is een simpele lijst niet genoeg. Een afhankelijkhedenregister (dependency register) legt elke afhankelijkheid vast met gever, ontvanger, wat er precies overgaat, wanneer, en een status waar beide kanten het over eens zijn.\n\nSorteer ze op soort: een product (B heeft de output van A nodig), een gedeelde mens of machine (dezelfde engineer of testopstelling), een technische koppeling, of een externe afhankelijkheid (external dependency) van een leverancier, een vergunning of de netbeheerder. Externe kun je niet sturen; je kunt ze alleen vroeg volgen en je met tijd indekken.',
         'Een koppelvlak (interface) is waar het werk van twee projecten in elkaar moet passen: de datavelden tussen het ERP-systeem en het MES (de software die orders op de vloer aanstuurt), of de transportband tussen een nieuwe machine en de bestaande lijn.\n\nGeef elk koppelvlak één eigenaar en een schriftelijke afspraak: wat er overgaat, in welk formaat, en hoe en wanneer het getest wordt. Veel verrassingen bij een livegang zitten in koppelvlakken waar niemand eigenaar van was.',
         'Als meerdere paden in één mijlpaal samenkomen, is die mijlpaal te laat zodra één pad te laat is. Analisten van planningsrisico’s noemen dit samenloopeffect (merge bias): een planning die per pad de meest waarschijnlijke datum toont, verstopt het.\n\nGedeelde mensen maken het erger, op een verborgen manier. Hebben twee paden dezelfde engineer in dezelfde weken nodig, dan zijn het geen twee onafhankelijke paden maar één wachtrij, en klopt de planning al voordat hij begint niet.',
-        'Houd een integrale planning bij: één niveau boven de projecten, met alleen de belangrijkste mijlpalen en de afhankelijkheden ertussen. Sommige praktijkmensen houden die op een paar dozijn regels, zodat de raad hem kan lezen. Vraag elke maand welke afhankelijkheden de komende zes weken rood worden.\n\nJe opties: ontkoppelen (een tijdelijke koppeling of een teststub), een buffer vóór het samenkomstpunt, de volgorde veranderen, of de afhankelijkheid binnen één project halen.',
+        'Houd een integrale planning (integrated plan) bij: één niveau boven de projecten, met alleen de belangrijkste mijlpalen en de afhankelijkheden ertussen. Sommige praktijkmensen houden die op een paar dozijn regels, zodat de raad hem kan lezen. Vraag elke maand welke afhankelijkheden de komende zes weken rood worden.\n\nJe opties: ontkoppelen (een tijdelijke koppeling, of een teststub (test stub): een nepversie van de andere kant om mee te testen), een buffer vóór het samenkomstpunt, de volgorde veranderen, of de afhankelijkheid binnen één project halen.',
         'Waar experts over twisten: sommigen willen elke taak in één grote planningstool; anderen zeggen dat zo’n planning onleesbaar wordt en kiezen een muur met mijlpalen met de teams eromheen.\n\nZo zie je dat afhankelijkheden gestuurd worden: gevers die vroeg waarschuwen, omdat ze weten wie op hen wacht. Scherpe vraag bij elke programmaplanning: “Bij welke mijlpaal komen de meeste pijlen binnen, en wat beschermt hem?”',
       ],
       example: {
@@ -195,7 +195,7 @@ export default {
       recall: [
         {
           q: 'Welk soort afhankelijkheid kun je niet sturen, alleen vroeg volgen en bufferen?',
-          options: ['Een product van een ander project in je eigen programma', 'Een gedeelde planner die voor twee van je eigen projecten werkt', 'Een externe, zoals een netaansluiting of een levering van een leverancier', 'Een datakoppeling tussen twee systemen die je programma zelf bouwt'],
+          options: ['Een product van een ander project in je eigen programma', 'Een gedeelde planner die voor twee van je eigen projecten werkt', 'Een externe, zoals een netaansluiting of een levering van een leverancier', 'Een datakoppeling tussen twee systemen die je eigen programma zelf bouwt'],
           answer: 'Een externe, zoals een netaansluiting of een levering van een leverancier',
           why: 'Over externe partijen heb je geen zeggenschap, dus je volgt ze nauw en beschermt de planning met tijd.',
         },
@@ -209,7 +209,7 @@ export default {
         },
         {
           q: 'Twee paden naar een mijlpaal hebben dezelfde engineer in dezelfde weken nodig. Wat betekent dat voor je planning?',
-          options: ['Niks, zolang elk pad een eigen buffer van twee weken heeft', 'Het is eigenlijk één wachtrij, dus plan ze na elkaar of zoek een tweede engineer', 'De mijlpaal wordt juist waarschijnlijker, omdat één persoon beide paden ziet', 'De paden moeten samen één project worden, dat scheelt rapportage'],
+          options: ['Niks, zolang elk pad een eigen buffer van twee weken heeft', 'Het is eigenlijk één wachtrij, dus plan ze na elkaar of zoek een tweede engineer', 'De mijlpaal wordt juist waarschijnlijker, omdat één persoon beide paden in de gaten houdt', 'De paden moeten samen één project worden, dat scheelt rapportage'],
           answer: 'Het is eigenlijk één wachtrij, dus plan ze na elkaar of zoek een tweede engineer',
           why: 'Eén persoon kan niet twee dingen in dezelfde week doen; de paden zijn niet onafhankelijk.',
         },
@@ -257,17 +257,17 @@ export default {
       pre: [
         {
           q: 'In een fabriek landen vijf verbeterprojecten en een ERP-livegang allemaal in hetzelfde kwartaal op de vloer. Wat is het meest waarschijnlijke resultaat?',
-          options: ['Alles gaat live en de baten komen gewoon eerder binnen', 'Ploegleiders trekken het niet, en een paar veranderingen beklijven niet', 'De projecten delen trainingen en besparen daardoor geld', 'Alleen de ERP schuift op, en de verbeterprojecten gaan prima'],
+          options: ['Alles gaat live en de baten komen gewoon eerder binnen', 'Ploegleiders trekken het niet, en een paar veranderingen beklijven niet', 'De projecten delen trainingen en besparen daardoor geld', 'Alleen de ERP schuift een paar weken op, en de verbeterprojecten gaan prima'],
           answer: 'Ploegleiders trekken het niet, en een paar veranderingen beklijven niet',
           why: 'Elk plan ziet er op zich goed uit, maar dezelfde mensen dragen ze allemaal terwijl ze ook nog produceren.',
         },
       ],
       teach: [
         'Elk projectplan ziet er op zich goed uit, maar de som landt op dezelfde mensen: ploegleiders, planners, operators. Veranderverzadiging (change saturation), een term die het adviesbureau Prosci populair maakte, is meer verandering op een groep dan die kan opnemen terwijl de productie doorloopt.\n\nSignalen: mensen die trainingen missen, de oude manier die terugkruipt, “alwéér een project?”. Teken een heatmap van de veranderimpact: groepen verticaal, maanden horizontaal, en per verandering een score voor hoe hard die aankomt.',
-        'Ontwerp tranches met die grens in gedachten. Elke tranche moet een vermogen leveren: iets nieuws wat de business kan, zoals plannen in één systeem. Ze moet binnen wat de zwaarst getroffen groep aankan blijven, en vroeg baten opleveren.\n\nDe transitie is de periode waarin de business van de oude naar de nieuwe manier overstapt: ondersteuning op de vloer, oud en nieuw een tijdje naast elkaar, en goed meten. De business change manager leidt die.',
-        'Bij de tranche-review kijken de SRO en de raad: zijn de vermogens geleverd, worden ze gebruikt, komen de baten op gang, klopt de businesscase nog, en is de volgende tranche nog de juiste? De keuzes: doorgaan, aanpassen, pauzeren of stoppen.\n\nEen programma dat deze review overslaat, gaat drijven. Tranches worden data in een planning in plaats van besluiten.',
-        'Afsluiting van het programma komt als de visie ver genoeg gehaald is, of als de resterende baten de kosten niet meer waard zijn. Dan sluit je het formeel af en geef je het volgen van de resterende baten aan de lijn.\n\nWaar experts over twisten: sommige organisaties houden een programma jaren open als budgetparaplu. MSP houdt vol dat een programma tijdelijk is; een blijvend programma is eigenlijk een deel van de lijn of het portfolio.',
-        'De mensenkant: een SRO vragen af te remmen is lastig als de directie data beloofd zijn. Kom met de heatmap en twee opties met hun gevolgen, niet met een mening.\n\nZo hoor je dat verzadiging nadert: “de training doen we na de zomer”, “de ploegleiders weten het, ze zaten bij de kick-off”. Scherpe vraag vóór elke tranche: “Welke groep wordt volgend kwartaal het hardst geraakt, en heeft iemand het hun gevraagd?”',
+        'Ontwerp tranches met die grens in gedachten. Elke tranche moet een nieuw vermogen (capability) leveren: iets nieuws wat de business kan, zoals plannen in één systeem. Ze moet binnen wat de zwaarst getroffen groep aankan blijven, en vroeg baten opleveren.\n\nDe transitie is de periode waarin de business van de oude naar de nieuwe manier overstapt: ondersteuning op de vloer, oud en nieuw een tijdje naast elkaar, en goed meten. De business change manager leidt die.',
+        'Bij de tranche-review (end-of-tranche review) kijken de SRO en de raad: zijn de vermogens geleverd, worden ze gebruikt, komen de baten op gang, klopt de businesscase nog, en is de volgende tranche nog de juiste? De keuzes: doorgaan, aanpassen, pauzeren of stoppen.\n\nEen programma dat deze review overslaat, gaat drijven. Tranches worden datums in een planning in plaats van besluiten.',
+        'Afsluiting van het programma (programme closure) komt als de visie ver genoeg gehaald is, of als de resterende baten de kosten niet meer waard zijn. Dan sluit je het formeel af en geef je het volgen van de resterende baten aan de lijn.\n\nWaar experts over twisten: sommige organisaties houden een programma jaren open als budgetparaplu. MSP houdt vol dat een programma tijdelijk is; een blijvend programma is eigenlijk een deel van de lijn of het portfolio.',
+        'De mensenkant: een SRO vragen af te remmen is lastig als de directie vaste datums beloofd zijn. Kom met de heatmap en twee opties met hun gevolgen, niet met een mening.\n\nZo hoor je dat verzadiging nadert: “de training doen we na de zomer”, “de ploegleiders weten het, ze zaten bij de kick-off”. Scherpe vraag vóór elke tranche: “Welke groep wordt volgend kwartaal het hardst geraakt, en heeft iemand het hun gevraagd?”',
       ],
       example: {
         kind: 'faded',
@@ -279,8 +279,8 @@ export default {
       recall: [
         {
           q: 'Wat is veranderverzadiging?',
-          options: ['Meer verandering op één groep dan die kan opnemen terwijl de productie doorloopt', 'Meer projecten in het portfolio dan het budget dit jaar kan betalen', 'Het punt waarop een project al zijn output heeft opgeleverd', 'Medewerkers die uit principe tegen elke verandering zijn, welke ook'],
-          answer: 'Meer verandering op één groep dan die kan opnemen terwijl de productie doorloopt',
+          options: ['Meer verandering op één groep dan die naast de productie kan opnemen', 'Meer projecten in het portfolio dan het capexbudget van dit jaar kan betalen', 'Het punt waarop een project al zijn output heeft opgeleverd', 'Medewerkers die uit principe tegen elke verandering zijn, welke ook'],
+          answer: 'Meer verandering op één groep dan die naast de productie kan opnemen',
           why: 'Verzadiging gaat over wat één groep kan opnemen, niet over budget of houding.',
         },
         {
@@ -343,7 +343,7 @@ export default {
       pre: [
         {
           q: 'Een fabriek heeft 12 verbeterprojecten en capaciteit voor ongeveer 6. Niemand zegt nee. Wat gebeurt er meestal?',
-          options: ['De 6 beste projecten worden gedaan', 'Alle 12 gaan langzaam en er komen er weinig af', 'Mensen werken harder en maken er 10 af', 'De sponsor stopt stilletjes de zwakste'],
+          options: ['De 6 beste projecten worden gedaan', 'Alle 12 gaan langzaam en er komen er weinig af', 'Mensen gaan harder werken en maken er toch 10 af', 'De sponsor stopt stilletjes de zwakste'],
           answer: 'Alle 12 gaan langzaam en er komen er weinig af',
           why: 'Zonder harde streep start alles, en worden de schaarse mensen over alles uitgesmeerd.',
         },
@@ -425,7 +425,7 @@ export default {
       pre: [
         {
           q: 'Een sleutelengineer is voor een kwart van zijn tijd ingepland op elk van vier projecten. Wat gebeurt er meestal?',
-          options: ['Elk project wacht op hem, en schakelen eet een groot deel van zijn week', 'Hij levert op alle vier de volle waarde, zolang hij senior is', 'De projecten zijn eerder klaar, omdat ze parallel lopen', 'Er verandert niks, zolang hij een goede eigen planning heeft'],
+          options: ['Elk project wacht op hem, en schakelen eet een groot deel van zijn week', 'Hij levert op alle vier de volle waarde, zolang hij senior is', 'De projecten zijn eerder klaar, omdat ze parallel lopen', 'Er verandert niks, zolang hij voor zichzelf een goede weekplanning maakt'],
           answer: 'Elk project wacht op hem, en schakelen eet een groot deel van zijn week',
           why: 'Eén expert dun uitsmeren maakt hem de bottleneck van vier projecten tegelijk.',
         },
@@ -453,7 +453,7 @@ export default {
         },
         {
           q: 'Wat zet je in een capaciteitsmatrix?',
-          options: ['De totale headcount van elke afdeling die bij de projecten hoort', 'De schaarse mensen, hun dagen per project en hun echte beschikbaarheid', 'Het budget per project en hoeveel daarvan al is uitgegeven', 'De uren die iedereen vorig jaar per maand op projecten boekte'],
+          options: ['De totale headcount van elke afdeling die bij de projecten hoort', 'De schaarse mensen, hun dagen per project en hun echte beschikbaarheid', 'Het budget per project en hoeveel daarvan tot nu toe al is uitgegeven', 'De uren die iedereen vorig jaar per maand op projecten boekte'],
           answer: 'De schaarse mensen, hun dagen per project en hun echte beschikbaarheid',
           why: 'Conflicten zitten bij een paar mensen met een naam, niet in de totalen.',
         },
@@ -514,10 +514,10 @@ export default {
       ],
       teach: [
         'Kosten van vertraging (cost of delay) is de waarde die je verliest per tijdseenheid dat iets nog niet live is. Een persproject dat € 40k per maand gaat besparen, kost € 40k voor elke maand dat het wacht. Don Reinertsen (The Principles of Product Development Flow, 2009) noemt het het ene getal om te kwantificeren als je er maar één kwantificeert.\n\npm.scaled laat de relatieve WSJF-scores van SAFe zien. Een portfolio van capex en verbeterprojecten heeft de besparingen meestal al in euro’s, dus je kunt echt geld gebruiken.',
-        'Het urgentieprofiel (urgency profile) beschrijft hoe de kosten van vertraging in de tijd veranderen. Black Swan Farming (Joshua Arnold) noemt een paar vaste vormen. Standaard: elke maand ongeveer dezelfde kosten. Vaste datum: weinig kosten tot een deadline, dan ineens veel, zoals de productiestart van een klant of een nieuwe wettelijke eis. Spoed (expedite): nu meteen heel hoog, zoals een lijn die stilstaat.\n\nHet profiel bepaalt of “later” goedkoop of duur is.',
+        'Het urgentieprofiel (urgency profile) beschrijft hoe de kosten van vertraging in de tijd veranderen. Kanban-praktijkmensen (de classes of service van David Anderson) noemen een paar vaste vormen. Standaard: elke maand ongeveer dezelfde kosten. Vaste datum (fixed date): weinig kosten tot een deadline, dan ineens veel, zoals de productiestart van een klant of een nieuwe wettelijke eis. Spoed (expedite): nu meteen heel hoog, zoals een lijn die stilstaat. Joshua Arnold (Black Swan Farming) tekent ze als curves.\n\nHet profiel bepaalt of “later” goedkoop of duur is.',
         'CD3, kosten van vertraging gedeeld door de duur, zet een wachtrij op volgorde als één team één klus tegelijk doet: hoogste eerst. De volgorde scheelt euro’s, en dat kun je narekenen.\n\nWat je nagaat: met één team wacht wat als tweede komt op wat als eerste komt, en mist het zolang zijn maandelijkse kosten van vertraging. Vergelijk het totaal per volgorde en kies de laagste.',
         'Grenzen: schattingen zijn grof, en Arnold stelt dat in de meeste portfolio’s een paar projecten het grootste deel van de kosten van vertraging dragen, dus de orde van grootte telt meer dan de decimalen. CD3 is om te ordenen, niet om te beslissen of iets het doen waard is.\n\nHet past niet als werk parallel door verschillende mensen gedaan wordt. Een project met een vaste datum heeft een uiterste startdatum nodig, niet alleen een plek in de rij.',
-        'De mensenkant: een eurobedrag op wachten verschuift de discussie van “mijn project is strategisch” naar “wat kost een maand later, en wie betaalt dat?”\n\nLet op de verborgen wachtrij: projecten die wachten op goedkeuring, een offerte of een engineer verliezen ook geld, maar niemand ziet die rij. Scherpe vraag voor elke investeringscommissie: “Als dit drie maanden later start, wat verliezen we dan, in euro’s per maand?”',
+        'De mensenkant: een eurobedrag op wachten verschuift de discussie van “mijn project is strategisch” naar “wat kost een maand later, en wie betaalt dat?”\n\nLet op de verborgen wachtrij (hidden queue): projecten die wachten op goedkeuring, een offerte of een engineer verliezen ook geld, maar niemand ziet die rij. Scherpe vraag voor elke investeringscommissie: “Als dit drie maanden later start, wat verliezen we dan, in euro’s per maand?”',
       ],
       example: {
         kind: 'faded',
@@ -543,7 +543,7 @@ export default {
         },
         {
           q: 'Eén team, twee projecten. A: € 20k per maand, 2 maanden. B: € 20k per maand, 4 maanden. Welke volgorde kost in totaal de minste vertraging, en waarom?',
-          options: ['B eerst, omdat het grotere project meer waarde draagt', 'A eerst: bij gelijke kosten van vertraging gaat de kortste klus voor', 'Maakt niet uit, omdat de maandbedragen aan elkaar gelijk zijn', 'Allebei tegelijk op halve snelheid, zodat geen van beide wacht'],
+          options: ['B eerst, omdat het grotere project meer waarde draagt', 'A eerst: bij gelijke kosten van vertraging gaat de kortste klus voor', 'Maakt niet uit, omdat de bedragen per maand precies aan elkaar gelijk zijn', 'Allebei tegelijk op halve snelheid, zodat geen van beide wacht'],
           answer: 'A eerst: bij gelijke kosten van vertraging gaat de kortste klus voor',
           why: 'A eerst: B wacht 2 maanden, € 40k. B eerst: A wacht 4 maanden, € 80k.',
         },
@@ -591,23 +591,23 @@ export default {
       pre: [
         {
           q: 'De lijst van een fabriek telt 22 lopende projecten. Zeven bewegen al zes maanden niet, maar niemand heeft ze gestopt. Wat kosten ze?',
-          options: ['Aandacht en tijd, en ze verbergen hoe vol het portfolio is', 'Helemaal niks, want er werkt nu niemand aan', 'Alleen het budget dat er eerder al aan is uitgegeven', 'Ze besparen geld, want ze staan officieel in de wacht'],
+          options: ['Aandacht en tijd, en ze verbergen hoe vol het portfolio is', 'Helemaal niks, want er werkt op dit moment niemand meer aan', 'Alleen het budget dat er eerder al aan is uitgegeven', 'Ze besparen geld, want ze staan officieel in de wacht'],
           answer: 'Aandacht en tijd, en ze verbergen hoe vol het portfolio is',
           why: 'Stilstaande projecten kosten nog steeds overlegtijd, rapportage en aandacht, en laten de lijst lijken op werk dat gaat gebeuren.',
         },
       ],
       teach: [
         'De Standard for Portfolio Management van PMI definieert een portfolio als projecten, programma’s en operationeel werk die als groep gestuurd worden om strategische doelen te halen. Portfoliomanagement stelt drie vragen: doen we de juiste projecten, in de juiste mix, en zijn ze het nog waard?\n\nRangschikken op waarde per schaarse dag of op kosten van vertraging beantwoordt maar een deel daarvan. Deze les gaat over de mix en het opschonen.',
-        'Haal elk verplicht project er bovenaf voordat je rangschikt: veiligheid, wettelijke eisen, een vergunning houden. Zo’n project gebruikt capaciteit, wat zijn score ook is.\n\nMaar zet vraagtekens bij het etiket. “Verplicht” is een populaire manier om voor te dringen. Vraag: welke wet of klanteis, per wanneer, en wat is de kleinste scope die eraan voldoet? Vaak is het verplichte deel een derde van wat er gevraagd werd.',
-        'Strategische bakken (strategic buckets) verdelen de capaciteit vooraf over soorten werk, bijvoorbeeld 50% draaien (de fabriek laten draaien: vervangingen, onderhoud), 30% verbeteren (kosten en kwaliteit) en 20% groeien (nieuwe producten, nieuwe markten). Je rangschikt binnen elke bak.\n\nRobert Cooper raadt dit aan zodat veel kleine, veilige projecten de strategische niet verdringen. De verdeling is een jaarlijkse managementkeuze, geen formule. Lean budgets in pm.scaled gebruiken hetzelfde idee.',
-        'Houd elk kwartaal een portfolioreview: is elk lopend project nog in lijn met de strategie, nog de moeite waard, nog haalbaar? Stop zombieprojecten: officieel nog in leven, maar ze bewegen niet of hebben geen realistische businesscase meer. Signalen: drie maanden geen voortgang, geen sponsor te zien, een team dat “wacht op” iets.\n\nElke stop maakt capaciteit vrij. Een portfolio-Kanban met een limiet op het aantal actieve initiatieven, zoals in pm.scaled, maakt dit zichtbaar.',
+        'Haal elk verplicht project (mandatory project) er bovenaf voordat je rangschikt: veiligheid, wettelijke eisen, een vergunning houden. Zo’n project gebruikt capaciteit, wat zijn score ook is.\n\nMaar zet vraagtekens bij het etiket. “Verplicht” is een populaire manier om voor te dringen. Vraag: welke wet of klanteis, per wanneer, en wat is de kleinste scope die eraan voldoet? Vaak blijkt het verplichte deel veel kleiner dan wat er gevraagd werd.',
+        'Strategische potjes (strategic buckets) verdelen de capaciteit vooraf over soorten werk, bijvoorbeeld 50% draaien (de fabriek laten draaien: vervangingen, onderhoud), 30% verbeteren (kosten en kwaliteit) en 20% groeien (nieuwe producten, nieuwe markten). Je rangschikt binnen elk potje.\n\nRobert Cooper raadt dit aan zodat veel kleine, veilige projecten de strategische niet verdringen. De verdeling is een jaarlijkse managementkeuze, geen formule. De capacity allocation van SAFe, een van de guardrails van Lean budgets in pm.scaled, werkt met hetzelfde idee.',
+        'Houd elk kwartaal een portfolioreview: is elk lopend project nog in lijn met de strategie, nog de moeite waard, nog haalbaar? Stop zombieprojecten (zombie projects): officieel nog in leven, maar ze bewegen niet of hebben geen realistische businesscase meer. Signalen: drie maanden geen voortgang, geen sponsor te zien, een team dat “wacht op” iets.\n\nElke stop maakt capaciteit vrij. Een portfolio-Kanban met een limiet op het aantal actieve initiatieven, zoals in pm.scaled, maakt dit zichtbaar.',
         'Waar experts over twisten: balansplaatjes, zoals bellen van risico tegen waarde, zien er netjes uit, maar de echte gevechten zijn politiek. Een directie die nooit iets stopt, heeft geen portfoliomanagement, alleen een lijst.\n\nZo zie je dat het werkt: elk kwartaal een kortere lijst, en managers die zelf voorstellen hun project te stoppen. Scherpe vraag bij elke review: “Als we hier nog niet aan begonnen waren, zouden we er vandaag aan beginnen?”',
       ],
       example: {
         kind: 'faded',
         text: 'Een metaalbedrijf heeft voor volgend jaar € 3,0 miljoen aan capex en 18 projecten op de lijst. Twee heten verplicht: brandveiligheid (€ 400k, waarvan een inspectierapport € 250k dit jaar eist) en een emissiefilter (€ 250k, wettelijke deadline volgend najaar).\n\nVijf projecten laten al meer dan drie maanden geen voortgang zien. Eén ervan, een nieuwe magazijnindeling, verloor zijn sponsor toen de logistiek manager vertrok. Op de lijst staan twaalf vervangingsprojecten en maar één dat op nieuwe producten gericht is.',
         ask: 'Wat zou jij voorstellen voor de jaarlijkse portfolioreview?',
-        reveal: 'Eerst het verplichte deel: € 250k brandveiligheid plus € 250k filter is € 500k; de overige € 150k brandveiligheid concurreert zoals elk ander project. Van de € 2,5 miljoen die overblijft, stel je bakken voor, bijvoorbeeld 50% draaien (€ 1,25 miljoen), 30% verbeteren (€ 750k), 20% groeien (€ 500k), en laat je het MT de verdeling kiezen.\n\nNeem de vijf stilstaande projecten een voor een door met de vraag “zouden we er vandaag aan beginnen?” en stop in elk geval de magazijnindeling, tenzij iemand hem oppakt. Rangschik binnen elke bak en beperk hoeveel er tegelijk lopen.',
+        reveal: 'Eerst het verplichte deel: € 250k brandveiligheid plus € 250k filter is € 500k; de overige € 150k brandveiligheid concurreert zoals elk ander project. Van de € 2,5 miljoen die overblijft, stel je potjes voor, bijvoorbeeld 50% draaien (€ 1,25 miljoen), 30% verbeteren (€ 750k), 20% groeien (€ 500k), en laat je het MT de verdeling kiezen.\n\nNeem de vijf stilstaande projecten een voor een door met de vraag “zouden we er vandaag aan beginnen?” en stop in elk geval de magazijnindeling, tenzij iemand hem oppakt. Rangschik binnen elk potje en beperk hoeveel er tegelijk lopen.',
       },
       said: 'Wat je hoort bij portfolioreviews: “We kunnen nu niet stoppen, we hebben er al zoveel in gestoken.”',
       recall: [
@@ -618,10 +618,10 @@ export default {
           why: 'Rangschikken heeft dan geen zin; wat telt is hun scope beperken tot wat echt nodig is.',
         },
         {
-          q: 'Wat zijn strategische bakken?',
-          options: ['Groepen projecten met één sponsor en één budgetregel', 'Capaciteit vooraf verdeeld over soorten werk, met een rangorde per soort', 'De drie grootste projecten die samen de strategie dragen', 'Reserves voor projecten die in de loop van het jaar opkomen'],
-          answer: 'Capaciteit vooraf verdeeld over soorten werk, met een rangorde per soort',
-          why: 'Bakken beschermen strategisch werk tegen verdringing door kleine, veilige projecten.',
+          q: 'Wat zijn strategische potjes?',
+          options: ['Groepen projecten met één gezamenlijke sponsor en één budgetregel', 'Capaciteit vooraf verdeeld over soorten werk, rangschikken per soort', 'De drie grootste projecten die samen de strategie dragen', 'Reserves voor spoedprojecten die in de loop van het jaar nog opkomen'],
+          answer: 'Capaciteit vooraf verdeeld over soorten werk, rangschikken per soort',
+          why: 'Potjes beschermen strategisch werk tegen verdringing door kleine, veilige projecten.',
         },
         {
           q: 'Een fabriek heeft € 3,0 miljoen capex. Verplichte veiligheids- en milieuprojecten kosten € 0,6 miljoen. De rest wordt verdeeld: 50% draaien, 30% verbeteren en 20% groeien. Hoeveel gaat er naar verbeteren, in duizenden euro’s?',
@@ -664,7 +664,7 @@ export default {
       terms: [
         { term: 'Portfoliomanagement', def: 'Projecten en programma’s als één groep kiezen, in balans brengen en herzien om strategische doelen te halen.' },
         { term: 'Verplicht project', def: 'Een project dat de wet, veiligheid of een vergunning eist, dat je er vóór het rangschikken bovenaf haalt; de scope blijft toetsen.' },
-        { term: 'Strategische bakken', def: 'Capaciteit vooraf verdeeld over soorten werk, zoals draaien, verbeteren en groeien, met een rangorde binnen elke bak.' },
+        { term: 'Strategische potjes', def: 'Capaciteit vooraf verdeeld over soorten werk, zoals draaien, verbeteren en groeien, met een rangorde binnen elk potje.' },
         { term: 'Portfolioreview', def: 'Een vaste review van alle lopende projecten: nog in lijn, nog de moeite waard, nog haalbaar?' },
         { term: 'Zombieproject', def: 'Een project dat officieel nog loopt, maar niet beweegt of geen realistische businesscase meer heeft.' },
       ],
@@ -691,7 +691,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'De stuurgroep van een netbeheerder heeft elf leden. Al twee maanden schuift hij drie besluiten voor zich uit: 18% overschrijding op de aannemerskosten, of de tweede regio dit jaar in scope is, en wie de twee planners levert. Elk overleg heeft een statusupdate van 15 slides en eindigt met “laten we dit offline oppakken”. De sponsor vraagt Vantage wat er aan de hand is.\n\nWat je doet: je zegt het de sponsor eerlijk, “Deze groep beslist niet, omdat niemand weet wie wat mag beslissen.” Je stelt een tabel met beslisbevoegdheden en toleranties op één A4 voor, en brengt de groep terug naar zes stemhebbende leden; de rest wordt adviseur. Je bouwt de volgende agenda op rond de drie besluiten, elk met opties, kosten en een advies, drie dagen vooraf verstuurd. Je spreekt de twee leden die eerder blokkeerden vooraf en vraagt of ze mandaat hebben. Je opent het overleg met: “Vandaag hebben we drie besluiten nodig.” En je legt ze vast, met eigenaren en data.',
+        text: 'De stuurgroep van een netbeheerder heeft elf leden. Al twee maanden schuift hij drie besluiten voor zich uit: 18% overschrijding op de aannemerskosten, of de tweede regio dit jaar in scope is, en wie de twee planners levert. Elk overleg heeft een statusupdate van 15 slides en eindigt met “laten we dit offline oppakken”. De sponsor vraagt Vantage wat er aan de hand is.\n\nWat je doet: je zegt het de sponsor eerlijk, “Deze groep beslist niet, omdat niemand weet wie wat mag beslissen.” Je stelt een tabel met beslisbevoegdheden en toleranties op één A4 voor, en brengt de groep terug naar zes stemhebbende leden; de rest wordt adviseur. Je bouwt de volgende agenda op rond de drie besluiten, elk met opties, kosten en een advies, drie dagen vooraf verstuurd. Je spreekt de twee leden die eerder blokkeerden vooraf en vraagt of ze mandaat hebben. Je opent het overleg met: “Vandaag hebben we drie besluiten nodig.” En je legt ze vast, met eigenaren en datums.',
       },
       said: 'Wat je hoort in projecten: “Goede discussie. Laten we dit offline oppakken.”',
       recall: [
@@ -705,17 +705,17 @@ export default {
           q: 'Wat maakt notulen van een stuurgroep bruikbaar?',
           options: ['Een besluitenlijst: wat, wie, wanneer', 'Een volledig verslag van de hele discussie', 'De presentielijst met alle afmeldingen', 'Alle slides als bijlage erbij'],
           answer: 'Een besluitenlijst: wat, wie, wanneer',
-          why: 'Besluiten met eigenaren en data kun je opvolgen; discussies niet.',
+          why: 'Besluiten met eigenaren en datums kun je opvolgen; discussies niet.',
         },
         {
           q: 'Wanneer moet een projectleider escaleren?',
-          options: ['Pas als de tolerantie echt overschreden is, met de cijfers erbij', 'Telkens als de sponsor vraagt hoe het met het project gaat', 'Als een tolerantie overschreden is of binnen twee weken wordt, met opties', 'Alleen in het maandelijkse overleg, zodat de groep alles tegelijk ziet'],
+          options: ['Pas als de tolerantie echt overschreden is, met de cijfers erbij', 'Telkens als de sponsor vraagt hoe het met het project gaat', 'Als een tolerantie overschreden is of binnen twee weken wordt, met opties', 'Alleen in het maandelijkse overleg, zodat de hele groep alles tegelijk ziet'],
           answer: 'Als een tolerantie overschreden is of binnen twee weken wordt, met opties',
           why: 'Vroeg escaleren met opties laat ruimte om te handelen; laat escaleren meldt alleen schade.',
         },
         {
           q: 'Eén lid van de stuurgroep legt zich nooit ergens op vast. Wat is de meest waarschijnlijke reden?',
-          options: ['Hij is niet geïnteresseerd', 'Het overleg duurt te lang', 'Hij is het niet eens met het project', 'Hij mist mandaat van zijn eigen baas'],
+          options: ['Hij is niet geïnteresseerd', 'Het overleg duurt te lang', 'Hij is het stilletjes niet eens met het projectdoel', 'Hij mist mandaat van zijn eigen baas'],
           answer: 'Hij mist mandaat van zijn eigen baas',
           why: 'Wie zijn afdeling niet kan committeren, ontloopt besluiten; los het mandaat op, niet de persoon.',
         },
@@ -758,15 +758,15 @@ export default {
       pre: [
         {
           q: 'Een capexproject komt bij zijn goedkeuringsgate. De businesscase klopt, maar één offerte van een leverancier ontbreekt nog. Wat past het best?',
-          options: ['Stoppen, omdat niet aan elk gatecriterium is voldaan', 'Doorgaan, want die offerte komt er toch wel', 'Alle projecten in de wacht tot de volgende begrotingsronde', 'Een voorwaardelijke go: verder zodra de offerte er op een vaste datum is'],
-          answer: 'Een voorwaardelijke go: verder zodra de offerte er op een vaste datum is',
+          options: ['Stoppen, omdat niet aan elk gatecriterium is voldaan', 'Doorgaan, want die offerte komt er toch wel', 'Alle projecten in de wacht zetten tot de begrotingsronde van het najaar', 'Voorwaardelijke go: verder zodra de offerte er vóór een vaste datum is'],
+          answer: 'Voorwaardelijke go: verder zodra de offerte er vóór een vaste datum is',
           why: 'De case is gezond en één punt staat open, dus je keurt goed met een voorwaarde en een datum, in plaats van te stoppen of het te negeren.',
         },
       ],
       teach: [
-        'Een stage gate knipt een project op in fasen met een beslismoment ertussen, waar de poortwachters beslissen of er geld en mensen naar de volgende fase gaan. Robert Cooper ontwikkelde Stage-Gate in de jaren 80 voor productontwikkeling; de meeste fabrikanten gebruiken een versie ervan voor capex, investeringsuitgaven (capital expenditure): geld voor bezittingen die jaren meegaan, zoals machines en gebouwen.\n\npm.scaled laat gates in combinatie met agile zien bij productontwikkeling. Hier gaat het om investeringsbesluiten.',
+        'Een stage gate knipt een project op in fasen met een beslismoment ertussen, waar de poortwachters (gatekeepers) beslissen of er geld en mensen naar de volgende fase gaan. Robert Cooper ontwikkelde Stage-Gate in de jaren 80 voor productontwikkeling; de meeste fabrikanten gebruiken een versie ervan voor capex, investeringsuitgaven (capital expenditure): geld voor bezittingen die jaren meegaan, zoals machines en gebouwen.\n\npm.scaled laat gates in combinatie met agile zien bij productontwikkeling. Hier gaat het om investeringsbesluiten.',
         'Bij elke gate zijn er vier uitkomsten: go (de volgende fase financieren), kill (stoppen), hold (goed, maar nu geen geld of mensen) en recycle (een deel van de fase overdoen). Veel bedrijven kennen ook een voorwaardelijke go.\n\nDe gatecriteria liggen vooraf vast: knock-outeisen (must-meet) die een project eruit gooien (veiligheid, wetgeving, strategische fit) en wenseisen (should-meet) die gescoord worden (waarde, risico, terugverdientijd). Typische capexgates: idee, haalbaarheid, businesscase en goedkeuring, uitvoering, review na de opstart.',
-        'De goedkeuringsbevoegdheid legt vast wie hoeveel mag goedkeuren. Bijvoorbeeld: de plantmanager tot € 50k, het vestigingsmanagement tot € 250k, de groepsdirectie daarboven. De directie keurt goed bij de hoofdgate; daarna stuurt de fabriek binnen toleranties.\n\nLet op salamitactiek: één investering van € 400k opknippen in acht aanvragen van € 50k om onder iemands grens te blijven.',
+        'De goedkeuringsbevoegdheid (approval authority) legt vast wie hoeveel mag goedkeuren. Bijvoorbeeld: de plantmanager tot € 50k, het vestigingsmanagement tot € 250k, de groepsdirectie daarboven. De directie keurt goed bij de hoofdgate; daarna stuurt de fabriek binnen toleranties.\n\nLet op salamitactiek (salami slicing): één investering van € 400k opknippen in acht aanvragen van € 50k om onder iemands grens te blijven.',
         'Gates falen als ze nooit stoppen. Alles krijgt een go, de pijplijn loopt vol, en de gate wordt een stempel. Een gezonde trechter wordt smaller: meer ideeën bij de eerste gate dan projecten bij de goedkeuringsgate.\n\nHet uitgewerkte voorbeeld hieronder laat een gatebesluit zien met de terugverdientijd, de investering gedeeld door de jaarlijkse besparing, tegen de norm van de fabriek: de terugverdientijd die het bedrijf maximaal accepteert.',
         'De mensenkant: projectleiders beleven een gate als een examen. Publiceer de criteria en een gatechecklist vooraf, zodat er geen verrassingen zijn. Poortwachters moeten de mensen zijn die over het geld en de mensen gaan; anders maakt een go niks vrij.\n\nZo hoor je dat gates zwak zijn: “het is al besteld, we hebben alleen de handtekening nodig.” Scherpe vraag bij elke gate: “Wat zou ons hier laten zeggen: stoppen?”',
       ],
@@ -877,13 +877,13 @@ export default {
         },
         {
           q: 'Waarom sorteer je een directiestuk vooraf voor met sleutelfiguren?',
-          options: ['Zodat je het in het overleg helemaal niet hoeft te presenteren', 'Omdat de wet het voor elk directiebesluit voorschrijft', 'Zodat het stuk zelf korter en minder gedetailleerd kan', 'Besluiten vallen grotendeels vóór het overleg; voorkom verrassingen'],
+          options: ['Zodat je het in het overleg helemaal niet hoeft te presenteren', 'Omdat de wet het voor elk directiebesluit voorschrijft', 'Zodat het directiestuk zelf korter en veel minder gedetailleerd kan zijn', 'Besluiten vallen grotendeels vóór het overleg; voorkom verrassingen'],
           answer: 'Besluiten vallen grotendeels vóór het overleg; voorkom verrassingen',
           why: 'Verraste directieleden gaan in de verdediging; voorbereide leden beslissen.',
         },
         {
           q: 'Een directielid vraagt: “Is dit nu echt de prioriteit?” Wat is de beste reactie?',
-          options: ['De verborgen vergelijking benoemen: “Je vraagt of dit beter is dan X. Zo zit het.”', 'De belangrijkste voordelen van je project nog eens stelliger herhalen', 'Zeggen dat de sponsor al akkoord is met het voorstel', 'Beloven volgend kwartaal terug te komen met een vollere analyse'],
+          options: ['De verborgen vergelijking benoemen: “Je vraagt of dit beter is dan X. Zo zit het.”', 'De belangrijkste voordelen van je project nog een keer herhalen, en dan stelliger', 'Zeggen dat de sponsor al akkoord is met het voorstel', 'Beloven volgend kwartaal terug te komen met een vollere analyse'],
           answer: 'De verborgen vergelijking benoemen: “Je vraagt of dit beter is dan X. Zo zit het.”',
           why: 'Zo beantwoord je het echte bezwaar in plaats van de woorden.',
         },
@@ -931,10 +931,10 @@ export default {
         },
       ],
       teach: [
-        'Assurance is een onafhankelijke toets die de beslissers vertrouwen geeft dat een programma op koers ligt en eerlijk rapporteert. Het is iets anders dan een audit, die vooral terugkijkt naar naleving, en dan het PMO, dat het werk ondersteunt.\n\nMSP en PRINCE2 scheiden allebei assurance van de mensen die het werk doen: wie de voortgang rapporteert, hoort niet de enige te zijn die erover oordeelt.',
+        'Assurance is een onafhankelijke toets die de beslissers vertrouwen geeft dat een programma op koers ligt en eerlijk rapporteert. Een audit op naleving, die vooral terugkijkt, is er één vorm van. Het PMO, dat het werk ondersteunt, is daar meestal niet onafhankelijk genoeg voor.\n\nMSP en PRINCE2 scheiden allebei assurance van de mensen die het werk doen: wie de voortgang rapporteert, hoort niet de enige te zijn die erover oordeelt.',
         'Het Three Lines Model van het IIA, de internationale beroepsvereniging van interne auditors (update 2020): het management draait het werk en is eigenaar van de risico’s (eerste lijn, hier het programma); expertfuncties ondersteunen en dagen uit (tweede lijn: risk, kwaliteit, finance, vaak het PMO); interne audit geeft onafhankelijke zekerheid (derde lijn). De directie blijft eindverantwoordelijk voor governance.\n\nVoor een fabriek: wie zet vraagtekens bij het groen van het programma, en rapporteert die aan de programmamanager? Dan is het niet onafhankelijk.',
-        'De Gateway review komt van de Britse overheid (2001, nu uitgevoerd door de Infrastructure and Projects Authority): korte reviews door ervaren vakgenoten van buiten het programma op sleutelmomenten, van Gate 0 (strategische toets) tot Gate 5 (batenrealisatie), met een oordeel over het vertrouwen in de levering van groen tot rood.\n\nBedrijven nemen het idee over als gezondheidscheck vóór een groot besluit zoals een ERP-livegang: interviews, documenten, een oordeel en de belangrijkste aanbevelingen.',
-        'Het PMO, het project- of programmabureau (project management office), komt in de beschrijving van PMI in drie soorten: ondersteunend (sjablonen, rapportage), controlerend (eist dat methodes gevolgd worden) en sturend (leidt projecten zelf).\n\nEen PMO dat alleen statusslides verzamelt, voegt kosten toe, geen vertrouwen. Een goed PMO checkt de data achter de kleuren: data die verschoven zijn, mijlpalen die opnieuw gepland zijn, prognoses tegen werkelijkheid.',
+        'De Gateway-review komt van de Britse overheid (2001; nu uitgevoerd door NISTA, dat het overnam van de Infrastructure and Projects Authority): korte reviews door ervaren vakgenoten van buiten het programma op sleutelmomenten, van Gate 0 (strategische toets) tot Gate 5 (operationele review en batenrealisatie), elk met een slagingskans (delivery confidence) van groen tot rood.\n\nBedrijven nemen het idee over als gezondheidscheck (health check) vóór een groot besluit zoals een ERP-livegang. Hoe je zo’n review zelf leidt, staat in pm.stuck.',
+        'Het PMO, het project- of programmabureau (project management office), komt in de beschrijving van PMI in drie soorten: ondersteunend (sjablonen, rapportage), controlerend (eist dat methodes gevolgd worden) en sturend (leidt projecten zelf).\n\nEen PMO dat alleen statusslides verzamelt, voegt kosten toe, geen vertrouwen. Een goed PMO checkt de data achter de kleuren: datums die verschoven zijn, mijlpalen die opnieuw gepland zijn, prognoses tegen werkelijkheid.',
         'Waar experts over twisten: te veel assurance kweekt papierwerk en defensief rapporteren; te weinig laat watermeloenen bestaan. Een gangbare regel is assurance naar verhouding van omvang en risico, vooraf gepland, wat MSP een geïntegreerde aanpak van assurance noemt, zodat reviews niet allemaal in dezelfde maand vallen.\n\nScherpe vraag voor elke directie: “Wanneer heeft iemand van buiten het programma dit groen voor het laatst gecheckt?”',
       ],
       example: {
@@ -952,14 +952,14 @@ export default {
           why: 'Ondersteunen en uitdagen is de tweede lijn; onafhankelijke zekerheid is de rol van interne audit.',
         },
         {
-          q: 'Wat is het belangrijkste doel van een gateway review of gezondheidscheck?',
-          options: ['De stuurgroep voor één belangrijk overleg vervangen', 'Beslissers een onafhankelijke blik geven vóór een sleutelbesluit', 'De facturen van de leverancier tegen het contract controleren', 'Het projectteam trainen in de projectmethode van het bedrijf'],
+          q: 'Wat is het belangrijkste doel van een Gateway-review of gezondheidscheck?',
+          options: ['De stuurgroep voor één belangrijk overleg vervangen', 'Beslissers een onafhankelijke blik geven vóór een sleutelbesluit', 'De facturen en uren van de leverancier tegen het contract controleren', 'Het projectteam trainen in de projectmethode van het bedrijf'],
           answer: 'Beslissers een onafhankelijke blik geven vóór een sleutelbesluit',
           why: 'Het toetst gereedheid en vertrouwen van buitenaf, op het moment dat het ertoe doet.',
         },
         {
           q: 'Waarom is de eigen groene status van een programmamanager niet genoeg zekerheid?',
-          options: ['Wie het werk doet en erover rapporteert, heeft belang bij de uitkomst', 'Programmamanagers mogen zelf niet over de status rapporteren', 'Groene statussen in grote programma’s kloppen in de praktijk nooit', 'De directie accepteert alleen rapportages van het financeteam'],
+          options: ['Wie het werk doet en erover rapporteert, heeft belang bij de uitkomst', 'Programmamanagers mogen zelf niet over de status rapporteren', 'Groene statussen in grote programma’s kloppen in de praktijk eigenlijk nooit', 'De directie accepteert alleen rapportages van het financeteam'],
           answer: 'Wie het werk doet en erover rapporteert, heeft belang bij de uitkomst',
           why: 'Daar gaat onafhankelijkheid om: wie rapporteert, hoort niet de enige rechter te zijn.',
         },
@@ -998,7 +998,7 @@ export default {
       terms: [
         { term: 'Assurance', def: 'Een onafhankelijke toets die beslissers vertrouwen geeft dat een programma op koers ligt en eerlijk rapporteert.' },
         { term: 'Three Lines Model', def: 'Het model van het IIA voor rollen in governance: management, ondersteunende en uitdagende functies, en onafhankelijke interne audit.' },
-        { term: 'Gateway review', def: 'Een korte onafhankelijke review op een sleutelmoment, met een oordeel over het vertrouwen in de levering; uit de praktijk van de Britse overheid.' },
+        { term: 'Gateway-review', def: 'Een korte onafhankelijke review op een sleutelmoment, met een oordeel over de slagingskans; uit de praktijk van de Britse overheid.' },
         { term: 'Gezondheidscheck', def: 'Een eigen korte onafhankelijke review van de gereedheid of gezondheid van een programma vóór een sleutelbesluit (health check).' },
         { term: 'PMO', def: 'Project- of programmabureau: ondersteunt, controleert of stuurt projecten, afhankelijk van de soort.' },
       ],
@@ -1031,7 +1031,7 @@ export default {
       recall: [
         {
           q: 'Wie hoort eigenaar te zijn van de baten van een project?',
-          options: ['De projectleider die de verandering opleverde', 'De consultant die de oplossing ontwierp', 'De lijnmanager op wiens KPI of budget het landt', 'De afdeling finance die het resultaat boekt'],
+          options: ['De projectleider die de verandering opleverde', 'De consultant die de oplossing ontwierp', 'De lijnmanager op wiens KPI of budget het landt', 'De afdeling finance die het resultaat elke maand boekt'],
           answer: 'De lijnmanager op wiens KPI of budget het landt',
           why: 'De baten ontstaan in de lijn nadat het project klaar is, dus moet de lijn er eigenaar van zijn.',
         },
@@ -1051,7 +1051,7 @@ export default {
         },
         {
           q: 'De afzeggingen daalden terwijl er tegelijk een andere verandering liep. Hoe rapporteer je dat?',
-          options: ['Een geschat aandeel met onderbouwing, bijvoorbeeld 60 tot 70%', 'De hele daling claimen, want het project deed het meeste', 'Helemaal niks claimen, voor de zekerheid', 'Finance laten bepalen wat je over het resultaat zegt'],
+          options: ['Een geschat aandeel met onderbouwing, bijvoorbeeld 60 tot 70%', 'De hele daling claimen, want het project deed toch het meeste werk', 'Helemaal niks claimen, voor de zekerheid', 'Finance laten bepalen wat je over het resultaat zegt'],
           answer: 'Een geschat aandeel met onderbouwing, bijvoorbeeld 60 tot 70%',
           why: 'Een onderbouwde bandbreedte is geloofwaardig; een volledige claim wordt uit elkaar getrokken.',
         },
@@ -1100,22 +1100,22 @@ export default {
         },
       ],
       teach: [
-        'Een batenkaart (benefits map) laat zien hoe wat een programma oplevert tot zijn doelen leidt. John Ward en Elizabeth Daniel van Cranfield noemen het een benefits dependency network; de versie van Gerald Bradley lijkt erop.\n\nLees hem van rechts naar links: doelen (waarom), baten (meetbare winst), bedrijfsveranderingen (nieuwe manieren van werken) en middelen (wat de projecten opleveren, zoals een systeemmodule of een training).',
+        'Een batenkaart (benefits map) laat zien hoe wat een programma oplevert tot zijn doelen leidt. John Ward en Elizabeth Daniel van Cranfield noemen het een benefits dependency network; de versie van Gerald Bradley lijkt erop.\n\nLees hem van rechts naar links: doelen (waarom), baten (meetbare winst), bedrijfsveranderingen (business changes: nieuwe manieren van werken) en middelen (enablers: wat de projecten opleveren, zoals een systeemmodule of een training).',
         'Bouw hem achterstevoren. Begin bij het doel en vraag: aan welke baat zien we dat we er zijn? Wat moeten mensen anders doen voor die baat? Wat hebben ze nodig om dat te kunnen?\n\nEen middel zonder lijn naar een baat is een kandidaat om te schrappen, of er ontbreekt een verband. Een baat zonder bedrijfsverandering erachter is een wens.',
-        'Zet ook elke negatieve baat (dis-benefit) op de kaart: een nadeel dat iemand voelt, zoals planners die hun eigen spreadsheets kwijtraken of operators die meer moeten scannen. Geef elk een eigenaar, anders wordt het weerstand.\n\nVoor elke baat raadt MSP een batenprofiel aan: één A4 met de beschrijving, eigenaar, meetwijze, nulmeting, doel, wanneer hij verwacht wordt en waar hij van afhangt.',
+        'Zet ook elke negatieve baat (dis-benefit) op de kaart: een nadeel dat iemand voelt, zoals planners die hun eigen spreadsheets kwijtraken of operators die meer moeten scannen. Geef elk een eigenaar, anders wordt het weerstand.\n\nVoor elke baat raadt MSP een batenprofiel (benefits profile) aan: één A4 met de beschrijving, eigenaar, meetwijze, nulmeting, doel, wanneer hij verwacht wordt en waar hij van afhangt.',
         'Onderscheid tussenbaten, die vroeg zichtbaar zijn (meer orders op tijd gepland), van eindbaten, die later komen (lagere voorraad, betere leverbetrouwbaarheid). Volg de tussenbaten om vroeg te leren of de keten werkt.\n\npm.land behandelt baten voor één project. De kaart verdient haar plek bij programma’s, waar veel middelen een paar eindbaten voeden.',
         'Waar experts over twisten: kaarten kunnen uitgroeien tot posters zo groot als een muur die niemand leest. Veel praktijkmensen houden ze op één A4, met drie tot vijf eindbaten.\n\nZo zie je dat een kaart werkt: een raad die vraagt naar bedrijfsveranderingen, niet alleen naar livegangen van systemen. Scherpe vraag bij elke baat op de kaart: “Van welke bedrijfsverandering hangt deze af, en wie moet die maken?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een ERP-programma bij een maker van metalen onderdelen heeft als doel “€ 1,5 miljoen aan kasgeld vrijmaken”. Merijn bouwt de kaart met de supply chain manager, van rechts naar links.\n\nEindbaten: voorraad van € 6,0 naar € 4,8 miljoen, en leverbetrouwbaarheid van 82% naar 92%. Bedrijfsveranderingen: planners plannen wekelijks op de materiaalvoorstellen van het systeem, het magazijn telt elke dag een deel van de voorraad (cycle counting) in plaats van één keer per jaar, en inkopers bestellen op systeemvoorstellen. Middelen: de planningsmodule, een opgeschoonde artikelstam, training en een nieuwe planningsprocedure. Negatieve baten: inkopers verliezen wat vrijheid, en operators scannen elke pallet.\n\nDe uitwerking: de daling van de voorraad is € 1,2 miljoen kasgeld, eenmalig. De controller zet de jaarlijkse kosten van voorraad aanhouden op 15% van de waarde, dus de fabriek bespaart ook 0,15 × € 1,2 miljoen = € 180k per jaar. De supply chain manager is eigenaar van beide eindbaten.',
+        text: 'Een ERP-programma bij een maker van metalen onderdelen heeft als doel “meer dan € 1 miljoen aan kasgeld vrijmaken”. Merijn bouwt de kaart met de supply chain manager, van rechts naar links.\n\nEindbaten: voorraad van € 6,0 naar € 4,8 miljoen, en leverbetrouwbaarheid van 82% naar 92%. Bedrijfsveranderingen: planners plannen wekelijks op de materiaalvoorstellen van het systeem, het magazijn telt elke dag een deel van de voorraad (cycle counting) in plaats van één keer per jaar, en inkopers bestellen op systeemvoorstellen. Middelen: de planningsmodule, een opgeschoonde artikelstam, training en een nieuwe planningsprocedure. Negatieve baten: inkopers verliezen wat vrijheid, en operators scannen elke pallet.\n\nDe uitwerking: de daling van de voorraad is € 1,2 miljoen kasgeld, eenmalig. De controller zet de jaarlijkse kosten van voorraad aanhouden op 15% van de waarde, dus de fabriek bespaart ook 0,15 × € 1,2 miljoen = € 180k per jaar. De supply chain manager is eigenaar van beide eindbaten.',
       },
       said: 'Wat je hoort in programma’s die IT leidt: “De baat is realtime data.”',
       recall: [
         {
           q: 'Wat is op een batenkaart een bedrijfsverandering?',
-          options: ['Iets wat een project oplevert, zoals een nieuwe systeemmodule', 'Een nieuwe manier van werken die mensen moeten oppakken om de baat te krijgen', 'Een meetbare winst voor de organisatie, zoals een lagere voorraad', 'Een wijzigingsverzoek dat de scope van een van de projecten aanpast'],
-          answer: 'Een nieuwe manier van werken die mensen moeten oppakken om de baat te krijgen',
+          options: ['Iets wat een project oplevert, zoals een nieuwe systeemmodule', 'Een nieuwe werkwijze die mensen moeten oppakken om de baat te krijgen', 'Een meetbare winst voor de organisatie, zoals een lagere voorraad', 'Een formeel wijzigingsverzoek dat de scope van een van de projecten aanpast'],
+          answer: 'Een nieuwe werkwijze die mensen moeten oppakken om de baat te krijgen',
           why: 'Bedrijfsveranderingen zitten tussen middelen en baten in: mensen die anders werken.',
         },
         {
@@ -1182,11 +1182,11 @@ export default {
         },
       ],
       teach: [
-        'Een batenregister is één lijst voor het hele portfolio: elke baat met het project of de projecten, eigenaar, meetwijze, nulmeting, doel, het verwachte verloop in de tijd en het werkelijke resultaat. De controller tekent de definities af.\n\nHet laat de directie op één plek zien wat beloofd is, wat er binnenkomt en wat achterloopt. Zonder register vertelt elk project zijn eigen succesverhaal.',
-        'Dubbeltelling ontstaat als meerdere projecten dezelfde euro claimen: het omstel-, het OEE- en het onderhoudsproject claimen allemaal dezelfde vrijgekomen persuren. De regel: elke baat heeft één thuis, en een gedeelde baat wordt verdeeld met een sleutel die vóór de start is afgesproken.\n\nCheck de som tegen de resultatenrekening (P&L): tellen alle claims op tot € 2 miljoen maar bewogen de kostenregels € 0,8 miljoen, dan is een deel dubbel geteld of nooit geld geworden.',
-        'Baten groeien aan in plaats van op dag één vol te zijn, bijvoorbeeld 25% in het eerste kwartaal, 50% in het tweede, vol vanaf het derde. Volg de werkelijkheid tegen die aanloopcurve (ramp-up), niet tegen het volle bedrag.\n\nEen voorlopende indicator beweegt eerst en vertelt je vroeg of de keten werkt, zoals het aandeel orders dat in het systeem gepland wordt. Een achterlopende indicator laat later het eindresultaat zien, zoals voorraad of leverbetrouwbaarheid.',
+        'Een batenregister (benefits register) is één lijst voor het hele portfolio: elke baat met het project of de projecten, eigenaar, meetwijze, nulmeting, doel, het verwachte verloop in de tijd en het werkelijke resultaat. De controller tekent de definities af.\n\nHet laat de directie op één plek zien wat beloofd is, wat er binnenkomt en wat achterloopt. Zonder register vertelt elk project zijn eigen succesverhaal.',
+        'Dubbeltelling (double counting) ontstaat als meerdere projecten dezelfde euro claimen: het omstel-, het OEE- en het onderhoudsproject claimen allemaal dezelfde vrijgekomen persuren. De regel: elke baat heeft één thuis, en een gedeelde baat wordt verdeeld met een sleutel die vóór de start is afgesproken.\n\nCheck de som tegen de resultatenrekening (P&L): tellen alle claims op tot € 2 miljoen maar bewogen de kostenregels € 0,8 miljoen, dan is een deel dubbel geteld of nooit geld geworden.',
+        'Baten groeien aan in plaats van op dag één vol te zijn, bijvoorbeeld 25% in het eerste kwartaal, 50% in het tweede, vol vanaf het derde. Volg de werkelijkheid tegen die aanloopcurve (ramp-up), niet tegen het volle bedrag.\n\nEen voorlopende indicator (leading indicator) beweegt eerst en vertelt je vroeg of de keten werkt, zoals het aandeel orders dat in het systeem gepland wordt. Een achterlopende indicator (lagging indicator) laat later het eindresultaat zien, zoals voorraad of leverbetrouwbaarheid.',
         'Bekijk de baten bij elke gate en portfolioreview: klopt de businesscase nog? Baten slijten als volume de nulmeting verschuift of mensen terugvallen. pm.close laat zien hoe je corrigeert voor volume en je eigen effect apart zet.\n\nBehandel een tekort aan baten als een budgetoverschrijding, met een tolerantie en escalatie, in plaats van als voetnoot.',
-        'Waar experts over twisten: sommige directies tellen alleen besparingen die in de P&L zichtbaar zijn (hard savings); andere volgen ook vrijgekomen capaciteit en zachte winst, wat pm.land.savings uitlegt. Veel praktijkmensen zeggen dat het volgen van baten de meest verwaarloosde stap van portfoliomanagement is.\n\nScherpe vraag bij elke baat in het register: “Waar in de P&L zien we dit terug, en in welke maand?”',
+        'Waar experts over twisten: sommige directies tellen alleen besparingen die in de P&L zichtbaar zijn (hard savings); andere volgen ook vrijgekomen capaciteit en zachte winst, wat pm.land uitlegt. Veel praktijkmensen zeggen dat het volgen van baten de meest verwaarloosde stap van portfoliomanagement is.\n\nScherpe vraag bij elke baat in het register: “Waar in de P&L zien we dit terug, en in welke maand?”',
       ],
       example: {
         kind: 'faded',
@@ -1206,7 +1206,7 @@ export default {
         },
         {
           q: 'Wat is een voorlopende indicator voor de baten van een ERP-planningsmodule?',
-          options: ['De voorraadwaarde aan het eind van het boekjaar', 'De leverbetrouwbaarheid naar klanten over het hele jaar', 'De jaarlijkse afboeking van incourante voorraad', 'Het aandeel orders dat elke week in het systeem gepland wordt'],
+          options: ['De voorraadwaarde aan het eind van het boekjaar', 'De leverbetrouwbaarheid naar klanten, gemeten over het hele jaar', 'De jaarlijkse afboeking van incourante voorraad', 'Het aandeel orders dat elke week in het systeem gepland wordt'],
           answer: 'Het aandeel orders dat elke week in het systeem gepland wordt',
           why: 'Die beweegt vroeg en laat zien of de bedrijfsverandering plaatsvindt; de andere zijn eindresultaten.',
         },
@@ -1218,8 +1218,8 @@ export default {
         },
         {
           q: 'Hoe voorkom je dubbeltelling als twee projecten aan dezelfde persen werken?',
-          options: ['Het grootste van de twee projecten de hele besparing laten claimen', 'Beide claims rapporteren en de directie achteraf laten kiezen', 'Vóór de start afspreken wie eigenaar is van de baat, of een verdeelsleutel', 'Alleen het project tellen dat toevallig als eerste klaar was'],
-          answer: 'Vóór de start afspreken wie eigenaar is van de baat, of een verdeelsleutel',
+          options: ['Het grootste van de twee projecten de hele besparing laten claimen', 'Beide claims rapporteren en de directie achteraf laten kiezen', 'Vooraf afspreken wie eigenaar is van de baat, of een verdeelsleutel', 'Alleen het project tellen dat toevallig als eerste klaar was'],
+          answer: 'Vooraf afspreken wie eigenaar is van de baat, of een verdeelsleutel',
           why: 'Vooraf het thuis van een baat vastleggen voorkomt achteraf ruzie en opgeblazen totalen.',
         },
       ],
@@ -1269,8 +1269,8 @@ export default {
         'Businesscases voor grote investeringen beloven vaak meer dan ze waarmaken. De database van Bent Flyvbjerg (How Big Things Get Done, 2023, met Dan Gardner) telt zo’n 16.000 projecten: ruwweg 8,5% bleef binnen budget en planning, en zo’n 0,5% binnen budget, planning én baten.\n\nHij noemt dit de ijzeren wet (iron law): over budget, over tijd, onder de baten, keer op keer. Zijn data gaat vooral over grote projecten; ERP en capex op fabrieksniveau laten vaak een vergelijkbaar patroon zien, in mildere vorm.',
         'Er zijn twee verklaringen. Optimisme (optimism bias): mensen verwachten oprecht dat het beter gaat dan het gaat, de planningsdrogreden (planning fallacy) die Kahneman en Tversky beschreven. Strategisch mooier voorstellen (strategic misrepresentation): bewust rooskleurige getallen, om goedkeuring te krijgen als afdelingen om dezelfde capex strijden.\n\nDe remedies verschillen. Het eerste vraagt betere methodes; het tweede prikkels en verantwoording, zoals een batenhouder die de case tekent.',
         'Referentieklasseprognose (reference class forecasting), de buitenblik (outside view) van Kahneman zoals Flyvbjerg die toepast, beoordeelt een case op hoe vergelijkbare eerdere projecten het echt deden. Leverden je laatste vijf automatiseringsprojecten gemiddeld 60% van de beloofde baten, zeg dat dan en corrigeer de nieuwe case.\n\npm.plan leert het voor schattingen van tijd en kosten; hier gaat het om baten. Het Green Book van de Britse schatkist vraagt beoordelaars in dezelfde geest te corrigeren voor optimisme.',
-        'Toets een case bij de gate: wie schreef hem, en wie heeft baat bij goedkeuring? Welke aannames dragen de meeste waarde? Wat als de baat 30% lager is, of een half jaar later komt? Is er een batenhouder die tekent?\n\nHoud een evaluatie na de investering 12 tot 18 maanden na de opstart: werkelijkheid tegen de case. Voed het resultaat in je referentieklasse; zonder evaluatie leert niemand, en komt volgend jaar hetzelfde optimisme terug.',
-        'De mensenkant: de case van een manager toetsen kan voelen als hem een leugenaar noemen. Breng het als methode, niet als wantrouwen: “We passen dezelfde correctie op elke case toe.”\n\nWaar experts over twisten: critici van Flyvbjerg, zoals Love en Ahiaga-Dagbui, vinden dat hij het bewust misleiden overschat; hij houdt vol dat beide oorzaken echt zijn. Scherpe vraag bij elke businesscase: “Hoe deden de laatste drie projecten zoals dit het in werkelijkheid?”',
+        'Toets een case bij de gate: wie schreef hem, en wie heeft baat bij goedkeuring? Welke aannames dragen de meeste waarde? Wat als de baat 30% lager is, of een half jaar later komt? Is er een batenhouder die tekent?\n\nHoud een evaluatie na de investering (post-investment review) 12 tot 18 maanden na de opstart: werkelijkheid tegen de case. Voed het resultaat in je referentieklasse; zonder evaluatie leert niemand, en komt volgend jaar hetzelfde optimisme terug.',
+        'De mensenkant: de case van een manager toetsen kan voelen als hem een leugenaar noemen. Breng het als methode, niet als wantrouwen: “We passen dezelfde correctie op elke case toe.”\n\nWaar experts over twisten: critici zoals Love en Ahiaga-Dagbui (2018) zeggen dat overschrijdingen vooral komen door scopewijzigingen en fouten onderweg, en trekken in twijfel hoe Flyvbjerg ze meet; hij antwoordt dat optimisme en strategisch mooier voorstellen achter die wijzigingen zitten. Scherpe vraag bij elke businesscase: “Hoe deden de laatste drie projecten zoals dit het in werkelijkheid?”',
       ],
       example: {
         kind: 'faded',
@@ -1282,13 +1282,13 @@ export default {
       recall: [
         {
           q: 'Een manager blaast de baten bewust op om capex te winnen van andere afdelingen. Hoe heet dit?',
-          options: ['Strategisch mooier voorstellen', 'Optimisme', 'Regressie naar het gemiddelde', 'Scope creep'],
+          options: ['Strategisch mooier voorstellen', 'Optimisme', 'Ankeren op de cijfers van vorig jaar', 'Scope creep'],
           answer: 'Strategisch mooier voorstellen',
           why: 'Bewust opblazen om goedkeuring te krijgen; optimisme is de eerlijke variant.',
         },
         {
           q: 'Waar laat een referentieklasseprognose je naar kijken?',
-          options: ['Het gedetailleerde plan van dit project, taak voor taak', 'Het oordeel van de meest ervaren engineer op locatie', 'Hoe een groep vergelijkbare eerdere projecten echt uitpakte', 'De referentieklanten die de leverancier aandraagt'],
+          options: ['Het gedetailleerde plan van dit ene project, taak voor taak', 'Het oordeel van de meest ervaren engineer op locatie', 'Hoe een groep vergelijkbare eerdere projecten echt uitpakte', 'De referentieklanten die de leverancier aandraagt'],
           answer: 'Hoe een groep vergelijkbare eerdere projecten echt uitpakte',
           why: 'Het vervangt de binnenblik op dit project door het trackrecord van vergelijkbare projecten.',
         },
@@ -1302,7 +1302,7 @@ export default {
         },
         {
           q: 'Waarom houd je 12 tot 18 maanden na de opstart een evaluatie na de investering?',
-          options: ['Om te beslissen over de bonus van de projectmanager', 'Om de kostenplaats van het project formeel te sluiten', 'Om het project te herstarten als de baten tegenvallen', 'Om werkelijkheid met belofte te vergelijken voor nieuwe cases'],
+          options: ['Om te beslissen over de bonus van de projectmanager', 'Om de kostenplaats van het project formeel te sluiten', 'Om het project opnieuw op te starten als de baten tegenvallen', 'Om werkelijkheid met belofte te vergelijken voor nieuwe cases'],
           answer: 'Om werkelijkheid met belofte te vergelijken voor nieuwe cases',
           why: 'Zo bouw je de referentieklasse op die de volgende businesscases realistischer maakt.',
         },
