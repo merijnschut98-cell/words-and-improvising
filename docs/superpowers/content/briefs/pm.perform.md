@@ -89,3 +89,12 @@ Recalculations (new lessons):
 - signals: example values sum to 850, mean 85.0; moving ranges 4, 6, 4, 1, 5, 7, 4, 3, 3 = 37, average 4.11; limits 85 ± 2.66 × 4.11 = 85 ± 10.9, about 74.1 and 95.9; r0 85 + 2.66 × 4.0 = 95.64 (tolerance 0.1).
 
 Uncertain: Kaplan & Norton’s “twenty to twenty-five measures” is from the 1996 book as remembered, not rechecked; the exact title of Locke & Latham’s 2009 reply was not verified (the lesson names none); Mann’s hand-filled preference comes from secondary sources; the 1960s origin of hoshin kanri was not checked against Akao’s text.
+
+### v13 review fixes (2026-11-08)
+
+- Option lengths: the correct option was the unique longest in 27 of 63 multiple-choice questions (en) and 29 (nl). After rewording, the correct option's length rank (longest / 2nd / 3rd / shortest, ties counted downwards) is 12 / 18 / 16 / 17 in en and 11 / 18 / 15 / 19 in nl. Answer positions unchanged: 15 / 17 / 16 / 15, identical in en and nl; recall keys of the six existing lessons unchanged.
+- `kpicard`: the OEE block now points to Capacity and flow (Defining OEE honestly, and TEEP) instead of re-teaching planned-time choices; the claim that plants differ on counting breaks is gone (that lesson says almost everyone leaves breaks out). The situation now compares scrap, not OEE: plant A 1,800 thrown away + 1,400 reworked of 100,000 started; under plant B's rule (scrap + rework) / good parts = 3,200 / 98,200 = 3.26%, about 3.3%, against A's reported 1.8% and B's 3.1%.
+- `signals`: XmR named as the I-MR chart of Quality basics; upper range limit 3.268 × average moving range added (example: 3.268 × 4.11 = 13.4; largest moving range 7); run rule stated as Wheeler's eight, Quality basics' seven, some plants nine; the recall option is now nine in a row, a signal under all three counts.
+- `coach`: no longer teaches or tests Edmondson's four zones; it points to Leading people (Building psychological safety), and that lesson points back to `coach`. The zones recall question is replaced by one on the first question at a red number (answer position 3 kept).
+- `deming`: Locke & Latham's reply named: “Has goal setting gone wild, or have its attackers abandoned good scholarship?”, Academy of Management Perspectives 23(1), 2009, 17–23 (same issue as “Goals gone wild”, 6–16).
+- `campbell`: the OSHA memo (Fairfax, 12 March 2012: an incentive whose loss “might have dissuaded reasonable workers” from reporting can be unlawful discrimination) is now framed as US law.

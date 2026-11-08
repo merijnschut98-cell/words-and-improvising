@@ -89,8 +89,8 @@ export default {
       pre: [
         {
           q: 'A grid operator’s board goal is “shorter lead times for new connections” (lead time: the calendar time from the customer’s request to a working connection). A field crew asks what that means for them. What is the most useful answer?',
-          options: ['The one or two numbers in their own work that drive lead time', 'Work faster on every job, so the whole chain speeds up', 'The board goal, repeated clearly in every team meeting', 'A link to the annual report, where the goal is explained'],
-          answer: 'The one or two numbers in their own work that drive lead time',
+          options: ['The numbers in their own work that drive lead time', 'Work faster on every job, so the whole chain speeds up', 'The board goal, repeated clearly in every team meeting', 'A link to the annual report, where the goal is explained'],
+          answer: 'The numbers in their own work that drive lead time',
           why: 'A team can only move what is in its own work. A board goal repeated louder doesn’t tell anyone what to do on Monday.',
         },
       ],
@@ -125,14 +125,14 @@ export default {
         },
         {
           q: 'When do you stop breaking a KPI tree further down?',
-          options: ['After exactly three levels, whatever the goal is', 'When you reach a number a team can act on weekly', 'When the whole tree still fits on one slide', 'When every department has a branch of its own'],
-          answer: 'When you reach a number a team can act on weekly',
+          options: ['After exactly three levels, whatever the goal is', 'When you reach a number a team can act on every week', 'When the whole tree still fits on one slide', 'When every department has a branch of its own'],
+          answer: 'When you reach a number a team can act on every week',
           why: 'The point of the tree is to connect the goal to something a team can move. Going deeper adds detail nobody steers on.',
         },
         {
           q: 'Why is “cut lead time by 20%” a weak target for a single field crew?',
-          options: ['20% is too low to make a field crew change the way it works', 'It is a slice of the board number, not a driver the crew controls', 'Lead time can’t be measured reliably for a single field crew', 'Field crews should not get targets of their own, only the region'],
-          answer: 'It is a slice of the board number, not a driver the crew controls',
+          options: ['20% is too low to make a field crew change the way it works', 'A slice of the board number, not a driver the crew controls', 'Lead time can’t be measured reliably for a single field crew', 'Field crews should not get targets of their own, only the region'],
+          answer: 'A slice of the board number, not a driver the crew controls',
           why: 'A crew influences part of the lead time. Its target should be its own driver, such as jobs started on the planned day.',
         },
       ],
@@ -173,8 +173,8 @@ export default {
       pre: [
         {
           q: 'Two managers report scrap (parts thrown away because they are out of spec) for the same line and the same week: one says 2.1%, the other 3.4%. What is the most likely cause?',
-          options: ['One of them made a mistake when adding up the week’s figures', 'The line had an unusual week, so both figures are uncertain', 'The data system lost part of the week’s production records', 'They count different things under the same name, such as rework'],
-          answer: 'They count different things under the same name, such as rework',
+          options: ['One of them made a mistake when adding up the week’s figures', 'The line had an unusual week, so both figures are uncertain', 'The data system lost part of the week’s production records', 'They count different things under one name, such as rework'],
+          answer: 'They count different things under one name, such as rework',
           why: 'Most KPI disputes are definition disputes: one counts parts reworked (repaired and passed) as scrap, the other only parts thrown away.',
         },
       ],
@@ -182,8 +182,8 @@ export default {
         'An operational definition says exactly how a number is made: what counts, how it is counted, when, and from which source. Deming gave the idea a chapter in Out of the Crisis (1986): without one, two honest people measure the same week and get different numbers.\n\nTake “on time”. Against which date: the one the customer asked for, the one you first confirmed, or the last date you re-promised? Re-promising late orders makes on-time delivery look good while the customer still waits.',
         'Put it on a KPI definition card: one page per KPI. Name and purpose (which decision it serves), the formula, what is included and excluded, the source system, the frequency, the owner, the target and the trigger, and whether higher or lower is better.\n\nA rule of thumb from practice: if you can’t fill in the card, the number isn’t ready for the board.',
         'Most KPIs are ratios: a numerator, the count on top, divided by a denominator, the base underneath. Change the denominator and the number moves while the work stays the same: scrap per part started is lower than scrap per good part.\n\nAverages hide spread. An average lead time of 10 days can hide orders that wait 40. Add a percentile: the 90th percentile is the value that 90% of orders stay under.',
-        'OEE (overall equipment effectiveness, the share of planned time that became good parts at full speed) is the classic dispute. Is a planned changeover part of planned time? Are breaks? Is the ideal speed the nameplate figure or the best ever run? Each choice can move OEE by many points.\n\nThe formula is in Capacity and flow (OEE and the six big losses). Here the point is to write your choices on the card. When a definition changes, mark a break in the series on the chart.',
-        'What goes wrong: a definition changes silently when a new ERP system arrives; two plants compare OEE with different rules; nobody can find who decided what counts.\n\nExperts argue about one group-wide definition against a local fit: one definition makes plants comparable, local versions are easier to own.\n\nA sharp question for any KPI: “If I gave this definition to two people, would they get the same number from the same week?”',
+        'OEE (overall equipment effectiveness, the share of planned time that became good parts at full speed) is the classic dispute: whether changeovers sit inside planned time, and which ideal speed you use, can move it by many points. Capacity and flow (Defining OEE honestly, and TEEP) works through those choices.\n\nThe general point, for every KPI: write each choice on the card. When a definition changes, mark a break in the series on the chart, so the jump isn’t read as better or worse work.',
+        'What goes wrong: a definition changes silently when a new ERP system arrives; two plants compare scrap with different rules; nobody can find who decided what counts.\n\nExperts argue about one group-wide definition against a local fit: one definition makes plants comparable, local versions are easier to own.\n\nA sharp question for any KPI: “If I gave this definition to two people, would they get the same number from the same week?”',
       ],
       example: {
         kind: 'faded',
@@ -221,9 +221,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'A packaging group compares OEE across two plants: plant A reports 78%, plant B 61%. The group’s operations director wants plant B to copy plant A’s methods. You find that plant A leaves changeovers and breaks out of planned time; plant B counts them.',
+        scene: 'A packaging group compares scrap across two plants: plant A reports 1.8%, plant B 3.1%. The group’s operations director wants plant B to copy plant A’s methods. You find that plant A counts only parts thrown away, divided by parts started; plant B also counts parts reworked (repaired and passed), divided by good parts. Last month plant A started 100,000 parts: 1,800 were thrown away and 1,400 reworked.',
         ask: 'What do you say in the group’s monthly review?',
-        model: 'I’d say the gap is partly a definition gap, and show it: with plant B’s rules, plant A comes out at about 66%. Then propose one KPI definition card for the group, agreed by both plant managers, and a break in the series on both charts. After that the real gap is worth studying, and B can still learn from A’s changeovers.',
+        model: 'I’d say the gap is mostly a definition gap, and show it: with plant B’s rules, plant A comes out at about 3.3% (3,200 out of 98,200 good parts). Then propose one KPI definition card for the group, agreed by both plant managers, and a break in the series on both charts. After that the real differences are worth studying, and B can still learn from what A does well.',
         rubric: [
           'Shows the definition difference with numbers, without blaming plant A',
           'Proposes one written definition, agreed by both plants',
@@ -257,8 +257,8 @@ export default {
       pre: [
         {
           q: 'How does Kaplan and Norton’s strategy map connect the four perspectives of the balanced scorecard?',
-          options: ['As a chain of cause and effect, from learning to financial results', 'As four separate lists, each owned by a different director', 'As a ranking that shows which perspective matters most this year', 'As an organisation chart with a perspective for each department'],
-          answer: 'As a chain of cause and effect, from learning to financial results',
+          options: ['As a chain of cause and effect, from learning to finance', 'As four separate lists, each owned by a different director', 'As a ranking that shows which perspective matters most this year', 'As an organisation chart with a perspective for each department'],
+          answer: 'As a chain of cause and effect, from learning to finance',
           why: 'Skills and systems enable better processes, which give customers what they value, which drives financial results.',
         },
       ],
@@ -293,8 +293,8 @@ export default {
         },
         {
           q: 'Changeover time on the bottleneck fell by a third over six months, but lead time didn’t move. What is the best first conclusion?',
-          options: ['The changeover data must be wrong, so measure it again', 'Lead time is a weak measure and should leave the map', 'Six months is too short, so just wait another year', 'Check the arrow: something, like batch size, blocks the effect'],
-          answer: 'Check the arrow: something, like batch size, blocks the effect',
+          options: ['The changeover data must be wrong, so measure it again', 'Lead time is a weak measure and should leave the map', 'Six months is too short, so just wait another year', 'Check the arrow: batch size may block the effect'],
+          answer: 'Check the arrow: batch size may block the effect',
           why: 'Shorter changeovers only shorten lead time if batches get smaller too. The arrow is a hypothesis to test.',
         },
         {
@@ -340,7 +340,7 @@ export default {
       pre: [
         {
           q: 'Which of these goals meets all the SMART criteria?',
-          options: ['Improve quality on press line 2 this year, with the whole team', 'Make press line 2 the best line in the group by the end of the year', 'Cut scrap on press line 2 from 4% to 3% by 30 June; owner: line leader', 'Reduce scrap on press line 2 as much as possible, starting this month'],
+          options: ['Improve quality on press line 2 this year, together with the whole team', 'Make press line 2 the best line in the group by the end of the year', 'Cut scrap on press line 2 from 4% to 3% by 30 June; owner: line leader', 'Reduce scrap on press line 2 as much as possible, starting this month'],
           answer: 'Cut scrap on press line 2 from 4% to 3% by 30 June; owner: line leader',
           why: 'It names what, how much, who and by when. The others miss a number, an owner or a date.',
         },
@@ -441,14 +441,14 @@ export default {
       recall: [
         {
           q: 'According to Locke and Latham, a difficult target improves performance only when three things are in place. Which three?',
-          options: ['A bonus, a deadline and a dashboard', 'Acceptance, the skills to do it and feedback on progress', 'Approval from HR, the works council and the board', 'A range, a trigger and an owner'],
-          answer: 'Acceptance, the skills to do it and feedback on progress',
+          options: ['A bonus, a deadline and a dashboard', 'Acceptance, ability and feedback on progress', 'Approval from HR, the works council and the board', 'A range, a trigger and an owner'],
+          answer: 'Acceptance, ability and feedback on progress',
           why: 'Without acceptance people don’t try, without skills they can’t, and without feedback they don’t know where they stand.',
         },
         {
           q: 'Why use a target range instead of a single point?',
-          options: ['So normal week-to-week variation isn’t read as failure or success', 'Because a range is easier to reach than a single point', 'So the team can pick its own number within it each week', 'Because a single point can’t be measured precisely enough'],
-          answer: 'So normal week-to-week variation isn’t read as failure or success',
+          options: ['So normal variation isn’t read as failure or success', 'Because a range is easier to reach than a single point', 'So the team can pick its own number within it each week', 'Because a single point can’t be measured precisely enough'],
+          answer: 'So normal variation isn’t read as failure or success',
           why: 'Results vary. A range shows when a change is real and worth acting on.',
         },
         {
@@ -503,8 +503,8 @@ export default {
       pre: [
         {
           q: 'In hoshin kanri, what is catchball?',
-          options: ['A team game played at the annual kick-off to build commitment', 'Scoring each department against its targets every month', 'Splitting the plant’s target equally over all its departments', 'Passing draft targets back and forth between levels until both agree'],
-          answer: 'Passing draft targets back and forth between levels until both agree',
+          options: ['A team game played at the annual kick-off to build commitment', 'Scoring each department against its targets every month', 'Splitting the plant’s target equally over all its departments', 'Passing draft targets up and down until both levels agree'],
+          answer: 'Passing draft targets up and down until both levels agree',
           why: 'The draft goes down, the level below answers with what it can do and what it needs, and the draft goes up again.',
         },
       ],
@@ -533,13 +533,13 @@ export default {
         },
         {
           q: 'What sets a breakthrough objective apart from daily management?',
-          options: ['It is owned by the plant manager rather than by the team leaders', 'It needs a change in how the work is done, not only keeping to standard', 'It is reviewed every day at the tier 1 board rather than every month', 'It is measured in money, while daily management uses quantities'],
-          answer: 'It needs a change in how the work is done, not only keeping to standard',
+          options: ['It is owned by the plant manager rather than by the team leaders', 'It needs a new way of working, not only keeping to standard', 'It is reviewed every day at the tier 1 board rather than every month', 'It is measured in money, while daily management uses quantities'],
+          answer: 'It needs a new way of working, not only keeping to standard',
           why: 'Daily management keeps the normal work at its standard; a breakthrough needs the method itself to change.',
         },
         {
           q: 'A department says in catchball that a target can’t be reached with its current people. What is the best response?',
-          options: ['Keep the target; catchball only informs the level below', 'Lower the target quietly so the department stays motivated', 'Treat it as information: find the means or adjust the target openly', 'Report the department head to the plant manager for resisting'],
+          options: ['Keep the target; catchball only informs the level below', 'Lower the target quietly so the department stays motivated', 'Treat it as information: find the means or adjust the target openly', 'Report the department head to the plant manager for resisting the plan'],
           answer: 'Treat it as information: find the means or adjust the target openly',
           why: 'Catchball exists to surface exactly this. Either the means change or the target does, visibly.',
         },
@@ -594,7 +594,7 @@ export default {
       teach: [
         'W. Edwards Deming, the statistician who taught quality in Japan after the war, listed 14 points for management in Out of the Crisis (1986). Point 11: eliminate quotas on the floor, and eliminate management by objective, managing by numerical goals; substitute leadership.\n\nHis reasoning: in a stable process, one whose results vary only around a steady average, the system sets the result. A target without a method changes the pressure, not the result. His question was: by what method?',
         'The arithmetic behind it: in a stable process about half the weeks fall below the average, by nature. Set the target at the average and about half the weeks turn red, each one triggering explanations of noise. The background is in Quality basics (Variation: common and special cause).\n\nBrian Joiner, who worked with Deming, named three ways people meet a target: improving the system, distorting the system, or distorting the data. Only the first helps, and it needs a method.',
-        'This seems to clash with goal-setting research, from the targets lesson. In “Goals gone wild” (2009), Ordóñez and colleagues listed side effects of goals: narrow focus, more risk-taking, cheating. Locke and Latham replied the same year that the critics had overstated the harm.\n\nA workable reconciliation: specific, hard goals help when people control the means and the method is known. They hurt when the result is mostly set by the system around them.',
+        'This seems to clash with the targets lesson. In “Goals gone wild” (2009), Ordóñez and colleagues listed side effects of goals: narrow focus, more risk-taking, cheating. Locke and Latham replied in the same issue, in “Has goal setting gone wild, or have its attackers abandoned good scholarship?”, that the harm was overstated.\n\nA workable reconciliation: specific, hard goals help when people control the means and the method is known. They hurt when the result is mostly set by the system around them.',
         'Stretch goals, targets far beyond anything achieved, need extra care. Sitkin and colleagues (2011) described a paradox: the organisations that could best use them, with recent success and spare resources, use them least, while struggling ones use them most and get hurt.\n\nIn practice a stretch goal needs resources, an approach that allows learning, and permission to miss along the way. Hoshin kanri, at level 3, ties every target to its means for this reason.',
         'What goes wrong: “last year minus ten percent” for every plant; a manager who bans red from the board; teams that hit the target exactly, month after month, a strong hint of distorting the data.\n\nExperts still argue about Deming and targets; many lean practitioners keep targets, but only with a method attached.\n\nA sharp question for any new target: “By what method?”',
       ],
@@ -695,8 +695,8 @@ export default {
         },
         {
           q: 'Which of these is a good commitment at the end of a performance conversation?',
-          options: ['“We’ll all try harder next week and keep a close eye on the planning”', '“Mark checks materials with the warehouse every Thursday; we review it next week”', '“Everyone pays more attention to the planning, starting with tomorrow’s shift”', '“We’ll discuss it again at next month’s review, with the whole team there”'],
-          answer: '“Mark checks materials with the warehouse every Thursday; we review it next week”',
+          options: ['“We’ll all try harder next week and keep a close eye on the planning”', '“Mark checks materials with the warehouse on Thursdays; we review next week”', '“Everyone pays more attention to the planning, starting with tomorrow’s shift”', '“We’ll discuss it again at next month’s review, with the whole team there”'],
+          answer: '“Mark checks materials with the warehouse on Thursdays; we review next week”',
           why: 'It has an owner, a date and a way to check whether it worked. The others have none of these.',
         },
         {
@@ -751,8 +751,8 @@ export default {
       pre: [
         {
           q: 'A customer service team is rewarded for short average call times. What is a likely side effect?',
-          options: ['Agents end calls before the problem is solved, so customers call back', 'Customers get better help, because agents get to the point faster', 'Fewer customers call, because answers are quicker to get', 'Nothing much changes, because agents ignore the reward'],
-          answer: 'Agents end calls before the problem is solved, so customers call back',
+          options: ['Agents hang up before the problem is solved, so customers call back', 'Customers get better help, because agents get to the point faster', 'Fewer customers call, because answers are quicker to get', 'Nothing much changes, because agents ignore the reward'],
+          answer: 'Agents hang up before the problem is solved, so customers call back',
           why: 'The cheapest way to shorten calls is to end them early. The number improves while the service gets worse.',
         },
       ],
@@ -833,14 +833,14 @@ export default {
       pre: [
         {
           q: 'A plant pays a team bonus for every month without a recordable injury (one serious enough to be registered by law). What is the main risk?',
-          options: ['People take fewer risks, so production slows down', 'The safety officer gets more work at the end of each month', 'Injuries go unreported, so the number looks better than safety is', 'Teams compete with each other instead of helping'],
-          answer: 'Injuries go unreported, so the number looks better than safety is',
+          options: ['People take fewer risks, so production slows down', 'The safety officer gets more work at the end of each month', 'Injuries go unreported, so the number flatters safety', 'Teams compete with each other instead of helping'],
+          answer: 'Injuries go unreported, so the number flatters safety',
           why: 'The cheapest way to keep the bonus is to keep injuries off the record. The number improves; the risks stay.',
         },
       ],
       teach: [
         'Campbell’s law comes from social scientist Donald T. Campbell, in a paper from the mid-1970s, published in 1979: the more a number is used for important decisions, the more it is open to corruption pressures, and the more it distorts the very work it was meant to monitor.\n\nGoodhart’s law, from the previous lesson, says the number stops meaning what it did. Campbell adds that the work itself gets worse.',
-        'Safety shows it clearly. A bonus for injury-free months can make people hide injuries or record them as first aid. In a 2012 memo, OSHA, the US workplace safety regulator, warned that incentives whose loss would stop a reasonable worker from reporting an injury can break the law.\n\nWorse, near misses, events that could have hurt someone but didn’t, stop being reported too. The plant loses its early warnings exactly when it thinks it is safest.',
+        'Safety shows it clearly. A bonus for injury-free months can make people hide injuries or record them as first aid. In a 2012 memo, OSHA, the US workplace safety regulator, warned that incentives whose loss would stop a reasonable worker from reporting an injury can be unlawful discrimination under US law.\n\nWorse, near misses, events that could have hurt someone but didn’t, stop being reported too. The plant loses its early warnings exactly when it thinks it is safest.',
         'Robert Austin (Measuring and Managing Performance in Organizations, 1996) separates two uses of the same number. Informational measurement is for learning about and improving the process. Motivational measurement is for rewarding or punishing people.\n\nBecause almost no measure covers everything that matters, motivational use invites people to serve the measure instead of the work. Decide which use a number has, and say it out loud.',
         'Design for learning. Keep numbers you want more of away from pay: near misses reported, defects found by the team, problems escalated. Thank people for the count instead of punishing it.\n\nWatch pairs: if near misses fall together with injuries, suspect silence, not safety. And use leading safety numbers, such as safety walks done and actions closed, next to the lagging injury count.',
         'A reporting culture, where people raise problems early because it is safe and useful, takes years to build and one public blame session to break.\n\nExperts argue whether a number can serve both uses; many plants keep a few numbers for judging and many more for learning only.\n\nA sharp question: “If someone reported a problem tomorrow, would this number make him look bad?”',
@@ -917,8 +917,8 @@ export default {
       pre: [
         {
           q: 'In Amy Edmondson’s study of hospital nursing teams, the better teams reported more medication errors. What was her explanation?',
-          options: ['The better teams had more new nurses on their wards', 'The better teams worked longer shifts with more patients', 'Their managers counted errors more strictly than others', 'They felt safe to talk about errors, so more came to light'],
-          answer: 'They felt safe to talk about errors, so more came to light',
+          options: ['The better teams had more new nurses on their wards', 'The better teams worked longer shifts with more patients', 'Their managers counted errors more strictly than others', 'They felt safe to speak up, so more errors came to light'],
+          answer: 'They felt safe to speak up, so more errors came to light',
           why: 'They probably didn’t make more errors; they reported more, because it was safe to.',
         },
       ],
@@ -927,7 +927,7 @@ export default {
         'Observe before you coach. In a plant manager’s review, watch who talks most, how many questions he asks against statements he makes, his first words at a red number (“Who?” or “What happened?”), and whether anyone brings a problem that isn’t on the board yet.\n\nA simple observation sheet works: tally his questions and statements, and note his first words at each red.',
         'Give feedback privately and soon after, about specific behaviour and its effect: “When line 2 showed red, your first question was who was on shift. After that, nobody raised another problem.” Then ask what he wanted to achieve.\n\nThe basics are in Leading people (Feedback that lands); speaking up to someone senior is in Negotiating and holding your ground (Disagreeing with someone more senior).',
         'Agree one behaviour to try, not five. For example: at every red number, his first question is “What do we know so far?” Agree a small signal you may give in the meeting, and review together after two weeks.\n\nModel it yourself when you facilitate. Leader standard work, in Land (Leader standard work and the gemba walk), puts him in these meetings; your coaching makes that time count.',
-        'What goes wrong: the consultant becomes the leader’s bodyguard or his scold; feedback given in front of his team; only the juniors get coached.\n\nSome argue that safety means lower standards. Edmondson disagrees: high standards with low safety give an anxiety zone, and high standards with high safety a learning zone.\n\nA sharp question for the leader: “What did people stop telling you after the last review?”',
+        'What goes wrong: the consultant becomes the leader’s bodyguard or his scold; feedback given in front of his team; only the juniors get coached.\n\nSome argue that safety means lower standards. Edmondson disagrees: she pairs high safety with high standards. Her four zones and her toolkit for leaders are in Leading people (Building psychological safety).\n\nA sharp question for the leader: “What did people stop telling you after the last review?”',
       ],
       example: {
         kind: 'faded',
@@ -947,21 +947,21 @@ export default {
         },
         {
           q: 'How did Edmondson define psychological safety?',
-          options: ['A shared belief that the team is safe for interpersonal risk-taking', 'A plant record of a full year without any lost-time injury at all', 'A guarantee that nobody in the team is ever judged on results', 'An agreement that targets are never raised during the year'],
+          options: ['A shared belief that the team is safe for interpersonal risk-taking', 'A plant record of a full year without a single lost-time injury on site', 'A guarantee that nobody in the team is ever judged on results', 'An agreement that targets are never raised during the year'],
           answer: 'A shared belief that the team is safe for interpersonal risk-taking',
           why: 'It is about speaking up, admitting mistakes and raising problems, not about lower standards.',
         },
         {
           q: 'When do you give a plant manager feedback on how he ran the review?',
-          options: ['In the meeting itself, so that everyone sees the standard is high', 'At the end of the project, as a section in the final report', 'Privately and soon after, about specific behaviour and its effect', 'Only when he asks for it himself, so it isn’t pushy'],
-          answer: 'Privately and soon after, about specific behaviour and its effect',
+          options: ['In the meeting itself, so that everyone sees the standard is high', 'At the end of the project, as a section in the final report', 'Privately and soon, about specific behaviour and its effect', 'Only when he asks for it himself, so it isn’t pushy'],
+          answer: 'Privately and soon, about specific behaviour and its effect',
           why: 'Private keeps his face; soon keeps the memory fresh; specific makes it usable.',
         },
         {
-          q: 'According to Edmondson, what do high standards combined with high psychological safety create?',
-          options: ['A comfort zone', 'An anxiety zone', 'An apathy zone', 'A learning zone'],
-          answer: 'A learning zone',
-          why: 'High standards with low safety give anxiety; low standards with high safety give comfort; both low give apathy.',
+          q: 'You agree one behaviour with a plant manager for the next review. Which first question at a red number keeps people bringing problems?',
+          options: ['“Who was on that shift?”', '“Why didn’t anyone catch this?”', '“Who will fix this by Friday?”', '“What do we know so far?”'],
+          answer: '“What do we know so far?”',
+          why: 'A question about facts invites information. “Who?” and “why didn’t anyone?” teach people to hide the next red.',
         },
       ],
       situation: {
@@ -990,8 +990,8 @@ export default {
       terms: [
         { term: 'Psychological safety', def: 'A shared belief that the team is safe for interpersonal risk-taking, such as admitting a mistake (Edmondson, 1999).' },
         { term: 'Observation sheet', def: 'A simple tally of what a leader does in a meeting, such as questions against statements and first words at a red number.' },
-        { term: 'Learning zone', def: 'Edmondson’s name for high standards with high psychological safety.' },
-        { term: 'Anxiety zone', def: 'Edmondson’s name for high standards with low psychological safety: people work hard but hide problems.' },
+        { term: 'Interpersonal risk-taking', def: 'Doing something in a team that could make you look ignorant, incompetent or negative, such as admitting a mistake or bringing a red number.' },
+        { term: 'Leader standard work', def: 'A fixed list of what a leader does daily and weekly to check the process, such as attending reviews and walking the floor.' },
       ],
     },
     {
@@ -1034,8 +1034,8 @@ export default {
         },
         {
           q: 'A board shows a red day with no note or action next to it. What does that tell you?',
-          options: ['The team had a bad day and will catch up tomorrow', 'The target on the board is set too high for this team', 'The data on the board was probably entered wrongly', 'The board is being filled in, but nobody steers on it'],
-          answer: 'The board is being filled in, but nobody steers on it',
+          options: ['The team had a bad day and will catch up tomorrow', 'The target on the board is set too high for this team', 'The data on the board was probably entered wrongly', 'The board is being filled in, but nobody is steering on it'],
+          answer: 'The board is being filled in, but nobody is steering on it',
           why: 'The rule is that every red gets an action or a note. Without one, the board is only a record.',
         },
         {
@@ -1082,8 +1082,8 @@ export default {
       pre: [
         {
           q: 'Six months after a consultant leaves, what most often kills a new performance review routine?',
-          options: ['The KPIs turn out to be the wrong ones once the consultant is gone', 'The licence for the dashboard software expires and nobody renews it', 'Nobody in the line owns the meeting, so it slips once the consultant goes', 'The targets were set too low, so the team loses interest in the meeting'],
-          answer: 'Nobody in the line owns the meeting, so it slips once the consultant goes',
+          options: ['The KPIs turn out to be the wrong ones once the consultant is gone', 'The licence for the dashboard software expires and nobody renews it', 'Nobody in the line owns the meeting, so it slowly slips away', 'The targets were set too low, so the team loses interest in the meeting'],
+          answer: 'Nobody in the line owns the meeting, so it slowly slips away',
           why: 'A routine run by an outsider stops when the outsider stops. Ownership by a line manager, someone who runs the daily work, is what keeps it alive.',
         },
       ],
@@ -1164,8 +1164,8 @@ export default {
       pre: [
         {
           q: 'What is a bowling chart, in a monthly performance review?',
-          options: ['A league table that ranks the teams on their monthly scores', 'A Pareto chart of the year’s biggest losses, largest first', 'A table of plan and actual per objective and month, in red or green', 'A chart of the daily output per shift over the last month'],
-          answer: 'A table of plan and actual per objective and month, in red or green',
+          options: ['A league table that ranks the teams on their monthly scores', 'A Pareto chart of the year’s biggest losses, largest first', 'A table of plan against actual per objective and month', 'A chart of the daily output per shift over the last month'],
+          answer: 'A table of plan against actual per objective and month',
           why: 'One row per objective, twelve monthly columns, like the score sheet in bowling.',
         },
       ],
@@ -1248,15 +1248,15 @@ export default {
       pre: [
         {
           q: 'A weekly KPI went from 86% to 83%. What do you need to know before calling it a real change?',
-          options: ['Who was in charge of the team in the week of the drop', 'What the annual target is for this KPI', 'What the number was in the same week last year', 'How much this number normally moves from week to week'],
-          answer: 'How much this number normally moves from week to week',
+          options: ['Who was in charge of the team in the week of the drop', 'What the annual target is for this KPI', 'What the number was in the same week last year', 'How much the number normally moves each week'],
+          answer: 'How much the number normally moves each week',
           why: 'A drop of three points means nothing if the number routinely moves by five.',
         },
       ],
       teach: [
         'Most red-green boards compare one point with a target. That mixes two questions: is it good enough (the target), and has anything changed (a signal)?\n\nDonald Wheeler’s Understanding Variation (1993) brings the control chart from the shop floor to management numbers, under the name process behaviour chart. The background on common and special causes is in Quality basics (Variation: common and special cause).',
-        'The usual version is the XmR chart: X for the individual values, mR for the moving range. Plot the weekly values. The moving range is the difference between each value and the one before it, ignoring the sign.\n\nThe natural process limits are the average plus and minus 2.66 times the average moving range. Values between them are this process’s routine noise. The 2.66 is a fixed factor for this chart, not a choice.',
-        'Two common rules give a signal: a point outside the natural process limits, or a run of eight points in a row on one side of the average. Some plants use extra rules.\n\nWithout a signal, don’t ask anyone to explain a single week. If the process is stable but its average or spread isn’t good enough, the system needs changing: an improvement project, not a meeting action.',
+        'The usual version is the XmR chart, called the I-MR chart in Quality basics: X for the individual values, mR for the moving range, the difference between each value and the one before it, ignoring the sign.\n\nThe natural process limits are the average plus and minus 2.66 times the average moving range; values between them are this process’s routine noise. The moving ranges get their own upper range limit: 3.268 times the average moving range. Both factors are fixed constants, not choices.',
+        'Two common rules give a signal: a point outside the limits, or a long run on one side of the average. Wheeler counts eight in a row; Quality basics teaches seven, and some plants use nine. Agree one count per plant and keep to it.\n\nWithout a signal, don’t ask anyone to explain a single week. If the process is stable but its average or spread isn’t good enough, the system needs changing: an improvement project, not a meeting action.',
         'In the review, replace “why was this week red?” with “is there a signal?” If yes, look for the special cause, with facts, cause and commitment from the performance conversation. If no, and the level isn’t good enough, change the system, as in Deming’s challenge (topic 2).\n\nRecompute the limits only after a real, explainable change. Compare the target with the limits: a target inside them will be met and missed by chance.',
         'What goes wrong: limits worked out from too few points; limits confused with targets or with the customer’s spec limits; charts drawn but red-green still deciding the discussion.\n\nExperts argue about the statistics. Wheeler holds that the limits work well enough for most data, even when it isn’t bell-shaped; others want more data or other charts.\n\nA sharp question: “Is this a signal, or just this process’s normal week?”',
       ],
@@ -1264,7 +1264,7 @@ export default {
         kind: 'faded',
         text: 'Weekly on-time delivery at a machining plant over 10 weeks: 86, 82, 88, 84, 85, 90, 83, 87, 84, 81%. The average is 85.0%. The nine moving ranges are 4, 6, 4, 1, 5, 7, 4, 3 and 3, which add up to 37, so the average moving range is about 4.1. The limits come out at about 74 and 96%.\n\nThe target is 85%. This week, 81%, is red. The plant manager asks the planning head to explain it at Thursday’s review.',
         ask: 'What do you say before Thursday?',
-        reveal: 'The 81 lies well within the limits of about 74 to 96, and there is no run of eight, so there is no signal: explaining this week means explaining noise.\n\nPoint out that a target equal to the average makes about half the weeks red by chance. If 85% on average isn’t good enough, or the spread of about 11 points either side is too wide, the plant needs a change in the system, such as a material readiness check, not a weekly explanation.',
+        reveal: 'The 81 lies well within the limits of about 74 to 96, no moving range comes near the upper range limit of about 13.4 (3.268 × 4.1), and there is no long run, so there is no signal: explaining this week means explaining noise.\n\nPoint out that a target equal to the average makes about half the weeks red by chance. If 85% on average isn’t good enough, or the spread of about 11 points either side is too wide, the plant needs a change in the system, such as a material readiness check, not a weekly explanation.',
       },
       said: 'What you hear in projects: “Before anyone explains this week, is it a signal or just a normal week for this process?”',
       recall: [
@@ -1284,14 +1284,14 @@ export default {
         },
         {
           q: 'By the usual rules, which pattern is a signal on an XmR chart?',
-          options: ['One week below the target line', 'Two weeks in a row lower than the week before', 'Eight weeks in a row above the average', 'The lowest week of the last month'],
-          answer: 'Eight weeks in a row above the average',
+          options: ['One week below the target line', 'Two weeks in a row lower than the week before', 'Nine weeks in a row above the average', 'The lowest week of the last month'],
+          answer: 'Nine weeks in a row above the average',
           why: 'A long run on one side is unlikely by chance. The others happen routinely in a stable process.',
         },
         {
           q: 'What do natural process limits tell you?',
-          options: ['The range of values the customer accepts from the plant', 'The range this process produces by itself, week to week', 'The target range the management team has agreed', 'The range the best plant in the group achieves'],
-          answer: 'The range this process produces by itself, week to week',
+          options: ['The range of values the customer accepts from the plant', 'The range this process produces by itself', 'The target range the management team has agreed', 'The range the best plant in the group achieves'],
+          answer: 'The range this process produces by itself',
           why: 'They are computed from the process’s own data: its voice, not the customer’s wish or the target.',
         },
       ],
@@ -1322,8 +1322,9 @@ export default {
         { term: 'Process behaviour chart', def: 'Wheeler’s name for a control chart used on management numbers, to tell signals from routine variation.' },
         { term: 'XmR chart', def: 'A chart of individual values (X) with their moving ranges (mR), the usual process behaviour chart for weekly or monthly KPIs.' },
         { term: 'Moving range', def: 'The difference between a value and the one before it, ignoring the sign.' },
+        { term: 'Upper range limit', def: 'The limit on the moving ranges: 3.268 times the average moving range; a jump above it is a signal too.' },
         { term: 'Natural process limits', def: 'The average plus and minus 2.66 times the average moving range: the range a stable process produces by itself.' },
-        { term: 'Signal', def: 'A pattern unlikely to come from routine variation, such as a point outside the limits or eight in a row on one side.' },
+        { term: 'Signal', def: 'A pattern unlikely to come from routine variation, such as a point outside the limits or a long run on one side of the average.' },
       ],
     },
   ],

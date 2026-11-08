@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'Een fabrieksdirecteur heeft 46 KPI’s (kritieke prestatie-indicatoren, de cijfers waarop een bedrijf stuurt) op één dashboard en bekijkt dat elke maand. Wat is het meest waarschijnlijke effect?',
-          options: ['Betere controle, want er wordt nooit iets belangrijks gemist', 'Snellere besluiten, want alle data staat op één plek', 'Betere resultaten, want elke afdeling voelt zich bekeken', 'Niemand weet waarop hij moet handelen, dus er gebeurt weinig'],
-          answer: 'Niemand weet waarop hij moet handelen, dus er gebeurt weinig',
+          options: ['Betere controle, want er wordt nooit iets belangrijks gemist', 'Snellere besluiten, want alle data staat op één plek', 'Betere resultaten, want elke afdeling voelt zich bekeken', 'Niemand weet waarop te handelen, dus er gebeurt weinig'],
+          answer: 'Niemand weet waarop te handelen, dus er gebeurt weinig',
           why: 'Mensen kunnen op een handvol cijfers sturen. Bij 46 wordt de aandacht zo verdeeld dat de meeste cijfers alleen gelezen worden.',
         },
       ],
@@ -89,8 +89,8 @@ export default {
       pre: [
         {
           q: 'Het directiedoel van een netbeheerder is “kortere doorlooptijden voor nieuwe aansluitingen” (doorlooptijd: de kalendertijd van de aanvraag van de klant tot een werkende aansluiting). Een ploeg in het veld vraagt wat dat voor hen betekent. Wat is het nuttigste antwoord?',
-          options: ['De een of twee cijfers in hun eigen werk die de doorlooptijd bepalen', 'Elke klus sneller doen, zodat de hele keten sneller wordt', 'Het directiedoel, duidelijk herhaald in elk teamoverleg', 'Een link naar het jaarverslag, waarin het doel wordt uitgelegd'],
-          answer: 'De een of twee cijfers in hun eigen werk die de doorlooptijd bepalen',
+          options: ['De cijfers in hun eigen werk die de doorlooptijd bepalen', 'Elke klus sneller doen, zodat de hele keten sneller wordt', 'Het directiedoel, duidelijk herhaald in elk teamoverleg', 'Een link naar het jaarverslag, waarin het doel wordt uitgelegd'],
+          answer: 'De cijfers in hun eigen werk die de doorlooptijd bepalen',
           why: 'Een team kan alleen bewegen wat in zijn eigen werk zit. Een directiedoel dat harder wordt herhaald, zegt niemand wat hij maandag moet doen.',
         },
       ],
@@ -125,14 +125,14 @@ export default {
         },
         {
           q: 'Wanneer stop je met het verder opdelen van een KPI-boom?',
-          options: ['Na precies drie niveaus, wat het doel ook is', 'Als een team wekelijks op het cijfer kan handelen', 'Als de hele boom nog net op één slide past', 'Als elke afdeling een eigen tak in de boom heeft'],
-          answer: 'Als een team wekelijks op het cijfer kan handelen',
+          options: ['Na precies drie niveaus, wat het doel ook is', 'Als een team wekelijks op het cijfer kan sturen', 'Als de hele boom nog net op één slide past', 'Als elke afdeling een eigen tak in de boom heeft'],
+          answer: 'Als een team wekelijks op het cijfer kan sturen',
           why: 'De boom moet het doel verbinden met iets wat een team kan bewegen. Dieper gaan voegt detail toe waar niemand op stuurt.',
         },
         {
           q: 'Waarom is “doorlooptijd 20% omlaag” een zwak doel voor één ploeg in het veld?',
-          options: ['20% is te weinig om een veldploeg echt anders te laten gaan werken', 'Het is een plakje van het directiecijfer, geen driver van de ploeg zelf', 'Doorlooptijd is voor één ploeg niet betrouwbaar genoeg te meten', 'Ploegen horen geen eigen doelen te hebben, alleen de regio'],
-          answer: 'Het is een plakje van het directiecijfer, geen driver van de ploeg zelf',
+          options: ['20% is te weinig om een veldploeg echt anders te laten gaan werken', 'Een plakje van het directiecijfer, geen driver van de ploeg zelf', 'Doorlooptijd is voor één ploeg niet betrouwbaar genoeg te meten', 'Ploegen horen geen eigen doelen te hebben, alleen de regio'],
+          answer: 'Een plakje van het directiecijfer, geen driver van de ploeg zelf',
           why: 'Een ploeg beïnvloedt maar een deel van de doorlooptijd. Haar doel moet haar eigen driver zijn, zoals klussen gestart op de geplande dag.',
         },
       ],
@@ -173,8 +173,8 @@ export default {
       pre: [
         {
           q: 'Twee managers rapporteren de uitval (scrap: stuks die weg moeten omdat ze buiten de maat zijn) van dezelfde lijn in dezelfde week: de een zegt 2,1%, de ander 3,4%. Wat is de meest waarschijnlijke oorzaak?',
-          options: ['Een van beiden heeft zich vergist bij het optellen van de week', 'De lijn had een ongewone week, dus beide cijfers zijn onzeker', 'Het datasysteem is een deel van de productieregistratie kwijt', 'Ze tellen onder dezelfde naam iets anders, bijvoorbeeld herstelwerk'],
-          answer: 'Ze tellen onder dezelfde naam iets anders, bijvoorbeeld herstelwerk',
+          options: ['Een van beiden heeft zich vergist bij het optellen van de week', 'De lijn had een ongewone week, dus beide cijfers zijn onzeker', 'Het datasysteem is een deel van de productieregistratie kwijt', 'Ze tellen onder één naam iets anders, zoals herstelwerk'],
+          answer: 'Ze tellen onder één naam iets anders, zoals herstelwerk',
           why: 'De meeste KPI-discussies zijn definitiediscussies: de een telt herstelde stuks (rework) mee als uitval, de ander alleen weggegooide stuks.',
         },
       ],
@@ -182,8 +182,8 @@ export default {
         'Een operationele definitie zegt precies hoe een cijfer tot stand komt: wat telt, hoe je telt, wanneer en uit welke bron. Deming gaf het idee een hoofdstuk in Out of the Crisis (1986): zonder zo’n definitie meten twee eerlijke mensen dezelfde week en krijgen ze verschillende cijfers.\n\nNeem “op tijd”. Tegen welke datum: de datum die de klant vroeg, de datum die je eerst bevestigde, of de laatste nieuwe toezegging? Late orders opnieuw toezeggen laat de leverbetrouwbaarheid mooi ogen terwijl de klant nog steeds wacht.',
         'Zet het op een KPI-kaart: één pagina per KPI. Naam en doel (welk besluit het cijfer ondersteunt), de formule, wat er wel en niet meetelt, het bronsysteem, de frequentie, de eigenaar, het doel en de actiegrens, en of hoger of lager beter is.\n\nEen vuistregel uit de praktijk: als je de kaart niet kunt invullen, is het cijfer nog niet klaar voor het bord.',
         'De meeste KPI’s zijn verhoudingen: een teller, het getal bovenin, gedeeld door een noemer, de basis eronder. Verander de noemer en het cijfer beweegt terwijl het werk hetzelfde blijft: uitval per gestart stuk is lager dan uitval per goed stuk.\n\nGemiddelden verbergen spreiding. Een gemiddelde doorlooptijd (lead time) van 10 dagen kan orders verbergen die 40 dagen wachten. Voeg een percentiel toe: het 90e percentiel is de waarde waar 90% van de orders onder blijft.',
-        'OEE (overall equipment effectiveness: het deel van de geplande tijd dat goede stuks op volle snelheid opleverde) is het klassieke twistpunt. Hoort een geplande omstelling bij de geplande tijd? Pauzes? Is de ideale snelheid de typeplaatwaarde of de beste run ooit? Elke keuze kan OEE vele punten verschuiven.\n\nDe formule staat in Capaciteit en flow (OEE en de zes grote verliezen). Hier gaat het erom dat je je keuzes op de kaart zet. Verandert een definitie, zet dan een breuk in de reeks op de grafiek.',
-        'Wat misgaat: een definitie verandert stilletjes als er een nieuw ERP-systeem komt; twee fabrieken vergelijken OEE met verschillende regels; niemand weet meer wie bepaalde wat er meetelt.\n\nDeskundigen discussiëren over één definitie voor de hele groep tegenover een lokale variant: één definitie maakt fabrieken vergelijkbaar, een lokale versie is makkelijker om eigenaar van te zijn.\n\nEen scherpe vraag bij elke KPI: “Als ik deze definitie aan twee mensen geef, komen ze dan uit dezelfde week op hetzelfde cijfer?”',
+        'OEE (overall equipment effectiveness: het deel van de geplande tijd dat goede stuks op volle snelheid opleverde) is het klassieke twistpunt: of omstellingen binnen de geplande tijd vallen en welke ideale snelheid je neemt, kan OEE vele punten verschuiven. Capaciteit en flow (OEE eerlijk definiëren, en TEEP) loopt die keuzes door.\n\nHet algemene punt, voor elke KPI: zet elke keuze op de kaart. Verandert een definitie, zet dan een breuk in de reeks op de grafiek, zodat de sprong niet wordt gelezen als beter of slechter werk.',
+        'Wat misgaat: een definitie verandert stilletjes als er een nieuw ERP-systeem komt; twee fabrieken vergelijken uitval met verschillende regels; niemand weet meer wie bepaalde wat er meetelt.\n\nDeskundigen discussiëren over één definitie voor de hele groep tegenover een lokale variant: één definitie maakt fabrieken vergelijkbaar, een lokale versie is makkelijker om eigenaar van te zijn.\n\nEen scherpe vraag bij elke KPI: “Als ik deze definitie aan twee mensen geef, komen ze dan uit dezelfde week op hetzelfde cijfer?”',
       ],
       example: {
         kind: 'faded',
@@ -221,9 +221,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Een verpakkingsconcern vergelijkt de OEE van twee fabrieken: fabriek A rapporteert 78%, fabriek B 61%. De operationeel directeur van het concern wil dat fabriek B de methodes van fabriek A overneemt. Jij ontdekt dat fabriek A omstellingen en pauzes buiten de geplande tijd laat; fabriek B telt ze mee.',
+        scene: 'Een verpakkingsconcern vergelijkt de uitval van twee fabrieken: fabriek A rapporteert 1,8%, fabriek B 3,1%. De operationeel directeur van het concern wil dat fabriek B de methodes van fabriek A overneemt. Jij ontdekt dat fabriek A alleen weggegooide stuks telt, gedeeld door gestarte stuks; fabriek B telt ook herstelde stuks (rework: gerepareerd en goedgekeurd) mee, gedeeld door goede stuks. Vorige maand startte fabriek A 100.000 stuks: 1.800 gingen weg en 1.400 werden hersteld.',
         ask: 'Wat zeg je in het maandoverleg van het concern?',
-        model: 'Ik zou zeggen dat het verschil deels een definitieverschil is, en dat laten zien: met de regels van fabriek B komt fabriek A uit op zo’n 66%. Dan stel ik één KPI-kaart voor het concern voor, afgestemd met beide plantmanagers, en een breuk in de reeks op beide grafieken. Daarna is het echte verschil de moeite van onderzoeken waard, en kan B nog steeds leren van de omstellingen van A.',
+        model: 'Ik zou zeggen dat het verschil vooral een definitieverschil is, en dat laten zien: met de regels van fabriek B komt fabriek A uit op zo’n 3,3% (3.200 op 98.200 goede stuks). Dan stel ik één KPI-kaart voor het concern voor, afgestemd met beide plantmanagers, en een breuk in de reeks op beide grafieken. Daarna zijn de echte verschillen de moeite van onderzoeken waard, en kan B nog steeds leren van wat A goed doet.',
         rubric: [
           'Laat het definitieverschil zien met cijfers, zonder fabriek A de schuld te geven',
           'Stelt één opgeschreven definitie voor, afgestemd met beide fabrieken',
@@ -257,8 +257,8 @@ export default {
       pre: [
         {
           q: 'Hoe verbindt de strategiekaart van Kaplan en Norton de vier invalshoeken van de balanced scorecard?',
-          options: ['Als een keten van oorzaak en gevolg, van leren tot financieel resultaat', 'Als vier losse lijsten, elk van een andere directeur', 'Als een rangorde van welke invalshoek dit jaar het zwaarst telt', 'Als een organigram met een invalshoek per afdeling'],
-          answer: 'Als een keten van oorzaak en gevolg, van leren tot financieel resultaat',
+          options: ['Als een keten van oorzaak en gevolg, van leren tot financiën', 'Als vier losse lijsten, elk van een andere directeur', 'Als een rangorde van welke invalshoek dit jaar het zwaarst telt', 'Als een organigram met een invalshoek per afdeling'],
+          answer: 'Als een keten van oorzaak en gevolg, van leren tot financiën',
           why: 'Vaardigheden en systemen maken betere processen mogelijk, die klanten geven wat ze belangrijk vinden, wat de financiële resultaten drijft.',
         },
       ],
@@ -293,8 +293,8 @@ export default {
         },
         {
           q: 'De omsteltijd op de bottleneck daalde in zes maanden met een derde, maar de doorlooptijd bewoog niet. Wat is de beste eerste conclusie?',
-          options: ['De omsteldata moet fout zijn, dus meet het opnieuw', 'Doorlooptijd is een zwakke maatstaf en moet van de kaart', 'Zes maanden is te kort, dus wacht gewoon nog een jaar', 'Toets de pijl: iets, zoals de seriegrootte, blokkeert het effect'],
-          answer: 'Toets de pijl: iets, zoals de seriegrootte, blokkeert het effect',
+          options: ['De omsteldata moet fout zijn, dus meet het opnieuw', 'Doorlooptijd is een zwakke maatstaf en moet van de kaart', 'Zes maanden is te kort, dus wacht gewoon nog een jaar', 'Toets de pijl: de seriegrootte kan het effect blokkeren'],
+          answer: 'Toets de pijl: de seriegrootte kan het effect blokkeren',
           why: 'Kortere omstellingen verkorten de doorlooptijd alleen als de series ook kleiner worden. De pijl is een hypothese om te toetsen.',
         },
         {
@@ -340,7 +340,7 @@ export default {
       pre: [
         {
           q: 'Welk van deze doelen voldoet aan alle SMART-criteria?',
-          options: ['Dit jaar de kwaliteit op perslijn 2 verbeteren, met het hele team', 'Perslijn 2 eind dit jaar de beste lijn van de groep maken', 'Uitval op perslijn 2 van 4% naar 3% voor 30 juni; eigenaar: lijnleider', 'De uitval op perslijn 2 zo veel mogelijk verlagen, vanaf deze maand'],
+          options: ['Dit jaar de kwaliteit op perslijn 2 verbeteren, samen met het hele team', 'Perslijn 2 eind dit jaar de beste lijn van de groep maken', 'Uitval op perslijn 2 van 4% naar 3% voor 30 juni; eigenaar: lijnleider', 'De uitval op perslijn 2 zo veel mogelijk verlagen, vanaf deze maand'],
           answer: 'Uitval op perslijn 2 van 4% naar 3% voor 30 juni; eigenaar: lijnleider',
           why: 'Het noemt wat, hoeveel, wie en wanneer. De andere missen een getal, een eigenaar of een datum.',
         },
@@ -441,14 +441,14 @@ export default {
       recall: [
         {
           q: 'Volgens Locke en Latham werkt een moeilijk doel alleen als drie dingen geregeld zijn. Welke drie?',
-          options: ['Een bonus, een deadline en een dashboard', 'Acceptatie, de vaardigheid ervoor en feedback op de voortgang', 'Goedkeuring van HR, de ondernemingsraad en de directie', 'Een bandbreedte, een actiegrens en een eigenaar'],
-          answer: 'Acceptatie, de vaardigheid ervoor en feedback op de voortgang',
+          options: ['Een bonus, een deadline en een dashboard', 'Acceptatie, vermogen en feedback op de voortgang', 'Goedkeuring van HR, de ondernemingsraad en de directie', 'Een bandbreedte, een actiegrens en een eigenaar'],
+          answer: 'Acceptatie, vermogen en feedback op de voortgang',
           why: 'Zonder acceptatie proberen mensen het niet, zonder vaardigheden kunnen ze het niet, en zonder feedback weten ze niet waar ze staan.',
         },
         {
           q: 'Waarom werk je met een bandbreedte in plaats van één doelwaarde?',
-          options: ['Zodat gewone schommelingen niet als succes of mislukking gelden', 'Omdat een bandbreedte makkelijker te halen is dan één punt', 'Zodat het team elke week zelf een getal erbinnen kan kiezen', 'Omdat één waarde niet nauwkeurig genoeg te meten is'],
-          answer: 'Zodat gewone schommelingen niet als succes of mislukking gelden',
+          options: ['Zodat gewone schommelingen niet als succes of falen tellen', 'Omdat een bandbreedte makkelijker te halen is dan één punt', 'Zodat het team elke week zelf een getal erbinnen kan kiezen', 'Omdat één waarde niet nauwkeurig genoeg te meten is'],
+          answer: 'Zodat gewone schommelingen niet als succes of falen tellen',
           why: 'Resultaten schommelen. Een bandbreedte laat zien wanneer een verandering echt is en actie verdient.',
         },
         {
@@ -503,8 +503,8 @@ export default {
       pre: [
         {
           q: 'Wat is catchball in hoshin kanri?',
-          options: ['Een teamspel tijdens de jaarlijkse kick-off om betrokkenheid te kweken', 'Elke afdeling elke maand scoren op haar doelen', 'Het doel van de fabriek gelijk verdelen over alle afdelingen', 'Conceptdoelen heen en weer spelen tussen niveaus tot beide het eens zijn'],
-          answer: 'Conceptdoelen heen en weer spelen tussen niveaus tot beide het eens zijn',
+          options: ['Een teamspel tijdens de jaarlijkse kick-off om betrokkenheid te kweken', 'Elke afdeling elke maand scoren op haar doelen', 'Het doel van de fabriek gelijk verdelen over alle afdelingen', 'Conceptdoelen heen en weer spelen tot beide niveaus akkoord zijn'],
+          answer: 'Conceptdoelen heen en weer spelen tot beide niveaus akkoord zijn',
           why: 'Het concept gaat omlaag, het niveau eronder antwoordt met wat het kan en wat het nodig heeft, en het concept gaat weer omhoog.',
         },
       ],
@@ -533,14 +533,14 @@ export default {
         },
         {
           q: 'Wat onderscheidt een doorbraakdoel van dagelijkse sturing?',
-          options: ['De plantmanager is eigenaar in plaats van de teamleiders', 'Het vraagt een verandering in hoe het werk gaat, niet alleen standaard houden', 'Het wordt elke dag aan het tier 1-bord besproken in plaats van elke maand', 'Het wordt in geld gemeten, terwijl dagelijkse sturing aantallen gebruikt'],
-          answer: 'Het vraagt een verandering in hoe het werk gaat, niet alleen standaard houden',
+          options: ['De plantmanager is eigenaar in plaats van de teamleiders', 'Het vraagt een nieuwe werkwijze, niet alleen standaard houden', 'Het wordt elke dag aan het tier 1-bord besproken in plaats van elke maand', 'Het wordt in geld gemeten, terwijl dagelijkse sturing aantallen gebruikt'],
+          answer: 'Het vraagt een nieuwe werkwijze, niet alleen standaard houden',
           why: 'Dagelijkse sturing houdt het gewone werk op standaard; een doorbraak vraagt dat de werkwijze zelf verandert.',
         },
         {
           q: 'Een afdeling zegt in catchball dat een doel met de huidige mensen niet te halen is. Wat is de beste reactie?',
-          options: ['Het doel houden; catchball is alleen om het niveau eronder te informeren', 'Het doel stilletjes verlagen zodat de afdeling gemotiveerd blijft', 'Het als informatie behandelen: de middelen vinden of het doel open bijstellen', 'Het afdelingshoofd bij de plantmanager melden wegens weerstand'],
-          answer: 'Het als informatie behandelen: de middelen vinden of het doel open bijstellen',
+          options: ['Het doel houden; catchball is alleen om het niveau eronder te informeren', 'Het doel stilletjes verlagen zodat de afdeling gemotiveerd blijft', 'Als informatie behandelen: middelen vinden of het doel open bijstellen', 'Het afdelingshoofd bij de plantmanager melden wegens weerstand'],
+          answer: 'Als informatie behandelen: middelen vinden of het doel open bijstellen',
           why: 'Catchball is er precies om dit boven tafel te krijgen. Of de middelen veranderen, of het doel, zichtbaar.',
         },
         {
@@ -594,7 +594,7 @@ export default {
       teach: [
         'W. Edwards Deming, de statisticus die na de oorlog kwaliteit doceerde in Japan, zette in Out of the Crisis (1986) 14 punten voor management op een rij. Punt 11: schaf quota op de vloer af, en schaf sturen op doelstellingen (management by objective) af, managen met getalsdoelen; zet er leiderschap voor in de plaats.\n\nZijn redenering: in een stabiel proces, waarvan de resultaten alleen rond een vast gemiddelde schommelen, bepaalt het systeem het resultaat. Een doel zonder methode verandert de druk, niet het resultaat. Zijn vraag was: met welke methode?',
         'De rekensom erachter: in een stabiel proces valt ongeveer de helft van de weken onder het gemiddelde, vanzelf. Zet het doel op het gemiddelde en ongeveer de helft van de weken wordt rood, en elke rode week leidt tot uitleg van ruis. De achtergrond staat in Kwaliteit: de basis (Spreiding: gewone en speciale oorzaken).\n\nBrian Joiner, die met Deming werkte, noemde drie manieren waarop mensen een doel halen: het systeem verbeteren, het systeem vervormen, of de data vervormen. Alleen de eerste helpt, en die vraagt een methode.',
-        'Dat lijkt te botsen met het onderzoek naar doelen uit de les over doelen. In “Goals gone wild” (2009) zetten Ordóñez en collega’s de bijwerkingen van doelen op een rij: een smalle blik, meer risico nemen, valsspelen. Locke en Latham antwoordden datzelfde jaar dat de critici de schade overdreven.\n\nEen werkbare verzoening: specifieke, lastige doelen helpen als mensen de middelen in de hand hebben en de methode bekend is. Ze schaden als het resultaat vooral door het systeem eromheen wordt bepaald.',
+        'Dat lijkt te botsen met de les over doelen. In “Goals gone wild” (2009) zetten Ordóñez en collega’s de bijwerkingen van doelen op een rij: een smalle blik, meer risico nemen, valsspelen. Locke en Latham antwoordden in hetzelfde nummer, in “Has goal setting gone wild, or have its attackers abandoned good scholarship?”, dat de schade werd overdreven.\n\nEen werkbare verzoening: specifieke, lastige doelen helpen als mensen de middelen in de hand hebben en de methode bekend is. Ze schaden als het resultaat vooral door het systeem eromheen wordt bepaald.',
         'Stretchdoelen, doelen ver voorbij alles wat ooit gehaald is, vragen extra zorg. Sitkin en collega’s (2011) beschreven een paradox: de organisaties die ze het best kunnen gebruiken, met recent succes en ruimte in mensen en geld, gebruiken ze het minst, terwijl organisaties die het moeilijk hebben ze het meest gebruiken en zich eraan bezeren.\n\nIn de praktijk vraagt een stretchdoel middelen, een aanpak waarin je mag leren, en toestemming om onderweg te missen. Hoshin kanri, op niveau 3, koppelt daarom elk doel aan zijn middelen.',
         'Wat misgaat: “vorig jaar min tien procent” voor elke fabriek; een manager die rood van het bord verbant; teams die maand na maand precies het doel halen, een sterke aanwijzing dat iemand de data vervormt.\n\nDeskundigen discussiëren nog steeds over Deming en doelen; veel lean-praktijkmensen houden doelen, maar alleen met een methode erbij.\n\nEen scherpe vraag bij elk nieuw doel: “Met welke methode?”',
       ],
@@ -669,8 +669,8 @@ export default {
       pre: [
         {
           q: 'Het weekcijfer van een team is rood geworden, onder het doel op het bord. Waar hoort de eerste vraag in een goed prestatiegesprek over te gaan?',
-          options: ['Wie verantwoordelijk is voor het cijfer en waarom het gemist is', 'Hoe snel het team het cijfer weer groen kan krijgen', 'Waarom niemand de daling de weken ervoor zag aankomen', 'Wat de data laat zien: een echte verandering of een gewone week'],
-          answer: 'Wat de data laat zien: een echte verandering of een gewone week',
+          options: ['Wie verantwoordelijk is voor het cijfer en waarom het gemist is', 'Hoe snel het team het cijfer weer groen kan krijgen', 'Waarom niemand de daling de weken ervoor zag aankomen', 'Wat de data zegt: echte verandering of gewone week'],
+          answer: 'Wat de data zegt: echte verandering of gewone week',
           why: 'Eerst eens worden over de feiten. Over oorzaken of schuld praten voordat je weet of er echt iets veranderd is, verspilt het overleg.',
         },
       ],
@@ -695,8 +695,8 @@ export default {
         },
         {
           q: 'Welke van deze is een goede afspraak aan het eind van een prestatiegesprek?',
-          options: ['“We gaan volgende week allemaal beter ons best doen en letten goed op de planning”', '“Mark checkt elke donderdag het materiaal met het magazijn; volgende week bekijken we het”', '“Iedereen let vanaf de dienst van morgen beter op de planning van de klussen”', '“We hebben het er in het maandoverleg weer over, met het hele team erbij”'],
-          answer: '“Mark checkt elke donderdag het materiaal met het magazijn; volgende week bekijken we het”',
+          options: ['“We gaan volgende week allemaal beter ons best doen en letten goed op de planning”', '“Mark checkt op donderdag het materiaal met het magazijn; volgende week evalueren we”', '“Iedereen let vanaf de dienst van morgen beter op de planning van de klussen”', '“We hebben het er in het maandoverleg weer over, met het hele team erbij”'],
+          answer: '“Mark checkt op donderdag het materiaal met het magazijn; volgende week evalueren we”',
           why: 'Er zit een eigenaar, een moment en een manier om te checken of het werkt in. De andere hebben niks daarvan.',
         },
         {
@@ -751,8 +751,8 @@ export default {
       pre: [
         {
           q: 'Een klantenservice wordt beloond voor een korte gemiddelde gespreksduur. Wat is een waarschijnlijke bijwerking?',
-          options: ['Medewerkers hangen op voordat het probleem is opgelost, dus klanten bellen terug', 'Klanten worden beter geholpen, omdat medewerkers sneller ter zake komen', 'Er bellen minder klanten, omdat antwoorden sneller te krijgen zijn', 'Er verandert weinig, omdat medewerkers de beloning negeren'],
-          answer: 'Medewerkers hangen op voordat het probleem is opgelost, dus klanten bellen terug',
+          options: ['Medewerkers hangen te vroeg op, dus klanten bellen terug', 'Klanten worden beter geholpen, omdat medewerkers sneller ter zake komen', 'Er bellen minder klanten, omdat antwoorden sneller te krijgen zijn', 'Er verandert weinig, omdat medewerkers de beloning negeren'],
+          answer: 'Medewerkers hangen te vroeg op, dus klanten bellen terug',
           why: 'De goedkoopste manier om gesprekken korter te maken, is ze eerder beëindigen. Het cijfer wordt beter terwijl de service slechter wordt.',
         },
       ],
@@ -833,14 +833,14 @@ export default {
       pre: [
         {
           q: 'Een fabriek betaalt een teambonus voor elke maand zonder registreerbaar ongeval (een letsel dat ernstig genoeg is om wettelijk te registreren). Wat is het grootste risico?',
-          options: ['Mensen nemen minder risico, dus de productie gaat trager', 'De veiligheidskundige krijgt aan het eind van elke maand meer werk', 'Ongevallen worden niet gemeld, dus het cijfer oogt beter dan het is', 'Teams gaan met elkaar concurreren in plaats van elkaar te helpen'],
-          answer: 'Ongevallen worden niet gemeld, dus het cijfer oogt beter dan het is',
+          options: ['Mensen nemen minder risico, dus de productie gaat trager', 'De veiligheidskundige krijgt aan het eind van elke maand meer werk', 'Ongevallen worden niet gemeld, dus het cijfer flatteert', 'Teams gaan met elkaar concurreren in plaats van elkaar te helpen'],
+          answer: 'Ongevallen worden niet gemeld, dus het cijfer flatteert',
           why: 'De goedkoopste manier om de bonus te houden is ongevallen uit de registratie houden. Het cijfer verbetert; de risico’s blijven.',
         },
       ],
       teach: [
         'De wet van Campbell komt van sociaal wetenschapper Donald T. Campbell, uit een paper uit het midden van de jaren zeventig, gepubliceerd in 1979: hoe meer een cijfer wordt gebruikt voor belangrijke besluiten, hoe meer het bloot staat aan druk om het te vervalsen, en hoe meer het juist het werk verstoort dat het moest volgen.\n\nDe wet van Goodhart, uit de vorige les, zegt dat het cijfer zijn betekenis verliest. Campbell voegt toe dat het werk zelf slechter wordt.',
-        'Veiligheid laat het duidelijk zien. Een bonus voor maanden zonder ongeval kan mensen ertoe brengen letsel te verzwijgen of als EHBO-geval te registreren. In een memo uit 2012 waarschuwde OSHA, de Amerikaanse toezichthouder op arbeidsveiligheid, dat beloningen waarvan het verlies een redelijke werknemer ervan weerhoudt een ongeval te melden, in strijd met de wet kunnen zijn.\n\nErger: ook een bijna-ongeval, een voorval waarbij iemand gewond had kunnen raken maar dat niet gebeurde, wordt dan niet meer gemeld. De fabriek verliest haar vroege waarschuwingen juist als ze zich het veiligst waant.',
+        'Veiligheid laat het duidelijk zien. Een bonus voor maanden zonder ongeval kan mensen ertoe brengen letsel te verzwijgen of als EHBO-geval te registreren. In een memo uit 2012 waarschuwde OSHA, de Amerikaanse toezichthouder op arbeidsveiligheid, dat beloningen waarvan het verlies een redelijke werknemer ervan weerhoudt een ongeval te melden, onder de Amerikaanse wet onrechtmatige discriminatie kunnen zijn.\n\nErger: ook een bijna-ongeval, een voorval waarbij iemand gewond had kunnen raken, wordt dan niet meer gemeld. De fabriek verliest haar vroege waarschuwingen juist als ze zich het veiligst waant.',
         'Robert Austin (Measuring and Managing Performance in Organizations, 1996) onderscheidt twee toepassingen van hetzelfde cijfer. Informatief meten is om te leren over het proces en het te verbeteren. Motiverend meten is om mensen te belonen of te straffen.\n\nOmdat bijna geen maatstaf alles dekt wat ertoe doet, nodigt motiverend gebruik mensen uit de maatstaf te dienen in plaats van het werk. Besluit welke toepassing een cijfer heeft, en zeg het hardop.',
         'Ontwerp om te leren. Houd cijfers waar je er meer van wilt weg van beloning: gemelde bijna-ongevallen, fouten die het team zelf vond, geëscaleerde problemen. Bedank mensen voor het aantal in plaats van het te bestraffen.\n\nLet op paren: dalen de bijna-ongevallen samen met de ongevallen, vermoed dan stilte, geen veiligheid. En gebruik voorlopende veiligheidscijfers, zoals gelopen veiligheidsrondes en afgeronde acties, naast het achterlopende aantal ongevallen.',
         'Een meldcultuur, waarin mensen problemen vroeg melden omdat dat veilig en nuttig is, kost jaren om op te bouwen en één openbare afrekening om te breken.\n\nDeskundigen discussiëren of één cijfer beide toepassingen kan dienen; veel fabrieken houden een paar cijfers om te beoordelen en veel meer alleen om te leren.\n\nEen scherpe vraag: “Als iemand morgen een probleem meldt, zet dit cijfer hem dan in een slecht daglicht?”',
@@ -917,17 +917,17 @@ export default {
       pre: [
         {
           q: 'In de studie van Amy Edmondson naar verpleegteams in ziekenhuizen meldden de betere teams meer medicatiefouten. Wat was haar verklaring?',
-          options: ['De betere teams hadden meer nieuwe verpleegkundigen op hun afdeling', 'De betere teams draaiden langere diensten met meer patiënten', 'Hun leidinggevenden telden fouten strenger dan anderen', 'Ze voelden zich veilig om over fouten te praten, dus kwamen er meer boven'],
-          answer: 'Ze voelden zich veilig om over fouten te praten, dus kwamen er meer boven',
+          options: ['De betere teams hadden meer nieuwe verpleegkundigen op hun afdeling', 'De betere teams draaiden langere diensten met meer patiënten', 'Hun leidinggevenden telden fouten strenger dan anderen', 'Ze durfden fouten te melden, dus kwamen er meer boven'],
+          answer: 'Ze durfden fouten te melden, dus kwamen er meer boven',
           why: 'Waarschijnlijk maakten ze niet meer fouten; ze meldden er meer, omdat dat veilig was.',
         },
       ],
       teach: [
-        'Psychologische veiligheid is, in de definitie van Amy Edmondson uit 1999, het gedeelde gevoel dat het team veilig is om interpersoonlijk risico te nemen: je uitspreken, een fout toegeven, met een rood cijfer komen. Haar eerdere ziekenhuisstudie vond dat de betere verpleegteams meer medicatiefouten meldden, kennelijk omdat ze zich daar veilig genoeg voor voelden.\n\nIn een prestatieoverleg bepaalt de eerste reactie van de leidinggevende op rood of er rood blijft verschijnen.',
+        'Psychologische veiligheid is, in de definitie van Amy Edmondson uit 1999, de gedeelde overtuiging dat het team veilig is om interpersoonlijk risico te nemen: je uitspreken, een fout toegeven, met een rood cijfer komen. Haar eerdere ziekenhuisstudie vond dat de betere verpleegteams meer medicatiefouten meldden, kennelijk omdat ze zich daar veilig genoeg voor voelden.\n\nIn een prestatieoverleg bepaalt de eerste reactie van de leidinggevende op rood of er rood blijft verschijnen.',
         'Observeer voordat je coacht. Kijk in het overleg van een plantmanager wie het meest praat, hoeveel vragen hij stelt tegenover hoeveel uitspraken hij doet, wat zijn eerste woorden zijn bij een rood cijfer (“Wie?” of “Wat is er gebeurd?”), en of iemand met een probleem komt dat nog niet op het bord staat.\n\nEen simpel observatieformulier werkt: turf zijn vragen en uitspraken, en noteer zijn eerste woorden bij elk rood cijfer.',
         'Geef feedback onder vier ogen en kort erna, over specifiek gedrag en het effect ervan: “Toen lijn 2 rood stond, was je eerste vraag wie er in de dienst zat. Daarna bracht niemand meer een probleem in.” Vraag dan wat hij wilde bereiken.\n\nDe basis staat in Mensen leiden (Feedback die aankomt); je uitspreken tegenover iemand die hoger staat in Onderhandelen en voet bij stuk houden (Het oneens zijn met iemand die hoger staat).',
         'Spreek één gedrag af om te proberen, niet vijf. Bijvoorbeeld: bij elk rood cijfer is zijn eerste vraag “Wat weten we tot nu toe?” Spreek een klein signaal af dat je in het overleg mag geven, en kijk na twee weken samen terug.\n\nDoe het zelf voor als je begeleidt. Leiderstandaardwerk, in Landen (Leiderstandaardwerk en de gembawalk), zet hem in deze overleggen; jouw coaching zorgt dat die tijd telt.',
-        'Wat misgaat: de consultant wordt de lijfwacht of de criticus van de leidinggevende; feedback waar zijn team bij staat; alleen de junioren worden gecoacht.\n\nSommigen vinden dat veiligheid lagere normen betekent. Edmondson is het daar niet mee eens: hoge normen met weinig veiligheid geven een angstzone, hoge normen met veel veiligheid een leerzone.\n\nEen scherpe vraag aan de leidinggevende: “Wat zijn mensen je na het vorige overleg niet meer gaan vertellen?”',
+        'Wat misgaat: de consultant wordt de lijfwacht of de criticus van de leidinggevende; feedback waar zijn team bij staat; alleen de junioren worden gecoacht.\n\nSommigen vinden dat veiligheid lagere normen betekent. Edmondson is het daar niet mee eens: zij combineert veel veiligheid met hoge normen. Haar vier zones en haar gereedschap voor leidinggevenden staan in Mensen leiden (Psychologische veiligheid opbouwen).\n\nEen scherpe vraag aan de leidinggevende: “Wat zijn mensen je na het vorige overleg niet meer gaan vertellen?”',
       ],
       example: {
         kind: 'faded',
@@ -947,21 +947,21 @@ export default {
         },
         {
           q: 'Hoe definieerde Edmondson psychologische veiligheid?',
-          options: ['Het gedeelde gevoel dat het team veilig is om interpersoonlijk risico te nemen', 'Een fabrieksrecord van een heel jaar zonder één verzuimongeval', 'Een garantie dat niemand in het team ooit op resultaten wordt beoordeeld', 'Een afspraak dat doelen nooit halverwege het jaar worden verhoogd'],
-          answer: 'Het gedeelde gevoel dat het team veilig is om interpersoonlijk risico te nemen',
+          options: ['De gedeelde overtuiging dat het team veilig is voor interpersoonlijk risico', 'Een fabrieksrecord van een heel jaar zonder één verzuimongeval', 'Een garantie dat niemand in het team ooit op zijn resultaten wordt beoordeeld', 'Een afspraak dat doelen nooit halverwege het jaar worden verhoogd'],
+          answer: 'De gedeelde overtuiging dat het team veilig is voor interpersoonlijk risico',
           why: 'Het gaat om je uitspreken, fouten toegeven en problemen aankaarten, niet om lagere normen.',
         },
         {
           q: 'Wanneer geef je een plantmanager feedback op hoe hij het overleg leidde?',
-          options: ['In het overleg zelf, zodat iedereen ziet dat de lat hoog ligt', 'Aan het eind van het project, als hoofdstuk in het eindrapport', 'Onder vier ogen en kort erna, over specifiek gedrag en het effect', 'Alleen als hij er zelf om vraagt, zodat het niet opdringerig is'],
-          answer: 'Onder vier ogen en kort erna, over specifiek gedrag en het effect',
+          options: ['In het overleg zelf, zodat iedereen ziet dat de lat hoog ligt', 'Aan het eind van het project, als hoofdstuk in het eindrapport', 'Onder vier ogen en snel, over specifiek gedrag en het effect', 'Alleen als hij er zelf om vraagt, zodat het niet opdringerig is'],
+          answer: 'Onder vier ogen en snel, over specifiek gedrag en het effect',
           why: 'Onder vier ogen spaart zijn gezicht; kort erna houdt het geheugen vers; specifiek maakt het bruikbaar.',
         },
         {
-          q: 'Wat leveren hoge normen samen met veel psychologische veiligheid op, volgens Edmondson?',
-          options: ['Een comfortzone', 'Een angstzone', 'Een apathiezone', 'Een leerzone'],
-          answer: 'Een leerzone',
-          why: 'Hoge normen met weinig veiligheid geven angst; lage normen met veel veiligheid comfort; allebei laag geeft apathie.',
+          q: 'Je spreekt met een plantmanager één gedrag af voor het volgende overleg. Welke eerste vraag bij een rood cijfer zorgt dat mensen problemen blijven melden?',
+          options: ['“Wie stond er op die dienst?”', '“Waarom heeft niemand dit gezien?”', '“Wie lost dit voor vrijdag op?”', '“Wat weten we tot nu toe?”'],
+          answer: '“Wat weten we tot nu toe?”',
+          why: 'Een vraag naar feiten nodigt uit tot informatie. “Wie?” en “waarom heeft niemand?” leren mensen het volgende rood te verbergen.',
         },
       ],
       situation: {
@@ -988,10 +988,10 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit hoe de reactie van een leidinggevende op een rood cijfer bepaalt wat mensen hem de volgende keer vertellen.',
       terms: [
-        { term: 'Psychologische veiligheid', def: 'Het gedeelde gevoel dat het team veilig is om interpersoonlijk risico te nemen, zoals een fout toegeven (Edmondson, 1999).' },
+        { term: 'Psychologische veiligheid', def: 'De gedeelde overtuiging dat het team veilig is om interpersoonlijk risico te nemen, zoals een fout toegeven (Edmondson, 1999).' },
         { term: 'Observatieformulier', def: 'Een simpele turflijst van wat een leidinggevende in een overleg doet, zoals vragen tegenover uitspraken en eerste woorden bij een rood cijfer.' },
-        { term: 'Leerzone', def: 'Edmondsons naam voor hoge normen met veel psychologische veiligheid.' },
-        { term: 'Angstzone', def: 'Edmondsons naam voor hoge normen met weinig psychologische veiligheid: mensen werken hard maar verbergen problemen.' },
+        { term: 'Interpersoonlijk risico', def: 'Iets doen in een team waardoor je dom, onkundig of negatief kunt overkomen, zoals een fout toegeven of met een rood cijfer komen.' },
+        { term: 'Leiderstandaardwerk', def: 'Een vaste lijst van wat een leidinggevende dagelijks en wekelijks doet om het proces te checken, zoals overleggen bijwonen en over de vloer lopen.' },
       ],
     },
     {
@@ -1040,8 +1040,8 @@ export default {
         },
         {
           q: 'Waarom willen veel praktijkmensen het uur-per-uurbord met de hand aan de lijn ingevuld zien?',
-          options: ['Handgeschreven tellingen zijn nauwkeuriger dan machinetellingen', 'Wie het opschrijft, ziet de misser en kan dat uur nog bijsturen', 'Auditors eisen een papieren registratie van elk productie-uur', 'Het is goedkoper dan een scherm voor elke lijn kopen'],
-          answer: 'Wie het opschrijft, ziet de misser en kan dat uur nog bijsturen',
+          options: ['Handgeschreven tellingen zijn nauwkeuriger dan machinetellingen', 'Wie het opschrijft, ziet de misser en stuurt dat uur nog bij', 'Auditors eisen een papieren registratie van elk productie-uur', 'Het is goedkoper dan een scherm voor elke lijn kopen'],
+          answer: 'Wie het opschrijft, ziet de misser en stuurt dat uur nog bij',
           why: 'Het getal opschrijven maakt het gat persoonlijk en direct, dus de reactie komt binnen het uur.',
         },
       ],
@@ -1082,8 +1082,8 @@ export default {
       pre: [
         {
           q: 'Wat is zes maanden nadat een consultant is vertrokken de meest voorkomende reden dat een nieuw prestatieoverleg doodbloedt?',
-          options: ['De KPI’s blijken de verkeerde te zijn zodra de consultant weg is', 'De licentie van de dashboardsoftware verloopt en niemand verlengt hem', 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert zonder consultant', 'De doelen waren te laag, dus het team verliest de interesse in het overleg'],
-          answer: 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert zonder consultant',
+          options: ['De KPI’s blijken de verkeerde te zijn zodra de consultant weg is', 'De licentie van de dashboardsoftware verloopt en niemand verlengt hem', 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert', 'De doelen waren te laag, dus het team verliest de interesse in het overleg'],
+          answer: 'Niemand in de lijn is eigenaar van het overleg, dus het verwatert',
           why: 'Een overleg dat een buitenstaander draait, stopt als de buitenstaander stopt. Eigenaarschap bij een lijnmanager, iemand die het dagelijkse werk aanstuurt, houdt het in leven.',
         },
       ],
@@ -1164,8 +1164,8 @@ export default {
       pre: [
         {
           q: 'Wat is een bowlingkaart in een maandelijks prestatieoverleg?',
-          options: ['Een ranglijst die de teams rangschikt op hun maandscores', 'Een Pareto van de grootste verliezen van het jaar, de grootste eerst', 'Een tabel met plan en werkelijk per doel en maand, in rood of groen', 'Een grafiek van de dagproductie per dienst over de laatste maand'],
-          answer: 'Een tabel met plan en werkelijk per doel en maand, in rood of groen',
+          options: ['Een ranglijst die de teams rangschikt op hun maandscores', 'Een Pareto van de grootste verliezen van het jaar, de grootste eerst', 'Een tabel met plan tegen werkelijk per doel en maand', 'Een grafiek van de dagproductie per dienst over de laatste maand'],
+          answer: 'Een tabel met plan tegen werkelijk per doel en maand',
           why: 'Eén regel per doel, twaalf maandkolommen, zoals het scoreformulier bij bowlen.',
         },
       ],
@@ -1200,8 +1200,8 @@ export default {
         },
         {
           q: 'In het maandoverleg duikt een probleem op dat in de hele maand in geen enkel tier-overleg is genoemd. Wat zegt dat?',
-          options: ['Het escaleren tussen de dagelijkse overleggen werkt niet', 'Het maandoverleg doet zijn werk door problemen te vinden', 'Het probleem was te klein voor de dagelijkse overleggen', 'De plantmanager moet deze KPI elke week bekijken'],
-          answer: 'Het escaleren tussen de dagelijkse overleggen werkt niet',
+          options: ['Het escaleren tussen de dagoverleggen werkt niet', 'Het maandoverleg doet zijn werk door problemen te vinden', 'Het probleem was te klein voor de dagelijkse overleggen', 'De plantmanager moet deze KPI elke week bekijken'],
+          answer: 'Het escaleren tussen de dagoverleggen werkt niet',
           why: 'Problemen horen binnen dagen omhoog te gaan. Als ze eerst in het maandoverleg opduiken, zijn ze ergens blijven hangen.',
         },
         {
@@ -1248,15 +1248,15 @@ export default {
       pre: [
         {
           q: 'Een wekelijkse KPI ging van 86% naar 83%. Wat moet je weten voordat je het een echte verandering noemt?',
-          options: ['Wie er in de week van de daling de leiding over het team had', 'Wat het jaardoel voor deze KPI is', 'Wat het cijfer in dezelfde week vorig jaar was', 'Hoeveel dit cijfer normaal van week tot week beweegt'],
-          answer: 'Hoeveel dit cijfer normaal van week tot week beweegt',
+          options: ['Wie er in de week van de daling de leiding over het team had', 'Wat het jaardoel voor deze KPI is', 'Wat het cijfer in dezelfde week vorig jaar was', 'Hoeveel dit cijfer normaal per week schommelt'],
+          answer: 'Hoeveel dit cijfer normaal per week schommelt',
           why: 'Een daling van drie punten zegt niks als het cijfer gewoonlijk vijf punten beweegt.',
         },
       ],
       teach: [
         'De meeste rood-groenborden vergelijken één punt met een doel. Dat haalt twee vragen door elkaar: is het goed genoeg (het doel), en is er iets veranderd (een signaal)?\n\nDonald Wheeler brengt in Understanding Variation (1993) de regelkaart (control chart) van de werkvloer naar managementcijfers, onder de naam procesgedragkaart. De achtergrond over gewone en speciale oorzaken staat in Kwaliteit: de basis (Spreiding: gewone en speciale oorzaken).',
-        'De gangbare versie is de XmR-kaart: X voor de afzonderlijke waarden, mR voor het bewegend bereik (moving range). Zet de weekwaarden uit. Het bewegend bereik is het verschil tussen elke waarde en de waarde ervoor, zonder op het teken te letten.\n\nDe natuurlijke procesgrenzen zijn het gemiddelde plus en min 2,66 keer het gemiddelde bewegend bereik. Waarden daartussen zijn de gewone ruis van dit proces. De 2,66 is een vaste factor voor deze kaart, geen keuze.',
-        'Twee gangbare regels geven een signaal: een punt buiten de natuurlijke procesgrenzen, of een reeks van acht punten op rij aan één kant van het gemiddelde. Sommige fabrieken gebruiken extra regels.\n\nZonder signaal vraag je niemand om één week uit te leggen. Is het proces stabiel maar het gemiddelde of de spreiding niet goed genoeg, dan moet het systeem veranderen: een verbeterproject, geen actie uit het overleg.',
+        'De gangbare versie is de XmR-kaart, in Kwaliteit: de basis de I-MR-kaart genoemd: X voor de afzonderlijke waarden, mR voor het bewegend bereik (moving range), het verschil tussen elke waarde en de waarde ervoor, zonder op het teken te letten.\n\nDe natuurlijke procesgrenzen zijn het gemiddelde plus en min 2,66 keer het gemiddelde bewegend bereik; waarden daartussen zijn de gewone ruis van dit proces. Het bewegend bereik krijgt een eigen bovengrens (upper range limit): 3,268 keer het gemiddelde bewegend bereik. Beide factoren zijn vaste constanten, geen keuze.',
+        'Twee gangbare regels geven een signaal: een punt buiten de grenzen, of een lange reeks aan één kant van het gemiddelde. Wheeler telt acht op rij; Kwaliteit: de basis leert zeven, en sommige fabrieken gebruiken negen. Spreek per fabriek één aantal af en houd je eraan.\n\nZonder signaal vraag je niemand om één week uit te leggen. Is het proces stabiel maar het gemiddelde of de spreiding niet goed genoeg, dan moet het systeem veranderen: een verbeterproject, geen actie uit het overleg.',
         'Vervang in het overleg “waarom was deze week rood?” door “is er een signaal?” Zo ja, zoek de speciale oorzaak, met feiten, oorzaak en afspraak uit het prestatiegesprek. Zo nee, en het niveau is niet goed genoeg, verander dan het systeem, zoals in de uitdaging van Deming (onderwerp 2).\n\nHerbereken de grenzen alleen na een echte, verklaarbare verandering. Leg het doel naast de grenzen: een doel dat erbinnen ligt, haal en mis je bij toeval.',
         'Wat misgaat: grenzen berekend uit te weinig punten; grenzen verward met doelen of met de specificatiegrenzen van de klant; kaarten die er wel zijn, terwijl rood-groen nog steeds de discussie bepaalt.\n\nDeskundigen discussiëren over de statistiek. Wheeler vindt dat de grenzen voor de meeste data goed genoeg werken, ook als die niet klokvormig verdeeld zijn; anderen willen meer data of andere kaarten.\n\nEen scherpe vraag: “Is dit een signaal, of gewoon een normale week voor dit proces?”',
       ],
@@ -1264,7 +1264,7 @@ export default {
         kind: 'faded',
         text: 'De wekelijkse leverbetrouwbaarheid van een verspaningsbedrijf over 10 weken: 86, 82, 88, 84, 85, 90, 83, 87, 84, 81%. Het gemiddelde is 85,0%. De negen bewegende bereiken zijn 4, 6, 4, 1, 5, 7, 4, 3 en 3, samen 37, dus het gemiddelde bewegend bereik is ongeveer 4,1. De grenzen komen uit op ongeveer 74 en 96%.\n\nHet doel is 85%. Deze week, 81%, is rood. De plantmanager vraagt het hoofd planning het in het overleg van donderdag uit te leggen.',
         ask: 'Wat zeg je vóór donderdag?',
-        reveal: 'De 81 ligt ruim binnen de grenzen van ongeveer 74 tot 96, en er is geen reeks van acht, dus er is geen signaal: deze week uitleggen is ruis uitleggen.\n\nWijs erop dat een doel gelijk aan het gemiddelde bij toeval ongeveer de helft van de weken rood maakt. Is 85% gemiddeld niet goed genoeg, of is de spreiding van zo’n 11 punten naar beide kanten te groot, dan heeft de fabriek een verandering in het systeem nodig, zoals een materiaalgereedheidscheck, geen wekelijkse uitleg.',
+        reveal: 'De 81 ligt ruim binnen de grenzen van ongeveer 74 tot 96, geen bewegend bereik komt in de buurt van de bovengrens van ongeveer 13,4 (3,268 × 4,1), en er is geen lange reeks, dus er is geen signaal: deze week uitleggen is ruis uitleggen.\n\nWijs erop dat een doel gelijk aan het gemiddelde bij toeval ongeveer de helft van de weken rood maakt. Is 85% gemiddeld niet goed genoeg, of is de spreiding van zo’n 11 punten naar beide kanten te groot, dan heeft de fabriek een verandering in het systeem nodig, zoals een materiaalgereedheidscheck, geen wekelijkse uitleg.',
       },
       said: 'Wat je hoort in projecten: “Voordat iemand deze week uitlegt: is het een signaal, of gewoon een normale week voor dit proces?”',
       recall: [
@@ -1284,14 +1284,14 @@ export default {
         },
         {
           q: 'Welk patroon is volgens de gangbare regels een signaal op een XmR-kaart?',
-          options: ['Eén week onder de doellijn', 'Twee weken op rij lager dan de week ervoor', 'Acht weken op rij boven het gemiddelde', 'De laagste week van de afgelopen maand'],
-          answer: 'Acht weken op rij boven het gemiddelde',
+          options: ['Eén week onder de doellijn', 'Twee weken op rij lager dan de week ervoor', 'Negen weken op rij boven het gemiddelde', 'De laagste week van de afgelopen maand'],
+          answer: 'Negen weken op rij boven het gemiddelde',
           why: 'Een lange reeks aan één kant is bij toeval onwaarschijnlijk. De andere gebeuren gewoon in een stabiel proces.',
         },
         {
           q: 'Wat vertellen natuurlijke procesgrenzen je?',
-          options: ['De bandbreedte aan waarden die de klant van de fabriek accepteert', 'De bandbreedte die dit proces uit zichzelf levert, week na week', 'De bandbreedte van het doel die het managementteam heeft afgesproken', 'De bandbreedte die de beste fabriek van het concern haalt'],
-          answer: 'De bandbreedte die dit proces uit zichzelf levert, week na week',
+          options: ['De bandbreedte aan waarden die de klant van de fabriek accepteert', 'De bandbreedte die dit proces uit zichzelf levert', 'De bandbreedte van het doel die het managementteam heeft afgesproken', 'De bandbreedte die de beste fabriek van het concern haalt'],
+          answer: 'De bandbreedte die dit proces uit zichzelf levert',
           why: 'Ze worden berekend uit de eigen data van het proces: de stem van het proces, niet de wens van de klant of het doel.',
         },
       ],
@@ -1322,8 +1322,9 @@ export default {
         { term: 'Procesgedragkaart', def: 'Wheelers naam voor een regelkaart op managementcijfers (process behaviour chart), om signalen te onderscheiden van gewone schommelingen.' },
         { term: 'XmR-kaart', def: 'Een kaart van afzonderlijke waarden (X) met hun bewegend bereik (mR), de gangbare procesgedragkaart voor week- of maandcijfers.' },
         { term: 'Bewegend bereik', def: 'Het verschil tussen een waarde en de waarde ervoor, zonder op het teken te letten.' },
+        { term: 'Bovengrens', def: 'De grens voor het bewegend bereik (upper range limit): 3,268 keer het gemiddelde bewegend bereik; een sprong daarboven is ook een signaal.' },
         { term: 'Natuurlijke procesgrenzen', def: 'Het gemiddelde plus en min 2,66 keer het gemiddelde bewegend bereik: de bandbreedte die een stabiel proces uit zichzelf levert.' },
-        { term: 'Signaal', def: 'Een patroon dat onwaarschijnlijk uit gewone schommelingen komt, zoals een punt buiten de grenzen of acht op rij aan één kant.' },
+        { term: 'Signaal', def: 'Een patroon dat onwaarschijnlijk uit gewone schommelingen komt, zoals een punt buiten de grenzen of een lange reeks aan één kant van het gemiddelde.' },
       ],
     },
   ],
