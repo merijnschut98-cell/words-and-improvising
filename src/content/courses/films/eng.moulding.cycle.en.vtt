@@ -1,0 +1,289 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.925
+How does injection moulding work?
+
+2
+00:00:03.475 --> 00:00:06.192
+This machine makes plastic bottle caps.
+
+3
+00:00:06.741 --> 00:00:09.411
+It runs the same round again and again.
+
+4
+00:00:10.311 --> 00:00:12.378
+On the left is the clamp unit.
+
+5
+00:00:12.928 --> 00:00:16.678
+It slides the moving half of the mould against the fixed half,
+
+6
+00:00:16.878 --> 00:00:19.270
+and holds them shut with great force.
+
+7
+00:00:20.170 --> 00:00:22.376
+On the right is the injection unit.
+
+8
+00:00:22.926 --> 00:00:25.678
+Pellets from the hopper melt in a heated barrel,
+
+9
+00:00:25.877 --> 00:00:29.302
+and a screw injects the hot melt into the closed mould.
+
+10
+00:00:30.202 --> 00:00:33.221
+Inside the mould are hollow shapes of the cap.
+
+11
+00:00:33.771 --> 00:00:37.930
+The melt fills them and cools, until the cap is stiff.
+
+12
+00:00:38.830 --> 00:00:44.489
+Then the mould opens, pins push the caps out, and they drop into the bin.
+
+13
+00:00:45.039 --> 00:00:48.351
+The mould closes, and the round starts again.
+
+14
+00:00:49.551 --> 00:00:55.698
+That round has six steps: close, inject, hold, cool, open and eject.
+
+15
+00:00:56.248 --> 00:01:00.256
+Together they make the cycle time, here 30 seconds.
+
+16
+00:01:01.156 --> 00:01:05.208
+The injection itself takes only 1.5 seconds.
+
+17
+00:01:05.758 --> 00:01:09.102
+The cooling time is 15 seconds: half the cycle.
+
+18
+00:01:10.302 --> 00:01:14.040
+Each cavity in the mould is a space in the shape of the part,
+
+19
+00:01:14.240 --> 00:01:16.202
+and makes one cap per shot.
+
+20
+00:01:16.752 --> 00:01:18.203
+This mould has 2.
+
+21
+00:01:19.103 --> 00:01:21.286
+It runs at 20 seconds.
+
+22
+00:01:21.836 --> 00:01:25.029
+An hour has 3,600 seconds.
+
+23
+00:01:25.578 --> 00:01:31.958
+Divided by 20, times 2 cavities, that is 360 caps per hour.
+
+24
+00:01:33.158 --> 00:01:34.447
+How does a part cool?
+
+25
+00:01:34.997 --> 00:01:39.074
+Water flows through the cooling channels, holes in the steel,
+
+26
+00:01:39.274 --> 00:01:40.992
+and carries the heat away.
+
+27
+00:01:41.543 --> 00:01:44.039
+The plastic sets from the outside in.
+
+28
+00:01:44.939 --> 00:01:46.901
+Plastic conducts heat poorly.
+
+29
+00:01:47.451 --> 00:01:50.795
+So twice as thick means roughly four times the cooling.
+
+30
+00:01:51.345 --> 00:01:55.214
+That is how one thick boss, a solid stud for a screw,
+
+31
+00:01:55.414 --> 00:01:57.446
+sets the cycle of the whole part.
+
+32
+00:01:58.646 --> 00:01:59.737
+An example.
+
+33
+00:02:00.287 --> 00:02:03.515
+This cap cools for 12 of its 20 seconds.
+
+34
+00:02:04.065 --> 00:02:09.699
+The thickest wall is 3 millimetres, and the designer brings it down to 2.4.
+
+35
+00:02:10.599 --> 00:02:14.674
+Cooling time scales with the square: times 0.64.
+
+36
+00:02:15.224 --> 00:02:20.881
+It drops to about 7.7 seconds, the cycle to 15.7,
+
+37
+00:02:21.081 --> 00:02:26.654
+and output rises from 360 to 459 caps per hour.
+
+38
+00:02:27.204 --> 00:02:28.539
+On the same machine.
+
+39
+00:02:29.739 --> 00:02:33.852
+A temperature control unit, a cabinet beside the press,
+
+40
+00:02:34.052 --> 00:02:37.593
+heats or cools the water and pumps it through the channels.
+
+41
+00:02:38.493 --> 00:02:41.117
+That is how it holds the mould temperature.
+
+42
+00:02:41.667 --> 00:02:45.269
+For PA6 that is 80 degrees, for example.
+
+43
+00:02:45.819 --> 00:02:48.048
+Too cold gives a dull surface.
+
+44
+00:02:48.948 --> 00:02:52.201
+The water must flow hard enough for turbulent flow:
+
+45
+00:02:52.201 --> 00:02:54.625
+swirling instead of sliding in layers.
+
+46
+00:02:55.175 --> 00:02:57.915
+Swirling water carries far more heat away.
+
+47
+00:02:58.815 --> 00:03:01.731
+The part may come out at the ejection temperature:
+
+48
+00:03:01.731 --> 00:03:06.106
+then its thickest section is stiff enough to be pushed out without bending.
+
+49
+00:03:07.306 --> 00:03:10.394
+More output can also come from more cavities.
+
+50
+00:03:10.944 --> 00:03:16.145
+A 4-cavity mould at 20 seconds makes 720 caps per hour.
+
+51
+00:03:16.696 --> 00:03:23.388
+An 8-cavity one runs slower, at 24 seconds, but makes 1,200.
+
+52
+00:03:24.288 --> 00:03:28.677
+Every cavity must fill at the same time and pressure: fill balance.
+
+53
+00:03:29.227 --> 00:03:32.826
+An H-pattern gives each cavity an equal flow path.
+
+54
+00:03:33.726 --> 00:03:37.906
+In a hot runner the plastic stays molten right up to the cavities.
+
+55
+00:03:38.456 --> 00:03:40.309
+A valve gate goes further:
+
+56
+00:03:40.309 --> 00:03:44.656
+a needle in each nozzle opens and closes the gate on command.
+
+57
+00:03:45.556 --> 00:03:50.969
+A family mould makes different parts in one shot, such as a lid and a base.
+
+58
+00:03:51.519 --> 00:03:53.841
+Handy, but they rarely fill alike.
+
+59
+00:03:55.041 --> 00:03:56.782
+What does one cap cost?
+
+60
+00:03:57.332 --> 00:04:02.118
+First the material: 40 grams of PP, at two euros a kilo.
+
+61
+00:04:02.668 --> 00:04:06.929
+With a scrap rate of 3 percent that is just over eight cents.
+
+62
+00:04:07.829 --> 00:04:08.897
+Then the machine.
+
+63
+00:04:09.447 --> 00:04:14.149
+The machine hour rate is 60 euros: what an hour of press time costs.
+
+64
+00:04:14.699 --> 00:04:20.131
+At 85 percent efficiency the press makes 408 good parts an hour:
+
+65
+00:04:20.131 --> 00:04:22.338
+almost fifteen cents each.
+
+66
+00:04:23.238 --> 00:04:24.318
+Then the mould.
+
+67
+00:04:24.868 --> 00:04:27.719
+The mould amortisation spreads the eighty
+
+68
+00:04:27.719 --> 00:04:30.849
+thousand euros it costs over a million parts:
+
+69
+00:04:30.849 --> 00:04:32.031
+eight cents each.
+
+70
+00:04:32.931 --> 00:04:35.311
+Together about thirty-one cents.
+
+71
+00:04:35.861 --> 00:04:38.299
+Machine time is the biggest line here,
+
+72
+00:04:38.499 --> 00:04:41.564
+so every second of cycle shows up in the price.

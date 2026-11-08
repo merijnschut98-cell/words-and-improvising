@@ -34,6 +34,109 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
       }
+    },
+    "eng.joining.arc": {
+      "poster": "src/content/courses/films/eng.joining.arc.jpg",
+      "nl": {
+        "dur": 314.8,
+        "bytes": 12711009,
+        "scenes": [
+          0,
+          54.38,
+          93.68,
+          115.61,
+          157.71,
+          194.92,
+          213.11,
+          268.88,
+          293.05
+        ],
+        "vtt": "src/content/courses/films/eng.joining.arc.nl.vtt"
+      },
+      "en": {
+        "dur": 295.1,
+        "bytes": 12407414,
+        "scenes": [
+          0,
+          48.27,
+          83.06,
+          103.47,
+          144.04,
+          181.32,
+          198.07,
+          250.2,
+          274.7
+        ],
+        "vtt": "src/content/courses/films/eng.joining.arc.en.vtt"
+      }
+    },
+    "eng.moulding.setting": {
+      "poster": "src/content/courses/films/eng.moulding.setting.jpg",
+      "nl": {
+        "dur": 313.7,
+        "bytes": 12160328,
+        "scenes": [
+          0,
+          60.25,
+          83.23,
+          113.55,
+          129.04,
+          159.12,
+          189.36,
+          212.86,
+          271.29
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.setting.nl.vtt"
+      },
+      "en": {
+        "dur": 285.3,
+        "bytes": 11476644,
+        "scenes": [
+          0,
+          52.74,
+          73.07,
+          102.28,
+          116.84,
+          144.16,
+          170.51,
+          190.97,
+          244.48
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.setting.en.vtt"
+      }
+    },
+    "eng.moulding.cycle": {
+      "poster": "src/content/courses/films/eng.moulding.cycle.jpg",
+      "nl": {
+        "dur": 307.6,
+        "bytes": 11320322,
+        "scenes": [
+          0,
+          53.52,
+          77.05,
+          102.61,
+          132.28,
+          166.09,
+          205.56,
+          256.2
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.cycle.nl.vtt"
+      },
+      "en": {
+        "dur": 283.2,
+        "bytes": 10795475,
+        "scenes": [
+          0,
+          49.15,
+          69.9,
+          92.76,
+          118.25,
+          149.34,
+          186.91,
+          234.64
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.cycle.en.vtt"
+      }
     }
   }
 }
