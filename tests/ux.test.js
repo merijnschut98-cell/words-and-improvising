@@ -49,7 +49,7 @@ test('a start button that fails comes back enabled; one that navigates stays dis
 });
 
 // Start screen and the speaking home's sections (pure parts).
-import { startCards, HOME_SECTIONS, MORE_GROUPS, homeSubject } from '../src/core/today.js';
+import { startCards, homeSubject } from '../src/core/today.js';
 import { defaultState, load, KEY } from '../src/core/storage.js';
 import nl from '../src/content/prompts.nl.js';
 
@@ -100,13 +100,10 @@ test('home subject: absent or "start" means the start screen; a stored subject s
   assert.equal('moreOpen' in load(backend({ ...defaultState(), ui: { moreOpen: 'yes' } })).ui, false);
 });
 
-test('speaking home: today, one secondary card, then one "More practice" holding everything else, grouped', () => {
-  assert.deepEqual(HOME_SECTIONS, ['today', 'secondary', 'more']);
-  const items = MORE_GROUPS.flatMap((g) => g.items);
-  const expected = ['drills', 'quick', 'reviews', 'boss', 'targeted', 'conversation', 'realweek', 'quests', 'finder', 'programme'];
-  assert.deepEqual([...items].sort(), [...expected].sort());
-  assert.equal(new Set(items).size, items.length, 'each item in exactly one group');
-  assert.ok(MORE_GROUPS.every((g) => g.id && g.items.length));
+test('stored drill groups load cleaned; a non-list is dropped', () => {
+  const backend = (v) => ({ getItem: (k) => (k === KEY ? JSON.stringify(v) : null), setItem() {} });
+  assert.deepEqual(load(backend({ ...defaultState(), ui: { drillGroups: ['pressure', 'x', 'basics'] } })).ui.drillGroups, ['basics', 'pressure']);
+  assert.equal('drillGroups' in load(backend({ ...defaultState(), ui: { drillGroups: 'basics' } })).ui, false);
 });
 
 test('a login-link return is recognised, including an expired link', async () => {

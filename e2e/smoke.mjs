@@ -196,14 +196,19 @@ await step('start screen: one card per subject with its reason, streak and level
   await p5.getByRole('button', { name: 'Overzicht' }).click();
   await p5.locator('.start-card.start-speak').click();
   await p5.locator('.today-card .today-go').waitFor();
-  if (await p5.locator('details.more').getAttribute('open') !== null) throw new Error('More practice should start closed');
-  await p5.locator('details.more > summary').click();
-  await p5.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.moreOpen === true, null, { timeout: 3000 });
-  for (const g of ['Kies een oefening', 'Herhalen en uitdagen', 'Je echte week', 'Opdrachten en programma']) await p5.locator('.more-title', { hasText: g }).waitFor();
-  await onePrimary(p5, 'speaking home with More open');
+  // Four bands in order; the drill groups start closed.
+  const bands = await p5.locator('.band-title').allInnerTexts();
+  if (bands.map((x) => x.trim().toUpperCase()).join('|') !== 'VANDAAG|OEFENEN|UITDAGEN|ECHT EN TERUGKIJKEN') throw new Error(`bands: ${bands}`);
+  if (await p5.locator('details.drill-group[open]').count()) throw new Error('drill groups should start closed');
+  await p5.locator('details.group-basics > summary').click();
+  await p5.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.drillGroups || []).includes('basics'), null, { timeout: 3000 });
+  for (const g of ['Basis', 'Structuur', 'Gesprek en luisteren', 'Onder druk']) await p5.locator('.group-name', { hasText: g }).waitFor();
+  await p5.locator('.group-basics .drill-minute').waitFor();
+  await onePrimary(p5, 'speaking home with a drill group open');
   await shot5('82-more-practice');
   await p5.reload();
-  await p5.locator('details.more[open]').waitFor();
+  await p5.locator('details.group-basics[open]').waitFor();
+  if (await p5.locator('details.group-pressure[open]').count()) throw new Error('only the opened group stays open');
   // Home in the bottom bar always returns to the overview, which stays the default after a reload.
   await p5.getByRole('button', { name: /Home/ }).click();
   await p5.locator('.start-card').first().waitFor();
@@ -1186,7 +1191,7 @@ await step('progress shows skill radar and calibration', async () => {
 
 await step('4-week programme: start plays the baseline, Today shows the week, stop clears it', async () => {
   await page.goto(BASE);
-  await page.locator('details.more[open] .programme-card').scrollIntoViewIfNeeded();
+  await page.locator('.band-challenge .programme-card').scrollIntoViewIfNeeded();
   await shot('25b-programme-off');
   await page.getByRole('button', { name: 'Start het programma' }).click();
   await page.getByText('Nulmeting: doe het gewoon', { exact: false }).waitFor();
@@ -1862,15 +1867,17 @@ await step('mastery: three good rounds on different days show "Beheerst"', async
   await shot('52-mastery');
 });
 
-await step('today card recommends one round; "More practice" folds away and remembers it', async () => {
+await step('today card recommends one round; a drill group folds away and remembers it', async () => {
   await page.goto(BASE);
   await page.locator('.today-card .today-what').waitFor();
-  await page.locator('details.more > summary').click();
+  await page.locator('details.group-basics > summary').click();
   // The toggle event fires just after the click: wait for the saved state.
-  await page.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.moreOpen === false, null, { timeout: 3000 });
-  if (await page.locator('.drill-minute').isVisible()) throw new Error('drills still visible with More practice closed');
+  await page.waitForFunction(() => { const g = JSON.parse(localStorage.getItem('spraakwater:v1')).ui.drillGroups; return Array.isArray(g) && !g.includes('basics'); }, null, { timeout: 3000 });
+  if (await page.locator('.drill-minute').isVisible()) throw new Error('drills still visible with their group closed');
+  if (!(await page.locator('.drill-prep').isVisible())) throw new Error('closing one group closed another');
   await shot('53-today');
-  await page.locator('details.more > summary').click();
+  await page.locator('details.group-basics > summary').click();
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.drillGroups.includes('basics'), null, { timeout: 3000 });
   await page.locator('.today-go').click();
   await page.locator('.intro-card').waitFor();
   await page.getByRole('button', { name: 'Sluiten' }).click();
@@ -2240,6 +2247,49 @@ await step('hint: the sure/guess control is gone; one hint per question; correct
   await p.locator('.due-card', { hasText: '1' }).click();
   const takt = await p.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.takt'));
   await p.locator('.screen.due .quiz-q', { hasText: takt.recall[1].q.trim().slice(0, 30) }).waitFor();
+  await c.close();
+});
+
+await step('layout: each home at 390 px in light and dark, one primary, bands, tracks and the Spreken height', async () => {
+  const { c, p, shotP, dark } = await v9Context({ ui: { subject: 'start' } });
+  const ready = { start: '.start-card', speak: '.band-today .today-go', eng: '.course-eng .track', pm: '.course-pm .track' };
+  for (const sub of ['start', 'speak', 'eng', 'pm']) {
+    const redraw = async () => { await p.evaluate((x) => window.__app.setSubject(x), sub); await p.locator(ready[sub]).first().waitFor(); };
+    await redraw();
+    await onePrimary(p, `${sub} home`);
+    const wide = await p.evaluate(() => document.documentElement.scrollWidth > 390);
+    if (wide) throw new Error(`${sub} home scrolls sideways at 390 px`);
+    await shotP(`98-home-${sub}`);
+    await dark(`98-home-${sub}-dark`, redraw);
+    await onePrimary(p, `${sub} home (dark)`);
+  }
+  // Spreken with every group closed: at most about 2.5 screens.
+  await p.evaluate(() => window.__app.setSubject('speak'));
+  await p.locator('.band-today .today-go').waitFor();
+  if (await p.locator('details.drill-group[open]').count()) throw new Error('groups open by default');
+  const tall = await p.evaluate(() => document.documentElement.scrollHeight / window.innerHeight);
+  if (tall > 2.6) throw new Error(`Spreken home is ${tall.toFixed(2)} screens tall`);
+  // The quests sit right under the next round; Terugluisteren is in the last band.
+  const order = await p.locator('.band-today > *').evaluateAll((els) => els.map((e) => e.className));
+  if (!order[1].includes('today-card') || !order[2].includes('quest-card')) throw new Error(`Vandaag order: ${order.join(' | ')}`);
+  await p.locator('.band-real .lb-entry').waitFor();
+  // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
+  await p.evaluate(() => window.__app.setSubject('eng'));
+  await p.locator('.course-eng .track').first().waitFor();
+  if (await p.locator('.course-eng details.track[open]').count() !== 1) throw new Error('expected one open track');
+  await p.locator('details.track-basics[open] .module-row', { hasText: 'Capaciteit en flow' }).waitFor();
+  await p.locator('.quick-row .glossary-entry').waitFor();
+  await p.locator('.quick-row .rw-entry').waitFor();
+  const tiers = await p.locator('.course-eng details.track[open] .module-meta .tier').allInnerTexts();
+  if (!tiers.length || tiers.some((x) => !/^(INSTAP|VERDIEPING|SPECIALIST)$/i.test(x.trim()))) throw new Error(`module tiers: ${[...new Set(tiers)]}`);
+  if (await p.locator('.course-eng .module-meta', { hasText: /Werkkennis|Gevorderd/i }).count()) throw new Error('a module label uses a topic level name');
+  // Projecten: two tracks, a collapsed one opens on tap.
+  await p.evaluate(() => window.__app.setSubject('pm'));
+  await p.locator('.course-pm .track').first().waitFor();
+  if (await p.locator('.course-pm details.track').count() !== 2) throw new Error('Projecten should have two tracks');
+  await p.locator('details.track-agile > summary').click();
+  await p.locator('details.track-agile[open] .module-row').first().waitFor();
+  await shotP('98-home-pm-agile-open');
   await c.close();
 });
 

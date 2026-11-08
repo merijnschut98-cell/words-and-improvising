@@ -1,5 +1,6 @@
 // Versioned persistence on a localStorage-like backend ({getItem, setItem}).
 import { DRILLS } from './progress.js';
+import { cleanOpenGroups } from './layout.js';
 
 // The key keeps the app's old name on purpose: renaming it would lose everyone's progress.
 export const KEY = 'spraakwater:v1';
@@ -96,6 +97,11 @@ export function load(backend) {
   }
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
   if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
+  // Which drill groups on the speaking home are open (device only).
+  if ('drillGroups' in merged.ui) {
+    const g = cleanOpenGroups(merged.ui.drillGroups);
+    if (g) merged.ui.drillGroups = g; else delete merged.ui.drillGroups;
+  }
   // A plan typed on the lesson-done card, not yet turned into a plan (device only).
   const pd = merged.ui.planDraft;
   if ('planDraft' in merged.ui && !(isObject(pd) && ['eng', 'pm'].includes(pd.subject) && typeof pd.lessonId === 'string' && typeof pd.text === 'string' && pd.text.trim())) delete merged.ui.planDraft;

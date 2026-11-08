@@ -57,9 +57,7 @@ export function todayPick(state, today, content, lang, now = Date.now()) {
 export const SUBJECTS = ['speak', 'eng', 'pm'];
 export const homeSubject = (ui) => (ui && SUBJECTS.includes(ui.subject) ? ui.subject : 'start');
 
-// The speaking home, top to bottom: the Today card, one secondary card (the
-// daily lesson), then a single "More practice" disclosure with these groups.
-export const HOME_SECTIONS = ['today', 'secondary', 'more'];
+// The speaking home's bands and drill groups live in layout.js.
 export const MORE_GROUPS = [
   { id: 'drills', items: ['quick', 'drills'] },
   { id: 'again', items: ['reviews', 'boss', 'targeted'] },
