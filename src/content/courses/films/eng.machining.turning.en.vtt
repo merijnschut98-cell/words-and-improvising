@@ -1,0 +1,221 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.818
+This is a CNC lathe up close.
+
+2
+00:00:02.818 --> 00:00:06.783
+The chuck spins a steel shaft, and the tool stands still.
+
+3
+00:00:06.783 --> 00:00:11.166
+It cuts with a small carbide insert, made of very hard carbide.
+
+4
+00:00:11.516 --> 00:00:16.919
+The cutting speed is how fast the material slides past the cutting edge,
+
+5
+00:00:16.919 --> 00:00:18.495
+in metres per minute.
+
+6
+00:00:18.495 --> 00:00:22.997
+Carbide in steel runs at about 150 to 300 metres per minute.
+
+7
+00:00:24.197 --> 00:00:28.363
+But the spindle turns in revolutions per minute.
+
+8
+00:00:28.363 --> 00:00:32.268
+That spindle speed follows from the diameter.
+
+9
+00:00:32.268 --> 00:00:37.041
+For a shaft of 60 millimetres at 220 metres per minute,
+
+10
+00:00:37.041 --> 00:00:40.946
+one circumference is about 188.5 millimetres,
+
+11
+00:00:40.946 --> 00:00:45.372
+so the spindle turns at 1,167 revolutions a minute.
+
+12
+00:00:45.722 --> 00:00:50.839
+As the shaft gets thinner, the spindle must turn faster for the same cutting speed.
+
+13
+00:00:50.839 --> 00:00:55.462
+That is why you hear a lathe speed up as the tool moves towards the centre.
+
+14
+00:00:56.662 --> 00:01:00.268
+As the shaft turns, the tool slides along it.
+
+15
+00:01:00.268 --> 00:01:05.798
+The feed is how far it moves on per revolution: here 0.3 millimetres.
+
+16
+00:01:06.148 --> 00:01:11.256
+The depth of cut is how deep the tool goes in: you see it as the step in the shaft.
+
+17
+00:01:11.606 --> 00:01:16.296
+Feed times spindle speed gives the feed rate:
+
+18
+00:01:16.296 --> 00:01:21.091
+0.3 times 1,167 is 350 millimetres per minute.
+
+19
+00:01:21.091 --> 00:01:25.990
+A cut of 200 millimetres then takes 34 seconds.
+
+20
+00:01:27.190 --> 00:01:29.048
+Why not simply cut faster?
+
+21
+00:01:29.048 --> 00:01:32.120
+Then the edge runs hotter and wears faster.
+
+22
+00:01:32.120 --> 00:01:34.621
+How long it lasts is its tool life.
+
+23
+00:01:34.621 --> 00:01:39.122
+Rule of thumb for carbide: 20 percent faster roughly halves it.
+
+24
+00:01:39.472 --> 00:01:43.798
+So when roughing, engineers raise the feed first.
+
+25
+00:01:43.798 --> 00:01:50.419
+At 0.4 it becomes 467 millimetres per minute, and the cut takes 26 seconds.
+
+26
+00:01:51.619 --> 00:01:53.576
+Now look very closely.
+
+27
+00:01:53.576 --> 00:01:58.737
+The tip of the insert is rounded: that is the nose radius,
+
+28
+00:01:58.737 --> 00:02:01.940
+usually 0.4, 0.8 or 1.2 millimetres.
+
+29
+00:02:01.940 --> 00:02:04.609
+It leaves a fine helix behind.
+
+30
+00:02:04.959 --> 00:02:07.885
+The distance between the grooves is the feed.
+
+31
+00:02:07.885 --> 00:02:10.292
+A larger radius makes them shallower.
+
+32
+00:02:10.292 --> 00:02:15.429
+And the feed counts squared: halve it, and the roughness Ra drops to a quarter.
+
+33
+00:02:15.779 --> 00:02:24.326
+With feed 0.25 and radius 0.8, the theoretical Ra is 2.4 micrometres.
+
+34
+00:02:24.326 --> 00:02:28.166
+At feed 0.14, Ra drops to 0.77.
+
+35
+00:02:29.366 --> 00:02:31.971
+The metal that comes off is the chip.
+
+36
+00:02:31.971 --> 00:02:35.210
+The chip breaker, a small shape on the insert,
+
+37
+00:02:35.210 --> 00:02:39.083
+curls it until it breaks: short curls, like a 6 or a 9.
+
+38
+00:02:39.433 --> 00:02:42.528
+With too little feed or depth of cut it does not work:
+
+39
+00:02:42.528 --> 00:02:45.853
+then you get long, stringy chips that wrap round the part.
+
+40
+00:02:47.053 --> 00:02:50.562
+A long, thin shaft bends away under the tool.
+
+41
+00:02:50.562 --> 00:02:55.942
+What counts is its slenderness: the overhang divided by the diameter.
+
+42
+00:02:55.942 --> 00:02:59.451
+Here 160 divided by 20: 8 times the diameter.
+
+43
+00:02:59.801 --> 00:03:01.854
+Such a shaft starts to chatter.
+
+44
+00:03:01.854 --> 00:03:07.416
+Above about 3 times the diameter, the tailstock supports the free end with a centre.
+
+45
+00:03:07.766 --> 00:03:13.838
+Above about 6 times the diameter, a steady rest is added: a support with rollers halfway.
+
+46
+00:03:13.838 --> 00:03:15.544
+So this shaft needs both.
+
+47
+00:03:16.743 --> 00:03:21.055
+Finally, the turn-mill centre: a lathe that also mills and drills.
+
+48
+00:03:21.055 --> 00:03:26.216
+Its turret carries driven tools: cutters and drills with their own small motor.
+
+49
+00:03:26.566 --> 00:03:30.021
+The C-axis stops the spindle at a controlled angle:
+
+50
+00:03:30.021 --> 00:03:33.340
+that is how you drill six holes 60 degrees apart.
+
+51
+00:03:33.340 --> 00:03:37.269
+The Y-axis moves the tool off centre, for a straight flat.
+
+52
+00:03:37.619 --> 00:03:41.982
+The part drops off finished: complete machining, in one set-up.
+
+53
+00:03:41.982 --> 00:03:47.800
+A flange that took 4.0 plus 3.0 minutes on two machines is done here in 6.0 minutes.
+
+54
+00:03:48.150 --> 00:03:53.227
+And a bar feeder keeps pushing a bar of about 3 metres a little further in.
+
+55
+00:03:53.227 --> 00:03:56.206
+So it runs on unmanned after the last shift.

@@ -5,6 +5,11 @@
 
 const META = 'spraakwater-meta';
 const CACHE = 'vantage-point-v70';
+// Films (v14b): MP4s from the public Supabase bucket, put here by the page after
+// a first full view (src/ui/film.js, cacheFilm). Never precached; kept across
+// shell versions.
+const FILMS = 'vantage-films';
+importScripts('src/core/filmrange.js');
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
@@ -12,10 +17,10 @@ const SHELL = [
   'fonts/Fraunces-Variable.woff2', 'fonts/Fraunces-Italic-Variable.woff2', 'fonts/Inter-Variable.woff2', 'fonts/Inter-Italic-Variable.woff2',
   'fonts/JetBrainsMono-Variable.woff2', 'fonts/JetBrainsMono-Italic-Variable.woff2',
   'src/app.js', 'src/i18n.js',
-  'src/core/bests.js', 'src/core/boss.js', 'src/core/calibration.js', 'src/core/share.js', 'src/core/sound.js', 'src/core/spaced.js', 'src/core/followup.js', 'src/core/friend.js', 'src/core/realweek.js', 'src/core/pressure.js', 'src/core/shadow.js', 'src/core/words.js', 'src/core/mastery.js', 'src/core/today.js', 'src/core/programme.js', 'src/core/coursereview.js', 'src/core/course.js', 'src/core/coursecoach.js', 'src/core/pushback.js', 'src/core/sync.js', 'src/core/cloud.js', 'src/core/syncer.js', 'src/core/weekly.js', 'src/core/milestones.js', 'src/core/claude.js', 'src/core/compare.js', 'src/core/coach.js', 'src/core/partner.js', 'src/core/voice.js', 'src/core/lesson.js', 'src/core/metrics.js', 'src/core/modifiers.js', 'src/core/progress.js', 'src/core/quests.js',
+  'src/core/bests.js', 'src/core/boss.js', 'src/core/calibration.js', 'src/core/share.js', 'src/core/sound.js', 'src/core/spaced.js', 'src/core/followup.js', 'src/core/friend.js', 'src/core/realweek.js', 'src/core/pressure.js', 'src/core/shadow.js', 'src/core/words.js', 'src/core/mastery.js', 'src/core/today.js', 'src/core/programme.js', 'src/core/coursereview.js', 'src/core/course.js', 'src/core/coursecoach.js', 'src/core/pushback.js', 'src/core/sync.js', 'src/core/cloud.js', 'src/core/syncer.js', 'src/core/weekly.js', 'src/core/milestones.js', 'src/core/claude.js', 'src/core/compare.js', 'src/core/coach.js', 'src/core/partner.js', 'src/core/voice.js', 'src/core/filmrange.js', 'src/core/lesson.js', 'src/core/metrics.js', 'src/core/modifiers.js', 'src/core/progress.js', 'src/core/quests.js',
   'src/core/pauses.js', 'src/core/recorder.js', 'src/core/reminder.js', 'src/core/review.js', 'src/core/round.js', 'src/core/speech.js', 'src/core/storage.js', 'src/core/tailor.js', 'src/core/loudness.js',
   'src/content/prompts.en.js', 'src/content/prompts.nl.js', 'src/content/tips.js',
-  'src/content/courses/index.js', 'src/content/courses/validate.js', 'src/content/courses/figures/eng.flow.line.html', 'src/content/courses/figures/eng.transformers.load.html', 'src/content/courses/figures/eng.switchgear.selectivity.html', 'src/content/courses/figures/eng.quality.capability.html', 'src/content/courses/figures/eng.machining.lathe.html', 'src/content/courses/figures/eng.gridbasics.levels.html', 'src/content/courses/figures/eng.maintenance.pf.html', 'src/content/courses/figures/eng.drawings.loop.html', 'src/content/courses/figures/eng.joining.bolt.html', 'src/content/courses/figures/eng.moulding.cycle.html', 'src/content/courses/figures/eng.improve.doe.html', 'src/content/courses/figures/eng.lines.auto.html', 'src/content/courses/figures/eng.reliability.weibull.html', 'src/content/courses/figures/eng.industry40.vision.html', 'src/content/courses/figures/eng.gridops.switching.html', 'src/content/courses/figures/eng.gridplanning.n1.html', 'src/content/courses/figures/eng.machining.mill.html', 'src/content/courses/figures/eng.joining.cell.html', 'src/content/courses/figures/eng.joining.haz.html', 'src/content/courses/figures/eng.machining.fiveaxis.html', 'src/content/courses/figures/eng.joining.rivet.html', 'src/content/courses/figures/eng.moulding.dryer.html', 'src/content/courses/figures/eng.machining.fixture.html', 'src/content/courses/figures/eng.machining.cmm.html', 'src/content/courses/figures/eng.lines.plc.html', 'src/content/courses/figures/eng.lines.case.html', 'src/content/courses/figures/eng.lines.mixed.html', 'src/content/courses/figures/eng.lines.buffer.html', 'src/content/courses/figures/eng.lines.pokayoke.html', 'src/content/courses/figures/eng.moulding.mould.html', 'src/content/courses/figures/eng.lines.robotcell.html', 'src/content/courses/figures/eng.moulding.window.html', 'src/content/courses/figures/eng.joining.ndt.html', 'src/content/courses/figures/eng.moulding.part.html', 'src/content/courses/figures/eng.joining.spot.html', 'src/content/courses/figures/eng.machining.insert.html', 'src/content/courses/figures/eng.moulding.screw.html', 'src/content/courses/figures/eng.joining.mig.html', 'src/content/courses/figures/eng.machining.gcode.html', 'src/content/courses/figures/eng.machining.drill.html', 'src/content/courses/films/eng.machining.turning.html', 'src/content/courses/films/eng.machining.drilling.html',
+  'src/content/courses/index.js', 'src/content/courses/validate.js', 'src/content/courses/figures/eng.flow.line.html', 'src/content/courses/figures/eng.transformers.load.html', 'src/content/courses/figures/eng.switchgear.selectivity.html', 'src/content/courses/figures/eng.quality.capability.html', 'src/content/courses/figures/eng.machining.lathe.html', 'src/content/courses/figures/eng.gridbasics.levels.html', 'src/content/courses/figures/eng.maintenance.pf.html', 'src/content/courses/figures/eng.drawings.loop.html', 'src/content/courses/figures/eng.joining.bolt.html', 'src/content/courses/figures/eng.moulding.cycle.html', 'src/content/courses/figures/eng.improve.doe.html', 'src/content/courses/figures/eng.lines.auto.html', 'src/content/courses/figures/eng.reliability.weibull.html', 'src/content/courses/figures/eng.industry40.vision.html', 'src/content/courses/figures/eng.gridops.switching.html', 'src/content/courses/figures/eng.gridplanning.n1.html', 'src/content/courses/figures/eng.machining.mill.html', 'src/content/courses/figures/eng.joining.cell.html', 'src/content/courses/figures/eng.joining.haz.html', 'src/content/courses/figures/eng.machining.fiveaxis.html', 'src/content/courses/figures/eng.joining.rivet.html', 'src/content/courses/figures/eng.moulding.dryer.html', 'src/content/courses/figures/eng.machining.fixture.html', 'src/content/courses/figures/eng.machining.cmm.html', 'src/content/courses/figures/eng.lines.plc.html', 'src/content/courses/figures/eng.lines.case.html', 'src/content/courses/figures/eng.lines.mixed.html', 'src/content/courses/figures/eng.lines.buffer.html', 'src/content/courses/figures/eng.lines.pokayoke.html', 'src/content/courses/figures/eng.moulding.mould.html', 'src/content/courses/figures/eng.lines.robotcell.html', 'src/content/courses/figures/eng.moulding.window.html', 'src/content/courses/figures/eng.joining.ndt.html', 'src/content/courses/figures/eng.moulding.part.html', 'src/content/courses/figures/eng.joining.spot.html', 'src/content/courses/figures/eng.machining.insert.html', 'src/content/courses/figures/eng.moulding.screw.html', 'src/content/courses/figures/eng.joining.mig.html', 'src/content/courses/figures/eng.machining.gcode.html', 'src/content/courses/figures/eng.machining.drill.html', 'src/content/courses/films/eng.machining.turning.html', 'src/content/courses/films/eng.machining.drilling.html', 'src/content/courses/films/manifest.json', 'src/content/courses/films/eng.machining.turning.nl.vtt', 'src/content/courses/films/eng.machining.turning.en.vtt', 'src/content/courses/films/eng.machining.turning.jpg',
   'src/content/courses/eng/flow.en.js', 'src/content/courses/eng/flow.nl.js', 'src/content/courses/pm/intake.en.js', 'src/content/courses/pm/intake.nl.js',
   'src/content/courses/eng/industry40.en.js', 'src/content/courses/eng/industry40.nl.js',
   'src/content/courses/pm/lead.en.js', 'src/content/courses/pm/lead.nl.js',
@@ -46,13 +51,22 @@ self.addEventListener('install', (e) => {
 // Deletes every other cache, including the old spraakwater-v* shells.
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys()
-    .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== META).map((k) => caches.delete(k))))
+    .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== META && k !== FILMS).map((k) => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 
 // Same-origin: cache first, refresh in the background. Everything else: network.
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
+  // A film: from the films cache when it is there, cut to the asked byte range
+  // (a <video> always asks for ranges); else straight from the network.
+  if (e.request.method === 'GET' && isFilmUrl(e.request.url)) {
+    e.respondWith(caches.open(FILMS)
+      .then((c) => c.match(url.origin + url.pathname))
+      .then((cached) => (cached ? rangeResponse(e.request, cached) : fetch(e.request)))
+      .catch(() => fetch(e.request)));
+    return;
+  }
   if (url.origin !== location.origin) return;
   // HEAD (does this figure page exist?): answer from the cache, so it works offline.
   if (e.request.method === 'HEAD') {

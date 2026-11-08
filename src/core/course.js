@@ -319,7 +319,9 @@ export function glossary(modules) {
 }
 
 // The steps of a lesson; a lesson without prequestions starts reading.
-export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), 'teach', 'example', 'quiz'];
+// A lesson with a film (v14b): the film replaces the reading, Raden · Film ·
+// Voorbeeld · Check. Without one the reading stays.
+export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), lesson.film ? 'film' : 'teach', 'example', 'quiz'];
 
 // Recall questions with their stable ids: '<lessonId>#r<n>'.
 export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));
@@ -353,7 +355,7 @@ export function courseSummary(state, subject, lang, today, modules = MODULES) {
 }
 
 // The step indicator at the top of a lesson: Guess · Read · Example · Check.
-const STEP_OF = { pre: 'guess', teach: 'read', example: 'example', quiz: 'check' };
+const STEP_OF = { pre: 'guess', teach: 'read', film: 'film', example: 'example', quiz: 'check' };
 export function lessonSteps(phases, current) {
   const at = current === 'done' ? phases.length : phases.indexOf(current);
   return phases.map((p, i) => ({ id: STEP_OF[p], state: i < at ? 'done' : i === at ? 'current' : 'todo' }));

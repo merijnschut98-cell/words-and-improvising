@@ -1,6 +1,6 @@
 # Third-party licences
 
-Vantage Point ships two kinds of third-party material: the three typefaces of the Vantage design system and a small set of Lucide icons.
+Vantage Point ships three kinds of third-party material: the three typefaces of the Vantage design system, a small set of Lucide icons, and (in the hosted explainer videos) Piper narration voices.
 
 ## Fonts (SIL Open Font License 1.1)
 
@@ -146,6 +146,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Film narration voices (Piper, v14b)
+
+The explainer videos (hosted in Supabase Storage, not in this repository) carry narration synthesised with Piper TTS (https://github.com/OHF-Voice/piper1-gpl) and two voices from https://huggingface.co/rhasspy/piper-voices:
+
+- **nl_NL-ronnie-medium**: dataset CC0 (OHF-Voice voice-datasets), fine-tuned from the en_US lessac voice.
+- **en_GB-alan-medium**: dataset from the Mycroft mimic3 voices (`en_UK/apope_low`), whose licence the model card leaves to that source, also fine-tuned from en_US lessac.
+
+Both voices descend from the lessac model, which was trained on the Blizzard 2013 Lessac data; that data's licence has research and non-commercial terms. Check the voice licences before the videos are used commercially, or swap in voices with clear licences: the voice is one setting in `films/_kit/narrate.mjs` (`VOICES`), and a re-render takes about 12 minutes per film.
 
 ## Brand
 

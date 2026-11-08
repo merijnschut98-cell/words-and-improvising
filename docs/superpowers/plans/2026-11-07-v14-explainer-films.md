@@ -1284,3 +1284,64 @@ Wave 0 plus 33 waves cover the 67 P1 films for current content (`eng.machining.t
 6. **Offline:** is "cache on first view, plus a 'Films offline bewaren' switch per subject" fine, or must every film be available offline from install (about 9 MB on the wire)?
 7. **Speaking films:** is a button on the exercise intro card the right place, and do you want `talk.pressure` and `talk.pause` at all?
 8. **pm lessons without a film** (the list under 3.7): agree, or do you want a film for `close.retro` too?
+
+## 7. v14b as built: the real-video pipeline
+
+Built on 2026-11-07 for the turning pilot. It overrides the older format rules above where they differ: the narration is pre-recorded, the film is a video, and the Film step replaces Lezen.
+
+**Pipeline, per film:**
+1. `node films/<id>/build.mjs`: the HTML film, now with a `say` narration script per beat (`{ nl, en }`, same `{t:}` and `{n:}` markers as the captions). The build checks the narration's terms and numbers against the lessons, the same as the captions. In Dutch it adds the English word on a term's first use, shown in "Lees mee" and never spoken. Each beat gets `voice`, the spoken form: units and signs as words, "1.167" as "elfhonderd zevenenzestig", "6,0" as "6", and "€8,67" as "8,67 euro".
+2. `node films/_kit/narrate.mjs <id>`: Piper TTS writes one WAV per beat and language, cached by text and voice. The line lengths give the audio timeline (`audioTimeline` in `films/_kit/timeline.mjs`): a short look at each scene before its first line, a breath between lines, and a hold after the last line. Outputs: the whole track `films-out/<id>/<lang>.wav`, the timing JSON and WebVTT captions. The captions are also committed as `src/content/courses/films/<id>.<lang>.vtt`.
+3. `node films/_kit/render.mjs <id>`: the HTML film opens with `?render=1` in headless Chromium: no wall clock, no controls, no speech. The script sets the time of each frame through `window.__film`. Frames are captured at 30 fps and 1280 × 720, then piped with the track into ffmpeg: H.264 (yuv420p, crf 26, `-tune animation`, faststart) and AAC 96k mono. Outputs:
+   - `films-out/<id>/<lang>.mp4`;
+   - the poster `src/content/courses/films/<id>.jpg`;
+   - a 390 px phone check `films-out/<id>/<lang>.phone.jpg`;
+   - the duration, size and scene starts in `src/content/courses/films/manifest.json`.
+   - `--stills` writes one frame per beat for review.
+
+**Voices** (compared on the pilot's first scenes: Whisper round trip, pitch spread, accent):
+
+| Language | Voice | Settings | Why |
+|---|---|---|---|
+| nl | `nl_NL-ronnie-medium` | length 0.82 | Fewest recognition errors of the Dutch candidates (11–14 %; nathalie, rdh and the mls speakers scored 16–44 %). The liveliest intonation (5.4 semitones). Netherlands Dutch (rdh and nathalie are Flemish). |
+| en | `en_GB-alan-medium` | length 0.92 | 2 % errors and natural intonation. Reads numbers right (`northern_english_male` misread "220"). British spelling matches the app. |
+
+**In the app:**
+- A lesson with `film:` has the steps Raden · Film · Voorbeeld · Check.
+- The Film step plays `<video controls playsinline>` with a poster and a captions track in the app language. "Lees mee" (a closed `<details>`) holds the spoken script.
+- Fallbacks: when the video fails, the HTML film plays in its sandboxed frame and narrates the script through the app's voice. When the film page fails too, the lesson's text is shown.
+- The lesson's figure, its "what engineers say" line and the coach box stay in the Film step.
+
+**Service worker:** after a first full view the page fetches the whole MP4 into the `vantage-films` cache. The worker answers the video's byte-range requests from that cache (206, `src/core/filmrange.js`). Videos are never precached, and the cache survives shell updates.
+
+**Upload (the integrator; nothing is uploaded by the build):**
+- Supabase project `ysybqtdzcutmyabfwijl` (from `src/core/cloud.js`).
+- Bucket `films`, set to public read so the app needs no key. Allowed MIME types: `video/mp4`, `text/vtt` and `image/jpeg`. File size limit about 50 MB.
+- Upload from the build machine with the service role key, which is kept out of the repo and out of the app. Two ways:
+  - `supabase storage cp films-out/<id>/<lang>.mp4 ss:///films/<id>/<lang>.mp4`;
+  - or `curl -X POST "$SUPABASE_URL/storage/v1/object/films/<id>/<lang>.mp4" -H "Authorization: Bearer $SERVICE_ROLE_KEY" -H "Content-Type: video/mp4" -H "x-upsert: true" -H "Cache-Control: max-age=31536000" --data-binary @films-out/<id>/<lang>.mp4`.
+- No insert or update policy for `anon` or `authenticated` on `storage.objects` for this bucket: only the service role writes.
+- Public objects are served with CORS `*`, which the page's whole-file cache fetch needs.
+- Re-rendering changes the bytes but not the URL. Bump the shell CACHE with the new manifest. Viewers who cached the old film keep it until the films cache is cleared, so a re-render that changes content should rename the file (`<lang>.v2.mp4`). This is a known gap.
+
+**Basis "how it works" film for Turning (proposal, for the agent building `eng.machining.overview`; that folder is not touched here):**
+
+Merijn wants every Basis to explain the whole machine first. The Turning L1 lesson (`eng.machining.processes`) is a routing overview of four processes. A turning "how it works" segment of about 3–4 min would sit as the first scenes of the overview, or as its own film `eng.machining.lathe`. It reuses the lathe world from the pilot.
+
+1. **What turning makes** (about 25 s): round parts (shafts, bushes, flanges) shown next to the lathe. "Bij draaien draait het werkstuk, en de beitel staat stil." Term: Draaien.
+2. **The machine, part by part** (about 50 s): the camera moves along the bed and lights up each part as it is named:
+   - the bed;
+   - the headstock with the spindle motor;
+   - the chuck with three jaws;
+   - the carriage and cross slide;
+   - the tool post or turret with the insert;
+   - the tailstock;
+   - the CNC control panel;
+   - the doors and coolant.
+   Narration: what each part does, in one sentence each.
+3. **Two directions** (about 35 s): Z along the axis (the length) and X across it (the diameter), shown as arrows. Turning along Z makes a cylinder; feeding in along X makes a face.
+4. **One part, start to finish** (about 50 s): clamp the bar, face the end, rough the diameter in a few passes, finish pass, chamfer, part off. A short readout gives the time per step. Terms: Tolerantie (the finishing pass holds ±0,02).
+5. **Chips and coolant** (about 25 s): the chip curls off and the coolant flows. Why chips must break; the door stays shut.
+6. **Where turning stops** (about 25 s): the flat or keyway that a lathe cannot make goes to milling, and the bearing seat to grinding. This bridges to the overview's routing scenes.
+
+Numbers come from `eng.machining.processes` (Ø55 bar, Ø50, +0,2 mm for grinding, 6 min) and are asserted by the build, as in the pilot.

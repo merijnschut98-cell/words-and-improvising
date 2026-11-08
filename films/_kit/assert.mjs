@@ -6,7 +6,14 @@ import { wordsOf, minSceneDur, plainOf } from './timeline.mjs';
 export const MAX_BYTES = 450 * 1024; // hard cap per page (plan 2.8)
 export const TARGET_BYTES = 300 * 1024;
 export const MIN_TOTAL = 60;
-export const MAX_TOTAL = 150;
+// v14b: no longer capped at 150 s; Basis 3–5 min, higher levels 2–4 min.
+export const MAX_TOTAL = 300;
+// The narration's spoken length, estimated from its words (Piper voices speak
+// about 2.5 words a second); the real length comes from the audio.
+export const NARRATION_WPS = 2.5;
+export const NARRATION_MIN = 60;
+export const NARRATION_MAX = 330;
+export const narrationWords = (data, lang) => (data.scenes || []).reduce((a, s) => a + (s.beats || []).reduce((n, b) => n + (b.voice ? wordsOf(b.voice[lang]) : 0), 0), 0);
 // 3 lines of 16 px text in the film's frame inside a lesson card on a 390 px
 // screen (about 320 px wide; measured: 117 characters ran to 4 lines)
 export const MAX_CAPTION_CHARS = 110;
@@ -99,6 +106,44 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
     }
   }
   for (const [k, n] of glossed) if (n !== 1) errs.push(`term ${k} carries its English word ${n} times in Dutch`);
+
+  // narration (v14b): every beat or none has a script in both languages; its
+  // terms are still the lessons' terms, English narration never says a Dutch
+  // term, Dutch glosses a term once, and the spoken length is sensible
+  const beats = scenes.flatMap((s) => (s.beats || []).map((b) => ({ s, b })));
+  const narrated = beats.filter(({ b }) => b.say);
+  if (narrated.length && narrated.length !== beats.length) errs.push(`narration: ${beats.length - narrated.length} beats have no script`);
+  const sayDutch = new Set(dutch);
+  const sayGloss = new Map();
+  for (const { s, b } of narrated) {
+    for (const lang of ['nl', 'en']) {
+      if (!Array.isArray(b.say[lang]) || !b.voice || typeof b.voice[lang] !== 'string' || !b.voice[lang].trim()) { errs.push(`scene ${s.id}: narration ${lang} missing`); continue; }
+      for (const p of b.say[lang]) {
+        if (typeof p === 'string') continue;
+        const [lid, ix] = String(p.k).split('#');
+        const tn = ((lessons.nl.get(lid) || {}).terms || [])[Number(ix)];
+        const te = ((lessons.en.get(lid) || {}).terms || [])[Number(ix)];
+        if (!served.has(lid) || !tn || !te) { errs.push(`scene ${s.id}: narration term ${p.t} (${p.k}) is no longer a term of a served lesson`); continue; }
+        if (lc(tn.term) !== lc(te.term)) sayDutch.add(tn.term);
+        const named = lang === 'nl' ? tn.term : te.term;
+        if (!lc(p.t).includes(lc(named).split(' ')[0].slice(0, 4))) errs.push(`scene ${s.id}: narration term "${p.t}" no longer reads as "${named}" (${p.k})`);
+        if (lang === 'en' && p.en) errs.push(`scene ${s.id}: English narration carries a gloss`);
+        if (lang === 'nl' && p.en) sayGloss.set(p.k, (sayGloss.get(p.k) || 0) + 1);
+      }
+    }
+  }
+  for (const { s, b } of narrated) {
+    if (!Array.isArray(b.say.en)) continue;
+    const en = [plainOf(b.say.en), b.voice.en].join(' ');
+    for (const w of sayDutch) if (wholeWord(en, w)) errs.push(`scene ${s.id}: Dutch term "${w}" in the English narration`);
+  }
+  for (const [k, n] of sayGloss) if (n !== 1) errs.push(`term ${k} carries its English word ${n} times in the Dutch narration`);
+  if (narrated.length) {
+    for (const lang of ['nl', 'en']) {
+      const sec = narrationWords(data, lang) / NARRATION_WPS;
+      if (sec < NARRATION_MIN || sec > NARRATION_MAX) errs.push(`narration ${lang} would take about ${Math.round(sec)} s, must be ${NARRATION_MIN}–${NARRATION_MAX}`);
+    }
+  }
   for (const t of scenes.flatMap((s) => s.terms || [])) {
     const k = `${t.lesson}#${t.index}`;
     if (lc(t.nl) !== lc(t.en) && !glossed.has(k)) errs.push(`term ${t.nl}: the Dutch caption never names its English word`);

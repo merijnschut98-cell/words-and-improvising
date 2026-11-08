@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MODULES, loadModule, placeOf } from '../../src/content/courses/index.js';
 import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
-import { checkFilm, lessonTextOf, hasNumber, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
+import { checkFilm, lessonTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
 import { pageHtml } from './player.mjs';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -47,6 +47,7 @@ export function resolveFilm(spec, lessons) {
   const served = spec.lessons;
   for (const id of served) if (!lessons.nl.has(id)) throw new Error(`unknown lesson ${id}`);
   const glossed = new Set();
+  const sayGlossed = new Set();
   const numbers = [];
   const scenes = spec.scenes.map((s, si) => {
     const sceneTerms = [];
@@ -89,12 +90,45 @@ export function resolveFilm(spec, lessons) {
         });
       }
       const fmtRead = (lang) => readP[lang].map((p) => (p.text !== undefined ? p.text : p.num !== undefined ? formatNumber(p.num, lang) : p.shown)).join('');
+      // v14b: the narration script, a fuller spoken explanation than the
+      // caption. Same markers; its terms and numbers are checked like the
+      // caption's, and in Dutch a term carries its English word on its first
+      // use in the narration (shown in "Lees mee", never spoken).
+      let narration = {};
+      if (b.say) {
+        const S = { nl: parseMarked(b.say.nl), en: parseMarked(b.say.en) };
+        const sn = S.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
+        const se = S.en.filter((p) => p.term).map((p) => findTerm(p.term, 'en', served, lessons));
+        if (JSON.stringify(sn) !== JSON.stringify(se)) throw new Error(`${where}: the nl and en narration name different terms`);
+        const nums = { nl: S.nl.filter((p) => p.num).map((p) => p.num), en: S.en.filter((p) => p.num).map((p) => p.num) };
+        if (nums.nl.join() !== nums.en.join()) throw new Error(`${where}: the nl and en narration carry different numbers`);
+        for (const raw of nums.nl) {
+          const value = formatNumber(raw, 'nl');
+          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson), value, scene: s.id });
+        }
+        const say = {};
+        for (const lang of ['nl', 'en']) {
+          let k = 0;
+          say[lang] = S[lang].map((p) => {
+            if (p.text !== undefined) return p.text;
+            if (p.num !== undefined) return formatNumber(p.num, lang);
+            const ref = sn[k++];
+            const key = `${ref.lesson}#${ref.index}`;
+            const piece = { t: p.shown, k: key };
+            const en = lessons.en.get(ref.lesson).terms[ref.index].term;
+            if (lang === 'nl' && !sayGlossed.has(key) && en.toLowerCase() !== p.term.toLowerCase()) { piece.en = glossOf(en); sayGlossed.add(key); }
+            return piece;
+          });
+        }
+        narration = { say, voice: { nl: speakOf(say.nl, 'nl'), en: speakOf(say.en, 'en') } };
+      }
       return {
         seg,
         text: { nl: plainOf(seg.nl), en: plainOf(seg.en) },
         speak: { nl: speakOf(seg.nl, 'nl'), en: speakOf(seg.en, 'en') },
         cues: [...cues],
         ...(readP ? { read: { nl: fmtRead('nl'), en: fmtRead('en') } } : {}),
+        ...narration,
       };
     });
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
@@ -125,10 +159,12 @@ export function auditReport(data) {
   let t = 0;
   for (const s of data.scenes) {
     const w = (lang) => s.beats.map((b) => b.text[lang]).join(' ').trim().split(/\s+/).length;
-    lines.push(`${String(s.n).padStart(2)} L${s.level} ${String(s.dur).padStart(3)} s @${String(t).padStart(3)}  words nl ${w('nl')} en ${w('en')}  pace ${(w('nl') / s.dur).toFixed(2)} w/s  terms: ${s.terms.map((x) => `${x.nl}→${x.cue}`).join(', ') || '-'}`);
+    const sw = (lang) => s.beats.map((b) => (b.voice ? b.voice[lang] : '')).join(' ').trim().split(/\s+/).filter(Boolean).length;
+    lines.push(`${String(s.n).padStart(2)} L${s.level} ${String(s.dur).padStart(3)} s @${String(t).padStart(3)}  words nl ${w('nl')} en ${w('en')}  pace ${(w('nl') / s.dur).toFixed(2)} w/s  narration nl ${sw('nl')} en ${sw('en')} words  terms: ${s.terms.map((x) => `${x.nl}→${x.cue}`).join(', ') || '-'}`);
     t += s.dur;
   }
-  lines.push(`total ${t} s · numbers: ${data.numbers.map((n) => `${n.value} (${n.lesson.split('.').pop()})`).join(', ')}`);
+  const est = (lang) => Math.round(narrationWords(data, lang) / NARRATION_WPS);
+  lines.push(`total ${t} s · narration about ${est('nl')} s nl, ${est('en')} s en · numbers: ${data.numbers.map((n) => `${n.value} (${n.lesson.split('.').pop()})`).join(', ')}`);
   lines.push(`skipped: ${data.skip.length ? data.skip.map((k) => `${k.term}: ${k.reason}`).join('; ') : 'none'}`);
   return lines.join('\n');
 }

@@ -49,8 +49,10 @@ async function loadWorker(store) {
       keys: async () => [],
     },
     fetch: async () => new Response('page', { status: 200 }),
+    importScripts: (...files) => { for (const f of files) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx); },
   };
-  vm.runInNewContext(fs.readFileSync('sw.js', 'utf8'), ctx);
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync('sw.js', 'utf8'), ctx);
   return handlers;
 }
 

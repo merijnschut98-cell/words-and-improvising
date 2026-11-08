@@ -48,9 +48,9 @@ test('speak variant: the English words in parentheses are not spoken', () => {
 test('speak variant: units and signs are said as words, per language', () => {
   const nl = (s) => speakOf([s], 'nl');
   const en = (s) => speakOf([s], 'en');
-  assert.equal(nl('bij Ø60 en 220 m/min draait de spil 1.167 omw/min.'), 'bij diameter 60 en 220 meter per minuut draait de spil 1.167 omwentelingen per minuut.');
+  assert.equal(nl('bij Ø60 en 220 m/min draait de spil 1.167 omw/min.'), 'bij diameter 60 en 220 meter per minuut draait de spil 11honderd 67 omwentelingen per minuut.');
   assert.equal(en('at Ø60 and 220 m/min the spindle turns at 1,167 rpm.'), 'at diameter 60 and 220 metres per minute the spindle turns at 1,167 revolutions per minute.');
-  assert.equal(nl('0,3 × 1.167 = 350 mm/min'), '0,3 maal 1.167 is 350 millimeter per minuut');
+  assert.equal(nl('0,3 × 1.167 = 350 mm/min'), '0,3 maal 11honderd 67 is 350 millimeter per minuut');
   assert.equal(en('0.3 × 1,167 = 350 mm/min'), '0.3 times 1,167 is 350 millimetres per minute');
   assert.equal(nl('160 / 20 = 8 × D.'), '160 gedeeld door 20 is 8 maal D.');
   assert.equal(en('Above 6 × D'), 'Above 6 times D');
@@ -96,8 +96,8 @@ test('beats split a scene by their share of the words; the clock never passes a 
 });
 
 test('page parameters: theme, lang, scene, motion, muted', () => {
-  assert.deepEqual(parseParams('?theme=dark&lang=en&scene=3&motion=reduce&muted=1&level=2'), { theme: 'dark', lang: 'en', scene: '3', reduce: true, muted: true, level: 2 });
-  assert.deepEqual(parseParams(''), { theme: null, lang: 'nl', scene: null, reduce: false, muted: false, level: null });
+  assert.deepEqual(parseParams('?theme=dark&lang=en&scene=3&motion=reduce&muted=1&level=2'), { theme: 'dark', lang: 'en', scene: '3', reduce: true, muted: true, level: 2, render: false });
+  assert.deepEqual(parseParams(''), { theme: null, lang: 'nl', scene: null, reduce: false, muted: false, level: null, render: false });
   assert.equal(parseParams('?theme=pink').theme, null);
   assert.equal(parseParams('?lang=de').lang, 'nl');
   assert.equal(parseParams('?level=9').level, null);
@@ -258,9 +258,9 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
     { nl: 'Dan {n:1167} omw/min.', en: 'Then {n:1167} rpm.' },
   ]), lessons);
   const [b1, b2, b3] = data.scenes[0].beats;
-  assert.deepEqual(b3.speak, { nl: 'Dan 1.167 omwentelingen per minuut.', en: 'Then 1,167 revolutions per minute.' });
+  assert.deepEqual(b3.speak, { nl: 'Dan 11honderd 67 omwentelingen per minuut.', en: 'Then 1,167 revolutions per minute.' });
   assert.equal(b1.text.nl, 'De voeding (feed) is 0,3 mm.');
-  assert.equal(b1.speak.nl, 'De voeding is 0,3 mm.');
+  assert.equal(b1.speak.nl, 'De voeding is 0,3 millimeter.');
   assert.equal(b1.text.en, 'The feed is 0.3 mm.');
   assert.equal(b2.text.nl, 'Weer voeding.');
   assert.deepEqual(data.scenes[0].terms, [{ lesson: 'eng.fx.a', index: 0, nl: 'Voeding', en: 'Feed', cue: 'feed' }]);
@@ -270,4 +270,31 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Feed}' }]), lessons), /no cue/);
   assert.throws(() => resolveFilm(spec([{ nl: '{n:7}', en: '{n:7}' }]), lessons), /number 7/);
   assert.throws(() => resolveFilm(spec([{ nl: '{n:0.3}', en: '{n:0.4}' }]), lessons), /different numbers/);
+});
+
+// v14b: the narration script (say) beside the caption, checked the same way
+test('resolveFilm: the narration names lesson terms and numbers, glosses in Dutch once, and nl and en must agree', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const l = (lang) => ({ id: 'eng.fx.a', terms: lang === 'nl' ? [{ term: 'Voeding' }, { term: 'Bril' }] : [{ term: 'Feed' }, { term: 'Steady rest' }], teach: ['Voeding 0,3 mm en 1.167 omw/min, 6,0 min.'] });
+  const lessons = { nl: new Map([['eng.fx.a', l('nl')]]), en: new Map([['eng.fx.a', l('en')]]) };
+  const spec = (beats) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['eng.fx.a'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }] });
+  const cap = { nl: 'De {t:Voeding|voeding}.', en: 'The {t:Feed|feed}.', cue: { Voeding: 'feed' } };
+  const data = resolveFilm(spec([
+    { ...cap, say: { nl: 'De {t:Voeding|voeding} is hoe ver hij opschuift: {n:0.3} mm per omwenteling.', en: 'The {t:Feed|feed} is how far it moves on: {n:0.3} mm per revolution.' } },
+    { ...cap, say: { nl: 'Weer de {t:Voeding|voeding}, en een {t:Bril|bril}, in {n:6.0} min.', en: 'The {t:Feed|feed} again, and a {t:Steady rest|steady rest}, in {n:6.0} min.' } },
+  ]), lessons);
+  const [b1, b2] = data.scenes[0].beats;
+  assert.deepEqual(b1.say.nl, ['De ', { t: 'voeding', k: 'eng.fx.a#0', en: 'feed' }, ' is hoe ver hij opschuift: ', '0,3', ' mm per omwenteling.']);
+  assert.deepEqual(b1.say.en[1], { t: 'feed', k: 'eng.fx.a#0' });
+  assert.equal(b1.voice.nl, 'De voeding is hoe ver hij opschuift: 0,3 millimeter per omwenteling.');
+  assert.equal(b2.voice.en, 'The feed again, and a steady rest, in 6 minutes.');
+  // the gloss once per term in the narration, separately from the captions
+  assert.ok(!b2.say.nl.some((p) => p.k === 'eng.fx.a#0' && p.en));
+  assert.ok(b2.say.nl.some((p) => p.k === 'eng.fx.a#1' && p.en === 'steady rest'));
+  // narration numbers are checked against the lesson too
+  assert.ok(data.numbers.some((n) => n.value === '6,0'));
+  assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{t:Voeding}', en: '{t:Steady rest}' } }]), lessons), /narration name different terms/);
+  assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{n:0.3}', en: '{n:0.4}' } }]), lessons), /narration carry different numbers/);
+  assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{n:42}', en: '{n:42}' } }]), lessons), /number 42/);
+  assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{t:Snijsnelheid}', en: '{t:Cutting speed}' } }]), lessons), /none of the served/);
 });
