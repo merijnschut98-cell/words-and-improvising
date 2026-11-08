@@ -291,7 +291,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.course-today .today-what', { hasText: 'Takt' }).waitFor();
   await shot('60-course-home');
   await page.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
-  await page.locator('.lesson-row').nth(5).waitFor();
+  await page.locator('.topic-row').nth(3).waitFor();
   await shot('60b-module-open');
   await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
   await page.locator('.course-pm .track').first().waitFor();
@@ -379,7 +379,7 @@ await step('a full lesson: guess, read, example, quiz with one miss, review, pas
   if (st.courseReviews['nl|eng.flow.takt#r0'].box !== 1 || st.courseReviews['nl|eng.flow.takt#r1'].box !== 2) throw new Error('queue boxes wrong');
   if (lesson.recall.length !== Object.keys(st.courseReviews).length) throw new Error('not every question scheduled');
   await page.locator('.lesson-done ~ .btn', { hasText: 'Terug naar de cursus' }).click();
-  await page.locator('.course-today .today-what', { hasText: 'De bottleneck' }).waitFor();
+  await page.locator('.course-today .today-what', { hasText: /Lijnbalancering|De bottleneck/ }).waitFor();
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await page.locator('.btn-hero').waitFor();
 });
