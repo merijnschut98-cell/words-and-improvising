@@ -25,6 +25,7 @@ const SHELL = [
   'src/content/courses/eng/industry40.en.js', 'src/content/courses/eng/industry40.nl.js',
   'src/content/courses/eng/itbasics.en.js', 'src/content/courses/eng/itbasics.nl.js',
   'src/content/courses/eng/ot.en.js', 'src/content/courses/eng/ot.nl.js',
+  'src/content/courses/eng/cyber.en.js', 'src/content/courses/eng/cyber.nl.js',
   'src/content/courses/pm/lead.en.js', 'src/content/courses/pm/lead.nl.js',
   'src/content/courses/pm/perform.en.js', 'src/content/courses/pm/perform.nl.js', 'src/content/courses/pm/negotiate.en.js', 'src/content/courses/pm/negotiate.nl.js', 'src/content/courses/eng/safety.en.js', 'src/content/courses/eng/safety.nl.js',
   'src/content/courses/eng/gridplanning.en.js', 'src/content/courses/eng/gridplanning.nl.js', 'src/content/courses/eng/reliability.en.js', 'src/content/courses/eng/reliability.nl.js', 'src/content/courses/pm/consult.en.js', 'src/content/courses/pm/consult.nl.js', 'src/content/courses/pm/portfolio.en.js', 'src/content/courses/pm/portfolio.nl.js',
