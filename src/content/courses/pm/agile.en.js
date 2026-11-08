@@ -1,0 +1,1308 @@
+// pm.agile (English): Agile and Scrum: the agile mindset and manifesto, Scrum roles, events and artefacts, backlog and estimating, Kanban and flow.
+export default {
+  lessons: [
+    {
+      id: 'pm.agile.whyagile',
+      title: 'What agile is, and why it exists',
+      pre: [
+        {
+          q: 'A factory has a screen built that shows machine downtime by cause. With which approach do the operators first see something working?',
+          options: ['Eight months of specifying and building, then delivering everything in one go', 'Waiting until IT has time, then building it in one long push', 'Buying a standard package and rolling it out unchanged', 'A small working piece every two weeks, adjusted to their reactions'],
+          answer: 'A small working piece every two weeks, adjusted to their reactions',
+          why: 'That is the core idea of agile: short cycles, each ending with something users can actually try.',
+        },
+      ],
+      teach: [
+        'The classic way to build software is called the waterfall approach: phases one after another, like water falling from step to step. First all the requirements on paper, then design, build, test and deliver.\n\nThat works when you know exactly what you want up front. With software, users often only know when they see something. Then you find out after months that you built the wrong thing, and changing it is expensive.',
+        'Agile is an umbrella term for ways of working that do this differently. You work in short rounds of one to four weeks, called iterations. Each iteration delivers a small piece that really works.\n\nUsers try it, react, and the team adjusts the plan. That cycle of making, showing and adjusting is a feedback loop. The shorter the loop, the less work you throw away when you misunderstood something.',
+        'The word comes from the Agile Manifesto: a short text that seventeen software developers wrote in February 2001 at Snowbird, Utah. It holds four values:\n\nindividuals and interactions over processes and tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan.\n\nThe closing line is often forgotten: there is value in the items on the right, but they value the items on the left more.',
+        'As a Lean consultant, this will feel familiar. An iteration resembles Deming’s PDCA cycle (Plan-Do-Check-Act): try something small, see what it does, adjust. And showing working software resembles going to the gemba, the place where the work happens, instead of talking about the work.\n\nOne difference: in a factory you make the same product a thousand times. A software team makes something new each time. That is why agile leans less on standard work and more on learning fast.',
+        'What you hear in practice: “We do agile, so we don’t need to plan.” That is not what it says. Agile teams plan often, just in small pieces, and they change the plan when they learn something.\n\nA sharp question in a project: “When does the first user see something working, and what do we do with their reaction?” If the answer is “in six months”, the team is in practice working as a waterfall, whatever it says.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A metalworking company wants a screen where operators pick a cause for every stop on line 3. Two ways.\n\nWaterfall: 3 months gathering requirements, 4 months building, 1 month testing. After 8 months, about 34 weeks, the operators see it for the first time. They find the list of 40 causes too long; changing it takes another 2 months.\n\nAgile, with 2-week iterations: after week 2 a simple screen with 8 causes on one line. Operators immediately say they want to use it with gloves on, so bigger buttons in iteration 2. In 34 weeks there are 34 / 2 = 17 iterations, so 17 chances to adjust instead of one.',
+      },
+      said: 'What you hear on the floor: “IT is doing it agile, so in a year nothing will be finished, but it will keep changing.”',
+      recall: [
+        {
+          q: 'A project lasts 34 weeks and works in iterations (short rounds, each with a working piece) of 2 weeks. How many iterations is that?',
+          number: 17,
+          tolerance: 0.5,
+          unit: 'iterations',
+          why: '34 weeks / 2 weeks per iteration = 17 iterations, so 17 chances to adjust to user reactions.',
+        },
+        {
+          q: 'Which value is in the Agile Manifesto?',
+          options: ['Following a plan over responding to change', 'Comprehensive documentation over working software', 'Working software over comprehensive documentation', 'Processes and tools over individuals and interactions'],
+          answer: 'Working software over comprehensive documentation',
+          why: 'It is one of the four values. The other three options turn values round: the manifesto puts the left-hand item first. By the closing line documentation has value too, but working software weighs more.',
+        },
+        {
+          q: 'What is the biggest risk of the waterfall approach for software?',
+          options: ['You learn late that it is the wrong thing, when change is costly', 'Users see working pieces too early and their comments slow the team down', 'It needs far more testing than other approaches, so it costs more', 'It cannot be combined with a fixed budget or a fixed end date'],
+          answer: 'You learn late that it is the wrong thing, when change is costly',
+          why: 'Users often only know what they want when they see something. In a waterfall they see it at the end.',
+        },
+        {
+          q: 'Which Lean idea most resembles an agile iteration?',
+          options: ['A 5S audit: sorting and tidying the workplace', 'A large batch size to cut changeover time', 'The PDCA cycle: try small, check, adjust', 'An annual budget with quarterly reviews'],
+          answer: 'The PDCA cycle: try small, check, adjust',
+          why: 'Both are short learning loops: you test an idea for real and adjust to what you see.',
+        },
+      ],
+      situation: {
+        scene: 'You are working at a food manufacturer. A new MES (Manufacturing Execution System, the system that tracks orders, production and quality on the floor) is coming. The IT supplier wants to work “agile”. The plant manager says to you: “I just want a fixed date and a fixed package. What is all this agile stuff?”',
+        ask: 'How do you explain it in two minutes, without jargon?',
+        model: '“Agile means they work in rounds of two or three weeks and after each round show something that really works. Your shift leaders can then say after a month: this screen doesn’t match how we work. With one big delivery you only hear that after a year. You keep an end date and a budget; exactly what goes in, we steer round by round, with your people involved.”',
+        rubric: [
+          'Explains short rounds with something working in plain words',
+          'Links it to his interest: hearing early what is wrong',
+          'Shows that date and budget can stay',
+        ],
+        pushback: {
+          lines: [
+            '“So they don’t know yet what they are going to build? Sounds like an excuse not to commit to anything.”',
+            '“Last time IT also had rounds, and after a year half of it still didn’t work.”',
+          ],
+          model: '“Fair concern. They know the goal, just not every detail, and they admit that honestly. So agree that every round you see for yourself what works on the floor, not on a slide. If after two rounds nothing works that your people can use, that is your signal to step in.”',
+          rubric: [
+            'Acknowledges his distrust without defending agile as a belief',
+            'Makes it checkable: something working every round',
+            'Gives him a concrete moment to step in',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a production manager what agile is, with one example from his factory.',
+      terms: [
+        { term: 'Agile', def: 'Umbrella term for ways of working in short rounds that each deliver something working and adjust the plan to what is learned.' },
+        { term: 'Waterfall', def: 'Phases in sequence: first all requirements, then design, build, test and deliver. Users only see something at the end.' },
+        { term: 'Iteration', def: 'A short round of one to four weeks that ends with a small piece that really works.' },
+        { term: 'Agile Manifesto', def: 'A 2001 text by seventeen software developers, with four values and twelve principles for agile work.' },
+        { term: 'Feedback loop', def: 'The cycle of making, showing users and adjusting. The shorter, the less work you throw away.' },
+      ],
+    },
+    {
+      id: 'pm.agile.principles',
+      title: 'The twelve principles in practice',
+      pre: [
+        {
+          q: 'A software team has worked every weekend for three months to hit a date. What does one of the agile principles say about that?',
+          options: ['Fine, as long as the date is met', 'Overtime is part of agile when a sprint is at risk', 'The customer decides the working hours', 'The team should keep a pace it can sustain indefinitely'],
+          answer: 'The team should keep a pace it can sustain indefinitely',
+          why: 'Principle 8 asks for a sustainable pace. Months of overtime cause more mistakes and cost you people.',
+        },
+      ],
+      teach: [
+        'Under the four values sit twelve principles. You don’t need to know them by heart; you do need to recognise them in a project.\n\nThe first three are about delivery. The highest priority is to satisfy the customer through early and continuous delivery of something valuable. Changing requirements are welcome, even late. And deliver often: every couple of weeks to every couple of months, preferably as short as possible.',
+        'Principle 7: working software is the primary measure of progress. Working software means something a user can use now, not “the code is done, just testing left”.\n\nFor you this is the same as in the factory: a half-made product on a rack is not output. A status report saying “80% done” says little. Ask instead: “What can the user do today that they couldn’t do last month?”',
+        'Principle 8 asks for a sustainable pace: sponsors, developers and users should be able to keep the working rhythm up indefinitely. Overtime to rescue a sprint is a sign that too much work was planned.\n\nPrinciple 10 is about simplicity: the art of maximising the amount of work not done. A report with 40 fields of which 12 are used costs build time, test time and maintenance. Lean calls that over-processing.',
+        'Principle 11 says the best designs emerge from a self-organising team: a team that decides for itself how to split and do the work. Principle 6 sees face-to-face conversation as the best way to convey information.\n\nPrinciple 9 asks for continuous attention to technical quality. Skip it and you build up technical debt: quick, messy solutions that cost extra work later, like interest on a loan.',
+        'Principle 12: at regular intervals the team reflects on how to work better and adjusts. That is the same thought as kaizen, continuous improvement in small steps.\n\nWhat experts argue about: the principles were written for software in 2001. Outside software, for example in an improvement project on the floor, you translate “working software” into “something that works on the floor”. A strong question: “Which principle are we skipping now, and what does it cost us?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'An IT team at a plastics processor is building a report for the quality department. The first request: 40 fields per batch, everything the system knows.\n\nPrinciple 10, simplicity: the team asks the quality engineers which fields they actually used last month. That is 12. The team builds those 12 first, in one 2-week iteration instead of the estimated 6 weeks for all 40.\n\nPrinciple 7, working software: after 2 weeks the engineers use the report in their morning meeting. They ask for 3 more fields. Nobody asks for the other 25. Result: 15 fields, 3 weeks of work, and the rest is work that never needed doing.',
+      },
+      said: 'What engineers say: “We can always add those fields later. Let’s first see what they actually use.”',
+      recall: [
+        {
+          q: 'According to the Agile Manifesto, what is the primary measure of progress?',
+          options: ['The hours the team works', 'The percentage complete in the status report', 'Working software', 'The number of lines of code written'],
+          answer: 'Working software',
+          why: 'Principle 7. Something users can use now says more than any percentage on paper.',
+        },
+        {
+          q: 'A report has 40 fields; users use 12. Which principle says you should not build the rest?',
+          options: ['Simplicity: maximising the work not done', 'Sustainable pace: no structural overtime', 'Self-organising teams decide what to build', 'Welcome changing requirements, even late'],
+          answer: 'Simplicity: maximising the work not done',
+          why: 'Principle 10. Every unused field costs building, testing and maintenance: over-processing in Lean terms.',
+        },
+        {
+          q: 'What is technical debt?',
+          options: ['Money IT still owes a supplier for licences', 'Hours of overtime the team still has to take off', 'Budget overrun carried over to the next year', 'Quick, messy fixes that cost extra work later'],
+          answer: 'Quick, messy fixes that cost extra work later',
+          why: 'Like interest on a loan: the longer you leave it, the more every next change costs.',
+        },
+        {
+          q: 'A team has worked overtime for months to finish sprints. What is the most likely cause?',
+          options: ['Too much work is planned, structurally', 'The team is not motivated enough', 'The sprints are too long to keep an overview', 'There are too few meetings to align the work'],
+          answer: 'Too much work is planned, structurally',
+          why: 'Sustainable pace (principle 8) means planning on what the team can really do. Structural overtime points to too much work, not too little effort.',
+        },
+      ],
+      situation: {
+        scene: 'You are in a progress meeting at a machine builder. The machine-control software team has reported “85% done” for six weeks on a new operator-panel module. The project lead is happy. You notice the operators on the test floor have not been able to try anything yet.',
+        ask: 'What do you ask, with the principles in mind?',
+        model: '“What can an operator do with that module today? Can we see what is really running now, even if it is small?” And: “Which pieces are completely done, tested and all, and which are half done?” If after six weeks nobody has tried anything, I would suggest putting the smallest piece that does work on the test machine this week, so we get real feedback.',
+        rubric: [
+          'Asks what works instead of asking for a percentage',
+          'Separates fully done from half done',
+          'Proposes a small, concrete piece to show now',
+        ],
+        pushback: {
+          lines: [
+            '“It’s almost done. If we show half pieces now, we only get comments and slip even further.”',
+            '“Operators don’t understand it isn’t finished. They’ll shoot it down straight away.”',
+          ],
+          model: '“Those comments will come anyway, now or at delivery. Now they cost a day, later a month. Let’s frame it well: two operators try one screen and we only ask whether the sequence is right. Then we know before the last 15% goes on.”',
+          rubric: [
+            'Shows that early feedback is cheaper than late feedback',
+            'Limits the demo to something small and clearly bounded',
+            'Takes the fear of being shot down seriously with a clear question',
+          ],
+        },
+      },
+      sayIt: 'Pick three of the twelve principles and explain in 60 seconds what they mean for an IT project in a factory.',
+      terms: [
+        { term: 'Working software', def: 'Software a user can really use now, tested and all. By the manifesto the primary measure of progress.' },
+        { term: 'Sustainable pace', def: 'A working rhythm the team can keep up indefinitely, without structural overtime.' },
+        { term: 'Simplicity', def: 'The art of maximising the work not done: only building what is really used.' },
+        { term: 'Self-organising team', def: 'A team that decides for itself how to split and do the work, within a goal others set.' },
+        { term: 'Technical debt', def: 'Quick, messy solutions in software that cost extra work later, like interest on a loan.' },
+      ],
+    },
+    {
+      id: 'pm.agile.leanroots',
+      title: 'Agile and Lean: family, not twins',
+      pre: [
+        {
+          q: 'Scrum, the best-known agile method, takes its name from a 1986 article. What did the authors study?',
+          options: ['American software companies in Silicon Valley', 'Rugby teams and how they train for matches', 'Command structures in the American army after the Second World War', 'Product development at Honda, Canon, Fuji-Xerox and others'],
+          answer: 'Product development at Honda, Canon, Fuji-Xerox and others',
+          why: 'Takeuchi and Nonaka described in Harvard Business Review how Japanese manufacturers developed new products with small teams that ran the whole course together. Rugby was their image for it, not their subject.',
+        },
+      ],
+      teach: [
+        'Agile has roots in manufacturing. In 1986 Takeuchi and Nonaka wrote in Harvard Business Review about how companies including Honda, Canon and Fuji-Xerox developed products: not as a relay race in which each department passes the baton, but as a rugby team moving forward together. Jeff Sutherland took the name Scrum from it in the early nineties.\n\nThe 2020 Scrum Guide says it literally: Scrum is founded on empiricism and lean thinking. Empiricism means deciding on what you observe and measure, not on assumptions.',
+        'Lean is the thinking behind the Toyota Production System: seeing value from the customer’s side and removing waste. Two ideas were taken over directly.\n\nFlow: letting work move smoothly, without piles in between. And pull: only starting new work when there is room, instead of pushing work into the chain. Kanban, the board system in topic 4, comes straight from Toyota’s pull system.',
+        'In their 2006 book, Mary and Tom Poppendieck translated the seven wastes to software. Inventory becomes partially done work: code that is written but not yet tested or in use. It loses value, just like inventory that ages.\n\nOverproduction becomes extra features nobody asked for. Waiting stays waiting. Transport becomes handoffs between people, where knowledge leaks away. Then there is task switching, relearning what someone already knew, and defects.',
+        'Kaizen and the retrospective, a team’s regular look back at how it works, are alike: both are small, continuous improvements by the people doing the work.\n\nThe difference is worth naming honestly. Kaizen in the factory leans on standard work: first a fixed best way, then improve it. A software team does different work each time and has less standard to build on. So the retrospective mostly improves collaboration and agreements, less a fixed work method.',
+        'Another difference: Lean in the factory wants less variation, because every product must be the same. In product development variation is partly the point: you are looking for something new. Standardising too much kills the discovery.\n\nWhat experts argue about: some call agile “Lean for IT”, others say that undersells the learning part. An honest line for a Lean manager: “Flow, pull and continuous improvement we take along; standard work and reducing variation work differently here.”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'An IT team at a packaging manufacturer has 14 features “almost done”: written, but not tested or in use. You walk through a value stream with the team lead (all the steps from request to use).\n\nStep 1, inventory: those 14 features are partially done work. They deliver nothing and age, because requirements change while they wait.\n\nStep 2, waiting: each feature sits on average 3 weeks in the queue for the only tester. That is waiting, and the tester is the bottleneck: the step that sets the pace of the whole chain.',
+        ask: 'Which Lean measure do you propose first, and how would you translate it here?',
+        reveal: 'Pull and a limit on work in progress: no new features started while too many wait for the tester. Meanwhile developers help with testing, or automate tests, so the bottleneck is relieved. That is the same as in the factory: don’t build more stock for a machine that can’t keep up, help the bottleneck instead. A common slogan in Kanban circles sums it up: “stop starting, start finishing”.',
+      },
+      said: 'What you hear from a Lean manager: “Agile is just Lean in other words, isn’t it? Why do we need to learn new terms?”',
+      recall: [
+        {
+          q: 'According to the 2020 Scrum Guide, what is Scrum founded on?',
+          options: ['Project management according to PRINCE2', 'Empiricism and lean thinking', 'The waterfall approach', 'Six Sigma'],
+          answer: 'Empiricism and lean thinking',
+          why: 'Literally so in the Scrum Guide: deciding on observation, and removing waste.',
+        },
+        {
+          q: 'Which software waste matches inventory in the factory, according to the Poppendiecks?',
+          options: ['Defects: work that has to be redone', 'Handoffs: work passed from one person to the next', 'Task switching: jumping between several jobs', 'Partially done work: written but not yet in use'],
+          answer: 'Partially done work: written but not yet in use',
+          why: 'Like inventory it delivers nothing and ages, while it ties up money and attention.',
+        },
+        {
+          q: 'What is an honest difference between kaizen in the factory and a retrospective in a software team?',
+          options: ['Kaizen is for managers; the retrospective is for the team', 'There is no real difference, only the name', 'Kaizen builds on standard work; software has less fixed standard', 'A retrospective is only about technology'],
+          answer: 'Kaizen builds on standard work; software has less fixed standard',
+          why: 'That is why a retrospective is more often about collaboration and agreements than about a fixed work method.',
+        },
+        {
+          q: 'What does pull mean?',
+          options: ['Only starting new work when there is room', 'Pushing work into the chain as fast as possible', 'The customer pays up front', 'Making a new plan every week'],
+          answer: 'Only starting new work when there is room',
+          why: 'The next step pulls work when it has capacity. That prevents piles of half-done work.',
+        },
+      ],
+      situation: {
+        scene: 'You work at a farm-machinery manufacturer with a strong Lean culture. The IT department is starting with Scrum. The Lean manager says in the coffee room: “That’s just Lean with new words. Let them use our kaizen board and be done with it.”',
+        ask: 'How do you respond, so you don’t undermine him but stay honest?',
+        model: '“You’re partly right: Scrum itself says it is founded on lean thinking, and the name comes from a study of Japanese manufacturers. They take along flow, pull and continuous improvement, and your kaizen experience is gold in their retrospectives. One thing works differently: they make something new every sprint, so there is less standard work. Their board has to show what is in progress, not only improvement actions.”',
+        rubric: [
+          'Acknowledges the real Lean roots of agile',
+          'Names one essential difference honestly',
+          'Turns the Lean manager into an ally rather than an opponent',
+        ],
+        pushback: {
+          lines: [
+            '“All work has a standard. If they don’t have one, that is exactly the problem.”',
+            '“I’ve done Lean for twenty years. I don’t need IT telling me how improvement works.”',
+          ],
+          model: '“True, and the repeatable part can certainly get a standard: testing, delivering, the Definition of Done. Your experience can help there. The design work itself stays different every time. Shall we sit in on their first retrospective together? Then you see for yourself where it is alike and where it isn’t.”',
+          rubric: [
+            'Agrees where he is right: the repeatable work',
+            'Holds to the difference for design work',
+            'Invites him to look together instead of arguing',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a Lean manager what agile took from Lean, and where it really differs.',
+      terms: [
+        { term: 'Lean', def: 'The thinking behind the Toyota Production System: seeing value from the customer’s side, removing waste and letting work flow.' },
+        { term: 'Empiricism', def: 'Deciding on what you observe and measure, not on assumptions. The basis of Scrum.' },
+        { term: 'Pull', def: 'Only starting new work when the next step has room for it, instead of pushing work into the chain.' },
+        { term: 'Kaizen', def: 'Continuous improvement in small steps by the people doing the work.' },
+        { term: 'Partially done work', def: 'Work that is started but not finished, such as code not yet tested or in use. The software version of inventory.' },
+      ],
+    },
+    {
+      id: 'pm.agile.fit',
+      title: 'When agile fits, and when it doesn’t',
+      pre: [
+        {
+          q: 'A factory replaces the same label printer on 20 lines with a known new model. Which approach fits best?',
+          options: ['A sequential plan with a fixed roll-out schedule', 'Scrum with two-week sprints and a review after each round', 'No plan at all: replace each printer when it breaks down', 'First a year of research into printer types'],
+          answer: 'A sequential plan with a fixed roll-out schedule',
+          why: 'What has to happen and how is known and repeats 20 times. Short learning rounds add little there.',
+        },
+      ],
+      teach: [
+        'Agile helps most when a lot is uncertain: about what to make, because users only know when they see something, or about how, because the technology is new. Then short feedback loops pay for themselves.\n\nIf both are known, like replacing the same printer 20 times, a sequential plan is faster and clearer. Agile is then mostly extra meetings.',
+        'In manufacturing, software is often tied to hardware: a machine, a line, a building. You can’t remake hardware every two weeks; you order steel with months of lead time.\n\nSo many manufacturers work hybrid: a hybrid approach combines a plan with fixed milestones for the physical part with short iterations for the software. Often it hangs on a stage-gate process, in which the project goes through phases with a go/no-go decision at each gate.',
+        'A second limit is the contract. With a fixed price you agree a fixed scope and a fixed price up front. That clashes with the idea that scope moves.\n\nCommon solutions: a fixed price per iteration, or a fixed budget and fixed date with a flexible scope, with an agreed minimum that must be in. Ask every supplier who says agile: “What does the contract say when the scope changes?”',
+        'The best-known trap is agile theatre: the form without the substance. There are sprints, boards and daily stand-ups, but users see something only after a year, and the plan never changes because of what the team learns.\n\nSigns: the review is a slide presentation instead of working software; the “product owner” has no mandate; retrospectives produce the same points every time. Then you pay the cost of agile without the return.',
+        'What experts argue about: agile advocates say almost all knowledge work benefits from short loops; critics point out that in large organisations agile often turns into bureaucracy.\n\nQuestions that make you credible: “What don’t we know yet, the what or the how?” “Which part of this project can really be delivered in small pieces?” “When did our plan last change because of something a user said?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A maker of packaging machines has three projects and the managing director wants “everything agile”.\n\nProject A: moving the ERP interface (ERP: the business system for orders, purchasing and finance) to a new version, with a fixed supplier and fixed interfaces. What and how are known: a sequential plan, with a clear cut-over date.\n\nProject B: an app for service engineers at customer sites that nobody has seen yet. The what is uncertain: agile, with two-week iterations and real service engineers in every review.',
+        ask: 'Project C is a new machine for a customer: frame and mechanics with a 16-week lead time, plus new control software. Which approach do you propose, and why?',
+        reveal: 'Hybrid. The physical part follows a stage-gate plan: design frozen before ordering, gates at design, assembly and FAT (Factory Acceptance Test: the customer accepts the machine at your plant). The software works in iterations and tests as early as possible on a simulation of the machine, then on the real frame. The gates give the customer certainty; the iterations absorb the uncertainty in the software.',
+      },
+      said: 'What you hear from directors: “From now on we do everything agile, the new hall included.”',
+      recall: [
+        {
+          q: 'When does agile deliver the most?',
+          options: ['When everything is known up front', 'When a lot is uncertain about what you make or how', 'When the contract fixes price and scope', 'When the team is large'],
+          answer: 'When a lot is uncertain about what you make or how',
+          why: 'Short feedback loops pay off when you have to learn. With known work they are mostly extra meetings.',
+        },
+        {
+          q: 'A team has sprints, boards and stand-ups, but users only see something after a year. What is that called?',
+          options: ['Agile theatre', 'A hybrid approach', 'Stage-gate', 'Kaizen'],
+          answer: 'Agile theatre',
+          why: 'The form is there, the substance isn’t: no early feedback and no plan that changes with what you learn.',
+        },
+        {
+          q: 'What is a stage-gate process?',
+          options: ['A four-week sprint with a fixed scope', 'A test approach that checks software in stages', 'Phases with a go/no-go decision at each gate', 'A contract type that pays the supplier per stage'],
+          answer: 'Phases with a go/no-go decision at each gate',
+          why: 'Common in manufacturing for product development, and easy to combine with iterations for software.',
+        },
+        {
+          q: 'A supplier wants to work agile for a fixed price and a fixed scope. What is the best question?',
+          options: ['“Can you do it cheaper if we drop the documentation?”', '“How many developers will you put on it, and how senior?”', '“Do you use Scrum or Kanban, and which tool?”', '“What does the contract say when the scope changes?”'],
+          answer: '“What does the contract say when the scope changes?”',
+          why: 'Fixed scope and moving scope clash. The contract decides who then pays and decides.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of industrial ovens the managing director has been on an agile course. In the management team he says: “From now on every project works in sprints, including building the new assembly hall and the new oven control software.” The hall’s project lead looks at you in despair.',
+        ask: 'What do you propose?',
+        model: '“Good that we want to learn faster. Let’s look per project at where the uncertainty is. The hall is known work with permits and contractors: a plan with milestones, and we can still align briefly every week. The oven control has a lot unknown for the user: sprints fit there, with operators at every review. That way we get the return of agile where it helps, without adding meetings where it brings nothing.”',
+        rubric: [
+          'Supports the director’s goal instead of rejecting it',
+          'Chooses per project based on uncertainty',
+          'Proposes a concrete way of working for both projects',
+        ],
+        pushback: {
+          lines: [
+            '“If we make exceptions, nothing will ever change. Everyone will say their project is different.”',
+            '“The trainer said agile works everywhere. Why would the hall be different?”',
+          ],
+          model: '“Fair point: without a criterion everything becomes an exception. So we make the criterion public: if the what or the how is uncertain, sprints; if not, a plan with a short weekly check-in. In three months we look at which projects went faster. Then the result decides, not opinion.”',
+          rubric: [
+            'Takes the concern about exceptions seriously',
+            'Sets a clear, public criterion',
+            'Proposes testing against results',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain why a machine builder often works hybrid, with an example of a gate and an iteration.',
+      terms: [
+        { term: 'Hybrid approach', def: 'A plan with fixed milestones for the predictable part, combined with short iterations for the uncertain part.' },
+        { term: 'Stage-gate', def: 'A process with phases and a go/no-go decision at each gate. Common in product development.' },
+        { term: 'Fixed price', def: 'A contract with scope and price agreed up front. Clashes with a scope that moves.' },
+        { term: 'Agile theatre', def: 'The form of agile without the substance: sprints and boards, but no early feedback and no plan that changes.' },
+      ],
+    },
+    {
+      id: 'pm.agile.scrumbasics',
+      title: 'Scrum: the team and the sprint',
+      pre: [
+        {
+          q: 'How long is a sprint, the fixed work period in Scrum, according to the Scrum Guide?',
+          options: ['Exactly one week', 'One month or less', 'Three to six months', 'As long as the work takes'],
+          answer: 'One month or less',
+          why: 'The Scrum Guide calls sprints fixed-length events of one month or less. Two weeks is the most common in practice.',
+        },
+      ],
+      teach: [
+        'Scrum is a framework for a small team to build complex products. It is the best-known agile way of working. The official description is the Scrum Guide by Ken Schwaber and Jeff Sutherland; the current version is from November 2020 and runs to about thirteen pages.\n\nScrum deliberately says little about how you do the work. It gives a few fixed accountabilities, events and lists, and leaves the rest to the team.',
+        'The work happens in sprints: fixed periods of one month or less, often two weeks. A new sprint starts right after the previous one ends.\n\nIn each sprint the team finishes something usable. A fixed length gives rhythm: every two weeks everyone knows when there is planning, showing and looking back. Too long is risky: the goal can go stale and problems stay hidden longer.',
+        'The Scrum Team is small, by the Guide typically ten people or fewer. There is no hierarchy and there are no sub-teams. The team holds three accountabilities.\n\nThe Product Owner is one person, not a committee, who looks after the value of the product: what the team does first and why. The Scrum Master helps the team and the organisation use Scrum well and removes impediments. The Developers are the people who do the work: programmers, testers, analysts, anyone who builds.',
+        'Note the word: since 2020 the Guide speaks of accountabilities, not job titles. A Developer doesn’t have to be a programmer, and the Scrum Master is not the team’s boss.\n\nFor you as a Lean consultant: the Product Owner resembles the voice of the customer in a value stream, and the Scrum Master a coach who improves the system rather than handing out tasks.',
+        'In factories you mostly see Scrum in IT teams for MES (the system for orders and production on the floor), ERP changes, data and machine software.\n\nA common mistake: the IT manager becomes Product Owner and Scrum Master at once. Then one person decides what gets built and also watches over whether the process is healthy; nobody holds up a mirror to him. Ask: “Who decides here what comes first, and who looks after how we work?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A maker of plastic pipes has an MES team of 7. Product Owner: the production manager, freed up for 2 days a week, because he knows what the floor needs. Scrum Master: a process improver from the Lean team. Developers: 3 programmers, 1 tester, 1 data analyst.\n\nTwo-week sprints, starting on Monday. In sprint 5 the goal is: “Operators on extrusion line 2 report scrap (rejected product) by cause on the screen instead of on paper.”\n\nAfter 2 weeks the screen is on line 2 and operators use it on all 3 shifts. Sprint 6 starts the following Monday.',
+      },
+      said: 'What you hear in teams: “Who is actually the Product Owner here? The IT manager, the production manager or the supplier?”',
+      recall: [
+        {
+          q: 'By the Scrum Guide, how many people does a Scrum Team typically have at most?',
+          number: 10,
+          tolerance: 0.5,
+          unit: 'people',
+          why: 'The Guide says typically ten or fewer: small enough to stay nimble, large enough to finish real work.',
+        },
+        {
+          q: 'Which three accountabilities does the 2020 Scrum Guide name?',
+          options: ['Product Owner, Project Manager, Developers', 'Product Owner, Scrum Master, Development Team', 'Sponsor, Scrum Master, Development Team', 'Product Owner, Scrum Master, Developers'],
+          answer: 'Product Owner, Scrum Master, Developers',
+          why: '“Development Team” was the 2017 term; since 2020 the Developers are part of one Scrum Team. A project manager does not appear in Scrum.',
+        },
+        {
+          q: 'What does the Product Owner do?',
+          options: ['Looks after value: what comes first and why', 'Writes code with the Developers', 'Assigns the tasks to the Developers each day', 'Takes the minutes and books the meetings'],
+          answer: 'Looks after value: what comes first and why',
+          why: 'The Product Owner is one person who decides what has the most value and explains it.',
+        },
+        {
+          q: 'Why is one person as both Product Owner and Scrum Master risky?',
+          options: ['It costs too much, because you pay two salaries for one job', 'The Scrum Guide forbids it and certification bodies check it', 'Nobody holds up a mirror to whoever decides what is built', 'There are twice as many meetings to attend'],
+          answer: 'Nobody holds up a mirror to whoever decides what is built',
+          why: 'The roles pull in different directions: value and speed against a healthy process. Combined, the process usually loses.',
+        },
+      ],
+      situation: {
+        scene: 'A maker of hydraulic cylinders is starting a Scrum team for a new planning system. The IT manager says at the kick-off: “I’ll be Product Owner and Scrum Master, that’s efficient. The planners don’t need to be at the sprints, I know what they want.”',
+        ask: 'What do you propose?',
+        model: '“I get it, you want speed. Two risks: who holds up a mirror to you when the process starts to chafe, and how do we know for sure what the planners need? My suggestion: make the lead planner Product Owner, or have him try the work at every sprint review. And appoint someone else as Scrum Master, for example from the Lean team. You keep control of budget and priorities with the board.”',
+        rubric: [
+          'Acknowledges his wish for speed',
+          'Names why the roles clash and why the planners must be involved',
+          'Proposes a concrete split in which he keeps a role',
+        ],
+        pushback: {
+          lines: [
+            '“The planners have no time for IT stuff. They have to plan.”',
+            '“A Scrum Master is just someone who arranges the meetings, isn’t it? I can easily do that on the side.”',
+          ],
+          model: '“True, their time is scarce. So I’m not asking for days, just one hour every two weeks at the review, to try what has been built. That prevents months of wrong work. And a Scrum Master is more than meetings: he makes sure impediments go away, even when you yourself are the impediment.”',
+          rubric: [
+            'Makes the request to the planners small and concrete',
+            'Explains what a Scrum Master really does',
+            'Dares to say the manager himself can be an impediment',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain what a sprint is and which three accountabilities a Scrum Team has.',
+      terms: [
+        { term: 'Scrum', def: 'A framework for a small team to build complex products, in sprints of one month or less. Described in the Scrum Guide.' },
+        { term: 'Sprint', def: 'A fixed work period of one month or less, often two weeks, in which the team finishes something usable.' },
+        { term: 'Scrum Team', def: 'A small team, typically ten people or fewer: one Product Owner, one Scrum Master and Developers.' },
+        { term: 'Product Owner', def: 'One person who looks after the value of the product: what the team does first and why.' },
+        { term: 'Scrum Master', def: 'Helps the team and the organisation use Scrum well and removes impediments. Not the team’s boss.' },
+        { term: 'Developers', def: 'The people in the Scrum Team who do the work, such as programmers, testers and analysts.' },
+      ],
+    },
+    {
+      id: 'pm.agile.events',
+      title: 'The five Scrum events',
+      pre: [
+        {
+          q: 'How long is the Daily Scrum, the Developers’ daily meeting, according to the Scrum Guide?',
+          options: ['5 minutes', '15 minutes', '45 minutes', 'An hour'],
+          answer: '15 minutes',
+          why: 'The Daily Scrum has a 15-minute timebox, every working day of the sprint at the same time and place.',
+        },
+      ],
+      teach: [
+        'Scrum has five events: fixed moments to plan, inspect and adapt. The sprint itself is the first; it contains the other four.\n\nEach event has a timebox: a fixed maximum duration. For a one-month sprint the Guide gives: Sprint Planning at most 8 hours, Daily Scrum 15 minutes, Sprint Review at most 4 hours, Sprint Retrospective at most 3 hours. For shorter sprints they are “usually shorter”.',
+        'Sprint Planning opens the sprint. The whole Scrum Team answers three questions. Why is this sprint valuable? From that comes the sprint goal. What can be done this sprint? The Developers pick work from the list. How will the chosen work get done? They break it into pieces of usually a day or less.\n\nThe Developers decide how much they take on. The Product Owner says what matters most, not how much must go in.',
+        'The Daily Scrum is a 15-minute meeting for the Developers, every working day at the same time and place. They check progress toward the sprint goal and adjust their plan for the coming day.\n\nIt is not a status meeting for a manager. The three fixed questions “what did I do yesterday, what will I do today, what is in my way” were in older versions; since 2020 the team chooses the format.',
+        'The Sprint Review closes the work of the sprint. The team shows stakeholders what is done, and together they discuss what is now most valuable. It is a working session, not a slide presentation.\n\nThe Guide adds something important: the review is never a gate to releasing value. What is done may go into use earlier.',
+        'The Sprint Retrospective is the last event: the team looks at how it worked, what went well and what could be better, and picks the most important improvements. They may go straight onto the list for the next sprint.\n\nFor you: this is Scrum’s kaizen engine. A retrospective without one concrete action is like a kaizen board without an owner. Refinement, refining the list of work, is not an event, by the way; it happens continuously.',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'An MES team at a beverage producer works in 2-week sprints, 10 working days. The Guide gives timeboxes for a month and says they are usually shorter for shorter sprints. The team halves them, a common rule of thumb:\n\nMonday week 1: Sprint Planning, at most 4 hours instead of 8. Every working day at 9:00: Daily Scrum, 15 minutes at the board. Friday week 2: Sprint Review, at most 2 hours, with the shift leaders of the filling lines. Then the Sprint Retrospective, at most 1.5 hours.\n\nTime in Daily Scrums per sprint: 10 days × 15 minutes = 150 minutes, 2.5 hours per person.',
+      },
+      said: 'What you hear in teams: “That stand-up always runs to forty-five minutes, because the manager wants an update from everyone.”',
+      recall: [
+        {
+          q: 'A sprint has 10 working days, with a 15-minute Daily Scrum every working day. How many minutes of Daily Scrum is that per person per sprint?',
+          number: 150,
+          tolerance: 1,
+          unit: 'minutes',
+          why: '10 × 15 = 150 minutes, or 2.5 hours per person per sprint.',
+        },
+        {
+          q: 'What is the maximum length of Sprint Planning for a one-month sprint?',
+          options: ['1 hour', '4 hours', '8 hours', '2 days'],
+          answer: '8 hours',
+          why: 'The Guide gives at most 8 hours for a one-month sprint; usually less for shorter sprints.',
+        },
+        {
+          q: 'What is the Sprint Review?',
+          options: ['An appraisal in which the manager reviews each Developer’s output for the sprint', 'A working session with stakeholders on what is done and what comes next', 'The approval gate that every change must pass before it may go live', 'A slide presentation on progress, percentages and budget'],
+          answer: 'A working session with stakeholders on what is done and what comes next',
+          why: 'By the Guide a working session, and explicitly not a gate to releasing value.',
+        },
+        {
+          q: 'Who decides in Sprint Planning how much work goes into the sprint?',
+          options: ['The Product Owner', 'The manager', 'The Scrum Master', 'The Developers'],
+          answer: 'The Developers',
+          why: 'The Product Owner says what matters most; the Developers choose how much they can finish.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of electric motors you sit in with the ERP team. The Daily Scrum lasts 45 minutes every day. The department manager stands in and asks every Developer for a detailed update. The Scrum Master says nothing.',
+        ask: 'What do you say, and to whom?',
+        model: 'Afterwards, to the Scrum Master: “What do you see as the purpose of the Daily Scrum?” Then together to the manager: “You want to know how it’s going, and that’s fair. Can the team keep the 15 minutes for itself, focused on the sprint goal? You get the real picture at the Sprint Review, and if you want to know something in between, look at the board or ask the Product Owner. That saves the team half an hour every day.”',
+        rubric: [
+          'Speaks to the Scrum Master about his role first',
+          'Acknowledges the manager’s need for information',
+          'Offers the manager another channel and names the time saved',
+        ],
+        pushback: {
+          lines: [
+            '“If I’m not there, I don’t know what they’re doing. I’m accountable for this project.”',
+            '“Fifteen minutes is too short for seven people. Problems won’t come up.”',
+          ],
+          model: '“You stay accountable, and your information gets better: at the review you see working software, not stories. Big problems they discuss straight after the Daily Scrum, with whoever is needed. The 15 minutes are for aligning, not solving. Try it for three weeks; if you see less, we look again.”',
+          rubric: [
+            'Shows the manager gets better informed, not worse',
+            'Explains the difference between aligning and solving',
+            'Proposes a time-boxed trial',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, name the five Scrum events and the purpose of each, with the maximum for a one-month sprint and what is usual for two weeks.',
+      terms: [
+        { term: 'Timebox', def: 'A fixed maximum duration for an event. When the time is up, the event stops.' },
+        { term: 'Sprint Planning', def: 'Opens the sprint: why is this sprint valuable, what can be done, and how will it get done. At most 8 hours for a one-month sprint.' },
+        { term: 'Daily Scrum', def: 'A daily 15-minute meeting in which the Developers adjust their plan toward the sprint goal.' },
+        { term: 'Sprint Review', def: 'Working session at the end of the sprint: the team shows what is done and decides with stakeholders what is now most valuable.' },
+        { term: 'Sprint Retrospective', def: 'The last event of the sprint: the team looks at how it worked and picks improvements. At most 3 hours for a one-month sprint.' },
+      ],
+    },
+    {
+      id: 'pm.agile.artefacts',
+      title: 'The three artefacts and their commitments',
+      pre: [
+        {
+          q: 'A team has four features done and one “almost done, just testing left”. What may the team show at the Sprint Review according to the Scrum Guide?',
+          options: ['All five, with a clear disclaimer for the one still in testing', 'None, because the sprint did not deliver everything it planned', 'Only the four that meet the agreement on what done means', 'Whatever the manager finds most convincing for stakeholders'],
+          answer: 'Only the four that meet the agreement on what done means',
+          why: 'Work that does not meet the Definition of Done cannot be released or even presented at the review. It goes back to the Product Backlog.',
+        },
+      ],
+      teach: [
+        'Scrum has three artefacts: lists or results that make the work visible. Since 2020 each artefact has a commitment: a goal or agreement that says what you measure it against.\n\nThe Product Backlog is the ordered list of everything that could improve the product; the Product Owner decides the order. Its commitment is the Product Goal: the longer-term objective the team works toward, sprint after sprint.',
+        'The Sprint Backlog is the Developers’ plan for this sprint: the chosen work, plus how they will do it. It belongs to the Developers and changes during the sprint as they learn.\n\nIts commitment is the Sprint Goal: the single objective of this sprint. It gives focus and room. If a chosen item turns out too big, the scope can be renegotiated with the Product Owner, as long as the sprint goal stands.',
+        'The Increment is a concrete piece of working product that is done and adds to the Product Goal. Several increments can be created in one sprint, and they may go into use earlier.\n\nIts commitment is the Definition of Done: the shared agreement on when work is really done, for example tested, documented and installed on the test environment. Work that does not meet it cannot be released or shown at the review. It goes back to the Product Backlog.',
+        'For you as a Lean consultant: the Definition of Done is like a quality gate at the end of a line. What doesn’t pass the gate doesn’t count as output. Hiding half-done work is no longer possible.\n\nIf the Sprint Goal becomes obsolete, for example because the plant stops a project, only the Product Owner may cancel the sprint. That rarely happens.',
+        'Typical mistakes: a Product Backlog of 400 items nobody can oversee; a Sprint Backlog that is really the manager’s task list; a Definition of Done that only says “code written”, so testing slides to later.\n\nSharp questions: “What is the Product Goal, in one sentence?” “What is the goal of this sprint?” “May I see your Definition of Done, and is it actually used?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A team is building an interface between the scales in a meat-processing plant and the MES. Product Goal: “Every batch gets the right weight in the MES automatically, without manual work.” Sprint Goal of sprint 4: “The scale on line 1 sends weights to the MES.”\n\nDefinition of Done: tested with real weighing data, checked by quality, installed on the acceptance environment (a copy of the real system for testing).\n\nEnd of sprint: 5 items chosen. 3 meet the Definition of Done. Item 4 is written but not checked by quality. Item 5 has not started.',
+        ask: 'What does the team show at the Sprint Review, what happens to items 4 and 5, and was the Sprint Goal met?',
+        reveal: 'Only the 3 items that meet the Definition of Done go into the review. Items 4 and 5 go back to the Product Backlog; the Product Owner decides where they come in the order. Whether the Sprint Goal was met depends on what the 3 items do: if the weights from line 1 already reach the MES, the goal is met, even though not all the chosen work made it. That is why a sprint goal is stronger than a list of tasks.',
+      },
+      said: 'What you hear at reviews: “This one is basically done too, just needs a quick test. Shall we show it anyway?”',
+      recall: [
+        {
+          q: 'Which commitment belongs to the Product Backlog?',
+          options: ['The Sprint Goal', 'The Definition of Done', 'The Product Goal', 'The velocity'],
+          answer: 'The Product Goal',
+          why: 'Product Backlog and Product Goal; Sprint Backlog and Sprint Goal; Increment and Definition of Done.',
+        },
+        {
+          q: 'Who owns the Sprint Backlog?',
+          options: ['The Developers', 'The Product Owner', 'The Scrum Master', 'The manager'],
+          answer: 'The Developers',
+          why: 'It is their plan for the sprint. They change it as they learn.',
+        },
+        {
+          q: 'What happens to work that does not meet the Definition of Done?',
+          options: ['It is shown anyway, with a disclaimer that testing is still running', 'It counts for half its points in the velocity of the sprint', 'It rolls into the next sprint automatically, at the top of the list', 'It is not shown and goes back to the Product Backlog'],
+          answer: 'It is not shown and goes back to the Product Backlog',
+          why: 'It may not be released or shown at the review. That keeps half-done work visible as half-done, like a quality gate at the end of a line. The Product Owner decides where it comes in the order.',
+        },
+        {
+          q: 'Who may cancel a sprint?',
+          options: ['The Scrum Master', 'Only the Product Owner', 'The Developers together', 'The IT manager'],
+          answer: 'Only the Product Owner',
+          why: 'The Guide gives that authority only to the Product Owner, and only when the Sprint Goal has become obsolete.',
+        },
+      ],
+      situation: {
+        scene: 'Sprint Review at a maker of lift components. The team shows eight screens for a new quality system. For five of them the team lead says: “These are functionally done, testing is still running.” The quality manager nods, pleased. You have seen the Definition of Done on the wall: “tested by quality”.',
+        ask: 'What do you do, now or afterwards?',
+        model: 'Afterwards, with the Scrum Master and the Product Owner: “By your Definition of Done three screens are done, not eight. If we show eight, the quality manager thinks we are further along than we are. Can we start less and finish more next sprint, and put testing earlier in the sprint? Then what we show matches what really works.”',
+        rubric: [
+          'Picks a moment and audience where nobody loses face',
+          'Refers to the team’s own Definition of Done',
+          'Proposes a concrete change in how the work flows',
+        ],
+        pushback: {
+          lines: [
+            '“If we only show three screens, it looks as if we did nothing.”',
+            '“Testing is just a formality, isn’t it? The code is good.”',
+          ],
+          model: '“I understand it feels bitter. But five screens that can still fail are a risk, not a result. Better three that work and an honest picture than eight and a surprise at go-live. And if testing really is a formality, it will be quick; then there is no reason to postpone it.”',
+          rubric: [
+            'Acknowledges the team’s feeling',
+            'Names half-done work as a risk rather than a result',
+            'Tackles “testing is a formality” at its core',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain the three Scrum artefacts, each with its commitment.',
+      terms: [
+        { term: 'Product Backlog', def: 'The ordered list of everything that could improve the product. The Product Owner decides the order.' },
+        { term: 'Product Goal', def: 'The longer-term objective for the product; the commitment of the Product Backlog.' },
+        { term: 'Sprint Backlog', def: 'The Developers’ plan for the sprint: the chosen work and how they will do it.' },
+        { term: 'Sprint Goal', def: 'The single objective of the sprint; the commitment of the Sprint Backlog. Gives focus and room.' },
+        { term: 'Increment', def: 'A concrete piece of working product that is done and adds to the Product Goal.' },
+        { term: 'Definition of Done', def: 'The shared agreement on when work is really done; the commitment of the Increment.' },
+      ],
+    },
+    {
+      id: 'pm.agile.scrumfail',
+      title: 'Scrum for real: what goes wrong and what you ask',
+      pre: [
+        {
+          q: 'Are user stories, story points or velocity in the 2020 Scrum Guide?',
+          options: ['Yes, all three are mandatory', 'Only story points', 'No, none of the three', 'Only user stories'],
+          answer: 'No, none of the three',
+          why: 'The Guide only speaks of Product Backlog items. Stories and points are popular additions, not part of Scrum.',
+        },
+      ],
+      teach: [
+        'The 2020 Scrum Guide changed a few things you still meet in older teams. The separate “Development Team” went: there is one Scrum Team, to stop us-and-them thinking between the Product Owner and the builders.\n\nSelf-organising became self-managing: the team decides who does what, when and how. The Product Goal and the three commitments were added. And the Guide became less prescriptive: the three fixed Daily Scrum questions and the rule of thumb of 10% of capacity for refinement were dropped.',
+        'Many popular practices are not in the Guide: user stories, story points, velocity, burn-down charts. They can help, but anyone who says “Scrum requires it” is wrong.\n\nThe Guide calls burn-downs and similar charts useful, but says they do not replace empiricism: looking at what is actually done.',
+        'Known mistakes. The proxy Product Owner: someone without a mandate who has to check every decision with the real boss. That slows everything. The Scrum Master as secretary: takes minutes, books meetings, but does not tackle impediments.\n\nAnd the mini-waterfall: week 1 analysis, week 2 building, and testing slides into the next sprint. Then you have a waterfall in two-week boxes, with all its drawbacks.',
+        'ScrumBut is the name for “we do Scrum, but…”: but without a retrospective, but with three-month sprints, but without a Product Owner. The Guide says it itself: the framework is immutable as a whole; using only parts is possible, but the result is not Scrum.\n\nThat is not dogma for dogma’s sake. Each part you drop removes a piece of the feedback loop: no review, no customer reaction; no retrospective, no improvement.',
+        'What experts argue about: some experienced coaches think teams should outgrow the Guide after a few years; others see that “outgrowing” often means sliding back. There is little hard research on what Scrum delivers compared with other approaches.\n\nQuestions that work: “When did a retrospective last change anything?” “Can the Product Owner decide on their own?” “How much of last sprint’s work was really done?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'You do a short scan of the ERP team at a building-materials manufacturer. They have “done Scrum” for 6 months, but the board sees little progress. What you see:\n\n1. The Product Owner is a business analyst who takes every choice to the finance director; that takes 8 working days on average.\n2. Every sprint: week 1 analysis, week 2 building, testing in the next sprint.\n3. The retrospectives have produced the same points for 5 sprints: “test environment slow”, “requirements unclear”.\n4. The Scrum Master mostly books meetings.',
+        ask: 'Which two points do you tackle first, and why those?',
+        reveal: 'First point 1, the proxy Product Owner: waiting 8 working days for a decision, in a sprint of 10 working days, means almost every decision lands in the next sprint. Give the Product Owner a mandate within agreed limits, or make the finance director Product Owner for a few hours a week. Then point 3: a retrospective without action is a broken improvement loop. Have the Scrum Master escalate the slow test environment as an impediment above the team, with an owner and a date. Point 2 partly resolves once the test environment is faster.',
+      },
+      said: 'What you hear in teams: “We do Scrum, but without the retrospective. We don’t have time for that.”',
+      recall: [
+        {
+          q: 'What did the 2020 Scrum Guide replace with “self-managing”?',
+          options: ['Self-organising', 'Hierarchical', 'Directed by the Product Owner', 'Project-based'],
+          answer: 'Self-organising',
+          why: 'Self-managing goes further: the team decides who does what, when and how.',
+        },
+        {
+          q: 'What is a proxy Product Owner?',
+          options: ['A second Product Owner who stands in during holidays', 'Someone without a mandate who must check every decision', 'A Product Owner employed by the supplier instead of the client', 'A tool that orders the backlog automatically'],
+          answer: 'Someone without a mandate who must check every decision',
+          why: 'Every decision then waits on someone else, and the team stands still or guesses.',
+        },
+        {
+          q: 'A team analyses in week 1, builds in week 2 and tests in the next sprint. What is that called?',
+          options: ['Kanban', 'A hybrid approach', 'Refinement', 'A mini-waterfall'],
+          answer: 'A mini-waterfall',
+          why: 'The phases are still in sequence; only the boxes are smaller. Work is not done at the end of the sprint.',
+        },
+        {
+          q: 'A Product Owner waits 8 working days on average for each decision; the sprint has 10 working days. What share of the sprint is that, in percent?',
+          number: 80,
+          tolerance: 1,
+          unit: '%',
+          why: '8 / 10 = 0.8 = 80%. A decision asked for at the start of the sprint only arrives in the last two days.',
+        },
+      ],
+      situation: {
+        scene: 'The operations director of a kitchen manufacturer asks you: “Our IT team has done Scrum for a year. They’re cheerful, but I see nothing change in the factory. Should we stop?” He has twenty minutes.',
+        ask: 'Which questions do you ask to get a picture in twenty minutes?',
+        model: '“What has actually gone into use in the factory in the last quarter? Who is the Product Owner, and can they decide on their own? Do people from the floor come to the Sprint Review? And what has changed because of a retrospective?” Often the team works fine, but the factory is not at the table. Then the answer is not to stop, but to bring the floor in and steer on what is in use.',
+        rubric: [
+          'Asks about results in use, not activity',
+          'Tests the Product Owner’s mandate and the floor’s involvement',
+          'Gives a direction rather than a yes or no on stopping',
+        ],
+        pushback: {
+          lines: [
+            '“I don’t have time to sit in reviews. That’s what I have an IT manager for.”',
+            '“To me Scrum is just a way for IT to avoid deadlines.”',
+          ],
+          model: '“You don’t have to be there, but someone who knows your factory should, like a production manager, one hour every two weeks. And deadlines are fine: agree a date for what must be live at minimum. Then you see every two weeks whether the team is moving toward it, instead of after a year.”',
+          rubric: [
+            'Asks for a representative’s time, not the director’s own',
+            'Shows that deadlines and Scrum go together',
+            'Makes progress visible and checkable for him',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, name three signs that a team does Scrum without the return, and what you would ask for each.',
+      terms: [
+        { term: 'Self-managing', def: 'The team decides who does what, when and how. Replaced “self-organising” in the 2020 Scrum Guide.' },
+        { term: 'Proxy Product Owner', def: 'Someone called Product Owner who has no mandate and must check every decision with someone else.' },
+        { term: 'Mini-waterfall', def: 'Analysis, building and testing in sequence within or across sprints, so work is not done at the end of a sprint.' },
+        { term: 'ScrumBut', def: '“We do Scrum, but…”: Scrum with parts left out, so pieces of the feedback loop disappear.' },
+      ],
+    },
+    {
+      id: 'pm.agile.stories',
+      title: 'User stories: describing work from the user’s side',
+      pre: [
+        {
+          q: 'Which description of work says the most about why it is needed?',
+          options: ['“Create a database table for downtime reasons with a code, description and line”', '“As shift leader I want the top 3 stop causes, so that handovers stay short”', '“Build screen 4 as described in chapter 3 of the requirements document”', '“Improve the downtime reporting so that it is better and faster than now”'],
+          answer: '“As shift leader I want the top 3 stop causes, so that handovers stay short”',
+          why: 'It says who needs it, what they want and why. The last option has a “so that”, but “better and faster” is no reason anyone can check.',
+        },
+      ],
+      teach: [
+        'A user story is a short description of something a user wants, in their own words. The common template comes from the British company Connextra, around 2001: “As a [role] I want [something], so that [value].”\n\nFor example: “As an operator on line 3 I want to pick a cause in two taps when the line stops, so that the shift leader knows where the time went.” The “so that” is the most important part: it says why.',
+        'A story is not a specification. Ron Jeffries, one of the creators of Extreme Programming (an early agile method), described the three Cs in 2001.\n\nCard: the story fits on a card, as a reminder. Conversation: the details come from a conversation between users and builders. Confirmation: agreements on how you check that it works. So the card is a promise of a conversation, not a contract.',
+        'Those checking agreements are called acceptance criteria: concrete, testable conditions the story must meet to be accepted.\n\nFor the downtime story: “The pick list shows at most 8 causes.” “Picking works with work gloves on.” “The choice appears in the shift leader’s overview within 1 minute.” Without such criteria nobody knows when the story is done, and the argument only starts at delivery.',
+        'An epic is a big story that is too large for one sprint, such as “As a plant manager I want to see OEE (Overall Equipment Effectiveness: availability × performance × quality) per line.” You later cut an epic into smaller stories.\n\nStories and epics are kinds of Product Backlog items: the items on the ordered list of work. The Scrum Guide prescribes no format; user stories are a popular choice, not an obligation.',
+        'Typical mistakes: technical tasks dressed up as stories (“As a developer I want a database”); stories without a “so that”; and roles like “the user”, when an operator wants something very different from a planner.\n\nWhat experts argue about: some find the template schoolmasterly and just write a clear sentence with criteria. Fine, as long as who, what and why are in it. Ask of every story: “Who notices when this is done, and how?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'A planner at a steel-door manufacturer delivers a 30-page requirements document for a new planning screen. You help the Product Owner turn it into stories.\n\nFrom page 4: “The system must show the load on all machines.” Who needs that, and what for? After a 10-minute conversation with the planner it becomes: “As a planner I want to see the load on each welding robot for the next 5 working days, so that I can put rush orders on a robot with room.”\n\nAcceptance criteria: load in hours per day; red above 90% of available time; refreshes every 15 minutes. From the 30 pages come about 25 stories, and 6 pages turn out to deliver nothing to anyone.',
+      },
+      said: 'What you hear in teams: “That story is too vague. What exactly does the planner mean by ‘overview’?”',
+      recall: [
+        {
+          q: 'What is the most important part of “As a [role] I want [something], so that [value]”?',
+          options: ['The role: who wants it', 'The “I want”: what gets built', 'The length: it must fit on one line', 'The “so that”: why it is needed'],
+          answer: 'The “so that”: why it is needed',
+          why: 'The why helps the team choose between solutions and drop what doesn’t contribute.',
+        },
+        {
+          q: 'What do Ron Jeffries’s three Cs stand for?',
+          options: ['Card, Conversation, Confirmation', 'Cost, Change, Control', 'Customer, Contract, Commitment', 'Code, Check, Close'],
+          answer: 'Card, Conversation, Confirmation',
+          why: 'A card as a reminder, the details from a conversation, and agreements on how you check it works.',
+        },
+        {
+          q: 'What are acceptance criteria?',
+          options: ['The customer’s signature under the contract for the story', 'The hours budget the team agreed for the story', 'Concrete, testable conditions a story must meet', 'The place of the story in the backlog order'],
+          answer: 'Concrete, testable conditions a story must meet',
+          why: 'They make clear when the story is done, before the team starts.',
+        },
+        {
+          q: 'What is an epic?',
+          options: ['A story that is done and has been shown in the review', 'A story too big for one sprint, cut up later', 'A bug with the highest priority on the backlog', 'The name of the sprint goal for a release'],
+          answer: 'A story too big for one sprint, cut up later',
+          why: 'Epics keep the overview at headline level; the smaller stories are what the team actually picks up.',
+        },
+      ],
+      situation: {
+        scene: 'A quality manager at a medical-device manufacturer emails the IT team: “We need better deviation registration. Please by the end of the quarter.” The Product Owner asks you to help work out how to put this on the backlog.',
+        ask: 'How do you help him turn it into useful stories?',
+        model: '“Let’s first talk to the quality manager and two people who report deviations. Who reports, who assesses, what goes wrong now? From that we write stories with a so that, for example: as an operator I want to report a deviation with a photo from the line, so that quality can decide within an hour. For each story we agree acceptance criteria. The whole request goes on top as an epic, so the big goal stays visible.”',
+        rubric: [
+          'Talks to the real users before anything is written down',
+          'Gives an example story with role, want and why',
+          'Mentions acceptance criteria and the epic as an umbrella',
+        ],
+        pushback: {
+          lines: [
+            '“I don’t have time for conversations. I said it clearly, didn’t I: better registration?”',
+            '“Can’t you just copy the system from our other site?”',
+          ],
+          model: '“I understand. Half an hour with you and one reporter saves us weeks of building something that doesn’t quite fit. And that other site is a good starting point: let’s bring their screen to that conversation and see what is different for you.”',
+          rubric: [
+            'Keeps the time request small and shows the gain',
+            'Uses the copy suggestion as a starting point',
+            'Holds to the conversation with a real user',
+          ],
+        },
+      },
+      sayIt: 'Say out loud a user story with three acceptance criteria for an operator on a production line, and explain why the so-that part matters.',
+      terms: [
+        { term: 'User story', def: 'A short description of what a user wants and why, often as: “As a [role] I want [something], so that [value].”' },
+        { term: 'Three Cs', def: 'Card, Conversation, Confirmation: a story is a reminder, details come from a conversation, and there are agreements on how you check.' },
+        { term: 'Acceptance criteria', def: 'Concrete, testable conditions a story must meet to be accepted.' },
+        { term: 'Epic', def: 'A story too big for one sprint that is later cut into smaller stories.' },
+      ],
+    },
+    {
+      id: 'pm.agile.refine',
+      title: 'Refinement: getting the backlog ready',
+      pre: [
+        {
+          q: 'A story is so big the team thinks it will take three sprints. What do you do in refinement?',
+          options: ['Leave it as is and give the team three sprints for it', 'Give it to the most experienced developer to finish alone', 'Split it into a database part, a logic part and a screen part', 'Cut it into smaller stories that each work on their own'],
+          answer: 'Cut it into smaller stories that each work on their own',
+          why: 'By the Scrum Guide an item is ready for selection when the team can get it done within one sprint. So you cut big stories, but so that each piece works for the user: a database part alone gives nobody anything.',
+        },
+      ],
+      teach: [
+        'Refinement is the ongoing work of refining the Product Backlog: cutting items into smaller, more precise pieces, adding details and acceptance criteria, and sizing them. It is not a separate Scrum event; most teams plan a fixed slot for it, often an hour or two a week.\n\nThe Developers who will do the work do the sizing. The Product Owner explains what is needed and why.',
+        'A well-known checklist for a good story is INVEST, from Bill Wake in 2003. Independent: as separate as possible from other stories. Negotiable: details are open to discussion. Valuable: gives the user something. Estimable: the team can size it. Small: fits easily in a sprint. Testable: you can check that it works.\n\nIf a story fails on a letter, you know what to do in refinement.',
+        'The hardest part is story splitting: cutting a big story into smaller ones that each still deliver something working. Don’t cut horizontally into layers (database, logic, screen), because then no piece gives the user anything.\n\nCut vertically, like slices of cake: by step in the work process, by rule, by line or by product type. The simplest variant first, then the exceptions.',
+        'Many teams use a Definition of Ready: a checklist for when a story is ready to enter a sprint, such as “acceptance criteria known, dependencies sorted”. It is not in the Scrum Guide. Beware of it becoming a new gate where everything waits.\n\nOrdering is deciding the sequence of the backlog. The Product Owner does it on value, risk and dependencies: often first what delivers a lot or removes a lot of uncertainty.',
+        'For you as a Lean consultant: refinement resembles work preparation in maintenance. A job that goes to the floor without parts and drawings gets stuck; so does a story without criteria.\n\nTypical mistakes: refinement as a long meeting with the whole team about items for six months from now; or no refinement at all, so Sprint Planning takes hours. Ask: “Are the top items on the backlog ready for the next two sprints?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'At a window-frame manufacturer the backlog says: “As a planner I want the system to spread all orders over the saws automatically, so that I don’t spend an hour a day puzzling.” The team estimates 3 sprints.\n\nIn refinement you cut vertically. Story 1: spread over 1 saw, standard profiles only. Story 2: over all 3 saws. Story 3: rush orders go first. Story 4: account for changeover time (the time to set a machine up for another profile).\n\nStory 1 fits in one sprint, and after 2 weeks the planner can already use it on one machine. The team learns straight away whether the spreading rules are right.',
+      },
+      said: 'What engineers say: “Cut it to one machine and standard profiles first. The exceptions come after.”',
+      recall: [
+        {
+          q: 'What does the S in INVEST stand for?',
+          options: ['Small: fits easily in a sprint', 'Specific: clearly described', 'Simple: no technical risk', 'Sprint-ready: refined and estimated'],
+          answer: 'Small: fits easily in a sprint',
+          why: 'Independent, Negotiable, Valuable, Estimable, Small, Testable.',
+        },
+        {
+          q: 'Which way of cutting delivers something working per piece?',
+          options: ['Horizontally: first the database, then the logic, then the screen', 'Vertically: by step, rule or variant, through all layers', 'Per developer, so everyone has their own piece to work on', 'Per week, so each piece fits exactly into the calendar'],
+          answer: 'Vertically: by step, rule or variant, through all layers',
+          why: 'A user can already try each vertical slice. A database layer on its own gives nobody anything.',
+        },
+        {
+          q: 'Is the Definition of Ready in the Scrum Guide?',
+          options: ['No, it is a common addition', 'Yes, as a fourth artefact', 'Yes, as the commitment of the Sprint Backlog', 'Yes, as part of the Daily Scrum'],
+          answer: 'No, it is a common addition',
+          why: 'The Guide only says items are ready for selection when they can be done within one sprint. The checklist is a team agreement.',
+        },
+        {
+          q: 'Who sizes backlog items according to the Scrum Guide?',
+          options: ['The Product Owner, who knows the value', 'The Scrum Master, who guards the process', 'The Developers who will do the work', 'The manager, who carries the budget'],
+          answer: 'The Developers who will do the work',
+          why: 'They know best what the work involves. The Product Owner can help by explaining trade-offs.',
+        },
+      ],
+      situation: {
+        scene: 'Refinement at the MES team of a car-seat manufacturer. Top of the backlog: “Full traceability of every component in every seat.” The team has stared at it for half an hour and says: “That’s at least three months.” The Product Owner wants it in the next sprint anyway.',
+        ask: 'How do you move the conversation forward?',
+        model: '“What is the smallest piece of traceability the plant already benefits from now?” For example: for one safety-critical part, the seat-belt pretensioner, on one line, link the serial number to the seat. That fits in one sprint and gives quality an immediate answer in a recall. Then expand step by step: more parts, more lines, supplier data. The Product Owner picks the order by risk.',
+        rubric: [
+          'Looks for the smallest vertical slice with real value',
+          'Picks an example based on risk',
+          'Shows how it then expands step by step',
+        ],
+        pushback: {
+          lines: [
+            '“Half traceability is worthless. The customer demands all of it.”',
+            '“If we start that small, we’ll have to rebuild everything later.”',
+          ],
+          model: '“The customer demands all of it in the end, agreed. But with the most critical part first you already shrink the biggest risk, and learn how the link works on the floor. You avoid rebuilding by building the first slice right for expansion. Everything at once in three months is the biggest risk.”',
+          rubric: [
+            'Acknowledges the customer’s end goal',
+            'Explains that the first slice cuts risk and yields learning',
+            'Addresses the rebuild concern concretely',
+          ],
+        },
+      },
+      sayIt: 'Take a big request from a factory and cut it out loud into four vertical stories, simplest first.',
+      terms: [
+        { term: 'Refinement', def: 'Ongoing refining of the Product Backlog: cutting, adding details and criteria, sizing.' },
+        { term: 'INVEST', def: 'Checklist for a good story: Independent, Negotiable, Valuable, Estimable, Small, Testable.' },
+        { term: 'Story splitting', def: 'Cutting a big story vertically into smaller ones that each deliver something working.' },
+        { term: 'Definition of Ready', def: 'A team agreement on when a story is ready to enter a sprint. Not in the Scrum Guide.' },
+        { term: 'Ordering', def: 'Deciding the sequence of the backlog on value, risk and dependencies. The Product Owner’s job.' },
+      ],
+    },
+    {
+      id: 'pm.agile.points',
+      title: 'Story points, planning poker and velocity',
+      pre: [
+        {
+          q: 'A team estimates stories in story points. What do the points measure?',
+          options: ['Hours of work per person, rounded up to whole days', 'The value of the story to the customer, in euros or points', 'Size relative to other stories, uncertainty included', 'The number of lines of code the story will roughly need'],
+          answer: 'Size relative to other stories, uncertainty included',
+          why: 'Story points are relative: work, complexity and uncertainty together, compared with other stories. A 5 is roughly twice as big as a 2 or 3. They are deliberately not hours.',
+        },
+      ],
+      teach: [
+        'People are bad at absolute estimates (“how many hours?”) but reasonable at comparing (“is this bigger or smaller than that?”). Relative estimation uses that: you compare new work with work you know.\n\nStory points are a number for the relative size of a story: how much work, how complex and how uncertain together. A story of 8 is about four times as big as one of 2. Points are per team; team A’s 5 is not team B’s 5.',
+        'Teams usually pick from a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100. The gaps grow with the numbers, because with big work you can be less precise too. Hesitating between 8 and 13 means: it is big and uncertain, maybe cut it.\n\nPoints come from Extreme Programming: “ideal days” were renamed, because stakeholders didn’t understand why an ideal day took about three real days. Ron Jeffries wrote in 2019, half joking, that he may have invented them and is sorry now.',
+        'Planning poker is a way of estimating together, described by James Grenning in 2002. Everyone has cards with the sequence. The Product Owner reads out a story, everyone picks a card silently, and all turn them over at once.\n\nIf they are far apart, say 3 and 13, the highest and lowest explain why. That conversation is the value: one person sees a risk the other misses. Then another round.',
+        'Velocity is the number of points a team finishes per sprint, by the Definition of Done. Over several sprints it gives a range for how much work fits in the coming sprints.\n\nUse the spread, not one average. A team that does 18 to 30 points should not be planned at 30. Velocity only works when the points come from the same team and the way of estimating stays stable.',
+        'For you as a Lean consultant: velocity looks like output per shift, but it is not a productivity measure. As soon as a manager makes it a target, teams estimate more generously and velocity rises without more being done.\n\nWhat experts argue about: some prefer simply counting items, because that forecasts as well as points when items are small and roughly similar in size. Ask: “What do we use these points for, and who looks at them?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A team at a tow-bar manufacturer is building a customer portal. Velocity over the last 6 two-week sprints: 21, 25, 18, 30, 24, 22 points. Total 140, average 140 / 6 = 23.3 points per sprint.\n\nFor the first version 120 points remain on the backlog. The sales director asks: “When will it be done?”\n\nA single number (120 / 23.3 = 5.1, so 6 sprints because you need whole sprints) suggests a certainty that isn’t there.',
+        ask: 'Work out a range using the fastest and slowest sprint. How many sprints, and how many weeks, will it be?',
+        reveal: 'Fastest sprint, 30 points: 120 / 30 = 4 sprints. Slowest, 18 points: 120 / 18 = 6.7, so 7 sprints. Range: 4 to 7 sprints, or 8 to 14 weeks. Most likely 6 sprints, 12 weeks. Add: this only holds if the backlog doesn’t grow, and backlogs almost always grow. Agree to update the range after every sprint.',
+      },
+      said: 'What you hear from managers: “Team B does 40 points a sprint and team A only 25. What is team A doing wrong?”',
+      recall: [
+        {
+          q: 'Velocity over 6 sprints: 21, 25, 18, 30, 24, 22 points. What is the average velocity, in points per sprint?',
+          number: 23.3,
+          tolerance: 0.1,
+          unit: 'points per sprint',
+          why: '21 + 25 + 18 + 30 + 24 + 22 = 140; 140 / 6 = 23.3.',
+        },
+        {
+          q: 'Which number comes after 8 in the common modified Fibonacci sequence?',
+          options: ['13', '16', '20', '21'],
+          answer: '13',
+          why: 'The deck is 1, 2, 3, 5, 8, 13, 20, 40, 100. 20 comes after 13; 21 is the next number of the true Fibonacci sequence, which planning decks round to 20.',
+        },
+        {
+          q: 'In planning poker one person picks 3 and another 13. What happens?',
+          options: ['You take the average, 8, and move on', 'The Product Owner decides', 'The highest wins, to be safe', 'The two explain their reasons, then all estimate again'],
+          answer: 'The two explain their reasons, then all estimate again',
+          why: 'The gap points to a risk or a misunderstanding. That conversation is the real value of estimating together.',
+        },
+        {
+          q: 'Why can’t you compare the velocity of two teams?',
+          options: ['Points are calibrated per team: one team’s 5 is not another’s', 'Velocity is confidential and may only be seen by the team itself', 'One team works longer hours, so the comparison is unfair', 'You can, as long as both teams have sprints of equal length'],
+          answer: 'Points are calibrated per team: one team’s 5 is not another’s',
+          why: 'Each team calibrates its points on its own work. Comparing mostly leads to more generous estimates.',
+        },
+      ],
+      situation: {
+        scene: 'You are with the IT manager of a group with three plants. He shows a dashboard: velocity per team. “Team Weert does 40 points, team Venlo 25. I want Venlo at 40. Can you turn that into an improvement programme?”',
+        ask: 'How do you respond?',
+        model: '“Happy to help, but with velocity as a target it goes wrong: points are calibrated per team, so Venlo can hit 40 tomorrow by estimating everything more generously, without anything more being done. What do you really want to know: whether Venlo delivers enough for the plant? Let’s look at what goes into use per month, how long a request takes from ask to use, and what holds the team up. That is where the improvement programme is.”',
+        rubric: [
+          'Explains why points cannot be compared',
+          'Asks about the real concern behind the request',
+          'Proposes better measures, such as delivered work and lead time',
+        ],
+        pushback: {
+          lines: [
+            '“I have to be able to compare the teams on something, don’t I? Otherwise I don’t know where to step in.”',
+            '“If they all use the same scale, surely it works?”',
+          ],
+          model: '“You can compare on what goes into use and how long it takes, not on points. A shared scale sounds logical, but in practice teams then estimate to look good. If you want to know where to step in, look at which teams are waiting on decisions or on other teams.”',
+          rubric: [
+            'Gives him an alternative way to compare',
+            'Explains why a shared scale still skews',
+            'Points to waiting and dependencies as real steering information',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a manager what story points are and why velocity is not a productivity measure.',
+      terms: [
+        { term: 'Relative estimation', def: 'Estimating new work by comparing it with work you know, instead of in hours.' },
+        { term: 'Story points', def: 'A number for the relative size of a story: work, complexity and uncertainty together. Calibrated per team.' },
+        { term: 'Fibonacci sequence', def: 'For estimating usually 1, 2, 3, 5, 8, 13, 20, 40, 100: the gaps grow with the uncertainty.' },
+        { term: 'Planning poker', def: 'Estimating together with cards: everyone picks silently, all turn over at once, and on a gap explain and go again.' },
+        { term: 'Velocity', def: 'The number of points a team really finishes per sprint. Gives a range for planning, not a productivity measure.' },
+      ],
+    },
+    {
+      id: 'pm.agile.forecast',
+      title: 'Forecasting without false certainty',
+      pre: [
+        {
+          q: 'At the start of a project a team estimates 6 months. How accurate is such an early estimate according to the well-known cone of uncertainty model?',
+          options: ['Within a week either way, if the team is experienced', 'Plus or minus 10%, the usual margin in planning', 'Anywhere from a quarter to four times the estimate', 'Exact, as long as the scope does not change'],
+          answer: 'Anywhere from a quarter to four times the estimate',
+          why: 'McConnell, building on Boehm, gives a range of 0.25 to 4 times at the initial concept. It narrows as you learn more.',
+        },
+      ],
+      teach: [
+        'The cone of uncertainty is a model from Barry Boehm in 1981, later worked out by Steve McConnell: the earlier in a project, the wider the range of an estimate. At the initial idea the work can come in anywhere between 0.25 and 4 times the estimate; those numbers are largely expert judgement, not hard measurement.\n\nThe cone only narrows if you really remove uncertainty, for example by delivering working pieces. Letting time pass on its own doesn’t help.',
+        'A probabilistic forecast gives not a date but a probability: “85% chance it is done before 1 March.” That is more honest than one date, and the sponsor can choose how much certainty he wants.\n\nThe basis is historical data, often the throughput: the number of items the team finishes per week. If the team does 4 to 8 items a week and 60 are open, that is 60 / 8 = 7.5 to 60 / 4 = 15 weeks.',
+        'A Monte Carlo simulation makes that more precise. The computer draws weeks at random from the real history thousands of times, for example 5, 7, 4, 6, and adds up until the 60 items are done. That produces thousands of possible end dates.\n\nFrom them you read: done after so many weeks in 50% of runs, after so many in 85%. Daniel Vacanti and Troy Magennis made this popular in agile teams. It only works if the way of working stays roughly the same.',
+        'NoEstimates is a movement that took off around 2012: stop spending time estimating each item, cut work small and forecast with the count of items. Critics say that for investment decisions you do need to know a size.\n\nA recurring problem is Goodhart’s law: when a measure becomes a target, it ceases to be a good measure. Make velocity or the number of points a target, and people serve the measure instead of the work.',
+        'For you: this ties in with what you know about estimating with ranges. The difference is that here you use the team’s own data instead of a feeling.\n\nQuestions that make you credible in a steering committee: “What data is this date based on?” “With what percentage of certainty?” “What happens to the date if the backlog grows by 20%?” “When do we update the forecast?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A team at a packaging-film manufacturer is replacing the old labelling system. The steering committee wants a go-live date. Still open: 48 items, all small, a few days of work each on average.\n\nThroughput over the last 10 weeks, in items finished per week: 3, 6, 5, 4, 7, 5, 6, 4, 5, 5. Total 50, average 5 per week.\n\nA Monte Carlo simulation with 10,000 runs gives: about 3 in 4 runs done within 10 weeks, 98% within 11 weeks, practically all within 12 weeks.',
+        ask: 'Which date do you advise the steering committee, and what do you say with it? First check whether the simulation result matches a quick sum of your own.',
+        reveal: 'Quick sum: 48 / 5 = 9.6, so about 10 weeks at an average week; that matches the simulation, where most runs finish in week 10. With the slowest week, 3 items: 48 / 3 = 16 weeks, but every week that slow is unlikely. Within 10 weeks is only about 75%, so for 85% certainty advise 11 weeks as the commitment. Ten weeks of history is little, so the real spread is probably wider. Add: this holds for 48 items; if the list grows, the date moves. We update the forecast every week, so you see a shift early.',
+      },
+      said: 'What you hear in steering committees: “I don’t want probabilities, I want a date.”',
+      recall: [
+        {
+          q: 'A team estimates 6 months at the initial idea. By the cone of uncertainty, what is the upper end of the range, in months?',
+          number: 24,
+          tolerance: 0.5,
+          unit: 'months',
+          why: '4 × 6 = 24 months. The lower end is 0.25 × 6 = 1.5 months: a factor of 16 between low and high.',
+        },
+        {
+          q: 'What is a probabilistic forecast?',
+          options: ['A forecast with a chance attached, such as 85% by 1 March', 'A date the team will certainly hit, because it is based on data', 'An estimate in story points, converted into days by the team', 'The Product Owner’s best guess, adjusted for holidays'],
+          answer: 'A forecast with a chance attached, such as 85% by 1 March',
+          why: 'The sponsor sees the uncertainty and chooses how much certainty he needs.',
+        },
+        {
+          q: 'What does Goodhart’s law say?',
+          options: ['Work expands to fill the time available', 'Adding people to a late software project makes it later', 'Anything that can go wrong, will go wrong', 'When a measure becomes a target, it ceases to be a good measure'],
+          answer: 'When a measure becomes a target, it ceases to be a good measure',
+          why: 'People serve the measure, such as estimating more generously to push up velocity. The first option is Parkinson’s law, the second Brooks’s law, the third Murphy’s law.',
+        },
+        {
+          q: 'Where do the numbers in a Monte Carlo simulation come from?',
+          options: ['The budget divided by weekly cost', 'Random weeks drawn from the team’s own history', 'The manager’s estimate plus a margin', 'A national average for comparable IT projects'],
+          answer: 'Random weeks drawn from the team’s own history',
+          why: 'The simulation draws thousands of times from the team’s own throughput and adds up until the work is done.',
+        },
+      ],
+      situation: {
+        scene: 'Steering committee at a farm-machinery manufacturer. The new dealer portal must be live for the trade fair in February. The managing director asks the Product Owner: “Will we make February, yes or no?” The Product Owner looks at you; you have seen the team’s throughput data.',
+        ask: 'What do you say?',
+        model: '“Based on the last ten weeks: with what is on the list now, there is about an 85% chance we are done by mid-January, and near certainty by the end of January. That leaves margin for the fair. The big condition is the list itself: every item added moves the date. My suggestion: we agree now what must be in at minimum for the fair, and I show you the updated probability every two weeks.”',
+        rubric: [
+          'Gives an answer with a probability, based on data',
+          'Names the main condition: the scope',
+          'Proposes an agreement and a rhythm to steer',
+        ],
+        pushback: {
+          lines: [
+            '“I don’t want probabilities, I want a yes or a no. That fair costs us two hundred thousand euros.”',
+            '“Can’t they just work harder if it gets tight?”',
+          ],
+          model: '“Then the answer is yes, for what is on the list now, and every two weeks I tell you honestly whether that still holds. Working harder helps for a week or two, then errors go up. What really helps when it gets tight is cutting. Let’s choose now what goes first if it gets tight.”',
+          rubric: [
+            'Gives a clear answer with the condition attached',
+            'Explains why overtime is not the solution',
+            'Makes cutting discussable in advance',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a steering committee why you give a date with a probability, and how you calculate it.',
+      terms: [
+        { term: 'Cone of uncertainty', def: 'Model by Boehm and McConnell: the earlier in a project, the wider the range of an estimate, at the initial idea 0.25 to 4 times.' },
+        { term: 'Probabilistic forecast', def: 'A forecast with a probability attached, such as an 85% chance of being done by a date, based on historical data.' },
+        { term: 'Monte Carlo simulation', def: 'The computer draws random weeks from the history thousands of times and adds up until the work is done, giving a distribution of end dates.' },
+        { term: 'NoEstimates', def: 'A movement that stops estimating per item: cut work small and forecast with the count of finished items.' },
+        { term: 'Goodhart’s law', def: 'When a measure becomes a target, it ceases to be a good measure.' },
+      ],
+    },
+    {
+      id: 'pm.agile.board',
+      title: 'Kanban: making the work visible',
+      pre: [
+        {
+          q: 'Kanban comes from the factory. What was it originally for?',
+          options: ['At Toyota: a card signalling to make more parts', 'Tracking the holiday days of workers per shift', 'Planning the launch dates of new car models', 'Marking parts that failed the quality inspection at Toyota'],
+          answer: 'At Toyota: a card signalling to make more parts',
+          why: 'Kanban roughly means “card” or “signboard”. At Toyota the use of parts pulled new production: pull.',
+        },
+      ],
+      teach: [
+        'Kanban comes from Taiichi Ohno’s Toyota Production System: a card with a bin of parts. When the bin is empty, the card goes back and that is the signal to make more. So consumption pulls production, and there is no overproduction.\n\nIn knowledge work, such as IT and engineering, Kanban is a way of making the flow of work visible and steering it. David Anderson made it known from 2004; his book came out in 2010.',
+        'The 2020 Kanban Guide defines Kanban as a strategy for optimising the flow of value through a process using a visual, pull-based system.\n\nAt its heart is the Kanban board: a board with columns for the steps in the work, for example “to do”, “analysis”, “build”, “test”, “done”. Each work item, a piece of work such as a request or a fault, is a card that moves from left to right.',
+        'Kanban starts where you are. You draw the work as it really flows, not as it should on paper. There are no fixed roles or sprints; you can also use Kanban alongside Scrum.\n\nThe Definition of Workflow is the shared agreement about the board: what a work item is, when work starts and finishes, which steps there are, how you limit work in progress, which rules apply, and how long an item should usually take.',
+        'A card that can’t move on, because it waits for a supplier, a decision or a test environment, you mark as blocked, often with a red sticker. Blocked cards are the gold mine of the board: they show where the system stutters.\n\nFor you as a Lean consultant: this is a visual management board, and a blocked card is like an andon, the signal that a line has stopped.',
+        'An honest difference from Toyota: there a kanban card signals a standard part that is always the same. In knowledge work each item is different, and the work per item varies hugely. The card describes work, not stock.\n\nTypical mistake: a board full of cards with no limit on how much work runs at once. Then it is a to-do list on the wall, not yet a pull system. Ask: “When does work count as started here, and when as done?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'At a machine builder the engineering department has a whiteboard with 40 loose sticky notes. Nobody knows what is really in progress. You help the team build a Kanban board.\n\nColumns, as the work really flows: “requested”, “design”, “check” (a second engineer reviews), “waiting for customer”, “released” (the drawing goes to production).\n\nAfter an hour all 40 cards are up. 12 are in “design”, 9 in “waiting for customer”, 6 of them for more than 3 weeks. 4 cards are blocked by a missing customer specification. Agreement: started is when an engineer takes the card; done is when the drawing is released.',
+      },
+      said: 'What engineers say: “We already have that board, but nobody updates it. It’s there for the audit.”',
+      recall: [
+        {
+          q: 'What was a kanban card at Toyota originally for?',
+          options: ['A quality label showing a part passed inspection', 'A work instruction describing how to assemble a part', 'A signal to make or replenish parts', 'A time card recording hours per operator'],
+          answer: 'A signal to make or replenish parts',
+          why: 'Consumption pulls production. That is pull: make nothing before there is demand.',
+        },
+        {
+          q: 'How does the Kanban Guide define Kanban?',
+          options: ['As a method with fixed roles, two-week sprints and a planning meeting', 'As a software package for managing tasks and tickets on screen', 'As a form of project planning with a Gantt chart and milestones', 'As a visual, pull-based strategy for optimising the flow of value'],
+          answer: 'As a visual, pull-based strategy for optimising the flow of value',
+          why: 'Kanban has no fixed roles or sprints; it is about making flow visible and steering it.',
+        },
+        {
+          q: 'What do you set down in the Definition of Workflow?',
+          options: ['The columns of the board and who is assigned to each card', 'What a work item is, start and finish, steps, limits and rules', 'The price and deadline of each work item', 'The names, roles and working hours of the team members'],
+          answer: 'What a work item is, start and finish, steps, limits and rules',
+          why: 'Without those agreements every card means something different to everyone. The Kanban Guide adds one more: how long an item should usually take.',
+        },
+        {
+          q: 'Why are blocked cards valuable?',
+          options: ['They count as finished work for the week', 'They give the team a breather between jobs', 'They show where the system stutters', 'They make the board easier to read at a glance'],
+          answer: 'They show where the system stutters',
+          why: 'Like an andon on the line: the problem becomes visible, so someone can solve it.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of industrial pumps the maintenance-engineering department has a Kanban board “for the audit”. It hasn’t been updated for three weeks. The team lead says: “Everyone knows what they have to do. That board is for show.”',
+        ask: 'How do you make the board useful rather than mandatory?',
+        model: '“May I suggest we try it for a week as a real tool? Ten minutes at the board every morning, with only the question: what is stuck, and who can help?” I would first redraw the board with the team as the work really flows, with a place for blocked work. If after a week the stuck jobs come loose faster, the team will keep it up themselves.',
+        rubric: [
+          'Proposes a short trial rather than an obligation',
+          'Has the team redraw the board as the work really flows',
+          'Focuses use on blocked work and help',
+        ],
+        pushback: {
+          lines: [
+            '“My people don’t have time to shuffle cards all day.”',
+            '“We already have a ticket system. Why a board as well?”',
+          ],
+          model: '“They don’t need to: ten minutes once a day. And we keep the ticket system; the board shows at a glance what hides in that system, like what has waited for weeks. If the system can show that itself, fine, then we use that screen as the board.”',
+          rubric: [
+            'Makes the time investment small and concrete',
+            'Acknowledges the existing system instead of replacing it',
+            'Focuses on the goal, visibility, not the form',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain where Kanban comes from and how a Kanban board works in an engineering department.',
+      terms: [
+        { term: 'Kanban', def: 'A strategy for optimising the flow of value through a process using a visual, pull-based system. Originally the card at Toyota.' },
+        { term: 'Kanban board', def: 'A board with columns for the steps in the work, on which cards move from left to right.' },
+        { term: 'Work item', def: 'A piece of work on the board, such as a request, a drawing or a fault, usually one card.' },
+        { term: 'Definition of Workflow', def: 'The shared agreement about the board: work items, start and finish, steps, limits on work in progress, rules and the expected time per item.' },
+        { term: 'Blocked', def: 'A work item that can’t move on because of an outside cause, such as waiting on a decision or a supplier.' },
+      ],
+    },
+    {
+      id: 'pm.agile.wip',
+      title: 'WIP limits: start less, finish more',
+      pre: [
+        {
+          q: 'A team of 5 people has 15 things in progress at once. What usually happens if the team agrees to do at most 6 things at once?',
+          options: ['Less gets done, because people sit waiting for free columns', 'Nothing changes, because the total amount of work stays the same', 'Work gets done faster: less switching, more helping', 'The team gets bored and starts on side projects'],
+          answer: 'Work gets done faster: less switching, more helping',
+          why: 'Less at once means less waiting and switching. Each item goes through the system faster.',
+        },
+      ],
+      teach: [
+        'WIP stands for work in progress: work that has started but is not yet done. In the factory it is the same term. It costs money, hides problems and makes everything slower.\n\nA WIP limit is an agreed maximum number of work items at once in a column or in the whole system, for example “test: at most 2”. When the column is full, you may not start anything new. That is what makes the board a pull system.',
+        'Why it works: a person doing five things at once keeps switching between tasks. That context switching costs time to get back in. Gerald Weinberg gave in 1992 as a rule of thumb that someone loses about 20% of their time to switching for each extra project; that is an estimate from experience, not a measurement.\n\nMore important still: each item lies idle longer, because everyone is working on something else. Customers wait longer, even though everyone is busy.',
+        'What do you do when a column is full? Not pick something new, but look at what you can help finish further right on the board. That is called swarming: several people finishing one item together.\n\nA developer helps test; an engineer does the check for a colleague. It feels strange at first, because you are not doing “your own work”. But the team delivers more.',
+        'The starting number doesn’t have to be perfect. A common start is about the number of people in the step, or slightly fewer, and then adjust. Too loose and nothing changes; too tight and people wait.\n\nFor you as a Lean consultant: this is the same as a supermarket stock or a fixed buffer between two machines. The limit makes the bottleneck visible, because work piles up there.',
+        'Typical mistakes: limits that are stretched whenever it gets busy; limits per person instead of per step; and no agreement on what you do when a column is full.\n\nWhat experts argue about: some start with one limit on the whole system instead of per column, because that is simpler. Ask a team: “What do you do when you are finished and the next column is full?”',
+      ],
+      example: {
+        kind: 'worked',
+        text: 'An IT team of 5 at a dairy plant has 15 work items in progress: 3 per person. A request takes 6 weeks on average from start to done. The team agrees WIP limits: build at most 4, test at most 2.\n\nWeek 1: test is full with 2 items. A developer finishes building and wants to pick a new item, but that would put a fifth in build. Instead he helps with testing. One item goes to done the same day.\n\nAfter 6 weeks 6 items are in progress at once instead of 15, and a request takes about 2.5 weeks on average.',
+      },
+      said: 'What you hear in teams: “If I’m not allowed to start anything new, I’ll just be sitting around waiting, won’t I?”',
+      recall: [
+        {
+          q: 'A team of 5 people has 15 work items in progress. How many is that on average per person?',
+          number: 3,
+          tolerance: 0.05,
+          unit: 'items per person',
+          why: '15 / 5 = 3 items per person, so a lot of switching and a lot of work lying idle.',
+        },
+        {
+          q: 'What is a WIP limit?',
+          options: ['An agreed maximum of items at once in a step', 'A cap on working hours per week', 'A deadline that each work item must meet', 'The number of people allowed in the team'],
+          answer: 'An agreed maximum of items at once in a step',
+          why: 'When the step is full, you start nothing new. That makes the board a pull system. A limit can also be set on the whole system instead of per step.',
+        },
+        {
+          q: 'The test column is full and you have finished building. What do you do?',
+          options: ['Pick a new item from the backlog to keep busy', 'Raise the WIP limit for building by one', 'Wait at your desk until test pulls your item', 'Help with testing, so an item gets done'],
+          answer: 'Help with testing, so an item gets done',
+          why: 'Swarming: finishing together instead of starting something new. That way something gets done sooner.',
+        },
+        {
+          q: 'Why does a WIP limit make the bottleneck visible?',
+          options: ['The manager pays more attention to the slow step', 'Work piles up before the step that can’t keep up', 'The bottleneck disappears as soon as the limit is in place', 'Everyone then works at the same speed'],
+          answer: 'Work piles up before the step that can’t keep up',
+          why: 'Like stock in front of a slow machine: where the pile is, the problem is.',
+        },
+      ],
+      situation: {
+        scene: 'At a maker of awnings the process-automation team has 22 jobs running at once: PLC changes (PLC: the computer that controls a machine), new sensors, breakdowns. Everyone is busy, but production complains that nothing gets finished. The team lead asks you: “Do we need more people?”',
+        ask: 'What do you propose?',
+        model: '“Maybe, but let’s first see whether we finish faster with what we have. You are 6 people with 22 jobs open, almost 4 per person. My suggestion: for two weeks, a limit of 8 jobs at once. When it is full, you help finish first. Breakdowns get their own fast lane. If jobs then get finished faster, you know it wasn’t a capacity problem but a flow problem.”',
+        rubric: [
+          'Calculates the work in progress per person',
+          'Proposes a concrete, temporary WIP limit',
+          'Arranges an exception for urgent work such as breakdowns',
+        ],
+        pushback: {
+          lines: [
+            '“If we leave jobs lying, production will call me every day.”',
+            '“Some jobs are waiting for parts. Then my people sit idle.”',
+          ],
+          model: '“Production calls now too, because nothing gets finished. With less at once, jobs finish faster, and you can give an honest date. Jobs waiting for parts we count separately as blocked, so they don’t fill the limit. And whoever is waiting helps a colleague finish.”',
+          rubric: [
+            'Shows that the complaints already exist',
+            'Handles blocked work separately',
+            'Gives those waiting a useful task',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a team lead why doing less at once delivers more, with an example from his department.',
+      terms: [
+        { term: 'WIP', def: 'Work in progress: work that has started but is not yet done.' },
+        { term: 'WIP limit', def: 'An agreed maximum number of work items at once in a step or in the whole system.' },
+        { term: 'Context switching', def: 'Constantly switching between tasks; each switch costs time to get back in.' },
+        { term: 'Swarming', def: 'Several people finishing one work item together, instead of starting new work.' },
+      ],
+    },
+    {
+      id: 'pm.agile.flowmetrics',
+      title: 'Cycle time, throughput and Little’s law',
+      pre: [
+        {
+          q: 'An IT team has on average 12 items in progress and finishes on average 3 a week. How long does an item take on average from start to done?',
+          options: ['3 weeks', '4 weeks', '12 weeks', '36 weeks'],
+          answer: '4 weeks',
+          why: 'Average time in the system = average work in progress / average output = 12 / 3 = 4 weeks. That is Little’s law.',
+        },
+      ],
+      teach: [
+        'The Kanban Guide names four flow measures every Kanban system tracks at a minimum. WIP: the number of items started but not finished. Throughput: the number of items finished per unit of time, for example per week. Work item age: how long an unfinished item has been under way. Cycle time: the time from start to finish of a completed item.\n\nStart and finish are the points you agreed in the Definition of Workflow.',
+        'Watch out for a trap in the words. In Lean in the factory, cycle time usually means the time per unit at one station, for example 45 seconds per product on a machine.\n\nIn Kanban, cycle time means the whole time from start to finish of one item, which in the factory would rather be called throughput time. Many teams use lead time for the time from the customer’s request, including waiting before work starts. Agree in every conversation which definition you mean.',
+        'Little’s law, proved by John Little in 1961, connects the three measures: average cycle time = average WIP / average throughput.\n\nExample: 12 items in progress, 3 items a week done, so an item takes on average 12 / 3 = 4 weeks. You know the same law from the factory: work in progress divided by output gives the throughput time. It holds for averages over a period, not for a single item.',
+        'What the law shows: at equal throughput, halving the WIP halves the average cycle time. That is why WIP limits work.\n\nBut it has conditions. The system must be stable: what comes in also goes out on average, and the WIP is roughly the same at the start and end of the period. If the pile of work in progress grows, the sum no longer holds. Vacanti stresses: it is a relationship between averages after the fact, not a forecasting machine.',
+        'For you: this is where Lean and Kanban are most alike. Whether it is orders in a factory or requests in an IT team, less work in progress gives shorter throughput times.\n\nTypical mistake: reporting only the average cycle time. A few items that take months hide inside a tidy average. Look at the spread. Ask: “Where does the clock start and stop for you?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'The IT team of an office-furniture manufacturer measures over the last 8 weeks. On average 12 items in progress, about as many at the start as at the end. Throughput: on average 3 items a week. On average 3 a week also come in, so the system is stable.\n\nLittle’s law: average cycle time = 12 / 3 = 4 weeks. The measured cycle time of the completed items is 4.2 weeks: a reasonable match.\n\nThe plant manager finds 4 weeks too long for small requests.',
+        ask: 'The team lowers the WIP limit to 6 items and keeps finishing 3 a week. What does the average cycle time become, and which condition must you watch?',
+        reveal: 'Average cycle time = 6 / 3 = 2 weeks, half. Condition: throughput must really stay at 3 a week, and no work may run off the board on the quiet. Arrivals must fit too: if more than 3 a week come in, the queue in front of the board grows. That waiting time doesn’t show in the cycle time, but it does in the lead time the customer experiences. Measure again after 4 weeks.',
+      },
+      said: 'What you hear in teams: “Our average throughput time is fine, but that one customer has been waiting four months.”',
+      recall: [
+        {
+          q: 'A team has on average 20 items in progress and finishes on average 5 a week, in a stable system. What is the average cycle time, in weeks?',
+          number: 4,
+          tolerance: 0.05,
+          unit: 'weeks',
+          why: 'Little’s law: 20 / 5 = 4 weeks.',
+        },
+        {
+          q: 'What does cycle time mean in Kanban?',
+          options: ['The time per unit at one station on the line', 'The number of items finished per week', 'The time from the customer’s request to delivery', 'The time from start to finish of one item'],
+          answer: 'The time from start to finish of one item',
+          why: 'The first option is Lean cycle time at a station, the third is lead time, which includes waiting before work starts. Agree the definition in every conversation.',
+        },
+        {
+          q: 'What is work item age?',
+          options: ['How long a finished item took', 'How long an item stays in use after delivery', 'How long an unfinished item has been under way', 'How old the request was when work started'],
+          answer: 'How long an unfinished item has been under way',
+          why: 'The first option is cycle time, which you only know when something is done; age already shows which item is taking too long.',
+        },
+        {
+          q: 'When does Little’s law not hold well?',
+          options: ['When WIP grows substantially over the period', 'When the team has fewer than five people', 'When the sprints are shorter than two weeks', 'When the items differ a lot in size from each other'],
+          answer: 'When WIP grows substantially over the period',
+          why: 'The law needs a stable system: what comes in goes out on average. If WIP grows, that condition is broken. Items of different sizes are fine: the law holds for averages.',
+        },
+      ],
+      situation: {
+        scene: 'At a boiler manufacturer the internal IT service desk has 60 open requests from the plant. On average 15 come in per week, and on average 15 go out per week. The IT manager says: “In and out are equal, so we have it under control.”',
+        ask: 'What do you say about the waiting time, and what do you propose?',
+        model: '“True, the system is stable. But with 60 open and 15 a week done, a request waits on average 60 / 15 = 4 weeks. For an operator with a broken scanner that is long. If we bring the pile down once to 15, with a few weeks of extra effort or by closing stale requests, that is 1 week on average at the same output. Then we keep it there with a limit.”',
+        rubric: [
+          'Calculates the average waiting time with Little’s law',
+          'Translates the number into what it means for the user',
+          'Proposes bringing the pile down and then capping it',
+        ],
+        pushback: {
+          lines: [
+            '“Those 4 weeks are an average. We do urgent stuff straight away anyway.”',
+            '“Bringing it down takes extra people, and I don’t have them.”',
+          ],
+          model: '“Good that urgent work goes straight away; then the ordinary requests wait even longer than 4 weeks. Bringing it down can be done without extra people: many of those 60 are often stale. Let’s go through the oldest 20 with the plant together; what is no longer needed, we close.”',
+          rubric: [
+            'Shows that priority for urgent work makes the rest wait longer',
+            'Looks for a reduction without extra capacity',
+            'Proposes a concrete first step',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain Little’s law to an IT manager, with his own numbers, and the difference between Lean and Kanban cycle time.',
+      terms: [
+        { term: 'Throughput', def: 'The number of work items finished per unit of time, for example per week.' },
+        { term: 'Cycle time', def: 'In Kanban: the time from start to finish of one completed item. In Lean in the factory often the time per unit at a station.' },
+        { term: 'Lead time', def: 'In many teams the time from the customer’s request to delivery, including waiting before work starts.' },
+        { term: 'Work item age', def: 'How long an unfinished item has been under way.' },
+        { term: 'Little’s law', def: 'Average cycle time = average WIP / average throughput, for a stable system over a period.' },
+      ],
+    },
+    {
+      id: 'pm.agile.flowsteer',
+      title: 'Steering on flow: expectations, ageing and utilisation',
+      pre: [
+        {
+          q: 'A manager wants his PLC programmers 100% busy, so not a minute is lost. According to queueing theory, what happens to the waiting time for new work?',
+          options: ['It gets shorter, because nobody is ever idle', 'It rises sharply, faster the closer to 100%', 'It stays the same, since capacity is fully used', 'It drops to zero, because work starts right away'],
+          answer: 'It rises sharply, faster the closer to 100%',
+          why: 'With variation in arrivals and work, waiting time grows faster and faster as utilisation approaches 100%.',
+        },
+      ],
+      teach: [
+        'A service level expectation (SLE) is, by the Kanban Guide, an expectation of how long an item takes, with a probability attached: for example “85% of items are done within 8 days”.\n\nYou take it from your own data with a percentile: the value below which a given share of the measurements falls. The 85th percentile of cycle times is the time within which 85% of items were done. That tells a customer more than an average.',
+        'With the SLE you steer daily on work item age, the age of items still under way. When an item nears the limit, say 7 of the 8 days, you discuss it now, not when it is already late.\n\nThat is an early signal, similar to a control chart: you step in before the product falls outside specification.',
+        'A cumulative flow diagram shows per day how many items are in each step, stacked as coloured bands. If a band gets thicker, work is piling up there: that is your bottleneck. If the lines for arrivals and done drift apart, work in progress is growing.\n\nThat touches on conservation of flow: what starts must on average also finish. It is a condition for using Little’s law.',
+        'Utilisation is the share of available time that people or machines are busy. In the simplest queueing model, waiting time grows with utilisation / (1 − utilisation): at 80% that is 4, at 90% 9, at 95% 19.\n\nThe exact numbers only hold for that model, but the shape holds widely: Donald Reinertsen showed that product development at high utilisation gets stuck in queues. A team at 100% has no room for the unexpected.',
+        'For you as a Lean consultant: you know this as the reason for buffers and heijunka, level scheduling. The difference is that variation in knowledge work is much bigger than on a line.\n\nWhat experts argue about: some say you must plan well below 100%, others that you should rather reduce variation by making work smaller. Questions that make you credible: “What is our SLE, and how many items are now past half of it?” “Which band on the diagram is growing?”',
+      ],
+      example: {
+        kind: 'faded',
+        text: 'A machine-software team at a maker of sorting machines looks at the cycle times of the last 20 completed items, in working days, from short to long: 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 14, 18, 25.\n\nThe average is 160 / 20 = 8 days. But the customer wants to know what he can count on.\n\nOne item has now been in “testing on the machine” for 9 working days.',
+        ask: 'What is the 85th percentile of these 20 cycle times, which SLE do you agree, and what do you do with the 9-day item?',
+        reveal: '85% of 20 is 17: the 17th item in the sorted row is 11 days. SLE: “85% of items are done within 11 working days.” The 9-day item is nearing that limit; discuss it today at the team meeting: what is holding it up, can someone help? Look at the tail too: 14, 18 and 25 days. See what those items had in common, for example waiting for a machine to test on. That is often the real improvement.',
+      },
+      said: 'What you hear from managers: “I don’t pay those programmers to sit around. I want them planned at 100%.”',
+      recall: [
+        {
+          q: 'In the simplest queueing model, waiting time grows with utilisation / (1 − utilisation). What is that factor at 90% utilisation?',
+          number: 9,
+          tolerance: 0.05,
+          unit: '',
+          why: '0.9 / (1 − 0.9) = 0.9 / 0.1 = 9. At 80% it is 4, at 95% already 19.',
+        },
+        {
+          q: 'What is a service level expectation?',
+          options: ['A contract with penalty clauses for every late item', 'The average cycle time over the last quarter', 'The number of items the team promises per week', 'A time with a chance: 85% done within 8 days'],
+          answer: 'A time with a chance: 85% done within 8 days',
+          why: 'That is how the Kanban Guide puts it: a time plus a probability, from your own data.',
+        },
+        {
+          q: 'On a cumulative flow diagram the “test” band keeps getting thicker. What does that mean?',
+          options: ['Testing is getting faster than the other steps', 'Work is piling up in test: probably the bottleneck', 'Less new work is coming in', 'The team has nearly finished all the work'],
+          answer: 'Work is piling up in test: probably the bottleneck',
+          why: 'A thicker band means more items at once in that step: more goes in than comes out.',
+        },
+        {
+          q: 'Why do you steer daily on work item age?',
+          options: ['It reassures the manager that everyone is busy', 'Cycle time comes only at the end; age warns earlier', 'The Scrum Guide requires it as part of the Daily Scrum', 'Old items then close by themselves after a while'],
+          answer: 'Cycle time comes only at the end; age warns earlier',
+          why: 'Like a control chart: step in before it is too late.',
+        },
+      ],
+      situation: {
+        scene: 'The technical director of a maker of packaging lines wants to plan the four PLC programmers “at 100%”, because customers wait too long for changes. He asks you for a schedule that fills every hour.',
+        ask: 'How do you respond?',
+        model: '“I understand the goal: shorter waiting for customers. But 100% busy works against it. Every breakdown or urgent job then has to wait, and the queue grows. In the simplest queueing model the waiting time at 90% utilisation is already more than twice that at 80%. My suggestion: plan them at about 80%, keep the rest free for urgent work and breakdowns, and limit the number of jobs at once. We measure the throughput time for customers, and that must go down.”',
+        rubric: [
+          'Acknowledges the director’s goal',
+          'Explains the link between high utilisation and waiting time',
+          'Proposes a concrete plan and a measurable result',
+        ],
+        pushback: {
+          lines: [
+            '“So I pay 20% for doing nothing?”',
+            '“On the line we plan the machines as full as possible too, don’t we?”',
+          ],
+          model: '“You pay 20% for speed: that time absorbs breakdowns and urgent work that now disrupt everything. And on the line you plan the bottleneck full, but with buffers in front, because you know variation costs downtime. With programmers the variation is even bigger. Try it for a quarter and look at the throughput time.”',
+          rubric: [
+            'Translates free time into speed and absorbing capacity',
+            'Uses Lean knowledge of the line honestly, difference included',
+            'Proposes a trial with a measurable result',
+          ],
+        },
+      },
+      sayIt: 'In 60 seconds, explain to a director why 100% utilisation lengthens the waiting time for customers.',
+      terms: [
+        { term: 'Service level expectation', def: 'An expectation of how long an item takes, with a probability attached, such as 85% within 8 days. From your own data.' },
+        { term: 'Percentile', def: 'The value below which a given share of the measurements falls; the 85th percentile has 85% of the measurements below it.' },
+        { term: 'Cumulative flow diagram', def: 'Chart showing per day the number of items per step as stacked bands; a thickening band points to a pile-up.' },
+        { term: 'Conservation of flow', def: 'What starts must on average also finish. A condition for Little’s law.' },
+        { term: 'Utilisation', def: 'The share of available time that people or machines are busy. Close to 100%, waiting times rise fast.' },
+      ],
+    },
+  ],
+};
