@@ -94,8 +94,8 @@ export default {
       ],
       teach: [
         'Een diagnose op gevoel overtuigt niemand, jezelf ook niet. Voordat je zegt welke soort vastzitten het is (zie Het probleem benoemen), verzamel je feiten uit drie bronnen: wat er op papier staat, wat je ziet, en wat mensen zeggen.\n\nKomen die drie overeen, dan heb je een stevig beeld. Spreken ze elkaar tegen, dan zit daar vaak precies het probleem. Dat naast elkaar leggen heet triangulatie (triangulation).',
-        'Op papier: de actielijst. Tel per week hoeveel toezeggingen er gedaan zijn en hoeveel er echt af zijn. In het Last Planner System, een planningsmethode uit de bouw van Glenn Ballard (proefschrift, 2000), heet dat PPC (percent plan complete): afgeronde toezeggingen gedeeld door geplande toezeggingen. Alleen helemaal af telt.\n\n18 van de 30 af is een PPC van 60%. Teams die met Last Planner werken, mikken vaak op 80% of meer; een richtgetal uit de praktijk, geen norm.',
-        'Kijk ook naar het patroon: wie loopt uit, op welk soort werk, sinds wanneer? En naar de besluitenlijst (decision log), het overzicht van genomen en openstaande besluiten. Een besluit dat drie stuurgroepen achter elkaar wordt doorgeschoven, zegt vaak meer dan tien uitgelopen acties.\n\nIssues die te lang openstaan, volg je met de issuelog uit Uitvoeren (Issues bijhouden en oplossen); hier gebruik je hem als bewijs voor je diagnose.',
+        'Op papier: de actielijst. Tel per week hoeveel toezeggingen er gedaan zijn en hoeveel er echt af zijn. In het Last Planner System, een planningsmethode uit de bouw die Glenn Ballard en Greg Howell in de jaren negentig ontwikkelden (proefschrift van Ballard, 2000), heet dat PPC (percent plan complete): afgeronde toezeggingen gedeeld door geplande toezeggingen. Alleen helemaal af telt.\n\n18 van de 30 af is een PPC van 60%. Teams die met Last Planner werken, mikken vaak op 80% of meer; een richtgetal uit de praktijk, geen norm.',
+        'Kijk ook naar het patroon: wie loopt uit, op welk soort werk, sinds wanneer? En naar de besluitenlijst (decision log) uit Uitvoeren (Besluiten voor elkaar krijgen), het overzicht van genomen en openstaande besluiten. Een besluit dat drie stuurgroepen achter elkaar wordt doorgeschoven, zegt vaak meer dan tien uitgelopen acties.\n\nIssues die te lang openstaan, volg je met de issuelog uit Uitvoeren (Issues bijhouden en oplossen); hier gebruik je hem als bewijs voor je diagnose.',
         'Wat je ziet: ga naar de gemba, de plek waar het werk gebeurt. Hangt het planbord vol oude kaartjes? Ligt de nieuwe werkinstructie in een la? Dat zijn feiten die geen rapport laat zien.\n\nWat mensen zeggen: korte gesprekken onder vier ogen, niet in de groep. Drie vragen werken goed: “Wat houdt je tegen?”, “Wat zou jij doen als je het project leidde?” en “Wat zegt niemand hardop?”',
         'Valkuilen: alleen praten met mensen die het met je eens zijn; één verhaal als patroon zien; de cijfers uit een systeem geloven zonder te kijken hoe ze ontstaan.\n\nWaar experts over twisten: PPC meet of het team zijn beloftes nakomt, niet of het project opschiet. Onderzoekers merken op dat het daarom een zwakke maat voor voortgang is. Kijk dus ook naar de mijlpalen. Een scherpe vraag aan jezelf: “Welk feit zou mijn diagnose onderuithalen?”',
       ],
@@ -127,7 +127,7 @@ export default {
         },
         {
           q: 'Een team haalt week na week een PPC van 90%, maar de mijlpalen schuiven. Wat is een waarschijnlijke verklaring?',
-          options: ['Het team zegt vooral makkelijke dingen toe', 'De mijlpalen waren veel te krap gepland', 'De PPC wordt verkeerd uitgerekend', 'Het team rapporteert bewust te hoog'],
+          options: ['Het team zegt vooral makkelijke dingen toe', 'Zo’n hoge PPC laat mijlpalen altijd schuiven', 'De PPC wordt verkeerd uitgerekend', 'Het team rapporteert bewust te hoog'],
           answer: 'Het team zegt vooral makkelijke dingen toe',
           why: 'PPC meet of beloftes worden nagekomen, niet of het werk het project verder brengt.',
         },
@@ -157,7 +157,7 @@ export default {
       sayIt: 'Leg een junior collega in 60 seconden uit hoe je feiten verzamelt voordat je zegt waarom een project vastzit.',
       terms: [
         { term: 'Triangulatie', def: 'Drie bronnen naast elkaar leggen (papier, wat je ziet, wat mensen zeggen) om te zien waar ze overeenkomen en waar niet.' },
-        { term: 'Last Planner System', def: 'Een planningsmethode uit de bouw van Glenn Ballard, waarin de mensen die het werk doen wekelijks toezeggen wat ze afmaken.' },
+        { term: 'Last Planner System', def: 'Een planningsmethode uit de bouw van Glenn Ballard en Greg Howell, waarin de mensen die het werk doen wekelijks toezeggen wat ze afmaken.' },
         { term: 'PPC', def: 'Percent plan complete: afgeronde toezeggingen gedeeld door geplande toezeggingen in een week; alleen helemaal af telt.' },
         { term: 'Besluitenlijst', def: 'Het overzicht van genomen en openstaande besluiten, met wie besluit en wanneer.' },
         { term: 'Gemba', def: 'De plek waar het werk echt gebeurt, zoals de vloer bij de lijn; daar ga je kijken in plaats van alleen rapporten te lezen.' },
@@ -178,7 +178,7 @@ export default {
         'Een symptoom is wat je ziet: acties lopen uit, overleggen worden afgezegd. Een oorzaak is wat het symptoom maakt. Wie op symptomen stuurt, met “iedereen moet zijn acties halen”, krijgt hetzelfde probleem volgende maand terug.\n\nDe vier soorten vastzitten (onduidelijk doel, onduidelijke weg, mensen, capaciteit) liggen al een laag onder de symptomen. Op dit niveau vraag je verder: waarom is het doel onduidelijk, en waarom heeft niemand dat opgelost?',
         'Een handig beeld is het ijsbergmodel (iceberg model) uit het systeemdenken. Boven water de gebeurtenissen, daaronder de patronen, daaronder de structuren die ze maken, en onderin het mentale model, wat mensen geloven. Het wordt vaak aan Peter Senge toegeschreven; de herkomst is onzeker.\n\nVoorbeeld: een actie loopt uit (gebeurtenis); dat gebeurt elke week bij onderhoud (patroon); onderhoud wordt alleen afgerekend op storingen (structuur); “projectwerk is extra” (mentaal model).',
         'W. Edwards Deming, de Amerikaanse kwaliteitspionier, schatte in Out of the Crisis (1986) dat ongeveer 94% van de problemen bij het systeem hoort, de verantwoordelijkheid van het management, en zo’n 6% bij bijzondere oorzaken. Het is zijn schatting uit ervaring, geen meting.\n\nDe les voor een vastgelopen project: zoek eerst wat het systeem doet (rollen, prioriteiten, beloning, uren) voordat je een persoon de schuld geeft. Zo’n oorzaak in de manier van werken heet een systeemoorzaak.',
-        'Doorvragen kan met vijf keer waarom (5 whys), dat je kent uit Intake (Een scherpe probleemstelling), nu toegepast op het project zelf. Stop pas bij iets wat iemand kan veranderen: een besluit, een regel, een afspraak.\n\nEen tweede vraag: “Welk besluit neemt niemand?” Achter veel vastzitten ligt een keuze die blijft liggen, bijvoorbeeld tussen twee afdelingen. Schrijf die keuze in één zin op; vaak is dat al de halve oplossing.',
+        'Doorvragen kan met vijf keer waarom (5 whys), dat je kent uit Intake (Een scherpe probleemstelling), nu toegepast op het project zelf. Stop pas bij iets wat iemand kan veranderen: een besluit, een regel, een afspraak.\n\nEen tweede vraag: “Welk besluit neemt niemand?” Achter veel vastzitten ligt een keuze die blijft liggen, bijvoorbeeld tussen twee afdelingen. Een issue dat wekenlang openstaat, is vaak precies dat, zoals Uitvoeren (Issues bijhouden en oplossen) laat zien. Schrijf die keuze in één zin op; vaak is dat al de halve oplossing.',
         'Typische fouten: stoppen bij “mensen hebben geen tijd” (waarom niet?), of doorvragen tot “de cultuur”, te groot om iets mee te doen. Een goede oorzaak is concreet genoeg om morgen iets aan te veranderen.\n\nWaar experts over twisten: Demings 94% wordt soms gebruikt om mensen nooit aan te spreken. Het Deming Institute waarschuwt zelf tegen citaten zonder hun verband. Een scherpe vraag: “Als we morgen andere mensen neerzetten, loopt het dan ook vast?”',
       ],
       example: {
@@ -260,14 +260,14 @@ export default {
         'Soms moet je niet je eigen project ontwarren, maar dat van een ander. Een sponsor vraagt: “Kun jij eens kijken wat daar mis is?” Dat heet een projectreview of gezondheidscheck (health check): een korte, onafhankelijke doorlichting met een oordeel en advies.\n\nDe Britse overheid doet dit sinds het begin van deze eeuw met de Gateway-review: een klein team ervaren reviewers, enkele dagen interviews en documenten, en een rapport met een oordeel over hoe zeker het is dat het project levert.',
         'Onafhankelijk betekent: je hebt geen belang bij de uitkomst. Je zat niet in het project en je verdient niet aan het vervolg. Kan dat niet, zeg het dan vooraf.\n\nSpreek met de sponsor af: de vraag (“haalt dit project zijn doel, en wat is ervoor nodig?”), wie het rapport krijgt, en dat de projectleider het als eerste ziet. Zonder die afspraak voelt een review als een afrekening, en krijg je geen eerlijke antwoorden.',
         'De opzet, naar de Gateway-praktijk: lees eerst de projectopdracht, de planning, de laatste statusrapporten en de besluitenlijst. Interview dan mensen op alle lagen, vaak acht tot twaalf: sponsor, projectleider, teamleden, gebruikers, een leverancier. Een Gateway-review duurt meestal drie à vier dagen ter plaatse; bij een klein project is twee dagen vaak genoeg.\n\nVraag iedereen hetzelfde: “Wat gaat goed? Wat houdt het tegen? Wat zou jij doen? Hoe zeker ben je dat het lukt?”',
-        'Het oordeel: in plaats van alleen groen of rood geef je een leveringszekerheid (delivery confidence): hoe zeker het is dat het project zijn doel haalt, op een schaal van “zeer waarschijnlijk” tot “onhaalbaar zonder grote ingreep”. De Britse overheid gebruikt zo’n schaal; de stappen veranderden door de jaren.\n\nGroen op papier bij een rood beeld is de watermeloen uit Uitvoeren (Eerlijke status). Geef daarna drie tot vijf aanbevelingen met wie, wat en wanneer. Een vuistregel: tien aanbevelingen worden er nul.',
+        'Het oordeel: niet alleen een statuskleur voor vandaag, maar een slagingskans (delivery confidence): hoe zeker je bent dat het project zijn doel haalt, op een schaal van “zeer waarschijnlijk” tot “lijkt onhaalbaar”. De Britse overheid gebruikt zo’n schaal, met kleuren van groen tot rood; de stappen veranderden door de jaren.\n\nGroen op papier bij een rood beeld is de watermeloen uit Uitvoeren (Eerlijke status). Geef daarna drie tot vijf aanbevelingen met wie, wat en wanneer. Een vuistregel: tien aanbevelingen worden er nul.',
         'Valkuilen: de projectleider pas bij het eindrapport spreken; schuld zoeken in plaats van oorzaken; een rapport dat de sponsor spaart terwijl die deel van het probleem is.\n\nWaar experts over twisten: een buitenstaander ziet meer, maar mist context; een peer review, door een collega uit hetzelfde vak, kent de inhoud, maar is minder vrij. Een scherpe vraag aan elke geïnterviewde: “Wat weet jij dat de sponsor niet weet?”',
       ],
       example: {
         kind: 'faded',
         text: 'Een netbeheerder. De sponsor van een project om de vrijgave van klussen te digitaliseren vraagt je, via je partner, om in twee weken te kijken waarom het al drie maanden stilstaat. Projectleider is Sanne, een senior adviseur van een ander bureau. Zij rapporteert al acht weken oranje.\n\nJe hebt de projectopdracht, de planning en zes statusrapporten. De sponsor zegt: “Ik wil gewoon weten of Sanne het kan.”',
         ask: 'Wat zou jij nu doen?',
-        reveal: 'Stel eerst de vraag bij: niet “kan Sanne het?” maar “haalt dit project zijn doel, en wat is ervoor nodig?” Spreek af dat Sanne het rapport als eerste ziet, en vertel haar zelf wat je komt doen.\n\nLees de stukken en interview in vier dagen tien mensen: sponsor, Sanne, drie planners, twee monteurs, IT, de leverancier van de app en de controller. Iedereen krijgt dezelfde vier vragen.\n\nRapport: een leveringszekerheid, bijvoorbeeld “twijfelachtig zonder ingreep”, de belangrijkste oorzaken, en vier aanbevelingen met eigenaar en datum. Hoort de sponsor bij de oorzaken, bijvoorbeeld door twee stuurgroepen af te zeggen, dan staat dat er ook in, en bespreek je het eerst met hem.',
+        reveal: 'Stel eerst de vraag bij: niet “kan Sanne het?” maar “haalt dit project zijn doel, en wat is ervoor nodig?” Spreek af dat Sanne het rapport als eerste ziet, en vertel haar zelf wat je komt doen.\n\nLees de stukken en interview in vier dagen tien mensen: sponsor, Sanne, drie planners, twee monteurs, IT, de leverancier van de app en de controller. Iedereen krijgt dezelfde vier vragen.\n\nRapport: een slagingskans, bijvoorbeeld “twijfelachtig zonder ingreep”, de belangrijkste oorzaken, en vier aanbevelingen met eigenaar en datum. Hoort de sponsor bij de oorzaken, bijvoorbeeld door twee stuurgroepen af te zeggen, dan staat dat er ook in, en bespreek je het eerst met hem.',
       },
       said: 'Wat je hoort in projecten: “Kom jij eens even kijken wat er mis is? Maar niet te veel ophef, hè.”',
       recall: [
@@ -284,10 +284,10 @@ export default {
           why: 'Genoeg om patronen te zien, en van sponsor tot gebruiker, zodat je niet één laag hoort.',
         },
         {
-          q: 'Wat geeft een leveringszekerheid aan?',
-          options: ['Hoe zeker het is dat het project zijn doel haalt', 'Hoeveel budget er nog over is in het project', 'Of de leverancier zijn onderdelen op tijd levert', 'Hoe tevreden de sponsor over het team is'],
-          answer: 'Hoe zeker het is dat het project zijn doel haalt',
-          why: 'Het is een oordeel over de kans op succes, niet over budget of tevredenheid.',
+          q: 'Waarom geef je een slagingskans in plaats van alleen een kleur voor de huidige status?',
+          options: ['Het kijkt naar het doel, niet naar vandaag', 'Het is verplicht in elk reviewrapport', 'De projectleider accepteert het makkelijker', 'Dan zijn aanbevelingen niet meer nodig'],
+          answer: 'Het kijkt naar het doel, niet naar vandaag',
+          why: 'Een statuskleur zegt hoe het er nu voor staat; een slagingskans beoordeelt of het doel gehaald wordt.',
         },
         {
           q: 'Waarom beperk je een review tot drie tot vijf aanbevelingen?',
@@ -321,9 +321,9 @@ export default {
       sayIt: 'Leg een sponsor in 60 seconden uit hoe je een projectreview opzet en wat hij ervan krijgt.',
       terms: [
         { term: 'Projectreview', def: 'Een korte, onafhankelijke doorlichting van een project met een oordeel en een paar aanbevelingen.' },
-        { term: 'Gateway-review', def: 'De onafhankelijke review van de Britse overheid: een klein team, enkele dagen interviews en documenten, een oordeel over de leveringszekerheid.' },
+        { term: 'Gateway-review', def: 'De onafhankelijke review van de Britse overheid: een klein team, enkele dagen interviews en documenten, een oordeel over de slagingskans.' },
         { term: 'Onafhankelijk', def: 'Zonder belang bij de uitkomst: niet in het project, en niet verdienend aan het vervolg.' },
-        { term: 'Leveringszekerheid', def: 'Een oordeel over hoe zeker het is dat een project zijn doel haalt, op een schaal van zeer waarschijnlijk tot onhaalbaar.' },
+        { term: 'Slagingskans', def: 'Een oordeel over hoe zeker het is dat een project zijn doel haalt, op een schaal van zeer waarschijnlijk tot onhaalbaar.' },
         { term: 'Peer review', def: 'Een review door een collega uit hetzelfde vak: kent de inhoud, maar staat minder vrij dan een buitenstaander.' },
       ],
     },
@@ -485,6 +485,7 @@ export default {
         { term: 'Klant als bron', def: 'De kennis van de klant over zijn eigen organisatie gebruiken om de weg te vinden.' },
         { term: 'Escalatie', def: 'Een probleem neerleggen bij iemand met meer zeggenschap zodat die beslist, anders dan om advies vragen.' },
         { term: 'MES', def: 'Manufacturing execution system: de software op de werkvloer die orders, stops en output per machine vastlegt.' },
+        { term: 'OEE', def: 'Overall equipment effectiveness: het deel van de geplande tijd dat een lijn goed product maakt op volle snelheid.' },
       ],
     },
     {
@@ -499,7 +500,7 @@ export default {
         },
       ],
       teach: [
-        'Zekerheid krijg je zelden. De vraag is niet “weten we het zeker?” maar “wat kost het als we het mis hebben, en kunnen we het terugdraaien?”\n\nEen omkeerbaar besluit, zoals een nieuw overlegformat, een planningsregel of een bord aan de muur, kun je snel nemen en testen. Een onomkeerbaar besluit, zoals een machine kopen, een ploegencontract wijzigen of een reorganisatie aankondigen, verdient trage, zorgvuldige analyse.',
+        'Zekerheid krijg je zelden. De vraag is niet “weten we het zeker?” maar “wat kost het als we het mis hebben, en kunnen we het terugdraaien?”\n\nEen omkeerbaar besluit, zoals een nieuw overlegformat, een planningsregel of een bord aan de muur, kun je snel nemen en testen. Een onomkeerbaar besluit, zoals een machine kopen, een ploegencontract wijzigen of een reorganisatie aankondigen, verdient trage, zorgvuldige analyse. Uitvoeren (Besluiten voor elkaar krijgen) en Projecten leiden buiten je vakgebied (Besluiten onder onzekerheid, en escaleren) noemen dat two-way en one-way doors.',
         'Ontwerp een klein experiment: een test met een vaste duur en een meting. Begin bij een hypothese, een vermoeden dat een test kan weerleggen: “Als planners ploeg en materiaal twee dagen vooraf bevestigen, dalen de afzeggingen.”\n\nDe kleinste test: twee planners, twee weken, ongeveer 40 klussen. Wat je meet, en waartegen. En, afgesproken voor je begint, het stopcriterium: welke uitkomst doorgaan betekent en welke stoppen.',
         'Experimenten verlagen weerstand. “We proberen het twee weken, dan beslissen we samen” is veel makkelijker om ja tegen te zeggen dan “vanaf maandag is dit de nieuwe manier”. Maar houd je aan de belofte: evalueer open, en stop ook echt als het niet werkt.\n\nTypische fouten: geen vergelijkingsgroep (control group), twee veranderingen tegelijk, of een testteam dat zoveel aandacht krijgt dat het daar werkt en nergens anders.',
         'Waar experts over twisten: snelheid. Jeff Bezos noemde omkeerbare besluiten in zijn aandeelhoudersbrief over 2015, verschenen in april 2016, “two-way doors”, deuren waar je weer door terug kunt, die kleine groepen snel mogen nemen. Critici merken op dat “kleine” veranderingen sociaal moeilijk terug te draaien zijn als mensen eraan gewend zijn.\n\nVraag dus: “Wat kost teruggaan, in geld en in vertrouwen?” En weet je het niet: “We weten het nog niet. Dit is het kleinste wat het ons kan vertellen.”',
@@ -585,7 +586,7 @@ export default {
       ],
       teach: [
         'Projecten lopen vaak vast omdat de aanpak niet past bij het soort probleem. Het Cynefin-raamwerk (spreek uit: kuh-NEV-in, Welsh voor “leefgebied”) van Dave Snowden helpt dat te zien. Het werd bekend door een artikel van Snowden en Mary Boone in Harvard Business Review (2007).\n\nHet onderscheidt vier soorten situaties, plus een vijfde: wanorde (disorder), als je niet weet in welke je zit.',
-        'Eenvoudig (simple, later “clear” genoemd): oorzaak en gevolg zijn voor iedereen duidelijk. Je herkent de situatie, ordent haar en past de bekende werkwijze toe.\n\nGecompliceerd (complicated): er is een antwoord, maar je hebt een expert of een analyse nodig. Je onderzoekt, analyseert en handelt dan. Een trillende pomp of een OEE-berekening die niet klopt, is meestal gecompliceerd: zoek de specialist.',
+        'Eenvoudig (simple, later “obvious” en daarna “clear” genoemd): oorzaak en gevolg zijn voor iedereen duidelijk. Je herkent de situatie, ordent haar en past de bekende werkwijze toe.\n\nGecompliceerd (complicated): er is een antwoord, maar je hebt een expert of een analyse nodig. Je onderzoekt, analyseert en handelt dan. Een trillende pomp of een OEE-berekening die niet klopt, is meestal gecompliceerd: zoek de specialist.',
         'Complex: oorzaak en gevolg zie je pas achteraf, omdat mensen en factoren op elkaar reageren. Analyse helpt weinig. Je doet kleine proeven: een safe-to-fail-proef is veilig en mag mislukken. Je kijkt wat ze opleveren en versterkt wat werkt. Snowden en Boone noemen dat aftasten, waarnemen, reageren (probe, sense, respond).\n\nHoe een nieuwe werkwijze in een organisatie landt, is bijna altijd complex. Daar past het experiment uit Handelen onder onzekerheid.',
         'Chaotisch (chaotic): geen tijd om te begrijpen. Eerst handelen om te stabiliseren, zoals bij een grote storing of een veiligheidsincident; daarna pas analyseren.\n\nDe typische fout in een vastgelopen project: een complex probleem behandelen als gecompliceerd. Het team blijft analyseren en wacht op het ene juiste antwoord, terwijl dat er vooraf niet is. Het omgekeerde gebeurt ook: experimenteren waar een expert het antwoord gewoon weet.',
         'Waar experts over twisten: critici vinden Cynefin te vaag om mee te sorteren, en mensen plaatsen hetzelfde probleem in verschillende domeinen. Gebruik het dus als gesprek, niet als stempel: “Weten we het antwoord, kan een expert het vinden, of moeten we het uitproberen?”\n\nVaak zit een project in meer domeinen tegelijk: de techniek is gecompliceerd, de adoptie complex. Knip het probleem dan op, zoals Snowden en Boone aanraden bij wanorde.',
@@ -666,7 +667,7 @@ export default {
         },
       ],
       teach: [
-        'Een blokkeerder is iemand wiens steun je nodig hebt en die hem niet geeft: een afdelingshoofd dat geen mensen vrijmaakt, een planner die de nieuwe regel negeert. Blokkeren gebeurt zelden met een hard nee. Meestal zie je uitstel, stilte of “goed idee, maar nu even niet”.\n\nDe eerste reflex is duwen, of eromheen werken. Allebei maken het meestal erger. Begin met begrijpen waarom.',
+        'Een blokkeerder is iemand wiens steun je nodig hebt en die hem niet geeft: een afdelingshoofd dat geen mensen vrijmaakt, een planner die de nieuwe regel negeert. Blokkeren gebeurt zelden met een hard nee. Meestal zie je uitstel, stilte of “goed idee, maar nu even niet”.\n\nDe eerste reflex is duwen, of eromheen werken. Allebei maken het meestal erger. Begin met begrijpen waarom, en sluit eerst gewoon capaciteit uit, zoals in Uitvoeren (Leidinggeven zonder macht).',
         'Rick Maurer, een Amerikaanse veranderadviseur, onderscheidt drie niveaus van weerstand (resistance), onder meer in zijn boek Why Don’t You Want What I Want? (2002). Weerstand is hier: niet meewerken aan een verandering, openlijk of stil.\n\nNiveau 1, “ik snap het niet”: er ontbreekt informatie. Niveau 2, “ik vind het niks”: een emotionele reactie, zoals angst voor verlies van status of werk. Niveau 3, “ik vertrouw jou niet”: het gaat om de relatie, met jou of met wie je vertegenwoordigt.',
         'Elk niveau vraagt iets anders. Niveau 1: uitleg, cijfers, laten zien. Niveau 2: luisteren naar wat iemand vreest, en kijken wat je daaraan kunt doen. Niveau 3: vertrouwen opbouwen, kleine afspraken nakomen, of iemand anders het gesprek laten voeren.\n\nDe klassieke fout: niveau 2 of 3 behandelen als niveau 1, en nog een presentatie geven. Meer uitleg aan iemand die zich bedreigd voelt, klinkt als druk.',
         'Het gesprek voer je onder vier ogen, niet in de groep. Open met een feit en een vraag: “De planners zijn nog niet vrijgemaakt. Wat maakt het lastig?” Luister, en vat samen wat je hoort.\n\nEen sterke vraag: “Wat zou er moeten veranderen zodat je dit wel kunt steunen?” Een bezwaar (objection) is vaak een voorwaarde in vermomming. Is het bezwaar terecht, pas dan het plan aan; dat is geen verlies.',
@@ -825,9 +826,9 @@ export default {
         },
       ],
       teach: [
-        'Op managementniveau blokkeren mensen zelden openlijk. Ze zeggen ja in het overleg en doen daarna niks. Dat heet wel een stil veto (pocket veto): het besluit is genomen, maar wie het moet uitvoeren, houdt het tegen door niet te handelen.\n\nHet is lastiger dan open weerstand, want er is niks om op te reageren. Ga niet meteen uit van kwade wil: vaak wil iemand in het openbaar geen nee zeggen tegen zijn baas.',
+        'Op managementniveau blokkeren mensen zelden openlijk. Ze zeggen ja in het overleg en doen daarna niks. Dat heet wel een stil veto (pocket veto): het besluit is genomen, maar wie het moet uitvoeren, houdt het tegen door niet te handelen.\n\nHet is lastiger dan open weerstand, want er is niks om op te reageren. Ga niet meteen uit van kwade wil: vaak wil iemand in het openbaar geen nee zeggen tegen zijn baas. Op de werkvloer heet dit passieve weerstand, zie Landen (Werken met weerstand).',
         'Signalen: algemene toezeggingen (“we gaan ermee aan de slag”) zonder naam en datum; besluiten die in het verslag anders klinken dan in de kamer; het overleg na het overleg, waar mensen op de gang hun echte mening delen; steeds nieuwe vragen om “nog even uit te zoeken”.\n\nWat het vaak drijft: het besluit kost die persoon iets (mensen, budget, status), en dat is in het overleg niet besproken.',
-        'Maak toezeggingen specifiek. Na elk besluit: wie doet wat, voor wanneer, en hoe zien we dat het gebeurd is? Lees het hardop voor en zet het dezelfde dag op papier. Een specifieke toezegging maakt van een vage ja een afspraak, of brengt het bezwaar alsnog op tafel.\n\nWerk vooraf. Grote besluiten win je in gesprekken vóór de stuurgroep, met nemawashi uit Uitvoeren (De stuurgroep voorbereiden). Vraag daar: “Wat kost dit jouw afdeling?”',
+        'Maak toezeggingen specifiek. Na elk besluit: wie doet wat, voor wanneer, en hoe zien we dat het gebeurd is? Lees het hardop voor en zet het dezelfde dag op papier. Een specifieke toezegging maakt van een vage ja een afspraak, of brengt het bezwaar alsnog op tafel.\n\nWerk vooraf. Grote besluiten win je in gesprekken vóór de stuurgroep, met nemawashi, elk lid vooraf even polsen, uit Uitvoeren (De stuurgroep voorbereiden). Vraag daar: “Wat kost dit jouw afdeling?”',
         'Zoek de echte beslisser. Soms blokkeert iemand omdat zijn eigen baas er anders over denkt. Vraag: “Wie moet hier nog meer achter staan?” Een stakeholdermap met formele en informele invloed, zoals in Intake (Wie beslist, wie kan het stoppen), helpt.\n\nBlijft de toezegging liggen, bespreek het dan eerst onder vier ogen, met feiten: “We spraken af dat de planners op 1 maart vrij waren. Ze zijn er niet. Wat is er veranderd?”',
         'Komt er dan nog niks, dan gaat het terug naar de stuurgroep als feit, niet als beschuldiging: “Het besluit van februari is niet uitgevoerd; dit is het gevolg. Houden we het besluit, of passen we het aan?”\n\nDe grens: speel zelf geen spelletjes, geen geruchten en geen coalities achter iemands rug. Waar experts over twisten: hoort politiek bij het vak, of is het een teken van een slecht ingericht project? Een scherpe vraag: “Wat verliest hij als dit lukt?”',
       ],
@@ -946,9 +947,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een levensmiddelenfabriek. Onderhoud wil elke week vier uur geplande stilstand per lijn voor preventief onderhoud; productie weigert, want de orders zijn krap. Je project om storingen te verminderen staat al vier weken stil. Beide managers vragen jou apart om de ander “even te overtuigen”.',
+        scene: 'Je zit bij een levensmiddelenfabriek. Inkoop is overgestapt op goedkopere verpakkingsfolie; productie zegt dat die vaker scheurt en de lijnen stilzet. Inkoop wordt afgerekend op de prijs per rol, productie op OEE. Je project om folieverspilling te verminderen staat al vier weken stil. Beide managers vragen jou apart om de ander “even te overtuigen”.',
         ask: 'Wat doe je?',
-        model: 'Ik ga niet heen en weer lopen. Ik vraag beide managers om één gesprek samen, over wat ze allebei willen: minder ongeplande stilstand. Komen we er niet uit, dan stel ik voor samen naar de plantmanager te gaan, hun gezamenlijke baas, met één A4: beide opties, wat elk doet met de totale productietijd, en hun goedkeuring erop. Mijn advies zet ik er apart onder.',
+        model: 'Ik ga niet heen en weer lopen. Ik vraag beide managers om één gesprek samen, over wat ze allebei willen: lage totale kosten per verpakking. Komen we er niet uit, dan stel ik voor samen naar de operationeel directeur te gaan, hun gezamenlijke baas, met één A4: beide folies, wat elk doet met de kosten per verpakking inclusief verspilling en stilstand, en hun goedkeuring erop. Mijn advies zet ik er apart onder.',
         rubric: [
           'Weigert de rol van boodschapper',
           'Zoekt een gedeelde maatstaf',
@@ -956,10 +957,10 @@ export default {
         ],
         pushback: {
           lines: [
-            '“Samen naar de plantmanager? Dan lijkt het alsof wij het niet kunnen. Kun jij het niet gewoon even regelen?”',
+            '“Samen naar de operationeel directeur? Dan lijkt het alsof wij het niet kunnen. Kun jij het niet gewoon even regelen?”',
             '“Jij bent toch de expert? Zeg gewoon wie gelijk heeft.”',
           ],
-          model: '“Ik snap dat het als falen voelt, maar het is geen ruzie: jullie hebben allebei gelijk vanuit je eigen doel. De keuze tussen die doelen hoort bij de plantmanager. Mijn advies krijgen jullie zeker, op hetzelfde A4, apart van de opties. Zullen we het donderdag samen opstellen?”',
+          model: '“Ik snap dat het als falen voelt, maar het is geen ruzie: jullie hebben allebei gelijk vanuit je eigen doel. De keuze tussen die doelen hoort bij de operationeel directeur. Mijn advies krijgen jullie zeker, op hetzelfde A4, apart van de opties. Zullen we het donderdag samen opstellen?”',
           rubric: [
             'Erkent de zorg om gezichtsverlies',
             'Legt uit waarom de keuze boven hen ligt',
@@ -974,6 +975,7 @@ export default {
         { term: 'Gezamenlijk escaleren', def: 'Twee partijen leggen samen, met één goedgekeurd A4, een keuze voor aan hun gezamenlijke baas.' },
         { term: 'Gezamenlijke baas', def: 'De eerste persoon in de organisatie die boven beide partijen staat en tussen hun doelen kan kiezen.' },
         { term: 'Gedeelde maatstaf', def: 'Een getal dat boven beide afdelingen staat, zoals levertrouw of kosten per product, om opties eerlijk te vergelijken.' },
+        { term: 'KPI', def: 'Kritieke prestatie-indicator (key performance indicator): het getal waarop een afdeling of persoon wordt afgerekend.' },
       ],
     },
     {
@@ -981,16 +983,16 @@ export default {
       title: 'Wat je van je sponsor nodig hebt',
       pre: [
         {
-          q: 'Welke activiteit van de sponsor draagt volgens de enquêtes van adviesbureau Prosci het meest bij aan het slagen van een verandering?',
+          q: 'Welke activiteit van de sponsor draagt volgens enquêtes van het adviesbureau Prosci het meest bij aan het slagen van een verandering?',
           options: ['Het budget op tijd goedkeuren', 'Actief en zichtbaar meedoen', 'De juiste projectleider kiezen', 'De eindpresentatie zelf geven'],
           answer: 'Actief en zichtbaar meedoen',
           why: 'In alle Prosci-rapporten sinds 1998 staat actieve en zichtbare sponsoring op nummer één.',
         },
       ],
       teach: [
-        'De sponsor is de manager die eigenaar is van het project: hij wil het resultaat, heeft het budget en neemt de grote besluiten. Zit een project vast, dan kan de sponsor het meestal los krijgen. Maar alleen als jij vraagt wat je nodig hebt.\n\nJunioren gebruiken hun sponsor te weinig, uit angst lastig te zijn. Een sponsor hoort liever vroeg dan laat dat zijn project vastzit.',
-        'Wat een sponsor doet om een project los te krijgen, in drie taken. Beslissen: keuzes maken die het team niet kan maken. Ruimte maken: mensen en uren vrijmaken, andere prioriteiten laten wijken. Rugdekking geven (air cover): het project beschermen tegen tegenwerking en laten zien dat het belangrijk is.\n\nVraag concreet, met naam en datum: niet “meer steun”, maar “zeg jij maandag in het MT dat de planners een dag per week vrij zijn?”',
-        'Prosci, een adviesbureau voor verandermanagement, vraagt sinds 1998 aan grote groepen projectmensen wat succes bepaalt. Actieve en zichtbare sponsoring (active and visible sponsorship) staat in al die rapporten op nummer één. Het zijn enquêtes van een commercieel bureau, geen experimenten, maar het beeld is consistent.\n\nZichtbaar betekent: op de vloer komen, in overleggen zelf het doel uitleggen, naar voortgang vragen. Een sponsor die alleen tekent, is niet genoeg.',
+        'De sponsor is de manager die eigenaar is van het project: hij wil het resultaat, heeft het budget en neemt de grote besluiten. Zit een project vast, dan kan de sponsor het meestal los krijgen. Maar alleen als jij vraagt wat je nodig hebt.\n\nJunioren gebruiken hun sponsor te weinig, uit angst lastig te zijn. Een sponsor hoort liever vroeg dan laat dat zijn project vastzit. Zijn rol leg je aan het begin vast, in Plannen (Rollen en de sponsor) en Intake (Afspraken met de sponsor).',
+        'Wat een sponsor doet om een project los te krijgen, in drie taken. Beslissen: keuzes maken die het team niet kan maken. Ruimte maken: mensen en uren vrijmaken, andere prioriteiten laten wijken. Rugdekking geven (air cover): het project beschermen tegen tegenwerking en laten zien dat het belangrijk is.\n\nVraag concreet, met naam en datum: niet “meer steun”, maar “zeg jij maandag in het managementteam dat de planners een dag per week vrij zijn?”',
+        'Prosci, het bureau voor verandermanagement achter ADKAR uit Landen (Wat adoptie echt drijft), vraagt sinds 1998 aan grote groepen veranderprofessionals wat succes bepaalt. Actieve en zichtbare sponsoring (active and visible sponsorship) staat in al die rapporten op nummer één. Het zijn enquêtes van een commercieel bureau, geen experimenten, maar het beeld is consistent.\n\nZichtbaar betekent: op de vloer komen, in overleggen zelf het doel uitleggen, naar voortgang vragen. Een sponsor die alleen tekent, is niet genoeg.',
         'Een vast ritme helpt: een sponsorgesprek van twintig minuten, elke twee weken. Drie vragen: wat gaat goed, waar zitten we vast, wat heb ik van jou nodig? Stuur de dag ervoor één alinea, en begin met het besluit dat je vraagt.\n\nLeg vast wat hij toezegt, en kom erop terug. Hoe je via de vaste route escaleert, behandelt Uitvoeren (Besluiten voor elkaar krijgen).',
         'Typische fouten: alleen goed nieuws brengen tot het te laat is; vragen om “steun” zonder te zeggen welke; om de sponsor heen werken omdat hij druk is.\n\nWaar experts over twisten: is een afwezige sponsor een reden om het project te pauzeren? Sommigen zeggen ja: zonder sponsor geen project. Anderen zoeken eerst een plaatsvervanger met mandaat. Een scherpe vraag aan je sponsor: “Wat wil jij over drie maanden aan je baas laten zien?”',
       ],
@@ -1010,8 +1012,8 @@ export default {
         },
         {
           q: 'Welke vraag aan de sponsor is het meest concreet?',
-          options: ['“Kun je het project de komende weken wat meer steunen?”', '“Zeg je maandag in het MT dat de planners een dag vrij zijn?”', '“Heb je deze maand een keer tijd om bij te praten?”', '“Wil je de voortgang van het team goed in de gaten houden?”'],
-          answer: '“Zeg je maandag in het MT dat de planners een dag vrij zijn?”',
+          options: ['“Kun je het project de komende weken wat meer steunen?”', '“Zeg je maandag in het overleg dat de planners een dag vrij zijn?”', '“Heb je deze maand een keer tijd om bij te praten?”', '“Wil je de voortgang van het team goed in de gaten houden?”'],
+          answer: '“Zeg je maandag in het overleg dat de planners een dag vrij zijn?”',
           why: 'Wie, wat en wanneer zijn duidelijk; hij kan ja of nee zeggen.',
         },
         {
@@ -1069,10 +1071,10 @@ export default {
         },
       ],
       teach: [
-        'Een vastgelopen project verliest energie: mensen komen niet meer naar overleggen, acties worden klein gemaakt of vergeten. Een nieuw plan alleen brengt die energie niet terug. Wat wel helpt: snel iets zichtbaars bereiken.\n\nTeresa Amabile en Steven Kramer van Harvard lieten 238 mensen uit 26 projectteams in zeven bedrijven dagelijks een dagboek bijhouden, bijna 12.000 dagboekdagen in totaal (The Progress Principle, 2011).',
+        'Een vastgelopen project verliest energie: mensen komen niet meer naar overleggen, acties worden klein gemaakt of vergeten. Een nieuw plan alleen brengt die energie niet terug. Wat wel helpt: snel iets zichtbaars bereiken.\n\nTeresa Amabile van Harvard Business School en psycholoog Steven Kramer lieten 238 mensen uit 26 projectteams in zeven bedrijven dagelijks een dagboek bijhouden, bijna 12.000 dagboekverslagen in totaal (The Progress Principle, 2011).',
         'Hun conclusie, het vooruitgangsprincipe (progress principle): van alles wat een werkdag goed maakt, is vooruitgang merken in betekenisvol werk het sterkst, ook als de stap klein is. Een tegenslag (setback) weegt volgens hen zwaarder dan een even groot succes.\n\nEen klein succes (small win) is een concrete, zichtbare stap die mensen zelf als vooruitgang zien: een omstelling die echt korter is, een bord dat werkt, een week zonder afzegging.',
-        'Zo plan je ze. Maak de volgende stap zo klein dat hij binnen één à twee weken lukt. Kies iets wat de mensen zelf belangrijk vinden, niet alleen de sponsor. En maak het zichtbaar: op het bord, in de dagstart, in het weekbericht.\n\nEen klein succes is geen quick win om de stuurgroep mee te overtuigen; het is voor het team. Dat de stuurgroep het ook graag ziet, is mooi meegenomen.',
-        'Haal ook de obstakels weg die mensen elke dag tegenhouden. Amabile en Kramer noemen wat het werk helpt een katalysator (catalyst): duidelijke doelen, tijd, hulp, middelen. Een monteur die drie keer per week op een sleutel wacht, krijgt meer energie van die sleutel dan van een toespraak.\n\nVraag in de stand-up: “Wat hield je gisteren tegen?” en los er dezelfde dag één op.',
+        'Zo plan je ze. Maak de volgende stap zo klein dat hij binnen één à twee weken lukt. Kies iets wat de mensen zelf belangrijk vinden, niet alleen de sponsor. En maak het zichtbaar: op het bord, in de dagstart, in het weekbericht.\n\nHet is hetzelfde idee als de quick wins uit Intake (De eerste weken), nu om een team dat het geloof kwijt is weer op gang te krijgen. Kies het dus voor het team, niet om de stuurgroep te imponeren.',
+        'Haal ook de obstakels weg die mensen elke dag tegenhouden. Amabile en Kramer noemen wat het werk helpt een katalysator (catalyst): duidelijke doelen, tijd, hulp, middelen. Een monteur die drie keer per week op een sleutel wacht, krijgt meer energie van die sleutel dan van een toespraak.\n\nVraag in de stand-up, het korte dagelijkse overleg: “Wat hield je gisteren tegen?” en los er dezelfde dag één op.',
         'Valkuilen: een klein succes groter maken dan het is, want mensen prikken daar doorheen; alleen makkelijke dingen doen die het doel niet dichterbij brengen; vieren zonder de volgende stap.\n\nWaar experts over twisten: het onderzoek ging over teams in creatief kenniswerk. Of het even sterk geldt voor ploegen op de werkvloer, is minder onderzocht. Een scherpe vraag: “Wat kunnen we deze week afmaken dat iedereen ziet?”',
       ],
       example: {
@@ -1082,10 +1084,10 @@ export default {
       said: 'Wat je hoort in projecten: “Wat heeft het voor zin? Er verandert hier toch nooit iets.”',
       recall: [
         {
-          q: 'Wat is volgens Amabile en Kramer de sterkste factor voor een goede werkdag?',
-          options: ['Een goed salaris en baanzekerheid', 'Vooruitgang merken in betekenisvol werk', 'Een gezellig en hecht team om je heen', 'Een baas die duidelijk is over doelen'],
-          answer: 'Vooruitgang merken in betekenisvol werk',
-          why: 'Dat is het vooruitgangsprincipe uit hun dagboekonderzoek.',
+          q: 'Hoe zwaar weegt in het dagboekonderzoek van Amabile en Kramer een tegenslag tegenover een even grote stap vooruit?',
+          options: ['Ongeveer even zwaar', 'Zwaarder', 'Lichter, hij is snel vergeten', 'Alleen voor de manager'],
+          answer: 'Zwaarder',
+          why: 'Een tegenslag weegt zwaarder dan een even groot succes, dus tegenslagen voorkomen is net zo belangrijk als successen boeken.',
         },
         {
           q: 'De verspilling bij een rolwissel daalt van 14 naar 9 meter folie. De lijn wisselt 30 rollen per week. Hoeveel meter folie per week bespaart dat?',
@@ -1096,7 +1098,7 @@ export default {
           why: '14 − 9 = 5 meter per rol; 5 × 30 = 150 meter per week.',
         },
         {
-          q: 'Wanneer is een stap goed gekozen als klein succes?',
+          q: 'Wanneer is een stap goed gekozen om een vastgelopen team weer op gang te krijgen?',
           options: ['Groot genoeg om de stuurgroep te imponeren', 'Zo makkelijk dat hij zeker niet mislukt', 'Klein, snel haalbaar, en voor het team belangrijk', 'Gekozen door de sponsor, niet door het team'],
           answer: 'Klein, snel haalbaar, en voor het team belangrijk',
           why: 'Het gaat om vooruitgang die de mensen zelf zien en belangrijk vinden.',
@@ -1136,6 +1138,7 @@ export default {
         { term: 'Tegenslag', def: 'Een stap terug in het werk; weegt volgens Amabile en Kramer zwaarder dan een even groot succes.' },
         { term: 'Klein succes', def: 'Een concrete, zichtbare stap die het team zelf als vooruitgang ziet, haalbaar binnen een of twee weken.' },
         { term: 'Katalysator', def: 'Wat het werk direct helpt, zoals duidelijke doelen, tijd, hulp en middelen.' },
+        { term: 'Stand-up', def: 'Een kort overleg, vaak dagelijks en staand: wat is gedaan, wat komt nu, wat zit in de weg.' },
       ],
     },
     {
@@ -1150,7 +1153,7 @@ export default {
         },
       ],
       teach: [
-        'Projecten mislukken zelden plotseling; ze drijven af. Halverwege, met het doel duidelijk buiten bereik, is hopen het nog in te halen de meest gemaakte en duurste keuze.\n\nDeels is dat de valkuil van verzonken kosten: wat al is uitgegeven voelt als reden om door te gaan, terwijl alleen toekomstige kosten en baten zouden moeten tellen. Een herstart betekent stoppen om eerlijk te kijken en een nieuwe afspraak maken.',
+        'Projecten mislukken zelden plotseling; ze drijven af. Halverwege, met het doel duidelijk buiten bereik, is hopen het nog in te halen de meest gemaakte en duurste keuze.\n\nDeels is dat de valkuil van verzonken kosten: wat al is uitgegeven voelt als reden om door te gaan, terwijl alleen toekomstige kosten en baten zouden moeten tellen; Uitvoeren (Bijsturen of stoppen) behandelt die valkuil. Een herstart betekent stoppen om eerlijk te kijken en een nieuwe afspraak maken.',
         'De eerlijke analyse, op één A4. Plan tegenover werkelijkheid op doel, scope, tijd, mensen en resultaten. Dan de oorzaken, met de vier soorten vastzitten: doel, weg, mensen, capaciteit.\n\nCheck de RAG-status, de kleur rood, oranje of groen in het statusrapport. Blijft die wekenlang groen terwijl het doel wegglijdt, dan is het een “watermeloen”: groen van buiten, rood van binnen. Oranje dat nooit rood wordt, is dezelfde valkuil. Benoem je eigen aandeel: “Ik had het capaciteitsprobleem in week 4 moeten escaleren.”',
         'Praat eerst met je eigen manager. Vraag dan de sponsor om 45 minuten.\n\nOpen ronduit: “Ik wil eerlijk tegen je zijn: zoals het nu is opgezet, haalt dit project zijn doel niet. Dit zie ik, dit denk ik dat de oorzaak is, en dit zijn drie opties.” De opties zijn meestal: stoppen en overdragen wat werkt; de scope verkleinen en het goed afmaken; opnieuw plannen onder nieuwe voorwaarden.',
         'Opnieuw contracteren is de nieuwe afspraak op papier zetten: een nieuwe doelzin, scope, einddatum, rollen, en waar de sponsor zich aan verbindt, zoals bij elke stuurgroep zijn of twee planners vrijmaken.\n\nVoeg een ijkmoment toe, een afgesproken moment en criterium: “Als we in week 20 niet op X zitten, stoppen we.” Een herstart die alleen datums verschuift, mislukt een tweede keer.',
@@ -1233,8 +1236,8 @@ export default {
       ],
       teach: [
         'Na het herstartgesprek uit Een vastgelopen project herstarten begint het echte werk: het herstel (recovery). De nieuwe afspraak staat op papier, maar het project heeft nog dezelfde mensen, hetzelfde ritme en dezelfde gewoontes. Zonder strakke aanpak drijft het binnen een paar weken weer af.\n\nEen herstelplan is kort: wat er in de komende vier tot zes weken af moet, met wekelijkse mijlpalen, wie wat doet, en hoe we elke week zien of het lukt.',
-        'Snijd eerst in de scope met MoSCoW, een indeling uit de agile methode DSDM. Must have: zonder dit geen resultaat. Should have: belangrijk, niet essentieel. Could have: mooi als het lukt. Won’t have: nu niet.\n\nDSDM raadt aan dat de must haves niet meer dan ongeveer 60% van de beschikbare inspanning vragen; de rest is ruimte voor tegenvallers. Is alles must, dan heb je niet gekozen.',
-        'Zet het ritme strakker: een korte wekelijkse check met de sponsor in plaats van een maandelijkse stuurgroep, en een stand-up twee of drie keer per week. Meet op mijlpalen met bewijs, niet op een percentage gereed.\n\nTijd terugwinnen op het kritieke pad met crashen of fast-tracken behandelt Uitvoeren (Herplannen en reserves). Spreek ook vooraf af wanneer je stopt, met de stopcriteria uit Uitvoeren (Bijsturen of stoppen).',
+        'Snijd eerst in de scope met MoSCoW, een manier van prioriteren die bekend werd via DSDM, een agile projectmethode. Must have: zonder dit geen resultaat. Should have: belangrijk, niet essentieel. Could have: mooi als het lukt. Won’t have: nu niet.\n\nDSDM raadt aan dat de must haves niet meer dan ongeveer 60% van de beschikbare inspanning vragen; de rest is ruimte voor tegenvallers. Is alles must, dan heb je niet gekozen.',
+        'Zet het ritme strakker: een korte wekelijkse check met de sponsor in plaats van een maandelijkse stuurgroep, en een stand-up twee of drie keer per week. Meet op mijlpalen met bewijs, niet op een percentage gereed.\n\nTijd terugwinnen op het kritieke pad, de keten van taken die de einddatum bepaalt, met crashen of fast-tracken behandelt Uitvoeren (Herplannen en reserves). Spreek ook af wanneer je stopt, met stopcriteria (kill criteria), vooraf vastgelegde stopvoorwaarden, zoals in Uitvoeren (Bijsturen of stoppen).',
         'Bescherm het team. Haal werk weg dat niet bijdraagt aan de must haves, ook rapportages die niemand leest. Houd nieuwe wensen buiten de deur tot het herstel klaar is; zet ze op een lijst voor daarna.\n\nKijk ook eerlijk naar de bezetting. Soms moet iemand anders op een sleutelrol, of komt er iemand bij met de juiste kennis. Doe dat vroeg en met respect; uitstel helpt niemand.',
         'Typische fouten: herstel aankondigen en op de oude manier doorwerken; elke week een nieuwe prioriteit; het project na twee goede weken weer los laten lopen. Spreek af wanneer het herstel klaar is en het project terug naar het normale ritme gaat.\n\nWaar experts over twisten: hoe strak? Een te strak regime put een moe team verder uit; te los en het drijft af. Een scherpe vraag voor elke maandag: “Wat moet er vrijdag af zijn?”',
       ],
@@ -1247,12 +1250,12 @@ export default {
       said: 'Wat je hoort in projecten: “Alles op die lijst is essentieel. Als we iets schrappen, heeft het hele project geen zin.”',
       recall: [
         {
-          q: 'Het team heeft nog 40 werkdagen. Volgens de DSDM-richtlijn mogen de must haves ongeveer 60% daarvan vragen. Hoeveel werkdagen is dat?',
-          number: 24,
+          q: 'Het team heeft nog 40 werkdagen, en de must haves zijn geschat op 30 dagen. Volgens de DSDM-richtlijn van ongeveer 60% voor must haves: hoeveel dagen aan must haves schuif je door naar should have?',
+          number: 6,
           tolerance: 0.5,
           unit: 'werkdagen',
-          hint: 'Neem het genoemde percentage van de beschikbare werkdagen.',
-          why: '60% × 40 = 24 werkdagen; de overige 16 zijn ruimte voor tegenvallers en de should en could haves.',
+          hint: 'Bereken eerst hoeveel de must haves hooguit mogen vragen, en vergelijk dat met de schatting.',
+          why: '60% × 40 = hooguit 24 werkdagen; 30 − 24 = 6 dagen aan must haves schuiven door naar should have.',
         },
         {
           q: 'Wat staat er in een goed herstelplan?',
@@ -1287,7 +1290,7 @@ export default {
             '“Het is maar een rapportje. De directie vraagt het, dan doe je dat gewoon.”',
             '“Een vervanger? Die heb ik niet. Jullie moeten het gewoon met minder doen.”',
           ],
-          model: '“De directie krijgt een update, dat is terecht. Vrijdag lever ik één A4 uit het herstelplan met de mijlpalen en wat ervoor nodig is; dat kost een uur, geen twee dagen. Zonder vervanger kan het ook: dan schuift de training van de ploegen naar na het herstel. Akkoord?”',
+          model: '“De directie krijgt een update, dat is terecht. Vrijdag lever ik één A4 uit het herstelplan met de mijlpalen en wat ervoor nodig is; dat kost een uur, geen twee dagen. Zonder vervanger kan het ook: dan schuift één should have naar na het herstel. Akkoord?”',
           rubric: [
             'Komt de directie tegemoet zonder de must haves op te geven',
             'Biedt een lichtere vorm van het verzoek',
@@ -1299,7 +1302,7 @@ export default {
       terms: [
         { term: 'Herstel', def: 'De weken na een herstart waarin je het project strak terugbrengt op de nieuwe afspraak.' },
         { term: 'Herstelplan', def: 'Een kort plan voor vier tot zes weken: wat er af moet, wekelijkse mijlpalen, wie wat doet en hoe je het meet.' },
-        { term: 'MoSCoW', def: 'Een indeling uit DSDM: must, should, could en won’t have; dwingt je te kiezen wat echt nodig is.' },
+        { term: 'MoSCoW', def: 'Een manier van prioriteren uit DSDM: must, should, could en won’t have; dwingt je te kiezen wat echt nodig is.' },
         { term: 'Must have', def: 'Wat er moet zijn om resultaat te hebben; volgens DSDM liefst niet meer dan ongeveer 60% van de inspanning.' },
       ],
     },

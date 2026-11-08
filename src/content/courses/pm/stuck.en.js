@@ -94,9 +94,9 @@ export default {
       ],
       teach: [
         'A diagnosis based on a feeling convinces nobody, yourself included. Before you say which kind of stuck it is (see Naming the problem), gather facts from three sources: what is on paper, what you see, and what people say.\n\nIf the three agree, you have a solid picture. If they contradict each other, that is often exactly where the problem sits. Putting them side by side is called triangulation.',
-        'On paper: the action list. Count per week how many commitments were made and how many are really done. In the Last Planner System, a planning method from construction by Glenn Ballard (PhD thesis, 2000), this is PPC (percent plan complete): completed commitments divided by planned commitments. Only fully done counts.\n\n18 of 30 done is a PPC of 60%. Teams using Last Planner often aim for 80% or more; a guide figure from practice, not a norm.',
-        'Look at the pattern too: who slips, on what kind of work, since when? And at the decision log, the list of decisions taken and still open. A decision pushed back at three steering groups in a row often says more than ten late actions.\n\nIssues that stay open too long are tracked in the issue log from Run (Tracking and solving issues); here you use it as evidence for your diagnosis.',
-        'What you see: go to the gemba, the place where the work happens. Is the planning board full of old cards? Is the new work instruction in a drawer? Those are facts no report shows.\n\nWhat people say: short one-to-one conversations, not in the group. Three questions work well: “What is holding you back?”, “What would you do if you ran the project?” and “What is nobody saying out loud?”',
+        'On paper: the action list. Count per week how many commitments were made and how many are really done. In the Last Planner System, a planning method from construction developed by Glenn Ballard and Greg Howell in the 1990s (Ballard’s PhD thesis, 2000), this is PPC (percent plan complete): completed commitments divided by planned commitments. Only fully done counts.\n\n18 of 30 done is a PPC of 60%. Teams using Last Planner often aim for 80% or more; a guide figure from practice, not a norm.',
+        'Look at the pattern too: who slips, on what kind of work, since when? And at the decision log from Run (Getting decisions made), the list of decisions taken and still open. A decision pushed back at three steering groups in a row often says more than ten late actions.\n\nIssues that stay open too long are tracked in the issue log from Run (Tracking and solving issues); here you use it as evidence for your diagnosis.',
+        'What you see: go to the gemba, the place where the work happens. Is the planning board full of old cards? Is the new work instruction in a drawer? Those are facts no report shows.\n\nWhat people say: short one-on-one conversations, not in the group. Three questions work well: “What is holding you back?”, “What would you do if you ran the project?” and “What is nobody saying out loud?”',
         'Pitfalls: talking only to people who agree with you; treating one story as a pattern; trusting numbers from a system without checking how they are made.\n\nWhat experts argue about: PPC measures whether the team keeps its promises, not whether the project moves forward. Researchers note that this makes it a weak measure of progress. So look at the milestones too. A sharp question for yourself: “Which fact would knock over my diagnosis?”',
       ],
       example: {
@@ -120,14 +120,14 @@ export default {
           why: 'A contradiction between sources points to what nobody names, such as a shift that was never included.',
         },
         {
-          q: 'Which question works well in a one-to-one conversation about a stuck project?',
+          q: 'Which question works well in a one-on-one conversation about a stuck project?',
           options: ['“Do you agree with the schedule?”', '“Why are you behind on your actions?”', '“Can you finish your actions on time from now on?”', '“What is nobody here saying out loud?”'],
           answer: '“What is nobody here saying out loud?”',
           why: 'An open question about what stays unspoken brings up information that never comes out in the group.',
         },
         {
           q: 'A team hits a PPC of 90% week after week, but the milestones keep slipping. What is a likely explanation?',
-          options: ['The team mostly commits to easy things', 'The milestones were planned far too tight', 'The PPC is being calculated wrongly', 'The team is deliberately reporting too high'],
+          options: ['The team mostly commits to easy things', 'A PPC that high always makes milestones slip', 'The PPC is being calculated wrongly', 'The team is deliberately reporting too high'],
           answer: 'The team mostly commits to easy things',
           why: 'PPC measures whether promises are kept, not whether the work moves the project forward.',
         },
@@ -144,7 +144,7 @@ export default {
         pushback: {
           lines: [
             '“I don’t have a week. The maintenance manager has been here twenty years; if he says it, it’s true.”',
-            '“One-to-one talks? You’ll only hear complaints.”',
+            '“One-on-one talks? You’ll only hear complaints.”',
           ],
           model: '“I take his experience seriously; I’ll talk to him first. A week is long, I understand: on Wednesday you’ll have the action list and my first talks. Complaints are part of it, which is why I put them next to the numbers and what I see myself. Only when those three match will I say the team isn’t cooperating.”',
           rubric: [
@@ -157,7 +157,7 @@ export default {
       sayIt: 'Explain to a junior colleague in 60 seconds how you gather facts before you say why a project is stuck.',
       terms: [
         { term: 'Triangulation', def: 'Putting three sources side by side (paper, what you see, what people say) to see where they agree and where they do not.' },
-        { term: 'Last Planner System', def: 'A planning method from construction by Glenn Ballard, in which the people doing the work commit weekly to what they will finish.' },
+        { term: 'Last Planner System', def: 'A planning method from construction by Glenn Ballard and Greg Howell, in which the people doing the work commit weekly to what they will finish.' },
         { term: 'PPC', def: 'Percent plan complete: completed commitments divided by planned commitments in a week; only fully done counts.' },
         { term: 'Decision log', def: 'The list of decisions taken and still open, with who decides and when.' },
         { term: 'Gemba', def: 'The place where the work really happens, such as the floor by the line; you go and look there instead of only reading reports.' },
@@ -175,10 +175,10 @@ export default {
         },
       ],
       teach: [
-        'A symptom is what you see: actions slip, meetings get cancelled. A cause is what produces the symptom. Steer on symptoms, with “everyone must hit their actions”, and the same problem returns next month.\n\nThe four kinds of stuck (unclear goal, unclear path, people, capacity) already sit one layer below the symptoms. At this level you ask further: why is the goal unclear, and why has nobody fixed that?',
+        'A symptom is what you see: actions slip, meetings get cancelled. A cause is what produces the symptom. Steer on symptoms, with “everyone must hit their actions”, and the same problem returns next month.\n\nThe four kinds of stuck (unclear goal, unclear way, people, capacity) already sit one layer below the symptoms. At this level you ask further: why is the goal unclear, and why has nobody fixed that?',
         'A handy picture is the iceberg model from systems thinking. Above water the events, below them the patterns, below those the structures that create them, and at the bottom the mental model, what people believe. It is often attributed to Peter Senge; its origin is uncertain.\n\nExample: an action slips (event); it happens every week in maintenance (pattern); maintenance is judged only on breakdowns (structure); “project work is extra” (mental model).',
         'W. Edwards Deming, the American quality pioneer, estimated in Out of the Crisis (1986) that about 94% of problems belong to the system, the responsibility of management, and about 6% to special causes. It is his estimate from experience, not a measurement.\n\nThe lesson for a stuck project: look first at what the system does (roles, priorities, rewards, hours) before you blame a person. Such a cause in the way the work is organised is called a system cause.',
-        'You can dig deeper with the 5 whys, which you know from Intake (A sharp problem statement), now applied to the project itself. Stop only at something someone can change: a decision, a rule, an agreement.\n\nA second question: “Which decision is nobody taking?” Behind a lot of stuckness lies a choice left lying, for example between two departments. Write that choice in one sentence; often that is half the solution.',
+        'You can dig deeper with the 5 whys, which you know from Intake (A sharp problem statement), now applied to the project itself. Stop only at something someone can change: a decision, a rule, an agreement.\n\nA second question: “Which decision is nobody taking?” Behind a lot of stuckness lies a choice left lying, for example between two departments. An issue left open for weeks is often exactly that, as Run (Tracking and solving issues) notes. Write that choice in one sentence; often that is half the solution.',
         'Typical mistakes: stopping at “people don’t have time” (why not?), or digging down to “the culture”, too big to do anything with. A good cause is concrete enough to change something tomorrow.\n\nWhat experts argue about: Deming’s 94% is sometimes used to never hold anyone to account. The Deming Institute itself warns against quotes taken out of context. A sharp question: “If we put different people here tomorrow, would it get stuck too?”',
       ],
       example: {
@@ -259,8 +259,8 @@ export default {
       teach: [
         'Sometimes you are not untangling your own project but someone else’s. A sponsor asks: “Could you take a look at what’s wrong there?” That is a project review or health check: a short, independent examination with a verdict and advice.\n\nThe UK government has done this since the early 2000s with the Gateway review: a small team of experienced reviewers, a few days of interviews and documents, and a report with a verdict on how confident it is that the project will deliver.',
         'Independent means: you have no stake in the outcome. You were not in the project and you do not earn from what follows. If that is not possible, say so up front.\n\nAgree with the sponsor: the question (“will this project reach its goal, and what does it need?”), who receives the report, and that the project manager sees it first. Without that agreement a review feels like a reckoning, and you will not get honest answers.',
-        'The set-up, after Gateway practice: first read the charter, the schedule, the latest status reports and the decision log. Then interview people at all levels, often eight to twelve: sponsor, project manager, team members, users, a supplier. A Gateway review usually takes three to four days on site; for a small project two days is often enough.\n\nAsk everyone the same: “What is going well? What is holding it back? What would you do? How confident are you that it will work?”',
-        'The verdict: instead of just green or red you give a delivery confidence: how confident it is that the project reaches its goal, on a scale from “highly likely” to “unachievable without major intervention”. The UK government uses such a scale; the steps have changed over the years.\n\nGreen on paper with a red picture is the watermelon from Run (Honest status). Then give three to five recommendations with who, what and when. A rule of thumb: ten recommendations become zero.',
+        'The set-up, after Gateway practice: first read the charter (the one-page project assignment), the schedule, the latest status reports and the decision log. Then interview people at all levels, often eight to twelve: sponsor, project manager, team members, users, a supplier. A Gateway review usually takes three to four days on site; for a small project two days is often enough.\n\nAsk everyone the same: “What is going well? What is holding it back? What would you do? How confident are you that it will work?”',
+        'The verdict: not just a status colour for today, but a delivery confidence: how confident you are that the project will reach its goal, on a scale from “highly likely” to “appears unachievable”. The UK government uses such a scale, colour-coded from green to red; the steps have changed over the years.\n\nGreen on paper with a red picture is the watermelon from Run (Honest status). Then give three to five recommendations with who, what and when. A rule of thumb: ten recommendations become zero.',
         'Pitfalls: speaking to the project manager only at the final report; looking for blame instead of causes; a report that spares the sponsor while he is part of the problem.\n\nWhat experts argue about: an outsider sees more but lacks context; a peer review, by a colleague from the same field, knows the content but is less free. A sharp question for everyone you interview: “What do you know that the sponsor doesn’t?”',
       ],
       example: {
@@ -284,10 +284,10 @@ export default {
           why: 'Enough to see patterns, and from sponsor to user, so you do not hear just one layer.',
         },
         {
-          q: 'What does a delivery confidence express?',
-          options: ['How confident it is that the project reaches its goal', 'How much budget is left in the project', 'Whether the supplier delivers its parts on time', 'How satisfied the sponsor is with the team'],
-          answer: 'How confident it is that the project reaches its goal',
-          why: 'It is a verdict on the chance of success, not on budget or satisfaction.',
+          q: 'Why give a delivery confidence rather than only a colour for the current status?',
+          options: ['It looks at the goal, not at today', 'It is required in every review report', 'The project manager accepts it more easily', 'It makes recommendations unnecessary'],
+          answer: 'It looks at the goal, not at today',
+          why: 'A status colour says how things stand now; a delivery confidence judges whether the goal will be reached.',
         },
         {
           q: 'Why do you limit a review to three to five recommendations?',
@@ -485,6 +485,7 @@ export default {
         { term: 'Client as a resource', def: 'Using the client’s knowledge of their own organisation to find the way.' },
         { term: 'Escalation', def: 'Taking a problem to someone with more authority so they decide, as opposed to asking for advice.' },
         { term: 'MES', def: 'Manufacturing execution system: the shop-floor software that logs orders, stops and output per machine.' },
+        { term: 'OEE', def: 'Overall equipment effectiveness: the share of planned time a line makes good product at full speed.' },
       ],
     },
     {
@@ -499,7 +500,7 @@ export default {
         },
       ],
       teach: [
-        'You’ll rarely get certainty. The question is not “are we sure?” but “what’s the cost of being wrong, and can we undo it?”\n\nA reversible decision, like a new meeting format, a planning rule or a board on the wall, can be made fast and tested. An irreversible decision, like buying a machine, changing a shift contract or announcing a reorganisation, deserves slow, careful analysis.',
+        'You’ll rarely get certainty. The question is not “are we sure?” but “what’s the cost of being wrong, and can we undo it?”\n\nA reversible decision, like a new meeting format, a planning rule or a board on the wall, can be made fast and tested. An irreversible decision, like buying a machine, changing a shift contract or announcing a reorganisation, deserves slow, careful analysis. Run (Getting decisions made) and Leading projects outside your field (Deciding under uncertainty, and escalating) call them two-way and one-way doors.',
         'Design a small experiment: a time-boxed test with a measure. Start from a hypothesis, a guess you can prove wrong: “If planners confirm crew and material two days ahead, cancellations drop.”\n\nThe smallest test: two planners, two weeks, about 40 jobs. What you’ll measure, and against what. And, agreed before you start, the stop criterion: what result means continue and what means stop.',
         'Experiments lower resistance. “We’ll try it for two weeks, then decide together” is much easier to say yes to than “from Monday this is the new way”. But keep the promise: evaluate openly, and actually stop if it doesn’t work.\n\nTypical failures: no comparison group, two changes at once, or a test team that gets so much attention it works there and nowhere else.',
         'What experts argue about: speed. In his letter to shareholders for 2015, published in April 2016, Jeff Bezos called reversible decisions “two-way doors” that small groups should make fast. Critics note that “small” changes can be hard to undo socially once people are used to them.\n\nSo ask: “What would it cost to go back, in money and in trust?” And when you don’t know what to do, say: “We don’t know yet. Here’s the smallest thing that would tell us.”',
@@ -585,7 +586,7 @@ export default {
       ],
       teach: [
         'Projects often get stuck because the approach does not fit the kind of problem. The Cynefin framework (pronounced kuh-NEV-in, Welsh for “habitat”) by Dave Snowden helps you see that. It became known through an article by Snowden and Mary Boone in Harvard Business Review (2007).\n\nIt distinguishes four kinds of situation, plus a fifth: disorder, when you do not know which one you are in.',
-        'Simple (later called “clear”): cause and effect are obvious to everyone. You recognise the situation, categorise it and apply the known way of working.\n\nComplicated: there is an answer, but you need an expert or an analysis. You investigate, analyse and then act. A vibrating pump or an OEE calculation that does not add up is usually complicated: find the specialist.',
+        'Simple (later renamed “obvious”, then “clear”): cause and effect are obvious to everyone. You recognise the situation, categorise it and apply the known way of working.\n\nComplicated: there is an answer, but you need an expert or an analysis. You investigate, analyse and then act. A vibrating pump or an OEE calculation that does not add up is usually complicated: find the specialist.',
         'Complex: you see cause and effect only in hindsight, because people and factors react to each other. Analysis helps little. You run small safe-to-fail probes, safe trials that are allowed to fail, see what they produce and amplify what works. Snowden and Boone call this probe, sense, respond.\n\nHow a new way of working lands in an organisation is almost always complex. That is where the experiment from Acting under uncertainty fits.',
         'Chaotic: no time to understand. Act first to stabilise, as in a major breakdown or a safety incident; analyse only afterwards.\n\nThe typical mistake in a stuck project: treating a complex problem as complicated. The team keeps analysing and waits for the one right answer, while there is none in advance. The reverse happens too: experimenting where an expert simply knows the answer.',
         'What experts argue about: critics find Cynefin too vague to sort with, and people put the same problem in different domains. So use it as a conversation, not a stamp: “Do we know the answer, can an expert find it, or do we have to try it out?”\n\nA project often sits in several domains at once: the technology is complicated, the adoption complex. Then cut the problem up, as Snowden and Boone advise for disorder.',
@@ -660,21 +661,21 @@ export default {
       pre: [
         {
           q: 'A department head whose support you need says “yes” in every meeting, but does nothing. What is the best first step?',
-          options: ['Call him out on it in the next meeting', 'Go straight to the sponsor with the problem', 'Ask him for a one-to-one conversation and listen', 'Work around him through his own people'],
-          answer: 'Ask him for a one-to-one conversation and listen',
+          options: ['Call him out on it in the next meeting', 'Go straight to the sponsor with the problem', 'Ask him for a one-on-one conversation and listen', 'Work around him through his own people'],
+          answer: 'Ask him for a one-on-one conversation and listen',
           why: 'First understand why he is not cooperating; calling him out in the group or escalating usually makes it worse.',
         },
       ],
       teach: [
-        'A blocker is someone whose support you need and who does not give it: a department head who frees up nobody, a planner who ignores the new rule. Blocking rarely comes as a hard no. Usually you see delay, silence, or “good idea, but not right now”.\n\nThe first reflex is to push, or to work around them. Both usually make it worse. Start by understanding why.',
+        'A blocker is someone whose support you need and who does not give it: a department head who frees up nobody, a planner who ignores the new rule. Blocking rarely comes as a hard no. Usually you see delay, silence, or “good idea, but not right now”.\n\nThe first reflex is to push, or to work around them. Both usually make it worse. Start by understanding why, and first rule out plain capacity, as in Run (Leading without authority).',
         'Rick Maurer, an American change consultant, distinguishes three levels of resistance, among others in his book Why Don’t You Want What I Want? (2002). Resistance here means: not cooperating with a change, openly or quietly.\n\nLevel 1, “I don’t get it”: information is missing. Level 2, “I don’t like it”: an emotional reaction, such as fear of losing status or work. Level 3, “I don’t like you”: it is about the relationship, with you or with whoever you represent.',
         'Each level asks for something different. Level 1: explanation, numbers, showing. Level 2: listening to what someone fears, and seeing what you can do about it. Level 3: building trust, keeping small promises, or letting someone else have the conversation.\n\nThe classic mistake: treating level 2 or 3 as level 1, and giving yet another presentation. More explanation to someone who feels threatened sounds like pressure.',
-        'You have the conversation one-to-one, not in the group. Open with a fact and a question: “The planners haven’t been freed up yet. What makes it difficult?” Listen, and summarise what you hear.\n\nA strong question: “What would have to change for you to be able to support this?” An objection is often a condition in disguise. If the objection is fair, adjust the plan; that is not a loss.',
+        'You have the conversation one-on-one, not in the group. Open with a fact and a question: “The planners haven’t been freed up yet. What makes it difficult?” Listen, and summarise what you hear.\n\nA strong question: “What would have to change for you to be able to support this?” An objection is often a condition in disguise. If the objection is fair, adjust the plan; that is not a loss.',
         'Only if the conversation does not work do you escalate, and you tell him first: “I’m taking this to the sponsor, because we aren’t solving it together.”\n\nResistance on the shop floor at a go-live is covered in Land (Working with resistance); here it is about one person whose yes you need. What experts argue about: is “resistance” a useful word, or a label that puts the blame on the other person? A sharp question for yourself: “What is he right about?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Week 4 at a grid operator. Your project should reduce cancellations of planned jobs. The head of work preparation, Ronald, was going to free up two work preparers, who get jobs ready, one day a week. Three weeks later: nothing. In the meeting he keeps saying: “It’ll be fine.”\n\nYou ask him for coffee, one-to-one: “The two work preparers haven’t been freed up yet. What makes it difficult?” He hesitates, then: “My people get blamed for every cancellation. Your project is going to put that in black and white.”\n\nThat is level 2: fear, not lack of understanding. You summarise and ask what he needs. Agreement: the numbers are about the chain, not about individuals, and he sees them first. The following Monday the two are freed up.',
+        text: 'Week 4 at a grid operator. Your project should reduce cancellations of planned jobs. The head of work preparation, Ronald, was going to free up two work preparers, who get jobs ready, one day a week. Three weeks later: nothing. In the meeting he keeps saying: “It’ll be fine.”\n\nYou ask him for coffee, one-on-one: “The two work preparers haven’t been freed up yet. What makes it difficult?” He hesitates, then: “My people get blamed for every cancellation. Your project is going to put that in black and white.”\n\nThat is level 2: fear, not lack of understanding. You summarise and ask what he needs. Agreement: the numbers are about the chain, not about individuals, and he sees them first. The following Monday the two are freed up.',
       },
       said: 'What you hear on projects: “Good idea, really. Just not right now, we’re simply too busy.”',
       recall: [
@@ -691,7 +692,7 @@ export default {
           why: 'This is level 2, fear. More explanation then feels like pressure.',
         },
         {
-          q: 'Why do you have the conversation with a blocker one-to-one?',
+          q: 'Why do you have the conversation with a blocker one-on-one?',
           options: ['Because it is quicker than in a group', 'Because the sponsor must not know about it', 'Because the charter says so', 'Because in a group he has to save face'],
           answer: 'Because in a group he has to save face',
           why: 'Alone he is more honest about what holds him back.',
@@ -706,7 +707,7 @@ export default {
       situation: {
         scene: 'You are at a plastics plant. The logistics manager has been blocking a trial with smaller batches on the injection moulding machines, which inject plastic into a mould, for weeks: “That gives me more changeovers and a fuller floor.” The production manager, your sponsor, wants you to “just push on”.',
         ask: 'How do you handle it?',
-        model: 'I ask him one-to-one what exactly he expects: how many more changeovers, how many more pallets on the floor. Then I see whether it is level 1 (he lacks numbers) or level 2 (he fears his warehouse will jam and he will be blamed). I put his objection into the trial as a condition: a maximum number of pallets in the hall; if we go above it, we stop. That makes him a co-designer instead of an opponent.',
+        model: 'I ask him one-on-one what exactly he expects: how many more changeovers, how many more pallets on the floor. Then I see whether it is level 1 (he lacks numbers) or level 2 (he fears his warehouse will jam and he will be blamed). I put his objection into the trial as a condition: a maximum number of pallets in the hall; if we go above it, we stop. That makes him a co-designer instead of an opponent.',
         rubric: [
           'Asks for the real objection instead of pushing on',
           'Recognises the level of resistance',
@@ -825,17 +826,17 @@ export default {
         },
       ],
       teach: [
-        'At management level people rarely block openly. They say yes in the meeting and then do nothing. This is sometimes called a pocket veto: the decision has been taken, but the person who must carry it out stops it by not acting.\n\nIt is harder than open resistance, because there is nothing to respond to. Do not assume bad intent straight away: often someone does not want to say no to his boss in public.',
+        'At management level people rarely block openly. They say yes in the meeting and then do nothing. This is sometimes called a pocket veto: the decision has been taken, but the person who must carry it out stops it by not acting.\n\nIt is harder than open resistance, because there is nothing to respond to. Do not assume bad intent straight away: often someone does not want to say no to his boss in public. On the shop floor, Land (Working with resistance) calls this passive resistance.',
         'Signals: general commitments (“we’ll get on with it”) without a name and date; decisions that sound different in the minutes than in the room; the meeting after the meeting, where people share their real views in the corridor; ever new requests to “look into it a bit more”.\n\nWhat often drives it: the decision costs that person something (people, budget, status), and that was not discussed in the meeting.',
-        'Make commitments specific. After every decision: who does what, by when, and how will we see it has happened? Read it out loud and put it on paper the same day. A specific commitment turns a vague yes into an agreement, or brings the objection to the table after all.\n\nWork in advance. Big decisions are won in conversations before the steering group, with nemawashi from Run (Preparing the steering group). Ask there: “What does this cost your department?”',
-        'Find the real decision-maker. Sometimes someone blocks because his own boss thinks differently. Ask: “Who else needs to be behind this?” A stakeholder map with formal and informal influence, as in Intake (Who decides, who can stop it), helps.\n\nIf the commitment still lies untouched, discuss it one-to-one first, with facts: “We agreed the planners would be free on 1 March. They aren’t. What has changed?”',
+        'Make commitments specific. After every decision: who does what, by when, and how will we see it has happened? Read it out loud and put it on paper the same day. A specific commitment turns a vague yes into an agreement, or brings the objection to the table after all.\n\nWork in advance. Big decisions are won in conversations before the steering group, with nemawashi, sounding out each member beforehand, from Run (Preparing the steering group). Ask there: “What does this cost your department?”',
+        'Find the real decision-maker. Sometimes someone blocks because his own boss thinks differently. Ask: “Who else needs to be behind this?” A stakeholder map with formal and informal influence, as in Intake (Who decides, who can stop it), helps.\n\nIf the commitment still lies untouched, discuss it one-on-one first, with facts: “We agreed the planners would be free on 1 March. They aren’t. What has changed?”',
         'If nothing comes of that, it goes back to the steering group as a fact, not an accusation: “The February decision has not been carried out; this is the consequence. Do we keep the decision, or adjust it?”\n\nThe limit: play no games yourself, no rumours and no coalitions behind someone’s back. What experts argue about: are politics part of the job, or a sign of a badly set-up project? A sharp question: “What does he lose if this succeeds?”',
       ],
       example: {
         kind: 'faded',
         text: 'Week 11 at a dairy. In the February steering group the management team decided that the maintenance department frees up two technicians to shorten changeovers on the packing lines. The head of maintenance, Erik, nodded. Now it is mid-March. The technicians are not there. Erik says: “We’re working on it, but breakdowns come first.”\n\nA shift lead tells you that after the steering group Erik told his people: “That project will blow over.” Erik’s boss, the plant manager, is also your sponsor.',
         ask: 'What would you do now?',
-        reveal: 'This looks like a pocket veto. Do not play it through the shift lead, and do not go straight to the plant manager.\n\nAsk Erik for a one-to-one conversation, with facts: “In February we agreed two technicians from 1 March. They aren’t there. What does this cost your department?” The real objection will probably come out: breakdowns are rising and he is judged on them.\n\nMake it specific: who, from which date, and what happens during a major breakdown. If that fails, tell him you will bring it back to the next steering group as a fact: “The decision has not been carried out. Do we keep it, or adjust it?” Then the plant manager chooses, with Erik present.',
+        reveal: 'This looks like a pocket veto. Do not play it through the shift lead, and do not go straight to the plant manager.\n\nAsk Erik for a one-on-one conversation, with facts: “In February we agreed two technicians from 1 March. They aren’t there. What does this cost your department?” The real objection will probably come out: breakdowns are rising and he is judged on them.\n\nMake it specific: who, from which date, and what happens during a major breakdown. If that fails, tell him you will bring it back to the next steering group as a fact: “The decision has not been carried out. Do we keep it, or adjust it?” Then the plant manager chooses, with Erik present.',
       },
       said: 'What you hear on projects: “Yes, yes, fine, we’ll do it. Just send me the details.”',
       recall: [
@@ -852,7 +853,7 @@ export default {
           why: 'It brings the hidden price of the decision to the table before anyone says yes.',
         },
         {
-          q: 'A commitment stays untouched, even after a one-to-one conversation. How do you bring it to the steering group?',
+          q: 'A commitment stays untouched, even after a one-on-one conversation. How do you bring it to the steering group?',
           options: ['As an accusation, so everyone sees who is stopping it', 'Not at all, you always solve it outside the steering group', 'As a fact with its consequence, and whether the decision stands', 'Through a colleague of that person, to spare him'],
           answer: 'As a fact with its consequence, and whether the decision stands',
           why: 'That keeps it about the decision, not the person, and lets the steering group choose.',
@@ -867,9 +868,9 @@ export default {
       situation: {
         scene: 'You are at a metalworking company. The sales director agreed in the steering group to fixed slots for rush orders, so the schedule calms down. Two weeks later his sales office is again slotting in rush orders every day. He says to you: “Customers come first, you understand.”',
         ask: 'What do you do?',
-        model: 'I ask him for half an hour one-to-one. I start with the facts: ten rush orders outside the fixed slots in two weeks, and what that did to the schedule. Then: “What does the agreement cost your department?” He probably fears losing customers; perhaps an exception is needed for the three biggest customers. If that fails, I tell him I will bring it back to the steering group as a fact, with the question whether the decision stands.',
+        model: 'I ask him for half an hour one-on-one. I start with the facts: ten rush orders outside the fixed slots in two weeks, and what that did to the schedule. Then: “What does the agreement cost your department?” He probably fears losing customers; perhaps an exception is needed for the three biggest customers. If that fails, I tell him I will bring it back to the steering group as a fact, with the question whether the decision stands.',
         rubric: [
-          'Talks to him himself first, one-to-one and with facts',
+          'Talks to him himself first, one-on-one and with facts',
           'Looks for what the decision costs him',
           'Announces the route to the steering group openly',
         ],
@@ -946,9 +947,9 @@ export default {
         },
       ],
       situation: {
-        scene: 'You are at a food plant. Maintenance wants four hours of planned downtime per line every week for preventive maintenance; production refuses, because orders are tight. Your project to reduce breakdowns has been stuck for four weeks. Both managers separately ask you to “just convince” the other.',
+        scene: 'You are at a food plant. Purchasing has switched to a cheaper packaging film; production says it tears more often and stops the lines. Purchasing is judged on price per roll, production on OEE. Your project to reduce film waste has been stuck for four weeks. Both managers separately ask you to “just convince” the other.',
         ask: 'What do you do?',
-        model: 'I won’t walk back and forth. I ask both managers for one conversation together, about what they both want: less unplanned downtime. If we cannot agree, I propose going together to the plant manager, their common boss, with one page: both options, what each does to total production time, and their approval on it. I put my advice separately underneath.',
+        model: 'I won’t walk back and forth. I ask both managers for one conversation together, about what they both want: a low total cost per pack. If we cannot agree, I propose going together to the operations director, their common boss, with one page: both films, what each does to cost per pack including waste and stops, and their approval on it. I put my advice separately underneath.',
         rubric: [
           'Refuses the role of messenger',
           'Looks for a shared measure',
@@ -956,10 +957,10 @@ export default {
         ],
         pushback: {
           lines: [
-            '“Go to the plant manager together? Then it looks like we can’t handle it. Can’t you just sort it out?”',
+            '“Go to the operations director together? Then it looks like we can’t handle it. Can’t you just sort it out?”',
             '“You’re the expert, aren’t you? Just say who’s right.”',
           ],
-          model: '“I understand it feels like failing, but it isn’t a fight: you’re both right from your own goal. The choice between those goals belongs with the plant manager. You’ll certainly get my advice, on the same page, separate from the options. Shall we draft it together on Thursday?”',
+          model: '“I understand it feels like failing, but it isn’t a fight: you’re both right from your own goal. The choice between those goals belongs with the operations director. You’ll certainly get my advice, on the same page, separate from the options. Shall we draft it together on Thursday?”',
           rubric: [
             'Acknowledges the concern about losing face',
             'Explains why the choice lies above them',
@@ -974,6 +975,7 @@ export default {
         { term: 'Joint escalation', def: 'Two parties together put a choice to their common boss, with one page they both approved.' },
         { term: 'Common boss', def: 'The first person in the organisation who stands above both parties and can choose between their goals.' },
         { term: 'Shared measure', def: 'A number that sits above both departments, such as on-time delivery or cost per product, to compare options fairly.' },
+        { term: 'KPI', def: 'Key performance indicator: the number a department or person is judged on.' },
       ],
     },
     {
@@ -981,16 +983,16 @@ export default {
       title: 'What you need from your sponsor',
       pre: [
         {
-          q: 'According to the surveys of consulting firm Prosci, which sponsor activity contributes most to a change succeeding?',
+          q: 'According to surveys by the consulting firm Prosci, which sponsor activity contributes most to a change succeeding?',
           options: ['Approving the budget on time', 'Taking part actively and visibly', 'Choosing the right project manager', 'Giving the final presentation himself'],
           answer: 'Taking part actively and visibly',
           why: 'In every Prosci report since 1998, active and visible sponsorship ranks first.',
         },
       ],
       teach: [
-        'The sponsor is the manager who owns the project: he wants the result, holds the budget and takes the big decisions. When a project is stuck, the sponsor can usually get it moving. But only if you ask for what you need.\n\nJuniors use their sponsor too little, for fear of being a nuisance. A sponsor would rather hear early than late that his project is stuck.',
+        'The sponsor is the manager who owns the project: he wants the result, holds the budget and takes the big decisions. When a project is stuck, the sponsor can usually get it moving. But only if you ask for what you need.\n\nJuniors use their sponsor too little, for fear of being a nuisance. A sponsor would rather hear early than late that his project is stuck. His role is set at the start in Plan (Roles and the sponsor) and Intake (Agreements with the sponsor).',
         'What a sponsor does to get a project moving, in three jobs. Deciding: making choices the team cannot make. Making room: freeing people and hours, letting other priorities give way. Giving air cover: protecting the project against opposition and showing it matters.\n\nAsk concretely, with a name and a date: not “more support”, but “will you say in Monday’s management meeting that the planners are free one day a week?”',
-        'Prosci, a change management consulting firm, has asked large groups of project people since 1998 what determines success. Active and visible sponsorship ranks first in all those reports. They are surveys by a commercial firm, not experiments, but the picture is consistent.\n\nVisible means: coming onto the floor, explaining the goal himself in meetings, asking about progress. A sponsor who only signs is not enough.',
+        'Prosci, the change management firm behind ADKAR from Land (What really drives adoption), has asked large groups of change practitioners since 1998 what determines success. Active and visible sponsorship ranks first in all those reports. They are surveys by a commercial firm, not experiments, but the picture is consistent.\n\nVisible means: coming onto the floor, explaining the goal himself in meetings, asking about progress. A sponsor who only signs is not enough.',
         'A fixed rhythm helps: a sponsor check-in of twenty minutes, every two weeks. Three questions: what is going well, where are we stuck, what do I need from you? Send one paragraph the day before, starting with the decision you are asking for.\n\nRecord what he commits to, and come back to it. How to escalate through the agreed route is covered in Run (Getting decisions made).',
         'Typical mistakes: bringing only good news until it is too late; asking for “support” without saying which; working around the sponsor because he is busy.\n\nWhat experts argue about: is an absent sponsor a reason to pause the project? Some say yes: no sponsor, no project. Others first look for a deputy with a mandate. A sharp question for your sponsor: “What do you want to be able to show your boss in three months?”',
       ],
@@ -1069,10 +1071,10 @@ export default {
         },
       ],
       teach: [
-        'A stuck project loses energy: people stop coming to meetings, actions get made small or forgotten. A new plan alone does not bring that energy back. What does help: achieving something visible, fast.\n\nTeresa Amabile and Steven Kramer of Harvard had 238 people from 26 project teams in seven companies keep a daily diary, nearly 12,000 diary days in total (The Progress Principle, 2011).',
+        'A stuck project loses energy: people stop coming to meetings, actions get made small or forgotten. A new plan alone does not bring that energy back. What does help: achieving something visible, fast.\n\nTeresa Amabile of Harvard Business School and the psychologist Steven Kramer had 238 people from 26 project teams in seven companies keep a daily diary, nearly 12,000 diary entries in total (The Progress Principle, 2011).',
         'Their conclusion, the progress principle: of everything that makes a workday good, noticing progress in meaningful work is the strongest, even when the step is small. A setback, in their findings, weighs more heavily than a success of the same size.\n\nA small win is a concrete, visible step that people themselves see as progress: a changeover that really is shorter, a board that works, a week without a cancellation.',
-        'How to plan them. Make the next step so small that it succeeds within one or two weeks. Choose something the people themselves find important, not only the sponsor. And make it visible: on the board, in the start-of-shift meeting, in the weekly update.\n\nA small win is not a quick win to convince the steering group with; it is for the team. That the steering group likes to see it too is a bonus.',
-        'Also remove the obstacles that hold people back every day. Amabile and Kramer call what helps the work a catalyst: clear goals, time, help, resources. A technician who waits for a wrench three times a week gets more energy from that wrench than from a speech.\n\nAsk in the stand-up: “What held you back yesterday?” and solve one of those the same day.',
+        'How to plan them. Make the next step so small that it succeeds within one or two weeks. Choose something the people themselves find important, not only the sponsor. And make it visible: on the board, in the start-of-shift meeting, in the weekly update.\n\nIt is the same idea as the quick wins in Intake (The first weeks), now used to restart a team that has lost faith. So choose it for the team, not to impress the steering group.',
+        'Also remove the obstacles that hold people back every day. Amabile and Kramer call what helps the work a catalyst: clear goals, time, help, resources. A technician who waits for a wrench three times a week gets more energy from that wrench than from a speech.\n\nAsk in the stand-up, the short daily meeting: “What held you back yesterday?” and solve one of those the same day.',
         'Pitfalls: making a small win bigger than it is, because people see through it; doing only easy things that do not bring the goal closer; celebrating without the next step.\n\nWhat experts argue about: the research was on teams in creative knowledge work. Whether it holds as strongly for shop-floor crews is less studied. A sharp question: “What can we finish this week that everyone will see?”',
       ],
       example: {
@@ -1082,10 +1084,10 @@ export default {
       said: 'What you hear on projects: “What’s the point? Nothing ever changes here anyway.”',
       recall: [
         {
-          q: 'According to Amabile and Kramer, what is the strongest factor in a good workday?',
-          options: ['A good salary and job security', 'Noticing progress in meaningful work', 'A friendly, close-knit team around you', 'A boss who is clear about the goals'],
-          answer: 'Noticing progress in meaningful work',
-          why: 'That is the progress principle from their diary research.',
+          q: 'In Amabile and Kramer’s diary research, how does a setback weigh against a step forward of the same size?',
+          options: ['About the same', 'More heavily', 'Less heavily, it is soon forgotten', 'Only for the manager'],
+          answer: 'More heavily',
+          why: 'A setback weighs more than a success of the same size, so preventing setbacks matters as much as creating wins.',
         },
         {
           q: 'Waste per reel change drops from 14 to 9 metres of film. The line changes 30 reels a week. How many metres of film a week does that save?',
@@ -1096,7 +1098,7 @@ export default {
           why: '14 − 9 = 5 metres per reel; 5 × 30 = 150 metres a week.',
         },
         {
-          q: 'When is a step well chosen as a small win?',
+          q: 'When is a step well chosen to get a stuck team moving again?',
           options: ['Big enough to impress the steering group', 'So easy that it certainly cannot fail', 'Small, quick, and important to the team', 'Chosen by the sponsor, not by the team'],
           answer: 'Small, quick, and important to the team',
           why: 'It is about progress the people themselves see and find important.',
@@ -1136,6 +1138,7 @@ export default {
         { term: 'Setback', def: 'A step back in the work; in Amabile and Kramer’s findings it weighs more heavily than a success of the same size.' },
         { term: 'Small win', def: 'A concrete, visible step the team itself sees as progress, achievable within one or two weeks.' },
         { term: 'Catalyst', def: 'What directly helps the work, such as clear goals, time, help and resources.' },
+        { term: 'Stand-up', def: 'A short meeting, often daily and standing up: what was done, what is next, what is in the way.' },
       ],
     },
     {
@@ -1150,7 +1153,7 @@ export default {
         },
       ],
       teach: [
-        'Projects rarely fail suddenly; they drift. Halfway, with the goal clearly out of reach, hoping to catch up is the most common and most expensive choice.\n\nPart of it is the sunk cost trap: what is already spent feels like a reason to go on, while only future costs and benefits should count. A reset means stopping to look honestly and agreeing a new deal.',
+        'Projects rarely fail suddenly; they drift. Halfway, with the goal clearly out of reach, hoping to catch up is the most common and most expensive choice.\n\nPart of it is the sunk cost trap: what is already spent feels like a reason to go on, while only future costs and benefits should count; Run (Adjust course or stop) covers this trap. A reset means stopping to look honestly and agreeing a new deal.',
         'The honest assessment, on one page. Plan versus reality on goal, scope, time, people and results. Then the causes, using the four kinds of stuck: goal, way, people, capacity.\n\nCheck the RAG status, the red, amber or green colour in the status report. A status that stays green for weeks while the goal slips is a “watermelon”: green outside, red inside. Amber that never turns red is the same trap. Include your own part: “I should have escalated the capacity issue in week 4.”',
         'Talk to your own manager first. Then ask the sponsor for 45 minutes.\n\nOpen plainly: “I want to be straight with you: as it’s set up now, this project won’t reach its goal. Here’s what I see, what I think caused it, and three options.” Options usually are: stop and hand over what works; shrink the scope and finish properly; re-plan with new conditions.',
         'Re-contracting means agreeing the new deal in writing: a new goal sentence, scope, end date, roles, and what the sponsor commits to, like attending every steering group or freeing two planners.\n\nAdd a check-in point, an agreed moment and criterion: “If by week 20 we’re not at X, we stop.” A reset that only moves dates fails a second time.',
@@ -1233,8 +1236,8 @@ export default {
       ],
       teach: [
         'After the reset conversation from Resetting a failing project, the real work starts: the recovery. The new agreement is on paper, but the project still has the same people, the same rhythm and the same habits. Without a tight approach it drifts again within a few weeks.\n\nA recovery plan is short: what must be done in the next four to six weeks, with weekly milestones, who does what, and how we see every week whether it is working.',
-        'First cut the scope with MoSCoW, a split from the agile method DSDM. Must have: without it, no result. Should have: important, not essential. Could have: nice if it fits. Won’t have: not now.\n\nDSDM advises that the must haves take no more than about 60% of the available effort; the rest is room for setbacks. If everything is a must, you have not chosen.',
-        'Tighten the rhythm: a short weekly check with the sponsor instead of a monthly steering group, and a stand-up two or three times a week. Measure on milestones with evidence, not on a percentage complete.\n\nWinning back time on the critical path by crashing or fast-tracking is covered in Run (Replanning and reserves). Also agree in advance when you stop, with the kill criteria from Run (Adjust course or stop).',
+        'First cut the scope with MoSCoW, a way of prioritising made well known by DSDM, an agile project method. Must have: without it, no result. Should have: important, not essential. Could have: nice if it fits. Won’t have: not now.\n\nDSDM advises that the must haves take no more than about 60% of the available effort; the rest is room for setbacks. If everything is a must, you have not chosen.',
+        'Tighten the rhythm: a short weekly check with the sponsor instead of a monthly steering group, and a stand-up two or three times a week. Measure on milestones with evidence, not on a percentage complete.\n\nWinning back time on the critical path, the chain of tasks that sets the end date, by crashing or fast-tracking is covered in Run (Replanning and reserves). Also agree when you stop, with kill criteria, stop conditions set in advance, as in Run (Adjust course or stop).',
         'Protect the team. Remove work that does not contribute to the must haves, including reports nobody reads. Keep new wishes out until the recovery is done; put them on a list for afterwards.\n\nAlso look honestly at the staffing. Sometimes someone else needs to take a key role, or someone with the right knowledge joins. Do it early and respectfully; delay helps nobody.',
         'Typical mistakes: announcing a recovery and carrying on the old way; a new priority every week; letting the project run loose again after two good weeks. Agree when the recovery is done and the project returns to its normal rhythm.\n\nWhat experts argue about: how tight? A regime that is too tight wears out a tired team further; too loose and it drifts. A sharp question for every Monday: “What must be done by Friday?”',
       ],
@@ -1242,17 +1245,17 @@ export default {
         kind: 'faded',
         text: 'Week 11 of 16 at a food plant, just after the reset conversation from Resetting a failing project. The sponsor chose: aim for 68% OEE with the current team, same end date. Six weeks are left; the team has about 50 working days available in total.\n\nThe list has twelve actions, estimated at 70 days together, including: quick changeover (SMED) on the two busiest lines, a breakdown analysis, a new dashboard, training for all shifts and an app for the stop logs. The production manager also wants a second pilot on line 5. Everyone calls everything “essential”.',
         ask: 'What would you do now?',
-        reveal: 'Make a recovery plan for six weeks. Sort the twelve actions with MoSCoW, together with the production manager and the team. Must haves may take about 60% of the 50 days: some 30 days. Probably that is SMED on the two busiest lines and the breakdown analysis, because they do most for OEE. Training for the shifts on those lines is a should; the dashboard and the app are coulds; the line 5 pilot is a won’t, for after the project.\n\nSet a milestone with evidence every week, such as “line 2: three changeovers under 40 minutes”, and a twenty-minute check with the sponsor on Fridays. Agree a checkpoint: if OEE is not above 66% in week 14, we discuss stopping and handing over.',
+        reveal: 'Make a recovery plan for six weeks. Sort the twelve actions with MoSCoW, together with the production manager and the team. Must haves may take about 60% of the 50 days: some 30 days. Probably that is SMED on the two busiest lines and the breakdown analysis, because they do most for OEE. Training for the shifts on those lines is a should; the dashboard and the app are coulds; the line 5 pilot is a won’t, for after the project.\n\nSet a milestone with evidence every week, such as “line 2: three changeovers under 40 minutes”, and a twenty-minute check with the sponsor on Fridays. Agree a check-in point: if OEE is not above 66% in week 14, we discuss stopping and handing over.',
       },
       said: 'What you hear on projects: “Everything on that list is essential. If we cut anything, the whole project is pointless.”',
       recall: [
         {
-          q: 'The team has 40 working days left. Under the DSDM guideline, the must haves may take about 60% of that. How many working days is that?',
-          number: 24,
+          q: 'The team has 40 working days left, and the must haves are estimated at 30 days. Under the DSDM guideline of about 60% for must haves, how many days of must haves do you move to should have?',
+          number: 6,
           tolerance: 0.5,
           unit: 'working days',
-          hint: 'Take the stated percentage of the available working days.',
-          why: '60% × 40 = 24 working days; the other 16 are room for setbacks and the should and could haves.',
+          hint: 'First work out the most the must haves may take, then compare that with the estimate.',
+          why: '60% × 40 = 24 working days at most; 30 − 24 = 6 days of must haves move to should have.',
         },
         {
           q: 'What goes into a good recovery plan?',
@@ -1287,7 +1290,7 @@ export default {
             '“It’s just a little report. The board asks for it, so you just do it.”',
             '“A replacement? I don’t have one. You’ll just have to do it with less.”',
           ],
-          model: '“The board gets an update, that’s fair. On Friday I’ll deliver one page from the recovery plan with the milestones and what they need; that takes an hour, not two days. Without a replacement it can work too: then the shift training moves to after the recovery. Agreed?”',
+          model: '“The board gets an update, that’s fair. On Friday I’ll deliver one page from the recovery plan with the milestones and what they need; that takes an hour, not two days. Without a replacement it can work too: then one should have moves to after the recovery. Agreed?”',
           rubric: [
             'Meets the board halfway without giving up the must haves',
             'Offers a lighter form of the request',
@@ -1299,7 +1302,7 @@ export default {
       terms: [
         { term: 'Recovery', def: 'The weeks after a reset in which you bring the project tightly back onto the new agreement.' },
         { term: 'Recovery plan', def: 'A short plan for four to six weeks: what must be done, weekly milestones, who does what and how you measure it.' },
-        { term: 'MoSCoW', def: 'A split from DSDM: must, should, could and won’t have; forces you to choose what is really needed.' },
+        { term: 'MoSCoW', def: 'A way of prioritising used in DSDM: must, should, could and won’t have; forces you to choose what is really needed.' },
         { term: 'Must have', def: 'What has to be there for a result; under DSDM ideally no more than about 60% of the effort.' },
       ],
     },
