@@ -27,3 +27,51 @@ Recomputed and sources:
 - TPM recall: (9 − 4) × 2.5 = 12.5 h.
 - Backlog 3,200 / 320 = 10 wk; 960 / 240 = 4 wk; 1,150 / 240 = 4.8 wk; PM compliance 84 / 120 = 70 %; target ≥ 90 % and backlog 2–4 wk: SMRP / Wireman benchmarks.
 - Sensors: 140 × €900 = €126,000.
+
+## v13 topics (2026-11-08): 4 topics × 4 levels
+
+| Topic (id) | 1 Basis | 2 Werkkennis | 3 Gevorderd | 4 Expert |
+|---|---|---|---|---|
+| Maintenance strategies (`strategy`) | `strategies` (existing) | `failure` (existing) | `condition` (existing, example now faded; figure eng.maintenance.pf kept) | `pmreview` (new): PM optimisation, OEM intervals, keep/delete/interval/convert, acceptance criterion, find rate, PMO vs RCM, statutory inspections |
+| TPM and autonomous maintenance (`tpm`) | `tpm` (existing) | `cilt` (new): CILT standard, match marks, sight glass, lubrication amounts (weigh a gun stroke), one-point lesson, ~10 min per shift, pencil whipping | `amsteps` (new): JIPM seven AM steps, sources of contamination and hard-to-access areas, step audit, tag closure rate, model machine, wide vs deep | `pillars` (new): eight pillars, 16 losses, loss tree, focused improvement, quality maintenance, early equipment management, master plan / model line, WCM cost deployment |
+| Planning, scheduling and spare parts (`planning`) | `cmms` (existing) | `planning` (new): job plan, planner (1 per 20–30, Palmer), forecast hours, weekly schedule loaded to 100%, break-in work, schedule compliance (SMRP 90% vs Palmer ~80%) | `stores` (new): spare parts list (asset BOM), kitting, service level, inventory accuracy, cycle counting, squirrel stores | `shutdown` (new): scope freeze, scope growth (AP-Networks 19% / 7%), emergent vs discovery work, contingency, critical path, punch list, start-up infant mortality |
+| Measuring maintenance (`measure`) | `metrics` (existing) | `workmix` (new): EN 13306 preventive/corrective, immediate vs deferred corrective, planned work, reactive share, work order type, work sampling | `kpiset` (new): EN 15341 and SMRP metrics, leading/lagging set, PM compliance grace period (10% vs +20% capped at 28 days), time lag, paired indicators, plant-wide MTBF | `cost` (new): maintenance cost / RAV, cost of unreliability, business case (lost margin only on a sold-out bottleneck), capex vs opex |
+
+Why this split: the four suggested topics; the six existing lessons sit at level 1 (strategies, tpm, cmms, metrics) or in the strategy topic (failure 2, condition 3). Condition monitoring moves to level 3, so its worked example became a faded one (same numbers, the computation moved to the reveal).
+
+Existing lessons: ids, recall order, answer positions and numbers unchanged (pinned in `tests/fixtures/v13-eng.maintenance-recall-keys.json`, built from the files before this change). Wording changes only:
+- Giveaways removed (correct option was the unique longest): strategies r2 r3, failure pre r1 r2 r3, metrics pre (distractor 2 h → 500 h; why rewritten), condition r3, tpm r1 r2 r3, cmms r2 r3, and their nl equivalents.
+- Own hints on every numeric recall question (old and new); none contains the answer (validator check).
+- Shared definitions aligned: OEE = availability × performance × quality (as in eng.flow; teach no longer quotes "50–65%", it points to Capacity and flow); infant mortality, wear-out, P-F interval, criticality, wrench time and PM compliance definitions copied from eng.reliability (en and nl). Availability def notes that OEE availability also counts changeovers.
+- Pointers instead of repeats: RCM, Weibull fit, criticality ranking, spares stocking (insurance spares, reorder point, dead stock), life-cycle cost → Reliability and asset strategy; OEE, six big losses, SMED, OEE to money → Capacity and flow; leading/lagging and the KPI definition card → Performance management (pm.perform); lockout → Safety on the floor and in the substation. Critical path def identical to pm.plan; Time lag / Vertraging identical to pm.perform; Capex identical to pm.portfolio. eng.ot patching (patch windows in planned stops) not repeated; nothing in this module contradicts it.
+- Index blurb now names planning and spare parts and the numbers.
+
+Answer positions (pre + recall MC, en = nl): module 13 / 13 / 13 / 13. Correct option is never the unique longest (script check en and nl); correct-option length rank across 52 MC: en 1(tied) 4 · 2nd 20 · 3rd 12 · 4th 16; nl 3 · 23 · 7 · 19.
+
+Facts and sources (checked 2026-11-08):
+- EN 13306:2017 Maintenance terminology: preventive vs corrective; immediate vs deferred corrective maintenance.
+- EN 15341:2019+A1:2022 Maintenance KPIs: 2007 edition grouped economic / technical / organisational; the current edition regroups by function (secondary sources, e.g. maintmaster.com/blog/maintenance-european-standard; reliamag.com KPI reference). Taught hedged ("regroups them"), no KPI count.
+- SMRP Best Practices: PM compliance metric 5.4.10 (within 10% of the frequency) vs 5.4.14 (required date + 20% of frequency, max 28 days), and 90% best-in-class schedule/PM compliance — SMRP forum thread https://exchange.smrp.org/discussion/conflict-between-metric-5410-and-5414; https://reliamag.com/topics/guides/pm-compliance-rate-benchmarks.
+- Maintenance cost / RAV: SMRP metric; best-in-class "often quoted below about 3%" (https://reliamag.com/topics/guides/maintenance-cost-as-a-percent-of-rav-benchmarks-by-industry; https://fiixsoftware.com/maintenance-metrics/mcrav/). Hedged; 2% world-class figures are vendor framing.
+- Planner ratio 1:20–30: D. Palmer, Maintenance Planning and Scheduling Handbook; https://www.plantservices.com/planned-maintenance/planning-and-scheduling/article/55090375/. Schedule to 100% of forecast hours, break-in work, ~80% compliance when fully loaded: Palmer (also cited in reliamag schedule-compliance guide). Hedged as "Palmer argues".
+- Turnaround scope growth: AP-Networks database (>1,350 turnarounds) average 19% freeze-to-execution, top quartile 7% — https://reliabilityacademy.com/articles/shutdown-management/why-do-maintenance-shutdowns-overrun; emergent vs discovery work — https://www.ogj.com/articles/print/vol-110/issue-4/processing/analysis-yields-turnaround.html.
+- TPM: Nakajima (Introduction to TPM, 1988 English ed.); JIPM eight pillars; AM seven steps (names vary; some add step 0) — https://industryforum.co.uk/wp-content/uploads/2020/12/Autonomous-Maintenance1.pdf, https://reliamag.com/topics/guides/autonomous-maintenance. Nippondenso first PM Prize for TPM 1971 (stated "often named"). JIPM 16 major losses. WCM at Fiat with H. Yamashina (2000s), cost deployment.
+- Lubrication (over-greasing heats bearings, incompatible greases): SKF bearing maintenance handbook; "weigh one stroke" as practice advice. Reliability module keeps the SKF one-third statistic.
+- Reactive share "under about 10–15% strong": practitioner rule of thumb, hedged; 30% struggling is from the cmms lesson.
+- Store service level "mid to high 90s" and CILT "about 10 minutes per shift": rules of thumb, hedged in text.
+- Nowlan & Heap, Moubray (half the P-F interval), ISO 10816-3 and the rest: as in the clarity round above.
+
+Recalculations (new lessons):
+- pmreview: example 380 + (300 − 100) = 580 h; 580 / 1,600 = 36.25% → "36%". r0 55 / 250 = 22%; r1 (12 − 4) × 30 × 2 = 480 h.
+- cilt: example 20 / 15 = 1.33; 7 + 1.33 = 8.3 min; 15 g / 10 = 1.5 g; 6 / 1.5 = 4 strokes. r0 6 + 25/15 = 7.67; r1 8 / 2 = 4.
+- amsteps: example 42 / 60 = 70%; (45 − 18) × 15 = 405 min = 6.75 h. r0 68 / 80 = 85%; r1 18 × 15 = 270 min = 4.5 h.
+- pillars: example 1,680 / 6,000 = 28%. r0 1,100 / 5,000 = 22%; r1 150 × 800 = €120,000.
+- planning: example 240 − 16 − 8 − 12 = 204; 160 / 204 = 78.4%. r0 320 − 24 − 16 − 12 = 268; r1 195 / 250 = 78%.
+- stores: example 1,104 / 1,200 = 92%; 20 × 300 = 6,000 min = 100 h. r0 760 / 800 = 95%; r1 184 / 200 = 92%.
+- shutdown: example 540 / 2,400 = 22.5%; 10% × 2,400 = 240. r0 270 / 1,800 = 15%; r1 max(12+20+8, 16+18) = 40 h.
+- workmix: example planned 480+160+360+40 = 1,040 → 65%; 520 / 1,600 = 32.5%; 640 / 1,600 = 40%. r0 560 / 2,000 = 28%; r1 140 / 400 = 35%.
+- kpiset: example 3 days → 150 / 200 = 75%; 6 days → 170 / 200 = 85%. r0 0.1 × 90 = 9; r1 0.2 × 180 = 36 > 28 → 28.
+- cost: example 3.2 / 80 = 4%; 0.4 × 220 = 88 h × 1,500 = 132,000 + 60,000 = 192,000 − 250,000 = −58,000. r0 2.4 / 96 = 2.5%; r1 50 × 1,200 − 40,000 = 20,000.
+- condition (faded): (3.4 − 1.9) / 2 = 0.75 ≈ 0.8 per month; (4.5 − 3.4) / 0.8 = 1.4 months.
+
+Uncertain: Dutch term choices — Werkplan (job plan), Spoedwerk (break-in work), Planningsnaleving (schedule compliance; many sites just say schedule compliance), Vondstpercentage (find rate), Blind afvinken (pencil whipping), Ontdekkingswerk (discovery work), Restpuntenlijst (punch list), Tolerantievenster (grace period), Werksteekproef (work sampling). "Early equipment management" kept in English in nl (no settled Dutch term). nl "kritiek pad" written without the inflection so the term stays tappable. The EN 15341 current structure comes from secondary sources only.
