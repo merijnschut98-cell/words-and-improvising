@@ -1249,6 +1249,7 @@ export default {
       recall: [
         {
           q: 'In het eenvoudigste wachtrijmodel groeit de wachttijd met bezetting / (1 − bezetting). Wat is die factor bij 90% bezetting?',
+          hint: 'Schrijf de bezetting als decimaal getal en deel die door (1 min dat getal).',
           number: 9,
           tolerance: 0.05,
           unit: '',

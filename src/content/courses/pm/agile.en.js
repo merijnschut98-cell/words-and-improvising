@@ -1249,6 +1249,7 @@ export default {
       recall: [
         {
           q: 'In the simplest queueing model, waiting time grows with utilisation / (1 − utilisation). What is that factor at 90% utilisation?',
+          hint: 'Write utilisation as a decimal and divide it by (1 minus that decimal).',
           number: 9,
           tolerance: 0.05,
           unit: '',
