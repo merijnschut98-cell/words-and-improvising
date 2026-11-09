@@ -304,32 +304,32 @@
     "eng.joining.spot": {
       "poster": "src/content/courses/films/eng.joining.spot.jpg",
       "nl": {
-        "dur": 357.8,
-        "bytes": 11501960,
+        "dur": 284.9,
+        "bytes": 9558833,
         "scenes": [
           0,
-          50.57,
-          69.78,
-          104.3,
-          135.35,
-          178.69,
-          229.41,
-          295.26
+          39.68,
+          56.43,
+          84.63,
+          108.04,
+          142.76,
+          183.72,
+          234.71
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.nl.vtt"
       },
       "en": {
-        "dur": 332.6,
-        "bytes": 11018297,
+        "dur": 311.2,
+        "bytes": 10381047,
         "scenes": [
           0,
-          46,
-          65.43,
-          98.83,
-          125.03,
-          165.8,
-          214.27,
-          276.91
+          42.78,
+          61.22,
+          92.4,
+          117.29,
+          155.83,
+          201.71,
+          258.92
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.en.vtt"
       }
