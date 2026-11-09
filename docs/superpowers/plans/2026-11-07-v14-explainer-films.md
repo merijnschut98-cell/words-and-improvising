@@ -699,7 +699,7 @@ These modules still have six lessons and no topics. v13 part 5 rebuilds them as 
 
 | id | Title | Serves | Dur | Adds | P |
 |---|---|---|---|---|---|
-| `eng.safety.loto` | Vergrendelen en labelen / Lockout-tagout | loto; also power.hydraulics | 120 | the strict order on a hydraulic press, with every energy source | P1 |
+| `eng.safety.loto` | Vergrendelen en labelen / Lockout-tagout | loto (integrator ruling 2026-11-09: wired only on eng.safety.loto; power.hydraulics needs its own film) | 120 | the strict order on a hydraulic press, with every energy source | P1 |
 | `eng.safety.permit` | Een vergunning en een LMRA op het dak / A permit and a last-minute risk check on the roof | permit, lmra | 120 | two jobs on one roof: the permit roles and the LMRA that catches the clash | P1 |
 | `eng.safety.risk` | Van gevaar tot maatregel / From hazard to measure | risk | 80 | the hierarchy of controls worked through on a tank | P2 |
 | `eng.safety.incidents` | Leren van een bijna-ongeval / Learning from a near miss | incidents | 80 | the walk to the blind corner instead of a blame report | P2 |
@@ -710,8 +710,8 @@ These modules still have six lessons and no topics. v13 part 5 rebuilds them as 
   3. Main switch off, air valve closed; his own lock and tag on each isolation point — "Elk scheidingspunt een eigen slot met naam." — Scheidingspunt
   4. Many workers: the keys into a group lock box, each puts a personal lock on it — "Met meer mensen: de groepsslotkast." — Groepsslotkast
   5. A safety block under the ram, then the accumulator bled to 0 bar — "Eerst blokkeren, dan de druk eraf." (the order is shown with a number badge)
-  6. He presses start: nothing happens; the switch back to off — "Proberen te starten bewijst: energieloos." — Energieloos
-  7. Restart: tools out, guards closed, everyone clear, only he removes his locks — "Alleen wie het slot hing, haalt het eraf."
+  6. Guard closed (an open interlocked guard would block the start by itself), he presses start: nothing happens; the switch back to off — "Proberen te starten bewijst: energieloos." — Energieloos
+  7. Restart: tools and the safety block out, guards closed, everyone clear, only he removes his locks — "Alleen wie het slot hing, haalt het eraf."
 - **`eng.safety.permit`** · numbers: permit example: hot work 08:00–16:00, finished 14:30, fire watch stays; Piper Alpha 1988, 167 deaths; lmra example: two mechanics, wet roof, unexpected welding.
   1. The permit board in the control room; a hot-work permit — "Heet werk vraagt een werkvergunning." — Werkvergunning, Heet werk, Besloten ruimte
   2. Issuer and holder walk the area; cover the hydraulic unit; extinguisher; both sign — "De afgever bevestigt dat het gebied klaar is; de houder neemt hem aan." — Afgever, Houder
