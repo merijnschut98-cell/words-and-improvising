@@ -31,6 +31,20 @@ test('validateModule: a film is an id with an optional start scene #1–#9', () 
   }
 });
 
+// A lesson with every occurrence of a number's text removed, also where a
+// recall gives its answer as a number (lessonTextOf reads it as text).
+function withoutNumber(l, value) {
+  const strip = (s) => (typeof s === 'string' ? s.split(value).join('#') : s);
+  const asText = (v) => (typeof v === 'number' && String(v).includes(value) ? String(v) : v);
+  return JSON.parse(JSON.stringify(l), (k, v) => strip(asText(v)));
+}
+
+test('withoutNumber also removes a recall answer given as a number', () => {
+  const l = lesson('eng.fx.a', { teach: ['Three, two and one: 3 + 2 + 1 = 6.'], recall: [{ q: 'How many?', number: 6, tolerance: 0.5, unit: '', why: 'Six.' }] });
+  assert.ok(lessonTextOf(l).includes('6'));
+  assert.ok(!lessonTextOf(withoutNumber(l, '6')).includes('6'));
+});
+
 // All lessons, both languages, by id.
 async function allLessons() {
   const out = { nl: new Map(), en: new Map() };
@@ -85,8 +99,7 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     const n = data.numbers[0];
     const gone = { nl: new Map(lessons.nl), en: lessons.en };
     const ln = lessons.nl.get(n.lesson);
-    const strip = (s) => (typeof s === 'string' ? s.split(n.value).join('#') : s);
-    gone.nl.set(n.lesson, JSON.parse(JSON.stringify(ln), (k, v) => strip(v)));
+    gone.nl.set(n.lesson, withoutNumber(ln, n.value));
     assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
     assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /no longer in eng\./);
     // a Dutch term in the English caption
