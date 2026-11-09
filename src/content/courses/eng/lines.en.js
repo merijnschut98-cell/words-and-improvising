@@ -569,6 +569,7 @@ export default {
     {
       id: 'eng.lines.errors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Why people make mistakes, and poka-yoke',
       pre: [
         {
@@ -638,6 +639,7 @@ export default {
     {
       id: 'eng.lines.pokayoke',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Error-proofing with sensors and fixtures',
       pre: [
         {
@@ -709,6 +711,7 @@ export default {
     {
       id: 'eng.lines.sensors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Choosing and validating sensors for error-proofing',
       pre: [
         {
@@ -779,6 +782,7 @@ export default {
     {
       id: 'eng.lines.detection',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Error-proofing as a strategy: PFMEA, escapes and daily checks',
       pre: [
         {

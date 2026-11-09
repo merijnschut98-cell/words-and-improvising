@@ -569,6 +569,7 @@ export default {
     {
       id: 'eng.lines.errors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Waarom mensen zich vergissen, en poka-yoke',
       pre: [
         {
@@ -638,6 +639,7 @@ export default {
     {
       id: 'eng.lines.pokayoke',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Foutvrij maken met sensoren en mallen',
       pre: [
         {
@@ -709,6 +711,7 @@ export default {
     {
       id: 'eng.lines.sensors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Sensoren kiezen en valideren voor foutvrij maken',
       pre: [
         {
@@ -779,6 +782,7 @@ export default {
     {
       id: 'eng.lines.detection',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Foutvrij maken als strategie: PFMEA, escapes en dagelijkse checks',
       pre: [
         {
