@@ -53,6 +53,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(saidOf(['De ', { t: 'voeding', en: 'feed', c: 'f' }, ' is 0,3 mm.']), 'De voeding is 0,3 mm.');
   // MIG, MAG and TIG on their own as letters in Dutch (espeak-ng reads MAG as the verb), MAG-lassen as it is
   assert.equal(speakOf(['Dit is MIG/MAG-lassen. Bij MAG, voor staal, bij TIG 0,6. Het product mag eruit.'], 'nl'), 'Dit is M I G MAG-lassen. Bij M A G, voor staal, bij T I G 0,6. Het product mag eruit.');
+  // no "slash" or "ampersand" in the go/no-go gauge and gauge R&R
+  assert.equal(speakOf(['Gaat/gaat-niet: een vast kaliber. Een gauge R&R.'], 'nl'), 'Gaat, gaat niet: een vast kaliber. Een gauge R en R.');
+  assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
 });
 
 // ------------------------------------------------------------ WAV files

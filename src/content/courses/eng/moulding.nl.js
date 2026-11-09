@@ -1436,6 +1436,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijzen, wissels en onderhoud',
       pre: [
@@ -1507,6 +1508,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Binnen in een matrijs',
       pre: [
@@ -1577,6 +1579,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijsonderhoud en wissels plannen',
       pre: [
@@ -1648,6 +1651,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Een nieuwe matrijs: van ontwerp tot vrijgave',
       pre: [
