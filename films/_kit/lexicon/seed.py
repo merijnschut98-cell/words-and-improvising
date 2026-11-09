@@ -93,7 +93,23 @@ MANUAL = {
            'klauwplaat': 'klˈaːʊplˌaːt',
            # TANDwielkast, not tandWIELkast; loanwords the seed read as Dutch
            'tandwielkast': 'tˈɑntʋilkˌɑst', 'weekend': 'wˈiːkɛnt', 'datasheet': 'dˈeːtəʃˌiːt',
-           'businesscase': 'bˈɪznɪskˌeːs'},
+           'businesscase': 'bˈɪznɪskˌeːs',
+           # eng.machining.tooling (v14b): wear forms on the first part (VRIJloopslijtage,
+           # not vrijLOOPslijtage), Latin and loanwords espeak-ng reads Dutch-wrong
+           # (coating, Taylor, eMULsie, leGEringen, reVOLver, koBALT)
+           'vrijloopslijtage': 'vrˈɛɪloːpslɛɪtˌaːʒə', 'vrijloophoek': 'vrˈɛɪloːphˌuk',
+           'vrijloopvlakslijtage': 'vrˈɛɪloːpflɑkslɛɪtˌaːʒə', 'kolkslijtage': 'kˈɔlkslɛɪtˌaːʒə',
+           'kraterslijtage': 'krˈaːtərslɛɪtˌaːʒə', 'slijtagerand': 'slɛɪtˈaːʒərˌɑnt',
+           'coating': 'kˈoːtɪŋ', 'taylor': 'tˈeːlər', 'taylorvergelijking': 'tˈeːlərvərɣˌɛlɛɪkɪŋ',
+           'materiaalgroep': 'maːtɪːriˈaːlɣrˌup', 'hittebestendige': 'hˈɪtəbəstˌɛndəɣə', 'emulsie': 'eːmˈɵlsi',
+           'zustergereedschap': 'zˈɵstərɣərˌeːdsxɑp', 'gereedschapsbewaking': 'ɣərˈeːdsxɑpsbəʋˌaːkɪŋ',
+           'gereedschapsstandaardisatie': 'ɣərˈeːdsxɑpstˌɑndaːrdizaːtsi', 'legeringen': 'leːɣˈɪːrɪŋən',
+           'revolver': 'reːvˈɔlvər', 'kobalt': 'koːbˈɑlt', 'koelsmeermiddel': 'kˈulsmɪːrmˌɪdəl',
+           # review of the tooling film: VIERdemachtswortel (espeak-ng: -worTEL), bovenOP
+           # (espeak-ng: BOvenop), WISSELtijd with a schwa as in wisselplaat
+           'vierdemachtswortel': 'vˈirdəmˌɑxtsʋɔrtəl', 'bovenop': 'boːvənˈɔp', 'wisseltijd': 'ʋˈɪsəltˌɛɪt',
+           # kept from the earlier seed: their first parts (dop, haar) left the corpus
+           'dopmatrijs': 'dˈɔpmɑtrˌɛɪs', 'haarbreed': 'ˈhaːrbrˌeːt', 'haarlijn': 'ˈhaːrlˌɛɪn'},
     'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',
            'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ'},
 }

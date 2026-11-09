@@ -24,8 +24,26 @@ export async function allLessons() {
   return out;
 }
 
-// "Turn-mill centre" → "turn-mill centre"; "C-axis" and "HSS" stay.
-const glossOf = (en) => (/^[A-Z][a-z]/.test(en) ? en[0].toLowerCase() + en.slice(1) : en);
+// "Turn-mill centre" → "turn-mill centre"; "C-axis" and "HSS" stay, and so does
+// a proper noun ("Taylor equation"): with the English lesson text as corpus, a
+// first word that it writes capitalised in mid-sentence and never in lower case
+// keeps its capital.
+export function glossCase(en, corpus) {
+  if (!/^[A-Z][a-z]/.test(en)) return en;
+  const first = en.split(/[\s-]/)[0];
+  const low = first[0].toLowerCase() + first.slice(1);
+  const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const proper = corpus !== undefined
+    && new RegExp(`[a-z,] +${esc(first)}(?![A-Za-z])`).test(corpus)
+    && !new RegExp(`(^|[^A-Za-z])${esc(low)}(?![A-Za-z])`).test(corpus);
+  return proper ? en : en[0].toLowerCase() + en.slice(1);
+}
+// All English lesson text, with the term names and definitions.
+export function englishCorpus(lessons) {
+  const parts = [];
+  for (const l of lessons.en.values()) parts.push(lessonTextOf(l), ...(l.terms || []).map((t) => `${t.term}\n${t.def}`));
+  return parts.join('\n');
+}
 
 function findTerm(name, lang, served, lessons) {
   const key = name.toLowerCase();
@@ -48,6 +66,8 @@ export function resolveFilm(spec, lessons) {
   for (const id of served) if (!lessons.nl.has(id)) throw new Error(`unknown lesson ${id}`);
   const glossed = new Set();
   const sayGlossed = new Set();
+  const corpus = englishCorpus(lessons);
+  const glossOf = (en) => glossCase(en, corpus);
   const numbers = [];
   const scenes = spec.scenes.map((s, si) => {
     const sceneTerms = [];

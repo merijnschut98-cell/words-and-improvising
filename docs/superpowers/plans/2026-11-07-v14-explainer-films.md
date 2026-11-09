@@ -16,6 +16,15 @@
 >   4. **Human voice:** pre-recorded narration with Piper TTS (free, local, neural; Dutch and English voices), not the browser voice.
 >   5. **Real video files:** MP4 (H.264 + AAC, 720p), one per film per language, plus WebVTT captions. They are rendered from the film scenes with Playwright (a deterministic clock, frame capture) and ffmpeg, timed to the narration audio. Hosted in Supabase Storage (public bucket `films`), played with `<video>`, and cached after the first full view for offline use.
 >   - The HTML films built so far are the visual source for the videos; their scenes get a narration script and longer explanation.
+> - **VOICE REGRESSION — FIRST PRIORITY before any new film (Merijn, 2026-11-08 evening):** after the kit changes (per-phrase clips, lexicon phonemes, pauses in timeline.mjs) the voice is "really unusable": pauses at odd moments and very strange word stress; he can hardly follow it. Rework before rendering or uploading anything else.
+>   - **Likely causes, to test one at a time:**
+>     1. one Piper clip per *phrase* (narrate.mjs) instead of per sentence: Piper loses the sentence melody, and the silences laid in between phrases land mid-sentence;
+>     2. forced espeak phonemes (`[[…]]` from lexicon.nl.json): an injected word can get its own stress contour, and some re-seeded entries may carry wrong stress (the 629-entry union was never listened to);
+>     3. the PAUSES table and the beat/audio warp (beatwarp.js, audio-warp.js): stretched or padded timing.
+>   - **Method:** a fixed 60-second Dutch test paragraph with the hard words (toerental, omwenteling, klauwplaat, wisselplaat, standtijd), rendered as an A/B set: (a) the old pilot pipeline, (b) whole sentences with no lexicon, (c) whole sentences + a small hand-checked lexicon only for words Piper gets wrong, (d) the current pipeline. Merijn listens and picks. Then rebuild the kit on the winner: synthesize per sentence (or per paragraph) and derive subtitle cue times by splitting the sentence clip on measured word timing (forced alignment, e.g. whisper/aeneas), so subtitles stay exact without cutting the speech.
+>   - **Automatic guard:** a listen test (ASR word error rate on the rendered audio, plus a check for silences > 0.6 s inside a sentence) that fails the build, so a regression like this can't ship unheard again. A human listen by Merijn for one film before a batch render.
+>   - **Live films:** the 8 uploaded films carry this voice. Option to take the videos offline (app falls back to the HTML film) until the fix — Merijn decides.
+>   - Also consider a better Dutch voice than nl_NL-ronnie (other Piper voices, or another free local TTS) as part of the A/B set.
 > - **Still open (defaults until he says otherwise):**
 >   - the film button sits under the first teach block;
 >   - films are cached on first view plus an offline switch per subject;
