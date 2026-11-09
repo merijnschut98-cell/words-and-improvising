@@ -288,6 +288,21 @@ const STAGE = (() => {
     return `<g style="opacity:${a.toFixed(2)}">${out.replace(`width="${w0}"`, `width="${f1(w0 * 0.7)}"`)}</g>`;
   }
 
+  // the insert change, close up: the worn insert (its tip worn away) beside the
+  // new, sharp one, at 16:10; the stage insert itself is too small at 390 px
+  function insSvg(k) {
+    const dia = (cx, cy, worn) => {
+      const pts = worn ? [[cx - 25, cy - 6], [cx, cy - 24], [cx + 38, cy], [cx, cy + 24], [cx - 25, cy + 6]] : [[cx - 38, cy], [cx, cy - 24], [cx + 38, cy], [cx, cy + 24]];
+      let o = `<path class="sp-card" style="stroke-width:1.4" d="${fmt(pts)}Z"/>` + dot(cx, cy, 6, 'sp-hollow');
+      if (worn) o += `<path class="sp-lim" d="M${f1(cx - 25)} ${f1(cy - 6)}L${f1(cx - 38)} ${f1(cy)}L${f1(cx - 25)} ${f1(cy + 6)}"/>` + line(cx - 25, cy - 6, cx - 25, cy + 6, 'sp-accl');
+      return o;
+    };
+    let out = rect(396, 14, 236, 166);
+    out += dia(458, 82, true) + txt(458, 136, tr('versleten', 'worn'), 21, 'middle', 'sp-on');
+    out += `<g style="opacity:${k.toFixed(2)}">${txt(514, 88, '→', 26, 'middle', 'sp-mute')}${dia(572, 82, false)}${txt(572, 136, tr('nieuw', 'new'), 21, 'middle', 'sp-txt')}${txt(514, 168, '16:10', 22, 'middle', 'sp-big')}</g>`;
+    return out;
+  }
+
   // ------------------------------------------------------------ the count charts
   function countCard(i, prog) {
     const x0 = 208 + (i % 2) * 212;
@@ -378,7 +393,7 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ the scenes
-  const HUDS = ['xr', 'xbar', 'rules', 'zig', 'saw', 'meter', 'counts', 'pdet', 'cav'];
+  const HUDS = ['xr', 'xbar', 'rules', 'zig', 'saw', 'meter', 'counts', 'pdet', 'cav', 'ins'];
   set(E.xrIn, '');
   function render(si, u) {
     camera(si, u);
@@ -433,6 +448,8 @@ const STAGE = (() => {
         const outA = span(p, 0.15, 0.4);
         const inA = span(p, 0.55, 0.8);
         insertBy = [0, -14 * (outA - inA), 6 * (outA - inA)];
+        vis.ins = span(p, 0.03, 0.15);
+        set(E.ins, insSvg(inA));
       }
       crateN = b < 2 ? 0 : b === 2 ? Math.round(span(p, 0.15, 0.8) * 12) : 12;
       shafts = b >= 2 ? 0 : 5;

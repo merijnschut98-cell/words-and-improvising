@@ -358,6 +358,7 @@ const hud = [
   g('counts', g('cP', '', ' data-cue="pchart"') + g('cNP', '', ' data-cue="npchart"') + g('cC', '', ' data-cue="cchart"') + g('cU', '', ' data-cue="uchart"')),
   g('pdet', ''),
   g('cav', g('cavIn', '') + cue('rsub', g('cavR', ''))),
+  g('ins', ''),
 ].join('');
 
 // ---------------------------------------------------------------- the drawing, back to front
@@ -504,7 +505,7 @@ const spec = {
       beats: [
         { nl: 'De regel: alleen bijstellen op een signaal. Tussen signalen laat je de machine met rust.', en: 'The rule: adjust only on a signal. Between signals, leave the machine alone.', cues: ['zig'], still: 0.15 },
         { nl: '{t:Slijtagecompensatie|Slijtagecompensatie}: voor bekende slijtage een vaste correctie na een vast aantal stuks.', en: '{t:Wear compensation|Wear compensation}: for known wear, a fixed offset after a set number of parts.', cue: { Slijtagecompensatie: 'saw' }, still: 0.42 },
-        { nl: 'Na twee weken zakt de standaardafwijking met ruwweg {n:30}%, als overbijsturen de oorzaak was.', en: 'After two weeks the standard deviation drops by roughly {n:30}%, if tampering was the cause.', cues: ['zig'], read: { nl: '1 − 1/√2 = {n:29}%', en: '1 − 1/√2 = {n:29}%' }, still: 0.68 },
+        { nl: 'Na twee weken zakt de standaardafwijking met ruwweg {n:30}%, als overbijsturen de grootste bron was.', en: 'After two weeks the standard deviation drops by roughly {n:30}%, if tampering was the main source.', cues: ['zig'], read: { nl: '1 − 1/√2 = {n:29}%', en: '1 − 1/√2 = {n:29}%' }, still: 0.68 },
         { nl: 'Een meting in de machine die de correctie stuurt: op het gemiddelde, nooit op één stuk.', en: 'An in-machine gauge that sets the offset: on the average, never on one part.', cues: ['panel'], still: 0.93 },
       ],
     },
@@ -564,10 +565,10 @@ const SAY = [
       en: 'Hour by hour the chart fills. At ten o’clock {n:20.002}, then {n:20.004}, {n:20.005} and {n:20.006}.' },
     { nl: 'Daarna {n:20.008}, {n:20.009}, en om vier uur {n:20.011}. Alles binnen de grenzen, en ver binnen spec.',
       en: 'Then {n:20.008}, {n:20.009}, and at four o’clock {n:20.011}. All inside the limits, and far inside spec.' },
-    { nl: 'Maar zeven keer op rij omhoog gebeurt bijna nooit bij toeval. Het is een trend, en de regel gaat af.',
-      en: 'But seven rising in a row hardly ever happens by chance. It is a trend, and the rule fires.' },
-    { nl: 'Andere regels: één punt buiten een grens, zeven op rij aan één kant, of twee van drie voorbij twee sigma. Meer regels vangen meer, maar geven ook meer loos alarm.',
-      en: 'Other rules: one point outside a limit, seven in a row on one side, or two of three beyond two sigma. More rules catch more, but also give more false alarms.' },
+    { nl: 'Maar zeven keer op rij omhoog gebeurt bijna nooit bij toeval. De regel zegt: zes of meer punten op rij die steeds stijgen. Dit is een trend, en de regel gaat af.',
+      en: 'But seven rising in a row hardly ever happens by chance. The rule says: six or more points in a row that keep rising. This is a trend, and the rule fires.' },
+    { nl: 'Andere regels: één punt buiten een grens, zeven op rij aan één kant (sommige fabrieken nemen acht of negen), of twee van drie voorbij twee sigma. Meer regels vangen meer, maar geven ook meer loos alarm.',
+      en: 'Other rules: one point outside a limit, seven in a row on one side (some plants use eight or nine), or two of three beyond two sigma. More rules catch more, but also give more false alarms.' },
   ],
   [ // s4 stop and look
     { nl: 'Elke kaart hoort een {t:Reactieplan|reactieplan} te hebben: wat doet de operator als een regel afgaat, en wie belt hij?',
@@ -590,8 +591,8 @@ const SAY = [
       en: 'He means well. I keep it on nominal, he says.' },
   ],
   [ // s6 the funnel
-    { nl: 'Het {t:Trechterexperiment|trechterexperiment} van Deming laat zien waarom. Knikkers vallen door een trechter op een doel.',
-      en: 'Deming’s {t:Funnel experiment|funnel experiment} shows why. Marbles drop through a funnel onto a target.' },
+    { nl: 'Het {t:Trechterexperiment|trechterexperiment}, bekend geworden door Deming, laat zien waarom. Knikkers vallen door een trechter op een doel.',
+      en: 'The {t:Funnel experiment|funnel experiment}, made famous by Deming, shows why. Marbles drop through a funnel onto a target.' },
     { nl: 'Blijft de trechter stil, dan landen ze in een wolk rond het doel: de gewone spreiding.',
       en: 'If the funnel stays still, they land in a cloud around the target: the ordinary spread.' },
     { nl: 'Verzet je hem na elke worp om de misser te corrigeren, dan stijgt de standaardafwijking met zo’n {n:41} procent.',
@@ -622,8 +623,8 @@ const SAY = [
   [ // s9 what is in one subgroup
     { nl: 'Tot slot: wat stop je in één steekproef? Een matrijs met {n:4} holtes. Elk uur gaat één stuk uit elke holte samen op de kaart.',
       en: 'Finally: what goes into one subgroup? A mould with {n:4} cavities. Every hour one part from each cavity goes on the chart together.' },
-    { nl: 'De R-kaart is breed en geeft nooit een signaal, maar holte {n:3} maakt dunne wanden. De range meet hier het verschil tussen de holtes.',
-      en: 'The R chart is wide and never signals, yet cavity {n:3} makes thin walls. The range here measures the difference between the cavities.' },
+    { nl: 'De R-kaart is breed en de X-bar-kaart geeft nooit een signaal, maar holte {n:3} maakt dunne wanden. De range meet hier het verschil tussen de holtes.',
+      en: 'The R chart is wide and the X-bar chart never signals, yet cavity {n:3} makes thin walls. The range here measures the difference between the cavities.' },
     { nl: 'Een {t:Rationele subgroep|rationele subgroep} is gemaakt van stuks vlak na elkaar, uit één holte. Dus een eigen kaart per holte.',
       en: 'A {t:Rational subgroup|rational subgroup} is made of parts made close together, from one cavity. So a chart for each cavity.' },
     { nl: 'Bereken de grenzen uit {n:20} tot {n:25} subgroepen in een stabiele periode, en zet ze vast.',
