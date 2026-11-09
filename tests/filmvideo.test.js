@@ -6,8 +6,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAPS } from '../films/_kit/timeline.mjs';
-import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX } from '../films/_kit/narration.mjs';
-import { applyLexicon } from '../films/_kit/lexicon.mjs';
+import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX, sentenceClips, saidWordSpans, forceAlign, timedPhrases, voiceOf } from '../films/_kit/narration.mjs';
+import { listenGuard, werLimit } from '../films/_kit/listen-guard.mjs';
 import { glossCase } from '../films/_kit/build-film.mjs';
 import { videoOf, readAlong, filmDataOf } from '../src/ui/film.js';
 import { lessonPhases, lessonSteps, lessonBack } from '../src/core/course.js';
@@ -125,17 +125,174 @@ test('glossed subtitles: a Dutch term shows its English word once, in parenthese
     ['Daarom bewaart de gereedschapscorrectie (tool offset)', 'van elk gereedschap de lengte en de radius.']);
 });
 
-test('exact subtitles: one clip per phrase, cues at the measured clip times, the pauses from one place', () => {
-  assert.ok(PAUSES.sentence >= 0.5 && PAUSES.sentence <= 0.6 && PAUSES.comma >= 0.15 && PAUSES.comma <= 0.25 && PAUSES.beat >= 0.8);
+// The voice rework (2026-11-09, films/_kit/voice-ab): one Piper call per
+// sentence (commas stay inside, so the voice keeps its sentence melody), the
+// pauses between sentences, beats and scenes laid from one place, and the
+// subtitle cues cut at word boundaries measured inside the sentence clip.
+test('pauses: commas stay inside a sentence clip; full stop, beat and scene hold from one place', () => {
+  assert.ok(!('comma' in PAUSES), 'no laid pause at a comma: the voice says the comma itself');
+  assert.ok(PAUSES.sentence >= 0.5 && PAUSES.sentence <= 0.7, `sentence ${PAUSES.sentence}`);
+  assert.ok(PAUSES.beat >= 0.8 && PAUSES.beat <= 1, `beat ${PAUSES.beat}`);
+  assert.ok(PAUSES.hold >= 0.7 && PAUSES.hold <= 0.9, `hold ${PAUSES.hold}`);
   assert.equal(AUDIO_GAPS.gap, PAUSES.beat);
+  assert.equal(AUDIO_GAPS.hold, PAUSES.hold);
+  // a beat is its sentence clips with a full-stop pause in between
+  const p = PAUSES.sentence;
+  assert.deepEqual(beatLayout(2, [1.5, 2, 0.5]), [{ start: 2, dur: 1.5 }, { start: Math.round((3.5 + p) * 1000) / 1000, dur: 2 }, { start: Math.round((5.5 + 2 * p) * 1000) / 1000, dur: 0.5 }]);
+  assert.equal(beatLength([1.5, 2, 0.5]), Math.round((4 + 2 * p) * 1000) / 1000);
+  assert.equal(beatLength([3]), 3);
+});
+
+test('sentence clips: one per sentence, commas inside; the voice text has units as words, the subtitle phrases keep the gloss', () => {
+  const seg = ['Het ', { t: 'toerental', en: 'spindle speed', k: 'a#1' }, ' is 1.167 omw/min, ongeveer. Hoe dunner de as, hoe sneller.'];
+  const s = sentenceClips(seg, 'nl');
+  assert.equal(s.length, 2);
+  assert.equal(s[0].said, 'Het toerental is 1.167 omw/min, ongeveer.');
+  assert.equal(s[0].spoken, 'Het toerental is 11honderd 67 omwentelingen per minuut, ongeveer.');
+  assert.deepEqual(s[0].phrases, ['Het toerental is 1.167 omw/min,', 'ongeveer.']);
+  assert.deepEqual(s[0].glossed, ['Het toerental (spindle speed) is 1.167 omw/min,', 'ongeveer.']);
+  assert.equal(s[1].spoken, 'Hoe dunner de as, hoe sneller.', 'the comma stays in the clip');
+  assert.deepEqual(s[1].phrases, ['Hoe dunner de as,', 'hoe sneller.']);
+  // the voice never gets raw phoneme pieces: the lexicon is swapped into the
+  // whole sentence's phonemes by films/_kit/speak.py
+  assert.ok(sentenceClips(['De klauwplaat draait.'], 'nl').every((c) => !c.spoken.includes('[[')));
+  assert.equal(spokenOf('f 0,3 mm', 'nl'), 'f 0,3 millimeter');
+});
+
+test('word timing: the spoken words’ measured spans mapped back to the written words', () => {
+  const said = 'Het toerental is 1.167 omw/min.';
+  // spoken: Het toerental is 11honderd 67 omwentelingen per minuut. (8 words)
+  const sp = [[0.04, 0.2], [0.25, 0.8], [0.85, 1], [1.05, 1.6], [1.62, 2.1], [2.2, 2.9], [2.95, 3.1], [3.15, 3.6]].map(([start, end]) => ({ start, end }));
+  const w = saidWordSpans(said, 'nl', sp);
+  assert.equal(w.length, 5);
+  assert.deepEqual(w[3], { start: 1.05, end: 2.1 }, '1.167 is said as two words');
+  assert.deepEqual(w[4], { start: 2.2, end: 3.6 }, 'omw/min is said as three');
+  assert.throws(() => saidWordSpans(said, 'nl', sp.slice(1)), /spoken words/);
+});
+
+test('forced alignment fallback: Whisper’s words matched to the known script, every word timed in order', () => {
+  const tokens = ['De', 'klauwplaat', 'laat', 'een', 'stalen', 'as', 'draaien.'];
+  const heard = [
+    { word: ' De', start: 0.1, end: 0.2 }, { word: ' klauw', start: 0.25, end: 0.5 }, { word: 'plaat', start: 0.5, end: 0.8 },
+    { word: ' laat', start: 0.9, end: 1.1 }, { word: ' een', start: 1.15, end: 1.25 }, { word: ' stalenas', start: 1.3, end: 2 }, { word: ' draaien.', start: 2.1, end: 2.6 },
+  ];
+  const sp = forceAlign(tokens, heard);
+  assert.equal(sp.length, tokens.length);
+  assert.equal(sp[1].start, 0.25);
+  assert.equal(sp[1].end, 0.8, 'a word Whisper split in two');
+  assert.ok(sp[4].start >= 1.3 && sp[4].end <= sp[5].start + 1e-9 && sp[5].end <= 2 + 1e-9, 'two words Whisper glued together');
+  assert.equal(sp[6].end, 2.6);
+  for (let i = 1; i < sp.length; i++) assert.ok(sp[i].start >= sp[i - 1].end - 1e-9 && sp[i].end >= sp[i].start, `in order at ${i}`);
+  // a word Whisper did not hear at all still gets a place between its neighbours
+  const gap = forceAlign(['een', 'grote', 'as'], [{ word: 'een', start: 0, end: 0.3 }, { word: 'as', start: 1, end: 1.3 }]);
+  assert.ok(gap[1].start >= 0.3 && gap[1].end <= 1);
+});
+
+test('subtitle cues: cut at word boundaries inside the sentence clip, the gloss in the subtitle only', () => {
+  const w = (a, b) => ({ start: a, end: b });
+  // one sentence clip from 10 s; Piper's lead-in is trimmed, so the first word starts near the clip start
+  const sentence = {
+    phrases: ['Dit is een lange zin met heel veel woorden erin,', 'die na de komma nog een flink eind doorgaat.'],
+    glossed: ['Dit is een lange zin (sentence) met heel veel woorden erin,', 'die na de komma nog een flink eind doorgaat.'],
+  };
+  const words = [[10.04, 10.2], [10.2, 10.3], [10.3, 10.4], [10.4, 10.7], [10.7, 10.9], [10.9, 11], [11, 11.2], [11.2, 11.4], [11.4, 11.8], [11.8, 12.1],
+    [12.5, 12.6], [12.6, 12.7], [12.7, 12.8], [12.8, 13.1], [13.1, 13.3], [13.3, 13.4], [13.4, 13.7], [13.7, 13.9], [13.9, 14.5]].map(([a, b]) => w(a, b));
+  const ph = timedPhrases(sentence, words);
+  assert.deepEqual(ph.map((p) => [p.start, Math.round((p.start + p.dur) * 1000) / 1000, p.text]), [[10.04, 12.1, sentence.glossed[0]], [12.5, 14.5, sentence.glossed[1]]]);
+  const cues = cuesOfLines([ph]);
+  assert.deepEqual(cues.map((c) => [c.start, c.end]), [[10.04, 12.1], [12.5, 14.5]], 'cut between the phrases at the words’ real times');
+  // a single phrase too long for one cue is cut at a space, timed by its words (not by length)
+  const long = 'Daarom bewaart de gereedschapscorrectie (tool offset) van elk gereedschap de lengte en de radius.';
+  const lw = Array.from({ length: 12 }, (_, i) => w(i, i + 0.9));
+  const lc = cuesOfLines([[{ start: 0, dur: 11.9, text: long, words: lw }]]);
+  assert.deepEqual(lc.map((c) => c.text), ['Daarom bewaart de gereedschapscorrectie (tool offset)', 'van elk gereedschap de lengte en de radius.']);
+  assert.deepEqual(lc.map((c) => [c.start, c.end]), [[0, 3.9], [4, 11.9]], 'the cut sits between word 4 and word 5');
+  assert.ok(cues.every((c) => c.text.length <= SUB_MAX));
+});
+
+test('the voice is configuration: films/_kit/voices.json names the voice and speed per language, the code names none', () => {
+  const v = JSON.parse(fs.readFileSync('films/_kit/voices.json', 'utf8'));
+  assert.deepEqual([v.nl.model, v.nl.length], ['nl_NL-alex-medium', 1.27], 'Merijn’s pick (2026-11-09): alex, about 8 % slower than the A/B sample at 1.15');
+  assert.deepEqual([v.en.model, v.en.length], ['en_GB-alan-medium', 0.92]);
+  assert.deepEqual(voiceOf('nl', v), { model: 'nl_NL-alex-medium', path: 'nl/nl_NL/alex/medium', length: 1.27 });
+  assert.equal(voiceOf('nl', v, 'nl_NL-pim-medium:0.9').path, 'nl/nl_NL/pim/medium', 'a one-off override for an A/B listen');
+  assert.equal(voiceOf('nl', v, 'nl_NL-pim-medium:0.9').length, 0.9);
+  assert.throws(() => voiceOf('de', v), /voice/);
+  for (const f of ['films/_kit/narrate.mjs', 'films/_kit/speak.py', 'films/_kit/render.mjs']) assert.ok(!/ronnie|nl_NL-alex|en_GB-alan/.test(fs.readFileSync(f, 'utf8')), `${f} names a voice`);
+});
+
+test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
+  const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
+  assert.ok(Object.keys(nl).length <= 12, `${Object.keys(nl).length} entries: each entry must be listened to`);
+  for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
+  assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
+  for (const lang of ['nl', 'en']) {
+    const l = JSON.parse(fs.readFileSync(`films/_kit/lexicon.${lang}.json`, 'utf8'));
+    for (const [word, ipa] of Object.entries(l)) {
+      assert.equal(word, word.toLowerCase());
+      assert.ok(ipa.includes('ˈ') && !/[[\]\s]/.test(ipa), `${lang} ${word}: ${ipa}`);
+    }
+  }
+  // omWENteling, KLAUWplaat
+  for (const word of ['omwenteling', 'omwentelingen']) assert.ok(nl[word].includes('ʋˈɛn'), `${word}: ${nl[word]}`);
+  assert.ok(/^klˈ/.test(nl.klauwplaat));
+  // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
+  assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
+  const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');
+  assert.ok(speak.includes('def sentence_phonemes'), 'whole-sentence injection');
+});
+
+// The listen guard (films/_kit/listen-guard.mjs) on a synthetic track: "speech"
+// is a tone, silence is zero.
+const RATE = 8000;
+function track(parts, total) {
+  const a = new Float32Array(Math.round(total * RATE));
+  for (const [t0, t1] of parts) for (let i = Math.round(t0 * RATE); i < Math.round(t1 * RATE); i++) a[i] = 0.3 * Math.sin(i / 3);
+  return a;
+}
+test('listen guard: silences inside a sentence, full-stop pauses and cue texts are checked on the rendered track', () => {
+  // beat: two sentences, 0.68 s apart; the second has a comma pause of 0.3 s inside
+  const sentences = [
+    { beat: '1.1', start: 1, end: 3, said: 'De as draait.', words: [['De', 1, 1.3], ['as', 1.3, 1.9], ['draait.', 1.9, 3]] },
+    { beat: '1.1', start: 3.68, end: 6, said: 'Hoe dunner, hoe sneller.', words: [['Hoe', 3.68, 4], ['dunner,', 4, 4.6], ['hoe', 4.9, 5.3], ['sneller.', 5.3, 6]] },
+  ].map((s) => ({ ...s, words: s.words.map(([w, start, end]) => ({ w, start, end })) }));
+  const cues = [{ start: 1, end: 3, text: 'De as (shaft) draait.' }, { start: 3.68, end: 6, text: 'Hoe dunner, hoe sneller.' }];
+  const good = track([[1, 3], [3.68, 4.6], [4.9, 6]], 7);
+  const r = listenGuard({ samples: good, rate: RATE, sentences, cues, lang: 'nl' });
+  assert.deepEqual(r.errors, []);
+  assert.equal(r.ok, true);
+  assert.equal(r.stats.stops.n, 1);
+  assert.ok(Math.abs(r.stats.stops.median - 0.68) < 0.05, String(r.stats.stops.median));
+  assert.ok(r.stats.maxInside < 0.4 && r.stats.maxInside > 0.25, String(r.stats.maxInside));
+  // a silence of 1 s inside a sentence (the old per-phrase clips) fails
+  const gappy = track([[1, 3], [3.68, 4.6], [5.6, 6]], 7);
+  assert.match(listenGuard({ samples: gappy, rate: RATE, sentences, cues, lang: 'nl' }).errors.join('\n'), /silence of 1\.0\d? s inside/);
+  // a full stop with a 1.5 s pause fails, so does one with none
+  const late = sentences.map((s, i) => (i ? { ...s, start: s.start + 1, end: s.end + 1, words: s.words.map((x) => ({ ...x, start: x.start + 1, end: x.end + 1 })) } : s));
+  const lateTrack = track([[1, 3], [4.68, 5.6], [5.9, 7]], 8);
+  assert.match(listenGuard({ samples: lateTrack, rate: RATE, sentences: late, cues: [cues[0], { ...cues[1], start: 4.68, end: 7 }], lang: 'nl' }).errors.join('\n'), /full-stop pause of 1\.\d+ s/);
+  // a cue whose text is not the words spoken in its span fails, as does one that starts early
+  assert.match(listenGuard({ samples: good, rate: RATE, sentences, cues: [cues[0], { ...cues[1], text: 'Hoe dunner, hoe beter.' }], lang: 'nl' }).errors.join('\n'), /cue 2/);
+  assert.match(listenGuard({ samples: good, rate: RATE, sentences, cues: [{ ...cues[0], start: 0.4 }, cues[1]], lang: 'nl' }).errors.join('\n'), /cue 1/);
+  // the word error rate counts when Whisper ran
+  assert.equal(werLimit('large-v3-turbo'), 0.15);
+  assert.equal(werLimit('small'), 0.2);
+  assert.match(listenGuard({ samples: good, rate: RATE, sentences, cues, lang: 'nl', wer: { model: 'small', wer: 0.31 } }).errors.join('\n'), /word error rate 31/);
+});
+
+test('render refuses to finish when the listen guard fails', () => {
+  const src = fs.readFileSync('films/_kit/render.mjs', 'utf8');
+  assert.match(src, /import \{[^}]*runGuard[^}]*\} from '\.\/listen-guard\.mjs'/);
+  assert.match(src, /if \(!guard\.ok\)[^\n]*throw/);
+  assert.ok(src.indexOf('runGuard(') < src.indexOf('manifestWith(manifest'), 'the guard runs before the manifest is written');
+});
+
+// Kept from the per-phrase kit: the subtitle phrases and their cue rules.
+test('subtitle phrases: a short phrase rides with the next one, a decimal comma is no break, long sentences cut between phrases', () => {
   const seg = ['De ', { t: 'Voeding', k: 'x#0', en: 'feed' }, ' is 0,3 mm. Hoe dunner de as wordt, hoe sneller hij draait. Zo ver.'];
   assert.deepEqual(phrasesOf(seg), [['De Voeding is 0,3 mm.'], ['Hoe dunner de as wordt,', 'hoe sneller hij draait.'], ['Zo ver.']]);
   // a decimal comma is no phrase break; a short phrase rides with the next one
   assert.deepEqual(phrasesOf(['Hier, bij 1.167 toeren, is f 0,3 mm.']), [['Hier, bij 1.167 toeren,', 'is f 0,3 mm.']]);
-  const lay = beatLayout(2, [[1.5], [2, 1], [0.5]]);
-  const p = PAUSES;
-  assert.deepEqual(lay.flat().map((c) => c.start), [2, 2 + 1.5 + p.sentence, 2 + 3.5 + p.sentence + p.comma, 2 + 4.5 + 2 * p.sentence + p.comma]);
-  assert.equal(beatLength([[1.5], [2, 1], [0.5]]), Math.round((5 + 2 * p.sentence + p.comma) * 1000) / 1000);
   const cues = cuesOfLines([
     [{ start: 1, dur: 2, text: 'Kort.' }],
     [{ start: 3.5, dur: 2.5, text: 'Dit is een lange zin met heel veel woorden erin,' }, { start: 6.2, dur: 3, text: 'die na de komma nog een flink eind doorgaat.' }],
@@ -144,41 +301,14 @@ test('exact subtitles: one clip per phrase, cues at the measured clip times, the
   assert.deepEqual(cues.slice(1).map((c) => [c.start, c.end]), [[3.5, 6], [6.2, 9.2]], 'a long sentence is cut between its phrases, at their real times');
   assert.ok(cues.every((c) => c.text.length <= SUB_MAX));
   assert.equal(cuesOfLines([[{ start: 0, dur: 2, text: 'Een korte zin,' }, { start: 2.2, dur: 1, text: 'die kort blijft.' }]]).length, 1);
-});
-
-test('lexicon: the voice gets the phonemes, the subtitles keep the spelling', () => {
-  const lex = { toerental: 'tˈurəntˌɑl', omwentelingen: 'ˈɔmʋˌɛntəlɪŋən' };
-  assert.equal(applyLexicon('Het Toerental, in omwentelingen per minuut.', lex), 'Het [[tˈurəntˌɑl]], in [[ˈɔmʋˌɛntəlɪŋən]] per minuut.');
-  assert.equal(applyLexicon('toerentallen', lex), 'toerentallen', 'whole words only');
-  assert.equal(applyLexicon('CNC-toerental', lex), 'CNC-[[tˈurəntˌɑl]]');
-  // the voice: units as words, then the lexicon; the subtitle: as written
-  const seg = ['Het ', { t: 'toerental', k: 'x#0' }, ' is 1.167 omw/min.'];
-  const [[phrase]] = phrasesOf(seg);
-  assert.equal(phrase, 'Het toerental is 1.167 omw/min.');
-  assert.equal(spokenOf(phrase, 'nl', lex), 'Het [[tˈurəntˌɑl]] is 11honderd 67 [[ˈɔmʋˌɛntəlɪŋən]] per minuut.');
-  const cue = cuesOfLines([[{ start: 0, dur: 3, text: phrase }]])[0];
-  assert.equal(cue.text, 'Het toerental is 1.167 omw/min.');
   // the subtitle of a Dutch phrase carries the English word of a term (first use);
   // the voice's phrases skip it, and both are cut into the same phrases
   // (a short phrase rides with the next one by its spoken words, gloss or not)
   const glossed = [{ t: 'Smeltbad', en: 'weld pool', k: 'a#1' }, ', zegt hij, is heet. Een ', { t: 'WBZ', en: 'HAZ', k: 'a#2' }, ' volgt.'];
   assert.deepEqual(phrasesOf(glossed), [['Smeltbad, zegt hij,', 'is heet.'], ['Een WBZ volgt.']]);
   assert.deepEqual(phrasesOf(glossed, { gloss: true }), [['Smeltbad (weld pool), zegt hij,', 'is heet.'], ['Een WBZ (HAZ) volgt.']]);
-  assert.deepEqual(phrasesOf(seg, { gloss: true }), phrasesOf(seg));
-  // the committed lexicons: phonemes with a main stress, keys in lower case; the
-  // compounds Merijn heard wrong take their stress on the first part
-  for (const lang of ['nl', 'en']) {
-    const l = JSON.parse(fs.readFileSync(`films/_kit/lexicon.${lang}.json`, 'utf8'));
-    for (const [w, ipa] of Object.entries(l)) {
-      assert.equal(w, w.toLowerCase());
-      assert.ok(ipa.includes('ˈ') && !/[[\]]/.test(ipa), `${lang} ${w}: ${ipa}`);
-    }
-  }
-  const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  for (const w of ['toerental', 'spaanafvoer', 'klauwplaat', 'wisselplaat']) assert.ok(/^[^aeiouɑɛɪɔʊəœøʏʌ]*ˈ/.test(nl[w]), `${w}: ${nl[w]}`);
-  // omwenteling is no first-part compound: its main stress is on WEN (omWENteling)
-  for (const w of ['omwenteling', 'omwentelingen']) assert.ok(nl[w].includes('ʋˈɛn'), `${w}: ${nl[w]}`);
-  assert.ok(!('overleg' in nl), 'overLEG keeps espeak-ng’s own stress');
+  const plain = ['Het ', { t: 'toerental', k: 'x#0' }, ' is 1.167 omw/min.'];
+  assert.deepEqual(phrasesOf(plain, { gloss: true }), phrasesOf(plain));
 });
 
 test('render mode shows no caption band: the video subtitles come from its WebVTT track only', () => {

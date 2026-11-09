@@ -1,6 +1,6 @@
 // Dev tool, not shipped. v14b: renders a film to video, per language.
 //
-//   node films/_kit/render.mjs eng.machining.turning [--lang nl,en] [--seconds 12] [--stills] [--poster] [--theme dark]
+//   node films/_kit/render.mjs eng.machining.turning [--lang nl,en] [--seconds 12] [--stills] [--poster] [--theme dark] [--local]
 //
 // Run films/_kit/narrate.mjs first: the narration's audio timeline drives the
 // picture. The HTML film opens in render mode (?render=1: no wall clock, no
@@ -15,6 +15,14 @@
 // films-out/<id>/<lang>.phone.jpg, and records duration, size and scene starts
 // in src/content/courses/films/manifest.json. --seconds renders only the start
 // (a quick look) and leaves the manifest alone; --poster only redoes the poster.
+//
+// After a full render the listen guard (films/_kit/listen-guard.mjs) checks the
+// MP4's sound: silences inside sentences, full-stop pauses, every cue against
+// the words spoken in its span, and the Whisper word error rate when
+// faster-whisper is installed ($FILM_GUARD_WER: small by default,
+// large-v3-turbo, or off). When it fails the render stops with exit code 1 and
+// writes no manifest or poster. --local (a trial render for a listen) writes
+// only films-out: no poster, no manifest.
 import { spawn, spawnSync, execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
@@ -22,6 +30,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './build-film.mjs';
 import { manifestWith } from './narration.mjs';
+import { runGuard } from './listen-guard.mjs';
 
 const require = createRequire(import.meta.url);
 let playwright;
@@ -77,7 +86,7 @@ async function poster(page, id, atl, dir) {
   spawnSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', big, '-vf', 'scale=640:-2', '-q:v', '4', join(ROOT, 'src/content/courses/films', `${id}.jpg`)]);
 }
 
-export async function render(id, { langs = ['nl', 'en'], seconds = null, theme = 'dark', stills = false, posterOnly = false } = {}) {
+export async function render(id, { langs = ['nl', 'en'], seconds = null, theme = 'dark', stills = false, posterOnly = false, local = false } = {}) {
   const dir = join(ROOT, 'films-out', id);
   const browser = await playwright.chromium.launch();
   let manifest = existsSync(MANIFEST) ? JSON.parse(readFileSync(MANIFEST, 'utf8')) : null;
@@ -136,6 +145,10 @@ export async function render(id, { langs = ['nl', 'en'], seconds = null, theme =
       spawnSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', shot, '-vf', 'scale=390:-2', join(dir, `${lang}.phone.jpg`)]);
 
       if (!seconds) {
+        const guard = runGuard(id, lang, { audio: out });
+        if (!guard.ok) throw new Error(`${id} ${lang}: the listen guard failed (above); ${out} is not shipped`);
+      }
+      if (!seconds && !local) {
         if (lang === langs[0]) await poster(page, id, atl, dir);
         manifest = manifestWith(manifest, id, lang, { dur, bytes, scenes: atl.scenes.map((s) => s.start) });
         writeFileSync(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`);
@@ -151,5 +164,6 @@ if (process.argv[1] && process.argv[1].endsWith('render.mjs')) {
   const id = process.argv[2];
   if (!id) { console.error('usage: node films/_kit/render.mjs <film id> [--lang nl,en] [--seconds n] [--theme dark|light]'); process.exit(2); }
   const s = arg('--seconds', null);
-  await render(id, { langs: arg('--lang', 'nl,en').split(','), seconds: s ? Number(s) : null, theme: arg('--theme', 'dark'), stills: process.argv.includes('--stills'), posterOnly: process.argv.includes('--poster') });
+  await render(id, { langs: arg('--lang', 'nl,en').split(','), seconds: s ? Number(s) : null, theme: arg('--theme', 'dark'), stills: process.argv.includes('--stills'), posterOnly: process.argv.includes('--poster'), local: process.argv.includes('--local') })
+    .catch((e) => { console.error(e.message); process.exit(1); });
 }

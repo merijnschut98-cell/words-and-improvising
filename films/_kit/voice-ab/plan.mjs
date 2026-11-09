@@ -13,22 +13,29 @@
 // B  one Piper call per sentence, no lexicon, 0.6 s after a full stop, 0.9 s
 //    between beats, no warp.
 // C  as B, with only the tested entries of lexicon-small.json (synth.py --lex).
-// D  the current kit (c369342 onward): one call per phrase (narration.mjs
-//    phrasesOf), the whole lexicon (spokenOf), PAUSES and AUDIO_GAPS of
-//    timeline.mjs, --sentence-silence 0.
-import { readFileSync } from 'node:fs';
+// D  the kit of c369342 to c077f96: one call per phrase (narration.mjs
+//    phrasesOf), the whole seeded lexicon cut in as [[ ]] pieces, its pauses
+//    (comma 0.2, sentence 0.55, beat 0.9), --sentence-silence 0. That kit was
+//    replaced on 2026-11-09 (sentence clips, films/_kit/speak.py); D is kept
+//    as it was. Its lexicon is in history only (films/_kit/lexicon.nl.json at
+//    c077f96): pass that file as OLD_LEXICON=<file>, else D is left out.
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFilmData } from '../assert.mjs';
-import { phrasesOf, spokenOf } from '../narration.mjs';
-import { PAUSES, AUDIO_GAPS, sayable, saidOf } from '../timeline.mjs';
+import { phrasesOf } from '../narration.mjs';
+import { AUDIO_GAPS, sayable, saidOf } from '../timeline.mjs';
 
 const KIT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ROOT = join(KIT, '../..');
 const data = readFilmData(readFileSync(join(ROOT, 'src/content/courses/films/eng.machining.turning.html'), 'utf8'));
 // the test paragraph: scene 1 (2 beats), scene 2 (2 beats), scene 3 beat 1
 const scenes = [data.scenes[0].beats, data.scenes[1].beats, [data.scenes[2].beats[0]]];
-const lexFull = JSON.parse(readFileSync(join(KIT, 'lexicon.nl.json'), 'utf8'));
+const lexFull = process.env.OLD_LEXICON && existsSync(process.env.OLD_LEXICON) ? JSON.parse(readFileSync(process.env.OLD_LEXICON, 'utf8')) : null;
+// the old kit's pauses and its [[ ]] lexicon pieces (lexicon.mjs at c077f96)
+const PAUSES = { comma: 0.2, sentence: 0.55, beat: 0.9 };
+const spokenOf = (text, lang, lex) => sayable(text, lang).replace(/\s+/g, ' ').trim()
+  .replace(/\p{L}[\p{L}'’]*/gu, (w) => (Object.prototype.hasOwnProperty.call(lex, w.toLowerCase()) ? `[[${lex[w.toLowerCase()]}]]` : w));
 
 const PILOT_GAPS = { lead: 0.8, look: 0.4, gap: 0.35, hold: 0.8, tail: 1.6 }; // timeline.mjs at 61b0590
 const sentencesOf = (text) => text.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
@@ -59,14 +66,15 @@ const variants = {
   // synth.py --lex (inject.py), not cut in as [[ ]] pieces like the kit's
   C: plan((b) => sentencesOf(beatText(b)).map((t, k) => ({ text: t, s: k, sil: 0.6, lex: true })), { ...AUDIO_GAPS, gap: 0.9 }),
   // D: the kit's own phrases and [[ ]] pieces (narration.mjs spokenOf, lexicon.mjs)
-  D: plan((b) => {
+  D: lexFull && plan((b) => {
     const out = [];
     phrasesOf(b.say.nl).forEach((ph, k) => ph.forEach((said, j) => {
       out.push({ text: spokenOf(said, 'nl', lexFull), s: k, sil: j + 1 < ph.length ? PAUSES.comma : PAUSES.sentence });
     }));
     return out;
-  }, AUDIO_GAPS),
+  }, { ...AUDIO_GAPS, gap: PAUSES.beat, hold: 0.8 }),
 };
+if (!variants.D) delete variants.D;
 // the script the listener should hear, for the word error rate
 const script = scenes.flat().map(beatText).join(' ');
 console.log(JSON.stringify({ script, variants }, null, 1));

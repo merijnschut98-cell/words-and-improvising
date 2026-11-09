@@ -347,7 +347,7 @@ const spec = {
 // What the voice says, per scene and beat: a fuller explanation than the
 // caption on screen, so the learner needs nothing else. Same markers
 // ({t:Term|shown}, {n:number}); the build checks its terms and numbers against
-// the lessons like the captions'. films/_kit/narrate.mjs turns each phrase into
+// the lessons like the captions'. films/_kit/narrate.mjs turns each sentence into
 // speech with Piper.
 const SAY = [
   [ // s1 spot first, then drill (Basis: how it works)

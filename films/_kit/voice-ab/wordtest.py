@@ -38,6 +38,7 @@ TESTS = {
     'terwijl': 'Terwijl de as draait, schuift de beitel erlangs.',
     'omwenteling': 'De voeding is hoe ver hij per omwenteling opschuift: hier 0,3 millimeter.',
 }
+TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:
     TESTS = {w: TESTS[w] for w in sys.argv[sys.argv.index('--only') + 1].split(',')}
 voice = PiperVoice.load(model)

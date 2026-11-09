@@ -4,12 +4,14 @@
 //
 // - WAV: read a header, write one, join recorded lines into one track with
 //   silence at their places on the timeline (films/_kit/timeline.mjs, audioTimeline).
-// - Captions: the narration as WebVTT cues, sentence by sentence, each beat's
-//   cues spread over its line by length.
+// - The voice: one Piper clip per sentence (commas inside), laid out with the
+//   pauses of timeline.mjs; the voice and speed per language from
+//   films/_kit/voices.json.
+// - Captions: the narration as WebVTT cues, cut at word boundaries measured in
+//   each sentence clip (Piper's phoneme alignments, or Whisper as a fallback).
 // - The manifest: per film and language the duration, size and scene starts of
 //   the video, which the app reads to play it (src/content/courses/films/manifest.json).
 import { saidOf, sayable, PAUSES } from './timeline.mjs';
-import { applyLexicon } from './lexicon.mjs';
 
 // ---------------------------------------------------------------- WAV (PCM, 16 bit)
 export function wavInfo(buf) {
@@ -117,15 +119,12 @@ export function cuesOf(data, atl, lang) {
   return cues;
 }
 
-// Exact timing: each phrase of a beat's script (a sentence, or the part of one
-// up to a comma) is recorded as its own clip, so the subtitle is exactly what
-// is being said, and the pauses after a comma and a full stop are ours
-// (PAUSES in timeline.mjs). The clip text keeps its comma, so the voice still
-// reads it as a clause that goes on.
-// What the voice gets for one phrase: units and signs as words, then the
-// lexicon's phonemes for the words espeak-ng would say wrong. The subtitle keeps
-// the phrase as written.
-export const spokenOf = (text, lang, lex) => applyLexicon(sayable(text, lang).replace(/\s+/g, ' ').trim(), lex);
+// What the voice gets: units and signs as words (timeline.mjs SAY). The
+// subtitle keeps the text as written. Pronunciation fixes (films/_kit/
+// lexicon.<lang>.json) are swapped into espeak-ng's phonemes of the whole
+// sentence by films/_kit/speak.py, never cut into the text as [[ ]] pieces.
+export const spokenOf = (text, lang) => sayable(text, lang).replace(/\s+/g, ' ').trim();
+const tokensOf = (s) => String(s).trim().split(/\s+/).filter(Boolean);
 
 export const SUB_MAX = 84; // about 2 lines of video subtitles on a phone
 const MIN_PHRASE_WORDS = 3; // shorter phrases ride with the next one
@@ -160,26 +159,138 @@ function phrasesIn(text) {
   });
 }
 
-// The clips of one beat from its start, by measured length: durs is per
-// sentence a list of phrase lengths. Returns per sentence [{ start, dur }].
+// The sentences of one beat's script (a resolved segment list), each one Piper
+// clip: what is said (the subtitle without gloss), what the voice gets, and
+// its phrases (cut at commas, as phrasesOf) plain and as subtitled.
+export function sentenceClips(seg, lang) {
+  const glossed = phrasesOf(seg, { gloss: true });
+  return phrasesOf(seg).map((phrases, i) => {
+    const said = phrases.join(' ');
+    return { said, spoken: spokenOf(said, lang), phrases, glossed: glossed[i] };
+  });
+}
+
+// The sentence clips of one beat from its start, by measured length, with the
+// full-stop pause in between: [{ start, dur }].
 export function beatLayout(start, durs, pauses = PAUSES) {
   let t = start;
-  return durs.map((ph, si) => ph.map((d, pi) => {
+  return durs.map((d) => {
     const c = { start: round3(t), dur: round3(d) };
-    t += d + (pi + 1 < ph.length ? pauses.comma : si + 1 < durs.length ? pauses.sentence : 0);
+    t += d + pauses.sentence;
     return c;
-  }));
+  });
 }
-// The length of one beat made of these clips.
+// The length of one beat made of these sentence clips.
 export function beatLength(durs, pauses = PAUSES) {
-  const lay = beatLayout(0, durs, pauses).flat();
+  const lay = beatLayout(0, durs, pauses);
   return lay.length ? round3(lay[lay.length - 1].start + lay[lay.length - 1].dur) : 0;
 }
 
-// sentences: [[{ start, dur, text }]], the recorded phrases of each sentence.
+// spans: the measured { start, end } of each spoken word of a sentence (its
+// spokenOf form, split at spaces). Returns the span of each written word: a
+// written word the voice says as several ("1.167" as "11honderd 67") spans
+// them all. Mapped by prefixes, so a unit that spans two words stays whole.
+export function saidWordSpans(said, lang, spans) {
+  const toks = tokensOf(said);
+  const total = tokensOf(spokenOf(said, lang)).length;
+  if (spans.length !== total) throw new Error(`${spans.length} timed spoken words for ${total} spoken words: ${said}`);
+  let prev = 0;
+  return toks.map((_, i) => {
+    const c = i + 1 === toks.length ? total : Math.min(total, Math.max(prev, tokensOf(spokenOf(toks.slice(0, i + 1).join(' '), lang)).length));
+    const at = prev < total ? spans[prev].start : spans[total - 1].end;
+    const span = c > prev ? { start: spans[prev].start, end: spans[c - 1].end } : { start: at, end: at };
+    prev = c;
+    return span;
+  });
+}
+
+// The fallback when Piper gives no alignments: Whisper's word timestamps
+// (heard: [{ word, start, end }]) forced onto the known script's words. The
+// letters of both are aligned (edit distance), so a word Whisper splits or
+// glues still gets its time; a word it missed sits between its neighbours.
+export function forceAlign(tokens, heard) {
+  const norm = (w) => String(w).toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}]/gu, '');
+  const a = [];
+  tokens.forEach((t, i) => { for (const ch of norm(t)) a.push({ ch, i }); });
+  const b = [];
+  for (const h of heard) {
+    const chars = [...norm(h.word)];
+    chars.forEach((ch, k) => b.push({ ch, t0: h.start + ((h.end - h.start) * k) / chars.length, t1: h.start + ((h.end - h.start) * (k + 1)) / chars.length }));
+  }
+  const n = a.length;
+  const m = b.length;
+  const d = Array.from({ length: n + 1 }, (_, i) => Int32Array.from({ length: m + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)));
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) d[i][j] = Math.min(d[i - 1][j - 1] + (a[i - 1].ch === b[j - 1].ch ? 0 : 1), d[i - 1][j] + 1, d[i][j - 1] + 1);
+  }
+  const spans = tokens.map(() => null);
+  for (let i = n, j = m; i > 0 && j > 0;) {
+    if (d[i][j] === d[i - 1][j - 1] + (a[i - 1].ch === b[j - 1].ch ? 0 : 1)) {
+      const s = spans[a[i - 1].i];
+      const { t0, t1 } = b[j - 1];
+      spans[a[i - 1].i] = s ? { start: Math.min(s.start, t0), end: Math.max(s.end, t1) } : { start: t0, end: t1 };
+      i--; j--;
+    } else if (d[i][j] === d[i - 1][j] + 1) i--;
+    else j--;
+  }
+  // in order, and the words nobody heard shared out over the gap they sit in
+  const end0 = heard.length ? heard[0].start : 0;
+  const endN = heard.length ? heard[heard.length - 1].end : 0;
+  let last = end0;
+  for (let i = 0; i < spans.length; i++) {
+    if (spans[i]) {
+      spans[i] = { start: Math.max(spans[i].start, last), end: Math.max(spans[i].end, last) };
+      last = spans[i].end;
+      continue;
+    }
+    let k = i;
+    while (k < spans.length && !spans[k]) k++;
+    const to = k < spans.length ? Math.max(last, spans[k].start) : Math.max(last, endN);
+    const step = (to - last) / (k - i);
+    for (let q = i; q < k; q++) spans[q] = { start: last + step * (q - i), end: last + step * (q - i + 1) };
+    last = to;
+    i = k - 1;
+  }
+  return spans.map((s) => ({ start: round3(s.start), end: round3(s.end) }));
+}
+
+// A sentence clip's phrases timed by its written words' spans (absolute
+// seconds): each phrase from its first word's start to its last word's end,
+// with the subtitle text (glossed) and the spans of its words, for cuesOfLines.
+export function timedPhrases(sentence, words) {
+  const counts = sentence.phrases.map((p) => tokensOf(p).length);
+  if (counts.reduce((x, y) => x + y, 0) !== words.length) throw new Error(`${words.length} timed words for "${sentence.phrases.join(' ')}"`);
+  let i = 0;
+  return sentence.phrases.map((_, k) => {
+    const ws = words.slice(i, i + counts[k]);
+    i += counts[k];
+    return { start: round3(ws[0].start), dur: round3(ws[ws.length - 1].end - ws[0].start), text: sentence.glossed[k], words: ws };
+  });
+}
+
+// The voice of a language from films/_kit/voices.json ({ nl: { model, length } }),
+// with its download path on huggingface.co/rhasspy/piper-voices. override
+// ("nl_NL-pim-medium:0.9", from narrate.mjs --voice) is for a one-off A/B listen.
+export function voiceOf(lang, config, override = null) {
+  const v = config && config[lang];
+  if (!v || !v.model) throw new Error(`no voice for "${lang}" in films/_kit/voices.json`);
+  let { model, length } = v;
+  if (override) {
+    const [m, l] = String(override).split(':');
+    if (m) model = m;
+    if (l) length = Number(l);
+  }
+  const p = /^([a-z]{2,3})_([A-Z]{2})-(.+)-(x_low|low|medium|high)$/.exec(model);
+  if (!p || !(length > 0)) throw new Error(`bad voice ${model} ${length}`);
+  return { model, path: `${p[1]}/${p[1]}_${p[2]}/${p[3]}/${p[4]}`, length };
+}
+
+// sentences: [[{ start, dur, text, words? }]], the timed phrases of each sentence.
 // A sentence that fits in SUB_MAX is one cue from its first word to its last;
 // a longer one is cut between phrases (greedy, each cue as long as fits), and a
-// phrase longer than SUB_MAX is cut at a space, timed by its length.
+// phrase longer than SUB_MAX is cut at a space: at its words' measured times
+// when the phrase carries them (one span per written word, the gloss not
+// counted), else by length.
 export function cuesOfLines(sentences, max = SUB_MAX) {
   const cues = [];
   const push = (group) => cues.push({ start: group[0].start, end: round3(group[group.length - 1].start + group[group.length - 1].dur), text: group.map((p) => p.text).join(' ') });
@@ -189,6 +300,16 @@ export function cuesOfLines(sentences, max = SUB_MAX) {
       if (p.text.length > max) {
         if (group.length) { push(group); group = []; }
         const chunks = cueChunks(p.text, max);
+        const counts = chunks.map((c) => tokensOf(c.replace(/\s*\([^()]*\)/g, '')).length);
+        if (p.words && counts.reduce((a, c) => a + c, 0) === p.words.length) {
+          let i = 0;
+          chunks.forEach((c, k) => {
+            const ws = p.words.slice(i, i + counts[k]);
+            i += counts[k];
+            cues.push({ start: round3(ws[0].start), end: round3(ws[ws.length - 1].end), text: c });
+          });
+          continue;
+        }
         const all = chunks.reduce((a, c) => a + c.length, 0);
         let t = p.start;
         chunks.forEach((c, k) => {
