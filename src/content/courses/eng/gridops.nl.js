@@ -17,7 +17,7 @@ export default {
         'Een aansluiting begint met een aanvraag (request) bij de regionale netbeheerder, zoals Liander, Stedin of Enexis. De eerste splitsing is de grootte. Kleinverbruik gaat tot en met 3 × 80 A en hangt aan de LS-kabel in de straat (laagspanning, 400/230 V).\n\nWie meer vraagt, is grootverbruiker: een eigen kabel uit het netstation of een MS-aansluiting (middenspanning, 10 of 20 kV). Hoe die technisch gebouwd wordt, behandelt de module Transformatoren en kabels; hier gaat het om het proces en de regels.',
         'Na een complete aanvraag stuurt de netbeheerder een offerte (offer): wat er komt, wat het kost en wanneer. Voor kleinverbruik moet die er volgens de code van de ACM binnen 10 werkdagen zijn; de ACM tikte Enexis in 2025 nog op de vingers voor een offerte die vier maanden duurde.\n\nDe klant accepteert en betaalt, en dan begint de realisatie (realisation): ontwerp, werkvoorbereiding en uitvoering. Een onvolledige aanvraag gaat terug, en dan begint de klok opnieuw.',
         'De aansluittermijn is de tijd die de netbeheerder heeft om te leveren. Tot 21 februari 2025 stond in de Elektriciteitswet een vaste termijn van 18 weken; die is geschrapt omdat volgens het Europese Hof de toezichthouder zulke termijnen moet vaststellen, niet de wetgever. Ook de Energiewet, sinds 1 januari 2026, vraagt alleen een redelijke termijn.\n\nVoor kleinverbruik werkt de ACM aan concrete termijnen; in geschillen nam ze 18 tot 22 weken als vertrekpunt.',
-        'Voor grote aansluitingen gelden sinds 1 januari 2025 termijnen van de ACM, nu in de Systeemcode elektriciteit (tot 21 februari 2026 de Netcode). Na een analyse van de complexiteit: 26 weken voor eenvoudige klussen, 52 voor middelzware; complexe krijgen maatwerk, een termijn die de netbeheerder onderbouwt.\n\nDaarbovenop mag een regionale wachttijd komen, per kwartaal en per regio bepaald uit de voorraad werk. Die is begrensd op 40 weken, en die grens loopt in tien jaar af naar nul.',
+        'Voor grote aansluitingen besloot de ACM in maart 2024 over termijnen; die gelden sinds 1 januari 2025, nu in de Systeemcode elektriciteit (tot 21 februari 2026 de Netcode). Na een analyse van de complexiteit: 26 weken voor eenvoudige klussen, 52 voor middelzware; complexe krijgen maatwerk, een termijn die de netbeheerder onderbouwt.\n\nDaarbovenop mag een regionale wachttijd komen, per kwartaal en per regio bepaald uit de voorraad werk. Die was in 2025 begrensd op 40 weken; die grens zakt met twee weken per jaar, naar 20 weken eind 2034.',
         'Let op twee verschillende dingen: de aansluiting (connection), het fysieke stuk kabel en meter, en transportcapaciteit, het recht om stroom af te nemen of in te voeden. Is er geen transportcapaciteit, dan komt de klant op de wachtrij en schuift de termijn op tot er ruimte is.\n\nVraag in elk gesprek: “Is deze klant aan het wachten op werk, of op capaciteit?” Het antwoord bepaalt wie het kan oplossen.',
       ],
       example: {
@@ -69,7 +69,7 @@ export default {
         { term: 'Grootverbruiker', def: 'Een klant met een aansluiting boven 3 × 80 A; in congestiegebieden wachten die op capaciteit.' },
         { term: 'Offerte', def: 'Het aanbod van de netbeheerder na een complete aanvraag: wat er komt, wat het kost en wanneer.' },
         { term: 'Aansluittermijn', def: 'De tijd die een netbeheerder heeft om een aansluiting te leveren: wettelijk een “redelijke termijn”; de vaste 18 weken is in 2025 geschrapt.' },
-        { term: 'Regionale wachttijd', def: 'Extra tijd bovenop de aansluittermijn voor grootverbruik, per kwartaal en regio bepaald uit de voorraad werk; maximaal 40 weken, aflopend in tien jaar.' },
+        { term: 'Regionale wachttijd', def: 'Extra tijd bovenop de aansluittermijn voor grootverbruik, per kwartaal en regio bepaald uit de voorraad werk; maximaal 40 weken in 2025, aflopend naar 20 eind 2034.' },
       ],
     },
     {
@@ -184,7 +184,7 @@ export default {
         },
         {
           q: 'Waarom kan een digital twin verkeerde antwoorden over congestie geven?',
-          options: ['De topologie of aansluitingen kloppen niet', 'Hij heeft te veel metingen om door te rekenen', 'Hij leunt op slimmemeterdata van huishoudens', 'Hij rekent te traag voor de dagelijkse planning'],
+          options: ['De topologie of aansluitingen kloppen niet', 'Hij heeft te veel metingen om door te rekenen', 'Hij gebruikt slimmemeterdata', 'Hij rekent te traag voor de dagelijkse planning'],
           answer: 'De topologie of aansluitingen kloppen niet',
           why: 'Hangen huizen in het model aan de verkeerde kabel, dan kloppen de berekende belastingen niet.',
         },
@@ -263,7 +263,7 @@ export default {
         },
         {
           q: 'Waar baseer je een eerlijke datum voor een klant op?',
-          options: ['De gemeten doorlooptijd van vergelijkbare orders', 'De oude wettelijke termijn van 18 weken', 'De datum die de klant zegt nodig te hebben', 'De snelste order van vorig jaar, als doel voor iedereen'],
+          options: ['De gemeten doorlooptijd van vergelijkbare orders', 'De oude wettelijke termijn van 18 weken', 'De datum die de klant zegt nodig te hebben', 'De snelste order van vorig jaar'],
           answer: 'De gemeten doorlooptijd van vergelijkbare orders',
           why: 'Gemeten doorstroom zegt wat je echt haalt; een datum die je zelden haalt, levert alleen faalvraag op.',
         },
@@ -291,7 +291,7 @@ export default {
     // ── Onderwerp 2: Werk in het veld ──
     {
       id: 'eng.gridops.workload',
-      title: 'De werkvoorraad van de energietransitie',
+      title: 'De opgave van de energietransitie',
       pre: [
         {
           q: 'Nederlandse netbeheerders verhogen hun investeringen snel. Wat beperkt meestal hoeveel werk er echt gebeurt?',
@@ -303,7 +303,7 @@ export default {
       teach: [
         'Warmtepompen, elektrische auto’s, zonnepanelen en de elektrificatie van de industrie betekenen dat veel wijken en MS-strengen (kabelroutes uit een onderstation) verzwaring nodig hebben: een zwaardere kabel, een extra transformator of een nieuw station. Dat komt bovenop nieuwe aansluitingen en het vervangen van oude assets.\n\nDe investeringsplannen van eind 2025 gaan tot zo’n 15 miljard euro per jaar, maar ruim 400 van de ruim 900 grotere projecten lopen al later dan gepland. Geld is zelden de grens; mensen wel.',
         'Netbeheer Nederland schat dat netbeheerders en aannemers tot 2030 zo’n 30.000 technici extra nodig hebben; met een opschalingsplan (eind 2025) willen ze er 5.000 extra werven. De cijfers verschillen per bron, de richting niet.\n\nIntussen is er in veel regio’s netcongestie: op piekmomenten zou het net meer moeten dragen dan veilig kan. Grote nieuwe of grotere aansluitingen komen dan op een wachtrij voor transportcapaciteit, tot de verzwaring klaar is.',
-        'Als het werk de capaciteit overstijgt, is de vraag niet of werk wacht, maar welk. Veiligheid en wettelijke plichten eerst.\n\nVoor de wachtrij geldt standaard: wie eerst komt, eerst maalt. Met maatschappelijk prioriteren mogen projecten die congestie verlichten voor, dan veiligheid (zoals defensie), dan basisbehoeften (zoals zorg, onderwijs en wonen). De rechter vernietigde het eerste kader in maart 2025; het herziene kader houdt die volgorde, en sinds 1 juli 2026 is er één wachtrij voor klein- en grootverbruik.',
+        'Als het werk de capaciteit overstijgt, is de vraag niet of werk wacht, maar welk. Veiligheid en wettelijke plichten eerst.\n\nVoor de wachtrij geldt standaard: wie eerst komt, eerst maalt. Met maatschappelijk prioriteren mogen projecten die congestie verlichten voor, dan veiligheid (zoals ziekenhuizen, hulpdiensten en defensie), dan basisbehoeften (zoals wonen en onderwijs). De rechter vernietigde het eerste kader in maart 2025; het herziene kader houdt die volgorde, en sinds 1 juli 2026 is er één wachtrij voor klein- en grootverbruik.',
         'Bundelen: open een straat één keer en doe alles erin: LS-verzwaring, nieuwe aansluitingen, oude kabel vervangen, soms ook gasleidingen en werk van de gemeente.\n\nDat scheelt graven, schakelen, vergunningen en overlast voor bewoners. De prijs is meer afstemming en een langere aanloop om iedereen op één lijn te krijgen. Een typische fout: de vergunning van één partij is te laat en de hele bundel wacht.',
         'Een standaardontwerp is een vast ontwerp voor een veelvoorkomend geval: een standaard MS-station, standaard LS-uitleg, standaard schakelplannen. Minder ontwerp per klus, snellere controle, eenvoudiger opleiden, inkoop in bulk.\n\nEngineers zeggen dat elke situatie anders is. Het antwoord: een standaard voor de 80%, een duidelijke route voor uitzonderingen. En let op de handwerktijd: als 50% van de dag van een monteur echt werk is en dat stijgt naar 60%, krijg je 20% meer output.',
       ],
@@ -323,7 +323,7 @@ export default {
         },
         {
           q: 'Wat is de belangrijkste prijs van bundelen in één straat?',
-          options: ['Vaker graven in de straat', 'Meer afstemming en een langere aanloop', 'Meer onderbrekingen voor klanten', 'Het botst met de vijf veiligheidsregels'],
+          options: ['Vaker graven in de straat', 'Meer afstemming en een langere aanloop', 'Meer onderbrekingen voor klanten', 'Het botst met de veiligheidsregels'],
           answer: 'Meer afstemming en een langere aanloop',
           why: 'Meerdere partijen op één lijn krijgen kost tijd, maar scheelt graven, schakelen en overlast.',
         },
@@ -400,7 +400,7 @@ export default {
         },
         {
           q: 'Waarom bundel je meerdere klussen in één onderbreking?',
-          options: ['NEN 3840 schrijft het voor bij MS-werk', 'Dan hoeven klanten helemaal geen bericht te krijgen', 'Minder schakelacties en onderbrekingen', 'De aannemer wordt dan goedkoper per uur'],
+          options: ['NEN 3840 schrijft het voor bij MS-werk', 'Dan hoeven klanten geen bericht', 'Minder schakelacties en onderbrekingen', 'De aannemer wordt dan goedkoper per uur'],
           answer: 'Minder schakelacties en onderbrekingen',
           why: 'Eén keer uitschakelen dient meerdere klussen, dus de schaarse schakelcapaciteit gaat verder en klanten zitten één keer zonder stroom.',
         },
@@ -424,7 +424,7 @@ export default {
       sayIt: 'Leg een projectmanager in 60 seconden uit wat een schakelplan is en waarom het gepland werk vertraagt.',
       terms: [
         { term: 'Schakelplan', def: 'Stap-voor-stap-script om een deel van het net uit te schakelen, veilig te maken en terug te schakelen.' },
-        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen afschermen.' },
+        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen onder spanning afschermen: altijd in deze volgorde.' },
         { term: 'Aarden', def: 'De spanningsloze geleiders met aarde en met elkaar verbinden, pas na het vaststellen van spanningsloosheid, zodat per ongeluk inschakelen de beveiliging laat aanspreken.' },
         { term: 'IV', def: 'Installatieverantwoordelijke: verantwoordelijk voor de veilige bedrijfsvoering van de installatie en geeft toestemming voor werk eraan.' },
         { term: 'WV', def: 'Werkverantwoordelijke: leidt één bepaalde klus ter plaatse.' },
@@ -439,12 +439,12 @@ export default {
           q: 'Hoe lang van tevoren moet een netbeheerder een kleinverbruiker minimaal laten weten dat de stroom er voor gepland werk af gaat?',
           options: ['Een dag', '3 werkdagen', 'Twee weken', 'Er geldt geen termijn'],
           answer: '3 werkdagen',
-          why: 'Volgens de ACM minstens 3 werkdagen voor kleinverbruikers; grootverbruikers 3 of 10 werkdagen, afhankelijk van hun situatie.',
+          why: 'Volgens de ACM minstens 3 werkdagen voor kleinverbruikers; grootverbruikers op een distributienet minstens 10 werkdagen.',
         },
       ],
       teach: [
         'Veldwerk wordt in lagen gepland. Een jaarplan met projecten en budgetten, een kwartaalplan dat capaciteit en schakelmomenten verdeelt, een rollende planning van zo’n zes weken, en de weekplanning: welke ploeg welke dag welke klus doet.\n\nEen klus komt pas in de weekplanning als hij door de gereedheidscheck is. Daarna geldt een bevroren week (frozen week): het plan voor volgende week verandert alleen nog bij echte nood, zodat ploegen, schakelmonteurs en klanten erop kunnen rekenen.',
-        'Een geplande onderbreking (planned interruption) is een moment waarop klanten zonder stroom zitten omdat er gewerkt wordt. Kleinverbruikers moeten dat volgens de ACM minstens 3 werkdagen vooraf horen, grootverbruikers 3 of 10 werkdagen. Voor gepland onderhoud krijgen klanten geen storingsvergoeding.\n\nIn de praktijk is het een brief of bericht, soms een aggregaat voor een zorginstelling. Verschuift de klus na die aankondiging, dan begint het opnieuw: een tweede brief en een boze klant.',
+        'Een geplande onderbreking (planned interruption) is een moment waarop klanten zonder stroom zitten omdat er gewerkt wordt. Kleinverbruikers moeten dat volgens de ACM minstens 3 werkdagen vooraf horen, grootverbruikers minstens 10 werkdagen. Voor gepland onderhoud krijgen klanten geen storingsvergoeding.\n\nIn de praktijk is het een brief of bericht, soms een aggregaat voor een zorginstelling. Verschuift de klus na die aankondiging, dan begint het opnieuw: een tweede brief en een boze klant.',
         'Spoedwerk (break-in work) dringt de weekplanning binnen: storingen, gevaarlijke situaties, een klant die al maanden wacht en escaleert. Sommige netbeheerders houden aparte storingsploegen, anderen een vaste reserve in elke ploeg.\n\nZonder zo’n buffer blaast elke storing een geplande klus op, met de aangekondigde onderbreking erbij. De module Onderhoud behandelt dezelfde logica voor fabrieken: werkvoorbereiding los van storingswerk, en een weekplanning die gevuld wordt tot de beschikbare uren.',
         'Schedule compliance is het deel van de ingeplande klussen dat volgens planning is gedaan. Een hoog getal betekent niet dat iedereen hard werkte, maar dat de planning klopte met wat kon. Tel per niet-gedane klus de reden: niet gereed, schakelmoment vervallen, spoedwerk, weer, klant niet thuis.\n\nWaar experts over discussiëren: wie de planning maakt. Ploegleiders kennen het werk, een centrale planning ziet schakelmomenten en materiaal. Vaak werkt het best samen, in een kort weekoverleg.',
         'Een typische fout: de planning vullen tot 100% van de uren. Dan breekt hij bij de eerste storing, en ploegen leren dat de planning niet serieus is.\n\nEen andere fout: meten hoeveel klussen klaar zijn zonder te kijken waarom de rest niet lukte. Dan lijkt elk probleem een ploeg die te traag is. Vraag een ploegleider: “Welke klus van vorige week ging niet door, en wist je dat al op maandag?”',
@@ -479,7 +479,7 @@ export default {
         },
         {
           q: 'Storingen blazen elke week geplande klussen op. Wat helpt het meest?',
-          options: ['Een vaste reserve of aparte storingsploegen in de planning', 'De weekplanning altijd vullen tot 100% van de beschikbare uren', 'Storingen pas oppakken als de geplande klussen klaar zijn', 'Geen geplande onderbrekingen meer aankondigen aan klanten'],
+          options: ['Een vaste reserve of aparte storingsploegen in de planning', 'De weekplanning vullen tot 100% van de uren', 'Storingen pas oppakken als de geplande klussen klaar zijn', 'Geen geplande onderbrekingen meer aankondigen aan klanten'],
           answer: 'Een vaste reserve of aparte storingsploegen in de planning',
           why: 'Spoedwerk komt toch; met een buffer hoeft het geen geplande klus op te blazen.',
         },
@@ -509,7 +509,7 @@ export default {
       pre: [
         {
           q: 'Een monteur heeft een dienst van 8 uur. Wat kost bij veldwerk vaak de meeste tijd naast het echte werk?',
-          options: ['Reizen, wachten en zoeken naar onderdelen', 'Pauzes en koffie op het depot', 'Opleidingen en toolboxmeetings', 'Urenstaten en werkbonnen op papier invullen'],
+          options: ['Reizen, wachten en zoeken naar onderdelen', 'Pauzes en koffie op het depot', 'Opleidingen en toolboxmeetings', 'Urenstaten en werkbonnen invullen'],
           answer: 'Reizen, wachten en zoeken naar onderdelen',
           why: 'Veldwerk is verspreid: rijden tussen klussen, wachten op een vergunning of schakelmoment en ontbrekend materiaal eten de dag op.',
         },
@@ -519,7 +519,7 @@ export default {
         'Meten doe je met een multimomentopname (work sampling): op willekeurige momenten noteren wat een monteur doet. Doe het samen met de ploeg en anoniem; het gaat om de obstakels, niet om de mensen.\n\nExperts discussiëren hierover: monteurs ervaren meten snel als controle, en vakbonden letten op. Het helpt als het eerste resultaat iets oplost wat de monteurs zelf irriteerde, zoals wachten bij het magazijn.',
         'De bekende verspillingen in het veld en hun tegenmiddel. Reizen: klussen per gebied bundelen. Wachten op locatie: de gereedheidscheck en schakelmomenten die vastliggen. Ontbrekend materiaal: kitting, de onderdelen voor een klus vooraf in één kit met een label, ’s nachts klaargezet door het magazijn of een logistieke partner.\n\nZoeken: tekeningen en het schakelplan digitaal op de tablet. Herstelwerk: standaardwerk voor de tien meest voorkomende klussen, zoals een huisaansluiting of een LS-mof.',
         'Veel werk doen aannemers, vaak onder een raamcontract: een langlopend contract voor een stroom klussen tegen vaste afspraken. Lean werkt daar alleen als de netbeheerder de klussen gereed aanlevert; een aannemer die op een niet-gereed werk staat, rekent uren en verliest motivatie.\n\nMeer mensen inzetbaar maken helpt ook: een monteur die zelf mag schakelen of een eenvoudige meting mag doen, hoeft niet te wachten op een collega.',
-        'Een korte dagstart per ploeg, 10 tot 15 minuten bij het begin van de dienst: wat doen we vandaag, wat is gisteren misgegaan, wat hebben we nodig? Problemen die de ploeg niet zelf oplost, gaan dezelfde dag omhoog naar de ploegleider en de planning. Zo werken tier-overleggen; de module Sturen op prestaties behandelt het bord en het ritme.\n\nDe laatste minuut risicoanalyse (LMRA) bij de klus blijft, wat er ook versneld wordt. Veiligheid is geen verspilling.',
+        'Een korte dagstart per ploeg, 10 tot 15 minuten bij het begin van de dienst: wat doen we vandaag, wat is gisteren misgegaan, wat hebben we nodig? Problemen die de ploeg niet zelf oplost, gaan dezelfde dag omhoog naar de ploegleider en de planning. Zo werkt getrapt overleg (tiered meetings); de module Sturen op prestaties behandelt het bord en het ritme.\n\nDe laatste minuut risicoanalyse (LMRA) bij de klus blijft, wat er ook versneld wordt. Veiligheid is geen verspilling.',
       ],
       example: {
         kind: 'faded',
@@ -551,7 +551,7 @@ export default {
         },
         {
           q: 'Waarom werkt Lean bij een aannemer met een raamcontract alleen als de netbeheerder meedoet?',
-          options: ['Omdat de aannemer anders zelf geen KLIC-melding mag doen bij de gemeente', 'Omdat het raamcontract Lean-methoden verbiedt', 'Omdat de aannemer dan zijn eigen monteurs kwijtraakt', 'Omdat de aannemer afhangt van klussen die gereed worden aangeleverd'],
+          options: ['Omdat de aannemer anders geen KLIC-melding mag doen', 'Omdat het raamcontract Lean-methoden verbiedt', 'Omdat de aannemer dan zijn eigen monteurs kwijtraakt', 'Omdat de aannemer afhangt van klussen die gereed worden aangeleverd'],
           answer: 'Omdat de aannemer afhangt van klussen die gereed worden aangeleverd',
           why: 'Vergunning, materiaal en schakelmoment komen vaak van de netbeheerder; zonder die gereedheid wacht de aannemer.',
         },
@@ -618,13 +618,13 @@ export default {
         },
         {
           q: 'De CAIDI (gemiddelde minuten per onderbreking) gaat van 80 naar 100 minuten, terwijl de SAIFI (onderbrekingen per klant per jaar) gelijk blijft. Wat is er gebeurd?',
-          options: ['Er waren minder storingen dan het jaar ervoor', 'Storingen duurden gemiddeld langer', 'De netbeheerder kreeg er klanten bij', 'De SAIDI daalde met een kwart'],
+          options: ['Er waren minder storingen', 'Storingen duurden gemiddeld langer', 'De netbeheerder kreeg er klanten bij', 'De SAIDI daalde met een kwart'],
           answer: 'Storingen duurden gemiddeld langer',
           why: 'CAIDI is de duur per onderbreking; zelfde frequentie, langere duur, dus SAIDI = SAIFI × CAIDI stijgt ook met 25%.',
         },
         {
           q: 'Na vrijschakelen en omschakelen: welke klanten wachten nog op de reparatie?',
-          options: ['Alle klanten op de streng, tot de reparatie klaar is', 'Klanten op de naburige ring die het overnam', 'Niemand, als het schakelen klaar is', 'Alleen klanten binnen het vrijgeschakelde deel'],
+          options: ['Alle klanten op de streng', 'Klanten op de naburige ring', 'Niemand, als het schakelen klaar is', 'Alleen klanten binnen het vrijgeschakelde deel'],
           answer: 'Alleen klanten binnen het vrijgeschakelde deel',
           why: 'Alles buiten de twee open schakelaars kan van de ene of de andere kant gevoed worden.',
         },
@@ -642,7 +642,7 @@ export default {
       sayIt: 'Leg een nieuwe collega in 60 seconden uit wat er gebeurt tussen een MS-kabelfout en de laatste klant die weer stroom heeft.',
       terms: [
         { term: 'Bedrijfsvoeringscentrum', def: 'Het team en de ruimte die het net dag en nacht bewaken en schakelen, met SCADA.' },
-        { term: 'Normaal openpunt', def: 'Het punt waar een MS-ring open staat; wordt gesloten om na een storing weer te voeden.' },
+        { term: 'Normaal openpunt', def: 'De schakelaar in een MS-ring die openstaat; je sluit hem om een deel van de andere kant te voeden.' },
         { term: 'Kortsluitverklikker', def: 'Indicator die laat zien of meldt dat er foutstroom langs is gekomen.' },
         { term: 'SAIFI', def: 'Aantal onderbrekingen per klant per jaar.' },
         { term: 'CAIDI', def: 'Gemiddelde duur van één onderbreking voor de getroffen klanten.' },
@@ -661,11 +661,11 @@ export default {
         },
       ],
       teach: [
-        'Een storing komt op drie manieren binnen. Uit het net zelf: SCADA meldt een uitschakeling in een onderstation of een op afstand bewaakt station. Van klanten: het landelijke storingsnummer 0800-9009, gratis en dag en nacht bereikbaar, schakelt door naar de netbeheerder in die regio. En steeds vaker uit slimme meters en sensoren die melden dat een straat zonder spanning zit.\n\nDe meldkamer (dispatch) legt de meldingen naast elkaar: tien bellers uit één straat zijn één storing.',
+        'Een storing komt op drie manieren binnen. Uit het net zelf: SCADA meldt een uitschakeling in een onderstation of een op afstand bewaakt station. Van klanten: het landelijke storingsnummer 0800-9009, gratis en dag en nacht bereikbaar, schakelt door naar de netbeheerder in die regio. En steeds vaker uit slimme meters en sensoren die melden dat een straat zonder spanning zit.\n\nDe meldkamer (dispatch), die meldingen aanneemt en monteurs op pad stuurt, legt ze naast elkaar: tien bellers uit één straat zijn één storing.',
         'Dan triage: wat eerst? Gevaar gaat voor alles: een kapotte kabel die bloot ligt, brand, gaslucht. Daarna de grootte: hoeveel klanten, en zitten er kwetsbare klanten tussen, zoals een zorginstelling.\n\nDe storingsdienst (fault service) is de groep monteurs die dag en nacht oproepbaar is. De opkomsttijd (response time) is de tijd van melding tot een monteur ter plaatse; die hangt af van afstand, verkeer en hoeveel storingen er tegelijk lopen.',
         'Een storing heeft fasen: melding, opkomst, lokaliseren, schakelen, repareren. De hersteltijd (restoration time) loopt van het begin van de onderbreking tot de klant weer stroom heeft; voor de meeste klanten eindigt die bij het schakelen, voor een paar pas na de reparatie.\n\nKlantminuten tellen alles op: aantal klanten zonder stroom maal minuten zonder stroom, per groep. Wie de fasen apart meet, ziet waar de minuten zitten: in reizen, zoeken of wachten op materiaal.',
         'Communicatie telt mee in hoe klanten een storing beleven. Netbeheerders zetten storingen op een kaart op hun website, met een verwachte hersteltijd. Een te optimistische tijd die drie keer verschuift, doet meer kwaad dan een eerlijke ruime schatting.\n\nVraag in de meldkamer: “Hoe vaak klopte de verwachte hersteltijd binnen een halfuur?” Dat getal zegt veel over hoe goed de meldkamer de storingen in de hand heeft.',
-        'De compensatieregeling: bij een onderbreking van 4 tot 8 uur krijgt een kleine aansluiting (tot 3 × 25 A) € 35, plus € 20 voor elke volgende 4 uur. Grotere kleinverbruikaansluitingen (3 × 35 tot 3 × 80 A) krijgen € 195 plus € 100 per 4 uur. Alleen volle periodes van 4 uur tellen. De netbeheerder betaalt binnen 6 maanden, ongevraagd; gepland werk telt niet (ACM).\n\nDaardoor is het verschil tussen 3 uur 50 en 4 uur 10 ook geld.',
+        'De compensatieregeling: bij een onderbreking van 4 tot 8 uur krijgt een kleine aansluiting (tot 3 × 25 A) € 35, plus € 20 voor elke volgende 4 uur. Grotere kleinverbruikaansluitingen (3 × 35 tot 3 × 80 A) krijgen € 195 plus € 100 per 4 uur. Alleen volle periodes van 4 uur tellen. De netbeheerder betaalt binnen 6 maanden, ongevraagd; gepland werk en sommige uitzonderlijke situaties tellen niet (ACM).\n\nDaardoor is het verschil tussen 3 uur 50 en 4 uur 10 ook geld.',
       ],
       example: {
         kind: 'worked',
@@ -689,7 +689,7 @@ export default {
         },
         {
           q: 'Wat is het verschil tussen opkomsttijd en hersteltijd?',
-          options: ['Opkomsttijd geldt alleen voor MS-storingen, hersteltijd voor LS-storingen', 'Opkomst eindigt als de monteur er is, herstel als de stroom terug is', 'Geen verschil: beide lopen van de eerste melding tot de storing voorbij is', 'Opkomsttijd loopt van de melding tot de reparatie helemaal klaar is'],
+          options: ['Opkomsttijd is voor MS-storingen, hersteltijd voor LS', 'Opkomst eindigt als de monteur er is, herstel als de stroom terug is', 'Geen verschil: beide lopen van de eerste melding tot de storing voorbij is', 'Opkomsttijd loopt van de melding tot de reparatie helemaal klaar is'],
           answer: 'Opkomst eindigt als de monteur er is, herstel als de stroom terug is',
           why: 'De opkomst is één fase; lokaliseren, schakelen en soms repareren komen erna.',
         },
@@ -755,7 +755,7 @@ export default {
         },
         {
           q: 'Waarom kunnen twee identieke transformatoren een heel andere prioriteit krijgen?',
-          options: ['Ze voeden andere klanten, dus het effect verschilt', 'Ze komen altijd van verschillende fabrikanten met een ander ontwerp', 'De toezichthouder kent elke transformator een prioriteit toe', 'Alleen hun leeftijd verschilt, en die bepaalt de prioriteit'],
+          options: ['Ze voeden andere klanten, dus het effect verschilt', 'Ze komen van verschillende fabrikanten', 'De toezichthouder kent elke transformator een prioriteit toe', 'Alleen hun leeftijd verschilt, en die bepaalt de prioriteit'],
           answer: 'Ze voeden andere klanten, dus het effect verschilt',
           why: 'Zelfde kans, ander effect, ander risico.',
         },
@@ -828,7 +828,7 @@ export default {
         },
         {
           q: 'Waarom kijk je naar klantminuten per oorzaak en niet alleen naar het aantal storingen?',
-          options: ['Klantminuten zijn ’s nachts makkelijker te registreren', 'Een oorzaak met weinig storingen kan de meeste minuten kosten', 'De ACM telt alleen klantminuten, geen storingen', 'Het aantal storingen wordt nooit goed geregistreerd door monteurs'],
+          options: ['Klantminuten zijn ’s nachts makkelijker te registreren', 'Een oorzaak met weinig storingen kan de meeste minuten kosten', 'De ACM telt alleen klantminuten, geen storingen', 'Storingen worden nooit goed geregistreerd'],
           answer: 'Een oorzaak met weinig storingen kan de meeste minuten kosten',
           why: 'Een MS-storing raakt veel meer klanten dan een LS-storing; het aantal alleen zegt niet waar de winst zit.',
         },
@@ -840,7 +840,7 @@ export default {
         },
         {
           q: 'Waarom stijgen de geplande uitvalminuten de komende jaren waarschijnlijk?',
-          options: ['Omdat er meer verzwaring en vervanging nodig is', 'Omdat de ACM geplande minuten anders gaat tellen', 'Omdat er meer graafschade in de straten komt', 'Omdat storingen langer gaan duren'],
+          options: ['Omdat er meer verzwaring en vervanging nodig is', 'Omdat de ACM anders gaat tellen', 'Omdat er meer graafschade in de straten komt', 'Omdat storingen langer gaan duren'],
           answer: 'Omdat er meer verzwaring en vervanging nodig is',
           why: 'Meer werk aan het net betekent meer geplande onderbrekingen, tenzij je bundelt of aggregaten inzet.',
         },
@@ -872,17 +872,17 @@ export default {
       pre: [
         {
           q: 'Een netbeheerder verwacht morgen tussen 17:00 en 19:00 dat een transformator in een onderstation te zwaar belast wordt. Wat kan hij vandaag nog doen?',
-          options: ['De transformator vóór morgenavond vervangen', 'Flexibiliteit inkopen bij een klant in het gebied', 'Klanten in het gebied afsluiten tot het voorbij is', 'Niets; het net moet het gewoon aankunnen'],
+          options: ['De transformator vóór morgenavond vervangen', 'Flexibiliteit inkopen bij een klant in het gebied', 'Klanten in het gebied afsluiten', 'Niets; het net moet het gewoon aankunnen'],
           answer: 'Flexibiliteit inkopen bij een klant in het gebied',
           why: 'Vervangen kost jaren; voor morgen koopt de netbeheerder flexibiliteit in, bijvoorbeeld via GOPACS of een contract.',
         },
       ],
       teach: [
-        'Congestiemanagement betekent klanten betalen of contracteren om afname of invoeding weg te schuiven van piekmomenten. De module Het elektriciteitsnet legt uit waarom het net vol zit, Netplanning en de energietransitie welke contractvormen er zijn. Deze les gaat over het dagelijkse werk.\n\nBij veel netbeheerders zit daarvoor een team naast het bedrijfsvoeringscentrum. Het voorspelt elke dag de belasting voor morgen, per station en per kwartier, en grijpt in waar die boven de grens komt.',
+        'Congestiemanagement betekent afname of invoeding op piekmomenten sturen met contracten of betaalde flexibiliteit, zodat er meer klanten op een vol net passen. De module Het elektriciteitsnet legt uit waarom het net vol zit, Netplanning en de energietransitie welke contractvormen er zijn. Deze les gaat over het dagelijkse werk.\n\nBij veel netbeheerders zit daarvoor een team naast het bedrijfsvoeringscentrum. Het voorspelt elke dag de belasting voor morgen, per station en per kwartier, en grijpt in waar die boven de grens komt.',
         'Het eerste middel is redispatch: productie of verbruik verschuiven van binnen een congestiegebied naar erbuiten. Dat gaat via GOPACS, het gezamenlijke platform van TenneT en de regionale netbeheerders, sinds 2019.\n\nDe netbeheerder zet een vraag uit. Een partij binnen het gebied biedt aan om minder af te nemen of minder in te voeden, via een handelsplatform dat op GOPACS is aangesloten, zoals ETPA of EPEX SPOT. GOPACS koppelt dat aan een tegengestelde order buiten het gebied, zodat de landelijke balans gelijk blijft.',
-        'De netbeheerder betaalt het prijsverschil tussen die twee orders, de spread. De meeste bedrijven doen niet zelf mee, maar via een CSP (congestion service provider): een partij die het flexibele vermogen van klanten bundelt en aanbiedt.\n\nHet tweede middel is het capaciteitsbeperkingscontract (CBC): een klant krijgt betaald om onder een afgesproken grens te blijven als de netbeheerder erom vraagt, op vaste momenten of een dag vooraf afgeroepen. Dat is zekerder dan hopen op biedingen.',
+        'De netbeheerder betaalt het prijsverschil tussen die twee orders, de spread. De meeste bedrijven doen niet zelf mee, maar via een CSP (congestion service provider): een partij die het flexibele vermogen van klanten bundelt en aanbiedt.\n\nHet tweede middel is een contract. Met het capaciteitsbeperkingscontract (CBC) krijgt een klant betaald om onder een afgesproken grens te blijven als de netbeheerder erom vraagt, op vaste momenten of een dag vooraf afgeroepen; sinds mei 2026 heeft het capaciteitssturingscontract (CSC) het grotendeels vervangen. Dat is zekerder dan hopen op biedingen.',
         'Wat als de biedingen te duur zijn? Dan mag de netbeheerder, volgens de regels in de Systeemcode, overstappen op een gereguleerde vergoeding in plaats van de marktprijs. Netbeheer Nederland noemt dat niet-marktgebaseerd congestiemanagement.\n\nEen typische fout in de praktijk: een prognose die alleen op vorig jaar leunt, terwijl er sinds dit voorjaar een laadplein en drie warmtepompen bij zijn gekomen. Vraag het team: “Hoe vaak klopte de prognose van gisteren voor vandaag?”',
-        'De dagelijkse cyclus: prognose voor morgen, beslissen of er een tekort is, flexibiliteit inkopen of afroepen, de belasting in de gaten houden, en achteraf controleren of de klant echt leverde en afrekenen.\n\nDat is werk met deadlines: biedingen moeten op tijd binnen zijn, en een afroep van een CBC moet vóór een afgesproken tijdstip. Een team dat dit soepel doet, kan meer klanten op hetzelfde net toelaten.',
+        'De dagelijkse cyclus: prognose voor morgen, beslissen of er een tekort is, flexibiliteit inkopen of afroepen, de belasting in de gaten houden, en achteraf controleren of de klant echt leverde en afrekenen.\n\nDat is werk met deadlines: biedingen moeten op tijd binnen zijn, en een afroep onder een contract moet vóór een afgesproken tijdstip. Een team dat dit soepel doet, kan meer klanten op hetzelfde net toelaten.',
       ],
       example: {
         kind: 'worked',
@@ -929,11 +929,11 @@ export default {
       },
       sayIt: 'Leg een collega van de klantenservice in 60 seconden uit wat er gebeurt als het congestieteam morgen een tekort ziet.',
       terms: [
-        { term: 'Congestiemanagement', def: 'Klanten betalen of contracteren om afname of invoeding weg te schuiven van piekmomenten.' },
-        { term: 'GOPACS', def: 'Het gezamenlijke platform van de Nederlandse netbeheerders om flexibiliteit tegen congestie in te kopen.' },
+        { term: 'Congestiemanagement', def: 'Afname of invoeding op piekmomenten sturen met contracten of betaalde flexibiliteit, zodat er meer klanten op een vol net passen.' },
+        { term: 'GOPACS', def: 'Het gezamenlijke platform van de Nederlandse netbeheerders om flexibiliteit tegen congestie in te kopen, vooral als redispatch.' },
         { term: 'Redispatch', def: 'Productie of verbruik verschuiven van binnen een congestiegebied naar erbuiten.' },
         { term: 'CSP', def: 'Congestion service provider: een partij die het flexibele vermogen van klanten bundelt en aanbiedt voor congestiemanagement.' },
-        { term: 'Capaciteitsbeperkingscontract', def: 'Een klant krijgt betaald om onder een afgesproken grens te blijven als de netbeheerder erom vraagt.' },
+        { term: 'Capaciteitsbeperkingscontract', def: 'CBC: een klant krijgt betaald om onder een afgesproken grens te blijven als de netbeheerder erom vraagt; sinds mei 2026 grotendeels vervangen door het CSC.' },
       ],
     },
     {
@@ -950,7 +950,7 @@ export default {
       teach: [
         'Als de vraag naar transport groter wordt dan het net kan dragen, spreekt de netbeheerder eerst van transportschaarste: de verwachte piek, inclusief toegezegde capaciteit en groei, is groter dan wat het net kan dragen.\n\nVoordat er een wachtrij komt, doet hij een congestieonderzoek (congestion study): kan congestiemanagement het tekort oplossen, en hoeveel ruimte maakt dat vrij? Hij kondigt het onderzoek aan en vraagt klanten in het gebied om hun flexibel vermogen.',
         'Flexibel vermogen is vermogen dat een klant op afroep kan verschuiven of verlagen: een koelhuis dat een uur later koelt, een batterij, een fabriek met een gasketel als reserve. Volgens Netbeheer Nederland worden klanten met een aansluiting boven 500 kW gevraagd om aan te bieden; ze bepalen zelf hoeveel en tegen welke prijs.\n\nPas als er te weinig vrijwillig aanbod is, volgt verplichte deelname.',
-        'Verplichte deelname: in een congestiegebied kan de netbeheerder klanten met een aansluiting vanaf 1 MW verplichten om mee te doen; hij legt zelf de ondergrens vast. Bedrijven met 60 MW of meer gecontracteerd vermogen doen altijd mee, ook buiten congestiegebieden. Bedrijven in de vitale infrastructuur zijn vrijgesteld.\n\nOok verplicht bepaalt de klant zelf hoe zijn aanbod eruitziet. Producenten krijgen drie maanden voor een aanbod, afnemers zes.',
+        'Verplichte deelname: in een congestiegebied kan de netbeheerder klanten met een aansluiting vanaf 1 MW verplichten om mee te doen; hij legt zelf de ondergrens vast. Bedrijven met 60 MW of meer gecontracteerd vermogen doen altijd mee, ook buiten congestiegebieden. Bedrijven in de vitale infrastructuur zijn vrijgesteld.\n\nOok verplicht bepaalt de klant zelf zijn prijs. In principe biedt hij al zijn gecontracteerd vermogen aan; een afnemer die dat niet kan, legt schriftelijk uit waarom. Producenten krijgen drie maanden voor een aanbod, afnemers zes.',
         'De uitkomst. Is congestiemanagement mogelijk, dan maakt het capaciteit vrij die de netbeheerder via de wachtrij uitgeeft, volgens de regels voor maatschappelijk prioriteren. Is het niet mogelijk, dan staat in het rapport waarom, en wanneer de verzwaring klaar is.\n\nZijn de prijzen van het aanbod onredelijk hoog, dan krijgen klanten een gereguleerde vergoeding: een vaste, wettelijk bepaalde prijs in plaats van hun eigen bod.',
         'Waar experts over discussiëren: hoe betrouwbaar is aangeboden flexibiliteit? Een bedrijf dat op papier 2 MW kan minderen, doet dat misschien niet op een koude dinsdag in januari met een volle orderportefeuille.\n\nEen goed onderzoek kijkt daarom niet alleen naar het totaal aangeboden, maar naar wat er op het piekmoment zeker is. Vraag het team: “Hoeveel van het aangeboden vermogen hebben we vorige winter echt zien leveren?”',
       ],
@@ -1019,14 +1019,14 @@ export default {
       ],
       teach: [
         'De prognose (forecast) is het begin van alles: de verwachte belasting per station per kwartier voor morgen, uit gemeten kwartierwaarden, het weer, de dag van de week en wat klanten hebben opgegeven.\n\nTe laag, en het station raakt overbelast; te hoog, en je betaalt voor flexibiliteit die niet nodig was. Een goede desk meet elke dag hoe ver de prognose ernaast zat, per station, en leert ervan.',
-        'Dan de inzet. Via GOPACS zet het team een vraag uit voor een periode, een gebied en een richting. Voor klanten met een capaciteitsbeperkingscontract volgt een afroep (call-off): het verzoek om voor een bepaalde periode onder de afgesproken grens te blijven, vóór een afgesproken tijdstip.\n\nIntraday kan de desk bijsturen als de prognose verschuift. Tijdens de piek kijkt het bedrijfsvoeringscentrum mee naar de echte belasting.',
+        'Dan de inzet. Via GOPACS zet het team een vraag uit voor een periode, een gebied en een richting. Voor klanten met een capaciteitscontract (CBC of CSC) volgt een afroep (call-off): het verzoek om voor een bepaalde periode onder de afgesproken grens te blijven, vóór een afgesproken tijdstip.\n\nIntraday kan de desk bijsturen als de prognose verschuift. Tijdens de piek kijkt het bedrijfsvoeringscentrum mee naar de echte belasting.',
         'Achteraf de controle. De baseline is wat de klant zonder afroep zou hebben afgenomen of ingevoed. Geleverd is baseline min meting; de leveringsgraad (delivery rate) is geleverd gedeeld door besteld.\n\nEen baseline is een schatting, en daar zit de discussie. Een klant die op de dagen vóór een afroep extra afneemt, krijgt een hogere baseline en lijkt meer te leveren dan hij deed. Netbeheerders gebruiken daarom vaste regels en kijken naar patronen.',
         'Inc-dec is het risico dat een partij zijn plan zo inricht dat hij betaald wordt om een knelpunt op te lossen dat hij zelf veroorzaakt: eerst veel invoeding opgeven in een vol gebied, dan geld krijgen om die weer terug te nemen. Experts en toezichthouders letten erop; voorkomen doe je met regels voor biedingen en met toezicht op opvallende patronen.\n\nEen ander risico is te weten komen dat je flexibiliteit er niet is op de dag zelf.',
         'Congestiemanagement en het werk in het veld raken elkaar. Een geplande onderbreking voor een verzwaring kan een station tijdelijk minder sterk maken, en dan is er juist meer flexibiliteit nodig. Een goede desk zit dus in het weekoverleg met de planning.\n\nKPI’s die ertoe doen: hoe ver de prognose ernaast zat, de leveringsgraad, de kosten per vermeden overbelasting, en hoe vaak het station toch boven de grens kwam. Vraag: “Hoe vaak kwam het station vorige maand boven de grens, ondanks inzet?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Gisteren riep de desk van Stedin een klant met een capaciteitsbeperkingscontract af: 4 MW minder van 17:00 tot 19:00. De baseline van de klant voor die uren was 10 MW. Gemeten: gemiddeld 7 MW.\n\nIntussen bleek de prognose voor het station 1,5 MW te laag, en de transformator kwam even op 102% van zijn grens.',
+        text: 'Gisteren riep de desk van Stedin een klant met een capaciteitssturingscontract af: 4 MW minder van 17:00 tot 19:00. De baseline van de klant voor die uren was 10 MW. Gemeten: gemiddeld 7 MW.\n\nIntussen bleek de prognose voor het station 1,5 MW te laag, en de transformator kwam even op 102% van zijn grens.',
         ask: 'Wat zou jij nu doen?',
         reveal: 'Geleverd: 10 − 7 = 3 MW van de 4 besteld, een leveringsgraad van 75%. Met de prognose 1,5 MW te laag zat de desk 1 + 1,5 = 2,5 MW tekort in de piek: vandaar de 102%.\n\nTwee sporen. Met de klant: waarom 1 MW minder, en klopt de baseline? Is dit vaker zo, reken dan met een veiligheidsmarge op zijn levering. Voor de prognose: welke nieuwe klanten of welk weer zaten er niet in? Leg beide vast, en kijk over een maand of de leveringsgraad en de prognosefout verbeteren.',
       },
@@ -1048,7 +1048,7 @@ export default {
         },
         {
           q: 'Wat is inc-dec?',
-          options: ['Een partij wordt betaald om een knelpunt op te lossen dat hij zelf veroorzaakt', 'Een methode om de prognose voor de volgende dag per station nauwkeuriger te maken', 'De stap van intraday- naar day-aheadhandel', 'Een soort capaciteitsbeperkingscontract'],
+          options: ['Een partij wordt betaald om een knelpunt op te lossen dat hij zelf veroorzaakt', 'Een methode om de prognose nauwkeuriger te maken', 'De stap van intraday- naar day-aheadhandel', 'Een soort capaciteitsbeperkingscontract'],
           answer: 'Een partij wordt betaald om een knelpunt op te lossen dat hij zelf veroorzaakt',
           why: 'Eerst veel opgeven in een vol gebied, dan geld krijgen om het terug te nemen; regels en toezicht moeten dat voorkomen.',
         },
@@ -1092,7 +1092,7 @@ export default {
       teach: [
         'Congestiemanagement is een brug, geen eindpunt. De overbruggingsperiode is de tijd tot de verzwaring klaar is; zolang zorgt flexibiliteit ervoor dat klanten niet hoeven te wachten.\n\nDe winst is vrijgespeelde capaciteit: het vermogen dat de netbeheerder dankzij congestiemanagement aan klanten op de wachtrij kan geven. Een fabriek die drie jaar eerder kan elektrificeren, een woonwijk die eerder wordt aangesloten. Dat is wat je afzet tegen de kosten.',
         'Hoe betrouwbaar is de brug? Flexibiliteit werkt het best bij korte pieken: een paar uur op een zomermiddag met veel zon. Lange winterpieken, uren per avond en dagen achter elkaar, zijn moeilijker: een batterij is na twee uur leeg, en een koelhuis kan niet de hele week later koelen.\n\nDaarom zijn netbeheerders voorzichtig met wat ze uitgeven. Vaak krijgen nieuwe klanten non-firm capaciteit: capaciteit die de netbeheerder mag terugregelen, bijvoorbeeld als de reserve nodig is.',
-        'De contracten worden slimmer. Sinds december 2025 is er het capaciteitssturingscontract (CSC): de netbeheerder mag een klant niet alleen vragen minder te gebruiken, maar ook méér in de richting tegengesteld aan de congestie, bijvoorbeeld een batterij die juist laadt als er veel zon wordt ingevoed. Details en voorwaarden veranderen nog; check de actuele code.\n\nDe ACM zet druk: in 2026 maakte ze bindende afspraken met alle zeven netbeheerders om het net beter te benutten.',
+        'De contracten worden slimmer. In december 2025 nam de ACM het capaciteitssturingscontract (CSC) op in de code: de netbeheerder mag een klant niet alleen vragen minder te gebruiken, maar ook méér in de richting tegengesteld aan de congestie, bijvoorbeeld een batterij die juist laadt als er veel zon wordt ingevoed. Sinds mei 2026 heeft het het CBC grotendeels vervangen; de voorwaarden veranderen nog, dus check de actuele code.\n\nDe ACM zet druk: in juni 2026 maakte ze bindende afspraken met zeven netbeheerders, TenneT inbegrepen, om het net beter te benutten.',
         'Een grens die experts noemen: als je te veel capaciteit op flexibiliteit uitgeeft, stapel je risico. Valt op een koude avond een kabel uit en is de reserve al verkocht (N-1, zie Netplanning en de energietransitie), dan heb je geen buffer meer.\n\nDe afweging gaat dus over drie dingen tegelijk: de kosten per vrijgespeelde MW, de zekerheid van de flexibiliteit op het piekmoment, en hoeveel reserve het net overhoudt.',
         'KPI’s voor een congestieprogramma: vrijgespeelde MW naar de wachtrij, kosten per vrijgespeelde MW per jaar, leveringsgraad, en hoe vaak het station boven de grens kwam. Euro’s uitgegeven zonder MW vrijgespeeld is het verkeerde doel.\n\nEen fout die je ziet: congestiemanagement als excuus om een verzwaring uit te stellen, tot de flexibiliteit op een winteravond tekortschiet. Vraag: “Wanneer is de verzwaring klaar, en wat doen we als de flex het eerder niet meer haalt?”',
       ],
@@ -1114,7 +1114,7 @@ export default {
         },
         {
           q: 'Waarom is flexibiliteit minder zeker bij lange winterpieken?',
-          options: ['Batterijen raken leeg; processen kunnen geen uren schuiven', 'GOPACS is in de wintermaanden gesloten', 'Flexprijzen zijn van november tot maart gereguleerd', 'Er zijn ’s winters minder klanten op het net aangesloten dan in de zomer'],
+          options: ['Batterijen raken leeg; processen kunnen geen uren schuiven', 'GOPACS is in de wintermaanden gesloten', 'Flexprijzen zijn van november tot maart gereguleerd', 'Er zijn ’s winters minder klanten aangesloten'],
           answer: 'Batterijen raken leeg; processen kunnen geen uren schuiven',
           why: 'Een batterij levert een paar uur; een piek die elke avond vier uur duurt, vraagt meer dan de meeste flex kan.',
         },
@@ -1146,7 +1146,7 @@ export default {
         { term: 'Overbruggingsperiode', def: 'De tijd tot een verzwaring klaar is, waarin congestiemanagement de klanten helpt.' },
         { term: 'Vrijgespeelde capaciteit', def: 'Het vermogen dat de netbeheerder dankzij congestiemanagement aan klanten op de wachtrij kan geven.' },
         { term: 'Non-firm', def: 'Capaciteit die de netbeheerder mag terugregelen, bijvoorbeeld als de reserve nodig is.' },
-        { term: 'Capaciteitssturingscontract', def: 'CSC: een contract waarmee de netbeheerder een klant kan vragen minder te gebruiken, of juist meer in de richting tegengesteld aan de congestie.' },
+        { term: 'Capaciteitssturingscontract', def: 'CSC: een contract waarin een klant zijn gebruik op afroep of in vaste blokken beperkt of verhoogt tegen een vergoeding; sinds mei 2026 het hoofdcontract voor congestiemanagement.' },
       ],
     },
   ],

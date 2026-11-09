@@ -16,6 +16,7 @@
 >   4. **Human voice:** pre-recorded narration with Piper TTS (free, local, neural; Dutch and English voices), not the browser voice.
 >   5. **Real video files:** MP4 (H.264 + AAC, 720p), one per film per language, plus WebVTT captions. They are rendered from the film scenes with Playwright (a deterministic clock, frame capture) and ffmpeg, timed to the narration audio. Hosted in Supabase Storage (public bucket `films`), played with `<video>`, and cached after the first full view for offline use.
 >   - The HTML films built so far are the visual source for the videos; their scenes get a narration script and longer explanation.
+> - **Voice choice (Merijn, 2026-11-09):** variant E: per-sentence synthesis with a small lexicon, Dutch voice **nl_NL-alex**, slightly slower than the A/B sample (about 8 %, "not much"). Stress and sentence melody judged best of all variants.
 > - **VOICE REGRESSION — FIRST PRIORITY before any new film (Merijn, 2026-11-08 evening):** after the kit changes (per-phrase clips, lexicon phonemes, pauses in timeline.mjs) the voice is "really unusable": pauses at odd moments and very strange word stress; he can hardly follow it. Rework before rendering or uploading anything else.
 >   - **Likely causes, to test one at a time:**
 >     1. one Piper clip per *phrase* (narrate.mjs) instead of per sentence: Piper loses the sentence melody, and the silences laid in between phrases land mid-sentence;

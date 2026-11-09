@@ -519,3 +519,15 @@ test('cacheFilm: the whole file into the films cache once; false when it cannot'
   assert.equal(await cacheFilm('https://x/films/e/nl.mp4?v=2', { cachesApi: api2, fetchFn: ok }), true);
   assert.deepEqual([...keyed.keys()].sort(), ['https://x/films/e/en.mp4?v=1', 'https://x/films/e/nl.mp4?v=2']);
 });
+
+test('films never reuse the player\'s own class names (a render hides .fp-bar and friends)', () => {
+  const reserved = ['fp-bar', 'fp-note', 'fp-poster', 'fp-end', 'fp-sheet'];
+  for (const dir of fs.readdirSync('films').filter((d) => d.startsWith('eng.') || d.startsWith('pm.'))) {
+    for (const f of ['stage.js', 'build.mjs']) {
+      const p = `films/${dir}/${f}`;
+      if (!fs.existsSync(p)) continue;
+      const src = fs.readFileSync(p, 'utf8');
+      for (const cls of reserved) assert.ok(!new RegExp(`\\b${cls}\\b`).test(src), `${p} uses the player class ${cls}`);
+    }
+  }
+});

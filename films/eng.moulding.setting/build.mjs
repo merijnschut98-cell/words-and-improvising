@@ -611,9 +611,9 @@ const css = `
 .fp-hud-bg{fill:var(--anatomy-card);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
 .fp-good{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1.2;vector-effect:non-scaling-stroke}
 [data-cue][data-on] .fp-good{fill:var(--anatomy-lit-shade);stroke:var(--fp-accent)}
-.fp-bar{fill:var(--anatomy-mid)}
+.fp-meter{fill:var(--anatomy-mid)}
 .fp-bar2{fill:var(--anatomy-lo)}
-[data-cue][data-on] .fp-bar{fill:var(--fp-accent)}
+[data-cue][data-on] .fp-meter{fill:var(--fp-accent)}
 [data-cue][data-on] .fp-screw,[data-cue][data-on] .fp-steel,[data-cue][data-on] .fp-band{stroke:var(--fp-accent);stroke-width:1.4}
 [data-cue][data-on] .fp-band{fill:var(--anatomy-lit-shade)}
 [data-cue][data-on] .fp-water{fill:var(--anatomy-lit-shade)}

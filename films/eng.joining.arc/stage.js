@@ -172,7 +172,7 @@ const STAGE = (() => {
     const { gap, face, top } = C.GROOVE;
     const far = [[-40, 0], [-gap, 0], [-gap, face], [-top, PT], [-40, PT]];
     const near = [[gap, 0], [40, 0], [40, PT], [top, PT], [gap, face]];
-    const table = `<path class="fp-bar" d="${M2([[-40, 0], [40, 0], [40, -6], [-40, -6]])}"/>`;
+    const table = `<path class="fp-meter" d="${M2([[-40, 0], [40, 0], [40, -6], [-40, -6]])}"/>`;
     set(E.macroBody, table + `<path class="fp-steel" d="${M2(far)}"/><path class="fp-steel" d="${M2(near)}"/><path class="fp-hazf" d="${M2(SECT.haz)}"/><path class="fp-weld" d="${M2(SECT.weld)}"/><path class="fp-ripple" d="${SECT.passes.map((q) => M2(q, false)).join('')}"/>`);
     const lines = [];
     for (let i = 0; i < 60; i++) {
@@ -333,9 +333,9 @@ const STAGE = (() => {
     // thickness: 0–30 mm
     const t = C.WPS;
     const y1 = 118;
-    const rangeA = `<rect class="fp-bar" x="${BAR.x0}" y="${y1 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${f1(barX(t.tMin, 0, 30))}" y="${y1 - 8}" width="${f1(barX(t.tMax, 0, 30) - barX(t.tMin, 0, 30))}" height="16" rx="8"/>`;
+    const rangeA = `<rect class="fp-meter" x="${BAR.x0}" y="${y1 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${f1(barX(t.tMin, 0, 30))}" y="${y1 - 8}" width="${f1(barX(t.tMax, 0, 30) - barX(t.tMin, 0, 30))}" height="16" rx="8"/>`;
     const y2 = 224;
-    const rangeB = `<rect class="fp-bar" x="${BAR.x0}" y="${y2 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${BAR.x0}" y="${y2 - 8}" width="${f1(barX(t.qMax, 0.6, 1.8) - BAR.x0)}" height="16" rx="8"/>`;
+    const rangeB = `<rect class="fp-meter" x="${BAR.x0}" y="${y2 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${BAR.x0}" y="${y2 - 8}" width="${f1(barX(t.qMax, 0.6, 1.8) - BAR.x0)}" height="16" rx="8"/>`;
     const rIn = span(u, 0.2, 0.28);
     const oIn = span(u, 0.42, 0.48);
     const hIn = span(u, 0.58, 0.66);
@@ -352,7 +352,7 @@ const STAGE = (() => {
     set(E.docCert, `<g style="opacity:${cIn.toFixed(2)}">${card(24, 278, 286, 104)}${seal}${hudText(104, 318, 'ISO 9606-1', 22, 'start')}${rules(106, 344, 180, 2, 18)}</g>`);
     const pIn = span(u, 0.8, 0.86);
     const person = `<circle class="fp-card" cx="372" cy="306" r="13"/><path class="fp-card" d="M348 378C348 346 356 328 372 328C388 328 396 346 396 378Z"/>`;
-    const board = `<rect class="fp-card" x="410" y="300" width="56" height="72" rx="4"/><rect class="fp-bar" x="426" y="294" width="24" height="10" rx="3"/>${check(426, 326, 0.6)}${check(426, 352, 0.6)}<path class="fp-rule" d="M440 326L456 326M440 352L456 352"/>`;
+    const board = `<rect class="fp-card" x="410" y="300" width="56" height="72" rx="4"/><rect class="fp-meter" x="426" y="294" width="24" height="10" rx="3"/>${check(426, 326, 0.6)}${check(426, 352, 0.6)}<path class="fp-rule" d="M440 326L456 326M440 352L456 352"/>`;
     set(E.docCoord, `<g style="opacity:${pIn.toFixed(2)}">${card(330, 278, 286, 104)}${person}${board}${rules(486, 316, 110, 3, 20)}</g>`);
   }
 

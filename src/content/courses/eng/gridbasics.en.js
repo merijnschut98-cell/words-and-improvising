@@ -424,7 +424,7 @@ export default {
       sayIt: 'Explain to a family member in 60 seconds how electricity gets from a substation to their socket.',
       terms: [
         { term: 'Substation', def: 'Station where TenneT’s 150 or 110 kV is stepped down to medium voltage (10 to 20 kV).' },
-        { term: 'Normally open point', def: 'The point where an MV ring is kept open; closed to restore supply after a fault.' },
+        { term: 'Normally open point', def: 'The switch in an MV ring that is kept open; you close it to feed a section from the other side.' },
         { term: 'Distribution substation', def: 'The small station in the street that steps MV down to 400/230 V for the street cables.' },
         { term: 'MV room', def: 'A room with MV equipment, often in a building or at a large customer.' },
         { term: 'Main fuse', def: 'The fuse at the end of the house connection that limits it, for example to 3 × 25 A.' },
@@ -642,7 +642,7 @@ export default {
         { term: 'Outage minutes', def: 'Average minutes without power per customer per year; officially the annual outage duration.' },
         { term: 'Regulated monopoly', def: 'A company with its own area and no competition, whose income and rules are set by a regulator.' },
         { term: 'ACM', def: 'The Dutch Authority for Consumers and Markets: the regulator that sets grid operators’ income and rules.' },
-        { term: 'Investment plan', def: 'Plan a grid operator publishes every two years for grid expansion.' },
+        { term: 'Investment plan', def: 'The public plan in which a grid operator sets out its bottlenecks and planned expansions every two years; the ACM reviews it.' },
       ],
     },
     {
@@ -925,8 +925,8 @@ export default {
         { term: 'Grid congestion', def: 'At peak moments, demand for transport is higher than the grid can safely carry.' },
         { term: 'Large consumer', def: 'A customer with a connection above 3 × 80 A; in congested areas these wait for capacity.' },
         { term: 'Capacity map', def: 'Public map of the grid operators showing where the grid has room for consumption and feed-in.' },
-        { term: 'Congestion management', def: 'Paying or contracting customers to shift use or feed-in away from peak moments.' },
-        { term: 'GOPACS', def: 'The joint platform of the Dutch grid operators for buying flexibility against congestion.' },
+        { term: 'Congestion management', def: 'Steering offtake or feed-in at peak moments with contracts or paid flexibility, so more customers fit on a full grid.' },
+        { term: 'GOPACS', def: 'The joint platform of the Dutch grid operators for buying flexibility against congestion, mainly as redispatch.' },
         { term: 'Flexible contract', def: 'A connection contract with capacity except at peak hours or for a set share of the year, in return for a lower tariff.' },
       ],
     },
@@ -1015,7 +1015,7 @@ export default {
         'A customer on the queue does not have to sit still. Start with its own profile: which quarter-hour values, which machines, which peaks. Often the peak turns out to come from a few mornings when everything starts at once.\n\nPeak shaving behind the meter, with control that briefly turns chargers or cooling down, lowers that peak without changing anything on the grid. That helps twice: a lower kWmax on the bill, and room within the existing CTC.',
         'A battery of its own can absorb peaks: charging when it is quiet, discharging at the peak. With its own generation, such as solar panels on the roof, it also uses more itself. But a battery is expensive, and if it also trades on the market, it must not charge at the busiest moment (see Grid planning and the transition).\n\nA hybrid installation, such as an electric boiler with the gas boiler as back-up, uses electricity when there is room and falls back on gas otherwise.',
         'More is possible together with the neighbours. In an energy hub, companies on one site pool their demand, generation and storage, so one company’s peak falls in another’s trough.\n\nIn late 2025 the ACM set the group transport agreement: companies sign one transport contract with the operator together and share the capacity among themselves. Operators signed the first ones in 2025, and from 1 January 2027 they must offer it. The group then needs less than the sum of the separate applications.',
-        'In cable pooling, a solar park and a wind farm share one connection: the sun delivers mostly at midday and in summer, wind more often in winter and at night. That fits more generation on the same cable.\n\nFlexible contracts with the operator itself, such as a time-dependent contract or a capacity-limiting contract, are covered in Grid planning and the transition. For every option: the customer must really keep it up, also in a cold week.',
+        'In cable pooling, a solar park and a wind farm share one connection: the sun delivers mostly at midday and in summer, wind more often in winter and at night. That fits more generation on the same cable.\n\nFlexible contracts with the operator itself, such as a time-dependent contract or a capacity steering contract (CSC), are covered in Grid planning and the transition. For every option: the customer must really keep it up, also in a cold week.',
         'In practice these options get stuck more often on organisation than on technology: who is liable if one company leaves the hub, who meters, who controls. Experts argue whether customers are solving the operator’s problem this way, or the operator theirs. For a grid operator, customers who shift on their own are worth gold.\n\nA sharp question for every waiting customer: “If tomorrow you could get 70% of your request, outside peak hours, what would you do?”',
       ],
       example: {

@@ -279,7 +279,7 @@ const STAGE = (() => {
     const xs = lerp(x0, x1, C.FULL);
     const xf = lerp(x0, x1, f);
     return panel(402, 246, 630, 322) + `<rect class="fp-faintline" fill="none" x="${x0}" y="270" width="${x1 - x0}" height="18" rx="3"/>`
-      + `<rect class="fp-bar" x="${x0}" y="270" width="${f1(Math.max(0, Math.min(xf, xs) - x0))}" height="18" rx="3"/>`
+      + `<rect class="fp-meter" x="${x0}" y="270" width="${f1(Math.max(0, Math.min(xf, xs) - x0))}" height="18" rx="3"/>`
       + (f > C.FULL ? `<rect class="fp-bar2" x="${f1(xs)}" y="270" width="${f1(xf - xs)}" height="18"/>` : '')
       + mark(M([[xs, 264], [xs, 294]])) + hudText(x0, 263, 'v', 18, 'start', 'fp-label') + hudText(x1, 263, 'p', 18, 'end', 'fp-label')
       + hudText(xs, 314, `${Math.round(C.FULL * 100)}%`, 17, 'middle');
@@ -309,7 +309,7 @@ const STAGE = (() => {
     let out = panel(402, 10, 630, 252) + mark(M([[422, 214], [622, 214]]));
     C.DROP.forEach((p, i) => {
       const h = (214 - BY(p)) * clamp(grow * 5 - i, 0, 1);
-      out += `<rect class="fp-bar" x="${430 + i * 34}" y="${f1(214 - h)}" width="24" height="${f1(h)}" rx="2"/>` + hudText(442 + i * 34, 238, String(i + 1), 18);
+      out += `<rect class="fp-meter" x="${430 + i * 34}" y="${f1(214 - h)}" width="24" height="${f1(h)}" rx="2"/>` + hudText(442 + i * 34, 238, String(i + 1), 18);
     });
     const tot = C.DROP.reduce((a, b) => a + b, 0);
     const th = (214 - BY(tot)) * clamp(grow * 5 - 4, 0, 1);
