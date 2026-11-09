@@ -214,7 +214,7 @@ const STAGE = (() => {
   const voidBody = (a) => (a > 0.02 ? `<ellipse class="fp-bore" cx="${CX + CWD / 2}" cy="244" rx="${f1(7 * a)}" ry="${f1(14 * a)}"/>${T(CX + CWD - 16, 318, tx('vacuümbel', 'void'), 20, 'end', 'fp-big')}${mark(M([[CX + CWD - 60, 300], [CX + CWD / 2 + 8, 254]]), 'fp-dash')}` : '');
 
   function askBody(p) {
-    const rows = [tx('welke holte?', 'which cavity?'), tx('waar op het product?', 'where on the part?'), tx('elk shot of af en toe?', 'every shot or sometimes?'), tx('sinds wanneer?', 'since when?')];
+    const rows = [tx('welke holte?', 'which cavity?'), tx('waar op het product?', 'where on the part?'), tx('elk shot of af en toe?', 'all shots or some?'), tx('sinds wanneer?', 'since when?')];
     let s = card(CX, 14, CWD, 300);
     rows.forEach((r, i) => {
       const y = 70 + i * 66;
@@ -342,12 +342,12 @@ const STAGE = (() => {
     const y = 124;
     s += R(x, y, 120, 184, 'fp-shape', 6) + R(x + 8, y + 8, 104, 168, 'fp-shape2', 3);
     s += [0, 1, 2].map((i) => mark(M([[x + 12, y + 56 + i * 46], [x + 108, y + 56 + i * 46]])) + R(x + 22, y + 44 + i * 46, 76, 10, 'fp-shape', 2)).join('');
-    s += R(x + 132, y + 10, 64, 36, 'fp-shape2', 4);
-    s += T(x + 164, y + 34, `${C.COND.T}°`, 20, 'middle', 'fp-big') + T(x + 164, y + 74, `${C.COND.rh}%`, 20, 'middle', 'fp-big');
-    // the clock: 24 hours
+    s += R(x + 126, y + 10, 76, 36, 'fp-shape2', 4);
+    s += T(x + 164, y + 34, `${C.COND.T} °C`, 19, 'middle', 'fp-big') + T(x + 164, y + 74, `${C.COND.rh}%`, 20, 'middle', 'fp-big');
+    // the clock: a fixed time (the lesson gives no number; ISO 291 sets the climate, not this time)
     const a = -Math.PI / 2 + span(p, 0.1, 0.9) * Math.PI * 2;
     s += `<circle class="fp-shape2" cx="${x + 164}" cy="${y + 124}" r="24"/>` + mark(M([[x + 164, y + 124], [x + 164 + 18 * Math.cos(a), y + 124 + 18 * Math.sin(a)]]), 'fp-arrow');
-    s += T(x + 164, y + 174, `${C.COND.h} h`, 20, 'middle', 'fp-big');
+    s += T(x + 164, y + 166, tx('vaste', 'fixed'), 19, 'middle', 'fp-big') + T(x + 164, y + 188, tx('tijd', 'time'), 19, 'middle', 'fp-big');
     s += T(CX + CWD / 2, 362, tx('daarna meten', 'then measure'), 19, 'middle', 'fp-small');
     return s;
   }
@@ -358,15 +358,22 @@ const STAGE = (() => {
     const a = -Math.PI / 2 + (h / 12) * Math.PI * 2;
     return card(cx - 60, 14, 120, 120) + `<circle class="fp-shape2" cx="${cx}" cy="${cy - 6}" r="30"/>` + mark(M([[cx, cy - 6], [cx + 22 * Math.cos(a), cy - 6 + 22 * Math.sin(a)]]), 'fp-arrow') + T(cx, cy + 50, `${h} h`, 20, 'middle', 'fp-big');
   }
-  function paretoBody(p) {
-    let s = card(CX, 14, CWD, 330) + T(CX + CWD / 2, 44, tx('afkeur per fout', 'scrap by defect'), 20, 'middle', 'fp-small') + T(CX + CWD / 2, 334, tx('voorbeeld', 'example'), 19, 'middle', 'fp-small');
-    const rows = [[tx('short shot', 'short shot'), 1], [tx('braam', 'flash'), 0.62], [tx('inzakplek', 'sink mark'), 0.34], [tx('kromtrekken', 'warpage'), 0.18], [tx('bindnaad', 'weld line'), 0.1]];
-    const g = span(p, 0.05, 0.7);
-    rows.forEach(([name, v], i) => {
-      const y = 62 + i * 50;
-      s += T(CX + 122, y + 24, name, 19, 'end');
-      s += R(CX + 132, y + 6, 104 * v * g, 26, i === 0 ? 'fp-meter' : 'fp-meter2', 3);
+  // solved for good: the three parts of the lesson, ticked off one by one (no data implied)
+  function solvedBody(p) {
+    let s = card(CX, 14, CWD, 330) + T(CX + CWD / 2, 44, tx('blijvend opgelost', 'solved for good'), 20, 'middle', 'fp-big');
+    const rows = [
+      [tx('oorzaak bewezen', 'cause proven'), tx('met data', 'with data')],
+      [tx('procesvenster', 'process window'), tx('bekend', 'known')],
+      [tx('bewaking', 'monitoring'), tx('vóór de klant', 'before the customer')],
+    ];
+    rows.forEach(([a, b], i) => {
+      const y = 92 + i * 84;
+      const on = p >= 0.08 + i * 0.22;
+      s += `<circle class="${on ? 'fp-shape2' : 'fp-shape'}" cx="${CX + 26}" cy="${y + 6}" r="14"/>` + T(CX + 26, y + 13, String(i + 1), 19, 'middle', 'fp-big');
+      s += T(CX + 50, y + 4, a, 19, 'start', on ? 'fp-big' : 'fp-label') + T(CX + 50, y + 30, b, 19, 'start', 'fp-small');
     });
+    // counting (Pareto) and root-cause steps are taught in eng.quality and eng.improve
+    s += mark(M([[CX + 14, 306], [CX + CWD - 14, 306]]), 'fp-dash') + T(CX + CWD / 2, 334, tx('pareto: module Kwaliteit', 'Pareto: Quality basics'), 19, 'middle', 'fp-small');
     return s;
   }
   // the 2 × 2 DOE: [time short/long][pressure low/high]
@@ -429,7 +436,7 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ what each scene shows
-  const HUD = ['sinkC', 'askC', 'cav4C', 'studyC', 'logC', 'sampleC', 'shrinkC', 'cornerC', 'condC', 'paretoC', 'doeC', 'curveC', 'clockC'];
+  const HUD = ['sinkC', 'askC', 'cav4C', 'studyC', 'logC', 'sampleC', 'shrinkC', 'cornerC', 'condC', 'solvedC', 'doeC', 'curveC', 'clockC'];
   const hudOnly = (list) => { for (const key of HUD) show(E[key], list.includes(key)); };
   const FILM = JSON.parse(document.getElementById('film-data').textContent);
   const designed = (si) => { const s = FILM.scenes[si]; return beatStarts(s, 'nl').map((t) => t / s.dur); };
@@ -501,7 +508,7 @@ const STAGE = (() => {
       if (kb === 3) hud = ['condC'];
     }
     if (si === 8) {
-      if (kb === 0) hud = ['paretoC'];
+      if (kb === 0) hud = ['solvedC'];
       if (kb === 1 || kb === 2) hud = ['doeC'];
       if (kb === 3) { hud = ['curveC']; F = clamp(p / 0.25, 0, 1); }
       if (kb === 4) hud = ['curveC'];
@@ -534,7 +541,7 @@ const STAGE = (() => {
     if (hud.includes('cornerC')) set(E.cornerBody, cornerBody(p));
     if (hud.includes('condC')) set(E.condBody, condBody(p));
     if (hud.includes('clockC')) set(E.clockBody, clockBody(p));
-    if (hud.includes('paretoC')) set(E.paretoBody, paretoBody(p));
+    if (hud.includes('solvedC')) set(E.solvedBody, solvedBody(p));
     if (hud.includes('doeC')) { set(E.doeBase, doeBase()); set(E.doeCells, doeCells(kb === 1 ? p : 1)); set(E.doeMain, kb === 2 ? doeMain() : ''); set(E.doeInter, kb === 2 && p > 0.45 ? doeInter() : ''); }
     if (hud.includes('curveC')) { set(E.curveBase, curveBase()); set(E.curveOne, kb === 3 ? curveOne(p) : ''); set(E.curveLim, kb === 4 ? curveLim(p) : ''); }
     hudOnly(hud);
