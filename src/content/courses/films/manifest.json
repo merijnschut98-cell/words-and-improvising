@@ -73,34 +73,34 @@
     "eng.moulding.setting": {
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {
-        "dur": 330.6,
-        "bytes": 12969860,
+        "dur": 264.5,
+        "bytes": 10774271,
         "scenes": [
           0,
-          55.44,
-          83.12,
-          118.4,
-          134.99,
-          167.52,
-          200.68,
-          219.46,
-          282.73
+          42.76,
+          65.91,
+          94.47,
+          109.4,
+          134.35,
+          159.29,
+          173.98,
+          226.12
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.nl.vtt"
       },
       "en": {
-        "dur": 302.7,
-        "bytes": 12245014,
+        "dur": 287.1,
+        "bytes": 11573991,
         "scenes": [
           0,
-          49.02,
-          73.57,
-          107.09,
-          124.29,
-          153.63,
-          182.39,
-          198.74,
-          257.79
+          47.44,
+          71.95,
+          103.87,
+          120.63,
+          147.85,
+          175.35,
+          190.96,
+          246.54
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.en.vtt"
       }
