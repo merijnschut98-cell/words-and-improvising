@@ -363,6 +363,7 @@ export default {
     },
     {
       id: 'eng.spc.charts',
+      film: 'eng.quality.spc',
       title: 'De juiste regelkaart kiezen',
       pre: [
         {
@@ -934,6 +935,7 @@ export default {
     },
     {
       id: 'eng.spc.tampering',
+      film: 'eng.quality.spc',
       title: 'Overbijsturen en reactieplannen',
       pre: [
         {

@@ -656,6 +656,7 @@ export default {
     },
     {
       id: 'eng.quality.spc',
+      film: 'eng.quality.spc',
       title: 'Regelkaarten (SPC)',
       pre: [
         {
