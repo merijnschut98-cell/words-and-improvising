@@ -110,7 +110,7 @@ const BOWL_Z = 50;
 const BIN = { x: 32, y: 10, w: 26, d: 18, r: 1 }; // loose parts for bin picking, in a box on a pallet (front right, behind the hazard line)
 const BIN_Z = 4;
 const CAM = [45, 19, 74]; // the 3D camera over the bin
-const SET = [30, 54]; // the setter inside the cell
+const SET = [-8, 52]; // the setter inside the cell
 const OPR = [-34, 106]; // the operator outside the curtain
 const SCAN = [0, -4];
 const LC = [-FX + 10, FX - 10];
@@ -454,7 +454,55 @@ const slim = (s) => s.replace(/ d="([^"]*)"/g, (m, d) => {
   }
   return ` d="${out.join('')}"`;
 });
-const svg = slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
+// Static paths (as in eng.machining.workholding and measuring) written with relative line-tos: the same points (to 0,1), about a
+// third fewer bytes. Only M, L and Z paths at one decimal are rewritten.
+function compactPath(d) {
+  const tok = d.match(/[MLZ]|-?\d*\.?\d+/g);
+  const n = (v) => { const a = Math.abs(v); const t = `${Math.floor(a / 10)}${a % 10 ? `.${a % 10}` : ''}`.replace(/^0\./, '.'); return (v < 0 ? '-' : '') + t; };
+  let out = '';
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  let last = '';
+  const put = (c, nums) => {
+    let s = c === last && c === 'l' ? '' : c;
+    for (const v of nums) { const t = n(v); s += (s && !/[MlZ]$/.test(s) && t[0] !== '-' ? ' ' : '') + t; }
+    if (!/^[MlZ]/.test(s) && out && !/[MlZ]$/.test(out) && s[0] !== '-') out += ' ';
+    out += s;
+    last = c;
+  };
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZ]/.test(tok[i])) { cmd = tok[i++]; if (cmd === 'Z') { put('Z', []); cur = start; } continue; }
+    const p = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    if (cmd === 'M') { put('M', p); cur = p; start = p; cmd = 'L'; } else { put('l', [p[0] - cur[0], p[1] - cur[1]]); cur = p; }
+  }
+  return out;
+}
+// read a path back to absolute points in tenths, to prove the rewrite exact
+function pointsOf(d) {
+  const tok = d.match(/[MLZlz]|-?\d*\.?\d+/g);
+  const out = [];
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZlz]/.test(tok[i])) { cmd = tok[i++]; if (/[Zz]/.test(cmd)) { out.push('Z'); cur = start; } continue; }
+    const v = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    cur = cmd === 'l' ? [cur[0] + v[0], cur[1] + v[1]] : v;
+    if (cmd === 'M') { start = cur; cmd = 'L'; out.push('M'); }
+    out.push(cur.join());
+  }
+  return out.join(' ');
+}
+const compact = (html) => html.replace(/ d="([MLZ\d.\s-]+)"/g, (m, d) => {
+  if (/\.\d\d/.test(d)) return m;
+  const c = compactPath(d);
+  if (pointsOf(c) !== pointsOf(d)) throw new Error(`compactPath changed a path: ${d.slice(0, 60)}`);
+  return ` d="${c}"`;
+});
+const svg = compact(slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`));
 
 // ---------------------------------------------------------------- cameras: [cx, cy, w] per beat
 const cam = (p, w, s = [W / 2, H / 2]) => { const [x, y] = at(p); const kk = w / W; return [Math.round((x + (W / 2 - s[0]) * kk) * 10) / 10, Math.round((y + (H / 2 - s[1]) * kk) * 10) / 10, w]; };
@@ -467,13 +515,13 @@ const GRIPV = cam([-58, -1, 92], 200);
 const PATHV = cam([2, -12, 96], 330);
 const CRASHV = cam([PLACE[0], PLACE[1], TABLE_Z + 14], 210);
 const LEFT = cam([0, 0, 60], 470, [200, 210]); // the cell on the left, a card on the right
-const SETV = cam([20, 16, 60], 390, [200, 210]);
+const SETV = cam([0, 12, 56], 330, [190, 215]);
 const WRISTV = cam([-58, -1, 96], 190, [190, 200]);
 const REACHV = cam([0, -10, 30], 560);
 const FLOORV = cam([0, 20, 20], 600);
 const MACHV = cam([30, -20, 70], 480, [200, 210]);
 const BOWLV = cam([-64, -48, 56], 300);
-const CURV = cam([-10, 60, 50], 470, [200, 220]);
+const CURV = cam([-14, 64, 52], 400, [190, 220]);
 const BINV = cam([40, 14, 50], 320);
 const C = { W, H, KS, PED, SH_Z, LINK, TOOL, BELT_Z, PART, PICK, PLACE, TABLE_Z, HAZ, CUR_Y, FX, LC, BOWL, BOWL_Z, BIN, BIN_Z, CAM, SCAN, OPR, HAND, LOAD, CELL, SAFE, COBOT };
 C.KEYS = [
@@ -514,7 +562,7 @@ const spec = {
       beats: [
         { nl: 'Zes draaiende gewrichten, elk een {t:As|as}: voet, schouder, elleboog en drie in de pols.', en: 'Six turning joints, each an {t:Axis|axis}: base, shoulder, elbow and three in the wrist.', cue: { As: 'axis' } },
         { nl: 'Op de pols een {t:Grijper|grijper}: vingers op perslucht die het product pakken.', en: 'On the wrist a {t:Gripper|gripper}: fingers on compressed air that grip the part.', cue: { Grijper: 'gripper' } },
-        { nl: 'Het {t:TCP} is de werkende punt van het gereedschap; het programma is een lijst TCP-posities.', en: 'The {t:Tool centre point|tool centre point} is the tool’s working tip; the program is a list of its positions.', cue: { TCP: 'tcp' } },
+        { nl: 'De {t:TCP} is de werkende punt van het gereedschap; het programma is een lijst TCP-posities.', en: 'The {t:Tool centre point|tool centre point} is the tool’s working tip; the program is a list of its positions.', cue: { TCP: 'tcp' } },
         { nl: 'Na een botsing kan het gereedschap verbogen zijn: dan zit elk punt ernaast.', en: 'After a crash the tool may be bent: then every point is off.', cues: ['tcp'] },
       ],
     },
@@ -560,7 +608,7 @@ const spec = {
         { nl: 'Een {t:Lichtscherm|lichtscherm}: reik door de stralen en de robot stopt.', en: 'A {t:Light curtain|light curtain}: reach through the beams and the robot stops.', cue: { Lichtscherm: 'curtain' } },
         { nl: 'Remmen kost tijd: de {t:Stoptijd|stoptijd}, van straal onderbroken tot robot stil.', en: 'Braking takes time: the {t:Stopping time|stopping time}, from beam broken to robot still.', cue: { Stoptijd: 'stop' } },
         { nl: 'Daarom een {t:Veiligheidsafstand|veiligheidsafstand}: S = K × T + C, met K = {n:2000} mm/s.', en: 'Hence a {t:Safety distance|safety distance}: S = K × T + C, with K = {n:2000} mm/s.', cue: { Veiligheidsafstand: 'dist' } },
-        { nl: 'Scherm van {n:30} mm, T = {n:0.15} s: S = {n:300} + {n:128} = {n:428} mm.', en: 'A {n:30} mm curtain, T = {n:0.15} s: S = {n:300} + {n:128} = {n:428} mm.', cues: ['dist'] },
+        { nl: 'Resolutie {n:30} mm, T = {n:0.15} s: S = {n:300} + {n:128} = {n:428} mm.', en: 'Resolution {n:30} mm, T = {n:0.15} s: S = {n:300} + {n:128} = {n:428} mm.', cues: ['dist'] },
       ],
     },
     {
@@ -575,7 +623,7 @@ const spec = {
       id: 's9', lesson: VI, level: 4, still: 0.5, title: { nl: 'Wanneer een cobot past', en: 'When a cobot fits' },
       beats: [
         { nl: '{t:Kracht- en vermogensbegrenzing|Kracht- en vermogensbegrenzing}: contact mag, maar onder grenzen per lichaamsdeel.', en: '{t:Power and force limiting|Power and force limiting}: contact is allowed, but below limits per body region.', cue: { 'Kracht- en vermogensbegrenzing': 'pfl' } },
-        { nl: 'Takt {n:14} s; op halve snelheid {n:12} + {n:4} = {n:16} s: te traag.', en: 'Takt {n:14} s. At half speed: {n:12} + {n:4} = {n:16} s, too slow.', cues: ['pfl'] },
+        { nl: 'Cobot, takt {n:14} s: op halve snelheid {n:12} + {n:4} = {n:16} s, te traag.', en: 'A cobot, takt {n:14} s: at half speed {n:12} + {n:4} = {n:16} s, too slow.', cues: ['pfl'] },
         { nl: '{t:Snelheids- en afstandsbewaking|Snelheids- en afstandsbewaking}: een scanner remt af als iemand nadert.', en: '{t:Speed and separation monitoring|Speed and separation monitoring}: a scanner slows it only when someone comes near.', cue: { 'Snelheids- en afstandsbewaking': 'ssm' }, cues: ['scanner'] },
         { nl: 'Zolang er niemand is: volle snelheid, {n:6} + {n:4} = {n:10} s.', en: 'While nobody is near: full speed, {n:6} + {n:4} = {n:10} s.', cues: ['ssm'] },
       ],
@@ -592,25 +640,25 @@ const spec = {
 // term As) nor "TCP" (the Dutch form of the term): it says "tool centre point".
 const SAY = [
   [ // s1 how a robot cell works
-    { nl: 'Dit is een robotcel: een industriële robot op een vaste voet, vastgeschroefd aan de vloer, met een hek eromheen.',
-      en: 'This is a robot cell: an industrial robot on a fixed base, bolted to the floor, with a fence around it.' },
+    { nl: 'Dit is een robotcel: een industriële robot, vastgeschroefd aan de vloer, met een hek eromheen.',
+      en: 'This is a robot cell: an industrial robot, bolted to the floor, with a fence around it.' },
     { nl: 'Links voert een band onderdelen aan tot tegen een aanslag, zodat elk onderdeel op een bekende plek ligt.',
       en: 'On the left a belt brings parts up to a stop, so each part lies in a known place.' },
     { nl: 'De robot zet ze op de laadtafel van de machine rechts.',
       en: 'The robot puts them on the loading table of the machine on the right.' },
     { nl: 'Buiten het hek staat de besturing, met de aandrijvingen. Elk gewricht heeft een servomotor die naar een exacte positie rijdt.',
       en: 'Outside the fence stands the controller, with the drives. Each joint has a servo motor that drives to an exact position.' },
-    { nl: 'Zo herhaalt hij dezelfde cyclus, duizenden keren per dag.',
-      en: 'So it repeats the same cycle, thousands of times a day.' },
+    { nl: 'Zo herhaalt hij dezelfde cyclus, dag in, dag uit.',
+      en: 'So it repeats the same cycle, day in, day out.' },
   ],
   [ // s2 six axes and the TCP
     { nl: 'Elk draaiend gewricht is een {t:As|as}. De voet draait de arm rond, schouder en elleboog tillen, en drie assen in de pols draaien en kantelen de hand.',
       en: 'Each turning joint is an {t:Axis|axis}. The base turns the arm round, shoulder and elbow lift, and three axes in the wrist turn and tilt the hand.' },
     { nl: 'Op de pols zit een {t:Grijper|grijper}: twee vingers die op perslucht om het product sluiten. Het gereedschap bepaalt de klus.',
       en: 'On the wrist sits a {t:Gripper|gripper}: two fingers that close round the part on compressed air. The tool decides the job.' },
-    { nl: 'Het programma is een lijst posities van één punt: het {t:TCP}, de werkende punt van het gereedschap, hier tussen de vingers.',
+    { nl: 'Het programma is een lijst posities van één punt: de {t:TCP}, de werkende punt van het gereedschap, hier tussen de vingers.',
       en: 'The program is a list of positions of one point: the {t:Tool centre point|tool centre point}, the working tip of the tool, here between the fingers.' },
-    { nl: 'Raakt het gereedschap verbogen bij een botsing, dan zit elke positie evenveel naast. Na een crash controleert de insteller het TCP.',
+    { nl: 'Raakt het gereedschap verbogen bij een botsing, dan zit elke positie evenveel naast. Na een crash controleert de insteller de TCP.',
       en: 'If the tool gets bent in a crash, every position is off by the same amount. After a crash, the setter checks the tool centre point.' },
   ],
   [ // s3 teaching with the pendant
@@ -620,8 +668,8 @@ const SAY = [
       en: 'On the back sits the {t:Enabling switch|enabling switch}, with three positions. The robot only moves in the middle one. Let go, or squeeze hard in a fright, and it stops.' },
     { nl: 'In handbediening beweegt het gereedschap hooguit {n:250} millimeter per seconde. Een punt {n:1.5} meter verderop kost dus minstens {n:6} seconden.',
       en: 'In manual mode the tool moves at most {n:250} millimetres a second. A point {n:1.5} metres away takes at least {n:6} seconds.' },
-    { nl: 'Met de cel leeg draait hij in automatisch op volle snelheid. Inleren kost uren; een cyclus daarna seconden.',
-      en: 'With the cell empty, it runs in automatic at full speed. Teaching takes hours; a cycle then takes seconds.' },
+    { nl: 'Met de cel leeg draait hij in automatisch op volle snelheid. Inleren kan uren kosten; een cyclus daarna seconden.',
+      en: 'With the cell empty, it runs in automatic at full speed. Teaching can take hours; a cycle then takes seconds.' },
   ],
   [ // s4 flange, gripper and payload
     { nl: 'Aan het eind van de pols zit de {t:Flens|flens}: een ronde montageplaat.',
@@ -634,7 +682,7 @@ const SAY = [
       en: 'On a {n:10} kilo robot that is {n:100} percent, and the weight sits {n:150} millimetres off the flange. The payload diagram then allows less.' },
   ],
   [ // s5 robot types and guarding
-    { nl: 'Deze knikarmrobot heeft zes assen, als een mensenarm, en reikt meestal {n:0.7} tot {n:3} meter.',
+    { nl: 'Deze knikarmrobot, met zes assen als een mensenarm, reikt meestal {n:0.7} tot {n:3} meter.',
       en: 'This articulated robot has six axes, like a human arm, and usually reaches {n:0.7} to {n:3} metres.' },
     { nl: 'Een {t:SCARA-robot|SCARA-robot} heeft vier assen en zwaait heel snel in een horizontaal vlak: kleine onderdelen oppakken en neerzetten, of schroeven.',
       en: 'A {t:SCARA robot|SCARA robot} has four axes and swings very fast in a horizontal plane: picking and placing small parts, or driving screws.' },
@@ -660,8 +708,8 @@ const SAY = [
       en: 'But not at once: the {t:Stopping time|stopping time} runs from beam broken to robot still. Measure it on the real robot, with the real gripper.' },
     { nl: 'Intussen beweegt de hand door. Daarom hangt het scherm op een {t:Veiligheidsafstand|veiligheidsafstand}: S is K maal T plus C, met K tweeduizend millimeter per seconde.',
       en: 'Meanwhile the hand moves on. So the curtain hangs at a {t:Safety distance|safety distance}: S equals K times T plus C, with K two thousand millimetres a second.' },
-    { nl: 'Een scherm van {n:30} millimeter geeft C is {n:128}. Bij {n:0.15} seconde wordt S {n:300} plus {n:128}: {n:428} millimeter. Boven de {n:500} reken je opnieuw.',
-      en: 'A {n:30} millimetre curtain gives C of {n:128}. At {n:0.15} seconds, S is {n:300} plus {n:128}: {n:428} millimetres. Above {n:500}, you recalculate.' },
+    { nl: 'Een scherm met een resolutie van {n:30} millimeter geeft een C van {n:128}. Bij {n:0.15} seconde wordt S {n:300} plus {n:128}: {n:428} millimeter. Kom je boven de {n:500} uit, dan reken je opnieuw met een lagere K.',
+      en: 'A curtain with a {n:30} millimetre resolution gives a C of {n:128}. At {n:0.15} seconds, S is {n:300} plus {n:128}: {n:428} millimetres. Above {n:500}, you recalculate with a lower K.' },
   ],
   [ // s8 vision and offline programming
     { nl: 'Met {t:Vision|vision} vindt een camera onderdelen die niet op een vaste plek liggen, en vertelt de robot waar hij moet pakken.',
@@ -674,11 +722,11 @@ const SAY = [
   [ // s9 when a cobot fits
     { nl: 'Een cobot zonder hek werkt vaak met {t:Kracht- en vermogensbegrenzing|kracht- en vermogensbegrenzing}: contact mag, onder grenzen per lichaamsdeel. Dat betekent meestal langzaam.',
       en: 'A cobot without a fence often works with {t:Power and force limiting|power and force limiting}: contact is allowed, below limits per body region. That usually means slow.' },
-    { nl: 'De takt is {n:14} seconden. De beweging duurt {n:6} seconden, de rest {n:4}. Op halve snelheid: {n:12} plus {n:4}, {n:16} seconden. Te traag.',
-      en: 'The takt is {n:14} seconds. The move takes {n:6} seconds, the rest {n:4}. At half speed: {n:12} plus {n:4}, {n:16} seconds. Too slow.' },
-    { nl: 'Met {t:Snelheids- en afstandsbewaking|snelheids- en afstandsbewaking} kijkt een scanner over de vloer. Komt iemand dichterbij, dan remt de robot af.',
-      en: 'With {t:Speed and separation monitoring|speed and separation monitoring}, a scanner watches the floor. When someone comes closer, the robot slows down.' },
-    { nl: 'Is er niemand, dan draait hij vol: {n:10} seconden, binnen de takt. Vraag dus hoe vaak er echt iemand de zone in loopt.',
+    { nl: 'Stel: takt {n:14} seconden, en de risicobeoordeling staat alleen halve snelheid toe. De beweging van {n:6} seconden wordt {n:12}, plus {n:4} voor de rest: {n:16} seconden. Te traag.',
+      en: 'Say the takt is {n:14} seconds, and the risk assessment allows only half speed. The {n:6} second move becomes {n:12}, plus {n:4} for the rest: {n:16} seconds. Too slow.' },
+    { nl: '{t:Snelheids- en afstandsbewaking|Snelheids- en afstandsbewaking} werkt ook bij een industriële robot zoals deze: komt iemand dichterbij, dan remt een scanner hem af.',
+      en: '{t:Speed and separation monitoring|Speed and separation monitoring} also works on an industrial robot like this one: when someone comes closer, a scanner slows it down.' },
+    { nl: 'Is er niemand, dan draait hij op volle snelheid: {n:10} seconden, binnen de takt. Vraag dus hoe vaak er echt iemand de zone in loopt.',
       en: 'With nobody near, it runs at full speed: {n:10} seconds, inside the takt. So ask how often someone really walks into the zone.' },
   ],
 ];

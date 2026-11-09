@@ -56,6 +56,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // no "slash" or "ampersand" in the go/no-go gauge and gauge R&R
   assert.equal(speakOf(['Gaat/gaat-niet: een vast kaliber. Een gauge R&R.'], 'nl'), 'Gaat, gaat niet: een vast kaliber. Een gauge R en R.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
+  // English robot words in Dutch said as on the floor; English keeps them
+  assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
+  assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');
 });
 
 // ------------------------------------------------------------ WAV files

@@ -238,15 +238,15 @@ const STAGE = (() => {
     // a robot on the screen: three strokes
     base += mark(M([[bx + 40, by + 78], [bx + 46, by + 50], [bx + 74, by + 36], [bx + 86, by + 52]]), 'rb-line');
     for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) base += Rr(bx + 14 + c * 26, by + 100 + r * 22, 20, 15, 'rb-shape', 3);
-    base += circ(bx + 104, by + 172, 12, 'rb-shape') + circ(bx + 104, by + 172, 6, 'rb-shape2');
-    base += T(bx + 46, by + 179, tx('noodstop', 'e-stop'), 18, 'middle', 'fp-small');
+    base += circ(bx + 108, by + 172, 12, 'rb-shape') + circ(bx + 108, by + 172, 6, 'rb-shape2');
+    base += T(bx + 50, by + 179, tx('noodstop', 'e-stop'), 20, 'middle', 'fp-small');
     // the cable at the bottom
     base += mark(`M${bx + 65} ${by + 196}q0 14 -22 20`, 'rb-thick') + circ(bx + 43, by + 216, 2.6, 'rb-on');
     set(E.pendBase, base);
     // the switch on the right edge, and its three positions
     const pos = kb === 1 ? (p < 0.34 ? 0 : p < 0.67 ? 1 : 2) : 1;
     let sw = Rr(bx + 130, by + 70, 14, 64, 'rb-shape', 4) + Rr(bx + 130 + (pos === 0 ? 0 : pos === 1 ? 5 : 10), by + 84, 6, 36, 'fp-meter', 2);
-    sw += T(bx + 150, by + 108, tx('vrijgave', 'enable'), 18, 'start', 'fp-small');
+    sw += T(CX + CWD - 10, by + 60, tx('vrijgave', 'enable'), 20, 'end', 'fp-small');
     if (kb <= 1) {
       const names = [tx('los', 'released'), tx('midden', 'middle'), tx('hard', 'squeezed')];
       const state = [tx('stop', 'stop'), tx('beweegt', 'moves'), tx('stop', 'stop')];
@@ -254,7 +254,7 @@ const STAGE = (() => {
       names.forEach((nm, i) => {
         const y = 262 + i * 40;
         const on = i === pos;
-        sw += Rr(CX + 12, y, CWD - 24, 34, on ? 'rb-shape2' : 'rb-plain', 6) + T(CX + 26, y + 24, nm, 19, 'start', on ? 'fp-big' : 'fp-small') + T(CX + CWD - 26, y + 24, state[i], 19, 'end', on ? 'fp-big fp-acc' : 'fp-small');
+        sw += Rr(CX + 12, y, CWD - 24, 34, on ? 'rb-shape2' : 'rb-plain', 6) + T(CX + 26, y + 24, nm, 20, 'start', on ? 'fp-big' : 'fp-small') + T(CX + CWD - 26, y + 24, state[i], 20, 'end', on ? 'fp-big fp-acc' : 'fp-small');
       });
     }
     set(E.pendSw, sw);
@@ -263,14 +263,14 @@ const STAGE = (() => {
       const g = clamp(p / 0.85, 0, 1);
       sp += T(MID, 278, `${num(HAND.v)} mm/s`, 24, 'middle', 'fp-big');
       sp += Rr(CX + 18, 294, CWD - 36, 16, 'rb-shape', 3) + Rr(CX + 18, 294, (CWD - 36) * g, 16, 'fp-meter', 3);
-      sp += T(CX + 18, 334, `${num(HAND.move * g)} mm`, 18, 'start', 'fp-small') + T(CX + CWD - 18, 334, `${num(HAND.t * g, 1)} s`, 18, 'end', 'fp-big');
-      sp += T(MID, 368, `${num(HAND.move)} / ${num(HAND.v)} = ${num(HAND.t)} s`, 19, 'middle', 'fp-small');
+      sp += T(CX + 18, 334, `${num(HAND.move * g)} mm`, 20, 'start', 'fp-small') + T(CX + CWD - 18, 334, `${num(HAND.t * g, 1)} s`, 20, 'end', 'fp-big');
+      sp += T(MID, 368, `${num(HAND.move)} / ${num(HAND.v)} = ${num(HAND.t)} s`, 20, 'middle', 'fp-small');
     }
     set(E.pendSpeed, sp);
   }
   // payload: the stack on the flange, then the payload diagram
   function loadCard(kb, p) {
-    set(E.loadBase, card(CX, 14, CWD, 372) + T(MID, 44, tx(`robot van ${LOAD.robot} kg`, `${LOAD.robot} kg robot`), 19, 'middle', 'fp-small'));
+    set(E.loadBase, card(CX, 14, CWD, 372) + T(MID, 44, tx(`robot van ${LOAD.robot} kg`, `${LOAD.robot} kg robot`), 20, 'middle', 'fp-small'));
     const x0 = CX + 24;
     const xs = (kg) => x0 + (kg / 12) * (CWD - 48);
     let s = '';
@@ -279,8 +279,7 @@ const STAGE = (() => {
     s += Rr(x0, y, (xs(LOAD.gripper) - x0) * Math.min(1, g * 2), 30, 'fp-meter2', 3);
     if (g > 0.5) s += Rr(xs(LOAD.gripper) + 2, y, (xs(LOAD.sum) - xs(LOAD.gripper) - 2) * Math.min(1, (g - 0.5) * 2), 30, 'fp-meter', 3);
     s += mark(M([[xs(LOAD.robot), y - 8], [xs(LOAD.robot), y + 38]]), 'rb-thick');
-    s += T((x0 + xs(LOAD.gripper)) / 2, y + 58, tx(`grijper ${LOAD.gripper}`, `gripper ${LOAD.gripper}`), 18, 'middle', 'fp-small');
-    s += T((xs(LOAD.gripper) + xs(LOAD.sum)) / 2, y + 58, tx(`product ${LOAD.part}`, `part ${LOAD.part}`), 18, 'middle', 'fp-small');
+    s += T(MID, y + 58, tx(`grijper ${LOAD.gripper} + product ${LOAD.part}`, `gripper ${LOAD.gripper} + part ${LOAD.part}`), 20, 'middle', 'fp-small');
     s += T(MID, y + 92, `= ${LOAD.sum} kg · ${LOAD.pct}%`, 22, 'middle', 'fp-big');
     if (kb >= 3) {
       // the diagram: allowed kg against the load's distance from the flange
@@ -292,10 +291,12 @@ const STAGE = (() => {
       const curve = [];
       for (let mm = 0; mm <= 300; mm += 10) curve.push([mx(mm), ky(allow(mm))]);
       s += mark(M(curve), 'rb-thick');
-      s += T(cx0 - 6, ky(10) + 6, '10', 18, 'end', 'fp-small') + T(cx0 - 6, cy0 + 4, '0', 18, 'end', 'fp-small');
-      s += T(mx(150), cy0 + 22, `${LOAD.off} mm`, 18, 'middle', 'fp-small');
+      s += T(cx0 - 6, ky(10) + 6, '10', 20, 'end', 'fp-small') + T(cx0 - 6, cy0 + 4, '0', 20, 'end', 'fp-small');
+      s += T(mx(150), cy0 + 22, `${LOAD.off} mm`, 20, 'middle', 'fp-small');
+      // the curve is an example shape, not a datasheet: say so on the card
+      s += T(cx1, cy1 - 12, tx('voorbeeld', 'example'), 20, 'end', 'fp-small') + T(cx0 - 6, cy1 - 12, 'kg', 20, 'end', 'fp-small');
       s += mark(M([[mx(150), cy0], [mx(150), ky(10)]]), 'rb-dash');
-      if (p > 0.3) s += circ(mx(150), ky(10), 6, 'rb-on') + T(mx(150) + 10, ky(10) - 8, tx('te zwaar', 'too heavy'), 18, 'start', 'fp-big fp-acc');
+      if (p > 0.3) s += circ(mx(150), ky(10), 6, 'rb-on') + T(mx(150) + 10, ky(10) - 8, tx('te zwaar', 'too heavy'), 20, 'start', 'fp-big fp-acc');
     }
     set(E.loadBody, s);
   }
@@ -303,7 +304,7 @@ const STAGE = (() => {
   function typeCard(kb, t) {
     let sc = '';
     if (kb >= 1) {
-      sc += card(CX, 14, CWD, 180) + T(MID, 40, tx('SCARA-robot · 4 assen', 'SCARA robot · 4 axes'), 18, 'middle', 'fp-big');
+      sc += card(CX, 14, CWD, 180) + T(MID, 40, tx('SCARA-robot · 4 assen', 'SCARA robot · 4 axes'), 20, 'middle', 'fp-big');
       const bx = CX + 50; const by = 172;
       const sw = Math.cos(t * 2.4);
       const z = 10 * (0.5 + 0.5 * Math.sin(t * 4.8));
@@ -314,12 +315,12 @@ const STAGE = (() => {
       sc += `<path class="rb-cap rb-o" stroke-width="14" d="${M([[bx + 76, by - 112], [x2, by - 112]])}"/><path class="rb-cap rb-f" stroke-width="12" d="${M([[bx + 76, by - 112], [x2, by - 112]])}"/>`;
       sc += circ(bx, by - 100, 5, 'rb-shape') + circ(bx + 76, by - 106, 6, 'rb-shape');
       sc += Rr(x2 - 3, by - 120 + z, 6, 52, 'rb-shape', 2) + circ(x2, by - 66 + z, 4, 'rb-on');
-      sc += T(CX + CWD - 14, by - 4, tx('snel, vlak', 'fast, flat'), 18, 'end', 'fp-small');
+      sc += T(CX + CWD - 14, by - 4, tx('snel, vlak', 'fast, flat'), 20, 'end', 'fp-small');
     }
     set(E.typeScara, sc);
     let cb = '';
     if (kb >= 2) {
-      cb += card(CX, 206, CWD, 180) + T(MID, 232, tx('cobot · naast mensen', 'cobot · next to people'), 18, 'middle', 'fp-big');
+      cb += card(CX, 206, CWD, 180) + T(MID, 232, tx('cobot · naast mensen', 'cobot · next to people'), 20, 'middle', 'fp-big');
       const bx = CX + 60; const by = 370;
       const a = 0.25 * Math.sin(t * 1.2);
       const j1 = [bx, by - 40];
@@ -331,7 +332,7 @@ const STAGE = (() => {
       // a person beside it
       const px = CX + CWD - 44;
       cb += circ(px, by - 100, 10, 'rb-shape2') + Rr(px - 12, by - 86, 24, 50, 'rb-shape2', 8) + Rr(px - 10, by - 36, 8, 36, 'rb-shape', 3) + Rr(px + 2, by - 36, 8, 36, 'rb-shape', 3);
-      cb += T(px - 26, by - 6, tx('3–20 kg', '3–20 kg'), 18, 'end', 'fp-small');
+      cb += T(px - 26, by - 6, tx('3–20 kg', '3–20 kg'), 20, 'end', 'fp-small');
     }
     set(E.typeCobot, cb);
   }
@@ -339,25 +340,25 @@ const STAGE = (() => {
   function cycCard(kb, p) {
     const x0 = CX + 18;
     const xs = (s) => x0 + (s / 64) * (CWD - 36);
-    let base = card(CX, 14, CWD, 372) + T(MID, 44, tx('per stuk (s)', 'per part (s)'), 19, 'middle', 'fp-small');
-    base += Rr(x0, 70, xs(CELL.machine) - x0, 24, 'fp-meter2', 3) + T((x0 + xs(CELL.machine)) / 2, 88, tx(`${CELL.machine} draaien`, `${CELL.machine} machining`), 18, 'middle', 'fp-big');
+    let base = card(CX, 14, CWD, 372) + T(MID, 44, tx('per stuk (s)', 'per part (s)'), 20, 'middle', 'fp-small');
+    base += Rr(x0, 70, xs(CELL.machine) - x0, 24, 'fp-meter2', 3) + T((x0 + xs(CELL.machine)) / 2, 88, tx(`${CELL.machine} draaien`, `${CELL.machine} machining`), 20, 'middle', 'fp-big');
     base += mark(M([[xs(CELL.machine), 62], [xs(CELL.machine), 330]]), 'rb-dash');
     set(E.cycBase, base);
     let one = '';
     if (kb >= 1) {
       const g = kb > 1 ? 1 : span(p, 0.1, 0.6);
-      one += T(x0, 136, tx('enkele grijper', 'single gripper'), 18, 'start', 'fp-small');
+      one += T(x0, 136, tx('enkele grijper', 'single gripper'), 20, 'start', 'fp-small');
       one += Rr(x0, 148, xs(CELL.machine) - x0, 24, 'fp-meter2', 3) + Rr(xs(CELL.machine) + 1, 148, (xs(CELL.one) - xs(CELL.machine) - 1) * g, 24, 'fp-meter', 3);
-      one += T(xs(CELL.machine) + 4, 192, tx(`+${CELL.single} stil`, `+${CELL.single} idle`), 18, 'start', 'fp-small');
-      one += T(MID, 222, `${CELL.one} s → ${CELL.perOne} ${tx('per uur', 'an hour')}`, 19, 'middle', 'fp-big');
+      one += T(xs(CELL.machine) + 4, 192, tx(`+${CELL.single} stil`, `+${CELL.single} idle`), 20, 'start', 'fp-small');
+      one += T(MID, 222, `${CELL.one} s → ${CELL.perOne} ${tx('per uur', 'an hour')}`, 20, 'middle', 'fp-big');
     }
     set(E.cycOne, one);
     let two = '';
     if (kb >= 2) {
       const g = kb > 2 ? 1 : span(p, 0.1, 0.6);
-      two += T(x0, 262, tx('dubbele grijper', 'double gripper'), 18, 'start', 'fp-small');
+      two += T(x0, 262, tx('dubbele grijper', 'double gripper'), 20, 'start', 'fp-small');
       two += Rr(x0, 274, xs(CELL.machine) - x0, 24, 'fp-meter2', 3) + Rr(xs(CELL.machine) + 1, 274, (xs(CELL.two) - xs(CELL.machine) - 1) * g, 24, 'fp-meter', 3);
-      two += T(xs(CELL.two) + 4, 292, `+${CELL.double}`, 18, 'start', 'fp-small');
+      two += T(xs(CELL.two) + 4, 292, `+${CELL.double}`, 20, 'start', 'fp-small');
       two += T(MID, 348, `${CELL.two} s → ${CELL.perTwo} ${tx('per uur', 'an hour')}`, 20, 'middle', 'fp-big');
     }
     set(E.cycTwo, two);
@@ -377,8 +378,8 @@ const STAGE = (() => {
       const shown = pts.filter((q, i) => i < 2 || (i - 2) / 12 <= g);
       st += mark(M(shown), 'rb-thick');
       st += mark(M([[x0 + 20, y0 + 6], [xe, y0 + 6]]), 'rb-arrow');
-      st += T((x0 + 20 + xe) / 2, y0 + 28, tx('stoptijd T', 'stopping time T'), 18, 'middle', 'fp-big');
-      st += T(x0 + 4, y1 - 10, tx('snelheid', 'speed'), 18, 'start', 'fp-small');
+      st += T((x0 + 20 + xe) / 2, y0 + 28, tx('stoptijd T', 'stopping time T'), 20, 'middle', 'fp-big');
+      st += T(x0 + 4, y1 - 10, tx('snelheid', 'speed'), 20, 'start', 'fp-small');
     }
     set(E.safeStop, st);
     let ds = '';
@@ -386,18 +387,18 @@ const STAGE = (() => {
       const rows = [
         `K = ${num(SAFE.K)} mm/s`,
         `C = 8 × (${SAFE.d} − 14) = ${SAFE.C}`,
-        `S = ${num(SAFE.KT)} + ${SAFE.C} = ${num(SAFE.S)} mm`,
+        `S = ${num(SAFE.KT)} + ${SAFE.C} = ${num(SAFE.S)}`,
         tx(`onder ${SAFE.floor}: K blijft`, `under ${SAFE.floor}: K stays`),
       ];
       const nShow = kb === 2 ? 1 : 1 + Math.min(3, Math.floor(span(p, 0.05, 0.75) * 3.99));
-      rows.slice(0, nShow).forEach((r, i) => { ds += T(CX + 18, 222 + i * 40, r, 18, 'start', i === 2 ? 'fp-big' : 'fp-small'); });
-      if (kb === 3) ds += T(CX + 18, 222 + 4 * 40 - 4, `T = ${num(SAFE.T, 2)} s · d = ${SAFE.d} mm`, 18, 'start', 'fp-small');
+      rows.slice(0, nShow).forEach((r, i) => { ds += T(CX + 18, 222 + i * 40, r, 20, 'start', i === 2 ? 'fp-big' : 'fp-small'); });
+      if (kb === 3) ds += T(CX + 18, 222 + 4 * 40 - 4, `T = ${num(SAFE.T, 2)} s · d = ${SAFE.d} mm`, 20, 'start', 'fp-small');
     }
     set(E.safeDist, ds);
   }
   // offline programming: the cell as a 3D model on a monitor
   function offCard(p) {
-    let s = card(CX, 14, CWD, 372) + T(MID, 44, tx('3D-model op een pc', '3D model on a PC'), 19, 'middle', 'fp-big');
+    let s = card(CX, 14, CWD, 372) + T(MID, 44, tx('3D-model op een pc', '3D model on a PC'), 20, 'middle', 'fp-big');
     const mx = CX + 20; const my = 64; const mw = CWD - 40; const mh = 150;
     s += Rr(mx, my, mw, mh, 'rb-shape2', 8) + Rr(mx + 8, my + 8, mw - 16, mh - 16, 'rb-shape', 4);
     s += Rr(MID - 8, my + mh, 16, 22, 'rb-shape2', 2) + Rr(MID - 40, my + mh + 22, 80, 8, 'rb-shape2', 3);
@@ -413,7 +414,7 @@ const STAGE = (() => {
     const path = [isoP(-36, 10, 14), isoP(-10, -30, 34), isoP(30, -20, 30), isoP(38, 16, 12)];
     s += mark(M(path), 'rb-dash') + path.map(([x, y]) => circ(x, y, 3.5, 'rb-on')).join('');
     const rows = [tx('bereik', 'reach'), tx('botsingen', 'collisions'), tx('cyclustijd', 'cycle time')];
-    rows.forEach((r, i) => { const y = 286 + i * 32; if (p > 0.2 + i * 0.15) s += tick(CX + 26, y - 8); s += T(CX + 56, y, r, 18, 'start', 'fp-small'); });
+    rows.forEach((r, i) => { const y = 286 + i * 32; if (p > 0.2 + i * 0.15) s += tick(CX + 26, y - 8); s += T(CX + 56, y, r, 20, 'start', 'fp-small'); });
     return s;
   }
   // the cobot's takt: PFL at half speed against SSM at full speed
@@ -425,23 +426,23 @@ const STAGE = (() => {
     set(E.taktBase, base);
     let pf = '';
     const g1 = kb > 1 ? 1 : kb === 1 ? span(p, 0.1, 0.7) : 0;
-    pf += T(x0, 92, tx('kracht/vermogen · ½', 'power/force · ½'), 18, 'start', 'fp-small');
+    pf += T(x0, 92, tx('cobot · ½ snelheid', 'cobot · ½ speed'), 20, 'start', 'fp-small');
     if (kb >= 1) {
       pf += Rr(x0, 104, (xs(COBOT.move * 2) - x0) * Math.min(1, g1 * 1.5), 26, 'fp-meter', 3);
       if (g1 > 0.66) pf += Rr(xs(COBOT.move * 2) + 1, 104, (xs(COBOT.pfl) - xs(COBOT.move * 2) - 1) * span(g1, 0.66, 1), 26, 'fp-meter2', 3);
-      pf += T(x0, 156, `${COBOT.move * 2} + ${COBOT.rest} = ${COBOT.pfl} s`, 19, 'start', 'fp-big');
+      pf += T(x0, 156, `${COBOT.move * 2} + ${COBOT.rest} = ${COBOT.pfl} s`, 20, 'start', 'fp-big');
       if (g1 >= 1) pf += cross(CX + CWD - 34, 150);
-    } else pf += T(x0, 130, tx('contact mag, langzaam', 'contact allowed, slow'), 18, 'start', 'fp-small');
+    } else pf += T(x0, 130, tx('contact mag, langzaam', 'contact allowed, slow'), 20, 'start', 'fp-small');
     set(E.taktPfl, pf);
     let ss = '';
     if (kb >= 2) {
       const g2 = kb > 2 ? 1 : span(p, 0.2, 0.8) * 0.4;
-      ss += T(x0, 222, tx('snelheid/afstand · vol', 'speed/distance · full'), 18, 'start', 'fp-small');
-      ss += T(x0, 252, tx('remt af bij mensen', 'slows near people'), 18, 'start', 'fp-small');
+      ss += T(x0, 222, tx('scanner · vol', 'scanner · full speed'), 20, 'start', 'fp-small');
+      ss += T(x0, 252, tx('remt af bij mensen', 'slows near people'), 20, 'start', 'fp-small');
       if (kb >= 3) {
         ss += Rr(x0, 268, (xs(COBOT.move) - x0) * Math.min(1, span(p, 0.05, 0.4) * 1.5), 26, 'fp-meter', 3);
         if (p > 0.3) ss += Rr(xs(COBOT.move) + 1, 268, (xs(COBOT.ssm) - xs(COBOT.move) - 1) * span(p, 0.3, 0.6), 26, 'fp-meter2', 3);
-        ss += T(x0, 322, `${COBOT.move} + ${COBOT.rest} = ${COBOT.ssm} s`, 19, 'start', 'fp-big');
+        ss += T(x0, 322, `${COBOT.move} + ${COBOT.rest} = ${COBOT.ssm} s`, 20, 'start', 'fp-big');
         if (p > 0.6) ss += tick(CX + CWD - 34, 314);
       } else ss += Rr(x0, 268, (xs(COBOT.move) - x0) * g2, 26, 'fp-meter', 3);
     }
@@ -515,7 +516,7 @@ const STAGE = (() => {
         pose = { tcp, open: 0, holding: true };
         const scr = pts.map(at);
         marks += `<path class="rb-dash" d="${pathPts(scr)}"/>` + scr.map(([x, y]) => `<circle class="rb-ghost" cx="${f2(x)}" cy="${f2(y)}" r="${f2(2.2 * KS)}"/>`).join('');
-        if (kb === 2) marks += pts.map((q, n) => wT(add(q, [0, 0, 5]), `P${(n + 1) * 10}`, 18, 'middle', 'fp-small')).join('');
+        if (kb === 2) marks += pts.map((q, n) => (n === 3 ? wT(add(q, [12, 8, -2]), 'P40', 20, 'start', 'fp-small') : wT(add(q, [0, 0, 5]), `P${(n + 1) * 10}`, 20, 'middle', 'fp-small'))).join('');
         if (kb === 3) {
           opt.bend = span(p, 0.1, 0.4);
           pose.tcp = PLACE_DN;
@@ -557,6 +558,12 @@ const STAGE = (() => {
     if (si === 5) {
       hud = kb < 3 ? ['cycC'] : [];
       if (kb >= 2) opt.double = true;
+      if (kb === 2) {
+        // at the machine with the next raw part already in the far gripper: down, take, up (in frame, so the cue is seen)
+        mode = 'pose';
+        const dn = Math.sin(t * 1.6) * 0.5 + 0.5;
+        pose = { tcp: lerpCyl(PLACE_UP, PLACE_DN, dn), open: 0, holding: true };
+      }
       if (kb === 3) {
         opt.double = true;
         // parts walking up the spiral and along the rail
@@ -581,7 +588,7 @@ const STAGE = (() => {
       stopT = clamp((t - tCut) / brake, 0, 1);
       autoLamp = t < tCut;
       if (kb >= 2) floor += safetySvg(span(p, 0.05, 0.3), kb === 3 ? SAFE.S / 10 : CUR_Y - HAZ);
-      if (kb >= 2) marks += wT([10, HAZ + (kb === 3 ? SAFE.S / 10 : CUR_Y - HAZ) / 2, 1], kb === 3 ? `S = ${num(SAFE.S)} mm` : 'S', 19, 'middle');
+      if (kb >= 2) marks += wT([-30, HAZ + (kb === 3 ? SAFE.S / 10 : CUR_Y - HAZ) / 2, 1], kb === 3 ? `S = ${num(SAFE.S)} mm` : 'S', 20, 'middle');
     }
     if (si === 7) {
       if (kb === 0) { cone = span(p, 0.1, 0.4); mode = 'pose'; pose = { tcp: lerpCyl(HOME, BIN_UP, span(p, 0.3, 0.9)), open: 1 }; }
@@ -595,9 +602,11 @@ const STAGE = (() => {
     }
     if (si === 8) {
       hud = ['taktC'];
-      guard = 0.12;
       oper = true;
-      if (kb <= 1) { rate = () => 0.5; operDy = -14; } else {
+      // beats 1-2 are the cobot's case on the card; this industrial robot keeps its fence and full speed.
+      // From beat 3 the scanner replaces the fence (speed and separation monitoring works on this robot too).
+      if (kb <= 1) { operDy = 0; } else {
+        guard = 0.12;
         // the operator walks toward the robot and away again; the robot slows near them
         const walk = (tt) => {
           const b2 = tb(2); const b3 = tb(3);
@@ -626,7 +635,7 @@ const STAGE = (() => {
       const jp = a.joints[opt.lit];
       if (opt.lit === 0) axisM = `<path class="rb-s" d="${pathPts(ringPts(jp.slice(0, 2).concat([50.4]), [0, 0, 1], 11.5, 36), true)}"/>`;
       else { const [x, y] = at(jp); axisM = `<circle class="rb-s" cx="${f2(x)}" cy="${f2(y)}" r="${f2([0, 15, 11, 9, 8, 8][opt.lit] * KS)}"/>`; }
-      axisM += wT(add(jp, [0, 0, opt.lit === 0 ? 14 : 16]), `${tx('as', 'axis')} ${opt.lit + 1}`, 19);
+      axisM += wT(add(jp, [0, 0, opt.lit === 0 ? 14 : 16]), `${tx('as', 'axis')} ${opt.lit + 1}`, 20);
     }
     set(E.axisMark, axisM);
     set(E.flange, a.flange);
