@@ -45,8 +45,17 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // 14118 (prevention of unexpected start-up, all energy sources including stored
 // energy); an emergency stop (EN ISO 13850) stops but does not isolate; hydraulic
 // presses (ISO 16092-3) call for a mechanical restraint under a raised ram, since
-// oil pressure alone can be lost through a leaking valve or seal; NEN 3140 and
-// NEN-EN 50110 add the five safety rules for electrical work.
+// oil pressure alone can be lost through a leaking valve or seal (the clause text
+// of ISO 16092-3 and ISO 14118 was not checked word for word, so the film stays
+// with the lesson's wording); NEN 3140 and NEN-EN 50110 add the five safety
+// rules for electrical work, worded as in eng.gridops.
+// Restart (lesson: tools out, guards back, everyone clear, then the locks): the
+// safety block counts as a tool, so it comes out before the guard closes. It
+// stands under the ram with a small gap and carries nothing while the cylinder's
+// valves hold the ram, so it can be pulled by hand; if the ram has come to rest on
+// it, the press's own LOTO procedure says how it comes off (said, hedged, in s7).
+// The start attempt is made with the guard closed: an open interlocked guard
+// would block the start on its own, and the attempt would prove nothing.
 const LOTO = 'eng.safety.loto';
 const lessons = await allLessons();
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
@@ -85,7 +94,7 @@ const DIE_H = 16;
 const LDIE_Z = BOL_Z + DIE_H; // top of the lower die
 const STROKE = RAM0 - DIE_H - LDIE_Z; // the upper die down onto the lower die
 const BLOCK = { x: -46, y: -6, w: 10, d: 12, r: 0.6 };
-const BLOCK_TOP = RAM0 - 3; // the ram settles 3 cm onto the block
+const BLOCK_TOP = RAM0 - 3; // a 3 cm gap under the ram: the block catches it, it does not carry it
 const BLOCK_PARK = [-58, 52, -BOL_Z]; // waiting on the floor, front left of the press
 const GATE = { hx: 52, y: 33, z0: 58, z1: 150 }; // hinged at the right upright
 const CAB = { x: -206, y: -44, w: 58, d: 28, r: 0.8 };
@@ -104,9 +113,8 @@ const FIT0 = [-30, 96]; // the fitter's home
 const OPS = [[64, 86], [96, 74]]; // the operators' places
 const C = {
   BED_Z, BOL_Z, UP_Z, RAM0, RAM_H, STROKE, BLOCK, BLOCK_TOP, BLOCK_PARK, GATE, SW, VALVE, ACC, GAUGE, BOX_F, HASP, CON_Z, ESTOP, START, FIT0, OPS,
-  SETTLE: RAM0 - BLOCK_TOP,
 };
-assert(STROKE === 78 && C.SETTLE === 3, 'stroke and settle');
+assert(STROKE === 78 && RAM0 - BLOCK_TOP === 3, 'stroke and the gap over the block');
 
 const FIT = [[-280, -50, 0], [215, 104, 0], [-280, -50, 160], [215, -90, 110], [0, -36, 312], [-280, 104, 0], [0, 104, 175]];
 const P = k.fitProjection(FIT, W, H, { pad: 8, azimuth: 52, elevation: 30 });
@@ -207,15 +215,15 @@ const cabinet = (() => {
 // ---------------------------------------------------------------- the console: emergency stop, start, stop and a small screen
 const consoleSvg = (() => {
   let out = halo({ x: -114, y: 56, w: 12, d: 12, r: 2 }, 0, 2);
-  out += post(-108, 62, 5, 0, 2, { tone: 'lo' }, 18);
+  out += post(-108, 62, 5, 0, 2, { tone: 'lo' }, 12);
   out += box({ x: -111, y: 59, w: 6, d: 6, r: 0.6 }, 2, CON_Z - 8, {}, 0.3, 1);
   out += box(CON, CON_Z - 8, CON_Z, { inner: seam(CON, CON_Z - 4) }, 0.4) + screws(CON, CON_Z, 1.4);
   out += box({ x: -124, y: CON.y + 1, w: 14, d: 3, r: 0.4 }, CON_Z, CON_Z + 12, {}, 0.3);
   out += card(CON.y + 4, -122, -112, CON_Z + 2, CON_Z + 10, 'lt-screen') + g('screen', '');
-  out += post(START[0], START[1], 2.6, CON_Z, CON_Z + 0.8, { tone: 'lo' }, 14) + cue('start', g('btnStart', post(START[0], START[1], 2, CON_Z + 0.8, CON_Z + 2, { tone: 'hi', crease: 'lo' }, 14)));
-  out += post(START[0] + 8, START[1], 2.6, CON_Z, CON_Z + 0.8, { tone: 'lo' }, 14) + g('btnStop', post(START[0] + 8, START[1], 2, CON_Z + 0.8, CON_Z + 1.6, { tone: 'mid', crease: 'lo' }, 14));
-  out += post(ESTOP[0], ESTOP[1], 4.4, CON_Z, CON_Z + 1, { tone: 'lo' }, 20);
-  out += cue('estop', g('estopHead', post(ESTOP[0], ESTOP[1], 1.6, CON_Z + 1, CON_Z + 3, {}, 16) + S(k.cylinder(ESTOP[0], ESTOP[1], 3.6, CON_Z + 3, 2.4, P, 20, 0.7), { tone: 'hi', crease: 'lo', lit: true })));
+  out += post(START[0], START[1], 2.6, CON_Z, CON_Z + 0.8, { tone: 'lo' }, 10) + cue('start', g('btnStart', post(START[0], START[1], 2, CON_Z + 0.8, CON_Z + 2, { tone: 'hi', crease: 'lo' }, 10)));
+  out += post(START[0] + 8, START[1], 2.6, CON_Z, CON_Z + 0.8, { tone: 'lo' }, 10) + g('btnStop', post(START[0] + 8, START[1], 2, CON_Z + 0.8, CON_Z + 1.6, { tone: 'mid', crease: 'lo' }, 10));
+  out += post(ESTOP[0], ESTOP[1], 4.4, CON_Z, CON_Z + 1, { tone: 'lo' }, 14);
+  out += cue('estop', g('estopHead', post(ESTOP[0], ESTOP[1], 1.6, CON_Z + 1, CON_Z + 3, {}, 12) + S(k.cylinder(ESTOP[0], ESTOP[1], 3.6, CON_Z + 3, 2.4, P, 14, 0.7), { tone: 'hi', crease: 'lo', lit: true })));
   return out;
 })();
 
@@ -255,10 +263,10 @@ press.front = [
   box({ x: -76, y: -38, w: 152, d: 76, r: 1.2 }, UP_Z, CROWN_Z, { inner: seam({ x: -76, y: -38, w: 152, d: 76 }, UP_Z + 6, 3) + seam({ x: -76, y: -38, w: 152, d: 76 }, CROWN_Z - 6, 3) }, 0.8, 3),
   screws({ x: -76, y: -38, w: 152, d: 76 }, CROWN_Z, 6),
   Dt([[-62, 38, UP_Z + 18], [62, 38, UP_Z + 18]].map(at), { size: 0.7 }),
-  post(0, 0, 27, CROWN_Z, CROWN_Z + 8, {}, 32, 0.6),
+  post(0, 0, 27, CROWN_Z, CROWN_Z + 8, {}, 26, 0.6),
   Dt(Array.from({ length: 8 }, (_, i) => at([24 * Math.cos((i / 8) * 2 * Math.PI), 24 * Math.sin((i / 8) * 2 * Math.PI), CROWN_Z + 8])), { size: 0.5 }),
-  post(0, 0, 21, CROWN_Z + 8, CROWN_Z + 52, { inner: L(k.sideArc(0, 0, 21, CROWN_Z + 30, P, 28), { tone: 'faint' }) }, 32),
-  post(0, 0, 23, CROWN_Z + 52, CROWN_Z + 58, {}, 32, 0.6),
+  post(0, 0, 21, CROWN_Z + 8, CROWN_Z + 52, { inner: L(k.sideArc(0, 0, 21, CROWN_Z + 30, P, 22), { tone: 'faint' }) }, 26),
+  post(0, 0, 23, CROWN_Z + 52, CROWN_Z + 58, {}, 26, 0.6),
   box({ x: 12, y: -6, w: 14, d: 12, r: 0.6 }, CROWN_Z + 58, CROWN_Z + 62, { tone: 'lo' }, 0.3),
 ].join('');
 
@@ -275,7 +283,7 @@ const air = (() => {
   out += box({ x: 104, y: -7, w: 8, d: 6, r: 0.5 }, 116, 128, {}, 0.3);
   out += post(108, -4, 3, 104, 116, { tone: 'hi', crease: 'lo', inner: L(k.sideArc(108, -4, 3, 110, P, 16), { tone: 'faint' }) }, 16, 0.6);
   out += post(108, -4, 1, 128, 131, {}, 10);
-  out += post(108, -4, 3.4, 131, 133.4, {}, 20, 0.5);
+  out += post(108, -4, 3.4, 131, 133.4, {}, 14, 0.5);
   out += alongX(-4.5, 122, 112, 115, 1.6, {}, 12);
   return out;
 })();
@@ -290,10 +298,10 @@ const hpu = (() => {
   out += k.corners(TANK, 5).map(([x, y]) => box({ x: x - 3, y: y - 3, w: 6, d: 6, r: 0.4 }, 0, 4, { tone: 'lo' }, 0.2, 1)).join('');
   out += box(TANK, 4, 46, { tone: 'lo', inner: seam(TANK, 42, 2) + seam(TANK, 9, 2) }, 0.6, 2) + screws(TANK, 46, 3);
   out += card(TANK.y + TANK.d, 124, 128, 14, 36, 'lt-glass') + `<path class="lt-level" d="${faceY(TANK.y + TANK.d, 124.6, 127.4, 14.6, 28)}"/>`;
-  out += post(130, -82, 3, 46, 52, {}, 16) + post(130, -82, 3.6, 52, 54, { tone: 'hi', crease: 'lo' }, 16, 0.4);
+  out += post(130, -82, 3, 46, 52, {}, 12) + post(130, -82, 3.6, 52, 54, { tone: 'hi', crease: 'lo' }, 12, 0.4);
   // the motor with its cooling fins, the bell housing and the pump
   out += box({ x: 138, y: -80, w: 26, d: 20, r: 0.6 }, 46, 50, { tone: 'lo' }, 0.2);
-  out += alongX(-70, 62, 134, 164, 11, {}, 20);
+  out += alongX(-70, 62, 134, 164, 11, {}, 16);
   out += L([140, 145, 150, 155, 160].map((xx) => k.pathOf(Array.from({ length: 13 }, (_, i) => { const a = -0.2 + (i / 12) * 3.4; return at([xx, -70 + 11.2 * Math.cos(a), 62 + 11.2 * Math.sin(a)]); }))).join(''), { tone: 'faint' });
   out += alongX(-70, 62, 130, 134, 9, { tone: 'lo' }, 16);
   out += box({ x: 142, y: -77, w: 12, d: 10, r: 0.5 }, 72, 78, {}, 0.3) + led('motor', [148, -67, 76], 0.7);
@@ -304,14 +312,14 @@ const hpu = (() => {
   const AB = { x: 182, y: -34, w: 22, d: 14, r: 0.6 };
   out += halo(k.insetPlan(AB, -2), 0, 2);
   out += box(AB, 0, 30, { inner: seam(AB, 26, 1.4) }, 0.4, 1) + screws(AB, 30, 1.6);
-  out += cue('accumulator', post(ACC[0], ACC[1], 9, 30, 80, { tone: 'hi', crease: 'lo', inner: L(k.sideArc(ACC[0], ACC[1], 9, 62, P, 20), { tone: 'faint' }) }, 20)
-    + S(k.cylinder(ACC[0], ACC[1], 9, 80, 8, P, 20, 6), { tone: 'hi', crease: 'lo' })
+  out += cue('accumulator', post(ACC[0], ACC[1], 9, 30, 80, { tone: 'hi', crease: 'lo', inner: L(k.sideArc(ACC[0], ACC[1], 9, 62, P, 16), { tone: 'faint' }) }, 16)
+    + S(k.cylinder(ACC[0], ACC[1], 9, 80, 8, P, 16, 6), { tone: 'hi', crease: 'lo' })
     + post(ACC[0], ACC[1], 1.8, 88, 93, {}, 12) + post(ACC[0], ACC[1], 2.6, 93, 95, { tone: 'lo' }, 12, 0.3)
     + box({ x: ACC[0] - 10, y: ACC[1] + 8, w: 20, d: 2, r: 0.3 }, 58, 64, { tone: 'lo' }, 0, 1));
   // the bleed valve: a knurled knob on the block's front
-  out += cue('bleed', alongY(186, 10, AB.y + AB.d, AB.y + AB.d + 2, 3.4, { tone: 'lo' }, 20) + alongY(186, 10, AB.y + AB.d + 2, AB.y + AB.d + 4.6, 2.6, { tone: 'hi', crease: 'lo' }, 20));
+  out += cue('bleed', alongY(186, 10, AB.y + AB.d, AB.y + AB.d + 2, 3.4, { tone: 'lo' }, 14) + alongY(186, 10, AB.y + AB.d + 2, AB.y + AB.d + 4.6, 2.6, { tone: 'hi', crease: 'lo' }, 14));
   // the gauge: bezel, face, ticks; the needle is drawn by the stage
-  out += cue('gauge', alongY(GAUGE[0], GAUGE[2], AB.y + AB.d, AB.y + AB.d + 1.6, 6.4, {}, 20)
+  out += cue('gauge', alongY(GAUGE[0], GAUGE[2], AB.y + AB.d, AB.y + AB.d + 1.6, 6.4, {}, 16)
     + `<path class="lt-dial" d="${ringY([GAUGE[0], AB.y + AB.d + 1.62, GAUGE[2]], 5.4)}"/>`
     + L(Array.from({ length: 11 }, (_, i) => { const a = (-135 + i * 27) * Math.PI / 180; const yy = AB.y + AB.d + 1.64; return k.segment([GAUGE[0] - 5 * Math.sin(-a), yy, GAUGE[2] + 5 * Math.cos(a)], [GAUGE[0] - (i % 5 ? 4.2 : 3.6) * Math.sin(-a), yy, GAUGE[2] + (i % 5 ? 4.2 : 3.6) * Math.cos(a)], P); }).join(''), { tone: 'mid' })
     + g('needle', ''));
@@ -481,16 +489,16 @@ const spec = {
     {
       id: 's6', lesson: LOTO, level: 1, dur: DUR[5], still: 0.5, title: { nl: 'Bewijzen: energieloos', en: 'Proving zero energy' },
       beats: [
-        { nl: 'Hij drukt op start: er gebeurt niks.', en: 'He presses start: nothing happens.', cues: ['start'] },
+        { nl: 'Afscherming dicht, dan drukt hij op start: er gebeurt niks.', en: 'Guard closed, then he presses start: nothing happens.', cues: ['start'] },
         { nl: 'Proberen te starten en meters lezen: zo bewijs je {t:Energieloos|energieloos}.', en: 'Trying to start and reading the gauges: that is how you prove {t:Zero energy|zero energy}.', cue: { Energieloos: 'zero' }, cues: ['block', 'start'] },
-        { nl: 'Hij zet de bediening terug op uit. Pas dan grijpt hij naar binnen.', en: 'He sets the controls back to off. Only then does he reach in.', cues: ['start'] },
+        { nl: 'Bediening terug op uit. Pas dan gaat de afscherming open en grijpt hij naar binnen.', en: 'Controls back to off. Only then does the guard open and he reaches in.', cues: ['start'] },
         { nl: 'Beweegt er toch iets? Dan is er een bron vergeten, zoals een tweede persluchtvat.', en: 'Does something move after all? Then a source was missed, such as a second air tank.', cues: [] },
       ],
     },
     {
       id: 's7', lesson: LOTO, level: 1, dur: DUR[6], still: 0.4, title: { nl: 'Weer starten', en: 'Restarting' },
       beats: [
-        { nl: 'Klaar: gereedschap eruit, afschermingen dicht, iedereen vrij.', en: 'Done: tools out, guards closed, everyone clear.', cues: ['restart'] },
+        { nl: 'Klaar: gereedschap en blok eruit, afschermingen dicht, iedereen vrij.', en: 'Done: tools and block out, guards closed, everyone clear.', cues: ['restart', 'block'] },
         { nl: 'Alleen wie het slot hing, haalt het eraf.', en: 'Only the person who fitted the lock removes it.', cues: ['locks'], stillAt: 0.45 },
         { nl: 'Is iemand naar huis met zijn slot erop? Alleen via een strenge procedure, nooit doorknippen.', en: 'Has someone gone home with his lock on? Only under a strict procedure, never cut it off.', cues: [] },
         { nl: 'Werk aan de elektrische installatie zelf? Dan gelden ook de vijf veiligheidsregels.', en: 'Work on the electrical installation itself? Then the five safety rules apply too.', cues: ['switch'], read: { nl: 'NEN 3140 en NEN-EN 50110', en: 'NEN 3140 and NEN-EN 50110' } },
@@ -556,18 +564,18 @@ const SAY = [
       en: 'Why this order? Bleed the pressure first, and the ram can come down before the block is under it. Oil pressure alone does not hold a load up reliably: a valve can leak.' },
   ],
   [ // s6 proving zero energy
-    { nl: 'Alles is gescheiden, vergrendeld en ontladen. Toch neemt hij het niet aan: hij drukt op de startknop. Er gebeurt niks.',
-      en: 'Everything is isolated, locked and released. Still he does not assume it: he presses the start button. Nothing happens.' },
-    { nl: 'Die startpoging, met de manometer op nul en de stoter op het blok, bewijst dat de pers {t:Energieloos|energieloos} is. Bij elektrisch werk meet je ook dat er geen spanning meer op staat.',
-      en: 'That start attempt, with the gauge at zero and the ram on the block, proves the press is at {t:Zero energy|zero energy}. For electrical work you also measure that no voltage is left.' },
-    { nl: 'Daarna zet hij de bediening terug op uit, zodat er niets gebeurt als de energie terugkomt. Pas dan grijpt hij naar binnen.',
-      en: 'Then he sets the controls back to off, so nothing happens when the energy comes back. Only then does he reach in.' },
+    { nl: 'Alles is gescheiden, vergrendeld en ontladen. Toch neemt hij het niet aan. Eerst doet hij de afscherming dicht: staat die open, dan houdt de beveiliging de pers vaak ook zonder slot tegen, en bewijst de proef niets. Dan drukt hij op de startknop. Er gebeurt niks.',
+      en: 'Everything is isolated, locked and released. Still he does not assume it. First he closes the guard: with it open, the interlock often stops the press even without a lock, and the test proves nothing. Then he presses the start button. Nothing happens.' },
+    { nl: 'Die startpoging, met de manometer op nul en het blok onder de stoter, bewijst dat de pers {t:Energieloos|energieloos} is. Bij elektrisch werk meet je ook dat er geen spanning meer op staat.',
+      en: 'That start attempt, with the gauge at zero and the block under the ram, proves the press is at {t:Zero energy|zero energy}. For electrical work you also measure that no voltage is left.' },
+    { nl: 'Daarna zet hij de bediening terug op uit, zodat er niets gebeurt als de energie terugkomt. Pas dan doet hij de afscherming open en grijpt hij naar binnen.',
+      en: 'Then he sets the controls back to off, so nothing happens when the energy comes back. Only then does he open the guard and reach in.' },
     { nl: 'Beweegt er bij de test toch iets? Dan is er een bron vergeten, zoals een tweede persluchtvat, of is de verkeerde schakelaar gescheiden. Beter nu dan met je hand erin.',
       en: 'Does something move during the test after all? Then a source was missed, such as a second air tank, or the wrong switch was isolated. Better now than with your hand inside.' },
   ],
   [ // s7 restarting
-    { nl: 'De nieuwe matrijs zit erin. Voor het opnieuw starten: gereedschap eruit, afschermingen dicht, en iedereen uit de buurt van de pers.',
-      en: 'The new die is in. Before restarting: tools out, guards closed, and everyone clear of the press.' },
+    { nl: 'De nieuwe matrijs zit erin. Voor het opnieuw starten: gereedschap eruit, ook het veiligheidsblok, dan de afschermingen dicht, en iedereen uit de buurt van de pers. Rust de stoter op het blok, dan staat in de LOTO-procedure van de pers hoe het blok er veilig uit gaat.',
+      en: 'The new die is in. Before restarting: tools out, the safety block too, then the guards closed, and everyone clear of the press. If the ram rests on the block, the press\'s LOTO procedure says how the block comes out safely.' },
     { nl: 'Dan de sloten. Alleen wie een slot heeft gehangen, haalt het eraf. De monteur haalt zijn eigen sloten weg en meldt de operators dat de pers weer kan draaien.',
       en: 'Then the locks. Only the person who fitted a lock removes it. The technician removes his own locks and tells the operators the press can run again.' },
     { nl: 'Is iemand naar huis met zijn slot er nog op? Dan gaat dat slot er alleen af volgens een strenge, schriftelijke procedure: die persoon proberen te bereiken, controleren dat de machine veilig is, en een leidinggevende laten beslissen. Nooit zomaar doorknippen.',

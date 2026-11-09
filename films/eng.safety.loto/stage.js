@@ -181,15 +181,15 @@ const STAGE = (() => {
     return out;
   }
   // a checklist panel: rows ticked one by one, one row marked
-  function listSvg(title, rows, ticked, mark, x0 = 12) {
+  function listSvg(title, rows, ticked, mark, x0 = 12, w = 330) {
     const h = 56 + rows.length * 40;
     const top = 392 - h;
     const dx = x0 - 12;
-    let out = `<g transform="translate(${dx} 0)">` + rect(12, top, 330, h);
+    let out = `<g transform="translate(${dx} 0)">` + rect(12, top, w, h);
     out += txt(28, top + 34, title, 21, 'start', 'lt-mute');
     rows.forEach((t, i) => {
       const y = top + 50 + i * 40;
-      if (mark === i) out += rect(18, y - 2, 318, 38, 'lt-row', 6);
+      if (mark === i) out += rect(18, y - 2, w - 12, 38, 'lt-row', 6);
       const on = i < ticked;
       out += `<path class="${on ? 'lt-accl' : 'lt-dim'}" d="M30 ${y + 18}L37 ${y + 25}L50 ${y + 10}"/>`;
       out += txt(64, y + 26, t, 21, 'start', on ? 'lt-txt' : 'lt-mute');
@@ -198,7 +198,7 @@ const STAGE = (() => {
   }
   function rulesSvg() {
     const rows = NL
-      ? ['vrijschakelen', 'beveiligen tegen herinschakelen', 'spanningsloosheid vaststellen', 'aarden en kortsluiten', 'naastgelegen delen afschermen']
+      ? ['vrijschakelen', 'beveiligen tegen herinschakelen', 'spanningsloosheid vaststellen', 'aarden en kortsluiten', 'naastgelegen delen onder spanning afschermen']
       : ['disconnect', 'secure against reconnection', 'verify absence of voltage', 'earth and short-circuit', 'protect against adjacent live parts'];
     let out = rect(12, 176, 616, 216);
     out += txt(28, 208, tr('vijf veiligheidsregels', 'five safety rules'), 21, 'start', 'lt-mute');
@@ -241,13 +241,13 @@ const STAGE = (() => {
     const vis = {};
     // the state of the floor: running, stopped, isolated, locked, blocked, bled
     const st = {
-      on: true, air: true, run: false, ram: 0, settle: 0, block: 0, gate: 0, press: 0, gaugeV: 0.72,
+      on: true, air: true, run: false, ram: 0, block: 0, gate: 0, press: 0, gaugeV: 0.72,
       lockSw: false, lockValve: false, keys: false, boxLocks: 0, fitter: SPOT.home, fitterTo: null, walkT: 0, ops: true, estop: 0,
     };
     const stroke = (t) => { const c = t % 6; return span(c, 0.6, 2.2) - span(c, 3, 4.6); };
     const isolated = () => { st.on = false; st.air = false; st.lockSw = true; st.lockValve = true; };
     const blocked = () => { st.block = 1; st.gate = 1; };
-    const bled = () => { st.gaugeV = 0; st.settle = 1; };
+    const bled = () => { st.gaugeV = 0; };
 
     if (si === 0) {
       st.run = true;
@@ -289,7 +289,6 @@ const STAGE = (() => {
       if (b === 0) { st.fitterTo = SPOT.press; st.walkT = span(p, 0, 0.25); }
       if (b >= 1) { st.fitter = SPOT.press; st.fitterTo = SPOT.acc; st.walkT = b === 1 ? span(p, 0.05, 0.6) : 1; }
       st.gaugeV = b <= 1 ? 0.72 : b === 2 ? 0.72 * (1 - span(p, 0.15, 0.75)) : 0;
-      st.settle = b === 2 ? span(p, 0.6, 0.85) : b === 3 ? 1 : 0;
       vis.badges = b <= 1 ? (b === 0 ? span(p, 0.6, 0.72) : 1) : 1 - span(p, 0, 0.1);
       if (vis.badges > 0.01) set(E.badges, badgesSvg(b === 0 ? 1 : 2));
       vis.gaugeBig = b >= 2 ? (b === 2 ? span(p, 0, 0.1) : 1) : 0;
@@ -299,31 +298,35 @@ const STAGE = (() => {
       st.ops = false;
       st.fitter = SPOT.con;
       if (b === 0) { st.fitter = SPOT.acc; st.fitterTo = SPOT.con; st.walkT = span(p, 0, 0.45); }
+      // the guard is closed for the start attempt (an open interlocked guard would block it anyway), opened to reach in
+      st.gate = b === 0 ? 1 - span(p, 0.08, 0.4) : b === 1 ? 0 : b === 2 ? span(p, 0.1, 0.35) : 1;
       flag(E.btnStart, 'data-lit', b === 0 && p > 0.55 && p < 0.8);
       if (b >= 2) { st.fitter = SPOT.con; st.fitterTo = SPOT.press; st.walkT = b === 2 ? span(p, 0.4, 0.9) : 1; }
       vis.proof = b === 1 ? span(p, 0, 0.1) : 0;
-      if (vis.proof > 0.01) set(E.proof, listSvg(tr('energieloos?', 'zero energy?'), NL ? ['startpoging: niks', 'manometer: 0 bar', 'stoter op het blok'] : ['start: nothing', 'gauge: 0 bar', 'ram on the block'], 1 + Math.floor(span(p, 0.15, 0.7) * 2.99), -1, 298));
+      if (vis.proof > 0.01) set(E.proof, listSvg(tr('energieloos?', 'zero energy?'), NL ? ['startpoging: niks', 'manometer: 0 bar', 'blok onder stoter'] : ['start: nothing', 'gauge: 0 bar', 'block under ram'], 1 + Math.floor(span(p, 0.15, 0.7) * 2.99), -1, 298));
     } else if (si === 6) {
       bled();
-      st.block = 1;
+      // the block comes out with the tools, before the guard closes (the lesson's restart order)
+      st.block = b === 0 ? 1 - span(p, 0.08, 0.38) : 0;
       st.on = false; st.air = false;
       st.lockSw = b <= 0 || (b === 1 && p < 0.6);
       st.lockValve = b <= 0 || (b === 1 && p < 0.75);
-      st.gate = b === 0 ? 1 - span(p, 0.4, 0.7) : 0;
+      st.gate = b === 0 ? 1 - span(p, 0.45, 0.7) : 0;
       st.ops = b >= 1 && (b > 1 || p > 0.75);
       st.fitter = b === 0 ? SPOT.press : SPOT.home;
-      if (b === 0) { st.fitterTo = SPOT.home; st.walkT = span(p, 0.05, 0.35); }
-      vis.restart = b <= 2 ? span(u, 0, 0.03) : 1 - span(p, 0, 0.1);
+      if (b === 0) { st.fitterTo = SPOT.home; st.walkT = span(p, 0.42, 0.75); }
+      // the list waits until the block is out, so the panel does not hide it
+      vis.restart = b === 0 ? span(p, 0.36, 0.44) : b <= 2 ? 1 : 1 - span(p, 0, 0.1);
       if (vis.restart > 0.01) {
-        if (b <= 1) set(E.restart, listSvg(tr('weer starten', 'restarting'), NL ? ['gereedschap eruit', 'afschermingen dicht', 'iedereen vrij', 'eigen sloten eraf'] : ['tools out', 'guards closed', 'everyone clear', 'own locks off'], b === 0 ? 1 + Math.floor(span(p, 0.1, 0.8) * 2.99) : 3 + (p > 0.6 ? 1 : 0), b === 1 ? 3 : -1));
-        else set(E.restart, listSvg(tr('slot van een afwezige', 'a lock left on'), NL ? ['persoon proberen te bereiken', 'machine veilig?', 'leidinggevende beslist'] : ['try to reach the person', 'check the machine is safe', 'a manager decides'], 1 + Math.floor(span(p, 0.1, 0.8) * 2.99), -1));
+        if (b <= 1) set(E.restart, listSvg(tr('weer starten', 'restarting'), NL ? ['gereedschap en blok eruit', 'afschermingen dicht', 'iedereen vrij', 'eigen sloten eraf'] : ['tools and block out', 'guards closed', 'everyone clear', 'own locks off'], b === 0 ? 1 + Math.floor(span(p, 0.44, 0.8) * 2.99) : 3 + (p > 0.6 ? 1 : 0), b === 1 ? 3 : -1, 12, 372));
+        else set(E.restart, listSvg(tr('slot van een afwezige', 'a lock left on'), NL ? ['persoon proberen te bereiken', 'machine veilig?', 'leidinggevende beslist'] : ['try to reach the person', 'check the machine is safe', 'a manager decides'], 1 + Math.floor(span(p, 0.1, 0.8) * 2.99), -1, 12, 372));
       }
       vis.rules = b === 3 ? span(p, 0.05, 0.2) : 0;
       if (vis.rules > 0.01) set(E.rules, rulesSvg());
     }
 
     // ---- the drawing
-    const ramDz = -C.STROKE * st.ram - C.SETTLE * st.settle;
+    const ramDz = -C.STROKE * st.ram;
     move(E.ram, [0, 0, ramDz]);
     // the block: from the floor in front of the press, up and in under the ram
     const bp = C.BLOCK_PARK;
