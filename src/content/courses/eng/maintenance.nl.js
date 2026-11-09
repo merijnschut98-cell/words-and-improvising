@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Onderhoudsstrategieën
     {
       id: 'eng.maintenance.strategies',
+      film: 'eng.maintenance.failure',
       title: 'Vier onderhoudsstrategieën',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.maintenance.failure',
+      film: 'eng.maintenance.failure',
       title: 'Hoe machines echt falen',
       pre: [
         {
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
+      film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Conditiemonitoring',
       pre: [
