@@ -78,8 +78,8 @@ export default {
       pre: [
         {
           q: 'A grid operator runs its MV network at 10 kV. Which rated voltage do you usually find on the nameplate of its switchgear?',
-          options: ['10 kV, exactly the network voltage', '6 kV, to leave a safety margin', '50 kV, the highest available', '12 kV, the next standard value up'],
-          answer: '12 kV, the next standard value up',
+          options: ['10 kV, exactly the network voltage', '6 kV, to leave a safety margin', '50 kV, the highest available', '12 kV, one standard step up'],
+          answer: '12 kV, one standard step up',
           why: 'Equipment is rated for the highest voltage the network may reach. For 10 kV networks that is the standard value 12 kV; for 20 kV networks, 24 kV.',
         },
       ],
@@ -157,7 +157,7 @@ export default {
       teach: [
         'When breaker contacts separate under load, the current keeps flowing through an arc: a channel of hot, conducting gas or metal vapour. The breaker cannot simply cut it.\n\nWhat it uses is the current zero: alternating current passes through zero twice per cycle, 100 times a second at 50 Hz. At that moment the arc briefly has no energy. The breaker’s whole job is to make the gap between the contacts insulate again fast enough, so the arc does not re-ignite after the zero.',
         'Right after the zero, the network pushes a voltage back across the open contacts: the transient recovery voltage. It rises in microseconds. If the gap is not yet strong enough, it breaks down and the arc returns for another half cycle.\n\nA vacuum interrupter wins this race well: the arc burns in metal vapour that condenses within microseconds, and the contacts only need to move about a centimetre. SF6 breakers blow cold gas through the arc instead. At MV, vacuum now dominates.',
-        'A fault that starts at an unlucky moment has a DC component: the current is shifted to one side and dies away over tens of milliseconds. Its first peak can reach about 2.5 times the steady value, the origin of the 2.5 factor on the nameplate. The breaker must also interrupt such a shifted current.\n\nFast breakers open while the DC component is still large, so breaker type tests include it.',
+        'A fault that starts at an unlucky moment has a DC component: the current is shifted to one side and dies away over tens of milliseconds. Its first peak can reach about 2.5 times the steady fault current (as a meter shows it); the exact factor depends on the network, and IEC 62271 fixes 2.5 for 50 Hz: the factor on the nameplate. The breaker must also interrupt such a shifted current.\n\nFast breakers open while the DC component is still large, so breaker type tests include it.',
         'Breakers wear. IEC 62271-100 sets endurance classes. Mechanical endurance: class M1 has been tested for 2,000 operations, M2 for 10,000. Electrical endurance: class E2 can do its full set of short-circuit interruptions without maintenance in between; E1 has a basic level.\n\nSwitching capacitors or long cables is special: the voltage across the contacts can restrike, so there are classes C1 and C2 for that duty, C2 with a very low chance of restrikes.',
         'On site you see an operations counter on the breaker and, on older types, a contact wear indicator. A vacuum interrupter can lose its vacuum slowly without any visible sign; then it may not break at all. Specialists check it with a high-voltage test across the open contacts during maintenance.\n\nExperts argue whether counting operations and interrupted fault currents can replace fixed maintenance intervals. A sharp question: “How many operations and fault interruptions has this breaker done, and what is it rated for?”',
       ],
@@ -167,7 +167,7 @@ export default {
         ask: 'Is that breaker suitable, and what do you ask?',
         reveal: 'Count the operations: 365 a year × 30 years ≈ 10,950 operations. That is far above the 2,000 of class M1 and even just above the 10,000 of M2. So ask for an M2 breaker and a plan for an overhaul or interrupter replacement during its life, or a device made for frequent switching, such as a vacuum contactor, an electrically operated switch built for frequent switching (see Motors, drives and fluid power), if the fault duty allows it.\n\nAlso ask whether the battery’s inverter or filters put capacitors on the line; then class C2 matters too. The other panels switch a few times a year, so “the same” is not the right test.',
       },
-      said: 'What engineers say: “That breaker’s M1, it’s made for a few hundred operations a decade. On a daily duty you want M2 or a contactor.”',
+      said: 'What engineers say: “That breaker’s M1, it’s made for a couple of thousand operations in its whole life. On a daily duty you want M2 or a contactor.”',
       recall: [
         {
           q: 'A breaker switches a load 4 times a week, 52 weeks a year, for 25 years. How many operations is that?',
@@ -227,7 +227,7 @@ export default {
         },
       ],
       teach: [
-        'Fault levels rise. A bigger or extra transformer, a closed connection between busbars, a gas engine or a large motor nearby: each adds a source that feeds a fault. Inverters of solar parks and batteries add little, about their rated current.\n\nThe switchgear does not change with it. A board chosen 30 years ago for 16 kA may now sit on a 20 kA spot. Nothing happens until the first heavy fault: then a breaker fails to interrupt, or a panel is torn open.',
+        'Fault levels rise. A bigger or extra transformer, a closed connection between busbars, a gas engine or a large motor nearby: each adds a source that feeds a fault. Inverters of solar parks and batteries add little, typically 1 to 1.5 times their rated current.\n\nThe switchgear does not change with it. A board chosen 30 years ago for 16 kA may now sit on a 20 kA spot. Nothing happens until the first heavy fault: then a breaker fails to interrupt, or a panel is torn open.',
         'Ratings are proven by a type test: a test in a high-power laboratory, such as KEMA Labs in Arnhem, at full fault current. A panel that is not type tested for a value is simply not proven for it, however solid it looks.\n\nSo a fault level study belongs to every change in the grid near the board: the operator recalculates and compares with every nameplate. Many operators keep a list of boards that are close to their limit.',
         'The levers, from cheap to expensive. Busbar splitting: open the bus coupler, the breaker that joins two busbar sections, so each half is fed by fewer transformers; the price is less flexibility when a transformer fails. A transformer with a higher impedance, or a reactor, a coil in series that limits current, but costs losses and voltage.\n\nA fault current limiter: a device that cuts the fault current in the first milliseconds, such as a pyrotechnic limiter or a superconducting one.',
         'At the expensive end: replace the switchgear. Sometimes a retrofit is possible: a new breaker truck, the removable part with the interrupter, in the old housing, if a type test covers that combination.\n\nWho pays is a real question. A new customer whose generator raises the fault level may have to pay the measures; the old customer next door whose own board becomes too light is responsible for their own installation. The grid operator informs; the owner decides.',
@@ -320,7 +320,7 @@ export default {
         },
         {
           q: 'What does a typical ring main unit contain?',
-          options: ['One circuit breaker with relay for every house', 'A 150/10 kV transformer with its own busbar', 'Two cable panels for the ring and one transformer panel', 'Only the LV fuses for the outgoing street cables, nothing on MV'],
+          options: ['One circuit breaker with its own relay for every house on the ring', 'A 150/10 kV transformer with its own busbar', 'Two cable panels for the ring and one transformer panel', 'Only the LV fuses for the outgoing street cables, nothing on MV'],
           answer: 'Two cable panels for the ring and one transformer panel',
           why: 'The RMU connects the secondary substation into the ring and feeds the transformer.',
         },
@@ -372,7 +372,7 @@ export default {
         'Without automation, a technician drives from station to station, reads the indicators and switches by hand: one to two hours without power for most customers.\n\nDistribution automation means remote control and monitoring of the MV grid. Some secondary substations get a remote-controlled switch: a motor-driven load-break switch that the control room can open and close over a communication link. The operator sees where the fault is and switches in minutes.',
         'A fault indicator lights up or sends a signal when fault current has passed it. Fault current flows from the source to the fault and no further, so the fault lies between the last indicator that saw it and the first that did not.\n\nIndicators that report to the control room save the drive to read them. Even without remote switching, that alone can save many minutes. How the control room handles the whole outage is in Grid operations and assets.',
         'A self-healing ring goes one step further: the system locates the fault, opens the switches around it and closes the open point by itself, often within a minute. It needs reliable communication, accurate network data and well-tested logic, so operators introduce it step by step.\n\nExperts argue about trust: some control rooms want an operator to confirm each step; others let the logic run.',
-        'Automating every station is too expensive. Operators choose a few key stations per ring, often two or three, where a remote-controlled switch splits the ring into sections.\n\nThat is a business case: cost per station against fewer customer minutes, the number of customers off times the minutes they are off, and less driving. Dutch customers lose power for around 20 to 25 minutes a year on average through unplanned outages (about 19 in 2023, 24 in 2024), and the regulator links part of the operators’ income to quality.',
+        'Automating every station is too expensive. Operators choose a few key stations per ring, often two or three, where a remote-controlled switch splits the ring into sections.\n\nThat is a business case: cost per station against fewer customer minutes, the number of customers off times the minutes they are off, and less driving. Dutch customers lose power for around 20 to 25 minutes a year on average through unplanned outages (about 22 in 2023, 24 in 2024), and the regulator links part of the operators’ income to quality.',
         'On site you see a small cabinet in the station with a modem, a battery and the motor drive on the switch.\n\nTypical failures: batteries that are flat when needed, communication that drops during storms, network data that do not match reality. A sharp question: “Which rings cause the most customer minutes, and where would one remote switch help most?”',
       ],
       example: {
@@ -433,8 +433,8 @@ export default {
       pre: [
         {
           q: 'A storm cuts the AC supply to a substation’s own lights and sockets. A cable fault follows on one feeder. What lets the protection still trip the breaker?',
-          options: ['The fault current itself drives the breaker open', 'The station battery, which feeds relays and trip coils', 'A technician who drives out and opens the breaker by hand', 'Nothing; the breaker cannot trip without AC power'],
-          answer: 'The station battery, which feeds relays and trip coils',
+          options: ['The fault current itself drives the breaker open', 'The station battery', 'A technician who drives out and opens the breaker by hand', 'Nothing; the breaker cannot trip without AC power'],
+          answer: 'The station battery',
           why: 'Relays, trip coils and remote control run on DC from a station battery, so protection works when the AC supply is gone.',
         },
       ],
@@ -463,7 +463,7 @@ export default {
         },
         {
           q: 'What does a closed bus coupler do?',
-          options: ['It splits the busbar so a fault there is fed by fewer sources', 'It earths the busbar section during maintenance work', 'It joins two busbar sections, so the transformers share the load', 'It measures the current going into the substation from the HV side'],
+          options: ['It splits the busbar so a fault there is fed by fewer sources', 'It earths the busbar section so crews can do maintenance on it', 'It joins two busbar sections, so the transformers share the load', 'It measures the current going into the substation from the HV side'],
           answer: 'It joins two busbar sections, so the transformers share the load',
           why: 'Closed, both sections and their transformers work together; the price is a higher fault level.',
         },
@@ -511,8 +511,8 @@ export default {
         },
       ],
       teach: [
-        'The F-gas Regulation (EU) 2024/573 sets dates by voltage for putting new switchgear with F-gases into service. MV up to 24 kV: from 1 January 2026. Above 24 up to 52 kV: from 1 January 2030. HV from 52 up to 145 kV: from 2028, and above 145 kV from 2032, for gases with a GWP of 1 or more.\n\nGWP, global warming potential, compares a gas with CO2 over 100 years: CO2 is 1, SF6 about 23,500.',
-        'The exceptions are narrow. Switchgear ordered before 11 March 2024 may still be installed, with proof. Extensions that avoid replacing a whole board, and repairs with the same gas and amount, are allowed.\n\nThe tender exemption: if a tender shows there is no supplier, or only one, of a suitable F-gas-free design, an F-gas with a GWP below 1,000 may be used for a limited time. The operator informs the authority. New SF6 MV switchgear must also be reported to the ILT, the environment and transport inspectorate.',
+        'The F-gas Regulation (EU) 2024/573 sets dates by voltage for putting new switchgear with F-gases into service. MV up to 24 kV: from 1 January 2026. Above 24 up to 52 kV: from 1 January 2030. HV from 52 up to 145 kV: from 2028, and above 145 kV (or above 50 kA) from 2032, for gases with a GWP of 1 or more.\n\nGWP, global warming potential, compares a gas with CO2 over 100 years: CO2 is 1, SF6 about 23,500.',
+        'The exceptions are narrow. Switchgear ordered (contract signed) before 11 March 2024 may still be installed, with proof. Extensions that avoid replacing a whole board, and repairs with the same gas and amount, are allowed.\n\nThe tender exemption: if a tender finds no or only one supplier of a suitable F-gas-free design, an F-gas with a GWP below 1,000 is allowed for two years. The operator informs the ILT, the Dutch environment and transport inspectorate, which must also hear of every new F-gas MV unit up to 24 kV.',
         'The installed fleet may stay. But from 1 January 2035 servicing must in principle use recycled SF6: gas recovered from old equipment and cleaned, not newly made gas. So every unit taken out must be emptied by certified technicians, and the gas counted.\n\nFor a grid operator this is a decades-long programme: tens of thousands of SF6 units remain in service, while every new station is SF6-free.',
         'The transition creates a mixed fleet: SF6, vacuum with dry air, solid-insulated, and old Magnefix in one region, often in one ring. Each type has its own operating steps, spare parts and training. More types means more chances of a wrong step.\n\nAlternatives differ too. Vacuum with dry air is larger at higher voltages; gas mixtures with fluoronitriles have a much lower GWP than SF6, but are still F-gases and so out for new MV up to 24 kV.',
         'Experts argue about the order of replacement. Some say: only replace SF6 units at end of life, because their leak rate is low. Others say: first the leaking units and types with known issues, because one leak can equal tonnes of CO2.\n\nTypical failure: no reliable register of how much gas is where, so leaks and recovery cannot be checked. A sharp question: “Do we know, per station, how much SF6 is installed and how much we topped up last year?”',
@@ -521,7 +521,7 @@ export default {
         kind: 'faded',
         text: 'A project at Enexis builds a new 20 kV ring for a business park in 2027. The supplier of the SF6-free 24 kV RMU quotes 40 weeks delivery. In the warehouse stand 12 SF6 RMUs left over from an older framework contract. The project lead proposes to use those to keep the date.',
         ask: 'May that, and what do you ask?',
-        reveal: 'Possibly, but only if those units were ordered before 11 March 2024 and that can be proven, for example with the order and delivery papers; otherwise putting them into service is banned since 2026. If they qualify, the commissioning of new SF6 MV switchgear must still be reported to the ILT.\n\nAsk: when exactly were they ordered, and under which contract? Does using them add a fifth type to the region’s mixed fleet, with its own training? What do 12 extra SF6 units mean for the leak and recovery register over 40 years? And is the 40-week delivery the real limit, or can the job be phased?',
+        reveal: 'Possibly, but only if those units were ordered before 11 March 2024 and that can be proven, for example with the order and delivery papers; otherwise putting them into service is banned since 2026. If they qualify, putting them into service must still be reported to the ILT.\n\nAsk: when exactly were they ordered, and under which contract? Does using them add a fifth type to the region’s mixed fleet, with its own training? What do 12 extra SF6 units mean for the leak and recovery register over 40 years? And is the 40-week delivery the real limit, or can the job be phased?',
       },
       said: 'What engineers say: “Those units in the warehouse were ordered in 2023, we have the papers. Otherwise they stay there.”',
       recall: [
@@ -617,7 +617,7 @@ export default {
         },
         {
           q: 'A new solar park is connected to a feeder. What should happen to the protection?',
-          options: ['The settings should be checked against the new fault currents', 'Nothing: protection works independently of what is on the network', 'The relay should be removed, because the park protects itself', 'The feeder breaker should be replaced by a bigger one'],
+          options: ['The settings should be checked against the new fault currents', 'Nothing: protection works independently of what is on the network', 'The relay should be removed, because the park protects itself', 'The feeder breaker should be replaced by a much heavier one'],
           answer: 'The settings should be checked against the new fault currents',
           why: 'New sources change fault currents and can make existing settings wrong.',
         },
@@ -683,7 +683,7 @@ export default {
         },
         {
           q: 'Why is fitting a larger fuse “because it kept blowing” risky?',
-          options: ['Larger fuses cost more and the budget is tight', 'It can break selectivity so an upstream fuse blows first', 'Larger fuses do not fit in the standard fuse holders', 'A larger fuse lowers the voltage for all the homes on that cable'],
+          options: ['Larger fuses cost more and the budget is tight', 'It can break selectivity so an upstream fuse blows first', 'Larger fuses do not fit in the standard fuse holders in the station', 'A larger fuse lowers the voltage for all the homes on that cable'],
           answer: 'It can break selectivity so an upstream fuse blows first',
           why: 'Then a fault takes out many more customers, and the cause stays hidden.',
         },
@@ -726,16 +726,16 @@ export default {
       ],
       teach: [
         'How big is a fault current? The international method is IEC 60909. Its core is Ohm’s law: the initial short-circuit current, the fault current in the first cycles, equals the source voltage divided by everything between the source and the fault.\n\nIn formula: current = c × U / (1.73 × Z), with U the network voltage and Z the short-circuit impedance, the total opposition to current of grid, transformer and cable up to the fault, in ohms.',
-        'The voltage factor c covers the fact that the voltage before a fault can be higher or lower than nominal. For MV, IEC 60909 uses c = 1.1 for the maximum fault current and c = 1.0 for the minimum.\n\nThe maximum, with all sources on and c = 1.1, sizes switchgear and cables. The minimum fault current, with the weakest source arrangement and the fault at the far end, checks that protection still trips.',
+        'The voltage factor c covers the fact that the voltage before a fault can be higher or lower than nominal. For MV, IEC 60909 uses c = 1.1 for the maximum fault current and c = 1.0 for the minimum.\n\nThe maximum, with all sources on and c = 1.1, sizes switchgear and cables. The minimum fault current, with the weakest source arrangement and the fault at the far end, checks that protection still trips, often for a two-phase fault: about 87% of the three-phase value.',
         'The impedances come from the nameplates. A transformer’s impedance is given as a percentage, uk: the share of its rated voltage needed to drive rated current through a short circuit. In ohms on the MV side: Z = uk × U² / S.\n\nA 40 MVA transformer with uk = 12% at 10 kV: 0.12 × 10² / 40 = 0.3 Ω. Behind a strong grid it delivers about 40 / 0.12 ≈ 333 MVA. A higher uk limits the fault level more, but drops more voltage.',
-        'The HV grid behind the transformer adds a small impedance; cables add impedance per kilometre, so the fault current drops along a feeder. Generators and large motors add fault current; inverters add only a little, about their rated current.\n\nA real study adds the impedances as complex numbers in software such as Vision or PowerFactory. Adding the plain values by hand gives a quick estimate, good enough to see whether a question is close.',
+        'The HV grid behind the transformer adds a small impedance; cables add impedance per kilometre, so the fault current drops along a feeder. Generators and large motors add fault current; inverters add only a little, typically 1 to 1.5 times their rated current.\n\nA real study adds the impedances as complex numbers in software such as Vision or PowerFactory. Adding the plain values by hand gives a quick estimate, good enough to see whether a question is close.',
         'Grid operators give customers the fault level at their connection; customers need it to choose their own switchgear and to set their main protection. The value changes as the grid changes, so a value from ten years ago may be wrong.\n\nExperts argue about which source arrangements to count for the minimum: a rare situation can push the minimum so low that settings become hard. A sharp question: “Is this the maximum or the minimum fault current, and with which sources on?”',
       ],
       example: {
         kind: 'faded',
         text: 'A 150/10 kV substation has one 40 MVA transformer, uk 12%. The fault level of the 150 kV grid is 5,000 MVA. A 10 kV feeder runs 8 km, with about 0.16 Ω per km. The switchgear is rated 20 kA; the feeder relay’s first stage is set at 2,000 A.',
         ask: 'Estimate the maximum fault current at the busbar and the minimum at the far end. What do you conclude?',
-        reveal: 'Transformer: 0.12 × 10² / 40 = 0.3 Ω. HV grid seen from 10 kV: 1.1 × 10² / 5,000 = 0.022 Ω. Busbar total about 0.322 Ω. Maximum: 1.1 × 10,000 / (1.73 × 0.322) ≈ 19.7 kA, close to the 20 kA rating.\n\nFar end: 0.322 + 8 × 0.16 ≈ 1.60 Ω. Minimum, with c = 1.0: 10,000 / (1.73 × 1.60) ≈ 3.6 kA, comfortably above the 2,000 A stage. Conclusion: protection is fine, but the switchgear has almost no margin. Any extra source on this busbar needs a fault level check first.',
+        reveal: 'Transformer: 0.12 × 10² / 40 = 0.3 Ω. HV grid seen from 10 kV: 1.1 × 10² / 5,000 = 0.022 Ω. Busbar total about 0.322 Ω. Maximum: 1.1 × 10,000 / (1.73 × 0.322) ≈ 19.7 kA, close to the 20 kA rating.\n\nFar end: 0.322 + 8 × 0.16 ≈ 1.60 Ω. Minimum, with c = 1.0: 10,000 / (1.73 × 1.60) ≈ 3.6 kA, or about 3.1 kA for a two-phase fault (× 0.87), still comfortably above the 2,000 A stage. Conclusion: protection is fine, but the switchgear has almost no margin. Any extra source on this busbar needs a fault level check first.',
       },
       said: 'What engineers say: “That’s the maximum with c is 1.1. For the settings I need the minimum at the end of the feeder.”',
       recall: [
@@ -749,8 +749,8 @@ export default {
         },
         {
           q: 'What is the maximum fault current mainly used for?',
-          options: ['Checking that the relay sees a fault at the far end', 'Setting the grading margin between relays', 'Calculating the customer minutes of an outage', 'Choosing the ratings of switchgear and cables'],
-          answer: 'Choosing the ratings of switchgear and cables',
+          options: ['Checking that the relay sees a fault at the far end', 'Setting the grading margin between relays', 'Calculating the customer minutes of an outage', 'Sizing switchgear and cables'],
+          answer: 'Sizing switchgear and cables',
           why: 'Equipment must survive the worst case; the minimum is for protection sensitivity.',
         },
         {
@@ -801,7 +801,7 @@ export default {
         'Protection blinding: a park between the substation and a fault feeds part of the fault current itself, so the relay in the substation sees less. A fault at the far end may drop below its setting and not trip, or trip late.\n\nSympathetic tripping: a fault on a neighbouring feeder draws current out of the park, backwards through its own feeder. A non-directional relay there trips a healthy feeder. The usual fix is directional overcurrent protection, which only trips for current flowing out to the fault.',
         'Islanding: the feeder breaker opens, but the park keeps a piece of grid live on its own. That endangers crews who expect it to be dead and can damage equipment when the breaker closes again out of step.\n\nLoss-of-mains protection detects this from voltage and frequency, or from a signal from the substation, and switches the park off within seconds.',
         'The opposite demand is fault ride-through: European grid code rules (NC RfG, in the Netherlands through the System Code Electricity) require larger generators to stay connected during a short voltage dip caused by a fault elsewhere, so a single fault does not throw hundreds of megawatts off the grid.\n\nSo the park must stay on for a dip, but go off for a real island. Getting both right is careful setting work.',
-        'Inverters feed only about 1 to 1.5 times their rated current into a fault, far less than a rotating generator. So fault currents shift only a little, but in ways that matter at the margins.\n\nIn practice a connection request for a park includes a protection study; settings change; relays get replaced by directional ones. Experts argue about adaptive protection that changes settings with the situation. A sharp question: “Was the protection study redone for this park, and who checked the neighbouring feeders?”',
+        'Inverters typically feed only about 1 to 1.5 times their rated current into a fault, far less than a rotating generator. So fault currents shift only a little, but in ways that matter at the margins.\n\nIn practice a connection request for a park includes a protection study; settings change; relays get replaced by directional ones. Experts argue about adaptive protection that changes settings with the situation. A sharp question: “Was the protection study redone for this park, and who checked the neighbouring feeders?”',
       ],
       example: {
         kind: 'faded',
@@ -948,7 +948,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A Liander crew must replace a joint in a 10 kV cable between stations 14 and 15. In station 14 the technician opens the cable switch, locks it, plugs the test unit into the voltage indicator sockets to check they work, then reads all three phases: no voltage. Only then does he close the earthing switch. His colleague does the same in station 15.\n\nIn the trench the jointing crew identifies the cable, spikes it remotely and fits an earthing set on both sides of the joint. The fault level here is 12 kA; their set is rated 16 kA for 1 s, so it can carry a fault until the protection trips. The WV records both station earths and both work earths, and they come off in reverse order afterwards.',
+        text: 'A Liander crew must replace a joint in a 10 kV cable between stations 14 and 15. In station 14 the technician opens the cable switch, locks it, plugs the test unit into the voltage indicator sockets to check they work, then reads all three phases: no voltage. Only then does he close the earthing switch. His colleague does the same in station 15.\n\nIn the trench the jointing crew identifies the cable, spikes it remotely (a tool fired from a distance drives a spike through it, to prove it dead) and fits an earthing set on both sides of the joint. The fault level here is 12 kA; their set is rated 16 kA for 1 s, so it can carry a fault until the protection trips. The WV records both station earths and both work earths, and they come off in reverse order afterwards.',
       },
       said: 'What engineers say: “Indicator checked, three phases dead, earthing switch in. Now your set at the joint, and check it’s the 16 kA one.”',
       recall: [
@@ -974,7 +974,7 @@ export default {
         },
         {
           q: 'Why are both ends of a dead cable earthed, even when only one end could be switched on?',
-          options: ['It halves the fault current that flows in each earthing set', 'It makes the cable easier to identify in the trench', 'Induced voltage from parallel live cables can appear on it', 'NEN 3140 only counts earths fitted in pairs'],
+          options: ['It halves the fault current that flows in each earthing set', 'It makes the right cable easier to identify in the trench later', 'Induced voltage from parallel live cables can appear on it', 'NEN 3840 only counts earths fitted in pairs'],
           answer: 'Induced voltage from parallel live cables can appear on it',
           why: 'A long dead cable next to live ones can pick up voltage; earths at both ends keep it at earth potential.',
         },
@@ -1081,7 +1081,7 @@ export default {
       teach: [
         'A large customer, such as a factory, hospital or data centre, often has its own MV installation: a customer station with its own switchgear, transformers and cables behind the grid connection. The ownership boundary, set in the connection agreement, divides it: on one side the grid operator’s equipment, on the other the customer’s.\n\nBehind that boundary the customer is owner and responsible. Under NEN 3840 that means an IV for the installation, often an external IV hired from a service company when the firm has no MV expertise itself.',
         'The grid operator sets requirements at the boundary. The most important is the main protection: the customer’s incoming breaker with relays that must trip faster than the operator’s feeder breaker, so a fault in the factory does not take the feeder out. That is selectivity across the boundary.\n\nIf the operator’s relay trips at 0.7 s, and the grading margin is 0.3 s, the customer’s main protection must trip within 0.4 s.',
-        'NEN 3840 asks a periodic inspection: at least once a year a visual check of the switch rooms, and the IV decides whether measurements are needed, such as earth resistance, thermography (heat images) or partial discharge, tiny sparks in insulation (see Maintenance).\n\nThe reference is the state of the art: the installation must meet today’s safety level, not the level of the year it was built. Under the working conditions law a deviation is a defect, and the IV judges its risk, from “switch off now” to “accept”.',
+        'NEN 3840 asks a periodic inspection: at least once a year a visual check of the switch rooms, and the IV decides whether measurements are needed, such as earth resistance, thermography (heat images) or partial discharge, tiny sparks in insulation (see Maintenance).\n\nThe reference is the state of the art: the installation must meet today’s safety level, not the level of the year it was built. Under NEN 3840 a deviation from it is a defect, and the IV judges its risk, from “switch off now” to “accept”.',
         'Many customer installations are old: oil-filled breakers from the 1970s or 1980s, panels without internal arc classification, relays with settings nobody can find. Maintenance is often skipped because the installation “just works” and shutting it down stops production.\n\nWhen the grid changes, the customer may not notice: a higher fault level, new settings at the operator. The operator informs; the customer must act.',
         'In practice you see a locked MV room with the IV’s name on the door, an inspection report with open defects, and an operator’s switching point the factory may not touch. Experts argue about external IVs who visit twice a year: are they really in control?\n\nA sharp question at a factory: “Who is your IV for the MV installation, when was the last inspection, and what is still open from it?”',
       ],
@@ -1111,7 +1111,7 @@ export default {
           q: 'Against which safety level does the IV judge an old MV installation at inspection?',
           options: ['The level of the year it was built', 'The level in the manufacturer’s manual', 'The level the grid operator uses on its side', 'Today’s state of the art'],
           answer: 'Today’s state of the art',
-          why: 'Under the working conditions law the installation must meet today’s level; a deviation is a defect whose risk the IV judges.',
+          why: 'NEN 3840 judges the installation against today’s level; a deviation is a defect whose risk the IV judges.',
         },
         {
           q: 'How often does NEN 3840 ask at least for a visual check of an MV installation?',
