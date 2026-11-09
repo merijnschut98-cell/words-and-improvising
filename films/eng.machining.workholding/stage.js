@@ -186,7 +186,7 @@ const STAGE = (() => {
   // ------------------------------------------------------------ the spindle with an end mill or a boring bar
   function spindleSvg(x, y, zTip, kind, zCut) {
     const z0 = Math.max(zTip, zCut);
-    const r = kind === 'bore' ? 7 : 8;
+    const r = kind === 'bore' ? 9 : 8;
     let out = '';
     const toolLen = 44;
     if (zTip + toolLen > z0) out += S(cylinder(x, y, r, z0, zTip + toolLen - z0, P, 28), { tone: 'hi', crease: 'lo' });
@@ -195,7 +195,7 @@ const STAGE = (() => {
       const lines = [0, Math.PI].map((ph0) => fmt(Array.from({ length: 9 }, (_, i) => { const t = i / 8; const a = ph0 + t * 2.2 + 0.9; return at([x + r * Math.cos(a), y + r * Math.sin(a), z0 + 3 + t * (zTip + toolLen - z0 - 8)]); }))).join('');
       out += lineSvg(lines, { tone: 'lo' });
     }
-    if (kind === 'bore' && zTip >= zCut - 1) out += S(slabOf({ x: x + r - 1, y: y - 2, w: 9, d: 4, r: 0.5 }, zTip, 4, P, 2), { tone: 'hi' });
+    if (kind === 'bore' && zTip >= zCut - 1) out += S(slabOf({ x: x + r - 1, y: y - 2, w: C.BORE_R - r + 1, d: 4, r: 0.5 }, zTip, 4, P, 2), { tone: 'hi' });
     out += S(cylinder(x, y, 15, zTip + toolLen, 26, P, 36), { crease: 'lo', inner: lineSvg(onTop(Array.from({ length: 36 }, (_, i) => [x + 15 * Math.cos(i / 36 * TAU), y + 15 * Math.sin(i / 36 * TAU)]), zTip + toolLen + 8, P, true), { tone: 'faint' }) });
     out += S(cylinder(x, y, 24, zTip + toolLen + 26, 40, P, 40), { tone: 'lo', crease: 'lo' });
     return out;
@@ -250,8 +250,10 @@ const STAGE = (() => {
     if (st.chip > 0.01) {
       const [x, y] = C.LOC.A1.p;
       const dx = st.chipGo || 0;
-      const flake = Array.from({ length: 11 }, (_, i) => { const t = i / 10; const a = 0.4 + t * 4.2; const r = 2 + 5 * t; return at([x + 1 - dx * 0.8 + r * Math.cos(a), y + 2 + dx + r * Math.sin(a) * 0.8, C.PB + 0.2 + dx * 0.4]); });
-      set(E.chip, `<g style="opacity:${st.chip.toFixed(2)}"><path class="wh-chip" d="${fmt(flake)}"/></g>`);
+      const curl = Array.from({ length: 19 }, (_, i) => { const t = i / 18; const a = -1.2 + t * 2.4 * TAU; return [x + 1 + 3.2 * Math.cos(a), y + 6 + 3.2 * Math.sin(a), C.PB + 0.4 + 5.6 * t]; });
+      const tail = [[x, y + 9, C.PB + 0.4], [x - 2, y + 14, C.PB - 2], [x - 5, y + 19, C.PZ + 4], [x - 9, y + 22, C.PZ + 0.4]];
+      const pts = tail.slice().reverse().concat(curl).map((p) => at([p[0] - dx * 0.8, p[1] + dx, p[2] + dx * 0.2]));
+      set(E.chip, `<g style="opacity:${st.chip.toFixed(2)}"><path class="wh-chip" d="${fmt(pts)}"/><path class="wh-chipi" d="${fmt(pts)}"/></g>`);
     } else set(E.chip, '');
     // datum faces A (bottom: its visible bottom edges), B (front), C (end)
     if (st.datum > 0.01) {
@@ -264,7 +266,8 @@ const STAGE = (() => {
       const tag = (p, l) => { const [sx, sy] = at(p); const r = fs * 0.78; return `<circle class="wh-tag" cx="${f1(sx)}" cy="${f1(sy)}" r="${f2(r)}"/>` + txt(sx, sy + fs * 0.36, l, fs, 'middle', 'wh-acc'); };
       const edgeA = `<path class="wh-face" style="fill:none;stroke-width:3" d="${fmt([[F.x, y1, C.PB], [x1, y1, C.PB], [x1, F.y, C.PB]].map((p) => at(mv(p))))}"/>`;
       set(E.marks, `<g style="opacity:${st.datum.toFixed(2)}">${edgeA}${face([[F.x, y1, C.PB], [x1, y1, C.PB], [x1, y1, C.FT], [F.x, y1, C.FT]])}${face([[x1, F.y, C.PB], [x1, y1, C.PB], [x1, y1, C.FT], [x1, F.y, C.FT]])}`
-        + tag([F.x - 4, y1 + 14, C.PB - 12], 'A') + tag([-10, y1 + 2, C.PB + 6], 'B') + tag([x1 + 2, -24, C.PB + 6], 'C') + '</g>');
+        + `<path class="wh-lead" d="${fmt([at([F.x - 4, y1 + 14, C.PB - 12]), at(mv([F.x + 14, y1, C.PB]))])}"/>`
+        + tag([F.x - 4, y1 + 14, C.PB - 12], 'A') + tag([-10, y1 + 2, C.PB + 6], 'B') + tag([x1 + 2, -6, C.PB + 6], 'C') + '</g>');
     } else if (st.gap > 0.01) {
       // the gap the chip leaves under the flange's near corner, marked
       const F = C.FL;
@@ -343,10 +346,10 @@ const STAGE = (() => {
     const tx = sx(0.025);
     let out = `<rect class="wh-panel" x="${X0}" y="${Y0}" width="${pw}" height="${h}" rx="8"/>`;
     out += txt(x0, Y0 + 28, tr('onrond na lossen', 'out of round'), 19, 'start', 'wh-mute');
-    out += txt(x1, Y0 + 28, tr('mag: ', 'allowed: ') + dec(0.025, 3) + ' mm', 19, 'end', 'wh-txt');
+    out += txt(x1, Y0 + 28, 'H7: ' + dec(0.025, 3) + ' mm', 19, 'end', 'wh-txt');
     rows.forEach((r, i) => {
       const y = Y0 + 42 + i * 52;
-      out += `<rect class="wh-bar" data-c="lo" x="${x0}" y="${y}" width="${x1 - x0}" height="12" rx="3"/>`;
+      out += `<rect class="wh-bar" x="${x0}" y="${y}" width="${x1 - x0}" height="12" rx="3"/>`;
       if (r.v > 0) out += `<rect class="wh-bar" data-c="${r.c}" x="${x0}" y="${y}" width="${f1(Math.max(0, sx(r.v) - x0))}" height="12" rx="3"/>`;
       out += `<path class="wh-tol" d="M${f1(tx)} ${y - 4}V${y + 16}"/>`;
       out += txt(x0, y + 36, r.label + ': ' + dec(r.shown, 3) + ' mm', 19, 'start', r.c === 'acc' ? 'wh-txt' : 'wh-mute');
@@ -478,12 +481,12 @@ const STAGE = (() => {
         fix = { wrench: 0.55 + 0.6 * turn, click: p > 0.65 && p < 0.95 ? 1 - ph(p, 0.65, 0.95) : 0 };
       } else fix = {};
       if (b === 2) {
-        round = [{ v: 0.04, shown: 0.04, label: tr('hard op de wand', 'hard on the wall'), c: 'lo' }, { v: 0.008 * ph(p, 0.1, 0.5), shown: 0.008, label: tr('op de flens', 'on the flange'), c: 'acc' }];
+        round = [{ v: 0.04, shown: 0.04, label: tr('hard op de wand', 'hard on the wall'), c: 'mute' }, { v: 0.008 * ph(p, 0.1, 0.5), shown: 0.008, label: tr('op de flens', 'on the flange'), c: 'acc' }];
         roundA = ph(p, 0, 0.15);
       }
     } else if (si === 6) {
       // a chip under A1 tilts the part; an air blast; the part lies flat
-      const tiltPose = (t) => ({ v: [0, 0, 0], w: [0, -t / 120, 0], o: [60, 0, C.PB] });
+      const tiltPose = (t) => ({ v: [0, 0, 0], w: [0, t / 120, 0], o: [60, 0, C.PB] }); // lifts the end at x = −70 by about t
       if (b === 0) {
         const lift = ph(p, 0.05, 0.3) - ph(p, 0.45, 0.75);
         const tilt = 7 * ph(p, 0.6, 0.75);

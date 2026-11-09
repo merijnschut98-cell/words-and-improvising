@@ -114,11 +114,11 @@ const FL = { x: -70, y: -45, w: 140, d: 90, r: 1.2 };
 const BODY = { x: -38, y: -35, w: 76, d: 70, r: 1.2 };
 const FT = PB + 12; // flange top
 const BT = PB + 42; // body top, the bore face
-const BORE_R = 16; // drawn bore radius
+const BORE_R = 22; // drawn bore radius (larger than to scale, so the oval of scene 5 reads at 390 px)
 const HOLES = [[-50, 40], [50, 40], [-50, -40], [50, -40]];
 const STRAPS = [
   { key: 'L', y: 33, x0: -98, x1: -56, stud: -80, heel: [-100, -90] },
-  { key: 'R', y: -12, x0: 56, x1: 98, stud: 80, heel: [90, 100] },
+  { key: 'R', y: -30, x0: 56, x1: 98, stud: 80, heel: [90, 100] }, // over rest button A3
 ];
 const PUSH = { back: { x: 0, y: -45 }, end: { x: -70, y: -14 } };
 // the vice, centred at VX, clamping along y
@@ -130,8 +130,8 @@ const VBT = VPB + 42;
 const JAW_TOP = VBT - 10;
 const LIP = [VFT + 2, JAW_TOP];
 const OPEN = 16; // the moving jaw's opening
-const SQUEEZE = 6; // drawn squeeze of the wall when clamped hard (exaggerated)
-assert(OVAL_HARD / WALL < 0.05, 'the real squeeze is tiny: the drawing exaggerates it about 75 times (0,04 mm drawn as 3)');
+const SQUEEZE = 8; // drawn squeeze of the wall when clamped hard (exaggerated)
+assert(OVAL_HARD / WALL < 0.05 && (SQUEEZE / 2) / OVAL_HARD === 100, 'the real squeeze is tiny: the drawing exaggerates it 100 times (0,04 mm drawn as 4)');
 const DUR = [32, 30, 30, 34, 36, 32, 34, 40];
 
 const FIT = [...k.boxCorners(TABLE, -22, 0), [VX, 0, 200], [0, 0, 160]];
@@ -302,7 +302,55 @@ const world = [
   cue('dof', g('dof', '')),
 ].join('');
 const hud = [g('count', ''), cue('round', g('round', '')), cue('setup', g('setup', ''))].join('');
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`;
+// Static paths written with relative line-tos: the same points (to 0,1), about a
+// third fewer bytes. Only M, L and Z paths at one decimal are rewritten.
+function compactPath(d) {
+  const tok = d.match(/[MLZ]|-?\d*\.?\d+/g);
+  const n = (v) => { const a = Math.abs(v); const t = `${Math.floor(a / 10)}${a % 10 ? `.${a % 10}` : ''}`.replace(/^0\./, '.'); return (v < 0 ? '-' : '') + t; };
+  let out = '';
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  let last = '';
+  const put = (c, nums) => {
+    let s = c === last && c === 'l' ? '' : c;
+    for (const v of nums) { const t = n(v); s += (s && !/[MlZ]$/.test(s) && t[0] !== '-' ? ' ' : '') + t; }
+    if (!/^[MlZ]/.test(s) && out && !/[MlZ]$/.test(out) && s[0] !== '-') out += ' ';
+    out += s;
+    last = c;
+  };
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZ]/.test(tok[i])) { cmd = tok[i++]; if (cmd === 'Z') { put('Z', []); cur = start; } continue; }
+    const p = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    if (cmd === 'M') { put('M', p); cur = p; start = p; cmd = 'L'; } else { put('l', [p[0] - cur[0], p[1] - cur[1]]); cur = p; }
+  }
+  return out;
+}
+// read a path back to absolute points in tenths, to prove the rewrite exact
+function pointsOf(d) {
+  const tok = d.match(/[MLZlz]|-?\d*\.?\d+/g);
+  const out = [];
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZlz]/.test(tok[i])) { cmd = tok[i++]; if (/[Zz]/.test(cmd)) { out.push('Z'); cur = start; } continue; }
+    const v = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    cur = cmd === 'l' ? [cur[0] + v[0], cur[1] + v[1]] : v;
+    if (cmd === 'M') { start = cur; cmd = 'L'; out.push('M'); }
+    out.push(cur.join());
+  }
+  return out.join(' ');
+}
+const compact = (html) => html.replace(/ d="([MLZ\d.\s-]+)"/g, (m, d) => {
+  if (/\.\d\d/.test(d)) return m;
+  const c = compactPath(d);
+  if (pointsOf(c) !== pointsOf(d)) throw new Error(`compactPath changed a path: ${d.slice(0, 60)}`);
+  return ` d="${c}"`;
+});
+const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras (eased key frames per scene)
 const cam = (p, w) => { const [x, y] = at(p); return [Math.round(x * 10) / 10, Math.round(y * 10) / 10, w]; };
@@ -361,7 +409,7 @@ const spec = {
     {
       id: 's5', lesson: FIX, level: 1, dur: DUR[4], still: 0.95, title: { nl: 'Te hard gespannen', en: 'Clamped too hard' },
       beats: [
-        { nl: 'Wanden van {n:2} mm, een boring van Ø{n:40} H7: er mag {n:0.025} mm af wijken.', en: 'Walls of {n:2} mm, a bore of Ø{n:40} H7: it may be {n:0.025} mm off.', cues: ['bore'], q: 0.5 },
+        { nl: 'Wanden van {n:2} mm, een boring van Ø{n:40} H7: tot {n:0.025} mm te groot, nooit te klein.', en: 'Walls of {n:2} mm, a bore of Ø{n:40} H7: up to {n:0.025} mm oversize, never undersize.', cues: ['bore'], q: 0.5 },
         { nl: 'Hard in de bankschroef buigen de wanden in (overdreven getekend). De boring wordt rond bewerkt.', en: 'Clamped hard in the vice, the walls bend in (drawn exaggerated). The bore is machined round.', cues: ['vice'], q: 0.62 },
         { nl: 'Na het lossen veren de wanden terug: {n:0.04} mm onrond. Afkeur.', en: 'Once released, the walls spring back: {n:0.04} mm out of round. Scrap.', cues: ['round'], q: 0.95 },
       ],
@@ -370,7 +418,7 @@ const spec = {
       id: 's6', lesson: FIX, level: 1, dur: DUR[5], still: 0.95, title: { nl: 'Span waar het stijf is', en: 'Clamp where it is stiff' },
       beats: [
         { nl: 'Span waar het werkstuk stijf is: op de dikke flens, boven de steunpunten.', en: 'Clamp where the part is stiff: on the thick flange, above the support points.', cues: ['clamps'], q: 0.8 },
-        { nl: 'Een momentsleutel slaat af bij een vaste kracht: iedereen spant even hard.', en: 'A torque wrench clicks off at a set force: everyone clamps equally hard.', cues: ['wrench'], q: 0.6 },
+        { nl: 'Een momentsleutel slaat af bij een vaste draaikracht: iedereen spant even hard.', en: 'A torque wrench clicks off at a set torque: everyone clamps equally hard.', cues: ['wrench'], q: 0.6 },
         { nl: 'Nu blijft de boring binnen {n:0.008} mm rond: ruim binnen de tolerantie.', en: 'Now the bore stays round within {n:0.008} mm: well inside the tolerance.', cues: ['round'], q: 0.9 },
       ],
     },
@@ -401,50 +449,50 @@ const spec = {
 // readouts carry the asserted numbers.
 const SAY = [
   [ // s1 how it works
-    { nl: 'Voordat een machine kan verspanen, moet het werkstuk vastzitten: opspannen. Hier zit een aluminium behuizing in een bankschroef: een klem met twee bekken, waarvan er één naar de andere toe schuift. Op een draaibank doet een klauwplaat hetzelfde, met drie bekken rondom, en een dunne staaf knijp je vast in een spantang.',
+    { nl: 'Voordat een machine kan verspanen, moet het werkstuk vastzitten: opspannen. Hier zit een aluminium behuizing in een bankschroef: een klem met twee bekken, waarvan er één naar de andere schuift. Op een draaibank doet een klauwplaat hetzelfde, met drie bekken rondom, en een dunne staaf knijp je vast in een spantang.',
       en: 'Before a machine can cut, the part has to be held: workholding. Here an aluminium housing sits in a vice: a clamp with two jaws, one of which slides towards the other. On a lathe, a chuck does the same with three jaws around the part, and a thin bar is squeezed in a collet.' },
-    { nl: 'Elke opspanning heeft drie taken. Het werkstuk elke keer op precies dezelfde plek leggen. Het stevig vasthouden tegen de snijkrachten van de frees. En dat allemaal zonder het werkstuk te vervormen.',
-      en: 'Every kind of workholding has three jobs. Put the part in exactly the same place every time. Hold it firmly against the cutter’s forces. And do all that without bending the part.' },
-    { nl: 'Voor één bepaald werkstuk maak je vaak een {t:Mal|mal}: een houder die alleen bij dat werkstuk past. Hoe die werkt, zien we nu.',
-      en: 'For one particular part you often make a {t:Fixture|fixture}: a holder that fits only that part. Let’s see how it works.' },
+    { nl: 'Elke opspanning heeft drie taken. Het werkstuk elke keer op precies dezelfde plek leggen. Het stevig vasthouden tegen de snijkrachten van de frees. En dat zonder het werkstuk te vervormen.',
+      en: 'Every kind of workholding has three jobs. Put the part in exactly the same place every time. Hold it firmly against the cutter’s forces. And all that without bending the part.' },
+    { nl: 'Voor één bepaald werkstuk maak je vaak een {t:Mal|mal}: een houder die alleen bij dat werkstuk past.',
+      en: 'For one particular part you often make a {t:Fixture|fixture}: a holder that fits only that part.' },
   ],
   [ // s2 six degrees of freedom
-    { nl: 'Houd de behuizing los boven de mal. Niets houdt hem tegen: hij kan schuiven in drie richtingen: naar links en rechts, naar voren en achteren, en omhoog en omlaag.',
-      en: 'Hold the housing loose above the fixture. Nothing stops it: it can slide in three directions: left and right, forwards and backwards, and up and down.' },
+    { nl: 'Houd de behuizing los boven de mal. Hij kan schuiven in drie richtingen. Links en rechts, voor en achter, op en neer.',
+      en: 'Hold the housing loose above the fixture. It can slide in three directions. Left and right, forwards and back, up and down.' },
     { nl: 'En hij kan draaien om drie assen: kantelen naar voren, kantelen opzij, en ronddraaien zoals een draaitafel.',
       en: 'And it can turn about three axes: tilt forwards, tilt sideways, and spin like a turntable.' },
     { nl: 'Drie keer schuiven en drie keer draaien: dat zijn de zes {t:Vrijheidsgraden|vrijheidsgraden}. Een opspanning legt ze alle zes vast.',
       en: 'Three slides and three turns: those are the six {t:Degrees of freedom|degrees of freedom}. Workholding fixes all six.' },
   ],
   [ // s3 the 3-2-1 principle
-    { nl: 'Het {t:3-2-1-principe|3-2-1-principe} doet dat met zes punten. Eerst drie steunpunten onder het hoofdvlak. Drie punten bepalen een vlak: nu kan hij niet meer zakken, en niet meer kantelen. Er zijn er drie vast.',
-      en: 'The {t:3-2-1 principle|3-2-1 principle} does it with six points. First three support points under the main face. Three points define a plane: now it can no longer drop, and no longer tilt. Three are fixed.' },
-    { nl: 'Dan twee punten langs een zijkant. Schuif hem ertegenaan, en hij kan niet meer naar voren, en ook niet meer ronddraaien. Nog één over.',
-      en: 'Then two points along a side. Push it against them, and it can no longer move forwards, nor spin. One is left.' },
+    { nl: 'Het {t:3-2-1-principe|3-2-1-principe} doet dat met zes punten. Eerst drie steunpunten onder het hoofdvlak. Drie punten bepalen een vlak: nu kan hij niet meer zakken, en niet meer kantelen.',
+      en: 'The {t:3-2-1 principle|3-2-1 principle} does it with six points. First three support points under the main face. Three points define a plane: now it can no longer drop, and no longer tilt.' },
+    { nl: 'Dan twee punten langs een zijkant. Schuif hem ertegenaan, en hij kan niet meer naar voren, en ook niet meer ronddraaien.',
+      en: 'Then two points along a side. Push it against them, and it can no longer move forwards, nor spin.' },
     { nl: 'Tot slot één aanslag aan het eind. Nu kan hij ook niet meer opzij. Drie plus twee plus één: zes punten, en alle zes vrijheidsgraden liggen vast.',
       en: 'Finally one stop at the end. Now it can no longer move sideways either. Three plus two plus one: six points, and all six degrees of freedom are fixed.' },
   ],
   [ // s4 datums and clamps
-    { nl: 'Op de tekening heten ze A, B en C: de {t:Referentievlakken|referentievlakken}. De maten worden ervandaan gemeten. Leg je het werkstuk op die vlakken, dan werkt de machine vanaf dezelfde plek als de controleur.',
-      en: 'On the drawing they are called A, B and C: the {t:Datums|datums}. The sizes are measured from them. Put the part on those faces, and the machine works from the same place as the inspector.' },
+    { nl: 'Op de tekening heten ze A, B en C: de {t:Referentievlakken|referentievlakken}. De maten worden ervandaan gemeten. Leg je het werkstuk erop, dan werkt de machine vanaf dezelfde plek als de controleur.',
+      en: 'On the drawing they are called A, B and C: the {t:Datums|datums}. The sizes are measured from them. Put the part on them, and the machine works from the same place as the inspector.' },
     { nl: 'Pas daarna komen de klemmen. Ze duwen het werkstuk naar de punten toe: de spanklauwen recht boven de steunpunten, de drukschroeven tegen de zijkant en het eind. Nooit de lucht in, want dan buig je het werkstuk.',
       en: 'Only then come the clamps. They push the part towards the points: the strap clamps right above the support points, the push screws against the side and the end. Never into empty space, because then you bend the part.' },
     { nl: 'Plaat, steunpunten en klemmen samen vormen de {t:Mal|mal}. Zo ligt elk volgend werkstuk precies waar het vorige lag.',
       en: 'Plate, support points and clamps together make the {t:Fixture|fixture}. That way every next part lies exactly where the last one lay.' },
   ],
   [ // s5 clamped too hard
-    { nl: 'Dan de spankracht. Te weinig, en het werkstuk verschuift onder de snede. Te veel, en het vervormt. Deze behuizing heeft wanden van maar {n:2} millimeter, en een boring van {n:40} millimeter in klasse H7. Die mag maar vijfentwintig duizendste millimeter afwijken.',
-      en: 'Then the clamping force. Too little, and the part shifts under the cut. Too much, and it bends. This housing has walls of only {n:2} millimetres, and a bore of {n:40} millimetres in class H7. It may be off by only twenty-five thousandths of a millimetre.' },
-    { nl: 'Hij zit hard vast in de bankschroef. De dunne wanden buigen naar binnen, hier sterk overdreven getekend. In de machine wordt de boring rond bewerkt, en daar meet hij perfect.',
+    { nl: 'Dan de spankracht. Te weinig, en het werkstuk verschuift onder de snede. Te veel, en het vervormt. Deze behuizing heeft wanden van maar {n:2} millimeter, en een boring van {n:40} millimeter in klasse H7. Die mag tot vijfentwintig duizendste millimeter groter zijn dan veertig, maar niet kleiner.',
+      en: 'Then the clamping force. Too little, and the part shifts under the cut. Too much, and it bends. This housing has walls of only {n:2} millimetres, and a bore of {n:40} millimetres in class H7. It may be up to twenty-five thousandths of a millimetre over forty, but never under.' },
+    { nl: 'Hij zit hard vast in de bankschroef. De dunne wanden buigen naar binnen, hier sterk overdreven getekend. De boring wordt rond bewerkt, en in de machine meet hij perfect.',
       en: 'It is clamped hard in the vice. The thin walls bend inwards, drawn here greatly exaggerated. In the machine the bore is machined round, and there it measures perfect.' },
-    { nl: 'Dan los je de bankschroef. De wanden veren terug, en ze nemen de boring mee. Op de meetmachine is hij nu vier honderdste millimeter onrond. Dat is meer dan de hele tolerantie: afkeur.',
-      en: 'Then you open the vice. The walls spring back, and take the bore with them. On the measuring machine it is now four hundredths of a millimetre out of round. That is more than the whole tolerance: scrap.' },
+    { nl: 'Dan los je de bankschroef. De wanden veren terug en nemen de boring mee. Op de meetmachine is hij nu vier honderdste millimeter onrond. Dat is meer dan de hele tolerantie: afkeur.',
+      en: 'Then you open the vice. The walls spring back and take the bore with them. On the measuring machine it is now four hundredths of a millimetre out of round. That is more than the whole tolerance: scrap.' },
   ],
   [ // s6 clamp where it is stiff
     { nl: 'De oplossing: span waar het werkstuk stijf is. Hier op de dikke flens, met de spanklauwen recht boven de steunpunten.',
       en: 'The fix: clamp where the part is stiff. Here on the thick flange, with the strap clamps right above the support points.' },
     { nl: 'Draai de moeren aan met een momentsleutel: een sleutel die afslaat bij een vaste draaikracht. Zo spant iedereen even hard. Een andere oplossing zijn zachte bekken: aluminium bekken, gefreesd in de vorm van het werkstuk, die over een groot oppervlak grijpen.',
-      en: 'Tighten the nuts with a torque wrench: a wrench that clicks off at a set twisting force. That way everyone clamps equally hard. Another fix is soft jaws: aluminium jaws, machined to the shape of the part, which grip over a large area.' },
+      en: 'Tighten the nuts with a torque wrench: a wrench that clicks off at a set torque. That way everyone clamps equally hard. Another fix is soft jaws: aluminium jaws, machined to the shape of the part, which grip over a large area.' },
     { nl: 'Nu blijft de boring binnen acht duizendste millimeter rond. Ruim binnen de tolerantie.',
       en: 'Now the bore stays round within eight thousandths of a millimetre. Well inside the tolerance.' },
   ],
@@ -459,9 +507,9 @@ const SAY = [
   [ // s8 setup time and the zero-point system
     { nl: '{t:Omsteltijd|Omsteltijd} is alles van het laatste goede stuk van de ene order tot het eerste goede stuk van de volgende: oude mal eraf, nieuwe erop, gereedschap laden, offsets zetten, eerste-stukcontrole. Meestal kost dat {n:30} minuten tot {n:3} uur. Hier {n:90} minuten.',
       en: '{t:Setup time|Setup time} is everything from the last good part of one job to the first good part of the next: old fixture off, new one on, loading tools, setting offsets, first-off inspection. It usually takes {n:30} minutes to {n:3} hours. Here, {n:90} minutes.' },
-    { nl: 'Daarom spant men het werkstuk vaak buiten de machine op een pallet, terwijl de vorige order nog draait. Op de tafel zit een {t:Nulpuntspansysteem|nulpuntspansysteem}: een snelsluiting die de pallet aan zijn pennen vastpakt. De pallet zakt erin, klikt vast, en ligt binnen vijf duizendste millimeter weer op dezelfde plek. Fabrikanten noemen vaak een paar micron.',
-      en: 'That is why the part is often clamped on a pallet outside the machine, while the previous job is still running. On the table sits a {t:Zero-point clamping|zero-point clamping system}: a quick-lock base that grips the pallet by its pins. The pallet drops in, locks, and is back in the same place within five thousandths of a millimetre. Makers often quote a few microns.' },
-    { nl: 'Zo gaat deze omstelling van {n:90} naar {n:25} minuten. Bij {n:8} omstellingen per week is dat {n:8.67} uur extra machinetijd. Hoe je omstellen verder verkort, met SMED, zie je in de module Capaciteit en flow.',
+    { nl: 'Daarom span je het werkstuk vaak al buiten de machine op een pallet, terwijl de vorige order nog draait. Op de tafel zit een {t:Nulpuntspansysteem|nulpuntspansysteem}: een snelsluiting die de pallet aan zijn pennen vastpakt. De pallet zakt erin, wordt vastgetrokken, en ligt weer op dezelfde plek: meestal binnen vijf duizendste millimeter, afhankelijk van het systeem.',
+      en: 'That is why the part is often clamped on a pallet outside the machine, while the previous job is still running. On the table sits a {t:Zero-point clamping|zero-point clamping system}: a quick-lock base that grips the pallet by its pins. The pallet drops in, is pulled down, and is back in the same place: usually within five thousandths of a millimetre, depending on the system.' },
+    { nl: 'Zo gaat deze omstelling van {n:90} naar {n:25} minuten. Bij {n:8} omstellingen per week is dat {n:8.67} uur extra machinetijd. Hoe je omstellen verder verkort, met SMED, leer je in de module Capaciteit en flow.',
       en: 'That takes this setup from {n:90} to {n:25} minutes. At {n:8} setups a week, that is {n:8.67} hours of extra machine time. How to shorten setups further, with SMED, is in the module Capacity and flow.' },
   ],
 ];
@@ -510,16 +558,19 @@ const css = `
 .wh-forcehead{fill:var(--fp-accent);stroke:none}
 .wh-tag{fill:var(--anatomy-card);stroke:var(--fp-accent);stroke-width:1.4;vector-effect:non-scaling-stroke}
 .wh-face{fill:color-mix(in srgb,var(--fp-accent) 22%,transparent);stroke:var(--fp-accent);stroke-width:1.6;vector-effect:non-scaling-stroke}
-.wh-chip{fill:var(--anatomy-face);stroke:var(--anatomy-hi);stroke-width:.7;vector-effect:non-scaling-stroke}
-[data-cue][data-on] .wh-chip{stroke:var(--fp-accent);fill:var(--anatomy-lit-top)}
+.wh-chip{fill:none;stroke:var(--anatomy-text);stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.wh-chipi{fill:none;stroke:var(--anatomy-lit-top);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+[data-cue][data-on] .wh-chip{stroke:var(--fp-accent)}
 .wh-air{fill:none;stroke:var(--fp-accent);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:5 6;vector-effect:non-scaling-stroke}
 .wh-bar{stroke:none;fill:var(--anatomy-shade-2)}
 .wh-bar[data-c="acc"]{fill:var(--fp-accent)}
 .wh-bar[data-c="lo"]{fill:var(--anatomy-shade-3)}
+.wh-bar[data-c="mute"]{fill:var(--anatomy-muted);opacity:.55}
 .wh-tol{fill:none;stroke:var(--anatomy-text);stroke-width:1.5;stroke-dasharray:4 3}
 .wh-rule{fill:none;stroke:var(--anatomy-mid);stroke-width:1}
-.wh-ref{fill:none;stroke:var(--anatomy-muted);stroke-width:1.2;stroke-dasharray:3 3;vector-effect:non-scaling-stroke}
+.wh-ref{fill:none;stroke:var(--anatomy-text);stroke-width:1.4;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
 .wh-oval{fill:none;stroke:var(--fp-accent);stroke-width:2;vector-effect:non-scaling-stroke}
+.wh-lead{fill:none;stroke:var(--fp-accent);stroke-width:1.4;vector-effect:non-scaling-stroke}
 [data-hi] .iso-edge,[data-hi] .iso-crease,[data-hi] .iso-line{stroke:var(--fp-accent)!important}
 [data-hi] .iso-top{fill:var(--anatomy-lit-top)}
 [data-hi] .iso-shade{fill:var(--anatomy-lit-shade)}
