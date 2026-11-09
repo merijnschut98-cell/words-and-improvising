@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.quality.tolerance',
+      film: 'eng.quality.tolerance',
       title: 'Nominal, tolerance and spec limits',
       pre: [
         {
@@ -295,6 +296,7 @@ export default {
     },
     {
       id: 'eng.quality.variation',
+      film: 'eng.quality.tolerance',
       title: 'Variation: common and special cause',
       pre: [
         {
@@ -367,6 +369,7 @@ export default {
     },
     {
       id: 'eng.quality.capability',
+      film: 'eng.quality.tolerance',
       figure: 'eng.quality.capability',
       title: 'Capability: Cp and Cpk',
       pre: [
