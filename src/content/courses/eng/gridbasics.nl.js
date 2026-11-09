@@ -424,7 +424,7 @@ export default {
       sayIt: 'Leg een familielid in 60 seconden uit hoe stroom van een onderstation in zijn stopcontact komt.',
       terms: [
         { term: 'Onderstation', def: 'Station waar de 150 of 110 kV van TenneT wordt omgezet naar middenspanning (10 tot 20 kV).' },
-        { term: 'Normaal openpunt', def: 'Het punt waar een MS-ring open staat; wordt gesloten om na een storing weer te voeden.' },
+        { term: 'Normaal openpunt', def: 'De schakelaar in een MS-ring die openstaat; je sluit hem om een deel van de andere kant te voeden.' },
         { term: 'Netstation', def: 'Het kleine station in de straat (wijktrafo) dat MS omzet naar 400/230 V voor de straatkabels.' },
         { term: 'MS-ruimte', def: 'Een ruimte met MS-apparatuur, vaak in een gebouw of bij een grote klant.' },
         { term: 'Hoofdzekering', def: 'De zekering aan het eind van de huisaansluiting die de aansluiting begrenst, bijvoorbeeld op 3 × 25 A.' },
@@ -642,7 +642,7 @@ export default {
         { term: 'Jaarlijkse uitvalduur', def: 'Gemiddeld aantal minuten zonder stroom per klant per jaar; ook wel uitvalminuten.' },
         { term: 'Gereguleerd monopolie', def: 'Een bedrijf met een eigen gebied zonder concurrentie, waarvan een toezichthouder de inkomsten en regels vastlegt.' },
         { term: 'ACM', def: 'De Autoriteit Consument & Markt: de toezichthouder die inkomsten en regels van netbeheerders vastlegt.' },
-        { term: 'Investeringsplan', def: 'Plan voor netuitbreiding dat een netbeheerder elke twee jaar publiceert.' },
+        { term: 'Investeringsplan', def: 'Het openbare plan waarin een netbeheerder elke twee jaar zijn knelpunten en geplande uitbreidingen beschrijft; de ACM toetst het.' },
       ],
     },
     {
@@ -925,8 +925,8 @@ export default {
         { term: 'Netcongestie', def: 'Op piekmomenten is de vraag naar transport groter dan het net veilig kan dragen.' },
         { term: 'Grootverbruiker', def: 'Een klant met een aansluiting boven 3 × 80 A; in congestiegebieden wachten die op capaciteit.' },
         { term: 'Capaciteitskaart', def: 'Openbare kaart van de netbeheerders die laat zien waar het net nog ruimte heeft voor afname en invoeding.' },
-        { term: 'Congestiemanagement', def: 'Klanten betalen of contracteren om afname of invoeding weg te schuiven van piekmomenten.' },
-        { term: 'GOPACS', def: 'Het gezamenlijke platform van de Nederlandse netbeheerders om flexibiliteit tegen congestie in te kopen.' },
+        { term: 'Congestiemanagement', def: 'Afname of invoeding op piekmomenten sturen met contracten of betaalde flexibiliteit, zodat er meer klanten op een vol net passen.' },
+        { term: 'GOPACS', def: 'Het gezamenlijke platform van de Nederlandse netbeheerders om flexibiliteit tegen congestie in te kopen, vooral als redispatch.' },
         { term: 'Flexibel contract', def: 'Een aansluitcontract met capaciteit behalve op piekuren of voor een vast deel van het jaar, in ruil voor een lager tarief.' },
       ],
     },
@@ -1015,7 +1015,7 @@ export default {
         'Een klant op de wachtrij hoeft niet stil te zitten. Begin met het eigen profiel: welke kwartierwaarden, welke machines, welke pieken. Vaak blijkt de piek op een paar ochtenden te ontstaan doordat alles tegelijk opstart.\n\nPeak shaving achter de meter, met een sturing die laders of koeling even terugzet, verlaagt die piek zonder iets aan het net te veranderen. Dat helpt dubbel: een lagere kWmax op de rekening, en ruimte binnen het bestaande GTV.',
         'Een eigen batterij kan pieken opvangen: laden als het rustig is, ontladen op de piek. Met eigen opwek, zoals zonnepanelen op het dak, gebruik je ook meer zelf. Maar een batterij is duur, en als hij ook op de markt handelt, moet hij niet juist op het drukste moment laden (zie Netplanning en de energietransitie).\n\nEen hybride installatie (hybrid installation), zoals een elektrische boiler met de gasketel als reserve, gebruikt stroom als er ruimte is en valt anders terug op gas.',
         'Samen met buren kan meer. In een energiehub (energy hub) bundelen bedrijven op een terrein hun vraag, opwek en opslag, zodat de piek van het ene bedrijf in het dal van het andere valt.\n\nEind 2025 legde de ACM de groepstransportovereenkomst (GTO; group transport agreement) vast: bedrijven sluiten samen één transportcontract met de netbeheerder en verdelen het vermogen onderling. In 2025 sloten netbeheerders al de eerste, en vanaf 1 januari 2027 moeten ze hem aanbieden. De groep heeft dan minder nodig dan de som van de losse aanvragen.',
-        'Bij cable pooling delen een zonnepark en een windpark één aansluiting: de zon levert vooral midden op de dag en in de zomer, wind vaker in de winter en ’s nachts. Zo past er meer opwek op dezelfde kabel.\n\nFlexibele contracten met de netbeheerder zelf, zoals een tijdsafhankelijk contract of een capaciteitsbeperkingscontract, behandelt Netplanning en de energietransitie. Voor elke optie geldt: de klant moet het echt volhouden, ook in een koude week.',
+        'Bij cable pooling delen een zonnepark en een windpark één aansluiting: de zon levert vooral midden op de dag en in de zomer, wind vaker in de winter en ’s nachts. Zo past er meer opwek op dezelfde kabel.\n\nFlexibele contracten met de netbeheerder zelf, zoals een tijdsafhankelijk contract of een capaciteitssturingscontract (CSC), behandelt Netplanning en de energietransitie. Voor elke optie geldt: de klant moet het echt volhouden, ook in een koude week.',
         'In de praktijk lopen deze opties vaker vast op organisatie dan op techniek: wie is aansprakelijk als één bedrijf uit de hub stapt, wie meet, wie stuurt. Experts discussiëren of klanten zo het probleem van de netbeheerder oplossen, of de netbeheerder het hunne. Voor een netbeheerder zijn klanten die zelf schuiven goud waard.\n\nEen scherpe vraag aan elke wachtende klant: “Als u morgen 70% van uw aanvraag kon krijgen, buiten de piekuren, wat zou u dan doen?”',
       ],
       example: {
