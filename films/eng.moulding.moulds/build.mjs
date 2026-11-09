@@ -1,5 +1,5 @@
-// Dev tool, not shipped. Builds the explainer film "Binnen in een matrijs /
-// Inside a mould" for the topic Matrijzen of Spuitgieten (tooling L1,
+// Dev tool, not shipped. Builds the explainer film "De matrijs als
+// gereedschap / The mould as a tool" for the topic Matrijzen of Spuitgieten (tooling L1,
 // mouldparts L2, mouldcare L3, newmould L4).
 //
 //   node films/eng.moulding.moulds/build.mjs            build the page
@@ -79,6 +79,15 @@ assert(MOULDS_A === 2, 'class 103, under 500.000 cycles → 2 moulds');
 assert(near((MOULDS_A * NEW.A.price) / NEW.parts, 0.06), '2 × 45.000 / 1.500.000 = € 0,060');
 assert(near(NEW.B.price / NEW.parts, 0.05), '75.000 / 1.500.000 = € 0,050');
 assert(NEW_SHOTS <= NEW.B.life, 'class 101 covers 750.000 shots');
+assert(NEW_SHOTS > NEW.A.life, 'class 103 does not cover 750.000 shots');
+assert(MOULDS_A * NEW.A.price - NEW.B.price === 15000, 'B saves € 15.000 over the life');
+// SPI/PLASTICS AR-106 mould classes, cycle life (the SPI card): 101 ≥ 1 million,
+// 102 ≤ 1 million, 103 < 500.000, 104 < 100.000, 105 prototype, about 500
+const SPI = [['101', 1000000, '≥'], ['102', 1000000, '≤'], ['103', 500000, '<'], ['104', 100000, '<'], ['105', 500, '~']];
+assert(SPI[0][1] === NEW.B.life && SPI[2][1] === NEW.A.life, 'the quotes use the SPI class lives');
+// vents 0,01–0,05 mm deep, material dependent: the same range as the film eng.moulding.defects
+const VENT = [0.01, 0.05];
+assert(VENT[0] < VENT[1] && VENT[1] <= 0.05, 'vent depth range');
 
 // ---------------------------------------------------------------- the world
 // x across the mould from the nozzle (left) to the moving clamp plate (right),
@@ -365,6 +374,7 @@ const world = [
   g('apin', anglePin),
   g('draft', '', ' data-cue="draft"'),
   g('vent', '', ' data-cue="vent"'),
+  g('edge', ''),
   g('parting', partingLine, ' data-cue="parting"'),
   g('flow', ''),
 ].join('');
@@ -413,10 +423,10 @@ const CAVV = cam([-4, 0, 70], 300);
 const OPENV = cam([30, -40, 0], 560);
 const LEFT_M = cam([10, -40, 0], 560, [200, 205]); // mould on the left, card on the right
 const LEFT_O = cam([40, -40, 0], 620, [205, 205]);
-const GATEV = cam([-4, 0, 50], 150, [200, 190]);
+const GATEV = cam([-2, 0, 47], 100, [320, 200]);
 const GATEO = cam([40, 0, 40], 330, [200, 200]);
 const DRAFTV = cam([OPEN - 9, 0, 112], 200, [200, 200]);
-const HOLEV = cam([-6, 0, 128], 150, [200, 200]);
+const HOLEV = cam([-12, 0, 122], 100, [320, 200]);
 const SIMV = cam([-10, 0, 88], 180, [170, 200]);
 const TOPV = cam([10, -75, ZT - 20], 420, [320, 84]);
 const SLIDEW = cam([24, 0, 110], 330, [210, 210]);
@@ -439,7 +449,7 @@ const MC = 'eng.moulding.mouldcare';
 const NM = 'eng.moulding.newmould';
 const spec = {
   id: 'eng.moulding.moulds',
-  title: { nl: 'Binnen in een matrijs', en: 'Inside a mould' },
+  title: { nl: 'De matrijs als gereedschap', en: 'The mould as a tool' },
   lessons: [TO, MP, MC, NM],
   scenes: [
     {
@@ -449,7 +459,7 @@ const spec = {
         { nl: 'Een matrijs: twee stalen helften, vast en bewegend, die op de deellijn sluiten.', en: 'A mould: two steel halves, fixed and moving, that meet at the parting line.', cues: ['parting'] },
         { nl: 'De smelt komt de matrijs in door de {t:Aanspuitkegel|aanspuitkegel}, een kegelvormig kanaal.', en: 'The melt enters the mould through the {t:Sprue|sprue}, a cone-shaped channel.', cue: { Aanspuitkegel: 'sprue' } },
         { nl: 'Verdeelkanalen brengen hem naar de holtes; het smalle aanspuitpunt laat hem binnen.', en: 'Runners carry it to the cavities; the narrow gate lets it in.', cues: ['runner', 'gate'] },
-        { nl: 'Koelwater haalt de warmte weg; heel ondiepe ontluchting laat de lucht eruit.', en: 'Cooling water takes the heat away; very shallow vents let the air out.', cues: ['cool', 'vent'] },
+        { nl: 'Koelwater haalt de warmte weg; heel ondiepe ontluchting laat de lucht eruit.', en: 'Cooling water takes the heat away; very shallow vents let the air out.', cues: ['cool', 'vent'], read: { nl: 'ontluchting 0,01–0,05 mm diep', en: 'vents 0.01–0.05 mm deep' } },
         { nl: 'De matrijs gaat open; een {t:Uitwerppen|uitwerppen} duwt het product van de kern.', en: 'The mould opens; an {t:Ejector pin|ejector pin} pushes the part off the core.', cue: { Uitwerppen: 'pins' } },
       ],
     },
@@ -475,7 +485,7 @@ const spec = {
       id: 's4', lesson: MP, level: 2, still: 0.5, title: { nl: 'Aanspuiting en koeling', en: 'Gates and cooling' },
       beats: [
         { nl: 'Een randaanspuiting zit op de deellijn; een {t:Tunnelaanspuiting|tunnelaanspuiting} er schuin onder.', en: 'An edge gate sits on the parting line; a {t:Tunnel gate|tunnel gate} at an angle below it.', cue: { Tunnelaanspuiting: 'tunnel' } },
-        { nl: 'Bij het uitwerpen schuift het aanspuitmateriaal vanzelf af: geen nabewerking.', en: 'At ejection the runner shears off by itself: no trimming.', cues: ['tunnel'] },
+        { nl: 'Bij openen en uitwerpen breekt het aanspuitpunt vanzelf af: geen nabewerking.', en: 'As the mould opens and ejects, the gate shears off by itself: no trimming.', cues: ['tunnel'] },
         { nl: 'Eén shot: {n:2} × {n:18} g + {n:6} g = {n:42} g, en {n:14} % daarvan is kanaal.', en: 'One shot: {n:2} × {n:18} g + {n:6} g = {n:42} g, and {n:14} % of it is runner.', cues: ['shot', 'runner'] },
         { nl: 'Koelkanalen lopen door de platen; in een hoge kern gaat het water op en neer.', en: 'Cooling channels run through the plates; in a tall core the water goes up and down.', cues: ['cool', 'core'] },
       ],
@@ -493,9 +503,9 @@ const spec = {
       id: 's6', lesson: MC, level: 3, still: 0.5, title: { nl: 'Onderhoud plannen', en: 'Planning maintenance' },
       beats: [
         { nl: '{n:8} holtes, {n:12} s, {n:120} uur: {n:36000} shots per week; onderhoud elke {n:100000}.', en: '{n:8} cavities, {n:12} s, {n:120} hours: {n:36000} shots a week; service every {n:100000}.', cues: ['plan', 'counter'] },
-        { nl: '{t:Slijtdelen|Slijtdelen}: pennen, slijtplaten, afdichtingen, verwarmingen. Kritische op voorraad.', en: '{t:Wear parts|Wear parts}: pins, wear plates, seals, heaters. Critical ones on stock.', cue: { Slijtdelen: 'wear' } },
+        { nl: '{t:Slijtdelen|Slijtdelen}: pennen, slijtplaten, afdichtingen, verwarmingen. Kritische op voorraad.', en: '{t:Wear parts|Wear parts}: pins, wear plates, seals, heaters. Critical ones in stock.', cue: { Slijtdelen: 'wear' } },
         { nl: 'Het {t:Matrijslogboek|matrijslogboek}: dezelfde schuif elke {n:30000} shots? Dan is het ontwerp het probleem.', en: 'The {t:Mould logbook|mould logbook}: the same slide every {n:30000} shots? Then the design is the problem.', cue: { Matrijslogboek: 'log' } },
-        { nl: 'Het {t:Laatste shot|laatste shot} gaat mee naar de gereedschapmakerij: repareer op de bank.', en: 'The {t:Last-shot sample|last-shot sample} goes to the toolroom: repair on the bench.', cue: { 'Laatste shot': 'last' } },
+        { nl: 'Het {t:Laatste shot|laatste shot} gaat mee naar de gereedschapmakerij: repareer op de werkbank.', en: 'The {t:Last-shot sample|last-shot sample} goes to the toolroom: repair on the bench.', cue: { 'Laatste shot': 'last' } },
       ],
     },
     {
@@ -513,7 +523,7 @@ const spec = {
         { nl: 'Een {t:Vulsimulatie|vulsimulatie} voorspelt stroming, bindnaden, druk en kromtrekken.', en: 'A {t:Fill simulation|fill simulation} predicts flow, weld lines, pressure and warpage.', cue: { Vulsimulatie: 'sim' } },
         { nl: '{t:SPI-klasse|SPI-klasse}: {n:101} voor een miljoen cycli of meer, {n:103} onder de {n:500000}.', en: '{t:SPI class|SPI class}: {n:101} for a million cycles or more, {n:103} under {n:500000}.', cue: { 'SPI-klasse': 'spi' } },
         { nl: '{t:T0} bij de matrijzenmaker: werkt hij? Dan T1, met producten die gemeten worden.', en: '{t:T0} at the toolmaker: does it work? Then T1, with parts that get measured.', cue: { T0: 't0' } },
-        { nl: '{t:PPAP}: minstens {n:300} opeenvolgende producten, met productiegereedschap op tempo.', en: '{t:PPAP}: at least {n:300} consecutive parts, with production tooling at rate.', cue: { PPAP: 'ppap' } },
+        { nl: '{t:PPAP}: standaard minstens {n:300} opeenvolgende producten, met productiegereedschap op tempo.', en: '{t:PPAP}: by default at least {n:300} consecutive parts, with production tooling at rate.', cue: { PPAP: 'ppap' } },
       ],
     },
   ],
@@ -525,34 +535,34 @@ const spec = {
 // caption, so the film replaces the lesson text. Same markers; the build checks
 // its terms and numbers against the lessons. Numbers the voice would read badly
 // (20.000, 2.400, 36.000, € 0,060) are written as words. A term is named while
-// its cue is lit. Dutch about 700 words.
+// its cue is lit. Dutch about 700 words (cap 360 s at about 3 words a second with pauses).
 const SAY = [
   [ // s1 how a mould works
-    { nl: 'Dit is een matrijs, opengezaagd. Links de vaste helft, tegen de spuitmond van de machine; rechts de bewegende helft, die met de pers opengaat. Ze sluiten op de deellijn.',
-      en: 'This is a mould, cut open. On the left the fixed half, against the machine’s nozzle; on the right the moving half, which opens with the press. They meet at the parting line.' },
-    { nl: 'De spuitmond drukt de smelt in de {t:Aanspuitkegel|aanspuitkegel}: een kegelvormig kanaal, naar binnen wijder, zodat het gestolde stuk eruit kan.',
-      en: 'The nozzle pushes the melt into the {t:Sprue|sprue}: a cone-shaped channel, wider inwards, so the set piece can come out.' },
+    { nl: 'Dit is een matrijs, opengezaagd. Links de vaste helft, tegen de spuitmond; rechts de bewegende helft, die opengaat. Ze sluiten op de deellijn.',
+      en: 'This is a mould, cut open. On the left the fixed half, against the nozzle; on the right the moving half, which opens. They meet at the parting line.' },
+    { nl: 'De spuitmond drukt de smelt in de {t:Aanspuitkegel|aanspuitkegel}: een kanaal dat naar binnen wijder wordt, zodat het gestolde stuk eruit kan.',
+      en: 'The nozzle pushes the melt into the {t:Sprue|sprue}: a channel that widens inwards, so the set piece can come out.' },
     { nl: 'Verdeelkanalen op de deellijn verdelen hem over de twee holtes. Het aanspuitpunt is expres smal: het stolt als eerste en laat maar een klein merkje achter.',
       en: 'Runners along the parting line share it between the two cavities. The gate is narrow on purpose: it freezes first and leaves only a small mark.' },
-    { nl: 'De lucht ontsnapt door de ontluchting: sleufjes van vaak een paar honderdste millimeter, te ondiep voor de smelt. Koelwater haalt de warmte uit het staal.',
-      en: 'The air escapes through the vents: slots often a few hundredths of a millimetre deep, too shallow for the melt. Cooling water draws the heat out of the steel.' },
-    { nl: 'Is het product stijf genoeg, dan gaat de matrijs open, en een {t:Uitwerppen|uitwerppen} duwt het van de kern. Een eenvoudige matrijs kost vanaf zo’n twintigduizend euro.',
-      en: 'Once the part is stiff enough, the mould opens, and an {t:Ejector pin|ejector pin} pushes it off the core. A simple mould costs from about twenty thousand euros.' },
+    { nl: 'De lucht ontsnapt door de ontluchting: sleufjes van een tot vijf honderdste millimeter diep, afhankelijk van de kunststof, te ondiep voor de smelt. Koelwater haalt de warmte uit het staal.',
+      en: 'The air escapes through the vents: slots one to five hundredths of a millimetre deep, depending on the plastic, too shallow for the melt. Cooling water draws the heat out of the steel.' },
+    { nl: 'Daarna gaat de matrijs open en duwt een {t:Uitwerppen|uitwerppen} het product van de kern. Een eenvoudige matrijs kost vanaf zo’n twintigduizend euro.',
+      en: 'Then the mould opens, and an {t:Ejector pin|ejector pin} pushes the part off the core. A simple mould costs from about twenty thousand euros.' },
   ],
   [ // s2 cold or hot runner
-    { nl: 'Wat in de aanspuitkegel en de kanalen zit, stolt mee: een {t:Koudkanaal|koudkanaal}. Het komt bij elk shot mee naar buiten, als afval of maalgoed.',
+    { nl: 'Wat in de aanspuitkegel en de kanalen zit, stolt mee: een {t:Koudkanaal|koudkanaal}. Bij elk shot komt het mee, als afval of maalgoed.',
       en: 'What sits in the sprue and the runners sets too: a {t:Cold runner|cold runner}. It comes out with every shot, as waste or regrind.' },
-    { nl: 'Bij een {t:Heetkanaal|heetkanaal} zit in de vaste helft een verwarmd verdeelblok, een stalen blok met kanalen en verwarming. De smelt blijft vloeibaar tot vlak bij de holte.',
-      en: 'With a {t:Hot runner|hot runner}, the fixed half holds a heated manifold, a steel block with channels and heaters. The melt stays molten up to the cavity.' },
-    { nl: 'Dus geen aanspuitafval, en vaak een kortere cyclus. Maar de matrijs is duurder, en er kan meer kapot: elke verwarmingszone kan doorbranden, en het blok kan lekken.',
-      en: 'So no runner waste, and often a shorter cycle. But the mould costs more, and more can fail: each heater zone can burn out, and the manifold can leak.' },
+    { nl: 'Bij een {t:Heetkanaal|heetkanaal} zit in de vaste helft een verwarmd verdeelblok. Daarin blijft de smelt vloeibaar tot vlak bij de holte.',
+      en: 'With a {t:Hot runner|hot runner}, the fixed half holds a heated manifold. In it the melt stays molten up to the cavity.' },
+    { nl: 'Dus geen aanspuitafval, en vaak een kortere cyclus. Maar de matrijs is duurder, en een verwarmingszone kan doorbranden of het blok lekken.',
+      en: 'So no runner waste, and often a shorter cycle. But the mould costs more, and a heater zone can burn out or the manifold leak.' },
   ],
   [ // s3 buying, servicing, changing
-    { nl: 'Een nieuwe matrijs bouwen kost meestal {n:10} tot {n:16} weken. Dan volgt {t:T1}, de eerste shots. Na correcties komen T2 en T3, tot de klant vrijgeeft.',
-      en: 'Building a new mould typically takes {n:10} to {n:16} weeks. Then comes {t:T1}, the first shots. After corrections come T2 and T3, until the customer approves.' },
+    { nl: 'Een nieuwe matrijs bouwen kost meestal {n:10} tot {n:16} weken. Dan volgt {t:T1}, de eerste proef, en na correcties T2, T3, tot de klant vrijgeeft.',
+      en: 'Building a new mould typically takes {n:10} to {n:16} weeks. Then comes {t:T1}, the first trial, and after corrections T2, T3, until the customer approves.' },
     { nl: 'Op de matrijs zit een {t:Shotteller|shotteller}, die bij elke cyclus één bijtelt.',
       en: 'On the mould sits a {t:Shot counter|shot counter}, which adds one for every cycle.' },
-    { nl: '{t:Preventief onderhoud|Preventief onderhoud} plan je op die stand, meestal elke vijftigduizend tot honderdduizend shots: ontluchting schoon, pennen nakijken, koelkanalen ontkalken. Wie het overslaat, krijgt braam.',
+    { nl: '{t:Preventief onderhoud|Preventief onderhoud} plan je op die stand, meestal elke vijftig- tot honderdduizend shots: ontluchting schoon, pennen nakijken, koelkanalen ontkalken. Wie het overslaat, krijgt braam.',
       en: 'You plan {t:Preventive maintenance|preventive maintenance} on that count, typically every fifty to a hundred thousand shots: clean the vents, check the pins, descale the channels. Skip it, and you get flash.' },
     { nl: 'Een matrijswissel duurt meestal {n:1} tot {n:2} uur. Met {t:SMED} vaak {n:15} tot {n:30} minuten: voorwarmen, vaste opspanplaten, snelkoppelingen.',
       en: 'A mould change typically takes {n:1} to {n:2} hours. With {t:SMED}, often {n:15} to {n:30} minutes: pre-heating, standard clamp plates, quick couplings.' },
@@ -560,50 +570,50 @@ const SAY = [
       en: 'Say {n:40} changes a week, from {n:90} to {n:30} minutes: {n:40} hours freed, at {n:60} euros an hour two thousand four hundred euros a week.' },
   ],
   [ // s4 gates and cooling
-    { nl: 'Nu dieper. Een randaanspuiting zit op de deellijn; het kanaal moet je eraf knippen. Deze matrijs heeft een {t:Tunnelaanspuiting|tunnelaanspuiting}, schuin onder de deellijn geboord.',
-      en: 'Now deeper. An edge gate sits on the parting line; the runner has to be cut off. This mould has a {t:Tunnel gate|tunnel gate}, drilled at an angle below the parting line.' },
-    { nl: 'Bij het uitwerpen knipt de beweging het kanaal vanzelf af.',
-      en: 'At ejection, the movement shears the runner off by itself.' },
-    { nl: 'Elk product weegt {n:18} gram, het kanaal {n:6}: een shot is {n:42} gram, en {n:14} procent is kanaal. Mag er {n:15} procent maalgoed terug, dan past het net.',
-      en: 'Each part weighs {n:18} grams, the runner {n:6}: a shot is {n:42} grams, and {n:14} percent is runner. If {n:15} percent regrind may go back, it just fits.' },
-    { nl: 'Koelkanalen zijn door de platen geboord. In een hoge kern, waar geen boor komt, leidt een schot het water op en neer.',
-      en: 'Cooling channels are drilled through the plates. In a tall core, where no drill can reach, a baffle leads the water up and down.' },
+    { nl: 'Een randaanspuiting zit op de deellijn; die moet je eraf knippen. Deze matrijs heeft een {t:Tunnelaanspuiting|tunnelaanspuiting}, schuin onder de deellijn geboord.',
+      en: 'An edge gate sits on the parting line; it has to be cut off. This mould has a {t:Tunnel gate|tunnel gate}, drilled at an angle below the parting line.' },
+    { nl: 'Bij openen en uitwerpen knipt het staal het aanspuitpunt vanzelf af.',
+      en: 'As the mould opens and ejects, the steel shears the gate off by itself.' },
+    { nl: 'Twee producten van {n:18} gram en een kanaal van {n:6}: een shot is {n:42} gram, en {n:14} procent is kanaal. Mag er {n:15} procent maalgoed terug, dan past het net.',
+      en: 'Two parts of {n:18} grams and a runner of {n:6}: a shot is {n:42} grams, and {n:14} percent is runner. If {n:15} percent regrind may go back, it just fits.' },
+    { nl: 'Koelkanalen zijn door de platen geboord; in een hoge kern leidt een plaatje in de boring het water op en neer.',
+      en: 'Cooling channels are drilled through the plates; in a tall core, a baffle in the bore leads the water up and down.' },
   ],
   [ // s5 releasing the part
     { nl: 'Bij het openen blijft het product op de kern. De uitwerppennen duwen op de binnenkant, waar hun ronde merkjes niet opvallen.',
       en: 'When the mould opens, the part stays on the core. The pins push on the inside, where their round marks don’t show.' },
-    { nl: 'Elke wand in de openingsrichting krijgt een {t:Lossingshoek|lossingshoek}, vaak zo’n {n:1} graad per kant, zodat het product loskomt zonder te schrapen. Structuur vraagt meer.',
-      en: 'Every wall in the opening direction gets a {t:Draft angle|draft angle}, often about {n:1} degree per side, so the part releases without scraping. Texture needs more.' },
-    { nl: 'Maar dit zijgat voor een clip is een {t:Ondersnijding|ondersnijding}: een vorm die het rechte lossen blokkeert, net als een snaphaak.',
-      en: 'But this side hole for a clip is an {t:Undercut|undercut}: a shape that blocks straight release, like a snap hook.' },
+    { nl: 'Elke wand in de openingsrichting krijgt een {t:Lossingshoek|lossingshoek}, vaak zo’n {n:1} graad per kant, zodat het zonder schrapen loskomt. Een structuuroppervlak vraagt meer.',
+      en: 'Every wall in the opening direction gets a {t:Draft angle|draft angle}, often about {n:1} degree per side, so the part releases without scraping. A textured surface needs more.' },
+    { nl: 'Maar dit zijgat voor een clip is een {t:Ondersnijding|ondersnijding}: het blokkeert het rechte lossen, net als een snaphaak.',
+      en: 'But this side hole for a clip is an {t:Undercut|undercut}: it blocks straight release, like a snap hook.' },
     { nl: 'Dus vormt een {t:Schuif|schuif} het gat: een stalen blok dat een schuine pen opzij trekt terwijl de matrijs opengaat. Pas daarna duwen de pennen. Elke schuif kost geld en slijt.',
       en: 'So a {t:Slide|slide} forms the hole: a steel block that an angled pin pulls aside as the mould opens. Only then do the pins push. Every slide costs money and wears.' },
   ],
   [ // s6 planning maintenance
-    { nl: 'Van de shotteller maak je een kalender. {n:8} holtes, {n:12} seconden per shot, {n:120} uur per week: zesendertigduizend shots. Onderhoud elke honderdduizend is elke {n:2.8} weken, liefst bij een orderwissel.',
-      en: 'Turn the shot counter into a calendar. {n:8} cavities, {n:12} seconds a shot, {n:120} hours a week: thirty-six thousand shots. Service every hundred thousand is every {n:2.8} weeks, ideally at an order change.' },
-    { nl: '{t:Slijtdelen|Slijtdelen} slijten voorspelbaar: uitwerppennen, slijtplaten van schuiven, afdichtingen, heetkanaalverwarmingen. Leg de kritische op voorraad.',
-      en: '{t:Wear parts|Wear parts} wear out predictably: ejector pins, slide wear plates, seals, hot-runner heaters. Keep the critical ones on stock.' },
-    { nl: 'Het {t:Matrijslogboek|matrijslogboek} legt elke reparatie vast, met de shotstand. Dezelfde schuif elke dertigduizend shots? Dan is het een ontwerpprobleem, geen onderhoudsprobleem.',
-      en: 'The {t:Mould logbook|mould logbook} records each repair with the shot count. The same slide every thirty thousand shots? That is a design problem, not a maintenance one.' },
-    { nl: 'Komt de matrijs van de pers, dan gaan de laatste producten mee: het {t:Laatste shot|laatste shot}. Braam repareer je dan op de werkbank, niet bij het opstarten.',
-      en: 'When the mould comes off, the last parts go with it: the {t:Last-shot sample|last-shot sample}. Flash is then repaired on the bench, not during start-up.' },
+    { nl: 'Van de shotteller maak je een kalender. Een doppenmatrijs: {n:8} holtes, {n:12} seconden per shot, {n:120} uur per week: zesendertigduizend shots. Onderhoud elke honderdduizend is elke {n:2.8} weken, liefst bij een orderwissel.',
+      en: 'Turn the shot counter into a calendar. A cap mould: {n:8} cavities, {n:12} seconds a shot, {n:120} hours a week: thirty-six thousand shots. Service every hundred thousand is every {n:2.8} weeks, ideally at an order change.' },
+    { nl: '{t:Slijtdelen|Slijtdelen} slijten voorspelbaar: uitwerppennen, slijtplaten, afdichtingen, heetkanaalverwarmingen. Leg de kritische op voorraad.',
+      en: '{t:Wear parts|Wear parts} wear out predictably: ejector pins, wear plates, seals, hot-runner heaters. Keep the critical ones in stock.' },
+    { nl: 'Het {t:Matrijslogboek|matrijslogboek} legt elke reparatie vast, met de shotstand. Dezelfde schuif elke dertigduizend shots? Dan zit het probleem in het ontwerp.',
+      en: 'The {t:Mould logbook|mould logbook} records each repair with the shot count. The same slide every thirty thousand shots? Then the problem is the design.' },
+    { nl: 'Komt de matrijs van de pers, dan gaan de laatste producten mee: het {t:Laatste shot|laatste shot}. Zo repareer je braam op de werkbank, niet bij het opstarten.',
+      en: 'When the mould comes off, the last parts go with it: the {t:Last-shot sample|last-shot sample}. So flash is repaired on the bench, not during start-up.' },
   ],
   [ // s7 faster changes
     { nl: '{t:Intern omstellen|Intern omstellen} kan alleen als de pers stilstaat: water los, matrijs los, eruit takelen.',
       en: '{t:Internal setup|Internal setup} can only happen with the press stopped: water off, unclamp, crane the mould out.' },
     { nl: '{t:Extern omstellen|Extern omstellen} kan terwijl de vorige order loopt: voorwarmen, slangen klaarleggen, materiaal drogen.',
       en: '{t:External setup|External setup} can happen while the previous order runs: pre-heating, laying out hoses, drying the material.' },
-    { nl: 'Film een wissel, klok elke stap en schuif intern werk naar extern. De maatstaf: van laatste goede product tot eerste goede product.',
-      en: 'Film a change, time each step and move internal work to external. The measure: last good part to first good part.' },
+    { nl: 'Film een wissel, klok elke stap en schuif intern werk naar extern. De maatstaf: van laatste tot eerste goede product. Meer in de module Capaciteit en flow.',
+      en: 'Film a change, time each step and move internal work to external. The measure: last good part to first good part. More on this in the Capacity and flow module.' },
   ],
   [ // s8 from design to release
-    { nl: 'De dure fouten vallen vroeg. Bij {t:DFM} lopen matrijzenmaker en spuitgieter het product door: gelijke wanden, ribben van {n:40} tot {n:60} procent van de wand, genoeg lossing.',
-      en: 'The expensive mistakes come early. In {t:DFM}, toolmaker and moulder review the part: even walls, ribs of {n:40} to {n:60} percent of the wall, enough draft.' },
+    { nl: 'Bij {t:DFM} lopen matrijzenmaker en spuitgieter het product door: gelijke wanden, ribben van {n:40} tot {n:60} procent van de wand, genoeg lossing.',
+      en: 'In {t:DFM}, toolmaker and moulder review the part: even walls, ribs of {n:40} to {n:60} percent of the wall, enough draft.' },
     { nl: 'Een {t:Vulsimulatie|vulsimulatie} rekent het vullen door voordat het staal er is.',
       en: 'A {t:Fill simulation|fill simulation} computes the filling before the steel exists.' },
-    { nl: 'De {t:SPI-klasse|SPI-klasse} legt de levensduur vast. Voor {n:1.5} miljoen producten uit {n:2} holtes moet je klasse {n:103} twee keer bouwen: zes cent per product. Klasse {n:101} kost vijf cent.',
-      en: 'The {t:SPI class|SPI class} sets the mould’s life. For {n:1.5} million parts from {n:2} cavities, you build class {n:103} twice: six cents a part. Class {n:101} costs five cents.' },
+    { nl: 'De {t:SPI-klasse|SPI-klasse} legt de levensduur vast: klasse {n:101} haalt een miljoen cycli of meer, klasse {n:103} minder dan vijfhonderdduizend. Voor {n:1.5} miljoen producten uit {n:2} holtes bouw je {n:103} twee keer: zes cent per product, tegen vijf voor {n:101}.',
+      en: 'The {t:SPI class|SPI class} sets the mould’s life: class {n:101} lasts a million cycles or more, class {n:103} under five hundred thousand. For {n:1.5} million parts from {n:2} cavities, you build {n:103} twice: six cents a part, against five for {n:101}.' },
     { nl: '{t:T0} is het eerste shot bij de matrijzenmaker: werkt hij? T1 is de eerste proef met gemeten producten.',
       en: '{t:T0} is the first shot at the toolmaker: does it work? T1 is the first trial with measured parts.' },
     { nl: 'In de auto-industrie volgt {t:PPAP}: minstens {n:300} opeenvolgende producten op productietempo, tenzij de klant anders afspreekt, met de documenten erbij.',
@@ -682,6 +692,9 @@ const css = `
 [data-cue][data-on] .fp-cutline{stroke:var(--fp-accent)}
 [data-cue][data-on] .fp-bore{stroke:var(--fp-accent);stroke-width:1}
 [data-cue][data-on] .fp-melt{fill:color-mix(in srgb,var(--fp-accent) 55%,var(--anatomy-card))}
+[data-cue][data-on] .fp-solid{fill:color-mix(in srgb,var(--fp-accent) 85%,var(--anatomy-card))}
+.fp-svg [data-cue][data-on] .fp-inv{fill:var(--fp-on-accent)}
+.fp-svg .fp-acc{fill:var(--fp-accent)}
 [data-cue][data-on] .fp-meter{fill:var(--fp-accent)}
 [data-cue][data-on] .fp-shape,[data-cue][data-on] .fp-shape2,[data-cue][data-on] .fp-frame{stroke:var(--fp-accent);stroke-width:1.8}
 [data-cue][data-on] .fp-shape{fill:var(--anatomy-lit-shade)}

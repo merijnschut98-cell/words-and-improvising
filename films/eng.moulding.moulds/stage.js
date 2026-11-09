@@ -1,4 +1,4 @@
-// The stage of the film "Binnen in een matrijs / Inside a mould": a pure
+// The stage of the film "De matrijs als gereedschap / The mould as a tool": a pure
 // function of (scene, u). Inlined into the page after the anatomy kit (iso-kit
 // functions in scope), a preamble from build.mjs that defines P (projection),
 // C (world constants, the model, the beat cameras), W and H, and the kit's
@@ -160,7 +160,22 @@ const STAGE = (() => {
       + mark(M([sp(PL, z), sp(CORE.x0, z - ex)]), 'fp-arrow')
       + T(sp(CORE.x0 - 3, z - 2)[0], sp(CORE.x0 - 3, z - 2)[1], `${C.DRAFT}°`, (20 * camW) / W, 'end', 'fp-big');
   };
-  const undercutSvg = () => `<path class="fp-glow" d="${poly(rect(HOLE.x0, HOLE.x1, TOP - CAV.t - 0.5, TOP + 0.5))}${poly(flipZ(rect(HOLE.x0, HOLE.x1, TOP - CAV.t - 0.5, TOP + 0.5)))}"/>`;
+  // the undercut: the clip hole lit, and the part's way out (to the right, with the core) blocked by the slide's pin
+  const undercutSvg = () => {
+    const glow = `<path class="fp-glow" d="${poly(rect(HOLE.x0, HOLE.x1, TOP - CAV.t - 0.5, TOP + 0.5))}${poly(flipZ(rect(HOLE.x0, HOLE.x1, TOP - CAV.t - 0.5, TOP + 0.5)))}"/>`;
+    const c = 1.6;
+    return glow + [1, -1].map((sg) => {
+      const z = sg * (TOP - CAV.t / 2);
+      const xk = HOLE.x0 - 3;
+      return wArrow([HOLE.x0 - 15, z], [HOLE.x0 - 5.5, z]) + mark(M([sp(xk - c, z - c), sp(xk + c, z + c)]) + M([sp(xk + c, z - c), sp(xk - c, z + c)]), 'fp-arrow');
+    }).join('');
+  };
+  // the tunnel gate named in the close-up (accent: drawn per frame, outside the cue groups)
+  const tunnelLabel = () => {
+    const [x, y] = sp(-9, GATE.a[1] - 1);
+    return T(x, y, 'tunnel', (20 * camW) / W, 'end', 'fp-big fp-acc');
+  };
+
   // water through the baffle: up one side, down the other
   const waterSvg = () => [1, -1].map((s) => wArrow([C.BAFFLE.x1 - 4, s * (BAFFLE.z + 2)], [BAFFLE.x0 + 6, s * (BAFFLE.z + 2)]) + wArrow([BAFFLE.x0 + 6, s * (BAFFLE.z - 2)], [C.BAFFLE.x1 - 4, s * (BAFFLE.z - 2)])).join('');
   // air out of the cavity through the vent
@@ -192,8 +207,8 @@ const STAGE = (() => {
       hot = card(CX, 206, CWD, 180) + T(MID, 236, tx('heetkanaal', 'hot runner'), 21, 'middle', 'fp-big');
       hot += runnerIcon(CX + 30, 250, CWD - 60, true);
       if (kb >= 2) {
-        hot += tick(CX + 18, 344) + T(CX + 44, 356, tx('geen afval, sneller', 'no waste, faster'), 19, 'start', 'fp-small');
-        hot += cross(CX + 20, 374) + T(CX + 44, 380, tx('duurder, meer storing', 'dearer, more to fail'), 19, 'start', 'fp-small');
+        hot += tick(CX + 18, 344) + T(CX + 44, 352, tx('geen afval, sneller', 'no waste, faster'), 19, 'start', 'fp-small');
+        hot += cross(CX + 20, 369) + T(CX + 44, 376, tx('duurder, meer storing', 'dearer, more to fail'), 19, 'start', 'fp-small');
       } else hot += T(MID, 362, tx('verwarmd verdeelblok', 'heated manifold'), 20, 'middle', 'fp-small');
     }
     set(E.chHot, hot);
@@ -215,7 +230,7 @@ const STAGE = (() => {
       const xf = wk(C.LEAD[1]);
       s += mark(M([[xf, y - 4], [xf, y - 34]])) + `<path class="fp-shape2" d="M${f1(xf)} ${y - 34}l16 6l-16 6z"/>` + T(xf - 6, y - 16, 'T1', 21, 'end', 'fp-big');
     }
-    s += T(MID, y + 130, tx('T1: de eerste shots', 'T1: the first shots'), 20, 'middle', 'fp-big');
+    s += T(MID, y + 130, tx('T1: de eerste proef', 'T1: the first trial'), 20, 'middle', 'fp-big');
     s += T(MID, y + 162, tx('daarna T2, T3', 'then T2, T3'), 20, 'middle', 'fp-small');
     return s;
   }
@@ -233,7 +248,7 @@ const STAGE = (() => {
   }
   function pmCard(p) {
     let s = card(CX, 158, CWD, 228);
-    s += T(MID, 188, `${num(C.PM_RANGE[0])}–${num(C.PM_RANGE[1])}`, 21, 'middle', 'fp-big');
+    s += T(MID, 188, `${num(C.PM_RANGE[0])}–${num(C.PM_RANGE[1])} shots`, 21, 'middle', 'fp-big');
     const items = [tx('ontluchting schoon', 'clean the vents'), tx('pennen nakijken', 'check the pins'), tx('koeling ontkalken', 'descale cooling'), tx('deellijn nakijken', 'check parting line')];
     items.forEach((it, i) => {
       const y = 228 + i * 40;
@@ -355,7 +370,7 @@ const STAGE = (() => {
     base += T(x0 - 8, 225, tx('laatste goede', 'last good part'), 19, 'end', 'fp-small');
     set(E.setBase, base);
     const g = kb >= 2 ? 1 : span(p, 0.05, 0.6);
-    let int = R(x0, 204, xm(90) - x0, 30, 'fp-meter', 3) + T(xm(45), 225, tx('90 min intern', '90 min internal'), 19, 'middle', 'fp-big');
+    let int = R(x0, 204, xm(90) - x0, 30, 'fp-meter', 3) + T(xm(45), 225, tx('90 min intern', '90 min internal'), 19, 'middle', 'fp-big fp-inv');
     if (kb >= 1) int += R(x0, 272, xm(30) - x0, 30, 'fp-meter', 3) + T(xm(30) + 8, 293, '30 min', 19, 'start', 'fp-big');
     set(E.setInt, int);
     let ext = '';
@@ -363,7 +378,7 @@ const STAGE = (() => {
       const blocks = [[tx('drogen', 'drying'), -98, -68], [tx('slangen', 'hoses'), -65, -36], [tx('voorwarmen', 'pre-heat'), -33, -2]];
       blocks.forEach(([name, a, b], i) => {
         if (g < 0.15 + i * 0.2) return;
-        ext += R(xm(a), 272, xm(b) - xm(a), 30, 'fp-meter2', 3) + T((xm(a) + xm(b)) / 2, 322, name, 19, 'middle', 'fp-small');
+        ext += R(xm(a), 272, xm(b) - xm(a), 30, 'fp-meter2', 3) + T((xm(a) + xm(b)) / 2, i === 1 ? 346 : 322, name, 19, 'middle', 'fp-small');
       });
       ext += T(xm(-52), 374, tx('extern: de pers draait', 'external: press running'), 19, 'middle', 'fp-small');
     }
@@ -399,7 +414,7 @@ const STAGE = (() => {
     let s = card(CX, 64, CWD, 322);
     s += T(MID, 94, tx('levensduur (cycli)', 'life (cycles)'), 19, 'middle', 'fp-small');
     const rows = [['101', '≥ 1M', 1], ['102', '≤ 1M', 0.8], ['103', '< 500k', 0.5], ['104', '< 100k', 0.18], ['105', '~500', 0.04]];
-    const x0 = CX + 128;
+    const x0 = CX + 136;
     const x1 = CX + CWD - 18;
     rows.forEach(([cls, life, f], i) => {
       const y = 112 + i * 34;
@@ -467,7 +482,7 @@ const STAGE = (() => {
       if (kb >= 3) hud = ['smC'];
     }
     if (si === 3) {
-      if (kb === 1) { open = span(p, 0.05, 0.35); ej = span(p, 0.4, 0.6); snap = ej > 0.3; drop = span(p, 0.62, 0.95); runDrop = span(p, 0.7, 1); }
+      if (kb === 1) { open = span(p, 0.05, 0.35); ej = span(p, 0.4, 0.6); snap = open > 0.25; drop = span(p, 0.62, 0.95); runDrop = span(p, 0.7, 1); }
       if (kb === 2) hud = ['shC'];
       if (kb === 3) water = true;
     }
@@ -517,6 +532,7 @@ const STAGE = (() => {
     set(E.draft, draft ? draftSvg() : '');
     move(E.draft, [off, 0, 0]);
     set(E.undercut, undercut ? undercutSvg() : '');
+    set(E.edge, si === 3 && kb === 0 ? tunnelLabel() : '');
     set(E.fillC, simSvg(sim));
     set(E.flow, water ? waterSvg() : '');
     move(E.flow, [off, 0, 0]);
