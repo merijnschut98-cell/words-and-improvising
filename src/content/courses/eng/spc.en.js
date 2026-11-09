@@ -363,6 +363,7 @@ export default {
     },
     {
       id: 'eng.spc.charts',
+      film: 'eng.quality.spc',
       title: 'Choosing the right control chart',
       pre: [
         {
@@ -934,6 +935,7 @@ export default {
     },
     {
       id: 'eng.spc.tampering',
+      film: 'eng.quality.spc',
       title: 'Over-adjustment and reaction plans',
       pre: [
         {

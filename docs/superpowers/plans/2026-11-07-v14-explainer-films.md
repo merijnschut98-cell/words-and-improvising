@@ -810,7 +810,7 @@ These modules still have six lessons and no topics. v13 part 5 rebuilds them as 
 | `eng.improve.8d` | Een 8D van klacht tot afsluiting / An 8D from complaint to closure | 8d, verify, facilitate | 120 | the disciplines on a timeline of days and weeks, with the team in the room | P2 |
 | `eng.improve.evidence` | Bewijs zoeken: is/is-niet, data, DOE / Finding evidence | isisnot, data, doe | 110 | `doe`; a leak problem narrowed down machine by machine | P2 |
 | `eng.spc.msa` | Kun je dit meten? / Can you measure this? | msa, attribute | 90 | the GRR study and an attribute study, people and parts | P2 |
-| `eng.spc.ppk` | Eerst stabiel, dan capabel / First stable, then capable | charts, ppk, nonnormal | 90 | one morning against five weeks | P3 |
+| `eng.spc.ppk` | Eerst stabiel, dan capabel / First stable, then capable | ppk, nonnormal (charts moved to `eng.quality.spc`, integrator ruling 2026-11-09: that film covers the count charts and the rational subgroup) | 90 | one morning against five weeks | P3 |
 | `eng.reliability.rcm` | De verborgen storing / The hidden failure | rcm, criticality, program | 100 | the standby pump that never starts until it must | P2 |
 | `eng.reliability.spares` | Reservedelen en levensduurkosten / Spares and life-cycle cost | spares, lcc | 90 | stock and risk over time; repair or replace | P3 |
 | `eng.cost.costprice` | Een kostprijs opbouwen / Building a cost price | costprice, hourrate, contribution, makebuy, shouldcost | 110 | a bracket going through the shop, euros stacking per step | P2 |
@@ -837,7 +837,7 @@ These modules still have six lessons and no topics. v13 part 5 rebuilds them as 
   3. Inspectors judge orange peel; kappa — "Kappa: eens, en niet door toeval." — Overeenstemmingsanalyse, Kappa
   4. Escapes and false rejects; a limit sample; a stopgap — "Een grensmonster maakt de grens zichtbaar." — Ontsnapping, Onterechte afkeur, Noodmaatregel, Grensmonster
 - **`eng.spc.ppk`** · numbers: charts: 4-cavity subgroups; ppk: Cpk 2,1 from 30 parts in one morning versus Ppk 1,05 over 5 weeks; nonnormal: Cpu 1,56 on skewed data.
-  1. The right chart per data type — "I-MR, p, np, c, u: kies op je data." — I-MR-kaart, p-kaart, np-kaart, c-kaart, u-kaart, Rationele subgroep
+  1. (Moved: the count charts and the rational subgroup are now in `eng.quality.spc`, scenes 8–9; this film keeps only an I-MR mention if needed.) The right chart per data type — "I-MR, p, np, c, u: kies op je data." — I-MR-kaart, p-kaart, np-kaart, c-kaart, u-kaart, Rationele subgroep
   2. A morning study versus five weeks — "Kortetermijnsigma tegen totale sigma." — Cpk, Ppk, Kortetermijnsigma, Totale sigma, Stabiel proces, Processtudie
   3. A skewed distribution and its probability plot — "Scheve data: rekenen met percentielen." — Scheve verdeling, Eenzijdige specificatie, Cpu, Kansplot, Percentielmethode
 - **`eng.reliability.rcm`** · numbers: rcm: standby pump B with a monthly visual check; criticality: 210 of 350 assets in class A; program: 2.000 work orders, 70% breakdown, 60% coded "overig".
