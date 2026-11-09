@@ -289,6 +289,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Wat een robot is: assen, grijper en teach pendant',
       pre: [
@@ -358,6 +359,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Robots: types, bereik en veiligheid',
       pre: [
@@ -429,6 +431,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Een robotcel ontwerpen: cyclus, aanvoer en veiligheidsafstand',
       pre: [
@@ -501,6 +504,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programmeren en wanneer een cobot past',
       pre: [
