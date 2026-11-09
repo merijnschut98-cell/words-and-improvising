@@ -92,7 +92,9 @@ const C = {
   SOCKET: [-80, -100, 18],
   PROBE: { x: 2, a0: 64 }, // probe rest: index point at x, a0 from the weld axis
   HEAT_AX: [-0.35, 0.75, 0.62],
-  YOKE: { x: CRACK.x0 + 14, y0: -4, y1: 34 },
+  // the yoke's legs straddle the toe crack (field across it), both on flat plate: the far
+  // leg clear of the cap (half width 13 mm), the near one in front of the toe
+  YOKE: { x: CRACK.x0 + 14, y0: -22, y1: 34 },
 };
 
 const FIT = [...k.boxCorners({ x: -165, y: -160, w: 330, d: 255 }, -40, 0), [-160, -150, 90], [0, 0, 130]];
@@ -299,11 +301,12 @@ const world = [
   g('surface', surface),
   g('film', `<g data-cue="dye">${g('filmDye', '')}</g>${g('filmDev', '')}<g data-cue="indic">${g('filmInd', '')}</g>`),
   g('powder', '', ' data-cue="powder"'),
+  // the yoke (legs at y <= 39) before the probe (parked at y >= 60), which stands nearer
+  g('yoke', yoke),
   g('probe', probe),
   g('beamW', ''),
   g('cans', cans),
   g('spray', ''),
-  g('yoke', yoke),
   g('flame', ''),
   g('heatT', heater),
 ].join('');
@@ -342,7 +345,7 @@ C.KEYS = [
   [cam([-14, -20, 30], 420), cam([-20, 20, 22], 200), cam([-20, 20, 22], 190)], // s4: VT and the cans, then the crack
   [cam([-30, -10, 34], 380), WIDE, WIDE], // s5: probe and detector, then the peel test, the papers
   [WIDE, WIDE], // s6: macro with the beam, A-scan
-  [WIDE, WIDE, cam([C.YOKE.x, 16, 30], 230), WIDE], // s7: EXC, the 160 welds, the yoke, the certificate
+  [WIDE, WIDE, cam([C.YOKE.x, 8, 30], 250), WIDE], // s7: EXC, the 160 welds, the yoke, the certificate
   [WIDE, WIDE, WIDE], // s8
   [WIDE, WIDE, WIDE], // s9
 ];
@@ -378,7 +381,7 @@ const spec = {
     {
       id: 's3', lesson: D1, level: 1, dur: DUR[2], still: 0.4, title: { nl: 'Voorkomen en grenzen', en: 'Prevention and limits' },
       beats: [
-        { nl: '{t:Voorwarmen|Voorwarmen}, tot bijvoorbeeld {n:100} °C, en droge draad houden waterstof buiten.', en: '{t:Preheating|Preheating}, to {n:100} °C for example, and dry wire keep hydrogen out.', cue: { Voorwarmen: 'preheat' } },
+        { nl: 'Droge draad en {t:Voorwarmen|voorwarmen}, tot bijvoorbeeld {n:100} °C, gaan waterstofscheuren tegen.', en: 'Dry wire and {t:Preheating|preheating}, to {n:100} °C for example, prevent hydrogen cracks.', cue: { Voorwarmen: 'preheat' } },
         { nl: '{t:ISO 5817|ISO 5817} zegt hoe groot een fout mag zijn: niveau B is streng, C normaal, D licht.', en: '{t:ISO 5817|ISO 5817} sets how big a defect may be: level B is strict, C normal, D light.', cue: { 'ISO 5817': 'iso5817' } },
         { nl: 'Een giek: {n:3} van {n:40} lassen met bindingsfout, gelast op {n:405} in plaats van {n:300} mm/min.', en: 'A boom: {n:3} of {n:40} welds with lack of fusion, welded at {n:405} instead of {n:300} mm/min.', cues: ['speed'], read: { nl: '{n:405} / {n:300} = 1,35: {n:35}% te snel', en: '{n:405} / {n:300} = 1.35: {n:35}% too fast' } },
         { nl: 'Dat is {n:26}% minder warmte. Elke reparatie kost zo’n {n:3.5} uur.', en: 'That is {n:26}% less heat. Each repair takes about {n:3.5} hours.', cues: ['heatbar', 'loop'], read: { nl: '{n:300} / {n:405} = {n:0.74}', en: '{n:300} / {n:405} = {n:0.74}' } },
@@ -410,10 +413,10 @@ const spec = {
     {
       id: 's7', lesson: ND, level: 3, dur: DUR[6], still: 0.5, title: { nl: 'Wie kiest, wie test', en: 'Who chooses, who tests' },
       beats: [
-        { nl: 'De {t:Uitvoeringsklasse|uitvoeringsklasse} geeft het niveau: EXC1 is D, EXC2 is C, EXC3 is B.', en: 'The {t:Execution class|execution class} sets the level: EXC1 is D, EXC2 is C, EXC3 is B.', cue: { Uitvoeringsklasse: 'exc' } },
+        { nl: 'De {t:Uitvoeringsklasse|uitvoeringsklasse} geeft meestal het niveau: EXC1 is D, EXC2 is C, EXC3 is B.', en: 'The {t:Execution class|execution class} usually sets the level: EXC1 is D, EXC2 is C, EXC3 is B.', cue: { Uitvoeringsklasse: 'exc' } },
         { nl: 'Hal in EXC2: {n:160} stompe lassen, {n:10}% ultrasoon is {n:16} lassen, op niveau C.', en: 'A hall in EXC2: {n:160} butt welds, {n:10}% ultrasonic is {n:16} welds, at level C.', cues: ['grid'] },
-        { nl: '{t:Magnetisch onderzoek|Magnetisch onderzoek}: ijzerpoeder hoopt zich op bij een scheur.', en: '{t:Magnetic particle testing|Magnetic particle testing}: iron powder gathers at a crack.', cue: { 'Magnetisch onderzoek': 'yoke' }, cues: ['powder'] },
-        { nl: 'Wie test, heeft {t:ISO 9712|ISO 9712}: niveau {n:2} test en beoordeelt, niveau {n:3} schrijft procedures.', en: 'Whoever tests holds {t:ISO 9712|ISO 9712}: level {n:2} tests and assesses, level {n:3} writes procedures.', cue: { 'ISO 9712': 'cert' } },
+        { nl: '{t:Magnetisch onderzoek|Magnetisch onderzoek}, alleen op magnetisch staal: ijzerpoeder toont de scheur.', en: '{t:Magnetic particle testing|Magnetic particle testing}, on magnetic steel only: iron powder shows the crack.', cue: { 'Magnetisch onderzoek': 'yoke' }, cues: ['powder'] },
+        { nl: 'Wie test, heeft {t:ISO 9712|ISO 9712}: niveau {n:1} onder toezicht, {n:2} test en beoordeelt, {n:3} schrijft procedures.', en: 'Whoever tests holds {t:ISO 9712|ISO 9712}: level {n:1} works supervised, {n:2} tests and assesses, {n:3} writes procedures.', cue: { 'ISO 9712': 'cert' } },
       ],
     },
     {
@@ -446,78 +449,78 @@ const SAY = [
   [ // s1 how a weld goes wrong
     { nl: 'Twee stalen platen, aan elkaar gelast: de las smelt hun randen samen tot één stuk staal.',
       en: 'Two steel plates, welded together: the weld melts their edges into one piece of steel.' },
-    { nl: 'In de doorsnede zie je het lasmetaal, en ernaast een zone die heet werd. Daar ontstaan de fouten.',
-      en: 'In the section you see the weld metal, and beside it a zone that got hot. That is where defects form.' },
-    { nl: 'Van buiten kan een las prachtig lijken, en van binnen fout zijn. Daarom wordt elke las gecontroleerd, en een foute las gerepareerd.',
-      en: 'A weld can look perfect from outside and be wrong inside. So every weld is checked, and a bad weld gets repaired.' },
+    { nl: 'In de doorsnede zie je het lasmetaal, en ernaast de warmtebeïnvloede zone: staal dat heet werd, maar niet smolt.',
+      en: 'In the section: the weld metal, and beside it the heat-affected zone, steel that got hot but did not melt.' },
+    { nl: 'Een las kan van buiten prachtig lijken, en van binnen fout zijn. Daarom wordt elke las gecontroleerd.',
+      en: 'A weld can look perfect outside and be wrong inside. So every weld is checked.' },
   ],
   [ // s2 four defects
-    { nl: 'Eerst {t:Porositeit|porositeit}: gasbelletjes in de las. Meestal viel het beschermgas weg, bijvoorbeeld door tocht. Een paar kleine poriën mag vaak, een hele rij niet.',
-      en: 'First {t:Porosity|porosity}: gas bubbles in the weld. Usually the shielding gas was lost, through a draught for example. A few small pores are often allowed; a whole row is not.' },
-    { nl: 'De meest gevreesde fout is de {t:Bindingsfout|bindingsfout}: het lasmetaal ligt tegen de schuine flank van de plaat, maar smolt er nooit in. Van buiten zie je niets, en onder wisselende belasting groeit de spleet uit tot een scheur. De oorzaak: te weinig warmte, of te snel lassen.',
-      en: 'The most feared defect is {t:Lack of fusion|lack of fusion}: the weld metal lies against the slanted side wall of the plate, but never melted into it. From outside you see nothing, and under changing loads the gap grows into a crack. The cause: too little heat, or welding too fast.' },
-    { nl: 'Dan de {t:Waterstofscheur|waterstofscheur}: vocht brengt waterstof in de las, en uren later scheurt het harde staal ernaast open. Een scheur mag nooit.',
-      en: 'Then the {t:Hydrogen crack|hydrogen crack}: moisture brings hydrogen into the weld, and hours later the hard steel beside it cracks open. A crack is never allowed.' },
-    { nl: 'En {t:Vervorming|vervorming}: de las krimpt bij het afkoelen, en trekt de platen krom. Klemmen, vooraf schuin zetten en een slimme lasvolgorde helpen.',
-      en: 'And {t:Distortion|distortion}: the weld shrinks as it cools, and pulls the plates out of line. Clamps, pre-setting the parts and a smart welding sequence help.' },
+    { nl: 'Eerst {t:Porositeit|porositeit}: gasbelletjes in de las, meestal doordat het beschermgas wegviel, door tocht bijvoorbeeld. Een paar kleine poriën mag vaak, een hele rij niet.',
+      en: 'First {t:Porosity|porosity}: gas bubbles in the weld, usually because a draught blew the shielding gas away. A few small pores are often allowed; a whole row is not.' },
+    { nl: 'Het meest gevreesd is de {t:Bindingsfout|bindingsfout}: het lasmetaal ligt tegen de flank, maar smolt er niet in. Van buiten zie je niets, en onder wisselende belasting groeit de spleet uit tot een scheur. De oorzaak: te weinig warmte, of te snel lassen.',
+      en: 'Most feared is {t:Lack of fusion|lack of fusion}: the weld metal lies against the side wall, but never melted into it. Outside you see nothing, and under changing loads the gap grows into a crack. The cause: too little heat, or too much speed.' },
+    { nl: 'Een {t:Waterstofscheur|waterstofscheur} komt uren na het lassen, in het harde staal naast de las; vocht brengt de waterstof binnen. Een scheur mag nooit.',
+      en: 'A {t:Hydrogen crack|hydrogen crack} comes hours after welding, in the hard steel beside the weld; moisture brings the hydrogen in. A crack is never allowed.' },
+    { nl: 'En {t:Vervorming|vervorming}: de las krimpt bij het afkoelen, en trekt de platen krom. Klemmen, de delen vooraf schuin zetten en een uitgebalanceerde lasvolgorde helpen.',
+      en: 'And {t:Distortion|distortion}: the weld shrinks as it cools and pulls the plates out of line. Clamps, pre-setting and a balanced welding sequence help.' },
   ],
   [ // s3 prevention and limits
-    { nl: 'Tegen waterstof helpen droge draad en {t:Voorwarmen|voorwarmen}, tot bijvoorbeeld {n:100} graden: dan koelt de las trager af. Bij dik staal wacht de controle vaak {n:16} tot {n:48} uur.',
-      en: 'Against hydrogen, dry wire helps, and so does {t:Preheating|preheating}, to {n:100} degrees for example: the weld then cools more slowly. On thick steel the final check often waits {n:16} to {n:48} hours.' },
+    { nl: 'Tegen waterstof helpen droge draad en {t:Voorwarmen|voorwarmen}, vooraf tot bijvoorbeeld {n:100} graden: de las koelt trager af, en de waterstof ontsnapt. Bij dikke lassen wacht de laatste controle vaak {n:16} tot {n:48} uur.',
+      en: 'Dry wire and {t:Preheating|preheating}, to {n:100} degrees for example, fight hydrogen: the weld cools more slowly, and the hydrogen escapes. On thick welds the final check often waits {n:16} to {n:48} hours.' },
     { nl: 'Hoe groot mag een fout zijn? Dat zegt {t:ISO 5817|ISO 5817}. Niveau B is het strengst, voor kranen en drukdelen. C is normaal constructiewerk, D licht werk.',
-      en: 'How big may a defect be? That is set by {t:ISO 5817|ISO 5817}. Level B is the strictest, for cranes and pressure parts. C is normal structural work, D light work.' },
-    { nl: 'Bindingsfouten in drie van de veertig lassen van een giek. Voorgeschreven was {n:300} millimeter per minuut, gelast werd op {n:405}: {n:35} procent te snel.',
-      en: 'Take lack of fusion in three of the forty welds on a boom. The procedure said {n:300} millimetres per minute; the welds were made at {n:405}: {n:35} percent too fast.' },
-    { nl: 'Dat is {n:26} procent minder warmte. Elke reparatie kost zo’n drieënhalf uur.',
-      en: 'That is {n:26} percent less heat. Each repair takes about three and a half hours.' },
+      en: 'How big may a defect be? {t:ISO 5817|ISO 5817} says. Level B is the strictest, for cranes and pressure parts; C is normal structural work, D light work.' },
+    { nl: 'Een giek, met bindingsfouten in drie van de veertig lassen. Voorgeschreven was {n:300} millimeter per minuut, gelast werd op {n:405}: {n:35} procent te snel.',
+      en: 'A boom, with lack of fusion in three of its forty welds. The procedure said {n:300} millimetres per minute; they welded at {n:405}: {n:35} percent too fast.' },
+    { nl: 'Dat is {n:26} procent minder warmte. Elke reparatie kost zo’n drieënhalf uur: uitgutsen, opnieuw lassen, opnieuw testen.',
+      en: 'That is {n:26} percent less heat. Each repair takes about three and a half hours: gouge out, reweld, retest.' },
   ],
   [ // s4 looking, and penetrant
     { nl: 'Controleren zonder kapot te maken heet {t:NDO|NDO}: niet-destructief onderzoek. Het begint met kijken, naar de lasmaat, randinkarteling, poriën en scheuren.',
-      en: 'Checking without breaking is called {t:NDT|NDT}: non-destructive testing. It starts with looking, at the weld size, undercut, pores and cracks.' },
+      en: 'Checking without breaking is called {t:NDT|NDT}: non-destructive testing. It starts with looking: weld size, undercut, pores and cracks.' },
     { nl: 'Een fijne scheur zie je vaak niet. Bij {t:Penetrantonderzoek|penetrantonderzoek} trekt een rode vloeistof in de scheur.',
-      en: 'A fine crack is often invisible. In {t:Dye penetrant|dye penetrant} testing a red liquid seeps into the crack.' },
+      en: 'A fine crack is often invisible. In {t:Dye penetrant|dye penetrant} testing a red liquid seeps into it.' },
     { nl: 'Afvegen, een witte ontwikkelaar erop, en die zuigt de vloeistof terug: een rood lijntje. Snel en goedkoop, maar alleen aan het oppervlak.',
-      en: 'Wipe it off, spray on a white developer, and it draws the liquid back out: a red line. Quick and cheap, but only at the surface.' },
+      en: 'Wipe it off, spray on white developer, which draws the liquid back out: a red line. Quick and cheap, but only at the surface.' },
   ],
   [ // s5 looking inside
-    { nl: 'Voor fouten binnenin is er {t:Ultrasoon onderzoek|ultrasoon onderzoek}: een meetkop stuurt geluidspulsen het staal in, en een bindingsfout kaatst ze terug. Een getrainde operator leest het echobeeld. Röntgen ziet ronde poriën beter.',
-      en: 'For flaws inside there is {t:Ultrasonic testing|ultrasonic testing}: a probe sends sound pulses into the steel, and a lack of fusion bounces them back. A trained operator reads the echo screen. X-ray sees round pores better.' },
-    { nl: 'Kapotmaken kan ook. Een carrosseriebouw met {n:12} robots scheurt per robot per ploeg een onderdeel open, en meet alle {n:32} punten: minstens {n:4.4} millimeter. Bij {n:140} euro per stuk is dat vijfduizend veertig euro per dag.',
-      en: 'Breaking parts works too. A body shop with {n:12} robots tears open one part per robot per shift, and measures all {n:32} welds: at least {n:4.4} millimetres. At {n:140} euros a part, that is five thousand and forty euros a day.' },
+    { nl: 'Voor fouten binnenin is er {t:Ultrasoon onderzoek|ultrasoon onderzoek}: een meetkop stuurt geluidspulsen het staal in, en een platte fout, zoals een bindingsfout, kaatst ze terug. Röntgen ziet ronde poriën beter, maar mist vaak platte fouten, en iedereen moet de ruimte uit.',
+      en: 'For flaws inside there is {t:Ultrasonic testing|ultrasonic testing}: a probe sends sound pulses into the steel, and a flat flaw like lack of fusion bounces them back. X-ray sees round pores better, but often misses flat flaws, and everyone must leave the area.' },
+    { nl: 'Bij puntlassen kan kapotmaken ook: per robot per ploeg een onderdeel openscheuren, en alle {n:32} punten meten, minstens {n:4.4} millimeter. Met {n:12} robots, drie ploegen en {n:140} euro per stuk kost dat vijfduizend veertig euro per dag.',
+      en: 'With spot welds, breaking parts works too: tear open one part per robot per shift, and measure all {n:32} welds, at least {n:4.4} millimetres. With {n:12} robots, three shifts and {n:140} euros a part, that costs five thousand and forty euros a day.' },
     { nl: 'De {t:LMB|LMB}, de lasmethodebeschrijving, is het recept bij de werkplek. De {t:LMK|LMK}, de lasmethodekwalificatie, bewijst met een getest proefstuk dat het werkt.',
-      en: 'The {t:WPS|WPS}, the welding procedure specification, is the recipe at the workstation. The {t:WPQR|WPQR}, the procedure qualification record, proves with a tested piece that it works.' },
+      en: 'The {t:WPS|WPS}, the welding procedure specification, is the recipe at the workstation; the {t:WPQR|WPQR}, the qualification record, proves with a tested piece that it works.' },
   ],
   [ // s6 angle probe and A-scan
-    { nl: 'De operator zet een {t:Hoekkop|hoekkop} naast de las. Die stuurt het geluid schuin in, vaak onder {n:45}, {n:60} of {n:70} graden. Hier raakt de bundel van {n:60} graden de flank recht van voren, waar de bindingsfout ligt.',
-      en: 'The operator places an {t:Angle probe|angle probe} next to the weld. It sends the sound in at a slant, often at {n:45}, {n:60} or {n:70} degrees. Here the {n:60} degree beam meets the side wall head on, where the lack of fusion lies.' },
-    { nl: 'Op de {t:A-scan|A-scan} staat links de startpuls, en elke piek daarna is een echo: hoe verder naar rechts, hoe langer de geluidsweg. Hij vergelijkt de piek met een referentie uit een ijkblok, en meet de lengte.',
-      en: 'On the {t:A-scan|A-scan} the start pulse is on the left, and each peak after it is an echo: the further right, the longer the sound path. The operator compares it with a reference from a calibration block, and measures the length.' },
+    { nl: 'De operator zet een {t:Hoekkop|hoekkop} naast de las. Die stuurt het geluid schuin in, vaak onder {n:45}, {n:60} of {n:70} graden. Hier staat de bundel van {n:60} graden haaks op de flank met de bindingsfout: de echo kaatst recht terug.',
+      en: 'The operator places an {t:Angle probe|angle probe} beside the weld, which sends the sound in at a slant, often at {n:45}, {n:60} or {n:70} degrees. Here the {n:60} degree beam meets the flawed side wall square on: the echo comes straight back.' },
+    { nl: 'Op de {t:A-scan|A-scan} is elke piek een echo: hoe verder naar rechts, hoe langer de geluidsweg. De operator vergelijkt de hoogte met een referentie uit een ijkblok, en meet de lengte van de fout.',
+      en: 'On the {t:A-scan|A-scan} each peak is an echo: the further right, the longer the sound path. The operator compares its height with a calibration block reference, and measures the flaw’s length.' },
   ],
   [ // s7 who chooses, who tests
-    { nl: 'Wie kiest het niveau? De ontwerper of de klant, op de tekening. In de staalbouw geeft de {t:Uitvoeringsklasse|uitvoeringsklasse} een standaard: EXC1 hoort bij D, EXC2 bij C, EXC3 bij B.',
-      en: 'Who chooses the level? The designer or the customer, on the drawing. In structural steel the {t:Execution class|execution class} gives a default: EXC1 goes with D, EXC2 with C, EXC3 with B.' },
+    { nl: 'Wie kiest het niveau? De ontwerper of de klant, op de tekening. In de staalbouw geeft de {t:Uitvoeringsklasse|uitvoeringsklasse} een standaard, van EXC1 voor licht werk tot EXC4 voor bruggen. Meestal hoort EXC1 bij D, EXC2 bij C, en EXC3 bij B.',
+      en: 'The designer or customer sets the level on the drawing. In structural steel the {t:Execution class|execution class} gives a default, from EXC1 for light work to EXC4 for bridges. Usually EXC1 means D, EXC2 C, and EXC3 B.' },
     { nl: 'Een hal in EXC2 heeft {n:160} stompe lassen, en de specificatie vraagt {n:10} procent ultrasoon: {n:16} lassen. Een afgekeurde las wordt hersteld en opnieuw getest.',
-      en: 'A hall in EXC2 has {n:160} butt welds, and the specification asks for {n:10} percent ultrasonic: {n:16} welds. A rejected weld is repaired and tested again.' },
-    { nl: 'Snel, ook op hoeklassen, is {t:Magnetisch onderzoek|magnetisch onderzoek}: een magneetjuk magnetiseert het staal, en ijzerpoeder hoopt zich op bij scheuren, ook net onder het oppervlak.',
-      en: 'Quick, on fillet welds too, is {t:Magnetic particle testing|magnetic particle testing}: a magnet yoke magnetises the steel, and iron powder gathers at cracks, also just below the surface.' },
-    { nl: 'Wie test, is gecertificeerd volgens {t:ISO 9712|ISO 9712}: niveau {n:2} test en beoordeelt, niveau {n:3} schrijft de procedures. Een test te vroeg na het lassen telt niet.',
-      en: 'Whoever tests is certified to {t:ISO 9712|ISO 9712}: level {n:2} tests and assesses, level {n:3} writes the procedures. A test too soon after welding does not count.' },
+      en: 'A hall in EXC2 has {n:160} butt welds, and the specification asks for {n:10} percent ultrasonic: {n:16} welds. A rejected weld is repaired and retested.' },
+    { nl: '{t:Magnetisch onderzoek|Magnetisch onderzoek} is snel, ook op hoeklassen: een magneetjuk magnetiseert het staal, en ijzerpoeder hoopt zich op bij scheuren, ook net onder het oppervlak. Het werkt alleen op magnetisch staal; voor rvs neem je penetrant.',
+      en: '{t:Magnetic particle testing|Magnetic particle testing} is quick, on fillet welds too: a yoke magnetises the steel, and iron powder gathers at cracks, even just below the surface. It only works on magnetic steel; for stainless, use penetrant.' },
+    { nl: 'Wie test, is gecertificeerd volgens {t:ISO 9712|ISO 9712}: niveau {n:1} werkt onder toezicht, niveau {n:2} test en beoordeelt, niveau {n:3} schrijft de procedures. Een test vóór de wachttijd telt niet.',
+      en: 'Whoever tests is certified to {t:ISO 9712|ISO 9712}: level {n:1} works supervised, level {n:2} tests and assesses, level {n:3} writes the procedures. A test before the waiting time does not count.' },
   ],
   [ // s8 from repairs to the cause
     { nl: 'Een manager kijkt naar het {t:Reparatiepercentage|reparatiepercentage}: gerepareerde las gedeeld door geteste las. Tweeduizend vierhonderd meter getest, {n:62} gerepareerd: {n:2.6} procent.',
-      en: 'A manager watches the {t:Repair rate|repair rate}: weld repaired divided by weld tested. Two thousand four hundred metres tested, {n:62} repaired: {n:2.6} percent.' },
+      en: 'A manager watches the {t:Repair rate|repair rate}: metres repaired over metres tested. Two thousand four hundred tested, {n:62} repaired: {n:2.6} percent.' },
     { nl: 'Leg elke fout vast met een code uit {t:ISO 6520-1|ISO 6520-1}, zoals {n:401} voor bindingsfout, plus de lasser, de positie en de ploeg. Zet dat in een pareto.',
-      en: 'Record every defect with a code from {t:ISO 6520-1|ISO 6520-1}, such as {n:401} for lack of fusion, plus the welder, the position and the shift. Put that in a Pareto.' },
+      en: 'Record every defect with a code from {t:ISO 6520-1|ISO 6520-1}, such as {n:401} for lack of fusion, plus welder, position and shift. Put that in a Pareto.' },
     { nl: '{n:41} meter bindingsfout, {n:12} meter randinkarteling, {n:9} meter poriën. En {n:33} van die {n:41} meter is verticaal opgaand gelast, bij alle lassers. De fout volgt de positie, niet de persoon: kijk naar de techniek en de LMB daar.',
-      en: '{n:41} metres of lack of fusion, {n:12} of undercut, {n:9} of pores. And {n:33} of those {n:41} metres were welded vertical-up, by all the welders. The defect follows the position, not the person: look at the technique and the WPS there.' },
+      en: '{n:41} metres of lack of fusion, {n:12} of undercut, {n:9} of pores. And {n:33} of those {n:41} metres were vertical-up, across all welders. The defect follows the position, not the person: check the technique and the WPS there.' },
   ],
   [ // s9 residual stress and overwelding
     { nl: 'Na het lassen blijft er {t:Restspanning|restspanning} achter: de las wil krimpen, en het koude staal houdt hem tegen. Verspaan je later, dan trekt het onderdeel krom.',
       en: 'After welding, {t:Residual stress|residual stress} stays behind: the weld wants to shrink, and the cold steel holds it back. Machine it later, and the part warps.' },
     { nl: 'Daarom eerst {t:Spanningsarmgloeien|spanningsarmgloeien}: in de oven langzaam opwarmen, vasthouden, en langzaam afkoelen.',
-      en: 'So first comes {t:Stress relieving|stress relieving}: in a furnace, heat slowly, hold, and cool slowly.' },
-    { nl: 'En de stille kostenpost: {t:Overlassen|overlassen}. Lasmetaal groeit met het kwadraat van de keel: keel {n:5} in plaats van {n:4} kost {n:56} procent meer draad, tijd en warmte.',
-      en: 'And the silent cost: {t:Overwelding|overwelding}. Weld metal grows with the square of the throat: throat {n:5} instead of {n:4} costs {n:56} percent more wire, time and heat.' },
+      en: 'So first, {t:Stress relieving|stress relieving}: heat slowly in a furnace, hold, and cool slowly.' },
+    { nl: 'En de stille kostenpost: {t:Overlassen|overlassen}, groter lassen dan gevraagd. Lasmetaal groeit met het kwadraat van de keel: keel {n:5} in plaats van {n:4} kost {n:56} procent meer draad en tijd, en geeft meer vervorming.',
+      en: 'And the silent cost: {t:Overwelding|overwelding}, welding bigger than asked. Weld metal grows with the square of the throat: throat {n:5} instead of {n:4} costs {n:56} percent more wire and time, and adds distortion.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
@@ -556,7 +559,7 @@ const css = `
 .fp-scrim{fill:var(--anatomy-card);opacity:.9}
 .fp-card{fill:var(--anatomy-paper);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:3;stroke-linecap:round}
-.fp-bar{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-meter{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-fill{fill:var(--anatomy-mid);opacity:.55}
 .fp-disp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
 .fp-trace{fill:none;stroke:var(--anatomy-hi);stroke-width:.8;stroke-linejoin:round;vector-effect:non-scaling-stroke}
@@ -591,7 +594,7 @@ const css = `
 .fp-powder{fill:var(--anatomy-hi);stroke:none}
 .fp-cb1 .iso-top,.fp-cb1 .iso-shade,.fp-cb1 .iso-fill{fill:var(--fp-dye)}
 .fp-cb2 .iso-top,.fp-cb2 .iso-shade,.fp-cb2 .iso-fill{fill:var(--fp-dev)}
-[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-bar,[data-cue][data-on] .fp-weld,[data-cue][data-on] .fp-cell-on{stroke:var(--fp-accent);stroke-width:1.8}
+[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-meter,[data-cue][data-on] .fp-weld,[data-cue][data-on] .fp-cell-on{stroke:var(--fp-accent);stroke-width:1.8}
 [data-cue][data-on] .fp-hazf,[data-cue][data-on] .fp-fill,[data-cue][data-on] .fp-cell-on{fill:var(--fp-accent);opacity:.7}
 [data-cue][data-on] .fp-pore,[data-cue][data-on] .fp-gap,[data-cue][data-on] .fp-groove{stroke:var(--fp-accent);stroke-width:1.6}
 [data-cue][data-on] .fp-crack,[data-cue][data-on] .fp-rule,[data-cue][data-on] .fp-sig,[data-cue][data-on] .fp-beam,[data-cue][data-on] .fp-trace,[data-cue][data-on] .fp-dash{stroke:var(--fp-accent)}

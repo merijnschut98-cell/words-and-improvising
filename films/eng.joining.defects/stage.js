@@ -72,7 +72,7 @@ const STAGE = (() => {
     const x0 = mX(a - 3);
     const x1 = mX(a + 11);
     const y0 = mZ(20);
-    return `<path class="fp-card" d="M${f1(x0)} ${f1(y0)}L${f1(x1)} ${f1(y0)}L${f1(x1)} ${f1(y0 - 30)}L${f1(x0 + 20)} ${f1(y0 - 30)}Z"/><path class="fp-mark" d="M${f1(mX(a))} ${f1(y0)}L${f1(mX(a))} ${f1(y0 - 9)}"/><rect class="fp-bar" x="${f1(mX(a + 7) - 6)}" y="${f1(y0 - 42)}" width="12" height="12" rx="2"/>`;
+    return `<path class="fp-card" d="M${f1(x0)} ${f1(y0)}L${f1(x1)} ${f1(y0)}L${f1(x1)} ${f1(y0 - 30)}L${f1(x0 + 20)} ${f1(y0 - 30)}Z"/><path class="fp-mark" d="M${f1(mX(a))} ${f1(y0)}L${f1(mX(a))} ${f1(y0 - 9)}"/><rect class="fp-meter" x="${f1(mX(a + 7) - 6)}" y="${f1(y0 - 42)}" width="12" height="12" rx="2"/>`;
   }
   // the beam centre from index point a at angle th (from vertical); stops on the flank if it hits the flaw
   function beamOf(a, th) {
@@ -159,9 +159,9 @@ const STAGE = (() => {
     const d = pth(pts);
     return `<path class="fp-hose" stroke-width="4" d="${d}"/><path class="fp-hose-hi" stroke-width="1.6" d="${d}"/>`;
   }
-  function placeProbe(a) {
-    move(E.probe, [C.PROBE.x, a, 0]);
-    set(E.cable, cableSvg([C.SOCKET[0], C.SOCKET[1] + 7, C.SOCKET[2]], [C.PROBE.x, a + 12, PT + 28], 22));
+  function placeProbe(a, x = C.PROBE.x) {
+    move(E.probe, [x, a, 0]);
+    set(E.cable, cableSvg([C.SOCKET[0], C.SOCKET[1] + 7, C.SOCKET[2]], [x, a + 12, PT + 28], 22));
   }
   const onZ = (z, pts, closed = true) => pth(pts.map(([x, y]) => at([x, y, z])), closed);
   const CR = C.CRACK;
@@ -232,7 +232,7 @@ const STAGE = (() => {
       out += `<rect class="fp-card" x="${x}" y="78" width="156" height="230" rx="12"/>`;
       out += T(x + 78, 158, q, 64, 'middle', 'fp-big');
       out += T(x + 78, 198, words[i], 21);
-      out += `<rect class="fp-bar" x="${x + 22}" y="232" width="112" height="22" rx="4"/><circle class="fp-pore" cx="${x + 78}" cy="243" r="${3 + 2.5 * i}"/>`;
+      out += `<rect class="fp-meter" x="${x + 22}" y="232" width="112" height="22" rx="4"/><circle class="fp-pore" cx="${x + 78}" cy="243" r="${3 + 2.5 * i}"/>`;
       out += T(x + 78, 286, tx('grootste porie', 'largest pore'), 19, 'middle', 'fp-small');
     });
     return out;
@@ -243,14 +243,14 @@ const STAGE = (() => {
     const sc = 0.66;
     let base = card(40, 26, 560, 150);
     base += T(60, 76, `LMB ${B.wps} mm/min`.replace('LMB', tx('LMB', 'WPS')), 20, 'start');
-    base += `<rect class="fp-bar" x="${bx}" y="${84}" width="${f1(B.wps * sc)}" height="20" rx="4"/>`;
+    base += `<rect class="fp-meter" x="${bx}" y="${84}" width="${f1(B.wps * sc)}" height="20" rx="4"/>`;
     const g = kb >= 2 ? (kb === 2 ? span(p, 0.05, 0.5) : 1) : 0;
-    const row = T(60, 136, `${tx('gemeten', 'measured')} ${B.real} mm/min`, 20, 'start') + `<rect class="fp-bar" x="${bx}" y="144" width="${f1(lerp(B.wps, B.real, g) * sc)}" height="20" rx="4"/><rect class="fp-fill" x="${f1(bx + B.wps * sc)}" y="144" width="${f1(Math.max(0, (lerp(B.wps, B.real, g) - B.wps) * sc))}" height="20"/>`;
+    const row = T(60, 136, `${tx('gemeten', 'measured')} ${B.real} mm/min`, 20, 'start') + `<rect class="fp-meter" x="${bx}" y="144" width="${f1(lerp(B.wps, B.real, g) * sc)}" height="20" rx="4"/><rect class="fp-fill" x="${f1(bx + B.wps * sc)}" y="144" width="${f1(Math.max(0, (lerp(B.wps, B.real, g) - B.wps) * sc))}" height="20"/>`;
     let heat = '';
     if (kb === 3) {
       const h = lerp(1, B.wps / B.real, span(p, 0.05, 0.5));
       heat = card(40, 196, 270, 170) + T(60, 236, tx('warmte per mm', 'heat per mm'), 20, 'start')
-        + `<rect class="fp-dash" x="60" y="256" width="220" height="30" rx="4"/><rect class="fp-bar" x="60" y="256" width="${f1(220 * h)}" height="30" rx="4"/>`
+        + `<rect class="fp-dash" x="60" y="256" width="220" height="30" rx="4"/><rect class="fp-meter" x="60" y="256" width="${f1(220 * h)}" height="30" rx="4"/>`
         + T(60, 330, `−${num(Math.round((1 - h) * 100))}%`, 30, 'start', 'fp-big');
     }
     return { base, row, heat };
@@ -269,7 +269,7 @@ const STAGE = (() => {
     }
     // the caliper on the first button
     const cx = 128;
-    out += `<rect class="fp-bar" x="${cx - 40}" y="276" width="260" height="14" rx="3"/><path class="fp-mark" style="stroke-width:3" d="M${cx - 9} 262L${cx - 9} 290M${cx + 9} 262L${cx + 9} 290"/>`;
+    out += `<rect class="fp-meter" x="${cx - 40}" y="276" width="260" height="14" rx="3"/><path class="fp-mark" style="stroke-width:3" d="M${cx - 9} 262L${cx - 9} 290M${cx + 9} 262L${cx + 9} 290"/>`;
     out += T(cx + 240, 286, '≥ 4,4 mm'.replace(',', EN ? '.' : ','), 22, 'start', 'fp-big');
     out += T(320, 336, tx('peeltest: 32 punten', 'peel test: 32 welds'), 19);
     return out;
@@ -317,12 +317,13 @@ const STAGE = (() => {
     return out;
   }
   function certSvg() {
-    let out = `<rect class="fp-card" x="130" y="34" width="380" height="330" rx="10"/><rect class="fp-frame" x="142" y="46" width="356" height="306" rx="6"/>`;
+    let out = `<rect class="fp-card" x="100" y="34" width="440" height="330" rx="10"/><rect class="fp-frame" x="112" y="46" width="416" height="306" rx="6"/>`;
     out += T(320, 96, 'ISO 9712', 30, 'middle', 'fp-big');
-    for (let i = 0; i < 3; i++) out += `<path class="fp-rule" d="M180 ${126 + i * 20}L${i === 2 ? 360 : 460} ${126 + i * 20}"/>`;
-    const lab = EN ? ['tests, assesses', 'procedures'] : ['test, beoordeelt', 'procedures'];
-    [[230, '2'], [410, '3']].forEach(([x, n], i) => {
-      out += `<circle class="fp-card" cx="${x}" cy="248" r="38" style="stroke-width:2"/>` + T(x, 264, n, 44, 'middle', 'fp-big') + T(x, 318, lab[i], 19);
+    for (let i = 0; i < 2; i++) out += `<path class="fp-rule" d="M180 ${126 + i * 20}L${i === 1 ? 360 : 460} ${126 + i * 20}"/>`;
+    // the three levels, each role on two short lines so they fit side by side
+    const lab = EN ? [['works', 'supervised'], ['tests and', 'assesses'], ['writes', 'procedures']] : [['onder', 'toezicht'], ['test en', 'beoordeelt'], ['schrijft', 'procedures']];
+    [[190, '1'], [320, '2'], [450, '3']].forEach(([x, n], i) => {
+      out += `<circle class="fp-card" cx="${x}" cy="222" r="34" style="stroke-width:2"/>` + T(x, 237, n, 40, 'middle', 'fp-big') + T(x, 290, lab[i][0], 19) + T(x, 314, lab[i][1], 19);
     });
     return out;
   }
@@ -333,7 +334,7 @@ const STAGE = (() => {
     let out = card(30, 40, 580, 320);
     out += T(50, 104, `${num(R.tested / 1000, 3).replace(/[.,]?0+$/, '')} m`.replace(/^2[.,]4/, EN ? '2,400' : '2.400'), 22, 'start', 'fp-big');
     out += T(50, 128, tx('getest', 'tested'), 19, 'start', 'fp-small');
-    out += `<rect class="fp-bar" x="50" y="146" width="${f1(w * g)}" height="40" rx="4"/>`;
+    out += `<rect class="fp-meter" x="50" y="146" width="${f1(w * g)}" height="40" rx="4"/>`;
     const sw = (w * R.repaired) / R.tested;
     const body = p > 0.4 ? `<rect class="fp-cell-on" x="${f1(50 + w - sw)}" y="146" width="${f1(sw)}" height="40"/>` + T(50 + w, 216, `${R.repaired} m ${tx('gerepareerd', 'repaired')}`, 19, 'end') : '';
     const pct = p > 0.55 ? T(320, 310, `${num((100 * R.repaired) / R.tested, 1)}%`, 56, 'middle', 'fp-big') : '';
@@ -351,7 +352,7 @@ const STAGE = (() => {
     bars.forEach(([v, code, name], i) => {
       const x = 130 + i * 150;
       const h = v * sc * g;
-      base += `<rect class="fp-bar" x="${x}" y="${f1(y0 - h)}" width="110" height="${f1(h)}"/>`;
+      base += `<rect class="fp-meter" x="${x}" y="${f1(y0 - h)}" width="110" height="${f1(h)}"/>`;
       if (g > 0.95) base += T(x + 55, y0 - h - 10, `${v} m`, 20) + T(x + 55, y0 + 52, name, 19, 'middle', 'fp-small');
       codes += T(x + 55, y0 + 28, code, 21, 'middle', 'fp-big');
     });
@@ -365,7 +366,7 @@ const STAGE = (() => {
   }
   function ovenSvg(p) {
     let out = card(30, 40, 270, 310);
-    out += `<rect class="fp-bar" x="56" y="80" width="218" height="236" rx="6"/><rect class="fp-disp" x="72" y="96" width="186" height="204" rx="4"/>`;
+    out += `<rect class="fp-meter" x="56" y="80" width="218" height="236" rx="6"/><rect class="fp-disp" x="72" y="96" width="186" height="204" rx="4"/>`;
     for (let i = 0; i < 6; i++) out += `<path class="fp-mark" d="M${84 + i * 32} 110L${84 + i * 32} 140"/>`;
     // the welded frame inside
     out += `<path class="fp-steel" d="M96 270L234 270L234 256L96 256Z"/><path class="fp-steel" d="M158 256L172 256L172 176L158 176Z"/>`;
@@ -408,6 +409,7 @@ const STAGE = (() => {
     const clockS = u * C.dur[si];
     // defaults: the bench at rest
     let probeA = C.PROBE.a0;
+    let probeX = C.PROBE.x;
     let yokeDz = 60;
     let heat = null;
     show(E.yoke, false);
@@ -525,6 +527,7 @@ const STAGE = (() => {
       if (kb === 1) { hud = ['scrim', 'grid']; set(E.gridBody, gridSvg(p)); }
       if (kb === 2) {
         show(E.yoke, true);
+        probeX = 48; // the probe slides aside, out from in front of the yoke's near leg
         yokeDz = 40 * (1 - span(p, 0.02, 0.3));
         const g = span(p, 0.3, 0.9);
         const dots = [];
@@ -576,7 +579,7 @@ const STAGE = (() => {
       if (kb === 2) { hud = ['scrim', 'fillet']; set(E.filletBody, filletSvg(p)); }
     }
 
-    placeProbe(probeA);
+    placeProbe(probeA, probeX);
     if (si === 6) move(E.yoke, [0, 0, yokeDz]);
     hudOnly(hud);
   }
