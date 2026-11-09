@@ -1131,6 +1131,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'PLC, sensoren en actuatoren: hoe een machine denkt',
       pre: [
@@ -1201,6 +1202,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Machineveiligheid: noodstop, afscherming en de regels',
       pre: [
@@ -1269,6 +1271,7 @@ export default {
     },
     {
       id: 'eng.lines.oee_auto',
+      film: 'eng.lines.control',
       figure: 'eng.lines.auto',
       title: 'OEE op geautomatiseerde lijnen',
       pre: [
@@ -1340,6 +1343,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Microstops en storingsdata: van alarmlog naar actie',
       pre: [

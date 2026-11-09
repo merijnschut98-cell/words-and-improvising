@@ -1131,6 +1131,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'PLC, sensors and actuators: how a machine thinks',
       pre: [
@@ -1201,6 +1202,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Machine safety: emergency stop, guarding and the rules',
       pre: [
@@ -1269,6 +1271,7 @@ export default {
     },
     {
       id: 'eng.lines.oee_auto',
+      film: 'eng.lines.control',
       figure: 'eng.lines.auto',
       title: 'OEE on automated lines',
       pre: [
@@ -1340,6 +1343,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Micro-stops and fault data: from alarm log to action',
       pre: [

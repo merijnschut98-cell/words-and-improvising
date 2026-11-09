@@ -30,6 +30,8 @@ export async function allLessons() {
 // keeps its capital.
 export function glossCase(en, corpus) {
   if (!/^[A-Z][a-z]/.test(en)) return en;
+  // a title with a later capitalised word ("Machinery Regulation") is a proper name
+  if (/\s[A-Z][a-z]/.test(en)) return en;
   const first = en.split(/[\s-]/)[0];
   const low = first[0].toLowerCase() + first.slice(1);
   const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

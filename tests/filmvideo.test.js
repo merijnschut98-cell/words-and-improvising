@@ -55,6 +55,8 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Dit is MIG/MAG-lassen. Bij MAG, voor staal, bij TIG 0,6. Het product mag eruit.'], 'nl'), 'Dit is M I G MAG-lassen. Bij M A G, voor staal, bij T I G 0,6. Het product mag eruit.');
   // no "slash" or "ampersand" in the go/no-go gauge and gauge R&R
   assert.equal(speakOf(['Gaat/gaat-niet: een vast kaliber. Een gauge R&R.'], 'nl'), 'Gaat, gaat niet: een vast kaliber. Een gauge R en R.');
+  assert.equal(speakOf(['De I/O, de lijn-OEE, een MES en de CE-markering.'], 'nl'), 'De I O, de lijn-O E E, een M E S en de C E-markering.');
+  assert.equal(speakOf(['The I/O, the line OEE, an MES and the CE marking.'], 'en'), 'The I O, the line O E E, an M E S and the C E marking.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
 });
 
@@ -112,6 +114,8 @@ test('gloss case: an ordinary word is lowered, a proper noun and an acronym keep
   assert.equal(glossCase('Taylor equation', corpus), 'Taylor equation');
   assert.equal(glossCase('HSS', corpus), 'HSS');
   assert.equal(glossCase('C-axis', corpus), 'C-axis');
+  // a title with a later capitalised word is a name, even when its first word also occurs in lower case
+  assert.equal(glossCase('Machinery Regulation', `${corpus} Old machinery stays.`), 'Machinery Regulation');
   // a word the corpus never writes mid-sentence is treated as ordinary
   assert.equal(glossCase('Cemented carbide', corpus), 'cemented carbide');
 });
