@@ -1439,6 +1439,7 @@ export default {
     },
     {
       id: 'eng.joining.weldcell',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'The robot welding cell: what is in it and why',
       pre: [
@@ -1509,6 +1510,7 @@ export default {
     },
     {
       id: 'eng.joining.fixturing',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Welding fixtures, tacking and sequence against distortion',
       pre: [
@@ -1579,6 +1581,7 @@ export default {
     },
     {
       id: 'eng.joining.arcon',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Arc-on time and the cost of a metre of weld',
       pre: [
@@ -1651,6 +1654,7 @@ export default {
     },
     {
       id: 'eng.joining.weldsystem',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Weld quality as a system: ISO 3834, EN 1090 and the IWE',
       pre: [

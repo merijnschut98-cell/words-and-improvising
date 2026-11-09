@@ -573,6 +573,7 @@ export default {
     },
     {
       id: 'eng.moulding.materials',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Kunststoffen, drogen en maalgoed',
       pre: [
@@ -644,6 +645,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorfe en semi-kristallijne kunststoffen',
       pre: [
@@ -713,6 +715,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drogen tot in detail',
       pre: [
@@ -786,6 +789,7 @@ export default {
     },
     {
       id: 'eng.moulding.fillers',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Glasvezel, vulstoffen en recyclaat',
       pre: [
@@ -858,6 +862,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten en hun oorzaken',
       pre: [
@@ -929,6 +934,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'De oorzaak van een fout vinden',
       pre: [
@@ -998,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Kromtrekken en maatverloop',
       pre: [
@@ -1068,6 +1075,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten blijvend oplossen',
       pre: [
@@ -1428,6 +1436,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijzen, wissels en onderhoud',
       pre: [
@@ -1499,6 +1508,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Binnen in een matrijs',
       pre: [
@@ -1569,6 +1579,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijsonderhoud en wissels plannen',
       pre: [
@@ -1640,6 +1651,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Een nieuwe matrijs: van ontwerp tot vrijgave',
       pre: [

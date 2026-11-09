@@ -573,6 +573,7 @@ export default {
     },
     {
       id: 'eng.moulding.materials',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Plastics, drying and regrind',
       pre: [
@@ -644,6 +645,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorphous and semi-crystalline plastics',
       pre: [
@@ -713,6 +715,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drying in detail',
       pre: [
@@ -786,6 +789,7 @@ export default {
     },
     {
       id: 'eng.moulding.fillers',
+      film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Glass fibre, fillers and recyclate',
       pre: [
@@ -858,6 +862,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Defects and their causes',
       pre: [
@@ -929,6 +934,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Finding the cause of a defect',
       pre: [
@@ -998,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Warpage and dimensional drift',
       pre: [
@@ -1068,6 +1075,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Solving defects for good',
       pre: [
@@ -1428,6 +1436,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Moulds, changes and maintenance',
       pre: [
@@ -1499,6 +1508,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Inside a mould',
       pre: [
@@ -1569,6 +1579,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Planning mould maintenance and changes',
       pre: [
@@ -1640,6 +1651,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'A new mould: from design to release',
       pre: [

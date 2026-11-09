@@ -1439,6 +1439,7 @@ export default {
     },
     {
       id: 'eng.joining.weldcell',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'De lasrobotcel: wat erin staat en waarom',
       pre: [
@@ -1509,6 +1510,7 @@ export default {
     },
     {
       id: 'eng.joining.fixturing',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Lasmallen, hechten en lasvolgorde tegen vervorming',
       pre: [
@@ -1579,6 +1581,7 @@ export default {
     },
     {
       id: 'eng.joining.arcon',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Boogbrandtijd en de kosten van een meter las',
       pre: [
@@ -1651,6 +1654,7 @@ export default {
     },
     {
       id: 'eng.joining.weldsystem',
+      film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Laskwaliteit als systeem: ISO 3834, EN 1090 en de IWE',
       pre: [

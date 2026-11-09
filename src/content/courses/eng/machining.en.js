@@ -1428,6 +1428,7 @@ export default {
     },
     {
       id: 'eng.machining.fixtures',
+      film: 'eng.machining.workholding',
       figure: 'eng.machining.fixture',
       title: 'Fixtures, clamping and setup',
       pre: [
