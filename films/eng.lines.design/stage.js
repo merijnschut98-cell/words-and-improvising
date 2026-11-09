@@ -176,14 +176,19 @@ const STAGE = (() => {
     num: ['1', '2', '3', '4'],
     abc: ['A', 'B', 'C', 'D'],
   };
-  function tagsSvg(names, camr, maxX, inCard) {
+  // chip: a readout chip in the top left corner; a tag under it moves down below it
+  function tagsSvg(names, camr, maxX, inCard, chip) {
     if (!names) return '';
     return ST.map((sx, i) => {
       const [x, y] = at([sx + 2, -12, 76]);
       const X = (x - camr.cx) * camr.s + W / 2;
-      const Y = (y - camr.cy) * camr.s + H / 2;
-      if (X < 20 || X > maxX || Y < 26 || Y > H - 6 || (inCard && X > CX - 14 && Y < CY + CH + 24)) return '';
-      return T(X, Y, names[i], 21, 'middle', 'fp-label fp-tagtx');
+      let Y = (y - camr.cy) * camr.s + H / 2;
+      if (chip && X < 340 && Y < 72) Y = 72;
+      // a tag just under the card's left edge slides left of it; one well inside is dropped
+      let tx0 = X;
+      if (inCard && X > CX - 36 && Y < CY + CH + 24) { if (X > CX + 30) return ''; tx0 = CX - 36; }
+      if (X < 20 || X > maxX || Y < 26 || Y > H - 6) return '';
+      return T(tx0, Y, names[i], 21, 'middle', 'fp-label fp-tagtx');
     }).join('');
   }
 
@@ -210,7 +215,7 @@ const STAGE = (() => {
   }
   function bar(i, grow) {
     const v = C.CYC1[i] * grow;
-    return Rr(barX(i), yOf(v), BW, BY0 - yOf(v), 'fp-meter', 2) + (grow > 0.98 ? T(barX(i) + BW / 2, yOf(v) + 24, String(C.CYC1[i]), 20, 'middle', 'fp-label fp-inbar') : '');
+    return Rr(barX(i), yOf(v), BW, BY0 - yOf(v), 'fp-meter', 2) + (grow > 0.98 ? T(barX(i) + BW / 2, yOf(v) + 40, String(C.CYC1[i]), 20, 'middle', 'fp-label fp-inbar') : '');
   }
   function cycBars(kb, p) {
     return C.CYC1.map((_, i) => (kb >= 1 && i === 2 ? '' : bar(i, kb === 0 ? ease((p - i * 0.18) / 0.22) : 1))).join('');
@@ -285,7 +290,7 @@ const STAGE = (() => {
 
   // s7: the WIP counter
   function wipBody(n) {
-    return card(CX + 46, CY, CW - 46, 104) + T(CX + 23 + CW / 2, CY + 34, tx('onderhanden werk', 'WIP'), 20, 'middle', 'fp-small') + T(CX + 23 + CW / 2, CY + 84, String(n), 40, 'middle', 'fp-big');
+    return card(CX, CY, CW, 104) + T(CX + CW / 2, CY + 34, tx('onderhanden werk', 'WIP'), 20, 'middle', 'fp-small') + T(CX + CW / 2, CY + 84, String(n), 40, 'middle', 'fp-big');
   }
 
   // s8: the simulation screen: four stations over eight hours, stops as blocks
@@ -303,7 +308,7 @@ const STAGE = (() => {
   ];
   const FIXED = [0, 1, 2, 3].map((i) => [0, 1, 2, 3].map((n) => [30 * i + 15 + n * 120, 3]));
   function simBase(kb) {
-    let s = card(CX, CY, CW, CH) + title(tx('simulatie', 'simulation'));
+    let s = card(CX, CY, CW, CH) + title(tx('voorbeeldsimulatie', 'example simulation'));
     s += [0, 1, 2, 3].map((i) => T(SX0 - 12, rowY(i) + 7, String(i + 1), 20, 'end', 'fp-small fp-mute') + mark(`M${f1(SX0)} ${rowY(i)}L${f1(SX1)} ${rowY(i)}`, 'fp-curve2')).join('');
     if (kb !== 1 && kb !== 2) s += [0, 4, 8].map((h) => T(sx(h * 60), CY + CH - 14, `${h} ${tx('u', 'h')}`, 20, h === 8 ? 'end' : h === 0 ? 'start' : 'middle', 'fp-small fp-mute')).join('');
     return s;
@@ -350,7 +355,7 @@ const STAGE = (() => {
     s += [0, 6].map((b) => T(xb(b), y0 + 26, String(b), 20, b === 6 ? 'end' : 'middle', 'fp-small fp-mute')).join('');
     s += T((x0 + x1) / 2, y0 + 26, tx('plekken', 'places'), 20, 'middle', 'fp-small fp-mute');
     if (n > 2.5) s += T(xb(2.4), lerp(y0, y1, out(2.4)) - 12, 'output', 20, 'middle', 'fp-label');
-    if (n > 5.5) s += T(x1, lerp(y0, y1, lead(6)) + 26, tx('doorlooptijd', 'lead time'), 20, 'end', 'fp-small');
+    if (n > 5.5) s += T(x1, lerp(y0, y1, lead(6)) - 12, tx('doorlooptijd', 'lead time'), 20, 'end', 'fp-small');
     return s;
   }
 
@@ -376,7 +381,8 @@ const STAGE = (() => {
     if (si === 7) hud = ['simC'];
     if (si === 8) hud = ['littleC'];
     const maxX = W - 20;
-    set(E.tags, tagsSvg(names, camr, maxX, hud.length > 0));
+    const chip = FILM.scenes[si].beats.some((b, k) => k <= kb && b.read);
+    set(E.tags, tagsSvg(names, camr, maxX, hud.length > 0, chip));
 
     if (hud.includes('cycC')) { set(E.cycBase, cycBase()); set(E.cycBars, cycBars(kb, p)); set(E.cycBn, cycBn(kb)); set(E.cycTakt, cycTakt(kb, p)); }
     if (hud.includes('cellC')) set(E.cellBody, cellBody(p));
