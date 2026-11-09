@@ -8,6 +8,7 @@ import vm from 'node:vm';
 import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAPS } from '../films/_kit/timeline.mjs';
 import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX } from '../films/_kit/narration.mjs';
 import { applyLexicon } from '../films/_kit/lexicon.mjs';
+import { glossCase } from '../films/_kit/build-film.mjs';
 import { videoOf, readAlong, filmDataOf } from '../src/ui/film.js';
 import { lessonPhases, lessonSteps, lessonBack } from '../src/core/course.js';
 
@@ -99,6 +100,17 @@ test('WebVTT: timestamps, cues per beat timed by length, the file format', () =>
   assert.ok(vtt.endsWith('Langer en nog langer.\n'));
   // a cue text never carries markup
   assert.equal(vttOf([{ start: 0, end: 1, text: 'a <b> & c' }]).split('\n')[4], 'a &lt;b&gt; &amp; c');
+});
+
+test('gloss case: an ordinary word is lowered, a proper noun and an acronym keep their capitals', () => {
+  const corpus = 'Use the Taylor equation. A turn-mill centre turns and mills. Cutting speed matters; the cutting speed is set.';
+  assert.equal(glossCase('Cutting speed', corpus), 'cutting speed');
+  assert.equal(glossCase('Turn-mill centre', corpus), 'turn-mill centre');
+  assert.equal(glossCase('Taylor equation', corpus), 'Taylor equation');
+  assert.equal(glossCase('HSS', corpus), 'HSS');
+  assert.equal(glossCase('C-axis', corpus), 'C-axis');
+  // a word the corpus never writes mid-sentence is treated as ordinary
+  assert.equal(glossCase('Cemented carbide', corpus), 'cemented carbide');
 });
 
 test('glossed subtitles: a Dutch term shows its English word once, in parentheses; the voice text is untouched', () => {
