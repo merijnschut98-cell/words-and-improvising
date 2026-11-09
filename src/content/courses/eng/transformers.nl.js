@@ -718,7 +718,7 @@ export default {
       sayIt: 'Leg een manager klantenservice in 60 seconden uit wat er gebeurt tussen een storing in een MS-kabel en de reparatie.',
       terms: [
         { term: 'Streng', def: 'Eén uitgaande MS-kabelroute vanuit een onderstation, met de MS-stations erop.' },
-        { term: 'Normaal openpunt', def: 'Het punt waar een MS-ring open staat; wordt gesloten om na een storing weer te voeden.' },
+        { term: 'Normaal openpunt', def: 'De schakelaar in een MS-ring die openstaat; je sluit hem om een deel van de andere kant te voeden.' },
         { term: 'Kortsluitverklikker', def: 'Indicator die laat zien of meldt dat er foutstroom langs is gekomen.' },
         { term: 'Reflectiemeter', def: 'Meetapparaat (ook echometer) dat een puls de kabel in stuurt en de echo van de fout timet.' },
         { term: 'Stootgenerator', def: 'Apparaat dat de fout laat doorslaan zodat je hem precies kunt vinden.' },

@@ -718,7 +718,7 @@ export default {
       sayIt: 'Explain to a customer service manager in 60 seconds what happens between an MV cable fault and the cable being repaired.',
       terms: [
         { term: 'Feeder', def: 'One outgoing MV cable route from a substation, with the MV stations on it.' },
-        { term: 'Normally open point', def: 'The point where an MV ring is kept open; closed to restore supply after a fault.' },
+        { term: 'Normally open point', def: 'The switch in an MV ring that is kept open; you close it to feed a section from the other side.' },
         { term: 'Fault indicator', def: 'Device that shows or reports whether fault current has passed it.' },
         { term: 'Reflectometer', def: 'Instrument that sends a pulse into a cable and times the echo from the fault.' },
         { term: 'Surge generator', def: 'Device that makes the fault flash over so it can be pinpointed.' },
