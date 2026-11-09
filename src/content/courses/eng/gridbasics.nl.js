@@ -68,8 +68,8 @@ export default {
       terms: [
         { term: 'Spanning', def: 'De elektrische druk, in volt (V); 230 V tussen fase en nul in een Nederlands huis.' },
         { term: 'Stroomsterkte', def: 'Hoeveel elektriciteit er doorstroomt, in ampère (A), kortweg stroom; die verwarmt kabels en laat zekeringen doorslaan.' },
-        { term: 'kW', def: 'Vermogen: hoe snel energie op één moment wordt gebruikt of geleverd.' },
-        { term: 'kWh', def: 'Energie: vermogen × tijd; waar je voor betaalt.' },
+        { term: 'kW', def: 'Kilowatt, 1.000 W: vermogen, hoe snel je energie gebruikt.' },
+        { term: 'kWh', def: 'Kilowattuur: energie, vermogen × tijd; daar rekent de energierekening mee.' },
         { term: 'Wisselstroom', def: 'AC: stroom die in Europa 50 keer per seconde (50 Hz) van richting wisselt; transformatoren kunnen de spanning ervan omzetten.' },
         { term: 'Driefasig', def: 'Drie wisselstroomdraden die in de tijd verschoven zijn, plus nul; 230 V fase-nul, 400 V fase-fase.' },
       ],
@@ -138,7 +138,7 @@ export default {
       sayIt: 'Leg een beleidsmedewerker van een gemeente in 60 seconden uit waarom van het gas af gaan de belasting van het stroomnet zo sterk verandert.',
       terms: [
         { term: 'kVA', def: 'Schijnbaar vermogen: wat kabels en transformatoren moeten dragen, inclusief het deel dat geen nuttig werk doet.' },
-        { term: 'Arbeidsfactor', def: 'Nuttig vermogen gedeeld door schijnbaar vermogen (kW / kVA), ook cos φ; 0,9 tot 1 voor woningen.' },
+        { term: 'Arbeidsfactor', def: 'Cos φ: het deel van de stroom dat nuttig werk doet; laag bij licht belaste motoren.' },
         { term: 'Gelijktijdigheid', def: 'Het deel van ieders maximale belasting dat op hetzelfde moment optreedt.' },
         { term: 'Piekbelasting', def: 'De hoogste belasting in een periode; bepaalt hoe groot de componenten moeten zijn.' },
         { term: 'Omvormer', def: 'Het kastje dat de gelijkstroom van zonnepanelen omzet naar wisselstroom voor het net; schakelt af als de spanning te hoog wordt.' },
@@ -213,7 +213,7 @@ export default {
         { term: 'Spanningsdaling', def: 'Het spanningsverlies over een kabel als er stroom naar de klant loopt: stroom × weerstand.' },
         { term: 'Spanningsband', def: 'Het toegestane bereik bij de klant: 230 V ±10% op LS, dus 207 tot 253 V.' },
         { term: 'Spanningsstijging', def: 'De spanning aan het eind van een kabel komt boven die van het netstation doordat klanten terugleveren.' },
-        { term: 'Blindvermogen', def: 'Vermogen dat heen en weer pendelt zonder nuttig werk te doen; omvormers kunnen het opnemen om de spanning te drukken.' },
+        { term: 'Blindvermogen', def: 'Vermogen dat heen en weer gaat om magnetische velden op te bouwen, in kvar; het doet geen werk maar belast de kabels.' },
       ],
     },
     {

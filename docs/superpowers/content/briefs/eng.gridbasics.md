@@ -90,3 +90,5 @@ Recalculations (new lessons):
 - transition: 600 × 1.5 = 900 kVA (56%), 600 × 5 = 3,000, /400 = 7.5 → 8, /630 = 4.8 → 5; r0 630/5 = 126.
 
 Uncertain: Dutch term choices Overschrijdingsduur, Temperatuurcorrectie, Traagheid, Laadstroom, Splitsing, Hybride installatie; English names of the 2026 codes are our translations. Queue figure and €89 are moving numbers; start dates of municipal ten-years-ahead applications and GOTORK enforcement hedged.
+
+After merging main (eng.power rebuilt): kW, kWh, Arbeidsfactor / Power factor and Blindvermogen / Reactive power now use the eng.power definitions word for word.

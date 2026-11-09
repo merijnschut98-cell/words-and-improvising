@@ -68,8 +68,8 @@ export default {
       terms: [
         { term: 'Voltage', def: 'The electrical push, in volts (V); 230 V between a phase and neutral in a Dutch home.' },
         { term: 'Current', def: 'The flow of electricity, in amperes (A); it heats cables and blows fuses.' },
-        { term: 'kW', def: 'Power: how fast energy is used or delivered at one moment.' },
-        { term: 'kWh', def: 'Energy: power × time; what you pay for.' },
+        { term: 'kW', def: 'Kilowatt, 1,000 W: power, the rate of using energy.' },
+        { term: 'kWh', def: 'Kilowatt-hour: energy, power × time; what the energy bill charges.' },
         { term: 'Alternating current', def: 'AC: current that changes direction 50 times a second (50 Hz) in Europe; transformers can change its voltage.' },
         { term: 'Three-phase', def: 'Three AC wires shifted in time, plus neutral; 230 V phase to neutral, 400 V phase to phase.' },
       ],
@@ -138,7 +138,7 @@ export default {
       sayIt: 'Explain to a municipal policy officer in 60 seconds why going off gas changes the load on the electricity grid so much.',
       terms: [
         { term: 'kVA', def: 'Apparent power: what cables and transformers must carry, including the part that does no useful work.' },
-        { term: 'Power factor', def: 'Useful power divided by apparent power (kW / kVA); 0.9 to 1 for homes.' },
+        { term: 'Power factor', def: 'Cos φ: the share of the current that does useful work; low on lightly loaded motors.' },
         { term: 'Simultaneity', def: 'The share of everyone’s maximum load that occurs at the same moment.' },
         { term: 'Peak load', def: 'The highest load in a period, which sets the size of the equipment.' },
         { term: 'Inverter', def: 'The box that turns the DC from solar panels into AC for the grid; it switches off when the voltage gets too high.' },
@@ -213,7 +213,7 @@ export default {
         { term: 'Voltage drop', def: 'The loss of voltage along a cable when current flows to the customer: current × resistance.' },
         { term: 'Voltage band', def: 'The allowed range at the customer: 230 V ±10% on LV, so 207 to 253 V.' },
         { term: 'Voltage rise', def: 'The voltage at the end of a cable climbs above the substation’s because customers feed in.' },
-        { term: 'Reactive power', def: 'Power that swings back and forth without doing useful work; inverters can absorb it to push the voltage down.' },
+        { term: 'Reactive power', def: 'Power that flows back and forth to build magnetic fields, in kvar; it does no work but loads the cables.' },
       ],
     },
     {
