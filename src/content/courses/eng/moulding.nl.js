@@ -862,6 +862,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten en hun oorzaken',
       pre: [
@@ -933,6 +934,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'De oorzaak van een fout vinden',
       pre: [
@@ -1002,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Kromtrekken en maatverloop',
       pre: [
@@ -1072,6 +1075,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten blijvend oplossen',
       pre: [

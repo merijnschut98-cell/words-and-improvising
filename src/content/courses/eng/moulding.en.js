@@ -862,6 +862,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Defects and their causes',
       pre: [
@@ -933,6 +934,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Finding the cause of a defect',
       pre: [
@@ -1002,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Warpage and dimensional drift',
       pre: [
@@ -1072,6 +1075,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Solving defects for good',
       pre: [
