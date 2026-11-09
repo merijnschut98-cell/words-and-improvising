@@ -266,6 +266,7 @@ const hud = [
   g('run', '<g data-cue="cpk"><g data-cue="cpk2">' + g('runIn', '') + '</g></g>'),
   g('warmc', '', ' data-cue="warm"'),
   g('lcd', '', ' data-cue="mic"'),
+  g('exag', ''),
 ].join('');
 
 // ---------------------------------------------------------------- the drawing, back to front
@@ -294,7 +295,55 @@ const world = [
     joystick,
   ].join('')),
 ].join('');
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`;
+// Static paths (as in eng.machining.workholding) written with relative line-tos: the same points (to 0,1), about a
+// third fewer bytes. Only M, L and Z paths at one decimal are rewritten.
+function compactPath(d) {
+  const tok = d.match(/[MLZ]|-?\d*\.?\d+/g);
+  const n = (v) => { const a = Math.abs(v); const t = `${Math.floor(a / 10)}${a % 10 ? `.${a % 10}` : ''}`.replace(/^0\./, '.'); return (v < 0 ? '-' : '') + t; };
+  let out = '';
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  let last = '';
+  const put = (c, nums) => {
+    let s = c === last && c === 'l' ? '' : c;
+    for (const v of nums) { const t = n(v); s += (s && !/[MlZ]$/.test(s) && t[0] !== '-' ? ' ' : '') + t; }
+    if (!/^[MlZ]/.test(s) && out && !/[MlZ]$/.test(out) && s[0] !== '-') out += ' ';
+    out += s;
+    last = c;
+  };
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZ]/.test(tok[i])) { cmd = tok[i++]; if (cmd === 'Z') { put('Z', []); cur = start; } continue; }
+    const p = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    if (cmd === 'M') { put('M', p); cur = p; start = p; cmd = 'L'; } else { put('l', [p[0] - cur[0], p[1] - cur[1]]); cur = p; }
+  }
+  return out;
+}
+// read a path back to absolute points in tenths, to prove the rewrite exact
+function pointsOf(d) {
+  const tok = d.match(/[MLZlz]|-?\d*\.?\d+/g);
+  const out = [];
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZlz]/.test(tok[i])) { cmd = tok[i++]; if (/[Zz]/.test(cmd)) { out.push('Z'); cur = start; } continue; }
+    const v = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    cur = cmd === 'l' ? [cur[0] + v[0], cur[1] + v[1]] : v;
+    if (cmd === 'M') { start = cur; cmd = 'L'; out.push('M'); }
+    out.push(cur.join());
+  }
+  return out.join(' ');
+}
+const compact = (html) => html.replace(/ d="([MLZ\d.\s-]+)"/g, (m, d) => {
+  if (/\.\d\d/.test(d)) return m;
+  const c = compactPath(d);
+  if (pointsOf(c) !== pointsOf(d)) throw new Error(`compactPath changed a path: ${d.slice(0, 60)}`);
+  return ` d="${c}"`;
+});
+const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras (one move per scene)
 const cam = (p, w) => { const [x, y] = at(p); return [Math.round(x * 10) / 10, Math.round(y * 10) / 10, w]; };
@@ -302,7 +351,8 @@ const CAM = [
   { from: cam([-330, 0, 110], 300), to: cam([230, 0, 140], 300), a: 0.05, b: 0.95 },
   { from: cam([-20, 0, 105], 250), to: cam([-10, 0, 105], 230), a: 0.1, b: 0.6 },
   { from: cam([-90, 0, 105], 250), to: cam([-10, 20, 95], 240), a: 0.45, b: 0.8 },
-  { from: cam([240, 0, 185], 400), to: cam([250, 0, 165], 360) },
+  // close on the bore while the probe touches, then out to the room (20 °C)
+  { from: cam([230, 0, 120], 200), to: cam([250, 0, 165], 370), a: 0.42, b: 0.8 },
   { from: cam([-40, 0, 100], 290), to: cam([-30, 0, 100], 290) },
   { from: cam([-40, 0, 100], 300), to: cam([-30, 0, 100], 300) },
   { from: cam([-40, 0, 100], 340), to: cam([-30, 0, 100], 340) },
@@ -408,8 +458,8 @@ const spec = {
 // in the captions and readouts, asserted above.
 const SAY = [
   [ // s1 orientation
-    { nl: 'Een stuk komt van de machine. Of het goed is, weet je pas als je het meet, en als je op dat meten kunt bouwen.',
-      en: 'A part comes off the machine. Whether it is good, you only know when you measure it, and when you can trust that measuring.' },
+    { nl: 'Een stuk komt van de machine. Of het goed is, weet je pas als je het meet, en op dat meten kunt bouwen.',
+      en: 'A part comes off the machine. Whether it is good, you only know when you measure it and can trust that measuring.' },
     { nl: 'Eerst het oppervlak, de meetmiddelen en wat warmte met een maat doet.',
       en: 'First the surface, the gauges, and what heat does to a size.' },
     { nl: 'Dan: hoeveel tolerantie kost het meten zelf? En hoe blijft het proces de hele dag capabel?',
@@ -454,8 +504,8 @@ const SAY = [
       en: 'Every measurement has a {t:Measurement uncertainty|measurement uncertainty}: a range around the reading in which the true value lies. From the instrument, the person, the part, the temperature and the method.' },
     { nl: 'De regel van tien keer fijner gaat over de {t:Resolutie|resolutie}: de kleinste stap die het meetmiddel toont.',
       en: 'The rule of ten times finer is about {t:Resolution|resolution}: the smallest step the instrument shows.' },
-    { nl: 'Bij plus-min twee honderdste is de band vier honderdste, dus die stap hooguit vier micron. Bij kalibreren geldt vaak: de onzekerheid hooguit een kwart van de tolerantie.',
-      en: 'At plus or minus two hundredths the band is four hundredths, so that step is four microns at most. In calibration another rule is common: the uncertainty at most a quarter of the tolerance.' },
+    { nl: 'Bij plus-min twee honderdste is de band vier honderdste, dus die stap hooguit vier micron.',
+      en: 'At plus or minus two hundredths the band is four hundredths, so that step is four microns at most.' },
     { nl: 'Maar een meter kan één micron tonen en toch vijf micron spreiden.',
       en: 'But a gauge can show one micron and still scatter by five.' },
   ],
@@ -466,16 +516,16 @@ const SAY = [
       en: '{t:Repeatability|Repeatability} is the spread when one person measures the same part again and again: mostly the instrument.' },
     { nl: '{t:Reproduceerbaarheid|Reproduceerbaarheid} is het verschil tussen mensen: methode en hantering.',
       en: '{t:Reproducibility|Reproducibility} is the difference between people: method and handling.' },
-    { nl: 'Bij plus-min twee honderdste spreidt het meten anderhalve micron. Zes keer dat is negen micron: {n:22.5} procent van de band. Onder tien procent is goed, tot dertig voorwaardelijk, daarboven niet acceptabel. De module SPC gaat dieper.',
-      en: 'On a shaft of plus or minus two hundredths, the measuring scatters by one and a half microns. Six times that is nine microns: {n:22.5} percent of the band. Under ten percent is good, up to thirty conditional, above that not acceptable. The SPC module goes deeper.' },
+    { nl: 'Bij plus-min twee honderdste is de standaardafwijking van het meten anderhalve micron. Zes keer dat is negen micron: {n:22.5} procent van de band. Volgens het AIAG-handboek is onder tien procent goed, tot dertig voorwaardelijk acceptabel, daarboven niet. De module SPC gaat dieper.',
+      en: 'On a shaft of plus or minus two hundredths, the standard deviation of the measuring is one and a half microns. Six times that is nine microns: {n:22.5} percent of the band. By the AIAG manual, under ten percent is good, up to thirty conditionally acceptable, above that not. The SPC module goes deeper.' },
   ],
   [ // s8 thermal growth and Cpk
     { nl: 'Ook de machine groeit: {t:Thermische groei|thermische groei}. Spil, kogelomloopspindels en frame zetten uit, en posities schuiven honderdsten op, vooral tijdens het opwarmen.',
       en: 'The machine grows too: {t:Thermal growth|thermal growth}. Spindle, ball screws and frame expand, and positions shift by hundredths, mostly while warming up.' },
-    { nl: '{t:Cpk|Cpk} is de afstand van het gemiddelde tot de dichtstbijzijnde grens, gedeeld door drie sigma: past hij waar hij nu zit? Cp vraagt alleen of de spreiding zou passen als hij gecentreerd is. De module kwaliteit legt beide uit.',
-      en: '{t:Cpk|Cpk} is the distance from the mean to the nearest limit, divided by three sigma: does it fit where it is? Cp only asks whether the spread could fit if centred. The quality module explains both.' },
-    { nl: 'Een boring van {n:25}, plus-min vijftien micron, spreiding drie micron. ’s Ochtends ligt het gemiddelde op de maat: Cpk {n:1.67}. Veel klanten vragen {n:1.33} in serie.',
-      en: 'A bore of {n:25}, plus or minus fifteen microns, a spread of three microns. In the morning the average sits on size: Cpk {n:1.67}. Many customers ask {n:1.33} in series.' },
+    { nl: '{t:Cpk|Cpk} is de afstand van het gemiddelde tot de dichtstbijzijnde grens, gedeeld door drie sigma: past hij waar hij nu zit? De kwaliteitsmodule legt het uit.',
+      en: '{t:Cpk|Cpk} is the distance from the mean to the nearest limit, divided by three sigma: does it fit where it is? The quality module explains it.' },
+    { nl: 'Een boring van {n:25}, plus-min vijftien micron, standaardafwijking drie micron. ’s Ochtends ligt het gemiddelde op de maat: Cpk {n:1.67}. Veel klanten vragen {n:1.33} in serie.',
+      en: 'A bore of {n:25}, plus or minus fifteen microns, a standard deviation of three microns. In the morning the average sits on size: Cpk {n:1.67}. Many customers ask {n:1.33} in series.' },
     { nl: '’s Middags hebben warmte en slijtage het gemiddelde naar {n:25.006} geschoven: nog negen micron tot de grens, Cpk {n:1.0}. Dezelfde spreiding; alleen het gemiddelde wandelde.',
       en: 'By the afternoon heat and wear have moved the average to {n:25.006}: nine microns left to the limit, Cpk {n:1.0}. The same spread; only the average walked.' },
   ],
@@ -534,6 +584,9 @@ const css = `
 [data-cue][data-on] .ms-big,[data-hi] .ms-big{fill:var(--fp-accent-text)}
 [data-cue][data-on] .ms-zone[data-z="1"],[data-hi].ms-zone{fill:color-mix(in srgb,var(--fp-accent) 30%,var(--anatomy-shade-3));stroke:var(--fp-accent)}
 .ms-acc{fill:var(--fp-accent);stroke:none}
+.ms-pt{stroke:var(--anatomy-shade-0);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.ms-fit{stroke-width:2;vector-effect:non-scaling-stroke}
+.ms-halo{paint-order:stroke;stroke:var(--anatomy-shade-0);stroke-width:5px;stroke-linejoin:round}
 .ms-accl{fill:none;stroke:var(--fp-accent);stroke-width:2.4;stroke-linecap:round}
 [data-hi] .iso-edge,[data-hi] .iso-crease,[data-hi] .iso-line{stroke:var(--fp-accent)!important}
 [data-hi] .iso-top{fill:var(--anatomy-lit-top)}

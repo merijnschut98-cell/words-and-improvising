@@ -149,8 +149,8 @@ const STAGE = (() => {
   // ------------------------------------------------------------ the CMM
   function touchSvg(pts, fit) {
     let out = '';
-    if (fit > 0.01) out += `<path class="ms-accl" style="opacity:${fit.toFixed(2)}" d="${fmt(Array.from({ length: 49 }, (_, i) => at([C.CX + (C.C_BORE - 0.2) * Math.cos((i / 48) * TAU), (C.C_BORE - 0.2) * Math.sin((i / 48) * TAU), C.C_TOP - 4])))}"/>`;
-    for (const a of pts) { const [sx, sy] = at([C.CX + C.C_BORE * Math.cos(a), C.C_BORE * Math.sin(a), C.C_TOP - 4]); out += `<circle class="ms-acc" cx="${f1(sx)}" cy="${f1(sy)}" r="${f2(1.2 * KS)}"/>`; }
+    if (fit > 0.01) out += `<path class="ms-accl ms-fit" style="opacity:${fit.toFixed(2)}" d="${fmt(Array.from({ length: 49 }, (_, i) => at([C.CX + (C.C_BORE - 0.2) * Math.cos((i / 48) * TAU), (C.C_BORE - 0.2) * Math.sin((i / 48) * TAU), C.C_TOP - 4])))}"/>`;
+    for (const a of pts) { const [sx, sy] = at([C.CX + C.C_BORE * Math.cos(a), C.C_BORE * Math.sin(a), C.C_TOP - 4]); out += `<circle class="ms-acc ms-pt" cx="${f1(sx)}" cy="${f1(sy)}" r="${f2(2.6 * KS)}"/>`; }
     return out;
   }
 
@@ -260,7 +260,7 @@ const STAGE = (() => {
   function grrBase(shown) {
     let out = rect(214, 58, 418, 336);
     out += line(GX0, 88, GX0, 330, 'ms-axis') + line(GX0, 330, GX1, 330, 'ms-axis') + line(GX0, gy(0), GX1, gy(0), 'ms-grid');
-    out += txt(GX0 + 6, 84, LANG === 'nl' ? 'meting − referentie' : 'reading − reference', 19, 'start', 'ms-mute');
+    out += txt(GX0 + 6, 84, LANG === 'nl' ? 'meting − referentie · voorbeeld' : 'reading − reference · example', 19, 'start', 'ms-mute');
     out += txt(GX1, 356, LANG === 'nl' ? 'stuk 1–10 · operator A B C' : 'part 1–10 · operator A B C', 19, 'end', 'ms-mute');
     const n = Math.round(90 * shown);
     let c = 0;
@@ -314,9 +314,10 @@ const STAGE = (() => {
     let out = rect(300, 56, 332, 338);
     out += line(RX0, 100, RX0, 342, 'ms-axis') + line(RX0, 342, 620, 342, 'ms-axis');
     out += line(RX0, ry(0.015), 620, ry(0.015), 'ms-lim') + line(RX0, ry(-0.015), 620, ry(-0.015), 'ms-lim') + line(RX0, ry(0), 620, ry(0), 'ms-grid');
-    out += txt(RX0 + 4, ry(0.015) - 8, dec(25.015, 3), 19, 'start', 'ms-mute');
-    out += txt(RX0 + 4, ry(0) - 8, dec(25, 3), 19, 'start', 'ms-mute');
-    out += txt(RX0 + 4, ry(-0.015) + 22, dec(24.985, 3), 19, 'start', 'ms-mute');
+    // the limit labels go on top (at the end), haloed where the bell crosses them
+    const labels = txt(RX0 + 4, ry(0.015) - 8, dec(25.015, 3), 19, 'start', 'ms-mute ms-halo')
+      + txt(RX0 + 4, ry(0) - 8, dec(25, 3), 19, 'start', 'ms-mute ms-halo')
+      + txt(RX0 + 4, ry(-0.015) + 22, dec(24.985, 3), 19, 'start', 'ms-mute ms-halo');
     out += txt(RX0, 368, '7:00', 19, 'middle', 'ms-mute') + txt(rx(12), 368, '12:00', 19, 'middle', 'ms-mute') + txt(RX1, 368, '17:00', 19, 'middle', 'ms-mute');
     const pts = [];
     for (let h = 7; h <= until + 1e-9; h += 0.1) pts.push([rx(h), ry(mean(h))]);
@@ -331,7 +332,7 @@ const STAGE = (() => {
       if (bracket > 0.01) out += `<g style="opacity:${bracket.toFixed(2)}"><path class="ms-accl" d="M${f1(bx + 50)} ${f1(ry(m))}L${f1(bx + 50)} ${f1(ry(0.015))}"/><path class="ms-accl" d="M${f1(bx + 44)} ${f1(ry(m))}L${f1(bx + 56)} ${f1(ry(m))}M${f1(bx + 44)} ${f1(ry(0.015))}L${f1(bx + 56)} ${f1(ry(0.015))}"/></g>`;
     }
     if (cpkText) out += txt(620, 92, cpkText, 26, 'end', 'ms-big');
-    return out;
+    return out + labels;
   }
   function warmSvg(prog) {
     let out = rect(300, 56, 332, 338);
@@ -358,7 +359,7 @@ const STAGE = (() => {
   const meanDrift = (h) => 0.006 * clamp((h - 7) / 5, 0, 1) ** 0.8;
 
   // ------------------------------------------------------------ the scenes
-  const HUDS = ['loupe', 'therm', 'band', 'unc', 'grr', 'run', 'warmc', 'lcd'];
+  const HUDS = ['loupe', 'therm', 'band', 'unc', 'grr', 'run', 'warmc', 'lcd', 'exag'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
@@ -455,6 +456,9 @@ const STAGE = (() => {
       set(E.runIn, runSvg(held, until, true, b >= 2 ? `Cpk ${dec(1.56, 2)}` : '', 0));
     }
 
+    // the head's growth is drawn millimetres big; in reality it is hundredths
+    vis.exag = si === 7 ? clamp(mach.heat * 4, 0, 1) : 0;
+    if (vis.exag > 0.01) set(E.exag, rect(8, 352, 272, 40) + txt(144, 379, LANG === 'nl' ? 'groei overdreven getekend' : 'growth drawn exaggerated', 20, 'middle', 'ms-mute'));
     renderMachine(clockS, mach);
     set(E.sHeat, shaftHeat(sheat));
     set(E.chatter, chatterSvg(chat));
