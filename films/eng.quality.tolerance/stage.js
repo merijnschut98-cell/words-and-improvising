@@ -179,7 +179,7 @@ const STAGE = (() => {
   function oOut(n) {
     let out = '';
     for (let i = 0; i < n; i++) out += dot(ox(12.021) - 10 + (i % 3) * 10, 128 - Math.floor(i / 3) * 12, 4.4, 'tl-acc');
-    if (n >= 15) out += txt(612, 50, `15 × ${dec(12.021, 3)} = 3%`, 22, 'end', 'tl-big');
+    if (n >= 15) out += txt(612, 50, tr('15 van 500 = 3%', '15 of 500 = 3%'), 22, 'end', 'tl-big');
     return out;
   }
   function oForm(a) {
@@ -198,7 +198,7 @@ const STAGE = (() => {
     out += `<rect class="fp-meter" x="438" y="232" width="${f1(full * (67.5 / 650))}" height="18" rx="3"/>` + txt(470, 248, `€${dec(67.5, 2)}`, 21, 'start', 'tl-big');
     out += txt(438, 300, tr('klant', 'customer'), 21, 'start', 'tl-mute');
     out += `<rect class="fp-meter" data-top="" x="438" y="310" width="${f1(full * lerp(67.5 / 650, 1, k))}" height="18" rx="3"/>`;
-    out += op(k, txt(608, 356, '× 10', 24, 'end', 'tl-on'));
+    out += op(k, txt(608, 356, '≈ × 10', 24, 'end', 'tl-on'));
     return op(a, out);
   }
 
@@ -297,7 +297,7 @@ const STAGE = (() => {
     out += txt(386, 46, tr('spreiding', 'spread'), 21, 'start', 'tl-mute') + exTag(620, 46);
     out += txt(386, 80, tr('met rust', 'left alone'), 21, 'start', 'tl-txt') + `<rect class="fp-meter" x="500" y="64" width="80" height="18" rx="3"/>`;
     out += txt(386, 120, tr('bijgesteld', 'adjusted'), 21, 'start', 'tl-txt') + `<rect class="fp-meter" data-top="" x="500" y="104" width="${f1(80 * lerp(1, 1.4, k))}" height="18" rx="3"/>`;
-    out += op(k, txt(616, 156, '+40%', 22, 'end', 'tl-on'));
+    out += op(k, txt(616, 156, '≈ +40%', 22, 'end', 'tl-on'));
     return out;
   }
 

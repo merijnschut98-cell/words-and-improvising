@@ -80,9 +80,8 @@ const SAY = {
     // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
     // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
     [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
-    // tampering as the floor says it, stress on the first syllable (espeak-ng reads "tam-PIE-ring"),
-    // and ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
-    [/\b([Tt])ampering\b/g, '$1empering'], [/\bISO 2768\b/g, 'ISO 27 68'],
+    // ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
+    [/\bISO 2768\b/g, 'ISO 27 68'],
     // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
     [/\b([Bb])èta\b/g, '$1eeta'],
     // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part

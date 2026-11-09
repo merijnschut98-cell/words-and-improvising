@@ -118,8 +118,8 @@ const CRATE_H = 18;
 const FT = 34; // rack table top
 const LW = 8; // lane width
 const LX = (i) => 40 + (i - MID) * LW;
-const PR = 3; // part radius
-const PITCH = 6.2;
+const PR = 3.5; // part radius (lanes 8 wide, a gap of 1 between stacks)
+const PITCH = 7.2;
 const PZ0 = FT + 4 + PR; // centre of the bottom part
 const PY = [-20.6, -12.6]; // a part's length along y
 const KNOB = { x: -222, z: 50, y: 16, r: 3 };
@@ -416,7 +416,7 @@ const CAM = [
   { from: cam([-105, 14, 28], 290, 110), to: cam([-100, 20, 22], 250, 110) },
   { from: cam([-120, 0, 66], 560), to: cam(RACK, 440, 154), a: 0.2, b: 0.45 },
   { from: cam([-262, 4, 82], 250, 150), to: cam([-258, 4, 84], 230, 150) },
-  { from: cam([-226, 10, 62], 200, 200), to: cam(RACK, 360, 210), a: 0.57, b: 0.67 },
+  { from: cam([-226, 10, 62], 200, 200), to: cam([40, -14, 88], 380, 210), a: 0.57, b: 0.67 },
   { from: cam(RACK, 440, 154), to: cam(RACK, 420, 154) },
   { from: cam(RACK, 420, 154), to: cam(RACK, 410, 154) },
   { from: cam([-100, 0, 60], 640, 150), to: cam([-100, 0, 60], 610, 150) },
@@ -457,7 +457,7 @@ const spec = {
         { nl: '{n:500} bussen: {n:15} boringen meten {n:12.021}. Dat is {n:3}% buiten spec.', en: '{n:500} bushes: {n:15} bores measure {n:12.021}. That is {n:3}% out of spec.', cues: [] },
         { nl: '{t:Afwijkend|Afwijkend}: buiten de grenzen. Afkeuren, nabewerken, of zo gebruiken met akkoord.', en: '{t:Nonconforming|Nonconforming}: outside the limits. Scrap, rework, or use as is with approval.', cue: { Afwijkend: 'nc' } },
         { nl: 'Een {t:Deviatie|deviatie}: schriftelijk akkoord van de klant om ze toch te gebruiken.', en: 'A {t:Deviation|deviation}: the customer’s written approval to use them anyway.', cue: { Deviatie: 'form' } },
-        { nl: 'Bij de machine {n:15} × €{n:4.50} = €{n:67.50}. Bij de klant ruim tien keer zoveel.', en: 'At the machine {n:15} × €{n:4.50} = €{n:67.50}. At the customer about ten times as much.', cues: [], read: { nl: 'klant: €{n:400} + €{n:250} + 8D', en: 'customer: €{n:400} + €{n:250} + 8D' } },
+        { nl: 'Bij de machine {n:15} × €{n:4.50} = €{n:67.50}. Bij de klant zo’n tien keer zoveel.', en: 'At the machine {n:15} × €{n:4.50} = €{n:67.50}. At the customer about ten times as much.', cues: [], read: { nl: 'klant: €{n:400} + €{n:250} + 8D', en: 'customer: €{n:400} + €{n:250} + 8D' } },
       ],
     },
     {
@@ -482,7 +482,7 @@ const spec = {
       id: 's6', lesson: VAR, level: 1, dur: DUR[5], still: 0.8, title: { nl: 'Bijsturen op ruis', en: 'Chasing noise' },
       beats: [
         { nl: 'Een stabiel proces. De operator draait na elke as de offset bij met de laatste afwijking.', en: 'A stable process. After every shaft the operator turns the offset by the last deviation.', cues: ['knob'] },
-        { nl: '{t:Tampering|Tampering}: bijsturen op ruis. Er komt een tweede ruis bovenop de eerste.', en: '{t:Tampering|Tampering}: chasing noise. A second noise lands on top of the first.', cue: { Tampering: 'knob' } },
+        { nl: '{t:Tampering|Tampering} (overbijsturen): bijsturen op ruis. Er komt een tweede ruis bovenop.', en: '{t:Tampering|Tampering}: chasing noise. A second noise lands on top of the first.', cue: { Tampering: 'knob' } },
         { nl: 'De stapels worden breder: zo’n {n:40}% meer spreiding.', en: 'The stacks get wider: about {n:40}% more spread.', cues: ['rack'] },
         { nl: 'Eerst vragen: is er iets veranderd, of is dit gewoon hoe breed het proces is?', en: 'Ask first: did something change, or is this just how wide the process is?', cues: [] },
       ],
@@ -502,7 +502,7 @@ const spec = {
         { nl: '{t:Cpk|Cpk}: van het gemiddelde tot de dichtstbijzijnde grens, gedeeld door 3σ.', en: '{t:Cpk|Cpk}: from the mean to the nearest limit, divided by 3σ.', cue: { Cpk: 'cpk' } },
         { nl: '({n:30.040} − {n:30.026}) / {n:0.012} = {n:1.17}. Te dicht tegen de bovengrens.', en: '({n:30.040} − {n:30.026}) / {n:0.012} = {n:1.17}. Too close to the upper limit.', cues: ['cpk'] },
         { nl: 'Eén offset van −{n:0.006}: gemiddeld {n:30.020}, Cpk 1,67. Geen investering.', en: 'One offset of −{n:0.006}: a mean of {n:30.020}, Cpk 1.67. No investment.', cues: ['cpk', 'rack'] },
-        { nl: 'Doel {n:1.33}: zo’n {n:63} {t:ppm|ppm} buiten spec. Cpk {n:1.0}: zo’n {n:2700} ppm.', en: 'Target {n:1.33}: about {n:63} {t:ppm|ppm} out of spec. Cpk {n:1.0}: about {n:2700} ppm.', cue: { ppm: 'ppm' } },
+        { nl: 'Doel {n:1.33}: gecentreerd zo’n {n:63} {t:ppm|ppm} buiten spec. Cpk {n:1.0}: zo’n {n:2700} ppm.', en: 'Target {n:1.33}: centred, about {n:63} {t:ppm|ppm} out of spec. Cpk {n:1.0}: about {n:2700} ppm.', cue: { ppm: 'ppm' } },
       ],
     },
     {
@@ -522,23 +522,25 @@ const spec = {
 // What the voice says, per scene and beat: the film replaces the lesson text,
 // so this explains fully. No "/", "&" or "±" in the spoken text: tolerances are
 // said as the floor says them ("plus-min vijf honderdste"), σ as "sigma". The
-// Dutch voice says "tampering" and "ISO 2768" through the Dutch spoken forms
-// in films/_kit/timeline.mjs (SAY). Terms as in the drawings module (stempel),
+// Dutch voice says "ISO 2768" through the spoken form in films/_kit/timeline.mjs
+// (SAY). The Dutch voice says "overbijsturen" for tampering, as the SPC film
+// and eng.spc.tampering do; the caption keeps this lesson's term "Tampering"
+// with "overbijsturen" beside it. Terms as in the drawings module (stempel),
 // the measuring film and the SPC film (standaardafwijking, Cpk).
 const SAY = [
   [ // s1 size and limits
     { nl: 'Op de tekening staat de {t:Nominale maat|nominale maat}: de doelwaarde van een maat. Ø{n:20} betekent iets ronds van {n:20} millimeter doorsnee.',
       en: 'The drawing gives the {t:Nominal|nominal} size: the target value of a dimension. Ø{n:20} means something round, {n:20} millimetres across.' },
-    { nl: 'Geen machine maakt precies twintig. De {t:Tolerantie|tolerantie} zegt hoeveel het onderdeel mag afwijken en nog werkt: hier plus-min vijf honderdste, een veld van een tiende millimeter.',
-      en: 'No machine makes exactly twenty. The {t:Tolerance|tolerance} says how far the part may deviate and still work: here plus or minus five hundredths, a band of one tenth of a millimetre.' },
-    { nl: 'Zo ontstaan de twee {t:Specgrenzen|specgrenzen}: de ondergrens {n:19.95} en de bovengrens {n:20.05}. Alles daartussen accepteert de klant.',
+    { nl: 'De {t:Tolerantie|tolerantie} zegt hoeveel het onderdeel mag afwijken en nog werkt: hier plus-min vijf honderdste, een veld van een tiende millimeter.',
+      en: 'The {t:Tolerance|tolerance} says how far the part may deviate and still work: here plus or minus five hundredths, a band of one tenth of a millimetre.' },
+    { nl: 'Dat geeft twee {t:Specgrenzen|specgrenzen}: ondergrens {n:19.95}, bovengrens {n:20.05}. Alles daartussen accepteert de klant.',
       en: 'That gives the two {t:Spec limits|spec limits}: the lower limit {n:19.95} and the upper limit {n:20.05}. The customer accepts anything in between.' },
     { nl: 'Een tolerantie kan ook ongelijk zijn. Een boring van {n:12}, nul tot plus achttien micron, loopt van precies twaalf tot {n:12.018}: groter mag, kleiner nooit.',
       en: 'A tolerance can also be uneven. A bore of {n:12}, zero to plus eighteen microns, runs from exactly twelve to {n:12.018}: bigger is allowed, smaller never.' },
   ],
   [ // s2 the title block
-    { nl: 'Niet elke maat krijgt een eigen tolerantie. Voor de rest geldt de {t:Algemene tolerantie|algemene tolerantie} in het stempel, het kader rechtsonder op de tekening.',
-      en: 'Not every dimension gets its own tolerance. For the rest, the {t:General tolerance|general tolerance} in the title block applies, the box at the bottom right of the drawing.' },
+    { nl: 'Maten zonder eigen tolerantie vallen onder de {t:Algemene tolerantie|algemene tolerantie} in het stempel, het kader rechtsonder op de tekening.',
+      en: 'Dimensions without a tolerance of their own fall under the {t:General tolerance|general tolerance} in the title block, the box at the bottom right of the drawing.' },
     { nl: 'Vaak is dat ISO 2768, klasse m: plus-min {n:0.2} millimeter voor maten boven {n:6} tot en met {n:30} millimeter.',
       en: 'Often that is ISO 2768, class m: plus or minus {n:0.2} millimetres for sizes over {n:6} up to {n:30} millimetres.' },
     { nl: 'Nauwer kost geld: een betere machine, langzamer verspanen, meer meten. Een lagerzitting vraagt misschien plus-min {n:0.01}, een gat in een afdekplaat kan met twee tiende.',
@@ -549,16 +551,16 @@ const SAY = [
   [ // s3 out of spec
     { nl: 'Een serie van {n:500} bussen. Bij {n:15} meet de boring {n:12.021}: drie micron te groot. Dat is {n:3} procent buiten spec.',
       en: 'A batch of {n:500} bushes. In {n:15} of them the bore measures {n:12.021}: three microns too big. That is {n:3} percent out of spec.' },
-    { nl: 'Zo’n onderdeel is {t:Afwijkend|afwijkend}: afkeuren, nabewerken, of gebruiken zoals het is. Dat laatste alleen met toestemming.',
-      en: 'Such a part is {t:Nonconforming|nonconforming}: scrap it, rework it, or use it as it is. The last only with permission.' },
+    { nl: 'Zo’n onderdeel is {t:Afwijkend|afwijkend}: afkeuren, nabewerken, of zo gebruiken, maar alleen met toestemming.',
+      en: 'Such a part is {t:Nonconforming|nonconforming}: scrap it, rework it, or use it as it is, but only with permission.' },
     { nl: 'Die toestemming heet een {t:Deviatie|deviatie}, ook wel concessie: een schriftelijk akkoord van de klant.',
       en: 'That permission is called a {t:Deviation|deviation}, or a concession: the customer’s written approval.' },
-    { nl: 'Gevonden bij de machine: {n:15} keer 4 euro 50, samen 67 euro 50. Bij de klant: €{n:400} om alles te sorteren, €{n:250} klachtkosten en een 8D. Tien keer zoveel.',
+    { nl: 'Gevonden bij de machine: {n:15} keer 4 euro 50 is 67 euro 50. Bij de klant: €{n:400} om alles te sorteren, €{n:250} klachtkosten en een 8D. Zo’n tien keer zoveel.',
       en: 'Found at the machine: {n:15} times 4 euros 50, so 67 euros 50. At the customer: €{n:400} to sort everything, €{n:250} in complaint costs and an 8D. Ten times as much.' },
   ],
   [ // s4 variation
-    { nl: 'Terug naar de draaibank. Geen twee assen zijn gelijk. Elke gemeten as valt in het vak van zijn maat, en er groeit een stapel.',
-      en: 'Back to the lathe. No two shafts are the same. Each measured shaft drops into the lane of its size, and a pile grows.' },
+    { nl: 'Geen twee assen zijn gelijk. Elke gemeten as valt in het vak van zijn maat, en er groeit een stapel.',
+      en: 'No two shafts are the same. Each measured shaft drops into the lane of its size, and a pile grows.' },
     { nl: 'Twee getallen beschrijven die spreiding. Het {t:Gemiddelde|gemiddelde} zegt waar het proces zit: bij deze {n:25} assen {n:20.003}.',
       en: 'Two numbers describe that spread. The {t:Mean|mean} says where the process sits: for these {n:25} shafts {n:20.003}.' },
     { nl: 'De {t:Standaardafwijking|standaardafwijking}, sigma, is de typische afstand van een as tot het gemiddelde: hier {n:0.008} millimeter.',
@@ -567,30 +569,30 @@ const SAY = [
       en: 'Many measurements follow a {t:Normal distribution|normal distribution}, the bell curve: {n:68} percent within one sigma, {n:95} within two, {n:99.7} within three. So nearly everything lies between {n:19.979} and {n:20.027}.' },
   ],
   [ // s5 common or special
-    { nl: 'Waar komt die spreiding vandaan? Uit een {t:Gewone oorzaak|gewone oorzaak}: vele kleine bronnen die er altijd zijn, zoals materiaal, temperatuur en speling.',
-      en: 'Where does that spread come from? From a {t:Common cause|common cause}: many small sources that are always there, such as material, temperature and play.' },
+    { nl: 'Spreiding met een {t:Gewone oorzaak|gewone oorzaak} komt uit vele kleine bronnen die er altijd zijn: materiaal, temperatuur, speling.',
+      en: 'Spread with a {t:Common cause|common cause} comes from many small sources that are always there: material, temperature, play.' },
     { nl: 'Die spreiding is stabiel en voorspelbaar. Omlaag krijg je haar alleen door het systeem te veranderen: machine, opspanning of methode.',
       en: 'That spread is stable and predictable. You only bring it down by changing the system: machine, fixture or method.' },
     { nl: 'Een {t:Speciale oorzaak|speciale oorzaak} is een concrete gebeurtenis. Maandag om zes uur zitten de eerste assen gemiddeld op {n:20.025}, om zeven uur weer op {n:20.005}.',
       en: 'A {t:Special cause|special cause} is a specific event. On Monday at six the first shafts average {n:20.025}, at seven they are back at {n:20.005}.' },
-    { nl: 'De machine was koud na twee dagen stilstand. De oplossing: een opwarmprogramma van {n:20} minuten.',
-      en: 'The machine was cold after two days standing still. The fix: a warm-up programme of {n:20} minutes.' },
+    { nl: 'De machine was koud na het weekend. De oplossing: {n:20} minuten opwarmen, niet aan de offsets draaien.',
+      en: 'The machine was cold after the weekend. The fix: a {n:20}-minute warm-up, not turning the offsets.' },
   ],
   [ // s6 chasing noise
-    { nl: 'Nu een operator die het goed bedoelt. Na elke as draait hij de offset bij met de afwijking van die ene as.',
-      en: 'Now an operator who means well. After every shaft he turns the offset by that one shaft’s deviation.' },
-    { nl: 'Dat heet {t:Tampering|tampering}, bijsturen op ruis. Elke afwijking is vooral toeval, dus wie daarop corrigeert, zet er een tweede ruis bovenop.',
-      en: 'That is called {t:Tampering|tampering}, chasing noise. Each deviation is mostly chance, so correcting for it adds a second noise on top.' },
+    { nl: 'Een operator die het goed bedoelt, draait na elke as de offset bij met de afwijking van die as.',
+      en: 'An operator who means well turns the offset after every shaft by that shaft’s deviation.' },
+    { nl: 'Dat is overbijsturen: bijsturen op ruis. Elke afwijking is vooral toeval, dus wie daarop corrigeert, zet er een tweede ruis bovenop.',
+      en: 'That is called tampering, chasing noise. Each deviation is mostly chance, so correcting for it adds a second noise on top.' },
     { nl: 'De stapels worden breder: zo’n {n:40} procent meer spreiding. Het omgekeerde van wat hij wilde.',
       en: 'The stacks get wider: about {n:40} percent more spread. The opposite of what he wanted.' },
     { nl: 'De eerste vraag is dus altijd: is er iets veranderd, of is dit gewoon hoe breed het proces is?',
       en: 'So the first question is always: did something change, or is this just how wide the process is?' },
   ],
   [ // s7 does it fit
-    { nl: 'Dan de grote vraag: past het proces in de tolerantie? Dat heet {t:Procesgeschiktheid|procesgeschiktheid}: de spreiding naast de breedte van de tolerantie.',
-      en: 'Then the big question: does the process fit the tolerance? That is called {t:Capability|capability}: the spread set beside the width of the tolerance.' },
-    { nl: 'Een boring van {n:30}, nul tot plus vier honderdste: grenzen {n:30.000} en {n:30.040}. Vijftig delen geven gemiddeld {n:30.026}, met een sigma van {n:0.004}.',
-      en: 'A bore of {n:30}, zero to plus four hundredths: limits {n:30.000} and {n:30.040}. Fifty parts give a mean of {n:30.026}, with a sigma of {n:0.004}.' },
+    { nl: 'Past het proces in de tolerantie? Dat is {t:Procesgeschiktheid|procesgeschiktheid}: je legt de spreiding naast de tolerantiebreedte.',
+      en: 'Does the process fit the tolerance? That is {t:Capability|capability}: the spread set beside the tolerance width.' },
+    { nl: 'Een boring van {n:30}, nul tot plus vier honderdste: grenzen {n:30.000} en {n:30.040}. Vijftig delen geven gemiddeld {n:30.026}, sigma {n:0.004}.',
+      en: 'A bore of {n:30}, zero to plus four hundredths: limits {n:30.000} and {n:30.040}. Fifty parts give a mean of {n:30.026}, sigma {n:0.004}.' },
     { nl: '{t:Cp|Cp} is de tolerantiebreedte gedeeld door zes sigma, want zes sigma bevat bijna alle delen. {n:0.040} gedeeld door {n:0.024} is {n:1.67}.',
       en: '{t:Cp|Cp} is the tolerance width divided by six sigma, because six sigma holds nearly all the parts. {n:0.040} divided by {n:0.024} is {n:1.67}.' },
     { nl: 'Cp kijkt alleen naar de breedte, alsof het proces precies in het midden zit.',
@@ -601,19 +603,19 @@ const SAY = [
       en: '{t:Cpk|Cpk} counts the centre too: the distance from the mean to the nearest limit, divided by three sigma. Does it fit where it sits now?' },
     { nl: 'Van {n:30.026} tot de bovengrens is veertien duizendste, gedeeld door {n:0.012}: Cpk {n:1.17}. Te dicht tegen de bovengrens.',
       en: 'From {n:30.026} to the upper limit is fourteen thousandths, divided by {n:0.012}: Cpk {n:1.17}. Too close to the upper limit.' },
-    { nl: 'Met één offset van min {n:0.006} komt het gemiddelde op {n:30.020}. Dan is de Cpk ook {n:1.67}. Geen investering, alleen centreren.',
-      en: 'One offset of minus {n:0.006} puts the mean at {n:30.020}. Then the Cpk is {n:1.67} too. No investment, just centring.' },
-    { nl: 'Het gangbare minimum is {n:1.33}: zo’n {n:63} {t:ppm|ppm}, delen per miljoen, buiten spec. Bij een Cpk van {n:1.0} zijn het er zo’n {n:2700}.',
-      en: 'The usual minimum is {n:1.33}: about {n:63} {t:ppm|ppm}, parts per million, out of spec. At a Cpk of {n:1.0} it is about {n:2700}.' },
+    { nl: 'Eén offset van min {n:0.006} zet het gemiddelde op {n:30.020}: Cpk ook {n:1.67}. Geen investering, alleen centreren.',
+      en: 'One offset of minus {n:0.006} puts the mean at {n:30.020}: Cpk {n:1.67} too. No investment, just centring.' },
+    { nl: 'Het gangbare minimum is {n:1.33}: gecentreerd zo’n {n:63} {t:ppm|ppm}, delen per miljoen, buiten spec. Bij {n:1.0} zo’n {n:2700}.',
+      en: 'The usual minimum is {n:1.33}: centred, about {n:63} {t:ppm|ppm}, parts per million, out of spec. At {n:1.0} about {n:2700}.' },
   ],
   [ // s9 over days
-    { nl: 'Let op: Cp en Cpk gebruiken de korte termijn, de spreiding binnen kleine groepjes delen die direct na elkaar gemaakt zijn.',
+    { nl: 'Let op: Cp en Cpk gebruiken de korte termijn: de spreiding binnen kleine groepjes delen, direct na elkaar gemaakt.',
       en: 'Note: Cp and Cpk use the short term, the spread within small groups of parts made one after another.' },
     { nl: '{t:Ppk|Ppk} gebruikt de totale spreiding van alle delen, ook het verloop over uren en dagen. Veel lager dan de Cpk? Dan zwerft het proces.',
       en: '{t:Ppk|Ppk} uses the overall spread of all parts, including drift over hours and days. Much lower than the Cpk? Then the process wanders.' },
     { nl: 'Bij een opstartstudie vragen klanten vaak een Ppk van minstens {n:1.67}, en alleen van een stabiel proces.',
       en: 'For a launch study customers often ask for a Ppk of at least {n:1.67}, and only from a stable process.' },
-    { nl: 'Een Cpk uit dertig delen zegt weinig. Neem liever {n:100} delen of meer, in {n:25} steekproeven. Vraag dus: hoeveel stuks, over hoeveel dagen?',
+    { nl: 'Een Cpk uit dertig delen zegt weinig. Neem liever {n:100} delen of meer, in {n:25} steekproeven. Vraag: hoeveel stuks, over hoeveel dagen?',
       en: 'A Cpk from thirty parts says little. Better take {n:100} parts or more, in {n:25} subgroups. So ask: how many parts, over how many days?' },
   ],
 ];
