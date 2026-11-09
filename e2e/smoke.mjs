@@ -309,8 +309,10 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
     else await pg.locator('.pre-card .opt').first().click();
     await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
   }
+  // A film lesson has a Film step instead of the reading (Raden · Film · Voorbeeld · Check).
+  const readSel = lesson.film ? '.film-card' : '.teach-card';
   // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
-  await pg.locator('.teach-card').waitFor();
+  await pg.locator(readSel).waitFor();
   // A term in the text explains itself on a tap, and closes again.
   if (lessonId === 'eng.flow.takt') {
     const term = pg.locator('.teach-card .term').first();
@@ -328,8 +330,9 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   await pg.locator('.pre-card').waitFor();
   if (await pg.locator('.pre-card .opt').count()) throw new Error('going back asked the guess again');
   await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
-  await pg.locator('.teach-card').waitFor();
-  for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
+  await pg.locator(readSel).waitFor();
+  if (lesson.film) await pg.locator('.lesson > .film-next').click();
+  else for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
   else await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   const answer = async (q, wrong) => {
@@ -719,7 +722,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   await p.frameLocator('.film-card .film-frame').locator('.fp-poster-go').click();
   await p.waitForFunction(() => window.__spoken.length >= 1, null, { timeout: 8000 });
   const said = await p.evaluate(() => window.__spoken[0]);
-  if (!/^Dit is een CNC-draaibank van dichtbij\./.test(said)) throw new Error(`fallback narration: ${said}`);
+  if (!/^Een CNC-draaibank van dichtbij\./.test(said)) throw new Error(`fallback narration: ${said}`);
   await shotF('119-lesson-film-fallback');
   // leaving the step closes the frame
   await p.locator('.lesson > .film-next').click();
