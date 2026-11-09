@@ -7,7 +7,7 @@ export default {
       pre: [
         {
           q: 'A street has 100 homes, each with a 3 × 25 A connection, about 17 kVA. Which peak for the whole street did a grid planner traditionally assume, if the homes heat with gas?',
-          options: ['About 100 to 150 kVA, well below the sum', 'About 850 kVA: half of that sum, to be safe', 'About 1,700 kVA: the sum of all connections', 'About 17 kVA: one connection'],
+          options: ['About 100 to 150 kVA, well below the sum', 'About 850 kVA: half of that sum, to be safe', 'About 1,700 kVA: the sum of all connections', 'About 17 kVA: the size of one single connection'],
           answer: 'About 100 to 150 kVA, well below the sum',
           why: 'Not everyone peaks at once. Traditionally planners used 1 to 1.5 kVA per home at peak.',
         },
@@ -15,7 +15,7 @@ export default {
       teach: [
         'All grid planning starts with how much power will flow at the same moment. Simultaneity, explained in The electricity grid, is the share of everyone’s maximum that occurs at the same time.\n\nPlanners use a coincidence factor: the group’s combined peak divided by the sum of the individual peaks. Group peak = number × individual peak × factor. A factor of 0.1 means the group at peak asks a tenth of what all connections together could draw.',
         'The factor falls as the group grows (rules of thumb that differ per grid operator). One home briefly peaks at about 5 to 8 kVA, when oven, kettle and dishwasher run together. Ten homes together sit at about 2 to 3 kVA per home.\n\nFrom about a hundred homes, at the distribution substation or above, planners used 1 to 1.5 kVA for a gas-heated home: the after-diversity peak per home. That is why a primary substation sees a lower peak per home than an LV cable.',
-        'New appliances each have their own factor, so planners work per category. Heat pumps almost all run on a cold evening: factor 0.8 to 1. 11 kW chargers without smart charging: about 0.2 to 0.3 in a street (the example in The electricity grid uses 0.3). Solar panels all feed in at once on a sunny afternoon.\n\nNetbeheer Nederland, the Dutch grid operators’ association, puts the new peak of an all-electric home at about 5 kW, against 1.5 kW in the past.',
+        'New appliances each have their own factor, so planners work per category. Heat pumps almost all run on a cold evening: factor 0.8 to 1. 11 kW chargers without smart charging: about 0.2 to 0.3 in a street (the example in The electricity grid uses 0.3). Solar panels all feed in at once on a sunny afternoon.\n\nA 2025 smart-meter study for RVO and Netbeheer Nederland, the grid operators’ association, measured about 2.3 kW per all-electric home after diversity; planners add margin for colder winters.',
         'Large customers count differently: with their contracted transport capacity, the capacity the grid operator agreed with them, times a factor of their own, because they don’t all peak at once either. An office district peaks in the daytime, a residential area in the evening; together on one station that gives a lower peak than the sum.\n\nThe factor applies per grid level: LV cable, distribution substation, MV feeder, primary substation. Each step up smooths the peaks further.',
         'Pitfalls: copying factors from an old district to one with heat pumps, or using one number per home while the mix changes. Smart meters now give real, summed profiles per street, but only within the privacy limits (see The electricity grid).\n\nExperts argue about how fast smart charging will lower the factor for chargers. A sharp question: “Which simultaneity per category are we assuming here, and at which grid level?”',
       ],
@@ -78,8 +78,8 @@ export default {
       pre: [
         {
           q: 'An HV/MV substation (where high voltage steps down to medium voltage) runs at 55% of its transformer capacity at peak. A company asks for 2.5 MVA on one MV feeder, one outgoing cable route from that station. What can still block it?',
-          options: ['Nothing: the station has room enough', 'Only TenneT’s high-voltage grid above it', 'The loading or voltage on that feeder', 'The kWh meter at the customer’s site'],
-          answer: 'The loading or voltage on that feeder',
+          options: ['Nothing: the station has room enough', 'Only TenneT’s high-voltage grid above it', 'The loading or the voltage on the feeder', 'The kWh meter at the customer’s site'],
+          answer: 'The loading or the voltage on the feeder',
           why: 'The station sees the sum of all feeders; one feeder can be full while the station has room.',
         },
       ],
@@ -161,7 +161,7 @@ export default {
         'Those scenarios come nationally from Netbeheer Nederland. Its Scenarios Edition 2025, the basis for the 2026 investment plans, build on II3050 and have four pictures: Steady Middle Course (our translation of the Dutch name), the expected path based on trends and policy, plus three explorations around it.\n\nPlanners spread those national numbers over districts and stations, for example with the Energy Transition Model (ETM). Each grid operator chooses which scenario it uses in its plan.',
         'Not everything promised arrives. Planners therefore use a realisation factor: the share of promised capacity that is expected to be really used, often somewhere between half and three quarters (rule of thumb; each operator picks its own value). Use it or lose it, from The electricity grid, takes unused capacity back.\n\nOne large request, such as a data centre or an electrolyser, doesn’t count as a growth percentage but as a separate step in the year it connects.',
         'The output per asset and per scenario is the year of exceedance: the first year the forecast goes above the limit. That becomes a bottleneck in the investment plan.\n\nThe distance between the low and the high scenario shows how uncertain that year is. If they are far apart, no-regret steps, explained in the lesson on investment planning, are extra valuable.',
-        'Pitfalls: double counting, when charging hubs sit in the queue and in the scenario growth; a mild winter as the base; looking only at offtake while feed-in binds first. In April 2026 the ACM, the Dutch regulator, wrote that grid operators understandably often choose the heaviest scenario, but that this can lead to overinvestment.\n\nA sharp question: “Which part of this growth is promised, which part scenario, and are we counting anything twice?”',
+        'Pitfalls: double counting, when charging hubs sit in the queue and in the scenario growth; a mild winter as the base; looking only at offtake while feed-in binds first. In April 2026 the ACM, the Dutch regulator, wrote that it is understandable that grid operators plan for the scenario that asks most of their grid, but that this risks investing more than needed.\n\nA sharp question: “Which part of this growth is promised, which part scenario, and are we counting anything twice?”',
       ],
       example: {
         kind: 'faded',
@@ -224,7 +224,7 @@ export default {
       pre: [
         {
           q: 'A planner checks an LV cable for one moment: the coldest evening, all heat pumps on, a fixed factor for chargers. What does that miss?',
-          options: ['Nothing: the peak at that one moment is all that counts', 'The cost of the cable work per metre', 'How often and how long the limit is exceeded', 'The voltage at the customer at the far end of the cable'],
+          options: ['Nothing: the peak at that one moment is all that counts', 'The cost of the cable work per metre of trench', 'How often and how long the limit is exceeded', 'The voltage at the customer at the far end of the cable'],
           answer: 'How often and how long the limit is exceeded',
           why: 'A snapshot gives one number; whether it is 3 or 300 hours a year, you can’t see.',
         },
@@ -290,6 +290,7 @@ export default {
         { term: 'Percentile', def: 'The value a given share of the outcomes stays below; the 95th percentile is not exceeded in 95% of cases.' },
         { term: 'Hosting capacity', def: 'How much extra feed-in or offtake can be added at a point before a loading, voltage or protection limit is hit.' },
         { term: 'Reference year', def: 'The weather year a time-series calculation uses, often a cold year so heat pumps are not underestimated.' },
+        { term: 'Load duration curve', def: 'All quarter-hour or hourly values of a year, sorted from high to low; shows how long the load is above a limit.' },
       ],
     },
     {
@@ -308,11 +309,11 @@ export default {
         'The network structure decides how much reserve there can be. A radial network has one path from station to customer: if it fails, the customer waits for the repair. Most Dutch LV networks are built that way.\n\nMV networks are rings that are open at one point, so after a fault you can feed from the other side. High-voltage networks are meshed: closed loops, so the current takes another path without interruption.',
         'The voltage band of 207 to 253 V has to be shared across the whole grid: the voltage budget. The primary substation regulates the MV voltage, the transformer in the distribution substation sits on a fixed tap, and the rest of the drop or rise has to fit in the MV and LV cables.\n\nGrid operators set in their design guidelines what percentage each part may use; for the LV cable a few percent is common. The drop over a conductor is current times resistance.',
         'Short-circuit withstand is whether switches, cables and busbars survive the huge current of a fault for a short time. More generation and bigger transformers raise that current, so a new transformer can make an old installation too weak.\n\nAt the end of a long, thin LV cable the fault current is small instead, and then the fuse blows too slowly. Designers use standard cables and transformers (see Transformers and cables), so these checks are largely done in advance.',
-        'Pitfalls: checking only the thermal limit while voltage binds first; fitting a bigger transformer without checking the installation’s short-circuit withstand. Experts argue whether to design for 2050 now, with thicker cables that lie half empty for years, or step by step.\n\nThe voltage quality requirements are in the ACM’s Electricity System Code and EN 50160; the rest is the grid operator’s own policy. A sharp question: “Which of the four checks is decisive here?”',
+        'Pitfalls: checking only the thermal limit while voltage binds first; fitting a bigger transformer without checking the installation’s short-circuit withstand. Experts argue whether to design for 2050 now, with thicker cables that lie half empty for years, or step by step.\n\nThe voltage quality requirements are in the ACM’s Electricity System Code (our translation of the Dutch name) and EN 50160; the rest is the grid operator’s own policy. A sharp question: “Which of the four checks is decisive here?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A new LV cable (aluminium, 150 mm²) of 300 m goes to 40 homes. Rating about 250 A, resistance about 0.21 Ω per km per conductor. The design guideline gives the LV cable a voltage budget of 5%. Peak after diversity: 40 × 3.5 kVA = 140 kVA.\n\nThermal: I = 140,000 / (1.732 × 400) ≈ 202 A, 81% of 250 A: fine. Voltage, calculated cautiously with all load at the end and balanced over the phases: resistance 0.3 × 0.21 = 0.063 Ω, drop 202 × 0.063 ≈ 12.7 V, 5.5% of 230 V: just over budget. Voltage is decisive here, not current. Solution: split the homes over two cables, or a thicker cable.',
+        text: 'A new LV cable (aluminium, 150 mm²) of 300 m goes to 40 homes. Rating about 250 A, resistance about 0.21 Ω per km per conductor. The design guideline gives the LV cable a voltage budget of 5%. The homes get heat pumps, so the planner counts 3.5 kVA per home after diversity: 40 × 3.5 = 140 kVA.\n\nThermal: I = 140,000 / (1.732 × 400) ≈ 202 A, 81% of 250 A: fine. Voltage, calculated cautiously with all load at the end and balanced over the phases: resistance 0.3 × 0.21 = 0.063 Ω, drop 202 × 0.063 ≈ 12.7 V, 5.5% of 230 V: just over budget. Voltage is decisive here, not current. Solution: split the homes over two cables, or a thicker cable.',
       },
       said: 'What engineers say: “Thermally it copes easily, but at that length you won’t make the voltage at the end.”',
       recall: [
@@ -340,8 +341,8 @@ export default {
         },
         {
           q: 'A long LV cable stays well below its thermal limit, but customers at the end complain about flickering lights and tripping appliances. Which check is probably decisive here?',
-          options: ['The voltage at the far end of the cable', 'The short-circuit withstand of the substation', 'The rating of the transformer', 'The reserve after a fault'],
-          answer: 'The voltage at the far end of the cable',
+          options: ['The voltage at the far end of that long cable', 'The short-circuit withstand of the substation', 'The rating of the transformer', 'The reserve after a fault'],
+          answer: 'The voltage at the far end of that long cable',
           why: 'On a long cable the drop at the end is largest; that often binds before current does.',
         },
       ],
@@ -448,9 +449,9 @@ export default {
         },
       ],
       teach: [
-        'N-1 means the grid keeps supplying when any single component fails: a transformer, a cable, a line, a busbar (the heavy conductor in a station that all incoming and outgoing circuits connect to). N is everything in service; minus one is the worst single outage.\n\nIt does not cover two faults at once, or a fault while another part is in maintenance. During planned work you often run without reserve, which is why you schedule maintenance for low-load periods.',
+        'N-1 means the grid keeps supplying when any single component fails: a transformer, a cable, a line, a busbar (the thick conductor in a station that all incoming and outgoing circuits connect to). N is everything in service; minus one is the worst single outage.\n\nIt does not cover two faults at once, or a fault while another part is in maintenance. During planned work you often run without reserve, which is why you schedule maintenance for low-load periods.',
         'What it costs. A station with two 40 MVA transformers has a firm capacity of about 40 MVA, not 80: what it can deliver with the largest component out. For most of the year half of it sits idle as reserve.\n\nThe same goes for a pair of cables. So “the station is half empty” and “the station is full” can both be true. Transformers can be overloaded for a few hours in cold weather, so planners sometimes count a bit above 40.',
-        'The rules differ per voltage level. In the ACM’s code, since 21 February 2026 the Electricity System Code (before that the Grid Code), the single-contingency reserve applies to grids of 110 kV and above and to HV/MV stations: a fault may cause only a short interruption; the old Grid Code named 10 minutes and 100 MW, exceptions up to 6 hours.\n\nMV rings don’t have that requirement: the reserve is switching over within a few hours (see the lesson on the MV ring). In LV customers wait for the repair.',
+        'The rules differ per voltage level. Since 1 January 2026 the Energy Act (our translation of the Dutch name) requires the single-contingency reserve on the transmission grid: 110 kV and above, including the transformers down to the regional grid. A single fault may cause only a short interruption; the old Grid Code named 10 minutes and 100 MW, with exceptions up to 6 hours.\n\nMV rings don’t have that requirement: the reserve is switching over within hours (see the MV ring lesson). In LV customers wait for the repair.',
         'When operators relax it. With congestion everywhere, grid operators started selling the reserve as non-firm capacity: a customer may use it in normal operation but is curtailed or disconnected when a component fails or is in maintenance. TenneT called this using the emergency lane, as on a motorway.\n\nYou trade security of supply for capacity now. The contract must say who carries that risk, and the control room must be able to act on it within minutes.',
         'Experts argue whether strict N-1 is still affordable everywhere, or whether some customers would rather accept a rare interruption than wait years; the lesson on risk-based design works that out. Pitfall: non-firm contracts sold, but nobody tested whether the control room can really curtail them.\n\nTwo sharp questions: “Is this limit thermal, or is it the N-1 reserve?” and “What happens if that other transformer is in maintenance?”',
       ],
@@ -502,7 +503,7 @@ export default {
       sayIt: 'Explain to a business owner in 60 seconds why a half-empty substation can still be full.',
       terms: [
         { term: 'N-1', def: 'The grid keeps supplying when any single component fails.' },
-        { term: 'Busbar', def: 'The heavy conductor in a station that all incoming and outgoing circuits connect to.' },
+        { term: 'Busbar', def: 'The thick conductor in a station that all incoming and outgoing circuits connect to.' },
         { term: 'Firm capacity', def: 'What a station can deliver with its largest component out of service.' },
         { term: 'Non-firm', def: 'Capacity the grid operator may curtail, for example when the reserve is needed.' },
         { term: 'Emergency lane', def: 'TenneT’s image for the N-1 reserve: capacity you may use until a fault or maintenance needs it back.' },
@@ -514,7 +515,7 @@ export default {
       pre: [
         {
           q: 'A third transformer for a station costs €3 million. Without it there is a small chance that customers are limited for days after a winter fault. How do you decide on a risk basis?',
-          options: ['Always build: N-1 is required everywhere in the grid', 'Never build: the chance is too small to count', 'Build once the transformer is over forty years old', 'Risk per year in euros against the yearly cost'],
+          options: ['Always build: N-1 is required everywhere in the grid', 'Never build: the chance is too small to count at all', 'Build once the transformer is over forty years old', 'Risk per year in euros against the yearly cost'],
           answer: 'Risk per year in euros against the yearly cost',
           why: 'Probability times consequence gives a risk per year; compare it with what the measure costs per year.',
         },
@@ -523,7 +524,7 @@ export default {
         'Strict N-1 is deterministic: the design passes or not. Risk-based design asks what a shortfall costs. Monetised risk, from Reliability and asset strategy, is the probability of failure per year times the consequence in euros.\n\nFor a grid the consequence is mainly energy not served: the MWh customers don’t get, plus damage and repair costs. That lets you compare a rare, large interruption with a measure that costs money every year.',
         'What is an unserved MWh worth? In 2022, after research by Ecorys and SEO, the ACM set the VOLL (value of lost load) at €68,887 per MWh: about €69 per kWh, averaged over households and businesses. That value is meant for the security of supply of the whole system.\n\nGrid operators often use their own value framework for grid decisions, for example an amount per customer minute. The difference between those values can flip the outcome, so always state which value you use.',
         'The sum: probability of it going wrong per year × energy not served when it does × value per MWh. Against it stands the equivalent annual cost of the measure: at 4% over 40 years about 5.05% of the price per year, as Reliability and asset strategy explains.\n\nIf the risk removed is larger than the yearly cost, the measure pays. If it is smaller, you are better off with non-firm contracts, switching, or a mobile transformer as an emergency measure.',
-        'Limits. Where the System Code requires N-1, at 110 kV and above and in HV/MV stations, a grid operator cannot drop it on its own calculation: that needs an exemption from the ACM. The ACM granted such exemptions to TenneT for the north of the Netherlands (2020) and to Liander, for example.\n\nOn MV and LV there is more room for the operator’s own trade-offs. And some consequences you don’t trade for money: a hospital or a safety risk weighs in beyond the euros, as with ALARP.',
+        'Limits. Where the Energy Act requires N-1, at 110 kV and above including the HV/MV transformers, a grid operator cannot drop it on its own calculation: that needs an exemption from the ACM. The ACM granted such exemptions to TenneT for the north of the Netherlands (2020) and to Liander, for example.\n\nOn MV and LV there is more room for the operator’s own trade-offs. And some consequences you don’t trade for money: a hospital or a safety risk weighs in beyond the euros, as with ALARP.',
         'Experts argue whether risk-based design connects more customers sooner or quietly makes the grid more fragile. Supporters: strict N-1 keeps half idle everywhere. Opponents: the tail, a rare long outage, gets underestimated.\n\nPitfall: false precision with probabilities nobody measured. A sharp question: “Which risk in euros are we knowingly taking here, at what value per MWh, and who signs for it?”',
       ],
       example: {
@@ -558,9 +559,9 @@ export default {
         },
         {
           q: 'Why can a regional grid operator not drop N-1 in an HV/MV station based only on its own risk calculation?',
-          options: ['Because monetised risk may not be used in grid decisions by law', 'Because transformers never fail for longer than a day', 'Because TenneT designs all HV/MV stations itself', 'The code requires it there; deviating needs an exemption'],
-          answer: 'The code requires it there; deviating needs an exemption',
-          why: 'The System Code sets the single-contingency reserve; the ACM can grant an exemption.',
+          options: ['Because the law bars monetised risk from grid decisions', 'Because transformers never fail for longer than a day', 'Because TenneT designs all HV/MV stations itself', 'The law requires it there; deviating needs an exemption'],
+          answer: 'The law requires it there; deviating needs an exemption',
+          why: 'The Energy Act sets the single-contingency reserve there; the ACM can grant an exemption.',
         },
       ],
       situation: {
@@ -579,7 +580,8 @@ export default {
         { term: 'Energy not served', def: 'The energy customers don’t get because of an interruption, in MWh.' },
         { term: 'VOLL', def: 'Value of lost load: the value of undelivered electricity; the ACM set it at €68,887 per MWh in 2022.' },
         { term: 'Equivalent annual cost', def: 'An option’s life-cycle cost spread into one yearly figure, so options with different lives compare.' },
-        { term: 'Exemption', def: 'Permission from the ACM to deviate from a rule in the code.' },
+        { term: 'Exemption', def: 'Permission from the ACM to deviate from a legal rule, such as N-1.' },
+        { term: 'ALARP', def: 'As low as reasonably practicable: reduce a risk until the cost is grossly out of proportion to the gain.' },
       ],
     },
     {
@@ -588,15 +590,15 @@ export default {
       pre: [
         {
           q: 'Under the Energy Act, who reviews the investment plans of the Dutch grid operators?',
-          options: ['Netbeheer Nederland', 'The Ministry of Climate and Green Growth', 'The ACM, as regulator', 'The provinces, each for its own area'],
+          options: ['Netbeheer Nederland, the grid operators’ association', 'The Ministry of Climate and Green Growth', 'The ACM, as regulator', 'The provinces, each for its own area'],
           answer: 'The ACM, as regulator',
           why: 'The ACM reviews the plans every two years and reports under-investment to the minister.',
         },
       ],
       teach: [
         'Every grid operator, regional and TenneT, makes an investment plan every two years. It looks at least ten years ahead, the planning horizon, and describes the scenarios, the bottlenecks, the measures, what they cost and what won’t be done in time.\n\nThe recent rounds are called IP2024 and IP2026; the draft plans for 2026 went to the ACM on 5 January 2026. Municipalities and provinces read the plan for their own spatial plans.',
-        'Under the Energy Act, in force since 1 January 2026, the ACM reviews the plans every two years: are they reasonable, transparent and traceable? If a plan falls short, the ACM can impose a binding conduct regime: required improvements for the next plan.\n\nIf a plan shows a grid operator cannot make all necessary investments in time, the ACM reports that under-investment to the minister (article 5.8 of the Energy Act).',
-        'In April 2026 the ACM gave every grid operator the green light to adopt its IP2026. At the same time it reported under-investment for Coteq, Enexis, Liander, Stedin, TenneT and Westland Infra, and found the plans of Coteq, RENDO and Westland Infra not traceable enough: they get a binding conduct regime for 2028.\n\nThe ACM also saw that grid operators still take too little account of smarter use of the existing grid.',
+        'Under the Energy Act, in force since 1 January 2026, the ACM reviews the plans every two years: are they reasonable, transparent and traceable? If a plan falls short, the ACM can impose a binding course of conduct: required improvements for the next plan.\n\nIf a plan shows a grid operator cannot make all necessary investments in time, the ACM reports that under-investment to the minister (article 5.8 of the Energy Act).',
+        'In April 2026 the ACM gave every grid operator the green light to adopt its IP2026. At the same time it reported under-investment for Coteq, Enexis, Liander, Stedin, TenneT and Westland Infra, and found the plans of Coteq, RENDO and Westland Infra not traceable enough: they get a binding course of conduct for 2028.\n\nThe ACM also saw that grid operators still take too little account of smarter use of the existing grid.',
         'The money: grid operators invested over €8 billion in 2024 and expect to have to invest more than €200 billion together in the coming decades (see The electricity grid). Under the cost-based regulation of 2027–2031 they recover efficient costs, and the ACM reviews the plans more on substance.\n\nThe plan is the public face of an internal cycle: forecast, bottlenecks, solutions, prioritisation, work package. The next lessons walk through those steps.',
         'Pitfall: a plan that promises more than the organisation can build. Experts argue whether grid operators should plan on the heaviest scenario; in April 2026 the ACM asked the minister for sharper political choices, so that not every possible future has to be built for at once.\n\nA sharp question: “Which investments from the previous plan were not done in time, and why?”',
       ],
@@ -647,7 +649,8 @@ export default {
       terms: [
         { term: 'Investment plan', def: 'The public plan in which a grid operator sets out its bottlenecks and planned expansions every two years; the ACM reviews it.' },
         { term: 'Planning horizon', def: 'How far ahead a plan looks; for an investment plan at least ten years.' },
-        { term: 'Binding conduct regime', def: 'Required improvements the ACM imposes on a grid operator whose plan falls short.' },
+        { term: 'Binding course of conduct', def: 'Required improvements the ACM imposes on a grid operator whose plan falls short.' },
+        { term: 'Energy Act', def: 'The act that since 1 January 2026 sets the framework for grids and energy markets; replaced the Electricity Act of 1998 and the Gas Act.' },
         { term: 'Under-investment', def: 'A grid operator cannot make all necessary investments in time; the ACM reports it to the minister.' },
       ],
     },
@@ -665,7 +668,7 @@ export default {
       teach: [
         'Grid operators plan against a scenario, never against a single forecast: a consistent picture of future demand and generation.\n\nNationally there are shared scenarios for 2030 to 2050: II3050, the grid operators’ joint outlook, worked out in Netbeheer Nederland’s scenarios (see the lesson on forecasts). Regionally the regional energy strategies (RES), municipal heat plans and the real queue count.',
         'The bottleneck list. Run load flows per scenario per year and you see where and when each asset goes over its limit. Each bottleneck gets a solution (an extra cable, a third transformer, a new station), a price and a date.\n\nThat way it becomes the investment plan the ACM reviews and municipalities can read. Ask: “Which bottlenecks have moved since the previous plan, and why?”',
-        'Prioritising. More is needed than there are people and money, so bottlenecks are ranked by risk (overload, safety), waiting customers and how ready the solution is (more in the next lesson).\n\nFor the connection queue, the ACM has allowed grid operators since 2024 to give priority to projects with social value: first projects that relieve congestion, then safety, then basic needs such as healthcare, education and housing. A revised framework keeps that order and since July 2026 also covers small connections.',
+        'Prioritising. More is needed than there are people and money, so bottlenecks are ranked by risk (overload, safety), waiting customers and how ready the solution is (more in the next lesson).\n\nFor the connection queue, the ACM lets grid operators give priority to projects with social value: first projects that relieve congestion, then safety (such as hospitals, emergency services and defence), then basic needs (such as housing and education). The revised framework keeps that order, and since 1 July 2026 there is one queue for small and large consumption.',
         'Lead times (rule of thumb): LV reinforcement and new MV/LV stations, months to a year; MV cables and stations, one to three years; a new HV/MV substation, 5 to 10 years, mostly site and permits.\n\nSo you have to build before demand is certain: anticipatory investment. The ACM accepts this when it follows from plausible scenarios. Experts argue about the balance: build too early and assets sit idle; wait for certainty and you are always late.',
         'A no-regret measure is a step that pays off in every scenario. Buying a site or starting permits early often is; building the whole station often isn’t.\n\nQuestions that land well in a planning meeting: “Which scenario is this based on?”, “What happens to the date if demand comes faster?” and “Which steps are no-regret?” Pitfall: a plan on one scenario that everyone forgot was only one.',
       ],
@@ -685,7 +688,7 @@ export default {
         },
         {
           q: 'Why do grid operators invest before demand is certain?',
-          options: ['The lead time is longer than the time until demand arrives', 'The ACM prescribes a fixed investment budget for each and every year', 'Building in winter is cheaper', 'To use up the yearly budget'],
+          options: ['The lead time is longer than the time until demand arrives', 'The ACM sets a fixed yearly budget that must all get spent', 'Building in winter is cheaper', 'To use up the yearly budget'],
           answer: 'The lead time is longer than the time until demand arrives',
           why: 'If you only start when demand is certain, the grid arrives years late.',
         },
@@ -697,7 +700,7 @@ export default {
         },
         {
           q: 'Under the ACM’s prioritisation rules, which kind of project goes first in the connection queue?',
-          options: ['The oldest request in the queue, first come first served', 'The largest request in MW, because it matters most', 'Projects that pay the most', 'Projects that relieve congestion'],
+          options: ['The oldest request in the queue, first come first served', 'The largest request in MW, because it matters most', 'Projects whose owners pay the most for it', 'Projects that relieve congestion'],
           answer: 'Projects that relieve congestion',
           why: 'They free room for others, so they come before safety and basic needs; without priority the oldest request goes first.',
         },
@@ -727,14 +730,14 @@ export default {
       pre: [
         {
           q: 'A region can tackle only part of its bottlenecks this year. What is usually the scarcest resource to rank on?',
-          options: ['People, such as substation engineers and cable crews', 'Money: the budget is always spent', 'Land: there is simply no room left anywhere for stations', 'Copper, because of the high price on the world market'],
+          options: ['People, such as substation engineers and cable crews', 'Money: the budget is always spent before the year ends', 'Land: there is simply no room left anywhere for stations', 'Copper, because of the high price on the world market'],
           answer: 'People, such as substation engineers and cable crews',
           why: 'Budgets have grown fast; the number of people who can design and build has not.',
         },
       ],
       teach: [
         'Grid operators rank bottlenecks on a handful of criteria (weighted differently per operator): legal duty and safety, the monetised risk of the existing grid (see Reliability and asset strategy), waiting customers in MW, and how ready the solution is: land, permit, design.\n\nNote: the ACM’s prioritisation framework sets the order of customers in the queue, not which project is built first. In practice planners do look at which projects unlock socially important requests.',
-        'Each measure needs a business case. The NPV (net present value) counts all future cash flows, discounted to today, minus the investment; discounting uses the discount rate. Cost engineering explains this step by step; grid operators use the rate the ACM sets.\n\nBenefits are risk removed, losses avoided and customers connected. For large projects there is sometimes a social cost-benefit analysis (SCBA), which also counts benefits to society.',
+        'Each measure needs a business case. The NPV (net present value) counts all future cash flows, discounted to today, minus the investment; discounting uses the discount rate. Cost engineering explains this step by step; grid operators often take the return the ACM allows on their capital.\n\nBenefits are risk removed, losses avoided and customers connected. For large projects there is sometimes a social cost-benefit analysis (SCBA), which also counts benefits to society.',
         'Bundling often saves more than clever ranking: combining reinforcement with the replacement of old cables (see the replacement wave in Transformers and cables) and with the municipality’s street works. Dig once, switch once.\n\nThat can mean a project goes a bit earlier or later than the ranking says, because bundling tips the balance.',
         'Many grid operators use a multi-criteria analysis: each project gets scores on the criteria, with weights, and the sum gives the rank. Useful for discussion, but the weights are choices.\n\nBecause people are scarcer than money, a second number helps: what does a project deliver per unit of scarcity, for example MW unlocked per team-year of substation engineers? That pulls forward projects that need little scarce work.',
         'Pitfalls: everything is “urgent”; weights nobody can explain; a ranking that is overturned every quarter. Experts argue whether social value fits in euros, and how open to be with customers who have to wait.\n\nA sharp question: “Which scarcity are we ranking on: money, people or material? And what does the ranking say if we use that scarcity as the denominator?”',
@@ -864,7 +867,7 @@ export default {
         { term: 'Standardisation', def: 'Using one design or kit for many jobs, so each job needs less design and preparation.' },
         { term: 'Rework', def: 'Redoing part of a job because something was wrong or changed.' },
         { term: 'Contractor', def: 'An outside company that builds for the grid operator.' },
-        { term: 'Framework agreement', def: 'A long-running contract with a contractor for a flow of jobs on fixed terms.' },
+        { term: 'Framework agreement', def: 'A long-term contract with a contractor for a stream of jobs at agreed terms.' },
         { term: 'First time right', def: 'A job prepared so it can be built without rework or a second visit.' },
       ],
     },
@@ -882,7 +885,7 @@ export default {
       teach: [
         'Every bottleneck comes with the question: can it be done without building, or later? The national grid congestion action programme (LAN) calls this making better use, and in April 2026 the ACM wrote that grid operators still take too little account of smarter use of the existing grid in their investment plans.\n\nThis topic looks at the options from the planner’s side: how many MW do they deliver, in which hours, and how certain? What a customer can do alone is in The electricity grid.',
         'Clipping: connecting a solar farm at about 70% of its peak power, common since Netbeheer Nederland proposed it in 2019. Panels rarely reach their peak, so the loss is small, a few percent of the yearly yield.\n\nCable pooling: a solar and a wind farm share one connection. Sun delivers mostly midday and in summer, wind more often in winter and at night, so the shared connection can be much smaller than the sum.',
-        'Alternative transport rights: transport that is not always guaranteed. A time-block right gives capacity only in fixed blocks, a time-duration right in at least 85% of the hours; both apply since April 2025. Non-firm, from the N-1 lesson, gives transport only when there is room.\n\nFor congestion management the capacity steering contract (CSC) has been the main contract since May 2026: the customer lowers or raises its use on call or in fixed blocks, for a fee.',
+        'Alternative transport rights: transport that is not always guaranteed. A time-block right gives capacity only in fixed blocks, on regional grids; a time-duration right in at least 85% of the hours, on TenneT’s high-voltage grid. Both are in the code since 1 April 2025. Non-firm, from the N-1 lesson, gives transport only when there is room.\n\nFor congestion management the capacity steering contract (CSC) has been the main contract since May 2026: the customer lowers or raises its use on call or in fixed blocks, for a fee.',
         'Customers can also join forces. With a group transport agreement companies sign one contract and share the capacity; from 1 January 2027 grid operators must offer it. Energy hubs pool demand, generation and storage on one site.\n\nFor the planner what counts is the difference between the sum of the individual peaks and the combined peak: that is the room it frees.',
         'The limits: these options often buy time; they rarely replace reinforcement. Every contract must be measured, steered and enforced, and that loads the control room. Experts argue about who carries the risk if a customer doesn’t deliver.\n\nA sharp question for every proposal: “What does this deliver in MW, in which hours, and how certain is it?”',
       ],
@@ -910,7 +913,7 @@ export default {
         },
         {
           q: 'What is a time-duration transport right?',
-          options: ['Transport only at night, between ten in the evening and six', 'Transport guaranteed in at least 85% of the hours', 'A connection that lapses after ten years unless it is used', 'Transport that only applies in summer'],
+          options: ['Transport only at night, between ten in the evening and six', 'Transport guaranteed in at least 85% of the hours', 'A connection that lapses after ten years unless it is used', 'Transport that only applies in the summer half-year'],
           answer: 'Transport guaranteed in at least 85% of the hours',
           why: 'In the remaining hours the grid operator may limit it, announced a day ahead.',
         },
@@ -1026,7 +1029,7 @@ export default {
         'A battery shifts energy in time: charge now, discharge later. It has two numbers. MW is its power: how fast it can charge or discharge. MWh is its energy: how much it holds. A 10 MW / 20 MWh battery delivers 10 MW for 2 hours.\n\nMost grid batteries last 1 to 4 hours at full power. To cover a 4-hour evening peak you need enough MWh, not just MW.',
         'Where it helps: placed behind the bottleneck and steered on the local problem. In an area full of solar it charges at midday and empties in the evening.\n\nPeak shaving is cutting the highest peaks of a connection. A battery behind the meter, on the customer’s side, can cut a factory’s offtake peak so the company manages with a smaller connection. At a busy LV station a small battery can delay a transformer swap by a few years.',
         'Where it makes things worse. A battery trading on the day-ahead market, where today the price for each hour or quarter-hour of tomorrow is set, responds to national prices, not to your feeder. Prices drop when the whole country has lots of wind, and that can be exactly your local evening peak, so it charges at the worst moment.\n\nA battery also needs both offtake and feed-in capacity, and many batteries reacting to the same price create new peaks together.',
-        'How operators handle it. Batteries are often offered non-firm or time-bound contracts. A time-duration transport right guarantees transport in at least 85% of the hours of a year; it grew out of TenneT’s ATR85 proposal, and the ACM made it a standard product that applies since April 2025. In the other 15%, up to about 1,300 hours, the grid operator may limit it, announced at least a day ahead.\n\nSharing a connection with a solar farm works well: the battery fills the gap the farm leaves.',
+        'How operators handle it. Batteries are often offered non-firm or time-bound contracts. A time-duration transport right guarantees transport in at least 85% of the hours of a year; it grew out of TenneT’s ATR85 proposal, and the ACM made it a standard product on TenneT’s grid, in the code since April 2025. In the other 15%, up to about 1,300 hours, the grid operator may limit it, announced at least a day ahead.\n\nSharing a connection with a solar farm works well: the battery fills the gap the farm leaves.',
         'Experts argue about who should steer batteries. The EU Electricity Directive (2019/944) forbids grid operators from owning or operating batteries themselves, with a few narrow exceptions, so they steer through contracts and prices.\n\nPitfall: a contract that limits the battery in the wrong hours, because the local peak has shifted. The question that sharpens it: “Who decides what the battery does in the peak hour: the grid or the market?”',
       ],
       example: {
@@ -1092,7 +1095,7 @@ export default {
       pre: [
         {
           q: 'An €8 million reinforcement can be done two years later with flex contracts. What is the main gain from that deferral?',
-          options: ['The reinforcement is no longer needed afterwards, for good', 'The ACM pays back all the flex', 'The cable gets cheaper in two years as prices fall', 'The money is spent later, which saves interest'],
+          options: ['The reinforcement is no longer needed afterwards, for good', 'The ACM pays back all the flex costs to the operator', 'The cable gets cheaper in two years as prices fall', 'The money is spent later, which saves interest'],
           answer: 'The money is spent later, which saves interest',
           why: 'Deferral moves the investment; money you spend later is worth less today.',
         },
@@ -1100,7 +1103,7 @@ export default {
       teach: [
         'Flex rarely replaces reinforcement; it moves the date. The gain is the deferral value: an investment that comes later costs less today. With the discount rate from Cost engineering: deferring €5 million by three years at 4% saves 5 × (1 − 1 / 1.04³) ≈ €0.56 million.\n\nRule of thumb per year: investment times discount rate. €8 million a year later at 4% saves about €320,000.',
         'Against that stand the costs of flex. An availability payment pays a customer per kW per year to stand ready; an activation payment pays per call or per MWh actually shifted.\n\nOn a growing bottleneck those costs grow every year: more hours above the limit and more MW per hour, as the load duration curve shows. The break-even year is the year in which flex costs more per year than deferral saves. By then the reinforcement must stand.',
-        'The risk: flex that doesn’t come. A customer who doesn’t curtail, or a cold week with too little flex available. The planner then needs a safety net: a load-shedding plan, switching, or a mobile transformer.\n\nAnd flex takes work: contracts, metering, a congestion service provider and a control room that forecasts and calls every day (see Grid operations and assets). Those costs belong in the sum too.',
+        'The risk: flex that doesn’t come. A customer who doesn’t curtail, or a cold week with too little flex available. The planner then needs a safety net: a load-shedding plan, switching, or a mobile transformer.\n\nAnd flex takes work: contracts, metering, a congestion service provider (CSP) and a control room that forecasts and calls every day (see Grid operations and assets). Those costs belong in the sum too.',
         'Regulation plays a part. Under cost-based regulation, 2027–2031, grid operators recover efficient costs, whether they are investments or flex contracts (see The electricity grid).\n\nIn April 2026 the ACM wrote that smarter use can shrink the investment need and that grid operators still take too little account of it. Experts argue whether flex gets enough weight at grid operators next to familiar reinforcement.',
         'Pitfall: presenting flex as a permanent fix while the peak grows every year, and starting the reinforcement too late. With a lead time of 5 to 10 years for a station, building must start long before the break-even year arrives.\n\nA sharp question: “In which year does flex cost more than building, so when must we start, and what do we do if the flex doesn’t come?”',
       ],
@@ -1130,13 +1133,13 @@ export default {
         },
         {
           q: 'When does deferring with flex stop paying?',
-          options: ['When the customer with flex pays a higher tariff', 'When flex costs more per year than deferral saves', 'After exactly five years, as set out in the System Code', 'When the cable is loaded above 80%'],
+          options: ['When the customer with flex pays a higher tariff', 'When flex costs more per year than deferral saves', 'After exactly five years, as the System Code says', 'When the cable is loaded above 80%'],
           answer: 'When flex costs more per year than deferral saves',
           why: 'From that break-even year, building is cheaper than continuing to shift.',
         },
         {
           q: 'Why does flex on a growing bottleneck get more expensive every year?',
-          options: ['Each year there are more hours and MW above the limit', 'The ACM raises the regulated flex price a bit every single year', 'Batteries wear out and get more expensive to replace each year', 'Customers become less flexible every year'],
+          options: ['Each year there are more hours and MW above the limit', 'The ACM raises the regulated flex price a bit every single year', 'Batteries wear out and get more expensive to replace each year', 'Customers become less flexible and ask more money every year'],
           answer: 'Each year there are more hours and MW above the limit',
           why: 'The load duration curve moves up, so shifting is needed more often and in larger amounts.',
         },
@@ -1157,6 +1160,7 @@ export default {
         { term: 'Availability payment', def: 'A fixed amount per kW per year to keep flexible capacity on standby.' },
         { term: 'Activation payment', def: 'An amount per call or per MWh that a customer actually adjusts its use.' },
         { term: 'Break-even year', def: 'The year in which flex costs more per year than deferring the reinforcement saves.' },
+        { term: 'CSP', def: 'Congestion service provider: a party that pools customers’ flexible capacity and offers it for congestion management.' },
       ],
     },
   ],
