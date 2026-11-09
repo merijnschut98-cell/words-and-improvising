@@ -17,7 +17,7 @@ export default {
         'A connection starts with a request to the regional grid operator, such as Liander, Stedin or Enexis. The first split is size. Small consumption goes up to and including 3 × 80 A and hangs on the LV cable in the street (low voltage, 400/230 V).\n\nAnyone asking for more is a large consumer: an own cable from the secondary substation or an MV connection (medium voltage, 10 or 20 kV). How it is built is covered in Transformers and cables; here it is about the process and the rules.',
         'After a complete request the operator sends an offer: what is built, what it costs and when. For small consumption the ACM’s code says it must arrive within 10 working days; in 2025 the ACM still rapped Enexis for an offer that took four months.\n\nThe customer accepts and pays, and then realisation starts: design, work preparation and execution. An incomplete request goes back, and then the clock starts again.',
         'The connection term is the time the operator has to deliver. Until 21 February 2025 the Electricity Act set a fixed term of 18 weeks; it was dropped because, according to the European Court, the regulator must set such terms, not the legislator. The Energy Act, in force since 1 January 2026, also asks only for a reasonable term.\n\nFor small consumption the ACM is working on concrete terms; in disputes it took 18 to 22 weeks as a starting point.',
-        'Large connections have ACM terms since 1 January 2025, now in the Electricity System Code (until 21 February 2026 the Grid Code). After an analysis of complexity: 26 weeks for simple jobs, 52 for medium ones; complex ones get a custom term that the operator must justify.\n\nOn top of that a regional waiting time may come, set per quarter and per region from the stock of work. It is capped at 40 weeks, and that cap runs down to zero over ten years.',
+        'For large connections the ACM decided terms in March 2024; they apply since 1 January 2025, now in the Electricity System Code (until 21 February 2026 the Grid Code). After a complexity analysis: 26 weeks for simple jobs, 52 for medium ones; complex ones get a custom term the operator must justify.\n\nA regional waiting time may come on top, set per quarter and region from the stock of work: at most 40 weeks in 2025, falling two weeks a year to 20 at the end of 2034.',
         'Keep two things apart: the connection, the physical piece of cable and meter, and transport capacity, the right to take or feed in power. If there is no transport capacity, the customer goes on the queue and the term moves until there is room.\n\nAsk in every conversation: “Is this customer waiting for work, or for capacity?” The answer decides who can solve it.',
       ],
       example: {
@@ -69,7 +69,7 @@ export default {
         { term: 'Large consumer', def: 'A customer with a connection above 3 × 80 A; in congested areas these wait for capacity.' },
         { term: 'Offer', def: 'The operator’s proposal after a complete request: what is built, what it costs and when.' },
         { term: 'Connection term', def: 'The time an operator has to deliver a connection: by law a “reasonable term”; the fixed 18 weeks was dropped in 2025.' },
-        { term: 'Regional waiting time', def: 'Extra time on top of the connection term for large consumption, set per quarter and region from the stock of work; at most 40 weeks, running down over ten years.' },
+        { term: 'Regional waiting time', def: 'Extra time on top of the connection term for large consumption, set per quarter and region from the stock of work; at most 40 weeks in 2025, falling to 20 by the end of 2034.' },
       ],
     },
     {
@@ -184,7 +184,7 @@ export default {
         },
         {
           q: 'Why can a digital twin give wrong congestion answers?',
-          options: ['Its topology or connections are incomplete', 'It holds too many measurements to compute', 'It relies on smart-meter data from households', 'It runs too slowly for daily planning'],
+          options: ['Its topology or connections are incomplete', 'It holds too many measurements to compute', 'It uses smart-meter data', 'It runs too slowly for daily planning'],
           answer: 'Its topology or connections are incomplete',
           why: 'If houses sit on the wrong cable in the model, the calculated loads are wrong.',
         },
@@ -263,7 +263,7 @@ export default {
         },
         {
           q: 'What do you base an honest date for a customer on?',
-          options: ['The measured lead time of similar orders', 'The old statutory term of 18 weeks', 'The date the customer says it needs', 'The fastest order of last year as a target'],
+          options: ['The measured lead time of similar orders', 'The old statutory term of 18 weeks', 'The date the customer says it needs', 'Last year’s fastest order'],
           answer: 'The measured lead time of similar orders',
           why: 'Measured throughput says what you really achieve; a date you rarely meet only produces failure demand.',
         },
@@ -303,7 +303,7 @@ export default {
       teach: [
         'Heat pumps, electric cars, solar panels and electrifying industry mean many neighbourhoods and MV feeders (cable routes from a substation) need reinforcement: a heavier cable, an extra transformer or a new station. That comes on top of new connections and replacing old assets.\n\nThe investment plans of late 2025 go up to about 15 billion euros a year, yet over 400 of just over 900 larger projects are already running late. Money is rarely the limit; people are.',
         'Netbeheer Nederland, the sector association, estimates that operators and contractors need about 30,000 extra technicians by 2030; with a scale-up plan (late 2025) they aim to recruit 5,000 extra. Figures differ by source, the direction does not.\n\nMeanwhile many regions have grid congestion: at peak moments the grid would have to carry more than it safely can. Large new or bigger connections then go on a queue for transport capacity until the reinforcement is done.',
-        'When work exceeds capacity, the question is not whether work waits but which. Safety and legal duties come first.\n\nFor the queue, the default is first come, first served. With social prioritisation, projects that relieve congestion go first, then safety (such as defence), then basic needs (such as health care, education and housing). A court annulled the first framework in March 2025; the revised one keeps that order, and since 1 July 2026 there is one queue for small and large consumption.',
+        'When work exceeds capacity, the question is not whether work waits but which. Safety and legal duties come first.\n\nFor the queue, the default is first come, first served. With social prioritisation, projects that relieve congestion go first, then safety (such as hospitals, emergency services and defence), then basic needs (such as housing and education). A court annulled the first framework in March 2025; the revised one keeps that order, and since 1 July 2026 there is one queue for small and large consumption.',
         'Bundling: open a street once and do everything in it: LV reinforcement, new connections, replacing old cable, sometimes gas mains and municipal works too.\n\nIt saves digging, switching, permits and disruption for residents. The cost is more coordination and a longer run-up to align everyone. A typical failure: one party’s permit is late and the whole bundle waits.',
         'A standard design is a fixed design for a common case: a standard MV station, standard LV feeder layouts, standard switching plans. Less design per job, faster checks, simpler training, bulk buying.\n\nEngineers push back that every situation is different. The answer: a standard for the 80%, a clear route for exceptions. And watch hands-on time: if 50% of a technician’s day is real work and that rises to 60%, you get 20% more output.',
       ],
@@ -323,7 +323,7 @@ export default {
         },
         {
           q: 'What is the main cost of bundling work in one street?',
-          options: ['More digging in the street', 'More coordination and a longer run-up', 'More interruptions for customers', 'It clashes with the five safety rules'],
+          options: ['More digging in the street', 'More coordination and a longer run-up', 'More interruptions for customers', 'It clashes with the safety rules'],
           answer: 'More coordination and a longer run-up',
           why: 'Aligning several parties takes time, but saves digging, switching and disruption.',
         },
@@ -373,7 +373,7 @@ export default {
       ],
       teach: [
         'A switching plan is the step-by-step script to take part of the grid out of service, make it safe to work on, and bring it back.\n\nEach step says which switch, in which station, open or close, by whom, in what order, and what to check after. Order matters: the wrong order can drop customers, or make a switch break a current it was not built for. A load-break switch may interrupt normal load current; a disconnector may only open when no current flows.',
-        'Every plan follows the five safety rules (EN 50110): disconnect; secure against reconnection with a lock and a tag; verify absence of voltage with a tested voltage detector; earth and short-circuit; protect against nearby live parts.\n\nEarthing comes only after the test has proved the part dead. It connects the conductors to earth and to each other, so a mistaken switch-on trips the protection instead of hurting the crew. The module Switchgear and protection works the rules out.',
+        'Every plan follows the five safety rules (EN 50110): disconnect; secure against reconnection with a lock and a tag; verify absence of voltage with a tested voltage detector; earth and short-circuit; protect against adjacent live parts.\n\nEarthing comes only after the test has proved the part dead. It connects the conductors to earth and to each other, so a mistaken switch-on trips the protection instead of hurting the crew. The module Switchgear and protection works the rules out.',
         'In the Netherlands the work follows NEN 3140 for low voltage and NEN 3840 for high voltage (above 1 kV, so MV too); grid operators add their sector rules, the BEI.\n\nThe IV (person in control of the installation) is responsible for the installation and gives permission for work on it. The WV (person in control of the work) leads the job on site and is responsible for the crew’s safety. Everyone who switches is appointed in writing; see Safety on the floor and in the substation.',
         'The approval chain. A work preparer or switching specialist writes the plan; a second qualified person checks it. The control room releases it and puts it in the switching calendar. Customers who lose power are told in advance.\n\nOn the day, the switching technician carries out each step and reports it to the control room, which keeps its live picture of the grid right. A step done but not reported is a classic near miss: the picture no longer matches the grid.',
         'Why it becomes a bottleneck: few technicians are authorised to switch, the control room can handle only so many planned switching jobs a day, and interruptions must be announced. Crew ready, material on site, no switching slot until week 14.\n\nRemedies: bundle jobs into one outage, standard plans for standard situations, train more switching staff, plan switching slots as seriously as crews. Ask a planner: “When is the switching plan approved, compared with the job date?”',
@@ -388,7 +388,7 @@ export default {
           q: 'Which are the first three of the five safety rules, in order?',
           options: ['Earth and short-circuit, then disconnect and verify absence of voltage', 'Disconnect, secure against reconnection, verify absence of voltage', 'Verify absence of voltage first, then disconnect and secure the switch', 'Secure against reconnection, earth, disconnect'],
           answer: 'Disconnect, secure against reconnection, verify absence of voltage',
-          why: 'Disconnect, lock it so nobody switches it back on, then prove it is dead. Only then earth and short-circuit (rule 4) and cover nearby live parts (rule 5).',
+          why: 'Disconnect, lock it so nobody switches it back on, then prove it is dead. Only then earth and short-circuit (rule 4) and cover adjacent live parts (rule 5).',
         },
         {
           q: 'A team has 4 switching technicians, each doing 2 slots a day, 5 days a week. Each job needs 2 slots (off and back on). How many jobs a week can they handle at most?',
@@ -400,7 +400,7 @@ export default {
         },
         {
           q: 'Why bundle several jobs into one outage?',
-          options: ['NEN 3840 requires it for MV work', 'Then customers need not be notified at all', 'Fewer switching actions and interruptions', 'It makes the contractor cheaper per hour'],
+          options: ['NEN 3840 requires it for MV work', 'Then customers need no notice', 'Fewer switching actions and interruptions', 'It makes the contractor cheaper per hour'],
           answer: 'Fewer switching actions and interruptions',
           why: 'One switch-off serves several jobs, so the scarce switching capacity goes further and customers lose power once.',
         },
@@ -439,12 +439,12 @@ export default {
           q: 'How far ahead must a grid operator at least tell a small-consumption customer that the power will go off for planned work?',
           options: ['One day', '3 working days', 'Two weeks', 'No term applies'],
           answer: '3 working days',
-          why: 'According to the ACM at least 3 working days for small consumers; large consumers 3 or 10 working days, depending on their situation.',
+          why: 'According to the ACM at least 3 working days for small consumers; large consumers on a distribution grid at least 10 working days.',
         },
       ],
       teach: [
         'Field work is planned in layers. A year plan with projects and budgets, a quarter plan that shares out capacity and switching slots, a rolling plan of about six weeks, and the weekly schedule: which crew does which job on which day.\n\nA job only enters the weekly schedule once it has passed the readiness check. Then a frozen week applies: next week’s plan only changes for a real emergency, so crews, switching technicians and customers can rely on it.',
-        'A planned interruption is a moment when customers are without power because work is being done. Small consumers must hear of it at least 3 working days ahead according to the ACM, large consumers 3 or 10 working days. Planned maintenance does not earn customers outage compensation.\n\nIn practice it is a letter or message, sometimes a generator for a care home. If the job moves after that notice, it starts again: a second letter and an angry customer.',
+        'A planned interruption is a moment when customers are without power because work is being done. Small consumers must hear of it at least 3 working days ahead according to the ACM, large consumers at least 10 working days. Planned maintenance does not earn customers outage compensation.\n\nIn practice it is a letter or message, sometimes a generator for a care home. If the job moves after that notice, it starts again: a second letter and an angry customer.',
         'Break-in work pushes into the weekly schedule: faults, dangerous situations, a customer who has waited for months and escalates. Some operators keep separate fault crews, others a fixed reserve in every crew.\n\nWithout such a buffer, every fault blows up a planned job, announced interruption included. The module Maintenance covers the same logic for factories: planning separate from breakdown work, and a weekly schedule loaded to the available hours.',
         'Schedule compliance is the share of scheduled jobs done as scheduled. A high number does not mean everyone worked hard, but that the plan matched what could be done. For every job not done, count the reason: not ready, switching slot dropped, break-in work, weather, customer not home.\n\nWhat experts argue about: who makes the plan. Crew leaders know the work, a central planner sees switching slots and materials. It often works best together, in a short weekly meeting.',
         'A typical failure: loading the schedule to 100% of the hours. Then it breaks at the first fault, and crews learn that the plan is not serious.\n\nAnother failure: counting how many jobs were finished without looking at why the rest failed. Then every problem looks like a crew that is too slow. Ask a crew leader: “Which job last week didn’t happen, and did you know that on Monday?”',
@@ -479,7 +479,7 @@ export default {
         },
         {
           q: 'Faults blow up planned jobs every week. What helps most?',
-          options: ['A fixed reserve or separate fault crews in the plan', 'Loading the weekly schedule to 100% of the available hours', 'Handling faults only after the planned jobs are done', 'No longer announcing planned interruptions'],
+          options: ['A fixed reserve or separate fault crews in the plan', 'Loading the schedule to 100% of the hours', 'Handling faults only after the planned jobs are done', 'No longer announcing planned interruptions'],
           answer: 'A fixed reserve or separate fault crews in the plan',
           why: 'Break-in work comes anyway; with a buffer it need not blow up a planned job.',
         },
@@ -509,7 +509,7 @@ export default {
       pre: [
         {
           q: 'A technician has an 8-hour shift. In field work, what often takes the most time besides the real work?',
-          options: ['Travel, waiting and searching for parts', 'Breaks and coffee at the depot', 'Training courses and toolbox meetings', 'Filling in timesheets and job reports on paper'],
+          options: ['Travel, waiting and searching for parts', 'Breaks and coffee at the depot', 'Training courses and toolbox meetings', 'Filling in timesheets and job reports'],
           answer: 'Travel, waiting and searching for parts',
           why: 'Field work is spread out: driving between jobs, waiting for a permit or switching slot and missing material eat up the day.',
         },
@@ -551,7 +551,7 @@ export default {
         },
         {
           q: 'Why does Lean at a contractor with a framework agreement only work if the operator takes part?',
-          options: ['Because otherwise the contractor may not make a KLIC notification', 'Because the framework agreement forbids Lean methods', 'Because the contractor would lose its own technicians', 'Because the contractor depends on jobs being handed over ready'],
+          options: ['Because otherwise no KLIC notification is allowed', 'Because the framework agreement forbids Lean methods', 'Because the contractor would lose its own technicians', 'Because the contractor depends on jobs being handed over ready'],
           answer: 'Because the contractor depends on jobs being handed over ready',
           why: 'Permit, material and switching slot often come from the operator; without that readiness the contractor waits.',
         },
@@ -618,13 +618,13 @@ export default {
         },
         {
           q: 'CAIDI (average minutes per interruption) goes from 80 to 100 minutes while SAIFI (interruptions per customer per year) stays the same. What happened?',
-          options: ['There were fewer outages than the year before', 'Outages took longer to restore on average', 'The operator gained customers', 'SAIDI went down by a quarter'],
+          options: ['There were fewer outages', 'Outages took longer to restore on average', 'The operator gained customers', 'SAIDI went down by a quarter'],
           answer: 'Outages took longer to restore on average',
           why: 'CAIDI is duration per interruption; same frequency, longer duration, so SAIDI = SAIFI × CAIDI rises by 25% too.',
         },
         {
           q: 'After isolation and switching, which customers still wait for the repair?',
-          options: ['All customers on the feeder, until the repair', 'Customers on the neighbouring ring that took over', 'Nobody, once the switching is done', 'Only those connected inside the isolated section'],
+          options: ['All customers on the feeder, until the repair', 'Customers on the neighbouring ring', 'Nobody, once the switching is done', 'Only those connected inside the isolated section'],
           answer: 'Only those connected inside the isolated section',
           why: 'Everything outside the two open switches can be fed from one side or the other.',
         },
@@ -642,7 +642,7 @@ export default {
       sayIt: 'Explain to a new colleague in 60 seconds what happens between an MV cable fault and the last customer getting power back.',
       terms: [
         { term: 'Control room', def: 'The team and room that watch and switch the grid around the clock, using SCADA.' },
-        { term: 'Normally open point', def: 'The point where an MV ring is kept open; closed to restore supply after a fault.' },
+        { term: 'Normally open point', def: 'The switch in an MV ring that is kept open; you close it to feed a section from the other side.' },
         { term: 'Fault indicator', def: 'Device that shows or reports whether fault current has passed it.' },
         { term: 'SAIFI', def: 'Number of interruptions per customer per year.' },
         { term: 'CAIDI', def: 'Average duration of one interruption for the customers affected.' },
@@ -661,11 +661,11 @@ export default {
         },
       ],
       teach: [
-        'A fault comes in three ways. From the grid itself: SCADA reports a trip in a substation or a remotely monitored station. From customers: the national outage number 0800-9009, free and open day and night, routes the call to the operator for that region. And more and more from smart meters and sensors that report a street without voltage.\n\nDispatch puts the reports side by side: ten callers from one street are one fault.',
+        'A fault comes in three ways. From the grid itself: SCADA reports a trip in a substation or a remotely monitored station. From customers: the national outage number 0800-9009, free and open day and night, routes the call to the operator for that region. And more and more from smart meters and sensors that report a street without voltage.\n\nDispatch, the desk that takes in reports and sends out technicians, puts them side by side: ten callers from one street are one fault.',
         'Then triage: what first? Danger beats everything: a broken cable lying exposed, fire, a smell of gas. Next comes size: how many customers, and are there vulnerable customers among them, such as a care home.\n\nThe fault service is the group of technicians on call day and night. Response time is the time from report to a technician on site; it depends on distance, traffic and how many faults are running at once.',
         'A fault has phases: report, response, locating, switching, repair. Restoration time runs from the start of the interruption until the customer has power again; for most customers it ends at switching, for a few only after the repair.\n\nCustomer minutes add everything up: number of customers without power times minutes without power, per group. Measuring the phases separately shows where the minutes go: travel, searching or waiting for material.',
         'Communication counts in how customers experience an outage. Operators put outages on a map on their website, with an expected restoration time. An over-optimistic time that moves three times does more harm than an honest, generous estimate.\n\nAsk in the control room: “How often was the expected restoration time right to within half an hour?” That number says a lot about how well dispatch has the faults in hand.',
-        'The compensation scheme: for an interruption of 4 to 8 hours a small connection (up to 3 × 25 A) gets € 35, plus € 20 for each further 4 hours. Larger small-consumption connections (3 × 35 to 3 × 80 A) get € 195 plus € 100 per 4 hours. Only full 4-hour periods count. The operator pays within 6 months, unasked; planned work is excluded (ACM).\n\nSo the difference between 3 h 50 and 4 h 10 is money too.',
+        'The compensation scheme: for an interruption of 4 to 8 hours a small connection (up to 3 × 25 A) gets € 35, plus € 20 for each further 4 hours. Larger small-consumption connections (3 × 35 to 3 × 80 A) get € 195 plus € 100 per 4 hours. Only full 4-hour periods count. The operator pays within 6 months, unasked; planned work and some exceptional situations are excluded (ACM).\n\nSo the difference between 3 h 50 and 4 h 10 is money too.',
       ],
       example: {
         kind: 'worked',
@@ -689,7 +689,7 @@ export default {
         },
         {
           q: 'What is the difference between response time and restoration time?',
-          options: ['Response time is used for MV faults, restoration time for LV faults only', 'Response ends when a technician arrives, restoration when power is back', 'No difference: both run from the first report until the fault is over', 'Response time runs from the report until the repair has been finished'],
+          options: ['Response time is for MV faults, restoration time for LV', 'Response ends when a technician arrives, restoration when power is back', 'No difference: both run from the first report until the fault is over', 'Response time runs from the report until the repair has been finished'],
           answer: 'Response ends when a technician arrives, restoration when power is back',
           why: 'The response is one phase; locating, switching and sometimes repair come after it.',
         },
@@ -755,7 +755,7 @@ export default {
         },
         {
           q: 'Why can two identical transformers get very different priorities?',
-          options: ['Different customers behind them, so a different consequence', 'They always come from different manufacturers with other designs', 'The regulator assigns each transformer its own priority', 'Only their age differs, and age decides the priority'],
+          options: ['Different customers behind them, so a different consequence', 'They come from different manufacturers', 'The regulator assigns each transformer its own priority', 'Only their age differs, and age decides the priority'],
           answer: 'Different customers behind them, so a different consequence',
           why: 'Same likelihood, different consequence, different risk.',
         },
@@ -828,7 +828,7 @@ export default {
         },
         {
           q: 'Why look at customer minutes per cause and not only at the number of outages?',
-          options: ['Customer minutes are easier to register at night', 'A cause with few outages can cost the most minutes', 'The ACM only counts customer minutes, not outages', 'The number of outages is never registered properly'],
+          options: ['Customer minutes are easier to register at night', 'A cause with few outages can cost the most minutes', 'The ACM only counts customer minutes, not outages', 'Outages are never registered properly'],
           answer: 'A cause with few outages can cost the most minutes',
           why: 'An MV outage hits far more customers than an LV outage; the count alone does not say where the gain is.',
         },
@@ -840,7 +840,7 @@ export default {
         },
         {
           q: 'Why are planned outage minutes likely to rise in the coming years?',
-          options: ['Because more reinforcement and replacement is needed', 'Because the ACM will start counting planned minutes differently', 'Because there will be more digging damage in the streets', 'Because faults will last longer'],
+          options: ['Because more reinforcement and replacement is needed', 'Because the ACM will count differently', 'Because there will be more digging damage in the streets', 'Because faults will last longer'],
           answer: 'Because more reinforcement and replacement is needed',
           why: 'More work on the grid means more planned interruptions, unless you bundle or use generators.',
         },
@@ -872,17 +872,17 @@ export default {
       pre: [
         {
           q: 'An operator expects a transformer in a substation to be overloaded tomorrow between 17:00 and 19:00. What can it still do today?',
-          options: ['Replace the transformer before tomorrow evening', 'Buy flexibility from a customer in the area', 'Disconnect customers in the area until it is over', 'Nothing; the grid simply has to cope with it'],
+          options: ['Replace the transformer before tomorrow evening', 'Buy flexibility from a customer in the area', 'Disconnect customers in the area', 'Nothing; the grid simply has to cope with it'],
           answer: 'Buy flexibility from a customer in the area',
           why: 'Replacing takes years; for tomorrow the operator buys flexibility, for example via GOPACS or a contract.',
         },
       ],
       teach: [
-        'Congestion management means paying or contracting customers to shift use or feed-in away from peak moments. The module The electricity grid explains why the grid is full, Grid planning and the transition which contract types exist. This lesson is about the daily work.\n\nAt many operators a team sits next to the control room for this. Every day it forecasts tomorrow’s load, per station and per quarter hour, and steps in wherever it goes over the limit.',
+        'Congestion management means steering offtake or feed-in at peak moments with contracts or paid flexibility, so more customers fit on a full grid. The module The electricity grid explains why the grid is full, Grid planning and the transition which contract types exist. This lesson is about the daily work.\n\nAt many operators a team sits next to the control room for this. Every day it forecasts tomorrow’s load, per station and per quarter hour, and steps in wherever it goes over the limit.',
         'The first tool is redispatch: moving production or demand from inside a congested area to outside it. It runs through GOPACS, the joint platform of TenneT and the regional operators, since 2019.\n\nThe operator puts out a request. A party inside the area offers to take or feed in less, via a trading platform connected to GOPACS, such as ETPA or EPEX SPOT. GOPACS pairs that with an opposite order outside the area, so the national balance stays the same.',
-        'The operator pays the price difference between those two orders, the spread. Most businesses do not take part themselves but through a CSP (congestion service provider): a party that pools customers’ flexible capacity and offers it.\n\nThe second tool is the capacity-limiting contract (CBC): a customer is paid to stay below an agreed level when the operator asks, at fixed times or called off a day ahead. That is surer than hoping for bids.',
+        'The operator pays the price difference between those two orders, the spread. Most businesses do not take part themselves but through a CSP (congestion service provider): a party that pools customers’ flexible capacity and offers it.\n\nThe second tool is a contract. With the capacity-limiting contract (CBC) a customer is paid to stay below an agreed level when the operator asks, at fixed times or called off a day ahead; since May 2026 the capacity steering contract (CSC) has largely replaced it. That is surer than hoping for bids.',
         'What if the bids are too expensive? Then, under the rules in the Electricity System Code, the operator may switch to a regulated fee instead of the market price. Netbeheer Nederland calls that non-market congestion management.\n\nA typical failure in practice: a forecast that leans only on last year, while a charging hub and three heat pumps have been added since spring. Ask the team: “How often was yesterday’s forecast right for today?”',
-        'The daily cycle: forecast for tomorrow, decide whether there is a shortfall, buy or call off flexibility, watch the load, and afterwards check whether the customer really delivered and settle.\n\nIt is work with deadlines: bids must be in on time, and a CBC call-off must go out before an agreed time. A team that runs this smoothly can admit more customers to the same grid.',
+        'The daily cycle: forecast for tomorrow, decide whether there is a shortfall, buy or call off flexibility, watch the load, and afterwards check whether the customer really delivered and settle.\n\nIt is work with deadlines: bids must be in on time, and a contract call-off must go out before an agreed time. A team that runs this smoothly can admit more customers to the same grid.',
       ],
       example: {
         kind: 'worked',
@@ -929,11 +929,11 @@ export default {
       },
       sayIt: 'Explain to a customer service colleague in 60 seconds what happens when the congestion team sees a shortfall for tomorrow.',
       terms: [
-        { term: 'Congestion management', def: 'Paying or contracting customers to shift use or feed-in away from peak moments.' },
-        { term: 'GOPACS', def: 'The joint platform of the Dutch grid operators for buying flexibility against congestion.' },
+        { term: 'Congestion management', def: 'Steering offtake or feed-in at peak moments with contracts or paid flexibility, so more customers fit on a full grid.' },
+        { term: 'GOPACS', def: 'The joint platform of the Dutch grid operators for buying flexibility against congestion, mainly as redispatch.' },
         { term: 'Redispatch', def: 'Moving production or demand from inside a congested area to outside it.' },
         { term: 'CSP', def: 'Congestion service provider: a party that pools customers’ flexible capacity and offers it for congestion management.' },
-        { term: 'Capacity-limiting contract', def: 'A customer is paid to stay below an agreed level when the operator asks.' },
+        { term: 'Capacity-limiting contract', def: 'CBC: a customer is paid to stay below an agreed limit when the grid operator asks; since May 2026 largely replaced by the CSC.' },
       ],
     },
     {
@@ -950,7 +950,7 @@ export default {
       teach: [
         'When demand for transport grows beyond what the grid can carry, the operator first speaks of transport scarcity: the expected peak, including promised capacity and growth, is larger than what the grid can carry.\n\nBefore there is a queue, it runs a congestion study: can congestion management solve the shortfall, and how much room does that free up? It announces the study and asks customers in the area for their flexible capacity.',
         'Flexible capacity is capacity a customer can shift or reduce on request: a cold store that cools an hour later, a battery, a plant with a gas boiler as back-up. According to Netbeheer Nederland, customers with a connection above 500 kW are asked to offer; they decide how much and at what price.\n\nOnly if there is too little voluntary supply does mandatory participation follow.',
-        'Mandatory participation: in a congested area the operator can oblige customers with a connection from 1 MW to take part; it sets the lower bound itself. Businesses with 60 MW or more of contracted capacity always take part, also outside congested areas. Businesses in vital infrastructure are exempt.\n\nEven when obliged, the customer decides what its offer looks like. Producers get three months to make an offer, consumers six.',
+        'Mandatory participation: in a congested area the operator can oblige customers with a connection from 1 MW to take part; it sets the lower bound itself. Businesses with 60 MW or more of contracted capacity always take part, also outside congested areas. Businesses in vital infrastructure are exempt.\n\nEven when obliged, the customer sets its own price. In principle it offers all its contracted capacity; a consumer that cannot must explain in writing why. Producers get three months to make an offer, consumers six.',
         'The outcome. If congestion management is possible, it frees capacity that the operator hands out through the queue, under the rules for social prioritisation. If not, the report says why, and when the reinforcement will be ready.\n\nIf the prices offered are unreasonably high, customers get a regulated fee: a fixed price set by the rules instead of their own bid.',
         'What experts argue about: how reliable is offered flexibility? A business that can cut 2 MW on paper may not do so on a cold Tuesday in January with a full order book.\n\nA good study therefore looks not just at the total offered, but at what is certain at the peak moment. Ask the team: “How much of the offered capacity did we actually see delivered last winter?”',
       ],
@@ -1019,14 +1019,14 @@ export default {
       ],
       teach: [
         'The forecast is the start of everything: the expected load per station per quarter hour for tomorrow, from measured quarter-hour values, the weather, the day of the week and what customers have reported.\n\nToo low, and the station is overloaded; too high, and you pay for flexibility you did not need. A good desk measures every day how far off the forecast was, per station, and learns from it.',
-        'Then the action. Via GOPACS the team puts out a request for a period, an area and a direction. For customers with a capacity-limiting contract a call-off follows: the request to stay below the agreed level for a given period, sent before an agreed time.\n\nIntraday the desk can adjust if the forecast shifts. During the peak the control room watches the real load.',
+        'Then the action. Via GOPACS the team puts out a request for a period, an area and a direction. For customers with a capacity contract (CBC or CSC) a call-off follows: the request to stay below the agreed level for a given period, sent before an agreed time.\n\nIntraday the desk can adjust if the forecast shifts. During the peak the control room watches the real load.',
         'Afterwards the check. The baseline is what the customer would have taken or fed in without the call-off. Delivered is baseline minus measurement; the delivery rate is delivered divided by ordered.\n\nA baseline is an estimate, and that is where the argument lies. A customer who takes extra on the days before a call-off gets a higher baseline and seems to deliver more than it did. Operators therefore use fixed rules and look at patterns.',
         'Inc-dec is the risk that a party arranges its plan so that it gets paid to solve a bottleneck it caused itself: first declare a lot of feed-in in a full area, then get money to take it back. Experts and regulators watch for it; you prevent it with rules for bids and by watching for odd patterns.\n\nAnother risk is finding out on the day itself that your flexibility is not there.',
         'Congestion management and field work touch each other. A planned interruption for a reinforcement can make a station temporarily weaker, and then more flexibility is needed just then. A good desk therefore sits in the weekly meeting with the planning.\n\nKPIs that matter: how far off the forecast was, the delivery rate, the cost per avoided overload, and how often the station still went over the limit. Ask: “How often did the station go over the limit last month, despite action?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Yesterday the Stedin desk called off a customer with a capacity-limiting contract: 4 MW less from 17:00 to 19:00. The customer’s baseline for those hours was 10 MW. Measured: 7 MW on average.\n\nMeanwhile the station’s forecast turned out 1.5 MW too low, and the transformer briefly reached 102% of its limit.',
+        text: 'Yesterday the Stedin desk called off a customer with a capacity steering contract: 4 MW less from 17:00 to 19:00. The customer’s baseline for those hours was 10 MW. Measured: 7 MW on average.\n\nMeanwhile the station’s forecast turned out 1.5 MW too low, and the transformer briefly reached 102% of its limit.',
         ask: 'What would you do next?',
         reveal: 'Delivered: 10 − 7 = 3 MW of the 4 ordered, a delivery rate of 75%. With the forecast 1.5 MW too low, the desk was 1 + 1.5 = 2.5 MW short in the peak: hence the 102%.\n\nTwo tracks. With the customer: why 1 MW less, and is the baseline right? If this happens more often, apply a safety margin to its delivery. For the forecast: which new customers or what weather were missing from it? Record both, and check in a month whether the delivery rate and the forecast error improve.',
       },
@@ -1048,7 +1048,7 @@ export default {
         },
         {
           q: 'What is inc-dec?',
-          options: ['A party gets paid to solve a bottleneck it caused itself', 'A method to make the day-ahead forecast more accurate per station', 'The step from intraday to day-ahead trading', 'A type of capacity-limiting contract'],
+          options: ['A party gets paid to solve a bottleneck it caused itself', 'A method to make the forecast more accurate', 'The step from intraday to day-ahead trading', 'A type of capacity-limiting contract'],
           answer: 'A party gets paid to solve a bottleneck it caused itself',
           why: 'First declare a lot in a full area, then get money to take it back; rules and oversight must prevent that.',
         },
@@ -1092,7 +1092,7 @@ export default {
       teach: [
         'Congestion management is a bridge, not an end point. The bridging period is the time until the reinforcement is ready; meanwhile flexibility means customers need not wait.\n\nThe gain is released capacity: the capacity the operator can give to customers on the queue thanks to congestion management. A factory that can electrify three years earlier, a housing estate connected sooner. That is what you weigh against the cost.',
         'How reliable is the bridge? Flexibility works best for short peaks: a few hours on a sunny summer afternoon. Long winter peaks, hours every evening and days in a row, are harder: a battery is empty after two hours, and a cold store cannot cool later all week.\n\nThat is why operators are careful with what they hand out. New customers often get non-firm capacity: capacity the operator may curtail, for example when the reserve is needed.',
-        'Contracts are getting smarter. Since December 2025 there is the capacity-steering contract (CSC): the operator may ask a customer not only to use less, but also to use more in the direction opposite to the congestion, for example a battery that charges just when a lot of solar is fed in. Details and conditions are still changing; check the current code.\n\nThe ACM is pushing: in 2026 it made binding agreements with all seven operators to use the grid better.',
+        'In December 2025 the ACM added the capacity steering contract (CSC) to the code: the operator may ask a customer not only to use less, but also to use more in the direction opposite to the congestion, such as a battery that charges when a lot of solar is fed in. Since May 2026 it has largely replaced the CBC; conditions change, so check the current code.\n\nIn June 2026 the ACM made binding agreements with seven operators, TenneT included, to use the grid better.',
         'A limit experts name: if you hand out too much capacity on flexibility, you stack risk. If a cable fails on a cold evening and the reserve has already been sold (N-1, see Grid planning and the transition), you have no buffer left.\n\nSo the trade-off is about three things at once: the cost per released MW, the certainty of the flexibility at the peak moment, and how much reserve the grid keeps.',
         'KPIs for a congestion programme: MW released to the queue, cost per released MW per year, delivery rate, and how often the station went over the limit. Euros spent without MW released is the wrong goal.\n\nA failure you see: congestion management as an excuse to delay a reinforcement, until the flexibility falls short on a winter evening. Ask: “When is the reinforcement ready, and what do we do if the flex stops coping before then?”',
       ],
@@ -1114,12 +1114,12 @@ export default {
         },
         {
           q: 'Why is flexibility less certain during long winter peaks?',
-          options: ['Batteries run empty; processes can’t shift for hours', 'GOPACS closes during the winter months', 'Flex prices are regulated from November to March', 'Fewer customers are connected to the grid during winter'],
+          options: ['Batteries run empty; processes can’t shift for hours', 'GOPACS closes during the winter months', 'Flex prices are regulated from November to March', 'Fewer customers are connected in winter'],
           answer: 'Batteries run empty; processes can’t shift for hours',
           why: 'A battery delivers a few hours; a peak that lasts four hours every evening asks more than most flex can give.',
         },
         {
-          q: 'What does the capacity-steering contract add to the capacity-limiting contract?',
+          q: 'What does the capacity steering contract add to the capacity-limiting contract?',
           options: ['It also applies to households and small businesses with solar panels', 'It makes the operator the owner of the battery', 'It can also ask for more use, against the congestion', 'It replaces the queue for transport capacity'],
           answer: 'It can also ask for more use, against the congestion',
           why: 'Where the CBC only limits, the CSC can also ask a customer to charge or take power when that helps the bottleneck.',
@@ -1146,7 +1146,7 @@ export default {
         { term: 'Bridging period', def: 'The time until a reinforcement is ready, during which congestion management helps customers.' },
         { term: 'Released capacity', def: 'The capacity the operator can give to customers on the queue thanks to congestion management.' },
         { term: 'Non-firm', def: 'Capacity the operator may curtail, for example when the reserve is needed.' },
-        { term: 'Capacity-steering contract', def: 'CSC: a contract with which the operator can ask a customer to use less, or more in the direction opposite to the congestion.' },
+        { term: 'Capacity steering contract', def: 'CSC: a contract in which a customer lowers or raises its use on call or in fixed blocks for a fee; since May 2026 the main contract for congestion management.' },
       ],
     },
   ],
