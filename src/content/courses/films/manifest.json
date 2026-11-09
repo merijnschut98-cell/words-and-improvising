@@ -141,32 +141,32 @@
     "eng.machining.overview": {
       "poster": "src/content/courses/films/eng.machining.overview.jpg",
       "nl": {
-        "dur": 275.2,
-        "bytes": 9438741,
+        "dur": 213.1,
+        "bytes": 7598958,
         "scenes": [
           0,
-          44.69,
-          90.27,
-          112.41,
-          151.09,
-          173.43,
-          195.41,
-          243.51
+          35.9,
+          72.21,
+          90.26,
+          119.22,
+          136.87,
+          152.8,
+          188.83
         ],
         "vtt": "src/content/courses/films/eng.machining.overview.nl.vtt"
       },
       "en": {
-        "dur": 253.1,
-        "bytes": 8935870,
+        "dur": 237.8,
+        "bytes": 8366357,
         "scenes": [
           0,
-          39.57,
-          80.11,
-          101.92,
-          135.7,
-          157.5,
-          178.23,
-          224.38
+          37,
+          75.06,
+          96.17,
+          127.38,
+          147.94,
+          167.56,
+          210.43
         ],
         "vtt": "src/content/courses/films/eng.machining.overview.en.vtt"
       }
