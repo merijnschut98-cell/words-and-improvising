@@ -4,6 +4,7 @@ export default {
     {
       id: 'eng.lines.linebasics',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Reading a line: stations, cycle time and transport',
       pre: [
         {
@@ -75,6 +76,7 @@ export default {
     {
       id: 'eng.lines.layout',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Line types, buffers and inspection',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     {
       id: 'eng.lines.buffers',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Sizing buffers: blocking, starving and refilling',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     {
       id: 'eng.lines.simulation',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Line simulation, Little’s law and ramp-up',
       pre: [
         {
