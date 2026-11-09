@@ -232,7 +232,7 @@ const STAGE = (() => {
     }
     c += mark(st.join(''), 'fp-streak');
     c += T(CM, 300, tx('zilverstrepen', 'silver streaks'), 20, 'middle', 'fp-small');
-    c += T(CM, 336, tx('en vaak bros', 'and often brittle'), 20, 'middle', 'fp-small');
+    c += T(CM, 336, tx('erger: zwakke delen', 'worse: weak parts'), 20, 'middle', 'fp-small');
     return [base, c];
   }
   function regrindCard(p) {
@@ -359,10 +359,14 @@ const STAGE = (() => {
     const y = 90;
     const h = 70;
     const pxmm = len / 100;
-    // steel block with the cavity
-    base += R(x0 - 16, y - 16, len * 1.015 + 32, h + 32, 'fp-shape', 4);
-    base += R(x0, y, C.CAVITY * pxmm, h, 'fp-shape2', 2);
-    let cav = R(x0, y, C.CAVITY * pxmm, h, 'fp-frame', 2) + T(x0 + (C.CAVITY * pxmm) / 2, y - 26, tx('holte', 'cavity'), 19, 'middle', 'fp-small');
+    // steel block with the cavity (the sizing beats); after that the part
+    // itself, out of the mould
+    let cav = '';
+    if (kb <= 1) {
+      base += R(x0 - 16, y - 16, len * 1.015 + 32, h + 32, 'fp-shape', 4);
+      base += R(x0, y, C.CAVITY * pxmm, h, 'fp-shape2', 2);
+      cav = R(x0, y, C.CAVITY * pxmm, h, 'fp-frame', 2) + T(x0 + (C.CAVITY * pxmm) / 2, y - 26, tx('holte', 'cavity'), 19, 'middle', 'fp-small');
+    } else base += T(x0 + 50 * pxmm, y - 10, tx('product', 'part'), 19, 'middle', 'fp-small');
     // the zoom: 99,5 … 102 mm over 210 px
     const zx0 = 390;
     const zx1 = 600;
@@ -699,7 +703,10 @@ const STAGE = (() => {
     set(E.wfx, air ? airSvg(cw, ph) : '');
     set(E.lcdDp, `${num(dew)} °C`);
     set(E.lcdT, '80 °C');
-    set(E.lcdM, `${num(C.MOIST, 2)} %`);
+    // the moisture meter: idle until scene 8, then the sample is weighed
+    // (20,000 g), heated (19,994 g) and the result shown
+    const mp = si === 7 && kb === 1 ? p : 0;
+    set(E.lcdM, si < 7 ? num(0, 3) + ' g' : si === 7 && kb === 0 ? num(C.SAMPLE.before, 3) + ' g' : si === 7 && kb === 1 && mp < 0.55 ? num(mp < 0.1 ? C.SAMPLE.before : C.SAMPLE.after, 3) + ' g' : `${num(C.MOIST, 2)} %`);
   }
 
   return {

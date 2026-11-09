@@ -146,10 +146,10 @@ function post(name, cx, cy, r, z0, z1, style = {}, { steps = 24, bevel = 0, extr
   const svg = S(k.cylinder(cx, cy, r, z0, z1 - z0, P, steps, bevel), { tone: "mid", ...style, inner }) + extra;
   return put(name, [cx, cy, (z0 + z1) / 2], svg, [shape], opts);
 }
-function turned(name, F, profile, style = {}, { extra = "", inner = "", owner, ...opts } = {}) {
+function turned(name, F, profile, style = {}, { extra = "", inner = "", owner, lathe = {}, ...opts } = {}) {
   const shape = R.solid(A.solid(F, profile, { name, owner }));
   const mid = (profile[0][0] + profile[profile.length - 1][0]) / 2;
-  const svg = S(G.solidOf(profile, F, P), { tone: "mid", ...style, inner }) + extra;
+  const svg = S(G.solidOf(profile, F, P, lathe), { tone: "mid", ...style, inner }) + extra;
   return put(name, G.add3(F.o, G.mul3(F.a, mid)), svg, [shape], opts);
 }
 function discAt(name, F, s0, s1, r, style = {}, { extra = "", inner = "", owner, steps, ...opts } = {}) {
@@ -205,7 +205,7 @@ const halo = [
 ];
 for (const x of [-76, -20, 38]) for (const y of [-20, 6]) {
   post("stand.foot", x, y, 3, 0, 1.2, { tone: "lo" }, { steps: 6 });
-  post("bed.jack", x, y, 1.3, 1.2, 3, { tone: "mid", crease: "none" }, { steps: 16 });
+  post("bed.jack", x, y, 1.3, 1.2, 3, { tone: "mid", crease: "none" }, { steps: 8 });
 }
 {
   const fy = BED.y + BED.d;
@@ -309,7 +309,7 @@ for (const x of [-48, -32]) box("inj.saddle", { x: x - 1.6, y: YC - 2, w: 3.2, d
 // ---------------------------------------------------------------- the desiccant dryer on castors
 for (const [cx, cy] of k.corners(DRY, 3.5)) {
   box("dry.fork", { x: cx - 1.6, y: cy - 1.6, w: 3.2, d: 3.2, r: 0.3 }, 4.2, DRY_Z[0], { tone: "mid" }, { steps: 1 });
-  discAt("stand.wheel", frameY([cx, cy - 0.9, 2.1]), 0, 1.8, 2.1, { tone: "lo" }, { steps: 16 });
+  discAt("stand.wheel", frameY([cx, cy - 0.9, 2.1]), 0, 1.8, 2.1, { tone: "lo" }, { steps: 10 });
 }
 {
   const fy = DFACE;
@@ -348,6 +348,7 @@ for (const [cx, cy] of k.corners(DRY, 3.5)) {
     const F = frameZ([x, y, DRY_Z[1]]);
     turned("dry.tower", F, [[1.2, 4.5], [20, 4.5], [22.5, 3.8, 1], [24, 2.4, 1], [24.6, 0.6]], { tone: "mid" }, {
       attrs: ' data-cue="desiccant"',
+      lathe: { steps: 32, smooth: { rows: 4, error: 0.6, depth: 6 } },
       inner: L([3, 17].map((s) => G.arcOf(F, s, 4.5, P)).join(""), { tone: "lo" }),
     });
     discAt("dry.tower-foot", F, 0, 1.2, 5.4, { tone: "mid" }, { steps: 8 });
@@ -360,8 +361,8 @@ for (const [cx, cy] of k.corners(DRY, 3.5)) {
   discAt("dry.filter-lid", FF, 10, 11.4, 4.1, { tone: "mid" }, { steps: 10 });
   post("dry.filter-stub", FILTER[0], FILTER[1], 2.6, FZ + 11.4, FZ + 13.6, { tone: "mid" }, { steps: 20 });
   // moisture meter on the dryer's lid: a sample pan under a hinged heater hood
-  box("dry.meter", METER, DRY_Z[1], DRY_Z[1] + 4, { tone: "mid" }, { steps: 2, bevel: 0.3, attrs: ' data-cue="meter"', extra: recess(MWIN, METER.y + METER.d, `<text class="dr-lcd" data-k="lcdM" x="${MWIN.x0 + 0.5}" y="${-(MWIN.z0 + 0.55)}" font-size="1.4">0,03 %</text>`, "dr-screen") });
-  turned("dry.meter-hood", frameZ([METER.x + METER.w / 2, METER.y + METER.d / 2, DRY_Z[1] + 4]), [[0, 3], [1, 3], [2.2, 2.2, 1], [2.8, 0.8]], { tone: "hi", crease: "lo" }, { attrs: ' data-cue="meter"' });
+  box("dry.meter", METER, DRY_Z[1], DRY_Z[1] + 4, { tone: "mid" }, { steps: 2, bevel: 0.3, attrs: ' data-cue="meter"', extra: recess(MWIN, METER.y + METER.d, `<text class="dr-lcd" data-k="lcdM" x="${MWIN.x0 + 0.5}" y="${-(MWIN.z0 + 0.55)}" font-size="1.4">0,000 g</text>`, "dr-screen") });
+  turned("dry.meter-hood", frameZ([METER.x + METER.w / 2, METER.y + METER.d / 2, DRY_Z[1] + 4]), [[0, 3], [1, 3], [2.2, 2.2, 1], [2.8, 0.8]], { tone: "hi", crease: "lo" }, { attrs: ' data-cue="meter"', lathe: { steps: 32, smooth: { rows: 4, error: 0.5, depth: 6 } } });
 }
 
 // ---------------------------------------------------------------- the air hoses
@@ -405,21 +406,31 @@ const world = halos + items + g('wfx');
 // card turns petrol while it is named
 const CUES = ['hygro', 'splay', 'regrind', 'mb', 'semi', 'amorf', 'tg', 'cryst', 'cavity', 'post', 'crack', 'rest', 'hydro', 'over', 'kf', 'abr', 'fibre', 'aniso', 'recy', 'mfi', 'dew', 'meter', 'desiccant'];
 const hud = g('base') + CUES.map((c) => slot(c, `c-${c}`)).join('') + g('top');
-// Page weight (as in the film eng.moulding.machine): in plain M/L/Z paths, drop
-// a line point within 0.2 units of the last one kept and write points to 0.1
-// unit (at the closest camera, the meter at about 6×, that is under a pixel).
+// Page weight (after the film eng.moulding.machine): in plain M/L/Z paths, drop
+// a line point within 0.2 units of the last one kept, round points to 0.1 unit
+// (at the closest camera, the meter at about 6×, that is under a pixel) and
+// write the lines as relative steps in one implicit "l" run: the same shapes in
+// about two thirds of the bytes.
+const tenth = (n) => { const a = Math.abs(n); const t = `${Math.floor(a / 10)}${a % 10 ? `.${a % 10}` : ''}`.replace(/^0\./, '.'); return n < 0 ? `-${t}` : t; };
 const slim = (s) => s.replace(/ d="([^"]*)"/g, (m, d) => {
   if (!/^[MLZ0-9 .-]+$/.test(d)) return m;
-  const out = [];
-  let last = null;
+  let out = '';
+  let last = null; // the last point kept, unrounded
+  let pen = null; // the pen in tenths
+  let run = false; // inside an "l" run
+  let start = null; // the subpath's first point, where Z leaves the pen
+  const num = (v) => { const t = tenth(v); out += (out && !/[A-Za-z]$/.test(out) && t[0] !== '-' ? ' ' : '') + t; };
   for (const tok of d.match(/[MLZ][^MLZ]*/g) ?? []) {
-    if (tok[0] === 'Z') { out.push('Z'); last = null; continue; }
+    if (tok[0] === 'Z') { out += 'Z'; last = null; run = false; pen = start; continue; }
     const [x, y] = tok.slice(1).trim().split(/\s+/).map(Number);
     if (tok[0] === 'L' && last && Math.hypot(x - last[0], y - last[1]) < 0.2) continue;
-    out.push(`${tok[0]}${Math.round(x * 10) / 10} ${Math.round(y * 10) / 10}`);
+    const q = [Math.round(x * 10), Math.round(y * 10)];
+    if (tok[0] === 'M' || !pen) { out += 'M'; num(q[0]); num(q[1]); run = false; start = q; }
+    else { if (!run) { out += 'l'; run = true; } num(q[0] - pen[0]); num(q[1] - pen[1]); }
+    pen = q;
     last = [x, y];
   }
-  return ` d="${out.join('')}"`;
+  return ` d="${out}"`;
 });
 const svg = slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
@@ -475,14 +486,14 @@ const spec = {
         { nl: 'Drogen: meestal {n:2} tot {n:4} uur op {n:80} tot {n:120} °C.', en: 'Drying: typically {n:2} to {n:4} hours at {n:80} to {n:120} °C.', cues: ['air', 'desiccant', 'hopper'] },
         { nl: 'Het {t:Dauwpunt|dauwpunt} zegt hoe droog de lucht is: −{n:40} °C is heel droog.', en: 'The {t:Dew point|dew point} tells how dry the air is: −{n:40} °C is very dry.', cue: { Dauwpunt: 'dew' } },
         { nl: '{n:12} kg per uur × {n:4} uur drogen = {n:48} kg in de trechter.', en: '{n:12} kg per hour × {n:4} hours of drying = {n:48} kg in the hopper.', cues: ['hopper'], read: { nl: 'trechter {n:50} kg ≥ {n:48} kg', en: 'hopper {n:50} kg ≥ {n:48} kg' } },
-        { nl: '{n:20} kg natte korrels erbij: in {n:1.7} uur op, nooit {n:4} uur gedroogd.', en: '{n:20} kg of wet pellets on top: used in {n:1.7} hours, never dried {n:4} hours.', cues: ['glass'], read: { nl: '{n:20} / {n:12} ≈ {n:1.7} uur', en: '{n:20} / {n:12} ≈ {n:1.7} h' } },
+        { nl: 'Leeggelopen, dan {n:20} kg nat erin: in {n:1.7} uur op, nooit {n:4} uur gedroogd.', en: 'Run empty, then {n:20} kg of wet pellets: used in {n:1.7} hours, never dried {n:4} hours.', cues: ['glass'], read: { nl: '{n:20} / {n:12} ≈ {n:1.7} uur', en: '{n:20} / {n:12} ≈ {n:1.7} h' } },
       ],
     },
     {
       id: 's3', lesson: MAT, level: 1, still: 0.5, title: { nl: 'Splay, maalgoed en kleur', en: 'Splay, regrind and colour' },
       beats: [
         { nl: 'Nat materiaal geeft {t:Splay|splay}: zilverstrepen, en zwakke producten.', en: 'Wet material gives {t:Splay|splay}: silver streaks, and weak parts.', cue: { Splay: 'splay' } },
-        { nl: '{t:Maalgoed|Maalgoed} gaat terug in de trechter; vaak mag {n:10} tot {n:25}%.', en: '{t:Regrind|Regrind} goes back into the hopper; often {n:10} to {n:25}% is allowed.', cue: { Maalgoed: 'regrind' } },
+        { nl: '{t:Maalgoed|Maalgoed} gaat terug in de trechter; klanten staan vaak {n:10} tot {n:25}% toe.', en: '{t:Regrind|Regrind} goes back into the hopper; customers often allow {n:10} to {n:25}%.', cue: { Maalgoed: 'regrind' } },
         { nl: 'Kleur komt uit {t:Masterbatch|masterbatch}: een paar procent kleurkorrels.', en: 'Colour comes from {t:Masterbatch|masterbatch}: a few percent of colour pellets.', cue: { Masterbatch: 'mb' } },
         { nl: 'Een kleurwissel betekent spoelen: plan van licht naar donker.', en: 'A colour change means purging: plan from light to dark.' },
       ],
@@ -515,7 +526,7 @@ const spec = {
     {
       id: 's7', lesson: DRY_, level: 3, still: 0.5, title: { nl: 'Wat water aanricht', en: 'What water does' },
       beats: [
-        { nl: '{t:Restvocht|Restvocht}: PC maximaal {n:0.02}%, PET maximaal {n:0.005}%.', en: '{t:Residual moisture|Residual moisture}: PC at most {n:0.02}%, PET at most {n:0.005}%.', cue: { Restvocht: 'rest' } },
+        { nl: '{t:Restvocht|Restvocht}, typische grens: PC {n:0.02}%, PET {n:0.005}%.', en: '{t:Residual moisture|Residual moisture}, typical limit: PC {n:0.02}%, PET {n:0.005}%.', cue: { Restvocht: 'rest' } },
         { nl: '{t:Hydrolyse|Hydrolyse}: water knipt in de hete smelt de ketens door.', en: '{t:Hydrolysis|Hydrolysis}: water cuts the chains in the hot melt.', cue: { Hydrolyse: 'hydro' } },
         { nl: '{t:Overdrogen|Overdrogen} laat PA vergelen: droog op zo’n {n:80} °C.', en: '{t:Over-drying|Over-drying} yellows PA: dry at about {n:80} °C.', cue: { Overdrogen: 'over' } },
       ],
@@ -536,7 +547,7 @@ const spec = {
         { nl: '{t:Vezeloriëntatie|Vezeloriëntatie}: de vezels gaan in de vloeirichting liggen.', en: '{t:Fibre orientation|Fibre orientation}: the fibres line up with the flow.', cue: { Vezeloriëntatie: 'fibre' } },
         { nl: '{t:Anisotrope krimp|Anisotrope krimp}: zo’n {n:0.3}% in de lengte, {n:0.7}% dwars.', en: '{t:Anisotropic shrinkage|Anisotropic shrinkage}: about {n:0.3}% along, {n:0.7}% across.', cue: { 'Anisotrope krimp': 'aniso' } },
         { nl: '{t:Recyclaat|Recyclaat} varieert per batch, ook in {t:Smeltindex|smeltindex}.', en: '{t:Recyclate|Recyclate} varies by batch, also in {t:Melt flow index|melt flow index}.', cue: { Recyclaat: 'recy', Smeltindex: 'mfi' } },
-        { nl: 'Vergelijk per stuk: {n:50} cm³ × {n:1.36} g/cm³ = {n:68} g.', en: 'Compare per part: {n:50} cm³ × {n:1.36} g/cm³ = {n:68} g.', read: { nl: '{n:68} g × € 4,00/kg ≈ € {n:0.272}', en: '{n:68} g × € 4.00/kg ≈ € {n:0.272}' } },
+        { nl: 'Vergelijk per stuk, niet per kilo: {n:50} cm³ × {n:1.36} g/cm³ = {n:68} g.', en: 'Compare per part, not per kilo: {n:50} cm³ × {n:1.36} g/cm³ = {n:68} g.', read: { nl: '{n:68} g × € 4,00/kg ≈ € {n:0.272}', en: '{n:68} g × € 4.00/kg ≈ € {n:0.272}' } },
       ],
     },
   ],
@@ -550,57 +561,57 @@ const spec = {
 // kilo, procent, millimeter); a term is named while its cue is lit.
 const SAY = [
   [ // s1 from pellet to part
-    { nl: 'Elk spuitgietproduct begint als korrels. Ze vallen uit de trechter in de verwarmde cilinder, en de schroef smelt ze.',
-      en: 'Every moulded part starts as pellets. They drop from the hopper into the heated barrel, and the screw melts them.' },
-    { nl: 'Spuitgietkunststoffen zijn thermoplasten: warm worden ze vloeibaar, koud weer vast, keer op keer, net als kaarsvet.',
-      en: 'Moulding plastics are thermoplastics: hot they turn liquid, cold they set again, over and over, like candle wax.' },
-    { nl: 'Vier zie je overal: PP voor doppen en kratten, ABS voor behuizingen, PA, nylon, voor sterke delen, en PC voor heldere lenzen.',
-      en: 'Four are everywhere: PP for caps and crates, ABS for housings, PA, nylon, for strong parts, and PC for clear lenses.' },
+    { nl: 'Elk spuitgietproduct begint als korrels. Ze vallen uit de trechter in de verwarmde cilinder en smelten daar.',
+      en: 'Every moulded part starts as pellets. They drop from the hopper into the heated barrel and melt there.' },
+    { nl: 'Het zijn thermoplasten: warm worden ze vloeibaar, koud weer vast, keer op keer, net als kaarsvet.',
+      en: 'They are thermoplastics: hot they turn liquid, cold they set again, over and over, like candle wax.' },
+    { nl: 'Vier zie je overal: PP voor doppen en kratten, ABS voor behuizingen, PA of nylon voor sterke delen, PC voor heldere lenzen.',
+      en: 'Four are everywhere: PP for caps and crates, ABS for housings, PA or nylon for strong parts, PC for clear lenses.' },
     { nl: 'Sommige korrels moeten eerst drogen; daarvoor staat deze droger naast de pers.',
       en: 'Some pellets must be dried first; that is what this dryer beside the press is for.' },
   ],
   [ // s2 moisture in the pellet
-    { nl: 'Een {t:Hygroscopisch|hygroscopische} kunststof neemt water op uit de lucht, zoals PA, PC, PET en PBT. PP neemt nauwelijks water op.',
-      en: 'A {t:Hygroscopic|hygroscopic} plastic absorbs water from the air, like PA, PC, PET and PBT. PP hardly takes up any.' },
-    { nl: 'De droger blaast heel droge, warme lucht door de korrels, meestal {n:2} tot {n:4} uur op {n:80} tot {n:120} graden.',
-      en: 'The dryer blows very dry, warm air through the pellets, typically {n:2} to {n:4} hours at {n:80} to {n:120} degrees.' },
+    { nl: 'Een {t:Hygroscopisch|hygroscopische} kunststof, zoals PA, PC, PET of PBT, neemt water op uit de lucht. PP nauwelijks.',
+      en: 'A {t:Hygroscopic|hygroscopic} plastic, such as PA, PC, PET or PBT, absorbs water from the air. PP hardly does.' },
+    { nl: 'De droger blaast droge, warme lucht door de korrels, meestal {n:2} tot {n:4} uur op {n:80} tot {n:120} graden.',
+      en: 'The dryer blows dry, warm air through the pellets, typically {n:2} to {n:4} hours at {n:80} to {n:120} degrees.' },
     { nl: 'Het display toont het {t:Dauwpunt|dauwpunt}: de temperatuur waarbij het vocht in de lucht zou condenseren. Min {n:40} graden is heel droog.',
       en: 'The display shows the {t:Dew point|dew point}: the temperature at which the moisture in the air would condense. Minus {n:40} degrees is very dry.' },
     { nl: 'De pers verbruikt {n:12} kilo per uur en dit nylon droogt {n:4} uur, dus moet er {n:48} kilo in de trechter. Er past {n:50} in.',
       en: 'The press uses {n:12} kilos an hour and this nylon dries for {n:4} hours, so the hopper must hold {n:48} kilos. It holds {n:50}.' },
-    { nl: 'Gooit de nachtdienst er {n:20} kilo natte korrels bij, dan zijn die in {n:1.7} uur op. Niets heeft {n:4} uur gedroogd: brosse beugels.',
-      en: 'If the night shift tips in {n:20} kilos of wet pellets, they are used up in {n:1.7} hours. None of it dried {n:4} hours: brittle brackets.' },
+    { nl: 'Loopt hij ’s nachts leeg en gaat er dan {n:20} kilo natte korrels in, dan zijn die in {n:1.7} uur op. Niets heeft {n:4} uur gedroogd: brosse beugels.',
+      en: 'If it runs empty at night and then {n:20} kilos of wet pellets go in, they are used up in {n:1.7} hours. None of it dried {n:4} hours: brittle brackets.' },
   ],
   [ // s3 splay, regrind and colour
-    { nl: 'Nat materiaal zie je soms als {t:Splay|splay}: zilverstrepen op het oppervlak. Erger zijn producten die er goed uitzien en later breken.',
-      en: 'Wet material sometimes shows as {t:Splay|splay}: silver streaks on the surface. Worse are parts that look fine and break later.' },
-    { nl: 'Via deze inlaat gaat {t:Maalgoed|maalgoed} terug: vermalen aanspuitingen en afkeur. Elke keer door de cilinder worden de moleculen korter, dus klanten staan vaak {n:10} tot {n:25} procent toe.',
-      en: 'Through this inlet {t:Regrind|regrind} goes back in: ground runners and rejects. Each pass through the barrel shortens the molecules, so customers often allow {n:10} to {n:25} percent.' },
+    { nl: 'Nat materiaal geeft soms {t:Splay|splay}: zilverstrepen. Erger zijn producten die er goed uitzien en later breken.',
+      en: 'Wet material sometimes gives {t:Splay|splay}: silver streaks. Worse are parts that look fine and break later.' },
+    { nl: 'Via deze inlaat gaat {t:Maalgoed|maalgoed} terug: vermalen aanspuitingen en afkeur. Elke keer door de cilinder verzwakt de kunststof, dus klanten staan vaak {n:10} tot {n:25} procent toe, soms niets.',
+      en: 'Through this inlet {t:Regrind|regrind} goes back in: ground runners and rejects. Each pass through the barrel weakens the plastic, so customers often allow {n:10} to {n:25} percent, sometimes none.' },
     { nl: 'De kleur komt meestal uit {t:Masterbatch|masterbatch}: geconcentreerde kleurkorrels, er gaat een paar procent bij.',
       en: 'The colour usually comes from {t:Masterbatch|masterbatch}: concentrated colour pellets, mixed in at a few percent.' },
-    { nl: 'Bij een kleurwissel moet je spoelen, en van zwart naar wit duurt dat lang. Plan dus van licht naar donker.',
-      en: 'A colour change means purging, and black to white takes long. So plan from light to dark.' },
+    { nl: 'Een kleurwissel betekent spoelen; zwart naar wit duurt lang, dus plan van licht naar donker.',
+      en: 'A colour change means purging; black to white takes long, so plan from light to dark.' },
   ],
   [ // s4 two families
-    { nl: 'Er zijn twee families. ABS en PC zijn amorf: ze stollen als glas. PP en PA zijn {t:Semi-kristallijn|semi-kristallijn}: ze vormen bij afkoelen piepkleine kristallen.',
-      en: 'There are two families. ABS and PC are amorphous: they set like glass. PP and PA are {t:Semi-crystalline|semi-crystalline}: they form tiny crystals as they cool.' },
-    { nl: 'Amorf krimpt zo’n {n:0.5} procent, semi-kristallijn vaak {n:1} tot {n:2} procent, en minder gelijkmatig. Daarom trekt het makkelijker krom.',
-      en: 'Amorphous shrinks about {n:0.5} percent, semi-crystalline often {n:1} to {n:2} percent, and less evenly. That is why it warps more easily.' },
+    { nl: 'ABS en PC zijn amorf: ze stollen als glas. PP en PA zijn {t:Semi-kristallijn|semi-kristallijn}: ze vormen bij afkoelen piepkleine kristallen.',
+      en: 'ABS and PC are amorphous: they set like glass. PP and PA are {t:Semi-crystalline|semi-crystalline}: they form tiny crystals as they cool.' },
+    { nl: 'Amorf krimpt zo’n {n:0.5} procent, semi-kristallijn vaak {n:1} tot {n:2} procent en minder gelijkmatig, dus trekt het makkelijker krom.',
+      en: 'Amorphous shrinks about {n:0.5} percent, semi-crystalline often {n:1} to {n:2} percent and less evenly, so it warps more easily.' },
   ],
   [ // s5 tangle or crystal
-    { nl: 'Kijk naar de ketens als de smelt afkoelt. In een {t:Amorf|amorfe} kunststof blijven ze kriskras verstrengeld; er is geen scherp smeltpunt.',
-      en: 'Watch the chains as the melt cools. In an {t:Amorphous|amorphous} plastic they stay tangled at random; there is no sharp melting point.' },
+    { nl: 'In een {t:Amorf|amorfe} kunststof blijven de ketens bij het afkoelen kriskras verstrengeld, zonder scherp smeltpunt.',
+      en: 'In an {t:Amorphous|amorphous} plastic the chains stay tangled at random as it cools, with no sharp melting point.' },
     { nl: 'Boven de {t:Glasovergangstemperatuur|glasovergangstemperatuur} wordt hij geleidelijk zacht, als warme toffee. Voor PC ligt die rond {n:145} graden.',
       en: 'Above the {t:Glass transition temperature|glass transition temperature} it softens gradually, like warm toffee. For PC that is around {n:145} degrees.' },
-    { nl: 'Een semi-kristallijne kunststof heeft wel een scherp smeltpunt, voor PA6 zo’n {n:220} graden. Daaronder stolt hij snel, dus spuit je hem snel in.',
+    { nl: 'Semi-kristallijn heeft wel een scherp smeltpunt, voor PA6 zo’n {n:220} graden. Daaronder stolt hij snel, dus spuit je hem snel in.',
       en: 'A semi-crystalline plastic does have a sharp melting point, about {n:220} degrees for PA6. Below it, it sets quickly, so you inject it fast.' },
-    { nl: 'Het deel dat kristalliseert heet de {t:Kristalliniteit|kristalliniteit}. Koelt het product langzamer, in een warmere matrijs, dan groeien er meer kristallen.',
-      en: 'The share that crystallises is the {t:Crystallinity|crystallinity}. When the part cools more slowly, in a warmer mould, more crystals grow.' },
+    { nl: 'Het deel dat kristalliseert heet de {t:Kristalliniteit|kristalliniteit}. Hoe langzamer het product afkoelt, in een warmere matrijs, hoe meer kristallen.',
+      en: 'The share that crystallises is the {t:Crystallinity|crystallinity}. The more slowly the part cools, in a warmer mould, the more crystals grow.' },
   ],
   [ // s6 shrinkage and the mould
-    { nl: 'Daarom freest de matrijzenmaker de holte groter. PP krimpt zo’n {n:1.5} procent: voor een product van {n:100} millimeter wordt de holte {n:101.5} millimeter.',
-      en: 'That is why the toolmaker cuts the cavity larger. PP shrinks about {n:1.5} percent: for a {n:100} millimetre part the cavity is {n:101.5} millimetres.' },
-    { nl: 'Spuit je ABS in die holte, dat zo’n {n:0.5} procent krimpt, dan komt het product op {n:101.0} millimeter: een millimeter te lang.',
+    { nl: 'De holte wordt groter gefreesd, met de krimp erbij. PP krimpt zo’n {n:1.5} procent: voor een product van {n:100} millimeter wordt de holte {n:101.5}.',
+      en: 'The cavity is cut larger, by the shrinkage. PP shrinks about {n:1.5} percent: for a {n:100} millimetre part the cavity is {n:101.5}.' },
+    { nl: 'Spuit je in die holte ABS, dat zo’n {n:0.5} procent krimpt, dan wordt het product {n:101.0} millimeter: een millimeter te lang.',
       en: 'Mould ABS in that cavity, which shrinks about {n:0.5} percent, and the part comes out at {n:101.0} millimetres: a millimetre too long.' },
     { nl: 'Uit een te koude matrijs groeien de kristallen nog dagen door. Door die {t:Nakrimp|nakrimp} past het product bij de pers wel, en bij de klant niet.',
       en: 'From a too-cold mould the crystals keep growing for days. Because of that {t:Post-shrinkage|post-shrinkage}, the part fits at the press but not at the customer.' },
@@ -608,34 +619,34 @@ const SAY = [
       en: 'Amorphous shrinks more evenly. Its weak spot is {t:Stress cracking|stress cracking}: frozen-in stress plus a cleaning agent gives fine cracks.' },
   ],
   [ // s7 what water does
-    { nl: 'Elke kunststof heeft een grens voor {t:Restvocht|restvocht}: voor PC maximaal {n:0.02} procent, voor PET {n:0.005}. Van een kilo is {n:0.02} procent maar {n:0.2} gram.',
-      en: 'Every plastic has a limit for {t:Residual moisture|residual moisture}: for PC at most {n:0.02} percent, for PET {n:0.005}. Of a kilo, {n:0.02} percent is just {n:0.2} grams.' },
+    { nl: 'Elke kunststof heeft een grens voor {t:Restvocht|restvocht}, typisch {n:0.02} procent voor PC en {n:0.005} voor PET. Van een kilo is {n:0.02} procent maar {n:0.2} gram.',
+      en: 'Every plastic has a limit for {t:Residual moisture|residual moisture}, typically {n:0.02} percent for PC and {n:0.005} for PET. Of a kilo, {n:0.02} percent is just {n:0.2} grams.' },
     { nl: 'In PC, PET en PBT geeft water {t:Hydrolyse|hydrolyse}: in de hete smelt knipt het de ketens door. Het product ziet er goed uit, maar is bros.',
       en: 'In PC, PET and PBT water causes {t:Hydrolysis|hydrolysis}: in the hot melt it cuts the chains. The part looks fine, but is brittle.' },
-    { nl: 'Te heet of te lang drogen kan ook: door {t:Overdrogen|overdrogen} vergeelt PA. Daarom droogt PA op zo’n {n:80} graden, niet op {n:120}.',
-      en: 'Too hot or too long is a risk too: {t:Over-drying|over-drying} turns PA yellow. That is why PA is dried at about {n:80} degrees, not {n:120}.' },
+    { nl: 'Ook {t:Overdrogen|overdrogen}, te heet of te lang, schaadt: PA vergeelt. Daarom droogt PA op zo’n {n:80} graden, niet op {n:120}.',
+      en: '{t:Over-drying|Over-drying}, too hot or too long, does harm too: PA turns yellow. That is why PA is dried at about {n:80} degrees, not {n:120}.' },
   ],
   [ // s8 measuring and the dryer
     { nl: 'De {t:Vochtmeter|vochtmeter} weegt een monster, verwarmt het en weegt opnieuw. Het gewichtsverlies is het vocht.',
       en: 'The {t:Moisture analyser|moisture analyser} weighs a sample, heats it and weighs it again. The weight loss is the moisture.' },
     { nl: 'Een monster PC van {n:20.000} gram weegt daarna {n:19.994}: {n:0.006} gram minder, {n:0.03} procent. Boven de grens van {n:0.02}, dus de lens mag niet draaien.',
       en: 'A PC sample of {n:20.000} grams then weighs {n:19.994}: {n:0.006} grams less, {n:0.03} percent. Above the {n:0.02} limit, so the lens must not run.' },
-    { nl: 'Voor grenzen zo laag als bij PET gebruikt het lab {t:Karl Fischer-titratie|Karl Fischer-titratie}, een chemische test die alleen op water reageert.',
-      en: 'For limits as low as PET’s, the lab uses {t:Karl Fischer titration|Karl Fischer titration}, a chemical test that reacts only to water.' },
-    { nl: 'In de torens haalt het {t:Droogmiddel|droogmiddel} het water uit de lucht. Is het verzadigd, dan kruipt het dauwpunt omhoog, hier naar min vijftien.',
-      en: 'In the towers the {t:Desiccant|desiccant} takes the water out of the air. Once it is saturated, the dew point creeps up, here to minus fifteen.' },
+    { nl: 'Voor de lage grens van PET gebruikt het lab {t:Karl Fischer-titratie|Karl Fischer-titratie}, een chemische test die alleen op water reageert.',
+      en: 'For PET’s low limit, the lab uses {t:Karl Fischer titration|Karl Fischer titration}, a chemical test that reacts only to water.' },
+    { nl: 'Het {t:Droogmiddel|droogmiddel} in de torens haalt het water uit de lucht en wordt om beurten geregenereerd. Raakt het verzadigd, dan kruipt het dauwpunt omhoog, naar min vijftien. Check ook temperatuur, luchtdebiet en droogtijd.',
+      en: 'The {t:Desiccant|desiccant} in the towers takes the water out of the air and is regenerated in turn. Once it is saturated, the dew point creeps up, to minus fifteen. Check temperature, airflow and drying time too.' },
   ],
   [ // s9 glass fibre and recyclate
-    { nl: 'Glasvezel, bij GF30 {n:30} procent, maakt een kunststof veel stijver. Maar het glas slijpt schroef, cilinder en matrijs: {t:Abrasie|abrasie}.',
-      en: 'Glass fibre, {n:30} percent in GF30, makes a plastic much stiffer. But the glass wears screw, barrel and mould: {t:Abrasion|abrasion}.' },
-    { nl: 'Tijdens het vullen gaan de vezels in de stroming liggen. Die {t:Vezeloriëntatie|vezeloriëntatie} volgt het vloeifront vanaf het aanspuitpunt.',
-      en: 'While the mould fills, the fibres line up with the flow. That {t:Fibre orientation|fibre orientation} follows the flow front from the gate.' },
-    { nl: 'In de vloeirichting krimpt het product dan veel minder dan dwars, zo’n {n:0.3} tegen {n:0.7} procent. Die {t:Anisotrope krimp|anisotrope krimp} laat glasgevulde producten kromtrekken.',
-      en: 'Along the flow the part then shrinks much less than across it, about {n:0.3} against {n:0.7} percent. That {t:Anisotropic shrinkage|anisotropic shrinkage} makes glass-filled parts warp.' },
-    { nl: '{t:Recyclaat|Recyclaat} is kunststof uit afval, opnieuw tot korrels gemaakt. De {t:Smeltindex|smeltindex}, hoe makkelijk de smelt vloeit, verschilt per batch. Vraag dus om de spreiding.',
-      en: '{t:Recyclate|Recyclate} is plastic made from waste, pelletised again. The {t:Melt flow index|melt flow index}, how easily the melt flows, differs per batch. So ask for the spread.' },
-    { nl: 'Vergelijk per stuk: een beugel van {n:50} kubieke centimeter, dichtheid {n:1.36}, weegt {n:68} gram. Bij vier euro per kilo is dat zo’n {n:0.272} euro.',
-      en: 'Compare per part: a {n:50} cubic centimetre bracket at a density of {n:1.36} weighs {n:68} grams. At four euros a kilo that is about {n:0.272} euros.' },
+    { nl: 'Glasvezel maakt een kunststof veel stijver; GF30 bevat er {n:30} procent van. Maar het glas slijpt schroef, cilinder en matrijs: {t:Abrasie|abrasie}.',
+      en: 'Glass fibre makes a plastic much stiffer; GF30 holds {n:30} percent of it. But the glass wears screw, barrel and mould: {t:Abrasion|abrasion}.' },
+    { nl: 'Bij het vullen gaan de vezels vanaf het aanspuitpunt in de stroming liggen: de {t:Vezeloriëntatie|vezeloriëntatie}.',
+      en: 'While the mould fills, the fibres line up with the flow from the gate: the {t:Fibre orientation|fibre orientation}.' },
+    { nl: 'In de vloeirichting krimpt het product veel minder dan dwars, zo’n {n:0.3} tegen {n:0.7} procent. Die {t:Anisotrope krimp|anisotrope krimp} laat het kromtrekken, dus het aanspuitpunt bepaalt hoe.',
+      en: 'Along the flow the part shrinks much less than across it, about {n:0.3} against {n:0.7} percent. That {t:Anisotropic shrinkage|anisotropic shrinkage} makes it warp, so the gate decides how.' },
+    { nl: '{t:Recyclaat|Recyclaat} is kunststof uit afval, opnieuw tot korrels gemaakt. De {t:Smeltindex|smeltindex}, hoe makkelijk de smelt vloeit, verschilt per batch. Vraag dus de spreiding, niet alleen het gemiddelde.',
+      en: '{t:Recyclate|Recyclate} is plastic made from waste, pelletised again. The {t:Melt flow index|melt flow index}, how easily the melt flows, differs per batch. So ask for the spread, not just the average.' },
+    { nl: 'Vergelijk per stuk, niet per kilo, want de dichtheid telt mee. Een beugel van {n:50} kubieke centimeter, dichtheid {n:1.36}, weegt {n:68} gram; bij vier euro per kilo zo’n {n:0.272} euro.',
+      en: 'Compare per part, not per kilo, because density counts. A {n:50} cubic centimetre bracket at a density of {n:1.36} weighs {n:68} grams; at four euros a kilo that is about {n:0.272} euros.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
