@@ -55,8 +55,12 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Dit is MIG/MAG-lassen. Bij MAG, voor staal, bij TIG 0,6. Het product mag eruit.'], 'nl'), 'Dit is M I G MAG-lassen. Bij M A G, voor staal, bij T I G 0,6. Het product mag eruit.');
   // no "slash" or "ampersand" in the go/no-go gauge and gauge R&R
   assert.equal(speakOf(['Gaat/gaat-niet: een vast kaliber. Een gauge R&R.'], 'nl'), 'Gaat, gaat niet: een vast kaliber. Een gauge R en R.');
-  assert.equal(speakOf(['De I/O, de lijn-OEE, een MES en de CE-markering.'], 'nl'), 'De I O, de lijn-O E E, een M E S en de C E-markering.');
-  assert.equal(speakOf(['The I/O, the line OEE, an MES and the CE marking.'], 'en'), 'The I O, the line O E E, an M E S and the C E marking.');
+  // I/O, OEE, MES and (in Dutch) HMI as letters; CE stays, espeak-ng already spells it
+  assert.equal(speakOf(['De I/O, de lijn-OEE, een MES, de HMI en de CE-markering.'], 'nl'), 'De I O, de lijn-O E E, een M E S, de H M I en de CE-markering.');
+  assert.equal(speakOf(['The I/O, the line OEE, an MES, the HMI and the CE marking.'], 'en'), 'The I O, the line O E E, an M E S, the HMI and the CE marking.');
+  // machine states and the Pareto chart in a Dutch spelling; English keeps them
+  assert.equal(speakOf(['Starved of blocked, in een paretodiagram.'], 'nl'), 'Staarft of blokt, in een pareto-diagram.');
+  assert.equal(speakOf(['Starved or blocked, in a Pareto chart.'], 'en'), 'Starved or blocked, in a Pareto chart.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');

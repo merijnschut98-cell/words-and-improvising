@@ -284,8 +284,9 @@ const STAGE = (() => {
     return out;
   }
   // the ISO 13849-1 risk graph: S, F, P → PL a … e
+  // leaves in the order S1F1P1 … S2F2P2, from the model (build.mjs, RISK)
   const LEAF = [56, 100, 144, 188, 232, 276, 320, 364];
-  const PL = ['a', 'b', 'b', 'c', 'c', 'd', 'd', 'e'];
+  const PL = C.PL;
   function riskSvg(prog, leaf) {
     let out = rect(330, 8, 302, 388);
     const fy = [0, 1, 2, 3].map((i) => (LEAF[2 * i] + LEAF[2 * i + 1]) / 2);
@@ -297,9 +298,10 @@ const STAGE = (() => {
     const xP = 518;
     const path = (i) => { const f = i >> 1; const s = f >> 1; return [[xR, ry], [xS, ry], [xS, sy[s]], [xF, sy[s]], [xF, fy[f]], [xP, fy[f]], [xP, LEAF[i]], [560, LEAF[i]]]; };
     for (let i = 0; i < 8; i++) out += `<path class="lc-dim" d="${fmt(path(i))}"/>`;
-    out += txt(xS - 6, 36, 'S', 21, 'middle', 'lc-mute') + txt(xF - 6, 36, 'F', 21, 'middle', 'lc-mute') + txt(xP - 6, 36, 'P', 21, 'middle', 'lc-mute');
+    out += txt(xS - 6, 30, 'S', 21, 'middle', 'lc-mute') + txt(xF - 6, 30, 'F', 21, 'middle', 'lc-mute') + txt(xP - 6, 30, 'P', 21, 'middle', 'lc-mute');
     [['1', sy[0]], ['2', sy[1]]].forEach(([t, y]) => { out += txt(xS + 8, y - 6, t, 20, 'start', 'lc-mute'); });
     fy.forEach((y, i) => { out += txt(xF + 8, y - 6, String(1 + (i % 2)), 20, 'start', 'lc-mute'); });
+    LEAF.forEach((y, i) => { out += txt(xP + 8, y - 6, String(1 + (i % 2)), 20, 'start', 'lc-mute'); });
     LEAF.forEach((y, i) => {
       const on = leaf === i && prog > 0.99;
       out += txt(570, y + 7, `PL ${PL[i]}`, 21, 'start', on ? 'lc-on' : 'lc-mute');
@@ -334,11 +336,13 @@ const STAGE = (() => {
     out += txt(26, 364, tr('lijn-OEE', 'line OEE'), 21, 'start', 'lc-txt') + txt(248, 368, `${Math.round(oee)}%`, 40, 'end', 'lc-big');
     return out;
   }
-  function tagsSvg(a, legend) {
+  // stopped: the labeller is in a micro-stop now; a "stop" flag beside its tag
+  function tagsSvg(a, legend, stopped) {
     let out = '';
     C.MACH.forEach((cx, i) => {
       const [x, y] = toStage([cx + 16, -56, 100]);
       out += `<circle class="${i === 3 && legend === 2 ? 'lc-row' : 'lc-panel'}" cx="${f1(x)}" cy="${f1(y)}" r="15"/>` + txt(x, y + 7.5, String(i + 1), 21, 'middle', 'lc-big');
+      if (i === 3 && stopped) out += rect(x + 20, y - 38, 62, 30, 'lc-row', 6) + txt(x + 51, y - 16, 'stop', 20, 'middle', 'lc-txt');
     });
     if (legend) {
       out += rect(276, 12, 352, 50);
@@ -368,7 +372,7 @@ const STAGE = (() => {
         x += w;
       }
     });
-    const keys = [[0, tr('draaien', 'running')], [1, tr('storing', 'faulted')], [2, 'starved'], [3, 'blocked'], [4, tr('rest', 'other')]];
+    const keys = [[0, tr('draaien', 'running')], [1, tr('storing', 'faulted')], [2, 'starved'], [3, 'blocked'], [4, tr('overig', 'other')]];
     let lx = 26;
     for (const [s, t] of keys) {
       out += `<rect class="lc-s${s}" x="${lx}" y="${364}" width="18" height="18"/>` + txt(lx + 24, 380, t, 21, 'start', 'lc-mute');
@@ -537,8 +541,8 @@ const STAGE = (() => {
       lift = 0.5 + 0.5 * Math.sin(te * 0.8);
       st.leds.ds = open < 0.02 ? 1 : 0;
       vis.risk = b === 1 || b === 2 ? span(p, 0, 0.1) + (b === 2 ? 1 : 0) : 0;
-      if (vis.risk > 0.01) set(E.risk, riskSvg(b === 2 ? span(p, 0.05, 0.4) - 0 : 0, b === 2 ? (p > 0.55 ? 7 : 5) : -1));
-      if (b === 2 && p > 0.55) set(E.risk, riskSvg(span(p, 0.6, 0.85), 7));
+      if (vis.risk > 0.01) set(E.risk, riskSvg(b === 2 ? span(p, 0.05, 0.4) : 0, b === 2 ? (p > 0.55 ? C.LEAF_E : C.LEAF_D) : -1));
+      if (b === 2 && p > 0.55) set(E.risk, riskSvg(span(p, 0.6, 0.85), C.LEAF_E));
       vis.reg = b === 3 ? span(p, 0.35, 0.5) : 0;
       if (vis.reg > 0.01) set(E.reg, regSvg());
     } else if (si === 5 || si === 6) {
@@ -546,12 +550,12 @@ const STAGE = (() => {
       const running = labRunning(clockS);
       if (si === 5) {
         vis.tags = span(u, 0, 0.04);
-        set(E.tags, tagsSvg(1, b === 0 ? 1 : b === 2 ? 2 : 0));
+        set(E.tags, tagsSvg(1, b === 0 ? 1 : b === 2 ? 2 : 0, b >= 2 && !running));
         vis.oee = b >= 1 ? (b === 1 ? span(p, 0, 0.15) : 1) : 0;
         if (vis.oee > 0.01) set(E.oee, oeeSvg(b === 1 ? lerp(92, 58, span(p, 0.4, 0.8)) : 58));
       } else {
         vis.tags = 1;
-        set(E.tags, tagsSvg(1, b >= 2 ? 2 : 0));
+        set(E.tags, tagsSvg(1, b >= 2 ? 2 : 0, !running));
         vis.states = span(u, 0, 0.03);
         set(E.states, statesSvg(b === 0 ? span(p, 0.1, 0.9) : 1, b >= 2));
       }
