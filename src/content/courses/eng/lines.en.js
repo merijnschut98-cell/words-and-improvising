@@ -4,6 +4,7 @@ export default {
     {
       id: 'eng.lines.linebasics',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Reading a line: stations, cycle time and transport',
       pre: [
         {
@@ -75,6 +76,7 @@ export default {
     {
       id: 'eng.lines.layout',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Line types, buffers and inspection',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     {
       id: 'eng.lines.buffers',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Sizing buffers: blocking, starving and refilling',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     {
       id: 'eng.lines.simulation',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Line simulation, Little’s law and ramp-up',
       pre: [
         {
@@ -285,6 +289,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'What a robot is: axes, gripper and teach pendant',
       pre: [
@@ -354,6 +359,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Robots: types, reach and safety',
       pre: [
@@ -425,6 +431,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Designing a robot cell: cycle, feeding and safety distance',
       pre: [
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programming and when a cobot fits',
       pre: [
@@ -569,6 +577,7 @@ export default {
     {
       id: 'eng.lines.errors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Why people make mistakes, and poka-yoke',
       pre: [
         {
@@ -638,6 +647,7 @@ export default {
     {
       id: 'eng.lines.pokayoke',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Error-proofing with sensors and fixtures',
       pre: [
         {
@@ -709,6 +719,7 @@ export default {
     {
       id: 'eng.lines.sensors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Choosing and validating sensors for error-proofing',
       pre: [
         {
@@ -779,6 +790,7 @@ export default {
     {
       id: 'eng.lines.detection',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Error-proofing as a strategy: PFMEA, escapes and daily checks',
       pre: [
         {

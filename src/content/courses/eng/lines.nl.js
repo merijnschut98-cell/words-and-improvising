@@ -4,6 +4,7 @@ export default {
     {
       id: 'eng.lines.linebasics',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Een lijn lezen: stations, cyclustijd en transport',
       pre: [
         {
@@ -75,6 +76,7 @@ export default {
     {
       id: 'eng.lines.layout',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Lijntypes, buffers en inspectie',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     {
       id: 'eng.lines.buffers',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Buffers dimensioneren: blocked, starved en bijvullen',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     {
       id: 'eng.lines.simulation',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Lijnsimulatie, de wet van Little en opstarten',
       pre: [
         {
@@ -285,6 +289,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Wat een robot is: assen, grijper en teach pendant',
       pre: [
@@ -354,6 +359,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Robots: types, bereik en veiligheid',
       pre: [
@@ -425,6 +431,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Een robotcel ontwerpen: cyclus, aanvoer en veiligheidsafstand',
       pre: [
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programmeren en wanneer een cobot past',
       pre: [
@@ -569,6 +577,7 @@ export default {
     {
       id: 'eng.lines.errors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Waarom mensen zich vergissen, en poka-yoke',
       pre: [
         {
@@ -638,6 +647,7 @@ export default {
     {
       id: 'eng.lines.pokayoke',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Foutvrij maken met sensoren en mallen',
       pre: [
         {
@@ -709,6 +719,7 @@ export default {
     {
       id: 'eng.lines.sensors',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Sensoren kiezen en valideren voor foutvrij maken',
       pre: [
         {
@@ -779,6 +790,7 @@ export default {
     {
       id: 'eng.lines.detection',
       figure: 'eng.lines.pokayoke',
+      film: 'eng.lines.errorproof',
       title: 'Foutvrij maken als strategie: PFMEA, escapes en dagelijkse checks',
       pre: [
         {

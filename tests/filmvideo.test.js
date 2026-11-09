@@ -58,6 +58,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['De I/O, de lijn-OEE, een MES en de CE-markering.'], 'nl'), 'De I O, de lijn-O E E, een M E S en de C E-markering.');
   assert.equal(speakOf(['The I/O, the line OEE, an MES and the CE marking.'], 'en'), 'The I O, the line O E E, an M E S and the C E marking.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
+  // English robot words in Dutch said as on the floor; English keeps them
+  assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
+  assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');
 });
 
 // ------------------------------------------------------------ WAV files
