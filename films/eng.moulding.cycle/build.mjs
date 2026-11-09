@@ -685,8 +685,8 @@ const css = `
 .fp-runline{opacity:0}
 .fp-meltline{fill:none;stroke:var(--fp-melt);stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 .fp-pool{fill:var(--fp-melt);stroke:none;opacity:.8}
-.fp-bar-bg{fill:var(--anatomy-shade-1);stroke:none}
-.fp-bar-fill{fill:var(--anatomy-mid);stroke:none;opacity:.55}
+.fp-meter-bg{fill:var(--anatomy-shade-1);stroke:none}
+.fp-meter-fill{fill:var(--anatomy-mid);stroke:none;opacity:.55}
 .fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
 .fp-coin-face{fill:var(--anatomy-face)}
 [data-cue][data-on] .fp-hatch{stroke:var(--fp-accent)}
@@ -695,7 +695,7 @@ const css = `
 [data-cue][data-on] .fp-meltline,[data-cue][data-on] .fp-pool{fill:var(--fp-accent);stroke:var(--fp-accent);opacity:.45}
 [data-cue][data-on] .fp-meltline{fill:none}
 [data-cue][data-on] .fp-runline{opacity:1}
-[data-cue][data-on] .fp-bar-fill{fill:var(--fp-accent);opacity:.75}
+[data-cue][data-on] .fp-meter-fill{fill:var(--fp-accent);opacity:.75}
 [data-cue][data-on] .mc-well{fill:var(--anatomy-lit-shade)}
 [data-cue][data-on] .iso-face-text{fill:var(--fp-accent)}
 .tb-body{fill:var(--anatomy-shade-2)}

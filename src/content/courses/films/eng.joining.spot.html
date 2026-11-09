@@ -242,7 +242,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp-grid{fill:none;stroke:var(--fp-hair);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-zone{fill:var(--anatomy-lo);opacity:.45}
 .fp-zone2{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
-.fp-bar{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-meter{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-fill{fill:var(--anatomy-mid);opacity:.6}
 .fp-paper{fill:var(--anatomy-top);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-print{fill:var(--anatomy-hi);opacity:.82}
@@ -251,7 +251,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp-glow2{stop-color:var(--fp-hot);stop-opacity:0}
 .iso[data-theme="light"] .fp-glow1{stop-color:var(--anatomy-lo);stop-opacity:.35}
 .iso[data-theme="light"] .fp-glow2{stop-color:var(--anatomy-lo);stop-opacity:0}
-[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-bar,[data-cue][data-on] .fp-paper,[data-cue][data-on] .fp-disp,[data-cue][data-on] .fp-panel{stroke:var(--fp-accent);stroke-width:1.8}
+[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-meter,[data-cue][data-on] .fp-paper,[data-cue][data-on] .fp-disp,[data-cue][data-on] .fp-panel{stroke:var(--fp-accent);stroke-width:1.8}
 [data-cue][data-on] .fp-nug,[data-cue][data-on] .fp-nugc,[data-cue][data-on] .fp-cu,[data-cue][data-on] .fp-steel,[data-cue][data-on] .fp-steel2{stroke:var(--fp-accent);stroke-width:2}
 [data-cue][data-on] .fp-trace,[data-cue][data-on] .fp-cur,[data-cue][data-on] .fp-flow,[data-cue][data-on] .fp-spark,[data-cue][data-on] .fp-zone2,[data-cue][data-on] .fp-hatch{stroke:var(--fp-accent)}
 [data-cue][data-on] .fp-zone,[data-cue][data-on] .fp-fill,[data-cue][data-on] .fp-print{fill:var(--fp-accent)}
@@ -331,12 +331,16 @@ const SAY = {
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
+    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
+    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
     [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3']],
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one']],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -2566,8 +2570,8 @@ const STAGE = (() => {
     const g1 = lerp(50, 55, span(p, 0.2, 0.6));
     const g2 = lerp(50, 60.5, span(p, 0.2, 0.6));
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-grid" d="${line(x + 14, yb, x + w - 14, yb)}"/>`
-      + bar(x + 30, 50, '100', 'fp-bar') + bar(x + 66, g1, `${Math.round(100 + 10 * span(p, 0.2, 0.6))}`, 'fp-fill')
-      + bar(x + 160, 50, '100', 'fp-bar') + bar(x + 196, g2, `${Math.round(100 + 21 * span(p, 0.2, 0.6))}`, 'fp-fill')
+      + bar(x + 30, 50, '100', 'fp-meter') + bar(x + 66, g1, `${Math.round(100 + 10 * span(p, 0.2, 0.6))}`, 'fp-fill')
+      + bar(x + 160, 50, '100', 'fp-meter') + bar(x + 196, g2, `${Math.round(100 + 21 * span(p, 0.2, 0.6))}`, 'fp-fill')
       + txt(x + 63, yb + 18, tr('stroom', 'current'), 16, 'middle', 'fp-small') + txt(x + 193, yb + 18, tr('warmte', 'heat'), 16, 'middle', 'fp-small'));
   }
   function stepperSvg(box, p, o, tag) {
@@ -2627,7 +2631,7 @@ const STAGE = (() => {
     const lift = span(p, 0, 1);
     const parts = [];
     parts.push(rect(bx, by + 60, len, t, 'fp-steel', 1)); // lower strip
-    parts.push(rect(bx - 8, by + 52, 26, 24, 'fp-bar', 3)); // vice jaw
+    parts.push(rect(bx - 8, by + 52, 26, 24, 'fp-meter', 3)); // vice jaw
     const curl = [];
     const r0 = 50;
     for (let i = 0; i <= 16; i++) {
@@ -2689,7 +2693,7 @@ const STAGE = (() => {
       `<path class="fp-steel" d="M${Dp.x + 20} ${dy + 4}L${Dp.x + 270} ${dy + 4}L${Dp.x + 270} ${dy + 12}L${Dp.x + 20} ${dy + 12}Z"/>`
       + `<path class="fp-steel2" d="M${Dp.x + 20} ${dy - 4}L${Dp.x + 170} ${dy - 4}L${f1(Dp.x + 270)} ${f1(dy - 4 - gap)}L${f1(Dp.x + 270)} ${f1(dy - 12 - gap)}L${Dp.x + 170} ${dy - 12}L${Dp.x + 20} ${dy - 12}Z"/>`
       + `<rect class="fp-nugc" x="${Dp.x + 160}" y="${dy - 4}" width="20" height="8" rx="3"/>`
-      + `<path class="fp-bar" d="M${f1(wx + 80)} ${f1(dy - 20)}L${f1(wx)} ${dy}L${f1(wx + 80)} ${f1(dy + 4)}Z"/>`, oD));
+      + `<path class="fp-meter" d="M${f1(wx + 80)} ${f1(dy - 20)}L${f1(wx)} ${dy}L${f1(wx + 80)} ${f1(dy + 4)}Z"/>`, oD));
     const oE = k === 4 ? span(p, 0.05, 0.2) : 0;
     const ex = 20;
     const ey = 214;
