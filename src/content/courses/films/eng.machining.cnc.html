@@ -306,12 +306,16 @@ const SAY = {
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
+    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
+    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
     [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3']],
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one']],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -323,11 +327,14 @@ const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('
 // length of each beat's recorded line (s). Each scene opens with a short look
 // before the first line (the film itself with a longer lead), lines follow with
 // a breath in between, and a scene holds a moment after its last line.
-// The pauses of the narration, all in one place (seconds). Each phrase (up to
-// a comma) and sentence is recorded as its own clip (films/_kit/narrate.mjs):
-// comma after a phrase, sentence after a full stop, beat between two lines.
-const PAUSES = { comma: 0.2, sentence: 0.55, beat: 0.9 };
-const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: 0.8, tail: 1.6 };
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
 function audioTimeline(durs, gaps = AUDIO_GAPS) {
   const g = { ...AUDIO_GAPS, ...gaps };
   const scenes = [];

@@ -238,30 +238,30 @@
     "eng.machining.cnc": {
       "poster": "src/content/courses/films/eng.machining.cnc.jpg",
       "nl": {
-        "dur": 311.1,
-        "bytes": 12088736,
+        "dur": 244.3,
+        "bytes": 9862580,
         "scenes": [
           0,
-          38.15,
-          82,
-          113.6,
-          175.22,
-          228.17,
-          268.07
+          30.66,
+          65.37,
+          90.33,
+          138.26,
+          179.74,
+          209.82
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.nl.vtt"
       },
       "en": {
-        "dur": 286.6,
-        "bytes": 11468559,
+        "dur": 270.9,
+        "bytes": 10876383,
         "scenes": [
           0,
-          32.74,
-          73.97,
-          103.36,
-          161.15,
-          212.11,
-          247.54
+          30.77,
+          69.84,
+          98.23,
+          152.74,
+          201.45,
+          234.13
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
       }
