@@ -4,7 +4,7 @@
 // unheard again. films/_kit/render.mjs runs it on every full render and
 // refuses to finish when it fails.
 //
-//   node films/_kit/listen-guard.mjs <film id> [--lang nl] [--audio file.mp4|.wav] [--wer small|large-v3-turbo|off]
+//   node films/_kit/listen-guard.mjs <film id> [--lang nl] [--audio file.mp4|.wav] [--wer large-v3-turbo|small|off]
 //
 // Reads films-out/<id>/<lang>.timing.json (the sentence clips and their word
 // timing, from narrate.mjs), films-out/<id>/<lang>.vtt and the audio (the MP4
@@ -137,7 +137,7 @@ function decode(file, rate = 16000) {
 }
 
 // The guard on a film's rendered track. wer: a faster-whisper model name, or 'off'.
-export function runGuard(id, lang, { audio = null, wer = process.env.FILM_GUARD_WER || 'small', log = console.log } = {}) {
+export function runGuard(id, lang, { audio = null, wer = process.env.FILM_GUARD_WER || 'large-v3-turbo', log = console.log } = {}) {
   const dir = join(ROOT, 'films-out', id);
   const timing = JSON.parse(readFileSync(join(dir, `${lang}.timing.json`), 'utf8'));
   if (!timing.sentences || !timing.sentences[0] || !timing.sentences[0].words) throw new Error(`${id} ${lang}: timing without word timing: narrate it again`);
@@ -166,8 +166,8 @@ export function runGuard(id, lang, { audio = null, wer = process.env.FILM_GUARD_
 if (process.argv[1] && process.argv[1].endsWith('listen-guard.mjs')) {
   const id = process.argv[2];
   const arg = (n, d) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : d; };
-  if (!id) { console.error('usage: node films/_kit/listen-guard.mjs <film id> [--lang nl] [--audio file] [--wer small|large-v3-turbo|off]'); process.exit(2); }
+  if (!id) { console.error('usage: node films/_kit/listen-guard.mjs <film id> [--lang nl] [--audio file] [--wer large-v3-turbo|small|off]'); process.exit(2); }
   let ok = true;
-  for (const lang of arg('--lang', 'nl').split(',')) ok = runGuard(id, lang, { audio: arg('--audio', null), wer: arg('--wer', process.env.FILM_GUARD_WER || 'small') }).ok && ok;
+  for (const lang of arg('--lang', 'nl').split(',')) ok = runGuard(id, lang, { audio: arg('--audio', null), wer: arg('--wer', process.env.FILM_GUARD_WER || 'large-v3-turbo') }).ok && ok;
   process.exit(ok ? 0 : 1);
 }

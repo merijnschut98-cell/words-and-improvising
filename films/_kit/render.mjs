@@ -19,8 +19,8 @@
 // After a full render the listen guard (films/_kit/listen-guard.mjs) checks the
 // MP4's sound: silences inside sentences, full-stop pauses, every cue against
 // the words spoken in its span, and the Whisper word error rate when
-// faster-whisper is installed ($FILM_GUARD_WER: small by default,
-// large-v3-turbo, or off). When it fails the render stops with exit code 1 and
+// faster-whisper is installed ($FILM_GUARD_WER: large-v3-turbo by default,
+// small, or off). When it fails the render stops with exit code 1 and
 // writes no manifest or poster. --local (a trial render for a listen) writes
 // only films-out: no poster, no manifest.
 import { spawn, spawnSync, execSync } from 'node:child_process';

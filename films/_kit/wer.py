@@ -82,7 +82,32 @@ def words(text, lang):
             out[-1] += w
         else:
             out.append(w)
+    return [UNITS.get(w, w) for w in out]
+
+
+# units Whisper writes as symbols where the voice said the word
+UNITS = {'mm': 'millimeter', 'cm': 'centimeter', 'µm': 'micrometer', 'um': 'micrometer'}
+
+
+def glue(a, b):
+    """Spacing is no word error: two words of a whose concatenation is a word of
+    b become one ("snij snelheid" = "snijsnelheid", "middengaat" = "midden gaat")."""
+    other = set(b)
+    out = []
+    for w in a:
+        if out and out[-1] + w in other and out[-1] not in ('', ) and (out[-1] not in other or w not in other):
+            out[-1] += w
+        else:
+            out.append(w)
     return out
+
+
+def score(ref, hyp, lang):
+    """WER of hyp against ref (texts), and the reference's word count."""
+    rw, hw = words(ref, lang), words(hyp, lang)
+    hw = glue(hw, rw)
+    rw = glue(rw, hw)
+    return wer(rw, hw), len(words(ref, lang))
 
 
 def wer(ref, hyp):
@@ -105,8 +130,8 @@ def main():
     segs, _ = asr.transcribe(pcm, language=lang, beam_size=5, condition_on_previous_text=False, vad_filter=True)
     hyp = ' '.join(s.text for s in segs).strip()
     ref = open(ref_file, encoding='utf-8').read()
-    rw, hw = words(ref, lang), words(hyp, lang)
-    print(json.dumps({'wer': round(float(wer(rw, hw)), 4), 'ref_words': len(rw), 'hyp': hyp}, ensure_ascii=False))
+    w, n = score(ref, hyp, lang)
+    print(json.dumps({'wer': round(float(w), 4), 'ref_words': n, 'hyp': hyp}, ensure_ascii=False))
 
 
 if __name__ == '__main__':
