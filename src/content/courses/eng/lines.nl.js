@@ -850,6 +850,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
+      film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Meerdere producten op één lijn: varianten en wat ze kosten',
       pre: [
@@ -919,6 +920,7 @@ export default {
     },
     {
       id: 'eng.lines.linechange',
+      film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Omstellen op een geautomatiseerde lijn: recepten, formaatdelen en SMED',
       pre: [
@@ -988,6 +990,7 @@ export default {
     },
     {
       id: 'eng.lines.mixed',
+      film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Mixed-model lijnen',
       pre: [
@@ -1060,6 +1063,7 @@ export default {
     },
     {
       id: 'eng.lines.sequencing',
+      film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Volgorde en heijunka: het werk op een lijn egaliseren',
       pre: [
