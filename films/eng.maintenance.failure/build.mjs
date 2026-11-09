@@ -389,6 +389,9 @@ const world = [
   ...halo,
   ...R.items.map((item) => `<g data-n="${item.name}"${item.attrs ?? ''}>${item.svg}</g>`),
   `<path class="mf-ping" data-k="ping" d="${k.ring(STUD[0], STUD[1], 3.4, STUD[2] + 3.6, P, 32)}"/>`,
+  // markers for the two small cued parts: at the chart scenes' camera the pump set is about 60 px wide at
+  // 390 px, so a lit stud or sight glass alone is a dot; stage.js keeps each ring a fixed size on screen
+  ...[['stud', STUD_TOP], ['sight', at([-31, 8.65, ZC])]].map(([c, [x, y]]) => `<g data-cue="${c}"><circle class="mf-mark" data-k="mk-${c}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="0"/></g>`),
   `<g data-k="wisps">${[0, 1, 2, 3].map(() => `<circle class="mf-wisp" cx="${STUD_TOP[0].toFixed(1)}" cy="${STUD_TOP[1].toFixed(1)}" r="0" style="opacity:0"/>`).join('')}</g>`,
 ].join('');
 
@@ -500,13 +503,13 @@ const spec = {
         { nl: 'De tandwielkast van de bottleneckpers: €{n:60000} nieuw, {n:10} weken levertijd.', en: 'The bottleneck press gearbox: €{n:60000} new, {n:10} weeks delivery.', cues: ['choice'] },
         { nl: 'Stukdraaien legt de fabriek wekenlang stil. Een trillingsronde ziet lagerschade maanden vooraf.', en: 'Running it to failure stops the plant for weeks. A vibration route spots bearing damage months early.', cues: ['choice', 'stud'] },
         { nl: 'Een bandmotor van €{n:400}, reserve op de plank, {n:15} minuten wisselen: laat hem draaien.', en: 'A conveyor motor at €{n:400}, a spare on the shelf, {n:15} minutes to swap: let it run.', cues: ['choice'] },
-        { nl: '{t:RCM|RCM}: per asset en faalwijze kiezen op wat de storing kost. Goede fabrieken plannen {n:85}% van de uren.', en: '{t:RCM|RCM}: choose per asset and failure mode by what the failure costs. Good plants plan {n:85}% of the hours.', cue: { RCM: 'choice' } },
+        { nl: '{t:RCM|RCM}: per asset en faalwijze kiezen op wat de storing kost. Goede fabrieken plannen {n:85}% of meer van de uren.', en: '{t:RCM|RCM}: choose per asset and failure mode by what the failure costs. Good plants plan {n:85}% or more of the hours.', cue: { RCM: 'choice' } },
       ],
     },
     {
       id: 's3', lesson: FAIL, level: 2, dur: DUR[2], still: 0.92, title: { nl: 'De badkuipkromme', en: 'The bathtub curve' },
       beats: [
-        { nl: 'De {t:Badkuipkromme|badkuipkromme}: de faalkans van een onderdeel tegen zijn leeftijd.', en: 'The {t:Bathtub curve|bathtub curve}: a part’s failure rate against its age.', cue: { Badkuipkromme: 'tubC' } },
+        { nl: 'Het schoolboekbeeld: de {t:Badkuipkromme|badkuipkromme}, de faalkans tegen de leeftijd.', en: 'The textbook picture: the {t:Bathtub curve|bathtub curve}, failure rate against age.', cue: { Badkuipkromme: 'tubC' } },
         { nl: '{t:Vroege uitval|Vroege uitval}: veel storingen kort na montage, door montagefouten of slechte delen.', en: '{t:Infant mortality|Infant mortality}: many failures soon after fitting, from fitting errors or bad parts.', cue: { 'Vroege uitval': 'zInf' } },
         { nl: 'Dan lang {t:Willekeurig falen|willekeurig falen}, en aan het eind {t:Slijtage|slijtage}.', en: 'Then a long stretch of {t:Random failure|random failure}, and at the end {t:Wear-out|wear-out}.', cue: { 'Willekeurig falen': 'zRnd', Slijtage: 'zWear' } },
         { nl: 'Maar slechts {n:11}% sleet met de leeftijd; {n:68}% faalde juist vroeg (Nowlan en Heap, 1978).', en: 'Yet only {n:11}% wore out with age; {n:68}% failed early (Nowlan and Heap, 1978).', cues: [] },
@@ -518,7 +521,7 @@ const spec = {
         { nl: 'Elke {n:12} maanden nieuwe lagers in alle {n:24} servo-assen.', en: 'Every {n:12} months, new bearings in all {n:24} servo axes.', cues: ['motor'], read: { nl: '{n:24} × €{n:750} = €{n:18000}', en: '{n:24} × €{n:750} = €{n:18000}' } },
         { nl: 'Vóór dat programma {n:6} lagerstoringen per jaar. Erna {n:9}.', en: 'Before the programme, {n:6} bearing failures a year. After it, {n:9}.', cues: [] },
         { nl: '{n:5} daarvan binnen twee weken na een wissel: {t:Storing door onderhoud|storing door onderhoud}.', en: '{n:5} of them within two weeks after a swap: {t:Maintenance-induced failure|maintenance-induced failure}.', cue: { 'Storing door onderhoud': 'mifC' } },
-        { nl: 'Elke ingreep geeft kans op een fout: vuil, een slechte afdichting, een scheve koppeling.', en: 'Every intervention risks a fault: dirt, a bad seal, a misaligned coupling.', cues: ['guard'] },
+        { nl: 'Elke ingreep geeft kans op een fout: vuil, een slechte afdichting, een koppeling uit lijn.', en: 'Every intervention risks a fault: dirt, a bad seal, a misaligned coupling.', cues: ['guard'] },
       ],
     },
     {
@@ -535,7 +538,7 @@ const spec = {
       beats: [
         { nl: 'Een lagerdefect begint klein. Bij P wordt het meetbaar, bij F faalt de pomp.', en: 'A bearing defect starts small. At P it becomes measurable, at F the pump fails.', cues: ['panel'] },
         { nl: 'Het {t:P-F-interval|P-F-interval}: de tijd tussen P en F, je venster om in te grijpen.', en: 'The {t:P-F interval|P-F interval}: the time between P and F, your window to act.', cue: { 'P-F-interval': 'pfBr' } },
-        { nl: 'Meet vaker dan dat venster, meestal op de helft: bij {n:8} weken elke {n:4} weken.', en: 'Measure more often than that window, usually at half: at {n:8} weeks, every {n:4} weeks.', cues: ['pfBr'] },
+        { nl: 'Meet vaker dan dat venster, als vuistregel op de helft: bij {n:8} weken elke {n:4} weken.', en: 'Measure more often than that window, as a rule of thumb at half: at {n:8} weeks, every {n:4} weeks.', cues: ['pfBr'] },
         { nl: 'Een ronde om de {n:12} weken bij een venster van {n:10}: {n:83}% op tijd, één lager op de zes valt uit.', en: 'A route every {n:12} weeks with a window of {n:10}: {n:83}% in time, one bearing in six breaks down.', cues: ['pfBr'] },
       ],
     },
@@ -571,29 +574,29 @@ const spec = {
 // "vastloopt" (stressed on loopt) are kept out of the Dutch narration.
 const SAY = [
   [ // s1 one bearing, four strategies
-    { nl: 'Een pompset: een pomp, een koppeling en een elektromotor. In de motor draait de as op lagers, en elk lager gaat ooit stuk. Wanneer grijp je in? Daar zijn vier strategieën voor.',
-      en: 'A pump set: a pump, a coupling and an electric motor. Inside the motor the shaft runs on bearings, and every bearing fails one day. When do you step in? There are four strategies.' },
-    { nl: 'Bij {t:Correctief onderhoud|correctief onderhoud} laat je hem draaien tot hij stuk gaat, en dan repareer je. Prima als dat goedkoop en veilig is. Als standaard is het duur: ongepland kost een reparatie al gauw drie tot vijf keer zoveel.',
-      en: 'With {t:Reactive maintenance|reactive maintenance} you run it until it breaks, and then you repair it. Fine when that is cheap and safe. As a default it is expensive: unplanned, a repair easily costs three to five times as much.' },
-    { nl: 'Bij {t:Preventief onderhoud|preventief onderhoud} vervang je met een vast interval, hoe goed het onderdeel ook nog is. Dat werkt voor onderdelen die duidelijk slijten.',
+    { nl: 'Een pompset: pomp, koppeling en elektromotor. In de motor draait de as op lagers, en elk lager gaat ooit stuk. Wanneer grijp je in? Er zijn vier strategieën.',
+      en: 'A pump set: pump, coupling and electric motor. Inside the motor the shaft runs on bearings, and every bearing fails one day. When do you step in? There are four strategies.' },
+    { nl: 'Bij {t:Correctief onderhoud|correctief onderhoud} draait hij tot hij stuk gaat, en dan repareer je. Prima als dat goedkoop en veilig is. Als standaard is het duur: volgens de vuistregel kost een ongeplande reparatie drie tot vijf keer een geplande.',
+      en: 'With {t:Reactive maintenance|reactive maintenance} you run it until it breaks, and then you repair it. Fine when that is cheap and safe. As a default it is expensive: by the rule of thumb, an unplanned repair costs three to five times a planned one.' },
+    { nl: 'Bij {t:Preventief onderhoud|preventief onderhoud} vervang je met een vast interval, hoe goed het onderdeel ook is. Dat werkt voor onderdelen die duidelijk slijten.',
       en: 'With {t:Preventive maintenance|preventive maintenance} you replace at a fixed interval, however good the part still is. That works for parts that clearly wear out.' },
-    { nl: 'Bij {t:Toestandsafhankelijk onderhoud|toestandsafhankelijk onderhoud} meet je de conditie, zoals de trilling op het lagerhuis, en grijp je pas in als die over een afgesproken grens gaat.',
-      en: 'With {t:Condition-based maintenance|condition-based maintenance} you measure the condition, such as the vibration on the bearing housing, and act only when it crosses an agreed limit.' },
-    { nl: '{t:Predictief onderhoud|Predictief onderhoud} gaat verder: uit de trend voorspel je wanneer de grens bereikt wordt, en je plant de reparatie in een stop waarin de lijn toch stilstaat.',
+    { nl: 'Bij {t:Toestandsafhankelijk onderhoud|toestandsafhankelijk onderhoud} meet je de conditie, zoals de trilling op het lagerhuis, en grijp je in boven een afgesproken grens.',
+      en: 'With {t:Condition-based maintenance|condition-based maintenance} you measure the condition, such as the vibration on the bearing housing, and act above an agreed limit.' },
+    { nl: '{t:Predictief onderhoud|Predictief onderhoud} gaat verder: uit de trend voorspel je wanneer de grens bereikt wordt, en plan je de reparatie in een stop waarin de lijn toch stilstaat.',
       en: '{t:Predictive maintenance|Predictive maintenance} goes further: from the trend you forecast when the limit will be reached, and you plan the repair into a stop when the line is down anyway.' },
   ],
   [ // s2 choose per machine
-    { nl: 'Welke strategie past, hangt af van wat de storing kost. Neem de tandwielkast van de pers die het tempo van een stansbedrijf bepaalt: {n:60000} euro nieuw, en {n:10} weken levertijd.',
+    { nl: 'Welke strategie past, hangt af van wat de storing kost. Neem de tandwielkast van de pers die het tempo van een stansbedrijf bepaalt: {n:60000} euro nieuw, {n:10} weken levertijd.',
       en: 'Which strategy fits depends on what the failure costs. Take the gearbox of the bottleneck press in a stamping plant: {n:60000} euros new, and {n:10} weeks delivery.' },
-    { nl: 'Stukdraaien legt de fabriek wekenlang stil. Een maandelijkse trillingsronde ziet lagerschade maanden van tevoren. Dus: toestandsafhankelijk.',
+    { nl: 'Stukdraaien legt de fabriek wekenlang stil; een maandelijkse trillingsronde ziet lagerschade maanden vooraf. Dus: toestandsafhankelijk.',
       en: 'Running it to failure would stop the plant for weeks. A monthly vibration route spots bearing damage months ahead. So: condition-based.' },
-    { nl: 'De bandmotoren op de inpaklijn kosten {n:400} euro, liggen op voorraad en zijn in {n:15} minuten gewisseld. Die laat je draaien tot ze stuk gaan.',
-      en: 'The conveyor motors on the packing line cost {n:400} euros, are in stock and are swapped in {n:15} minutes. Those you run until they break.' },
-    { nl: 'Zo kiezen, per asset en per faalwijze, op de gevolgen, heet {t:RCM|RCM}. Goede fabrieken doen {n:85} procent of meer van hun onderhoudsuren gepland.',
+    { nl: 'De bandmotoren op de inpaklijn kosten {n:400} euro, liggen op voorraad en zijn in {n:15} minuten gewisseld. Die laat je stukdraaien.',
+      en: 'The conveyor motors on the packing line cost {n:400} euros, are in stock and are swapped in {n:15} minutes. Those you run to failure.' },
+    { nl: 'Zo kiezen, per asset en faalwijze, op de gevolgen, heet {t:RCM|RCM}. Goede fabrieken plannen {n:85} procent of meer van hun onderhoudsuren.',
       en: 'Choosing like this, per asset and per failure mode, by the consequences, is called {t:RCM|RCM}. Good plants do {n:85} percent or more of their maintenance hours as planned work.' },
   ],
   [ // s3 the bathtub curve
-    { nl: 'Hoe falen onderdelen eigenlijk? Het schoolboek toont de {t:Badkuipkromme|badkuipkromme}: de faalkans uitgezet tegen de leeftijd.',
+    { nl: 'Hoe falen onderdelen eigenlijk? Het schoolboek toont de {t:Badkuipkromme|badkuipkromme}: de faalkans tegen de leeftijd.',
       en: 'How do parts actually fail? The textbook shows the {t:Bathtub curve|bathtub curve}: the failure rate plotted against age.' },
     { nl: 'Eerst {t:Vroege uitval|vroege uitval}, ook wel kindersterfte: storingen kort na montage, door montagefouten of slechte onderdelen.',
       en: 'First {t:Infant mortality|infant mortality}: failures soon after fitting, from fitting errors or bad parts.' },
@@ -605,17 +608,17 @@ const SAY = [
   [ // s4 maintenance that makes failures
     { nl: 'Een verpakkingsbedrijf vervangt elke {n:12} maanden de lagers in alle {n:24} servo-assen. Dat kost {n:18000} euro per jaar.',
       en: 'Every {n:12} months, a packaging plant replaces the bearings in all {n:24} servo axes. That costs {n:18000} euros a year.' },
-    { nl: 'Vóór dat programma waren er {n:6} lagerstoringen per jaar. Erna niet minder, maar meer: {n:9}.',
-      en: 'Before the programme there were {n:6} bearing failures a year. After it, not fewer but more: {n:9}.' },
-    { nl: 'En {n:5} daarvan kwamen binnen twee weken na een wissel. Dat heet {t:Storing door onderhoud|storing door onderhoud}: het werk zelf veroorzaakt de storing.',
-      en: 'And {n:5} of those came within two weeks after a swap. That is called {t:Maintenance-induced failure|maintenance-induced failure}: the work itself causes the failure.' },
-    { nl: 'Wie een machine openmaakt, kan vuil binnenlaten of een afdichting slecht monteren. In de data zie je dan een cluster storingen vlak na het onderhoud.',
-      en: 'Opening a machine can let dirt in or leave a seal badly fitted. In the data you then see a cluster of failures just after the maintenance.' },
+    { nl: 'Vóór dat programma waren er {n:6} lagerstoringen per jaar, erna niet minder maar meer: {n:9}.',
+      en: 'Before the programme there were {n:6} bearing failures a year, after it not fewer but more: {n:9}.' },
+    { nl: 'En {n:5} daarvan kwamen binnen twee weken na een wissel: {t:Storing door onderhoud|storing door onderhoud}. Het werk zelf veroorzaakt de storing.',
+      en: 'And {n:5} of those came within two weeks after a swap: {t:Maintenance-induced failure|maintenance-induced failure}. The work itself causes the failure.' },
+    { nl: 'Wie een machine openmaakt, kan vuil binnenlaten of een afdichting slecht monteren. Je ziet dan een cluster storingen vlak na het onderhoud.',
+      en: 'Opening a machine can let dirt in or leave a seal badly fitted. You then see a cluster of failures just after the maintenance.' },
   ],
   [ // s5 what beta says
-    { nl: 'Het patroon check je met een Weibull-analyse op de leeftijden waarop onderdelen faalden. De uitkomst is de {t:Weibull β|Weibull-bèta}, de vormfactor.',
-      en: 'You check the pattern with a Weibull analysis of the ages at which parts failed. The output is the {t:Weibull β|Weibull beta}, the shape factor.' },
-    { nl: 'Bèta onder {n:1}: vroege uitval, pak de montage aan. Rond {n:1}: willekeurig. Boven {n:1}, en zeker boven {n:3}: slijtage, en dan heeft vervangen op tijd zin.',
+    { nl: 'Het patroon toets je met een Weibull-analyse van de faalleeftijden. De uitkomst is de {t:Weibull β|Weibull-bèta}, de vormfactor.',
+      en: 'You test the pattern with a Weibull analysis of the failure ages. The output is the {t:Weibull β|Weibull beta}, the shape factor.' },
+    { nl: 'Bèta onder {n:1}: vroege uitval, pak de montage aan. Rond {n:1}: willekeurig. Boven {n:1}, en zeker boven {n:3}: slijtage; dan heeft vervangen op tijd zin.',
       en: 'Beta below {n:1}: early failure, fix the fitting. Around {n:1}: random. Above {n:1}, and especially above {n:3}: wear-out, and then replacing on time makes sense.' },
     { nl: 'Voor de servolagers geeft de fit bèta {n:1.0}: willekeurig falen, geen slijtage. Jaarlijks wisselen kon dus nooit helpen.',
       en: 'For the servo bearings the fit gives beta {n:1.0}: random failure, not wear-out. So the yearly swap could never help.' },
@@ -623,34 +626,34 @@ const SAY = [
       en: 'The plant stops the swap, checks the {n:6} critical axes for vibration every month and trains the fitters. Next year: {n:3} failures.' },
   ],
   [ // s6 the window between P and F
-    { nl: 'Volg nu één lager. Een defect begint als een putje in de loopbaan. Bij punt P wordt het meetbaar; bij punt F doet de pomp zijn werk niet meer.',
-      en: 'Now follow one bearing. A defect starts as a pit in the raceway. At point P it becomes measurable; at point F the pump no longer does its job.' },
+    { nl: 'Een lagerdefect begint als een putje in de loopbaan. Bij punt P wordt het meetbaar; bij punt F doet de pomp zijn werk niet meer.',
+      en: 'A bearing defect starts as a pit in the raceway. At point P it becomes measurable; at point F the pump no longer does its job.' },
     { nl: 'De tijd daartussen is het {t:P-F-interval|P-F-interval}: je venster om het defect te zien en de reparatie te plannen.',
       en: 'The time in between is the {t:P-F interval|P-F interval}: your window to see the defect and plan the repair.' },
-    { nl: 'Meet dus vaker, meestal op de helft: bij een venster van {n:8} weken minstens elke {n:4} weken.',
-      en: 'So measure more often, usually at half: with a window of {n:8} weeks, at least every {n:4} weeks.' },
+    { nl: 'Meet daarom als vuistregel op de helft van het venster: bij {n:8} weken minstens elke {n:4} weken.',
+      en: 'So, as a rule of thumb, measure at half the window: at {n:8} weeks, at least every {n:4} weeks.' },
     { nl: 'Met een venster van {n:10} weken en een ronde om de {n:12} weken ben je maar {n:83} procent van de keren op tijd.',
       en: 'With a window of {n:10} weeks and a route every {n:12} weeks, you are in time only {n:83} percent of the time.' },
   ],
   [ // s7 five ways to look
-    { nl: 'Elke methode ziet het defect op een eigen moment. {t:Ultrasoon|Ultrasoon} luistert ver boven ons gehoor en hoort een droog lager het eerst: zo’n {n:12} weken voor F.',
+    { nl: 'Elke methode ziet het defect op een eigen moment. {t:Ultrasoon|Ultrasoon} luistert boven ons gehoor en hoort een droog lager het eerst: zo’n {n:12} weken voor F.',
       en: 'Each method sees the defect at its own moment. {t:Ultrasound|Ultrasound} listens far above our hearing and hears a dry bearing first: about {n:12} weeks before F.' },
     { nl: '{t:Trillingsanalyse|Trillingsanalyse} op het lagerhuis ziet het zo’n {n:10} weken vooraf; elke fout heeft een eigen frequentie.',
       en: '{t:Vibration analysis|Vibration analysis} on the bearing housing sees it about {n:10} weeks ahead; each fault has its own frequency.' },
     { nl: 'Bij {t:Olieanalyse|olieanalyse} zoekt een lab slijtagemetalen in een oliemonster: zo’n {n:6} weken voor F.',
       en: 'In {t:Oil analysis|oil analysis} a lab looks for wear metals in an oil sample: about {n:6} weeks before F.' },
-    { nl: '{t:Thermografie|Thermografie} ziet het pas als het lager warm wordt, zo’n {n:4} weken vooraf. Een hand op het lagerhuis voelt het {n:1} week van tevoren. Het P-F-interval hangt dus af van de methode.',
-      en: '{t:Thermography|Thermography} only sees it once the bearing runs warm, about {n:4} weeks ahead. A hand on the housing feels it {n:1} week before. So the P-F interval depends on the method.' },
+    { nl: '{t:Thermografie|Thermografie} ziet het pas als het lager warm wordt, zo’n {n:4} weken vooraf; een hand op het lagerhuis {n:1} week. Het P-F-interval hangt dus af van de methode.',
+      en: '{t:Thermography|Thermography} only sees it once the bearing runs warm, about {n:4} weeks ahead; a hand on the housing {n:1} week. So the P-F interval depends on the method.' },
   ],
   [ // s8 plan it now
     { nl: 'De maandelijkse ronde op een koelwaterpomp meet {n:1.8} millimeter per seconde, dan {n:1.9}, {n:2.6} en in april {n:3.4}. In het spectrum verschijnt een lagerfrequentie.',
       en: 'The monthly route on a cooling-water pump measures {n:1.8} millimetres per second, then {n:1.9}, {n:2.6} and in April {n:3.4}. A bearing frequency shows in the spectrum.' },
     { nl: 'Dat is zo’n {n:0.8} per maand erbij. De actiegrens ligt op {n:4.5}.',
       en: 'That is about {n:0.8} more each month. The action level is {n:4.5}.' },
-    { nl: 'Het verschil met de grens, gedeeld door {n:0.8}, is {n:1.4} maand: over zo’n zes weken. Een nieuw lager kost {n:350} euro, en de volgende geplande stop is half mei.',
-      en: 'The gap to the limit, divided by {n:0.8}, is {n:1.4} months: about six weeks. A new bearing costs {n:350} euros, and the next planned stop is in mid-May.' },
-    { nl: 'Dus bestelt de planner het lager nu en reserveert vier uur in die stop, in plaats van een pomp die op vrijdagnacht stilvalt.',
-      en: 'So the planner orders the bearing now and books four hours in that stop, instead of a pump that seizes on a Friday night.' },
+    { nl: 'Het verschil met de grens, gedeeld door {n:0.8}, is {n:1.4} maand: zo’n zes weken. Een nieuw lager kost {n:350} euro; de volgende geplande stop is half mei.',
+      en: 'The gap to the limit, divided by {n:0.8}, is {n:1.4} months: about six weeks. A new bearing costs {n:350} euros; the next planned stop is in mid-May.' },
+    { nl: 'Dus bestelt de planner het lager nu en reserveert vier uur in die stop. Geen pomp die op vrijdagnacht stilvalt.',
+      en: 'So the planner orders the bearing now and books four hours in that stop. No pump seizing on a Friday night.' },
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
@@ -685,6 +688,8 @@ const css = `
 .mf-tag .mf-card{fill:var(--fp-accent);stroke:var(--anatomy-hi)}
 .mf-ping{fill:none;stroke:var(--fp-accent);stroke-width:1.2px;opacity:0}
 .mf-wisp{fill:var(--anatomy-muted);filter:blur(2.2px)}
+.mf-mark{fill:none;stroke:var(--fp-accent);stroke-width:2px;opacity:0}
+[data-cue][data-on] .mf-mark{opacity:1}
 .mf-scr{fill:none;stroke:var(--fp-accent);stroke-width:.7px;stroke-linejoin:round;stroke-linecap:round}
 .mf-now{fill:var(--anatomy-hi)}
 [data-lit] .iso-fill,[data-lit] .iso-top,[data-lit] .iso-shade{fill:var(--fp-accent)}

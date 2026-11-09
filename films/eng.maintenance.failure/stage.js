@@ -31,6 +31,7 @@ const STAGE = (() => {
   const EX = tr('voorbeeld', 'example');
   const exTag = (x = 620, y = 40) => txt(x, y, EX, 20, 'end', 'mf-mute');
   const PANEL = () => rect(204, 12, 428, 376);
+  const MARKS = [E['mk-stud'], E['mk-sight']].filter(Boolean);
 
   // the beat on screen and its progress, from the caption beats of the scene
   function beatOf(si, u) {
@@ -51,6 +52,8 @@ const STAGE = (() => {
     const s = W / lerp(c.from[2], c.to[2], k);
     const t = `translate(${f1(W / 2)} ${f1(H / 2)}) scale(${s.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`;
     if (E.world.__t !== t) { E.world.setAttribute('transform', t); E.world.__t = t; }
+    // the part markers: a radius of 18 stage units whatever the zoom (the kit draws circles with a non-scaling stroke)
+    for (const m of MARKS) m.setAttribute('r', f1(18 / s));
   }
 
   // ------------------------------------------------------------ the world's live parts
@@ -347,7 +350,7 @@ const STAGE = (() => {
     let out = PANEL() + exTag(620, 380);
     out += line(RX0, RY0 - 8, RX0, RY1) + line(RX0, RY1, RX1, RY1);
     out += txt(RX0 - 8, RY0 + 8, 'mm/s', 20, 'end', 'mf-mute');
-    for (const v of [0, 1, 2, 3, 4, 5]) out += txt(RX0 - 8, ry(v) + 7, String(v), 20, 'end', 'mf-mute');
+    for (const v of [0, 1, 2, 3, 4]) out += txt(RX0 - 8, ry(v) + 7, String(v), 20, 'end', 'mf-mute');
     const mon = NL ? ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun'] : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
     mon.forEach((m, i) => { out += txt(rx(i + 0.5), RY1 + 26, m, 20, 'middle', 'mf-mute'); });
     out += line(RX0, ry(C.ACT), RX1, ry(C.ACT), 'mf-lim') + txt(RX0 + 8, ry(C.ACT) - 8, `${tr('actiegrens', 'action level')} ${dec(C.ACT, 1)}`, 20, 'start', 'mf-txt');
@@ -424,8 +427,8 @@ const STAGE = (() => {
       vis.pf = span(u, 0, 0.04);
       wk = b === 0 ? 4 + 31 * span(p, 0.05, 0.95) : 35;
       let marks = '';
-      if (b === 2) marks = inspections(C.PF / 2, 40 * span(p, 0.1, 0.9));
-      if (b === 3) marks = inspections(12, 40 * span(p, 0.1, 0.9));
+      if (b === 2) marks = inspections(C.PF / 2, 40 * span(p, 0.1, 0.9)) + txt(612, 372, tr(`venster ${C.PF} wk: meten om de ${C.PF / 2} wk`, `${C.PF} wk window: measure every ${C.PF / 2} wk`), 20, 'end', 'mf-mute');
+      if (b === 3) marks = inspections(12, 40 * span(p, 0.1, 0.9)) + txt(612, 372, tr(`venster ${C.PF} wk, ronde om de 12 wk`, `${C.PF} wk window, route every 12 wk`), 20, 'end', 'mf-mute');
       set(E.pfIn, pfCurve(wk, marks) + bearing(300, 296, wk <= C.P_WK ? 0 : 0.2 + 0.8 * (wk - C.P_WK) / C.PF));
       set(E.pfBrIn, pfBracket(b >= 1 ? (b === 1 ? span(p, 0.05, 0.3) : 1) : 0));
       running = wk < C.F_WK;
