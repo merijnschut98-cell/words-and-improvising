@@ -864,6 +864,7 @@ export default {
     },
     {
       id: 'eng.joining.bolts',
+      film: 'eng.joining.bolting',
       title: 'Bolts and nuts: what you see and what the numbers mean',
       pre: [
         {
@@ -932,6 +933,7 @@ export default {
     },
     {
       id: 'eng.joining.bolting',
+      film: 'eng.joining.bolting',
       figure: 'eng.joining.bolt',
       title: 'Bolted joints: torque and preload',
       pre: [
@@ -1003,6 +1005,7 @@ export default {
     },
     {
       id: 'eng.joining.tightening',
+      film: 'eng.joining.bolting',
       title: 'Tightening methods and preload scatter',
       pre: [
         {
@@ -1074,6 +1077,7 @@ export default {
     },
     {
       id: 'eng.joining.jointdesign',
+      film: 'eng.joining.bolting',
       title: 'Designing bolted joints: joint diagram and fatigue',
       pre: [
         {

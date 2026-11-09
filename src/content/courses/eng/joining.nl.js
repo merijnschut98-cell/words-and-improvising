@@ -864,6 +864,7 @@ export default {
     },
     {
       id: 'eng.joining.bolts',
+      film: 'eng.joining.bolting',
       title: 'Bouten en moeren: wat je ziet en wat de cijfers betekenen',
       pre: [
         {
@@ -932,6 +933,7 @@ export default {
     },
     {
       id: 'eng.joining.bolting',
+      film: 'eng.joining.bolting',
       figure: 'eng.joining.bolt',
       title: 'Boutverbindingen: aanhaalmoment en voorspanning',
       pre: [
@@ -1003,6 +1005,7 @@ export default {
     },
     {
       id: 'eng.joining.tightening',
+      film: 'eng.joining.bolting',
       title: 'Aandraaimethoden en de spreiding in voorspanning',
       pre: [
         {
@@ -1074,6 +1077,7 @@ export default {
     },
     {
       id: 'eng.joining.jointdesign',
+      film: 'eng.joining.bolting',
       title: 'Boutverbindingen ontwerpen: verspanningsdriehoek en vermoeiing',
       pre: [
         {
