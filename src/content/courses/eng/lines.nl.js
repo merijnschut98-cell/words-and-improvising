@@ -4,6 +4,7 @@ export default {
     {
       id: 'eng.lines.linebasics',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Een lijn lezen: stations, cyclustijd en transport',
       pre: [
         {
@@ -75,6 +76,7 @@ export default {
     {
       id: 'eng.lines.layout',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Lijntypes, buffers en inspectie',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     {
       id: 'eng.lines.buffers',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Buffers dimensioneren: blocked, starved en bijvullen',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     {
       id: 'eng.lines.simulation',
       figure: 'eng.lines.buffer',
+      film: 'eng.lines.design',
       title: 'Lijnsimulatie, de wet van Little en opstarten',
       pre: [
         {
