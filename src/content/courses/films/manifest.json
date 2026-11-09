@@ -38,34 +38,34 @@
     "eng.joining.arc": {
       "poster": "src/content/courses/films/eng.joining.arc.jpg",
       "nl": {
-        "dur": 335.4,
-        "bytes": 13414285,
+        "dur": 270.7,
+        "bytes": 11292773,
         "scenes": [
           0,
-          51.27,
-          94.13,
-          115.62,
-          160.11,
-          202.59,
-          220.48,
-          281.66,
-          310.65
+          38.41,
+          72.33,
+          89.01,
+          125.52,
+          161.32,
+          176.21,
+          227.08,
+          250.49
         ],
         "vtt": "src/content/courses/films/eng.joining.arc.nl.vtt"
       },
       "en": {
-        "dur": 313.4,
-        "bytes": 12912975,
+        "dur": 301.2,
+        "bytes": 12452924,
         "scenes": [
           0,
-          45.84,
-          82.58,
-          101.27,
-          144.84,
-          185.59,
-          202.46,
-          261.37,
-          290.3
+          43.36,
+          79.48,
+          97.71,
+          139.1,
+          178.22,
+          194.76,
+          251.45,
+          278.8
         ],
         "vtt": "src/content/courses/films/eng.joining.arc.en.vtt"
       }
