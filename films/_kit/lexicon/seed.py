@@ -109,9 +109,17 @@ MANUAL = {
            # (espeak-ng: BOvenop), WISSELtijd with a schwa as in wisselplaat
            'vierdemachtswortel': 'vˈirdəmˌɑxtsʋɔrtəl', 'bovenop': 'boːvənˈɔp', 'wisseltijd': 'ʋˈɪsəltˌɛɪt',
            # kept from the earlier seed: their first parts (dop, haar) left the corpus
-           'dopmatrijs': 'dˈɔpmɑtrˌɛɪs', 'haarbreed': 'ˈhaːrbrˌeːt', 'haarlijn': 'ˈhaːrlˌɛɪn'},
+           'dopmatrijs': 'dˈɔpmɑtrˌɛɪs', 'haarbreed': 'ˈhaːrbrˌeːt', 'haarlijn': 'ˈhaːrlˌɛɪn',
+           # spot welding (film eng.joining.spot): AHSS as letters, peel as the
+           # English word, kapafdruk with a short a (espeak-ng: kˈaːp), the e of
+           # beitel, lens and klem not reduced to a schwa, lasstroom without the
+           # stress on stroom, body-in-white as the English words
+           'ahss': 'ˌaːhaːˌɛsˈɛs', 'kapafdruk': 'kˈɑpɑvdrˌɵk', 'beiteltest': 'bˈɛɪtəltˌɛst',
+           'peeltest': 'pˈiːltˌɛst', 'laslens': 'lˈɑslˌɛns', 'lasklem': 'lˈɑsklˌɛm',
+           'lasstroom': 'lˈɑsstrˌoːm', 'elektrodekap': 'eːlɛktrˈoːdəkˌɑp', 'knooppunt': 'knˈoːpˌpɵnt',
+           'lasbaarheidsbereik': 'lˈɑzbaːrhɛɪtsbərˌɛɪk', 'body': 'bˈɔdi', 'white': 'ʋˈɑjt'},
     'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',
-           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ'},
+           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ', 'ahss': 'ˌeɪeɪtʃˌɛsˈɛs', 'kiloamps': 'kˈɪləʊˌæmps'},
 }
 # first parts that make adverbs or particles (daarmee, waardoor, hiermee)
 NOT_FIRST = {'nl': {'daar', 'waar', 'hier', 'hoe', 'met', 'een', 'van', 'ten', 'ter', 'zich', 'erom', 'alle', 'hele'}, 'en': set()}

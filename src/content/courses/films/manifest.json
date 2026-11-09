@@ -300,6 +300,39 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.en.vtt"
       }
+    },
+    "eng.joining.spot": {
+      "poster": "src/content/courses/films/eng.joining.spot.jpg",
+      "nl": {
+        "dur": 357.8,
+        "bytes": 11501960,
+        "scenes": [
+          0,
+          50.57,
+          69.78,
+          104.3,
+          135.35,
+          178.69,
+          229.41,
+          295.26
+        ],
+        "vtt": "src/content/courses/films/eng.joining.spot.nl.vtt"
+      },
+      "en": {
+        "dur": 332.6,
+        "bytes": 11018297,
+        "scenes": [
+          0,
+          46,
+          65.43,
+          98.83,
+          125.03,
+          165.8,
+          214.27,
+          276.91
+        ],
+        "vtt": "src/content/courses/films/eng.joining.spot.en.vtt"
+      }
     }
   }
 }
