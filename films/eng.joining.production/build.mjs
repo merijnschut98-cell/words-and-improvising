@@ -50,7 +50,7 @@ CELL.gain = Math.round((60 / CELL.two / CELL.perOne - 1) * 100);
 assert(CELL.one === 10 && near(CELL.perOne, 6), 'one station: 6 + 4 = 10 min, 6 per hour');
 assert(near(CELL.two, 6.3) && near(CELL.perTwo, 9.5), 'two stations: 6 + 0,3 = 6,3 min, 9,5 per hour');
 assert(CELL.gain === 59, 'about 59 % more output');
-assert(near(Math.max(4, 6) + CELL.turn, 6.3), 'loading longer than welding: the robot waits for the operator');
+assert(near(Math.max(CELL.weld, 8) + CELL.turn, 8.3), 'loading (8 min) longer than welding: loading sets the cycle, the robot waits');
 // fixturing: the seam within half the wire diameter; the beam
 const SEAM = { wire: 1.2 };
 SEAM.tol = SEAM.wire / 2;
@@ -202,7 +202,7 @@ for (const x of LC) {
   const lenses = [];
   for (let z = 10; z <= 94; z += 4) lenses.push(at([face, CUR_Y, z]));
   box('curtain.column', plan(x, CUR_Y, 4, 4, 0.5), 2, 100, { tone: 'hi', crease: 'lo' }, { steps: 1, extra: Dt(lenses, { size: 0.28, tone: 'lo' }) + Dt([at([x, CUR_Y, 100])], { size: 0.4 }), layer: 'front', attrs: cue('curtain') });
-  post('curtain.cap', x, CUR_Y, 1.6, 100, 102, { tone: 'mid' }, { steps: 14, layer: 'front', extra: Dt([at([x, CUR_Y, 102])], { size: 0.35, tone: 'hi' }) });
+  post('curtain.cap', x, CUR_Y, 1.6, 100, 102, { tone: 'mid' }, { steps: 8, layer: 'front', extra: Dt([at([x, CUR_Y, 102])], { size: 0.35, tone: 'hi' }) });
 }
 const beams = [];
 for (let z = 12; z <= 92; z += 8) beams.push(k.segment([LC[0] + 2, CUR_Y, z], [LC[1] - 2, CUR_Y, z], P));
@@ -213,12 +213,12 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   const [px, py] = PED;
   const rb = cue('robot');
   const bolts = Array.from({ length: 8 }, (_, q) => [px + 13.4 * Math.cos((q / 8) * Math.PI * 2 + 0.2), py + 13.4 * Math.sin((q / 8) * Math.PI * 2 + 0.2)]);
-  post('robot.anchor-plate', px, py, 16, 0, 2, { tone: 'lo' }, { steps: 48, bevel: 0.4, extra: Dt(bolts.map(([x, y]) => at([x, y, 2])), { size: 0.45 }) });
-  post('robot.pedestal', px, py, 10, 2, 26, { tone: 'mid', crease: 'none' }, { steps: 40, inner: L(k.sideArc(px, py, 10, 14, P, 28), { tone: 'faint' }) });
+  post('robot.anchor-plate', px, py, 16, 0, 2, { tone: 'lo' }, { steps: 36, bevel: 0.4, extra: Dt(bolts.map(([x, y]) => at([x, y, 2])), { size: 0.45 }) });
+  post('robot.pedestal', px, py, 10, 2, 26, { tone: 'mid', crease: 'none' }, { steps: 30, inner: L(k.sideArc(px, py, 10, 14, P, 28), { tone: 'faint' }) });
   const top = Array.from({ length: 6 }, (_, q) => [px + 12 * Math.cos((q / 6) * Math.PI * 2), py + 12 * Math.sin((q / 6) * Math.PI * 2)]);
-  post('robot.top-plate', px, py, 14, 26, 29, { tone: 'mid' }, { steps: 48, bevel: 0.4, extra: Dt(top.map(([x, y]) => at([x, y, 29])), { size: 0.4 }) });
-  post('robot.base', px, py, 12, 29, 38, { tone: 'hi', crease: 'lo' }, { steps: 44, inner: L(k.sideArc(px, py, 12, 33.5, P, 32), { tone: 'faint' }), attrs: rb });
-  post('robot.turret', px, py, 10, 38, 46, { tone: 'hi', crease: 'lo' }, { steps: 40, attrs: rb });
+  post('robot.top-plate', px, py, 14, 26, 29, { tone: 'mid' }, { steps: 36, bevel: 0.4, extra: Dt(top.map(([x, y]) => at([x, y, 29])), { size: 0.4 }) });
+  post('robot.base', px, py, 12, 29, 38, { tone: 'hi', crease: 'lo' }, { steps: 32, inner: L(k.sideArc(px, py, 12, 33.5, P, 32), { tone: 'faint' }), attrs: rb });
+  post('robot.turret', px, py, 10, 38, 46, { tone: 'hi', crease: 'lo' }, { steps: 30, attrs: rb });
   box('robot.connector', { x: px - 15.5, y: py - 4, w: 4, d: 8, r: 0.6 }, 30, 36, { tone: 'mid' }, { steps: 2, extra: Dt([at([px - 15.5, py, 33])], { size: 0.4 }) });
 }
 
@@ -228,15 +228,15 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   const pc = cue('positioner');
   const base = plan(cx, cy, 40, 40, 1.2);
   box('pos.base', base, 0, 2.4, { tone: 'lo' }, { steps: 2, bevel: 0.4, extra: Dt(k.corners(base, 3).map(([x, y]) => at([x, y, 2.4])), { size: 0.45 }) + L(k.corners(base, 3).map(([x, y]) => k.ring(x, y, 1.3, 2.4, P, 12)).join(''), { tone: 'lo' }) });
-  post('pos.column', cx, cy, 15, 2.4, 50, { tone: 'mid', crease: 'none' }, { steps: 48, inner: L(k.sideArc(cx, cy, 15, 10, P, 36) + k.sideArc(cx, cy, 15, 44, P, 36), { tone: 'faint' }), attrs: pc });
+  post('pos.column', cx, cy, 15, 2.4, 50, { tone: 'mid', crease: 'none' }, { steps: 36, inner: L(k.sideArc(cx, cy, 15, 10, P, 36) + k.sideArc(cx, cy, 15, 44, P, 36), { tone: 'faint' }), attrs: pc });
   const mx = cx + 14; const my = cy + 14;
-  post('pos.motor', mx, my, 4.2, 2.4, 18, { tone: 'mid', crease: 'none' }, { steps: 28, inner: L(k.sideArc(mx, my, 4.2, 6, P, 20) + k.sideArc(mx, my, 4.2, 9, P, 20) + k.sideArc(mx, my, 4.2, 12, P, 20), { tone: 'faint' }), attrs: pc });
-  post('pos.motor-cap', mx, my, 3.4, 18, 19.4, { tone: 'lo' }, { steps: 24 });
+  post('pos.motor', mx, my, 4.2, 2.4, 18, { tone: 'mid', crease: 'none' }, { steps: 20, inner: L(k.sideArc(mx, my, 4.2, 6, P, 20) + k.sideArc(mx, my, 4.2, 9, P, 20) + k.sideArc(mx, my, 4.2, 12, P, 20), { tone: 'faint' }), attrs: pc });
+  post('pos.motor-cap', mx, my, 3.4, 18, 19.4, { tone: 'lo' }, { steps: 18 });
   box('pos.terminal', plan(mx, my, 4, 4, 0.4), 19.4, 22.4, { tone: 'lo' }, { steps: 1, extra: Dt([at([mx, my, 22.4])], { size: 0.35 }) });
   const bolts = Array.from({ length: 16 }, (_, q) => [cx + 19 * Math.cos((q / 16) * Math.PI * 2), cy + 19 * Math.sin((q / 16) * Math.PI * 2)]);
-  post('pos.bearing', cx, cy, 21, 50, 55, { tone: 'lo' }, { steps: 56, bevel: 0.3, extra: Dt(bolts.map(([x, y]) => at([x, y, 55])), { size: 0.35 }) });
+  post('pos.bearing', cx, cy, 21, 50, 55, { tone: 'lo' }, { steps: 40, bevel: 0.3, extra: Dt(bolts.map(([x, y]) => at([x, y, 55])), { size: 0.35 }) });
   post('pos.table', cx, cy, TR, 55, TZ, { tone: 'mid' }, {
-    steps: 96, bevel: 0.5, attrs: pc,
+    steps: 72, bevel: 0.5, attrs: pc,
     inner: L(k.sideArc(cx, cy, TR, 58, P, 80), { tone: 'faint' }),
     extra: L(k.ring(cx, cy, TR - 3.5, TZ, P, 90), { tone: 'faint' }) + L(k.ring(cx, cy, 6, TZ, P, 30), { tone: 'lo' }) + Dt([at([cx, cy, TZ])], { size: 0.5 }),
   });
@@ -248,7 +248,7 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   const fy = PS.y + PS.d;
   const fx = PS.x + PS.w;
   box('ps.trolley', k.insetPlan(PS, -1.5), 3, 6, { tone: 'lo' }, { steps: 2 });
-  for (const [x, y] of k.corners(k.insetPlan(PS, 1), 0)) post('ps.wheel', x, y, 1.6, 0, 3, { tone: 'lo' }, { steps: 14 });
+  for (const [x, y] of k.corners(k.insetPlan(PS, 1), 0)) post('ps.wheel', x, y, 1.6, 0, 3, { tone: 'lo' }, { steps: 8 });
   const grille = [];
   for (let z = 14; z <= 30; z += 3) grille.push([[PS.x + 4, fy, z], [PS.x + 18, fy, z], [PS.x + 18, fy, z + 1.2], [PS.x + 4, fy, z + 1.2]]);
   const display = [[PS.x + 4, fy, 52], [PS.x + 14, fy, 52], [PS.x + 14, fy, 58], [PS.x + 4, fy, 58]];
@@ -260,10 +260,10 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   box('ps.handle', { x: PS.x + 3, y: PS.y + 3, w: 2, d: PS.d - 6, r: 0.4 }, PS_H, PS_H + 4, { tone: 'hi', crease: 'lo' }, { steps: 1 });
   box('ps.handle-far', { x: PS.x + PS.w - 5, y: PS.y + 3, w: 2, d: PS.d - 6, r: 0.4 }, PS_H, PS_H + 4, { tone: 'hi', crease: 'lo' }, { steps: 1 });
   const [dx, dy] = DRUM;
-  post('drum.pallet', dx, dy, 11.5, 0, 3, { tone: 'lo' }, { steps: 40 });
-  post('drum.body', dx, dy, 10, 3, 62, { tone: 'mid', crease: 'none' }, { steps: 48, inner: L(k.sideArc(dx, dy, 10, 20, P, 36) + k.sideArc(dx, dy, 10, 46, P, 36), { tone: 'faint' }), attrs: fc });
-  post('drum.lid', dx, dy, 10.6, 62, 64, { tone: 'lo' }, { steps: 48, bevel: 0.3 });
-  post('drum.cone', dx, dy, 3.6, 64, 71, { tone: 'hi', crease: 'lo' }, { steps: 24, extra: Dt([at([dx, dy, 71])], { size: 0.5 }), attrs: fc });
+  post('drum.pallet', dx, dy, 11.5, 0, 3, { tone: 'lo' }, { steps: 30 });
+  post('drum.body', dx, dy, 10, 3, 62, { tone: 'mid', crease: 'none' }, { steps: 36, inner: L(k.sideArc(dx, dy, 10, 20, P, 36) + k.sideArc(dx, dy, 10, 46, P, 36), { tone: 'faint' }), attrs: fc });
+  post('drum.lid', dx, dy, 10.6, 62, 64, { tone: 'lo' }, { steps: 36, bevel: 0.3 });
+  post('drum.cone', dx, dy, 3.6, 64, 71, { tone: 'hi', crease: 'lo' }, { steps: 18, extra: Dt([at([dx, dy, 71])], { size: 0.5 }), attrs: fc });
 }
 
 // ---------------------------------------------------------------- torch cleaning station (right of the robot)
@@ -272,7 +272,7 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   const cc = cue('clean');
   const base = plan(cx, cy, 14, 14, 0.8);
   box('clean.base', base, 0, 1.6, { tone: 'lo' }, { steps: 1, extra: Dt(k.corners(base, 2).map(([x, y]) => at([x, y, 1.6])), { size: 0.4 }) });
-  post('clean.column', cx, cy, 3.4, 1.6, 58, { tone: 'mid', crease: 'none' }, { steps: 24, attrs: cc });
+  post('clean.column', cx, cy, 3.4, 1.6, 58, { tone: 'mid', crease: 'none' }, { steps: 18, attrs: cc });
   const head = plan(cx, cy, 16, 11, 0.8);
   const fy = head.y + head.d;
   box('clean.head', head, 58, 72, { tone: 'mid' }, {
@@ -280,8 +280,8 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
     inner: L(k.sideSeam(head, 64, P, 2), { tone: 'faint' }),
     extra: card([[head.x + 2, fy, 66], [head.x + 8, fy, 66], [head.x + 8, fy, 70], [head.x + 2, fy, 70]]) + Dt([[head.x + 12, fy, 68], [head.x + 14, fy, 68]].map(at), { size: 0.45 }),
   });
-  post('clean.reamer', cx - 3, cy, 2.6, 72, 75, { tone: 'hi', crease: 'lo' }, { steps: 24, extra: L(k.ring(cx - 3, cy, 1.2, 75, P, 16), { tone: 'lo' }), attrs: cc });
-  post('clean.spray', cx + 4, cy - 2, 1.2, 72, 74, { tone: 'lo' }, { steps: 14, extra: Dt([at([cx + 4, cy - 2, 74])], { size: 0.4 }) });
+  post('clean.reamer', cx - 3, cy, 2.6, 72, 75, { tone: 'hi', crease: 'lo' }, { steps: 18, extra: L(k.ring(cx - 3, cy, 1.2, 75, P, 16), { tone: 'lo' }), attrs: cc });
+  post('clean.spray', cx + 4, cy - 2, 1.2, 72, 74, { tone: 'lo' }, { steps: 8, extra: Dt([at([cx + 4, cy - 2, 74])], { size: 0.4 }) });
   box('clean.cutter', { x: cx + 2.5, y: cy + 1.4, w: 4, d: 2.6, r: 0.3 }, 72, 74.4, { tone: 'lo' }, { steps: 1 });
 }
 
@@ -289,7 +289,7 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
 {
   const [dx, dy] = FUME;
   const fc = cue('fume');
-  post('fume.duct', dx, dy, 5, 0, 108, { tone: 'mid', crease: 'none' }, { steps: 32, inner: L(k.sideArc(dx, dy, 5, 40, P, 24) + k.sideArc(dx, dy, 5, 90, P, 24), { tone: 'faint' }), attrs: fc });
+  post('fume.duct', dx, dy, 5, 0, 108, { tone: 'mid', crease: 'none' }, { steps: 24, inner: L(k.sideArc(dx, dy, 5, 40, P, 24) + k.sideArc(dx, dy, 5, 90, P, 24), { tone: 'faint' }), attrs: fc });
   const hood = { x: dx - 16, y: dy - 4, w: 32, d: 26, r: 1.4 };
   const vanes = [];
   for (let x = hood.x + 5; x < hood.x + hood.w - 4; x += 4) vanes.push(k.lineOnTop([x, hood.y + 2.5], [x, hood.y + hood.d - 2.5], 118, P));
@@ -310,26 +310,26 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
     inner: L(door, { tone: 'lo' }) + L(k.sideSeam(CAB, CAB_H - 8, P, 2), { tone: 'faint' }),
     extra: slots(vents) + card(label) + L([76, 74].map((z, i) => k.segment([CAB.x + 5, fy, z], [CAB.x + [12, 10][i], fy, z], P)).join(''), { tone: 'lo', free: true }) + Dt([[CAB.x + 3, fy, 5], [CAB.x + 3, fy, CAB_H - 4]].map(at), { size: 0.4 }),
   });
-  discAt('ctrl.switch', frameY([CAB.x + CAB.w - 5, fy, 56]), 0, 1.2, 3, { tone: 'lo' }, { steps: 24 });
-  discAt('ctrl.knob', frameY([CAB.x + CAB.w - 5, fy, 56]), 1.2, 3, 1.6, { tone: 'hi', crease: 'none' }, { steps: 20 });
+  discAt('ctrl.switch', frameY([CAB.x + CAB.w - 5, fy, 56]), 0, 1.2, 3, { tone: 'lo' }, { steps: 18 });
+  discAt('ctrl.knob', frameY([CAB.x + CAB.w - 5, fy, 56]), 1.2, 3, 1.6, { tone: 'hi', crease: 'none' }, { steps: 16 });
   const sx = CAB.x + CAB.w;
   box('ctrl.hook', { x: sx, y: CAB.y + 12, w: 1.6, d: 6, r: 0.3 }, 62, 64, { tone: 'lo' }, { steps: 1 });
   box('pendant.body', { x: sx + 1.6, y: CAB.y + 9, w: 2.4, d: 12, r: 0.8 }, 44, 62, { tone: 'hi', crease: 'lo' }, {
     steps: 2, attrs: pc,
     extra: card([[sx + 4, CAB.y + 11, 59], [sx + 4, CAB.y + 19, 59], [sx + 4, CAB.y + 19, 52], [sx + 4, CAB.y + 11, 52]]) + Dt([[sx + 4, CAB.y + 12, 48], [sx + 4, CAB.y + 15, 48], [sx + 4, CAB.y + 18, 48]].map(at), { size: 0.45 }),
   });
-  post('pendant.estop', sx + 2.8, CAB.y + 18, 1.1, 62, 63.6, { tone: 'lo' }, { steps: 16, extra: Dt([at([sx + 2.8, CAB.y + 18, 63.6])], { size: 0.45, tone: 'hi' }) });
+  post('pendant.estop', sx + 2.8, CAB.y + 18, 1.1, 62, 63.6, { tone: 'lo' }, { steps: 8, extra: Dt([at([sx + 2.8, CAB.y + 18, 63.6])], { size: 0.45, tone: 'hi' }) });
   const tx = CAB.x + 6; const ty = CAB.y + 6;
-  post('ctrl.stack-base', tx, ty, 2.6, CAB_H, CAB_H + 2, { tone: 'mid' }, { steps: 18 });
-  post('ctrl.stack-ready', tx, ty, 2.1, CAB_H + 2, CAB_H + 6, { tone: 'mid', crease: 'lo' }, { steps: 18 });
-  post('ctrl.stack-ring', tx, ty, 2.3, CAB_H + 6, CAB_H + 6.4, { tone: 'lo', crease: 'none' }, { steps: 18 });
-  post('ctrl.stack-arc', tx, ty, 2.1, CAB_H + 6.4, CAB_H + 10.4, { tone: 'mid', crease: 'lo' }, { steps: 18, attrs: ' data-k="stackArc"' });
-  post('ctrl.stack-cap', tx, ty, 2.3, CAB_H + 10.4, CAB_H + 11.6, { tone: 'mid' }, { steps: 18, extra: Dt([at([tx, ty, CAB_H + 11.6])], { size: 0.4, tone: 'hi' }) });
+  post('ctrl.stack-base', tx, ty, 2.6, CAB_H, CAB_H + 2, { tone: 'mid' }, { steps: 14 });
+  post('ctrl.stack-ready', tx, ty, 2.1, CAB_H + 2, CAB_H + 6, { tone: 'mid', crease: 'lo' }, { steps: 14 });
+  post('ctrl.stack-ring', tx, ty, 2.3, CAB_H + 6, CAB_H + 6.4, { tone: 'lo', crease: 'none' }, { steps: 14 });
+  post('ctrl.stack-arc', tx, ty, 2.1, CAB_H + 6.4, CAB_H + 10.4, { tone: 'mid', crease: 'lo' }, { steps: 14, attrs: ' data-k="stackArc"' });
+  post('ctrl.stack-cap', tx, ty, 2.3, CAB_H + 10.4, CAB_H + 11.6, { tone: 'mid' }, { steps: 14, extra: Dt([at([tx, ty, CAB_H + 11.6])], { size: 0.4, tone: 'hi' }) });
 }
 
 // ---------------------------------------------------------------- the parts cart at the loading side (front left)
 {
-  for (const [x, y] of k.corners(k.insetPlan(CART, 2.5), 0)) post('cart.wheel', x, y, 1.8, 0, 3.6, { tone: 'lo' }, { steps: 14 });
+  for (const [x, y] of k.corners(k.insetPlan(CART, 2.5), 0)) post('cart.wheel', x, y, 1.8, 0, 3.6, { tone: 'lo' }, { steps: 8 });
   box('cart.deck', CART, 3.6, 6, { tone: 'mid' }, { steps: 2, bevel: 0.3 });
   for (const x of [CART.x + 1, CART.x + CART.w - 3]) box('cart.upright', { x, y: CART.y + 1, w: 2, d: CART.d - 2, r: 0.3 }, 6, 22, { tone: 'mid' }, { steps: 1 });
   box('cart.handle', { x: CART.x - 4, y: CART.y + 4, w: 4, d: 2, r: 0.3 }, 6, 30, { tone: 'hi', crease: 'lo' }, { steps: 1 });
@@ -350,13 +350,13 @@ const beamSvg = `<g data-cue="curtain"><path class="wf-beam" data-k="beams" d="$
   const oc = cue('operator');
   for (const dx of [-2.6, 2.6]) {
     box('op.shoe', { x: ox + dx - 1.8, y: oy - 3.4, w: 3.6, d: 6, r: 1.2 }, 0, 1.6, { tone: 'lo' }, { steps: 2, layer: 'front' });
-    post('op.leg', ox + dx, oy, 1.9, 1.6, 40, { tone: 'mid', crease: 'none' }, { steps: 20, layer: 'front', attrs: oc });
+    post('op.leg', ox + dx, oy, 1.9, 1.6, 40, { tone: 'mid', crease: 'none' }, { steps: 16, layer: 'front', attrs: oc });
   }
   box('op.coat', plan(ox, oy, 12, 7, 2.6), 38, 66, { tone: 'hi', crease: 'lo' }, { steps: 3, bevel: 0.6, inner: L(k.sideSeam(plan(ox, oy, 12, 7, 2.6), 52, P, 3), { tone: 'faint' }), layer: 'front', attrs: oc });
-  for (const dx of [-7.4, 7.4]) post('op.arm', ox + dx, oy, 1.7, 42, 64, { tone: 'hi', crease: 'lo' }, { steps: 18, layer: 'front', attrs: oc });
-  post('op.neck', ox, oy, 1.8, 66, 69, { tone: 'mid' }, { steps: 16, layer: 'front' });
-  post('op.head', ox, oy, 3.6, 69, 77, { tone: 'mid', crease: 'none' }, { steps: 28, bevel: 1.2, layer: 'front', attrs: oc });
-  post('op.cap', ox, oy, 3.9, 76, 79, { tone: 'lo' }, { steps: 28, bevel: 1, layer: 'front' });
+  for (const dx of [-7.4, 7.4]) post('op.arm', ox + dx, oy, 1.7, 42, 64, { tone: 'hi', crease: 'lo' }, { steps: 14, layer: 'front', attrs: oc });
+  post('op.neck', ox, oy, 1.8, 66, 69, { tone: 'mid' }, { steps: 12, layer: 'front' });
+  post('op.head', ox, oy, 3.6, 69, 77, { tone: 'mid', crease: 'none' }, { steps: 20, bevel: 1.2, layer: 'front', attrs: oc });
+  post('op.cap', ox, oy, 3.9, 76, 79, { tone: 'lo' }, { steps: 20, bevel: 1, layer: 'front' });
 }
 
 // ---------------------------------------------------------------- settle and assemble
@@ -376,7 +376,7 @@ const world = [
   `<g data-cue="torch">${g('torch')}</g>`,
   `<g data-cue="positioner">${g('screen')}</g>`,
   `<g data-cue="fixture">${g('near')}</g>`,
-  g('arc'),
+  `<g data-cue="arcon">${g('arc')}</g>`,
   curtainPanel(TR + 2, FX - 2),
   `<g data-cue="fence">${meshNear}</g>`,
   layerOf('front'),
@@ -395,7 +395,25 @@ const hud = [
   g('costC', [g('costBase'), cueSlot('cost', 'costBars'), cueSlot('eff', 'costWire'), cueSlot('even', 'costEven')].join('')),
   g('sysC', [g('sysBase'), cueSlot('iso', 'sysIso'), cueSlot('ce', 'sysCe'), cueSlot('nb', 'sysNb'), cueSlot('fpc', 'sysFpc'), cueSlot('iwe', 'sysIwe')].join('')),
 ].join('');
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`;
+// Page weight (as in the moulding-machine film): the kit's rounded bevels and
+// many-sided cylinders leave runs of points a fraction of a unit apart; drop a
+// line point within 0.25 units of the last one kept (invisible even at the
+// closest camera), only in plain M/L/Z paths.
+const slim = (s) => s.replace(/ d="([^"]*)"/g, (m, d) => {
+  if (!/^[MLZ0-9 .-]+$/.test(d)) return m;
+  const out = [];
+  let last = null;
+  for (const tok of d.match(/[MLZ][^MLZ]*/g) ?? []) {
+    if (tok[0] === 'Z') { out.push('Z'); last = null; continue; }
+    const xy = tok.slice(1).trim();
+    const [x, y] = xy.split(/\s+/).map(Number);
+    if (tok[0] === 'L' && last && Math.hypot(x - last[0], y - last[1]) < 0.25) continue;
+    out.push(tok[0] + xy);
+    last = [x, y];
+  }
+  return ` d="${out.join('')}"`;
+});
+const svg = slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras: [cx, cy, w] per beat
 const cam = (p, w, s = [W / 2, H / 2]) => { const [x, y] = at(p); const kk = w / W; return [Math.round((x + (W / 2 - s[0]) * kk) * 10) / 10, Math.round((y + (H / 2 - s[1]) * kk) * 10) / 10, w]; };
@@ -409,6 +427,7 @@ const CLEANV = cam([30, -60, 80], 320);
 const FUMEV = cam([40, -50, 90], 420);
 const CURTV = cam([-10, 60, 50], 440);
 const TORCHV = cam([0, 0, 70], 240);
+const ARCV = cam([22, -8, 84], 200);
 const C = { W, H, KS, TC, TR, TZ, PED, SH_Z, LINK, TOOL, HOME, CLEAN, FUME, FIXT, BARS, BAR_H, JOINTS, CLAMPS, CELL, SEAM, BEAM, COST, DUTY, SYS, EXC };
 C.KEYS = [
   [WIDE, ROBOTV, FEEDV, PENDV], // s1 what is in the cell
@@ -416,8 +435,8 @@ C.KEYS = [
   [CLEANV, FUMEV, CURTV], // s3 clean, extracted, safe
   [TORCHV, WIDE, WIDE], // s4 finding the seam
   [WIDE, WIDE, WIDE, WIDE], // s5 taming shrinkage
-  [WIDE, WIDE, WIDE, WIDE], // s6 arc-on time
-  [WIDE, WIDE, WIDE, WIDE], // s7 a metre of weld
+  [ARCV, WIDE, WIDE, WIDE], // s6 arc-on time: opens on the arc
+  [ARCV, WIDE, WIDE, WIDE], // s7 a metre of weld: opens on the arc
   [WIDE, WIDE, WIDE, WIDE], // s8 the system
 ];
 
@@ -448,7 +467,7 @@ const spec = {
         { nl: 'De mal staat op een {t:Positioner|positioner}, een draaitafel met twee stations.', en: 'The fixture stands on a {t:Positioner|positioner}, a turntable with two stations.', cue: { Positioner: 'positioner' } },
         { nl: 'Eén station: de robot wacht tijdens het laden. {n:6} + {n:4} = {n:10} minuten, {n:6} frames per uur.', en: 'One station: the robot waits while loading. {n:6} + {n:4} = {n:10} minutes, {n:6} frames an hour.', cues: ['one'] },
         { nl: 'Twee stations: laden tijdens het lassen. {n:6} + {n:0.3} = {n:6.3} minuten, {n:9.5} per uur.', en: 'Two stations: loading while welding. {n:6} + {n:0.3} = {n:6.3} minutes, {n:9.5} an hour.', cues: ['two'] },
-        { nl: 'Zo’n {n:59}% meer met dezelfde robot. Duurt laden langer dan lassen, dan helpt het niet.', en: 'About {n:59}% more from the same robot. If loading takes longer than welding, it no longer helps.', cues: ['two'] },
+        { nl: 'Zo’n {n:59}% meer met dezelfde robot. Duurt laden langer dan lassen, dan wacht de robot.', en: 'About {n:59}% more from the same robot. If loading takes longer than welding, the robot waits.', cues: ['two'] },
       ],
     },
     {
@@ -480,7 +499,7 @@ const spec = {
       id: 's6', lesson: AO, level: 3, still: 0.5, title: { nl: 'Boogbrandtijd', en: 'Arc-on time' },
       beats: [
         { nl: 'De {t:Boogbrandtijd|boogbrandtijd}: hoeveel van de dag de boog echt brandt.', en: 'The {t:Arc-on time|arc-on time}: how much of the day the arc really burns.', cue: { Boogbrandtijd: 'arcon' } },
-        { nl: '{t:Bedrijfsfactor|Bedrijfsfactor}: met de hand {n:10} tot {n:30}%, een robotcel tot zo’n {n:90}%.', en: '{t:Operating factor|Operating factor}: by hand {n:10} to {n:30}%, a robot cell up to about {n:90}%.', cue: { Bedrijfsfactor: 'bf' } },
+        { nl: '{t:Bedrijfsfactor|Bedrijfsfactor}: met de hand {n:10} tot {n:30}%; een robotcel volgens leveranciers tot {n:90}%.', en: '{t:Operating factor|Operating factor}: by hand {n:10} to {n:30}%; a robot cell up to {n:90}%, suppliers say.', cue: { Bedrijfsfactor: 'bf' } },
         { nl: 'Niet de {t:Inschakelduur|inschakelduur}: {n:60}% bij {n:300} A is {n:6} van elke {n:10} minuten lassen.', en: 'Not the {t:Duty cycle|duty cycle}: {n:60}% at {n:300} A is welding {n:6} of every {n:10} minutes.', cue: { Inschakelduur: 'duty' } },
         { nl: 'Een {t:Lasdatasysteem|lasdatasysteem} telt de boogtijd op per lasser, cel of ploeg.', en: '{t:Weld data monitoring|Weld data monitoring} adds up the arc time per welder, cell or shift.', cue: { Lasdatasysteem: 'wdata' } },
       ],
@@ -498,9 +517,9 @@ const spec = {
       id: 's8', lesson: WS, level: 4, still: 0.5, title: { nl: 'Laskwaliteit als systeem', en: 'Weld quality as a system' },
       beats: [
         { nl: '{t:ISO 3834|ISO 3834} eist een beheerst lasproces, in drie niveaus: deel 2, 3 en 4.', en: '{t:ISO 3834|ISO 3834} demands a controlled welding process, in three levels: parts 2, 3 and 4.', cue: { 'ISO 3834': 'iso' } },
-        { nl: 'EXC1 vraagt deel 4, EXC2 deel 3, EXC3 en EXC4 deel 2. Dan mag de {t:CE-markering|CE-markering} erop.', en: 'EXC1 asks for part 4, EXC2 part 3, EXC3 and EXC4 part 2. Then the {t:CE marking|CE marking} may go on.', cue: { 'CE-markering': 'ce' } },
+        { nl: 'EXC1 vraagt deel 4, EXC2 deel 3, EXC3 en EXC4 deel 2. EN 1090-1 regelt de {t:CE-markering|CE-markering}.', en: 'EXC1 asks for part 4, EXC2 part 3, EXC3 and EXC4 part 2. EN 1090-1 governs the {t:CE marking|CE marking}.', cue: { 'CE-markering': 'ce' } },
         { nl: 'Een {t:Aangewezen instantie|aangewezen instantie} keurt de {t:Fabrieksproductiecontrole|fabrieksproductiecontrole}.', en: 'A {t:Notified body|notified body} certifies the {t:Factory production control|factory production control}.', cue: { 'Aangewezen instantie': 'nb', Fabrieksproductiecontrole: 'fpc' } },
-        { nl: 'Een {t:IWE|IWE} coördineert. {n:14} lassers, elke {n:6} maanden bevestigd: {n:28} per jaar.', en: 'An {t:IWE|IWE} coordinates. {n:14} welders, confirmed every {n:6} months: {n:28} a year.', cue: { IWE: 'iwe' } },
+        { nl: 'Lascoördinator, op topniveau een {t:IWE|IWE}. {n:14} lassers, elke {n:6} maanden bevestigd: {n:28} per jaar.', en: 'Welding coordinator, at the top level an {t:IWE|IWE}. {n:14} welders, confirmed every {n:6} months: {n:28} a year.', cue: { IWE: 'iwe' } },
       ],
     },
   ],
@@ -518,72 +537,72 @@ const SAY = [
       en: 'This is a robot welding cell: a guarded space in which a robot welds.' },
     { nl: 'Het hart is een robotarm met zes assen, met een MAG-toorts op de pols.',
       en: 'At its heart is a robot arm with six axes, with a MAG torch on its wrist.' },
-    { nl: 'De stroombron levert de lasstroom. Het draadaanvoerapparaat trekt de draad uit een vat van honderden kilo’s en duwt hem naar de toorts.',
-      en: 'The power source delivers the welding current. The wire feeder pulls wire from a drum of hundreds of kilos and pushes it to the torch.' },
-    { nl: 'De robot volgt een programma: punten, met per las de draadsnelheid en lassnelheid. Je leert ze in met de handbediening, of je maakt het programma op de computer vanuit het 3D-model: offline programmeren, terwijl de robot doorlast.',
-      en: 'The robot follows a program: points, with the wire feed speed and travel speed for each weld. You teach them with the pendant, or build the program on a computer from the 3D model: offline programming, while the robot keeps welding.' },
+    { nl: 'De stroombron levert de lasstroom. Het draadaanvoerapparaat duwt de draad van een haspel of vat naar de toorts.',
+      en: 'The power source delivers the welding current. The wire feeder pushes the wire from a spool or drum to the torch.' },
+    { nl: 'De robot volgt een programma: een reeks punten, met per las de draadsnelheid en lassnelheid. De punten leer je in met de handbediening.',
+      en: 'The robot follows a program: a series of points, with the wire feed speed and travel speed for each weld. You teach the points with the pendant.' },
   ],
   [ // s2 two stations
     { nl: 'Het werkstuk zit in een {t:Lasmal|lasmal}: aanslagen en klemmen houden elk deel op de juiste plek.',
       en: 'The workpiece sits in a {t:Welding fixture|welding fixture}: stops and clamps hold every part in the right place.' },
-    { nl: 'De mal staat op een {t:Positioner|positioner}: een tafel die het werkstuk draait, zodat de robot zoveel mogelijk vlak last. Hier een draaitafel met twee stations.',
-      en: 'The fixture stands on a {t:Positioner|positioner}: a table that turns the work, so the robot welds flat where it can. Here, a turntable with two stations.' },
-    { nl: 'Waarom twee? De robot last een frame in {n:6} minuten, en laden kost {n:4}. Met één station wacht de robot tijdens het laden: {n:10} minuten per frame, {n:6} per uur.',
-      en: 'Why two? The robot welds a frame in {n:6} minutes, and loading takes {n:4}. With one station the robot waits during loading: {n:10} minutes per frame, {n:6} an hour.' },
-    { nl: 'Met twee laadt de operator terwijl de robot last, en draait de tafel in {n:0.3} minuut een halve slag. Een frame duurt {n:6.3} minuten: {n:9.5} per uur.',
-      en: 'With two, the operator loads while the robot welds, and the table turns half a turn in {n:0.3} minutes. A frame takes {n:6.3} minutes: {n:9.5} an hour.' },
-    { nl: 'Zo’n {n:59} procent meer, met dezelfde robot. Maar duurt laden langer dan lassen, dan helpt een tweede station niet.',
-      en: 'About {n:59} percent more, with the same robot. But if loading takes longer than welding, a second station does not help.' },
+    { nl: 'De mal staat op een {t:Positioner|positioner}: die draait het werkstuk, zodat de robot zoveel mogelijk vlak last. Hier: een draaitafel met twee stations.',
+      en: 'The fixture stands on a {t:Positioner|positioner}: it turns the work, so the robot welds flat where it can. Here: a turntable with two stations.' },
+    { nl: 'De robot last een frame in {n:6} minuten; laden kost {n:4}. Met één station wacht hij tijdens het laden: {n:10} minuten, {n:6} frames per uur.',
+      en: 'The robot welds a frame in {n:6} minutes; loading takes {n:4}. With one station it waits during loading: {n:10} minutes, {n:6} frames an hour.' },
+    { nl: 'Met twee laadt de operator terwijl de robot last, en draait de tafel in {n:0.3} minuut: {n:6.3} minuten, {n:9.5} per uur.',
+      en: 'With two, the operator loads while the robot welds, and the table turns in {n:0.3} minutes: {n:6.3} minutes, {n:9.5} an hour.' },
+    { nl: 'Zo’n {n:59} procent meer, met dezelfde robot. Duurt laden langer dan lassen, dan wacht de robot op de operator.',
+      en: 'About {n:59} percent more, with the same robot. If loading takes longer than welding, the robot waits for the operator.' },
   ],
   [ // s3 clean, extracted, safe
-    { nl: 'Om de paar stukken gaat de robot naar de {t:Toortsreiniging|toortsreiniging}: die ruimt spatten uit het gasmondstuk, spuit anti-spat en knipt de draad. Anders raakt de gasstroom verstoord, en krijg je gasbelletjes in de las.',
-      en: 'Every few parts the robot visits the {t:Torch cleaning station|torch cleaning station}: it clears spatter from the nozzle, sprays anti-spatter and cuts the wire. Otherwise the gas flow suffers, and the weld gets gas bubbles.' },
+    { nl: 'Om de paar stukken ruimt de {t:Toortsreiniging|toortsreiniging} spatten uit het gasmondstuk, spuit anti-spat en knipt de draad. Anders raakt de gasstroom verstoord: gasbelletjes in de las.',
+      en: 'Every few parts the {t:Torch cleaning station|torch cleaning station} clears spatter from the nozzle, sprays anti-spatter and cuts the wire. Otherwise the gas flow suffers: gas bubbles in the weld.' },
     { nl: 'Lassen geeft rook en fel uv-licht. {t:Afzuiging|Afzuiging} haalt de rook weg; schermen houden het licht binnen.',
       en: 'Welding gives off fumes and bright UV light. {t:Fume extraction|Fume extraction} removes the fumes; screens keep the light in.' },
-    { nl: 'Om de cel staat een hek, en bij het laadstation een {t:Lichtscherm|lichtscherm}: onzichtbare stralen. Breekt iemand een straal, dan stopt de beweging aan die kant. De veiligheidsregels staan in de modules Veilig werken en Lijnen.',
-      en: 'A fence surrounds the cell, and at the loading station stands a {t:Light curtain|light curtain}: invisible beams. Break a beam, and motion on that side stops. For the safety rules, see the safety and lines modules.' },
+    { nl: 'Om de cel staat een hek, bij het laadstation een {t:Lichtscherm|lichtscherm}: onzichtbare stralen. Breekt iemand er een, dan stopt de beweging aan die kant. De regels staan in Veilig werken en in Lijnen en automatisering.',
+      en: 'A fence surrounds the cell, and at the loading station stands a {t:Light curtain|light curtain}: invisible beams. Break a beam, and motion on that side stops. The rules are in the Safety and the Lines and automation modules.' },
   ],
   [ // s4 finding the seam
-    { nl: 'Een robot last blind. Ligt de naad naast zijn punten, dan mist de boog. Vuistregel: binnen een halve draaddiameter, bij draad van {n:1.2} millimeter dus plus of min {n:0.6}.',
-      en: 'A robot welds blind. If the seam is off its points, the arc misses. Rule of thumb: within half a wire diameter, so with {n:1.2} millimetre wire, plus or minus {n:0.6}.' },
-    { nl: 'Bij {t:Naadzoeken|naadzoeken} tikt de draad, onder spanning, vóór het lassen het werkstuk aan. Zo meet de robot waar de wanden zitten, en schuift het programma mee.',
-      en: 'In {t:Seam finding|seam finding} the live wire touches the workpiece before welding. So the robot measures where the walls are, and shifts the program to match.' },
-    { nl: 'Bij {t:Naadvolgen|naadvolgen} pendelt de robot tijdens het lassen, en leest aan de stroom of hij te dicht bij een wand komt. Beide kosten tijd op elk stuk; een goede mal is bijna altijd goedkoper.',
+    { nl: 'Een robot last blind: ligt de naad naast zijn punten, dan mist de boog. Vuistregel: binnen een halve draaddiameter, bij {n:1.2} millimeter draad dus plus of min {n:0.6}. De mal legt elk deel vast op zes steunpunten: het drie-twee-een-principe.',
+      en: 'A robot welds blind: if the seam is off its points, the arc misses. Rule of thumb: within half a wire diameter, so with {n:1.2} millimetre wire, plus or minus {n:0.6}. The fixture locates each part on six points: the three-two-one principle.' },
+    { nl: 'Bij {t:Naadzoeken|naadzoeken} tikt de draad, onder spanning, vóór het lassen het werkstuk aan, en het programma schuift mee.',
+      en: 'In {t:Seam finding|seam finding} the live wire touches the workpiece before welding, and the program shifts to match.' },
+    { nl: 'Bij {t:Naadvolgen|naadvolgen} pendelt de robot tijdens het lassen en leest aan de stroom of hij te dicht bij een wand komt. Beide kosten tijd op elk stuk; een goede mal is bijna altijd goedkoper.',
       en: 'In {t:Seam tracking|seam tracking} the robot weaves while welding, and reads from the current when it nears a wall. Both cost time on every part; a good fixture is almost always cheaper.' },
   ],
   [ // s5 taming shrinkage
     { nl: 'Lasmetaal krimpt bij afkoelen en trekt de delen mee. {t:Hechten|Hechten} zet ze vooraf vast met korte lasjes, die de spleet gelijk houden.',
       en: 'Weld metal shrinks as it cools and pulls the parts with it. {t:Tack welding|Tack welding} fixes them beforehand with short welds, which keep the gap even.' },
-    { nl: 'Dan de {t:Lasvolgorde|lasvolgorde}: symmetrisch, van het midden naar de uiteinden, zodat de krimpkrachten elkaar opheffen.',
-      en: 'Then the {t:Welding sequence|welding sequence}: symmetrical, from the centre to the ends, so the shrinkage forces cancel out.' },
+    { nl: 'Dan de {t:Lasvolgorde|lasvolgorde}: symmetrisch, van het midden naar de uiteinden, in korte stukken, zodat de krimpkrachten elkaar opheffen.',
+      en: 'Then the {t:Welding sequence|welding sequence}: symmetrical, from the centre to the ends, in short runs, so the shrinkage forces cancel out.' },
     { nl: 'Een ligger van {n:2} meter met {n:6} lassen komt {n:3} millimeter te kort uit de mal: een halve millimeter per las.',
       en: 'A {n:2} metre beam with {n:6} welds comes out of the fixture {n:3} millimetres short: half a millimetre per weld.' },
-    { nl: 'Dus {t:Voorzetten|voorzetten}: de ligger vooraf {n:3} millimeter langer, of delen scheef, zodat de krimp ze goed trekt. Met een vaste volgorde zitten vijf liggers dan binnen plus of min {n:1} millimeter.',
-      en: 'So {t:Presetting|presetting}: the beam {n:3} millimetres longer beforehand, or parts at an angle, so shrinkage pulls them right. With a fixed sequence, five beams then fall within plus or minus {n:1} millimetre.' },
+    { nl: 'Dus {t:Voorzetten|voorzetten}: de ligger vooraf {n:3} millimeter langer, of delen scheef, zodat de krimp ze goed trekt. Met een vaste volgorde zitten vijf liggers binnen plus of min {n:1} millimeter. Hard inklemmen houdt ook recht, maar laat de spanning erin.',
+      en: 'So {t:Presetting|presetting}: the beam {n:3} millimetres longer beforehand, or parts at an angle, so shrinkage pulls them right. With a fixed sequence, five beams fall within plus or minus {n:1} millimetre. Hard clamping also keeps it straight, but leaves the stress in.' },
   ],
   [ // s6 arc-on time
     { nl: 'De {t:Boogbrandtijd|boogbrandtijd} is de tijd dat de boog echt brandt. De rest gaat naar pakken, hechten, slijpen, wachten en lopen.',
       en: '{t:Arc-on time|Arc-on time} is the time the arc is really burning. The rest goes to fetching, tacking, grinding, waiting and walking.' },
-    { nl: 'Gedeeld door de betaalde tijd is dat de {t:Bedrijfsfactor|bedrijfsfactor}. Met de hand vaak {n:10} tot {n:30} procent; voor een robotcel in serie noemen leveranciers tot zo’n {n:90}.',
-      en: 'Divided by paid time, that is the {t:Operating factor|operating factor}. By hand often {n:10} to {n:30} percent; for a robot cell in series, suppliers quote up to about {n:90}.' },
-    { nl: 'Verwar het niet met de {t:Inschakelduur|inschakelduur} van de stroombron: {n:60} procent bij {n:300} ampère is {n:6} van elke {n:10} minuten lassen, en dan afkoelen.',
+    { nl: 'Gedeeld door de betaalde tijd is dat de {t:Bedrijfsfactor|bedrijfsfactor}: met de hand vaak {n:10} tot {n:30} procent. Voor een robotcel in serie noemen leveranciers tot zo’n {n:90}.',
+      en: 'Divided by paid time, that is the {t:Operating factor|operating factor}: by hand often {n:10} to {n:30} percent. For a robot cell in series, suppliers quote up to about {n:90}.' },
+    { nl: 'Niet te verwarren met de {t:Inschakelduur|inschakelduur} van de stroombron: {n:60} procent bij {n:300} ampère is {n:6} van elke {n:10} minuten lassen, dan afkoelen.',
       en: 'Do not confuse it with the {t:Duty cycle|duty cycle} of the power source: {n:60} percent at {n:300} amps is welding {n:6} of every {n:10} minutes, then cooling down.' },
-    { nl: 'Een {t:Lasdatasysteem|lasdatasysteem} haalt de boogtijd uit de stroombronnen en telt die op per lasser, cel of ploeg: om te verbeteren, niet om af te rekenen.',
-      en: '{t:Weld data monitoring|Weld data monitoring} collects the arc time from the power sources and adds it up per welder, cell or shift: to improve, not to judge.' },
+    { nl: 'Een {t:Lasdatasysteem|lasdatasysteem} telt de boogtijd op per lasser, cel of ploeg: om te verbeteren, niet om af te rekenen. Hoger kom je met klaargelegde onderdelen, een positioner en draad uit een vat.',
+      en: '{t:Weld data monitoring|Weld data monitoring} adds up the arc time per welder, cell or shift: to improve, not to judge. Kitted parts, a positioner and wire from a drum raise it.' },
   ],
   [ // s7 a metre of weld
-    { nl: 'Een a5-hoeklas vraagt zo’n {n:196} gram lasmetaal per meter. Bij {n:5} kilo per uur is dat {n:2.4} minuten boog, met de hand en met de robot.',
-      en: 'An a5 fillet weld needs about {n:196} grams of weld metal per metre. At {n:5} kilos an hour that is {n:2.4} minutes of arc, by hand and by robot.' },
-    { nl: 'Met de hand, bij {n:30} procent en zestig euro per uur: acht euro per meter. De robotcel, bij {n:70} procent en negentig euro: vijf euro veertien. Hij wint door zijn bedrijfsfactor, niet door snelheid.',
-      en: 'By hand, at {n:30} percent and sixty euros an hour: eight euros per metre. The robot cell, at {n:70} percent and ninety euros: five euros fourteen. It wins on operating factor, not speed.' },
-    { nl: 'Bij een {t:Neersmeltrendement|neersmeltrendement} van {n:95} procent kost de draad tweeënvijftig cent per meter. Arbeid is de grote post.',
-      en: 'At a {t:Deposition efficiency|deposition efficiency} of {n:95} percent the wire costs fifty-two cents per metre. Labour is the big item.' },
-    { nl: 'Haalt de robot maar {n:40} procent, door kleine series en mallen wisselen, dan kost hij negen euro. Onder {n:45} procent is hij duurder dan de hand.',
-      en: 'If the robot only reaches {n:40} percent, through small batches and fixture changes, it costs nine euros. Below {n:45} percent it costs more than by hand.' },
+    { nl: 'Een a5-hoeklas vraagt zo’n {n:196} gram lasmetaal per meter. Bij {n:5} kilo per uur is dat {n:2.4} minuten boog, voor hand en robot gelijk.',
+      en: 'An a5 fillet weld needs about {n:196} grams of weld metal per metre. At {n:5} kilos an hour that is {n:2.4} minutes of arc, the same by hand and by robot.' },
+    { nl: 'Met de hand, bij {n:30} procent en zestig euro per uur: acht euro per meter. De robot, bij {n:70} procent en negentig euro: vijf euro veertien. Hij wint door zijn bedrijfsfactor, niet door snelheid.',
+      en: 'By hand, at {n:30} percent and sixty euros an hour: eight euros per metre. The robot, at {n:70} percent and ninety euros: five euros fourteen. It wins on operating factor, not speed.' },
+    { nl: 'Bij een {t:Neersmeltrendement|neersmeltrendement} van {n:95} procent kost de draad tweeënvijftig cent. Gas en stroom nog minder; arbeid is de grote post.',
+      en: 'At a {t:Deposition efficiency|deposition efficiency} of {n:95} percent the wire costs fifty-two cents. Gas and power even less; labour is the big item.' },
+    { nl: 'Haalt de robot maar {n:40} procent, door kleine series en mallen wisselen, dan kost hij negen euro: onder {n:45} procent is hij duurder dan de hand.',
+      en: 'If the robot only reaches {n:40} percent, through small batches and fixture changes, it costs nine euros: below {n:45} percent it costs more than by hand.' },
   ],
   [ // s8 the system
-    { nl: 'Een las kun je achteraf maar deels controleren. Daarom eist {t:ISO 3834|ISO 3834} een beheerst lasproces, in drie niveaus: deel 2, 3 en 4.',
-      en: 'A weld can only partly be checked afterwards. So {t:ISO 3834|ISO 3834} demands a controlled welding process, in three levels: parts 2, 3 and 4.' },
+    { nl: 'Een las kun je achteraf maar deels controleren. Daarom eist {t:ISO 3834|ISO 3834} een beheerst lasproces, van personeel tot inspectie, in drie niveaus: deel 2 uitgebreid, 3 standaard, 4 elementair.',
+      en: 'A weld can only partly be checked afterwards. So {t:ISO 3834|ISO 3834} demands a controlled welding process, from people to inspection, in three levels: part 2 comprehensive, 3 standard, 4 elementary.' },
     { nl: 'In de staalbouw volgt het niveau de uitvoeringsklasse: EXC1 vraagt deel 4, EXC2 deel 3, EXC3 en EXC4 deel 2. EN 1090-1 regelt de {t:CE-markering|CE-markering}.',
       en: 'In steel construction the level follows the execution class: EXC1 asks for part 4, EXC2 part 3, EXC3 and EXC4 part 2. EN 1090-1 governs the {t:CE marking|CE marking}.' },
     { nl: 'Een {t:Aangewezen instantie|aangewezen instantie} certificeert de {t:Fabrieksproductiecontrole|fabrieksproductiecontrole} van de staalbouwer. Zonder certificaat geen CE-markering.',
@@ -620,7 +639,10 @@ spec.scenes.forEach((s, si) => {
 
 // ---------------------------------------------------------------- page script and styles
 const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst W = ${W}, H = ${H};\n`;
-const stageScript = kitScript() + '\n' + preamble + readFileSync(join(HERE, '../_kit/audio-warp.js'), 'utf8') + '\n' + readFileSync(join(HERE, 'stage.js'), 'utf8');
+// The stage script ships without its comment lines and indentation (no
+// template literal in stage.js spans lines, so nothing visible changes).
+const lean = (src) => src.split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('//')).join('\n');
+const stageScript = kitScript() + '\n' + preamble + readFileSync(join(HERE, '../_kit/audio-warp.js'), 'utf8') + '\n' + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'));
 
 const css = `
 :root{--wf-arm:#173339;--wf-arm-top:#1F4048;--wf-arm-dark:#0F262B;--wf-bead:#9FB3A6;--wf-hot:#BFE3EA;--wf-core:#F4FBFC;--wf-mesh:rgba(92,159,174,.05);--wf-curtain:rgba(92,159,174,.10);--wf-hole:#071A1E}

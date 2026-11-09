@@ -273,18 +273,25 @@ const STAGE = (() => {
     };
   }
 
+  // the robot welding one seam of the back station, close up (s6 and s7 open on it)
+  function arcClose(p, u) {
+    const wp = 0.38 + 0.12 * p;
+    const w = weldPath(wp, 0);
+    return { ...running(0), tcp: w.tcp, arc: w.arc, u, stations: [{ bars: 5, clamps: true, beads: weldingBeads(wp), hot: 2 }, loadingState(1)] };
+  }
+
   // ------------------------------------------------------------ s1: the program on the pendant
   function progCard(p) {
-    let s = card(330, 28, 286, 300);
-    s += T(473, 62, tx('programma', 'program'), 20, 'middle', 'fp-label');
-    const rows = [['P1', tx('aanloop', 'approach'), ''], ['P2', tx('las 1', 'weld 1'), '10 m/min'], ['P3', tx('las 2', 'weld 2'), '10 m/min'], ['P4', tx('reinigen', 'clean'), '']];
+    let s = card(330, 28, 286, 250);
+    s += T(346, 62, tx('programma', 'program'), 20, 'start', 'fp-label') + T(600, 62, tx('draadsnelheid', 'wire feed'), 19, 'end', 'fp-small');
+    const wfs = '10 m/min';
+    const rows = [['P1', tx('aanloop', 'approach'), ''], ['P2', tx('las 1', 'weld 1'), wfs], ['P3', tx('las 2', 'weld 2'), wfs], ['P4', tx('reinigen', 'clean'), '']];
     rows.forEach(([a, b, c2], i) => {
       if (p < 0.05 + i * 0.12) return;
       const y = 104 + i * 42;
       s += rect(346, y - 24, 254, 34, 'wf-bx', 6) + T(358, y, a, 19, 'start', 'fp-big') + T(404, y, b, 19, 'start', 'fp-small');
       if (c2) s += T(592, y, c2, 19, 'end', 'fp-small');
     });
-    if (p > 0.55) s += T(473, 290, tx('of offline, vanuit 3D', 'or offline, from 3D'), 19, 'middle', 'fp-small');
     return s;
   }
 
@@ -356,7 +363,7 @@ const STAGE = (() => {
     const b = span(p, 0.4, 0.7);
     let wx = px + 40;
     let wy = SY - 70;
-    if (p < 0.38) { wx = lerpN(px + 40, SX + 0.6 * MM, a); wy = SY - 70; } else { wx = SX + 60; wy = lerpN(SY - 70, SY, b); }
+    if (p < 0.38) { wx = lerpN(px + 40, SX + 0.6 * MM, a); wy = SY - 70; } else { wx = SX + 60; wy = lerpN(SY - 70, SY, b) - 80 * span(p, 0.72, 0.8); }
     s += wire(wx, wy, 50);
     if (a > 0.98) s += `<circle class="fp-ink" cx="${f1(SX)}" cy="${f1(SY - 70)}" r="5"/>`;
     if (b > 0.98) s += `<circle class="fp-ink" cx="${f1(SX + 60)}" cy="${f1(SY)}" r="5"/>`;
@@ -425,7 +432,7 @@ const STAGE = (() => {
     s += T(460, 330, tx('5 liggers', '5 beams'), 19, 'end', 'fp-small');
     s += rect(476, 318, 120, 22, 'wf-band', 4);
     ok.forEach((v, i) => { if (p > 0.45 + i * 0.08) s += `<circle class="fp-ink" cx="${f1(536 + v * 50)}" cy="329" r="5"/>`; });
-    if (p > 0.85) s += T(536, 364, `±${C.BEAM.after} mm`, 19, 'middle', 'fp-label');
+    if (p > 0.65) s += T(536, 364, `±${C.BEAM.after} mm`, 19, 'middle', 'fp-label');
     return s;
   }
 
@@ -514,7 +521,7 @@ const STAGE = (() => {
   function costEven(p) {
     let s = bar(500, C.COST.lowM, span(p, 0.05, 0.45), 'robot', `${Math.round(C.COST.low * 100)}% · €${C.COST.robot.eur}`);
     const y = CY0 - C.COST.handM * CK;
-    if (p > 0.5) s += line([[70, y], [600, y]], 'wf-dash') + tag(420, y - 14, 200, tx(`omslag ${Math.round(C.COST.even * 100)}%`, `break-even ${Math.round(C.COST.even * 100)}%`), 19, 'middle');
+    if (p > 0.5) s += line([[70, y], [600, y]], 'wf-dash') + tag(390, y - 14, 200, tx(`omslag ${Math.round(C.COST.even * 100)}%`, `break-even ${Math.round(C.COST.even * 100)}%`), 19, 'middle');
     return s;
   }
 
@@ -542,7 +549,7 @@ const STAGE = (() => {
   }
   function sysNb(p) {
     const g = span(p, 0.05, 0.5);
-    return `<g opacity="${f2(g)}"><circle class="wf-bx" cx="110" cy="318" r="40"/><circle class="wf-dash" cx="110" cy="318" r="30"/>` + T(110, 325, 'NB', 19, 'middle', 'fp-big') + '</g>' + (p > 0.4 ? arrow(156, 318, 226, 318, 9, 'fp-mark', 2) : '');
+    return `<g opacity="${f2(g)}"><circle class="wf-bx" cx="110" cy="318" r="40"/><circle class="wf-dash" cx="110" cy="318" r="30"/>` + line([[96, 318], [106, 330], [126, 304]], 'wf-sig') + '</g>' + (p > 0.4 ? arrow(156, 318, 226, 318, 9, 'fp-mark', 2) : '');
   }
   function sysFpc(p) {
     let s = rect(236, 270, 132, 92, 'wf-bx', 8) + T(302, 352, tx('FPC', 'FPC'), 19, 'middle', 'fp-big');
@@ -627,12 +634,14 @@ const STAGE = (() => {
       set(E.beamPreset, presetOn ? beamPreset(p) : '');
     }
     if (si === 5) {
-      if (kb <= 1) { hud = ['scrim', 'dayC']; set(E.dayArc, dayArc(kb === 0 ? p : 1)); set(E.dayBf, kb === 1 ? dayBf() : ''); }
+      if (kb === 0) st = { ...arcClose(p, u), fumes: 1 };
+      if (kb === 1 || (kb === 0 && p > 0.5)) { hud = ['scrim', 'dayC']; set(E.dayArc, dayArc(kb === 0 ? span(p, 0.5, 1) : 1)); set(E.dayBf, kb === 1 ? dayBf() : ''); }
       if (kb === 2) { hud = ['scrim', 'dutyC']; set(E.dutyBody, dutyCard(p)); }
       if (kb === 3) { hud = ['scrim', 'dataC']; set(E.dataBody, dataCard(p)); }
     }
     if (si === 6) {
-      hud = ['scrim', 'costC'];
+      if (kb === 0) st = { ...arcClose(p, u), fumes: 1 };
+      if (kb > 0 || p > 0.5) hud = ['scrim', 'costC'];
       set(E.costBars, costBars(kb, p));
       set(E.costWire, costWire(kb >= 2, kb === 2 ? p : 1));
       set(E.costEven, kb === 3 ? costEven(p) : '');
