@@ -718,7 +718,7 @@ export default {
       sayIt: 'Explain to a customer service manager in 60 seconds what happens between an MV cable fault and the cable being repaired.',
       terms: [
         { term: 'Feeder', def: 'One outgoing MV cable route from a substation, with the MV stations on it.' },
-        { term: 'Normally open point', def: 'The switch in an MV ring that is kept open; you close it to feed a section from the other side.' },
+        { term: 'Normally open point', def: 'The point where an MV ring is kept open; closed to restore supply after a fault.' },
         { term: 'Fault indicator', def: 'Device that shows or reports whether fault current has passed it.' },
         { term: 'Reflectometer', def: 'Instrument that sends a pulse into a cable and times the echo from the fault.' },
         { term: 'Surge generator', def: 'Device that makes the fault flash over so it can be pinpointed.' },
@@ -887,9 +887,9 @@ export default {
       ],
       teach: [
         'A new connection goes through five steps. Request: the customer applies, for small connections usually online. Capacity check: the operator checks whether the grid has room; in congested areas, where the grid is full, the request may wait in a queue.\n\nDesign: the route, the cable, and whether a new secondary substation or an MV connection is needed. Work preparation: permits, digging maps, materials, crew planning. Execution: digging, laying cable, joints, connecting, the meter and putting it into service.',
-        'Size decides the route. Small connections, up to 3 × 80 A (three phases of 80 A, about 55 kVA), connect to the LV cable in the street. Larger ones get a heavy LV cable straight from the secondary substation.\n\nAbove roughly a few hundred kVA, the customer usually gets an MV connection with an MV room: a space in or next to the customer’s building with the operator’s MV switchgear. That takes much more design and coordination.',
+        'Size decides the route. Small consumption, connections up to 3 × 80 A (three phases of 80 A, about 55 kVA), goes on the LV cable in the street. Larger ones get a heavy LV cable straight from the secondary substation.\n\nAbove roughly a few hundred kVA, the customer usually gets an MV connection with an MV room: a space in or next to the customer’s building with the operator’s MV switchgear. That takes much more design and coordination.',
         'The work itself is short, often one or two days on site. The lead time, the calendar time from request to a working connection, is mostly waiting: for the capacity check, a digging permit from the municipality, materials, or a free crew. Rework, when the design does not match the street, adds weeks.\n\nWork preparation is where much of that lead time sits. One missing permit or a transformer that is not in stock stops the job (see Buying transformers for delivery times).',
-        'The connection term is the time the operator has to deliver. The fixed term of 18 weeks was dropped in February 2025; the Energy Act, which replaced the Electricity Act 1998 in 2026, only asks for a “reasonable term”, and congestion can justify more.\n\nLarge connections have ACM terms since 1 January 2025, now in the System Code Electricity (until 2026 the Grid Code): 26 weeks for simple jobs, 52 for medium ones, plus a capped regional wait; complex ones get a custom term. “Reasonable” is still argued about.',
+        'The connection term is the time the operator has to deliver. The fixed term of 18 weeks was dropped in February 2025; the Energy Act, which replaced the Electricity Act 1998 on 1 January 2026, only asks for a “reasonable term”, and congestion can justify more.\n\nLarge connections have ACM terms since 1 January 2025, now in the Electricity System Code (until 21 February 2026 the Grid Code): 26 weeks for simple jobs, 52 for medium ones, plus a capped regional wait; complex ones get a custom term.',
         'That makes work preparation a natural target for improvement: standard packages, permits requested during design, and a site check before the crew arrives.\n\nTypical failures: a design made from old maps, a permit requested only when everything else is ready, a crew that finds the route blocked. A sharp question: “Of all the weeks this connection took, in how many was anyone actually working on it?”',
       ],
       example: {
@@ -941,7 +941,7 @@ export default {
         { term: 'Work preparation', def: 'Permits, maps, materials and planning before execution.' },
         { term: 'Lead time', def: 'Calendar time from request to working connection, waiting included.' },
         { term: 'Connection term', def: 'The time an operator has to deliver a connection: by law a “reasonable term”; the fixed 18 weeks was dropped in 2025.' },
-        { term: 'Small connection', def: 'A connection up to 3 × 80 A, on the LV cable in the street.' },
+        { term: 'Small consumption', def: 'Connections up to 3 × 80 A, on the LV cable in the street.' },
         { term: 'MV room', def: 'A room with MV equipment, often in a building or at a large customer.' },
       ],
     },
