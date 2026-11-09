@@ -232,7 +232,7 @@ const STAGE = (() => {
     const count = Math.round(lerp(0, 4500, p) / 50) * 50;
     const fmt = (v) => (EN ? v.toLocaleString('en-GB') : String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-trace" d="${pth(outline)}"/><g transform="translate(${x + 6} ${y + 22}) scale(1 0.9)"><path class="fp-mark" d="${wheel(60)}${wheel(232)}"/></g>`
-      + dots + txt(x + w / 2, y + h - 14, `${fmt(count)} ${tr('punten', 'welds')}`, 18) + txt(x + 14, y + 22, 'body-in-white', 14, 'start', 'fp-small'));
+      + dots + txt(x + w / 2, y + h - 14, `${fmt(count)} ${tr('punten', 'welds')}`, 18) + txt(x + 14, y + 22, 'body-in-white', 16, 'start', 'fp-small'));
   }
   // squeeze, weld, hold: force and current against time, with a playhead
   const CARD = { x: 330, y: 282, w: 294, h: 108 };
@@ -245,23 +245,23 @@ const STAGE = (() => {
     const X = (q) => lerp(x0, x1, q);
     const force = pth([[X(0), yb], [X(0.12), yb], [X(0.2), yb - 44], [X(0.9), yb - 44], [X(0.97), yb]]);
     const cur = pth([[X(0), yb], [X(0.35), yb], [X(0.35), yb - 62], [X(0.75), yb - 62], [X(0.75), yb], [X(1), yb]]);
-    const lab = [[tr('knijpen', 'squeeze'), 0.12], [tr('stroom', 'weld'), 0.55], [tr('vasthouden', 'hold'), 0.83]];
+    const lab = [[tr('knijpen', 'squeeze'), 0.12], [tr('stroom', 'weld'), 0.5], [tr('vasthouden', 'hold'), 0.83]];
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-grid" d="${ph.slice(1, 5).map((q) => line(X(q), y + 10, X(q), yb)).join('')}${line(x0, yb, x1, yb)}"/>`
       + `<path class="fp-trace2" d="${force}"/><path class="fp-trace" d="${cur}"/>`
-      + lab.map(([s, q]) => txt(X(q), yb + 18, s, 13, 'middle', 'fp-small')).join('')
-      + txt(X(0.55), yb - 68, `${num(9.5, 1)} kA · 300 ms`, 13, 'middle', 'fp-small')
+      + lab.map(([s, q]) => txt(X(q), yb + 18, s, 15, 'middle', 'fp-small')).join('')
+      + txt(X(0.55), yb - 68, `${num(9.5, 1)} kA · 300 ms`, 15, 'middle', 'fp-small')
       + mark(line(X(p), y + 8, X(p), yb + 2), ' style="stroke-width:2"'));
   }
   function heatSvg(p, o) {
     const { x, y, w, h } = CARD;
     const yb = y + h - 26;
-    const bar = (bx, v, lab, cls) => `<rect class="${cls}" x="${f1(bx)}" y="${f1(yb - v)}" width="30" height="${f1(v)}"/>${txt(bx + 15, yb - v - 6, lab, 13, 'middle', 'fp-small')}`;
+    const bar = (bx, v, lab, cls) => `<rect class="${cls}" x="${f1(bx)}" y="${f1(yb - v)}" width="30" height="${f1(v)}"/>${txt(bx + 15, yb - v - 6, lab, 15, 'middle', 'fp-small')}`;
     const g1 = lerp(50, 55, span(p, 0.2, 0.6));
     const g2 = lerp(50, 60.5, span(p, 0.2, 0.6));
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-grid" d="${line(x + 14, yb, x + w - 14, yb)}"/>`
       + bar(x + 30, 50, '100', 'fp-bar') + bar(x + 66, g1, `${Math.round(100 + 10 * span(p, 0.2, 0.6))}`, 'fp-fill')
       + bar(x + 160, 50, '100', 'fp-bar') + bar(x + 196, g2, `${Math.round(100 + 21 * span(p, 0.2, 0.6))}`, 'fp-fill')
-      + txt(x + 63, yb + 18, tr('stroom', 'current'), 13, 'middle', 'fp-small') + txt(x + 193, yb + 18, tr('warmte', 'heat'), 13, 'middle', 'fp-small'));
+      + txt(x + 63, yb + 18, tr('stroom', 'current'), 16, 'middle', 'fp-small') + txt(x + 193, yb + 18, tr('warmte', 'heat'), 16, 'middle', 'fp-small'));
   }
   // the stepper: current in steps against welds since dressing; it drops back when the tips are dressed
   function stepperSvg(box, p, o, tag) {
@@ -283,18 +283,18 @@ const STAGE = (() => {
     const shown = pts.filter(([px]) => px <= lerp(x0, x1, p) + 0.01);
     if (shown.length && shown[shown.length - 1][0] < lerp(x0, x1, p)) shown.push([lerp(x0, x1, p), shown[shown.length - 1][1]]);
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-grid" d="${line(x0, I(9), x1, I(9))}${line(x0, I(10.6), x1, I(10.6))}${line(x0, yb, x1, yb)}${line(x0, y0, x0, yb)}"/>`
-      + txt(x0 - 6, I(9) + 5, num(9, 1), 12, 'end', 'fp-small') + txt(x0 - 6, I(10.6) + 5, num(10.6, 1), 12, 'end', 'fp-small')
-      + txt(x0 - 6, y0 + 2, 'kA', 12, 'end', 'fp-small') + txt(x1, y + 16, tr('punten sinds frezen', 'welds since dressing'), 12, 'end', 'fp-small')
-      + [250, 500].map((n) => txt(N(n), yb + 18, String(n), 12, 'middle', 'fp-small')).join('')
+      + txt(x0 - 6, I(9) + 5, num(9, 1), 15, 'end', 'fp-small') + txt(x0 - 6, I(10.6) + 5, num(10.6, 1), 15, 'end', 'fp-small')
+      + txt(x0 - 6, y0 + 2, 'kA', 14, 'end', 'fp-small') + txt(x1, y + 16, tr('punten sinds frezen', 'welds since dressing'), 15, 'end', 'fp-small')
+      + [250, 500].map((n) => txt(N(n), yb + 18, String(n), 15, 'middle', 'fp-small')).join('')
       + (shown.length > 1 ? `<path class="fp-trace" d="${pth(shown)}"/>` : '')
-      + (tag ? txt(x + w / 2, y + 16, tag, 13, 'middle', 'fp-small') : ''));
+      + (tag ? txt(x + w / 2, y + 16, tag, 15, 'middle', 'fp-small') : ''));
   }
   function counterSvg(n, o) {
     const x = 430;
     const y = 22;
     const label = n >= 200 ? tr('FREZEN', 'DRESS') : String(n).padStart(4, '0');
     return fadeG(o, rect(x, y, 190, 78, 'fp-card') + rect(x + 12, y + 30, 166, 38, 'fp-disp', 4)
-      + txt(x + 14, y + 20, tr('puntenteller', 'weld counter'), 13, 'start', 'fp-small') + txt(x + 176, y + 20, '/ 200', 13, 'end', 'fp-small')
+      + txt(x + 14, y + 20, tr('puntenteller', 'weld counter'), 16, 'start', 'fp-small') + txt(x + 176, y + 20, '/ 200', 16, 'end', 'fp-small')
       + txt(x + 95, y + 58, label, 26, 'middle', 'fp-mono'));
   }
   function imprintSvg(p, o) {
@@ -309,9 +309,9 @@ const STAGE = (() => {
     return fadeG(o, `<path class="fp-paper" d="M${x} ${y}h${w}v${h - 14}l-14 14h-${w - 14}z"/>`
       + ref(x + 52, y + 80) + ref(x + 146, y + 80)
       + fadeG(good, ring(x + 52, y + 80, 26, 26)) + fadeG(bad, ring(x + 152, y + 84, 30, 21))
-      + fadeG(good, txt(x + 52, y + 136, tr('rond, op maat', 'round, true size'), 12, 'middle', 'fp-small'))
-      + fadeG(bad, txt(x + 146, y + 136, tr('ovaal, scheef', 'oval, off-centre'), 12, 'middle', 'fp-small'))
-      + txt(x + 12, y + 22, tr('kapafdruk', 'tip imprint'), 13, 'start', 'fp-small'));
+      + fadeG(good, txt(x + 52, y + 130, tr('rond,', 'round,'), 15, 'middle', 'fp-small') + txt(x + 52, y + 148, tr('op maat', 'true size'), 15, 'middle', 'fp-small'))
+      + fadeG(bad, txt(x + 146, y + 130, tr('ovaal,', 'oval,'), 15, 'middle', 'fp-small') + txt(x + 146, y + 148, tr('scheef', 'off-centre'), 15, 'middle', 'fp-small'))
+      + txt(x + 12, y + 22, tr('kapafdruk', 'tip imprint'), 17, 'start', 'fp-small'));
   }
 
   // ------------------------------------------------------------ the test bench (scene 7)
@@ -354,7 +354,7 @@ const STAGE = (() => {
     return fadeG(o, parts.join('') + btn);
   }
   function benchSvg(si, u, k, p, clockS) {
-    const panel = (x, y, w, h, title, body, o) => fadeG(o, rect(x, y, w, h) + txt(x + 12, y + 20, title, 13, 'start', 'fp-small') + body);
+    const panel = (x, y, w, h, title, body, o) => fadeG(o, rect(x, y, w, h) + txt(x + 12, y + 20, title, 17, 'start', 'fp-small') + body);
     const A = { x: 20, y: 50, w: 296, h: 156 };
     const Bp = { x: 324, y: 50, w: 296, h: 156 };
     const Cp = { x: 20, y: 214, w: 296, h: 162 };
@@ -414,8 +414,8 @@ const STAGE = (() => {
     set(E.adapt, panel(ex, ey, ew, eh, tr('adaptieve regeling: weerstand tijdens het punt', 'adaptive control: resistance during the weld'),
       `<path class="fp-zone" d="${pth([...hi, ...lo.reverse()], true)}"/><path class="fp-grid" d="${line(X0, ey + eh - 30, X1, ey + eh - 30)}${line(X0, ey + 34, X0, ey + eh - 30)}"/>`
       + (meas.length > 1 ? `<path class="fp-trace" d="${pth(meas)}"/>` : '')
-      + txt(X0 - 8, ey + 46, 'R', 14, 'end') + txt(X1, ey + eh - 10, 't', 14, 'end')
-      + (prog > 0.5 ? txt(lerp(X0, X1, 0.5), Y(0.12), tr('stroom bijgestuurd', 'current corrected'), 13, 'middle', 'fp-small') : ''), oE));
+      + txt(X0 - 8, ey + 46, 'R', 16, 'end') + txt(X1, ey + eh - 10, 't', 16, 'end')
+      + (prog > 0.5 ? txt(lerp(X0, X1, 0.5), Y(0.12), tr('stroom bijgestuurd', 'current corrected'), 16, 'middle', 'fp-small') : ''), oE));
     void si; void clockS;
   }
 
@@ -434,26 +434,26 @@ const STAGE = (() => {
       for (let ms = 200; ms <= 400; ms += 10) { L.push([IX(lo * Math.sqrt(300 / ms)), TY(ms)]); R.push([IX(hi * Math.pow(300 / ms, 0.25)), TY(ms)]); }
       return [...L, ...R.reverse()];
     };
-    const ticks = [6, 7, 8, 9, 10].map((v) => txt(IX(v), yb + 18, String(v), 12, 'middle', 'fp-small')).join('')
-      + [200, 300, 400].map((v) => txt(x0 - 8, TY(v) + 4, String(v), 12, 'end', 'fp-small')).join('');
+    const ticks = [6, 7, 8, 9, 10].map((v) => txt(IX(v), yb + 18, String(v), 16, 'middle', 'fp-small')).join('')
+      + [200, 300, 400].map((v) => txt(x0 - 8, TY(v) + 4, String(v), 16, 'end', 'fp-small')).join('');
     const grid = [6, 7, 8, 9, 10].map((v) => line(IX(v), y0, IX(v), yb)).join('') + [200, 300, 400].map((v) => line(x0, TY(v), x1, TY(v))).join('');
     const bare = k >= 2 ? fadeG(k === 2 ? span(p, 0.45, 0.6) : 1, `<path class="fp-zone2" d="${pth(lobePts(...C.LOBE.bare), true)}"/>`
-      + mark(line(IX(6.9), TY(300) + 14, IX(9.1), TY(300) + 14)) + txt(IX(8), TY(300) + 30, `${num(2.2, 1)} kA`, 13, 'middle', 'fp-small')) : '';
+      + mark(line(IX(6.9), TY(300) + 14, IX(9.1), TY(300) + 14)) + txt(IX(8), TY(300) + 30, `${num(2.2, 1)} kA`, 16, 'middle', 'fp-small')) : '';
     const galv = `<path class="fp-zone" d="${pth(lobePts(...C.LOBE.galv), true)}"/>`;
-    const w300 = k >= 2 ? mark(line(IX(7.6), TY(300) - 12, IX(9.0), TY(300) - 12)) + txt(IX(8.3), TY(300) - 18, `${num(1.4, 1)} kA`, 13, 'middle', 'fp-label') : '';
-    const sides = k === 0 ? fadeG(span(p, 0.3, 0.5), txt(IX(6.5), TY(250), tr('te klein', 'too small'), 13, 'middle', 'fp-small') + txt(IX(9.9), TY(250), tr('spatten', 'expulsion'), 13, 'middle', 'fp-small')) : '';
-    const setPt = k >= 3 ? fadeG(k === 3 ? span(p, 0.1, 0.3) : 1, `<circle class="fp-ink" cx="${f1(IX(8.7))}" cy="${f1(TY(300))}" r="5"/>` + txt(IX(8.7) + 8, TY(300) - 26, num(8.7, 1), 14, 'start', 'fp-mono')) : '';
-    set(E.lobeChart, rect(x, y, w, h) + `<path class="fp-grid" d="${grid}"/>` + ticks + txt(x1, yb + 34, 'kA', 12, 'end', 'fp-small') + txt(x0 - 8, y0 - 10, 'ms', 12, 'end', 'fp-small')
+    const w300 = k >= 2 ? mark(line(IX(7.6), TY(300) - 12, IX(9.0), TY(300) - 12)) + txt(IX(8.3), TY(300) - 18, `${num(1.4, 1)} kA`, 17, 'middle', 'fp-label') : '';
+    const sides = k === 0 ? fadeG(span(p, 0.3, 0.5), txt(IX(6.5), TY(250), tr('te klein', 'too small'), 17, 'middle', 'fp-small') + txt(IX(9.9), TY(250), tr('spatten', 'expulsion'), 17, 'middle', 'fp-small')) : '';
+    const setPt = k >= 3 ? fadeG(k === 3 ? span(p, 0.1, 0.3) : 1, `<circle class="fp-ink" cx="${f1(IX(8.7))}" cy="${f1(TY(300))}" r="5"/>` + txt(IX(8.7) + 10, TY(300) - 26, `${num(8.7, 1)} kA`, 17, 'start', 'fp-label')) : '';
+    set(E.lobeChart, rect(x, y, w, h) + `<path class="fp-grid" d="${grid}"/>` + ticks + txt(x1, yb + 34, 'kA', 15, 'end', 'fp-small') + txt(x0 - 8, y0 - 10, 'ms', 15, 'end', 'fp-small')
       + fadeG(span(k === 0 ? p : 1, 0, 0.25), galv) + bare + w300 + sides + setPt);
     // the stack-up: the two sheets in section with their names
     const sx = 418;
     const sy = 50;
     const oS = k >= 1 ? (k === 1 ? span(p, 0, 0.15) : 1) : 0;
-    set(E.stack, fadeG(oS, rect(sx, sy, 200, 150) + txt(sx + 12, sy + 22, tr('plaatcombinatie', 'stack-up'), 13, 'start', 'fp-small')
+    set(E.stack, fadeG(oS, rect(sx, sy, 200, 150) + txt(sx + 12, sy + 22, tr('plaatcombinatie', 'stack-up'), 17, 'start', 'fp-small')
       + rect(sx + 20, sy + 52, 160, 22, 'fp-steel2', 2) + rect(sx + 20, sy + 76, 160, 18, 'fp-steel', 2)
       + `<ellipse class="fp-nugc" cx="${sx + 100}" cy="${sy + 75}" rx="30" ry="9"/>`
-      + txt(sx + 100, sy + 42, `${num(1.2, 1)} mm DP600 + Zn`, 13, 'middle', 'fp-small') + txt(sx + 100, sy + 112, `${num(1.0, 1)} mm`, 13, 'middle', 'fp-small')
-      + txt(sx + 100, sy + 136, '300 ms', 13, 'middle', 'fp-small')));
+      + txt(sx + 100, sy + 42, `${num(1.2, 1)} mm DP600 + Zn`, 15, 'middle', 'fp-small') + txt(sx + 100, sy + 112, `${num(1.0, 1)} mm`, 15, 'middle', 'fp-small')
+      + txt(sx + 100, sy + 136, '300 ms', 15, 'middle', 'fp-small')));
     set(E.ahss, k >= 2 ? fadeG(k === 2 ? span(p, 0, 0.15) : 1, `<rect class="fp-card" style="fill:none" x="${sx + 16}" y="${sy + 48}" width="168" height="30" rx="4"/>`) : '');
     // the multi-pulse schedule: pre-pulse, weld pulse, post-heat pulse
     const px = 418;
@@ -469,9 +469,9 @@ const STAGE = (() => {
     for (const [a, b, v] of pulses) { tracePts.push([Xp(a), yb2], [Xp(a), yb2 - v * 90], [Xp(b), yb2 - v * 90], [Xp(b), yb2]); }
     tracePts.push([Xp(1), yb2]);
     const clipW = lerp(px + 16, px + pw - 16, prog) - px;
-    set(E.pulse, fadeG(oP, rect(px, py, pw, phh) + txt(px + 12, py + 20, tr('meerpulsprogramma', 'multi-pulse schedule'), 13, 'start', 'fp-small')
+    set(E.pulse, fadeG(oP, rect(px, py, pw, phh) + txt(px + 12, py + 20, tr('meerpulsprogramma', 'multi-pulse schedule'), 17, 'start', 'fp-small')
       + `<clipPath id="fp-pclip"><rect x="${px}" y="${py}" width="${f1(Math.max(1, clipW))}" height="${phh}"/></clipPath><path class="fp-grid" d="${line(Xp(0), yb2, Xp(1), yb2)}"/><path class="fp-trace" clip-path="url(#fp-pclip)" d="${pth(tracePts)}"/>`
-      + [[tr('voor', 'pre'), 0.125], [tr('las', 'weld'), 0.49], [tr('na', 'post'), 0.865]].map(([s, q]) => txt(Xp(q), yb2 + 18, s, 12, 'middle', 'fp-small')).join('')));
+      + [[tr('voor', 'pre'), 0.125], [tr('las', 'weld'), 0.49], [tr('na', 'post'), 0.865]].map(([s, q]) => txt(Xp(q), yb2 + 18, s, 16, 'middle', 'fp-small')).join('')));
   }
 
   // ------------------------------------------------------------ the scenes

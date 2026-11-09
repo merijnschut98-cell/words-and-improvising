@@ -269,32 +269,32 @@
     "eng.joining.spot": {
       "poster": "src/content/courses/films/eng.joining.spot.jpg",
       "nl": {
-        "dur": 347.9,
-        "bytes": 11225375,
+        "dur": 357.8,
+        "bytes": 11501960,
         "scenes": [
           0,
-          54.74,
-          77.15,
-          114.23,
-          142.16,
-          182.52,
-          235.84,
-          289.61
+          50.57,
+          69.78,
+          104.3,
+          135.35,
+          178.69,
+          229.41,
+          295.26
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.nl.vtt"
       },
       "en": {
-        "dur": 321.4,
-        "bytes": 10691995,
+        "dur": 332.6,
+        "bytes": 11018297,
         "scenes": [
           0,
-          49.62,
-          71.93,
-          107.02,
-          130.69,
-          168.54,
-          219.13,
-          270.19
+          46,
+          65.43,
+          98.83,
+          125.03,
+          165.8,
+          214.27,
+          276.91
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.en.vtt"
       }
