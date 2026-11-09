@@ -232,7 +232,7 @@ export default {
         },
       ],
       teach: [
-        'Customers must get a voltage within the voltage band: 230 V ±10%, so 207 to 253 V (EN 50160 and the Dutch grid code). Along an LV cable the voltage changes by current times resistance. On a winter evening, current flows to the homes and the voltage drops towards the end. On a sunny afternoon, inverters push current back and the voltage goes up: voltage rise.\n\nThat is why distribution transformers are set to send out a bit more than 230 V, often about 240 V at no load.',
+        'Customers must get a voltage within the voltage band: 230 V ±10%, so 207 to 253 V (EN 50160 and the ACM’s System Code Electricity). Along an LV cable the voltage changes by current times resistance. On a winter evening, current flows to the homes and the voltage drops towards the end. On a sunny afternoon, inverters push current back and the voltage goes up: voltage rise.\n\nThat is why distribution transformers are set to send out a bit more than 230 V, often about 240 V at no load.',
         'An off-load tap changer moves that setting in 2.5% steps, about 6 V. When winter drop and summer rise are both large, one fixed setting may no longer fit: lower it for summer and the winter evening falls below 207 V.\n\nA regulated distribution transformer has an on-load tap changer of its own, often with electronic or vacuum switching, and adjusts the LV voltage automatically, several times a day. It costs more and adds parts that can fail. Dutch operators have run pilots and first series.',
         'Inverters can help. With Q(U) control, an inverter absorbs reactive power, the part of AC current that swings back and forth without delivering energy, when the voltage gets high. That lowers the voltage through the reactance of the grid.\n\nThe catch: LV cables are mostly resistance, so reactive power helps much less there than on MV lines, and it adds current and losses. Many inverters simply switch off when the voltage stays above 253 V, which the customer sees as lost yield.',
         'The options compete: a heavier or extra LV cable, a new station closer to the homes (shorter cables), a regulated transformer, inverter settings, or batteries. Each fixes a different part. Cable work lowers the resistance; a new station halves the distance; a regulated transformer moves the whole level but cannot fix a big difference between two cables on the same station.\n\nExperts argue whether regulated transformers are a cheap bridge or a costly detour before cable work that comes anyway.',
@@ -264,7 +264,7 @@ export default {
         },
         {
           q: 'Why does reactive power from inverters help less against voltage rise on LV cables than on MV lines?',
-          options: ['LV cables carry no reactive current of any kind', 'In LV cables resistance dominates, not reactance', 'Inverters cannot produce reactive power on LV', 'The grid code forbids reactive power at LV level'],
+          options: ['LV cables carry no reactive current of any kind', 'In LV cables resistance dominates, not reactance', 'Inverters cannot produce reactive power on LV', 'The System Code forbids reactive power at LV level'],
           answer: 'In LV cables resistance dominates, not reactance',
           why: 'Reactive power shifts voltage through reactance; LV cables have little of it compared with their resistance.',
         },
@@ -288,9 +288,9 @@ export default {
       sayIt: 'Explain to an annoyed solar customer in 60 seconds why their inverter switches off on sunny days and what the grid operator can do.',
       terms: [
         { term: 'Voltage band', def: 'The allowed range at the customer: 230 V ±10% on LV, so 207 to 253 V.' },
-        { term: 'Voltage rise', def: 'The voltage going up along a cable when generation pushes current back towards the station.' },
+        { term: 'Voltage rise', def: 'The voltage at the end of a cable climbs above the substation’s because customers feed in.' },
         { term: 'Regulated distribution transformer', def: 'Distribution transformer with its own on-load tap changer that adjusts the LV voltage automatically.' },
-        { term: 'Reactive power', def: 'The part of AC current that swings back and forth without delivering energy; it shifts voltage through the grid’s reactance.' },
+        { term: 'Reactive power', def: 'Power that flows back and forth to build magnetic fields, in kvar; it does no work but loads the cables.' },
         { term: 'Q(U) control', def: 'Inverter setting that absorbs more reactive power as the voltage rises, to hold it down.' },
       ],
     },
@@ -360,7 +360,7 @@ export default {
       terms: [
         { term: 'Hot-spot temperature', def: 'Temperature at the hottest point of the winding, which sets the ageing rate; design value 98 °C for standard paper.' },
         { term: 'Thermal inertia', def: 'A transformer heats up and cools down slowly, over hours, so short peaks do little harm.' },
-        { term: 'Load profile', def: 'The load hour by hour over a day or year, not just the peak.' },
+        { term: 'Load profile', def: 'Power use over time, usually per 15 minutes, showing base load and peaks.' },
         { term: 'DGA', def: 'Dissolved gas analysis: gases in the oil that reveal internal faults.' },
         { term: 'Partial discharge', def: 'Tiny sparks inside insulation that do not yet bridge it; an early sign of damage.' },
       ],
@@ -889,7 +889,7 @@ export default {
         'A new connection goes through five steps. Request: the customer applies, for small connections usually online. Capacity check: the operator checks whether the grid has room; in congested areas, where the grid is full, the request may wait in a queue.\n\nDesign: the route, the cable, and whether a new secondary substation or an MV connection is needed. Work preparation: permits, digging maps, materials, crew planning. Execution: digging, laying cable, joints, connecting, the meter and putting it into service.',
         'Size decides the route. Small connections, up to 3 × 80 A (three phases of 80 A, about 55 kVA), connect to the LV cable in the street. Larger ones get a heavy LV cable straight from the secondary substation.\n\nAbove roughly a few hundred kVA, the customer usually gets an MV connection with an MV room: a space in or next to the customer’s building with the operator’s MV switchgear. That takes much more design and coordination.',
         'The work itself is short, often one or two days on site. The lead time, the calendar time from request to a working connection, is mostly waiting: for the capacity check, a digging permit from the municipality, materials, or a free crew. Rework, when the design does not match the street, adds weeks.\n\nWork preparation is where much of that lead time sits. One missing permit or a transformer that is not in stock stops the job (see Buying transformers for delivery times).',
-        'The connection term is the time the operator has to deliver. The fixed legal term of 18 weeks was dropped in February 2025; the new Energy Act, in force since 2026, also only asks for a “reasonable term”, and congestion can justify longer.\n\nFor large connections, the grid code, the technical rulebook set by the regulator ACM, has set terms since 2025: 26 weeks for simple jobs, 52 weeks for medium ones, plus a capped waiting time; complex ones get no fixed term. What “reasonable” means is still argued about.',
+        'The connection term is the time the operator has to deliver. The fixed term of 18 weeks was dropped in February 2025; the Energy Act, which replaced the Electricity Act 1998 in 2026, only asks for a “reasonable term”, and congestion can justify more.\n\nFor large connections, the ACM set terms in 2025 in what was then the Grid Code (since 2026 the System Code Electricity): 26 weeks for simple jobs, 52 weeks for medium ones, plus a capped wait; complex ones get none. “Reasonable” is still argued about.',
         'That makes work preparation a natural target for improvement: standard packages, permits requested during design, and a site check before the crew arrives.\n\nTypical failures: a design made from old maps, a permit requested only when everything else is ready, a crew that finds the route blocked. A sharp question: “Of all the weeks this connection took, in how many was anyone actually working on it?”',
       ],
       example: {
@@ -942,7 +942,7 @@ export default {
         { term: 'Lead time', def: 'Calendar time from request to working connection, waiting included.' },
         { term: 'Connection term', def: 'The time an operator has to deliver a connection: by law a “reasonable term”; the fixed 18 weeks was dropped in 2025.' },
         { term: 'Small connection', def: 'A connection up to 3 × 80 A, on the LV cable in the street.' },
-        { term: 'MV room', def: 'A space at a large customer’s site with the grid operator’s MV switchgear.' },
+        { term: 'MV room', def: 'A room with MV equipment, often in a building or at a large customer.' },
       ],
     },
     {

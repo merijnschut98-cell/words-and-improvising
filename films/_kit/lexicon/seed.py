@@ -93,9 +93,33 @@ MANUAL = {
            'klauwplaat': 'klˈaːʊplˌaːt',
            # TANDwielkast, not tandWIELkast; loanwords the seed read as Dutch
            'tandwielkast': 'tˈɑntʋilkˌɑst', 'weekend': 'wˈiːkɛnt', 'datasheet': 'dˈeːtəʃˌiːt',
-           'businesscase': 'bˈɪznɪskˌeːs'},
+           'businesscase': 'bˈɪznɪskˌeːs',
+           # eng.machining.tooling (v14b): wear forms on the first part (VRIJloopslijtage,
+           # not vrijLOOPslijtage), Latin and loanwords espeak-ng reads Dutch-wrong
+           # (coating, Taylor, eMULsie, leGEringen, reVOLver, koBALT)
+           'vrijloopslijtage': 'vrˈɛɪloːpslɛɪtˌaːʒə', 'vrijloophoek': 'vrˈɛɪloːphˌuk',
+           'vrijloopvlakslijtage': 'vrˈɛɪloːpflɑkslɛɪtˌaːʒə', 'kolkslijtage': 'kˈɔlkslɛɪtˌaːʒə',
+           'kraterslijtage': 'krˈaːtərslɛɪtˌaːʒə', 'slijtagerand': 'slɛɪtˈaːʒərˌɑnt',
+           'coating': 'kˈoːtɪŋ', 'taylor': 'tˈeːlər', 'taylorvergelijking': 'tˈeːlərvərɣˌɛlɛɪkɪŋ',
+           'materiaalgroep': 'maːtɪːriˈaːlɣrˌup', 'hittebestendige': 'hˈɪtəbəstˌɛndəɣə', 'emulsie': 'eːmˈɵlsi',
+           'zustergereedschap': 'zˈɵstərɣərˌeːdsxɑp', 'gereedschapsbewaking': 'ɣərˈeːdsxɑpsbəʋˌaːkɪŋ',
+           'gereedschapsstandaardisatie': 'ɣərˈeːdsxɑpstˌɑndaːrdizaːtsi', 'legeringen': 'leːɣˈɪːrɪŋən',
+           'revolver': 'reːvˈɔlvər', 'kobalt': 'koːbˈɑlt', 'koelsmeermiddel': 'kˈulsmɪːrmˌɪdəl',
+           # review of the tooling film: VIERdemachtswortel (espeak-ng: -worTEL), bovenOP
+           # (espeak-ng: BOvenop), WISSELtijd with a schwa as in wisselplaat
+           'vierdemachtswortel': 'vˈirdəmˌɑxtsʋɔrtəl', 'bovenop': 'boːvənˈɔp', 'wisseltijd': 'ʋˈɪsəltˌɛɪt',
+           # kept from the earlier seed: their first parts (dop, haar) left the corpus
+           'dopmatrijs': 'dˈɔpmɑtrˌɛɪs', 'haarbreed': 'ˈhaːrbrˌeːt', 'haarlijn': 'ˈhaːrlˌɛɪn',
+           # spot welding (film eng.joining.spot): AHSS as letters, peel as the
+           # English word, kapafdruk with a short a (espeak-ng: kˈaːp), the e of
+           # beitel, lens and klem not reduced to a schwa, lasstroom without the
+           # stress on stroom, body-in-white as the English words
+           'ahss': 'ˌaːhaːˌɛsˈɛs', 'kapafdruk': 'kˈɑpɑvdrˌɵk', 'beiteltest': 'bˈɛɪtəltˌɛst',
+           'peeltest': 'pˈiːltˌɛst', 'laslens': 'lˈɑslˌɛns', 'lasklem': 'lˈɑsklˌɛm',
+           'lasstroom': 'lˈɑsstrˌoːm', 'elektrodekap': 'eːlɛktrˈoːdəkˌɑp', 'knooppunt': 'knˈoːpˌpɵnt',
+           'lasbaarheidsbereik': 'lˈɑzbaːrhɛɪtsbərˌɛɪk', 'body': 'bˈɔdi', 'white': 'ʋˈɑjt'},
     'en': {'cev': 'ˌsiːiːvˈiː', 'haz': 'ˌeɪtʃeɪzˈɛd', 'iq': 'ˌaɪkjˈuː', 'mag': 'mˈaɡ', 'mig': 'mˈɪɡ', 'oq': 'ˌəʊkjˈuː',
-           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ'},
+           'pq': 'ˌpiːkjˈuː', 'tig': 'tˈɪɡ', 'ahss': 'ˌeɪeɪtʃˌɛsˈɛs', 'kiloamps': 'kˈɪləʊˌæmps'},
 }
 # first parts that make adverbs or particles (daarmee, waardoor, hiermee)
 NOT_FIRST = {'nl': {'daar', 'waar', 'hier', 'hoe', 'met', 'een', 'van', 'ten', 'ter', 'zich', 'erom', 'alle', 'hele'}, 'en': set()}

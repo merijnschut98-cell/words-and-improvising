@@ -1,0 +1,297 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.704
+Two steel sheets overlap.
+
+2
+00:00:03.254 --> 00:00:09.212
+Spot welding joins them at single points, like stitches, with no wire or gas.
+
+3
+00:00:10.112 --> 00:00:16.233
+A weld gun on a robot squeezes the sheets between two copper electrodes, the tips.
+
+4
+00:00:16.783 --> 00:00:21.659
+As hard as 200 to 400 kilos: 2 to 4 kilonewtons.
+
+5
+00:00:22.559 --> 00:00:27.261
+The transformer on the gun makes a huge current: 8 to 12 kiloamps,
+
+6
+00:00:27.461 --> 00:00:29.237
+at only a few volts.
+
+7
+00:00:30.137 --> 00:00:34.169
+The current runs from tip to tip, through both sheets.
+
+8
+00:00:34.718 --> 00:00:39.783
+Where they touch, the resistance is highest: that is where the steel melts.
+
+9
+00:00:40.683 --> 00:00:45.202
+Water cools the tips from inside, so the copper itself does not melt.
+
+10
+00:00:46.402 --> 00:00:53.394
+A body-in-white, the bare car body before painting, has 4,000 to 5,000 spot welds.
+
+11
+00:00:54.294 --> 00:00:56.639
+Spot welding is fast and cheap,
+
+12
+00:00:56.839 --> 00:01:01.402
+but only for overlapping sheet of 0.6 to 3 millimetres.
+
+13
+00:01:01.952 --> 00:01:04.634
+From outside you cannot see if a weld is good.
+
+14
+00:01:05.834 --> 00:01:13.163
+Now slowed down: the gun squeezes, then 9.5 kiloamps flow for 300 milliseconds,
+
+15
+00:01:13.363 --> 00:01:15.662
+and then it holds on a moment.
+
+16
+00:01:16.562 --> 00:01:19.929
+Between the sheets a lens of molten steel grows,
+
+17
+00:01:20.129 --> 00:01:25.228
+which freezes into the weld: the nugget, 4 to 7 millimetres across.
+
+18
+00:01:26.128 --> 00:01:30.400
+The current per square millimetre of tip face is the current density.
+
+19
+00:01:30.950 --> 00:01:38.032
+9,500 amps through 28.3 square millimetres gives 336.
+
+20
+00:01:39.232 --> 00:01:43.460
+Heat is current squared, times resistance, times the time.
+
+21
+00:01:44.011 --> 00:01:47.993
+10 percent more current gives about 21 percent more heat.
+
+22
+00:01:48.893 --> 00:01:51.880
+Too much current, or too little force,
+
+23
+00:01:52.079 --> 00:01:55.806
+and the molten steel sprays out as sparks: expulsion.
+
+24
+00:01:56.356 --> 00:01:58.597
+That gives dents and a weaker weld.
+
+25
+00:01:59.497 --> 00:02:04.225
+Too little heat gives a stick weld: it looks fine, but holds nothing.
+
+26
+00:02:05.425 --> 00:02:08.200
+The tips wear: they get flatter and wider.
+
+27
+00:02:08.750 --> 00:02:14.103
+After 500 welds without dressing the tip face is 7.5 millimetres:
+
+28
+00:02:14.103 --> 00:02:16.738
+36 percent less current density.
+
+29
+00:02:17.287 --> 00:02:19.017
+The nugget gets too small.
+
+30
+00:02:19.917 --> 00:02:22.866
+So the gun regularly goes to the tip dresser,
+
+31
+00:02:23.066 --> 00:02:26.189
+which cuts the tips back to size: tip dressing.
+
+32
+00:02:27.089 --> 00:02:31.341
+In between, the stepper raises the current, step by step,
+
+33
+00:02:31.541 --> 00:02:33.921
+so the current density stays the same.
+
+34
+00:02:34.471 --> 00:02:37.652
+After dressing it drops back to the base current.
+
+35
+00:02:38.552 --> 00:02:39.725
+Welds too small?
+
+36
+00:02:40.275 --> 00:02:45.003
+First check that the dresser really cuts, and only then the current.
+
+37
+00:02:46.203 --> 00:02:49.523
+The weld counter counts the welds since the last dressing.
+
+38
+00:02:50.073 --> 00:02:54.810
+On galvanised steel that is often 100 to 300 welds.
+
+39
+00:02:55.710 --> 00:02:58.861
+At 9.0 kiloamps and a 6.0 millimetre tip
+
+40
+00:02:58.861 --> 00:03:02.328
+face that is 318 amps per square millimetre.
+
+41
+00:03:02.878 --> 00:03:07.197
+At 6.5 millimetres it takes 10.6 kiloamps.
+
+42
+00:03:08.097 --> 00:03:14.627
+When the cap is dressed too short, a cap change follows: old cap off, new one on.
+
+43
+00:03:15.527 --> 00:03:20.171
+A tip imprint on carbon paper shows whether the tip face is round,
+
+44
+00:03:20.371 --> 00:03:22.229
+centred and the right size.
+
+45
+00:03:23.129 --> 00:03:27.079
+If the cooling water drops, the tips get hot and soft.
+
+46
+00:03:27.979 --> 00:03:33.473
+And the alignment: if the tips are skewed, the nugget turns oval and too small.
+
+47
+00:03:34.673 --> 00:03:38.075
+In a peel test you pull two welded strips apart,
+
+48
+00:03:38.275 --> 00:03:42.037
+and a good weld tears out as a round plug: the button.
+
+49
+00:03:42.937 --> 00:03:50.277
+Measure the largest and the smallest diameter: 5.6 and 5.2, an average of 5.4.
+
+50
+00:03:50.827 --> 00:03:55.285
+The requirement is often four times the square root of the thinnest sheet,
+
+51
+00:03:55.485 --> 00:04:00.376
+sometimes five: at 1.5 millimetres, 4.9.
+
+52
+00:04:00.926 --> 00:04:02.435
+This weld passes.
+
+53
+00:04:03.335 --> 00:04:07.145
+If the weld breaks through the weld plane, without a button,
+
+54
+00:04:07.346 --> 00:04:09.413
+that is interfacial fracture.
+
+55
+00:04:09.962 --> 00:04:12.087
+In mild steel: a reject.
+
+56
+00:04:12.987 --> 00:04:18.110
+The chisel test drives a wedge between the sheets, often only to a set gap,
+
+57
+00:04:18.310 --> 00:04:20.086
+so the part stays usable.
+
+58
+00:04:20.636 --> 00:04:23.187
+Most welds are checked by ultrasound:
+
+59
+00:04:23.187 --> 00:04:27.254
+on a stick weld the sound bounces back after the top sheet.
+
+60
+00:04:28.154 --> 00:04:31.533
+Adaptive control measures the resistance while welding,
+
+61
+00:04:31.733 --> 00:04:36.113
+or how far the tips move apart, and corrects current or time.
+
+62
+00:04:37.313 --> 00:04:40.146
+The weld lobe: current against weld time.
+
+63
+00:04:40.696 --> 00:04:44.681
+On the left the nugget is too small, on the right it spatters.
+
+64
+00:04:45.231 --> 00:04:46.868
+The width is your margin.
+
+65
+00:04:47.768 --> 00:04:49.881
+Each stack-up has its own lobe.
+
+66
+00:04:50.431 --> 00:04:55.287
+Here 1.2 millimetres on 1.0, at 300 milliseconds.
+
+67
+00:04:56.187 --> 00:05:00.717
+The top sheet is galvanised DP600, an AHSS.
+
+68
+00:05:01.268 --> 00:05:04.124
+Lobe: 7.6 to 9.0 kiloamps.
+
+69
+00:05:04.674 --> 00:05:10.270
+Without zinc 6.9 to 9.1: the zinc makes it 36 percent narrower.
+
+70
+00:05:10.820 --> 00:05:14.733
+Zinc melts early and lowers the resistance between the sheets.
+
+71
+00:05:15.633 --> 00:05:20.825
+Set the current high, at 8.7: 0.3 below expulsion.
+
+72
+00:05:21.375 --> 00:05:23.418
+The rest is margin for wear.
+
+73
+00:05:24.318 --> 00:05:28.196
+AHSS often needs a multi-pulse schedule: a pre-pulse,
+
+74
+00:05:28.396 --> 00:05:30.997
+a weld pulse and a post-heat pulse.

@@ -141,7 +141,7 @@ export default {
       },
       sayIt: 'Leg een gemeentelijk projectleider in 60 seconden uit wat er in een netstation zit en hoe de grootte gekozen wordt.',
       terms: [
-        { term: 'Netstation', def: 'Klein station, vaak een kiosk, dat de MS-ring omzet naar 400 V voor een paar straten: installatie, transformator en LS-rek.' },
+        { term: 'Netstation', def: 'Het kleine station in de straat (wijktrafo) dat MS omzet naar 400/230 V voor de straatkabels.' },
         { term: 'Kortsluitspanning', def: 'uk: de spanning, als % van de nominale, die vollaststroom door een kortgesloten transformator drijft; meestal 4 tot 6%; begrenst de LS-kortsluitstroom.' },
         { term: 'Schakelgroep', def: 'Code zoals Dyn5 voor hoe de wikkelingen geschakeld zijn en de faseverschuiving tussen MS en LS.' },
         { term: 'LS-rek', def: 'Frame in het station met een zekering voor elke uitgaande LS-straatkabel.' },
@@ -232,7 +232,7 @@ export default {
         },
       ],
       teach: [
-        'Klanten moeten een spanning krijgen binnen de spanningsband: 230 V ±10%, dus 207 tot 253 V (EN 50160 en de Netcode). Langs een LS-kabel verandert de spanning met stroom maal weerstand. Op een winteravond loopt de stroom naar de woningen en daalt de spanning naar het eind toe. Op een zonnige middag duwen omvormers stroom terug en stijgt de spanning: spanningsstijging.\n\nDaarom staan distributietransformatoren zo ingesteld dat ze iets meer dan 230 V uitsturen, vaak zo’n 240 V bij nullast.',
+        'Klanten moeten een spanning krijgen binnen de spanningsband: 230 V ±10%, dus 207 tot 253 V (EN 50160 en de Systeemcode elektriciteit van de ACM). Langs een LS-kabel verandert de spanning met stroom maal weerstand. Op een winteravond loopt de stroom naar de woningen en daalt de spanning naar het eind toe. Op een zonnige middag duwen omvormers stroom terug en stijgt de spanning: spanningsstijging.\n\nDaarom staan distributietransformatoren zo ingesteld dat ze iets meer dan 230 V uitsturen, vaak zo’n 240 V bij nullast.',
         'Een aftakschakelaar verschuift die instelling in stappen van 2,5%, zo’n 6 V. Als de daling in de winter en de stijging in de zomer allebei groot zijn, past één vaste stand soms niet meer: zet je hem lager voor de zomer, dan zakt de winteravond onder 207 V.\n\nEen regelbare distributietransformator heeft een eigen regelschakelaar, vaak met elektronische of vacuümschakeling, en past de LS-spanning automatisch aan, meerdere keren per dag. Hij is duurder en heeft meer onderdelen die stuk kunnen. Nederlandse netbeheerders hebben pilots en eerste series gedraaid.',
         'Omvormers kunnen helpen. Met Q(U)-regeling neemt een omvormer blindvermogen op, het deel van de wisselstroom dat heen en weer pendelt zonder energie te leveren, als de spanning hoog wordt. Dat verlaagt de spanning via de reactantie (reactance) van het net.\n\nHet addertje: LS-kabels zijn vooral weerstand, dus blindvermogen helpt daar veel minder dan op MS-lijnen, en het geeft extra stroom en verliezen. Veel omvormers schakelen gewoon af als de spanning boven 253 V blijft, en de klant ziet dat als gemiste opbrengst.',
         'De oplossingen concurreren: een zwaardere of extra LS-kabel, een nieuw station dichter bij de woningen (kortere kabels), een regelbare transformator, omvormerinstellingen of batterijen. Elk lost een ander deel op. Kabelwerk verlaagt de weerstand; een nieuw station halveert de afstand; een regelbare transformator verschuift het hele niveau, maar lost geen groot verschil op tussen twee kabels op hetzelfde station.\n\nExperts zijn het oneens of regelbare transformatoren een goedkope brug zijn of een dure omweg vóór kabelwerk dat toch komt.',
@@ -264,7 +264,7 @@ export default {
         },
         {
           q: 'Waarom helpt blindvermogen van omvormers op LS-kabels minder tegen spanningsstijging dan op MS-lijnen?',
-          options: ['LS-kabels voeren helemaal geen blindstroom', 'In LS-kabels overheerst de weerstand, niet de reactantie', 'Omvormers kunnen op laagspanning helemaal geen blindvermogen maken', 'De Netcode verbiedt blindvermogen op laagspanning'],
+          options: ['LS-kabels voeren helemaal geen blindstroom', 'In LS-kabels overheerst de weerstand, niet de reactantie', 'Omvormers kunnen op laagspanning helemaal geen blindvermogen maken', 'De Systeemcode verbiedt blindvermogen op laagspanning helemaal'],
           answer: 'In LS-kabels overheerst de weerstand, niet de reactantie',
           why: 'Blindvermogen verschuift de spanning via reactantie; LS-kabels hebben daar weinig van vergeleken met hun weerstand.',
         },
@@ -288,9 +288,9 @@ export default {
       sayIt: 'Leg een boze zonnepaneleneigenaar in 60 seconden uit waarom zijn omvormer uitvalt op zonnige dagen en wat de netbeheerder kan doen.',
       terms: [
         { term: 'Spanningsband', def: 'Het toegestane bereik bij de klant: 230 V ±10% op LS, dus 207 tot 253 V.' },
-        { term: 'Spanningsstijging', def: 'De spanning die langs een kabel oploopt als opwek stroom terugduwt naar het station.' },
+        { term: 'Spanningsstijging', def: 'De spanning aan het eind van een kabel komt boven die van het netstation doordat klanten terugleveren.' },
         { term: 'Regelbare distributietransformator', def: 'Distributietransformator met een eigen regelschakelaar die de LS-spanning automatisch bijstelt.' },
-        { term: 'Blindvermogen', def: 'Het deel van de wisselstroom dat heen en weer pendelt zonder energie te leveren; het verschuift de spanning via de reactantie van het net.' },
+        { term: 'Blindvermogen', def: 'Vermogen dat heen en weer gaat om magnetische velden op te bouwen, in kvar; het doet geen werk maar belast de kabels.' },
         { term: 'Q(U)-regeling', def: 'Omvormerinstelling die meer blindvermogen opneemt naarmate de spanning stijgt, om die te drukken.' },
       ],
     },
@@ -360,7 +360,7 @@ export default {
       terms: [
         { term: 'Hotspottemperatuur', def: 'Temperatuur op het heetste punt van de wikkeling, die de verouderingssnelheid bepaalt; ontwerpwaarde 98 °C voor standaardpapier.' },
         { term: 'Thermische traagheid', def: 'Een transformator warmt langzaam op en koelt langzaam af, over uren, dus korte pieken doen weinig kwaad.' },
-        { term: 'Belastingprofiel', def: 'De belasting uur voor uur over een dag of jaar, niet alleen de piek.' },
+        { term: 'Belastingprofiel', def: 'Het vermogen door de tijd, meestal per kwartier, met basislast en pieken.' },
         { term: 'DGA', def: 'Gas-in-olie-analyse: gassen in de olie die interne fouten verraden.' },
         { term: 'Partiële ontlading', def: 'Kleine vonkjes in isolatie die er nog niet doorheen slaan; een vroeg teken van schade.' },
       ],
@@ -405,7 +405,7 @@ export default {
         },
         {
           q: 'Waarom is een lange zonnepiek op een hete zomermiddag vaak zwaarder voor een station dan een korte winterpiek van dezelfde grootte?',
-          options: ['Zonnestroom is gelijkstroom, die de wikkelingen meer verwarmt', 'Warme lucht, en een piek lang genoeg om de olie op te warmen', 'De aftakschakelaar staat ’s zomers in een andere stand', 'Zomerpieken vallen ’s nachts, als niemand kijkt'],
+          options: ['Zonnestroom is gelijkstroom, die de wikkelingen meer verwarmt', 'Warme lucht, en een piek lang genoeg om de olie op te warmen', 'De aftakschakelaar staat ’s zomers in een heel andere stand', 'Zomerpieken vallen ’s nachts, als niemand kijkt'],
           answer: 'Warme lucht, en een piek lang genoeg om de olie op te warmen',
           why: 'Warme lucht koelt slechter, en een piek van uren laat de olie op volle temperatuur komen; een korte winterpiek in koude lucht niet.',
         },
@@ -441,7 +441,7 @@ export default {
       pre: [
         {
           q: 'Een oliemonster van een onderstationtransformator van 40 MVA laat stijgend etheen zien, weinig acetyleen en iets meer koolmonoxide dan vorig jaar. Wat is het meest waarschijnlijke verhaal?',
-          options: ['Vlambogen in het eigen compartiment van de regelschakelaar', 'Partiële ontlading door vocht in de olie', 'Een normaal monster: gassen zeggen niets', 'Oververhitting, mogelijk met papier erbij'],
+          options: ['Vlambogen in het eigen compartiment van de regelschakelaar', 'Partiële ontlading door vocht in de olie', 'Een normaal monster: gassen zeggen verder niets', 'Oververhitting, mogelijk met papier erbij'],
           answer: 'Oververhitting, mogelijk met papier erbij',
           why: 'Etheen wijst op oververhitting, koolmonoxide op papier; weinig acetyleen pleit tegen vlambogen.',
         },
@@ -559,7 +559,7 @@ export default {
         },
         {
           q: 'Een oude transformator is licht belast; een jongere in een ander station draait elke avond heet. Wat is omwisselen?',
-          options: ['Beide vervangen door één grotere transformator', 'De oude terugverkopen aan zijn fabrikant', 'Beide stations op één gedeelde ring zetten', 'Ze verwisselen zodat de oude koeler draait'],
+          options: ['Beide vervangen door één grotere transformator', 'De oude terugverkopen aan zijn fabrikant', 'Beide stations samen op één gedeelde ring zetten', 'Ze verwisselen zodat de oude koeler draait'],
           answer: 'Ze verwisselen zodat de oude koeler draait',
           why: 'De oude gaat naar de lichte belasting en veroudert langzaam; de jongere neemt de zware belasting over.',
         },
@@ -589,7 +589,7 @@ export default {
       pre: [
         {
           q: 'Welk onderdeel veroorzaakt in een MS-kabelnet meestal de meeste interne storingen (graafschade niet meegeteld)?',
-          options: ['De kabel zelf, midden in een lengte', 'De koperen geleider binnen in de kabel', 'De moffen die kabellengtes verbinden', 'De kabelmarkeringen in de straat'],
+          options: ['De kabel zelf, midden in een kabellengte', 'De koperen geleider binnen in de kabel', 'De moffen die kabellengtes verbinden', 'De kabelmarkeringen in de straat'],
           answer: 'De moffen die kabellengtes verbinden',
           why: 'Moffen worden in het veld met de hand gemaakt; vakmanschap, vocht en grondbeweging maken ze het zwakke punt.',
         },
@@ -889,7 +889,7 @@ export default {
         'Een nieuwe aansluiting gaat door vijf stappen. Aanvraag: de klant vraagt aan, voor kleine aansluitingen meestal online. Capaciteitscheck: de netbeheerder kijkt of er ruimte is in het net; in congestiegebieden, waar het net vol zit, kan de aanvraag in een wachtrij komen.\n\nOntwerp: het tracé, de kabel, en of er een nieuw netstation of een MS-aansluiting nodig is. Werkvoorbereiding: vergunningen, KLIC, materiaal, ploegplanning. Uitvoering: graven, kabel leggen, moffen, aansluiten, meter, en in bedrijf nemen.',
         'De grootte bepaalt de route. Kleinverbruik, aansluitingen tot 3 × 80 A (drie fasen van 80 A, zo’n 55 kVA), komt op de LS-kabel in de straat. Grotere aansluitingen krijgen een zware LS-kabel rechtstreeks uit het netstation.\n\nBoven ruwweg een paar honderd kVA krijgt de klant meestal een MS-aansluiting met een MS-ruimte: een ruimte in of naast het gebouw van de klant met de MS-installatie (switchgear) van de netbeheerder. Dat vraagt veel meer ontwerp en afstemming.',
         'Het werk zelf is kort, vaak één of twee dagen op locatie. De doorlooptijd, de kalendertijd van aanvraag tot werkende aansluiting, is vooral wachten: op de capaciteitscheck, een graafvergunning van de gemeente, materiaal of een vrije ploeg. Herstelwerk, als het ontwerp niet klopt met de straat, kost weken extra.\n\nIn de werkvoorbereiding zit vaak een groot deel van die doorlooptijd. Eén ontbrekende vergunning of een transformator die niet op voorraad is, en het werk ligt stil (zie Transformatoren inkopen voor levertijden).',
-        'De aansluittermijn is de tijd die de netbeheerder heeft om te leveren. De vaste wettelijke termijn van 18 weken is in februari 2025 geschrapt; ook de nieuwe Energiewet, sinds 2026 van kracht, vraagt alleen een “redelijke termijn”, en bij congestie mag het langer duren.\n\nVoor grote aansluitingen geeft de Netcode, het technische regelboek dat de toezichthouder ACM vaststelt, sinds 2025 termijnen: 26 weken voor eenvoudige klussen, 52 weken voor middelzware, plus een begrensde wachttijd; complexe krijgen geen vaste termijn. Wat “redelijk” is, blijft een discussie.',
+        'De aansluittermijn is de tijd die de netbeheerder heeft om te leveren. De vaste wettelijke termijn van 18 weken is in februari 2025 geschrapt; ook de Energiewet, die in 2026 de Elektriciteitswet 1998 verving, vraagt alleen een “redelijke termijn”, en bij congestie mag het langer duren.\n\nVoor grote aansluitingen legde de toezichthouder ACM in 2025 termijnen vast in wat toen de Netcode heette (sinds 2026 de Systeemcode elektriciteit): 26 weken voor eenvoudige klussen, 52 weken voor middelzware, plus een begrensde wachttijd; complexe geen. Wat “redelijk” is, blijft een discussie.',
         'Daarom is de werkvoorbereiding een logisch verbeterdoel: standaardpakketten, vergunningen aanvragen tijdens het ontwerp, en de locatie checken voordat de ploeg komt.\n\nTypische fouten: een ontwerp op oude kaarten, een vergunning die pas wordt aangevraagd als al het andere klaar is, een ploeg die het tracé geblokkeerd vindt. Een scherpe vraag: “Van alle weken die deze aansluiting duurde, in hoeveel werkte er echt iemand aan?”',
       ],
       example: {
@@ -942,7 +942,7 @@ export default {
         { term: 'Doorlooptijd', def: 'Kalendertijd van aanvraag tot werkende aansluiting, inclusief wachten.' },
         { term: 'Aansluittermijn', def: 'De tijd die een netbeheerder heeft om een aansluiting te leveren: wettelijk een “redelijke termijn”; de vaste 18 weken is in 2025 geschrapt.' },
         { term: 'Kleinverbruik', def: 'Aansluitingen tot 3 × 80 A, op de LS-kabel in de straat.' },
-        { term: 'MS-ruimte', def: 'Een ruimte bij een grote klant met de MS-installatie van de netbeheerder.' },
+        { term: 'MS-ruimte', def: 'Een ruimte met MS-apparatuur, vaak in een gebouw of bij een grote klant.' },
       ],
     },
     {
@@ -951,7 +951,7 @@ export default {
       pre: [
         {
           q: 'Een netbeheerder stapt over van netstations op maat naar een paar standaardtypes. Wat is meestal de grootste winst?',
-          options: ['Sneller ontwerpen, inkopen en bouwen bij volume', 'Elk station past beter bij zijn eigen locatie', 'Minder klanten hebben nog een aansluiting nodig', 'Transformatoren gaan langer mee doordat ze koeler draaien'],
+          options: ['Sneller ontwerpen, inkopen en bouwen bij volume', 'Elk station past beter bij zijn eigen specifieke locatie', 'Minder klanten hebben nog een aansluiting nodig', 'Transformatoren gaan langer mee doordat ze koeler draaien'],
           answer: 'Sneller ontwerpen, inkopen en bouwen bij volume',
           why: 'Standaardontwerpen schrappen ontwerpuren, maken grote bestellingen mogelijk en maken het werk routine.',
         },
@@ -1057,7 +1057,7 @@ export default {
         },
         {
           q: 'Welke EU-regels gelden als een Nederlandse netbeheerder transformatoren boven de drempel aanbesteedt?',
-          options: ['De Speciale-sectorenrichtlijn (2014/25/EU)', 'Alleen de Ecodesignverordening voor verliezen', 'Geen: netbeheerders kopen vrij in', 'De Machineverordening voor apparatuur'],
+          options: ['De Speciale-sectorenrichtlijn (2014/25/EU)', 'Alleen de Ecodesignverordening voor verliezen', 'Geen: netbeheerders kopen vrij in', 'De Machineverordening voor technische apparatuur'],
           answer: 'De Speciale-sectorenrichtlijn (2014/25/EU)',
           why: 'Netbeheerders vallen onder de speciale sectoren; boven de drempel moeten ze volgens die richtlijn aanbesteden. Ecodesign stelt de verliesgrenzen, niet de procedure.',
         },
@@ -1093,7 +1093,7 @@ export default {
       pre: [
         {
           q: 'Veel Nederlandse netstations zijn in de jaren zestig en zeventig gebouwd. Waarom is dat nu een planningsprobleem, los van de leeftijd zelf?',
-          options: ['Ze hebben allemaal dezelfde aftakstand', 'Ze staan helemaal niet in het GIS geregistreerd', 'Hun transformatoren bevatten geen olie', 'Veel bereiken in dezelfde jaren hun einde'],
+          options: ['Ze hebben allemaal precies dezelfde aftakstand', 'Ze staan helemaal niet in het GIS geregistreerd', 'Hun transformatoren bevatten geen olie', 'Veel bereiken in dezelfde jaren hun einde'],
           answer: 'Veel bereiken in dezelfde jaren hun einde',
           why: 'Een bult in de leeftijdsopbouw betekent een bult vervangingen, bovenop de uitbreiding voor de energietransitie.',
         },
