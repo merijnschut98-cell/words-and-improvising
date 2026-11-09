@@ -1500,6 +1500,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Surface finish, measuring and defects',
       pre: [
@@ -1571,6 +1572,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Measuring you can trust: uncertainty and gauge R&R',
       pre: [
@@ -1642,6 +1644,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'A capable machining process',
       pre: [

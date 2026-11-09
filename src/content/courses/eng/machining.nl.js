@@ -1500,6 +1500,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Ruwheid, meten en fouten',
       pre: [
@@ -1571,6 +1572,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Meten waar je op kunt bouwen: meetonzekerheid en gauge R&R',
       pre: [
@@ -1642,6 +1644,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Een capabel verspaningsproces',
       pre: [
