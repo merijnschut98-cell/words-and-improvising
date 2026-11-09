@@ -259,8 +259,8 @@ const STAGE = (() => {
     const g1 = lerp(50, 55, span(p, 0.2, 0.6));
     const g2 = lerp(50, 60.5, span(p, 0.2, 0.6));
     return fadeG(o, rect(x, y, w, h) + `<path class="fp-grid" d="${line(x + 14, yb, x + w - 14, yb)}"/>`
-      + bar(x + 30, 50, '100', 'fp-bar') + bar(x + 66, g1, `${Math.round(100 + 10 * span(p, 0.2, 0.6))}`, 'fp-fill')
-      + bar(x + 160, 50, '100', 'fp-bar') + bar(x + 196, g2, `${Math.round(100 + 21 * span(p, 0.2, 0.6))}`, 'fp-fill')
+      + bar(x + 30, 50, '100', 'fp-meter') + bar(x + 66, g1, `${Math.round(100 + 10 * span(p, 0.2, 0.6))}`, 'fp-fill')
+      + bar(x + 160, 50, '100', 'fp-meter') + bar(x + 196, g2, `${Math.round(100 + 21 * span(p, 0.2, 0.6))}`, 'fp-fill')
       + txt(x + 63, yb + 18, tr('stroom', 'current'), 16, 'middle', 'fp-small') + txt(x + 193, yb + 18, tr('warmte', 'heat'), 16, 'middle', 'fp-small'));
   }
   // the stepper: current in steps against welds since dressing; it drops back when the tips are dressed
@@ -323,7 +323,7 @@ const STAGE = (() => {
     const lift = span(p, 0, 1);
     const parts = [];
     parts.push(rect(bx, by + 60, len, t, 'fp-steel', 1)); // lower strip
-    parts.push(rect(bx - 8, by + 52, 26, 24, 'fp-bar', 3)); // vice jaw
+    parts.push(rect(bx - 8, by + 52, 26, 24, 'fp-meter', 3)); // vice jaw
     // the upper strip: flat to the weld, then curling up from it
     const curl = [];
     const r0 = 50;
@@ -391,7 +391,7 @@ const STAGE = (() => {
       `<path class="fp-steel" d="M${Dp.x + 20} ${dy + 4}L${Dp.x + 270} ${dy + 4}L${Dp.x + 270} ${dy + 12}L${Dp.x + 20} ${dy + 12}Z"/>`
       + `<path class="fp-steel2" d="M${Dp.x + 20} ${dy - 4}L${Dp.x + 170} ${dy - 4}L${f1(Dp.x + 270)} ${f1(dy - 4 - gap)}L${f1(Dp.x + 270)} ${f1(dy - 12 - gap)}L${Dp.x + 170} ${dy - 12}L${Dp.x + 20} ${dy - 12}Z"/>`
       + `<rect class="fp-nugc" x="${Dp.x + 160}" y="${dy - 4}" width="20" height="8" rx="3"/>`
-      + `<path class="fp-bar" d="M${f1(wx + 80)} ${f1(dy - 20)}L${f1(wx)} ${dy}L${f1(wx + 80)} ${f1(dy + 4)}Z"/>`, oD));
+      + `<path class="fp-meter" d="M${f1(wx + 80)} ${f1(dy - 20)}L${f1(wx)} ${dy}L${f1(wx + 80)} ${f1(dy + 4)}Z"/>`, oD));
     // adaptive control: dynamic resistance through the weld, a band around the good curve
     const oE = k === 4 ? span(p, 0.05, 0.2) : 0;
     const ex = 20;

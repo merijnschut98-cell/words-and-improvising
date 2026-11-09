@@ -121,13 +121,13 @@ const STAGE = (() => {
     const rect = (x0, x1, cls) => `<path class="${cls}" d="M${f1(x0)} ${y0}H${f1(x1)}V${y1}H${f1(x0)}Z"/>`;
     const cool = PH[3];
     let bar = `<rect class="fp-hud-bg" x="${B.x0 - 10}" y="${y0 - 34}" width="${B.x1 - B.x0 + 20}" height="${B.h + 44}" rx="8"/>`;
-    bar += rect(B.x0, B.x1, 'fp-bar-bg') + rect(B.x0, bx(Math.min(t, cool.t0)), 'fp-bar-fill');
-    if (t > cool.t0 + cool.dur) bar += rect(bx(cool.t0 + cool.dur), bx(t), 'fp-bar-fill');
+    bar += rect(B.x0, B.x1, 'fp-meter-bg') + rect(B.x0, bx(Math.min(t, cool.t0)), 'fp-meter-fill');
+    if (t > cool.t0 + cool.dur) bar += rect(bx(cool.t0 + cool.dur), bx(t), 'fp-meter-fill');
     const seps = PH.slice(1).map((p) => `M${f1(bx(p.t0))} ${y0 - 3}V${y1 + 3}`).join('');
     const ticks = [0, 5, 10, 15, 20, 25, 30].map((s) => `M${f1(bx(s))} ${y1 + 3}V${y1 + 7}`).join('');
     bar += mark(`M${B.x0} ${y0}H${B.x1}V${y1}H${B.x0}Z`) + mark(seps) + mark(ticks);
     set(E.phasebar, bar);
-    let cseg = rect(bx(cool.t0), bx(Math.min(Math.max(t, cool.t0), cool.t0 + cool.dur)), 'fp-bar-fill');
+    let cseg = rect(bx(cool.t0), bx(Math.min(Math.max(t, cool.t0), cool.t0 + cool.dur)), 'fp-meter-fill');
     cseg += mark(`M${f1(bx(cool.t0))} ${y0}H${f1(bx(cool.t0 + cool.dur))}V${y1}H${f1(bx(cool.t0))}Z`, ' style="stroke-width:1.8"');
     set(E.coolseg, cseg);
     const i = phaseAt(t);
@@ -465,7 +465,7 @@ const STAGE = (() => {
       const x0 = 150;
       const sc = 22; // px per second
       const y = H - 56;
-      const bar = (yy, secs, f, lab) => `<path class="fp-bar-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-bar-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 20, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 20, 'start', 'fp-ink fp-mono') : ''}`;
+      const bar = (yy, secs, f, lab) => `<path class="fp-meter-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-meter-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 20, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 20, 'start', 'fp-ink fp-mono') : ''}`;
       labels += `<rect class="fp-hud-bg" x="${x0 - 92}" y="${y - 12}" width="${12 * sc + 160}" height="62" rx="8"/>`
         + bar(y, 12, run1, `${num(3, 1)} mm`) + (u > b2 ? bar(y + 22, 12 * 0.64, run2, `${num(2.4, 1)} mm`) : '');
     } else if (si === 4) {

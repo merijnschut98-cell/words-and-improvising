@@ -580,6 +580,7 @@ export default {
     },
     {
       id: 'eng.joining.defects',
+      film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Lasfouten en hun oorzaken',
       pre: [
@@ -651,6 +652,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
+      film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Lasinspectie, LMB en LMK',
       pre: [
@@ -721,6 +723,7 @@ export default {
     },
     {
       id: 'eng.joining.ndt',
+      film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'NDO in de praktijk en wie het kwaliteitsniveau kiest',
       pre: [
@@ -792,6 +795,7 @@ export default {
     },
     {
       id: 'eng.joining.weldrca',
+      film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Terugkerende lasfouten, vervorming en restspanning',
       pre: [

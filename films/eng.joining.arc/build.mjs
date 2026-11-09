@@ -539,7 +539,7 @@ const css = `
 .fp-scrim{fill:var(--anatomy-card);opacity:.88}
 .fp-card{fill:var(--anatomy-paper);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:3;stroke-linecap:round}
-.fp-bar{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-meter{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-fill{fill:var(--anatomy-mid);opacity:.55}
 .fp-panel{fill:var(--anatomy-shade-1);stroke:var(--anatomy-lo);stroke-width:.6;vector-effect:non-scaling-stroke}
 .fp-disp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
@@ -566,7 +566,7 @@ const css = `
 .iso[data-theme="light"] .fp-glow1{stop-color:var(--anatomy-lo);stop-opacity:.35}
 .iso[data-theme="light"] .fp-glow2{stop-color:var(--anatomy-lo);stop-opacity:0}
 .fp-ray{fill:none;stroke:var(--anatomy-hi);stroke-width:1;stroke-linecap:round;vector-effect:non-scaling-stroke}
-[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-pool,[data-cue][data-on] .fp-bar{stroke:var(--fp-accent);stroke-width:1.6}
+[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-pool,[data-cue][data-on] .fp-meter{stroke:var(--fp-accent);stroke-width:1.6}
 [data-cue][data-on] .fp-hazf,[data-cue][data-on] .fp-fill{fill:var(--fp-accent);opacity:.6}
 [data-cue][data-on] .fp-gas,[data-cue][data-on] .fp-iso,[data-cue][data-on] .fp-needle,[data-cue][data-on] .fp-crack,[data-cue][data-on] .fp-rule{stroke:var(--fp-accent)}
 [data-cue][data-on] .fp-panel,[data-cue][data-on] .fp-disp,[data-cue][data-on] .fp-glass{stroke:var(--fp-accent);stroke-width:1.4}

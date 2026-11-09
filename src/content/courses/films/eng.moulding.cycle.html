@@ -234,8 +234,8 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp-runline{opacity:0}
 .fp-meltline{fill:none;stroke:var(--fp-melt);stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 .fp-pool{fill:var(--fp-melt);stroke:none;opacity:.8}
-.fp-bar-bg{fill:var(--anatomy-shade-1);stroke:none}
-.fp-bar-fill{fill:var(--anatomy-mid);stroke:none;opacity:.55}
+.fp-meter-bg{fill:var(--anatomy-shade-1);stroke:none}
+.fp-meter-fill{fill:var(--anatomy-mid);stroke:none;opacity:.55}
 .fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
 .fp-coin-face{fill:var(--anatomy-face)}
 [data-cue][data-on] .fp-hatch{stroke:var(--fp-accent)}
@@ -244,7 +244,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 [data-cue][data-on] .fp-meltline,[data-cue][data-on] .fp-pool{fill:var(--fp-accent);stroke:var(--fp-accent);opacity:.45}
 [data-cue][data-on] .fp-meltline{fill:none}
 [data-cue][data-on] .fp-runline{opacity:1}
-[data-cue][data-on] .fp-bar-fill{fill:var(--fp-accent);opacity:.75}
+[data-cue][data-on] .fp-meter-fill{fill:var(--fp-accent);opacity:.75}
 [data-cue][data-on] .mc-well{fill:var(--anatomy-lit-shade)}
 [data-cue][data-on] .iso-face-text{fill:var(--fp-accent)}
 .tb-body{fill:var(--anatomy-shade-2)}
@@ -325,12 +325,16 @@ const SAY = {
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
+    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
+    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
     [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3']],
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one']],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -1476,13 +1480,13 @@ const y1 = B.y + B.h;
 const rect = (x0, x1, cls) => `<path class="${cls}" d="M${f1(x0)} ${y0}H${f1(x1)}V${y1}H${f1(x0)}Z"/>`;
 const cool = PH[3];
 let bar = `<rect class="fp-hud-bg" x="${B.x0 - 10}" y="${y0 - 34}" width="${B.x1 - B.x0 + 20}" height="${B.h + 44}" rx="8"/>`;
-bar += rect(B.x0, B.x1, 'fp-bar-bg') + rect(B.x0, bx(Math.min(t, cool.t0)), 'fp-bar-fill');
-if (t > cool.t0 + cool.dur) bar += rect(bx(cool.t0 + cool.dur), bx(t), 'fp-bar-fill');
+bar += rect(B.x0, B.x1, 'fp-meter-bg') + rect(B.x0, bx(Math.min(t, cool.t0)), 'fp-meter-fill');
+if (t > cool.t0 + cool.dur) bar += rect(bx(cool.t0 + cool.dur), bx(t), 'fp-meter-fill');
 const seps = PH.slice(1).map((p) => `M${f1(bx(p.t0))} ${y0 - 3}V${y1 + 3}`).join('');
 const ticks = [0, 5, 10, 15, 20, 25, 30].map((s) => `M${f1(bx(s))} ${y1 + 3}V${y1 + 7}`).join('');
 bar += mark(`M${B.x0} ${y0}H${B.x1}V${y1}H${B.x0}Z`) + mark(seps) + mark(ticks);
 set(E.phasebar, bar);
-let cseg = rect(bx(cool.t0), bx(Math.min(Math.max(t, cool.t0), cool.t0 + cool.dur)), 'fp-bar-fill');
+let cseg = rect(bx(cool.t0), bx(Math.min(Math.max(t, cool.t0), cool.t0 + cool.dur)), 'fp-meter-fill');
 cseg += mark(`M${f1(bx(cool.t0))} ${y0}H${f1(bx(cool.t0 + cool.dur))}V${y1}H${f1(bx(cool.t0))}Z`, ' style="stroke-width:1.8"');
 set(E.coolseg, cseg);
 const i = phaseAt(t);
@@ -1786,7 +1790,7 @@ labels = dimLabels(s, false);
 const x0 = 150;
 const sc = 22; // px per second
 const y = H - 56;
-const bar = (yy, secs, f, lab) => `<path class="fp-bar-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-bar-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 20, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 20, 'start', 'fp-ink fp-mono') : ''}`;
+const bar = (yy, secs, f, lab) => `<path class="fp-meter-bg" d="M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z"/><path class="fp-meter-fill" d="M${x0} ${yy}h${f1(secs * sc * f)}v12h${f1(-secs * sc * f)}Z"/>${mark(`M${x0} ${yy}h${f1(12 * sc)}v12h${f1(-12 * sc)}Z`)}${text(x0 - 10, yy + 11, lab, 20, 'end', 'fp-ink fp-mono')}${f > 0.98 ? text(x0 + 12 * sc + 10, yy + 11, `${num(secs, secs % 1 ? 1 : 0)} s`, 20, 'start', 'fp-ink fp-mono') : ''}`;
 labels += `<rect class="fp-hud-bg" x="${x0 - 92}" y="${y - 12}" width="${12 * sc + 160}" height="62" rx="8"/>`
 + bar(y, 12, run1, `${num(3, 1)} mm`) + (u > b2 ? bar(y + 22, 12 * 0.64, run2, `${num(2.4, 1)} mm`) : '');
 } else if (si === 4) {

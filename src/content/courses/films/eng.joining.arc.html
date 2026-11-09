@@ -223,7 +223,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp-scrim{fill:var(--anatomy-card);opacity:.88}
 .fp-card{fill:var(--anatomy-paper);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:3;stroke-linecap:round}
-.fp-bar{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-meter{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-fill{fill:var(--anatomy-mid);opacity:.55}
 .fp-panel{fill:var(--anatomy-shade-1);stroke:var(--anatomy-lo);stroke-width:.6;vector-effect:non-scaling-stroke}
 .fp-disp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
@@ -250,7 +250,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .iso[data-theme="light"] .fp-glow1{stop-color:var(--anatomy-lo);stop-opacity:.35}
 .iso[data-theme="light"] .fp-glow2{stop-color:var(--anatomy-lo);stop-opacity:0}
 .fp-ray{fill:none;stroke:var(--anatomy-hi);stroke-width:1;stroke-linecap:round;vector-effect:non-scaling-stroke}
-[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-pool,[data-cue][data-on] .fp-bar{stroke:var(--fp-accent);stroke-width:1.6}
+[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-pool,[data-cue][data-on] .fp-meter{stroke:var(--fp-accent);stroke-width:1.6}
 [data-cue][data-on] .fp-hazf,[data-cue][data-on] .fp-fill{fill:var(--fp-accent);opacity:.6}
 [data-cue][data-on] .fp-gas,[data-cue][data-on] .fp-iso,[data-cue][data-on] .fp-needle,[data-cue][data-on] .fp-crack,[data-cue][data-on] .fp-rule{stroke:var(--fp-accent)}
 [data-cue][data-on] .fp-panel,[data-cue][data-on] .fp-disp,[data-cue][data-on] .fp-glass{stroke:var(--fp-accent);stroke-width:1.4}
@@ -331,12 +331,16 @@ const SAY = {
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
+    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
+    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
     [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3']],
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one']],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -2586,7 +2590,7 @@ const STAGE = (() => {
     const { gap, face, top } = C.GROOVE;
     const far = [[-40, 0], [-gap, 0], [-gap, face], [-top, PT], [-40, PT]];
     const near = [[gap, 0], [40, 0], [40, PT], [top, PT], [gap, face]];
-    const table = `<path class="fp-bar" d="${M2([[-40, 0], [40, 0], [40, -6], [-40, -6]])}"/>`;
+    const table = `<path class="fp-meter" d="${M2([[-40, 0], [40, 0], [40, -6], [-40, -6]])}"/>`;
     set(E.macroBody, table + `<path class="fp-steel" d="${M2(far)}"/><path class="fp-steel" d="${M2(near)}"/><path class="fp-hazf" d="${M2(SECT.haz)}"/><path class="fp-weld" d="${M2(SECT.weld)}"/><path class="fp-ripple" d="${SECT.passes.map((q) => M2(q, false)).join('')}"/>`);
     const lines = [];
     for (let i = 0; i < 60; i++) {
@@ -2747,9 +2751,9 @@ const STAGE = (() => {
     // thickness: 0–30 mm
     const t = C.WPS;
     const y1 = 118;
-    const rangeA = `<rect class="fp-bar" x="${BAR.x0}" y="${y1 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${f1(barX(t.tMin, 0, 30))}" y="${y1 - 8}" width="${f1(barX(t.tMax, 0, 30) - barX(t.tMin, 0, 30))}" height="16" rx="8"/>`;
+    const rangeA = `<rect class="fp-meter" x="${BAR.x0}" y="${y1 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${f1(barX(t.tMin, 0, 30))}" y="${y1 - 8}" width="${f1(barX(t.tMax, 0, 30) - barX(t.tMin, 0, 30))}" height="16" rx="8"/>`;
     const y2 = 224;
-    const rangeB = `<rect class="fp-bar" x="${BAR.x0}" y="${y2 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${BAR.x0}" y="${y2 - 8}" width="${f1(barX(t.qMax, 0.6, 1.8) - BAR.x0)}" height="16" rx="8"/>`;
+    const rangeB = `<rect class="fp-meter" x="${BAR.x0}" y="${y2 - 8}" width="${BAR.x1 - BAR.x0}" height="16" rx="8"/><rect class="fp-fill" x="${BAR.x0}" y="${y2 - 8}" width="${f1(barX(t.qMax, 0.6, 1.8) - BAR.x0)}" height="16" rx="8"/>`;
     const rIn = span(u, 0.2, 0.28);
     const oIn = span(u, 0.42, 0.48);
     const hIn = span(u, 0.58, 0.66);
@@ -2766,7 +2770,7 @@ const STAGE = (() => {
     set(E.docCert, `<g style="opacity:${cIn.toFixed(2)}">${card(24, 278, 286, 104)}${seal}${hudText(104, 318, 'ISO 9606-1', 22, 'start')}${rules(106, 344, 180, 2, 18)}</g>`);
     const pIn = span(u, 0.8, 0.86);
     const person = `<circle class="fp-card" cx="372" cy="306" r="13"/><path class="fp-card" d="M348 378C348 346 356 328 372 328C388 328 396 346 396 378Z"/>`;
-    const board = `<rect class="fp-card" x="410" y="300" width="56" height="72" rx="4"/><rect class="fp-bar" x="426" y="294" width="24" height="10" rx="3"/>${check(426, 326, 0.6)}${check(426, 352, 0.6)}<path class="fp-rule" d="M440 326L456 326M440 352L456 352"/>`;
+    const board = `<rect class="fp-card" x="410" y="300" width="56" height="72" rx="4"/><rect class="fp-meter" x="426" y="294" width="24" height="10" rx="3"/>${check(426, 326, 0.6)}${check(426, 352, 0.6)}<path class="fp-rule" d="M440 326L456 326M440 352L456 352"/>`;
     set(E.docCoord, `<g style="opacity:${pIn.toFixed(2)}">${card(330, 278, 286, 104)}${person}${board}${rules(486, 316, 110, 3, 20)}</g>`);
   }
 

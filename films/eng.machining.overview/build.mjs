@@ -512,7 +512,7 @@ const BEATS = resolved.scenes.map((s) => beatStarts(s, 'nl').map((t) => Math.rou
 // "how it works" of Verspanen: a first meeting with the four processes. Same
 // markers ({t:Term|shown}, {n:number}); the build checks its terms and numbers
 // against the lesson like the captions'. films/_kit/narrate.mjs turns each
-// phrase into speech with Piper.
+// sentence into speech with Piper.
 const SAY = [
   [ // s1 machining starts at the saw
     { nl: 'Verspanen is een onderdeel maken door materiaal weg te snijden, in kleine krulletjes: de spanen. Je begint te groot, en snijdt weg tot de vorm van de tekening overblijft. Dat is precies en flexibel, maar elke gram die eraf gaat kost machinetijd.',

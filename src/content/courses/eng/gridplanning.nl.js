@@ -7,7 +7,7 @@ export default {
       pre: [
         {
           q: 'Een straat heeft 100 woningen met elk een aansluiting van 3 × 25 A, zo’n 17 kVA. Met welke piek voor de hele straat rekent een netplanner traditioneel, als de huizen op gas verwarmen?',
-          options: ['Zo’n 100 tot 150 kVA, ver onder de som', 'Zo’n 850 kVA: de helft van die som, voor de zekerheid', 'Zo’n 1.700 kVA: de som van alle aansluitingen', 'Zo’n 17 kVA: één aansluiting'],
+          options: ['Zo’n 100 tot 150 kVA, ver onder de som', 'Zo’n 850 kVA: de helft van die som, voor de zekerheid', 'Zo’n 1.700 kVA: de som van alle aansluitingen', 'Zo’n 17 kVA: zo groot als één enkele aansluiting'],
           answer: 'Zo’n 100 tot 150 kVA, ver onder de som',
           why: 'Niet iedereen piekt tegelijk. Traditioneel rekende men met 1 tot 1,5 kVA per woning in de piek.',
         },
@@ -15,7 +15,7 @@ export default {
       teach: [
         'Elke netplanning begint met de vraag hoeveel vermogen er straks tegelijk loopt. Gelijktijdigheid, uitgelegd in Het elektriciteitsnet, is het deel van ieders maximum dat op hetzelfde moment optreedt.\n\nPlanners rekenen met een gelijktijdigheidsfactor (coincidence factor): de gezamenlijke piek gedeeld door de som van de losse pieken. Piek van een groep = aantal × losse piek × factor. Een factor 0,1 betekent dat de groep in de piek een tiende vraagt van wat alle aansluitingen samen kunnen.',
         'De factor zakt naarmate de groep groter wordt (vuistregels, die per netbeheerder verschillen). Eén woning piekt even op zo’n 5 tot 8 kVA, als oven, waterkoker en vaatwasser samen aanstaan. Tien woningen samen zitten op zo’n 2 tot 3 kVA per woning.\n\nVanaf zo’n honderd woningen, op het netstation of hoger, rekende men voor een gasgestookte woning met 1 tot 1,5 kVA: de piek per woning na gelijktijdigheid (after-diversity peak). Daarom ziet een onderstation per woning een lagere piek dan een LS-kabel.',
-        'Nieuwe apparaten hebben elk hun eigen factor, dus planners rekenen per categorie. Warmtepompen draaien op een koude avond bijna allemaal: factor 0,8 tot 1. Laadpalen van 11 kW zonder slim laden: in een straat zo’n 0,2 tot 0,3 (het voorbeeld in Het elektriciteitsnet rekent met 0,3). Zonnepanelen leveren op een zonnige middag allemaal tegelijk terug.\n\nNetbeheer Nederland noemt zo’n 5 kW per volledig elektrische woning als nieuwe piek, tegen 1,5 kW vroeger.',
+        'Nieuwe apparaten hebben elk hun eigen factor, dus planners rekenen per categorie. Warmtepompen draaien op een koude avond bijna allemaal: factor 0,8 tot 1. Laadpalen van 11 kW zonder slim laden: in een straat zo’n 0,2 tot 0,3 (het voorbeeld in Het elektriciteitsnet rekent met 0,3). Zonnepanelen leveren op een zonnige middag allemaal tegelijk terug.\n\nEen studie uit 2025 met slimmemeterdata, voor RVO en Netbeheer Nederland (de branchevereniging van netbeheerders), mat zo’n 2,3 kW per volledig elektrische woning na gelijktijdigheid; planners rekenen met marge voor koudere winters.',
         'Grote klanten tellen anders mee: met hun gecontracteerd transportvermogen (GTV), het vermogen dat de netbeheerder met ze heeft afgesproken, maal een eigen factor, want ook zij pieken niet allemaal tegelijk. Een kantorenwijk piekt overdag, een woonwijk ’s avonds; samen op één station geeft dat een lagere piek dan de som.\n\nDe factor geldt per netniveau: LS-kabel, netstation, MS-streng, onderstation. Elke stap omhoog dempt de pieken verder.',
         'Valkuilen: factoren uit een oude wijk overnemen voor een wijk met warmtepompen, of één getal per woning gebruiken terwijl de mix verandert. Slimme meters geven nu echte, opgetelde profielen per straat, maar alleen met de beperkingen voor privacy (zie Het elektriciteitsnet).\n\nExperts discussiëren hoe snel slim laden de factor van laadpalen omlaag brengt. Een scherpe vraag: “Met welke gelijktijdigheid per categorie rekenen we hier, en op welk netniveau?”',
       ],
@@ -78,8 +78,8 @@ export default {
       pre: [
         {
           q: 'Een HS/MS-onderstation (waar hoogspanning naar middenspanning gaat) zit in de piek op 55% van zijn trafocapaciteit. Een bedrijf vraagt 2,5 MVA aan op één MS-streng, één uitgaande kabelroute uit dat station. Wat kan het dan nog tegenhouden?',
-          options: ['Niks: het station heeft ruimte genoeg', 'Alleen het hoogspanningsnet van TenneT erboven', 'De belasting of spanning op die streng', 'De kWh-meter die bij de klant hangt'],
-          answer: 'De belasting of spanning op die streng',
+          options: ['Niks: het station heeft ruimte genoeg', 'Alleen het hoogspanningsnet van TenneT erboven', 'De belasting of de spanning van die ene streng', 'De kWh-meter die bij de klant hangt'],
+          answer: 'De belasting of de spanning van die ene streng',
           why: 'Het station ziet de som van alle strengen; één streng kan vol zitten terwijl het station ruimte heeft.',
         },
       ],
@@ -120,8 +120,8 @@ export default {
         },
         {
           q: 'Waarom kan één MS-streng overbelast zijn terwijl het onderstation nog ruimte heeft?',
-          options: ['Onderstations zijn wettelijk altijd overgedimensioneerd', 'Strengen zijn zwaarder uitgevoerd dan de trafo’s', 'Kabels hebben, anders dan trafo’s, geen vaste grens', 'Strengen pieken niet allemaal tegelijk'],
-          answer: 'Strengen pieken niet allemaal tegelijk',
+          options: ['Onderstations zijn wettelijk altijd overgedimensioneerd', 'Strengen zijn zwaarder uitgevoerd dan de trafo’s', 'Kabels hebben, anders dan trafo’s, geen vaste grens', 'Strengen pieken niet allemaal op hetzelfde moment'],
+          answer: 'Strengen pieken niet allemaal op hetzelfde moment',
           why: 'Het station draagt de som van alle strengen. Verbruik en opwek zijn ongelijk verdeeld; één streng kan vol zitten terwijl de rest veel ruimte heeft.',
         },
       ],
@@ -161,7 +161,7 @@ export default {
         'Die scenario’s komen landelijk van Netbeheer Nederland. De Scenario’s Editie 2025, de basis voor de investeringsplannen van 2026, bouwen voort op II3050 en hebben vier beelden: Koersvaste Middenweg, de verwachte koers op basis van trends en beleid, en drie verkenningen daaromheen: Eigen Vermogen, Gezamenlijke Balans en Horizon Aanvoer.\n\nPlanners verdelen die landelijke getallen over buurten en stations, bijvoorbeeld met het Energietransitiemodel (ETM). Elke netbeheerder kiest zelf welk scenario hij in zijn plan gebruikt.',
         'Niet alles wat is toegezegd, komt ook. Planners rekenen daarom met een realisatiefactor (realisation factor): het deel van de toegezegde capaciteit dat naar verwachting echt gebruikt wordt, vaak ergens tussen de helft en driekwart (vuistregel; elke netbeheerder kiest zijn eigen waarde). GOTORK, uit Het elektriciteitsnet, haalt ongebruikte capaciteit terug.\n\nEén grote aanvraag, zoals een datacenter of een elektrolyser, telt niet als groeipercentage maar als aparte stap in het jaar dat hij aansluit.',
         'De uitkomst per asset en per scenario is het jaar van overschrijding (year of exceedance): het eerste jaar waarin de prognose boven de grens komt. Dat wordt een knelpunt in het investeringsplan.\n\nDe afstand tussen het lage en het hoge scenario laat zien hoe onzeker dat jaar is. Liggen ze ver uit elkaar, dan zijn no-regretstappen, uitgelegd in de les over investeringsplanning, extra waardevol.',
-        'Valkuilen: dubbeltelling, als laadpleinen al in de wachtrij staan én in de scenariogroei zitten; een zachte winter als basis; alleen naar afname kijken terwijl invoeding eerder knelt. In april 2026 schreef de ACM dat netbeheerders begrijpelijk vaak het zwaarste scenario kiezen, maar dat dit tot overinvestering kan leiden.\n\nEen scherpe vraag: “Welk deel van deze groei is toegezegd, welk deel scenario, en tellen we iets dubbel?”',
+        'Valkuilen: dubbeltelling, als laadpleinen al in de wachtrij staan én in de scenariogroei zitten; een zachte winter als basis; alleen naar afname kijken terwijl invoeding eerder knelt. In april 2026 schreef de ACM het begrijpelijk te vinden dat netbeheerders uitgaan van het scenario dat het meest van hun net vraagt, maar dat ze zo het risico lopen meer te investeren dan nodig.\n\nEen scherpe vraag: “Welk deel van deze groei is toegezegd, welk deel scenario, en tellen we iets dubbel?”',
       ],
       example: {
         kind: 'faded',
@@ -189,8 +189,8 @@ export default {
         },
         {
           q: 'Laadpleinen staan al in de wachtrij én zitten in de scenariogroei voor elektrisch vervoer. Wat is het risico?',
-          options: ['Dubbeltelling, dus een te hoge prognose', 'Een te lage prognose, omdat de wachtrij niet meetelt', 'Geen risico: wachtrij en scenario versterken elkaar', 'De laadpleinen verliezen hun plek in de wachtrij'],
-          answer: 'Dubbeltelling, dus een te hoge prognose',
+          options: ['Dubbeltelling, waardoor de prognose te hoog uitvalt', 'Een te lage prognose, omdat de wachtrij niet meetelt', 'Geen risico: wachtrij en scenario versterken elkaar', 'De laadpleinen verliezen hun plek in de wachtrij'],
+          answer: 'Dubbeltelling, waardoor de prognose te hoog uitvalt',
           why: 'Dezelfde laders tellen twee keer mee, dus het knelpunt lijkt eerder te komen dan het doet.',
         },
         {
@@ -224,7 +224,7 @@ export default {
       pre: [
         {
           q: 'Een planner rekent een LS-kabel door voor één moment: de koudste avond, alle warmtepompen aan, een vaste factor voor laadpalen. Wat mis je daarmee?',
-          options: ['Niks: de piek op dat ene moment is het enige wat telt', 'De kosten van het kabelwerk per meter', 'Hoe vaak en hoe lang de grens overschreden wordt', 'De spanning bij de klant aan het eind van de kabel'],
+          options: ['Niks: de piek op dat ene moment is het enige wat telt', 'De kosten van het kabelwerk per meter gegraven sleuf', 'Hoe vaak en hoe lang de grens overschreden wordt', 'De spanning bij de klant aan het eind van de kabel'],
           answer: 'Hoe vaak en hoe lang de grens overschreden wordt',
           why: 'Een momentopname geeft één getal; of het om 3 of om 300 uur per jaar gaat, zie je niet.',
         },
@@ -290,6 +290,7 @@ export default {
         { term: 'Percentiel', def: 'De waarde waar een bepaald deel van de uitkomsten onder blijft; het 95e percentiel wordt in 95% van de gevallen niet overschreden.' },
         { term: 'Hostingcapaciteit', def: 'Hoeveel extra invoeding of afname er op een punt bij kan voordat een grens van belasting, spanning of beveiliging wordt geraakt.' },
         { term: 'Referentiejaar', def: 'Het weerjaar waarmee een tijdreeksberekening rekent, vaak een koud jaar zodat warmtepompen niet onderschat worden.' },
+        { term: 'Belastingduurkromme', def: 'Alle kwartier- of uurwaarden van een jaar, gesorteerd van hoog naar laag; laat zien hoe lang de belasting boven een grens zit.' },
       ],
     },
     {
@@ -298,8 +299,8 @@ export default {
       pre: [
         {
           q: 'Een nieuwe LS-kabel van 300 m naar 40 woningen blijft ruim onder zijn belastbaarheid. Kan het ontwerp dan toch afgekeurd worden?',
-          options: ['Nee: de stroom is het enige criterium', 'Nee, want een LS-kabel heeft geen reserve nodig', 'Alleen als de gemeente geen graafvergunning voor het tracé geeft', 'Ja, op spanning of kortsluitstroom'],
-          answer: 'Ja, op spanning of kortsluitstroom',
+          options: ['Nee: de stroom is het enige criterium', 'Nee, want een LS-kabel heeft geen reserve nodig', 'Alleen als de gemeente geen graafvergunning voor het tracé geeft', 'Ja, op de spanning of op de kortsluitstroom'],
+          answer: 'Ja, op de spanning of op de kortsluitstroom',
           why: 'Een ontwerp moet aan meer toetsen voldoen dan alleen de belasting.',
         },
       ],
@@ -312,7 +313,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een nieuwe LS-kabel (aluminium, 150 mm²) van 300 m gaat naar 40 woningen. Belastbaarheid zo’n 250 A, weerstand zo’n 0,21 Ω per km per geleider. De ontwerprichtlijn geeft de LS-kabel een spanningsbudget van 5%. Piek na gelijktijdigheid: 40 × 3,5 kVA = 140 kVA.\n\nThermisch: I = 140.000 / (1,732 × 400) ≈ 202 A, 81% van 250 A: in orde. Spanning, voorzichtig gerekend met alle belasting aan het eind en evenwichtig over de fasen: weerstand 0,3 × 0,21 = 0,063 Ω, daling 202 × 0,063 ≈ 12,7 V, 5,5% van 230 V: net boven het budget. De spanning is hier maatgevend, niet de stroom. Oplossing: de woningen over twee kabels verdelen, of een dikkere kabel.',
+        text: 'Een nieuwe LS-kabel (aluminium, 150 mm²) van 300 m gaat naar 40 woningen. Belastbaarheid zo’n 250 A, weerstand zo’n 0,21 Ω per km per geleider. De ontwerprichtlijn geeft de LS-kabel een spanningsbudget van 5%. De woningen krijgen warmtepompen, dus de planner rekent 3,5 kVA per woning na gelijktijdigheid: 40 × 3,5 = 140 kVA.\n\nThermisch: I = 140.000 / (1,732 × 400) ≈ 202 A, 81% van 250 A: in orde. Spanning, voorzichtig gerekend met alle belasting aan het eind en evenwichtig over de fasen: weerstand 0,3 × 0,21 = 0,063 Ω, daling 202 × 0,063 ≈ 12,7 V, 5,5% van 230 V: net boven het budget. De spanning is hier maatgevend, niet de stroom. Oplossing: de woningen over twee kabels verdelen, of een dikkere kabel.',
       },
       said: 'Wat engineers zeggen: “Thermisch kan hij het makkelijk, maar met die lengte haal je de spanning aan het eind niet.”',
       recall: [
@@ -340,8 +341,8 @@ export default {
         },
         {
           q: 'Een lange LS-kabel blijft thermisch ruim onder zijn grens, maar klanten aan het eind klagen over flikkerend licht en uitvallende apparaten. Welke toets is hier waarschijnlijk maatgevend?',
-          options: ['De spanning aan het verre eind van de kabel', 'De kortsluitvastheid van het netstation in de straat', 'De belastbaarheid van de trafo', 'De reserve bij een storing'],
-          answer: 'De spanning aan het verre eind van de kabel',
+          options: ['De spanning aan het verre einde van deze lange kabel', 'De kortsluitvastheid van het netstation in de straat', 'De belastbaarheid van de trafo', 'De reserve bij een storing'],
+          answer: 'De spanning aan het verre einde van deze lange kabel',
           why: 'Op een lange kabel is de daling aan het eind het grootst; dat knelt vaak eerder dan de stroom.',
         },
       ],
@@ -370,8 +371,8 @@ export default {
       pre: [
         {
           q: 'Twee MS-strengen vormen samen een ring en kunnen elk 300 A dragen. Streng A piekt op 190 A, streng B op 150 A. Kan B na een storing aan het begin van A alle klanten van A overnemen?',
-          options: ['Ja, want elke streng zit onder de 300 A', 'Ja, mits het omschakelen binnen een uur gebeurt', 'Nee, want samen is het meer dan 300 A', 'Nee, want ringen kunnen nooit omschakelen'],
-          answer: 'Nee, want samen is het meer dan 300 A',
+          options: ['Ja, want elke streng zit onder de 300 A', 'Ja, mits het omschakelen binnen een uur gebeurt', 'Nee, want samen komen ze boven de 300 A', 'Nee, want ringen kunnen nooit omschakelen'],
+          answer: 'Nee, want samen komen ze boven de 300 A',
           why: '190 + 150 = 340 A: meer dan één streng kan dragen.',
         },
       ],
@@ -450,7 +451,7 @@ export default {
       teach: [
         'N-1 betekent dat het net blijft leveren als één willekeurig component uitvalt: een trafo, een kabel, een lijn, een rail (de dikke geleider in een station waar alle inkomende en uitgaande circuits op aansluiten). N is alles in bedrijf; min één is de zwaarste enkele uitval.\n\nHet dekt niet twee storingen tegelijk, of een storing terwijl een ander deel in onderhoud is. Tijdens gepland werk draai je vaak zonder reserve, en daarom plan je onderhoud op momenten met weinig belasting.',
         'Wat het kost. Een station met twee trafo’s van 40 MVA heeft een vaste capaciteit van zo’n 40 MVA, geen 80: wat het kan leveren als het grootste component eruit ligt. Het grootste deel van het jaar staat de helft stil als reserve.\n\nVoor een paar kabels geldt hetzelfde. “Het station is half leeg” en “het station is vol” kunnen dus allebei waar zijn. Trafo’s kun je bij koud weer een paar uur overbelasten, dus planners rekenen soms iets boven de 40.',
-        'De regels verschillen per spanningsniveau. In de code van de ACM, sinds 21 februari 2026 de Systeemcode elektriciteit (daarvoor de Netcode), geldt de enkelvoudige storingsreserve voor netten van 110 kV en hoger en de HS/MS-stations: een storing mag hooguit een korte onderbreking geven; de oude Netcode noemde 10 minuten en 100 MW, met uitzonderingen tot 6 uur.\n\nMS-ringen hebben die eis niet: de reserve is omschakelen binnen enkele uren (zie de les over de MS-ring). In LS wachten klanten op de reparatie.',
+        'De regels verschillen per spanningsniveau. Sinds 1 januari 2026 eist de Energiewet zelf de enkelvoudige storingsreserve op het transmissienet: 110 kV en hoger, inclusief de trafo’s naar het regionale net. Eén storing mag hooguit een korte onderbreking geven; de oude Netcode noemde 10 minuten en 100 MW, met uitzonderingen tot 6 uur.\n\nMS-ringen hebben die eis niet: de reserve is omschakelen binnen enkele uren (zie de les over de MS-ring). In LS wachten klanten op de reparatie.',
         'Wanneer netbeheerders het loslaten. Met congestie overal gingen netbeheerders de reserve uitgeven als non-firm capaciteit: een klant mag die in normaal bedrijf gebruiken, maar wordt teruggeregeld of afgeschakeld als een component uitvalt of in onderhoud is. TenneT noemde dat de vluchtstrook gebruiken, net als op de snelweg.\n\nJe ruilt leveringszekerheid in voor capaciteit nu. In het contract moet staan wie dat risico draagt, en het bedrijfsvoeringscentrum (control room) moet er binnen minuten op kunnen sturen.',
         'Experts discussiëren of strikte N-1 overal nog betaalbaar is, of dat sommige klanten liever een zeldzame onderbreking accepteren dan jaren wachten; de les over risicogestuurd ontwerpen rekent dat door. Valkuil: non-firm contracten verkocht, maar niemand heeft getest of het bedrijfsvoeringscentrum ze echt kan terugregelen.\n\nTwee scherpe vragen: “Is deze grens thermisch, of is het de N-1-reserve?” en “Wat gebeurt er als die andere trafo in onderhoud is?”',
       ],
@@ -478,8 +479,8 @@ export default {
         },
         {
           q: 'Wat is in een MS-ring de reserve na een kabelstoring?',
-          options: ['Omschakelen via het normaal openpunt', 'Een tweede kabel die zonder onderbreking overneemt', 'Een batterij die in elk MS-station staat', 'Die is er niet: klanten wachten op de reparatie'],
-          answer: 'Omschakelen via het normaal openpunt',
+          options: ['Omschakelen via het normaal openpunt in de ring', 'Een tweede kabel die zonder onderbreking overneemt', 'Een batterij die in elk MS-station staat', 'Die is er niet: klanten wachten op de reparatie'],
+          answer: 'Omschakelen via het normaal openpunt in de ring',
           why: 'MS-ringen worden open bedreven; klanten vallen uit en worden daarna hersteld door het open punt te sluiten.',
         },
         {
@@ -514,7 +515,7 @@ export default {
       pre: [
         {
           q: 'Een derde trafo voor een station kost €3 miljoen. Zonder die trafo is er een kleine kans dat klanten bij een storing in de winter dagenlang beperkt worden. Hoe beslis je risicogestuurd?',
-          options: ['Altijd bouwen: N-1 is overal verplicht', 'Nooit bouwen: de kans is te klein om mee te tellen', 'Bouwen zodra de trafo ouder is dan veertig jaar', 'Risico per jaar in euro’s tegen de jaarkosten'],
+          options: ['Altijd bouwen: N-1 is overal in het net verplicht', 'Nooit bouwen: de kans is te klein om mee te tellen', 'Bouwen zodra de trafo ouder is dan veertig jaar', 'Risico per jaar in euro’s tegen de jaarkosten'],
           answer: 'Risico per jaar in euro’s tegen de jaarkosten',
           why: 'Kans maal gevolg geeft een risico per jaar; vergelijk dat met wat de maatregel per jaar kost.',
         },
@@ -523,7 +524,7 @@ export default {
         'Strikte N-1 is deterministisch: het ontwerp voldoet of niet. Risicogestuurd ontwerpen vraagt hoeveel een tekort kost. Risico in euro’s, uit Betrouwbaarheid en assetstrategie, is de kans op falen per jaar maal het gevolg in euro’s.\n\nBij een net is het gevolg vooral niet-geleverde energie (energy not served): de MWh die klanten niet krijgen, plus schade en herstelkosten. Zo kun je een zeldzame, grote onderbreking vergelijken met een maatregel die elk jaar geld kost.',
         'Wat is een niet-geleverde MWh waard? De ACM stelde in 2022, na onderzoek van Ecorys en SEO, de VOLL (value of lost load) vast op €68.887 per MWh: zo’n €69 per kWh, gemiddeld over huishoudens en bedrijven. Die waarde is bedoeld voor de leveringszekerheid van het hele systeem.\n\nNetbeheerders gebruiken voor netbesluiten vaak hun eigen waarderingskader, bijvoorbeeld een bedrag per klantminuut. Het verschil tussen die waarden kan de uitkomst omdraaien, dus noem altijd welke waarde je gebruikt.',
         'De rekensom: kans dat het misgaat per jaar × niet-geleverde energie als het misgaat × waarde per MWh. Daartegenover staan de equivalente jaarkosten van de maatregel: bij 4% rente over 40 jaar zo’n 5,05% van de prijs per jaar, zoals Betrouwbaarheid en assetstrategie uitlegt.\n\nIs het weggenomen risico groter dan de jaarkosten, dan loont de maatregel. Is het kleiner, dan kun je beter met non-firm contracten, omschakelen of een mobiele trafo als noodmaatregel werken.',
-        'Grenzen. Waar de Systeemcode N-1 eist, op 110 kV en hoger en in HS/MS-stations, kan een netbeheerder het niet op eigen rekensom loslaten: daar is een ontheffing (exemption) van de ACM voor nodig. Die gaf de ACM bijvoorbeeld aan TenneT voor Noord-Nederland (2020) en aan Liander.\n\nOp MS en LS is meer ruimte voor eigen afwegingen. En sommige gevolgen ruil je niet tegen geld: een ziekenhuis of een veiligheidsrisico weegt mee buiten de euro’s, zoals bij ALARP.',
+        'Grenzen. Waar de Energiewet N-1 eist, op 110 kV en hoger inclusief de HS/MS-trafo’s, kan een netbeheerder het niet op eigen rekensom loslaten: daar is een ontheffing (exemption) van de ACM voor nodig. Die gaf de ACM bijvoorbeeld aan TenneT voor Noord-Nederland (2020) en aan Liander.\n\nOp MS en LS is meer ruimte voor eigen afwegingen. En sommige gevolgen ruil je niet tegen geld: een ziekenhuis of een veiligheidsrisico weegt mee buiten de euro’s, zoals bij ALARP.',
         'Experts discussiëren of risicogestuurd ontwerpen meer klanten sneller aansluit of het net stilletjes kwetsbaarder maakt. Voorstanders: strikte N-1 houdt overal de helft stil. Tegenstanders: de staart, een zeldzame lange storing, wordt onderschat.\n\nValkuil: schijnprecisie met kansen die niemand gemeten heeft. Een scherpe vraag: “Welk risico in euro’s nemen we hiermee bewust, met welke waarde per MWh, en wie tekent ervoor?”',
       ],
       example: {
@@ -558,9 +559,9 @@ export default {
         },
         {
           q: 'Waarom kan een regionale netbeheerder N-1 in een HS/MS-station niet loslaten op basis van alleen een eigen risicoberekening?',
-          options: ['Omdat risico in euro’s volgens de wet niet voor netbesluiten mag', 'Omdat trafo’s nooit langer dan een dag uitvallen', 'Omdat TenneT alle HS/MS-stations zelf ontwerpt', 'De code eist het daar; afwijken vraagt een ontheffing'],
-          answer: 'De code eist het daar; afwijken vraagt een ontheffing',
-          why: 'De Systeemcode legt de enkelvoudige storingsreserve vast; de ACM kan ontheffing geven.',
+          options: ['Omdat risico in euro’s volgens de wet niet voor netbesluiten mag', 'Omdat trafo’s nooit langer dan een dag uitvallen', 'Omdat TenneT alle HS/MS-stations zelf ontwerpt', 'De wet eist het daar; afwijken vraagt een ontheffing'],
+          answer: 'De wet eist het daar; afwijken vraagt een ontheffing',
+          why: 'De Energiewet legt daar de enkelvoudige storingsreserve vast; de ACM kan ontheffing geven.',
         },
       ],
       situation: {
@@ -579,7 +580,8 @@ export default {
         { term: 'Niet-geleverde energie', def: 'De energie die klanten door een onderbreking niet krijgen, in MWh.' },
         { term: 'VOLL', def: 'Value of lost load: de waarde van niet-geleverde stroom; de ACM stelde die in 2022 op €68.887 per MWh.' },
         { term: 'Equivalente jaarkosten', def: 'De levensduurkosten van een optie omgerekend naar één jaarbedrag, zodat opties met een andere levensduur vergelijkbaar zijn.' },
-        { term: 'Ontheffing', def: 'Toestemming van de ACM om van een regel uit de code af te wijken.' },
+        { term: 'Ontheffing', def: 'Toestemming van de ACM om van een wettelijke regel, zoals N-1, af te wijken.' },
+        { term: 'ALARP', def: 'As low as reasonably practicable: een risico verlagen tot de kosten grof onevenredig zijn aan de winst.' },
       ],
     },
     {
@@ -588,14 +590,14 @@ export default {
       pre: [
         {
           q: 'Wie toetst onder de Energiewet de investeringsplannen van de Nederlandse netbeheerders?',
-          options: ['Netbeheer Nederland', 'Het ministerie van Klimaat en Groene Groei', 'De ACM, als toezichthouder', 'De provincies, elk voor hun eigen gebied'],
+          options: ['Netbeheer Nederland, de branchevereniging', 'Het ministerie van Klimaat en Groene Groei', 'De ACM, als toezichthouder', 'De provincies, elk voor hun eigen gebied'],
           answer: 'De ACM, als toezichthouder',
           why: 'De ACM toetst de plannen elke twee jaar en meldt onderinvesteringen aan de minister.',
         },
       ],
       teach: [
         'Elke netbeheerder, regionaal en TenneT, maakt elke twee jaar een investeringsplan. Het kijkt minstens tien jaar vooruit, de zichttermijn (planning horizon), en beschrijft de scenario’s, de knelpunten, de maatregelen, wat dat kost en wat niet op tijd lukt.\n\nDe recente rondes heten IP2024 en IP2026; de ontwerpplannen voor 2026 gingen op 5 januari 2026 naar de ACM. Gemeenten en provincies lezen het plan voor hun eigen ruimtelijke plannen.',
-        'Onder de Energiewet, sinds 1 januari 2026, toetst de ACM de plannen elke twee jaar: zijn ze redelijk, transparant en navolgbaar? Is een plan onvoldoende, dan kan de ACM een bindende gedragslijn (binding conduct regime) opleggen: verplichte verbeteringen voor het volgende plan.\n\nBlijkt uit een plan dat een netbeheerder niet alle noodzakelijke investeringen op tijd kan doen, dan meldt de ACM die onderinvestering (under-investment) aan de minister (artikel 5.8 Energiewet).',
+        'Onder de Energiewet, sinds 1 januari 2026, toetst de ACM de plannen elke twee jaar: zijn ze redelijk, transparant en navolgbaar? Is een plan onvoldoende, dan kan de ACM een bindende gedragslijn (binding course of conduct) opleggen: verplichte verbeteringen voor het volgende plan.\n\nBlijkt uit een plan dat een netbeheerder niet alle noodzakelijke investeringen op tijd kan doen, dan meldt de ACM die onderinvestering (under-investment) aan de minister (artikel 5.8 Energiewet).',
         'In april 2026 gaf de ACM alle netbeheerders groen licht om hun IP2026 vast te stellen. Tegelijk meldde ze onderinvestering voor Coteq, Enexis, Liander, Stedin, TenneT en Westland Infra, en vond ze de plannen van Coteq, RENDO en Westland Infra onvoldoende navolgbaar: zij krijgen een bindende gedragslijn voor 2028.\n\nDe ACM zag ook dat netbeheerders slimmer gebruik van het bestaande net nog te weinig meenemen.',
         'Het geld: netbeheerders investeerden ruim €8 miljard in 2024 en verwachten samen meer dan €200 miljard te moeten investeren in de komende decennia (zie Het elektriciteitsnet). Onder de kostengebaseerde regulering van 2027–2031 krijgen ze efficiënte kosten terug, en toetst de ACM de plannen inhoudelijker.\n\nHet plan is de openbare kant van een interne cyclus: prognose, knelpunten, oplossingen, prioriteren, werkpakket. De volgende lessen lopen die stappen door.',
         'Valkuil: een plan dat meer belooft dan de organisatie kan bouwen. Experts discussiëren of netbeheerders op het zwaarste scenario moeten plannen; de ACM vroeg de minister in april 2026 om scherpere politieke keuzes, zodat niet tegelijk voor alle toekomsten gebouwd hoeft te worden.\n\nEen scherpe vraag: “Welke investeringen uit het vorige plan zijn niet op tijd gelukt, en waarom?”',
@@ -648,6 +650,7 @@ export default {
         { term: 'Investeringsplan', def: 'Het openbare plan waarin een netbeheerder elke twee jaar zijn knelpunten en geplande uitbreidingen beschrijft; de ACM toetst het.' },
         { term: 'Zichttermijn', def: 'Hoe ver een plan vooruitkijkt; voor een investeringsplan minstens tien jaar.' },
         { term: 'Bindende gedragslijn', def: 'Verplichte verbeteringen die de ACM een netbeheerder oplegt als zijn plan onvoldoende is.' },
+        { term: 'Energiewet', def: 'De wet die sinds 1 januari 2026 het kader geeft voor netten en energiemarkten; verving de Elektriciteitswet 1998 en de Gaswet.' },
         { term: 'Onderinvestering', def: 'Een netbeheerder kan niet alle noodzakelijke investeringen op tijd doen; de ACM meldt dat aan de minister.' },
       ],
     },
@@ -665,7 +668,7 @@ export default {
       teach: [
         'Netbeheerders plannen tegen een scenario, nooit tegen één prognose (forecast): een samenhangend beeld van toekomstige vraag en opwek.\n\nLandelijk zijn er gedeelde scenario’s voor 2030 tot 2050: II3050, de gezamenlijke verkenning van de netbeheerders, uitgewerkt in de scenario’s van Netbeheer Nederland (zie de les over prognoses). Regionaal tellen de regionale energiestrategieën (RES), de warmteplannen van gemeenten en de echte wachtrij (queue).',
         'De knelpuntenlijst. Draai loadflows per scenario per jaar en je ziet waar en wanneer elke asset over zijn grens gaat. Elk knelpunt krijgt een oplossing (een extra kabel, een derde trafo, een nieuw station), een prijs en een datum.\n\nZo wordt dit het investeringsplan dat de ACM toetst en dat gemeenten kunnen lezen. Vraag: “Welke knelpunten zijn verschoven sinds het vorige plan, en waarom?”',
-        'Prioriteren. Er is meer nodig dan er mensen en geld zijn, dus knelpunten worden gerangschikt op risico (overbelasting, veiligheid), wachtende klanten en hoe klaar de oplossing is (meer in de volgende les).\n\nVoor de wachtrij van aansluitingen mag een netbeheerder van de ACM sinds 2024 projecten met maatschappelijke waarde voorrang geven: eerst projecten die congestie verlichten, dan veiligheid, dan basisbehoeften zoals zorg, onderwijs en wonen. Een herzien kader houdt die volgorde aan en geldt sinds juli 2026 ook voor kleine aansluitingen.',
+        'Prioriteren. Er is meer nodig dan er mensen en geld zijn, dus knelpunten worden gerangschikt op risico (overbelasting, veiligheid), wachtende klanten en hoe klaar de oplossing is (meer in de volgende les).\n\nVoor de wachtrij van aansluitingen mag een netbeheerder van de ACM projecten met maatschappelijke waarde voorrang geven: eerst projecten die congestie verlichten, dan veiligheid (zoals ziekenhuizen, hulpdiensten en defensie), dan basisbehoeften (zoals wonen en onderwijs). Het herziene kader houdt die volgorde, en sinds 1 juli 2026 is er één wachtrij voor klein- en grootverbruik.',
         'Doorlooptijden (vuistregel): LS-verzwaring en nieuwe MS/LS-stations, maanden tot een jaar; MS-kabels en -stations, één tot drie jaar; een nieuw HS/MS-onderstation, 5 tot 10 jaar, vooral locatie en vergunningen.\n\nJe moet dus bouwen voordat de vraag zeker is: anticiperend investeren. De ACM accepteert dat als het volgt uit aannemelijke scenario’s. Experts discussiëren over de balans: te vroeg bouwen en assets staan stil; wachten op zekerheid en je bent altijd te laat.',
         'Een no-regretmaatregel is een stap die zich in elk scenario terugbetaalt. Vroeg een locatie kopen of vergunningen starten is dat vaak; het hele station bouwen vaak niet.\n\nVragen die in een planningsoverleg goed vallen: “Op welk scenario is dit gebaseerd?”, “Wat gebeurt er met de datum als de vraag sneller komt?” en “Welke stappen zijn no-regret?” Valkuil: een plan op één scenario waarvan iedereen vergeten is dat het er maar één was.',
       ],
@@ -697,7 +700,7 @@ export default {
         },
         {
           q: 'Welk soort project gaat onder de prioriteringsregels van de ACM als eerste in de wachtrij voor aansluitingen?',
-          options: ['De oudste aanvraag in de rij, wie eerst komt eerst maalt', 'De grootste aanvraag in MW, omdat die het zwaarst weegt', 'Projecten die het meest betalen', 'Projecten die congestie verlichten'],
+          options: ['De oudste aanvraag in de rij, wie eerst komt eerst maalt', 'De grootste aanvraag in MW, omdat die het zwaarst weegt', 'Projecten waarvan de eigenaar het meest betaalt', 'Projecten die congestie verlichten'],
           answer: 'Projecten die congestie verlichten',
           why: 'Die maken ruimte voor anderen, dus ze gaan voor veiligheid en basisbehoeften; zonder voorrang gaat de oudste aanvraag eerst.',
         },
@@ -727,14 +730,14 @@ export default {
       pre: [
         {
           q: 'Een regio kan dit jaar maar een deel van zijn knelpunten aanpakken. Wat is meestal de krapste hulpbron om op te rangschikken?',
-          options: ['Mensen, zoals stationsengineers en kabelploegen', 'Geld: het budget is altijd op', 'Grond: er is nergens meer ruimte voor nieuwe stations', 'Koper, door de hoge prijs op de wereldmarkt van nu'],
+          options: ['Mensen, zoals stationsengineers en kabelploegen', 'Geld: het budget is altijd al op voor het jaar om is', 'Grond: er is nergens meer ruimte voor nieuwe stations', 'Koper, door de hoge prijs op de wereldmarkt van nu'],
           answer: 'Mensen, zoals stationsengineers en kabelploegen',
           why: 'Budgetten zijn hard gegroeid; het aantal mensen dat kan ontwerpen en bouwen niet.',
         },
       ],
       teach: [
         'Netbeheerders rangschikken knelpunten op een handvol criteria (per netbeheerder anders gewogen): wettelijke plicht en veiligheid, het risico in euro’s van het bestaande net (zie Betrouwbaarheid en assetstrategie), wachtende klanten in MW, en hoe klaar de oplossing is: grond, vergunning, ontwerp.\n\nLet op: het prioriteringskader van de ACM bepaalt de volgorde van klanten in de wachtrij, niet welk project eerst gebouwd wordt. In de praktijk kijken planners wel naar welke projecten maatschappelijke aanvragen ontsluiten.',
-        'Per maatregel hoort een businesscase. De NCW (netto contante waarde) telt alle toekomstige kasstromen, teruggerekend naar vandaag, min de investering; terugrekenen gaat met de discontovoet (discount rate). Kostprijs en investeringen legt dat stap voor stap uit; netbeheerders gebruiken de rente die de ACM vaststelt.\n\nBaten zijn weggenomen risico, vermeden verliezen en aangesloten klanten. Voor grote projecten maakt men soms een MKBA, een maatschappelijke kosten-batenanalyse (social cost-benefit analysis), die ook baten voor de samenleving telt.',
+        'Per maatregel hoort een businesscase. De NCW (netto contante waarde) telt alle toekomstige kasstromen, teruggerekend naar vandaag, min de investering; terugrekenen gaat met de discontovoet (discount rate). Kostprijs en investeringen legt dat stap voor stap uit; netbeheerders nemen vaak het rendement dat de ACM ze op hun vermogen toestaat.\n\nBaten zijn weggenomen risico, vermeden verliezen en aangesloten klanten. Voor grote projecten maakt men soms een MKBA, een maatschappelijke kosten-batenanalyse (social cost-benefit analysis), die ook baten voor de samenleving telt.',
         'Bundelen (bundling) bespaart vaak meer dan slim rangschikken: verzwaring combineren met vervanging van oude kabels (zie de vervangingsgolf in Transformatoren en kabels) en met straatwerk van de gemeente. Eén keer graven, één keer schakelen.\n\nDat kan betekenen dat een project iets eerder of later gaat dan de ranglijst zegt, omdat het bundelen de doorslag geeft.',
         'Veel netbeheerders gebruiken een multicriteria-analyse (multi-criteria analysis): elk project krijgt scores op de criteria, met gewichten, en de som geeft de rang. Handig om te bespreken, maar de gewichten zijn keuzes.\n\nOmdat mensen schaarser zijn dan geld, helpt een tweede getal: wat levert een project op per eenheid schaarste, bijvoorbeeld MW ontsloten per teamjaar van de stationsengineers? Dat haalt projecten naar voren die weinig schaars werk vragen.',
         'Valkuilen: alles is “urgent”; gewichten die niemand kan uitleggen; een ranglijst die elk kwartaal omgegooid wordt. Experts discussiëren of maatschappelijke waarde in euro’s past, en hoe open je moet zijn tegen klanten die moeten wachten.\n\nEen scherpe vraag: “Op welke schaarste rangschikken we: geld, mensen of materiaal? En wat zegt de ranglijst als we die schaarste als noemer nemen?”',
@@ -765,8 +768,8 @@ export default {
         },
         {
           q: 'Wat bepaalt het prioriteringskader van de ACM eigenlijk?',
-          options: ['Welke projecten in het investeringsplan eerst gebouwd worden', 'De volgorde van klanten in de wachtrij', 'De hoogte van de nettarieven per klantgroep', 'Welke netbeheerder een nieuw gebied krijgt'],
-          answer: 'De volgorde van klanten in de wachtrij',
+          options: ['Welke projecten in het investeringsplan eerst gebouwd worden', 'De volgorde van klanten in de wachtrij voor capaciteit', 'De hoogte van de nettarieven per klantgroep', 'Welke netbeheerder een nieuw gebied krijgt'],
+          answer: 'De volgorde van klanten in de wachtrij voor capaciteit',
           why: 'Het gaat over wie als eerste vrije capaciteit krijgt, niet over de bouwvolgorde.',
         },
         {
@@ -882,7 +885,7 @@ export default {
       teach: [
         'Bij elk knelpunt hoort de vraag: kan het zonder bouwen, of later? Het Landelijk Actieprogramma Netcongestie (LAN) noemt dat beter benutten, en in april 2026 schreef de ACM dat netbeheerders slimmer gebruik van het bestaande net nog te weinig in hun investeringsplannen meenemen.\n\nDit onderwerp bekijkt de opties vanuit de planner: hoeveel MW leveren ze op, in welke uren, en hoe zeker? Wat een klant zelf kan doen, staat in Het elektriciteitsnet.',
         'Aftoppen (clipping): een zonnepark aansluiten op zo’n 70% van zijn piekvermogen, gangbaar sinds Netbeheer Nederland het in 2019 voorstelde. Panelen halen hun piek zelden, dus het verlies is klein, een paar procent van de jaaropbrengst.\n\nCable pooling: een zonne- en een windpark delen één aansluiting. Zon levert vooral midden op de dag en in de zomer, wind vaker in de winter en ’s nachts, dus de gedeelde aansluiting hoeft veel kleiner te zijn dan de som.',
-        'Alternatieve transportrechten (alternative transport rights): transport dat niet altijd gegarandeerd is. Een tijdsblokgebonden recht geeft capaciteit alleen in vaste blokken, een tijdsduurgebonden recht in minstens 85% van de uren; beide gelden sinds april 2025. Non-firm, uit de les over N-1, geeft transport alleen als er ruimte is.\n\nVoor congestiemanagement is sinds mei 2026 het capaciteitssturingscontract (CSC) het hoofdcontract: de klant beperkt of verhoogt zijn gebruik op afroep of in vaste blokken, tegen een vergoeding.',
+        'Alternatieve transportrechten (alternative transport rights): transport dat niet altijd gegarandeerd is. Een tijdsblokgebonden recht geeft capaciteit alleen in vaste blokken, op regionale netten; een tijdsduurgebonden recht in minstens 85% van de uren, op het hoogspanningsnet van TenneT. Beide staan sinds 1 april 2025 in de code. Non-firm, uit de les over N-1, geeft transport alleen als er ruimte is.\n\nVoor congestiemanagement is sinds mei 2026 het capaciteitssturingscontract (CSC) het hoofdcontract: de klant beperkt of verhoogt zijn gebruik op afroep of in vaste blokken, tegen een vergoeding.',
         'Klanten kunnen ook samen. Met een groepstransportovereenkomst (GTO) sluiten bedrijven één contract en verdelen ze het vermogen; vanaf 1 januari 2027 moeten netbeheerders hem aanbieden. Energiehubs bundelen vraag, opwek en opslag op één terrein.\n\nVoor de planner telt het verschil tussen de som van de losse pieken en de gezamenlijke piek: dat is de ruimte die het oplevert.',
         'De grenzen: deze opties kopen vaak tijd, ze vervangen zelden verzwaring. Elk contract moet gemeten, gestuurd en gehandhaafd worden, en dat belast het bedrijfsvoeringscentrum. Experts discussiëren wie het risico draagt als een klant niet levert.\n\nEen scherpe vraag bij elk voorstel: “Wat levert dit in MW op, in welke uren, en hoe zeker is het?”',
       ],
@@ -910,14 +913,14 @@ export default {
         },
         {
           q: 'Wat is een tijdsduurgebonden transportrecht?',
-          options: ['Transport alleen ’s nachts, tussen tien uur ’s avonds en zes uur', 'Transport gegarandeerd in minstens 85% van de uren', 'Een aansluiting die na tien jaar vervalt als hij niet wordt gebruikt', 'Transport dat alleen in de zomer geldt'],
+          options: ['Transport alleen ’s nachts, tussen tien uur ’s avonds en zes uur', 'Transport gegarandeerd in minstens 85% van de uren', 'Een aansluiting die na tien jaar vervalt als hij niet wordt gebruikt', 'Transport dat alleen in het zomerhalfjaar wordt geleverd'],
           answer: 'Transport gegarandeerd in minstens 85% van de uren',
           why: 'In de overige uren mag de netbeheerder beperken, een dag van tevoren aangekondigd.',
         },
         {
           q: 'Wat moet een planner bij cable pooling vooral weten?',
-          options: ['Of zon en wind tegelijk hun piek halen', 'Of beide parken van dezelfde eigenaar zijn', 'Of het windpark ouder is dan het zonnepark', 'Of de gemeente cable pooling heeft goedgekeurd'],
-          answer: 'Of zon en wind tegelijk hun piek halen',
+          options: ['Of zon en wind tegelijk hun hoogste piek halen', 'Of beide parken van dezelfde eigenaar zijn', 'Of het windpark ouder is dan het zonnepark', 'Of de gemeente cable pooling heeft goedgekeurd'],
+          answer: 'Of zon en wind tegelijk hun hoogste piek halen',
           why: 'Alleen als ze samen boven de gedeelde aansluiting komen, moet er teruggeregeld worden; dat is zelden.',
         },
       ],
@@ -974,8 +977,8 @@ export default {
         },
         {
           q: 'Waar wordt GOPACS vooral voor gebruikt?',
-          options: ['Capaciteitskaarten van het net publiceren', 'Aansluitkosten factureren aan nieuwe klanten', 'Redispatch inkopen bij congestie', 'Kabelwerk van de netbeheerders plannen'],
-          answer: 'Redispatch inkopen bij congestie',
+          options: ['Capaciteitskaarten van het net publiceren', 'Aansluitkosten factureren aan nieuwe klanten', 'Redispatch inkopen als er congestie is', 'Kabelwerk van de netbeheerders plannen'],
+          answer: 'Redispatch inkopen als er congestie is',
           why: 'Het koppelt een bod binnen het congestiegebied aan een tegenbod erbuiten, zodat het knelpunt verdwijnt zonder de balans te verstoren.',
         },
         {
@@ -1026,7 +1029,7 @@ export default {
         'Een batterij verschuift energie in de tijd: nu laden, later ontladen. Hij heeft twee getallen. MW is zijn vermogen (power): hoe snel hij kan laden of ontladen. MWh is zijn energie: hoeveel erin past. Een batterij van 10 MW / 20 MWh levert 2 uur lang 10 MW.\n\nDe meeste netbatterijen houden 1 tot 4 uur vol. Om een avondpiek van 4 uur op te vangen heb je genoeg MWh nodig, niet alleen MW.',
         'Waar het helpt: achter het knelpunt geplaatst en gestuurd op het lokale probleem. In een gebied vol zon laadt hij ’s middags en loopt hij ’s avonds leeg.\n\nPeak shaving is de hoogste pieken van een aansluiting aftoppen. Een batterij achter de meter, aan de kant van de klant, kan de afnamepiek van een fabriek aftoppen, zodat het bedrijf met een kleinere aansluiting toe kan. Bij een druk LS-station kan een kleine batterij een trafowissel een paar jaar uitstellen.',
         'Waar het erger wordt. Een batterij die handelt op de day-aheadmarkt, waar vandaag de prijs voor elk uur of kwartier van morgen wordt bepaald, reageert op landelijke prijzen, niet op jouw streng. Prijzen zakken als het hele land veel wind heeft, en dat kan precies jouw lokale avondpiek zijn, dus hij laadt op het slechtste moment.\n\nEen batterij vraagt ook zowel afname- als invoedingscapaciteit, en veel batterijen die op dezelfde prijs reageren, maken samen nieuwe pieken.',
-        'Hoe netbeheerders ermee omgaan. Batterijen krijgen vaak non-firm of tijdsgebonden contracten aangeboden. Een tijdsduurgebonden transportrecht garandeert transport in minstens 85% van de uren van een jaar; het komt voort uit het ATR85-voorstel van TenneT, en de ACM maakte er een standaardproduct van dat sinds april 2025 geldt. In de overige 15%, tot zo’n 1.300 uur, mag de netbeheerder beperken, minstens een dag van tevoren aangekondigd.\n\nEen aansluiting delen met een zonnepark werkt goed: de batterij vult het gat dat het park laat.',
+        'Hoe netbeheerders ermee omgaan. Batterijen krijgen vaak non-firm of tijdsgebonden contracten aangeboden. Een tijdsduurgebonden transportrecht garandeert transport in minstens 85% van de uren van een jaar; het komt voort uit het ATR85-voorstel van TenneT, en de ACM maakte er een standaardproduct van op het net van TenneT, sinds april 2025 in de code. In de overige 15%, tot zo’n 1.300 uur, mag de netbeheerder beperken, minstens een dag van tevoren aangekondigd.\n\nEen aansluiting delen met een zonnepark werkt goed: de batterij vult het gat dat het park laat.',
         'Experts discussiëren over wie batterijen moet sturen. De Europese Elektriciteitsrichtlijn (2019/944) verbiedt netbeheerders om zelf batterijen te bezitten of te bedrijven, op een paar smalle uitzonderingen na, dus sturen ze via contracten en prijzen.\n\nValkuil: een contract dat de batterij in de verkeerde uren beperkt, omdat de lokale piek is verschoven. De vraag die het scherp maakt: “Wie bepaalt in het piekuur wat de batterij doet: het net of de markt?”',
       ],
       example: {
@@ -1092,7 +1095,7 @@ export default {
       pre: [
         {
           q: 'Een verzwaring van €8 miljoen kan met flexcontracten twee jaar later. Wat is de belangrijkste winst van dat uitstel?',
-          options: ['De verzwaring is daarna helemaal niet meer nodig, voorgoed', 'De ACM betaalt flex helemaal terug', 'De kabel wordt in twee jaar goedkoper doordat prijzen dalen', 'Het geld wordt later uitgegeven, en dat scheelt rente'],
+          options: ['De verzwaring is daarna helemaal niet meer nodig, voorgoed', 'De ACM betaalt de flexkosten achteraf helemaal aan je terug', 'De kabel wordt in twee jaar goedkoper doordat prijzen dalen', 'Het geld wordt later uitgegeven, en dat scheelt rente'],
           answer: 'Het geld wordt later uitgegeven, en dat scheelt rente',
           why: 'Uitstel verschuift de investering; geld dat je later uitgeeft is vandaag minder waard.',
         },
@@ -1100,7 +1103,7 @@ export default {
       teach: [
         'Flex vervangt verzwaring zelden; het verschuift de datum. De winst is de waarde van uitstel (deferral value): een investering die later komt, kost vandaag minder. Met de discontovoet uit Kostprijs en investeringen: €5 miljoen drie jaar uitstellen bij 4% scheelt 5 × (1 − 1 / 1,04³) ≈ €0,56 miljoen.\n\nVuistregel per jaar: investering maal discontovoet. €8 miljoen een jaar later bij 4% scheelt zo’n €320.000.',
         'Daartegenover staan de kosten van flex. Een beschikbaarheidsvergoeding (availability payment) betaalt een klant per kW per jaar om klaar te staan; een activeringsvergoeding (activation payment) betaalt per keer of per MWh dat hij echt schuift.\n\nOp een groeiend knelpunt groeien die kosten elk jaar: meer uren boven de grens en meer MW per uur, zoals de belastingduurkromme laat zien. Het omslagjaar (break-even year) is het jaar waarin flex per jaar meer kost dan het uitstel oplevert. Dan moet de verzwaring er staan.',
-        'Het risico: flex die niet komt. Een klant die niet terugregelt, of een koude week waarin te weinig flex beschikbaar is. De planner heeft dan een vangnet nodig: een afschakelplan, omschakelen, of een mobiele trafo.\n\nEn flex vraagt werk: contracten, metingen, een congestiedienstverlener en een bedrijfsvoeringscentrum dat elke dag voorspelt en afroept (zie Netbedrijf en assetmanagement). Die kosten horen ook in de som.',
+        'Het risico: flex die niet komt. Een klant die niet terugregelt, of een koude week waarin te weinig flex beschikbaar is. De planner heeft dan een vangnet nodig: een afschakelplan, omschakelen, of een mobiele trafo.\n\nEn flex vraagt werk: contracten, metingen, een congestiedienstverlener (CSP) en een bedrijfsvoeringscentrum dat elke dag voorspelt en afroept (zie Netbedrijf en assetmanagement). Die kosten horen ook in de som.',
         'De regulering speelt mee. Onder kostengebaseerde regulering, 2027–2031, krijgen netbeheerders efficiënte kosten terug, of het nu investeringen of flexcontracten zijn (zie Het elektriciteitsnet).\n\nDe ACM schreef in april 2026 dat slimmer benutten de investeringsbehoefte kan verkleinen en dat netbeheerders dat nog te weinig meenemen. Experts discussiëren of flex bij netbeheerders genoeg gewicht krijgt naast de vertrouwde verzwaring.',
         'Valkuil: flex als vaste oplossing presenteren terwijl de piek elk jaar groeit, en de verzwaring te laat starten. Bij 5 tot 10 jaar doorlooptijd voor een station moet de bouw beginnen lang voordat het omslagjaar er is.\n\nEen scherpe vraag: “In welk jaar is flex duurder dan bouwen, wanneer moeten we dus starten, en wat doen we als de flex niet komt?”',
       ],
@@ -1130,13 +1133,13 @@ export default {
         },
         {
           q: 'Wanneer stopt uitstellen met flex met lonen?',
-          options: ['Als de klant met flex een hoger tarief betaalt', 'Als de flex per jaar meer kost dan het uitstel', 'Na precies vijf jaar, zoals de Systeemcode voorschrijft', 'Als de kabel meer dan 80% belast is'],
+          options: ['Als de klant met flex een hoger tarief betaalt', 'Als de flex per jaar meer kost dan het uitstel', 'Na precies vijf jaar, volgens de Systeemcode', 'Als de kabel meer dan 80% belast is'],
           answer: 'Als de flex per jaar meer kost dan het uitstel',
           why: 'Vanaf dat omslagjaar is bouwen goedkoper dan blijven schuiven.',
         },
         {
           q: 'Waarom wordt flex op een groeiend knelpunt elk jaar duurder?',
-          options: ['Elk jaar zijn er meer uren en MW boven de grens', 'De ACM verhoogt de gereguleerde flexprijs elk jaar een beetje', 'Batterijen slijten en worden elk jaar duurder om te vervangen', 'Klanten worden elk jaar minder flexibel'],
+          options: ['Elk jaar zijn er meer uren en MW boven de grens', 'De ACM verhoogt de gereguleerde flexprijs elk jaar een beetje', 'Batterijen slijten en worden elk jaar duurder om te vervangen', 'Klanten worden elk jaar minder flexibel en vragen meer geld'],
           answer: 'Elk jaar zijn er meer uren en MW boven de grens',
           why: 'De belastingduurkromme schuift omhoog, dus er moet vaker en meer geschoven worden.',
         },
@@ -1157,6 +1160,7 @@ export default {
         { term: 'Beschikbaarheidsvergoeding', def: 'Een vast bedrag per kW per jaar om flexibel vermogen klaar te houden.' },
         { term: 'Activeringsvergoeding', def: 'Een bedrag per keer of per MWh dat een klant echt zijn gebruik aanpast.' },
         { term: 'Omslagjaar', def: 'Het jaar waarin flex per jaar meer kost dan uitstellen van de verzwaring oplevert.' },
+        { term: 'CSP', def: 'Congestion service provider: een partij die het flexibele vermogen van klanten bundelt en aanbiedt voor congestiemanagement.' },
       ],
     },
   ],
