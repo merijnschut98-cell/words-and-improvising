@@ -311,7 +311,7 @@ const spec = {
     {
       id: 's5', lesson: BG, level: 2, still: 0.5, title: { nl: 'Waar het moment heen gaat', en: 'Where the torque goes' },
       beats: [
-        { nl: 'Van het moment gaat zo’n {n:50}% naar wrijving onder de kop, {n:40}% in de draad, en {n:10}% rekt de bout.', en: 'Of the torque, about {n:50}% goes into friction under the head, {n:40}% in the thread, {n:10}% stretches the bolt.', cues: ['pie'] },
+        { nl: 'Van het moment gaat grofweg {n:50}% naar wrijving onder de kop, {n:40}% in de draad, en maar {n:10}% rekt de bout.', en: 'Of the torque, roughly {n:50}% goes into friction under the head, {n:40}% in the thread, only {n:10}% stretches the bolt.', cues: ['pie'] },
         { nl: 'Olie, coating, vuil of roest: hetzelfde moment geeft {n:25} tot {n:30}% meer of minder voorspanning.', en: 'Oil, coating, dirt or rust: the same torque gives {n:25} to {n:30}% more or less preload.', cues: ['scatter'] },
       ],
     },
@@ -336,7 +336,7 @@ const spec = {
     {
       id: 's8', lesson: TI, level: 3, still: 0.5, title: { nl: 'Nauwkeuriger aandraaien', en: 'Tightening more precisely' },
       beats: [
-        { nl: 'Moment-hoek tot voorbij de vloeigrens: {n:1.2} tot {n:1.4}, maar die bout gebruik je meestal niet opnieuw.', en: 'Torque-angle past the yield point: {n:1.2} to {n:1.4}, but that bolt is usually not reused.', cues: ['angle'] },
+        { nl: 'Moment-hoek, vaak tot voorbij de vloeigrens: factor {n:1.2} tot {n:1.4}; die bout gebruik je meestal niet opnieuw.', en: 'Torque-angle, often past the yield point: a factor of {n:1.2} to {n:1.4}; that bolt is usually not reused.', cues: ['angle'] },
         { nl: '{t:Vloeigrensgestuurd aandraaien|Vloeigrensgestuurd aandraaien}: de spindel stopt zodra de curve afbuigt.', en: '{t:Yield-controlled tightening|Yield-controlled tightening}: the nutrunner stops as soon as the curve bends over.', cue: { 'Vloeigrensgestuurd aandraaien': 'yieldc' } },
         { nl: 'De {t:Boutrek|boutrek} ultrasoon meten is het nauwkeurigst, maar duur en traag.', en: 'Measuring {t:Bolt elongation|bolt elongation} with ultrasound is the most accurate, but costly and slow.', cue: { Boutrek: 'elong' } },
       ],
@@ -344,7 +344,7 @@ const spec = {
     {
       id: 's9', lesson: JDL, level: 4, still: 0.5, title: { nl: 'Twee veren', en: 'Two springs' },
       beats: [
-        { nl: 'De {t:Verspanningsdriehoek|verspanningsdriehoek}: de bout rekt als een slappe veer, de platen veren stijf.', en: 'The {t:Joint diagram|joint diagram}: the bolt stretches like a soft spring, the plates push back stiffly.', cue: { Verspanningsdriehoek: 'diagram' } },
+        { nl: 'De {t:Verspanningsdriehoek|verspanningsdriehoek}: twee veren, een slappere bout en stijvere platen.', en: 'The {t:Joint diagram|joint diagram}: two springs, a softer bolt and stiffer plates.', cue: { Verspanningsdriehoek: 'diagram' } },
         { nl: '{t:Krachtfactor|Krachtfactor} Φ = {n:0.2}: van {n:10} kN trekkracht komt maar {n:2} kN extra in de bout.', en: '{t:Load factor|Load factor} Φ = {n:0.2}: of a {n:10} kN pull, only {n:2} kN goes into the bolt.', cue: { Krachtfactor: 'phi' } },
         { nl: 'De andere {n:8} kN haalt klemkracht weg: {n:18.75} − {n:8} = {n:10.75} kN {t:Restklemkracht|restklemkracht}.', en: 'The other {n:8} kN takes clamp load away: {n:18.75} − {n:8} = {n:10.75} kN {t:Residual clamp load|residual clamp load}.', cue: { Restklemkracht: 'resid' } },
         { nl: '{t:Spanningsamplitude|Spanningsamplitude}: {n:1} kN / {n:58} mm² = {n:17} MPa, ruim onder de {n:50} MPa.', en: '{t:Stress amplitude|Stress amplitude}: {n:1} kN / {n:58} mm² = {n:17} MPa, well below {n:50} MPa.', cue: { Spanningsamplitude: 'amp' } },
@@ -363,52 +363,52 @@ const spec = {
 // acht"); a number the voice would misread ("1.000") in words.
 const SAY = [
   [ // s1 how a bolt clamps
-    { nl: 'Dit is een boutverbinding, opengezaagd. De bout gaat door twee stalen platen. Sluitringen onder de kop en de moer spreiden de druk en sparen het vlak.',
-      en: 'This is a bolted joint, cut open. The bolt passes through two steel plates. Washers under the head and the nut spread the pressure and protect the surface.' },
-    { nl: 'Draai je de moer aan, dan rekt de bout een fractie van een millimeter. Als een stijve veer wil hij terug: zo knijpt hij de platen op elkaar.',
-      en: 'Tighten the nut, and the bolt stretches by a fraction of a millimetre. Like a stiff spring it wants its length back, and so it squeezes the plates together.' },
-    { nl: 'Die klemkracht heet de {t:Voorspanning|voorspanning}. Zij houdt de verbinding bij elkaar, niet het moment op de sleutel. Is ze groot genoeg, dan schuift er niets en blijft de moer zitten.',
-      en: 'That clamping force is the {t:Preload|preload}. It holds the joint together, not the torque on the wrench. When it is high enough, nothing slips and the nut does not work loose.' },
+    { nl: 'Een boutverbinding, opengezaagd: een bout door twee stalen platen, met een moer eronder, en sluitringen die de druk spreiden.',
+      en: 'A bolted joint, cut open: a bolt through two steel plates, with a nut underneath, and washers that spread the pressure.' },
+    { nl: 'Draai je de moer aan, dan rekt de bout een fractie van een millimeter. Als een stijve veer knijpt hij de platen dan op elkaar.',
+      en: 'Tighten the nut, and the bolt stretches by a fraction of a millimetre. Like a stiff spring, it then squeezes the plates together.' },
+    { nl: 'Die klemkracht heet de {t:Voorspanning|voorspanning}. Zij houdt de verbinding bij elkaar, niet het moment. Is ze groot genoeg, dan schuift er niets en blijft de moer zitten.',
+      en: 'That clamping force is the {t:Preload|preload}. It holds the joint together, not the torque. When it is high enough, nothing slips and the nut does not work loose.' },
   ],
   [ // s2 what the bolt tells you
     { nl: 'M10 maal {n:1.5} is een draad van {n:10} millimeter dik, met een {t:Spoed|spoed} van {n:1.5} millimeter. Zoveel schuift de moer op per omwenteling.',
       en: 'M10 by {n:1.5} is a thread {n:10} millimetres across, with a {t:Pitch|pitch} of {n:1.5} millimetres. That is how far the nut moves in one turn.' },
-    { nl: 'Op de kop staat de {t:Sterkteklasse|sterkteklasse}, volgens ISO 898, deel 1. Bij acht punt acht is acht maal honderd de treksterkte: {n:800} megapascal. Daar breekt hij.',
-      en: 'The head shows the {t:Property class|property class}, to ISO 898, part 1. For eight point eight, eight times a hundred is the tensile strength: {n:800} megapascals. That is where it breaks.' },
-    { nl: 'Punt acht geeft de {t:Vloeigrens|vloeigrens}: tachtig procent, {n:640} megapascal. Daarboven rekt de bout blijvend uit.',
-      en: 'Point eight gives the {t:Yield strength|yield strength}: eighty percent of that, {n:640} megapascals. Above it the bolt stretches for good.' },
-    { nl: 'Bij tien punt negen is dat duizend en {n:900}. Tien punt negen mag dus veel strakker. Ook de moer heeft een klasse.',
-      en: 'For ten point nine it is a thousand and {n:900}. So ten point nine can be tightened much harder. The nut has a class too.' },
+    { nl: 'Op de kop staat de {t:Sterkteklasse|sterkteklasse}, volgens ISO 898, deel 1. Het eerste getal maal honderd is de treksterkte: bij acht punt acht {n:800} megapascal. Daar breekt de bout.',
+      en: 'The head shows the {t:Property class|property class}, to ISO 898, part 1. The first number times a hundred is the tensile strength: for eight point eight, {n:800} megapascals. That is where the bolt breaks.' },
+    { nl: 'Het tweede getal geeft de {t:Vloeigrens|vloeigrens}: tachtig procent daarvan, {n:640} megapascal. Daarboven rekt de bout blijvend uit.',
+      en: 'The second number gives the {t:Yield strength|yield strength}: eighty percent of that, {n:640} megapascals. Above it the bolt stretches for good.' },
+    { nl: 'Bij tien punt negen is dat duizend en {n:900}: die mag veel strakker. Ook de moer heeft een klasse, die bij de bout moet passen.',
+      en: 'For ten point nine it is a thousand and {n:900}: that one can go much tighter. The nut has a class too, which must match the bolt.' },
   ],
   [ // s3 where it fails, and locking
     { nl: 'Een bout breekt in de draad, waar minder staal zit. Daarom telt de {t:Spanningsdoorsnede|spanningsdoorsnede}: voor M12 {n:84.3} vierkante millimeter.',
       en: 'A bolt fails in the thread, where there is less steel. So engineers use the {t:Stress area|stress area}: for M12, {n:84.3} square millimetres.' },
-    { nl: 'Kracht is spanning maal doorsnede. Een M12 in acht punt acht vloeit bij zo’n {n:54} kilonewton, in tien punt negen bij {n:76}. Verwissel ze, en de acht punt acht haalt maar {n:71} procent.',
-      en: 'Force is stress times area. An M12 in eight point eight yields at about {n:54} kilonewtons, in ten point nine at {n:76}. Mix them up, and the eight point eight reaches only {n:71} percent.' },
-    { nl: 'Tegen loslopen helpt vooral voorspanning, en daarbij {t:Schroefdraadborging|schroefdraadborging}: lijm die in de draad uithardt. Een veerring helpt niet. In een gat met draad moet hij in staal grofweg zijn eigen dikte diep grijpen.',
-      en: 'Against working loose, preload helps most, and with it {t:Thread locking|thread locking}: an adhesive that cures in the thread. A spring washer does not help. And in a threaded hole the bolt must engage deeply: in steel, roughly its own diameter.' },
+    { nl: 'Kracht is spanning maal doorsnede: een M12 in acht punt acht vloeit bij zo’n {n:54} kilonewton, in tien punt negen pas bij {n:76}. Een verwisselde acht punt acht vloeit dus al bij {n:71} procent van die {n:76}.',
+      en: 'Force is stress times area: an M12 in eight point eight yields at about {n:54} kilonewtons, in ten point nine only at {n:76}. So a mixed-up eight point eight yields at just {n:71} percent of that {n:76}.' },
+    { nl: 'Tegen loslopen helpt vooral voorspanning, en daarbij {t:Schroefdraadborging|schroefdraadborging}: lijm die in de draad uithardt. Een veerring helpt in trillingsproeven niet.',
+      en: 'Against working loose, preload helps most, and with it {t:Thread locking|thread locking}: an adhesive that cures in the thread. In vibration tests, a spring washer does not help.' },
   ],
   [ // s4 tightening
-    { nl: 'In de fabriek draait een {t:Schroefspindel|schroefspindel} de bout aan. Hij regelt het moment en de hoek, en legt ze per bout vast.',
+    { nl: 'In de fabriek draait een {t:Schroefspindel|schroefspindel} de bout aan: hij regelt moment en hoek, en legt ze per bout vast.',
       en: 'In the factory a {t:Nutrunner|nutrunner} tightens the bolt. It controls the torque and the angle, and records them for every bolt.' },
     { nl: 'Het {t:Aanhaalmoment|aanhaalmoment} is kracht maal arm. {n:200} newton op een sleutel van {n:25} centimeter is {n:50} newtonmeter.',
       en: '{t:Torque|Torque} is force times arm. {n:200} newtons on a wrench {n:25} centimetres long is {n:50} newton-metres.' },
-    { nl: 'Zo’n {n:49} newtonmeter rekt een M10 in acht punt acht tot ongeveer {n:25} kilonewton voorspanning: {n:2.5} ton. Rond {n:37} kilonewton gaat hij vloeien.',
-      en: 'About {n:49} newton-metres stretches an M10 in eight point eight to roughly {n:25} kilonewtons of preload: {n:2.5} tonnes. Near {n:37} kilonewtons it starts to yield.' },
+    { nl: 'Zo’n {n:49} newtonmeter rekt een M10 in acht punt acht tot ongeveer {n:25} kilonewton voorspanning, het gewicht van {n:2.5} ton. Rond {n:37} kilonewton gaat hij vloeien.',
+      en: 'About {n:49} newton-metres stretches an M10 in eight point eight to roughly {n:25} kilonewtons of preload, the weight of {n:2.5} tonnes. Near {n:37} kilonewtons it starts to yield.' },
   ],
   [ // s5 where the torque goes
-    { nl: 'Maar het moment is een indirecte maat. De helft gaat op aan wrijving onder de kop, {n:40} procent in de draad, en maar {n:10} procent rekt de bout.',
-      en: 'But torque is an indirect measure. Half goes into friction under the head, {n:40} percent into the thread, and only {n:10} percent stretches the bolt.' },
-    { nl: 'Olie, coating, vuil of roest veranderen de wrijving: hetzelfde moment geeft {n:25} tot {n:30} procent meer of minder voorspanning. Een geoliede bout op een droog moment kan zelfs gaan vloeien.',
-      en: 'Oil, coating, dirt or rust change the friction: the same torque then gives {n:25} to {n:30} percent more or less preload. An oiled bolt on a dry torque can even yield.' },
+    { nl: 'Maar het moment is een indirecte maat. Grofweg de helft gaat op aan wrijving onder de kop, zo’n {n:40} procent in de draad, en maar {n:10} procent rekt de bout.',
+      en: 'But torque is an indirect measure. Roughly half goes into friction under the head, about {n:40} percent into the thread, and only {n:10} percent stretches the bolt.' },
+    { nl: 'Olie, coating, vuil of roest veranderen de wrijving: hetzelfde moment geeft dan {n:25} tot {n:30} procent meer of minder voorspanning. Een geoliede bout, aangedraaid op het droge moment, kan zelfs vloeien.',
+      en: 'Oil, coating, dirt or rust change the friction: the same torque then gives {n:25} to {n:30} percent more or less preload. An oiled bolt, tightened to the dry torque, can even yield.' },
   ],
   [ // s6 angle, audit and settling
     { nl: 'Nauwkeuriger is {t:Moment-hoek|moment-hoek}: een laag moment trekt de delen tegen elkaar, dan draait de moer een vaste hoek verder. Die hoek is een maat voor de rek.',
       en: 'More accurate is {t:Torque-angle|torque-angle}: a low torque pulls the parts together, then the nut turns a fixed angle further. That angle is a measure of the stretch.' },
-    { nl: 'Een audit meet het {t:Losbreekmoment|losbreekmoment}: waar een vaste bout verder draait. Ingesteld op {n:50} newtonmeter, plus of min {n:10} procent; gemeten {n:53}, {n:52}, {n:31}, {n:54} en {n:52}. Die {n:31} is fout.',
-      en: 'An audit measures the {t:Breakaway torque|breakaway torque}: where a tightened bolt turns further. Set to {n:50} newton-metres, plus or minus {n:10} percent; measured {n:53}, {n:52}, {n:31}, {n:54} and {n:52}. That {n:31} is wrong.' },
-    { nl: 'Eén bout was twee keer gedraaid, de vierde op gevoel. Positiebewaking laat elke bout één keer tellen. Een verfstreep toont of een bout nog draaide.',
-      en: 'One bolt had been run twice, the fourth done by feel. Position control makes each bolt count once. A paint mark shows whether a bolt has turned.' },
+    { nl: 'Een audit meet het {t:Losbreekmoment|losbreekmoment}: het moment waarop een vaste bout weer gaat draaien. Dat ligt normaal dicht bij het ingestelde moment, hier {n:50} newtonmeter, plus of min {n:10} procent. Gemeten: {n:53}, {n:52}, {n:31}, {n:54} en {n:52}. Die {n:31} klopt niet.',
+      en: 'An audit measures the {t:Breakaway torque|breakaway torque}: where a tightened bolt turns further. It is normally close to the set torque, here {n:50} newton-metres, plus or minus {n:10} percent. Measured: {n:53}, {n:52}, {n:31}, {n:54} and {n:52}. That {n:31} is wrong.' },
+    { nl: 'Eén bout was twee keer gedraaid, de vierde op gevoel. Met positiebewaking telt elke bout één keer. Een verfstreep laat zien of een bout nog draaide.',
+      en: 'One bolt had been run twice, the fourth done only by feel. With position control each bolt counts just once. A paint mark shows whether a bolt has turned.' },
     { nl: 'En {t:Zetting|zetting}: ruwe vlakken of verf onder de kop worden platgedrukt, en voorspanning verdwijnt. Een langere bout verliest dan minder.',
       en: 'And {t:Settling|settling}: rough surfaces or paint under the head flatten, and preload is lost. A longer bolt loses less.' },
   ],
@@ -417,14 +417,14 @@ const SAY = [
       en: '{t:VDI 2230|VDI 2230}, the German guideline, works through a bolted joint step by step.' },
     { nl: 'Zij vangt de spreiding in de {t:Aanhaalfactor|aanhaalfactor}: hoogste gedeeld door laagste voorspanning. Op moment, met gemeten wrijving: {n:1.4} tot {n:1.6}.',
       en: 'It captures the scatter in the {t:Tightening factor|tightening factor}: highest divided by lowest preload. On torque, with measured friction: {n:1.4} to {n:1.6}.' },
-    { nl: 'Want de {t:Wrijvingscoëfficiënt|wrijvingscoëfficiënt}, mu, telt het meest. Alleen geschat wordt het {n:1.6} tot {n:2.0}. Meet hem op de echte bouten, volgens ISO 16047.',
-      en: 'Because the {t:Coefficient of friction|coefficient of friction}, mu, matters most. Only estimated, it becomes {n:1.6} to {n:2.0}. So measure it on the real bolts, to ISO 16047.' },
-    { nl: 'Een flens vraagt minstens {n:30} kilonewton, en de bout mag hoogstens {n:50}. Geschat, maal {n:1.8}, wordt de hoogste {n:54}: te veel. Gemeten, maal {n:1.4}, is het {n:42}.',
-      en: 'A flange needs at least {n:30} kilonewtons, and the bolt may take at most {n:50}. Estimated, times {n:1.8}, the highest becomes {n:54}: too much. Measured, times {n:1.4}, it is {n:42}.' },
+    { nl: 'Want de {t:Wrijvingscoëfficiënt|wrijvingscoëfficiënt}, mu, telt het meest. Is die alleen geschat, dan wordt de factor {n:1.6} tot {n:2.0}. Meet hem dus op de echte bouten, volgens ISO 16047.',
+      en: 'Because the {t:Coefficient of friction|coefficient of friction}, mu, matters most. If it is only estimated, the factor becomes {n:1.6} to {n:2.0}. So measure it on the real bolts, to ISO 16047.' },
+    { nl: 'Een flens vraagt minstens {n:30} kilonewton, en de bout mag hoogstens {n:50}. Geschat, maal {n:1.8}, wordt de hoogste {n:54}: te veel. Gemeten, maal {n:1.4}, is het {n:42}: dat past.',
+      en: 'A flange needs at least {n:30} kilonewtons, and the bolt may take at most {n:50}. Estimated, times {n:1.8}, the highest becomes {n:54}: too much. Measured, times {n:1.4}, it is {n:42}: that fits.' },
   ],
   [ // s8 tightening more precisely
-    { nl: 'Moment-hoek haalt {n:1.2} tot {n:1.4}, vaak tot voorbij de vloeigrens. Zo’n bout, zoals een cilinderkopbout, gebruik je meestal niet opnieuw.',
-      en: 'Torque-angle reaches {n:1.2} to {n:1.4}, often past the yield point. Such a bolt, like a cylinder head bolt, is usually not reused.' },
+    { nl: 'Moment-hoek haalt een factor {n:1.2} tot {n:1.4}, vaak tot voorbij de vloeigrens. Zo’n bout, denk aan een cilinderkopbout, gebruik je meestal niet opnieuw.',
+      en: 'Torque-angle reaches a factor of {n:1.2} to {n:1.4}, often past the yield point. Such a bolt, like a cylinder head bolt, is usually not reused.' },
     { nl: 'Bij {t:Vloeigrensgestuurd aandraaien|vloeigrensgestuurd aandraaien} meet de spindel moment en hoek, en stopt zodra de curve afbuigt.',
       en: 'In {t:Yield-controlled tightening|yield-controlled tightening} the nutrunner measures torque and angle, and stops as soon as the curve bends over.' },
     { nl: 'Het nauwkeurigst is de {t:Boutrek|boutrek} meten: ultrasoon geluid meet hoeveel langer de bout wordt. Duur en traag, dus voor kritische verbindingen.',
@@ -435,12 +435,12 @@ const SAY = [
       en: 'The {t:Joint diagram|joint diagram} draws bolt and plates as two springs: steep for the stiff plates, flatter for the bolt.' },
     { nl: 'Trekt er van buiten {n:10} kilonewton aan, dan krijgt de bout maar een deel: de {t:Krachtfactor|krachtfactor}. Bij {n:0.2} is dat {n:2} kilonewton.',
       en: 'When {n:10} kilonewtons pull from outside, the bolt takes only a share: the {t:Load factor|load factor}. At {n:0.2} that is {n:2} kilonewtons.' },
-    { nl: 'De andere {n:8} haalt klemkracht weg. Van {n:18.75} kilonewton blijft {n:10.75} over: de {t:Restklemkracht|restklemkracht}. Die moet boven nul blijven, anders krijgt de bout de volle wisselende kracht.',
-      en: 'The other {n:8} take clamp load away. Of {n:18.75} kilonewtons, {n:10.75} remain: the {t:Residual clamp load|residual clamp load}. It must stay above zero, or the bolt takes the full alternating force.' },
-    { nl: 'Bouten breken door vermoeiing, in de eerste draadgang onder de moer. Daar telt de {t:Spanningsamplitude|spanningsamplitude}: {n:1} kilonewton op {n:58} vierkante millimeter is {n:17} megapascal, onder de zo’n {n:50} die de draad verdraagt.',
-      en: 'Bolts break by fatigue, in the first thread under the nut. What counts there is the {t:Stress amplitude|stress amplitude}: {n:1} kilonewton on {n:58} square millimetres is {n:17} megapascals, below the {n:50} or so the thread can take.' },
-    { nl: 'Een sterkere klasse helpt daar nauwelijks. Een slanke bout met een grote {t:Klemlengte|klemlengte} wel: hij krijgt minder wisselende kracht, en verliest minder door zetting.',
-      en: 'A stronger class hardly helps there. A slim bolt with a long {t:Clamp length|clamp length} does: it takes less of the alternating force, and loses less to settling.' },
+    { nl: 'De andere {n:8} haalt klemkracht weg. Van de laagste voorspanning, {n:18.75} kilonewton, blijft {n:10.75} over: de {t:Restklemkracht|restklemkracht}. Die moet boven nul blijven, anders krijgt de bout de volle wisselende kracht.',
+      en: 'The other {n:8} take clamp load away. Of the lowest preload, {n:18.75} kilonewtons, {n:10.75} remain: the {t:Residual clamp load|residual clamp load}. It must stay above zero, or the bolt takes the full alternating force.' },
+    { nl: 'Bouten breken bijna altijd door vermoeiing, in de eerste draadgang onder de moer. Daar telt de {t:Spanningsamplitude|spanningsamplitude}, de halve slag van de wisselende spanning: {n:1} kilonewton op {n:58} vierkante millimeter, {n:17} megapascal. De draad verdraagt er zo’n {n:50}.',
+      en: 'Bolts almost always break by fatigue, in the first thread under the nut. What counts there is the {t:Stress amplitude|stress amplitude}, half the swing of the alternating stress: {n:1} kilonewton on {n:58} square millimetres, {n:17} megapascals. The thread takes about {n:50}.' },
+    { nl: 'Een sterkere klasse helpt daar nauwelijks. Een slanke bout met een grote {t:Klemlengte|klemlengte}, de dikte die hij samenklemt, wel: hij krijgt minder wisselende kracht, en verliest minder door zetting.',
+      en: 'A stronger class hardly helps there. A slim bolt with a long {t:Clamp length|clamp length}, the thickness it clamps, does: it takes less of the alternating force, and loses less to settling.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
@@ -491,6 +491,7 @@ const css = `
 .fp-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:3;stroke-linecap:round}
 .fp-bx{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-fill{fill:var(--anatomy-mid);opacity:.55}
+.fp-pie0{fill:var(--anatomy-lo);fill-opacity:.4;stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
 .fp-band{fill:var(--anatomy-mid);opacity:.22}
 .fp-dash{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-dasharray:6 5;vector-effect:non-scaling-stroke}
 .fp-grid{fill:none;stroke:var(--anatomy-faint);stroke-width:1;vector-effect:non-scaling-stroke}

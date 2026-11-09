@@ -102,6 +102,9 @@ const STAGE = (() => {
       left.push([mx(-r), mz(z)]);
       right.push([mx(r), mz(z)]);
     }
+    // the plain shank runs straight up from the last full crest
+    left.push([mx(-B.r), mz(B.zThread)]);
+    right.push([mx(B.r), mz(B.zThread)]);
     const outline = [[mx(-B.r + 1.2), mz(B.zEnd)], ...left, [mx(-B.r), mz(B.zW1)], [mx(B.r), mz(B.zW1)], ...right.reverse(), [mx(B.r - 1.2), mz(B.zEnd)]];
     s += `<path class="fp-boltf" d="${pth(outline, true)}"/>`;
     // head and nut, seen across corners: the hex's three faces
@@ -256,10 +259,11 @@ const STAGE = (() => {
   }
   function pieCard(p) {
     let s = card(40, 30, 560, 340);
-    const cx = 200;
+    const cx = 176;
     const cy = 200;
-    const R = 120;
-    const parts = [[C.SHARE.head, tx('onder de kop', 'under the head'), 'fp-fill'], [C.SHARE.thread, tx('in de draad', 'in the thread'), 'fp-card'], [C.SHARE.stretch, tx('rekt de bout', 'stretches the bolt'), 'fp-cell-on']];
+    const R = 116;
+    // friction greyed, the 10 % that stretches the bolt in the accent
+    const parts = [[C.SHARE.head, tx('onder de kop', 'under the head'), 'fp-pie0'], [C.SHARE.thread, tx('in de draad', 'in the thread'), 'fp-card'], [C.SHARE.stretch, tx('rekt de bout', 'stretches the bolt'), 'fp-cell-on']];
     let a0 = -Math.PI / 2;
     const g = span(p, 0.05, 0.6);
     parts.forEach(([v, name, cls], i) => {
@@ -267,7 +271,7 @@ const STAGE = (() => {
       const pts = [[cx, cy]];
       for (let j = 0; j <= 24; j++) { const a = a0 + ((a1 - a0) * j) / 24; pts.push([cx + R * Math.cos(a), cy + R * Math.sin(a)]); }
       if (a1 - a0 > 0.01) s += `<path class="${cls}" d="${pth(pts, true)}"/>`;
-      s += `<rect class="${cls}" x="344" y="${116 + i * 66}" width="26" height="26" rx="4"/>` + T(380, 136 + i * 66, `${v}% ${name}`, 21, 'start');
+      s += `<rect class="${cls}" x="316" y="${116 + i * 66}" width="26" height="26" rx="4"/>` + T(352, 136 + i * 66, `${v}% ${name}`, 21, 'start');
       a0 = a1;
     });
     return s;
