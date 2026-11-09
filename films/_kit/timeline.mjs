@@ -80,6 +80,8 @@ const SAY = {
     // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
     // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
     [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
+    // ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
+    [/\bISO 2768\b/g, 'ISO 27 68'],
     // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
     [/\b([Bb])èta\b/g, '$1eeta'],
     // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
@@ -97,7 +99,7 @@ const SAY = {
     [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one'],
     [/\bDOE\b/g, 'D O E'], [/\bPFMEA\b/g, 'P F M E A'],
     [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
-    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S']],
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
