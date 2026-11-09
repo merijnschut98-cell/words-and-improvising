@@ -269,34 +269,34 @@
     "eng.machining.tooling": {
       "poster": "src/content/courses/films/eng.machining.tooling.jpg",
       "nl": {
-        "dur": 357.8,
-        "bytes": 16294712,
+        "dur": 290.5,
+        "bytes": 13744666,
         "scenes": [
           0,
-          31.11,
-          64.01,
-          121.29,
-          153.57,
-          187.8,
-          220.73,
-          274.93,
-          338.91
+          23.28,
+          49.9,
+          96.79,
+          119.91,
+          148.42,
+          176.94,
+          220.5,
+          274.75
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.nl.vtt"
       },
       "en": {
-        "dur": 335.7,
-        "bytes": 15678083,
+        "dur": 311.8,
+        "bytes": 14750869,
         "scenes": [
           0,
-          27.42,
-          57.83,
-          113.79,
-          142.21,
-          176.03,
-          207.24,
-          256.94,
-          319.25
+          24.8,
+          52.61,
+          104.71,
+          130.29,
+          161.17,
+          190.84,
+          237.84,
+          296.51
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.en.vtt"
       }
