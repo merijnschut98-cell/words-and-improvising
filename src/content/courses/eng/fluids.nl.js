@@ -88,14 +88,14 @@ export default {
       ],
       teach: [
         'Engineers rekenen leidingwrijving uit met de Darcy–Weisbach-vergelijking: drukval = f × (L / D) × ρ × v² / 2. L is de leidinglengte, D de binnendiameter, ρ (rho) de dichtheid en v de snelheid.\n\nHet laatste stuk, ρ × v² / 2, is de snelheidshoogte (velocity head) uitgedrukt als druk: voor water met 2 m/s is dat 1.000 × 2² / 2 = 2.000 Pa, 0,02 bar. Twee keer zo lang verdubbelt de drukval; twee keer zo snel maakt hem vier keer zo groot.',
-        'f is de wrijvingsfactor, een getal zonder eenheid. Die hangt van twee dingen af: het getal van Reynolds uit de vorige les, en de ruwheid van de wand vergeleken met de diameter.\n\nBij laminaire stroming is hij gewoon 64 / getal van Reynolds. Bij turbulente stroming lezen engineers hem af uit het Moody-diagram, in 1944 gepubliceerd door Lewis Moody: een grafiek van f tegen het getal van Reynolds, met één lijn per relatieve ruwheid. Voor gewone stalen leidingen met turbulent water is f meestal 0,015 tot 0,03.',
-        'Wandruwheid is de hoogte van de oneffenheden op de binnenwand. Nieuw getrokken rvs, zoals in voedingsfabrieken, zit rond 0,0015 mm; nieuw koolstofstaal rond 0,045 mm. Roest en aanslag (scale) maken oude leidingen veel ruwer en ook nauwer.\n\nDat is het klassieke sluipende verlies: dezelfde pomp levert elk jaar een beetje minder, en niemand merkt het tot er een nieuwe gebruiker bijkomt.',
+        'f is de wrijvingsfactor (friction factor), een getal zonder eenheid. Hij hangt af van het getal van Reynolds uit de vorige les, en de ruwheid van de wand vergeleken met de diameter.\n\nBij laminaire stroming is hij gewoon 64 / getal van Reynolds. Bij turbulente stroming lezen engineers hem af uit het Moody-diagram (Moody chart), in 1944 gepubliceerd door Lewis Moody: een grafiek van f tegen het getal van Reynolds, met één lijn per relatieve ruwheid. Voor gewone stalen leidingen met turbulent water is f meestal 0,015 tot 0,03.',
+        'Wandruwheid (roughness) is de hoogte van de oneffenheden op de binnenwand. Nieuw getrokken rvs, zoals in voedingsfabrieken, zit rond 0,0015 mm; nieuw koolstofstaal rond 0,045 mm. Roest en aanslag (scale) maken oude leidingen veel ruwer en ook nauwer.\n\nDat is het klassieke sluipende verlies: dezelfde pomp levert elk jaar een beetje minder, en niemand merkt het tot er een nieuwe gebruiker bijkomt.',
         'Bochten, T-stukken, afsluiters en vuilfilters geven een lokale weerstand (minor loss): K × ρ × v² / 2, met K een getal per onderdeel uit tabellen. Een open schuifafsluiter (gate valve) heeft een K van zo’n 0,2; een bocht van 90° ruwweg 0,2 tot 1,5, afhankelijk van type en maat; een volledig open klepafsluiter (globe valve), waar de stroming door een zitting draait, zo’n 5 tot 10.\n\nIn een compacte installatie met veel onderdelen kunnen de lokale weerstanden net zo groot zijn als de rechte leiding.',
         'Experts weten dat deze getallen schattingen zijn. Leerboeken stromingsleer rekenen wrijvingsfactoren uit het Moody-diagram nauwkeurig tot ruwweg 15%, en de echte ruwheid na tien jaar is gokwerk.\n\nEen berekende drukval is dus een begin, geen feit. Levert een leiding niet, dan wint een gemeten drukval van elke berekening. Scherpe vraag: “Is die drukval berekend, of heeft iemand hem bij dit debiet gemeten?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Een zuivelfabriek pompt spoelwater met 2 m/s door 100 m rvs-leiding met een binnenmaat van 80 mm. Getal van Reynolds: 1.000 × 2 × 0,08 / 0,001 = 160.000, dus turbulent; het Moody-diagram geeft f ≈ 0,02.\n\nSnelheidshoogte: 1.000 × 2² / 2 = 2.000 Pa. Rechte leiding: 0,02 × (100 / 0,08) × 2.000 = 50.000 Pa, 0,5 bar. Tien bochten met K = 0,5: 10 × 0,5 × 2.000 = 10.000 Pa. Eén open klepafsluiter met K = 8: 16.000 Pa.\n\nSamen zo’n 0,76 bar, en een derde daarvan zit in de onderdelen. De klepafsluiter vervangen door een afsluiter met weinig weerstand scheelt bij elke run 0,16 bar.',
+        text: 'Een zuivelfabriek pompt spoelwater met 2 m/s door 100 m rvs-leiding met een binnenmaat van 80 mm. Getal van Reynolds: 1.000 × 2 × 0,08 / 0,001 = 160.000, dus turbulent; voor glad rvs geeft het Moody-diagram zo’n 0,017, hier afgerond naar f ≈ 0,02 voor lassen en wat veroudering.\n\nSnelheidshoogte: 1.000 × 2² / 2 = 2.000 Pa. Rechte leiding: 0,02 × (100 / 0,08) × 2.000 = 50.000 Pa, 0,5 bar. Tien bochten met K = 0,5: 10 × 0,5 × 2.000 = 10.000 Pa. Eén open klepafsluiter met K = 8: 16.000 Pa.\n\nSamen zo’n 0,76 bar, en een derde daarvan zit in de onderdelen. De klepafsluiter vervangen door een afsluiter met weinig weerstand scheelt bij elke run 0,16 bar.',
       },
       said: 'Wat engineers zeggen: “De helft van de drukval in dat skid zit in de onderdelen. Tel eerst de bochten en kijk naar die klepafsluiter voordat je een grotere pomp koopt.”',
       recall: [
@@ -117,7 +117,7 @@ export default {
         },
         {
           q: 'Welke twee dingen heb je nodig om in het Moody-diagram de wrijvingsfactor bij turbulente stroming af te lezen?',
-          options: ['Het getal van Reynolds en de relatieve ruwheid', 'Het toerental van de pomp en de lengte van de leiding', 'De temperatuur van de vloeistof en het aantal bochten', 'Het debiet in m³ per uur en de prijs van de leiding'],
+          options: ['Het getal van Reynolds en de relatieve ruwheid', 'Het pomptoerental en de leidinglengte', 'De temperatuur van de vloeistof en het aantal bochten', 'Het debiet in m³ per uur en de prijs van de leiding'],
           answer: 'Het getal van Reynolds en de relatieve ruwheid',
           why: 'Het Moody-diagram zet f uit tegen het getal van Reynolds, met één lijn per relatieve ruwheid: wandruwheid gedeeld door diameter.',
         },
@@ -153,23 +153,23 @@ export default {
       pre: [
         {
           q: 'Een regelklep in een koelwaterleiding staat bijna het hele jaar op 15% open. Wat zegt dat waarschijnlijk?',
-          options: ['De klep is precies goed gekozen voor deze taak en hoeft niet te veranderen', 'De debietmeter in de leiding is kapot en wijst veel te hoog aan', 'De leiding is te klein voor het debiet, dus de klep gaat nauwelijks open', 'Klep en pomp zijn te groot, dus er gaat druk op in de klep'],
-          answer: 'Klep en pomp zijn te groot, dus er gaat druk op in de klep',
+          options: ['De klep is precies goed gekozen voor dit werk en hoeft niet te veranderen', 'De debietmeter in de leiding is kapot en wijst veel te hoog aan', 'De leiding is te klein voor het debiet, dus de klep gaat nauwelijks open', 'Klep en pomp zijn te groot, dus de klep verstookt de overtollige pompdruk'],
+          answer: 'Klep en pomp zijn te groot, dus de klep verstookt de overtollige pompdruk',
           why: 'Een klep die nauwelijks opengaat, smoort druk weg die de pomp voor niks maakt, en regelt slecht vlak bij zijn zitting.',
         },
       ],
       teach: [
         'Een regelklep verandert het debiet door drukval toe te voegen. Het is het gebruikelijke eindorgaan (final element) van een regelkring (zie Procestechniek: de basis).\n\nDe maat van een klep is de Kv-waarde: het debiet water in m³ per uur door de open klep bij 1 bar drukval. Voor water geldt: debiet = Kv × √(drukval in bar); deel bij andere vloeistoffen de drukval eerst door de relatieve dichtheid. Amerikanen gebruiken Cv, in US gallons per minuut bij 1 psi: Cv ≈ 1,16 × Kv.',
-        'Klepautoriteit is het deel van de drukval in het circuit dat de klep voor zijn rekening neemt. Te weinig, en de klep verandert het debiet nauwelijks tot hij bijna dicht is; ontwerpers mikken vaak op ruwweg 0,3 tot 0,5.\n\nMaar elke bar in een klep is verstookte pompenergie. Een bronboek van het DOE en het Hydraulic Institute noemt dat veel regelkleppen normaal minder dan 50% open staan: een teken van overdimensionering. Een klep die onder 20% of boven 80% open leeft, is het bekijken waard.',
+        'Klepautoriteit (valve authority) is het deel van de drukval in het circuit dat de klep voor zijn rekening neemt. Te weinig, en de klep verandert het debiet nauwelijks tot hij bijna dicht is; ontwerpers mikken vaak op ruwweg 0,3 tot 0,5.\n\nMaar elke bar in een klep is verstookte pompenergie. Een handboek (sourcebook) van het Amerikaanse DOE en het Hydraulic Institute noemt dat veel regelkleppen normaal minder dan 50% open staan: een teken van overdimensionering. Een klep die onder 20% of boven 80% open leeft, is het bekijken waard.',
         'Een drukprofiel (pressure survey) laat zien waar de druk blijft. Meet bij het echte debiet de druk aan de zuig- en perskant van de pomp en vóór en na elke wisselaar, elk vuilfilter en elke klep. Vergelijk elke drukval met het datablad.\n\nJe vindt snel de verrassing: een vuilfilter dat 0,9 bar verliest waar 0,2 normaal is, een regelklep die 3 bar verstookt, een warmtewisselaar die dichtgeslibd is.',
         'Een drukstoot, waterslag in een vloeistofleiding, volgt op een klep die snel dichtgaat. De vergelijking van Joukowsky geeft de grootte: stijging = dichtheid × golfsnelheid × snelheidsverandering. In een stalen leiding vol water loopt de drukgolf met ruwweg 1.000 tot 1.400 m/s; in kunststof leiding veel langzamer.\n\nWater van 1 m/s stilzetten bij een golfsnelheid van 1.200 m/s geeft 1.000 × 1.200 × 1 = 1,2 miljoen Pa, 12 bar. Dat blaast pakkingen eruit en schudt leidingsteunen los.',
-        'Experts discussiëren over het eindorgaan: een klep regelt snel en fijn; een toerenregeling (volgend onderwerp) verspilt minder. Veel fabrieken combineren ze: de regelaar zet de druk, de klep regelt bij.\n\nTegen drukstoten: kleppen langzaam sluiten, minstens langer dan de tijd die de golf nodig heeft om de leiding op en neer te lopen, en drukvaten (surge vessels) op lange leidingen. Scherpe vraag: “Wat zijn de stand en de drukval van deze klep bij normaal debiet?”',
+        'Experts discussiëren over het eindorgaan: een klep regelt snel en fijn; een toerenregeling (volgend onderwerp) verspilt minder. Veel fabrieken combineren ze: de frequentieregelaar zet de druk, de klep regelt fijn bij.\n\nTegen drukstoten: kleppen langzaam sluiten, ruim langer dan de tijd die de golf nodig heeft om de leiding op en neer te lopen, en windketels (surge vessels) op lange leidingen. Scherpe vraag: “Wat zijn de stand en de drukval van deze klep bij normaal debiet?”',
       ],
       example: {
         kind: 'faded',
         text: 'Een drukprofiel op de koelwateraanvoer naar een chemische reactor, bij het normale debiet van 20 m³ per uur: pers van de pomp 5,2 bar, na de warmtewisselaar 4,6 bar, vóór de regelklep 4,4 bar, na de klep 1,4 bar, retour naar de koeltoren 1,0 bar. De klep heeft een nominale Kv van 40.',
         ask: 'Met welke Kv werkt de klep nu, welk deel van de drukval in het circuit neemt hij, en wat zegt dat?',
-        reveal: 'Werkende Kv = 20 / √3,0 = 11,5, zo’n 29% van zijn nominale Kv, dus hij staat bijna dicht. Hij neemt 3,0 van de 4,2 bar drukval in het circuit: zo’n 71%.\n\nZo’n 2 bar daarvan is overbodig: 200.000 Pa × 20 / 3.600 m³ per seconde = 1,1 kW hydraulisch vermogen dat het hele jaar verstookt wordt, nog vóór pomp- en motorverliezen. Draai de waaier af of zet er een toerenregeling op, zodat de klep zo’n 1 bar neemt en nog steeds regelt.',
+        reveal: 'Werkende Kv = 20 / √3,0 = 11,5, zo’n 29% van zijn nominale Kv: de klep is veel groter dan deze taak vraagt. Hij neemt 3,0 van de 4,2 bar drukval in het circuit: zo’n 71%.\n\nZo’n 2 bar daarvan is overbodig: 200.000 Pa × 20 / 3.600 m³ per seconde = 1,1 kW hydraulisch vermogen dat het hele jaar verstookt wordt, nog vóór pomp- en motorverliezen. Draai de waaier af of zet er een toerenregeling op, zodat de klep zo’n 1 bar neemt en nog steeds regelt.',
       },
       said: 'Wat engineers zeggen: “Die klep staat op vijftien procent en pakt drie bar. We betalen de pomp om tegen de klep te vechten.”',
       recall: [
@@ -191,8 +191,8 @@ export default {
         },
         {
           q: 'In een drukprofiel geeft een vuilfilter 0,9 bar drukval bij ontwerpdebiet. Het datablad geeft 0,2 bar als het schoon is. Wat concludeer je?',
-          options: ['Het zit dicht: reinig het en meet voortaan het drukverschil', 'Het datablad klopt niet; vuilfilters verliezen altijd zo’n 1 bar aan druk', 'De pomp is te klein voor dit circuit en moet eerst vervangen worden', 'Het debiet is te laag om dit filter te laten werken zoals bedoeld'],
-          answer: 'Het zit dicht: reinig het en meet voortaan het drukverschil',
+          options: ['Het filter zit dicht: reinig het en bewaak voortaan het drukverschil', 'Het datablad klopt niet; vuilfilters verliezen altijd zo’n 1 bar aan druk', 'De pomp is te klein voor dit circuit en moet eerst vervangen worden', 'Het debiet is te laag om dit filter te laten werken zoals bedoeld'],
+          answer: 'Het filter zit dicht: reinig het en bewaak voortaan het drukverschil',
           why: 'Meer dan vier keer de schone drukval bij hetzelfde debiet betekent vuil; een drukverschilmeter erover vertelt operators wanneer ze moeten reinigen.',
         },
         {
@@ -205,11 +205,11 @@ export default {
       situation: {
         scene: 'Je zit bij een voedingsfabriek. Operators klagen over harde klappen in de heetwaterleiding elke keer dat een vulmachine stopt, en dit kwartaal zijn er twee pakkingen gesprongen. Onderhoud wil sterkere pakkingen.',
         ask: 'Wat vraag je?',
-        model: 'Wat gebeurt er als de vuller stopt: klapt er een automatische klep dicht, en hoe snel? Hoe lang is de leiding, en wat is de snelheid erin? Snel sluiten geeft een drukstoot van dichtheid × golfsnelheid × snelheidsverandering, makkelijk meer dan 10 bar. Kan de klep langzamer dicht, of kunnen we een drukvat plaatsen? Sterkere pakkingen verschuiven de storing naar het volgende zwakke punt.',
+        model: 'Wat gebeurt er als de vuller stopt: klapt er een automatische klep dicht, en hoe snel? Hoe lang is de leiding, en wat is de snelheid erin? Snel sluiten geeft een drukstoot van dichtheid × golfsnelheid × snelheidsverandering, makkelijk meer dan 10 bar. Kan de klep langzamer dicht, of kunnen we een windketel plaatsen? Sterkere pakkingen verschuiven de storing naar het volgende zwakke punt.',
         rubric: [
           'Koppelt de klappen aan een snel sluitende klep en een drukstoot',
           'Vraagt naar sluittijd, leidinglengte en snelheid',
-          'Stelt langzamer sluiten of een drukvat voor in plaats van sterkere pakkingen',
+          'Stelt langzamer sluiten of een windketel voor in plaats van sterkere pakkingen',
         ],
       },
       sayIt: 'Leg een onderhoudsleider in 60 seconden uit wat een Kv-waarde is en waarom een klep op 15% open energie verspilt.',
@@ -233,10 +233,10 @@ export default {
         },
       ],
       teach: [
-        'Bij hetzelfde debiet schaalt de snelheid met 1 / D², en Darcy–Weisbach deelt v² nog een keer door D. De wrijvingsdrukval schaalt dus met ongeveer 1 / D⁵.\n\nEén maat groter, van 80 naar 100 mm binnenmaat: (80 / 100)⁵ = 0,33, de drukval zakt met twee derde. In een pomptip van het DOE ging een leiding van 6 naar 8 inch, en de jaarlijkse pompkosten voor wrijving werden zo’n vier keer kleiner.',
-        'Leidingmaat is dus een economische keuze. Een dikkere leiding kost meer aan aanschaf, ondersteuning en isolatie; een dunnere kost elk uur pompenergie, tientallen jaren lang. De economische leidingdiameter is waar die twee samen het laagst zijn: de laagste levensduurkosten.\n\nDe gebruikelijke ontwerpsnelheden van 1 tot 3 m/s zijn een vuistregel voor die optelsom. Wordt energie duurder, dan schuift het optimum naar dikkere leidingen en lagere snelheden.',
-        'Wrijvingsvermogen is het vermogen dat een leiding kost: drukval in Pa × debiet in m³ per seconde geeft watt hydraulisch vermogen. Deel door het rendement van net tot water, vaak 60 tot 70%, en je hebt het elektrisch vermogen.\n\nVoorbeeld: 0,5 bar extra bij 100 m³ per uur is 50.000 × 0,0278 = 1,4 kW hydraulisch, zo’n 2,1 kW elektrisch bij 65%, zo’n 17.000 kWh per jaar bij 8.000 uur.',
-        'Dikke voedingsproducten breken de simpele regels. Yoghurt, sauzen en chocolade zijn vaak afschuifverdunnend: ze worden dunner naarmate ze sneller geschoven worden, dus de viscositeit is niet één getal. Ze stromen meestal laminair, waar de wrijving ruwweg evenredig met de snelheid stijgt, niet met het kwadraat.\n\nVoor het dimensioneren heb je reologiedata (rheology data) nodig, metingen van hoe de dikte met de afschuiving verandert, en meestal verdringerpompen.',
+        'Bij hetzelfde debiet schaalt de snelheid met 1 / D², en Darcy–Weisbach deelt v² nog een keer door D. De wrijvingsdrukval schaalt dus met ongeveer 1 / D⁵.\n\nEén maat groter, van 80 naar 100 mm binnenmaat: (80 / 100)⁵ = 0,33, de drukval zakt met twee derde. In een rekenvoorbeeld uit het pomphandboek van het DOE en het Hydraulic Institute ging een leiding van 6 naar 8 inch, en de jaarlijkse pompkosten voor wrijving werden zo’n vier keer kleiner.',
+        'Leidingmaat is dus een economische keuze. Een dikkere leiding kost meer aan aanschaf, ondersteuning en isolatie; een dunnere kost elk uur pompenergie, tientallen jaren lang. De economische leidingdiameter (economic pipe diameter) is waar die twee samen het laagst zijn: de laagste levensduurkosten.\n\nDe gebruikelijke ontwerpsnelheden van 1 tot 3 m/s zijn een vuistregel voor die optelsom. Wordt energie duurder, dan schuift het optimum naar dikkere leidingen en lagere snelheden.',
+        'Wrijvingsvermogen is het vermogen dat een leiding kost: drukval in Pa × debiet in m³ per seconde geeft watt hydraulisch vermogen. Deel door het rendement van net tot water, vaak maar 50 tot 70%, en je hebt het elektrisch vermogen.\n\nVoorbeeld: 0,5 bar extra bij 100 m³ per uur is 50.000 × 0,0278 = 1,4 kW hydraulisch, zo’n 2,1 kW elektrisch bij 65%, zo’n 17.000 kWh per jaar bij 8.000 uur.',
+        'Dikke voedingsproducten breken de simpele regels. Yoghurt, sauzen en chocolade zijn vaak afschuifverdunnend (shear-thinning): ze worden dunner naarmate ze sneller geschoven worden, dus de viscositeit is niet één getal. Ze stromen meestal laminair, waar de wrijving ruwweg evenredig met de snelheid stijgt, niet met het kwadraat.\n\nVoor het dimensioneren heb je reologiedata (rheology data) nodig, metingen van hoe de dikte met de afschuiving verandert, en meestal verdringerpompen.',
         'Experts in bestaande fabrieken discussiëren over het ontknellen van een leiding. Vervangen door een dikkere legt de productie stil; een parallelle leiding ernaast verdeelt het debiet, en twee gelijke leidingen dragen elk de helft, dus de drukval zakt naar zo’n kwart.\n\nTypische fout: een project kiest de goedkoopste leiding en geeft de productie een pomprekening mee. Scherpe vraag: “Wat kost deze leiding per jaar aan pompenergie, vergeleken met één maat groter?”',
       ],
       example: {
@@ -512,7 +512,7 @@ export default {
     },
     {
       id: 'eng.fluids.pumpsystem',
-      title: 'Pompsystemen: van stopcontact tot water',
+      title: 'Pompsystemen: van net tot water',
       pre: [
         {
           q: 'Een koelsysteem draait het hele jaar twee identieke pompen parallel, allebei gesmoord. Eén pomp bij zijn BEP kan het grootste deel van het jaar de vraag aan. Wat is de eerste stap?',
@@ -522,22 +522,22 @@ export default {
         },
       ],
       teach: [
-        'Het systeemrendement (wire-to-water efficiency) is het hydraulisch vermogen dat het water bereikt, gedeeld door de elektriciteit uit het net: motor × regelaar × pomp. Met 95%, 97% en 70%: 0,95 × 0,97 × 0,70 = 64%.\n\nEen bronboek van het DOE en het Hydraulic Institute noemt pomprendementen van 50 tot 60% of lager gewoon in fabrieken, en zegt dat een pomp 10 tot 25% van zijn rendement kan verliezen voordat hij vervangen wordt, door versleten slijtringen en waaiers.',
-        'Een handig fabrieksgetal is het specifiek pompenergieverbruik: kWh per verpompte m³. Het laat afwijkingen over maanden zien, en vergelijkt pompen die hetzelfde werk doen.\n\nHetzelfde bronboek noemt twee alarmsignalen: een pomp die 30% of meer van zijn BEP-debiet af draait, en een systeemonbalans boven 20%, waarbij het geleverde hydraulisch vermogen meer dan een vijfde hoger is dan wat de gebruikers nodig hebben.',
-        'De opties, ruwweg op volgorde: uitzetten wat niet nodig is (pompen voor niks, open bypassleidingen); systeemverliezen weghalen (kleppen open, filters schoon); goed dimensioneren door de waaier afdraaien of een kleinere pomp; toerenregeling; rendement herstellen door revisie.\n\nVoor de waaier afdraaien gelden vuistregels: een 2% kleinere diameter geeft zo’n 2% minder debiet, 4% minder opvoerhoogte en 8% minder vermogen. Waaiers worden zelden kleiner gemaakt dan zo’n 70% van hun oorspronkelijke maat.',
-        'Parallelle pompen zijn gewoon in koel- en watersystemen. Een tweede identieke pomp bijzetten verdubbelt het debiet niet als het systeem veel wrijving heeft: de leidingkarakteristiek wordt steiler, dus de tweede pomp voegt veel minder toe.\n\nBijschakelen (staging) betekent zo weinig mogelijk pompen laten draaien, elk dicht bij zijn BEP. Met toerenregeling kunnen twee pompen op lager toerental zuiniger zijn dan één op vol toerental; de karakteristieken beslissen, niet de gewoonte.',
-        'Experts meten voordat ze kopen: een clamp-on debietmeter, twee drukmeters en een vermogensmeter geven in een dag het echte werkpunt en rendement. In de Amerikaanse maakindustrie gebruiken pompen volgens dezelfde bron zo’n 27% van de elektriciteit van industriële systemen, dus dit telt.\n\nEnergie is meestal de grootste kostenpost over het leven van een pomp die veel uren draait. Scherpe vraag: “Wat is de kWh per m³ van deze pomp, en wat zou die moeten zijn?”',
+        'Het systeemrendement (wire-to-water efficiency) is het hydraulisch vermogen dat het water bereikt, gedeeld door de elektriciteit uit het net: motor × frequentieregelaar × pomp. Met 95%, 97% en 70%: 0,95 × 0,97 × 0,70 = 64%.\n\nEen handboek (sourcebook) van het Amerikaanse DOE en het Hydraulic Institute noemt pomprendementen van 50 tot 60% of lager gewoon in fabrieken, en zegt dat een pomp 10 tot 25% van zijn rendement kan verliezen voordat hij vervangen wordt, door versleten slijtringen en waaiers.',
+        'Een handig fabrieksgetal is het specifiek pompenergieverbruik: kWh per verpompte m³. Het laat afwijkingen over maanden zien, en vergelijkt pompen die hetzelfde werk doen.\n\nHetzelfde handboek noemt twee alarmsignalen: een pomp die 30% of meer van zijn BEP-debiet af draait, en een systeemonbalans boven 20%, waarbij het geleverde hydraulisch vermogen meer dan een vijfde hoger is dan wat de gebruikers nodig hebben.',
+        'De opties, ruwweg op volgorde: uitzetten wat niet nodig is (pompen voor niks, open bypassleidingen); systeemverliezen weghalen (kleppen open, filters schoon); goed dimensioneren (waaier afdraaien, kleinere pomp); toerenregeling; rendement herstellen door revisie.\n\nDe waaier afdraaien (impeller trimming) volgt de affiniteitswetten voor de diameter: debiet met de diameter, opvoerhoogte met het kwadraat, vermogen ruwweg met de derde macht. 2% afdraaien geeft zo’n 2% minder debiet, 4% minder opvoerhoogte en 6 tot 8% minder vermogen (het handboek noemt 8%). Waaiers gaan zelden onder zo’n 70% van hun oorspronkelijke maat.',
+        'Parallelle pompen zijn gewoon in koel- en watersystemen. Een tweede identieke pomp bijzetten verdubbelt het debiet niet als het systeem veel wrijving heeft: de leidingkarakteristiek wordt steiler, dus de tweede pomp voegt veel minder toe.\n\nCascaderegeling (staging) betekent zo weinig mogelijk pompen laten draaien, elk dicht bij zijn BEP. Met toerenregeling kunnen twee pompen op lager toerental zuiniger zijn dan één op vol toerental; de karakteristieken beslissen, niet de gewoonte.',
+        'Experts meten voordat ze kopen: een opklembare debietmeter (clamp-on), twee drukmeters en een vermogensmeter geven in een dag het echte werkpunt en rendement. In de Amerikaanse maakindustrie gebruiken pompen volgens dezelfde bron zo’n 27% van de elektriciteit van industriële systemen, dus dit telt.\n\nEnergie is meestal de grootste kostenpost over het leven van een pomp die veel uren draait. Scherpe vraag: “Wat is de kWh per m³ van deze pomp, en wat zou die moeten zijn?”',
       ],
       example: {
         kind: 'faded',
         text: 'Twee pompen van 55 kW leveren parallel koelwater bij een chemische fabriek, allebei gesmoord. Gemeten: samen 300 m³ per uur bij 42 m opvoerhoogte; elektrisch opgenomen 2 × 40 = 80 kW. De gebruikers hebben 300 m³ per uur bij 28 m nodig. Dichtheid water 1.000 kg/m³, g = 9,81 m/s². De fabriek draait 8.000 uur per jaar bij €0,15 per kWh.',
-        ask: 'Wat is het systeemrendement, wat is de systeemonbalans, en wat kan één goed gekozen pomp met regelaar besparen, bij 70% van net tot water?',
+        ask: 'Wat is het systeemrendement, wat is de systeemonbalans, en wat kan één goed gekozen pomp met frequentieregelaar besparen, bij 70% van net tot water?',
         reveal: 'Geleverd: 1.000 × 9,81 × (300 / 3.600) × 42 = 34,3 kW, dus systeemrendement 34,3 / 80 = 43%. Nodig: 1.000 × 9,81 × (300 / 3.600) × 28 = 22,9 kW. Onbalans 34,3 / 22,9 − 1 = 50%, ver boven 20%.\n\nEén pomp die 22,9 kW levert bij 70%: 32,7 kW elektrisch. Besparing 80 − 32,7 = 47,3 kW, × 8.000 uur = zo’n 378.000 kWh, ruwweg €57.000 per jaar. Check welke reserve de fabriek nodig heeft voordat de tweede pomp eruit gaat.',
       },
       said: 'Wat engineers zeggen: “Drieënveertig procent van net tot water en de helft meer opvoerhoogte dan iemand nodig heeft. Dat pomphuis is een kachel.”',
       recall: [
         {
-          q: 'Een pomp levert 15 kW hydraulisch vermogen aan het water en neemt 25 kW uit het net, motor en regelaar inbegrepen. Wat is het systeemrendement, in %?',
+          q: 'Een pomp levert 15 kW hydraulisch vermogen aan het water en neemt 25 kW uit het net, motor en frequentieregelaar inbegrepen. Wat is het systeemrendement, in %?',
           number: 60,
           tolerance: 0.5,
           unit: '%',
@@ -577,12 +577,12 @@ export default {
       },
       sayIt: 'Leg een energiemanager in 60 seconden uit wat systeemrendement is en hoe je verspilling in een pomphuis vindt.',
       terms: [
-        { term: 'Systeemrendement', def: 'Hydraulisch vermogen dat het water bereikt gedeeld door de opgenomen elektriciteit: motor × regelaar × pomp.' },
+        { term: 'Systeemrendement', def: 'Hydraulisch vermogen dat het water bereikt gedeeld door de opgenomen elektriciteit: motor × frequentieregelaar × pomp.' },
         { term: 'Specifiek pompenergieverbruik', def: 'Elektriciteit per verpompte m³, in kWh per m³; volgt de prestatie van een pomp in de tijd.' },
         { term: 'Systeemonbalans', def: 'Hoeveel het geleverde hydraulisch vermogen hoger is dan wat de gebruikers nodig hebben; boven 20% wijst op verspilling (DOE).' },
         { term: 'Waaier afdraaien', def: 'Een waaier kleiner draaien om debiet, opvoerhoogte en vermogen blijvend te verlagen.' },
         { term: 'Parallelle pompen', def: 'Twee of meer pompen op één verzamelleiding; de tweede voegt minder debiet toe naarmate de wrijving groeit.' },
-        { term: 'Bijschakelen', def: 'Zo weinig mogelijk pompen laten draaien, elk dicht bij zijn BEP, en er pas meer bijzetten bij vraag.' },
+        { term: 'Cascaderegeling', def: 'Zo weinig mogelijk pompen laten draaien, elk dicht bij zijn BEP, en er pas meer bijzetten bij vraag.' },
       ],
     },
     // Onderwerp: Warmteoverdracht en warmtewisselaars
@@ -598,15 +598,15 @@ export default {
         },
       ],
       teach: [
-        'Warmte stroomt op drie manieren van warm naar koud. Geleiding: door een vaste stof of een stilstaande laag, van molecuul naar molecuul. Convectie: een stromende vloeistof of gas voert de warmte mee. Straling (radiation): hete oppervlakken stralen warmte uit, zichtbaar of niet.\n\nVoor wanden en leidingen combineren engineers ze: warmtestroom Q = U × A × ΔT. A is het oppervlak, ΔT het temperatuurverschil en U de U-waarde, in W per m² per °C: hoe makkelijk warmte erdoor gaat.',
-        'De warmtegeleidingscoëfficiënt zegt hoe goed een materiaal warmte geleidt, in W per meter per °C. Koper zo’n 400, koolstofstaal zo’n 50, rvs zo’n 16, water 0,6, minerale wol zo’n 0,04.\n\nIsolatie werkt omdat ze stilstaande lucht vasthoudt in vezels of schuim. 50 mm minerale wol houdt de warmte ongeveer zo goed tegen als enkele meters staal zouden doen.',
+        'Warmte stroomt op drie manieren van warm naar koud. Geleiding (conduction): door een vaste stof of een stilstaande laag, van molecuul naar molecuul. Convectie (convection): een stromende vloeistof of gas voert de warmte mee. Straling (radiation): hete oppervlakken stralen warmte uit, zichtbaar of niet.\n\nVoor wanden en leidingen combineren engineers ze: warmtestroom Q = U × A × ΔT. A is het oppervlak, ΔT het temperatuurverschil en U de U-waarde, in W per m² per °C: hoe makkelijk warmte erdoor gaat.',
+        'De warmtegeleidingscoëfficiënt (λ, thermal conductivity) zegt hoe goed een materiaal warmte geleidt, in W per meter per °C. Koper zo’n 400, koolstofstaal zo’n 50, rvs zo’n 16, water 0,6, minerale wol zo’n 0,04.\n\nIsolatie werkt omdat ze stilstaande lucht vasthoudt in vezels of schuim. 50 mm minerale wol houdt de warmte ongeveer zo goed tegen als een stalen wand van zo’n 60 m dik zou doen.',
         'Op elk oppervlak kleeft een dun laagje vloeistof of gas dat de warmte tegenhoudt. Stilstaande lucht buiten een leiding voert slecht af, zo’n 10 W per m² per °C inclusief straling; turbulent water binnenin voert duizenden af.\n\nEngineers tellen de weerstanden op als schakels in een ketting: 1 / U = de som van alle laag- en wandweerstanden. Het zwakste laagje bepaalt U, dus verbeter eerst die kant.',
-        'Kale hete oppervlakken zijn verspilling die je kunt zien. Een stoomtip van het Amerikaanse DOE schat het verlies van een kale stoomleiding van 2 inch (zo’n DN50) op ongeveer 10 bar(g) op ruwweg 500 W per meter, het hele jaar door, en zegt dat isolatie zulke verliezen meestal met 90% verlaagt. Het DOE adviseert elk oppervlak boven zo’n 50 °C te isoleren.\n\nEen kale DN100-afsluiter van 150 °C verliest ruwweg 0,7 kW. Afsluiters en flenzen worden vaak gestript voor onderhoud en nooit meer ingepakt.',
+        'Kale hete oppervlakken zijn verspilling die je kunt zien. Een tipblad (tip sheet) over stoom van het Amerikaanse DOE schat het verlies van een kale stoomleiding van 2 inch (zo’n DN50) op ongeveer 10 bar(g) op ruwweg 500 W per meter, het hele jaar door, en zegt dat isolatie zulke verliezen meestal met 90% verlaagt. Het DOE adviseert elk oppervlak boven zo’n 50 °C te isoleren.\n\nEen kale DN100-afsluiter van 150 °C verliest ruwweg 0,7 kW. Afsluiters en flenzen worden vaak gestript voor onderhoud en nooit meer ingepakt.',
         'Experts discussiëren over isolatiedikte: dikker bespaart warmte maar kost meer en neemt ruimte; gratis software zoals 3E Plus zoekt het optimum. Natte isolatie isoleert slecht, en water onder de beplating veroorzaakt corrosie onder isolatie (corrosion under insulation).\n\nIsolatie beschermt mensen ook tegen brandwonden. Scherpe vraag op een rondgang: “Welke hete afsluiters en flenzen zijn bij onderhoud opengemaakt en nooit opnieuw geïsoleerd?”',
       ],
       example: {
         kind: 'worked',
-        text: 'Op een rondgang door een voedingsfabriek tel je 40 m kale DN50-stoomleiding op zo’n 10 bar(g) en 6 kale afsluiters. Met zo’n 530 W per meter en 0,9 kW per afsluiter: 40 × 0,53 = 21,2 kW plus 6 × 0,9 = 5,4 kW, dus 26,6 kW verlies.\n\nOver 8.000 uur: 26,6 × 8.000 = 212.800 kWh warmte. Bij een ketelrendement van 85% is dat 250.400 kWh gas; bij €0,045 per kWh gas zo’n €11.300 per jaar.\n\nIsolatie die 90% bespaart, is zo’n €10.100 per jaar waard. Afneembare isolatiekussens voor de afsluiters en nieuwe isolatie op de leiding verdienen zich vaak binnen een jaar of zo terug.',
+        text: 'Op een rondgang door een voedingsfabriek tel je 40 m kale DN50-stoomleiding op zo’n 10 bar(g) en 6 kale afsluiters. Met zo’n 530 W per meter en zo’n 0,9 kW per afsluiter met zijn flenzen: 40 × 0,53 = 21,2 kW plus 6 × 0,9 = 5,4 kW, dus 26,6 kW verlies.\n\nOver 8.000 uur: 26,6 × 8.000 = 212.800 kWh warmte. Bij een ketelrendement van 85% is dat 250.400 kWh gas; bij €0,045 per kWh gas zo’n €11.300 per jaar.\n\nIsolatie die 90% bespaart, is zo’n €10.100 per jaar waard. Afneembare isolatiekussens voor de afsluiters en nieuwe isolatie op de leiding verdienen zich vaak binnen een jaar of zo terug.',
       },
       said: 'Wat engineers zeggen: “Elke kale afsluiter op die stoomverdeler is een kachel die het hele jaar aanstaat. Zet er kussens op.”',
       recall: [
@@ -634,8 +634,8 @@ export default {
         },
         {
           q: 'In een buizenverwarmer verwarmt heet water aan de ene kant een dikke, trage saus aan de andere kant. Waar verbeter je U het eerst?',
-          options: ['Aan de heetwaterkant, door meer water te laten stromen', 'In de buiswand, door over te stappen op koperen buizen', 'Aan de sauskant, waar de grootste weerstand zit', 'Nergens: U hangt alleen af van het materiaal van de wand'],
-          answer: 'Aan de sauskant, waar de grootste weerstand zit',
+          options: ['Aan de heetwaterkant, door meer water te laten stromen', 'In de buiswand, door over te stappen op koperen buizen', 'Aan de sauskant, waar het traagste laagje het meest remt', 'Nergens: U hangt alleen af van het materiaal van de wand'],
+          answer: 'Aan de sauskant, waar het traagste laagje het meest remt',
           why: 'De weerstanden tellen op en de grootste, het trage sauslaagje, beperkt U; betere menging aan die kant helpt het meest.',
         },
       ],
@@ -737,16 +737,16 @@ export default {
       pre: [
         {
           q: 'Waarom gebruiken engineers voor een warmtewisselaar het logaritmisch gemiddeld temperatuurverschil (LMTD) in plaats van het gewone gemiddelde van de twee eindverschillen?',
-          options: ['Het gewone gemiddelde is bij turbulente stroming altijd veel te laag', 'De LMTD is alleen een gewoonte uit oude stoomtabellen', 'Het verschil verloopt niet recht langs de wisselaar', 'Het gewone gemiddelde negeert welke vloeistof aan welke kant zit'],
-          answer: 'Het verschil verloopt niet recht langs de wisselaar',
+          options: ['Het gewone gemiddelde is bij turbulente stroming altijd veel te laag', 'De LMTD is alleen een gewoonte uit oude stoomtabellen', 'Het temperatuurverschil verloopt niet lineair langs de wisselaar', 'Het gewone gemiddelde negeert welke vloeistof aan welke kant zit'],
+          answer: 'Het temperatuurverschil verloopt niet lineair langs de wisselaar',
           why: 'Het temperatuurverschil verandert langs een kromme; het logaritmisch gemiddelde is het echte gemiddelde voor tegenstroom of meestroom, en ligt onder het gewone gemiddelde als de eindverschillen uiteenlopen.',
         },
       ],
       teach: [
         'De rekenformule is Q = U × A × LMTD. De LMTD, het logaritmisch gemiddeld temperatuurverschil, is het echte gemiddelde verschil: (ΔT1 − ΔT2) / ln(ΔT1 / ΔT2), met ΔT1 en ΔT2 de verschillen aan de twee uiteinden.\n\nBij tegenstroom koppelt het ene eind warm-in aan koud-uit, het andere warm-uit aan koud-in. Verschillen van 30 en 10 °C geven 20 / ln 3 = 18,2 °C, niet het gewone gemiddelde van 20.',
-        'Typische U-waarden, als grove ordegrootte: een platenwisselaar water-water zo’n 3.000 tot 7.000 W per m² per °C; pijpenbundel water-water zo’n 800 tot 1.500; alles met een gaskant veel lager.\n\nEen krappe naderingstemperatuur verkleint de LMTD, dus het oppervlak moet groeien. Halveer de nadering en je hebt ruwweg twee keer zoveel oppervlak nodig. Dat is de afweging energie tegen oppervlak achter ΔTmin bij pinch-analyse (Procestechniek: de basis).',
-        'Vervuiling voegt een weerstand toe: 1 / U vuil = 1 / U schoon + vervuilingsweerstand, in m² °C per W. Ontwerpers geven extra oppervlak als vervuilingsmarge, vaak 10 tot 25%, uit tabellen zoals die van TEMA, de Amerikaanse vereniging van pijpenbundelbouwers.\n\nVervuiling gaat sneller bij lage snelheid en hoge wandtemperatuur; melkeiwit bijvoorbeeld brandt aan op hete platen.',
-        'Een controleberekening (rating) kijkt wat een bestaande wisselaar levert: U = Q / (A × LMTD), uitgerekend uit de eigen debieten en temperaturen van de fabriek. Zet die dagelijks in een trend en je ziet de vervuiling groeien en het effect van elke reiniging.\n\nWaarom koelers het in de zomer moeilijk hebben: warmer koelwater verkleint de LMTD, en verder verandert er niks. Minder debiet aan één kant verlaagt ook de warmteoverdracht van dat laagje, dus U zakt mee.',
+        'Typische U-waarden, als grove ordegrootte: een platenwisselaar water-water zo’n 3.000 tot 7.000 W per m² per °C; pijpenbundel water-water zo’n 800 tot 1.500; alles met een gaskant veel lager.\n\nEen krappe naderingstemperatuur verkleint de LMTD, dus het oppervlak moet groeien. Dragen beide stromen ongeveer evenveel warmte per graad, dan verdubbelt een halvering van de nadering ruwweg het oppervlak. Dat is de afweging energie tegen oppervlak achter ΔTmin bij pinch-analyse (Procestechniek: de basis).',
+        'Vervuiling (fouling) voegt een weerstand toe, de vervuilingsweerstand (fouling resistance): 1 / U vuil = 1 / U schoon + vervuilingsweerstand, in m² °C per W. Ontwerpers geven extra oppervlak als vervuilingsmarge (fouling margin), vaak 10 tot 25%, uit tabellen zoals die van TEMA, de Amerikaanse vereniging van pijpenbundelbouwers.\n\nVervuiling gaat sneller bij lage snelheid en hoge wandtemperatuur; melkeiwit bijvoorbeeld brandt aan op hete platen.',
+        'Een controleberekening (rating) gaat na wat een bestaande wisselaar levert: U = Q / (A × LMTD), uitgerekend uit de eigen debieten en temperaturen van de fabriek. Zet die dagelijks in een trend en je ziet de vervuiling groeien en het effect van elke reiniging.\n\nWaarom koelers het in de zomer moeilijk hebben: warmer koelwater verkleint de LMTD, en verder verandert er niks. Minder debiet aan één kant verlaagt ook de warmteoverdracht van dat laagje, dus U zakt mee.',
         'Experts kennen de valkuilen. Temperatuursensoren zitten vaak 0,5 °C ernaast; bij een nadering van 2 °C laat dat alleen al de berekende U een kwart schommelen. Meergangs- en kruisstroomwisselaars hebben een correctiefactor onder 1 op de LMTD nodig.\n\nAls de uitlaattemperaturen onbekend zijn, gebruiken engineers de effectiviteitsmethode (effectiveness method). Scherpe vraag: “Laat me U over de afgelopen zes maanden zien, uit onze eigen temperaturen.”',
       ],
       example: {
@@ -816,7 +816,7 @@ export default {
         },
       ],
       teach: [
-        'Een pasteur wint warmte terug in zijn regeneratiesectie: de hete gepasteuriseerde melk warmt de koude rauwe melk voor. Regeneratierendement = temperatuurwinst in de regeneratie / totale stijging van rauw naar pasteurisatietemperatuur.\n\nHet Dairy Processing Handbook van Tetra Pak noemt zo’n 90 tot 94% voor moderne melkpasteurs. Elk extra procent bespaart twee keer: minder verwarmen aan de warme kant en minder koelen aan de koude kant.',
+        'Een pasteur wint warmte terug in zijn regeneratiesectie: de hete gepasteuriseerde melk warmt de koude rauwe melk voor. Regeneratierendement = temperatuurwinst in de regeneratie / totale stijging van rauw naar pasteurisatietemperatuur.\n\nHet Dairy Processing Handbook van Tetra Pak gebruikt 90 tot 94% in zijn ontwerpvoorbeeld voor een melkpasteur. Elk extra procent bespaart twee keer: minder verwarmen aan de warme kant en minder koelen aan de koude kant.',
         'Meer regeneratie is niet gratis. Meer platen betekent meer oppervlak, meer drukval, dus een sterkere boosterpomp, en meer product dat in de installatie staat.\n\nDe veiligheidsregel uit de les over warmtewisselaars blijft gelden: de gepasteuriseerde kant moet op de hogere druk blijven, zodat een gaatje de veilige kant op lekt. Daarom worden platenpakketten regelmatig op druk getest.',
         'Vervuiling maakt reinigen een kostenafweging. Tussen twee reinigingen zakt U, dus stijgt het verbruik van stoom en ijswater, of zakt de doorzet; een reiniging kost stilstand, water en chemicaliën.\n\nHet reinigingsinterval dat het minst kost, ligt waar de gemiddelde kosten per productie-uur, energieverlies plus reinigen, het laagst zijn. Fabrieken die “elke vrijdag” reinigen, weten zelden waar dat punt ligt.',
         'Verder dan één machine: koppel hete stromen die gekoeld moeten worden aan koude stromen die verwarmd moeten worden, zoals pinch-analyse doet in Procestechniek: de basis. In batchfabrieken past de timing zelden, dus overbrugt warmteopslag, zoals een buffertank met heet water, het gat.\n\nAndere bronnen: rookgas van de ketel via een economiser, een warmtewisselaar die het ketelvoedingswater voorverwarmt en meestal een paar procent brandstof bespaart; compressorwarmte (module Motoren, aandrijvingen en perslucht); warmtepompen voor warmte op lage temperatuur.',
@@ -854,8 +854,8 @@ export default {
         },
         {
           q: 'In een batchfabriek komt het hete afvalwater ’s middags en heeft het proces ’s ochtends warm water nodig. Wat maakt warmteterugwinning mogelijk?',
-          options: ['Een grotere stoomketel voor de ochtend', 'Een snellere pomp op de afvalwaterleiding', 'Warmteopslag, zoals een buffertank', 'Het afvalwater door het product mengen'],
-          answer: 'Warmteopslag, zoals een buffertank',
+          options: ['Een grotere stoomketel voor de ochtend', 'Een snellere pomp op de afvalwaterleiding', 'Warmteopslag, bijvoorbeeld een buffertank', 'Het afvalwater door het product mengen'],
+          answer: 'Warmteopslag, bijvoorbeeld een buffertank',
           why: 'Opslag bewaart de warmte tot de koude stroom haar nodig heeft; zonder opslag komen de stromen elkaar nooit tegen.',
         },
       ],
@@ -955,8 +955,8 @@ export default {
       pre: [
         {
           q: 'Hoe wordt in een open koeltoren de meeste warmte uit het water gehaald?',
-          options: ['Door een klein deel van het water te laten verdampen', 'Door het koude metaal van de torenwanden en de vulling', 'Door de chemicaliën die aan het water worden toegevoegd', 'Door de ventilator die de warmte alleen als warme lucht wegblaast'],
-          answer: 'Door een klein deel van het water te laten verdampen',
+          options: ['Door een klein deel van het water in de lucht te laten verdampen', 'Door het koude metaal van de torenwanden en de vulling', 'Door de chemicaliën die aan het water worden toegevoegd', 'Door de ventilator die de warmte alleen als warme lucht wegblaast'],
+          answer: 'Door een klein deel van het water in de lucht te laten verdampen',
           why: 'Water verdampen kost veel warmte, dus een klein deel dat verdampt koelt de rest.',
         },
       ],
@@ -965,7 +965,7 @@ export default {
         'Water verdampen kost zo’n 2.400 kJ per kg. Een koeltoren verliest daardoor ruwweg 1% van zijn circulerende water per 6 °C afkoeling. Het koelbereik (range) is de daling van warm water in naar koud water uit.\n\nEen toren kan alleen koelen richting de natteboltemperatuur: de laagste temperatuur die verdamping in de buitenlucht kan halen. Het verschil tussen koud water uit en natteboltemperatuur is de naderingstemperatuur van de toren, net als bij wisselaars, vaak een paar graden.',
         'Verdamping laat de zouten achter. De indikkingsfactor (cycles of concentration) zegt hoeveel keer geconcentreerder het torenwater is dan het suppletiewater (make-up water), gemeten via de geleidbaarheid. Om de zouten onder een grens te houden, wordt een deel van het water afgelaten: de spui (blowdown).\n\nSpui = verdamping / (indikkingsfactor − 1). Het Amerikaanse Federal Energy Management Program noemt dat veel systemen op 2 tot 4 draaien, terwijl 6 of meer kan met goede waterbehandeling.',
         'De COP (coefficient of performance) van een koelmachine is de geleverde koude per eenheid elektriciteit, vaak zo’n 3 tot 6 voor watergekoelde machines. Elke graad warmer ijswater bespaart meestal een paar procent.\n\nIn Nederland vraagt een natte koeltoren ook een legionella-risicoanalyse, een beheersplan en een logboek, volgens het Besluit activiteiten leefomgeving (Bal). Legionellabacteriën groeien in warm water en verspreiden zich met de nevel.',
-        'Typische verspilling die een Lean-oog ziet: leidingwater dat een vacuümpomp één keer koelt en dan het riool in gaat; ijswater van 6 °C waar torenwater van 30 °C zou volstaan; koelmachines die in de winter draaien terwijl buitenlucht gratis kan koelen (free cooling); torenventilatoren het hele jaar op vol toeren.\n\nExperts discussiëren over de indikking: hoger spaart water, maar ketelsteen en corrosie vragen betere behandeling. Scherpe vraag: “Welke temperatuur heeft deze gebruiker echt nodig, en waar komt zijn koude vandaan?”',
+        'Typische verspilling die een Lean-oog ziet: leidingwater dat een vacuümpomp één keer koelt en dan het riool in gaat; ijswater van 6 °C waar torenwater van 30 °C zou volstaan; koelmachines die in de winter draaien terwijl buitenlucht gratis kan koelen (free cooling); torenventilatoren het hele jaar op vol toeren.\n\nExperts discussiëren over de indikking: hoger spaart water, maar kalkaanslag en corrosie vragen betere behandeling. Scherpe vraag: “Welke temperatuur heeft deze gebruiker echt nodig, en waar komt zijn koude vandaan?”',
       ],
       example: {
         kind: 'worked',
@@ -1037,7 +1037,7 @@ export default {
         'Wat een ton stoom kost, volgt uit drie getallen: de warmte in de stoom min de warmte die al in het voedingswater zit, het ketelrendement en de brandstofprijs. Stoom van 10 bar(g) bevat zo’n 2.780 kJ per kg; voedingswater van 80 °C zo’n 335.\n\nElke ton vraagt dus zo’n 2.445 MJ; bij 88% rendement 2.780 MJ gas, zo’n 88 m³ Nederlands aardgas (31,65 MJ per m³). Bij €0,45 per m³ is dat zo’n €40 per ton.',
         'In het ketelhuis is het rookgasverlies het grootst: warmte die met de uitlaatgassen weggaat. Een economiser wint daar een deel van terug. De spui, het aflaten van ingedikt ketelwater, kost nog een paar procent.\n\nEen ketel die bij lage last aan en uit pendelt, verspilt ook: bij elke herstart spoelt koude lucht de hete vuurhaard door, en de mantelverliezen blijven bij elke last gelijk. Het ketelrendement is het deel van de brandstofenergie dat in de stoom terechtkomt.',
         'In de distributie: lekken, kapotte condenspotten, kale leidingen en afsluiters (les Hoe warmte beweegt), en dode einden (dead legs), ongebruikte aftakkingen die nog warm gehouden worden. Het DOE adviseert condenspotten wekelijks tot maandelijks te testen bij hoge druk, maandelijks tot per kwartaal bij middeldruk en minstens jaarlijks bij lage druk.\n\nHeet condensaat van hoge druk kan naar een flashvat: een tank op lagere druk waar de flashstoom wordt afgescheiden en gebruikt, bijvoorbeeld voor verwarming op lage druk.',
-        'De condensaatretour is het deel van het condensaat dat terugkomt bij de ketel. Elke ton die naar het riool gaat, verliest zijn warmte, zo’n 335 MJ bij 90 °C, plus het water, de chemicaliën voor de behandeling en de lozingsheffing.\n\nSommig condensaat wordt geloosd omdat er product in zou kunnen zitten. Een geleidbaarheids- of troebelheidsmeter kan dan alleen de slechte partijen afvoeren in plaats van alles.',
+        'De condensaatretour is het deel van het condensaat dat terugkomt bij de ketel. Elke ton die naar het riool gaat, verliest zijn warmte, zo’n 335 MJ bij 90 °C vergeleken met suppletiewater van 10 °C, plus het water, de chemicaliën voor de behandeling en de lozingsheffing.\n\nSommig condensaat wordt geloosd omdat er product in zou kunnen zitten. Een geleidbaarheids- of troebelheidsmeter kan dan alleen de slechte partijen afvoeren in plaats van alles.',
         'Experts maken een stoombalans: geproduceerde stoom tegen verbruikte stoom per afdeling, gemeten, met het gat als verlies. Het onverklaarde gat is vaak groter dan iemand dacht. Nederlandse fabrieken wegen nu ook e-boilers en warmtepompen af tegen gas; de gas- en stroomprijs beslissen.\n\nScherpe vraag: “Wat kost een ton van onze stoom, en hoeveel daarvan bereikt een product?”',
       ],
       example: {
@@ -1066,8 +1066,8 @@ export default {
         },
         {
           q: 'Maar 30% van het condensaat komt terug bij het ketelhuis; de rest wordt geloosd omdat er product in zou kunnen zitten. Wat is de scherpe volgende stap?',
-          options: ['Al het condensaat terugsturen en het risico op product accepteren', 'De ketelzijdige druk verhogen om de verloren warmte te compenseren', 'Schone stromen terug; de riskante bewaken', 'Een grotere waterbehandeling kopen voor het suppletiewater'],
-          answer: 'Schone stromen terug; de riskante bewaken',
+          options: ['Al het condensaat terugsturen en het risico op product accepteren', 'De ketelzijdige druk verhogen om de verloren warmte te compenseren', 'De schone stromen terugsturen en alleen de riskante bewaken', 'Een grotere waterbehandeling kopen voor het suppletiewater'],
+          answer: 'De schone stromen terugsturen en alleen de riskante bewaken',
           why: 'Het meeste condensaat is schoon; een geleidbaarheids- of troebelheidsmeter voert alleen het vervuilde deel af.',
         },
         {
@@ -1109,10 +1109,10 @@ export default {
       ],
       teach: [
         'Verspilling in de utilities verstopt zich omdat niemand er eigenaar van is. Behandel het als elke verspilling: ga kijken. De weekendtest laat de basislast zien: compressoren die nog laden (lekken, vaak 20 tot 30% van de output in fabrieken zonder lekprogramma; zie Motoren, aandrijvingen en perslucht), stoom die nog stroomt, koelmachines en torenventilatoren die draaien, pompen die voor niks rondpompen.\n\nSchrijf elke vondst op met een schatting van kW en uren.',
-        'Besparingen vragen een energiebaseline: de energie die een fabriek zonder de verandering had gebruikt, gecorrigeerd voor de productie. Een gangbare vorm is een rechte lijn door maanddata: energie = vast deel + variabel deel × tonnen.\n\nHet vaste deel is de basislast, het variabele deel de kWh per ton. Zakt het vaste deel na een lekcampagne, dan zie je dat; een daling die door een drukkere maand wordt gemaskeerd, zie je niet.',
+        'Besparingen vragen een energiebaseline (Motoren, aandrijvingen en perslucht laat zien hoe je er besparingen mee bewijst): de energie die een fabriek zonder de verandering had gebruikt, gecorrigeerd voor de productie. Een gangbare vorm is een rechte lijn door maanddata: energie = vast deel + variabel deel × tonnen.\n\nHet vaste deel is de basislast, het variabele deel de kWh per ton. Zakt het vaste deel na een lekcampagne, dan zie je dat; een daling die door een drukkere maand wordt gemaskeerd, zie je niet.',
         'Prioriteer op geld en moeite, en in de goede volgorde: eerst de vraag verlagen (uitzetten, lekken dichten, drukken en temperaturen omlaag), dan de opwekking efficiënt maken, dan de bron veranderen.\n\nDe terugverdientijd, investering gedeeld door de jaarlijkse kasbesparing, is de gangbare eerste zeef; Kostprijs en investeringen behandelt NPV en de rest. Dicht lekken voordat je een nieuwe compressor of ketel dimensioneert, anders koop je capaciteit voor verliezen.',
-        'In Nederland geldt de energiebesparingsplicht voor locaties die per jaar 50.000 kWh elektriciteit of 25.000 m³ aardgas (of het equivalent) of meer gebruiken. Zij moeten alle maatregelen nemen met een terugverdientijd van vijf jaar of minder, berekend met een wettelijk vastgelegde methode en prijzen.\n\nZe rapporteren elke vier jaar, en de Erkende maatregelenlijst van RVO noemt per sector geaccepteerde maatregelen. Zeer grote verbruikers hebben een aparte onderzoeksplicht.',
-        'Experts weten dat besparingen wegzakken: een gedicht lek komt terug, een klep gaat weer dicht. Besparingen blijven met een eigenaar, een dagelijkse of wekelijkse kWh per ton op het bord, en een controle in de routine.\n\nVoorkom dubbeltellingen tussen projecten die dezelfde kWh claimen. Scherpe vraag: “Wie kijkt elke week naar het getal van deze utility, en wat doet die als het stijgt?”',
+        'In Nederland geldt de energiebesparingsplicht voor locaties die per jaar 50.000 kWh elektriciteit of 25.000 m³ aardgas (of het equivalent) of meer gebruiken. Zij moeten alle maatregelen nemen met een terugverdientijd van vijf jaar of minder, berekend met een wettelijk vastgelegde methode en prijzen. Een verruiming naar zeven jaar vanaf 2027 is voorgesteld, dus check RVO (Rijksdienst voor Ondernemend Nederland).\n\nZe rapporteren elke vier jaar, met de Erkende maatregelenlijst van RVO met geaccepteerde maatregelen per sector.',
+        'Locaties vanaf 10 miljoen kWh of 170.000 m³ gas per jaar hebben mogelijk ook een aparte onderzoeksplicht: een energieonderzoek naar hun processen.\n\nExperts weten dat besparingen wegzakken: een gedicht lek komt terug, een klep gaat weer dicht. Besparingen blijven met een eigenaar, een dagelijkse of wekelijkse kWh per ton op het bord, en een controle in de routine.\n\nVoorkom dubbeltellingen tussen projecten die dezelfde kWh claimen. Scherpe vraag: “Wie kijkt elke week naar het getal van deze utility, en wat doet die als het stijgt?”',
       ],
       example: {
         kind: 'faded',
@@ -1146,8 +1146,8 @@ export default {
         },
         {
           q: 'Een fabriek wil de energie van haar utilities omlaag. In welke volgorde werk je?',
-          options: ['Eerst nieuwe opwekking, dan efficiëntie, en de vraag pas helemaal aan het eind', 'Eerst efficiëntie, dan een nieuwe bron, en de vraag pas aan het eind', 'Vraag omlaag, dan opwekking efficiënt, dan de bron', 'Begin met de maatregel die de grootste investering vraagt'],
-          answer: 'Vraag omlaag, dan opwekking efficiënt, dan de bron',
+          options: ['Eerst nieuwe opwekking, dan efficiëntie, en de vraag pas helemaal aan het eind', 'Eerst efficiëntie, dan een nieuwe bron, en de vraag pas aan het eind', 'Eerst de vraag omlaag, dan de opwekking efficiënter, dan de bron', 'Begin met de maatregel die de grootste investering vraagt'],
+          answer: 'Eerst de vraag omlaag, dan de opwekking efficiënter, dan de bron',
           why: 'Eerst de vraag verlagen voorkomt dat je opwekcapaciteit koopt voor verliezen, en het is meestal het goedkoopst.',
         },
       ],
@@ -1166,7 +1166,7 @@ export default {
         { term: 'Basislast', def: 'Het vermogen dat wordt opgenomen als er niks wordt gemaakt.' },
         { term: 'Energiebaseline', def: 'Een model van het energieverbruik in een referentieperiode, waarmee je voorspelt wat de fabriek later zou hebben gebruikt; het verschil is de besparing.' },
         { term: 'Terugverdientijd', def: 'Investering gedeeld door de jaarlijkse kasbesparing.' },
-        { term: 'Energiebesparingsplicht', def: 'Nederlandse regel: locaties boven 50.000 kWh of 25.000 m³ gas per jaar moeten alle maatregelen nemen die zich in vijf jaar of minder terugverdienen.' },
+        { term: 'Energiebesparingsplicht', def: 'Nederlandse regel: locaties vanaf 50.000 kWh elektriciteit of 25.000 m³ gas per jaar moeten alle maatregelen nemen die zich in vijf jaar of minder terugverdienen (zeven jaar vanaf 2027 is voorgesteld), en elke vier jaar rapporteren.' },
         { term: 'Erkende maatregelenlijst', def: 'De lijst van RVO met geaccepteerde energiebesparende maatregelen per sector, gebruikt voor de plicht.' },
       ],
     },
