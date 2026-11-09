@@ -333,6 +333,41 @@
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.en.vtt"
       }
+    },
+    "eng.joining.defects": {
+      "poster": "src/content/courses/films/eng.joining.defects.jpg",
+      "nl": {
+        "dur": 356,
+        "bytes": 8841700,
+        "scenes": [
+          0,
+          20.89,
+          66.21,
+          115.42,
+          143.92,
+          187.51,
+          214.96,
+          280.89,
+          323.45
+        ],
+        "vtt": "src/content/courses/films/eng.joining.defects.nl.vtt"
+      },
+      "en": {
+        "dur": 354.4,
+        "bytes": 8949136,
+        "scenes": [
+          0,
+          21.52,
+          69.6,
+          119.63,
+          146.64,
+          194.51,
+          221.32,
+          281.47,
+          322.08
+        ],
+        "vtt": "src/content/courses/films/eng.joining.defects.en.vtt"
+      }
     }
   }
 }
