@@ -92,3 +92,14 @@ Recalculations (new lessons):
 Uncertain: Dutch term choices Overschrijdingsduur, Temperatuurcorrectie, Traagheid, Laadstroom, Splitsing, Hybride installatie; English names of the 2026 codes are our translations. Queue figure and €89 are moving numbers; start dates of municipal ten-years-ahead applications and GOTORK enforcement hedged.
 
 After merging main (eng.power rebuilt): kW, kWh, Arbeidsfactor / Power factor and Blindvermogen / Reactive power now use the eng.power definitions word for word.
+
+Review (2026-11-09), facts re-checked against primary sources:
+- Codes: ACM decision 5 Feb 2026 (ACM/UIT/666113), Staatscourant 2026, 4089 of 20 Feb; in force the day after, 21 Feb 2026, when the Netcode elektriciteit and Samenwerkingscode lapsed (art. 14.5–14.6). Electricity codes: Systeemcode elektriciteit 2026, Tarievencode elektriciteit 2026, Begrippencode elektriciteit 2026 (plus ten gas codes). gridbasics and eng.power now both say "since 21 February 2026"; English names are marked as translations (en: Electricity System Code 2026, as in eng.power).
+- Voltage band: Systeemcode art. 8.3: Un ±10% for 95% of ten-minute averages in a week, +10%/−15% for all.
+- Regulation: the method decision DSO electricity 2027–2031 (12 Feb 2026, published 16 Feb) replaces yardstick competition with cost-based revenue regulation plus efficiency safeguards (process reviews, monitoring, improvement plans, no pay-back of evidently inefficient costs). The agreement of 5 Feb 2026 excludes court cases except on the depreciation of historic book value. Lesson, example, r1, r3 and situation rewritten; term Kostengebaseerde regulering / Cost-based regulation added.
+- €89: ACM expectation of 14 Sept 2026; final 2027 tariffs set end 2026.
+- Queue: 14,044 / 9.1 GW was the 1 July 2025 figure; mid-2026 15,498 offtake requests / 9,986 MW at the regional operators (LAN progress report, Oct 2026). Taught as "about 15,500, about 10 GW, mid-2026".
+- Single integrated queue since 1 July 2026 confirmed (ACM framework 12 Dec 2025; VNG). Municipal applications up to ten years ahead: from autumn 2026.
+- GOTORK: at most 50% used over twelve months or ≥ 1 MW unused; applied to existing connections from 2026. GTO: ACM decision Dec 2025; first contracts 2025 (Liander Deventer, Enexis Nederweert); mandatory offer from 1 Jan 2027. en no longer uses the Dutch acronym GTO.
+- Balance: mFRR added; the example no longer lets a Dutch surplus raise the European frequency (TenneT balances its own area). nl: balanceringsverantwoordelijke (Systeemcode term), formerly programmaverantwoordelijke; Traagheid → Inertie.
+- CTC / GTV definition now word for word from eng.power. Flex contract names aligned with eng.gridplanning (time-dependent, capacity-limiting).
