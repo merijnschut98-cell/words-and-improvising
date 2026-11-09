@@ -350,7 +350,7 @@ const SAY = [
       en: 'More feed costs less tool life, but makes the surface rougher. So when roughing, you raise the feed first. At {n:0.4} it becomes {n:467} millimetres per minute, and the cut takes {n:26} seconds.' },
   ],
   [ // s5 nose radius and roughness
-    { nl: 'De punt van de wisselplaat is afgerond: dat is de {t:Hoekradius|hoekradius}, meestal {n:0.4}, {n:0.8} of {n:1.2} millimeter. Hij laat een fijne schroeflijn achter.',
+    { nl: 'De punt van de wisselplaat is afgerond: dat is de {t:Hoekradius|hoekradius}, meestal {n:0.4} of {n:0.8} of {n:1.2} millimeter. Hij laat een fijne schroeflijn achter.',
       en: 'The tip of the insert is rounded: that is the {t:Nose radius|nose radius}, usually {n:0.4}, {n:0.8} or {n:1.2} millimetres. It leaves a fine helix behind.' },
     { nl: 'De afstand tussen de groefjes is de voeding. Een grotere radius maakt ze ondieper. En de voeding telt in het kwadraat: halveer je hem, dan wordt de ruwheid Ra een kwart.',
       en: 'The distance between the grooves is the feed. A larger radius makes them shallower. And the feed counts squared: halve it, and the roughness Ra drops to a quarter.' },
