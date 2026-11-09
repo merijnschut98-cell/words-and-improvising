@@ -424,7 +424,7 @@ export default {
       sayIt: 'Leg een projectmanager in 60 seconden uit wat een schakelplan is en waarom het gepland werk vertraagt.',
       terms: [
         { term: 'Schakelplan', def: 'Stap-voor-stap-script om een deel van het net uit te schakelen, veilig te maken en terug te schakelen.' },
-        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen afschermen.' },
+        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen onder spanning afschermen: altijd in deze volgorde.' },
         { term: 'Aarden', def: 'De spanningsloze geleiders met aarde en met elkaar verbinden, pas na het vaststellen van spanningsloosheid, zodat per ongeluk inschakelen de beveiliging laat aanspreken.' },
         { term: 'IV', def: 'Installatieverantwoordelijke: verantwoordelijk voor de veilige bedrijfsvoering van de installatie en geeft toestemming voor werk eraan.' },
         { term: 'WV', def: 'Werkverantwoordelijke: leidt één bepaalde klus ter plaatse.' },

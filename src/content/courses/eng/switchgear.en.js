@@ -350,8 +350,8 @@ export default {
       sayIt: 'Explain to a sustainability manager in 60 seconds why SF6 matters for grid operators and what replaces it.',
       terms: [
         { term: 'Panel', def: 'One cabinet in a switchgear row, for one feeder or transformer.' },
-        { term: 'AIS', def: 'Air-insulated switchgear: air between the live parts insulates them; large.' },
-        { term: 'GIS', def: 'Gas-insulated switchgear: live parts in a sealed tank of insulating gas; compact.' },
+        { term: 'Air-insulated switchgear', def: 'AIS: air between the live parts insulates them; large.' },
+        { term: 'Gas-insulated switchgear', def: 'GIS: live parts in a sealed tank of insulating gas; compact.' },
         { term: 'RMU', def: 'Ring main unit: compact MV switchgear in a secondary substation with two ring panels and a transformer panel.' },
         { term: 'SF6', def: 'Insulating gas with a very high greenhouse effect, being phased out in new MV switchgear.' },
         { term: 'Vacuum interrupter', def: 'Sealed bottle with a vacuum in which the contacts open and the arc goes out.' },

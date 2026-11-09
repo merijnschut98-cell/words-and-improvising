@@ -350,8 +350,8 @@ export default {
       sayIt: 'Leg een duurzaamheidsmanager in 60 seconden uit waarom SF6 ertoe doet voor netbeheerders en wat ervoor in de plaats komt.',
       terms: [
         { term: 'Veld', def: 'Eén kast in een installatie, voor één kabel of transformator.' },
-        { term: 'AIS', def: 'Luchtgeïsoleerde installatie: lucht tussen de spanningvoerende delen isoleert; groot.' },
-        { term: 'GIS', def: 'Gasgeïsoleerde installatie: spanningvoerende delen in een gesloten tank met isolerend gas; compact.' },
+        { term: 'Luchtgeïsoleerde installatie', def: 'AIS: lucht tussen de spanningvoerende delen isoleert; groot.' },
+        { term: 'Gasgeïsoleerde installatie', def: 'GIS: spanningvoerende delen in een gesloten tank met isolerend gas; compact.' },
         { term: 'RMU', def: 'Ring main unit: compacte MS-installatie in een netstation met twee ringvelden en een transformatorveld.' },
         { term: 'SF6', def: 'Isolatiegas met een heel sterk broeikaseffect, dat wordt uitgefaseerd in nieuwe MS-installaties.' },
         { term: 'Vacuümschakelbuis', def: 'Gesloten buis met vacuüm waarin de contacten openen en de boog dooft.' },
@@ -869,7 +869,7 @@ export default {
         },
       ],
       teach: [
-        'Het meeste werk aan het net gebeurt spanningsloos (dead): het deel waaraan je werkt is uitgeschakeld en veilig gemaakt. Daarvoor geeft de Europese norm EN 50110 (in Nederland NEN-EN 50110) de vijf veiligheidsregels, altijd in deze volgorde.\n\n1. Vrijschakelen, aan alle kanten waar spanning vandaan kan komen. 2. Beveiligen tegen herinschakelen, met een slot en een label.\n\n3. Spanningsloos meten, met een spanningzoeker die vlak ervoor op een bekende bron onder spanning is gecontroleerd. 4. Aarden en kortsluiten.\n\n5. Afschermen van delen in de buurt die nog onder spanning staan.',
+        'Het meeste werk aan het net gebeurt spanningsloos (dead): het deel waaraan je werkt is uitgeschakeld en veilig gemaakt. Daarvoor geeft de Europese norm EN 50110 (in Nederland NEN-EN 50110) de vijf veiligheidsregels, altijd in deze volgorde.\n\n1. Vrijschakelen, aan alle kanten waar spanning vandaan kan komen. 2. Beveiligen tegen herinschakelen, met een slot en een label.\n\n3. Spanningsloosheid vaststellen, met een spanningzoeker die vlak ervoor op een bekende bron onder spanning is gecontroleerd. 4. Aarden en kortsluiten.\n\n5. Afschermen van delen in de buurt die nog onder spanning staan.',
         'Elke regel dekt een echte fout: het verkeerde veld schakelen; iemand die weer inschakelt; terugvoeding, spanning die van de andere kant binnenkomt, uit een aggregaat, zonnepanelen of een andere ring; geïnduceerde of achtergebleven spanning; een spanningvoerend deel binnen handbereik.\n\nAarden komt pas na spanningsloos meten: een deel aarden dat nog onder spanning staat geeft kortsluiting en een vlamboog bij de monteur. Een stap overslaan omdat “hij is echt uit” is precies hoe ernstige ongevallen gebeuren.',
         'In Nederland past NEN 3140 deze regels toe op laagspanningsinstallaties, tot 1.000 V wisselspanning of 1.500 V gelijkspanning, en NEN 3840 op hogere spanningen, dus MS en HS. Beide bouwen op NEN-EN 50110; netbeheerders werken daarbovenop met eigen sectorregels (BEI, voor LS en HS).\n\nDe belangrijkste rollen: de IV, de installatieverantwoordelijke, die verantwoordelijk is voor de veilige bedrijfsvoering en toestemming geeft voor werk; en de WV, de werkverantwoordelijke, die één klus ter plaatse leidt.',
         'Een VP, een vakbekwaam persoon (skilled person), heeft de opleiding en ervaring om de elektrische risico’s te beoordelen; een VOP, een voldoende onderricht persoon (instructed person), heeft genoeg geleerd voor bepaalde taken. Ieder ander is een leek.\n\nDe werkgever geeft ieder een schriftelijke aanwijzing voor een rol, bepaalde werkzaamheden en bepaalde installaties, nadat hij de bekwaamheid heeft gecheckt. Kunde alleen is niet genoeg om als VP te werken; de aanwijzing telt. Als consultant ben je leek: je gaat alleen naar binnen met een bevoegd persoon, en je raakt niks aan.',
@@ -891,8 +891,8 @@ export default {
         },
         {
           q: 'Wat is de goede volgorde van de eerste drie veiligheidsregels?',
-          options: ['Vrijschakelen, vergrendelen, spanningsloos meten', 'Aarden en kortsluiten, vrijschakelen, spanningsloos meten', 'Spanningsloos meten, vrijschakelen, afschermen', 'Afschermen, aarden, vrijschakelen'],
-          answer: 'Vrijschakelen, vergrendelen, spanningsloos meten',
+          options: ['Vrijschakelen, vergrendelen, spanningsloosheid vaststellen', 'Aarden en kortsluiten, vrijschakelen, spanningsloosheid vaststellen', 'Spanningsloosheid vaststellen, vrijschakelen, afschermen', 'Afschermen, aarden, vrijschakelen'],
+          answer: 'Vrijschakelen, vergrendelen, spanningsloosheid vaststellen',
           why: 'Eerst scheiden, dan zorgen dat het gescheiden blijft, dan aantonen dat het spanningsloos is. Pas daarna aarden en kortsluiten.',
         },
         {
@@ -920,7 +920,7 @@ export default {
       },
       sayIt: 'Leg een nieuwe consultant in 60 seconden de vijf veiligheidsregels uit en waarom elke regel ertoe doet.',
       terms: [
-        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloos meten, aarden en kortsluiten, afschermen: altijd in deze volgorde.' },
+        { term: 'Vijf veiligheidsregels', def: 'Vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen onder spanning afschermen: altijd in deze volgorde.' },
         { term: 'Terugvoeding', def: 'Spanning die een vrijgeschakeld deel van een andere kant binnenkomt, zoals uit een aggregaat, zonnepanelen of een andere ring.' },
         { term: 'NEN 3140', def: 'Nederlandse norm voor de veilige bedrijfsvoering van laagspanningsinstallaties, gebouwd op NEN-EN 50110.' },
         { term: 'IV', def: 'Installatieverantwoordelijke: verantwoordelijk voor de veilige bedrijfsvoering van de installatie en geeft toestemming voor werk eraan.' },
@@ -940,7 +940,7 @@ export default {
         },
       ],
       teach: [
-        'Regel 3, spanningsloos meten, ziet er op MS anders uit dan op LS. Je kunt geen kleine tester tegen een 10 kV-geleider houden in een gesloten RMU. Daarom heeft de meeste MS-apparatuur een spanningsaanwijssysteem (voltage detecting system): ingebouwde capacitieve sensoren per fase met contactbussen of lampjes aan de voorkant, genormeerd in IEC 61243-5.\n\nDe monteur controleert eerst de aanwijzer zelf, met een testkastje of op een veld waarvan bekend is dat het onder spanning staat, en leest dan alle drie de fasen af van de kabel die geaard moet worden.',
+        'Regel 3, spanningsloosheid vaststellen, ziet er op MS anders uit dan op LS. Je kunt geen kleine tester tegen een 10 kV-geleider houden in een gesloten RMU. Daarom heeft de meeste MS-apparatuur een spanningsaanwijssysteem (voltage detecting system): ingebouwde capacitieve sensoren per fase met contactbussen of lampjes aan de voorkant, genormeerd in IEC 61243-5.\n\nDe monteur controleert eerst de aanwijzer zelf, met een testkastje of op een veld waarvan bekend is dat het onder spanning staat, en leest dan alle drie de fasen af van de kabel die geaard moet worden.',
         'Waar geleiders open liggen, zoals in oudere luchtgeïsoleerde velden of bij een kabeleind, gebruikt de monteur een spanningzoeker (voltage detector): een draagbare tester op een isolerende stok, voor de juiste spanning, vlak voor en na gebruik gecontroleerd op een deel onder spanning.\n\nDe regels van de netbeheerder zeggen welke aanwijzer als bewijs telt. Een donker lampje alleen niet: dat kan ook een kapot lampje of een kapotte sensor betekenen.',
         'Dan regel 4. In een moderne RMU doet de aardingsschakelaar het: vergrendeld met de lastscheider, zodat hij alleen dicht kan als de kabelschakelaar open is. Aardingsschakelaars met een inschakelvermogen (klasse E1 of E2 in IEC 62271-102) kunnen een paar keer op een kabel onder spanning inschakelen; klasse E0 niet.\n\nOp de werkplek zelf, zoals een geopende kabel in een sleuf, plaatst de ploeg een aardgarnituur (earthing set): draagbare klemmen en kabels die alle drie de fasen met elkaar en met aarde verbinden, zichtbaar ter plaatse.',
         'Een aardgarnituur moet berekend zijn op het kortsluitvermogen op die plek, in kA gedurende een opgegeven tijd: schakelt iemand per ongeluk in, dan moet hij de foutstroom voeren tot de beveiliging afschakelt, zonder te smelten. Een garnituur onder het kortsluitvermogen kan doorbranden precies wanneer hij nodig is.\n\nLange kabels die naast kabels onder spanning lopen, kunnen geïnduceerde spanning (induced voltage) krijgen, erin gedrukt door het magnetisch veld van de kabel onder spanning. Daarom worden beide einden geaard, en blijven de aardingen erop tot iedereen weg is.',

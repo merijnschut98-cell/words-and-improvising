@@ -424,7 +424,7 @@ export default {
       sayIt: 'Explain to a project manager in 60 seconds what a switching plan is and why it slows down planned work.',
       terms: [
         { term: 'Switching plan', def: 'Step-by-step script to switch part of the grid off, make it safe and switch it back.' },
-        { term: 'Five safety rules', def: 'Disconnect, secure against reconnection, verify dead, earth and short-circuit, protect against nearby live parts.' },
+        { term: 'Five safety rules', def: 'Disconnect, secure against reconnection, verify dead, earth and short-circuit, protect against adjacent live parts: always in this order.' },
         { term: 'Earthing', def: 'Connecting the dead conductors to earth and to each other, only after testing dead, so an accidental switch-on trips the protection.' },
         { term: 'IV', def: 'The person in control of the installation: responsible for its safe operation and gives permission for work on it.' },
         { term: 'WV', def: 'The person in control of the work: leads one specific job on site.' },
