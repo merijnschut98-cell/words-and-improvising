@@ -82,7 +82,12 @@ const SAY = {
     [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
     // tampering as the floor says it, stress on the first syllable (espeak-ng reads "tam-PIE-ring"),
     // and ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
-    [/\b([Tt])ampering\b/g, '$1empering'], [/\bISO 2768\b/g, 'ISO 27 68']],
+    [/\b([Tt])ampering\b/g, '$1empering'], [/\bISO 2768\b/g, 'ISO 27 68'],
+    // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
+    [/\b([Bb])èta\b/g, '$1eeta'],
+    // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
+    // keeps its own stress and vowels (HOOFD-SCHAkelaar, VEILigheids-REgels)
+    [/\b([Hh])oofdschakelaar/g, '$1oofd-schakelaar'], [/\b([Vv])eiligheidsregels\b/g, '$1eiligheids-regels']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
