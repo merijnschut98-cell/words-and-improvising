@@ -11,7 +11,9 @@
 //
 // The drawing is the line of the figure eng.lines.mixed: a paced assembly line
 // with five stations over a roller conveyor. Carriers bring products in three
-// variants, small, medium and large (S, M, L; A, B, C at level 4); every station
+// variants, small, medium and large (S, M, L; at level 4 they stand in for the
+// A, B and C of the lesson's e-bike welding station, and the caption, the voice
+// and the card say that the numbers are that example's); every station
 // has grip fingers, the change parts, that fit the variant. Round it: the
 // operator panel with the recipe, a cart with change parts on locating pins,
 // a rack of kits in build order behind stations 4 and 5, a pre-assembly table,
@@ -451,7 +453,7 @@ const spec = {
       beats: [
         { nl: 'De softwarehelft van omstellen: het {t:Recept|recept}, de instellingen per variant in de PLC.', en: 'The software half of a changeover: the {t:Recipe|recipe}, the settings per variant in the PLC.', cue: { Recept: 'hmi' } },
         { nl: 'De operator scant de order, en de machine laadt het juiste recept.', en: 'The operator scans the order, and the machine loads the right recipe.', cues: ['hmi'] },
-        { nl: 'De hardwarehelft: {t:Formaatdeel|formaatdelen}, zoals grijpvingers die per variant verschillen.', en: 'The hardware half: {t:Change part|change parts}, such as grip fingers that differ per variant.', cue: { Formaatdeel: 'fingers' } },
+        { nl: 'De hardwarehelft: het {t:Formaatdeel|formaatdeel}, een deel dat per variant verschilt, zoals een grijpervinger.', en: 'The hardware half: {t:Change part|change parts}, such as grip fingers that differ per variant.', cue: { Formaatdeel: 'fingers' } },
         { nl: 'Goede formaatdelen zitten op paspennen, met snelspanners, en staan klaar op een kar.', en: 'Good change parts sit on locating pins, with quick clamps, ready on a cart.', cues: ['cart'] },
       ],
     },
@@ -486,9 +488,9 @@ const spec = {
       id: 's7', lesson: SEQ, level: 4, still: 0.5, title: { nl: 'Heijunka', en: 'Heijunka' },
       beats: [
         { nl: '{t:Heijunka}: mix en volume egaal over de dag, in een klein patroon dat zich herhaalt.', en: '{t:Heijunka}: mix and volume even over the day, in a small pattern that repeats.', cue: { Heijunka: 'pattern' } },
-        { nl: 'Dagvraag {n:180} A, {n:120} B, {n:60} C: takt {n:70} s, verhouding {n:3} : {n:2} : {n:1}.', en: 'Day demand {n:180} A, {n:120} B, {n:60} C: takt {n:70} s, a ratio of {n:3} : {n:2} : {n:1}.', cues: ['pattern'], read: { nl: '{n:25200} / {n:360} = {n:70} s', en: '{n:25200} / {n:360} = {n:70} s' } },
+        { nl: 'Het lesvoorbeeld, een lasstation: per dag {n:180} A, {n:120} B, {n:60} C. Takt {n:70} s, {n:3} : {n:2} : {n:1}.', en: 'The lesson’s welding station: a day of {n:180} A, {n:120} B, {n:60} C. Takt {n:70} s, {n:3} : {n:2} : {n:1}.', cues: ['pattern'], read: { nl: '{n:25200} / {n:360} = {n:70} s', en: '{n:25200} / {n:360} = {n:70} s' } },
         { nl: 'Patroon A B A C A B, {n:60} keer per dag. De {t:Heijunka box|heijunka box} geeft het vrij.', en: 'Pattern A B A C A B, {n:60} times a day. The {t:Heijunka box|heijunka box} releases it.', cue: { 'Heijunka box': 'hbox' } },
-        { nl: 'Alle C aan het eind: {n:30} minuten achter. Met het patroon nooit meer dan één C.', en: 'All C at the end: {n:30} minutes behind. With the pattern never more than one C.', cues: ['pattern'], read: { nl: '{n:60} × {n:30} s = {n:1800} s', en: '{n:60} × {n:30} s = {n:1800} s' } },
+        { nl: 'Alle C aan het eind: de lasser {n:30} minuten achter. Met het patroon hooguit {n:30} seconden.', en: 'All C at the end: the welder {n:30} minutes behind. With the pattern {n:30} seconds at most.', cues: ['pattern'], read: { nl: '{n:60} × {n:30} s = {n:1800} s', en: '{n:60} × {n:30} s = {n:1800} s' } },
       ],
     },
     {
@@ -536,7 +538,7 @@ const SAY = [
       en: 'On an automated line a changeover has two halves. The software half is the {t:Recipe|recipe}: a stored set of settings per variant in the PLC, such as speeds, positions and robot programs.' },
     { nl: 'Een verkeerd recept is een klassieke fout. Dus scant de operator de order, en laadt de machine het juiste.',
       en: 'A wrong recipe is a classic mistake. So the operator scans the order, and the machine loads the right one.' },
-    { nl: 'De hardwarehelft zijn de {t:Formaatdeel|formaatdelen}: onderdelen die per variant verschillen, zoals deze grijpvingers.',
+    { nl: 'De hardwarehelft is het {t:Formaatdeel|formaatdeel}: een onderdeel dat per variant verschilt, zoals deze grijpervingers.',
       en: 'The hardware half is the {t:Change part|change parts}: parts that differ per variant, such as these grip fingers.' },
     { nl: 'Goede formaatdelen zijn gemerkt, zitten op paspennen zodat ze zonder bijstellen goed zitten, gebruiken snelspanners in plaats van bouten, en staan klaar op een kar.',
       en: 'Good change parts are marked, sit on locating pins so they fit without adjusting, use quick clamps instead of bolts, and wait on a cart.' },
@@ -574,12 +576,12 @@ const SAY = [
   [ // s7 heijunka
     { nl: '{t:Heijunka} is egaliseren: mix en volume gelijkmatig over de dag bouwen, in een klein patroon dat zich herhaalt, in plaats van grote blokken.',
       en: '{t:Heijunka} is levelling: building the mix and volume evenly over the day, in a small repeating pattern, instead of big blocks.' },
-    { nl: 'Neem een dagvraag van {n:180} A, {n:120} B en {n:60} C, met een takt van {n:70} seconden. De verhouding is {n:3} staat tot {n:2} staat tot {n:1}.',
-      en: 'Take a day demand of {n:180} A, {n:120} B and {n:60} C, with a takt of {n:70} seconds. The ratio is {n:3} to {n:2} to {n:1}.' },
+    { nl: 'Het voorbeeld uit de les is een lasstation voor elektrische fietsen. De dagvraag is {n:180} A, {n:120} B en {n:60} C, met een takt van {n:70} seconden: een verhouding van {n:3} staat tot {n:2} staat tot {n:1}. Op de lijn hier staan ze voor klein, middel en groot.',
+      en: 'The lesson’s example is a welding station for e-bike frames. Day demand is {n:180} A, {n:120} B and {n:60} C, with a takt of {n:70} seconds: a ratio of {n:3} to {n:2} to {n:1}. On the line here they stand for small, medium and large.' },
     { nl: 'Dus: A, B, A, C, A, B, {n:60} keer per dag. Een {t:Heijunka box|heijunka box} legt het patroon vast met kanbankaarten, een vakje per tijdsblok.',
       en: 'So: A, B, A, C, A, B, {n:60} times a day. A {t:Heijunka box|heijunka box} fixes the pattern with kanban cards, a slot per time interval.' },
-    { nl: 'Komen alle zware C aan het eind, dan raakt het station {n:30} minuten achter. Met het patroon nooit meer dan één C. Maar alleen als wisselen geen omsteltijd kost.',
-      en: 'If all the heavy C come at the end, the station falls {n:30} minutes behind. With the pattern, never more than one C. But only if switching costs no changeover time.' },
+    { nl: 'Komen alle zware C aan het eind van de dag, dan raakt de lasser {n:30} minuten achter: de dagelijkse overuren. Met het patroon loopt hij na één C hooguit {n:30} seconden uit, en de drie A’s daarna winnen dat terug. Maar alleen als wisselen geen omsteltijd kost.',
+      en: 'If all the heavy C come at the end of the day, the welder falls {n:30} minutes behind: the daily overtime. With the pattern he runs at most {n:30} seconds over after one C, and the three A-frames after it win that back. But only if switching costs no changeover time.' },
   ],
   [ // s8 frozen sequence, flexible automation
     { nl: 'Ligt de volgorde vast, dan leveren leveranciers erin. Dat vraagt een {t:Bevroren volgorde|bevroren volgorde}: het laatste stuk vóór de lijn, vaak een aantal uren, dat niet meer verandert.',
@@ -658,7 +660,7 @@ const css = `
 `;
 
 const label = {
-  nl: 'Een getakte montagelijn met vijf stations boven een rollenbaan. Dragers met producten in drie varianten, klein, middel en groot, schuiven per takt een station verder. Elk station heeft grijpvingers die bij de variant passen: de formaatdelen. Links het bedieningsscherm met het recept, een kar met formaatdelen op paspennen en een heijunka box; achter station 4 en 5 een rek met kits in bouwvolgorde; vooraan een voormontagetafel, een vliegende kracht, en bij station 5 een andonlamp en een liniaal met de achterstand in seconden. Kaarten tonen de dienst met omstellingen, de gefilmde omstelling, de werkinhoud op station 5, de achterstand, het heijunka-patroon en de bevroren volgorde.',
+  nl: 'Een getakte montagelijn met vijf stations boven een rollenbaan. Dragers met producten in drie varianten, klein, middel en groot, schuiven per takt een station verder. Elk station heeft grijpervingers die bij de variant passen: de formaatdelen. Links het bedieningsscherm met het recept, een kar met formaatdelen op paspennen en een heijunka box; achter station 4 en 5 een rek met kits in bouwvolgorde; vooraan een voormontagetafel, een vliegende kracht, en bij station 5 een andonlamp en een liniaal met de achterstand in seconden. Kaarten tonen de dienst met omstellingen, de gefilmde omstelling, de werkinhoud op station 5, de achterstand, het heijunka-patroon en de bevroren volgorde.',
   en: 'A paced assembly line with five stations over a roller conveyor. Carriers with products in three variants, small, medium and large, move one station on every takt. Each station has grip fingers that fit the variant: the change parts. On the left the operator panel with the recipe, a cart with change parts on locating pins and a heijunka box; behind stations 4 and 5 a rack of kits in build order; at the front a sub-assembly table, a floater, and at station 5 an andon lamp and a ruler with the lag in seconds. Cards show the shift with its changeovers, the filmed changeover, the work content at station 5, the lag, the heijunka pattern and the frozen sequence.',
 };
 

@@ -95,16 +95,21 @@ const STAGE = (() => {
     return i >= 0 && i < seq.length && seq[i] ? { v: VIS[seq[i]], f } : null;
   }
   const fingCache = {};
-  function fingSvg(gap, side) {
-    const key = `${gap.toFixed(1)}${side}`;
+  // servo: a fixed rail as wide as the widest opening, with the servo motor at its
+  // downstream end, so the fingers visibly travel to the width the recipe sets
+  function fingSvg(gap, side, servo) {
+    const key = `${gap.toFixed(1)}${side}${servo ? 's' : ''}`;
     if (fingCache[key]) return fingCache[key];
     const F = C.FING;
     const z1 = C.SLIDE_Z;
+    const rail = servo ? WIDE : gap;
     let s;
     if (side === 'B') s = box({ x: -gap / 2 - F.t, y: -F.half, w: F.t, d: 2 * F.half, r: 0.2 }, z1 - F.len, z1, { tone: 'hi', crease: 'lo' });
     else {
       s = box({ x: gap / 2, y: -F.half, w: F.t, d: 2 * F.half, r: 0.2 }, z1 - F.len, z1, { tone: 'hi', crease: 'lo' })
-        + box({ x: -gap / 2 - 2, y: -4, w: gap + 4, d: 8, r: 0.4 }, z1, z1 + 1.1, {})
+        + box({ x: -rail / 2 - 2, y: -4, w: rail + 4, d: 8, r: 0.4 }, z1, z1 + 1.1, {})
+        + (servo ? box({ x: rail / 2 + 2, y: -3, w: 4.4, d: 6, r: 0.6 }, z1 - 1.4, z1 + 3.4, { tone: 'hi', crease: 'lo' })
+          + dotsSvg([iso([rail / 2 + 6.4, 0, z1 + 1], P)], { size: 0.45, tone: 'hi' }) : '')
         + solidSvg(cylinder(0, 0, 1, z1 + 1.1, 9.5, P, 12, 0), { tone: 'mid', crease: 'none' })
         + dotsSvg([iso([-gap / 2 - 1, 4, z1 + 0.55], P), iso([gap / 2 + 1, 4, z1 + 0.55], P)], { size: 0.3 });
     }
@@ -117,7 +122,7 @@ const STAGE = (() => {
     let f = '';
     st.forEach((q, k) => {
       if (q.a <= 0.01) return;
-      const g = (side) => `<g transform="${translateAlong(P, [C.STN[k], 0, q.dz])}"${q.a < 0.999 ? ` opacity="${q.a.toFixed(2)}"` : ''}>${fingSvg(Math.round(q.gap * 2) / 2, side)}</g>`;
+      const g = (side) => `<g transform="${translateAlong(P, [C.STN[k], 0, q.dz])}"${q.a < 0.999 ? ` opacity="${q.a.toFixed(2)}"` : ''}>${fingSvg(Math.round(q.gap * 2) / 2, side, q.servo)}</g>`;
       b += g('B');
       f += g('F');
     });
@@ -254,7 +259,8 @@ const STAGE = (() => {
   function lagCard(seq, from, lags, upto, head) {
     let s = panel(8, 250, 624, 144) + T(616, 276, EXAMPLE(), 20, 'end', 'vr-tag');
     const y60 = 386 - 60 * 0.7;
-    s += line(80, y60, 600, y60, 'vr-lim') + T(616, y60 + 7, '60', 20, 'end', 'vr-mute') + line(80, 386, 600, 386, 'vr-axis');
+    // the operator calls for help past 60 s (a drawing threshold, not a lesson number)
+    s += line(80, y60, 560, y60, 'vr-lim') + T(616, y60 + 7, tx('hulp', 'help'), 20, 'end', 'vr-mute') + line(80, 386, 600, 386, 'vr-axis');
     for (let n = 0; n < 10; n++) {
       const i = from + n;
       const x = 88 + n * 52;
@@ -269,7 +275,8 @@ const STAGE = (() => {
   }
   // s7: the pattern and the welder's lag over a day: blocks against the pattern
   function dayCard(tiles, numbers, curve) {
-    let s = panel(8, 250, 624, 144);
+    // the numbers are the lesson's worked example: a welding station for e-bike frames
+    let s = panel(8, 250, 624, 144) + T(24, 276, tx('lasstation e-bikes', 'e-bike welding station'), 20, 'start', 'vr-mute');
     const P6 = C.HJ.pattern;
     for (let i = 0; i < 6; i++) {
       const a = clamp(tiles * 6 - i, 0, 1);
@@ -288,7 +295,7 @@ const STAGE = (() => {
       if (upto > 300) pts.push([cx(upto), cy(((upto - 300) * 30) / 60)]);
       g += `<path class="vr-lim" d="M${pts.map(([x, y]) => `${f1(x)} ${f1(y)}`).join('L')}"/>`;
       g += `<path class="vr-curve" d="M${f1(cx(0))} ${f1(cy(0.4))}L${f1(cx(upto))} ${f1(cy(0.4))}"/>`;
-      if (curve > 0.95) g += T(540, 304, tx('blokken: 30', 'blocks: 30'), 20, 'end', 'vr-txt') + T(312, 360, tx('patroon: hooguit 30 s', 'pattern: 30 s at most'), 20, 'start', 'vr-txt');
+      if (curve > 0.95) g += T(540, 304, tx('blokken: 30 min', 'blocks: 30 min'), 20, 'end', 'vr-txt') + T(312, 360, tx('patroon: hooguit 30 s', 'pattern: 30 s at most'), 20, 'start', 'vr-txt');
       s += `<g opacity="${clamp(curve * 8, 0, 1).toFixed(2)}">${g}</g>`;
     }
     return s;
@@ -374,7 +381,7 @@ const STAGE = (() => {
       c = 6 + Math.min(t, tStop) / TP;
       const h = b === 2 ? span(p, 0.1, 0.9) : b === 3 ? 1 : 0;
       st.forEach((q) => { q.gap = h < 0.325 ? C.PROD.M.w : C.PROD.L.w; q.dz = h > 0 && h < 1 ? swapDz(h) : 0; q.a = h > 0 && h < 1 ? swapA(h) : 1; });
-      vis.recipe = span(u, 0, 0.04) * (b === 3 ? 1 - span(p, 0.7, 1) : 1);
+      vis.recipe = span(u, 0, 0.04) * (b === 3 ? 1 - span(p, 0.9, 1) : 1);
       if (vis.recipe > 0.01) set(E.recipe, recipeCard(b === 0 ? 'M' : 'L', b >= 1 ? span(b === 1 ? p : 1, 0.3, 0.6) : 0));
       cartX = b === 3 ? lerp(C.CART.from, C.CART.to, span(p, 0.05, 0.6)) : C.CART.from;
     } else if (si === 3) {
@@ -425,7 +432,14 @@ const STAGE = (() => {
       vis.queue = b < 2 ? span(u, 0, 0.04) * (b === 1 ? 1 - span(p, 0.85, 1) : 1) : 0;
       if (vis.queue > 0.01) set(E.queueIn, queueCard(t, b === 1 ? span(p, 0.1, 0.45) : 0, b === 1 ? span(p, 0.5, 0.65) : 0));
       // flexible automation: the fingers close on every variant, set by the recipe's servo axis
-      if (b >= 2) st.forEach((q, k) => { const here = atStation(c, seq, k + 1); q.gap = here ? C.PROD[here.v].w : WIDE; });
+      // open wide on the way down, close onto this product's width at the bottom, open again to lift
+      if (b >= 2) {
+        st.forEach((q, k) => {
+          const here = atStation(c, seq, k + 1);
+          q.servo = true;
+          q.gap = here ? lerp(WIDE, C.PROD[here.v].w, span(here.f, 0.55, 0.72) * (1 - span(here.f, 0.84, 0.94))) : WIDE;
+        });
+      }
       cards = 6;
     }
 
