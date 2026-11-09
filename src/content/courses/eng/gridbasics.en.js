@@ -157,7 +157,7 @@ export default {
       ],
       teach: [
         'Every cable has resistance, in ohms (Ω). Current through that resistance costs voltage: voltage drop = current × resistance. An aluminium LV cable with a 150 mm² cross-section has roughly 0.2 Ω per kilometre per conductor.\n\nIf 150 A flows in all three phases over 400 metres of that cable, the voltage per phase drops by about 150 × 0.2 × 0.4 = 12 V. The last home then gets not 230 V but about 218 V.',
-        'Customers are entitled to a voltage within the voltage band: 230 V plus or minus 10%, so 207 to 253 V. This follows the European standard EN 50160, measured as ten-minute averages.\n\nA grid designer splits that room along the chain: some for the drop in the MV cable, some in the transformer, the rest for the LV cable. That is why a long cable at the edge of a village gets into trouble first, even when it is far from its current limit.',
+        'Customers are entitled to a voltage within the voltage band: 230 V plus or minus 10%, so 207 to 253 V. The regulator’s grid rulebook sets it, in line with EN 50160: 95% of the ten-minute averages in a week inside the band, none above 253 V or below about 196 V.\n\nA grid designer splits that room along the chain: the MV cable, the transformer, the LV cable. So a long cable at the edge of a village gets into trouble first, even far below its current limit.',
         'With feed-in it reverses. Current from solar panels flows to the distribution substation, and the voltage at the far end climbs above the substation’s: voltage rise, with the same formula. Distribution substations are often set a little above 230 V to cope with the evening peak, so on a sunny afternoon 253 V is reached quickly.\n\nThen inverters switch off. In rural areas voltage is therefore often the first limit, before the current the cable can carry.',
         'There are four levers. A thicker or extra cable lowers the resistance. The transformer in the distribution substation can go one step down with its off-load tap changer, but then the winter evening gets tighter; a regulating distribution transformer does this automatically (see Transformers and cables). Inverters can absorb reactive power, current that swings back and forth and pushes the voltage down a little. And customers can limit their feed-in or store it.\n\nWhich lever is cheapest differs per street.',
         'In practice you see complaints about inverters tripping, and small meters in distribution substations that log the voltage per cable. Experts argue whether to measure street by street or estimate from smart-meter data; smart meters can send voltage alerts, but not every operator uses them. A typical mistake: checking the current and forgetting the voltage.\n\nA sharp question: “Is this cable full on current, or on voltage?”',
@@ -182,7 +182,7 @@ export default {
           q: 'What is the voltage band for LV customers in the Netherlands?',
           options: ['230 V ±5%, so from 219 to 242 V', '230 V ±10%, so from 207 to 253 V', '400 V ±10%, so from 360 to 440 V', '230 V ±20%, so from 184 to 276 V'],
           answer: '230 V ±10%, so from 207 to 253 V',
-          why: 'The voltage band follows EN 50160: 230 V plus or minus 10%, as ten-minute averages.',
+          why: 'The grid rulebook, in line with EN 50160, sets 230 V plus or minus 10%, for 95% of the ten-minute averages in a week.',
         },
         {
           q: 'Why does a long rural cable with many solar panels often hit the voltage limit before the current limit?',
@@ -443,16 +443,16 @@ export default {
       ],
       teach: [
         'You cannot store electricity in the grid itself: every second, generation must equal consumption. The sign of that is the frequency, 50 Hz across continental Europe, one large connected grid from Portugal to Poland.\n\nIf there is too little generation, the spinning generators slow down a little and the frequency falls; with too much it rises. On a normal day it moves by hundredths of a hertz.',
-        'In the Netherlands TenneT is also the system operator: besides the high-voltage grid it guards the balance. It does not do this with its own power plants; it buys reserve power from generators, batteries and large consumers.\n\nThe fastest layer is FCR (frequency containment reserve): reserve power that reacts automatically within seconds to the frequency, shared across Europe. Slower reserves then take over, such as aFRR, which TenneT steers automatically, and bring the frequency back to 50 Hz.',
+        'In the Netherlands TenneT is also the system operator: besides the high-voltage grid it guards the balance. It does not do this with its own power plants; it buys reserve power from generators, batteries and large consumers.\n\nThe fastest layer is FCR (frequency containment reserve): reserve power that reacts automatically within seconds to the frequency, shared across Europe. Then aFRR, which TenneT steers automatically within minutes, and mFRR, called on for longer deviations, take over and bring the frequency back to 50 Hz.',
         'Every connection falls under a balance responsible party (BRP): a company, often the energy supplier, that states the day before how much it will generate and consume. If it deviates in reality, that is imbalance, and it pays the imbalance price.\n\nThat way the market feels the cost of balancing. Note: balance is a national question, congestion a local one. A grid can be in balance and still be full in one place.',
         'In large disturbances: European rules assume a reference incident of 3,000 MW, such as the loss of two large units, and FCR is sized on that. If the frequency still falls far, around 49 Hz, parts of the consumption are switched off automatically (load shedding) to save the rest.\n\nSpinning generators give inertia: their heavy mass slows fast frequency drops. Solar and wind via inverters do not give it by themselves, and grid operators argue about that.',
         'For a regional grid operator, balance plays out in two ways. Grid losses: every grid loses a few percent of what it carries as heat in cables and transformers, and the operator buys that electricity itself. And flex: a battery that helps TenneT with the balance can cause local congestion if it charges at the wrong moment.\n\nA sharp question: “Who is this battery steering for: the market, TenneT or our local grid?”',
       ],
       example: {
         kind: 'faded',
-        text: 'On a sunny Sunday in May, Dutch solar panels generate more than the country consumes. The frequency briefly climbs to 50.08 Hz and the imbalance price turns negative. At the same time a regional grid operator sees a 10 MW battery in an area full of solar parks start charging at full power.',
+        text: 'On a sunny Sunday in May, Dutch solar panels generate more than the country consumes and can export. TenneT sees more power in its area than the schedules said, and the imbalance price turns negative. At the same time a regional grid operator sees a 10 MW battery in an area full of solar parks start charging at full power.',
         ask: 'What is happening here, and is that battery good or bad news for the local grid?',
-        reveal: 'There is too much generation nationally: the frequency rises, and a negative price pays parties to consume more or generate less. The battery helps the national balance.\n\nLocally it depends on the direction of the congestion. In an area full of solar parks the bottleneck is feed-in around midday; a battery charging then takes power off the busy cable: good news. If the same battery charged at full power at 18:00 in an area with an evening consumption peak, it would be bad news. So ask which agreements exist on when it charges.',
+        reveal: 'There is too much generation in the Dutch area: TenneT calls on reserves to turn down, and a negative price pays parties to consume more or generate less. The battery helps the national balance. The frequency barely moves: a national surplus spreads over the whole European grid, so TenneT watches its own area’s balance.\n\nLocally it depends on the direction of the congestion. In an area full of solar parks the bottleneck is feed-in around midday; a battery charging then takes power off the busy cable: good news. If the same battery charged at full power at 18:00 in an area with an evening consumption peak, it would be bad news. So ask which agreements exist on when it charges.',
       },
       said: 'What engineers say: “Nationally everything’s in balance, but that does nothing for this transformer.”',
       recall: [
@@ -516,7 +516,7 @@ export default {
       ],
       teach: [
         'The 380 kV grid is the backbone: a ring of lines past the big generation sites, such as the Maasvlakte, the Eemshaven and Borssele, and the big cities, with parts at 220 kV. From 380/150 kV stations the 150 kV grid is fed, and from that the regional grids.\n\nAt this level TenneT designs to N-1 (see Grid planning and the transition). An extension of the high-voltage grid easily takes six to ten years, mostly because of planning, permits and objection procedures.',
-        'Offshore wind comes in through TenneT’s offshore grid. The first farms, such as Borssele and Hollandse Kust, have 700 MW platforms that come ashore with 220 kV alternating current.\n\nFurther out, such as at IJmuiden Ver, TenneT uses a 2 GW standard with 525 kV direct current: HVDC (high-voltage direct current). A converter station at sea turns AC into DC, and a second one on land, for example on the Maasvlakte, turns it back into 380 kV AC.',
+        'Offshore wind comes in through TenneT’s offshore grid. The first farms, such as Borssele and Hollandse Kust, have 700 MW platforms that come ashore with 220 kV alternating current.\n\nFurther out, such as at IJmuiden Ver, TenneT is building to a 2 GW standard with 525 kV direct current: HVDC (high-voltage direct current). A converter station at sea turns AC into DC, and a second one on land, for example on the Maasvlakte, turns it back into 380 kV AC.',
         'Why direct current? A cable acts as a capacitor: with AC it charges and discharges 50 times a second. That charging current flows through the cable without useful transport, and it grows with length. Beyond roughly 80 to 100 km of subsea cable too little room is left.\n\nDC does not have this problem, but needs expensive converter stations. Rule of thumb: AC close by, DC far away. The same holds for long links with other countries.',
         'Interconnectors link the Netherlands with its neighbours: AC lines to Germany and Belgium, and DC cables such as NorNed to Norway (700 MW), BritNed to Great Britain (1,000 MW) and COBRAcable to Denmark (700 MW).\n\nThey make trade possible, help during faults and make the European grid stronger. But they also need room on the 380 kV grid: power flowing through to other countries takes capacity that is then not available for Dutch customers.',
         'Why this hits the regions: big new demand, such as electric boilers in industry or data centres, and big generation from the sea land on a handful of 380 kV stations. If there is no room there, no MV cable helps. That is how scarcity at TenneT can set a regional operator’s waiting list across whole regions.\n\nExperts argue whether new industry should move to the power at the coast, or the power to the industry. A sharp question: “Is this limit ours, or TenneT’s at 150 or 380 kV?”',
@@ -658,14 +658,14 @@ export default {
       ],
       teach: [
         'Since 1 January 2026 the legal framework is the Energy Act. On that same day it replaced the Electricity Act of 1998 and the Gas Act, and it turns European rules into Dutch law. Under the act sits the Energy Decree, with the details.\n\nIn older contracts, policy papers and slides you still see the Electricity Act. For every rule from an old document, ask whether it still holds this way under the Energy Act.',
-        'The technical and commercial rules are in codes set by the ACM. In early 2026 the ACM replaced the old codes: the Grid Code for electricity, the well-known rulebook for connection, transport and congestion management, is now called the System Code Electricity 2026. There are also, among others, the Tariff Code (how tariffs are built) and the Definitions Code.\n\nMany people still say “the Grid Code”. The operators jointly propose code changes through Netbeheer Nederland, their industry association; the ACM decides.',
+        'The technical and commercial rules are in codes set by the ACM. By a decision of 5 February 2026, in force since 21 February, the ACM replaced the old codes. The Grid Code for electricity, the rulebook for connection, transport and congestion management, became the Electricity System Code 2026, next to the Electricity Tariff Code 2026 and the Electricity Definitions Code 2026 (English names: our translations).\n\nMany people still say “the Grid Code”. The operators propose code changes jointly through Netbeheer Nederland, their industry association; the ACM decides.',
         'Two duties are central. The duty to connect: whoever asks for a connection gets one, within a reasonable time. The duty to transport: the operator must also transport, but may refuse if there is reasonably no capacity.\n\nThat is why in a congested area you can get a connection but no, or only limited, transport capacity. That difference between connection and transport is the source of much confusion for customers.',
         'The law also sets who may do what. Unbundling: a grid operator may not be in one group with energy generation or supply. That is why Enexis and Essent, Liander and Nuon, and Stedin and Eneco split between 2009 and 2017. A grid operator must be independent and treat every customer under the same rules.\n\nThe ACM supervises and can impose fines; a customer with a dispute can turn to the ACM.',
         'In practice many improvement ideas run into a code, such as a new kind of contract or a different order in the queue. Then the route is a code change, and that takes months. Experts argue whether the codes move fast enough with congestion; in recent years the ACM has fast-tracked many new rules.\n\nA sharp question: “Is this an internal agreement we can change ourselves, or is it in the code?”',
       ],
       example: {
         kind: 'worked',
-        text: 'A greenhouse grower in the Westland wants a 2 MW heat pump and applies for a bigger connection with Westland Infra. The area has no room left for extra consumption.\n\nStep 1, connection: the operator must build the connection, within a reasonable time. Step 2, transport: there is no room at peak times, so the extra transport capacity goes on the waiting list, or the grower gets a contract with limits. Step 3, rules: which contracts are allowed and how the queue works is in the System Code; the order follows the ACM’s prioritisation framework.\n\nThe grower hears “yes” and “no” at once. Explain why.',
+        text: 'A greenhouse grower in the Westland wants a 2 MW heat pump and applies for a bigger connection with Westland Infra. The area has no room left for extra consumption.\n\nStep 1, connection: the operator must build the connection, within a reasonable time. Step 2, transport: there is no room at peak times, so the extra transport capacity goes on the waiting list, or the grower gets a contract with limits. Step 3, rules: which contracts are allowed and how the queue works is in the Electricity System Code; the order follows the ACM’s prioritisation framework.\n\nThe grower hears “yes” and “no” at once. Explain why.',
       },
       said: 'What engineers say: “We always have to connect. We only transport if there’s room. We have to explain that difference to every customer.”',
       recall: [
@@ -676,10 +676,10 @@ export default {
           why: 'On 1 January 2026 the Energy Act replaced the Electricity Act of 1998 and the Gas Act.',
         },
         {
-          q: 'What is the former Grid Code for electricity called since 2026?',
-          options: ['Tariff Code Electricity 2026', 'Definitions Code Electricity 2026', 'System Code Electricity 2026', 'Connection Code Electricity 2026'],
-          answer: 'System Code Electricity 2026',
-          why: 'The ACM replaced the codes in early 2026; the rules for connection, transport and congestion management are now in the System Code.',
+          q: 'What is the former Grid Code for electricity called since 21 February 2026? The names are English renderings of the Dutch titles.',
+          options: ['Electricity Tariff Code 2026', 'Electricity Definitions Code 2026', 'Electricity System Code 2026', 'Electricity Connection Code 2026'],
+          answer: 'Electricity System Code 2026',
+          why: 'The ACM replaced the codes by a decision of 5 February 2026, in force on 21 February; the rules for connection, transport and congestion management are now in the System Code.',
         },
         {
           q: 'What is the difference between the duty to connect and the duty to transport?',
@@ -707,7 +707,7 @@ export default {
       sayIt: 'Explain to an entrepreneur in 60 seconds why they do get a connection, but not straight away the capacity they want.',
       terms: [
         { term: 'Energy Act', def: 'The act that since 1 January 2026 sets the framework for grids and energy markets; replaced the Electricity Act of 1998 and the Gas Act.' },
-        { term: 'System Code Electricity', def: 'The ACM code with the rules for connection, transport and congestion management; until 2026 the Grid Code for electricity.' },
+        { term: 'Electricity System Code', def: 'The ACM code with the rules for connection, transport and congestion management; until 21 February 2026 the Grid Code for electricity.' },
         { term: 'Duty to connect', def: 'The grid operator’s duty to connect anyone who asks, within a reasonable time.' },
         { term: 'Duty to transport', def: 'The duty to transport electricity, which the operator may limit if there is reasonably no capacity.' },
         { term: 'Unbundling', def: 'The legal separation between grid operation and energy generation or supply.' },
@@ -727,7 +727,7 @@ export default {
       teach: [
         'For a large consumer two things exist side by side. The connection: the physical link with cable, switchgear and meter, with a maximum, the connection capacity. And transport: the right to take power from or feed power into the grid, set as contracted transport capacity (CTC), in kW.\n\nBoth are in the connection and transport agreement with the operator. The energy supplier and the balance responsible party have separate contracts.',
         'Small and large consumers pay differently. Small consumption pays a fixed capacity tariff per year that depends only on the size of the connection: a 3 × 25 A pays the same, however many kWh flow through it. Large consumption pays, among other things, for the CTC per year and for the highest measured quarter-hour value per month, the kWmax.\n\nFor a large consumer one short peak really costs money; for a household it does not.',
-        'Whoever wants more applies for a higher CTC or a heavier connection. In a congested area that request goes on the waiting list, even if the cable could physically carry it.\n\nConversely, whoever does not use their CTC keeps the grid occupied for nothing. That is why operators in congested areas may take back unused capacity: use it or lose it (UIOLI). A customer who used less than half for twelve months can get a lower CTC after a conversation; hospitals, among others, are exempt.',
+        'In a congested area, a request for a higher CTC goes on the waiting list, even if the cable could carry it.\n\nWhoever does not use their CTC keeps the grid occupied for nothing. So in congested areas operators may take back unused capacity: use it or lose it (UIOLI). A customer who used at most half its CTC over twelve months, or left 1 MW or more unused, can get a lower CTC after a conversation; hospitals, among others, are exempt. Since 2026 this also hits existing customers.',
         'How a connection is built, from request to commissioning, is covered in Transformers and cables and in Grid operations and assets. Here the customer side matters: which CTC do you really need? Customers often ask for a lot “to be safe”, and that makes the waiting list longer.\n\nA good application conversation is about the profile: which machines, when, how simultaneous, what can shift. A charging hub with 20 chargers of 50 kW does not need 1,000 kW if smart charging keeps the peak at 600 kW.',
         'Experts argue about the price of capacity. A fixed CTC costs the same whether you use it at the peak or at night; contracts with a discount for use outside busy hours now exist (see Grid planning and the transition), but the tariff structure keeps changing.\n\nTypical mistakes: a CTC that has been too high for years, or a high kWmax from one morning when everything switched on at once. A sharp question: “What is our CTC, what was our highest quarter-hour value, and why do they differ?”',
       ],
@@ -763,7 +763,7 @@ export default {
           q: 'When can an operator take back part of the CTC under use it or lose it?',
           options: ['When a congested-area customer leaves its CTC largely unused', 'When the customer pays the transport bill late on one occasion', 'When the customer is a hospital or a public transport company', 'When the customer puts solar panels on the roof of its premises'],
           answer: 'When a congested-area customer leaves its CTC largely unused',
-          why: 'Use it or lose it applies in congested areas to capacity that stays unused, such as less than half over twelve months. Hospitals and public transport are in fact exempt.',
+          why: 'Use it or lose it applies in congested areas to capacity that stays unused, such as at most half over twelve months. Hospitals and public transport are in fact exempt.',
         },
       ],
       situation: {
@@ -779,7 +779,7 @@ export default {
       sayIt: 'Explain to a site manager in 60 seconds the difference between their connection and their contracted transport capacity.',
       terms: [
         { term: 'Connection capacity', def: 'The maximum power the physical connection can carry.' },
-        { term: 'Contracted transport capacity', def: 'CTC: the power in kW that a large consumer may take or feed in under its contract.' },
+        { term: 'Contracted transport capacity', def: 'The maximum kW the grid operator has agreed to transport for a connection.' },
         { term: 'Connection and transport agreement', def: 'The contract between customer and grid operator about the connection and transport.' },
         { term: 'Small consumption', def: 'Connections up to 3 × 80 A, on the LV cable in the street.' },
         { term: 'Capacity tariff', def: 'The fixed yearly transport tariff for small consumption, depending on the size of the connection.' },
@@ -799,16 +799,16 @@ export default {
       ],
       teach: [
         'A monopoly without supervision could charge too much. That is why the ACM sets each operator’s allowed revenue, in a method decision for a regulatory period of five years, now 2027 to 2031. Each year’s grid tariff that customers pay follows from it.\n\nThe revenue must cover efficient costs: running the business, depreciation of the grid and a reasonable return on the money invested, so the operator can borrow and invest.',
-        'For a long time the ACM used yardstick competition: the operators are compared with each other, and their revenue follows the sector’s average efficiency. Whoever works cheaper than average may keep the difference for a while; whoever works more expensively loses out.\n\nThat creates a push for efficiency without real competition. Under the Energy Act the legal formulas changed; the ACM now works out the incentives in its own method.',
-        'Why are tariffs rising? Operators invest more than ever: from over €8 billion in 2024 to an expected €15 billion or so a year towards 2040. Netbeheer Nederland’s estimates for the total up to 2040 range from about €195 to €235 billion, depending on assumptions. That money is paid back through tariffs over decades.\n\nThe ACM expects a household to pay on average about €89 a year more in 2027 for the transport of electricity.',
-        'The method decision for 2027–2031 followed an agreement between operators, grid users and the ACM in early 2026: the parties agreed not to litigate against the method. The ACM will review investment plans more closely, so operators do not incur more costs than needed.\n\nThe tension remains: too tight, and the operator cannot build enough; too loose, and customers pay too much. On top of that, the state and the shareholders are putting in extra capital.',
-        'For an improvement project this is the background of every business case. Efficiency at a grid operator turns over time into lower tariffs or more work for the same money, not into profit for investors. Experts argue who should pay for grid expansion: today’s customers, tomorrow’s customers or the taxpayer.\n\nA typical trap: presenting a saving as profit, while regulation later passes it on to the customer. A sharp question: “How does this saving count in the regulation?”',
+        'Until 2026 the ACM used yardstick competition: the operators were compared with each other, and their tariffs followed the sector’s average costs. Whoever worked cheaper than average kept the difference as profit; whoever worked more expensively lost out.\n\nFrom 2027 that changes. Under cost-based regulation an operator gets back its actual efficient costs, plus a return the ACM sets in advance; each year the tariffs are corrected from estimates to actual costs. The reason: price caps held back the investment the energy transition needs.',
+        'Why are tariffs rising? Operators invest more than ever: from over €8 billion in 2024 to an expected €15 billion or so a year towards 2040. Netbeheer Nederland’s estimates for the total up to 2040 range from about €195 to €235 billion, depending on assumptions. That money is paid back through tariffs over decades.\n\nIn September 2026 the ACM expected a household to pay on average about €89 a year more in 2027 for the transport of electricity; the final tariffs are set at the end of 2026.',
+        'The method decision for 2027–2031 (February 2026) followed an agreement between operators, grid users and the ACM: the parties agreed not to go to court over the method, apart from one point on the value of old grid assets. The ACM will review investment plans more closely.\n\nEfficiency is now guarded differently: the ACM reviews business processes and monitors costs, can demand an improvement plan, and does not pay back costs it judges evidently inefficient. Meanwhile the state and the shareholders are putting in extra capital.',
+        'For an improvement project this is the background of every business case. Efficiency at a grid operator turns into lower tariffs or more work for the same money, not into profit for investors; under cost-based regulation the yearly correction passes it on quickly. Experts argue whether the new method keeps enough pressure on costs, and who should pay for grid expansion.\n\nA typical trap: presenting a saving as profit. A sharp question: “How does this saving count in the regulation, and would the ACM expect it anyway?”',
       ],
       example: {
         kind: 'faded',
         text: 'A grid operator compares its costs per customer with the other operators and is 4% above the sector average. A Lean programme would cut operating costs of €600 million a year by 5%. The board asks whether that “makes money”.',
         ask: 'How much does it save per year, and what does that mean in a regulated setting?',
-        reveal: '5% of €600 million is €30 million a year. Against the sector the operator moves from 4% above to just below average (1.04 × 0.95 ≈ 0.99). Within the period it keeps part of the saving; after that the ACM takes the lower cost level into account and it goes to customers through lower tariffs.\n\nThe strongest argument is therefore often capacity: the same people can connect and reinforce more. Ask the regulation department how the saving counts in the next period.',
+        reveal: '5% of €600 million is €30 million a year. Against the sector the operator moves from 4% above to just below average (1.04 × 0.95 ≈ 0.99). Under the cost-based method from 2027 the saving does not stay as profit: through the yearly correction it goes to customers as lower tariffs.\n\nIt still pays. Costs well above the sector invite ACM questions and perhaps an improvement plan, and costs judged evidently inefficient are not paid back. The strongest argument is capacity: the same people can connect and reinforce more. Ask the regulation department how the ACM will look at it.',
       },
       said: 'What engineers say: “A saving isn’t profit for us. It’s more grid for the same money, and in time a lower tariff.”',
       recall: [
@@ -821,10 +821,10 @@ export default {
           why: '€2,400 million / 40 years = €60 million a year.',
         },
         {
-          q: 'What is yardstick competition?',
-          options: ['Grid operators compete for customers in each other’s areas', 'Comparing operators; being efficient pays', 'The cheapest operator may build all new grids in the whole country', 'Customers choose their grid operator on price every year'],
-          answer: 'Comparing operators; being efficient pays',
-          why: 'Without real competition, comparison with the sector gives a reason to work efficiently.',
+          q: 'How does the ACM set a regional operator’s allowed revenue from 2027?',
+          options: ['By comparing operators; cheaper than average keeps the gain', 'From its actual efficient costs, corrected each year', 'Through an auction among the operators every five years', 'As a fixed amount per customer, the same in every region'],
+          answer: 'From its actual efficient costs, corrected each year',
+          why: 'From 2027 the ACM uses cost-based regulation. Comparing operators, yardstick competition, was the method until 2026.',
         },
         {
           q: 'How long does an ACM regulatory period for the regional grid operators usually last, such as 2027–2031?',
@@ -836,16 +836,16 @@ export default {
           q: 'A grid operator makes a lasting cost saving. Where does that mainly end up over time?',
           options: ['With customers, through lower tariffs', 'With investors, as a higher dividend', 'With TenneT, as extra budget for 380 kV', 'With the ACM, as a reserve for fines'],
           answer: 'With customers, through lower tariffs',
-          why: 'The ACM takes the lower cost level into account in the next period, and the shareholders are public bodies.',
+          why: 'Under cost-based regulation the ACM corrects the tariffs to actual costs each year, and the shareholders are public bodies.',
         },
       ],
       situation: {
         scene: 'You present the business case of an improvement programme at Enexis. A controller says: “Nice, but savings go to the customer anyway. Why would we do this?”',
         ask: 'What do you answer?',
-        model: 'True, over time it goes to the customer through lower tariffs, and that is exactly the point with a regulated monopoly. Within the period we keep part of it, and what we mainly gain now is capacity: connecting and reinforcing more with the same people while the waiting list grows. Can we also express the business case in extra connections per year?',
+        model: 'True, it goes to the customer through lower tariffs, and from 2027 faster than before, because the ACM pays back actual efficient costs. That is the point of a regulated monopoly. What we gain is capacity, connecting and reinforcing more with the same people while the waiting list grows, and a cost level the ACM will not question. Can we also express the business case in extra connections per year?',
         rubric: [
           'Acknowledges how regulation passes savings to the customer',
-          'Names the benefit within the period',
+          'Names the ACM’s efficiency review as a reason to act',
           'Reframes the value as capacity for connecting and reinforcing',
         ],
       },
@@ -854,7 +854,8 @@ export default {
         { term: 'Allowed revenue', def: 'The amount a grid operator may collect through tariffs, as set by the ACM.' },
         { term: 'Method decision', def: 'The ACM decision that sets, for a regulatory period, how the allowed revenue is calculated.' },
         { term: 'Regulatory period', def: 'The period a method decision applies to, five years for the regional grid operators.' },
-        { term: 'Yardstick competition', def: 'Regulation in which operators are compared with each other and being more efficient than average is rewarded.' },
+        { term: 'Yardstick competition', def: 'Regulation in which operators are compared with each other and being more efficient than average is rewarded; the ACM’s method until 2026.' },
+        { term: 'Cost-based regulation', def: 'Regulation in which the operator gets back its actual efficient costs plus a return set in advance; the ACM’s method from 2027.' },
         { term: 'Grid tariff', def: 'What a customer pays the grid operator for connection and transport, separate from the supplier’s energy bill.' },
       ],
     },
@@ -944,7 +945,7 @@ export default {
         'Netbeheer Nederland makes a distinction that often gets lost in conversation. Grid congestion in the strict sense is physical overload now, at peak moments. Transport scarcity is an expectation: the future peak is larger than the capacity. That future peak is the current peak, plus the capacity already promised to new customers (even if they are still building), plus natural growth at existing customers.\n\nWhat the news calls “grid congestion” is usually transport scarcity.',
         'The capacity map shows per area whether there is room left, separately for offtake (taking power from the grid) and for feed-in. Red means transport scarcity: no new or bigger connections with firm transport, and applications go on a queue. In-between colours show limited room or an ongoing study.\n\nThe map looks per station or area. A red area can contain streets where the local grid still has room, and the other way round.',
         'Before an operator says no, the code requires it to study whether congestion management can create room: are there customers willing to limit their peak for a fee or under a different contract? That study is published. Only if it does not yield enough do applications go on the queue.\n\nThere the default is first come, first served. With social prioritisation, projects that relieve congestion, safety and basic needs go first (see Grid operations and assets).',
-        'How big is it? In early 2026 the regional grid operators had over 14,000 applications from large consumers on the queue for offtake, together about 9 GW (government figures, February 2026). Since 1 July 2026 there has been one queue for small and large consumption; the separate reserve for small consumption has ended.\n\nMunicipalities can recently apply for capacity up to ten years ahead for housing and schools. That creates no extra room, but a timely place in the queue.',
+        'How big is it? In mid-2026 the regional grid operators had about 15,500 offtake requests from businesses and institutions on the queue, together about 10 GW (government progress report, autumn 2026); the figure keeps moving. Since 1 July 2026 there has been one queue for small and large consumption; the separate reserve for small consumption has ended.\n\nSince autumn 2026 municipalities can apply for capacity up to ten years ahead for housing and schools. That creates no extra room, but a timely place in the queue.',
         'In projects you see customers who do not know whether their problem sits with the regional operator or with TenneT, applications that are too large “to be safe”, and queues nobody explains well. Experts argue whether counting promised but unused capacity turns an area red too early; use it or lose it is one answer to that.\n\nA sharp question: “Is this area red because of today’s peak, or because of what we have already promised?”',
       ],
       example: {
@@ -1013,8 +1014,8 @@ export default {
       teach: [
         'A customer on the queue does not have to sit still. Start with its own profile: which quarter-hour values, which machines, which peaks. Often the peak turns out to come from a few mornings when everything starts at once.\n\nPeak shaving behind the meter, with control that briefly turns chargers or cooling down, lowers that peak without changing anything on the grid. That helps twice: a lower kWmax on the bill, and room within the existing CTC.',
         'A battery of its own can absorb peaks: charging when it is quiet, discharging at the peak. With its own generation, such as solar panels on the roof, it also uses more itself. But a battery is expensive, and if it also trades on the market, it must not charge at the busiest moment (see Grid planning and the transition).\n\nA hybrid installation, such as an electric boiler with the gas boiler as back-up, uses electricity when there is room and falls back on gas otherwise.',
-        'More is possible together with the neighbours. In an energy hub, companies on one site pool their demand, generation and storage, so one company’s peak falls in another’s trough.\n\nSince the ACM set the group transport agreement (GTO) in late 2025, they can sign one transport contract with the operator together and share the capacity among themselves; the first trials ran in 2025. The group then needs less than the sum of the separate applications.',
-        'In cable pooling, a solar park and a wind farm share one connection: the sun delivers mostly at midday and in summer, wind more often in winter and at night. That fits more generation on the same cable.\n\nFlexible contracts with the operator itself, such as a time-based contract or a capacity limitation contract, are covered in Grid planning and the transition. For every option: the customer must really keep it up, also in a cold week.',
+        'More is possible together with the neighbours. In an energy hub, companies on one site pool their demand, generation and storage, so one company’s peak falls in another’s trough.\n\nIn late 2025 the ACM set the group transport agreement: companies sign one transport contract with the operator together and share the capacity among themselves. Operators signed the first ones in 2025, and from 1 January 2027 they must offer it. The group then needs less than the sum of the separate applications.',
+        'In cable pooling, a solar park and a wind farm share one connection: the sun delivers mostly at midday and in summer, wind more often in winter and at night. That fits more generation on the same cable.\n\nFlexible contracts with the operator itself, such as a time-dependent contract or a capacity-limiting contract, are covered in Grid planning and the transition. For every option: the customer must really keep it up, also in a cold week.',
         'In practice these options get stuck more often on organisation than on technology: who is liable if one company leaves the hub, who meters, who controls. Experts argue whether customers are solving the operator’s problem this way, or the operator theirs. For a grid operator, customers who shift on their own are worth gold.\n\nA sharp question for every waiting customer: “If tomorrow you could get 70% of your request, outside peak hours, what would you do?”',
       ],
       example: {
@@ -1037,7 +1038,7 @@ export default {
           q: 'What does a group transport agreement arrange?',
           options: ['That each company must place its own battery on the site', 'That the operator gives the estate priority in the queue', 'That companies sign one contract together and share it', 'That companies may resell their power to households'],
           answer: 'That companies sign one contract together and share it',
-          why: 'With a GTO the group gets contracted capacity together, which it shares among its members; because the peaks do not coincide, that is less than the sum.',
+          why: 'With a group transport agreement the group gets contracted capacity together, which it shares among its members; because the peaks do not coincide, that is less than the sum.',
         },
         {
           q: 'Why does a solar park often fit on one connection together with a wind farm?',
@@ -1067,7 +1068,7 @@ export default {
         { term: 'Peak shaving', def: 'Using a battery or flexible load to cut the highest peaks of a connection.' },
         { term: 'Hybrid installation', def: 'An installation that can switch between electricity and another source, such as an electric boiler with a gas boiler as back-up.' },
         { term: 'Energy hub', def: 'Companies at one site that pool demand, generation and storage and control them together.' },
-        { term: 'Group transport agreement', def: 'GTO: one transport contract for a group of customers, who share the contracted capacity among themselves.' },
+        { term: 'Group transport agreement', def: 'One transport contract for a group of customers, who share the contracted capacity among themselves.' },
         { term: 'Cable pooling', def: 'Several generation installations, such as solar and wind, sharing one connection.' },
       ],
     },
