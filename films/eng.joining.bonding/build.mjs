@@ -43,6 +43,8 @@ const LAP = { w: 25, ov: 20, tau: 20 };
 LAP.area = LAP.w * LAP.ov;
 LAP.kN = (LAP.area * LAP.tau) / 1000;
 assert(LAP.area === 500 && near(LAP.kN, 10, 1e-9), '25 × 20 = 500 mm², × 20 MPa = 10 kN');
+// the narration: 10 kN is the weight of about a tonne (10.000 N / 9,81 m/s² = 1.019 kg)
+assert(near((LAP.kN * 1000) / 9.81, 1000, 25), '10 kN ≈ the weight of 1.000 kg');
 // bonding (example): the battery tray, 96 self-piercing rivets every 30 mm plus 14 m of epoxy
 const TRAY = { rivets: 96, pitch: 30, bead: 14 };
 assert(TRAY.rivets * TRAY.pitch < TRAY.bead * 1000, '96 rivets at 30 mm span about 2,9 m, a part of the 14 m bead line');
@@ -226,7 +228,7 @@ C.KEYS = [
   [WIDE, WIDE, WIDE], // s4
   [BEADV, WIDE, WIDE], // s5: the robot lays the bead
   [WIDE, WIDE], // s6
-  [WIDE, WIDE, WIDE], // s7
+  [WIDE, WIDE, WIDE, WIDE], // s7
   [WIDE, WIDE, WIDE, WIDE], // s8
 ];
 
@@ -245,14 +247,14 @@ const spec = {
       id: 's1', lesson: BO, level: 1, still: 0.5, title: { nl: 'Waarom niet lassen', en: 'Why not weld' },
       beats: [
         { nl: 'Een batterijbak: aluminium profielen op stalen dwarsliggers. Lassen kan hier niet.', en: 'A battery tray: aluminium extrusions on steel crossmembers. Welding is out here.', cues: ['alu', 'steel'] },
-        { nl: 'Aluminium smelt rond {n:660} °C, staal rond {n:1500} °C, en samen worden ze bros.', en: 'Aluminium melts near {n:660} °C, steel near {n:1500} °C, and together they turn brittle.', cues: ['melt'] },
+        { nl: 'Aluminium smelt rond {n:660} °C, staal rond {n:1500} °C, en waar ze mengen worden ze bros.', en: 'Aluminium melts near {n:660} °C, steel near {n:1500} °C, and where they mix they turn brittle.', cues: ['melt'] },
         { nl: '{n:14} meter {t:Constructielijm|constructielijm} plus {n:96} klinknagels, om de {n:30} mm.', en: '{n:14} metres of {t:Structural adhesive|structural adhesive} plus {n:96} rivets, every {n:30} mm.', cue: { Constructielijm: 'bead' }, cues: ['rivets', 'spr'] },
       ],
     },
     {
       id: 's2', lesson: BO, level: 1, still: 0.5, title: { nl: 'Afschuiven of afpellen', en: 'Shear or peel' },
       beats: [
-        { nl: 'Epoxy, PU en acrylaat dragen; secondelijm is voor kleine delen, MS-polymeer voor elastische naden.', en: 'Epoxy, PU and acrylic carry loads; superglue is for small parts, MS polymer for elastic joints.', cues: ['fam'] },
+        { nl: 'Epoxy, PU en acrylaat dragen; secondelijm en MS-polymeer meestal niet.', en: 'Epoxy, PU and acrylic carry loads; superglue and MS polymer usually do not.', cues: ['fam'] },
         { nl: 'Bij {t:Afschuiving|afschuiving} schuiven de delen langs elkaar: het hele lijmvlak draagt.', en: 'In {t:Shear|shear} the parts slide along each other: the whole bond area carries.', cue: { Afschuiving: 'shear' } },
         { nl: '{n:25} × {n:20} mm = {n:500} mm²; bij {n:20} MPa draagt dat {n:10} kN.', en: '{n:25} × {n:20} mm = {n:500} mm²; at {n:20} MPa that carries {n:10} kN.', cues: ['shear'] },
         { nl: 'Bij {t:Afpellen|afpellen} trek je één rand open, als een sticker: een dun lijntje draagt alles.', en: 'In {t:Peel|peel} you pull one edge open, like a sticker: a thin line carries it all.', cue: { Afpellen: 'peel' } },
@@ -261,7 +263,7 @@ const spec = {
     {
       id: 's3', lesson: BO, level: 1, still: 0.5, title: { nl: 'Klinken en clinchen', en: 'Riveting and clinching' },
       beats: [
-        { nl: 'Een {t:Zelfponsende klinknagels|zelfponsende klinknagel} snijdt door de bovenplaat en spreidt in de onderste.', en: 'A {t:Self-piercing rivets|self-piercing rivet} cuts through the top sheet and flares in the bottom one.', cue: { 'Zelfponsende klinknagels': 'spr' } },
+        { nl: '{t:Zelfponsende klinknagels|Zelfponsende klinknagels} snijden door de bovenplaat en spreiden in de onderste.', en: '{t:Self-piercing rivets|Self-piercing rivets} cut through the top sheet and flare in the bottom one.', cue: { 'Zelfponsende klinknagels': 'spr' } },
         { nl: '{t:Clinchen|Clinchen}: een stempel drukt beide platen in een matrijs, tot een knoop die haakt.', en: '{t:Clinching|Clinching}: a punch presses both sheets into a die, into a button that interlocks.', cue: { Clinchen: 'clinch' } },
         { nl: 'Lijm plus nagels: de lijm draagt, de nagels vangen het afpellen aan de uiteinden.', en: 'Adhesive plus rivets: the adhesive carries, the rivets catch the peel at the ends.', cues: ['bead', 'rivets'] },
         { nl: 'Zelfde staal: lassen. Gemengd: lijm plus nagels. Moet het los voor service: bouten.', en: 'Same steel: weld. Mixed: adhesive plus rivets. Must it come apart for service: bolts.', cues: ['choose'] },
@@ -295,7 +297,8 @@ const spec = {
       beats: [
         { nl: 'Bij elke nagel legt het gereedschap de {t:Kracht-wegcurve|kracht-wegcurve} vast, in een venster.', en: 'For every rivet the tool records the {t:Force-displacement curve|force-displacement curve}, in a window.', cue: { 'Kracht-wegcurve': 'curve' } },
         { nl: 'Venster {n:36} tot {n:44} kN; het gemiddelde staat op {n:42.8} en stijgt {n:0.4} kN per {n:1000}.', en: 'Window {n:36} to {n:44} kN; the mean stands at {n:42.8} and climbs {n:0.4} kN per {n:1000}.', cues: ['drift'] },
-        { nl: 'Over {n:3000} nagels raakt het de grens: binnen één ploeg. Clinchen: meet de {t:Bodemdikte|bodemdikte}.', en: 'In {n:3000} rivets it hits the limit: within one shift. Clinching: measure the {t:Bottom thickness|bottom thickness}.', cue: { Bodemdikte: 'bottom' }, cues: ['drift'] },
+        { nl: 'Over {n:3000} nagels raakt het de grens: binnen één ploeg. Grijp nu in.', en: 'In {n:3000} rivets it hits the limit: within one shift. Act now.', cues: ['drift'] },
+        { nl: 'Bij clinchen meet je ook de {t:Bodemdikte|bodemdikte}: hoe dun de knoop onderin is.', en: 'With clinching you also measure the {t:Bottom thickness|bottom thickness}: how thin the button is at the bottom.', cue: { Bodemdikte: 'bottom' } },
       ],
     },
     {
@@ -304,7 +307,7 @@ const spec = {
         { nl: 'In een {t:Multimateriaalontwerp|multimateriaalontwerp} geeft water {t:Galvanische corrosie|galvanische corrosie}.', en: 'In {t:Multi-material design|multi-material design}, water brings {t:Galvanic corrosion|galvanic corrosion}.', cue: { Multimateriaalontwerp: 'multi', 'Galvanische corrosie': 'galv' } },
         { nl: 'De {t:Spanningsreeks|spanningsreeks}: aluminium staat onder staal en lost op. Isoleer met lijm.', en: 'The {t:Galvanic series|galvanic series}: aluminium sits below steel and dissolves. Insulate with adhesive.', cue: { Spanningsreeks: 'series' }, cues: ['galv'] },
         { nl: '{t:Demontage|Demontage}: een {t:Vloeiboorschroef|vloeiboorschroef} kan eruit, een lijmnaad niet.', en: '{t:Disassembly|Disassembly}: a {t:Flow drill screw|flow drill screw} can come out, a bond line cannot.', cue: { Demontage: 'demont', Vloeiboorschroef: 'fds' } },
-        { nl: '{n:400} punten, {n:60000} vloeren per jaar: nagels € {n:0.06}, schroeven € {n:0.15} per stuk.', en: '{n:400} points, {n:60000} floors a year: rivets €{n:0.06}, screws €{n:0.15} each.', cues: ['cost'] },
+        { nl: '{n:400} punten, {n:60000} vloeren per jaar: nagels €\u00a0{n:0.06}, schroeven €\u00a0{n:0.15} per stuk.', en: '{n:400} points, {n:60000} floors a year: rivets €{n:0.06}, screws €{n:0.15} each.', cues: ['cost'] },
       ],
     },
   ],
@@ -319,72 +322,74 @@ const spec = {
 // ("zes cent", "drieduizend"); the captions assert those numbers.
 const SAY = [
   [ // s1 why not weld
-    { nl: 'Dit is een hoek van een batterijbak voor een elektrische bestelbus: aluminium profielen op stalen dwarsliggers. Lassen kan hier niet.',
-      en: 'This is a corner of a battery tray for an electric van: aluminium extrusions on steel crossmembers. Welding is out here.' },
-    { nl: 'Aluminium smelt rond {n:660} graden, staal pas rond {n:1500}. En waar ze toch mengen, ontstaan brosse kristallen. Daarom verbinden we ze koud: met lijm, met klinknagels, of door de platen in elkaar te drukken.',
-      en: 'Aluminium melts at about {n:660} degrees, steel only at about {n:1500}. And where they do mix, brittle crystals form. So we join them cold: with adhesive, with rivets, or by pressing the sheets into each other.' },
-    { nl: 'Deze bak heeft {n:14} meter {t:Constructielijm|constructielijm}, een dragende lijm, en {n:96} klinknagels om de {n:30} millimeter. De lijm draagt en houdt water buiten. De nagels houden alles vast terwijl de lijm in de oven uithardt.',
-      en: 'This tray has {n:14} metres of {t:Structural adhesive|structural adhesive}, a load-bearing glue, and {n:96} rivets every {n:30} millimetres. The adhesive carries the load and keeps water out. The rivets hold everything while the adhesive cures in the oven.' },
+    { nl: 'Een hoek van een batterijbak: aluminium profielen op stalen dwarsliggers. Lassen kan hier niet.',
+      en: 'A corner of a battery tray: aluminium extrusions on steel crossmembers. Welding is out here.' },
+    { nl: 'Aluminium smelt rond {n:660} graden, staal pas rond {n:1500}, en waar ze mengen ontstaan brosse kristallen. Daarom verbinden we ze koud: lijmen, klinken of clinchen.',
+      en: 'Aluminium melts at about {n:660} degrees, steel only at about {n:1500}, and where they mix, brittle crystals form. So we join them cold: bonding, riveting or clinching.' },
+    { nl: 'Deze bak heeft {n:14} meter {t:Constructielijm|constructielijm}, dragende lijm, en {n:96} klinknagels om de {n:30} millimeter. De lijm draagt over het hele vlak, dempt trillingen en dicht af. De nagels houden alles vast terwijl hij in de oven uithardt.',
+      en: 'This tray has {n:14} metres of {t:Structural adhesive|structural adhesive} and {n:96} rivets every {n:30} millimetres. The adhesive carries the load over the whole surface, damps vibration and seals. The rivets hold everything while it cures in the oven.' },
   ],
   [ // s2 shear or peel
-    { nl: 'Dragende lijmen zijn er in families. Epoxy is stijf en sterk, polyurethaan taaier, en acrylaten harden snel uit. Secondelijm is voor kleine onderdelen, en MS-polymeer voor elastische naden die ook afdichten.',
-      en: 'Load-bearing adhesives come in families. Epoxy is stiff and strong, polyurethane tougher, and acrylics cure fast. Superglue is for small parts, and MS polymer for elastic joints that also seal.' },
+    { nl: 'Er zijn drie hoofdfamilies: epoxy is stijf en sterk, polyurethaan taaier, en acrylaat hardt snel uit. Secondelijm en MS-polymeer zijn meestal niet dragend.',
+      en: 'There are three main families: epoxy is stiff and strong, polyurethane tougher, and acrylic cures fast. Superglue and MS polymer are usually not structural.' },
     { nl: 'Lijm is sterk op {t:Afschuiving|afschuiving}: de delen schuiven langs elkaar, en het hele lijmvlak draagt mee.',
       en: 'Adhesive is strong in {t:Shear|shear}: the parts slide along each other, and the whole bond area carries the load.' },
-    { nl: 'Een overlap van {n:25} bij {n:20} millimeter is {n:500} vierkante millimeter. Bij {n:20} megapascal draagt die zo’n {n:10} kilonewton: ruim duizend kilo, op een postzegel lijm.',
-      en: 'An overlap of {n:25} by {n:20} millimetres is {n:500} square millimetres. At {n:20} megapascals it carries about {n:10} kilonewtons: over a tonne, on a postage stamp of glue.' },
-    { nl: 'Maar lijm is zwak op {t:Afpellen|afpellen}. Trek je één rand open, zoals een sticker, dan zit alle kracht op een dun lijntje, en de naad scheurt open.',
-      en: 'But adhesive is weak in {t:Peel|peel}. Pull one edge open, like a sticker, and all the force sits on a thin line, and the joint tears open.' },
+    { nl: 'Een overlap van {n:25} bij {n:20} millimeter is {n:500} vierkante millimeter. Bij {n:20} megapascal draagt die zo’n {n:10} kilonewton: het gewicht van duizend kilo, op een postzegel lijm.',
+      en: 'An overlap of {n:25} by {n:20} millimetres is {n:500} square millimetres. At {n:20} megapascals it carries about {n:10} kilonewtons: the weight of a tonne, on a postage stamp of glue.' },
+    { nl: 'Maar lijm is zwak op {t:Afpellen|afpellen}: trek je één rand open, zoals een sticker, dan draagt een dun lijntje alle kracht.',
+      en: 'But adhesive is weak in {t:Peel|peel}: pull one edge open, like a sticker, and a thin line carries all the force.' },
   ],
   [ // s3 riveting and clinching
-    { nl: 'Een {t:Zelfponsende klinknagels|zelfponsende klinknagel} wordt door de bovenste plaat geperst. Een matrijs eronder laat de holle poot uitspreiden in de onderste plaat, zonder die te doorboren. Geen gat, geen warmte.',
-      en: 'A {t:Self-piercing rivets|self-piercing rivet} is pressed through the top sheet. A die underneath makes its hollow leg flare out in the bottom sheet, without piercing it. No hole, no heat.' },
-    { nl: 'Bij {t:Clinchen|clinchen} is er zelfs geen nagel. Een stempel drukt beide platen in een matrijs, tot een knoop die in elkaar haakt. Meestal zwakker dan een laspunt, maar snel en goedkoop.',
-      en: '{t:Clinching|Clinching} needs no rivet at all. A punch presses both sheets into a die, into a button that interlocks. Usually weaker than a spot weld, but quick and cheap.' },
-    { nl: 'Vaak combineer je lijm en nagels. De lijm draagt de afschuiving, en een nagel aan elk eind van de rups houdt het afpellen tegen, zoals bij een botsing.',
-      en: 'Often you combine adhesive and rivets. The adhesive carries the shear, and a rivet at each end of the bead stops the peel, in a crash for example.' },
+    { nl: '{t:Zelfponsende klinknagels|Zelfponsende klinknagels} worden door de bovenste plaat geperst, en een matrijs laat hun holle poot uitspreiden in de onderste, zonder die te doorboren. Geen voorgeboord gat, geen warmte.',
+      en: '{t:Self-piercing rivets|Self-piercing rivets} are pressed through the top sheet, and a die makes their hollow leg flare out in the bottom one, without piercing it. No pre-drilled hole, no heat.' },
+    { nl: '{t:Clinchen|Clinchen} kan zelfs zonder nagel: een stempel drukt beide platen in een matrijs, tot een knoop die in elkaar haakt. Meestal zwakker dan een laspunt, maar snel, goedkoop en prima met gelakte plaat.',
+      en: '{t:Clinching|Clinching} needs no rivet at all: a punch presses both sheets into a die, into a button that interlocks. Usually weaker than a spot weld, but quick, cheap and fine with painted sheet.' },
+    { nl: 'Lijm plus nagels: de lijm draagt de afschuiving, en een nagel aan elk eind van de rups houdt het afpellen tegen, bijvoorbeeld bij een botsing.',
+      en: 'Adhesive plus rivets: the adhesive carries the shear, and a rivet at each end of the bead stops the peel, in a crash for example.' },
     { nl: 'Zelfde staal, hoge sterkte: meestal lassen. Gemengde materialen en afdichten: lijm plus nagels. Moet het uit elkaar voor service: bouten.',
       en: 'Same steel, high strength: usually welding. Mixed materials and sealing: adhesive plus rivets. Must it come apart for service: bolts.' },
   ],
   [ // s4 preparing and mixing
-    { nl: 'Lijm hecht alleen op een schoon vlak. Daarom begint het met {t:Voorbehandeling|voorbehandeling}: ontvetten, soms opruwen, of een primer. Op olie trekt lijm samen tot druppels. Op een schoon vlak vloeit hij uit: hij bevochtigt het.',
-      en: 'Adhesive only sticks to a clean surface. So it starts with {t:Surface preparation|surface preparation}: degreasing, sometimes roughening, or a primer. On oil, adhesive pulls into droplets. On a clean surface it spreads out: it wets the surface.' },
+    { nl: 'Lijm hecht alleen op een schoon vlak. Daarom begint het met {t:Voorbehandeling|voorbehandeling}: ontvetten, soms opruwen, een primer of plasma. Op olie of een vingerafdruk parelt lijm; op een schoon vlak vloeit hij uit.',
+      en: 'Adhesive only sticks to a clean surface. So it starts with {t:Surface preparation|surface preparation}: degreasing, sometimes roughening, a primer or plasma. On oil or a fingerprint, adhesive beads up; on a clean surface it spreads out.' },
     { nl: 'Tweecomponentenlijm is hars plus harder. Een {t:Statische menger|statische menger}, een buisje met schroefvormige elementen, mengt ze vlak voor het opbrengen.',
       en: 'Two-part adhesive is resin plus hardener. A {t:Static mixer|static mixer}, a small tube with spiral elements, mixes them just before application.' },
-    { nl: 'Dan loopt de klok. Binnen de {t:Open tijd|open tijd}, hier {n:20} minuten, moeten de delen op elkaar. Uitharden duurt langer: uren tot hanteerbaar, vaak een dag tot volle sterkte. Staat de lijn {n:40} minuten stil, dan eerst de menger uitspuiten.',
-      en: 'Then the clock runs. Within the {t:Open time|open time}, here {n:20} minutes, the parts must be joined. Curing takes longer: hours until it can be handled, often a day to full strength. If the line stops for {n:40} minutes, purge the mixer first.' },
+    { nl: 'Binnen de {t:Open tijd|open tijd}, hier {n:20} minuten, moeten de delen op elkaar. Staat de lijn {n:40} minuten stil, dan hardt de lijm in de menger uit: eerst uitspuiten. Hanteerbaar is hij na een paar uur, op volle sterkte vaak pas na een dag, en in de kou later.',
+      en: 'Within the {t:Open time|open time}, here {n:20} minutes, the parts must be joined. If the line stops for {n:40} minutes, the adhesive cures inside the mixer: purge it first. It can be handled after a few hours, often reaches full strength only after a day, and later in the cold.' },
   ],
   [ // s5 the bead and the break
-    { nl: 'Een robot legt de lijm als {t:Rups|rups}, een streng van {n:4} millimeter, {n:3.2} meter per deur. Dat is {n:52} gram lijm.',
-      en: 'A robot lays the adhesive as a {t:Bead|bead}, a line {n:4} millimetres thick, {n:3.2} metres per door. That is {n:52} grams of adhesive.' },
-    { nl: 'Een camera zoekt onderbrekingen, en elke ploeg weegt iemand een proefrups. Die woog {n:44} gram: {n:85} procent. Het vat stond koud, de lijm werd stroperig. Dus: vat op temperatuur, en doseren op volume.',
-      en: 'A camera looks for gaps, and every shift someone weighs a test bead. It weighed {n:44} grams: {n:85} percent. The drum stood cold, and the adhesive got thick. So: keep the drum warm, and dose by volume.' },
-    { nl: 'Trek je proefstukjes kapot, kijk dan naar het breukvlak. Lijm op beide delen is een {t:Cohesieve breuk|cohesieve breuk}: de hechting was goed. Eén kale kant betekent vuil of slechte voorbehandeling.',
-      en: 'When you break test pieces, look at the fracture. Adhesive on both parts is {t:Cohesive failure|cohesive failure}: the bond was good. One bare side means dirt or poor preparation.' },
+    { nl: 'Een robot legt de lijm als {t:Rups|rups}: een streng van {n:4} millimeter, {n:3.2} meter per deur. Doorsnede maal lengte maal dichtheid: {n:52} gram.',
+      en: 'A robot lays the adhesive as a {t:Bead|bead}: a line {n:4} millimetres thick, {n:3.2} metres per door. Cross-section times length times density: {n:52} grams.' },
+    { nl: 'Een camera zoekt onderbrekingen, en elke ploeg weegt iemand een proefrups: {n:44} gram, {n:85} procent. Het vat stond koud, de lijm werd stroperig en de pomp doseerde op druk. Dus: vat op temperatuur, doseren op volume.',
+      en: 'A camera looks for gaps, and every shift someone weighs a test bead: {n:44} grams, {n:85} percent. The drum stood cold, the adhesive got thick and the pump dosed by pressure. So: keep the drum warm, dose by volume.' },
+    { nl: 'Kijk na een trekproef naar het breukvlak. Lijm op beide delen is een {t:Cohesieve breuk|cohesieve breuk}: de lijm zelf brak, de hechting was goed. Eén kale kant is een adhesieve breuk: bijna altijd vuil of slechte voorbehandeling.',
+      en: 'After a pull test, look at the fracture. Adhesive on both parts is {t:Cohesive failure|cohesive failure}: the adhesive itself broke, the bond was good. One bare side is adhesive failure: nearly always dirt or poor preparation.' },
   ],
   [ // s6 blind rivets and the cross-section
-    { nl: 'Kun je maar bij één kant, dan neem je een {t:Blindklinknagel|blindklinknagel}: een holle nagel met een doorn. Het gereedschap trekt de doorn terug, de achterkant stuikt op, en bij een vaste kracht breekt de doorn af.',
-      en: 'If you can only reach one side, you use a {t:Blind rivet|blind rivet}: a hollow rivet with a mandrel. The tool pulls the mandrel back, the far end bulges, and at a set force the mandrel snaps.' },
-    { nl: 'Zelfponsende nagels zaag je af en toe door. Dan meet je de {t:Kophoogte|kophoogte} en de {t:Insluiting|insluiting}: hoe ver de poot in de onderste plaat haakt. Die bepaalt vooral de sterkte.',
-      en: 'Now and then you saw a self-piercing rivet open. Then you measure the {t:Head height|head height} and the {t:Interlock|interlock}: how far the leg hooks into the bottom sheet. That mainly decides the strength.' },
+    { nl: 'Kun je maar bij één kant, dan neem je een {t:Blindklinknagel|blindklinknagel}: een holle nagel met een doorn. Het gereedschap trekt de doorn terug, de achterkant stuikt op tot een kraag, en bij een vaste kracht breekt de doorn af.',
+      en: 'If you can only reach one side, you use a {t:Blind rivet|blind rivet}: a hollow rivet with a mandrel. The tool pulls the mandrel back, the far end bulges into a collar, and at a set force the mandrel snaps.' },
+    { nl: 'In een doorgezaagde zelfponsende nagel meet je de {t:Kophoogte|kophoogte}, hoe ver de kop boven of onder de plaat staat, en de {t:Insluiting|insluiting}, hoe ver de poot in de onderste plaat haakt: die bepaalt vooral de sterkte.',
+      en: 'In a self-piercing rivet sawn open you measure the {t:Head height|head height}, how far the head sits above or below the sheet, and the {t:Interlock|interlock}, how far the leg hooks into the bottom sheet: that mainly decides the strength.' },
   ],
   [ // s7 a curve for every rivet
-    { nl: 'Zagen kan niet bij elke nagel. Daarom legt het gereedschap de {t:Kracht-wegcurve|kracht-wegcurve} vast: perskracht tegen de weg van de stempel. Valt die buiten het venster, dan stopt de cel.',
+    { nl: 'Zagen kan niet bij elke nagel. Daarom legt het gereedschap de {t:Kracht-wegcurve|kracht-wegcurve} vast: perskracht tegen stempelweg. Valt die buiten het venster, dan stopt de cel.',
       en: 'You cannot saw every rivet. So the tool records the {t:Force-displacement curve|force-displacement curve}: press force against punch travel. If it falls outside the window, the cell stops.' },
     { nl: 'Het venster voor de eindkracht is {n:36} tot {n:44} kilonewton. Na een matrijswissel kruipt het gemiddelde omhoog, {n:0.4} kilonewton per duizend nagels, en staat nu op {n:42.8}.',
       en: 'The window for the final force is {n:36} to {n:44} kilonewtons. After a die change the mean creeps up, {n:0.4} kilonewtons per thousand rivets, and now stands at {n:42.8}.' },
-    { nl: 'Na drieduizend nagels raakt het de grens: binnen één ploeg. Grijp dus nu in. Bij clinchen meet je ook de {t:Bodemdikte|bodemdikte}: hoe dun de knoop onderin is.',
-      en: 'After three thousand rivets it hits the limit: within one shift. So act now. With clinching you also measure the {t:Bottom thickness|bottom thickness}: how thin the button is at the bottom.' },
+    { nl: 'Nog drieduizend nagels en het raakt de grens: binnen één ploeg. Kijk dus nu naar matrijs, stempel en plaatpartij.',
+      en: 'Three thousand more rivets and it hits the limit: within one shift. So check the die, the punch and the sheet batch now.' },
+    { nl: 'Bij clinchen meet je ook de {t:Bodemdikte|bodemdikte}: hoe dun de knoop onderin is geperst.',
+      en: 'With clinching you also measure the {t:Bottom thickness|bottom thickness}: how thin the button is pressed at the bottom.' },
   ],
   [ // s8 choosing a joint
     { nl: 'Bij een {t:Multimateriaalontwerp|multimateriaalontwerp} vraag je eerst: raken twee metalen elkaar, en komt er water bij? Dan vormen ze een batterij, en het minst edele metaal lost op: {t:Galvanische corrosie|galvanische corrosie}.',
       en: 'In {t:Multi-material design|multi-material design} you first ask: do two metals touch, and does water get in? Then they form a battery, and the less noble metal dissolves: {t:Galvanic corrosion|galvanic corrosion}.' },
-    { nl: 'In de {t:Spanningsreeks|spanningsreeks} staat aluminium onder staal, dus het aluminium lost op. Een isolerende lijmlaag, gecoate nagels en een droog ontwerp helpen.',
-      en: 'In the {t:Galvanic series|galvanic series} aluminium sits below steel, so the aluminium dissolves. An insulating adhesive layer, coated rivets and a dry design help.' },
+    { nl: 'In de {t:Spanningsreeks|spanningsreeks} staat aluminium onder staal, dus het aluminium lost op, het snelst als weinig aluminium tegen veel staal zit. Een isolerende lijmlaag, gecoate nagels en een droog ontwerp helpen.',
+      en: 'In the {t:Galvanic series|galvanic series} aluminium sits below steel, so the aluminium dissolves, fastest when a little aluminium touches a lot of steel. An insulating adhesive layer, coated rivets and a dry design help.' },
     { nl: 'Denk ook aan {t:Demontage|demontage}, voor reparatie en recycling. Een {t:Vloeiboorschroef|vloeiboorschroef} vormt vanaf één kant zijn eigen gat en draad, en kan er weer uit. Een lijmnaad niet.',
       en: 'Think of {t:Disassembly|disassembly} too, for repair and recycling. A {t:Flow drill screw|flow drill screw} forms its own hole and thread from one side, and can come out again. A bond line cannot.' },
-    { nl: 'En de kosten: vierhonderd punten per vloer, zestigduizend vloeren per jaar. Nagels van zes cent kosten dan ruim één komma vier miljoen euro, schroeven van vijftien cent drie komma zes miljoen. Dus vaak nagels, en schroeven alleen waar het moet.',
-      en: 'And the cost: four hundred points per floor, sixty thousand floors a year. Rivets at six cents then cost over one point four million euros, screws at fifteen cents three point six million. So often rivets, and screws only where you must.' },
+    { nl: 'En de kosten: vierhonderd punten per vloer, zestigduizend vloeren per jaar. Nagels van zes cent: ruim één komma vier miljoen euro. Schroeven van vijftien cent: drie komma zes miljoen. Dus meestal nagels, en schroeven alleen waar het moet.',
+      en: 'And the cost: four hundred points per floor, sixty thousand floors a year. Rivets at six cents: over one point four million euros. Screws at fifteen cents: three point six million. So mostly rivets, and screws only where you must.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {

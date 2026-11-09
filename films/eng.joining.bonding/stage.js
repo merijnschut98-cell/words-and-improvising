@@ -63,7 +63,7 @@ const STAGE = (() => {
       if (g > 0.95) s += T(x, sy(t) - 12, `${big(t)} °C`, 20, 'middle', 'fp-big');
       s += T(x, 368, name, 19, 'middle', 'fp-small');
     });
-    if (p > 0.6) s += tag(502, 94, 168, tx('samen: bros', 'together: brittle'), 19, 'middle');
+    if (p > 0.6) s += tag(502, 94, 168, tx('gemengd: bros', 'mixed: brittle'), 19, 'middle');
     return s;
   }
 
@@ -78,7 +78,8 @@ const STAGE = (() => {
       const y = 70 + i * 58;
       s += rect(52, y - 18, 22, 22, carry ? 'fp-cell-on' : 'fp-bx', 4) + T(88, y, name, 22, 'start', 'fp-big') + T(318, y, what, 19, 'start', 'fp-small');
     });
-    s += rect(52, 336, 18, 18, 'fp-cell-on', 4) + T(80, 351, tx('dragend', 'load-bearing'), 19, 'start', 'fp-small');
+    s += rect(52, 336, 18, 18, 'fp-cell-on', 4) + T(80, 351, tx('dragend', 'structural'), 19, 'start', 'fp-small');
+    s += rect(232, 336, 18, 18, 'fp-bx', 4) + T(260, 351, tx('meestal niet dragend', 'usually not structural'), 19, 'start', 'fp-small');
     return s;
   }
 
@@ -207,11 +208,11 @@ const STAGE = (() => {
       + (g > 0.6 ? tag(440, 240, 140, tx('poot spreidt', 'leg flares'), 19) : '');
   }
   function sectCard(kb) {
-    const sc = 1.45;
-    const ox = 290;
+    const sc = 1.8;
+    const ox = 300;
     const oy = 200;
     const M = (x, y) => [ox + sc * (x - SP.cx), oy + sc * (y - 176)];
-    const { s, hb, tipY } = sprParts(1, { die: false, punch: false, xa: 180, xb: 460 });
+    const { s, hb, tipY } = sprParts(1, { die: false, punch: false, xa: 196, xb: 444 });
     const body = card(24, 24, 592, 352) + `<g transform="translate(${f1(ox - sc * SP.cx)} ${f1(oy - sc * 176)}) scale(${sc})">${s}</g>`
       + T(36 + 8, 56, tx('macroslijp', 'cross-section'), 19, 'start', 'fp-small');
     // head height: from the sheet surface to the top of the head
@@ -346,7 +347,7 @@ const STAGE = (() => {
     const m = 60 * span(p, 0.05, 0.75);
     s += poly([[sx(m), y - 2], [sx(m) - 8, y - 16], [sx(m) + 8, y - 16]], 'fp-ink');
     if (m >= 39.5) s += `<path class="fp-dash" d="M${f1(sx(40))} ${y}L${f1(sx(40))} ${y + 74}"/>` + tag(sx(40), y + 98, 340, tx('lijn 40 min stil: menger uitspuiten', 'line stopped 40 min: purge the mixer'), 19, 'middle');
-    if (p > 0.6) s += T(320, 352, tx('uitharden: uren tot hanteerbaar, vaak een dag tot vol sterk', 'cure: hours to handle, often a day to full strength'), 19, 'middle', 'fp-small');
+    if (p > 0.6) s += T(320, 352, tx('hanteerbaar na uren, volle sterkte vaak na een dag', 'handling after hours, full strength often after a day'), 19, 'middle', 'fp-small');
     return s;
   }
 
@@ -395,9 +396,9 @@ const STAGE = (() => {
     const bot = 222;
     const a = span(g, 0.05, 0.78);
     const b = span(g, 0.84, 0.97);
-    let s = card(24, 24, 592, 352);
-    s += rect(110, top, cx - 18 - 110, mid - top, 'fp-al') + rect(cx + 18, top, 530 - cx - 18, mid - top, 'fp-al');
-    s += rect(110, mid, cx - 18 - 110, bot - mid, 'fp-st') + rect(cx + 18, mid, 530 - cx - 18, bot - mid, 'fp-st');
+    let s = '';
+    s += rect(150, top, cx - 18 - 150, mid - top, 'fp-al') + rect(cx + 18, top, 490 - cx - 18, mid - top, 'fp-al');
+    s += rect(150, mid, cx - 18 - 150, bot - mid, 'fp-st') + rect(cx + 18, mid, 490 - cx - 18, bot - mid, 'fp-st');
     // the hollow body: flange on top, the sleeve through the hole, the tail upsetting under the sheets
     const tailB = lerp(256, 236, a);
     const bulge = 20 * a;
@@ -415,15 +416,17 @@ const STAGE = (() => {
     const head = 262 - lift;
     s += `<ellipse class="fp-rv" cx="${cx}" cy="${f1(head)}" rx="13" ry="9"/>`;
     const brk = top + 4;
-    if (b <= 0) s += rect(cx - 5, 60 - lift, 10, head - 6 - (60 - lift), 'fp-tool');
-    else s += rect(cx - 5, brk + 2, 10, head - 6 - brk - 2, 'fp-tool') + rect(cx - 5, 60 - lift - 50 * b, 10, brk - 4 - (60 - lift), 'fp-tool');
+    if (b <= 0) s += rect(cx - 5, 128 - lift, 10, head - 6 - (128 - lift), 'fp-tool');
+    else s += rect(cx - 5, brk + 2, 10, head - 6 - brk - 2, 'fp-tool') + rect(cx - 5, 128 - lift - 28 * b, 10, brk - 4 - (128 - lift), 'fp-tool');
     // the tool's nose on top, pulling
-    s += rect(cx - 34, 98 - lift * 0 - 50 * b, 68, top - 12 - 98, 'fp-tool', 4);
-    s += arrow(cx + 56, 140, cx + 56, 92, 9, 'fp-mark', 2.4);
-    s += tag(cx + 76, 112, 160, tx('doorn trekt', 'mandrel pulls'), 19) + tag(44, 160, 120, tx('één kant', 'one side'), 19) + tag(44, 290, 150, tx('blinde kant', 'blind side'), 19);
-    if (a > 0.6) s += tag(cx + 40, 270, 104, tx('kraag', 'tail'), 19);
-    if (b > 0.3) s += tag(cx - 40, 74, 124, tx('breekt af', 'snaps'), 19, 'end');
-    return s;
+    s += rect(cx - 34, 108 - 28 * b, 68, top - 12 - 108, 'fp-tool', 4);
+    // drawn 1.35 × about the joint, so the rivet reads at phone width
+    let out = card(24, 24, 592, 352) + `<g transform="translate(${cx} ${mid}) scale(1.35) translate(${-cx} ${-mid})">${s}</g>`;
+    out += arrow(cx + 72, 140, cx + 72, 92, 9, 'fp-mark', 2.4);
+    out += tag(cx + 92, 112, 160, tx('doorn trekt', 'mandrel pulls'), 19) + tag(44, 128, 120, tx('één kant', 'one side'), 19) + tag(44, 300, 150, tx('blinde kant', 'blind side'), 19);
+    if (a > 0.6) out += tag(cx + 60, 284, 104, tx('kraag', 'tail'), 19);
+    if (b > 0.3) out += tag(cx - 62, 84, 124, tx('breekt af', 'snaps'), 19, 'end');
+    return out;
   }
 
   // ------------------------------------------------------------ s7: the force-displacement curve in its window
@@ -629,8 +632,8 @@ const STAGE = (() => {
     }
     if (si === 6) {
       if (kb === 0) { hud = ['scrim', 'curveC']; set(E.curveBody, curveCard(p)); }
-      if (kb === 1 || (kb === 2 && p < 0.5)) { hud = ['scrim', 'driftC']; set(E.driftBody, driftCard(kb, kb === 2 ? p * 2 : p)); }
-      if (kb === 2 && p >= 0.5) { hud = ['scrim', 'clinchC']; const c = clinchCard(1, true); set(E.clinchBody, c.body); set(E.clinchDim, c.dim); }
+      if (kb === 1 || kb === 2) { hud = ['scrim', 'driftC']; set(E.driftBody, driftCard(kb, p)); }
+      if (kb === 3) { hud = ['scrim', 'clinchC']; const c = clinchCard(1, true); set(E.clinchBody, c.body); set(E.clinchDim, c.dim); }
     }
     if (si === 7) {
       if (kb <= 1) {
