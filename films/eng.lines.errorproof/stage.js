@@ -315,8 +315,19 @@ const STAGE = (() => {
     if (!on) return '';
     const x = C.BEAM_X;
     const z = C.FZ + 15;
-    const y1 = blocked ? C.HOUSE.y + C.HOUSE.d : -44;
-    return `<path class="ep-beam" d="${fmt([at([x + 2, 43, z]), at([x + 2, y1, z])])}"/>` + led([x + 2, -44, C.FZ + 15], !blocked);
+    // blocked: only the stub from the emitter to the housing's front face,
+    // drawn in front of the housing (beamStub); the receiver's LED goes out
+    if (blocked) return led([x + 2, -44, C.FZ + 15], false);
+    return `<path class="ep-beam" d="${fmt([at([x + 2, 43, z]), at([x + 2, -44, z])])}"/>` + led([x + 2, -44, C.FZ + 15], true);
+  }
+  function beamStubSvg(on, blocked) {
+    if (!on || !blocked) return '';
+    const x = C.BEAM_X;
+    const z = C.FZ + 15;
+    // the light spot where the beam meets the housing: the beam is broken here
+    const [sx, sy] = at([x + 2, C.HOUSE.y + C.HOUSE.d, z]);
+    return `<path class="ep-beam" d="${fmt([at([x + 2, 43, z]), at([x + 2, C.HOUSE.y + C.HOUSE.d, z])])}"/>`
+      + `<circle class="ep-glow" cx="${f1(sx)}" cy="${f1(sy)}" r="3.2"/><circle class="ep-ring" cx="${f1(sx)}" cy="${f1(sy)}" r="6.5"/>`;
   }
   function lampSvg(on) {
     const [x, y] = C.LAMP;
@@ -393,12 +404,17 @@ const STAGE = (() => {
     });
     return `<g style="opacity:${alpha.toFixed(2)}">${out}</g>`;
   }
-  function apSvg(alpha) {
+  // The action priority cell. The bars are drawn unnumbered on purpose (no
+  // invented scores); read as roughly S 8, O 4, D 7 → 2, the AIAG-VDA PFMEA
+  // table gives high, then medium. The cell says only "lower", not a class, so
+  // the film claims no table value (and a better D never raises the AP).
+  function apSvg(alpha, dLow = 0) {
     if (alpha <= 0.01) return '';
     const X = 12 + 360 + 10;
     const Y = 12;
+    const low = dLow > 0.5;
     return `<g style="opacity:${alpha.toFixed(2)}"><rect class="ep-panel" x="${X}" y="${Y}" width="150" height="76" rx="8"/>`
-      + txt(X + 14, Y + 28, tr('prioriteit', 'priority'), 18, 'start', 'ep-mute') + txt(X + 14, Y + 60, tr('hoog', 'high'), 24, 'start', 'ep-acc') + '</g>';
+      + txt(X + 14, Y + 28, tr('prioriteit', 'priority'), 18, 'start', 'ep-mute') + txt(X + 14, Y + 60, low ? tr('lager', 'lower') : tr('hoog', 'high'), 24, 'start', low ? 'ep-txt' : 'ep-acc') + '</g>';
   }
 
   // ------------------------------------------------------------ the scenes
@@ -616,7 +632,7 @@ const STAGE = (() => {
       else if (b === 1) { pf = pfmeaSvg(0, 1); ap = apSvg(ph(p, 0.05, 0.2)); } else {
         const dl = ph(p, 0.05, 0.35);
         pf = pfmeaSvg(dl, 1);
-        ap = apSvg(1 - dl * 0.6);
+        ap = apSvg(1, dl);
         const v = ph(p, 0.3, 0.7);
         esc = barsSvg(tr('escapes bij ', 'escapes at ') + num(C.MADE_DT) + ' ppm', [
           { v: v * (1 - C.EYE), label: tr('met het oog (', 'by eye (') + `${Math.round(C.EYE * 100)}%): ${Math.round(C.MADE_DT * (1 - C.EYE))} ppm`, c: 'lo' },
@@ -684,6 +700,7 @@ const STAGE = (() => {
     set(E.sensB, sensB ? sensBSvg(sensB) : '');
     const inFix = !!(house && house.z <= C.FZ + 1 && Math.abs(house.x) < 1);
     set(E.beam, beamSvg(beam, inFix));
+    set(E.beamStub, beamStubSvg(beam, inFix));
     set(E.beamBins, binBeams({ binBeam, binBreak }));
     lensEls.forEach((el, i) => { if (el) el.toggleAttribute('data-lit', !!ptl[i]); });
     set(E.lamp, lampSvg(lamp));
