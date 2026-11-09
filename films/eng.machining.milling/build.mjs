@@ -383,7 +383,7 @@ const SAY = [
       en: 'Now a steel block, with an end mill of {n:12} millimetres and {n:3} teeth. A common start for carbide in steel is {n:150} metres per minute. Just as in turning, the diameter then gives the spindle speed: {n:3980} revolutions a minute.' },
     { nl: 'Elke tand neemt per omwenteling een hapje. Hoe dik dat is, heet de {t:Voeding per tand|voeding per tand}: hier {n:0.05} millimeter.',
       en: 'Each tooth takes one bite per revolution. How thick it is, is the {t:Feed per tooth|feed per tooth}: here {n:0.05} millimetres.' },
-    { nl: 'Voeding per tand, maal de tanden, maal het toerental: dat is de {t:Tafelvoeding|tafelvoeding}. Hier {n:597} millimeter per minuut, de F in het programma.',
+    { nl: 'Voeding per tand, maal de tanden, maal het toerental: dat is de {t:Tafelvoeding|tafelvoeding}. Hier staat {n:597} millimeter per minuut als F in het programma.',
       en: 'Feed per tooth, times the teeth, times the spindle speed: that is the {t:Table feed|table feed}. Here {n:597} millimetres per minute, the F in the program.' },
     { nl: 'De frees snijdt {n:10} millimeter diep, en zit {n:3} millimeter opzij in het materiaal: de {t:Snedebreedte|snedebreedte}.',
       en: 'The cutter cuts {n:10} millimetres deep, and sits {n:3} millimetres sideways in the material: the {t:Width of cut|width of cut}.' },
@@ -391,7 +391,7 @@ const SAY = [
       en: 'Depth times width times table feed: {n:17.9} cubic centimetres come off a minute. That is the {t:Metal removal rate|metal removal rate}, which lets you compare two approaches fairly.' },
   ],
   [ // s5 climb or conventional
-    { nl: 'Kijk naar één tand. Bij {t:Meelopend frezen|meelopend frezen} gaat hij dik het materiaal in, en komt hij er dun uit.',
+    { nl: 'Kijk naar één tand. Bij {t:Meelopend frezen|meelopend frezen} gaat hij dik het materiaal in en komt hij er dun uit.',
       en: 'Watch one tooth. In {t:Climb milling|climb milling} it enters the material thick, and leaves it thin.' },
     { nl: 'Bij {t:Tegenlopend frezen|tegenlopend frezen} begint hij op nul, en schuurt hij eerst. Dat geeft warmte en slijtage. Op een moderne CNC-machine is meelopend dus de standaard. Alleen op een oude machine met speling kies je tegenlopend, omdat meelopend de tafel naar voren kan trekken.',
       en: 'In {t:Conventional milling|conventional milling} it starts at zero, and rubs first. That makes heat and wear. So on a modern CNC machine, climb milling is the standard. Only on an old machine with backlash do you choose conventional, because climb can pull the table forward.' },

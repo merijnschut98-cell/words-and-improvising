@@ -174,30 +174,30 @@
     "eng.machining.milling": {
       "poster": "src/content/courses/films/eng.machining.milling.jpg",
       "nl": {
-        "dur": 294.9,
-        "bytes": 14329226,
+        "dur": 231.5,
+        "bytes": 11731707,
         "scenes": [
           0,
-          40.33,
-          57.54,
-          95.89,
-          161.76,
-          193.5,
-          242.68
+          30.62,
+          44.83,
+          76.47,
+          128.85,
+          152.63,
+          190.46
         ],
         "vtt": "src/content/courses/films/eng.machining.milling.nl.vtt"
       },
       "en": {
-        "dur": 274.6,
-        "bytes": 13553995,
+        "dur": 258.9,
+        "bytes": 12904313,
         "scenes": [
           0,
-          37.42,
-          52.77,
-          87.5,
-          151.28,
-          178.25,
-          225.57
+          35.05,
+          49.6,
+          82.3,
+          142.76,
+          168.43,
+          212.82
         ],
         "vtt": "src/content/courses/films/eng.machining.milling.en.vtt"
       }
