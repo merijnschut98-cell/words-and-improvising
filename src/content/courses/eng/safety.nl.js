@@ -289,6 +289,7 @@ export default {
     },
     {
       id: 'eng.safety.loto',
+      film: 'eng.safety.loto',
       title: 'Vergrendelen en labelen: energie scheiden',
       pre: [
         {
