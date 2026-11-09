@@ -368,6 +368,41 @@
         ],
         "vtt": "src/content/courses/films/eng.joining.defects.en.vtt"
       }
+    },
+    "eng.joining.bolting": {
+      "poster": "src/content/courses/films/eng.joining.bolting.jpg",
+      "nl": {
+        "dur": 340.6,
+        "bytes": 8381915,
+        "scenes": [
+          0,
+          26.68,
+          67.43,
+          102.31,
+          130.88,
+          155.2,
+          204.49,
+          251.34,
+          277.96
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bolting.nl.vtt"
+      },
+      "en": {
+        "dur": 355.9,
+        "bytes": 8594818,
+        "scenes": [
+          0,
+          27.16,
+          73.91,
+          112.34,
+          143.65,
+          167.83,
+          215.26,
+          265.3,
+          291.37
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bolting.en.vtt"
+      }
     }
   }
 }
