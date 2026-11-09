@@ -248,17 +248,17 @@ const STAGE = (() => {
     }
     set(E.ckUtil, u);
     set(E.ckFit, kb >= 3 ? T(CX + 16, 336, tx('3 · inbouwhoogte', '3 · mould height'), 21, 'start') + tick(CX + CWD - 40, 324) : '');
-    set(E.ckOpen, kb >= 3 ? T(CX + 16, 372, tx('4 · openingsslag', '4 · opening stroke'), 21, 'start') + tick(CX + CWD - 40, 360) : '');
+    set(E.ckOpen, kb >= 4 ? T(CX + 16, 372, tx('4 · openingsslag', '4 · opening stroke'), 21, 'start') + tick(CX + CWD - 40, 360) : '');
   }
   // a hydraulic power unit: oil tank, electric motor, pump, valve block, lines to the cylinders
   function hydCard() {
     const x = CX + 20;
     let s = card(CX, 14, CWD, 220) + T(CX + CWD / 2, 42, tx('hydraulisch', 'hydraulic'), 21, 'middle', 'fp-big');
-    s += R(x, 140, 120, 70, 'fp-shape', 6) + mark(M([[x + 6, 158], [x + 114, 158]]), 'fp-dash');
-    s += R(x + 12, 96, 54, 40, 'fp-shape2', 8) + mark(M([[x + 22, 100], [x + 22, 132]]) + M([[x + 32, 100], [x + 32, 132]]) + M([[x + 42, 100], [x + 42, 132]]) + M([[x + 52, 100], [x + 52, 132]]), 'fp-hatchc');
-    s += `<circle class="fp-shape2" cx="${x + 86}" cy="118" r="16"/>` + mark(M([[x + 80, 118], [x + 92, 118]]) + M([[x + 86, 112], [x + 86, 124]]), 'fp-hatchc');
-    s += R(x + 128, 98, 44, 40, 'fp-shape', 4);
-    s += arrow(x + 102, 112, x + 126, 112, 8) + arrow(x + 172, 108, CX + CWD - 18, 70, 8) + arrow(x + 172, 128, CX + CWD - 18, 180, 8);
+    s += R(x, 132, 120, 62, 'fp-shape', 6) + mark(M([[x + 6, 148], [x + 114, 148]]), 'fp-dash');
+    s += R(x + 12, 86, 54, 40, 'fp-shape2', 8) + mark(M([[x + 22, 90], [x + 22, 122]]) + M([[x + 32, 90], [x + 32, 122]]) + M([[x + 42, 90], [x + 42, 122]]) + M([[x + 52, 90], [x + 52, 122]]), 'fp-hatchc');
+    s += `<circle class="fp-shape2" cx="${x + 86}" cy="106" r="16"/>` + mark(M([[x + 80, 106], [x + 92, 106]]) + M([[x + 86, 100], [x + 86, 112]]), 'fp-hatchc');
+    s += R(x + 128, 86, 44, 40, 'fp-shape', 4);
+    s += arrow(x + 102, 100, x + 126, 100, 8) + arrow(x + 172, 96, CX + CWD - 18, 62, 8) + arrow(x + 172, 116, CX + CWD - 18, 170, 8);
     s += T(CX + CWD / 2, 226, tx('pomp · olie · cilinders', 'pump · oil · cylinders'), 20, 'middle', 'fp-small');
     return s;
   }
@@ -297,10 +297,10 @@ const STAGE = (() => {
     set(E.dvHyb, hy);
   }
   function secCard(p) {
-    const y0 = 64;
-    let s = card(CX, y0, CWD, 322) + T(CX + CWD / 2, y0 + 32, 'kWh / kg', 22, 'middle', 'fp-big');
-    const base = y0 + 250;
-    const hMax = 170;
+    const y0 = 76; // below a two-line readout at phone width
+    let s = card(CX, y0, CWD, 312) + T(CX + CWD / 2, y0 + 32, 'kWh / kg', 22, 'middle', 'fp-big');
+    const base = y0 + 240;
+    const hMax = 160;
     const g = span(p, 0.05, 0.6);
     for (const [i, v, name] of [[0, C.EL.hyd, tx('hydraulisch', 'hydraulic')], [1, C.EL.ele, tx('elektrisch', 'electric')]]) {
       const x = CX + 40 + i * 110;
@@ -309,14 +309,17 @@ const STAGE = (() => {
       s += T(x + 32, base - h - 10, num(v, 1), 22, 'middle', 'fp-big') + T(x + 32, base + 26, name, 20, 'middle', 'fp-small');
     }
     s += mark(M([[CX + 20, base], [CX + CWD - 20, base]]));
-    s += T(CX + CWD / 2, y0 + 306, tx('aanname, meet het zelf', 'assumed: measure it'), 20, 'middle', 'fp-small');
+    s += T(CX + CWD / 2, y0 + 296, tx('aanname, meet het zelf', 'assumed: measure it'), 20, 'middle', 'fp-small');
     return s;
   }
   function twokSvg() {
     const x = CX + 22;
     const y = 70;
     // a toothbrush handle: hard core with a soft grip moulded on in the second shot
-    let s = card(CX, 14, CWD, 180) + T(CX + CWD / 2, 44, '2K', 22, 'middle', 'fp-big');
+    let s = card(CX, 14, CWD, 180) + T(CX + CWD / 2 - 14, 44, '2K', 22, 'middle', 'fp-big');
+    // the mould turns between the two shots
+    const rx = CX + CWD / 2 + 22;
+    s += mark(`M${rx + 10} 37A10 10 0 1 1 ${rx} 27`, 'fp-arrow') + mark(head(rx - 4, 27, rx, 27, 6), 'fp-arrow');
     s += `<path class="fp-shape2" d="M${x} ${y + 30}Q${x} ${y + 12} ${x + 30} ${y + 14}L${x + 190} ${y + 22}Q${x + 206} ${y + 26} ${x + 190} ${y + 34}L${x + 30} ${y + 44}Q${x} ${y + 46} ${x} ${y + 30}Z"/>`;
     s += `<path class="fp-shape" d="M${x + 20} ${y + 22}L${x + 110} ${y + 24}L${x + 110} ${y + 38}L${x + 20} ${y + 40}Z"/>`;
     s += mark([0, 1, 2, 3, 4, 5].map((i) => M([[x + 30 + i * 14, y + 24], [x + 30 + i * 14, y + 38]])).join(''), 'fp-hatchc');
@@ -429,7 +432,9 @@ const STAGE = (() => {
       F = 1; solid = 1;
       if (kb === 0) { press = true; s = 6; }
       if (kb === 1) shotv = true;
-      if (kb === 3) { mh = true; os = true; open = span(p, 0.15, 0.5) - span(p, 0.8, 0.98); }
+      // the mould height is measured on the closed mould, then the press opens for the stroke
+      if (kb === 3) mh = true;
+      if (kb === 4) { os = true; open = span(p, 0.08, 0.45); }
       hud = ['checkC'];
     }
     if (si === 6) {

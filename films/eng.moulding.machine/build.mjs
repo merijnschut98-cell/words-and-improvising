@@ -396,7 +396,24 @@ const hud = [
   g('secC', slot('sec', 'secBody')),
   g('specC', [slot('twok', 'spTwo'), slot('insert', 'spIns')].join('')),
 ].join('');
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${defs}${g('world', world)}${g('hud', hud)}</svg>`;
+// Page weight: the kit's rounded bevels leave runs of points a tenth of a unit
+// apart; drop a line point that lies within 0.2 units of the last one kept
+// (invisible even at the closest camera), only in plain M/L/Z paths.
+const slim = (s) => s.replace(/ d="([^"]*)"/g, (m, d) => {
+  if (!/^[MLZ0-9 .-]+$/.test(d)) return m;
+  const out = [];
+  let last = null;
+  for (const tok of d.match(/[MLZ][^MLZ]*/g) ?? []) {
+    if (tok[0] === 'Z') { out.push('Z'); last = null; continue; }
+    const xy = tok.slice(1).trim();
+    const [x, y] = xy.split(/\s+/).map(Number);
+    if (tok[0] === 'L' && last && Math.hypot(x - last[0], y - last[1]) < 0.2) continue;
+    out.push(tok[0] + xy);
+    last = [x, y];
+  }
+  return ` d="${out.join('')}"`;
+});
+const svg = slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${defs}${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras: [cx, cy, w] per beat
 // cam(p, w, s): world point p at stage point s, w wide
@@ -422,7 +439,7 @@ const KEYS = [
   [MOULD_L, MOULD_L, MOULD_L, MOULD], // s3 clamp force
   [SCREWV, SCREWV, SCREWV, SCREWV], // s4 the screw
   [SCREW_L, SCREW_L, SCREW_L], // s5 dosing and residence
-  [PRESS_L, MID_L, MID_L, PRESS_L], // s6 choosing a press
+  [PRESS_L, MID_L, MID_L, PRESS_L, PRESS_L], // s6 choosing a press
   [FULL_L, FULL_L, FULL_L, FULL_L], // s7 drives and energy
   [FULL_L, FULL_L], // s8 special presses
 ];
@@ -462,7 +479,7 @@ const spec = {
         { nl: 'De smelt drukt de helften met honderden bar uit elkaar; de {t:Sluitkracht|sluitkracht} houdt ze dicht.', en: 'The melt pushes the halves apart at hundreds of bar; the {t:Clamp force|clamp force} holds them shut.', cue: { Sluitkracht: 'force' }, cues: ['press'] },
         { nl: 'Het {t:Geprojecteerd oppervlak|geprojecteerd oppervlak} is de schaduw van het product: {n:15} × {n:20} cm = {n:300} cm².', en: 'The {t:Projected area|projected area} is the part’s shadow: {n:15} × {n:20} cm = {n:300} cm².', cue: { 'Geprojecteerd oppervlak': 'shadow' } },
         { nl: '{n:300} cm² × {n:0.4} t/cm² = {n:120} t; met {n:2} holtes {n:600} cm², dus {n:240} t.', en: '{n:300} cm² × {n:0.4} t/cm² = {n:120} t; with {n:2} cavities {n:600} cm², so {n:240} t.', cues: ['shadow', 'force'], read: { nl: '{n:240} t + {n:10}–{n:20}% → pers van {n:280} of {n:300} t', en: '{n:240} t + {n:10}–{n:20}% → a {n:280} or {n:300} t press' } },
-        { nl: 'Te weinig kracht: de matrijs wijkt op de deellijn en kunststof lekt eruit als braam.', en: 'Too little force: the mould parts at the parting line and plastic leaks out as flash.', cues: ['parting'] },
+        { nl: 'Te weinig kracht: de matrijs wijkt op de deellijn en kunststof lekt eruit als braam.', en: 'Too little force: the mould parts at the parting line and plastic leaks out as flash.', cues: ['parting'], read: { nl: 'pers van {n:200} t: te weinig → braam', en: 'a {n:200} t press: too little → flash' } },
       ],
     },
     {
@@ -486,9 +503,10 @@ const spec = {
       id: 's6', lesson: CL, level: 3, still: 0.5, title: { nl: 'De juiste pers kiezen', en: 'Choosing the right press' },
       beats: [
         { nl: 'Oppervlak × {t:Holtedruk|holtedruk}, vaak {n:300}–{n:600} bar: {n:380} cm² × {n:0.45} t/cm² = {n:171} t.', en: 'Area × {t:Cavity pressure|cavity pressure}, often {n:300}–{n:600} bar: {n:380} cm² × {n:0.45} t/cm² = {n:171} t.', cue: { Holtedruk: 'press' }, read: { nl: '{n:171} t + {n:15}% ≈ {n:197} t', en: '{n:171} t + {n:15}% ≈ {n:197} t' } },
-        { nl: 'Het {t:Shotvolume|shotvolume}: alle producten plus de aanspuiting, hier {n:100} cm³.', en: 'The {t:Shot volume|shot volume}: all parts plus the runner, here {n:100} cm³.', cue: { Shotvolume: 'shotv' } },
-        { nl: '{t:Cilinderbenutting|Cilinderbenutting}: {n:100} van {n:120} cm³ = {n:83}%, te veel; van {n:250} cm³ {n:40}%.', en: '{t:Barrel utilisation|Barrel utilisation}: {n:100} of {n:120} cm³ = {n:83}%, too much; of {n:250} cm³ {n:40}%.', cue: { Cilinderbenutting: 'util' }, read: { nl: 'mik op {n:20}–{n:80}%, liefst {n:40}–{n:60}%', en: 'aim for {n:20}–{n:80}%, ideally {n:40}–{n:60}%' } },
-        { nl: 'Past de {t:Inbouwhoogte|inbouwhoogte} op de pers, en opent de {t:Openingsslag|openingsslag} ver genoeg?', en: 'Does the {t:Mould height|mould height} fit the press, and does the {t:Opening stroke|opening stroke} open far enough?', cue: { Inbouwhoogte: 'mh', Openingsslag: 'os' } },
+        { nl: 'Het {t:Shotvolume|shotvolume}: alle producten plus de aanspuiting, hier {n:100} cm³.', en: 'The {t:Shot volume|shot volume}: all parts plus the runner, here {n:100} cm³.', cue: { Shotvolume: 'shotv' }, read: { nl: '{n:2} × {n:45} + {n:10} = {n:100} cm³', en: '{n:2} × {n:45} + {n:10} = {n:100} cm³' } },
+        { nl: '{t:Cilinderbenutting|Cilinderbenutting}: {n:100} van {n:120} cm³ = {n:83}%, te veel; van {n:250} cm³ {n:40}%.', en: '{t:Barrel utilisation|Barrel utilisation}: {n:100} of {n:120} cm³ = {n:83}%, too much; of {n:250} cm³ {n:40}%.', cue: { Cilinderbenutting: 'util' }, read: { nl: '{n:20}–{n:80}%, liefst {n:40}–{n:60}%', en: '{n:20}–{n:80}%, ideally {n:40}–{n:60}%' } },
+        { nl: 'De {t:Inbouwhoogte|inbouwhoogte}, de dikte van de gesloten matrijs, moet bij de pers passen.', en: 'The {t:Mould height|mould height}, the closed mould’s thickness, must lie within the press’s range.', cue: { Inbouwhoogte: 'mh' }, cues: ['ties'], read: { nl: 'min ≤ inbouwhoogte ≤ max', en: 'min ≤ mould height ≤ max' } },
+        { nl: 'De {t:Openingsslag|openingsslag} laat het product eruit: vaak twee keer de productdiepte plus de grijper.', en: 'The {t:Opening stroke|opening stroke} must let the part out: often twice the part depth plus the gripper.', cue: { Openingsslag: 'os' }, read: { nl: 'slag ≈ {n:2} × diepte + grijper', en: 'stroke ≈ {n:2} × depth + gripper' } },
       ],
     },
     {
@@ -522,76 +540,78 @@ const SAY = [
   [ // s1 how the press works
     { nl: 'Dit is een spuitgietmachine, op de vloer gewoon de pers. Links de spuitunit, die de kunststof smelt. Rechts de sluitunit, die de matrijs dichthoudt.',
       en: 'This is an injection moulding machine, on the shop floor simply the press. On the left the injection unit, which melts the plastic. On the right the clamp unit, which holds the mould shut.' },
-    { nl: 'Korrels vallen uit de trechter in de cilinder, een stalen buis met verwarmingsbanden. Daarin draait de schroef: hij smelt de kunststof, mengt hem en duwt hem naar voren.',
-      en: 'Pellets drop from the hopper into the barrel, a steel tube with heater bands. Inside it the screw turns: it melts the plastic, mixes it and pushes it forward.' },
-    { nl: 'De matrijs heeft twee helften: één op de vaste plaat, en één op de bewegende plaat. Die schuift over vier dikke stalen {t:Geleidekolommen|geleidekolommen}.',
-      en: 'The mould has two halves: one on the fixed platen, and one on the moving platen. That platen slides along four thick steel {t:Tie bars|tie bars} at the corners.' },
-    { nl: 'In de matrijs zit de holte: de vorm van het product. De smelt stroomt erin door een kleine opening, het {t:Aanspuitpunt|aanspuitpunt}. Waar de twee helften op elkaar sluiten, ligt de {t:Deellijn|deellijn}.',
-      en: 'Inside the mould is the cavity, the shape of the part. The melt flows in through a small opening, the {t:Gate|gate}. Where the halves meet lies the {t:Parting line|parting line}.' },
+    { nl: 'Korrels vallen uit de trechter in de cilinder, een stalen buis met verwarmingsbanden. Daarin draait de schroef, die de kunststof smelt, mengt en naar voren duwt.',
+      en: 'Pellets drop from the hopper into the barrel, a steel tube with heater bands. Inside it turns the screw, which melts the plastic, mixes it and pushes it forward.' },
+    { nl: 'De matrijs heeft twee helften, op de vaste en op de bewegende plaat. Die laatste schuift over vier dikke {t:Geleidekolommen|geleidekolommen}.',
+      en: 'The mould has two halves: one on the fixed platen, one on the moving platen. That platen slides along four thick {t:Tie bars|tie bars}.' },
+    { nl: 'In de matrijs zit de holte, de vorm van het product. De smelt stroomt erin door een kleine opening, het {t:Aanspuitpunt|aanspuitpunt}; de helften sluiten op de {t:Deellijn|deellijn}.',
+      en: 'Inside the mould is the cavity, the shape of the part. The melt flows in through a small opening, the {t:Gate|gate}; the halves meet at the {t:Parting line|parting line}.' },
   ],
   [ // s2 one shot
-    { nl: 'Eén cyclus heet een shot. De matrijs sluit, en de schroef schuift als een zuiger naar voren. Zo spuit hij de smelt in de holte.',
-      en: 'One cycle is called a shot. The mould closes, and the screw slides forward like a piston. That injects the melt into the cavity.' },
-    { nl: 'Daarna blijft hij drukken: de {t:Nadruk|nadruk}. Het product krimpt als het afkoelt, dus de schroef perst smelt na, tot het aanspuitpunt bevriest. Dan kan er niets meer bij.',
-      en: 'Then it keeps pushing: the {t:Holding pressure|holding pressure}. The part shrinks as it cools, so the screw packs in more melt until the gate freezes. Then nothing more gets in.' },
-    { nl: 'Water in het staal koelt het product. Intussen draait de schroef terug en meet het volgende shot af: doseren. Dat kost meestal geen extra tijd.',
-      en: 'Water in the steel cools the part. Meanwhile the screw turns back and measures out the next shot: dosing. That usually costs no extra time.' },
+    { nl: 'Eén cyclus heet een shot. De matrijs sluit, en de schroef schuift als een zuiger naar voren: inspuiten.',
+      en: 'One cycle is called a shot. The mould closes, and the screw slides forward like a piston: injection.' },
+    { nl: 'Daarna blijft hij drukken: de {t:Nadruk|nadruk}. Het product krimpt bij het afkoelen, dus de schroef perst smelt na, tot het aanspuitpunt bevriest.',
+      en: 'Then it keeps pushing: the {t:Holding pressure|holding pressure}. The part shrinks as it cools, so the screw packs in more melt until the gate freezes.' },
+    { nl: 'Water in de matrijs koelt het product. Intussen draait de schroef terug en meet het volgende shot af: doseren, meestal zonder extra tijd.',
+      en: 'Water in the mould cools the part. Meanwhile the screw turns back and measures out the next shot: dosing. That usually costs no extra time.' },
     { nl: 'Dan gaat de matrijs open, en uitwerppennen duwen het product eruit. En opnieuw.',
       en: 'Then the mould opens, and ejector pins push the part out. And again.' },
   ],
   [ // s3 clamp force
-    { nl: 'Persen worden ingedeeld op {t:Sluitkracht|sluitkracht}, in ton: de kracht die de helften dichthoudt. De smelt drukt ze met honderden bar uit elkaar, en één bar is ongeveer één kilo per vierkante centimeter.',
-      en: 'Presses are rated by {t:Clamp force|clamp force}, in tonnes: the force that holds the halves shut. The melt pushes them apart at hundreds of bar, and one bar is about one kilo per square centimetre.' },
-    { nl: 'Hoeveel kracht nodig is, hangt af van het {t:Geprojecteerd oppervlak|geprojecteerd oppervlak}: de schaduw van het product vanuit de persrichting. Deze behuizing is {n:15} bij {n:20} centimeter: {n:300} vierkante centimeter.',
+    { nl: 'Persen worden ingedeeld op {t:Sluitkracht|sluitkracht}, in ton: de kracht die de helften dichthoudt tegen de smelt, die met honderden bar duwt. Eén bar is zo’n kilo per vierkante centimeter.',
+      en: 'Presses are rated by {t:Clamp force|clamp force}, in tonnes: the force that holds the halves shut. The melt pushes them apart at hundreds of bar, and one bar is about a kilo per square centimetre.' },
+    { nl: 'Hoeveel kracht nodig is, hangt af van het {t:Geprojecteerd oppervlak|geprojecteerd oppervlak}: de schaduw van het product vanuit de pers. Deze behuizing: {n:15} bij {n:20} centimeter, {n:300} vierkante centimeter.',
       en: 'The force needed depends on the {t:Projected area|projected area}: the part’s shadow, seen from the press. This housing is {n:15} by {n:20} centimetres: {n:300} square centimetres.' },
-    { nl: 'Vuistregel: {n:0.3} tot {n:0.6} ton per vierkante centimeter, afhankelijk van de kunststof; voor deze behuizing {n:0.4}. Dat is {n:120} ton. Met {n:2} holtes {n:240} ton, plus {n:10} tot {n:20} procent marge: een pers van {n:280} of {n:300} ton.',
-      en: 'Rule of thumb: {n:0.3} to {n:0.6} tonnes per square centimetre, depending on the plastic; for this housing {n:0.4}. That is {n:120} tonnes. With {n:2} cavities {n:240}, plus {n:10} to {n:20} percent margin: a {n:280} or {n:300} tonne press.' },
-    { nl: 'Te weinig kracht, en de matrijs gaat een haarbreed open op de deellijn. De kunststof lekt eruit als braam: een dun vliesje.',
-      en: 'Too little force, and the mould opens a hair’s breadth at the parting line. Plastic leaks out as flash: a thin film.' },
+    { nl: 'Vuistregel: {n:0.3} tot {n:0.6} ton per vierkante centimeter, afhankelijk van de kunststof; hier {n:0.4}, dus {n:120} ton. Met {n:2} holtes {n:240} ton, plus {n:10} tot {n:20} procent marge: een pers van {n:280} of {n:300} ton.',
+      en: 'Rule of thumb: {n:0.3} to {n:0.6} tonnes per square centimetre, depending on the plastic; here {n:0.4}, so {n:120} tonnes. With {n:2} cavities {n:240}, plus {n:10} to {n:20} percent margin: a {n:280} or {n:300} tonne press.' },
+    { nl: 'Te weinig kracht, en de matrijs gaat een haarbreed open op de deellijn: de kunststof lekt eruit als braam. Dus niet op een vrije pers van {n:200} ton.',
+      en: 'Too little force, and the mould opens a hair’s breadth at the parting line: plastic leaks out as flash. So not on a free {n:200} tonne press.' },
   ],
   [ // s4 the screw
-    { nl: 'Nu de schroef. Hij is ongeveer {n:20} keer zo lang als hij dik is, en heeft drie zones. Achterin ligt de {t:Intrekzone|intrekzone}: diepe gangen trekken de koude korrels naar binnen.',
-      en: 'Now the screw. It is about {n:20} times as long as it is thick, with three zones. At the back, the {t:Feed zone|feed zone}: deep flights draw the cold pellets in.' },
-    { nl: 'Dan de {t:Compressiezone|compressiezone}. Het kanaal wordt ondieper, dus de kunststof wordt samengeperst en gekneed tot hij smelt.',
-      en: 'Then the {t:Compression zone|compression zone}. The channel gets shallower, so the plastic is squeezed and kneaded until it melts.' },
-    { nl: 'Voorin zit de {t:Doseerzone|doseerzone}: die maakt de smelt overal even warm en goed gemengd. Op de punt zit een terugslagring, die bij het inspuiten dichtgaat.',
-      en: 'At the front, the {t:Metering zone|metering zone} makes the melt evenly hot and well mixed. On the tip sits a check ring, which closes during injection.' },
-    { nl: 'De meeste warmte komt van wrijving: de schroef kneedt de kunststof terwijl hij draait. De verwarmingsbanden houden vooral de cilinder op temperatuur.',
-      en: 'Most of the heat comes from friction: the screw kneads the plastic as it turns. The heater bands mainly keep the barrel at temperature.' },
+    { nl: 'Nu de schroef, zo’n {n:20} keer zo lang als dik, met drie zones. Achterin de {t:Intrekzone|intrekzone}: diepe gangen trekken de koude korrels naar binnen.',
+      en: 'Now the screw: about {n:20} times as long as it is thick, with three zones. At the back, the {t:Feed zone|feed zone}: deep flights draw the cold pellets in.' },
+    { nl: 'Dan de {t:Compressiezone|compressiezone}: het kanaal wordt ondieper, dus de kunststof wordt samengeperst en gekneed tot hij smelt.',
+      en: 'Then the {t:Compression zone|compression zone}: the channel gets shallower, so the plastic is squeezed and kneaded until it melts.' },
+    { nl: 'Voorin de {t:Doseerzone|doseerzone}: die maakt de smelt overal even warm en goed gemengd. De terugslagring op de punt gaat dicht bij het inspuiten.',
+      en: 'At the front, the {t:Metering zone|metering zone} makes the melt evenly hot and well mixed. The check ring on the tip closes during injection.' },
+    { nl: 'De meeste warmte komt van wrijving, niet van de verwarmingsbanden: die houden vooral de cilinder op temperatuur.',
+      en: 'Most of the heat comes from friction, not from the heater bands: they mainly keep the barrel at temperature.' },
   ],
   [ // s5 dosing and residence time
-    { nl: 'Bij het doseren duwt de smelt vóór de punt de schroef terug, tot de ingestelde {t:Doseerslag|doseerslag}: precies één shot. Duurt doseren langer dan koelen, dan wacht de pers op de schroef.',
-      en: 'While dosing, the melt in front of the tip pushes the screw back, up to the set {t:Dosing stroke|dosing stroke}: exactly one shot. If dosing outlasts cooling, the press waits for the screw.' },
-    { nl: 'Hoe lang zit de kunststof heet? Die {t:Verblijftijd|verblijftijd} is grofweg de shots in de cilinder keer de cyclustijd. Hier past {n:600} gram in de cilinder, en een shot is {n:150} gram: {n:4} shots. Bij {n:30} seconden per cyclus is dat {n:120} seconden.',
-      en: 'How long does the plastic stay hot? That {t:Residence time|residence time} is roughly the shots in the barrel times the cycle time. Here {n:600} grams fit in the barrel, and a shot is {n:150} grams: {n:4} shots. At {n:30} seconds a cycle, that is {n:120} seconds.' },
-    { nl: 'Een product van {n:60} gram op dezelfde pers: {n:10} shots, dus {n:300} seconden heet. Warmtegevoelige kunststof krijgt dan zwarte puntjes. Zo’n product hoort op een kleinere pers.',
-      en: 'A {n:60} gram part on the same press: {n:10} shots, so {n:300} seconds hot. Heat-sensitive plastic then gets black specks. That part belongs on a smaller press.' },
+    { nl: 'Bij het doseren duwt de smelt vóór de punt de schroef terug, tot de ingestelde {t:Doseerslag|doseerslag}: precies één shot. Duurt doseren langer dan koelen, dan wacht de pers.',
+      en: 'While dosing, the melt in front of the tip pushes the screw back, up to the set {t:Dosing stroke|dosing stroke}: exactly one shot. If dosing outlasts cooling, the press waits.' },
+    { nl: 'De {t:Verblijftijd|verblijftijd}, hoe lang de kunststof heet zit, is grofweg de shots in de cilinder keer de cyclustijd. Er past {n:600} gram in, een shot is {n:150} gram: {n:4} shots. Bij {n:30} seconden: {n:120} seconden.',
+      en: 'The {t:Residence time|residence time}, how long the plastic stays hot, is roughly the shots in the barrel times the cycle time. The barrel holds {n:600} grams, a shot is {n:150} grams: {n:4} shots. At {n:30} seconds, that is {n:120} seconds.' },
+    { nl: 'Een product van {n:60} gram: {n:10} shots, {n:300} seconden. Noemt het datablad maximaal {n:4} minuten, dan is dat te lang: zwarte puntjes. Dat product hoort op een kleinere pers.',
+      en: 'A {n:60} gram part: {n:10} shots, so {n:300} seconds. If the data sheet says {n:4} minutes at most, that is too long, and black specks appear. That part belongs on a smaller press.' },
   ],
   [ // s6 choosing the right press
-    { nl: 'Voor een matrijs op een pers gaat, volgen vier checks. Eén, de sluitkracht: oppervlak keer {t:Holtedruk|holtedruk}, de gemiddelde druk in de holte, meestal {n:300} tot {n:600} bar. Een deksel van {n:380} vierkante centimeter bij {n:0.45} ton vraagt {n:171} ton.',
-      en: 'Before a mould goes on a press, four checks. One, clamp force: area times {t:Cavity pressure|cavity pressure}, the average pressure in the cavity, usually {n:300} to {n:600} bar. A lid of {n:380} square centimetres at {n:0.45} tonnes needs {n:171} tonnes.' },
-    { nl: 'Twee, het {t:Shotvolume|shotvolume}: alle producten plus de aanspuiting. Hier {n:100} kubieke centimeter.',
-      en: 'Two, the {t:Shot volume|shot volume}: all the parts plus the runner. Here {n:100} cubic centimetres.' },
-    { nl: 'Deel dat door wat de cilinder maximaal kan: de {t:Cilinderbenutting|cilinderbenutting}. Op een cilinder van {n:120} is dat {n:83} procent, te veel. Op {n:250} is het {n:40} procent, precies goed. Mik op {n:20} tot {n:80} procent.',
-      en: 'Divide by the most the barrel can hold: the {t:Barrel utilisation|barrel utilisation}. On a barrel of {n:120} that is {n:83} percent, too much. On {n:250} it is {n:40} percent, just right. Aim for {n:20} to {n:80} percent.' },
-    { nl: 'Drie en vier: de matrijs moet passen. Zijn {t:Inbouwhoogte|inbouwhoogte}, de dikte van de gesloten matrijs, moet binnen het bereik van de pers vallen, en de {t:Openingsslag|openingsslag} moet het product eruit laten.',
-      en: 'Three and four: the mould must fit. Its {t:Mould height|mould height}, the closed mould’s thickness, must lie within the press’s range, and the {t:Opening stroke|opening stroke} must let the part out.' },
+    { nl: 'Kies de pers met vier checks. Eén, de sluitkracht: oppervlak keer {t:Holtedruk|holtedruk}, de gemiddelde druk in de holte, meestal {n:300} tot {n:600} bar. Een deksel van {n:380} vierkante centimeter bij {n:0.45} ton per vierkante centimeter: {n:171} ton, met marge {n:197}.',
+      en: 'Choose the press with four checks. One, clamp force: area times {t:Cavity pressure|cavity pressure}, the average pressure in the cavity, usually {n:300} to {n:600} bar. A lid of {n:380} square centimetres at {n:0.45} tonnes per square centimetre: {n:171} tonnes, {n:197} with margin.' },
+    { nl: 'Twee, het {t:Shotvolume|shotvolume}: alle producten plus de aanspuiting, hier {n:100} kubieke centimeter.',
+      en: 'Two, the {t:Shot volume|shot volume}: all the parts plus the runner, here {n:100} cubic centimetres.' },
+    { nl: 'Deel dat door het maximale shotvolume van de cilinder: de {t:Cilinderbenutting|cilinderbenutting}. Mik op {n:20} tot {n:80} procent, liefst {n:40} tot {n:60}. In een cilinder van {n:120} is dat {n:83} procent: te veel, de schroef smelt het niet op tijd. In een van {n:250}: {n:40} procent.',
+      en: 'Divide by the barrel’s maximum shot volume: the {t:Barrel utilisation|barrel utilisation}. Aim for {n:20} to {n:80} percent, ideally {n:40} to {n:60}. In a barrel of {n:120} that is {n:83} percent: too much, the screw cannot melt it in time. In one of {n:250}: {n:40} percent.' },
+    { nl: 'Drie, de {t:Inbouwhoogte|inbouwhoogte}: de dikte van de gesloten matrijs moet binnen het bereik van de pers vallen. En de matrijs moet tussen de kolommen door.',
+      en: 'Three, the {t:Mould height|mould height}: the closed mould’s thickness must lie within the press’s range. And the mould must fit between the tie bars.' },
+    { nl: 'Vier, de {t:Openingsslag|openingsslag}: hoe ver de pers opengaat, vaak twee keer de productdiepte plus ruimte voor een grijper. Groter is niet veiliger: te veel kracht drukt de ontluchting dicht.',
+      en: 'Four, the {t:Opening stroke|opening stroke}: how far the press opens, often twice the part depth plus room for a gripper. And bigger is not safer: too much force squeezes the vents shut.' },
   ],
   [ // s7 hydraulic or electric
-    { nl: 'Deze pers is hydraulisch: een pomp perst olie naar de cilinders. Robuust, en grote kracht is goedkoop. Elektrische persen sluiten meestal met een kniehevel, die gestrekt vergrendelt.',
-      en: 'This press is hydraulic: a pump drives oil to the cylinders. Robust, and large forces come cheap. Electric presses usually close with a toggle, which locks when stretched out.' },
+    { nl: 'Deze pers is hydraulisch: een pomp perst olie naar de cilinders. Robuust, en grote kracht is goedkoop. Elektrische persen sluiten meestal met een kniehevel.',
+      en: 'This press is hydraulic: a pump drives oil to the cylinders. Robust, and large forces come cheap. Electric presses usually close with a toggle.' },
     { nl: 'Een {t:Volelektrische pers|volelektrische pers} heeft per as een {t:Servomotor|servomotor}. Hij gebruikt alleen stroom als hij beweegt, herhaalt preciezer en lekt geen olie.',
       en: 'An {t:All-electric press|all-electric press} has a {t:Servo motor|servo motor} for each axis. It only uses power when it moves, repeats more precisely and leaks no oil.' },
     { nl: 'Een {t:Hybride machine|hybride machine} combineert beide, meestal een elektrische schroef met een hydraulische sluiting.',
       en: 'A {t:Hybrid machine|hybrid machine} combines both, usually an electric screw with a hydraulic clamp.' },
-    { nl: 'Vergelijk energie als {t:Specifiek energieverbruik|specifiek energieverbruik}: kilowattuur per kilo. Studies lopen uiteen; meet het zelf. Stel {n:0.6} tegen {n:0.3}: op honderdtachtigduizend kilo per jaar, bij twintig cent, is dat tienduizend achthonderd euro. Veertigduizend euro meerprijs is dan in {n:3.7} jaar terug.',
-      en: 'Compare energy as {t:Specific energy consumption|specific energy consumption}: kilowatt-hours per kilo. Studies differ; measure it. Say {n:0.6} against {n:0.3}: on a hundred and eighty thousand kilos a year, at twenty cents, that saves ten thousand eight hundred euros. Forty thousand euros extra pays back in {n:3.7} years.' },
+    { nl: 'Vergelijk energie als {t:Specifiek energieverbruik|specifiek energieverbruik}: kilowattuur per kilo, liefst zelf gemeten, want studies lopen uiteen. Stel {n:0.6} tegen {n:0.3}: op honderdtachtigduizend kilo per jaar, bij twintig cent, scheelt dat tienduizend achthonderd euro. Veertigduizend euro meerprijs is in {n:3.7} jaar terug.',
+      en: 'Compare energy as {t:Specific energy consumption|specific energy consumption}: kilowatt-hours per kilo. Studies differ, so measure it. Say {n:0.6} against {n:0.3}: on a hundred and eighty thousand kilos a year, at twenty cents, that saves ten thousand eight hundred euros. Forty thousand euros extra pays back in {n:3.7} years.' },
   ],
   [ // s8 special presses
-    { nl: '{t:Tweecomponenten-spuitgieten|Tweecomponenten-spuitgieten} spuit met twee spuitunits een harde en een zachte kunststof tot één product.',
-      en: '{t:Two-component moulding|Two-component moulding} uses two injection units to mould a hard and a soft plastic into one part.' },
-    { nl: 'Bij {t:Omspuiten|omspuiten} gaat er een metalen deel in de matrijs, en komt de kunststof eromheen.',
-      en: 'In {t:Insert moulding|insert moulding} a metal part goes into the mould, and the plastic is moulded around it.' },
+    { nl: 'Bij {t:Tweecomponenten-spuitgieten|tweecomponenten-spuitgieten} spuiten twee spuitunits een harde en een zachte kunststof tot één product, vaak met een draaiende matrijs. Dat scheelt een montagestap.',
+      en: 'In {t:Two-component moulding|two-component moulding} two injection units mould a hard and a soft plastic into one part, often with a rotating mould. That saves an assembly step.' },
+    { nl: 'Bij {t:Omspuiten|omspuiten} komt de kunststof om een metalen deel dat in de matrijs ligt, zoals een draadbus. Beide vragen complexere matrijzen.',
+      en: 'In {t:Insert moulding|insert moulding} the plastic is moulded around a metal part placed in the mould, such as a threaded bush. Both need more complex moulds.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
