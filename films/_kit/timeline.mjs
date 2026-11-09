@@ -80,6 +80,8 @@ const SAY = {
     // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
     // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
     [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
+    // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
+    [/\b([Bb])èta\b/g, '$1eeta'],
     // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
     // keeps its own stress and vowels (HOOFD-SCHAkelaar, VEILigheids-REgels)
     [/\b([Hh])oofdschakelaar/g, '$1oofd-schakelaar'], [/\b([Vv])eiligheidsregels\b/g, '$1eiligheids-regels']],

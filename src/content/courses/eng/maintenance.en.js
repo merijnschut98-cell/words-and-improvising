@@ -4,6 +4,7 @@ export default {
     // Topic: Maintenance strategies
     {
       id: 'eng.maintenance.strategies',
+      film: 'eng.maintenance.failure',
       title: 'Four maintenance strategies',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.maintenance.failure',
+      film: 'eng.maintenance.failure',
       title: 'How equipment really fails',
       pre: [
         {
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
+      film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Condition monitoring',
       pre: [
