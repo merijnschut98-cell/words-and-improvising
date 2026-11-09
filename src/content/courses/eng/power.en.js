@@ -164,15 +164,15 @@ export default {
       teach: [
         'Three kinds of power sit behind one meter. Active power, in kW, does the work. Reactive power, in kvar (kilovolt-ampere reactive), only flows back and forth to build the magnetic fields of motors and transformers. Apparent power, in kVA, is what cables and transformers must carry.\n\nThey form a right-angled triangle: kVA² = kW² + kvar². The power factor is kW / kVA. At 0.8, 100 kW needs 125 kVA, of which 75 kvar is reactive.',
         'Low power factor comes from lightly loaded induction motors, transformers running almost empty, welding sets and older lighting. A standard VFD draws little reactive current at 50 Hz, but its pulsed current lowers the total power factor through harmonics, distorted waves (the next level of the drives topic).\n\nWhat you see: a plant where the kVA on the main meter is well above the kW, and a transformer that runs warm while the kW look modest.',
-        'In the Netherlands the grid code expects a large connection to keep its power factor at about 0.85 or better; the exact band is in the code and the connection agreement. Below it, grid operators bill the extra reactive energy per kvarh. Stedin’s 2025 tariff sheet, for example, lists €0.017 per kvarh.\n\nTreat that as an example and check your own operator’s sheet. Often the bigger cost is hidden: kVA eats transformer and cable capacity, and in a congested area that headroom is scarce.',
-        'The usual fix is a capacitor bank: capacitors that supply the reactive current locally, so the grid does not have to. An automatic bank switches steps in and out as the load changes; a fixed capacitor at one large motor is the simple option.\n\nSize it from the tangent of the angle (tan φ): kvar needed = kW × (tan φ now − tan φ target). Don’t overcompensate: a power factor that goes capacitive raises the voltage and can be billed too.',
+        'In the Netherlands the grid code (since February 2026 the Electricity System Code, article 2.19) expects a connection to keep its power factor between 0.85 inductive and 1.0, unless the connection agreement says otherwise. Outside that band, grid operators bill the extra reactive energy per kvarh: Stedin’s 2025 tariff sheet, for example, listed €0.017 per kvarh.\n\nTreat that as an example and check your own operator’s sheet. Often the bigger cost is hidden: kVA eats transformer and cable capacity, and in a congested area that headroom is scarce.',
+        'The usual fix is a capacitor bank: capacitors that supply the reactive current locally, so the grid does not have to. An automatic bank switches steps in and out as the load changes; a fixed capacitor at one large motor is the simple option.\n\nSize it from the tangent of the angle (tan φ): kvar needed = kW × (tan φ now − tan φ target). Don’t overcompensate: a capacitive power factor falls outside that band, raises the voltage and can be billed too.',
         'Capacitors and drives clash. The capacitors and the transformer form a resonant circuit, and if its frequency sits near the 5th harmonic (250 Hz) of many drives, currents build up: fuses blow and capacitors bulge.\n\nA detuned capacitor bank has a reactor, a coil, in series with each step, tuning it below 250 Hz, often to about 189 Hz. A sharp question before anyone buys: which harmonics are on our supply, and is the bank detuned?',
       ],
       example: {
         kind: 'faded',
         text: 'A plastics plant draws 600 kW on average at a power factor of 0.78; its 1,000 kVA transformer runs warm and a new line is planned. The grid operator bills reactive energy. The target is 0.95. Tan φ is 0.80 at 0.78 and 0.33 at 0.95. Half the load is VFDs.',
         ask: 'What is the apparent power now and at 0.95, how much capacitor power is needed, and what kind of bank do you specify?',
-        reveal: 'Now 600 / 0.78 = 769 kVA; at 0.95, 600 / 0.95 = 632 kVA: about 137 kVA of transformer capacity freed for the new line.\n\nCapacitor power: 600 × (0.80 − 0.33) = about 284 kvar, so a bank of about 300 kvar in automatic steps.\n\nWith half the load on drives it must be a detuned bank, and a week of power quality measurements comes first.',
+        reveal: 'Now 600 / 0.78 = 769 kVA; at 0.95, 600 / 0.95 = 632 kVA: about 138 kVA of transformer capacity freed for the new line.\n\nCapacitor power: 600 × (0.80 − 0.33) = about 284 kvar, so a bank of about 300 kvar in automatic steps.\n\nWith half the load on drives it must be a detuned bank, and a week of power quality measurements comes first.',
       },
       said: 'What electricians say: “Don’t just bolt a cap bank on. With all those drives it’ll resonate on the fifth. Detuned, and measure first.”',
       recall: [
@@ -237,10 +237,10 @@ export default {
       ],
       teach: [
         'ISO 50001 is the standard for an energy management system: the same plan-do-check-act loop as ISO 9001, applied to energy. It starts with an energy review that finds the significant energy uses, the few users that dominate, such as compressors, ovens and chillers (cooling machines).\n\nFor each it sets indicators, a baseline, targets and action plans. The certificate on the wall says the loop exists; it does not prove that energy went down.',
-        'The kWh per tonne from the energy lesson misleads when a plant has a base load. In a slow month the base load is spread over fewer tonnes, so kWh per tonne rises although nobody worked worse.\n\nAn EnPI (energy performance indicator) built as a model does better: energy = fixed part + slope × output, fitted by regression on, say, 12 months. ISO 50006 gives guidance. Add outdoor temperature as degree days where heating or cooling matters.',
+        'The kWh per tonne from the energy lesson misleads when a plant has a base load. In a slow month the base load is spread over fewer tonnes, so kWh per tonne rises although nobody worked worse.\n\nAn EnPI (energy performance indicator) built as a model does better: energy = fixed part + slope × output (the straight line from Pumps, flow and heat), fitted by regression on, say, 12 months. ISO 50006 gives guidance. Add outdoor temperature as degree days where heating or cooling matters.',
         'The energy baseline is that model for a reference period. For each later month it predicts the energy the plant would have used under that month’s conditions. The saving is the predicted energy minus the actual: avoided energy.\n\nIt only works if the model fits. Practitioners check how well it explains the reference data, and many want an R² (the share of the variation the model explains) of roughly 0.75 or more before trusting it.',
         'Measurement and verification (M&V) is the method for proving a saving. The IPMVP protocol gives four options: A measures the key parameter and estimates the rest; B measures everything at the project, with its own submeter; C uses the whole-site meter; D uses a calibrated simulation.\n\nOption C only works when the saving stands out from the meter’s normal noise, often quoted as above about 10% of site use. When the plant changes, add a line, the baseline gets a documented adjustment.',
-        'Expert traps: two projects claiming the same kWh, a saving taken from the supplier’s brochure instead of a meter, and savings eaten by more use later.\n\nIn the Netherlands, companies above 50,000 kWh of electricity or 25,000 m³ of gas a year must take energy-saving measures that pay back within five years and report them every four years; check RVO (the Netherlands Enterprise Agency) for the current rules. A sharp question: “Against which baseline, corrected for what, measured by which meter?”',
+        'Expert traps: two projects claiming the same kWh, a saving taken from the supplier’s brochure instead of a meter, and savings eaten by more use later.\n\nThe Dutch energy-saving obligation, explained in Pumps, flow and heat, asks for the same rigour: measures that pay back within five years, reported every four years. A move to seven years from 2027 has been proposed, so check RVO (the Netherlands Enterprise Agency). A sharp question: “Against which baseline, corrected for what, measured by which meter?”',
       ],
       example: {
         kind: 'faded',
@@ -467,7 +467,7 @@ export default {
         kind: 'faded',
         text: 'A 45 kW conveyor motor trips about twice a week. The overload relay is set to 80 A; the nameplate says 81 A. Measured at full load: phase voltages 400, 396 and 389 V; phase currents 78, 84 and 71 A. Insulation resistance 1,000 MΩ, polarization index 2.6.',
         ask: 'What is the voltage unbalance (largest deviation from the average, divided by the average), what does it do to the currents, and where do you look?',
-        reveal: 'Average voltage 395 V; the largest deviation is 6 V (389 V), so 6 / 395 = 1.5%. The currents average 77.7 A with a largest deviation of 6.7 A: 8.6%, almost six times the voltage unbalance.\n\nThe 84 A phase exceeds the 80 A setting, which explains the trips. The relay setting and insulation are fine; look for a loose terminal or a weak contact on the low phase, then upstream at the supply.',
+        reveal: 'Average voltage 395 V; the largest deviation is 6 V (389 V), so 6 / 395 = 1.5%. The currents average 77.7 A with a largest deviation of 6.7 A: 8.6%, almost six times the voltage unbalance.\n\nThe 84 A phase runs 5% above the 80 A setting hour after hour, and unbalance heats the winding more than the currents suggest; many electronic relays also trip on current unbalance itself. That explains the trips. The relay setting and insulation are fine; look for a loose terminal or a weak contact on the low phase, then upstream at the supply.',
       },
       said: 'What electricians say: “Megger’s fine, relay’s set right. One phase is six volts down and the current’s all over the place. Check the terminals.”',
       recall: [
@@ -481,8 +481,8 @@ export default {
         },
         {
           q: 'What does trip class 10 on an overload relay mean?',
-          options: ['It trips at 10% above the set current', 'It allows up to ten starts per hour', 'It trips after ten minutes at rated current', 'Trips within 10 s at 7.2 × the set current'],
-          answer: 'Trips within 10 s at 7.2 × the set current',
+          options: ['It trips at 10% above the set current', 'It allows up to ten starts per hour', 'It trips after ten minutes at rated current', 'It trips within 10 s at 7.2 × set current'],
+          answer: 'It trips within 10 s at 7.2 × set current',
           why: 'The trip class is the maximum trip time in seconds at 7.2 times the set current (IEC 60947-4-1).',
         },
         {
@@ -539,11 +539,11 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'A 90 kW fan motor has burnt out. It runs 7,000 hours a year at 75 kW shaft load. A rewind costs €4,500 and the shop expects 94.2% efficiency afterwards. A new IE4 motor costs €9,000 and is 96.0% efficient. Electricity costs €0.15 per kWh.',
+        text: 'A 90 kW fan motor has burnt out. It runs 7,000 hours a year at 75 kW shaft load. A rewind costs €4,500 and the shop expects 94.2% efficiency afterwards. A new IE4 motor costs €9,000 and is 96.1% efficient, the IE4 minimum for its size. Electricity costs €0.15 per kWh.',
         ask: 'How much does the new motor save per year against the rewind, and what is the payback time of the extra €4,500?',
-        reveal: 'Rewound: 75 / 0.942 = 79.6 kW input. New: 75 / 0.960 = 78.1 kW. Saving 1.49 kW × 7,000 h = about 10,450 kWh, roughly €1,570 a year.\n\nPayback: 4,500 / 1,570 = about 2.9 years, on a motor that will run 15 years or more. Replace, and keep the old motor as a rewound spare if it is critical.',
+        reveal: 'Rewound: 75 / 0.942 = 79.6 kW input. New: 75 / 0.961 = 78.0 kW. Saving 1.57 kW × 7,000 h = about 11,000 kWh, roughly €1,650 a year.\n\nPayback: 4,500 / 1,650 = about 2.7 years, on a motor that will run 15 years or more. Replace, and keep the old motor as a rewound spare if it is critical.',
       },
-      said: 'What engineers say: “Rewind’s half the price, but it’s a ninety running all year. The IE4 pays the difference in three years. Replace it, and write the rule down so we don’t argue next time.”',
+      said: 'What engineers say: “Rewind’s half the price, but it’s a ninety running all year. The IE4 pays the difference back in under three years. Replace it, and write the rule down so we don’t argue next time.”',
       recall: [
         {
           q: 'All four motors have just failed. Which one deserves an IE4 replacement first?',
@@ -749,8 +749,8 @@ export default {
       teach: [
         'A standard drive starts with a six-pulse diode rectifier, which turns AC into DC. It draws current in short pulses instead of a smooth wave. That current contains harmonics: the 5th at 250 Hz, the 7th at 350 Hz, then the 11th and 13th.\n\nTHD (total harmonic distortion) puts them in one number: the harmonic part as a percentage of the 50 Hz part. A six-pulse drive with a choke typically draws current at roughly 30 to 45% THD; without one, far more.',
         'Harmonic currents flowing through the transformer distort the voltage for every user on it. Transformers and cables run hotter, sensitive controls trip, and capacitor banks can resonate, as the power factor lesson showed.\n\nVoltage limits: EN 61000-2-4 sets a compatibility level of 8% voltage THD for industrial networks (class 2), and IEEE 519 also allows 8% at 1 kV or below, with 5% for any single harmonic.',
-        'IEEE 519 judges the plant at the point of common coupling (PCC): where the plant meets the grid operator’s network, not at each drive. Its current limits depend on how strong the grid is there; a weak connection gets the tightest, 5%.\n\nCures in rising price: a line reactor or DC choke, a coil that smooths the current; 12- or 18-pulse rectifiers; passive or active filters; and an active front end (AFE), a drive input built from transistors, typically under about 5% current THD.',
-        'Fast switching causes two more problems. With long motor cables the voltage peaks at the motor terminals can almost double, stressing the winding insulation.\n\nAnd bearing currents: currents that find their way to earth through the motor bearings, sparking across the grease film until the races show a washboard pattern called fluting. Fixes: an insulated bearing at the non-drive end, a shaft grounding ring, symmetrical shielded cable and correct earthing, as IEC 61800-3 on drive EMC describes.',
+        'IEEE 519 judges the plant at the point of common coupling (PCC): where the plant meets the grid operator’s network, not at each drive. Its current limits depend on how strong the grid is there; a weak connection gets the tightest: 5% of the plant’s maximum demand current.\n\nCures in rising price: a line reactor or DC choke, a coil that smooths the current; 12- or 18-pulse rectifiers; passive or active filters; and an active front end (AFE), a drive input built from transistors, typically under about 5% current THD.',
+        'Fast switching causes two more problems. With long motor cables the voltage peaks at the motor terminals can almost double, stressing the winding insulation.\n\nAnd bearing currents: currents that find their way to earth through the motor bearings, sparking across the grease film until the races show a washboard pattern called fluting. Fixes: an insulated bearing at the non-drive end, a shaft grounding ring, symmetrical shielded cable and correct earthing, as IEC TS 60034-25 on drive-fed motors describes.',
         'Experts say measure before you buy filters. A power quality analyser at the main switchboard for a week shows the real voltage THD; harmonics from many drives partly cancel, and filters sized on nameplate power are often too big.\n\nThe usual failure: drives added one project at a time until the voltage distortion crosses the limit and something unrelated starts to trip. A sharp question: “What is the voltage THD at our main board now, and what will the new line add?”',
       ],
       example: {
@@ -785,8 +785,8 @@ export default {
         },
         {
           q: 'The bearings of VFD-fed motors show a washboard pattern (fluting). Which fix targets the cause?',
-          options: ['Grease the bearings twice as often', 'Raise the drive’s switching frequency', 'Fit a motor one frame size bigger', 'Insulated bearing or grounding ring'],
-          answer: 'Insulated bearing or grounding ring',
+          options: ['Grease the bearings twice as often', 'Raise the drive’s switching frequency to maximum', 'Fit a motor one frame size bigger', 'Fit an insulated bearing or grounding ring'],
+          answer: 'Fit an insulated bearing or grounding ring',
           why: 'Fluting comes from current passing through the bearing; insulation or a grounding ring gives it another path.',
         },
       ],
@@ -1047,7 +1047,7 @@ export default {
         'Unloaded running is a fixed-speed compressor turning without compressing, waiting for the pressure to drop. It still draws roughly 25 to 35% of its full-load power. A compressor that runs half its hours unloaded wastes a lot.\n\nA VSD compressor, one with a variable speed drive, follows the demand instead. The usual best setup: fixed-speed units running fully loaded for the base, one VSD compressor trimming on top, and a master controller that sequences them.',
         'An air receiver is a storage tank after the compressors. It absorbs short peaks, lets the compressors run longer, calmer cycles and keeps the pressure steady.\n\nPressure drop is the other system loss: dryers, filters and thin pipes each take some. DOE guidance says the drop from compressor to point of use should be well under 10% of the compressor pressure. Measure at the compressor and at the far end at the same time.',
         'ISO 8573-1 classes air quality with three numbers: solid particles, water and oil, written like 1.4.1. Water class 4 means a pressure dew point of +3 °C, typical of a refrigeration dryer; class 2 means −40 °C, which needs a desiccant dryer that uses part of the air to regenerate itself.\n\nSpecify what each user needs. Drying the whole plant to −40 °C for one sensitive machine costs energy every hour of the year.',
-        'Most of a compressor’s input becomes heat. On air-cooled screw compressors, DOE’s fact sheet calls recovery of 80 to 90% of that heat common, for space heating or process water.\n\nISO 11011 describes how to assess a compressed air system. Experts agree on measuring first: log power, flow and pressure for one or two weeks to get the demand profile. A sharp question: “What is our specific power, and how many hours does each compressor run unloaded?”',
+        'Most of a compressor’s input becomes heat. Where an air-cooled screw compressor’s warm air heats a space, DOE’s fact sheet calls recovery of 80 to 90% of that heat common; heating water typically recovers 50 to 60%.\n\nISO 11011 describes how to assess a compressed air system. Experts agree on measuring first: log power, flow and pressure for one or two weeks to get the demand profile. A sharp question: “What is our specific power, and how many hours does each compressor run unloaded?”',
       ],
       example: {
         kind: 'faded',
@@ -1117,7 +1117,7 @@ export default {
         },
       ],
       teach: [
-        'ISO 4413 (hydraulics) and ISO 4414 (pneumatics) give the general rules and safety requirements for fluid power systems. Machine builders use them to meet the EU machinery rules: the Machinery Directive, which the Machinery Regulation (EU) 2023/1230 replaces from January 2027.\n\nThe core ideas: no unexpected movement, a way to isolate and release every source of pressure, components rated for the highest pressure, and protection against hose failure.',
+        'ISO 4413 (hydraulics) and ISO 4414 (pneumatics) give the general rules and safety requirements for fluid power systems. Machine builders use them to meet the EU machinery rules: the Machinery Directive, which the Machinery Regulation (EU) 2023/1230 replaces from 20 January 2027.\n\nThe core ideas: no unexpected movement, a way to isolate and release every source of pressure, components rated for the highest pressure, and protection against hose failure.',
         'Stored energy is what remains after isolation. In fluid power: accumulators, which ISO 4413 expects to discharge automatically or be safely isolated at shutdown; pressure trapped in cylinders behind check valves or closed valves; loads held up by pressure; springs.\n\nA load-holding valve on a cylinder keeps a raised load from dropping if a hose bursts. Locking out and proving zero follows Safety on the floor and in the substation: gauges at zero, loads blocked, then a try.',
         'Pneumatic machines need a dump valve: a lockable valve that cuts the supply and vents the air downstream. After a stop, a soft-start valve builds the pressure up slowly, so cylinders that moved during the stop don’t slam to their end positions on restart.\n\nWhat you see on a good machine: one lockable dump valve per machine, clearly marked, and a pressure gauge after it.',
         'A hose whip is the violent lashing of a pressurised hose that bursts or pulls out of its fitting. Restraints, shields and correct routing guard against it.\n\nHoses age even when they look fine. The German DGUV rule 113-020 advises replacing hydraulic hose assemblies after at most six years of use unless the maker says otherwise. Inspect for chafing, kinks, bulges and leaks at the crimped ends; never feel for leaks by hand.',
@@ -1133,8 +1133,8 @@ export default {
       recall: [
         {
           q: 'The ram of a hydraulic press is raised, and the pump is locked out. What makes it safe to reach under the ram?',
-          options: ['Switching off the pump motor at the panel', 'The ram blocked, gauges proven at zero', 'Closing the directional valve by hand', 'Pressing and latching the emergency stop'],
-          answer: 'The ram blocked, gauges proven at zero',
+          options: ['Switching off the pump motor at the panel', 'Blocking the ram, proving zero pressure', 'Closing the directional valve by hand', 'Pressing and latching the emergency stop'],
+          answer: 'Blocking the ram, proving zero pressure',
           why: 'A raised ram is stored energy: it must be mechanically blocked and the pressure proven released before anyone reaches under.',
         },
         {
