@@ -150,11 +150,17 @@ const STAGE = (() => {
     rows.forEach(([a, v], i) => { const y = 86 + i * 32; out += txt(28, y, a, 21, 'start', 'ia-txt') + txt(312, y, v, 21, 'end', 'ia-big'); });
     return out + txt(312, 180, EXAMPLE, 20, 'end', 'ia-mute');
   }
-  // s4: the confirmation, MES → ERP
-  function confSvg() {
-    return rect(12, 12, 336, 150) + txt(28, 46, tr('terugmelding', 'confirmation'), 22, 'start', 'ia-big') + txt(332, 46, 'MES → ERP', 20, 'end', 'ia-mute')
-      + txt(28, 82, tr(`${num(X.good)} goed · ${X.scrap} afkeur`, `${num(X.good)} good · ${X.scrap} scrap`), 21, 'start', 'ia-txt')
-      + txt(28, 114, tr(`tijd: ${dec(3.3)} uur`, `time: ${dec(3.3)} hours`), 21, 'start', 'ia-txt') + txt(332, 148, EXAMPLE, 20, 'end', 'ia-mute');
+  // s4: the confirmation, MES → ERP: good, scrap, hours; in the worked example the
+  // scrap row is left out (left: 0..1, the strike-through drawn across it)
+  function confSvg(left) {
+    let out = rect(12, 12, 336, 182) + txt(28, 46, tr('terugmelding', 'confirmation'), 22, 'start', 'ia-big') + txt(332, 46, 'MES → ERP', 20, 'end', 'ia-mute');
+    out += txt(28, 82, tr('goed', 'good'), 21, 'start', 'ia-txt') + txt(200, 82, num(X.good), 21, 'end', 'ia-big');
+    if (left > 0.98) out += rect(20, 92, 320, 32, 'ia-row', 6);
+    out += txt(28, 114, tr('afkeur', 'scrap'), 21, 'start', left > 0.98 ? 'ia-mute' : 'ia-txt') + txt(200, 114, String(X.scrap), 21, 'end', left > 0.98 ? 'ia-mute' : 'ia-big');
+    if (left > 0) out += line(24, 107, 24 + 184 * left, 107, 'ia-accl');
+    if (left > 0.98) out += txt(214, 114, tr('niet gemeld', 'left out'), 20, 'start', 'ia-on');
+    out += txt(28, 146, tr('tijd', 'time'), 21, 'start', 'ia-txt') + txt(200, 146, tr(`${dec(3.3)} uur`, `${dec(3.3)} h`), 21, 'end', 'ia-big');
+    return out + txt(332, 180, EXAMPLE, 20, 'end', 'ia-mute');
   }
   // s5: the ERP stock: caps in (101), granulate out (261)
   function stockSvg(capsN, kg, codes) {
@@ -317,12 +323,17 @@ const STAGE = (() => {
         vis.count = 1;
         set(E.count, countSvg(span(p, 0.05, 0.95)));
         for (let i = 0; i < 3; i++) packets += packet(along(C.STOP.machine, C.STOP.mes, ((clockS * 0.2) + i / 3) % 1), 'data');
-      } else {
+      } else if (b === 1) {
         vis.conf = span(p, 0, 0.1);
-        set(E.conf, confSvg());
+        set(E.conf, confSvg(0));
         packets += packet(along(C.STOP.mes, C.STOP.erp, span(p, 0.15, 0.6)), 'order');
         erpLit = p > 0.6;
         running = p < 0.15;
+      } else {
+        // the worked example: the scrap stays behind in the MES
+        vis.conf = 1;
+        set(E.conf, confSvg(span(p, 0.1, 0.45)));
+        erpLit = true;
       }
       kioskLit = true;
     } else if (si === 4) {

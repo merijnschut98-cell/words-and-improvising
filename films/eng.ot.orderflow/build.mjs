@@ -52,9 +52,9 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 //   at the confirmation. These codes are SAP's own; other ERPs name them
 //   differently, so the film says "in SAP, for example".
 // - Backflushing books components out from the bill of materials times the
-//   confirmed quantity. Whether scrap counts depends on the set-up (SAP takes
-//   yield plus confirmed scrap; scrap that is not confirmed is missed), so the
-//   film keeps the lesson's "if only the good quantity counts".
+//   confirmed quantity. SAP takes yield plus confirmed scrap, so the gap comes
+//   from scrap that is never confirmed: in the worked example (lesson and film)
+//   the MES confirms the 960 good caps and leaves the 40 scrap out.
 // Illustrative values on the panels (recipe settings, other work orders,
 // downtime, hours, 25 kg bags, the opening stock) are labelled "voorbeeld".
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
@@ -74,7 +74,8 @@ const lessonText = (() => { const l = OT.find((x) => x.id === 'eng.ot.orderflow'
 for (const s of ['tussen niveau 4 en 3', 'productieplanning (production schedule)', 'productieprestaties (production performance)', 'orders omlaag, terugmeldingen omhoog',
   'stamdata omlaag', 'capaciteitsoverzicht omhoog', 'één lijn of machine in één dienst', 'temperaturen, snelheden, tijden', 'afkeur en stilstand', 'bewegingssoort (movement type) 101',
   'met 261', 'elke zak granulaat te scannen', 'rekent met de norm', 'te laat, verkeerde eenheid, of afkeur die niet meegaat', 'per stuk, per dienst of per order',
-  'Per stuk is meestal te veel voor het ERP, per week te weinig voor de planner', 'backflush op de totale hoeveelheid, of de afkeur apart als verbruik boeken']) {
+  'Per stuk is meestal te veel voor het ERP, per week te weinig voor de planner', 'meld de afkeur ook terug, zodat backflush op de totale hoeveelheid rekent, of boek de afkeur apart als verbruik',
+  'In SAP telt teruggemelde afkeur normaal mee', 'het MES meldt 960 goed terug, maar de 40 afkeur gaat niet mee']) {
   assert(lessonText.includes(s), `lesson text: "${s}"`);
 }
 
@@ -464,7 +465,8 @@ const spec = {
       id: 's4', lesson: OF, level: 2, still: 0.85, title: { nl: 'Tellen en terugmelden', en: 'Counting and confirming' },
       beats: [
         { nl: 'Omhoog: de PLC telt, het MES verzamelt tellingen, afkeur en stilstand.', en: 'Up: the PLC counts, the MES collects counts, scrap and downtime.', cues: ['plc', 'mes', 'scrap'], bp: 0.8 },
-        { nl: 'Aan het eind stuurt het MES een {t:Terugmelding|terugmelding} naar het ERP: {n:960} goed, {n:40} afkeur.', en: 'At the end the MES sends a {t:Confirmation|confirmation} to the ERP: {n:960} good, {n:40} scrap.', cue: { Terugmelding: 'conf' }, bp: 0.85 },
+        { nl: 'Aan het eind stuurt het MES een {t:Terugmelding|terugmelding} naar het ERP: goed, afkeur en uren.', en: 'At the end the MES sends a {t:Confirmation|confirmation} to the ERP: good, scrap and hours.', cue: { Terugmelding: 'conf' }, bp: 0.8 },
+        { nl: 'In dit voorbeeld meldt het MES {n:960} goed terug, maar de {n:40} afkeur gaat niet mee.', en: 'In this example the MES confirms {n:960} good, but the {n:40} scrap is left out.', cues: ['conf', 'scrap'], bp: 0.85 },
       ],
     },
     {
@@ -486,10 +488,10 @@ const spec = {
     {
       id: 's7', lesson: OF, level: 2, still: 0.95, title: { nl: 'Een kilo te veel', en: 'A kilo too much' },
       beats: [
-        { nl: 'Backflush op de goede stuks: {n:960} × {n:25} g = {n:24} kg granulaat afgeboekt.', en: 'Backflush on the good parts: {n:960} × {n:25} g = {n:24} kg of granulate booked out.', cues: ['meter'], bp: 0.8 },
+        { nl: 'Backflush op de teruggemelde stuks: {n:960} × {n:25} g = {n:24} kg granulaat afgeboekt.', en: 'Backflush on the confirmed parts: {n:960} × {n:25} g = {n:24} kg of granulate booked out.', cues: ['meter'], bp: 0.8 },
         { nl: 'Echt verbruikt: {n:1000} × {n:25} g = {n:25} kg, want ook de afkeur kostte materiaal.', en: 'Really used: {n:1000} × {n:25} g = {n:25} kg, because the scrap took material too.', cues: ['meter', 'scrap'], bp: 0.8 },
         { nl: 'Na deze order staat er {n:1} kg te veel granulaat in het ERP. Zo loopt het verschil op.', en: 'After this order the ERP shows {n:1} kg of granulate too much. That is how the gap grows.', cues: ['meter', 'bf'], bp: 0.8 },
-        { nl: 'Oplossing: backflush op de totale hoeveelheid, of de afkeur apart als verbruik boeken.', en: 'Fix: backflush on the total quantity, or book the scrap separately as consumption.', cues: ['meter'], bp: 0.85 },
+        { nl: 'Oplossing: meld de afkeur ook terug, of boek de afkeur apart als verbruik.', en: 'Fix: confirm the scrap too, or book the scrap separately as consumption.', cues: ['meter'], bp: 0.85 },
       ],
     },
     {
@@ -510,17 +512,16 @@ const spec = {
 // fully. No "/" or "&" in the spoken text. ERP, PLC, SAP and ISA-95 read right
 // as they are; MES and HMI are said as letters (films/_kit/timeline.mjs, SAY).
 // Words espeak-ng misreads are avoided ("apart", "manager", "controller") or
-// split by a Dutch SAY rule (goederenontvangst). espeak-ng stresses
-// PROductieplanning and PROductieprestaties; a kit rule for them would also change
-// eng.ot.isa95's voice, so the narration says "de planning (de prestaties) van de
-// productie" and only the captions carry the compounds.
+// split by a Dutch SAY rule (goederenontvangst, productieplanning and
+// productieprestaties: espeak-ng stresses PROductie- in both; the rule also
+// changes eng.ot.isa95's voice, which had no rendered video yet).
 const SAY = [
   [ // s1 two flows
-    { nl: 'Eerder volgden we één order door de hele fabriek. Nu kijken we scherper naar de grens tussen niveau vier en niveau drie, tussen het ERP en het MES. ISA-95 beschrijft daar twee hoofdstromen.',
-      en: 'Earlier we followed one order through the whole plant. Now we look more closely at the boundary between level four and level three, between the ERP and the MES. ISA-95 describes two main flows there.' },
-    { nl: 'Omlaag gaat de planning van de productie: wat er gemaakt moet worden. Omhoog gaan de prestaties van de productie: wat er echt gemaakt en verbruikt is. Kort gezegd: orders omlaag, terugmeldingen omhoog.',
+    { nl: 'Een order reist door de hele fabriek, van het ERP op kantoor tot de machine op de vloer. Hier kijken we scherper naar één grens: die tussen niveau vier en niveau drie, tussen het ERP en het MES. ISA-95 beschrijft daar twee hoofdstromen.',
+      en: 'An order travels through the whole plant, from the ERP in the office to the machine on the floor. Here we look more closely at one boundary: the one between level four and level three, between the ERP and the MES. ISA-95 describes two main flows there.' },
+    { nl: 'Omlaag gaat de productieplanning: wat er gemaakt moet worden. Omhoog gaan de productieprestaties: wat er echt gemaakt en verbruikt is. Kort gezegd: orders omlaag, terugmeldingen omhoog.',
       en: 'Down goes the production schedule: what must be made. Up goes the production performance: what was really made and used. In short: orders down, confirmations up.' },
-    { nl: 'Daarnaast gaan stamdata omlaag, zoals stuklijsten en routings. En soms gaat er een overzicht van de capaciteit omhoog, zodat de planner weet wat de fabriek nog aankan.',
+    { nl: 'Daarnaast gaan stamdata omlaag, zoals stuklijsten en routings. En soms gaat er een capaciteitsoverzicht omhoog, zodat de planner weet wat de fabriek nog aankan.',
       en: 'Master data also goes down, such as bills of materials and routings. And sometimes an overview of the capacity goes up, so the planner knows what the plant can still take on.' },
   ],
   [ // s2 the work order
@@ -542,8 +543,10 @@ const SAY = [
   [ // s4 counting and confirming
     { nl: 'Dan omhoog. De PLC telt elke cyclus. Het MES verzamelt de tellingen, de afkeur met de reden erbij, en de stilstand. Wat er goed is en wat er afgekeurd is, weet alleen de vloer: het ERP ziet het pas als het MES het meldt.',
       en: 'Now, up. The PLC counts every cycle. The MES collects the counts, the scrap with its reasons, and the downtime. What is good and what is scrap, only the shop floor knows: the ERP sees it only when the MES reports it.' },
-    { nl: 'Aan het eind van de order of de dienst stuurt het MES een {t:Terugmelding|terugmelding} naar het ERP: zoveel goed, zoveel afkeur, zoveel uur. Voor deze order: {n:960} goed en {n:40} afkeur.',
-      en: 'At the end of the order or the shift, the MES sends a {t:Confirmation|confirmation} to the ERP: so many good, so many scrap, so many hours. For this order: {n:960} good and {n:40} scrap.' },
+    { nl: 'Aan het eind van de order of de dienst stuurt het MES een {t:Terugmelding|terugmelding} naar het ERP: zoveel goed, zoveel afkeur, zoveel uur.',
+      en: 'At the end of the order or the shift, the MES sends a {t:Confirmation|confirmation} to the ERP: so many good, so many scrap, so many hours.' },
+    { nl: 'Voor deze order telde het MES {n:960} goed en {n:40} afkeur. Maar in dit voorbeeld meldt het alleen de {n:960} goede doppen terug: de afkeur gaat niet mee. Onthoud dat even.',
+      en: 'For this order the MES counted {n:960} good and {n:40} scrap. But in this example it confirms only the {n:960} good caps: the scrap is left out. Keep that in mind.' },
   ],
   [ // s5 into stock
     { nl: 'Het ERP boekt daarmee een {t:Goederenontvangst|goederenontvangst}: de {n:960} goede doppen komen op voorraad. De afkeur niet.',
@@ -558,18 +561,18 @@ const SAY = [
       en: 'But how does that material go out? Many companies use {t:Backflush|backflush}: the ERP books it out automatically, from the bill of materials and the confirmed quantity.' },
     { nl: 'Niemand hoeft dus elke zak granulaat te scannen die naar de machine gaat. Dat scheelt veel handwerk. Zo zet één terugmelding vaak twee boekingen in gang: de doppen erbij en het granulaat eraf.',
       en: 'So nobody has to scan every bag of granulate that goes to the machine. That saves a lot of manual work. So one confirmation often sets off two bookings: the caps in and the granulate out.' },
-    { nl: 'Maar backflush rekent met de norm. Is de afkeur hoger dan de stuklijst aanneemt, of telt alleen de goede hoeveelheid mee, dan klopt de voorraad niet meer.',
-      en: 'But backflush calculates with the standard. If scrap is higher than the bill of materials assumes, or only the good quantity counts, the stock is no longer right.' },
+    { nl: 'Maar backflush rekent met de norm en met wat er is teruggemeld. Is de afkeur hoger dan de stuklijst aanneemt, of telt alleen de goede hoeveelheid mee, dan klopt de voorraad niet meer. In SAP telt teruggemelde afkeur normaal mee; het gat zit dan in afkeur die niet wordt teruggemeld.',
+      en: 'But backflush calculates with the standard and with what was confirmed. If scrap is higher than the bill of materials assumes, or only the good quantity counts, the stock is no longer right. In SAP, confirmed scrap is normally included; the gap then comes from scrap that is never confirmed.' },
   ],
   [ // s7 a kilo too much
-    { nl: 'Reken het na voor deze order. Telt backflush alleen de goede stuks, dan boekt het ERP {n:960} maal {n:25} gram af: {n:24} kilo granulaat.',
-      en: 'Work it out for this order. If backflush counts only the good parts, the ERP books out {n:960} times {n:25} grams: {n:24} kilos of granulate.' },
+    { nl: 'Reken het na voor deze order. Het MES meldde alleen de goede stuks terug, dus backflush boekt {n:960} maal {n:25} gram af: {n:24} kilo granulaat.',
+      en: 'Work it out for this order. The MES confirmed only the good parts, so backflush books out {n:960} times {n:25} grams: {n:24} kilos of granulate.' },
     { nl: 'Maar echt verbruikt is {n:1000} maal {n:25} gram: {n:25} kilo. Ook de {n:40} afgekeurde doppen kostten granulaat.',
       en: 'But what was really used is {n:1000} times {n:25} grams: {n:25} kilos. The {n:40} scrapped caps took granulate too.' },
     { nl: 'Na deze ene order staat er dus {n:1} kilo te veel granulaat in het ERP. Na een paar maanden hoor je dan: volgens SAP hebben we nog drie zakken, maar in het magazijn ligt niets meer.',
       en: 'So after this one order, the ERP shows {n:1} kilo of granulate too much. A few months on, you hear: according to SAP we have three bags left, but there is nothing in the warehouse.' },
-    { nl: 'De oplossing: laat backflush rekenen met de totale hoeveelheid, goed plus afkeur. Of boek de afkeur als eigen verbruik.',
-      en: 'The fix: let backflush calculate with the total quantity, good plus scrap. Or book the scrap separately as consumption.' },
+    { nl: 'De oplossing: meld de afkeur ook terug, zodat backflush rekent met de totale hoeveelheid, goed plus afkeur. Of boek de afkeur apart als verbruik.',
+      en: 'The fix: confirm the scrap too, so backflush calculates with the total quantity, good plus scrap. Or book the scrap separately as consumption.' },
   ],
   [ // s8 where it goes wrong
     { nl: 'In de praktijk hoor je: de voorraad in SAP klopt nooit. Vaak zit de oorzaak niet in het magazijn, maar in de terugmelding.',
