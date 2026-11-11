@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Elektriciteit en energie in de fabriek
     {
       id: 'eng.power.basics',
+      film: 'eng.power.motor',
       title: 'Vermogen, energie en draaistroom',
       pre: [
         {
@@ -301,6 +302,7 @@ export default {
     // Onderwerp: Elektromotoren
     {
       id: 'eng.power.motors',
+      film: 'eng.power.motor',
       title: 'Asynchrone motoren',
       pre: [
         {
