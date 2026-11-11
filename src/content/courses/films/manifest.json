@@ -846,6 +846,37 @@
         ],
         "vtt": "src/content/courses/films/eng.safety.loto.en.vtt"
       }
+    },
+    "eng.safety.permit": {
+      "poster": "src/content/courses/films/eng.safety.permit.jpg",
+      "nl": {
+        "dur": 284.4,
+        "bytes": 11358023,
+        "scenes": [
+          0,
+          42.32,
+          85.17,
+          100.07,
+          147.39,
+          183.72,
+          237.74
+        ],
+        "vtt": "src/content/courses/films/eng.safety.permit.nl.vtt"
+      },
+      "en": {
+        "dur": 300.5,
+        "bytes": 11840133,
+        "scenes": [
+          0,
+          44.11,
+          89.71,
+          106.75,
+          154.05,
+          194.22,
+          249.83
+        ],
+        "vtt": "src/content/courses/films/eng.safety.permit.en.vtt"
+      }
     }
   }
 }
