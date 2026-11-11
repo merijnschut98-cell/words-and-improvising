@@ -140,7 +140,9 @@ const SAY = {
     [/\b([Vv])ermogensschakelaar\b/g, '$1ermogens-schakelaar'], [/\b([Aa])ardingsschakelaar\b/g, '$1ardings-schakelaar'],
     [/\b([Kk])ortsluitvermogen\b/g, '$1ortsluit-vermogen'], [/\bRMU\b/g, 'R M U'],
     // and vrijschakelen, the first safety rule, stressed on "-ke-" with a long e: VRIJ-schakelen
-    [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen']],
+    [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
+    // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
+    [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
