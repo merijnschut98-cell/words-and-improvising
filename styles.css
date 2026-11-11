@@ -992,3 +992,22 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .path-stub { margin-top: 13px; padding-left: 4px; font-size: 0.75rem; color: var(--muted); }
 .path-flag { margin-top: 11px; padding-left: 2px; display: inline-flex; align-items: center; color: var(--accent-dark); }
 .path-flag .ico-check { width: 0.9em; height: 0.9em; margin-left: -2px; }
+
+/* Medal seal: form tells the tier (ring, double ring, solid disc), the word always beside it. */
+.medal { display: inline-flex; align-items: center; gap: 6px; }
+.seal-wrap { display: inline-flex; line-height: 0; }
+.seal { width: 24px; height: 24px; overflow: visible; }
+.medal-56 .seal { width: 56px; height: 56px; }
+.seal-ring { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+.seal-ring.thin { stroke-width: 1; }
+.seal-ring.thick { stroke-width: 2; }
+.seal-fill { fill: var(--accent-fill); stroke: var(--accent-fill); stroke-width: 1; }
+.seal-check { fill: none; stroke: var(--on-primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.seal-none { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.medal-word { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-dark); }
+.medal-none .medal-word { color: var(--muted); text-transform: none; letter-spacing: 0; }
+.medal-56 .medal-word { font-size: 0.8rem; }
+.seal .draw { stroke-dasharray: 100; --draw-from: 100; animation: vp-draw var(--motion-scene) var(--ease-entrance) both; }
+.seal .seal-fill.draw { animation: vp-fade var(--motion-scene) var(--ease-entrance) both; }
+.path-end { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 10px 0 4px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
+.title-tag { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--accent-dark); }

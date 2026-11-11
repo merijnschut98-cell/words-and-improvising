@@ -5,6 +5,7 @@ import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
+import { medalSeal, metaSeal, moduleEndModel } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -73,6 +74,7 @@ function moduleMeta(app, meta, count) {
   return [
     h('span', { class: 'pill tier' }, t(`tier_${moduleTier(meta.level)}`)),
     m === 'learn' ? null : masteryBadge(t, m),
+    metaSeal(t, app.state, meta),
     progressBar(total ? done / total : 0),
     h('span', { class: 'muted small module-count' }, count),
   ];
@@ -110,8 +112,16 @@ function topicModuleRow(app, meta) {
     modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLevels', done, total))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     h('section', { class: 'topics' }, rows),
+    moduleEnd(app, meta),
     next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
       ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null);
+}
+
+// Under the last topic: the module's medal (an empty ring before bronze).
+// The module check joins it once bronze is earned (v16 flair).
+function moduleEnd(app, meta) {
+  const end = moduleEndModel(app.state, meta, app.today());
+  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24));
 }
 
 function moduleRow(app, meta) {
