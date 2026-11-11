@@ -269,18 +269,18 @@
     "eng.machining.tooling": {
       "poster": "src/content/courses/films/eng.machining.tooling.jpg",
       "nl": {
-        "dur": 290.5,
-        "bytes": 13744666,
+        "dur": 289.3,
+        "bytes": 13723349,
         "scenes": [
           0,
-          23.28,
-          49.9,
-          96.79,
-          119.91,
-          148.42,
-          176.94,
-          220.5,
-          274.75
+          23.23,
+          49.93,
+          96.65,
+          119.9,
+          148.23,
+          176.32,
+          219.35,
+          273.65
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.nl.vtt"
       },
