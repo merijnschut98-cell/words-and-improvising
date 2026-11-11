@@ -1001,8 +1001,8 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .seal-ring { fill: none; stroke: var(--accent); stroke-width: 1.5; }
 .seal-ring.thin { stroke-width: 1; }
 .seal-ring.thick { stroke-width: 2; }
-.seal-fill { fill: var(--accent-fill); stroke: var(--accent-fill); stroke-width: 1; }
-.seal-check { fill: none; stroke: var(--on-primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.seal-fill { fill: var(--accent); stroke: var(--accent); stroke-width: 1; }
+.seal-check { fill: none; stroke: var(--card); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .seal-none { fill: none; stroke: var(--line); stroke-width: 1.5; }
 .medal-word { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-dark); }
 .medal-none .medal-word { color: var(--muted); text-transform: none; letter-spacing: 0; }
