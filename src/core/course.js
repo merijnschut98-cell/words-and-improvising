@@ -320,9 +320,10 @@ export function glossary(modules) {
 }
 
 // The steps of a lesson; a lesson without prequestions starts reading.
-// A lesson with a film (v14b): the film replaces the reading, Raden · Film ·
-// Voorbeeld · Check. Without one the reading stays.
-export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), lesson.film ? 'film' : 'teach', 'example', 'quiz'];
+// A lesson with a film (v14b): the film replaces the reading. The films show
+// the worked example too, so a film lesson skips Voorbeeld (v16): Raden · Film
+// · Check. Without a film: Raden · Lezen · Voorbeeld · Check.
+export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), ...(lesson.film ? ['film'] : ['teach', 'example']), 'quiz'];
 
 // Recall questions with their stable ids: '<lessonId>#r<n>'.
 export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));

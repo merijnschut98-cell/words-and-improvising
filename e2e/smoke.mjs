@@ -309,7 +309,7 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
     else await pg.locator('.pre-card .opt').first().click();
     await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
   }
-  // A film lesson has a Film step instead of the reading (Raden · Film · Voorbeeld · Check).
+  // A film lesson has a Film step instead of the reading and no Voorbeeld (Raden · Film · Check).
   const readSel = lesson.film ? '.film-card' : '.teach-card';
   // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
   await pg.locator(readSel).waitFor();
@@ -333,7 +333,8 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   await pg.locator(readSel).waitFor();
   if (lesson.film) await pg.locator('.lesson > .film-next').click();
   else for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
-  if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
+  if (lesson.film) { /* v16: the film shows the worked example; straight to the check */ }
+  else if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
   else await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   const answer = async (q, wrong) => {
     if ('number' in q) {
@@ -621,7 +622,7 @@ await step('a lesson with a figure shows it under the last reading block', async
 // comes from the public Supabase bucket; the network is stubbed here: a tiny
 // real MP4 for "uploaded", an aborted request for "not there". Its own context
 // without the service worker, so the stubs see every request.
-await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, plays the video with captions, Lees mee opens, falls back to the HTML film', async () => {
+await step('films: a film lesson shows Raden · Film · Check, plays the video with captions, Lees mee opens, falls back to the HTML film', async () => {
   const cf = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await cf.addInitScript(FAKE_SPEECH);
   let filmMode = 'ok';
@@ -655,7 +656,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   const lesson = await open();
   // the steps: Film instead of Lezen
   const stepsOf = async () => (await p.locator('.steps .step').allTextContents()).map((x) => x.trim()).join('|');
-  if ((await stepsOf()) !== 'Raden|Film|Voorbeeld|Check') throw new Error(`steps: ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Raden|Film|Check') throw new Error(`steps: ${await stepsOf()}`);
   if (await p.locator('.teach-card').count()) throw new Error('the reading is shown in a film lesson');
   // the video, with a captions track in the app language and a poster
   const video = p.locator('.film-card video.film-video');
@@ -679,20 +680,21 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   if (!/wisselplaat \(carbide insert\)/.test(script) || (await read.locator('.read-scene').count()) !== 8) throw new Error(`read along: ${script.slice(0, 200)}`);
   await p.waitForTimeout(400);
   await shotF('118-lesson-film-step');
-  // forward to the example and back to the film
+  // forward to the check (no Voorbeeld after a film, v16) and back to the film
   await p.locator('.lesson > .film-next').click();
-  await p.locator('.example-card').waitFor();
-  await p.locator('.lesson-back').click();
+  await p.locator('.quiz-card').waitFor();
+  if (await p.locator('.example-card').count()) throw new Error('a film lesson still shows the worked example');
+  await p.locator('.quiz-card .lesson-back').click();
   await p.locator('.film-card video.film-video').waitFor({ timeout: 5000 });
   // the step indicator jumps back to it like any done step
   await p.locator('.lesson > .film-next').click();
-  await p.locator('.example-card').waitFor();
+  await p.locator('.quiz-card').waitFor();
   await p.locator('.steps .step-jump', { hasText: 'Film' }).click();
   await p.locator('.film-card').waitFor();
   // a lesson without a film keeps Lezen
   await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await p.locator('.pre-card').waitFor();
-  if (!(await stepsOf()).includes('Lezen')) throw new Error(`a lesson without a film lost Lezen: ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Raden|Lezen|Voorbeeld|Check') throw new Error(`a lesson without a film lost Lezen or Voorbeeld: ${await stepsOf()}`);
   // English: the video, captions and script in English
   await p.evaluate(() => window.__app.updateSettings({ lang: 'en' }));
   await open();

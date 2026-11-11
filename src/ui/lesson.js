@@ -1,5 +1,5 @@
 // A lesson: guess first (prequestions), read in short blocks (or, with a film,
-// watch it), see an example, then the quiz. Passing unlocks the situation and the say-it round.
+// watch it), see an example (not after a film: the film shows it), then the quiz. Passing unlocks the situation and the say-it round.
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
