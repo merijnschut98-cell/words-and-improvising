@@ -745,6 +745,41 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.measuring.en.vtt"
       }
+    },
+    "eng.quality.spc": {
+      "poster": "src/content/courses/films/eng.quality.spc.jpg",
+      "nl": {
+        "dur": 302.9,
+        "bytes": 9618851,
+        "scenes": [
+          0,
+          33.56,
+          75.94,
+          122.16,
+          150.03,
+          176.37,
+          205.27,
+          236.5,
+          270.32
+        ],
+        "vtt": "src/content/courses/films/eng.quality.spc.nl.vtt"
+      },
+      "en": {
+        "dur": 334.5,
+        "bytes": 10497922,
+        "scenes": [
+          0,
+          36.54,
+          85.65,
+          138.95,
+          167.57,
+          196.41,
+          228.55,
+          259.77,
+          297.18
+        ],
+        "vtt": "src/content/courses/films/eng.quality.spc.en.vtt"
+      }
     }
   }
 }
