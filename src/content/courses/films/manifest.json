@@ -469,6 +469,41 @@
         ],
         "vtt": "src/content/courses/films/eng.moulding.machine.en.vtt"
       }
+    },
+    "eng.lines.design": {
+      "poster": "src/content/courses/films/eng.lines.design.jpg",
+      "nl": {
+        "dur": 304.1,
+        "bytes": 11662023,
+        "scenes": [
+          0,
+          31.21,
+          63.08,
+          103,
+          130.3,
+          172.79,
+          200.76,
+          236.84,
+          277.54
+        ],
+        "vtt": "src/content/courses/films/eng.lines.design.nl.vtt"
+      },
+      "en": {
+        "dur": 329.3,
+        "bytes": 12684600,
+        "scenes": [
+          0,
+          32.67,
+          67.17,
+          108.89,
+          138.32,
+          184.24,
+          213.4,
+          255.41,
+          300.92
+        ],
+        "vtt": "src/content/courses/films/eng.lines.design.en.vtt"
+      }
     }
   }
 }
