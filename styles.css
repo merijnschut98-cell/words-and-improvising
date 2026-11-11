@@ -955,3 +955,34 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .mod-from { display: inline-flex; align-items: center; gap: 4px; color: var(--muted, inherit); }
 .listen-calib { display: block; }
 .rec-row { margin-top: 4px; }
+
+/* ---- v16 flair ----
+   Every colour is an existing variable; every duration a motion token. The
+   rendered default is the end state, animations only run from the start
+   value, so reduced motion (which kills animation above) loses nothing. */
+@keyframes vp-light { from { opacity: 0.35; } }
+@keyframes vp-draw { from { stroke-dashoffset: var(--draw-from, 100); } }
+
+/* The guide: Andon, a stack light. Housing in hairline heading, tones from the card. */
+.guide { display: inline-flex; flex: none; line-height: 0; }
+.guide-svg { height: 100%; width: auto; overflow: visible; }
+.guide-32 { height: 32px; }
+.guide-64 { height: 64px; }
+.guide-svg path, .guide-svg ellipse { stroke: var(--heading); stroke-width: 0.35; stroke-linejoin: round; }
+.guide-svg .g-halo { fill: var(--line); stroke: none; opacity: 0.6; }
+.guide-svg .t-top { fill: var(--card); }
+.guide-svg .t-left { fill: color-mix(in srgb, var(--line) 55%, var(--card)); }
+.guide-svg .t-right { fill: var(--line); }
+.guide-svg .g-screw { fill: var(--heading); }
+.guide-svg .g-seg .t-top { fill: color-mix(in srgb, var(--line) 40%, var(--card)); }
+.guide-svg .g-seg.on .t-top { fill: color-mix(in srgb, var(--accent) 70%, var(--card)); }
+.guide-svg .g-seg.on .t-left { fill: var(--accent); }
+.guide-svg .g-seg.on .t-right { fill: color-mix(in srgb, var(--accent) 75%, var(--heading)); }
+.guide-svg .g-seg.warn .t-top { fill: color-mix(in srgb, var(--ok) 70%, var(--card)); }
+.guide-svg .g-seg.warn .t-left { fill: var(--ok); }
+.guide-svg .g-seg.warn .t-right { fill: color-mix(in srgb, var(--ok) 75%, var(--heading)); }
+.guide-svg .g-seg.on, .guide-svg .g-seg.warn { animation: vp-light var(--motion-base) var(--ease-entrance) both; }
+.guide-svg.s-celebrate .g-mid { animation-delay: var(--motion-stagger); }
+.guide-svg.s-celebrate .g-top { animation-delay: calc(2 * var(--motion-stagger)); }
+.guide-line { display: flex; gap: 10px; align-items: center; margin: 8px 0 0; }
+.guide-line p { margin: 0; }
