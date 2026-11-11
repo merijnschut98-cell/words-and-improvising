@@ -599,6 +599,7 @@ export default {
     // Topic: Fatigue and failure
     {
       id: 'eng.mechanics.fatigue',
+      film: 'eng.mechanics.fatigue',
       title: 'Fatigue and stress concentrations',
       pre: [
         {

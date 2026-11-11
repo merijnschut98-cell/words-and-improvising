@@ -599,6 +599,7 @@ export default {
     // Onderwerp: Vermoeiing en breuk
     {
       id: 'eng.mechanics.fatigue',
+      film: 'eng.mechanics.fatigue',
       title: 'Vermoeiing en kerfwerking',
       pre: [
         {
