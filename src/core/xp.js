@@ -43,3 +43,10 @@ export function setGoal(state, xp, now) {
   if (!GOALS.includes(xp)) return state;
   return { ...state, dailyGoal: { xp, ts: now } };
 }
+
+// A perfect quiz: at least one question, every one right on the first pass
+// and none answered after a hint (sure false).
+export function isPerfect(firstTry, sure) {
+  const ids = Object.keys(firstTry || {});
+  return ids.length > 0 && ids.every((id) => firstTry[id] === true && (sure || {})[id] !== false);
+}

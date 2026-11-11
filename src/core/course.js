@@ -5,7 +5,7 @@ import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { upcoming } from './realweek.js';
-import { creditXp } from './xp.js';
+import { creditXp, isPerfect } from './xp.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -128,7 +128,7 @@ export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lan
   const results = Object.values(firstTry || {});
   next = withSubject(next, subject, (c) => logSession({
     ...c,
-    lessons: { ...c.lessons, [lessonId]: { ...before, read: before.read || now, passed: before.passed || now } },
+    lessons: { ...c.lessons, [lessonId]: { ...before, read: before.read || now, passed: before.passed || now, ...(before.perfect || isPerfect(firstTry, sure) ? { perfect: before.perfect || now } : {}) } },
   }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, ts: now }));
   return { state: next, xp };
 }

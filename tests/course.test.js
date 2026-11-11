@@ -652,3 +652,26 @@ test('applyDue and applySituation credit their XP to xpDays', () => {
   const s = applySituation(d.state, { subject: 'pm', lessonId: 'pm.intake.ask', pts: 2 }, TODAY, NOW);
   assert.equal(s.state.xpDays[TODAY], d.xp + 10);
 });
+
+test('applyLesson stores perfect once (the first ts) and keeps it on a later imperfect retake', () => {
+  const all = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true };
+  const miss = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': false };
+  let s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: miss, lang: 'nl' }, TODAY, NOW).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, undefined);
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 5).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5);
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 9).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5, 'the first ts stays');
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: miss, lang: 'nl' }, TODAY, NOW + 20).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5);
+  const hinted = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, sure: { 'eng.flow.takt#r1': false }, lang: 'nl' }, TODAY, NOW).state;
+  assert.equal(hinted.courses.eng.lessons['eng.flow.takt'].perfect, undefined, 'a hint is not perfect');
+});
+
+test('a perfect retake of a passed lesson sets perfect but gives no XP', () => {
+  const all = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.xp, 0);
+  assert.equal(b.state.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 1);
+});

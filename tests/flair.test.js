@@ -54,3 +54,17 @@ test('setGoal stores a choice with its ts and rejects anything else', () => {
   const same = defaultState();
   assert.equal(setGoal(same, 40, 1), same);
 });
+
+import { isPerfect } from '../src/core/flair.js';
+
+test('isPerfect: every first try right and no hint', () => {
+  assert.equal(isPerfect({ a: true, b: true }, { a: true, b: true }), true);
+  assert.equal(isPerfect({ a: true, b: true }, {}), true, 'no sure entry means no hint');
+});
+
+test('isPerfect is false with one miss, with one hint, or with no questions', () => {
+  assert.equal(isPerfect({ a: true, b: false }, {}), false);
+  assert.equal(isPerfect({ a: true, b: true }, { b: false }), false);
+  assert.equal(isPerfect({}, {}), false);
+  assert.equal(isPerfect(null, null), false);
+});
