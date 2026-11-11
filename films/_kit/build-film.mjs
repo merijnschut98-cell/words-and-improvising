@@ -26,8 +26,8 @@ export async function allLessons() {
 
 // "Turn-mill centre" → "turn-mill centre"; "C-axis" and "HSS" stay, and so does
 // a proper noun ("Taylor equation"): with the English lesson text as corpus, a
-// first word that it writes capitalised in mid-sentence and never in lower case
-// keeps its capital.
+// first word that it writes capitalised in mid-sentence (or after a sentence's
+// opening article: "A Coriolis meter") and never in lower case keeps its capital.
 // A term whose English name already carries a parenthesis ("Direct on line
 // (DOL)") is glossed with a comma, so the Dutch caption never nests brackets:
 // "Direct inschakelen (direct on line, DOL)".
@@ -40,7 +40,7 @@ export function glossCase(term, corpus) {
   const low = first[0].toLowerCase() + first.slice(1);
   const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const proper = corpus !== undefined
-    && new RegExp(`[a-z,] +${esc(first)}(?![A-Za-z])`).test(corpus)
+    && new RegExp(`(?:[a-z,]|\\b(?:A|An|The)) +${esc(first)}(?![A-Za-z])`).test(corpus)
     && !new RegExp(`(^|[^A-Za-z])${esc(low)}(?![A-Za-z])`).test(corpus);
   return proper ? en : en[0].toLowerCase() + en.slice(1);
 }
