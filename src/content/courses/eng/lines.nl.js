@@ -1372,9 +1372,9 @@ export default {
       ],
       teach: [
         'Elke stop laat een spoor achter in de PLC: de alarmlog, een lijst met tijd, alarmcode, tekst en duur. Ruwe logs misleiden, want één vastloper kan vijf alarmen achter elkaar geven.\n\nHet first-out alarm is het eerste alarm in zo’n keten, meestal de oorzaak; de rest volgt eruit. Vraag of de machine first-out vastlegt. Zo niet, dan jagen mensen op symptomen, zoals “deur open”, terwijl de echte oorzaak een vastgelopen toevoer was.',
-        'Zet de stops in een paretodiagram: staven van groot naar klein. Maak hem twee keer. Op aantal zie je de microstops (stops van seconden tot een paar minuten): veel, kort en vaak genegeerd. Op verloren minuten zie je de lange storingen.\n\nMeestal pakken een paar oorzaken het grootste deel van het verlies. Gebruik per machine een korte, vaste lijst stopredenen, geen vrije tekst, anders loopt het diagram vol met “overig”.',
+        'Zet de stops in een pareto-diagram: staven van groot naar klein. Maak hem twee keer. Op aantal zie je de microstops (stops van seconden tot een paar minuten): veel, kort en vaak genegeerd. Op verloren minuten zie je de lange storingen.\n\nMeestal pakken een paar oorzaken het grootste deel van het verlies. Gebruik per machine een korte, vaste lijst stopredenen, geen vrije tekst, anders loopt het diagram vol met “overig”.',
         'Een MES, een manufacturing execution system (zie eng.industry40), haalt statussen en alarmen op uit elke PLC en voegt de order, de variant, de dienst en de reden van de operator toe. Het laat de lijn-OEE live zien.\n\nEen bekende valkuil: bij elke stop van 20 seconden om een reden vragen. Operators kiezen dan het eerste item uit de lijst om door te kunnen, en de data is waardeloos. Gangbaar: korte stops automatisch indelen op de alarmcode, en mensen alleen naar de lange vragen.',
-        'Data helpt pas als iemand ermee aan de slag gaat. Een kort dagelijks overleg aan de lijn bekijkt de topstops van gisteren, geeft elke stop een eigenaar en checkt het paretodiagram opnieuw na een verbetering.\n\nVragen die geloofwaardig klinken: “Leggen jullie first-out alarmen vast? Waar ligt de grens tussen een microstop en een storing? Wie kijkt elke ochtend naar de top drie, en wat is er vorige maand veranderd?”',
+        'Data helpt pas als iemand ermee aan de slag gaat. Een kort dagelijks overleg aan de lijn bekijkt de topstops van gisteren, geeft elke stop een eigenaar en checkt het pareto-diagram opnieuw na een verbetering.\n\nVragen die geloofwaardig klinken: “Leggen jullie first-out alarmen vast? Waar ligt de grens tussen een microstop en een storing? Wie kijkt elke ochtend naar de top drie, en wat is er vorige maand veranderd?”',
       ],
       example: {
         kind: 'faded',
@@ -1398,7 +1398,7 @@ export default {
           why: 'De alarmen erna volgen eruit.',
         },
         {
-          q: 'Waarom maak je een paretodiagram van stops zowel op aantal als op verloren minuten?',
+          q: 'Waarom maak je een pareto-diagram van stops zowel op aantal als op verloren minuten?',
           options: ['Aantal toont de vele korte stops, minuten tonen waar de meeste tijd heen gaat', 'Aantal klopt nooit', 'Minuten bevatten ook kwaliteitsverlies', 'Het MES vraagt erom'],
           answer: 'Aantal toont de vele korte stops, minuten tonen waar de meeste tijd heen gaat',
           why: 'Microstops en storingen vragen een andere aanpak, en elk komt in een ander diagram naar voren.',
@@ -1424,7 +1424,7 @@ export default {
       terms: [
         { term: 'Alarmlog', def: 'De lijst van elk alarm dat een machine gaf, met tijd, code, tekst en duur.' },
         { term: 'First-out alarm', def: 'Het eerste alarm in een keten van alarmen, meestal de echte oorzaak.' },
-        { term: 'Paretodiagram', def: 'Een staafdiagram van groot naar klein, om te zien welke paar oorzaken het meeste verlies geven.' },
+        { term: 'Pareto-diagram', def: 'Een staafdiagram van groot naar klein, om te zien welke paar oorzaken het meeste verlies geven.' },
         { term: 'MES', def: 'Manufacturing execution system: software die machinedata verzamelt en koppelt aan orders, diensten en redenen.' },
       ],
     },

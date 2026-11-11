@@ -534,7 +534,7 @@ const spec = {
 // verloop (-verLOOP), wisselstroom (-STROOM), "frame" (said "fraame"),
 // ontlaatoven (-OOven), royale (roo-ie-aale), hardingsscheur (-SCHEUR), the
 // singular tandwiel (tandWIEL) and "olie" on its own (oLIE; "oliebad" is
-// right, and no kit-wide rule for olie, as agreed).
+// right; since 2026-11-11 the kit lexicon says olie as Ó-lie in every film).
 // Brinell, piramide, inzetharden, inductieharden, warmtebehandeling,
 // tandwielen, polymeeroplossing and diktesprong get Dutch-only spoken forms in
 // films/_kit/timeline.mjs (SAY); no other film says any of them.

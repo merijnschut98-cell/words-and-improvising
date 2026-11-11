@@ -61,6 +61,7 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // machine states and the Pareto chart in a Dutch spelling; English keeps them
   assert.equal(speakOf(['Starved of blocked, in een paretodiagram.'], 'nl'), 'Staarft of blokt, in een pareto-diagram.');
   assert.equal(speakOf(['Starved or blocked, in a Pareto chart.'], 'en'), 'Starved or blocked, in a Pareto chart.');
+  assert.equal(speakOf(['Zet ze in een pareto-diagram.'], 'nl'), 'Zet ze in een pareto-diagram.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
@@ -239,7 +240,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 12, `${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 14, `${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -252,6 +253,10 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   // omWENteling, KLAUWplaat
   for (const word of ['omwenteling', 'omwentelingen']) assert.ok(nl[word].includes('ʋˈɛn'), `${word}: ${nl[word]}`);
   assert.ok(/^klˈ/.test(nl.klauwplaat));
+  // Ó-lie, ci-LIN-der, ma-no-MÉ-ter (espeak-ng says oLIE, CIlinder, MAnometer; 2026-11-11)
+  assert.ok(/^ˈoː/.test(nl.olie));
+  for (const word of ['cilinder', 'cilinders']) assert.ok(nl[word].includes('lˈɪn'), `${word}: ${nl[word]}`);
+  for (const word of ['manometer', 'manometers']) assert.ok(nl[word].includes('mˈeː'), `${word}: ${nl[word]}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');

@@ -55,7 +55,7 @@ export default {
       situation: {
         scene: 'Je loopt een gembawalk, een ronde over de vloer om het werk te zien, bij een metaalstansbedrijf, waar persen plaatstaal vormen met stempels, gereedschap van hard staal. Op het teambord: “Pers 2 stil. Waarom? Storing onderdeelsensor. Waarom? Sensor vuil. Waarom? Niet schoongemaakt. Waarom? Operator vergeten. Actie: operators eraan herinneren.”',
         ask: 'Wat vraag je de teamleider?',
-        model: 'Mooi dat het op het bord staat. Zullen we samen naar de sensor kijken? Waar wordt hij vuil van: olienevel, of ponsresten, de stukjes afval die het stempel uitslaat? En waarom is schoonmaken iets wat mensen moeten onthouden: staat het in de opstartcontrole, en kun je er makkelijk bij? Als we alleen mensen eraan herinneren, staat pers 2 dan volgende week weer stil? Laten we de laatste waaroms opnieuw doen aan de pers.',
+        model: 'Mooi dat het op het bord staat. Zullen we samen naar de sensor kijken? Waar wordt hij vuil van: olienevel, of ponsresten, de stukjes afval die de stempel uitslaat? En waarom is schoonmaken iets wat mensen moeten onthouden: staat het in de opstartcontrole, en kun je er makkelijk bij? Als we alleen mensen eraan herinneren, staat pers 2 dan volgende week weer stil? Laten we de laatste waaroms opnieuw doen aan de pers.',
         rubric: [
           'Gaat naar de echte sensor kijken in plaats van over het bord te praten',
           'Vraagt waarom de sensor vuil wordt, niet alleen waarom hij niet schoon was',
@@ -367,7 +367,7 @@ export default {
       ],
       teach: [
         'Grote problemen zoals “de uitval is te hoog” zijn te vaag om een oorzaak te vinden. Toyota’s eigen methode in acht stappen, Toyota Business Practices (TBP), beschreven door Jeffrey Liker en Gary Convis in The Toyota Way to Lean Leadership (2011), zet drie stappen vóór elke grondoorzaak: het probleem verhelderen, het opknippen, een doel stellen.\n\nDe laatste vijf: de grondoorzaak analyseren, tegenmaatregelen bedenken, ze doorvoeren, resultaat en aanpak evalueren, en standaardiseren wat werkte.',
-        'Verhelderen betekent de kloof benoemen: het verschil tussen de standaard, wat er zou moeten gebeuren, en wat er echt gebeurt. Uitvaldoel 2%, werkelijk 4,8%: een kloof (gap) van 2,8 procentpunt. Geen standaard, geen kloof: dan komt eerst een standaard.\n\nOpknippen (break down) betekent de kloof stap voor stap met data uitsplitsen. Een paretodiagram, staven van groot naar klein gesorteerd, laat zien welk stuk het grootst is (de module Kwaliteit: de basis legt uit hoe je er een maakt). Splits per afdeling, dan per machine, dan per soort defect.',
+        'Verhelderen betekent de kloof benoemen: het verschil tussen de standaard, wat er zou moeten gebeuren, en wat er echt gebeurt. Uitvaldoel 2%, werkelijk 4,8%: een kloof (gap) van 2,8 procentpunt. Geen standaard, geen kloof: dan komt eerst een standaard.\n\nOpknippen (break down) betekent de kloof stap voor stap met data uitsplitsen. Een pareto-diagram, staven van groot naar klein gesorteerd, laat zien welk stuk het grootst is (de module Kwaliteit: de basis legt uit hoe je er een maakt). Splits per afdeling, dan per machine, dan per soort defect.',
         'Blijf splitsen tot je bij één concreet probleem op één plek bent: het punt van ontstaan (point of cause), waar het probleem voor het eerst optreedt. Ga het dan bekijken, zoals in de vorige les. Daar begint het oorzaakonderzoek, niet bij het fabrieksgetal.\n\nEen rekenvoorbeeld: 4,8% uitval van 80.000 delen per maand is 3.840 delen. Zijn daarvan 1.000 short shots (delen die niet volgelopen zijn) op één machine, dan haalt alleen dat oplossen al 26% van alle uitval weg.',
         'Stel dan een doel voor dat stuk: wat, hoeveel, wanneer. “Short shots op machine 7 van 1.000 naar minder dan 300 per maand vóór 30 juni.”\n\nWaarom niet alles tegelijk aanpakken? Elk klein, concreet probleem heeft weinig oorzaken, dus die vind en test je in dagen. Een fabrieksbreed probleem mengt tientallen oorzaken, en elke theorie past wel bij een deel van de data. De stukken waar je niet aan werkt, blijven zichtbaar in de uitsplitsing, voor de volgende ronde.',
         'Wat je in de praktijk ziet: een team dat van “uitval 4,8%” meteen naar een visgraat springt, en eindigt met zestig briefjes. Of data die niet te splitsen is, omdat uitval per dienst geboekt wordt, niet per machine of defect.\n\nDeskundigen verschillen over splitsen op aantal of op kosten: een goedkoop defect kan vaak voorkomen, een duur defect zelden. De meesten beginnen met aantallen en kijken naar de kosten voordat ze kiezen. Scherpe vraag: “Aan welk stuk van die 4,8% werken we, en waar gebeurt het precies?”',
@@ -419,7 +419,7 @@ export default {
       terms: [
         { term: 'Toyota Business Practices', def: 'Toyota’s probleemoplosmethode in acht stappen, van het probleem verhelderen tot standaardiseren wat werkte.' },
         { term: 'Kloof', def: 'Het verschil tussen de standaard, wat er zou moeten gebeuren, en wat er echt gebeurt.' },
-        { term: 'Paretodiagram', def: 'Staven van groot naar klein gesorteerd, die laten zien welke paar categorieën het grootste deel van een probleem vormen.' },
+        { term: 'Pareto-diagram', def: 'Staven van groot naar klein gesorteerd, die laten zien welke paar categorieën het grootste deel van een probleem vormen.' },
         { term: 'Punt van ontstaan', def: 'De plek in het proces waar een probleem voor het eerst optreedt; daar begint het oorzaakonderzoek.' },
       ],
     },
@@ -660,7 +660,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een plaatbewerkingsbedrijf. Perslijn 3 valt stil op aanvoerfouten (misfeeds): de staalstrip schuift niet goed het stempel in. De teamleider schrijft haar eerste A3.\n\nAchtergrond: pers 3 is de bottleneck voor de grootste klant. Huidige situatie: 14 aanvoerstops per dienst, 9 minuten elk, dus 126 minuten per dienst; allemaal op coils (rollen staalstrip) van één leverancier, het ergst aan het eind van elke coil. Doel: minder dan 4 stops per dienst vóór 30 juni.\n\nAnalyse, 5 keer waarom: de strip slipt in de aanvoer, omdat de oliefilm wisselt; de olie wisselt omdat het eind van de coil droger is; de aanvoerrollen waren ingesteld op geoliede strip.\n\nTegenmaatregel: een rolaandrukking voor droge strip, plus een controle van de oliefilm bij coilwissel. Plan: onderhoud vóór 10 juni. Opvolging: twee weken stops tellen; voorspeld minder dan 4 per dienst.',
+        text: 'Een plaatbewerkingsbedrijf. Perslijn 3 valt stil op aanvoerfouten (misfeeds): de staalstrip schuift niet goed de stempel in. De teamleider schrijft haar eerste A3.\n\nAchtergrond: pers 3 is de bottleneck voor de grootste klant. Huidige situatie: 14 aanvoerstops per dienst, 9 minuten elk, dus 126 minuten per dienst; allemaal op coils (rollen staalstrip) van één leverancier, het ergst aan het eind van elke coil. Doel: minder dan 4 stops per dienst vóór 30 juni.\n\nAnalyse, 5 keer waarom: de strip slipt in de aanvoer, omdat de oliefilm wisselt; de olie wisselt omdat het eind van de coil droger is; de aanvoerrollen waren ingesteld op geoliede strip.\n\nTegenmaatregel: een rolaandrukking voor droge strip, plus een controle van de oliefilm bij coilwissel. Plan: onderhoud vóór 10 juni. Opvolging: twee weken stops tellen; voorspeld minder dan 4 per dienst.',
       },
       said: 'Wat engineers zeggen: “Je tegenmaatregel is prima, maar ik kan de oorzaak ervan links niet vinden.”',
       recall: [
@@ -764,7 +764,7 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een metaalstansbedrijf (een fabriek die plaatstaal in vorm perst met stempels, gereedschap van hard staal) in de wekelijkse 8D-review. Bij een klacht over bramen, scherpe opstaande randjes, op een beugel staat bij D4 “slijtage van het stempel” en bij D5 “extra visuele controle bij het inpakken”. De kwaliteitsengineer wil hem sluiten.',
+        scene: 'Je zit bij een metaalstansbedrijf (een fabriek die plaatstaal in vorm perst met stempels, gereedschap van hard staal) in de wekelijkse 8D-review. Bij een klacht over bramen, scherpe opstaande randjes, op een beugel staat bij D4 “slijtage van de stempel” en bij D5 “extra visuele controle bij het inpakken”. De kwaliteitsengineer wil hem sluiten.',
         ask: 'Wat vraag je?',
         model: 'Welk bewijs hebben we dat slijtage deze bramen geeft: lopen braamhoogte en het aantal persslagen sinds het laatste slijpen gelijk op? En waarom viel de slijtage niet op: is er een slijpinterval of een braamcontrole bij de pers? Een check bij het inpakken is indammen; de blijvende maatregel is een slijpinterval op basis van slagen en een braamcheck aan de pers. Hebben de andere stempels op die pers hetzelfde risico?',
         rubric: [

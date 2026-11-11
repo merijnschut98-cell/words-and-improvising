@@ -501,9 +501,9 @@ const spec = {
       ],
     },
     {
-      id: 's9', lesson: STOP, level: 4, dur: DUR[8], still: 0.6, title: { nl: 'Van Pareto naar actie', en: 'From Pareto to action' },
+      id: 's9', lesson: STOP, level: 4, dur: DUR[8], still: 0.6, title: { nl: 'Van pareto naar actie', en: 'From Pareto to action' },
       beats: [
-        { nl: '{t:Paretodiagram|Paretodiagram} op aantal: ‘onderdeel niet aanwezig’ wint ruim.', en: '{t:Pareto chart|Pareto chart} by count: ‘part missing’ wins by far.', cue: { Paretodiagram: 'pareto' }, still: 0.15 },
+        { nl: '{t:Pareto-diagram|Pareto-diagram} op aantal: ‘onderdeel niet aanwezig’ wint ruim.', en: '{t:Pareto chart|Pareto chart} by count: ‘part missing’ wins by far.', cue: { 'Pareto-diagram': 'pareto' }, still: 0.15 },
         { nl: 'Op verloren minuten ook: {n:400}, tegen {n:150} en {n:150}.', en: 'By lost minutes too: {n:400}, against {n:150} and {n:150}.', cues: ['pareto'], read: { nl: '{n:1200} × {n:20} s = {n:400} min', en: '{n:1200} × {n:20} s = {n:400} min' }, still: 0.42 },
         { nl: 'Eerst de toevoer; de deur verdwijnt misschien mee. De servo gaat naar onderhoud.', en: 'The feeder first; the door may go with it. The servo goes to maintenance.', cues: ['pareto'], still: 0.66 },
         { nl: 'Een {t:MES|MES} koppelt alarmen aan order en dienst. Elke ochtend: de top drie.', en: 'An {t:MES|MES} links alarms to order and shift. Every morning: the top three.', cue: { MES: 'mes' }, still: 0.92 },
@@ -517,7 +517,7 @@ const spec = {
 // What the voice says, per scene and beat: the film replaces the lesson text,
 // so this explains fully. Level 1 is a broad "how it works" of one station.
 // No "/" or "&" in the spoken text; I/O, OEE, MES and HMI are said as letters, starved, blocked
-// and paretodiagram in a Dutch spelling (films/_kit/timeline.mjs, SAY). Standard numbers stay in the captions only.
+// and pareto-diagram in a Dutch spelling (films/_kit/timeline.mjs, SAY). Standard numbers stay in the captions only.
 const SAY = [
   [ // s1 eyes, brain, hands
     { nl: 'Een machine werkt als een mens: met ogen, een brein en handen. De ogen zijn {t:Sensor|sensoren}: ligt er een onderdeel, is de klem dicht, is de druk bereikt?',
@@ -600,7 +600,7 @@ const SAY = [
       en: 'A week of {n:10} shifts: part missing {n:1200} times, servo fault {n:6} times, door opened {n:300} times.' },
   ],
   [ // s9 Pareto and MES
-    { nl: 'Zet ze in een {t:Paretodiagram|paretodiagram}, van groot naar klein, en maak hem twee keer. Op aantal wint onderdeel niet aanwezig ruim.',
+    { nl: 'Zet ze in een {t:Pareto-diagram|pareto-diagram}, van groot naar klein, en maak hem twee keer. Op aantal wint onderdeel niet aanwezig ruim.',
       en: 'Put them in a {t:Pareto chart|Pareto chart}, from largest to smallest, and make it twice. By count, part missing wins by far.' },
     { nl: 'Op minuten: {n:1200} keer {n:20} seconden is {n:400} minuten; servostoring en deur geopend elk {n:150}. Ook hier staat hij bovenaan.',
       en: 'By minutes: {n:1200} times {n:20} seconds is {n:400} minutes; servo fault and door opened {n:150} each. It is on top here too.' },
@@ -663,7 +663,7 @@ const css = `
 `;
 
 const label = {
-  nl: 'Drie plekken naast elkaar. Een persstation: een besturingskast zonder deur met een voeding, de PLC, een ingangskaart en een uitgangskaart met lampjes, een veiligheidsrelais met twee magneetschakelaars en een signaalzuil; een werkbank met een mal en een onderdeel, een aanwezigheidssensor, een klemcilinder met een sensor, een pers en twee ventielen; een bedienpaneel met een HMI-scherm, een noodstop, een startknop en een resetknop. Een robotcel achter een hek met een deur en een deurschakelaar. Een bottellijn met zes machines op één transportband. Grafieken tonen de scancyclus, een ladderdiagram, het HMI-scherm, de risicograaf, de lijn-OEE, de machinestatussen, de alarmlog en een paretodiagram.',
+  nl: 'Drie plekken naast elkaar. Een persstation: een besturingskast zonder deur met een voeding, de PLC, een ingangskaart en een uitgangskaart met lampjes, een veiligheidsrelais met twee magneetschakelaars en een signaalzuil; een werkbank met een mal en een onderdeel, een aanwezigheidssensor, een klemcilinder met een sensor, een pers en twee ventielen; een bedienpaneel met een HMI-scherm, een noodstop, een startknop en een resetknop. Een robotcel achter een hek met een deur en een deurschakelaar. Een bottellijn met zes machines op één transportband. Grafieken tonen de scancyclus, een ladderdiagram, het HMI-scherm, de risicograaf, de lijn-OEE, de machinestatussen, de alarmlog en een pareto-diagram.',
   en: 'Three places side by side. A press station: a control cabinet with its door off holding a power supply, the PLC, an input card and an output card with lamps, a safety relay with two contactors and a signal tower; a bench with a fixture and a part, a presence sensor, a clamp cylinder with a sensor, a press and two valves; an operator panel with an HMI screen, an emergency stop, a start button and a reset button. A robot cell behind a fence with a door and a door switch. A bottling line with six machines on one conveyor. Charts show the scan cycle, a ladder diagram, the HMI screen, the risk graph, the line OEE, the machine states, the alarm log and a Pareto chart.',
 };
 
