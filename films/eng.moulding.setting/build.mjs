@@ -540,7 +540,7 @@ const SAY = [
       en: 'Once the weight levels off, the gate is shut. Set the holding time just above that, often by half a second to a second.' },
   ],
   [ // s8 validating and monitoring
-    { nl: '{t:Validatie|Validatie} bewijst dat het proces steeds goede producten maakt, in drie stappen, {t:IQ/OQ/PQ|IQ/OQ/PQ}: installatie, de randen van het venster, en productie.',
+    { nl: '{t:Validatie|Validatie} bewijst in drie stappen dat het proces steeds goede producten maakt. De stappen heten {t:IQ/OQ/PQ|IQ/OQ/PQ} en toetsen de installatie, de randen van het venster en de productie.',
       en: '{t:Validation|Validation} proves that the process always makes good parts, in three steps, {t:IQ/OQ/PQ|IQ/OQ/PQ}: installation, the edges of the window, and production.' },
     { nl: 'Daarna bewaakt het {t:Productgewicht|productgewicht} het proces: verandert het vullen, dan verandert het gewicht. De regelgrenzen liggen drie standaardafwijkingen rond het gemiddelde: hier {n:4.802} tot {n:4.838} gram. Valt een product erbuiten, dan is er iets veranderd, nog voor producten slecht worden.',
       en: 'After that the {t:Part weight|part weight} watches the process: if the filling changes, the weight changes. The control limits lie three standard deviations either side of the average: here {n:4.802} to {n:4.838} grams. If a part falls outside, something has changed, before parts go bad.' },

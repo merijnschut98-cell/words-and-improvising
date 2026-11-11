@@ -962,6 +962,7 @@ export default {
     },
     {
       id: 'eng.power.hydraulics',
+      film: 'eng.power.hydraulics',
       title: 'Hydrauliek',
       pre: [
         {
@@ -980,7 +981,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een perscilinder met een boring van 125 mm moet snel uitschuiven, gevoed door een pomp van 60 liter per minuut. Zuigeroppervlak: 3,14 / 4 × 125² = 12.272 mm² = 0,01227 m². Debiet: 60 liter per minuut = 0,001 m³ per seconde.\n\nVerwachte snelheid: 0,001 / 0,01227 = 0,081 m/s, zo’n 81 mm/s. Gemeten: 60 mm/s, en de olie is 70 °C. Een kwart van het debiet komt dus niet bij de cilinder aan.\n\nWaarschijnlijke oorzaken: een versleten pomp die inwendig lekt, of een drukbegrenzingsventiel dat te vroeg opent. Allebei maken ze van het verloren debiet warmte, en dat verklaart de hete olie.',
+        text: 'Een perscilinder met een boring van 125 mm moet snel uitschuiven, gevoed door een pomp van 60 liter per minuut. Zuigeroppervlak: π / 4 × 125² ≈ 12.272 mm² = 0,01227 m². Debiet: 60 liter per minuut = 0,001 m³ per seconde.\n\nVerwachte snelheid: 0,001 / 0,01227 = 0,081 m/s, zo’n 81 mm/s. Gemeten: 60 mm/s, en de olie is 70 °C. Een kwart van het debiet komt dus niet bij de cilinder aan.\n\nWaarschijnlijke oorzaken: een versleten pomp die inwendig lekt, of een drukbegrenzingsventiel dat te vroeg opent. Allebei maken ze van het verloren debiet warmte, en dat verklaart de hete olie.',
       },
       said: 'Wat engineers zeggen: “De cilinder is traag en de olie is heet. Dat debiet gaat ergens heen: versleten pomp of een overdrukventiel dat doorlaat.”',
       recall: [

@@ -5,32 +5,32 @@
     "eng.machining.turning": {
       "poster": "src/content/courses/films/eng.machining.turning.jpg",
       "nl": {
-        "dur": 279,
-        "bytes": 14244900,
+        "dur": 227.1,
+        "bytes": 11982881,
         "scenes": [
           0,
-          26.82,
-          60.74,
-          92.49,
-          126.75,
-          173.07,
-          195.52,
-          229.79
+          21.73,
+          48.93,
+          76.68,
+          104.75,
+          141.62,
+          159.36,
+          187.42
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.nl.vtt"
       },
       "en": {
-        "dur": 271.6,
-        "bytes": 14129810,
+        "dur": 259.1,
+        "bytes": 13423778,
         "scenes": [
           0,
-          26.6,
-          62.44,
-          94.69,
-          126.51,
-          170.74,
-          192.3,
-          225.7
+          25.24,
+          59.73,
+          90.64,
+          120.59,
+          162.82,
+          182.38,
+          214.23
         ],
         "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
       }
@@ -38,34 +38,34 @@
     "eng.joining.arc": {
       "poster": "src/content/courses/films/eng.joining.arc.jpg",
       "nl": {
-        "dur": 335.4,
-        "bytes": 13414285,
+        "dur": 270.7,
+        "bytes": 11292773,
         "scenes": [
           0,
-          51.27,
-          94.13,
-          115.62,
-          160.11,
-          202.59,
-          220.48,
-          281.66,
-          310.65
+          38.41,
+          72.33,
+          89.01,
+          125.52,
+          161.32,
+          176.21,
+          227.08,
+          250.49
         ],
         "vtt": "src/content/courses/films/eng.joining.arc.nl.vtt"
       },
       "en": {
-        "dur": 313.4,
-        "bytes": 12912975,
+        "dur": 301.2,
+        "bytes": 12452924,
         "scenes": [
           0,
-          45.84,
-          82.58,
-          101.27,
-          144.84,
-          185.59,
-          202.46,
-          261.37,
-          290.3
+          43.36,
+          79.48,
+          97.71,
+          139.1,
+          178.22,
+          194.76,
+          251.45,
+          278.8
         ],
         "vtt": "src/content/courses/films/eng.joining.arc.en.vtt"
       }
@@ -73,34 +73,34 @@
     "eng.moulding.setting": {
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {
-        "dur": 330.6,
-        "bytes": 12969860,
+        "dur": 264.5,
+        "bytes": 10774271,
         "scenes": [
           0,
-          55.44,
-          83.12,
-          118.4,
-          134.99,
-          167.52,
-          200.68,
-          219.46,
-          282.73
+          42.76,
+          65.91,
+          94.47,
+          109.4,
+          134.35,
+          159.29,
+          173.98,
+          226.12
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.nl.vtt"
       },
       "en": {
-        "dur": 302.7,
-        "bytes": 12245014,
+        "dur": 287.1,
+        "bytes": 11573991,
         "scenes": [
           0,
-          49.02,
-          73.57,
-          107.09,
-          124.29,
-          153.63,
-          182.39,
-          198.74,
-          257.79
+          47.44,
+          71.95,
+          103.87,
+          120.63,
+          147.85,
+          175.35,
+          190.96,
+          246.54
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.en.vtt"
       }
@@ -108,32 +108,32 @@
     "eng.moulding.cycle": {
       "poster": "src/content/courses/films/eng.moulding.cycle.jpg",
       "nl": {
-        "dur": 313.8,
-        "bytes": 11531810,
+        "dur": 249.6,
+        "bytes": 9552771,
         "scenes": [
           0,
-          53.36,
-          78.94,
-          104.84,
-          134.53,
-          168.63,
-          208.59,
-          259.84
+          40.87,
+          61.56,
+          80.57,
+          102.76,
+          129.49,
+          162.96,
+          204.7
         ],
         "vtt": "src/content/courses/films/eng.moulding.cycle.nl.vtt"
       },
       "en": {
-        "dur": 292.2,
-        "bytes": 11035373,
+        "dur": 277.1,
+        "bytes": 10468245,
         "scenes": [
           0,
-          49.42,
-          72.31,
-          95.19,
-          120.68,
-          152.78,
-          191.41,
-          239.97
+          46.28,
+          67.57,
+          89.2,
+          113.19,
+          143.95,
+          180.81,
+          227.1
         ],
         "vtt": "src/content/courses/films/eng.moulding.cycle.en.vtt"
       }
@@ -141,32 +141,32 @@
     "eng.machining.overview": {
       "poster": "src/content/courses/films/eng.machining.overview.jpg",
       "nl": {
-        "dur": 275.2,
-        "bytes": 9438741,
+        "dur": 213.1,
+        "bytes": 7598958,
         "scenes": [
           0,
-          44.69,
-          90.27,
-          112.41,
-          151.09,
-          173.43,
-          195.41,
-          243.51
+          35.9,
+          72.21,
+          90.26,
+          119.22,
+          136.87,
+          152.8,
+          188.83
         ],
         "vtt": "src/content/courses/films/eng.machining.overview.nl.vtt"
       },
       "en": {
-        "dur": 253.1,
-        "bytes": 8935870,
+        "dur": 237.8,
+        "bytes": 8366357,
         "scenes": [
           0,
-          39.57,
-          80.11,
-          101.92,
-          135.7,
-          157.5,
-          178.23,
-          224.38
+          37,
+          75.06,
+          96.17,
+          127.38,
+          147.94,
+          167.56,
+          210.43
         ],
         "vtt": "src/content/courses/films/eng.machining.overview.en.vtt"
       }
@@ -174,30 +174,30 @@
     "eng.machining.milling": {
       "poster": "src/content/courses/films/eng.machining.milling.jpg",
       "nl": {
-        "dur": 294.9,
-        "bytes": 14329226,
+        "dur": 231.5,
+        "bytes": 11731707,
         "scenes": [
           0,
-          40.33,
-          57.54,
-          95.89,
-          161.76,
-          193.5,
-          242.68
+          30.62,
+          44.83,
+          76.47,
+          128.85,
+          152.63,
+          190.46
         ],
         "vtt": "src/content/courses/films/eng.machining.milling.nl.vtt"
       },
       "en": {
-        "dur": 274.6,
-        "bytes": 13553995,
+        "dur": 258.9,
+        "bytes": 12904313,
         "scenes": [
           0,
-          37.42,
-          52.77,
-          87.5,
-          151.28,
-          178.25,
-          225.57
+          35.05,
+          49.6,
+          82.3,
+          142.76,
+          168.43,
+          212.82
         ],
         "vtt": "src/content/courses/films/eng.machining.milling.en.vtt"
       }
@@ -205,32 +205,32 @@
     "eng.machining.drilling": {
       "poster": "src/content/courses/films/eng.machining.drilling.jpg",
       "nl": {
-        "dur": 292.5,
-        "bytes": 10863638,
+        "dur": 233.2,
+        "bytes": 9003183,
         "scenes": [
           0,
-          49.18,
-          71.85,
-          111.23,
-          149.84,
-          204.34,
-          221.51,
-          266.19
+          39.28,
+          57.92,
+          88.39,
+          118.76,
+          163.16,
+          177.21,
+          212.91
         ],
         "vtt": "src/content/courses/films/eng.machining.drilling.nl.vtt"
       },
       "en": {
-        "dur": 283.1,
-        "bytes": 10760516,
+        "dur": 269.9,
+        "bytes": 10236925,
         "scenes": [
           0,
-          48.64,
-          70.19,
-          107.21,
-          142.82,
-          195.59,
-          211.32,
-          256.46
+          46.75,
+          67.39,
+          103.37,
+          137.1,
+          186.28,
+          200.91,
+          244.56
         ],
         "vtt": "src/content/courses/films/eng.machining.drilling.en.vtt"
       }
@@ -238,30 +238,30 @@
     "eng.machining.cnc": {
       "poster": "src/content/courses/films/eng.machining.cnc.jpg",
       "nl": {
-        "dur": 311.1,
-        "bytes": 12088736,
+        "dur": 244.3,
+        "bytes": 9862580,
         "scenes": [
           0,
-          38.15,
-          82,
-          113.6,
-          175.22,
-          228.17,
-          268.07
+          30.66,
+          65.37,
+          90.33,
+          138.26,
+          179.74,
+          209.82
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.nl.vtt"
       },
       "en": {
-        "dur": 286.6,
-        "bytes": 11468559,
+        "dur": 270.9,
+        "bytes": 10876383,
         "scenes": [
           0,
-          32.74,
-          73.97,
-          103.36,
-          161.15,
-          212.11,
-          247.54
+          30.77,
+          69.84,
+          98.23,
+          152.74,
+          201.45,
+          234.13
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
       }
@@ -269,34 +269,34 @@
     "eng.machining.tooling": {
       "poster": "src/content/courses/films/eng.machining.tooling.jpg",
       "nl": {
-        "dur": 357.8,
-        "bytes": 16294712,
+        "dur": 290.5,
+        "bytes": 13744666,
         "scenes": [
           0,
-          31.11,
-          64.01,
-          121.29,
-          153.57,
-          187.8,
-          220.73,
-          274.93,
-          338.91
+          23.28,
+          49.9,
+          96.79,
+          119.91,
+          148.42,
+          176.94,
+          220.5,
+          274.75
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.nl.vtt"
       },
       "en": {
-        "dur": 335.7,
-        "bytes": 15678083,
+        "dur": 311.8,
+        "bytes": 14750869,
         "scenes": [
           0,
-          27.42,
-          57.83,
-          113.79,
-          142.21,
-          176.03,
-          207.24,
-          256.94,
-          319.25
+          24.8,
+          52.61,
+          104.71,
+          130.29,
+          161.17,
+          190.84,
+          237.84,
+          296.51
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.en.vtt"
       }
@@ -304,34 +304,170 @@
     "eng.joining.spot": {
       "poster": "src/content/courses/films/eng.joining.spot.jpg",
       "nl": {
-        "dur": 357.8,
-        "bytes": 11501960,
+        "dur": 284.9,
+        "bytes": 9558833,
         "scenes": [
           0,
-          50.57,
-          69.78,
-          104.3,
-          135.35,
-          178.69,
-          229.41,
-          295.26
+          39.68,
+          56.43,
+          84.63,
+          108.04,
+          142.76,
+          183.72,
+          234.71
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.nl.vtt"
       },
       "en": {
-        "dur": 332.6,
-        "bytes": 11018297,
+        "dur": 311.2,
+        "bytes": 10381047,
         "scenes": [
           0,
-          46,
-          65.43,
-          98.83,
-          125.03,
-          165.8,
-          214.27,
-          276.91
+          42.78,
+          61.22,
+          92.4,
+          117.29,
+          155.83,
+          201.71,
+          258.92
         ],
         "vtt": "src/content/courses/films/eng.joining.spot.en.vtt"
+      }
+    },
+    "eng.joining.defects": {
+      "poster": "src/content/courses/films/eng.joining.defects.jpg",
+      "nl": {
+        "dur": 356,
+        "bytes": 8841700,
+        "scenes": [
+          0,
+          20.89,
+          66.21,
+          115.42,
+          143.92,
+          187.51,
+          214.96,
+          280.89,
+          323.45
+        ],
+        "vtt": "src/content/courses/films/eng.joining.defects.nl.vtt"
+      },
+      "en": {
+        "dur": 354.4,
+        "bytes": 8949136,
+        "scenes": [
+          0,
+          21.52,
+          69.6,
+          119.63,
+          146.64,
+          194.51,
+          221.32,
+          281.47,
+          322.08
+        ],
+        "vtt": "src/content/courses/films/eng.joining.defects.en.vtt"
+      }
+    },
+    "eng.joining.bolting": {
+      "poster": "src/content/courses/films/eng.joining.bolting.jpg",
+      "nl": {
+        "dur": 340.6,
+        "bytes": 8381915,
+        "scenes": [
+          0,
+          26.68,
+          67.43,
+          102.31,
+          130.88,
+          155.2,
+          204.49,
+          251.34,
+          277.96
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bolting.nl.vtt"
+      },
+      "en": {
+        "dur": 355.9,
+        "bytes": 8594818,
+        "scenes": [
+          0,
+          27.16,
+          73.91,
+          112.34,
+          143.65,
+          167.83,
+          215.26,
+          265.3,
+          291.37
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bolting.en.vtt"
+      }
+    },
+    "eng.joining.bonding": {
+      "poster": "src/content/courses/films/eng.joining.bonding.jpg",
+      "nl": {
+        "dur": 317.1,
+        "bytes": 7630461,
+        "scenes": [
+          0,
+          34.55,
+          73.67,
+          118.79,
+          157.35,
+          199.11,
+          224.75,
+          262.91
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bonding.nl.vtt"
+      },
+      "en": {
+        "dur": 342.4,
+        "bytes": 8309074,
+        "scenes": [
+          0,
+          40.08,
+          80.44,
+          125.46,
+          171.25,
+          215.19,
+          241.96,
+          284.06
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bonding.en.vtt"
+      }
+    },
+    "eng.moulding.machine": {
+      "poster": "src/content/courses/films/eng.moulding.machine.jpg",
+      "nl": {
+        "dur": 337,
+        "bytes": 12365364,
+        "scenes": [
+          0,
+          39.74,
+          72.69,
+          124.95,
+          158.69,
+          197.71,
+          268.1,
+          316.69
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.machine.nl.vtt"
+      },
+      "en": {
+        "dur": 358.7,
+        "bytes": 13067072,
+        "scenes": [
+          0,
+          44.41,
+          79.47,
+          134.58,
+          169.11,
+          213.34,
+          284.59,
+          336.23
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.machine.en.vtt"
       }
     }
   }

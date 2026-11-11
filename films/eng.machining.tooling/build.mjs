@@ -461,7 +461,7 @@ const SAY = [
       en: 'The edge gets hot, so the tool must stay hard when it is hot. Worn? Then you turn the insert to the next edge.' },
   ],
   [ // s2 HSS or carbide
-    { nl: '{t:HSS|HSS} is snelstaal: taai, goedkoop en makkelijk te slijpen, voor kleine boren en tappen.',
+    { nl: '{t:HSS|HSS} is snelstaal. Het is taai, goedkoop en makkelijk te slijpen, voor kleine boren en tappen.',
       en: '{t:HSS|HSS} is high-speed steel: tough, cheap and easy to grind, for small drills and taps.' },
     { nl: '{t:Hardmetaal|Hardmetaal} bestaat uit korrels wolfraamcarbide, gebonden met kobalt. Het blijft hard als het heet wordt, en snijdt zo’n drie tot vier keer sneller. Maar het is bros.',
       en: '{t:Cemented carbide|Cemented carbide} is made of grains of tungsten carbide, bound with cobalt. It stays hard when it gets hot, and cuts about three to four times faster. But it is brittle.' },
@@ -499,7 +499,7 @@ const SAY = [
       en: '{t:Emulsion|Emulsion} cools, lubricates and flushes the chips away: oil in water, usually {n:5} to {n:8} percent oil.' },
     { nl: 'Bij {t:Voorinstellen|voorinstellen} meet je de lengte en de radius van een gereedschap buiten de machine, zodat die blijft verspanen.',
       en: 'With {t:Presetting|presetting} you measure the length and radius of a tool outside the machine, so the machine keeps cutting.' },
-    { nl: 'Is de standtijd op, dan neemt een {t:Zustergereedschap|zustergereedschap} het over: een identiek reservegereedschap. Een plaat van €{n:12} met {n:4} kanten is €{n:3} per kant: bij {n:80} stuks drie en driekwart cent per stuk.',
+    { nl: 'Is de standtijd op, dan neemt een {t:Zustergereedschap|zustergereedschap} het over. Dat is een identiek reservegereedschap. Een plaat van €{n:12} met {n:4} kanten is €{n:3} per kant: bij {n:80} stuks drie en driekwart cent per stuk.',
       en: 'When the tool life is up, a {t:Sister tool|sister tool} takes over: an identical spare tool. A €{n:12} insert with {n:4} edges is €{n:3} an edge: at {n:80} parts, 3.75 cents a part.' },
   ],
   [ // s7 the Taylor equation

@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Een technische tekening lezen
     {
       id: 'eng.drawings.views',
+      film: 'eng.drawings.reading',
       title: 'Een technische tekening lezen',
       pre: [
         {
@@ -367,6 +368,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdt',
+      film: 'eng.drawings.reading',
       title: 'Toleranties op tekening en GD&T',
       pre: [
         {

@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:05.049
+This is an injection moulding machine, on the shop floor simply the press.
+
+2
+00:00:05.778 --> 00:00:09.203
+On the left the injection unit, which melts the plastic.
+
+3
+00:00:09.951 --> 00:00:13.237
+On the right the clamp unit, which holds the mould shut.
+
+4
+00:00:14.296 --> 00:00:18.545
+Pellets drop from the hopper into the barrel, a steel tube with heater bands.
+
+5
+00:00:19.284 --> 00:00:24.335
+Inside it turns the screw, which melts the plastic, mixes it and pushes it forward.
+
+6
+00:00:25.434 --> 00:00:29.672
+The mould has two halves: one on the fixed platen, one on the moving platen.
+
+7
+00:00:30.382 --> 00:00:33.342
+That platen slides along four thick tie bars.
+
+8
+00:00:34.406 --> 00:00:37.552
+Inside the mould is the cavity, the shape of the part.
+
+9
+00:00:38.285 --> 00:00:40.630
+The melt flows in through a small opening,
+
+10
+00:00:40.827 --> 00:00:43.532
+the gate; the halves meet at the parting line.
+
+11
+00:00:44.864 --> 00:00:46.629
+One cycle is called a shot.
+
+12
+00:00:47.402 --> 00:00:51.976
+The mould closes, and the screw slides forward like a piston: injection.
+
+13
+00:00:53.126 --> 00:00:55.460
+Then it keeps pushing: the holding pressure.
+
+14
+00:00:56.189 --> 00:00:57.965
+The part shrinks as it cools,
+
+15
+00:00:58.139 --> 00:01:01.494
+so the screw packs in more melt until the gate freezes.
+
+16
+00:01:02.627 --> 00:01:04.566
+Water in the mould cools the part.
+
+17
+00:01:05.397 --> 00:01:09.588
+Meanwhile the screw turns back and measures out the next shot: dosing.
+
+18
+00:01:10.302 --> 00:01:12.508
+That usually costs no extra time.
+
+19
+00:01:13.531 --> 00:01:17.095
+Then the mould opens, and ejector pins push the part out.
+
+20
+00:01:17.913 --> 00:01:18.633
+And again.
+
+21
+00:01:19.910 --> 00:01:25.030
+Presses are rated by clamp force, in tonnes: the force that holds the halves shut.
+
+22
+00:01:25.780 --> 00:01:28.369
+The melt pushes them apart at hundreds of bar,
+
+23
+00:01:28.566 --> 00:01:31.678
+and one bar is about a kilo per square centimetre.
+
+24
+00:01:32.718 --> 00:01:36.665
+The force needed depends on the projected area: the part’s shadow,
+
+25
+00:01:36.804 --> 00:01:38.081
+seen from the press.
+
+26
+00:01:38.811 --> 00:01:43.943
+This housing is 15 by 20 centimetres: 300 square centimetres.
+
+27
+00:01:44.997 --> 00:01:49.734
+Rule of thumb: 0.3 to 0.6 tonnes per square centimetre,
+
+28
+00:01:49.850 --> 00:01:54.819
+depending on the plastic; here 0.4, so 120 tonnes.
+
+29
+00:01:55.532 --> 00:02:03.067
+With 2 cavities 240, plus 10 to 20 percent margin: a 280 or 300 tonne press.
+
+30
+00:02:04.066 --> 00:02:04.983
+Too little force,
+
+31
+00:02:05.216 --> 00:02:08.420
+and the mould opens a hair’s breadth at the parting line:
+
+32
+00:02:08.559 --> 00:02:10.336
+plastic leaks out as flash.
+
+33
+00:02:11.047 --> 00:02:13.706
+So not on a free 200 tonne press.
+
+34
+00:02:15.045 --> 00:02:19.793
+Now the screw: about 20 times as long as it is thick, with three zones.
+
+35
+00:02:20.526 --> 00:02:24.799
+At the back, the feed zone: deep flights draw the cold pellets in.
+
+36
+00:02:25.829 --> 00:02:28.592
+Then the compression zone: the channel gets shallower,
+
+37
+00:02:28.720 --> 00:02:32.122
+so the plastic is squeezed and kneaded until it melts.
+
+38
+00:02:33.133 --> 00:02:37.581
+At the front, the metering zone makes the melt evenly hot and well mixed.
+
+39
+00:02:38.294 --> 00:02:41.092
+The check ring on the tip closes during injection.
+
+40
+00:02:42.110 --> 00:02:44.107
+Most of the heat comes from friction,
+
+41
+00:02:44.328 --> 00:02:48.229
+not from the heater bands: they mainly keep the barrel at temperature.
+
+42
+00:02:49.556 --> 00:02:53.248
+While dosing, the melt in front of the tip pushes the screw back,
+
+43
+00:02:53.434 --> 00:02:56.592
+up to the set dosing stroke: exactly one shot.
+
+44
+00:02:57.358 --> 00:03:00.202
+If dosing outlasts cooling, the press waits.
+
+45
+00:03:01.192 --> 00:03:04.292
+The residence time, how long the plastic stays hot,
+
+46
+00:03:04.490 --> 00:03:07.683
+is roughly the shots in the barrel times the cycle time.
+
+47
+00:03:08.349 --> 00:03:14.095
+The barrel holds 600 grams, a shot is 150 grams: 4 shots.
+
+48
+00:03:14.813 --> 00:03:18.435
+At 30 seconds, that is 120 seconds.
+
+49
+00:03:19.544 --> 00:03:23.422
+A 60 gram part: 10 shots, so 300 seconds.
+
+50
+00:03:24.122 --> 00:03:29.369
+If the data sheet says 4 minutes at most, that is too long, and black specks appear.
+
+51
+00:03:30.097 --> 00:03:32.477
+That part belongs on a smaller press.
+
+52
+00:03:33.813 --> 00:03:35.752
+Choose the press with four checks.
+
+53
+00:03:36.501 --> 00:03:41.458
+One, clamp force: area times cavity pressure, the average pressure in the cavity,
+
+54
+00:03:41.656 --> 00:03:44.094
+usually 300 to 600 bar.
+
+55
+00:03:44.817 --> 00:03:53.141
+A lid of 380 square centimetres at 0.45 tonnes per square centimetre: 171 tonnes,
+
+56
+00:03:53.315 --> 00:03:55.649
+197 with margin.
+
+57
+00:03:56.623 --> 00:04:01.941
+Two, the shot volume: all the parts plus the runner, here 100 cubic centimetres.
+
+58
+00:04:02.926 --> 00:04:07.268
+Divide by the barrel’s maximum shot volume: the barrel utilisation.
+
+59
+00:04:08.051 --> 00:04:11.684
+Aim for 20 to 80 percent, ideally 40 to 60.
+
+60
+00:04:12.387 --> 00:04:19.063
+In a barrel of 120 that is 83 percent: too much, the screw cannot melt it in time.
+
+61
+00:04:19.749 --> 00:04:22.605
+In one of 250: 40 percent.
+
+62
+00:04:23.638 --> 00:04:24.915
+Three, the mould height:
+
+63
+00:04:25.170 --> 00:04:28.711
+the closed mould’s thickness must lie within the press’s range.
+
+64
+00:04:29.408 --> 00:04:32.009
+And the mould must fit between the tie bars.
+
+65
+00:04:33.001 --> 00:04:36.089
+Four, the opening stroke: how far the press opens,
+
+66
+00:04:36.229 --> 00:04:39.085
+often twice the part depth plus room for a gripper.
+
+67
+00:04:39.817 --> 00:04:43.660
+And bigger is not safer: too much force squeezes the vents shut.
+
+68
+00:04:45.086 --> 00:04:48.848
+This press is hydraulic: a pump drives oil to the cylinders.
+
+69
+00:04:49.565 --> 00:04:52.050
+Robust, and large forces come cheap.
+
+70
+00:04:52.774 --> 00:04:55.270
+Electric presses usually close with a toggle.
+
+71
+00:04:56.273 --> 00:04:59.826
+An all-electric press has a servo motor for each axis.
+
+72
+00:05:00.520 --> 00:05:05.397
+It only uses power when it moves, repeats more precisely and leaks no oil.
+
+73
+00:05:06.425 --> 00:05:11.627
+A hybrid machine combines both, usually an electric screw with a hydraulic clamp.
+
+74
+00:05:12.669 --> 00:05:17.139
+Compare energy as specific energy consumption: kilowatt-hours per kilo.
+
+75
+00:05:17.849 --> 00:05:19.579
+Studies differ, so measure it.
+
+76
+00:05:20.301 --> 00:05:27.429
+Say 0.6 against 0.3: on a hundred and eighty thousand kilos a year, at twenty cents,
+
+77
+00:05:27.650 --> 00:05:30.390
+that saves ten thousand eight hundred euros.
+
+78
+00:05:31.126 --> 00:05:35.340
+Forty thousand euros extra pays back in 3.7 years.
+
+79
+00:05:36.681 --> 00:05:39.502
+In two-component moulding two injection units
+
+80
+00:05:39.572 --> 00:05:42.637
+mould a hard and a soft plastic into one part,
+
+81
+00:05:42.811 --> 00:05:44.425
+often with a rotating mould.
+
+82
+00:05:45.221 --> 00:05:47.113
+That saves an assembly step.
+
+83
+00:05:48.139 --> 00:05:52.841
+In insert moulding the plastic is moulded around a metal part placed in the mould,
+
+84
+00:05:52.957 --> 00:05:54.339
+such as a threaded bush.
+
+85
+00:05:55.060 --> 00:05:56.999
+Both need more complex moulds.
