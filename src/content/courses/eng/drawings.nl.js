@@ -71,7 +71,7 @@ export default {
         { term: 'Revisie', def: 'De versie van een tekening; elke wijziging krijgt een nieuwe letter en een regel in de tabel.' },
         { term: 'Europese projectie', def: 'First-angle-indeling; het bovenaanzicht staat onder het vooraanzicht.' },
         { term: 'Schaal', def: 'Grootte van de tekening vergeleken met het echte onderdeel: 1:2 is half zo groot, 2:1 dubbel.' },
-        { term: 'Algemene tolerantie', def: 'De tolerantie in het stempel die geldt voor elke maat zonder eigen tolerantie.' },
+        { term: 'Algemene tolerantie', def: 'De tolerantie in de stempel die geldt voor elke maat zonder eigen tolerantie.' },
       ],
     },
     {

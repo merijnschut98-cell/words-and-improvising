@@ -443,9 +443,9 @@ const spec = {
       ],
     },
     {
-      id: 's2', lesson: TOL, level: 1, dur: DUR[1], still: 0.5, title: { nl: 'Het stempel', en: 'The title block' },
+      id: 's2', lesson: TOL, level: 1, dur: DUR[1], still: 0.5, title: { nl: 'De stempel', en: 'The title block' },
       beats: [
-        { nl: 'Geen eigen tolerantie? Dan geldt de {t:Algemene tolerantie|algemene tolerantie} in het stempel.', en: 'No tolerance of its own? Then the {t:General tolerance|general tolerance} in the title block applies.', cue: { 'Algemene tolerantie': 'stamp' } },
+        { nl: 'Geen eigen tolerantie? Dan geldt de {t:Algemene tolerantie|algemene tolerantie} in de stempel.', en: 'No tolerance of its own? Then the {t:General tolerance|general tolerance} in the title block applies.', cue: { 'Algemene tolerantie': 'stamp' } },
         { nl: 'Vaak ISO 2768-m: ±{n:0.2} mm voor maten boven {n:6} tot en met {n:30} mm.', en: 'Often ISO 2768-m: ±{n:0.2} mm for sizes over {n:6} up to {n:30} mm.', cues: ['stamp'] },
         { nl: 'Nauwer kost geld. Een lagerzitting ±{n:0.01}, een gat in een afdekplaat ±0,2.', en: 'Tighter costs money. A bearing seat ±{n:0.01}, a hole in a cover plate ±0.2.', cues: [] },
         { nl: 'De tolerantie volgt de functie. Een decimaal “voor de zekerheid” betaalt de productie.', en: 'The tolerance follows the function. A decimal “to be safe” is paid for by production.', cues: [] },
@@ -539,7 +539,7 @@ const SAY = [
       en: 'A tolerance can also be uneven. A bore of {n:12}, zero to plus eighteen microns, runs from exactly twelve to {n:12.018}: bigger is allowed, smaller never.' },
   ],
   [ // s2 the title block
-    { nl: 'Maten zonder eigen tolerantie vallen onder de {t:Algemene tolerantie|algemene tolerantie} in het stempel, het kader rechtsonder op de tekening.',
+    { nl: 'Maten zonder eigen tolerantie vallen onder de {t:Algemene tolerantie|algemene tolerantie} in de stempel, het kader rechtsonder op de tekening.',
       en: 'Dimensions without a tolerance of their own fall under the {t:General tolerance|general tolerance} in the title block, the box at the bottom right of the drawing.' },
     { nl: 'Vaak is dat ISO 2768, klasse m: plus-min {n:0.2} millimeter voor maten boven {n:6} tot en met {n:30} millimeter.',
       en: 'Often that is ISO 2768, class m: plus or minus {n:0.2} millimetres for sizes over {n:6} up to {n:30} millimetres.' },

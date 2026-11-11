@@ -91,7 +91,7 @@ export default {
     { id: 'c26', text: 'Leader standard work' },
     { id: 'c27', text: 'Waarom overproductie de ergste verspilling is' },
     { id: 'c28', text: "Kaizen" },
-    { id: 'c29', text: "Heijunka (nivelleren)" },
+    { id: 'c29', text: "Heijunka (egaliseren)" },
     { id: 'c30', text: "Een KPI" },
     { id: 'c31', text: "Poka-yoke (foutvrij maken)" },
     { id: 'c32', text: "SMED (snel omstellen)" },

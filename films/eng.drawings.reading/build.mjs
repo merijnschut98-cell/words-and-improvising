@@ -417,9 +417,9 @@ const spec = {
       ],
     },
     {
-      id: 's3', lesson: VW, level: 1, dur: DUR[2], still: 0.5, title: { nl: 'Het stempel', en: 'The title block' },
+      id: 's3', lesson: VW, level: 1, dur: DUR[2], still: 0.5, title: { nl: 'De stempel', en: 'The title block' },
       beats: [
-        { nl: 'Begin bij het {t:Stempel|stempel} rechtsonder: nummer, benaming, materiaal, schaal en revisie.', en: 'Start at the {t:Title block|title block}, bottom right: number, name, material, scale and revision.', cue: { Stempel: 'stamp' } },
+        { nl: 'Begin bij de {t:Stempel|stempel} rechtsonder: nummer, benaming, materiaal, schaal en revisie.', en: 'Start at the {t:Title block|title block}, bottom right: number, name, material, scale and revision.', cue: { Stempel: 'stamp' } },
         { nl: 'Tekening 4711-203: een beugel van staal S235, schaal 1:1, revisie C.', en: 'Drawing 4711-203: a bracket in S235 steel, scale 1:1, revision C.', cues: ['stamp'] },
         { nl: 'De {t:Algemene tolerantie|algemene tolerantie} geldt voor elke maat zonder eigen tolerantie. Hier ISO 2768-m.', en: 'The {t:General tolerance|general tolerance} covers every dimension without its own. Here ISO 2768-m.', cue: { 'Algemene tolerantie': 'gen' } },
         { nl: 'Volgens ISO 2768-m mag een maat van {n:50} mm tussen {n:49.7} en {n:50.3} mm liggen.', en: 'Under ISO 2768-m, a {n:50} mm dimension may be {n:49.7} to {n:50.3} mm.', cues: ['gen', 'dim'] },
@@ -493,7 +493,7 @@ const SAY = [
       en: 'Europe uses {t:First-angle projection|first-angle projection}: what you see from the top goes below the front view, what you see from the left goes on the right.' },
     { nl: 'De Verenigde Staten gebruiken de Amerikaanse projectie: het bovenaanzicht staat erboven, en rechts staat wat je van rechts ziet.',
       en: 'The United States uses third-angle projection: the top view sits above, and on the right goes what you see from the right.' },
-    { nl: 'Een klein kegelsymbool in het stempel zegt welke. Verwar je ze, dan maak je het onderdeel in spiegelbeeld.',
+    { nl: 'Een klein kegelsymbool in de stempel zegt welke. Verwar je ze, dan maak je het onderdeel in spiegelbeeld.',
       en: 'A small cone symbol in the title block tells you which. Mix them up and you make the part as a mirror image.' },
   ],
   [ // s2 section and scale
@@ -507,7 +507,7 @@ const SAY = [
       en: 'Never measure off a print: paper stretches. At a scale of one to five, {n:40} millimetres on paper is {n:200} in real life, but just read the dimension written beside it.' },
   ],
   [ // s3 title block
-    { nl: 'Je begint bij het {t:Stempel|stempel}, rechtsonder: tekeningnummer, benaming, materiaal, schaal, projectiesymbool, wie tekende en vrijgaf, en de revisieletter.',
+    { nl: 'Je begint bij de {t:Stempel|stempel}, rechtsonder: tekeningnummer, benaming, materiaal, schaal, projectiesymbool, wie tekende en vrijgaf, en de revisieletter.',
       en: 'You start at the {t:Title block|title block}, the box at the bottom right: part number, name, material, scale, projection symbol, who drew and approved it, and the revision letter.' },
     { nl: 'Dit is een beugel van S235, een gangbaar constructiestaal, op schaal één op één, revisie C.',
       en: 'This is a bracket in S235, a common structural steel, at one to one, revision C.' },
@@ -633,7 +633,7 @@ const css = `
 `;
 
 const label = {
-  nl: 'Twee plekken naast elkaar. Een tekentafel met een gebogen beugel van plaatstaal, een scherm op een voet dat de vrijgegeven tekening uit het PDM-systeem toont, een oude print in een plastic hoesje en op de vloer een krat afgekeurde beugels met een label. Een 3D-meetmachine met een granieten plaat, twee poten, een brug met een slede en een pinole met een taster; op het graniet een opspanning met drie steunpunten (referentie A), twee pennen langs de lange zijkant (B) en één pen aan de korte zijkant (C), met daarin een plaat met vier gaten. Een tekening van de beugel, gemarkeerd als voorbeeld, met vooraanzicht, bovenaanzicht, zijaanzicht en doorsnede A-A, een isometrisch aanzicht, de schaal, het stempel, de revisietabel en een detail van de buigradius. Een tekening van de plaat met maat, theoretisch exacte maten en een tolerantiekader, en een vergroting van de positiezone met het gemeten hart.',
+  nl: 'Twee plekken naast elkaar. Een tekentafel met een gebogen beugel van plaatstaal, een scherm op een voet dat de vrijgegeven tekening uit het PDM-systeem toont, een oude print in een plastic hoesje en op de vloer een krat afgekeurde beugels met een label. Een 3D-meetmachine met een granieten plaat, twee poten, een brug met een slede en een pinole met een taster; op het graniet een opspanning met drie steunpunten (referentie A), twee pennen langs de lange zijkant (B) en één pen aan de korte zijkant (C), met daarin een plaat met vier gaten. Een tekening van de beugel, gemarkeerd als voorbeeld, met vooraanzicht, bovenaanzicht, zijaanzicht en doorsnede A-A, een isometrisch aanzicht, de schaal, de stempel, de revisietabel en een detail van de buigradius. Een tekening van de plaat met maat, theoretisch exacte maten en een tolerantiekader, en een vergroting van de positiezone met het gemeten hart.',
   en: 'Two places side by side. A drawing desk with a bent sheet-steel bracket, a screen on a stand showing the released drawing from the PDM system, an old print in a plastic sleeve and, on the floor, a tagged crate of rejected brackets. A coordinate measuring machine with a granite plate, two legs, a bridge with a carriage and a ram with a probe; on the granite a fixture with three rests (datum A), two pins along the long edge (B) and one pin at the short edge (C), holding a plate with four holes. A drawing of the bracket, marked as an example, with front, top and side views and section A-A, an isometric view, the scale, the title block, the revision table and a detail of the bend radius. A drawing of the plate with its size, basic dimensions and a feature control frame, and an enlarged view of the position zone with the measured centre.',
 };
 

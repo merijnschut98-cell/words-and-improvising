@@ -230,7 +230,7 @@ export default {
         'Goede fabrieken balanceren vooraf voor drie of vier vraagniveaus: een lijn met 4, 5 of 6 operators. Elk niveau heeft zijn eigen standaardwerk (standard work): de vastgelegde volgorde en tijd van de taken per station.\n\nDaar heb je mensen voor nodig die meerdere stations kunnen. Een skillsmatrix (skills matrix) laat per operator zien welke stations iemand beheerst. Wie op één station vastzit, maakt elke herbalancering lastig.',
         'Op een mixed-model lijn rijden varianten met verschillende werkinhoud door elkaar. Je balanceert dan op de gewogen werkinhoud: het gemiddelde, gewogen naar de aantallen. 70% van 200 seconden plus 30% van 300 seconden is 230 seconden.\n\nMaar komen er vijf zware varianten achter elkaar, dan zit een station vijf keer boven de takt en loopt de achterstand op. Een goede volgorde, zwaar en licht om en om, houdt de lijn in de maat. Meer daarover in Lijnen en automatisering.',
         'Wat de manager weegt: balansverlies is geld. Met 6 operators en 10% balansverlies betaal je 0,6 fte om te wachten (fte: één voltijdbaan).\n\nKomt de berekening uit op 5,2 mensen, dan kies je tussen 6 mensen met wachttijd, of 5 met overwerk en een betere balans. Overwerk kost een toeslag die per cao verschilt; vraag HR naar het eigen getal voordat je rekent.',
-        'Experts verschillen over hoe je met schommelende vraag omgaat. Lean zegt: vlak de vraag eerst af met heijunka (levelling: elke dag ongeveer dezelfde mix en hoeveelheid plannen), zodat de lijn niet elke week om hoeft. Finance wil zo weinig mogelijk mensen per stuk.\n\nDe valkuil: pas bemensen als de achterstand er al is, met uitzendkrachten die de stations niet kennen. Scherpe vraag: “Bij welk vraagniveau gaan we van 5 naar 6 mensen, en ligt die balans al klaar?”',
+        'Experts verschillen over hoe je met schommelende vraag omgaat. Lean zegt: egaliseer de vraag eerst met heijunka (egaliseren: elke dag ongeveer dezelfde mix en hoeveelheid plannen), zodat de lijn niet elke week om hoeft. Finance wil zo weinig mogelijk mensen per stuk.\n\nDe valkuil: pas bemensen als de achterstand er al is, met uitzendkrachten die de stations niet kennen. Scherpe vraag: “Bij welk vraagniveau gaan we van 5 naar 6 mensen, en ligt die balans al klaar?”',
       ],
       example: {
         kind: 'faded',
@@ -285,7 +285,7 @@ export default {
         { term: 'Skillsmatrix', def: 'Een overzicht van welke operator welke stations beheerst.' },
         { term: 'Mixed-model lijn', def: 'Een lijn waar varianten met verschillende werkinhoud door elkaar rijden.' },
         { term: 'Gewogen werkinhoud', def: 'De gemiddelde werkinhoud, gewogen naar de aantallen per variant.' },
-        { term: 'Heijunka', def: 'Afvlakken: elke dag ongeveer dezelfde mix en hoeveelheid plannen.' },
+        { term: 'Heijunka', def: 'Egaliseren: elke dag ongeveer dezelfde mix en hoeveelheid plannen.' },
       ],
     },
     {
@@ -649,7 +649,7 @@ export default {
     },
     {
       id: 'eng.flow.downtime',
-      title: 'Stilstand registreren en de Pareto',
+      title: 'Stilstand registreren en de pareto',
       pre: [
         {
           q: 'Een lijn heeft deze week 60 korte vastlopers van 1 minuut en 1 storing van 40 minuten. Wat kost de meeste tijd?',
@@ -661,7 +661,7 @@ export default {
       teach: [
         'OEE zegt hoeveel tijd je verliest, niet waarom. Daarvoor heb je stilstandregistratie (downtime log): bij elke stop de begintijd, de duur, de machine en een oorzaakcode.\n\nDat gebeurt op een formulier, een tablet bij de lijn, of automatisch: de besturing van de machine (de PLC, een kleine industriële computer) meldt de stop, en de operator kiest alleen nog de oorzaak.',
         'Een oorzaakcode (reason code) is een vaste keuze uit een korte lijst, zoals “storing etiketteerder”, “wachten op materiaal” of “omstellen”. Een gangbare richtlijn is zo’n 10 tot 20 codes per machine, in de woorden van de operators, gegroepeerd naar de zes grote verliezen.\n\nTe veel codes en iedereen kiest “overig”. Vuistregel: staat meer dan zo’n 10% van de stilstand op overig, dan deugt de codelijst niet.',
-        'Een Pareto-diagram (Pareto chart) zet de oorzaken op volgorde van verloren minuten, de grootste links, met een lijn die het opgetelde percentage toont. Meestal kost een handvol oorzaken het grootste deel van de tijd; de bekende 80/20-regel is een vuistregel, geen wet.\n\nSorteer op minuten, niet op aantal. Zestig vastlopers van een minuut wegen zwaarder dan één storing van veertig minuten.',
+        'Een pareto-diagram (Pareto chart) zet de oorzaken op volgorde van verloren minuten, de grootste links, met een lijn die het opgetelde percentage toont. Meestal kost een handvol oorzaken het grootste deel van de tijd; de bekende 80/20-regel is een vuistregel, geen wet.\n\nSorteer op minuten, niet op aantal. Zestig vastlopers van een minuut wegen zwaarder dan één storing van veertig minuten.',
         'Microstops (korte vastlopers van minder dan een paar minuten) schrijft bijna niemand op. Je vindt ze toch: reken uit hoeveel stuks de looptijd had moeten opleveren op ideale snelheid, en vergelijk dat met de teller.\n\nVoorbeeld: 400 minuten looptijd met een ideale cyclustijd van 20 seconden is 1.200 stuks. De teller zegt 1.020: de 180 ontbrekende stuks zijn 60 minuten aan microstops en langzaam draaien.',
         'Het ritme maakt het verschil. Een uurbord (hourly board) naast de lijn toont per uur het plan, het werkelijke aantal en een korte reden als het achterloopt. In de dagstart (het korte overleg aan het begin van de dienst) bespreek je de grootste oorzaken van gisteren, met een eigenaar per actie.\n\nScherpe vraag: “Welke drie oorzaken kostten vorige week de meeste minuten, en wie werkt eraan?”',
       ],
@@ -679,7 +679,7 @@ export default {
           why: 'Totaal = 300 + 240 + 120 + 140 = 800 minuten; 140 / 800 = 17,5%.',
         },
         {
-          q: 'Waarop sorteer je een Pareto-diagram van stilstand?',
+          q: 'Waarop sorteer je een pareto-diagram van stilstand?',
           options: ['Op het aantal stops per oorzaak', 'Op de datum van de eerste melding', 'Op de machine met de meeste operators', 'Op de verloren minuten per oorzaak'],
           answer: 'Op de verloren minuten per oorzaak',
           why: 'Verloren tijd is wat output kost. Veel korte stops kunnen meer tijd kosten dan één lange.',
@@ -693,7 +693,7 @@ export default {
         },
         {
           q: 'In de stilstandregistratie is “overig” de grootste post, met 30% van de minuten. Wat doe je eerst?',
-          options: ['De codelijst met de operators herzien en inkorten', 'Overig uit de Pareto weglaten', 'Operators een boete geven voor overig', 'Een duurder registratiesysteem kopen dat zelf de oorzaak raadt'],
+          options: ['De codelijst met de operators herzien en inkorten', 'Overig uit de pareto weglaten', 'Operators een boete geven voor overig', 'Een duurder registratiesysteem kopen dat zelf de oorzaak raadt'],
           answer: 'De codelijst met de operators herzien en inkorten',
           why: 'Als 30% op overig staat, passen de codes niet bij wat er echt gebeurt. Weglaten verstopt juist de grootste post.',
         },
@@ -701,14 +701,14 @@ export default {
       situation: {
         scene: 'Je krijgt bij een zuivelfabriek een Excel met drie maanden stilstand van de afvullijn. Er zijn 60 oorzaakcodes, en “overig” is met 30% de grootste. De teamleider zegt: “Zie je wel, het is overal een beetje.”',
         ask: 'Hoe maak je van deze data iets waar het team mee aan de slag kan?',
-        model: 'Met 30% op overig weten we eigenlijk niet waar de tijd heen gaat. Zullen we met twee operators de codes terugbrengen naar een stuk of vijftien, in hun eigen woorden? Dan registreren we twee weken opnieuw, maken een Pareto op minuten, en pakken we de bovenste twee aan. Intussen kan ik uit de teller halen hoeveel tijd er in microstops zit.',
+        model: 'Met 30% op overig weten we eigenlijk niet waar de tijd heen gaat. Zullen we met twee operators de codes terugbrengen naar een stuk of vijftien, in hun eigen woorden? Dan registreren we twee weken opnieuw, maken een pareto op minuten, en pakken we de bovenste twee aan. Intussen kan ik uit de teller halen hoeveel tijd er in microstops zit.',
         rubric: [
           'Ziet dat 30% op overig betekent dat de codes niet deugen',
           'Stelt een korte codelijst voor, samen met de operators',
-          'Maakt een Pareto op minuten en kiest de grootste oorzaken',
+          'Maakt een pareto op minuten en kiest de grootste oorzaken',
         ],
       },
-      sayIt: 'Leg een teamleider in 60 seconden uit hoe je met stilstandregistratie en een Pareto de grootste verliezen vindt.',
+      sayIt: 'Leg een teamleider in 60 seconden uit hoe je met stilstandregistratie en een pareto de grootste verliezen vindt.',
       terms: [
         { term: 'Stilstandregistratie', def: 'Een lijst van alle stops met tijd, duur, machine en oorzaak.' },
         { term: 'Oorzaakcode', def: 'Een vaste keuze uit een korte lijst om een stop een oorzaak te geven.' },
@@ -803,7 +803,7 @@ export default {
         'Eén OEE-punt (OEE point) is één procentpunt OEE. Wat het oplevert: geplande tijd × ideale snelheid × 1%.\n\nVoorbeeld: een machine met 75 geplande uren per week en een ideale snelheid van 60 stuks per uur kan in theorie 4.500 stuks maken. Eén OEE-punt is dan 45 goede stuks per week. Als de machine de bottleneck is en elk stuk €20 throughput (prijs min materiaal) oplevert, is dat €900 per week.',
         'Zet het naast een investering. Van 60% naar 70% OEE is 70 / 60 = 1,17: bijna 17% meer output, ongeveer een zesde machine erbij.\n\nDat is verborgen capaciteit (hidden capacity): output die je al betaalt maar niet krijgt. Een nieuwe machine kost vaak honderdduizenden euro’s, plus ruimte en mensen. OEE-punten zijn niet gratis, maar de eerste punten zijn meestal goedkoper dan staal.',
         'Let op waar het geld zit. Alleen op de bottleneck, met verkochte orders, worden OEE-punten extra omzet. Op een machine met reserve levert een hogere OEE minder benodigde uren op: minder overwerk, of een ploeg minder.\n\nDat is ook geld, maar in kosten, niet in omzet. Wie die twee verwart, belooft de directie omzet die nooit komt.',
-        'Waar begin je? Een verliesboom (loss tree) splitst de verloren tijd van de geplande tijd tot de oorzaken: eerst beschikbaarheid, performance en kwaliteit, dan per oorzaak uit de Pareto. Pak de grootste tak: omstellen met SMED, storingen met onderhoud, microstops met kleine technische fixes.\n\nZet een doel tegen je eigen nulmeting (baseline): de gemeten OEE vóór je begint, met een vaste definitie. Het bekende “world class” getal van 85% is een richtpunt uit de TPM-literatuur, geen norm voor elke machine.',
+        'Waar begin je? Een verliesboom (loss tree) splitst de verloren tijd van de geplande tijd tot de oorzaken: eerst beschikbaarheid, performance en kwaliteit, dan per oorzaak uit de pareto. Pak de grootste tak: omstellen met SMED, storingen met onderhoud, microstops met kleine technische fixes.\n\nZet een doel tegen je eigen nulmeting (baseline): de gemeten OEE vóór je begint, met een vaste definitie. Het bekende “world class” getal van 85% is een richtpunt uit de TPM-literatuur, geen norm voor elke machine.',
         'Een OEE-doel voor mensen wordt snel een spel met definities: omstellen buiten de geplande tijd, een tragere ideale cyclustijd. Het getal stijgt, de output niet.\n\nDaarom kijken goede managers naar de goede stuks en de grootste verliestak, niet alleen naar het percentage. Scherpe vraag: “Wat levert één OEE-punt op deze machine op, in stuks en in euro’s, en is het de bottleneck?”',
       ],
       example: {
@@ -1089,7 +1089,7 @@ export default {
         'EPEI (every part every interval; het Lean Enterprise Institute schrijft EPEx) is hoe vaak elk product langskomt op een machine. Draait een machine al zijn producten in 2 dagen, dan is de EPEI 2 dagen.\n\nEen kortere EPEI betekent kleinere series, minder voorraad en sneller kunnen reageren. Maar het kost meer omstellingen. Lange omsteltijden en veel producten maken de EPEI vanzelf lang.',
         'Een productwiel (product wheel) is een vaste volgorde die steeds herhaald wordt op een machine die meerdere producten maakt. Peter King beschrijft het in The Product Wheel Handbook. De lengte van één ronde is de EPEI.\n\nHardlopers (high runners) komen elke ronde langs. Langzaamlopers (slow movers) draaien elke tweede of vierde ronde, met wat meer voorraad om de tussentijd te overbruggen. Zo blijven de omstellingen binnen het omsteltijdbudget (de tijd die naast productie overblijft).',
         'Vaak hangt de omsteltijd af van de volgorde: een volgordeafhankelijke omstelling (sequence-dependent changeover). Een omstelmatrix (changeover matrix) zet de tijd van elk product naar elk ander product in een tabel.\n\nLicht naar donker, allergeenvrij naar allergeen (stoffen waar mensen allergisch voor zijn), dun naar dik: kort. Andersom: lang reinigen. De volgorde van het wiel volgt de korte route door de matrix.',
-        'De lengte van het wiel kies je met twee getallen. Het omsteltijdbudget bepaalt hoeveel rondes er per week passen. De voorraad die je wilt houden bepaalt hoe lang een ronde mag duren: elke serie moet de vraag dekken tot de volgende ronde.\n\nReserveer per ronde wat tijd voor storingen en spoed, anders schuift het hele wiel elke keer op. Het idee lijkt op heijunka (afvlakken: elke periode dezelfde mix plannen).',
+        'De lengte van het wiel kies je met twee getallen. Het omsteltijdbudget bepaalt hoeveel rondes er per week passen. De voorraad die je wilt houden bepaalt hoe lang een ronde mag duren: elke serie moet de vraag dekken tot de volgende ronde.\n\nReserveer per ronde wat tijd voor storingen en spoed, anders schuift het hele wiel elke keer op. Het idee lijkt op heijunka (egaliseren: elke periode dezelfde mix plannen).',
         'Planners en lean-mensen verschillen hierover. Een vast wiel geeft rust, kleinere series en voorspelbare omstellingen. Plannen op klantorder via het ERP-systeem voelt flexibeler, maar geeft willekeurige volgordes en lange reinigingen.\n\nDe valkuil: elke spoedorder breekt het wiel, tot er niets van over is. Spreek af wanneer spoed mag. Scherpe vraag: “Wat is onze EPEI nu, en wat zou hij zijn met de omsteltijd na SMED?”',
       ],
       example: {
