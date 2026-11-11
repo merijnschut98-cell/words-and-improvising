@@ -656,7 +656,7 @@ const SAY = [
       en: 'Each turning joint is an {t:Axis|axis}. The base turns the arm round, shoulder and elbow lift, and three axes in the wrist turn and tilt the hand.' },
     { nl: 'Op de pols zit een {t:Grijper|grijper}: twee vingers die op perslucht om het product sluiten. Het gereedschap bepaalt de klus.',
       en: 'On the wrist sits a {t:Gripper|gripper}: two fingers that close round the part on compressed air. The tool decides the job.' },
-    { nl: 'Het programma is een lijst posities van één punt: de {t:TCP}, de werkende punt van het gereedschap, hier tussen de vingers.',
+    { nl: 'Het programma is een lijst posities van één punt: de {t:TCP}. Dat is de werkende punt van het gereedschap, hier tussen de vingers.',
       en: 'The program is a list of positions of one point: the {t:Tool centre point|tool centre point}, the working tip of the tool, here between the fingers.' },
     { nl: 'Raakt het gereedschap verbogen bij een botsing, dan zit elke positie evenveel naast. Na een crash controleert de insteller de TCP.',
       en: 'If the tool gets bent in a crash, every position is off by the same amount. After a crash, the setter checks the tool centre point.' },
