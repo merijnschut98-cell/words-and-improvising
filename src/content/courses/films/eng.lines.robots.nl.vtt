@@ -1,0 +1,369 @@
+WEBVTT
+
+1
+00:00:00.903 --> 00:00:05.675
+Dit is een robotcel: een industriële robot, vastgeschroefd aan de vloer,
+
+2
+00:00:05.849 --> 00:00:06.987
+met een hek eromheen.
+
+3
+00:00:07.955 --> 00:00:10.869
+Links voert een band onderdelen aan tot tegen een aanslag,
+
+4
+00:00:11.159 --> 00:00:13.400
+zodat elk onderdeel op een bekende plek ligt.
+
+5
+00:00:14.427 --> 00:00:17.272
+De robot zet ze op de laadtafel van de machine rechts.
+
+6
+00:00:18.341 --> 00:00:21.232
+Buiten het hek staat de besturing, met de aandrijvingen.
+
+7
+00:00:21.933 --> 00:00:25.555
+Elk gewricht heeft een servomotor die naar een exacte positie rijdt.
+
+8
+00:00:26.599 --> 00:00:29.629
+Zo herhaalt hij dezelfde cyclus, dag in, dag uit.
+
+9
+00:00:31.003 --> 00:00:32.594
+Elk draaiend gewricht is een as (axis).
+
+10
+00:00:33.352 --> 00:00:36.394
+De voet draait de arm rond, schouder en elleboog tillen,
+
+11
+00:00:36.649 --> 00:00:39.319
+en drie assen in de pols draaien en kantelen de hand.
+
+12
+00:00:40.392 --> 00:00:41.704
+Op de pols zit een grijper (gripper):
+
+13
+00:00:41.948 --> 00:00:44.479
+twee vingers die op perslucht om het product sluiten.
+
+14
+00:00:45.156 --> 00:00:46.828
+Het gereedschap bepaalt de klus.
+
+15
+00:00:47.825 --> 00:00:51.587
+Het programma is een lijst posities van één punt: de TCP (tool centre point).
+
+16
+00:00:52.287 --> 00:00:55.817
+Dat is de werkende punt van het gereedschap, hier tussen de vingers.
+
+17
+00:00:56.893 --> 00:01:01.514
+Raakt het gereedschap verbogen bij een botsing, dan zit elke positie evenveel naast.
+
+18
+00:01:02.216 --> 00:01:04.782
+Na een crash controleert de insteller de TCP.
+
+19
+00:01:06.051 --> 00:01:09.987
+Posities leer je in met de teach pendant: een zware tablet aan een kabel,
+
+20
+00:01:10.300 --> 00:01:11.995
+met een joystick en een noodstop.
+
+21
+00:01:12.998 --> 00:01:15.901
+Achterop zit de vrijgaveknop (enabling switch), met drie standen.
+
+22
+00:01:16.632 --> 00:01:18.304
+Alleen in het midden beweegt de robot.
+
+23
+00:01:19.066 --> 00:01:22.095
+Laat je los, of knijp je hard van schrik, dan stopt hij.
+
+24
+00:01:23.113 --> 00:01:27.629
+In handbediening beweegt het gereedschap hooguit 250 millimeter per seconde.
+
+25
+00:01:28.357 --> 00:01:31.654
+Een punt 1,5 meter verderop kost dus minstens 6 seconden.
+
+26
+00:01:32.642 --> 00:01:35.487
+Met de cel leeg draait hij in automatisch op volle snelheid.
+
+27
+00:01:36.232 --> 00:01:39.471
+Inleren kan uren kosten; een cyclus daarna seconden.
+
+28
+00:01:40.766 --> 00:01:44.191
+Aan het eind van de pols zit de flens (flange): een ronde montageplaat.
+
+29
+00:01:45.214 --> 00:01:48.779
+Wat erop zit, heet end-of-arm tooling: hier een grijper.
+
+30
+00:01:49.753 --> 00:01:53.944
+De payload is wat de robot aan zijn flens mag dragen, inclusief de grijper.
+
+31
+00:01:54.634 --> 00:01:57.792
+4 kilo grijper plus een gietstuk van 6 is 10 kilo.
+
+32
+00:01:58.810 --> 00:02:01.411
+Op een robot van 10 kilo is dat 100 procent,
+
+33
+00:02:01.608 --> 00:02:04.394
+en het gewicht zit 150 millimeter uit de flens.
+
+34
+00:02:05.112 --> 00:02:07.364
+Volgens het payloaddiagram mag er dan minder aan.
+
+35
+00:02:08.725 --> 00:02:14.298
+Deze knikarmrobot, met zes assen als een mensenarm, reikt meestal 0,7 tot 3 meter.
+
+36
+00:02:15.293 --> 00:02:16.257
+Een SCARA-robot (SCARA robot)
+
+37
+00:02:16.280 --> 00:02:19.716
+heeft vier assen en zwaait heel snel in een horizontaal vlak:
+
+38
+00:02:20.053 --> 00:02:22.375
+kleine onderdelen oppakken en neerzetten,
+
+39
+00:02:22.654 --> 00:02:23.211
+of schroeven.
+
+40
+00:02:24.194 --> 00:02:28.745
+Een cobot is gemaakt om naast mensen te werken: hij begrenst kracht en snelheid.
+
+41
+00:02:29.471 --> 00:02:33.221
+Maar een cobot met een mes is niet veilig: het gaat om de toepassing.
+
+42
+00:02:34.258 --> 00:02:36.510
+Industriële robots werken achter een hek,
+
+43
+00:02:36.928 --> 00:02:37.660
+een lichtscherm,
+
+44
+00:02:37.962 --> 00:02:40.853
+of een laserscanner (area scanner) die afremt als iemand een zone in loopt.
+
+45
+00:02:41.573 --> 00:02:43.698
+Elke cel krijgt een risicobeoordeling.
+
+46
+00:02:45.002 --> 00:02:48.624
+Meestal bepaalt de machine het tempo: de robot wacht op de deur.
+
+47
+00:02:49.320 --> 00:02:52.559
+De vraag is hoe lang de machine stilstaat terwijl de robot wisselt.
+
+48
+00:02:53.633 --> 00:02:55.491
+De draaibank draait 40 seconden.
+
+49
+00:02:56.176 --> 00:03:00.669
+Met een enkele grijper staat hij 20 seconden stil: samen 60 seconden,
+
+50
+00:03:00.820 --> 00:03:02.140
+60 stuks per uur.
+
+51
+00:03:03.082 --> 00:03:03.942
+Een dubbele grijper (double gripper)
+
+52
+00:03:04.000 --> 00:03:07.216
+komt aan met het ruwe stuk al in de hand en wisselt in één bezoek:
+
+53
+00:03:07.669 --> 00:03:08.551
+8 seconden stil,
+
+54
+00:03:08.864 --> 00:03:10.134
+75 per uur.
+
+55
+00:03:10.778 --> 00:03:11.742
+Check wel de payload.
+
+56
+00:03:12.735 --> 00:03:15.150
+De aanvoer is vaak lastiger dan de robot.
+
+57
+00:03:15.890 --> 00:03:18.827
+Een trilpot (vibratory bowl feeder) schudt kleine onderdelen langs een spiraalbaan,
+
+58
+00:03:19.199 --> 00:03:21.126
+zodat ze er in één stand uitkomen.
+
+59
+00:03:22.490 --> 00:03:25.845
+De open voorkant heeft een lichtscherm (light curtain): een rij lichtstralen.
+
+60
+00:03:26.516 --> 00:03:29.337
+Onderbreekt een hand een straal, dan stopt de robot.
+
+61
+00:03:30.336 --> 00:03:31.265
+Maar niet meteen:
+
+62
+00:03:31.555 --> 00:03:34.504
+de stoptijd (stopping time) loopt van straal onderbroken tot robot stil.
+
+63
+00:03:35.203 --> 00:03:38.024
+Meet hem op de echte robot, met de echte grijper.
+
+64
+00:03:38.995 --> 00:03:40.469
+Intussen beweegt de hand door.
+
+65
+00:03:41.114 --> 00:03:43.470
+Daarom hangt het scherm op een veiligheidsafstand (safety distance):
+
+66
+00:03:43.656 --> 00:03:45.177
+S is K maal T plus C,
+
+67
+00:03:45.444 --> 00:03:47.754
+met K tweeduizend millimeter per seconde.
+
+68
+00:03:48.776 --> 00:03:53.095
+Een scherm met een resolutie van 30 millimeter geeft een C van 128.
+
+69
+00:03:53.900 --> 00:04:00.332
+Bij 0,15 seconde wordt S 300 plus 128: 428 millimeter.
+
+70
+00:04:01.030 --> 00:04:04.792
+Kom je boven de 500 uit, dan reken je opnieuw met een lagere K.
+
+71
+00:04:06.086 --> 00:04:09.662
+Met vision vindt een camera onderdelen die niet op een vaste plek liggen,
+
+72
+00:04:09.975 --> 00:04:11.844
+en vertelt de robot waar hij moet pakken.
+
+73
+00:04:12.919 --> 00:04:16.332
+Bij bin picking kijkt een 3D-camera in een bak losse onderdelen.
+
+74
+00:04:17.063 --> 00:04:20.661
+Vraag het pakpercentage op je eigen onderdelen, ook de laatste.
+
+75
+00:04:21.680 --> 00:04:22.969
+Bij offline programmeren (offline programming)
+
+76
+00:04:22.992 --> 00:04:25.988
+test je het programma in een 3D-model op een pc,
+
+77
+00:04:26.243 --> 00:04:27.799
+terwijl de cel doorproduceert.
+
+78
+00:04:28.484 --> 00:04:30.469
+Ter plekke corrigeer je nog een paar punten.
+
+79
+00:04:31.749 --> 00:04:33.989
+Een cobot zonder hek werkt vaak met kracht- en
+
+80
+00:04:34.036 --> 00:04:35.162
+vermogensbegrenzing (power and force limiting):
+
+81
+00:04:35.452 --> 00:04:36.300
+contact mag,
+
+82
+00:04:36.578 --> 00:04:38.192
+onder grenzen per lichaamsdeel.
+
+83
+00:04:38.885 --> 00:04:40.359
+Dat betekent meestal langzaam.
+
+84
+00:04:41.369 --> 00:04:46.640
+Stel: takt 14 seconden, en de risicobeoordeling staat alleen halve snelheid toe.
+
+85
+00:04:47.356 --> 00:04:51.931
+De beweging van 6 seconden wordt 12, plus 4 voor de rest: 16 seconden.
+
+86
+00:04:52.624 --> 00:04:53.170
+Te traag.
+
+87
+00:04:54.197 --> 00:04:55.881
+Snelheids- en afstandsbewaking (speed and separation monitoring)
+
+88
+00:04:55.915 --> 00:04:58.563
+werkt ook bij een industriële robot zoals deze:
+
+89
+00:04:58.830 --> 00:05:00.083
+komt iemand dichterbij,
+
+90
+00:05:00.467 --> 00:05:01.733
+dan remt een scanner hem af.
+
+91
+00:05:02.782 --> 00:05:07.345
+Is er niemand, dan draait hij op volle snelheid: 10 seconden, binnen de takt.
+
+92
+00:05:08.112 --> 00:05:10.666
+Vraag dus hoe vaak er echt iemand de zone in loopt.
