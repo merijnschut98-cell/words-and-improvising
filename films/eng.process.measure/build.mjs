@@ -58,7 +58,7 @@ const inOrder = (text, words) => { let from = 0; return words.every((w) => { con
   const v = lessons.nl.get(VARS);
   const vt = v.teach.join('\n');
   assert(inOrder(vt, ['druk, temperatuur, debiet en niveau', 'kracht per oppervlak, in bar (of kPa; psi op Amerikaanse apparatuur)', 'Overdruk', 'buitenlucht', 'absolute druk', 'vacuüm', 'zo’n 1 bar', 'Vacuüm zie je als negatieve overdruk of lage absolute druk', 'vraag dan welke']), 'variables: pressure');
-  assert(inOrder(vt, ['volume per tijd (m³/h, liter per minuut) of massa per tijd (kg/h, ton per uur)', 'Massadebiet = volumedebiet × dichtheid', '1.000 kg/m³', '1 m³/h water is ongeveer 1.000 kg/h', 'siroop van 1.300 kg/m³ geeft 1.300 kg/h', 'Recepten en balansen rekenen in kilo’s', 'volume of massa']), 'variables: mass flow');
+  assert(inOrder(vt, ['volume per tijd (m³/h, liter per minuut) of massa per tijd (kg/h, ton per uur)', 'Massadebiet = volumedebiet × dichtheid', '1.000 kg/m³', '1 m³/h water is ongeveer 1.000 kg/h', 'siroop van 1.250 kg/m³ geeft 1.250 kg/h', 'Recepten en balansen rekenen in kilo’s', 'volume of massa']), 'variables: mass flow');
   assert(inOrder(vt, ['magnetisch-inductieve meter', 'stroom geleidt', 'zuiver water of olie', 'Coriolismeter laat een buis trillen', 'verdraaiing', 'direct massa', '0,1%', 'duizenden euro’s', 'Vortex- en drukverschilmeters', 'snelheid of drukverlies bij een vernauwing', 'laatste kalibratie', 'bekende referentie']), 'variables: flow meters');
   assert(inOrder(vt, ['druksensor onderin, een radar van bovenaf of een vlotter', 'gewicht van de vloeistofkolom', 'klopt de hoogte niet', 'massa die eruit volgt nog wel', 'Schuim kan een radar foppen', 'kleverig product laat een vlotter vastlopen', 'vraag dan op welk principe']), 'variables: level');
   assert(inOrder(vt, ['1 °C is gelijk aan 1 K', 'absolute nulpunt', 'mogen in °C', 'Pt100', 'platina weerstand', 'een paar tiende graad', 'thermokoppel', 'twee verschillende metalen', 'groter bereik, minder nauwkeurig', 'beschermhuls', 'minuten achter', 'reageert te laat']), 'variables: temperature');
@@ -72,8 +72,9 @@ const inOrder = (text, words) => { let from = 0; return words.every((w) => { con
 assert(2 + 1 === 3, 'absolute = gauge + about 1 bar');
 assert(near(100 / 6.894757, 14.5, 0.01), '1 bar = 100 kPa ≈ 14,5 psi');
 assert(-0.5 + 1 === 0.5, 'vacuum: -0,5 bar(g) is about 0,5 bar(a)');
-// mass flow: 1 m³/h of water of 1.000 kg/m³ is 1.000 kg/h; of syrup of 1.300 kg/m³ 1.300 kg/h
-assert(1 * 1000 === 1000 && 1 * 1300 === 1300, 'mass flow = volume flow × density');
+// mass flow: 1 m³/h of water of 1.000 kg/m³ is 1.000 kg/h; of syrup of 1.250 kg/m³ (the same syrup as
+// the level example, so the lesson and the film use one syrup) 1.250 kg/h
+assert(1 * 1000 === 1000 && 1 * 1250 === 1250, 'mass flow = volume flow × density');
 // temperature: a difference in °C is the same in K
 assert(80 - 20 === 60 && Math.round(80 + 273.15) === 353, '20 to 80 °C is 60 K; 80 °C is about 353 K');
 // the syrup level
@@ -123,14 +124,14 @@ const spec = {
       beats: [
         { nl: 'Debiet is volume per tijd, zoals m³/h, of massa per tijd, zoals kg/h.', en: 'Flow is volume per time, such as m³/h, or mass per time, such as kg/h.', cues: ['flow', 'ft'] },
         { nl: '{t:Massadebiet|Massadebiet} = volumedebiet × dichtheid, de massa van één kubieke meter.', en: '{t:Mass flow|Mass flow} = volume flow × density, the mass of one cubic metre.', cue: { Massadebiet: 'flow' } },
-        { nl: 'Water: 1 m³/h is ongeveer {n:1000} kg/h. Siroop van {n:1300} kg/m³: {n:1300} kg/h.', en: 'Water: 1 m³/h is about {n:1000} kg/h. Syrup of {n:1300} kg/m³: {n:1300} kg/h.', cues: ['flow'] },
+        { nl: 'Water: 1 m³/h is ongeveer {n:1000} kg/h. Siroop van {n:1250} kg/m³: {n:1250} kg/h.', en: 'Water: 1 m³/h is about {n:1000} kg/h. Syrup of {n:1250} kg/m³: {n:1250} kg/h.', cues: ['flow'] },
         { nl: 'Recepten rekenen in kilo’s: vraag wat een meter echt toont, volume of massa.', en: 'Recipes work in kilograms: ask what a meter really shows, volume or mass.', cues: ['flow'] },
       ],
     },
     {
       id: 's4', lesson: VARS, level: 1, dur: DUR[3], still: 0.9, title: { nl: 'Debietmeters', en: 'Flow meters' },
       beats: [
-        { nl: 'Magnetisch-inductief: meet de snelheid van een geleidende vloeistof. Faalt op zuiver water of olie.', en: 'Magnetic: measures the speed of a conductive liquid. Fails on very pure water or oil.', cues: ['meters'] },
+        { nl: 'Magnetisch-inductief: meet de snelheid van een geleidende vloeistof. Faalt op heel zuiver water of olie.', en: 'Magnetic: measures the speed of a conductive liquid. Fails on very pure water or oil.', cues: ['meters'] },
         { nl: 'Een {t:Coriolismeter|Coriolismeter} laat een buis trillen en meet direct massa, op zo’n {n:0.1}%.', en: 'A {t:Coriolis meter|Coriolis meter} vibrates a tube and measures mass directly, to about {n:0.1}%.', cue: { Coriolismeter: 'ft' }, cues: ['meters'] },
         { nl: 'Vortex- en drukverschilmeters lezen de snelheid, of het drukverlies bij een vernauwing.', en: 'Vortex and differential-pressure meters read the speed, or the pressure drop at a restriction.', cues: ['meters'] },
         { nl: 'Een meter is zo goed als zijn laatste kalibratie: de controle tegen een bekende referentie.', en: 'A meter is only as good as its last calibration: the check against a known reference.', cues: ['cal', 'meters'] },
@@ -193,16 +194,16 @@ const SAY = [
       en: 'After the pump sits a pressure gauge. Like almost every gauge, it shows {t:Gauge pressure|gauge pressure}: the pressure relative to the air around it. You write that as bar gauge.' },
     { nl: 'De {t:Absolute druk|absolute druk} telt vanaf volledig vacuüm, in bar(a). Op zeeniveau drukt de lucht zelf al zo’n {n:1} bar. Wijst de manometer {n:2} bar aan, dan is de absolute druk dus ongeveer {n:3} bar.',
       en: 'The {t:Absolute pressure|absolute pressure} counts from a perfect vacuum, in bar absolute. At sea level the air itself presses about {n:1} bar. So if the gauge reads {n:2} bar, the absolute pressure is about {n:3} bar.' },
-    { nl: 'Vacuüm zie je dus op twee manieren: als negatieve overdruk, of als lage absolute druk. Een halve bar onder de buitenlucht is min een halve bar(g), of een halve bar(a). Noemt iemand een druk, vraag dan welke.',
-      en: 'So vacuum shows up in two ways: as negative gauge pressure, or as low absolute pressure. Half a bar below the outside air is minus half a bar gauge, or half a bar absolute. When someone quotes a pressure, ask which one.' },
+    { nl: 'Vacuüm zie je dus op twee manieren: als negatieve overdruk, of als lage absolute druk. Een halve bar onder de buitenlucht is min een halve bar(g), of ongeveer een halve bar(a). Noemt iemand een druk, vraag dan welke.',
+      en: 'So vacuum shows up in two ways: as negative gauge pressure, or as low absolute pressure. Half a bar below the outside air is minus half a bar gauge, or about half a bar absolute. When someone quotes a pressure, ask which one.' },
   ],
   [ // s3 volume or mass
     { nl: 'Dan het debiet. Dat is volume per tijd, zoals kubieke meter per uur of liter per minuut. Of massa per tijd, zoals kilo of ton per uur.',
       en: 'Then flow. That is volume per time, such as cubic metres per hour or litres per minute. Or mass per time, such as kilograms or tonnes per hour.' },
     { nl: 'Het {t:Massadebiet|massadebiet} is het volumedebiet maal de dichtheid: de massa van één kubieke meter.',
       en: 'The {t:Mass flow|mass flow} is the volume flow times the density: the mass of one cubic metre.' },
-    { nl: 'Water weegt zo’n {n:1000} kilo per kubieke meter, dus één kubieke meter water per uur is ongeveer {n:1000} kilo per uur. Een siroop van {n:1300} kilo per kubieke meter geeft {n:1300} kilo per uur.',
-      en: 'Water weighs about {n:1000} kilograms per cubic metre, so one cubic metre of water per hour is about {n:1000} kilograms per hour. A syrup of {n:1300} kilograms per cubic metre gives {n:1300} kilograms per hour.' },
+    { nl: 'Water weegt zo’n {n:1000} kilo per kubieke meter, dus één kubieke meter water per uur is ongeveer {n:1000} kilo per uur. Een siroop van {n:1250} kilo per kubieke meter geeft {n:1250} kilo per uur.',
+      en: 'Water weighs about {n:1000} kilograms per cubic metre, so one cubic metre of water per hour is about {n:1000} kilograms per hour. A syrup of {n:1250} kilograms per cubic metre gives {n:1250} kilograms per hour.' },
     { nl: 'Recepten en balansen rekenen in kilo’s. Vraag dus altijd wat een meter echt toont: volume of massa.',
       en: 'Recipes and balances work in kilograms. So always ask what a meter really shows: volume or mass.' },
   ],

@@ -8,9 +8,10 @@ const STEPS = NL ? ['mengen', 'pompen', 'verhitten', 'heethouden', 'koelen'] : [
 const SPOTS = [[-160, 0, 196], [-90, 0, 100], [32, 0, 116], [100, 12, 96], [232, 0, 104]];
 // the title card: what the numbered steps are, and what comes after them
 function stepsSvg() {
-  let out = rect(392, 12, 236, 84);
+  let out = rect(392, 12, 236, 114);
   out += txt(408, 44, 'unit operations', 21, 'start', 'pl-big');
-  out += txt(408, 78, tr('daarna: afvullen', 'then: filling'), 20, 'start', 'pl-mute');
+  out += txt(408, 76, tr('ook: drogen, reageren', 'also: drying, reacting'), 20, 'start', 'pl-txt');
+  out += txt(408, 106, tr('daarna: afvullen', 'then: filling'), 20, 'start', 'pl-mute');
   return out;
 }
 // a numbered badge at each unit operation, with its name on a pill; the one being named is lit
@@ -44,7 +45,7 @@ function batchSvg(step, q) {
 // where a way of working fits: a small card with two lines
 function whereSvg(x, y, title, lines) {
   let out = rect(x, y, 312, 40 + 28 * lines.length);
-  out += txt(x + 16, y + 28, title, 19, 'start', 'pl-mute');
+  out += txt(x + 16, y + 28, title, 20, 'start', 'pl-mute');
   lines.forEach((l, i) => { out += txt(x + 16, y + 58 + 28 * i, l, 20, 'start', 'pl-txt'); });
   return out;
 }
@@ -77,15 +78,15 @@ function tankSvg(step, clockS) {
   out += rect(84, 74, 120, 128, 'pl-wall', 6) + rect(86, 96, 116, 104, 'pl-liq', 3);
   out += txt(144, 156, '6 m³', 24, 'middle', 'pl-big');
   out += arrow([[36, 62], [104, 62], [104, 92]], 'pl-accl', 7) + arrow([[184, 202], [184, 222], [282, 222]], 'pl-accl', 7);
-  out += txt(220, 72, '3 m³/h', 19, 'start', 'pl-mono') + txt(282, 250, '3 m³/h', 19, 'end', 'pl-mono');
+  out += txt(220, 72, '3 m³/h', 20, 'start', 'pl-mono') + txt(282, 250, '3 m³/h', 20, 'end', 'pl-mono');
   const k = (clockS * 0.5) % 1;
   out += circ(lerp(36, 104, k), 62, 3.5, 'pl-acc') + circ(lerp(184, 282, k), 222, 3.5, 'pl-acc');
   if (step >= 1) {
     out += txt(28, 290, tr('volume / debiet', 'volume / flow'), 20, 'start', 'pl-txt');
     out += txt(28, 326, '6 / 3 = 2 h', 24, 'start', 'pl-big');
   }
-  if (step === 2) out += txt(28, 356, num('+50%: 4,5 m³/h'), 19, 'start', 'pl-mono') + txt(28, 380, '⅔ × 2 h = 1 h 20 min', 19, 'start', 'pl-on');
-  if (step >= 3) out += txt(28, 358, tr('verhitten, warmhouden,', 'heating, keeping hot,'), 19, 'start', 'pl-on') + txt(28, 382, tr('reageren, bezinken', 'reacting, settling'), 19, 'start', 'pl-on');
+  if (step === 2) out += txt(28, 356, num('+50%: 4,5 m³/h'), 20, 'start', 'pl-mono') + txt(28, 380, '⅔ × 2 h = 1 h 20 min', 20, 'start', 'pl-on');
+  if (step >= 3) out += txt(28, 358, tr('verhitten, warmhouden,', 'heating, keeping hot,'), 20, 'start', 'pl-on') + txt(28, 382, tr('reageren, bezinken', 'reacting, settling'), 20, 'start', 'pl-on');
   return out;
 }
 // a stirred tank, side view: a short cut from the inlet to the outlet, loops round the agitator, dead corners
@@ -122,7 +123,7 @@ function deadSvg(step, clockS) {
   out += circ(lerp(cut[seg][0], cut[seg + 1][0], t), lerp(cut[seg][1], cut[seg + 1][1], t), 4.5, 'pl-acc');
   out += txt(R - 6, T + 90, tr('minuten', 'minutes'), 20, 'end', 'pl-on');
   if (step >= 1) out += txt(L, B + 28, tr('uren', 'hours'), 20, 'start', 'pl-on') + txt(R, B + 28, tr('uren', 'hours'), 20, 'end', 'pl-on');
-  if (step >= 2) out += txt(160, 374, tr('ontwerp op het snelste deel', 'design on the fastest part'), 19, 'middle', 'pl-on');
+  if (step >= 2) out += txt(160, 374, tr('ontwerp op het snelste deel', 'design on the fastest part'), 20, 'middle', 'pl-on');
   return out;
 }
 // the residence-time sum of the holding tube, with a clock of the drop in the tube
@@ -159,14 +160,14 @@ function pharmaSvg(step) {
   out += txt(x + 16, 44, tr('farma', 'pharma'), 20, 'start', 'pl-mute');
   out += txt(x + 16, 80, tr('batch → continu?', 'batch → continuous?'), 22, 'start', 'pl-big');
   if (step >= 1) {
-    out += txt(x + 16, 120, tr('FDA: moedigt continu aan', 'FDA: encourages it'), 19, 'start', 'pl-txt');
-    out += txt(x + 16, 150, tr('auditors: kennen de', 'auditors: know the'), 19, 'start', 'pl-txt') + txt(x + 16, 176, tr('batchregistratie', 'batch record'), 19, 'start', 'pl-txt');
+    out += txt(x + 16, 120, tr('FDA: moedigt continu aan', 'FDA: encourages it'), 20, 'start', 'pl-txt');
+    out += txt(x + 16, 150, tr('auditors: kennen de', 'auditors: know the'), 20, 'start', 'pl-txt') + txt(x + 16, 176, tr('batchregistratie', 'batch record'), 20, 'start', 'pl-txt');
   }
   if (step >= 2) {
     out += path([[x + 16, 196], [x + 284, 196]], 'pl-dim');
-    out += txt(x + 16, 228, tr('welke stappen batch?', 'which steps batch?'), 19, 'start', 'pl-on');
-    out += txt(x + 16, 256, tr('welke continu?', 'which continuous?'), 19, 'start', 'pl-on');
-    out += txt(x + 16, 284, tr('waar raken ze elkaar?', 'where do they meet?'), 19, 'start', 'pl-on');
+    out += txt(x + 16, 228, tr('welke stappen batch?', 'which steps batch?'), 20, 'start', 'pl-on');
+    out += txt(x + 16, 256, tr('welke continu?', 'which continuous?'), 20, 'start', 'pl-on');
+    out += txt(x + 16, 284, tr('waar raken ze elkaar?', 'where do they meet?'), 20, 'start', 'pl-on');
   }
   return out;
 }

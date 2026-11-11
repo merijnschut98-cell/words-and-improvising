@@ -6,18 +6,18 @@
 /* global SCN, NL, tr, clamp, lerp, f1, txt, rect, path, circ, arrow, set, E, EX, C, span, num, pillsSvg */
 // the four variables, each pinned to its instrument on the line
 const TAGS = [
-  { p: [-56, 0, C.PZ + 22], t: tr('debiet', 'flow'), n: 'Q', left: true },
-  { p: [-30, 2.2, 74], t: tr('druk', 'pressure'), n: 'p' },
+  { p: [-56, 0, C.PZ + 22], t: tr('debiet', 'flow'), n: 'F', left: true },
+  { p: [-30, 2.2, 74], t: tr('druk', 'pressure'), n: 'P' },
   { p: [70, 12, 50], t: tr('temperatuur', 'temperature'), n: 'T' },
   { p: [C.VAT.c[0] + 46, C.VAT.c[1] + 14, C.LT.z], t: tr('niveau', 'level'), n: 'L', left: true },
 ];
 function unitsSvg() {
-  const x = 328;
+  const x = 292;
   const y = 262;
-  let out = rect(x, y, 300, 126);
-  out += txt(x + 16, y + 30, tr('druk: kracht per oppervlak', 'pressure: force per area'), 19, 'start', 'pl-mute');
+  let out = rect(x, y, 336, 126);
+  out += txt(x + 16, y + 30, tr('druk: kracht per oppervlak', 'pressure: force per area'), 20, 'start', 'pl-mute');
   out += txt(x + 16, y + 66, 'bar · kPa · psi', 22, 'start', 'pl-big');
-  out += txt(x + 16, y + 102, num('1 bar = 100 kPa ≈ 14,5 psi'), 16, 'start', 'pl-mono');
+  out += txt(x + 16, y + 102, num('1 bar = 100 kPa ≈ 14,5 psi'), 20, 'start', 'pl-mono');
   return out;
 }
 // gauge pressure against absolute pressure: two scales side by side, and vacuum below the outside air
@@ -34,13 +34,13 @@ function presSvg(step) {
   if (step >= 2) {
     out += path([[xa, yOf(0)], [xa, yOf(3.3)]], 'pl-line') + txt(xa, 88, 'bar(a)', 20, 'middle', 'pl-big');
     for (let v = 0; v <= 3; v++) out += path([[xa - 6, yOf(v)], [xa + 6, yOf(v)]], 'pl-line') + txt(xa - 14, yOf(v) + 7, String(v), 20, 'end', 'pl-mono');
-    out += txt(158, yOf(0) + 34, tr('0 = volledig vacuüm', '0 = full vacuum'), 19, 'middle', 'pl-mute');
+    out += txt(158, yOf(0) + 34, tr('0 = volledig vacuüm', '0 = full vacuum'), 20, 'middle', 'pl-mute');
   }
   out += path([[xl, yOf(1)], [xg - 6, yOf(1)]], 'pl-dim') + txt((xl + xg) / 2, yOf(1) - 10, tr('buitenlucht', 'outside air'), 20, 'middle', 'pl-mute');
   out += path([[xl, yOf(3)], [xg - 6, yOf(3)]], 'pl-accl') + txt((xl + xg) / 2, yOf(3) - 10, tr('manometer', 'gauge'), 20, 'middle', 'pl-on');
   if (step >= 3) {
     out += path([[xa + 6, yOf(0.5)], [xg - 6, yOf(0.5)]], 'pl-accl') + txt(158, yOf(0.5) + 26, tr('vacuüm', 'vacuum'), 20, 'middle', 'pl-on');
-    out += txt(xa - 14, yOf(0.5) + 7, num('0,5'), 18, 'end', 'pl-on') + txt(xg + 14, yOf(0.5) + 7, num('−0,5'), 18, 'start', 'pl-on');
+    out += txt(xa - 14, yOf(0.5) + 7, num('0,5'), 20, 'end', 'pl-on') + txt(xg + 14, yOf(0.5) + 7, num('−0,5'), 20, 'start', 'pl-on');
   }
   return out;
 }
@@ -49,8 +49,8 @@ function flowSvg(step) {
   let out = rect(12, 12, 300, 376);
   out += txt(28, 44, tr('debiet', 'flow'), 20, 'start', 'pl-mute');
   if (step >= 3) out += txt(296, 44, tr('volume of massa?', 'volume or mass?'), 20, 'end', 'pl-on');
-  out += txt(28, 76, tr('volume per tijd', 'volume per time'), 20, 'start', 'pl-txt') + txt(28, 100, 'm³/h, l/min', 19, 'start', 'pl-mono');
-  out += txt(28, 130, tr('massa per tijd', 'mass per time'), 20, 'start', 'pl-txt') + txt(28, 154, 'kg/h, t/h', 19, 'start', 'pl-mono');
+  out += txt(28, 76, tr('volume per tijd', 'volume per time'), 20, 'start', 'pl-txt') + txt(28, 100, 'm³/h, l/min', 20, 'start', 'pl-mono');
+  out += txt(28, 130, tr('massa per tijd', 'mass per time'), 20, 'start', 'pl-txt') + txt(28, 154, 'kg/h, t/h', 20, 'start', 'pl-mono');
   if (step >= 1) {
     out += path([[28, 170], [296, 170]], 'pl-dim');
     out += txt(28, 198, tr('massadebiet =', 'mass flow ='), 20, 'start', 'pl-txt');
@@ -58,10 +58,10 @@ function flowSvg(step) {
   }
   if (step >= 2) {
     out += path([[28, 240], [296, 240]], 'pl-dim');
-    out += txt(28, 266, tr('water, 1.000 kg/m³', 'water, 1,000 kg/m³'), 18, 'start', 'pl-mono');
+    out += txt(28, 266, tr('water, 1.000 kg/m³', 'water, 1,000 kg/m³'), 20, 'start', 'pl-mono');
     out += txt(28, 292, tr('1 m³/h ≈ 1.000 kg/h', '1 m³/h ≈ 1,000 kg/h'), 21, 'start', 'pl-big');
-    out += txt(28, 328, tr('siroop, 1.300 kg/m³', 'syrup, 1,300 kg/m³'), 18, 'start', 'pl-mono');
-    out += txt(28, 354, tr('1 m³/h = 1.300 kg/h', '1 m³/h = 1,300 kg/h'), 21, 'start', 'pl-big');
+    out += txt(28, 328, tr('siroop, 1.250 kg/m³', 'syrup, 1,250 kg/m³'), 20, 'start', 'pl-mono');
+    out += txt(28, 354, tr('1 m³/h = 1.250 kg/h', '1 m³/h = 1,250 kg/h'), 21, 'start', 'pl-big');
   }
   return out;
 }
@@ -100,8 +100,8 @@ function metersSvg(step, clockS) {
       out += path([[44, cy - 10], [44, cy - 24]], 'pl-line') + path([[72, cy - 10], [72, cy - 24]], 'pl-line') + circ(44, cy - 26, 3, 'pl-bub') + circ(72, cy - 26, 3, 'pl-bub');
     }
     out += txt(104, y0 + 24, r[0], 20, 'start', hot ? 'pl-on' : 'pl-txt');
-    out += txt(104, y0 + 50, r[1], 18, 'start', 'pl-mute');
-    if (r[2]) out += txt(104, y0 + 72, r[2], 18, 'start', 'pl-mute');
+    out += txt(104, y0 + 50, r[1], 20, 'start', 'pl-mute');
+    if (r[2]) out += txt(104, y0 + 72, r[2], 20, 'start', 'pl-mute');
   });
   return out;
 }
@@ -109,8 +109,8 @@ function calSvg() {
   const x = 352;
   let out = rect(x, 284, 276, 104);
   out += txt(x + 16, 314, tr('kalibratie', 'calibration'), 20, 'start', 'pl-on');
-  out += txt(x + 16, 344, tr('controle tegen een', 'a check against a'), 19, 'start', 'pl-txt');
-  out += txt(x + 16, 370, tr('bekende referentie', 'known reference'), 19, 'start', 'pl-txt');
+  out += txt(x + 16, 344, tr('controle tegen een', 'a check against a'), 20, 'start', 'pl-txt');
+  out += txt(x + 16, 370, tr('bekende referentie', 'known reference'), 20, 'start', 'pl-txt');
   return out;
 }
 // three ways to measure level: pressure at the bottom, radar from the top, a float; and where each is fooled
@@ -142,11 +142,11 @@ function lvlmSvg(step, clockS) {
   const lab = NL ? [['druk', 'onderin'], ['radar', 'van boven'], ['vlotter', '']] : [['pressure', 'at bottom'], ['radar', 'from top'], ['float', '']];
   lab.forEach(([a, b2], i) => {
     const x = tanks[i] + 40;
-    out += txt(x, 254, a, 19, 'middle', (i === 0 && hot0) || (i > 0 && (step === 0 || step === 2)) ? 'pl-on' : 'pl-txt');
-    if (b2) out += txt(x, 278, b2, 17, 'middle', 'pl-mute');
+    out += txt(x, 254, a, 20, 'middle', (i === 0 && hot0) || (i > 0 && (step === 0 || step === 2)) ? 'pl-on' : 'pl-txt');
+    if (b2) out += txt(x, 278, b2, 20, 'middle', 'pl-mute');
   });
-  if (step === 1) out += txt(28, 326, tr('druk = gewicht van de kolom', 'pressure = weight of the column'), 19, 'start', 'pl-on') + txt(28, 356, tr('hoogte: alleen bij juiste dichtheid', 'height: only at the right density'), 17, 'start', 'pl-mute');
-  if (step >= 2) out += txt(28, 326, tr('schuim fopt de radar', 'foam fools the radar'), 19, 'start', 'pl-on') + txt(28, 356, tr('kleverig: vlotter zit vast', 'sticky: the float jams'), 19, 'start', 'pl-on');
+  if (step === 1) out += txt(28, 318, tr('druk = gewicht van de kolom', 'pressure = weight of the column'), 20, 'start', 'pl-on') + txt(28, 346, tr('hoogte klopt alleen', 'height is right only'), 20, 'start', 'pl-mute') + txt(28, 372, tr('bij de juiste dichtheid', 'at the right density'), 20, 'start', 'pl-mute');
+  if (step >= 2) out += txt(28, 326, tr('schuim fopt de radar', 'foam fools the radar'), 20, 'start', 'pl-on') + txt(28, 356, tr('kleverig: vlotter zit vast', 'sticky: the float jams'), 20, 'start', 'pl-on');
   return out;
 }
 // the syrup level: real 2,0 m, shown 2,5 m
@@ -182,7 +182,7 @@ function tempSvg() {
   }
   out += path([[xc + 18, yOf(20)], [xc + 18, yOf(80)]], 'pl-accl') + path([[xk - 18, yOf(20)], [xk - 18, yOf(80)]], 'pl-accl');
   out += txt(160, yOf(50) + 8, '+60', 22, 'middle', 'pl-on');
-  out += txt(160, 378, tr('sommen met verschillen: in °C', 'sums with differences: in °C'), 18, 'middle', 'pl-mute');
+  out += txt(160, 378, tr('verschillen mogen in °C', 'differences may use °C'), 20, 'middle', 'pl-mute');
   return out;
 }
 // the two common sensors: a Pt100 and a thermocouple
@@ -190,7 +190,7 @@ function sensSvg(step) {
   let out = rect(12, 12, 300, 376);
   const row = (y0, hot, icon, lines) => {
     let s = icon;
-    lines.forEach((l, i) => { s += txt(124, y0 + 24 + i * 26, l, i ? 19 : 21, 'start', i ? 'pl-mute' : hot ? 'pl-on' : 'pl-txt'); });
+    lines.forEach((l, i) => { s += txt(124, y0 + 24 + i * 26, l, i ? 20 : 21, 'start', i ? 'pl-mute' : hot ? 'pl-on' : 'pl-txt'); });
     return s;
   };
   // a Pt100: a small ceramic body with the platinum winding, and two leads
@@ -212,7 +212,7 @@ function lagSvg(q) {
   const x0 = 40;
   const x1 = 292;
   const yb = 200;
-  out += path([[x0, 60], [x0, yb], [x1, yb]], 'pl-dim') + txt(x1, 228, tr('minuten', 'minutes'), 19, 'end', 'pl-mute');
+  out += path([[x0, 60], [x0, yb], [x1, yb]], 'pl-dim') + txt(x1, 228, tr('minuten', 'minutes'), 20, 'end', 'pl-mute');
   const xe = lerp(x0, x1, q);
   const xs = x0 + 50;
   const prod = [];
@@ -222,7 +222,7 @@ function lagSvg(q) {
     sens.push([x, x < xs ? 170 : 170 - 86 * (1 - Math.exp(-(x - xs) / 60))]);
   }
   if (prod.length > 1) out += path(prod, 'pl-line') + path(sens, 'pl-accl');
-  if (q > 0.4) out += txt(x1, 72, tr('product', 'product'), 19, 'end', 'pl-txt') + txt(x1 - 10, 150, tr('sensor', 'sensor'), 19, 'end', 'pl-on');
+  if (q > 0.4) out += txt(x1, 72, tr('product', 'product'), 20, 'end', 'pl-txt') + txt(x1 - 10, 150, tr('sensor', 'sensor'), 20, 'end', 'pl-on');
   return out;
 }
 

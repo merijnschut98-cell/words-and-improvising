@@ -104,7 +104,7 @@ const spec = {
         { nl: 'Een kleine sapfabriek: van het mengvat links tot de vulmachine rechts.', en: 'A small juice plant: from the mixing vat on the left to the filler on the right.', cues: ['mixer', 'filler'] },
         { nl: 'Elke stap is een {t:Unit operation|unit operation}: mengen, pompen, verhitten, heethouden, koelen.', en: 'Each step is a {t:Unit operation|unit operation}: mixing, pumping, heating, holding, cooling.', cue: { 'Unit operation': 'steps' }, cues: ['badges'] },
         { nl: 'Scheiden is er ook een: filtreren, centrifugeren, destilleren, indampen.', en: 'Separating is one too: filtering, centrifuging, distilling, evaporating.', cues: ['sep'] },
-        { nl: 'Een zuivelfabriek of waterbedrijf gebruikt dezelfde bouwstenen, in een andere volgorde.', en: 'A dairy or a water works uses the same building blocks, in a different order.', cues: ['steps'] },
+        { nl: 'Drogen en reageren horen er ook bij. Een zuivel- of chemische fabriek: dezelfde bouwstenen, andere volgorde.', en: 'Drying and reacting belong too. A dairy or chemical plant: the same building blocks, another order.', cues: ['steps'] },
       ],
     },
     {
@@ -147,7 +147,7 @@ const spec = {
       id: 's6', lesson: TYPES, level: 1, dur: DUR[5], still: 0.9, title: { nl: 'Hoe lang in de buis', en: 'How long in the tube' },
       beats: [
         { nl: 'De heethoudbuis: {n:0.1} m³ inhoud, {n:12} m³ per uur erdoorheen.', en: 'The holding tube: {n:0.1} m³ inside, {n:12} m³ per hour flowing through.', cues: ['hold'] },
-        { nl: 'Verblijftijd: {n:0.1} / {n:12} uur = {n:30} seconden. Het plan eist er minstens {n:20}.', en: 'Residence time: {n:0.1} / {n:12} hours = {n:30} seconds. The plan demands at least {n:20}.', cues: ['calc', 'hold'] },
+        { nl: 'Verblijftijd: {n:0.1} / {n:12} uur = {n:30} seconden. Het veiligheidsplan eist minstens {n:20}.', en: 'Residence time: {n:0.1} / {n:12} hours = {n:30} seconds. The safety plan demands at least {n:20}.', cues: ['calc', 'hold'] },
         { nl: 'Bij {n:18} m³ per uur: {n:20} seconden. Precies het minimum, zonder marge.', en: 'At {n:18} m³ per hour: {n:20} seconds. Exactly the minimum, no margin.', cues: ['calc'] },
         { nl: 'In het midden stroomt het sap sneller: ontwerp op het snelste deeltje.', en: 'In the centre the juice flows faster: design on the fastest particle.', cues: ['prof'] },
         { nl: 'Doorzet en verblijftijd hangen aan elkaar: meer output vraagt een langere buis.', en: 'Throughput and residence time are tied: more output needs a longer tube.', cues: ['hold'] },
@@ -184,10 +184,10 @@ const SAY = [
       en: 'This is a small juice plant. On the left stands a mixing vat, on the right a filler, and in between the juice flows through a row of equipment.' },
     { nl: 'Elke stap in die rij is een {t:Unit operation|unit operation}: een fysische basisstap die in elke procesfabriek terugkomt. Hier zijn dat mengen, pompen, verhitten, heethouden en koelen.',
       en: 'Each step in that row is a {t:Unit operation|unit operation}: a basic physical step that comes back in every process plant. Here they are mixing, pumping, heating, holding and cooling.' },
-    { nl: 'Ook scheiden is een unit operation. Dat kan op veel manieren: filtreren, centrifugeren, destilleren, of indampen, waarbij je water wegkookt om een vloeistof in te dikken.',
-      en: 'Separating is a unit operation too. It has many forms: filtering, centrifuging, distilling, or evaporating, where you boil off water to concentrate a liquid.' },
-    { nl: 'Een zuivelfabriek, een chemische fabriek en een waterbedrijf gebruiken dezelfde bouwstenen, alleen in een andere volgorde.',
-      en: 'A dairy, a chemical plant and a water works use the same building blocks, just in a different order.' },
+    { nl: 'Ook scheiden is een unit operation. Dat kan op veel manieren: filtreren door een doek of zeef, centrifugeren door snel rond te draaien, destilleren door te koken en de damp op te vangen, of indampen, waarbij je water wegkookt om een vloeistof in te dikken.',
+      en: 'Separating is a unit operation too. It has many forms: filtering through a cloth or sieve, centrifuging by spinning fast, distilling by boiling and catching the vapour, or evaporating, where you boil off water to concentrate a liquid.' },
+    { nl: 'Andere fabrieken drogen hun product, of laten stoffen reageren: ook dat zijn unit operations. Een zuivelfabriek, een chemische fabriek en een waterbedrijf gebruiken dezelfde bouwstenen, alleen in een andere volgorde.',
+      en: 'Other plants dry their product, or let substances react: those are unit operations too. A dairy, a chemical plant and a water works use the same building blocks, just in a different order.' },
   ],
   [ // s2 batch
     { nl: 'Kijk eerst naar het mengvat. Het werkt als {t:Batchproces|batchproces}: een vaste hoeveelheid gaat erin, wordt stap voor stap bewerkt, en komt er als één partij weer uit.',
