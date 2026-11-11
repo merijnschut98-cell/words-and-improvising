@@ -642,6 +642,41 @@
         ],
         "vtt": "src/content/courses/films/eng.lines.control.en.vtt"
       }
+    },
+    "eng.moulding.defects": {
+      "poster": "src/content/courses/films/eng.moulding.defects.jpg",
+      "nl": {
+        "dur": 314.9,
+        "bytes": 9886281,
+        "scenes": [
+          0,
+          35.49,
+          63.92,
+          93.79,
+          127.02,
+          153.97,
+          193.16,
+          212.67,
+          258.31
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.defects.nl.vtt"
+      },
+      "en": {
+        "dur": 341.8,
+        "bytes": 10790837,
+        "scenes": [
+          0,
+          39.33,
+          68.24,
+          100.91,
+          136.6,
+          164.71,
+          205.49,
+          226.93,
+          279.25
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.defects.en.vtt"
+      }
     }
   }
 }
