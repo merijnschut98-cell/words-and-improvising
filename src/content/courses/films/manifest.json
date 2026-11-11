@@ -815,6 +815,37 @@
         ],
         "vtt": "src/content/courses/films/eng.quality.tolerance.en.vtt"
       }
+    },
+    "eng.safety.loto": {
+      "poster": "src/content/courses/films/eng.safety.loto.jpg",
+      "nl": {
+        "dur": 299,
+        "bytes": 10601956,
+        "scenes": [
+          0,
+          55.61,
+          88.01,
+          124.89,
+          153.37,
+          195.24,
+          244.04
+        ],
+        "vtt": "src/content/courses/films/eng.safety.loto.nl.vtt"
+      },
+      "en": {
+        "dur": 312,
+        "bytes": 10922594,
+        "scenes": [
+          0,
+          58.19,
+          91.98,
+          130.74,
+          160.38,
+          203.9,
+          257.15
+        ],
+        "vtt": "src/content/courses/films/eng.safety.loto.en.vtt"
+      }
     }
   }
 }
