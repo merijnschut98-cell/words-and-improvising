@@ -233,7 +233,7 @@ const STAGE = (() => {
   const RR = 72;
   const SLOTS = 12;
   function sectBase() {
-    return PANEL() + txt(222, 380, tr('schema, vertraagd, slip overdreven', 'diagram, slowed, slip exaggerated'), 20, 'start', 'mf-mute');
+    return PANEL() + txt(222, 352, tr('schema, 2-polig', 'diagram, 2-pole'), 20, 'start', 'mf-mute') + txt(222, 380, tr('vertraagd, slip overdreven', 'slowed, slip exaggerated'), 20, 'start', 'mf-mute');
   }
   // the stator: a ring with twelve slots; each slot's copper lit by its phase current (positive petrol, negative grey)
   function statorSvg(wt, cur) {
@@ -310,8 +310,9 @@ const STAGE = (() => {
       const lit = i === 2 && mark > 0.5;
       out += rect(x, 40, 70, 42, lit ? 'mf-accf' : 'mf-tile', 5) + txt(x + 35, 69, `IE${i + 1}`, 21, 'middle', lit ? 'mf-on' : 'mf-mono');
     }
-    out += op(mark, txt(222, 116, tr('EU: IE3 sinds 2021 (0,75 tot 1.000 kW)', 'EU: IE3 since 2021 (0.75 to 1,000 kW)'), 20, 'start', 'mf-txt')
-      + txt(222, 144, tr('IE4 sinds 2023 (75 tot 200 kW)', 'IE4 since 2023 (75 to 200 kW)'), 20, 'start', 'mf-txt'));
+    out += op(mark, txt(222, 112, tr('EU, de meeste nieuwe motoren:', 'EU, most new motors:'), 20, 'start', 'mf-mute')
+      + txt(222, 138, tr('IE3 sinds 2021: 0,75 tot 1.000 kW', 'IE3 since 2021: 0.75 to 1,000 kW'), 20, 'start', 'mf-txt')
+      + txt(222, 164, tr('IE4 sinds 2023: 75 tot 200 kW', 'IE4 since 2023: 75 to 200 kW'), 20, 'start', 'mf-txt'));
     return out;
   }
   function ieIn(bars, save) {
