@@ -597,6 +597,7 @@ export default {
     // Onderwerp: Aanlopen en aandrijvingen
     {
       id: 'eng.power.drives',
+      film: 'eng.power.drives',
       title: 'Motoren aanlopen en regelen',
       pre: [
         {
