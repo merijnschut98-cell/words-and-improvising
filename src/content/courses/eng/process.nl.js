@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.process.types',
+      film: 'eng.process.plant',
       title: 'Unit operations, batch en continu',
       pre: [
         {
@@ -289,6 +290,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
+      film: 'eng.process.plant',
       title: 'Druk, debiet, niveau en temperatuur',
       pre: [
         {

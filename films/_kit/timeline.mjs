@@ -113,7 +113,15 @@ const SAY = {
     // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
     // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
     [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
-    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06']],
+    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
+    // "lachen", "uunit oopiraasjon", and stresses "KOrioliss" and "KONtinu"): betsj-, joenit oppe-reesjen,
+    // korie-olis, konti-nu (continue as konti-nuwe); batch only in compounds (batchproces, batchnummer), so the
+    // lone "batch" another film says keeps its voice
+    [/\b([Bb])atch(?=\p{L})/gu, '$1etsj-'],
+    [/\b([Uu])nit operation(s?)\b/g, (m, u, s) => `${u === 'U' ? 'J' : 'j'}oenit oppe-reesjen${s}`],
+    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Korie-olis' : 'korie-olis')],
+    [/\b([Cc])ontinue\b/g, (m, c) => (c === 'C' ? 'Konti-nuwe' : 'konti-nuwe')], [/\b([Cc])ontinu\b/g, (m, c) => (c === 'C' ? 'Konti-nu' : 'konti-nu')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
