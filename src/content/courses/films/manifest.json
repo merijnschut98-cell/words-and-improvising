@@ -205,17 +205,17 @@
     "eng.machining.drilling": {
       "poster": "src/content/courses/films/eng.machining.drilling.jpg",
       "nl": {
-        "dur": 233.2,
-        "bytes": 9003183,
+        "dur": 233,
+        "bytes": 8998946,
         "scenes": [
           0,
-          39.28,
-          57.92,
-          88.39,
-          118.76,
-          163.16,
-          177.21,
-          212.91
+          39.86,
+          58.32,
+          88.49,
+          118.88,
+          162.91,
+          176.88,
+          212.75
         ],
         "vtt": "src/content/courses/films/eng.machining.drilling.nl.vtt"
       },
