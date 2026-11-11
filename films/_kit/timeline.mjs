@@ -119,7 +119,11 @@ const SAY = {
     // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the
     // floor says it, "d'rect"; and harmonischen with "sch" as in "school", said "harmonische" (-ise)
     [/\b([Mm])agneetschakelaar\b/g, '$1agneet-schakelaar'], [/\b([Ff])requentieregelaar/g, '$1requentie-regelaar'], [/\b([Ss])ervoregelaar/g, '$1ervo-regelaar'],
-    [/\b([Dd])irect (?=in(?:schakel|geschakeld))/g, '$1e-rekt '], [/\b([Hh])armonischen\b/g, '$1armonische']],
+    [/\b([Dd])irect (?=in(?:schakel|geschakeld))/g, '$1e-rekt '], [/\b([Hh])armonischen\b/g, '$1armonische'],
+    // fatigue: espeak-ng reads Wöhler with the o of "bot" and a sounded h (said "Weuler"), stresses
+    // lastwisSEEling, puts a schwa in vermoeiingsgrens, and stresses kogelSTRAlen and lasTEEN; split at the head
+    [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
+    [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

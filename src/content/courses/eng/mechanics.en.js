@@ -599,6 +599,7 @@ export default {
     // Topic: Fatigue and failure
     {
       id: 'eng.mechanics.fatigue',
+      film: 'eng.mechanics.fatigue',
       title: 'Fatigue and stress concentrations',
       pre: [
         {
@@ -617,7 +618,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'The shaft of an agitator, a mixer in a tank, broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the impeller, the mixing blades on the shaft, is out of balance, so the shaft bends back and forth once per revolution, and the sharp keyway corner concentrates that stress. The fix: a rounded keyway end, a balanced impeller and an alignment check. Stronger steel alone did little, because high-strength steels are often more sensitive to notches. How often such failures come back, and what that says about the asset, is a topic of the module Reliability and asset strategy.',
+        text: 'The shaft of an agitator, a mixer in a tank, broke at the end of its keyway twice in 18 months. After the first failure it was replaced with a stronger steel; it broke again in the same place. The fracture shows beach marks starting at the sharp corner of the keyway.\n\nTwo things combine: the liquid keeps pushing the impeller, the mixing blades on the shaft, to the same side, so the shaft bends and every revolution swaps tension and compression; and the sharp keyway corner concentrates that stress. An unbalanced impeller also makes the shaft vibrate. The fix: a rounded keyway end, an alignment check and a balanced impeller. Stronger steel alone did little, because high-strength steels are often more sensitive to notches. How often such failures come back, and what that says about the asset, is a topic of the module Reliability and asset strategy.',
       },
       said: 'What engineers say: “Look at those beach marks. It started at the keyway corner. Stronger steel won’t fix a sharp corner.”',
       recall: [
