@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.ot.levels',
+      film: 'eng.ot.isa95',
       title: 'The five levels of ISA-95',
       pre: [
         {
@@ -72,6 +73,7 @@ export default {
     },
     {
       id: 'eng.ot.purdue',
+      film: 'eng.ot.isa95',
       title: 'ISA-95 and the Purdue model: two maps of the same plant',
       pre: [
         {
@@ -284,6 +286,7 @@ export default {
     },
     {
       id: 'eng.ot.systems',
+      film: 'eng.ot.isa95',
       title: 'From PLC to ERP: one order through every system',
       pre: [
         {
