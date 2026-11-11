@@ -108,17 +108,17 @@
     "eng.moulding.cycle": {
       "poster": "src/content/courses/films/eng.moulding.cycle.jpg",
       "nl": {
-        "dur": 249.6,
-        "bytes": 9552771,
+        "dur": 249.7,
+        "bytes": 9554359,
         "scenes": [
           0,
-          40.87,
-          61.56,
-          80.57,
-          102.76,
-          129.49,
-          162.96,
-          204.7
+          41.24,
+          61.92,
+          80.93,
+          103.09,
+          129.63,
+          163.07,
+          204.99
         ],
         "vtt": "src/content/courses/films/eng.moulding.cycle.nl.vtt"
       },
