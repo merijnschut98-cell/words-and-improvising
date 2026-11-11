@@ -55,3 +55,57 @@ test('module row meta shows the seal only when a medal exists', () => {
   assert.ok(el.classList.contains('medal-silver'));
   assert.ok(el.classList.contains('medal-24'));
 });
+
+// ---- Daily goal ring (task 17) ----
+const { goalRing, weekRings, goalPicker, startHead } = await import('../src/ui/flairui.js');
+const arcOf = (el) => Number((el.querySelector('.ring-wrap').innerHTML.match(/class="ring-arc[^"]*"[^>]*stroke-dashoffset="([\d.]+)"/) || [])[1]);
+
+test('goalRing: role img with goalRing label; arc share = xp/goal capped at 1; check shown when done', () => {
+  const r = goalRing(t, { xp: 18, goal: 30, done: false });
+  assert.equal(r.getAttribute('role'), 'img');
+  assert.equal(r.getAttribute('aria-label'), 'Dagdoel: 18 van 30 XP');
+  assert.equal(r.querySelector('.goal-num').textContent, '18/30');
+  assert.equal(arcOf(r), 40, '100 - 60');
+  assert.doesNotMatch(r.querySelector('.ring-wrap').innerHTML, /ring-check/);
+  const full = goalRing(t, { xp: 30, goal: 30, done: true });
+  assert.equal(arcOf(full), 0);
+  assert.match(full.querySelector('.ring-wrap').innerHTML, /ring-check/);
+  assert.equal(full.querySelector('.goal-num').textContent, '30/30');
+  const grow = goalRing(t, { xp: 30, goal: 30, done: true }, { from: 10 });
+  assert.match(grow.querySelector('.ring-wrap').innerHTML, /ring-arc grow/);
+  assert.match(grow.querySelector('.ring-wrap').innerHTML, /--draw-from:66.67/, 'animates from the old value; the end state is the default');
+});
+
+test('start screen shows the ring next to the title and keeps streak and level in start-meta', () => {
+  const state = { ...defaultState(), xp: 40, xpDays: { [TODAY]: 18 }, streak: { count: 3, lastDay: TODAY } };
+  const app = { t, lang: 'nl', state, today: () => TODAY };
+  const head = startHead(app);
+  assert.equal(head.querySelector('h1.start-title').textContent, t('startTitle'));
+  assert.equal(head.querySelector('.goal-ring').getAttribute('aria-label'), 'Dagdoel: 18 van 30 XP');
+  assert.match(head.querySelector('.start-flame').textContent, /3/, 'the streak flame stays, small, beside the ring (Q1)');
+  const meta = head.querySelector('.start-meta');
+  assert.equal(meta.querySelector('.ico-flame'), null, 'the flame moved beside the ring, once');
+  assert.match(meta.textContent, /Level 1 · 40\/100 XP/);
+});
+
+test('progress shows seven day rings with one label each', () => {
+  const state = { ...defaultState(), xpDays: { [TODAY]: 30, '2026-11-01': 10 }, dailyGoal: { xp: 20, ts: 1 } };
+  const row = weekRings(t, state, TODAY, 'nl');
+  const rings = row.querySelectorAll('.goal-ring');
+  assert.equal(rings.length, 7);
+  assert.ok(rings.every((r) => /van 20 XP$/.test(r.getAttribute('aria-label'))));
+  assert.match(rings[6].getAttribute('aria-label'), /20 van 20 XP/);
+  assert.match(rings[5].getAttribute('aria-label'), /10 van 20 XP/);
+  assert.match(rings[0].getAttribute('aria-label'), /0 van 20 XP/);
+});
+
+test('settings goal options write dailyGoal with a ts', () => {
+  let saved = null;
+  const app = { t, state: defaultState(), setState(s) { saved = s; }, go() {} };
+  const picker = goalPicker(app, () => 777);
+  const opts = picker.querySelectorAll('button');
+  assert.deepEqual(opts.map((b) => b.textContent), ['Licht (20 XP)', 'Normaal (30 XP)', 'Stevig (50 XP)']);
+  assert.equal(opts[1].getAttribute('aria-pressed'), 'true');
+  opts[2].click();
+  assert.deepEqual(saved.dailyGoal, { xp: 50, ts: 777 });
+});

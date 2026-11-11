@@ -10,6 +10,7 @@ import { masteryBadge } from './home.js';
 import { subjectBar } from './subjectbar.js';
 import { courseSummary, planStats } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
+import { weekRings } from './flairui.js';
 
 // A course on Progress: modules owned per track, due now, the last 14 days and recent situations.
 function courseProgress(app, subject) {
@@ -20,6 +21,7 @@ function courseProgress(app, subject) {
   const plans = planStats(app.state, subject, dayKey(new Date(y, m - 1, d - 30)));
   const lessonTitle = (id) => { const m = MODULES.find((x) => id.startsWith(`${x.id}.`)); return m ? (m.title[app.lang] || m.title.en) : id; };
   return h('main', { class: 'screen progress course-progress' },
+    goalCard(app),
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('courseOwned')),
       sum.tracks.filter((x) => x.total).map((x) => h('div', { class: 'week-row' },
@@ -39,6 +41,13 @@ import { friendAverages } from '../core/friend.js';
 import { wordsSummary, SWAPS } from '../core/words.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
+// The daily goal over the last seven days: information only (v16 flair).
+function goalCard(app) {
+  return h('section', { class: 'card goal-card' },
+    h('h2', { class: 'card-title' }, app.t('goalWeek')),
+    weekRings(app.t, app.state, app.today(), app.lang));
+}
+
 function delta(now, prev, lowerIsBetter) {
   if (now == null) return { text: '–', tone: '' };
   if (prev == null) return { text: String(now), tone: '' };
@@ -267,6 +276,7 @@ export function renderProgress(app, _params, root) {
     subjectBar(app, 'progress'),
     h('main', { class: 'screen progress' },
       weekCard(app),
+      goalCard(app),
       h('section', { class: 'stats' },
         h('div', { class: 'stat' }, h('b', {}, lv.level), h('span', {}, t('level'))),
         h('div', { class: 'stat' }, h('b', {}, s.xp), h('span', {}, 'XP')),

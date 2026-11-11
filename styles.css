@@ -1011,3 +1011,26 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .seal .seal-fill.draw { animation: vp-fade var(--motion-scene) var(--ease-entrance) both; }
 .path-end { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 10px 0 4px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
 .title-tag { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--accent-dark); }
+
+/* Daily goal ring: 40 px, 3 px stroke, track and petrol arc, butt caps; the number beside it. */
+.goal-ring { display: inline-flex; align-items: center; gap: 6px; }
+.ring-wrap { display: inline-flex; line-height: 0; }
+.ring { width: 40px; height: 40px; }
+.goal-ring-sm .ring { width: 24px; height: 24px; }
+.ring-track { fill: none; stroke: var(--line); stroke-width: 3; }
+.ring-arc { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: butt; }
+.goal-ring-sm .ring-track, .goal-ring-sm .ring-arc { stroke-width: 4; }
+.ring-arc.grow { animation: vp-draw var(--motion-slow) var(--ease-entrance) both; }
+.ring-check { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ring-check.grow { animation: vp-fade var(--motion-base) var(--ease-entrance) var(--motion-slow) both; }
+.goal-num { font-size: 0.8rem; color: var(--ink); }
+.start-head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.start-head-row .start-title { margin: 0; }
+.start-goal { display: inline-flex; align-items: center; gap: 10px; }
+.start-flame { display: inline-flex; align-items: center; gap: 2px; font-size: 0.8rem; color: var(--muted); }
+.start-flame.on { color: var(--ok-text); }
+.start-head-wrap .start-meta { margin-top: 4px; }
+.flair-note { display: flex; align-items: center; gap: 6px; }
+.week-rings { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.week-ring { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.week-day { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); }
