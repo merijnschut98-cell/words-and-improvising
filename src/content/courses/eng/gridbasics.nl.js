@@ -579,6 +579,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      film: 'eng.gridbasics.congestion',
       title: 'Wat een netbeheerder doet',
       pre: [
         {
@@ -590,7 +591,7 @@ export default {
       ],
       teach: [
         'Een regionale netbeheerder heeft vijf kerntaken: klanten aansluiten; elektriciteit (en vaak gas) naar ze transporteren; het net onderhouden zodat het veilig en betrouwbaar blijft; storingen verhelpen, dag en nacht; en het net van de toekomst plannen en bouwen. Elke twee jaar publiceert hij een investeringsplan dat laat zien wat hij gaat bouwen.\n\nHij verkoopt geen energie: dat doen energieleveranciers zoals Eneco of Vattenfall, en die kies je zelf.',
-        'De meeste storingen ontstaan in het MS- en LS-net: een graafmachine raakt een kabel, een oude mof (joint, de verbinding tussen twee kabelstukken) begeeft het, een zekering slaat door.\n\nHet Nederlandse net is een van de betrouwbaarste van Europa: in 2024 zat een klant door onvoorziene onderbrekingen gemiddeld zo’n 24 minuten zonder stroom (23,9, Netbeheer Nederland); gepland werk kwam daar met zo’n 23,3 minuten bovenop. Netbeheerders sturen op de jaarlijkse uitvalduur per klant, in de wandeling de uitvalminuten.',
+        'De meeste storingen ontstaan in het MS- en LS-net: een graafmachine raakt een kabel, een oude mof (joint, de verbinding tussen twee kabelstukken) begeeft het, een zekering slaat door.\n\nHet Nederlandse net is een van de betrouwbaarste van Europa: in 2025 zat een klant door onvoorziene onderbrekingen gemiddeld zo’n 23 minuten zonder stroom (23,4, Netbeheer Nederland); gepland werk kwam daar met zo’n 27 minuten bovenop (27,2). Netbeheerders sturen op de jaarlijkse uitvalduur per klant, in de wandeling de uitvalminuten.',
         'Een netbeheerder is een gereguleerd monopolie: elk heeft zijn eigen gebied, en klanten kunnen niet kiezen. De ACM (Autoriteit Consument & Markt), de toezichthouder, bepaalt hoeveel inkomsten ze via de tarieven mogen halen, legt de technische en aansluitregels vast in de codes, en controleert de kwaliteit.\n\nSinds 1 januari 2026 geeft de nieuwe Energiewet het wettelijke kader; die verving de Elektriciteitswet 1998 (meer in de les over wetten en codes).',
         'De aandelen zijn publiek: provincies en gemeenten zijn eigenaar van de regionale netbeheerders, en volgens de wet mogen die niet aan private partijen verkocht worden. Omdat de netbeheerders miljarden moeten investeren in de energietransitie, is de Staat ook kapitaal gaan inbrengen, bijvoorbeeld bij Stedin.\n\nTenneT is eigendom van de Staat. Reken op politieke aandacht: tarieven, wachtrijen en investeringstempo zijn landelijk nieuws.',
         'Het werk verandert snel. Door de energietransitie sluiten netbeheerders meer aan en bouwen ze meer dan ooit, terwijl monteurs en materiaal schaars zijn; de sector komt duizenden monteurs tekort.\n\nDaarom zijn ze zo bezig met standaardiseren, werk in grotere pakketten plannen en elk uur efficiëntie in het veld. Een scherpe vraag voor elk verbeterproject: waar gaat de dag van een monteur echt naartoe?',
@@ -863,6 +864,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      film: 'eng.gridbasics.congestion',
       title: 'Netcongestie',
       pre: [
         {
@@ -877,7 +879,7 @@ export default {
         'In congestiegebieden komen nieuwe grootverbruikers (aansluitingen boven 3 × 80 A, zo’n 55 kVA: een supermarkt, een fabriek, een laadplein) en bestaande die meer capaciteit willen op een wachtrij (waiting list). Duizenden bedrijven wachten.\n\nVoor kleine aansluitingen, zoals woningen en winkels, werd capaciteit apart gehouden; sinds juli 2026 vallen ook zij onder dezelfde voorrangsregels, dus in sommige regio’s kunnen ook zij moeten wachten. De openbare capaciteitskaart laat zien waar nog ruimte is en waar niet.',
         'Het net verzwaren kost jaren: een nieuw onderstation duurt vaak 5 tot 10 jaar, met vergunningen, grond en ruimte voor kabels onder de straat. MS-verzwaring gaat sneller, maar ook dat is maanden tot jaren. Monteurs, transformatoren en ruimte in de grond zijn allemaal schaars.\n\nAlleen bouwen lost netcongestie dit decennium dus niet op; het bestaande net moet beter benut worden.',
         'Congestiemanagement betekent dat klanten betaald of gecontracteerd worden om op piekmomenten minder af te nemen of minder in te voeden. Netbeheerders kopen die flexibiliteit vaak in via GOPACS, het gezamenlijke platform van de Nederlandse netbeheerders waar zij verzoeken plaatsen en bedrijven aanbieden om te schuiven.\n\nEen flexibel contract geeft een klant capaciteit behalve op de piekuren, of voor een vast deel van het jaar, meestal tegen een lager tarief. Omdat congestie meestal maar een paar honderd uur per jaar speelt, levert een beetje flexibiliteit veel ruimte op.',
-        'Waar experts over discussiëren: wie de schaarse capaciteit het eerst krijgt. Sinds 2024 mogen netbeheerders van de ACM, de toezichthouder, projecten met maatschappelijke waarde voorrang geven in de wachtrij, zoals scholen, zorg en projecten die congestie verlichten, in plaats van strikt wie het eerst komt. Een herzien kader houdt dat vast en geldt sinds juli 2026 ook voor kleine aansluitingen. Bedrijven verderop in de rij wachten daardoor langer.\n\nEen scherpe vraag: hoeveel uur per jaar zit dit station echt boven zijn grens, en hoeveel erboven?',
+        'Waar experts over discussiëren: wie de schaarse capaciteit het eerst krijgt. Sinds 2024 mogen netbeheerders van de ACM maatschappelijke projecten voorrang geven, in plaats van wie het eerst komt: eerst projecten die congestie verlichten, dan veiligheid (zoals ziekenhuizen), dan basisbehoeften (zoals wonen en onderwijs). De rechter vernietigde dat eerste kader in maart 2025; het nieuwe houdt dezelfde volgorde en geldt sinds juli 2026 ook voor kleine aansluitingen. Wie verderop staat, wacht langer.\n\nEen scherpe vraag: hoeveel uur per jaar zit dit station echt boven zijn grens, en hoeveel erboven?',
       ],
       example: {
         kind: 'worked',
