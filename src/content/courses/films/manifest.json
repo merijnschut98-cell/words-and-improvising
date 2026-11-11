@@ -780,6 +780,41 @@
         ],
         "vtt": "src/content/courses/films/eng.quality.spc.en.vtt"
       }
+    },
+    "eng.quality.tolerance": {
+      "poster": "src/content/courses/films/eng.quality.tolerance.jpg",
+      "nl": {
+        "dur": 338.5,
+        "bytes": 12007153,
+        "scenes": [
+          0,
+          40.11,
+          76.07,
+          116.17,
+          157.1,
+          193.92,
+          223.07,
+          260.56,
+          300.32
+        ],
+        "vtt": "src/content/courses/films/eng.quality.tolerance.nl.vtt"
+      },
+      "en": {
+        "dur": 359.3,
+        "bytes": 12601398,
+        "scenes": [
+          0,
+          43.66,
+          82.51,
+          123.86,
+          168.2,
+          204.24,
+          233.94,
+          276.43,
+          319.65
+        ],
+        "vtt": "src/content/courses/films/eng.quality.tolerance.en.vtt"
+      }
     }
   }
 }
