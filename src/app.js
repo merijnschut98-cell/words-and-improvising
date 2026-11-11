@@ -27,11 +27,13 @@ import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
 import { commitPlanDraft, newPlanId, withEnglish } from './core/course.js';
+import { backfillFlair, afterSync } from './core/flair.js';
 import { createCloud } from './core/cloud.js';
 import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
+import { renderCheck } from './ui/modulecheck.js';
 import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
 import { renderApply } from './ui/apply.js';
@@ -51,6 +53,7 @@ const SCREENS = {
   friendrate: renderFriendRate,
   lesson: renderLesson,
   due: renderDue,
+  check: renderCheck,
   situation: renderSituation,
   glossary: renderGlossary,
   apply: renderApply,
@@ -149,7 +152,8 @@ export const app = {
       this.syncer = createSyncer({
         cloud: this.cloud,
         getState: () => this.state,
-        setState: (s) => this.setState(s, true),
+        // What another device earned is stored here too, quietly (v16 flair).
+        setState: (s) => this.setState(afterSync(s, Date.now()), true),
         // Signed out elsewhere or the session expired: say so, and show the sign-in form again.
         onAuthLost: () => {
           if (!this.state.settings.syncOn) return;
@@ -269,8 +273,12 @@ export const app = {
     setTimeout(() => el.remove(), 2700);
   },
   // Adds an applied round's result to the running lesson, if any.
-  addToSession({ xp = 0, levelUp = false, newBests = [], newMilestones = [] } = {}) {
+  addToSession({ xp = 0, levelUp = false, newBests = [], newMilestones = [], medals = [], speakMedals = [], titles = [], goalReached = false } = {}) {
     if (!this.session) return;
+    this.session.medals = [...(this.session.medals || []), ...medals];
+    this.session.speakMedals = [...(this.session.speakMedals || []), ...speakMedals];
+    this.session.titles = [...(this.session.titles || []), ...titles];
+    this.session.goalReached = this.session.goalReached || goalReached;
     this.session.xp += xp;
     this.session.levelUp = this.session.levelUp || levelUp;
     this.session.highlights = [...(this.session.highlights || []), ...newBests];
@@ -283,7 +291,7 @@ export const app = {
     this.addToSession(result);
     s.index += 1;
     if (s.index < s.prompts.length) return this.go('round', { prompt: s.prompts[s.index] });
-    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [], milestones: s.milestones || [] };
+    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [], milestones: s.milestones || [], medals: s.medals || [], speakMedals: s.speakMedals || [], titles: s.titles || [], goalReached: !!s.goalReached };
     this.session = null;
     return this.go('done', summary);
   },
@@ -341,6 +349,8 @@ document.documentElement.lang = app.lang;
 app.applyTheme();
 // A plan typed on a lesson-done card when the app was closed: keep it as the plan.
 if ((app.state.ui || {}).planDraft) app.setState(commitPlanDraft(app.state, app.today(), newPlanId()));
+// First v16 start: medals and titles for what he already did, quietly, once (Q7).
+if (!(app.state.ui || {}).flairBackfilled) app.setState(backfillFlair(app.state, Date.now()).state);
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();

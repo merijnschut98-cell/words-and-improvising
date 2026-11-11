@@ -2541,37 +2541,44 @@ const openTopicModule = async (p) => {
   await p.locator('.course-home').waitFor();
   const mod = p.locator('details.topic-module', { hasText: 'Verspanen' });
   if (!(await mod.evaluate((d) => d.open))) await mod.locator('summary').click();
-  await mod.locator('.level-chip').first().waitFor();
+  await mod.locator('.path-stop').first().waitFor();
   return mod;
 };
 
-await step('topics: level chips in a module (fixture)', async () => {
+await step('topics: the path map in a module (fixture)', async () => {
   const { c, p, shotP } = await topicContext(topicSeed());
   const mod = await openTopicModule(p);
-  const chips = mod.locator('.topic-row').first().locator('.level-chip');
+  const chips = mod.locator('.topic-row').first().locator('.path-stop');
   // v16: a level shows once the one before it is passed; Expert is hidden until Gevorderd is.
-  if (await chips.count() !== 3) throw new Error(`expected 3 visible chips, got ${await chips.count()}`);
+  if (await chips.count() !== 3) throw new Error(`expected 3 visible stops, got ${await chips.count()}`);
   const cls = await chips.evaluateAll((els) => els.map((e) => e.className));
-  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
-  // (An untouched topic showing only its first level is covered by tests/topics.test.js; this fixture has one topic.)
-  if (!(await chips.nth(0).locator('.ico-circle-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('chip state icons missing');
-  if ((await chips.nth(2).locator('.chip-next').innerText()).trim() !== 'Volgende') throw new Error('next chip not labelled Volgende');
+  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('s-next')) throw new Error(`stop states: ${cls.join(' | ')}`);
+  // (An untouched topic showing only its first level is covered by tests/pathmap.test.js; this fixture has one topic.)
+  if (!(await chips.nth(0).locator('.ico-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('stop state icons missing');
+  if ((await mod.locator('.topic-row').first().locator('.path-next').innerText()).trim() !== 'Volgende') throw new Error('next stop not labelled Volgende');
   if (await chips.nth(1).getAttribute('aria-label') !== 'Draaien, Werkkennis: beheerst') throw new Error(`aria: ${await chips.nth(1).getAttribute('aria-label')}`);
-  if (await mod.locator('.level-chip.btn-primary').count()) throw new Error('a chip is a primary button');
+  if (await mod.locator('.path-stop.btn-primary').count()) throw new Error('a stop is a primary button');
+  // The hidden level: a faint dashed stub with +1, no name, not focusable.
+  const stub = mod.locator('.topic-row').first().locator('.path-stub');
+  if ((await stub.innerText()).trim() !== '+1') throw new Error(`stub: ${await stub.innerText()}`);
+  if (await stub.evaluate((e) => e.tabIndex >= 0)) throw new Error('the stub is focusable');
   if (!(await mod.locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the summary');
   if (!(await mod.locator('.topic-count', { hasText: '2/4' }).count())) throw new Error('no topic count');
   if (!(await mod.locator('.module-continue', { hasText: 'Verder: Draaien · Gevorderd' }).count())) throw new Error('continue does not name the level');
+  if (!(await mod.locator('.path-end .medal-none').count())) throw new Error('no empty medal ring at the module end');
   await onePrimary(p, 'course home with a topic module open');
-  // No chip label is cut off: every label fits its chip.
-  const clipped = await mod.locator('.chip-label').evaluateAll((els) => els.filter((e) => e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1).map((e) => e.textContent));
-  if (clipped.length) throw new Error(`clipped chip labels: ${clipped.join(', ')}`);
+  // Every stop is a 44 px target and nothing on the path overflows the card at 390 px.
+  const small = await mod.locator('.path-stop').evaluateAll((els) => els.filter((e) => e.getBoundingClientRect().width < 44 || e.getBoundingClientRect().height < 44).length);
+  if (small) throw new Error(`${small} stops under 44 px`);
+  const over = await mod.locator('.path').evaluateAll((els) => els.filter((e) => e.scrollWidth > e.clientWidth + 1).length);
+  if (over) throw new Error('a path overflows');
   // A one-word label is never broken inside the word.
-  const broken = await mod.locator('.chip-label').evaluateAll((els) => els.filter((e) => {
+  const broken = await mod.locator('.path-label').evaluateAll((els) => els.filter((e) => {
     if (/\s/.test(e.textContent.trim())) return false;
     const r = document.createRange(); r.selectNodeContents(e);
     return r.getClientRects().length > 1;
   }).map((e) => e.textContent));
-  if (broken.length) throw new Error(`chip label broken mid-word: ${broken.join(', ')}`);
+  if (broken.length) throw new Error(`stop label broken mid-word: ${broken.join(', ')}`);
   await mod.scrollIntoViewIfNeeded();
   await shotP('110-topic-chips');
   await mod.screenshot({ path: `${out}/111-topic-chips-390.png`, animations: 'disabled' });
@@ -2595,7 +2602,7 @@ await step('topics: where you are (fixture)', async () => {
   const { c, p, shotP } = await topicContext(topicSeed());
   const mod = await openTopicModule(p);
   // Chip 3 is Gevorderd: eng.machining.tools in the fixture.
-  await mod.locator('.topic-row').first().locator('.level-chip').nth(2).click();
+  await mod.locator('.topic-row').first().locator('.path-stop').nth(2).click();
   await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
   await shotP('112-lesson-place');
   await playLesson(p, 'eng', 'machining', 'eng.machining.tools');
@@ -2957,6 +2964,144 @@ await step('listen back: ask once, rounds kept, Terugluisteren plays at 1.25x, c
     window.name = '';
     window.__app.updateSettings({ record: false, lang });
   });
+});
+
+// ---- v16 flair: goal ring, path map, medals, the module check, Andon ----
+async function flairContext(seed = {}) {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
+  await c.route(FILM_URL, fulfillStub);
+  const p = await c.newPage();
+  p.on('pageerror', onPageError);
+  p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+  await p.goto(BASE);
+  await p.evaluate(async (s) => {
+    const { isoWeekKey } = await import('./src/core/boss.js');
+    const { dayKey } = await import('./src/core/progress.js');
+    const today = dayKey(new Date());
+    localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, weekly: { week: isoWeekKey(new Date()), focus: null }, xp: 140, xpDays: { [today]: 18 }, streak: { count: 4, lastDay: today }, ...s }));
+  }, seed);
+  await p.reload();
+  const shotP = async (n, opts = {}) => {
+    const text = await p.evaluate(() => document.body.innerText);
+    if (/(?<![A-Za-z])(null|undefined|NaN)/.test(text)) errors.push(`${n}: stray null/undefined/NaN on screen`);
+    await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled', ...opts });
+  };
+  const dark = async (on) => {
+    await p.evaluate((on) => window.__app.updateSettings({ theme: on ? 'dark' : 'light' }), on);
+    await p.waitForFunction((on) => document.documentElement.dataset.theme === (on ? 'dark' : 'light'), on);
+  };
+  return { c, p, shotP, dark };
+}
+
+await step('flair: start ring and title, path map with the bronze seal, a perfect module check (no gold without silver), Andon in a review, the goal setting', async () => {
+  const flowIds = await page.evaluate(async () => (await import('/src/content/courses/index.js')).MODULES.find((m) => m.id === 'eng.flow').lessons);
+  const lessons = Object.fromEntries(flowIds.map((id, i) => [id, { read: 1000 + i, passed: 1000 + i }]));
+  const { c, p, shotP, dark } = await flairContext({ ui: { subject: 'start' }, courses: { eng: { lessons, sessions: [] } } });
+  // Start screen: the ring beside the title (18/30 of the default goal), the flame beside it, level in the meta line.
+  await p.locator('.start-head-row .goal-ring').waitFor();
+  if (await p.locator('.start-head-row .goal-ring').getAttribute('aria-label') !== 'Dagdoel: 18 van 30 XP') throw new Error('start ring label');
+  if ((await p.locator('.start-head-row .goal-num').innerText()).trim() !== '18/30') throw new Error('start ring number');
+  if ((await p.locator('.start-flame b').innerText()).trim() !== '4') throw new Error('flame next to the ring');
+  if (!(await p.locator('.start-meta', { hasText: 'Level 2' }).count())) throw new Error('level left the meta line');
+  // The quiet backfill line, once: his earlier work earned bronze and a title.
+  await p.locator('.flair-note', { hasText: 'medaille' }).waitFor();
+  if (!(await p.locator('.start-eng .title-tag', { hasText: 'Leerling' }).count())) throw new Error('no title on the Engineering card');
+  await onePrimary(p, 'start screen with the ring');
+  await shotP('flair-01-start-390');
+  await dark(true);
+  await shotP('flair-01-start-390-dark');
+  await dark(false);
+  // Course home: the path map, the bronze seal on the module and at its end, the check flag.
+  await p.locator('.start-eng').click();
+  await p.locator('.course-home').waitFor();
+  const mod = p.locator('details.topic-module', { hasText: 'Capaciteit en flow' });
+  if (!(await mod.evaluate((d) => d.open))) await mod.locator('summary').click();
+  await mod.locator('.path-end .medal-bronze').waitFor();
+  if (!(await mod.locator('summary .medal-bronze', { hasText: 'Brons' }).count())) throw new Error('no seal on the module row');
+  if (!(await mod.locator('.topic-row').first().locator('.path-flag').count())) throw new Error('a finished topic has no flag');
+  if (await mod.locator('.path-stub').count()) throw new Error('a finished module shows a stub');
+  await mod.locator('.check-btn').waitFor();
+  if (await mod.locator('.check-btn.btn-primary').count()) throw new Error('the check is a primary button');
+  await mod.scrollIntoViewIfNeeded();
+  await mod.screenshot({ path: `${out}/flair-02-path-medal-390.png`, animations: 'disabled' });
+  await shotP('flair-02-course-home-390');
+  await dark(true);
+  await mod.locator('.path-end .medal-bronze').waitFor();
+  await p.locator('details.topic-module', { hasText: 'Capaciteit en flow' }).screenshot({ path: `${out}/flair-02-path-medal-390-dark.png`, animations: 'disabled' });
+  await dark(false);
+  // The module check: the guide's intro, ten questions, one pass, all right.
+  await p.locator('details.topic-module', { hasText: 'Capaciteit en flow' }).locator('.check-btn').click();
+  await p.locator('.check-intro .guide').waitFor();
+  if (!(await p.locator('.check-intro', { hasText: 'Tien vragen, geen hints' }).count())) throw new Error('no guide line on the check intro');
+  await onePrimary(p, 'check intro');
+  await shotP('flair-03-check-intro-390');
+  const qs = await p.evaluate(async () => {
+    const { checkQuestions } = await import('/src/core/modulecheck.js');
+    const { MODULES } = await import('/src/content/courses/index.js');
+    const mod = await window.__app.openModule('eng', 'eng.flow');
+    return checkQuestions(mod, MODULES.find((m) => m.id === 'eng.flow'), window.__app.today());
+  });
+  if (qs.length !== 10) throw new Error(`check has ${qs.length} questions`);
+  await p.locator('.check-start').click();
+  for (let i = 0; i < qs.length; i++) {
+    await p.locator('.quiz-card .quiz-progress', { hasText: `${i + 1}/10` }).waitFor();
+    if (await p.locator('.quiz-card .quiz-hint-btn, .quiz-card .quiz-back').count()) throw new Error('a hint or back in the check');
+    const q = qs[i];
+    if ('number' in q) { await p.locator('.quiz-card .quiz-num').fill(String(q.number).replace('.', ',')); await p.locator('.quiz-card .btn-primary').click(); }
+    else await optExact(p, '.quiz-card', q.answer).click();
+  }
+  await p.locator('.quiz-review').waitFor();
+  await p.locator('.quiz-review .guide').waitFor();
+  await p.locator('.quiz-review .btn-primary', { hasText: 'Afronden' }).click();
+  await p.locator('.check-done').waitFor();
+  const doneText = await p.locator('.check-done').innerText();
+  if (!/10 van 10 goed/.test(doneText) || !/Foutloos/.test(doneText)) throw new Error(`check result: ${doneText}`);
+  if (/Goud/.test(doneText)) throw new Error('gold without silver');
+  if (!/\+30 XP/.test(doneText)) throw new Error('first finish and first perfect: 30 XP');
+  // The celebration: the guide lit, the ring at the new value, one big moment.
+  if (!(await p.locator('.check-done .guide .g-top.on').count())) throw new Error('guide not lit');
+  if (await p.locator('.check-done .goal-ring').getAttribute('aria-label') !== 'Dagdoel: 30 van 30 XP') throw new Error('ring not at the new value');
+  if (await p.locator('.check-done .celebrate-big').count() !== 1) throw new Error('not one big moment');
+  await shotP('flair-04-celebration-390');
+  await dark(true);
+  await shotP('flair-04-celebration-390-dark');
+  await dark(false);
+  // Reduced motion: the end state is there at once.
+  await p.emulateMedia({ reducedMotion: 'reduce' });
+  const opacity = await p.locator('.check-done .guide .g-top').evaluate((e) => getComputedStyle(e).opacity);
+  if (opacity !== '1') throw new Error(`reduced motion: segment opacity ${opacity}`);
+  await p.screenshot({ path: `${out}/flair-04-celebration-390-reduced.png`, fullPage: true });
+  await p.emulateMedia({ reducedMotion: 'no-preference' });
+  // The check is done for today.
+  await p.locator('.check-done ~ .btn-primary').click();
+  const mod2 = p.locator('details.topic-module', { hasText: 'Capaciteit en flow' });
+  if (!(await mod2.evaluate((d) => d.open))) await mod2.locator('summary').click();
+  await mod2.locator('.check-tomorrow', { hasText: 'Morgen kan het weer' }).waitFor();
+  // Andon in a review: a miss lights the middle ochre, with one line.
+  await p.evaluate(() => window.__app.go('due', { subject: 'eng', questionIds: ['eng.flow.takt#r0', 'eng.flow.takt#r1'] }));
+  const dueQs = await p.evaluate(async () => {
+    const mod = await window.__app.openModule('eng', 'eng.flow');
+    const l = mod.lessons.find((x) => x.id === 'eng.flow.takt');
+    return [l.recall[0], l.recall[1]];
+  });
+  for (const [i, q] of dueQs.entries()) {
+    await p.locator('.quiz-card .quiz-progress', { hasText: `${i + 1}/2` }).waitFor();
+    if ('number' in q) { await p.locator('.quiz-card .quiz-num').fill(String(i === 0 ? q.number + 1000 : q.number).replace('.', ',')); await p.locator('.quiz-card .btn-primary').click(); }
+    else await optExact(p, '.quiz-card', i === 0 ? q.options.find((o) => o !== q.answer) : q.answer).click();
+  }
+  await p.locator('.quiz-review .guide .g-mid.warn').waitFor();
+  if (await p.locator('.quiz-review .guide-say').count() !== 1) throw new Error('Andon says one line on a miss');
+  await shotP('flair-05-andon-review-390');
+  await dark(true);
+  await shotP('flair-05-andon-review-390-dark');
+  await dark(false);
+  // Settings: the goal to 20; the start ring reads x/20.
+  await p.evaluate(() => window.__app.go('settings'));
+  await p.locator('.goal-picker button', { hasText: 'Licht (20 XP)' }).click();
+  await p.locator('.goal-picker button.on', { hasText: 'Licht (20 XP)' }).waitFor();
+  await p.evaluate(() => { window.__app.setSubject('start'); window.__app.go('home'); });
+  await p.locator('.start-head-row .goal-num', { hasText: '/20' }).waitFor();
+  await c.close();
 });
 
 await step('offline after first load', async () => {

@@ -3,6 +3,7 @@
 import { seededRng } from './lesson.js';
 import { dayKey } from './progress.js';
 import { tokenize } from './metrics.js';
+import { creditXp } from './xp.js';
 
 export const QUEST_XP = 15;
 
@@ -98,8 +99,7 @@ export function applyQuests(state, round, today) {
   const wasAllDone = currentQuests(state, today).every((q) => q.done);
   const allDone = items.every((q) => q.done);
   const next = {
-    ...state,
-    xp: state.xp + completed.length * QUEST_XP,
+    ...creditXp(state, completed.length * QUEST_XP, today),
     quests: { day: today, items },
     freezes: !wasAllDone && allDone ? Math.min(MAX_FREEZES, (state.freezes || 0) + 1) : (state.freezes || 0),
   };
