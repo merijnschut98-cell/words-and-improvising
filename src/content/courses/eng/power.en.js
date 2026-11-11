@@ -981,7 +981,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'A press cylinder of 125 mm bore should extend fast, fed by a pump of 60 litres per minute. Piston area: 3.14 / 4 × 125² = 12,272 mm² = 0.01227 m². Flow: 60 litres per minute = 0.001 m³ per second.\n\nExpected speed: 0.001 / 0.01227 = 0.081 m/s, about 81 mm/s. Measured: 60 mm/s, and the oil runs at 70 °C. So about a quarter of the flow is not reaching the cylinder.\n\nLikely causes: a worn pump leaking internally, or a relief valve that opens too early. Both turn the lost flow into heat, which explains the hot oil.',
+        text: 'A press cylinder of 125 mm bore should extend fast, fed by a pump of 60 litres per minute. Piston area: π / 4 × 125² ≈ 12,272 mm² = 0.01227 m². Flow: 60 litres per minute = 0.001 m³ per second.\n\nExpected speed: 0.001 / 0.01227 = 0.081 m/s, about 81 mm/s. Measured: 60 mm/s, and the oil runs at 70 °C. So about a quarter of the flow is not reaching the cylinder.\n\nLikely causes: a worn pump leaking internally, or a relief valve that opens too early. Both turn the lost flow into heat, which explains the hot oil.',
       },
       said: 'What engineers say: “The cylinder’s slow and the oil’s hot. That flow is going somewhere: worn pump or a relief valve bypassing.”',
       recall: [
