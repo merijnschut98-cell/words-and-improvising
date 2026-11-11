@@ -108,12 +108,14 @@ const SAY = {
     [/\bLMRA\b/g, 'L M R A'], [/\bVCA\b/g, 'V C A'], [/\bPiper Alpha\b/g, 'Paiper Alfa'],
     [/\b([Bb])lusdeken/g, '$1lus-deken'], [/\b([Gg])asmeting/g, '$1as-meting'], [/\b([Dd])ienstwissel/g, '$1ienst-wissel'],
     [/\b([Dd])akventilator/g, '$1ak-ventilator'], [/\b([Cc])ontrolekamer/g, '$1ontrole-kamer'], [/\b([Ss])topregel/g, '$1top-regel'],
-    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel",
+    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel"
+    // (cilinderbenutting, in the moulding machine film, on "CI-" with the e of "bed"; split, so "cilinder" gets
+    // its lexicon entry, ci-LIN-der),
     // reads zuigeroppervlak as "zuigiir-oppervlak"
     // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
     // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
     [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
-    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Cc])ilinderbenutting/g, '$1ilinder-benutting'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
     // drives: espeak-ng stresses the singular magneetschakelaar and the -regelaar compounds on "-ke-"/"-ge-"
     // with the e of "bed" (frequentieregeLAAR); split at the head (frequentie-REgelaar). It stresses
     // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the

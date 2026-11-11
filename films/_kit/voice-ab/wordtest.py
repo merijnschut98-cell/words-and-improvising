@@ -41,6 +41,14 @@ TESTS = {
     'newton': 'Tweehonderd newton op een sleutel van vijfentwintig centimeter lang.',
     'newtonmeter': 'Het ligt normaal dicht bij het ingestelde moment, hier vijftig newtonmeter.',
     'kilonewton': 'Rond zevenendertig kilonewton gaat hij vloeien.',
+    'kilonewtons': 'Bij twee kilonewtons trekt de lijm los.',
+    # hydraulics and maintenance films (2026-11-11): espeak-ng stresses oLIE, CIlinder (sˈilɪndər) and
+    # MAnometer (mˈaːnoːmˌeːtər); right is Ó-lie, ci-LIN-der, ma-no-MÉ-ter
+    'olie': 'Schoonmaken is inspecteren: onder het vuil lekt de pomp olie.',
+    'cilinder': 'De olie duwt de zuiger van de cilinder naar buiten.',
+    'cilinders': 'De pomp voedt twee cilinders tegelijk.',
+    'manometer': 'Lees de druk af op de manometer, in bar.',
+    'manometers': 'De twee manometers wijzen hetzelfde aan.',
 }
 TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:
