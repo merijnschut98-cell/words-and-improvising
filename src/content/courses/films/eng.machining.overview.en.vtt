@@ -1,221 +1,221 @@
 WEBVTT
 
 1
-00:00:00.800 --> 00:00:06.747
+00:00:00.858 --> 00:00:06.153
 Machining is making a part by cutting material away, in small curls called chips.
 
 2
-00:00:07.297 --> 00:00:11.885
+00:00:06.850 --> 00:00:10.670
 You start too big, and cut until the shape on the drawing is left.
 
 3
-00:00:12.436 --> 00:00:17.871
+00:00:11.428 --> 00:00:16.374
 It is precise and flexible, but every gram that comes off costs machine time.
 
 4
-00:00:18.771 --> 00:00:20.582
+00:00:17.363 --> 00:00:18.988
 Follow this gearbox shaft.
 
 5
-00:00:21.132 --> 00:00:25.361
+00:00:19.748 --> 00:00:23.440
 It starts as a steel bar, 55 millimetres thick.
 
 6
-00:00:25.911 --> 00:00:30.418
+00:00:24.190 --> 00:00:28.091
 The routing says which machines it visits, and in which order.
 
 7
-00:00:31.318 --> 00:00:32.734
+00:00:29.132 --> 00:00:30.235
 Step one: sawing.
 
 8
-00:00:33.284 --> 00:00:35.919
+00:00:30.953 --> 00:00:33.426
 The blade comes down through the clamped bar.
 
 9
-00:00:36.470 --> 00:00:38.769
+00:00:34.154 --> 00:00:36.151
 In 1 minute it has the right length.
 
 10
-00:00:39.969 --> 00:00:44.593
+00:00:37.426 --> 00:00:41.490
 Step two: the CNC lathe, a lathe controlled by a computer.
 
 11
-00:00:45.142 --> 00:00:48.721
+00:00:42.243 --> 00:00:45.192
 The chuck grips the shaft, and spins it fast.
 
 12
-00:00:49.621 --> 00:00:54.593
+00:00:46.285 --> 00:00:50.720
 That is turning: the part spins, and a fixed cutting tool moves along it.
 
 13
-00:00:55.493 --> 00:01:00.233
+00:00:51.829 --> 00:00:56.067
 That is how you make everything round: shafts, bushes, flanges.
 
 14
-00:01:00.783 --> 00:01:04.069
+00:00:56.762 --> 00:00:59.839
 Here the tool turns the shaft to 50 millimetres,
 
 15
-00:01:04.268 --> 00:01:06.776
+00:01:00.083 --> 00:01:02.301
 with shoulders where the diameter steps.
 
 16
-00:01:07.326 --> 00:01:09.091
+00:01:03.053 --> 00:01:04.551
 That takes 6 minutes.
 
 17
-00:01:09.991 --> 00:01:16.461
+00:01:05.563 --> 00:01:11.380
 On the 35 millimetre bearing seat, 0.2 millimetres is left on on purpose.
 
 18
-00:01:17.010 --> 00:01:19.309
+00:01:12.068 --> 00:01:14.170
 That only comes off in grinding.
 
 19
-00:01:20.509 --> 00:01:22.994
+00:01:15.525 --> 00:01:17.754
 No machine makes a size exactly.
 
 20
-00:01:23.544 --> 00:01:27.642
+00:01:18.410 --> 00:01:22.462
 So the drawing gives a tolerance: how far a size may deviate.
 
 21
-00:01:28.542 --> 00:01:33.792
+00:01:23.508 --> 00:01:28.141
 Turning holds about 0.02 millimetres, plus or minus.
 
 22
-00:01:34.342 --> 00:01:41.122
+00:01:28.818 --> 00:01:35.320
 So this 50 millimetre shoulder may come out between 49.98 and 50.02.
 
 23
-00:01:42.322 --> 00:01:46.353
+00:01:36.659 --> 00:01:39.991
 Step three: the machining centre, for what is not round.
 
 24
-00:01:46.903 --> 00:01:49.004
+00:01:40.789 --> 00:01:42.507
 Here it is the other way round.
 
 25
-00:01:49.555 --> 00:01:51.958
+00:01:43.277 --> 00:01:45.297
 In milling the tool spins: the cutter.
 
 26
-00:01:52.858 --> 00:01:56.842
+00:01:46.308 --> 00:01:49.663
 The part is clamped on the table, and moves under the cutter.
 
 27
-00:01:57.393 --> 00:02:01.471
+00:01:50.361 --> 00:01:53.972
 That is how you make flat faces, slots and recesses.
 
 28
-00:02:02.371 --> 00:02:07.703
+00:01:54.986 --> 00:01:59.769
 Here it mills a keyway: a slot 10 millimetres wide, in 3 minutes.
 
 29
-00:02:08.603 --> 00:02:11.949
+00:02:00.782 --> 00:02:03.557
 A key, a small steel block, sits in it.
 
 30
-00:02:12.499 --> 00:02:14.902
+00:02:04.295 --> 00:02:06.466
 That way a gear turns with the shaft.
 
 31
-00:02:16.102 --> 00:02:20.296
+00:02:07.810 --> 00:02:11.467
 Drilling is mostly done on the same machine, with a spinning drill.
 
 32
-00:02:20.846 --> 00:02:26.024
+00:02:12.188 --> 00:02:17.064
 A drilled hole comes out a little big: a few hundredths to a tenth of a millimetre.
 
 33
-00:02:26.924 --> 00:02:30.862
+00:02:18.104 --> 00:02:21.448
 If the hole must be exact, you drill slightly small.
 
 34
-00:02:31.412 --> 00:02:36.695
+00:02:22.165 --> 00:02:27.076
 A reamer then takes off the last 0.1 to 0.3 millimetres.
 
 35
-00:02:37.895 --> 00:02:41.506
+00:02:28.413 --> 00:02:31.780
 Step four: 3 days at an outside heat treater.
 
 36
-00:02:42.056 --> 00:02:45.890
+00:02:32.495 --> 00:02:35.711
 It heats the steel, and then cools it very fast.
 
 37
-00:02:46.790 --> 00:02:51.379
+00:02:36.802 --> 00:02:40.842
 Hard steel wears much less, and that is what you want under a bearing.
 
 38
-00:02:51.929 --> 00:02:54.460
+00:02:41.539 --> 00:02:43.896
 But hardening warps the shaft slightly.
 
 39
-00:02:55.010 --> 00:02:57.425
+00:02:44.561 --> 00:02:46.674
 So the final size comes after.
 
 40
-00:02:58.625 --> 00:03:01.191
+00:02:47.980 --> 00:02:50.267
 Step five: the cylindrical grinder.
 
 41
-00:03:01.741 --> 00:03:06.550
+00:02:50.964 --> 00:02:55.109
 The shaft turns between two centres, against a fast-spinning wheel.
 
 42
-00:03:07.450 --> 00:03:12.886
+00:02:56.145 --> 00:03:00.847
 In grinding hard grains take off tiny amounts, like fine sandpaper.
 
 43
-00:03:13.436 --> 00:03:18.675
+00:03:01.544 --> 00:03:06.212
 That works on hardened steel too, where ordinary tools soon wear out.
 
 44
-00:03:19.575 --> 00:03:24.814
+00:03:07.262 --> 00:03:11.882
 That is how the last 0.2 millimetres comes off, in 4 minutes.
 
 45
-00:03:25.364 --> 00:03:31.808
+00:03:12.580 --> 00:03:18.768
 Grinding holds 0.005 millimetres or better: four times tighter than turning.
 
 46
-00:03:32.708 --> 00:03:38.248
+00:03:19.759 --> 00:03:24.658
 That is needed, because the bearing seat allows only 16 micrometres.
 
 47
-00:03:38.799 --> 00:03:43.584
+00:03:25.330 --> 00:03:29.510
 But grinding is slow, so you grind only where the drawing demands it.
 
 48
-00:03:44.784 --> 00:03:46.909
+00:03:30.902 --> 00:03:32.806
 Look again at the finished shaft.
 
 49
-00:03:47.459 --> 00:03:49.793
+00:03:33.550 --> 00:03:35.524
 The round parts come from the lathe,
 
 50
-00:03:50.693 --> 00:03:54.457
+00:03:36.556 --> 00:03:39.760
 the keyway from the cutter, the hole from drill and reamer,
 
 51
-00:03:55.357 --> 00:03:57.691
+00:03:40.806 --> 00:03:42.896
 and the bearing seat from the grinder.
 
 52
-00:03:58.591 --> 00:04:01.447
+00:03:43.905 --> 00:03:46.633
 All the cutting together takes 14 minutes.
 
 53
-00:04:01.997 --> 00:04:06.188
+00:03:47.333 --> 00:03:51.222
 But from start to finish it takes about 6 days: mostly hardening,
 
 54
-00:04:06.388 --> 00:04:07.932
+00:03:51.362 --> 00:03:52.744
 transport and waiting.
 
 55
-00:04:08.482 --> 00:04:11.501
+00:03:53.452 --> 00:03:56.122
 The routing shows where the time really goes.

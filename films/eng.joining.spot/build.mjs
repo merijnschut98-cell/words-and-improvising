@@ -450,7 +450,7 @@ const SAY = [
       en: 'In a {t:Peel test|peel test} you pull two welded strips apart, and a good weld tears out as a round plug: the {t:Button|button}.' },
     { nl: 'Meet de grootste en de kleinste diameter: {n:5.6} en {n:5.2}, gemiddeld {n:5.4}. De eis is vaak vier keer de wortel uit de dunste plaat, soms vijf keer: bij {n:1.5} millimeter {n:4.9}. Dit punt is goed.',
       en: 'Measure the largest and the smallest diameter: {n:5.6} and {n:5.2}, an average of {n:5.4}. The requirement is often four times the square root of the thinnest sheet, sometimes five: at {n:1.5} millimetres, {n:4.9}. This weld passes.' },
-    { nl: 'Breekt het punt door het lasvlak, zonder knoop, dan is dat {t:Grensvlakbreuk|grensvlakbreuk}. In zacht staal: afkeur.',
+    { nl: 'Breekt het punt zonder knoop door het lasvlak, dan is dat {t:Grensvlakbreuk|grensvlakbreuk}. In zacht staal: afkeur.',
       en: 'If the weld breaks through the weld plane, without a button, that is {t:Interfacial fracture|interfacial fracture}. In mild steel: a reject.' },
     { nl: 'De {t:Beiteltest|beiteltest} drijft een wig tussen de platen, vaak maar tot een vaste spleet, zodat het deel heel blijft. De meeste punten meet je ultrasoon: bij een plakpunt kaatst het geluid terug na de bovenste plaat.',
       en: 'The {t:Chisel test|chisel test} drives a wedge between the sheets, often only to a set gap, so the part stays usable. Most welds are checked by ultrasound: on a stick weld the sound bounces back after the top sheet.' },

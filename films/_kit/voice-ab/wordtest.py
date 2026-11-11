@@ -37,6 +37,10 @@ TESTS = {
     'millimeter': "Een as van 60 millimeter heeft een omtrek van zo'n 188,5 millimeter.",
     'terwijl': 'Terwijl de as draait, schuift de beitel erlangs.',
     'omwenteling': 'De voeding is hoe ver hij per omwenteling opschuift: hier 0,3 millimeter.',
+    # bolting film (2026-11-09 re-render): espeak-ng reads newton as "nɛʋtˈɔn"
+    'newton': 'Tweehonderd newton op een sleutel van vijfentwintig centimeter lang.',
+    'newtonmeter': 'Het ligt normaal dicht bij het ingestelde moment, hier vijftig newtonmeter.',
+    'kilonewton': 'Rond zevenendertig kilonewton gaat hij vloeien.',
 }
 TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:

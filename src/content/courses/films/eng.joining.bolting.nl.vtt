@@ -1,0 +1,381 @@
+WEBVTT
+
+1
+00:00:00.848 --> 00:00:05.062
+Een boutverbinding, opengezaagd: een bout door twee stalen platen,
+
+2
+00:00:05.364 --> 00:00:08.533
+met een moer eronder, en sluitringen die de druk spreiden.
+
+3
+00:00:09.584 --> 00:00:12.892
+Draai je de moer aan, dan rekt de bout een fractie van een millimeter.
+
+4
+00:00:13.565 --> 00:00:16.154
+Als een stijve veer knijpt hij de platen dan op elkaar.
+
+5
+00:00:17.160 --> 00:00:18.727
+Die klemkracht heet de voorspanning (preload).
+
+6
+00:00:19.430 --> 00:00:21.972
+Zij houdt de verbinding bij elkaar, niet het moment.
+
+7
+00:00:22.681 --> 00:00:25.862
+Is ze groot genoeg, dan schuift er niets en blijft de moer zitten.
+
+8
+00:00:27.119 --> 00:00:30.196
+M10 maal 1,5 is een draad van 10 millimeter dik,
+
+9
+00:00:30.474 --> 00:00:32.459
+met een spoed (pitch) van 1,5 millimeter.
+
+10
+00:00:33.153 --> 00:00:35.220
+Zoveel schuift de moer op per omwenteling.
+
+11
+00:00:36.220 --> 00:00:41.061
+Op de kop staat de sterkteklasse (property class), volgens ISO 898, deel 1.
+
+12
+00:00:41.716 --> 00:00:46.917
+Het eerste getal maal honderd is de treksterkte: bij acht punt acht 800 megapascal.
+
+13
+00:00:47.642 --> 00:00:48.524
+Daar breekt de bout.
+
+14
+00:00:49.478 --> 00:00:53.329
+Het tweede getal geeft de vloeigrens (yield strength): tachtig procent daarvan,
+
+15
+00:00:53.643 --> 00:00:55.419
+640 megapascal.
+
+16
+00:00:56.133 --> 00:00:58.014
+Daarboven rekt de bout blijvend uit.
+
+17
+00:00:59.060 --> 00:01:03.251
+Bij tien punt negen is dat duizend en 900: die mag veel strakker.
+
+18
+00:01:03.967 --> 00:01:06.579
+Ook de moer heeft een klasse, die bij de bout moet passen.
+
+19
+00:01:07.864 --> 00:01:10.337
+Een bout breekt in de draad, waar minder staal zit.
+
+20
+00:01:11.130 --> 00:01:16.622
+Daarom telt de spanningsdoorsnede (stress area): voor M12 84,3 vierkante millimeter.
+
+21
+00:01:17.581 --> 00:01:19.334
+Kracht is spanning maal doorsnede:
+
+22
+00:01:19.625 --> 00:01:23.468
+een M12 in acht punt acht vloeit bij zo’n 54 kilonewton,
+
+23
+00:01:23.897 --> 00:01:26.103
+in tien punt negen pas bij 76.
+
+24
+00:01:26.823 --> 00:01:31.699
+Een verwisselde acht punt acht vloeit dus al bij 71 procent van die 76.
+
+25
+00:01:32.727 --> 00:01:34.933
+Tegen loslopen helpt vooral voorspanning,
+
+26
+00:01:35.223 --> 00:01:38.636
+en daarbij schroefdraadborging (thread locking): lijm die in de draad uithardt.
+
+27
+00:01:39.352 --> 00:01:41.442
+Een veerring helpt in trillingsproeven niet.
+
+28
+00:01:42.750 --> 00:01:45.211
+In de fabriek draait een schroefspindel (nutrunner) de bout aan:
+
+29
+00:01:45.525 --> 00:01:46.883
+hij regelt moment en hoek,
+
+30
+00:01:47.255 --> 00:01:48.625
+en legt ze per bout vast.
+
+31
+00:01:49.628 --> 00:01:51.265
+Het aanhaalmoment (torque) is kracht maal arm.
+
+32
+00:01:51.976 --> 00:01:56.910
+200 newton op een sleutel van 25 centimeter is 50 newtonmeter.
+
+33
+00:01:57.881 --> 00:02:01.039
+Zo’n 49 newtonmeter rekt een M10 in acht punt
+
+34
+00:02:01.120 --> 00:02:04.174
+acht tot ongeveer 25 kilonewton voorspanning.
+
+35
+00:02:04.851 --> 00:02:06.952
+Dat is het gewicht van 2,5 ton.
+
+36
+00:02:07.686 --> 00:02:10.043
+Rond 37 kilonewton gaat hij vloeien.
+
+37
+00:02:11.314 --> 00:02:13.276
+Maar het moment is een indirecte maat.
+
+38
+00:02:14.038 --> 00:02:18.357
+Grofweg de helft gaat op aan wrijving onder de kop, zo’n 40 procent in de draad,
+
+39
+00:02:18.671 --> 00:02:20.134
+en maar 10 procent rekt de bout.
+
+40
+00:02:21.156 --> 00:02:24.906
+Olie, coating, vuil of roest veranderen de wrijving:
+
+41
+00:02:25.243 --> 00:02:29.643
+hetzelfde moment geeft dan 25 tot 30 procent meer of minder voorspanning.
+
+42
+00:02:30.347 --> 00:02:34.353
+Een geoliede bout, aangedraaid op het droge moment, kan zelfs vloeien.
+
+43
+00:02:35.633 --> 00:02:37.108
+Nauwkeuriger is moment-hoek (torque-angle):
+
+44
+00:02:37.526 --> 00:02:39.650
+een laag moment trekt de delen tegen elkaar,
+
+45
+00:02:39.952 --> 00:02:41.636
+dan draait de moer een vaste hoek verder.
+
+46
+00:02:42.396 --> 00:02:43.754
+Die hoek is een maat voor de rek.
+
+47
+00:02:44.776 --> 00:02:46.483
+Een audit meet het losbreekmoment (breakaway torque):
+
+48
+00:02:46.761 --> 00:02:49.327
+het moment waarop een vaste bout weer gaat draaien.
+
+49
+00:02:49.995 --> 00:02:53.896
+Dat ligt normaal dicht bij het ingestelde moment, hier 50 newtonmeter,
+
+50
+00:02:54.163 --> 00:02:55.405
+plus of min 10 procent.
+
+51
+00:02:56.162 --> 00:03:02.443
+Gemeten: 53, 52, 31, 54 en 52.
+
+52
+00:03:03.241 --> 00:03:04.483
+Die 31 klopt niet.
+
+53
+00:03:05.513 --> 00:03:08.508
+Eén bout was twee keer gedraaid, de vierde op gevoel.
+
+54
+00:03:09.214 --> 00:03:11.699
+Met positiebewaking telt elke bout één keer.
+
+55
+00:03:12.387 --> 00:03:14.767
+Een verfstreep laat zien of een bout nog draaide.
+
+56
+00:03:15.764 --> 00:03:19.549
+En zetting (settling): ruwe vlakken of verf onder de kop worden platgedrukt,
+
+57
+00:03:19.862 --> 00:03:21.151
+en voorspanning verdwijnt.
+
+58
+00:03:21.898 --> 00:03:23.640
+Een langere bout verliest dan minder.
+
+59
+00:03:24.969 --> 00:03:30.481
+VDI 2230, de Duitse richtlijn, rekent een boutverbinding stap voor stap door.
+
+60
+00:03:31.437 --> 00:03:33.562
+Zij vangt de spreiding in de aanhaalfactor (tightening factor):
+
+61
+00:03:33.864 --> 00:03:36.035
+hoogste gedeeld door laagste voorspanning.
+
+62
+00:03:36.747 --> 00:03:41.124
+Op moment, met gemeten wrijving: 1,4 tot 1,6.
+
+63
+00:03:42.128 --> 00:03:45.332
+Want de wrijvingscoëfficiënt (coefficient of friction), mu, telt het meest.
+
+64
+00:03:46.054 --> 00:03:49.212
+Is die alleen geschat, dan wordt de factor 1,6 tot 2,0.
+
+65
+00:03:49.898 --> 00:03:54.693
+Meet hem dus op de echte bouten, volgens ISO 16047.
+
+66
+00:03:55.730 --> 00:03:59.979
+Een flens vraagt minstens 30 kilonewton, en de bout mag hoogstens 50.
+
+67
+00:04:00.694 --> 00:04:05.477
+Geschat, maal 1,8, wordt de hoogste 54: te veel.
+
+68
+00:04:06.223 --> 00:04:10.485
+Gemeten, maal 1,4, is het 42: dat past.
+
+69
+00:04:11.774 --> 00:04:16.674
+Moment-hoek haalt een factor 1,2 tot 1,4, vaak tot voorbij de vloeigrens.
+
+70
+00:04:17.433 --> 00:04:21.507
+Zo’n bout, denk aan een cilinderkopbout, gebruik je meestal niet opnieuw.
+
+71
+00:04:22.530 --> 00:04:24.248
+Bij vloeigrensgestuurd aandraaien (yield-controlled tightening)
+
+72
+00:04:24.271 --> 00:04:25.746
+meet de spindel moment en hoek,
+
+73
+00:04:26.129 --> 00:04:28.056
+en stopt zodra de curve afbuigt.
+
+74
+00:04:29.052 --> 00:04:31.014
+Het nauwkeurigst is de boutrek (bolt elongation) meten:
+
+75
+00:04:31.234 --> 00:04:33.626
+ultrasoon geluid meet hoeveel langer de bout wordt.
+
+76
+00:04:34.421 --> 00:04:37.126
+Duur en traag, dus voor kritische verbindingen.
+
+77
+00:04:38.454 --> 00:04:41.670
+De verspanningsdriehoek (joint diagram) tekent bout en platen als twee veren:
+
+78
+00:04:41.983 --> 00:04:43.470
+steil voor de stijve platen,
+
+79
+00:04:43.655 --> 00:04:44.700
+vlakker voor de bout.
+
+80
+00:04:45.746 --> 00:04:48.091
+Trekt er van buiten 10 kilonewton aan,
+
+81
+00:04:48.323 --> 00:04:50.935
+dan krijgt de bout maar een deel: de krachtfactor (load factor).
+
+82
+00:04:51.652 --> 00:04:53.753
+Bij 0,2 is dat 2 kilonewton.
+
+83
+00:04:54.729 --> 00:04:56.575
+De andere 8 haalt klemkracht weg.
+
+84
+00:04:57.306 --> 00:04:58.571
+Van de laagste voorspanning,
+
+85
+00:04:58.920 --> 00:05:04.864
+18,75 kilonewton, blijft 10,75 over: de restklemkracht (residual clamp load).
+
+86
+00:05:05.641 --> 00:05:09.507
+Die moet boven nul blijven, anders krijgt de bout de volle wisselende kracht.
+
+87
+00:05:10.549 --> 00:05:14.472
+Bouten breken bijna altijd door vermoeiing, in de eerste draadgang onder de moer.
+
+88
+00:05:15.151 --> 00:05:16.904
+Daar telt de spanningsamplitude (stress amplitude),
+
+89
+00:05:17.287 --> 00:05:22.697
+de halve slag van de wisselende spanning: 1 kilonewton op 58 vierkante millimeter,
+
+90
+00:05:22.883 --> 00:05:24.218
+17 megapascal.
+
+91
+00:05:24.870 --> 00:05:26.728
+De draad verdraagt er zo’n 50.
+
+92
+00:05:27.725 --> 00:05:29.768
+Een sterkere klasse helpt daar nauwelijks.
+
+93
+00:05:30.467 --> 00:05:32.557
+Een slanke bout met een grote klemlengte (clamp length),
+
+94
+00:05:32.882 --> 00:05:36.935
+de dikte die hij samenklemt, wel: hij krijgt minder wisselende kracht,
+
+95
+00:05:37.271 --> 00:05:38.873
+en verliest minder door zetting.

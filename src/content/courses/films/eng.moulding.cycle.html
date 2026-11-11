@@ -329,12 +329,56 @@ const SAY = {
     // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
     [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
     // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
-    [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')]],
+    [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')],
+    // DOE (design of experiments) as letters in both languages, not the Dutch verb "doe" or the English "doe"
+    [/\bDOE\b/g, 'D O E'],
+    // PFMEA as letters (espeak-ng says "pfmeea" in Dutch and drops the A in English)
+    [/\bPFMEA\b/g, 'P F M E A'],
+    // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
+    [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
+    // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
+    // nothing: espeak-ng already spells it in CE-markering
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
+    // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
+    [/\bCILT\b/g, 'C I L T'],
+    // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")
+    [/\b([Pp])ayload/g, '$1ee-lood'], [/\b([Tt])each pendant\b/g, '$1ietsj pendant'], [/\btooling\b/g, 'toeling'], [/\b([Vv])ision\b/g, '$1izjun'],
+    // espeak-ng reads "miksed-model", "heijunka" with the u of "bus", and drops the pr of "robotprogramma's"
+    [/\b([Mm])ixed-model\b/g, '$1ikst moddul'], [/\b([Hh])eijunka/g, '$1eijoenka'], [/\b([Rr])obotprogramma/g, '$1obot-programma'],
+    // the machine states and the Pareto chart (espeak-ng reads "star-vet", "blok-ket", and stresses "PA-re-to-diagram")
+    [/\b([Ss])tarved\b/g, '$1taarft'], [/\b([Bb])locked\b/g, '$1lokt'], [/\b([Pp])aretodiagram/g, '$1areto-diagram'],
+    // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
+    // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
+    [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
+    // ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
+    [/\bISO 2768\b/g, 'ISO 27 68'],
+    // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
+    [/\b([Bb])èta\b/g, '$1eeta'],
+    // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
+    // keeps its own stress and vowels (HOOFD-SCHAkelaar, VEILigheids-REgels)
+    [/\b([Hh])oofdschakelaar/g, '$1oofd-schakelaar'], [/\b([Vv])eiligheidsregels\b/g, '$1eiligheids-regels'],
+    // the motor efficiency classes as letters (espeak-ng reads "IE3" with the vowel of "die": "ie drie"), and
+    // typeplaatje, isolatieklasse and draaistroom with their parts apart (espeak-ng reads "tipɛplaatje", stresses
+    // "Isolatieklasse" with a t for ts, and "draaiSTROOM"; split, each part keeps its own reading)
+    [/\bIE([1-5])\b/g, 'I-E $1'], [/\b([Tt])ypeplaatje/g, '$1iepe-plaatje'], [/\b([Ii])solatieklasse/g, '$1solatie-klasse'],
+    [/\b([Dd])raaistroom/g, '$1raai-stroom'],
+    // steel grades with the letter said as "es" (espeak-ng gives a bare hiss for the S in S235; capital at a
+    // sentence start, so the sentence still ends before it), and compounds espeak-ng stresses at the end
+    // (kerfslagPROEF, Elasticiteitsmodulus): split at the head
+    [/(^|[.!?]\s+)S(235|275|355)\b/g, '$1Es $2'], [/\bS(235|275|355)\b/g, 'es $1'],
+    [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus'],
+    // trekproef the same way (espeak-ng stresses trekPROEF): TREK-proef
+    [/\b([Tt])rekproef/g, '$1rek-proef']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
     [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
-    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one']],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one'],
+    [/\bDOE\b/g, 'D O E'], [/\bPFMEA\b/g, 'P F M E A'],
+    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68'],
+    // CILT as letters here too: espeak-ng's English reads it as the word "silt"
+    [/\bCILT\b/g, 'C I L T']],
 };
 const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -346,11 +390,14 @@ const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('
 // length of each beat's recorded line (s). Each scene opens with a short look
 // before the first line (the film itself with a longer lead), lines follow with
 // a breath in between, and a scene holds a moment after its last line.
-// The pauses of the narration, all in one place (seconds). Each phrase (up to
-// a comma) and sentence is recorded as its own clip (films/_kit/narrate.mjs):
-// comma after a phrase, sentence after a full stop, beat between two lines.
-const PAUSES = { comma: 0.2, sentence: 0.55, beat: 0.9 };
-const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: 0.8, tail: 1.6 };
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
 function audioTimeline(durs, gaps = AUDIO_GAPS) {
   const g = { ...AUDIO_GAPS, ...gaps };
   const scenes = [];

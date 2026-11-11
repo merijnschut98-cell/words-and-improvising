@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:01.949
+Two steel plates,
+
+2
+00:00:02.100 --> 00:00:06.233
+welded together: the weld melts their edges into one piece of steel.
+
+3
+00:00:07.244 --> 00:00:11.320
+In the section: the weld metal, and beside it the heat-affected zone,
+
+4
+00:00:11.447 --> 00:00:13.665
+steel that got hot but did not melt.
+
+5
+00:00:14.724 --> 00:00:18.288
+A weld can look perfect outside and be wrong inside.
+
+6
+00:00:19.000 --> 00:00:20.614
+So every weld is checked.
+
+7
+00:00:21.946 --> 00:00:24.651
+First porosity: gas bubbles in the weld,
+
+8
+00:00:24.802 --> 00:00:27.948
+usually because a draught blew the shielding gas away.
+
+9
+00:00:28.620 --> 00:00:32.266
+A few small pores are often allowed; a whole row is not.
+
+10
+00:00:33.342 --> 00:00:38.056
+Most feared is lack of fusion: the weld metal lies against the side wall,
+
+11
+00:00:38.137 --> 00:00:39.623
+but never melted into it.
+
+12
+00:00:40.379 --> 00:00:45.290
+Outside you see nothing, and under changing loads the gap grows into a crack.
+
+13
+00:00:46.024 --> 00:00:48.799
+The cause: too little heat, or too much speed.
+
+14
+00:00:49.865 --> 00:00:52.651
+A hydrogen crack comes hours after welding,
+
+15
+00:00:52.790 --> 00:00:56.633
+in the hard steel beside the weld; moisture brings the hydrogen in.
+
+16
+00:00:57.322 --> 00:00:58.808
+A crack is never allowed.
+
+17
+00:00:59.900 --> 00:01:04.509
+And distortion: the weld shrinks as it cools and pulls the plates out of line.
+
+18
+00:01:05.185 --> 00:01:08.680
+Clamps, pre-setting and a balanced welding sequence help.
+
+19
+00:01:10.042 --> 00:01:13.793
+Dry wire and preheating, to 100 degrees for example,
+
+20
+00:01:13.909 --> 00:01:18.494
+fight hydrogen: the weld cools more slowly, and the hydrogen escapes.
+
+21
+00:01:19.202 --> 00:01:23.602
+On thick welds the final check often waits 16 to 48 hours.
+
+22
+00:01:24.626 --> 00:01:26.205
+How big may a defect be?
+
+23
+00:01:26.916 --> 00:01:29.389
+ISO 5817 says.
+
+24
+00:01:30.124 --> 00:01:31.703
+Level B is the strictest,
+
+25
+00:01:31.865 --> 00:01:36.753
+for cranes and pressure parts; C is normal structural work, D light work.
+
+26
+00:01:37.803 --> 00:01:41.344
+A boom, with lack of fusion in three of its forty welds.
+
+27
+00:01:42.081 --> 00:01:45.077
+The procedure said 300 millimetres per minute;
+
+28
+00:01:45.297 --> 00:01:49.581
+they welded at 405: 35 percent too fast.
+
+29
+00:01:50.647 --> 00:01:52.841
+That is 26 percent less heat.
+
+30
+00:01:53.576 --> 00:01:58.707
+Each repair takes about three and a half hours: gouge out, reweld, retest.
+
+31
+00:02:00.073 --> 00:02:04.009
+Checking without breaking is called NDT: non-destructive testing.
+
+32
+00:02:04.729 --> 00:02:09.082
+It starts with looking: weld size, undercut, pores and cracks.
+
+33
+00:02:10.069 --> 00:02:12.089
+A fine crack is often invisible.
+
+34
+00:02:12.802 --> 00:02:16.053
+In dye penetrant testing a red liquid seeps into it.
+
+35
+00:02:17.139 --> 00:02:22.271
+Wipe it off, spray on white developer, which draws the liquid back out: a red line.
+
+36
+00:02:22.999 --> 00:02:25.751
+Quick and cheap, but only at the surface.
+
+37
+00:02:27.074 --> 00:02:32.078
+For flaws inside there is ultrasonic testing: a probe sends sound pulses in,
+
+38
+00:02:32.264 --> 00:02:35.550
+and a flat flaw like lack of fusion bounces them back.
+
+39
+00:02:36.245 --> 00:02:40.146
+X-ray sees round pores better, but often misses flat flaws,
+
+40
+00:02:40.308 --> 00:02:42.305
+and everyone must leave the area.
+
+41
+00:02:43.330 --> 00:02:48.891
+With spot welds, breaking parts works too: tear open one part per robot per shift,
+
+42
+00:02:49.077 --> 00:02:53.395
+and measure all 32 welds, at least 4.4 millimetres.
+
+43
+00:02:54.104 --> 00:02:58.562
+With 12 robots, three shifts and 140 euros a part,
+
+44
+00:02:58.759 --> 00:03:01.836
+that costs five thousand and forty euros a day.
+
+45
+00:03:02.804 --> 00:03:06.194
+The WPS, the welding procedure specification,
+
+46
+00:03:06.310 --> 00:03:11.221
+is the recipe at the workstation; the WPQR, the qualification record,
+
+47
+00:03:11.372 --> 00:03:13.647
+proves with a tested piece that it works.
+
+48
+00:03:14.952 --> 00:03:19.898
+An angle probe beside the weld sends the sound in at a slant, often at 45,
+
+49
+00:03:20.049 --> 00:03:21.883
+60 or 70 degrees.
+
+50
+00:03:22.595 --> 00:03:26.531
+Here the 60 degree beam meets the flawed side wall square on:
+
+51
+00:03:26.774 --> 00:03:28.609
+the echo comes straight back.
+
+52
+00:03:29.690 --> 00:03:34.915
+On the A-scan each peak is an echo: the further right, the longer the sound path.
+
+53
+00:03:35.612 --> 00:03:38.677
+The operator compares its height with a reference block,
+
+54
+00:03:38.863 --> 00:03:40.453
+and measures the flaw’s length.
+
+55
+00:03:41.748 --> 00:03:44.848
+The designer or customer sets the level on the drawing.
+
+56
+00:03:45.566 --> 00:03:49.293
+In structural steel the execution class gives a default,
+
+57
+00:03:49.432 --> 00:03:53.577
+from EXC1 for light work to EXC4 for bridges.
+
+58
+00:03:54.306 --> 00:04:00.263
+Usually EXC1 means D, EXC2 C, and EXC3 B.
+
+59
+00:04:01.236 --> 00:04:05.044
+A hall in EXC2 has 160 butt welds,
+
+60
+00:04:05.242 --> 00:04:09.991
+and the specification asks for 10 percent ultrasonic: 16 welds.
+
+61
+00:04:11.011 --> 00:04:13.252
+Magnetic particle testing is quick,
+
+62
+00:04:13.438 --> 00:04:19.173
+on fillet welds too: a yoke magnetises the steel, and iron powder gathers at cracks,
+
+63
+00:04:19.417 --> 00:04:21.112
+even just below the surface.
+
+64
+00:04:21.827 --> 00:04:26.238
+It only works on magnetic steel; for stainless, use penetrant.
+
+65
+00:04:27.326 --> 00:04:32.934
+Whoever tests is certified to ISO 9712: level 1 works supervised,
+
+66
+00:04:33.131 --> 00:04:37.137
+level 2 tests and assesses, level 3 writes the procedures.
+
+67
+00:04:37.838 --> 00:04:40.543
+A test before the waiting time does not count.
+
+68
+00:04:41.933 --> 00:04:46.101
+A manager watches the repair rate: metres repaired over metres tested.
+
+69
+00:04:46.844 --> 00:04:51.697
+Two thousand four hundred tested, 62 repaired: 2.6 percent.
+
+70
+00:04:52.773 --> 00:04:59.739
+Record every defect with a code from ISO 6520-1, such as 401 for lack of fusion,
+
+71
+00:04:59.843 --> 00:05:01.910
+plus welder, position and shift.
+
+72
+00:05:02.658 --> 00:05:04.016
+Put that in a Pareto.
+
+73
+00:05:05.009 --> 00:05:09.281
+41 metres of lack of fusion, 12 of undercut, 9 of pores.
+
+74
+00:05:10.066 --> 00:05:15.081
+And 33 of those 41 metres were vertical-up, across all welders.
+
+75
+00:05:15.788 --> 00:05:21.198
+The defect follows the position, not the person: check the technique and WPS there.
+
+76
+00:05:22.522 --> 00:05:26.887
+After welding, residual stress stays behind: the weld wants to shrink,
+
+77
+00:05:27.050 --> 00:05:29.268
+and the cold steel holds it back.
+
+78
+00:05:30.048 --> 00:05:32.614
+Machine it later, and the part warps.
+
+79
+00:05:33.620 --> 00:05:38.798
+So first, stress relieving: heat slowly in a furnace, hold, and cool slowly.
+
+80
+00:05:39.828 --> 00:05:43.509
+And the silent cost: overwelding, welding bigger than asked.
+
+81
+00:05:44.286 --> 00:05:46.724
+Weld metal grows with the square of the throat:
+
+82
+00:05:46.887 --> 00:05:51.357
+throat 5 instead of 4 costs 56 percent more wire and time,
+
+83
+00:05:51.577 --> 00:05:52.761
+and adds distortion.

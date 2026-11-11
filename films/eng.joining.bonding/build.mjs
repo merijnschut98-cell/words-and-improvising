@@ -326,7 +326,7 @@ const SAY = [
       en: 'A corner of a battery tray: aluminium extrusions on steel crossmembers. Welding is out here.' },
     { nl: 'Aluminium smelt rond {n:660} graden, staal pas rond {n:1500}, en waar ze mengen ontstaan brosse kristallen. Daarom verbinden we ze koud: lijmen, klinken of clinchen.',
       en: 'Aluminium melts at about {n:660} degrees, steel only at about {n:1500}, and where they mix, brittle crystals form. So we join them cold: bonding, riveting or clinching.' },
-    { nl: 'Deze bak heeft {n:14} meter {t:Constructielijm|constructielijm}, dragende lijm, en {n:96} klinknagels om de {n:30} millimeter. De lijm draagt over het hele vlak, dempt trillingen en dicht af. De nagels houden alles vast terwijl hij in de oven uithardt.',
+    { nl: 'Deze bak heeft {n:14} meter dragende {t:Constructielijm|constructielijm} en {n:96} klinknagels om de {n:30} millimeter. De lijm draagt over het hele vlak, dempt trillingen en dicht af. De nagels houden alles vast terwijl hij in de oven uithardt.',
       en: 'This tray has {n:14} metres of {t:Structural adhesive|structural adhesive} and {n:96} rivets every {n:30} millimetres. The adhesive carries the load over the whole surface, damps vibration and seals. The rivets hold everything while it cures in the oven.' },
   ],
   [ // s2 shear or peel
@@ -334,7 +334,7 @@ const SAY = [
       en: 'There are three main families: epoxy is stiff and strong, polyurethane tougher, and acrylic cures fast. Superglue and MS polymer are usually not structural.' },
     { nl: 'Lijm is sterk op {t:Afschuiving|afschuiving}: de delen schuiven langs elkaar, en het hele lijmvlak draagt mee.',
       en: 'Adhesive is strong in {t:Shear|shear}: the parts slide along each other, and the whole bond area carries the load.' },
-    { nl: 'Een overlap van {n:25} bij {n:20} millimeter is {n:500} vierkante millimeter. Bij {n:20} megapascal draagt die zo’n {n:10} kilonewton: het gewicht van duizend kilo, op een postzegel lijm.',
+    { nl: 'Een overlap van {n:25} bij {n:20} millimeter is {n:500} vierkante millimeter. Bij {n:20} megapascal draagt die zo’n {n:10} kilonewton. Dat is het gewicht van duizend kilo op een postzegel lijm.',
       en: 'An overlap of {n:25} by {n:20} millimetres is {n:500} square millimetres. At {n:20} megapascals it carries about {n:10} kilonewtons: the weight of a tonne, on a postage stamp of glue.' },
     { nl: 'Maar lijm is zwak op {t:Afpellen|afpellen}: trek je één rand open, zoals een sticker, dan draagt een dun lijntje alle kracht.',
       en: 'But adhesive is weak in {t:Peel|peel}: pull one edge open, like a sticker, and a thin line carries all the force.' },
@@ -366,7 +366,7 @@ const SAY = [
       en: 'After a pull test, look at the fracture. Adhesive on both parts is {t:Cohesive failure|cohesive failure}: the adhesive itself broke, the bond was good. One bare side is adhesive failure: nearly always dirt or poor preparation.' },
   ],
   [ // s6 blind rivets and the cross-section
-    { nl: 'Kun je maar bij één kant, dan neem je een {t:Blindklinknagel|blindklinknagel}: een holle nagel met een doorn. Het gereedschap trekt de doorn terug, de achterkant stuikt op tot een kraag, en bij een vaste kracht breekt de doorn af.',
+    { nl: 'Kun je maar bij één kant, dan neem je een {t:Blindklinknagel|blindklinknagel}. Dat is een holle nagel met een doorn. Het gereedschap trekt de doorn terug, de achterkant stuikt op tot een kraag, en bij een vaste kracht breekt de doorn af.',
       en: 'If you can only reach one side, you use a {t:Blind rivet|blind rivet}: a hollow rivet with a mandrel. The tool pulls the mandrel back, the far end bulges into a collar, and at a set force the mandrel snaps.' },
     { nl: 'In een doorgezaagde zelfponsende nagel meet je de {t:Kophoogte|kophoogte}, hoe ver de kop boven of onder de plaat staat, en de {t:Insluiting|insluiting}, hoe ver de poot in de onderste plaat haakt: die bepaalt vooral de sterkte.',
       en: 'In a self-piercing rivet sawn open you measure the {t:Head height|head height}, how far the head sits above or below the sheet, and the {t:Interlock|interlock}, how far the leg hooks into the bottom sheet: that mainly decides the strength.' },
@@ -382,7 +382,7 @@ const SAY = [
       en: 'With clinching you also measure the {t:Bottom thickness|bottom thickness}: how thin the button is pressed at the bottom.' },
   ],
   [ // s8 choosing a joint
-    { nl: 'Bij een {t:Multimateriaalontwerp|multimateriaalontwerp} vraag je eerst: raken twee metalen elkaar, en komt er water bij? Dan vormen ze een batterij, en het minst edele metaal lost op: {t:Galvanische corrosie|galvanische corrosie}.',
+    { nl: 'Bij een {t:Multimateriaalontwerp|multimateriaalontwerp} vraag je eerst: raken twee metalen elkaar en komt er water bij? Dan vormen ze een batterij, en het minst edele metaal lost op: {t:Galvanische corrosie|galvanische corrosie}.',
       en: 'In {t:Multi-material design|multi-material design} you first ask: do two metals touch, and does water get in? Then they form a battery, and the less noble metal dissolves: {t:Galvanic corrosion|galvanic corrosion}.' },
     { nl: 'In de {t:Spanningsreeks|spanningsreeks} staat aluminium onder staal, dus het aluminium lost op, het snelst als weinig aluminium tegen veel staal zit. Een isolerende lijmlaag, gecoate nagels en een droog ontwerp helpen.',
       en: 'In the {t:Galvanic series|galvanic series} aluminium sits below steel, so the aluminium dissolves, fastest when a little aluminium touches a lot of steel. An insulating adhesive layer, coated rivets and a dry design help.' },
