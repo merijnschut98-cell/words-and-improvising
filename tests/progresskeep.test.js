@@ -57,3 +57,13 @@ test('v13: modules rebuilt as topics × levels keep their old lessons’ recall 
     await assertKept(pins);
   }
 });
+
+test('v16: flair fields add no change to existing lesson records', async () => {
+  const { load, defaultState, KEY } = await import('../src/core/storage.js');
+  const { awardFlair } = await import('../src/core/flair.js');
+  const lessons = { 'eng.flow.takt': { read: 1, passed: 2, opened: 3, situation: { pts: 2, ts: 4 } }, 'eng.flow.balance': { read: 5 } };
+  const raw = JSON.stringify({ ...defaultState(), courses: { eng: { lessons, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } } });
+  const s = load({ getItem: (k) => (k === KEY ? raw : null), setItem() {} });
+  assert.deepEqual(s.courses.eng.lessons, lessons);
+  assert.deepEqual(awardFlair(s, 10).state.courses.eng.lessons, lessons);
+});

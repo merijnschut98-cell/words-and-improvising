@@ -10,7 +10,7 @@ const HISTORY_CAP = 200;
 export function defaultState() {
   return {
     version: 1,
-    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '' }, // context: his work, device-only, sent only on a coach tap
+    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false }, // guide: the Andon light (v16, device-only); cheer: a sound on a celebration, off by default (Q10) // context: his work, device-only, sent only on a coach tap
     xp: 0,
     streak: { count: 0, lastDay: null },
     days: {}, // 'YYYY-MM-DD' -> rounds completed that day
@@ -31,7 +31,11 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
-    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
+    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
+    xpDays: {}, // v16: 'YYYY-MM-DD' -> XP earned that day (last 60 days)
+    dailyGoal: { xp: 30, ts: 0 }, // v16: daily goal in XP (20, 30 or 50), synced, later ts wins
+    titles: {}, // v16: subject -> { rank 1..4, ts }, never lowered
+    speakMedals: {}, // v16: drill group -> { tier, ts }, never lowered
     courseReviews: {}, // 'lang|questionId' -> { box, due, lesson, subject }: course relearning queue
   };
 }
@@ -46,6 +50,20 @@ export function validPlan(p) {
   const o = p.outcome;
   return o === null || (isObject(o) && ['yes', 'partly', 'no'].includes(o.used) && typeof o.note === 'string' && typeof o.ts === 'number');
 }
+// v16 flair: well-formed entries only, so a broken value never shows.
+export const MEDAL_TIERS = ['bronze', 'silver', 'gold'];
+const GOAL_XP = [20, 30, 50];
+const SPEAK_GROUPS = ['basics', 'structure', 'conversation', 'pressure'];
+const isTs = (v) => typeof v === 'number' && Number.isFinite(v);
+export const cleanXpDays = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([d, n]) => isDay(d) && typeof n === 'number' && Number.isFinite(n) && n >= 0));
+export const cleanGoal = (v) => (isObject(v) && GOAL_XP.includes(v.xp) && isTs(v.ts) ? { xp: v.xp, ts: v.ts } : { xp: 30, ts: 0 });
+const validMedal = (m) => isObject(m) && MEDAL_TIERS.includes(m.tier) && isTs(m.ts);
+export const cleanMedals = (v, keys = null) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([k, m]) => (!keys || keys.includes(k)) && validMedal(m)).map(([k, m]) => [k, { tier: m.tier, ts: m.ts }]));
+export const cleanSpeakMedals = (v) => cleanMedals(v, SPEAK_GROUPS);
+export const cleanTitles = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([k, t]) => ['eng', 'pm', 'speak'].includes(k) && isObject(t) && Number.isInteger(t.rank) && t.rank >= 1 && t.rank <= 4 && isTs(t.ts)).map(([k, t]) => [k, { rank: t.rank, ts: t.ts }]));
+const validCheck = (c) => isObject(c) && isDay(c.last) && Number.isInteger(c.best) && c.best >= 0 && Number.isInteger(c.total) && c.total >= c.best && (c.perfect === null || c.perfect === undefined || isTs(c.perfect));
+export const cleanChecks = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([, c]) => validCheck(c)).map(([k, c]) => [k, { last: c.last, best: c.best, total: c.total, perfect: c.perfect ?? null }]));
+
 export const strings = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string') : []);
 export const cleanPlans = (v) => (Array.isArray(v) ? v.filter(validPlan) : []);
 
@@ -85,8 +103,14 @@ export function load(backend) {
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped) }];
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
   }));
+  merged.xpDays = cleanXpDays(parsed.xpDays);
+  merged.dailyGoal = cleanGoal(parsed.dailyGoal);
+  merged.titles = cleanTitles(parsed.titles);
+  merged.speakMedals = cleanSpeakMedals(parsed.speakMedals);
+  if (typeof merged.settings.guide !== 'boolean') merged.settings.guide = true;
+  if (typeof merged.settings.cheer !== 'boolean') merged.settings.cheer = false;
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
   // Boxes run 1–6 since v9; a v8 queue (1–4) loads unchanged.
   for (const [k, r] of Object.entries(merged.courseReviews)) {

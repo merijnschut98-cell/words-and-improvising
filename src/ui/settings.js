@@ -1,3 +1,4 @@
+import { goalPicker } from './flairui.js';
 import { h, aiErrorText } from './dom.js';
 import { syncSection } from './sync.js';
 import { ico } from './icons.js';
@@ -170,17 +171,22 @@ export function renderSettings(app, _params, root) {
       group('practice',
         h('label', { class: 'field-label' }, t('defaultMode')),
         segmented(s.mode, [['speak', [ico('mic'), ' ', t('speak')]], ['type', [ico('keyboard'), ' ', t('type')]]], (v) => set({ mode: v }, true)),
+        h('label', { class: 'field-label' }, t('goalTitle')),
+        h('p', { class: 'muted small' }, t('goalHelp')),
+        goalPicker(app),
         h('label', { class: 'field-label' }, t('planTitle')),
         h('p', { class: 'muted small' }, t('planHelp')),
         planPicker(app, flash),
         toggle(s.remind, (e) => toggleReminder(e.target), t('remind'), remindNote),
         toggle(s.sound !== false, (e) => set({ sound: e.target.checked }), t('sound'), h('p', { class: 'muted small' }, t('soundHelp'))),
+        toggle(s.cheer === true, (e) => set({ cheer: e.target.checked }), t('cheer'), h('p', { class: 'muted small' }, t('cheerHelp'))),
         toggle(s.record, (e) => set({ record: e.target.checked }), t('record'), h('p', { class: 'muted small' }, t('recordHelp'))),
         recordingsRow(),
         toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp')))),
       group('appearance',
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
-        h('p', { class: 'muted small' }, t('themeHelp'))),
+        h('p', { class: 'muted small' }, t('themeHelp')),
+        toggle(s.guide !== false, (e) => set({ guide: e.target.checked }), t('guideShow'), h('p', { class: 'muted small' }, t('guideHelp')))),
       group('data',
         app.installPrompt
           ? h('button', {

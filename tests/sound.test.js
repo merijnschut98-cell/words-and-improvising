@@ -2,8 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { CUES, soundOn, play } from '../src/core/sound.js';
 
-test('four short cues, each a list of [frequency, seconds] notes under a second', () => {
-  assert.deepEqual(Object.keys(CUES).sort(), ['best', 'quest', 'switch', 'twist']);
+test('six short cues, each a list of [frequency, seconds] notes under a second', () => {
+  assert.deepEqual(Object.keys(CUES).sort(), ['best', 'lesson', 'medal', 'quest', 'switch', 'twist']);
   for (const notes of Object.values(CUES)) {
     assert.ok(notes.length >= 1);
     assert.ok(notes.reduce((s, [, d]) => s + d, 0) < 1);
@@ -36,4 +36,29 @@ test('a rejected AudioContext.resume() never becomes an unhandled rejection', as
   process.off('unhandledRejection', onRej);
   delete globalThis.window;
   assert.equal(seen.length, 0);
+});
+
+import { cheerOn, cueFor } from '../src/core/sound.js';
+
+test('CUES has lesson (two rising notes); medal reuses best', () => {
+  assert.deepEqual(CUES.lesson, [[523, 0.1], [784, 0.18]]);
+  assert.equal(CUES.medal, CUES.best);
+  assert.equal(cueFor({ big: { kind: 'title' } }), 'medal');
+  assert.equal(cueFor({ big: { kind: 'medal' } }), 'medal');
+  assert.equal(cueFor({ big: { kind: 'goal' } }), 'lesson');
+  assert.equal(cueFor({ big: { kind: 'lesson' } }), 'lesson');
+  assert.equal(cueFor({ big: null }), null);
+});
+
+test('play stays silent when settings.sound is false', () => {
+  // The celebration sound is off by default (Q10): it needs sound on and cheer on.
+  assert.equal(cheerOn({}), false);
+  assert.equal(cheerOn({ cheer: true }), true);
+  assert.equal(cheerOn({ cheer: true, sound: false }), false);
+  assert.equal(cheerOn({ cheer: false, sound: true }), false);
+  let made = 0;
+  globalThis.window = { AudioContext: class { constructor() { made++; } } };
+  play('lesson', { sound: false });
+  delete globalThis.window;
+  assert.equal(made, 0);
 });
