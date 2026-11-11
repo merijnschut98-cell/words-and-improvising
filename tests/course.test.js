@@ -635,3 +635,20 @@ test('applyLesson: only the lesson\'s own recall questions enter the review queu
   assert.deepEqual(Object.keys(state.courseReviews), ['nl|eng.flow.takt#r0']);
   assert.equal(state.courses.eng.sessions[0].total, 4, 'the session still counts every question asked');
 });
+
+// v16 flair: XP is also counted per day.
+test('applyLesson credits 20 XP to today\'s xpDays; a retake credits nothing', () => {
+  const firstTry = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW);
+  assert.equal(a.state.xpDays[TODAY], 20);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.state.xpDays[TODAY], 20);
+  assert.equal(b.state.xp, 20);
+});
+
+test('applyDue and applySituation credit their XP to xpDays', () => {
+  const d = applyDue(defaultState(), { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW);
+  assert.equal(d.state.xpDays[TODAY], d.xp);
+  const s = applySituation(d.state, { subject: 'pm', lessonId: 'pm.intake.ask', pts: 2 }, TODAY, NOW);
+  assert.equal(s.state.xpDays[TODAY], d.xp + 10);
+});

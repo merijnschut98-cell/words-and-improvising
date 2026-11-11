@@ -96,3 +96,10 @@ test('a shadow round does not store the whole original prompt in history', () =>
   assert.equal(x.model, 'm');
   for (const k of ['original', 'firstMetrics', 'firstDuration']) assert.equal(k in x, false, k);
 });
+
+test('applyRound credits round XP and quest XP to xpDays on the round\'s day', () => {
+  const s = { ...defaultState(), quests: { day: '2026-10-23', items: [{ id: 'coldStart', done: false }, { id: 'sayAgain', done: false }, { id: 'pauseClean', done: false }] } };
+  const { state, xp } = applyRound(s, round({ prepS: 0 }), '2026-10-23', 1000);
+  assert.equal(xp, 45, 'round 30 + quest 15');
+  assert.equal(state.xpDays['2026-10-23'], 45);
+});

@@ -5,6 +5,7 @@ import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { upcoming } from './realweek.js';
+import { creditXp } from './xp.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -103,9 +104,9 @@ function withSubject(state, subject, fn) {
 const logSession = (c, entry) => ({ ...c, sessions: [entry, ...(c.sessions || [])].slice(0, SESSIONS_CAP) });
 
 // A lesson or a due session counts as a round for the day: days and streak.
-function countRound(state, today, xp) {
-  const s = reconcileStreak(state, today).state;
-  return { ...s, xp: s.xp + xp, streak: updateStreak(s.streak, today), days: { ...s.days, [today]: (s.days[today] || 0) + 1 } };
+export function countRound(state, today, xp) {
+  const s = creditXp(reconcileStreak(state, today).state, xp, today);
+  return { ...s, streak: updateStreak(s.streak, today), days: { ...s.days, [today]: (s.days[today] || 0) + 1 } };
 }
 
 export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lang }, today, now) {
@@ -161,7 +162,7 @@ export function applyDue(state, { subject, results, sure = {}, lang, maintenance
 export function applySituation(state, { subject, lessonId, pts }, today, now) {
   const before = ((state.courses || {})[subject] || { lessons: {} }).lessons[lessonId] || {};
   const xp = before.situation ? 0 : SITUATION_XP;
-  let next = { ...state, xp: state.xp + xp };
+  let next = creditXp(state, xp, today);
   next = withSubject(next, subject, (c) => logSession({
     ...c,
     lessons: { ...c.lessons, [lessonId]: { ...before, situation: { pts, ts: now } } },

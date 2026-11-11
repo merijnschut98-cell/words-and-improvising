@@ -5,6 +5,7 @@ import { applyQuests } from './quests.js';
 import { updateBests } from './bests.js';
 import { newMilestones } from './milestones.js';
 import { scheduleReview, wasImproved } from './spaced.js';
+import { creditXp } from './xp.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
@@ -19,8 +20,7 @@ export function applyRound(state, round, today, now) {
   // His own earlier attempt (shadow rounds repeat the model; they are not his record).
   const earlier = state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === round.lang);
   let next = {
-    ...state,
-    xp: state.xp + xp,
+    ...creditXp(state, xp, today),
     streak: updateStreak(state.streak, today),
     days: { ...state.days, [today]: (state.days[today] || 0) + 1 },
     drillLevels: shadow ? state.drillLevels : { ...state.drillLevels, [drill]: adjustDrillLevel(state.drillLevels[drill] || 1, rating) },
