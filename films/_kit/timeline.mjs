@@ -114,6 +114,16 @@ const SAY = {
     // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
     [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
     [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    // drives: espeak-ng stresses the singular magneetschakelaar and the -regelaar compounds on "-ke-"/"-ge-"
+    // with the e of "bed" (frequentieregeLAAR); split at the head (frequentie-REgelaar). It stresses
+    // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the
+    // floor says it, "d'rect"; and harmonischen with "sch" as in "school", said "harmonische" (-ise)
+    [/\b([Mm])agneetschakelaar\b/g, '$1agneet-schakelaar'], [/\b([Ff])requentieregelaar/g, '$1requentie-regelaar'], [/\b([Ss])ervoregelaar/g, '$1ervo-regelaar'],
+    [/\b([Dd])irect (?=in(?:schakel|geschakeld))/g, '$1e-rekt '], [/\b([Hh])armonischen\b/g, '$1armonische'],
+    // fatigue: espeak-ng reads Wöhler with the o of "bot" and a sounded h (said "Weuler"), stresses
+    // lastwisSEEling, puts a schwa in vermoeiingsgrens, and stresses kogelSTRAlen and lasTEEN; split at the head
+    [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
+    [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen'],
     // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
     // "lachen", "uunit oopiraasjon", and stresses "KOrioliss" and "KONtinu"): betsj-, joenit oppe-reesjen,
     // korie-olis, konti-nu (continue as konti-nuwe); batch only in compounds (batchproces, batchnummer), so the

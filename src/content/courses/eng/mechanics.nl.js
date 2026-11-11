@@ -599,6 +599,7 @@ export default {
     // Onderwerp: Vermoeiing en breuk
     {
       id: 'eng.mechanics.fatigue',
+      film: 'eng.mechanics.fatigue',
       title: 'Vermoeiing en kerfwerking',
       pre: [
         {
@@ -617,7 +618,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'De as van een roerwerk (agitator), een menger in een tank, brak in 18 maanden twee keer aan het eind van de spiebaan. Na de eerste breuk kwam er een sterkere staalsoort in; hij brak opnieuw op dezelfde plek. Het breukvlak laat rustlijnen zien die beginnen bij de scherpe hoek van de spiebaan.\n\nTwee dingen komen samen: de roerder, de mengschoepen op de as, is uit balans, dus de as buigt bij elke omwenteling heen en weer, en de scherpe hoek van de spiebaan concentreert die spanning. De oplossing: een afgeronde spiebaan, een gebalanceerde roerder en een uitlijncontrole. Alleen sterker staal hielp weinig, want hogesterktestaal is vaak juist gevoeliger voor kerven. Hoe vaak zulke storingen terugkomen en wat dat over de installatie zegt, staat in de module Betrouwbaarheid en assetstrategie.',
+        text: 'De as van een roerwerk (agitator), een menger in een tank, brak in 18 maanden twee keer aan het eind van de spiebaan. Na de eerste breuk kwam er een sterkere staalsoort in; hij brak opnieuw op dezelfde plek. Het breukvlak laat rustlijnen zien die beginnen bij de scherpe hoek van de spiebaan.\n\nTwee dingen komen samen: de vloeistof duwt de roerder, de mengschoepen op de as, steeds naar één kant, dus de as buigt door en elke omwenteling wisselt trek en druk; en de scherpe hoek van de spiebaan concentreert die spanning. Een roerder uit balans laat de as bovendien trillen. De oplossing: een afgeronde spiebaan, een uitlijncontrole en een gebalanceerde roerder. Alleen sterker staal hielp weinig, want hogesterktestaal is vaak juist gevoeliger voor kerven. Hoe vaak zulke storingen terugkomen en wat dat over de installatie zegt, staat in de module Betrouwbaarheid en assetstrategie.',
       },
       said: 'Wat engineers zeggen: “Kijk die rustlijnen. Hij is begonnen in de hoek van de spiebaan. Sterker staal lost geen scherpe hoek op.”',
       recall: [
