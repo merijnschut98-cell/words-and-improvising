@@ -238,7 +238,8 @@ await step('one filled button per screen: speaking home, course home, every less
   const labels = (await page.locator('.steps .step').allInnerTexts()).map((x) => x.trim().toUpperCase());
   if (labels.join('|') !== 'RADEN|LEZEN|VOORBEELD|CHECK') throw new Error(`steps: ${labels}`);
   const oee = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
-  const recallOf = async () => { const q = (await page.locator('.quiz-card .quiz-q').innerText().catch(() => '')).trim(); return oee.recall.find((r) => r.q.trim() === q); };
+  const oeeQuiz = await quizOf(page, 'eng', 'flow', 'eng.flow.oee');
+  const recallOf = async () => { const q = (await page.locator('.quiz-card .quiz-q').innerText().catch(() => '')).trim(); return oeeQuiz.find((r) => r.q.trim() === q); };
   // Walk the lesson: each step that has a button has exactly one filled one.
   for (let guard = 0; guard < 40; guard++) {
     if (await page.locator('.lesson-done').count()) { await onePrimary(page, 'lesson done'); break; }
@@ -248,7 +249,7 @@ await step('one filled button per screen: speaking home, course home, every less
       // A choice step: the options are the action; no competing filled button.
       if (await page.locator('.btn-primary:visible').count()) throw new Error(`${step}: filled button next to the options`);
       const r = await recallOf();
-      await (r ? page.locator('.quiz-opts').getByRole('button', { name: r.answer, exact: true }).first() : opts.first()).click();
+      await (r ? optExact(page, '.quiz-card', r.answer) : opts.first()).click();
       continue;
     }
     const num = page.locator('.screen.lesson .quiz-num:visible');
@@ -302,8 +303,27 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
 });
 
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
+// The lesson quiz as the app builds it (v16): recall, term questions, earlier
+// levels, then the guess back as the last question.
+async function quizOf(pg, subject, slug, lessonId) {
+  return pg.evaluate(async ([sub, sl, id]) => {
+    const { quizFor } = await import('/src/ui/lesson.js');
+    const { glossary } = await import('/src/core/course.js');
+    const mod = await window.__app.openModuleTerms(sub, `${sub}.${sl}`);
+    const lesson = mod.lessons.find((l) => l.id === id);
+    return quizFor(window.__app.t, lesson, mod, glossary([{ ...mod, id: `${sub}.${sl}` }]), []);
+  }, [subject, slug, lessonId]);
+}
+// An answer option by its exact text (term options can share a prefix).
+function optExact(pg, scope, text) {
+  const esc = String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return pg.locator(`${scope} .opt`).filter({ hasText: new RegExp(`^\\s*${esc}\\s*$`) }).first();
+}
+
 async function playLesson(pg, subject, slug, lessonId, { missFirst = true, reviewShot = null } = {}) {
   const lesson = await pg.evaluate(async ([sub, sl, id]) => (await import(`/src/content/courses/${sub}/${sl}.nl.js`)).default.lessons.find((l) => l.id === id), [subject, slug, lessonId]);
+  const quiz = await quizOf(pg, subject, slug, lessonId);
+  lesson.quiz = quiz;
   for (const q of lesson.pre) {
     if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.lesson > .pre-next').click(); }
     else await pg.locator('.pre-card .opt').first().click();
@@ -342,26 +362,31 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
       await pg.locator('.quiz-card .btn-primary').click();
     } else {
       const pick = wrong ? q.options.find((o) => o !== q.answer) : q.answer;
-      await pg.locator('.quiz-card .opt', { hasText: pick }).first().click();
+      await optExact(pg, '.quiz-card', pick).click();
     }
   };
-  for (let i = 0; i < lesson.recall.length; i++) {
-    if (i === 1 && i < lesson.recall.length - 1) {
+  // 5–8 questions by level, then the guess back as one extra (v16).
+  await pg.locator('.quiz-card .quiz-progress', { hasText: `1/${quiz.length}` }).waitFor({ timeout: 5000 });
+  for (let i = 0; i < quiz.length; i++) {
+    if ('guess' in quiz[i]) await pg.locator('.quiz-card .quiz-guess', { hasText: 'Terug naar' }).waitFor();
+    if (i === 1 && i < quiz.length - 1) {
       // An accidental wrong tap, taken back with 'Vorige vraag': it never counts as a miss.
-      await answer(lesson.recall[1], true);
+      await answer(quiz[1], true);
       await pg.locator('.quiz-card .quiz-back').click();
       const prog = (await pg.locator('.quiz-card .quiz-progress').innerText()).trim();
       if (!prog.startsWith('2/')) throw new Error(`back did not return to question 2: ${prog}`);
       if (await pg.locator('.quiz-card .btn-primary, .quiz-card .opt').count() < 1) throw new Error('no answer controls after back');
     }
-    await answer(lesson.recall[i], missFirst && i === 0);
+    await answer(quiz[i], missFirst && i === 0);
   }
   await pg.locator('.quiz-review').waitFor();
+  // The guess back in the review: guess at the start, answer now, right answer.
+  if (lesson.pre.length && (await pg.locator('.quiz-review .guess-row-back .guess-step').count()) !== 3) throw new Error('no guess → now → right answer in the review');
   if (reviewShot) await shot(reviewShot);
   if (missFirst) {
     if (await pg.locator('.review-row.miss').count() !== 1) throw new Error('expected one miss in review');
     await pg.locator('.quiz-review .btn-primary').click();
-    await answer(lesson.recall[0], false);
+    await answer(quiz[0], false);
     await pg.locator('.quiz-review').waitFor();
   }
   await pg.locator('.quiz-review .btn-primary').click();
@@ -2077,10 +2102,10 @@ const yesterdayKey = () => { const d = new Date(Date.now() - 86400000); return `
 // Answers the visible quiz question correctly from the lesson file.
 async function answerRight(pg, lesson, scope = '.quiz-card') {
   const text = (await pg.locator(`${scope} .quiz-q`).innerText()).trim();
-  const q = lesson.recall.find((x) => x.q.trim() === text);
+  const q = (lesson.quiz || lesson.recall).find((x) => x.q.trim() === text);
   if (!q) throw new Error(`question not in lesson: ${text}`);
   if ('number' in q) { await pg.locator(`${scope} .quiz-num`).fill(String(q.number).replace('.', ',')); await pg.locator(`${scope} .btn-primary`).click(); }
-  else await pg.locator(`${scope} .opt`, { hasText: q.answer }).first().click();
+  else await optExact(pg, scope, q.answer).click();
   return q;
 }
 
@@ -2207,6 +2232,7 @@ await step('hint: the sure/guess control is gone; one hint per question; correct
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
   await p.locator('.course-today').waitFor();
+  lesson.quiz = await quizOf(p, 'eng', 'flow', lid);
   await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
   for (const q of lesson.pre) {
     if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
@@ -2241,7 +2267,7 @@ await step('hint: the sure/guess control is gone; one hint per question; correct
   const q2 = lesson.recall[1];
   await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
   await p.locator('.quiz-card .btn-primary').click();
-  for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
+  for (let i = 2; i < lesson.quiz.length; i++) await answerRight(p, lesson);
   await p.locator('.quiz-review').waitFor();
   if (await p.locator('.review-row.hinted').count() !== 1) throw new Error('expected one hinted question in the review');
   await p.locator('.review-row.hinted.ok .hint-mark', { hasText: 'Met een hint' }).waitFor();
@@ -2363,6 +2389,7 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
   await p.locator('.course-today').waitFor();
+  lesson.quiz = await quizOf(p, 'eng', 'flow', lid);
   await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
   await p.locator('.pre-card').waitFor();
   const width = async (sel) => (await p.locator(sel).first().boundingBox()).width;
@@ -2413,7 +2440,7 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   }
   await shotP('100-quiz-back-picked');
   await dark('100-quiz-back-picked-dark', async () => { await p.locator('.quiz-card .quiz-picked').waitFor(); });
-  for (let i = 0; i < lesson.recall.length; i++) {
+  for (let i = 0; i < lesson.quiz.length; i++) {
     await p.locator('.quiz-card').waitFor();
     await answerRight(p, lesson);
   }

@@ -545,3 +545,93 @@ test('nextLesson resumes an opened, unfinished lesson in the module; otherwise t
   s = passAt(s, 'eng.flow.c', 30);
   assert.equal(nextLesson(s, RMODS[0]), 'eng.flow.b');
 });
+
+// ---- v16: a longer lesson quiz (5–8 by level) and the guess back as the last question ----
+import { lessonQuiz, quizSize, guessCompare } from '../src/core/course.js';
+
+const term = (t, d) => ({ term: t, def: d });
+const qLesson = (id, nTerms = 6, extra = {}) => ({
+  id,
+  recall: [choice('a'), choice('b'), choice('c'), { q: 'n?', number: 4, tolerance: 0.1, unit: 's', why: 'w' }],
+  pre: [{ q: 'guess?', options: ['10', '20', '30'], answer: '20', why: 'because' }],
+  terms: Array.from({ length: nTerms }, (_, i) => term(`T${i}`, `meaning number ${i}`)),
+  ...extra,
+});
+const ask = (d) => `Which term? ${d}`;
+
+test('quizSize: 5 to 8 questions by level (Basis 5 … Expert 8); 5 outside a topic', () => {
+  assert.deepEqual([1, 2, 3, 4].map(quizSize), [5, 6, 7, 8]);
+  assert.equal(quizSize(null), 5);
+  assert.equal(quizSize(undefined), 5);
+});
+
+test('lessonQuiz: the lesson recall first, then term questions up to the size, then the guess as one extra last question', () => {
+  const l = qLesson('eng.x.a');
+  for (const level of [1, 2, 3, 4]) {
+    const qs = lessonQuiz(l, { level, ask, guesses: ['10'] });
+    assert.equal(qs.length, quizSize(level) + 1, `level ${level}`);
+    assert.deepEqual(qs.slice(0, 4).map((q) => q.id), ['eng.x.a#r0', 'eng.x.a#r1', 'eng.x.a#r2', 'eng.x.a#r3']);
+    assert.equal(qs.at(-1).id, 'eng.x.a#p0');
+    assert.equal(qs.at(-1).guess, '10');
+    assert.equal(qs.at(-1).answer, '20');
+  }
+  const qs = lessonQuiz(l, { level: 4, ask, guesses: ['10'] });
+  const t = qs.filter((q) => q.id.includes('#t'));
+  assert.equal(t.length, 4);
+  for (const q of t) {
+    const n = Number(q.id.split('#t')[1]);
+    assert.equal(q.answer, `T${n}`);
+    assert.equal(q.q, `Which term? meaning number ${n}`);
+    assert.equal(q.options.length, 4);
+    assert.ok(q.options.includes(q.answer));
+    assert.equal(new Set(q.options).size, 4);
+    assert.equal(q.why, `T${n}: meaning number ${n}`);
+  }
+  assert.deepEqual(lessonQuiz(l, { level: 4, ask, guesses: ['10'] }), qs, 'deterministic');
+  // No guess made (no prequestions): no extra question.
+  assert.equal(lessonQuiz({ ...l, pre: [] }, { level: 2, ask }).length, 6);
+});
+
+test('lessonQuiz: a term whose definition names it is never asked; distractors come from the module when the lesson has too few', () => {
+  const l = qLesson('eng.x.a', 2, { terms: [term('OEE', 'OEE is availability × performance × quality'), term('Takt', 'the pace the customer sets'), term('Cycle', 'time per piece')] });
+  let qs = lessonQuiz(l, { level: 4, ask, pool: [] });
+  assert.ok(!qs.some((q) => q.answer === 'OEE'), 'the definition gives the answer away');
+  assert.ok(!qs.some((q) => q.id.includes('#t')), 'fewer than three distractors: no term question');
+  const pool = [term('WIP', 'work in progress'), term('Kanban', 'a pull signal'), term('Takt', 'the pace the customer sets')];
+  qs = lessonQuiz(l, { level: 4, ask, pool });
+  const tq = qs.filter((q) => q.id.includes('#t'));
+  assert.deepEqual(tq.map((q) => q.answer).sort(), ['Cycle', 'Takt']);
+  for (const q of tq) assert.equal(new Set(q.options).size, 4);
+});
+
+test('lessonQuiz: short of the size, recall from the earlier levels of the topic fills it, nearest level first; never invented', () => {
+  const l = qLesson('eng.x.c', 0);
+  const b = { id: 'eng.x.b', recall: [choice('p'), choice('q')] };
+  const a = { id: 'eng.x.a', recall: [choice('r')] };
+  const qs = lessonQuiz(l, { level: 4, ask, earlier: [a, b], guesses: [] });
+  assert.deepEqual(qs.map((q) => q.id), ['eng.x.c#r0', 'eng.x.c#r1', 'eng.x.c#r2', 'eng.x.c#r3', 'eng.x.b#r0', 'eng.x.b#r1', 'eng.x.a#r0', 'eng.x.c#p0']);
+  // Not enough anywhere: fewer questions, nothing made up.
+  assert.equal(lessonQuiz(l, { level: 4, ask }).length, 5);
+});
+
+test('lessonQuiz: with several prequestions one comes back: the first he guessed wrong, else the first', () => {
+  const l = qLesson('eng.x.a', 6, { pre: [{ q: 'g1', options: ['1', '2'], answer: '1', why: 'w' }, { q: 'g2', number: 5, tolerance: 0, why: 'w' }] });
+  assert.equal(lessonQuiz(l, { level: 1, ask, guesses: ['1', '7'] }).at(-1).id, 'eng.x.a#p1');
+  assert.equal(lessonQuiz(l, { level: 1, ask, guesses: ['2', '7'] }).at(-1).id, 'eng.x.a#p0');
+  assert.equal(lessonQuiz(l, { level: 1, ask, guesses: ['1', '5'] }).at(-1).id, 'eng.x.a#p0');
+  assert.equal(lessonQuiz(l, { level: 1, ask, guesses: ['1', '5'] }).filter((q) => q.id.includes('#p')).length, 1);
+});
+
+test('guessCompare: guess at the start, answer now, the right answer, each judged', () => {
+  const q = { q: 'n?', number: 4, tolerance: 0.1, unit: 's', why: 'w', guess: '9' };
+  assert.deepEqual(guessCompare(q, '4'), { guess: '9 s', now: '4 s', answer: '4 s', guessOk: false, nowOk: true });
+  const c = { q: 'c?', options: ['a', 'b'], answer: 'b', why: 'w', guess: 'b' };
+  assert.deepEqual(guessCompare(c, 'a'), { guess: 'b', now: 'a', answer: 'b', guessOk: true, nowOk: false });
+});
+
+test('applyLesson: only the lesson\'s own recall questions enter the review queue', () => {
+  const firstTry = { 'eng.flow.takt#r0': true, 'eng.flow.takt#t2': true, 'eng.flow.takt#p0': false, 'eng.flow.other#r1': true };
+  const { state } = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW);
+  assert.deepEqual(Object.keys(state.courseReviews), ['nl|eng.flow.takt#r0']);
+  assert.equal(state.courses.eng.sessions[0].total, 4, 'the session still counts every question asked');
+});
