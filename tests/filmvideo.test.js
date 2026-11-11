@@ -125,6 +125,8 @@ test('gloss case: an ordinary word is lowered, a proper noun and an acronym keep
   assert.equal(glossCase('Machinery Regulation', `${corpus} Old machinery stays.`), 'Machinery Regulation');
   // a word the corpus never writes mid-sentence is treated as ordinary
   assert.equal(glossCase('Cemented carbide', corpus), 'cemented carbide');
+  // a name with its own parenthesis is glossed with a comma, never nested brackets
+  assert.equal(glossCase('Direct on line (DOL)', corpus), 'direct on line, DOL');
 });
 
 test('glossed subtitles: a Dutch term shows its English word once, in parentheses; the voice text is untouched', () => {
