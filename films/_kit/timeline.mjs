@@ -91,7 +91,9 @@ const SAY = {
     // sentence start, so the sentence still ends before it), and compounds espeak-ng stresses at the end
     // (kerfslagPROEF, Elasticiteitsmodulus): split at the head
     [/(^|[.!?]\s+)S(235|275|355)\b/g, '$1Es $2'], [/\bS(235|275|355)\b/g, 'es $1'],
-    [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus']],
+    [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus'],
+    // trekproef the same way (espeak-ng stresses trekPROEF): TREK-proef
+    [/\b([Tt])rekproef/g, '$1rek-proef']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

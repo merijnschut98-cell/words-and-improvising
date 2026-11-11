@@ -322,9 +322,13 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 const cam = (p, w, sx = W / 2) => { const [x, y] = at(p); return [Math.round((x + (W / 2 - sx) * (w / W)) * 10) / 10, Math.round(y * 10) / 10, w]; };
 const BAR = [2, 0, 61];
 const SIDE = (w0, w1) => ({ from: cam(BAR, w0, 104), to: cam(BAR, w1, 104) });
+// s1 opens on the whole machine (framed as tight as its height allows at 390 px)
+// and settles on a frame that still holds the load cell and the extensometer,
+// both named in s1; s2 closes in on the bar for the yield.
+const CELLVIEW = cam([2, 0, 74], 230, 104);
 const CAM = [
-  { from: cam([0, 0, 92], 660), to: cam(BAR, 150, 104), a: 0.2, b: 0.42 },
-  SIDE(150, 140),
+  { from: cam([0, 0, 88], 615), to: CELLVIEW, a: 0.2, b: 0.42 },
+  { from: CELLVIEW, to: cam(BAR, 140, 104), a: 0, b: 0.3 },
   SIDE(140, 132),
   SIDE(160, 150),
   SIDE(150, 140),
@@ -385,16 +389,16 @@ const spec = {
         { nl: '{t:Taai|Taai} staal rekt flink uit voor het breekt, en dat waarschuwt: het buigt en snoert in.', en: '{t:Ductile|Ductile} steel stretches a lot before it breaks, and that warns you: it bends and necks.', cue: { Taai: 'ductC' }, cues: ['spec'] },
         { nl: '{t:Bros|Bros} gietijzer breekt bijna zonder rek en zonder waarschuwing, met een vlak breukvlak.', en: '{t:Brittle|Brittle} cast iron breaks with almost no strain and no warning, with a flat fracture.', cue: { Bros: 'britC' }, cues: ['spec'] },
         { nl: 'Kou maakt sommige staalsoorten bros. Dat meet de kerfslagproef, met een slingerhamer.', en: 'Cold makes some steels brittle. The impact test measures that, with a swinging hammer.', cues: [] },
-        { nl: 'Een eis is bijvoorbeeld minstens {n:27} J bij −{n:20} °C.', en: 'A requirement is, for example, at least {n:27} J at −{n:20} °C.', cues: [] },
+        { nl: 'Bijvoorbeeld kwaliteit J2: minstens {n:27} J bij −{n:20} °C.', en: 'For example grade J2: at least {n:27} J at −{n:20} °C.', cues: [] },
       ],
     },
     {
       id: 's6', lesson: STR, level: 1, dur: DUR[5], still: 0.92, title: { nl: 'Veiligheidsfactor tegen wat?', en: 'Safety factor against what?' },
       beats: [
         { nl: '{t:Veiligheidsfactor|Veiligheidsfactor}: vloeigrens gedeeld door werkspanning. {n:235} / {n:120} = {n:1.96}.', en: '{t:Safety factor|Safety factor}: yield divided by working stress. {n:235} / {n:120} = {n:1.96}.', cue: { Veiligheidsfactor: 'sfC' } },
-        { nl: 'De belasting verdubbelt: {n:240} MPa, boven de vloeigrens. De console verbuigt blijvend.', en: 'The load doubles: {n:240} MPa, above the yield strength. The console bends for good.', cues: ['sfC'] },
-        { nl: 'S355 geeft {n:355} / {n:240} = {n:1.48}: krap als het trilt. Een dikkere console herstelt de marge.', en: 'S355 gives {n:355} / {n:240} = {n:1.48}: thin if it vibrates. A thicker console restores the margin.', cues: ['sfC'] },
-        { nl: 'Gangbaar: zo’n {n:1.5} bij rustige lasten, {n:3} of meer bij onzekere, {n:4} à {n:7} voor hijsmiddelen.', en: 'Typical: about {n:1.5} for steady loads, {n:3} or more for uncertain ones, {n:4} to {n:7} for lifting gear.', cues: ['sfC'] },
+        { nl: 'De belasting verdubbelt: {n:240} MPa, boven de vloeigrens. De console verbuigt blijvend.', en: 'The load doubles: {n:240} MPa, above the yield strength. The bracket bends for good.', cues: ['sfC'] },
+        { nl: 'S355 geeft {n:355} / {n:240} = {n:1.48}: krap als het trilt. Een dikkere console herstelt de marge.', en: 'S355 gives {n:355} / {n:240} = {n:1.48}: thin if it vibrates. A thicker bracket restores the margin.', cues: ['sfC'] },
+        { nl: 'Gangbaar: zo’n {n:1.5} bij rustige lasten, {n:3} of meer bij onzekere, {n:4} à {n:7} voor hijsmiddelen, tegen breuk.', en: 'Typical: about {n:1.5} for steady loads, {n:3} or more for uncertain ones, {n:4} to {n:7} for lifting gear, against breaking.', cues: ['sfC'] },
       ],
     },
   ],
@@ -410,8 +414,9 @@ const spec = {
 // checked with espeak-ng phonemes through Piper's own bridge (nl_NL-alex):
 // "traverse" (stressed TRAAverse), "hijsmiddelen" (hijsmidDEElen) and
 // "proefstaaf" (proefSTAAF) are kept out of the Dutch narration; S235 and S355
-// ("s" as a bare hiss), "kerfslagproef" and "elasticiteitsmodulus" (stress at
-// the end) get Dutch spoken forms in films/_kit/timeline.mjs (SAY).
+// ("s" as a bare hiss), "kerfslagproef", "trekproef" and "elasticiteitsmodulus"
+// (stress at the end) get Dutch spoken forms in films/_kit/timeline.mjs (SAY).
+// "J2" and "drie punt één" (the 3.1 certificate) are written as said.
 const SAY = [
   [ // s1 pulling until it breaks
     { nl: 'Dit is een trekbank. Onderin zit een vaste klem, bovenin een dwarsbalk die langzaam omhoog loopt. Daartussen klemmen we een ronde staaf van staal.',
@@ -420,18 +425,18 @@ const SAY = [
       en: 'In a {t:Tensile test|tensile test} you pull the bar until it breaks. A load cell measures the force, and an extensometer on the bar measures how much longer it gets. From that the computer draws the line of stress against strain.' },
     { nl: 'Spanning is de kracht gedeeld door de doorsnede van de staaf, in megapascal. Rek is hoeveel de staaf langer wordt, gedeeld door zijn oorspronkelijke lengte. Zo vergelijk je dikke en dunne staven eerlijk.',
       en: 'Stress is the force divided by the bar\'s cross-section, in megapascals. Strain is how much longer the bar gets, divided by its original length. That way thick and thin bars compare fairly.' },
-    { nl: 'In het begin loopt de lijn recht omhoog: het elastische gebied. De staaf gedraagt zich als een veer. Haal je de kracht weg, dan veert hij terug naar zijn oude lengte. Hoe steil die lijn loopt, is de elasticiteitsmodulus. Op de kaart is dit stuk uitgerekt: echt staal rekt hier maar zo\'n tiende procent.',
-      en: 'At first the line runs straight up: the elastic range. The bar behaves like a spring. Take the force away and it springs back to its old length. How steep that line runs is the modulus of elasticity. The card stretches this part: real steel strains only about a tenth of a percent here.' },
+    { nl: 'In het begin loopt de lijn recht omhoog: het elastische gebied. De staaf gedraagt zich als een veer. Haal je de kracht weg, dan veert hij terug naar zijn oude lengte. Hoe steil die lijn loopt, is de elasticiteitsmodulus. Op de kaart is dit stuk uitgerekt: echt staal rekt hier maar één à twee tiende procent.',
+      en: 'At first the line runs straight up: the elastic range. The bar behaves like a spring. Take the force away and it springs back to its old length. How steep that line runs is the modulus of elasticity. The card stretches this part: real steel strains only one or two tenths of a percent here.' },
   ],
   [ // s2 the yield strength
     { nl: 'Dan buigt de lijn af. Dat punt is de {t:Vloeigrens|vloeigrens}: daar begint het staal blijvend te vervormen. Het metaal gaat als het ware vloeien.',
       en: 'Then the line bends over. That point is the {t:Yield strength|yield strength}: there the steel starts to deform permanently. The metal starts to flow, as it were.' },
-    { nl: 'Haal je de kracht nu weg, dan zakt de lijn evenwijdig aan het rechte stuk terug, en blijft er rek over. De staaf is langer gebleven. Voor een onderdeel betekent dat: het is verbogen, en meestal al kapot.',
-      en: 'Take the force away now, and the line drops back parallel to the straight part, leaving some strain behind. The bar has stayed longer. For a part, that means it is bent, and has usually already failed.' },
+    { nl: 'Haal je de kracht nu weg, dan zakt de lijn evenwijdig aan het rechte stuk terug, en blijft er rek over. De staaf is langer gebleven.',
+      en: 'Take the force away now, and the line drops back parallel to the straight part, leaving some strain behind. The bar has stayed longer.' },
     { nl: 'Europese constructiestaalsoorten dragen hun minimale vloeigrens in de naam. S235 vloeit bij {n:235} megapascal of meer, S355 bij {n:355}.',
       en: 'European structural steels carry their minimum yield strength in their name. S235 yields at {n:235} megapascals or more, S355 at {n:355}.' },
-    { nl: 'Dat geldt voor plaat tot {n:16} mm dik; dikkere plaat zit iets lager. Ontwerpers houden de spanning daarom onder de vloeigrens, met marge.',
-      en: 'That holds for plate up to {n:16} mm thick; thicker plate is slightly lower. So designers keep the stress below the yield strength, with a margin.' },
+    { nl: 'Dat geldt voor plaat tot {n:16} mm dik; dikkere plaat zit iets lager. Ontwerpers houden de spanning onder de vloeigrens, met marge: een onderdeel dat blijvend verbuigt, is meestal al kapot.',
+      en: 'That holds for plate up to {n:16} mm thick; thicker plate is slightly lower. Designers keep the stress below the yield strength, with a margin: a part that bends permanently has usually already failed.' },
   ],
   [ // s3 tensile strength, necking, fracture
     { nl: 'Trek je door, dan stijgt de spanning nog verder. Over de hele meetlengte wordt de staaf gelijkmatig dunner en langer, en het staal wordt daarbij zelfs iets sterker.',
@@ -440,12 +445,12 @@ const SAY = [
       en: 'The highest point of the line is the {t:Tensile strength|tensile strength}, or UTS: the greatest stress the material reaches. You work it out from the highest force and the original cross-section.' },
     { nl: 'Daarna snoert de staaf in. Op één plek wordt hij zichtbaar dunner, alle verdere rek gaat naar die hals, en de kracht die nodig is om door te trekken zakt.',
       en: 'Then the bar necks. In one spot it gets visibly thinner, all further stretching goes into that neck, and the force needed to keep pulling drops.' },
-    { nl: 'Tot slot breekt hij in de hals. Maar voor een ontwerp is de breuk niet de grens. Een onderdeel dat vloeit, is al afgekeurd, lang voordat het breekt.',
-      en: 'Finally it breaks in the neck. But for a design, breaking is not the limit. A part that yields is already scrap, long before it breaks.' },
+    { nl: 'Tot slot breekt hij in de hals. Maar voor een ontwerp is de vloeigrens de grens, niet de breuk.',
+      en: 'Finally it breaks in the neck. But for a design the limit is the yield strength, not the break.' },
   ],
   [ // s4 the class on a bolt
-    { nl: 'Bouten hebben een sterkteklasse. Op de kop staat bijvoorbeeld acht punt acht. Die twee getallen vertellen je de treksterkte en de vloeigrens.',
-      en: 'Bolts carry a property class. The head shows, for example, eight point eight. Those two numbers tell you the tensile strength and the yield strength.' },
+    { nl: 'Bouten hebben een sterkteklasse. Op de kop staat bijvoorbeeld acht punt acht.',
+      en: 'Bolts carry a property class. The head shows, for example, eight point eight.' },
     { nl: 'Het eerste getal maal honderd is de treksterkte in megapascal. Acht maal honderd: {n:800} megapascal.',
       en: 'The first number times one hundred is the tensile strength in megapascals. Eight times one hundred: {n:800} megapascals.' },
     { nl: 'Het tweede getal maal tien is de vloeigrens, als percentage van de treksterkte. {n:80} procent van {n:800} is {n:640} megapascal.',
@@ -458,20 +463,20 @@ const SAY = [
       en: 'The steel we just pulled is {t:Ductile|ductile}: it stretches a lot before it breaks. That gives a warning, because a part bends, necks or sags first. Most steels, aluminium and copper are ductile.' },
     { nl: 'Nu een staaf grijs gietijzer. Die is {t:Bros|bros}: de lijn stopt bijna meteen, en hij breekt zonder in te snoeren. Glas, keramiek en heel hard staal breken net zo, zonder waarschuwing.',
       en: 'Now a bar of grey cast iron. It is {t:Brittle|brittle}: the line stops almost at once, and it breaks without necking. Glass, ceramics and very hard steel break the same way, without warning.' },
-    { nl: 'Kou maakt sommige staalsoorten bros. Daarom staat op materiaalcertificaten een kerfslagproef: een staafje met een kerf wordt met een slingerhamer stukgeslagen. Hoe minder hoog de hamer daarna doorzwaait, hoe meer energie het staafje opnam.',
-      en: 'Cold makes some steels brittle. That is why material certificates show an impact test: a notched bar is broken by a swinging hammer. The less high the hammer swings on afterwards, the more energy the bar absorbed.' },
-    { nl: 'Een gangbare eis is minstens {n:27} joule bij min {n:20} graden. Veel energie in de kou betekent: dit staal blijft ook in de winter taai.',
-      en: 'A common requirement is at least {n:27} joules at minus {n:20} degrees. Plenty of energy in the cold means this steel stays ductile in winter too.' },
+    { nl: 'Kou maakt sommige staalsoorten bros. Dat meet de kerfslagproef: een staafje met een kerf wordt met een slingerhamer stukgeslagen. Hoe minder hoog de hamer daarna doorzwaait, hoe meer energie het staafje opnam.',
+      en: 'Cold makes some steels brittle. The impact test measures that: a notched bar is broken by a swinging hammer. The less high the hammer swings on afterwards, the more energy the bar absorbed.' },
+    { nl: 'Een gangbare eis, bijvoorbeeld voor kwaliteit J2, is minstens {n:27} joule bij min {n:20} graden. Veel energie in de kou betekent: dit staal blijft ook in de winter taai. Die waarde staat op het materiaalcertificaat van de partij, vaak een certificaat drie punt één, naast de gemeten vloeigrens, treksterkte en rek bij breuk. Vraag erom bij veiligheidskritische onderdelen.',
+      en: 'A common requirement, for example for grade J2, is at least {n:27} joules at minus {n:20} degrees. Plenty of energy in the cold means this steel stays ductile in winter too. That value is on the batch\'s material certificate, often a three point one certificate, next to the measured yield, tensile strength and elongation at break. Ask for it on safety-critical parts.' },
   ],
   [ // s6 safety factor against what?
     { nl: 'Hoeveel marge heb je? De {t:Veiligheidsfactor|veiligheidsfactor} is de vloeigrens gedeeld door de werkspanning, de spanning bij normaal gebruik. Een console van S235 heeft een werkspanning van {n:120} megapascal: {n:235} gedeeld door {n:120} is {n:1.96}. Prima bij een rustige belasting.',
-      en: 'How much margin do you have? The {t:Safety factor|safety factor} is the yield strength divided by the working stress, the stress in normal use. A console of S235 sees a working stress of {n:120} megapascals: {n:235} divided by {n:120} is {n:1.96}. Fine for a steady load.' },
+      en: 'How much margin do you have? The {t:Safety factor|safety factor} is the yield strength divided by the working stress, the stress in normal use. A bracket of S235 sees a working stress of {n:120} megapascals: {n:235} divided by {n:120} is {n:1.96}. Fine for a steady load.' },
     { nl: 'Na een proceswijziging verdubbelt de belasting: {n:240} megapascal. Dat is boven de vloeigrens, dus de console gaat blijvend verbuigen.',
-      en: 'After a process change the load doubles: {n:240} megapascals. That is above the yield strength, so the console will bend permanently.' },
-    { nl: 'Overstappen op S355 geeft {n:355} gedeeld door {n:240}, is {n:1.48}. Hij houdt het, maar de marge is krap als de last trilt. Een dikkere console in S235 brengt de spanning terug naar {n:120}, en herstelt de oude marge.',
-      en: 'Switching to S355 gives {n:355} divided by {n:240}, that is {n:1.48}. It holds, but the margin is thin if the load vibrates. A thicker console in S235 brings the stress back to {n:120}, and restores the old margin.' },
-    { nl: 'Gangbaar is zo\'n {n:1.5} bij goed bekende, rustige lasten, en {n:3} of meer bij onzekere of wisselende. Voor hijsen geldt {n:4} tot {n:7} tegen breuk, afhankelijk van het type. De factor dekt het onbekende af; het is geen ruimte voor extra last. Vraag dus altijd: veiligheidsfactor tegen wat, en op welke belasting?',
-      en: 'Typical is about {n:1.5} for well-known, steady loads, and {n:3} or more for uncertain or dynamic ones. Lifting gear uses {n:4} to {n:7} against breaking, depending on the type. The factor covers the unknowns; it is not room for extra load. So always ask: safety factor against what, and on which load?' },
+      en: 'After a process change the load doubles: {n:240} megapascals. That is above the yield strength, so the bracket will bend permanently.' },
+    { nl: 'Overstappen op S355 geeft {n:355} gedeeld door {n:240}, is {n:1.48}. Hij houdt het, maar de marge is krap als de last trilt, en dan wordt vermoeiing misschien het volgende probleem. Een dikkere console in S235 brengt de spanning terug naar {n:120}, en herstelt de oude marge.',
+      en: 'Switching to S355 gives {n:355} divided by {n:240}, that is {n:1.48}. It holds, but the margin is thin if the load vibrates, and then fatigue may be the next problem. A thicker bracket in S235 brings the stress back to {n:120}, and restores the old margin.' },
+    { nl: 'Gangbaar is zo\'n {n:1.5} bij goed bekende, rustige lasten, en {n:3} of meer bij onzekere of wisselende. Voor hijsen geldt {n:4} tot {n:7} tegen breuk, afhankelijk van het type. De factor dekt het onbekende af; het is geen ruimte voor extra last. Een factor twee tegen breuk is geen twee tegen vloeien, en een factor op het stilstaande gewicht zegt weinig over een last die trilt. Vraag dus altijd: veiligheidsfactor tegen wat, en op welke belasting?',
+      en: 'Typical is about {n:1.5} for well-known, steady loads, and {n:3} or more for uncertain or dynamic ones. Lifting gear uses {n:4} to {n:7} against breaking, depending on the type. The factor covers the unknowns; it is not room for extra load. A factor of two against breaking is not two against yield, and a factor on the static weight says little about a load that vibrates. So always ask: safety factor against what, and on which load?' },
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
@@ -539,7 +544,7 @@ const css = `
 
 const label = {
   nl: 'Een trekbank met twee kolommen op een voet met stelpoten: een vaste bovenbalk, een traverse die omhoog loopt met een krachtopnemer, wigklemmen boven en onder met een klemvenster en een hendel, een rekopnemer met twee meskanten op de staaf en een bedieningskastje met noodstop. Tussen de klemmen wordt een ronde proefstaaf uitgetrokken: hij rekt, wordt dunner, snoert in en breekt; later breekt een staaf gietijzer kort en vlak. Kaarten, elk gemarkeerd als voorbeeld, tonen de lijn van spanning tegen rek, de boutklasse 8.8, de kerfslagproef met een slingerhamer en een console met zijn veiligheidsfactor.',
-  en: 'A two-column testing machine on a base with levelling feet: a fixed top beam, a crosshead that moves up carrying a load cell, wedge grips above and below with a jaw window and a handle, an extensometer with two knife edges on the bar and a control pendant with an emergency stop. Between the grips a round test bar is pulled: it stretches, thins, necks and breaks; later a cast-iron bar breaks short and flat. Cards, each marked as an example, show the stress-strain line, the bolt class 8.8, the impact test with a swinging hammer and a console with its safety factor.',
+  en: 'A two-column testing machine on a base with levelling feet: a fixed top beam, a crosshead that moves up carrying a load cell, wedge grips above and below with a jaw window and a handle, an extensometer with two knife edges on the bar and a control pendant with an emergency stop. Between the grips a round test bar is pulled: it stretches, thins, necks and breaks; later a cast-iron bar breaks short and flat. Cards, each marked as an example, show the stress-strain line, the bolt class 8.8, the impact test with a swinging hammer and a bracket with its safety factor.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
