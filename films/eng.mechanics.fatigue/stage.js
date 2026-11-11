@@ -159,9 +159,10 @@ const STAGE = (() => {
   // the side push on the impeller (scene 1)
   function pushSvg(a) {
     if (a <= 0.01) return '';
-    const dir = C.CUT[1];
-    const p0 = at(polar(24, dir, C.IMP.z + 1));
-    const p1 = at(polar(17, dir, C.IMP.z + 1));
+    // from behind and to the right, so the whole arrow stays left of the card
+    const dir = C.AV + 1.25 * Math.PI;
+    const p0 = at(polar(27, dir, C.IMP.z + 1));
+    const p1 = at(polar(16.5, dir, C.IMP.z + 1));
     const ux = p1[0] - p0[0];
     const uy = p1[1] - p0[1];
     const l = Math.hypot(ux, uy);
@@ -379,7 +380,7 @@ const STAGE = (() => {
     else out += op(b === 1 ? span(p, 0, 0.2) : 1, sketch(216, false, true) + txt(309, 150, tr('scherpe hoek', 'sharp corner'), 22, 'middle', 'fa-txt') + sketch(428, true, false) + txt(521, 150, tr('afgerond eind', 'rounded end'), 22, 'middle', 'fa-on'));
     out += rowA(178, tr('sterker staal: brak opnieuw', 'stronger steel: broke again'), b === 0 ? span(p, 0.35, 0.6) : 1);
     out += rowA(228, tr('afronding · glad · kogelstralen', 'radius · smooth · shot peening'), b === 1 ? span(p, 0.3, 0.55) : b > 1 ? 1 : 0);
-    out += rowA(278, tr('roerder balanceren · uitlijnen', 'balance impeller · align'), b === 2 ? span(p, 0.15, 0.4) : b > 2 ? 1 : 0);
+    out += rowA(278, tr('uitlijnen · roerder balanceren', 'align · balance impeller'), b === 2 ? span(p, 0.15, 0.4) : b > 2 ? 1 : 0);
     out += rowA(328, tr('wisselingen? trilling? afronding?', 'cycles? vibration? radius?'), b === 3 ? span(p, 0.15, 0.4) : 0, 'fa-accf');
     return out;
   }

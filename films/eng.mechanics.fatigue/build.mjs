@@ -316,7 +316,10 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 // ---------------------------------------------------------------- cameras (one move per scene)
 // cam(p, w, sx): world point p lands at stage x sx (default the centre) in a view w wide
 const cam = (p, w, sx = W / 2) => { const [x, y] = at(p); return [Math.round((x + (W / 2 - sx) * (w / W)) * 10) / 10, Math.round(y * 10) / 10, w]; };
-const WHOLE = cam([0, 0, 78], 600);
+// the whole agitator: the fitted drawing spans the stage's full height (y 14..386),
+// so the opening view is the stage itself, centred; a tighter or higher view cut off
+// the tank's skirt and lugs (at 390 px and in the 16:9 video frame alike)
+const WHOLE = [W / 2, H / 2, W];
 const SIDE = cam([0, 0, 50], 300, 104);
 const KEYV = cam([0, 0, 54], 140, 104);
 const CAM = [
@@ -345,7 +348,7 @@ const spec = {
       beats: [
         { nl: 'Een roerwerk: motor en tandwielkast op een brug, de as aan een koppeling, onderaan de roerder.', en: 'An agitator: motor and gearbox on a bridge, the shaft on a coupling, the impeller at the bottom.', cues: ['drive', 'imp'] },
         { nl: '{t:Vermoeiing|Vermoeiing}: een steeds herhaalde last laat een scheurtje groeien, ruim onder de vloeigrens.', en: '{t:Fatigue|Fatigue}: a load repeated again and again grows a small crack, well below the yield strength.', cue: { Vermoeiing: 'shaft' } },
-        { nl: 'De as buigt iets door. Per omwenteling gaat elk punt van trek naar druk: één {t:Lastwisseling|lastwisseling}.', en: 'The shaft bends a little. Each turn takes every point from tension to compression: one {t:Load cycle|load cycle}.', cue: { Lastwisseling: 'cycle' }, cues: ['keyway'] },
+        { nl: 'De vloeistof buigt de as. Per omwenteling gaat elk punt van trek naar druk: één {t:Lastwisseling|lastwisseling}.', en: 'The liquid bends the shaft. Each turn takes every point from tension to compression: one {t:Load cycle|load cycle}.', cue: { Lastwisseling: 'cycle' }, cues: ['imp', 'keyway'] },
         { nl: '{n:1500} toeren per minuut is meer dan {n:2} miljoen lastwisselingen per dag.', en: '{n:1500} rpm is more than {n:2} million load cycles a day.', cues: ['cycle'] },
       ],
     },
@@ -390,7 +393,7 @@ const spec = {
       beats: [
         { nl: 'Na de eerste breuk kwam er sterker staal in. Hij brak opnieuw, op dezelfde plek.', en: 'After the first failure a stronger steel went in. It broke again, in the same place.', cues: ['keyway'] },
         { nl: 'Haal de kerf weg: een afgerond eind van de spiebaan, een glad oppervlak.', en: 'Remove the notch: a rounded end to the keyway, a smooth surface.', cues: ['keyway'] },
-        { nl: 'Haal de wisselende last weg: de roerder balanceren en de uitlijning controleren.', en: 'Remove the changing load: balance the impeller and check the alignment.', cues: ['imp', 'cpl'] },
+        { nl: 'Verklein de buiging: controleer de uitlijning, en balanceer de roerder tegen trilling.', en: 'Reduce the bending: check the alignment, and balance the impeller against vibration.', cues: ['cpl', 'imp'] },
         { nl: 'Breekt een sterker exemplaar weer? Vraag naar de wisselingen, de trilling en de afronding.', en: 'Does a stronger part break again? Ask about the cycles, the vibration and the radius.', cues: ['keyway'] },
       ],
     },
@@ -411,32 +414,32 @@ const spec = {
 // out of this narration; hogesterktestaal and overgangsstraal are kept out too.
 const SAY = [
   [ // s1 a shaft that keeps bending
-    { nl: 'Dit is een roerwerk, een menger in een tank. Op de brug staan een motor en een tandwielkast. Daaronder hangt de as aan een koppeling, met onderaan de roerder: de schoepen die de vloeistof mengen.',
-      en: 'This is an agitator, a mixer in a tank. On the bridge sit a motor and a gearbox. Below them the shaft hangs from a coupling, with the impeller at the bottom: the blades that mix the liquid.' },
-    { nl: 'Zo\'n as breekt zelden door één te zware klap. Veel vaker is het {t:Vermoeiing|vermoeiing}: een belasting die miljoenen keren terugkomt, laat een klein scheurtje groeien tot de as knapt. En dat terwijl de spanning ruim onder de vloeigrens blijft.',
-      en: 'A shaft like this rarely breaks from one blow that is too heavy. Far more often it is {t:Fatigue|fatigue}: a load that comes back millions of times grows a small crack until the shaft snaps. And all the while the stress stays well below the yield strength.' },
-    { nl: 'De roerder is uit balans, dus de as buigt een beetje door. Draait de as, dan komt elk punt van het oppervlak beurtelings aan de kant die rekt en aan de kant die wordt ingedrukt. Volg de stip: trek, druk, en weer trek. Elke omwenteling is één {t:Lastwisseling|lastwisseling}.',
-      en: 'The impeller is out of balance, so the shaft bends a little. As it turns, every point of its surface comes in turn to the side that stretches and the side that is squeezed. Follow the dot: tension, compression, and tension again. One revolution is one {t:Load cycle|load cycle}.' },
-    { nl: 'Dat telt snel op. Een as op {n:1500} toeren per minuut krijgt meer dan {n:2} miljoen lastwisselingen per dag. Een roerwerk draait meestal langzamer, maar ook dan zijn het er in een paar jaar vele miljoenen.',
-      en: 'That adds up fast. A shaft at {n:1500} revolutions per minute sees more than {n:2} million load cycles a day. An agitator usually turns slower, but even then it sees many millions within a few years.' },
+    { nl: 'Dit is een roerwerk, een menger in een tank. Op de brug staan een motor en een tandwielkast. Daaronder hangt de as aan een koppeling, met onderaan de roerder: de mengschoepen.',
+      en: 'This is an agitator, a mixer in a tank. On the bridge sit a motor and a gearbox. Below them the shaft hangs from a coupling, with the impeller at the bottom: the mixing blades.' },
+    { nl: 'Zo\'n as breekt zelden door één te zware klap. Veel vaker is het {t:Vermoeiing|vermoeiing}: een belasting die miljoenen keren terugkomt, laat een klein scheurtje groeien tot de as knapt, terwijl de spanning ruim onder de vloeigrens blijft.',
+      en: 'A shaft like this rarely breaks from one blow that is too heavy. Far more often it is {t:Fatigue|fatigue}: a load that comes back millions of times grows a small crack until the shaft snaps, while the stress stays well below the yield strength.' },
+    { nl: 'De vloeistof duwt de roerder steeds naar één kant, dus de as buigt een beetje door. Draait de as, dan komt elk punt van het oppervlak beurtelings aan de gerekte en aan de ingedrukte kant. Volg de stip: trek, druk, en weer trek. Elke omwenteling is één {t:Lastwisseling|lastwisseling}.',
+      en: 'The liquid keeps pushing the impeller to one side, so the shaft bends a little. As it turns, every point of its surface comes in turn to the side that stretches and the side that is squeezed. Follow the dot: tension, compression, and tension again. One revolution is one {t:Load cycle|load cycle}.' },
+    { nl: 'Een as op {n:1500} toeren per minuut krijgt meer dan {n:2} miljoen lastwisselingen per dag. Een roerwerk draait trager, maar haalt in een paar jaar ook vele miljoenen.',
+      en: 'A shaft at {n:1500} revolutions per minute sees more than {n:2} million load cycles a day. An agitator turns slower, but still sees many millions within a few years.' },
   ],
   [ // s2 stress concentration
     { nl: 'Deze as brak in {n:18} maanden twee keer, steeds aan het eind van de spiebaan. Dat is de sleuf voor de spie, het stalen blokje dat de koppeling op de as vastzet.',
       en: 'This shaft broke twice in {n:18} months, each time at the end of the keyway. That is the slot for the key, the steel block that locks the coupling to the shaft.' },
     { nl: 'Daar zit {t:Kerfwerking|kerfwerking}, of spanningsconcentratie: de vorm laat de spanning plaatselijk oplopen. De kracht moet om de sleuf heen, en in de scherpe hoek komt alles samen.',
       en: 'That is where the {t:Stress concentration|stress concentration} sits: the shape makes the stress pile up locally. The force has to flow around the slot, and in the sharp corner it all crowds together.' },
-    { nl: 'Een bekend voorbeeld: een klein rond gat in een brede plaat die je uittrekt. Aan de rand van het gat is de spanning ongeveer drie keer zo hoog. Een scherpe hoek kan nog erger zijn.',
-      en: 'A well-known example: a small round hole in a wide plate that you pull on. At the edge of the hole the stress is about three times as high. A sharp corner can be worse still.' },
+    { nl: 'Neem een klein rond gat in een brede plaat die je uittrekt: aan de rand van het gat is de spanning ongeveer drie keer zo hoog. Een scherpe hoek kan nog erger zijn.',
+      en: 'Take a small round hole in a wide plate that you pull on: at the edge of the hole the stress is about three times as high. A sharp corner can be worse still.' },
     { nl: 'Daarom beginnen scheuren bij scherpe hoeken, gaten, spiebanen, schroefdraad en de lasteen, waar lasmetaal en plaat elkaar raken, maar ook bij krassen en putjes van corrosie.',
       en: 'That is why cracks start at sharp corners, holes, keyways, threads and the weld toe, where weld metal meets the plate, and also at scratches and corrosion pits.' },
   ],
   [ // s3 beach marks
     { nl: 'In die hoek begint een scheurtje, te klein om te zien. Bij elke periode van draaien groeit het een stukje verder de as in.',
       en: 'In that corner a small crack starts, too small to see. In each period of running it grows a little further into the shaft.' },
-    { nl: 'Elke stop, of elke verandering van belasting, laat een ring achter op het breukvlak. Dat zijn {t:Rustlijnen|rustlijnen}: gebogen lijnen, zoals de lijnen die een golf op het strand achterlaat.',
-      en: 'Each stop, or each change of load, leaves a ring on the fracture surface. Those are {t:Beach marks|beach marks}: curved lines, like the lines a wave leaves on the sand.' },
-    { nl: 'Ze waaieren uit vanaf het startpunt, dus op het breukvlak lees je af waar de scheur begon: hier, in de hoek van de spiebaan. Kom niet aan het breukvlak en bewaar beide helften.',
-      en: 'They spread out from the start point, so the fracture surface tells you where the crack began: here, in the corner of the keyway. Don\'t touch the fracture surface, and keep both halves.' },
+    { nl: 'Elke stop of verandering van belasting laat een ring achter op het breukvlak. Dat zijn {t:Rustlijnen|rustlijnen}: gebogen lijnen, zoals de lijnen die een golf op het strand achterlaat.',
+      en: 'Each stop or change of load leaves a ring on the fracture surface. Those are {t:Beach marks|beach marks}: curved lines, like the lines a wave leaves on the sand.' },
+    { nl: 'Ze waaieren uit vanaf het startpunt, dus op het breukvlak lees je af waar de scheur begon: hier, in de hoek van de spiebaan.',
+      en: 'They spread out from the start point, so the fracture surface tells you where the crack began: here, in the corner of the keyway.' },
     { nl: 'Dat deel is vrij glad, soms zelfs glanzend: de scheurvlakken schuurden langs elkaar.',
       en: 'That zone is fairly smooth, sometimes even shiny: the crack faces rubbed against each other.' },
   ],
@@ -457,18 +460,18 @@ const SAY = [
       en: 'Many steels show an {t:Endurance limit|endurance limit}. Below roughly half their tensile strength, polished test samples survive {n:10} million cycles, and are taken to last indefinitely. The curve usually levels off somewhere between one and ten million cycles.' },
     { nl: 'Aluminium heeft geen echte grens: een ontwerp noemt daar een leven in wisselingen. En ook staal breekt soms ver na {n:10} miljoen wisselingen. Oneindig leven is een handige benadering, geen natuurwet.',
       en: 'Aluminium has no real limit: a design states a life in cycles. And steels too sometimes fail far beyond {n:10} million cycles. Infinite life is a useful approximation, not a law.' },
-    { nl: 'Een echt onderdeel zit lager dan dat gladde staafje: een ruw oppervlak, een groter formaat, corrosie en lassen halen er allemaal wat af. Een constante trekspanning erbovenop doet dat ook. Een statische berekening bewijst dus niks voor een trillend onderdeel.',
-      en: 'A real part sits lower than that smooth sample: a rough surface, a larger size, corrosion and welds all take something off. A constant tensile stress on top does too. So a static calculation proves nothing for a vibrating part.' },
+    { nl: 'Een echt onderdeel zit lager dan dat gladde staafje: een ruw oppervlak, een groter formaat, corrosie, lassen en een constante trekspanning erbovenop halen er allemaal wat af. Een statische berekening bewijst dus niks voor een trillend onderdeel.',
+      en: 'A real part sits lower than that smooth sample: a rough surface, a larger size, corrosion, welds and a constant tensile stress on top all take something off. So a static calculation proves nothing for a vibrating part.' },
   ],
   [ // s6 the fix
     { nl: 'Terug naar het roerwerk. Na de eerste breuk kwam er sterker staal in, en hij brak opnieuw op dezelfde plek. Staal met een hoge sterkte is vaak juist gevoeliger voor kerven.',
       en: 'Back to the agitator. After the first failure a stronger steel went in, and it broke again in the same place. High-strength steels are often more sensitive to notches.' },
-    { nl: 'Dus pak je de oorzaken aan. Eerst de kerf: de spiebaan krijgt een afgerond eind, en waar de as dunner wordt een ruime afronding. Een glad oppervlak en kogelstralen, dat de huid onder druk zet, helpen nog meer.',
-      en: 'So you tackle the causes. First the notch: the keyway gets a rounded end, and where the shaft steps down, a generous radius. A smooth surface and shot peening, which puts the skin under compression, help further.' },
-    { nl: 'Dan de wisselende last: de roerder wordt gebalanceerd, en de uitlijning wordt gecontroleerd. Minder buiging per omwenteling geeft een veel langer leven.',
-      en: 'Then the changing load: the impeller is balanced, and the alignment is checked. Less bending per revolution gives a much longer life.' },
-    { nl: 'Sterker staal hielp niet, een afronding wel. Breekt een onderdeel opnieuw na een sterker exemplaar, denk dan aan vermoeiing, en vraag naar de wisselingen, de trillingen en de afrondingsstraal.',
-      en: 'Stronger steel did not help, a radius did. When a part breaks again after a stronger one went in, think of fatigue, and ask about the cycles, the vibration and the corner radius.' },
+    { nl: 'Eerst de kerf: de spiebaan krijgt een afgerond eind, en waar de as dunner wordt een ruime afronding. Een glad oppervlak en kogelstralen, dat de huid onder druk zet, helpen nog meer.',
+      en: 'First the notch: the keyway gets a rounded end, and where the shaft steps down, a generous radius. A smooth surface and shot peening, which puts the skin under compression, help further.' },
+    { nl: 'Dan de buiging. Een scheve koppeling buigt de as bij elke omwenteling extra: controleer de uitlijning. En balanceer de roerder, want onbalans laat de as trillen. Minder buiging, veel langer leven.',
+      en: 'Then the bending. A misaligned coupling bends the shaft extra on every revolution: check the alignment. And balance the impeller, because unbalance makes the shaft vibrate. Less bending, much longer life.' },
+    { nl: 'Sterker staal hielp niet, een afronding wel. Breekt een sterker exemplaar opnieuw, denk dan aan vermoeiing: vraag naar de wisselingen, de trillingen en de afrondingsstraal.',
+      en: 'Stronger steel did not help, a radius did. When a stronger part breaks again, think of fatigue: ask about the cycles, the vibration and the corner radius.' },
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
