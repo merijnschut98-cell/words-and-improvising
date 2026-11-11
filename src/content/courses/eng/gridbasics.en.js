@@ -579,6 +579,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      film: 'eng.gridbasics.congestion',
       title: 'What a grid operator does',
       pre: [
         {
@@ -863,6 +864,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      film: 'eng.gridbasics.congestion',
       title: 'Grid congestion',
       pre: [
         {

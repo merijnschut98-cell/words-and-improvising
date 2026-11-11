@@ -579,6 +579,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      film: 'eng.gridbasics.congestion',
       title: 'Wat een netbeheerder doet',
       pre: [
         {
@@ -863,6 +864,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      film: 'eng.gridbasics.congestion',
       title: 'Netcongestie',
       pre: [
         {
