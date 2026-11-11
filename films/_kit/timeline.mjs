@@ -69,8 +69,9 @@ const SAY = {
     // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
     [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
     // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
-    // nothing: espeak-ng already spells it in CE-markering
-    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
+    // nothing: espeak-ng already spells it in CE-markering. But a lone S with a word after it ("M E S in", "M E
+    // S-leverancier") is read as a bare hiss, the clitic 's (phon.py, 2026-11-11): there MES is "em ee es"
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES(?=[\s-]+[\p{L}\p{N}])/gu, 'em ee es'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
     // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
     [/\bCILT\b/g, 'C I L T'],
     // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")

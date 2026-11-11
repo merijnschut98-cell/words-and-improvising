@@ -512,32 +512,33 @@ const spec = {
 // The film replaces the lessons' text and worked examples, so this explains
 // fully. No "/" or "&" in the spoken text; standard numbers (IEC 62264, IEC
 // 62443) stay in the captions only; "3.5" is said in words. ERP, PLC, SCADA,
-// DMZ, IT and OT read right as they are; MES and HMI are said as letters, and
+// DMZ, IT and OT read right as they are; MES and HMI are said as letters (MES with
+// a word after it as "em ee es", else the S is a bare hiss), and
 // Purdue, functiemodel, productieorder, stamdata, tijdschaal and firewall get a
 // Dutch spoken form (films/_kit/timeline.mjs, SAY).
 const SAY = [
   [ // s1 a plant in layers
-    { nl: '{t:ISA-95|ISA-95} is de internationale norm, ook als IEC-norm uitgegeven, over hoe de systemen van een fabriek samenhangen. Het eerste deel verscheen in 2000.',
-      en: '{t:ISA-95|ISA-95} is the international standard, also published by the IEC, that describes how a plant’s systems fit together. Its first part appeared in 2000.' },
-    { nl: 'Met zijn niveaus spreek je dezelfde taal als IT, als OT, de techniek die machines bestuurt, en als leveranciers. Het zijn er vijf, van nul tot vier: de verdiepingen van deze fabriek.',
-      en: 'Its levels let you speak the same language as IT, OT, the technology that controls machines, and suppliers. There are five, from zero to four: the floors of this plant.' },
+    { nl: '{t:ISA-95|ISA-95} is de internationale norm over hoe de systemen van een fabriek samenhangen. Het eerste deel verscheen in 2000.',
+      en: '{t:ISA-95|ISA-95} is the international standard that describes how a plant’s systems fit together. Its first part appeared in 2000.' },
+    { nl: 'Met de niveaus spreek je één taal met IT, met OT, de techniek die machines bestuurt, en met leveranciers. Vijf, van nul tot vier: de verdiepingen van deze fabriek.',
+      en: 'Its levels give you one language with IT, with OT, the technology that controls machines, and with suppliers. Five, from zero to four: the floors of this plant.' },
   ],
   [ // s2 levels 0, 1 and 2
     { nl: 'Niveau nul is het proces zelf: de kunststof die in de matrijs een dop wordt.',
       en: 'Level zero is the process itself: the plastic that becomes a cap in the mould.' },
-    { nl: 'Niveau één meet en beweegt: de temperatuurvoeler in de matrijs is een sensor, de koelwaterklep een actuator.',
-      en: 'Level one measures and moves. The temperature sensor in the mould is a sensor, the cooling-water valve an actuator.' },
-    { nl: 'Niveau twee bestuurt: de {t:PLC|PLC}, de industriële computer in de kast die de machine aanstuurt. Sommige tekeningen zetten hem op niveau één.',
-      en: 'Level two controls: the {t:PLC|PLC}, the industrial computer in the cabinet that runs the machine. Some drawings put it at level one.' },
+    { nl: 'Niveau één meet en beweegt: sensoren zoals de temperatuurvoeler, actuatoren zoals de koelwaterklep.',
+      en: 'Level one measures and moves: sensors such as the temperature sensor, actuators such as the cooling-water valve.' },
+    { nl: 'Niveau twee bewaakt en bestuurt: de {t:PLC|PLC}, de industriële computer die de machine aanstuurt. Sommige tekeningen zetten hem op niveau één.',
+      en: 'Level two monitors and controls: the {t:PLC|PLC}, the industrial computer that runs the machine. Some drawings put it at level one.' },
     { nl: 'Ook {t:SCADA|SCADA} hoort hier: daarmee volgen en bedienen operators de hele installatie op schermen.',
       en: '{t:SCADA|SCADA} belongs here too: with it, operators watch and run the whole installation on screens.' },
   ],
   [ // s3 levels 3 and 4
-    { nl: 'Niveau drie stuurt de productie: welke order op welke machine, wat er verbruikt, gemaakt en afgekeurd is. Dat doet meestal een {t:MES|MES}.',
-      en: 'Level three runs production: which order on which machine, what was used, made and scrapped. Usually an {t:MES|MES} does this.' },
-    { nl: 'Ook het kwaliteitssysteem voor meetrapporten hoort hier: het werkt per order en per dienst.',
-      en: 'The quality system belongs here too: it works per order and per shift.' },
-    { nl: 'Niveau vier is de bedrijfsplanning in het {t:ERP|ERP}, zoals SAP, op de laptop van de planner: klantorders, inkoop, voorraad en kosten.',
+    { nl: 'Niveau drie stuurt de productie, meestal met een {t:MES|MES}: welke order op welke machine, wat er verbruikt, gemaakt en afgekeurd is.',
+      en: 'Level three runs production, usually with an {t:MES|MES}: which order on which machine, what was used, made and scrapped.' },
+    { nl: 'Het kwaliteitssysteem voor meetrapporten werkt per order en dienst: ook niveau drie.',
+      en: 'The quality system for inspection reports works per order and shift: level three too.' },
+    { nl: 'Niveau vier is de bedrijfsplanning in het {t:ERP|ERP}, zoals SAP: klantorders, inkoop, voorraad en kosten.',
       en: 'Level four is business planning in the {t:ERP|ERP}, such as SAP: customer orders, purchasing, stock and cost.' },
     { nl: 'De norm gaat vooral over de grens tussen drie en vier: welke informatie daar heen en weer gaat.',
       en: 'The standard is mostly about the boundary between three and four: which information goes back and forth there.' },
@@ -545,12 +546,12 @@ const SAY = [
   [ // s4 the timescale
     { nl: 'Het handigste onderscheid is de {t:Tijdschaal|tijdschaal}: hoe snel beslissingen op een niveau vallen.',
       en: 'The most useful distinction is the {t:Timescale|timescale}: how fast decisions are made at a level.' },
-    { nl: 'Niveau vier denkt in maanden tot dagen, niveau drie in dagen tot seconden, één en twee in seconden en sneller: de voeler in milliseconden, het ERP in dagen.',
-      en: 'Level four thinks in months to days, level three in days to seconds, levels one and two in seconds and faster: the sensor in milliseconds, the ERP in days.' },
+    { nl: 'Niveau vier denkt in maanden tot dagen, niveau drie in dagen tot seconden, één en twee in seconden en sneller; de voeler zelfs in milliseconden.',
+      en: 'Level four thinks in months to days, level three in days to seconds, levels one and two in seconds and faster; the sensor even in milliseconds.' },
     { nl: 'Valt een systeem een uur uit? Zonder PLC staat de machine stil, zonder ERP draait de lijn meestal door.',
       en: 'A system down for an hour? Without the PLC the machine stops; without the ERP the line usually runs on.' },
-    { nl: 'Typische fout: we halen de OEE uit SAP. Het ERP weet wat er geboekt is, niet wat de machine per minuut deed. Vraag dus: op welk niveau ontstaat dit getal?',
-      en: 'Typical mistake: we take OEE from SAP. The ERP knows what was booked, not what the machine did each minute. So ask: at which level does this number arise?' },
+    { nl: 'Typische fout: we halen de OEE uit SAP. Het ERP weet wat er geboekt is, niet wat de machine per minuut deed. Vraag dus: op welk niveau ontstaat dit getal, en waar gebruiken we het?',
+      en: 'Typical mistake: we take OEE from SAP. The ERP knows what was booked, not what the machine did each minute. So ask: at which level does this number arise, and where do we use it?' },
   ],
   [ // s5 an order comes in
     { nl: 'Volg nu één order. Het ERP maakt een {t:Productieorder|productieorder}: {n:2000} doppen van type A, klaar op donderdag.',
@@ -561,10 +562,10 @@ const SAY = [
       en: 'The {t:Routing|routing} says which operations, in which order, where and how long: injection moulding on machine {n:4}, {n:12} seconds per cycle.' },
   ],
   [ // s6 from plan to machine
-    { nl: 'Stuklijst en routing zijn {t:Stamdata|stamdata}: vaste gegevens die bij veel orders terugkomen, meestal in het ERP, en als kopie naar het MES.',
-      en: 'Bill of materials and routing are {t:Master data|master data}: fixed information used in many orders, usually kept in the ERP and copied to the MES.' },
-    { nl: 'Staat er {n:10} seconden cyclustijd terwijl de machine er {n:12} haalt, dan lijkt elke dienst te traag. Vaak zijn ze bij de invoering van het MES één keer overgenomen en nooit bijgehouden. Vraag dus wie een cyclustijd aanpast, en waar.',
-      en: 'If it says {n:10} seconds cycle time while the machine manages {n:12}, every shift looks too slow. Often it was copied once when the MES went in and never kept up. So ask who changes a cycle time, and where.' },
+    { nl: 'Stuklijst en routing zijn {t:Stamdata|stamdata}: vaste gegevens voor veel orders, beheerd in het ERP, met een kopie in het MES.',
+      en: 'Bill of materials and routing are {t:Master data|master data}: fixed information for many orders, kept in the ERP, with a copy in the MES.' },
+    { nl: 'Staat er {n:10} seconden terwijl de machine er {n:12} haalt, dan lijkt elke dienst te traag. Vaak zijn stamdata bij de MES-invoering één keer overgenomen en nooit bijgehouden. Vraag dus wie een cyclustijd aanpast, en waar.',
+      en: 'If it says {n:10} seconds while the machine manages {n:12}, every shift looks too slow. Often master data were copied once at MES go-live and never kept up. So ask who changes a cycle time, and where.' },
     { nl: 'Het MES verdeelt het werk over lijnen en diensten: deze order op dinsdag, vroege dienst, machine {n:4}.',
       en: 'The MES spreads the work over lines and shifts: this order on Tuesday, early shift, machine {n:4}.' },
     { nl: 'De operator start hem op de {t:HMI|HMI}, het aanraakscherm aan de machine. De PLC laadt de instellingen voor type A.',
@@ -591,16 +592,16 @@ const SAY = [
       en: 'In Purdue, zero to three are the plant, four the site’s office network, and five the {t:Enterprise network|enterprise network}, with the central systems and the internet.' },
   ],
   [ // s9 the DMZ
-    { nl: 'Daartussen, op drie punt vijf, zit de {t:Industriële DMZ|industriële DMZ}: een tussennetwerk dat later is toegevoegd. Kantoor en fabriek praten ermee, niet met elkaar.',
-      en: 'In between, at three point five, sits the {t:Industrial DMZ|industrial DMZ}: a buffer network added later. Office and plant both talk to it, not to each other.' },
-    { nl: 'Niveau drie is voor een MES-leverancier een taak, voor een netwerkbeheerder een plek onder de DMZ. Vraag dus: bedoel je wat het systeem doet, of waar het staat? De nummering is een gewoonte, geen wet.',
+    { nl: 'Tussen drie en vier, op drie punt vijf, zit de {t:Industriële DMZ|industriële DMZ}, een later toegevoegd tussennetwerk. Kantoor en fabriek praten ermee, niet met elkaar.',
+      en: 'Between three and four, at three point five, sits the {t:Industrial DMZ|industrial DMZ}: a buffer network, added later. Office and plant both talk to it, not to each other.' },
+    { nl: 'Niveau drie is voor een MES-leverancier een taak, voor een netwerkbeheerder een plek onder de DMZ. Vraag: bedoel je wat het systeem doet, of waar het staat? De nummering is een gewoonte, geen wet.',
       en: 'Level three is a task to an MES supplier, a place below the DMZ to a network administrator. So ask: what the system does, or where it sits? The numbering is a habit, not a law.' },
-    { nl: 'Neem een MES in de cloud dat werkorders stuurt en tellingen terugkrijgt: functioneel niveau drie, in het netwerk buiten niveau vijf. Past Purdue dan nog? De meeste experts houden de lagen als denkkader en laten zulk nieuw verkeer via de DMZ lopen.',
-      en: 'Take an MES in the cloud that sends work orders and gets counts back: functionally level three, in the network beyond level five. Does Purdue still fit? Most experts keep the layers as a way of thinking and route such new traffic through the DMZ.' },
-    { nl: 'Geen verbinding van buiten mag de fabriek bereiken. Dus belt een connector op niveau drie zelf naar buiten, naar een doorgeefluik in de DMZ dat met de cloud praat; daarover komen de orders binnen.',
-      en: 'No connection started outside may reach the plant. So a connector at level three calls out itself, to a relay in the DMZ that talks to the cloud; orders come in over that link.' },
-    { nl: 'De beveiligingsnorm noemt zulke netwerkdelen zones, de bewaakte verbindingen conduits. Noteer beide kaarten, en vraag bij mooie lagen de firewallregels: vaak hangt alles toch in één netwerk.',
-      en: 'The security standard calls such network parts zones, the guarded links conduits. Record both maps, and behind neat layers, ask for the firewall rules: often everything hangs in one network.' },
+    { nl: 'Een cloud-MES dat orders stuurt en tellingen terugkrijgt, is functioneel niveau drie, maar staat buiten niveau vijf. Past Purdue dan nog? De meeste experts zeggen ja, als denkkader, met nieuw verkeer via de DMZ.',
+      en: 'A cloud MES that sends orders and gets counts back is functionally level three, but sits beyond level five. Does Purdue still fit? Most experts say yes, as a way of thinking, with new traffic through the DMZ.' },
+    { nl: 'Geen verbinding die buiten begint, mag de fabriek bereiken: een connector op niveau drie zelf naar buiten, naar een doorgeefluik in de DMZ dat met de cloud praat; daarover komen de orders binnen.',
+      en: 'No connection started outside may reach the plant: a connector at level three calls out itself, to a relay in the DMZ that talks to the cloud; orders come in over that link.' },
+    { nl: 'De beveiligingsnorm spreekt van zones en conduits: groepen apparaten en de gecontroleerde verbindingen ertussen. Noteer beide kaarten, en vraag bij mooie lagen de firewallregels: vaak hangt alles toch in één netwerk.',
+      en: 'The security standard speaks of zones and conduits: groups of devices and the controlled connections between them. Record both maps, and behind neat layers, ask for the firewall rules: often everything hangs in one network.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
