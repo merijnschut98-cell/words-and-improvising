@@ -2,6 +2,7 @@
 // goal ring and the celebration. Tiers are told apart by form and always by
 // their word, never by colour alone (gold is retired; petrol is the accent).
 import { h } from './dom.js';
+import { ico } from './icons.js';
 import { storedMedal, medalFor } from '../core/flair.js';
 import { checkOf } from '../core/modulecheck.js';
 
@@ -46,4 +47,12 @@ export function moduleEndModel(state, meta, today) {
 export function metaSeal(t, state, meta) {
   const tier = storedMedal(state, meta.subject, meta.id);
   return tier ? medalSeal(t, tier, 24) : null;
+}
+
+// The way into the module check, quiet (never the primary): a flag button
+// once bronze is earned, a plain line after today's attempt.
+export function checkEntry(t, end, onOpen) {
+  if (!end || !end.check) return null;
+  if (end.check === 'tomorrow') return h('p', { class: 'muted small check-tomorrow' }, t('checkTomorrow'));
+  return h('button', { class: 'btn btn-ghost small check-btn', onclick: onOpen }, ico('flag'), ' ', t('checkTitle'));
 }

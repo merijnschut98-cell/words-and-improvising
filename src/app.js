@@ -33,6 +33,7 @@ import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
+import { renderCheck } from './ui/modulecheck.js';
 import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
 import { renderApply } from './ui/apply.js';
@@ -52,6 +53,7 @@ const SCREENS = {
   friendrate: renderFriendRate,
   lesson: renderLesson,
   due: renderDue,
+  check: renderCheck,
   situation: renderSituation,
   glossary: renderGlossary,
   apply: renderApply,

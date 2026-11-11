@@ -80,3 +80,70 @@ test('applyCheck: stores best, total, last and the first perfect ts', () => {
   assert.deepEqual(r3.state.courses.eng.checks['eng.fx'], { last: '2026-11-04', best: 3, total: 3, perfect: NOW + 5 });
   assert.equal(r3.state.courses.eng.sessions[0].kind, 'check');
 });
+
+// ---- The check screen (UI, on a tiny fake DOM) ----
+import { installFakeDom } from './fixtures/fakedom.js';
+import { translator } from '../src/i18n.js';
+import { MODULES } from '../src/content/courses/index.js';
+
+installFakeDom();
+const { renderQuiz } = await import('../src/ui/quiz.js');
+const { checkEntry } = await import('../src/ui/flairui.js');
+const { renderCheck } = await import('../src/ui/modulecheck.js');
+const tNl = translator('nl');
+const fakeApp = (over = {}) => ({ t: tNl, lang: 'nl', state: defaultState(), navSeq: 1, today: () => TODAY, go() {}, setState(s) { this.state = s; }, ...over });
+const flat = (el) => [el, ...el.querySelectorAll('button')];
+
+test('renderQuiz onePass: no hint button, no back button, done after the first review', () => {
+  const qs = [{ id: 'eng.fx.a#r0', q: 'q0', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }, { id: 'eng.fx.b#r0', q: 'q1', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }];
+  const box = document.createElement('div');
+  const done = [];
+  renderQuiz(fakeApp(), { questions: qs, onePass: true, termsOf: () => [{ term: 'a', def: 'the letter a' }], onDone: (ft, sure) => done.push([ft, sure]) }, box);
+  assert.equal(box.querySelector('.quiz-hint-btn'), null);
+  assert.equal(box.querySelector('.quiz-back'), null);
+  box.querySelectorAll('.opt')[0].click();
+  assert.equal(box.querySelector('.quiz-hint-btn'), null);
+  assert.equal(box.querySelector('.quiz-back'), null, 'no back on the second question either');
+  box.querySelectorAll('.opt')[1].click();
+  assert.ok(box.querySelector('.quiz-review'));
+  const finish = box.querySelector('.quiz-review .btn-primary');
+  assert.equal(finish.textContent, tNl('quizFinish'));
+  finish.click();
+  assert.equal(done.length, 1);
+  assert.deepEqual(done[0][0], { 'eng.fx.a#r0': true, 'eng.fx.b#r0': false });
+});
+
+test('the check button is absent without bronze and says checkTomorrow after today\'s attempt', () => {
+  assert.equal(checkEntry(tNl, { tier: null, check: null }, () => {}), null);
+  let opened = 0;
+  const btn = checkEntry(tNl, { tier: 'bronze', check: 'open' }, () => { opened++; });
+  assert.equal(btn.tagName, 'BUTTON');
+  assert.ok(btn.classList.contains('check-btn'));
+  assert.ok(!btn.classList.contains('btn-primary'));
+  assert.match(btn.textContent, /Modulecheck/);
+  btn.click();
+  assert.equal(opened, 1);
+  const later = checkEntry(tNl, { tier: 'bronze', check: 'tomorrow' }, () => {});
+  assert.notEqual(later.tagName, 'BUTTON');
+  assert.equal(later.textContent, tNl('checkTomorrow'));
+});
+
+test('a module file that fails to load shows loadError and keeps the button usable', async () => {
+  const meta = MODULES.find((m) => m.id === 'eng.flow');
+  const lessons = Object.fromEntries(meta.lessons.map((id) => [id, { passed: 1 }]));
+  const state = { ...defaultState(), courses: { ...defaultState().courses, eng: { ...defaultState().courses.eng, lessons, medals: { 'eng.flow': { tier: 'bronze', ts: 1 } } } } };
+  let tries = 0;
+  const app = fakeApp({ state, openModule: () => { tries++; return Promise.reject(new Error('offline')); } });
+  const root = document.createElement('div');
+  renderCheck(app, { subject: 'eng', moduleId: 'eng.flow' }, root);
+  const start = root.querySelector('.check-start');
+  assert.ok(start);
+  assert.match(root.textContent, /Tien vragen uit de hele module/);
+  start.click();
+  await new Promise((r) => setTimeout(r, 0));
+  assert.equal(root.querySelector('.note').textContent, tNl('loadError'));
+  assert.equal(start.disabled, false, 'the button works again');
+  start.click();
+  await new Promise((r) => setTimeout(r, 0));
+  assert.equal(tries, 2);
+});

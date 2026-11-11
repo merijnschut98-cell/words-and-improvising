@@ -5,7 +5,7 @@ import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
-import { medalSeal, metaSeal, moduleEndModel } from './flairui.js';
+import { medalSeal, metaSeal, moduleEndModel, checkEntry } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -121,7 +121,8 @@ function topicModuleRow(app, meta) {
 // The module check joins it once bronze is earned (v16 flair).
 function moduleEnd(app, meta) {
   const end = moduleEndModel(app.state, meta, app.today());
-  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24));
+  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
+    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id })));
 }
 
 function moduleRow(app, meta) {
