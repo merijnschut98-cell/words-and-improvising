@@ -36,7 +36,7 @@
 // stations, the feeder breaker, the open point to the neighbouring ring, the
 // indicators, the fault and the switching; a "voorbeeld"), the LV notes, the
 // restoration times and customer minutes, the repair, and SAIFI × CAIDI =
-// SAIDI with the Dutch 2024 figures.
+// SAIDI with the Dutch 2025 figures.
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it
 // lives somewhere else on your machine.
@@ -77,9 +77,11 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // - Restoration: manual switching typically 1 to 2 hours, remotely switched
 //   stations minutes; repair often a day (the lesson's figures, hedged with
 //   "meestal", "kan" and "vaak").
-// - SAIDI 2024, unplanned: 23,9 min = 0,343 interruptions × 69,8 min
-//   (Netbeheer Nederland, Betrouwbaarheid van elektriciteitsnetten in Nederland
-//   2024), planned work 23,3 min on top; the lesson's figures.
+// - SAIDI 2025, unplanned: 23,4 min = 0,316 interruptions × 73,9 min
+//   (Netbeheer Nederland, Betrouwbaarheid van elektriciteitsnetten in Nederland,
+//   Resultaten 2025, 1 April 2026), planned work 27,2 min on top; the lesson's
+//   figures since v175, as in films/eng.gridbasics.congestion (2024 was 23,9
+//   and 23,3).
 // - The five safety rules word for word as in eng.gridops and the switchgear
 //   film (NEN-EN 50110-1): vrijschakelen, beveiligen tegen herinschakelen,
 //   spanningsloosheid vaststellen, aarden en kortsluiten, naastgelegen delen
@@ -97,7 +99,7 @@ const near = (a, b, tol) => Math.abs(a - b) <= tol;
   assert(t.includes('als ring gebouwd maar worden open bedreven') && t.includes('reserveroute'), 'ring run open');
   assert(t.includes('tussen het laatste station dat aansprak en het eerste dat niet aansprak'), 'the fault between last lit and first unlit');
   assert(t.includes('binnen één tot twee uur') && t.includes('dat minuten') && t.includes('één of twee moffen') && t.includes('vaak een dag') && t.includes('geen reserve'), 'restore and repair');
-  assert(t.includes('SAIDI = SAIFI × CAIDI') && t.includes('23,9 minuten: 0,343 onderbrekingen van gemiddeld 69,8 minuten') && t.includes('23,3 minuten'), 'SAIDI 2024');
+  assert(t.includes('SAIDI = SAIFI × CAIDI') && t.includes('In 2025') && t.includes('23,4 minuten: 0,316 onderbrekingen van gemiddeld 73,9 minuten') && t.includes('met 27,2 minuten bovenop'), 'SAIDI 2025');
   assert(t.includes('één lange streng op het platteland'), 'the rural feeder');
   const x = l.example.text;
   assert(x.includes('Om 07:40') && x.includes('12 MS-stations') && x.includes('1.800 klanten') && x.includes('station 1 tot en met 5, niet in station 6'), 'the example: trip, ring, indicators');
@@ -114,11 +116,11 @@ const CMIN = CUST * AVG;
 assert(CMIN === 90000, '1.800 × 50 = 90.000');
 const LIT = 5; // indicators lit in 1..5, not in 6
 const NOP = 12;
-const SAIFI = 0.343;
-const CAIDI = 69.8;
-const SAIDI = 23.9;
-const PLANNED = 23.3;
-assert(near(SAIFI * CAIDI, SAIDI, 0.05), '0,343 × 69,8 ≈ 23,9');
+const SAIFI = 0.316;
+const CAIDI = 73.9;
+const SAIDI = 23.4;
+const PLANNED = 27.2;
+assert(Math.round(SAIFI * CAIDI * 10) / 10 === SAIDI, '0,316 × 73,9 = 23,4 (23,35, to one decimal)');
 assert(near(CUST / STATIONS, 150, 1e-9), '150 customers per station (the card shows customers off supply per station)');
 
 const W = 640;
@@ -825,7 +827,7 @@ const spec = {
       id: 's4', lesson: OUT, level: 1, dur: DUR[3], still: 0.92, title: { nl: 'Waar zit de fout?', en: 'Where is the fault?' },
       beats: [
         B('08:15: de storingsmonteur is ter plaatse en zoekt samen met het centrum de fout.', '08:15: the fault technician is on site and looks for the fault with the control room.', { cues: ['rmu'] }),
-        B('Elk station heeft {t:Kortsluitverklikker|kortsluitverklikkers}: ze tonen of er foutstroom langs kwam.', 'Each station has {t:Fault indicator|fault indicators}: they show whether fault current passed.', { cue: { Kortsluitverklikker: 'fpi' } }),
+        B('Elk station heeft {t:Kortsluitverklikker|kortsluitverklikkers}: ze tonen of er kortsluitstroom langs kwam.', 'Each station has {t:Fault indicator|fault indicators}: they show whether fault current passed.', { cue: { Kortsluitverklikker: 'fpi' } }),
         B('Aangesproken in station {n:1} tot en met {n:5}, niet in station {n:6}.', 'Triggered in stations {n:1} to {n:5}, not in station {n:6}.', { cues: ['fpi'] }),
         B('De fout zit tussen het laatste station dat aansprak en het eerste dat niet aansprak.', 'The fault lies between the last station that flagged and the first that did not.', { cues: [] }),
       ],
@@ -833,7 +835,7 @@ const spec = {
     {
       id: 's5', lesson: OUT, level: 1, dur: DUR[4], still: 0.92, title: { nl: 'Om de fout heen', en: 'Around the fault' },
       beats: [
-        B('In station {n:5} de schakelaar richting {n:6} open, en in {n:6} die richting {n:5}.', 'In station {n:5} the switch towards {n:6} opens, and in {n:6} the one towards {n:5}.', { cues: ['ring'] }),
+        B('In station {n:5} de lastscheider richting {n:6} open, en in {n:6} die richting {n:5}.', 'In station {n:5} the load-break switch towards {n:6} opens, and in {n:6} the one towards {n:5}.', { cues: ['ring'] }),
         B('Het veld gaat weer in: station {n:1} tot en met {n:5} zijn terug.', 'The feeder breaker recloses: stations {n:1} to {n:5} are back.', { cues: ['cb'] }),
         B('Eerst controleren dat de naburige ring de ochtendbelasting aankan.', 'First check that the neighbouring ring can carry the morning load.', { cues: [] }),
         B('Dan het normaal openpunt in station {n:12} dicht: ook {n:6} tot en met {n:12} zijn terug.', 'Then the normally open point in station {n:12} closes: stations {n:6} to {n:12} are back too.', { cues: ['nop'] }),
@@ -853,7 +855,7 @@ const spec = {
       beats: [
         B('{t:SAIFI|SAIFI}: het aantal onderbrekingen per klant per jaar.', '{t:SAIFI|SAIFI}: the number of interruptions per customer per year.', { cue: { SAIFI: 'saifi' } }),
         B('{t:CAIDI|CAIDI}: hoe lang één onderbreking gemiddeld duurt voor wie hem meemaakt.', '{t:CAIDI|CAIDI}: how long one interruption lasts on average for those affected.', { cue: { CAIDI: 'caidi' } }),
-        B('{t:SAIDI|SAIDI} = SAIFI × CAIDI. In 2024: {n:0.343} × {n:69.8} = {n:23.9} minuten.', '{t:SAIDI|SAIDI} = SAIFI × CAIDI. In 2024: {n:0.343} × {n:69.8} = {n:23.9} minutes.', { cue: { SAIDI: 'saidi' } }),
+        B('{t:SAIDI|SAIDI} = SAIFI × CAIDI. In 2025: {n:0.316} × {n:73.9} = {n:23.4} minuten.', '{t:SAIDI|SAIDI} = SAIFI × CAIDI. In 2025: {n:0.316} × {n:73.9} = {n:23.4} minutes.', { cue: { SAIDI: 'saidi' } }),
         B('Valkuil: één lange streng op het platteland kan de SAIDI van een hele regio bepalen.', 'Pitfall: one long rural feeder can drive a whole region’s SAIDI.', { cues: ['saidi'] }),
       ],
     },
@@ -946,8 +948,8 @@ const SAY = [
       'Grid operators add up a year of outages in three numbers. {t:SAIFI|SAIFI} is the number of interruptions per customer per year.'),
     B('{t:CAIDI|CAIDI} is de gemiddelde duur van één onderbreking, voor de klanten die hem meemaakten.',
       '{t:CAIDI|CAIDI} is the average duration of one interruption, for the customers affected.'),
-    B('Vermenigvuldig ze, en je krijgt {t:SAIDI|SAIDI}: de gemiddelde uitvalminuten per klant per jaar, de jaarlijkse uitvalduur. In 2024 was dat in Nederland {n:0.343} onderbrekingen van gemiddeld {n:69.8} minuten: {n:23.9} minuten door onvoorziene storingen. Gepland werk kwam daar met {n:23.3} minuten bovenop.',
-      'Multiply them, and you get {t:SAIDI|SAIDI}: the average outage minutes per customer per year. In 2024 in the Netherlands that was {n:0.343} interruptions of {n:69.8} minutes on average: {n:23.9} minutes from unplanned outages. Planned work added {n:23.3} minutes on top.'),
+    B('Vermenigvuldig ze, en je krijgt {t:SAIDI|SAIDI}: de gemiddelde uitvalminuten per klant per jaar, de jaarlijkse uitvalduur. In 2025 was dat in Nederland {n:0.316} onderbrekingen van gemiddeld {n:73.9} minuten: {n:23.4} minuten door onvoorziene storingen. Gepland werk kwam daar met {n:27.2} minuten bovenop.',
+      'Multiply them, and you get {t:SAIDI|SAIDI}: the average outage minutes per customer per year. In 2025 in the Netherlands that was {n:0.316} interruptions of {n:73.9} minutes on average: {n:23.4} minutes from unplanned outages. Planned work added {n:27.2} minutes on top.'),
     B('Een valkuil: één lange streng op het platteland kan de SAIDI van een hele regio bepalen.',
       'A pitfall: one long rural feeder can drive a whole region’s SAIDI.'),
   ],
@@ -977,19 +979,15 @@ const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE,
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
 const css = `
-.ws-road{fill:var(--anatomy-shade-1);stroke:none}
-.ws-glass{fill:var(--anatomy-shade-0);stroke:none}
-.ws-well{fill:var(--anatomy-shade-0);stroke:none}
+.ws-glass,.ws-well,.mf-glass,.mf-well{fill:var(--anatomy-shade-0);stroke:none}
+.ws-road,.mf-fpi{fill:var(--anatomy-shade-1);stroke:none}
 .ws-pv{fill:var(--anatomy-shade-2);stroke:none}
-.mf-glass{fill:var(--anatomy-shade-0);stroke:none}
-.mf-well{fill:var(--anatomy-shade-0);stroke:none}
 .mf-card{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linejoin:round}
 .mf-dial{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
 .mf-band2{fill:none;stroke:var(--anatomy-mid);stroke-width:.5px}
 .mf-needle{fill:none;stroke:var(--anatomy-strong);stroke-width:.35px;stroke-linecap:round}
 .mf-pivot{fill:var(--anatomy-hi)}
 .mf-blade{fill:none;stroke:var(--anatomy-strong);stroke-width:.55px;stroke-linecap:round}
-.mf-fpi{fill:var(--anatomy-shade-1);stroke:none}
 .mf-fpi[data-lit]{fill:var(--fp-accent)}
 [data-cue][data-on] .mf-blade{stroke:var(--fp-accent)}
 .mf-bub{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:.8px;stroke-linejoin:round}
@@ -1006,7 +1004,6 @@ const css = `
 .mf-mono{fill:var(--anatomy-text);font-family:var(--anatomy-mono);font-weight:600}
 .mf-on{fill:var(--fp-accent-text);font-family:var(--fp-sans);font-weight:700}
 .mf-axis{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2}
-.mf-grid{fill:none;stroke:var(--fp-hair);stroke-width:1}
 .mf-line{fill:none;stroke:var(--anatomy-hi);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .mf-dead{fill:none;stroke:var(--anatomy-lo);stroke-width:1.8;stroke-dasharray:5 5;stroke-linecap:round;stroke-linejoin:round}
 .mf-dot{fill:var(--anatomy-hi)}

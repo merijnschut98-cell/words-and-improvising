@@ -197,9 +197,9 @@ const STAGE = (() => {
     return out;
   }
 
-  // ------------------------------------------------------------ s7: SAIFI × CAIDI = SAIDI (Netbeheer Nederland, 2024)
+  // ------------------------------------------------------------ s7: SAIFI × CAIDI = SAIDI (Netbeheer Nederland, 2025)
   function sdBase() {
-    return FULL() + txt(28, 46, tr('Nederland, 2024, onvoorzien', 'Netherlands, 2024, unplanned'), 20, 'start', 'mf-txt') + txt(612, 46, 'Netbeheer Nederland', 20, 'end', 'mf-mute');
+    return FULL() + txt(28, 46, tr('Nederland, 2025, onvoorzien', 'Netherlands, 2025, unplanned'), 20, 'start', 'mf-txt') + txt(612, 46, 'Netbeheer Nederland', 20, 'end', 'mf-mute');
   }
   function sdBox(x, w, a, name, val, s1, s2) {
     const cx = x + w / 2;
@@ -287,7 +287,7 @@ const STAGE = (() => {
       nop = b === 3 && p > 0.3 ? 1 : 0;
       nopLabel = b === 3 ? 1 : 0;
       st = { cb, iso: 1, nop, fault: 1, flow: null };
-      if (b === 2) txtR = txt(196, 336, p > 0.6 ? tr('ochtendbelasting: past', 'morning load: fits') : tr('ochtendbelasting: past het?', 'morning load: does it fit?'), 20, 'start', p > 0.6 ? 'mf-on' : 'mf-txt');
+      if (b === 2) txtR = txt(28, 376, p > 0.6 ? tr('ochtendbelasting: past', 'morning load: fits') : tr('ochtendbelasting: past het?', 'morning load: does it fit?'), 20, 'start', p > 0.6 ? 'mf-on' : 'mf-txt');
       if (b === 3) txtR = op(span(p, 0.5, 0.65), txt(28, 376, tr('iedereen terug', 'everyone back'), 20, 'start', 'mf-on'));
     } else if (si === 5) {
       vis.tm = span(u, 0, 0.03);
