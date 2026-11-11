@@ -28,7 +28,7 @@ const STAGE = (() => {
   const op = (a, body) => (a <= 0.01 ? '' : a >= 0.999 ? body : `<g style="opacity:${a.toFixed(2)}">${body}</g>`);
   const EX = tr('voorbeeld', 'example');
   const tag = (t, x = 620, y = 40, anchor = 'end') => txt(x, y, t, 20, anchor, 'mf-mute');
-  const PANEL = () => rect(204, 12, 428, 376);
+  const PANEL = (x0 = 204) => rect(x0, 12, 632 - x0, 376);
   const on = (b, i, p, a = 0.05, z = 0.3) => (b > i ? 1 : b === i ? span(p, a, z) : 0);
 
   // the beat on screen and its progress, from the caption beats of the scene
@@ -175,8 +175,8 @@ const STAGE = (() => {
   const DK = 10.6; // px per kW
   const hx = (h) => DX0 + ((DX1 - DX0) * h) / 24;
   const ky = (v) => DB - v * DK;
-  // a winter day's demand, kW: low at night, a breakfast bump, the evening cooking
-  const homeKw = (h) => 0.18 + 0.5 * Math.exp(-(((h - 7.5) / 0.8) ** 2)) + 0.25 * Math.exp(-(((h - 13) / 2.5) ** 2)) + 0.7 * Math.exp(-(((h - 20) / 1.6) ** 2));
+  // a day's demand, kW: low at night, a breakfast bump, the evening cooking around 18:00
+  const homeKw = (h) => 0.18 + 0.5 * Math.exp(-(((h - 7.5) / 0.8) ** 2)) + 0.25 * Math.exp(-(((h - 13) / 2.5) ** 2)) + 0.7 * Math.exp(-(((h - 18.6) / 1.6) ** 2));
   function dayBase() {
     let out = PANEL() + tag(EX, 620, 128) + line(DX0, DB, DX1, DB) + line(DX0, DB, DX0, ky(19.5));
     for (const h of [0, 6, 12, 18, 24]) out += line(hx(h), DB, hx(h), DB + 6) + txt(hx(h), DB + 26, `${h}`, 20, 'middle', 'mf-mute');
@@ -197,7 +197,7 @@ const STAGE = (() => {
       for (let h = 0; h <= 24 * draw + 1e-9; h += 0.25) pts.push([hx(h), ky(homeKw(h))]);
       out += `<path class="mf-line" d="${fmt(pts)}"/>`;
     }
-    out += op(avg, line(DX0, ky(C.AVG), DX1, ky(C.AVG), 'mf-l2') + line(222, 122, 252, 122, 'mf-l2') + txt(260, 129, tr(`gemiddeld ${dec(C.AVG, 2)} kW`, `average ${dec(C.AVG, 2)} kW`), 20, 'start', 'mf-txt'));
+    out += op(avg, line(DX0, ky(C.AVG), DX1, ky(C.AVG), 'mf-l2') + line(222, 122, 252, 122, 'mf-l2') + txt(260, 129, tr(`jaargemiddelde ${dec(C.AVG, 2)} kW`, `yearly average ${dec(C.AVG, 2)} kW`), 20, 'start', 'mf-txt'));
     // the 18:00 stack: oven, kettle, dishwasher, then the car
     const x = hx(18) - 14;
     const parts = [[3, tr('oven', 'oven')], [2, tr('waterkoker', 'kettle')], [2, tr('vaatwasser', 'dishwasher')]];
@@ -286,23 +286,23 @@ const STAGE = (() => {
   // ------------------------------------------------------------ s7: the winter evening stack
   const SB = 352;
   const SK = 0.62; // px per kVA
-  const SX = 252;
+  const SX = 290; // a narrower card, so the street (heat pump, car) stays large at 390 px
   function stackBase() {
-    return PANEL() + tag(EX) + line(232, SB, 612, SB)
-      + `<path class="mf-dash" d="M232 ${f1(SB - C.S_TR * SK)}L612 ${f1(SB - C.S_TR * SK)}"/>` + txt(612, SB - C.S_TR * SK + 26, tr(`transformator ${C.S_TR} kVA`, `transformer ${C.S_TR} kVA`), 20, 'end', 'mf-on');
+    return PANEL(270) + tag(EX) + line(282, SB, 612, SB)
+      + `<path class="mf-dash" d="M282 ${f1(SB - C.S_TR * SK)}L612 ${f1(SB - C.S_TR * SK)}"/>` + txt(612, SB - C.S_TR * SK + 26, tr(`transformator ${C.S_TR} kVA`, `transformer ${C.S_TR} kVA`), 20, 'end', 'mf-on');
   }
   function stackBars(hp, ev) {
     let out = `<rect class="fp-meter" data-alt="" x="${SX}" y="${f1(SB - C.OLD * SK)}" width="74" height="${f1(C.OLD * SK)}" rx="3"/>`;
-    out += txt(SX + 90, SB - (C.OLD * SK) / 2 + 7, tr(`oude piek ${C.OLD}`, `old peak ${C.OLD}`), 20, 'start', 'mf-txt');
+    out += txt(SX + 86, SB - (C.OLD * SK) / 2 + 7, tr(`oude piek ${C.OLD}`, `old peak ${C.OLD}`), 20, 'start', 'mf-txt');
     let base = C.OLD;
     if (hp > 0.01) {
       out += `<rect class="fp-meter" x="${SX}" y="${f1(SB - (base + C.HP * hp) * SK)}" width="74" height="${f1(C.HP * hp * SK)}" rx="3"/>`;
-      out += op(hp, txt(SX + 90, SB - (base + C.HP / 2) * SK + 7, tr(`+ warmtepompen ${C.HP}`, `+ heat pumps ${C.HP}`), 20, 'start', 'mf-txt'));
+      out += op(hp, txt(SX + 86, SB - (base + C.HP / 2) * SK + 7, tr(`+ warmtepompen ${C.HP}`, `+ heat pumps ${C.HP}`), 20, 'start', 'mf-txt'));
     }
     base += C.HP;
     if (ev > 0.01) {
       out += `<rect class="fp-meter" data-top="" x="${SX}" y="${f1(SB - (base + C.CARS * ev) * SK)}" width="74" height="${f1(C.CARS * ev * SK)}" rx="3"/>`;
-      out += op(ev, txt(SX + 90, SB - (base + C.CARS * 0.78) * SK + 7, tr(`+ auto’s ${C.CARS}`, `+ cars ${C.CARS}`), 20, 'start', 'mf-txt'));
+      out += op(ev, txt(SX + 86, SB - (base + C.CARS * 0.78) * SK + 7, tr(`+ auto’s ${C.CARS}`, `+ cars ${C.CARS}`), 20, 'start', 'mf-txt'));
     }
     return out;
   }
@@ -320,7 +320,7 @@ const STAGE = (() => {
     let out = PANEL() + tag(EX) + line(VX0, VB, VX1, VB) + line(VX0, VB, VX0, vy(260));
     out += line(VX0, vy(230), VX1, vy(230), 'mf-grid') + txt(VX0 - 8, vy(230) + 7, '230', 20, 'end', 'mf-mute');
     out += `<path class="mf-dash" d="M${VX0} ${f1(vy(253))}L${VX1} ${f1(vy(253))}"/>` + txt(VX0 - 8, vy(253) + 7, '253', 20, 'end', 'mf-on');
-    out += txt(VX0, VB + 26, tr('netstation', 'substation'), 20, 'start', 'mf-mute') + txt(VX1, VB + 26, tr('eind kabel', 'cable end'), 20, 'end', 'mf-mute');
+    out += txt(VX0, VB + 26, tr('netstation', 'distribution substation'), 20, 'start', 'mf-mute') + txt(VX1, VB + 26, tr('eind kabel', 'cable end'), 20, 'end', 'mf-mute');
     return out;
   }
   function sun(a, clockS) {
@@ -347,7 +347,7 @@ const STAGE = (() => {
       pts.push([x, vy(v)]);
     }
     out += `<path class="mf-l2" d="${fmt(pts0)}"/>` + txt(VX0 + 8, vy(224.5), tr('avond, afname', 'evening, demand'), 20, 'start', 'mf-mute');
-    if (rise > 0.01) out += `<path class="mf-line" style="stroke:var(--fp-accent)" d="${fmt(pts)}"/>` + op(rise, txt(VX1, vy(241), tr('middag, teruglevering', 'noon, feed-in'), 20, 'end', 'mf-on'));
+    if (rise > 0.01) out += `<path class="mf-line" style="stroke:var(--fp-accent)" d="${fmt(pts)}"/>` + op(rise, txt(VX1, vy(241), tr('middag, teruglevering', 'midday, feed-in'), 20, 'end', 'mf-on'));
     if (cut > 0.01) out += op(cut, txt(VX1, vy(258) - 4, tr('omvormer uit', 'inverter off'), 21, 'end', 'mf-big'));
     return out;
   }

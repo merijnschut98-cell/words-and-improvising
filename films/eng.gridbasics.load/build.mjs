@@ -550,7 +550,7 @@ const CAM = [
   SIDE([150, 0, 14], 330, 300),
   SIDE([-30, -10, 16], 560, 520),
   SIDE(KIOSK_C, 230, 214),
-  { from: cam([100, 5, 8], 340, 104), to: cam([178, 0, 8], 330, 104), a: 0.27, b: 0.4 },
+  { from: cam([96, 5, 8], 250, 135), to: cam([180, 0, 8], 240, 135), a: 0.27, b: 0.4 }, // closer: the stack card is narrower here
   SIDE([150, -30, 40], 330, 300),
   SIDE([186, 0, 10], 230, 210),
 ];
@@ -600,7 +600,7 @@ const spec = {
       id: 's4', lesson: BAS, level: 1, dur: DUR[3], still: 0.9, title: { nl: 'Eén huis, één dag', en: 'One home, one day' },
       beats: [
         { nl: 'De aansluiting: {n:3} × {n:25} A, maximaal zo’n {n:17} {t:kVA}.', en: 'The connection: {n:3} × {n:25} A, at most about {n:17} {t:kVA}.', cue: { kVA: 'conn' }, cues: ['meter'] },
-        { nl: 'Een winterdag in één huis: meestal weinig, gemiddeld {n:0.31} kW.', en: 'A winter day in one home: mostly little, on average {n:0.31} kW.', cues: [] },
+        { nl: 'Een dag in één huis: meestal weinig. Over het jaar gemiddeld {n:0.31} kW.', en: 'A day in one home: mostly little. Over the year {n:0.31} kW on average.', cues: [] },
         { nl: 'Om 18:00 uur: oven {n:3}, waterkoker {n:2}, vaatwasser {n:2}: samen {n:7} kW.', en: 'At 18:00: oven {n:3}, kettle {n:2}, dishwasher {n:2}: together {n:7} kW.', cues: [] },
         { nl: 'Een auto erbij die laadt op {n:11} kW: {n:18} kW, meer dan {n:17} kVA.', en: 'Add a car charging at {n:11} kW: {n:18} kW, above {n:17} kVA.', cues: ['ev'] },
       ],
@@ -618,7 +618,7 @@ const spec = {
       id: 's6', lesson: LOAD, level: 2, dur: DUR[5], still: 0.9, title: { nl: 'kVA en kW', en: 'kVA and kW' },
       beats: [
         { nl: '{t:kVA}: schijnbaar vermogen, alles wat kabel en transformator dragen.', en: '{t:kVA}: apparent power, all that cable and transformer carry.', cue: { kVA: 'trafo' }, cues: ['pfC'] },
-        { nl: '{t:Arbeidsfactor} (cos φ): het nuttige deel. Woningen: {n:0.9} tot {n:1}.', en: '{t:Power factor} (cos φ): the useful share. Homes: {n:0.9} to {n:1}.', cue: { Arbeidsfactor: 'pfC' } },
+        { nl: '{t:Arbeidsfactor}, cos φ: het nuttige deel. Woningen: {n:0.9} tot {n:1}.', en: '{t:Power factor}, cos φ: the useful share. Homes: {n:0.9} to {n:1}.', cue: { Arbeidsfactor: 'pfC' } },
         { nl: 'Een transformator van {n:400} kVA levert zo’n {n:360} tot {n:400} kW.', en: 'A {n:400} kVA transformer delivers about {n:360} to {n:400} kW.', cues: ['trafo'] },
       ],
     },
@@ -632,9 +632,9 @@ const spec = {
       ],
     },
     {
-      id: 's8', lesson: LOAD, level: 2, dur: DUR[7], still: 0.9, title: { nl: 'Een zonnige middag', en: 'A sunny noon' },
+      id: 's8', lesson: LOAD, level: 2, dur: DUR[7], still: 0.9, title: { nl: 'Een zonnige middag', en: 'A sunny midday' },
       beats: [
-        { nl: '’s Middags een piek de andere kant op: elk dak levert tegelijk terug.', en: 'At noon a peak the other way: every roof feeds back at once.', cues: ['pv'] },
+        { nl: '’s Middags een piek de andere kant op: elk dak levert tegelijk terug.', en: 'At midday a peak the other way: every roof feeds back at once.', cues: ['pv'] },
         { nl: 'De {t:Omvormer|omvormer} zet de gelijkstroom van de panelen om naar wisselstroom.', en: 'The {t:Inverter|inverter} turns the panels’ DC into AC for the grid.', cue: { Omvormer: 'inv' } },
         { nl: 'Veel teruglevering: de spanning aan het eind van de kabel stijgt.', en: 'Lots of feed-in: the voltage at the end of the cable rises.', cues: ['cable'] },
         { nl: 'Boven zo’n {n:253} V ({n:230} V plus {n:10}%) schakelt de omvormer af.', en: 'Above about {n:253} V ({n:230} V plus {n:10}%) the inverter switches off.', cues: ['inv'] },
@@ -645,7 +645,7 @@ const spec = {
       beats: [
         { nl: 'Met welke gelijktijdigheid reken je voor warmtepompen en laadpalen?', en: 'Which simultaneity do you assume for heat pumps and chargers?', cues: ['hp', 'ev'] },
         { nl: 'Te laag: overbelast in de eerste koude week. Te hoog: straten jaren te vroeg open.', en: 'Too low: overloaded in the first cold week. Too high: streets dug up years early.', cues: [] },
-        { nl: 'Slim laden spreidt het laden over de nacht en verlaagt de piek.', en: 'Smart charging spreads charging over the night and cuts the peak.', cues: ['ev'] },
+        { nl: 'Slim laden (smart charging) spreidt het laden over de nacht en kan de piek verlagen.', en: 'Smart charging spreads charging over the night and can cut the peak.', cues: ['ev'] },
         { nl: 'Vraag dus: op welke gelijktijdigheid is dit plan gebaseerd?', en: 'So ask: which simultaneity is this plan based on?', cues: [] },
       ],
     },
@@ -664,8 +664,8 @@ const spec = {
 // (stress on the wrong part) are kept out of the Dutch narration.
 const SAY = [
   [ // s1 voltage and current
-    { nl: 'Een gewone straat op een winteravond. Aan het eind staat een netstation, en onder de stoep loopt een kabel naar elk huis.',
-      en: 'An ordinary street on a winter evening. At the end stands a distribution substation, and under the pavement a cable runs to every home.' },
+    { nl: 'Een gewone straat. Aan het eind staat een netstation; onder de stoep loopt een kabel naar elk huis.',
+      en: 'An ordinary street. At the end stands a distribution substation; under the pavement a cable runs to every home.' },
     { nl: 'Elektriciteit in die kabel lijkt op water in een leiding. De {t:Spanning|spanning} is de druk, in volt: in een Nederlands huis {n:230} volt.',
       en: 'Electricity in that cable is like water in a pipe. The {t:Voltage|voltage} is the push, in volts: {n:230} volts in a Dutch home.' },
     { nl: 'De {t:Stroomsterkte|stroomsterkte}, kortweg stroom, is hoeveel er stroomt, in ampère. Stroom maakt kabels warm en laat zekeringen doorslaan.',
@@ -680,10 +680,10 @@ const SAY = [
       en: 'Power is the reading of the moment. Energy is power times time, added up, in kilowatt hours.' },
     { nl: 'Staat die waterkoker {n:3} minuten aan, dan is dat {n:2} kilowatt maal {n:0.05} uur: {n:0.1} kilowattuur.',
       en: 'If the kettle runs for {n:3} minutes, that is {n:2} kilowatts times {n:0.05} hours: {n:0.1} kilowatt hours.' },
-    { nl: 'Een gemiddeld gezin verbruikt zo’n {n:2700} kilowattuur per jaar. Verdeeld over de {n:8760} uur van een jaar is dat gemiddeld maar {n:0.31} kilowatt.',
+    { nl: 'Een gemiddeld gezin verbruikt zo’n {n:2700} kilowattuur per jaar. Over de {n:8760} uur van een jaar is dat gemiddeld maar {n:0.31} kilowatt.',
       en: 'An average family uses about {n:2700} kilowatt hours a year. Spread over the {n:8760} hours of a year, that is on average only {n:0.31} kilowatts.' },
-    { nl: 'Je energieleverancier rekent per kilowattuur. Maar kabels en transformatoren moeten het hoogste vermogen op één moment dragen: het net wordt gebouwd voor kilowatt.',
-      en: 'Your energy supplier charges per kilowatt hour. But cables and transformers must carry the highest power at any one moment: the grid is built for kilowatts.' },
+    { nl: 'Je betaalt per kilowattuur, maar kabels en transformatoren moeten het hoogste vermogen op één moment dragen: het net wordt gebouwd voor kilowatt.',
+      en: 'You pay per kilowatt hour, but cables and transformers must carry the highest power at any one moment: the grid is built for kilowatts.' },
   ],
   [ // s3 AC and three phases
     { nl: 'Het net werkt met {t:Wisselstroom|wisselstroom}: de spanning gaat {n:50} keer per seconde heen en weer, {n:50} hertz. Zonnepanelen en batterijen geven gelijkstroom, die één kant op loopt.',
@@ -692,15 +692,15 @@ const SAY = [
       en: 'AC won because a transformer can easily step its voltage up and down. In this distribution substation it turns medium voltage into low voltage for the street.' },
     { nl: 'De kabel in de straat is {t:Driefasig|driefasig}: drie fasen, elk een derde periode verschoven, plus een nul als terugleider.',
       en: 'The street cable is {t:Three-phase|three-phase}: three phases, each a third of a cycle apart, plus a neutral as the return wire.' },
-    { nl: 'Tussen een fase en de nul staat {n:230} volt, tussen twee fasen {n:400}. Warmtepompen en laadpalen gebruiken vaak alle drie de fasen.',
+    { nl: 'Tussen fase en nul staat {n:230} volt, tussen twee fasen {n:400}. Warmtepompen en laadpalen gebruiken vaak alle drie.',
       en: 'Between a phase and neutral there are {n:230} volts, between two phases {n:400}. Heat pumps and car chargers often use all three.' },
   ],
   [ // s4 one home, one day
-    { nl: 'Elk huis heeft een aansluiting van meestal {n:3} keer {n:25} ampère: maximaal zo’n {n:17} kilovoltampère, de maat voor wat een kabel of zekering moet dragen. De hoofdzekering bewaakt die grens.',
-      en: 'Each home has a connection of usually {n:3} times {n:25} amps: at most about {n:17} kilovolt amperes, the unit for what a cable or fuse must carry. The main fuse guards that limit.' },
-    { nl: 'Een winterdag in één huis: meestal vraagt het weinig, gemiddeld {n:0.31} kilowatt.',
-      en: 'A winter day in one home: mostly it asks little, on average {n:0.31} kilowatts.' },
-    { nl: 'Maar om zes uur staan de oven, de waterkoker en de vaatwasser tegelijk aan: {n:3} plus {n:2} plus {n:2} is {n:7} kilowatt.',
+    { nl: 'Een gangbare huisaansluiting is {n:3} keer {n:25} ampère: maximaal zo’n {n:17} kilovoltampère, de maat voor wat een kabel of zekering moet dragen.',
+      en: 'A common house connection is {n:3} times {n:25} amps: at most about {n:17} kilovolt amperes, the unit for what a cable or fuse must carry.' },
+    { nl: 'Een dag in één huis: meestal vraagt het weinig, vaak minder dan het jaargemiddelde.',
+      en: 'A day in one home: mostly it asks little, often less than the yearly average.' },
+    { nl: 'Maar om zes uur staan oven, waterkoker en vaatwasser tegelijk aan: {n:3} plus {n:2} plus {n:2} is {n:7} kilowatt.',
       en: 'But at six in the evening the oven, the kettle and the dishwasher run together: {n:3} plus {n:2} plus {n:2} is {n:7} kilowatts.' },
     { nl: 'Laadt er ook een elektrische auto op {n:11} kilowatt, dan trekt het huis {n:18} kilowatt: meer dan de aansluiting toelaat. De hoofdzekering kan eruit vliegen.',
       en: 'If an electric car also charges at {n:11} kilowatts, the house draws {n:18} kilowatts: more than the connection allows. The main fuse may blow.' },
@@ -710,8 +710,8 @@ const SAY = [
       en: 'Now the whole district. This distribution substation has a {n:400} kilovolt ampere transformer and feeds {n:150} homes.' },
     { nl: 'Ze pieken niet allemaal tegelijk: de een kookt om zes uur, de ander om half acht. Dat heet {t:Gelijktijdigheid|gelijktijdigheid}: welk deel van ieders maximum tegelijk optreedt.',
       en: 'Those homes do not all peak at once: one cooks at six, another at half past seven. That is {t:Simultaneity|simultaneity}: how much of everyone’s maximum happens at the same moment.' },
-    { nl: 'De {t:Piekbelasting|piekbelasting} is de hoogste belasting van het jaar, meestal op een koude winteravond. Traditioneel rekenden planners met {n:1} tot {n:1.5} kilovoltampère per woning.',
-      en: 'The {t:Peak load|peak load} is the highest load of the year, usually on a cold winter evening. Traditionally planners counted {n:1} to {n:1.5} kilovolt amperes per home.' },
+    { nl: 'De {t:Piekbelasting|piekbelasting} is de hoogste belasting van het jaar, meestal op een koude winteravond. Traditioneel rekenden planners met {n:1} tot {n:1.5} kilovoltampère per woning, ver onder de {n:17} van de aansluiting.',
+      en: 'The {t:Peak load|peak load} is the highest load of the year, usually on a cold winter evening. Traditionally planners counted {n:1} to {n:1.5} kilovolt amperes per home, far below the {n:17} of the connection.' },
     { nl: '{n:150} maal {n:1.5} is {n:225} kilovoltampère: op zijn drukste moment is de transformator voor {n:56} procent belast.',
       en: '{n:150} times {n:1.5} is {n:225} kilovolt amperes: at its busiest moment the transformer is {n:56} percent loaded.' },
   ],
@@ -724,8 +724,8 @@ const SAY = [
       en: 'So a {n:400} kilovolt ampere transformer delivers about {n:360} to {n:400} kilowatts.' },
   ],
   [ // s7 a cold evening
-    { nl: 'Nu krijgen {n:50} woningen een warmtepomp van {n:3} kilowatt. Op een koude avond draaien ze bijna allemaal, op zo’n {n:80} procent: een gelijktijdigheid van bijna één, en {n:120} kilovoltampère erbij.',
-      en: 'Now {n:50} homes get a {n:3} kilowatt heat pump. On a cold evening nearly all of them run, at about {n:80} percent: a simultaneity close to one, and {n:120} kilovolt amperes more.' },
+    { nl: 'Nu krijgen {n:50} woningen een warmtepomp van {n:3} kilowatt. Op een koude avond draaien ze allemaal tegelijk: een gelijktijdigheid van bijna één. Elk draait op zo’n {n:80} procent: samen {n:120} kilovoltampère erbij.',
+      en: 'Now {n:50} homes get a {n:3} kilowatt heat pump. On a cold evening they all run at once: a simultaneity close to one. Each runs at about {n:80} percent: together {n:120} kilovolt amperes more.' },
     { nl: 'En {n:40} woningen laden na het werk een auto op {n:11} kilowatt, zo’n {n:30} procent tegelijk. Nog eens {n:132} kilovoltampère.',
       en: 'And {n:40} homes charge a car at {n:11} kilowatts after work, about {n:30} percent at the same moment. Another {n:132} kilovolt amperes.' },
     { nl: 'De nieuwe piek: {n:225} plus {n:120} plus {n:132} is {n:477} kilovoltampère. Dat is {n:119} procent van de transformator.',
@@ -734,21 +734,21 @@ const SAY = [
       en: 'The yearly energy grows far less, but the peak more than doubles.' },
   ],
   [ // s8 a sunny noon
-    { nl: 'Op een zonnige middag komt er een piek de andere kant op: alle daken leveren tegelijk stroom terug.',
-      en: 'On a sunny afternoon a peak comes the other way: every roof feeds power back at the same time.' },
-    { nl: 'Aan de gevel hangt de {t:Omvormer|omvormer}: het kastje dat de gelijkstroom van de panelen omzet naar wisselstroom voor het net.',
-      en: 'On the wall hangs the {t:Inverter|inverter}: the box that turns the panels’ direct current into alternating current for the grid.' },
+    { nl: 'Op een zonnige middag komt er een piek de andere kant op: alle daken leveren tegelijk terug.',
+      en: 'At midday on a sunny day a peak comes the other way: every roof feeds power back at the same time.' },
+    { nl: 'De {t:Omvormer|omvormer} zet de gelijkstroom van de panelen om naar wisselstroom. Vaak hangt dat kastje op zolder of in de garage; hier buiten aan de zijgevel.',
+      en: 'The {t:Inverter|inverter} turns the panels’ direct current into alternating current. That box often hangs in the attic or garage; here outside on the end wall.' },
     { nl: 'Al die teruglevering duwt de spanning omhoog, het meest aan het eind van een lange kabel.',
       en: 'All that feed-in pushes the voltage up, most at the end of a long cable.' },
-    { nl: 'Boven zo’n {n:253} volt, {n:230} volt plus {n:10} procent, de bovengrens in de Europese norm, schakelt de omvormer af. Panelen die steeds uitvallen zijn dus vaak een spanningsprobleem, geen kapotte omvormer.',
-      en: 'Above about {n:253} volts, {n:230} volts plus {n:10} percent, the upper limit in the European standard, the inverter switches off. Panels that keep dropping out are often a voltage problem, not a broken inverter.' },
+    { nl: 'Boven zo’n {n:253} volt, de Europese bovengrens van {n:230} volt plus {n:10} procent, schakelt de omvormer af. Panelen die steeds uitvallen zijn dus vaak een spanningsprobleem, geen kapotte omvormer.',
+      en: 'Above about {n:253} volts, the European upper limit of {n:230} volts plus {n:10} percent, the inverter switches off. Panels that keep dropping out are often a voltage problem, not a broken inverter.' },
   ],
   [ // s9 the sharp question
-    { nl: 'Waar experts over discussiëren: met welke gelijktijdigheid reken je voor warmtepompen en laadpalen?',
-      en: 'What experts argue about: which simultaneity do you assume for heat pumps and chargers?' },
+    { nl: 'Waar experts over discussiëren: de gelijktijdigheid van warmtepompen en laadpalen.',
+      en: 'What experts argue about: the simultaneity of heat pumps and chargers.' },
     { nl: 'Reken je te laag, dan raakt het net overbelast in de eerste koude week. Reken je te hoog, dan gaan straten jaren te vroeg open.',
       en: 'Assume too low, and the grid overloads in the first cold week. Too high, and streets are dug up years too early.' },
-    { nl: 'Slim laden, dat het laden van auto’s over de nacht spreidt, kan de piek flink verlagen. Maar alleen als mensen het toestaan.',
+    { nl: 'Slim laden spreidt het laden van auto’s over de nacht en kan de piek flink verlagen, maar alleen als mensen het toestaan.',
       en: 'Smart charging, which spreads car charging over the night, can cut the peak a lot. But only if people allow it.' },
     { nl: 'Vraag dus altijd: op welke gelijktijdigheid is dit plan gebaseerd, en waar komt dat getal vandaan?',
       en: 'So always ask: which simultaneity is this plan based on, and where does that number come from?' },
@@ -820,7 +820,7 @@ const css = `
 
 const label = {
   nl: 'Een straat op een maquette: drie rijtjeshuizen met zonnepanelen, meterkasten, een warmtepomp, een omvormer, een auto aan een laadpaal en een lantaarnpaal, en aan het eind een netstation met open deuren, de transformator en het laagspanningsrek. De straatkabel loopt langs de stoep met een aftakking naar elk huis. Kaarten tonen de waterleiding als vergelijking, vermogen en energie van een waterkoker, drie fasen, de dag van één huis, de 150 woningen van het netstation, de arbeidsfactor, de winteravond met warmtepompen en auto’s, de spanning langs de kabel op een zonnige middag en slim laden.',
-  en: 'A street on a model board: three terraced houses with solar panels, meter boxes, a heat pump, an inverter, a car at a charge point and a street lamp, and at the end a distribution substation with open doors, its transformer and LV rack. The street cable runs along the pavement with a branch to each house. Cards show the water-pipe analogy, a kettle’s power and energy, three phases, one home’s day, the netstation’s 150 homes, the power factor, the winter evening with heat pumps and cars, the voltage along the cable on a sunny noon, and smart charging.',
+  en: 'A street on a model board: three terraced houses with solar panels, meter boxes, a heat pump, an inverter, a car at a charge point and a street lamp, and at the end a distribution substation with open doors, its transformer and LV rack. The street cable runs along the pavement with a branch to each house. Cards show the water-pipe analogy, a kettle’s power and energy, three phases, one home’s day, the 150 homes on the distribution substation, the power factor, the winter evening with heat pumps and cars, the voltage along the cable at midday on a sunny day, and smart charging.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
