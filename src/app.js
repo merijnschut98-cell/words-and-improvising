@@ -273,8 +273,12 @@ export const app = {
     setTimeout(() => el.remove(), 2700);
   },
   // Adds an applied round's result to the running lesson, if any.
-  addToSession({ xp = 0, levelUp = false, newBests = [], newMilestones = [] } = {}) {
+  addToSession({ xp = 0, levelUp = false, newBests = [], newMilestones = [], medals = [], speakMedals = [], titles = [], goalReached = false } = {}) {
     if (!this.session) return;
+    this.session.medals = [...(this.session.medals || []), ...medals];
+    this.session.speakMedals = [...(this.session.speakMedals || []), ...speakMedals];
+    this.session.titles = [...(this.session.titles || []), ...titles];
+    this.session.goalReached = this.session.goalReached || goalReached;
     this.session.xp += xp;
     this.session.levelUp = this.session.levelUp || levelUp;
     this.session.highlights = [...(this.session.highlights || []), ...newBests];
@@ -287,7 +291,7 @@ export const app = {
     this.addToSession(result);
     s.index += 1;
     if (s.index < s.prompts.length) return this.go('round', { prompt: s.prompts[s.index] });
-    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [], milestones: s.milestones || [] };
+    const summary = { xp: s.xp, levelUp: s.levelUp, highlights: s.highlights || [], milestones: s.milestones || [], medals: s.medals || [], speakMedals: s.speakMedals || [], titles: s.titles || [], goalReached: !!s.goalReached };
     this.session = null;
     return this.go('done', summary);
   },

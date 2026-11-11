@@ -1,21 +1,25 @@
 import { h, bestLabel } from './dom.js';
 import { ico } from './icons.js';
+import { celebration } from './flairui.js';
 import { levelFromXp } from '../core/progress.js';
 import { currentQuests } from '../core/quests.js';
 import { drawShareCard, shareFile } from '../core/share.js';
 
 // Lesson summary: XP, quests, and up to two true, specific wins.
-export function renderDone(app, { xp = 0, levelUp = false, highlights = [], milestones = [] }, root) {
+export function renderDone(app, { xp = 0, levelUp = false, highlights = [], milestones = [], medals = [], speakMedals = [], titles = [], goalReached = false }, root) {
   const t = app.t;
   const lv = levelFromXp(app.state.xp);
   const quests = currentQuests(app.state, app.today());
   const qDone = quests.filter((q) => q.done).length;
   // Global records first, then per-drill ones; at most two.
   const wins = [...highlights.filter((b) => !b.drill), ...highlights.filter((b) => b.drill)].slice(0, 2);
-  root.append(h('main', { class: 'screen done' },
-    h('div', { class: 'done-mark' }, ico('circle-check')),
+  // The celebration (v16 flair): the guide and the daily ring, one big moment.
+  const c = celebration(app, { xp, medals, speakMedals, titles, goalReached }, { mark: h('div', { class: 'done-mark' }, ico('circle-check')), subject: 'speak' });
+  root.append(h('main', { class: `screen done${c.big ? ' celebrate' : ''}` },
+    c.nodes[0],
     h('h1', {}, t('lessonComplete')),
-    h('div', { class: 'xp-big' }, t('xpEarned', xp)),
+    h('div', { class: 'xp-big xp-rise' }, t('xpEarned', xp)),
+    ...c.nodes.slice(1),
     levelUp ? h('div', { class: 'level-badge big' }, `${t('levelUp')}: ${t('level')} ${lv.level}`) : null,
     wins.length ? h('section', { class: 'card highlights' },
       h('h2', { class: 'card-title' }, t('highlights')),

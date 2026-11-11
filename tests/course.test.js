@@ -687,3 +687,10 @@ test('a perfect retake of a passed lesson sets perfect but gives no XP', () => {
   assert.equal(b.xp, 0);
   assert.equal(b.state.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 1);
 });
+
+test('applyDue returns goalReached when its XP crosses the daily goal', () => {
+  const s0 = { ...defaultState(), xpDays: { [TODAY]: 20 } };
+  const r = applyDue(s0, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW);
+  assert.equal(r.goalReached, true);
+  assert.equal(applyDue(r.state, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW + 1).goalReached, false);
+});

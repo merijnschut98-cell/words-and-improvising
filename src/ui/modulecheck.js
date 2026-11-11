@@ -4,7 +4,7 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { guide, guideOn } from './guide.js';
-import { medalSeal } from './flairui.js';
+import { medalSeal, celebration } from './flairui.js';
 import { checkOpen, checkQuestions, applyCheck } from '../core/modulecheck.js';
 import { storedMedal } from '../core/flair.js';
 import { MODULES } from '../content/courses/index.js';
@@ -63,10 +63,14 @@ export function renderCheck(app, { subject, moduleId }, root) {
   }
 
   function showDone(res) {
-    main.replaceChildren(h('section', { class: 'card lesson-done check-done' },
+    // A finished check celebrates like a lesson (its XP counts as the lesson moment).
+    const c = celebration(app, { ...res, xp: res.xp || 0 }, { mark: h('p', { class: 'done-mark' }, ico('flag')), subject });
+    main.replaceChildren(h('section', { class: `card lesson-done check-done${c.big ? ' celebrate' : ''}` },
+      c.nodes[0],
       h('h2', { class: 'card-title' }, t('checkDone')),
       h('p', { class: 'check-score' }, t('checkScore', res.correct, res.total), res.perfect ? ` · ${t('checkPerfect')}` : ''),
-      res.xp ? h('p', { class: 'xp-line' }, `+${res.xp} XP`) : null),
+      res.xp ? h('p', { class: 'xp-line xp-rise' }, `+${res.xp} XP`) : null,
+      ...c.nodes.slice(1)),
     h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
   }
 }

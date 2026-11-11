@@ -132,3 +132,70 @@ test('progress shows titleNext with the missing levels and medals', () => {
   const medals = engWith({ medals: { 'eng.flow': { tier: 'gold', ts: 1 }, 'eng.quality': { tier: 'bronze', ts: 1 } } });
   assert.equal(medalsLine(t, medals, 'eng'), '1 brons · 0 zilver · 1 goud');
 });
+
+// ---- The celebration (task 19) ----
+const { celebration } = await import('../src/ui/flairui.js');
+const celebApp = (over = {}) => ({ t, lang: 'nl', today: () => TODAY, state: { ...defaultState(), xpDays: { [TODAY]: 40 }, settings: { ...defaultState().settings, ...(over.settings || {}) } }, ...over.app });
+const mark = () => { const m = document.createElement('p'); m.className = 'done-mark'; return m; };
+const wrap = (nodes) => { const d = document.createElement('div'); d.append(...nodes.filter(Boolean)); return d; };
+
+test('celebration shows one big moment and lists the others as quiet lines', () => {
+  const res = { xp: 20, goalReached: true, medals: [{ subject: 'eng', moduleId: 'eng.flow', tier: 'bronze' }], titles: [{ subject: 'eng', rank: 2 }] };
+  const c = celebration(celebApp(), res, { mark: mark(), play: () => {} });
+  const el = wrap(c.nodes);
+  assert.equal(el.querySelectorAll('.celebrate-big').length, 1);
+  assert.ok(el.querySelector('.celebrate-big.celebrate-title'));
+  assert.match(el.querySelector('.celebrate-big').textContent, /Nieuwe titel: Gezel/);
+  const quiet = el.querySelectorAll('.quiet-line').map((x) => x.textContent);
+  assert.deepEqual(quiet, ['Brons voor Capaciteit en flow', 'Dagdoel gehaald']);
+  const medal = wrap(celebration(celebApp(), { xp: 0, medals: [{ subject: 'eng', moduleId: 'eng.flow', tier: 'silver' }], titles: [] }, { mark: mark(), play: () => {} }).nodes);
+  assert.ok(medal.querySelector('.celebrate-big .medal-silver.medal-56'));
+  assert.equal(medal.querySelectorAll('.quiet-line').length, 0);
+});
+
+test('the end state is the rendered default (segments lit, ring at the new value) so reduced motion loses nothing', () => {
+  const el = wrap(celebration(celebApp(), { xp: 20, goalReached: true, medals: [], titles: [] }, { mark: mark(), play: () => {} }).nodes);
+  const g = el.querySelector('.guide').innerHTML;
+  for (const seg of ['g-low', 'g-mid', 'g-top']) assert.match(g, new RegExp(`${seg} on`));
+  const ring = el.querySelector('.goal-ring');
+  assert.equal(ring.getAttribute('aria-label'), 'Dagdoel: 30 van 30 XP');
+  assert.match(ring.querySelector('.ring-wrap').innerHTML, /stroke-dashoffset="0"/, 'drawn at the new value');
+  assert.match(ring.querySelector('.ring-wrap').innerHTML, /--draw-from:33.33/, 'grows from the old 20 of 30');
+  assert.equal(el.querySelectorAll('.done-mark').length, 0, 'the guide replaces the mark');
+  const off = wrap(celebration(celebApp({ settings: { guide: false } }), { xp: 20, medals: [], titles: [] }, { mark: mark(), play: () => {} }).nodes);
+  assert.equal(off.querySelector('.guide'), null);
+  assert.ok(off.querySelector('.done-mark'), 'guide off: the existing mark stays');
+});
+
+test('a retake shows no celebration and keeps lessonRetake', () => {
+  const plays = [];
+  const c = celebration(celebApp(), { xp: 0, medals: [], titles: [], goalReached: false }, { mark: mark(), play: (n) => plays.push(n) });
+  const el = wrap(c.nodes);
+  assert.equal(c.big, null);
+  assert.ok(el.querySelector('.done-mark'));
+  assert.equal(el.querySelector('.guide'), null);
+  assert.equal(el.querySelector('.goal-ring'), null);
+  assert.equal(el.querySelector('[aria-live]'), null);
+  assert.deepEqual(plays, []);
+  assert.equal(t('lessonRetake'), 'Goede opfrisser. De XP kreeg je de eerste keer.');
+});
+
+test('the summary text goes once to the polite live region', () => {
+  const c = celebration(celebApp(), { xp: 20, goalReached: true, medals: [], titles: [] }, { mark: mark(), play: () => {} });
+  const el = wrap(c.nodes);
+  const live = el.querySelectorAll('[aria-live]');
+  assert.equal(live.length, 1);
+  assert.equal(live[0].getAttribute('aria-live'), 'polite');
+  assert.equal(c.summary, 'Les voltooid, +20 XP, Dagdoel gehaald');
+});
+
+test('at most one sound cue per screen, and none with sound off', () => {
+  const res = { xp: 20, goalReached: true, medals: [{ subject: 'eng', moduleId: 'eng.flow', tier: 'bronze' }], titles: [] };
+  const played = [];
+  celebration(celebApp({ settings: { cheer: true } }), res, { mark: mark(), play: (n, st) => played.push([n, st.cheer]) });
+  assert.deepEqual(played.map((x) => x[0]), ['medal']);
+  const quiet = [];
+  celebration(celebApp({ settings: { cheer: true, sound: false } }), res, { mark: mark(), play: (n) => quiet.push(n) });
+  celebration(celebApp(), res, { mark: mark(), play: (n) => quiet.push(n) });
+  assert.deepEqual(quiet, [], 'sound off, or the celebration sound left at its default (off)');
+});

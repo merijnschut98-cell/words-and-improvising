@@ -1037,3 +1037,16 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .top .title-tag { margin-right: auto; margin-left: 4px; }
 .start-subject .title-tag { font-size: 0.7rem; }
 .title-card .card-title .title-tag { font-size: 0.8rem; }
+
+/* The celebration: one composed moment inside the done card. */
+.celebrate-head { display: flex; align-items: flex-end; justify-content: center; gap: 16px; margin-bottom: 4px; }
+.celebrate .xp-rise { animation: vp-rise var(--motion-slow) var(--ease-entrance) both; }
+.celebrate-big { margin: 10px 0 4px; }
+.celebrate-title .celebrate-kicker { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); animation: vp-rise var(--motion-slow) var(--ease-entrance) both; }
+.celebrate-title .celebrate-name { margin: 2px 0 0; animation: vp-rise var(--motion-slow) var(--ease-entrance) var(--motion-stagger) both; }
+.celebrate-medal { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.celebrate-medal .medal { flex-direction: column; }
+.celebrate-medal .medal-word { animation: vp-fade var(--motion-slow) var(--ease-entrance) var(--motion-slow) both; }
+.celebrate-medal .celebrate-name, .celebrate-goal { margin: 0; font-weight: 500; color: var(--heading); }
+.quiet-line { margin: 2px 0; color: var(--muted); }
+.guide-say { margin: 6px 0 0; }

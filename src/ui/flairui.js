@@ -6,6 +6,10 @@ import { ico } from './icons.js';
 import { storedMedal, medalFor, goalProgress, goalOf, GOALS, setGoal, storedTitle, titleNextNeeds, TIERS } from '../core/flair.js';
 import { isStreakAlive, levelFromXp, dayKey } from '../core/progress.js';
 import { checkOf } from '../core/modulecheck.js';
+import { celebrationOf } from '../core/flair.js';
+import { cheerOn, cueFor, play as playCue } from '../core/sound.js';
+import { guide, guideLine } from './guide.js';
+import { MODULES } from '../content/courses/index.js';
 
 const CHECK_PATH = '<path class="seal-check" d="M7.5 12.5 10.5 15.5 16.5 9" />';
 
@@ -146,4 +150,70 @@ export function medalsLine(t, state, subject) {
   const all = subject === 'speak' ? (state.speakMedals || {}) : ((((state.courses || {})[subject]) || {}).medals || {});
   const n = (tier) => Object.values(all).filter((m) => m && m.tier === tier).length;
   return t('medalsCount', ...TIERS.map(n));
+}
+
+// ---- The celebration ----
+// One composed moment inside the done card: the guide lights its segments
+// bottom to top (or the existing mark when the guide is off), the daily ring
+// grows from the old to the new value, and only the biggest moment (title >
+// medal > goal > lesson) is large; the rest are quiet lines. Everything is
+// rendered at its end state; CSS animates from the start, so reduced motion
+// shows the end at once. One summary for screen readers, at most one sound.
+function itemText(t, lang, item) {
+  if (item.kind === 'title') return t('titleNew', t(`title_${item.rank}`));
+  if (item.kind === 'goal') return t('goalReached');
+  if (item.kind === 'medal') {
+    const meta = item.moduleId ? MODULES.find((m) => m.id === item.moduleId) : null;
+    const name = meta ? (meta.title[lang] || meta.title.en) : t(`group_${item.groupId}`);
+    return t('medalEarned', t(`medal_${item.tier}`), name);
+  }
+  return `+${item.xp} XP`;
+}
+
+function bigNode(t, lang, big, subject) {
+  if (big.kind === 'title') {
+    return h('div', { class: 'celebrate-big celebrate-title' },
+      h('p', { class: 'celebrate-kicker' }, t(`subject_${big.subject || subject}`)),
+      h('h3', { class: 'celebrate-name' }, itemText(t, lang, big)));
+  }
+  if (big.kind === 'medal') {
+    return h('div', { class: 'celebrate-big celebrate-medal' },
+      medalSeal(t, big.tier, 56, { draw: true }),
+      h('p', { class: 'celebrate-name' }, itemText(t, lang, big)));
+  }
+  if (big.kind === 'goal') return h('p', { class: 'celebrate-big celebrate-goal' }, t('goalReached'));
+  return null;
+}
+
+export function celebration(app, result, { mark = null, play = playCue, subject = null, gained = null } = {}) {
+  const t = app.t;
+  const c = celebrationOf(result);
+  if (!c.big) return { nodes: [mark], big: null, summary: '' };
+  const today = app.today();
+  const after = goalProgress(app.state, today);
+  const todayXp = ((app.state.xpDays || {})[today]) || 0;
+  const ring = goalRing(t, after, { from: Math.max(0, Math.min(after.goal, todayXp - (gained ?? result.xp ?? 0))) });
+  const quiet = c.quiet.filter((x) => x.kind !== 'lesson').map((x) => h('p', { class: 'quiet-line small' }, itemText(t, app.lang, x)));
+  // One guide line at most: on a plain lesson, a done line from the pool.
+  const line = c.big.kind === 'lesson' && guide(app.state) ? h('p', { class: 'guide-say small muted' }, guideLine(t, 'guideDone', today)) : null;
+  const parts = [
+    ...(result.xp > 0 ? [t('lessonDoneShort'), `+${result.xp} XP`] : []),
+    ...[c.big, ...c.quiet].filter((x) => x.kind !== 'lesson').map((x) => itemText(t, app.lang, x)),
+  ];
+  const summary = t('celebrateSummary', parts);
+  const live = h('p', { class: 'sr', 'aria-live': 'polite' });
+  setTimeout(() => { live.textContent = summary; }, 60);
+  const cue = cueFor(c);
+  if (cue && cheerOn(app.state.settings)) play(cue, app.state.settings);
+  return {
+    big: c.big,
+    summary,
+    nodes: [
+      h('div', { class: 'celebrate-head' }, guide(app.state, { mood: 'celebrate', size: 64 }) || mark, ring),
+      bigNode(t, app.lang, c.big, subject),
+      ...quiet,
+      line,
+      live,
+    ],
+  };
 }

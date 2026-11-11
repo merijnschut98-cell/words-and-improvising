@@ -158,7 +158,7 @@ export function applyDue(state, { subject, results, sure = {}, lang, maintenance
     marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
     { day: today, kind: 'due', correct, total: entries.length, ts: now },
   ));
-  return { state: next, xp };
+  return { state: next, xp, goalReached: goalJustReached(state, next, today) };
 }
 
 // A situation is practice on top of a lesson: XP the first time, no round.
