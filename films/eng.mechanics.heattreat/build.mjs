@@ -469,7 +469,7 @@ const spec = {
       id: 's2', lesson: HT, level: 2, title: { nl: 'Harden: verhitten en afschrikken', en: 'Hardening: heat, then quench' },
       beats: [
         { nl: 'Staal met genoeg koolstof, ruwweg {n:0.3}% of meer, kun je harden. De as gaat de oven in.', en: 'Steel with enough carbon, roughly {n:0.3}% or more, can be hardened. The shaft goes into the furnace.', cues: ['work', 'furnace'] },
-        { nl: 'Bij {n:800} à {n:900} °C verandert de structuur binnenin: het staal wordt austeniet.', en: 'At {n:800} to {n:900} °C the structure inside changes: the steel turns to austenite.', cues: ['furnace'], read: { nl: '{n:800}–{n:900} °C', en: '{n:800}–{n:900} °C' } },
+        { nl: 'Bij grofweg {n:800} à {n:900} °C, per staalsoort anders, wordt het staal austeniet.', en: 'At roughly {n:800} to {n:900} °C, depending on the steel, it turns to austenite.', cues: ['furnace'], read: { nl: '{n:800}–{n:900} °C', en: '{n:800}–{n:900} °C' } },
         { nl: '{t:Afschrikken|Afschrikken}: heel snel afkoelen, in water, olie of een polymeeroplossing.', en: '{t:Quenching|Quenching}: cooling very fast, in water, oil or a polymer solution.', cue: { Afschrikken: 'tank' }, cues: ['work'], read: { nl: 'oven → oliebad', en: 'furnace → oil' } },
         { nl: 'Afgeschrikt staal is heel hard, maar ook bros: het breekt eerder dan dat het buigt.', en: 'Quenched steel is very hard, but also brittle: it breaks rather than bends.', cues: ['work'] },
       ],
@@ -489,7 +489,7 @@ const spec = {
         { nl: '{t:Ontlaten|Ontlaten}: opnieuw verwarmen, meestal tot {n:150} à {n:650} °C.', en: '{t:Tempering|Tempering}: reheating, typically to {n:150} to {n:650} °C.', cue: { Ontlaten: 'temper' }, cues: ['work'], read: { nl: '{n:150}–{n:650} °C', en: '{n:150}–{n:650} °C' } },
         { nl: 'Je levert wat hardheid in en wint taaiheid (toughness): een klap opvangen zonder te scheuren.', en: 'You give up some hardness and gain toughness: taking a blow without cracking.', cues: [] },
         { nl: 'Laag ontlaten houdt het hard, voor gereedschap; hoog ontlaten maakt het taai, voor assen.', en: 'Low tempering keeps it hard, for tools; high tempering makes it tough, for shafts.', cues: [] },
-        { nl: 'Harden plus ontlaten heet veredelen. Nooit ontlaten? Dan kan het onderdeel vanzelf scheuren.', en: 'Quench and temper together set the properties. Never tempered? Then the part can crack by itself.', cues: ['temper'] },
+        { nl: 'Harden en hoog ontlaten heet veredelen. Nooit ontlaten? Dan kan het onderdeel vanzelf scheuren.', en: 'Quench and temper together set the properties. Never tempered? Then the part can crack by itself.', cues: ['temper'] },
       ],
     },
     {
@@ -542,8 +542,8 @@ const SAY = [
   [ // s1 how hard is it?
     { nl: 'Dit is een hardheidsmeter. {t:Hardheid|Hardheid} is de weerstand van een materiaal tegen indrukken. De meter drukt met een vaste kracht een harde punt in het oppervlak, en meet de indruk. Hoe kleiner de indruk, hoe harder het materiaal.',
       en: 'This is a hardness tester. {t:Hardness|Hardness} is a material\'s resistance to being dented. The tester presses a hard tip into the surface with a set force, and measures the dent. The smaller the dent, the harder the material.' },
-    { nl: 'Drie schalen zijn gangbaar. Brinell drukt een kogel in en meet de breedte van de indruk: voor zachter staal en gietwerk. Vickers meet de diagonalen van een diamanten piramide: voor elk materiaal, ook dunne lagen. Rockwell C meet hoe diep een diamanten kegel zakt: de schaal voor gehard staal.',
-      en: 'Three scales are common. Brinell presses in a ball and measures the width of the dent: for softer steels and castings. Vickers measures the diagonals of a diamond pyramid: for any material, thin layers too. Rockwell C measures how deep a diamond cone sinks: the scale for hardened steel.' },
+    { nl: 'Brinell drukt een kogel in en meet de breedte van de indruk: voor zachter staal en gietwerk. Vickers drukt een diamanten piramide in en meet de diagonalen: voor elk materiaal, ook dunne lagen. Rockwell C meet hoe diep een diamanten kegel zakt: de schaal voor gehard staal.',
+      en: 'Brinell presses in a ball and measures the width of the dent: for softer steels and castings. Vickers presses in a diamond pyramid and measures the diagonals: for any material, thin layers too. Rockwell C measures how deep a diamond cone sinks: the scale for hardened steel.' },
     { nl: 'Gewoon constructiestaal zit rond {n:120} HB. Gehard staal voor gereedschap haalt {n:60} HRC of meer. Omrekenen tussen de schalen gaat met tabellen, en blijft een schatting.',
       en: 'Mild steel is about {n:120} HB. A hardened tool steel reaches {n:60} HRC or more. Converting between the scales goes by tables, and stays an estimate.' },
     { nl: 'Harder staal is meestal sterker en slijtvaster. De meting is snel en goedkoop, dus een vaste ingangscontrole. Maar hoe maak je staal hard? Met warmte.',
@@ -552,22 +552,22 @@ const SAY = [
   [ // s2 hardening: heat, then quench
     { nl: 'Staal met genoeg koolstof, ruwweg {n:0.3} procent of meer, kun je harden. De takel laat deze as in de oven zakken, en het deksel gaat dicht.',
       en: 'Steel with enough carbon, roughly {n:0.3} percent or more, can be hardened. The hoist lowers this shaft into the furnace, and the lid goes shut.' },
-    { nl: 'De as warmt op tot tussen de {n:800} en {n:900} graden. Dan verandert de structuur binnenin: de koolstof lost op in het ijzer, en het staal wordt austeniet.',
-      en: 'The shaft heats up to between {n:800} and {n:900} degrees. Then the structure inside changes: the carbon dissolves in the iron, and the steel turns to austenite.' },
-    { nl: 'Dan {t:Afschrikken|afschrikken}: in een paar seconden van de oven in het oliebad. Heel snel afkoelen kan in water, in een oliebad of in een polymeeroplossing. De koolstof kan nergens heen, en zit gevangen in een gespannen structuur: martensiet.',
-      en: 'Then {t:Quenching|quenching}: in a few seconds from the furnace into the oil. Cooling very fast can be done in water, oil or a polymer solution. The carbon has nowhere to go, and is trapped in a strained structure: martensite.' },
-    { nl: 'Het staal is nu heel hard, maar ook bros: het breekt zonder te waarschuwen. In de WBZ van een las gebeurt hetzelfde als die te snel afkoelt; daarom wordt er voorgewarmd.',
-      en: 'The steel is now very hard, but also brittle: it breaks without warning. The same happens in the HAZ of a weld that cools too fast; that is why it is preheated.' },
+    { nl: 'De as warmt op tot grofweg {n:800} tot {n:900} graden, afhankelijk van de staalsoort. Dan lost de koolstof op in het ijzer: het staal wordt austeniet.',
+      en: 'The shaft heats up to roughly {n:800} to {n:900} degrees, depending on the steel. Then the carbon dissolves in the iron: the steel turns to austenite.' },
+    { nl: 'Dan {t:Afschrikken|afschrikken}: heel snel afkoelen. Binnen seconden gaat de as van de oven in het oliebad; water of een polymeeroplossing kan ook. De koolstof kan nergens heen, en zit gevangen in een gespannen structuur: martensiet.',
+      en: 'Then {t:Quenching|quenching}: cooling very fast. Within seconds the shaft goes from the furnace into the oil; water or a polymer solution works too. The carbon has nowhere to go, and is trapped in a strained structure: martensite.' },
+    { nl: 'Het staal is nu heel hard, maar ook bros: het breekt zonder te waarschuwen. Hetzelfde gebeurt in de WBZ van een las die te snel afkoelt; daarom wordt dik staal voorgewarmd.',
+      en: 'The steel is now very hard, but also brittle: it breaks without warning. The same happens in the HAZ of a weld that cools too fast; that is why thick steel is preheated.' },
   ],
   [ // s3 distortion and quench cracks
     { nl: 'Afschrikken heeft een prijs. De buitenkant koelt eerder af dan de kern, en dat geeft grote spanningen. Een lange as kan krom trekken: vervorming.',
       en: 'Quenching comes at a price. The outside cools before the core, and that builds up large stresses. A long shaft can bend: distortion.' },
-    { nl: 'Waar de spanning zich ophoopt, kan het staal scheuren. Zo\'n scheur begint meestal bij een scherpe hoek of een plotselinge diktesprong, zoals hier bij de kraag.',
+    { nl: 'Waar spanning zich ophoopt, kan het staal scheuren: meestal bij een scherpe hoek of een plotselinge diktesprong, zoals hier bij de kraag.',
       en: 'Where the stress piles up, the steel can crack. A quench crack usually starts at a sharp corner or a sudden change in thickness, like here at the collar.' },
     { nl: 'Hoe sneller het afkoelt, hoe groter het risico. Water is het felst, een oliebad het mildst, en een polymeeroplossing zit meestal ertussenin.',
       en: 'The faster it cools, the bigger the risk. Water is the harshest, oil the mildest, and a polymer solution usually sits in between.' },
-    { nl: 'Wat helpt: een ruime afronding in plaats van een scherpe hoek, en lange assen hangend afschrikken. Dat regel je al op de tekening.',
-      en: 'What helps: a generous radius instead of a sharp corner, and quenching long shafts hanging. You settle that on the drawing.' },
+    { nl: 'Wat helpt: een ruime afronding in plaats van een scherpe hoek, en die regel je al op de tekening. Lange assen schrik je hangend af.',
+      en: 'What helps: a generous radius instead of a sharp corner, and you settle that on the drawing. Long shafts are quenched hanging.' },
   ],
   [ // s4 tempering
     { nl: 'Daarom volgt meteen {t:Ontlaten|ontlaten}: de as gaat opnieuw een oven in, nu meestal tussen de {n:150} en {n:650} graden.',
@@ -576,8 +576,8 @@ const SAY = [
       en: 'The martensite relaxes a little. You give up some hardness, and gain toughness: taking a blow without cracking.' },
     { nl: 'Laag ontlaten houdt het staal hard, voor gereedschap zoals een beitel. Hoog ontlaten maakt het taai, voor assen en bouten die stoten opvangen.',
       en: 'Low tempering keeps the steel hard, for tools such as a chisel. High tempering makes it tough, for shafts and bolts that take shocks.' },
-    { nl: 'Harden en ontlaten samen heet veredelen. Een afgeschrikt onderdeel dat nooit ontlaten wordt, kan vanzelf scheuren, soms pas dagen later. Dus zo snel mogelijk weer de oven in.',
-      en: 'Quench and temper together set the properties of shafts, gears and tools. A quenched part that is never tempered can crack by itself, sometimes days later. So into the tempering furnace as soon as possible.' },
+    { nl: 'Harden en daarna hoog ontlaten heet veredelen. Een afgeschrikt onderdeel dat nooit ontlaten wordt, kan vanzelf scheuren, soms pas dagen later.',
+      en: 'Quench and temper together set the properties of shafts, gears and tools. A quenched part that is never tempered can crack by itself, sometimes days later.' },
   ],
   [ // s5 annealing and stress relieving
     { nl: '{t:Gloeien|Gloeien} doet het omgekeerde: verhitten en heel langzaam afkoelen, vaak in de oven zelf. Het staal wordt zacht, en makkelijk te verspanen of te vervormen.',
@@ -586,12 +586,12 @@ const SAY = [
       en: '{t:Stress relieving|Stress relieving} is gentler: for steel typically around {n:550} to {n:650} degrees, below the temperature where the structure changes. It removes internal stresses.' },
     { nl: 'Neem een gelaste constructie. Het lassen zet spanningen in het staal. Verspaan je een vlak, dan komt die spanning vrij, en het hele stuk trekt krom.',
       en: 'Take a welded part. Welding locks stresses into the steel. Machine a face, and that stress is released, and the whole part warps.' },
-    { nl: 'Eerst spanningsarm gloeien, dan verspanen: dan blijft hij recht. Die stap hoort in het werkplan, tussen lassen en verspanen.',
-      en: 'Stress relieve first, then machine: then it stays straight. That step belongs in the routing, between welding and machining.' },
+    { nl: 'Eerst spanningsarm gloeien, dan verspanen: dan blijft hij recht. Zet die stap in het werkplan.',
+      en: 'Stress relieve first, then machine: then it stays straight. Put that step in the routing.' },
   ],
   [ // s6 a hard skin, a tough core
-    { nl: 'Soms wil je een hard oppervlak tegen slijtage, op een taaie kern die klappen opvangt. Dat is {t:Oppervlakteharden|oppervlakteharden}: alleen de buitenlaag wordt hard. Zo worden tandwielen en lagerzittingen behandeld.',
-      en: 'Sometimes you want a hard surface against wear, on a tough core that takes the blows. That is {t:Case hardening|case hardening}: only the outer layer becomes hard. Gears and bearing seats are treated this way.' },
+    { nl: 'Soms wil je een hard oppervlak tegen slijtage, op een taaie kern die klappen opvangt. Dat is {t:Oppervlakteharden|oppervlakteharden}. Zo worden tandwielen en lagerzittingen behandeld.',
+      en: 'Sometimes you want a hard surface against wear, on a tough core that takes the blows. That is {t:Case hardening|case hardening}. Gears and bearing seats are treated this way.' },
     { nl: 'Bij inzetharden dringt bij zo\'n {n:900} graden koolstof een stukje het oppervlak in. Na het afschrikken wordt alleen die huid echt hard.',
       en: 'In carburising, carbon soaks a little way into the surface at about {n:900} degrees. After the quench, only that skin becomes really hard.' },
     { nl: 'Nitreren brengt stikstof in het oppervlak, bij zo\'n {n:500} graden. Er wordt niet afgeschrikt, dus het onderdeel vervormt weinig.',
@@ -630,7 +630,9 @@ spec.scenes.forEach((s, si) => {
     spec.scenes[si].beats.forEach((b, bi) => {
       const a0 = st[bi] / rs.dur;
       const a1 = bi + 1 < st.length ? st[bi + 1] / rs.dur : 1;
-      b.still = Math.round((a0 + 0.86 * (a1 - a0)) * 1000) / 1000;
+      // scene 2's first still catches the shaft on its way down into the open furnace
+      const at = si === 1 && bi === 0 ? 0.45 : 0.86;
+      b.still = Math.round((a0 + at * (a1 - a0)) * 1000) / 1000;
     });
   });
 }
