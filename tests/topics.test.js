@@ -136,7 +136,7 @@ test('validateModule: a topic module with a broken topic table reports the check
 });
 
 // ---- Task 2: engine ----
-import { levelState, topicRows, nextLesson, courseTodayPick, levelsDone, recommendedModule } from '../src/core/course.js';
+import { levelState, levelVisible, topicRows, nextLesson, courseTodayPick, levelsDone, recommendedModule } from '../src/core/course.js';
 import { dueCount } from '../src/core/coursereview.js';
 import { defaultState } from '../src/core/storage.js';
 import { machiningV10 } from './fixtures/v10-machining.js';
@@ -165,6 +165,25 @@ test('nextLesson in a topic module: current topic first, lowest unpassed level, 
   assert.equal(nextLesson(s, fx), I('a2'), 'equal timestamps: index order');
 });
 
+test('levels are visible one at a time (v16): the first always, the next once the one before is passed; a passed level stays', () => {
+  const fx = fxMeta();
+  const vis = (st) => topicRows(st, fx, 'nl')[0].levels.map((l) => l.level);
+  let s = defaultState();
+  assert.deepEqual(vis(s), [1]);
+  assert.deepEqual(vis(at(s, I('a1'), { read: 5 })), [1], 'read is not finished');
+  s = pass(s, I('a1'), 5);
+  assert.deepEqual(vis(s), [1, 2]);
+  s = pass(s, I('a2'), 6);
+  assert.deepEqual(vis(s), [1, 2, 3]);
+  s = pass(s, I('a3'), 7);
+  assert.deepEqual(vis(s), [1, 2, 3, 4]);
+  // Older progress where he jumped ahead: what he passed stays visible.
+  assert.deepEqual(vis(pass(defaultState(), I('a3'), 5)), [1, 3, 4]);
+  assert.equal(levelVisible(['x', 'y'], 0, () => false), true);
+  assert.equal(levelVisible(['x', 'y'], 1, () => false), false);
+  assert.equal(levelVisible(['x', 'y'], 1, (id) => id === 'x'), true);
+});
+
 test('levelState: todo, passed, owned (per language)', () => {
   let s = defaultState();
   assert.equal(levelState(s, 'eng', I('a1'), 4, 'nl'), 'todo');
@@ -187,10 +206,10 @@ test('topicRows and levelsDone', () => {
       { lessonId: I('a1'), level: 1, state: 'passed' },
       { lessonId: I('a2'), level: 2, state: 'owned' },
       { lessonId: I('a3'), level: 3, state: 'todo' },
-      { lessonId: I('a4'), level: 4, state: 'todo' },
     ],
   });
   assert.equal(rows[1].passed, 0);
+  assert.deepEqual(rows[1].levels.map((l) => l.lessonId), [I('b1')], 'only the first level of an untouched topic');
   assert.equal(topicRows(s, { id: 'eng.flow', subject: 'eng', lessons: ['eng.flow.takt'], questions: {} }, 'nl'), null);
   assert.deepEqual(levelsDone(s, fx), { done: 2, total: 8 });
 });
@@ -233,8 +252,8 @@ test('v9 progress under the v10 machining table: same lessons passed or owned, s
   assert.equal(dueCount(s.courseReviews, DAY, 'eng', 'nl'), before);
   assert.equal(before, 1);
   const rows = topicRows(s, m, 'nl');
-  assert.deepEqual(rows.find((r) => r.id === 'turning').levels.map((l) => l.state), ['todo', 'owned', 'todo', 'todo']);
-  assert.deepEqual(rows.find((r) => r.id === 'cnc').levels.map((l) => l.state), ['passed', 'todo', 'todo', 'todo']);
+  assert.deepEqual(rows.find((r) => r.id === 'turning').levels.map((l) => l.state), ['todo', 'owned', 'todo'], 'Expert hidden until Gevorderd is passed');
+  assert.deepEqual(rows.find((r) => r.id === 'cnc').levels.map((l) => l.state), ['passed', 'todo']);
   assert.equal(nextLesson(s, m), 'eng.machining.processes', 'Draaien is the most recent topic; its lowest open level');
 });
 

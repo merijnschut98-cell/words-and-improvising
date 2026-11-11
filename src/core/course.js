@@ -219,13 +219,22 @@ export function levelState(state, subject, lessonId, count, lang) {
   return owned ? 'owned' : 'passed';
 }
 
-// The rows of a topic module for the course home; null for other modules.
+// A level shows once the level before it is finished (v16: a minimal app);
+// the first level always, and a level he already passed stays.
+export function levelVisible(levels, i, passed) {
+  return i === 0 || passed(levels[i]) || passed(levels[i - 1]);
+}
+
+// The rows of a topic module for the course home: the visible levels only;
+// null for other modules.
 export function topicRows(state, meta, lang) {
   const metaTopics = topicsOf(meta);
   if (!metaTopics) return null;
+  const lessons = passedIn(state, meta.subject);
+  const passed = (id) => !!(lessons[id] && lessons[id].passed);
   return metaTopics.map((t) => {
     const levels = t.levels.map((lessonId, i) => ({ lessonId, level: i + 1, state: levelState(state, meta.subject, lessonId, (meta.questions || {})[lessonId] || 0, lang) }));
-    return { id: t.id, title: t.title, passed: levels.filter((l) => l.state !== 'todo').length, levels };
+    return { id: t.id, title: t.title, passed: levels.filter((l) => l.state !== 'todo').length, levels: levels.filter((_, i) => levelVisible(t.levels, i, passed)) };
   });
 }
 

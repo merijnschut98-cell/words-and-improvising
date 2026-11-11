@@ -2506,9 +2506,12 @@ await step('topics: level chips in a module (fixture)', async () => {
   const { c, p, shotP } = await topicContext(topicSeed());
   const mod = await openTopicModule(p);
   const chips = mod.locator('.topic-row').first().locator('.level-chip');
-  if (await chips.count() !== 4) throw new Error(`expected 4 chips, got ${await chips.count()}`);
+  // v16: a level shows once the one before it is passed; Expert is hidden until Gevorderd is.
+  if (await chips.count() !== 3) throw new Error(`expected 3 visible chips, got ${await chips.count()}`);
   const cls = await chips.evaluateAll((els) => els.map((e) => e.className));
-  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next') || cls[3].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
+  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
+  // An untouched topic shows only its first level.
+  if (await mod.locator('.topic-row').nth(1).locator('.level-chip').count() !== 1) throw new Error('an untouched topic shows more than its first level');
   if (!(await chips.nth(0).locator('.ico-circle-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('chip state icons missing');
   if ((await chips.nth(2).locator('.chip-next').innerText()).trim() !== 'Volgende') throw new Error('next chip not labelled Volgende');
   if (await chips.nth(1).getAttribute('aria-label') !== 'Draaien, Werkkennis: beheerst') throw new Error(`aria: ${await chips.nth(1).getAttribute('aria-label')}`);
@@ -2536,11 +2539,11 @@ await step('topics: level chips in a module (fixture)', async () => {
   await shotP('110-topic-chips-dark');
   await mod.screenshot({ path: `${out}/111-topic-chips-390-dark.png`, animations: 'disabled' });
   await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
-  // Free access: Expert opens although Gevorderd is not passed.
-  const title = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.quality').title);
-  await chips.nth(3).click();
-  await p.locator('.lesson .pre-card, .lesson .teach-card').first().waitFor();
-  if ((await p.locator('.round-title').innerText()).trim() !== title) throw new Error('Expert chip did not open eng.machining.quality');
+  // A visible chip opens its lesson.
+  const title = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.processes').title);
+  await chips.nth(0).click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  if ((await p.locator('.round-title').innerText()).trim() !== title) throw new Error('Basis chip did not open eng.machining.processes');
   await p.locator('.round-top .icon-btn').first().click();
   await openTopicModule(p);
   await c.close();
