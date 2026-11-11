@@ -109,3 +109,26 @@ test('settings goal options write dailyGoal with a ts', () => {
   opts[2].click();
   assert.deepEqual(saved.dailyGoal, { xp: 50, ts: 777 });
 });
+
+// ---- Titles in the interface (task 18) ----
+const { subjectTitle, titleNextLine, medalsLine } = await import('../src/ui/flairui.js');
+
+test('start card shows the subject title after the name, nothing before the first lesson', () => {
+  assert.equal(subjectTitle(t, defaultState(), 'eng'), null);
+  const el = subjectTitle(t, { ...defaultState(), titles: { eng: { rank: 2, ts: 1 } } }, 'eng');
+  assert.equal(el.textContent, 'Gezel');
+  assert.ok(el.classList.contains('title-tag'));
+  assert.equal(subjectTitle(t, { ...defaultState(), titles: { eng: { rank: 2, ts: 1 } } }, 'pm'), null);
+});
+
+test('progress shows titleNext with the missing levels and medals', () => {
+  const NOW = new Date(2026, 10, 2, 9).getTime();
+  const one = engWith({ lessons: { 'eng.flow.takt': { passed: 1 } } });
+  const line = titleNextLine(t, { ...one, titles: { eng: { rank: 1, ts: 1 } } }, 'eng', NOW);
+  assert.match(line, /^Nog \d+ niveaus en 1 bronzen medaille tot Gezel$/);
+  assert.equal(titleNextLine(t, { ...defaultState(), titles: { eng: { rank: 4, ts: 1 } } }, 'eng', NOW), t('titleTop'));
+  assert.match(titleNextLine(translator('en'), { ...one, titles: { eng: { rank: 1, ts: 1 } } }, 'eng', NOW), /more levels and 1 bronze medal to Journeyman$/);
+  assert.equal(titleNextLine(t, defaultState(), 'speak', NOW), t('titleNextSpeak', 'Leerling'));
+  const medals = engWith({ medals: { 'eng.flow': { tier: 'gold', ts: 1 }, 'eng.quality': { tier: 'bronze', ts: 1 } } });
+  assert.equal(medalsLine(t, medals, 'eng'), '1 brons · 0 zilver · 1 goud');
+});

@@ -10,7 +10,7 @@ import { masteryBadge } from './home.js';
 import { subjectBar } from './subjectbar.js';
 import { courseSummary, planStats } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
-import { weekRings } from './flairui.js';
+import { weekRings, subjectTitle, titleNextLine, medalsLine } from './flairui.js';
 
 // A course on Progress: modules owned per track, due now, the last 14 days and recent situations.
 function courseProgress(app, subject) {
@@ -21,6 +21,7 @@ function courseProgress(app, subject) {
   const plans = planStats(app.state, subject, dayKey(new Date(y, m - 1, d - 30)));
   const lessonTitle = (id) => { const m = MODULES.find((x) => id.startsWith(`${x.id}.`)); return m ? (m.title[app.lang] || m.title.en) : id; };
   return h('main', { class: 'screen progress course-progress' },
+    titleCard(app, subject),
     goalCard(app),
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, t('courseOwned')),
@@ -41,6 +42,15 @@ import { friendAverages } from '../core/friend.js';
 import { wordsSummary, SWAPS } from '../core/words.js';
 
 // "4.2 (▼ 1.3)" with a tone: lowerIsBetter flips which direction is good.
+// The subject's title, what the next rank still needs, and the medals (v16 flair).
+function titleCard(app, subject) {
+  const t = app.t;
+  return h('section', { class: 'card title-card' },
+    h('h2', { class: 'card-title' }, t(`subject_${subject}`), subjectTitle(t, app.state, subject) ? [' · ', subjectTitle(t, app.state, subject)] : null),
+    h('p', { class: 'muted small title-next' }, titleNextLine(t, app.state, subject, Date.now())),
+    h('p', { class: 'mono-line medals-line' }, `${t('medalsTitle')}: ${medalsLine(t, app.state, subject)}`));
+}
+
 // The daily goal over the last seven days: information only (v16 flair).
 function goalCard(app) {
   return h('section', { class: 'card goal-card' },
@@ -276,6 +286,7 @@ export function renderProgress(app, _params, root) {
     subjectBar(app, 'progress'),
     h('main', { class: 'screen progress' },
       weekCard(app),
+      titleCard(app, 'speak'),
       goalCard(app),
       h('section', { class: 'stats' },
         h('div', { class: 'stat' }, h('b', {}, lv.level), h('span', {}, t('level'))),

@@ -9,7 +9,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
-import { startHead } from './flairui.js';
+import { startHead, subjectTitle } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
@@ -268,7 +268,8 @@ function startCard(app, card) {
     onclick: () => app.setSubject(card.subject),
   },
   h('span', { class: 'start-head' },
-    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`)),
+    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`),
+      subjectTitle(t, app.state, card.subject) ? [h('span', { class: 'muted' }, ' · '), subjectTitle(t, app.state, card.subject)] : null),
     card.done ? h('span', { class: 'start-done' }, ico('check'), ' ', t('startDone')) : null),
   what,
   h('span', { class: 'start-why' }, why),
@@ -351,6 +352,7 @@ function subjectHeader(app) {
   const streak = isStreakAlive(s.streak, app.today()) ? s.streak.count : 0;
   return h('header', { class: 'top' },
     h('button', { class: 'back-btn', onclick: () => app.setSubject('start') }, ico('chevron-left'), h('span', {}, t('overview'))),
+    subjectTitle(t, s, app.subject),
     h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
       ico('flame'), h('b', {}, streak), h('span', { class: 'streak-label' }, t('streak', streak)),
       s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));

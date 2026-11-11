@@ -1034,3 +1034,6 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .week-rings { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
 .week-ring { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .week-day { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); }
+.top .title-tag { margin-right: auto; margin-left: 4px; }
+.start-subject .title-tag { font-size: 0.7rem; }
+.title-card .card-title .title-tag { font-size: 0.8rem; }

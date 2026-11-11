@@ -3,7 +3,7 @@
 // their word, never by colour alone (gold is retired; petrol is the accent).
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { storedMedal, medalFor, goalProgress, goalOf, GOALS, setGoal } from '../core/flair.js';
+import { storedMedal, medalFor, goalProgress, goalOf, GOALS, setGoal, storedTitle, titleNextNeeds, TIERS } from '../core/flair.js';
 import { isStreakAlive, levelFromXp, dayKey } from '../core/progress.js';
 import { checkOf } from '../core/modulecheck.js';
 
@@ -121,4 +121,29 @@ export function startHead(app) {
     h('p', { class: 'start-meta muted small' },
       `${t('level')} ${lv.level} · ${lv.into}/${lv.needed} XP`,
       s.freezes ? ` · ${t('freezesShort', s.freezes)}` : ''));
+}
+
+// ---- Titles ----
+// After the subject's name on its start card and in its header; nothing
+// before the first lesson or round.
+export const subjectTitle = (t, state, subject) => titleTag(t, storedTitle(state, subject));
+
+// One line on Progress: what is still missing for the next rank.
+export function titleNextLine(t, state, subject, now) {
+  const need = titleNextNeeds(state, subject, now);
+  if (!need) return t('titleTop');
+  const title = t(`title_${need.rank}`);
+  if (subject === 'speak') return t('titleNextSpeak', title);
+  const medals = need.medals ? t('titleNextMedals', need.medals, t(`medalAdj_${need.tier}`)) : '';
+  if (need.levels && medals) return t('titleNext', need.levels, medals, title);
+  if (need.levels) return t('titleNextLevels', need.levels, title);
+  if (medals) return t('titleNextOnly', medals, title);
+  return t('titleNextSpeak', title);
+}
+
+// "3 brons · 1 zilver · 0 goud": the stored medals of a subject.
+export function medalsLine(t, state, subject) {
+  const all = subject === 'speak' ? (state.speakMedals || {}) : ((((state.courses || {})[subject]) || {}).medals || {});
+  const n = (tier) => Object.values(all).filter((m) => m && m.tier === tier).length;
+  return t('medalsCount', ...TIERS.map(n));
 }
