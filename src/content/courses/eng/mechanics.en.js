@@ -303,6 +303,7 @@ export default {
     // Topic: Material strength and testing
     {
       id: 'eng.mechanics.strength',
+      film: 'eng.mechanics.tensile',
       title: 'Yield, tensile strength and safety factor',
       pre: [
         {

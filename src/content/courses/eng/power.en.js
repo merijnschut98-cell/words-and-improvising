@@ -4,6 +4,7 @@ export default {
     // Topic: Electricity and energy in the plant
     {
       id: 'eng.power.basics',
+      film: 'eng.power.motor',
       title: 'Power, energy and three-phase',
       pre: [
         {
@@ -301,6 +302,7 @@ export default {
     // Topic: Electric motors
     {
       id: 'eng.power.motors',
+      film: 'eng.power.motor',
       title: 'Induction motors',
       pre: [
         {

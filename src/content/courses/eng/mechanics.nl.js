@@ -303,6 +303,7 @@ export default {
     // Onderwerp: Materiaalsterkte en beproeving
     {
       id: 'eng.mechanics.strength',
+      film: 'eng.mechanics.tensile',
       title: 'Vloeigrens, treksterkte en veiligheidsfactor',
       pre: [
         {
