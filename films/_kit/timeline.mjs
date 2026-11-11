@@ -127,6 +127,22 @@ const SAY = {
     // lastwisSEEling, puts a schwa in vermoeiingsgrens, and stresses kogelSTRAlen and lasTEEN; split at the head
     [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
     [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen'],
+    // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
+    // "lachen", "uunit oopiraasjon", stresses "KOrioliss" and "KONtinu", and sounds the h in ohm): betsj
+    // (betsj- in compounds: batchproces, batchnummer), joenit oppe-reesjen, kori-olis (KO-ri-O-lis; "korie-olis"
+    // stressed the ie), konti-nu (continue as konti-nuwe), oom
+    [/\b([Bb])atch(\p{L}?)/gu, (m, b, l) => `${b}etsj${l ? `-${l}` : ''}`],
+    [/\b([Uu])nit operation(s?)\b/g, (m, u, s) => `${u === 'U' ? 'J' : 'j'}oenit oppe-reesjen${s}`],
+    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Kori-olis' : 'kori-olis')], [/\bohm\b/g, 'oom'],
+    [/\b([Cc])ontinue\b/g, (m, c) => (c === 'C' ? 'Konti-nuwe' : 'konti-nuwe')], [/\b([Cc])ontinu\b/g, (m, c) => (c === 'C' ? 'Konti-nu' : 'konti-nu')],
+    // measuring the process variables: espeak-ng reads psi as one hiss ("psie"), FDA as "vdaa", stresses
+    // thermokopPEL, drops the h in toezichthouders and reads magnetisch-inductieve as "INduktieve"; said
+    // pee-es-ie, ef-dee-aa, thermo-koppel, toezicht-houders, magnetisch in-duktieve (only after "magnetisch",
+    // so the inductieve sensor of eng.lines.errorproof keeps its reading); it also stresses DEbietmeter and
+    // drops the h in heethoudbuis (debiet-meter, heet-houdbuis)
+    [/\b([Dd])ebietmeter/g, '$1ebiet-meter'], [/\b([Hh])eethoudbuis/g, '$1eet-houdbuis'],
+    [/\bpsi\b/g, 'pee-es-ie'], [/\bFDA\b/g, 'ef-dee-aa'], [/\b([Tt])hermokoppel/g, '$1hermo-koppel'], [/\b([Tt])oezichthouder/g, '$1oezicht-houder'],
+    [/\b([Mm])agnetisch-inductie(ve|f)\b/g, '$1agnetisch in-duktie$2'],
     // heat treatment: espeak-ng stresses BRInell and PIramide (said Brie-NEL, pira-MIE-de), drops the h in
     // inzetharden, reads inductieharden as "INduktie-harden", and stresses warmtebehandeling (-be-HAN-deling
     // read "bee-han-DEE-ling"), tandwielen (tandWIElen), polymeeroplossing (POlymeer) and diktesprong (with
