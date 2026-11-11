@@ -83,3 +83,17 @@ export function startCards(state, today, content, lang, now = Date.now()) {
   const pick = Math.max(0, cards.findIndex((c) => !c.done));
   return cards.map((c, i) => ({ ...c, suggested: i === pick }));
 }
+
+// One-shot notices on home, decided once before the screen is drawn, with a
+// single state update (nothing calls setState while rendering): the gentle
+// broken-streak banner (once a day) and, on the start screen, the quiet line
+// about what earlier work earned (v16 flair backfill, once).
+export function homeNotices(state, today, { broke = false, onStart = false } = {}) {
+  const ui = state.ui || {};
+  const showBreak = !!broke && ui.seenBreak !== today && (state.streak || {}).count > 0;
+  const note = onStart && ui.flairNote ? ui.flairNote : null;
+  if (!showBreak && !note) return { state, showBreak: false, note: null };
+  const { flairNote, ...rest } = ui;
+  const nextUi = { ...(note ? rest : ui), ...(showBreak ? { seenBreak: today } : {}) };
+  return { state: { ...state, ui: nextUi }, showBreak, note };
+}
