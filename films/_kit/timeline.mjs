@@ -125,12 +125,12 @@ const SAY = {
     [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
     [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen'],
     // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
-    // "lachen", "uunit oopiraasjon", and stresses "KOrioliss" and "KONtinu"): betsj-, joenit oppe-reesjen,
-    // korie-olis, konti-nu (continue as konti-nuwe); batch only in compounds (batchproces, batchnummer), so the
-    // lone "batch" another film says keeps its voice
-    [/\b([Bb])atch(?=\p{L})/gu, '$1etsj-'],
+    // "lachen", "uunit oopiraasjon", stresses "KOrioliss" and "KONtinu", and sounds the h in ohm): betsj
+    // (betsj- in compounds: batchproces, batchnummer), joenit oppe-reesjen, kori-olis (KO-ri-O-lis; "korie-olis"
+    // stressed the ie), konti-nu (continue as konti-nuwe), oom
+    [/\b([Bb])atch(\p{L}?)/gu, (m, b, l) => `${b}etsj${l ? `-${l}` : ''}`],
     [/\b([Uu])nit operation(s?)\b/g, (m, u, s) => `${u === 'U' ? 'J' : 'j'}oenit oppe-reesjen${s}`],
-    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Korie-olis' : 'korie-olis')],
+    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Kori-olis' : 'kori-olis')], [/\bohm\b/g, 'oom'],
     [/\b([Cc])ontinue\b/g, (m, c) => (c === 'C' ? 'Konti-nuwe' : 'konti-nuwe')], [/\b([Cc])ontinu\b/g, (m, c) => (c === 'C' ? 'Konti-nu' : 'konti-nu')]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],

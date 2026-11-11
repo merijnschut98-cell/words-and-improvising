@@ -86,13 +86,14 @@ const inOrder = (text, words) => { let from = 0; return words.every((w) => { con
   assert(inOrder(tt, ['batchproces', 'als één partij, met één batchnummer', 'vullen, legen en reinigen leveren niks op']), 'types: batch');
   assert(inOrder(tt, ['continu proces', 'stationaire toestand', 'Opstarten en stoppen duurt uren', 'off-spec', 'batchgewijs mengen dat een continue vullijn voedt']), 'types: continuous');
   assert(inOrder(tt, ['ontwerp je op het snelste deel']), 'types: design on the fastest part');
+  assert(inOrder(tt, ['Duw 50% meer door dezelfde tank', 'een derde korter']), 'types: 50 % more flow, a third shorter');
   const ex = t.example.text;
   assert(inOrder(ex, ['heethoudbuis', '0,1 m³ inhoud, met 12 m³ per uur', '30 seconden', 'minstens 20 seconden', '18 m³ per uur', '20 seconden: precies op het minimum', 'het snelste deeltje', 'langere heethoudbuis']), 'types: the holding-tube example');
   const v = lessons.nl.get(VARS);
   const vt = v.teach.join('\n');
-  assert(inOrder(vt, ['druk, temperatuur, debiet en niveau', 'Overdruk', 'buitenlucht', 'absolute druk', 'vacuüm', 'zo’n 1 bar']), 'variables: pressure');
+  assert(inOrder(vt, ['druk, temperatuur, debiet en niveau', 'Overdruk', 'buitenlucht', 'absolute druk', 'vacuüm', 'zo’n 1 bar', 'vraag dan welke']), 'variables: pressure');
   assert(inOrder(vt, ['Massadebiet = volumedebiet × dichtheid', '1.000 kg/m³', '1 m³/h water is ongeveer 1.000 kg/h', 'vraag wat een meter echt toont']), 'variables: mass flow');
-  assert(inOrder(vt, ['Coriolismeter laat een buis trillen', 'verdraaiing', 'direct massa', '0,1%']), 'variables: Coriolis');
+  assert(inOrder(vt, ['Coriolismeter laat een buis trillen', 'verdraaiing', 'direct massa', '0,1%', 'laatste kalibratie']), 'variables: Coriolis');
   assert(inOrder(vt, ['druksensor onderin', 'gewicht van de vloeistofkolom', 'vraag dan op welk principe']), 'variables: level');
   assert(inOrder(vt, ['Pt100', 'platina weerstand', 'een paar tiende graad', 'beschermhuls', 'minuten achter']), 'variables: Pt100');
   assert(v.terms.find((x) => x.term === 'Pt100').def.includes('100 ohm bij 0 °C'), 'variables: 100 ohm at 0 °C');
@@ -109,6 +110,7 @@ const T2 = (VOL / Q2) * 3600;
 assert(near(T1, 30, 1e-9) && near(T2, 20, 1e-9), '0,1 / 12 h = 30 s; 0,1 / 18 h = 20 s');
 const TMIN = 20;
 assert(T2 === TMIN, 'at 18 m³/h exactly the minimum');
+assert(near(Q2 / Q1, 1.5, 1e-9) && near(T2 / T1, 2 / 3, 1e-9), '18 is 50 % more than 12, and 20 s is a third less than 30 s');
 // pressure: gauge 2 bar at sea level is about 3 bar absolute
 assert(2 + 1 === 3, 'absolute = gauge + about 1 bar');
 // mass flow: 1 m³/h of water of 1.000 kg/m³ is 1.000 kg/h
@@ -469,7 +471,7 @@ const spec = {
       id: 's3', lesson: TYPES, level: 1, dur: DUR[2], still: 0.9, title: { nl: 'Continu: non-stop', en: 'Continuous: non-stop' },
       beats: [
         { nl: 'Vanaf de pomp is het een {t:Continu proces|continu proces}: het sap stroomt non-stop in en uit.', en: 'From the pump on it is a {t:Continuous process|continuous process}: the juice flows in and out non-stop.', cue: { 'Continu proces': 'line' }, cues: ['hold'] },
-        { nl: 'Draait de lijn, dan is er een {t:Stationaire toestand|stationaire toestand}: overal gelijke waarden.', en: 'Once the line runs, it is at {t:Steady state|steady state}: the same values everywhere.', cue: { 'Stationaire toestand': 'trend' } },
+        { nl: 'Draait de lijn, dan is er een {t:Stationaire toestand|stationaire toestand}: elke waarde blijft uur na uur gelijk.', en: 'Once the line runs, it is at {t:Steady state|steady state}: every value stays the same, hour after hour.', cue: { 'Stationaire toestand': 'trend' } },
         { nl: 'Opstarten en stoppen duurt uren en geeft product buiten spec. Zo’n lijn stopt liever niet.', en: 'Starting up and shutting down take hours and make off-spec product. Such a line hates stopping.', cues: ['trend'] },
         { nl: 'Veel fabrieken combineren: een batchgewijs mengvat voedt een continue lijn.', en: 'Many plants combine them: a batch mixing vat feeds a continuous line.', cues: ['mixer', 'line'] },
       ],
@@ -523,10 +525,11 @@ const spec = {
 // films eng.drawings.reading and eng.lines.control (transmitter, regelaar,
 // regelklep, sensor) and the permit and LOTO films.
 // Words checked with espeak-ng phonemes (Piper's own bridge,
-// films/_kit/voice-ab/phon.py with nl_NL-alex-medium): batch (read "batx"; only its compounds are respelled, so the lone word is avoided),
-// unit operation (read "uunit oopiraasjon"), Coriolis (stress on Co-) and
-// continu, continue (stress on con-) get Dutch spoken forms in
-// films/_kit/timeline.mjs (SAY); no other film says them in Dutch. Kept out of
+// films/_kit/voice-ab/phon.py with nl_NL-alex-medium): batch (read "batx"),
+// unit operation (read "uunit oopiraasjon"), Coriolis (stress on Co- only),
+// continu, continue (stress on con-) and ohm (read with a sounded h) get Dutch
+// spoken forms in films/_kit/timeline.mjs (SAY); besides this film only
+// eng.moulding.materials says "batch" in Dutch, and no other film the rest. Kept out of
 // the Dutch narration: setpoint (read "set-po-int"; said "de gewenste waarde").
 // Pt100 is read "pee tee honderd", off-spec, stationaire, verblijftijd,
 // massadebiet, overdruk and absolute are read right.
@@ -546,16 +549,16 @@ const SAY = [
       en: 'Look at the mixing vat first. It works as a {t:Batch process|batch process}: a fixed amount goes in, is processed step by step, and comes out again as one lot.' },
     { nl: 'Vullen, mengen, en dan het vat leeg. Die hele partij krijgt één batchnummer, met één registratie van wat erin ging en wat er gebeurde.',
       en: 'Fill it, mix it, then empty the vat. That whole lot gets one batch number, with one record of what went in and what happened.' },
-    { nl: 'Dat is flexibel en makkelijk te traceren, en het past bij veel recepten en kleine volumes. Het nadeel: vullen, legen en reinigen leveren niks op, en elke partij is net iets anders.',
+    { nl: 'Dat is flexibel en makkelijk te traceren, en het past bij veel recepten en kleine volumes. Het nadeel: vullen, legen en reinigen leveren niks op, en elke batch is net iets anders.',
       en: 'That is flexible and easy to trace, and it suits many recipes and small volumes. The downside: filling, emptying and cleaning produce nothing, and every batch comes out a little different.' },
   ],
   [ // s3 continuous
     { nl: 'Vanaf de pomp is het een {t:Continu proces|continu proces}. Het sap stroomt de hele tijd in en uit: door de warmtewisselaar, de heethoudbuis en de koeler, naar de vulmachine.',
       en: 'From the pump on it is a {t:Continuous process|continuous process}. The juice flows in and out all the time: through the heat exchanger, the holding tube and the cooler, to the filler.' },
-    { nl: 'Draait de lijn eenmaal, dan zit ze in een {t:Stationaire toestand|stationaire toestand}. De temperaturen, drukken en debieten blijven overal gelijk, uur na uur, en er hoopt nergens iets op.',
-      en: 'Once the line runs, it sits at {t:Steady state|steady state}. The temperatures, pressures and flows stay the same everywhere, hour after hour, and nothing builds up.' },
+    { nl: 'Draait de lijn eenmaal, dan zit ze in een {t:Stationaire toestand|stationaire toestand}. De temperaturen, drukken en debieten blijven op elke plek gelijk, uur na uur, en er hoopt nergens iets op.',
+      en: 'Once the line runs, it sits at {t:Steady state|steady state}. The temperatures, pressures and flows hold steady at every point, hour after hour, and nothing builds up.' },
     { nl: 'Maar opstarten en stoppen duurt uren, en wat je in die tijd maakt, voldoet niet aan de specificatie. Dat heet off-spec. Zulke lijnen stoppen dus liever niet.',
-      en: 'But starting up and shutting down take hours, and what you make in that time does not meet the specification. That is called off-spec. So lines like this hate stopping.' },
+      en: 'But starting up and shutting down take hours, and what you make in that time does not meet the specification. That is called off-spec. So such lines hate stopping.' },
     { nl: 'Veel fabrieken combineren de twee, zoals hier: een mengvat dat batchgewijs werkt, voedt een continue lijn.',
       en: 'Many plants combine the two, as here: a mixing vat that works in batches feeds a continuous line.' },
   ],
@@ -564,8 +567,8 @@ const SAY = [
       en: 'After heating, the juice must stay hot for a set time, to kill germs. So it flows through the holding tube: {n:0.1} cubic metres inside, with {n:12} cubic metres per hour flowing through.' },
     { nl: 'Hoe lang het sap erin zit, is de {t:Verblijftijd|verblijftijd}: het volume gedeeld door het debiet. Dat geeft {n:30} seconden, en het voedselveiligheidsplan eist er minstens {n:20}.',
       en: 'How long the juice stays in it is the {t:Residence time|residence time}: the volume divided by the flow. That gives {n:30} seconds, and the food safety plan demands at least {n:20}.' },
-    { nl: 'Wil productie naar {n:18} kubieke meter per uur, dan wordt de verblijftijd {n:20} seconden: precies op het minimum, zonder marge.',
-      en: 'If production wants {n:18} cubic metres per hour, the residence time becomes {n:20} seconds: exactly on the minimum, with no margin.' },
+    { nl: 'Wil productie naar {n:18} kubieke meter per uur, dan wordt de verblijftijd {n:20} seconden: precies op het minimum, zonder marge. Dat is {n:50} procent meer debiet, en elke liter zit er een derde korter in.',
+      en: 'If production wants {n:18} cubic metres per hour, the residence time becomes {n:20} seconds: exactly on the minimum, with no margin. That is {n:50} percent more flow, and every litre spends a third less time inside.' },
     { nl: 'En dat is nog een gemiddelde. In het midden van de buis stroomt het sap sneller, dus daar zit het er korter in. Daarom ontwerp je op het snelste deeltje. Meer output vraagt een langere buis, niet alleen een snellere pomp.',
       en: 'And that is only an average. In the centre of the tube the juice flows faster, so it spends less time there. That is why you design on the fastest particle. More output needs a longer tube, not just a faster pump.' },
   ],
@@ -574,16 +577,16 @@ const SAY = [
       en: 'To run a line like this, you measure four variables: pressure, temperature, flow and level.' },
     { nl: 'Na de pomp zit een manometer. Zoals bijna alle manometers toont hij {t:Overdruk|overdruk}: de druk ten opzichte van de buitenlucht.',
       en: 'After the pump sits a pressure gauge. Like almost every gauge, it shows {t:Gauge pressure|gauge pressure}: the pressure relative to the air around it.' },
-    { nl: 'De {t:Absolute druk|absolute druk} telt vanaf volledig vacuüm. Op zeeniveau drukt de lucht zelf al zo’n {n:1} bar. Wijst de manometer {n:2} bar aan, dan is de absolute druk dus ongeveer {n:3} bar.',
-      en: 'The {t:Absolute pressure|absolute pressure} counts from a perfect vacuum. At sea level the air itself presses about {n:1} bar. So if the gauge reads {n:2} bar, the absolute pressure is about {n:3} bar.' },
-    { nl: 'Verderop zit een {t:Coriolismeter|Coriolismeter}. Hij laat een buis trillen en leest de verdraaiing die de stromende massa geeft. Zo meet hij direct het {t:Massadebiet|massadebiet}, in kilo’s per uur.',
-      en: 'Further on sits a {t:Coriolis meter|Coriolis meter}. It vibrates a tube and reads the twist the flowing mass causes. So it measures the {t:Mass flow|mass flow} directly, in kilograms per hour.' },
-    { nl: 'Andere meters tellen volume. Het massadebiet is dan het volumedebiet maal de dichtheid: één kubieke meter water per uur is zo’n {n:1000} kilo. Recepten rekenen in kilo’s, dus vraag wat een meter echt toont.',
-      en: 'Other meters count volume. The mass flow is then the volume flow times the density: one cubic metre of water per hour is about {n:1000} kilograms. Recipes work in kilograms, so ask what a meter really shows.' },
+    { nl: 'De {t:Absolute druk|absolute druk} telt vanaf volledig vacuüm. Op zeeniveau drukt de lucht zelf al zo’n {n:1} bar. Wijst de manometer {n:2} bar aan, dan is de absolute druk dus ongeveer {n:3} bar. Noemt iemand een druk, vraag dan welke.',
+      en: 'The {t:Absolute pressure|absolute pressure} counts from a perfect vacuum. At sea level the air itself presses about {n:1} bar. So if the gauge reads {n:2} bar, the absolute pressure is about {n:3} bar. When someone quotes a pressure, ask which one.' },
+    { nl: 'Tussen de pomp en de manometer zit een {t:Coriolismeter|Coriolismeter}. Hij laat een buis trillen en leest de verdraaiing die de stromende massa geeft. Zo meet hij direct het {t:Massadebiet|massadebiet}, in kilo’s per uur.',
+      en: 'Between the pump and the gauge sits a {t:Coriolis meter|Coriolis meter}. It vibrates a tube and reads the twist the flowing mass causes. So it measures the {t:Mass flow|mass flow} directly, in kilograms per hour.' },
+    { nl: 'Andere meters tellen volume. Het massadebiet is dan het volumedebiet maal de dichtheid: één kubieke meter water per uur is zo’n {n:1000} kilo. Recepten rekenen in kilo’s, dus vraag wat een meter echt toont. En een meter is zo goed als zijn laatste kalibratie.',
+      en: 'Other meters count volume. The mass flow is then the volume flow times the density: one cubic metre of water per hour is about {n:1000} kilograms. Recipes work in kilograms, so ask what a meter really shows. And a meter is only as good as its last calibration.' },
   ],
   [ // s6 temperature and the loop
-    { nl: 'Na de warmtewisselaar meet een {t:Pt100|Pt100} de temperatuur van het sap: een platina weerstand, nauwkeurig op een paar tiende graad.',
-      en: 'After the heat exchanger a {t:Pt100|Pt100} measures the temperature of the juice: a platinum resistor, accurate to a few tenths of a degree.' },
+    { nl: 'Na de warmtewisselaar meet een {t:Pt100|Pt100} de temperatuur van het sap: een platina weerstand van 100 ohm bij 0 graden, nauwkeurig op een paar tiende graad.',
+      en: 'After the heat exchanger a {t:Pt100|Pt100} measures the temperature of the juice: a platinum resistor of 100 ohms at 0 degrees, accurate to a few tenths of a degree.' },
     { nl: 'De sensor zit in een beschermhuls in de leiding. Bij weinig stroming loopt hij daardoor minuten achter, en reageert de regeling te laat.',
       en: 'The sensor sits in a thermowell in the pipe. In a slow flow it can lag by minutes, and the control reacts too late.' },
     { nl: 'Want die temperatuur wordt geregeld. Op het leiding- en instrumentatieschema zie je drie rondjes: de transmitter, de regelaar in het besturingssysteem, en de regelklep op het hete water.',
@@ -598,8 +601,8 @@ const SAY = [
       en: 'Now it holds syrup of {n:1250} kilograms per cubic metre, really {n:2.0} metres deep. The pressure at the bottom is then {n:24525} pascals.' },
     { nl: 'De meter deelt die druk door de dichtheid van water, en toont {n:2.5} meter. Een halve meter te hoog: het hoog-niveaualarm kan te vroeg afgaan.',
       en: 'The meter divides that pressure by the density of water, and shows {n:2.5} metres. Half a metre too high: the high-level alarm may trip early.' },
-    { nl: 'De massa die de meter aangeeft, klopt wel. Voer dus de juiste dichtheid in, of lees de tank af in kilo’s.',
-      en: 'The mass the meter implies is still right. So enter the right density, or read the tank in kilograms.' },
+    { nl: 'De massa die de meter aangeeft, klopt wel. Voer dus de juiste dichtheid in, of lees de tank af in kilo’s. Leest een niveau raar, vraag dan op welk principe de meter werkt.',
+      en: 'The mass the meter implies is still right. So enter the right density, or read the tank in kilograms. If a level reads oddly, ask what principle the meter uses.' },
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
