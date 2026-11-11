@@ -5,6 +5,8 @@ import { applyQuests } from './quests.js';
 import { updateBests } from './bests.js';
 import { newMilestones } from './milestones.js';
 import { scheduleReview, wasImproved } from './spaced.js';
+import { creditXp, goalJustReached } from './xp.js';
+import { awardFlair } from './flair.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
@@ -19,8 +21,7 @@ export function applyRound(state, round, today, now) {
   // His own earlier attempt (shadow rounds repeat the model; they are not his record).
   const earlier = state.history.find((e) => !e.shadow && e.promptId === prompt.id && e.drill === prompt.drill && e.lang === round.lang);
   let next = {
-    ...state,
-    xp: state.xp + xp,
+    ...creditXp(state, xp, today),
     streak: updateStreak(state.streak, today),
     days: { ...state.days, [today]: (state.days[today] || 0) + 1 },
     drillLevels: shadow ? state.drillLevels : { ...state.drillLevels, [drill]: adjustDrillLevel(state.drillLevels[drill] || 1, rating) },
@@ -54,6 +55,8 @@ export function applyRound(state, round, today, now) {
   next = q.state;
   const reached = newMilestones(next);
   if (reached.length) next = { ...next, milestones: [...(next.milestones || []), ...reached] };
+  const won = awardFlair(next, now);
+  next = won.state;
   return {
     state: next,
     xp: next.xp - state.xp, // round XP plus any quest XP
@@ -61,6 +64,10 @@ export function applyRound(state, round, today, now) {
     completedQuests: q.completed,
     newBests: b.newBests,
     newMilestones: reached,
+    medals: won.medals,
+    speakMedals: won.speakMedals,
+    titles: won.titles,
+    goalReached: goalJustReached(state, next, today),
   };
 }
 

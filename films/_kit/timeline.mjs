@@ -166,6 +166,9 @@ const SAY = {
     // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
     // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
     [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
+    // outages: espeak-ng drops "-burige" in naburige (it says "naa-e") and stresses vrijgeschakeld(e) on "-GE-"
+    // with the e of "bed"; said na-burige and vrij-geschakeld, each part with its own reading
+    [/\b([Nn])aburige\b/g, '$1a-burige'], [/\b([Vv])rijgeschakeld/g, '$1rij-geschakeld'],
     // IT/OT: espeak-ng reads Purdue as "pur-du-e" (said as the floor says it, "Pur-djoe"), firewall as "fie-re-wal"
     // (said "fajerwol", with "regels" apart, else it stresses "re-GELS"), historian as "HIStoorian" and conduits
     // with the Dutch ui (said "his-toorjen", "kondjoe-its"); and it stresses the head of functieMOdel (with "kti"),

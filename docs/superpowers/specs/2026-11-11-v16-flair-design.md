@@ -1,6 +1,6 @@
 # v16 Flair: medals, titles, celebration, guide, daily goal and the path map
 
-Date: 2026-11-11. Status: design, waiting for Merijn's answers to the open questions at the end.
+Date: 2026-11-11. Status: answered (Merijn's answers to the open questions are recorded in section 12 and applied below) and implemented.
 Plan: `docs/superpowers/plans/2026-11-11-v16-flair.md`.
 
 ## 1. Why, and the one rule
@@ -55,13 +55,21 @@ A medal is a mark on a course module (eng and pm). It is a ladder: each tier nee
 
 - Brons: hairline ring (1.5 px, `--accent`), empty centre.
 - Zilver: double ring (outer hairline, inner 2 px ring).
-- Goud: solid disc in `--accent-fill` with a bone check (the existing `check` icon).
+- Goud: solid disc in `--accent` with a check in the card colour. (Implementation note: `--accent-fill` is petrol-700 in dark and only 1.9:1 on the dark card, below the 3:1 rule of section 5, so the disc uses `--accent` in both themes; the brand test checks it.)
 
 The tier word is always next to the seal (mono label, uppercase, like `.level-badge`), so colour-blind and screen-reader users get the same information.
 
 **Where it shows.** On the module row in the course home (in the meta line, after the tier pill; nothing when no medal), at the end of the module's path, on the lesson-done card in the moment it is earned, and on Progress per subject ("Medailles: 3 brons · 1 zilver · 0 goud").
 
-Speaking has no modules and gets no medals in v16 (its titles carry the progress). See Q4.
+**Speaking medals (Q4: yes).** Speaking has no modules, so its medals hang on the four drill groups of the speaking home (Basis, Structuur, Gesprek en luisteren, Onder druk; four drills each), in the same ladder:
+
+| Tier | Rule per drill group | Mirrors |
+|---|---|---|
+| Brons | Every drill of the group at "Oefenen" or higher (3 rounds or more each) | every level passed |
+| Zilver | Bronze, and ceil(75%) of the group's drills owned ("Beheerst": 3 good days, score 4+, within 14 days): 3 of 4 | a perfect quiz on 75% of the levels |
+| Goud | Silver, and a boss round (the Friday Eindbaas, the speaking "check") scored 4 or higher; one played earlier counts | the module check without a mistake |
+
+Ownership fades after 14 days, but a medal is stored once earned (`speakMedals[groupId] = { tier, ts }`), never lowered, merged like course medals (higher tier wins, equal tier the earlier ts). They show on Progress (Spreken: "Medailles: 1 brons · 0 zilver · 0 goud") and as the big moment on the speaking done screen (or one toast after a single round).
 
 ### 3.2 Titles that grow with you, per subject
 
@@ -73,10 +81,10 @@ One title per subject: Engineering, Projecten, Spreken. Four ranks.
 |---|---|---|
 | 1 | Leerling | Apprentice |
 | 2 | Gezel | Journeyman |
-| 3 | Vakman | Craftsman |
+| 3 | Vakman | Craftsperson |
 | 4 | Meester | Master |
 
-(Alternative keeping his words: Leerling, Vakman, Kenner, Meester; en Apprentice, Practitioner, Expert, Master. See Q2.)
+(Q2 answered: Leerling, Gezel, Vakman, Meester; English Apprentice, Journeyman, Craftsperson, Master.)
 
 **Rules for eng and pm** (shares of the subject's levels, so new content does not need new numbers; counts below are for today's 448 eng and 240 pm levels):
 
@@ -116,7 +124,7 @@ One title per subject: Engineering, Projecten, Spreken. Four ranks.
 
 **Where it shows.**
 
-- Start screen: next to the "Vandaag" title, replacing the XP part of the quiet meta line (`start-meta` keeps the streak and level; see Q1 on the flame).
+- Start screen: next to the "Vandaag" title, with the existing streak flame small beside the ring (Q1). The quiet meta line `start-meta` keeps the level and level XP ("Level 2 · 40/150 XP") and the streak freezes.
 - Lesson-done card, due-done card and the speaking done screen: the ring fills by the XP just earned (the celebration, below).
 - Progress: one row of seven small rings for the last seven days (filled, part, empty), each with an accessible label. No weekly review is added (not ticked); this row is information only.
 
@@ -135,7 +143,7 @@ When: a lesson (level) passed for the first time, a module check finished, the d
 
 Only the biggest moment of the screen animates (priority title > medal > goal > lesson); the others are static lines in the same card.
 
-**Sound (optional).** Follows the existing Settings toggle "Geluid" (`settings.sound`, default on). Two new WebAudio cues in `sound.js`, no audio files:
+**Sound (optional, off by default, Q10).** The main Settings toggle "Geluidjes" (`settings.sound`, default on) keeps muting everything; under it a new device-only toggle "Geluid bij een viering" (`settings.cheer`, default **off**) turns the celebration cue on. So the celebration is silent until he chooses it, while the existing in-round cues stay as they were. Two new WebAudio cues in `sound.js`, no audio files:
 
 - `lesson`: two soft notes rising (523 Hz 0.10 s, 784 Hz 0.18 s). Lesson passed, check finished, goal reached.
 - `medal`: reuse the existing `best` arpeggio. Medal or title.
@@ -183,7 +191,7 @@ The guide speaks little. **At most one line per screen**, never during reading.
 
 The quiz shows right and wrong only at the review after each pass (current `renderQuiz` design), so the guide reacts there, not per tap. Lines rotate from a small pool, seeded by day, so they do not repeat in a row.
 
-A Settings toggle "Gids tonen" / "Show guide" (default on, device-only like theme) hides the guide everywhere; the celebration then keeps the existing mark.
+A Settings toggle "Gids tonen" / "Show guide" (Appearance, default on, device-only like theme) hides the guide everywhere, including its lines (the goal-left line on the course home is the guide speaking); the celebration then keeps the existing mark.
 
 ### 3.6 Learning path as a map
 
@@ -245,7 +253,7 @@ Only the existing CSS variables are used, so both themes follow automatically: `
 
 ## 7. Offline
 
-All rules are pure functions on local state; the guide is inline SVG; sounds are synthesized; nothing needs the network. The module check needs the module file, which is in the service-worker cache once fetched (or precached). New source files are added to `SHELL` in `sw.js` and `CACHE` is bumped (the existing `sw.test.js` enforces precaching every source file).
+All rules are pure functions on local state; the guide is inline SVG; sounds are synthesized; nothing needs the network. The module check needs the module file, which is in the service-worker cache once fetched (or precached). New source files are added to `SHELL` in `sw.js` (`CACHE` is bumped at release, not in the feature branch) (the existing `sw.test.js` enforces precaching every source file).
 
 ## 8. Data model (in the existing progress store)
 
@@ -260,6 +268,9 @@ All in the one state object of `src/core/storage.js` (key `spraakwater:v1`, unch
 | `courses[s].medals` | `{ [moduleId]: { tier: 'bronze' or 'silver' or 'gold', ts } }` | Stored once earned; never lowered. |
 | `titles` | `{ eng?: { rank: 1..4, ts }, pm?: ..., speak?: ... }` | Stored once earned; never lowered. |
 | `settings.guide` | `boolean` (default true) | Device-only (settings never sync). |
+| `settings.cheer` | `boolean` (default false) | The celebration sound (Q10). Device-only. |
+| `speakMedals` | `{ basics?, structure?, conversation?, pressure?: { tier, ts } }` | Speaking medals per drill group (Q4). Stored once earned; never lowered. |
+| `ui.flairBackfilled`, `ui.flairNote` | `true`, `{ medals, subject, rank }` | Device-only: the backfill ran here; the one quiet summary line not shown yet. |
 
 Pure functions (new `src/core/flair.js` unless noted):
 
@@ -285,6 +296,7 @@ Pure functions (new `src/core/flair.js` unless noted):
 | `checks[moduleId]` | `best` max (with its `total`), `perfect` earliest defined, `last` latest. |
 | `medals[moduleId]` | the higher tier; on equal tier the earlier `ts`. |
 | `titles[subject]` | the higher rank; on equal rank the earlier `ts`. |
+| `speakMedals[groupId]` | as medals: the higher tier; on equal tier the earlier `ts`. |
 | `settings.guide` | never synced (settings are local-only already). |
 
 After a merge the app runs `awardFlair` quietly (no celebration for things earned on another device, just the stored marks), so a medal earned on the phone shows on the laptop. `clean()` for a remote row drops malformed medal and title entries (unknown tier, rank outside 1–4). Older app versions that do not know these keys keep them: `mergeStates` and `mergeCourses` spread the other side first, so nothing is lost when an old device syncs.
@@ -334,9 +346,22 @@ No exclamation marks, no emoji (brand test). Function strings take numbers. Keys
 
 ## 11. Out of scope
 
-Streak flame changes, leagues, weekly review, haptics, a separate sound feature, medals for speaking, any paid or bought items, notifications about the goal.
+Streak flame changes, leagues, weekly review, haptics, a separate sound feature, any paid or bought items, notifications about the goal.
 
-## 12. Open questions for Merijn
+## 12. Merijn's answers (binding, 2026-11-11)
+
+1. **Flame:** keep the existing streak flame, small, next to the daily-goal ring.
+2. **Titles:** Leerling → Gezel → Vakman → Meester; English Apprentice → Journeyman → Craftsperson → Master.
+3. **Check name:** "Modulecheck" (en "Module check").
+4. **Speaking medals:** yes, per drill group, same bronze/silver/gold shape (thresholds in 3.1).
+5. **Guide:** as recommended: "Andon", a small isometric stack light (flat front view is the fallback, not used), no face; top segment petrol on right, middle ochre on a miss (never red), all three on a celebration; one line per screen at most; can be turned off in Settings.
+6. **Hidden levels:** a faint dashed stub with "+N" (no names, not tappable); a flag when the topic is finished.
+7. **Existing progress:** backfill quietly (bronze medals and titles; no silver), one summary line once.
+8. **Silver:** a perfect quiz on 75% of the levels.
+9. **Default goal:** 30 XP (choices 20/30/50).
+10. **Celebration sound:** off by default; it uses the existing sound setting (muted when sound is off) plus a new "Geluid bij een viering" toggle that starts off.
+
+### The questions as they were asked
 
 1. **The flame.** You did not tick the streak flame. It already exists (start screen line, subject header, done screen). Keep it as is next to the new ring, or let the ring replace it on the start screen and keep the streak only on Progress?
 2. **Title names.** Leerling, Gezel, Vakman, Meester (recommended; "Specialist" is already a module tier label), or your Leerling, Vakman, Specialist, Meester with the tier renamed? English: Apprentice, Journeyman, Craftsman, Master, or a gender-neutral set (Apprentice, Practitioner, Expert, Master)?

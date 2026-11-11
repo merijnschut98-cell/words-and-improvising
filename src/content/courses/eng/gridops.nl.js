@@ -579,6 +579,7 @@ export default {
     // ── Onderwerp 3: Storingen en assetrisico ──
     {
       id: 'eng.gridops.outage',
+      film: 'eng.gridops.outage',
       figure: 'eng.gridops.switching',
       title: 'Een storing afhandelen',
       pre: [

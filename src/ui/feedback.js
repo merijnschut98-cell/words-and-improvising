@@ -8,6 +8,7 @@ import { loudnessStats } from '../core/loudness.js';
 import { compareAttempts } from '../core/compare.js';
 import { modifierCheck } from '../core/modifiers.js';
 import { applyRound } from '../core/round.js';
+import { celebrationOf } from '../core/flair.js';
 import { markSayIt } from '../core/course.js';
 import { runCoach } from '../core/coach.js';
 import { play } from '../core/sound.js';
@@ -67,7 +68,7 @@ export function renderFeedback(app, params, root) {
     // already picked a new one on this screen.
     if (params.fixUsed && !st.fixChosen && (app.state.ui || {}).nextFix) app.setState({ ...app.state, ui: { ...app.state.ui, nextFix: null } });
     const now = Date.now();
-    const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [] } = applyRound(app.state, {
+    const { state, xp, levelUp, completedQuests = [], newBests = [], newMilestones = [], medals = [], speakMedals = [], titles = [], goalReached = false } = applyRound(app.state, {
       prompt, transcript, durationS, targetS, metrics, lang, mode,
       rating: st.rating, coach: st.coach, prepS, retry: !!previous, cleanRun: clean, modifier, selfFix: st.selfFix || '',
     }, app.today(), now);
@@ -86,7 +87,13 @@ export function renderFeedback(app, params, root) {
       const msg = newMilestones.length === 1 ? t('milestoneToast', t(`ms_${newMilestones[0]}`)) : t('milestonesToast', newMilestones.length);
       setTimeout(() => app.toast(msg), completedQuests.length * 900);
     }
-    st.result = { xp, levelUp, newBests, newMilestones };
+    // v16 flair: a title, medal or the daily goal outside a lesson session
+    // gets one quiet toast (the done screen celebrates inside a session).
+    if (!app.session) {
+      const big = celebrationOf({ medals, speakMedals, titles, goalReached }).big;
+      if (big) setTimeout(() => app.toast(big.kind === 'title' ? t('titleNew', t(`title_${big.rank}`)) : big.kind === 'goal' ? t('goalReached') : t('medalEarned', t(`medal_${big.tier}`), t(`group_${big.groupId}`))), (completedQuests.length + (newMilestones.length ? 1 : 0)) * 900);
+    }
+    st.result = { xp, levelUp, newBests, newMilestones, medals, speakMedals, titles, goalReached };
     return st.result;
   }
 

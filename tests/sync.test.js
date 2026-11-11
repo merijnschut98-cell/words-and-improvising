@@ -181,7 +181,7 @@ test('v10: v9 machining progress round-trips through mergeStates unchanged (topi
   const lessons = { 'eng.machining.cutting': { read: 100, passed: 100 }, 'eng.machining.cnc': { read: 50, passed: 50 } };
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2026-12-30', lesson: 'eng.machining.cutting', subject: 'eng', lastSure: true }]));
   const b = mergeStates(base(), base()); // the merge normalises unrelated defaults (bests)
-  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [] } }, courseReviews };
+  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } }, courseReviews }; // v16: loaded states carry medals and checks
   assert.deepEqual(mergeStates(s, s), s);
 });
 
@@ -190,4 +190,87 @@ test('course lessons merge: the latest opened wins (v16 resume)', () => {
   const remote = { ...base(), courses: { eng: { lessons: { 'eng.flow.takt': { opened: 40, read: 5, passed: 6 } }, sessions: [] }, pm: { lessons: {}, sessions: [] } } };
   assert.deepEqual(mergeStates(local, remote).courses.eng.lessons['eng.flow.takt'], { opened: 40, read: 5, passed: 6 });
   assert.equal(mergeStates(remote, local).courses.eng.lessons['eng.flow.takt'].opened, 40);
+});
+
+// ---- v16 flair merges ----
+const withEng = (eng) => ({ ...base(), courses: { ...base().courses, eng: { ...base().courses.eng, ...eng } } });
+
+test('xpDays take the per-day maximum', () => {
+  const m = mergeStates({ ...base(), xpDays: { '2026-11-01': 20, '2026-11-02': 10 } }, { ...syncable(base()), xpDays: { '2026-11-02': 30, '2026-11-03': 5 } });
+  assert.deepEqual(m.xpDays, { '2026-11-01': 20, '2026-11-02': 30, '2026-11-03': 5 });
+});
+
+test('dailyGoal: the later ts wins', () => {
+  const local = { ...base(), dailyGoal: { xp: 20, ts: 5 } };
+  assert.deepEqual(mergeStates(local, { ...syncable(base()), dailyGoal: { xp: 50, ts: 9 } }).dailyGoal, { xp: 50, ts: 9 });
+  assert.deepEqual(mergeStates(local, { ...syncable(base()), dailyGoal: { xp: 50, ts: 1 } }).dailyGoal, { xp: 20, ts: 5 });
+  assert.deepEqual(mergeStates(local, { ...syncable(base()), dailyGoal: { xp: 45, ts: 99 } }).dailyGoal, { xp: 20, ts: 5 }, 'a broken goal is ignored');
+});
+
+test('lesson perfect: the earliest defined ts wins', () => {
+  const a = withEng({ lessons: { x: { passed: 1, perfect: 9 } } });
+  const b = withEng({ lessons: { x: { passed: 1, perfect: 4 } } });
+  assert.equal(mergeStates(a, syncable(b)).courses.eng.lessons.x.perfect, 4);
+  const c = withEng({ lessons: { x: { passed: 1 } } });
+  assert.equal(mergeStates(c, syncable(a)).courses.eng.lessons.x.perfect, 9);
+  assert.equal(mergeStates(a, syncable(c)).courses.eng.lessons.x.perfect, 9);
+});
+
+test('checks: best max, perfect earliest, last latest', () => {
+  const a = withEng({ checks: { 'eng.flow': { last: '2026-11-01', best: 8, total: 10, perfect: 50 } } });
+  const b = withEng({ checks: { 'eng.flow': { last: '2026-11-03', best: 10, total: 10, perfect: 30 }, 'eng.quality': { last: '2026-11-02', best: 4, total: 10, perfect: null } } });
+  const m = mergeStates(a, syncable(b)).courses.eng.checks;
+  assert.deepEqual(m['eng.flow'], { last: '2026-11-03', best: 10, total: 10, perfect: 30 });
+  assert.deepEqual(m['eng.quality'], { last: '2026-11-02', best: 4, total: 10, perfect: null });
+  const n = mergeStates(withEng({ checks: { 'eng.flow': { last: '2026-11-05', best: 3, total: 10, perfect: null } } }), syncable(a)).courses.eng.checks['eng.flow'];
+  assert.deepEqual(n, { last: '2026-11-05', best: 8, total: 10, perfect: 50 });
+});
+
+test('medals: the higher tier wins; equal tier keeps the earlier ts', () => {
+  const a = withEng({ medals: { m1: { tier: 'bronze', ts: 1 }, m2: { tier: 'silver', ts: 9 } } });
+  const b = withEng({ medals: { m1: { tier: 'gold', ts: 5 }, m2: { tier: 'silver', ts: 3 }, m3: { tier: 'bronze', ts: 2 } } });
+  const m = mergeStates(a, syncable(b)).courses.eng.medals;
+  assert.deepEqual(m, { m1: { tier: 'gold', ts: 5 }, m2: { tier: 'silver', ts: 3 }, m3: { tier: 'bronze', ts: 2 } });
+  const sm = mergeStates({ ...base(), speakMedals: { basics: { tier: 'silver', ts: 4 } } }, { ...syncable(base()), speakMedals: { basics: { tier: 'bronze', ts: 1 } } }).speakMedals;
+  assert.deepEqual(sm, { basics: { tier: 'silver', ts: 4 } });
+});
+
+test('titles: the higher rank wins; equal rank keeps the earlier ts', () => {
+  const a = { ...base(), titles: { eng: { rank: 2, ts: 10 }, pm: { rank: 3, ts: 5 } } };
+  const b = { ...syncable(base()), titles: { eng: { rank: 2, ts: 4 }, pm: { rank: 1, ts: 1 }, speak: { rank: 1, ts: 7 } } };
+  assert.deepEqual(mergeStates(a, b).titles, { eng: { rank: 2, ts: 4 }, pm: { rank: 3, ts: 5 }, speak: { rank: 1, ts: 7 } });
+});
+
+test('a remote with a broken medal or title entry never poisons local flair', () => {
+  const local = withEng({ medals: { m1: { tier: 'silver', ts: 2 } }, checks: { 'eng.flow': { last: '2026-11-01', best: 8, total: 10, perfect: null } } });
+  local.titles = { eng: { rank: 2, ts: 3 } };
+  local.xpDays = { '2026-11-01': 20 };
+  const remote = { ...syncable(base()), titles: { eng: { rank: 9, ts: 1 }, pm: 'x' }, xpDays: { '2026-11-01': 'lots', '2026-11-02': 5 }, dailyGoal: 'x', speakMedals: { basics: { tier: 'diamond', ts: 1 } },
+    courses: { eng: { lessons: {}, sessions: [], medals: { m1: { tier: 'platinum', ts: 0 }, m2: null }, checks: { 'eng.flow': { last: 'x', best: 'y' } } } } };
+  const m = mergeStates(local, remote);
+  assert.deepEqual(m.titles, { eng: { rank: 2, ts: 3 } });
+  assert.deepEqual(m.courses.eng.medals, { m1: { tier: 'silver', ts: 2 } });
+  assert.deepEqual(m.courses.eng.checks, local.courses.eng.checks);
+  assert.deepEqual(m.xpDays, { '2026-11-01': 20, '2026-11-02': 5 });
+  assert.deepEqual(m.dailyGoal, local.dailyGoal);
+  assert.deepEqual(m.speakMedals, {});
+});
+
+test('flair merges are idempotent and do not depend on order', () => {
+  const a = { ...withEng({ medals: { m1: { tier: 'bronze', ts: 1 } }, checks: { c: { last: '2026-11-01', best: 5, total: 10, perfect: null } }, lessons: { x: { passed: 1, perfect: 7 } } }), titles: { eng: { rank: 1, ts: 2 } }, xpDays: { d: 1 }, dailyGoal: { xp: 20, ts: 3 } };
+  const b = { ...withEng({ medals: { m1: { tier: 'silver', ts: 4 } }, checks: { c: { last: '2026-11-02', best: 7, total: 10, perfect: 9 } }, lessons: { x: { passed: 2, perfect: 3 } } }), titles: { eng: { rank: 2, ts: 5 } }, xpDays: { d: 4 }, dailyGoal: { xp: 50, ts: 1 } };
+  const ab = mergeStates(a, syncable(b));
+  const ba = mergeStates(b, syncable(a));
+  for (const k of ['titles', 'xpDays', 'dailyGoal']) assert.deepEqual(ab[k], ba[k], k);
+  for (const k of ['medals', 'checks', 'lessons']) assert.deepEqual(ab.courses.eng[k], ba.courses.eng[k], k);
+  const again = mergeStates(ab, syncable(ab));
+  for (const k of ['titles', 'xpDays', 'dailyGoal']) assert.deepEqual(again[k], ab[k], k);
+  assert.deepEqual(again.courses.eng.medals, ab.courses.eng.medals);
+});
+
+test('settings.guide never leaves the device', () => {
+  const s = { ...base(), settings: { ...base().settings, guide: false, cheer: true } };
+  assert.equal('settings' in syncable(s), false);
+  const m = mergeStates({ ...base(), settings: { ...base().settings, guide: true } }, { ...syncable(s), settings: { guide: false } });
+  assert.equal(m.settings.guide, true);
 });
