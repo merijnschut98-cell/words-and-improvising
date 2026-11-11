@@ -357,6 +357,7 @@ export default {
     },
     {
       id: 'eng.ot.orderflow',
+      film: 'eng.ot.orderflow',
       title: 'Orders omlaag, terugmeldingen omhoog',
       pre: [
         {
@@ -370,12 +371,12 @@ export default {
         'ISA-95 beschrijft twee hoofdstromen tussen niveau 4 en 3. Omlaag gaat de productieplanning (production schedule): wat er gemaakt moet worden. Omhoog gaan de productieprestaties (production performance): wat er echt gemaakt en verbruikt is. Kort: orders omlaag, terugmeldingen omhoog.\n\nDaarnaast gaan stamdata omlaag, en soms gaat een capaciteitsoverzicht omhoog.',
         'Omlaag: het ERP stuurt de productieorder naar het MES. Het MES maakt er een werkorder (work order) van: de opdracht voor één lijn of machine in één dienst, met de juiste volgorde.\n\nBij de start stuurt het MES of de operator het recept naar de PLC. Een recept (recipe) is de set instellingen voor dat product: temperaturen, snelheden, tijden. Zo hoeft niemand ze met de hand in te typen.',
         'Omhoog: de PLC telt, het MES verzamelt tellingen, afkeur en stilstand. Aan het eind van de order of dienst stuurt het MES een terugmelding (confirmation) naar het ERP: zoveel goed, zoveel afkeur, zoveel uur.\n\nHet ERP boekt daarmee een goederenontvangst (goods receipt): de goede stuks komen op voorraad. In SAP heet dat bijvoorbeeld bewegingssoort (movement type) 101; het verbruikte materiaal gaat eraf met 261.',
-        'Veel bedrijven gebruiken backflush: het ERP boekt het materiaal automatisch af op basis van de stuklijst en de teruggemelde hoeveelheid, in plaats van elke zak granulaat te scannen. Dat scheelt veel handwerk.\n\nMaar backflush rekent met de norm. Is de afkeur hoger dan de stuklijst aanneemt, of telt alleen de goede hoeveelheid, dan klopt de voorraad niet meer.',
+        'Veel bedrijven gebruiken backflush: het ERP boekt het materiaal automatisch af op basis van de stuklijst en de teruggemelde hoeveelheid, in plaats van elke zak granulaat te scannen. Dat scheelt veel handwerk.\n\nMaar backflush rekent met de norm en met de teruggemelde hoeveelheid. Is de afkeur hoger dan de stuklijst aanneemt, of telt alleen de goede hoeveelheid, dan klopt de voorraad niet meer. In SAP telt teruggemelde afkeur normaal mee; het gat zit dan in afkeur die niet wordt teruggemeld.',
         'Wat je in de praktijk hoort: “de voorraad in SAP klopt nooit”. Vaak zit de oorzaak in de terugmelding: te laat, verkeerde eenheid, of afkeur die niet meegaat.\n\nScherpe vraag: “Hoe vaak melden we terug, per stuk, per dienst of per order, en wordt de afkeur ook teruggemeld?” Per stuk is meestal te veel voor het ERP, per week te weinig voor de planner.',
       ],
       example: {
         kind: 'worked',
-        text: 'Order: 1.000 doppen, stuklijst 25 gram granulaat per dop. Gemaakt: 960 goed, 40 afkeur.\n\nStap 1: het MES meldt 960 goed en 40 afkeur terug. Stap 2: het ERP boekt een goederenontvangst van 960 doppen. Stap 3: backflush op de goede hoeveelheid boekt 960 × 25 g = 24 kg granulaat af. Stap 4: echt verbruikt is 1.000 × 25 g = 25 kg, want ook de afkeur kostte materiaal. Stap 5: na deze order staat er 1 kg te veel granulaat in het ERP. Oplossing: backflush op de totale hoeveelheid, of de afkeur apart als verbruik boeken.',
+        text: 'Order: 1.000 doppen, stuklijst 25 gram granulaat per dop. Gemaakt: 960 goed, 40 afkeur.\n\nStap 1: het MES meldt 960 goed terug, maar de 40 afkeur gaat niet mee. Stap 2: het ERP boekt een goederenontvangst van 960 doppen. Stap 3: backflush op de teruggemelde hoeveelheid boekt 960 × 25 g = 24 kg granulaat af. Stap 4: echt verbruikt is 1.000 × 25 g = 25 kg, want ook de afkeur kostte materiaal. Stap 5: na deze order staat er 1 kg te veel granulaat in het ERP. Oplossing: meld de afkeur ook terug, zodat backflush op de totale hoeveelheid rekent, of boek de afkeur apart als verbruik.',
       },
       said: 'Wat de logistiek manager zegt: “Volgens SAP hebben we nog drie zakken. In het magazijn ligt er niets meer.”',
       recall: [

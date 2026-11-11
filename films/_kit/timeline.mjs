@@ -170,6 +170,11 @@ const SAY = {
     [/\bPurdue\b/g, 'Pur-djoe'], [/\b([Ff])irewallregels\b/g, '$1ajerwol regels'], [/\b([Ff])irewall(s?)\b/g, '$1ajerwol$2'],
     [/\bhistorian\b/g, 'his-toorjen'], [/\bconduits\b/g, 'kondjoe-its'],
     [/\b([Ff])unctiemodel/g, '$1unctie-model'], [/\b([Pp])roductieorder/g, '$1roductie-order'], [/\b([Ss])tamdata\b/g, '$1tam-data'], [/\b([Tt])ijdschaal\b/g, '$1ijd-schaal'],
+    // the order flow: espeak-ng reads goederenontvangst as "goe-dier-een-ontvangst"; split, each part keeps its reading
+    [/\b([Gg])oederenontvangst/g, '$1oederen-ontvangst'],
+    // and, like productieorder, it stresses PROductieplanning and PROductieprestaties (with "kti"): split, so
+    // both are said pro-DUC-tie (this changes eng.ot.isa95's voice, which had no rendered video yet)
+    [/\b([Pp])roductie(planning|prestaties)/g, '$1roductie-$2'],
     // congestion and roles (eng.gridbasics.congestion): ACM as letters (espeak-ng reads the word "akm") and
     // TenneT as one word (it reads "Tenne T"); energiewet, capaciteitskaart, energieleverancier and piekuren split at the head (espeak-ng
     // stresses "E-nergiewet", "KA-paciteitskaart", "energieleveranCIER" and "pie-KUUR-en"); and the grid's
