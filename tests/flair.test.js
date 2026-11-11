@@ -241,3 +241,43 @@ test('the biggest moment: celebrationOf picks title over medal over goal over le
   assert.equal(speak.big.kind, 'medal');
   assert.equal(speak.big.groupId, 'basics');
 });
+
+import { backfillFlair, afterSync } from '../src/core/flair.js';
+import { mergeStates, syncable } from '../src/core/sync.js';
+
+test('backfillFlair awards bronze and titles from existing progress, no silver from old sessions', () => {
+  const lessons = passed(MODS[0].lessons, MODS[0].lessons); // perfect marks present (from a v16 device)
+  const s = withLessons(lessons);
+  const r = backfillFlair(s, NOW, MODS);
+  assert.deepEqual(r.state.courses.eng.medals, { 'eng.m1': { tier: 'bronze', ts: NOW } }, 'capped at bronze');
+  assert.equal(r.state.titles.eng.rank, 2);
+  const spoke = { ...defaultState(), history: ['minute', 'explain', 'story', 'pause'].flatMap((d) => rounds(d, 3, 5)) };
+  const sr = backfillFlair(spoke, NOW, MODS);
+  assert.deepEqual(sr.state.speakMedals, { basics: { tier: 'bronze', ts: NOW } }, 'owned drills give no silver in the backfill');
+});
+
+test('backfillFlair runs once (ui.flairBackfilled) and returns a summary for one quiet line', () => {
+  const s = withLessons(passed(MODS[0].lessons));
+  const r = backfillFlair(s, NOW, MODS);
+  assert.equal(r.state.ui.flairBackfilled, true);
+  assert.deepEqual(r.summary, { medals: 1, subject: 'eng', rank: 2 });
+  assert.deepEqual(r.state.ui.flairNote, { medals: 1, subject: 'eng', rank: 2 });
+  const again = backfillFlair(r.state, NOW + 1, MODS);
+  assert.equal(again.state, r.state);
+  assert.equal(again.summary, null);
+  const empty = backfillFlair(defaultState(), NOW, MODS);
+  assert.equal(empty.summary, null, 'nothing earned yet: no line');
+  assert.equal(empty.state.ui.flairBackfilled, true);
+  assert.equal('flairNote' in empty.state.ui, false);
+});
+
+test('after a sync merge awardFlair runs quietly: marks stored, no celebration', () => {
+  const local = { ...withLessons(passed(MODS[0].lessons.slice(0, 9))), ui: { flairBackfilled: true } };
+  const remote = syncable(withLessons(passed(MODS[0].lessons)));
+  const merged = afterSync(mergeStates(local, remote), NOW, MODS);
+  assert.equal(merged.courses.eng.medals['eng.m1'].tier, 'bronze');
+  assert.equal(merged.titles.eng.rank, 2);
+  assert.equal('flairNote' in merged.ui, false, 'no summary line, no celebration');
+  const same = afterSync(merged, NOW + 1, MODS);
+  assert.equal(same, merged);
+});

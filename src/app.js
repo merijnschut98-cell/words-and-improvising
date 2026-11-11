@@ -27,6 +27,7 @@ import { needsWeeklyReset, weekFocus, chooseFocus } from './core/weekly.js';
 import { ownedDrills, maintenanceDrill } from './core/mastery.js';
 import { loadModule } from './content/courses/index.js';
 import { commitPlanDraft, newPlanId, withEnglish } from './core/course.js';
+import { backfillFlair, afterSync } from './core/flair.js';
 import { createCloud } from './core/cloud.js';
 import { createSyncer, authReturn } from './core/syncer.js';
 import { homeSubject } from './core/today.js';
@@ -149,7 +150,8 @@ export const app = {
       this.syncer = createSyncer({
         cloud: this.cloud,
         getState: () => this.state,
-        setState: (s) => this.setState(s, true),
+        // What another device earned is stored here too, quietly (v16 flair).
+        setState: (s) => this.setState(afterSync(s, Date.now()), true),
         // Signed out elsewhere or the session expired: say so, and show the sign-in form again.
         onAuthLost: () => {
           if (!this.state.settings.syncOn) return;
@@ -341,6 +343,8 @@ document.documentElement.lang = app.lang;
 app.applyTheme();
 // A plan typed on a lesson-done card when the app was closed: keep it as the plan.
 if ((app.state.ui || {}).planDraft) app.setState(commitPlanDraft(app.state, app.today(), newPlanId()));
+// First v16 start: medals and titles for what he already did, quietly, once (Q7).
+if (!(app.state.ui || {}).flairBackfilled) app.setState(backfillFlair(app.state, Date.now()).state);
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();

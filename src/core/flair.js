@@ -168,6 +168,39 @@ export function awardFlair(state, now, modules = MODULES) {
   return { state: next, medals, speakMedals, titles };
 }
 
+// After a sync merge: what another device earned is stored here too, quietly
+// (no celebration for things earned elsewhere).
+export const afterSync = (state, now, modules = MODULES) => awardFlair(state, now, modules).state;
+
+// First v16 start (Q7): existing progress earns its bronze medals and its
+// titles quietly, never silver or gold (old sessions did not log hints).
+// Once per device (ui.flairBackfilled); a summary for one quiet line.
+export function backfillFlair(state, now, modules = MODULES) {
+  const ui = state.ui || {};
+  if (ui.flairBackfilled) return { state, summary: null };
+  let next = state;
+  let count = 0;
+  for (const subject of ['eng', 'pm']) {
+    const add = Object.fromEntries(modules.filter((m) => m.subject === subject && medalFor(next, m) && !storedMedal(next, subject, m.id))
+      .map((m) => [m.id, { tier: 'bronze', ts: now }]));
+    const n = Object.keys(add).length;
+    if (!n) continue;
+    count += n;
+    const c = courseOf(next, subject);
+    next = { ...next, courses: { ...(next.courses || {}), [subject]: { ...c, lessons: c.lessons || {}, sessions: c.sessions || [], medals: { ...(c.medals || {}), ...add } } } };
+  }
+  const speak = Object.fromEntries(DRILL_GROUPS.filter((g) => speakMedalFor(next, g, now) && !storedSpeakMedal(next, g.id)).map((g) => [g.id, { tier: 'bronze', ts: now }]));
+  if (Object.keys(speak).length) {
+    count += Object.keys(speak).length;
+    next = { ...next, speakMedals: { ...(next.speakMedals || {}), ...speak } };
+  }
+  const titles = newTitles(next, now, modules);
+  if (titles.length) next = { ...next, titles: { ...(next.titles || {}), ...Object.fromEntries(titles.map((t) => [t.subject, { rank: t.rank, ts: now }])) } };
+  const top = titles.reduce((best, t) => (!best || t.rank > best.rank ? t : best), null);
+  const summary = count || top ? { medals: count, subject: top ? top.subject : null, rank: top ? top.rank : 0 } : null;
+  return { state: { ...next, ui: { ...(next.ui || {}), flairBackfilled: true, ...(summary ? { flairNote: summary } : {}) } }, summary };
+}
+
 // One big moment per screen: title, then medal, then the daily goal, then
 // the lesson itself (XP earned). The rest become quiet lines.
 export function celebrationOf(result) {
