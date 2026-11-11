@@ -504,6 +504,41 @@
         ],
         "vtt": "src/content/courses/films/eng.lines.design.en.vtt"
       }
+    },
+    "eng.lines.errorproof": {
+      "poster": "src/content/courses/films/eng.lines.errorproof.jpg",
+      "nl": {
+        "dur": 294,
+        "bytes": 11376489,
+        "scenes": [
+          0,
+          23.52,
+          63.11,
+          97.88,
+          119.51,
+          168.01,
+          194.54,
+          219.47,
+          255.13
+        ],
+        "vtt": "src/content/courses/films/eng.lines.errorproof.nl.vtt"
+      },
+      "en": {
+        "dur": 317.7,
+        "bytes": 12217779,
+        "scenes": [
+          0,
+          26.22,
+          68.91,
+          106.37,
+          127.8,
+          181.62,
+          209.26,
+          236.78,
+          277.85
+        ],
+        "vtt": "src/content/courses/films/eng.lines.errorproof.en.vtt"
+      }
     }
   }
 }
