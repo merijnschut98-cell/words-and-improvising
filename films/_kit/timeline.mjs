@@ -113,7 +113,13 @@ const SAY = {
     // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
     // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
     [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
-    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06']],
+    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    // heat treatment: espeak-ng stresses BRInell and PIramide (said Brie-NEL, pira-MIE-de), drops the h in
+    // inzetharden, reads inductieharden as "INduktie-harden", and stresses warmtebehandeling (-be-HAN-deling
+    // read "bee-han-DEE-ling"), tandwielen (tandWIElen), polymeeroplossing (POlymeer) and diktesprong (with
+    // the e of "bed") wrong; split at the head, each part keeps its own reading
+    [/\bBrinell\b/g, 'Brienel'], [/\b([Pp])iramide/g, '$1iramiede'], [/\b([Ii])nzetharden/g, '$1nzet-harden'], [/\b([Ii])nductieharden/g, '$1nductie-harden'],
+    [/\b([Ww])armtebehandeling/g, '$1armte-behandeling'], [/\b([Tt])andwielen\b/g, '$1and-wielen'], [/\b([Pp])olymeeroplossing/g, '$1olymeer-oplossing'], [/\b([Dd])iktesprong/g, '$1ikte-sprong']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
