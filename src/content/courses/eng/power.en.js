@@ -962,6 +962,7 @@ export default {
     },
     {
       id: 'eng.power.hydraulics',
+      film: 'eng.power.hydraulics',
       title: 'Hydraulics',
       pre: [
         {
