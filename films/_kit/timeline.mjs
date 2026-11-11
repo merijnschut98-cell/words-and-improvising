@@ -169,6 +169,9 @@ const SAY = {
     [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
     // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
     [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station'],
+    // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
+    // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
+    [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
     // outages: espeak-ng drops "-burige" in naburige (it says "naa-e") and stresses vrijgeschakeld(e) on "-GE-"
     // with the e of "bed"; said na-burige and vrij-geschakeld, each part with its own reading
     [/\b([Nn])aburige\b/g, '$1a-burige'], [/\b([Vv])rijgeschakeld/g, '$1rij-geschakeld'],
