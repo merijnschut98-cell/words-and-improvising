@@ -116,8 +116,10 @@ const STAGE = (() => {
     if (tol > 0.01) out += op(tol, rect(fx(120) + 50, TY + 6, 150, 34, 'tl-accf', 4) + txt(fx(120) + 125, TY + 31, `${dec(49.7, 1)}–${dec(50.3, 1)}`, 24, 'middle', 'tl-on'));
     return out;
   }
-  // the projection symbol for first angle: the cone (narrow end left) and its
-  // view from the left, two circles, placed on the right
+  // the projection symbol (ISO 5456-2): the cone with its narrow end left and
+  // its end view, two circles. First angle: the circles on the right, the
+  // narrow end away from them; third angle: the circles on the left, the
+  // narrow end toward them.
   function projSym(x, y, third) {
     const cone = `M${f1(x)} ${f1(y - 6)}L${f1(x + 22)} ${f1(y - 11)}L${f1(x + 22)} ${f1(y + 11)}L${f1(x)} ${f1(y + 6)}Z`;
     const cx = third ? x - 18 : x + 40;
@@ -285,6 +287,7 @@ const STAGE = (() => {
     const sv = {}; // sheet parts' opacity
     const gv = {};
     let plateOff = [0, 0, 0];
+    let plateA = 1;
     const H1 = C.HOLES[0];
 
     if (si <= 3) {
@@ -300,14 +303,17 @@ const STAGE = (() => {
       set(E.fv, frontView(si === 3 && b >= 1 ? 1 : 0));
       set(E.tv, topView());
       xf(E.tv, unfold < 1 || third > 0 ? `translate(0 ${f1(lerp(FB - TY - 60 * SC, 0, unfold) - third * 100)})` : '');
-      xf(E.lv, unfold < 1 || third > 0 ? `translate(${f1(lerp(FX - LX, 0, unfold))} ${f1(third * 70)})` : '');
+      // third angle: the view on the right is now the view from the right, the
+      // mirror image of the view from the left (it flips about its own middle)
+      const lvMid = LX + 25 * SC;
+      xf(E.lv, unfold < 1 || third > 0 ? `translate(${f1(lerp(FX - LX, 0, unfold))} ${f1(third * 70)})${third > 0 ? ` translate(${f1(lvMid)} 0) scale(${(1 - 2 * third).toFixed(3)} 1) translate(${f1(-lvMid)} 0)` : ''}` : '');
       xf(E.fv, third > 0 ? `translate(0 ${f1(third * 70)})` : '');
       const section = si === 1 ? (b === 0 ? span(p, 0.3, 0.5) : 1) : si > 1 ? 1 : 0;
       set(E.lv, section >= 0.5 ? leftView(true) : leftView(false));
       sv.cutL = si === 1 ? (b === 0 ? span(p, 0.1, 0.3) : 1) : si > 1 ? 0.4 : 0;
       set(E.cutL, cutLine());
-      // third angle: a label beside the moved top view
-      set(E.note, third > 0.01 ? op(third, txt(fx(120) + 12, TY - 64, tr('VS', 'US'), 24, 'start', 'tl-on')) : si === 3 && b >= 2 ? note(b === 2 ? span(p, 0.3, 0.45) : span(p, 0.3, 0.45), b === 2 ? 'old' : 'new') : '');
+      // third angle: a label and the third-angle symbol beside the moved top view
+      set(E.note, third > 0.01 ? op(third, txt(fx(120) + 12, TY - 64, tr('VS', 'US'), 24, 'start', 'tl-on') + projSym(476, TY - 72, true)) : si === 3 && b >= 2 ? note(b === 2 ? span(p, 0.3, 0.45) : span(p, 0.3, 0.45), b === 2 ? 'old' : 'new') : '');
       sv.note = 1;
       // dimensions: from s2 on; the general tolerance band in s3 beat 4
       sv.dims = si === 0 ? 0 : si === 1 ? (b >= 3 ? span(p, 0, 0.2) : 0) : si === 2 ? (b === 3 ? 1 : 0.4) : 1;
@@ -358,10 +364,14 @@ const STAGE = (() => {
         set(E.gps, txt(336, 342, tr('ISO GPS: Europa', 'ISO GPS: Europe'), 24, 'start', 'tl-txt') + txt(336, 372, tr('ASME Y14.5: VS', 'ASME Y14.5: US'), 24, 'start', 'tl-txt'));
       } else if (si === 5) {
         // the plate drops onto A, slides back against B, then left against C
-        const dA = b === 0 ? 30 * (1 - span(p, 0.5, 0.95)) : 0;
+        // the plate hovers over the three rests of A (lit with A in beat 2, so
+        // the three points show) and comes down on them at the end of that beat
+        const dA = b === 0 ? 40 : b === 1 ? 40 * (1 - span(p, 0.88, 1)) : 0;
         const dB = b <= 1 ? 10 : b === 2 ? 10 * (1 - span(p, 0.05, 0.35)) : 0;
         const dC = b <= 1 ? 10 : b === 2 ? 10 * (1 - span(p, 0.5, 0.8)) : 0;
         plateOff = [dC, dB, dA];
+        // see-through while it hovers, so all three rests show under it
+        plateA = 1 - 0.55 * (dA / 40);
         gv.dl = 1;
         // beat 1: how a datum is drawn, a triangle on the surface and its letter
         gv.gps = b === 0 ? span(p, 0.1, 0.25) : 0;
@@ -417,6 +427,7 @@ const STAGE = (() => {
     }
     if (si < 4) plateOff = [0, 0, 0];
     move(E.plate, plateOff);
+    fade(E.plate, plateA);
     if (si !== 7) { move(E.car, [0, 0, 0]); move(E.ram, [0, 0, 0]); }
 
     for (const h of HUDS) { const a = Math.min(1, vis[h] || 0); show(E[h], a > 0.01); fade(E[h], a); }
