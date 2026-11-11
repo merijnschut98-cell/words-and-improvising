@@ -71,6 +71,8 @@ const SAY = {
     // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
     // nothing: espeak-ng already spells it in CE-markering
     [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
+    // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
+    [/\bCILT\b/g, 'C I L T'],
     // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")
     [/\b([Pp])ayload/g, '$1ee-lood'], [/\b([Tt])each pendant\b/g, '$1ietsj pendant'], [/\btooling\b/g, 'toeling'], [/\b([Vv])ision\b/g, '$1izjun'],
     // espeak-ng reads "miksed-model", "heijunka" with the u of "bus", and drops the pr of "robotprogramma's"
