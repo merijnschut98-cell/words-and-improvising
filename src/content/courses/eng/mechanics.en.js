@@ -962,6 +962,7 @@ export default {
     },
     {
       id: 'eng.mechanics.heattreat',
+      film: 'eng.mechanics.heattreat',
       title: 'Hardness and heat treatment',
       pre: [
         {
