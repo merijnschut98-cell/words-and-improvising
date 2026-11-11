@@ -130,7 +130,7 @@ const flatRect = (x0, z0, x1, z1, r, steps = 6) => k.pathOf(k.roundedPlan({ x: x
 const R = A.recorder(P, {});
 let solids = 0;
 function put(name, ref, svg, shapes, { bias = 0, attrs = "", ...rest } = {}) {
-  return R.put({ name, at: ref, bias, svg, shapes, attrs, ...rest });
+  return R.put({ name, at: ref, origin: ref, bias, svg, shapes, attrs, ...rest });
 }
 const S = (paths, style) => {
   solids++;
@@ -382,30 +382,6 @@ const halos = [
   `<path class="iso-halo" d="${k.haloOf(k.insetPlan(BED, -2), 0, 2, P)}"/>`,
   `<path class="iso-halo" d="${k.haloOf(k.insetPlan(DRY, -1.5), 0, 1.5, P)}"/>`,
 ].join('');
-const items = R.items.map((item) => (item.attrs ? `<g${item.attrs}>${item.svg}</g>` : item.svg)).join('');
-// pellets behind the sight glass, in the plane of the glass (x, −z): a jittered
-// grid, filled from the bottom by the stage
-const PEL = (() => {
-  let s = 5;
-  const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
-  const out = [];
-  for (let row = 0; row < 22; row++) {
-    for (let col = 0; col < 5; col++) {
-      const x = WIN.x0 + 0.75 + col * 1.15 + (row % 2) * 0.5 + (r() - 0.5) * 0.25;
-      if (x > WIN.x1 - 0.5) continue;
-      out.push([Math.round(x * 100) / 100, Math.round((WIN.z0 + 0.6 + row * 1.12 + (r() - 0.5) * 0.2) * 100) / 100]);
-    }
-  }
-  return out;
-})();
-
-const g = (key, body = '', extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
-const slot = (cue, key) => `<g data-cue="${cue}">${g(key)}</g>`;
-const world = halos + items + g('wfx');
-// the cards: a base without a cue, then one slot per cue, so a named part of a
-// card turns petrol while it is named
-const CUES = ['hygro', 'splay', 'regrind', 'mb', 'semi', 'amorf', 'tg', 'cryst', 'cavity', 'post', 'crack', 'rest', 'hydro', 'over', 'kf', 'abr', 'fibre', 'aniso', 'recy', 'mfi', 'dew', 'meter', 'desiccant'];
-const hud = g('base') + CUES.map((c) => slot(c, `c-${c}`)).join('') + g('top');
 // Page weight (after the film eng.moulding.machine): in plain M/L/Z paths, drop
 // a line point within 0.2 units of the last one kept, round points to 0.1 unit
 // (at the closest camera, the meter at about 6×, that is under a pixel) and
@@ -432,6 +408,76 @@ const slim = (s) => s.replace(/ d="([^"]*)"/g, (m, d) => {
   }
   return ` d="${out}"`;
 });
+// Page weight: a part drawn more than once (the bed feet and jacks, the castors, the
+// tower feet, the port flanges, straight hose pieces) is a plain translation of its first copy in this parallel
+// projection, so its later copies ship as an empty <g data-r> moved by a
+// translate, and stage.js fills each from its template <g data-t> at load.
+// A copy only shares when every path matches its template point for point
+// (within a tenth, the rounding of the kit) and nothing else differs.
+const shapeOf = (s) => {
+  const nums = []; // absolute points, in hundredths
+  const shell = s.replace(/ d="([^"]*)"| c([xy])="(-?[\d.]+)"/g, (m, d, axis, v) => {
+    if (axis) { nums.push(axis === 'x' ? [Math.round(v * 100), null] : [null, Math.round(v * 100)]); return ` c${axis}="#"`; }
+    const tok = d.match(/[A-Za-z]|-?(?:\d+\.?\d*|\.\d+)/g);
+    let cmd = '';
+    let pen = [0, 0];
+    let start = pen;
+    let out = '';
+    for (let i = 0; i < tok.length;) {
+      if (/[A-Za-z]/.test(tok[i])) { cmd = tok[i++]; out += cmd; if (cmd === 'Z') pen = start; continue; }
+      const v = [Math.round(tok[i] * 100), Math.round(tok[i + 1] * 100)];
+      i += 2;
+      pen = cmd === 'l' ? [pen[0] + v[0], pen[1] + v[1]] : v;
+      if (cmd === 'M') start = pen;
+      nums.push(pen);
+      out += '#';
+    }
+    return ` d="${out}"`;
+  });
+  return { shell, nums };
+};
+const tplOf = new Map(); // shell -> [{ id, nums, origin }]
+let tpls = 0;
+const dedupe = ({ svg, origin }) => {
+  if (!origin || / id=|data-k=|<text/.test(svg)) return svg;
+  const s = slim(svg);
+  const { shell, nums } = shapeOf(svg);
+  for (const t of tplOf.get(shell) ?? []) {
+    const [dx, dy] = [0, 1].map((i) => Math.round((at(origin)[i] - at(t.origin)[i]) * 100));
+    const ok = nums.every(([x, y], i) => (x === null || Math.abs(x - t.nums[i][0] - dx) <= 10) && (y === null || Math.abs(y - t.nums[i][1] - dy) <= 10));
+    if (!ok) continue;
+    if (t.id === null) { t.id = tpls++; t.cell.svg = `<g data-t="${t.id}">${t.cell.svg}</g>`; }
+    return `<g data-r="${t.id}" transform="translate(${dx / 100} ${dy / 100})"/>`;
+  }
+  const cell = { svg: s };
+  tplOf.set(shell, [...(tplOf.get(shell) ?? []), { id: null, nums, origin, cell }]);
+  return cell;
+};
+const parts = R.items.map((item) => ({ attrs: item.attrs, body: dedupe(item) }));
+const items = parts.map(({ attrs, body }) => { const svg = typeof body === 'string' ? body : body.svg; return attrs ? `<g${attrs}>${svg}</g>` : svg; }).join('');
+// pellets behind the sight glass, in the plane of the glass (x, −z): a jittered
+// grid, filled from the bottom by the stage
+const PEL = (() => {
+  let s = 5;
+  const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  const out = [];
+  for (let row = 0; row < 22; row++) {
+    for (let col = 0; col < 5; col++) {
+      const x = WIN.x0 + 0.75 + col * 1.15 + (row % 2) * 0.5 + (r() - 0.5) * 0.25;
+      if (x > WIN.x1 - 0.5) continue;
+      out.push([Math.round(x * 100) / 100, Math.round((WIN.z0 + 0.6 + row * 1.12 + (r() - 0.5) * 0.2) * 100) / 100]);
+    }
+  }
+  return out;
+})();
+
+const g = (key, body = '', extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
+const slot = (cue, key) => `<g data-cue="${cue}">${g(key)}</g>`;
+const world = halos + items + g('wfx');
+// the cards: a base without a cue, then one slot per cue, so a named part of a
+// card turns petrol while it is named
+const CUES = ['hygro', 'splay', 'regrind', 'mb', 'semi', 'amorf', 'tg', 'cryst', 'cavity', 'post', 'crack', 'rest', 'hydro', 'over', 'kf', 'abr', 'fibre', 'aniso', 'recy', 'mfi', 'dew', 'meter', 'desiccant'];
+const hud = g('base') + CUES.map((c) => slot(c, `c-${c}`)).join('') + g('top');
 const svg = slim(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras: [cx, cy, w] per beat
