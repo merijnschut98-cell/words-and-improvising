@@ -80,6 +80,7 @@ export default {
     },
     {
       id: 'eng.safety.lmra',
+      film: 'eng.safety.permit',
       title: 'De LMRA en werk stilleggen',
       pre: [
         {
@@ -428,6 +429,7 @@ export default {
     },
     {
       id: 'eng.safety.permit',
+      film: 'eng.safety.permit',
       title: 'De werkvergunning',
       pre: [
         {

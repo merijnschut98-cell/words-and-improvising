@@ -101,6 +101,13 @@ const SAY = {
     [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus'],
     // trekproef the same way (espeak-ng stresses trekPROEF): TREK-proef
     [/\b([Tt])rekproef/g, '$1rek-proef'],
+    // LMRA and VCA as letters (espeak-ng reads the words "lmraa" and "vkaa"), Piper Alpha as its English name
+    // (espeak-ng gives the Dutch i of "pieper" and a p-h in "alpha"), and compounds espeak-ng stresses or voices
+    // wrong: blusDEken with a z, gasmEting with a schwa, dienstWISsel, dakventiLAtor, KONtroleekamer, stopreGEL;
+    // split, each part keeps its own reading
+    [/\bLMRA\b/g, 'L M R A'], [/\bVCA\b/g, 'V C A'], [/\bPiper Alpha\b/g, 'Paiper Alfa'],
+    [/\b([Bb])lusdeken/g, '$1lus-deken'], [/\b([Gg])asmeting/g, '$1as-meting'], [/\b([Dd])ienstwissel/g, '$1ienst-wissel'],
+    [/\b([Dd])akventilator/g, '$1ak-ventilator'], [/\b([Cc])ontrolekamer/g, '$1ontrole-kamer'], [/\b([Ss])topregel/g, '$1top-regel'],
     // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel",
     // reads zuigeroppervlak as "zuigiir-oppervlak"
     // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
