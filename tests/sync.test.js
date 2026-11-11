@@ -184,3 +184,10 @@ test('v10: v9 machining progress round-trips through mergeStates unchanged (topi
   const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [] } }, courseReviews };
   assert.deepEqual(mergeStates(s, s), s);
 });
+
+test('course lessons merge: the latest opened wins (v16 resume)', () => {
+  const local = { ...base(), courses: { eng: { lessons: { 'eng.flow.takt': { opened: 30 } }, sessions: [] }, pm: { lessons: {}, sessions: [] } } };
+  const remote = { ...base(), courses: { eng: { lessons: { 'eng.flow.takt': { opened: 40, read: 5, passed: 6 } }, sessions: [] }, pm: { lessons: {}, sessions: [] } } };
+  assert.deepEqual(mergeStates(local, remote).courses.eng.lessons['eng.flow.takt'], { opened: 40, read: 5, passed: 6 });
+  assert.equal(mergeStates(remote, local).courses.eng.lessons['eng.flow.takt'].opened, 40);
+});

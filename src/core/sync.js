@@ -49,6 +49,8 @@ function mergeLesson(x, y) {
   for (const k of ['read', 'passed']) { const v = minDefined(a[k], b[k]); if (v != null) out[k] = v; }
   const say = maxDefined(a.sayIt, b.sayIt);
   if (say != null) out.sayIt = say;
+  const opened = maxDefined(a.opened, b.opened);
+  if (opened != null) out.opened = opened;
   const sa = isObj(a.situation) ? a.situation : null;
   const sb = isObj(b.situation) ? b.situation : null;
   if (sa || sb) out.situation = !sa ? sb : !sb ? sa : (sb.ts > sa.ts ? sb : sa);

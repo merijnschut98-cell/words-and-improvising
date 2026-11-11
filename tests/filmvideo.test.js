@@ -452,13 +452,13 @@ test('filmDataOf: the data block of a film page, or null', () => {
 });
 
 // ------------------------------------------------------------ the app: the steps
-test('a lesson with a film: Raden · Film · Voorbeeld · Check; without one it keeps Lezen', () => {
-  const withFilm = { pre: [{}], teach: ['a', 'b'], film: 'eng.machining.turning' };
-  assert.deepEqual(lessonPhases(withFilm), ['pre', 'film', 'example', 'quiz']);
-  assert.deepEqual(lessonSteps(lessonPhases(withFilm), 'film').map((s) => `${s.id}:${s.state}`), ['guess:done', 'film:current', 'example:todo', 'check:todo']);
+test('a lesson with a film: Raden · Film · Check (the film covers the worked example, v16); without one it keeps Lezen · Voorbeeld', () => {
+  const withFilm = { pre: [{}], teach: ['a', 'b'], film: 'eng.machining.turning', example: { kind: 'worked', text: 'x' } };
+  assert.deepEqual(lessonPhases(withFilm), ['pre', 'film', 'quiz']);
+  assert.deepEqual(lessonSteps(lessonPhases(withFilm), 'film').map((s) => `${s.id}:${s.state}`), ['guess:done', 'film:current', 'check:todo']);
   assert.deepEqual(lessonPhases({ pre: [{}], teach: ['a'] }), ['pre', 'teach', 'example', 'quiz']);
-  assert.deepEqual(lessonPhases({ teach: ['a'], film: 'eng.x.y' }), ['film', 'example', 'quiz']);
-  // back from the example goes to the film; back from the film to the last guess
+  assert.deepEqual(lessonPhases({ teach: ['a'], film: 'eng.x.y' }), ['film', 'quiz']);
+  // back from the check goes to the film; back from the film to the last guess
   const phases = lessonPhases(withFilm);
   assert.deepEqual(lessonBack({ p: 2, block: 0, pre: 0 }, phases, withFilm), { p: 1, block: 0, pre: 0 });
   assert.deepEqual(lessonBack({ p: 1, block: 0, pre: 0 }, phases, { ...withFilm, pre: [{}, {}] }), { p: 0, block: 0, pre: 1 });

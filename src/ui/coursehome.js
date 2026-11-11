@@ -96,8 +96,9 @@ function modSummary(app, meta, ...bits) {
     h('span', { class: 'module-meta' }, ...bits));
 }
 
-// A topic module: one row per topic with four level chips, from the index
-// alone (no module load). Every chip opens its lesson: nothing is locked.
+// A topic module: one row per topic with its level chips, from the index
+// alone (no module load). A level shows once the one before it is passed
+// (v16); every chip shown opens its lesson.
 function topicModuleRow(app, meta) {
   const t = app.t;
   const go = (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });

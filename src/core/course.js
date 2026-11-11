@@ -114,6 +114,9 @@ export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lan
   let next = countRound(state, today, xp);
   let reviews = next.courseReviews || {};
   for (const [questionId, ok] of Object.entries(firstTry || {})) {
+    // Only the lesson's own recall questions are spaced; term questions, the
+    // guess and earlier-level questions are practice in this quiz (v16).
+    if (!questionId.startsWith(`${lessonId}#r`)) continue;
     // A retake before the question is due can't count as a spaced recall:
     // a miss still resets it, a hit leaves it where it is.
     const cur = reviews[`${lang}|${questionId}`];
@@ -166,6 +169,15 @@ export function applySituation(state, { subject, lessonId, pts }, today, now) {
   return { state: next, xp };
 }
 
+// When he opens a lesson: remembered, so the course home can bring him back
+// to a lesson he left before finishing (v16). Synced, latest wins.
+export function markOpened(state, subject, lessonId, now) {
+  return withSubject(state, subject, (c) => {
+    const before = c.lessons[lessonId] || {};
+    return { ...c, lessons: { ...c.lessons, [lessonId]: { ...before, opened: now } } };
+  });
+}
+
 export function markSayIt(state, subject, lessonId, now) {
   return withSubject(state, subject, (c) => {
     const before = c.lessons[lessonId] || {};
@@ -186,21 +198,41 @@ export function moduleMastery(state, meta, lang) {
 
 const passedIn = (state, subject) => (((state.courses || {})[subject]) || { lessons: {} }).lessons;
 
-// When he last read or passed a lesson.
-const lastTouched = (p) => Math.max((p && p.read) || 0, (p && p.passed) || 0);
+// When he last did anything with a lesson: opened, read, passed, or
+// practised it (a situation or the say-it round).
+const lastTouched = (p) => Math.max((p && p.opened) || 0, (p && p.read) || 0, (p && p.passed) || 0,
+  (p && p.situation && p.situation.ts) || 0, (p && p.sayIt) || 0);
 
-// Topic modules (free access): the topic he touched last while it has an open
-// level, else the first open topic in index order; within it, the lowest
-// level not passed. Depth-first: one topic from Basis to Expert. Other
-// modules: the first lesson not passed, in index order.
+// The lesson touched last among ids (first in order on ties), or null.
+function mostRecent(lessons, ids) {
+  let recent = null;
+  let at = 0;
+  for (const id of ids) { const ts = lastTouched(lessons[id]); if (ts > at) { recent = id; at = ts; } }
+  return recent;
+}
+
+// A lesson he opened and left before passing it, when that is the last thing
+// he did in this subject: the course home brings him straight back (v16).
+export function resumeLesson(state, subject, modules = MODULES) {
+  const lessons = passedIn(state, subject);
+  const ids = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons);
+  const id = mostRecent(lessons, ids);
+  if (!id || lessons[id].passed || !lessons[id].opened) return null;
+  return { moduleId: moduleOf(id), lessonId: id };
+}
+
+// A lesson he opened and did not finish, when it is the last one he touched
+// in the module, comes first. Then, topic modules (free access): the topic he
+// touched last while it has an open level, else the first open topic in index
+// order; within it, the lowest level not passed. Depth-first: one topic from
+// Basis to Expert. Other modules: the first lesson not passed, in index order.
 export function nextLesson(state, meta) {
   const lessons = passedIn(state, meta.subject);
   const done = (id) => !!(lessons[id] && lessons[id].passed);
+  const recent = mostRecent(lessons, meta.lessons);
+  if (recent && !done(recent) && lessons[recent].opened) return recent;
   const metaTopics = topicsOf(meta);
   if (metaTopics) {
-    let recent = null;
-    let at = 0;
-    for (const id of meta.lessons) { const ts = lastTouched(lessons[id]); if (ts > at) { recent = id; at = ts; } }
     const open = (t) => t.levels.some((id) => !done(id));
     const current = recent && metaTopics.find((t) => t.levels.includes(recent));
     const topic = current && open(current) ? current : metaTopics.find(open);
@@ -219,13 +251,22 @@ export function levelState(state, subject, lessonId, count, lang) {
   return owned ? 'owned' : 'passed';
 }
 
-// The rows of a topic module for the course home; null for other modules.
+// A level shows once the level before it is finished (v16: a minimal app);
+// the first level always, and a level he already passed stays.
+export function levelVisible(levels, i, passed) {
+  return i === 0 || passed(levels[i]) || passed(levels[i - 1]);
+}
+
+// The rows of a topic module for the course home: the visible levels only;
+// null for other modules.
 export function topicRows(state, meta, lang) {
   const metaTopics = topicsOf(meta);
   if (!metaTopics) return null;
+  const lessons = passedIn(state, meta.subject);
+  const passed = (id) => !!(lessons[id] && lessons[id].passed);
   return metaTopics.map((t) => {
     const levels = t.levels.map((lessonId, i) => ({ lessonId, level: i + 1, state: levelState(state, meta.subject, lessonId, (meta.questions || {})[lessonId] || 0, lang) }));
-    return { id: t.id, title: t.title, passed: levels.filter((l) => l.state !== 'todo').length, levels };
+    return { id: t.id, title: t.title, passed: levels.filter((l) => l.state !== 'todo').length, levels: levels.filter((_, i) => levelVisible(t.levels, i, passed)) };
   });
 }
 
@@ -241,12 +282,18 @@ function placed(pick, modules) {
   return p ? { ...pick, topicId: p.topicId, level: p.level } : pick;
 }
 
-// A module he started first; otherwise the lowest level across tracks, in
-// index order. Null when every lesson of the subject is passed.
+// The started module he worked in last (a lesson opened, passed or
+// practised: where he left off, v16); otherwise the lowest level across
+// tracks, in index order. Null when every lesson of the subject is passed.
 export function recommendedModule(state, subject, modules = MODULES) {
   const open = modules.filter((m) => m.subject === subject && nextLesson(state, m));
   const lessons = passedIn(state, subject);
-  const started = open.find((m) => m.lessons.some((id) => lessons[id] && lessons[id].passed));
+  let started = null;
+  let at = 0;
+  for (const m of open) {
+    const ts = Math.max(0, ...m.lessons.map((id) => lastTouched(lessons[id])));
+    if (ts > at) { started = m; at = ts; }
+  }
   if (started) return started.id;
   const first = [...open].sort((a, b) => a.level - b.level || modules.indexOf(a) - modules.indexOf(b))[0];
   return first ? first.id : null;
@@ -255,6 +302,9 @@ export function recommendedModule(state, subject, modules = MODULES) {
 // One next thing per course, deterministic for a state and day.
 export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
   const reviews = state.courseReviews || {};
+  // Where he left off: a lesson he opened and did not finish comes back first (v16).
+  const back = resumeLesson(state, subject, modules);
+  if (back) return placed({ reason: 'lesson', why: 'resume', ...back }, modules);
   // A plan follow-up is quick and time-sensitive: first.
   const plan = openPlans(state, subject, today)[0];
   if (plan) return { reason: 'apply', planId: plan.id, lessonId: plan.lessonId, moduleId: moduleOf(plan.lessonId) };
@@ -320,12 +370,79 @@ export function glossary(modules) {
 }
 
 // The steps of a lesson; a lesson without prequestions starts reading.
-// A lesson with a film (v14b): the film replaces the reading, Raden · Film ·
-// Voorbeeld · Check. Without one the reading stays.
-export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), lesson.film ? 'film' : 'teach', 'example', 'quiz'];
+// A lesson with a film (v14b): the film replaces the reading. The films show
+// the worked example too, so a film lesson skips Voorbeeld (v16): Raden · Film
+// · Check. Without a film: Raden · Lezen · Voorbeeld · Check.
+export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), ...(lesson.film ? ['film'] : ['teach', 'example']), 'quiz'];
 
 // Recall questions with their stable ids: '<lessonId>#r<n>'.
 export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));
+
+// The lesson quiz (v16): 5 to 8 questions by level (Basis 5 … Expert 8; 5
+// outside a topic), all from the content: the lesson's own recall questions,
+// then questions on its terms ("which term fits this description?"), then,
+// still short, recall questions from the earlier levels of its topic, nearest
+// first. Nothing is made up: with too little material the quiz is shorter.
+// The guess from the start of the lesson comes back as one extra, last
+// question, with what he guessed (q.guess), so he can compare.
+export const quizSize = (level) => (Number.isInteger(level) && level >= 1 && level <= 4 ? 4 + level : 5);
+
+function seedHash(s) {
+  let x = 7;
+  for (const c of String(s)) x = (x * 31 + c.codePointAt(0)) >>> 0;
+  return x;
+}
+const byHash = (seed) => (a, b) => seedHash(`${seed}|${a}`) - seedHash(`${seed}|${b}`);
+const namesTerm = (def, name) => new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(name)}(?![\\p{L}\\p{N}])`, 'iu').test(String(def));
+
+// One term question, or null when the definition gives the term away or there
+// are not three other terms to choose from (the lesson's own first, then pool).
+function termQuestion(lesson, i, pool, ask) {
+  const x = lesson.terms[i];
+  const name = String((x && x.term) || '').trim();
+  if (!name || !x.def || namesTerm(x.def, name)) return null;
+  const id = `${lesson.id}#t${i}`;
+  const seen = new Set([name.toLowerCase()]);
+  const others = (list) => list.map((y) => String((y && y.term) || '').trim())
+    .filter((t) => t && !seen.has(t.toLowerCase()) && seen.add(t.toLowerCase()))
+    .sort(byHash(id));
+  const wrong = [...others(lesson.terms), ...others(pool || [])].slice(0, 3);
+  if (wrong.length < 3) return null;
+  return { id, q: ask(String(x.def).trim()), options: [name, ...wrong].sort(byHash(id)), answer: name, why: `${name}: ${String(x.def).trim()}` };
+}
+
+export function lessonQuiz(lesson, { level = null, ask = (d) => d, pool = [], earlier = [], guesses = [] } = {}) {
+  const size = quizSize(level);
+  const out = recallQuestions(lesson).slice(0, size);
+  (lesson.terms || []).forEach((_, i) => {
+    if (out.length >= size) return;
+    const q = termQuestion(lesson, i, pool, ask);
+    if (q) out.push(q);
+  });
+  for (const l of [...(earlier || [])].reverse()) {
+    for (const q of recallQuestions(l)) if (out.length < size) out.push(q);
+  }
+  const pre = lesson.pre || [];
+  if (pre.length) {
+    const g = (i) => (guesses[i] == null ? null : guesses[i]);
+    const miss = pre.findIndex((q, i) => g(i) != null && !judge(q, g(i)));
+    const i = miss >= 0 ? miss : 0;
+    out.push({ ...pre[i], id: `${lesson.id}#p${i}`, guess: g(i) });
+  }
+  return out;
+}
+
+// The guess question in the review: what he guessed, what he says now and the
+// right answer, each judged, so the gap is visible.
+export function guessCompare(q, now) {
+  return {
+    guess: q.guess == null ? '?' : 'number' in q ? withUnit(q, q.guess) : q.guess,
+    now: 'number' in q ? withUnit(q, now) : now,
+    answer: 'number' in q ? withUnit(q, q.number) : q.answer,
+    guessOk: q.guess != null && judge(q, q.guess),
+    nowOk: judge(q, now),
+  };
+}
 
 export function questionById(modules, questionId) {
   const [lessonId, tag] = String(questionId).split('#');

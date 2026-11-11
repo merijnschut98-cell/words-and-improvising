@@ -4,7 +4,7 @@
 // not climb a box (sure = !hinted).
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge } from '../core/course.js';
+import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge, guessCompare } from '../core/course.js';
 import { questionHint } from '../core/hint.js';
 
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
@@ -76,25 +76,33 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     // Back on a question he already answered: show what he picked.
     const prev = st.prev && st.prev.id === q.id && st.prev.value != null ? String(st.prev.value) : null;
     const picked = prev ? h('p', { class: 'quiz-picked muted small', 'aria-live': 'polite' }, t('quizPicked', shown(q, prev))) : null;
+    // The guess from the start of the lesson, back as the last question (v16):
+    // what he guessed is shown and preselected; he keeps it or changes it.
+    const hasGuess = 'guess' in q && q.guess != null && q.guess !== '?';
+    const guessLine = 'guess' in q ? h('p', { class: 'quiz-guess muted small' }, ico('repeat'), ' ', hasGuess ? t('quizGuessWas', shown(q, q.guess)) : t('quizGuessBack')) : null;
     if ('number' in q) {
       const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
       if (prev) input.value = prev;
+      else if (hasGuess) input.value = String(q.guess);
       const submit = () => { if (input.value.trim()) answer(input.value.trim()); };
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
       setTimeout(() => input.focus(), 0);
       const hp = hintParts(q, null);
       return h('section', { class: 'card quiz-card' }, progress,
+        guessLine,
         h('p', { class: 'quiz-q' }, q.q),
         hp.panel,
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         picked,
         h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn));
     }
+    const mark = prev != null ? prev : hasGuess ? String(q.guess) : null;
     const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
-      class: `opt${o === prev ? ' chosen' : ''}`, 'aria-pressed': o === prev ? 'true' : null, onclick: () => answer(o),
+      class: `opt${o === mark ? ' chosen' : ''}`, 'aria-pressed': o === mark ? 'true' : null, onclick: () => answer(o),
     }, o)));
     const hp = hintParts(q, opts);
     return h('section', { class: 'card quiz-card' }, progress,
+      guessLine,
       h('p', { class: 'quiz-q' }, q.q),
       hp.panel,
       opts,
@@ -102,16 +110,29 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       hp.btn || backBtn ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn) : null);
   }
 
+  // Guess at the start → answer now → the right answer, each marked, so he
+  // sees what the lesson changed.
+  function guessSteps(q, value) {
+    const c = guessCompare(q, value);
+    const step = (label, text, ok) => h('li', { class: `guess-step ${ok ? 'ok' : 'miss'}` },
+      h('span', { class: 'muted' }, label), ' ', ico(ok ? 'check' : 'x'), ' ', text);
+    return h('ol', { class: 'guess-steps small', 'aria-label': t('quizGuessCompare') },
+      step(t('quizGuessStart'), c.guess, c.guessOk),
+      step(t('quizGuessNow'), c.now, c.nowOk),
+      h('li', { class: 'guess-step answer' }, h('span', { class: 'muted' }, t('quizGuessRight')), ' ', h('b', {}, c.answer)));
+  }
+
   function reviewCard() {
     const misses = lastPass.filter((x) => !x.ok).length;
     return h('section', { class: 'card quiz-review' },
       h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean')),
       // Where he used a hint: marked, so he sees what is not really his yet.
-      lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}` },
+      lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}${'guess' in q ? ' guess-row-back' : ''}` },
         h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
         hinted ? h('p', { class: 'hint-mark small' }, t('hintUsed')) : null,
-        ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
-        h('p', { class: 'small' }, h('b', {}, correct(q))),
+        'guess' in q ? guessSteps(q, value) : [
+          ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
+          h('p', { class: 'small' }, h('b', {}, correct(q)))],
         h('p', { class: 'muted small' }, q.why))),
       h('button', {
         class: 'btn btn-primary',

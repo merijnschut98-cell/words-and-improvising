@@ -1,9 +1,9 @@
 // A lesson: guess first (prequestions), read in short blocks (or, with a film,
-// watch it), see an example, then the quiz. Passing unlocks the situation and the say-it round.
+// watch it), see an example (not after a film: the film shows it), then the quiz. Passing unlocks the situation and the say-it round.
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { applyLesson, markOpened, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
@@ -39,6 +39,15 @@ export function prose(cls, text, terms = []) {
     });
     return [h('p', {}, parts), def];
   }));
+}
+
+// The lesson quiz (v16): 5–8 questions by level from the lesson's recall,
+// its terms and the earlier levels of its topic, then his guess back as the
+// last question. terms: the module glossary (distractors for term questions).
+export function quizFor(t, lesson, mod, terms = [], guesses = []) {
+  const place = placeOf(lesson.id);
+  const earlier = place ? place.topic.levels.slice(0, place.level - 1).map((id) => (mod.lessons || []).find((l) => l.id === id)).filter(Boolean) : [];
+  return lessonQuiz(lesson, { level: place ? place.level : null, ask: (d) => t('termQ', d), pool: terms, earlier, guesses });
 }
 
 export function stepIndicator(t, phases, current, onJump = null) {
@@ -78,11 +87,13 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     if (!lesson) { fail(); return; }
     const meta = metaOf(moduleId);
     title.textContent = lesson.title;
-    run(lesson, meta, glossary([{ ...mod, id: moduleId }]));
+    run(lesson, meta, glossary([{ ...mod, id: moduleId }]), mod);
   }).catch(fail);
   return () => { closeFilms(); if (onLeave) onLeave(); };
 
-  function run(lesson, meta, terms = []) {
+  function run(lesson, meta, terms = [], mod = { lessons: [] }) {
+    // Remembered, so the course home can bring him back here if he leaves (v16).
+    app.setState(markOpened(app.state, subject, lesson.id, Date.now()));
     const phases = lessonPhases(lesson);
     let p = 0;
     let block = 0;
@@ -200,7 +211,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         const box = h('div', {});
         show(box);
         renderQuiz(app, {
-          questions: recallQuestions(lesson),
+          questions: quizFor(t, lesson, mod, terms, guesses),
           termsOf: () => terms,
           onBack: goBack,
           onDone: (firstTry, sure) => {
