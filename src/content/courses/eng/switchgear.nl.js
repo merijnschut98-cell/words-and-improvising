@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.switchgear.devices',
+      film: 'eng.switchgear.devices',
       title: 'Vermogensschakelaars, lastscheiders, scheiders en zekeringen',
       pre: [
         {
@@ -288,6 +289,7 @@ export default {
     },
     {
       id: 'eng.switchgear.installations',
+      film: 'eng.switchgear.devices',
       title: 'MS-installaties en RMU’s',
       pre: [
         {

@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.switchgear.devices',
+      film: 'eng.switchgear.devices',
       title: 'Breakers, switches, disconnectors and fuses',
       pre: [
         {
@@ -288,6 +289,7 @@ export default {
     },
     {
       id: 'eng.switchgear.installations',
+      film: 'eng.switchgear.devices',
       title: 'MV switchgear and ring main units',
       pre: [
         {

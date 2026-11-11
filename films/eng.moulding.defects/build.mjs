@@ -504,7 +504,7 @@ const SAY = [
       en: 'Measure only after {t:Conditioning|conditioning}: a fixed time in a fixed climate, for example {n:23} degrees and {n:50} percent humidity; polyamide takes up water. Then correct the steel once.' },
   ],
   [ // s9 solving for good
-    { nl: 'Blijvend oplossen vraagt drie dingen: een bewezen oorzaak, een bekend procesvenster en bewaking. Tellen met een paretodiagram en oorzaken zoeken leer je in de modules kwaliteit en probleemoplossen.',
+    { nl: 'Blijvend oplossen vraagt drie dingen: een bewezen oorzaak, een bekend procesvenster en bewaking. Tellen met een pareto-diagram en oorzaken zoeken leer je in de modules kwaliteit en probleemoplossen.',
       en: 'Solving a defect for good takes three things: a proven cause, a known process window and monitoring. Counting with a Pareto chart and finding causes are taught in the quality and problem-solving modules.' },
     { nl: 'Een {t:DOE|DOE}, een proefopzet, verandert instellingen tegelijk volgens een vast patroon. Nadruk en nadruktijd, laag en hoog: inzakplekken van {n:40}, {n:30}, {n:24} en {n:10} micrometer.',
       en: 'A {t:DOE|DOE}, a design of experiments, changes settings together in a planned pattern. Holding pressure and time, low and high: sinks of {n:40}, {n:30}, {n:24} and {n:10} micrometres.' },

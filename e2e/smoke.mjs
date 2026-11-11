@@ -238,7 +238,8 @@ await step('one filled button per screen: speaking home, course home, every less
   const labels = (await page.locator('.steps .step').allInnerTexts()).map((x) => x.trim().toUpperCase());
   if (labels.join('|') !== 'RADEN|LEZEN|VOORBEELD|CHECK') throw new Error(`steps: ${labels}`);
   const oee = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.oee'));
-  const recallOf = async () => { const q = (await page.locator('.quiz-card .quiz-q').innerText().catch(() => '')).trim(); return oee.recall.find((r) => r.q.trim() === q); };
+  const oeeQuiz = await quizOf(page, 'eng', 'flow', 'eng.flow.oee');
+  const recallOf = async () => { const q = (await page.locator('.quiz-card .quiz-q').innerText().catch(() => '')).trim(); return oeeQuiz.find((r) => r.q.trim() === q); };
   // Walk the lesson: each step that has a button has exactly one filled one.
   for (let guard = 0; guard < 40; guard++) {
     if (await page.locator('.lesson-done').count()) { await onePrimary(page, 'lesson done'); break; }
@@ -248,7 +249,7 @@ await step('one filled button per screen: speaking home, course home, every less
       // A choice step: the options are the action; no competing filled button.
       if (await page.locator('.btn-primary:visible').count()) throw new Error(`${step}: filled button next to the options`);
       const r = await recallOf();
-      await (r ? page.locator('.quiz-opts').getByRole('button', { name: r.answer, exact: true }).first() : opts.first()).click();
+      await (r ? optExact(page, '.quiz-card', r.answer) : opts.first()).click();
       continue;
     }
     const num = page.locator('.screen.lesson .quiz-num:visible');
@@ -302,14 +303,33 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
 });
 
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
+// The lesson quiz as the app builds it (v16): recall, term questions, earlier
+// levels, then the guess back as the last question.
+async function quizOf(pg, subject, slug, lessonId) {
+  return pg.evaluate(async ([sub, sl, id]) => {
+    const { quizFor } = await import('/src/ui/lesson.js');
+    const { glossary } = await import('/src/core/course.js');
+    const mod = await window.__app.openModuleTerms(sub, `${sub}.${sl}`);
+    const lesson = mod.lessons.find((l) => l.id === id);
+    return quizFor(window.__app.t, lesson, mod, glossary([{ ...mod, id: `${sub}.${sl}` }]), []);
+  }, [subject, slug, lessonId]);
+}
+// An answer option by its exact text (term options can share a prefix).
+function optExact(pg, scope, text) {
+  const esc = String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return pg.locator(`${scope} .opt`).filter({ hasText: new RegExp(`^\\s*${esc}\\s*$`) }).first();
+}
+
 async function playLesson(pg, subject, slug, lessonId, { missFirst = true, reviewShot = null } = {}) {
   const lesson = await pg.evaluate(async ([sub, sl, id]) => (await import(`/src/content/courses/${sub}/${sl}.nl.js`)).default.lessons.find((l) => l.id === id), [subject, slug, lessonId]);
+  const quiz = await quizOf(pg, subject, slug, lessonId);
+  lesson.quiz = quiz;
   for (const q of lesson.pre) {
     if ('number' in q) { await pg.locator('.pre-card .quiz-num').fill('1'); await pg.locator('.lesson > .pre-next').click(); }
     else await pg.locator('.pre-card .opt').first().click();
     await pg.locator('.lesson > .pre-next', { hasText: 'Verder' }).click();
   }
-  // A film lesson has a Film step instead of the reading (Raden · Film · Voorbeeld · Check).
+  // A film lesson has a Film step instead of the reading and no Voorbeeld (Raden · Film · Check).
   const readSel = lesson.film ? '.film-card' : '.teach-card';
   // Always a way back: from the first read block to the last guess, which shows the guess kept, not a new question.
   await pg.locator(readSel).waitFor();
@@ -333,7 +353,8 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   await pg.locator(readSel).waitFor();
   if (lesson.film) await pg.locator('.lesson > .film-next').click();
   else for (let i = 0; i < lesson.teach.length; i++) await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
-  if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
+  if (lesson.film) { /* v16: the film shows the worked example; straight to the check */ }
+  else if (lesson.example.kind === 'faded') { await pg.locator('.reveal-btn').click(); await pg.locator('.example-card .btn-primary').click(); }
   else await pg.locator('.lesson > .btn-primary', { hasText: 'Verder' }).click();
   const answer = async (q, wrong) => {
     if ('number' in q) {
@@ -341,26 +362,31 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
       await pg.locator('.quiz-card .btn-primary').click();
     } else {
       const pick = wrong ? q.options.find((o) => o !== q.answer) : q.answer;
-      await pg.locator('.quiz-card .opt', { hasText: pick }).first().click();
+      await optExact(pg, '.quiz-card', pick).click();
     }
   };
-  for (let i = 0; i < lesson.recall.length; i++) {
-    if (i === 1 && i < lesson.recall.length - 1) {
+  // 5–8 questions by level, then the guess back as one extra (v16).
+  await pg.locator('.quiz-card .quiz-progress', { hasText: `1/${quiz.length}` }).waitFor({ timeout: 5000 });
+  for (let i = 0; i < quiz.length; i++) {
+    if ('guess' in quiz[i]) await pg.locator('.quiz-card .quiz-guess', { hasText: 'Terug naar' }).waitFor();
+    if (i === 1 && i < quiz.length - 1) {
       // An accidental wrong tap, taken back with 'Vorige vraag': it never counts as a miss.
-      await answer(lesson.recall[1], true);
+      await answer(quiz[1], true);
       await pg.locator('.quiz-card .quiz-back').click();
       const prog = (await pg.locator('.quiz-card .quiz-progress').innerText()).trim();
       if (!prog.startsWith('2/')) throw new Error(`back did not return to question 2: ${prog}`);
       if (await pg.locator('.quiz-card .btn-primary, .quiz-card .opt').count() < 1) throw new Error('no answer controls after back');
     }
-    await answer(lesson.recall[i], missFirst && i === 0);
+    await answer(quiz[i], missFirst && i === 0);
   }
   await pg.locator('.quiz-review').waitFor();
+  // The guess back in the review: guess at the start, answer now, right answer.
+  if (lesson.pre.length && (await pg.locator('.quiz-review .guess-row-back .guess-step').count()) !== 3) throw new Error('no guess → now → right answer in the review');
   if (reviewShot) await shot(reviewShot);
   if (missFirst) {
     if (await pg.locator('.review-row.miss').count() !== 1) throw new Error('expected one miss in review');
     await pg.locator('.quiz-review .btn-primary').click();
-    await answer(lesson.recall[0], false);
+    await answer(quiz[0], false);
     await pg.locator('.quiz-review').waitFor();
   }
   await pg.locator('.quiz-review .btn-primary').click();
@@ -368,6 +394,22 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   if (!(await pg.locator('.guess-review .review-row').count())) throw new Error('no feedback on the guesses');
   return lesson;
 }
+
+await step('where you left off: a lesson left before the end comes back on top of the course (v16)', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-today .today-go').waitFor();
+  const title = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck').title);
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
+  await page.locator('.pre-card').waitFor();
+  await page.locator('.round-top .icon-btn').first().click();
+  await page.locator('.course-today .today-what', { hasText: title }).waitFor();
+  await page.locator('.course-today .today-why', { hasText: 'Ga verder waar je was' }).waitFor();
+  await page.evaluate((s) => localStorage.setItem('spraakwater:v1', s), saved);
+  await page.reload();
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
 
 await step('a full lesson: guess, read, example, quiz with one miss, review, pass', async () => {
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
@@ -621,7 +663,7 @@ await step('a lesson with a figure shows it under the last reading block', async
 // comes from the public Supabase bucket; the network is stubbed here: a tiny
 // real MP4 for "uploaded", an aborted request for "not there". Its own context
 // without the service worker, so the stubs see every request.
-await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, plays the video with captions, Lees mee opens, falls back to the HTML film', async () => {
+await step('films: a film lesson shows Raden · Film · Check, plays the video with captions, Lees mee opens, falls back to the HTML film', async () => {
   const cf = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await cf.addInitScript(FAKE_SPEECH);
   let filmMode = 'ok';
@@ -655,7 +697,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   const lesson = await open();
   // the steps: Film instead of Lezen
   const stepsOf = async () => (await p.locator('.steps .step').allTextContents()).map((x) => x.trim()).join('|');
-  if ((await stepsOf()) !== 'Raden|Film|Voorbeeld|Check') throw new Error(`steps: ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Raden|Film|Check') throw new Error(`steps: ${await stepsOf()}`);
   if (await p.locator('.teach-card').count()) throw new Error('the reading is shown in a film lesson');
   // the video, with a captions track in the app language and a poster
   const video = p.locator('.film-card video.film-video');
@@ -679,20 +721,21 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   if (!/wisselplaat \(carbide insert\)/.test(script) || (await read.locator('.read-scene').count()) !== 8) throw new Error(`read along: ${script.slice(0, 200)}`);
   await p.waitForTimeout(400);
   await shotF('118-lesson-film-step');
-  // forward to the example and back to the film
+  // forward to the check (no Voorbeeld after a film, v16) and back to the film
   await p.locator('.lesson > .film-next').click();
-  await p.locator('.example-card').waitFor();
-  await p.locator('.lesson-back').click();
+  await p.locator('.quiz-card').waitFor();
+  if (await p.locator('.example-card').count()) throw new Error('a film lesson still shows the worked example');
+  await p.locator('.quiz-card .lesson-back').click();
   await p.locator('.film-card video.film-video').waitFor({ timeout: 5000 });
   // the step indicator jumps back to it like any done step
   await p.locator('.lesson > .film-next').click();
-  await p.locator('.example-card').waitFor();
+  await p.locator('.quiz-card').waitFor();
   await p.locator('.steps .step-jump', { hasText: 'Film' }).click();
   await p.locator('.film-card').waitFor();
   // a lesson without a film keeps Lezen
   await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await p.locator('.pre-card').waitFor();
-  if (!(await stepsOf()).includes('Lezen')) throw new Error(`a lesson without a film lost Lezen: ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Raden|Lezen|Voorbeeld|Check') throw new Error(`a lesson without a film lost Lezen or Voorbeeld: ${await stepsOf()}`);
   // English: the video, captions and script in English
   await p.evaluate(() => window.__app.updateSettings({ lang: 'en' }));
   await open();
@@ -701,7 +744,7 @@ await step('films: a film lesson shows Raden · Film · Voorbeeld · Check, play
   if (!/\/eng\.machining\.turning\/en\.mp4\?v=\d+$/.test(en[0]) || en[1] !== 'en' || en[2] !== 'English captions') throw new Error(`en video ${en}`);
   await p.locator('details.read-along summary').waitFor({ timeout: 5000 });
   if ((await p.locator('details.read-along summary').innerText()).trim() !== 'Read along') throw new Error('no Read along');
-  if ((await stepsOf()) !== 'Guess|Film|Example|Check') throw new Error(`en steps ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Guess|Film|Check') throw new Error(`en steps ${await stepsOf()}`);
   await p.evaluate(() => window.__app.updateSettings({ lang: 'nl' }));
   // not uploaded (or offline and not cached): the HTML film plays in its sandboxed frame
   filmMode = 'fail';
@@ -2059,10 +2102,10 @@ const yesterdayKey = () => { const d = new Date(Date.now() - 86400000); return `
 // Answers the visible quiz question correctly from the lesson file.
 async function answerRight(pg, lesson, scope = '.quiz-card') {
   const text = (await pg.locator(`${scope} .quiz-q`).innerText()).trim();
-  const q = lesson.recall.find((x) => x.q.trim() === text);
+  const q = (lesson.quiz || lesson.recall).find((x) => x.q.trim() === text);
   if (!q) throw new Error(`question not in lesson: ${text}`);
   if ('number' in q) { await pg.locator(`${scope} .quiz-num`).fill(String(q.number).replace('.', ',')); await pg.locator(`${scope} .btn-primary`).click(); }
-  else await pg.locator(`${scope} .opt`, { hasText: q.answer }).first().click();
+  else await optExact(pg, scope, q.answer).click();
   return q;
 }
 
@@ -2189,6 +2232,7 @@ await step('hint: the sure/guess control is gone; one hint per question; correct
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
   await p.locator('.course-today').waitFor();
+  lesson.quiz = await quizOf(p, 'eng', 'flow', lid);
   await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
   for (const q of lesson.pre) {
     if ('number' in q) { await p.locator('.pre-card .quiz-num').fill('1'); await p.locator('.lesson > .pre-next').click(); }
@@ -2223,7 +2267,7 @@ await step('hint: the sure/guess control is gone; one hint per question; correct
   const q2 = lesson.recall[1];
   await p.locator('.quiz-card .quiz-num').fill(String(q2.number + 1000));
   await p.locator('.quiz-card .btn-primary').click();
-  for (let i = 2; i < lesson.recall.length; i++) await answerRight(p, lesson);
+  for (let i = 2; i < lesson.quiz.length; i++) await answerRight(p, lesson);
   await p.locator('.quiz-review').waitFor();
   if (await p.locator('.review-row.hinted').count() !== 1) throw new Error('expected one hinted question in the review');
   await p.locator('.review-row.hinted.ok .hint-mark', { hasText: 'Met een hint' }).waitFor();
@@ -2345,6 +2389,7 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   const { c, p, shotP, dark } = await v9Context();
   const lesson = await p.evaluate(async (id) => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === id), lid);
   await p.locator('.course-today').waitFor();
+  lesson.quiz = await quizOf(p, 'eng', 'flow', lid);
   await p.evaluate((id) => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: id }), lid);
   await p.locator('.pre-card').waitFor();
   const width = async (sel) => (await p.locator(sel).first().boundingBox()).width;
@@ -2395,7 +2440,7 @@ await step('polish: quiz back shows the earlier answer; Raden and Lezen buttons 
   }
   await shotP('100-quiz-back-picked');
   await dark('100-quiz-back-picked-dark', async () => { await p.locator('.quiz-card .quiz-picked').waitFor(); });
-  for (let i = 0; i < lesson.recall.length; i++) {
+  for (let i = 0; i < lesson.quiz.length; i++) {
     await p.locator('.quiz-card').waitFor();
     await answerRight(p, lesson);
   }
@@ -2504,9 +2549,11 @@ await step('topics: level chips in a module (fixture)', async () => {
   const { c, p, shotP } = await topicContext(topicSeed());
   const mod = await openTopicModule(p);
   const chips = mod.locator('.topic-row').first().locator('.level-chip');
-  if (await chips.count() !== 4) throw new Error(`expected 4 chips, got ${await chips.count()}`);
+  // v16: a level shows once the one before it is passed; Expert is hidden until Gevorderd is.
+  if (await chips.count() !== 3) throw new Error(`expected 3 visible chips, got ${await chips.count()}`);
   const cls = await chips.evaluateAll((els) => els.map((e) => e.className));
-  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next') || cls[3].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
+  if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
+  // (An untouched topic showing only its first level is covered by tests/topics.test.js; this fixture has one topic.)
   if (!(await chips.nth(0).locator('.ico-circle-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('chip state icons missing');
   if ((await chips.nth(2).locator('.chip-next').innerText()).trim() !== 'Volgende') throw new Error('next chip not labelled Volgende');
   if (await chips.nth(1).getAttribute('aria-label') !== 'Draaien, Werkkennis: beheerst') throw new Error(`aria: ${await chips.nth(1).getAttribute('aria-label')}`);
@@ -2534,11 +2581,11 @@ await step('topics: level chips in a module (fixture)', async () => {
   await shotP('110-topic-chips-dark');
   await mod.screenshot({ path: `${out}/111-topic-chips-390-dark.png`, animations: 'disabled' });
   await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
-  // Free access: Expert opens although Gevorderd is not passed.
-  const title = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.quality').title);
-  await chips.nth(3).click();
-  await p.locator('.lesson .pre-card, .lesson .teach-card').first().waitFor();
-  if ((await p.locator('.round-title').innerText()).trim() !== title) throw new Error('Expert chip did not open eng.machining.quality');
+  // A visible chip opens its lesson.
+  const title = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.processes').title);
+  await chips.nth(0).click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  if ((await p.locator('.round-title').innerText()).trim() !== title) throw new Error('Basis chip did not open eng.machining.processes');
   await p.locator('.round-top .icon-btn').first().click();
   await openTopicModule(p);
   await c.close();

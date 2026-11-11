@@ -349,7 +349,7 @@ export default {
         'SMART komt uit een kort artikel van George Doran uit 1981 in Management Review. Zijn letters: Specific (specifiek), Measurable (meetbaar), Assignable (toewijsbaar: er is iemand die het gaat doen), Realistic (realistisch) en Time-related (tijdgebonden). Latere versies maken er vaak Achievable (haalbaar) en Relevant van.\n\nEen SMART-doel op de vloer: “Uitval op perslijn 2 van 4% naar 3% van de gemaakte stuks voor 30 juni; eigenaar: de lijnleider.”',
         'Vier woorden die door elkaar lopen. Het doel (goal) zegt wat je wilt en waarom: minder klachten, lagere kosten. De KPI is het cijfer dat het laat zien: uitval in %. De streefwaarde (target) is het niveau waar je op mikt: 3%. De deadline is wanneer.\n\nOp een bord in de fabriek betekent “target” meestal de groene lijn in de grafiek. Schrijf alle vier op, anders wordt er gediscussieerd over welke er nou was afgesproken.',
         'De grens van SMART: het toetst de vorm van een doel, niet of het het juiste doel is. Een volmaakt SMART-doel kan het verkeerde opdrijven, en “meetbaar” trekt de aandacht naar wat makkelijk te tellen is. Doran schreef zelf al dat niet elk doel op elk managementniveau in getallen hoeft.\n\nEn “realistisch” zegt niks over de methode. Hoe ga je er komen? Die vraag komt terug op niveau 4 van dit onderwerp.',
-        'Maak een SMART-doel sterker in drie stappen. Voeg de eerste acties toe: “door de twee grootste defectoorzaken op de Pareto aan te pakken” (een grafiek met oorzaken van groot naar klein). Voeg een bewaker toe: een gekoppelde indicator, zoals output per dienst, die niet mag zakken. En zeg wat je níet gaat doen, zodat het doel niet stilletjes alle tijd van het team opslokt.',
+        'Maak een SMART-doel sterker in drie stappen. Voeg de eerste acties toe: “door de twee grootste defectoorzaken op de pareto aan te pakken” (een grafiek met oorzaken van groot naar klein). Voeg een bewaker toe: een gekoppelde indicator, zoals output per dienst, die niet mag zakken. En zeg wat je níet gaat doen, zodat het doel niet stilletjes alle tijd van het team opslokt.',
         'Wat misgaat: SMART wordt invulwerk in de jaarlijkse beoordeling; doelen die in januari worden gezet en in maart vergeten zijn; teamleiders die doelen opschrijven waarvan ze weten dat ze die halen.\n\nDeskundigen zijn het oneens of individuele getalsdoelen überhaupt in een beoordeling horen; Deming zei nee, zoals niveau 4 uitlegt.\n\nEen scherpe vraag: “Als we deze streefwaarde halen en verder verandert er niks, merkt de klant het dan?”',
       ],
       example: {
@@ -1164,7 +1164,7 @@ export default {
       pre: [
         {
           q: 'Wat is een bowlingkaart in een maandelijks prestatieoverleg?',
-          options: ['Een ranglijst die de teams rangschikt op hun maandscores', 'Een Pareto van de grootste verliezen van het jaar, de grootste eerst', 'Een tabel met plan tegen werkelijk per doel en maand', 'Een grafiek van de dagproductie per dienst over de laatste maand'],
+          options: ['Een ranglijst die de teams rangschikt op hun maandscores', 'Een pareto van de grootste verliezen van het jaar, de grootste eerst', 'Een tabel met plan tegen werkelijk per doel en maand', 'Een grafiek van de dagproductie per dienst over de laatste maand'],
           answer: 'Een tabel met plan tegen werkelijk per doel en maand',
           why: 'Eén regel per doel, twaalf maandkolommen, zoals het scoreformulier bij bowlen.',
         },

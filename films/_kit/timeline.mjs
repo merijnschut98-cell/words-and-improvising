@@ -77,7 +77,8 @@ const SAY = {
     [/\b([Pp])ayload/g, '$1ee-lood'], [/\b([Tt])each pendant\b/g, '$1ietsj pendant'], [/\btooling\b/g, 'toeling'], [/\b([Vv])ision\b/g, '$1izjun'],
     // espeak-ng reads "miksed-model", "heijunka" with the u of "bus", and drops the pr of "robotprogramma's"
     [/\b([Mm])ixed-model\b/g, '$1ikst moddul'], [/\b([Hh])eijunka/g, '$1eijoenka'], [/\b([Rr])obotprogramma/g, '$1obot-programma'],
-    // the machine states and the Pareto chart (espeak-ng reads "star-vet", "blok-ket", and stresses "PA-re-to-diagram")
+    // the machine states and the Pareto chart (espeak-ng reads "star-vet", "blok-ket", and stresses "PA-re-to-diagram";
+    // the texts write pareto-diagram since 2026-11-11, which it stresses right, pa-RE-to, and needs no rule)
     [/\b([Ss])tarved\b/g, '$1taarft'], [/\b([Bb])locked\b/g, '$1lokt'], [/\b([Pp])aretodiagram/g, '$1areto-diagram'],
     // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
     // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
@@ -108,12 +109,14 @@ const SAY = {
     [/\bLMRA\b/g, 'L M R A'], [/\bVCA\b/g, 'V C A'], [/\bPiper Alpha\b/g, 'Paiper Alfa'],
     [/\b([Bb])lusdeken/g, '$1lus-deken'], [/\b([Gg])asmeting/g, '$1as-meting'], [/\b([Dd])ienstwissel/g, '$1ienst-wissel'],
     [/\b([Dd])akventilator/g, '$1ak-ventilator'], [/\b([Cc])ontrolekamer/g, '$1ontrole-kamer'], [/\b([Ss])topregel/g, '$1top-regel'],
-    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel",
+    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel"
+    // (cilinderbenutting, in the moulding machine film, on "CI-" with the e of "bed"; split, so "cilinder" gets
+    // its lexicon entry, ci-LIN-der),
     // reads zuigeroppervlak as "zuigiir-oppervlak"
     // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
     // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
     [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
-    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Cc])ilinderbenutting/g, '$1ilinder-benutting'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
     // drives: espeak-ng stresses the singular magneetschakelaar and the -regelaar compounds on "-ke-"/"-ge-"
     // with the e of "bed" (frequentieregeLAAR); split at the head (frequentie-REgelaar). It stresses
     // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the
@@ -149,7 +152,16 @@ const SAY = {
     // grid: espeak-ng stresses the head of wisselSTROOM, gelijkSTROOM, netstaSJON and laadPAAL; split, each part
     // keeps its own stress (WISsel-STROOM, NET-staSJON, LAAD-PAAL)
     [/\b([Ww])isselstroom/g, '$1issel-stroom'], [/\b([Gg])elijkstroom/g, '$1elijk-stroom'], [/\b([Nn])etstation/g, '$1et-station'],
-    [/\b([Ll])aadpa(al|len)\b/g, '$1aad-pa$2']],
+    [/\b([Ll])aadpa(al|len)\b/g, '$1aad-pa$2'],
+    // switchgear: espeak-ng stresses the singular vermogensschakelaar and aardingsschakelaar on "-ke-" with the
+    // e of "bed" (as magneetschakelaar; the plurals are read right) and kortsluitvermogen on "-mo-"; split at
+    // the head (verMOgens-SCHAkelaar, KORTsluit-vermogen). RMU as letters (espeak-ng reads the word "rmu")
+    [/\b([Vv])ermogensschakelaar\b/g, '$1ermogens-schakelaar'], [/\b([Aa])ardingsschakelaar\b/g, '$1ardings-schakelaar'],
+    [/\b([Kk])ortsluitvermogen\b/g, '$1ortsluit-vermogen'], [/\bRMU\b/g, 'R M U'],
+    // and vrijschakelen, the first safety rule, stressed on "-ke-" with a long e: VRIJ-schakelen
+    [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
+    // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
+    [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
