@@ -407,17 +407,17 @@
     "eng.joining.bonding": {
       "poster": "src/content/courses/films/eng.joining.bonding.jpg",
       "nl": {
-        "dur": 317.1,
-        "bytes": 7630461,
+        "dur": 317.7,
+        "bytes": 7632566,
         "scenes": [
           0,
           34.55,
-          73.67,
-          118.79,
-          157.35,
-          199.11,
-          224.75,
-          262.91
+          73.45,
+          118.6,
+          158.07,
+          200.02,
+          225.51,
+          263.38
         ],
         "vtt": "src/content/courses/films/eng.joining.bonding.nl.vtt"
       },
