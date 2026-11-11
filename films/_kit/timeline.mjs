@@ -171,7 +171,16 @@ const SAY = {
     [/\bhistorian\b/g, 'his-toorjen'], [/\bconduits\b/g, 'kondjoe-its'],
     [/\b([Ff])unctiemodel/g, '$1unctie-model'], [/\b([Pp])roductieorder/g, '$1roductie-order'], [/\b([Ss])tamdata\b/g, '$1tam-data'], [/\b([Tt])ijdschaal\b/g, '$1ijd-schaal'],
     // the order flow: espeak-ng reads goederenontvangst as "goe-dier-een-ontvangst"; split, each part keeps its reading
-    [/\b([Gg])oederenontvangst/g, '$1oederen-ontvangst']],
+    [/\b([Gg])oederenontvangst/g, '$1oederen-ontvangst'],
+    // congestion and roles (eng.gridbasics.congestion): ACM as letters (espeak-ng reads the word "akm") and
+    // TenneT as one word (it reads "Tenne T"); energiewet, capaciteitskaart, energieleverancier and piekuren split at the head (espeak-ng
+    // stresses "E-nergiewet", "KA-paciteitskaart", "energieleveranCIER" and "pie-KUUR-en"); and the grid's
+    // "de/een wachtrij", stressed "wacht-RIJ", said WACHT-rij (only after de or een, so the lines film's
+    // "kleine wachtrij" and "wachtrijen" stay as they are)
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
+    [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
+    // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -181,7 +190,9 @@ const SAY = {
     [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
     [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68'],
     // CILT as letters here too: espeak-ng's English reads it as the word "silt"
-    [/\bCILT\b/g, 'C I L T']],
+    [/\bCILT\b/g, 'C I L T'],
+    // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
