@@ -1,0 +1,369 @@
+WEBVTT
+
+1
+00:00:00.922 --> 00:00:04.881
+Dit is een getakte montagelijn: vijf stations boven een rollenbaan.
+
+2
+00:00:05.555 --> 00:00:08.457
+Elke takt schuiven alle dragers tegelijk één station door,
+
+3
+00:00:08.794 --> 00:00:10.721
+en elk station doet zijn deel van het werk.
+
+4
+00:00:11.801 --> 00:00:15.412
+Klanten willen keuze: een andere kleur, een grotere motor.
+
+5
+00:00:16.114 --> 00:00:18.482
+Een variant is een versie van hetzelfde product
+
+6
+00:00:18.517 --> 00:00:20.804
+die in een paar onderdelen of stappen verschilt.
+
+7
+00:00:21.505 --> 00:00:23.526
+Hier zie je klein, middel en groot.
+
+8
+00:00:24.578 --> 00:00:27.097
+Een mixed-model lijn (mixed-model line) bouwt ze in een gemengde volgorde,
+
+9
+00:00:27.410 --> 00:00:28.374
+product voor product.
+
+10
+00:00:29.093 --> 00:00:31.461
+Dat kan alleen als de stations per variant geen
+
+11
+00:00:31.484 --> 00:00:33.760
+andere onderdelen of instellingen nodig hebben.
+
+12
+00:00:34.749 --> 00:00:38.337
+Eén lijn voor alle varianten scheelt vloerruimte en investering.
+
+13
+00:00:39.025 --> 00:00:40.685
+Maar varianten kosten ook iets.
+
+14
+00:00:42.004 --> 00:00:45.081
+Moeten de stations wel wisselen, dan bouw je in series,
+
+15
+00:00:45.359 --> 00:00:46.904
+en daartussen moet je omstellen (changeover):
+
+16
+00:00:47.205 --> 00:00:49.051
+van het laatste goede product van de ene
+
+17
+00:00:49.098 --> 00:00:51.339
+variant tot het eerste goede van de volgende.
+
+18
+00:00:52.033 --> 00:00:53.519
+Ondertussen maakt de lijn niets.
+
+19
+00:00:54.557 --> 00:00:58.725
+Een dienst heeft 420 minuten, en de lijn maakt één product per minuut.
+
+20
+00:00:59.507 --> 00:01:06.334
+4 keer omstellen van 20 minuten kost 80 minuten: 340 producten in plaats van 420,
+
+21
+00:01:06.589 --> 00:01:08.098
+19 procent minder.
+
+22
+00:01:09.061 --> 00:01:09.966
+De seriegrootte (batch size)
+
+23
+00:01:10.001 --> 00:01:13.147
+is het aantal producten van één variant tussen twee keer omstellen.
+
+24
+00:01:14.214 --> 00:01:18.672
+Grotere series, 2 keer omstellen, geven 380 producten.
+
+25
+00:01:19.379 --> 00:01:23.987
+De prijs: meer voorraad, en een klant die een andere variant wil, wacht langer.
+
+26
+00:01:25.267 --> 00:01:28.181
+Op een geautomatiseerde lijn heeft omstellen twee helften.
+
+27
+00:01:28.907 --> 00:01:30.660
+De softwarehelft is het recept (recipe):
+
+28
+00:01:30.904 --> 00:01:34.387
+een opgeslagen set instellingen per variant in de PLC,
+
+29
+00:01:34.666 --> 00:01:38.033
+zoals snelheden, posities en robotprogramma’s.
+
+30
+00:01:39.042 --> 00:01:41.294
+Een verkeerd recept is een klassieke fout.
+
+31
+00:01:42.050 --> 00:01:45.557
+Dus scant de operator de order, en laadt de machine het juiste.
+
+32
+00:01:46.591 --> 00:01:48.460
+De hardwarehelft is het formaatdeel (change part):
+
+33
+00:01:48.844 --> 00:01:50.817
+een onderdeel dat per variant verschilt,
+
+34
+00:01:50.991 --> 00:01:52.558
+zoals deze grijpervingers.
+
+35
+00:01:53.629 --> 00:01:55.289
+Goede formaatdelen zijn gemerkt,
+
+36
+00:01:55.440 --> 00:01:58.401
+zitten op paspennen zodat ze zonder bijstellen goed zitten,
+
+37
+00:01:58.563 --> 00:02:02.499
+gebruiken snelspanners in plaats van bouten, en staan klaar op een kar.
+
+38
+00:02:03.769 --> 00:02:07.507
+Film een omstelling van 50 minuten: 15 minuten zoeken,
+
+39
+00:02:07.925 --> 00:02:13.069
+20 minuten 6 formaatdelen wisselen, en 15 minuten bijstellen en proefdraaien.
+
+40
+00:02:14.004 --> 00:02:17.325
+Met SMED, de methode van Shingo, splits je intern werk (internal work),
+
+41
+00:02:17.685 --> 00:02:20.413
+dat alleen kan als de lijn stilstaat, van extern werk (external work),
+
+42
+00:02:20.750 --> 00:02:22.073
+dat kan terwijl hij nog draait.
+
+43
+00:02:23.107 --> 00:02:24.291
+Zoeken is extern werk.
+
+44
+00:02:25.093 --> 00:02:28.680
+Zet de delen vóór de stop klaar op de kar: nog 35 minuten.
+
+45
+00:02:29.643 --> 00:02:34.577
+Paspennen en snelspanners brengen wisselen naar 10 minuten, en bijstellen naar 5.
+
+46
+00:02:35.308 --> 00:02:36.341
+Samen 15.
+
+47
+00:02:37.039 --> 00:02:40.278
+Bij twee omstellingen per dienst wint de lijn 70 minuten.
+
+48
+00:02:41.566 --> 00:02:43.621
+Op een gemengde lijn heeft elke variant per
+
+49
+00:02:43.656 --> 00:02:45.328
+station een andere werkinhoud (work content):
+
+50
+00:02:45.630 --> 00:02:47.197
+de seconden werk aan dat product.
+
+51
+00:02:47.940 --> 00:02:53.396
+Op station 5: klein 100, middel 120, groot 160 seconden.
+
+52
+00:02:54.394 --> 00:02:59.792
+De takt is 120 seconden, de mix 50 procent klein, 30 middel en 20 groot.
+
+53
+00:03:00.526 --> 00:03:04.171
+Gewogen gemiddeld 118 seconden: op papier past het.
+
+54
+00:03:05.191 --> 00:03:07.757
+Maar de operator werkt elke cyclus zoals hij komt.
+
+55
+00:03:08.520 --> 00:03:10.888
+Een grote zit 40 seconden boven de takt;
+
+56
+00:03:11.120 --> 00:03:13.977
+twee achter elkaar zetten hem 80 seconden achter.
+
+57
+00:03:14.991 --> 00:03:16.698
+Een kleine geeft maar 20 terug.
+
+58
+00:03:17.416 --> 00:03:20.446
+Hij schuift het volgende station in, en roept om hulp.
+
+59
+00:03:21.703 --> 00:03:24.130
+De volgorde telt dus net zo zwaar als de mix.
+
+60
+00:03:24.822 --> 00:03:28.305
+Een volgorderegel (sequencing rule): na elke grote minstens twee kleine.
+
+61
+00:03:28.986 --> 00:03:30.635
+Dan blijft het bij 40 seconden.
+
+62
+00:03:31.585 --> 00:03:34.128
+Een vliegende kracht (floater), een extra operator,
+
+63
+00:03:34.511 --> 00:03:36.543
+springt bij waar een zware cyclus uitloopt.
+
+64
+00:03:37.606 --> 00:03:40.102
+Op termijn gaat variantwerk naar een voormontage (sub-assembly):
+
+65
+00:03:40.369 --> 00:03:42.273
+een zijstation dat een module bouwt,
+
+66
+00:03:42.528 --> 00:03:43.875
+die in één keer op de lijn gaat.
+
+67
+00:03:44.897 --> 00:03:47.149
+En voor alle varianten is geen plek aan de lijn.
+
+68
+00:03:47.830 --> 00:03:50.094
+Dus kits, of aanvoer in volgorde (sequenced supply):
+
+69
+00:03:50.500 --> 00:03:53.136
+onderdelen in dezelfde volgorde als de producten.
+
+70
+00:03:54.384 --> 00:03:59.063
+Heijunka is egaliseren: mix en volume gelijkmatig over de dag bouwen,
+
+71
+00:03:59.318 --> 00:04:02.743
+in een klein patroon dat zich herhaalt, in plaats van grote blokken.
+
+72
+00:04:03.693 --> 00:04:07.141
+Het voorbeeld uit de les is een lasstation voor elektrische fietsen.
+
+73
+00:04:07.844 --> 00:04:11.676
+De dagvraag is 180 A, 120 B en 60 C,
+
+74
+00:04:12.012 --> 00:04:16.621
+met een takt van 70 seconden: een verhouding van 3 staat tot 2 staat tot 1.
+
+75
+00:04:17.310 --> 00:04:20.282
+Op de lijn hier staan ze voor klein, middel en groot.
+
+76
+00:04:21.361 --> 00:04:27.236
+Dus: A, B, A, C, A, B, 60 keer per dag.
+
+77
+00:04:27.938 --> 00:04:32.453
+Een heijunka box legt het patroon vast met kanbankaarten, een vakje per tijdsblok.
+
+78
+00:04:33.439 --> 00:04:35.633
+Komen alle zware C aan het eind van de dag,
+
+79
+00:04:35.830 --> 00:04:39.580
+dan raakt de lasser 30 minuten achter: de dagelijkse overuren.
+
+80
+00:04:40.267 --> 00:04:43.378
+Met het patroon loopt hij na één C hooguit 30 seconden uit,
+
+81
+00:04:43.645 --> 00:04:45.259
+en de drie A’s daarna winnen dat terug.
+
+82
+00:04:45.964 --> 00:04:48.251
+Maar alleen als wisselen geen omsteltijd kost.
+
+83
+00:04:49.592 --> 00:04:52.912
+Ligt de volgorde vast, dan leveren leveranciers erin.
+
+84
+00:04:53.646 --> 00:04:57.350
+Dat vraagt een bevroren volgorde (frozen sequence): het laatste stuk vóór de lijn,
+
+85
+00:04:57.559 --> 00:05:00.136
+vaak een aantal uren, dat niet meer verandert.
+
+86
+00:05:01.206 --> 00:05:06.105
+Een spoedorder die je erin duwt, breekt de aanvoer, en geeft ontbrekende onderdelen.
+
+87
+00:05:07.106 --> 00:05:08.696
+Flexibele automatisering (flexible automation)
+
+88
+00:05:08.743 --> 00:05:10.902
+kan elke variant aan zonder om te stellen:
+
+89
+00:05:11.076 --> 00:05:13.154
+servo-assen die het recept volgen,
+
+90
+00:05:13.445 --> 00:05:15.001
+grijpers die op alles passen.
+
+91
+00:05:15.935 --> 00:05:20.146
+Het kost vooraf meer, maar dan bouwt elk station elke variant in elke volgorde.
+
+92
+00:05:20.872 --> 00:05:23.217
+Vraag dus eerst: wat kost wisselen hier?

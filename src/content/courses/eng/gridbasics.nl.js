@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridbasics.basics',
+      film: 'eng.gridbasics.load',
       title: 'Volt, ampère, watt en kWh',
       pre: [
         {
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.load',
+      film: 'eng.gridbasics.load',
       title: 'Capaciteit, piekbelasting en gelijktijdigheid',
       pre: [
         {

@@ -516,7 +516,7 @@ const SAY = [
   [ // s1 how a paced line works
     { nl: 'Dit is een getakte montagelijn: vijf stations boven een rollenbaan. Elke takt schuiven alle dragers tegelijk één station door, en elk station doet zijn deel van het werk.',
       en: 'This is a paced assembly line: five stations over a roller conveyor. Every takt, all carriers move on one station together, and each station does its share of the work.' },
-    { nl: 'Klanten willen keuze: een andere kleur, een grotere motor. Een {t:Variant|variant} is een versie van hetzelfde product die in een paar onderdelen of stappen verschilt. Hier: klein, middel en groot.',
+    { nl: 'Klanten willen keuze: een andere kleur, een grotere motor. Een {t:Variant|variant} is een versie van hetzelfde product die in een paar onderdelen of stappen verschilt. Hier zie je klein, middel en groot.',
       en: 'Customers want choice: another colour, a bigger motor. A {t:Variant|variant} is a version of the same product that differs in a few parts or steps. Here: small, medium and large.' },
     { nl: 'Een {t:Mixed-model lijn|mixed-model lijn} bouwt ze in een gemengde volgorde, product voor product. Dat kan alleen als de stations per variant geen andere onderdelen of instellingen nodig hebben.',
       en: 'A {t:Mixed-model line|mixed-model line} builds them in a mixed order, product by product. That only works if the stations need no other parts or settings per variant.' },

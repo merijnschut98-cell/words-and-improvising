@@ -540,7 +540,7 @@ const SAY = [
       en: 'On this rung: is there a part, and is nobody pressing stop? Then the output close clamp switches on.' },
   ],
   [ // s3 step 3
-    { nl: 'De operator praat met de machine via de {t:HMI|HMI}: het scherm met status, alarmen en recepten.',
+    { nl: 'De operator praat met de machine via de {t:HMI|HMI}. Dat is het scherm met status, alarmen en recepten.',
       en: 'The operator talks to the machine through the {t:HMI|HMI}, the human-machine interface: the screen with the status, alarms and recipes.' },
     { nl: 'Het programma loopt in stappen: wachten op onderdeel, klemmen, checken, persen, loslaten. Elke stap wacht op zijn voorwaarde; een interlock werkt net zo.',
       en: 'The program runs in steps: wait for a part, clamp, check, press, release. Each step waits for its condition; an interlock works the same way.' },

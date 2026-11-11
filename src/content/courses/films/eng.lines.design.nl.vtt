@@ -1,0 +1,321 @@
+WEBVTT
+
+1
+00:00:00.916 --> 00:00:04.457
+Dit is een assemblagelijn voor waterpompen: een rij stations,
+
+2
+00:00:04.747 --> 00:00:07.429
+werkplekken waar telkens één vast deel van het werk gebeurt.
+
+3
+00:00:08.451 --> 00:00:11.272
+Een transportband (conveyor), een bewegende band of ketting,
+
+4
+00:00:11.667 --> 00:00:13.513
+brengt het product van station naar station.
+
+5
+00:00:14.511 --> 00:00:17.448
+Bij elk station komt er iets bij: het pomphuis,
+
+6
+00:00:17.704 --> 00:00:22.742
+de waaier, het deksel met zes schroeven, en tot slot de test: dan is de pomp af.
+
+7
+00:00:23.727 --> 00:00:25.643
+Volg één product en tel de stations.
+
+8
+00:00:26.442 --> 00:00:30.366
+Vraag bij elk: wat komt hier bij, en doet een mens dat of een machine?
+
+9
+00:00:31.677 --> 00:00:34.324
+Een handmatig station is een mens met handgereedschap,
+
+10
+00:00:34.557 --> 00:00:36.264
+zoals hier bij het huis en het deksel.
+
+11
+00:00:37.255 --> 00:00:41.353
+Halfautomatisch: de mens legt in en start, en een machine doet het werk.
+
+12
+00:00:42.144 --> 00:00:44.141
+Deze pers drukt de waaier op zijn plek.
+
+13
+00:00:45.151 --> 00:00:48.355
+Volautomatisch doet de machine alles, zoals deze test,
+
+14
+00:00:48.611 --> 00:00:52.756
+achter afscherming: een lichtscherm stopt de machine als iemand erdoor reikt.
+
+15
+00:00:53.747 --> 00:00:54.699
+En aan de signaalzuil (stack light),
+
+16
+00:00:55.035 --> 00:00:59.830
+de lampenpaal op de machine: meestal groen draait, geel wacht, rood storing.
+
+17
+00:01:00.562 --> 00:01:02.141
+Dat verschilt soms per fabriek.
+
+18
+00:01:03.513 --> 00:01:06.381
+De cyclustijd (cycle time) is hoe lang een station over één product doet.
+
+19
+00:01:07.132 --> 00:01:13.134
+Met de stopwatch: 50, 55, 65 en 45 seconden.
+
+20
+00:01:14.065 --> 00:01:18.094
+Het langzaamste station is de bottleneck: de hele lijn kan niet sneller.
+
+21
+00:01:18.814 --> 00:01:20.532
+Ervoor hopen de producten zich op.
+
+22
+00:01:21.492 --> 00:01:23.919
+De takt is de tijd per product voor de klantvraag.
+
+23
+00:01:24.733 --> 00:01:28.042
+Zeven uur is vijfentwintigduizend tweehonderd seconden,
+
+24
+00:01:28.216 --> 00:01:31.629
+gedeeld door 420 pompen: 60 seconden.
+
+25
+00:01:32.603 --> 00:01:38.861
+Het dekselstation zit met 65 seconden boven de takt: 387 pompen per dienst,
+
+26
+00:01:39.151 --> 00:01:40.463
+33 te weinig.
+
+27
+00:01:41.195 --> 00:01:42.124
+Daar kijk je eerst.
+
+28
+00:01:43.436 --> 00:01:45.967
+In een getakte lijn (paced line) schuift de band alles tegelijk door,
+
+29
+00:01:46.176 --> 00:01:48.823
+op de takt: elk station moet op tijd klaar zijn.
+
+30
+00:01:49.802 --> 00:01:52.507
+In een vrije lijn geeft elk station door als het klaar is,
+
+31
+00:01:52.797 --> 00:01:56.895
+meestal op pallets over een doorlopende band, met kleine wachtrijen ertussen.
+
+32
+00:01:57.901 --> 00:02:00.989
+Een cel (cell) is een compacte groep machines, vaak in een U,
+
+33
+00:02:01.256 --> 00:02:03.845
+met een paar operators die met het werk meelopen.
+
+34
+00:02:04.503 --> 00:02:09.461
+Cellen passen bij veel varianten, getakte lijnen bij grote, stabiele aantallen.
+
+35
+00:02:10.798 --> 00:02:14.838
+Vier stations van zo’n 40 seconden, met plek voor 1 product ertussen.
+
+36
+00:02:15.559 --> 00:02:19.715
+Station 3, een inperspers, loopt soms 4 minuten vast.
+
+37
+00:02:20.730 --> 00:02:22.681
+Zonder buffers is de lijn star gekoppeld (hard-linked):
+
+38
+00:02:22.855 --> 00:02:25.328
+station 1 en 2 raken hun product niet kwijt,
+
+39
+00:02:25.467 --> 00:02:26.872
+station 4 krijgt niks.
+
+40
+00:02:27.598 --> 00:02:30.071
+Station 1 en 2 sneller maken helpt dus niet.
+
+41
+00:02:31.101 --> 00:02:33.388
+Dan vermenigvuldigen de beschikbaarheden zich:
+
+42
+00:02:33.737 --> 00:02:37.336
+acht stations die elk 95 procent van de tijd kunnen draaien,
+
+43
+00:02:37.510 --> 00:02:39.611
+geven samen zo’n 66 procent.
+
+44
+00:02:40.669 --> 00:02:43.409
+Een buffer is een kleine wachtrij tussen twee stations.
+
+45
+00:02:44.153 --> 00:02:48.669
+Reken hem op de stop: 240 seconden gedeeld door 40 is 6 plekken.
+
+46
+00:02:49.358 --> 00:02:51.877
+Buffers vangen stops op, ze halen ze niet weg.
+
+47
+00:02:53.234 --> 00:02:54.604
+Nu stations A tot D.
+
+48
+00:02:55.268 --> 00:03:00.178
+Pers B doet 30 seconden, lektester C 36: C is de bottleneck,
+
+49
+00:03:00.481 --> 00:03:02.578
+met een buffer van 5 plekken ervoor.
+
+50
+00:03:03.233 --> 00:03:05.915
+B valt stil, en C werkt door uit de buffer.
+
+51
+00:03:06.903 --> 00:03:11.396
+Station A heeft een product af, maar de plek erna is vol: A is blocked.
+
+52
+00:03:12.466 --> 00:03:15.775
+Duurt de stop langer dan 3 minuten, dan is de buffer leeg.
+
+53
+00:03:16.457 --> 00:03:19.893
+C kan werken, maar er komt niks aan: C is starved.
+
+54
+00:03:21.216 --> 00:03:23.422
+Een buffer werkt alleen als hij weer vol kan lopen.
+
+55
+00:03:24.103 --> 00:03:29.003
+B maakt 120 per uur, C 100: dat verschil is de overcapaciteit (spare capacity).
+
+56
+00:03:30.072 --> 00:03:34.368
+De buffer loopt vol met 20 per uur: 5 plekken kosten 15 minuten.
+
+57
+00:03:35.050 --> 00:03:39.914
+Met een stop elke 20 minuten draait B zo’n 17 minuten ertussen, net genoeg.
+
+58
+00:03:40.656 --> 00:03:42.026
+Stops elke tien minuten?
+
+59
+00:03:42.694 --> 00:03:43.739
+Pak dan de stops aan.
+
+60
+00:03:44.763 --> 00:03:48.118
+Alle producten in de stations en buffers samen zijn het onderhanden werk (WIP).
+
+61
+00:03:49.144 --> 00:03:52.151
+Bescherm dus eerst de bottleneck: de buffer ervoor vol,
+
+62
+00:03:52.523 --> 00:03:55.982
+tegen starved, de buffer erna bijna leeg, tegen blocked.
+
+63
+00:03:57.287 --> 00:03:59.969
+Een discrete-eventsimulatie (discrete-event simulation) speelt elk product,
+
+64
+00:04:00.271 --> 00:04:04.137
+elke stop en elke reparatie af in de tijd, met de echte spreiding.
+
+65
+00:04:05.123 --> 00:04:08.072
+MTBF is de gemiddelde draaitijd tussen twee stops.
+
+66
+00:04:09.067 --> 00:04:11.714
+MTTR is de gemiddelde duur van een stop.
+
+67
+00:04:12.369 --> 00:04:16.224
+Komen die stopdata uit machinedata, of zijn ze een gok van de leverancier?
+
+68
+00:04:17.230 --> 00:04:21.386
+Een integrator belooft 112 per uur tegen een doel van 105.
+
+69
+00:04:22.076 --> 00:04:25.883
+Maar in zijn model stopt elk station precies 3 minuten per 2 uur.
+
+70
+00:04:26.821 --> 00:04:29.793
+Echte stops duren 30 seconden tot 20 minuten,
+
+71
+00:04:30.130 --> 00:04:32.405
+en vaste stops laten buffers mooier lijken.
+
+72
+00:04:33.079 --> 00:04:36.725
+Vraag om echte stopdata, en toets het model aan een bestaande lijn.
+
+73
+00:04:37.997 --> 00:04:39.866
+De snelle check is de wet van Little (Little’s law):
+
+74
+00:04:40.179 --> 00:04:42.408
+onderhanden werk is output maal doorlooptijd.
+
+75
+00:04:43.483 --> 00:04:48.916
+In het model zitten zo’n 40 producten, bij 112 per uur: 0,36 uur,
+
+76
+00:04:49.241 --> 00:04:51.331
+zo’n 21 minuten in de lijn.
+
+77
+00:04:51.972 --> 00:04:53.435
+Dicht bij de geplande 20.
+
+78
+00:04:54.456 --> 00:04:57.788
+Na de eerste plekken geven grotere buffers vaak iets meer output,
+
+79
+00:04:58.055 --> 00:04:59.274
+maar veel meer doorlooptijd.
+
+80
+00:05:00.020 --> 00:05:02.400
+Vraag dus: waar vlakt de output af?
