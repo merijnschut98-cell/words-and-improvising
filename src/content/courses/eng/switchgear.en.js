@@ -361,6 +361,7 @@ export default {
     },
     {
       id: 'eng.switchgear.automation',
+      film: 'eng.switchgear.automation',
       title: 'Distribution automation',
       pre: [
         {

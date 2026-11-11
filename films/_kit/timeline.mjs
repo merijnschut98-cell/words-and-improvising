@@ -163,6 +163,9 @@ const SAY = {
     [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
     // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
     [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station'],
+    // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
+    // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
+    [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
     // IT/OT: espeak-ng reads Purdue as "pur-du-e" (said as the floor says it, "Pur-djoe"), firewall as "fie-re-wal"
     // (said "fajerwol", with "regels" apart, else it stresses "re-GELS"), historian as "HIStoorian" and conduits
     // with the Dutch ui (said "his-toorjen", "kondjoe-its"); and it stresses the head of functieMOdel (with "kti"),
