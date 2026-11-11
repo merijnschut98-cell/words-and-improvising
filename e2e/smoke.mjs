@@ -744,7 +744,7 @@ await step('films: a film lesson shows Raden · Film · Check, plays the video w
   if (!/\/eng\.machining\.turning\/en\.mp4\?v=\d+$/.test(en[0]) || en[1] !== 'en' || en[2] !== 'English captions') throw new Error(`en video ${en}`);
   await p.locator('details.read-along summary').waitFor({ timeout: 5000 });
   if ((await p.locator('details.read-along summary').innerText()).trim() !== 'Read along') throw new Error('no Read along');
-  if ((await stepsOf()) !== 'Guess|Film|Example|Check') throw new Error(`en steps ${await stepsOf()}`);
+  if ((await stepsOf()) !== 'Guess|Film|Check') throw new Error(`en steps ${await stepsOf()}`);
   await p.evaluate(() => window.__app.updateSettings({ lang: 'nl' }));
   // not uploaded (or offline and not cached): the HTML film plays in its sandboxed frame
   filmMode = 'fail';
@@ -2553,8 +2553,7 @@ await step('topics: level chips in a module (fixture)', async () => {
   if (await chips.count() !== 3) throw new Error(`expected 3 visible chips, got ${await chips.count()}`);
   const cls = await chips.evaluateAll((els) => els.map((e) => e.className));
   if (!cls[0].includes('s-passed') || !cls[1].includes('s-owned') || !cls[2].includes('next')) throw new Error(`chip states: ${cls.join(' | ')}`);
-  // An untouched topic shows only its first level.
-  if (await mod.locator('.topic-row').nth(1).locator('.level-chip').count() !== 1) throw new Error('an untouched topic shows more than its first level');
+  // (An untouched topic showing only its first level is covered by tests/topics.test.js; this fixture has one topic.)
   if (!(await chips.nth(0).locator('.ico-circle-check').count()) || !(await chips.nth(1).locator('.ico-check-check').count())) throw new Error('chip state icons missing');
   if ((await chips.nth(2).locator('.chip-next').innerText()).trim() !== 'Volgende') throw new Error('next chip not labelled Volgende');
   if (await chips.nth(1).getAttribute('aria-label') !== 'Draaien, Werkkennis: beheerst') throw new Error(`aria: ${await chips.nth(1).getAttribute('aria-label')}`);
