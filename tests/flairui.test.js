@@ -58,7 +58,7 @@ test('module row meta shows the seal only when a medal exists', () => {
 
 // ---- Daily goal ring (task 17) ----
 const { goalRing, weekRings, goalPicker, startHead } = await import('../src/ui/flairui.js');
-const arcOf = (el) => Number((el.querySelector('.ring-wrap').innerHTML.match(/class="ring-arc[^"]*"[^>]*stroke-dashoffset="([\d.]+)"/) || [])[1]);
+const arcOf = (el) => Number((el.querySelector('.gring-wrap').innerHTML.match(/class="ring-arc[^"]*"[^>]*stroke-dashoffset="([\d.]+)"/) || [])[1]);
 
 test('goalRing: role img with goalRing label; arc share = xp/goal capped at 1; check shown when done', () => {
   const r = goalRing(t, { xp: 18, goal: 30, done: false });
@@ -66,14 +66,14 @@ test('goalRing: role img with goalRing label; arc share = xp/goal capped at 1; c
   assert.equal(r.getAttribute('aria-label'), 'Dagdoel: 18 van 30 XP');
   assert.equal(r.querySelector('.goal-num').textContent, '18/30');
   assert.equal(arcOf(r), 40, '100 - 60');
-  assert.doesNotMatch(r.querySelector('.ring-wrap').innerHTML, /ring-check/);
+  assert.doesNotMatch(r.querySelector('.gring-wrap').innerHTML, /ring-check/);
   const full = goalRing(t, { xp: 30, goal: 30, done: true });
   assert.equal(arcOf(full), 0);
-  assert.match(full.querySelector('.ring-wrap').innerHTML, /ring-check/);
+  assert.match(full.querySelector('.gring-wrap').innerHTML, /ring-check/);
   assert.equal(full.querySelector('.goal-num').textContent, '30/30');
   const grow = goalRing(t, { xp: 30, goal: 30, done: true }, { from: 10 });
-  assert.match(grow.querySelector('.ring-wrap').innerHTML, /ring-arc grow/);
-  assert.match(grow.querySelector('.ring-wrap').innerHTML, /--draw-from:66.67/, 'animates from the old value; the end state is the default');
+  assert.match(grow.querySelector('.gring-wrap').innerHTML, /ring-arc grow/);
+  assert.match(grow.querySelector('.gring-wrap').innerHTML, /--draw-from:66.67/, 'animates from the old value; the end state is the default');
 });
 
 test('start screen shows the ring next to the title and keeps streak and level in start-meta', () => {
@@ -159,8 +159,8 @@ test('the end state is the rendered default (segments lit, ring at the new value
   for (const seg of ['g-low', 'g-mid', 'g-top']) assert.match(g, new RegExp(`${seg} on`));
   const ring = el.querySelector('.goal-ring');
   assert.equal(ring.getAttribute('aria-label'), 'Dagdoel: 30 van 30 XP');
-  assert.match(ring.querySelector('.ring-wrap').innerHTML, /stroke-dashoffset="0"/, 'drawn at the new value');
-  assert.match(ring.querySelector('.ring-wrap').innerHTML, /--draw-from:33.33/, 'grows from the old 20 of 30');
+  assert.match(ring.querySelector('.gring-wrap').innerHTML, /stroke-dashoffset="0"/, 'drawn at the new value');
+  assert.match(ring.querySelector('.gring-wrap').innerHTML, /--draw-from:33.33/, 'grows from the old 20 of 30');
   assert.equal(el.querySelectorAll('.done-mark').length, 0, 'the guide replaces the mark');
   const off = wrap(celebration(celebApp({ settings: { guide: false } }), { xp: 20, medals: [], titles: [] }, { mark: mark(), play: () => {} }).nodes);
   assert.equal(off.querySelector('.guide'), null);

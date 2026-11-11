@@ -72,14 +72,14 @@ function ringSvg(share, done, fromShare) {
   const off = rnd(100 - Math.min(1, share) * 100);
   const grow = fromShare != null && fromShare < share;
   const style = grow ? ` style="--draw-from:${rnd(100 - Math.min(1, fromShare) * 100)}"` : '';
-  return `<svg class="ring" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="ring-track" cx="20" cy="20" r="17" />`
+  return `<svg class="gring" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="ring-track" cx="20" cy="20" r="17" />`
     + `<circle class="ring-arc${grow ? ' grow' : ''}" cx="20" cy="20" r="17" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${off}" transform="rotate(-90 20 20)"${style} />`
     + `${done ? `<path class="ring-check${grow ? ' grow' : ''}" d="M14 20.5 18 24.5 26 16" />` : ''}</svg>`;
 }
 
 export function goalRing(t, { xp, goal, done }, { from = null, small = false, label = null } = {}) {
   return h('span', { class: `goal-ring${small ? ' goal-ring-sm' : ''}${done ? ' done' : ''}`, role: 'img', 'aria-label': label || t('goalRing', xp, goal) },
-    h('span', { class: 'ring-wrap', html: ringSvg(xp / goal, done, from == null ? null : from / goal) }),
+    h('span', { class: 'gring-wrap', html: ringSvg(xp / goal, done, from == null ? null : from / goal) }),
     small ? null : h('span', { class: 'goal-num mono' }, `${xp}/${goal}`));
 }
 

@@ -1014,9 +1014,9 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 
 /* Daily goal ring: 40 px, 3 px stroke, track and petrol arc, butt caps; the number beside it. */
 .goal-ring { display: inline-flex; align-items: center; gap: 6px; }
-.ring-wrap { display: inline-flex; line-height: 0; }
-.ring { width: 40px; height: 40px; }
-.goal-ring-sm .ring { width: 24px; height: 24px; }
+.gring-wrap { display: inline-flex; line-height: 0; }
+.gring { width: 40px; height: 40px; }
+.goal-ring-sm .gring { width: 24px; height: 24px; }
 .ring-track { fill: none; stroke: var(--line); stroke-width: 3; }
 .ring-arc { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: butt; }
 .goal-ring-sm .ring-track, .goal-ring-sm .ring-arc { stroke-width: 4; }
