@@ -4,6 +4,7 @@ export default {
     // Topic: Reading a technical drawing
     {
       id: 'eng.drawings.views',
+      film: 'eng.drawings.reading',
       title: 'Reading a technical drawing',
       pre: [
         {
@@ -367,6 +368,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdt',
+      film: 'eng.drawings.reading',
       title: 'Tolerances on drawings and GD&T',
       pre: [
         {
