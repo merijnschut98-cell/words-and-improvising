@@ -5,7 +5,7 @@ import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
-import { medalSeal, metaSeal, moduleEndModel, checkEntry } from './flairui.js';
+import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -174,6 +174,7 @@ export function courseHome(app, subject) {
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
     todayCard(app, subject, pick),
+    goalLeftLine(app),
     // Begrippen and Mijn echte week: one compact row under the next step.
     h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),

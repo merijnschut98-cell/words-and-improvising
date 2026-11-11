@@ -60,3 +60,56 @@ test('guide is not rendered when settings.guide is false', () => {
   assert.ok(el.classList.contains('guide-32'));
   assert.match(el.innerHTML, /g-mid[^"]*warn/);
 });
+
+// ---- The guide in the quiz review and on the course home (task 20) ----
+const { renderQuiz } = await import('../src/ui/quiz.js');
+const { goalLeftLine } = await import('../src/ui/flairui.js');
+const { defaultState } = await import('../src/core/storage.js');
+const tNl = translator('nl');
+const qs = [{ id: 'x#r0', q: 'q0', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }, { id: 'x#r1', q: 'q1', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }];
+const quizApp = (settings = {}) => ({ t: tNl, lang: 'nl', today: () => '2026-11-02', state: { ...defaultState(), settings: { ...defaultState().settings, ...settings } } });
+
+test('quiz review: all right lights the top with no line; misses light the middle with one line, once per quiz', () => {
+  const box = document.createElement('div');
+  renderQuiz(quizApp(), { questions: qs, onDone() {} }, box);
+  box.querySelectorAll('.opt')[0].click();
+  box.querySelectorAll('.opt')[0].click();
+  const clean = box.querySelector('.quiz-review .guide');
+  assert.match(clean.innerHTML, /g-top on/);
+  assert.equal(box.querySelector('.quiz-review .guide-say'), null, 'right answers need no praise');
+
+  const b2 = document.createElement('div');
+  renderQuiz(quizApp(), { questions: qs, onDone() {} }, b2);
+  b2.querySelectorAll('.opt')[1].click();
+  b2.querySelectorAll('.opt')[1].click();
+  assert.match(b2.querySelector('.quiz-review .guide').innerHTML, /g-mid warn/);
+  const say = b2.querySelectorAll('.quiz-review .guide-say');
+  assert.equal(say.length, 1);
+  assert.ok(tNl('guideWrong').includes(say[0].textContent));
+  assert.equal(say[0].getAttribute('aria-live'), null, 'the review already says right and wrong');
+  b2.querySelector('.quiz-review .btn-primary').click(); // second pass: the two misses
+  b2.querySelectorAll('.opt')[1].click();
+  b2.querySelectorAll('.opt')[0].click();
+  assert.ok(b2.querySelector('.quiz-review .guide'));
+  assert.equal(b2.querySelector('.quiz-review .guide-say'), null, 'the line comes once per quiz');
+});
+
+test('course home shows goalLeft only after the first lesson of the day and while the goal is open', () => {
+  const app = (xpDays, settings = {}) => ({ t: tNl, lang: 'nl', today: () => '2026-11-02', state: { ...defaultState(), xpDays, settings: { ...defaultState().settings, ...settings } } });
+  assert.equal(goalLeftLine(app({})), null, 'nothing done today yet');
+  const el = goalLeftLine(app({ '2026-11-02': 18 }));
+  assert.match(el.textContent, /Nog 12 XP tot je dagdoel\./);
+  assert.ok(el.querySelector('.guide'));
+  assert.equal(goalLeftLine(app({ '2026-11-02': 30 })), null, 'goal reached');
+  const off = goalLeftLine(app({ '2026-11-02': 18 }, { guide: false }));
+  assert.equal(off, null, 'the line belongs to the guide');
+});
+
+test('settings guide off: no guide anywhere, the done card keeps its mark', () => {
+  const box = document.createElement('div');
+  renderQuiz(quizApp({ guide: false }), { questions: qs, onDone() {} }, box);
+  box.querySelectorAll('.opt')[1].click();
+  box.querySelectorAll('.opt')[1].click();
+  assert.equal(box.querySelector('.guide'), null);
+  assert.equal(box.querySelector('.guide-say'), null);
+});

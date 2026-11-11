@@ -6,6 +6,7 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge, guessCompare } from '../core/course.js';
 import { questionHint } from '../core/hint.js';
+import { guide, guideLine } from './guide.js';
 
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
 const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
@@ -17,6 +18,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
+  let saidWrong = false; // the guide's line on a miss comes once per quiz (v16)
 
   const answer = (value) => {
     const q = questions[st.order[st.i]];
@@ -126,8 +128,14 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
 
   function reviewCard() {
     const misses = lastPass.filter((x) => !x.ok).length;
+    // The guide reacts here, not per tap: all right lights the top (no line),
+    // a miss lights the middle ochre with one line, once per quiz.
+    const g = guide(app.state, { mood: misses ? 'wrong' : 'right', size: 32 });
+    const say = g && misses && !saidWrong ? guideLine(t, 'guideWrong', app.today ? app.today() : '') : null;
+    if (say) saidWrong = true;
     return h('section', { class: 'card quiz-review' },
-      h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean')),
+      h('div', { class: 'review-head' }, g, h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean'))),
+      say ? h('p', { class: 'guide-say small muted' }, say) : null,
       // Where he used a hint: marked, so he sees what is not really his yet.
       lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}${'guess' in q ? ' guess-row-back' : ''}` },
         h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),

@@ -217,3 +217,14 @@ export function celebration(app, result, { mark = null, play = playCue, subject 
     ],
   };
 }
+
+// On the course home, under the Today card: how much XP is left for the
+// daily goal, said by the guide; only after the first XP of the day and while
+// the goal is still open.
+export function goalLeftLine(app) {
+  const g = goalProgress(app.state, app.today());
+  if (!g.xp || g.done) return null;
+  const el = guide(app.state, { mood: 'idle', size: 32 });
+  if (!el) return null;
+  return h('div', { class: 'guide-line goal-left' }, el, h('p', { class: 'small muted' }, app.t('goalLeft', g.goal - g.xp)));
+}

@@ -1050,3 +1050,6 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .celebrate-medal .celebrate-name, .celebrate-goal { margin: 0; font-weight: 500; color: var(--heading); }
 .quiet-line { margin: 2px 0; color: var(--muted); }
 .guide-say { margin: 6px 0 0; }
+.review-head { display: flex; align-items: center; gap: 10px; }
+.review-head .card-title { margin: 0; }
+.goal-left { margin: -4px 0 0; }
