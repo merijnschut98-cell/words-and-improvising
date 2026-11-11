@@ -436,6 +436,39 @@
         ],
         "vtt": "src/content/courses/films/eng.joining.bonding.en.vtt"
       }
+    },
+    "eng.moulding.machine": {
+      "poster": "src/content/courses/films/eng.moulding.machine.jpg",
+      "nl": {
+        "dur": 337,
+        "bytes": 12365364,
+        "scenes": [
+          0,
+          39.74,
+          72.69,
+          124.95,
+          158.69,
+          197.71,
+          268.1,
+          316.69
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.machine.nl.vtt"
+      },
+      "en": {
+        "dur": 358.7,
+        "bytes": 13067072,
+        "scenes": [
+          0,
+          44.41,
+          79.47,
+          134.58,
+          169.11,
+          213.34,
+          284.59,
+          336.23
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.machine.en.vtt"
+      }
     }
   }
 }
