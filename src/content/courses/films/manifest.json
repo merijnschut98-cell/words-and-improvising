@@ -710,6 +710,41 @@
         ],
         "vtt": "src/content/courses/films/eng.moulding.moulds.en.vtt"
       }
+    },
+    "eng.machining.measuring": {
+      "poster": "src/content/courses/films/eng.machining.measuring.jpg",
+      "nl": {
+        "dur": 308,
+        "bytes": 10436118,
+        "scenes": [
+          0,
+          18.87,
+          51.62,
+          84.03,
+          108.56,
+          150.75,
+          178.98,
+          226.2,
+          275.78
+        ],
+        "vtt": "src/content/courses/films/eng.machining.measuring.nl.vtt"
+      },
+      "en": {
+        "dur": 328.9,
+        "bytes": 11113236,
+        "scenes": [
+          0,
+          21.08,
+          55.41,
+          88.97,
+          113.36,
+          158.87,
+          189.82,
+          242.35,
+          293.29
+        ],
+        "vtt": "src/content/courses/films/eng.machining.measuring.en.vtt"
+      }
     }
   }
 }
