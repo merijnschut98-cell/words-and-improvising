@@ -3,7 +3,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
-import { applyLesson, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { applyLesson, markOpened, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, recallQuestions, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
@@ -83,6 +83,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   return () => { closeFilms(); if (onLeave) onLeave(); };
 
   function run(lesson, meta, terms = []) {
+    // Remembered, so the course home can bring him back here if he leaves (v16).
+    app.setState(markOpened(app.state, subject, lesson.id, Date.now()));
     const phases = lessonPhases(lesson);
     let p = 0;
     let block = 0;

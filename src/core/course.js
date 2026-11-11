@@ -166,6 +166,15 @@ export function applySituation(state, { subject, lessonId, pts }, today, now) {
   return { state: next, xp };
 }
 
+// When he opens a lesson: remembered, so the course home can bring him back
+// to a lesson he left before finishing (v16). Synced, latest wins.
+export function markOpened(state, subject, lessonId, now) {
+  return withSubject(state, subject, (c) => {
+    const before = c.lessons[lessonId] || {};
+    return { ...c, lessons: { ...c.lessons, [lessonId]: { ...before, opened: now } } };
+  });
+}
+
 export function markSayIt(state, subject, lessonId, now) {
   return withSubject(state, subject, (c) => {
     const before = c.lessons[lessonId] || {};
@@ -186,21 +195,41 @@ export function moduleMastery(state, meta, lang) {
 
 const passedIn = (state, subject) => (((state.courses || {})[subject]) || { lessons: {} }).lessons;
 
-// When he last read or passed a lesson.
-const lastTouched = (p) => Math.max((p && p.read) || 0, (p && p.passed) || 0);
+// When he last did anything with a lesson: opened, read, passed, or
+// practised it (a situation or the say-it round).
+const lastTouched = (p) => Math.max((p && p.opened) || 0, (p && p.read) || 0, (p && p.passed) || 0,
+  (p && p.situation && p.situation.ts) || 0, (p && p.sayIt) || 0);
 
-// Topic modules (free access): the topic he touched last while it has an open
-// level, else the first open topic in index order; within it, the lowest
-// level not passed. Depth-first: one topic from Basis to Expert. Other
-// modules: the first lesson not passed, in index order.
+// The lesson touched last among ids (first in order on ties), or null.
+function mostRecent(lessons, ids) {
+  let recent = null;
+  let at = 0;
+  for (const id of ids) { const ts = lastTouched(lessons[id]); if (ts > at) { recent = id; at = ts; } }
+  return recent;
+}
+
+// A lesson he opened and left before passing it, when that is the last thing
+// he did in this subject: the course home brings him straight back (v16).
+export function resumeLesson(state, subject, modules = MODULES) {
+  const lessons = passedIn(state, subject);
+  const ids = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons);
+  const id = mostRecent(lessons, ids);
+  if (!id || lessons[id].passed || !lessons[id].opened) return null;
+  return { moduleId: moduleOf(id), lessonId: id };
+}
+
+// A lesson he opened and did not finish, when it is the last one he touched
+// in the module, comes first. Then, topic modules (free access): the topic he
+// touched last while it has an open level, else the first open topic in index
+// order; within it, the lowest level not passed. Depth-first: one topic from
+// Basis to Expert. Other modules: the first lesson not passed, in index order.
 export function nextLesson(state, meta) {
   const lessons = passedIn(state, meta.subject);
   const done = (id) => !!(lessons[id] && lessons[id].passed);
+  const recent = mostRecent(lessons, meta.lessons);
+  if (recent && !done(recent) && lessons[recent].opened) return recent;
   const metaTopics = topicsOf(meta);
   if (metaTopics) {
-    let recent = null;
-    let at = 0;
-    for (const id of meta.lessons) { const ts = lastTouched(lessons[id]); if (ts > at) { recent = id; at = ts; } }
     const open = (t) => t.levels.some((id) => !done(id));
     const current = recent && metaTopics.find((t) => t.levels.includes(recent));
     const topic = current && open(current) ? current : metaTopics.find(open);
@@ -250,12 +279,18 @@ function placed(pick, modules) {
   return p ? { ...pick, topicId: p.topicId, level: p.level } : pick;
 }
 
-// A module he started first; otherwise the lowest level across tracks, in
-// index order. Null when every lesson of the subject is passed.
+// The started module he worked in last (a lesson opened, passed or
+// practised: where he left off, v16); otherwise the lowest level across
+// tracks, in index order. Null when every lesson of the subject is passed.
 export function recommendedModule(state, subject, modules = MODULES) {
   const open = modules.filter((m) => m.subject === subject && nextLesson(state, m));
   const lessons = passedIn(state, subject);
-  const started = open.find((m) => m.lessons.some((id) => lessons[id] && lessons[id].passed));
+  let started = null;
+  let at = 0;
+  for (const m of open) {
+    const ts = Math.max(0, ...m.lessons.map((id) => lastTouched(lessons[id])));
+    if (ts > at) { started = m; at = ts; }
+  }
   if (started) return started.id;
   const first = [...open].sort((a, b) => a.level - b.level || modules.indexOf(a) - modules.indexOf(b))[0];
   return first ? first.id : null;
@@ -264,6 +299,9 @@ export function recommendedModule(state, subject, modules = MODULES) {
 // One next thing per course, deterministic for a state and day.
 export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
   const reviews = state.courseReviews || {};
+  // Where he left off: a lesson he opened and did not finish comes back first (v16).
+  const back = resumeLesson(state, subject, modules);
+  if (back) return placed({ reason: 'lesson', why: 'resume', ...back }, modules);
   // A plan follow-up is quick and time-sensitive: first.
   const plan = openPlans(state, subject, today)[0];
   if (plan) return { reason: 'apply', planId: plan.id, lessonId: plan.lessonId, moduleId: moduleOf(plan.lessonId) };

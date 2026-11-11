@@ -370,6 +370,22 @@ async function playLesson(pg, subject, slug, lessonId, { missFirst = true, revie
   return lesson;
 }
 
+await step('where you left off: a lesson left before the end comes back on top of the course (v16)', async () => {
+  const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-today .today-go').waitFor();
+  const title = await page.evaluate(async () => (await import('/src/content/courses/eng/flow.nl.js')).default.lessons.find((l) => l.id === 'eng.flow.bottleneck').title);
+  await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.bottleneck' }));
+  await page.locator('.pre-card').waitFor();
+  await page.locator('.round-top .icon-btn').first().click();
+  await page.locator('.course-today .today-what', { hasText: title }).waitFor();
+  await page.locator('.course-today .today-why', { hasText: 'Ga verder waar je was' }).waitFor();
+  await page.evaluate((s) => localStorage.setItem('spraakwater:v1', s), saved);
+  await page.reload();
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
 await step('a full lesson: guess, read, example, quiz with one miss, review, pass', async () => {
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await page.locator('.course-today .today-go').click();

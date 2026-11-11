@@ -484,3 +484,64 @@ test('linkTerms: a plural or simple inflection of a term also links (micro-stops
   assert.deepEqual(hit('Escapes cost money.'), ['Escapes']);
   assert.deepEqual(hit('Escaped is not a term.'), [], 'only plural/inflection endings, not any suffix');
 });
+
+// ---- v16: the top card resumes where he left off ----
+import { markOpened, resumeLesson } from '../src/core/course.js';
+
+const RMODS = [
+  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, lessons: ['eng.flow.a', 'eng.flow.b', 'eng.flow.c'], questions: { 'eng.flow.a': 1, 'eng.flow.b': 1, 'eng.flow.c': 1 } },
+  { id: 'eng.machining', subject: 'eng', track: 'discrete', level: 1, lessons: ['eng.machining.a', 'eng.machining.b'], questions: { 'eng.machining.a': 1, 'eng.machining.b': 1 } },
+  { id: 'pm.intake', subject: 'pm', track: 'project', level: 1, lessons: ['pm.intake.ask'], questions: { 'pm.intake.ask': 1 } },
+];
+const lessonAt = (st, id, p) => {
+  const sub = id.split('.')[0];
+  const c = st.courses[sub] || { lessons: {}, sessions: [] };
+  return { ...st, courses: { ...st.courses, [sub]: { ...c, lessons: { ...c.lessons, [id]: { ...(c.lessons[id] || {}), ...p } } } } };
+};
+const passAt = (st, id, ts) => lessonAt(st, id, { read: ts, passed: ts });
+
+test('markOpened: remembers when a lesson was opened; never touches passed', () => {
+  const s = markOpened(passAt(defaultState(), 'eng.flow.a', 5), 'eng', 'eng.flow.a', 50);
+  assert.deepEqual(s.courses.eng.lessons['eng.flow.a'], { read: 5, passed: 5, opened: 50 });
+  assert.equal(markOpened(defaultState(), 'eng', 'eng.flow.b', 60).courses.eng.lessons['eng.flow.b'].opened, 60);
+});
+
+test('resumeLesson: the lesson he opened last and did not finish; none once it is passed or something later was done', () => {
+  const s = markOpened(passAt(defaultState(), 'eng.flow.a', 10), 'eng', 'eng.machining.b', 20);
+  assert.deepEqual(resumeLesson(s, 'eng', RMODS), { moduleId: 'eng.machining', lessonId: 'eng.machining.b' });
+  assert.equal(resumeLesson(s, 'pm', RMODS), null, 'per subject');
+  assert.equal(resumeLesson(passAt(s, 'eng.machining.b', 30), 'eng', RMODS), null, 'finished');
+  // He opened b, left it, then finished another lesson: that is the later activity.
+  assert.equal(resumeLesson(passAt(s, 'eng.flow.b', 40), 'eng', RMODS), null);
+  assert.equal(resumeLesson(defaultState(), 'eng', RMODS), null);
+});
+
+test('course today: an unfinished lesson comes back on top, before a plan, an event and due questions', () => {
+  const day = '2026-11-02';
+  let s = markOpened(passAt(defaultState(), 'eng.flow.a', 10), 'eng', 'eng.machining.b', 20);
+  s = { ...s, courseReviews: Object.fromEntries([0, 1, 2, 3, 4].map((i) => [`nl|eng.flow.a#r${i}`, { box: 1, due: day, lesson: 'eng.flow.a', subject: 'eng' }])) };
+  s.courses.eng.plans = [{ id: 'p1', lessonId: 'eng.flow.a', text: 'x', day: '2026-10-30', due: day, asked: 0, outcome: null }];
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, RMODS), { reason: 'lesson', why: 'resume', moduleId: 'eng.machining', lessonId: 'eng.machining.b' });
+});
+
+test('course today: after a lesson or practice, the next lesson is in the module he worked in last', () => {
+  const day = '2026-11-02';
+  let s = passAt(passAt(defaultState(), 'eng.flow.a', 10), 'eng.machining.a', 20);
+  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.machining', 'the module he worked in last, not the first one started');
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, RMODS), { reason: 'lesson', moduleId: 'eng.machining', lessonId: 'eng.machining.b' });
+  // Practising a passed lesson (a situation) in flow brings flow back.
+  s = lessonAt(s, 'eng.flow.a', { situation: { pts: 2, ts: 30 } });
+  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.flow');
+  // So does the say-it round.
+  s = lessonAt(s, 'eng.machining.a', { sayIt: 40 });
+  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.machining');
+});
+
+test('nextLesson resumes an opened, unfinished lesson in the module; otherwise the first not passed', () => {
+  let s = passAt(defaultState(), 'eng.flow.a', 10);
+  assert.equal(nextLesson(s, RMODS[0]), 'eng.flow.b');
+  s = markOpened(s, 'eng', 'eng.flow.c', 20);
+  assert.equal(nextLesson(s, RMODS[0]), 'eng.flow.c');
+  s = passAt(s, 'eng.flow.c', 30);
+  assert.equal(nextLesson(s, RMODS[0]), 'eng.flow.b');
+});
