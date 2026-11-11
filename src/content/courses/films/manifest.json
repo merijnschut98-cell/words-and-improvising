@@ -372,24 +372,24 @@
     "eng.joining.bolting": {
       "poster": "src/content/courses/films/eng.joining.bolting.jpg",
       "nl": {
-        "dur": 340.6,
-        "bytes": 8381915,
+        "dur": 339.9,
+        "bytes": 8352338,
         "scenes": [
           0,
-          26.68,
-          67.43,
-          102.31,
-          130.88,
-          155.2,
-          204.49,
-          251.34,
-          277.96
+          26.73,
+          67.56,
+          102.46,
+          130.94,
+          155,
+          204.25,
+          250.74,
+          277.34
         ],
         "vtt": "src/content/courses/films/eng.joining.bolting.nl.vtt"
       },
       "en": {
         "dur": 355.9,
-        "bytes": 8594818,
+        "bytes": 8594905,
         "scenes": [
           0,
           27.16,
