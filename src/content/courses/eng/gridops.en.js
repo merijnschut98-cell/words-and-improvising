@@ -579,6 +579,7 @@ export default {
     // ── Topic 3: Outages and asset risk ──
     {
       id: 'eng.gridops.outage',
+      film: 'eng.gridops.outage',
       figure: 'eng.gridops.switching',
       title: 'Handling an outage',
       pre: [
