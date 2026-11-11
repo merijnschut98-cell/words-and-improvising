@@ -714,20 +714,6 @@ details.finder summary::-webkit-details-marker { display: none; }
 .topic-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
 .topic-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: var(--heading); }
 .topic-count { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
-.level-chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.level-chip {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  min-height: 44px; min-width: 0; padding: 6px 1px; border: 1px solid var(--border-subtle); border-radius: 6px;
-  background: var(--card); color: var(--ink); font: inherit; cursor: pointer; text-align: center;
-}
-.level-chip .ico { color: var(--good); }
-.chip-label { font-size: 0.78rem; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.level-chip.s-todo .chip-label { color: var(--muted); }
-.level-chip.s-owned { background: color-mix(in srgb, var(--good) 14%, var(--card)); border-color: color-mix(in srgb, var(--good) 40%, var(--border-subtle)); }
-.level-chip.next { outline: 2px solid var(--accent); outline-offset: 1px; }
-.level-chip.next .chip-label { color: var(--ink); }
-.chip-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
-@media (hover: hover) { .level-chip:hover { border-color: var(--accent); } }
 .lesson .card { margin-bottom: 12px; }
 .teach-text { font-size: 1.06rem; line-height: 1.6; margin: 8px 0; }
 .teach-text p { margin: 0 0 0.8em; }
@@ -986,3 +972,23 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .guide-svg.s-celebrate .g-top { animation-delay: calc(2 * var(--motion-stagger)); }
 .guide-line { display: flex; gap: 10px; align-items: center; margin: 8px 0 0; }
 .guide-line p { margin: 0; }
+
+/* The learning path: levels as stops on a line, per topic. */
+.path { display: flex; align-items: flex-start; margin-top: 8px; }
+.path-cell { flex: 0 0 auto; width: 62px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.path-line { flex: 1 1 6px; min-width: 6px; height: 2px; margin-top: 21px; background: var(--line); }
+.path-line.on { background: var(--accent); }
+.path-line-more { height: 0; background: none; border-top: 2px dashed var(--line); }
+.path-stop { position: relative; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--card); }
+.path-stop::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); transition: border-color var(--motion-fast) var(--ease-standard); }
+.path-stop.s-passed::before, .path-stop.s-owned::before { background: var(--accent); border-color: var(--accent); }
+.path-stop.s-next::before { border-color: var(--accent); }
+.path-stop .ico { position: relative; width: 16px; height: 16px; }
+.path-stop:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+@media (hover: hover) { .path-stop.s-todo:hover::before { border-color: var(--accent); } }
+.path-label { font-size: 0.7rem; line-height: 1.15; color: var(--muted); text-align: center; overflow-wrap: anywhere; }
+.path-stop.s-next + .path-label { color: var(--ink); }
+.path-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
+.path-stub { margin-top: 13px; padding-left: 4px; font-size: 0.75rem; color: var(--muted); }
+.path-flag { margin-top: 11px; padding-left: 2px; display: inline-flex; align-items: center; color: var(--accent-dark); }
+.path-flag .ico-check { width: 0.9em; height: 0.9em; margin-left: -2px; }

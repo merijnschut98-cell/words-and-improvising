@@ -258,21 +258,8 @@ test('v9 progress under the v10 machining table: same lessons passed or owned, s
 });
 
 // ---- Task 3: level chips ----
-import { chipModel } from '../src/ui/coursehome.js';
+// chipModel retired in v16 flair: the level chips became path stops (tests/pathmap.test.js).
 import { translator, STRINGS } from '../src/i18n.js';
-
-test('chipModel: class, icon and aria label per state; the suggested chip is marked next', () => {
-  const nl = translator('nl');
-  const en = translator('en');
-  const lv = (level, state) => ({ lessonId: `eng.fx.a${level}`, level, state });
-  assert.deepEqual(chipModel(nl, 'Draaien', lv(1, 'todo'), false), { cls: 'level-chip s-todo', label: 'Basis', aria: 'Draaien, Basis: nog te doen', icon: null });
-  assert.deepEqual(chipModel(nl, 'Draaien', lv(3, 'passed'), false), { cls: 'level-chip s-passed', label: 'Gevorderd', aria: 'Draaien, Gevorderd: behaald', icon: 'circle-check' });
-  assert.deepEqual(chipModel(nl, 'Draaien', lv(2, 'owned'), false), { cls: 'level-chip s-owned', label: 'Werkkennis', aria: 'Draaien, Werkkennis: beheerst', icon: 'check-check' });
-  assert.equal(chipModel(en, 'Turning', lv(3, 'passed'), false).aria, 'Turning, Advanced: passed');
-  const next = chipModel(nl, 'Draaien', lv(4, 'todo'), true);
-  assert.equal(next.cls, 'level-chip s-todo next');
-  assert.match(next.aria, /Volgende/);
-});
 
 test('i18n: topic and level strings in both languages', () => {
   const nl = translator('nl');

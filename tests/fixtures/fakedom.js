@@ -109,7 +109,7 @@ function matchChain(el, parts, root) {
 
 export function installFakeDom() {
   globalThis.Node = FakeNode;
-  globalThis.document = { createElement: (t) => new FakeElement(t), createTextNode: (t) => new FakeText(t), documentElement: new FakeElement('html') };
+  globalThis.document = { createElement: (t) => new FakeElement(t), createElementNS: (_ns, t) => new FakeElement(t), createTextNode: (t) => new FakeText(t), documentElement: new FakeElement('html') };
   if (!globalThis.window) globalThis.window = { scrollTo() {}, matchMedia: () => ({ matches: false }) };
   return { FakeElement };
 }
