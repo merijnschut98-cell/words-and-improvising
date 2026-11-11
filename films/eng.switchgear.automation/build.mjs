@@ -76,9 +76,13 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 //   distribution operators opened breakers remotely through their SCADA.
 //   Said without a year, with the cyber module's wording "zones en conduits"
 //   (IEC 62443), hedged: "behandel die verbinding als OT".
-// - Outage minutes: the lesson's figures (about 20 to 25 a year, about 22 in
-//   2023 and 24 in 2024, unplanned) and the regulator's quality incentive
-//   (ACM's q-factor) as the lesson words them.
+// - Outage minutes, unplanned: about 20 to 25 a year (Netbeheer Nederland,
+//   Betrouwbaarheid van elektriciteitsnetten in Nederland: 21,8 in 2023 with a
+//   five-year average of 21,9; 23,9 in 2024; 23,4 in 2025, Resultaten 2025,
+//   1 April 2026), as eng.gridbasics, eng.gridops and the outage and
+//   congestion films; the lesson says "zo'n 23" for 2025. Planned work (27,2
+//   in 2025) is left to those lessons. The regulator's quality incentive
+//   (ACM's q-factor) as the lesson words it.
 const AUT = 'eng.switchgear.automation';
 const lessons = await allLessons();
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
@@ -107,7 +111,7 @@ const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
     ['de ring in stukken verdeelt', 's6'],
     ['kosten per station tegenover minder klantminuten', 's6'],
     ['het aantal klanten zonder stroom maal de minuten dat ze zonder zitten, en minder rijden', 's6'],
-    ['zo’n 20 tot 25 minuten per jaar zonder stroom door ongeplande storingen (zo’n 22 in 2023, 24 in 2024)', 's6'],
+    ['zo’n 20 tot 25 minuten per jaar zonder stroom door onvoorziene storingen (in 2025 zo’n 23: 23,4, Netbeheer Nederland)', 's6'],
     ['de toezichthouder koppelt een deel van de inkomsten van netbeheerders aan kwaliteit', 's6'],
     ['een kastje met een modem, een accu en de motoraandrijving op de schakelaar', 's2'],
     ['accu’s die leeg zijn als het erop aankomt', 's7'],
@@ -136,9 +140,10 @@ assert(Math.abs((1 - KM1 / KM0) * 100 - 80) < 1, 'about 80% less (80,6%)');
 const RING = { cust: [200, 200, 200, 200, 100, 100, 200], keys: [3, 6], fault: 4 };
 assert(RING.cust.reduce((a, b) => a + b, 0) === EX.all, 'the ring feeds 1.200');
 assert(RING.cust[4] + RING.cust[5] === EX.wait, 'stations 5 and 6 between the key switches: 200');
-// the Dutch outage minutes (lesson): about 22 in 2023, 24 in 2024, 20 to 25 a year
-const NLMIN = { y2023: 22, y2024: 24, lo: 20, hi: 25 };
-assert(NLMIN.y2023 >= NLMIN.lo && NLMIN.y2024 <= NLMIN.hi, 'the years inside the 20 to 25 band');
+// the Dutch outage minutes, unplanned (lesson: 20 to 25 a year, 23,4 in 2025;
+// the card adds 2024's 23,9 from eng.gridops)
+const NLMIN = { years: [[2024, 23.9], [2025, 23.4]], lo: 20, hi: 25 };
+assert(NLMIN.years.every(([, m]) => m >= NLMIN.lo && m <= NLMIN.hi), 'the years inside the 20 to 25 band');
 
 // ---------------------------------------------------------------- the world: a key secondary substation
 // World units are centimetres, z up, x along the front (cabinet at −x, RMU,
@@ -578,7 +583,7 @@ const spec = {
       beats: [
         B('Elk netstation automatiseren is te duur: per ring een paar sleutelstations, vaak twee of drie.', 'Automating every station is too expensive: a few key stations per ring, often two or three.', { cues: [] }),
         B('De afweging: kosten per station tegenover minder klantminuten en minder rijden.', 'The trade-off: cost per station against fewer customer minutes and less driving.', { cues: [] }),
-        B('Nederland: zo’n {n:20} tot {n:25} minuten per klant per jaar, {n:22} in 2023 en {n:24} in 2024.', 'The Netherlands: about {n:20} to {n:25} minutes per customer a year, {n:22} in 2023 and {n:24} in 2024.', { cues: [] }),
+        B('Nederland: zo’n {n:20} tot {n:25} minuten per klant per jaar, {n:23.4} in 2025.', 'The Netherlands: about {n:20} to {n:25} minutes per customer a year, {n:23.4} in 2025.', { cues: [] }),
       ],
     },
     {
@@ -600,7 +605,8 @@ const spec = {
 // model above). No "/", "×", "=", "%" or units as symbols in the spoken text:
 // "min" and "%" are said by the kit's SAY rules, "×" and "=" as "maal" and
 // "is". Terms as in eng.switchgear.devices (vermogensschakelaar, lastscheider,
-// RMU), the grid modules (kortsluitverklikker, normaal openpunt,
+// RMU), the grid modules (kortsluitverklikker, normaal openpunt with its
+// definition word for word as in eng.gridops and the outage film,
 // bedrijfsvoeringscentrum, klantminuten), eng.ot.isa95 (SCADA) and the cyber
 // module (zones en conduits). Dutch words checked with espeak-ng phonemes
 // (Piper's own bridge, films/_kit/voice-ab/phon.py with nl_NL-alex-medium):
@@ -617,20 +623,20 @@ const spec = {
 // alone (read "REElajs"; beveiligingsrelais is right) and cybermodule (read "sieber").
 const SAY = [
   [ // s1 without automation
-    B('Een middenspanningsring loopt van het onderstation langs een reeks netstations, en eindigt bij een normaal openpunt naar een buurring. Deze ring voedt {n:1200} klanten, via zeven netstations.',
-      'A medium-voltage ring runs from the substation past a series of secondary substations, and ends at a normally open point to a neighbouring ring. This ring feeds {n:1200} customers through seven stations.'),
-    B('Dan raakt een graafmachine de kabel tussen station 5 en 6. Het beveiligingsrelais ziet de kortsluiting, en de vermogensschakelaar in het onderstation gaat uit. Alle {n:1200} klanten zitten zonder stroom.',
-      'Then a digger hits the cable between stations 5 and 6. The protection relay sees the short circuit, and the circuit breaker in the substation trips. All {n:1200} customers are off.'),
-    B('Zonder automatisering rijdt een monteur van station naar station. Hij leest de verklikkers af, zoekt zo het kapotte stuk, opent de lastscheiders eromheen met de hand, en sluit het openpunt. Dat kost één tot twee uur zonder stroom voor de meeste klanten.',
-      'Without automation, a technician drives from station to station. He reads the indicators, finds the damaged section, opens the load-break switches around it by hand, and closes the open point. That means one to two hours without power for most customers.'),
+    B('Een middenspanningsring loopt van het onderstation langs zeven netstations, met samen {n:1200} klanten. In station 7 zit het normaal openpunt naar een buurring: de schakelaar in een MS-ring die openstaat; je sluit hem om een deel van de andere kant te voeden.',
+      'A medium-voltage ring runs from the substation past seven secondary substations, with {n:1200} customers between them. Station 7 holds the normally open point to a neighbouring ring: the switch in an MV ring that is kept open; you close it to feed a section from the other side.'),
+    B('Dan raakt een graafmachine de kabel tussen station 5 en 6. Het beveiligingsrelais ziet de kortsluiting, en de vermogensschakelaar in het onderstation gaat uit. Iedereen zit zonder stroom.',
+      'Then a digger hits the cable between stations 5 and 6. The protection relay sees the short circuit, and the circuit breaker in the substation trips. Everyone is off.'),
+    B('Zonder automatisering rijdt een monteur van station naar station. Hij leest de verklikkers af, opent de lastscheiders rond het kapotte stuk met de hand, en sluit het openpunt. Dat kost één tot twee uur zonder stroom voor de meeste klanten.',
+      'Without automation, a technician drives from station to station. He reads the indicators, opens the load-break switches around the damaged section by hand, and closes the open point. That means one to two hours without power for most customers.'),
     B('Zeg dat alle klanten {n:90} minuten zonder zitten. Dat telt de netbeheerder in {t:Klantminuten|klantminuten}: het aantal klanten zonder stroom maal de minuten zonder stroom. {n:1200} maal {n:90} is {n:108000} klantminuten.',
       'Say all of them are off for {n:90} minutes. The grid operator counts that in {t:Customer minutes|customer minutes}: the number of customers off times the minutes without power. {n:1200} times {n:90} is {n:108000} customer minutes.'),
   ],
   [ // s2 switching remotely
     B('{t:Distributieautomatisering|Distributieautomatisering} betekent: het middenspanningsnet op afstand bedienen en bewaken.',
       '{t:Distribution automation|Distribution automation} means remote control and monitoring of the medium-voltage grid.'),
-    B('Een aantal netstations krijgt een {t:Afstandsbediende schakelaar|afstandsbediende schakelaar}. Dat is een lastscheider met motoraandrijving, die het bedrijfsvoeringscentrum via een verbinding open en dicht kan zetten. De motor draait de schakelaar, net als een monteur met zijn hendel.',
-      'Some stations get a {t:Remote-controlled switch|remote-controlled switch}: a motor-driven load-break switch that the control room can open and close over a communication link. The motor turns the switch, just as a technician would with his handle.'),
+    B('Een aantal netstations krijgt een {t:Afstandsbediende schakelaar|afstandsbediende schakelaar}. Dat is een lastscheider met motoraandrijving, die het bedrijfsvoeringscentrum via een verbinding open en dicht kan zetten.',
+      'Some stations get a {t:Remote-controlled switch|remote-controlled switch}: a motor-driven load-break switch that the control room can open and close over a communication link.'),
     B('In het station zie je een kastje met een modem, een accu en de besturing, en de motoraandrijving op de schakelaar. De accu houdt alles werkend als de spanning in het station weg is, precies tijdens een storing.',
       'In the station you see a small cabinet with a modem, a battery and the controls, and the motor drive on the switch. The battery keeps everything working when the station has lost its supply, which is exactly during an outage.'),
     B('In het bedrijfsvoeringscentrum ziet de bedrijfsvoerder in SCADA waar de fout zit. Hij schakelt in minuten, zonder te wachten tot er een monteur ter plaatse is.',
@@ -657,8 +663,8 @@ const SAY = [
       '{n:1000} times {n:3} plus {n:200} times {n:90} is {n:3000} plus {n:18000}: {n:21000} customer minutes. That is about {n:80}% less than {n:108000}, from just two upgraded stations.'),
   ],
   [ // s5 self-healing
-    B('Eerst blijft de beveiliging haar werk doen: het beveiligingsrelais in het onderstation laat de vermogensschakelaar de kortsluiting afschakelen. Een lastscheider onderbreekt nooit zelf een kortsluiting.',
-      'First, protection still does its job: the relay in the substation has the circuit breaker clear the short circuit. A load-break switch never breaks a short circuit itself.'),
+    B('Eerst doet de beveiliging haar werk: de vermogensschakelaar in het onderstation schakelt de kortsluiting af. Een lastscheider onderbreekt nooit zelf een kortsluiting.',
+      'First, protection does its job: the circuit breaker in the substation clears the short circuit. A load-break switch never breaks a short circuit itself.'),
     B('Een {t:Zelfherstellende ring|zelfherstellende ring} gaat een stap verder dan schakelen op afstand. Het systeem vindt de fout uit de verklikkers, opent de schakelaars eromheen en sluit het openpunt, helemaal zelf, vaak binnen een minuut.',
       'A {t:Self-healing ring|self-healing ring} goes one step further than remote switching. The system locates the fault from the indicators, opens the switches around it and closes the open point by itself, often within a minute.'),
     B('Dat vraagt betrouwbare communicatie, kloppende gegevens van het net, en goed geteste logica. Daarom voeren netbeheerders het stap voor stap in.',
@@ -671,12 +677,12 @@ const SAY = [
       'Automating every station is too expensive. Operators choose a few key stations per ring, often two or three, where a remote-controlled switch splits the ring into sections.'),
     B('Dat is een zakelijke afweging: de kosten per station tegenover minder klantminuten, en minder rijden.',
       'That is a business case: the cost per station against fewer customer minutes, and less driving.'),
-    B('Een Nederlandse klant zit gemiddeld zo’n {n:20} tot {n:25} minuten per jaar zonder stroom door ongeplande storingen: zo’n {n:22} in 2023, en {n:24} in 2024. En de toezichthouder koppelt een deel van de inkomsten van netbeheerders aan die kwaliteit.',
-      'Dutch customers lose power for around {n:20} to {n:25} minutes a year on average through unplanned outages: about {n:22} in 2023, and {n:24} in 2024. And the regulator links part of the operators’ income to that quality.'),
+    B('Door onvoorziene storingen zit een Nederlandse klant gemiddeld zo’n {n:20} tot {n:25} minuten per jaar zonder stroom, in 2025 zo’n {n:23}. En de toezichthouder koppelt een deel van de inkomsten van netbeheerders aan die kwaliteit.',
+      'Unplanned outages leave Dutch customers without power for around {n:20} to {n:25} minutes a year on average, about {n:23} in 2025. And the regulator links part of the operators’ income to that quality.'),
   ],
   [ // s7 what goes wrong
-    B('Wat gaat er mis? Accu’s die leeg zijn als het erop aankomt. Zonder accu geen motor en geen modem, juist tijdens de storing.',
-      'What goes wrong? Batteries that are flat when needed. No battery means no motor and no modem, just during the outage.'),
+    B('Wat gaat er mis? Accu’s die leeg zijn als het erop aankomt: dan geen motor en geen modem.',
+      'What goes wrong? Batteries that are flat when needed: then no motor and no modem.'),
     B('Communicatie die wegvalt tijdens een storm. En gegevens van het net die niet kloppen met de werkelijkheid, zodat het systeem de verkeerde schakelaar kiest.',
       'Communication that drops during a storm. And network data that do not match reality, so the system picks the wrong switch.'),
     B('En elke verbinding naar een station is ook een mogelijke ingang voor aanvallers. Behandel hem daarom als OT, met zones en conduits, net als in een fabriek.',

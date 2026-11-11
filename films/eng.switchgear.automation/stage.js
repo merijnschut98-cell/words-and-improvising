@@ -264,9 +264,9 @@ const STAGE = (() => {
       let c = txt(28, 236, tr('minuten zonder stroom per klant per jaar', 'minutes without power per customer a year'), 20, 'start', 'mf-txt');
       c += `<rect class="mf-accf" x="${f1(xm(C.NLMIN.lo))}" y="252" width="${f1(xm(C.NLMIN.hi) - xm(C.NLMIN.lo))}" height="84" rx="3" style="opacity:.6"/>`;
       c += line(X0, 340, X1, 340) + [0, 10, 20, 30].map((v) => line(xm(v), 340, xm(v), 347) + txt(xm(v), 370, v, 20, 'middle', 'mf-mute')).join('');
-      [[2023, C.NLMIN.y2023, 262], [2024, C.NLMIN.y2024, 298]].forEach(([y, m, yy], i) => {
+      C.NLMIN.years.map(([y, m], i) => [y, m, 262 + i * 36]).forEach(([y, m, yy], i) => {
         const g = span(b, 0.1 + i * 0.25, 0.45 + i * 0.25);
-        c += txt(28, yy + 20, y, 20, 'start', 'mf-mute') + `<rect class="fp-meter" x="${X0}" y="${yy}" width="${f1((xm(m) - X0) * g)}" height="26" rx="3"/>` + op(g, txt(xm(m) + 8, yy + 20, m, 20, 'start', 'mf-mono'));
+        c += txt(28, yy + 20, y, 20, 'start', 'mf-mute') + `<rect class="fp-meter" x="${X0}" y="${yy}" width="${f1((xm(m) - X0) * g)}" height="26" rx="3"/>` + op(g, txt(xm(m) + 8, yy + 20, NL ? String(m).replace('.', ',') : m, 20, 'start', 'mf-mono'));
       });
       s += op(span(b, 0, 0.1), c);
     }
