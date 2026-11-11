@@ -74,6 +74,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.loadflow',
+      film: 'eng.gridplanning.loadflow',
       title: 'Load flow in plain words',
       pre: [
         {
@@ -438,6 +439,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.redundancy',
+      film: 'eng.gridplanning.loadflow',
       figure: 'eng.gridplanning.n1',
       title: 'N-1 and redundancy',
       pre: [

@@ -195,8 +195,8 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ s6: the factory example
-  const EB = 320;
-  const AK = 0.56; // px per A
+  const EB = 340;
+  const AK = 0.45; // px per A
   const MK = 2.1; // px per MVA
   function e1Base() { return PANEL() + tag(EX); }
   function e1Bars(a, ask, add) {
@@ -245,7 +245,7 @@ const STAGE = (() => {
       + op(trip, txt(420, 276, tr('N-1: T1 uit, levering blijft', 'N-1: T1 out, supply stays'), 20, 'middle', 'mf-on'));
     return out;
   }
-  function n1Rail() { return `<path class="mf-thick" d="M262 ${RY}L578 ${RY}"/>` + txt(586, RY + 7, tr('rail', 'busbar'), 20, 'start', 'mf-txt'); }
+  function n1Rail() { return `<path class="mf-thick" d="M262 ${RY}L556 ${RY}"/>` + txt(564, RY + 7, tr('rail', 'busbar'), 20, 'start', 'mf-txt'); }
   function n1Txt(comp, notc) {
     return op(comp * (1 - notc), txt(420, 322, tr('trafo · kabel · lijn · rail', 'transformer · cable · line · busbar'), 20, 'middle', 'mf-on'))
       + op(notc, txt(222, 316, tr('niet: twee storingen tegelijk', 'not: two faults at once'), 20)
