@@ -2,9 +2,15 @@
 // variant, the timeline, beats, the narration hold and the page parameters.
 // No imports and no DOM: the build inlines this file into every film page (with
 // its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
 
 export const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
 
+// build-only:start
 // A scene lasts at least (caption words / 2.5) + 2 s, so it can be read.
 export const minSceneDur = (words) => words / 2.5 + 2;
 
@@ -205,6 +211,7 @@ export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => 
 export const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
 // What is said, as written (no gloss, units kept): the subtitles of the video.
 export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+// build-only:end
 
 // v14b, the timeline driven by the narration audio. durs[scene][beat] is the
 // length of each beat's recorded line (s). Each scene opens with a short look

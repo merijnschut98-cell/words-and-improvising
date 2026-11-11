@@ -10,6 +10,19 @@ import { fileURLToPath } from 'node:url';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const strip = (file) => readFileSync(join(HERE, file), 'utf8').replace(/^export /gm, '');
 
+// timeline.mjs as the page runs it: without the build-only part (caption
+// markers, numbers, the SAY table, speakOf), whose results the film data
+// already carries. Throws when the markers are missing or out of order.
+export function runtimeTimeline() {
+  const src = strip('timeline.mjs');
+  const a = src.indexOf('// build-only:start\n');
+  const b = src.indexOf('// build-only:end\n');
+  if (a < 0 || b < a || src.indexOf('// build-only:', b + 1) >= 0 || src.indexOf('// build-only:start', a + 1) >= 0) {
+    throw new Error('timeline.mjs: expected one // build-only:start … // build-only:end block');
+  }
+  return src.slice(0, a) + src.slice(b + '// build-only:end\n'.length);
+}
+
 // Lucide icons (ISC licence, as in src/ui/icons.js).
 const ICON = {
   play: '<path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/>',
@@ -168,7 +181,7 @@ const json = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
 // stage: { svg, script, css, label: { nl, en } }. The script defines STAGE.
 export function pageHtml(data, stage) {
   const withLabel = { ...data, label: stage.label };
-  const script = [strip('timeline.mjs'), stage.script, readFileSync(join(HERE, 'player-runtime.js'), 'utf8')].join('\n;\n');
+  const script = [runtimeTimeline(), stage.script, readFileSync(join(HERE, 'player-runtime.js'), 'utf8')].join('\n;\n');
   // The end card's replay label follows the language.
   const again = `document.querySelector('.fp-again span').textContent=new URLSearchParams(${SEARCH}).get('lang')==='en'?'Watch again':'Nog een keer';`;
   return `<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${data.title.nl}</title><script>${BOOT}</script><style>${stage.kitCss || ''}${VANTAGE_CSS}${PLAYER_CSS}${stage.css || ''}</style></head><body>${playerHtml(data, stage.svg)}<script type="application/json" id="film-data">${json(withLabel)}</script><script>${again}</script><script type="module">${script.replace(/<\/(script)/gi, '<\\/$1')}</script></body></html>`;
