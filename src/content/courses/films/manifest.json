@@ -403,6 +403,39 @@
         ],
         "vtt": "src/content/courses/films/eng.joining.bolting.en.vtt"
       }
+    },
+    "eng.joining.bonding": {
+      "poster": "src/content/courses/films/eng.joining.bonding.jpg",
+      "nl": {
+        "dur": 317.1,
+        "bytes": 7630461,
+        "scenes": [
+          0,
+          34.55,
+          73.67,
+          118.79,
+          157.35,
+          199.11,
+          224.75,
+          262.91
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bonding.nl.vtt"
+      },
+      "en": {
+        "dur": 342.4,
+        "bytes": 8309074,
+        "scenes": [
+          0,
+          40.08,
+          80.44,
+          125.46,
+          171.25,
+          215.19,
+          241.96,
+          284.06
+        ],
+        "vtt": "src/content/courses/films/eng.joining.bonding.en.vtt"
+      }
     }
   }
 }
