@@ -144,15 +144,18 @@ const STAGE = (() => {
   // ------------------------------------------------------------ s2: the eight pillars
   const PILLARS = [
     tr('autonoom onderhoud', 'autonomous maint.'), tr('gepland onderhoud', 'planned maint.'), tr('gericht verbeteren', 'focused improvement'),
-    tr('kwaliteitsonderhoud', 'quality maint.'), tr('nieuwe machines', 'new equipment'), tr('training', 'training'), tr('veiligheid, milieu', 'safety, environment'), tr('kantoor', 'office'),
+    tr('kwaliteitsonderhoud', 'quality maint.'), tr('nieuwe machines', 'new equipment'), tr('training', 'training'), tr('veiligheid, milieu', 'safety, environment'), tr('TPM op kantoor', 'office TPM'),
   ];
+  // the five pillars the lesson names stand out; the other three (JIPM's early equipment
+  // management; safety, health and environment; office TPM) are drawn muted
+  const NAMED = [true, true, true, true, false, true, false, false];
   const COLX = (i) => 222 + i * 50;
   function column(i, h) {
     const y1 = 332;
     const y0 = y1 - 230 * h;
     if (h <= 0.01) return '';
     const cx = COLX(i) + 20;
-    return rect(COLX(i), y0, 40, y1 - y0, 'mt-col', 3) + (h > 0.9 ? `<text class="mt-txt" x="${f1(cx + 7)}" y="${y1 - 8}" font-size="20" transform="rotate(-90 ${f1(cx + 7)} ${y1 - 8})">${PILLARS[i]}</text>` : '');
+    return rect(COLX(i), y0, 40, y1 - y0, 'mt-col', 3, NAMED[i] ? '' : ' style="opacity:.45"') + (h > 0.9 ? `<text class="${NAMED[i] ? 'mt-txt' : 'mt-mute'}"x="${f1(cx + 7)}" y="${y1 - 8}" font-size="20" transform="rotate(-90 ${f1(cx + 7)} ${y1 - 8})">${PILLARS[i]}</text>` : '');
   }
   function houseBase(prog) {
     let o = PANEL();
@@ -212,7 +215,7 @@ const STAGE = (() => {
       o += txt(222, 262, tr('gehangen', 'hung'), 21, 'start', 'mt-txt') + txt(612, 262, String(C.TAG_SUM), 21, 'end', 'mt-big');
       o += rect(222, 274, w, 18, 'fp-meter', 3);
       o += txt(222, 326, tr('gesloten', 'closed'), 21, 'start', 'mt-on') + txt(612, 326, String(Math.round(C.TAG_SUM * share)), 21, 'end', 'mt-big');
-      o += rect(222, 338, w * share, 18, 'fp-meter', 3, ' data-top=""');
+      o += rect(222, 338, w * share, 18, 'fp-meter', 3, ' data-top=""') + txt(612, 382, EX, 20, 'end', 'mt-mute');
     }
     return o;
   }
@@ -299,7 +302,7 @@ const STAGE = (() => {
     const w = 380;
     const A = lerp(C.OEE_A[0], C.OEE_A[1], grow);
     const Pf = lerp(C.OEE_P[0], C.OEE_P[1], grow);
-    const rows = [[tr('beschikbaarheid', 'availability'), A, tr('minder storingen', 'fewer breakdowns')], ['performance', Pf, tr('minder microstops', 'fewer micro-stops')], [tr('kwaliteit', 'quality'), C.OEE_Q, '']];
+    const rows = [[tr('beschikbaarheid', 'availability'), A, tr('minder storingen', 'fewer breakdowns')], [tr('prestatie', 'performance'), Pf, tr('minder microstops', 'fewer micro-stops')], [tr('kwaliteit', 'quality'), C.OEE_Q, '']];
     rows.forEach(([n, v, why], i) => {
       const y = 44 + i * 54;
       o += txt(222, y, (i ? '× ' : '') + n, 21, 'start', 'mt-txt') + rect(222, y + 10, w * v * form, 16, 'fp-meter', 3);
@@ -309,7 +312,7 @@ const STAGE = (() => {
     o += txt(222, 222, '= OEE', 22, 'start', 'mt-big') + rect(222, 232, w * oee * form, 24, 'fp-meter', 3, ' data-top=""');
     if (world > 0.01) {
       const x = 222 + (w * C.WORLD) / 100;
-      o += grp(world, line(x, 220, x, 268, 'mt-lim') + txt(612, 290, `${C.WORLD}% ${tr('wereldklasse', 'world class')}`, 20, 'end', 'mt-txt'));
+      o += grp(world, line(x, 220, x, 268, 'mt-lim') + txt(612, 290, `${C.WORLD}% ${tr('vaak genoemd als wereldklasse', 'often quoted as world class')}`, 20, 'end', 'mt-txt'));
     }
     if (trend > 0.01) {
       o += txt(222, 318, tr('trend per maand', 'trend by month'), 20, 'start', 'mt-mute') + line(222, 356, 500, 356, 'mt-axis');
