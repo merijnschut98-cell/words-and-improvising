@@ -596,7 +596,7 @@ const SAY = [
       en: '{t:Wear parts|Wear parts} wear out predictably: ejector pins, wear plates, seals, hot-runner heaters. Keep the critical ones in stock.' },
     { nl: 'Het {t:Matrijslogboek|matrijslogboek} legt elke reparatie vast, met de shotstand. Dezelfde schuif elke dertigduizend shots? Dan zit het probleem in het ontwerp.',
       en: 'The {t:Mould logbook|mould logbook} records each repair with the shot count. The same slide every thirty thousand shots? Then the problem is the design.' },
-    { nl: 'Komt de matrijs van de pers, dan gaan de laatste producten mee: het {t:Laatste shot|laatste shot}. Zo repareer je braam op de werkbank, niet bij het opstarten.',
+    { nl: 'Komt de matrijs van de pers, dan gaan de laatste producten mee. Dat is het {t:Laatste shot|laatste shot}. Zo repareer je braam op de werkbank, niet bij het opstarten.',
       en: 'When the mould comes off, the last parts go with it: the {t:Last-shot sample|last-shot sample}. So flash is repaired on the bench, not during start-up.' },
   ],
   [ // s7 faster changes

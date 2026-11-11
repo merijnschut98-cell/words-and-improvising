@@ -677,6 +677,39 @@
         ],
         "vtt": "src/content/courses/films/eng.moulding.defects.en.vtt"
       }
+    },
+    "eng.moulding.moulds": {
+      "poster": "src/content/courses/films/eng.moulding.moulds.jpg",
+      "nl": {
+        "dur": 312.1,
+        "bytes": 10192000,
+        "scenes": [
+          0,
+          49.64,
+          75.37,
+          123.68,
+          155.3,
+          190.91,
+          237.27,
+          263
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.moulds.nl.vtt"
+      },
+      "en": {
+        "dur": 331.1,
+        "bytes": 10789818,
+        "scenes": [
+          0,
+          51.3,
+          77.3,
+          128.28,
+          163.83,
+          202.85,
+          250.02,
+          277.73
+        ],
+        "vtt": "src/content/courses/films/eng.moulding.moulds.en.vtt"
+      }
     }
   }
 }
