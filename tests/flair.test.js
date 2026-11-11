@@ -143,3 +143,66 @@ test('newSpeakMedals never lowers a stored speaking medal (ownership fades)', ()
   assert.deepEqual(newSpeakMedals(s, NOW), []);
   assert.deepEqual(newSpeakMedals({ history: practised, speakMedals: {} }, NOW), [{ groupId: 'basics', tier: 'bronze' }]);
 });
+
+import { titleFor, newTitles, titleNextNeeds, TITLE_RULES } from '../src/core/flair.js';
+
+// Two fixture modules of 10 levels each: 20 levels in the subject.
+const ten = (slug) => ({ id: `eng.${slug}`, subject: 'eng', lessons: Array.from({ length: 10 }, (_, i) => `eng.${slug}.l${i}`), questions: {} });
+const MODS = [ten('m1'), ten('m2')];
+const engState = (passedIds, medals = {}) => withLessons(passed(passedIds), { medals });
+
+test('titleFor eng/pm: rank 1 at the first level; ranks 2–4 need both the level share and the medals', () => {
+  assert.deepEqual(TITLE_RULES.course.map((r) => r.share), [0, 0.10, 0.35, 0.70]);
+  assert.equal(titleFor(defaultState(), 'eng', NOW, MODS), 0);
+  assert.equal(titleFor(engState(['eng.m1.l0']), 'eng', NOW, MODS), 1);
+  assert.equal(titleFor(engState(['eng.m1.l0', 'eng.m1.l1']), 'eng', NOW, MODS), 1, '10% of 20 levels, but no bronze');
+  const m1 = MODS[0].lessons;
+  assert.equal(titleFor(engState(m1), 'eng', NOW, MODS), 2, 'every level of m1: bronze, and 50% of the levels');
+  const silver2 = { 'eng.m1': { tier: 'silver', ts: 1 }, 'eng.m2': { tier: 'silver', ts: 1 } };
+  assert.equal(titleFor(engState(m1, silver2), 'eng', NOW, MODS), 3);
+  const gold2 = { 'eng.m1': { tier: 'gold', ts: 1 }, 'eng.m2': { tier: 'gold', ts: 1 } };
+  assert.equal(titleFor(engState([...m1, ...MODS[1].lessons], gold2), 'eng', NOW, MODS), 3, 'Meester needs 3 gold medals');
+});
+
+test('titleFor eng/pm: shares use the subject\'s current level count (rounded up)', () => {
+  const big = [...MODS, ten('m3')]; // 30 levels: 10% is 3
+  const s = engState([...MODS[0].lessons.slice(0, 2)], { 'eng.m1': { tier: 'bronze', ts: 1 } });
+  assert.equal(titleFor(s, 'eng', NOW, MODS), 2, '2 of 20');
+  assert.equal(titleFor(s, 'eng', NOW, big), 1, '2 of 30 is under ceil(3)');
+});
+
+const hist = (drill, n, rating, startDay) => Array.from({ length: n }, (_, i) => ({ ts: NOW - (startDay - i) * DAY, drill, rating, metrics: { words: 50 } }));
+
+test('titleFor speak: Gezel at 4 drills practise+ and 7 days; Vakman 4 owned and a boss; Meester 10 owned and 3 bosses', () => {
+  assert.equal(titleFor({ history: [] }, 'speak', NOW), 0);
+  assert.equal(titleFor({ history: hist('minute', 1, 3, 1) }, 'speak', NOW), 1);
+  const four = ['minute', 'explain', 'story', 'pause'];
+  const practised = four.flatMap((d, k) => hist(d, 3, 3, 12 - 2 * k));
+  assert.equal(titleFor({ history: practised }, 'speak', NOW), 2, 'four drills practised over 7 or more days');
+  assert.equal(titleFor({ history: four.flatMap((d) => hist(d, 3, 3, 3)) }, 'speak', NOW), 1, 'only 3 days');
+  const owned4 = four.flatMap((d) => hist(d, 3, 5, 12));
+  const boss = (n) => Array.from({ length: n }, (_, i) => ({ ts: NOW - (20 + i * 7) * DAY, drill: 'boss', rating: 3, metrics: { words: 200 } }));
+  assert.equal(titleFor({ history: [...owned4, ...boss(1)] }, 'speak', NOW), 3);
+  const ten10 = ['minute', 'explain', 'story', 'pause', 'prep', 'frame', 'bridge', 'real', 'smalltalk', 'yesAnd'].flatMap((d) => hist(d, 3, 5, 12));
+  assert.equal(titleFor({ history: [...ten10, ...boss(2)] }, 'speak', NOW), 3);
+  assert.equal(titleFor({ history: [...ten10, ...boss(3)] }, 'speak', NOW), 4);
+});
+
+test('newTitles never lowers a stored rank, also when owned drills fade', () => {
+  const four = ['minute', 'explain', 'story', 'pause'];
+  const faded = four.flatMap((d) => hist(d, 3, 5, 40)); // owned 40 days ago, faded now
+  const s = { ...defaultState(), history: faded, titles: { speak: { rank: 3, ts: 1 } } };
+  assert.deepEqual(newTitles(s, NOW).filter((x) => x.subject === 'speak'), []);
+  const fresh = engState(['eng.m1.l0']);
+  assert.deepEqual(newTitles(fresh, NOW, MODS), [{ subject: 'eng', rank: 1 }]);
+  assert.deepEqual(newTitles({ ...fresh, titles: { eng: { rank: 2, ts: 1 } } }, NOW, MODS), []);
+});
+
+test('titleNextNeeds returns the levels and medals still missing for the next rank', () => {
+  const s = engState(['eng.m1.l0']);
+  assert.deepEqual(titleNextNeeds(s, 'eng', NOW, MODS), { rank: 2, levels: 1, medals: 1, tier: 'bronze' });
+  const m = engState(MODS[0].lessons, { 'eng.m1': { tier: 'bronze', ts: 1 } });
+  assert.deepEqual(titleNextNeeds({ ...m, titles: { eng: { rank: 2, ts: 1 } } }, 'eng', NOW, MODS), { rank: 3, levels: 0, medals: 2, tier: 'silver' });
+  assert.equal(titleNextNeeds({ ...m, titles: { eng: { rank: 4, ts: 1 } } }, 'eng', NOW, MODS), null);
+  assert.deepEqual(titleNextNeeds(defaultState(), 'eng', NOW, MODS), { rank: 1, levels: 1, medals: 0, tier: null });
+});
