@@ -5,7 +5,7 @@
 // (world constants), CAM (one camera move per scene), W and H. Moves are placed
 // per caption beat (beatStarts), so the video's narration timing
 // (films/_kit/beatwarp.js) keeps them in step.
-/* global G, P, C, CAM, W, H, iso, solidSvg, lineSvg, slabOf, cylinder, haloOf, segment, wireSvg, translateAlong, span, beatStarts */
+/* global G, P, C, CAM, W, H, iso, solidSvg, lineSvg, slabOf, cylinder, haloOf, segment, wireSvg, pathOf, translateAlong, span, beatStarts */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const at = (p) => iso(p, P);
@@ -36,8 +36,12 @@ const STAGE = (() => {
     };
     const [wx, wy] = SP.welder;
     // the face shield and the torch held up to the weld spot
-    const shield = box({ x: wx - 8, y: wy + 6, w: 16, d: 2.4, r: 0.6 }, 148, 166, { tone: 'lo', crease: 'mid' }, 0.3);
-    const torch = lineSvg(segment([wx + 12, wy - 2, 120], [C.WELD[0] + 1, C.WELD[1] + 2, C.WELD[2] - 1], P), { tone: 'mid' });
+    // (drawn a size up, with a dark visor and a thick torch, so both read at 390 px)
+    const shield = box({ x: wx - 10, y: wy + 6, w: 20, d: 3, r: 0.8 }, 144, 170, { tone: 'lo', crease: 'mid' }, 0.3)
+      + `<path class="pm-visor" d="${pathOf([[wx - 6, wy + 9.1, 153], [wx + 6, wy + 9.1, 153], [wx + 6, wy + 9.1, 160], [wx - 6, wy + 9.1, 160]].map((q) => iso(q, P)), true)}"/>`;
+    const tp = (q) => iso(q, P);
+    const torch = `<path class="pm-torch" d="${pathOf([[wx + 13, wy, 94], [C.WELD[0] + 2, C.WELD[1] + 3, C.WELD[2] - 2]].map(tp))}"/>`
+      + `<path class="pm-torch pm-nozzle" d="${pathOf([[C.WELD[0] + 2, C.WELD[1] + 3, C.WELD[2] - 2], [C.WELD[0] + 0.6, C.WELD[1] + 1, C.WELD[2] - 0.6]].map(tp))}"/>`;
     const set = (k, html) => { svg.querySelector(`[data-k="${k}"]`).innerHTML = html; };
     set('welderBody', person(SP.welder, 'lo', 'lo', shield + torch));
     set('fireBody', person(SP.fire, 'mid', 'hi'));
@@ -45,6 +49,33 @@ const STAGE = (() => {
     set('issuerBody', person(SP.issuerAt, 'hi', 'hi'));
     set('mech1Body', person(SP.m1, 'mid', 'mid'));
     set('mech2Body', person(SP.m2, 'mid', 'mid'));
+    // the guardrail on the parapet by the fan, and the fixed ladder over the front edge
+    // (moved here from build.mjs to keep the page small; same parts, same order)
+    const bx = (plan, z0, z1, style = {}, bevel = 0) => S(slabOf(plan, z0, z1 - z0, P, 1, bevel), style);
+    const postSq = (x, y, z0, z1, t = 3, style = {}) => bx({ x: x - t / 2, y: y - t / 2, w: t, d: t, r: 0.3 }, z0, z1, style);
+    const barX = (x0, x1, y, z, t = 2, style = {}) => bx({ x: x0, y: y - t / 2, w: x1 - x0, d: t, r: 0.3 }, z - t / 2, z + t / 2, style);
+    const barY = (y0, y1, x, z, t = 2, style = {}) => bx({ x: x - t / 2, y: y0, w: t, d: y1 - y0, r: 0.3 }, z - t / 2, z + t / 2, style);
+    {
+      const PZ = C.PAR_Z;
+      let out = [-326, -290, -254, -218, -182].map((x) => postSq(x, -146, PZ, PZ + 100, 3)).join('');
+      out += [-110, -74, -38].map((y) => postSq(-326, y, PZ, PZ + 100, 3)).join('');
+      for (const z of [PZ + 50, PZ + 98]) out += barX(-326, -182, -146, z, 2.6) + barY(-146, -38, -326, z, 2.6);
+      out += bx({ x: -328, y: -148, w: 148, d: 4, r: 0.2 }, PZ + 4, PZ + 12, { tone: 'lo' }, 0.1); // the toe board
+      set('railBody', out);
+    }
+    {
+      const LX = C.LADDER_X;
+      const yR = C.FRONT + 6;
+      let out = '';
+      for (const dx of [-12, 12]) {
+        out += bx({ x: LX + dx - 1.5, y: yR - 1.5, w: 3, d: 3, r: 0.3 }, -40, 96, {}, 0.1);
+        out += barY(C.FRONT - 18, yR, LX + dx, 96, 3); // the grab rail bends back over the roof
+        out += postSq(LX + dx, C.FRONT - 18, 0, 96, 3);
+        out += bx({ x: LX + dx - 2, y: C.FRONT - 2, w: 4, d: 8, r: 0.3 }, -14, -10, { tone: 'lo' }, 0.1); // wall bracket
+      }
+      out += Array.from({ length: 6 }, (_, i) => barX(LX - 12, LX + 12, yR, -36 + i * 26, 2)).join('');
+      set('ladderBody', out);
+    }
     // the welding cable from the set over the roof to the welder
     set('cable', wireSvg(at([C.SET[0] - 14, C.SET[1], 24]), at([wx + 12, wy, 100]), { via: [[C.SET[0] - 24, C.SET[1] - 4, 1], [wx + 30, wy + 16, 1], [wx + 16, wy + 4, 60]].map(at), tone: 'lo', size: 1.1, ends: 'both' }));
   }
@@ -108,8 +139,8 @@ const STAGE = (() => {
       out += `<path class="pm-spark" d="M${f2(p0[0])} ${f2(p0[1])}L${f2(p1[0])} ${f2(p1[1])}"/>`;
     }
     const c = at(C.WELD);
-    const r = (0.9 + 0.5 * Math.abs(Math.sin(t * 23))) * G.scaleOf(P);
-    return out + `<circle class="pm-arc" cx="${f2(c[0])}" cy="${f2(c[1])}" r="${f2(r)}"/>`;
+    const r = (1.6 + 0.7 * Math.abs(Math.sin(t * 23))) * G.scaleOf(P);
+    return out + `<circle class="pm-glow" cx="${f2(c[0])}" cy="${f2(c[1])}" r="${f2(r * 2.6)}"/><circle class="pm-arc" cx="${f2(c[0])}" cy="${f2(c[1])}" r="${f2(r)}"/>`;
   }
 
   // ------------------------------------------------------------ HUD cards

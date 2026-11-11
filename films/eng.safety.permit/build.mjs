@@ -112,11 +112,11 @@ const LADDER_X = -210;
 const EXT = [212, 26]; // the extinguisher
 const SET = [272, 66]; // the welding set
 const SPOT = {
-  welder: [182, 24], fire: [238, 36], holderAt: [104, 56], issuerAt: [78, 70],
+  welder: [158, 24], fire: [238, 36], holderAt: [104, 56], issuerAt: [78, 70],
   start1: [-150, 104], start2: [-124, 104], m1: [-240, 104], m2: [-182, 104], fan1: [-262, -36], fan2: [-226, -40],
 };
 const PUDDLES = [[-120, 60, 30, 12], [-60, -10, 22, 9], [40, 92, 34, 11], [-280, 20, 20, 8], [80, -40, 18, 7], [300, 110, 18, 6]];
-const C = { ROOF, FRONT, DECK, DECK_Z, WELD, HPU, MOTOR_Y, TANK, TANK_Z, HOLE, FAN, LADDER_X, EXT, SET, SPOT };
+const C = { ROOF, FRONT, PAR_Z, DECK, DECK_Z, WELD, HPU, MOTOR_Y, TANK, TANK_Z, HOLE, FAN, LADDER_X, EXT, SET, SPOT };
 
 const FIT = [[ROOF.x, ROOF.y, 0], [ROOF.x + ROOF.w, FRONT, 0], [ROOF.x, FRONT, -40], [ROOF.x + ROOF.w, FRONT, -40], [ROOF.x, ROOF.y, 120], [DECK.x + DECK.w, DECK.y, 210], [-30, -92, 150]];
 const P = k.fitProjection(FIT, W, H, { pad: 6, azimuth: 50, elevation: 30 });
@@ -165,15 +165,9 @@ const roof = (() => {
 const puddles = cue('wet', PUDDLES.map(([x, y, rx, ry]) => `<path class="pm-wet" d="${ellipse(x, y, rx, ry, 0.15)}"/>`).join(''));
 
 // ---------------------------------------------------------------- the guardrail by the fan (on the parapet)
-const rail = (() => {
-  const xs = [-326, -290, -254, -218, -182];
-  const ys = [-146, -110, -74, -38];
-  let out = xs.map((x) => postSq(x, -146, PAR_Z, PAR_Z + 100, 3)).join('');
-  out += ys.slice(1).map((y) => postSq(-326, y, PAR_Z, PAR_Z + 100, 3)).join('');
-  for (const z of [PAR_Z + 50, PAR_Z + 98]) out += barX(-326, -182, -146, z, 2.6) + barY(-146, -38, -326, z, 2.6);
-  out += box({ x: -328, y: -148, w: 148, d: 4, r: 0.2 }, PAR_Z + 4, PAR_Z + 12, { tone: 'lo' }, 0.1); // the toe board
-  return out;
-})();
+// Drawn by the stage when the page opens (stage.js), as the people and the
+// fixed ladder are: thin posts and bars cost many bytes as static paths.
+const rail = g('railBody', '');
 
 // ---------------------------------------------------------------- the roof fan on its curb
 const fan = (() => {
@@ -285,19 +279,8 @@ const extinguisher = (() => {
   return out;
 })();
 
-// ---------------------------------------------------------------- the fixed ladder over the front edge
-const ladder = (() => {
-  const yR = FRONT + 6;
-  let out = '';
-  for (const dx of [-12, 12]) {
-    out += box({ x: LADDER_X + dx - 1.5, y: yR - 1.5, w: 3, d: 3, r: 0.3 }, -40, 96, {}, 0.1);
-    out += barY(FRONT - 18, yR, LADDER_X + dx, 96, 3); // the grab rail bends back over the roof
-    out += postSq(LADDER_X + dx, FRONT - 18, 0, 96, 3);
-    out += box({ x: LADDER_X + dx - 2, y: FRONT - 2, w: 4, d: 8, r: 0.3 }, -14, -10, { tone: 'lo' }, 0.1); // wall bracket
-  }
-  out += Array.from({ length: 6 }, (_, i) => barX(LADDER_X - 12, LADDER_X + 12, yR, -36 + i * 26, 2)).join('');
-  return out;
-})();
+// ---------------------------------------------------------------- the fixed ladder over the front edge (drawn by the stage)
+const ladder = g('ladderBody', '');
 
 // ---------------------------------------------------------------- people
 // Six standing figures, drawn by the stage when the page opens (stage.js),
@@ -397,7 +380,7 @@ const spec = {
     {
       id: 's1', lesson: PERMIT, level: 3, dur: DUR[0], still: 0.9, title: { nl: 'Twee klussen op één dak', en: 'Two jobs on one roof' },
       beats: [
-        { nl: 'Het platte dak van een fabriekshal. Vandaag staan hier twee klussen gepland.', en: 'The flat roof of a factory hall. Two jobs are planned here today.', cues: ['fan', 'weld'] },
+        { nl: 'Het platte dak van een onderdelenfabrikant. Vandaag staan hier twee klussen gepland.', en: 'The flat roof of a parts manufacturer. Two jobs are planned here today.', cues: ['fan', 'weld'] },
         { nl: 'Niet-routinematig werk met een hoog risico vraagt een {t:Werkvergunning|werkvergunning}.', en: 'Non-routine, high-risk work needs a {t:Permit to work|permit to work}.', cue: { Werkvergunning: 'board' } },
         { nl: '{t:Heet werk|Heet werk}: lassen, slijpen, snijden, alles wat vonken of vuur geeft.', en: '{t:Hot work|Hot work}: welding, grinding, cutting, anything that makes sparks or flame.', cue: { 'Heet werk': 'weld' }, cues: ['welder', 'board'] },
         { nl: 'Een {t:Besloten ruimte|besloten ruimte}, zoals deze tank: eerst een gasmeting.', en: 'A {t:Confined space|confined space}, like this tank: first a gas test.', cue: { 'Besloten ruimte': 'tank' }, cues: ['board'] },
@@ -428,7 +411,7 @@ const spec = {
         { nl: 'Hun {t:Werkorder|werkorder}: welke klus waar, via de vaste ladder naar boven.', en: 'Their {t:Work order|work order}: which job where, up the fixed ladder.', cue: { Werkorder: 'order' } },
         { nl: 'Bij de ladder doen ze hun {t:LMRA|LMRA}: kort en hardop, vlak voor de start.', en: 'At the ladder they do their {t:LMRA|LMRA}: short and out loud, just before starting.', cue: { LMRA: 'mechs' } },
         { nl: 'Weet ik wat ik moet doen? Wat kan hier misgaan? Zijn de maatregelen genomen?', en: 'Do I know what to do? What can go wrong here? Are the measures in place?', cues: ['lmra'] },
-        { nl: 'De LMRA komt uit de {t:VCA|VCA}: de veiligheidschecklist voor elke {t:Aannemer|aannemer}.', en: 'The LMRA comes from {t:VCA|VCA}: the safety checklist for any {t:Contractor|contractor}.', cue: { VCA: 'vca', Aannemer: 'welder' } },
+        { nl: 'De LMRA komt uit de {t:VCA|VCA}: de veiligheidschecklist voor {t:Aannemer|aannemers}.', en: 'The LMRA comes from {t:VCA|VCA}: the safety checklist for {t:Contractor|contractors}.', cue: { VCA: 'vca', Aannemer: 'welder' } },
       ],
     },
     {
@@ -476,80 +459,80 @@ const spec = {
 // vergunningenbord (wrong vowels).
 const SAY = [
   [ // s1 two jobs on one roof
-    { nl: 'Dit is het platte dak van een fabriek, met een dakventilator, een tank en een stalen bordes. Vandaag staan hier twee klussen gepland.',
-      en: 'This is the flat roof of a factory, with a roof fan, a tank and a steel platform. Two jobs are planned here today.' },
-    { nl: 'Voor bijzonder werk met een hoog risico, dat niet tot het gewone werk hoort, is er de {t:Werkvergunning|werkvergunning}. Zo zijn de gevaren bekend, is het gebied klaar, en weet iedereen wie de leiding heeft.',
-      en: 'For special, high-risk work that is not part of the normal routine, there is the {t:Permit to work|permit to work}. It makes sure the hazards are known, the area is ready, and everyone knows who is in control.' },
-    { nl: 'De eerste klus is {t:Heet werk|heet werk}: lassen, slijpen of snijden, alles wat vonken of vuur geeft. Lassers van een aannemer gaan een beugel aan het bordes lassen.',
-      en: 'The first job is {t:Hot work|hot work}: welding, grinding or cutting, anything that makes sparks or flame. Welders from a contractor will weld a bracket to the platform.' },
-    { nl: 'Ook een {t:Besloten ruimte|besloten ruimte}, een afgesloten ruimte met een smalle toegang zoals deze tank, vraagt een vergunning. Daar kan te weinig zuurstof zijn, of brandbaar of giftig gas, en dat zie je niet. Dus eerst een gasmeting.',
-      en: 'A {t:Confined space|confined space}, an enclosed space with a narrow way in like this tank, needs a permit too. There can be too little oxygen, or flammable or toxic gas, and you cannot see that. So first a gas test.' },
+    { nl: 'Het platte dak van een onderdelenfabrikant. Vandaag staan hier twee klussen gepland.',
+      en: 'The flat roof of a parts manufacturer. Two jobs are planned here today.' },
+    { nl: 'Niet-routinematig werk met een hoog risico vraagt een {t:Werkvergunning|werkvergunning}: de gevaren bekend, het gebied klaar, en duidelijk wie de leiding heeft. Ze hangen op een bord in de controlekamer.',
+      en: 'Non-routine, high-risk work needs a {t:Permit to work|permit to work}: the hazards known, the area ready, and clear who is in control. Open permits hang on a board in the control room.' },
+    { nl: 'De eerste klus is {t:Heet werk|heet werk}: alles wat vonken of vuur geeft, zoals lassen, slijpen of snijden. Lassers van een aannemer lassen een beugel aan het bordes.',
+      en: 'The first job is {t:Hot work|hot work}: anything that makes sparks or flame, such as welding, grinding or cutting. Welders from a contractor weld a bracket to the platform.' },
+    { nl: 'Ook een {t:Besloten ruimte|besloten ruimte}, zoals deze tank met zijn smalle toegang, vraagt een vergunning. Er kan te weinig zuurstof in zijn, of giftig of brandbaar gas, en dat zie je niet. Dus eerst een gasmeting.',
+      en: 'A {t:Confined space|confined space}, like this tank with its narrow way in, needs a permit too. It can hold too little oxygen, or toxic or flammable gas, and you cannot see that. So first a gas test.' },
   ],
   [ // s2 the area made ready
-    { nl: 'Op de werkvergunning staan de precieze klus en de plek, de gevaren, en de scheidingen, met een verwijzing naar de vergrendeling op elk scheidingspunt.',
-      en: 'The permit lists the exact job and place, the hazards, and the isolations, with a reference to the lockout on every isolation point.' },
-    { nl: 'Verder de metingen, de PBM, en hoe lang hij geldig is: vandaag van acht uur tot zestien uur. Onderaan de handtekeningen.',
-      en: 'Then the tests, the PPE, and how long it is valid: today from eight in the morning to four in the afternoon. And at the bottom, the signatures.' },
-    { nl: 'De {t:Afgever|afgever} komt van productie en gaat over dit gebied. Hij loopt het gebied samen met de ploegleider van de lassers door. Tekenen zonder te kijken gaat vaak mis.',
-      en: 'The {t:Issuer|issuer} comes from production and controls this area. He walks the area together with the welding crew leader. Signing without looking often goes wrong.' },
-    { nl: 'Brandbaar materiaal gaat weg of wordt afgedekt, binnen de afstand uit de bedrijfsregel. Het aggregaat onder het bordes krijgt een blusdeken tegen de vallende vonken, en er komt een blusser binnen handbereik.',
-      en: 'Flammable material is removed or covered, within the distance in the site rule. The power unit under the platform gets a fire blanket against the falling sparks, and an extinguisher goes within reach.' },
-    { nl: 'Dan tekent de afgever: het gebied is klaar. De ploegleider is de {t:Houder|houder}. Hij neemt de vergunning aan en tekent ook.',
-      en: 'Then the issuer signs: the area is ready. The crew leader is the {t:Holder|holder}. He accepts the permit and signs too.' },
+    { nl: 'Op de vergunning staan de klus en de plek, de gevaren, en de scheidingen, met een verwijzing naar de vergrendeling op elk scheidingspunt.',
+      en: 'The permit lists the job and the place, the hazards, and the isolations, with a reference to the lockout on every isolation point.' },
+    { nl: 'Verder de metingen, de PBM, de geldigheid, vandaag van acht tot zestien uur, en de handtekeningen.',
+      en: 'Then the tests, the PPE, how long it is valid, today from eight to four, and the signatures.' },
+    { nl: 'De {t:Afgever|afgever} van productie gaat over dit gebied. Hij loopt het door met de ploegleider van de lassers; tekenen zonder te kijken gaat vaak mis.',
+      en: 'The {t:Issuer|issuer} from production controls this area. He walks it with the welding crew leader; signing without looking often goes wrong.' },
+    { nl: 'Brandbaar materiaal gaat weg of wordt afgedekt, binnen de afstand uit de bedrijfsregel. Over het aggregaat komt een blusdeken, en een blusser binnen handbereik.',
+      en: 'Flammable material is removed or covered, within the distance in the site rule. A fire blanket goes over the power unit, and an extinguisher within reach.' },
+    { nl: 'Dan tekent de afgever: het gebied is klaar. De ploegleider is de {t:Houder|houder}: hij neemt de vergunning aan en tekent ook.',
+      en: 'Then the issuer signs: the area is ready. The crew leader is the {t:Holder|holder}: he accepts the permit and signs too.' },
   ],
   [ // s3 welding with a fire watch
-    { nl: 'Nu wordt er gelast: de lasser zet de beugel vast onder het bordes, en de vonken vallen op het dak.',
-      en: 'Now the welding starts: the welder fixes the bracket under the platform, and the sparks fall onto the roof.' },
-    { nl: 'Naast hem staat de {t:Brandwacht|brandwacht}: iemand die alleen op brand let, met de blusser bij de hand. Hij kijkt waar de vonken landen.',
-      en: 'Next to him stands the {t:Fire watch|fire watch}: someone who only watches for fire, with the extinguisher at hand. He watches where the sparks land.' },
+    { nl: 'De lasser last de beugel onder het bordes; de vonken vallen op het dak.',
+      en: 'The welder welds the bracket under the platform; the sparks fall onto the roof.' },
+    { nl: 'Naast hem staat de {t:Brandwacht|brandwacht}: iemand die alleen op brand let, met de blusser bij de hand.',
+      en: 'Next to him stands the {t:Fire watch|fire watch}: someone who only watches for fire, with the extinguisher at hand.' },
     { nl: 'De houder houdt de vergunning bij de klus en geeft zijn ploeg uitleg.',
       en: 'The holder keeps the permit at the job and briefs his crew.' },
   ],
   [ // s4 the LMRA at the ladder
-    { nl: 'Dan de tweede klus. Twee monteurs komen de motor van de dakventilator vervangen.',
-      en: 'Then the second job. Two technicians come to replace the motor of the roof fan.' },
-    { nl: 'Op hun {t:Werkorder|werkorder} staat welke klus waar moet gebeuren, met welke maatregelen: via de vaste ladder naar boven. Een lasser staat er niet op.',
+    { nl: 'Dan de tweede klus: twee monteurs komen de motor van de dakventilator vervangen.',
+      en: 'Then the second job: two technicians come to replace the motor of the roof fan.' },
+    { nl: 'Op hun {t:Werkorder|werkorder} staat welke klus waar moet gebeuren, met welke maatregelen: via de vaste ladder naar boven. Over een lasser staat er niets.',
       en: 'Their {t:Work order|work order} says which job to do where, with which measures: up the fixed ladder. It says nothing about a welder.' },
-    { nl: 'Bij de ladder doen ze hun {t:LMRA|LMRA}, de laatste minuut risicoanalyse: een korte check op de werkplek, vlak voor de start, door wie het werk doet: één tot drie minuten, hardop.',
-      en: 'At the ladder they do their {t:LMRA|LMRA}, the last-minute risk analysis: a short check at the workplace, just before starting, by the people doing the work. One to three minutes, out loud.' },
+    { nl: 'Bij de ladder doen ze hun {t:LMRA|LMRA}, de laatste minuut risicoanalyse: een korte check, vlak voor de start, door wie het werk doet. Eén tot drie minuten, hardop.',
+      en: 'At the ladder they do their {t:LMRA|LMRA}, the last-minute risk analysis: a short check, just before starting, by the people doing the work. One to three minutes, out loud.' },
     { nl: 'Weet ik wat ik moet doen, en hoe? Wat kan hier en nu misgaan? Zijn de maatregelen genomen? Heb ik het goede gereedschap en de PBM? Hebben anderen er last van?',
       en: 'Do I know what to do, and how? What can go wrong here and now? Are the measures in place? Do I have the right tools and PPE? Are others affected?' },
-    { nl: 'De LMRA komt uit de {t:VCA|VCA}, de Nederlandse lijst met veiligheidseisen en het certificaat voor elke {t:Aannemer|aannemer}: een bedrijf dat je inhuurt om op jouw terrein te werken.',
-      en: 'The LMRA comes from {t:VCA|VCA}, the Dutch safety checklist and certificate for any {t:Contractor|contractor}: a firm hired to work on your site.' },
+    { nl: 'De LMRA komt uit de {t:VCA|VCA}, de Nederlandse veiligheidschecklist en het certificaat voor {t:Aannemer|aannemers}: bedrijven die je inhuurt om op jouw terrein te werken.',
+      en: 'The LMRA comes from {t:VCA|VCA}, the Dutch safety checklist and certificate for {t:Contractor|contractors}: firms hired to work on your site.' },
   ],
   [ // s5 if it is not right, you do not start
-    { nl: 'Het heeft geregend, dus het dak is nat en glad. En ze horen een aannemer lassen, op hetzelfde dak. Dat stond niet op hun werkorder.',
-      en: 'It has rained, so the roof is wet and slippery. And they hear a contractor welding, on the same roof. That was not on their work order.' },
-    { nl: 'De LMRA vangt wat er sinds de planning veranderd is. Is een antwoord nee of onduidelijk, dan begin je niet. Ze beginnen niet.',
-      en: 'The LMRA catches what has changed since the planning. If an answer is no or unclear, you do not start. They do not start.' },
+    { nl: 'Het heeft geregend: het dak is nat en glad. En ze horen een aannemer lassen op hetzelfde dak, wat niet op hun werkorder stond.',
+      en: 'It has rained, so the roof is wet and slippery. And they hear a contractor welding on the same roof, which was not on their work order.' },
+    { nl: 'De LMRA vangt wat er sinds de planning veranderd is. Is een antwoord nee of onduidelijk, dan begin je niet.',
+      en: 'The LMRA catches what has changed since the planning. If an answer is no or unclear, you do not start.' },
     { nl: 'Ze bellen de leidinggevende van de aannemer, en de afgever van de lasvergunning.',
       en: 'They call the contractor’s supervisor, and the issuer of the welding permit.' },
-    { nl: 'Ze spreken af wie waar en wanneer werkt: de lasser blijft aan de andere kant. En ze checken dat de dakrand bij de ventilator een leuning heeft. Een uur later beginnen ze.',
-      en: 'They agree who works where and when: the welder stays at the other end. And they check that the roof edge by the fan has a guardrail. An hour later they start.' },
-    { nl: 'Klussen in één gebied stem je dus op elkaar af: twee vergunningen die elk kloppen, kunnen samen gevaar opleveren, zoals lassen naast een tank die iemand anders opent.',
-      en: 'So jobs in one area are coordinated: two permits that each make sense can together create a hazard, like welding next to a tank someone else is opening.' },
+    { nl: 'Ze spreken af dat de lasser aan de andere kant blijft, en checken de leuning op de dakrand bij de ventilator. Een uur later beginnen ze.',
+      en: 'They agree that the welder stays at the other end, and check the guardrail on the roof edge by the fan. An hour later they start.' },
+    { nl: 'Klussen in één gebied stem je dus af: twee vergunningen die elk kloppen, kunnen samen gevaar geven.',
+      en: 'So jobs in one area are coordinated: two permits that each make sense can together create a hazard.' },
   ],
   [ // s6 you may stop the work
-    { nl: 'Dreigt er ernstig gevaar, zo direct dat er geen tijd is om op de Arbeidsinspectie te wachten? Dan mag een werknemer het werk stilleggen: {t:Werkonderbreking|werkonderbreking}.',
-      en: 'Is there serious danger, so immediate that there is no time to wait for the Netherlands Labour Authority? Then an employee may stop the work: the {t:Stop-work right|stop-work right}.' },
-    { nl: 'Dat staat in artikel {n:29} van de Arbowet. Je houdt je loon, je licht meteen je leidinggevende in, en de onderbreking wordt daar zo snel mogelijk gemeld.',
-      en: 'It is in article {n:29} of the Arbowet. You keep your pay, you tell your supervisor right away, and the stop is reported there as soon as possible.' },
-    { nl: 'Veel bedrijven geven iedereen een stopregel, ook bezoekers en aannemers. Stoppen is niet falen; doorgaan terwijl je twijfelt wel.',
-      en: 'Many sites give everyone a stop rule, visitors and contractors too. Stopping is not failing; carrying on when unsure is.' },
-    { nl: 'En een werkvergunning vervangt de LMRA niet. De vergunning legt het plan vast, de LMRA controleert het ter plaatse.',
-      en: 'And a permit does not replace the LMRA. The permit sets the plan, the LMRA checks it on the spot.' },
+    { nl: 'Is er naar je redelijk oordeel ernstig gevaar, zo direct dat je niet op de inspectie kunt wachten? Dan mag je het werk stilleggen: {t:Werkonderbreking|werkonderbreking}.',
+      en: 'Is there, in your reasonable judgement, serious danger so immediate that you cannot wait for the inspectorate? Then you may stop the work: the {t:Stop-work right|stop-work right}.' },
+    { nl: 'Dat staat in artikel {n:29} van de Arbowet. Je houdt je loon, licht meteen je leidinggevende in, en de onderbreking wordt snel gemeld bij de Arbeidsinspectie.',
+      en: 'It is in article {n:29} of the Arbowet. You keep your pay, tell your supervisor right away, and the stop is reported to the Netherlands Labour Authority as soon as possible.' },
+    { nl: 'Veel bedrijven geven iedereen een stopregel, ook bezoekers en aannemers. Stoppen is niet falen; doorgaan terwijl je twijfelt wel. Wie stopt, wordt bedankt.',
+      en: 'Many sites give everyone a stop rule, visitors and contractors too. Stopping is not failing; carrying on when unsure is. Whoever stops is thanked.' },
+    { nl: 'Een vergunning vervangt de LMRA niet: de vergunning legt het plan vast, de LMRA controleert het ter plaatse. Een kaartje dat in twee seconden is getekend, checkt niks: benoem de risico’s samen, hardop. Wie per klus wordt afgerekend, slaat de LMRA als eerste over. De toets: wordt er na een LMRA weleens gestopt?',
+      en: 'A permit does not replace the LMRA: the permit sets the plan, the LMRA checks it on the spot. A card signed in two seconds checks nothing: name the risks together, out loud. Crews measured or paid per job skip the LMRA first. The test: is work ever stopped after an LMRA?' },
   ],
   [ // s7 closing and handing over
-    { nl: 'Om half drie is het lassen klaar. Maar de brandwacht blijft nog de vastgestelde tijd, want smeulend materiaal kan later opvlammen. Hoe lang, staat in de bedrijfsregel.',
-      en: 'At half past two the welding is done. But the fire watch stays for the set time, because smouldering material can flare up later. The site rule says how long.' },
+    { nl: 'Om half drie is het lassen klaar. De brandwacht blijft de vastgestelde tijd, want smeulend materiaal kan later opvlammen; de bedrijfsregel zegt hoe lang.',
+      en: 'At half past two the welding is done. The fire watch stays for the set time, because smouldering material can flare up later; the site rule says how long.' },
     { nl: 'De houder geeft de vergunning persoonlijk terug, en de afgever loopt het gebied na, ook onder het bordes.',
       en: 'The holder hands the permit back in person, and the issuer walks the area again, under the platform too.' },
-    { nl: 'Pas dan sluit de afgever de vergunning af, en pas daarna gaan de scheidingen eraf en draait het aggregaat weer.',
-      en: 'Only then does the issuer close the permit, and only after that do the isolations come off and the power unit runs again.' },
-    { nl: 'Loopt een klus over in de volgende dienst, dan wordt de vergunning verlengd of persoonlijk overgedragen, niet open gelaten.',
-      en: 'If a job runs into the next shift, the permit is extended or handed over in person, not left open.' },
-    { nl: 'Op Piper Alpha, een olieplatform, kwamen in 1988 {n:167} mensen om. Een pomp werd gestart terwijl zijn veiligheidsklep eraf was voor onderhoud, met alleen een losse blindflens op de opening; de vergunning was bij de dienstwissel niet doorgegeven.',
-      en: 'On Piper Alpha, an oil platform, {n:167} people died in 1988. A pump was started while its safety valve was off for maintenance, with only a loose blind flange on the opening. The permit had not been passed on at shift change.' },
+    { nl: 'Pas dan sluit de afgever de vergunning af, en daarna gaan de scheidingen eraf en draait het aggregaat weer.',
+      en: 'Only then does the issuer close the permit, and after that the isolations come off and the power unit runs again.' },
+    { nl: 'Loopt een klus door in de volgende dienst, dan wordt de vergunning verlengd of persoonlijk overgedragen.',
+      en: 'If a job runs into the next shift, the permit is extended or handed over in person.' },
+    { nl: 'Op Piper Alpha, een olieplatform, ging dat in 1988 mis. Een pomp in onderhoud, zonder veiligheidsklep, werd gestart, want de vergunning was bij de dienstwissel niet doorgegeven. Er kwamen {n:167} mensen om.',
+      en: 'On Piper Alpha, an oil platform, this went wrong in 1988. A pump under maintenance, without its safety valve, was started, because the permit had not been passed on at shift change. {n:167} people died.' },
   ],
 ];
 
@@ -609,6 +592,10 @@ const css = `
 .pm-blanket .iso-top{fill:var(--anatomy-shade-2)}
 [data-cue][data-on] .pm-spark{stroke:var(--fp-accent)}
 .pm-arc{fill:var(--anatomy-hi)}
+.pm-glow{fill:var(--anatomy-hi);opacity:.4}
+.pm-visor{fill:var(--anatomy-strong);stroke:var(--anatomy-lo);stroke-width:.4}
+.pm-torch{fill:none;stroke:var(--anatomy-lo);stroke-width:2.8;stroke-linecap:round}
+.pm-nozzle{stroke:var(--anatomy-strong);stroke-width:3.4}
 .pm-cable{fill:none;stroke:var(--anatomy-lo);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .pm-txt{fill:var(--anatomy-text);font-family:var(--fp-sans);font-weight:600}
 .pm-mute{fill:var(--anatomy-muted);font-family:var(--fp-sans);font-weight:500}
