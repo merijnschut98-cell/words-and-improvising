@@ -574,6 +574,39 @@
         ],
         "vtt": "src/content/courses/films/eng.lines.robots.en.vtt"
       }
+    },
+    "eng.lines.variants": {
+      "poster": "src/content/courses/films/eng.lines.variants.jpg",
+      "nl": {
+        "dur": 324.9,
+        "bytes": 16288331,
+        "scenes": [
+          0,
+          41.56,
+          84.81,
+          123.32,
+          161.12,
+          201.27,
+          233.97,
+          289.13
+        ],
+        "vtt": "src/content/courses/films/eng.lines.variants.nl.vtt"
+      },
+      "en": {
+        "dur": 345.7,
+        "bytes": 17287502,
+        "scenes": [
+          0,
+          44.41,
+          90.16,
+          128.15,
+          169.07,
+          215.86,
+          251.6,
+          309.45
+        ],
+        "vtt": "src/content/courses/films/eng.lines.variants.en.vtt"
+      }
     }
   }
 }
