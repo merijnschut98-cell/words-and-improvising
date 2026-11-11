@@ -28,17 +28,19 @@
 //     technicians, transformers and space; building alone will not do (s3)
 //   teach 4, congestion management, GOPACS, the flexible contract, a few
 //     hundred hours so a little flex frees a lot (s4, s5)
-//   teach 5, priority for social value since 2024, also small connections since
-//     July 2026, others wait longer; the sharp question (s6)
+//   teach 5, priority for social value since 2024 in the order congestion relief,
+//     safety, basic needs; the first framework annulled in March 2025, the new one
+//     keeps the order (small connections since July 2026: s2); others wait
+//     longer; the sharp question (s6)
 //   example: 30 MVA, peak 29 MVA, 6 MVA asked, about 7 years (s3); above 24 MVA
 //     only 180 h, about 2 % (s4); a cold store shifts 4 MVA for a fee, one firm
 //     takes a contract without peak capacity, two of three connect within a
 //     year (s5)
 //   roles teach 1, five core tasks, the investment plan every two years, the
 //     supplier sells energy and you choose it (s7)
-//   teach 2, most outages in MV and LV (digger, joint, fuse); 2024 about 24
-//     minutes unplanned (23,9), planned about 23,3 more; annual outage duration
-//     (s8)
+//   teach 2, most outages in MV and LV (digger, joint, fuse); 2025 about 23
+//     minutes unplanned (23,4), planned about 27 more (27,2); annual outage
+//     duration (s8)
 //   teach 3, regulated monopoly, the ACM (income, codes, quality), the Energy
 //     Act since 1 January 2026 replacing the 1998 act (s9)
 //   teach 4, public owners, state capital (Stedin), TenneT owned by the state,
@@ -88,10 +90,14 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 //   with social value first (congestion relief first, then safety such as
 //   hospitals and emergency services, then basic needs such as housing and
 //   education, as eng.gridplanning words it); the CBb annulled the 2024
-//   framework in March 2025, and the ACM set a new one, which since 1 July 2026
-//   covers all requests, small ones too, in one waiting list (ACM, RVO "voorrang
-//   op elektriciteitsnet", VNG). Said as the lesson says it: "mogen voorrang
-//   geven", "een herzien kader". About 15.500 requests waited mid-2026 (the
+//   framework on 11 March 2025 (ECLI:NL:CBB:2025:145; the old one stayed in force
+//   until 1 January 2026), and the ACM set a new one on 12 December 2025 with the
+//   same three categories in the same order (ACM, "Voorrang maatschappelijke
+//   projecten blijft mogelijk met nieuw prioriteringskader"); since 1 July 2026
+//   the reservation for small connections has ended and there is one waiting
+//   list for small and large (ACM; VNG "Nieuwe ACM-regels: einde voorrang
+//   kleinverbruik op stroomnet"). Said as the lesson says it: "mogen voorrang
+//   geven", "de rechter vernietigde dat eerste kader". About 15.500 requests waited mid-2026 (the
 //   scarcity lesson; not served, so not said here).
 // - Capacity map: the public capaciteitskaart of Netbeheer Nederland, per
 //   area, for offtake and feed-in.
@@ -101,8 +107,9 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // - Build times: a new substation often 5 to 10 years (permits, land, cable
 //   routes), MV reinforcement months to years: the lesson's hedged range.
 // - Outage minutes: Netbeheer Nederland, "Betrouwbaarheid van
-//   elektriciteitsnetten in Nederland, resultaten 2024": 23,9 minutes from
-//   unplanned interruptions, planned work about 23,3 more; said "zo'n".
+//   elektriciteitsnetten in Nederland, Resultaten 2025" (1 April 2026): 23,4
+//   minutes from unplanned interruptions (0,316 x 73,9 min), planned work 27,2
+//   more (2024: 23,9 and 23,3); said "zo'n 23" and "zo'n 27".
 // - Ownership: provinces and municipalities own the regional operators and the
 //   law bars private owners; the state put capital into Stedin; TenneT is
 //   state-owned. The Energiewet replaced the Elektriciteitswet 1998 on
@@ -120,7 +127,7 @@ const near = (a, b, tol) => Math.abs(a - b) <= tol;
   assert(t.includes('sinds juli 2026') && t.includes('capaciteitskaart'), 'small connections and the map');
   assert(t.includes('5 tot 10 jaar') && t.includes('maanden tot jaren'), 'build times');
   assert(t.includes('GOPACS') && t.includes('lager tarief') && t.includes('paar honderd uur'), 'congestion management and flex');
-  assert(t.includes('Sinds 2024') && t.includes('scholen, zorg en projecten die congestie verlichten'), 'priority');
+  assert(t.includes('Sinds 2024') && t.includes('eerst projecten die congestie verlichten, dan veiligheid (zoals ziekenhuizen), dan basisbehoeften') && t.includes('vernietigde dat eerste kader in maart 2025'), 'priority');
   const x = c.example.text;
   assert(x.includes('30 MVA') && x.includes('29 MVA') && x.includes('6 MVA extra') && x.includes('zo’n 7 jaar'), 'the full substation');
   assert(x.includes('180 uur per jaar boven de 24 MVA') && x.includes('zo’n 2%'), '180 hours');
@@ -129,7 +136,7 @@ const near = (a, b, tol) => Math.abs(a - b) <= tol;
   const u = r.teach.join('\n');
   assert(u.includes('vijf kerntaken') && u.includes('Elke twee jaar publiceert hij een investeringsplan'), 'tasks, plan');
   assert(u.includes('Eneco of Vattenfall'), 'suppliers');
-  assert(u.includes('(23,9, Netbeheer Nederland)') && u.includes('zo’n 23,3 minuten'), 'outage minutes 2024');
+  assert(u.includes('in 2025') && u.includes('(23,4, Netbeheer Nederland)') && u.includes('zo’n 27 minuten bovenop (27,2)'), 'outage minutes 2025');
   assert(u.includes('1 januari 2026') && u.includes('Elektriciteitswet 1998'), 'Energiewet');
   assert(u.includes('Stedin') && u.includes('duizenden monteurs'), 'owners, technicians');
   const e = r.example.text;
@@ -677,7 +684,7 @@ const spec = {
       id: 's6', lesson: CONG, level: 1, dur: DUR[5], still: 0.9, title: { nl: 'Wie gaat voor?', en: 'Who goes first?' },
       beats: [
         B('Wie krijgt de schaarse capaciteit het eerst? Standaard: wie het eerst komt.', 'Who gets scarce capacity first? By default: first come, first served.', { cues: ['prio'] }),
-        B('Sinds 2024 mag voorrang voor maatschappelijke waarde, zoals zorg en scholen.', 'Since 2024, projects with social value, such as healthcare and schools, may go first.', { cues: ['prio'] }),
+        B('Sinds 2024 mag voorrang: eerst wat congestie verlicht, dan veiligheid, dan basisbehoeften.', 'Since 2024 priority is allowed: congestion relief first, then safety, then basic needs.', { cues: ['prio'] }),
         B('Bedrijven verderop in de rij wachten daardoor langer.', 'Companies further down the queue wait longer as a result.', { cues: ['prio'] }),
         B('Vraag: hoeveel uur zit dit station echt boven zijn grens, en hoeveel erboven?', 'Ask: for how many hours is this station really over its limit, and by how much?', { cues: ['station'] }),
       ],
@@ -694,7 +701,7 @@ const spec = {
       id: 's8', lesson: ROLES, level: 1, dur: DUR[7], still: 0.9, title: { nl: 'Storingen', en: 'Outages' },
       beats: [
         B('De meeste storingen zitten in het MS- en LS-net: een kabel, een mof, een zekering.', 'Most outages are in the MV and LV grid: a cable, a joint, a fuse.', { cues: ['cable', 'joint'] }),
-        B('{t:Jaarlijkse uitvalduur}: in 2024 zo’n {n:24} minuten door onvoorziene storingen.', '{t:Outage minutes}: in 2024 about {n:24} minutes from unplanned outages.', { cue: { 'Jaarlijkse uitvalduur': 'saidi' } }),
+        B('{t:Jaarlijkse uitvalduur}: in 2025 zo’n {n:23} minuten door onvoorziene storingen.', '{t:Outage minutes}: in 2025 about {n:23} minutes from unplanned outages.', { cue: { 'Jaarlijkse uitvalduur': 'saidi' } }),
         B('Voorbeeld: {n:70} miljoen klantminuten / {n:2.8} miljoen klanten = {n:25} minuten.', 'Example: {n:70} million customer minutes / {n:2.8} million customers = {n:25} minutes.', { cues: ['saidi'] }),
         B('Eén MS-storing: {n:3000} klanten × {n:90} minuten = {n:270000} klantminuten.', 'One MV fault: {n:3000} customers × {n:90} minutes = {n:270000} customer minutes.', { cues: ['saidi'] }),
         B('Dus eerst snel terugschakelen, nog voordat de kabel gerepareerd is.', 'So switch customers back quickly, even before the cable is repaired.', { cues: ['cable'] }),
@@ -747,8 +754,8 @@ const spec = {
 // Vattenfall, Stedin, netbeheerder.
 const SAY = [
   [ // s1 a full grid
-    B('Een straat met een netstation, een kabel naar elk huis, en aan het eind een koelhuis. Ze hangen allemaal aan hetzelfde net.',
-      'A street with a distribution substation, a cable to every home, and a cold store at the end. They all hang on the same grid.'),
+    B('Een straat met een netstation, een kabel naar elk huis, en aan het eind een koelhuis: allemaal aan hetzelfde net.',
+      'A street with a distribution substation, a cable to every home, and a cold store at the end: all on the same grid.'),
     B('{t:Netcongestie|Netcongestie} betekent dat op piekmomenten de vraag naar transport groter is dan wat een deel van het net veilig kan dragen.',
       '{t:Grid congestion|Grid congestion} means that at peak moments, the demand for transport is higher than what part of the grid can safely carry.'),
     B('Dat deel kan een kabel zijn, een transformator of een heel onderstation.',
@@ -757,11 +764,11 @@ const SAY = [
       'It can be on the consumption side, like an industrial area, or on the feed-in side, like solar parks. Large parts of the Netherlands are full for one or both.'),
   ],
   [ // s2 the waiting list
-    B('Dit koelhuis is een {t:Grootverbruiker|grootverbruiker}: een aansluiting boven {n:3} maal {n:80} ampère, zo’n {n:55} kilovoltampère. Net als een supermarkt, een fabriek of een laadplein.',
+    B('Dit koelhuis is een {t:Grootverbruiker|grootverbruiker}: een aansluiting boven {n:3} maal {n:80} ampère, zo’n {n:55} kilovoltampère, net als een supermarkt, een fabriek of een laadplein.',
       'This cold store is a {t:Large consumer|large consumer}: a connection above {n:3} times {n:80} amps, about {n:55} kilovolt amperes. So is a supermarket, a factory or a charging hub.'),
     B('In een congestiegebied komen nieuwe grootverbruikers, en bestaande die meer willen, op een wachtrij. Duizenden bedrijven wachten.',
       'In a congested area, new large consumers, and existing ones that want more, go on a waiting list. Thousands of companies are waiting.'),
-    B('Woningen en winkels hadden aparte capaciteit. Sinds juli 2026 gelden voor hen dezelfde regels voor voorrang, dus soms moeten ook zij wachten.',
+    B('Woningen en winkels hadden aparte capaciteit. Sinds juli 2026 gelden voor hen dezelfde regels voor voorrang, dus soms wachten ook zij.',
       'Homes and small shops had capacity set aside. Since July 2026 they follow the same priority rules, so sometimes they wait too.'),
     B('Waar nog ruimte is, toont de openbare {t:Capaciteitskaart|capaciteitskaart}, voor afname en voor invoeding.',
       'The public {t:Capacity map|capacity map} shows where there is still room, for consumption and for feed-in.'),
@@ -769,38 +776,38 @@ const SAY = [
   [ // s3 building takes years
     B('Waarom niet bijbouwen? Een nieuw onderstation duurt vaak {n:5} tot {n:10} jaar: vergunningen, grond, ruimte voor kabels. Middenspanning verzwaren duurt maanden tot jaren.',
       'Why not build more? A new substation often takes {n:5} to {n:10} years: permits, land, space for cables. Reinforcing medium voltage takes months to years.'),
-    B('Monteurs, transformatoren en ruimte in de grond zijn schaars. Alleen bouwen lost het de komende tien jaar niet op: het bestaande net moet beter benut worden.',
-      'Technicians, transformers and space underground are scarce. Building alone will not solve it in the next ten years: the existing grid has to be used better.'),
+    B('Monteurs, transformatoren en ruimte in de grond zijn schaars. Bouwen alleen lost het voorlopig niet op: het bestaande net moet beter benut worden.',
+      'Technicians, transformers and space underground are scarce. Building alone will not solve it for now: the existing grid has to be used better.'),
     B('Een voorbeeld: een onderstation van {n:30} megavoltampère, met een piek van {n:29}. Drie bedrijven willen samen {n:6} megavoltampère erbij.',
       'An example: a {n:30} megavolt ampere substation, with a peak of {n:29}. Three companies together want {n:6} megavolt amperes more.'),
     B('Dat past niet. Het eerste antwoord: een wachtrij, tot er over zo’n {n:7} jaar een nieuw onderstation staat.',
       'That does not fit. The first answer: a waiting list, until a new substation is ready in about {n:7} years.'),
   ],
   [ // s4 only 180 hours
-    B('Maar de netbeheerder kijkt beter, en zet alle {n:8760} uur van het jaar op een rij, van hoog naar laag.',
-      'But the grid operator looks closer, and lines up all {n:8760} hours of the year, from high to low.'),
+    B('Maar de netbeheerder kijkt beter: alle {n:8760} uur van het jaar op een rij, van hoog naar laag.',
+      'But the grid operator looks closer: all {n:8760} hours of the year in a row, from high to low.'),
     B('Boven de {n:24} megavoltampère komt de belasting maar {n:180} uur per jaar. Dat is zo’n {n:2} procent van de tijd.',
       'The load is above {n:24} megavolt amperes for only {n:180} hours a year. That is about {n:2} percent of the time.'),
-    B('Zo gaat het vaak: een vol station is meestal maar tientallen tot een paar honderd uur per jaar echt overbelast.',
+    B('Zo gaat het vaak: een vol station is meestal maar tientallen tot honderden uren per jaar echt overbelast.',
       'That is typical: a full station is usually only overloaded for tens to a few hundred hours a year.'),
   ],
   [ // s5 paid to shift
-    B('{t:Congestiemanagement|Congestiemanagement} betekent dat klanten betaald of gecontracteerd worden om op piekmomenten minder af te nemen, of minder in te voeden.',
+    B('{t:Congestiemanagement|Congestiemanagement}: klanten worden betaald of gecontracteerd om op piekmomenten minder af te nemen of in te voeden.',
       '{t:Congestion management|Congestion management} means paying or contracting customers to use less, or feed in less, at peak moments.'),
-    B('Netbeheerders kopen die flexibiliteit vaak in via {t:GOPACS|GOPACS}, hun gezamenlijke platform: zij plaatsen verzoeken, bedrijven bieden aan om te schuiven.',
-      'Grid operators often buy that flexibility through {t:GOPACS|GOPACS}, their joint platform: they post requests, and companies offer to shift.'),
+    B('Netbeheerders kopen die flexibiliteit vaak in via {t:GOPACS|GOPACS}, hun gezamenlijke platform, waar bedrijven aanbieden om te schuiven.',
+      'Grid operators often buy that flexibility through {t:GOPACS|GOPACS}, their joint platform, where companies offer to shift.'),
     B('Hier schuift het koelhuis tegen een vergoeding {n:4} megavoltampère koeling weg uit die uren, bijvoorbeeld door eerder te koelen.',
       'Here the cold store shifts {n:4} megavolt amperes of cooling out of those hours for a fee, for example by cooling earlier.'),
     B('Een {t:Flexibel contract|flexibel contract} geeft capaciteit, behalve op de piekuren of voor een vast deel van het jaar, meestal tegen een lager tarief.',
       'A {t:Flexible contract|flexible contract} gives capacity except at peak hours, or for a set share of the year, usually at a lower tariff.'),
-    B('Eén bedrijf neemt zo’n contract, zonder capaciteit op de piekuren. Zo sluiten twee van de drie binnen een jaar aan. Een beetje flexibiliteit levert veel ruimte op.',
-      'One company takes such a contract, without capacity at peak hours. So two of the three connect within a year. A little flexibility frees a lot of room.'),
+    B('Eén bedrijf neemt zo’n contract. Zo sluiten twee van de drie binnen een jaar aan: een beetje flexibiliteit levert veel ruimte op.',
+      'One company takes such a contract. So two of the three connect within a year: a little flexibility frees a lot of room.'),
   ],
   [ // s6 who goes first
-    B('Waar experts over discussiëren: wie krijgt de schaarse capaciteit het eerst? Standaard wie het eerst komt.',
-      'What experts argue about: who gets scarce capacity first? By default, whoever comes first.'),
-    B('Sinds 2024 mogen netbeheerders van de toezichthouder projecten met maatschappelijke waarde voorrang geven: wat congestie verlicht, veiligheid, zoals ziekenhuizen, en basisbehoeften, zoals woningbouw en scholen. Sinds juli 2026 geldt dat ook voor kleine aansluitingen.',
-      'Since 2024 the regulator has let grid operators put projects with social value first: what relieves congestion, safety, such as hospitals, and basic needs, such as new housing and schools. Since July 2026 this also covers small connections.'),
+    B('Wie krijgt de schaarse capaciteit het eerst? Standaard: wie het eerst komt.',
+      'Who gets scarce capacity first? By default: whoever comes first.'),
+    B('Sinds 2024 mogen netbeheerders van de toezichthouder projecten met maatschappelijke waarde voorrang geven: eerst wat congestie verlicht, dan veiligheid, zoals ziekenhuizen, dan basisbehoeften, zoals woningbouw en scholen. De rechter vernietigde dat eerste kader in 2025; het nieuwe houdt dezelfde volgorde.',
+      'Since 2024 the regulator has let grid operators put projects with social value first: congestion relief first, then safety, such as hospitals, then basic needs, such as new housing and schools. A court annulled that first framework in 2025; the new one keeps the same order.'),
     B('Bedrijven verderop in de rij wachten daardoor langer.',
       'Companies further down the queue wait longer as a result.'),
     B('Een scherpe vraag: hoeveel uur zit dit station echt boven zijn grens, en hoeveel erboven?',
@@ -817,9 +824,9 @@ const SAY = [
   [ // s8 outages
     B('De meeste storingen zitten in het middenspanningsnet en het laagspanningsnet: een kabel geraakt bij graafwerk, een oude mof, een zekering die doorslaat.',
       'Most outages are in the medium and low voltage grid: a cable hit by digging, an old joint, a blown fuse.'),
-    B('Netbeheerders sturen op de {t:Jaarlijkse uitvalduur|jaarlijkse uitvalduur} per klant. In 2024 was dat zo’n {n:24} minuten door onvoorziene storingen, plus zo’n {n:23.3} minuten door gepland werk. Een van de betrouwbaarste netten van Europa.',
-      'Operators track the {t:Outage minutes|outage minutes} per customer per year. In 2024 that was about {n:24} minutes from unplanned outages, plus about {n:23.3} minutes of planned work. One of the most reliable grids in Europe.'),
-    B('Voorbeeld: {n:2.8} miljoen klanten en {n:70} miljoen klantminuten in een jaar, vooral door kapotte kabels in de middenspanning. Dat is {n:25} minuten per klant.',
+    B('Netbeheerders sturen op de {t:Jaarlijkse uitvalduur|jaarlijkse uitvalduur} per klant. In 2025: zo’n {n:23} minuten door onvoorziene storingen, plus zo’n {n:27} door gepland werk. Een van de betrouwbaarste netten van Europa.',
+      'Operators track the {t:Outage minutes|outage minutes} per customer per year. In 2025 that was about {n:23} minutes from unplanned outages, plus about {n:27} minutes of planned work. One of the most reliable grids in Europe.'),
+    B('Voorbeeld: {n:2.8} miljoen klanten en {n:70} miljoen klantminuten in een jaar, vooral door kapotte kabels in de middenspanning: gemiddeld {n:25} minuten per klant.',
       'Example: {n:2.8} million customers and {n:70} million customer minutes in a year, mostly from medium-voltage cable faults. That is {n:25} minutes per customer.'),
     B('Eén storing waarbij {n:3000} klanten {n:90} minuten zonder stroom zitten, is al {n:270000} klantminuten.',
       'One fault that cuts {n:3000} customers for {n:90} minutes is already {n:270000} customer minutes.'),
@@ -829,11 +836,11 @@ const SAY = [
   [ // s9 regulated
     B('Een netbeheerder is een {t:Gereguleerd monopolie|gereguleerd monopolie}: elk heeft een eigen gebied, en klanten kunnen niet kiezen.',
       'A grid operator is a {t:Regulated monopoly|regulated monopoly}: each has its own area, and customers cannot choose.'),
-    B('Daarom bepaalt de {t:ACM|ACM}, de toezichthouder, zijn inkomsten via de tarieven, legt ze de regels vast in de codes, en controleert ze de kwaliteit.',
+    B('Daarom bepaalt de {t:ACM|ACM}, de toezichthouder, zijn inkomsten via de tarieven, de regels in de codes, en controleert ze de kwaliteit.',
       'So the {t:ACM|ACM}, the regulator, sets its income through the tariffs, fixes the rules in the codes, and checks quality.'),
-    B('Sinds {n:1} januari 2026 geeft de Energiewet het kader, als opvolger van de wet uit 1998. Provincies en gemeenten zijn eigenaar, en verkopen mag niet. De Staat brengt kapitaal in, zoals bij Stedin, en bezit TenneT. Tarieven en de wachtrij zijn landelijk nieuws.',
+    B('Sinds {n:1} januari 2026 geldt de Energiewet, die de wet uit 1998 verving. Eigenaar zijn provincies en gemeenten; verkopen mag niet. De Staat brengt kapitaal in, zoals bij Stedin, en bezit TenneT. Tarieven en de wachtrij zijn landelijk nieuws.',
       'Since {n:1} January 2026 the Energy Act sets the framework, replacing the act of 1998. Provinces and municipalities own the operators, and selling them is not allowed. The state puts in capital, as in Stedin, and owns TenneT. Tariffs and waiting lists are national news.'),
-    B('Intussen groeit het werk, en komt de sector duizenden monteurs tekort. Dus werken netbeheerders zoveel mogelijk standaard, in grotere pakketten. De scherpe vraag: waar gaat de dag van een monteur echt naartoe?',
+    B('Intussen groeit het werk, en komt de sector duizenden monteurs tekort. Dus werken netbeheerders standaard, in grotere pakketten. De scherpe vraag: waar gaat de dag van een monteur echt naartoe?',
       'Meanwhile the work grows, and the sector is short of thousands of technicians, so operators standardise and plan bigger packages. The sharp question: where does a technician’s day actually go?'),
   ],
 ];

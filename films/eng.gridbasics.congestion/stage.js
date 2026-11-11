@@ -322,9 +322,9 @@ const STAGE = (() => {
   function saidiBars(a) {
     if (a <= 0.01) return '';
     const k = 6.4; // px per minute
-    return op(a, txt(222, 44, tr('2024, minuten per klant', '2024, minutes per customer'), 20, 'start', 'mf-mute')
-      + `<rect class="fp-meter" data-top="" x="222" y="58" width="${f1(23.9 * k * a)}" height="24" rx="3"/>` + txt(222 + 23.9 * k + 10, 78, tr('± 24 onvoorzien', '± 24 unplanned'), 20, 'start', 'mf-on')
-      + `<rect class="fp-meter" data-alt="" x="222" y="92" width="${f1(23.3 * k * a)}" height="24" rx="3"/>` + txt(222 + 23.3 * k + 10, 112, tr('+ ± 23 gepland', '+ ± 23 planned'), 20, 'start', 'mf-txt'));
+    return op(a, txt(222, 44, tr('2025, minuten per klant', '2025, minutes per customer'), 20, 'start', 'mf-mute')
+      + `<rect class="fp-meter" data-top="" x="222" y="58" width="${f1(23.4 * k * a)}" height="24" rx="3"/>` + txt(222 + 23.4 * k + 10, 78, tr('± 23 onvoorzien', '± 23 unplanned'), 20, 'start', 'mf-on')
+      + `<rect class="fp-meter" data-alt="" x="222" y="92" width="${f1(27.2 * k * a)}" height="24" rx="3"/>` + txt(222 + 27.2 * k + 10, 112, tr('+ ± 27 gepland', '+ ± 27 planned'), 20, 'start', 'mf-txt'));
   }
   function saidiCalc(avg, big, back) {
     let out = op(avg, tag(EX, 620, 150) + txt(222, 176, tr('70 mln klantminuten', '70 m customer minutes'), 21, 'start', 'mf-txt')
