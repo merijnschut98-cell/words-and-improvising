@@ -668,6 +668,18 @@ test('applyLesson stores perfect once (the first ts) and keeps it on a later imp
   assert.equal(hinted.courses.eng.lessons['eng.flow.takt'].perfect, undefined, 'a hint is not perfect');
 });
 
+test('applyLesson returns medals, titles and goalReached alongside xp', () => {
+  const firstTry = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW);
+  assert.deepEqual(a.titles, [{ subject: 'eng', rank: 1 }]);
+  assert.deepEqual(a.medals, []);
+  assert.equal(a.goalReached, false, '20 of 30');
+  assert.equal(a.state.titles.eng.rank, 1);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.balance', firstTry: { 'eng.flow.balance#r0': true }, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.goalReached, true, '40 crosses 30');
+  assert.deepEqual(b.titles, []);
+});
+
 test('a perfect retake of a passed lesson sets perfect but gives no XP', () => {
   const all = { 'eng.flow.takt#r0': true };
   const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW);

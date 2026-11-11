@@ -4,7 +4,7 @@
 import { countRound, recallQuestions } from './course.js';
 import { scheduleCourseReview } from './coursereview.js';
 import { seededRng } from './lesson.js';
-import { medalFor, storedMedal } from './flair.js';
+import { medalFor, storedMedal, awardFlair, goalJustReached } from './flair.js';
 import { lessonOf } from '../content/courses/index.js';
 
 export const CHECK_SIZE = 10;
@@ -80,5 +80,6 @@ export function applyCheck(state, { subject, moduleId, results, lang }, today, n
     checks: { ...(c.checks || {}), [moduleId]: record },
     sessions: [{ day: today, kind: 'check', moduleId, correct, total: entries.length, ts: now }, ...(c.sessions || [])].slice(0, SESSIONS_CAP),
   } } };
-  return { state: next, xp, correct, total: entries.length, perfect };
+  const won = awardFlair(next, now);
+  return { state: won.state, xp, correct, total: entries.length, perfect, medals: won.medals, speakMedals: won.speakMedals, titles: won.titles, goalReached: goalJustReached(state, won.state, today) };
 }

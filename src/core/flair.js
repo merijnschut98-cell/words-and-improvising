@@ -144,6 +144,44 @@ export function newTitles(state, now, modules = MODULES) {
   });
 }
 
+// Stores what the rules newly give (medals first: titles count them) with
+// the moment it was earned. Nothing new: the same state object back.
+export function awardFlair(state, now, modules = MODULES) {
+  let next = state;
+  const medals = [];
+  for (const subject of ['eng', 'pm']) {
+    const found = newMedals(next, subject, modules);
+    if (!found.length) continue;
+    const c = courseOf(next, subject);
+    const add = Object.fromEntries(found.map((m) => [m.moduleId, { tier: m.tier, ts: now }]));
+    next = { ...next, courses: { ...(next.courses || {}), [subject]: { ...c, lessons: c.lessons || {}, sessions: c.sessions || [], medals: { ...(c.medals || {}), ...add } } } };
+    medals.push(...found.map((m) => ({ subject, ...m })));
+  }
+  const speakMedals = newSpeakMedals(next, now);
+  if (speakMedals.length) {
+    next = { ...next, speakMedals: { ...(next.speakMedals || {}), ...Object.fromEntries(speakMedals.map((m) => [m.groupId, { tier: m.tier, ts: now }])) } };
+  }
+  const titles = newTitles(next, now, modules);
+  if (titles.length) {
+    next = { ...next, titles: { ...(next.titles || {}), ...Object.fromEntries(titles.map((t) => [t.subject, { rank: t.rank, ts: now }])) } };
+  }
+  return { state: next, medals, speakMedals, titles };
+}
+
+// One big moment per screen: title, then medal, then the daily goal, then
+// the lesson itself (XP earned). The rest become quiet lines.
+export function celebrationOf(result) {
+  const r = result || {};
+  const items = [
+    ...(r.titles || []).map((x) => ({ kind: 'title', ...x })),
+    ...(r.medals || []).map((x) => ({ kind: 'medal', ...x })),
+    ...(r.speakMedals || []).map((x) => ({ kind: 'medal', ...x })),
+    ...(r.goalReached ? [{ kind: 'goal' }] : []),
+    ...(r.xp > 0 ? [{ kind: 'lesson', xp: r.xp }] : []),
+  ];
+  return { big: items[0] || null, quiet: items.slice(1) };
+}
+
 // What is still missing for the next rank of a course subject; null at
 // Meester. Speaking returns the counts its next rule still needs.
 export function titleNextNeeds(state, subject, now, modules = MODULES) {

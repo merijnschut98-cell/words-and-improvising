@@ -5,7 +5,8 @@ import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { upcoming } from './realweek.js';
-import { creditXp, isPerfect } from './xp.js';
+import { creditXp, isPerfect, goalJustReached } from './xp.js';
+import { awardFlair } from './flair.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -130,7 +131,9 @@ export function applyLesson(state, { subject, lessonId, firstTry, sure = {}, lan
     ...c,
     lessons: { ...c.lessons, [lessonId]: { ...before, read: before.read || now, passed: before.passed || now, ...(before.perfect || isPerfect(firstTry, sure) ? { perfect: before.perfect || now } : {}) } },
   }, { day: today, kind: 'lesson', lessonId, correct: results.filter(Boolean).length, total: results.length, ts: now }));
-  return { state: next, xp };
+  // v16 flair: medals and titles this lesson earned, and the daily goal.
+  const won = awardFlair(next, now);
+  return { state: won.state, xp, medals: won.medals, speakMedals: won.speakMedals, titles: won.titles, goalReached: goalJustReached(state, won.state, today) };
 }
 
 export function applyDue(state, { subject, results, sure = {}, lang, maintenance = false, prep = null }, today, now) {

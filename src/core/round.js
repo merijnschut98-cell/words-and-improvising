@@ -5,7 +5,8 @@ import { applyQuests } from './quests.js';
 import { updateBests } from './bests.js';
 import { newMilestones } from './milestones.js';
 import { scheduleReview, wasImproved } from './spaced.js';
-import { creditXp } from './xp.js';
+import { creditXp, goalJustReached } from './xp.js';
+import { awardFlair } from './flair.js';
 
 export function applyRound(state, round, today, now) {
   const { prompt, metrics, durationS, targetS, coach } = round;
@@ -54,6 +55,8 @@ export function applyRound(state, round, today, now) {
   next = q.state;
   const reached = newMilestones(next);
   if (reached.length) next = { ...next, milestones: [...(next.milestones || []), ...reached] };
+  const won = awardFlair(next, now);
+  next = won.state;
   return {
     state: next,
     xp: next.xp - state.xp, // round XP plus any quest XP
@@ -61,6 +64,10 @@ export function applyRound(state, round, today, now) {
     completedQuests: q.completed,
     newBests: b.newBests,
     newMilestones: reached,
+    medals: won.medals,
+    speakMedals: won.speakMedals,
+    titles: won.titles,
+    goalReached: goalJustReached(state, next, today),
   };
 }
 

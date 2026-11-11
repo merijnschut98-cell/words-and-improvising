@@ -59,6 +59,18 @@ test('applyCheck: schedules reviews like a due session; a right answer before du
   assert.equal(r.state.courseReviews['nl|eng.fx.b#r1'].box, 1);
 });
 
+test('applyCheck: a perfect check with silver awards gold and returns it', () => {
+  const real = { id: 'eng.flow', subject: 'eng' };
+  const ids = ['eng.flow.takt', 'eng.flow.balance', 'eng.flow.precedence', 'eng.flow.staffing', 'eng.flow.bottleneck', 'eng.flow.capacity', 'eng.flow.toc', 'eng.flow.throughput', 'eng.flow.oee', 'eng.flow.downtime', 'eng.flow.teep', 'eng.flow.oeecase', 'eng.flow.changeover', 'eng.flow.smed', 'eng.flow.batch', 'eng.flow.wheel'];
+  const lessons = Object.fromEntries(ids.map((id) => [id, { passed: 1, perfect: 2 }]));
+  const s = { ...defaultState(), courses: { eng: { lessons, sessions: [], medals: { 'eng.flow': { tier: 'silver', ts: 1 } } }, pm: { lessons: {}, sessions: [] } } };
+  const r = applyCheck(s, { subject: real.subject, moduleId: real.id, results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW);
+  assert.deepEqual(r.medals, [{ subject: 'eng', moduleId: 'eng.flow', tier: 'gold' }]);
+  assert.equal(r.state.courses.eng.medals['eng.flow'].tier, 'gold');
+  const miss = applyCheck(s, { subject: real.subject, moduleId: real.id, results: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW);
+  assert.deepEqual(miss.medals, []);
+});
+
 test('applyCheck: stores best, total, last and the first perfect ts', () => {
   const r1 = applyCheck(passedAll(), { subject: 'eng', moduleId: 'eng.fx', results: { a: true, b: false, c: true }, lang: 'nl' }, TODAY, NOW);
   assert.deepEqual(r1.state.courses.eng.checks['eng.fx'], { last: TODAY, best: 2, total: 3, perfect: null });

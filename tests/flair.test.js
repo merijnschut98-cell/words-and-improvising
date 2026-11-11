@@ -206,3 +206,38 @@ test('titleNextNeeds returns the levels and medals still missing for the next ra
   assert.equal(titleNextNeeds({ ...m, titles: { eng: { rank: 4, ts: 1 } } }, 'eng', NOW, MODS), null);
   assert.deepEqual(titleNextNeeds(defaultState(), 'eng', NOW, MODS), { rank: 1, levels: 1, medals: 0, tier: null });
 });
+
+import { awardFlair, celebrationOf } from '../src/core/flair.js';
+
+test('awardFlair stores new medals and titles with ts and returns them', () => {
+  const s = engState(MODS[0].lessons);
+  const r = awardFlair(s, NOW, MODS);
+  assert.deepEqual(r.medals, [{ subject: 'eng', moduleId: 'eng.m1', tier: 'bronze' }]);
+  assert.deepEqual(r.titles, [{ subject: 'eng', rank: 2 }]);
+  assert.deepEqual(r.state.courses.eng.medals['eng.m1'], { tier: 'bronze', ts: NOW });
+  assert.deepEqual(r.state.titles.eng, { rank: 2, ts: NOW });
+  assert.deepEqual(r.speakMedals, []);
+});
+
+test('awardFlair on a state with nothing new returns the same state object', () => {
+  const s = defaultState();
+  const r = awardFlair(s, NOW, MODS);
+  assert.equal(r.state, s);
+  const again = awardFlair(engState(MODS[0].lessons), NOW, MODS).state;
+  assert.equal(awardFlair(again, NOW + 1, MODS).state, again);
+});
+
+test('the biggest moment: celebrationOf picks title over medal over goal over lesson', () => {
+  const all = celebrationOf({ xp: 20, goalReached: true, medals: [{ subject: 'eng', moduleId: 'eng.m1', tier: 'bronze' }], titles: [{ subject: 'eng', rank: 2 }] });
+  assert.equal(all.big.kind, 'title');
+  assert.deepEqual(all.quiet.map((x) => x.kind), ['medal', 'goal', 'lesson']);
+  const medal = celebrationOf({ xp: 0, goalReached: false, medals: [{ subject: 'eng', moduleId: 'eng.m1', tier: 'silver' }], titles: [] });
+  assert.equal(medal.big.kind, 'medal');
+  assert.deepEqual(medal.quiet, []);
+  assert.equal(celebrationOf({ xp: 20, goalReached: true, medals: [], titles: [] }).big.kind, 'goal');
+  assert.equal(celebrationOf({ xp: 20, medals: [], titles: [] }).big.kind, 'lesson');
+  assert.deepEqual(celebrationOf({ xp: 0, medals: [], titles: [] }), { big: null, quiet: [] }, 'a retake celebrates nothing');
+  const speak = celebrationOf({ xp: 30, speakMedals: [{ groupId: 'basics', tier: 'bronze' }], titles: [] });
+  assert.equal(speak.big.kind, 'medal');
+  assert.equal(speak.big.groupId, 'basics');
+});

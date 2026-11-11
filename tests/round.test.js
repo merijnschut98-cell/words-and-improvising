@@ -103,3 +103,15 @@ test('applyRound credits round XP and quest XP to xpDays on the round\'s day', (
   assert.equal(xp, 45, 'round 30 + quest 15');
   assert.equal(state.xpDays['2026-10-23'], 45);
 });
+
+test('applyRound returns a new speaking title and goalReached', () => {
+  const s = { ...defaultState(), quests: { day: '2026-10-23', items: [{ id: 'coldStart', done: false }, { id: 'sayAgain', done: false }, { id: 'pauseClean', done: false }] } };
+  const r = applyRound(s, round({ prepS: 0 }), '2026-10-23', new Date(2026, 9, 23, 9).getTime());
+  assert.deepEqual(r.titles, [{ subject: 'speak', rank: 1 }]);
+  assert.equal(r.state.titles.speak.rank, 1);
+  assert.equal(r.goalReached, true, '45 XP crosses the default 30');
+  assert.deepEqual(r.speakMedals, []);
+  const again = applyRound(r.state, round(), '2026-10-23', new Date(2026, 9, 23, 10).getTime());
+  assert.deepEqual(again.titles, []);
+  assert.equal(again.goalReached, false, 'already reached today');
+});
