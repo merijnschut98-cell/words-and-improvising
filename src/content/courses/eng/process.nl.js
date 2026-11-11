@@ -290,7 +290,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
-      film: 'eng.process.plant',
+      film: 'eng.process.measure',
       title: 'Druk, debiet, niveau en temperatuur',
       pre: [
         {
