@@ -572,7 +572,7 @@ const spec = {
         B('Een breker met een motor van {n:90} kW: nominaal zo’n {n:160} A bij {n:400} V.', 'A crusher with a {n:90} kW motor: rated about {n:160} A at {n:400} V.', { cues: ['crush'] }),
         B('Direct ingeschakeld trekt hij een paar seconden {n:1000} tot {n:1300} A.', 'Started direct on line, it draws {n:1000} to {n:1300} A for a few seconds.', { cues: ['crush'] }),
         B('Elke start laat de spanning dippen: lampen knipperen, twee regelaars vallen uit.', 'Each start dips the voltage: lights flicker, two drives trip.', { cues: ['panel'] }),
-        B('Een softstarter is te zwak voor een volle breker; een frequentieregelaar past hier.', 'A soft starter is too weak for a full crusher; a VFD is the one that fits.', { cues: ['crush'] }),
+        B('Met een softstarter kan een volle breker blijven hangen; een frequentieregelaar past hier.', 'With a soft starter a full crusher may stall; a VFD is the one that fits.', { cues: ['crush'] }),
       ],
     },
     {
@@ -623,7 +623,8 @@ const spec = {
 // affiniteitswetten (stressed on "af"; the caption names the laws),
 // omschakelen (stressed on "-ke-"), stroomstoot (stressed on "stoot"), and as
 // in the motor film elektromotor, centrifugaalpomp, inductiemotor. Read right:
-// softstarter, encoder, ster-driehoekschakeling, inschakelstroom,
+// softstarter, encoder, ster-driehoekschakeling, aanloopstroom (not
+// inschakelstroom: espeak-ng reads "-schakEl-" with the e of "bed"),
 // gelijkspanning, omvormer, onderspanning, transformator, tandwielkasten.
 const SAY = [
   [ // s1 direct on line
@@ -659,7 +660,7 @@ const SAY = [
   [ // s4 soft starter
     B('Een {t:Softstarter|softstarter} laat met elektronica de spanning in een paar seconden oplopen.',
       'A {t:Soft starter|soft starter} uses electronics to ramp up the voltage over a few seconds.'),
-    B('Zo blijft de inschakelstroom beperkt, meestal tot {n:3} tot {n:4} keer nominaal, en wordt de ruk een zachte aanloop.',
+    B('Zo blijft de aanloopstroom beperkt, meestal tot {n:3} tot {n:4} keer nominaal, en wordt de ruk een zachte aanloop.',
       'That keeps the inrush current down, usually to {n:3} to {n:4} times rated, and the jolt becomes a gentle start.'),
     B('Op toeren draait de motor gewoon zijn vaste toerental: een softstarter helpt bij het aanlopen, niet bij het regelen.',
       'Up to speed, the motor simply runs at its fixed speed: a soft starter helps with starting, not with speed control.'),
@@ -683,8 +684,8 @@ const SAY = [
       'Started direct on line, it draws roughly {n:1000} to {n:1300} amps for a few seconds at every start.'),
     B('De spanning in de fabriek dipt: lampen knipperen, en twee frequentieregelaars elders vallen uit op onderspanning.',
       'The plant voltage dips: lights flicker, and two drives elsewhere trip on undervoltage.'),
-    B('Een softstarter haalt de piek naar {n:3} tot {n:4} keer nominaal, maar een volle breker blijft met dat lagere koppel hangen. De regelaar geeft vol koppel bij nominale stroom: hier past het duurdere apparaat.',
-      'A soft starter cuts the surge to {n:3} to {n:4} times rated, but a full crusher stalls with that lower torque. The drive gives full torque at rated current: here the more expensive device fits.'),
+    B('Een softstarter haalt de piek naar {n:3} tot {n:4} keer nominaal, maar met dat lagere koppel kan een volle breker blijven hangen. De regelaar geeft vol koppel bij nominale stroom: hier past het duurdere apparaat.',
+      'A soft starter cuts the surge to {n:3} to {n:4} times rated, but with that lower torque a full crusher may stall. The drive gives full torque at rated current: here the more expensive device fits.'),
   ],
   [ // s7 the pump slower
     B('De winst zit bij pompen en ventilatoren: hoeft de pomp minder te leveren, dan laat je hem langzamer draaien.',

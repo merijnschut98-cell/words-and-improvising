@@ -266,7 +266,7 @@ const STAGE = (() => {
       for (let x = 324; x <= 612; x += 4) { const t = (x - 324) / 288; pts.push([x, 330 + 22 * Math.exp(-(((t - 0.18) / 0.05) ** 2)) * (t > 0.18 ? Math.exp(-(t - 0.18) * 6) : 1) + 22 * Math.exp(-(((t - 0.68) / 0.05) ** 2))]); }
       out += op(dip, txt(222, 336, tr('spanning', 'voltage'), 20, 'start', 'mf-mute') + `<path class="mf-accl" d="${fmt(pts)}"/>` + txt(612, 384, tr('elke start een dip', 'a dip at every start'), 20, 'end', 'mf-on'));
     }
-    out += op(verdict, txt(222, 324, tr('vol materiaal: softstarter te zwak,', 'full of material: soft starter too weak,'), 20, 'start', 'mf-txt') + txt(222, 352, tr('de regelaar past', 'the VFD fits'), 20, 'start', 'mf-on'));
+    out += op(verdict, txt(222, 324, tr('vol materiaal: softstarter kan hangen,', 'full of material: soft starter may stall,'), 20, 'start', 'mf-txt') + txt(222, 352, tr('de regelaar past', 'the VFD fits'), 20, 'start', 'mf-on'));
     return out;
   }
 
