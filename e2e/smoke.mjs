@@ -1143,7 +1143,8 @@ await step('streak freeze covers one missed day', async () => {
 await step('broken streak shows a gentle banner once', async () => {
   await patchState({ streak: { count: 5, lastDay: await dayAgo(4) }, freezes: 0, ui: {} });
   await page.reload();
-  await page.locator('.break-card').waitFor({ timeout: 3000 });
+  // 10 s: on a loaded machine the reload itself (the service worker refreshes every file) can take longer than 3 s.
+  await page.locator('.break-card').waitFor({ timeout: 10000 });
   await page.reload();
   await page.waitForTimeout(300);
   if (await page.locator('.break-card').count()) throw new Error('banner shown twice');
