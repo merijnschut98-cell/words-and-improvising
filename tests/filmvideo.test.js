@@ -118,6 +118,17 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
+  // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
+  // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
+  // stress on -ly- only in this film's two phrases, and the data compounds split at the head; English keeps them
+  assert.equal(speakOf(['Volgens Stone, Patton en Heen, in Difficult Conversations: het identiteitsgesprek, je identiteitsval, gekwetstheid, smalltalk.'], 'nl'),
+    'Volgens Stoon, Petten en Heen, in Diffikkelt Konver-seesjens: het identiteits-gesprek, je identiteits-val, ge-kwetstheid, smoltok.');
+  assert.equal(speakOf(['Je analyse moet vrijdag af, de analyse vóór vrijdag, de analyse voor juni, nog één analyse.'], 'nl'),
+    'Je analiese moet vrijdag af, de analiese vóór vrijdag, de analyse voor juni, nog één analyse.');
+  assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
+    'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
+  assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
 });
 
 // ------------------------------------------------------------ WAV files
