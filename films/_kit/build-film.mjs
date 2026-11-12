@@ -6,6 +6,18 @@
 //   term is not found, or when the nl and en captions name different terms.
 // - Numbers: {n:1167} is formatted per language and must appear in the Dutch
 //   text of a served lesson. The film's model asserts it computes them.
+// - Focus (v16): each beat names the part(s) of the drawing it explains, so the
+//   player lights them white / light blue (a soft halo) while the beat is
+//   spoken and its caption shows. `focus: 'ct'` or `focus: ['ct', 'vt']` (keys
+//   of the stage's data-cue groups), or `focus: null` for an overview sentence
+//   that points at nothing. A term's cue ({t:…} with `cue: { Term: 'key' }`)
+//   joins the beat's focus. The older `cues: [...]` list still lights parts in
+//   films without a focus field. The build counts beats that light nothing and
+//   cue keys that are no data-cue group of the drawing, and prints them as
+//   warnings. A film with `strictFocus: true` (all new films) must give every
+//   beat a focus field (no `cues`, no term in an overview): then both are
+//   errors. The page data carries `focus` per beat and `strictFocus` only when
+//   the film declares them, so older films' data is unchanged.
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -13,7 +25,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MODULES, loadModule, placeOf } from '../../src/content/courses/index.js';
 import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
-import { checkFilm, lessonTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
+import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
 import { pageHtml } from './player.mjs';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -66,6 +78,14 @@ function findNumber(value, served, lessons, prefer) {
   throw new Error(`number ${value} is in none of the served Dutch lessons`);
 }
 
+// A beat's focus as written: a cue key, a list of them, or null (an overview).
+function focusOf(f, where) {
+  if (f === null) return null;
+  if (typeof f === 'string' && f) return [f];
+  if (Array.isArray(f) && f.length && f.every((k) => typeof k === 'string' && k)) return [...f];
+  throw new Error(`${where}: focus must be a cue key, a list of them, or null`);
+}
+
 // Resolves one film source into the data block (plan 2.4, with beats).
 export function resolveFilm(spec, lessons) {
   const served = spec.lessons;
@@ -92,8 +112,16 @@ export function resolveFilm(spec, lessons) {
         const value = formatNumber(raw, 'nl');
         if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson), value, scene: s.id });
       }
+      // focus (v16): the part(s) of the drawing this beat explains, lit while it
+      // is spoken; a term's cue joins it. Films without it resolve as before.
+      const hasFocus = Object.prototype.hasOwnProperty.call(b, 'focus');
+      const focus = hasFocus ? focusOf(b.focus, where) : undefined;
+      if (spec.strictFocus) {
+        if (b.cues) throw new Error(`${where}: use focus, not cues`);
+        if (!hasFocus) throw new Error(`${where}: no focus (name the part(s) it explains, or focus: null for an overview)`);
+      }
       const seg = {};
-      const cues = new Set(b.cues || []);
+      const cues = new Set([...(focus || []), ...(b.cues || [])]);
       for (const lang of ['nl', 'en']) {
         let k = 0;
         seg[lang] = P[lang].map((p) => {
@@ -115,6 +143,7 @@ export function resolveFilm(spec, lessons) {
           return piece;
         });
       }
+      if (spec.strictFocus && focus === null && tn.length) throw new Error(`${where}: an overview (focus: null) names a term; give it the term's part`);
       const fmtRead = (lang) => readP[lang].map((p) => (p.text !== undefined ? p.text : p.num !== undefined ? formatNumber(p.num, lang) : p.shown)).join('');
       // v14b: the narration script, a fuller spoken explanation than the
       // caption. Same markers; its terms and numbers are checked like the
@@ -153,6 +182,7 @@ export function resolveFilm(spec, lessons) {
         text: { nl: plainOf(seg.nl), en: plainOf(seg.en) },
         speak: { nl: speakOf(seg.nl, 'nl'), en: speakOf(seg.en, 'en') },
         cues: [...cues],
+        ...(hasFocus ? { focus: focus === null && !cues.size ? null : [...cues] } : {}),
         ...(readP ? { read: { nl: fmtRead('nl'), en: fmtRead('en') } } : {}),
         ...(b.still !== undefined ? { still: b.still } : {}),
         ...narration,
@@ -160,7 +190,7 @@ export function resolveFilm(spec, lessons) {
     });
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
   });
-  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers };
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(spec.strictFocus ? { strictFocus: true } : {}) };
 }
 
 // Builds and writes the page; returns { data, bytes, out }.
@@ -168,7 +198,12 @@ export async function defineFilm(spec, stage) {
   const lessons = await allLessons();
   const data = resolveFilm(spec, lessons);
   const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons });
+  const focus = checkFocus(data, cueKeysOf(`${stage.svg}\n${stage.script || ''}`));
+  errs.push(...focus.errors);
   if (errs.length) throw new Error(`film ${spec.id} fails its checks:\n  ${errs.join('\n  ')}`);
+  const beats = data.scenes.reduce((a, s) => a + s.beats.length, 0);
+  if (focus.missing.length) console.warn(`focus: ${focus.missing.length} of ${beats} beats light no part (${focus.missing.join(', ')}); give each a focus, or focus: null for an overview`);
+  if (focus.unknown.length) console.warn(`focus: ${focus.unknown.length} cue keys are no part of the drawing (${focus.unknown.join(', ')})`);
   const html = pageHtml(data, stage);
   const bytes = Buffer.byteLength(html);
   if (bytes > MAX_BYTES) throw new Error(`film ${spec.id} is ${bytes} bytes, over the ${MAX_BYTES} cap`);

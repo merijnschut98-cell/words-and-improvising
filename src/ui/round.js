@@ -1,5 +1,7 @@
 import { meterShouldTurnOff } from '../core/loudness.js';
-import { micConflict, soundHeard, anyHeard, rmsWindows, canShareMic, MIN_SCORED_WORDS } from '../core/micshare.js';
+import {
+  micConflict, soundHeard, anyHeard, rmsWindows, MIN_SCORED_WORDS, isAndroid, micRoute, deviceTrackInput, keepTrackInput,
+} from '../core/micshare.js';
 import { roundSeconds, replyAfter } from '../core/pressure.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
 
@@ -7,38 +9,40 @@ import { h, DRILL_ICON, fmtTime } from './dom.js';
 const secs = (s) => (s >= 60 ? fmtTime(s) : `${fmtTime(s)}s`);
 import { ico } from './icons.js';
 import { drillTiming, twistEvery, debateSide, CUED_DRILLS } from '../core/progress.js';
-import { createRecognizer, speechSupported, joinText } from '../core/speech.js';
+import { createRecognizer, speechSupported, joinText, probeTrackInput } from '../core/speech.js';
 import { say, hush, voiceSupported, speakCapMs } from '../core/voice.js';
 import { prepSecondsUsed } from '../core/quests.js';
 import TIPS from '../content/tips.js';
 import { play } from '../core/sound.js';
-import { createRecorder } from '../core/recorder.js';
+import { createRecorder, recorderSupported } from '../core/recorder.js';
 import { tokenize, analyze, cleanRun } from '../core/metrics.js';
 import { countPauses } from '../core/pauses.js';
 import { pickModifier, applyModifierTiming, wordBudget, takeQueuedModifier } from '../core/modifiers.js';
 
-// Optional loudness meter on a separate mic stream (settings.voiceStats).
+// Optional loudness meter (settings.voiceStats), on the round's shared mic
+// stream when there is one, else on a stream of its own.
 // Samples RMS every 100 ms. Any failure leaves samples empty; it never throws
 // and never waits on anything the speech recogniser needs.
-function startMeter() {
+function startMeter(shared = null) {
   const samples = [];
   let stopped = false;
   let stream = null;
   let ctx = null;
   let timer = null;
-  let opened = false; // the second mic stream really opened
+  let opened = false; // the mic stream really opened
   function stop() {
     stopped = true;
     if (timer) { clearInterval(timer); timer = null; }
-    if (stream) { try { stream.getTracks().forEach((tr) => tr.stop()); } catch { /* ignore */ } stream = null; }
+    if (stream && stream !== shared) { try { stream.getTracks().forEach((tr) => tr.stop()); } catch { /* ignore */ } }
+    stream = null;
     if (ctx) { try { ctx.close().catch(() => {}); } catch { /* ignore */ } ctx = null; }
   }
   (async () => {
     try {
       const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
-      const s = await navigator.mediaDevices.getUserMedia({ audio: true });
-      if (stopped) { s.getTracks().forEach((tr) => tr.stop()); return; }
+      if (!AC || (!shared && !(navigator.mediaDevices && navigator.mediaDevices.getUserMedia))) return;
+      const s = shared || await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (stopped) { if (s !== shared) s.getTracks().forEach((tr) => tr.stop()); return; }
       stream = s;
       opened = true;
       ctx = new AC();
@@ -241,9 +245,51 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   let meter = null; // loudness meter (settings.voiceStats)
   let finished = false;
   let disposed = false; // set when the screen is left
-  // On Android a second mic stream starves live speech recognition without an
-  // error, so the recorder and the loudness meter only run where sharing works.
-  const shareMic = canShareMic(navigator);
+  // The microphone, decided in begin() (micshare.micRoute). On Android a second
+  // mic stream starves live speech recognition without an error. Where the
+  // recogniser takes a track, the round opens the mic once and hands the same
+  // track to the recogniser, the recorder and the meter; where it cannot, the
+  // recorder and meter stay off on Android.
+  let mic = null; // the round's shared getUserMedia stream
+  let micTrack = null; // its audio track, for the recogniser ('track' route)
+  let meterOk = false; // the meter may run this round
+
+  const stopMic = () => {
+    if (mic) { try { mic.getTracks().forEach((tr) => tr.stop()); } catch { /* ignore */ } }
+    mic = null;
+    micTrack = null;
+  };
+  const audioTrack = (s) => (s && typeof s.getAudioTracks === 'function' ? s.getAudioTracks()[0] || null : null);
+  async function openMic() {
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return null;
+      return await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch { return null; }
+  }
+
+  async function setUpMic({ wantRecord, wantMeter }) {
+    const android = isAndroid(navigator);
+    let trackInput = deviceTrackInput(localStorage, navigator);
+    let route = micRoute({ android, trackInput, extras: wantRecord || wantMeter });
+    st.micRoute = route;
+    if (route === 'mic' || route === 'speech-only') return;
+    mic = await openMic();
+    if (disposed) { stopMic(); return; }
+    if (!mic) return; // no mic for the extras; the recogniser tries on its own
+    if (route === 'probe') {
+      trackInput = probeTrackInput(audioTrack(mic));
+      keepTrackInput(localStorage, navigator, trackInput);
+      route = micRoute({ android, trackInput, extras: true });
+    }
+    st.micRoute = route;
+    if (route === 'speech-only') { stopMic(); return; }
+    if (route === 'track') micTrack = audioTrack(mic);
+    meterOk = wantMeter;
+    if (wantRecord) {
+      recorder = createRecorder();
+      st.recording = await recorder.start(mic);
+    }
+  }
 
   const sess = app.session;
   const quit = h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x'));
@@ -337,11 +383,11 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
 
   async function begin() {
     if ((app.state.ui || {}).nextModifier && modifier === undefined) app.setState(takeQueuedModifier(app.state).state);
-    // Spoken-cue drills would record the app's own voice: no recording there.
-    if (st.mode === 'speak' && settings.record && !cued && shareMic) {
-      recorder = createRecorder();
-      st.recording = await recorder.start();
-      if (disposed) { recorder.stop(); return; }
+    // Spoken-cue drills would record the app's own voice: no recording there,
+    // and no meter (it starts with the answer, which cued drills run per item).
+    if (st.mode === 'speak' && !cued) {
+      await setUpMic({ wantRecord: !!settings.record && recorderSupported, wantMeter: !!settings.voiceStats });
+      if (disposed) { if (recorder) recorder.stop(); stopMic(); return; }
     }
     // Frames drill from level 3: he picks the frame first, off the clock.
     if (prompt.drill === 'frame' && !(prompt.extra && prompt.extra.shadow) && (app.state.drillLevels.frame || 1) >= 3 && !st.framePick) {
@@ -423,6 +469,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   function startListening() {
     recognizer = createRecognizer({
       lang: app.lang,
+      track: micTrack && micTrack.readyState !== 'ended' ? micTrack : null,
       onText: (full, interim) => updateLive(joinText(st.base || '', full), interim),
       onError: (code) => {
         if (finished) return;
@@ -517,7 +564,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       input = h('div', {}, st.cleanEl, st.live);
       if (!cued) {
         startListening();
-        if (settings.voiceStats && shareMic) meter = startMeter();
+        if (meterOk) meter = startMeter(mic);
       }
     } else {
       input = typingArea();
@@ -625,6 +672,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     if (recognizer) transcript = joinText(st.base || '', await recognizer.stop());
     if (st.textarea) transcript = st.textarea.value;
     let audio = recorder ? await recorder.stop() : null;
+    stopMic();
     // Recognition heard (almost) nothing while the recorder or meter held the mic
     // too: that other stream most likely starved it. Switch it off and offer a
     // retry; the empty attempt is not scored.
@@ -638,6 +686,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     }
     if (disposed) return;
     if (micClash) {
+      // The shared track did not reach the recogniser after all: do not try it again on this browser.
+      if (st.micRoute === 'track') keepTrackInput(localStorage, navigator, false);
       app.updateSettings(Object.fromEntries(micClash.map((k) => [k, false])));
       audio = null;
     }
@@ -664,7 +714,8 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     clearTimer();
     hush();
     if (recognizer) recognizer.stop();
-    if (recorder) recorder.stop();
+    if (recorder) recorder.stop().then(stopMic);
+    else stopMic();
     if (meter) { meter.stop(); meter = null; }
   };
 }

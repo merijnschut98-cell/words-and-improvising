@@ -5,6 +5,7 @@ export default {
     {
       id: 'eng.transformers.principle',
       figure: 'eng.transformers.load',
+      film: 'eng.transformers.principle',
       title: 'How a transformer works',
       pre: [
         {

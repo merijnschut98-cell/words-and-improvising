@@ -576,6 +576,7 @@ export default {
     },
     {
       id: 'eng.switchgear.protection',
+      film: 'eng.switchgear.protection',
       title: 'Beveiligingsrelais, stroom- en spanningstransformatoren',
       pre: [
         {
@@ -647,6 +648,7 @@ export default {
     },
     {
       id: 'eng.switchgear.selectivity',
+      film: 'eng.switchgear.protection',
       figure: 'eng.switchgear.selectivity',
       title: 'Selectiviteit',
       pre: [
@@ -862,6 +864,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      film: 'eng.switchgear.fiverules',
       title: 'Veilig werken: de vijf veiligheidsregels en NEN 3140',
       pre: [
         {
