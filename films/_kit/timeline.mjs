@@ -228,7 +228,20 @@ const SAY = {
     // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
     // load film's "De hoofdzekering" stays as it is
     [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
-    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // protection (eng.switchgear.protection): espeak-ng reads relais as "REE-lice" (said as the floor says it,
+    // re-LEE; only where no film with a video says it: not before "ziet", "ook" or "meet", nor at a full stop,
+    // so eng.lines.control, eng.switchgear.devices and eng.switchgear.automation keep their voice), NAI-jlen
+    // (said naa-ijlen), and it stresses or voices these compounds wrong: uitschaKEL-signaal with the e of "bed",
+    // REEzervee-beveiliging, aardfout-beeveiLIEging, middenspannings-sə-KIEring,
+    // lekSTROOM, faseSTROmen, foutSTROmen, laagspanningsKAbel, straatKAbel; split at the head, each part keeps
+    // its own reading
+    [/\b([Bb]eveiligings)?([Rr])elais\b(?! (?:ziet|ook|meet)\b)(?!\.)/g, '$1$2elee'], [/\bnaijlen\b/g, 'naa-ijlen'],
+    [/\b([Uu])itschakelsignaal/g, '$1itschakel-signaal'],
+    [/\b([Rr])eservebeveiliging/g, '$1eserve-beveiliging'], [/\b([Aa])ardfoutbeveiliging/g, '$1ardfout-beveiliging'],
+    [/\b([Mm])iddenspanningszekering/g, '$1iddenspannings-zekering'], [/\b([Ll])aagspanningszekering/g, '$1aagspannings-zekering'],
+    [/\b([Ll])ekstroom/g, '$1ek-stroom'], [/\b([Ff])asestromen\b/g, '$1ase-stromen'],
+    [/\b([Ff])outstromen\b/g, '$1out-stromen'], [/\b([Ll])aagspanningskabel/g, '$1aagspannings-kabel'], [/\b([Ss])traatkabel/g, '$1traat-kabel']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
