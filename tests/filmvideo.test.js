@@ -67,6 +67,11 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
   assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');
+  // the listening checklist MORE PIES as the English name in Dutch (espeak-ng reads PIES as the Dutch "pis");
+  // English keeps it, and lower-case words stay
+  assert.equal(speakOf(['De checklist MORE PIES komt uit de crisisonderhandeling.'], 'nl'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
+  assert.equal(speakOf(['The checklist MORE PIES comes from crisis negotiation.'], 'en'), 'The checklist MORE PIES comes from crisis negotiation.');
+  assert.equal(speakOf(['Meer pies en more pies.'], 'nl'), 'Meer pies en more pies.');
 });
 
 // ------------------------------------------------------------ WAV files
