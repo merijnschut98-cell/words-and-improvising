@@ -319,7 +319,17 @@ const SAY = {
     // in-ves-TEE-ring), but eng.lines.variants and eng.quality.tolerance say it in rendered videos, so only
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
-    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig']],
+    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

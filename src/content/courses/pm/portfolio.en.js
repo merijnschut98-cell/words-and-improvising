@@ -4,6 +4,7 @@ export default {
     // Topic 1 · Programmes
     {
       id: 'pm.portfolio.programme',
+      film: 'pm.portfolio.prioritise',
       title: 'Programme or project',
       pre: [
         {
@@ -339,6 +340,7 @@ export default {
     // Topic 2 · Prioritising and capacity
     {
       id: 'pm.portfolio.prioritise',
+      film: 'pm.portfolio.prioritise',
       title: 'Prioritising the portfolio',
       pre: [
         {
@@ -421,6 +423,7 @@ export default {
     },
     {
       id: 'pm.portfolio.capacity',
+      film: 'pm.portfolio.prioritise',
       title: 'The same experts everywhere',
       pre: [
         {

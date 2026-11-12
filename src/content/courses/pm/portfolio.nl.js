@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1 · Programma’s
     {
       id: 'pm.portfolio.programme',
+      film: 'pm.portfolio.prioritise',
       title: 'Programma of project',
       pre: [
         {
@@ -339,6 +340,7 @@ export default {
     // Onderwerp 2 · Prioriteren en capaciteit
     {
       id: 'pm.portfolio.prioritise',
+      film: 'pm.portfolio.prioritise',
       title: 'Het portfolio prioriteren',
       pre: [
         {
@@ -421,6 +423,7 @@ export default {
     },
     {
       id: 'pm.portfolio.capacity',
+      film: 'pm.portfolio.prioritise',
       title: 'Overal dezelfde experts',
       pre: [
         {

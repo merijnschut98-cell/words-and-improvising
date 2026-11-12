@@ -93,6 +93,16 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.portfolio.prioritise: compounds espeak-ng stresses on the wrong part, split at the head (programmaRAAD,
+  // capaciteitsSTREEP, KApaciteitsmatrix, risicogecorrigEERde); onderhanden werk only in this film's two phrases
+  // (eng.lines.design, with a video, keeps its voice); contextswitch with a tsj, planningstool with oe, and Gerald
+  // Weinberg as his English name; English keeps them all
+  assert.equal(speakOf(['De programmaraad, de capaciteitsstreep, een capaciteitsmatrix, capaciteitsconflicten en de risicogecorrigeerde waarde.'], 'nl'),
+    'De programma-raad, de capaciteits-streep, een capaciteits-matrix, capaciteits-conflicten en de risico-gecorrigeerde waarde.');
+  assert.equal(speakOf(['Onderhanden werk is alles wat gestart is: het onderhanden werk gedeeld door de doorzet.'], 'nl'), 'Onder-handen werk is alles wat gestart is: het onder-handen werk gedeeld door de doorzet.');
+  assert.equal(speakOf(['Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.'], 'nl'), 'Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.');
+  assert.equal(speakOf(['Bij elke contextswitch, in de planningstool, volgens Gerald Weinberg.'], 'nl'), 'Bij elke context-switsj, in de plannings-toel, volgens Djerreld Wainburk.');
+  assert.equal(speakOf(['The programme board, a context switch, the planning tool, Gerald Weinberg.'], 'en'), 'The programme board, a context switch, the planning tool, Gerald Weinberg.');
 });
 
 // ------------------------------------------------------------ WAV files
