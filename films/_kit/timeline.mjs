@@ -311,6 +311,15 @@ const SAY = {
     // and COO as letters (before a colon espeak-ng reads the word "koo"); commitment as Dutch project people say
     // it, k'MIT-ment (espeak-ng reads "kommit-MENT", heard as "comment meer"; "kmitmunt" heard as commitment)
     [/\bCOO\b/g, 'C O O'], [/\bCommitment\b/g, 'Kmitmunt'], [/\bcommitment\b/g, 'kmitmunt'],
+    // handing over and holding on (pm.land.handover): hypercare as said in Dutch IT projects, "haiperkeer"
+    // (espeak-ng reads "hie-per-kaa-re"); the KPI after "de" and KPI's as letters (espeak-ng reads the word
+    // "kpie"; not "een KPI", so pm.intake.firsttalk keeps its voice, and KPI- compounds are read as letters
+    // already); and compounds it misreads, split at the head: acceptatiecriteria with "ti" for "tsie" (lower
+    // case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+    // baTENreview and overdrachts-sx-ecklist (with the s-ch of "schip"); no other film says them
+    [/\b([Hh])ypercare\b/g, '$1aiperkeer'], [/\b([Dd]e) KPI\b(?!-)/g, '$1 K P I'], [/\bKPI's\b/g, "K P I's"],
+    [/\bacceptatiecriteria\b/g, 'acceptatie-criteria'], [/\b([Pp])rojectopdracht/g, '$1roject-opdracht'], [/\b([Pp])rocesaudit/g, '$1roces-audit'],
+    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist'],
     // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
     // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
     // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
@@ -331,7 +340,16 @@ const SAY = {
     // in-ves-TEE-ring), but eng.lines.variants and eng.quality.tolerance say it in rendered videos, so only
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
-    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig']],
+    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
+    // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
+    // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
+    // only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its voice. Also deal on its own as
+    // "diel" (espeak-ng reads "dee-al"). integriteit takes pm.lead.feedback's in-tegriteit above (stress on
+    // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
+    // these words in Dutch
+    [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
