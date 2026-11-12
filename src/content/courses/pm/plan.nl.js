@@ -416,6 +416,7 @@ export default {
     },
     {
       id: 'pm.plan.method',
+      film: 'pm.plan.method',
       title: 'Een werkwijze kiezen',
       pre: [
         {

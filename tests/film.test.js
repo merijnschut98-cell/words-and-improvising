@@ -73,6 +73,20 @@ test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutc
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// espeak-ng reads agile the Dutch way ("AA-gie-le") and stresses HYbride: said
+// as the floor says them, "etsjail" and "hiebriede"; Dutch only, and the
+// moulding film's "hybride machine" (rendered video) keeps its voice
+// (pm.plan.method)
+test('speak variant: agile and hybride in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Etsjail: korte rondes. Het Etsjail Manifesto, een etsjail methode.');
+  assert.equal(nl('De meeste projecten zijn hybride: mijlpalen. Hybride'), 'De meeste projecten zijn hiebriede: mijl-palen. Hiebriede');
+  assert.equal(nl('Een hybride machine combineert beide'), 'Een hybride machine combineert beide');
+  assert.equal(nl('agileren, hybrides'), 'agileren, hybrides');
+  const en = 'Agile, the Agile Manifesto, hybrid';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

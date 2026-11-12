@@ -416,6 +416,7 @@ export default {
     },
     {
       id: 'pm.plan.method',
+      film: 'pm.plan.method',
       title: 'Choosing a way of working',
       pre: [
         {
