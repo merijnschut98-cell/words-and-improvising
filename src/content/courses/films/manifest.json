@@ -1622,6 +1622,41 @@
         ],
         "vtt": "src/content/courses/films/pm.intake.firsttalk.en.vtt"
       }
+    },
+    "pm.run.escalation": {
+      "poster": "src/content/courses/films/pm.run.escalation.jpg",
+      "nl": {
+        "dur": 358.8,
+        "bytes": 12062854,
+        "scenes": [
+          0,
+          36.86,
+          74.43,
+          110.83,
+          133.26,
+          164.78,
+          202.86,
+          256.21,
+          289.61
+        ],
+        "vtt": "src/content/courses/films/pm.run.escalation.nl.vtt"
+      },
+      "en": {
+        "dur": 356.8,
+        "bytes": 11846078,
+        "scenes": [
+          0,
+          35.25,
+          75.39,
+          111.05,
+          134.51,
+          165.62,
+          202.61,
+          254.83,
+          287.88
+        ],
+        "vtt": "src/content/courses/films/pm.run.escalation.en.vtt"
+      }
     }
   }
 }
