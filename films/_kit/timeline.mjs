@@ -432,6 +432,19 @@ const SAY = {
     [/\b([Dd])efinition of done\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
     [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
     [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
+    // testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses PREmortem (said pree-mortem), reads
+    // single point of failure as "poo-int of fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
+    // nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (said barkoodskenners; split at the head; beheersmaatregel only after
+    // "een", so pm.plan.risk's caption "De beheersmaatregel" keeps its voice), and the integration specialist's
+    // jargon: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim, lee-tensie, rie-traiz; batch already has its
+    // rule above, betsj), and jargon as "sjargon", near the Dutch zj espeak-ng cannot give (it reads "jar-gon"), only
+    // in this film's phrases, so pm.plan.method's "geen jargon" keeps its voice; Harvard Business Review as "Harvard
+    // Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"; the business case rule above has the same Biznis); no other
+    // film says them in Dutch
+    [/\b([Pp])remortem/g, '$1ree-mortem'], [/\b([Ss])ingle point of failure\b/g, '$1ingel pojnt of feeljer'],
+    [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arkoodskenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
+    [/\breal-time\b/g, 'riel-taim'], [/\blatency\b/g, 'lee-tensie'], [/\bretries\b/g, 'rie-traiz'],
+    [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe'],
     // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
     // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
     // ("vaazje": vaage),
@@ -459,7 +472,9 @@ const SAY = {
     // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
     // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
     // (letters elsewhere), so V O P throughout
-    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    // translating jargon (pm.outside.jargon): espeak-ng's English reads idempotency as "AID-mpoatency"; said idem-potency
+    [/\bidempotency\b/g, 'idem-potency']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
