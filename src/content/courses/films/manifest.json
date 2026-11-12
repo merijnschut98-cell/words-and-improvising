@@ -1032,6 +1032,39 @@
         ],
         "vtt": "src/content/courses/films/eng.process.measure.en.vtt"
       }
+    },
+    "eng.process.batch": {
+      "poster": "src/content/courses/films/eng.process.batch.jpg",
+      "nl": {
+        "dur": 279.2,
+        "bytes": 8751006,
+        "scenes": [
+          0,
+          36.28,
+          85.9,
+          109.99,
+          152.29,
+          185.43,
+          220.48,
+          249.6
+        ],
+        "vtt": "src/content/courses/films/eng.process.batch.nl.vtt"
+      },
+      "en": {
+        "dur": 299.8,
+        "bytes": 9232891,
+        "scenes": [
+          0,
+          39.4,
+          92.1,
+          117.98,
+          161.68,
+          198.06,
+          239.4,
+          268.57
+        ],
+        "vtt": "src/content/courses/films/eng.process.batch.en.vtt"
+      }
     }
   }
 }
