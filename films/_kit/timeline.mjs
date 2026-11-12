@@ -394,7 +394,18 @@ const SAY = {
     [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
     [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
     [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
-    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data']],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data'],
+    // from phone call to proposal (pm.consult.proposal): espeak-ng stresses dagtaRIEF and extrusieLIJN (split at
+    // the head: DAG-tarief, ex-TRU-sie-lijn), drops the d of plantdirecteur ("plantirecteur"), reads engineer as
+    // "eng-i-neer" (said as Dutch makers say it, "entsjinier", tsj for the dzj it cannot voice) and Alan Weiss
+    // as "AA-lan" (said as his English name, "Ellun Wais"). It stresses OF-ferte and offerTES (French -tes):
+    // split as off-erte, which keeps a stress on -FER-, and the plural with an apostrophe, off-erte's, which ends
+    // on a schwa. dagtarief in lower case only, so pm.run.scope's "Dagtarief: bij de klant" keeps the voice it
+    // was built with. Vantage, the consultancy of the lessons' examples, as its English name, "Ventitsj"
+    // (espeak-ng reads a French van-TAA-zje); no other film says the others or Vantage in Dutch
+    [/\b([Oo])fferte(s?)\b/g, (m, o, s) => `${o}ff-erte${s ? "'s" : ''}`],
+    [/\bdagtarie(f|ven)\b/g, 'dag-tarie$1'], [/\b([Pp])lantdirecteur/g, '$1lant-directeur'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'],
+    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

@@ -169,6 +169,19 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
     'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
   assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
+  // pm.consult.proposal: dagtarief split at the head (espeak-ng stresses dag-ta-RIEF; lower case only, so
+  // pm.run.scope's "Dagtarief: bij de klant" keeps its voice), plantdirecteur with its d
+  // (espeak-ng reads "plantirecteur"), extrusielijn split at the head (espeak-ng stresses -LIJN), the productie-engineer
+  // as Dutch makers say it, "entsjinier" (espeak-ng reads "eng-i-neer"), and Alan Weiss as his English name (espeak-ng
+  // reads "AA-lan"); English keeps them all
+  assert.equal(speakOf(['Een dagtarief, twee dagtarieven. Dagtarief: bij de klant.'], 'nl'), 'Een dag-tarief, twee dag-tarieven. Dagtarief: bij de klant.');
+  assert.equal(speakOf(['De plantdirecteur van de extrusielijn. Plantdirecteur, extrusielijnen.'], 'nl'), 'De plant-directeur van de extrusie-lijn. Plant-directeur, extrusie-lijnen.');
+  assert.equal(speakOf(['Een dag van de productie-engineer. Voorstanders zoals Alan Weiss.'], 'nl'), 'Een dag van de productie-entsjinier. Voorstanders zoals Ellun Wais.');
+  // and offerte as off-erte (espeak-ng stresses OF-ferte), offertes as off-erte's (espeak-ng reads offerTES)
+  assert.equal(speakOf(['Een offerte, drie offertes. Offerte!'], 'nl'), "Een off-erte, drie off-erte's. Off-erte!");
+  // and Vantage as its English name (espeak-ng reads a French van-TAA-zje)
+  assert.equal(speakOf(['Een directeur belt Vantage.'], 'nl'), 'Een directeur belt Ventitsj.');
+  assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.');
 });
 
 // ------------------------------------------------------------ WAV files
