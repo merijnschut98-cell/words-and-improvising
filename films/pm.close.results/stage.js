@@ -91,8 +91,8 @@ const STAGE = (() => {
   }
   const base3 = (n) => run(C.L3.slice(0, C.BASE), 0, n, 'cr-dot', 'cr-line');
   const after3 = (n) => run(C.L3.slice(C.BASE), C.BASE, n, 'cr-dot', 'cr-line');
-  const line4 = (n) => run(C.L4, 0, n, 'cr-dot4', 'cr-dash4') + op(clamp(n - NW + 1, 0, 1), txt(CX1, yV(15.6), tr('lijn 4', 'line 4'), 'cr-mute', 'end'));
-  const BAND3 = (a) => op(a, band(C.LO, C.HI, 0, C.BASE - 1, [CX0 + 4, yV(C.HI) - 6, tr('11–17%: ruis', '11–17%: noise')]));
+  const line4 = (n) => run(C.L4, 0, n, 'cr-dot4', 'cr-dash4') + op(clamp(n - NW + 1, 0, 1), txt(CX1, yV(15.6), tr('lijn 4', 'line 4'), 'cr-l4', 'end'));
+  const BAND3 = (a, lab = tr('11–17%: ruis', '11–17%: noise')) => op(a, band(C.LO, C.HI, 0, C.BASE - 1, [CX0 + 4, yV(C.HI) - 6, lab]));
   const BANDA = (a) => op(a, band(C.LO2, C.HI2, C.BASE, NW - 1, [CX1, yV(C.LO2) + 20, tr('lijn 3: 7–11%', 'line 3: 7–11%'), 'end'], 'cr-band2'));
 
   // ------------------------------------------------------------ the scenes
@@ -128,11 +128,11 @@ const STAGE = (() => {
       head: [tr('lijn 3 en lijn 4', 'line 3 and line 4'), b === 0 ? 'dia' : 'ex'],
       axes: axes(),
       base3: base3(C.BASE),
-      band: BAND3(1),
-      other: op(span(b === 0 ? p : 1, 0.08, 0.3), lines(296, [[tr('wat veranderde nog meer?', 'what else changed?'), 'cr-lab'], [tr('volume, productmix,', 'volume, product mix,')], [tr('seizoen, nieuwe mensen', 'season, new staff')]])),
+      band: BAND3(1, tr('lijn 3: 11–17%', 'line 3: 11–17%')),
+      other: op(span(b === 0 ? p : 1, 0.08, 0.3) * (1 - at(b, p, 3, 0, 0.12)), lines(296, [[tr('wat veranderde nog meer?', 'what else changed?'), 'cr-lab'], [tr('volume, productmix,', 'volume, product mix,')], [tr('seizoen, nieuwe mensen', 'season, new staff')]])),
       line4: line4(n4),
       after3: BANDA(at(b, p, 2, 0.6, 0.8)) + after3(n3),
-      verdict: op(at(b, p, 3), card(350, 36, 'cr-hot') + txt(X0, 375, tr('nauwelijks overlap: echt', 'barely overlap: real'), 'cr-on')),
+      verdict: op(at(b, p, 3, 0.12, 0.3), card(324, 62, 'cr-hot') + lines(349, [[tr('nauwelijks overlap:', 'barely overlap:'), 'cr-on'], [tr('vrijwel zeker echt', 'very likely real'), 'cr-on']])),
     };
   };
   // s4: a test or a run chart; regression to the mean; a result that fades
@@ -156,8 +156,8 @@ const STAGE = (() => {
     if (b >= 1) {
       rtm = path(`M${RX0} ${f1(ry(C.NORMAL))}H${RX1}`, 'cr-mean') + txt(RX0, ry(C.NORMAL) - 30, tr('normaal', 'normal'), 'cr-mute')
         + (d ? path(d, 'cr-line') : '') + r
-        + op(at(b, p, 1, 0.4, 0.55), path(`M${f1(xs)} 150V310`, 'cr-dash') + txt(xs - 6, 168, tr('slechte periode', 'bad spell'), 'cr-on', 'end') + txt(xs + 6, 168, 'start', 'cr-mute'))
-        + op(at(b, p, 2), txt(RX1, 232, tr('zakt vanzelf terug', 'drifts back anyway'), 'cr-on', 'end'));
+        + op(at(b, p, 1, 0.4, 0.55), path(`M${f1(xs)} 150V282`, 'cr-dash') + txt(xs - 6, 168, tr('slechte periode', 'bad spell'), 'cr-on', 'end') + txt(xs + 6, 168, 'start', 'cr-mute'))
+        + op(at(b, p, 2), txt(RX1, 306, tr('zakt vanzelf terug', 'drifts back anyway'), 'cr-on', 'end'));
     }
     return {
       head: [tr('toets of run chart', 'test or run chart'), 'dia'],
@@ -177,7 +177,7 @@ const STAGE = (() => {
   // s6: the bottling plant's sum, checked by the controller
   S[5] = (b, p) => ({
     head: [tr('de som van lijn 3', 'line 3’s sum'), 'ex'],
-    sum: op(span(b === 0 ? p : 1, 0.06, 0.3), lines(78, [[tr('gepland: 6.000 uur/jaar', 'planned: 6,000 h a year'), 'cr-txt'], [tr('14 → 9%: 5 punten', '14 → 9%: 5 points')], [tr('= 300 extra draaiuren', '= 300 extra running hours'), 'cr-on']])),
+    sum: op(span(b === 0 ? p : 1, 0.06, 0.3), lines(78, [[tr('gepland: 6.000 uur/jaar', 'planned: 6,000 h a year'), 'cr-txt'], [tr('14 → 9%: 5 procentpunt', '14 → 9%: 5 %-points')], [tr('= 300 extra draaiuren', '= 300 extra running hours'), 'cr-on']])),
     sold: op(at(b, p, 1), lines(170, [[tr('uitverkocht:', 'sold out:'), 'cr-lab'], [tr('uren worden product', 'hours become product')]])),
     value: op(at(b, p, 2), card(214, 100, 'cr-hot') + lines(240, [[tr('dekkingsbijdrage:', 'contribution margin:'), 'cr-lab'], [tr('€450 per uur; 300 × €450', '€450 an hour; 300 × €450'), 'cr-txt'], [tr('≈ €135.000 per jaar', '≈ €135,000 a year'), 'cr-on']])),
     together: op(at(b, p, 3), lines(350, [[tr('samen met de controller,', 'with the controller,'), 'cr-lab'], [tr('die het narekende', 'who checked it')]])),

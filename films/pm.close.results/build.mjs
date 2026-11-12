@@ -63,7 +63,10 @@
 // Shewhart, no Wheeler, no process behaviour chart), so the film does not
 // either. Regression to the mean is told as the lesson words it. The worked
 // example's sums are asserted below: 6,000 x 5% = 300 hours and 300 x 450 =
-// 135,000 euro (the lesson's "ongeveer" kept). The weekly values on the chart
+// 135,000 euro (the lesson's "ongeveer" kept); the 5 points are percentage
+// points of the planned hours, so the s6 card and voice say "procentpunt" /
+// "percentage points" (the lesson writes "5 punten" after 14% and 9%). The
+// verdict card keeps the lesson's hedge: "vrijwel zeker echt", not "echt". The weekly values on the chart
 // are drawn, not given by the lesson: they are built so that line 3's 12
 // baseline weeks average 14 with a lowest week of 11 and a highest of 17, its 10
 // after weeks average 9 between 7 and 11, and line 4 averages 13 in both
@@ -75,10 +78,14 @@
 // meeting room with a whiteboard that repeats the panel in miniature, a wall
 // clock, a meeting table with the raw-data sheet (its rows fill in s1) and a
 // laptop, and the cast: "jij" the consultant in petrol at the board, the
-// sponsor, the team lead and the client's controller (the world's planner
-// figure with a tablet, given the cue key "controller"; no caption calls him a
-// planner). A panel at the right, in stage space, carries the run chart and the
-// cards, each labelled "voorbeeld" or "schema".
+// sponsor, the team lead and the client's controller (a figure of this film's
+// own, cue key "controller": a plum blazer, a white shirt front and a dark ring
+// binder, so viewers of the plan films do not take him for the planner with his
+// tablet). A panel at the right, in stage space, carries the run chart and the
+// cards, each labelled "voorbeeld" or "schema". On the chart line 4, the
+// comparison line, is amber, dashed, with hollow dots and its own label, so it
+// stays apart from line 3 where it runs through line 3's baseline band (it keeps
+// its colour when lit; the focus glow marks it).
 //
 // Focus (strictFocus): every beat names the block it explains. Each block of
 // the panel is its own cue group (SLOTS below), and so are the people, the
@@ -176,9 +183,36 @@ const fitInto = (a, x0, y0, x1, y1) => {
 const BA = BOARD.area;
 const boardMini = `<g transform="${BOARD.face}"><g class="cr-mini" transform="${fitInto(PANEL_AREA, BA.x0 + 3, -BA.z1 + 3, BA.x1 - 3, -BA.z0 - 3)}">${g('bMini', '')}</g></g>`;
 const sheetLines = `<g transform="${SHEET.face}">${g('sLines', '')}</g>`;
-// the client's controller: the world's planner figure (tablet in hand) under its own cue key
-const controller = w.person({ x: 232, y: 208, role: 'planner', along: 'x' }).replace('data-cue="planner"', 'data-cue="controller"');
-assert(controller.includes('data-cue="controller"'), 'the controller is a cue group');
+// the client's controller: a figure of this film's own (not the world's planner,
+// whom other pm films show with a light jumper and a tablet): a plum blazer over
+// a white shirt front, dark hair, and a dark ring binder of figures at the chest.
+// Built from the world's parts with the person's proportions (world.mjs person()).
+function controllerFigure({ x, y }) {
+  const S = (paths, style) => k.solidSvg(paths, style);
+  const skin = { tone: 'hi', crease: 'none', className: 'cr-skin' };
+  const jacket = { tone: 'mid', className: 'cr-ctl' };
+  const out = [w.halo({ x: x - 16, y: y - 12, w: 32, d: 24, r: 10 })];
+  for (const s of [-7, 7]) {
+    out.push(w.box({ x: x + s - 5, y: y - 5, w: 10, d: 14, r: 2.4 }, 0, 4.5, { tone: 'lo' }, { steps: 2 }));
+    out.push(w.post(x + s, y, 6.4, 4, 84, { tone: 'lo' }, 14));
+  }
+  const torso = { x: x - 16, y: y - 10, w: 32, d: 20, r: 5.5 };
+  const arm = (s) => w.box({ x: x + s - 4, y: y - 4, w: 8, d: 8, r: 3 }, 90, 140, jacket, { steps: 2 });
+  out.push(arm(-20.5));
+  out.push(w.box(torso, 82, 144, jacket, { steps: 4, bevel: 0.6, inner: k.lineSvg(k.sideSeam(torso, 136, P, 4), { tone: 'lo' }) }));
+  // the white shirt front between the lapels
+  out.push(w.box({ x: x - 4, y: y + 10, w: 8, d: 0.8, r: 0.4 }, 116, 143, { tone: 'hi', className: 'cr-shirt' }, { steps: 1 }));
+  out.push(arm(20.5));
+  // a dark ring binder held at the chest, its spine toward the viewer's left
+  out.push(w.box({ x: x - 11, y: y + 11, w: 22, d: 4.2, r: 0.8 }, 98, 128, { tone: 'lo', className: 'cr-binder' }, { steps: 2 }));
+  out.push(w.box({ x: x - 11, y: y + 15.2, w: 3, d: 0.6, r: 0.2 }, 100, 126, { tone: 'mid' }, { steps: 1 }));
+  out.push(w.post(x, y, 4.4, 144, 150, skin, 12));
+  out.push(S(G.sphereOf([x - 1.4, y - 1.4, 163], 12, P, { steps: 28 }), { tone: 'lo', crease: 'none' }));
+  out.push(S(G.sphereOf([x + 0.5, y + 0.5, 160.5], 11.4, P, { steps: 28 }), skin));
+  return `<g data-cue="controller">${out.join('')}</g>`;
+}
+const controller = controllerFigure({ x: 232, y: 208 });
+assert(controller.includes('data-cue="controller"') && !controller.includes('data-cue="planner"'), 'the controller is a cue group of its own');
 
 const world = [
   w.room(ROOM),
@@ -264,7 +298,7 @@ const spec = {
       { nl: 'Laat de {t:Controller|controller}, die de cijfers beheert, de som checken.', en: 'Let the {t:Controller|controller}, who owns the numbers, check the sum.', cue: { Controller: 'controller' }, focus: ['controller', 'check'] },
     ]),
     sc('s6', { nl: 'De som', en: 'The sum' }, [
-      { nl: 'Lijn {n:3}: {n:6000} uur per jaar gepland. {n:5} punten minder stilstand is {n:300} extra draaiuren.', en: 'Line {n:3}: {n:6000} hours a year planned. {n:5} points less downtime is {n:300} extra running hours.', focus: 'sum' },
+      { nl: 'Lijn {n:3}: {n:6000} uur per jaar gepland. {n:5} procentpunt minder stilstand is {n:300} extra draaiuren.', en: 'Line {n:3}: {n:6000} hours a year planned. {n:5} percentage points less downtime is {n:300} extra running hours.', focus: 'sum' },
       { nl: 'De fabriek is uitverkocht: die uren worden extra product.', en: 'The plant is sold out: those hours become extra product.', focus: 'sold' },
       { nl: '{n:450} euro dekkingsbijdrage per uur: {n:300} × {n:450} = ongeveer {n:135000} euro per jaar.', en: '{n:450} euro contribution margin an hour: {n:300} × {n:450} = about {n:135000} euro a year.', focus: ['value', 'controller'] },
       { nl: 'Je presenteert het samen met de controller, die het heeft nagerekend.', en: 'You present it together with the controller, who checked it.', focus: ['together', 'controller', 'jij'] },
@@ -284,11 +318,14 @@ const spec = {
 // teach text and worked example, so every point of the checklist above is
 // said here. No symbol the voice would read aloud, no spoken parenthesis or
 // quote. Words checked with espeak-ng phonemes through Piper's own bridge
-// (nl_NL-alex, 2026-11-12). Three Dutch SAY rules in films/_kit/timeline.mjs,
+// (nl_NL-alex, 2026-11-12). Five Dutch SAY rules in films/_kit/timeline.mjs,
 // which no other film says: controller as "kon-troller" (espeak-ng stresses
 // KON-), dekkingsbijdrage split at the head (it stresses -bij-DRAA-zje, with a
 // French zj) and run chart with the tsj Dutch speakers use (it reads a French
-// sj). Reworded where it misreads a word that is not a lesson term: nameting
+// sj); two added in review: procentpunt split (espeak-ng stresses PRO-) and,
+// only in this film's phrase "investering die niet nodig", in-ves-tering
+// (espeak-ng reads IN-ves-te-ring; manifest films say investering, so the rule
+// is scoped to the phrase). Reworded where it misreads a word that is not a lesson term: nameting
 // (said "de meting erna"), periodelengte ("even lange periodes"), databron
 // ("dezelfde bron"), productmix ("het soort product"), vuistregel and
 // richtlijn ("gangbaar is"), verkoopprijs ("de prijs"), nagerekend
@@ -345,8 +382,8 @@ const SAY = [
       en: 'And let the {t:Controller|controller} check the sum: the finance person who owns the client\'s numbers.' },
   ],
   [ // s6 the sum
-    { nl: 'Terug naar de bottelarij. Lijn {n:3} is gepland op {n:6000} uur per jaar. Van {n:14} naar {n:9} procent is {n:5} punten minder stilstand: {n:300} extra draaiuren.',
-      en: 'Back to the bottling plant. Line {n:3} is planned for {n:6000} hours a year. From {n:14} to {n:9} percent is {n:5} points less downtime: {n:300} extra running hours.' },
+    { nl: 'Terug naar de bottelarij. Lijn {n:3} is gepland op {n:6000} uur per jaar. Van {n:14} naar {n:9} procent is {n:5} procentpunt minder stilstand: {n:300} extra draaiuren.',
+      en: 'Back to the bottling plant. Line {n:3} is planned for {n:6000} hours a year. From {n:14} to {n:9} percent is {n:5} percentage points less downtime: {n:300} extra running hours.' },
     { nl: 'De fabriek is uitverkocht, dus die uren worden extra product.',
       en: 'The plant is sold out, so those hours become extra product.' },
     { nl: 'De controller waardeert een uur op {n:450} euro dekkingsbijdrage. Dat is {n:300} uur maal {n:450} euro: ongeveer {n:135000} euro per jaar.',
@@ -429,9 +466,11 @@ const css = PM_CSS + `
 .cr-dash{fill:none;stroke:var(--anatomy-mid);stroke-width:1.4;stroke-dasharray:4 4}
 .cr-mean{fill:none;stroke:var(--anatomy-mid);stroke-width:1.6;stroke-dasharray:8 4}
 .cr-line{fill:none;stroke:var(--anatomy-hi);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.cr-dash4{fill:none;stroke:var(--anatomy-mid);stroke-width:1.6;stroke-dasharray:5 4;stroke-linejoin:round}
+.cr-dash4{fill:none;stroke:var(--cr-l4);stroke-width:2.2;stroke-dasharray:6 3;stroke-linejoin:round}
 .cr-dot{fill:var(--anatomy-hi);stroke:var(--anatomy-card);stroke-width:1}
-.cr-dot4{fill:var(--anatomy-mid);stroke:var(--anatomy-card);stroke-width:1}
+.cr-dot4{fill:var(--anatomy-face);stroke:var(--cr-l4);stroke-width:1.8}
+.cr-l4{fill:var(--cr-l4);font-family:var(--fp-sans);font-weight:700}
+[data-cue="line4"][data-on] .cr-dash4{stroke-width:3}
 .cr-ghost{fill:var(--anatomy-card);stroke:var(--anatomy-mid);stroke-width:1.4}
 .cr-hotdot{fill:var(--fp-accent);stroke:var(--anatomy-card);stroke-width:1}
 .cr-band{fill:color-mix(in srgb,var(--anatomy-mid) 22%,transparent);stroke:var(--anatomy-mid);stroke-width:1}
@@ -440,19 +479,29 @@ const css = PM_CSS + `
 .cr-row{fill:none;stroke:var(--anatomy-lo);stroke-width:.7;stroke-linecap:round}
 .cr-tick{fill:none;stroke:var(--fp-accent);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 [data-cue][data-on] .cr-card{stroke:var(--fp-accent);stroke-width:2}
-[data-cue][data-on] .cr-line,[data-cue][data-on] .cr-dash4,[data-cue][data-on] .cr-band{stroke:var(--fp-accent)}
-[data-cue][data-on] .cr-dot,[data-cue][data-on] .cr-dot4{fill:var(--fp-accent)}
+[data-cue][data-on] .cr-line,[data-cue][data-on] .cr-band{stroke:var(--fp-accent)}
+[data-cue][data-on] .cr-dot{fill:var(--fp-accent)}
 [data-cue][data-on] .cr-txt,[data-cue][data-on] .cr-big,[data-cue][data-on] .cr-lab,[data-cue][data-on] .cr-mute{fill:var(--fp-focus-text)}
 [data-cue][data-on] .cr-row{stroke:var(--fp-accent)}
-.cr-mini .cr-txt,.cr-mini .cr-mute,.cr-mini .cr-big,.cr-mini .cr-lab,.cr-mini .cr-on{display:none}
+.cr-mini .cr-txt,.cr-mini .cr-mute,.cr-mini .cr-big,.cr-mini .cr-lab,.cr-mini .cr-on,.cr-mini .cr-l4{display:none}
 .cr-mini *{vector-effect:non-scaling-stroke}
 .cr-mini .cr-card,.cr-mini .cr-hot,.cr-mini .cr-line,.cr-mini .cr-band,.cr-mini .cr-band2{stroke-width:.7px}
 .cr-mini .cr-axis,.cr-mini .cr-grid,.cr-mini .cr-dash,.cr-mini .cr-dash4,.cr-mini .cr-mean,.cr-mini .cr-strike,.cr-mini circle{stroke-width:.4px}
 /* dark theme: faces and hands in a light skin tone, not dark silhouettes (world.mjs gives heads only a light outline) */
-.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="controller"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
 .iso:not([data-theme="light"]) [data-cue="jij"]:not([data-on])>.iso-solid:nth-last-child(4)>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
-.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="controller"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
 .iso:not([data-theme="light"]) [data-cue="sponsor"]:not([data-on])>.iso-solid:nth-last-child(2)>:is(.iso-fill,.iso-top,.iso-shade){fill:#8E9A97}
+.iso:not([data-theme="light"]) [data-cue="controller"]:not([data-on]) .cr-skin>:is(.iso-fill,.iso-top){fill:#C9B8A3}
+.iso:not([data-theme="light"]) [data-cue="controller"]:not([data-on]) .cr-skin>.iso-shade{fill:#A8957F}
+/* the controller: a plum blazer, a white shirt front, a dark binder (this film's own figure, not the planner) */
+.iso{--cr-plum:#A9798A;--cr-l4:#E0A54A}
+.iso[data-theme="light"]{--cr-plum:#7E4A5C;--cr-l4:#7F5200}
+[data-cue="controller"]:not([data-on]) .cr-ctl>:is(.iso-fill,.iso-top){fill:color-mix(in srgb,var(--cr-plum) 78%,var(--anatomy-top))}
+[data-cue="controller"]:not([data-on]) .cr-ctl>.iso-shade{fill:color-mix(in srgb,var(--cr-plum) 88%,var(--anatomy-shade-0))}
+[data-cue="controller"]:not([data-on]) .cr-shirt>:is(.iso-fill,.iso-top,.iso-shade){fill:#F4F1EA}
+[data-cue="controller"]:not([data-on]) .cr-binder>:is(.iso-fill,.iso-top){fill:#33403F}
+[data-cue="controller"]:not([data-on]) .cr-binder>.iso-shade{fill:#26302F}
 `;
 
 const label = {
