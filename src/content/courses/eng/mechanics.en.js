@@ -4,6 +4,7 @@ export default {
     // Topic: Forces, moments and stress
     {
       id: 'eng.mechanics.forces',
+      film: 'eng.mechanics.load',
       title: 'Force, weight and torque',
       pre: [
         {
@@ -79,6 +80,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
+      film: 'eng.mechanics.load',
       title: 'Stress, strain and stiffness',
       pre: [
         {
