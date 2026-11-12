@@ -129,7 +129,7 @@ const world = [
   w.table(TABLE),
   w.stack({ x: 104, y: 126, z: TZ, n: 4 }),
   cueG('doc', PLAN.svg + docMini),
-  w.laptop({ x: 214, y: 140, z: TZ, toward: 1 }),
+  cueG('laptop', w.laptop({ x: 214, y: 140, z: TZ, toward: 1 })),
   w.cup(132, 178, TZ),
   w.cup(236, 126, TZ),
   w.person({ x: 262, y: 152, role: 'sponsor', along: 'y' }),
@@ -141,8 +141,8 @@ const PX = 322;
 const PW = 308;
 const hud = g('panel', `<rect class="pm-panel" x="${PX}" y="12" width="${PW}" height="376" rx="10"/>`
   + g('pHead', '')
-  + cueG('gantt', g('pAxis', '') + cueG('deps', g('pDeps', '')) + g('pCards', '') + cueG('crit', g('pCrit', '')) + cueG('slack', g('pSlack', ''))
-    + cueG('miles', g('pMiles', '')) + cueG('gonogo', g('pGo', '')) + g('pCal', ''))
+  + cueG('gantt', g('pAxis', '') + cueG('deps', g('pDeps', '')) + cueG('tasks', g('pCards', '') + cueG('crit', g('pCrit', ''))) + cueG('slack', g('pSlack', ''))
+    + cueG('miles', g('pMiles', '')) + cueG('gonogo', g('pGo', '')) + cueG('steer', g('pCal', '')))
   + g('pText', ''));
 
 // Static paths with relative line-tos (the helper of eng.mechanics.load): the
@@ -223,60 +223,61 @@ const spec = {
     {
       id: 's1', lesson: SCH, level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Wie wacht op wie?', en: 'Who waits for whom?' },
       beats: [
-        { nl: 'Een planningsproject bij een netbeheerder: vijf taken op het bord.', en: 'A planning project at a grid operator: five tasks on the board.', cues: ['jij', 'sponsor', 'teamlead', 'planner', 'board'] },
-        { nl: 'Een {t:Afhankelijkheid|afhankelijkheid}: dit werk kan pas beginnen als ander werk af is.', en: 'A {t:Dependency|dependency}: this work can only start when other work is finished.', cue: { Afhankelijkheid: 'deps' } },
-        { nl: 'Vraag elke eigenaar: “Wat heb je van een ander nodig voordat je kunt beginnen?”', en: 'Ask each owner: “What do you need from someone else before you can start?”', cues: ['teamlead', 'planner', 'deps'] },
-        { nl: 'Bij klanten gaat het vaak om mensen en besluiten: een handtekening, de OR, een productiestop.', en: 'At clients it is often people and decisions: a sign-off, the works council, a production stop.', cues: ['sponsor'] },
+        { nl: 'Een planningsproject bij een netbeheerder: vijf taken op het bord.', en: 'A planning project at a grid operator: five tasks on the board.', focus: ['tasks', 'board'] },
+        { nl: 'Een {t:Afhankelijkheid|afhankelijkheid}: dit werk kan pas beginnen als ander werk af is.', en: 'A {t:Dependency|dependency}: this work can only start when other work is finished.', cue: { Afhankelijkheid: 'deps' }, focus: 'deps' },
+        { nl: 'Vraag elke eigenaar: “Wat heb je van een ander nodig voordat je kunt beginnen?”', en: 'Ask each owner: “What do you need from someone else before you can start?”', focus: ['teamlead', 'planner', 'deps'] },
+        { nl: 'Bij klanten gaat het vaak om mensen en besluiten: een handtekening, de OR, een productiestop.', en: 'At clients it is often people and decisions: a sign-off, the works council, a production stop.', focus: ['sponsor', 'note'] },
       ],
     },
     {
       id: 's2', lesson: SCH, level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Het kritieke pad', en: 'The critical path' },
       beats: [
-        { nl: 'A {n:3} weken, dan B {n:4} en D {n:2}; C {n:6} weken. De pilot E, {n:6} weken, wacht op D én C.', en: 'A {n:3} weeks, then B {n:4} and D {n:2}; C {n:6} weeks. The pilot E, {n:6} weeks, waits for D and C.', cues: ['deps'] },
-        { nl: 'Het {t:Kritiek pad|kritieke pad}: de langste keten van afhankelijk werk. Die bepaalt de einddatum.', en: 'The {t:Critical path|critical path}: the longest chain of dependent work. It sets the end date.', cue: { 'Kritiek pad': 'crit' } },
-        { nl: 'Keten A-B-D-E: {n:3} + {n:4} + {n:2} + {n:6} = {n:15} weken.', en: 'Chain A-B-D-E: {n:3} + {n:4} + {n:2} + {n:6} = {n:15} weeks.', cues: ['crit'] },
-        { nl: 'Keten A-C-E: {n:3} + {n:6} + {n:6} = {n:15} weken. Even lang: allebei kritiek.', en: 'Chain A-C-E: {n:3} + {n:6} + {n:6} = {n:15} weeks. Just as long: both critical.', cues: ['crit'] },
+        { nl: 'A {n:3} weken, dan B {n:4} en D {n:2}; C {n:6} weken. De pilot E, {n:6} weken, wacht op D én C.', en: 'A {n:3} weeks, then B {n:4} and D {n:2}; C {n:6} weeks. The pilot E, {n:6} weeks, waits for D and C.', focus: ['tasks', 'deps'] },
+        { nl: 'Het {t:Kritiek pad|kritieke pad}: de langste keten van afhankelijk werk. Die bepaalt de einddatum.', en: 'The {t:Critical path|critical path}: the longest chain of dependent work. It sets the end date.', cue: { 'Kritiek pad': 'crit' }, focus: 'crit' },
+        { nl: 'Keten A-B-D-E: {n:3} + {n:4} + {n:2} + {n:6} = {n:15} weken.', en: 'Chain A-B-D-E: {n:3} + {n:4} + {n:2} + {n:6} = {n:15} weeks.', focus: ['crit', 'note'] },
+        { nl: 'Keten A-C-E: {n:3} + {n:6} + {n:6} = {n:15} weken. Even lang: allebei kritiek.', en: 'Chain A-C-E: {n:3} + {n:6} + {n:6} = {n:15} weeks. Just as long: both critical.', focus: ['crit', 'note'] },
       ],
     },
     {
       id: 's3', lesson: SCH, level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Een week te laat', en: 'A week late' },
       beats: [
-        { nl: 'Loopt C een week uit, dan schuift de pilot mee, en de einddatum ook.', en: 'If C slips a week, the pilot moves with it, and so does the end date.', cues: ['crit'] },
-        { nl: 'Hetzelfde voor B of D. Houd het kritieke pad scherp in de gaten.', en: 'The same for B or D. Watch the critical path closely.', cues: ['crit'] },
-        { nl: 'Valkuil: de trage stappen buiten het team ontbreken, zoals IT-toegang of een vergunning.', en: 'Typical failure: the slow steps outside the team are missing, like IT access or a permit.', cues: ['crit'] },
-        { nl: 'Sneller? Alleen een korter kritiek pad helpt. Te kort, en een andere keten wordt kritiek.', en: 'Faster? Only a shorter critical path helps. Too short, and another chain becomes critical.', cues: ['crit'] },
+        { nl: 'Loopt C een week uit, dan schuift de pilot mee, en de einddatum ook.', en: 'If C slips a week, the pilot moves with it, and so does the end date.', focus: ['late', 'end'] },
+        { nl: 'Hetzelfde voor B of D. Houd het kritieke pad scherp in de gaten.', en: 'The same for B or D. Watch the critical path closely.', focus: ['late', 'end'] },
+        { nl: 'Valkuil: de trage stappen buiten het team ontbreken, zoals IT-toegang of een vergunning.', en: 'Typical failure: the slow steps outside the team are missing, like IT access or a permit.', focus: ['taskC', 'note'] },
+        { nl: 'Sneller? Alleen een korter kritiek pad helpt. Te kort, en een andere keten wordt kritiek.', en: 'Faster? Only a shorter critical path helps. Too short, and another chain becomes critical.', focus: 'crit' },
       ],
     },
     {
       id: 's4', lesson: SCH, level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Speling', en: 'Slack' },
       beats: [
-        { nl: 'Jij vraagt IT: kan de toegangsaanvraag in week {n:1} starten, naast de nulmeting?', en: 'You ask IT: can the access request start in week {n:1}, alongside the baseline?', cues: ['jij'] },
-        { nl: 'De einddatum blijft {n:15} weken: A-B-D-E is nog steeds de langste keten.', en: 'The end date stays at {n:15} weeks: A-B-D-E is still the longest chain.', cues: ['crit'] },
-        { nl: 'Maar C heeft nu {n:3} weken {t:Speling|speling}: uitlopen zonder dat het eind schuift.', en: 'But C now has {n:3} weeks of {t:Slack|slack}: it can slip without moving the end.', cue: { Speling: 'slack' } },
-        { nl: 'Loopt IT twee weken uit, dan schuift de einddatum niet meer op.', en: 'If IT is two weeks late, the end date no longer moves.', cues: ['slack'] },
+        { nl: 'Jij vraagt IT: kan de toegangsaanvraag in week {n:1} starten, naast de nulmeting?', en: 'You ask IT: can the access request start in week {n:1}, alongside the baseline?', focus: ['jij', 'taskC'] },
+        { nl: 'De einddatum blijft {n:15} weken: A-B-D-E is nog steeds de langste keten.', en: 'The end date stays at {n:15} weeks: A-B-D-E is still the longest chain.', focus: ['crit', 'end'] },
+        { nl: 'Maar C heeft nu {n:3} weken {t:Speling|speling}: uitlopen zonder dat het eind schuift.', en: 'But C now has {n:3} weeks of {t:Slack|slack}: it can slip without moving the end.', cue: { Speling: 'slack' }, focus: 'slack' },
+        { nl: 'Loopt IT twee weken uit, dan schuift de einddatum niet meer op.', en: 'If IT is two weeks late, the end date no longer moves.', focus: ['late', 'slack', 'end'] },
       ],
     },
     {
       id: 's5', lesson: SCH, level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Mijlpalen en go/no-go', en: 'Milestones and go/no-go' },
       beats: [
-        { nl: 'Een {t:Mijlpaal|mijlpaal} is een moment, geen activiteit: een ruitje, geen balk.', en: 'A {t:Milestone|milestone} is a moment, not an activity: a diamond, not a bar.', cue: { Mijlpaal: 'miles' } },
-        { nl: 'De belangrijkste: een {t:Go/no-go|go/no-go}. Doorgaan of uitrollen, of stoppen.', en: 'The most important kind: a {t:Go/no-go|go/no-go}. Continue or roll out, or stop.', cue: { 'Go/no-go': 'gonogo' } },
-        { nl: 'Goede mijlpalen zijn besluiten of zichtbare resultaten, ongeveer elke drie tot zes weken.', en: 'Good milestones are decisions or visible results, about every three to six weeks.', cues: ['miles', 'gonogo'] },
-        { nl: 'Ze geven de stuurgroep iets om te checken, en het team iets om op te mikken.', en: 'They give the steering group something to check, and the team something to aim at.', cues: ['sponsor', 'teamlead'] },
+        { nl: 'Een {t:Mijlpaal|mijlpaal} is een moment, geen activiteit: een ruitje, geen balk.', en: 'A {t:Milestone|milestone} is a moment, not an activity: a diamond, not a bar.', cue: { Mijlpaal: 'miles' }, focus: 'miles' },
+        { nl: 'De belangrijkste: een {t:Go/no-go|go/no-go}. Doorgaan of uitrollen, of stoppen.', en: 'The most important kind: a {t:Go/no-go|go/no-go}. Continue or roll out, or stop.', cue: { 'Go/no-go': 'gonogo' }, focus: 'gonogo' },
+        { nl: 'Goede mijlpalen zijn besluiten of zichtbare resultaten, ongeveer elke drie tot zes weken.', en: 'Good milestones are decisions or visible results, about every three to six weeks.', focus: ['miles', 'gonogo'] },
+        { nl: 'Ze geven de stuurgroep iets om te checken, en het team iets om op te mikken.', en: 'They give the steering group something to check, and the team something to aim at.', focus: ['sponsor', 'teamlead', 'miles'] },
       ],
     },
     {
       id: 's6', lesson: SCH, level: 1, dur: DURS[5], still: 0.9, title: { nl: 'De planning op één A4', en: 'The plan on one page' },
       beats: [
-        { nl: 'Op één A4 als {t:Gantt-chart|Gantt-chart}: resultaten als rijen, weken als kolommen, een eigenaar per rij.', en: 'On one page as a {t:Gantt chart|Gantt chart}: deliverables as rows, weeks as columns, an owner per row.', cue: { 'Gantt-chart': 'gantt' }, cues: ['doc'] },
-        { nl: 'Leg hem naast de kalender van de klant: stops, vakanties, piekseizoen, stuurgroepdatums.', en: 'Check it against the client’s calendar: shutdowns, holidays, peak season, steering group dates.', cues: ['calendar'] },
-        { nl: 'Hang hem op waar het team werkt. Wat mensen elke dag zien, wordt gecorrigeerd.', en: 'Hang it where the team works. What people see every day gets corrected.', cues: ['board'] },
-        { nl: 'MS Project rekent de paden uit; een planning aan de muur krijgt meer correcties van de vloer.', en: 'MS Project calculates the paths; a wall plan gets more corrections from the floor.', cues: ['board', 'teamlead'] },
-        { nl: 'Vraag bij elke review: “Wat moet er deze maand gebeuren om de einddatum te halen?”', en: 'Ask at every review: “What has to happen this month for the end date to hold?”', cues: ['jij'] },
+        { nl: 'Op één A4 als {t:Gantt-chart|Gantt-chart}: resultaten als rijen, weken als kolommen, een eigenaar per rij.', en: 'On one page as a {t:Gantt chart|Gantt chart}: deliverables as rows, weeks as columns, an owner per row.', cue: { 'Gantt-chart': 'gantt' }, focus: ['gantt', 'doc'] },
+        { nl: 'Leg hem naast de kalender van de klant: stops, vakanties, piekseizoen, stuurgroepdatums.', en: 'Check it against the client’s calendar: shutdowns, holidays, peak season, steering group dates.', focus: ['calendar', 'steer'] },
+        { nl: 'Hang hem op waar het team werkt. Wat mensen elke dag zien, wordt gecorrigeerd.', en: 'Hang it where the team works. What people see every day gets corrected.', focus: 'board' },
+        { nl: 'MS Project rekent de paden uit; een planning aan de muur krijgt meer correcties van de vloer.', en: 'MS Project calculates the paths; a wall plan gets more corrections from the floor.', focus: ['laptop', 'board', 'teamlead'] },
+        { nl: 'Vraag bij elke review: “Wat moet er deze maand gebeuren om de einddatum te halen?”', en: 'Ask at every review: “What has to happen this month for the end date to hold?”', focus: ['jij', 'note'] },
       ],
     },
   ],
   skip: [],
+  strictFocus: true,
 };
 
 // ---------------------------------------------------------------- the narration (v14b)
@@ -406,6 +407,14 @@ const css = PM_CSS + `
 [data-cue][data-on] .pm-dia{fill:var(--fp-accent)}
 [data-cue][data-on] .pm-slack{stroke-width:2.4}
 [data-cue][data-on] .pm-strip{stroke:var(--fp-accent)}
+[data-cue][data-on] .pm-txt,[data-cue][data-on] .pm-mute{fill:var(--fp-focus-text)}
+[data-cue][data-on] .pm-end{stroke:var(--fp-accent);stroke-width:2.2}
+[data-cue][data-on] .pm-late{stroke:var(--fp-accent);stroke-width:1.8}
+/* dark theme: faces and hands in a light skin tone, not dark silhouettes (world.mjs gives heads only a light outline) */
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="planner"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
+.iso:not([data-theme="light"]) [data-cue="jij"]:not([data-on])>.iso-solid:nth-last-child(4)>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="planner"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
+.iso:not([data-theme="light"]) [data-cue="sponsor"]:not([data-on])>.iso-solid:nth-last-child(2)>:is(.iso-fill,.iso-top,.iso-shade){fill:#8E9A97}
 .pm-mini .pm-txt,.pm-mini .pm-mute,.pm-mini .pm-big,.pm-mini .pm-on{display:none}
 .pm-mini *{vector-effect:non-scaling-stroke}
 .pm-mini .pm-card,.pm-mini .pm-crit,.pm-mini .pm-arrow,.pm-mini .pm-slack,.pm-mini .pm-late{stroke-width:.7px}
