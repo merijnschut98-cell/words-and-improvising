@@ -126,6 +126,16 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.portfolio.prioritise: compounds espeak-ng stresses on the wrong part, split at the head (programmaRAAD,
+  // capaciteitsSTREEP, KApaciteitsmatrix, risicogecorrigEERde); onderhanden werk only in this film's two phrases
+  // (eng.lines.design, with a video, keeps its voice); contextswitch with a tsj, planningstool with oe, and Gerald
+  // Weinberg as his English name; English keeps them all
+  assert.equal(speakOf(['De programmaraad, de capaciteitsstreep, een capaciteitsmatrix, capaciteitsconflicten en de risicogecorrigeerde waarde.'], 'nl'),
+    'De programma-raad, de capaciteits-streep, een capaciteits-matrix, capaciteits-conflicten en de risico-gecorrigeerde waarde.');
+  assert.equal(speakOf(['Onderhanden werk is alles wat gestart is: het onderhanden werk gedeeld door de doorzet.'], 'nl'), 'Onder-handen werk is alles wat gestart is: het onder-handen werk gedeeld door de doorzet.');
+  assert.equal(speakOf(['Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.'], 'nl'), 'Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.');
+  assert.equal(speakOf(['Bij elke contextswitch, in de planningstool, volgens Gerald Weinberg.'], 'nl'), 'Bij elke context-switsj, in de plannings-toel, volgens Djerreld Wainburk.');
+  assert.equal(speakOf(['The programme board, a context switch, the planning tool, Gerald Weinberg.'], 'en'), 'The programme board, a context switch, the planning tool, Gerald Weinberg.');
   // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
   // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
   // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
@@ -135,6 +145,50 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.portfolio.benefits: batenhouder and ploegdagen split at the head (espeak-ng reads a full e in -ten- and stresses
+  // ploeg-DA-gen), business case as Dutch project people say it (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst
+  // stressed on the first part, lijnmanager and operationeel manager with a Dutch "manager" (espeak-ng reads
+  // MAA-naa-cher) and operationeel stressed on -NEEL; ploegdag, middenmanager and English keep their voice
+  assert.equal(speakOf(['De batenhouder, Batenhouders. 1.200 ploegdagen, per ploegdag. De business case, Business case.'], 'nl'),
+    'De baten-houder, Baten-houders. 12honderd ploeg-dagen, per ploegdag. De biznis kees, Biznis kees.');
+  assert.equal(speakOf(['De weekenddienst; een lijnmanager, Lijnmanagers; de operationeel manager. De middenmanager.'], 'nl'),
+    'De wieken-dienst; een lijn-menetsjer, Lijn-menetsjers; de opperaatsjoneel menetsjer. De midden-menetsjer.');
+  // and its trigger as "trikker" only before ", een actiegrens" (espeak-ng reads a soft g); pm.land.handover's keeps its voice
+  assert.equal(speakOf(['En er is een trigger, een actiegrens. En een trigger: drie weken onder de 85 procent.'], 'nl'),
+    'En er is een trikker, een actie-grens. En een trigger: drie weken onder de 85 procent.');
+  assert.equal(speakOf(['The benefit owner, crew-days, the business case, the weekend shift, a line manager, the operations manager.'], 'en'),
+    'The benefit owner, crew-days, the business case, the weekend shift, a line manager, the operations manager.');
+  // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
+  // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
+  // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
+  // stress on -ly- only in this film's two phrases, and the data compounds split at the head; English keeps them
+  assert.equal(speakOf(['Volgens Stone, Patton en Heen, in Difficult Conversations: het identiteitsgesprek, je identiteitsval, gekwetstheid, smalltalk.'], 'nl'),
+    'Volgens Stoon, Petten en Heen, in Diffikkelt Konver-seesjens: het identiteits-gesprek, je identiteits-val, ge-kwetstheid, smoltok.');
+  assert.equal(speakOf(['Je analyse moet vrijdag af, de analyse vóór vrijdag, de analyse voor juni, nog één analyse.'], 'nl'),
+    'Je analiese moet vrijdag af, de analiese vóór vrijdag, de analyse voor juni, nog één analyse.');
+  assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
+    'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
+  assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
+  // pm.consult.proposal: dagtarief split at the head (espeak-ng stresses dag-ta-RIEF; lower case only, so
+  // pm.run.scope's "Dagtarief: bij de klant" keeps its voice), plantdirecteur with its d
+  // (espeak-ng reads "plantirecteur"), extrusielijn split at the head (espeak-ng stresses -LIJN), the productie-engineer
+  // as Dutch makers say it, "entsjinier" (espeak-ng reads "eng-i-neer"), and Alan Weiss as his English name (espeak-ng
+  // reads "AA-lan"); English keeps them all
+  assert.equal(speakOf(['Een dagtarief, twee dagtarieven. Dagtarief: bij de klant.'], 'nl'), 'Een dag-tarief, twee dag-tarieven. Dagtarief: bij de klant.');
+  assert.equal(speakOf(['De plantdirecteur van de extrusielijn. Plantdirecteur, extrusielijnen.'], 'nl'), 'De plant-directeur van de extrusie-lijn. Plant-directeur, extrusie-lijnen.');
+  assert.equal(speakOf(['Een dag van de productie-engineer. Voorstanders zoals Alan Weiss.'], 'nl'), 'Een dag van de productie-entsjinier. Voorstanders zoals Ellun Wais.');
+  // and offerte as off-erte (espeak-ng stresses OF-ferte), offertes as off-erte's (espeak-ng reads offerTES)
+  assert.equal(speakOf(['Een offerte, drie offertes. Offerte!'], 'nl'), "Een off-erte, drie off-erte's. Off-erte!");
+  // and Vantage as its English name (espeak-ng reads a French van-TAA-zje)
+  assert.equal(speakOf(['Een directeur belt Vantage.'], 'nl'), 'Een directeur belt Ventitsj.');
+  assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.');
+  // pm.stuck.diagnose: mensenprobleem, capaciteitsprobleem, ijkmoment and planningsregel split at the head
+  // (espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM, ijkmoMENT, planningsreGEL with the e of "bed"),
+  // vrijgeven stressed VRIJ- (espeak-ng says vrij-GEE-ven); English keeps them, and vrijgave (said in films with
+  // a video) stays as it is
+  assert.equal(speakOf(['Een mensenprobleem of een capaciteitsprobleem? Mensenproblemen. Een ijkmoment, IJkmoment.'], 'nl'), 'Een mensen-probleem of een capaciteits-probleem? Mensen-problemen. Een ijk-moment, IJk-moment.');
+  assert.equal(speakOf(['Een planningsregel, de planningsregels. Sneller vrijgeven; Vrijgeven. De vrijgave.'], 'nl'), 'Een plannings-regel, de plannings-regels. Sneller vrij-geven; Vrij-geven. De vrijgave.');
+  assert.equal(speakOf(['A people problem, a capacity problem, a check-in point.'], 'en'), 'A people problem, a capacity problem, a check-in point.');
 });
 
 // ------------------------------------------------------------ WAV files

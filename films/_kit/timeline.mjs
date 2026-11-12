@@ -356,6 +356,16 @@ const SAY = {
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
     [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk'],
     // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
     // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
     // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
@@ -364,7 +374,55 @@ const SAY = {
     // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
-    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten']],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // from output to benefits (pm.portfolio.benefits): batenhouder and ploegdagen split at the head (espeak-ng reads
+    // a full e in "baa-tèn-houder" and stresses ploeg-DA-gen; ploegdag on its own is read right), business case as
+    // Dutch project people say it, "biznis kees" (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst as "wieken-dienst"
+    // (it reads "wee-kend-DIENST"), and lijnmanager and operationeel manager with a Dutch "manager" as the
+    // middenmanager rule above says it (it reads MAA-naa-cher), operationeel stressed on -NEEL (it stresses OO-);
+    // no other film says them in Dutch. And the lesson's trigger before its Dutch gloss as "trikker" (espeak-ng
+    // reads a soft g, "tri-gher"), only in this film's "trigger, een actiegrens", so pm.land.handover keeps its voice
+    [/\b([Tt])rigger(?=, een actie-?grens\b)/g, '$1rikker'],
+    [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
+    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer'],
+    // asking questions outside your field (pm.outside.questions): the names behind the planning fallacy and the
+    // reference class as English and Danish speakers say them (espeak-ng reads Kahneman with a sounded h,
+    // Flyvbjerg as "flif-bjerg"): Kaaneman, Fluubjerg (Gardner is on the card only: no spelling gives
+    // espeak-ng a hard g, and Kardner is another name); and words it
+    // misreads, split at the head: REferentieklasse with "ti" for "tsie" (referentie-KLASse), basiscijfer without
+    // the s of cijfer ("basis-eifer"), IT-lead as "lee-ad" (said IT-lied), and OPtimistisch and VOORspelling
+    // (said op-timistisch, voor-spelling: op-ti-MIS-tisch, voor-SPEL-ling); no other film says them, and
+    // optimistisch only before "e", "en", a number or ", plus", so pm.plan.wbs's "optimistisch, meest
+    // waarschijnlijk" keeps the voice it was built with
+    [/\bKahneman\b/g, 'Kaaneman'], [/\bFlyvbjerg\b/g, 'Fluubjerg'],
+    [/\b([Rr])eferentieklasse/g, '$1eferentie-klasse'], [/\b([Bb])asiscijfer/g, '$1asis-cijfer'], [/\bIT-lead\b/g, 'IT-lied'],
+    [/\b([Oo])ptimistisch(?=e\b| en\b| \d|, plus\b)/g, '$1p-timistisch'], [/\b([Vv])oorspelling/g, '$1oor-spelling'],
+    // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
+    // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
+    // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
+    // ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok); analyse is stressed AA-na-ly-se, but
+    // other films say it, so only this film's two phrases get "analiese"; stilstanddata, stilstandlogboek and
+    // lijndata split at the head (it stresses the last part). No other film says them
+    [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
+    [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
+    [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data'],
+    // from phone call to proposal (pm.consult.proposal): espeak-ng stresses dagtaRIEF and extrusieLIJN (split at
+    // the head: DAG-tarief, ex-TRU-sie-lijn), drops the d of plantdirecteur ("plantirecteur"), reads engineer as
+    // "eng-i-neer" (said as Dutch makers say it, "entsjinier", tsj for the dzj it cannot voice) and Alan Weiss
+    // as "AA-lan" (said as his English name, "Ellun Wais"). It stresses OF-ferte and offerTES (French -tes):
+    // split as off-erte, which keeps a stress on -FER-, and the plural with an apostrophe, off-erte's, which ends
+    // on a schwa. dagtarief in lower case only, so pm.run.scope's "Dagtarief: bij de klant" keeps the voice it
+    // was built with. Vantage, the consultancy of the lessons' examples, as its English name, "Ventitsj"
+    // (espeak-ng reads a French van-TAA-zje); no other film says the others or Vantage in Dutch
+    [/\b([Oo])fferte(s?)\b/g, (m, o, s) => `${o}ff-erte${s ? "'s" : ''}`],
+    [/\bdagtarie(f|ven)\b/g, 'dag-tarie$1'], [/\b([Pp])lantdirecteur/g, '$1lant-directeur'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'],
+    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj'],
+    // stuck: which kind of problem (pm.stuck.diagnose): espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM,
+    // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
+    // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
+    [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
+    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

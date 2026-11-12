@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.consult.proposal',
+      film: 'pm.consult.proposal',
       title: 'Een offerte die wint',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
+      film: 'pm.consult.proposal',
       title: 'Prijs en scope',
       pre: [
         {
