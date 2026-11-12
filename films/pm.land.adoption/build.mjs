@@ -63,7 +63,7 @@
 //   change teach 5: watch the weeks after go-live, the day the new way
 //     officially starts; the old way tempts, problems surface (s1 b2); experts
 //     doubt "70% fail", Mark Hughes 2011 found no solid evidence (s2 b4; the
-//     name on the card and in English); Kotter criticised as too top-down (s2
+//     name on the card and spoken in both languages); Kotter criticised as too top-down (s2
 //     b4); the sharp question "what does the operator lose?" (s3 b7)
 //   change example: packaging plant, every stop over 2 minutes on a new
 //     terminal, a touchscreen PC next to the line (s1 b1); after six weeks
@@ -81,19 +81,19 @@
 //     must be found first (s4 b5)
 //   resistance teach 2: it tells you something real: a loss (status, skill,
 //     control, overtime pay), extra work, an earlier failed project they paid
-//     for (said "an earlier failed project"), a flaw in your design they see
+//     for, a flaw in your design they see
 //     (s5 b1); ask before judging "what
 //     would have to be true for this to work for you?" (s5 b2)
 //   resistance teach 3: invite the sharpest critic into the design; a
 //     converted critic convinces others better than you (s6 b4; the second
 //     half on the card in b5); Coch and
 //     French 1948, a pyjama factory in Virginia: co-designers got output back
-//     faster and quit less (s6 b6; names and place on the card and in
-//     English, the Dutch voice says "onderzoekers in een pyjamafabriek")
+//     faster and quit less (s6 b6; names spoken in both languages, Virginia on
+//     the card)
 //   resistance teach 4: be honest about a real loss, "yes, you lose the
 //     Saturday overtime" (s5 b3; "here is why we still think it right" on the
-//     card); no "resister" label with management, it sticks (s5 b3; "closes
-//     the door" not said);
+//     card); no "resister" label with management, it sticks and closes
+//     the door (s5 b3);
 //     coffee one-on-one away from the meeting, ask about earlier changes, the
 //     real story (s6 b2)
 //   resistance teach 5: the change curve, shock, denial, frustration,
@@ -119,7 +119,7 @@
 //     between the top and the floor, the key channel; the plant manager
 //     explains why, the shift lead gets "what does this mean for my Monday?"
 //     (s8 b1); equip them first: own questions answered, three key messages in
-//     their own words (the voice says "three key messages"), likely questions
+//     their own words, likely questions
 //     with answers (s8 b2)
 //   communication teach 4: repeat; one message in one meeting is no
 //     communication; a town hall for the why, then the board, the shift start,
@@ -163,7 +163,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
-import { beatStarts, minSceneDur, wordsOf } from '../_kit/timeline.mjs';
+import { beatStarts, minSceneDur, wordsOf, sayable } from '../_kit/timeline.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 
 const SKILL = process.env.ANATOMY_SKILL
@@ -447,32 +447,31 @@ const spec = {
 // What the voice says, per scene and beat; it carries the spoken points of the
 // checklist above. No symbols the voice would read aloud, no quotes or
 // parentheses. Words checked with espeak-ng phonemes through Piper's own bridge
-// (nl_NL-alex, 2026-11-12). Kept out of the Dutch narration because espeak-ng
-// misreads them (they stay in captions and cards): livegang ("lieve-gang":
-// said "de dag dat het officieel start"), touchscreen (said "aanraakscherm"),
-// Leading Change and Mark Hughes (English names: on the card, said in English),
-// slide (said "plaatje"), spreadsheet (said "de oude lijst"), stakeholder (said
-// "wie geraakt wordt of invloed heeft"), middenmanager and the Dutch manager
-// (said "ploegleider of teamleider"), town hall (said "een grote bijeenkomst"),
-// FAQ (read "fak": said "een lijst veelgestelde vragen"), the ADKAR words
-// Awareness to Reinforcement (said by their meaning), Coch, French and
-// Virginia ("kox en frenx", "virɣinia": said "onderzoekers in een
-// pyjamafabriek"), communicatieplan (stressed KOM-, with t for ts: said "je
-// plan voor communicatie"), claim ("klaim": said "bewering") and mail
-// ("mee-il": said "e-mail"). ADKAR (ad-kar), Kotter, Prosci, Jeff Hiatt, Heifetz, Kübler-Ross,
-// cascade, kernboodschappen, verandercurve, verandermanagement, terminal,
-// ploegstart, enquêtes, dwarsligger, gereedheidscheck (its rule from
-// pm.plan.schedule) and OEE (its rule: O E E) read well. No new SAY rule.
+// (nl_NL-alex, 2026-11-12). The terms the cards show are said: stakeholder
+// (the kit's rule from pm.intake.stakeholders, steekholder) and, with rules
+// added for this film in films/_kit/timeline.mjs (review, 2026-11-12; no other
+// film's spoken text changes): the five ADKAR words (E-wèrnus, Die-zaaijer,
+// Nollitsj, E-billiti, Rie-in-forsmunt), livegang (laif-gang),
+// communicatieplan, middenmanager (midden-menetsjer), town hall (taun hol),
+// Coch en French and Mark Hughes. Still kept out of the Dutch narration
+// because espeak-ng misreads them (they stay in captions and cards):
+// touchscreen, Leading Change, slide, spreadsheet (said "de oude lijst"),
+// Virginia, FAQ (read "fak": said "een lijst veelgestelde vragen"), claim and
+// mail ("mee-il": said "e-mail"). ADKAR (ad-kar), Kotter, Prosci, Jeff Hiatt,
+// Heifetz, Kübler-Ross, cascade, kernboodschappen, verandercurve,
+// verandermanagement, adoptie, terminal, ploegstart, enquêtes, dwarsligger,
+// gereedheidscheck (its rule from pm.plan.schedule) and OEE (its rule: O E E)
+// read well. The guard below runs the kit's SAY rules first.
 const SAY = [
   [ // s1 go-live is not adoption
-    { nl: 'Een verpakkingsbedrijf. Elke stop langer dan {n:2} minuten moet op een nieuwe terminal naast de lijn.',
+    { nl: 'Een verpakkingsbedrijf. Elke stop langer dan {n:2} minuten moet op een nieuwe terminal.',
       en: 'A packaging plant. Every stop over {n:2} minutes goes on a new terminal by the line.' },
-    { nl: 'Dan de dag dat het officieel start. Daarna lokt de oude manier, en komen problemen boven.',
-      en: 'Then go-live, the day it officially starts. After it, the old way tempts, and problems show up.' },
+    { nl: 'De {t:Livegang|livegang}, de dag dat het officieel start. Daarna lokt de oude manier, en komen problemen boven.',
+      en: 'Then {t:Go-live|go-live}, the day it officially starts. After it, the old way tempts, and problems show up.' },
     { nl: 'Na zes weken: maar {n:40} procent geregistreerd.',
       en: 'After six weeks: only {n:40} percent logged.' },
-    { nl: 'Gestart is niet geadopteerd. Adopteren: echt gebruiken, ook als niemand kijkt.',
-      en: 'Go-live is not adoption: actually using it, also when nobody watches.' },
+    { nl: 'Livegang is geen {t:Adoptie|adoptie}: echt gebruiken, ook als niemand kijkt.',
+      en: 'Go-live is not {t:Adoption|adoption}: actually using it, also when nobody watches.' },
     { nl: 'Mensen zover krijgen heet {t:Verandermanagement|verandermanagement}.',
       en: 'Getting people there is {t:Change management|change management}.' },
     { nl: 'Wat het drijft: makkelijker voor wie het werk doet, de baas vraagt ernaar, ze vormden het mee, de oude manier is weg.',
@@ -483,11 +482,11 @@ const SAY = [
   [ // s2 two models
     { nl: 'Twee modellen. {t:Kotter|Kotter}, 1996: acht stappen voor de organisatie,',
       en: 'Two models. {t:Kotter|Kotter}, in Leading Change, 1996: eight steps for the organisation,' },
-    { nl: 'van urgentie en een groep die het trekt, tot snelle successen en verankeren.',
+    { nl: 'van urgentie en een groep die trekt, tot snelle successen en verankeren.',
       en: 'from urgency and a group that drives it, to quick wins and anchoring.' },
-    { nl: '{t:ADKAR|ADKAR}, van Jeff Hiatt van Prosci, is voor één persoon: weten dat het verandert, willen, weten hoe, kunnen, en beloond blijven.',
-      en: '{t:ADKAR|ADKAR}, by Jeff Hiatt of Prosci, is for one person: Awareness, Desire, Knowledge, Ability, and Reinforcement, staying rewarded.' },
-    { nl: 'Kritiek: voor de bewering dat {n:70} procent mislukt, is geen stevig bewijs. En Kotter heet te veel van bovenaf.',
+    { nl: '{t:ADKAR|ADKAR}, van Jeff Hiatt van Prosci, is voor één persoon: Awareness, weten; Desire, willen; Knowledge, weten hoe; Ability, kunnen; Reinforcement, beloond blijven.',
+      en: '{t:ADKAR|ADKAR}, by Jeff Hiatt of Prosci, is for one person: Awareness, Desire, Knowledge, Ability, Reinforcement, staying rewarded.' },
+    { nl: 'Kritiek: Mark Hughes vond in 2011 geen stevig bewijs dat {n:70} procent mislukt. Kotter heet te veel van bovenaf.',
       en: 'Critique: a 2011 review by Mark Hughes found no solid evidence that {n:70} percent fail. Kotter is called too top-down.' },
   ],
   [ // s3 eight operators
@@ -519,56 +518,56 @@ const SAY = [
       en: 'Open resistance is a gift: it shows what to work on. The other two you must find first.' },
   ],
   [ // s5 what is behind it
-    { nl: 'Weerstand vertelt iets echts: een {t:Verlies|verlies}, zoals status of overwerk, extra werk, een eerder mislukt project, of een fout in jouw ontwerp.',
-      en: 'Resistance tells you something real: a {t:Loss|loss}, like status or overtime, extra work, an earlier failed project, or a flaw in your design.' },
+    { nl: 'Weerstand vertelt iets echts: een {t:Verlies|verlies}, zoals status of overwerk, extra werk, een mislukt project waarvoor zij betaalden, of een fout in jouw ontwerp.',
+      en: 'Resistance tells you something real: a {t:Loss|loss}, like status or overtime, extra work, a failed project they paid for, or a flaw in your design.' },
     { nl: 'Vraag voor je oordeelt: wat moet er kloppen om dit voor jou te laten werken?',
       en: 'Ask before you judge: what would have to be true for this to work for you?' },
-    { nl: 'Is een verlies echt, zeg het eerlijk. En noem niemand een dwarsligger; dat blijft plakken.',
-      en: 'When a loss is real, say so honestly. And never label anyone a resister; it sticks.' },
+    { nl: 'Is een verlies echt, zeg het eerlijk. En noem niemand een dwarsligger; dat blijft plakken en sluit de deur.',
+      en: 'When a loss is real, say so honestly. And never label anyone a resister; it sticks and closes the door.' },
     { nl: 'De {t:Verandercurve|verandercurve}, van schok tot acceptatie, is geleend van Kübler-Ross, 1969, over stervende patiënten. Een dip is normaal, vaste fases niet bewezen.',
       en: 'The {t:Change curve|change curve}, from shock to acceptance, is borrowed from Kübler-Ross, 1969, on dying patients. A dip is normal; fixed stages, unproven.' },
-    { nl: 'Velen zeggen met Heifetz: mensen verzetten zich niet tegen verandering, maar tegen verlies. Weerstand is geen onwil.',
-      en: 'Many say, with Heifetz: people resist loss, not change. Resistance is not a bad attitude.' },
+    { nl: 'Met Heifetz: mensen verzetten zich niet tegen verandering, maar tegen verlies. Weerstand is geen onwil.',
+      en: 'With Heifetz: people resist loss, not change. Resistance is not a bad attitude.' },
   ],
   [ // s6 coffee with Henk
     { nl: 'Een metaalbedrijf. Insteller Henk noemt het nieuwe planbord iets voor kantoormensen; armen over elkaar, collega’s volgen.',
       en: 'A metal works. Henk, the senior setter, calls the new board for office people; arms crossed, his colleagues follow.' },
     { nl: 'Je drinkt koffie met hem, één op één, en vraagt naar eerdere veranderingen.',
       en: 'You have coffee with him, one-on-one, and ask about earlier changes.' },
-    { nl: 'Vroeger bepaalde hij de volgorde, nu de planner, en die weet niet dat de grote pers {n:40} minuten moet opwarmen.',
+    { nl: 'Vroeger bepaalde hij de volgorde, nu de planner, die niet weet dat de grote pers {n:40} minuten moet opwarmen.',
       en: 'He used to set the order; now the planner does, unaware the big press needs {n:40} minutes to warm up.' },
     { nl: 'Haal de scherpste criticus bij het ontwerp: Henk stelt met de planner de regels op, ook de opwarmregel.',
       en: 'Invite the sharpest critic into the design: Henk sets the rules with the planner, warm-up rule included.' },
     { nl: 'Twee weken later legt hij het bord zelf uit aan de nachtploeg.',
       en: 'Two weeks later he explains the board to the night shift himself.' },
-    { nl: 'In 1948 zagen onderzoekers in een pyjamafabriek: wie meeontwierp, herstelde sneller en stapte minder op.',
+    { nl: 'In 1948 zagen Coch en French in een pyjamafabriek: wie meeontwierp, herstelde sneller en stapte minder op.',
       en: 'In 1948, Coch and French saw it at a pyjama factory: co-designers recovered faster, and quit less.' },
   ],
   [ // s7 who hears what, when
-    { nl: 'Breng in kaart wie geraakt wordt of invloed heeft: direct, indirect, leidinggevenden.',
-      en: 'Map the stakeholders, affected or influential: directly, indirectly, and managers.' },
-    { nl: 'Per groep vijf vragen: wat verandert, wanneer, waarom, wat wordt verwacht, waar kan ik terecht? Die tabel op één A4: je plan voor communicatie.',
-      en: 'Five questions per group: what changes, when, why, what is expected, where can I ask? That one-page table: your communication plan.' },
+    { nl: 'Breng de {t:Stakeholder|stakeholders} in kaart, geraakt of met invloed: direct, indirect, leidinggevenden.',
+      en: 'Map the {t:Stakeholder|stakeholders}, affected or influential: directly, indirectly, and managers.' },
+    { nl: 'Per groep vijf vragen: wat verandert, wanneer, waarom, wat wordt verwacht, waar kan ik terecht? Die tabel op één A4: je {t:Communicatieplan|communicatieplan}.',
+      en: 'Five questions per group: what changes, when, why, what is expected, where can I ask? That one-page table: your {t:Communication plan|communication plan}.' },
     { nl: 'Leidinggevenden horen het voor hun teams, zodat ze antwoord hebben: een {t:Cascade|cascade}. Nooit eerst op de gang of van een andere vestiging.',
       en: 'Managers hear it before their teams, so they have answers: a {t:Cascade|cascade}. Never first in the corridor or from another site.' },
     { nl: 'Al een gerucht? Dezelfde dag: dit weten we, dit nog niet, en dan wel.',
       en: 'A rumour out? The same day: what we know, what not yet, and when.' },
   ],
   [ // s8 the middle manager
-    { nl: 'Het belangrijkste kanaal is de ploegleider. De directeur geeft het waarom; de ploegleider hoort: wat betekent dit voor mijn maandag?',
-      en: 'The key channel: the middle manager. The top gives the why; the shift lead hears: what does this mean for my Monday?' },
-    { nl: 'Rust ze eerst toe: hun vragen beantwoord, drie {t:Kernboodschappen|kernboodschappen}, verwachte vragen met antwoorden.',
-      en: 'Equip them first: their questions answered, three {t:Talking points|talking points}, and likely questions with answers.' },
-    { nl: 'Herhaal: één keer is geen communicatie. Een grote bijeenkomst geeft het waarom; dan het bord, de ploegstart, één op één.',
-      en: 'Repeat: once is not communication. A town hall gives the why; then the board, the shift start, one-on-one.' },
+    { nl: 'Het belangrijkste kanaal: de {t:Middenmanager|middenmanager}. De top geeft het waarom; de ploegleider hoort: wat betekent dit voor mijn maandag?',
+      en: 'The key channel: the {t:Middle manager|middle manager}. The top gives the why; the shift lead hears: what does this mean for my Monday?' },
+    { nl: 'Rust ze eerst toe: hun vragen beantwoord, drie {t:Kernboodschappen|kernboodschappen} in eigen woorden, verwachte vragen met antwoorden.',
+      en: 'Equip them first: their questions answered, three {t:Talking points|talking points} in their own words, likely questions with answers.' },
+    { nl: 'Herhaal: één keer is geen communicatie. Een {t:Town hall|town hall} geeft het waarom; dan het bord, de ploegstart, één op één.',
+      en: 'Repeat: once is not communication. A {t:Town hall|town hall} gives the why; then the board, the shift start, one-on-one.' },
     { nl: 'Kotter schatte in 1995: leiders communiceren hun visie tien keer te weinig.',
       en: 'Kotter estimated in 1995 that leaders under-communicate their vision tenfold.' },
-    { nl: 'Uit enquêtes van Prosci: de reden van de top, en wat het voor je werk betekent van je eigen baas.',
-      en: 'Prosci\'s surveys: the reason from the top, and what it means for your job from your own boss.' },
+    { nl: 'Enquêtes van Prosci: de reden van de top, wat het voor je werk betekent van je eigen baas.',
+      en: 'Prosci\'s surveys: the reason from the top, what it means for your job from your own boss.' },
   ],
   [ // s9 a cascade in four weeks
-    { nl: 'Een netbeheerder: straks geen klus de weekplanning in zonder gereedheidscheck. Het hoofd planning wil vrijdag één e-mail.',
-      en: 'A grid operator: soon no job enters the week plan without a readiness check. The head of planning wants one Friday e-mail.' },
+    { nl: 'Een netbeheerder: geen klus de weekplanning in zonder gereedheidscheck. Het hoofd planning wil vrijdag één e-mail.',
+      en: 'A grid operator: no job enters the week plan without a readiness check. The head of planning wants one Friday e-mail.' },
     { nl: 'Beter: week {n:1} horen eerst de vijf teamleiders het, met een lijst veelgestelde vragen. Week {n:2} vertellen zij hun planners.',
       en: 'Better: in week {n:1} the five team leaders hear it first, with an FAQ. In week {n:2} they tell their planners.' },
     { nl: 'Week {n:3} en {n:4}: de check op het bord. Zes planners gevraagd wat ze begrepen; twee denken dat hij optioneel is.',
@@ -582,12 +581,12 @@ spec.scenes.forEach((s, si) => {
   s.beats.forEach((b, bi) => { b.say = SAY[si][bi]; });
 });
 // no symbol the voice would read aloud, no spoken parenthesis or quote, and no
-// word espeak-ng misreads in the Dutch narration (see above)
+// word espeak-ng misreads in the Dutch narration once the kit's SAY rules ran (see above)
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = plainSay(line[lang]);
   if (/[/&×=+()“”"‘%€]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${line[lang].slice(0, 50)}"`);
-  if (lang === 'nl' && /\b(livegang|touchscreen|slide|spreadsheet|stakeholder|manager|middenmanager|town hall|FAQ|Hughes|Leading|Awareness|Desire|Knowledge|Ability|Reinforcement|Coch|French|Virginia|communicatieplan|claim|(?<!e-)mail)\b/i.test(plain)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
+  if (lang === 'nl' && /\b(livegang|touchscreen|slide|spreadsheet|stakeholder|manager|middenmanager|town hall|FAQ|Hughes|Leading|Awareness|Desire|Knowledge|Ability|Reinforcement|Coch|French|Virginia|communicatieplan|claim|(?<!e-)mail)\b/i.test(sayable(plain, 'nl'))) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
 }
 // Scene lengths follow the narration (its words / 2.5, the longer language), never
 // shorter than the captions (as shown, with their glosses) need to be read.
