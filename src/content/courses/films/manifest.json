@@ -1401,18 +1401,18 @@
     "eng.gridbasics.congestion": {
       "poster": "src/content/courses/films/eng.gridbasics.congestion.jpg",
       "nl": {
-        "dur": 337.7,
-        "bytes": 13679620,
+        "dur": 338.6,
+        "bytes": 11738359,
         "scenes": [
           0,
-          31.23,
-          68.71,
-          108.68,
-          130.95,
-          170.86,
-          208.33,
-          236.42,
-          287.89
+          31.31,
+          68.69,
+          108.38,
+          131.04,
+          171.05,
+          208.75,
+          236.85,
+          288.67
         ],
         "vtt": "src/content/courses/films/eng.gridbasics.congestion.nl.vtt"
       },
