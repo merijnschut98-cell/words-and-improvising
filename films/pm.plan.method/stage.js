@@ -34,7 +34,7 @@ const STAGE = (() => {
   };
   const X0 = 334;
   const X1 = 618;
-  const CUES = ['phases', 'signoff', 'scope', 'fits', 'royce', 'loop', 'react', 'manifesto', 'fitsA', 'scrum', 'sprint', 'review', 'retro', 'core',
+  const CUES = ['phases', 'signoff', 'scope', 'fits', 'loop', 'react', 'manifesto', 'fitsA', 'scrum', 'sprint', 'review', 'retro', 'core',
     'hybrid', 'miles', 'rounds', 'pilot', 'doubt', 'case', 'both', 'plan', 'round1', 'out', 'round2', 'jobs', 'jargon', 'quote', 'milesplan', 'ask'];
 
   function beatOf(si, u) {
@@ -76,7 +76,6 @@ const STAGE = (() => {
     if (b >= 1) o.scope = op(at(b, p, 1, 0.55, 0.8), rect(X1 - 132, 58, 132, 38, 'pm-hot', 6) + txt(X1 - 66, 84, tr('vaste scope', 'fixed scope'), 'pm-on', 'middle'));
     if (b >= 2) o.fits = op(at(b, p, 2, 0.1, 0.4), txt(X0, 280, tr('één plan, sturen op afwijking', 'one plan, manage deviations'), 'pm-mute'))
       + op(at(b, p, 2, 0.4, 0.7), txt(X0, 306, tr('MS-station, lijn verhuizen', 'MS station, moving a line'), 'pm-txt'));
-    if (b >= 3) o.royce = op(at(b, p, 3, 0.1, 0.4), rect(X0 - 4, 322, X1 - X0 + 8, 62, 'pm-card', 8) + txt(X0 + 8, 347, tr('Royce 1970: zonder', 'Royce 1970: risky'), 'pm-txt') + txt(X0 + 8, 372, tr('terugkoppeling riskant', 'without feedback'), 'pm-txt'));
     return o;
   }
 

@@ -10,7 +10,7 @@
 // Storyboard: docs/superpowers/plans/2026-11-07-v14-explainer-films.md, 3.7
 // (pm.plan.method, P2: the same project played both ways; hybrid milestones
 // with two-week rounds). Storyboard drift: the plan's four scenes and 90 s are
-// seven scenes and about 290 s, because a lesson with a film no longer shows its
+// seven scenes and about 236 s, because a lesson with a film no longer shows its
 // worked example, so the film carries all five teach blocks and the example:
 // Scrum gets its own scene (s3), the example two (s5 the plan, s6 the rounds)
 // and the people side the last (s7). "Both ways" is s5 beat 2: the readiness
@@ -65,10 +65,8 @@
 //     b2); round 2 adds the switching plan check the control room asked for (s6
 //     b3); by week 8 tested on 60 real jobs, the planners helped shape it, so
 //     they defend it (s6 b4)
-//   beyond the lesson, checked: Royce's 1970 paper (Managing the Development
-//     of Large Software Systems) drew the phases in order and called the single
-//     pass risky without feedback between phases; it never uses the word
-//     waterfall, which came later (s1 b4)
+//   cut in review: a beat on Royce's 1970 paper (correct, but no lesson text,
+//     and "the sequence is risky" sat badly next to "fits predictable work")
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it
 // lives somewhere else on your machine.
@@ -91,8 +89,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // one drifts); the {n:...} numbers are then checked against the Dutch lesson
 // text by defineFilm. Facts as in the lesson: the Agile Manifesto (2001,
 // seventeen signatories), the Scrum Guide (sprints of one month or less, a
-// sprint planning, review and retrospective). Royce 1970 as he wrote it: the
-// sequence drawn, the single pass called risky, no word "waterfall".
+// sprint planning, review and retrospective).
 const ME = 'pm.plan.method';
 const lessons = await allLessons();
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
@@ -173,7 +170,7 @@ const world = [
 // sits in its own cue group, so the narration can light it.
 const PX = 322;
 const PW = 308;
-const CUES = ['phases', 'signoff', 'scope', 'fits', 'royce', 'loop', 'react', 'manifesto', 'fitsA', 'scrum', 'sprint', 'review', 'retro', 'core',
+const CUES = ['phases', 'signoff', 'scope', 'fits', 'loop', 'react', 'manifesto', 'fitsA', 'scrum', 'sprint', 'review', 'retro', 'core',
   'hybrid', 'miles', 'rounds', 'pilot', 'doubt', 'case', 'both', 'plan', 'round1', 'out', 'round2', 'jobs', 'jargon', 'quote', 'milesplan', 'ask'];
 const hud = g('panel', `<rect class="pm-panel" x="${PX}" y="12" width="${PW}" height="376" rx="10"/>`
   + g('pHead', '') + g('pBody', '')
@@ -241,7 +238,9 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DURS = [40, 40, 40, 40, 44, 40, 46];
+// about the narration's length per scene (words / 2.5), so no second is padding;
+// the shortest beat (s3, the retrospective) still holds about 4 s
+const DURS = [30, 32, 34, 34, 38, 32, 36];
 const C = { PX, PW, CELLS, WEEKS, MILES, ROUND, dur: DURS };
 const sc = (id, title, beats) => ({ id, lesson: ME, level: 1, dur: DURS[Number(id.slice(1)) - 1], still: 0.9, title, beats });
 const spec = {
@@ -254,7 +253,6 @@ const spec = {
       { nl: '{t:Waterval|Waterval}: fases op volgorde. Analyseren, ontwerpen, bouwen, invoeren.', en: '{t:Waterfall|Waterfall}: phases in order. Analyse, design, build, implement.', cue: { Waterval: 'phases' }, focus: 'phases' },
       { nl: 'Elke fase wordt afgetekend voor de volgende begint. De scope ligt vast.', en: 'Each phase is signed off before the next starts. The scope is fixed.', focus: ['signoff', 'scope'] },
       { nl: 'Eén keer in detail plannen. Past bij voorspelbaar werk: een MS-station, een lijn verhuizen.', en: 'Plan once in detail. It fits predictable work: an MS station, moving a line.', focus: 'fits' },
-      { nl: 'Royce, 1970: de volgorde zonder terugkoppeling is riskant. Het woord waterval kwam later.', en: 'Royce, 1970: the sequence without feedback is risky. The word waterfall came later.', focus: 'royce' },
     ]),
     sc('s2', { nl: 'Agile', en: 'Agile' }, [
       { nl: '{t:Agile|Agile}: korte rondes, elk met iets werkends waar gebruikers op reageren.', en: '{t:Agile|Agile}: short rounds, each ending in something working that users react to.', cue: { Agile: 'loop' }, focus: 'loop' },
@@ -310,10 +308,11 @@ const spec = {
 // "ontwikkelaars van software"), mijlpalenplanning (said "een planning met
 // mijlpalen"), dashboard ("dasj-boo-ard": said "scherm met kerncijfers", the
 // lesson's own gloss), middenspanningsstation and productielijn (stressed at
-// the end: said "station voor middenspanning", "een lijn in de fabriek") and
-// Royce ("roo-ise": the card names him). Dutch-only SAY rules in
+// the end: said "station voor middenspanning", "een lijn in de fabriek"). Dutch-only SAY rules in
 // films/_kit/timeline.mjs for the two words only this film says: agile as
-// "etsjail" and hybride as "hiebriede". Scrum ("skrum"), sprint, budget and
+// "etsjail" and hybride as "hiebriede" (reviewed: edzjail reads "edz-yail",
+// ed-jail "ed yail"; ed-djail gives the voiced dzj but two stresses and was
+// heard as "het jail", while etsjail was heard as agile in a Dutch sentence). Scrum ("skrum"), sprint, budget and
 // go/no-go, pilot, stuurgroep, mijlpaal, nulmeting and gereedheidscheck (their
 // rules from pm.plan.schedule) read well.
 const SAY = [
@@ -324,8 +323,6 @@ const SAY = [
       en: 'Each phase is signed off before the next one starts. And the scope is fixed: what the project covers is on paper up front.' },
     { nl: 'Je plant één keer in detail, en stuurt op afwijkingen. Dat past bij werk dat voorspelbaar is en later moeilijk te veranderen: een nieuw station voor middenspanning in de wijk plaatsen, of een lijn in de fabriek verhuizen.',
       en: 'You plan once in detail, and manage deviations. That fits work that is predictable and hard to change later: installing a new medium-voltage substation in a neighbourhood, or moving a production line.' },
-    { nl: 'De volgorde is oud. Een artikel uit 1970 tekende haar al, en noemde één keer doorlopen zonder terugkoppeling tussen de fases riskant. Het woord waterval kwam pas later.',
-      en: 'The sequence is old. Winston Royce drew it in a 1970 paper, and called a single pass without feedback between the phases risky. The word waterfall came later.' },
   ],
   [ // s2 agile
     { nl: 'De tweede manier heet {t:Agile|agile}: werken in korte rondes. Elke ronde eindigt met iets werkends, waar gebruikers op reageren.',
@@ -409,7 +406,7 @@ spec.scenes.forEach((s, si) => {
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = line[lang].replace(/\{[tn]:[^}]*\}/g, '').replace(/\bgo\/no-go\b/g, 'go no-go'); // the SAY rules say go/no-go without the slash
   if (/[/&×=+()“”"‘%€]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${line[lang].slice(0, 50)}"`);
-  if (lang === 'nl' && /\b(scope|review|retrospective|checklist|live|manager|plantmanager|Royce|dashboard)\b|schakelplancheck|softwareontw|mijlpalenplanning|middenspanningsstation|productielijn/i.test(plain)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
+  if (lang === 'nl' && /\b(scope|review|retrospective|checklist|live|manager|plantmanager|dashboard)\b|schakelplancheck|softwareontw|mijlpalenplanning|middenspanningsstation|productielijn/i.test(plain)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
 }
 
 // ---------------------------------------------------------------- page script and styles
