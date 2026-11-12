@@ -654,6 +654,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
+      film: 'pm.plan.wbs',
       title: 'Defining done',
       pre: [
         {
