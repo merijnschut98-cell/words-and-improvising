@@ -88,6 +88,11 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
   assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
   assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
+  // pm.close.results: controller stressed on the second part (espeak-ng says KON-trol-ler), dekkingsbijdrage
+  // split at the head (espeak-ng stresses -bij-DRAA-zje), run chart with a tsj (espeak-ng reads a French sj);
+  // English keeps them
+  assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
+  assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
 });
 
 // ------------------------------------------------------------ WAV files
