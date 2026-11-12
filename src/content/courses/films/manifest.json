@@ -877,6 +877,39 @@
         ],
         "vtt": "src/content/courses/films/eng.safety.permit.en.vtt"
       }
+    },
+    "eng.maintenance.failure": {
+      "poster": "src/content/courses/films/eng.maintenance.failure.jpg",
+      "nl": {
+        "dur": 300.8,
+        "bytes": 7986619,
+        "scenes": [
+          0,
+          53.6,
+          95.31,
+          130.81,
+          162.69,
+          200.7,
+          228.54,
+          261.8
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.failure.nl.vtt"
+      },
+      "en": {
+        "dur": 326.1,
+        "bytes": 8514020,
+        "scenes": [
+          0,
+          58.22,
+          103.54,
+          139.23,
+          174.75,
+          214.63,
+          245.41,
+          283.1
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.failure.en.vtt"
+      }
     }
   }
 }
