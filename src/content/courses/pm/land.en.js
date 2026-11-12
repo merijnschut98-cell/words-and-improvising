@@ -333,6 +333,7 @@ export default {
     // Topic 2: adoption and handover
     {
       id: 'pm.land.change',
+      film: 'pm.land.adoption',
       title: 'What really drives adoption',
       pre: [
         {
@@ -413,6 +414,7 @@ export default {
     },
     {
       id: 'pm.land.resistance',
+      film: 'pm.land.adoption',
       title: 'Working with resistance',
       pre: [
         {
@@ -493,6 +495,7 @@ export default {
     },
     {
       id: 'pm.land.communication',
+      film: 'pm.land.adoption',
       title: 'Communicating change',
       pre: [
         {

@@ -333,6 +333,7 @@ export default {
     // Onderwerp 2: adoptie en overdracht
     {
       id: 'pm.land.change',
+      film: 'pm.land.adoption',
       title: 'Wat adoptie echt drijft',
       pre: [
         {
@@ -413,6 +414,7 @@ export default {
     },
     {
       id: 'pm.land.resistance',
+      film: 'pm.land.adoption',
       title: 'Werken met weerstand',
       pre: [
         {
@@ -493,6 +495,7 @@ export default {
     },
     {
       id: 'pm.land.communication',
+      film: 'pm.land.adoption',
       title: 'Verandering communiceren',
       pre: [
         {
