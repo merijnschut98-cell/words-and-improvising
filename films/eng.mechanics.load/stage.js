@@ -422,13 +422,13 @@ const STAGE = (() => {
         else set(E.cDIn, '');
         set(E.cDWll, b >= 3 ? cardWll(b, p) : '');
       } else if (si === 4) {
-        dl = b === 0 ? full * ease(span(p, 0.3, 0.8)) : full;
+        // no stretch yet: it is named, and called exaggerated, in the next scene
         if (b === 1) { cut = true; gap = 12 * ease(span(p, 0.15, 0.4)); }
         if (b === 2) { cut = p < 0.25; gap = 12 * (1 - ease(span(p, 0, 0.2))); }
         vis.cS = span(u, 0, 0.06);
         set(E.cSIn, cardS(b, p));
       } else if (si === 5) {
-        dl = full;
+        dl = b === 0 ? full * ease(span(p, 0.08, 0.4)) : full;
         let eNow = C.EPS;
         if (b === 1) {
           const k2 = 0.5 - 0.5 * Math.cos(Math.PI * 2 * span(p, 0.1, 0.9));
