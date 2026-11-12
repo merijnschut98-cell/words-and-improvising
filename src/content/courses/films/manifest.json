@@ -1001,6 +1001,41 @@
         ],
         "vtt": "src/content/courses/films/eng.mechanics.fatigue.en.vtt"
       }
+    },
+    "eng.power.motor": {
+      "poster": "src/content/courses/films/eng.power.motor.jpg",
+      "nl": {
+        "dur": 317.1,
+        "bytes": 12811278,
+        "scenes": [
+          0,
+          39.67,
+          74.83,
+          101.34,
+          131.18,
+          166.16,
+          197.54,
+          237.3,
+          272.85
+        ],
+        "vtt": "src/content/courses/films/eng.power.motor.nl.vtt"
+      },
+      "en": {
+        "dur": 350,
+        "bytes": 14078355,
+        "scenes": [
+          0,
+          39.51,
+          77.56,
+          108.14,
+          141.67,
+          175.69,
+          212.06,
+          260.21,
+          298.09
+        ],
+        "vtt": "src/content/courses/films/eng.power.motor.en.vtt"
+      }
     }
   }
 }

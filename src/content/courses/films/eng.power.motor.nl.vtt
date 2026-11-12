@@ -1,0 +1,313 @@
+WEBVTT
+
+1
+00:00:00.848 --> 00:00:03.100
+Een pompset, zoals in elke fabriek:
+
+2
+00:00:03.448 --> 00:00:06.211
+een elektrische motor draait via een koppeling een pomp.
+
+3
+00:00:06.912 --> 00:00:08.955
+De energie komt binnen via een kabel.
+
+4
+00:00:10.025 --> 00:00:14.169
+De meter in de kast laat twee dingen zien, en die worden vaak door elkaar gehaald.
+
+5
+00:00:15.210 --> 00:00:20.271
+Het eerste is het vermogen, in kilowatt: hoe snel de motor nu energie gebruikt.
+
+6
+00:00:20.921 --> 00:00:23.625
+Het is de stand van nu, zoals een snelheidsmeter.
+
+7
+00:00:24.628 --> 00:00:29.690
+Het tweede is de energie, in kilowattuur: vermogen maal tijd, opgeteld.
+
+8
+00:00:30.539 --> 00:00:33.534
+8 uur lang 15 kilowatt is 120 kilowattuur.
+
+9
+00:00:34.241 --> 00:00:38.769
+De rekening telt kilowattuur; de aansluiting en de piek gaan over kilowatt.
+
+10
+00:00:40.155 --> 00:00:45.096
+Deze koelwaterpomp moet 11 kilowatt in het water stoppen, 6.000 uur per jaar.
+
+11
+00:00:46.043 --> 00:00:47.994
+Rendement (efficiency) is wat er nuttig uitkomt,
+
+12
+00:00:48.226 --> 00:00:50.769
+gedeeld door wat erin gaat; de rest wordt warmte.
+
+13
+00:00:51.518 --> 00:00:54.920
+De pomp haalt 70 procent, de motor 92.
+
+14
+00:00:56.010 --> 00:01:00.596
+In een keten vermenigvuldigen de verliezen zich: 11 gedeeld door 0,70,
+
+15
+00:01:00.875 --> 00:01:05.368
+en nog eens door 0,92, geeft 17,1 kilowatt uit het net.
+
+16
+00:01:06.414 --> 00:01:09.467
+Dat is 102.600 kilowattuur per jaar,
+
+17
+00:01:09.757 --> 00:01:13.960
+zo’n 15.400 euro: waarschijnlijk meer dan de pomp kostte.
+
+18
+00:01:15.288 --> 00:01:18.051
+De fabriek draait op draaistroom (three-phase): drie draden,
+
+19
+00:01:18.295 --> 00:01:22.672
+elk met een spanning die 50 keer per seconde heen en weer gaat: 50 hertz.
+
+20
+00:01:23.732 --> 00:01:26.449
+Elke fase komt een derde periode na de vorige.
+
+21
+00:01:27.453 --> 00:01:32.038
+Tussen twee fasen staat 400 volt, tussen een fase en de nul 230.
+
+22
+00:01:32.826 --> 00:01:34.846
+Een motor gebruikt alle drie de fasen.
+
+23
+00:01:35.872 --> 00:01:37.823
+In de wikkelingen maken die drie verschoven
+
+24
+00:01:37.846 --> 00:01:40.435
+stromen samen een magnetisch veld dat ronddraait.
+
+25
+00:01:41.784 --> 00:01:45.499
+Niet alle stroom doet werk: een deel bouwt alleen het magnetisch veld op.
+
+26
+00:01:46.514 --> 00:01:48.604
+De arbeidsfactor (power factor), of cos phi,
+
+27
+00:01:48.882 --> 00:01:52.841
+is het nuttige deel: vol belast zo’n 0,8 tot 0,9.
+
+28
+00:01:53.797 --> 00:01:57.547
+Het vermogen is wortel drie maal spanning, stroom en arbeidsfactor.
+
+29
+00:01:58.245 --> 00:02:03.759
+Bij 400 volt, 30 ampère en 0,85 is dat zo’n 17,7 kilowatt.
+
+30
+00:02:04.840 --> 00:02:08.811
+Licht belast zakt de arbeidsfactor ver: meer stroom voor even veel werk,
+
+31
+00:02:09.158 --> 00:02:10.296
+dus dikkere kabels.
+
+32
+00:02:11.748 --> 00:02:12.746
+Bijna elke pomp,
+
+33
+00:02:12.955 --> 00:02:16.612
+ventilator en transportband draait op een asynchrone motor (induction motor),
+
+34
+00:02:16.984 --> 00:02:20.966
+of kooiankermotor: robuust, goedkoop en weinig onderhoud.
+
+35
+00:02:22.064 --> 00:02:25.338
+In doorsnede: het vaste buitendeel is de stator,
+
+36
+00:02:25.698 --> 00:02:29.017
+met koperen wikkelingen in de groeven, een set per fase.
+
+37
+00:02:30.010 --> 00:02:32.413
+De stromen in de drie fasen pieken om de beurt,
+
+38
+00:02:32.715 --> 00:02:35.536
+dus het magnetisch veld schuift steeds op en draait rond.
+
+39
+00:02:36.230 --> 00:02:38.529
+Er beweegt niets, en toch draait het veld.
+
+40
+00:02:39.543 --> 00:02:45.337
+Hoe snel, hangt af van de netfrequentie en het aantal polen: 2, 4, 6 of meer.
+
+41
+00:02:46.600 --> 00:02:50.977
+In de stator draait de rotor op de as: stalen plaatjes met staven erdoor,
+
+42
+00:02:51.233 --> 00:02:53.915
+aan de uiteinden verbonden door ringen: een kooi.
+
+43
+00:02:54.860 --> 00:02:57.693
+Het draaiveld snijdt door de staven en wekt er stroom in op.
+
+44
+00:02:58.392 --> 00:03:01.783
+Die stroom maakt een eigen veld, en zo sleept het veld de rotor mee.
+
+45
+00:03:02.733 --> 00:03:04.050
+Maar hij haalt het veld nooit in.
+
+46
+00:03:04.720 --> 00:03:07.669
+Het verschil heet de slip, meestal 1 tot 5 procent.
+
+47
+00:03:08.428 --> 00:03:10.065
+Daarom heet de motor asynchroon.
+
+48
+00:03:11.071 --> 00:03:14.021
+Zonder slip geen stroom in de staven, en geen koppel.
+
+49
+00:03:14.682 --> 00:03:16.691
+Hoe zwaarder de last, hoe meer slip.
+
+50
+00:03:17.958 --> 00:03:20.199
+Het veld draait met het synchrone toerental (synchronous speed):
+
+51
+00:03:20.593 --> 00:03:22.428
+120 maal de frequentie,
+
+52
+00:03:22.567 --> 00:03:24.007
+gedeeld door het aantal polen.
+
+53
+00:03:24.707 --> 00:03:28.712
+Bij 50 hertz en 4 polen: 1.500 toeren per minuut.
+
+54
+00:03:29.782 --> 00:03:33.358
+Twee polen geven 3.000 toeren, zes polen 1.000.
+
+55
+00:03:34.409 --> 00:03:37.567
+Op het plaatje van deze motor staat 1.470.
+
+56
+00:03:38.248 --> 00:03:42.253
+Het verschil, gedeeld door 1.500, is een slip van 2 procent.
+
+57
+00:03:43.245 --> 00:03:51.245
+Het koppel: 30 kilowatt maal 9.550, gedeeld door 1.470, is 195 newtonmeter.
+
+58
+00:03:51.920 --> 00:03:54.556
+Draait een motor duidelijk langzamer dan zijn plaatje,
+
+59
+00:03:54.846 --> 00:03:56.448
+dan is hij waarschijnlijk overbelast.
+
+60
+00:03:57.727 --> 00:04:01.187
+Het typeplaatje (nameplate) op de behuizing vertelt bijna alles over de motor.
+
+61
+00:04:02.202 --> 00:04:06.463
+Eerst het nominaal vermogen, 30 kilowatt: het vermogen aan de as,
+
+62
+00:04:06.765 --> 00:04:08.123
+niet wat hij uit het net trekt.
+
+63
+00:04:09.112 --> 00:04:13.477
+Dan spanning, stroom, toerental, arbeidsfactor en rendement.
+
+64
+00:04:14.254 --> 00:04:16.855
+Een stroomtang om één kabel geeft de echte stroom.
+
+65
+00:04:17.875 --> 00:04:19.500
+Onderaan de isolatieklasse (insulation class):
+
+66
+00:04:19.860 --> 00:04:22.716
+de hoogste temperatuur voor de isolatie van de wikkeling.
+
+67
+00:04:23.421 --> 00:04:26.010
+Klasse F staat voor 155 graden.
+
+68
+00:04:26.953 --> 00:04:29.751
+Een gangbare regel: elke 10 graden te warm,
+
+69
+00:04:30.076 --> 00:04:32.003
+en de wikkeling gaat ruwweg half zo lang mee.
+
+70
+00:04:33.295 --> 00:04:36.859
+Op het plaatje staat ook de IE-klasse (IE class): het rendement in klassen,
+
+71
+00:04:37.080 --> 00:04:38.531
+van IE1 tot IE5.
+
+72
+00:04:39.531 --> 00:04:42.805
+In de EU moeten de meeste nieuwe motoren van 0,75
+
+73
+00:04:42.863 --> 00:04:46.857
+tot 1.000 kilowatt sinds 2021 minstens IE3 zijn;
+
+74
+00:04:47.089 --> 00:04:50.281
+van 75 tot 200 kilowatt meestal IE4.
+
+75
+00:04:51.238 --> 00:04:57.682
+Een oude IE1 met zo’n 90 procent neemt voor 25 kilowatt aan de as 27,8 kilowatt op.
+
+76
+00:04:58.349 --> 00:05:02.540
+Een IE3 met 93,6 procent neemt 26,7.
+
+77
+00:05:03.557 --> 00:05:11.081
+Dat scheelt 1,1 kilowatt, over 6.000 uur zo’n 6.400 kilowattuur: 960 euro per jaar.
+
+78
+00:05:11.757 --> 00:05:15.379
+De moeite waard als de oude het begeeft, zelden om een gezonde te vervangen.
