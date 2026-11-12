@@ -943,6 +943,35 @@
         ],
         "vtt": "src/content/courses/films/eng.maintenance.tpm.en.vtt"
       }
+    },
+    "eng.mechanics.tensile": {
+      "poster": "src/content/courses/films/eng.mechanics.tensile.jpg",
+      "nl": {
+        "dur": 315.3,
+        "bytes": 9178783,
+        "scenes": [
+          0,
+          55.63,
+          100.99,
+          136.73,
+          169.16,
+          233.94
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.tensile.nl.vtt"
+      },
+      "en": {
+        "dur": 352.8,
+        "bytes": 10147849,
+        "scenes": [
+          0,
+          62.98,
+          113.38,
+          154.69,
+          193.43,
+          262.3
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.tensile.en.vtt"
+      }
     }
   }
 }

@@ -1,0 +1,337 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:02.843
+This is a tensile testing machine.
+
+2
+00:00:03.595 --> 00:00:07.879
+At the bottom is a fixed grip, at the top a crosshead that slowly moves up.
+
+3
+00:00:08.618 --> 00:00:11.381
+Between them we clamp a round steel test bar.
+
+4
+00:00:12.386 --> 00:00:15.718
+In a tensile test you pull the bar until it breaks.
+
+5
+00:00:16.433 --> 00:00:18.140
+A load cell measures the force,
+
+6
+00:00:18.372 --> 00:00:22.192
+and an extensometer on the bar measures how much longer it gets.
+
+7
+00:00:22.885 --> 00:00:26.438
+From that the computer draws the line of stress against strain.
+
+8
+00:00:27.437 --> 00:00:31.977
+Stress is the force divided by the bar's cross-section, in megapascals.
+
+9
+00:00:32.680 --> 00:00:37.219
+Strain is how much longer the bar gets, divided by its original length.
+
+10
+00:00:37.977 --> 00:00:40.624
+That way thick and thin bars compare fairly.
+
+11
+00:00:41.627 --> 00:00:45.238
+At first the line runs straight up: the elastic range.
+
+12
+00:00:45.917 --> 00:00:47.589
+The bar behaves like a spring.
+
+13
+00:00:48.311 --> 00:00:51.899
+Take the force away and it springs back to its old length.
+
+14
+00:00:52.624 --> 00:00:55.910
+How steep that line runs is the modulus of elasticity.
+
+15
+00:00:56.610 --> 00:00:58.201
+The card stretches this part:
+
+16
+00:00:58.352 --> 00:01:02.113
+real steel strains only one or two tenths of a percent here.
+
+17
+00:01:03.464 --> 00:01:05.020
+Then the line bends over.
+
+18
+00:01:05.791 --> 00:01:10.354
+That point is the yield strength: there the steel starts to deform permanently.
+
+19
+00:01:11.046 --> 00:01:13.263
+The metal starts to flow, as it were.
+
+20
+00:01:14.279 --> 00:01:18.957
+Take the force away now, and the line drops back parallel to the straight part,
+
+21
+00:01:19.190 --> 00:01:20.897
+leaving some strain behind.
+
+22
+00:01:21.649 --> 00:01:23.054
+The bar has stayed longer.
+
+23
+00:01:24.085 --> 00:01:28.682
+European structural steels carry their minimum yield strength in their name.
+
+24
+00:01:29.359 --> 00:01:38.705
+S235 yields at 235 megapascals or more, S355 at 355.
+
+25
+00:01:39.676 --> 00:01:44.471
+That holds for plate up to 16 mm thick; thicker plate is slightly lower.
+
+26
+00:01:45.195 --> 00:01:47.935
+Designers keep the stress below the yield strength,
+
+27
+00:01:48.132 --> 00:01:52.439
+with a margin: a part that bends permanently has usually already failed.
+
+28
+00:01:53.816 --> 00:01:56.184
+Pull on and the stress rises further still.
+
+29
+00:01:56.899 --> 00:02:00.672
+Over the whole gauge length the bar gets evenly thinner and longer,
+
+30
+00:02:00.846 --> 00:02:04.085
+and the steel even gets a little stronger as it does.
+
+31
+00:02:05.084 --> 00:02:08.114
+The highest point of the line is the tensile strength,
+
+32
+00:02:08.335 --> 00:02:11.481
+or UTS: the greatest stress the material reaches.
+
+33
+00:02:12.187 --> 00:02:16.123
+You work it out from the highest force and the original cross-section.
+
+34
+00:02:17.189 --> 00:02:18.292
+Then the bar necks.
+
+35
+00:02:19.022 --> 00:02:23.851
+In one spot it gets visibly thinner, all further stretching goes into that neck,
+
+36
+00:02:24.037 --> 00:02:26.568
+and the force needed to keep pulling drops.
+
+37
+00:02:27.561 --> 00:02:29.465
+Finally it breaks in the neck.
+
+38
+00:02:30.176 --> 00:02:33.787
+But for a design the limit is the yield strength, not the break.
+
+39
+00:02:35.121 --> 00:02:36.979
+Bolts carry a property class.
+
+40
+00:02:37.673 --> 00:02:40.680
+The head shows, for example, eight point eight.
+
+41
+00:02:41.788 --> 00:02:46.722
+The first number times one hundred is the tensile strength in megapascals.
+
+42
+00:02:47.430 --> 00:02:50.727
+Eight times one hundred: 800 megapascals.
+
+43
+00:02:51.735 --> 00:02:54.695
+The second number times ten is the yield strength,
+
+44
+00:02:54.881 --> 00:02:57.273
+as a percentage of the tensile strength.
+
+45
+00:02:57.985 --> 00:03:02.130
+80 percent of 800 is 640 megapascals.
+
+46
+00:03:03.146 --> 00:03:05.816
+Those are the nominal values you calculate with.
+
+47
+00:03:06.534 --> 00:03:10.667
+So never replace a broken bolt with whatever happens to be in the drawer:
+
+48
+00:03:10.818 --> 00:03:12.548
+a lower class yields sooner.
+
+49
+00:03:13.866 --> 00:03:18.452
+The steel we just pulled is ductile: it stretches a lot before it breaks.
+
+50
+00:03:19.212 --> 00:03:23.427
+That gives a warning, because a part bends, necks or sags first.
+
+51
+00:03:24.197 --> 00:03:27.587
+Most steels, aluminium and copper are ductile.
+
+52
+00:03:28.592 --> 00:03:30.519
+Now a bar of grey cast iron.
+
+53
+00:03:31.220 --> 00:03:35.841
+It is brittle: the line stops almost at once, and it breaks without necking.
+
+54
+00:03:36.562 --> 00:03:40.915
+Glass, ceramics and very hard steel break the same way, without warning.
+
+55
+00:03:41.922 --> 00:03:43.698
+Cold makes some steels brittle.
+
+56
+00:03:44.405 --> 00:03:49.142
+The impact test measures that: a notched bar is broken by a swinging hammer.
+
+57
+00:03:49.846 --> 00:03:54.490
+The less high the hammer swings on afterwards, the more energy the bar absorbed.
+
+58
+00:03:55.557 --> 00:03:58.924
+A common requirement, for example for grade J2,
+
+59
+00:03:59.099 --> 00:04:02.756
+is at least 27 joules at minus 20 degrees.
+
+60
+00:04:03.473 --> 00:04:08.140
+Plenty of energy in the cold means this steel stays ductile in winter too.
+
+61
+00:04:08.820 --> 00:04:11.653
+That value is on the batch's material certificate,
+
+62
+00:04:11.838 --> 00:04:15.356
+often a three point one certificate, next to the measured yield,
+
+63
+00:04:15.472 --> 00:04:18.212
+tensile strength and elongation at break.
+
+64
+00:04:18.924 --> 00:04:21.443
+Ask for it on safety-critical parts.
+
+65
+00:04:22.759 --> 00:04:24.222
+How much margin do you have?
+
+66
+00:04:24.927 --> 00:04:29.014
+The safety factor is the yield strength divided by the working stress,
+
+67
+00:04:29.211 --> 00:04:30.871
+the stress in normal use.
+
+68
+00:04:31.609 --> 00:04:37.901
+A bracket of S235 sees a working stress of 120 megapascals:
+
+69
+00:04:38.041 --> 00:04:43.509
+235 divided by 120 is 1.96.
+
+70
+00:04:44.219 --> 00:04:45.647
+Fine for a steady load.
+
+71
+00:04:46.720 --> 00:04:51.457
+After a process change the load doubles: 240 megapascals.
+
+72
+00:04:52.172 --> 00:04:56.131
+That is above the yield strength, so the bracket will bend permanently.
+
+73
+00:04:57.140 --> 00:05:05.429
+Switching to S355 gives 355 divided by 240, that is 1.48.
+
+74
+00:05:06.183 --> 00:05:09.724
+It holds, but the margin is thin if the load vibrates,
+
+75
+00:05:09.898 --> 00:05:12.174
+and then fatigue may be the next problem.
+
+76
+00:05:12.900 --> 00:05:18.659
+A thicker bracket in S235 brings the stress back to 120,
+
+77
+00:05:18.832 --> 00:05:20.620
+and restores the old margin.
+
+78
+00:05:21.589 --> 00:05:24.201
+Typical is about 1.5 for well-known,
+
+79
+00:05:24.329 --> 00:05:28.230
+steady loads, and 3 or more for uncertain or dynamic ones.
+
+80
+00:05:28.939 --> 00:05:33.247
+Lifting gear uses 4 to 7 against breaking, depending on the type.
+
+81
+00:05:34.010 --> 00:05:38.027
+The factor covers the unknowns; it is not room for extra load.
+
+82
+00:05:38.763 --> 00:05:42.385
+A factor of two against breaking is not two against yield,
+
+83
+00:05:42.536 --> 00:05:46.623
+and a factor on the static weight says little about a load that vibrates.
+
+84
+00:05:47.309 --> 00:05:51.118
+So always ask: safety factor against what, and on which load?
