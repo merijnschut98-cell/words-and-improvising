@@ -1102,6 +1102,39 @@
         ],
         "vtt": "src/content/courses/films/eng.power.hydraulics.en.vtt"
       }
+    },
+    "eng.drawings.reading": {
+      "poster": "src/content/courses/films/eng.drawings.reading.jpg",
+      "nl": {
+        "dur": 303.4,
+        "bytes": 8919237,
+        "scenes": [
+          0,
+          34.5,
+          68.66,
+          110.59,
+          150.12,
+          188.15,
+          223.32,
+          261.9
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.reading.nl.vtt"
+      },
+      "en": {
+        "dur": 319.9,
+        "bytes": 9377389,
+        "scenes": [
+          0,
+          34.79,
+          73.31,
+          115.49,
+          156.45,
+          195.08,
+          232.11,
+          273.64
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.reading.en.vtt"
+      }
     }
   }
 }
