@@ -85,6 +85,27 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.lead.feedback: feedback, the feedbacksandwich and feedforward as Dutch project people say them (espeak-ng
+  // reads "feed-bak"), SBI as letters (read as one word, "zbie"), disagree and commit and the English names in a
+  // Dutch spelling, and prestatiegesprek, escalatiepad and integriteit stressed on the right part; English keeps
+  // them, and pm.plan.method's "feedback van de vloer" keeps the voice it was built with
+  assert.equal(speakOf(['Feedback, de feedbacksandwich en feedforward: SBI, van het Center for Creative Leadership.'], 'nl'), 'Fiedbek, de fiedbek-sendwitsj en fiedforwerd: es bee ie, van het Senter for Krie-eetif Liedersjip.');
+  assert.equal(speakOf(['Marshall Goldsmith, Edmondson en Jeff Bezos. Disagree and commit, tenzij het over integriteit gaat.'], 'nl'), 'Marsjal Goldsmith, Edmondsen en Djef Beezos. Dissegrie en kommit, tenzij het over in-tegriteit gaat.');
+  assert.equal(speakOf(['Een prestatiegesprek, het escalatiepad. De COO: nee.'], 'nl'), 'Een prestatie-gesprek, het escalatie-pad. De C O O: nee.');
+  assert.equal(speakOf(['Iets echts, en feedback van de vloer.'], 'nl'), 'Iets echts, en feedback van de vloer.');
+  // commitment, the lead example's word, as k'MIT-ment (espeak-ng stresses it at the end); English keeps it, and
+  // "disagree and commit" is untouched by it
+  assert.equal(speakOf(['Ik heb hun commitment nodig. Commitment, en disagree and commit.'], 'nl'), 'Ik heb hun kmitmunt nodig. Kmitmunt, en dissegrie en kommit.');
+  assert.equal(speakOf(['I need their commitment.'], 'en'), 'I need their commitment.');
+  assert.equal(speakOf(['Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.'], 'en'), 'Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.');
+  // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
+  assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
+  assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
+  // pm.close.results: controller stressed on the second part (espeak-ng says KON-trol-ler), dekkingsbijdrage
+  // split at the head (espeak-ng stresses -bij-DRAA-zje), run chart with a tsj (espeak-ng reads a French sj);
+  // English keeps them
+  assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
+  assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
 });
 
 // ------------------------------------------------------------ WAV files
@@ -259,7 +280,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 18,`${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 19,`${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -284,6 +305,9 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   assert.ok(nl.aluminium.includes('mˈi'), `aluminium: ${nl.aluminium}`);
   // pro-JECT (espeak-ng says PRO-ject; 2026-11-12): audio only, at the next render; no rendered film says it
   assert.ok(nl.project.includes('jˈɛ'), `project: ${nl.project}`);
+  // pro-JEC-ten likewise (2026-11-12, pm.land.training); swapped at its own word since the word-aligned swap.
+  // Said by eng.gridbasics.congestion, pm.run.scope and pm.land.training, none rendered yet
+  assert.ok(nl.projecten.includes('jˈɛ'), `projecten: ${nl.projecten}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');

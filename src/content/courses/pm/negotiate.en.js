@@ -1142,6 +1142,7 @@ export default {
     },
     {
       id: 'pm.negotiate.senior',
+      film: 'pm.lead.feedback',
       title: 'Disagreeing with someone more senior',
       pre: [
         {
@@ -1156,7 +1157,7 @@ export default {
         'Use fact-view-request: prepare three things and keep them apart, the fact, your view and your request.\n\n“The data from the last 12 weeks shows X” is the fact. “I think that means Y” is your view. “I’d like us to check Z before deciding” is the request.\n\nA clear request turns disagreement into a next step.',
         'Choose the setting. For a big disagreement, go one-on-one first: never surprise a senior person in front of their team. In a meeting, ask a question rather than give a verdict: “Can I add one thing from the data?”\n\nKeep your voice low and your pace slow. Calm reads as confident. In writing, the rules from Assertive, not aggressive apply.',
         'Know when to stop. Say it clearly once, and a second time only with new information.\n\nIf they decide otherwise and it isn’t about safety or integrity, disagree and commit: accept it, carry the decision out fully, and note what you advised. If it is about safety or integrity, use the escalation path: take it openly to the next level up, and tell the person first.',
-        'What you see: the most senior person speaks first and the room lines up behind them. Failure modes: hinting so softly nobody notices; winning the argument in public and losing the person; going to their boss behind their back.\n\n“Disagree and commit” comes from Intel and was made widely known by Jeff Bezos of Amazon. Critics say it can silence people; it only works if the disagreement was truly heard first. A sharp question: “What would you need to see to change your mind?”',
+        'What you see: the most senior person speaks first and the room lines up behind them. Failure modes: hinting so softly nobody notices; winning the argument in public and losing the person; going to their boss behind their back.\n\n“Disagree and commit” is often attributed to Intel and was made widely known by Jeff Bezos of Amazon. Critics say it can silence people; it only works if the disagreement was truly heard first. A sharp question: “What would you need to see to change your mind?”',
       ],
       example: {
         kind: 'faded',

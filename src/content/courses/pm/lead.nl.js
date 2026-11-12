@@ -330,6 +330,7 @@ export default {
     },
     {
       id: 'pm.lead.feedback',
+      film: 'pm.lead.feedback',
       title: 'Feedback die aankomt',
       pre: [
         {
