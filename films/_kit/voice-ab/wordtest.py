@@ -49,6 +49,9 @@ TESTS = {
     'cilinders': 'De pomp voedt twee cilinders tegelijk.',
     'manometer': 'Lees de druk af op de manometer, in bar.',
     'manometers': 'De twee manometers wijzen hetzelfde aan.',
+    # compressed-air film (2026-11-12): espeak-ng stresses KOMpressor (kˈɔmprɛsˌɔr); right is com-PRES-sor.
+    # compressoren it already reads right (kˌɔmprɛsˈoːrən), so it has no entry
+    'compressor': 'Het begint bij de compressor: een motor drijft hem aan.',
 }
 TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:

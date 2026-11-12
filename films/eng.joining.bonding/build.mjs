@@ -354,7 +354,7 @@ const SAY = [
       en: 'Adhesive only sticks to a clean surface. So it starts with {t:Surface preparation|surface preparation}: degreasing, sometimes roughening, a primer or plasma. On oil or a fingerprint, adhesive beads up; on a clean surface it spreads out.' },
     { nl: 'Tweecomponentenlijm is hars plus harder. Een {t:Statische menger|statische menger}, een buisje met schroefvormige elementen, mengt ze vlak voor het opbrengen.',
       en: 'Two-part adhesive is resin plus hardener. A {t:Static mixer|static mixer}, a small tube with spiral elements, mixes them just before application.' },
-    { nl: 'Binnen de {t:Open tijd|open tijd}, hier {n:20} minuten, moeten de delen op elkaar. Staat de lijn {n:40} minuten stil, dan hardt de lijm in de menger uit: eerst uitspuiten. Hanteerbaar is hij na een paar uur, op volle sterkte vaak pas na een dag, en in de kou later.',
+    { nl: 'Binnen de {t:Open tijd|open tijd}, hier {n:20} minuten, moeten de delen op elkaar. Staat de lijn {n:40} minuten stil, dan hardt de lijm in de menger uit. Dus eerst uitspuiten. Hanteerbaar is hij na een paar uur, op volle sterkte vaak pas na een dag, en in de kou later.',
       en: 'Within the {t:Open time|open time}, here {n:20} minutes, the parts must be joined. If the line stops for {n:40} minutes, the adhesive cures inside the mixer: purge it first. It can be handled after a few hours, often reaches full strength only after a day, and later in the cold.' },
   ],
   [ // s5 the bead and the break
