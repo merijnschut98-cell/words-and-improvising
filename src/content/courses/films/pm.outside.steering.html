@@ -1262,9 +1262,9 @@ o.rev = op(A * at(b, p, 1), card(200, 92, 'pm-hot') + lines(228, [[tr('omkeerbaa
 if (b === 2 || b === 3) {
 const B = page(b, p, 2, 4);
 o.doors = op(B, lines(80, [[tr('eenrichtingsdeur', 'one-way door'), 'pm-big'], [tr('onomkeerbaar', 'irreversible'), 'pm-mute']]) + arrow(X1 - 52, X1 - 4, 73)
-+ lines(140, [[tr('tweerichtingsdeur', 'two-way door'), 'pm-big'], [tr('omkeerbaar', 'reversible'), 'pm-mute']]) + arrow(X1 - 52, X1 - 4, 133, true)
-+ txt(X0, 200, tr('Bezos, brief over 2015', 'Bezos, letter for 2015'), 'pm-mute'));
-o.seventy = op(B * at(b, p, 3), card(220, 140, 'pm-hot') + lines(248, [[tr('tweerichting: snel', 'two-way: decide fast'), 'pm-on'], [tr('beslissen en leren', 'and learn')], [tr(`${C.INFO.enough}% info, niet ${C.INFO.late}%`, `${C.INFO.enough}% info, not ${C.INFO.late}%`)], [tr('een vuistregel', 'a rule of thumb'), 'pm-mute']]));
++ lines(132, [[tr('tweerichtingsdeur', 'two-way door'), 'pm-big'], [tr('omkeerbaar', 'reversible'), 'pm-mute']]) + arrow(X1 - 52, X1 - 4, 125, true)
++ lines(184, [[tr('Bezos, brief over 2015,', 'Bezos, letter for 2015,'), 'pm-mute'], [tr('april 2016', 'April 2016'), 'pm-mute']]));
+o.seventy = op(B * at(b, p, 3), card(220, 140, 'pm-hot') + lines(248, [[tr('tweerichting: snel', 'two-way: decide fast'), 'pm-on'], [tr('beslissen en leren', 'and learn')], [tr(`${C.INFO.enough}% info, niet ${C.INFO.late}%`, `${C.INFO.enough}% info, not ${C.INFO.late}%`)], [tr('vuistregel, geen wet', 'rule of thumb, not law'), 'pm-mute']]));
 }
 if (b >= 4) {
 const Cc = page(b, p, 4, -1);
@@ -1314,7 +1314,7 @@ return o;
 }
 
 function s9(b, p) {
-const o = { head: [tr('nu bestellen?', 'switchgear'), EX] };
+const o = { head: [tr('nu bestellen?', 'order now?'), EX] };
 const Gd = C.GRID;
 const A = page(b, p, 0, 3);
 o.case = op(A, lines(80, [[tr(`levertijd ${Gd.lead} weken`, `lead time ${Gd.lead} weeks`), 'pm-big'], [tr('belastingcijfers', 'final load figures')], [tr(`pas over ${Gd.wait} weken`, `in ${Gd.wait} more weeks`)], [tr('wachten: ~1 maand later', 'waiting: ~1 month later'), 'pm-mute']]));

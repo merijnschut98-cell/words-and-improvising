@@ -87,10 +87,11 @@
 //     when it isn't your decision (s6 b1); a reversible decision, undone at low
 //     cost (s6 b2); Jeff Bezos, shareholder letter for 2015 (published 2016):
 //     irreversible ones are one-way doors, you can't come back; reversible ones
-//     two-way doors (s6 b3)
+//     two-way doors (s6 b3; the card: "brief over 2015, april 2016", as in
+//     pm.stuck.diagnose)
 //   decide teach 2: two-way doors, decide fairly fast and learn; letter for
 //     2016: about 70% of the information you'd like, wait for 90% and you're
-//     usually too slow; a rule of thumb, not a law (s6 b4); one-way doors:
+//     usually too slow; a rule of thumb, not a law (s6 b4; on the card); one-way doors:
 //     ordering switchgear with a long lead time, the time from order to
 //     delivery, or shutting down the old system (s6 b5); slow down: more
 //     evidence, a second opinion, the sponsor deciding (s6 b6; the voice says
