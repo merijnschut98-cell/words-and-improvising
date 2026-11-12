@@ -5,7 +5,9 @@
 // recorded narration instead, which is longer and spread differently. This
 // maps the narration time back: while beat k is being spoken (from its start to
 // the next beat's), the stage runs from caption beat k's fraction to beat k+1's.
-// The HTML film (no timing handed over) is left as it is.
+// The HTML film (no timing handed over) gets no warp here; it sets
+// STAGE.nlBeats, so the player (stageU in films/_kit/timeline.mjs) runs the
+// stage on the Dutch beats while the English captions follow English timing.
 //
 // Plain browser script: a film's build appends it after its stage script.
 /* global STAGE, beatStarts */
@@ -25,6 +27,7 @@
       }
     },
   });
+  STAGE.nlBeats = true; // this stage places its moves at the Dutch caption beats
   const inner = STAGE.render.bind(STAGE);
   STAGE.render = (si, u) => {
     const s = atl && atl.scenes[si];

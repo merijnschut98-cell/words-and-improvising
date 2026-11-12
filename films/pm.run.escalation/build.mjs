@@ -320,7 +320,7 @@ const spec = {
     sc('s1', ST, 1, { nl: 'Week 6: geen toegang', en: 'Week 6: no access' }, [
       { nl: 'Week {n:6}: de pilot wacht op systeemtoegang, beloofd voor week {n:5}. Nu: week {n:11}.', en: 'Week {n:6}: the pilot waits for system access, promised for week {n:5}. Now: week {n:11}.', focus: ['calendar', 'wk'] },
       { nl: 'De {t:RAG-status|RAG-status}: rood, oranje of groen, met vooraf afgesproken betekenis.', en: 'The {t:RAG status|RAG status}: red, amber or green, with meanings agreed at the start.', cue: { 'RAG-status': 'rag' }, focus: 'rag' },
-      { nl: 'Groen: op koers voor de {t:Mijlpaal|mijlpaal}. Oranje: team herstelt zelf. Rood: stuurgroep grijpt in.', en: 'Green: on track for the {t:Milestone|milestone}. Amber: the team recovers. Red: the steering group acts.', cue: { Mijlpaal: 'mile' }, focus: ['mile', 'rag'] },
+      { nl: 'Groen: op koers voor de {t:Mijlpaal|mijlpaal}. Oranje: team herstelt zelf. Rood: lukt niet zonder stuurgroep.', en: 'Green: on track for the {t:Milestone|milestone}. Amber: the team recovers. Red: misses unless the steering group acts.', cue: { Mijlpaal: 'mile' }, focus: ['mile', 'rag'] },
       { nl: 'De teamleider wil oranje. Maar rood is geen falen: het is een vraag om een besluit.', en: 'The team lead wants amber. But red is not failure: it is a request for a decision.', focus: ['teamlead', 'rag'] },
     ]),
     sc('s2', ST, 1, { nl: 'Groen van buiten', en: 'Green outside' }, [
@@ -387,21 +387,21 @@ const spec = {
 // no quotes or parentheses. Words checked with espeak-ng phonemes through
 // Piper's own bridge (nl_NL-alex, 2026-11-12); see the commit for the list.
 // Kept out of the Dutch narration because espeak-ng misreads them (they stay
-// in captions and cards): Vantage (read in French), Bezos (be-ZOS: said "de
-// oprichter van Amazon"), operations manager ("oo-pee-raa-sjons": said "de
-// manager"), management by exception and disagree and commit (said in Dutch,
-// as the lesson glosses them), "de 15e" ("vijftiende ee": said "de
-// vijftiende"), bare IT (the English word "it": said "de IT-afdeling",
-// spelled I T). Dutch-only SAY rules in films/_kit/timeline.mjs for words only
+// in captions and cards): Vantage (read in French; the film says "de
+// sponsor"), Bezos (be-ZOS: the doors card names Amazon, 2015), operations
+// manager ("oo-pee-raa-sjons": said "een manager"), management by exception
+// and disagree and commit (said in Dutch, as the lesson glosses them), "de
+// 15e" ("vijftiende ee": the film uses the lesson's other default, Friday),
+// bare IT (the English word "it": said "de IT-afdeling", spelled I T). Dutch-only SAY rules in films/_kit/timeline.mjs for words only
 // this film says: governance, MUM-effect, keep mum and escalatieroute.
 const SAY = [
   [ // s1 week 6
     { nl: 'Week {n:6} bij een netbeheerder. De pilot wacht op systeemtoegang, beloofd voor week {n:5}. Nu zegt de IT-afdeling: week {n:11}.',
       en: 'Week {n:6} at a grid operator. The pilot waits for system access, promised for week {n:5}. Now IT says week {n:11}.' },
-    { nl: 'Je meldt een {t:RAG-status|RAG-status}: rood, oranje of groen, met vooraf afgesproken betekenis.',
-      en: 'You report a {t:RAG status|RAG status}: red, amber or green, with meanings agreed up front.' },
-    { nl: 'Groen: op koers voor de {t:Mijlpaal|mijlpaal}, een controlepunt met datum, zonder hulp. Oranje: risico, het team herstelt het. Rood: alleen als de stuurgroep ingrijpt.',
-      en: 'Green: on track for the {t:Milestone|milestone}, a dated checkpoint, without help. Amber: at risk, the team recovers it. Red: only if the steering group acts.' },
+    { nl: 'De {t:RAG-status|RAG-status}: rood, oranje of groen, met vooraf afgesproken betekenis.',
+      en: 'The {t:RAG status|RAG status}: red, amber or green, with meanings agreed up front.' },
+    { nl: 'Groen: op koers voor de {t:Mijlpaal|mijlpaal}, een controlepunt met datum, zonder hulp. Oranje: risico, het team herstelt het. Rood: niet te halen, tenzij de stuurgroep ingrijpt.',
+      en: 'Green: on track for the {t:Milestone|milestone}, a dated checkpoint, without help. Amber: at risk, the team recovers it. Red: will miss, unless the steering group acts.' },
     { nl: 'De teamleider wil oranje. Maar rood is geen falen: het is een vraag om een besluit.',
       en: 'The team lead wants amber. But red is not failure: it is a request for a decision.' },
   ],
@@ -482,8 +482,8 @@ const SAY = [
   [ // s9 a steering group that decides
     { nl: 'Een stuurgroep van elf schuift twee maanden drie besluiten door: {n:18} procent meer aannemerskosten, een tweede regio, twee planners. Vijftien dia’s, en: laten we dit offline oppakken.',
       en: 'Eleven members have pushed three decisions for two months: {n:18} percent over on contractors, a second region, two planners. Fifteen slides, then: let’s take this offline.' },
-    { nl: 'Jij zegt de sponsor eerlijk: niemand weet wie wat mag beslissen. Dus beslisbevoegdheden op één A4, en zes stemhebbende leden. Experts twisten over de omvang; grote groepen voelen inclusief, maar beslissen zelden.',
-      en: 'You tell the sponsor honestly: nobody knows who may decide what. So decision rights on one page, and six voting members. Experts argue about size; big groups feel inclusive, but rarely decide.' },
+    { nl: 'Eerlijk tegen de sponsor: niemand weet wie wat mag beslissen. Dus beslisbevoegdheden op één A4, en zes stemhebbende leden; een stuurgroep die beslist heeft er vijf tot zeven. Experts twisten over de omvang; grote groepen voelen inclusief, maar beslissen zelden.',
+      en: 'Tell the sponsor honestly: nobody knows who may decide what. So decision rights on one page, and six voting members; a steering group that decides has five to seven. Experts argue about size; big groups feel inclusive, but rarely decide.' },
     { nl: 'Wie nooit beslist, mist vaak {t:Mandaat|mandaat} van zijn baas. Vraag de twee blokkeerders vooraf: kun je beslissen, of moet je eerst terug? Help ze, of nodig wie het heeft.',
       en: 'Members who never decide often lack a {t:Mandate|mandate} from their boss. Ask the two blockers first: can you decide, or must you go back? Help them, or invite who can.' },
     { nl: 'Alleen de drie besluiten op de agenda, met opties en advies, drie dagen vooraf. Geen besluit? Zeg af en mail. Open met: vandaag hebben we drie besluiten nodig.',

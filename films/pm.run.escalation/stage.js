@@ -123,7 +123,7 @@ const STAGE = (() => {
     const o = { head: [tr('wie beslist wat', 'who decides what'), tr('voorbeeld', 'example')] };
     o.gov = rect(X0 - 4, 54, X1 - X0 + 8, 222, 'pm-card', 8) + txt(X0 + 8, 266, tr('één A4, getekend: sponsor', 'one page, signed: sponsor'), 'pm-mute');
     const rows = [
-      [tr('projectleider', 'project lead'), tr('tot 10%, 2 weken', 'up to 10%, 2 weeks')],
+      [tr('projectleider', 'project lead'), tr('tot 10%, 2 wk', 'up to 10%, 2 wk')],
       [tr('stuurgroep', 'steering group'), tr('daarboven', 'beyond that')],
       [tr('directie', 'board'), tr('boven 20%, strategie', 'above 20%, strategy')],
     ];
@@ -135,8 +135,9 @@ const STAGE = (() => {
       rights += op(a, txt(X0 + 8, y, who, 'pm-big') + txt(X0 + 8, y + 24, rule));
     });
     o.rights = rights;
-    if (b >= 3) o.tol = op(at(b, p, 3, 0.1, 0.4), rect(X0 + 2, 90, 196, 28, 'pm-ring', 6) + txt(X1 - 8, 86, tr('tolerantie', 'tolerance'), 'pm-on', 'end'));
-    if (b === 3) o.body = op(at(b, p, 3, 0.45, 0.8), txt(X0, 304, 'PRINCE2', 'pm-mute') + txt(X0, 330, tr('sturen op uitzonderingen', 'management by exception'), 'pm-txt'));
+    // PRINCE2 stays beside the tolerance label from beat 3 on (beats 3 and 4), so it can be read
+    if (b >= 3) o.tol = op(at(b, p, 3, 0.1, 0.4), rect(X0 + 2, 90, 164, 28, 'pm-ring', 6) + txt(X1 - 8, 86, tr('tolerantie', 'tolerance'), 'pm-on', 'end') + txt(X1 - 8, 112, 'PRINCE2', 'pm-mute', 'end'));
+    if (b === 3) o.body = op(at(b, p, 3, 0.15, 0.45), txt(X0, 304, 'PRINCE2:', 'pm-mute') + txt(X0, 330, tr('sturen op uitzonderingen', 'management by exception'), 'pm-txt'));
     if (b >= 4) {
       // the slip against the two-week tolerance
       const sx = (wk) => X0 + 8 + wk * 40;
@@ -197,7 +198,6 @@ const STAGE = (() => {
       let s = b === 0
         ? ''
         : op(at(b, p, 1, 0, 0.2), txt(X0, 76, tr('wat gaat omhoog,', 'what goes up,'), 'pm-mute') + txt(X0, 102, tr('hoe snel, naar wie', 'how fast, to whom'), 'pm-txt'));
-      if (b >= 2) s += op(span(p, 0.1, 0.4), txt(X0, 348, tr('het besluit, niet de persoon', 'the decision, not the person'), 'pm-on') + txt(X0, 376, tr('eerst de betrokkenen', 'tell those involved first'), 'pm-txt'));
       o.body = s;
       if (b >= 1) {
         const names = [tr('team', 'team'), tr('projecteigenaar', 'project owner'), tr('sponsor', 'sponsor')];
@@ -205,9 +205,11 @@ const STAGE = (() => {
         names.forEach((n, i) => {
           const y = 128 + i * 66;
           const a = at(b, p, 1, 0.05 + i * 0.25, 0.25 + i * 0.25);
-          r += op(a, rect(X0 - 4, y, 190, 40, 'pm-card', 8) + txt(X0 + 8, y + 27, n));
-          if (i < 2) r += op(at(b, p, 1, 0.2 + i * 0.25, 0.4 + i * 0.25), path(`M${X0 + 60} ${y + 42}V${y + 62}M${X0 + 54} ${y + 56}l6 6l6 -6`, 'pm-line') + txt(X0 + 200, y + 58, tr('vrijdag', 'Friday'), 'pm-mute'));
+          r += op(a, rect(X0 - 4, y, 176, 40, 'pm-card', 8) + txt(X0 + 8, y + 27, n));
+          // a deadline per level; the lesson's own example on the last step: not agreed by Friday, to the sponsor
+          if (i < 2) r += op(at(b, p, 1, 0.2 + i * 0.25, 0.4 + i * 0.25), path(`M${X0 + 60} ${y + 42}V${y + 62}M${X0 + 54} ${y + 56}l6 6l6 -6`, 'pm-line') + txt(X1, y + 58, i === 0 ? tr('termijn', 'deadline') : tr('vrijdag', 'Friday'), 'pm-txt', 'end') + (i === 1 ? txt(X1, y + 82, tr('voorbeeld', 'example'), 'pm-mute', 'end') : ''));
         });
+        if (b >= 2) r += op(span(p, 0.1, 0.4), txt(X0, 348, tr('het besluit, niet de persoon', 'the decision, not the person'), 'pm-on') + txt(X0, 376, tr('eerst de betrokkenen', 'tell those involved first'), 'pm-txt'));
         o.route = r;
       }
     } else {
@@ -219,8 +221,8 @@ const STAGE = (() => {
         [tr('waarom', 'why'), tr('toegang pas wk 11', 'access only in wk 11')],
         [tr('afgevallen', 'dropped'), tr('wachten tot wk 12', 'wait until wk 12')],
       ];
-      o.log = rows.map(([lab, val], i) => op(span(p, 0.05 + i * 0.12, 0.2 + i * 0.12), txt(X0, 76 + i * 60, lab, 'pm-mute') + txt(X0, 100 + i * 60, val))).join('');
-      o.body = op(span(p, 0.7, 0.9), txt(X0, 378, tr('tabblad in het projectbestand', 'a tab in the project file'), 'pm-on'));
+      o.log = rows.map(([lab, val], i) => op(span(p, 0.05 + i * 0.08, 0.15 + i * 0.08), txt(X0, 76 + i * 60, lab, 'pm-mute') + txt(X0, 100 + i * 60, val))).join('');
+      o.body = op(span(p, 0.45, 0.6), txt(X0, 378, tr('tabblad in het projectbestand', 'a tab in the project file'), 'pm-on'));
     }
     return o;
   }
@@ -264,7 +266,7 @@ const STAGE = (() => {
     let s = '';
     if (b >= 1) o.test = op(at(b, p, 1, 0.2, 0.5), txt(X0, 220, tr('niet zeker? een kleine test', 'not sure? a small test'), 'pm-txt'));
     if (b >= 2) {
-      o.doors = op(at(b, p, 2, 0.1, 0.4), door(X0 + 10, 236, true) + txt(X0 + 84, 266, tr('terug te draaien:', 'two-way:'), 'pm-mute') + txt(X0 + 84, 292, tr('snel en laag', 'fast and low'), 'pm-txt'));
+      o.doors = op(at(b, p, 2, 0.1, 0.4), door(X0 + 10, 236, true) + txt(X0 + 84, 266, tr('tweerichting:', 'two-way:'), 'pm-mute') + txt(X0 + 84, 292, tr('snel en laag', 'fast and low'), 'pm-txt'));
       o.doors += op(at(b, p, 2, 0.5, 0.8), txt(X0 + 84, 318, tr('eenrichting:', 'one-way:'), 'pm-mute') + txt(X0 + 84, 344, tr('met zorg', 'with care'), 'pm-txt'));
       o.doors += op(at(b, p, 2, 0.1, 0.4), txt(X1, 266, 'Amazon,', 'pm-mute', 'end') + txt(X1, 292, '2015', 'pm-mute', 'end'));
     }
@@ -289,9 +291,9 @@ const STAGE = (() => {
     s = '';
     if (b >= 1) {
       const items = [tr('1 aannemers +18%', '1 contractors +18%'), tr('2 tweede regio', '2 second region'), tr('3 twee planners', '3 two planners')];
-      o.agenda = op(at(b, p, 1, 0.4, 0.7), rect(X0 - 4, 152, X1 - X0 + 8, 132, 'pm-card', 8) + txt(X0 + 8, 176, tr('agenda, 3 dagen vooraf', 'agenda, 3 days ahead'), 'pm-mute') + items.map((t, i) => txt(X0 + 8, 204 + i * 26, t)).join(''));
+      o.agenda = op(at(b, p, 1, 0.4, 0.7), rect(X0 - 4, 162, X1 - X0 + 8, 128, 'pm-card', 8) + txt(X0 + 8, 186, tr('agenda, 3 dagen vooraf', 'agenda, 3 days ahead'), 'pm-mute') + items.map((t, i) => txt(X0 + 8, 212 + i * 26, t)).join(''));
     }
-    if (b >= 2) o.mandate = op(at(b, p, 2, 0.1, 0.4), dot(x(2), 72, 14, 'pm-ring') + dot(x(4), 72, 14, 'pm-ring') + txt(X1, 120, tr('mandaat?', 'mandate?'), 'pm-on', 'end'));
+    if (b >= 2) o.mandate = op(at(b, p, 2, 0.1, 0.4), dot(x(2), 72, 14, 'pm-ring') + dot(x(4), 72, 14, 'pm-ring') + txt(X1, 148, tr('mandaat?', 'mandate?'), 'pm-on', 'end'));
     if (b >= 3) o.open = op(at(b, p, 3, 0.1, 0.4), txt(X0, 316, tr('Welke besluiten hebben', 'Which decisions do we'), 'pm-on') + txt(X0, 342, tr('we vandaag nodig?', 'need today?'), 'pm-on'));
     if (b >= 4) o.log = op(span(p, 0.2, 0.5), txt(X0, 376, tr('notulen: besluitenlijst', 'minutes: a decision log'), 'pm-txt'));
     o.body = s;
