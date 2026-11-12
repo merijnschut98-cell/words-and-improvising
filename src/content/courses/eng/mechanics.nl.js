@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Krachten, momenten en spanning
     {
       id: 'eng.mechanics.forces',
+      film: 'eng.mechanics.load',
       title: 'Kracht, gewicht en moment',
       pre: [
         {
@@ -79,6 +80,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
+      film: 'eng.mechanics.load',
       title: 'Spanning, rek en stijfheid',
       pre: [
         {
