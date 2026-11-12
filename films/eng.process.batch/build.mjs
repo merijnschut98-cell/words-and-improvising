@@ -97,7 +97,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DUR = [36, 46, 26, 46, 34, 40, 36, 36];
+const DUR = [36, 46, 30, 46, 34, 40, 32, 36];
 const spec = {
   id: 'eng.process.batch',
   title: { nl: 'Een batch van 300 minuten', en: 'A 300-minute batch' },
@@ -124,7 +124,7 @@ const spec = {
       id: 's3', lesson: BATCH, level: 1, dur: DUR[2], still: 0.9, title: { nl: 'Wachten op het lab', en: 'Waiting for the lab' },
       beats: [
         { nl: '{t:QC-vrijgave|QC-vrijgave}: het lab keurt de batch goed voordat hij door mag.', en: '{t:QC release|QC release}: the lab approves the batch before it may move on.', cue: { 'QC-vrijgave': 'lab' } },
-        { nl: 'Het lab bedient de hele locatie. Het vat staat {n:50} minuten vol en stil.', en: 'The lab serves the whole site. The vessel sits full and still for {n:50} minutes.', cues: ['lab', 'mixer'] },
+        { nl: 'Het lab bedient de hele locatie. Het vat is niet traag: het wacht elke batch {n:50} minuten op het lab.', en: 'The lab serves the whole site. The vessel is not slow: it waits {n:50} minutes per batch for the lab.', cues: ['lab', 'mixer'] },
       ],
     },
     {
@@ -177,8 +177,13 @@ const spec = {
 // units as symbols in the spoken text: units are written out, and 4,417 hours
 // is said as "vier uur en vijfentwintig minuten" (the card shows 4,417).
 // Words checked with espeak-ng phonemes (Piper's own bridge, nl_NL-alex-medium,
-// films/_kit/voice-ab/phon.py): see the SAY rules for CIP, QC and ISA-88 in
-// films/_kit/timeline.mjs; batch (betsj) comes from the plant film's rule.
+// films/_kit/voice-ab/phon.py): see the SAY rules for CIP, inline and
+// QC-vrijgave in films/_kit/timeline.mjs; batch (betsj) comes from the plant
+// film's rule; ISA-88 is left as espeak-ng reads it, like ISA-95 in the
+// eng.ot.isa95 film. "Ingenieurs", not "engineers": espeak-ng's Dutch reads
+// engineers as "eng-i-niers". Scene 3 carries the lesson's "Wat engineers
+// zeggen" line (the vessel is not slow, it waits for the lab), told about the
+// paint vat.
 const SAY = [
   [ // s1 the cycle, cycle time, capacity
     { nl: 'Dit mengvat werkt in batches: het maakt steeds één partij, en dan begint het opnieuw. Eén cyclus is vullen, opwarmen, reageren of mengen, afkoelen, legen en reinigen.',
@@ -195,14 +200,14 @@ const SAY = [
       en: 'After that, {n:50} minutes of waiting for the result of the QC sample, {n:20} minutes to adjust, {n:60} minutes to fill off and {n:40} minutes to clean. Together {n:300} minutes: five hours.' },
     { nl: 'De capaciteit is dus {n:3000} kilo gedeeld door {n:5} uur: {n:600} kilo per uur.',
       en: 'So the capacity is {n:3000} kilograms divided by {n:5} hours: {n:600} kilograms per hour.' },
-    { nl: 'Elke minuut in de cyclus telt even zwaar. Engineers willen graag de reactie of het mengen korter maken. Maar vullen, legen, reinigen en wachten nemen vaak een derde van de cyclus in, en die zijn meestal makkelijker in te korten. Hier is het zelfs meer dan de helft.',
+    { nl: 'Elke minuut in de cyclus telt even zwaar. Ingenieurs willen graag de reactie of het mengen korter maken. Maar vullen, legen, reinigen en wachten nemen vaak een derde van de cyclus in, en die zijn meestal makkelijker in te korten. Hier is het zelfs meer dan de helft.',
       en: 'Every minute in the cycle counts the same. Engineers like to shorten the reaction or the mixing. But filling, emptying, cleaning and waiting often take a third of the cycle, and they are usually easier to cut. Here it is even more than half.' },
   ],
   [ // s3 QC release
     { nl: 'Na het dispergeren gaat er een monster naar het lab, voor de kwaliteitscontrole. Pas na de {t:QC-vrijgave|QC-vrijgave}, de goedkeuring van het lab, mag de batch door.',
       en: 'After dispersing, a sample goes to the lab, for quality control. Only after {t:QC release|QC release}, the lab’s approval, may the batch move on.' },
-    { nl: 'Maar het lab bedient de hele locatie, dus het monster sluit achter in de rij aan. Al die tijd staat het vat vol en stil: {n:50} minuten per batch.',
-      en: 'But the lab serves the whole site, so the sample joins the back of the queue. All that time the vessel sits full and still: {n:50} minutes per batch.' },
+    { nl: 'Maar het lab bedient de hele locatie, dus het monster sluit achter in de rij aan. Al die tijd staat het vat vol en stil. Ingenieurs zeggen dan: het vat is niet traag, het staat elke batch {n:50} minuten op het lab te wachten.',
+      en: 'But the lab serves the whole site, so the sample joins the back of the queue. All that time the vessel sits full and still. As engineers put it: the vessel is not slow, it spends {n:50} minutes of every batch waiting for the lab.' },
   ],
   [ // s4 CIP, the levers, campaigns
     { nl: 'Dan het reinigen, met {t:CIP|CIP}: reinigen ter plaatse. Een sproeikop in het vat spoelt de wanden met heet water en reinigingsmiddel, en de vloeistof gaat ook door de leidingen. Niemand hoeft iets uit elkaar te halen.',
