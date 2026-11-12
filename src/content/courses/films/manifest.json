@@ -1135,6 +1135,37 @@
         ],
         "vtt": "src/content/courses/films/eng.drawings.reading.en.vtt"
       }
+    },
+    "eng.process.plant": {
+      "poster": "src/content/courses/films/eng.process.plant.jpg",
+      "nl": {
+        "dur": 293.3,
+        "bytes": 12726574,
+        "scenes": [
+          0,
+          51.36,
+          88.18,
+          139.7,
+          180.92,
+          204.95,
+          259.53
+        ],
+        "vtt": "src/content/courses/films/eng.process.plant.nl.vtt"
+      },
+      "en": {
+        "dur": 312.1,
+        "bytes": 13356297,
+        "scenes": [
+          0,
+          51.82,
+          90.85,
+          142.53,
+          187.24,
+          213.4,
+          276.19
+        ],
+        "vtt": "src/content/courses/films/eng.process.plant.en.vtt"
+      }
     }
   }
 }
