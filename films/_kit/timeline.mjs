@@ -214,7 +214,14 @@ const SAY = {
     [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
     [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
     // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
-    [/\b([Nn])on-firm\b/g, '$1on-furm']],
+    [/\b([Nn])on-firm\b/g, '$1on-furm'],
+    // flex and batteries (eng.gridplanning.flex): redispatch, peak shaving and the day-aheadmarkt as the floor
+    // says them (espeak-ng reads "reedisp-atch" with the ch of "lachen", "pe-ak sjaaving" and "daaj-aahe-admarkt");
+    // compounds it stresses at the end or on every part, split at the head: systeemCOde, KA-paciteitsbeperkings-
+    // contract, tijdsduurGEEbonden (with a long e), trafoWISsel and piek-UUR (as piekuren above)
+    [/\b([Rr])edispatch\b/g, '$1iedispetsj'], [/\b([Pp])eak shaving\b/g, '$1iek sjeeving'], [/\b([Dd])ay-aheadmarkt/g, '$1ee-ahed-markt'],
+    [/\b([Ss])ysteemcode\b/g, '$1ysteem-code'], [/\b([Cc])apaciteits(beperkings|sturings)contract/g, '$1apaciteits-$2contract'],
+    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
