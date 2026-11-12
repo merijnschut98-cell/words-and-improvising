@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
+      film: 'pm.plan.wbs',
       title: 'Het werk opdelen',
       pre: [
         {
@@ -665,6 +666,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
+      film: 'pm.plan.wbs',
       title: 'Eerlijk schatten',
       pre: [
         {

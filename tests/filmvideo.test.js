@@ -67,6 +67,10 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
   assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');
+  // pm.plan.wbs: scope and scope creep as said in Dutch projects (espeak-ng reads "skoo-pe" and "kreep"),
+  // werkpakket and nachtploeg split at the head (espeak-ng stresses werkPAKket, nachtPLOEG); English keeps them
+  assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
+  assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
 });
 
 // ------------------------------------------------------------ WAV files
