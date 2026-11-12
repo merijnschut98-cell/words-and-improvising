@@ -1529,6 +1529,37 @@
         ],
         "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
       }
+    },
+    "pm.lead.difficult": {
+      "poster": "src/content/courses/films/pm.lead.difficult.jpg",
+      "nl": {
+        "dur": 242.6,
+        "bytes": 8105396,
+        "scenes": [
+          0,
+          39.75,
+          74.45,
+          110.43,
+          140.12,
+          171.03,
+          220.74
+        ],
+        "vtt": "src/content/courses/films/pm.lead.difficult.nl.vtt"
+      },
+      "en": {
+        "dur": 256.9,
+        "bytes": 8465203,
+        "scenes": [
+          0,
+          44.52,
+          83.71,
+          121.62,
+          152.06,
+          183.24,
+          234.4
+        ],
+        "vtt": "src/content/courses/films/pm.lead.difficult.en.vtt"
+      }
     }
   }
 }
