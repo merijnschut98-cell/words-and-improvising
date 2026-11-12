@@ -195,7 +195,13 @@ const SAY = {
     [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
-    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // compressed air (eng.power.air): espeak-ng stresses oliene-VEL-aar (with the e of "bed"), verzorgings-EEN-heid,
+    // warmte-TEE-rugwinning (with a long e) and reads toerenregeling as "toer-en-regeling"; split at the head, each
+    // part keeps its own reading (OLie-NEvelaar, verZORgings-eenheid, warmte-teRUGwinning, TOEren-REgeling). And
+    // booster as the floor says it, "boester" (espeak-ng reads the Dutch oo).
+    [/\b([Oo])lienevel/g, '$1lie-nevel'], [/\b([Vv])erzorgingseenheid/g, '$1erzorgings-eenheid'], [/\b([Ww])armteterugwinning/g, '$1armte-terugwinning'],
+    [/\b([Tt])oerenregeling/g, '$1oeren-regeling'], [/\b([Bb])ooster/g, '$1oester']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
