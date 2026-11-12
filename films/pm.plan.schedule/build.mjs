@@ -87,15 +87,17 @@ assert(MILES.every((m, i) => !i || (m - MILES[i - 1] >= 3 && m - MILES[i - 1] <=
 const W = 640;
 const H = 400;
 const AZ = 58;
-const ROOM = { w: 300, d: 240, h: 230 };
+// the room as small as the cast allows, fitted with a thin pad, so the people read larger at 390 px
+const ROOM = { w: 290, d: 228, h: 230 };
 const FIT = k.boxCorners({ x: -10, y: -10, w: ROOM.w + 10, d: ROOM.d + 10 }, 0, ROOM.h);
-const P = k.fitProjection(FIT, 318, H, { pad: 12, azimuth: AZ, elevation: 24 });
+const P = k.fitProjection(FIT, 318, H, { pad: 6, azimuth: AZ, elevation: 24 });
 const w = pmWorld(k, G, P);
 const g = (key, body, extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
 const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 
 const BOARD = w.board({ x0: 60, x1: 230, z0: 92, z1: 196 });
-const CAL = w.calendar({ y0: 34, z0: 118, weeks: 15, cw: 12, ch: 28 });
+// tall week cells: the side wall is seen edge-on, so the height carries the strip at 390 px
+const CAL = w.calendar({ y0: 30, z0: 104, weeks: 15, cw: 12.6, ch: 46 });
 const TABLE = { x: 96, y: 118, w: 150, d: 72, h: 74 };
 const TZ = TABLE.h;
 const PLAN = w.sheet({ x: 140, y: 154, z: TZ, w: 29.7, d: 21 });
@@ -112,12 +114,12 @@ const fitInto = (a, x0, y0, x1, y1) => {
 const BA = BOARD.area;
 const boardMini = `<g transform="${BOARD.face}"><g class="pm-mini" transform="${fitInto(PANEL_AREA, BA.x0 + 3, -BA.z1 + 3, BA.x1 - 3, -BA.z0 - 3)}">${g('bMini', '')}</g></g>`;
 const docMini = `<g transform="${PLAN.face}"><g class="pm-mini" transform="${fitInto(GANTT_AREA, 1.2, 1.2, 28.5, 19.8)}">${g('dMini', '')}</g></g>`;
-// the calendar strip's steering-group days and a two-week holiday block (in its own cells)
-const calMarks = `<g transform="${CAL.face}">${[3, 9, 15].map((wk) => { const [a, b, c, d] = CAL.cell(wk - 1); return `<circle class="pm-pin" cx="${((a + c) / 2).toFixed(1)}" cy="${((b + d) / 2).toFixed(1)}" r="2"/>`; }).join('')}</g>`;
+// the calendar strip's steering-group days (weeks 3, 9 and 15, in their own cells)
+const calMarks = `<g transform="${CAL.face}">${[3, 9, 15].map((wk) => { const [a, b, c, d] = CAL.cell(wk - 1); return `<circle class="pm-pin" cx="${((a + c) / 2).toFixed(1)}" cy="${((b + d) / 2).toFixed(1)}" r="3.4"/>`; }).join('')}</g>`;
 
 const world = [
   w.room(ROOM),
-  w.clock(266, 186, 11),
+  w.clock(258, 186, 11),
   cueG('board', BOARD.svg + boardMini),
   cueG('calendar', CAL.svg + calMarks),
   w.person({ x: 44, y: 50, role: 'jij', along: 'x', reach: [72, 6, 150] }),
@@ -130,8 +132,8 @@ const world = [
   w.laptop({ x: 214, y: 140, z: TZ, toward: 1 }),
   w.cup(132, 178, TZ),
   w.cup(236, 126, TZ),
-  w.person({ x: 270, y: 152, role: 'sponsor', along: 'y' }),
-  w.person({ x: 236, y: 218, role: 'planner', along: 'x' }),
+  w.person({ x: 262, y: 152, role: 'sponsor', along: 'y' }),
+  w.person({ x: 232, y: 208, role: 'planner', along: 'x' }),
 ].join('');
 
 // ---------------------------------------------------------------- the panel (stage space)
