@@ -646,34 +646,34 @@
     "eng.moulding.defects": {
       "poster": "src/content/courses/films/eng.moulding.defects.jpg",
       "nl": {
-        "dur": 314.9,
-        "bytes": 9886281,
+        "dur": 316.1,
+        "bytes": 9950731,
         "scenes": [
           0,
-          35.49,
-          63.92,
-          93.79,
-          127.02,
-          153.97,
-          193.16,
-          212.67,
-          258.31
+          36.12,
+          64.76,
+          94.27,
+          127.55,
+          154.78,
+          194.07,
+          213.55,
+          259.44
         ],
         "vtt": "src/content/courses/films/eng.moulding.defects.nl.vtt"
       },
       "en": {
-        "dur": 341.8,
-        "bytes": 10790837,
+        "dur": 341.3,
+        "bytes": 10785984,
         "scenes": [
           0,
-          39.33,
-          68.24,
-          100.91,
-          136.6,
-          164.71,
-          205.49,
-          226.93,
-          279.25
+          39.1,
+          68.13,
+          101.05,
+          136.46,
+          164.35,
+          205.07,
+          226.76,
+          278.78
         ],
         "vtt": "src/content/courses/films/eng.moulding.defects.en.vtt"
       }
