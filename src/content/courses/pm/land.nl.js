@@ -580,6 +580,7 @@ export default {
     },
     {
       id: 'pm.land.handover',
+      film: 'pm.land.handover',
       title: 'Overdragen aan de lijn',
       pre: [
         {
@@ -663,6 +664,7 @@ export default {
     // Onderwerp 3: borgen
     {
       id: 'pm.land.sustain',
+      film: 'pm.land.handover',
       title: 'Resultaten vasthouden',
       pre: [
         {

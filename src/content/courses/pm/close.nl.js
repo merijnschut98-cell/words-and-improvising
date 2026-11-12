@@ -341,6 +341,7 @@ export default {
     },
     {
       id: 'pm.close.acceptance',
+      film: 'pm.land.handover',
       title: 'Formele acceptatie',
       pre: [
         {

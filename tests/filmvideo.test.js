@@ -98,6 +98,18 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Ik heb hun commitment nodig. Commitment, en disagree and commit.'], 'nl'), 'Ik heb hun kmitmunt nodig. Kmitmunt, en dissegrie en kommit.');
   assert.equal(speakOf(['I need their commitment.'], 'en'), 'I need their commitment.');
   assert.equal(speakOf(['Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.'], 'en'), 'Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.');
+  // pm.land.handover: hypercare as said in Dutch IT projects, "haiperkeer" (espeak-ng reads "hie-per-kaa-re"),
+  // the KPI after "de" and KPI's as letters (espeak-ng reads the word "kpie"; "een KPI" and KPI- compounds keep
+  // their voice), and compounds split at the head that espeak-ng misreads: acceptatiecriteria (with "ti",
+  // lower case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+  // baTENreview and overdrachts-sx-ecklist; English keeps them all
+  assert.equal(speakOf(['Hypercare na de start, met hypercare. De KPI, twee KPI\'s, een KPI, de KPI-review.'], 'nl'),
+    'Haiperkeer na de start, met haiperkeer. De K P I, twee K P I\'s, een KPI, de KPI-review.');
+  assert.equal(speakOf(['De acceptatiecriteria in de projectopdracht. Projectopdracht, gelaagde procesaudit, de batenreview, de overdrachtschecklist.'], 'nl'),
+    'De acceptatie-criteria in de project-opdracht. Project-opdracht, gelaagde proces-audit, de baten-review, de overdrachts-checklist.');
+  assert.equal(speakOf(['Acceptatiecriteria: wie tekent af.'], 'nl'), 'Acceptatiecriteria: wie tekent af.');
+  assert.equal(speakOf(['Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.'], 'en'),
+    'Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.');
   // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
   assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
   assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
