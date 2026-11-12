@@ -254,8 +254,9 @@ const SAY = {
     [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'],
     // the five safety rules (eng.switchgear.fiverules): espeak-ng's English reads IV as "Roman four" and the
     // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
-    // "nen thirty-one forty" and "nen E N fifty one ten"
-    [/\bIV\b/g, 'I V'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
+    // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
+    // (letters elsewhere), so V O P throughout
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

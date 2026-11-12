@@ -252,7 +252,7 @@ const STAGE = (() => {
   function cpLog(n, back) {
     let s = txt(222, 46, tr('meldingen', 'reports'), 22, 'start', 'mf-txt');
     LOG.forEach((t, i) => { if (n > i) s += op(clamp(n - i, 0, 1), txt(222, 92 + i * 40, `${i + 1}`, 20, 'start', 'mf-mono') + txt(250, 92 + i * 40, t) + txt(612, 92 + i * 40, tr('gemeld', 'reported'), 20, 'end', 'mf-mute')); });
-    s += op(back, txt(222, 330, tr('niet gemeld: bijna-ongeval', 'not reported: near miss'), 20, 'start', 'mf-on') + txt(222, 366, tr('terug: omgekeerde volgorde', 'back: reverse order'), 20, 'start', 'mf-txt'));
+    s += op(back, txt(222, 330, tr('niet gemeld: bijna-ongeval', 'not reported: near miss'), 20, 'start', 'mf-on') + txt(222, 366, tr('terug: grofweg omgekeerd', 'back: roughly reversed'), 20, 'start', 'mf-txt'));
     return s;
   }
   function cpSlot(a) {
