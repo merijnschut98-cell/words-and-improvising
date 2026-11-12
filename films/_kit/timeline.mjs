@@ -375,6 +375,16 @@ const SAY = {
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
     [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // from output to benefits (pm.portfolio.benefits): batenhouder and ploegdagen split at the head (espeak-ng reads
+    // a full e in "baa-tèn-houder" and stresses ploeg-DA-gen; ploegdag on its own is read right), business case as
+    // Dutch project people say it, "biznis kees" (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst as "wieken-dienst"
+    // (it reads "wee-kend-DIENST"), and lijnmanager and operationeel manager with a Dutch "manager" as the
+    // middenmanager rule above says it (it reads MAA-naa-cher), operationeel stressed on -NEEL (it stresses OO-);
+    // no other film says them in Dutch. And the lesson's trigger before its Dutch gloss as "trikker" (espeak-ng
+    // reads a soft g, "tri-gher"), only in this film's "trigger, een actiegrens", so pm.land.handover keeps its voice
+    [/\b([Tt])rigger(?=, een actie-?grens\b)/g, '$1rikker'],
+    [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
+    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer'],
     // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
     // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
     // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),

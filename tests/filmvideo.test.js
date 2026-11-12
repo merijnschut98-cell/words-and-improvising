@@ -145,6 +145,19 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.portfolio.benefits: batenhouder and ploegdagen split at the head (espeak-ng reads a full e in -ten- and stresses
+  // ploeg-DA-gen), business case as Dutch project people say it (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst
+  // stressed on the first part, lijnmanager and operationeel manager with a Dutch "manager" (espeak-ng reads
+  // MAA-naa-cher) and operationeel stressed on -NEEL; ploegdag, middenmanager and English keep their voice
+  assert.equal(speakOf(['De batenhouder, Batenhouders. 1.200 ploegdagen, per ploegdag. De business case, Business case.'], 'nl'),
+    'De baten-houder, Baten-houders. 12honderd ploeg-dagen, per ploegdag. De biznis kees, Biznis kees.');
+  assert.equal(speakOf(['De weekenddienst; een lijnmanager, Lijnmanagers; de operationeel manager. De middenmanager.'], 'nl'),
+    'De wieken-dienst; een lijn-menetsjer, Lijn-menetsjers; de opperaatsjoneel menetsjer. De midden-menetsjer.');
+  // and its trigger as "trikker" only before ", een actiegrens" (espeak-ng reads a soft g); pm.land.handover's keeps its voice
+  assert.equal(speakOf(['En er is een trigger, een actiegrens. En een trigger: drie weken onder de 85 procent.'], 'nl'),
+    'En er is een trikker, een actie-grens. En een trigger: drie weken onder de 85 procent.');
+  assert.equal(speakOf(['The benefit owner, crew-days, the business case, the weekend shift, a line manager, the operations manager.'], 'en'),
+    'The benefit owner, crew-days, the business case, the weekend shift, a line manager, the operations manager.');
   // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
   // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
   // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
