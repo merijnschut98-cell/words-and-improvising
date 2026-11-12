@@ -532,7 +532,7 @@ const SAY = [
       en: 'Start with the LOTO procedure for this press: often one page with a photo of every point where you shut off a source, in the right order.' },
     { nl: 'Dan laat de monteur de operators weten wat hij gaat doen, zodat niemand de pers straks verbaasd weer aanzet.',
       en: 'Then the technician tells the operators what he is going to do, so nobody switches the press back on in surprise.' },
-    { nl: 'Daarna stopt hij de pers op de normale manier, met de stopknop, en parkeert hij de stoter bovenin.',
+    { nl: 'Daarna stopt hij de pers op de normale manier met de stopknop. Dan parkeert hij de stoter bovenin.',
       en: 'Next he stops the press the normal way, with the stop button, and parks the ram at the top.' },
   ],
   [ // s3 a lock on every isolation point
