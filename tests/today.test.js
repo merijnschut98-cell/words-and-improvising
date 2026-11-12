@@ -41,3 +41,29 @@ test('without a weak drill it picks the drill played least recently', () => {
   assert.equal(p.reason, 'fresh');
   assert.notEqual(p.prompt.drill, 'minute');
 });
+
+// One-shot notices on home (v16 flair fix): the broken-streak banner and the
+// backfill line are decided once, before rendering, in a single state update.
+test('homeNotices: the break banner and the flair note both show once, with one state update', async () => {
+  const { homeNotices } = await import('../src/core/today.js');
+  const { defaultState } = await import('../src/core/storage.js');
+  const T = '2026-11-11';
+  const s = { ...defaultState(), streak: { count: 5, lastDay: '2026-11-07' }, ui: { flairNote: { medals: 1, subject: 'eng', rank: 1 } } };
+  const a = homeNotices(s, T, { broke: true, onStart: true });
+  assert.equal(a.showBreak, true);
+  assert.deepEqual(a.note, { medals: 1, subject: 'eng', rank: 1 });
+  assert.equal(a.state.ui.seenBreak, T);
+  assert.equal('flairNote' in a.state.ui, false);
+  const b = homeNotices(a.state, T, { broke: true, onStart: true });
+  assert.equal(b.showBreak, false);
+  assert.equal(b.note, null);
+  assert.equal(b.state, a.state, 'nothing new: the same state object');
+  // Inside a subject the note waits for the start screen; the banner still shows.
+  const c = homeNotices(s, T, { broke: true, onStart: false });
+  assert.equal(c.showBreak, true);
+  assert.equal(c.note, null);
+  assert.deepEqual(c.state.ui.flairNote, s.ui.flairNote);
+  // No broken streak, no note: untouched.
+  const d = defaultState();
+  assert.equal(homeNotices(d, T, { broke: false, onStart: true }).state, d);
+});

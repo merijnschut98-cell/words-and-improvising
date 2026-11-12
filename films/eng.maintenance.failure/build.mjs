@@ -608,7 +608,7 @@ const SAY = [
   [ // s4 maintenance that makes failures
     { nl: 'Een verpakkingsbedrijf vervangt elke {n:12} maanden de lagers in alle {n:24} servo-assen. Dat kost {n:18000} euro per jaar.',
       en: 'Every {n:12} months, a packaging plant replaces the bearings in all {n:24} servo axes. That costs {n:18000} euros a year.' },
-    { nl: 'Vóór dat programma waren er {n:6} lagerstoringen per jaar, erna niet minder maar meer: {n:9}.',
+    { nl: 'Vóór dat programma waren er {n:6} lagerstoringen per jaar. Erna niet minder maar meer: {n:9}.',
       en: 'Before the programme there were {n:6} bearing failures a year, after it not fewer but more: {n:9}.' },
     { nl: 'En {n:5} daarvan kwamen binnen twee weken na een wissel: {t:Storing door onderhoud|storing door onderhoud}. Het werk zelf veroorzaakt de storing.',
       en: 'And {n:5} of those came within two weeks after a swap: {t:Maintenance-induced failure|maintenance-induced failure}. The work itself causes the failure.' },
