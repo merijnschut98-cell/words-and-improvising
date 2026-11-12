@@ -514,7 +514,7 @@ const SAY = [
       en: '{t:Passive resistance|Passive resistance}: yes in the meeting, nothing after. Too busy. Missed sessions.' },
     { nl: '{t:Verborgen weerstand|Verborgen weerstand}: in 2019 al geprobeerd, de oude lijst bijhouden, data die nooit komt.',
       en: '{t:Hidden resistance|Hidden resistance}: tried that in 2019, the old spreadsheet kept alive, data that never arrives.' },
-    { nl: 'Open weerstand is een cadeau: het zegt waar je moet werken. De andere twee moet je eerst vinden.',
+    { nl: 'Open weerstand is een cadeau. Het zegt waar je moet werken. De andere twee moet je eerst vinden.',
       en: 'Open resistance is a gift: it shows what to work on. The other two you must find first.' },
   ],
   [ // s5 what is behind it
