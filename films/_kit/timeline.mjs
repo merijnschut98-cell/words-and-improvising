@@ -215,12 +215,12 @@ const SAY = {
     [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
     // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
     [/\b([Nn])on-firm\b/g, '$1on-furm'],
-    // from substation to socket (eng.gridbasics.path): espeak-ng stresses the grid operators' names on the first
-    // syllable (EE-neksis, LIE-ander, STEE-din) and Westland and wijktrafo on the head (westLAND, wijkTRAfo), and
-    // hoofdzekering on "-ke-"; split, so each part keeps its own stress (e-NEX-is, li-AN-der, ste-DIN, WEST-land,
-    // WIJK-trafo, HOOFD-zekering). Stedin only after "en" or at a sentence start and hoofdzekering only after
-    // "aan de", so the congestion film's "bij Stedin" and the load film's "De hoofdzekering" stay as they are
-    [/\bEnexis\b/g, 'E-nexis'], [/\bLiander\b/g, 'Li-ander'], [/(\ben |[.!?] )Stedin\b/g, '$1Ste-din'], [/\bWestland\b/g, 'West-land'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng says EE-neksis, LIE-ander, westLAND, wijkTRAfo
+    // and hoofdze-KIE-ring. "En-exis" and "Ljander" give one main stress in the right place (en-NEK-sis,
+    // LJAN-der); Westland, wijktrafo and hoofdzekering are split at the head, which stresses both parts (WEST-LAND,
+    // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
+    // load film's "De hoofdzekering" stays as it is
+    [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
     [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],

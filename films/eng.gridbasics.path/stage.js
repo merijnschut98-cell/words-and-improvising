@@ -122,8 +122,9 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ s4: the regional grid operators
   function dsBase() { return PANEL() + tag(SCH, 620, 380); }
-  function dsTiles(a, mono, own) {
+  function dsTiles(a, mono, own, bound, ask) {
     if (a <= 0.01) return '';
+    if (bound >= 0.999) return cue('dso', dsBound(1, ask));
     const T3 = [
       ['Enexis', tr('noorden, oosten, zuiden', 'north, east, south'), tr('(grote delen)', '(large parts)')],
       ['Liander', tr('Gelderland, Noord-Holland,', 'Gelderland, North Holland,'), tr('Flevoland, Friesland', 'Flevoland, Friesland')],
@@ -137,7 +138,16 @@ const STAGE = (() => {
     out += op(clamp(a * 3 - 2, 0, 1), txt(222, 300, tr('kleiner: Westland Infra,', 'smaller: Westland Infra,'), 20, 'start', 'mf-txt') + txt(222, 326, 'Coteq, Rendo', 20, 'start', 'mf-txt'));
     out += op(mono, txt(612, 300, tr('monopolie', 'a monopoly'), 20, 'end', 'mf-on') + txt(612, 326, tr('per gebied', 'per area'), 20, 'end', 'mf-on'));
     out += op(own, txt(222, 358, tr('bezit en beheer: MS en LS', 'own and run: MV and LV'), 20, 'start', 'mf-on'));
-    return cue('dso', out);
+    return cue('dso', op(1 - bound, out) + dsBound(bound, ask));
+  }
+  // the boundary with TenneT, in the substation (level 1 carries it, so its scenes stand alone)
+  function dsBound(a, ask) {
+    return op(a, txt(222, 44, tr('in het onderstation', 'in the substation'), 21, 'start', 'mf-on')
+      + txt(222, 90, tr('HS-kant: TenneT', 'HV side: TenneT'), 20, 'start', 'mf-on') + `<path class="mf-dash" d="M222 106L612 106"/>`
+      + txt(222, 134, tr('MS-kant + kabels:', 'MV side + cables:'), 20, 'start', 'mf-on') + txt(222, 160, tr('regionale netbeheerder', 'the regional operator'), 20, 'start', 'mf-on')
+      + txt(222, 204, tr('trafo ertussen:', 'transformer between:'), 20, 'start', 'mf-mute') + txt(222, 230, tr('eigenaar verschilt per station', 'owner differs per station'), 20, 'start', 'mf-mute')
+      + op(ask, rect(222, 266, 396, 92, 'mf-accf', 8) + txt(420, 296, tr('project loopt vast?', 'project stuck?'), 20, 'middle')
+        + txt(420, 322, tr('grens aan de HS- of MS-kant?', 'limit on the HV or MV side?'), 20, 'middle', 'mf-on') + txt(420, 348, tr('wie moet in actie komen?', 'who must act?'), 20, 'middle', 'mf-on')));
   }
 
   // ------------------------------------------------------------ s5: the substation on a one-line diagram, and the boundary
@@ -155,10 +165,6 @@ const STAGE = (() => {
       + txt(222, 256, tr('MS-kant + kabels:', 'MV side + cables:'), 20, 'start', 'mf-on') + txt(222, 282, tr('regionale netbeheerder', 'the DSO'), 20, 'start', 'mf-on')
       + txt(222, 308, tr('trafo ertussen: eigenaar verschilt', 'transformer: owner differs'), 20, 'start', 'mf-mute'));
     return op(a, out);
-  }
-  function boAsk(a) {
-    return op(a, rect(222, 320, 396, 60, 'mf-accf', 8) + txt(420, 345, tr('waar zit de grens:', 'where is the limit:'), 20, 'middle')
-      + txt(420, 370, tr('HS- of MS-kant? wie handelt?', 'HV or MV side? who acts?'), 20, 'middle', 'mf-on'));
   }
 
   // ------------------------------------------------------------ s6: the ring of 12 netstations, the open point, a fault between 6 and 7
@@ -325,14 +331,13 @@ const STAGE = (() => {
       vis.dso = span(u, 0, 0.04);
       feed = 1;
       flow = 1;
-      set(E.dsTiles, dsTiles(b === 0 ? span(p, 0.05, 0.6) : 1, on(b, 1, p, 0.05, 0.3), on(b, 2, p, 0.05, 0.3)));
+      set(E.dsTiles, dsTiles(b === 0 ? span(p, 0.05, 0.5) : 1, on(b, 1, p, 0.05, 0.3), b === 0 ? span(p, 0.6, 0.85) : 1, on(b, 2, p, 0.02, 0.2), on(b, 3, p, 0.05, 0.3)));
     } else if (si === 4) {
       vis.bound = on(b, 1, p, 0, 0.12);
       hv = 1;
       trench = 1;
       feed = on(b, 2, p, 0.2, 0.6);
       set(E.boNet, boNet(on(b, 1, p, 0.05, 0.3), on(b, 1, p, 0.2, 0.5), on(b, 2, p, 0.05, 0.4), on(b, 3, p, 0.05, 0.4)));
-      set(E.boAsk, boAsk(on(b, 4, p, 0.2, 0.45)));
     } else if (si === 5) {
       vis.ring = span(u, 0, 0.04);
       trench = 1;

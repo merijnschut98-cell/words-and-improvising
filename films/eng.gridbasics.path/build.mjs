@@ -36,7 +36,8 @@
 //     regions per DSO; they own and run the MV and LV grid (s4)
 //   teach 5: TenneT and the DSO meet in the substation: TenneT the HV side,
 //     the DSO the MV side and the outgoing cables, the transformer's owner
-//     differs per station; the useful question (s5)
+//     differs per station; the useful question (s4, so the level 1 scenes
+//     stand alone; s5 only recalls that the two grids meet there)
 //   example: 100 MW wind farm: at 10 kV 100.000.000 / (1,73 x 10.000) about
 //     5.800 A, far too much for a normal cable; at 150 kV about 385 A, 15 x
 //     less current, about 225 x less loss in the same cable (s1); so the wind
@@ -882,7 +883,7 @@ const hud = [
   g('ladder', g('laBase', '') + g('laRows', '') + g('laOwn', '')),
   g('mvlv', g('mvBase', '') + g('mvRows', '') + cue('conn', g('mvConn', ''))),
   g('dso', g('dsBase', '') + g('dsTiles', '')),
-  g('bound', g('boBase', '') + g('boNet', '') + g('boAsk', '')),
+  g('bound', g('boBase', '') + g('boNet', '')),
   g('ring', g('riBase', '') + g('riNet', '') + g('riTxt', '')),
   g('kiosk', g('ksBase', '') + g('ksParts', '')),
   g('room', g('ksRoom', '')),
@@ -961,7 +962,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DUR = [34, 28, 32, 28, 38, 40, 36, 28, 26];
+const DUR = [34, 28, 32, 40, 30, 40, 36, 28, 26];
 const C = { dur: DUR, I10, I150 };
 const B = (nl, en, more = {}) => ({ nl, en, ...more });
 const spec = {
@@ -1000,9 +1001,10 @@ const spec = {
     {
       id: 's4', lesson: LEV, level: 1, dur: DUR[3], still: 0.9, title: { nl: 'Wie beheert wat', en: 'Who runs what' },
       beats: [
-        B('De {t:Regionale netbeheerder|regionale netbeheerder}: Enexis, Liander, Stedin en een paar kleinere.', 'The regional operator, the {t:DSO}: Enexis, Liander, Stedin and a few smaller ones.', { cue: { 'Regionale netbeheerder': 'dso' }, cues: ['feeder', 'station'] }),
+        B('De {t:Regionale netbeheerder|regionale netbeheerder} bezit en beheert het MS- en LS-net: Enexis, Liander, Stedin en kleinere.', 'The regional operator, the {t:DSO}, owns and runs the MV and LV grid: Enexis, Liander, Stedin and others.', { cue: { 'Regionale netbeheerder': 'dso' }, cues: ['feeder', 'station', 'cable'] }),
         B('Elk heeft een monopolie in zijn eigen gebied.', 'Each has a monopoly in its own area.', { cues: ['dso'] }),
-        B('Zij bezitten en beheren het MS- en het LS-net.', 'They own and run the MV and the LV grid.', { cues: ['feeder', 'station', 'cable'] }),
+        B('In het onderstation de grens: TenneT de HS-kant, de regionale netbeheerder de MS-kant en de kabels.', 'In the substation the boundary: TenneT the HV side, the DSO the MV side and the cables.', { cues: ['dso'] }),
+        B('Loopt een project vast? Vraag: zit de grens aan de HS- of de MS-kant, en wie moet in actie komen?', 'Project stuck? Ask: is the limit on the HV or the MV side, and who must act?', { cues: [] }),
       ],
     },
     {
@@ -1011,8 +1013,8 @@ const spec = {
         B('Het {t:Onderstation|onderstation}: een omheind terrein met grote transformatoren.', 'The {t:Substation|substation}: a fenced yard with big transformers.', { cue: { Onderstation: 'yard' }, cues: ['t1', 't2'] }),
         B('Hier twee van {n:150} naar {n:10} kV. Elders komt ook {n:110} kV binnen, of gaat {n:20} kV uit.', 'Here two from {n:150} to {n:10} kV. Elsewhere {n:110} kV comes in, or {n:20} kV goes out.', { cues: ['t1', 't2'] }),
         B('De MS-rail (busbar): een dikke koperen staaf. Alle MS-kabels vertrekken daarvandaan.', 'The MV busbar: a thick copper bar. Every MV cable leaves from it.', { cues: ['rail', 'swg'] }),
-        B('De grens: TenneT de HS-kant, de regionale netbeheerder de MS-kant en de kabels.', 'The boundary: TenneT the HV side, the DSO the MV side and the cables.', { cues: ['t1', 't2', 'tower'] }),
-        B('Hier ligt vaak de capaciteit voor een hele stad vast. Vraag: zit de grens aan de HS- of de MS-kant?', 'The capacity for a whole city is often fixed here. Ask: is the limit on the HV or the MV side?', { cues: [] }),
+        B('Hier komen het landelijke en het regionale net samen: TenneT de HS-kant, de netbeheerder de MS-kant.', 'Here the national and the regional grid meet: TenneT the HV side, the DSO the MV side.', { cues: ['t1', 't2', 'tower'] }),
+        B('Hier ligt vaak de capaciteit voor een hele stad of regio vast.', 'The capacity for a whole city or region is often fixed here.', { cues: ['t1', 't2'] }),
       ],
     },
     {
@@ -1066,10 +1068,11 @@ const spec = {
 // grid modules (with its "MS-ring"). No spoken parenthesis. Dutch words checked
 // with espeak-ng phonemes (Piper's own bridge, films/_kit/voice-ab/phon.py with
 // nl_NL-alex-medium). Dutch-only SAY rules in films/_kit/timeline.mjs for this
-// film: Enexis, Liander and Stedin (stressed on the first syllable; Stedin only
-// after "en" or at a sentence start), Westland and wijktrafo (stressed on the
-// head), and hoofdzekering after "aan de" (stressed on "-ke-"); no other film's
-// spoken text changes. Reworded instead: straatkabel(s), hoogspanningskant,
+// film: Enexis and Liander as "En-exis" and "Ljander" (one main stress, in the
+// right place), Westland, wijktrafo and hoofdzekering (after "aan de") split at
+// the head (espeak-ng stresses westLAND, wijkTRAfo, hoofdze-KIE-ring); no other
+// film's spoken text changes. Stedin is left as espeak-ng reads it (STEE-din),
+// as in the congestion film. Reworded instead: straatkabel(s), hoogspanningskant,
 // middenspanningskant, middenspanningskabels, laagspanningskabels and
 // middenspanningsinstallatie (stressed on the head), and rail (read as the
 // English "rail"). Read right: hoogspanningsmast, middenspanning,
@@ -1080,78 +1083,80 @@ const spec = {
 // kortsluitverklikkers, foutstroom, kilovoltampère, megawatt.
 const SAY = [
   [ // s1 why high voltage
-    B('De weg van de stroom, van de hoogspanningsmast tot het stopcontact. Maar eerst: waarom komt de stroom van ver binnen op zo’n hoge spanning?',
-      'The path of electricity, from the pylon to the socket. But first: why does power arrive from far away at such a high voltage?'),
-    B('Vermogen is spanning maal stroom. En de warmte die in een kabel verloren gaat, groeit met het kwadraat van de stroom.',
-      'Power is voltage times current. And the heat lost in a cable grows with the square of the current.'),
-    B('Maak je de spanning {n:10} keer zo hoog, dan is er voor even veel vermogen {n:10} keer minder stroom nodig, en {n:100} keer minder verlies.',
-      'Make the voltage {n:10} times higher, and the same power needs {n:10} times less current, with {n:100} times less loss.'),
+    B('Waarom komt de stroom op zo’n hoge spanning binnen?',
+      'Why does power arrive at such a high voltage?'),
+    B('Vermogen is spanning maal stroom, en de warmte die een kabel verliest, groeit met het kwadraat van de stroom.',
+      'Power is voltage times current, and the heat a cable loses grows with the square of the current.'),
+    B('{n:10} keer de spanning geeft voor hetzelfde vermogen {n:10} keer minder stroom, en {n:100} keer minder verlies.',
+      '{n:10} times the voltage gives the same power with {n:10} times less current, and {n:100} times less loss.'),
     B('Een windpark levert {n:100} megawatt. Op {n:10} kilovolt is dat zo’n {n:5800} ampère, veel te veel voor een normale kabel. Op {n:150} kilovolt zo’n {n:385}.',
-      'A wind farm delivers {n:100} megawatts. At {n:10} kilovolts that is about {n:5800} amps, far too much for any normal cable. At {n:150} kilovolts about {n:385}.'),
-    B('Dat is {n:15} keer minder stroom, en zo’n {n:225} keer minder verlies in dezelfde kabel. Daarom gaat vermogen ver weg op heel hoge spanning, en pas dicht bij de gebruiker omlaag.',
-      'That is {n:15} times less current and about {n:225} times less loss in the same cable. So power travels far at very high voltage, stepped down only near the user.'),
+      'A wind farm delivers {n:100} megawatts. At {n:10} kilovolts that is about {n:5800} amps, far too much for a normal cable. At {n:150} kilovolts about {n:385}.'),
+    B('{n:15} keer minder stroom, en zo’n {n:225} keer minder verlies. Daarom gaat vermogen ver op heel hoge spanning, en zetten transformatoren het pas dicht bij de gebruiker omlaag.',
+      '{n:15} times less current, about {n:225} times less loss. So power travels far at very high voltage, and transformers step it down only near the user.'),
   ],
   [ // s2 the levels
-    B('Dan de spanningsniveaus, van boven naar beneden. Bovenaan extra hoogspanning: {n:380} en {n:220} kilovolt.',
-      'Then the voltage levels, from the top down. At the top extra-high voltage: {n:380} and {n:220} kilovolts.'),
-    B('Daaronder {t:Hoogspanning|hoogspanning}: {n:150} en {n:110} kilovolt, zoals deze lijn.',
-      'Below it {t:High voltage|high voltage}: {n:150} and {n:110} kilovolts, like this line.'),
-    B('Beide niveaus beheert {t:TenneT}, de landelijke netbeheerder, eigendom van de Staat.',
+    B('Van boven naar beneden: eerst extra hoogspanning, {n:380} en {n:220} kilovolt.',
+      'From the top down: first extra-high voltage, {n:380} and {n:220} kilovolts.'),
+    B('Dan {t:Hoogspanning|hoogspanning}: {n:150} en {n:110} kilovolt, zoals deze lijn.',
+      'Then {t:High voltage|high voltage}: {n:150} and {n:110} kilovolts, like this line.'),
+    B('Beide beheert {t:TenneT}, de landelijke netbeheerder, eigendom van de Staat.',
       'Both are run by {t:TenneT}, the national transmission operator, owned by the state.'),
-    B('Daaronder nemen de regionale netbeheerders het over, soms eerst met een tussenspanning van zo’n {n:50} of {n:25} kilovolt.',
-      'Below that the regional grid operators take over, in some regions first with an intermediate voltage of about {n:50} or {n:25} kilovolts.'),
+    B('Daaronder nemen de regionale netbeheerders het over, in sommige regio’s eerst met een tussenspanning van zo’n {n:50} of {n:25} kilovolt.',
+      'Below that the regional operators take over, in some regions first with an intermediate voltage of about {n:50} or {n:25} kilovolts.'),
   ],
   [ // s3 MV and LV
-    B('Dan {t:Middenspanning|middenspanning}, meestal {n:10} tot {n:20} kilovolt: van het onderstation door steden en dorpen naar de netstations in de straten.',
-      'Then {t:Medium voltage|medium voltage}, mostly {n:10} to {n:20} kilovolts: from the substation through towns and villages to the distribution substations in the streets.'),
-    B('Grote klanten, zoals fabrieken en kassen, sluiten rechtstreeks aan op middenspanning.',
-      'Large customers, such as factories and greenhouses, connect straight to medium voltage.'),
-    B('De {t:Laagspanning|laagspanning} is {n:400} volt tussen de fasen en {n:230} volt naar de nul: de kabels in de straat en de huisaansluiting. Bijna elke woning en elk klein bedrijf hangt daaraan.',
-      '{t:Low voltage|Low voltage} is {n:400} volts between phases and {n:230} volts to neutral: the street cables and the house connection. Nearly every home and small business hangs on it.'),
-    B('Het windpark van {n:100} megawatt komt dus op een station van {n:150} kilovolt van TenneT; een losse windturbine of een klein zonnepark op het middenspanningsnet.',
-      'So the {n:100} megawatt wind farm connects to a TenneT {n:150} kilovolt station; a single turbine or small solar park to the regional medium-voltage grid.'),
+    B('{t:Middenspanning|Middenspanning} is meestal {n:10} tot {n:20} kilovolt: van het onderstation naar de netstations in de straten.',
+      '{t:Medium voltage|Medium voltage} is mostly {n:10} to {n:20} kilovolts: from the substation to the distribution substations in the streets.'),
+    B('Grote klanten, zoals fabrieken en kassen, hangen er rechtstreeks aan.',
+      'Large customers, such as factories and greenhouses, connect to it directly.'),
+    B('{t:Laagspanning|Laagspanning} is {n:400} volt tussen de fasen en {n:230} naar de nul: de kabels in de straat en de huisaansluiting. Bijna elke woning en elk klein bedrijf hangt daaraan.',
+      '{t:Low voltage|Low voltage} is {n:400} volts between phases and {n:230} to neutral: the street cables and the house connection. Nearly every home and small business is on it.'),
+    B('Het windpark komt dus op een station van {n:150} kilovolt van TenneT; een losse windturbine of een klein zonnepark op het middenspanningsnet.',
+      'So the wind farm connects to a TenneT {n:150} kilovolt station; a single turbine or small solar park to the medium-voltage grid.'),
   ],
-  [ // s4 who runs what
-    B('Middenspanning en laagspanning beheert de {t:Regionale netbeheerder|regionale netbeheerder}: Enexis, Liander en Stedin, plus een paar kleinere, zoals Westland Infra, Coteq en Rendo.',
-      'Medium and low voltage belong to the regional operator, the {t:DSO}: Enexis, Liander, Stedin, and smaller ones such as Westland Infra, Coteq and Rendo.'),
+  [ // s4 who runs what, and the boundary in the substation
+    B('Het net op middenspanning en laagspanning is van de {t:Regionale netbeheerder|regionale netbeheerder}, die het ook beheert: Enexis, Liander en Stedin, plus kleinere zoals Westland Infra, Coteq en Rendo.',
+      'The medium- and low-voltage grid is owned and run by the regional operator, the {t:DSO}: Enexis, Liander, Stedin, and smaller ones such as Westland Infra, Coteq and Rendo.'),
     B('Elk heeft een monopolie in zijn eigen gebied. Enexis in grote delen van het noorden, oosten en zuiden. Liander vooral in Gelderland, Noord-Holland, Flevoland en Friesland. Stedin vooral in Zuid-Holland, Utrecht en Zeeland.',
       'Each has a monopoly in its own area. Enexis in large parts of the north, east and south. Liander mainly in Gelderland, North Holland, Flevoland and Friesland. Stedin mainly in South Holland, Utrecht and Zeeland.'),
-    B('Zij bezitten en beheren het middenspanningsnet en het laagspanningsnet.',
-      'They own and run the medium-voltage and the low-voltage grid.'),
+    B('Met TenneT komt de netbeheerder samen in het onderstation: TenneT heeft de kant van de hoogspanning, de netbeheerder die van de middenspanning en de uitgaande kabels. Wie de transformator daartussen bezit, verschilt per station.',
+      'TenneT and the regional operator meet in the substation. TenneT runs the high-voltage side, the operator the medium-voltage side and the outgoing cables. Who owns the transformer in between differs per station.'),
+    B('Loopt een project vast, vraag dan: zit de grens bij TenneT of bij ons, en wie moet in actie komen?',
+      'When a project stalls, ask: is the limit on TenneT’s side or ours, and who must act?'),
   ],
   [ // s5 the substation
-    B('Nu de reis naar een huis in Tilburg. TenneT levert {n:150} kilovolt aan het {t:Onderstation|onderstation}: een omheind terrein waar grote transformatoren de spanning omlaag zetten.',
-      'Now the journey to a house in Tilburg. TenneT delivers {n:150} kilovolts to the {t:Substation|substation}: a fenced yard where big transformers step the voltage down.'),
-    B('Hier staan er twee, van {n:150} naar {n:10} kilovolt. Elders komt er ook {n:110} kilovolt binnen, of gaat er {n:20} kilovolt uit.',
-      'Here there are two, from {n:150} to {n:10} kilovolts. Elsewhere {n:110} kilovolts may come in, or {n:20} kilovolts go out.'),
-    B('Ze voeden een dikke koperen staaf op {n:10} kilovolt, waar alle kabels op aansluiten, en vanwaar ze alle kanten op vertrekken.',
-      'They feed a busbar at {n:10} kilovolts: a thick copper bar that every cable connects to, and leaves from in all directions.'),
-    B('Hier komen het landelijke en het regionale net samen. TenneT beheert de kant van de hoogspanning, de regionale netbeheerder de kant van de middenspanning en de kabels. Wie de transformator daartussen bezit, verschilt per station.',
-      'Here the national and the regional grid meet. TenneT runs the high-voltage side, the regional operator the medium-voltage side and the cables. Who owns the transformer in between differs per station.'),
-    B('Hier ligt vaak de capaciteit voor een hele stad of regio vast. Loopt een project vast, vraag dan: zit de grens bij TenneT of bij ons, en wie moet in actie komen?',
-      'The capacity of a whole city or region is often fixed here. When a project stalls, ask: is the limit on TenneT’s side or ours, and who must act?'),
+    B('Nu de reis naar een huis in Tilburg. TenneT levert {n:150} kilovolt aan het {t:Onderstation|onderstation}: een omheind terrein met grote transformatoren.',
+      'Now the journey to a house in Tilburg. TenneT delivers {n:150} kilovolts to the {t:Substation|substation}: a fenced yard with big transformers.'),
+    B('Hier staan er twee, van {n:150} naar {n:10} kilovolt. Elders komt er ook {n:110} kilovolt binnen, of gaat er {n:20} uit.',
+      'Here there are two, from {n:150} to {n:10} kilovolts. Elsewhere {n:110} kilovolts may come in, or {n:20} go out.'),
+    B('Ze voeden een dikke koperen staaf op {n:10} kilovolt, waar alle kabels op aansluiten en alle kanten op vertrekken.',
+      'They feed a busbar at {n:10} kilovolts: a thick copper bar that every cable connects to and leaves from.'),
+    B('Hier komen het landelijke en het regionale net samen.',
+      'Here the national and the regional grid meet.'),
+    B('En hier ligt vaak de capaciteit voor een hele stad of regio vast.',
+      'And the capacity of a whole city or region is often fixed here.'),
   ],
   [ // s6 the ring
-    B('Kabels op middenspanning liggen in ringen. Deze kabel van {n:10} kilovolt gaat langs {n:12} netstations en komt terug in het onderstation.',
-      'Medium-voltage cables lie in rings. This {n:10} kilovolt cable runs past {n:12} distribution substations and comes back to the substation.'),
+    B('Kabels op middenspanning liggen in ringen. Deze kabel van {n:10} kilovolt gaat langs {n:12} netstations en terug naar het onderstation.',
+      'Medium-voltage cables lie in rings. This {n:10} kilovolt cable runs past {n:12} distribution substations and back to the substation.'),
     B('De ring wordt op één punt open bedreven: het {t:Normaal openpunt|normaal openpunt}. Dat is de schakelaar in een MS-ring die openstaat; je sluit hem om een deel van de andere kant te voeden. Zo krijgt elke helft van één kant stroom.',
       'The ring is run open at one point: the {t:Normally open point|normally open point}. That is the switch in an MV ring that is kept open; you close it to feed a section from the other side. So each half is fed from one side.'),
     B('Een gesloten ring zou een veel ingewikkelder beveiliging vragen om een fout te vinden.',
       'A closed ring would need far more complex protection to find a fault.'),
-    B('Valt de kabel uit tussen netstation {n:6} en {n:7}, dan zit die helft zonder stroom. De bedrijfsvoerders openen de schakelaars aan beide kanten van het kapotte stuk.',
-      'If the cable fails between station {n:6} and {n:7}, that half is without power. The operators open the switches at both ends of the broken section.'),
+    B('Valt de kabel tussen netstation {n:6} en {n:7} uit, dan schakelt het onderstation die helft af. De bedrijfsvoerders openen de schakelaars aan beide kanten van het kapotte stuk.',
+      'If the cable fails between station {n:6} and {n:7}, the substation trips that half. The operators open the switches at both ends of the broken section.'),
     B('Dan sluiten ze het normaal openpunt, en krijgt netstation {n:7} weer stroom van de andere kant. Zo hebben de meeste klanten weer stroom terwijl de kabel gerepareerd wordt.',
       'Then they close the normally open point, and station {n:7} is fed again from the other side. So most customers have power back while the cable is repaired.'),
   ],
   [ // s7 inside the netstation
     B('Netstation {n:7}. Een {t:Netstation|netstation}, ook wel wijktrafo of trafohuisje, is het stenen gebouwtje of de groene kast in je straat.',
       'Station {n:7}. A {t:Distribution substation|distribution substation} is the small brick building or the green cabinet in your street.'),
-    B('Binnen eerst de schakelinstallatie: de schakelaars voor de ring, die hier binnenkomt en doorgaat naar het volgende station.',
-      'Inside, first the medium-voltage switchgear: the switches for the ring, which comes in here and goes on to the next station.'),
+    B('Binnen eerst de schakelinstallatie voor de ring, die hier binnenkomt en doorgaat.',
+      'Inside, first the switchgear for the ring, which comes in here and goes on.'),
     B('Dan de transformator, van {n:10} kilovolt naar {n:400} volt, hier {n:400} kilovoltampère. Meestal zijn ze {n:400} of {n:630}, oudere {n:250}, sommige nieuwe {n:1000}.',
       'Then the transformer, from {n:10} kilovolts to {n:400} volts, here {n:400} kilovolt amperes. Most are {n:400} or {n:630}, older ones {n:250}, some new ones {n:1000}.'),
-    B('Dan het laagspanningsrek, met een zekering per kabel die de straat in gaat. Hier zijn het er zes.',
-      'Then the low-voltage rack, with a fuse for each outgoing street cable. Here there are six.'),
+    B('Dan het laagspanningsrek, met een zekering per kabel die de straat in gaat. Hier zes.',
+      'Then the low-voltage rack, with a fuse for each outgoing street cable. Here six.'),
     B('Bij kantoren en grote klanten staat de middenspanningsapparatuur vaak in een aparte {t:MS-ruimte|MS-ruimte}.',
       'In offices and at large customers the medium-voltage equipment is often in a separate {t:MV room|MV room}.'),
   ],
@@ -1170,8 +1175,8 @@ const SAY = [
       'Newer stations get remote control and fault passage indicators: boxes that show which section the fault current passed.'),
     B('Daarom duurt herstel in het ene gebied {n:30} minuten en in het andere {n:2} uur.',
       'That is why restoring power takes {n:30} minutes in one area and {n:2} hours in another.'),
-    B('De scherpe vraag: waar zit het openpunt, en kunnen we het op afstand schakelen?',
-      'The sharp question: where is the open point, and can we switch it remotely?'),
+    B('Vraag dus: waar zit het openpunt, en kunnen we het op afstand schakelen?',
+      'So ask: where is the open point, and can we switch it remotely?'),
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
