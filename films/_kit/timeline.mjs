@@ -307,7 +307,28 @@ const SAY = {
     // baTENreview and overdrachts-sx-ecklist (with the s-ch of "schip"); no other film says them
     [/\b([Hh])ypercare\b/g, '$1aiperkeer'], [/\b([Dd]e) KPI\b(?!-)/g, '$1 K P I'], [/\bKPI's\b/g, "K P I's"],
     [/\bacceptatiecriteria\b/g, 'acceptatie-criteria'], [/\b([Pp])rojectopdracht/g, '$1roject-opdracht'], [/\b([Pp])rocesaudit/g, '$1roces-audit'],
-    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist']],
+    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist'],
+    // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
+    // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
+    // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
+    // livegang as said in Dutch projects (espeak-ng reads "LIE-ve-gang"): laif-gang; communicatieplan stressed
+    // KOM- with a t for ts, middenmanager with a Dutch "manager" (said midden-menetsjer, tsj for the dzj it cannot
+    // voice), and town hall with the o of "town" (taun hol). Coch and French ("kox en frenx") and Mark Hughes
+    // ("hux-hes") as their English names, only in these pairs; no other film says them
+    [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
+    [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
+    [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes'],
+    // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
+    // "too-ie-oota"); no other film says Toyota in Dutch
+    [/\bToyota\b/g, 'Tojota'],
+    // proving results (pm.close.results): espeak-ng stresses controller on the first part, "KON-trol-ler" (said
+    // kon-TROL-ler), dekkingsbijdrage on "-DRAA-" with a French zj (split at the head: DEK-kings-BIJ-drage), and
+    // reads run chart with a French sj (said run tsjart); no other film says them. procentpunt stressed PRO-
+    // (split: pro-CENT-punt); no other film's voice says it. investering is read IN-ves-te-ring (said
+    // in-ves-TEE-ring), but eng.lines.variants and eng.quality.tolerance say it in rendered videos, so only
+    // this film's phrase "investering die niet nodig" is split
+    [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
+    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

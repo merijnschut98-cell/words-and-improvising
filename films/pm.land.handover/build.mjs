@@ -283,7 +283,53 @@ const CUES = ['line', 'owner', 'kpi', 'can', 'check', 'steps', 'reports', 'ask',
   'dip', 'why', 'weekly', 'lpa', 'review', 'follow', 'trig', 'slip', 'second', 'test', 'chart', 'half', 'cause', 'act', 'back'];
 const hud = g('panel', `<rect class="pm-panel" x="${PX}" y="12" width="${PW}" height="376" rx="10"/>`
   + g('pHead', '') + CUES.map((c) => cueG(c, g(`p_${c}`, ''))).join(''));
-const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`;
+// Static paths with relative line-tos (the helper of eng.mechanics.load, as in
+// pm.plan.method and pm.land.adoption): the same points, fewer bytes; each rewrite is read back.
+function compactPath(d) {
+  const tok = d.match(/[MLZ]|-?\d*\.?\d+/g);
+  const n = (v) => { const a = Math.abs(v); const t = `${Math.floor(a / 10)}${a % 10 ? `.${a % 10}` : ''}`.replace(/^0\./, '.'); return (v < 0 ? '-' : '') + t; };
+  let out = '';
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  let last = '';
+  const put2 = (c, nums) => {
+    let s = c === last && c === 'l' ? '' : c;
+    nums.forEach((v, i) => { const t = n(v); s += (i === 0 && s === '' && !t.startsWith('-') && out && /[\d.]$/.test(out)) || (i > 0 && !t.startsWith('-')) ? ` ${t}` : t; });
+    out += s;
+    last = c;
+  };
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZ]/.test(tok[i])) { cmd = tok[i++]; if (cmd === 'Z') { put2('Z', []); cur = start; } continue; }
+    const p = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    if (cmd === 'M') { put2('M', p); cur = p; start = p; cmd = 'L'; } else { put2('l', [p[0] - cur[0], p[1] - cur[1]]); cur = p; }
+  }
+  return out;
+}
+function pointsOf(d) {
+  const tok = d.match(/[MLZlz]|-?\d*\.?\d+/g);
+  const out = [];
+  let cmd = '';
+  let cur = [0, 0];
+  let start = [0, 0];
+  for (let i = 0; i < tok.length;) {
+    if (/[MLZlz]/.test(tok[i])) { cmd = tok[i++]; if (/[Zz]/.test(cmd)) { out.push('Z'); cur = start; } continue; }
+    const v = [Math.round(Number(tok[i]) * 10), Math.round(Number(tok[i + 1]) * 10)];
+    i += 2;
+    cur = cmd === 'l' ? [cur[0] + v[0], cur[1] + v[1]] : v;
+    if (cmd === 'M') { start = cur; cmd = 'L'; out.push('M'); }
+    out.push(cur.join());
+  }
+  return out.join(' ');
+}
+const compact = (html) => html.replace(/ d="([MLZ\d.\s-]+)"/g, (m, d) => {
+  if (/\.\d\d/.test(d)) return m;
+  const c = compactPath(d);
+  if (pointsOf(c) !== pointsOf(d)) throw new Error(`compactPath changed a path: ${d.slice(0, 60)}`);
+  return ` d="${c}"`;
+});
+const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world)}${g('hud', hud)}</svg>`);
 
 // ---------------------------------------------------------------- cameras (one gentle move per scene)
 // [cx, cy, s]: the stage point (cx, cy) stays put while the room scales by s
@@ -405,7 +451,7 @@ const SAY = [
       en: 'Name one {t:Process owner|process owner} per new process, close to the daily work, like a planning manager; not a staff role.' },
     { nl: 'Die draagt de {t:KPI|KPI}, de kritieke prestatie-indicator: het getal dat laat zien of het werkt.',
       en: 'They own the {t:KPI|KPI}, the key performance indicator: the number that shows whether it works.' },
-    { nl: 'Alleen moet de eigenaar weten wat normaal is, voorzitten, inwerken, problemen oplossen en weten wie hij belt.',
+    { nl: 'Zonder jou moet de eigenaar weten wat normaal is, voorzitten, inwerken, problemen oplossen en weten wie hij belt.',
       en: 'Alone, the owner must know what is normal, chair, train new people, solve problems and know whom to call.' },
     { nl: 'Zet het op een {t:Overdrachtschecklist|overdrachtschecklist} en vink samen af, in het echte werk, niet in een presentatie.',
       en: 'Put it on a {t:Handover checklist|handover checklist} and tick it off together, in real work, not in a presentation.' },

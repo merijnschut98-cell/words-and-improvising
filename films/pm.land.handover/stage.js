@@ -81,8 +81,8 @@ const STAGE = (() => {
     if (b >= 3) {
       const B = page(b, p, 3, -1);
       const can = [tr('KPI lezen: wat is normaal', 'read KPI: what is normal'), tr('het overleg leiden', 'run the review meeting'), tr('nieuwe mensen inwerken', 'train new people'), tr('gewone problemen oplossen', 'solve common problems'), tr('wie bellen bij zeldzame', 'whom to call: rare ones')];
-      o.can = op(B, txt(X0, 78, tr('alleen kunnen', 'can do alone'), 'pm-big') + can.map((t, i) => op(span(b === 3 ? p : 1, 0.08 + i * 0.1, 0.18 + i * 0.1), txt(X0 + 24, 106 + i * 26, t) + op(at(b, p, 4, 0.2 + i * 0.12, 0.3 + i * 0.12), tick(X0 + 6, 100 + i * 26)))).join(''));
-      o.check = op(B * at(b, p, 4), card(248, 134, 'pm-hot') + lines(274, [[tr('overdrachtschecklist', 'handover checklist'), 'pm-on'], [tr('samen afvinken,', 'tick off together,')], [tr('punt voor punt,', 'point by point,')], [tr('in het echte werk', 'in real work'), 'pm-on']]) + txt(X1, 352, tr('geen presentatie', 'no presentation'), 'pm-mute', 'end'));
+      o.can = op(B, txt(X0, 78, tr('alleen kunnen', 'can do alone'), 'pm-big') + can.map((t, i) => op(span(b === 3 ? p : 1, 0.08 + i * 0.1, 0.18 + i * 0.1), txt(X0 + 14, 106 + i * 26, t) + op(at(b, p, 4, 0.2 + i * 0.12, 0.3 + i * 0.12), tick(X0 - 1, 100 + i * 26)))).join(''));
+      o.check = op(B * at(b, p, 4), card(236, 146, 'pm-hot') + lines(262, [[tr('overdrachtschecklist', 'handover checklist'), 'pm-on'], [tr('samen afvinken,', 'tick off together,')], [tr('punt voor punt,', 'point by point,')], [tr('in het echte werk,', 'in real work,'), 'pm-on'], [tr('niet in een presentatie', 'not in a presentation'), 'pm-mute']]));
     }
     return o;
   }
@@ -121,8 +121,9 @@ const STAGE = (() => {
     const A = page(b, p, 0, 2);
     o.case = op(A, card(52, 144) + lines(78, [[tr('planningsoverleg naar', 'planning meeting to'), 'pm-big'], [tr('Sanne, planningsmanager', 'Sanne, planning manager')], [tr('KPI: leverbetrouwbaarheid', 'KPI: on-time delivery')], [tr(`${C.NORMAL}% is normaal`, `${C.NORMAL}% is normal`), 'pm-on'], [tr('nog 9 weken', '9 weeks left'), 'pm-mute']]));
     const list = [tr(`KPI lezen, ${C.NORMAL}% normaal`, `read KPI, ${C.NORMAL}% normal`), tr('het overleg voorzitten', 'chair the meeting'), tr('capaciteitsmodel uitleggen', 'explain capacity model'), tr('spoedorder opvangen', 'handle a rush order')];
-    o.list = op(A * at(b, p, 1), txt(X0, 232, tr('checklist', 'checklist'), 'pm-big') + txt(X1, 232, tr('uren machines, mensen', 'machine, staff hours'), 'pm-mute', 'end')
-      + list.map((t, i) => op(span(b === 1 ? p : 1, 0.1 + i * 0.16, 0.2 + i * 0.16), rect(X0, 248 + i * 30, 16, 16, 'pm-card', 3) + txt(X0 + 26, 263 + i * 30, t))).join(''));
+    o.list = op(A * at(b, p, 1), txt(X0, 232, tr('checklist', 'checklist'), 'pm-big')
+      // the capacity model's note sits under its own row; the last row moves down
+      + list.map((t, i) => { const y = 248 + i * 30 + (i === 3 ? 22 : 0); return op(span(b === 1 ? p : 1, 0.1 + i * 0.16, 0.2 + i * 0.16), rect(X0, y, 16, 16, 'pm-card', 3) + txt(X0 + 26, y + 15, t) + (i === 2 ? txt(X0 + 26, y + 41, tr('machine- en mensuren', 'machine and staff hours'), 'pm-mute') : '')); }).join(''));
     if (b >= 2) {
       const B = page(b, p, 2, -1);
       const q = b === 2 ? p : 1;
@@ -140,7 +141,7 @@ const STAGE = (() => {
     const A = page(b, p, 0, 3);
     o.crit = op(A, lines(78, [[tr('acceptatiecriteria', 'acceptance criteria'), 'pm-big'], [tr('meetbaar, aan het begin', 'measurable, at the start'), 'pm-on']]));
     o.charter = op(A * at(b, p, 1), card(114, 96) + lines(140, [[tr('in de projectopdracht:', 'in the project charter:'), 'pm-big'], [tr('doel, scope, rollen, planning', 'goal, scope, roles, timing')], [tr('scope: wat erin valt, wat niet', 'scope: what is in, what not'), 'pm-mute']]));
-    o.ex1 = op(A * at(b, p, 2), lines(240, [[tr(`afzeggingen < ${C.CANCEL}%, 6 wk`, `cancellations < ${C.CANCEL}%, 6 wk`)], [tr('check in alle regio’s', 'check in all regions')], [tr('eigenaar getraind', 'owner trained')]]));
+    o.ex1 = op(A * at(b, p, 2), lines(240, [[tr(`afzeggingen < ${C.CANCEL}%, 6 wk,`, `cancellations < ${C.CANCEL}%, 6 wk,`)], [tr('pilotregio; check in alle', 'pilot region; check in all')], [tr('regio’s; eigenaar getraind', 'regions; owner trained')]]));
     o.who = op(A * at(b, p, 2, 0.4, 0.55), card(322, 60, 'pm-hot') + lines(346, [[tr('schrijf op wie tekent', 'write down who signs'), 'pm-on'], [tr('anders: tot iemand moe is', 'else: till someone tires'), 'pm-mute']]));
     if (b >= 3) {
       const B = page(b, p, 3, -1);
@@ -182,7 +183,7 @@ const STAGE = (() => {
     const o = { head: [tr('afsluiten', 'closing'), EX] };
     const A = page(b, p, 0, 3);
     o.charter2 = op(A, lines(78, [[tr('projectopdracht', 'project charter'), 'pm-big'], [tr(`leverbetr. ≥ ${C.OTD}%, 8 wk`, `on-time ≥ ${C.OTD}%, 8 wk`)], [tr('planningsoverleg: manager', 'planning meeting: manager')], [tr('capaciteitsmodel: gedocu-', 'capacity model: documented')], [tr('menteerd, uitgelegd', 'and explained')]]));
-    const rows = [[tr(`${C.SHOWN[0]}–${C.SHOWN[1]}%, 9 wk`, `${C.SHOWN[0]}–${C.SHOWN[1]}%, 9 wk`), tr('gehaald', 'met'), 'pm-on'], [tr(`voorzitter sinds wk ${C.CHAIR}`, `chairs since wk ${C.CHAIR}`), tr('gehaald', 'met'), 'pm-on']];
+    const rows = [[tr(`${C.SHOWN[0]}–${C.SHOWN[1]}%, 9 wk`, `${C.SHOWN[0]}–${C.SHOWN[1]}%, 9 wk`), tr('gehaald', 'met'), 'pm-on'], [tr(`zit voor sinds wk ${C.CHAIR}`, `chairs since wk ${C.CHAIR}`), tr('gehaald', 'met'), 'pm-on']];
     o.evidence = op(A * at(b, p, 1), card(214, 98) + txt(X0, 240, tr('één A4', 'one page'), 'pm-big')
       + rows.map(([c, s, cls], i) => op(at(b, p, 1, 0.2 + i * 0.25, 0.35 + i * 0.25), txt(X0, 268 + i * 28, c) + txt(X1, 268 + i * 28, s, cls, 'end'))).join(''));
     o.partly = op(A * at(b, p, 2), lines(346, [[tr('model, 2e planner', 'model, 2nd planner')]]) + txt(X1, 346, tr('deels', 'partly'), 'pm-txt', 'end') + txt(X0, 372, tr('nog niet uitgelegd', 'not yet explained'), 'pm-mute'));
@@ -248,7 +249,7 @@ const STAGE = (() => {
     let f = lines(78, [[tr('follow-up, vooraf', 'follow-up, agreed'), 'pm-big'], [tr('gepland vervolgbezoek', 'a planned return visit')]]);
     f += path(`M${X0} 150H${X1}`, 'pm-axis');
     C.FOLLOW.forEach((m, i) => {
-      const x = X0 + 10 + (m / 6) * (CW - 20);
+      const x = X0 + 10 + (m / 6) * (CW - 50);
       f += op(b > 0 ? 1 : span(p, 0.2 + i * 0.15, 0.3 + i * 0.15), dot(x, 150, 8, 'pm-ring') + txt(x, 182, tr(`${m} mnd`, `${m} mo`), 'pm-txt', 'middle'));
     });
     o.follow = op(A, f + dia(X0 + 4, 150, 6));
@@ -313,7 +314,8 @@ const STAGE = (() => {
     if (si === 8) {
       const [x, y] = mid(3);
       s += op(b > 0 ? 1 : span(p, 0.5, 0.7), dot(x, y, 6, 'pm-ring'));
-      if (b >= 3) { const [x2, y2] = mid(5); s += op(span(p, 0.1, 0.3), tick(x2 + 1, y2)); }
+      // six weeks after the month-3 follow-up: between months 4 and 5
+      if (b >= 3) { const [xa, ya] = mid(4); const [xb, yb] = mid(5); s += op(span(p, 0.1, 0.3), tick((xa + xb) / 2 + 1, (ya + yb) / 2)); }
     }
     return s;
   }

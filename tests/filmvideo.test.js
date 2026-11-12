@@ -97,6 +97,14 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Acceptatiecriteria: wie tekent af.'], 'nl'), 'Acceptatiecriteria: wie tekent af.');
   assert.equal(speakOf(['Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.'], 'en'),
     'Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.');
+  // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
+  assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
+  assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
+  // pm.close.results: controller stressed on the second part (espeak-ng says KON-trol-ler), dekkingsbijdrage
+  // split at the head (espeak-ng stresses -bij-DRAA-zje), run chart with a tsj (espeak-ng reads a French sj);
+  // English keeps them
+  assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
+  assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
 });
 
 // ------------------------------------------------------------ WAV files
@@ -271,7 +279,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 18,`${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 19,`${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -296,6 +304,9 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   assert.ok(nl.aluminium.includes('mˈi'), `aluminium: ${nl.aluminium}`);
   // pro-JECT (espeak-ng says PRO-ject; 2026-11-12): audio only, at the next render; no rendered film says it
   assert.ok(nl.project.includes('jˈɛ'), `project: ${nl.project}`);
+  // pro-JEC-ten likewise (2026-11-12, pm.land.training); swapped at its own word since the word-aligned swap.
+  // Said by eng.gridbasics.congestion, pm.run.scope and pm.land.training, none rendered yet
+  assert.ok(nl.projecten.includes('jˈɛ'), `projecten: ${nl.projecten}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');
