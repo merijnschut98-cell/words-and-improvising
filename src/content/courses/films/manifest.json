@@ -1529,6 +1529,41 @@
         ],
         "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
       }
+    },
+    "pm.run.rhythm": {
+      "poster": "src/content/courses/films/pm.run.rhythm.jpg",
+      "nl": {
+        "dur": 337.9,
+        "bytes": 13275896,
+        "scenes": [
+          0,
+          27.14,
+          63.14,
+          89.02,
+          130.87,
+          158.74,
+          208.79,
+          244.08,
+          284.56
+        ],
+        "vtt": "src/content/courses/films/pm.run.rhythm.nl.vtt"
+      },
+      "en": {
+        "dur": 341.7,
+        "bytes": 13365399,
+        "scenes": [
+          0,
+          28.73,
+          66.17,
+          94.58,
+          134.19,
+          161.78,
+          209.23,
+          246.17,
+          286.31
+        ],
+        "vtt": "src/content/courses/films/pm.run.rhythm.en.vtt"
+      }
     }
   }
 }
