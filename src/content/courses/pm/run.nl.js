@@ -338,6 +338,7 @@ export default {
     },
     {
       id: 'pm.run.scope',
+      film: 'pm.run.scope',
       title: 'Scope creep',
       pre: [
         {
@@ -672,6 +673,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
+      film: 'pm.run.rhythm',
       title: 'Een overlegritme dat werkt',
       pre: [
         {

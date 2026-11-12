@@ -295,6 +295,10 @@ const SAY = {
     // accepteert het niet" keeps the voice it was reviewed with
     [/\b([Ss])cope creep\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop kriep`], [/\b([Ss])cope\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop`],
     [/\b([Ww])erkpakket/g, '$1erk-pakket'], [/\b([Nn])achtploeg\b(?! accepteert)/g, '$1acht-ploeg'],
+    // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
+    // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
+    // and DUIvels-; no other film says them
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
     // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
     // "too-ie-oota"); no other film says Toyota in Dutch
     [/\bToyota\b/g, 'Tojota']],
