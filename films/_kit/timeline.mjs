@@ -203,7 +203,14 @@ const SAY = {
     [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
     [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
     // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
-    [/\b([Nn])on-firm\b/g, '$1on-furm']],
+    [/\b([Nn])on-firm\b/g, '$1on-furm'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng stresses the grid operators' names on the first
+    // syllable (EE-neksis, LIE-ander, STEE-din) and Westland and wijktrafo on the head (westLAND, wijkTRAfo), and
+    // hoofdzekering on "-ke-"; split, so each part keeps its own stress (e-NEX-is, li-AN-der, ste-DIN, WEST-land,
+    // WIJK-trafo, HOOFD-zekering). Stedin only after "en" or at a sentence start and hoofdzekering only after
+    // "aan de", so the congestion film's "bij Stedin" and the load film's "De hoofdzekering" stay as they are
+    [/\bEnexis\b/g, 'E-nexis'], [/\bLiander\b/g, 'Li-ander'], [/(\ben |[.!?] )Stedin\b/g, '$1Ste-din'], [/\bWestland\b/g, 'West-land'],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

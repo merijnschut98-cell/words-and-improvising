@@ -293,6 +293,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Spanningsniveaus en wie wat beheert',
       pre: [
@@ -364,6 +365,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.path',
+      film: 'eng.gridbasics.path',
       title: 'Van onderstation tot stopcontact',
       pre: [
         {
