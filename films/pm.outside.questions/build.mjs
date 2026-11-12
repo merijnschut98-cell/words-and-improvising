@@ -473,7 +473,7 @@ const SAY = [
       en: 'Scope: at go-live, which lines are on the MES? Lines {n:1} and {n:2}, not line {n:3}.' },
     { nl: 'Aanname: de machinedata komt binnen via het bestaande netwerk. Jij schrijft: niet gecheckt.',
       en: 'Assumption: machine data comes in through the existing network. You write: unchecked.' },
-    { nl: 'Risico: elders waren de stamgegevens vervuild: producten en de volgorde van bewerkingen. Schatting: opschonen kost vier tot acht weken, afhankelijk van de staat.',
+    { nl: 'Het risico zit in de stamgegevens, die elders vervuild waren: producten en de volgorde van bewerkingen. Schatting: opschonen kost vier tot acht weken, afhankelijk van de staat.',
       en: 'Risk: elsewhere the master data was dirty: products and the sequence of steps. Estimate: clean-up takes four to eight weeks, depending on the state.' },
     { nl: 'Afhankelijkheid: een ERP-koppeling van de IT van de klant, voor {n:1} maart. Vijf vragen, drie nieuwe risico\'s, elk een eigenaar.',
       en: 'Dependency: an ERP interface from the client\'s IT, by {n:1} March. Five questions, three new risks, one owner each.' },
