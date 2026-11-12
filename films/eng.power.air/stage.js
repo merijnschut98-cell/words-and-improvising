@@ -132,7 +132,7 @@ const STAGE = (() => {
   function energySvg(step) {
     const x0 = 12;
     let out = rect(x0, 12, 300, 376);
-    out += txt(x0 + 14, 42, tr('waar de stroom blijft', 'where power goes'), 20, 'start', 'pa-mute') + txt(x0 + 288, 42, SCH, 20, 'end', 'pa-mute');
+    out += txt(x0 + 14, 42, tr('waar de stroom blijft', 'where it goes'), 20, 'start', 'pa-mute') + txt(x0 + 288, 42, SCH, 20, 'end', 'pa-mute');
     const bx = x0 + 18;
     const full = 264;
     out += txt(bx, 82, tr('stroom erin', 'electricity in'), 20) + rect(bx, 92, full, 22, 'pa-bar', 3) + txt(bx + full, 82, '100%', 20, 'end', 'pa-mono');
