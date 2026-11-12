@@ -2,6 +2,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
+import { celebration } from './flairui.js';
 import { applyDue, questionById } from '../core/course.js';
 import { dueSession, isOwned } from '../core/coursereview.js';
 import { moduleOf, subjectOf, lessonOf } from '../content/courses/index.js';
@@ -48,10 +49,12 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
           const res = applyDue(app.state, { subject, results: firstTry, sure, lang: app.lang, maintenance, prep }, app.today(), Date.now());
           app.setState(res.state);
           const owned = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length - before;
-          main.replaceChildren(h('section', { class: 'card lesson-done due-done' },
-            h('p', { class: 'done-mark' }, ico('brain')),
+          const c = celebration(app, { ...res, xp: 0 }, { mark: h('p', { class: 'done-mark' }, ico('brain')), subject, gained: res.xp });
+          main.replaceChildren(h('section', { class: `card lesson-done due-done${c.big ? ' celebrate' : ''}` },
+            c.nodes[0],
             h('h2', { class: 'card-title' }, t('dueDone')),
-            h('p', { class: 'xp-line' }, `+${res.xp} XP`),
+            h('p', { class: 'xp-line xp-rise' }, `+${res.xp} XP`),
+            ...c.nodes.slice(1),
             owned > 0 ? h('p', { class: 'muted' }, t('dueOwned', owned)) : null),
           h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
         },

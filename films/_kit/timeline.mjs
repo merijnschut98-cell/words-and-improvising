@@ -2,9 +2,15 @@
 // variant, the timeline, beats, the narration hold and the page parameters.
 // No imports and no DOM: the build inlines this file into every film page (with
 // its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
 
 export const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
 
+// build-only:start
 // A scene lasts at least (caption words / 2.5) + 2 s, so it can be read.
 export const minSceneDur = (words) => words / 2.5 + 2;
 
@@ -69,8 +75,9 @@ const SAY = {
     // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
     [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
     // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
-    // nothing: espeak-ng already spells it in CE-markering
-    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
+    // nothing: espeak-ng already spells it in CE-markering. But a lone S with a word after it ("M E S in", "M E
+    // S-leverancier") is read as a bare hiss, the clitic 's (phon.py, 2026-11-11): there MES is "em ee es"
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES(?=[\s-]+[\p{L}\p{N}])/gu, 'em ee es'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
     // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
     [/\bCILT\b/g, 'C I L T'],
     // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")
@@ -127,6 +134,22 @@ const SAY = {
     // lastwisSEEling, puts a schwa in vermoeiingsgrens, and stresses kogelSTRAlen and lasTEEN; split at the head
     [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
     [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen'],
+    // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
+    // "lachen", "uunit oopiraasjon", stresses "KOrioliss" and "KONtinu", and sounds the h in ohm): betsj
+    // (betsj- in compounds: batchproces, batchnummer), joenit oppe-reesjen, kori-olis (KO-ri-O-lis; "korie-olis"
+    // stressed the ie), konti-nu (continue as konti-nuwe), oom
+    [/\b([Bb])atch(\p{L}?)/gu, (m, b, l) => `${b}etsj${l ? `-${l}` : ''}`],
+    [/\b([Uu])nit operation(s?)\b/g, (m, u, s) => `${u === 'U' ? 'J' : 'j'}oenit oppe-reesjen${s}`],
+    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Kori-olis' : 'kori-olis')], [/\bohm\b/g, 'oom'],
+    [/\b([Cc])ontinue\b/g, (m, c) => (c === 'C' ? 'Konti-nuwe' : 'konti-nuwe')], [/\b([Cc])ontinu\b/g, (m, c) => (c === 'C' ? 'Konti-nu' : 'konti-nu')],
+    // measuring the process variables: espeak-ng reads psi as one hiss ("psie"), FDA as "vdaa", stresses
+    // thermokopPEL, drops the h in toezichthouders and reads magnetisch-inductieve as "INduktieve"; said
+    // pee-es-ie, ef-dee-aa, thermo-koppel, toezicht-houders, magnetisch in-duktieve (only after "magnetisch",
+    // so the inductieve sensor of eng.lines.errorproof keeps its reading); it also stresses DEbietmeter and
+    // drops the h in heethoudbuis (debiet-meter, heet-houdbuis)
+    [/\b([Dd])ebietmeter/g, '$1ebiet-meter'], [/\b([Hh])eethoudbuis/g, '$1eet-houdbuis'],
+    [/\bpsi\b/g, 'pee-es-ie'], [/\bFDA\b/g, 'ef-dee-aa'], [/\b([Tt])hermokoppel/g, '$1hermo-koppel'], [/\b([Tt])oezichthouder/g, '$1oezicht-houder'],
+    [/\b([Mm])agnetisch-inductie(ve|f)\b/g, '$1agnetisch in-duktie$2'],
     // heat treatment: espeak-ng stresses BRInell and PIramide (said Brie-NEL, pira-MIE-de), drops the h in
     // inzetharden, reads inductieharden as "INduktie-harden", and stresses warmtebehandeling (-be-HAN-deling
     // read "bee-han-DEE-ling"), tandwielen (tandWIElen), polymeeroplossing (POlymeer) and diktesprong (with
@@ -145,7 +168,34 @@ const SAY = {
     // and vrijschakelen, the first safety rule, stressed on "-ke-" with a long e: VRIJ-schakelen
     [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
     // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
-    [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station']],
+    [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station'],
+    // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
+    // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
+    [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
+    // outages: espeak-ng drops "-burige" in naburige (it says "naa-e") and stresses vrijgeschakeld(e) on "-GE-"
+    // with the e of "bed"; said na-burige and vrij-geschakeld, each part with its own reading
+    [/\b([Nn])aburige\b/g, '$1a-burige'], [/\b([Vv])rijgeschakeld/g, '$1rij-geschakeld'],
+    // IT/OT: espeak-ng reads Purdue as "pur-du-e" (said as the floor says it, "Pur-djoe"), firewall as "fie-re-wal"
+    // (said "fajerwol", with "regels" apart, else it stresses "re-GELS"), historian as "HIStoorian" and conduits
+    // with the Dutch ui (said "his-toorjen", "kondjoe-its"); and it stresses the head of functieMOdel (with "kti"),
+    // PROductieorder, stamDAta and tijdSCHAAL: split, each part keeps its own reading
+    [/\bPurdue\b/g, 'Pur-djoe'], [/\b([Ff])irewallregels\b/g, '$1ajerwol regels'], [/\b([Ff])irewall(s?)\b/g, '$1ajerwol$2'],
+    [/\bhistorian\b/g, 'his-toorjen'], [/\bconduits\b/g, 'kondjoe-its'],
+    [/\b([Ff])unctiemodel/g, '$1unctie-model'], [/\b([Pp])roductieorder/g, '$1roductie-order'], [/\b([Ss])tamdata\b/g, '$1tam-data'], [/\b([Tt])ijdschaal\b/g, '$1ijd-schaal'],
+    // the order flow: espeak-ng reads goederenontvangst as "goe-dier-een-ontvangst"; split, each part keeps its reading
+    [/\b([Gg])oederenontvangst/g, '$1oederen-ontvangst'],
+    // and, like productieorder, it stresses PROductieplanning and PROductieprestaties (with "kti"): split, so
+    // both are said pro-DUC-tie (this changes eng.ot.isa95's voice, which had no rendered video yet)
+    [/\b([Pp])roductie(planning|prestaties)/g, '$1roductie-$2'],
+    // congestion and roles (eng.gridbasics.congestion): ACM as letters (espeak-ng reads the word "akm") and
+    // TenneT as one word (it reads "Tenne T"); energiewet, capaciteitskaart, energieleverancier and piekuren split at the head (espeak-ng
+    // stresses "E-nergiewet", "KA-paciteitskaart", "energieleveranCIER" and "pie-KUUR-en"); and the grid's
+    // "de/een wachtrij", stressed "wacht-RIJ", said WACHT-rij (only after de or een, so the lines film's
+    // "kleine wachtrij" and "wachtrijen" stay as they are)
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
+    [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
+    // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -155,13 +205,16 @@ const SAY = {
     [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
     [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68'],
     // CILT as letters here too: espeak-ng's English reads it as the word "silt"
-    [/\bCILT\b/g, 'C I L T']],
+    [/\bCILT\b/g, 'C I L T'],
+    // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
 export const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
 // What is said, as written (no gloss, units kept): the subtitles of the video.
 export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+// build-only:end
 
 // v14b, the timeline driven by the narration audio. durs[scene][beat] is the
 // length of each beat's recorded line (s). Each scene opens with a short look

@@ -109,6 +109,39 @@ test('no gradients, no pills, no retired colours in the stylesheet', () => {
   assert.ok(!/border-left:\s*\d+px solid/.test(css), 'coloured left-border card');
 });
 
+// ---- v16 flair ----
+test('brand: ring arc, stop disc, seal and lit segment reach 3:1 against card and canvas in both themes', () => {
+  // ring arc, stop disc, bronze/silver rings and the lit top segment: --accent;
+  // the gold seal's disc: --accent too (--accent-fill is 1.9:1 on the dark card); the guide's miss segment: --ok.
+  for (const name of Object.keys(themes)) {
+    for (const mark of ['accent', 'ok']) {
+      for (const ground of ['card', 'bg']) {
+        const c = contrast(color(name, mark), color(name, ground));
+        assert.ok(c >= 3, `${name} ${mark}/${ground} ${c.toFixed(2)}`);
+      }
+    }
+    // The check on the gold seal reads on its disc.
+    assert.ok(contrast(color(name, 'card'), color(name, 'accent')) >= 3, `${name} seal check`);
+  }
+  assert.match(css, /\.seal-fill \{ fill: var\(--accent\); stroke: var\(--accent\)/);
+  assert.match(css, /\.seal-check \{ fill: none; stroke: var\(--card\)/);
+});
+
+test('brand: no new hex colours and no pop, bounce or confetti keyframes in the flair CSS', () => {
+  const at = css.indexOf('/* ---- v16 flair ----');
+  assert.ok(at > 0, 'flair section');
+  const flair = css.slice(at);
+  assert.doesNotMatch(flair, /#[0-9a-f]{3,8}\b/i, 'hex colour');
+  assert.doesNotMatch(flair, /rgba?\(/, 'literal colour');
+  assert.doesNotMatch(flair, /@keyframes (?!vp-)/, 'only vp- keyframes');
+  assert.doesNotMatch(css, /@keyframes [\w-]*(pop|bounce|confetti|shake|pulse)/i);
+  assert.doesNotMatch(flair, /cubic-bezier|infinite|spring/i, 'no overshoot, no loops');
+  assert.doesNotMatch(flair, /animation[^;]*\b\d+(ms|s)\b/, 'durations come from tokens');
+  for (const f of ['src/ui/guide.js', 'src/ui/flairui.js', 'src/ui/pathmap.js', 'src/ui/modulecheck.js']) {
+    assert.doesNotMatch(read(f), /#[0-9a-f]{6}\b/i, `${f}: hex colour`);
+  }
+});
+
 // ---- No emoji anywhere in the app's own source ----
 test('no emoji in src (course content excepted)', () => {
   const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true })

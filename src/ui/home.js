@@ -9,6 +9,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
+import { startHead, subjectTitle } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
@@ -267,7 +268,8 @@ function startCard(app, card) {
     onclick: () => app.setSubject(card.subject),
   },
   h('span', { class: 'start-head' },
-    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`)),
+    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`),
+      subjectTitle(t, app.state, card.subject) ? [h('span', { class: 'muted' }, ' · '), subjectTitle(t, app.state, card.subject)] : null),
     card.done ? h('span', { class: 'start-done' }, ico('check'), ' ', t('startDone')) : null),
   what,
   h('span', { class: 'start-why' }, why),
@@ -281,23 +283,30 @@ function breakCard(app, show) {
     h('button', { class: 'icon-btn small', 'aria-label': app.t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, ico('x')));
 }
 
+// After the first v16 start: one quiet line about the medals and title his
+// earlier work earned (Q7), shown once.
+function flairNote(app) {
+  const note = (app.state.ui || {}).flairNote;
+  if (!note) return null;
+  const { flairNote: _seen, ...ui } = app.state.ui;
+  app.setState({ ...app.state, ui });
+  const title = note.rank ? app.t(`title_${note.rank}`) : '';
+  return h('p', { class: 'muted small flair-note' }, ico('award'), ' ', app.t('titleSoFar', note.medals, title));
+}
+
 // The start screen: under the Vantage Point name, one today card per subject,
 // and the streak and level in one quiet line.
 function renderStart(app, root, showBreak) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  const streak = isStreakAlive(s.streak, today) ? s.streak.count : 0;
-  const lv = levelFromXp(s.xp);
   const cards = startCards(s, today, app.content, app.lang);
   root.append(
     h('header', { class: 'top' }, brandLockup()),
     h('main', { class: 'screen home start' },
       breakCard(app, showBreak),
-      h('h1', { class: 'start-title' }, t('startTitle')),
-      h('p', { class: 'start-meta muted small' },
-        ico('flame'), ` ${streak} ${t('streak', streak)} · ${t('level')} ${lv.level} · ${lv.into}/${lv.needed} XP`,
-        s.freezes ? ` · ${t('freezesShort', s.freezes)}` : ''),
+      startHead(app),
+      flairNote(app),
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
@@ -343,6 +352,7 @@ function subjectHeader(app) {
   const streak = isStreakAlive(s.streak, app.today()) ? s.streak.count : 0;
   return h('header', { class: 'top' },
     h('button', { class: 'back-btn', onclick: () => app.setSubject('start') }, ico('chevron-left'), h('span', {}, t('overview'))),
+    subjectTitle(t, s, app.subject),
     h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
       ico('flame'), h('b', {}, streak), h('span', { class: 'streak-label' }, t('streak', streak)),
       s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));

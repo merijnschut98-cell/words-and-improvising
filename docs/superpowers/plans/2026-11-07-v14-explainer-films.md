@@ -1162,7 +1162,7 @@ People films use the kit's flat-iso people (a few recurring characters: "jij" th
   1. A waveform with "eh" bumps — "Stopwoorden vullen de stilte."
   2. The bumps become flat pauses; the timer shows 3 pauses and 0 fillers — "Een pauze klinkt zekerder dan eh."
 
-### 3.9 After v13: ICT, IT/OT, cyber, pm.outside (20 films)
+### 3.9 After v13: ICT, IT/OT, cyber, pm.outside (21 films)
 
 These are planned against the v13 topic list. Terms and numbers are filled in when the lessons exist; the build asserts them like the others. Each storyboard is provisional.
 
@@ -1182,6 +1182,7 @@ These are planned against the v13 topic list. Terms and numbers are filled in wh
 | `eng.itbasics.network` | Een datapakket op reis / A data packet's journey | networks: IP, LAN, VLAN, firewall | 110 | a packet travelling through switch, VLAN, router and firewall | P2 |
 | `eng.itbasics.cloud` | Server, cloud en SaaS / Server, cloud and SaaS | servers and cloud | 80 | who manages which layer in IaaS, PaaS and SaaS | P3 |
 | `eng.ot.isa95` | Van sensor tot ERP / From sensor to ERP | ISA-95 levels, PLC/SCADA/MES/ERP talking | 120 | a factory as layers; one order going down and its data coming up (reuses `eng.industry40.datapath` drawings) | P1 |
+| `eng.ot.orderflow` | Orders omlaag, terugmeldingen omhoog / Orders down, confirmations up | orderflow (stack topic, L2): work order, recipe, confirmation, goods receipt, backflush | 284 | the ISA-95 building again: the order and recipe going down, counts and the confirmation coming up, stock booked in (SAP 101) and out (261), backflush missing the scrap (24 vs 25 kg) | P1 |
 | `eng.ot.protocols` | OPC UA en MQTT / OPC UA and MQTT | OPC UA and MQTT, IT/OT convergence | 90 | client–server reads versus publish–subscribe through a broker | P2 |
 | `eng.cyber.zones` | Zones en conduits in de fabriek / Zones and conduits in the plant | basics (CIA), OT security under IEC 62443 | 110 | an attack path through a flat network, then segmented | P2 |
 | `eng.cyber.incident` | Een OT-cyberincident / An OT cyber incident | incident response | 110 | from a phishing mail to recovery, the phases with roles | P2 |
@@ -1195,6 +1196,7 @@ Provisional storyboards (4–5 scenes each):
 - **`pm.devops.pipeline`:** commit → build → unit tests → integration tests → deploy to staging → deploy to production → a failing test stops a bad change → a rollback; the four DORA meters move.
 - **`pm.itproject.cutover`:** freeze → data migration with reconciliation counts → the go/no-go at the checkpoint → go-live → the rollback point passes → hypercare tickets fall over 2–6 weeks (2–6 weeks taken from pm.land.handover).
 - **`eng.ot.isa95`:** levels 0–4 as floors of the plant → an order from ERP to MES to the PLC → machine data back up → where the IT/OT boundary and the DMZ sit.
+- **`eng.ot.orderflow`:** the two ISA-95 flows across the 4/3 boundary (schedule down, performance up; master data down, capacity up) → production order to work order, in sequence → the recipe to the PLC → counts, scrap and downtime up, the confirmation (the MES counted 960 good, 40 scrap; in the example it confirms only the 960) → goods receipt into stock (SAP 101, material out with 261, hedged as SAP's codes) → backflush from the BOM and the confirmed quantity (in SAP confirmed scrap counts too) → the worked example: 24 kg booked, 25 kg used, 1 kg adrift, the fix → “stock in SAP is never right”: late, wrong unit, scrap left out; how often to confirm. Carries the lesson's worked example (lessons with a film no longer show it).
 - **Others:** the same pattern: the setting → the actors → the sequence → what goes wrong → the fix.
 
 ## 4. Build order and waves

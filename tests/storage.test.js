@@ -10,7 +10,7 @@ function fakeBackend(init = {}) {
 test('missing data gives defaults', () => {
   const s = load(fakeBackend());
   assert.deepEqual(s, defaultState());
-  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '' });
+  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false });
 });
 
 test('corrupt data gives defaults and is backed up', () => {
@@ -201,15 +201,15 @@ test('finishing the welcome clears the pending flag', async () => {
 
 test('courses and courseReviews default and coerce', () => {
   const d = load(fakeBackend());
-  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } });
+  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } });
   assert.deepEqual(d.courseReviews, {});
   const bad = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: { eng: { lessons: 'x', sessions: {} } }, courseReviews: [], ui: { subject: 'cooking' } }) }));
-  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } });
+  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } });
   assert.deepEqual(bad.courseReviews, {});
   assert.equal('subject' in bad.ui, false);
   const good = { eng: { lessons: { 'eng.flow.takt': { read: 1, passed: 2 } }, sessions: [{ day: '2026-11-02', kind: 'lesson', correct: 3, total: 3, ts: 2 }], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } };
   const ok = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: good, courseReviews: { 'nl|eng.flow.takt#r0': { box: 2, due: '2026-11-05', lesson: 'eng.flow.takt', subject: 'eng' } }, ui: { subject: 'eng' } }) }));
-  assert.deepEqual(ok.courses, good);
+  assert.deepEqual(ok.courses, { eng: { ...good.eng, medals: {}, checks: {} }, pm: { ...good.pm, medals: {}, checks: {} } });
   assert.equal(ok.courseReviews['nl|eng.flow.takt#r0'].box, 2);
   assert.equal(ok.ui.subject, 'eng');
 });
@@ -246,4 +246,59 @@ test('settings.context defaults to empty, is a string and is cut at 400 characte
   assert.equal(at('I plan MV work at a grid operator'), 'I plan MV work at a grid operator');
   assert.equal(at('x'.repeat(900)).length, 400);
   assert.equal(load(fakeBackend({ [KEY]: JSON.stringify({ xp: 3 }) })).settings.context, '', 'an older blob gets the default');
+});
+
+// v16 flair fields.
+test('defaultState has xpDays, dailyGoal 30, titles, and per-subject medals and checks', () => {
+  const d = defaultState();
+  assert.deepEqual(d.xpDays, {});
+  assert.deepEqual(d.dailyGoal, { xp: 30, ts: 0 });
+  assert.deepEqual(d.titles, {});
+  assert.deepEqual(d.speakMedals, {});
+  for (const k of ['eng', 'pm']) {
+    assert.deepEqual(d.courses[k].medals, {});
+    assert.deepEqual(d.courses[k].checks, {});
+  }
+});
+
+test('load drops non-number xpDays, a goal outside 20/30/50, unknown medal tiers and ranks outside 1–4', () => {
+  const raw = {
+    xp: 10,
+    xpDays: { '2026-11-01': 20, '2026-11-02': 'x', bad: 5, '2026-11-03': NaN },
+    dailyGoal: { xp: 40, ts: 5 },
+    titles: { eng: { rank: 2, ts: 1 }, pm: { rank: 7, ts: 1 }, speak: { rank: 'x' }, cooking: { rank: 1, ts: 1 } },
+    speakMedals: { basics: { tier: 'silver', ts: 1 }, pressure: { tier: 'platinum', ts: 1 }, nope: { tier: 'gold', ts: 1 } },
+    courses: { eng: { lessons: {}, sessions: [], medals: { 'eng.flow': { tier: 'gold', ts: 3 }, 'eng.x': { tier: 'tin', ts: 1 }, 'eng.y': 'gold' }, checks: { 'eng.flow': { last: '2026-11-01', best: 9, total: 10, perfect: null }, 'eng.z': 'x', 'eng.q': { last: 'nope', best: 1, total: 1, perfect: null } } } },
+  };
+  const s = load(fakeBackend({ [KEY]: JSON.stringify(raw) }));
+  assert.deepEqual(s.xpDays, { '2026-11-01': 20 });
+  assert.deepEqual(s.dailyGoal, { xp: 30, ts: 0 });
+  assert.deepEqual(s.titles, { eng: { rank: 2, ts: 1 } });
+  assert.deepEqual(s.speakMedals, { basics: { tier: 'silver', ts: 1 } });
+  assert.deepEqual(s.courses.eng.medals, { 'eng.flow': { tier: 'gold', ts: 3 } });
+  assert.deepEqual(s.courses.eng.checks, { 'eng.flow': { last: '2026-11-01', best: 9, total: 10, perfect: null } });
+  const goal = load(fakeBackend({ [KEY]: JSON.stringify({ dailyGoal: { xp: 50, ts: 9 } }) }));
+  assert.deepEqual(goal.dailyGoal, { xp: 50, ts: 9 });
+});
+
+test('a v15 state loads with empty flair fields and keeps every lesson', () => {
+  const v15 = { ...defaultState(), xp: 300, courses: { eng: { lessons: { 'eng.flow.takt': { read: 1, passed: 2, opened: 3 } }, sessions: [], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } } };
+  for (const k of ['xpDays', 'dailyGoal', 'titles', 'speakMedals']) delete v15[k];
+  const s = load(fakeBackend({ [KEY]: JSON.stringify(v15) }));
+  assert.deepEqual(s.courses.eng.lessons, v15.courses.eng.lessons);
+  assert.deepEqual(s.xpDays, {});
+  assert.deepEqual(s.dailyGoal, { xp: 30, ts: 0 });
+  assert.deepEqual(s.titles, {});
+  assert.equal(s.xp, 300);
+});
+
+test('settings.guide defaults to true and stays a boolean; celebration sound defaults to off', () => {
+  assert.equal(defaultState().settings.guide, true);
+  assert.equal(defaultState().settings.cheer, false);
+  const at = (settings) => load(fakeBackend({ [KEY]: JSON.stringify({ settings }) })).settings;
+  assert.equal(at({ guide: false }).guide, false);
+  assert.equal(at({ guide: 'no' }).guide, true);
+  assert.equal(at({}).guide, true);
+  assert.equal(at({ cheer: true }).cheer, true);
+  assert.equal(at({ cheer: 1 }).cheer, false);
 });
