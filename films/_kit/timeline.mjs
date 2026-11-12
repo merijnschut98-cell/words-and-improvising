@@ -228,7 +228,18 @@ const SAY = {
     // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
     // load film's "De hoofdzekering" stays as it is
     [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
-    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng reads NEN-EN 50110 as "en ee en ee en
+    // vijftig duizend honderd tien" and NEN 3140 as "en ee en drieduizend honderdveertig"; said as the floor
+    // says them, "nen E N vijftig honderdtien" and "nen 31 40" (only NEN with a four-digit number, so ISO and
+    // EN numbers elsewhere stay). IV is read as the word "if", VOP as the word "vop" and WV with a v for the
+    // w: said I V, vee oo pee and wee vee (VP is read right). It stresses ARbobesluit (with "bes-luit"),
+    // the head of schakelmonTEUR, schakelmoMENten and moffenPLOEG, and reads installatieverantwoordelijke
+    // as "INstalaativerantwoordelijke" (t, not ts): split at the head, each part keeps its own reading
+    [/\bNEN-EN 50110\b/g, 'nen E N vijftig honderdtien'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'vee oo pee'], [/\bWV\b/g, 'wee vee'], [/\bArbobesluit\b/g, 'Arbo-besluit'],
+    [/\b([Ss])chakelmonteur/g, '$1chakel-monteur'], [/\b([Ss])chakelmoment/g, '$1chakel-moment'], [/\b([Mm])offenploeg/g, '$1offen-ploeg'],
+    [/\b([Ii])nstallatieverantwoordelijke/g, '$1nstallatie-verantwoordelijke']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -240,7 +251,11 @@ const SAY = {
     // CILT as letters here too: espeak-ng's English reads it as the word "silt"
     [/\bCILT\b/g, 'C I L T'],
     // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
-    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet']],
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng's English reads IV as "Roman four" and the
+    // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
+    // "nen thirty-one forty" and "nen E N fifty one ten"
+    [/\bIV\b/g, 'I V'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

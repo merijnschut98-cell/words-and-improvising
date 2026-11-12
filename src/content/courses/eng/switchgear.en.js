@@ -862,6 +862,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      film: 'eng.switchgear.fiverules',
       title: 'Working safely: the five rules and NEN 3140',
       pre: [
         {

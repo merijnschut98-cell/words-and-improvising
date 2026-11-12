@@ -862,6 +862,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      film: 'eng.switchgear.fiverules',
       title: 'Veilig werken: de vijf veiligheidsregels en NEN 3140',
       pre: [
         {
