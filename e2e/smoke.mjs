@@ -1143,7 +1143,8 @@ await step('streak freeze covers one missed day', async () => {
 await step('broken streak shows a gentle banner once', async () => {
   await patchState({ streak: { count: 5, lastDay: await dayAgo(4) }, freezes: 0, ui: {} });
   await page.reload();
-  await page.locator('.break-card').waitFor({ timeout: 3000 });
+  // 10 s: on a loaded machine the reload itself (the service worker refreshes every file) can take longer than 3 s.
+  await page.locator('.break-card').waitFor({ timeout: 10000 });
   await page.reload();
   await page.waitForTimeout(300);
   if (await page.locator('.break-card').count()) throw new Error('banner shown twice');
@@ -1652,6 +1653,7 @@ await step('voice variety card after a spoken round (optional toggle)', async ()
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.reload();
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     // Fake mic + analyser: loud/soft alternation, fading in the last part.
     window.__meter = { gum: 0, stopped: 0, closed: 0, n: 0 };
@@ -1701,6 +1703,7 @@ await step('word budget counter turns red over the cap', async () => {
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.goto(BASE);
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     const { makePrompt } = await import('./src/core/lesson.js');
     const { default: nl } = await import('./src/content/prompts.nl.js');
