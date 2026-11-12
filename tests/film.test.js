@@ -110,6 +110,27 @@ test('speak variant: Kahneman, Flyvbjerg, referentieklasse, basiscijfer, IT-lead
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Seeing progress without the expertise (pm.outside.steering): espeak-ng reads
+// definition of done as "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun;
+// not in pm.plan.wbs's caption "definition of done: klaar als", which keeps its
+// voice), FAT and SAT as the words "fat" and "sat" (said as letters), stresses
+// FABrieksacceptatietest and LOcatieacceptatietest with "ti" for "tsie" (split
+// at the heads), and reads Jeffrey Pfeffer with a stressed -REY and a sounded p
+// (said Djeffri Feffer); Dutch only
+test('speak variant: definition of done, FAT, SAT, the acceptance tests and Jeffrey Pfeffer in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De definition of done is een checklist. Definition of done:'), 'De deffi-nisjun of dun is een checklist. Deffi-nisjun of dun:');
+  assert.equal(nl('Werkwoord, eigenaar en een definition of done: klaar als de planningsmanager akkoord is.'),
+    'Werkwoord, eigenaar en een definition of done: klaar als de planningsmanager akkoord is.');
+  assert.equal(nl('De FAT bij de leverancier, de SAT op locatie; een FAT.'), 'De F A T bij de leverancier, de S A T op locatie; een F A T.');
+  assert.equal(nl('de fabrieksacceptatietest en de locatieacceptatietest, Fabrieksacceptatietest'),
+    'de fabrieks-acceptatie-test en de locatie-acceptatie-test, Fabrieks-acceptatie-test');
+  assert.equal(nl('De 7 Rules of Power van Jeffrey Pfeffer'), 'De 7 Rules of Power van Djeffri Feffer');
+  assert.equal(nl('een fat budget, de SATELLIET, de fabriek, de locatie'), 'een fat budget, de SATELLIET, de fabriek, de locatie');
+  const en = 'The definition of done, the FAT and the SAT, a factory acceptance test, Jeffrey Pfeffer';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

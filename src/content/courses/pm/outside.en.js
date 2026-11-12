@@ -979,6 +979,7 @@ export default {
     // Topic 4: steering and deciding
     {
       id: 'pm.outside.progress',
+      film: 'pm.outside.steering',
       title: 'Measuring progress without the content',
       pre: [
         {
@@ -1060,6 +1061,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      film: 'pm.outside.steering',
       title: 'Deciding under uncertainty, and escalating',
       pre: [
         {
