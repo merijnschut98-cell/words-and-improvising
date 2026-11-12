@@ -88,7 +88,7 @@ const STAGE = (() => {
       o.pack = op(span(p, 0.05, 0.3), card(160, 214) + txt(X0, 190, tr('pakketdeal', 'package deal'), 'pm-on')
         + chips.map((c, i) => rect(X0 + i * 96, 206, 86, 36, 'pm-chip', 6) + txt(X0 + 43 + i * 96, 231, c, 'pm-txt', 'middle')).join('')
         + lines(272, [[tr('geef wat jou weinig kost,', 'give what is cheap for you,')], [tr('de ander veel waard is', 'valuable for them')]]))
-        + op(span(p, 0.6, 0.85), txt(X0, 352, tr('één punt: winnen of verliezen', 'one issue: win or lose'), 'pm-mute'));
+        + op(span(p, 0.25, 0.45), txt(X0, 352, tr('één punt: winnen of verliezen', 'one issue: win or lose'), 'pm-mute'));
     }
     if (b === 2) {
       o.fair = op(span(p, 0.05, 0.3), card(160, 214) + lines(190, [[tr('eerlijke maatstaf', 'fair standard'), 'pm-on'], [tr('marktprijs, data, een norm', 'market rate, past data, a norm')], [tr('Wat is hier redelijk,', 'What would be fair,'), 'pm-big'], [tr('en hoe checken we dat?', 'and how can we check?'), 'pm-big'], [tr('niet wie het sterkst is', 'not who is stronger'), 'pm-mute'], [tr('ja zonder gezichtsverlies', 'yes without losing face'), 'pm-mute']]));
@@ -163,8 +163,8 @@ const STAGE = (() => {
       o.second = op(span(p, 0.5, 0.75), card(296, 84, 'pm-hot') + lines(326, [[tr('een tweede echte optie:', 'a second real option:'), 'pm-on'], [tr('je sterkste middel', 'your strongest tool')]]));
     }
     if (b === 4) {
-      o.switch = op(span(p, 0.05, 0.3), lines(206, [[tr('overstapkosten', 'switching cost'), 'pm-big'], [tr('tijd, inwerken', 'time, learning')]]));
-      o.qual = op(span(p, 0.35, 0.6), lines(272, [[tr('kwalificatie:', 'qualification:'), 'pm-on'], [tr('testen en goedkeuren', 'testing and approval')], [tr('hoog = zwakker alternatief', 'high = weaker alternative'), 'pm-mute']]));
+      o.switch = op(span(p, 0.05, 0.2), lines(206, [[tr('overstapkosten', 'switching cost'), 'pm-big'], [tr('tijd, inwerken', 'time, learning')]]));
+      o.qual = op(span(p, 0.12, 0.3), lines(272, [[tr('kwalificatie:', 'qualification:'), 'pm-on'], [tr('testen en goedkeuren', 'testing and approval')], [tr('hoog = zwakker alternatief', 'high = weaker alternative'), 'pm-mute']]));
     }
     if (b >= 5) {
       o.pitfall = op(span(p, 0.05, 0.3), lines(206, [[tr('fout: BATNA overschatten,', 'failure: overrating it,'), 'pm-big'], [tr('of vergeten wat het kost', 'or forgetting its cost')], [tr('sterk: rustig laten zien', 'strong: show it calmly')], [tr('zwak: voor je houden', 'weak: keep it to yourself')]]))
@@ -187,7 +187,7 @@ const STAGE = (() => {
     const y = 300;
     if (b <= 2) {
       o.anchor = lines(82, [[tr('anker', 'anchor'), 'pm-big'], [tr('het eerste getal trekt', 'the first number pulls')], [tr('ieders schatting mee', 'every estimate along')], [tr('Tversky en Kahneman, 1974', 'Tversky and Kahneman, 1974'), 'pm-mute']]);
-      if (b >= 1) o.first = op(inAt(b, p, 1), lines(198, [[tr('eerste bod voorspelt de deal', 'first offer predicts the deal')], [tr('Galinsky en Mussweiler, 2001', 'Galinsky and Mussweiler, 2001'), 'pm-mute']]));
+      if (b >= 1) o.first = op(inAt(b, p, 1), lines(198, [[tr('eerste bod voorspelt de deal', 'first offer predicts the deal')], [tr('Galinsky en Mussweiler, 2001', 'Galinsky & Mussweiler, 2001'), 'pm-mute']]));
       if (b >= 2) o.defend = op(inAt(b, p, 2), card(262, 112, 'pm-hot') + lines(290, [[tr('ambitieus en verdedigbaar', 'ambitious and defensible'), 'pm-on'], [tr('extreem zonder reden:', 'extreme, no reason:')], [tr('kost geloofwaardigheid', 'costs credibility'), 'pm-mute'], [tr('of het gesprek stopt', 'or the talk ends'), 'pm-mute']]));
       return;
     }
@@ -218,9 +218,9 @@ const STAGE = (() => {
     o.conc = lines(82, [[tr('concessies, steeds kleiner', 'concessions, ever smaller'), 'pm-big']])
       + steps.map((v, i) => op(inAt(b, p, 4, 0.1 + i * 0.15, 0.25 + i * 0.15), rect(X0, 100 + i * 34, (v - 16) * 40, 26, 'sc-you', 3) + txt(X0 + (v - 16) * 40 + 10, 120 + i * 34, tr(String(v).replace('.', ','), String(v)) + tr(' dagen', ' days')))).join('')
       + op(inAt(b, p, 4, 0.6, 0.85), txt(X0, 226, tr('elke stap: iets terug', 'each step: something back'), 'pm-on'));
-    if (b >= 5) o.range = op(span(p, 0.05, 0.3), lines(262, [[tr('kent de ander de markt beter?', 'they know the market better?')], [tr('laat hem openen', 'let them open'), 'pm-on'], [tr('bandbreedte “20 tot 22”:', 'a range, “20 to 22”:')], [tr('Ames en Mason, 2015', 'Ames and Mason, 2015'), 'pm-mute']]))
-      + op(span(p, 0.75, 0.95), txt(X0, 376, tr('Waarop is dat gebaseerd?', 'What is it based on?'), 'pm-on'));
-    if (b === 4) o.conc += op(span(p, 0.7, 0.9), lines(262, [[tr('groot of snel toegeven', 'big or quick concessions')], [tr('verraadt veel ruimte', 'signal plenty of room'), 'pm-mute']]));
+    if (b >= 5) o.range = op(span(p, 0.05, 0.3), lines(262, [[tr('laat hem openen, of: doel', 'let them open, or: target'), 'pm-on'], [tr('onderaan, “20 tot 22”, wint', 'at the bottom, “20 to 22”,')], [tr('van “20”; bovenaan verliest', 'beats “20”; at the top loses')], [tr('Ames en Mason, 2015', 'Ames and Mason, 2015'), 'pm-mute']]))
+      + op(span(p, 0.35, 0.55), txt(X0, 376, tr('Waarop is dat gebaseerd?', 'What is it based on?'), 'pm-on'));
+    if (b === 4) o.conc += op(span(p, 0.2, 0.4), lines(262, [[tr('groot of snel toegeven', 'big or quick concessions')], [tr('verraadt veel ruimte', 'signal plenty of room'), 'pm-mute']]));
   };
   S[8] = (b, p, o) => { // no, and what can
     if (b <= 5) {

@@ -39,8 +39,11 @@
 // the term comes from the later negotiation-analysis literature). Anchoring:
 // Tversky and Kahneman, Science 1974. First offers predicting the settlement:
 // Galinsky and Mussweiler, JPSP 2001. Loss aversion: Kahneman and Tversky,
-// prospect theory, 1979. Range offers with the target at the bottom (bolstering
-// ranges): Ames and Mason, JPSP 2015. The positive no, yes-no-yes: Ury, The
+// prospect theory, 1979. Range offers: Ames and Mason, JPSP 2015 ("Tandem
+// anchoring"): a bolstering range (the target at the bottom) got better
+// settlements than a point offer without seeming rude; a backdown range (the
+// target at the top) lost value. The lesson said "at least as well"; lesson
+// and film now state the finding (review 2026-11-12). The positive no, yes-no-yes: Ury, The
 // Power of a Positive No, 2007. Chris Voss, Never Split the Difference, 2016.
 // The voice names none of them in Dutch (espeak-ng misreads the names; see the
 // narration notes); the cards and captions carry each name and year for at
@@ -125,8 +128,9 @@
 //   anchor teach 5: plan concessions, each smaller, 20, 19, 18.5, get
 //     something for each (s8 b5); big or quick ones signal room (card); if
 //     they know the market better, let them open; Ames and Mason 2015 (card):
-//     a range with your target at the bottom, 20 to 22, works at least as well;
-//     "what is that number based on?" (s8 b6)
+//     a range with your target at the bottom, 20 to 22, beats one number, and
+//     the target at the top loses (card); "what is that number based
+//     on?" (card) (s8 b6)
 //   anchor example: a planning diagnostic, a short study of how work is
 //     planned (card), at three regional offices; the last three took 18, 22
 //     and 20 days (s7 b4); purchasing said about 10 on the phone; open with
@@ -214,7 +218,7 @@ says(ANC, ['Verankering (Tversky en Kahneman, 1974)', 'het eerste getal in de ka
   'ga dan niet over zijn getal in discussie', 'Vraag hoe hij erop kwam, leg jouw basis uit en leg je eigen getal op tafel', 'vlak bij een getal dat je onredelijk vindt; daarmee accepteer je zijn anker',
   '“95% van de klussen op tijd” of “1 op de 20 klussen te laat”', '“€31.200” of “€600 per week, een jaar lang”', 'verliesaversie (Kahneman en Tversky, 1979)', '“zonder dit blijf je 300 ploeguren per maand verliezen”', '“dit bespaart 300 uur”', 'Frame eerlijk, in termen waar de ander om geeft',
   'maak elke stap kleiner (20 dagen, dan 19, dan 18,5) en vraag er telkens iets voor terug', 'Grote of snelle concessies verraden dat er nog veel ruimte is',
-  'Kent de ander de markt beter dan jij, dan beschermt het je om hem te laten openen', 'Ames en Mason (2015)', 'een bandbreedte met je doel onderaan, “20 tot 22 dagen”, minstens zo goed werkt als één getal', '“Waar is dat getal op gebaseerd?”',
+  'Kent de ander de markt beter, dan beschermt het je om hem te laten openen', 'Ames en Mason (2015)', 'een bandbreedte met je doel onderaan, “20 tot 22 dagen”, een betere uitkomst dan één getal', 'met je doel bovenaan verloor je', '“Waar is dat getal op gebaseerd?”',
   'planningsdiagnose, een kort onderzoek naar hoe het werk gepland wordt en waar het misgaat, bij drie regiokantoren', 'kostten 18, 22 en 20 dagen', 'liet iemand van inkoop “een dag of 10” vallen',
   'Begin niet bij hun 10, en ga niet zonder reden in het midden zitten op 15', 'ruil dan scope in plaats van dagen: “Met 12 dagen doen we één regio grondig in plaats van drie.”', 'Dan kiest de klant wat hij voor zijn geld krijgt']);
 says(NO, ['Als je overal ja op zegt, is je ja minder waard en is je werk te laat', 'William Ury’s “positieve nee” (2007) heeft drie delen: ja, nee, ja', 'een belofte aan een klant of de kwaliteit van het werk', 'Dan een duidelijk nee', 'een optie, een ruil, een later moment',
@@ -279,13 +283,11 @@ const world = [
   cueG('board', BOARD.svg + boardMini),
   w.person({ x: 44, y: 50, role: 'jij', along: 'x', reach: [72, 6, 150] }),
   w.chair({ x: 136, y: 100, back: -1 }),
-  w.chair({ x: 206, y: 100, back: -1 }),
   w.person({ x: 76, y: 182, role: 'teamlead', along: 'y' }),
   w.table(TABLE),
   cueG('paper', SHEET.svg + sheetLines),
   cueG('laptop', w.laptop({ x: 118, y: 136, z: TZ, toward: 1 })),
   w.cup(132, 178, TZ),
-  w.cup(236, 126, TZ),
   w.person({ x: 270, y: 152, role: 'sponsor', along: 'y' }),
   w.person({ x: 236, y: 218, role: 'planner', along: 'x' }),
 ].join('');
@@ -378,7 +380,7 @@ const spec = {
     ]),
     sc('s7', ANC, { nl: 'Het eerste getal', en: 'The first number' }, [
       { nl: 'Het eerste getal is een {t:Anker|anker}: het trekt ieders schatting mee, zelfs willekeurig.', en: 'The first number is an {t:Anchor|anchor}: it pulls every estimate along, even when arbitrary.', cue: { Anker: 'anchor' }, focus: 'anchor' },
-      { nl: 'Het eerste bod voorspelt de deal. Ken je de markt, noem dan zelf het eerste getal.', en: 'The first offer predicts the deal. If you know the market, name the first number yourself.', focus: 'first' },
+      { nl: 'Het eerste bod voorspelt de deal sterk. Ken je de markt, noem dan zelf het eerste getal.', en: 'The first offer strongly predicts the deal. If you know the market, name the first number yourself.', focus: 'first' },
       { nl: 'Ambitieus en verdedigbaar; zonder onderbouwing kost het geloofwaardigheid.', en: 'Ambitious and defensible; without a basis it costs credibility.', focus: 'defend' },
       { nl: 'Planningsdiagnose, drie kantoren. De laatste drie kostten {n:18}, {n:22} en {n:20} dagen.', en: 'Planning diagnostic, three offices. The last three took {n:18}, {n:22} and {n:20} days.', focus: 'diag' },
       { nl: 'Inkoop zei “een dag of {n:10}”. Jij: “Het waren er {n:18} tot {n:22}, dus {n:20}.”', en: 'Purchasing said “about {n:10}”. You: “It took {n:18} to {n:22}, so {n:20}.”', focus: ['basis', 'jij'] },
@@ -391,7 +393,7 @@ const spec = {
       { nl: '{t:Framing|Framing}: “{n:95}% op tijd” of “1 op de {n:20} te laat”.', en: '{t:Framing|Framing}: “{n:95}% on time” or “1 in {n:20} late”.', cue: { Framing: 'frame' }, focus: 'frame' },
       { nl: '{t:Verliesaversie|Verliesaversie}: “zonder dit verlies je {n:300} ploeguren per maand” komt harder aan.', en: '{t:Loss aversion|Loss aversion}: “without this you lose {n:300} crew hours a month” lands harder.', cue: { Verliesaversie: 'loss' }, focus: 'loss' },
       { nl: 'Plan je {t:Concessie|concessies} steeds kleiner: {n:20}, {n:19}, {n:18.5}, en vraag iets terug.', en: 'Plan your {t:Concession|concessions} ever smaller: {n:20}, {n:19}, {n:18.5}, and get something back.', cue: { Concessie: 'conc' }, focus: 'conc' },
-      { nl: 'Kent hij de markt beter? Laat hem openen, of noem een bandbreedte: {n:20} tot {n:22}.', en: 'They know the market better? Let them open, or name a range: {n:20} to {n:22}.', focus: 'range' },
+      { nl: 'Kent hij de markt beter? Laat hem openen. Of: {n:20} tot {n:22}, doel onderaan.', en: 'They know the market better? Let them open. Or: {n:20} to {n:22}, target at the bottom.', focus: 'range' },
     ]),
     sc('s9', NO, { nl: 'Nee, en wat wel kan', en: 'No, and what can' }, [
       { nl: 'Altijd ja maakt je ja minder waard. De {t:Positieve nee|positieve nee}: ja, nee, ja.', en: 'Always yes makes your yes worth less. The {t:Positive no|positive no}: yes, no, yes.', cue: { 'Positieve nee': 'pno' }, focus: 'pno' },
@@ -419,8 +421,8 @@ const spec = {
 // Dutch SAY rules in films/_kit/timeline.mjs (tested; recomputed for every
 // film: no other film's spoken text changes): pakketdeal as "pakket-diel"
 // (espeak-ng drops the d: "pakket-eeal") and deal alone as "diel" ("dee-al"),
-// framing as "freeming" (espeak-ng reads "fraa-ming"), integriteit split as
-// inte-griteit (espeak-ng stresses IN-), and the example's gecoate beugels and
+// framing as "freeming" (espeak-ng reads "fraa-ming"), integriteit by
+// pm.lead.feedback's in-tegriteit (stress on -TEIT; espeak-ng stresses IN-), and the example's gecoate beugels and
 // coaten as "gekoote", "kooten" (espeak-ng reads "ge-koo-aa-te"). A sentence
 // never starts with "Eén" (read "ee-een"), and prioriteiten (stressed PRI-) is
 // "wie bepaalt wat voorgaat". Kept out of the Dutch narration because espeak-ng misreads
@@ -513,14 +515,14 @@ const SAY = [
   [ // s7 the first number
     { nl: 'Het eerste getal is een {t:Anker|anker}: het trekt ieders schatting mee, zelfs willekeurig.',
       en: 'The first number is an {t:Anchor|anchor}: it pulls every estimate along, even when arbitrary.' },
-    { nl: 'Het eerste bod voorspelt de deal. Ken je de markt, noem dan zelf het eerste getal.',
-      en: 'The first offer predicts the deal. If you know the market, name the first number yourself.' },
-    { nl: 'Maak het ambitieus en verdedigbaar. Zonder onderbouwing kost het geloofwaardigheid.',
-      en: 'Make it ambitious and defensible. Without a basis it costs credibility.' },
+    { nl: 'Het eerste bod voorspelt de deal sterk. Ken je de markt, noem dan zelf het eerste getal.',
+      en: 'The first offer strongly predicts the deal. If you know the market, name the first number yourself.' },
+    { nl: 'Maak het ambitieus en verdedigbaar. Zonder onderbouwing kost het geloofwaardigheid, soms het hele gesprek.',
+      en: 'Make it ambitious and defensible. Without a basis it costs credibility, sometimes the whole talk.' },
     { nl: 'Een planningsdiagnose bij drie kantoren. De laatste drie kostten {n:18}, {n:22} en {n:20} dagen.',
       en: 'A planning diagnostic at three offices. The last three took {n:18}, {n:22} and {n:20} days.' },
     { nl: 'Inkoop zei een dag of {n:10}. Jij: het waren er {n:18} tot {n:22}, dus {n:20}.',
-      en: 'Purchasing said about {n:10}. You say: it took {n:18} to {n:22}, so {n:20}.' },
+      en: 'Purchasing said about {n:10}. You: it took {n:18} to {n:22}, so {n:20}.' },
     { nl: 'Niet hun {n:10}, en niet zonder reden het midden, {n:15}.',
       en: 'Not their {n:10}, and not the middle, {n:15}, without a reason.' },
     { nl: 'Duwen ze terug, ruil dan scope: met {n:12} dagen één regio grondig.',
@@ -537,8 +539,8 @@ const SAY = [
       en: 'Through {t:Loss aversion|loss aversion}, losses weigh more: without this you lose {n:300} crew hours a month.' },
     { nl: 'Plan je {t:Concessie|concessies} steeds kleiner: {n:20}, {n:19}, {n:18.5} dagen, en vraag telkens iets terug.',
       en: 'Plan your {t:Concession|concessions} ever smaller: {n:20}, {n:19}, {n:18.5} days, and get something back each time.' },
-    { nl: 'Kent de ander de markt beter? Laat hem openen, of noem een bandbreedte: {n:20} tot {n:22}.',
-      en: 'They know the market better? Let them open, or name a range: {n:20} to {n:22}.' },
+    { nl: 'Kent de ander de markt beter? Laat hem openen, of noem een bandbreedte met je doel onderaan: {n:20} tot {n:22}.',
+      en: 'They know the market better? Let them open, or name a range with your target at the bottom: {n:20} to {n:22}.' },
   ],
   [ // s9 no, and what can
     { nl: 'Altijd ja maakt je ja minder waard. De {t:Positieve nee|positieve nee}: ja, nee, ja.',
@@ -647,8 +649,8 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard met een kleine kopie van het paneel, en een klok. Jij, de adviseur in petrol, staat bij het bord. De teamleider staat aan het linkereind van de tafel, de sponsor in pak met stropdas aan het rechtereind: de andere partij. De planner met een tablet staat aan de voorkant. Op tafel een laptop en een voorbereidingsblad dat zich vult met twee kolommen: hun belangen en de jouwe. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld: standpunt en belang, de vragen en de behoeften; gedeelde en verschillende belangen, de pakketdeal, de eerlijke maatstaf en Chris Voss; de gereedheidscheck bij een netbeheerder en een pilot; de BATNA, de ondergrens en een dagtarief van 950 tegen 1.000 euro; twee balken, van jou en van hen, die naar elkaar toe schuiven tot de ZOPA verschijnt, dan uit elkaar; bluf, een tweede optie, overstapkosten en kwalificatie; de gecoate beugels met 12 en 4 procent en 10 weken; het anker op een lijn van dagen met 10, 15, 18 tot 22 en 20; het tegenbod, framing, verliesaversie, kleiner wordende concessies en een bandbreedte; de positieve nee als ja, nee, ja, de ruil en de rode lijn, en de donderdagmiddag met twee opties.',
-  en: 'A meeting room. On the back wall a whiteboard with a small copy of the panel, and a clock. You, the consultant in petrol, stand at the board. The team lead stands at the left end of the table, the sponsor in a suit and tie at the right end: the other side. The planner with a tablet stands at the front. On the table a laptop and a preparation sheet that fills in with two columns: their interests and yours. At the right a panel with one card per scene, marked as diagram or example: position and interest, the questions and the needs; shared and different interests, the package deal, the fair standard and Chris Voss; the readiness check at a grid operator and a pilot; the BATNA, the walk-away point and a day rate of 950 against 1,000 euros; two bars, yours and theirs, that slide towards each other until the ZOPA appears, then apart; bluffing, a second option, switching cost and qualification; the coated brackets with 12 and 4 percent and 10 weeks; the anchor on a line of days with 10, 15, 18 to 22 and 20; the counteroffer, framing, loss aversion, shrinking concessions and a range; the positive no as yes, no, yes, the trade and the red line, and the Thursday afternoon with two options.',
+  nl: 'Een vergaderruimte met een whiteboard (een kleine kopie van het paneel) en een klok. Jij, de adviseur in petrol, staat bij het bord; aan tafel de teamleider, de sponsor in pak (de andere partij) en de planner. Op tafel een laptop en een voorbereidingsblad met hun belangen en de jouwe. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld: standpunt en belang; ruil, pakketdeal en eerlijke maatstaf; de gereedheidscheck bij een netbeheerder; BATNA, ondergrens en 950 tegen 1.000 euro per dag; twee balken die naar elkaar schuiven tot de ZOPA verschijnt; overstapkosten; gecoate beugels met 12 en 4 procent; het anker op een lijn van dagen; framing en kleiner wordende concessies; de positieve nee als ja, nee, ja, en de donderdagmiddag met twee opties.',
+  en: 'A meeting room with a whiteboard (a small copy of the panel) and a clock. You, the consultant in petrol, stand at the board; at the table the team lead, the sponsor in a suit (the other side) and the planner. On the table a laptop and a preparation sheet with their interests and yours. At the right a panel with one card per scene, marked as diagram or example: position and interest; trades, package deal and fair standard; the readiness check at a grid operator; BATNA, walk-away point and 950 against 1,000 euros a day; two bars that slide together until the ZOPA appears; switching cost; coated brackets with 12 and 4 percent; the anchor on a line of days; framing and shrinking concessions; the positive no as yes, no, yes, and the Thursday afternoon with two options.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
