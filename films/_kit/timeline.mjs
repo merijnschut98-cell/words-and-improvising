@@ -228,7 +228,14 @@ const SAY = {
     // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
     // load film's "De hoofdzekering" stays as it is
     [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
-    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // how a transformer works (eng.transformers.principle): ONAN and Dyn5 as letters (espeak-ng reads the words
+    // "onan" and "din vijf"); nullastverliezen and regelschakelaar, stressed nullastverLIEzen and regelschaKElaar
+    // (with the e of "bed"), split at the head (NULlast-verLIEzen, REgel-SCHAkelaar, as vermogensschakelaar
+    // above); and "in driehoek", stressed drie-HOEK, said drie-hoek (only after "in", so the drives film's
+    // "naar driehoek" stays as it is)
+    [/\bONAN\b/g, 'O N A N'], [/\bDyn5\b/g, 'D Y N 5'], [/\b([Nn])ullastverliezen/g, '$1ullast-verliezen'],
+    [/\b([Rr])egelschakelaar/g, '$1egel-schakelaar'], [/\bin driehoek\b/g, 'in drie-hoek']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
