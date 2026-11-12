@@ -972,6 +972,35 @@
         ],
         "vtt": "src/content/courses/films/eng.mechanics.tensile.en.vtt"
       }
+    },
+    "eng.mechanics.fatigue": {
+      "poster": "src/content/courses/films/eng.mechanics.fatigue.jpg",
+      "nl": {
+        "dur": 265,
+        "bytes": 9462345,
+        "scenes": [
+          0,
+          52.24,
+          94.44,
+          126.65,
+          162.23,
+          216.12
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.fatigue.nl.vtt"
+      },
+      "en": {
+        "dur": 298,
+        "bytes": 10556615,
+        "scenes": [
+          0,
+          62.85,
+          108.22,
+          143.16,
+          184,
+          243.75
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.fatigue.en.vtt"
+      }
     }
   }
 }

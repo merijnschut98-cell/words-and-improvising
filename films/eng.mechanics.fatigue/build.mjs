@@ -424,7 +424,7 @@ const SAY = [
       en: 'A shaft at {n:1500} revolutions per minute sees more than {n:2} million load cycles a day. An agitator turns slower, but still sees many millions within a few years.' },
   ],
   [ // s2 stress concentration
-    { nl: 'Deze as brak in {n:18} maanden twee keer, steeds aan het eind van de spiebaan. Dat is de sleuf voor de spie, het stalen blokje dat de koppeling op de as vastzet.',
+    { nl: 'Deze as brak in {n:18} maanden twee keer, steeds aan het eind van de spiebaan. Dat is de sleuf voor de spie. De spie is het stalen blokje dat de koppeling op de as vastzet.',
       en: 'This shaft broke twice in {n:18} months, each time at the end of the keyway. That is the slot for the key, the steel block that locks the coupling to the shaft.' },
     { nl: 'Daar zit {t:Kerfwerking|kerfwerking}, of spanningsconcentratie: de vorm laat de spanning plaatselijk oplopen. De kracht moet om de sleuf heen, en in de scherpe hoek komt alles samen.',
       en: 'That is where the {t:Stress concentration|stress concentration} sits: the shape makes the stress pile up locally. The force has to flow around the slot, and in the sharp corner it all crowds together.' },
