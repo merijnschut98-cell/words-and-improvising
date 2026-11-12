@@ -308,8 +308,9 @@ const SAY = {
     [/\bSBI\b/g, 'es bee ie'], [/\bCenter for Creative Leadership\b/g, 'Senter for Krie-eetif Liedersjip'], [/\bMarshall\b/g, 'Marsjal'],
     [/\bEdmondson\b/g, 'Edmondsen'], [/\bJeff Bezos\b/g, 'Djef Beezos'], [/\b([Dd])isagree and commit\b/g, '$1issegrie en kommit'],
     [/\b([Pp])restatiegesprek/g, '$1restatie-gesprek'], [/\b([Ee])scalatiepad/g, '$1scalatie-pad'], [/\b([Ii])ntegriteit\b/g, '$1n-tegriteit'],
-    // and COO as letters (before a colon espeak-ng reads the word "koo")
-    [/\bCOO\b/g, 'C O O'],
+    // and COO as letters (before a colon espeak-ng reads the word "koo"); commitment as Dutch project people say
+    // it, k'MIT-ment (espeak-ng reads "kommit-MENT", heard as "comment meer"; "kmitmunt" heard as commitment)
+    [/\bCOO\b/g, 'C O O'], [/\bCommitment\b/g, 'Kmitmunt'], [/\bcommitment\b/g, 'kmitmunt'],
     // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
     // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
     // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.

@@ -93,6 +93,10 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Marshall Goldsmith, Edmondson en Jeff Bezos. Disagree and commit, tenzij het over integriteit gaat.'], 'nl'), 'Marsjal Goldsmith, Edmondsen en Djef Beezos. Dissegrie en kommit, tenzij het over in-tegriteit gaat.');
   assert.equal(speakOf(['Een prestatiegesprek, het escalatiepad. De COO: nee.'], 'nl'), 'Een prestatie-gesprek, het escalatie-pad. De C O O: nee.');
   assert.equal(speakOf(['Iets echts, en feedback van de vloer.'], 'nl'), 'Iets echts, en feedback van de vloer.');
+  // commitment, the lead example's word, as k'MIT-ment (espeak-ng stresses it at the end); English keeps it, and
+  // "disagree and commit" is untouched by it
+  assert.equal(speakOf(['Ik heb hun commitment nodig. Commitment, en disagree and commit.'], 'nl'), 'Ik heb hun kmitmunt nodig. Kmitmunt, en dissegrie en kommit.');
+  assert.equal(speakOf(['I need their commitment.'], 'en'), 'I need their commitment.');
   assert.equal(speakOf(['Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.'], 'en'), 'Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.');
   // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
   assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');

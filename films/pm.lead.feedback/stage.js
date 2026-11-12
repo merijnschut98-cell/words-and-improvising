@@ -144,8 +144,8 @@ const STAGE = (() => {
     const names = [tr('feiten', 'facts'), tr('oorzaak', 'cause'), tr('afspraak', 'commitment')];
     const keys = ['facts', 'cause', 'deal'];
     const out = {};
-    const xs = [X0 - 4, X0 + 80, X0 + 172];
-    const ws = [80, 88, 116];
+    const xs = [X0 - 4, X0 + 74, X0 + 162];
+    const ws = [74, 84, 128];
     names.forEach((nm, i) => {
       out[keys[i]] = rect(xs[i], y, ws[i], 36, hot === i ? 'pm-hot' : 'pm-card', 8) + txt(xs[i] + ws[i] / 2, y + 25, nm, hot === i ? 'pm-on' : 'pm-txt', 'middle');
     });
@@ -205,7 +205,7 @@ const STAGE = (() => {
     if (b === 3) o.deal += op(span(p, 0.05, 0.3), card(102, 150, 'pm-hot') + lines(X0 + 8, 130, [tr('1 of 2 acties: eigenaar,', '1 or 2 actions: owner,'), tr('datum, check of het werkt', 'date, a check it worked'), tr('Mark, elke donderdag:', 'Mark, every Thursday:'), tr('materiaal met magazijn', 'materials, warehouse'), tr('volgende keer: daarmee', 'next time: start there')], ['pm-txt', 'pm-txt', 'pm-on', 'pm-on', 'pm-mute']));
     if (b >= 4) o.tone = op(at(b, p, 4, 0.05, 0.3), card(102, 84) + lines(X0 + 8, 130, [tr('hard op de cijfers,', 'hard on the numbers,'), tr('zacht op de mensen', 'soft on the people'), tr('leren, geen schuld', 'learning, not blame')], ['pm-on', 'pm-on', 'pm-mute']));
     if (b >= 5) o.wrong = op(at(b, p, 5, 0.05, 0.3), lines(X0, 216, [tr('mis: statusrondje,', 'wrong: a status round,'), tr('acties zonder eigenaar,', 'actions without owner,'), tr('leider antwoordt zelf', 'manager answers himself'), tr('eigenaar eerst, leider laatst', 'owner first, manager last')], ['pm-txt', 'pm-txt', 'pm-txt', 'pm-on']));
-    if (b >= 6) o.private = op(at(b, p, 6, 0.05, 0.3), lines(X0, 322, [tr('bord: open; één persoon: apart', 'board: open; one person: private')], 'pm-mute') + txt(X0, 352, tr('“Wat spraken we af,', '“What did we agree,'), 'pm-on') + txt(X0, 376, tr('en werkte het?”', 'and did it work?”'), 'pm-on'));
+    if (b >= 6) o.private = op(at(b, p, 6, 0.05, 0.3), lines(X0, 322, [tr('bord open; persoon: apart', 'board open; person: private')], 'pm-mute') + txt(X0, 352, tr('“Wat spraken we af,', '“What did we agree,'), 'pm-on') + txt(X0, 376, tr('en werkte het?”', 'and did it work?”'), 'pm-on'));
     return o;
   }
 
@@ -256,7 +256,7 @@ const STAGE = (() => {
       o.data = s;
     }
     if (b >= 2) {
-      const rows = [tr('84 van 120, 70%', '84 of 120, 70%'), tr('bonus helpt weinig', 'a bonus won’t help'), tr('eerst materiaal', 'materials first')];
+      const rows = [tr('84 van 120, 70%', '84 of 120, 70%'), tr('misschien weinig', 'may not help'), tr('eerst materiaal', 'materials first')];
       const r = fvv(b === 2 ? 244 : 150, rows, b === 2 ? Math.min(span(p, 0.2, 0.8) * 3, 2) / 3 : 1);
       o.fact = r.fact;
       o.view = r.view;
@@ -278,7 +278,7 @@ const STAGE = (() => {
       return o;
     }
     o.traps = card(54, 134) + lines(X0 + 8, 82, [tr('de hoogste praat eerst,', 'the most senior speaks,'), tr('de kamer volgt', 'the room lines up'), tr('valkuil: te zacht hinten', 'trap: hinting too softly'), tr('in het openbaar winnen', 'winning in public'), tr('achter zijn rug om', 'behind their back')], ['pm-mute', 'pm-mute', 'pm-txt', 'pm-txt', 'pm-txt']);
-    if (b >= 4) o.origin = op(at(b, p, 4, 0.05, 0.3), lines(X0, 222, [tr('van Intel; bekend door', 'from Intel; made known by'), 'Jeff Bezos (Amazon)', tr('critici: kan monddood maken;', 'critics: it can silence;'), tr('werkt als bezwaar gehoord is', 'works if the objection is heard')], ['pm-txt', 'pm-txt', 'pm-mute', 'pm-on']));
+    if (b >= 4) o.origin = op(at(b, p, 4, 0.05, 0.3), lines(X0, 222, [tr('van Intel; bekend door', 'from Intel; made known by'), 'Jeff Bezos (Amazon)', tr('critici: kan monddood maken;', 'critics: it can silence;'), tr('werkt als bezwaar gehoord is', 'works if truly heard first')], ['pm-txt', 'pm-txt', 'pm-mute', 'pm-on']));
     if (b >= 5) o.sharp = op(at(b, p, 5, 0.05, 0.3), card(304, 78, 'pm-hot') + lines(X0 + 8, 328, [tr('“Wat zou je moeten zien', '“What would you need'), tr('om van gedachten te', 'to see to change'), tr('veranderen?”', 'your mind?”')], 'pm-on'));
     return o;
   }

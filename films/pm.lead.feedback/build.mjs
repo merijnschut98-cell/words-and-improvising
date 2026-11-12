@@ -377,7 +377,7 @@ const spec = {
     ]),
     sc('s6', PD, 1, { nl: 'Oorzaak en afspraak', en: 'Cause and commitment' }, [
       { nl: 'Oorzaak: een {t:Open vraag|open vraag}, geen ja of nee. “Waar bleven klussen hangen?”', en: 'Cause: an {t:Open question|open question}, no yes or no. “Where did the jobs get stuck?”', cue: { 'Open vraag': 'open' }, focus: 'open' },
-      { nl: 'Een {t:Eenmalige oorzaak|eenmalige oorzaak}: een storm. Een {t:Patroon|patroon}: elke maandag laat materiaal.', en: 'A {t:One-off|one-off}, like a storm, is no {t:Pattern|pattern}, like materials late every Monday.', cue: { 'Eenmalige oorzaak': 'oneoff', Patroon: 'pattern' }, focus: ['oneoff', 'pattern'] },
+      { nl: 'Een {t:Eenmalige oorzaak|eenmalige oorzaak}: een storm. Een {t:Patroon|patroon}: elke maandag laat materiaal.', en: 'A {t:One-off|one-off}: a storm. A {t:Pattern|pattern}: materials late every Monday.', cue: { 'Eenmalige oorzaak': 'oneoff', Patroon: 'pattern' }, focus: ['oneoff', 'pattern'] },
       { nl: '{n:5} door de storm, {n:7} door het materiaal. Het materiaal ligt binnen de invloed van het team.', en: '{n:5} from the storm, {n:7} from materials. The materials are inside the team’s control.', focus: ['split', 'teamlead'] },
       { nl: 'De {t:Afspraak|afspraak}: Mark checkt elke donderdag het materiaal met het magazijn.', en: 'The {t:Commitment|commitment}: Mark checks the materials with the warehouse every Thursday.', cue: { Afspraak: 'deal' }, focus: ['deal', 'paper'] },
       { nl: 'Hard op de cijfers, zacht op de mensen: leren, geen schuld zoeken.', en: 'Hard on the numbers, soft on the people: learning, not blame.', focus: 'tone' },
@@ -393,7 +393,7 @@ const spec = {
     sc('s8', NS, 3, { nl: 'De stuurgroep', en: 'The steering group' }, [
       { nl: 'De COO: “Operators houden zich niet aan de planning. Dat wordt een bonuscriterium.”', en: 'The COO: “Operators don’t follow the schedule. We’ll make it a bonus criterion.”', focus: ['claim', 'sponsor'] },
       { nl: 'Jij, de jongste in de kamer, vraagt rustig: “Mag ik één ding uit de data toevoegen?”', en: 'You, the youngest in the room, calmly ask: “Can I add one thing from the data?”', focus: ['data', 'jij'] },
-      { nl: 'Feit: {n:84} van de {n:120} te late orders, {n:70}%, door laat materiaal. Visie: een bonus helpt weinig.', en: 'Fact: {n:84} of the {n:120} late orders, {n:70}%, from late materials. View: a bonus may not help.', focus: ['fact', 'view', 'data'] },
+      { nl: 'Feit: {n:84} van de {n:120} te late orders, {n:70}%, door laat materiaal. Visie: een bonus helpt misschien weinig.', en: 'Fact: {n:84} of the {n:120} late orders, {n:70}%, from late materials. View: a bonus may not help.', focus: ['fact', 'view', 'data'] },
       { nl: 'Verzoek: eerst het materiaal, volgende maand de bonus. Blijft hij erbij? Een kwartier na afloop.', en: 'Request: materials first, the bonus next month. He holds his view? Fifteen minutes afterwards.', focus: ['req', 'after'] },
     ]),
     sc('s9', NS, 3, { nl: 'Weten wanneer je stopt', en: 'Knowing when to stop' }, [
@@ -417,18 +417,20 @@ const spec = {
 // this film voice them (feedback as fiedbek, feedbacksandwich, feedforward,
 // SBI as letters, disagree and commit, prestatie-gesprek and escalatie-pad
 // split at the head, in-tegriteit, and the names Center for Creative
-// Leadership, Marshall Goldsmith, Edmondson and Jeff Bezos as English names).
+// Leadership, Marshall Goldsmith, Edmondson and Jeff Bezos as English names),
+// and commitment, the lead example's word, as k'MIT-ment (review: espeak-ng
+// stresses it at the end; whisper heard "kmitmunt" as commitment).
 // Kept out of the Dutch narration because espeak-ng misreads them (they stay
 // in the captions and cards): omstellingsdata (stressed on "data": "de
-// omstellingen"), commitment (stressed at the end: "hun inzet"), operationeel
+// omstellingen"), operationeel
 // directeur ("de directeur"), "Hm" (read as the letters H M: the voice says
 // "terecht" only on the card's line) and Amy (read "Aamie": the voice says
 // Edmondson; the card names her). Left as espeak-ng reads them: visie
 // (vi-ZIE, understandable) and COO (read as letters, as the lesson means).
 const SAY = [
   [ // s1 SBI
-    { nl: '{t:SBI|SBI}, van het Center for Creative Leadership, bouwt feedback op: situatie, gedrag, impact.',
-      en: '{t:SBI|SBI}, from the Center for Creative Leadership, builds feedback: situation, behaviour, impact.' },
+    { nl: '{t:SBI|SBI}, van het Center for Creative Leadership: situatie, gedrag, impact.',
+      en: '{t:SBI|SBI}, from the Center for Creative Leadership: situation, behaviour, impact.' },
     { nl: 'Situatie: wanneer en waar. Gedrag: {t:Waarneembaar gedrag|waarneembaar gedrag}, wat een camera had opgenomen, zonder interpretatie.',
       en: 'Situation: when and where. Behaviour: {t:Observable behaviour|observable behaviour}, what a camera would have recorded, without interpretation.' },
     { nl: 'Impact: het effect op jou, het team of het resultaat. Daarna een vraag.',
@@ -467,7 +469,7 @@ const SAY = [
       en: 'At a food manufacturer, your sponsor, the operations director, answers every question to his team leads. After the fourth, they go quiet.' },
     { nl: 'Jij hebt nodig dat zij eigenaar worden. Na de lunch: mag ik iets delen? Het gaat over wat je me vroeg.',
       en: 'You need them to own the actions. After lunch: can I share an observation? It\'s about what you asked me for.' },
-    { nl: 'Dan SBI: bij de omstellingen beantwoordde jij de eerste vier vragen. Daarna zwegen Peter en Sandra, en ik heb hun inzet nodig.',
+    { nl: 'Dan SBI: bij de omstellingen beantwoordde jij de eerste vier vragen. Daarna zwegen Peter en Sandra, en ik heb hun commitment nodig.',
       en: 'Then SBI: on the changeover data, you answered the first four questions. Then Peter and Sandra went quiet, and I need their commitment.' },
     { nl: 'Vraag, en stop met praten: hoe zag jij het? Hij is het eens: volgende keer antwoorden zij eerst.',
       en: 'Ask, and stop talking: how did you see it? He agrees: next time they answer first.' },
@@ -497,8 +499,8 @@ const SAY = [
       en: 'Hard on the numbers, soft on the people: learning, not blame.' },
     { nl: 'Wat misgaat: een statusrondje, acties zonder eigenaar. De eigenaar praat eerst.',
       en: 'What goes wrong: a status round, actions without an owner. The owner speaks first.' },
-    { nl: 'Over één persoon praat je apart. En vraag: wat spraken we af, en werkte het?',
-      en: 'One person\'s performance is a private talk. And ask: what did we agree, and did it work?' },
+    { nl: 'Over één persoon praat je apart. Vraag: wat spraken we af, en werkte het?',
+      en: 'One person\'s performance is a private talk. Ask: what did we agree, and did it work?' },
   ],
   [ // s7 fact, view, request
     { nl: 'Het oneens zijn met wie boven je staat, hoort erbij: klanten huren je niet in voor hun eigen mening.',
@@ -515,7 +517,7 @@ const SAY = [
       en: 'Steering group at a parts manufacturer. The COO: operators don\'t follow the schedule; it becomes a bonus criterion.' },
     { nl: 'Jij bent de jongste. Vraag rustig: mag ik er één ding uit de data aan toevoegen?',
       en: 'You are the youngest. Ask calmly: can I add one thing from the data?' },
-    { nl: 'Het feit: {n:84} van de {n:120} te late orders, {n:70} procent, kwamen door materiaal. Je visie: een bonus verandert weinig.',
+    { nl: 'Het feit: {n:84} van de {n:120} te late orders, {n:70} procent, kwamen door materiaal. Je visie: een bonus verandert het misschien niet veel.',
       en: 'The fact: {n:84} of the {n:120} late orders, {n:70} percent, came from materials. Your view: a bonus may not move it.' },
     { nl: 'Je verzoek: eerst het materiaal, volgende maand de bonus. Blijft hij erbij, vraag om een kwartier na afloop.',
       en: 'Your request: materials first, the bonus next month. If he holds his view, ask for fifteen minutes afterwards.' },
@@ -572,7 +574,7 @@ spec.scenes.forEach((s, si) => {
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = line[lang].replace(/\{[tn]:[^}]*\}/g, '');
   if (/[/&×=+()“”"‘%€~]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${line[lang].slice(0, 50)}"`);
-  if (lang === 'nl' && /omstellingsdata|commitment|operationeel|\bHm\b|\bAmy\b/i.test(line.nl)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
+  if (lang === 'nl' && /omstellingsdata|operationeel|\bHm\b|\bAmy\b/i.test(line.nl)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
 }
 
 // ---------------------------------------------------------------- page script and styles
