@@ -113,7 +113,7 @@ const STAGE = (() => {
       q.forEach((ls, i) => {
         const x = X0 + (i % 2) * 148;
         const y = 122 + Math.floor(i / 2) * 84;
-        c += op(at(b, p, 5, 0.12 + i * 0.1, 0.2 + i * 0.1), rect(x, y, 136, 74, 'pm-card', 6)
+        c += op(at(b, p, 5, 0.1 + i * 0.07, 0.18 + i * 0.07), rect(x, y, 136, 74, 'pm-card', 6)
           + ls.map((t, j) => txt(x + 68, y + 44 - (ls.length - 1) * 11 + j * 22, t, 'pm-txt', 'middle')).join(''));
       });
       c += op(at(b, p, 5, 0.6, 0.8), lines(318, [[tr('financieel alleen:', 'financial alone:'), 'pm-mute'], [tr('hoe het ging,', 'how you did,'), 'pm-txt'], [tr('niet waar je heen gaat', 'not where you head'), 'pm-txt']]));
@@ -142,11 +142,11 @@ const STAGE = (() => {
         + op(at(b, p, 3, 0.5, 0.75), lines(162, [[tr('orders vrij met', 'orders released with'), 'pm-txt'], [tr('al het materiaal', 'all materials in stock'), 'pm-mute']]))));
     }
     if (b >= 4) {
-      const link = at(b, p, 4, 0.3, 0.55);
+      const link = at(b, p, 4, 0.15, 0.3);
       o.pair = op(B, op(at(b, p, 4, 0.02, 0.2), txt(X0, 224, tr('3  gekoppeld', '3  paired'), 'pm-on')
         + box(X0, 238, 112, 34, tr('levering', 'delivery')) + op(link, path(`M${X0 + 116} 255h22`, 'pm-line') + box(X0 + 142, 238, 142, 34, 'first-pass yield', 'pm-hot'))
         + op(link, txt(X1, 294, tr('in één keer goed', 'right first time'), 'pm-mute', 'end'))
-        + op(at(b, p, 4, 0.6, 0.8), lines(326, [[tr('output met kwaliteit', 'output with quality'), 'pm-mute'], [tr('snelheid met veiligheid', 'speed with safety'), 'pm-mute'], [tr('kosten met service', 'cost with service'), 'pm-mute']], X0, 22))));
+        + op(at(b, p, 4, 0.25, 0.4), lines(326, [[tr('output met kwaliteit', 'output with quality'), 'pm-mute'], [tr('snelheid met veiligheid', 'speed with safety'), 'pm-mute'], [tr('kosten met service', 'cost with service'), 'pm-mute']], X0, 22))));
     }
     if (b >= 5) {
       // a dashboard that grows every year
@@ -198,7 +198,7 @@ const STAGE = (() => {
       o.math = op(B, m);
     }
     if (b >= 3) {
-      o.logic = op(at(b, p, 3) * (b === 3 ? 1 : 1 - span(p, 0, 0.15)) * (b <= 4 ? 1 : 0), lines(330, [[tr('logische boom: geen formule', 'logic tree: no formula'), 'pm-on'], [tr('tevredenheid: snelheid,', 'satisfaction: speed,'), 'pm-txt'], [tr('kwaliteit en contact', 'quality and contact'), 'pm-txt']], X0, 23));
+      o.logic = op(B * at(b, p, 3), lines(330, [[tr('logische boom: geen formule', 'logic tree: no formula'), 'pm-on'], [tr('tevredenheid: snelheid,', 'satisfaction: speed,'), 'pm-txt'], [tr('kwaliteit en contact', 'quality and contact'), 'pm-txt']], X0, 23));
     }
     if (b >= 4) {
       let w = '';
@@ -215,13 +215,13 @@ const STAGE = (() => {
       let c = txt(X0, 80, tr('toets met data', 'check with data'), 'pm-big');
       series.forEach((s, i) => {
         const y = 118 + i * 40;
-        const a = at(b, p, 5, 0.05 + i * 0.08, 0.15 + i * 0.08);
+        const a = at(b, p, 5, 0.03 + i * 0.04, 0.1 + i * 0.04);
         const line = pts(s.map((v, j) => [X0 + 156 + j * 18, y - v * 2.6 + 4]));
         c += op(a, txt(X0, y, NAMES[i], i === 1 ? 'pm-on' : 'pm-mute') + path(line, i === 1 ? 'pm-line' : 'pm-axis'));
       });
-      c += op(at(b, p, 5, 0.3, 0.5), txt(X0, 290, tr('vlak? verklaart geen gat', 'flat? explains no gap'), 'pm-mute'))
-        + op(at(b, p, 5, 0.5, 0.7), txt(X0, 316, tr('grootste gat: zoek daar', 'biggest gap: look there'), 'pm-txt'))
-        + op(at(b, p, 5, 0.7, 0.9), txt(X0, 352, tr('stop bij een weekcijfer', 'stop at a weekly number'), 'pm-on'));
+      c += op(at(b, p, 5, 0.1, 0.22), txt(X0, 290, tr('vlak? verklaart geen gat', 'flat? explains no gap'), 'pm-mute'))
+        + op(at(b, p, 5, 0.2, 0.32), txt(X0, 316, tr('grootste gat: zoek daar', 'biggest gap: look there'), 'pm-txt'))
+        + op(at(b, p, 5, 0.45, 0.6), txt(X0, 352, tr('stop bij een weekcijfer', 'stop at a weekly number'), 'pm-on'));
       o.check = op(at(b, p, 5, 0, 0.1), c);
     }
     return o;
@@ -244,17 +244,16 @@ const STAGE = (() => {
     o.grid = op(A, gd);
     if (b >= 1) {
       o.sum = op(A, op(at(b, p, 1, 0.02, 0.25), txt(X0, 360, '3 + 9 + 10 + 1 + 3 = 26', 'pm-on') + txt(X1, 384, tr('som: rekenboom', 'sum: a math tree'), 'pm-mute', 'end'))
-        + op(at(b, p, 1, 0.75, 0.95), txt(X1, 321, tr('weinig te halen', 'little to win'), 'pm-mute', 'end')));
+        + op(at(b, p, 1, 0.5, 0.7), txt(X1, 279, tr('weinig te halen', 'little to win'), 'pm-mute', 'end')));
     }
-    if (b === 2) {
-      const a = 1;
-      o.crew = op(a * (1 - 0), txt(X0, 80, tr('wachten op een ploeg', 'waiting for a crew'), 'pm-big')
+    if (b === 2 || b === 3) {
+      o.crew = op(b === 2 ? span(p, 0.05, 0.18) : 1 - span(p, 0, 0.15), txt(X0, 80, tr('wachten op een ploeg', 'waiting for a crew'), 'pm-big')
         + box(XM - 70, 96, 140, 32, tr('10 weken', '10 weeks'), 'pm-hot', 'pm-on')
-        + op(at(b, p, 2, 0.05, 0.25), path(`M${XM} 128V142H${X0 + 68}V154M${XM} 142H${X1 - 68}V154`, 'pm-line')
+        + op(at(b, p, 2, 0.1, 0.22), path(`M${XM} 128V142H${X0 + 68}V154M${XM} 142H${X1 - 68}V154`, 'pm-line')
           + rect(X0, 154, 136, 52, 'pm-card', 5) + txt(X0 + 68, 176, tr('te weinig', 'too few'), 'pm-txt', 'middle') + txt(X0 + 68, 198, tr('ploegen?', 'crews?'), 'pm-txt', 'middle')
           + rect(X1 - 136, 154, 136, 52, 'pm-card', 5) + txt(X1 - 68, 176, tr('klus terug:', 'bounced back:'), 'pm-txt', 'middle') + txt(X1 - 68, 198, tr('niet klaar?', 'not ready?'), 'pm-txt', 'middle'))
-        + op(at(b, p, 2, 0.4, 0.6), lines(236, [[tr('elke stap: één eigenaar', 'each step: one owner'), 'pm-txt'], [tr('en één weekcijfer', 'and one weekly number'), 'pm-txt']]))
-        + op(at(b, p, 2, 0.65, 0.85), card(282, 100, lines(306, [[tr('door de gereedheidscheck', 'passing the readiness check'), 'pm-on'], [tr('ontwerp, vergunning en', 'design, permit and'), 'pm-mute'], [tr('materiaal klaar, vóór de', 'materials in place before'), 'pm-mute'], [tr('ploeg wordt ingepland', 'a crew is booked'), 'pm-mute']], X0 + 2, 22), 'pm-hot')));
+        + op(at(b, p, 2, 0.25, 0.38), lines(236, [[tr('elke stap: één eigenaar', 'each step: one owner'), 'pm-txt'], [tr('en één weekcijfer', 'and one weekly number'), 'pm-txt']]))
+        + op(at(b, p, 2, 0.38, 0.52), card(282, 100, lines(306, [[tr('door de gereedheidscheck', 'passing the readiness check'), 'pm-on'], [tr('ontwerp, vergunning en', 'design, permit and'), 'pm-mute'], [tr('materiaal klaar, vóór de', 'materials in place before'), 'pm-mute'], [tr('ploeg wordt ingepland', 'a crew is booked'), 'pm-mute']], X0 + 2, 22), 'pm-hot')));
     }
     if (b >= 3) {
       o.cascade = op(at(b, p, 3, 0, 0.12), txt(X0, 80, tr('doorvertalen', 'cascading'), 'pm-big')
@@ -266,7 +265,7 @@ const STAGE = (() => {
       o.mult = op(at(b, p, 4, 0.02, 0.2), txt(X0, 244, NL ? '1,1 × 1,1 × 1,1 × 1,1 ≈ 1,46' : '1.1 × 1.1 × 1.1 × 1.1 ≈ 1.46', 'pm-on')
         + txt(X0, 268, tr('vier takken +10%: +46%', 'four branches +10%: +46%'), 'pm-txt')
         + op(at(b, p, 4, 0.45, 0.65), lines(294, [[tr('mis: één keer getekend,', 'wrong: drawn once,'), 'pm-mute'], [tr('overlap, geen eigenaar', 'overlap, no owner'), 'pm-mute']], X0, 22))
-        + op(at(b, p, 4, 0.7, 0.9), card(334, 50, lines(355, [[tr('tak +10%: wat gebeurt', 'branch +10%: what'), 'pm-on'], [tr('er bovenaan?', 'happens at the top?'), 'pm-on']], X0 + 2, 22), 'pm-hot')));
+        + op(at(b, p, 4, 0.22, 0.38), card(334, 50, lines(355, [[tr('tak +10%: wat gebeurt', 'branch +10%: what'), 'pm-on'], [tr('er bovenaan?', 'happens at the top?'), 'pm-on']], X0 + 2, 22), 'pm-hot')));
     }
     return o;
   }
@@ -298,10 +297,10 @@ const STAGE = (() => {
       v.forEach((n, i) => {
         const x = X0 + 16 + i * 36;
         const y = 270 + n * 8;
-        c += op(at(b, p, 3, 0.1 + i * 0.04, 0.16 + i * 0.04), dot(x, y, 5, 'pm-dot')) + (n <= 3 ? op(at(b, p, 3, 0.5, 0.7), dot(x, y, 10, 'pm-ring')) : '');
+        c += op(at(b, p, 3, 0.1 + i * 0.04, 0.16 + i * 0.04), dot(x, y, 5, 'pm-dot')) + (n <= 3 ? op(at(b, p, 3, 0.22, 0.34), dot(x, y, 10, 'pm-ring')) : '');
       });
-      c += op(at(b, p, 3, 0.55, 0.75), txt(X0, 350, tr('dicht bij je beste weken', 'close to your best weeks'), 'pm-txt'))
-        + op(at(b, p, 3, 0.75, 0.92), txt(X0, 376, tr('verder? zeg wat verandert', 'beyond? say what changes'), 'pm-mute'));
+      c += op(at(b, p, 3, 0.28, 0.4), txt(X0, 350, tr('beste weken: wat werkte?', 'best weeks: what worked?'), 'pm-txt'))
+        + op(at(b, p, 3, 0.65, 0.8), txt(X0, 376, tr('verder? zeg wat verandert', 'beyond? say what changes'), 'pm-mute'));
       o.base = op(at(b, p, 3, 0, 0.12), c);
     }
     return o;
@@ -315,9 +314,9 @@ const STAGE = (() => {
     const wob = [124, 112, 136, 118, 130, 108, 140, 122, 116, 132];
     wob.forEach((y, i) => { r += op(at(b, p, 0, 0.05 + i * 0.03, 0.1 + i * 0.03), dot(X0 + 14 + i * 28, y, 4.5, 'pm-dot')); });
     r += lines(186, [[tr('tussen 83 en 87%', 'between 83 and 87%'), 'pm-txt'], [tr('mikpunt 85', 'aiming for 85'), 'pm-mute']])
-      + op(at(b, p, 0, 0.3, 0.5), txt(X0, 236, tr('één punt: elke dip faalt', 'one point: every dip fails'), 'pm-mute'));
+      + op(at(b, p, 0, 0.25, 0.4), txt(X0, 236, tr('één punt: elke dip faalt', 'one point: every dip fails'), 'pm-mute'));
     o.range = op(A, r);
-    o.trig = op(A * at(b, p, 0, 0.5, 0.7), path(`M${X0} 168H${X1}`, 'pm-dash') + lines(276, [[tr('actiegrens', 'trigger'), 'pm-on'], [tr('elke week onder 80%:', 'any week below 80%:'), 'pm-txt'], [tr('stop, zoek de oorzaak', 'stop, find the cause'), 'pm-txt']]));
+    o.trig = op(A * at(b, p, 0, 0.4, 0.55), path(`M${X0} 168H${X1}`, 'pm-dash') + lines(276, [[tr('actiegrens', 'trigger'), 'pm-on'], [tr('elke week onder 80%:', 'any week below 80%:'), 'pm-txt'], [tr('stop, zoek de oorzaak', 'stop, find the cause'), 'pm-txt']]));
     // the cell's eight weeks of scrap on a chart (b1 to b3)
     const CB = page(b, p, 1, 4);
     const cx = (i) => X0 + 46 + i * 32;
@@ -342,8 +341,8 @@ const STAGE = (() => {
     if (b >= 4) {
       o.best = op(at(b, p, 4, 0, 0.12), txt(X0, 80, tr('betrek het team', 'involve the team'), 'pm-big')
         + lines(106, [[tr('haalbaar in 3 maanden?', 'realistic in 3 months?'), 'pm-txt'], [tr('wat moet er dan anders?', 'what must change for more?'), 'pm-txt'], [tr('onder hun beste weken?', 'below their best weeks?'), 'pm-mute'], [tr('vraag waarom', 'ask why'), 'pm-mute']])
-        + op(at(b, p, 4, 0.3, 0.5), txt(X0, 218, tr('de ambitie blijft van jou', 'the ambition stays yours'), 'pm-on'))
-        + op(at(b, p, 4, 0.5, 0.7), lines(254, [[tr('stretch ver voorbij data:', 'stretch far beyond data:'), 'pm-mute'], [tr('nieuw, of vooral cynisme?', 'new methods, or cynicism?'), 'pm-mute']]))
+        + op(at(b, p, 4, 0.2, 0.35), txt(X0, 218, tr('de ambitie blijft van jou', 'the ambition stays yours'), 'pm-on'))
+        + op(at(b, p, 4, 0.35, 0.5), lines(254, [[tr('stretch ver voorbij data:', 'stretch far beyond data:'), 'pm-mute'], [tr('nieuw, of vooral cynisme?', 'new methods, or cynicism?'), 'pm-mute']]))
         + op(at(b, p, 4, 0.7, 0.9), card(300, 78, lines(328, [[tr('beste week een', 'best week a'), 'pm-on'], [tr('gewone week?', 'normal week?'), 'pm-on']], X0 + 4, 28), 'pm-hot')));
     }
     return o;
@@ -376,9 +375,9 @@ const STAGE = (() => {
     }
     if (b >= 4) {
       o.wells = op(at(b, p, 4, 0, 0.12), txt(X0, 80, 'Wells Fargo', 'pm-big') + txt(X0, 104, tr('agressieve verkoopdoelen', 'aggressive sales targets'), 'pm-mute')
-        + op(at(b, p, 4, 0.15, 0.35), lines(138, [[tr('2016: 1,5 mln rekeningen', '2016: 1.5m accounts'), 'pm-txt'], [tr('en 565.000 creditcards', 'and 565,000 credit cards'), 'pm-txt'], [tr('later: tot 3,5 mln', 'later: up to 3.5m'), 'pm-txt']]))
-        + op(at(b, p, 4, 0.35, 0.55), lines(220, [[tr('boete 2016: $185 mln', 'fines 2016: $185m'), 'pm-mute'], [tr('2020: $3 mrd schikking', '2020: $3bn settlement'), 'pm-mute']]))
-        + op(at(b, p, 4, 0.6, 0.8), card(268, 86, lines(296, [[tr('niemand ontwierp fraude;', 'nobody designed fraud;'), 'pm-on'], [tr('de druk maakte het', 'the pressure made it'), 'pm-txt'], [tr('de makkelijkste weg', 'the easiest way'), 'pm-txt']], X0 + 2, 26), 'pm-hot')));
+        + op(at(b, p, 4, 0.06, 0.2), lines(138, [[tr('2016: 1,5 mln rekeningen', '2016: 1.5m accounts'), 'pm-txt'], [tr('en 565.000 creditcards', 'and 565,000 credit cards'), 'pm-txt'], [tr('later: tot 3,5 mln', 'later: up to 3.5m'), 'pm-txt']]))
+        + op(at(b, p, 4, 0.14, 0.28), lines(220, [[tr('boete 2016: $185 mln', 'fines 2016: $185m'), 'pm-mute'], [tr('2020: $3 mrd schikking', '2020: $3bn settlement'), 'pm-mute']]))
+        + op(at(b, p, 4, 0.5, 0.65), card(268, 86, lines(296, [[tr('niemand ontwierp fraude;', 'nobody designed fraud;'), 'pm-on'], [tr('de druk maakte het', 'the pressure made it'), 'pm-txt'], [tr('de makkelijkste weg', 'the easiest way'), 'pm-txt']], X0 + 2, 26), 'pm-hot')));
     }
     return o;
   }
@@ -391,12 +390,12 @@ const STAGE = (() => {
     let th = path(`M${X0} 176H${X1}`, 'pm-dash') + txt(X1, 168, tr('grenswaarde', 'threshold'), 'pm-on', 'end');
     bins.forEach((n, i) => {
       const x = X0 + 4 + i * 23.5;
-      th += op(at(b, p, 0, 0.35 + i * 0.02, 0.42 + i * 0.02), rect(x, 220 - n * 8, 18, n * 8, i === 7 ? 'pm-hot' : 'pm-card', 2));
+      th += op(at(b, p, 0, 0.2 + i * 0.015, 0.26 + i * 0.015), rect(x, 220 - n * 8, 18, n * 8, i === 7 ? 'pm-hot' : 'pm-card', 2));
     });
     o.spot = op(A, txt(X0, 80, tr('herken het', 'spot it'), 'pm-big')
-      + op(at(b, p, 0, 0.05, 0.25), lines(250, [[tr('cijfer beter, rest niet', 'number up, nothing else'), 'pm-txt'], [tr('sprong vlak voor deadline', 'jump before the deadline'), 'pm-txt'], [tr('gekoppeld: verkeerde kant', 'paired: the wrong way'), 'pm-mute']]))
-      + op(at(b, p, 0, 0.7, 0.9), lines(330, [[tr('vraag de vloer: wat doen', 'ask the floor: what do'), 'pm-on'], [tr('mensen voor groen?', 'people do for green?'), 'pm-on']])));
-    o.thr = op(A * at(b, p, 0, 0.3, 0.5), th + path(`M${X0 + 4} 220H${X1}`, 'pm-axis'));
+      + op(at(b, p, 0, 0.05, 0.25), lines(250, [[tr('cijfer beter, rest niet', 'number up, nothing else'), 'pm-txt'], [tr('sprong vlak voor deadline', 'jump before the deadline'), 'pm-txt'], [tr('gekoppeld: verkeerde kant,', 'paired: the wrong way,'), 'pm-mute'], [tr('levering op, klachten ook', 'delivery up, complaints too'), 'pm-mute']]))
+      + op(at(b, p, 0, 0.35, 0.5), lines(354, [[tr('vraag de vloer: wat doen', 'ask the floor: what do'), 'pm-on'], [tr('mensen voor groen?', 'people do for green?'), 'pm-on']])));
+    o.thr = op(A * at(b, p, 0, 0.15, 0.3), th + path(`M${X0 + 4} 220H${X1}`, 'pm-axis'));
     const B = page(b, p, 1, 3);
     // two small charts over the quarter: restored within 4 hours, and repeats within 30 days
     const LX = X0;
@@ -426,9 +425,9 @@ const STAGE = (() => {
     if (b >= 4) {
       o.system = op(at(b, p, 4, 0, 0.12), txt(X0, 80, tr('pak het systeem aan', 'fix the system'), 'pm-big')
         + txt(X0, 106, tr('zelden slechte mensen', 'rarely bad people'), 'pm-txt')
-        + op(at(b, p, 4, 0.2, 0.4), lines(140, [[tr('zet cijfers in paren', 'pair the numbers'), 'pm-mute'], [tr('sommige: alleen leren', 'some for learning only'), 'pm-mute'], [tr('definitie aanpassen', 'change the definition'), 'pm-mute'], [tr('kijk naar het werk', 'look at the work'), 'pm-mute']]))
-        + op(at(b, p, 4, 0.4, 0.6), lines(248, [[tr('bonus aan losse KPI’s?', 'bonuses on single KPIs?'), 'pm-txt'], [tr('daarover is discussie', 'experts argue'), 'pm-mute']]))
-        + op(at(b, p, 4, 0.65, 0.85), card(296, 82, lines(324, [[tr('halen zonder iets te', 'hit it without improving'), 'pm-on'], [tr('verbeteren: hoe dan?', 'anything: how?'), 'pm-on']], X0 + 4, 28), 'pm-hot')));
+        + op(at(b, p, 4, 0.12, 0.27), lines(140, [[tr('zet cijfers in paren', 'pair the numbers'), 'pm-mute'], [tr('sommige: alleen leren', 'some for learning only'), 'pm-mute'], [tr('definitie aanpassen', 'change the definition'), 'pm-mute'], [tr('kijk naar het werk', 'look at the work'), 'pm-mute']]))
+        + op(at(b, p, 4, 0.27, 0.42), lines(248, [[tr('bonus aan losse KPI’s?', 'bonuses on single KPIs?'), 'pm-txt'], [tr('daarover is discussie', 'experts argue'), 'pm-mute']]))
+        + op(at(b, p, 4, 0.5, 0.65), card(296, 82, lines(324, [[tr('halen zonder iets te', 'hit it without improving'), 'pm-on'], [tr('verbeteren: hoe dan?', 'anything: how?'), 'pm-on']], X0 + 4, 28), 'pm-hot')));
     }
     return o;
   }

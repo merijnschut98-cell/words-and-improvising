@@ -58,7 +58,7 @@
 //     paired indicators (s2 b5); output with quality, speed with safety, cost
 //     with service (card, s2 b5); Kaplan and Norton 1992, the balanced
 //     scorecard, four views: financial, customer, internal processes, learning
-//     and growth (s1 b6, the four on the card); financial alone says how it
+//     and growth (s1 b6, spoken and on the card); financial alone says how it
 //     went, not where you are heading (s1 b6)
 //   kpis teach 5: dashboards grow every year, adding easy, removing scary;
 //     leading indicators harder to find, so only lagging ones remain (s2 b6);
@@ -121,7 +121,7 @@
 //     start from the baseline, the current level over recent weeks (s5 b4);
 //     the spread, the best weeks and why (card); a target near the best weeks
 //     actually achieved is believable (s5 b4); beyond anything seen needs a
-//     changed method: say what changes (card, s5 b4)
+//     changed method: say what changes (s5 b4)
 //   targets teach 4: a target range, not a point, because results vary (s6
 //     b1); "between 83 and 87%, aiming for 85" (card); a single point turns
 //     every dip into a failure (card); the target apart from the trigger, where
@@ -155,7 +155,8 @@
 //     never asked for (s7 b5): about 1.5 million deposit accounts and 565,000
 //     credit cards in the 2016 regulator findings, later up to 3.5 million;
 //     $185 million in fines in 2016 and $3 billion in 2020 (card, s7 b5);
-//     nobody designed fraud, the pressure made it the easiest way (s7 b5)
+//     nobody designed fraud, the pressure made it the easiest way (s7 b5,
+//     also in the caption)
 //   gaming teach 4: the number improves but nothing around it; jumps right
 //     before the deadline; results just above the threshold, the line between
 //     red and green; paired numbers moving the wrong way (s8 b1); on-time
@@ -183,9 +184,11 @@
 // Steven Kerr, "On the Folly of Rewarding A, While Hoping for B", Academy of
 // Management Journal 18 (1975). Robert Kaplan and David Norton, "The Balanced
 // Scorecard: Measures That Drive Performance", Harvard Business Review 1992,
-// four perspectives (financial, customer, internal business process, learning
+// four perspectives (as now named: financial, customer, internal process, learning
 // and growth; the film says "processes" and "learning and growth" as the
-// lesson does). Edwin Locke and Gary Latham, "Building a practically useful
+// lesson does). The 1992 article named the last two "internal business" and
+// "innovation and learning"; "learning and growth" is the later name (1996),
+// and the lesson now says so (review 2026-11-12). Edwin Locke and Gary Latham, "Building a practically useful
 // theory of goal setting and task motivation: a 35-year odyssey", American
 // Psychologist 57 (2002), some 400 laboratory and field studies; commitment,
 // ability and feedback as conditions. Maurice Schweitzer, Lisa Ordóñez and
@@ -463,7 +466,7 @@ const spec = {
       { nl: 'Druk op één cijfer geeft {t:Gaming|gaming}: het cijfer bewegen, niet wat het moest laten zien.', en: 'Pressure on one number brings {t:Gaming|gaming}: moving the number, not what it should show.', cue: { Gaming: 'gaming' }, focus: 'gaming' },
       { nl: 'Werk buiten de periode schuiven, de definitie veranderen, of de {t:Krenten uit de pap halen|krenten uit de pap halen}.', en: 'Shifting work outside the period, redefining what counts, or {t:Cherry-picking|cherry-picking}.', cue: { 'Krenten uit de pap halen': 'cherry' }, focus: ['forms', 'cherry'] },
       { nl: 'Een {t:Verkeerde prikkel|verkeerde prikkel} lokt het omgekeerde uit. Kerr, 1975: A belonen, op B hopen.', en: 'A {t:Perverse incentive|perverse incentive} encourages the opposite. Kerr, 1975: rewarding A, hoping for B.', cue: { 'Verkeerde prikkel': 'perverse' }, focus: 'perverse' },
-      { nl: 'Wells Fargo: miljoenen rekeningen waar klanten nooit om vroegen.', en: 'Wells Fargo: millions of accounts customers never asked for.', focus: 'wells' },
+      { nl: 'Wells Fargo: miljoenen rekeningen waar klanten nooit om vroegen. Niemand ontwierp fraude.', en: 'Wells Fargo: millions of accounts customers never asked for. Nobody designed fraud.', focus: 'wells' },
     ]),
     sc('s8', GA, { nl: 'De klok stilzetten', en: 'Stopping the clock' }, [
       { nl: 'Herken het: het cijfer wordt beter, de rest niet. Resultaten net boven de {t:Grenswaarde|grenswaarde}.', en: 'Spot it: the number improves, nothing else does. Results just above the {t:Threshold|threshold}.', cue: { Grenswaarde: 'thr' }, focus: ['spot', 'thr'] },
@@ -495,7 +498,8 @@ const spec = {
 // baas van de fabriek"), oorzakenonderzoek (said "onderzoek naar het grootste
 // defect"), first-pass yield (said "het aandeel stuks dat in één keer goed
 // is"), Schweitzer, Ordóñez en Douma (said "experimenten uit 2004"), Marilyn
-// and Charles; feedback (espeak-ng: fˈeːdbɑk) is said terugkoppeling, achteraf (ˈɑxtɪːrˌɑf) na afloop,
+// and Charles; achteraf (ˈɑxtɪːrˌɑf) is said na afloop. feedback is said as on the card: the kit's
+// rule from pm.lead.feedback (fiedbek) voices it, so the guard no longer lists it;
 // and "is het een" (read as één) is avoided. The guard below runs the kit's SAY rules first.
 const SAY = [
   [ // s1 numbers that steer
@@ -509,8 +513,8 @@ const SAY = [
       en: 'A {t:Leading indicator|leading indicator} moves first and shows what to do, like materials ready in time.' },
     { nl: 'Achterlopend: heb je gewonnen? Voorlopend: ga je winnen?',
       en: 'Lagging: did you win? Leading: will you win?' },
-    { nl: 'De {t:Balanced scorecard|balanced scorecard} van Kaplan en Norton kijkt vanuit vier hoeken: financieel alleen zegt niet waar je heen gaat.',
-      en: 'Kaplan and Norton\'s {t:Balanced scorecard|balanced scorecard} takes four views: financial results alone don\'t say where you are heading.' },
+    { nl: 'De {t:Balanced scorecard|balanced scorecard} van Kaplan en Norton: financieel, klant, interne processen, en leren en groeien. Financieel alleen zegt niet waar je heen gaat.',
+      en: 'Kaplan and Norton\'s {t:Balanced scorecard|balanced scorecard}: financial, customer, internal process, and learning and growth. Financial alone doesn\'t say where you are heading.' },
   ],
   [ // s2 late deliveries
     { nl: 'Een onderdelenfabrikant krijgt klachten over late leveringen. Op het bord: leverbetrouwbaarheid.',
@@ -529,10 +533,10 @@ const SAY = [
       en: 'Ask of every number: when this went red, what did someone do differently?' },
   ],
   [ // s3 the KPI tree
-    { nl: 'Een {t:KPI-boom|KPI-boom} deelt een doel op in de cijfers die het veroorzaken, met bovenaan bijvoorbeeld de doorlooptijd.',
-      en: 'A {t:KPI tree|KPI tree} breaks a goal into the numbers that cause it, topped by a result like lead time.' },
-    { nl: 'Elk niveau vraagt: waar hangt dit van af? Zo vind je de {t:Driver|drivers}, tot een team ze in de hand heeft.',
-      en: 'Each level asks: what drives this? So you find the {t:Driver|drivers}, down to what a team controls.' },
+    { nl: 'Een {t:KPI-boom|KPI-boom} deelt een doel op in de cijfers die het veroorzaken, bovenaan bijvoorbeeld de doorlooptijd.',
+      en: 'A {t:KPI tree|KPI tree} breaks a goal into the numbers that cause it, topped by, say, lead time.' },
+    { nl: 'Elk niveau vraagt: waar hangt dit van af? Dat geeft de {t:Driver|drivers}, tot een team ze in de hand heeft.',
+      en: 'Each level asks: what drives this? That gives the {t:Driver|drivers}, down to what a team controls.' },
     { nl: 'Een {t:Rekenboom|rekenboom} rekent exact: goede output is uren maal draaiaandeel maal stuks per uur maal aandeel goed.',
       en: 'A {t:Math tree|math tree} computes exactly: good output is hours times running share times parts per hour times good share.' },
     { nl: 'Een {t:Logische boom|logische boom} noemt de belangrijkste drivers, zonder formule. Reken waar het kan: dat zegt wat een tak waard is.',
@@ -544,7 +548,7 @@ const SAY = [
   ],
   [ // s4 26 weeks to a connection
     { nl: 'Een netbeheerder: van aanvraag tot aansluiting gemiddeld {n:26} weken, in vijf stappen na elkaar.',
-      en: 'A grid operator: request to connection takes {n:26} weeks on average, in five steps in a row.' },
+      en: 'A grid operator: request to connection takes {n:26} weeks on average, five steps in a row.' },
     { nl: 'De doorlooptijd is hun som: een rekenboom. Grote takken: wachten op een ploeg, en ontwerp en vergunningen.',
       en: 'Lead time is their sum: a math tree. Big branches: waiting for a crew, and design and permits.' },
     { nl: 'Te weinig ploegen, of klussen die terugkomen, niet klaar? Elke stap een eigenaar en een weekcijfer, zoals de gereedheidscheck.',
@@ -557,12 +561,12 @@ const SAY = [
   [ // s5 targets people believe
     { nl: 'De {t:Doelzettingstheorie|doelzettingstheorie} van Locke en Latham, uit zo\'n {n:400} studies: specifieke, moeilijke doelen werken beter dan doe je best.',
       en: '{t:Goal-setting theory|Goal-setting theory}, from Locke and Latham and some {n:400} studies: specific, hard goals beat do your best.' },
-    { nl: 'Mits er {t:Doelacceptatie|doelacceptatie}, vaardigheid en terugkoppeling is. Anders blijft het een wens.',
-      en: 'Given {t:Goal acceptance|goal acceptance}, skills and feedback. Otherwise it is a wish.' },
-    { nl: 'Te moeilijk? Dan haken mensen af, of overdrijven ze hun resultaat, vooral als ze net tekortkwamen.',
+    { nl: 'Mits er {t:Doelacceptatie|doelacceptatie}, vaardigheid en feedback is. Anders: een wens.',
+      en: 'Given {t:Goal acceptance|goal acceptance}, skills and feedback. Otherwise: a wish.' },
+    { nl: 'Te moeilijk? Mensen haken af, of overdrijven hun resultaat, vooral als ze net tekortkwamen.',
       en: 'Too hard? Then people give up, or overstate their results, especially when they just fell short.' },
-    { nl: 'Begin bij de {t:Nulmeting|nulmeting}, niet bij vorig jaar plus tien procent: een doel dicht bij je beste weken is geloofwaardig.',
-      en: 'Start from the {t:Baseline|baseline}, not last year plus ten percent: a target close to your best weeks is believable.' },
+    { nl: 'Begin bij de {t:Nulmeting|nulmeting}, niet bij vorig jaar plus tien procent: een doel dicht bij je beste weken is geloofwaardig. Verder dan ooit? Zeg wat er verandert.',
+      en: 'Start from the {t:Baseline|baseline}, not last year plus ten percent: a target close to your best weeks is believable. Beyond anything seen? Say what changes.' },
   ],
   [ // s6 scrap on one cell
     { nl: 'Werk met een {t:Bandbreedte|bandbreedte}, want resultaten schommelen. En los daarvan een {t:Actiegrens|actiegrens}: daar zoek je een oorzaak.',
@@ -570,7 +574,7 @@ const SAY = [
     { nl: 'Een verspaningscel: acht weken uitval, gemiddeld zo\'n {n:4.1} procent. Het management wil {n:1} procent.',
       en: 'A machining cell: eight weeks of scrap, about {n:4.1} percent on average. Management wants {n:1} percent.' },
     { nl: 'Dat ligt onder elke week ooit. Voorstel: {n:3.0} tot {n:4.0} procent, mikpunt {n:3.5}; boven de {n:5} zoek je de oorzaak.',
-      en: 'That is below any week ever. Proposal: {n:3.0} to {n:4.0} percent, aiming for {n:3.5}; above {n:5}, look for the cause.' },
+      en: 'That\'s below any week ever. Proposal: {n:3.0} to {n:4.0} percent, aiming for {n:3.5}; above {n:5}, look for the cause.' },
     { nl: 'Houd de ambitie zichtbaar: het grootste defect aanpakken kan {n:1} procent later haalbaar maken.',
       en: 'Keep the ambition visible: root-cause work on the biggest defect could make {n:1} percent realistic later.' },
     { nl: 'Betrek het team; mensen verdedigen doelen die ze mee bepaalden. Vraag: wat moet er veranderen om onze beste week gewoon te maken?',
@@ -611,7 +615,7 @@ const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = plainSay(line[lang]);
   if (/[/&×=+()“”"‘%€$]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${line[lang].slice(0, 50)}"`);
-  if (lang === 'nl' && /\b(driver|balanced|scorecard|gaming|Goodhart|Strathern|Locke|Latham|Norton|indicator\w*|actiegrens|deadline|dashboards?|rapportagecijfer|orderregel|plantmanager|oorzakenonderzoek|first-pass|yield|Schweitzer|Ordóñez|Douma|Marilyn|Charles|manager|feedback|achteraf)\b/i.test(sayable(plain, 'nl'))) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
+  if (lang === 'nl' && /\b(driver|balanced|scorecard|gaming|Goodhart|Strathern|Locke|Latham|Norton|indicator\w*|actiegrens|deadline|dashboards?|rapportagecijfer|orderregel|plantmanager|oorzakenonderzoek|first-pass|yield|Schweitzer|Ordóñez|Douma|Marilyn|Charles|manager|achteraf)\b/i.test(sayable(plain, 'nl'))) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
 }
 // Scene lengths follow the narration (its words / 2.5, the longer language), never
 // shorter than the captions (as shown, with their glosses) need to be read.

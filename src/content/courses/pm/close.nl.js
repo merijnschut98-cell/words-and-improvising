@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.close.results',
+      film: 'pm.close.results',
       title: 'Resultaat aantonen',
       pre: [
         {
