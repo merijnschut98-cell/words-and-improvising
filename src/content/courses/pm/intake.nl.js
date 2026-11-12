@@ -327,6 +327,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      film: 'pm.intake.stakeholders',
       title: 'Wie beslist, wie kan het stoppen',
       pre: [
         {

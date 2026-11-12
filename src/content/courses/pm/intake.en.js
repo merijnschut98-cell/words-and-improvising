@@ -327,6 +327,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      film: 'pm.intake.stakeholders',
       title: 'Who decides, who can stop it',
       pre: [
         {

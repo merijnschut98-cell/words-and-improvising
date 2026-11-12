@@ -272,6 +272,26 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   assert.throws(() => resolveFilm(spec([{ nl: '{n:0.3}', en: '{n:0.4}' }]), lessons), /different numbers/);
 });
 
+// Two served lessons can name different Dutch terms with one English word
+// (Stakeholdermap and Stakeholderkaart are both "Stakeholder map"): the English
+// term then resolves to the lesson its Dutch twin names, in caption and narration.
+test('resolveFilm: an English term shared by two served lessons follows its Dutch term', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const mk = (id, nl, en) => ({ nl: { id, terms: nl.map((term) => ({ term })), teach: [''] }, en: { id, terms: en.map((term) => ({ term })), teach: [''] } });
+  const a = mk('pm.fx.a', ['Stakeholdermap'], ['Stakeholder map']);
+  const b = mk('pm.fx.b', ['Valuta', 'Stakeholderkaart'], ['Currency', 'Stakeholder map']);
+  const lessons = { nl: new Map([['pm.fx.a', a.nl], ['pm.fx.b', b.nl]]), en: new Map([['pm.fx.a', a.en], ['pm.fx.b', b.en]]) };
+  const spec = (beats) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['pm.fx.a', 'pm.fx.b'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }] });
+  const data = resolveFilm(spec([
+    { nl: 'De {t:Stakeholdermap|map}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholdermap: 'm1' }, say: { nl: 'De {t:Stakeholdermap|stakeholdermap}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+    { nl: 'De {t:Stakeholderkaart|kaart}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholderkaart: 'm2' }, say: { nl: 'De {t:Stakeholderkaart|stakeholderkaart}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+  ]), lessons);
+  assert.deepEqual(data.scenes[0].terms.map((t) => [t.lesson, t.index, t.cue]), [['pm.fx.a', 0, 'm1'], ['pm.fx.b', 1, 'm2']]);
+  assert.equal(data.scenes[0].beats[1].say.en[1].k, 'pm.fx.b#1');
+  // a Dutch term with an English word from yet another lesson still fails
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Valuta}', en: '{t:Stakeholder map}', cue: { Valuta: 'c' } }]), lessons), /different terms/);
+});
+
 // v14b: the narration script (say) beside the caption, checked the same way
 test('resolveFilm: the narration names lesson terms and numbers, glosses in Dutch once, and nl and en must agree', async () => {
   const { resolveFilm } = await import('../films/_kit/build-film.mjs');

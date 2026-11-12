@@ -266,7 +266,14 @@ const SAY = {
     // with a schwa, gereedheidsCHeck with s-ch, piekseiZOEN (STUUR-groep, MIJL-paal, NUL-meting, -check as tsjek)
     [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\b([Pp])ilot/g, '$1ailot'], [/\b([Ss])tuurgroep/g, '$1tuur-groep'],
     [/\b([Mm])ijlpa(al|len)\b/g, '$1ijl-pa$2'], [/\b([Nn])ulmeting/g, '$1ul-meting'], [/\b([Gg])ereedheidscheck/g, '$1ereedheids-check'],
-    [/\b([Pp])iekseizoen/g, '$1iek-seizoen']],
+    [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
+    // the stakeholder map (pm.intake.stakeholders): espeak-ng reads stakeholder as "staa-ke-holder" (said
+    // steekholder; in stakeholdermap the map as "mep", else "-dər-map" runs together), stresses proceseigenaar
+    // as "PROOsə-zeigenaar" (split at the head), and reads the RACI letters' English words as Dutch
+    // ("res-pon-SI-ble", "ak-kaunt-ab-le", "IN-for-met"); said riesponsibel, akauntebel, informt. Consulted is
+    // read well enough as it is
+    [/\b([Ss])takeholdermap/g, '$1teekholdermep'], [/\b([Ss])takeholder/g, '$1teekholder'], [/\b([Pp])roceseigenaar/g, '$1roces-eigenaar'],
+    [/\b([Rr])esponsible\b/g, '$1iesponsibel'], [/\b([Aa])ccountable\b/g, (m, a) => (a === 'A' ? 'Akauntebel' : 'akauntebel')], [/\b([Ii])nformed\b/g, '$1nformt']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

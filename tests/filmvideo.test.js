@@ -64,6 +64,11 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Starved or blocked, in a Pareto chart.'], 'en'), 'Starved or blocked, in a Pareto chart.');
   assert.equal(speakOf(['Zet ze in een pareto-diagram.'], 'nl'), 'Zet ze in een pareto-diagram.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
+  // the stakeholder film: stakeholder as the Dutch say it (espeak-ng reads "staa-ke-holder"), proces-eigenaar
+  // split at the head, and the RACI letters' English words in a Dutch spelling; English keeps them
+  assert.equal(speakOf(['Een stakeholder, de stakeholdermap, de stakeholderkaart en de proceseigenaar.'], 'nl'), 'Een steekholder, de steekholdermep, de steekholderkaart en de proces-eigenaar.');
+  assert.equal(speakOf(['Responsible, Accountable, Consulted en Informed; wie is accountable?'], 'nl'), 'Riesponsibel, Akauntebel, Consulted en Informt; wie is akauntebel?');
+  assert.equal(speakOf(['A stakeholder map: Responsible, Accountable, Informed.'], 'en'), 'A stakeholder map: Responsible, Accountable, Informed.');
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
   assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');

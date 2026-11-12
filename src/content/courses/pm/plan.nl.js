@@ -1080,6 +1080,7 @@ export default {
     },
     {
       id: 'pm.plan.raci',
+      film: 'pm.intake.stakeholders',
       title: 'Rollen en de sponsor',
       pre: [
         {
