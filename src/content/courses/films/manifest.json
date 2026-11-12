@@ -1232,6 +1232,39 @@
         ],
         "vtt": "src/content/courses/films/eng.mechanics.heattreat.en.vtt"
       }
+    },
+    "eng.switchgear.devices": {
+      "poster": "src/content/courses/films/eng.switchgear.devices.jpg",
+      "nl": {
+        "dur": 340.6,
+        "bytes": 10529278,
+        "scenes": [
+          0,
+          41.61,
+          76.58,
+          109.37,
+          156.65,
+          213.86,
+          256.05,
+          305.56
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.devices.nl.vtt"
+      },
+      "en": {
+        "dur": 354.2,
+        "bytes": 10825688,
+        "scenes": [
+          0,
+          44.44,
+          81.64,
+          113.97,
+          164.65,
+          223.88,
+          266.71,
+          322.17
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.devices.en.vtt"
+      }
     }
   }
 }

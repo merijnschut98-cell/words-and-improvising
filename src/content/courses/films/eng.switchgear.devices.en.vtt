@@ -1,0 +1,329 @@
+WEBVTT
+
+1
+00:00:00.881 --> 00:00:03.934
+This secondary substation feeds a few streets.
+
+2
+00:00:04.656 --> 00:00:06.874
+On the left the medium-voltage switchgear,
+
+3
+00:00:07.013 --> 00:00:11.425
+on the right the transformer that steps 10 kilovolts down to low voltage.
+
+4
+00:00:12.427 --> 00:00:16.189
+Switchgear switches, protects and isolates parts of the grid.
+
+5
+00:00:16.941 --> 00:00:22.374
+Here it is an RMU, a ring main unit: one compact block in a sealed steel tank.
+
+6
+00:00:23.411 --> 00:00:27.126
+It has three panels: one cabinet per cable or transformer.
+
+7
+00:00:27.836 --> 00:00:32.213
+Two panels link the station into the ring; the third feeds the transformer.
+
+8
+00:00:32.938 --> 00:00:37.558
+A line drawing on the front shows which switch is open, closed or earthed.
+
+9
+00:00:38.605 --> 00:00:40.660
+Ask two things of every device.
+
+10
+00:00:41.373 --> 00:00:43.545
+What can it make, and what can it break?
+
+11
+00:00:44.891 --> 00:00:45.971
+In the substation,
+
+12
+00:00:46.203 --> 00:00:51.091
+every medium-voltage feeder to a ring of stations starts at a circuit breaker.
+
+13
+00:00:52.138 --> 00:00:56.294
+It switches load, but also breaks a short circuit, again and again,
+
+14
+00:00:56.469 --> 00:01:00.265
+and is typically rated for 16 to 25 kiloamps.
+
+15
+00:01:01.281 --> 00:01:03.487
+A protection relay measures the current.
+
+16
+00:01:04.240 --> 00:01:07.270
+When it sees a fault, it tells the breaker to open.
+
+17
+00:01:08.328 --> 00:01:11.185
+As the contacts part, an arc jumps across.
+
+18
+00:01:11.893 --> 00:01:15.527
+In a vacuum interrupter it burns only in metal vapour.
+
+19
+00:01:16.281 --> 00:01:20.785
+At the next current zero it goes out, and the vapour condenses at once.
+
+20
+00:01:22.089 --> 00:01:22.704
+How heavy?
+
+21
+00:01:23.415 --> 00:01:27.931
+That depends on the fault level: how hard a short circuit hits at that point.
+
+22
+00:01:29.028 --> 00:01:34.439
+Near a substation, in a 10 kilovolt grid, it is a few hundred megavolt-amperes,
+
+23
+00:01:34.589 --> 00:01:36.865
+roughly 15 to 20 kiloamps.
+
+24
+00:01:37.869 --> 00:01:42.060
+Every circuit breaker must be rated above the fault level where it sits.
+
+25
+00:01:43.111 --> 00:01:45.630
+An example: a digger hits a ring cable.
+
+26
+00:01:46.321 --> 00:01:53.101
+The relay sees 8 kiloamps, and the 20 kiloamp breaker opens in about 0.3 seconds.
+
+27
+00:01:54.399 --> 00:01:59.322
+Back in the secondary substation, the two ring panels each have a load-break switch,
+
+28
+00:01:59.449 --> 00:02:02.143
+for switching sections of the ring in and out.
+
+29
+00:02:03.259 --> 00:02:07.671
+A load-break switch switches the normal load, and can close onto a fault,
+
+30
+00:02:07.845 --> 00:02:09.761
+but cannot break a short circuit.
+
+31
+00:02:10.514 --> 00:02:13.718
+So when the digger strikes, the breaker opens first.
+
+32
+00:02:14.528 --> 00:02:18.917
+Then a technician opens the load-break switches around the damaged section,
+
+33
+00:02:19.102 --> 00:02:20.692
+and the breaker goes back in.
+
+34
+00:02:21.675 --> 00:02:25.692
+The third panel feeds the 400 kilovolt-ampere transformer,
+
+35
+00:02:25.878 --> 00:02:28.583
+through a load-break switch and a fuse per phase:
+
+36
+00:02:28.780 --> 00:02:31.834
+a sand-filled cartridge with a thin silver element.
+
+37
+00:02:32.892 --> 00:02:36.503
+On a fault the element melts and the sand quenches the arc.
+
+38
+00:02:37.290 --> 00:02:41.411
+Usually a striker pin pops out and trips the load-break switch.
+
+39
+00:02:42.128 --> 00:02:43.742
+Then the fuse is replaced.
+
+40
+00:02:45.089 --> 00:02:47.910
+For work behind a panel there is the disconnector.
+
+41
+00:02:48.649 --> 00:02:52.051
+You operate it only without current: it makes a safe gap.
+
+42
+00:02:53.103 --> 00:02:56.156
+The earthing switch connects the dead section to earth.
+
+43
+00:02:56.897 --> 00:03:01.901
+If voltage comes back by mistake, the current flows to earth, not through a person.
+
+44
+00:03:02.921 --> 00:03:07.936
+In an RMU this is often one three-position switch: closed, open and earthed.
+
+45
+00:03:08.696 --> 00:03:13.386
+An interlock blocks the wrong order, such as earthing a cable that is still live.
+
+46
+00:03:14.083 --> 00:03:17.578
+That order belongs to the five safety rules: disconnect,
+
+47
+00:03:17.705 --> 00:03:23.092
+secure against reconnection, verify absence of voltage, earth and short-circuit,
+
+48
+00:03:23.278 --> 00:03:26.006
+and protect against adjacent live parts.
+
+49
+00:03:27.039 --> 00:03:29.106
+Operating a disconnector under load,
+
+50
+00:03:29.280 --> 00:03:34.237
+or closing a switch onto a fault it cannot handle, can cause an arc flash: heat,
+
+51
+00:03:34.423 --> 00:03:36.617
+light and pressure that burn the operator.
+
+52
+00:03:37.351 --> 00:03:40.056
+Good switchgear is tested against an internal
+
+53
+00:03:40.126 --> 00:03:43.017
+arc and vents the blast away from the operator.
+
+54
+00:03:44.338 --> 00:03:48.064
+A substation has a row of panels, each with a circuit breaker,
+
+55
+00:03:48.215 --> 00:03:53.300
+measuring transformers that scale current and voltage down, and a protection relay.
+
+56
+00:03:54.288 --> 00:03:59.327
+Air-insulated switchgear is large: air between the live parts insulates them,
+
+57
+00:03:59.478 --> 00:04:00.860
+so it needs distance.
+
+58
+00:04:01.936 --> 00:04:06.452
+Gas-insulated switchgear puts those parts in a sealed tank of SF6,
+
+59
+00:04:06.673 --> 00:04:09.680
+an insulating gas, and is much more compact.
+
+60
+00:04:10.408 --> 00:04:13.589
+Many RMUs are SF6-insulated too.
+
+61
+00:04:14.294 --> 00:04:19.217
+Many stations still have older types, like the resin-insulated Magnefix,
+
+62
+00:04:19.391 --> 00:04:21.667
+some with extra operating rules.
+
+63
+00:04:22.677 --> 00:04:25.858
+A pressure gauge on the front shows the gas is still in.
+
+64
+00:04:27.142 --> 00:04:30.950
+SF6 insulates and quenches arcs extremely well.
+
+65
+00:04:31.622 --> 00:04:38.565
+But it is the strongest greenhouse gas in common use: about 23,500 times CO2,
+
+66
+00:04:38.681 --> 00:04:39.424
+per kilogram.
+
+67
+00:04:40.445 --> 00:04:46.877
+An example: 20,000 RMUs with 1.5 kilograms of gas each is 30 tonnes.
+
+68
+00:04:47.583 --> 00:04:52.053
+If 0.1 percent leaks each year, that is 30 kilograms.
+
+69
+00:04:53.091 --> 00:05:00.104
+Times 23,500, that is roughly 700 tonnes of CO2 equivalent, every year.
+
+70
+00:05:01.100 --> 00:05:03.608
+So under the EU F-gas Regulation,
+
+71
+00:05:03.759 --> 00:05:11.364
+new switchgear up to 24 kilovolts may in principle no longer use SF6 from 2026,
+
+72
+00:05:11.549 --> 00:05:15.218
+and up to 52 kilovolts from 2030.
+
+73
+00:05:15.939 --> 00:05:21.291
+New types break the arc in vacuum and insulate with dry air or solid materials.
+
+74
+00:05:22.616 --> 00:05:26.888
+In short: the circuit breaker breaks short circuits, again and again.
+
+75
+00:05:27.877 --> 00:05:29.781
+The load-break switch switches load,
+
+76
+00:05:29.967 --> 00:05:33.148
+not short circuits; the fuse breaks a fault once.
+
+77
+00:05:34.135 --> 00:05:36.596
+The disconnector works only without current;
+
+78
+00:05:36.875 --> 00:05:39.185
+the earthing switch earths the dead section.
+
+79
+00:05:40.216 --> 00:05:44.000
+Switchgear stays 30 to 50 years, so the choice matters.
+
+80
+00:05:44.705 --> 00:05:46.632
+Always ask: which type is it?
+
+81
+00:05:47.408 --> 00:05:49.416
+And what stops someone using it wrong?
+
+82
+00:05:50.124 --> 00:05:52.481
+Older units lack some of the interlocks.
