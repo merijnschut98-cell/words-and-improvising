@@ -74,23 +74,23 @@
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {
         "dur": 264.5,
-        "bytes": 10766066,
+        "bytes": 10774271,
         "scenes": [
           0,
-          42.38,
-          65.42,
-          93.88,
-          108.92,
-          134.29,
-          159.17,
-          173.77,
-          225.75
+          42.76,
+          65.91,
+          94.47,
+          109.4,
+          134.35,
+          159.29,
+          173.98,
+          226.12
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.nl.vtt"
       },
       "en": {
         "dur": 287.1,
-        "bytes": 11574644,
+        "bytes": 11573991,
         "scenes": [
           0,
           47.44,
@@ -108,17 +108,17 @@
     "eng.moulding.cycle": {
       "poster": "src/content/courses/films/eng.moulding.cycle.jpg",
       "nl": {
-        "dur": 249.7,
-        "bytes": 9554359,
+        "dur": 249.6,
+        "bytes": 9552771,
         "scenes": [
           0,
-          41.24,
-          61.92,
-          80.93,
-          103.09,
-          129.63,
-          163.07,
-          204.99
+          40.87,
+          61.56,
+          80.57,
+          102.76,
+          129.49,
+          162.96,
+          204.7
         ],
         "vtt": "src/content/courses/films/eng.moulding.cycle.nl.vtt"
       },
@@ -205,17 +205,17 @@
     "eng.machining.drilling": {
       "poster": "src/content/courses/films/eng.machining.drilling.jpg",
       "nl": {
-        "dur": 233,
-        "bytes": 8998946,
+        "dur": 233.2,
+        "bytes": 9003183,
         "scenes": [
           0,
-          39.86,
-          58.32,
-          88.49,
-          118.88,
-          162.91,
-          176.88,
-          212.75
+          39.28,
+          57.92,
+          88.39,
+          118.76,
+          163.16,
+          177.21,
+          212.91
         ],
         "vtt": "src/content/courses/films/eng.machining.drilling.nl.vtt"
       },
@@ -269,18 +269,18 @@
     "eng.machining.tooling": {
       "poster": "src/content/courses/films/eng.machining.tooling.jpg",
       "nl": {
-        "dur": 289.3,
-        "bytes": 13723349,
+        "dur": 290.5,
+        "bytes": 13744666,
         "scenes": [
           0,
-          23.23,
-          49.93,
-          96.65,
-          119.9,
-          148.23,
-          176.32,
-          219.35,
-          273.65
+          23.28,
+          49.9,
+          96.79,
+          119.91,
+          148.42,
+          176.94,
+          220.5,
+          274.75
         ],
         "vtt": "src/content/courses/films/eng.machining.tooling.nl.vtt"
       },
@@ -372,24 +372,24 @@
     "eng.joining.bolting": {
       "poster": "src/content/courses/films/eng.joining.bolting.jpg",
       "nl": {
-        "dur": 339.9,
-        "bytes": 8352338,
+        "dur": 340.6,
+        "bytes": 8381915,
         "scenes": [
           0,
-          26.73,
-          67.56,
-          102.46,
-          130.94,
-          155,
-          204.25,
-          250.74,
-          277.34
+          26.68,
+          67.43,
+          102.31,
+          130.88,
+          155.2,
+          204.49,
+          251.34,
+          277.96
         ],
         "vtt": "src/content/courses/films/eng.joining.bolting.nl.vtt"
       },
       "en": {
         "dur": 355.9,
-        "bytes": 8594905,
+        "bytes": 8594818,
         "scenes": [
           0,
           27.16,
@@ -407,17 +407,17 @@
     "eng.joining.bonding": {
       "poster": "src/content/courses/films/eng.joining.bonding.jpg",
       "nl": {
-        "dur": 317.7,
-        "bytes": 7632566,
+        "dur": 317.1,
+        "bytes": 7630461,
         "scenes": [
           0,
           34.55,
-          73.45,
-          118.6,
-          158.07,
-          200.02,
-          225.51,
-          263.38
+          73.67,
+          118.79,
+          157.35,
+          199.11,
+          224.75,
+          262.91
         ],
         "vtt": "src/content/courses/films/eng.joining.bonding.nl.vtt"
       },
@@ -440,23 +440,23 @@
     "eng.moulding.machine": {
       "poster": "src/content/courses/films/eng.moulding.machine.jpg",
       "nl": {
-        "dur": 337.8,
-        "bytes": 12393565,
+        "dur": 337,
+        "bytes": 12365364,
         "scenes": [
           0,
-          39.73,
-          72.92,
-          125.47,
-          159.4,
-          198.51,
-          269.03,
-          317.35
+          39.74,
+          72.69,
+          124.95,
+          158.69,
+          197.71,
+          268.1,
+          316.69
         ],
         "vtt": "src/content/courses/films/eng.moulding.machine.nl.vtt"
       },
       "en": {
         "dur": 358.7,
-        "bytes": 13067028,
+        "bytes": 13067072,
         "scenes": [
           0,
           44.41,
@@ -611,34 +611,34 @@
     "eng.lines.control": {
       "poster": "src/content/courses/films/eng.lines.control.jpg",
       "nl": {
-        "dur": 327.3,
-        "bytes": 12039664,
+        "dur": 327.4,
+        "bytes": 12086614,
         "scenes": [
           0,
-          36.74,
-          70.69,
-          110.13,
-          143.8,
-          185.9,
-          217.89,
-          257.71,
-          287.48
+          36.81,
+          71.05,
+          110.77,
+          144.65,
+          186.65,
+          218.4,
+          258.53,
+          288.01
         ],
         "vtt": "src/content/courses/films/eng.lines.control.nl.vtt"
       },
       "en": {
         "dur": 345.5,
-        "bytes": 12560038,
+        "bytes": 12521588,
         "scenes": [
           0,
-          39.14,
-          75.71,
-          118.55,
-          154.45,
-          200.72,
-          232.51,
-          271.53,
-          302.1
+          39.51,
+          76.37,
+          119.03,
+          155.24,
+          200.92,
+          232.75,
+          271.51,
+          302.27
         ],
         "vtt": "src/content/courses/films/eng.lines.control.en.vtt"
       }
@@ -646,34 +646,34 @@
     "eng.moulding.defects": {
       "poster": "src/content/courses/films/eng.moulding.defects.jpg",
       "nl": {
-        "dur": 316.1,
-        "bytes": 9950731,
+        "dur": 314.9,
+        "bytes": 9886281,
         "scenes": [
           0,
-          36.12,
-          64.76,
-          94.27,
-          127.55,
-          154.78,
-          194.07,
-          213.55,
-          259.44
+          35.49,
+          63.92,
+          93.79,
+          127.02,
+          153.97,
+          193.16,
+          212.67,
+          258.31
         ],
         "vtt": "src/content/courses/films/eng.moulding.defects.nl.vtt"
       },
       "en": {
-        "dur": 341.3,
-        "bytes": 10785984,
+        "dur": 341.8,
+        "bytes": 10790837,
         "scenes": [
           0,
-          39.1,
-          68.13,
-          101.05,
-          136.46,
-          164.35,
-          205.07,
-          226.76,
-          278.78
+          39.33,
+          68.24,
+          100.91,
+          136.6,
+          164.71,
+          205.49,
+          226.93,
+          279.25
         ],
         "vtt": "src/content/courses/films/eng.moulding.defects.en.vtt"
       }
@@ -1070,6 +1070,37 @@
           273.81
         ],
         "vtt": "src/content/courses/films/eng.power.drives.en.vtt"
+      }
+    },
+    "eng.power.hydraulics": {
+      "poster": "src/content/courses/films/eng.power.hydraulics.jpg",
+      "nl": {
+        "dur": 284,
+        "bytes": 8549198,
+        "scenes": [
+          0,
+          46.87,
+          84.13,
+          120.78,
+          161.32,
+          214.77,
+          252.71
+        ],
+        "vtt": "src/content/courses/films/eng.power.hydraulics.nl.vtt"
+      },
+      "en": {
+        "dur": 314.1,
+        "bytes": 9375278,
+        "scenes": [
+          0,
+          53.03,
+          95.36,
+          136.36,
+          179.85,
+          238.23,
+          276.81
+        ],
+        "vtt": "src/content/courses/films/eng.power.hydraulics.en.vtt"
       }
     }
   }
