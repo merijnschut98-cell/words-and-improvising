@@ -657,6 +657,7 @@ export default {
     // Onderwerp 3: werken met experts
     {
       id: 'pm.outside.trust',
+      film: 'pm.outside.experts',
       title: 'Vertrouwen en controleren',
       pre: [
         {
@@ -897,6 +898,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      film: 'pm.outside.experts',
       title: 'Rode vlaggen',
       pre: [
         {
