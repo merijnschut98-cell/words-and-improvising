@@ -821,6 +821,13 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 .film-video-wrap { margin: 0; }
 .film-video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-md, 6px); background: #0d252b; }
 .film-note { margin: 8px 0 0; }
+/* On a phone a film in a card runs edge to edge (16px screen gutter + 1px card
+   border + 16px card padding): at 390 px the 640-unit stage is then 390 px wide,
+   so the films' 20-unit stage text renders at 12.2 px instead of 11.1 px. */
+@media (max-width: 479px) {
+  .card .film-box.figure-wrap, .card .film-video-wrap { margin-left: -33px; margin-right: -33px; }
+  .card .film-box .film-frame, .card .film-video-wrap .film-video { border-radius: 0; }
+}
 .film-keep { margin-top: 6px; }
 .read-along { margin: var(--space-3, 12px) 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--tint); border: 1px solid var(--border-subtle); }
 .read-along > summary { font-weight: 600; min-height: 28px; }

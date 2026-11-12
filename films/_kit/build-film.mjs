@@ -18,6 +18,11 @@
 //   beat a focus field (no `cues`, no term in an overview): then both are
 //   errors. The page data carries `focus` per beat and `strictFocus` only when
 //   the film declares them, so older films' data is unchanged.
+// - Stage text (v16, measured in the lesson view at 390 px; the app runs a film
+//   edge to edge on a phone, so the 640-unit stage is 390 px wide): at least
+//   20 font-size units in an HTML-only film (12.2 px) and at least 22 units in
+//   a film that will be rendered to video (the 1280x720 frame shows the stage
+//   at 0.9 of its width: 22 units = 12.1 px). Older films keep their sizes.
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';

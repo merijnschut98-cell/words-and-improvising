@@ -315,6 +315,43 @@ test('speak.py word timing: each spoken word gets its phoneme words; a word espe
   assert.deepEqual(wordSpans([1, 2, 3, 4, 3], g.slice(0, 3)), [[0, 10], [12, 20], [25, 40], [40, 40], [40, 40]]);
 });
 
+// films/_kit/speak.py swap_lexicon, run alone like word_spans (with PUNCT and re).
+function swapLexicon(ph, toks, counts, lex, alone) {
+  const py = [
+    'import ast, json, re, sys',
+    'src = open(sys.argv[1], encoding="utf-8").read()',
+    'body = [n for n in ast.parse(src).body if (isinstance(n, ast.FunctionDef) and n.name in ("swap_lexicon", "word_groups")) or (isinstance(n, ast.Assign) and any(getattr(t, "id", "") == "PUNCT" for t in n.targets))]',
+    'ns = {"re": re}',
+    'exec(compile(ast.Module(body=body, type_ignores=[]), "speak.py", "exec"), ns)',
+    'print(json.dumps(ns["swap_lexicon"](*json.loads(sys.stdin.read())), ensure_ascii=False))',
+  ].join('\n');
+  const r = spawnSync('python3', ['-I', '-c', py, 'films/_kit/speak.py'], { input: JSON.stringify([ph, toks, counts, lex, alone]), encoding: 'utf8' });
+  if (r.error) return null;
+  assert.equal(r.status, 0, r.stderr);
+  return JSON.parse(r.stdout);
+}
+test('speak.py lexicon swap: a word is swapped at its own position, never inside another word that holds its phonemes', (t) => {
+  const lex = { project: 'prɔjˈɛkt' };
+  const alone = { project: 'prˈoːjɛkt' };
+  // "projecten" comes first and starts with the phonemes of "project"
+  const r = swapLexicon('də prˈoːjɛktən ɛn ɦɛt prˈoːjɛkt.', ['De', 'projecten', 'en', 'het', 'project.'], [1, 2, 3, 4, 5], lex, alone);
+  if (r === null) return t.skip('no python3');
+  assert.deepEqual(r, ['də prˈoːjɛktən ɛn ɦɛt prɔjˈɛkt.', ['project'], []]);
+  // twice in a sentence: both, each at its own place; punctuation stays
+  assert.deepEqual(swapLexicon('prˈoːjɛkt, prˈoːjɛktən, prˈoːjɛkt.', ['Project,', 'projecten,', 'project.'], [1, 2, 3], lex, alone)[0], 'prɔjˈɛkt, prˈoːjɛktən, prɔjˈɛkt.');
+  // a word espeak-ng reads as two phoneme words: searched across both
+  assert.deepEqual(swapLexicon('ɦɛt prˈoː jɛkt lˈoːpt', ['het', 'project', 'loopt'], [1, 3, 4], { project: 'X' }, { project: 'prˈoː jɛkt' })[0], 'ɦɛt X lˈoːpt');
+  // glued onto the word before it (no phoneme word of its own): searched in that one
+  assert.deepEqual(swapLexicon('ɦɛtprˈoːjɛkt lˈoːpt', ['het', 'project', 'loopt'], [1, 1, 2], lex, alone)[0], 'ɦɛtprɔjˈɛkt lˈoːpt');
+  // not read the same way in the sentence: left alone, with a warning
+  const miss = swapLexicon('də proːjˈɛkt', ['de', 'project'], [1, 2], lex, alone);
+  assert.equal(miss[0], 'də proːjˈɛkt');
+  assert.deepEqual(miss[1], []);
+  assert.match(miss[2][0], /lexicon: espeak form of "project"/);
+  // counts that do not fit the sentence's phoneme words: whole phoneme words only
+  assert.deepEqual(swapLexicon('də prˈoːjɛktən ɛn prˈoːjɛkt.', ['De', 'projecten', 'en', 'project.'], [1, 2, 3, 5], lex, alone)[0], 'də prˈoːjɛktən ɛn prɔjˈɛkt.');
+});
+
 // The listen guard (films/_kit/listen-guard.mjs) on a synthetic track: "speech"
 // is a tone, silence is zero.
 const RATE = 8000;
