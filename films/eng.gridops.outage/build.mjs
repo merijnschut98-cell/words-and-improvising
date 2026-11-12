@@ -950,7 +950,7 @@ const SAY = [
       '{t:CAIDI|CAIDI} is the average duration of one interruption, for the customers affected.'),
     B('Vermenigvuldig ze, en je krijgt {t:SAIDI|SAIDI}: de gemiddelde uitvalminuten per klant per jaar, de jaarlijkse uitvalduur. In 2025 was dat in Nederland {n:0.316} onderbrekingen van gemiddeld {n:73.9} minuten: {n:23.4} minuten door onvoorziene storingen. Gepland werk kwam daar met {n:27.2} minuten bovenop.',
       'Multiply them, and you get {t:SAIDI|SAIDI}: the average outage minutes per customer per year. In 2025 in the Netherlands that was {n:0.316} interruptions of {n:73.9} minutes on average: {n:23.4} minutes from unplanned outages. Planned work added {n:27.2} minutes on top.'),
-    B('Een valkuil: één lange streng op het platteland kan de SAIDI van een hele regio bepalen.',
+    B('Een valkuil is dat één lange streng op het platteland de SAIDI van een hele regio kan bepalen.',
       'A pitfall: one long rural feeder can drive a whole region’s SAIDI.'),
   ],
 ];
