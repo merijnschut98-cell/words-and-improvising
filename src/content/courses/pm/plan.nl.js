@@ -333,6 +333,7 @@ export default {
     },
     {
       id: 'pm.plan.schedule',
+      film: 'pm.plan.schedule',
       title: 'Kritiek pad en de planning op één A4',
       pre: [
         {

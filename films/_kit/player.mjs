@@ -46,7 +46,8 @@ export const VANTAGE_CSS = `
   --anatomy-lit-top:#1D4A55;--anatomy-lit-shade:#173D47;
   --anatomy-hi:#E4DDCC;--anatomy-mid:#7C9289;--anatomy-lo:#45615D;--anatomy-faint:#26433F;--anatomy-lit:#5C9FAE;
   --anatomy-halo:#03100F;--anatomy-halo-opacity:.85;--anatomy-dot:#F0E9DA;
-  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-glow:#5C9FAE;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-focus:#EAF7FF;--fp-focus-glow:#8FD3FF;--fp-focus-top:#2F6A86;--fp-focus-shade:#275A73;--fp-focus-text:#BDE5FF;
   --anatomy-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --fp-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
@@ -57,9 +58,16 @@ export const VANTAGE_CSS = `
   --anatomy-lit-top:#E2ECEA;--anatomy-lit-shade:#CCDCDB;
   --anatomy-hi:#1E3328;--anatomy-mid:#7D877A;--anatomy-lo:#A9AE9E;--anatomy-faint:#D0CAB8;--anatomy-lit:#276F81;
   --anatomy-halo:#5A6B60;--anatomy-halo-opacity:.3;--anatomy-dot:#1E3328;
-  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-glow:#3E8C9E;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-focus:#1E88D2;--fp-focus-glow:#4DB0F2;--fp-focus-top:#FFFFFF;--fp-focus-shade:#E2F1FC;--fp-focus-text:#14659E;
 }`;
 
+// Focus (v16): the parts the current beat explains ([data-cue][data-on]) turn
+// white / light blue with a soft halo (--fp-focus*, light and dark values on
+// .iso). Inside a focused part --fp-accent is the focus colour, so a film's own
+// cue rules follow. The halo eases in per beat: the runtime flips data-focus
+// a/b on .fp, restarting --fp-fi 0 to 1 (also for parts a stage redraws every
+// frame); reduced motion and render mode hold it at 1.
 export const PLAYER_CSS = `
 *{box-sizing:border-box}
 html{color-scheme:dark}
@@ -121,18 +129,21 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 .fp-item-d{font:12px/1 var(--anatomy-mono);color:var(--anatomy-muted)}
 @media (hover:hover){.fp-item:hover{background:color-mix(in srgb,var(--anatomy-strong) 6%,transparent)}}
 .fp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-/* a term's visual cue: the part turns petrol and breathes while it is named */
-[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-accent)!important}
-[data-cue][data-on] .iso-edge{stroke-width:1.4px}
-[data-cue][data-on] .iso-top{fill:var(--anatomy-lit-top)}
-[data-cue][data-on] .iso-shade{fill:var(--anatomy-lit-shade)}
-[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-accent)}
-[data-cue][data-on] .fp-ink{fill:var(--fp-accent)}
-[data-cue][data-on]{animation:fp-breathe 1.8s ease-in-out infinite}
-@keyframes fp-breathe{0%,100%{filter:none}50%{filter:drop-shadow(0 0 2.5px var(--fp-glow))}}
-.fp[data-motion="reduce"] [data-cue][data-on]{animation:none}
-@media (prefers-reduced-motion:reduce){[data-cue][data-on]{animation:none}}
-/* render mode (?render=1): the page is one 16:9 video frame, the stage only. No caption band: the video's subtitles come from its WebVTT track alone (the poster shows the band once, for the title) */
+@property --fp-fi{syntax:'<number>';inherits:true;initial-value:1}
+.fp[data-focus="a"]{animation:fp-focus-a .4s ease-in}
+.fp[data-focus="b"]{animation:fp-focus-b .4s ease-in}
+@keyframes fp-focus-a{from{--fp-fi:0}to{--fp-fi:1}}
+@keyframes fp-focus-b{from{--fp-fi:0}to{--fp-fi:1}}
+.fp[data-motion="reduce"][data-focus],.fp[data-render="1"][data-focus]{animation:none}
+@media (prefers-reduced-motion:reduce){.fp[data-focus]{animation:none}}
+[data-cue][data-on]{--fp-accent:var(--fp-focus);--fp-accent-text:var(--fp-focus-text);filter:drop-shadow(0 0 calc(var(--fp-fi,1) * 1px) var(--fp-focus-glow)) drop-shadow(0 0 calc(var(--fp-fi,1) * 3.5px) var(--fp-focus-glow))}
+[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-focus)!important}
+[data-cue][data-on] .iso-edge{stroke-width:1.6px}
+[data-cue][data-on] .iso-top{fill:var(--fp-focus-top)}
+[data-cue][data-on] .iso-shade{fill:var(--fp-focus-shade)}
+[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-focus)}
+[data-cue][data-on] .fp-ink{fill:var(--fp-focus)}
+/* render mode (?render=1): one 16:9 video frame, the stage only; subtitles from WebVTT */
 html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
 .fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
 .fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
@@ -141,7 +152,6 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
 .fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
 .fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
-.fp[data-render="1"] [data-cue][data-on]{animation:none;filter:drop-shadow(0 0 var(--fp-b,0px) var(--fp-glow))}
 .fp-mark{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .fp-ink{fill:var(--anatomy-mid)}
 `;
@@ -181,7 +191,9 @@ const json = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
 // stage: { svg, script, css, label: { nl, en } }. The script defines STAGE.
 export function pageHtml(data, stage) {
   const withLabel = { ...data, label: stage.label };
-  const script = [runtimeTimeline(), stage.script, readFileSync(join(HERE, 'player-runtime.js'), 'utf8')].join('\n;\n');
+  // the runtime without its whole-line comments (it has no multi-line template strings)
+  const runtime = readFileSync(join(HERE, 'player-runtime.js'), 'utf8').replace(/^[ \t]*\/\/.*\n/gm, '');
+  const script = [runtimeTimeline(), stage.script, runtime].join('\n;\n');
   // The end card's replay label follows the language.
   const again = `document.querySelector('.fp-again span').textContent=new URLSearchParams(${SEARCH}).get('lang')==='en'?'Watch again':'Nog een keer';`;
   return `<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${data.title.nl}</title><script>${BOOT}</script><style>${stage.kitCss || ''}${VANTAGE_CSS}${PLAYER_CSS}${stage.css || ''}</style></head><body>${playerHtml(data, stage.svg)}<script type="application/json" id="film-data">${json(withLabel)}</script><script>${again}</script><script type="module">${script.replace(/<\/(script)/gi, '<\\/$1')}</script></body></html>`;

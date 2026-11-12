@@ -134,9 +134,11 @@ export function pmWorld(k, G, P) {
   }
 
   // ------------------------------------------------------------ the calendar strip
-  // A wall calendar on the side wall (x = 0): a hanging rail, a strip of `weeks`
-  // week cells in two rows of months, and its own small header rule. Returns
-  // { svg, face, cell(i) } with cell(i) the local rectangle of week i (u, v).
+  // A wall calendar on the side wall (x = 0): a hanging rail, a paper strip with
+  // one row of `weeks` week cells (week 0 at the left as seen from the room, at
+  // the largest y), and two short header rules. cw and ch are a cell's width
+  // (along the wall) and height. Returns { svg, face, cell(i) } with cell(i) the
+  // local rectangle [u0, v0, u1, v1] of week i on face (u = -y, v = -z).
   function calendar({ y0 = 40, z0 = 128, weeks = 15, cw = 9.2, ch = 18 } = {}) {
     const face = planeX(1.1);
     const u0 = -(y0 + weeks * cw) - 3;

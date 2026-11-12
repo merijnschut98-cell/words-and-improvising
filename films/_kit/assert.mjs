@@ -165,3 +165,36 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
   if (total < MIN_TOTAL || total > MAX_TOTAL) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${MAX_TOTAL}`);
   return errs;
 }
+
+// The cue keys a stage offers: the data-cue groups of its drawing, and those its
+// script draws per frame (data-cue="key" or cue('key', ...) written out).
+export function cueKeysOf(src) {
+  const text = String(src);
+  return new Set([...text.matchAll(/data-cue="([^"$]+)"/g), ...text.matchAll(/\bcue\(\s*['"]([^'"]+)['"]/g)].map((m) => m[1]));
+}
+
+// Focus (v16): every beat lights the part(s) it explains, or says focus: null
+// (an overview). For older films a beat whose cues light a part counts; the
+// rest are counted as warnings (missing), as are cue keys that name no part of
+// the drawing (unknown). A film with strictFocus must give every beat a focus
+// field and name only real parts: then both are errors.
+export function checkFocus(data, keys) {
+  const out = { errors: [], missing: [], unknown: [] };
+  const strict = !!data.strictFocus;
+  for (const s of data.scenes || []) {
+    (s.beats || []).forEach((b, i) => {
+      const where = `${s.id} beat ${i + 1}`;
+      const declared = 'focus' in b;
+      if (!(declared || (!strict && (b.cues || []).length))) {
+        out.missing.push(where);
+        if (strict) out.errors.push(`${where}: no focus`);
+      }
+      for (const k of b.cues || []) {
+        if (keys.has(k)) continue;
+        out.unknown.push(`${where}: ${k}`);
+        if (strict) out.errors.push(`${where}: focus "${k}" is no part of the drawing`);
+      }
+    });
+  }
+  return out;
+}

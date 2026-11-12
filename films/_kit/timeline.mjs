@@ -260,6 +260,13 @@ const SAY = {
     [/\b([Mm])iddenspanningszekering/g, '$1iddenspannings-zekering'], [/\b([Ll])aagspanningszekering/g, '$1aagspannings-zekering'],
     [/\b([Ll])ekstroom/g, '$1ek-stroom'], [/\b([Ff])asestromen\b/g, '$1ase-stromen'],
     [/\b([Ff])outstromen\b/g, '$1out-stromen'], [/\b([Ll])aagspanningskabel/g, '$1aagspannings-kabel'], [/\b([Ss])traatkabel/g, '$1traat-kabel'],
+    // the critical path (pm.plan.schedule, the first pm film): go/no-go without "slash" (espeak-ng says
+    // "go slash no-go"; as the English rule), pilot as the Dutch say it, "pailot" (espeak-ng reads "pie-lot"),
+    // and compounds it stresses at the end or reads wrong, split at the head: stuurGROEP, mijlPAAL, nulmEting
+    // with a schwa, gereedheidsCHeck with s-ch, piekseiZOEN (STUUR-groep, MIJL-paal, NUL-meting, -check as tsjek)
+    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\b([Pp])ilot/g, '$1ailot'], [/\b([Ss])tuurgroep/g, '$1tuur-groep'],
+    [/\b([Mm])ijlpa(al|len)\b/g, '$1ijl-pa$2'], [/\b([Nn])ulmeting/g, '$1ul-meting'], [/\b([Gg])ereedheidscheck/g, '$1ereedheids-check'],
+    [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
     // the first conversation (pm.intake.firsttalk): the listening checklist MORE PIES as its English name, "Mor
     // pais" (espeak-ng reads PIES as the Dutch "pis"); only in capitals, as the lessons write it
     [/\bMORE PIES\b/g, 'Mor pais']],
