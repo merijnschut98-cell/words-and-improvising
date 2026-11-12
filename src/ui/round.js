@@ -1,4 +1,5 @@
 import { meterShouldTurnOff } from '../core/loudness.js';
+import { micConflict, soundHeard, anyHeard, rmsWindows, canShareMic, MIN_SCORED_WORDS } from '../core/micshare.js';
 import { roundSeconds, replyAfter } from '../core/pressure.js';
 import { h, DRILL_ICON, fmtTime } from './dom.js';
 
@@ -25,6 +26,7 @@ function startMeter() {
   let stream = null;
   let ctx = null;
   let timer = null;
+  let opened = false; // the second mic stream really opened
   function stop() {
     stopped = true;
     if (timer) { clearInterval(timer); timer = null; }
@@ -38,6 +40,7 @@ function startMeter() {
       const s = await navigator.mediaDevices.getUserMedia({ audio: true });
       if (stopped) { s.getTracks().forEach((tr) => tr.stop()); return; }
       stream = s;
+      opened = true;
       ctx = new AC();
       const analyser = ctx.createAnalyser();
       analyser.fftSize = 2048;
@@ -55,7 +58,23 @@ function startMeter() {
       stop();
     }
   })();
-  return { samples, stop };
+  return { samples, stop, get opened() { return opened; } };
+}
+
+// Loudness of a recorded blob in 100 ms windows, or null when it cannot be
+// decoded (in time). Used to tell a silent speaker from a starved recogniser.
+async function blobLevels(blob) {
+  try {
+    const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (!OAC || !blob || !blob.arrayBuffer) return null;
+    const ctx = new OAC(1, 1, 16000);
+    const data = await blob.arrayBuffer();
+    const buf = await Promise.race([ctx.decodeAudioData(data), new Promise((r) => { setTimeout(() => r(null), 2000); })]);
+    if (!buf) return null;
+    return rmsWindows(buf.getChannelData(0), Math.max(1, Math.round(buf.sampleRate / 10)));
+  } catch {
+    return null;
+  }
 }
 
 const RING_R = 52;
@@ -222,6 +241,9 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   let meter = null; // loudness meter (settings.voiceStats)
   let finished = false;
   let disposed = false; // set when the screen is left
+  // On Android a second mic stream starves live speech recognition without an
+  // error, so the recorder and the loudness meter only run where sharing works.
+  const shareMic = canShareMic(navigator);
 
   const sess = app.session;
   const quit = h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x'));
@@ -316,9 +338,9 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
   async function begin() {
     if ((app.state.ui || {}).nextModifier && modifier === undefined) app.setState(takeQueuedModifier(app.state).state);
     // Spoken-cue drills would record the app's own voice: no recording there.
-    if (st.mode === 'speak' && settings.record && !cued) {
+    if (st.mode === 'speak' && settings.record && !cued && shareMic) {
       recorder = createRecorder();
-      await recorder.start();
+      st.recording = await recorder.start();
       if (disposed) { recorder.stop(); return; }
     }
     // Frames drill from level 3: he picks the frame first, off the clock.
@@ -495,7 +517,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       input = h('div', {}, st.cleanEl, st.live);
       if (!cued) {
         startListening();
-        if (settings.voiceStats) meter = startMeter();
+        if (settings.voiceStats && shareMic) meter = startMeter();
       }
     } else {
       input = typingArea();
@@ -594,6 +616,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     clearTimer();
     hush();
     const loudness = meter && st.mode === 'speak' ? meter.samples : null;
+    const meterOn = !!meter && meter.opened && st.mode === 'speak';
     if (meter) { meter.stop(); meter = null; }
     const durationS = elapsed ?? (cued && st.phase === 'cue' ? st.answeredS : (performance.now() - st.answerStart) / 1000);
     main.querySelectorAll('button').forEach((b) => { b.disabled = true; });
@@ -601,8 +624,23 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
     let transcript = st.transcript;
     if (recognizer) transcript = joinText(st.base || '', await recognizer.stop());
     if (st.textarea) transcript = st.textarea.value;
-    const audio = recorder ? await recorder.stop() : null;
+    let audio = recorder ? await recorder.stop() : null;
+    // Recognition heard (almost) nothing while the recorder or meter held the mic
+    // too: that other stream most likely starved it. Switch it off and offer a
+    // retry; the empty attempt is not scored.
+    let micClash = null;
+    const recorderOn = !!st.recording && st.mode === 'speak';
+    const spokenWords = tokenize(transcript).length;
+    if (!cued && (recorderOn || meterOn) && spokenWords < MIN_SCORED_WORDS) {
+      const meterHeard = soundHeard(loudness);
+      const blobHeard = audio && meterHeard !== true ? soundHeard(await blobLevels(audio)) : null;
+      micClash = micConflict({ transcriptWords: spokenWords, recorderOn, meterOn, heardSound: anyHeard(meterHeard, blobHeard) });
+    }
     if (disposed) return;
+    if (micClash) {
+      app.updateSettings(Object.fromEntries(micClash.map((k) => [k, false])));
+      audio = null;
+    }
     const shown = prompt.drill === 'story' || prompt.drill === 'boss' ? { ...prompt, extra: { ...prompt.extra, twistsShown: st.twistsShown } }
       : prompt.drill === 'frame' ? { ...prompt, extra: { ...prompt.extra, framePick: st.framePick || null } }
         : prompt.drill === 'pressure' && !(prompt.extra && prompt.extra.shadow) ? { ...prompt, extra: { ...prompt.extra, interrupted: st.itemBase.length > 1, reply: st.itemBase.length > 1 ? replyAfter(st.itemBase[1], transcript) : '' } } : prompt;
@@ -614,6 +652,7 @@ export function renderRound(app, { prompt, notice = '', previous = null, timing:
       prepS: prepSecondsUsed(st.prepUsedS),
       modifier: st.modifier || null,
       prompt: shown, transcript, durationS: Math.min(durationS, totalS), targetS: totalS, audio, mode: st.mode, previous,
+      micClash,
     });
   }
 

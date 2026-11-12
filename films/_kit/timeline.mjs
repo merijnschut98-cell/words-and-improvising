@@ -195,7 +195,40 @@ const SAY = {
     [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
-    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // compressed air (eng.power.air): espeak-ng stresses oliene-VEL-aar (with the e of "bed"), verzorgings-EEN-heid,
+    // warmte-TEE-rugwinning (with a long e) and reads toerenregeling as "toer-en-regeling"; split at the head, each
+    // part keeps its own reading (OLie-NEvelaar, verZORgings-eenheid, warmte-teRUGwinning, TOEren-REgeling). And
+    // booster as the floor says it, "boester" (espeak-ng reads the Dutch oo).
+    [/\b([Oo])lienevel/g, '$1lie-nevel'], [/\b([Vv])erzorgingseenheid/g, '$1erzorgings-eenheid'], [/\b([Ww])armteterugwinning/g, '$1armte-terugwinning'],
+    [/\b([Tt])oerenregeling/g, '$1oeren-regeling'], [/\b([Bb])ooster/g, '$1oester'],
+    // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
+    // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
+    // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
+    [/\bCIP\b/g, 'C I P'], [/\binline\b/g, 'inlain'], [/\b([Vv])iscositeitsmeter/g, '$1iscositeits-meter'], [/\bQC-vrijgave\b/g, 'QC-vrij-gave'],
+    [/\b([Pp])loegwissel/g, '$1loeg-wissel'], [/\b([Bb])esturingssysteem/g, '$1esturings-systeem'], [/\b([Ss])poedmoment/g, '$1poed-moment'], [/\b([Ll])abuitslag/g, '$1ab-uitslag'],
+    // load flow and N-1 (eng.gridplanning.loadflow): loadflow as the floor says it, "loodflo" (espeak-ng reads
+    // "lo-ad-flow"; in a compound "loodflo-"), N-1 as "N min één" (espeak-ng drops the minus: "N één"),
+    // vluchtstrook and Netcode split at the head (espeak-ng stresses vluchtSTROOK and netCOde), and EN 50160
+    // as "E N vijftig honderdzestig" (not "vijftigduizend honderdzestig")
+    [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
+    [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
+    // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
+    [/\b([Nn])on-firm\b/g, '$1on-furm'],
+    // flex and batteries (eng.gridplanning.flex): redispatch, peak shaving and the day-aheadmarkt as the floor
+    // says them (espeak-ng reads "reedisp-atch" with the ch of "lachen", "pe-ak sjaaving" and "daaj-aahe-admarkt");
+    // compounds it stresses at the end or on every part, split at the head: systeemCOde, KA-paciteitsbeperkings-
+    // contract, tijdsduurGEEbonden (with a long e), trafoWISsel and piek-UUR (as piekuren above)
+    [/\b([Rr])edispatch\b/g, '$1iedispetsj'], [/\b([Pp])eak shaving\b/g, '$1iek sjeeving'], [/\b([Dd])ay-aheadmarkt/g, '$1ee-ahed-markt'],
+    [/\b([Ss])ysteemcode\b/g, '$1ysteem-code'], [/\b([Cc])apaciteits(beperkings|sturings)contract/g, '$1apaciteits-$2contract'],
+    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng says EE-neksis, LIE-ander, westLAND, wijkTRAfo
+    // and hoofdze-KIE-ring. "En-exis" and "Ljander" give one main stress in the right place (en-NEK-sis,
+    // LJAN-der); Westland, wijktrafo and hoofdzekering are split at the head, which stresses both parts (WEST-LAND,
+    // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
+    // load film's "De hoofdzekering" stays as it is
+    [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

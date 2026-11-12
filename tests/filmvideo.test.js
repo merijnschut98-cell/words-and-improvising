@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { spawnSync } from 'node:child_process';
 import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAPS } from '../films/_kit/timeline.mjs';
 import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX, sentenceClips, saidWordSpans, forceAlign, timedPhrases, voiceOf } from '../films/_kit/narration.mjs';
 import { listenGuard, werLimit } from '../films/_kit/listen-guard.mjs';
@@ -240,7 +241,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 14, `${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 16,`${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -257,10 +258,44 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   assert.ok(/^ˈoː/.test(nl.olie));
   for (const word of ['cilinder', 'cilinders']) assert.ok(nl[word].includes('lˈɪn'), `${word}: ${nl[word]}`);
   for (const word of ['manometer', 'manometers']) assert.ok(nl[word].includes('mˈeː'), `${word}: ${nl[word]}`);
+  // com-PRES-sor (espeak-ng says KOMpressor; 2026-11-12); compressoren it already reads right
+  assert.ok(nl.compressor.includes('prˈɛs'), `compressor: ${nl.compressor}`);
+  // DOOR-snede (espeak-ng says door-SNE-de; 2026-11-12); doorsneden it already reads right
+  assert.ok(/^dˈɔːr/.test(nl.doorsnede), `doorsnede: ${nl.doorsnede}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');
   assert.ok(speak.includes('def sentence_phonemes'), 'whole-sentence injection');
+});
+
+// films/_kit/speak.py word_spans, run alone (python3's standard library only:
+// the function is cut out of the file, so piper and numpy are not needed).
+function wordSpans(counts, groups) {
+  const py = [
+    'import ast, json, sys',
+    'src = open(sys.argv[1], encoding="utf-8").read()',
+    'fn = next(n for n in ast.parse(src).body if isinstance(n, ast.FunctionDef) and n.name == "word_spans")',
+    'ns = {}',
+    'exec(compile(ast.Module(body=[fn], type_ignores=[]), "speak.py", "exec"), ns)',
+    'counts, groups = json.loads(sys.stdin.read())',
+    'print(json.dumps(ns["word_spans"](counts, groups)))',
+  ].join('\n');
+  const r = spawnSync('python3', ['-I', '-c', py, 'films/_kit/speak.py'], { input: JSON.stringify([counts, groups]), encoding: 'utf8' });
+  if (r.error) return null;
+  assert.equal(r.status, 0, r.stderr);
+  return JSON.parse(r.stdout);
+}
+test('speak.py word timing: each spoken word gets its phoneme words; a word espeak-ng glues on takes no time', (t) => {
+  const g = [[0, 10], [12, 20], [25, 40], [41, 50]];
+  const plain = wordSpans([1, 2, 3, 4], g);
+  if (plain === null) return t.skip('no python3');
+  assert.deepEqual(plain, [[0, 10], [12, 20], [25, 40], [41, 50]]);
+  // a word read as two phoneme words; a word glued to the one before it
+  assert.deepEqual(wordSpans([2, 2, 4], g), [[0, 20], [20, 20], [25, 50]]);
+  // "… or use it as it is.": espeak-ng reads the prefixes "… as" and "… as it"
+  // as separate words, the whole sentence glues "as it is." into one
+  // (ˌæzɪtˈɪz), so the count per prefix goes 3, 4, 3 (was an IndexError)
+  assert.deepEqual(wordSpans([1, 2, 3, 4, 3], g.slice(0, 3)), [[0, 10], [12, 20], [25, 40], [40, 40], [40, 40]]);
 });
 
 // The listen guard (films/_kit/listen-guard.mjs) on a synthetic track: "speech"

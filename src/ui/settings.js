@@ -8,6 +8,8 @@ import { parseBackup } from '../core/storage.js';
 import { navBar } from './home.js';
 import { planPicker } from './plan.js';
 import { recordings } from '../core/recordings.js';
+import { isAndroid } from '../core/micshare.js';
+import { speechSupported } from '../core/speech.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -182,7 +184,9 @@ export function renderSettings(app, _params, root) {
         toggle(s.cheer === true, (e) => set({ cheer: e.target.checked }), t('cheer'), h('p', { class: 'muted small' }, t('cheerHelp'))),
         toggle(s.record, (e) => set({ record: e.target.checked }), t('record'), h('p', { class: 'muted small' }, t('recordHelp'))),
         recordingsRow(),
-        toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp')))),
+        toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp'))),
+        // One note for both toggles: on Android they cannot share the mic with live recognition.
+        isAndroid(navigator) && speechSupported ? h('p', { class: 'note mic-share-note' }, t('micShareAndroid')) : null),
       group('appearance',
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
         h('p', { class: 'muted small' }, t('themeHelp')),

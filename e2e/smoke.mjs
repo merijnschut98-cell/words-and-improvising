@@ -28,6 +28,9 @@ const FAKE_SPEECH = `
         const error = window.__speechMode === 'deny' ? 'not-allowed' : 'network';
         setTimeout(() => this.onerror && this.onerror({ error }), 50); setTimeout(() => this.onend && this.onend(), 80); return;
       }
+      // 'silent': the engine runs but never hears anything (Android, when another
+      // stream holds the mic): no result, no error.
+      if (window.__speechMode === 'silent') return;
       // An automatic restart after a natural end (Android behaviour, no stop()
       // in between) stays silent: real speech would not replay the sentence.
       if (window.__autoRestart) return;
@@ -124,7 +127,9 @@ page.on('pageerror', onPageError);
 // Offline, a film video that was never cached fails to load: expected there, not an app error.
 page.on('console', (m) => m.type() === 'error' && !(currentStep.startsWith('offline') && /^Failed to load resource: net::ERR_/.test(m.text())) && errors.push(m.text()));
 
+// E2E_ONLY=<text>: run only the steps whose name contains it (setup still runs).
 const step = async (name, fn) => {
+  if (process.env.E2E_ONLY && !name.includes(process.env.E2E_ONLY)) return;
   currentStep = name;
   try { await fn(); console.log('ok  ', name); } catch (e) {
     console.log('FAIL', name, e.message); errors.push(`${name}: ${e.message}`);
@@ -1143,7 +1148,8 @@ await step('streak freeze covers one missed day', async () => {
 await step('broken streak shows a gentle banner once', async () => {
   await patchState({ streak: { count: 5, lastDay: await dayAgo(4) }, freezes: 0, ui: {} });
   await page.reload();
-  await page.locator('.break-card').waitFor({ timeout: 3000 });
+  // 10 s: on a loaded machine the reload itself (the service worker refreshes every file) can take longer than 3 s.
+  await page.locator('.break-card').waitFor({ timeout: 10000 });
   await page.reload();
   await page.waitForTimeout(300);
   if (await page.locator('.break-card').count()) throw new Error('banner shown twice');
@@ -1652,6 +1658,7 @@ await step('voice variety card after a spoken round (optional toggle)', async ()
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.reload();
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     // Fake mic + analyser: loud/soft alternation, fading in the last part.
     window.__meter = { gum: 0, stopped: 0, closed: 0, n: 0 };
@@ -1701,6 +1708,7 @@ await step('word budget counter turns red over the cap', async () => {
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.goto(BASE);
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     const { makePrompt } = await import('./src/core/lesson.js');
     const { default: nl } = await import('./src/content/prompts.nl.js');
@@ -1740,6 +1748,114 @@ await step('voice variety switches itself off when recognition breaks', async ()
   await page.evaluate(() => { window.__speechMode = 'ok'; });
   if (on !== false) throw new Error('voiceStats should have switched itself off');
   await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
+// Fake mic + MediaRecorder for the mic-clash steps: each recording is one
+// second of WAV, a loud tone or silence (window.__mrTone), so it decodes.
+const FAKE_RECORDER = () => {
+  const wav = () => {
+    const rate = 8000; const n = rate; const buf = new ArrayBuffer(44 + n * 2); const v = new DataView(buf);
+    const str = (o, x) => { for (let i = 0; i < x.length; i++) v.setUint8(o + i, x.charCodeAt(i)); };
+    str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); v.setUint32(16, 16, true);
+    v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true);
+    v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+    for (let i = 0; i < n; i++) v.setInt16(44 + i * 2, window.__mrTone ? Math.round(12000 * Math.sin(i / 3)) : 0, true);
+    return new Blob([buf], { type: 'audio/wav' });
+  };
+  window.__mr = { starts: 0, stops: 0 };
+  Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }) } });
+  window.MediaRecorder = class {
+    constructor() { this.state = 'inactive'; this.mimeType = 'audio/wav'; }
+    start() { this.state = 'recording'; window.__mr.starts += 1; }
+    stop() {
+      this.state = 'inactive'; window.__mr.stops += 1;
+      setTimeout(() => { if (this.ondataavailable) this.ondataavailable({ data: wav() }); if (this.onstop) this.onstop(); }, 20);
+    }
+  };
+};
+
+await step('mic clash: recognition hears nothing while recording, so recording goes off and the same prompt is retried unscored', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, record: true, voiceStats: false, mode: 'speak', lang: 'nl' };
+    st.ui = { ...st.ui, nextModifier: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.waitForFunction(() => window.__app);
+  await page.evaluate(FAKE_RECORDER);
+  const go = () => page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__clashPrompt = window.__clashPrompt || makePrompt('minute', nl, Math.random, {});
+    window.__app.session = null;
+    window.__app.go('round', { prompt: window.__clashPrompt, modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  const saved = () => page.evaluate(() => { const st = JSON.parse(localStorage.getItem('spraakwater:v1')); return { xp: st.xp || 0, rounds: (st.history || []).length, record: st.settings.record }; });
+  // 1. He was silent too (the recording is silence): the usual "too short", recording stays on.
+  await page.evaluate(() => { window.__speechMode = 'silent'; window.__mrTone = false; });
+  await go();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.waitForTimeout(800);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.card', { hasText: 'Te weinig verstaan' }).waitFor({ timeout: 6000 });
+  if (!(await saved()).record) throw new Error('a silent speaker must not switch recording off');
+  // 2. The recording has sound but recognition heard nothing: a clash.
+  const before = await saved();
+  await page.evaluate(() => { window.__mrTone = true; });
+  await go();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.waitForTimeout(800);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.mic-clash', { hasText: 'Opnemen staat nu uit; probeer het nog een keer.' }).waitFor({ timeout: 6000 });
+  await shot('45c-mic-clash');
+  const after = await saved();
+  if (after.record !== false) throw new Error('recording should have switched itself off');
+  if (after.xp !== before.xp || after.rounds !== before.rounds) throw new Error(`the empty attempt was scored: ${JSON.stringify([before, after])}`);
+  // 3. Retry: the same prompt, recognition works, no recorder this time.
+  const starts = await page.evaluate(() => window.__mr.starts);
+  await page.evaluate(() => { window.__speechMode = 'ok'; });
+  await page.getByRole('button', { name: 'Opnieuw' }).click();
+  const body = await page.evaluate(() => window.__clashPrompt.body);
+  await page.locator('.intro-card').waitFor();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.prompt-card', { hasText: body.slice(0, 20) }).waitFor();
+  // The retry uses the drill's own timing: skip the thinking time first.
+  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar', exact: true }).click();
+  await page.locator('.stats').first().waitFor({ timeout: 8000 });
+  if ((await page.evaluate(() => window.__mr.starts)) !== starts) throw new Error('the recorder ran again after switching off');
+});
+
+await step('mic clash: on Android spoken rounds skip the recorder and Settings says why', async () => {
+  const ca = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36' });
+  await ca.addInitScript(FAKE_SPEECH);
+  await ca.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { record: true, voiceStats: true, mode: 'speak', lang: 'nl' }, ui: { recordAsked: false, subject: 'speak' } })); });
+  const pa = await ca.newPage();
+  pa.on('pageerror', onPageError);
+  await pa.goto(BASE);
+  await pa.waitForFunction(() => window.__app);
+  await pa.evaluate(FAKE_RECORDER);
+  await pa.evaluate(() => { window.__gum = 0; const md = navigator.mediaDevices; Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async (c) => { window.__gum += 1; return md.getUserMedia(c); } } }); });
+  await pa.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await pa.getByRole('button', { name: 'Start' }).click();
+  await pa.waitForTimeout(1300);
+  await pa.getByRole('button', { name: 'Klaar' }).click();
+  await pa.locator('.stats').first().waitFor({ timeout: 8000 });
+  const gum = await pa.evaluate(() => window.__gum);
+  if (gum !== 0) throw new Error(`a second mic stream was opened on Android (${gum})`);
+  if (await pa.locator('.record-ask').count()) throw new Error('Android should not be asked to turn recording on');
+  await pa.evaluate(() => window.__app.go('settings'));
+  await pa.locator('.mic-share-note', { hasText: 'Op Android kunnen opnemen en stemvariatie niet tegelijk' }).waitFor();
+  if ((await pa.locator('.mic-share-note').count()) !== 1) throw new Error('the Android note should show once');
+  await ca.close();
 });
 
 await step('a double tap on rehearse starts the rehearsal once', async () => {

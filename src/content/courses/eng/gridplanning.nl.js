@@ -74,6 +74,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.loadflow',
+      film: 'eng.gridplanning.loadflow',
       title: 'Loadflow in gewone woorden',
       pre: [
         {
@@ -438,6 +439,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.redundancy',
+      film: 'eng.gridplanning.loadflow',
       figure: 'eng.gridplanning.n1',
       title: 'N-1 en redundantie',
       pre: [
@@ -945,6 +947,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.flex',
+      film: 'eng.gridplanning.flex',
       title: 'Flexibiliteit en congestiemanagement',
       pre: [
         {
@@ -1016,6 +1019,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.storage',
+      film: 'eng.gridplanning.flex',
       title: 'Batterijen in het net',
       pre: [
         {

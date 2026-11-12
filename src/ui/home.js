@@ -1,7 +1,7 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf, ownedDrills } from '../core/mastery.js';
-import { todayPick, startCards } from '../core/today.js';
+import { todayPick, startCards, homeNotices } from '../core/today.js';
 import { SPEAK_BANDS, DRILL_GROUPS, groupProgress, openGroups, toggleGroup } from '../core/layout.js';
 import { programmeWeek, PROGRAMME, startProgramme, stopProgramme, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
@@ -285,18 +285,15 @@ function breakCard(app, show) {
 
 // After the first v16 start: one quiet line about the medals and title his
 // earlier work earned (Q7), shown once.
-function flairNote(app) {
-  const note = (app.state.ui || {}).flairNote;
+function flairNote(app, note) {
   if (!note) return null;
-  const { flairNote: _seen, ...ui } = app.state.ui;
-  app.setState({ ...app.state, ui });
   const title = note.rank ? app.t(`title_${note.rank}`) : '';
   return h('p', { class: 'muted small flair-note' }, ico('award'), ' ', app.t('titleSoFar', note.medals, title));
 }
 
 // The start screen: under the Vantage Point name, one today card per subject,
 // and the streak and level in one quiet line.
-function renderStart(app, root, showBreak) {
+function renderStart(app, root, showBreak, note) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
@@ -306,7 +303,7 @@ function renderStart(app, root, showBreak) {
     h('main', { class: 'screen home start' },
       breakCard(app, showBreak),
       startHead(app),
-      flairNote(app),
+      flairNote(app, note),
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
@@ -362,11 +359,13 @@ export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  // Gentle, once a day: the streak broke, but the total never resets.
-  const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
-  if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
+  // Gentle, once a day: the streak broke, but the total never resets. And,
+  // on the start screen, the one-time flair line. Decided before drawing.
+  const once = homeNotices(s, today, { broke: app.broke, onStart: app.subject === 'start' });
+  const { showBreak, note } = once;
+  if (once.state !== s) app.setState(once.state);
 
-  if (app.subject === 'start') { renderStart(app, root, showBreak); return; }
+  if (app.subject === 'start') { renderStart(app, root, showBreak, note); return; }
   // A course subject: its own home under the same header and bar.
   if (app.subject !== 'speak') {
     root.append(subjectHeader(app), subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));
