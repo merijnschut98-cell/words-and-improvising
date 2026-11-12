@@ -136,15 +136,38 @@ test('speak variant: definition of done, FAT, SAT, the acceptance tests and Jeff
 // pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
 // sounds the h of Fisher and reads Ury as "uu-rie" in Dutch and "urry" in
 // English (said Fisjer en Joeri, Fisher and Yuri); and Lean-consultant as
-// "Lien-consultant" (espeak-ng reads "lee-an"); no other film says them
+// "Lien consultant", two words (espeak-ng reads "lee-an"; with the hyphen it
+// runs on into "link-consultant"); no other film says them
 test('speak variant: Fisher and Ury and the Lean consultant', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Het komt uit het boek van Fisher en Ury, uit negentien eenentachtig.'), 'Het komt uit het boek van Fisjer en Joeri, uit negentien eenentachtig.');
   assert.equal(nl('Fisher en Ury: principieel onderhandelen.'), 'Fisher en Ury: principieel onderhandelen.');
-  assert.equal(nl('Je bent junior Lean-consultant bij een zuivelfabriek.'), 'Je bent junior Lien-consultant bij een zuivelfabriek.');
+  assert.equal(nl('Je bent junior Lean-consultant bij een zuivelfabriek.'), 'Je bent junior Lien consultant bij een zuivelfabriek.');
   assert.equal(nl('lean werken, een Lean-team'), 'lean werken, een Lean-team');
   assert.equal(speakOf(['Getting to Yes, the book by Fisher and Ury, from 1981.'], 'en'), 'Getting to Yes, the book by Fisher and Yuri, from 1981.');
   assert.equal(speakOf(['Fisher and Ury: principled negotiation. A junior Lean consultant.'], 'en'), 'Fisher and Ury: principled negotiation. A junior Lean consultant.');
+});
+
+// espeak-ng reads codereviews as "koo-di-re-views", issues as "i-su-es", vage
+// with a French g ("vaazje"), stresses risico-GE-stuurd and sleu-TEL-persoon
+// (with the e of "bed"), negentig-negentigregEL, routineNEEpunten and, after
+// "eerlijk", OPtimistisch: said kood-rievjoes, isjoes, vaage, risico-gestuurd,
+// sleutel-persoon, negentig-negentig-regel, routine-punten and op-timistisch;
+// Dutch only (pm.outside.experts). Not the steekproef of eng.quality.spc or
+// other films' optimistisch
+test('speak variant: codereviews, issues, vage, risicogestuurd, sleutelpersoon, negentig-negentigregel, routinepunten and eerlijk optimistisch in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('met codereviews en testrapporten; Codereviews'), 'met kood-rievjoes en testrapporten; Kood-rievjoes');
+  assert.equal(nl('wat kleine issues. Welke issues'), 'wat kleine isjoes. Welke isjoes');
+  assert.equal(nl('Risicogestuurd controleren: risicogestuurd'), 'Risico-gestuurd controleren: risico-gestuurd');
+  assert.equal(nl('de sleutelpersoon die vertrekt'), 'de sleutel-persoon die vertrekt');
+  assert.equal(nl('De negentig-negentigregel, van Bell Labs'), 'De negentig-negentig-regel, van Bell Labs');
+  assert.equal(nl('Experts zijn vaak eerlijk optimistisch.'), 'Experts zijn vaak eerlijk op-timistisch.');
+  assert.equal(nl('Vage antwoorden: vage kleine issues'), 'Vaage antwoorden: vaage kleine isjoes');
+  assert.equal(nl('drie willekeurige routinepunten'), 'drie willekeurige routine-punten');
+  assert.equal(nl('een steekproef, optimistisch, meest waarschijnlijk, het risico, een persoon, vaag, routine'), 'een steekproef, optimistisch, meest waarschijnlijk, het risico, een persoon, vaag, routine');
+  const en = 'code reviews, some minor issues, risk-based checking, the key person, the ninety-ninety rule, honestly optimistic';
+  assert.equal(speakOf([en], 'en'), en);
 });
 
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)

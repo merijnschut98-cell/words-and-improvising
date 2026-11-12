@@ -389,7 +389,12 @@ const spec = {
 // Fisher and reads Ury as "uu-rie") and in English "by Fisher and Ury" as "by
 // Fisher and Yuri" (espeak-ng reads "urry"); both only after van / by, so
 // pm.negotiate.batna's captions "Fisher en Ury:" keep their voice; and
-// Lean-consultant as "Lien-consultant" (espeak-ng reads "lee-an"). Said around
+// Lean-consultant as "Lien consultant", two words (espeak-ng reads "lee-an";
+// "Lien-consultant" runs on into "link-consultant", as Whisper heard it on
+// review). Review 2026-11-12 (Piper phonemes and Whisper small): plain, Fisher
+// is fˈɪshər and Ury ˈyri (heard "Visser & Urie"), with the rule fˈɪʃər and
+// jˈuri (heard "Fisher en Jury"); in English Ury is ˈʌɹɪ, "urry", and Yuri
+// jˈuːɹɪ, near his own YOOR-ee; so the name rules stay. Said around
 // because espeak-ng misreads them (they stay in the captions and on the
 // cards): Getting to Yes (a Dutch g; said "het boek van Fisher en Ury"),
 // productiemanager and onderhoudsmanager (PRO- and "maa-naa-gher": said "het
@@ -420,7 +425,7 @@ const SAY = [
       en: 'Don\'t take sides. Not even when one of them is right.' },
     { nl: 'Breng ze daarna samen, met de belangen op tafel. Jullie willen allebei dat de lijn betrouwbaar draait. Jullie verschillen over wanneer je hem stilzet.',
       en: 'Then bring them together, with the interests on the table. You both want the line to run reliably. You disagree on when to stop it.' },
-    { nl: 'Zoek opties die allebei dienen.',
+    { nl: 'Zoek opties die beide kanten dienen.',
       en: 'Look for options that serve both.' },
     { nl: 'En beslis op {t:Objectieve criteria|objectieve criteria}: feiten die beide kanten vooraf accepteren, zoals uren stilstand of gemiste leveringen. Niet op wie het hardst roept.',
       en: 'And decide on {t:Objective criteria|objective criteria}: facts both sides accept beforehand, such as downtime hours or missed deliveries. Not on who shouts loudest.' },
@@ -479,13 +484,13 @@ const SAY = [
   ],
   [ // s7 with the client
     { nl: 'En bij de klant? Als iemand daar je project de schuld geeft, verdedig je dan niet in de zaal.',
-      en: 'And with the client? When a manager blames your project, don\'t defend it in the room.' },
+      en: 'And with the client? When a manager blames your project, don\'t defend yourself in the room.' },
     { nl: 'Zeg liever: ik hoor dat je niet tevreden bent over hoe dit loopt. Kunnen we morgen twintig minuten nemen om het door te lopen?',
       en: 'Say instead: I hear you\'re unhappy with how this is going. Can we take twenty minutes tomorrow to go through it?' },
     { nl: 'In dat gesprek gebruik je dezelfde vier stappen.',
       en: 'In that talk, use the same four steps.' },
     { nl: 'Weet je niet wat je moet doen? Haal de mensen dan uit elkaar, en praat met ieder alleen.',
-      en: 'And when you don\'t know what to do, separate the people, and talk to each alone.' },
+      en: 'When you don\'t know what to do, separate the people, and talk to each alone.' },
     { nl: 'En vraag een senior collega, voordat je iets doet.',
       en: 'And ask a senior colleague before you act.' },
   ],

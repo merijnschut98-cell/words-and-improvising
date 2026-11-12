@@ -90,7 +90,7 @@ const STAGE = (() => {
       const half = (CW - 28) / 2;
       o.clash = op(B, txt(X0, 80, tr('standpunten botsen', 'positions clash'), 'pm-big')
         + rect(X0 - 6, 96, half + 6, 52, 'pm-card') + txt(X0 + 4, 130, tr('geen stops', 'no stops'))
-        + rect(X1 + 6 - half - 6, 96, half + 6, 52, 'pm-card') + txt(X1 - half + 4, 130, tr('4 uur stop', '4-hour stop'))
+        + rect(X1 + 6 - half - 6, 96, half + 6, 52, 'pm-card') + txt(X1 - half + 4, 130, tr('4 uur stop', '4 h stop'))
         + cross(X0 + CW / 2, 122));
       o.opt = op(B * at(b, p, 3, 0.35, 0.6), water(176, '') + txt(X0, 206, tr('belangen vaak niet:', 'interests often don’t:'), 'pm-mute')
         + box(218, tr('4 uur op maandag-', '4 hours on Monday'), [tr('ochtend, order al weg', 'morning, order shipped')], true) + tick(X1 - 14, 248));
@@ -104,11 +104,11 @@ const STAGE = (() => {
     const o = { head: [tr('bemiddelen', 'mediating'), b === 2 ? EX : DIA] };
     const A = page(b, p, 0, 2);
     // two small boxes with a gap: you talk to each side alone
-    o.apart = op(A, txt(X0, 80, tr('1. eerst apart', '1. apart first'), 'pm-big')
+    o.apart = op(A, txt(X0, 80, tr('1. eerst apart', '1. separately first'), 'pm-big')
       + card(96, 46) + txt(X0 + 4, 126, tr('productie, alleen', 'production, alone'))
       + card(150, 46) + txt(X0 + 4, 180, tr('onderhoud, alleen', 'maintenance, alone'))
       + txt(X0, 224, tr('luister naar beide', 'listen to both sides'), 'pm-mute'));
-    if (b >= 1) o.side = op(A * at(b, p, 1), box(244, tr('kies geen kant', 'take no side'), [tr('ook niet als een van', 'not even when one'), tr('de twee gelijk heeft', 'of them is right')], true));
+    if (b >= 1) o.side = op(A * at(b, p, 1), box(244, tr('kies geen kant', 'don’t take sides'), [tr('ook niet als een van', 'not even when one'), tr('de twee gelijk heeft', 'of them is right')], true));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.both = op(B, box(54, tr('2. samen', '2. together'), [[tr('“allebei: lijn draait', '“you both want the'), 'pm-on'], [tr('betrouwbaar; verschil:', 'line reliable; you differ'), 'pm-on'], [tr('wanneer stilzetten”', 'on when to stop it”'), 'pm-on']], b === 2, 'pm-dash'));
     if (b >= 3) o.opts = op(B * at(b, p, 3), txt(X0, 200, tr('3. opties voor beide', '3. options for both'), 'pm-big'));
@@ -184,7 +184,7 @@ const STAGE = (() => {
     if (b >= 3) o.view = op(at(b, p, 3), step(284, 3, tr('hun kijk', 'their view'), tr('“hoe zie jij het?”', '“how do you see it?”'), b === 3));
     if (b >= 4) {
       o.next = op(at(b, p, 4), step(346, 4, tr('volgende stap, samen', 'next step, together'), '', true));
-      o.first = op(at(b, p, 4, 0.45, 0.7), txt(X0 + 36, 374, tr('bereid zin 1 voor', 'prepare line 1'), 'pm-mute'));
+      o.first = op(at(b, p, 4, 0.45, 0.7), txt(X0 + 36, 374, tr('eerste zin klaar', 'first sentence ready'), 'pm-mute'));
     }
     return o;
   }
@@ -195,7 +195,7 @@ const STAGE = (() => {
     const o = { head: [tr('met de klant', 'with the client'), b === 1 ? EX : DIA] };
     const A = page(b, p, 0, 3);
     o.blame = op(A, box(54, tr('klant geeft project', 'client blames the'), [tr('de schuld', 'project')], b === 0)
-      + op(at(b, p, 0, 0.4, 0.65), lines(160, [[tr('verdedig je niet', 'don’t defend it'), 'pm-big'], [tr('in de zaal', 'in the room'), 'pm-mute']])));
+      + op(at(b, p, 0, 0.4, 0.65), lines(160, [[tr('verdedig je niet', 'don’t defend yourself'), 'pm-big'], [tr('in de zaal', 'in the room'), 'pm-mute']])));
     if (b >= 1) o.reply = op(A * at(b, p, 1), box(200, tr('“Ik hoor dat je niet', '“I hear you’re unhappy.'), [[tr('tevreden bent. Morgen', 'Twenty minutes'), 'pm-on'], [tr('twintig minuten?”', 'tomorrow?”'), 'pm-on']], false, 'pm-dash'));
     if (b >= 2) o.same = op(A * at(b, p, 2), txt(X0, 336, tr('dan: dezelfde 4 stappen', 'then: the same 4 steps'), 'pm-big')
       + [1, 2, 3, 4].map((n, i) => `<circle class="pm-ring" cx="${X0 + 12 + i * 40}" cy="362" r="12"/>` + txt(X0 + 12 + i * 40, 370, String(n), 'pm-txt', 'middle')).join(''));
