@@ -1079,6 +1079,7 @@ export default {
     },
     {
       id: 'pm.perform.rhythm',
+      film: 'pm.run.rhythm',
       title: 'Een overlegritme dat blijft',
       pre: [
         {
