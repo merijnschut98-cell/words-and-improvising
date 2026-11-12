@@ -67,7 +67,9 @@
 //   negotiate.scope teach 1: scope, time and cost hang together, the iron
 //     triangle, if one moves something else must; more in the same time for the
 //     same budget is asking to cut quality without saying so; your job is not
-//     to refuse but to make the trade visible (s6)
+//     to refuse but to make the trade visible (s6); the card draws quality in
+//     the middle and says that is a common variant, not the standard (Barnes'
+//     first triangle had time, cost and quality at its corners)
 //   negotiate.scope teach 2: small yeses add up, five quick extras of a day
 //     are a full week on a 20-day project; a simple change log, what was asked,
 //     when, how much effort, what was decided; facts instead of who is being
@@ -103,7 +105,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
-import { beatStarts } from '../_kit/timeline.mjs';
+import { beatStarts, wordsOf, minSceneDur } from '../_kit/timeline.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 
 const SKILL = process.env.ANATOMY_SKILL
@@ -220,7 +222,7 @@ const world = [
 // sits in its own cue group, so a beat's focus (and a term's cue) can light it.
 const PX = 322;
 const PW = 308;
-const CUES = ['scope', 'goal', 'test', 'budget', 'quotes', 'reqs', 'status', 'creep', 'signals', 'list', 'cr', 'quote', 'trade', 'sheet', 'opts', 'optB', 'official', 'ccb',
+const CUES = ['scope', 'goal', 'test', 'budget', 'quotes', 'reqs', 'status', 'creep', 'signals', 'list', 'cr', 'quote', 'trade', 'sheet', 'opts', 'optB', 'people', 'official', 'ccb',
   'gold', 'reserve', 'weekly', 'tri', 'quality', 'week', 'log', 'fixed', 'rate', 'regions', 'ask', 'mgr', 'free'];
 const hud = g('panel', `<rect class="pm-panel" x="${PX}" y="12" width="${PW}" height="376" rx="10"/>`
   + g('pHead', '') + g('pBody', '')
@@ -287,6 +289,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
+// placeholders: each scene's length is fitted to its narration below
 const DURS = [24, 44, 42, 44, 30, 42, 62];
 const C = { PX, PW, CUES, CELLS, HEAD, NOTES, BUDGET, EACH, SMALL, dur: DURS };
 const sc = (id, lesson, title, beats) => ({ id, lesson, level: 1, dur: DURS[Number(id.slice(1)) - 1], still: 0.9, title, beats });
@@ -319,9 +322,9 @@ const spec = {
       { nl: 'Jij zet de vijf verzoeken met hun impact op papier: samen {n:10} dagen.', en: 'You write the five requests down with their impact: {n:10} days together.', focus: ['sheet', 'paper'] },
       { nl: 'A: alles houden, de einddatum schuift twee weken. B: voorraadcheck en ERP-sessie vallen af.', en: 'A: keep them all, the end date moves two weeks. B: drop the stock check and the ERP session.', focus: ['opts', 'optB'] },
       { nl: 'De sponsor kiest B, en vertelt het verkoop zelf.', en: 'The sponsor chooses B, and tells sales himself.', focus: ['sponsor', 'optB'] },
-      { nl: 'Als junior een senior klant tegenspreken? Hoeft niet: je vraagt de sponsor om te kiezen.', en: 'Push back on a senior client as a junior? No need: you ask the sponsor to choose.', focus: ['jij', 'sponsor'] },
+      { nl: 'Als junior een senior klant tegenspreken? Hoeft niet: je vraagt de sponsor om te kiezen.', en: 'Push back on a senior client as a junior? No need: you ask the sponsor to choose.', focus: ['people', 'jij', 'sponsor'] },
       { nl: 'Klopte het doel niet? Pas de scope officieel aan, met een nieuwe doelzin en planning.', en: 'Was the goal wrong? Change the scope officially, with a new goal sentence and plan.', focus: 'official' },
-      { nl: 'Formele projecten hebben een wijzigingscommissie; in verbeterprojecten doet de stuurgroep dat.', en: 'Formal projects have a change control board; in improvement projects the steering group does it.', focus: 'ccb' },
+      { nl: 'Formele projecten hebben een wijzigingscommissie; in de meeste verbeterprojecten doet de stuurgroep dat.', en: 'Formal projects have a change control board; in most improvement projects the steering group does it.', focus: 'ccb' },
     ]),
     sc('s5', RS, { nl: 'Je eigen kant', en: 'Your own side' }, [
       { nl: '{t:Gold plating|Gold plating}: het team voegt extra’s toe waar niemand om vroeg.', en: '{t:Gold plating|Gold plating}: the team adds extras nobody asked for.', cue: { 'Gold plating': 'gold' }, focus: 'gold' },
@@ -355,25 +358,27 @@ const spec = {
 // What the voice says, per scene and beat; it carries every point of the
 // checklist above. No symbols the voice would read aloud: words for % and +,
 // no quotes or parentheses. Words checked with espeak-ng phonemes through
-// Piper's own bridge (nl_NL-alex, 2026-11-12). Kept out of the Dutch narration
-// because espeak-ng misreads them (they stay in the captions and cards), so no
-// new SAY rule is needed: scope and scope creep (read "skoo-pe kreep": said as
-// the edge of the project, and "zo groeit een project ongemerkt"), gold plating
-// (a Dutch g and "plaa-ting": the voice says what it is), dashboard ("dasj-boo-
-// art": "een mooiere grafiek"), voorraadcheck (a g for the ch: "een controle
-// van de voorraad"), consultantdagen (the d dropped: "dagen van de consultant"),
-// engagement manager and goodwill (said as the lesson glosses them), service
-// ("een gunst"), and compounds it stresses on their last part:
-// duivelsdriehoek and driehoek (the narration says the three hang together),
-// dagtarief ("een tarief per dag"), kabelfabrikant ("een fabrikant van
-// kabels"), wijzigingsverzoek and wijzigingscommissie ("een verzoek tot
-// wijziging", "een commissie voor wijzigingen") and vuistregel ("een regel uit
-// de praktijk"). Left as espeak-ng reads them: analyse(s), stressed on the
-// first syllable, as in the films that already say it (eng.maintenance.failure).
+// Piper's own bridge (nl_NL-alex, 2026-11-12). The Dutch narration says the
+// terms the cards show where the kit can voice them: scope and scope creep
+// through the SAY rules of pm.plan.wbs (skoop, skoop kriep), and
+// wijzigingsverzoek, wijzigingscommissie and duivelsdriehoek through the split
+// rules added with this film's review (wijzigings-verzoek, duivels-driehoek:
+// stressed on the first part, as stuur-groep). Kept out of the Dutch narration
+// because espeak-ng misreads them (they stay in the captions and cards): gold
+// plating (a Dutch g and "plaa-ting": the voice says what it is), dashboard
+// ("dasj-boo-art": "een mooiere grafiek"), voorraadcheck (a g for the ch: "een
+// controle van de voorraad"), consultantdagen (the d dropped: "dagen van de
+// consultant"), engagement manager and goodwill (said as the lesson glosses
+// them), service ("een gunst"), and compounds it stresses on their last part:
+// a bare driehoek, dagtarief ("een tarief per dag"), kabelfabrikant ("een
+// fabrikant van kabels") and vuistregel ("een regel uit de praktijk"; a split
+// rule would change films with a video). Left as espeak-ng reads them:
+// analyse(s), stressed on the first syllable, as in the films that already say
+// it (eng.maintenance.failure).
 const SAY = [
   [ // s1 what the project delivers
-    { nl: 'Jij bent de adviseur bij een klant. Eerst de grens van je project: wat het wel oplevert, en wat niet.',
-      en: 'You are the consultant at a client. First the edge of your project: what it will deliver, and what it won\'t. That is the scope.' },
+    { nl: 'Jij bent de adviseur bij een klant. Eerst de scope: wat je project wel oplevert, en wat niet.',
+      en: 'You are the consultant at a client. First the scope: what your project will deliver, and what it won\'t.' },
     { nl: 'Dan de {t:Doelzin|doelzin}: één regel met wat het project moet bereiken. Bijvoorbeeld: afgezegde klussen in de week voor uitvoering van {n:18} naar onder de {n:8} procent, voor juni.',
       en: 'Then the {t:Goal sentence|goal sentence}: one line with what the project must achieve. For example: jobs cancelled in the week before they are due, from {n:18} to under {n:8} percent, by June.' },
     { nl: 'Toets elk verzoek aan die zin.',
@@ -386,7 +391,7 @@ const SAY = [
       en: 'Can you also look at line four? Could you join the meeting about the new ERP, the system for orders, stock and planning? Each request is small and reasonable.' },
     { nl: 'In week vijf heb je ja gezegd tegen vijf: een rapportage voor verkoop, een voorraadcontrole, een sessie met het ERP-team en twee extra analyses. Elk zo\'n {n:2} dagen.',
       en: 'By week five you\'ve said yes to five: a report for sales, a stock check, a session with the ERP team, and two extra analyses. Each about {n:2} days.' },
-    { nl: 'Samen {n:10} dagen, {n:25} procent extra, en de planning staat nog op groen. Zo groeit een project ongemerkt, zonder formele afspraak.',
+    { nl: 'Samen {n:10} dagen, {n:25} procent extra, en de planning staat nog op groen. Dat is scope creep: groei die niemand formeel afsprak.',
       en: 'Together {n:10} days, {n:25} percent extra, and the plan still shows green. That is scope creep: growth nobody formally agreed.' },
     { nl: 'Signalen: nieuwe mensen bij je overleggen, een doelzin die verschuift, en jij die \'s avonds doorwerkt terwijl de planning zegt dat je op koers ligt.',
       en: 'Signs: new people at your meetings, the goal sentence shifting, and you working evenings while the plan says you\'re on track.' },
@@ -394,27 +399,27 @@ const SAY = [
   [ // s3 yes, and here is the cost
     { nl: 'Maak dus elk verzoek zichtbaar: wat, door wie, waarom, en wat het doet met tijd, kosten, risico en het doel.',
       en: 'So make each request visible: what, by whom, why, and what it does to time, cost, risk and the goal.' },
-    { nl: 'Kleine dingen gaan op een weeklijst. Grotere worden een verzoek tot wijziging: schriftelijk, met de impact, en de sponsor beslist.',
+    { nl: 'Kleine dingen gaan op een weeklijst. Grotere worden een wijzigingsverzoek: schriftelijk, met de impact, en de sponsor beslist.',
       en: 'Small things go on a weekly list. Bigger ones become a change request: written, with its impact, and the sponsor decides.' },
     { nl: 'Zeg: ja, en dit kost het. Lijn vier kan erbij, voor zo\'n drie weken extra, of de ploegoverdracht valt af. Wat heeft je voorkeur?',
       en: 'Say: yes, and here is the cost. We can add line four, for about three weeks extra, or we drop the shift handover. Which do you prefer?' },
     { nl: 'Geen nee, maar de {t:Afweging|afweging}: wat je opgeeft om iets anders te krijgen. De meeste verzoeken krimpen of verdwijnen zodra ze een prijs hebben.',
       en: 'Not a no, but the {t:Trade-off|trade-off}: what you give up to get something else. Most requests shrink or disappear once priced.' },
-    { nl: 'En beslis nooit alleen: het is niet jouw project, maar het hunne.',
+    { nl: 'En beslis nooit alleen over de scope: het is niet jouw project, maar het hunne.',
       en: 'And never decide alone on scope: it is not your project, it is theirs.' },
   ],
   [ // s4 on one sheet
-    { nl: 'Terug naar het voorbeeld. Jij zet de vijf met hun impact op papier, voor de sponsor: samen {n:10} dagen.',
-      en: 'Back to the cable manufacturer. You write the five down with their impact, for the sponsor: {n:10} days together.' },
+    { nl: 'Jij zet de vijf verzoeken met hun impact op papier, voor de sponsor: samen {n:10} dagen.',
+      en: 'You write the five requests down with their impact, for the sponsor: {n:10} days together.' },
     { nl: 'Optie A: we houden ze, en de einddatum schuift twee weken. Optie B: de voorraadcontrole en de ERP-sessie vallen af.',
       en: 'Option A: we keep them, and the end date moves two weeks. Option B: we drop the stock check and the ERP session.' },
     { nl: 'Hij kiest B, en vertelt het verkoop zelf.',
       en: 'He chooses B, and tells sales himself.' },
     { nl: 'Als junior voelt het riskant om een senior klant tegen te spreken. Hoeft niet: je vraagt de sponsor om te kiezen.',
       en: 'As a junior it feels risky to push back on a senior client. You don\'t: you ask the sponsor to choose.' },
-    { nl: 'Soms is de wijziging terecht, omdat het doel niet klopte. Pas het project dan officieel aan, met een nieuwe doelzin en planning; laat het niet wegdrijven.',
+    { nl: 'Soms is de wijziging terecht, omdat het doel niet klopte. Pas de scope dan officieel aan, met een nieuwe doelzin en planning; laat het niet wegdrijven.',
       en: 'Sometimes the change is right, because the goal was wrong. Then change the scope officially, with a new goal sentence and plan, rather than letting it drift.' },
-    { nl: 'Formele projecten hebben een commissie voor wijzigingen; in de meeste verbeterprojecten doet de stuurgroep dat.',
+    { nl: 'Formele projecten hebben een wijzigingscommissie; in de meeste verbeterprojecten doet de stuurgroep dat.',
       en: 'Formal projects have a change control board; in most improvement projects the steering group does it.' },
   ],
   [ // s5 your own side
@@ -428,7 +433,7 @@ const SAY = [
       en: 'Either way, ask weekly: does everything we worked on this week serve the goal sentence?' },
   ],
   [ // s6 time, money and scope
-    { nl: 'Nu de klant. Wat je levert, de tijd en de kosten hangen aan elkaar: beweegt er één, dan moet er iets anders mee.',
+    { nl: 'Nu de klant. Scope, tijd en kosten hangen aan elkaar in de duivelsdriehoek: beweegt er één, dan moet er iets anders mee.',
       en: 'Now the client. Scope, time and cost hang together in the iron triangle: if one moves, something else has to.' },
     { nl: 'Meer vragen in dezelfde tijd, voor hetzelfde budget, is vragen om stil op kwaliteit in te leveren. Weiger niet, maar maak de ruil zichtbaar.',
       en: 'Asking for more in the same time, for the same budget, is asking you to cut quality without saying so. Don\'t refuse: make the trade visible.' },
@@ -436,8 +441,8 @@ const SAY = [
       en: 'Small yeses add up. Five quick extras of a day are a full week, on a {n:20}-day project.' },
     { nl: 'Houd een {t:Wijzigingslog|wijzigingslog} bij: wat er gevraagd werd, wanneer, hoeveel werk, en wat er besloten is. Dan gaat het over feiten, niet over wie er moeilijk doet.',
       en: 'Keep a {t:Change log|change log}: what was asked, when, how much effort, and what was decided. Then it\'s about facts, not about who is being difficult.' },
-    { nl: 'Bij een {t:Vaste prijs|vaste prijs} ligt het risico van extra werk bij jou. Bij een tarief per dag betaalt de klant elke gewerkte dag, en draagt hij het risico. Ongemerkte groei doet dus het meeste pijn bij een vaste prijs.',
-      en: 'On a {t:Fixed price|fixed price} the risk of extra effort sits with you. On a day rate the client pays per day worked and carries it. So scope creep hurts most on a fixed price.' },
+    { nl: 'Bij een {t:Vaste prijs|vaste prijs} ligt het risico van extra werk bij jou. Bij een tarief per dag betaalt de klant elke gewerkte dag, en draagt hij het risico. Scope creep doet dus het meeste pijn bij een vaste prijs: het werk groeit, de prijs niet.',
+      en: 'On a {t:Fixed price|fixed price} the risk of extra effort sits with you. On a day rate the client pays per day worked and carries it. So scope creep hurts most on a fixed price: the work grows, the price doesn\'t.' },
   ],
   [ // s7 a fourth region
     { nl: 'Vaste prijs bij een netbeheerder: {n:20} dagen, drie regio\'s. In week {n:3} vraagt de sponsor, de eigenaar bij de klant, om een vierde. Je zit toch al in de data.',
@@ -448,12 +453,28 @@ const SAY = [
       en: 'Offer options, not a wall: add it for {n:4} days at the agreed day rate, swap it for region {n:3}, or one key number in {n:1} day. Or later, as a follow-up. The client chooses.' },
     { nl: 'Check bij je eigen manager voordat je een prijs noemt. Misschien mag jij geen dagen weggeven; je bureau draait op voor de kosten.',
       en: 'Check with your engagement manager before you name a price. You may not be allowed to give days away; your firm carries the cost.' },
-    { nl: 'Bevestig de keuze per mail en in het wijzigingslog. Bij grotere dingen een verzoek tot wijziging: werk, dagen en prijs, en de klant tekent.',
+    { nl: 'Bevestig de keuze per mail en in het wijzigingslog. Bij grotere dingen een wijzigingsverzoek: werk, dagen en prijs, en de klant tekent.',
       en: 'Confirm the choice by email and in the change log. For bigger items, a change request: work, days and price, and the client signs.' },
     { nl: 'Gratis extraatjes? Sommigen geven er bewust één, benoemd en gelogd: deze is van ons. Anderen: zo leert de klant weer te vragen. Vraag: wat zou je laten vallen om hier ruimte voor te maken?',
       en: 'Free extras? Some give one on purpose, named and logged: this one\'s on us. Others: it teaches the client to ask again. Ask: what would you drop to make room for this?' },
   ],
 ];
+// Each scene's length from its share of the Dutch narration, never shorter than
+// its captions need; the whole about as long as the narration plus a short look
+// per scene, within the 300 s cap (as pm.plan.risk and pm.plan.wbs).
+{
+  const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
+  const said = SAY.map((sc) => sc.reduce((a, l) => a + wordsOf(plainSay(l.nl)), 0));
+  const all = said.reduce((a, b) => a + b, 0);
+  const TOTAL = Math.min(298, Math.ceil(all / 2.5) + 2 * SAY.length);
+  spec.scenes.forEach((s, si) => {
+    const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));
+    s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
+    DURS[si] = s.dur;
+  });
+  const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
+  if (total > 300) throw new Error(`film is ${total} s, over 300`);
+}
 // Each beat's still (reduced motion) sits late in its own share of the scene.
 {
   const resolved = resolveFilm(spec, lessons);
@@ -475,7 +496,7 @@ spec.scenes.forEach((s, si) => {
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = line[lang].replace(/\{[tn]:[^}]*\}/g, '');
   if (/[/&×=+()“”"‘%€~]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${line[lang].slice(0, 50)}"`);
-  if (lang === 'nl' && /\bscope|gold plating|dashboard|voorraadcheck|consultantdagen|engagement|goodwill|service|driehoek|dagtarief|kabelfabrikant|wijzigingsverzoek|wijzigingscommissie|vuistregel/i.test(line.nl)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
+  if (lang === 'nl' && /gold plating|dashboard|voorraadcheck|consultantdagen|engagement|goodwill|service|\bdriehoek|dagtarief|kabelfabrikant|vuistregel/i.test(line.nl)) throw new Error(`narration: a word espeak-ng misreads in "${line.nl.slice(0, 50)}"`);
 }
 
 // ---------------------------------------------------------------- page script and styles
@@ -522,8 +543,8 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard en een klok, aan de zijwand een kalenderstrook van acht weken met een groene statusstip die groen blijft. Jij, de adviseur in petrol, staat bij het bord. De teamleider staat aan het linkereind van de tafel, de sponsor in pak met stropdas aan het rechtereind, de planner met een tablet aan de voorkant. Op tafel stapelen vijf briefjes met verzoeken zich op, en een vel voor de sponsor vult zich met de lijst en twee opties. Rechts een paneel met per scène een kaart: de scope en de doelzin, een budgetbalk van 40 dagen met vijf blokjes van 2 dagen erbij terwijl de planning groen blijft, een verzoek zichtbaar gemaakt en een weegschaal voor de afweging, het vel met optie A en B, gold plating en een reserve van 10 procent, de duivelsdriehoek met kwaliteit in het midden, het wijzigingslog, vaste prijs en dagtarief, en vier regio\'s waarvan de vierde gestippeld, met drie opties.',
-  en: 'A meeting room. On the back wall a whiteboard and a clock, on the side wall a calendar strip of eight weeks with a status dot that stays green. You, the consultant in petrol, stand at the board. The team lead stands at the left end of the table, the sponsor in a suit and tie at the right end, the planner with a tablet at the front. On the table five request notes pile up, and a sheet for the sponsor fills in with the list and two options. At the right a panel with one card per scene: the scope and the goal sentence, a budget bar of 40 days with five blocks of 2 days added while the plan stays green, a request made visible and a balance for the trade-off, the sheet with options A and B, gold plating and a 10 percent reserve, the iron triangle with quality in the middle, the change log, fixed price and day rate, and four regions with the fourth dotted, with three options.',
+  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard en een klok, aan de zijwand een kalenderstrook van acht weken met een groene statusstip die groen blijft. Jij, de adviseur in petrol, staat bij het bord. De teamleider staat aan het linkereind van de tafel, de sponsor in pak met stropdas aan het rechtereind, de planner met een tablet aan de voorkant. Op tafel stapelen vijf briefjes met verzoeken zich op, en een vel voor de sponsor vult zich met de lijst en twee opties. Rechts een paneel met per scène een kaart: de scope en de doelzin, een budgetbalk van 40 dagen met vijf blokjes van 2 dagen erbij terwijl de planning groen blijft, een verzoek zichtbaar gemaakt en een weegschaal voor de afweging, het vel met optie A en B, gold plating en een reserve van 10 procent, de duivelsdriehoek met kwaliteit in het midden, een veelgebruikte variant, het wijzigingslog, vaste prijs en dagtarief, en vier regio\'s waarvan de vierde gestippeld, met drie opties.',
+  en: 'A meeting room. On the back wall a whiteboard and a clock, on the side wall a calendar strip of eight weeks with a status dot that stays green. You, the consultant in petrol, stand at the board. The team lead stands at the left end of the table, the sponsor in a suit and tie at the right end, the planner with a tablet at the front. On the table five request notes pile up, and a sheet for the sponsor fills in with the list and two options. At the right a panel with one card per scene: the scope and the goal sentence, a budget bar of 40 days with five blocks of 2 days added while the plan stays green, a request made visible and a balance for the trade-off, the sheet with options A and B, gold plating and a 10 percent reserve, the iron triangle with quality in the middle, a common variant, the change log, fixed price and day rate, and four regions with the fourth dotted, with three options.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

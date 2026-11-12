@@ -126,7 +126,7 @@ const STAGE = (() => {
       const pan = (x, y, label, sub, sx, anchor) => path(`M${x - 34} ${f1(y + 30)}L${x} ${f1(y)}L${x + 34} ${f1(y + 30)}`, 'pm-axis') + rect(x - 40, y + 30, 80, 8, 'pm-bar', 3) + txt(x, y + 62, label, 'pm-txt', 'middle') + txt(sx, y + 86, sub, 'pm-mute', anchor);
       s += pan(cx - 96, 222 - dy, tr('erbij', 'add'), tr('lijn 4', 'line 4'), X0, 'start') + pan(cx + 96, 222 + dy, tr('kost', 'costs'), tr('tijd of een deel', 'time or a part'), X1, 'end');
       o.trade = s + txt(X0, 192, tr('afweging', 'trade-off'), 'pm-on') + op(at(b, p, 3, 0.65, 0.9), txt(X0, 350, tr('met een prijs: krimpt', 'with a price: it shrinks'), 'pm-mute'));
-      if (b >= 4) o.body = op(span(p, 0.1, 0.4), txt(X0, 376, tr('de sponsor kiest, niet jij', 'the sponsor picks, not you'), 'pm-on'));
+      if (b >= 4) o.trade += op(span(p, 0.1, 0.4), txt(X0, 376, tr('de sponsor kiest, niet jij', 'the sponsor picks, not you'), 'pm-on'));
     }
     return o;
   }
@@ -152,8 +152,8 @@ const STAGE = (() => {
     }
     const o = { head: [tr('de mensenkant', 'the people side'), tr('schema', 'diagram')] };
     const a = b === 3 ? span(p, 0.05, 0.3) : 1;
-    o.body = op(a, txt(X0, 78, tr('junior tegen senior?', 'junior against senior?'), 'pm-mute') + txt(X0, 104, tr('niet tegenspreken:', 'don’t push back:')) + txt(X0, 130, tr('de sponsor laat je kiezen', 'ask the sponsor to choose'), 'pm-on'));
-    if (b >= 4) o.official = op(at(b, p, 4, 0.05, 0.35), card(156, 108) + txt(X0 + 8, 184, tr('doel klopte niet?', 'the goal was wrong?'), 'pm-mute') + txt(X0 + 8, 210, tr('officieel aanpassen:', 'change it officially:'), 'pm-on') + txt(X0 + 8, 236, tr('nieuwe doelzin, planning', 'new goal sentence, plan')) + txt(X0 + 8, 258, tr('niet laten wegdrijven', 'don’t let it drift'), 'pm-mute'));
+    o.people = op(a, txt(X0, 78, tr('junior tegen senior?', 'junior against senior?'), 'pm-mute') + txt(X0, 104, tr('niet tegenspreken:', 'don’t push back:')) + txt(X0, 130, tr('laat de sponsor kiezen', 'ask the sponsor to choose'), 'pm-on'));
+    if (b >= 4) o.official = op(at(b, p, 4, 0.05, 0.35), card(156, 116) + txt(X0 + 8, 184, tr('doel klopte niet?', 'the goal was wrong?'), 'pm-mute') + txt(X0 + 8, 210, tr('officieel aanpassen:', 'change it officially:'), 'pm-on') + txt(X0 + 8, 236, tr('nieuwe doelzin, planning', 'new goal sentence, plan')) + txt(X0 + 8, 262, tr('niet laten wegdrijven', 'don’t let it drift'), 'pm-mute'));
     if (b >= 5) o.ccb = op(at(b, p, 5, 0.05, 0.35), txt(X0, 300, tr('formeel:', 'formal:'), 'pm-mute') + txt(X0, 326, tr('wijzigingscommissie', 'change control board'), 'pm-txt'))
       + op(at(b, p, 5, 0.4, 0.7), txt(X0, 356, tr('meestal:', 'usually:'), 'pm-mute') + txt(X0 + 92, 356, tr('de stuurgroep', 'the steering group'), 'pm-on'));
     return o;
@@ -182,7 +182,11 @@ const STAGE = (() => {
       + dot(T[0], T[1], 6, 'pm-dot') + dot(Lp[0], Lp[1], 6, 'pm-dot') + dot(R[0], R[1], 6, 'pm-dot')
       + txt(T[0], T[1] - 14, tr('scope', 'scope'), 'pm-big', 'middle') + txt(Lp[0] - 10, Lp[1] + 28, tr('tijd', 'time'), 'pm-big', 'start') + txt(R[0] + 10, R[1] + 28, tr('kosten', 'cost'), 'pm-big', 'end');
     if (b >= 1) o.quality = op(at(b, p, 1, 0.1, 0.4), txt(T[0], 164, tr('kwaliteit', 'quality'), b === 1 ? 'pm-on' : 'pm-mute', 'middle'));
-    if (b === 1) o.body = op(span(p, 0.5, 0.8), txt(X0, 268, tr('meer, zelfde tijd en geld?', 'more, same time and money?'), 'pm-txt') + txt(X0, 294, tr('maak de ruil zichtbaar', 'make the trade visible'), 'pm-on'));
+    if (b === 1) {
+      o.quality += op(span(p, 0.4, 0.65), txt(X0, 268, tr('meer, zelfde tijd en geld?', 'more, same time and money?'), 'pm-txt') + txt(X0, 294, tr('maak de ruil zichtbaar', 'make the trade visible'), 'pm-on'));
+      // quality in the middle is a common way to draw it, not the only one
+      o.quality += op(span(p, 0.15, 0.4), txt(X0, 336, tr('kwaliteit in het midden:', 'quality in the middle:'), 'pm-mute') + txt(X0, 362, tr('een veelgebruikte variant', 'a common variant'), 'pm-mute'));
+    }
     if (b === 2) {
       const show = span(p, 0.2, 0.8) * 5;
       o.week = txt(X0, 262, tr('project van 20 dagen', 'a 20-day project'), 'pm-mute') + bar(276, C.SMALL, 5, 1, show, 10)
