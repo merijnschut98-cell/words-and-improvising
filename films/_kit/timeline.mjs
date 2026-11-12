@@ -267,6 +267,13 @@ const SAY = {
     [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\b([Pp])ilot/g, '$1ailot'], [/\b([Ss])tuurgroep/g, '$1tuur-groep'],
     [/\b([Mm])ijlpa(al|len)\b/g, '$1ijl-pa$2'], [/\b([Nn])ulmeting/g, '$1ul-meting'], [/\b([Gg])ereedheidscheck/g, '$1ereedheids-check'],
     [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
+    // the stakeholder map (pm.intake.stakeholders): espeak-ng reads stakeholder as "staa-ke-holder" (said
+    // steekholder; in stakeholdermap the map as "mep", else "-dər-map" runs together), stresses proceseigenaar
+    // as "PROOsə-zeigenaar" (split at the head), and reads the RACI letters' English words as Dutch
+    // ("res-pon-SI-ble", "ak-kaunt-ab-le", "IN-for-met"); said riesponsibel, akauntebel, informt. Consulted is
+    // read well enough as it is
+    [/\b([Ss])takeholdermap/g, '$1teekholdermep'], [/\b([Ss])takeholder/g, '$1teekholder'], [/\b([Pp])roceseigenaar/g, '$1roces-eigenaar'],
+    [/\b([Rr])esponsible\b/g, '$1iesponsibel'], [/\b([Aa])ccountable\b/g, (m, a) => (a === 'A' ? 'Akauntebel' : 'akauntebel')], [/\b([Ii])nformed\b/g, '$1nformt'],
     // the first conversation (pm.intake.firsttalk): the listening checklist MORE PIES as its English name, "Mor
     // pais" (espeak-ng reads PIES as the Dutch "pis"); only in capitals, as the lessons write it
     [/\bMORE PIES\b/g, 'Mor pais'],
