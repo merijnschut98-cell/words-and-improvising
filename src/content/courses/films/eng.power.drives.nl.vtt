@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.864 --> 00:00:02.095
+Weer onze pompset.
+
+2
+00:00:02.790 --> 00:00:05.971
+Om te starten moet de motor op het net, en dat gebeurt in de kast.
+
+3
+00:00:07.049 --> 00:00:08.512
+Daar zit een magneetschakelaar (contactor),
+
+4
+00:00:08.837 --> 00:00:11.008
+een zware schakelaar die je elektrisch bedient:
+
+5
+00:00:11.287 --> 00:00:14.212
+stroom door de spoel trekt drie contacten tegelijk dicht,
+
+6
+00:00:14.421 --> 00:00:15.269
+één per fase.
+
+7
+00:00:16.266 --> 00:00:18.414
+Zo zet je de motor meteen op het volle net:
+
+8
+00:00:18.809 --> 00:00:19.807
+direct inschakelen (direct on line, DOL).
+
+9
+00:00:20.489 --> 00:00:25.225
+Simpel en goedkoop, maar bij de start trekt hij 6 tot 8 keer zijn nominale stroom.
+
+10
+00:00:26.217 --> 00:00:29.015
+En het volle koppel geeft een ruk op koppeling en pomp.
+
+11
+00:00:29.679 --> 00:00:32.999
+Bij een grote motor dipt de spanning, en slijten snaren,
+
+12
+00:00:33.359 --> 00:00:35.089
+koppelingen en tandwielkasten.
+
+13
+00:00:36.390 --> 00:00:37.110
+Waarom die piek?
+
+14
+00:00:37.835 --> 00:00:39.484
+Bij de start staat de rotor stil,
+
+15
+00:00:39.774 --> 00:00:42.560
+maar het draaiveld draait meteen op het synchrone toerental.
+
+16
+00:00:43.530 --> 00:00:44.761
+De slip is maximaal:
+
+17
+00:00:45.063 --> 00:00:49.277
+het veld snijdt op volle snelheid door de staven en wekt er grote stromen in op,
+
+18
+00:00:49.533 --> 00:00:51.356
+die via de stator uit het net komen.
+
+19
+00:00:52.128 --> 00:00:54.264
+Bijna een kortgesloten transformator.
+
+20
+00:00:55.248 --> 00:00:58.777
+Komt de rotor op toeren, dan zakt de slip naar een paar procent,
+
+21
+00:00:59.032 --> 00:01:00.402
+en de stroom mee naar nominaal.
+
+22
+00:01:01.389 --> 00:01:05.046
+Bij een zware last duurt dat langer, en al die tijd blijft de stroom hoog.
+
+23
+00:01:06.300 --> 00:01:08.982
+Ouder en goedkoper is de ster-driehoekschakeling (star-delta starter).
+
+24
+00:01:09.699 --> 00:01:11.940
+De motor start met zijn wikkelingen in ster.
+
+25
+00:01:12.933 --> 00:01:15.022
+Zo krijgt elke wikkeling minder spanning:
+
+26
+00:01:15.313 --> 00:01:17.751
+zo’n een derde van de stroom van direct inschakelen,
+
+27
+00:01:18.018 --> 00:01:19.481
+maar ook een derde van het koppel.
+
+28
+00:01:20.501 --> 00:01:23.926
+Bijna op toeren schakelt hij om naar driehoek, met de volle spanning.
+
+29
+00:01:24.651 --> 00:01:26.880
+Bij het wisselen komt er meestal nog een korte piek.
+
+30
+00:01:27.931 --> 00:01:31.193
+Goed voor motoren die licht starten, zoals een ventilator.
+
+31
+00:01:31.922 --> 00:01:34.418
+Zwaar belast is een derde van het koppel te weinig.
+
+32
+00:01:35.758 --> 00:01:36.571
+Een softstarter (soft starter)
+
+33
+00:01:36.594 --> 00:01:39.937
+laat met elektronica de spanning in een paar seconden oplopen.
+
+34
+00:01:40.904 --> 00:01:45.177
+Zo blijft de aanloopstroom beperkt, meestal tot 3 tot 4 keer nominaal,
+
+35
+00:01:45.560 --> 00:01:47.151
+en wordt de ruk een zachte aanloop.
+
+36
+00:01:48.130 --> 00:01:50.846
+Op toeren draait de motor gewoon zijn vaste toerental:
+
+37
+00:01:51.160 --> 00:01:53.238
+een softstarter helpt bij het aanlopen,
+
+38
+00:01:53.517 --> 00:01:54.550
+niet bij het regelen.
+
+39
+00:01:55.503 --> 00:01:58.568
+En minder spanning geeft veel minder koppel: halve spanning,
+
+40
+00:01:58.940 --> 00:02:00.484
+ruwweg een kwart van het koppel.
+
+41
+00:02:01.170 --> 00:02:04.002
+Een machine die zwaar belast start, kan blijven hangen.
+
+42
+00:02:05.288 --> 00:02:09.642
+De frequentieregelaar (VFD), ook omvormer, maakt van het net eerst gelijkspanning,
+
+43
+00:02:09.909 --> 00:02:12.440
+en daarvan met snelle schakelaars een nieuwe draaistroom,
+
+44
+00:02:12.707 --> 00:02:14.216
+met een frequentie naar keuze.
+
+45
+00:02:15.216 --> 00:02:20.319
+Het draaiveld volgt die frequentie: halve frequentie, half het synchrone toerental.
+
+46
+00:02:21.009 --> 00:02:22.878
+Zo regel je het toerental traploos.
+
+47
+00:02:23.854 --> 00:02:27.453
+Bij het aanlopen voert hij de frequentie rustig op tot 50 hertz.
+
+48
+00:02:28.132 --> 00:02:31.685
+De motor loopt met weinig slip, en de stroom blijft rond nominaal.
+
+49
+00:02:32.678 --> 00:02:34.953
+Omdat de spanning meegaat met de frequentie,
+
+50
+00:02:35.220 --> 00:02:38.018
+geeft de motor toch vol koppel vanaf een laag toerental.
+
+51
+00:02:39.296 --> 00:02:42.106
+Een voorbeeld: een breker voor steen of schroot.
+
+52
+00:02:42.799 --> 00:02:48.035
+Zijn motor van 90 kilowatt trekt nominaal zo’n 160 ampère, bij 400 volt.
+
+53
+00:02:49.029 --> 00:02:51.491
+Direct ingeschakeld trekt hij bij elke start een
+
+54
+00:02:51.537 --> 00:02:54.544
+paar seconden ruwweg 1.000 tot 1.300 ampère.
+
+55
+00:02:55.542 --> 00:02:58.270
+De spanning in de fabriek dipt: lampen knipperen,
+
+56
+00:02:58.642 --> 00:03:02.090
+en twee frequentieregelaars elders vallen uit op onderspanning.
+
+57
+00:03:03.090 --> 00:03:06.016
+Een softstarter haalt de piek naar 3 tot 4 keer nominaal,
+
+58
+00:03:06.294 --> 00:03:09.034
+maar met dat lagere koppel kan een volle breker blijven hangen.
+
+59
+00:03:09.787 --> 00:03:14.431
+De regelaar geeft vol koppel bij nominale stroom: hier past het duurdere apparaat.
+
+60
+00:03:15.843 --> 00:03:19.930
+De winst zit bij pompen en ventilatoren: hoeft de pomp minder te leveren,
+
+61
+00:03:20.337 --> 00:03:22.020
+dan laat je hem langzamer draaien.
+
+62
+00:03:23.001 --> 00:03:26.159
+Dan gaat het debiet mee met het toerental, de druk met het kwadraat,
+
+63
+00:03:26.519 --> 00:03:28.423
+en het vermogen ruwweg met de derde macht.
+
+64
+00:03:29.416 --> 00:03:32.272
+Op 80 procent toerental is dat zo’n half vermogen.
+
+65
+00:03:32.952 --> 00:03:35.112
+In de praktijk valt de besparing lager uit.
+
+66
+00:03:36.202 --> 00:03:40.207
+Een veelgemaakte fout: een regelaar die het hele jaar op 50 hertz staat.
+
+67
+00:03:40.962 --> 00:03:43.888
+Die bespaart niets en voegt alleen een paar procent verlies toe.
+
+68
+00:03:45.237 --> 00:03:46.839
+Een regelaar heeft ook bijwerkingen.
+
+69
+00:03:47.533 --> 00:03:48.961
+Hij trekt stroom in pulsen,
+
+70
+00:03:49.251 --> 00:03:53.164
+en dat geeft harmonischen: stromen op veelvouden van 50 hertz,
+
+71
+00:03:53.326 --> 00:03:54.800
+die de golf op het net vervormen.
+
+72
+00:03:55.745 --> 00:03:57.556
+Het snelle schakelen geeft storing,
+
+73
+00:03:57.916 --> 00:04:01.434
+en kan een spanning op de motoras zetten die zich via de lagers ontlaadt.
+
+74
+00:04:02.454 --> 00:04:04.857
+Elk vonkje door het vet slaat een putje in de loopbaan,
+
+75
+00:04:05.229 --> 00:04:06.785
+en het lager gaat veel eerder stuk.
+
+76
+00:04:07.828 --> 00:04:11.392
+Afgeschermde kabels, filters en goede aarding vangen dat op,
+
+77
+00:04:11.636 --> 00:04:12.855
+als ze in het ontwerp zitten.
+
+78
+00:04:14.115 --> 00:04:17.238
+De servoregelaar (servo drive) heeft een encoder op de motoras:
+
+79
+00:04:17.540 --> 00:04:20.721
+een sensor die vele keren per seconde meldt waar de as staat.
+
+80
+00:04:21.459 --> 00:04:24.013
+Zo regelt hij positie en snelheid precies.
+
+81
+00:04:25.082 --> 00:04:29.888
+Denk aan robots, op lengte knippen en verpakken: het gaat om precisie,
+
+82
+00:04:30.144 --> 00:04:31.131
+niet om energie.
+
+83
+00:04:32.129 --> 00:04:34.788
+Kiezen begint dus met de vraag wat de aandrijving moet doen.
+
+84
+00:04:35.511 --> 00:04:39.215
+Alleen aanlopen: direct inschakelen, of een softstarter.
+
+85
+00:04:39.906 --> 00:04:42.762
+Wisselend toerental: een frequentieregelaar.
+
+86
+00:04:43.744 --> 00:04:47.250
+En positioneren tot op een tiende millimeter: een servo.

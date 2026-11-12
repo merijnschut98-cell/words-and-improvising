@@ -1036,6 +1036,41 @@
         ],
         "vtt": "src/content/courses/films/eng.power.motor.en.vtt"
       }
+    },
+    "eng.power.drives": {
+      "poster": "src/content/courses/films/eng.power.drives.jpg",
+      "nl": {
+        "dur": 288.9,
+        "bytes": 9663073,
+        "scenes": [
+          0,
+          35.95,
+          65.85,
+          95.3,
+          124.86,
+          158.85,
+          195.34,
+          224.79,
+          253.68
+        ],
+        "vtt": "src/content/courses/films/eng.power.drives.nl.vtt"
+      },
+      "en": {
+        "dur": 308.6,
+        "bytes": 10228044,
+        "scenes": [
+          0,
+          37.72,
+          71.64,
+          102.63,
+          135.04,
+          173.47,
+          213,
+          241.96,
+          273.81
+        ],
+        "vtt": "src/content/courses/films/eng.power.drives.en.vtt"
+      }
     }
   }
 }
