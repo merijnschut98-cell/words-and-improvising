@@ -8,6 +8,7 @@ import {
 } from '../core/recordings.js';
 import { analyze } from '../core/metrics.js';
 import { FIX_MODIFIER, queueModifier } from '../core/modifiers.js';
+import { isAndroid, deviceTrackInput } from '../core/micshare.js';
 
 export const SPEEDS = [1, 1.25];
 
@@ -72,8 +73,11 @@ export function renderListenback(app, params, root) {
     const primary = list.length
       ? h('button', { class: 'btn btn-primary btn-big lb-start', onclick: () => app.go('listenback', { id: newest.id }) }, ico('headphones'), ' ', newest.listen ? t('lbStartAgain') : t('lbStart'))
       : (!recordOn ? h('button', { class: 'btn btn-primary btn-big', onclick: () => { app.updateSettings({ record: true }); app.go('listenback'); } }, ico('mic'), ' ', t('lbTurnOn')) : null);
+    // Android whose Chrome failed the shared-track test: say plainly why nothing is kept here.
+    const androidBlocked = isAndroid(navigator) && deviceTrackInput(localStorage, navigator) === false;
     fill(
       h('p', { class: 'muted lb-intro' }, t('lbIntro')),
+      androidBlocked ? h('p', { class: 'note lb-android' }, t('lbAndroidNote')) : null,
       !recordOn ? h('section', { class: 'card lb-off' },
         h('p', {}, t('lbOff')),
         h('p', { class: 'muted small' }, t('recordHelp')),
