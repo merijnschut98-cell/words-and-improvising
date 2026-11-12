@@ -1133,6 +1133,37 @@
         ],
         "vtt": "src/content/courses/films/eng.gridbasics.congestion.en.vtt"
       }
+    },
+    "eng.switchgear.automation": {
+      "poster": "src/content/courses/films/eng.switchgear.automation.jpg",
+      "nl": {
+        "dur": 303.6,
+        "bytes": 7952401,
+        "scenes": [
+          0,
+          57.03,
+          97.43,
+          140.66,
+          190.15,
+          234.41,
+          268.4
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.nl.vtt"
+      },
+      "en": {
+        "dur": 323.6,
+        "bytes": 8371671,
+        "scenes": [
+          0,
+          68.19,
+          109.37,
+          155.19,
+          210.02,
+          253.49,
+          289.11
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
+      }
     }
   }
 }
