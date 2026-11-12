@@ -1001,6 +1001,37 @@
         ],
         "vtt": "src/content/courses/films/eng.mechanics.fatigue.en.vtt"
       }
+    },
+    "eng.process.measure": {
+      "poster": "src/content/courses/films/eng.process.measure.jpg",
+      "nl": {
+        "dur": 269.8,
+        "bytes": 10053653,
+        "scenes": [
+          0,
+          25.64,
+          62.45,
+          101.19,
+          142.5,
+          176.99,
+          220.95
+        ],
+        "vtt": "src/content/courses/films/eng.process.measure.nl.vtt"
+      },
+      "en": {
+        "dur": 296,
+        "bytes": 11017163,
+        "scenes": [
+          0,
+          26.26,
+          70.05,
+          115.56,
+          161.62,
+          195.9,
+          244.21
+        ],
+        "vtt": "src/content/courses/films/eng.process.measure.en.vtt"
+      }
     }
   }
 }
