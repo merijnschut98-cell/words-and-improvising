@@ -131,6 +131,36 @@ test('speak variant: definition of done, FAT, SAT, the acceptance tests and Jeff
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses
+// PREmortem (said pree-mortem), reads single point of failure as "poo-int of
+// fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
+// nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (split at the
+// head; beheersmaatregel only after "een", so pm.plan.risk's caption "De
+// beheersmaatregel" keeps its voice), and reads the integration specialist's
+// jargon in Dutch: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim,
+// lee-tensie, rie-traiz; batch is betsj by an older rule), and jargon as
+// "sjargon" in this film's phrases only (espeak-ng reads "jar-gon"), and Harvard
+// Business Review as "Harvard Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"); Dutch only
+test('speak variant: premortem, single point of failure, beheersmaatregel, the ERP jargon and jargon in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een premortem. Premortem:'), 'Een pree-mortem. Pree-mortem:');
+  assert.equal(nl('Een single point of failure. Single point of failure:'), 'Een singel pojnt of feeljer. Singel pojnt of feeljer:');
+  assert.equal(nl('Vraag naar een beheersmaatregel. Zonder een beheersmaatregel. De beheersmaatregel: wat je nu doet.'),
+    'Vraag naar een beheers-maatregel. Zonder een beheers-maatregel. De beheersmaatregel: wat je nu doet.');
+  assert.equal(nl('De barcodescanners op de nachtdienst; Nachtdienst'), 'De barcode-skenners op de nacht-dienst; Nacht-dienst');
+  assert.equal(nl('De koppeling is batch, niet real-time, met 15 minuten latency, en geen idempotentie bij retries.'),
+    'De koppeling is betsj, niet riel-taim, met 15 minuten lee-tensie, en geen idempotentie bij rie-traiz.');
+  assert.equal(nl('een masterbatch, een scanner, de dienst, de tijd'), 'een masterbatch, een scanner, de dienst, de tijd');
+  assert.equal(nl('Jargon is de vaktaal. Jargon: de vaktaal. De expert in jargon aan het bestuur.'), 'Sjargon is de vaktaal. Sjargon: de vaktaal. De expert in sjargon aan het bestuur.');
+  assert.equal(nl('Verkoop geen jargon. Het jargon onvertaald doorgeven.'), 'Verkoop geen jargon. Het jargon onvertaald doorgeven.');
+  assert.equal(nl('in 2007, in Harvard Business Review. De Harvard-methode'), 'in 2007, in Harvard Biznis Rievjoe. De Harvard-methode');
+  const en = 'A premortem, a single point of failure, the barcode scanners, batch, not real-time, latency, retries, jargon is the language';
+  assert.equal(speakOf([en], 'en'), en);
+  // English: espeak-ng reads idempotency as "AID-mpoatency"; said idem-potency
+  assert.equal(speakOf(['And no idempotency on retries.'], 'en'), 'And no idem-potency on retries.');
+  assert.equal(speakOf(['En geen idempotentie.'], 'nl'), 'En geen idempotentie.');
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

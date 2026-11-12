@@ -410,6 +410,7 @@ export default {
     },
     {
       id: 'pm.outside.fail',
+      film: 'pm.outside.jargon',
       title: '“Waardoor zou dit mislukken?”',
       pre: [
         {
@@ -574,6 +575,7 @@ export default {
     },
     {
       id: 'pm.outside.jargon',
+      film: 'pm.outside.jargon',
       title: 'Jargon terugvertalen',
       pre: [
         {
