@@ -362,6 +362,7 @@ export default {
     },
     {
       id: 'eng.gridops.switching',
+      film: 'eng.switchgear.fiverules',
       title: 'Switching plans',
       pre: [
         {

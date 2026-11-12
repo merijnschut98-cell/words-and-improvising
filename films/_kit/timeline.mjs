@@ -229,6 +229,37 @@ const SAY = {
     // load film's "De hoofdzekering" stays as it is
     [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
     [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // how a transformer works (eng.transformers.principle): ONAN and Dyn5 as letters (espeak-ng reads the words
+    // "onan" and "din vijf"); nullastverliezen and regelschakelaar, stressed nullastverLIEzen and regelschaKElaar
+    // (with the e of "bed"), split at the head (NULlast-verLIEzen, REgel-SCHAkelaar, as vermogensschakelaar
+    // above); and "in driehoek", stressed drie-HOEK, said drie-hoek (only after "in", so the drives film's
+    // "naar driehoek" stays as it is)
+    [/\bONAN\b/g, 'O N A N'], [/\bDyn5\b/g, 'D Y N 5'], [/\b([Nn])ullastverliezen/g, '$1ullast-verliezen'],
+    [/\b([Rr])egelschakelaar/g, '$1egel-schakelaar'], [/\bin driehoek\b/g, 'in drie-hoek'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng reads NEN-EN 50110 as "en ee en ee en
+    // vijftig duizend honderd tien" and NEN 3140 as "en ee en drieduizend honderdveertig"; said as the floor
+    // says them, "nen E N vijftig honderdtien" and "nen 31 40" (only NEN with a four-digit number, so ISO and
+    // EN numbers elsewhere stay). IV is read as the word "if", VOP as the word "vop" and WV with a v for the
+    // w: said I V, vee oo pee and wee vee (VP is read right). It stresses ARbobesluit (with "bes-luit"),
+    // the head of schakelmonTEUR, schakelmoMENten and moffenPLOEG, and reads installatieverantwoordelijke
+    // as "INstalaativerantwoordelijke" (t, not ts): split at the head, each part keeps its own reading
+    [/\bNEN-EN 50110\b/g, 'nen E N vijftig honderdtien'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'vee oo pee'], [/\bWV\b/g, 'wee vee'], [/\bArbobesluit\b/g, 'Arbo-besluit'],
+    [/\b([Ss])chakelmonteur/g, '$1chakel-monteur'], [/\b([Ss])chakelmoment/g, '$1chakel-moment'], [/\b([Mm])offenploeg/g, '$1offen-ploeg'],
+    [/\b([Ii])nstallatieverantwoordelijke/g, '$1nstallatie-verantwoordelijke'],
+    // protection (eng.switchgear.protection): espeak-ng reads relais as "REE-lice" (said as the floor says it,
+    // re-LEE; only where no film with a video says it: not before "ziet", "ook" or "meet", nor at a full stop,
+    // so eng.lines.control, eng.switchgear.devices and eng.switchgear.automation keep their voice), NAI-jlen
+    // (said naa-ijlen), and it stresses or voices these compounds wrong: uitschaKEL-signaal with the e of "bed",
+    // REEzervee-beveiliging, aardfout-beeveiLIEging, middenspannings-sə-KIEring,
+    // lekSTROOM, faseSTROmen, foutSTROmen, laagspanningsKAbel, straatKAbel; split at the head, each part keeps
+    // its own reading
+    [/\b([Bb]eveiligings)?([Rr])elais\b(?! (?:ziet|ook|meet)\b)(?!\.)/g, '$1$2elee'], [/\bnaijlen\b/g, 'naa-ijlen'],
+    [/\b([Uu])itschakelsignaal/g, '$1itschakel-signaal'],
+    [/\b([Rr])eservebeveiliging/g, '$1eserve-beveiliging'], [/\b([Aa])ardfoutbeveiliging/g, '$1ardfout-beveiliging'],
+    [/\b([Mm])iddenspanningszekering/g, '$1iddenspannings-zekering'], [/\b([Ll])aagspanningszekering/g, '$1aagspannings-zekering'],
+    [/\b([Ll])ekstroom/g, '$1ek-stroom'], [/\b([Ff])asestromen\b/g, '$1ase-stromen'],
+    [/\b([Ff])outstromen\b/g, '$1out-stromen'], [/\b([Ll])aagspanningskabel/g, '$1aagspannings-kabel'], [/\b([Ss])traatkabel/g, '$1traat-kabel'],
     // the critical path (pm.plan.schedule, the first pm film): go/no-go without "slash" (espeak-ng says
     // "go slash no-go"; as the English rule), pilot as the Dutch say it, "pailot" (espeak-ng reads "pie-lot"),
     // and compounds it stresses at the end or reads wrong, split at the head: stuurGROEP, mijlPAAL, nulmEting
@@ -247,7 +278,12 @@ const SAY = {
     // CILT as letters here too: espeak-ng's English reads it as the word "silt"
     [/\bCILT\b/g, 'C I L T'],
     // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
-    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet']],
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng's English reads IV as "Roman four" and the
+    // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
+    // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
+    // (letters elsewhere), so V O P throughout
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

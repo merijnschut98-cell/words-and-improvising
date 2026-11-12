@@ -52,10 +52,10 @@ test('adjustDrillLevel clamps', () => {
 });
 
 test('drillTiming', () => {
-  assert.deepEqual(drillTiming('minute', 1), { prepS: 15, answerS: 30, questions: 1 });
+  assert.deepEqual(drillTiming('explain', 1), { prepS: 15, answerS: 30, questions: 1 });
   assert.deepEqual(drillTiming('explain', 5), { prepS: 0, answerS: 90, questions: 1 });
   assert.deepEqual(drillTiming('rapid', 3), { prepS: 0, answerS: 10, questions: 5 });
-  assert.deepEqual(drillTiming('minute', 99), { prepS: 0, answerS: 90, questions: 1 });
+  assert.deepEqual(drillTiming('explain', 99), { prepS: 0, answerS: 90, questions: 1 });
 });
 
 import { twistEvery } from '../src/core/progress.js';

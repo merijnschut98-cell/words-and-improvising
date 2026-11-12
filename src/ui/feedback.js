@@ -20,7 +20,7 @@ import { rateLink, askFriend, newNonce } from '../core/friend.js';
 import { baselineEntry } from '../core/programme.js';
 import { recordings, recordingMeta } from '../core/recordings.js';
 import { recorderSupported } from '../core/recorder.js';
-import { clashNotice, canShareMic } from '../core/micshare.js';
+import { clashNotice, canShareMic, deviceTrackInput } from '../core/micshare.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -37,8 +37,11 @@ function chip(value, label, tone = '') {
 
 export function renderFeedback(app, params, root) {
   const t = app.t;
-  const { prompt, transcript, durationS, targetS, audio, mode, previous, prepS = null, modifier = null } = params;
+  const { prompt, durationS, targetS, audio, mode, previous, prepS = null, modifier = null } = params;
   const lang = app.lang;
+  // What speech recognition heard; he can correct it before the coach judges it.
+  // The counts (metrics) stay as recorded.
+  let transcript = params.transcript;
   const metrics = analyze(transcript, durationS, lang);
   if (params.pauses != null) metrics.pauses = params.pauses;
   const clean = cleanRun(tokenize(transcript), lang).max;
@@ -167,8 +170,8 @@ export function renderFeedback(app, params, root) {
 
   // Transcript with fillers marked, and vague words (this language) underlined.
   const segs = markVague(highlightFillers(transcript, lang), lang);
-  const transcriptEl = h('p', { class: 'transcript' },
-    segs.map((s) => (s.filler ? h('mark', {}, s.text) : s.vague ? h('span', { class: 'vague' }, s.text) : s.text)));
+  const markSegs = (list) => list.map((s) => (s.filler ? h('mark', {}, s.text) : s.vague ? h('span', { class: 'vague' }, s.text) : s.text));
+  const transcriptEl = h('p', { class: 'transcript' }, markSegs(segs));
   const hasVague = segs.some((s) => s.vague);
   const leaning = repeatedWords(transcript, lang);
   const wordsNote = hasVague || leaning.length ? h('div', { class: 'words-note' },
@@ -189,7 +192,45 @@ export function renderFeedback(app, params, root) {
 
   // Coach card
   const coachCard = h('section', { class: 'card coach-card' });
+  // Speech recognition mishears: a quiet way to fix the text and ask again.
+  function fixBlock() {
+    if (!st.editing) {
+      return h('button', { class: 'link-btn small transcript-fix', onclick: () => {
+        st.editing = true;
+        renderCoach(st.last);
+        coachCard.querySelector('.transcript-edit').focus();
+      } }, ico('pen-line'), ' ', t('fixTranscript'));
+    }
+    // The draft survives a re-render (the coach can answer while he edits).
+    const area = h('textarea', { class: 'text-input transcript-edit', rows: 5, 'aria-label': t('yourAnswer'), oninput: () => { st.draft = area.value; } });
+    area.value = st.draft ?? transcript;
+    return h('div', { class: 'transcript-fix-box' },
+      h('p', { class: 'muted small' }, t('fixTranscriptHelp')),
+      area,
+      h('div', { class: 'row' },
+        h('button', { class: 'btn btn-ghost small', onclick: () => {
+          const text = area.value.replace(/\s+/g, ' ').trim();
+          if (!text) return;
+          if (text !== transcript) {
+            transcript = text;
+            st.corrected = true;
+            transcriptEl.replaceChildren(...markSegs(markVague(highlightFillers(transcript, lang), lang)));
+          }
+          st.editing = false;
+          st.draft = null;
+          askCoach();
+        } }, t('fixTranscriptAsk')),
+        h('button', { class: 'link-btn small', onclick: () => { st.editing = false; st.draft = null; renderCoach(st.last); } }, t('fixTranscriptCancel'))));
+  }
+  // The fragments the coach thinks were misheard, as heard → likely.
+  function misheardBlock(list) {
+    if (!list || !list.length) return null;
+    return h('div', { class: 'misheard' },
+      h('p', { class: 'misheard-title' }, t('misheardTitle')),
+      h('ul', {}, list.map((m) => h('li', {}, h('span', { class: 'heard' }, m.heard), ' → ', h('span', { class: 'likely' }, m.likely)))));
+  }
   function renderCoach(state) {
+    st.last = state;
     const head = h('h2', { class: 'card-title' }, t('coach'));
     if (state === 'nokey') {
       coachCard.replaceChildren(head, h('p', { class: 'muted' }, t('coachNoKey')),
@@ -198,14 +239,16 @@ export function renderFeedback(app, params, root) {
           onclick: () => { commit(); app.session = null; app.go('settings'); },
         }, t('nav_settings')));
     } else if (state === 'loading') {
-      coachCard.replaceChildren(head, h('div', { class: 'shimmer' }), h('p', { class: 'muted small' }, t('coachLoading')));
+      coachCard.replaceChildren(head, h('div', { class: 'shimmer' }), h('p', { class: 'muted small' }, t('coachLoading')), fixBlock());
     } else if (state && state.ok === false) {
       coachCard.replaceChildren(head, h('p', { class: 'note' }, aiErrorText(t, state)),
-        h('button', { class: 'btn btn-ghost small', onclick: askCoach }, t('coachRetry')));
+        h('button', { class: 'btn btn-ghost small', onclick: askCoach }, t('coachRetry')), fixBlock());
     } else if (state && state.ok) {
       const d = state.data;
       // replaceChildren() would render null as the text "null": filter the optional parts.
       coachCard.replaceChildren(...[head,
+        misheardBlock(d.misheard),
+        fixBlock(),
         h('div', { class: 'scores' }, ['clarity', 'structure', 'fluency', 'vocabulary'].map((k) => h('div', { class: 'score' },
           h('span', {}, t(`sc_${k}`)),
           h('span', { class: 'pips' }, [1, 2, 3, 4, 5].map((n) => h('i', { class: n <= d.scores[k] ? 'on' : '' })))))),
@@ -237,12 +280,14 @@ export function renderFeedback(app, params, root) {
   }
 
   let alive = true;
+  let asked = 0;
   async function askCoach() {
+    const id = ++asked; // a correction while loading supersedes the earlier ask
     renderCoach('loading');
     const res = await runCoach(app.state.settings.apiKey, {
-      drill: prompt.drill, prompt, transcript, lang, durationS, metrics, model: app.state.settings.model, modifier,
+      drill: prompt.drill, prompt, transcript, lang, durationS, metrics, model: app.state.settings.model, modifier, corrected: !!st.corrected,
     });
-    if (!alive) return;
+    if (!alive || id !== asked) return;
     if (res.ok) st.coach = res.data;
     renderCoach(res);
   }
@@ -284,8 +329,9 @@ export function renderFeedback(app, params, root) {
   if (audio) audioUrl = URL.createObjectURL(audio);
 
   // Recording is opt-in. After a spoken round, ask once, with the Android caveat.
-  // Not on Android: spoken rounds there never record (it starves speech recognition).
-  const askRecord = mode === 'speak' && recorderSupported && canShareMic(navigator) && !app.state.settings.record && !(app.state.ui || {}).recordAsked ? (() => {
+  // Not on Android, unless this Chrome passed the shared-track test: without it
+  // spoken rounds there never record (a second stream starves speech recognition).
+  const askRecord = mode === 'speak' && recorderSupported && canShareMic(navigator, deviceTrackInput(localStorage, navigator)) &&!app.state.settings.record && !(app.state.ui || {}).recordAsked ? (() => {
     const answer = (on) => {
       app.setState({ ...app.state, ui: { ...(app.state.ui || {}), recordAsked: true } });
       if (on) app.updateSettings({ record: true });
