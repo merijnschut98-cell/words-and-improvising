@@ -440,23 +440,23 @@
     "eng.moulding.machine": {
       "poster": "src/content/courses/films/eng.moulding.machine.jpg",
       "nl": {
-        "dur": 337,
-        "bytes": 12365364,
+        "dur": 337.8,
+        "bytes": 12393565,
         "scenes": [
           0,
-          39.74,
-          72.69,
-          124.95,
-          158.69,
-          197.71,
-          268.1,
-          316.69
+          39.73,
+          72.92,
+          125.47,
+          159.4,
+          198.51,
+          269.03,
+          317.35
         ],
         "vtt": "src/content/courses/films/eng.moulding.machine.nl.vtt"
       },
       "en": {
         "dur": 358.7,
-        "bytes": 13067072,
+        "bytes": 13067028,
         "scenes": [
           0,
           44.41,
