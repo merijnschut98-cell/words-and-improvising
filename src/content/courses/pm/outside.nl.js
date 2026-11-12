@@ -739,6 +739,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      film: 'pm.outside.disagree',
       title: 'Als experts het oneens zijn',
       pre: [
         {
@@ -818,6 +819,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      film: 'pm.outside.disagree',
       title: 'Hun tijd en motivatie',
       pre: [
         {

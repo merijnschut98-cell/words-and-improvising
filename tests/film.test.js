@@ -200,6 +200,36 @@ test('speak variant: Fisher and Ury and the Lean consultant', () => {
   assert.equal(speakOf(['Fisher and Ury: principled negotiation. A junior Lean consultant.'], 'en'), 'Fisher and Ury: principled negotiation. A junior Lean consultant.');
 });
 
+// Disagreement and busy experts (pm.outside.disagree): espeak-ng reads second
+// opinion as "se-KONT OP-i-ni-on" (said sekkend opinjun, only in this film's
+// phrases, so pm.outside.steering's caption "een second opinion, de sponsor"
+// keeps its voice), timebox as "TIE-me-box" (taimboks), Weinberg after "van"
+// with a Dutch ei and g (Wainburk, as the Gerald Weinberg rule says it), Daniel
+// Pink's book Drive as "dri-ve" (Deniel Pink, Draiv), Edward Deci and Richard
+// Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager
+// as MAA-naa-gher (menetsjer, as the middenmanager rule; only in this film's
+// phrases), and stresses OO-pi-raa-tors (ope-raators, only before "verliezen",
+// so the TPM and LOTO films keep theirs), IN-stal-la-teur, zelfdeterminaatie
+// with "ti" for "tsie", bouwPLAATS, drijfVEren and PSI-cho-lo-gen: split at the
+// head; Dutch only, no other film says them
+test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, manager and the split compounds in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een second opinion is een kijk. Een second opinion: een expert. Een second opinion van een onafhankelijk bureau. De second opinion steunt het.'),
+    'Een sekkend opinjun is een kijk. Een sekkend opinjun: een expert. Een sekkend opinjun van een onafhankelijk bureau. De sekkend opinjun steunt het.');
+  assert.equal(nl('Dan vertraag je: meer bewijs, een second opinion, de sponsor beslist.'), 'Dan vertraag je: meer bewijs, een second opinion, de sponsor beslist.');
+  assert.equal(nl('Een timebox helpt. Timebox:'), 'Een taimboks helpt. Taimboks:');
+  assert.equal(nl('de grove tabel van Weinberg; Gerald Weinberg'), 'de grove tabel van Wainburk; Djerreld Wainburk');
+  assert.equal(nl('Daniel Pink noemt in Drive drie drijfveren, op basis van Edward Deci en Richard Ryan.'), 'Deniel Pink noemt in Draiv drie drijf-veren, op basis van Edwerd Diessie en Ritsjerd Rajen.');
+  assert.equal(nl('de manager van de expert. Zijn manager verdeelt de uren. Zijn manager zegt het. Vraag zijn manager om één dag.'),
+    'de menetsjer van de expert. Zijn menetsjer verdeelt de uren. Zijn menetsjer zegt het. Vraag zijn menetsjer om één dag.');
+  assert.equal(nl('de operators verliezen tijd; de operators zijn eigenaar'), 'de ope-raators verliezen tijd; de operators zijn eigenaar');
+  assert.equal(nl('De installateur wil vervangen; de zelfdeterminatietheorie van de psychologen; van de bouwplaats'),
+    'De instal-lateur wil vervangen; de zelf-determinatie-theorie van de psychoo-logen; van de bouw-plaats');
+  assert.equal(nl('de manager van de productie, een vuistregel, een opinie, een box'), 'de manager van de productie, een vuistregel, een opinie, een box');
+  const en = 'A second opinion, a timebox, Weinberg\'s table, Daniel Pink in Drive, Edward Deci and Richard Ryan, his manager, the operators lose, the installer';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
