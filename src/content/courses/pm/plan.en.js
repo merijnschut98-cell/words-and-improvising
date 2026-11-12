@@ -333,6 +333,7 @@ export default {
     },
     {
       id: 'pm.plan.schedule',
+      film: 'pm.plan.schedule',
       title: 'Critical path and the one-page plan',
       pre: [
         {

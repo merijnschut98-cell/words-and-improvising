@@ -101,7 +101,7 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     const ln = lessons.nl.get(n.lesson);
     gone.nl.set(n.lesson, withoutNumber(ln, n.value));
     assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
-    assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /no longer in eng\./);
+    assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
     // a Dutch term in the English caption
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
     const bad = JSON.parse(JSON.stringify(data));
