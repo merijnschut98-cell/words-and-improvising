@@ -947,6 +947,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.flex',
+      film: 'eng.gridplanning.flex',
       title: 'Flexibility and congestion management',
       pre: [
         {
@@ -1018,6 +1019,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.storage',
+      film: 'eng.gridplanning.flex',
       title: 'Batteries on the grid',
       pre: [
         {

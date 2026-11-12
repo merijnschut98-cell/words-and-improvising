@@ -170,3 +170,23 @@ test('a course say-it round tells the coach the lesson terms', () => {
   assert.match(user, /OEE, Micro-stop/);
   assert.match(user, /Explain OEE to a new operator\./);
 });
+
+// The API refuses numeric and length bounds in structured-output schemas
+// ("For 'integer' type, properties maximum, minimum are not supported").
+const UNSUPPORTED = ['minimum', 'maximum', 'exclusiveMinimum', 'exclusiveMaximum', 'multipleOf', 'minLength', 'maxLength', 'minItems', 'maxItems'];
+const walk = (node, hits = []) => {
+  if (node && typeof node === 'object') for (const [k, v] of Object.entries(node)) { if (UNSUPPORTED.includes(k)) hits.push(k); walk(v, hits); }
+  return hits;
+};
+
+test('the coach schema uses no bounds the API refuses', () => {
+  assert.deepEqual(walk(COACH_SCHEMA), []);
+});
+
+test('coach scores outside 1–5 are clamped and rounded after parsing', () => {
+  const msg = { content: [{ type: 'text', text: JSON.stringify({ scores: { clarity: 7, structure: 0, fluency: 3.6, vocabulary: 4 }, overall: 9, strength: 's', improvement: 'i', stronger_version: 'v' }) }] };
+  const r = parseCoachResponse(msg);
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.data.scores, { clarity: 5, structure: 1, fluency: 4, vocabulary: 4 });
+  assert.equal(r.data.overall, 5);
+});

@@ -1,7 +1,9 @@
 // AI speaking coach: scores an improvised answer and writes a stronger version.
 import { callClaude, withFallbacks, lastJson } from './claude.js';
 
-const score = { type: 'integer', minimum: 1, maximum: 5 };
+// The API refuses minimum/maximum in structured outputs, so the range lives in
+// the description and parseCoachResponse clamps the numbers to 1–5.
+const score = { type: 'integer', description: 'A whole number from 1 to 5.' };
 
 export const COACH_SCHEMA = {
   type: 'object',
@@ -145,7 +147,9 @@ export function parseCoachResponse(message) {
   if (!res.ok) return res;
   const d = res.data;
   if (!d || !d.scores || typeof d.stronger_version !== 'string') return { ok: false, error: 'parse' };
-  return { ok: true, data: d };
+  const clamp = (n) => Math.min(5, Math.max(1, Math.round(Number(n) || 1)));
+  const scores = Object.fromEntries(Object.entries(d.scores).map(([k, v]) => [k, clamp(v)]));
+  return { ok: true, data: { ...d, scores, overall: clamp(d.overall) } };
 }
 
 export async function runCoach(apiKey, args, loadSdk) {
