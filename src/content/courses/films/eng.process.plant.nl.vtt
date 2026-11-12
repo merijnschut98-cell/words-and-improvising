@@ -1,0 +1,317 @@
+WEBVTT
+
+1
+00:00:00.836 --> 00:00:02.218
+Dit is een kleine sapfabriek.
+
+2
+00:00:02.961 --> 00:00:05.353
+Links staat een mengvat, rechts een vulmachine,
+
+3
+00:00:05.701 --> 00:00:08.104
+en daartussen stroomt het sap door een rij apparaten.
+
+4
+00:00:09.099 --> 00:00:11.548
+Elke stap in die rij is een unit operation:
+
+5
+00:00:11.885 --> 00:00:15.263
+een fysische basisstap die in elke procesfabriek terugkomt.
+
+6
+00:00:15.964 --> 00:00:19.912
+Hier zijn dat mengen, pompen, verhitten, heethouden en koelen.
+
+7
+00:00:20.945 --> 00:00:22.791
+Ook scheiden is een unit operation.
+
+8
+00:00:23.445 --> 00:00:26.742
+Dat kan op veel manieren: filtreren door een doek of zeef,
+
+9
+00:00:26.939 --> 00:00:29.168
+centrifugeren door snel rond te draaien,
+
+10
+00:00:29.494 --> 00:00:32.234
+destilleren door te koken en de damp op te vangen,
+
+11
+00:00:32.454 --> 00:00:36.436
+of indampen, waarbij je water wegkookt om een vloeistof in te dikken.
+
+12
+00:00:37.430 --> 00:00:39.264
+Andere fabrieken drogen hun product,
+
+13
+00:00:39.520 --> 00:00:43.154
+of laten stoffen reageren: ook dat zijn unit operations.
+
+14
+00:00:43.872 --> 00:00:44.882
+Een zuivelfabriek,
+
+15
+00:00:45.160 --> 00:00:48.806
+een chemische fabriek en een waterbedrijf gebruiken dezelfde bouwstenen,
+
+16
+00:00:49.015 --> 00:00:50.513
+alleen in een andere volgorde.
+
+17
+00:00:51.798 --> 00:00:52.959
+Kijk eerst naar het mengvat.
+
+18
+00:00:53.699 --> 00:00:57.089
+Het werkt als batchproces (batch process): een vaste hoeveelheid gaat erin,
+
+19
+00:00:57.368 --> 00:01:00.409
+wordt stap voor stap bewerkt, en komt er als één partij weer uit.
+
+20
+00:01:01.459 --> 00:01:03.978
+Vullen, mengen, en dan het vat leeg.
+
+21
+00:01:04.688 --> 00:01:06.720
+Die hele partij krijgt één batchnummer,
+
+22
+00:01:07.010 --> 00:01:09.715
+met één registratie van wat erin ging en wat er gebeurde.
+
+23
+00:01:10.724 --> 00:01:12.942
+Dat is flexibel en makkelijk te traceren.
+
+24
+00:01:13.617 --> 00:01:17.355
+Het past bij veel recepten en kleine volumes: in de farma,
+
+25
+00:01:17.680 --> 00:01:20.409
+de specialistische chemie, en veel voeding.
+
+26
+00:01:21.375 --> 00:01:25.300
+Het nadeel: vullen, legen en reinigen leveren niks op,
+
+27
+00:01:25.648 --> 00:01:27.331
+en elke batch is net iets anders.
+
+28
+00:01:28.621 --> 00:01:30.978
+Vanaf de pomp is het een continu proces (continuous process).
+
+29
+00:01:31.670 --> 00:01:35.385
+Het sap stroomt de hele tijd in en uit: door de warmtewisselaar,
+
+30
+00:01:35.699 --> 00:01:38.531
+de heethoudbuis en de koeler, naar de vulmachine.
+
+31
+00:01:39.532 --> 00:01:42.632
+Draait de lijn eenmaal, dan zit ze in een stationaire toestand (steady state).
+
+32
+00:01:43.314 --> 00:01:48.585
+De temperaturen, drukken en debieten blijven op elke plek gelijk, uur na uur,
+
+33
+00:01:48.968 --> 00:01:50.245
+en er hoopt nergens iets op.
+
+34
+00:01:51.203 --> 00:01:54.825
+Dat is efficiënt bij grote volumes: in raffinaderijen,
+
+35
+00:01:55.070 --> 00:01:58.343
+papierfabrieken, de bulkchemie, en bij melkpoeder.
+
+36
+00:01:59.283 --> 00:02:03.103
+Maar opstarten en stoppen duurt uren, en wat je in die tijd maakt,
+
+37
+00:02:03.312 --> 00:02:05.054
+voldoet niet aan de specificatie.
+
+38
+00:02:05.748 --> 00:02:09.336
+Dat heet off-spec: het moet over, of gaat goedkoop weg.
+
+39
+00:02:10.051 --> 00:02:11.851
+Zulke lijnen stoppen dus liever niet.
+
+40
+00:02:12.918 --> 00:02:17.481
+Veel fabrieken combineren de twee, zoals hier: een mengvat dat batchgewijs werkt,
+
+41
+00:02:17.667 --> 00:02:18.863
+voedt een continue lijn.
+
+42
+00:02:20.099 --> 00:02:21.550
+Hoe lang zit het product in een stap?
+
+43
+00:02:22.237 --> 00:02:26.509
+Stel dat dit vat continu draait: er stroomt de hele tijd evenveel in als uit.
+
+44
+00:02:27.528 --> 00:02:30.907
+Die tijd heet de verblijftijd (residence time): gemiddeld het volume van de stap,
+
+45
+00:02:31.058 --> 00:02:34.517
+gedeeld door het debiet, het volume dat er per uur doorheen gaat.
+
+46
+00:02:35.290 --> 00:02:40.978
+Een tank van 6 kubieke meter, met 3 kubieke meter per uur erdoorheen, geeft 2 uur.
+
+47
+00:02:41.931 --> 00:02:44.137
+Meer debiet betekent minder verblijftijd.
+
+48
+00:02:44.946 --> 00:02:47.338
+Duw je 50 procent meer door dezelfde tank,
+
+49
+00:02:47.697 --> 00:02:51.911
+dan zit elke liter er een derde korter in: hier één uur en twintig minuten.
+
+50
+00:02:52.916 --> 00:02:57.490
+Vraag dus naar de verblijftijd zodra de kwaliteit van tijd afhangt: bij verhitten,
+
+51
+00:02:57.734 --> 00:03:00.068
+warmhouden, reageren of bezinken.
+
+52
+00:03:01.363 --> 00:03:04.057
+Maar let op: verblijftijd is een gemiddelde.
+
+53
+00:03:04.753 --> 00:03:06.982
+In een geroerde tank schiet een deel van het product
+
+54
+00:03:07.005 --> 00:03:09.142
+in een paar minuten van de inlaat naar de uitlaat.
+
+55
+00:03:10.171 --> 00:03:14.037
+Een ander deel hangt urenlang in de dode hoeken, waar het roerwerk nauwelijks komt.
+
+56
+00:03:15.081 --> 00:03:19.423
+Moet product een minimale tijd ergens blijven, zoals bij pasteuriseren,
+
+57
+00:03:19.725 --> 00:03:24.091
+kiemdodend verhitten, dan ontwerp je op het snelste deel, niet op het gemiddelde.
+
+58
+00:03:25.391 --> 00:03:26.680
+Terug naar de sapfabriek.
+
+59
+00:03:27.423 --> 00:03:31.428
+Na het verhitten moet het sap een vaste tijd heet blijven, om ziektekiemen te doden.
+
+60
+00:03:32.143 --> 00:03:36.323
+Daarvoor stroomt het door de heethoudbuis: 0,1 kubieke meter inhoud,
+
+61
+00:03:36.625 --> 00:03:38.959
+met 12 kubieke meter per uur erdoorheen.
+
+62
+00:03:39.947 --> 00:03:42.629
+De verblijftijd is het volume gedeeld door het debiet.
+
+63
+00:03:43.432 --> 00:03:47.717
+Dat geeft 30 seconden, en het voedselveiligheidsplan eist er minstens 20.
+
+64
+00:03:48.770 --> 00:03:51.498
+Wil productie naar 18 kubieke meter per uur,
+
+65
+00:03:51.858 --> 00:03:56.420
+dan wordt de verblijftijd 20 seconden: precies op het minimum, zonder marge.
+
+66
+00:03:57.408 --> 00:03:58.650
+En dat is nog een gemiddelde.
+
+67
+00:03:59.362 --> 00:04:01.475
+In het midden van de buis stroomt het sap sneller,
+
+68
+00:04:01.754 --> 00:04:04.633
+dus het snelste sap zit er korter dan 20 seconden in.
+
+69
+00:04:05.359 --> 00:04:07.994
+Daarom ontwerp je een heethoudbuis op het snelste deeltje.
+
+70
+00:04:08.981 --> 00:04:14.159
+In een continu proces hangen doorzet, de output per uur, en verblijftijd aan elkaar.
+
+71
+00:04:14.817 --> 00:04:18.683
+Meer output vraagt een langere heethoudbuis, niet alleen een snellere pomp.
+
+72
+00:04:19.985 --> 00:04:21.924
+Ook experts zijn het niet altijd eens.
+
+73
+00:04:22.632 --> 00:04:25.883
+In de farma loopt de discussie of fabrieken van batch naar continu moeten.
+
+74
+00:04:26.892 --> 00:04:31.315
+Toezichthouders zoals de Amerikaanse FDA moedigen continu produceren aan.
+
+75
+00:04:31.997 --> 00:04:36.707
+Maar auditors kennen juist de batchregistratie: één partij, één dossier.
+
+76
+00:04:37.664 --> 00:04:41.553
+Een scherpe vraag in elke fabriek is daarom: welke stappen zijn hier batch,
+
+77
+00:04:41.832 --> 00:04:44.166
+welke continu, en waar raken ze elkaar?
+
+78
+00:04:45.142 --> 00:04:48.695
+In deze sapfabriek is het mengvat batch, en de rest van de lijn continu.
+
+79
+00:04:49.398 --> 00:04:51.534
+Ze raken elkaar bij de pomp onder het vat.

@@ -636,7 +636,7 @@ const SAY = [
       en: 'The {t:Power factor|power factor}, or cos phi, is the useful share: fully loaded about {n:0.8} to {n:0.9}.' },
     { nl: 'Het vermogen is wortel drie maal spanning, stroom en arbeidsfactor. Bij {n:400} volt, {n:30} ampère en {n:0.85} is dat zo’n {n:17.7} kilowatt.',
       en: 'The power is root three times voltage, current and power factor. At {n:400} volts, {n:30} amps and {n:0.85}, that is about {n:17.7} kilowatts.' },
-    { nl: 'Licht belast zakt de arbeidsfactor ver: meer stroom voor even veel werk, dus dikkere kabels.',
+    { nl: 'Licht belast zakt de arbeidsfactor ver. Dan vraagt even veel werk meer stroom, dus dikkere kabels.',
       en: 'Lightly loaded, the power factor drops far: more current for the same work, so thicker cables.' },
   ],
   [ // s5 the rotating field

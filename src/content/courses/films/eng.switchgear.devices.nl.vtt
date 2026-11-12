@@ -1,0 +1,373 @@
+WEBVTT
+
+1
+00:00:00.855 --> 00:00:02.794
+Dit netstation voedt een paar straten.
+
+2
+00:00:03.496 --> 00:00:06.050
+Links de schakelinstallatie voor de middenspanning,
+
+3
+00:00:06.387 --> 00:00:09.545
+rechts de transformator die 10 kilovolt omzet naar laagspanning.
+
+4
+00:00:10.563 --> 00:00:14.591
+Een schakelinstallatie schakelt, beveiligt en scheidt delen van het net.
+
+5
+00:00:15.259 --> 00:00:16.629
+Hier is dat een RMU.
+
+6
+00:00:17.323 --> 00:00:19.842
+Dat is één compact blok in een gesloten stalen tank.
+
+7
+00:00:20.852 --> 00:00:24.683
+Die heeft drie velden (panel): één kast per kabel of transformator.
+
+8
+00:00:25.374 --> 00:00:29.275
+Twee velden koppelen het station in de ring, het derde voedt de transformator.
+
+9
+00:00:29.961 --> 00:00:34.477
+Een lijntekening op de voorkant toont welke schakelaar open, dicht of geaard is.
+
+10
+00:00:35.512 --> 00:00:37.323
+Vraag bij elk apparaat twee dingen.
+
+11
+00:00:37.998 --> 00:00:40.726
+Wat kan hij inschakelen, en wat kan hij onderbreken?
+
+12
+00:00:42.052 --> 00:00:45.082
+In het onderstation begint elke middenspanningskabel naar een ring
+
+13
+00:00:45.140 --> 00:00:47.439
+van netstations bij een vermogensschakelaar (circuit breaker).
+
+14
+00:00:48.435 --> 00:00:52.684
+Die schakelt belasting, maar onderbreekt ook een kortsluiting, telkens opnieuw.
+
+15
+00:00:53.414 --> 00:00:57.059
+Meestal is hij gebouwd voor 16 tot 25 kiloampère.
+
+16
+00:00:58.096 --> 00:00:59.954
+Een beveiligingsrelais meet de stroom.
+
+17
+00:01:00.660 --> 00:01:03.306
+Ziet het een fout, dan laat het de schakelaar openen.
+
+18
+00:01:04.336 --> 00:01:07.506
+Gaan de contacten uit elkaar, dan springt er een boog over.
+
+19
+00:01:08.188 --> 00:01:10.951
+In een vacuümschakelbuis (vacuum interrupter) brandt die alleen in metaaldamp.
+
+20
+00:01:11.604 --> 00:01:15.775
+Bij de volgende nuldoorgang van de stroom dooft hij, en de damp slaat meteen neer.
+
+21
+00:01:16.990 --> 00:01:17.571
+Hoe zwaar?
+
+22
+00:01:18.285 --> 00:01:20.271
+Dat hangt af van het kortsluitvermogen (fault level):
+
+23
+00:01:20.433 --> 00:01:22.860
+hoe hard een kortsluiting op die plek aankomt.
+
+24
+00:01:23.896 --> 00:01:26.914
+Vlak bij een onderstation, in een net van 10 kilovolt,
+
+25
+00:01:27.193 --> 00:01:31.907
+is dat een paar honderd megavoltampère, ruwweg 15 tot 20 kiloampère.
+
+26
+00:01:32.890 --> 00:01:36.942
+Elke vermogensschakelaar moet zwaarder zijn dan het kortsluitvermogen op zijn plek.
+
+27
+00:01:37.978 --> 00:01:38.709
+Een voorbeeld.
+
+28
+00:01:39.495 --> 00:01:41.643
+Een graafmachine raakt een kabel van de ring.
+
+29
+00:01:42.328 --> 00:01:44.162
+Het relais ziet 8 kiloampère,
+
+30
+00:01:44.499 --> 00:01:48.481
+en de schakelaar van 20 kiloampère opent in zo’n 0,3 seconde.
+
+31
+00:01:49.802 --> 00:01:50.998
+Terug in het netstation.
+
+32
+00:01:51.760 --> 00:01:54.035
+De twee velden voor de ring hebben een lastscheider (load-break switch):
+
+33
+00:01:54.430 --> 00:01:57.414
+daarmee schakelen monteurs delen van de ring in en uit.
+
+34
+00:01:58.475 --> 00:02:02.584
+Een lastscheider schakelt de normale belasting, en kan inschakelen op een fout,
+
+35
+00:02:02.910 --> 00:02:04.559
+maar geen kortsluiting onderbreken.
+
+36
+00:02:05.260 --> 00:02:08.081
+In het voorbeeld opent dus eerst de vermogensschakelaar.
+
+37
+00:02:08.804 --> 00:02:11.939
+Daarna opent een monteur de lastscheiders rond het kapotte stuk,
+
+38
+00:02:12.275 --> 00:02:14.028
+en gaat de vermogensschakelaar weer in.
+
+39
+00:02:14.965 --> 00:02:19.238
+Het derde veld voedt de transformator van 400 kilovoltampère,
+
+40
+00:02:19.470 --> 00:02:23.708
+met een lastscheider en een zekering (fuse) per fase: een smeltpatroon vol zand,
+
+41
+00:02:23.928 --> 00:02:25.379
+met een dunne draad van zilver.
+
+42
+00:02:26.358 --> 00:02:28.947
+Bij een fout smelt de draad door en dooft het zand de boog.
+
+43
+00:02:29.662 --> 00:02:33.331
+Meestal springt er een slagpen uit, die de lastscheider laat openen.
+
+44
+00:02:34.067 --> 00:02:35.774
+Daarna moet er een nieuwe zekering in.
+
+45
+00:02:37.092 --> 00:02:39.066
+Voor werk achter een veld is er de scheider (disconnector).
+
+46
+00:02:39.802 --> 00:02:43.123
+Die bedien je alleen stroomloos: hij maakt een veilige scheiding.
+
+47
+00:02:44.185 --> 00:02:47.180
+De aardingsschakelaar (earthing switch) verbindt het spanningsloze deel met aarde.
+
+48
+00:02:47.893 --> 00:02:51.342
+Komt er per ongeluk toch spanning op, dan gaat de stroom naar aarde,
+
+49
+00:02:51.620 --> 00:02:52.526
+niet door een mens.
+
+50
+00:02:53.515 --> 00:02:58.414
+In een RMU is dat vaak één schakelaar met drie standen: dicht, open en geaard.
+
+51
+00:02:59.112 --> 00:03:01.527
+Een vergrendeling blokkeert de verkeerde volgorde,
+
+52
+00:03:01.829 --> 00:03:04.383
+zoals een kabel aarden die nog onder spanning staat.
+
+53
+00:03:05.154 --> 00:03:08.939
+Die volgorde hoort bij de vijf veiligheidsregels: vrijschakelen,
+
+54
+00:03:09.159 --> 00:03:11.028
+beveiligen tegen herinschakelen,
+
+55
+00:03:11.272 --> 00:03:14.581
+spanningsloosheid vaststellen, aarden en kortsluiten,
+
+56
+00:03:14.941 --> 00:03:17.216
+en naastgelegen delen onder spanning afschermen.
+
+57
+00:03:18.205 --> 00:03:19.842
+Een scheider onder belasting bedienen,
+
+58
+00:03:20.143 --> 00:03:22.894
+of inschakelen op een fout die de schakelaar niet aankan,
+
+59
+00:03:23.034 --> 00:03:27.225
+kan een vlamboog geven: hitte, licht en druk die de bediener verbranden.
+
+60
+00:03:27.904 --> 00:03:31.143
+Goede schakelinstallaties zijn beproefd op een interne boog:
+
+61
+00:03:31.457 --> 00:03:33.013
+de klap gaat weg van de bediener.
+
+62
+00:03:34.302 --> 00:03:38.250
+In een onderstation staat een rij velden, elk met een vermogensschakelaar,
+
+63
+00:03:38.621 --> 00:03:43.265
+meettransformatoren die stroom en spanning terugschalen, en een beveiligingsrelais.
+
+64
+00:03:44.302 --> 00:03:46.879
+Een luchtgeïsoleerde schakelinstallatie (air-insulated switchgear) is groot:
+
+65
+00:03:47.227 --> 00:03:49.596
+de lucht tussen de delen onder spanning isoleert,
+
+66
+00:03:49.874 --> 00:03:51.081
+en dat vraagt afstand.
+
+67
+00:03:52.139 --> 00:03:54.182
+Een gasgeïsoleerde schakelinstallatie (gas-insulated switchgear)
+
+68
+00:03:54.240 --> 00:03:56.899
+zet die delen in een gesloten tank met SF6,
+
+69
+00:03:57.142 --> 00:03:59.766
+een isolerend gas, en is veel compacter.
+
+70
+00:04:00.443 --> 00:04:03.764
+Ook veel RMU’s zijn met SF6 geïsoleerd.
+
+71
+00:04:04.516 --> 00:04:09.113
+Veel netstations hebben nog oudere types met vaste kunsthars, zoals de Magnefix,
+
+72
+00:04:09.334 --> 00:04:11.285
+soms met extra regels voor het bedienen.
+
+73
+00:04:12.263 --> 00:04:15.177
+Een drukmeter op de voorkant laat zien of het gas er nog in zit.
+
+74
+00:04:16.512 --> 00:04:19.600
+SF6 isoleert en dooft bogen extreem goed.
+
+75
+00:04:20.288 --> 00:04:26.232
+Maar het is het sterkste broeikasgas dat veel gebruikt wordt: zo’n 23.500 keer CO2,
+
+76
+00:04:26.557 --> 00:04:27.068
+per kilo.
+
+77
+00:04:28.083 --> 00:04:33.145
+Een voorbeeld: 20.000 RMU’s met elk 1,5 kilo gas is 30 ton.
+
+78
+00:04:33.833 --> 00:04:37.328
+Lekt er 0,1 procent per jaar weg, dan is dat 30 kilo.
+
+79
+00:04:38.293 --> 00:04:43.785
+Maal 23.500 is dat ruwweg 700 ton CO2-equivalent, elk jaar.
+
+80
+00:04:44.784 --> 00:04:49.579
+Daarom mogen nieuwe schakelinstallaties tot 24 kilovolt volgens de Europese
+
+81
+00:04:49.637 --> 00:04:54.920
+F-gassenverordening vanaf 2026 in principe geen SF6 meer gebruiken,
+
+82
+00:04:55.350 --> 00:04:58.334
+en tot 52 kilovolt vanaf 2030.
+
+83
+00:04:59.071 --> 00:05:01.672
+De nieuwe types onderbreken de boog in vacuüm,
+
+84
+00:05:01.985 --> 00:05:04.713
+en isoleren met droge lucht of vaste isolatie.
+
+85
+00:05:05.997 --> 00:05:06.868
+Samengevat.
+
+86
+00:05:07.587 --> 00:05:11.314
+De vermogensschakelaar onderbreekt kortsluitingen, telkens opnieuw.
+
+87
+00:05:12.283 --> 00:05:15.186
+De lastscheider schakelt belasting, maar geen kortsluiting.
+
+88
+00:05:15.857 --> 00:05:18.318
+De zekering onderbreekt een fout, één keer.
+
+89
+00:05:19.273 --> 00:05:23.465
+De scheider bedien je alleen stroomloos, de aardingsschakelaar aardt het dode deel.
+
+90
+00:05:24.503 --> 00:05:28.996
+Een schakelinstallatie staat er 30 tot 50 jaar, dus die keuze weegt zwaar.
+
+91
+00:05:29.723 --> 00:05:31.848
+Vraag altijd: welk type is het?
+
+92
+00:05:32.585 --> 00:05:34.791
+En wat houdt iemand tegen die hem verkeerd gebruikt?
+
+93
+00:05:35.497 --> 00:05:38.922
+Oudere schakelinstallaties missen een deel van de vergrendelingen.
