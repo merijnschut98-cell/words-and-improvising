@@ -69,6 +69,8 @@ export function drillTiming(drill, level) {
   // Pressure: per-item seconds come from prompt.extra.itemS (opening, then reply).
   if (drill === 'pressure') return { prepS: 0, answerS: 20, questions: 2 };
   const i = Math.max(1, Math.min(5, level || 1)) - 1;
+  // "Eén minuut" is one minute of talking at every level; only thinking time shrinks.
+  if (drill === 'minute') return { prepS: PREP_S[i], answerS: 60, questions: 1 };
   return { prepS: PREP_S[i], answerS: ANSWER_S[i], questions: 1 };
 }
 

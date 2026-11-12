@@ -55,6 +55,8 @@ TESTS = {
     # forces and stress film (2026-11-12): espeak-ng stresses door-SNE-de (dɔːrsnˈeːdə); the noun is DOOR-snede.
     # doorsneden it already reads right (dˈɔːrsneːdən), so it has no entry
     'doorsnede': 'Dat oppervlak is de doorsnede: het vlak dat je ziet als je recht doorzaagt.',
+    # transformer film (2026-11-12): espeak-ng stresses AA-lu-minium (ˈaːlymˌiniˌɵm); right is a-lu-MI-nium
+    'aluminium': 'Om elk been zitten twee spoelen van draad, van koper of aluminium.',
 }
 TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:
