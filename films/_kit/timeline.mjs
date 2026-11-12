@@ -196,6 +196,11 @@ const SAY = {
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
     [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
+    // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
+    // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
+    [/\bCIP\b/g, 'C I P'], [/\binline\b/g, 'inlain'], [/\b([Vv])iscositeitsmeter/g, '$1iscositeits-meter'], [/\bQC-vrijgave\b/g, 'QC-vrij-gave'],
+    [/\b([Pp])loegwissel/g, '$1loeg-wissel'], [/\b([Bb])esturingssysteem/g, '$1esturings-systeem'], [/\b([Ss])poedmoment/g, '$1poed-moment'], [/\b([Ll])abuitslag/g, '$1ab-uitslag'],
     // load flow and N-1 (eng.gridplanning.loadflow): loadflow as the floor says it, "loodflo" (espeak-ng reads
     // "lo-ad-flow"; in a compound "loodflo-"), N-1 as "N min één" (espeak-ng drops the minus: "N één"),
     // vluchtstrook and Netcode split at the head (espeak-ng stresses vluchtSTROOK and netCOde), and EN 50160

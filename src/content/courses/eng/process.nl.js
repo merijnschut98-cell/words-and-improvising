@@ -871,6 +871,7 @@ export default {
     },
     {
       id: 'eng.process.batch',
+      film: 'eng.process.batch',
       title: 'Batchcycli en capaciteit',
       pre: [
         {
