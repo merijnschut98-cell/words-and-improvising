@@ -269,7 +269,12 @@ const SAY = {
     [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
     // the first conversation (pm.intake.firsttalk): the listening checklist MORE PIES as its English name, "Mor
     // pais" (espeak-ng reads PIES as the Dutch "pis"); only in capitals, as the lessons write it
-    [/\bMORE PIES\b/g, 'Mor pais']],
+    [/\bMORE PIES\b/g, 'Mor pais'],
+    // escalation (pm.run.escalation): espeak-ng reads governance the Dutch way, "GOO-ver-nan-se" (said as the
+    // floor says it, "gavvernens"), MUM-effect as letters and keep with a long e (said mum-effect, kiep mum), and
+    // stresses ESkalatieroute; split at the head, so it keeps es-ka-LA-tie
+    [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
+    [/\b([Ee])scalatieroute/g, '$1scalatie-route']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -368,6 +373,24 @@ export function beatStarts(scene, lang) {
   let acc = 0;
   for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
   return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+export function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
 }
 
 export function beatIndexAt(scene, lang, local) {
