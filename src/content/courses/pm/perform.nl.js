@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      film: 'pm.perform.tree',
       title: 'Een paar indicatoren die sturen',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      film: 'pm.perform.tree',
       title: 'Van strategie naar de cijfers van een team',
       pre: [
         {
@@ -417,6 +419,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      film: 'pm.perform.tree',
       title: 'Doelen waar mensen in geloven',
       pre: [
         {
@@ -747,6 +750,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      film: 'pm.perform.tree',
       title: 'Gaming en verkeerde prikkels',
       pre: [
         {

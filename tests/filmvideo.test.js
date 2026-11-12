@@ -85,6 +85,14 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.perform.tree: the terms the cards show, said as Dutch performance people say them
+  assert.equal(speakOf(['Een driver in de driverboom. De balanced scorecard van Kaplan en Norton.'], 'nl'), 'Een draiver in de draiverboom. De bellenst skoorkart van Kaplan en Norten.');
+  assert.equal(speakOf(['Gaming, naar Goodhart en Strathern; Locke en Latham.'], 'nl'), 'Geeming, naar Goedhart en Strèthurn; Lok en Leetum.');
+  assert.equal(speakOf(['Een voorlopende indicator, achterlopende en gekoppelde indicatoren, een actiegrens.'], 'nl'), 'Een voorlopende indie-kator, achterlopende en gekoppelde indie-katoren, een actie-grens.');
+  // other films keep their voice: kleine indicatoren, De actiegrens ligt, het dashboard
+  assert.equal(speakOf(['Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.'], 'nl'), 'Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.');
+  assert.equal(speakOf(['Voor de deadline groeien dashboards; een rapportagecijfer per orderregel.'], 'nl'), 'Voor de dedlain groeien desjbords; een rapportage-cijfer per order-regel.');
+  assert.equal(speakOf(['A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.'], 'en'), 'A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.');
 });
 
 // ------------------------------------------------------------ WAV files

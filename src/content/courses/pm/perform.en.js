@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      film: 'pm.perform.tree',
       title: 'A few indicators that steer',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      film: 'pm.perform.tree',
       title: 'From strategy to a team’s numbers',
       pre: [
         {
@@ -417,6 +419,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      film: 'pm.perform.tree',
       title: 'Targets people believe',
       pre: [
         {
@@ -747,6 +750,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      film: 'pm.perform.tree',
       title: 'Gaming and perverse incentives',
       pre: [
         {
