@@ -1201,6 +1201,37 @@
         ],
         "vtt": "src/content/courses/films/eng.gridbasics.load.en.vtt"
       }
+    },
+    "eng.mechanics.heattreat": {
+      "poster": "src/content/courses/films/eng.mechanics.heattreat.jpg",
+      "nl": {
+        "dur": 295.9,
+        "bytes": 10313955,
+        "scenes": [
+          0,
+          55.31,
+          102.29,
+          138.59,
+          174.04,
+          213.3,
+          250.42
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.heattreat.nl.vtt"
+      },
+      "en": {
+        "dur": 322.9,
+        "bytes": 11164069,
+        "scenes": [
+          0,
+          61.61,
+          111.94,
+          152.82,
+          192.84,
+          234.37,
+          277.06
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.heattreat.en.vtt"
+      }
     }
   }
 }
