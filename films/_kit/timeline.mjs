@@ -364,7 +364,15 @@ const SAY = {
     // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
-    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten']],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // from output to benefits (pm.portfolio.benefits): batenhouder and ploegdagen split at the head (espeak-ng reads
+    // a full e in "baa-tèn-houder" and stresses ploeg-DA-gen; ploegdag on its own is read right), business case as
+    // Dutch project people say it, "biznis kees" (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst as "wieken-dienst"
+    // (it reads "wee-kend-DIENST"), and lijnmanager and operationeel manager with a Dutch "manager" as the
+    // middenmanager rule above says it (it reads MAA-naa-cher), operationeel stressed on -NEEL (it stresses OO-);
+    // no other film says them in Dutch
+    [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
+    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

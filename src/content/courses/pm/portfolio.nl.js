@@ -1008,6 +1008,7 @@ export default {
     // Onderwerp 4 · Baten
     {
       id: 'pm.portfolio.benefits',
+      film: 'pm.portfolio.benefits',
       title: 'Van output naar baten',
       pre: [
         {

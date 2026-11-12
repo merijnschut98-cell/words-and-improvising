@@ -1008,6 +1008,7 @@ export default {
     // Topic 4 · Benefits
     {
       id: 'pm.portfolio.benefits',
+      film: 'pm.portfolio.benefits',
       title: 'From output to benefit',
       pre: [
         {
