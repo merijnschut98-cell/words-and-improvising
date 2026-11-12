@@ -283,7 +283,7 @@ const SAY = {
     [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
     [/\b([Ee])scalatieroute/g, '$1scalatie-route'],
     // the pre-mortem (pm.plan.risk): issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e");
-    // no other film says issue in Dutch
+    // pm.outside.experts says issues (isjoes) through this rule too
     [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
     // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
     // it, "etsjail", tsj for the dzj it cannot voice there), and stresses HYbride (said hie-BRIE-de); not before
@@ -424,12 +424,13 @@ const SAY = {
     [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
     [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven'],
     // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
-    // makers say it, kood-rievjoes), issues as "i-su-es" (isjoes) and vage with a French g ("vaazje": vaage),
+    // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
+    // ("vaazje": vaage),
     // stresses risico-GE-stuurd and sleu-TEL-persoon with the e of "bed" (split at the head), negentig-
     // negentigregEL and routineNEEpunten (the last part apart), and after "eerlijk" OPtimistisch (op-timistisch,
     // as the questions film's rule says it). No other film says these; eng.quality.spc's steekproef and the
     // other films' optimistisch keep their voice
-    [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`], [/\bissues\b/g, 'isjoes'],
+    [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`],
     [/\b([Rr])isicogestuurd/g, '$1isico-gestuurd'], [/\b([Ss])leutelpersoon/g, '$1leutel-persoon'],
     [/\b([Nn])egentig-negentigregel/g, '$1egentig-negentig-regel'], [/\b(eerlijk )optimistisch\b/g, '$1op-timistisch'],
     [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt']],

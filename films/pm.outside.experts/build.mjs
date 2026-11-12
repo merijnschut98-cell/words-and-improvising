@@ -445,7 +445,7 @@ const spec = {
 // sleutelpersoon split at the head (it reads "risico-GE-stuurd" and
 // "sleu-TEL-persoon" with the e of "bed"), negentig-negentigregel with the
 // rule apart (it stresses regEL), routinepunten likewise (it stresses -NEE-),
-// issues as "isjoes" (it reads "i-su-es"), vage as "vaage" (it reads a French
+// issues as "isjoes" (it reads "i-su-es"; the pre-mortem's issue rule, already shared), vage as "vaage" (it reads a French
 // g, "vaazje"), and "eerlijk optimistisch" with the stress on -MIS- (it
 // stresses OP-). Kept out
 // of the Dutch narration (they stay in the captions and on the cards): Reagan,
@@ -498,7 +498,7 @@ const SAY = [
       en: 'On every project I ask to see the test results for the safety items. It\'s not about you.' },
     { nl: 'Vooraf is het routine; na een probleem voelt het als verdenking. Pas controleren bij wantrouwen is te laat.',
       en: 'Upfront, it is routine; after a problem, it feels like suspicion. Checking only once you distrust is too late.' },
-    { nl: 'Experts duwen terug: al dat papierwerk. Vaak terecht, sommige controles zijn ritueel. Vraag welke echt problemen vangen, en houd die.',
+    { nl: 'Experts duwen terug: geen tijd voor al dat papierwerk. Vaak terecht, sommige controles zijn ritueel. Vraag welke echt problemen vangen, en houd die.',
       en: 'Experts push back: no time for paperwork. Often fair, some checks are ritual. Ask which ones catch problems, and keep those.' },
     { nl: 'Scherpe vraag: als dit fout was, hoe en hoe snel komen we erachter? Bij livegang? Dan heb je daarvoor een controle nodig.',
       en: 'Sharp question: if this were wrong, how and how soon would we find out? At go-live? Then check before that.' },
