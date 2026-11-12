@@ -124,7 +124,7 @@ const STAGE = (() => {
     o.reasons = op(span(b === 0 ? p : 1, 0.15, 0.4), txt(X0, 76, tr('bakkerij: de redenen', 'bakery: the reasons'), 'pr-lab')
       + row(102, tr('geen tijd: zomerpiek', 'no time: summer peak'), '×3', 'pr-on') + row(128, tr('registreren gestopt', 'stopped logging'), tr('2 wk', '2 wk')) + row(154, tr('nieuwe manager: af', 'new manager: cancelled'), ''));
     o.unsaid = op(inAt(b, p, 1), lines(184, [[tr('wat anders niemand zegt', 'what no one says otherwise'), 'pr-lab'], [tr('de sponsor vertrekt', 'the sponsor leaves')], [tr('nachtploeg wil niet', 'night shift says no')], [tr('IT-aanpassing: geen geld', 'IT change: no budget')]]));
-    o.hind = op(inAt(b, p, 2), card(274, 108, lines(298, [['prospective hindsight', 'pr-lab'], [tr('zo’n 30% beter', 'about 30% better'), 'pr-on'], [tr('Mitchell, Russo, Pennington,', 'Mitchell, Russo, Pennington,'), 'pr-mute'], [tr('1989; aangehaald door Klein', '1989; cited by Klein'), 'pr-mute']])));
+    o.hind = op(inAt(b, p, 2), card(274, 108, lines(298, [['prospective hindsight', 'pr-lab'], [tr('30% beter, volgens Klein', '30% better, per Klein'), 'pr-on'], [tr('Mitchell, Russo, Pennington,', 'Mitchell, Russo, Pennington,'), 'pr-mute'], [tr('1989, aangehaald door Klein', '1989, cited by Klein'), 'pr-mute']])));
     o.head = [tr('waarom het werkt', 'why it works'), b === 0 ? 'ex' : 'dia'];
     o.bub = bubble('planner', tr('Nachtploeg wil niet…', 'Night shift says no…'), b === 1 ? span(p, 0.4, 0.55) : 0);
   };
@@ -159,7 +159,7 @@ const STAGE = (() => {
       }
       g += txt(GX - 8, GY + 18, '5', 'pr-mute', 'end') + txt(GX - 8, GY + 5 * GC - 6, '1', 'pr-mute', 'end') + txt(GX + 5 * GC - 12, GY + 5 * GC + 20, '5', 'pr-mute', 'middle');
       g += lines(GY + 40, [[tr('kans ×', 'likelihood ×'), 'pr-lab'], [tr('impact', 'impact'), 'pr-lab'], ['= 1 … 25']], GX + 5 * GC + 14);
-      g += op(inAt(b, p, 1, 0.1, 0.35), txt(X0, 236, tr('12 is niet erger dan 10', '12 isn’t worse than 10'), 'pr-on') + txt(X0, 262, tr('sorteren, geen waarheid', 'for sorting, not truth'), 'pr-mute'));
+      g += op(inAt(b, p, 1, 0.1, 0.35), txt(X0, 236, tr('12 niet echt erger dan 10', '12 not really worse than 10'), 'pr-on') + txt(X0, 262, tr('sorteren, geen waarheid', 'for sorting, not truth'), 'pr-mute'));
       o.grid = op(gone, g);
       o.measure = op(gone * inAt(b, p, 2), txt(X0, 306, tr('“monitoren”', '“monitor”'), 'pr-mute') + strike(X0, 306, NL ? 116 : 92) + txt(X0, 332, tr('“testexport in week 1”', '“test export in week 1”'), 'pr-on'));
     }
@@ -179,8 +179,8 @@ const STAGE = (() => {
     for (let i = 0; i < 5; i++) {
       const y = 104 + i * 28;
       s += txt(X0, y, String(i + 1), 'pr-big');
-      s += i < 3 ? txt(X0 + 24, y, names[i]) : rect(X0 + 24, y - 14, 120 - i * 14, 10, 'pr-c1', 3);
-      if (b >= 1 && i < 3) s += op(inAt(b, p, 1, 0.1 + i * 0.15, 0.25 + i * 0.15), txt(X1, y, tr('eigenaar', 'owner'), 'pr-on', 'end'));
+      s += i < 3 ? txt(X0 + 24, y, names[i]) : rect(X0 + 24, y - 14, 120 - i * 14, 10, 'pr-c3', 3);
+      if (b >= 1) s += op(inAt(b, p, 1, 0.1 + i * 0.12, 0.22 + i * 0.12), txt(X1, y, tr('eigenaar', 'owner'), 'pr-on', 'end'));
     }
     s += op(span(b === 0 ? p : 1, 0.05, 0.25), txt(X0, 260, tr('de meeste: dood na kick-off', 'most: dead after kick-off'), 'pr-mute'));
     o.top5 = s;

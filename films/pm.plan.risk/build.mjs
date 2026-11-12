@@ -39,7 +39,8 @@
 //     the sponsor might leave, the night shift won't accept it, the IT change
 //     isn't budgeted (s2 b2); Klein cites Mitchell, Russo and Pennington
 //     (1989; the names on the card): prospective hindsight, looking back from
-//     an imagined future, about 30% better at the right reasons (s2 b3)
+//     an imagined future, by Klein's account raises the ability to identify
+//     the right reasons by 30% (s2 b3)
 //   teach 5: a sensitive risk, "the plant manager doesn't really believe in
 //     this", not in a register the plant manager reads (s6 b1); worded as a
 //     theme, sponsorship and visible support, the real point one-on-one with
@@ -60,8 +61,10 @@
 // 85 (9), September 2007, describes the method (each person writes reasons
 // alone, then the leader collects one reason per person in turn) and cites
 // Deborah Mitchell, Jay Russo and Nancy Pennington (1989) for prospective
-// hindsight raising the ability to identify reasons correctly by 30%. The film
-// credits the 30% to that research as cited by Klein, as the lesson does; the
+// hindsight: it "increases the ability to correctly identify reasons for future
+// outcomes by 30%". The 1989 paper itself counted reasons rather than judging
+// them right, so film and lesson give the 30% as Klein reports it ("volgens
+// hem", "by his account"), not as the paper's own finding; the
 // "six months" wording is the lesson's, not quoted as Klein's.
 //
 // The drawing is the shared pm world (films/_pm/world.mjs): a meeting room with
@@ -74,7 +77,11 @@
 //
 // Focus (strictFocus): every beat names the block it explains. Each card
 // block of the panel is its own cue group (SLOTS below), and so are the
-// people, the board, the register sheet and the coffee machine.
+// people, the board, the register sheet and the coffee machine. The sensitive
+// risk (s6 b1) lights the register it stays out of, not the sponsor: the
+// lesson never says the sponsor is the doubting plant manager. In s5 rows 4
+// and 5 of the top five stay unnamed bars (the lesson names three reasons),
+// but every row shows its owner.
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it
 // lives somewhere else on your machine.
@@ -110,7 +117,7 @@ has('nl', 'teach', ['iets wat kan gebeuren en het project pijn zou doen', 'een k
   '“Monitoren” is geen beheersmaatregel', 'sterven na de kick-off', 'alleen de top vijf komt in elke stuurgroep langs', 'wat er sindsdien gebeurd is',
   'Risico’s die uitkomen worden issues', 'niet alleen gevolgd', 'bij het koffieapparaat',
   'Gary Klein in 2007', 'over zes maanden en dit project is mislukt. Schrijf alleen op waarom.', 'één reden per persoon', 'als feit wordt voorgesteld',
-  'de sponsor vertrekt misschien, de nachtploeg accepteert het niet, de IT-aanpassing heeft geen budget', 'Mitchell, Russo en Pennington (1989)', 'zo’n 30% beter de juiste redenen',
+  'de sponsor vertrekt misschien, de nachtploeg accepteert het niet, de IT-aanpassing heeft geen budget', 'Mitchell, Russo en Pennington (1989)', 'volgens hem vergroot', 'het vermogen om de juiste redenen te noemen met 30%',
   'de plantmanager gelooft er eigenlijk niet in', '(“sponsorschap en zichtbare steun”)', 'één op één met wie er iets aan kan doen', 'plan een goedkope test',
   '“Wat zien we als eerste als dit begint te gebeuren?”']);
 has('nl', 'example', ['stilstandproject bij een bakkerij', 'pre-mortem van 20 minuten met zes mensen', 'zomerpiek” (drie mensen)', 'na twee weken met stops registreren',
@@ -243,7 +250,7 @@ const spec = {
       beats: [
         { nl: 'Drie keer “geen tijd door de zomerpiek”; registreren gestopt; de nieuwe manager blies het af.', en: 'Three times “no time, summer peak”; logging stopped; the new manager cancelled it.', focus: ['reasons', 'board'] },
         { nl: 'Mislukken als feit: mensen noemen wat ze anders niet zeggen.', en: 'Failure as a fact: people name what they would otherwise not say.', focus: ['unsaid', 'planner'] },
-        { nl: 'Klein haalt Mitchell, Russo en Pennington aan: zo’n {n:30}% beter in de juiste redenen.', en: 'Klein cites Mitchell, Russo and Pennington: about {n:30}% better at the right reasons.', focus: 'hind' },
+        { nl: 'Volgens Klein, die Mitchell, Russo en Pennington aanhaalt: {n:30}% beter in de juiste redenen.', en: 'According to Klein, citing Mitchell, Russo and Pennington: {n:30}% better at the right reasons.', focus: 'hind' },
       ],
     },
     {
@@ -277,7 +284,7 @@ const spec = {
     {
       id: 's6', lesson: RISK, level: 1, still: 0.9, title: { nl: 'De mensenkant', en: 'The people side' },
       beats: [
-        { nl: 'Gevoelig: “de plantmanager gelooft er niet in”. Zet dat niet in een lijst die hij leest.', en: 'Sensitive: “the plant manager doesn’t believe in it”. Keep that out of a register he reads.', focus: ['theme', 'sponsor'] },
+        { nl: 'Gevoelig: “de plantmanager gelooft er niet in”. Zet dat niet in een lijst die hij leest.', en: 'Sensitive: “the plant manager doesn’t believe in it”. Keep that out of a register he reads.', focus: ['theme', 'doc'] },
         { nl: 'Schrijf een thema op, sponsorschap en zichtbare steun, en bespreek het echte punt één op één.', en: 'Write a theme, sponsorship and visible support, and discuss the real point one-on-one.', focus: ['theme', 'jij', 'sponsor'] },
         { nl: 'Weet je de kans niet? Zeg dat, en plan een goedkope test.', en: 'Don’t know the likelihood? Say so, and plan a cheap test.', focus: 'test' },
         { nl: 'Per toprisico: “Wat zien we als eerste als dit begint te gebeuren?”', en: 'For each top risk: “What would we see first if this starts to happen?”', focus: ['first', 'jij'] },
@@ -319,8 +326,8 @@ const SAY = [
       en: 'What comes up? Three people write: maintenance never had time, because of the summer peak. Someone else: the operators stopped logging stops after two weeks. And: the new manager cancelled it.' },
     { nl: 'Omdat het mislukken als feit wordt voorgesteld, noemen mensen dingen die ze anders niet zeggen. De sponsor vertrekt misschien. De nachtploeg accepteert het niet. De aanpassing van de IT-afdeling heeft geen budget.',
       en: 'Because the failure is imagined as a fact, people name things they would not say otherwise. The sponsor might leave. The night shift won\'t accept it. The IT change has no budget.' },
-    { nl: 'Klein haalt onderzoek uit 1989 aan. Terugkijken vanuit een bedachte toekomst maakte mensen zo\'n {n:30} procent beter in het noemen van de juiste redenen.',
-      en: 'Klein cites research from 1989. Looking back from an imagined future made people about {n:30} percent better at naming the right reasons.' },
+    { nl: 'Klein haalt daarbij onderzoek uit 1989 aan. Volgens hem maakt terugkijken vanuit een bedachte toekomst mensen {n:30} procent beter in het noemen van de juiste redenen.',
+      en: 'Klein cites research from 1989 here. By his account, looking back from an imagined future makes people {n:30} percent better at naming the right reasons.' },
   ],
   [ // s3 from reason to line
     { nl: 'Nu maak je van de belangrijkste redenen risico\'s. Een risico is iets wat kan gebeuren en het project pijn zou doen.',
@@ -445,8 +452,8 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard, een klok en een koffieapparaat op een kastje. Jij, de adviseur in petrol, staat bij het bord. De teamleider staat aan het linkereind van een vergadertafel, de sponsor in pak aan het rechtereind, de planner aan de voorkant. Op tafel een stapel papier, drie kopjes en de risicolijst, die zich regel voor regel vult. Op het bord verschijnen twaalf briefjes, die zich in groepjes ordenen. Rechts een paneel met kaarten, gemarkeerd als voorbeeld of schema: de vraag van de pre-mortem; de redenen bij de bakkerij en wat anders niemand zegt; zo\'n 30 procent beter; de vier velden van een risicoregel; een raster van vijf bij vijf voor kans maal impact; de regels voor de zomerpiek en het registreren; de top vijf in de stuurgroep en een risico dat een issue wordt; en een gevoelig risico als thema, een goedkope test en de vraag wat je als eerste ziet.',
-  en: 'A meeting room. On the back wall a whiteboard, a clock and a coffee machine on a cabinet. You, the consultant in petrol, stand at the board. The team lead stands at the left end of a meeting table, the sponsor in a suit at the right end, the planner at the front. On the table a stack of paper, three cups and the risk register, which fills line by line. Twelve sticky notes appear on the board and sort themselves into clusters. At the right a panel with cards, marked as example or diagram: the pre-mortem question; the reasons at the bakery and what no one says otherwise; about 30 percent better; the four fields of a register line; a five by five grid for likelihood times impact; the lines for the summer peak and the logging; the top five at the steering group and a risk that becomes an issue; and a sensitive risk as a theme, a cheap test and the question what you would see first.',
+  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard, een klok en een koffieapparaat op een kastje. Jij, de adviseur in petrol, staat bij het bord. De teamleider staat aan het linkereind van een vergadertafel, de sponsor in pak aan het rechtereind, de planner aan de voorkant. Op tafel een stapel papier, drie kopjes en de risicolijst, die zich regel voor regel vult. Op het bord verschijnen twaalf briefjes, die zich in groepjes ordenen. Rechts een paneel met kaarten, gemarkeerd als voorbeeld of schema: de vraag van de pre-mortem; de redenen bij de bakkerij en wat anders niemand zegt; 30 procent beter, zoals Klein het meldt; de vier velden van een risicoregel; een raster van vijf bij vijf voor kans maal impact; de regels voor de zomerpiek en het registreren; de top vijf in de stuurgroep en een risico dat een issue wordt; en een gevoelig risico als thema, een goedkope test en de vraag wat je als eerste ziet.',
+  en: 'A meeting room. On the back wall a whiteboard, a clock and a coffee machine on a cabinet. You, the consultant in petrol, stand at the board. The team lead stands at the left end of a meeting table, the sponsor in a suit at the right end, the planner at the front. On the table a stack of paper, three cups and the risk register, which fills line by line. Twelve sticky notes appear on the board and sort themselves into clusters. At the right a panel with cards, marked as example or diagram: the pre-mortem question; the reasons at the bakery and what no one says otherwise; 30 percent better, as Klein reports it; the four fields of a register line; a five by five grid for likelihood times impact; the lines for the summer peak and the logging; the top five at the steering group and a risk that becomes an issue; and a sensitive risk as a theme, a cheap test and the question what you would see first.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
