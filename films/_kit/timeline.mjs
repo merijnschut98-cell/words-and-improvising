@@ -417,7 +417,12 @@ const SAY = {
     // (espeak-ng reads a French van-TAA-zje); no other film says the others or Vantage in Dutch
     [/\b([Oo])fferte(s?)\b/g, (m, o, s) => `${o}ff-erte${s ? "'s" : ''}`],
     [/\bdagtarie(f|ven)\b/g, 'dag-tarie$1'], [/\b([Pp])lantdirecteur/g, '$1lant-directeur'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'],
-    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj']],
+    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj'],
+    // stuck: which kind of problem (pm.stuck.diagnose): espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM,
+    // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
+    // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
+    [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
+    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

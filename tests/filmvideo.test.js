@@ -182,6 +182,13 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and Vantage as its English name (espeak-ng reads a French van-TAA-zje)
   assert.equal(speakOf(['Een directeur belt Vantage.'], 'nl'), 'Een directeur belt Ventitsj.');
   assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.');
+  // pm.stuck.diagnose: mensenprobleem, capaciteitsprobleem, ijkmoment and planningsregel split at the head
+  // (espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM, ijkmoMENT, planningsreGEL with the e of "bed"),
+  // vrijgeven stressed VRIJ- (espeak-ng says vrij-GEE-ven); English keeps them, and vrijgave (said in films with
+  // a video) stays as it is
+  assert.equal(speakOf(['Een mensenprobleem of een capaciteitsprobleem? Mensenproblemen. Een ijkmoment, IJkmoment.'], 'nl'), 'Een mensen-probleem of een capaciteits-probleem? Mensen-problemen. Een ijk-moment, IJk-moment.');
+  assert.equal(speakOf(['Een planningsregel, de planningsregels. Sneller vrijgeven; Vrijgeven. De vrijgave.'], 'nl'), 'Een plannings-regel, de plannings-regels. Sneller vrij-geven; Vrij-geven. De vrijgave.');
+  assert.equal(speakOf(['A people problem, a capacity problem, a check-in point.'], 'en'), 'A people problem, a capacity problem, a check-in point.');
 });
 
 // ------------------------------------------------------------ WAV files
