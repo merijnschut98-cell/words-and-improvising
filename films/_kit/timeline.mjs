@@ -298,7 +298,17 @@ const SAY = {
     // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
     // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
     // and DUIvels-; no other film says them
-    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek']],
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
+    // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
+    // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
+    // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
+    // livegang as said in Dutch projects (espeak-ng reads "LIE-ve-gang"): laif-gang; communicatieplan stressed
+    // KOM- with a t for ts, middenmanager with a Dutch "manager" (said midden-menetsjer, tsj for the dzj it cannot
+    // voice), and town hall with the o of "town" (taun hol). Coch and French ("kox en frenx") and Mark Hughes
+    // ("hux-hes") as their English names, only in these pairs; no other film says them
+    [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
+    [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
+    [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
