@@ -25,7 +25,8 @@
 // table with a phone (this film's own extra, cue "phone"), a laptop and the
 // proposal's first page, which fills in as the film builds it, and the
 // recurring cast: "jij" the consultant in petrol at the board, the sponsor
-// (the client's manager: the operations director, the plant director), the
+// (the client's manager; the plant director in s9), in s5 replaced by this
+// film's own operations director (a woman in a rust blazer, cue "director"), the
 // team lead (the team leads and the production engineer) and the planner (in
 // the role of purchasing, who compare the quotes). A panel at the right, in
 // stage space, carries one card per scene, labelled "schema" (a general
@@ -43,7 +44,10 @@
 // (the fee linked to what the result is worth); the film adds no risk claim
 // for value-based pricing, which the lesson does not make. Alan Weiss is
 // credited only with what the pricing lesson credits him: an advocate who
-// argues value-based pricing is the fairest model for both sides (his
+// argues value-based pricing is the fairest model for both sides (checked
+// 2026-11-12 on alanweiss.com, "The Case for Value Based Fees" and "The
+// lunacy of hourly billing": a fee on his contribution to the value gives "an
+// excellent ROI for you and equitable compensation for me"; his
 // Value-Based Fees is the level-3 lesson's source; this film does not cite
 // his ten-to-one rule, which belongs to that lesson). OEE: good parts at full
 // speed as a share of planned time, as the lesson defines it. The €80k on a
@@ -82,8 +86,8 @@
 //     price: a range builds trust, a single number gets fixed (s4 b3); "if
 //     this succeeds, what is different in six months, and how will we see
 //     it?" (s4 b4)
-//   proposal example: an operations director at a packaging manufacturer
-//     calls Vantage (caption); changeovers on two thermoforming lines are
+//   proposal example: an operations director (s5 b1, her own figure) at a
+//     packaging manufacturer (card) calls Vantage; changeovers on two thermoforming lines are
 //     slow (s5 b1), heated plastic sheet into trays (card); OEE about 58%, good parts at full
 //     speed for 58% of planned time; €60k budget (s5 b2); in the intake: a
 //     large customer threatens to move volume unless on-time delivery rises
@@ -268,6 +272,39 @@ const BA = BOARD.area;
 const boardMini = `<g transform="${BOARD.face}"><g class="pm-mini" transform="${fitInto(PANEL_AREA, BA.x0 + 3, -BA.z1 + 3, BA.x1 - 3, -BA.z0 - 3)}">${g('bMini', '')}</g></g>`;
 const sheetLines = `<g transform="${SHEET.face}">${g('dLines', '')}</g>`;
 
+// the operations director of the thermoforming example (s5), "she" in the
+// lesson: a figure of this film's own (as pm.close.results gave its controller
+// one; films/_pm/world.mjs stays read-only), in the sponsor's place, shown only
+// in s5, where the sponsor (suit and tie, "he" in s1 to s4 and s9) steps out:
+// a rust blazer without a tie, a light blouse front, and hair to the collar.
+// Built from the world's parts with the person's proportions (world.mjs
+// person(), shoulders along y).
+function directorFigure({ x, y }) {
+  const S = (paths, style) => k.solidSvg(paths, style);
+  const skin = { tone: 'hi', crease: 'none', className: 'od-skin' };
+  const jacket = { tone: 'mid', className: 'od-jkt' };
+  const out = [w.halo({ x: x - 16, y: y - 12, w: 32, d: 24, r: 10 })];
+  for (const s of [-7, 7]) {
+    out.push(w.box({ x: x - 5, y: y + s - 5, w: 14, d: 10, r: 2.4 }, 0, 4.5, { tone: 'lo' }, { steps: 2 }));
+    out.push(w.post(x, y + s, 6.4, 4, 84, { tone: 'lo' }, 14));
+  }
+  const torso = { x: x - 10, y: y - 16, w: 20, d: 32, r: 5.5 };
+  const arm = (s) => w.box({ x: x - 4, y: y + s - 4, w: 8, d: 8, r: 3 }, 90, 140, jacket, { steps: 2 });
+  out.push(arm(-20.5));
+  out.push(w.box(torso, 82, 144, jacket, { steps: 4, bevel: 0.6, inner: k.lineSvg(k.sideSeam(torso, 136, P, 4), { tone: 'lo' }) }));
+  // the light blouse front between the lapels, no tie
+  out.push(w.box({ x: x + 10, y: y - 4, w: 0.8, d: 8, r: 0.4 }, 118, 143, { tone: 'hi', className: 'od-blouse' }, { steps: 1 }));
+  out.push(arm(20.5));
+  // hair to the collar behind the neck, then the neck and the head
+  out.push(w.box({ x: x - 9.5, y: y - 9.5, w: 17, d: 19, r: 6 }, 141, 160, { tone: 'lo', className: 'od-hair' }, { steps: 3 }));
+  out.push(w.post(x, y, 4.4, 144, 150, skin, 12));
+  out.push(S(G.sphereOf([x - 1.4, y - 1.4, 163], 12.4, P, { steps: 28 }), { tone: 'lo', crease: 'none', className: 'od-hair' }));
+  out.push(S(G.sphereOf([x + 0.5, y + 0.5, 160.5], 11.4, P, { steps: 28 }), skin));
+  return `<g data-cue="director">${out.join('')}</g>`;
+}
+const director = directorFigure({ x: 270, y: 152 });
+assert(director.includes('data-cue="director"') && !director.includes('data-cue="sponsor"'), 'the director is a cue group of its own');
+
 const world = [
   w.room(ROOM),
   w.clock(266, 186, 11),
@@ -280,7 +317,8 @@ const world = [
   cueG('laptop', w.laptop({ x: 118, y: 136, z: TZ, toward: 1 })),
   cueG('phone', phone),
   w.cup(132, 178, TZ),
-  w.person({ x: 270, y: 152, role: 'sponsor', along: 'y' }),
+  g('spWrap', w.person({ x: 270, y: 152, role: 'sponsor', along: 'y' })),
+  g('odWrap', director, ' style="display:none"'),
   w.person({ x: 236, y: 218, role: 'planner', along: 'x' }),
 ].join('');
 
@@ -402,11 +440,11 @@ const spec = {
       { nl: '“Als dit lukt, wat is er over zes maanden anders, en waaraan zien we dat?”', en: '“If this succeeds, what will be different in six months, and how will we see it?”', focus: ['six', 'jij'] },
     ]),
     sc('s5', PRO, { nl: 'Twee thermovormlijnen', en: 'Two thermoforming lines' }, [
-      { nl: 'Een operationeel directeur belt Vantage: het omstellen op twee thermovormlijnen gaat traag.', en: 'An operations director calls Vantage: changeovers on two thermoforming lines are slow.', focus: ['call5', 'phone'] },
+      { nl: 'Een operationeel directeur belt Vantage: het omstellen op twee thermovormlijnen gaat traag.', en: 'An operations director calls Vantage: changeovers on two thermoforming lines are slow.', focus: ['call5', 'director'] },
       { nl: 'OEE rond {n:58}%: goede stuks op volle snelheid. Budget € {n:60}k.', en: 'OEE around {n:58}%: good parts at full speed. Budget €{n:60}k.', focus: 'oee' },
-      { nl: 'De echte zorg: een grote klant dreigt weg, de leverbetrouwbaarheid is {n:85}%.', en: 'The real worry: a large customer may leave; on-time delivery is {n:85}%.', focus: 'worry' },
+      { nl: 'De echte zorg: een grote klant dreigt weg, de leverbetrouwbaarheid is {n:85}%.', en: 'The real worry: a large customer may leave; on-time delivery is {n:85}%.', focus: ['worry', 'director'] },
       { nl: 'Inkoop wil drie offertes en een vaste prijs.', en: 'Purchasing wants three quotes and a fixed price.', focus: ['buy5', 'planner'] },
-      { nl: 'Pagina één: dat probleem, OEE als oorzaak. Uitkomst: boven {n:95}%, op een datum.', en: 'Page one: that problem, OEE as the cause. Outcome: above {n:95}%, by a date.', focus: ['lead', 'goal5', 'paper'] },
+      { nl: 'Pagina één: dat probleem, OEE als waarschijnlijke oorzaak. Uitkomst: boven {n:95}%, op een datum.', en: 'Page one: that problem, OEE as the likely cause. Outcome: above {n:95}%, by a date.', focus: ['lead', 'goal5', 'paper'] },
       { nl: 'Fase 1: diagnose, {n:12} dagen, € {n:14400} vast. Fase 2: twee opties.', en: 'Phase 1: diagnostic, {n:12} days, €{n:14400} fixed. Phase 2: two options.', focus: 'ph1' },
       { nl: 'Nodig: data uit het MES, de productie-engineer, de sponsor.', en: 'Needed: MES data, the production engineer, the sponsor.', focus: ['need', 'laptop'] },
       { nl: 'Binnen € {n:60}k. Bel vooraf: hoe vergelijkt inkoop de offertes?', en: 'Within €{n:60}k. Call first: how will purchasing compare the quotes?', focus: ['total', 'phone'] },
@@ -465,10 +503,11 @@ const spec = {
 // dagtarief as DAG-tarief (espeak-ng
 // stresses -RIEF; lower case only, as pm.run.scope says "Dagtarief:"),
 // plantdirecteur with its d, extrusielijn as ex-TRU-sie-lijn, the
-// productie-engineer as "entsjinier" and Alan Weiss as his English name.
+// productie-engineer as "entsjinier", Alan Weiss as his English name, and
+// Vantage as its English name, "Ventitsj" (espeak-ng reads a French
+// van-TAA-zje; no other film says Vantage).
 // Said another way because espeak-ng misreads them (they stay in the
-// captions and on the cards): Vantage (French "van-TAA-zje": said "belt je",
-// you being the consultant of Vantage), fee (Dutch "fee", not "fie": said
+// captions and on the cards): fee (Dutch "fee", not "fie": said
 // "bedrag" or "prijs op waarde"), adviesdagen (stressed -DAA-: said "dagen"),
 // planningsdata, lijndata and kwaliteitsdata (stressed -DAA-ta: said "de data
 // van de planning", "data van de lijnen", "data over de kwaliteit"),
@@ -523,15 +562,15 @@ const SAY = [
       en: 'Ask before you write: if this succeeds, what changes in six months, and how will we see it?' },
   ],
   [ // s5 two thermoforming lines
-    { nl: 'Een voorbeeld: een verpakkingsfabrikant belt. Het omstellen op twee thermovormlijnen gaat traag.',
-      en: 'An example: a packaging manufacturer calls. Changeovers on two thermoforming lines are slow.' },
-    { nl: 'De OEE is {n:58} procent: maar {n:58} procent van de tijd goede stuks op volle snelheid. Budget: {n:60} duizend.',
-      en: 'The OEE is {n:58} percent: good parts at full speed for only {n:58} percent of the time. Budget: {n:60} thousand.' },
+    { nl: 'Een voorbeeld: een operationeel directeur belt Vantage. Het omstellen op twee thermovormlijnen gaat traag.',
+      en: 'An example: an operations director calls Vantage. Changeovers on two thermoforming lines are slow.' },
+    { nl: 'De OEE zit rond de {n:58} procent van de geplande tijd: goede stuks op volle snelheid. Budget: {n:60} duizend.',
+      en: 'The OEE is around {n:58} percent of planned time: good parts at full speed. Budget: {n:60} thousand.' },
     { nl: 'De echte zorg: een grote klant dreigt weg als de leverbetrouwbaarheid niet boven de {n:85} procent komt.',
       en: 'The real worry: a large customer may leave if on-time delivery doesn\'t rise from {n:85} percent.' },
     { nl: 'En inkoop wil drie offertes en een vaste prijs.',
       en: 'And purchasing wants three quotes and a fixed price.' },
-    { nl: 'Op pagina één dat probleem, met de OEE als oorzaak, en de uitkomst: boven de {n:95} procent op een datum.',
+    { nl: 'Op pagina één dat probleem, met de OEE als waarschijnlijke oorzaak, en de uitkomst: boven de {n:95} procent op een datum.',
       en: 'Page one: that problem, the OEE as likely cause, and the outcome: above {n:95} percent by a named date.' },
     { nl: 'Fase één: drie weken diagnose, {n:12} dagen, {n:14400} euro vast. Fase twee: twee opties met een bandbreedte.',
       en: 'Phase one: a three-week diagnostic, {n:12} days, {n:14400} euros fixed. Phase two: two options with a price range.' },
@@ -650,6 +689,17 @@ const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE,
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
 const PEOPLE = ':is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="planner"])';
+// the operations director (s5): a rust blazer, a light blouse front, dark hair; her skin as the others' in dark
+const DIRECTOR_CSS = `
+.iso{--od-rust:#C27E5E}
+.iso[data-theme="light"]{--od-rust:#9A4F2E}
+[data-cue="director"]:not([data-on]) .od-jkt>:is(.iso-fill,.iso-top){fill:color-mix(in srgb,var(--od-rust) 78%,var(--anatomy-top))}
+[data-cue="director"]:not([data-on]) .od-jkt>.iso-shade{fill:color-mix(in srgb,var(--od-rust) 88%,var(--anatomy-shade-0))}
+[data-cue="director"]:not([data-on]) .od-blouse>:is(.iso-fill,.iso-top,.iso-shade){fill:#F4F1EA}
+.iso:not([data-theme="light"]) [data-cue="director"]:not([data-on]) .od-skin>:is(.iso-fill,.iso-top){fill:#C9B8A3}
+.iso:not([data-theme="light"]) [data-cue="director"]:not([data-on]) .od-skin>.iso-shade{fill:#A8957F}
+.iso:not([data-theme="light"]) [data-cue="director"]:not([data-on]) .od-hair>:is(.iso-fill,.iso-top,.iso-shade){fill:#5A4A3E}
+`;
 const css = PM_CSS + `
 .iso{--sc-you:#5FA877;--sc-them:#C99A5B}
 .iso[data-theme="light"]{--sc-you:#3B7F52;--sc-them:#A5712E}
@@ -680,11 +730,11 @@ const css = PM_CSS + `
 .pm-mini *{vector-effect:non-scaling-stroke}
 .pm-mini .pm-card,.pm-mini .pm-hot,.pm-mini .pm-line,.pm-mini .pm-chip{stroke-width:.7px}
 .pm-mini .pm-axis,.pm-mini .pm-dash,.pm-mini .sc-you,.pm-mini .sc-them{stroke-width:.4px}
-`;
+` + DIRECTOR_CSS;
 
 const label = {
-  nl: 'Een vergaderruimte met een whiteboard (een kleine kopie van het paneel) en een klok. Jij, de adviseur in petrol, staat bij het bord; aan tafel de teamleider, de sponsor in pak (de klant) en de planner, hier in de rol van inkoop. Op tafel een telefoon, een laptop en de eerste pagina van de offerte, die zich vult. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld: pagina één met het probleem van de klant; uitkomst en nulmeting, een diagnosefase van drie weken en 14.400 euro met een go/no-go-besluit; de inzet van de klant en drie opties; wat je in de praktijk ziet; de offerte voor twee thermovormlijnen binnen 60.000 euro; dagtarief, vaste prijs en waardegebaseerde prijs op één schuif; de vaste prijs als gok, 48.000 euro over 50 dagen is 960 per dag, met risico-opslag en meerwerk; korting, 10 procent eraf is 1.080 euro; en de extrusielijn in twee fases van 8 en 22 of 37 dagen.',
-  en: 'A meeting room with a whiteboard (a small copy of the panel) and a clock. You, the consultant in petrol, stand at the board; at the table the team lead, the sponsor in a suit (the client) and the planner, here in the role of purchasing. On the table a phone, a laptop and the proposal\'s first page, which fills in. At the right a panel with one card per scene, marked as diagram or example: page one with the client\'s problem; outcome and baseline, a diagnostic phase of three weeks and 14,400 euros ending in a go/no-go decision; client commitments and three options; what you see in practice; the proposal for two thermoforming lines within 60,000 euros; day rate, fixed price and value-based pricing on one slider; the fixed price as a bet, 48,000 euros over 50 days is 960 a day, with a risk margin and change requests; discounts, 10 percent off is 1,080 euros; and the extrusion line in two phases of 8 and 22 or 37 days.',
+  nl: 'Een vergaderruimte met een whiteboard (een kleine kopie van het paneel) en een klok. Jij, de adviseur in petrol, staat bij het bord; aan tafel de teamleider, de sponsor in pak (de klant; in het voorbeeld van de thermovormlijnen de operationeel directeur, in een roestbruin jasje) en de planner, hier in de rol van inkoop. Op tafel een telefoon, een laptop en de eerste pagina van de offerte, die zich vult. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld: pagina één met het probleem van de klant; uitkomst en nulmeting, een diagnosefase van drie weken en 14.400 euro met een go/no-go-besluit; de inzet van de klant en drie opties; wat je in de praktijk ziet; de offerte voor twee thermovormlijnen binnen 60.000 euro; dagtarief, vaste prijs en waardegebaseerde prijs op één schuif; de vaste prijs als gok, 48.000 euro over 50 dagen is 960 per dag, met risico-opslag en meerwerk; korting, 10 procent eraf is 1.080 euro; en de extrusielijn in twee fases van 8 en 22 of 37 dagen.',
+  en: 'A meeting room with a whiteboard (a small copy of the panel) and a clock. You, the consultant in petrol, stand at the board; at the table the team lead, the sponsor in a suit (the client; in the thermoforming example the operations director, in a rust jacket) and the planner, here in the role of purchasing. On the table a phone, a laptop and the proposal\'s first page, which fills in. At the right a panel with one card per scene, marked as diagram or example: page one with the client\'s problem; outcome and baseline, a diagnostic phase of three weeks and 14,400 euros ending in a go/no-go decision; client commitments and three options; what you see in practice; the proposal for two thermoforming lines within 60,000 euros; day rate, fixed price and value-based pricing on one slider; the fixed price as a bet, 48,000 euros over 50 days is 960 a day, with a risk margin and change requests; discounts, 10 percent off is 1,080 euros; and the extrusion line in two phases of 8 and 22 or 37 days.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

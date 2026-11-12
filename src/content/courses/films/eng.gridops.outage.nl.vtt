@@ -1,0 +1,329 @@
+WEBVTT
+
+1
+00:00:00.840 --> 00:00:05.565
+Onder deze straat ligt het middenspanningsnet: kabels van 10 of 20 kilovolt,
+
+2
+00:00:05.879 --> 00:00:08.758
+die vanuit een onderstation langs een rij netstations lopen.
+
+3
+00:00:09.417 --> 00:00:12.819
+Elk netstation zet de middenspanning om naar laagspanning voor de huizen.
+
+4
+00:00:13.792 --> 00:00:15.603
+Om zeven uur veertig gaat het mis.
+
+5
+00:00:16.402 --> 00:00:19.792
+Een kabelfout laat de beveiliging aanspreken in het onderstation,
+
+6
+00:00:20.059 --> 00:00:22.033
+waar hoogspanning naar middenspanning gaat.
+
+7
+00:00:22.774 --> 00:00:24.515
+De vermogensschakelaar van het veld,
+
+8
+00:00:24.817 --> 00:00:28.985
+de grote schakelaar aan het begin van één uitgaande kabelroute, valt eruit.
+
+9
+00:00:29.999 --> 00:00:32.724
+Het bedrijfsvoeringscentrum (control room) bewaakt en schakelt het net,
+
+10
+00:00:33.049 --> 00:00:33.815
+dag en nacht.
+
+11
+00:00:34.468 --> 00:00:37.231
+Het ziet de uitschakeling binnen seconden in SCADA,
+
+12
+00:00:37.510 --> 00:00:40.064
+het systeem voor bewaken en bedienen op afstand.
+
+13
+00:00:41.130 --> 00:00:45.995
+Achter dit veld hangt een streng van 12 netstations, met samen 1.800 klanten.
+
+14
+00:00:46.697 --> 00:00:48.322
+Die zitten nu allemaal zonder stroom.
+
+15
+00:00:49.633 --> 00:00:51.212
+Op laagspanning gaat het anders.
+
+16
+00:00:51.857 --> 00:00:56.309
+Het net in de straat, 400 en 230 volt, wordt nauwelijks gemeten.
+
+17
+00:00:57.326 --> 00:01:01.366
+Een storing hier merk je vaak pas als klanten het landelijke storingsnummer bellen.
+
+18
+00:01:02.052 --> 00:01:04.885
+Steeds vaker melden ook slimme meters en sensoren in
+
+19
+00:01:04.908 --> 00:01:07.242
+de netstations dat een straat zonder spanning zit.
+
+20
+00:01:08.307 --> 00:01:11.801
+En elke minuut voordat je het weet, telt mee in hoe lang de storing duurt.
+
+21
+00:01:12.470 --> 00:01:14.235
+Hoe ver je met sensoren moet gaan,
+
+22
+00:01:14.525 --> 00:01:18.856
+is een discussie: voor één station zijn ze goedkoop, voor tienduizenden duur.
+
+23
+00:01:19.841 --> 00:01:24.044
+Vraag dus: hoe horen we nu van een LS-storing, en hoe lang duurt dat?
+
+24
+00:01:25.320 --> 00:01:26.609
+Terug naar de middenspanning.
+
+25
+00:01:27.347 --> 00:01:30.737
+MS-netten zijn als ring gebouwd, maar worden open bedreven.
+
+26
+00:01:31.726 --> 00:01:34.733
+Eén schakelaar staat open: het normaal openpunt (normally open point).
+
+27
+00:01:35.537 --> 00:01:38.289
+Dat is de schakelaar in een MS-ring die openstaat;
+
+28
+00:01:38.475 --> 00:01:40.948
+je sluit hem om een deel van de andere kant te voeden.
+
+29
+00:01:41.605 --> 00:01:44.525
+Hier zit hij in station 12, naar een naburige ring.
+
+30
+00:01:45.546 --> 00:01:47.647
+Zo wordt elke streng van één kant gevoed.
+
+31
+00:01:48.413 --> 00:01:52.477
+Dat houdt de stromen bij een kortsluiting, en de beveiliging, eenvoudig.
+
+32
+00:01:53.188 --> 00:01:55.185
+En je houdt een andere route achter de hand.
+
+33
+00:01:56.543 --> 00:01:59.550
+Om kwart over acht is de storingsmonteur ter plaatse.
+
+34
+00:02:00.293 --> 00:02:03.637
+Samen met het bedrijfsvoeringscentrum zoekt hij eerst waar de fout zit.
+
+35
+00:02:04.764 --> 00:02:07.480
+Daarvoor hebben de netstations kortsluitverklikkers (fault indicator):
+
+36
+00:02:07.794 --> 00:02:11.219
+kleine indicatoren die laten zien of er kortsluitstroom langs kwam.
+
+37
+00:02:12.214 --> 00:02:16.928
+De verklikkers in station 1 tot en met 5 zijn aangesproken, die in station 6 niet.
+
+38
+00:02:17.613 --> 00:02:20.805
+De fout trok dus stroom langs station 5, maar niet langs 6.
+
+39
+00:02:21.813 --> 00:02:25.946
+De fout zit tussen het laatste station dat aansprak en het eerste dat niet aansprak:
+
+40
+00:02:26.317 --> 00:02:28.302
+hier in de kabel tussen 5 en 6.
+
+41
+00:02:29.048 --> 00:02:31.021
+Zonder verklikkers moet je zoeken door stukken
+
+42
+00:02:31.080 --> 00:02:33.111
+af te schakelen en proef in te schakelen.
+
+43
+00:02:33.788 --> 00:02:34.833
+Dat kost meer tijd.
+
+44
+00:02:36.126 --> 00:02:40.538
+Meestal geeft het bedrijfsvoeringscentrum de schakelopdrachten, stap voor stap,
+
+45
+00:02:40.782 --> 00:02:42.570
+en meldt de monteur elke stap terug.
+
+46
+00:02:43.275 --> 00:02:48.732
+Hij opent in station 5 de lastscheider richting 6, en in station 6 die richting 5.
+
+47
+00:02:49.430 --> 00:02:52.774
+Het kapotte kabelstuk is nu aan beide kanten vrijgeschakeld.
+
+48
+00:02:53.838 --> 00:02:56.253
+Dan gaat de vermogensschakelaar van het veld weer in.
+
+49
+00:02:56.976 --> 00:02:59.159
+Station 1 tot en met 5 hebben weer stroom.
+
+50
+00:03:00.178 --> 00:03:02.070
+Voor de rest moet het normaal openpunt dicht.
+
+51
+00:03:02.791 --> 00:03:05.032
+Eerst controleert het bedrijfsvoeringscentrum of
+
+52
+00:03:05.067 --> 00:03:07.935
+de naburige ring de extra ochtendbelasting aankan.
+
+53
+00:03:08.929 --> 00:03:12.180
+Dat kan, dus het openpunt in station 12 gaat dicht.
+
+54
+00:03:12.903 --> 00:03:16.223
+Nu worden station 6 tot en met 12 van de andere kant gevoed.
+
+55
+00:03:16.961 --> 00:03:19.852
+Iedereen is terug, en niemand wacht op de reparatie,
+
+56
+00:03:20.096 --> 00:03:22.604
+want de fout zit in een kabel tussen twee stations.
+
+57
+00:03:23.884 --> 00:03:26.636
+Met de hand, met een monteur die naar de stations rijdt,
+
+58
+00:03:26.833 --> 00:03:29.608
+zijn de meeste klanten zo binnen één tot twee uur terug.
+
+59
+00:03:30.297 --> 00:03:32.944
+Met op afstand bedienbare stations kan dat in minuten.
+
+60
+00:03:33.957 --> 00:03:38.090
+In dit voorbeeld zaten 1.800 klanten gemiddeld 50 minuten zonder stroom.
+
+61
+00:03:38.793 --> 00:03:41.034
+Dat is samen 90.000 klantminuten.
+
+62
+00:03:42.061 --> 00:03:44.998
+Is een klant aangesloten binnen het vrijgeschakelde deel,
+
+63
+00:03:45.300 --> 00:03:46.658
+dan wacht die op de reparatie.
+
+64
+00:03:47.360 --> 00:03:50.866
+Een meetwagen zoekt de precieze plek van de fout, de ploeg graaft,
+
+65
+00:03:51.064 --> 00:03:53.467
+maakt één of twee moffen en test de kabel.
+
+66
+00:03:54.173 --> 00:03:58.910
+Voor ze aan de kabel beginnen, gelden de vijf veiligheidsregels: vrijschakelen,
+
+67
+00:03:59.200 --> 00:04:00.953
+beveiligen tegen herinschakelen,
+
+68
+00:04:01.151 --> 00:04:04.530
+spanningsloosheid vaststellen, aarden en kortsluiten,
+
+69
+00:04:04.843 --> 00:04:07.188
+en naastgelegen delen onder spanning afschermen.
+
+70
+00:04:08.123 --> 00:04:11.060
+Dat kost vaak een dag, en zolang heeft de ring geen reserve.
+
+71
+00:04:12.380 --> 00:04:15.677
+Netbeheerders tellen alle storingen van een jaar op in drie cijfers.
+
+72
+00:04:16.429 --> 00:04:19.138
+SAIFI is het aantal onderbrekingen per klant per jaar.
+
+73
+00:04:20.078 --> 00:04:22.504
+CAIDI is de gemiddelde duur van één onderbreking,
+
+74
+00:04:22.795 --> 00:04:24.327
+voor de klanten die hem meemaakten.
+
+75
+00:04:25.350 --> 00:04:27.800
+Vermenigvuldig ze, en je krijgt SAIDI:
+
+76
+00:04:28.148 --> 00:04:30.528
+de gemiddelde uitvalminuten per klant per jaar,
+
+77
+00:04:30.935 --> 00:04:32.247
+de jaarlijkse uitvalduur.
+
+78
+00:04:32.936 --> 00:04:40.355
+In 2025 was dat in Nederland 0,316 onderbrekingen van gemiddeld 73,9 minuten:
+
+79
+00:04:40.668 --> 00:04:43.803
+23,4 minuten door onvoorziene storingen.
+
+80
+00:04:44.549 --> 00:04:48.229
+Gepland werk kwam daar met 27,2 minuten bovenop.
+
+81
+00:04:49.206 --> 00:04:51.401
+Een valkuil is dat één lange streng op het
+
+82
+00:04:51.424 --> 00:04:54.340
+platteland de SAIDI van een hele regio kan bepalen.

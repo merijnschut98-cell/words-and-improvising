@@ -119,7 +119,7 @@ const STAGE = (() => {
       return;
     }
     o.head = [tr('jouw offerte', 'your proposal'), 'ex'];
-    o.lead = card(54, 92) + lines(80, [[tr('pagina één', 'page one'), 'pm-mute'], [tr('levering 85%, klant weg?', 'on time 85%, customer at risk')], [tr('oorzaak: OEE rond 58%', 'cause: OEE around 58%')]]);
+    o.lead = card(54, 92) + lines(80, [[tr('pagina één', 'page one'), 'pm-mute'], [tr('levering 85%, klant weg?', 'on time 85%, customer at risk')], [tr('oorzaak? OEE rond 58%', 'likely cause: OEE ≈ 58%')]]);
     o.goal5 = op(inAt(b, p, 4, 0.45, 0.7), txt(X0, 174, tr('doel: boven 95%, op datum', 'target: above 95%, by a date'), 'pm-on'));
     if (b === 5) {
       o.ph1 = op(span(p, 0.05, 0.3), card(190, 70, 'pm-hot') + lines(216, [[tr('fase 1: diagnose, 3 weken', 'phase 1: diagnostic, 3 weeks'), 'pm-on'], [tr(`12 dagen, ${eur(C.DIAG.fee)} vast`, `12 days, ${eur(C.DIAG.fee)} fixed`)]]))
@@ -231,8 +231,14 @@ const STAGE = (() => {
     return s;
   }
 
+  // the operations director (s5) stands in the sponsor's place; elsewhere the sponsor
+  const cast = (si) => {
+    const od = si === 4;
+    if (E.odWrap.__od !== od) { E.odWrap.style.display = od ? '' : 'none'; E.spWrap.style.display = od ? 'none' : ''; E.odWrap.__od = od; }
+  };
   function render(si, u) {
     camera(si, u);
+    cast(si);
     const { b, p } = beatOf(si, u);
     const o = { head: ['', 'dia'] };
     for (const key of C.SLOTS) o[key] = '';

@@ -85,6 +85,14 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.perform.tree: the terms the cards show, said as Dutch performance people say them
+  assert.equal(speakOf(['Een driver in de driverboom. De balanced scorecard van Kaplan en Norton.'], 'nl'), 'Een draiver in de draiverboom. De bellenst skoorkart van Kaplan en Norten.');
+  assert.equal(speakOf(['Gaming, naar Goodhart en Strathern; Locke en Latham.'], 'nl'), 'Geeming, naar Goedhart en Strèthurn; Lok en Leetum.');
+  assert.equal(speakOf(['Een voorlopende indicator, achterlopende en gekoppelde indicatoren, een actiegrens.'], 'nl'), 'Een voorlopende indie-kator, achterlopende en gekoppelde indie-katoren, een actie-grens.');
+  // other films keep their voice: kleine indicatoren, De actiegrens ligt, het dashboard
+  assert.equal(speakOf(['Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.'], 'nl'), 'Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.');
+  assert.equal(speakOf(['Voor de deadline groeien dashboards; een rapportagecijfer per orderregel.'], 'nl'), 'Voor de dedlain groeien desjbords; een rapportage-cijfer per order-regel.');
+  assert.equal(speakOf(['A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.'], 'en'), 'A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.');
   // pm.lead.feedback: feedback, the feedbacksandwich and feedforward as Dutch project people say them (espeak-ng
   // reads "feed-bak"), SBI as letters (read as one word, "zbie"), disagree and commit and the English names in a
   // Dutch spelling, and prestatiegesprek, escalatiepad and integriteit stressed on the right part; English keeps
@@ -118,6 +126,16 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.portfolio.prioritise: compounds espeak-ng stresses on the wrong part, split at the head (programmaRAAD,
+  // capaciteitsSTREEP, KApaciteitsmatrix, risicogecorrigEERde); onderhanden werk only in this film's two phrases
+  // (eng.lines.design, with a video, keeps its voice); contextswitch with a tsj, planningstool with oe, and Gerald
+  // Weinberg as his English name; English keeps them all
+  assert.equal(speakOf(['De programmaraad, de capaciteitsstreep, een capaciteitsmatrix, capaciteitsconflicten en de risicogecorrigeerde waarde.'], 'nl'),
+    'De programma-raad, de capaciteits-streep, een capaciteits-matrix, capaciteits-conflicten en de risico-gecorrigeerde waarde.');
+  assert.equal(speakOf(['Onderhanden werk is alles wat gestart is: het onderhanden werk gedeeld door de doorzet.'], 'nl'), 'Onder-handen werk is alles wat gestart is: het onder-handen werk gedeeld door de doorzet.');
+  assert.equal(speakOf(['Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.'], 'nl'), 'Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.');
+  assert.equal(speakOf(['Bij elke contextswitch, in de planningstool, volgens Gerald Weinberg.'], 'nl'), 'Bij elke context-switsj, in de plannings-toel, volgens Djerreld Wainburk.');
+  assert.equal(speakOf(['The programme board, a context switch, the planning tool, Gerald Weinberg.'], 'en'), 'The programme board, a context switch, the planning tool, Gerald Weinberg.');
   // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
   // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
   // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
@@ -127,6 +145,17 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
+  // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
+  // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
+  // stress on -ly- only in this film's two phrases, and the data compounds split at the head; English keeps them
+  assert.equal(speakOf(['Volgens Stone, Patton en Heen, in Difficult Conversations: het identiteitsgesprek, je identiteitsval, gekwetstheid, smalltalk.'], 'nl'),
+    'Volgens Stoon, Petten en Heen, in Diffikkelt Konver-seesjens: het identiteits-gesprek, je identiteits-val, ge-kwetstheid, smoltok.');
+  assert.equal(speakOf(['Je analyse moet vrijdag af, de analyse vóór vrijdag, de analyse voor juni, nog één analyse.'], 'nl'),
+    'Je analiese moet vrijdag af, de analiese vóór vrijdag, de analyse voor juni, nog één analyse.');
+  assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
+    'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
+  assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
   // pm.consult.proposal: dagtarief split at the head (espeak-ng stresses dag-ta-RIEF; lower case only, so
   // pm.run.scope's "Dagtarief: bij de klant" keeps its voice), plantdirecteur with its d
   // (espeak-ng reads "plantirecteur"), extrusielijn split at the head (espeak-ng stresses -LIJN), the productie-engineer
@@ -137,7 +166,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Een dag van de productie-engineer. Voorstanders zoals Alan Weiss.'], 'nl'), 'Een dag van de productie-entsjinier. Voorstanders zoals Ellun Wais.');
   // and offerte as off-erte (espeak-ng stresses OF-ferte), offertes as off-erte's (espeak-ng reads offerTES)
   assert.equal(speakOf(['Een offerte, drie offertes. Offerte!'], 'nl'), "Een off-erte, drie off-erte's. Off-erte!");
-  assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss.');
+  // and Vantage as its English name (espeak-ng reads a French van-TAA-zje)
+  assert.equal(speakOf(['Een directeur belt Vantage.'], 'nl'), 'Een directeur belt Ventitsj.');
+  assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss, Vantage.');
 });
 
 // ------------------------------------------------------------ WAV files

@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.848 --> 00:00:02.520
+Een order reist door de hele fabriek,
+
+2
+00:00:02.787 --> 00:00:05.446
+van het ERP op kantoor tot de machine op de vloer.
+
+3
+00:00:06.080 --> 00:00:10.422
+Hier kijken we scherper naar één grens: die tussen niveau vier en niveau drie,
+
+4
+00:00:10.701 --> 00:00:12.686
+tussen het ERP en het MES.
+
+5
+00:00:13.411 --> 00:00:16.395
+ISA-95 beschrijft daar twee hoofdstromen.
+
+6
+00:00:17.385 --> 00:00:20.450
+Omlaag gaat de productieplanning: wat er gemaakt moet worden.
+
+7
+00:00:21.111 --> 00:00:25.291
+Omhoog gaan de productieprestaties: wat er echt gemaakt en verbruikt is.
+
+8
+00:00:25.978 --> 00:00:29.344
+Kort gezegd: orders omlaag, terugmeldingen omhoog.
+
+9
+00:00:30.377 --> 00:00:34.104
+Daarnaast gaan stamdata omlaag, zoals stuklijsten en routings.
+
+10
+00:00:34.840 --> 00:00:37.441
+En soms gaat er een capaciteitsoverzicht omhoog,
+
+11
+00:00:37.708 --> 00:00:39.716
+zodat de planner weet wat de fabriek nog aankan.
+
+12
+00:00:41.046 --> 00:00:41.824
+Eerst omlaag.
+
+13
+00:00:42.501 --> 00:00:46.298
+Het ERP stuurt de productieorder naar het MES: 1.000 doppen,
+
+14
+00:00:46.634 --> 00:00:49.989
+met volgens de stuklijst 25 gram granulaat per dop.
+
+15
+00:00:50.668 --> 00:00:53.408
+Dat is het plan: wat, hoeveel en wanneer.
+
+16
+00:00:54.364 --> 00:00:56.384
+Het MES maakt daar een werkorder (work order) van:
+
+17
+00:00:56.825 --> 00:00:58.578
+de opdracht voor één lijn of machine,
+
+18
+00:00:58.857 --> 00:00:59.530
+in één dienst.
+
+19
+00:01:00.208 --> 00:01:02.879
+Hier is dat machine vier, in de vroege dienst.
+
+20
+00:01:03.916 --> 00:01:06.552
+En het MES zet de werkorders in de juiste volgorde.
+
+21
+00:01:07.352 --> 00:01:10.823
+Bijvoorbeeld eerst de witte doppen, dan de grijze en dan de zwarte,
+
+22
+00:01:11.056 --> 00:01:13.819
+zodat de machine bij een kleurwissel minder hoeft te spoelen.
+
+23
+00:01:15.127 --> 00:01:16.183
+Dan start de order.
+
+24
+00:01:16.871 --> 00:01:21.632
+Het MES, of de operator op de HMI, stuurt het recept (recipe) naar de PLC.
+
+25
+00:01:22.572 --> 00:01:26.775
+Een recept is de set instellingen voor dat ene product: de temperaturen,
+
+26
+00:01:27.123 --> 00:01:28.632
+de snelheden en de tijden.
+
+27
+00:01:29.327 --> 00:01:30.976
+Elk product heeft zijn eigen recept.
+
+28
+00:01:32.042 --> 00:01:34.074
+Zo hoeft niemand ze met de hand in te typen.
+
+29
+00:01:34.751 --> 00:01:35.540
+Dat scheelt tijd,
+
+30
+00:01:35.738 --> 00:01:38.931
+en een tikfout in een temperatuur kan al snel een bak afkeur kosten.
+
+31
+00:01:40.220 --> 00:01:40.777
+Dan omhoog.
+
+32
+00:01:41.557 --> 00:01:43.531
+De PLC telt elke cyclus.
+
+33
+00:01:44.226 --> 00:01:49.126
+Het MES verzamelt de tellingen, de afkeur met de reden erbij, en de stilstand.
+
+34
+00:01:49.920 --> 00:01:51.963
+Wat er goed is en wat er afgekeurd is,
+
+35
+00:01:52.196 --> 00:01:55.714
+weet alleen de vloer: het ERP ziet het pas als het MES het meldt.
+
+36
+00:01:56.813 --> 00:01:58.577
+Aan het eind van de order of de dienst stuurt
+
+37
+00:01:58.612 --> 00:01:59.854
+het MES een terugmelding (confirmation)
+
+38
+00:01:59.878 --> 00:02:00.806
+naar het ERP:
+
+39
+00:02:01.143 --> 00:02:01.851
+zoveel goed,
+
+40
+00:02:02.165 --> 00:02:04.081
+zoveel afkeur, zoveel uur.
+
+41
+00:02:05.118 --> 00:02:08.984
+Voor deze order telde het MES 960 goed en 40 afkeur.
+
+42
+00:02:09.666 --> 00:02:13.195
+Maar in dit voorbeeld meldt het alleen de 960 goede doppen terug:
+
+43
+00:02:13.543 --> 00:02:14.913
+de afkeur gaat niet mee.
+
+44
+00:02:15.632 --> 00:02:16.607
+Onthoud dat even.
+
+45
+00:02:17.861 --> 00:02:20.438
+Het ERP boekt daarmee een goederenontvangst (goods receipt):
+
+46
+00:02:20.682 --> 00:02:23.317
+de 960 goede doppen komen op voorraad.
+
+47
+00:02:24.072 --> 00:02:24.815
+De afkeur niet.
+
+48
+00:02:25.833 --> 00:02:27.830
+Hoe dat heet, hangt af van het systeem.
+
+49
+00:02:28.545 --> 00:02:32.713
+In SAP is de goederenontvangst voor een order bijvoorbeeld bewegingssoort 101.
+
+50
+00:02:33.412 --> 00:02:39.101
+Het verbruikte materiaal gaat eraf met bewegingssoort 261: de afgifte aan de order.
+
+51
+00:02:40.105 --> 00:02:42.439
+Andere systemen gebruiken andere codes,
+
+52
+00:02:42.659 --> 00:02:47.698
+maar het idee is overal hetzelfde: het product komt erbij, het materiaal gaat eraf.
+
+53
+00:02:48.964 --> 00:02:50.671
+Maar hoe gaat dat materiaal eraf?
+
+54
+00:02:51.403 --> 00:02:55.676
+Veel bedrijven gebruiken backflush: het ERP boekt het automatisch af,
+
+55
+00:02:55.873 --> 00:02:58.694
+op basis van de stuklijst en de teruggemelde hoeveelheid.
+
+56
+00:02:59.724 --> 00:03:03.056
+Niemand hoeft dus elke zak granulaat te scannen die naar de machine gaat.
+
+57
+00:03:03.813 --> 00:03:04.928
+Dat scheelt veel handwerk.
+
+58
+00:03:05.720 --> 00:03:08.565
+Zo zet één terugmelding vaak twee boekingen in gang:
+
+59
+00:03:08.925 --> 00:03:11.154
+de doppen erbij en het granulaat eraf.
+
+60
+00:03:12.130 --> 00:03:14.951
+Maar backflush rekent met de norm en met wat er is teruggemeld.
+
+61
+00:03:15.664 --> 00:03:17.940
+Is de afkeur hoger dan de stuklijst aanneemt,
+
+62
+00:03:18.160 --> 00:03:21.562
+of telt alleen de goede hoeveelheid mee, dan klopt de voorraad niet meer.
+
+63
+00:03:22.237 --> 00:03:24.757
+In SAP telt teruggemelde afkeur normaal mee;
+
+64
+00:03:25.105 --> 00:03:27.578
+het gat zit dan in afkeur die niet wordt teruggemeld.
+
+65
+00:03:28.940 --> 00:03:30.414
+Reken het na voor deze order.
+
+66
+00:03:31.036 --> 00:03:33.358
+Het MES meldde alleen de goede stuks terug,
+
+67
+00:03:33.613 --> 00:03:39.163
+dus backflush boekt 960 maal 25 gram af: 24 kilo granulaat.
+
+68
+00:03:40.175 --> 00:03:44.436
+Maar echt verbruikt is 1.000 maal 25 gram: 25 kilo.
+
+69
+00:03:45.133 --> 00:03:47.850
+Ook de 40 afgekeurde doppen kostten granulaat.
+
+70
+00:03:48.838 --> 00:03:52.704
+Na deze ene order staat er dus 1 kilo te veel granulaat in het ERP.
+
+71
+00:03:53.383 --> 00:03:57.238
+Na een paar maanden hoor je dan: volgens SAP hebben we nog drie zakken,
+
+72
+00:03:57.528 --> 00:03:59.311
+maar in het magazijn ligt niets meer.
+
+73
+00:04:00.243 --> 00:04:02.646
+De oplossing: meld de afkeur ook terug,
+
+74
+00:04:02.971 --> 00:04:06.628
+zodat backflush rekent met de totale hoeveelheid, goed plus afkeur.
+
+75
+00:04:07.316 --> 00:04:09.301
+Of boek de afkeur apart als verbruik.
+
+76
+00:04:10.633 --> 00:04:14.174
+In de praktijk hoor je: de voorraad in SAP klopt nooit.
+
+77
+00:04:14.946 --> 00:04:18.313
+Vaak zit de oorzaak niet in het magazijn, maar in de terugmelding.
+
+78
+00:04:19.308 --> 00:04:20.167
+Ze komt te laat.
+
+79
+00:04:20.946 --> 00:04:25.288
+Ze staat in de verkeerde eenheid, bijvoorbeeld in stuks waar het ERP dozen verwacht.
+
+80
+00:04:26.085 --> 00:04:27.443
+Of de afkeur gaat niet mee.
+
+81
+00:04:28.114 --> 00:04:32.363
+Elk van die drie laat de voorraad in het ERP langzaam weglopen van wat er echt ligt.
+
+82
+00:04:33.384 --> 00:04:36.646
+Stel daarom de scherpe vraag: hoe vaak melden we terug,
+
+83
+00:04:36.972 --> 00:04:38.795
+per stuk, per dienst of per order?
+
+84
+00:04:39.497 --> 00:04:40.960
+En wordt de afkeur ook teruggemeld?
+
+85
+00:04:42.020 --> 00:04:45.828
+Per stuk is meestal te veel voor het ERP, per week te weinig voor de planner.
+
+86
+00:04:46.490 --> 00:04:51.924
+Orders omlaag, terugmeldingen omhoog: klopt die terugweg, dan klopt ook de voorraad.

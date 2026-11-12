@@ -330,6 +330,21 @@ const SAY = {
     [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
     [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
     [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes'],
+    // from strategy to team number (pm.perform.tree): the English words Dutch performance people use, as they
+    // say them (espeak-ng reads "drie-vur", "baa-lan-set skoo-re-kart", gaming with the g of "lachen" and a long
+    // a, "Goo-dhart", "Strat-ern", "lok-ke en lat-tam" and stresses NORton on its last syllable): draiver,
+    // bellenst skoorkart, geeming, Goedhart, Strèthurn, Lok en Leetum, Norten (the names only in their pairs);
+    // and words it stresses or voices wrong: IN-dicator (said indie-KAtor, indie-kaTOren, only after voorlopende,
+    // achterlopende and gekoppelde, so the grid films' "kleine indicatoren" stay), actiegrens with a schwa (only
+    // after "een", so eng.maintenance.failure's "De actiegrens ligt" keeps its voice), "dee-ad-lie-ne",
+    // "dasj-boo-arts" (only the plural: the singular in pm.intake.firsttalk, pm.plan.method and pm.run.scope
+    // stays), RAPportagecijfer and "orderrə-GEL"; said actie-grens, dedlain, desjbords, rapportage-cijfer and
+    // order-regel. No other film's spoken text changes
+    [/\b([Dd])river/g, '$1raiver'], [/\b([Bb])alanced scorecard\b/g, (m, b) => `${b === 'B' ? 'B' : 'b'}ellenst skoorkart`], [/\bKaplan en Norton\b/g, 'Kaplan en Norten'],
+    [/\b([Gg])aming\b/g, '$1eeming'], [/\bGoodhart\b/g, 'Goedhart'], [/\bStrathern\b/g, 'Strèthurn'], [/\bLocke en Latham\b/g, 'Lok en Leetum'],
+    [/\b([Vv]oorlopende|[Aa]chterlopende|[Gg]ekoppelde) indicator/g, '$1 indie-kator'], [/\b([Ee]en) actiegrens\b/g, '$1 actie-grens'], [/\b([Dd])eadline/g, '$1edlain'],
+    [/\b([Dd])ashboards\b/g, '$1esjbords'],
+    [/\b([Rr])apportagecijfer/g, '$1apportage-cijfer'], [/\b([Oo])rderregel/g, '$1rder-regel'],
     // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
     // "too-ie-oota"); no other film says Toyota in Dutch
     [/\bToyota\b/g, 'Tojota'],
@@ -341,6 +356,16 @@ const SAY = {
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
     [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk'],
     // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
     // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
     // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
@@ -350,16 +375,27 @@ const SAY = {
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
     [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
+    // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
+    // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
+    // ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok); analyse is stressed AA-na-ly-se, but
+    // other films say it, so only this film's two phrases get "analiese"; stilstanddata, stilstandlogboek and
+    // lijndata split at the head (it stresses the last part). No other film says them
+    [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
+    [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
+    [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data'],
     // from phone call to proposal (pm.consult.proposal): espeak-ng stresses dagtaRIEF and extrusieLIJN (split at
     // the head: DAG-tarief, ex-TRU-sie-lijn), drops the d of plantdirecteur ("plantirecteur"), reads engineer as
     // "eng-i-neer" (said as Dutch makers say it, "entsjinier", tsj for the dzj it cannot voice) and Alan Weiss
     // as "AA-lan" (said as his English name, "Ellun Wais"). It stresses OF-ferte and offerTES (French -tes):
     // split as off-erte, which keeps a stress on -FER-, and the plural with an apostrophe, off-erte's, which ends
     // on a schwa. dagtarief in lower case only, so pm.run.scope's "Dagtarief: bij de klant" keeps the voice it
-    // was built with; no other film says the others in Dutch
+    // was built with. Vantage, the consultancy of the lessons' examples, as its English name, "Ventitsj"
+    // (espeak-ng reads a French van-TAA-zje); no other film says the others or Vantage in Dutch
     [/\b([Oo])fferte(s?)\b/g, (m, o, s) => `${o}ff-erte${s ? "'s" : ''}`],
     [/\bdagtarie(f|ven)\b/g, 'dag-tarie$1'], [/\b([Pp])lantdirecteur/g, '$1lant-directeur'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'],
-    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais']],
+    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
