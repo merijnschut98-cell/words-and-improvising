@@ -1529,6 +1529,35 @@
         ],
         "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
       }
+    },
+    "pm.plan.risk": {
+      "poster": "src/content/courses/films/pm.plan.risk.jpg",
+      "nl": {
+        "dur": 233,
+        "bytes": 8625795,
+        "scenes": [
+          0,
+          37.78,
+          77.65,
+          118.38,
+          169.17,
+          199.99
+        ],
+        "vtt": "src/content/courses/films/pm.plan.risk.nl.vtt"
+      },
+      "en": {
+        "dur": 243.2,
+        "bytes": 8797455,
+        "scenes": [
+          0,
+          42.29,
+          82.47,
+          123.66,
+          174.89,
+          207.75
+        ],
+        "vtt": "src/content/courses/films/pm.plan.risk.en.vtt"
+      }
     }
   }
 }
