@@ -53,8 +53,10 @@
 //     Harvard Business Review, 2007 (s2 b2; Gary on the card and in the English
 //     voice, the Dutch voice says "Klein"); Klein cites Mitchell, Russo and Pennington, 1989
 //     (the names on the card): imagining an event had already happened gave
-//     about 30% more reasons (s2 b3); it counted reasons, not their quality,
-//     but more candidates is what you want (s2 b4); writing first stops the
+//     about 30% more reasons, counted, not their quality, but more candidates
+//     is what you want (s2 b4; the card's two bars, +30%, s2 b3-b5); by
+//     Klein's account 30% better at the right reasons (s2 b3, worded as in
+//     pm.plan.risk; Klein's framing is in the lesson's recall); writing first stops the
 //     senior voice setting the tone (s2 b5)
 //   fail teach 3: a single point of failure, one part, person or supplier that
 //     stops everything if it fails (s3 b1); one server with no backup, one
@@ -134,8 +136,9 @@
 // identify reasons for future outcomes by 30%" (the study itself, "Back to
 // the future: temporal perspective in the explanation of events", Journal of
 // Behavioral Decision Making 2, 1989, counted the reasons people gave; the
-// lesson says so, and the film credits the 30% to Klein's citation, as the
-// lesson does). Teach-back comes from health care (patients repeat
+// lesson says so in its teach text, and its recall gives Klein's own framing;
+// the film gives Klein's 30% as Klein reports it, "volgens hem", as
+// pm.plan.risk does, then says the study counted reasons). Teach-back comes from health care (patients repeat
 // instructions in their own words). MORE PIES, the evidence ladder, the single
 // point of failure, the rough rule and the translation questions are credited
 // to no one, as in the lessons (pm.intake.firsttalk names MORE PIES too; this
@@ -214,6 +217,10 @@ says(JA, ['Jargon is de vaktaal van een vakgebied: woorden die voor insiders pre
   '“Idempotentie bij retries, wat betekent dat in gewone woorden, en wat is het gevolg?”', '“Als een bericht twee keer wordt verstuurd, kan een order dubbel verschijnen.”',
   '“Wat zou dat ons op de vloer kosten, en hoe vaak?”', 'orders kunnen tot 15 minuten te laat binnenkomen, en als de verbinding hapert kan een order dubbel komen, dus we hebben een check op dubbele orders nodig. Klopt dat?',
   'Hij past één woord aan. Die zin gaat naar de stuurgroep']);
+// Klein's own framing of the 30% (the film's s2 b3, as in pm.plan.risk) is in the lesson's recall
+for (const [lang, s] of [['nl', 'Klein noemt het een 30% beter vermogen om redenen te vinden'], ['en', 'Klein calls it a 30% better ability to identify reasons']]) {
+  assert(lessons[lang].get(FA).recall.some((q) => (q.why || '').includes(s)), `${FA} ${lang} recall no longer gives Klein's framing`);
+}
 says(FA, ['about 30% more reasons', 'a 30-minute premortem with eight people', 'for 5 minutes', 'on line 2'], 'en');
 says(JA, ['up to 15 minutes latency', 'up to 15 minutes late'], 'en');
 // the numbers the cards draw
@@ -384,8 +391,8 @@ const spec = {
     sc('s2', FA, 2, { nl: 'De premortem', en: 'The premortem' }, [
       { nl: 'Een {t:Premortem|premortem}: het project is al mislukt. Ieder schrijft eerst op waarom.', en: 'A {t:Premortem|premortem}: the project has already failed. Each person first writes down why.', cue: { Premortem: 'pm' }, focus: ['pm', 'sheet'] },
       { nl: 'Gary Klein beschreef hem in 2007, in Harvard Business Review.', en: 'Gary Klein described it in 2007, in Harvard Business Review.', focus: 'klein' },
-      { nl: 'Klein noemt onderzoek uit 1989: zo’n {n:30}% meer redenen bij een ingebeelde terugblik.', en: 'Klein cites a 1989 study: about {n:30}% more reasons with imagined hindsight.', focus: 'study' },
-      { nl: 'Het telde redenen, niet kwaliteit. Meer kandidaten wil je hier juist.', en: 'It counted reasons, not quality. More candidates is what you want.', focus: 'count' },
+      { nl: 'Klein haalt onderzoek uit 1989 aan: volgens hem {n:30}% beter in de juiste redenen.', en: 'Klein cites a 1989 study: by his account, {n:30}% better at the right reasons.', focus: 'study' },
+      { nl: 'Het onderzoek telde zo’n {n:30}% meer redenen, niet kwaliteit. Meer kandidaten wil je juist.', en: 'The study counted about {n:30}% more reasons, not quality. More candidates is what you want.', focus: ['count', 'study'] },
       { nl: 'Eerst schrijven: dan zet de senior stem niet de toon.', en: 'Writing first stops the senior voice from setting the tone.', focus: ['write', 'sponsor'] },
     ]),
     sc('s3', FA, 2, { nl: 'Eén zwakke plek', en: 'One weak spot' }, [
@@ -450,7 +457,7 @@ const spec = {
 // (nl_NL-alex, 2026-11-12). New SAY rules in films/_kit/timeline.mjs for this
 // film (no other film's spoken text changes): premortem as "pree-mortem",
 // single point of failure as "singel pojnt of feeljer", beheersmaatregel
-// (after "een"), barcodescanners and nachtdienst split at the head, and the
+// (after "een"), barcodescanners as "barkoodskenners" (BAR-kood, not bar-KOO-de), nachtdienst split at the head, and the
 // integration specialist's jargon, real-time, latency and retries, as Dutch
 // IT people say them (riel-taim, lee-tensie, rie-traiz), and Harvard Business
 // Review as "Harvard Biznis Rievjoe"; in English, idempotency as idem-potency
@@ -483,10 +490,10 @@ const SAY = [
       en: 'A {t:Premortem|premortem}: the team imagines the project has already failed. Each person writes down why, before anyone speaks.' },
     { nl: 'Klein beschreef hem in 2007, in Harvard Business Review.',
       en: 'Gary Klein described it in Harvard Business Review, in 2007.' },
-    { nl: 'Hij noemt een onderzoek: wie zich voorstelde dat het al gebeurd was, vond zo\'n {n:30} procent meer redenen.',
-      en: 'He cites a study: imagining it had already happened gave about {n:30} percent more reasons.' },
-    { nl: 'Het telde redenen, niet hun kwaliteit, maar meer kandidaten wil je hier juist.',
-      en: 'It counted reasons, not their quality, but more candidates is what you want here.' },
+    { nl: 'Hij haalt onderzoek uit 1989 aan. Volgens hem maakt een ingebeelde terugblik mensen {n:30} procent beter in de juiste redenen.',
+      en: 'He cites 1989 research: by his account, imagined hindsight makes people {n:30} percent better at the right reasons.' },
+    { nl: 'Het onderzoek telde zo\'n {n:30} procent meer redenen, niet hun kwaliteit, maar meer kandidaten wil je juist.',
+      en: 'The study counted about {n:30} percent more reasons, not their quality, but more candidates is what you want.' },
     { nl: 'Eerst schrijven voorkomt dat de senior stem de toon zet.',
       en: 'Writing first stops the senior voice from setting the tone.' },
   ],
@@ -530,7 +537,7 @@ const SAY = [
   ],
   [ // s6 translating back
     { nl: '{t:Jargon} is de vaktaal van een vakgebied: precies voor insiders, en voor iedereen anders ondoorzichtig.',
-      en: '{t:Jargon} is the specialist language of a field: precise for insiders, and opaque for everyone else.' },
+      en: '{t:Jargon} is the specialist language of a field: precise for insiders, opaque for everyone else.' },
     { nl: 'Op zich geen probleem. Wel als er besluiten in vallen die niemand buiten het vak snapt.',
       en: 'Not a problem in itself. It is when decisions get made in it that nobody outside the field understands.' },
     { nl: 'Jouw taak: terugvertalen naar doel, kosten, tijd en risico, zodat de sponsor en de vloer het volgen.',
@@ -538,7 +545,7 @@ const SAY = [
   ],
   [ // s7 paraphrase, inquire
     { nl: 'MORE PIES is een lijst voor {t:Actief luisteren|actief luisteren}: luisteren om te begrijpen, niet om te antwoorden.',
-      en: 'MORE PIES is a checklist for {t:Active listening|active listening}: listening to understand, not to reply.' },
+      en: 'MORE PIES is a checklist for {t:Active listening|active listening}: to understand, not to reply.' },
     { nl: 'Acht letters. Twee doen hier het meest: de P en de I.',
       en: 'Eight letters. Two matter most here: the P and the I.' },
     { nl: 'De P: {t:Parafraseren|parafraseren}, in eigen woorden. Dus wat je zegt is, en dan gewone woorden. Klopt dat?',
@@ -554,7 +561,7 @@ const SAY = [
     { nl: '{t:Terugvertellen|Terugvertellen} komt uit de zorg: de arts vraagt de patiënt de instructies in eigen woorden terug te vertellen.',
       en: '{t:Teach-back|Teach-back} comes from health care: the doctor asks the patient to explain the instructions back in their own words.' },
     { nl: 'Jij doet het andersom: vertel zijn punt terug als aan de sponsor, en laat hem het verbeteren.',
-      en: 'You do it the other way round: tell his point back as to the sponsor, and let him fix it.' },
+      en: 'Do it the other way round: tell his point back as to the sponsor, and let him fix it.' },
     { nl: 'Dan heb je een zin voor de stuurgroep, zonder iemand verkeerd te citeren.',
       en: 'Then you have a sentence for the steering meeting, without misquoting anyone.' },
     { nl: 'Klassieke fouten: zo los vertalen dat de betekenis verandert. Dus eigenlijk is het prima?',
@@ -574,7 +581,7 @@ const SAY = [
     { nl: 'Antwoord: een bericht dat twee keer komt, kan een order verdubbelen. Jij vraagt door: wat kost dat, en hoe vaak?',
       en: 'Answer: a message sent twice can double an order. You inquire: what would that cost, and how often?' },
     { nl: 'Dan terugvertellen, als aan de sponsor: orders komen tot {n:15} minuten te laat, en als de verbinding hapert soms dubbel. Dus een check op dubbele orders. Klopt dat?',
-      en: 'Then teach-back, as to the sponsor: orders arrive up to {n:15} minutes late, and doubled if the link hiccups. So we need a check for doubles. Is that fair?' },
+      en: 'Then teach-back, as to the sponsor: orders arrive up to {n:15} minutes late, and doubled if the link hiccups. So, a check for doubles. Is that fair?' },
     { nl: 'Hij past één woord aan. Die zin gaat naar de stuurgroep.',
       en: 'He adjusts one word. That sentence goes to the steering meeting.' },
   ],

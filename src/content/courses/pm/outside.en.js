@@ -659,6 +659,7 @@ export default {
     // Topic 3: working with experts
     {
       id: 'pm.outside.trust',
+      film: 'pm.outside.experts',
       title: 'Trust and verify',
       pre: [
         {
@@ -899,6 +900,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      film: 'pm.outside.experts',
       title: 'Red flags',
       pre: [
         {

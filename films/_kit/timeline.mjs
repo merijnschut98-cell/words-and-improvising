@@ -283,7 +283,7 @@ const SAY = {
     [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
     [/\b([Ee])scalatieroute/g, '$1scalatie-route'],
     // the pre-mortem (pm.plan.risk): issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e");
-    // no other film says issue in Dutch
+    // pm.outside.experts says issues (isjoes) through this rule too
     [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
     // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
     // it, "etsjail", tsj for the dzj it cannot voice there), and stresses HYbride (said hie-BRIE-de); not before
@@ -434,7 +434,7 @@ const SAY = {
     [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
     // testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses PREmortem (said pree-mortem), reads
     // single point of failure as "poo-int of fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
-    // nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (split at the head; beheersmaatregel only after
+    // nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (said barkoodskenners; split at the head; beheersmaatregel only after
     // "een", so pm.plan.risk's caption "De beheersmaatregel" keeps its voice), and the integration specialist's
     // jargon: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim, lee-tensie, rie-traiz; batch already has its
     // rule above, betsj), and jargon as "sjargon", near the Dutch zj espeak-ng cannot give (it reads "jar-gon"), only
@@ -442,9 +442,20 @@ const SAY = {
     // Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"; the business case rule above has the same Biznis); no other
     // film says them in Dutch
     [/\b([Pp])remortem/g, '$1ree-mortem'], [/\b([Ss])ingle point of failure\b/g, '$1ingel pojnt of feeljer'],
-    [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arcode-skenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
+    [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arkoodskenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
     [/\breal-time\b/g, 'riel-taim'], [/\blatency\b/g, 'lee-tensie'], [/\bretries\b/g, 'rie-traiz'],
-    [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe']],
+    [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe'],
+    // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
+    // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
+    // ("vaazje": vaage),
+    // stresses risico-GE-stuurd and sleu-TEL-persoon with the e of "bed" (split at the head), negentig-
+    // negentigregEL and routineNEEpunten (the last part apart), and after "eerlijk" OPtimistisch (op-timistisch,
+    // as the questions film's rule says it). No other film says these; eng.quality.spc's steekproef and the
+    // other films' optimistisch keep their voice
+    [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`],
+    [/\b([Rr])isicogestuurd/g, '$1isico-gestuurd'], [/\b([Ss])leutelpersoon/g, '$1leutel-persoon'],
+    [/\b([Nn])egentig-negentigregel/g, '$1egentig-negentig-regel'], [/\b(eerlijk )optimistisch\b/g, '$1op-timistisch'],
+    [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
