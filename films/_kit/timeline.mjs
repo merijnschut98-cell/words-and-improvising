@@ -195,7 +195,15 @@ const SAY = {
     [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
-    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // load flow and N-1 (eng.gridplanning.loadflow): loadflow as the floor says it, "loodflo" (espeak-ng reads
+    // "lo-ad-flow"; in a compound "loodflo-"), N-1 as "N min één" (espeak-ng drops the minus: "N één"),
+    // vluchtstrook and Netcode split at the head (espeak-ng stresses vluchtSTROOK and netCOde), and EN 50160
+    // as "E N vijftig honderdzestig" (not "vijftigduizend honderdzestig")
+    [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
+    [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
+    // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
+    [/\b([Nn])on-firm\b/g, '$1on-furm']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
