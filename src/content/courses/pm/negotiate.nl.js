@@ -657,6 +657,7 @@ export default {
     },
     {
       id: 'pm.negotiate.scope',
+      film: 'pm.run.scope',
       title: 'Scope en tijd onderhandelen met een klant',
       pre: [
         {
