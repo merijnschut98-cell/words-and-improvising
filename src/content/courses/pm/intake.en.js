@@ -411,6 +411,7 @@ export default {
     },
     {
       id: 'pm.intake.start',
+      film: 'pm.run.rhythm',
       title: 'The first weeks',
       pre: [
         {
