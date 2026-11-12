@@ -1,0 +1,305 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:06.129
+A medium-voltage ring runs from the substation past seven secondary substations,
+
+2
+00:00:06.350 --> 00:00:09.345
+with 1,200 customers between them.
+
+3
+00:00:10.088 --> 00:00:13.885
+Station 7 holds the normally open point to a neighbouring ring:
+
+4
+00:00:14.059 --> 00:00:16.845
+the switch in an MV ring that is kept open;
+
+5
+00:00:17.043 --> 00:00:19.992
+you close it to feed a section from the other side.
+
+6
+00:00:21.058 --> 00:00:24.854
+Then a digger hits the cable between stations 5 and 6.
+
+7
+00:00:25.594 --> 00:00:28.241
+The protection relay sees the short circuit,
+
+8
+00:00:28.427 --> 00:00:31.330
+and the circuit breaker in the substation trips.
+
+9
+00:00:32.036 --> 00:00:33.139
+Everyone is off.
+
+10
+00:00:34.133 --> 00:00:38.138
+Without automation, a technician drives from station to station.
+
+11
+00:00:38.834 --> 00:00:40.309
+He reads the indicators,
+
+12
+00:00:40.529 --> 00:00:44.407
+opens the load-break switches around the damaged section by hand,
+
+13
+00:00:44.581 --> 00:00:46.381
+and closes the open point.
+
+14
+00:00:47.126 --> 00:00:50.725
+That means one to two hours without power for most customers.
+
+15
+00:00:51.715 --> 00:00:54.153
+Say all of them are off for 90 minutes.
+
+16
+00:00:54.850 --> 00:00:57.683
+The grid operator counts that in customer minutes:
+
+17
+00:00:57.823 --> 00:01:01.073
+the number of customers off times the minutes without power.
+
+18
+00:01:01.843 --> 00:01:07.323
+1,200 times 90 is 108,000 customer minutes.
+
+19
+00:01:08.608 --> 00:01:11.673
+Distribution automation means remote control
+
+20
+00:01:11.743 --> 00:01:14.088
+and monitoring of the medium-voltage grid.
+
+21
+00:01:15.105 --> 00:01:17.601
+Some stations get a remote-controlled switch:
+
+22
+00:01:17.729 --> 00:01:20.480
+a motor-driven load-break switch that the control
+
+23
+00:01:20.550 --> 00:01:24.184
+room can open and close over a communication link.
+
+24
+00:01:25.202 --> 00:01:29.927
+In the station you see a small cabinet with a modem, a battery and the controls,
+
+25
+00:01:30.113 --> 00:01:31.982
+and the motor drive on the switch.
+
+26
+00:01:32.699 --> 00:01:36.832
+The battery keeps everything working when the station has lost its supply,
+
+27
+00:01:36.960 --> 00:01:39.270
+which is exactly during an outage.
+
+28
+00:01:40.290 --> 00:01:44.446
+In the control room, the operator sees in SCADA where the fault is,
+
+29
+00:01:44.574 --> 00:01:48.486
+and switches in minutes, without waiting for a technician to arrive.
+
+30
+00:01:49.811 --> 00:01:54.501
+Each ring panel has a fault indicator: a sensor round the cable and a lamp.
+
+31
+00:01:55.253 --> 00:01:59.143
+It lights up, or sends a signal, when fault current has passed it.
+
+32
+00:02:00.188 --> 00:02:03.788
+Fault current flows from the source to the fault, and no further.
+
+33
+00:02:04.509 --> 00:02:10.175
+Here the indicators in stations 1 to 5 light up; in 6 and 7 they stay dark.
+
+34
+00:02:11.247 --> 00:02:16.204
+So the fault lies between the last indicator that saw it and the first that did not:
+
+35
+00:02:16.344 --> 00:02:18.666
+between stations 5 and 6.
+
+36
+00:02:19.698 --> 00:02:23.878
+Indicators that report to the control room save the drive to read them.
+
+37
+00:02:24.591 --> 00:02:28.399
+Even without remote switching, that alone can save many minutes.
+
+38
+00:02:29.115 --> 00:02:34.328
+How the control room handles the whole outage is in Grid operations and assets.
+
+39
+00:02:35.673 --> 00:02:41.152
+Now the same fault, with remote-controlled switches in two key stations: station 4,
+
+40
+00:02:41.292 --> 00:02:43.637
+and station 7 with the open point.
+
+41
+00:02:44.686 --> 00:02:48.796
+The control room opens the switch towards 5 in station 4,
+
+42
+00:02:48.982 --> 00:02:51.432
+and the one towards 6 in station 7.
+
+43
+00:02:52.163 --> 00:02:55.321
+The breaker goes back in and the open point closes.
+
+44
+00:02:56.036 --> 00:03:01.528
+The faulty section is isolated in 3 minutes, and 1,000 customers are back.
+
+45
+00:03:02.564 --> 00:03:07.359
+The 200 customers of stations 5 and 6 are in the section between.
+
+46
+00:03:08.071 --> 00:03:12.657
+They stay off for 90 minutes, until the technician has switched there by hand.
+
+47
+00:03:13.720 --> 00:03:22.184
+1,000 times 3 plus 200 times 90 is 3,000 plus 18,000: 21,000 customer minutes.
+
+48
+00:03:22.928 --> 00:03:29.150
+That is about 80% less than 108,000, from just two upgraded stations.
+
+49
+00:03:30.450 --> 00:03:32.354
+First, protection does its job:
+
+50
+00:03:32.505 --> 00:03:36.127
+the circuit breaker in the substation clears the short circuit.
+
+51
+00:03:36.865 --> 00:03:40.418
+A load-break switch never breaks a short circuit itself.
+
+52
+00:03:41.429 --> 00:03:45.226
+A self-healing ring goes one step further than remote switching.
+
+53
+00:03:45.901 --> 00:03:48.722
+The system locates the fault from the indicators,
+
+54
+00:03:48.897 --> 00:03:53.204
+opens the switches around it and closes the open point by itself,
+
+55
+00:03:53.390 --> 00:03:54.516
+often within a minute.
+
+56
+00:03:55.561 --> 00:04:00.507
+It needs reliable communication, accurate network data and well-tested logic,
+
+57
+00:04:00.565 --> 00:04:03.468
+so operators introduce it step by step.
+
+58
+00:04:04.542 --> 00:04:06.423
+Experts argue about trust.
+
+59
+00:04:07.171 --> 00:04:12.605
+Some control rooms want an operator to confirm each step; others let the logic run.
+
+60
+00:04:13.929 --> 00:04:16.901
+Automating every station is too expensive.
+
+61
+00:04:17.610 --> 00:04:21.836
+Operators choose a few key stations per ring, often two or three,
+
+62
+00:04:21.999 --> 00:04:25.598
+where a remote-controlled switch splits the ring into sections.
+
+63
+00:04:26.616 --> 00:04:31.202
+That is a business case: the cost per station against fewer customer minutes,
+
+64
+00:04:31.353 --> 00:04:32.363
+and less driving.
+
+65
+00:04:33.401 --> 00:04:36.095
+Unplanned outages leave Dutch customers without
+
+66
+00:04:36.187 --> 00:04:40.251
+power for around 20 to 25 minutes a year on average,
+
+67
+00:04:40.402 --> 00:04:43.630
+about 23 in 2025.
+
+68
+00:04:44.348 --> 00:04:48.260
+And the regulator links part of the operators’ income to that quality.
+
+69
+00:04:49.546 --> 00:04:50.382
+What goes wrong?
+
+70
+00:04:51.060 --> 00:04:55.031
+Batteries that are flat when needed: then no motor and no modem.
+
+71
+00:04:56.023 --> 00:04:58.449
+Communication that drops during a storm.
+
+72
+00:04:59.166 --> 00:05:03.972
+And network data that do not match reality, so the system picks the wrong switch.
+
+73
+00:05:05.002 --> 00:05:09.274
+And every link to a station is also a possible way in for attackers.
+
+74
+00:05:09.988 --> 00:05:14.574
+So treat it as OT, with zones and conduits, just as in a plant.
+
+75
+00:05:15.677 --> 00:05:19.299
+A sharp question: which rings cause the most customer minutes,
+
+76
+00:05:19.485 --> 00:05:21.877
+and where would one remote switch help most?

@@ -1265,6 +1265,270 @@
         ],
         "vtt": "src/content/courses/films/eng.process.plant.en.vtt"
       }
+    },
+    "eng.process.measure": {
+      "poster": "src/content/courses/films/eng.process.measure.jpg",
+      "nl": {
+        "dur": 269.8,
+        "bytes": 10053653,
+        "scenes": [
+          0,
+          25.64,
+          62.45,
+          101.19,
+          142.5,
+          176.99,
+          220.95
+        ],
+        "vtt": "src/content/courses/films/eng.process.measure.nl.vtt"
+      },
+      "en": {
+        "dur": 296,
+        "bytes": 11017163,
+        "scenes": [
+          0,
+          26.26,
+          70.05,
+          115.56,
+          161.62,
+          195.9,
+          244.21
+        ],
+        "vtt": "src/content/courses/films/eng.process.measure.en.vtt"
+      }
+    },
+    "eng.process.batch": {
+      "poster": "src/content/courses/films/eng.process.batch.jpg",
+      "nl": {
+        "dur": 279.2,
+        "bytes": 8751006,
+        "scenes": [
+          0,
+          36.28,
+          85.9,
+          109.99,
+          152.29,
+          185.43,
+          220.48,
+          249.6
+        ],
+        "vtt": "src/content/courses/films/eng.process.batch.nl.vtt"
+      },
+      "en": {
+        "dur": 299.8,
+        "bytes": 9232891,
+        "scenes": [
+          0,
+          39.4,
+          92.1,
+          117.98,
+          161.68,
+          198.06,
+          239.4,
+          268.57
+        ],
+        "vtt": "src/content/courses/films/eng.process.batch.en.vtt"
+      }
+    },
+    "eng.ot.isa95": {
+      "poster": "src/content/courses/films/eng.ot.isa95.jpg",
+      "nl": {
+        "dur": 322.1,
+        "bytes": 13051118,
+        "scenes": [
+          0,
+          21.63,
+          50.62,
+          80.96,
+          117.63,
+          145.7,
+          183.96,
+          215.74,
+          255.82
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.nl.vtt"
+      },
+      "en": {
+        "dur": 345.4,
+        "bytes": 13920723,
+        "scenes": [
+          0,
+          23.55,
+          54,
+          84.82,
+          124.32,
+          153.71,
+          195.86,
+          232.09,
+          274.25
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.en.vtt"
+      }
+    },
+    "eng.ot.orderflow": {
+      "poster": "src/content/courses/films/eng.ot.orderflow.jpg",
+      "nl": {
+        "dur": 293.6,
+        "bytes": 11174054,
+        "scenes": [
+          0,
+          40.61,
+          74.66,
+          99.79,
+          137.46,
+          168.53,
+          208.46,
+          250.19
+        ],
+        "vtt": "src/content/courses/films/eng.ot.orderflow.nl.vtt"
+      },
+      "en": {
+        "dur": 328.5,
+        "bytes": 12335313,
+        "scenes": [
+          0,
+          44.67,
+          84.73,
+          112.77,
+          155.15,
+          189.77,
+          235.31,
+          282.4
+        ],
+        "vtt": "src/content/courses/films/eng.ot.orderflow.en.vtt"
+      }
+    },
+    "eng.gridbasics.congestion": {
+      "poster": "src/content/courses/films/eng.gridbasics.congestion.jpg",
+      "nl": {
+        "dur": 338.6,
+        "bytes": 11738359,
+        "scenes": [
+          0,
+          31.31,
+          68.69,
+          108.38,
+          131.04,
+          171.05,
+          208.75,
+          236.85,
+          288.67
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.congestion.nl.vtt"
+      },
+      "en": {
+        "dur": 359.4,
+        "bytes": 14417373,
+        "scenes": [
+          0,
+          33.7,
+          74.51,
+          116.92,
+          142.13,
+          183.37,
+          222.79,
+          251.57,
+          305.89
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.congestion.en.vtt"
+      }
+    },
+    "eng.gridops.outage": {
+      "poster": "src/content/courses/films/eng.gridops.outage.jpg",
+      "nl": {
+        "dur": 296,
+        "bytes": 8353457,
+        "scenes": [
+          0,
+          49.19,
+          84.88,
+          116.1,
+          155.68,
+          203.45,
+          251.93
+        ],
+        "vtt": "src/content/courses/films/eng.gridops.outage.nl.vtt"
+      },
+      "en": {
+        "dur": 315.5,
+        "bytes": 8798320,
+        "scenes": [
+          0,
+          52.6,
+          91.94,
+          122.86,
+          166.89,
+          219.48,
+          271.57
+        ],
+        "vtt": "src/content/courses/films/eng.gridops.outage.en.vtt"
+      }
+    },
+    "eng.switchgear.automation": {
+      "poster": "src/content/courses/films/eng.switchgear.automation.jpg",
+      "nl": {
+        "dur": 303.6,
+        "bytes": 7952401,
+        "scenes": [
+          0,
+          57.03,
+          97.43,
+          140.66,
+          190.15,
+          234.41,
+          268.4
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.nl.vtt"
+      },
+      "en": {
+        "dur": 323.6,
+        "bytes": 8371671,
+        "scenes": [
+          0,
+          68.19,
+          109.37,
+          155.19,
+          210.02,
+          253.49,
+          289.11
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
+      }
+    },
+    "eng.gridplanning.loadflow": {
+      "poster": "src/content/courses/films/eng.gridplanning.loadflow.jpg",
+      "nl": {
+        "dur": 346.4,
+        "bytes": 14454322,
+        "scenes": [
+          0,
+          23.79,
+          58.24,
+          82.12,
+          136.16,
+          186.81,
+          237.11,
+          261.37,
+          302
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.loadflow.nl.vtt"
+      },
+      "en": {
+        "dur": 357.2,
+        "bytes": 14974006,
+        "scenes": [
+          0,
+          27.1,
+          63.71,
+          89.36,
+          141.24,
+          194.05,
+          247.82,
+          273.2,
+          313.09
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
+      }
     }
   }
 }

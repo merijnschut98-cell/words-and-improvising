@@ -1015,7 +1015,7 @@ const SAY = [
       'Experts argue whether strict N minus one is affordable, or whether customers prefer a rare break to years of waiting. Ask: a thermal limit, or the reserve? And if the other transformer is in maintenance?'),
   ],
   [ // s9 example: 46 MVA on 40
-    B('Een voorbeeld: twee trafo’s van {n:40} megavoltampère, piek {n:46}, groei {n:2} per jaar, een nieuw station over {n:6} jaar. Er wachten een koelhuis van {n:3} en een batterij van {n:4}.',
+    B('Een voorbeeld: twee trafo’s van {n:40} megavoltampère. De piek is {n:46} en de groei {n:2} per jaar. Over {n:6} jaar komt er een nieuw station. Er wachten een koelhuis van {n:3} en een batterij van {n:4}.',
       'An example: two {n:40} megavolt ampere transformers, peak {n:46}, growing {n:2} a year, a new station in {n:6} years. Waiting: a cold store of {n:3} and a battery of {n:4}.'),
     B('Al {n:6} boven N-1: valt in de piek een trafo uit, dan draagt de andere {n:46}, {n:115} procent. Een paar koude uren kan dat, als je belasting naar buurstations kunt omschakelen.',
       'Already {n:6} over N minus one: if a transformer fails at peak, the other carries {n:46}, {n:115} percent. That lasts a few cold hours, if you can switch load to neighbouring stations.'),

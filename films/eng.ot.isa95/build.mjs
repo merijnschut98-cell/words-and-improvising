@@ -530,7 +530,7 @@ const SAY = [
       en: 'Level one measures and moves: sensors such as the temperature sensor, actuators such as the cooling-water valve.' },
     { nl: 'Niveau twee bewaakt en bestuurt: de {t:PLC|PLC}, de industriële computer die de machine aanstuurt. Sommige tekeningen zetten hem op niveau één.',
       en: 'Level two monitors and controls: the {t:PLC|PLC}, the industrial computer that runs the machine. Some drawings put it at level one.' },
-    { nl: 'Ook {t:SCADA|SCADA} hoort hier: daarmee volgen en bedienen operators de hele installatie op schermen.',
+    { nl: 'Ook {t:SCADA|SCADA} hoort hier. Daarmee volgen en bedienen operators de hele installatie op schermen.',
       en: '{t:SCADA|SCADA} belongs here too: with it, operators watch and run the whole installation on screens.' },
   ],
   [ // s3 levels 3 and 4
