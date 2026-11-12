@@ -1164,6 +1164,41 @@
         ],
         "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
       }
+    },
+    "eng.ot.isa95": {
+      "poster": "src/content/courses/films/eng.ot.isa95.jpg",
+      "nl": {
+        "dur": 322.1,
+        "bytes": 13051118,
+        "scenes": [
+          0,
+          21.63,
+          50.62,
+          80.96,
+          117.63,
+          145.7,
+          183.96,
+          215.74,
+          255.82
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.nl.vtt"
+      },
+      "en": {
+        "dur": 345.4,
+        "bytes": 13920723,
+        "scenes": [
+          0,
+          23.55,
+          54,
+          84.82,
+          124.32,
+          153.71,
+          195.86,
+          232.09,
+          274.25
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.en.vtt"
+      }
     }
   }
 }
