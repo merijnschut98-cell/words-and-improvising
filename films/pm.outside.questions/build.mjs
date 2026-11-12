@@ -88,8 +88,8 @@
 //   estimates teach 3: a reference class, similar past projects as a yardstick;
 //     Kahneman and Flyvbjerg recommend it (s7 b1); instead of reasoning from the
 //     plan, "how long did the last five interfaces like this take?" (s7 b2);
-//     Flyvbjerg and Gardner, How Big Things Get Done, 2023 (title not shown):
-//     about 16,000 projects, mostly large; 8.5% on budget and schedule, 0.5% also
+//     Flyvbjerg and Gardner, How Big Things Get Done, 2023 (card; Gardner and
+//     the title on the card only): about 16,000 projects, mostly large; 8.5% on budget and schedule, 0.5% also
 //     the benefits (s7 b3); a base rate beats a confident plan (s7 b4)
 //   estimates teach 4: a second estimate from another expert, without the first
 //     number, compared (s8 b1); close, good; far apart, the gap is the
@@ -408,9 +408,12 @@ const spec = {
 // is said in words.
 // Words checked with espeak-ng phonemes through Piper's own bridge
 // (nl_NL-alex, 2026-11-12). New SAY rules in films/_kit/timeline.mjs for this
-// film (no other film's spoken text changes): Kahneman, Flyvbjerg and Gardner
-// as their speakers say them (Kaaneman, Fluubjerg, Kardner), referentieklasse
-// and basiscijfer split at the head, IT-lead as IT-lied. Shared rules already
+// film (no other film's spoken text changes): Kahneman and Flyvbjerg as their
+// speakers say them (Kaaneman, Fluubjerg), referentieklasse and basiscijfer
+// split at the head, IT-lead as IT-lied, optimistisch and voorspelling stressed
+// on the right syllable. Gardner stays on the card only (s7): espeak-ng has no
+// spelling that gives the hard English g (every G is the g of "lachen", and
+// Kardner is another name), so the Dutch voice names Flyvbjerg alone. Shared rules already
 // cover scope (skoop), MES (letters), livegang (laif-gang), agile (etsjail) and
 // go/no-go. Kept out of the Dutch narration because espeak-ng misreads them
 // (they stay in the captions and on the cards): the plural bandbreedtes
@@ -492,7 +495,7 @@ const SAY = [
       en: 'A {t:Reference class|reference class}: similar past projects as a yardstick. Kahneman and Flyvbjerg recommend it.' },
     { nl: 'Redeneer niet vanuit het plan, maar vraag: hoe lang duurden de laatste vijf koppelingen zoals deze?',
       en: 'Instead of reasoning from the plan, ask: how long did the last five interfaces like this take?' },
-    { nl: 'Flyvbjerg en Gardner melden in 2023: van zo\'n {n:16000} vooral grote projecten haalde maar {n:8.5} procent budget en planning, en maar {n:0.5} procent ook de baten.',
+    { nl: 'Flyvbjerg meldt in 2023: van zo\'n {n:16000} vooral grote projecten haalde maar {n:8.5} procent budget en planning, en maar {n:0.5} procent ook de baten.',
       en: 'Flyvbjerg and Gardner report in 2023: of about {n:16000} mostly large projects, only {n:8.5} percent hit budget and schedule, and only {n:0.5} percent the benefits too.' },
     { nl: 'Zo\'n basiscijfer wint van een zelfverzekerd plan.',
       en: 'A base rate like that beats a confident plan.' },

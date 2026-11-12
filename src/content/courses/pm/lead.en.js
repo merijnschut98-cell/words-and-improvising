@@ -491,6 +491,7 @@ export default {
     },
     {
       id: 'pm.lead.difficult',
+      film: 'pm.lead.difficult',
       title: 'Difficult conversations',
       pre: [
         {

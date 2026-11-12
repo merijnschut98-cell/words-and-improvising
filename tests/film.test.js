@@ -88,15 +88,16 @@ test('speak variant: agile and hybride in Dutch', () => {
 });
 
 // espeak-ng reads Kahneman with a sounded h, Flyvbjerg as "flif-bjerg",
-// Gardner with the g of "lachen", stresses REferentieklasse (with "ti" for
+// stresses REferentieklasse (with "ti" for
 // "tsie"), drops the s of cijfer in basiscijfer ("basis-eifer") and reads the
 // IT-lead as "lee-ad", and stresses OPtimistisch and VOORspelling: said
-// Kaaneman, Fluubjerg, Kardner, referentie-klasse, basis-cijfer, IT-lied,
+// Kaaneman, Fluubjerg, referentie-klasse, basis-cijfer, IT-lied,
 // op-timistisch (not in pm.plan.wbs's "optimistisch, meest waarschijnlijk")
-// and voor-spelling; Dutch only (pm.outside.questions)
-test('speak variant: Kahneman, Flyvbjerg, Gardner, referentieklasse, basiscijfer, IT-lead, optimistisch and voorspelling in Dutch', () => {
+// and voor-spelling; Dutch only (pm.outside.questions). Gardner gets no rule
+// (espeak-ng has no hard g; the film keeps the name on the card)
+test('speak variant: Kahneman, Flyvbjerg, referentieklasse, basiscijfer, IT-lead, optimistisch and voorspelling in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Kahneman en Flyvbjerg; Flyvbjerg en Gardner.'), 'Kaaneman en Fluubjerg; Fluubjerg en Kardner.');
+  assert.equal(nl('Kahneman en Flyvbjerg; Flyvbjerg en Gardner.'), 'Kaaneman en Fluubjerg; Fluubjerg en Gardner.');
   assert.equal(nl('Een referentieklasse, twee referentieklassen. Referentieklasse:'), 'Een referentie-klasse, twee referentie-klassen. Referentie-klasse:');
   assert.equal(nl("Zo'n basiscijfer, basiscijfers"), "Zo'n basis-cijfer, basis-cijfers");
   assert.equal(nl('met de IT-lead en de leverancier'), 'met de IT-lied en de leverancier');

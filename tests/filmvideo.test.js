@@ -126,6 +126,16 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.portfolio.prioritise: compounds espeak-ng stresses on the wrong part, split at the head (programmaRAAD,
+  // capaciteitsSTREEP, KApaciteitsmatrix, risicogecorrigEERde); onderhanden werk only in this film's two phrases
+  // (eng.lines.design, with a video, keeps its voice); contextswitch with a tsj, planningstool with oe, and Gerald
+  // Weinberg as his English name; English keeps them all
+  assert.equal(speakOf(['De programmaraad, de capaciteitsstreep, een capaciteitsmatrix, capaciteitsconflicten en de risicogecorrigeerde waarde.'], 'nl'),
+    'De programma-raad, de capaciteits-streep, een capaciteits-matrix, capaciteits-conflicten en de risico-gecorrigeerde waarde.');
+  assert.equal(speakOf(['Onderhanden werk is alles wat gestart is: het onderhanden werk gedeeld door de doorzet.'], 'nl'), 'Onder-handen werk is alles wat gestart is: het onder-handen werk gedeeld door de doorzet.');
+  assert.equal(speakOf(['Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.'], 'nl'), 'Samen zijn het onderhanden werk. Onderhanden werk is output maal doorlooptijd.');
+  assert.equal(speakOf(['Bij elke contextswitch, in de planningstool, volgens Gerald Weinberg.'], 'nl'), 'Bij elke context-switsj, in de plannings-toel, volgens Djerreld Wainburk.');
+  assert.equal(speakOf(['The programme board, a context switch, the planning tool, Gerald Weinberg.'], 'en'), 'The programme board, a context switch, the planning tool, Gerald Weinberg.');
   // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
   // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
   // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
@@ -135,6 +145,17 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
+  // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
+  // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
+  // stress on -ly- only in this film's two phrases, and the data compounds split at the head; English keeps them
+  assert.equal(speakOf(['Volgens Stone, Patton en Heen, in Difficult Conversations: het identiteitsgesprek, je identiteitsval, gekwetstheid, smalltalk.'], 'nl'),
+    'Volgens Stoon, Petten en Heen, in Diffikkelt Konver-seesjens: het identiteits-gesprek, je identiteits-val, ge-kwetstheid, smoltok.');
+  assert.equal(speakOf(['Je analyse moet vrijdag af, de analyse vóór vrijdag, de analyse voor juni, nog één analyse.'], 'nl'),
+    'Je analiese moet vrijdag af, de analiese vóór vrijdag, de analyse voor juni, nog één analyse.');
+  assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
+    'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
+  assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
 });
 
 // ------------------------------------------------------------ WAV files

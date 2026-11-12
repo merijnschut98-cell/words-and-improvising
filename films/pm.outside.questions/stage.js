@@ -217,7 +217,7 @@ const STAGE = (() => {
       const B = page(b, p, 2, -1);
       const q = b === 2 ? p : 1;
       const bar = (y, share, a) => rect(X0, y, CW, 18, 'pm-card', 4) + op(a, rect(X0, y, Math.max(3, CW * share / 100), 18, 'pm-blk', 4));
-      o.flyv = op(B, lines(78, [[tr('Flyvbjerg, Gardner, 2023', 'Flyvbjerg, Gardner, 2023'), 'pm-big'], [tr('± 16.000 projecten, vooral', '± 16,000 projects, mostly'), 'pm-mute'], [tr('grote', 'large ones'), 'pm-mute']])
+      o.flyv = op(B, lines(78, [[tr('Flyvbjerg, Gardner, 2023', 'Flyvbjerg, Gardner, 2023'), 'pm-big'], ['How Big Things Get Done', 'pm-mute'], [tr('zo’n 16.000 projecten', 'about 16,000 projects'), 'pm-mute']])
         + bar(148, C.BOTH, span(q, 0.25, 0.45)) + op(span(q, 0.25, 0.45), txt(X0, 190, tr(`${String(C.BOTH).replace('.', ',')}%: budget én planning`, `${C.BOTH}%: budget and schedule`), 'pm-on'))
         + bar(204, C.ALL, span(q, 0.6, 0.8)) + op(span(q, 0.6, 0.8), txt(X0, 246, tr(`${String(C.ALL).replace('.', ',')}%: ook de baten`, `${C.ALL}%: benefits too`), 'pm-on')));
       o.base = op(at(b, p, 3), card(270, 112, 'pm-hot') + lines(298, [[tr('zo’n basiscijfer', 'a base rate like that'), 'pm-on'], [tr('wint van een', 'beats a confident')], [tr('zelfverzekerd plan', 'plan')]]));
@@ -255,7 +255,7 @@ const STAGE = (() => {
     const V = C.CELL;
     const ax = axis(140, 18, 2, tr('weken', 'weeks'));
     const pts = [['O', V.o], ['M', V.m], ['P', V.p]];
-    o.case2 = ax.s + pts.map(([l, v], i) => op(b > 0 ? 1 : span(p, 0.15 + i * 0.15, 0.25 + i * 0.15), dia(ax.xw(v), 140, 8) + txt(ax.xw(v), 120, l, 'pm-on', 'middle') + txt(ax.xw(v), 102, String(v), 'pm-txt', 'middle'))).join('');
+    o.case2 = ax.s + pts.map(([l, v], i) => op(b > 0 ? 1 : span(p, 0.15 + i * 0.15, 0.25 + i * 0.15), dia(ax.xw(v), 140, 8) + txt(ax.xw(v), 120, l, 'pm-on', 'middle') + txt(ax.xw(v), 97, String(v), 'pm-txt', 'middle'))).join('');
     o.calc = op(at(b, p, 1), lines(196, [[`(${V.o} + 4×${V.m} + ${V.p}) ÷ 6`, 'pm-big'], [tr(`= ${V.sum} ÷ 6 = ${V.pert} weken`, `= ${V.sum} ÷ 6 = ${V.pert} weeks`), 'pm-on']]) + op(at(b, p, 1, 0.4, 0.6), dot(ax.xw(V.pert), 140, 6, 'pm-ring')));
     o.ref3 = op(at(b, p, 2), lines(252, [[tr(`laatste 3: ${V.past.join(', ')} wk`, `last 3: ${V.past.join(', ')} wk`), 'pm-on'], [tr(`${V.pert} = de optimistische kant`, `${V.pert} = the optimistic end`), 'pm-mute']])
       + V.past.map((v, i) => op(at(b, p, 2, 0.2 + i * 0.12, 0.3 + i * 0.12), dot(ax.xw(v), 162, 5, 'pm-blk'))).join(''));
