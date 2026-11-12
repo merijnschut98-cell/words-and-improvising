@@ -1653,6 +1653,7 @@ await step('voice variety card after a spoken round (optional toggle)', async ()
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.reload();
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     // Fake mic + analyser: loud/soft alternation, fading in the last part.
     window.__meter = { gum: 0, stopped: 0, closed: 0, n: 0 };
@@ -1702,6 +1703,7 @@ await step('word budget counter turns red over the cap', async () => {
     localStorage.setItem('spraakwater:v1', JSON.stringify(st));
   });
   await page.goto(BASE);
+  await page.waitForFunction(() => window.__app); // the app is up before we drive it
   await page.evaluate(async () => {
     const { makePrompt } = await import('./src/core/lesson.js');
     const { default: nl } = await import('./src/content/prompts.nl.js');
