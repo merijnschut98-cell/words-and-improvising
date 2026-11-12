@@ -364,7 +364,18 @@ const SAY = {
     // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
-    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten']],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // asking questions outside your field (pm.outside.questions): the names behind the planning fallacy and the
+    // reference class as English and Danish speakers say them (espeak-ng reads Kahneman with a sounded h,
+    // Flyvbjerg as "flif-bjerg", Gardner with the g of "lachen"): Kaaneman, Fluubjerg, Kardner; and words it
+    // misreads, split at the head: REferentieklasse with "ti" for "tsie" (referentie-KLASse), basiscijfer without
+    // the s of cijfer ("basis-eifer"), IT-lead as "lee-ad" (said IT-lied), and OPtimistisch and VOORspelling
+    // (said op-timistisch, voor-spelling: op-ti-MIS-tisch, voor-SPEL-ling); no other film says them, and
+    // optimistisch only before "e", "en", a number or ", plus", so pm.plan.wbs's "optimistisch, meest
+    // waarschijnlijk" keeps the voice it was built with
+    [/\bKahneman\b/g, 'Kaaneman'], [/\bFlyvbjerg\b/g, 'Fluubjerg'], [/\bGardner\b/g, 'Kardner'],
+    [/\b([Rr])eferentieklasse/g, '$1eferentie-klasse'], [/\b([Bb])asiscijfer/g, '$1asis-cijfer'], [/\bIT-lead\b/g, 'IT-lied'],
+    [/\b([Oo])ptimistisch(?=e\b| en\b| \d|, plus\b)/g, '$1p-timistisch'], [/\b([Vv])oorspelling/g, '$1oor-spelling']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

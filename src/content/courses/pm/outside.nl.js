@@ -329,6 +329,7 @@ export default {
     // Onderwerp 2: vragen stellen
     {
       id: 'pm.outside.phasequestions',
+      film: 'pm.outside.questions',
       title: 'Vragen per fase',
       pre: [
         {
@@ -489,6 +490,7 @@ export default {
     },
     {
       id: 'pm.outside.estimates',
+      film: 'pm.outside.questions',
       title: 'Schattingen toetsen zonder vakkennis',
       pre: [
         {

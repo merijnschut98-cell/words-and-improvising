@@ -87,6 +87,28 @@ test('speak variant: agile and hybride in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// espeak-ng reads Kahneman with a sounded h, Flyvbjerg as "flif-bjerg",
+// Gardner with the g of "lachen", stresses REferentieklasse (with "ti" for
+// "tsie"), drops the s of cijfer in basiscijfer ("basis-eifer") and reads the
+// IT-lead as "lee-ad", and stresses OPtimistisch and VOORspelling: said
+// Kaaneman, Fluubjerg, Kardner, referentie-klasse, basis-cijfer, IT-lied,
+// op-timistisch (not in pm.plan.wbs's "optimistisch, meest waarschijnlijk")
+// and voor-spelling; Dutch only (pm.outside.questions)
+test('speak variant: Kahneman, Flyvbjerg, Gardner, referentieklasse, basiscijfer, IT-lead, optimistisch and voorspelling in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Kahneman en Flyvbjerg; Flyvbjerg en Gardner.'), 'Kaaneman en Fluubjerg; Fluubjerg en Kardner.');
+  assert.equal(nl('Een referentieklasse, twee referentieklassen. Referentieklasse:'), 'Een referentie-klasse, twee referentie-klassen. Referentie-klasse:');
+  assert.equal(nl("Zo'n basiscijfer, basiscijfers"), "Zo'n basis-cijfer, basis-cijfers");
+  assert.equal(nl('met de IT-lead en de leverancier'), 'met de IT-lied en de leverancier');
+  assert.equal(nl('toe aan optimistisch en pessimistisch: optimistisch, plus vier; optimistisch 6 weken, de optimistische kant'),
+    'toe aan op-timistisch en pessimistisch: op-timistisch, plus vier; op-timistisch 6 weken, de op-timistische kant');
+  assert.equal(nl('Een driepuntsschatting: optimistisch, meest waarschijnlijk'), 'Een driepuntsschatting: optimistisch, meest waarschijnlijk');
+  assert.equal(nl('een voorspelling, Voorspelling'), 'een voor-spelling, Voor-spelling');
+  assert.equal(nl('de referentie, een basis, de IT-afdeling'), 'de referentie, een basis, de IT-afdeling');
+  const en = 'Kahneman and Flyvbjerg, Flyvbjerg and Gardner, a reference class, a base rate, the IT lead, optimistic, a forecast';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

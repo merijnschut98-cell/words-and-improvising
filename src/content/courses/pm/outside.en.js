@@ -329,6 +329,7 @@ export default {
     // Topic 2: asking questions
     {
       id: 'pm.outside.phasequestions',
+      film: 'pm.outside.questions',
       title: 'Questions for each phase',
       pre: [
         {
@@ -489,6 +490,7 @@ export default {
     },
     {
       id: 'pm.outside.estimates',
+      film: 'pm.outside.questions',
       title: 'Checking estimates without the content',
       pre: [
         {
