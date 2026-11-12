@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
+      film: 'pm.stuck.diagnose',
       title: 'Naming the problem',
       pre: [
         {
@@ -490,6 +491,7 @@ export default {
     },
     {
       id: 'pm.stuck.experiment',
+      film: 'pm.stuck.diagnose',
       title: 'Acting under uncertainty',
       pre: [
         {
@@ -1143,6 +1145,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
+      film: 'pm.stuck.diagnose',
       title: 'Resetting a failing project',
       pre: [
         {

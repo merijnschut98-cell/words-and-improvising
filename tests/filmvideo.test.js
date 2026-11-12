@@ -106,6 +106,13 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.stuck.diagnose: mensenprobleem, capaciteitsprobleem, ijkmoment and planningsregel split at the head
+  // (espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM, ijkmoMENT, planningsreGEL with the e of "bed"),
+  // vrijgeven stressed VRIJ- (espeak-ng says vrij-GEE-ven); English keeps them, and vrijgave (said in films with
+  // a video) stays as it is
+  assert.equal(speakOf(['Een mensenprobleem of een capaciteitsprobleem? Mensenproblemen. Een ijkmoment, IJkmoment.'], 'nl'), 'Een mensen-probleem of een capaciteits-probleem? Mensen-problemen. Een ijk-moment, IJk-moment.');
+  assert.equal(speakOf(['Een planningsregel, de planningsregels. Sneller vrijgeven; Vrijgeven. De vrijgave.'], 'nl'), 'Een plannings-regel, de plannings-regels. Sneller vrij-geven; Vrij-geven. De vrijgave.');
+  assert.equal(speakOf(['A people problem, a capacity problem, a check-in point.'], 'en'), 'A people problem, a capacity problem, a check-in point.');
 });
 
 // ------------------------------------------------------------ WAV files
