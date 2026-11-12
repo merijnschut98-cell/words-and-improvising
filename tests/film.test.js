@@ -131,6 +131,22 @@ test('speak variant: definition of done, FAT, SAT, the acceptance tests and Jeff
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Conflict: interests and the difficult conversation (pm.run.conflict): the
+// authors of Getting to Yes as their names sound, only after "van" / "by" (so
+// pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+// sounds the h of Fisher and reads Ury as "uu-rie" in Dutch and "urry" in
+// English (said Fisjer en Joeri, Fisher and Yuri); and Lean-consultant as
+// "Lien-consultant" (espeak-ng reads "lee-an"); no other film says them
+test('speak variant: Fisher and Ury and the Lean consultant', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het komt uit het boek van Fisher en Ury, uit negentien eenentachtig.'), 'Het komt uit het boek van Fisjer en Joeri, uit negentien eenentachtig.');
+  assert.equal(nl('Fisher en Ury: principieel onderhandelen.'), 'Fisher en Ury: principieel onderhandelen.');
+  assert.equal(nl('Je bent junior Lean-consultant bij een zuivelfabriek.'), 'Je bent junior Lien-consultant bij een zuivelfabriek.');
+  assert.equal(nl('lean werken, een Lean-team'), 'lean werken, een Lean-team');
+  assert.equal(speakOf(['Getting to Yes, the book by Fisher and Ury, from 1981.'], 'en'), 'Getting to Yes, the book by Fisher and Yuri, from 1981.');
+  assert.equal(speakOf(['Fisher and Ury: principled negotiation. A junior Lean consultant.'], 'en'), 'Fisher and Ury: principled negotiation. A junior Lean consultant.');
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

@@ -431,7 +431,12 @@ const SAY = {
     // -REY and a sounded p (said as his English name, Djeffri Feffer); no other film says them in Dutch
     [/\b([Dd])efinition of done\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
     [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
-    [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer']],
+    [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): the authors of Getting to Yes as their
+    // names sound, only after "van" (so pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+    // sounds the h of Fisher and reads Ury as "uu-rie" (said Fisjer en Joeri); and Lean-consultant as
+    // "Lien-consultant" (espeak-ng reads "lee-an"); no other film says them in Dutch
+    [/\bvan Fisher en Ury\b/g, 'van Fisjer en Joeri'], [/\bLean-consultant\b/g, 'Lien-consultant']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -448,7 +453,10 @@ const SAY = {
     // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
     // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
     // (letters elsewhere), so V O P throughout
-    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
+    // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
