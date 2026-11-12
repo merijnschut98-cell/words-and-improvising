@@ -50,7 +50,9 @@
 //     feeder limits, not the station; then the voltage at the end; options:
 //     move the normally open point (the neighbouring feeder takes part), a
 //     dedicated cable, or non-firm or outside the evening peak until the
-//     reinforcement (s5)
+//     reinforcement (s5); the open point is named with its job ("de open
+//     schakelaar naar de buurstreng") and non-firm glossed ("terugregelbaar"),
+//     so the L2 lesson needs nothing from the L3 scenes
 //   redundancy teach 1, N-1: keeps supplying when any single component fails:
 //     transformer, cable, line, busbar (definition); N all in service, minus
 //     one the worst single outage; not two faults, nor a fault during
@@ -130,8 +132,11 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 //   10-minute mean above 253 V under EN 50549-1 / NEN-EN 50549-1).
 // - N-1: the single-contingency criterion. The Energiewet (in force 1 January
 //   2026) puts the enkelvoudige storingsreserve on the transmission grid in
-//   the law itself; the old Netcode allowed an interruption of at most 10
-//   minutes and 100 MW, with exceptions up to 6 hours (the lesson's words).
+//   the law itself (art. 5.4 replaces Elektriciteitswet 1998 art. 51; ACM);
+//   the old Netcode allowed an interruption of at most 10 minutes with at
+//   most 100 MW, and a deviation if it stays within 6 hours and 100 MW (ACM
+//   draft decision on TenneT Noord-Nederland, 2020): said "stond tot 10
+//   minuten en 100 megawatt toe, soms tot 6 uur", the card "oude Netcode".
 //   MV rings are run open at the normaal openpunt and restored by switching
 //   (eng.gridbasics.path, eng.gridops.outage).
 // - Non-firm and the emergency lane: TenneT's term "de vluchtstrook" for using
@@ -921,97 +926,101 @@ const spec = {
 // streng, buurstreng, stationstrafo, grondtemperatuur, omvormers, normaal
 // openpunt, megavoltampère, ampère, trafo, rail, onderstation,
 // bedrijfsvoeringscentrum, terugregelen, maatgevend, winteravondpiek,
-// voorjaarsmiddag, non-firm (with a Dutch short i, as the floor often says it),
+// voorjaarsmiddag, terugregelbaar. non-firm is said "non-furm" (SAY rule;
+// espeak-ng gave the Dutch short i). "80 min 46" is written "80 minus 46":
+// the Dutch rule for "<number> min" says "minuten". Known and left: espeak-ng
+// stresses aluminium on its first syllable, but the word is in other films'
+// narration too, so no rule here.
 // Kept out of the narration: the tool names Vision and PowerFactory (espeak-ng
 // reads "poower faktorie"; both on the s1 card), voedingsmiddelenfabriek
 // (stressed on "-briek"; said "fabriek van voedingsmiddelen"), tijdreeksen
 // (stressed on "-reek"; said "later"), and HS/MS.
 const SAY = [
   [ // s1 what a load flow computes
-    B('Een onderstation, een streng, een netstation, huizen en een fabriek.',
-      'A substation, a feeder, a distribution substation, homes and a factory.'),
+    B('Een stuk net, van onderstation tot fabriek.',
+      'A piece of grid, from substation to factory.'),
     B('Een {t:Loadflow|loadflow} rekent, voor al het verbruik en alle opwek op één moment, de stroom door elke kabel en trafo en de spanning op elk punt.',
       'A {t:Load flow|load flow} computes, for all demand and generation at one moment, the current through every cable and transformer and the voltage at every point.'),
-    B('Per stuk twee getallen: de {t:Belasting|belasting}, de stroom in procent van wat het mag dragen, en de spanning in procent van nominaal. Rood is boven {n:100} procent, of buiten de band.',
-      'Per asset two numbers: the {t:Loading|loading}, the current as a percentage of what it may carry, and the voltage as a percentage of nominal. Red is above {n:100} percent, or outside the band.'),
+    B('Per stuk: de {t:Belasting|belasting}, de stroom in procent van wat het mag dragen, en de spanning in procent van nominaal. Rood is boven {n:100} procent of buiten de band.',
+      'Per asset two numbers: the {t:Loading|loading}, current as a percentage of what it may carry, and the voltage as a percentage of nominal. Red is above {n:100} percent or outside the band.'),
   ],
   [ // s2 rating
-    B('{t:Belastbaarheid|Belastbaarheid}: de stroom die een kabel of trafo continu draagt zonder te warm te worden. Die hangt af van doorsnede, grondsoort, grondtemperatuur en kabels ernaast.',
-      '{t:Rating|Rating}: the current a cable or transformer carries continuously without overheating. It depends on cross-section, soil type, soil temperature and nearby cables.'),
-    B('Vuistregel: een aluminium kabel op {n:10} of {n:20} kilovolt draagt grofweg {n:250} tot {n:300} ampère; op {n:10} kilovolt zo’n {n:4} tot {n:5} megavoltampère, ongeveer megawatt.',
-      'Rule of thumb: an aluminium cable at {n:10} or {n:20} kilovolts carries roughly {n:250} to {n:300} amps; at {n:10} kilovolts about {n:4} to {n:5} megavolt amperes, roughly megawatts.'),
+    B('{t:Belastbaarheid|Belastbaarheid}: de stroom die een kabel of trafo continu draagt zonder te warm te worden, bij een kabel afhankelijk van doorsnede, grondsoort, grondtemperatuur en kabels ernaast.',
+      '{t:Rating|Rating}: the current a cable or transformer carries continuously without overheating. For a cable it depends on cross-section, soil type, soil temperature and nearby cables.'),
+    B('Vuistregel: een gangbare aluminium middenspanningskabel draagt grofweg {n:250} tot {n:300} ampère; op {n:10} kilovolt zo’n {n:4} tot {n:5} megavoltampère, ongeveer evenveel megawatt.',
+      'Rule of thumb: a common aluminium medium-voltage cable carries roughly {n:250} to {n:300} amps; at {n:10} kilovolts, {n:4} to {n:5} megavolt amperes, about as many megawatts.'),
     B('Stroom is vermogen gedeeld door wortel drie maal de spanning: {n:2.5} megavoltampère op {n:10} kilovolt is zo’n {n:144} ampère.',
       'Current is power divided by root three times the voltage: {n:2.5} megavolt amperes at {n:10} kilovolts is about {n:144} amps.'),
   ],
   [ // s3 station and feeder
-    B('Deze kabel is een {t:Streng|streng}: één uitgaande route uit het onderstation, met de netstations erop.',
-      'This cable is a {t:Feeder|feeder}: one outgoing route from the substation, with its stations on it.'),
-    B('De stationstrafo draagt de som van alle strengen, die niet tegelijk pieken. Eén streng met een bedrijventerrein of drie zonneparken zit op {n:100} procent, de rest op {n:40}.',
-      'The station transformer carries the sum of its feeders, which don’t peak together. One feeder with a business park or three solar farms sits at {n:100} percent, the rest at {n:40}.'),
-    B('Groen op de capaciteitskaart van het station is dus geen ruimte op jouw adres; kijk ook naar de streng en de spanning aan het eind.',
-      'So green on the station’s capacity map is not room at your address; look at the feeder too, and the voltage at the end.'),
+    B('Deze kabel is een {t:Streng|streng}: één uitgaande route uit het onderstation, met netstations erop.',
+      'This cable is a {t:Feeder|feeder}: one outgoing route from the substation, with stations on it.'),
+    B('De stationstrafo draagt de som van strengen die niet tegelijk pieken: één met een bedrijventerrein of drie zonneparken zit op {n:100} procent, de rest op {n:40}.',
+      'The station transformer carries the sum of feeders that don’t peak together: one with a business park or three solar farms at {n:100} percent, the rest at {n:40}.'),
+    B('Groen op de capaciteitskaart van het station is dus geen ruimte op jouw adres: kijk ook naar de streng en de spanning aan het eind.',
+      'So green on the station’s capacity map is not room at your address: check the feeder and the voltage at the end too.'),
   ],
   [ // s4 voltage along the feeder, and the two worst moments
     B('Stroom door de weerstand van de kabel kost spanning: een lange, zwaarbelaste streng eindigt op een winteravond laag.',
       'Current through the cable’s resistance costs voltage: a long, heavily loaded feeder ends low on a winter evening.'),
-    B('Bij {t:Invoeding|invoeding}, stroom op het net zetten, loopt een straat vol zonnepanelen op een zonnige middag juist op.',
-      'With {t:Feed-in|feed-in}, putting power onto the grid, a street full of solar panels rises on a sunny afternoon.'),
+    B('Bij {t:Invoeding|invoeding}, stroom op het net zetten, loopt een straat vol zonnepanelen op een zonnige middag op.',
+      'With {t:Feed-in|feed-in}, putting power onto the grid, a solar street rises on a sunny afternoon.'),
     B('Bij de klant moet het gemiddelde over tien minuten vrijwel altijd binnen {n:230} volt plus of min {n:10} procent blijven, volgens EN 50160: {n:207} tot {n:253} volt, de {t:Spanningsband|spanningsband}.',
-      'At the customer, the ten-minute average must nearly always stay within {n:230} volts plus or minus {n:10} percent, under the European standard: {n:207} to {n:253} volts, the {t:Voltage band|voltage band}.'),
+      'At the customer the ten-minute average must nearly always stay within {n:230} volts plus or minus {n:10} percent, a European standard: {n:207} to {n:253} volts, the {t:Voltage band|voltage band}.'),
     B('Te hoog, en omvormers schakelen zich af. De planner verdeelt de band over middenspanning en laagspanning.',
       'Too high, and inverters switch off. The planner splits the band between medium and low voltage.'),
     B('Twee slechtste momenten: voor afname de winteravondpiek, met warmtepompen, laadpalen en weinig zon; voor invoeding een zonnige voorjaarsmiddag met weinig verbruik.',
-      'So, two worst moments: for offtake the winter evening peak, with heat pumps, chargers and little sun; for feed-in a sunny spring afternoon with low demand.'),
+      'Two worst moments: offtake peaks on a winter evening, with heat pumps, chargers and little sun; feed-in on a sunny spring afternoon with low demand.'),
     B('Afnamecongestie en invoedingscongestie. Vraag dus steeds: wat is maatgevend, afname of invoeding?',
-      'Offtake congestion and feed-in congestion. So always ask: what is decisive, offtake or feed-in?'),
+      'Offtake or feed-in congestion: always ask which one is decisive here.'),
   ],
   [ // s5 example: the factory
-    B('Een voorbeeld. Een streng van {n:10} kilovolt mag {n:300} ampère dragen en piekt op een winteravond op {n:210}. Het onderstation heeft {n:80} megavoltampère en piekt op {n:45}.',
-      'An example. A {n:10} kilovolt feeder is rated at {n:300} amps and peaks at {n:210} on a winter evening. The substation has {n:80} megavolt amperes and peaks at {n:45}.'),
-    B('Een fabriek van voedingsmiddelen aan het eind vraagt {n:2.5} megavoltampère extra, vooral ’s avonds. Sales: het station is amper half vol.',
-      'A food factory at the end asks for {n:2.5} megavolt amperes more, mostly in the evening. Sales: the station is barely half full.'),
-    B('Dat is {n:144} ampère: {n:210} plus {n:144} is {n:354}, {n:118} procent. De streng is de beperking, niet het station. Check daarna de spanning aan het eind.',
-      'That is {n:144} amps: {n:210} plus {n:144} is {n:354}, {n:118} percent. The feeder is the limit, not the station. Then check the voltage at the end.'),
-    B('Opties: het normaal openpunt verleggen naar de buurstreng, een eigen kabel vanaf het station, of non-firm of buiten de avondpiek tot de verzwaring.',
-      'Options: move the normally open point toward the neighbouring feeder, a dedicated cable from the station, or non-firm or outside the evening peak until the reinforcement.'),
+    B('Een voorbeeld: een streng van {n:10} kilovolt mag {n:300} ampère dragen en piekt op een winteravond op {n:210}; het onderstation heeft {n:80} megavoltampère en piekt op {n:45}.',
+      'An example: a {n:10} kilovolt feeder rated {n:300} amps peaks at {n:210} on a winter evening; its substation has {n:80} megavolt amperes and peaks at {n:45}.'),
+    B('Een fabriek van voedingsmiddelen aan het eind vraagt er {n:2.5} megavoltampère bij, vooral ’s avonds. Sales: het station is amper half vol.',
+      'A food factory at the end wants {n:2.5} megavolt amperes more, mostly evenings. Sales: the station is barely half full.'),
+    B('Dat is {n:144} ampère: {n:210} plus {n:144} is {n:354}, {n:118} procent. De streng beperkt, niet het station. Check daarna de spanning aan het eind.',
+      'That is {n:144} amps: {n:210} plus {n:144} is {n:354}, {n:118} percent. The feeder limits, not the station. Then check the voltage at the end.'),
+    B('Opties: het normaal openpunt verleggen, de open schakelaar naar de buurstreng, zodat die een deel overneemt; een eigen kabel vanaf het station; of tot de verzwaring non-firm, dus terugregelbaar, of buiten de avondpiek.',
+      'Options: move the normally open point, the open switch to the next feeder, so it takes some load; a dedicated cable from the station; or, until the reinforcement, non-firm, which can be curtailed, or off-peak.'),
   ],
   [ // s6 N-1, and the rules per voltage level
-    B('Nu het onderstation. N-1: het net blijft leveren als één willekeurig component uitvalt; min één is de zwaarste enkele uitval.',
-      'Now the substation. N minus one: the grid keeps supplying when any single component fails; minus one is the worst single outage.'),
+    B('N-1: het net blijft leveren als één willekeurig component uitvalt. N is alles in bedrijf, min één de zwaarste enkele uitval.',
+      'N minus one: the grid keeps supplying when any single component fails. N is everything in service, minus one the worst single outage.'),
     B('Een trafo, een kabel, een lijn, of de {t:Rail|rail}: de dikke geleider waar alle in- en uitgaande circuits op aansluiten.',
       'A transformer, a cable, a line, or the {t:Busbar|busbar}: the thick conductor all incoming and outgoing circuits connect to.'),
-    B('Het dekt geen twee storingen tegelijk, en geen storing tijdens onderhoud, als je vaak zonder reserve draait. Onderhoud dus bij lage belasting.',
-      'It does not cover two faults at once, or a fault during maintenance, when you often run without reserve. So maintain at low load.'),
-    B('Sinds {n:1} januari 2026 eist de Energiewet die reserve vanaf {n:110} kilovolt, met de trafo’s naar het regionale net: hooguit een korte onderbreking. De oude Netcode: {n:10} minuten en {n:100} megawatt, uitzonderingen tot {n:6} uur.',
-      'Since {n:1} January 2026 the Energy Act requires it from {n:110} kilovolts up, with the transformers to the regional grid: a short interruption at most. The old Grid Code named {n:10} minutes and {n:100} megawatts, exceptions up to {n:6} hours.'),
+    B('Het dekt geen twee storingen tegelijk, en geen storing tijdens onderhoud, als er vaak geen reserve is: onderhoud dus bij lage belasting.',
+      'It does not cover two faults at once, or a fault during maintenance, when there is often no reserve: so maintain at low load.'),
+    B('Sinds {n:1} januari 2026 eist de Energiewet die reserve vanaf {n:110} kilovolt, met de trafo’s naar het regionale net: hooguit een korte onderbreking. De oude Netcode stond tot {n:10} minuten en {n:100} megawatt toe, soms tot {n:6} uur.',
+      'Since {n:1} January 2026 the Energy Act requires it from {n:110} kilovolts up, with the transformers to the regional grid: a short break at most. The old Grid Code allowed up to {n:10} minutes and {n:100} megawatts, sometimes {n:6} hours.'),
     B('In een middenspanningsring is de reserve omschakelen, binnen uren. In de laagspanning wacht je op de reparatie.',
-      'In a medium-voltage ring the reserve is switching over, within hours. In low voltage you wait for the repair.'),
+      'A medium-voltage ring’s reserve is switching over, within hours; in low voltage you wait for the repair.'),
   ],
   [ // s7 firm capacity
     B('Twee trafo’s van {n:40} megavoltampère geven een {t:Vaste capaciteit|vaste capaciteit} van zo’n {n:40}, geen {n:80}: wat er overblijft als het grootste component eruit ligt.',
       'Two {n:40} megavolt ampere transformers give a {t:Firm capacity|firm capacity} of about {n:40}, not {n:80}: what is left with the largest component out.'),
-    B('Meestal staat de helft stil als reserve, en bij een paar kabels net zo: half leeg en vol zijn allebei waar.',
-      'Most of the year half sits idle as reserve, and a pair of cables is the same: half empty and full are both true.'),
-    B('Bij koud weer kan een trafo een paar uur over zijn grens, dus planners rekenen soms iets boven de {n:40}.',
-      'In cold weather a transformer can run over its rating for a few hours, so planners sometimes count a bit above {n:40}.'),
+    B('Meestal staat de helft stil als reserve, bij een paar kabels net zo: half leeg en vol zijn allebei waar.',
+      'Most of the year half sits idle as reserve; a pair of cables likewise: half empty and full are both true.'),
+    B('Bij kou kan een trafo een paar uur over zijn grens, dus planners rekenen soms iets boven de {n:40}.',
+      'A transformer can run over its rating for a few cold hours, so planners sometimes count a bit above {n:40}.'),
   ],
   [ // s8 the emergency lane
     B('Met congestie overal verkopen netbeheerders die reserve als {t:Non-firm|non-firm}: normaal bruikbaar, bij uitval of onderhoud teruggeregeld of afgeschakeld.',
       'With congestion everywhere, operators sell that reserve {t:Non-firm|non-firm}: usable normally, curtailed or disconnected at a fault or in maintenance.'),
     B('TenneT noemde dat de {t:Vluchtstrook|vluchtstrook} gebruiken. Je ruilt leveringszekerheid in voor capaciteit nu.',
-      'TenneT called this using the {t:Emergency lane|emergency lane}. You trade security of supply for capacity now.'),
+      'TenneT called this using the {t:Emergency lane|emergency lane}: trading security of supply for capacity now.'),
     B('Het contract zegt wie dat risico draagt, en het bedrijfsvoeringscentrum moet binnen minuten terugregelen. Valkuil: verkocht, maar nooit getest.',
-      'The contract says who carries that risk, and the control room must curtail within minutes. Pitfall: sold, but never tested.'),
-    B('Experts twisten of strikte N-1 overal betaalbaar is, of dat klanten liever een zeldzame onderbreking nemen dan jaren wachten. Vraag: thermische grens, of N-1-reserve? En als de andere trafo in onderhoud is?',
-      'Experts argue whether strict N minus one stays affordable, or whether customers would rather accept a rare interruption than wait years. Ask: a thermal limit, or the reserve? And what if the other transformer is in maintenance?'),
+      'The contract says who carries that risk; the control room must curtail within minutes. Pitfall: sold, but never tested.'),
+    B('Experts twisten of strikte N-1 betaalbaar blijft, of dat klanten liever een zeldzame onderbreking nemen dan jaren wachten. Vraag: thermische grens, of N-1-reserve? En als de andere trafo in onderhoud is?',
+      'Experts argue whether strict N minus one is affordable, or whether customers prefer a rare break to years of waiting. Ask: a thermal limit, or the reserve? And if the other transformer is in maintenance?'),
   ],
   [ // s9 example: 46 MVA on 40
-    B('Een voorbeeld: twee trafo’s van {n:40} megavoltampère, piek {n:46}, groei {n:2} per jaar, een nieuw station pas over {n:6} jaar. Er wachten een koelhuis van {n:3} en een batterij van {n:4}.',
-      'An example: two {n:40} megavolt ampere transformers, peak {n:46}, growing {n:2} a year, a new station only in {n:6} years. A cold store of {n:3} and a battery of {n:4} are waiting.'),
-    B('Al {n:6} boven N-1: valt in de piek een trafo uit, dan draagt de andere {n:46}, {n:115} procent. Een paar koude uren kan dat, als je belasting via de middenspanning naar buurstations omschakelt.',
-      'Already {n:6} over N minus one: if a transformer fails at peak, the other carries {n:46}, {n:115} percent. That works for a few cold hours, if you can switch load to neighbouring stations over medium voltage.'),
-    B('Vast: nee. Maar {n:80} min {n:46} is {n:34} megavoltampère die normaal stilstaat: bied beide non-firm aan, teruggeregeld als een trafo eruit ligt.',
-      'Firm: no. But {n:80} minus {n:46} is {n:34} megavolt amperes idle in normal operation: offer both non-firm, curtailed when a transformer is out.'),
+    B('Een voorbeeld: twee trafo’s van {n:40} megavoltampère, piek {n:46}, groei {n:2} per jaar, een nieuw station over {n:6} jaar. Er wachten een koelhuis van {n:3} en een batterij van {n:4}.',
+      'An example: two {n:40} megavolt ampere transformers, peak {n:46}, growing {n:2} a year, a new station in {n:6} years. Waiting: a cold store of {n:3} and a battery of {n:4}.'),
+    B('Al {n:6} boven N-1: valt in de piek een trafo uit, dan draagt de andere {n:46}, {n:115} procent. Een paar koude uren kan dat, als je belasting naar buurstations kunt omschakelen.',
+      'Already {n:6} over N minus one: if a transformer fails at peak, the other carries {n:46}, {n:115} percent. That lasts a few cold hours, if you can switch load to neighbouring stations.'),
+    B('Vast: nee. Maar {n:80} minus {n:46} is {n:34}, en die staat normaal stil: bied beide non-firm aan, teruggeregeld als een trafo eruit ligt.',
+      'Firm: no. But {n:80} minus {n:46} is {n:34}, idle in normal operation: offer both non-firm, curtailed when a transformer is out.'),
     B('En let op de groei: over {n:3} jaar is de piek {n:52}.',
       'And watch the growth: in {n:3} years the peak is {n:52}.'),
   ],
