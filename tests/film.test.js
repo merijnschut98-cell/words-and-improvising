@@ -329,3 +329,87 @@ test('a film page inlines the runtime timeline, not the build-time SAY table', a
     assert.doesNotThrow(() => new vm.Script(script), `${name} script does not parse`);
   }
 });
+
+// ------------------------------------------------------------ focus highlight (v16)
+// Each beat names the part(s) of the drawing it explains (focus: a cue key, a
+// list of them, or null for an overview sentence). The player lights those
+// parts light blue / white while the beat is spoken and its caption shows.
+test('resolveFilm: a beat names its focus; a term cue joins it; strictFocus demands one on every beat', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const l = (lang) => ({ id: 'eng.fx.a', terms: lang === 'nl' ? [{ term: 'Voeding' }] : [{ term: 'Feed' }], teach: ['Voeding.'] });
+  const lessons = { nl: new Map([['eng.fx.a', l('nl')]]), en: new Map([['eng.fx.a', l('en')]]) };
+  const spec = (beats, more = {}) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['eng.fx.a'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }], ...more });
+  const data = resolveFilm(spec([
+    { nl: 'Een.', en: 'One.', focus: 'tool' },
+    { nl: 'Twee.', en: 'Two.', focus: ['tool', 'chuck'] },
+    { nl: 'Overzicht.', en: 'Overview.', focus: null },
+    { nl: 'De {t:Voeding|voeding}.', en: 'The {t:Feed|feed}.', cue: { Voeding: 'feed' }, focus: 'tool' },
+    { nl: 'Oud.', en: 'Old.', cues: ['chuck'] },
+    { nl: 'Niets.', en: 'Nothing.' },
+  ]), lessons);
+  const b = data.scenes[0].beats;
+  assert.deepEqual(b.map((x) => x.cues), [['tool'], ['tool', 'chuck'], [], ['tool', 'feed'], ['chuck'], []]);
+  assert.deepEqual(b.map((x) => x.focus), [['tool'], ['tool', 'chuck'], null, ['tool', 'feed'], undefined, undefined]);
+  assert.ok(!('strictFocus' in data));
+  // a film without focus fields resolves exactly as before: no focus key at all
+  assert.ok(!('focus' in b[4]) && !('focus' in b[5]));
+  // strict: every beat declares it, no legacy cues list, an overview names no term
+  const ok = resolveFilm(spec([{ nl: 'Een.', en: 'One.', focus: 'tool' }, { nl: 'Twee.', en: 'Two.', focus: null }], { strictFocus: true }), lessons);
+  assert.equal(ok.strictFocus, true);
+  assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.' }], { strictFocus: true }), lessons), /scene 1 beat 1: no focus/);
+  assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.', cues: ['x'] }], { strictFocus: true }), lessons), /use focus, not cues/);
+  assert.throws(() => resolveFilm(spec([{ nl: 'De {t:Voeding|voeding}.', en: 'The {t:Feed|feed}.', cue: { Voeding: 'feed' }, focus: null }], { strictFocus: true }), lessons), /overview .*names a term/);
+  for (const bad of [[], '', ['ok', 3], {}]) assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.', focus: bad }]), lessons), /focus must be/, JSON.stringify(bad));
+});
+
+test('checkFocus: beats without a focus are counted (warnings), unknown parts too; strict films turn them into errors', async () => {
+  const { checkFocus, cueKeysOf } = await import('../films/_kit/assert.mjs');
+  assert.deepEqual([...cueKeysOf('<svg><g data-cue="a"><g data-cue="b"></g></g><g data-cue="a"></g></svg>')].sort(), ['a', 'b']);
+  // a stage script that draws a cue group per frame names it too
+  assert.deepEqual([...cueKeysOf('out += cue(\'nop\', x); s = `<g data-cue="lab">`; c = `<g data-cue="${name}">`')].sort(), ['lab', 'nop']);
+  const keys = new Set(['a', 'b']);
+  const film = (beats, more = {}) => ({ scenes: [{ id: 's1', beats }], ...more });
+  const loose = checkFocus(film([{ cues: ['a'] }, { cues: [] }, { cues: [], focus: null }, { cues: ['zz'] }]), keys);
+  assert.deepEqual(loose.errors, []);
+  assert.deepEqual(loose.missing, ['s1 beat 2']);
+  assert.deepEqual(loose.unknown, ['s1 beat 4: zz']);
+  const strict = checkFocus(film([{ cues: ['a'], focus: ['a'] }, { cues: [] }, { cues: ['zz'], focus: ['zz'] }], { strictFocus: true }), keys);
+  assert.match(strict.errors.join('\n'), /s1 beat 2: no focus/);
+  assert.match(strict.errors.join('\n'), /s1 beat 3: focus "zz" is no part of the drawing/);
+  assert.deepEqual(checkFocus(film([{ cues: ['a'], focus: ['a'] }, { cues: [], focus: null }], { strictFocus: true }), keys).errors, []);
+});
+
+test('player: the focus highlight is light blue / white in both themes, eases in, holds still for video and reduced motion', async () => {
+  const { pageHtml } = await import('../films/_kit/player.mjs');
+  const page = pageHtml({ title: { nl: 'T', en: 'T' }, scenes: [] }, { svg: '<svg></svg>', script: 'const STAGE={};', label: { nl: 'l', en: 'l' } });
+  const css = page.match(/<style>([\s\S]*?)<\/style>/)[1];
+  const block = (sel) => css.slice(css.indexOf(sel), css.indexOf('}', css.indexOf(sel)));
+  for (const theme of ['.iso{', '.iso[data-theme="light"]{']) for (const v of ['--fp-focus:', '--fp-focus-glow:', '--fp-focus-top:', '--fp-focus-shade:', '--fp-focus-text:']) assert.ok(block(theme).includes(v), `${theme} ${v}`);
+  // the focused part: a halo and its edges in the focus colour, not petrol
+  assert.match(css, /\[data-cue\]\[data-on\]\{[^}]*filter:drop-shadow\(.*var\(--fp-focus-glow\)/);
+  assert.match(css, /\[data-cue\]\[data-on\] \.iso-edge[^{]*\{stroke:var\(--fp-focus\)/);
+  // a film's own cue rules (written against --fp-accent) follow the focus colour
+  assert.match(css, /\[data-cue\]\[data-on\]\{[^}]*--fp-accent:var\(--fp-focus\)/);
+  // calm: a short ease-in of the halo (restarted on the player when the beat
+  // changes, so parts the stage redraws every frame ease in too), no breathing
+  assert.match(css, /@property --fp-fi\{syntax:'<number>';inherits:true;initial-value:1\}/);
+  assert.match(css, /\.fp\[data-focus="a"\]\{animation:fp-focus-a \.\d+s ease-in/);
+  assert.match(css, /\.fp\[data-focus="b"\]\{animation:fp-focus-b \.\d+s ease-in/);
+  assert.match(css, /drop-shadow\(0 0 calc\(var\(--fp-fi,1\) \* [\d.]+px\) var\(--fp-focus-glow\)\)/);
+  assert.ok(!/fp-breathe|infinite/.test(css), 'no breathing loop');
+  // reduced motion and the video frame: the halo is simply there, no ease
+  assert.match(css, /\.fp\[data-motion="reduce"\]\[data-focus\],\.fp\[data-render="1"\]\[data-focus\]\{animation:none\}/);
+  assert.match(css, /prefers-reduced-motion:reduce\)\{\.fp\[data-focus\]\{animation:none\}/);
+  // the video frame is deterministic: no wall-clock or film-clock glow
+  assert.ok(!page.includes('--fp-b'));
+  // a stage may redraw a cue group every frame: the runtime lights the beat's
+  // parts again after each render, not only when the beat changes
+  const { readFileSync } = await import('node:fs');
+  const rt = readFileSync(new URL('../films/_kit/player-runtime.js', import.meta.url), 'utf8');
+  const renders = rt.split('\n').filter((l) => l.includes('STAGE.render('));
+  assert.ok(renders.length >= 2);
+  for (const l of renders) assert.match(l, /STAGE\.render\([^)]*\);\s*lightFocus\(\);/, l.trim());
+  // the runtime goes in without its comment lines (bytes; each page stays near its 300 KB target)
+  assert.ok(rt.includes("// the beat's focus") && !page.includes("// the beat's focus"));
+  assert.ok(page.includes('lightFocus();'));
+});
