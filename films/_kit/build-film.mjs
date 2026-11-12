@@ -4,6 +4,8 @@
 // - Terms: {t:Snijsnelheid} is looked up in the served lessons; its English word
 //   comes from the English lesson at the same position. The build fails when a
 //   term is not found, or when the nl and en captions name different terms.
+//   An English name two served lessons share is looked up first in the lesson
+//   its Dutch term came from (Stakeholdermap, Stakeholderkaart: "Stakeholder map").
 // - Numbers: {n:1167} is formatted per language and must appear in the Dutch
 //   text of a served lesson. The film's model asserts it computes them.
 // - Focus (v16): each beat names the part(s) of the drawing it explains, so the
@@ -18,6 +20,11 @@
 //   beat a focus field (no `cues`, no term in an overview): then both are
 //   errors. The page data carries `focus` per beat and `strictFocus` only when
 //   the film declares them, so older films' data is unchanged.
+// - Stage text (v16, measured in the lesson view at 390 px; the app runs a film
+//   edge to edge on a phone, so the 640-unit stage is 390 px wide): at least
+//   20 font-size units in an HTML-only film (12.2 px) and at least 22 units in
+//   a film that will be rendered to video (the 1280x720 frame shows the stage
+//   at 0.9 of its width: 22 units = 12.1 px). Older films keep their sizes.
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -63,9 +70,12 @@ export function englishCorpus(lessons) {
   return parts.join('\n');
 }
 
-function findTerm(name, lang, served, lessons) {
+// prefer: a lesson searched first, so an English term shared by two served
+// lessons (Stakeholdermap, Stakeholderkaart: both "Stakeholder map") resolves to
+// the lesson its Dutch twin at the same position named.
+function findTerm(name, lang, served, lessons, prefer) {
   const key = name.toLowerCase();
-  for (const id of served) {
+  for (const id of prefer && served.includes(prefer) ? [prefer, ...served] : served) {
     const i = (lessons[lang].get(id).terms || []).findIndex((x) => x.term.toLowerCase() === key);
     if (i >= 0) return { lesson: id, index: i };
   }
@@ -101,7 +111,7 @@ export function resolveFilm(spec, lessons) {
       const where = `scene ${si + 1} beat ${bi + 1}`;
       const P = { nl: parseMarked(b.nl), en: parseMarked(b.en) };
       const tn = P.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
-      const te = P.en.filter((p) => p.term).map((p) => findTerm(p.term, 'en', served, lessons));
+      const te = P.en.filter((p) => p.term).map((p, i) => findTerm(p.term, 'en', served, lessons, tn[i] && tn[i].lesson));
       if (JSON.stringify(tn) !== JSON.stringify(te)) throw new Error(`${where}: nl and en name different terms`);
       const nn = P.nl.filter((p) => p.num).map((p) => p.num);
       const ne = P.en.filter((p) => p.num).map((p) => p.num);
@@ -153,7 +163,7 @@ export function resolveFilm(spec, lessons) {
       if (b.say) {
         const S = { nl: parseMarked(b.say.nl), en: parseMarked(b.say.en) };
         const sn = S.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
-        const se = S.en.filter((p) => p.term).map((p) => findTerm(p.term, 'en', served, lessons));
+        const se = S.en.filter((p) => p.term).map((p, i) => findTerm(p.term, 'en', served, lessons, sn[i] && sn[i].lesson));
         if (JSON.stringify(sn) !== JSON.stringify(se)) throw new Error(`${where}: the nl and en narration name different terms`);
         const nums = { nl: S.nl.filter((p) => p.num).map((p) => p.num), en: S.en.filter((p) => p.num).map((p) => p.num) };
         if (nums.nl.join() !== nums.en.join()) throw new Error(`${where}: the nl and en narration carry different numbers`);

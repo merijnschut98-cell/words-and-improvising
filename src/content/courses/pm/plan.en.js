@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
+      film: 'pm.plan.wbs',
       title: 'Breaking the work down',
       pre: [
         {
@@ -21,7 +22,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'At a grid operator, the goal is to cut last-week cancellations of planned MS jobs (work on the medium-voltage network, cancelled in the final week before the date) from 18% to under 8% in six months. With two planners and a team lead you put up four deliverables: (1) baseline of cancellations by cause, (2) a readiness check agreed by planning and the control room (which operates the grid remotely), (3) a six-week pilot in one region, (4) handover to all regional planners.\n\nUnder (1): “extract 3 months of cancellations from the planning system” (16 hours, the data analyst), “classify by cause with two planners” (12 hours), “review with the planning manager” (4 hours). Under (3) someone adds “brief the switching technicians” (who switch the network off and on safely), which you had missed.',
+        text: 'At a grid operator, the goal is to cut last-week cancellations of planned MS jobs (work on the medium-voltage network, cancelled in the final week before the date) from 18% to under 8% in six months. With two planners and a team lead you put up four deliverables: (1) baseline of cancellations by cause, (2) a readiness check agreed by planning and the control room (which operates the grid remotely), (3) a six-week pilot in one region, (4) handover to all regional planners.\n\nUnder (1): “extract 3 months of cancellations from the planning system” (16 hours, the data analyst), “classify by cause with two planners” (12 hours), “review with the planning manager” (4 hours: under 8, but the 8–80 rule is a rule of thumb, not a law; you could also fold it into the classifying). Under (3) someone adds “brief the switching technicians” (who switch the network off and on safely), which you had missed.',
       },
       said: 'What you hear in projects: “Do we really need a whole breakdown? We know what has to happen.”',
       recall: [
@@ -666,6 +667,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
+      film: 'pm.plan.wbs',
       title: 'Estimating honestly',
       pre: [
         {
@@ -1082,6 +1084,7 @@ export default {
     },
     {
       id: 'pm.plan.raci',
+      film: 'pm.intake.stakeholders',
       title: 'Roles and the sponsor',
       pre: [
         {

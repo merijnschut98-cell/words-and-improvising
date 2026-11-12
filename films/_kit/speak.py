@@ -83,15 +83,58 @@ def sentence_phonemes(voice, text, lex):
     if not words and len(sents) == 1:
         return text, [], []
     ph = ' '.join(s.strip() for s in sents)
-    used, warn = [], []
-    for w in words:
-        alone = espeak(voice, w)[0].strip().rstrip('.,')
-        if alone in ph:
-            ph = ph.replace(alone, lex[w.lower()], 1)
-            used.append(w.lower())
-        else:
-            warn.append(f'lexicon: espeak form of "{w}" ({alone}) not found in the sentence; left as espeak reads it')
+    if words:
+        alone = {w.lower(): espeak(voice, w)[0].strip().rstrip('.,') for w in words}
+        ph, used, warn = swap_lexicon(ph, text.split(), token_groups(voice, text), lex, alone)
+    else:
+        used, warn = [], []
     return f'[[{ph}]]', used, warn
+
+
+def swap_lexicon(ph, toks, counts, lex, alone):
+    """The lexicon words' phonemes swapped into the sentence's phonemes ph, each
+    at the place of its own word: toks is the text split at spaces, counts the
+    phoneme words up to and including each token (token_groups), alone the
+    espeak-ng form of each lexicon word read alone. A word is only looked for
+    in its own phoneme words (or, glued onto the word before it, in that one),
+    so "project" is never swapped into an earlier "projecten". When counts do
+    not fit ph, a match must be whole phoneme words. Returns (ph, used, warn).
+    """
+    spans, pos = [], 0
+    for g in ph.split(' '):
+        if g and not set(g) <= PUNCT:
+            spans.append((pos, pos + len(g)))
+        pos += len(g) + 1
+    fits = bool(spans) and len(counts) == len(toks) and counts[-1] == len(spans)
+    if fits:  # as word_spans: no count may exceed a later one
+        counts = list(counts)
+        for i in range(len(counts) - 2, -1, -1):
+            counts[i] = min(counts[i], counts[i + 1])
+    tail = '(?=[' + re.escape(''.join(sorted(PUNCT))) + ']*(?: |$))'
+    reps, used, warn, cursor = [], [], [], 0
+    for i, tok in enumerate(toks):
+        for w in re.findall(r"\w[\w']*", tok):
+            key = w.lower()
+            if key not in lex:
+                continue
+            a = alone[key]
+            if fits:
+                lo, hi = (counts[i - 1] if i else 0), counts[i]
+                if hi <= lo:  # glued onto the word before it
+                    lo, hi = max(lo - 1, 0), max(lo, 1)
+                k = ph.find(a, max(spans[lo][0], cursor), spans[hi - 1][1])
+            else:
+                m = re.compile('(?:^|(?<= ))' + re.escape(a) + tail).search(ph, cursor)
+                k = m.start() if m else -1
+            if k < 0:
+                warn.append(f'lexicon: espeak form of "{w}" ({a}) not found in the sentence; left as espeak reads it')
+                continue
+            reps.append((k, k + len(a), lex[key]))
+            used.append(key)
+            cursor = k + len(a)
+    for k, e, new in reversed(reps):
+        ph = ph[:k] + new + ph[e:]
+    return ph, used, warn
 
 
 def token_groups(voice, text):

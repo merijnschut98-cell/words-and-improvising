@@ -329,6 +329,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      film: 'pm.intake.stakeholders',
       title: 'Wie beslist, wie kan het stoppen',
       pre: [
         {
@@ -410,6 +411,7 @@ export default {
     },
     {
       id: 'pm.intake.start',
+      film: 'pm.run.rhythm',
       title: 'De eerste weken',
       pre: [
         {
@@ -654,6 +656,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
+      film: 'pm.plan.wbs',
       title: 'Wanneer is het af',
       pre: [
         {

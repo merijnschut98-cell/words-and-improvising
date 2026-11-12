@@ -165,6 +165,7 @@ export default {
     },
     {
       id: 'pm.lead.influence',
+      film: 'pm.intake.stakeholders',
       title: 'Influence without authority',
       pre: [
         {
