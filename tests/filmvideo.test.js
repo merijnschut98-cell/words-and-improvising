@@ -88,6 +88,15 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
   assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
   assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
+  // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
+  // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
+  // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
+  // voice); English keeps them all
+  assert.equal(speakOf(['Een pakketdeal, twee pakketdeals. Met framing, Framing.'], 'nl'), 'Een pakket-diel, twee pakket-diels. Met freeming, Freeming.');
+  assert.equal(speakOf(['Gecoate beugels; zelf coaten kan niet. Gecoate nagels.'], 'nl'), 'Gekoote beugels; zelf kooten kan niet. Gecoate nagels.');
+  // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (espeak-ng stresses IN-)
+  assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en inte-griteit.');
+  assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
 });
 
 // ------------------------------------------------------------ WAV files

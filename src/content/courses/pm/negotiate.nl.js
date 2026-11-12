@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.negotiate.interests',
+      film: 'pm.negotiate.batna',
       title: 'Standpunten en belangen',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
+      film: 'pm.negotiate.batna',
       title: 'Jouw alternatief en dat van hen',
       pre: [
         {
@@ -327,6 +329,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
+      film: 'pm.negotiate.batna',
       title: 'Het eerste bod en framing',
       pre: [
         {
@@ -984,6 +987,7 @@ export default {
     },
     {
       id: 'pm.negotiate.no',
+      film: 'pm.negotiate.batna',
       title: 'Nee zeggen en een ruil aanbieden',
       pre: [
         {

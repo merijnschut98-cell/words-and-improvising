@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.negotiate.interests',
+      film: 'pm.negotiate.batna',
       title: 'Positions and interests',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
+      film: 'pm.negotiate.batna',
       title: 'Your alternative and theirs',
       pre: [
         {
@@ -327,6 +329,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
+      film: 'pm.negotiate.batna',
       title: 'First numbers and framing',
       pre: [
         {
@@ -984,6 +987,7 @@ export default {
     },
     {
       id: 'pm.negotiate.no',
+      film: 'pm.negotiate.batna',
       title: 'Saying no and offering a trade',
       pre: [
         {
