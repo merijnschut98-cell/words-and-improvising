@@ -118,6 +118,15 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
+  // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
+  // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
+  // voice); English keeps them all
+  assert.equal(speakOf(['Een pakketdeal, twee pakketdeals. Met framing, Framing.'], 'nl'), 'Een pakket-diel, twee pakket-diels. Met freeming, Freeming.');
+  assert.equal(speakOf(['Gecoate beugels; zelf coaten kan niet. Gecoate nagels.'], 'nl'), 'Gekoote beugels; zelf kooten kan niet. Gecoate nagels.');
+  // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
+  assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
+  assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
 });
 
 // ------------------------------------------------------------ WAV files
