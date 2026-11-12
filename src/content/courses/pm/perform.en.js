@@ -665,6 +665,7 @@ export default {
     },
     {
       id: 'pm.perform.dialogue',
+      film: 'pm.lead.feedback',
       title: 'The performance conversation',
       pre: [
         {

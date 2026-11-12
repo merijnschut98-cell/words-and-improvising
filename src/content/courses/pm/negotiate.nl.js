@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.negotiate.interests',
+      film: 'pm.negotiate.batna',
       title: 'Standpunten en belangen',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
+      film: 'pm.negotiate.batna',
       title: 'Jouw alternatief en dat van hen',
       pre: [
         {
@@ -327,6 +329,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
+      film: 'pm.negotiate.batna',
       title: 'Het eerste bod en framing',
       pre: [
         {
@@ -341,7 +344,7 @@ export default {
         'Een goed anker is ambitieus en verdedigbaar: je kunt uitleggen waar het vandaan komt. Een extreem getal dat je niet kunt onderbouwen, kost je geloofwaardigheid en kan het gesprek beëindigen. Geef de reden mee met het getal: “Vergelijkbare diagnoses kostten 18 tot 22 dagen, dus we stellen er 20 voor.”',
         'Ankert de ander eerst, ga dan niet over zijn getal in discussie: dan blijft het in het midden staan. Vraag hoe hij erop kwam, leg jouw basis uit en leg je eigen getal op tafel. Doe geen tegenbod, je antwoord met een eigen getal, vlak bij een getal dat je onredelijk vindt; daarmee accepteer je zijn anker.',
         'Framing: hetzelfde feit komt anders binnen. “95% van de klussen op tijd” of “1 op de 20 klussen te laat”. “€31.200” of “€600 per week, een jaar lang”.\n\nMensen wegen verlies zwaarder dan een even grote winst, verliesaversie (Kahneman en Tversky, 1979), dus “zonder dit blijf je 300 ploeguren per maand verliezen” komt vaak harder aan dan “dit bespaart 300 uur”. Frame eerlijk, in termen waar de ander om geeft.',
-        'Plan je concessies, de stappen waarin je toegeeft: maak elke stap kleiner (20 dagen, dan 19, dan 18,5) en vraag er telkens iets voor terug. Grote of snelle concessies verraden dat er nog veel ruimte is.\n\nWie gaat eerst? Kent de ander de markt beter dan jij, dan beschermt het je om hem te laten openen. Onderzoek van Ames en Mason (2015) suggereert dat een bandbreedte met je doel onderaan, “20 tot 22 dagen”, minstens zo goed werkt als één getal. Scherpe vraag: “Waar is dat getal op gebaseerd?”',
+        'Plan je concessies, de stappen waarin je toegeeft: maak elke stap kleiner (20 dagen, dan 19, dan 18,5) en vraag er telkens iets voor terug. Grote of snelle concessies verraden dat er nog veel ruimte is.\n\nKent de ander de markt beter, dan beschermt het je om hem te laten openen. In experimenten van Ames en Mason (2015) gaf een bandbreedte met je doel onderaan, “20 tot 22 dagen”, een betere uitkomst dan één getal; met je doel bovenaan verloor je. Scherpe vraag: “Waar is dat getal op gebaseerd?”',
       ],
       example: {
         kind: 'worked',
@@ -984,6 +987,7 @@ export default {
     },
     {
       id: 'pm.negotiate.no',
+      film: 'pm.negotiate.batna',
       title: 'Nee zeggen en een ruil aanbieden',
       pre: [
         {
@@ -1142,6 +1146,7 @@ export default {
     },
     {
       id: 'pm.negotiate.senior',
+      film: 'pm.lead.feedback',
       title: 'Het oneens zijn met iemand die hoger staat',
       pre: [
         {
@@ -1156,7 +1161,7 @@ export default {
         'Gebruik feit-visie-verzoek: bereid drie dingen voor en houd ze uit elkaar, het feit, je visie en je verzoek.\n\n“De data van de laatste 12 weken laat X zien” is het feit. “Ik denk dat dat Y betekent” is je visie. “Ik wil voorstellen Z te checken voordat we besluiten” is je verzoek.\n\nEen helder verzoek maakt van onenigheid een volgende stap.',
         'Kies de setting. Bij een groot verschil van mening ga je eerst één-op-één: overval nooit iemand die hoger staat waar zijn team bij is. In een overleg stel je liever een vraag dan dat je een oordeel geeft: “Mag ik er één ding uit de data aan toevoegen?”\n\nHoud je stem laag en je tempo rustig. Kalmte komt over als zelfvertrouwen. Op papier gelden de regels uit Assertief, niet agressief.',
         'Weet wanneer je stopt. Zeg het één keer duidelijk, en een tweede keer alleen met nieuwe informatie.\n\nBesluit hij anders en gaat het niet over veiligheid of integriteit, dan geldt disagree and commit: accepteer het, voer het besluit volledig uit en noteer wat je hebt geadviseerd. Gaat het wel over veiligheid of integriteit, dan neem je het escalatiepad (escalation path): je legt het open bij het niveau erboven, en je zegt dat eerst tegen de persoon zelf.',
-        'Wat je ziet: de hoogste in rang praat eerst en de rest van de kamer gaat erachter staan. Valkuilen: zo zacht hinten dat niemand het merkt; de discussie in het openbaar winnen en de persoon kwijtraken; achter iemands rug naar zijn baas stappen.\n\n“Disagree and commit” komt van Intel en werd bekend door Jeff Bezos van Amazon. Critici zeggen dat het mensen monddood kan maken; het werkt alleen als het bezwaar eerst echt gehoord is. Scherpe vraag: “Wat zou je moeten zien om van gedachten te veranderen?”',
+        'Wat je ziet: de hoogste in rang praat eerst en de rest van de kamer gaat erachter staan. Valkuilen: zo zacht hinten dat niemand het merkt; de discussie in het openbaar winnen en de persoon kwijtraken; achter iemands rug naar zijn baas stappen.\n\n“Disagree and commit” wordt vaak aan Intel toegeschreven en werd bekend door Jeff Bezos van Amazon. Critici zeggen dat het mensen monddood kan maken; het werkt alleen als het bezwaar eerst echt gehoord is. Scherpe vraag: “Wat zou je moeten zien om van gedachten te veranderen?”',
       ],
       example: {
         kind: 'faded',
