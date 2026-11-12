@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildCoachRequest, parseCoachResponse, runCoach, COACH_SCHEMA } from '../src/core/coach.js';
+import { buildCoachRequest, parseCoachResponse, runCoach, COACH_SCHEMA, suspectNumbers } from '../src/core/coach.js';
 
 const args = {
   drill: 'explain',
@@ -17,6 +17,7 @@ const good = {
   strength: 'Clear analogy.',
   improvement: 'Start with the point.',
   stronger_version: 'Takt time is the heartbeat of the customer...',
+  misheard: [],
 };
 
 test('request carries model, fallbacks, schema and transcript', () => {
@@ -189,4 +190,57 @@ test('coach scores outside 1–5 are clamped and rounded after parsing', () => {
   assert.equal(r.ok, true);
   assert.deepEqual(r.data.scores, { clarity: 5, structure: 1, fluency: 4, vocabulary: 4 });
   assert.equal(r.data.overall, 5);
+});
+
+// Speech recognition mishears: the coach must judge what he most likely said.
+test('the coach is told the transcript is speech recognition that can mishear words, numbers and names', () => {
+  const r = buildCoachRequest({ ...args, model: 'm' });
+  assert.match(r.system, /automatic speech.recognition/i);
+  assert.match(r.system, /misheard/i);
+  assert.match(r.system, /numbers/i);
+  assert.match(r.system, /names/i);
+  assert.match(r.system, /do not penali[sz]e/i);
+  assert.match(r.system, /most likely said/i);
+  assert.match(r.system, /misheard.*best guess|best guess.*misheard/i);
+});
+
+test('the schema asks for misheard fragments as heard/likely pairs, required, no bounds', () => {
+  const m = COACH_SCHEMA.properties.misheard;
+  assert.equal(m.type, 'array');
+  assert.equal(m.items.type, 'object');
+  assert.equal(m.items.additionalProperties, false);
+  assert.deepEqual([...m.items.required].sort(), ['heard', 'likely']);
+  assert.equal(m.items.properties.heard.type, 'string');
+  assert.equal(m.items.properties.likely.type, 'string');
+  assert.ok(COACH_SCHEMA.required.includes('misheard'));
+  assert.deepEqual(walk(m), []);
+});
+
+test('missing or invalid misheard parses to an empty list; valid pairs are kept and cleaned', () => {
+  const base = { scores: good.scores, overall: 4, strength: 's', improvement: 'i', stronger_version: 'v' };
+  const parse = (extra) => parseCoachResponse({ content: [{ type: 'text', text: JSON.stringify({ ...base, ...extra }) }] }).data.misheard;
+  assert.deepEqual(parse({}), []);
+  assert.deepEqual(parse({ misheard: 'nope' }), []);
+  assert.deepEqual(parse({ misheard: null }), []);
+  assert.deepEqual(parse({ misheard: [null, 3, { heard: 'x' }, { heard: '', likely: 'y' }, { heard: ' 81 ', likely: ' Eén ' }, { heard: 'a', likely: 'a' }] }), [{ heard: '81', likely: 'Eén' }]);
+  const many = Array.from({ length: 12 }, (_, i) => ({ heard: `h${i}`, likely: `l${i}` }));
+  assert.equal(parse({ misheard: many }).length, 8);
+});
+
+test('a transcript the user corrected by hand is marked as such for the coach', () => {
+  const r = buildCoachRequest({ ...args, model: 'm', corrected: true });
+  assert.match(r.messages[0].content, /corrected the transcript by hand/i);
+  assert.doesNotMatch(buildCoachRequest({ ...args, model: 'm' }).messages[0].content, /corrected the transcript by hand/i);
+});
+
+test('numbers in the transcript that the task never mentions are flagged as likely mishearings', () => {
+  assert.deepEqual(suspectNumbers('ik denk 81 dat het goed is', 'Leg takt tijd uit'), ['81']);
+  assert.deepEqual(suspectNumbers('de OEE was 61%', 'De OEE staat op 61%'), []);
+  assert.deepEqual(suspectNumbers('geen getallen hier', 'Prompt'), []);
+  assert.deepEqual(suspectNumbers('81 en nog eens 81 en 3', 'x'), ['81', '3']);
+  const r = buildCoachRequest({ ...args, transcript: 'takt time is 81 the rhythm', model: 'm' });
+  assert.match(r.messages[0].content, /Numbers in the transcript that the task does not mention.*81/);
+  assert.doesNotMatch(buildCoachRequest({ ...args, model: 'm' }).messages[0].content, /Numbers in the transcript/);
+  // A hand-corrected transcript is trusted: no number hint.
+  assert.doesNotMatch(buildCoachRequest({ ...args, transcript: 'takt time is 81 the rhythm', model: 'm', corrected: true }).messages[0].content, /Numbers in the transcript/);
 });
