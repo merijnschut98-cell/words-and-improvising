@@ -293,6 +293,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Voltage levels and who runs them',
       pre: [
@@ -364,6 +365,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.path',
+      film: 'eng.gridbasics.path',
       title: 'From substation to socket',
       pre: [
         {

@@ -221,7 +221,14 @@ const SAY = {
     // contract, tijdsduurGEEbonden (with a long e), trafoWISsel and piek-UUR (as piekuren above)
     [/\b([Rr])edispatch\b/g, '$1iedispetsj'], [/\b([Pp])eak shaving\b/g, '$1iek sjeeving'], [/\b([Dd])ay-aheadmarkt/g, '$1ee-ahed-markt'],
     [/\b([Ss])ysteemcode\b/g, '$1ysteem-code'], [/\b([Cc])apaciteits(beperkings|sturings)contract/g, '$1apaciteits-$2contract'],
-    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur']],
+    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng says EE-neksis, LIE-ander, westLAND, wijkTRAfo
+    // and hoofdze-KIE-ring. "En-exis" and "Ljander" give one main stress in the right place (en-NEK-sis,
+    // LJAN-der); Westland, wijktrafo and hoofdzekering are split at the head, which stresses both parts (WEST-LAND,
+    // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
+    // load film's "De hoofdzekering" stays as it is
+    [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
