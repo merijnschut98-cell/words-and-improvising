@@ -57,14 +57,14 @@
 //     b3), 0.9 x 0.9 x 0.9 x 0.9 and "shared people make it worse" (s2 b3,
 //     card)
 //   programme teach 3: the programme board, the sponsor, the project owners,
-//     the line manager who owns the outcome, finance if money moves (s3 b1;
-//     "if money moves" not said); monthly, decides on the seams: sequencing,
+//     the line manager who owns the outcome, finance if money moves (s3 b1);
+//     monthly, decides on the seams: sequencing,
 //     shared people, scope moving between projects; project decisions stay in
 //     the project steering groups (s3 b2); an hour on one project's test plan:
 //     a steering group with too many people (s3 b2, card, about 5 s)
 //   programme teach 4: watermelon reporting, green outside, red inside (s3
 //     b3); each green on its own plan, the shared goal not moving (s3 b3);
-//     nobody reports on the seams (s3 b2-b3, card: the seams lit); report the
+//     nobody reports on the seams (s3 b3, card); report the
 //     outcome number monthly next to the statuses (s3 b4); experts disagree
 //     on the lead's power, budget control or a clear outcome and a strong
 //     board (s3 b4, caption and card)
@@ -82,8 +82,8 @@
 //     the dependencies on one A4, the planners all three teams need (card);
 //     team B owns the definition and freezes it in week 6, IT tests the
 //     release before go-live (s2 b4); a monthly board looking at the outcome
-//     number with each project's share (s3 b4; who sits on it: the board card
-//     of s3 b1, not the example's own list)
+//     number with each project's share (s3 b4), with her, the three project
+//     owners and the planning manager (s3 b4, card)
 //   prioritise teach 1: score on value (euros or a KPI moved per year),
 //     effort (days of the scarce people), risk (the chance it doesn't
 //     deliver), fit with strategy; rough, 1 to 5 (s4 b1; the definitions and
@@ -104,7 +104,7 @@
 //     days" (s5 b5, card)
 //   prioritise teach 4: work in progress, started and not yet finished (s6
 //     b1); Little's law (1961), lead time = work in progress / throughput (s6
-//     b2), from queueing theory (card); three finished a quarter: twelve open
+//     b2), from queueing theory, the average lead time (card); three finished a quarter: twelve open
 //     take about four quarters, six about two (s6 b2); switching and waiting
 //     cut throughput too: twelve at half speed deliver less than six at full
 //     speed (s6 b3)
@@ -128,8 +128,9 @@
 //   capacity teach 1: not total hours but the same five people (s7 b1), the
 //     senior process engineer, the planner who knows the system, the one data
 //     analyst (s7 b1, card); a capacity matrix: names down, projects across,
-//     days per month per cell, real available days (s7 b1; drawn as a column
-//     "echt", see open points); overbooked rows are capacity conflicts, more
+//     days per month per cell, real available days in a last column (s7 b1,
+//     the column "echt"; the lesson said "at the bottom", which fits no
+//     matrix with names down, and now says a last column); overbooked rows are capacity conflicts, more
 //     days promised than the person has; two or three red rows explain most
 //     of the delay (s7 b2)
 //   capacity teach 2: real availability is lower than people think; of about
@@ -171,7 +172,10 @@
 // Quality Software Management, Volume 1: Systems Thinking, Dorset House 1992:
 // his table of time per project gives 20% lost to switching with two
 // projects, 40% with three, 60% with four and 75% with five (the film says
-// two, three and five, as the lesson). No scoring model is named: no WSJF, no
+// two, three and five, as the lesson). Reviewed 2026-11-12: Little, Operations
+// Research 9 (3), 383-387, 1961; the Weinberg table as above (pp. 284-285);
+// book catalogues date the first printing September 1991, while it is usually
+// cited as 1992, as the lesson does (kept; an open point for the author). No scoring model is named: no WSJF, no
 // Reinertsen, no SAFe (the lesson names none; cost of delay is a later lesson
 // of this topic). The sums are asserted below: 0.9^4 = 0.656; 300/120 = 2.5,
 // 150/30 = 5, 300 x 50% = 150; B 180/40 = 4.5, D 90/30 = 3, A 200/80 = 2.5,
@@ -228,7 +232,7 @@ says(PR, ['waarde (euro’s, of een KPI, een kernprestatie-indicator, die per ja
   'van een levensmiddelenproducent', 'samen 240 projectdagen', 'A, energiebesparing, € 200k per jaar, 80 dagen', 'B, kortere omsteltijden, € 180k, 40 dagen', 'C, een nieuw MES', '€ 400k, maar slechts 50% vertrouwen, 200 dagen', 'D, verpakkingsafval, € 90k, 30 dagen', 'E, het dashboard van de plantdirecteur, waarde niet genoemd, 40 dagen', 'Iedereen wil ze alle vijf',
   'B € 4,5k, D € 3k, A € 2,5k, en C € 1k na de correctie voor 50% risico; E is onbekend', 'B, D en A kosten samen 150 dagen: daarmee starten', 'C past niet en is het onzekerst', 'een eerste fase van 60 dagen voor die de grote aanname test voordat je 200 dagen vastlegt', 'op 210 dagen, met 30 als buffer',
   '“Komt het boven € 2,5k per dag, dan gaat het vóór A.”', 'Dan kiest het MT, niet jij']);
-says(CA, ['dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist', 'namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en onderaan hun echte beschikbare dagen',
+says(CA, ['dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist', 'namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en in een laatste kolom ieders echte beschikbare dagen',
   'Overboekte rijen zijn je capaciteitsconflicten', 'twee of drie rode rijen, en die verklaren het grootste deel van de vertraging',
   'Echte beschikbaarheid is lager dan mensen denken', 'zo’n 260 werkdagen', 'grofweg 50 af aan vakantie, feestdagen, ziekte en opleiding', 'algemeen overleg en administratie kosten er nog zo’n 20', 'zo’n 190 echte dagen', 'Kost het eigen werk 70%, dan zijn er 57 projectdagen per jaar: ongeveer vijf per maand', '“twee dagen per week”', 'planningsfictie',
   'moet de draad weer oppakken', 'Gerald Weinberg (1992)', 'met twee projecten verlies je zo’n 20% van je tijd aan schakelen, met drie zo’n 40%, met vijf zo’n 75%', 'Het is een schatting, geen meting, maar mensen herkennen het', 'elk project wacht op die persoon', 'de kalendertijd van start tot klaar',
@@ -270,9 +274,9 @@ assert(40 * 1000 === 40000, 'a contractor: 40 days at 1,000 euro');
 assert(Math.floor(4 * 4) === 16 && Math.floor(4 * 52 / 12) === 17, 'four days a week: 16 to 17 days a month');
 // the capacity matrix of s7 (drawn, not given by the lesson): three scarce people over four projects
 const MATRIX = [
-  { nl: 'senior engineer', en: 'senior engineer', cells: [4, 3, 2, 2], has: 6 },
+  { nl: 'engineer', en: 'engineer', cells: [4, 3, 2, 2], has: 6 },
   { nl: 'planner', en: 'planner', cells: [2, 2, 2, 1], has: 4 },
-  { nl: 'data-analist', en: 'data analyst', cells: [1, 0, 2, 1], has: 5 },
+  { nl: 'analist', en: 'analyst', cells: [1, 0, 2, 1], has: 5 },
 ];
 MATRIX.forEach((r) => { r.sum = r.cells.reduce((a, b) => a + b, 0); });
 assert(MATRIX.filter((r) => r.sum > r.has).length === 2, 'two red rows of three');
@@ -462,7 +466,7 @@ const spec = {
     sc('s3', PG, { nl: 'De raad en de naden', en: 'The board and the seams' }, [
       { nl: 'De {t:Programmaraad|programmaraad}: sponsor, projecteigenaren, eigenaar van de uitkomst, finance.', en: 'The {t:Programme board|programme board}: sponsor, project owners, outcome owner, finance.', cue: { Programmaraad: 'raad' }, focus: ['raad', 'sponsor'] },
       { nl: 'Maandelijks over de naden. Projectbesluiten blijven in de stuurgroep.', en: 'Monthly, on the seams. Project decisions stay in the steering group.', focus: ['seams', 'steer'] },
-      { nl: 'Het {t:Watermeloeneffect|watermeloeneffect}: groen buiten, rood vanbinnen. Drie keer groen, nog {n:14}%.', en: '{t:Watermelon reporting|Watermelon reporting}: green outside, red inside. Three times green, still {n:14}%.', cue: { Watermeloeneffect: 'melon' }, focus: 'melon' },
+      { nl: 'Het {t:Watermeloeneffect|watermeloeneffect}: groen buiten, rood vanbinnen. Drie keer groen, nog {n:14}%.', en: '{t:Watermelon reporting|Watermelon reporting}: green outside, red inside. Three times green, still {n:14}%.', cue: { Watermeloeneffect: 'melon' }, focus: ['melon', 'report'] },
       { nl: 'Rapporteer elke maand het uitkomstgetal zelf. Experts twisten over de macht van de leider.', en: 'Report the outcome number itself every month. Experts argue about the lead’s power.', focus: ['report', 'power'] },
       { nl: 'Jij bezit verhaal, lijst en ritme. Welk project beweegt welk deel?', en: 'You own the story, the list, the rhythm. Which project moves which part?', focus: ['lead', 'jij'] },
     ]),
@@ -559,30 +563,30 @@ const SAY = [
       en: 'Keep one list: owner, date, and what happens if it slips.' },
     { nl: 'Vier onafhankelijke projecten van elk {n:90} procent op tijd halen het samen maar in {n:66} procent.',
       en: 'Four independent projects, each {n:90} percent on time, all make it only {n:66} percent of the time.' },
-    { nl: 'In de regio leest de check data die team B herontwerpt. Op één A4: B bevriest de definitie in week {n:6}, het IT-team test vóór de livegang.',
-      en: 'In the region the check reads data team B is redesigning. On one page: B freezes the definition by week {n:6}, IT tests before go-live.' },
+    { nl: 'De check leest data die team B herontwerpt. Op één A4: B bevriest de definitie in week {n:6}, het IT-team test vóór de livegang.',
+      en: 'The check reads data team B is redesigning. On one page: B freezes the definition by week {n:6}, IT tests before go-live.' },
   ],
   [ // s3 the board, the watermelon, the lead
-    { nl: 'De {t:Programmaraad|programmaraad}: de sponsor, de eigenaren van de projecten, de eigenaar van de uitkomst, en de financiële kant.',
-      en: 'The {t:Programme board|programme board}: the sponsor, the project owners, the outcome\'s owner, and finance.' },
+    { nl: 'De {t:Programmaraad|programmaraad}: de sponsor, de eigenaren van de projecten, de eigenaar van de uitkomst, en de financiële kant als er geld tussen projecten schuift.',
+      en: 'The {t:Programme board|programme board}: the sponsor, the project owners, the outcome\'s owner, and finance if money moves between projects.' },
     { nl: 'Maandelijks beslist de raad over de naden: volgorde, gedeelde mensen, scope. Besluiten binnen een project blijven in de stuurgroep.',
       en: 'Monthly, the board decides on the seams: sequencing, shared people, scope. Decisions inside a project stay in its steering group.' },
-    { nl: 'Let op het {t:Watermeloeneffect|watermeloeneffect}: groen buiten, rood vanbinnen. Alle drie staan op groen, de afzeggingen zitten nog op {n:14} procent.',
-      en: 'Watch for {t:Watermelon reporting|watermelon reporting}: green outside, red inside. All three report green, cancellations are still at {n:14} percent.' },
-    { nl: 'Rapporteer dus elke maand het uitkomstgetal zelf, met ieders bijdrage.',
-      en: 'So report the outcome number itself monthly, with each project\'s share.' },
+    { nl: 'Het {t:Watermeloeneffect|watermeloeneffect}: groen buiten, rood vanbinnen. Alle drie staan op groen, de afzeggingen zitten nog op {n:14} procent.',
+      en: '{t:Watermelon reporting|Watermelon reporting}: green outside, red inside. All three report green, cancellations are still at {n:14} percent.' },
+    { nl: 'Rapporteer elke maand het uitkomstgetal zelf, met ieders bijdrage.',
+      en: 'Report the outcome number itself monthly, with each project\'s share.' },
     { nl: 'Jij bezit het verhaal, de lijst en het ritme, niet de projecten. Vraag: welk getal beweegt, hoeveel, en welk project beweegt welk deel?',
       en: 'You own the story, the list and the rhythm, not the projects. Ask: which number moves, how much, and which project moves which part?' },
   ],
   [ // s4 scoring and the bottleneck
-    { nl: 'Scoor elk project grof, van {n:1} tot {n:5}, op waarde, inspanning, risico en strategie. Wie de gewichten kiest, kiest de uitkomst.',
-      en: 'Score each project roughly, {n:1} to {n:5}, on value, effort, risk and strategy. Whoever sets the weights sets the outcome.' },
-    { nl: 'De {t:Bottleneck|bottleneck} bepaalt hoeveel er af komt: meestal een paar schaarse experts, niet het geld.',
+    { nl: 'Scoor grof, van {n:1} tot {n:5}, op waarde, inspanning, risico en strategie. Wie de gewichten kiest, kiest de uitkomst.',
+      en: 'Score roughly, {n:1} to {n:5}, on value, effort, risk and strategy. Whoever sets the weights sets the outcome.' },
+    { nl: 'De {t:Bottleneck|bottleneck} bepaalt hoeveel er af komt: meestal een paar schaarse experts, niet geld.',
       en: 'The {t:Bottleneck|bottleneck} limits how much gets done: usually a few scarce experts, not money.' },
     { nl: 'Tel dus in {t:Waarde per schaarse dag|waarde per schaarse dag}. A haalt tweeënhalfduizend euro per dag, B vijfduizend. B gaat eerst, al lijkt A groter.',
       en: 'So count in {t:Value per scarce day|value per scarce day}. A brings two and a half thousand euros a day, B five thousand. B goes first, although A looks bigger.' },
-    { nl: 'En de {t:Risicogecorrigeerde waarde|risicogecorrigeerde waarde}: {n:300} duizend bij {n:50} procent vertrouwen telt als {n:150} duizend.',
-      en: 'And the {t:Risk-adjusted value|risk-adjusted value}: {n:300} thousand at {n:50} percent confidence counts as {n:150} thousand.' },
+    { nl: 'De {t:Risicogecorrigeerde waarde|risicogecorrigeerde waarde}: {n:300} duizend bij {n:50} procent vertrouwen telt als {n:150} duizend.',
+      en: 'The {t:Risk-adjusted value|risk-adjusted value}: {n:300} thousand at {n:50} percent confidence counts as {n:150} thousand.' },
   ],
   [ // s5 under the line
     { nl: 'Tel de schaarse mensen: twee experts met elk {n:120} dagen geven {n:240}.',
@@ -594,7 +598,7 @@ const SAY = [
     { nl: 'B, D en A: {n:150} dagen. C krijgt eerst een fase van {n:60} dagen die de grote aanname test. Samen {n:210}, met {n:30} buffer.',
       en: 'B, D and A: {n:150} days. C first gets a {n:60}-day phase that tests the big assumption. {n:210} in all, {n:30} as buffer.' },
     { nl: 'Voor E vraag je de directeur een getal: boven tweeënhalfduizend per dag gaat het vóór A. Het team kiest. Valkuil: in maart is de streep vergeten.',
-      en: 'For E, ask the plant director for a number: above two and a half thousand a day, it goes ahead of A. The team chooses. Trap: by March the line is ignored.' },
+      en: 'For E, ask the director for a number: above two and a half thousand a day, it goes ahead of A. The team chooses. Trap: by March the line is ignored.' },
   ],
   [ // s6 work in progress and saying no
     { nl: '{t:Onderhanden werk|Onderhanden werk} is alles wat gestart en nog niet af is.',
@@ -723,6 +727,7 @@ const css = PM_CSS + `
 .pp-seed{fill:var(--anatomy-strong)}
 .pp-cell{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:1}
 .pp-cellr{fill:color-mix(in srgb,var(--pp-red) 30%,var(--anatomy-face));stroke:var(--pp-red);stroke-width:1.4}
+.pp-redrow{fill:none;stroke:var(--pp-red);stroke-width:2}
 .pp-row{fill:none;stroke:var(--anatomy-lo);stroke-width:.7;stroke-linecap:round}
 .pp-day{fill:var(--anatomy-mid)}
 .pp-real{fill:none;stroke:var(--fp-accent);stroke-width:1.2}
@@ -734,7 +739,7 @@ const css = PM_CSS + `
 [data-cue][data-on] .pp-row{stroke:var(--fp-accent)}
 .pp-mini .pp-txt,.pp-mini .pp-mute,.pp-mini .pp-big,.pp-mini .pp-lab,.pp-mini .pp-on,.pp-mini .pp-redt,.pp-mini .pp-inv{display:none}
 .pp-mini *{vector-effect:non-scaling-stroke}
-.pp-mini .pp-card,.pp-mini .pp-hot,.pp-mini .pp-line,.pp-mini .pp-cell,.pp-mini .pp-cellr{stroke-width:.7px}
+.pp-mini .pp-card,.pp-mini .pp-hot,.pp-mini .pp-line,.pp-mini .pp-cell,.pp-mini .pp-cellr,.pp-mini .pp-redrow{stroke-width:.7px}
 .pp-mini .pp-axis,.pp-mini .pp-dash,.pp-mini .pp-cut,.pp-mini .pp-cutl,.pp-mini .pp-strike,.pp-mini .pp-bar2,.pp-mini .pp-rind{stroke-width:.4px}
 /* dark theme: faces and hands in a light skin tone, not dark silhouettes (world.mjs gives heads only a light outline) */
 .iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}

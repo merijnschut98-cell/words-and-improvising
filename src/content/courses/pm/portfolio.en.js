@@ -434,7 +434,7 @@ export default {
         },
       ],
       teach: [
-        'At most clients the problem is not total hours but the same five people: the senior process engineer, the planner who knows the system, the one data analyst. Build a capacity matrix: names down, projects across, days per month in each cell, and their real available days at the bottom.\n\nOverbooked rows are your resource conflicts: more days promised to projects than the person has. Often you find two or three red rows, and they explain most of the delay.',
+        'At most clients the problem is not total hours but the same five people: the senior process engineer, the planner who knows the system, the one data analyst. Build a capacity matrix: names down, projects across, days per month in each cell, and, in a last column, each person’s real available days.\n\nOverbooked rows are your resource conflicts: more days promised to projects than the person has. Often you find two or three red rows, and they explain most of the delay.',
         'Real availability is lower than people think. Of about 260 weekdays a year, holidays, public holidays, sickness and training take roughly 50, and general meetings and admin about 20 more. About 190 real days remain.\n\nIf the day job takes 70%, there are 57 project days a year: about five a month. Booking that person “two days a week” on your project is planning fiction.',
         'Context switching is the time lost when someone jumps between projects and has to pick up the thread again. Gerald Weinberg’s rule of thumb (1992): with two projects you lose about 20% of your time to switching, with three about 40%, with five about 75%. It is an estimate, not a measurement, but people recognise it.\n\nAnd each project waits for that person, so lead times, the calendar time from start to finish, grow.',
         'Better: fewer projects in parallel, each with a real block of time, such as Tuesdays and Thursdays on project A.\n\nMake trade-offs visible, then let the owner decide. Show the matrix with the red cells and two options: “Option 1: Jan works on A and B, C starts in May. Option 2: a contractor does C, 40 days at €1,000, so €40k.” The planning of one project’s people is in pm.plan; here it is the same people across many projects.',
@@ -497,7 +497,7 @@ export default {
       },
       sayIt: 'Explain to a project lead in 60 seconds why “two days a week of Fatima” is probably not real.',
       terms: [
-        { term: 'Capacity matrix', def: 'Names down, projects across, days per cell, with real availability at the bottom.' },
+        { term: 'Capacity matrix', def: 'Names down, projects across, days per cell, with each person’s real availability in the last column.' },
         { term: 'Resource conflict', def: 'More days promised to projects than a person actually has.' },
         { term: 'Real availability', def: 'Days left for projects after holidays, sickness, training, meetings and the day job.' },
         { term: 'Context switching', def: 'Time lost when someone jumps between projects and has to pick up the thread again.' },

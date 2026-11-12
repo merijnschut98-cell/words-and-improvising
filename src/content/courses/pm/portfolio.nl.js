@@ -434,7 +434,7 @@ export default {
         },
       ],
       teach: [
-        'Bij de meeste klanten is het probleem niet het totaal aan uren, maar dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist. Maak een capaciteitsmatrix: namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en onderaan hun echte beschikbare dagen.\n\nOverboekte rijen zijn je capaciteitsconflicten: iemand heeft meer dagen aan projecten beloofd dan hij heeft. Vaak vind je twee of drie rode rijen, en die verklaren het grootste deel van de vertraging.',
+        'Bij de meeste klanten is het probleem niet het totaal aan uren, maar dezelfde vijf mensen: de senior procesengineer, de planner die het systeem kent, die ene data-analist. Maak een capaciteitsmatrix: namen verticaal, projecten horizontaal, dagen per maand in elk vakje, en in een laatste kolom ieders echte beschikbare dagen.\n\nOverboekte rijen zijn je capaciteitsconflicten: iemand heeft meer dagen aan projecten beloofd dan hij heeft. Vaak vind je twee of drie rode rijen, en die verklaren het grootste deel van de vertraging.',
         'Echte beschikbaarheid is lager dan mensen denken. Van zo’n 260 werkdagen per jaar gaan er grofweg 50 af aan vakantie, feestdagen, ziekte en opleiding, en algemeen overleg en administratie kosten er nog zo’n 20. Er blijven zo’n 190 echte dagen over.\n\nKost het eigen werk 70%, dan zijn er 57 projectdagen per jaar: ongeveer vijf per maand. Die persoon “twee dagen per week” op je project inplannen is planningsfictie.',
         'Bij elke contextswitch verlies je tijd: je springt naar een ander project en moet de draad weer oppakken. Vuistregel van Gerald Weinberg (1992): met twee projecten verlies je zo’n 20% van je tijd aan schakelen, met drie zo’n 40%, met vijf zo’n 75%. Het is een schatting, geen meting, maar mensen herkennen het.\n\nEn elk project wacht op die persoon, dus de doorlooptijd, de kalendertijd van start tot klaar, groeit.',
         'Beter: minder projecten tegelijk, elk met een echt blok tijd, zoals dinsdag en donderdag voor project A.\n\nMaak afwegingen zichtbaar en laat de eigenaar beslissen. Laat de matrix zien met de rode vakjes en twee opties: “Optie 1: Jan werkt aan A en B, C start in mei. Optie 2: een externe doet C, 40 dagen à € 1.000, dus € 40k.” Mensen plannen binnen één project staat in pm.plan; hier gaat het om dezelfde mensen over veel projecten.',
@@ -497,7 +497,7 @@ export default {
       },
       sayIt: 'Leg een projectleider in 60 seconden uit waarom “twee dagen per week Fatima” waarschijnlijk niet bestaat.',
       terms: [
-        { term: 'Capaciteitsmatrix', def: 'Namen verticaal, projecten horizontaal, dagen per vakje, met de echte beschikbaarheid onderaan.' },
+        { term: 'Capaciteitsmatrix', def: 'Namen verticaal, projecten horizontaal, dagen per vakje, met ieders echte beschikbaarheid in de laatste kolom.' },
         { term: 'Capaciteitsconflict', def: 'Meer dagen aan projecten beloofd dan iemand echt heeft.' },
         { term: 'Echte beschikbaarheid', def: 'De dagen die overblijven voor projecten na vakantie, ziekte, opleiding, overleg en het eigen werk.' },
         { term: 'Contextswitch', def: 'Tijd die je verliest als iemand tussen projecten springt en de draad weer moet oppakken.' },

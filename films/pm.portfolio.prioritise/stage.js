@@ -78,7 +78,7 @@ const STAGE = (() => {
       prog: op(at(b, p, 1), path(bracket, 'pp-line') + card(190, 58, b === 1 ? 'pp-hot' : 'pp-card') + lines(214, [[tr('één uitkomst:', 'one outcome:'), 'pp-lab'], [tr('afzeggingen 14% → 8%', 'cancellations 14% → 8%'), 'pp-on']])),
       test: op(at(b, p, 2), lines(280, [[tr('schrap er één: blijft', 'drop one: does the goal')], [tr('het doel staan? dan:', 'still hold? then:')]])),
       pf: op(at(b, p, 2, 0.4, 0.6), card(320, 64, b >= 2 ? 'pp-hot' : 'pp-card') + lines(344, [[tr('portfolio', 'portfolio'), 'pp-lab'], [tr('zelfde geld, zelfde mensen', 'same money, same people'), 'pp-on']])
-        + [0, 1, 2, 3].map((i) => rect(X1 - 48, 330 + i * 10, 40, 6, 'pp-bar', 2)).join('')),
+        + [0, 1, 2, 3].map((i) => rect(X1 - 48, 327 + i * 7, 40, 4, 'pp-bar', 1.5)).join('')),
     };
   };
   // s2: a dependency (A to B, B and C share planners), the list, the odds; the region's page
@@ -115,9 +115,12 @@ const STAGE = (() => {
     const melon = op(at(b, p, 2) * until(b, p, 4), path(arc(R), 'pp-rind') + path(arc(R - 9), 'pp-flesh')
       + [[-26, -18], [0, -34], [24, -20], [-12, -8], [12, -8]].map(([dx, dy]) => `<ellipse class="pp-seed" cx="${f1(mx + dx)}" cy="${f1(my + dy)}" rx="2.4" ry="4"/>`).join('')
       + txt(X0 + 140, 106, tr('buiten: groen', 'outside: green'), 'pp-txt') + txt(X0 + 140, 134, tr('binnen: rood', 'inside: red'), 'pp-redt'));
-    const report = op(at(b, p, 2, 0.5, 0.7), [0, 1, 2].map((i) => dot(X0 + 8 + i * 22, 198, 8, 'pp-green')).join('') + txt(X0 + 72, 205, tr('A, B, IT: groen', 'A, B, IT: green'))
+    // b3: three times green, still 14%, nobody reports on the seams; b4: the monthly number, and who sits on the region's board
+    const report = op(at(b, p, 2, 0.3, 0.5) * until(b, p, 3), [0, 1, 2].map((i) => dot(X0 + 8 + i * 22, 198, 8, 'pp-green')).join('') + txt(X0 + 72, 205, tr('A, B, IT: groen', 'A, B, IT: green'))
       + txt(X0, 234, tr('afzeggingen: nog 14%', 'cancellations: still 14%'), 'pp-redt')
-      + op(at(b, p, 3), card(244, 34, b === 3 ? 'pp-hot' : 'pp-card') + txt(X0, 268, tr('elke maand: getal, bijdrage', 'monthly: number, each share'), 'pp-on')));
+      + op(at(b, p, 2, 0.4, 0.6), txt(X0, 262, tr('niemand meldt de naden', 'nobody reports the seams'), 'pp-mute')))
+      + op(at(b, p, 3, 0.1, 0.3), card(176, 88, b === 3 ? 'pp-hot' : 'pp-card') + lines(200, [[tr('elke maand: getal, bijdrage', 'monthly: number, each share'), 'pp-on'],
+        [tr('raad: zij, 3 eigenaren,', 'board: her, 3 owners,')], [tr('de planningsmanager', 'the planning manager'), 'pp-mute']]));
     const power = op(at(b, p, 3), lines(310, [[tr('macht: de budgetten,', 'power: the budgets,'), 'pp-mute'], [tr('of doel en sterke raad?', 'or goal and strong board?'), 'pp-mute']]) + txt(X1, 362, tr('experts oneens', 'experts disagree'), 'pp-mute', 'end'));
     const lead = op(at(b, p, 4), card(56, 116, 'pp-hot') + lines(80, [[tr('jij: verhaal, lijst, ritme', 'you: story, list, rhythm'), 'pp-lab'], [tr('in 2 minuten, in getallen?', 'in 2 minutes, in numbers?')], [tr('anders: elk project apart', 'or: each project apart'), 'pp-mute'], [tr('welk project beweegt wat?', 'which project moves what?'), 'pp-on']]));
     return {
@@ -144,7 +147,7 @@ const STAGE = (() => {
       head: [tr('prioriteren', 'prioritising'), 'dia'],
       score: op(top * span(b0, 0.05, 0.2), card(56, 140, b === 0 ? 'pp-hot' : 'pp-card') + lines(80, [[tr('score 1 tot 5, grof', 'score 1 to 5, rough'), 'pp-lab'], [tr('waarde: € of KPI per jaar', 'value: € or KPI a year')], [tr('inspanning: schaarse dagen', 'effort: scarce days')], [tr('risico: levert het niet?', 'risk: may not deliver')], [tr('fit met de strategie', 'fit with strategy')]])),
       weights: op(top * span(b0, 0.45, 0.6), lines(220, [[tr('dit vóór dat, niet exact;', 'this before that, not exact;'), 'pp-mute'], [tr('wie de gewichten kiest,', 'whoever sets the weights')], [tr('kiest de uitkomst', 'sets the outcome'), 'pp-on']])),
-      bneck: op(top * at(b, p, 1), `<g transform="translate(0 4)">${path(neck, 'pp-card')}${rect(X0 + 22, 334, 36, 44, 'pp-bar', 3)}</g>` + lines(312, [[tr('bottleneck:', 'bottleneck:'), 'pp-lab'], [tr('een paar schaarse', 'a few scarce')], [tr('experts, niet geld', 'experts, not money'), 'pp-on']], X0 + 86)),
+      bneck: op(top * at(b, p, 1), `<g transform="translate(${X0 + 40} 388) scale(0.85) translate(${-(X0 + 40)} -384)">${path(neck, 'pp-card')}${rect(X0 + 22, 334, 36, 44, 'pp-bar', 3)}</g>` + lines(312, [[tr('bottleneck:', 'bottleneck:'), 'pp-lab'], [tr('een paar schaarse', 'a few scarce')], [tr('experts, niet geld', 'experts, not money'), 'pp-on']], X0 + 86)),
       vpd: op(at(b, p, 2), txt(X0, 76, tr('per jaar', 'per year'), 'pp-mute') + bars(86, 150, 75, '€300k', '€150k')
         + txt(X0, 176, tr('per schaarse dag', 'per scarce day'), 'pp-mute') + bars(186, 75, 150, tr('€2,5k · 120 d', '€2.5k · 120 d'), tr('€5k · 30 d', '€5k · 30 d'))
         + op(at(b, p, 2, 0.6, 0.8), card(250, 34, 'pp-hot') + txt(X0, 274, tr('B eerst, al lijkt A groter', 'B first, though A looks bigger'), 'pp-on'))),
@@ -189,15 +192,17 @@ const STAGE = (() => {
   // s6: work in progress, Little's law, half speed; never a bare no, who chooses, the waiting list, the question
   S[5] = (b, p) => {
     const top = until(b, p, 3);
-    const sq = (y, n, lab) => Array.from({ length: n }, (_, i) => rect(X0 + i * 18, y, 14, 14, 'pp-bar', 2)).join('') + txt(X1, y + 14, lab, 'pp-on', 'end');
+    const sq = (y, n, lab) => Array.from({ length: n }, (_, i) => rect(X0 + i * 16, y, 12, 14, 'pp-bar', 2)).join('') + txt(X1, y + 14, lab, 'pp-on', 'end');
     const q = b > 1 || (b === 1 && p > 0.55);
     return {
       head: b < 3 ? [tr('onderhanden werk', 'work in progress'), 'dia'] : [tr('nee zeggen', 'saying no'), 'dia'],
       wip: op(top * span(b === 0 ? p : 1, 0.05, 0.3), txt(X0, 72, tr('gestart, nog niet af', 'started, not yet done'), 'pp-lab')
         + sq(84, 12, q ? tr('≈ 4 kw', '≈ 4 qtrs') : '12') + sq(108, 6, q ? tr('≈ 2 kw', '≈ 2 qtrs') : '6')),
-      little: op(top * at(b, p, 1), card(134, 112, b === 1 ? 'pp-hot' : 'pp-card') + lines(158, [[tr('wet van Little, 1961', 'Little’s law, 1961'), 'pp-lab'], [tr('uit de wachtrijtheorie', 'from queueing theory'), 'pp-mute'], [tr('doorlooptijd =', 'lead time ='), 'pp-on'], [tr('onderhanden werk ÷ doorzet', 'work in progress ÷ throughput')]])
-        + op(at(b, p, 1, 0.5, 0.7), txt(X0, 270, tr('doorzet: 3 per kwartaal', 'throughput: 3 a quarter'), 'pp-mute'))),
-      speed: op(top * at(b, p, 2), card(286, 62, 'pp-hot') + lines(310, [[tr('12 op halve snelheid', '12 at half speed')], [tr('< 6 op volle snelheid', '< 6 at full speed'), 'pp-on']])),
+      // the English formula takes two lines (it would run past the card on one)
+      little: op(top * at(b, p, 1), card(134, NL ? 112 : 138, b === 1 ? 'pp-hot' : 'pp-card') + lines(158, [[tr('wet van Little, 1961', 'Little’s law, 1961'), 'pp-lab'], [tr('uit de wachtrijtheorie', 'from queueing theory'), 'pp-mute'], [tr('gem. doorlooptijd =', 'average lead time ='), 'pp-on'],
+        ...(NL ? [['onderhanden werk ÷ doorzet']] : [['work in progress'], ['÷ throughput']])])
+        + op(at(b, p, 1, 0.5, 0.7), txt(X0, NL ? 270 : 296, tr('doorzet: 3 per kwartaal', 'throughput: 3 a quarter'), 'pp-mute'))),
+      speed: op(top * at(b, p, 2), card(NL ? 286 : 310, 62, 'pp-hot') + lines(NL ? 310 : 334, [[tr('12 op halve snelheid', '12 at half speed')], [tr('< 6 op volle snelheid', '< 6 at full speed'), 'pp-on']])),
       no: op(at(b, p, 3), txt(X0, 76, tr('niet nu, en dit verdringt het', 'not now: what would go?'), 'pp-lab') + card(88, 90, 'pp-hot') + lines(112, [[tr('“Dat kan; dan stopt B', '“We can; then B stops')], [tr('of schuift 3 maanden.', 'or slips three months.')], [tr('Wat heeft je voorkeur?”', 'Which do you prefer?”'), 'pp-on']])),
       wait: op(at(b, p, 4), lines(212, [[tr('kiest: wie over allebei gaat', 'chooses: who owns both'), 'pp-lab'], [tr('wachtlijst, zichtbaar:', 'waiting list, visible:')]])
         + [0, 1].map((i) => rect(X0, 248 + i * 22, 180, 16, 'pp-bar2', 3)).join('') + txt(X1, 288, tr('niet nooit', 'not never'), 'pp-on', 'end')),
@@ -207,19 +212,21 @@ const STAGE = (() => {
   // s7: the same five people; the capacity matrix and its red rows; real availability
   S[6] = (b, p) => {
     const top = until(b, p, 2);
-    const NX = X0 + 96;
-    const CW = 28;
+    const NX = X0 + 92;
+    const CW = 26;
     const SX = NX + 4 * CW;
     let grid = txt(NX + CW * 2, 128, tr('projecten', 'projects'), 'pp-mute', 'middle')
       + ['A', 'B', 'C', 'D'].map((c, i) => txt(NX + i * CW + CW / 2, 152, c, 'pp-lab', 'middle')).join('')
-      + txt(SX + 18, 152, tr('som', 'sum'), 'pp-mute', 'middle') + txt(X1 - 18, 152, tr('echt', 'real'), 'pp-mute', 'middle');
+      + txt(SX + 20, 152, tr('som', 'sum'), 'pp-mute', 'middle') + txt(X1 - 18, 152, tr('echt', 'real'), 'pp-mute', 'middle');
     let red = '';
     C.MATRIX.forEach((r, i) => {
       const y = 160 + i * 30;
       grid += txt(X0, y + 21, tr(r.nl, r.en), 'pp-txt');
-      r.cells.forEach((v, j) => { grid += rect(NX + j * CW + 1, y, CW - 2, 28, 'pp-cell', 2) + txt(NX + j * CW + CW / 2, y + 21, String(v), 'pp-txt', 'middle'); });
-      grid += txt(SX + 18, y + 21, String(r.sum), 'pp-txt', 'middle') + rect(X1 - 34, y, 32, 28, 'pp-cell', 2) + txt(X1 - 18, y + 21, String(r.has), 'pp-lab', 'middle');
-      if (r.sum > r.has) red += rect(X0 - 4, y - 1, X1 - X0 + 8, 30, 'pp-cellr', 4) + txt(SX + 18, y + 21, String(r.sum), 'pp-redt', 'middle');
+      // an overbooked row's cells turn red from beat 2 (the row's outline is the red group)
+      const hot = r.sum > r.has && b >= 1;
+      r.cells.forEach((v, j) => { grid += rect(NX + j * CW + 1, y, CW - 2, 28, hot ? 'pp-cellr' : 'pp-cell', 2) + txt(NX + j * CW + CW / 2, y + 21, String(v), 'pp-txt', 'middle'); });
+      grid += txt(SX + 20, y + 21, String(r.sum), 'pp-txt', 'middle') + rect(X1 - 34, y, 32, 28, 'pp-cell', 2) + txt(X1 - 18, y + 21, String(r.has), 'pp-lab', 'middle');
+      if (r.sum > r.has) red += rect(X0 - 4, y - 1, X1 - X0 + 8, 30, 'pp-redrow', 4) + txt(SX + 20, y + 21, String(r.sum), 'pp-redt', 'middle');
     });
     grid += txt(X0, 272, tr('per vakje: dagen per maand', 'per cell: days a month'), 'pp-mute');
     const wf = (y, d, cls, lab, labCls = 'pp-txt') => txt(X0, y, lab, labCls) + rect(X0, y + 8, (d / 260) * (X1 - X0), 16, cls, 3);
