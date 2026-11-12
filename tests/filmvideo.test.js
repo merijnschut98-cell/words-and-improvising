@@ -85,6 +85,18 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.land.handover: hypercare as said in Dutch IT projects, "haiperkeer" (espeak-ng reads "hie-per-kaa-re"),
+  // the KPI after "de" and KPI's as letters (espeak-ng reads the word "kpie"; "een KPI" and KPI- compounds keep
+  // their voice), and compounds split at the head that espeak-ng misreads: acceptatiecriteria (with "ti",
+  // lower case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+  // baTENreview and overdrachts-sx-ecklist; English keeps them all
+  assert.equal(speakOf(['Hypercare na de start, met hypercare. De KPI, twee KPI\'s, een KPI, de KPI-review.'], 'nl'),
+    'Haiperkeer na de start, met haiperkeer. De K P I, twee K P I\'s, een KPI, de KPI-review.');
+  assert.equal(speakOf(['De acceptatiecriteria in de projectopdracht. Projectopdracht, gelaagde procesaudit, de batenreview, de overdrachtschecklist.'], 'nl'),
+    'De acceptatie-criteria in de project-opdracht. Project-opdracht, gelaagde proces-audit, de baten-review, de overdrachts-checklist.');
+  assert.equal(speakOf(['Acceptatiecriteria: wie tekent af.'], 'nl'), 'Acceptatiecriteria: wie tekent af.');
+  assert.equal(speakOf(['Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.'], 'en'),
+    'Hypercare, the KPI, KPI\'s, acceptance criteria, a layered process audit, the benefits review.');
 });
 
 // ------------------------------------------------------------ WAV files

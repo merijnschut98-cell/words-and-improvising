@@ -298,7 +298,16 @@ const SAY = {
     // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
     // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
     // and DUIvels-; no other film says them
-    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek']],
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
+    // handing over and holding on (pm.land.handover): hypercare as said in Dutch IT projects, "haiperkeer"
+    // (espeak-ng reads "hie-per-kaa-re"); the KPI after "de" and KPI's as letters (espeak-ng reads the word
+    // "kpie"; not "een KPI", so pm.intake.firsttalk keeps its voice, and KPI- compounds are read as letters
+    // already); and compounds it misreads, split at the head: acceptatiecriteria with "ti" for "tsie" (lower
+    // case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+    // baTENreview and overdrachts-sx-ecklist (with the s-ch of "schip"); no other film says them
+    [/\b([Hh])ypercare\b/g, '$1aiperkeer'], [/\b([Dd]e) KPI\b(?!-)/g, '$1 K P I'], [/\bKPI's\b/g, "K P I's"],
+    [/\bacceptatiecriteria\b/g, 'acceptatie-criteria'], [/\b([Pp])rojectopdracht/g, '$1roject-opdracht'], [/\b([Pp])rocesaudit/g, '$1roces-audit'],
+    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

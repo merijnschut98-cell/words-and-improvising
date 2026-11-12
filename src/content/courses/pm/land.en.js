@@ -576,6 +576,7 @@ export default {
     },
     {
       id: 'pm.land.handover',
+      film: 'pm.land.handover',
       title: 'Handing over to the line',
       pre: [
         {
@@ -659,6 +660,7 @@ export default {
     // Topic 3: sustaining
     {
       id: 'pm.land.sustain',
+      film: 'pm.land.handover',
       title: 'Sustaining results',
       pre: [
         {
