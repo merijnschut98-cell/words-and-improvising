@@ -321,6 +321,19 @@ audio { width: 100%; margin-top: 4px; }
 .coach-line { padding: 10px 12px; border-radius: var(--radius-sm); margin-top: 8px; border: 1px solid var(--border-subtle); }
 .coach-line.good { background: color-mix(in srgb, var(--good) 10%, var(--card)); }
 .coach-line.work { background: var(--tint); }
+/* Speech recognition check: quiet, compact. */
+.misheard { margin: 0 0 10px; padding: 8px 12px; border-radius: var(--radius-sm); border: 1px dashed var(--border-subtle); font-size: 0.875rem; }
+.misheard-title { margin: 0 0 4px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); }
+.misheard ul { margin: 0; padding: 0; list-style: none; }
+.misheard li { overflow-wrap: anywhere; color: var(--muted); }
+.misheard .heard { text-decoration: line-through; }
+.misheard .likely { color: var(--ink); font-weight: 500; }
+.link-btn { background: none; border: 0; padding: 0; min-height: 44px; cursor: pointer; color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; gap: 4px; }
+.transcript-fix { margin: -6px 0 6px; }
+.transcript-fix-box { margin: 0 0 12px; }
+.transcript-fix-box p { margin: 0 0 6px; }
+.transcript-fix-box textarea { resize: vertical; }
+.transcript-fix-box .row { align-items: center; gap: 16px; margin-top: 8px; }
 .stronger { margin-top: 12px; }
 .stronger summary { font-family: var(--font-display); font-weight: 600; color: var(--heading); cursor: pointer; min-height: 32px; }
 .stronger p { font-family: var(--font-display); font-style: italic; }
