@@ -21,7 +21,7 @@ const STAGE = (() => {
   const set = (e, html) => { if (e.__h !== html) { e.innerHTML = html; e.__h = html; } };
   const move = (e, t) => { if (e.__t !== t) { e.setAttribute('transform', t); e.__t = t; } };
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const txt = (x, y, t, cls = 'pb-txt', anchor = 'start') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="20" text-anchor="${anchor}">${esc(t)}</text>`;
+  const txt = (x, y, t, cls = 'pb-txt', anchor = 'start') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="22" text-anchor="${anchor}">${esc(t)}</text>`;
   const rect = (x, y, w, h, cls, r = 6) => `<rect class="${cls}" x="${f1(x)}" y="${f1(y)}" width="${f1(Math.max(0, w))}" height="${f1(Math.max(0, h))}" rx="${r}"/>`;
   const dot = (x, y, r, cls) => `<circle class="${cls}" cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}"/>`;
   const path = (d, cls) => `<path class="${cls}" d="${d}"/>`;
@@ -78,7 +78,7 @@ const STAGE = (() => {
   };
   // s2: the readiness check through the chain, its sum, and who brings it in
   S[1] = (b, p) => ({
-    head: [tr('gereedheidscheck', 'readiness check'), 'ex'],
+    head: [tr('de check', 'readiness check'), 'ex'],
     exOut: op(first(b, p), block(54, 60, 'output', [tr('de check gaat live', 'the check goes live')], b === 0)),
     exOc: op(at(b, p, 1), down(116, 132) + block(134, 60, tr('uitkomst', 'outcome'), [tr('afzeggingen 14% → 8%', 'cancellations 14% → 8%')], b === 1)),
     exBen: op(at(b, p, 2), down(196, 212) + block(214, 86, tr('baten', 'benefit'), [tr('≈ 1.200 ploegdagen', '≈ 1,200 crew-days'), tr('per jaar minder', 'fewer a year')], b === 2)),
@@ -131,10 +131,10 @@ const STAGE = (() => {
       span: op(first(b, p), path(`M${f1(xM(0))} 270H${f1(xM(12))}`, 'pb-axis') + path(`M${f1(xM(0))} 262V278M${f1(xM(12))} 262V278`, 'pb-axis')
         + txt(xM(0), 296, tr('livegang', 'go-live'), 'pb-mute') + txt(xM(12), 296, tr('12 mnd', '12 mo'), 'pb-mute', 'end')
         + path(`M${f1(xM(0))} 84V92H${f1(xM(6))}V84`, 'pb-line') + path(`M${f1(xM(6))} 92H${f1(xM(12))}V84`, 'pb-dash') + txt(X1, 76, tr('volgen: 6–12 maanden', 'track: 6–12 months'), 'pb-on', 'end')),
-      monthly: (d ? path(d, 'pb-line') : '') + dots + op(at(b, p, 1, 0.5, 0.7), txt(X1, 344, tr('elke maand', 'monthly'), 'pb-txt', 'end')),
+      monthly: (d ? path(d, 'pb-line') : '') + dots + op(at(b, p, 1, 0.5, 0.7), txt(X1, 318, tr('elke maand', 'monthly'), 'pb-txt', 'end')),
       checks: op(at(b, p, 1, 0.2, 0.45), C.TRACK.checks.map((m) => path(`M${f1(xM(m))} ${f1(yL + 8)}V266`, 'pb-dash') + txt(xM(m), 318, `${m}`, 'pb-on', 'middle')).join('')
         + txt(xM(4.5), 344, 'check-ins', 'pb-on', 'middle')),
-      trig: op(at(b, p, 2), path(`M${f1(xM(0))} ${f1(yL)}H${f1(xM(12))}`, 'pb-trig') + txt(xM(0) + 2, yL - 8, tr('actiegrens', 'trigger'), 'pb-on')
+      trig: op(at(b, p, 2), path(`M${f1(xM(0))} ${f1(yL)}H${f1(xM(12))}`, 'pb-trig') + txt(xM(0) + 2, yL - 8, 'trigger', 'pb-on')
         + op(at(b, p, 2, 0.5, 0.7), txt(X1, 118, tr('2× erover: ingrijpen', '2× past: act'), 'pb-on', 'end'))),
       plan: op(at(b, p, 3), card(354, 32, 'pb-hot') + txt(X0, 377, tr('afsluitplan: namen, data', 'close-out: names, dates'), 'pb-on')),
     };
@@ -150,9 +150,9 @@ const STAGE = (() => {
       attr: op(first(b, p), lines(76, [[tr('toerekening:', 'attribution:'), 'pb-lab'], [tr('hoeveel is van jou?', 'how much is yours?')]])),
       drop: op(first(b, p), txt(BX0, y0 - 10, tr('daling 14% → 8%', 'drop 14% → 8%'), 'pb-txt') + rect(BX0, y0, BX1 - BX0, 26, 'pb-rest', 4)),
       est: op(at(b, p, 2), rect(BX0, y0, bx(C.SHARE[0] / 100) - BX0, 26, 'pb-bar2', 4) + rect(bx(C.SHARE[0] / 100), y0, bx(C.SHARE[1] / 100) - bx(C.SHARE[0] / 100), 26, 'pb-band', 2)
-        + txt(BX0, y0 + 50, tr('check: 60–70%', 'check: 60–70%'), 'pb-on') + txt(BX0, y0 + 76, tr('+ laat zien waarom', '+ show why'), 'pb-txt')),
+        + txt(BX0, y0 + 76, tr('check: 60–70%', 'check: 60–70%'), 'pb-on') + txt(BX0, y0 + 102, tr('+ laat zien waarom', '+ show why'), 'pb-txt')),
       contractor: op(at(b, p, 1), txt(BX1, y0 + 50, tr('aannemer?', 'contractor?'), 'pb-lab', 'end')),
-      region: op(at(b, p, 3), lines(262, [[tr('sterkste bewijs:', 'cleanest evidence:'), 'pb-lab'], [tr('regio zonder de check,', 'a region without it,')], [tr('dezelfde maanden', 'same months')]])),
+      region: op(at(b, p, 3), lines(276, [[tr('sterkste bewijs:', 'cleanest evidence:'), 'pb-lab'], [tr('regio zonder de check,', 'a region without it,')], [tr('dezelfde maanden', 'same months')]])),
       modest: op(at(b, p, 4), card(344, 42, 'pb-hot') + txt(X0, 372, tr('klein maar verdedigbaar', 'modest, defensible'), 'pb-on')),
     };
   };
@@ -167,7 +167,7 @@ const STAGE = (() => {
     let d = '';
     vals.forEach((v, i) => { if (shown - i > 0.01) d += `${d ? 'L' : 'M'}${f1(xi(i))} ${f1(v)}`; });
     return {
-      head: [tr('baten lekken weg', 'benefits leak'), 'dia'],
+      head: [tr('weglekken', 'benefits leak'), 'dia'],
       sceptic: op(first(b, p), lines(76, [[tr('terecht sceptisch:', 'sceptical, rightly:'), 'pb-lab'], [tr('baten vallen vaak tegen', 'benefits fall short')]])),
       scope: op(at(b, p, 1), lines(140, [[tr('hier: programma, portfolio', 'here: programme, portfolio'), 'pb-on'], [tr('één project: Landen', 'one project: Land'), 'pb-mute']])),
       leak: op(at(b, p, 2, 0, 0.1), path(`M${LX0} 282H${LX1}`, 'pb-axis') + path(`M${f1(xi(iClose))} 200V290`, 'pb-dash') + txt(xi(iClose), 196, tr('afsluiting', 'closing'), 'pb-mute', 'middle')
@@ -181,7 +181,7 @@ const STAGE = (() => {
     const sc = 1.8;
     const row = (y, lab, v, cls, a) => txt(X0, y, lab, 'pb-mute') + rect(bx0, y - 15, v * sc * a, 18, cls, 3) + op(a, txt(bx0 + v * sc + 6, y, `${v}`, 'pb-txt'));
     return {
-      head: [tr('waar is € 300k?', 'where is €300k?'), 'ex'],
+      head: [tr('de € 300k', 'the €300k'), 'ex'],
       case: op(first(b, p), txt(X0, 76, tr('omsteltijd, minuten', 'changeover, minutes'), 'pb-lab')
         + row(106, tr('voor', 'before'), C.CHANGE[0], 'pb-bar', span(b === 0 ? p : 1, 0.15, 0.45)) + row(134, tr('maart', 'March'), C.CHANGE[1], 'pb-bar2', span(b === 0 ? p : 1, 0.45, 0.75))),
       promise: op(at(b, p, 1), lines(210, [[tr('beloofd: € 300k per jaar', 'promised: €300k a year')], [tr('sept., CFO: waar is het?', 'Sept., CFO: where is it?'), 'pb-on']])),
@@ -191,7 +191,7 @@ const STAGE = (() => {
   };
   // s9: two problems pulled apart; the choice to the MT; book only after the decision; tell the CFO
   S[8] = (b, p) => ({
-    head: [tr('twee problemen', 'two problems'), 'ex'],
+    head: [tr('2 problemen', 'two problems'), 'ex'],
     fixOc: op(first(b, p), lines(76, [[tr('1 uitkomst weggezakt:', '1 outcome slipped:'), 'pb-lab'], [tr('operationeel manager,', 'operations manager:')], [tr('audit + maandreview', 'audit + monthly review')]])),
     money: op(at(b, p, 1), lines(166, [[tr('2 bij 45 min: geen baten', '2 at 45 min: no benefit'), 'pb-lab'], [tr('capaciteit ≠ geld', 'capacity ≠ money')]])),
     choice: op(at(b, p, 2), lines(230, [[tr('MT kiest, met getallen:', 'MT decides, with numbers:'), 'pb-lab'], [tr('weekenddienst eraf', 'cut the weekend shift')], [tr('of meer volume verkopen', 'or sell more volume')]])),

@@ -356,6 +356,16 @@ const SAY = {
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
     [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk'],
     // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
     // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
     // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
@@ -370,9 +380,21 @@ const SAY = {
     // Dutch project people say it, "biznis kees" (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst as "wieken-dienst"
     // (it reads "wee-kend-DIENST"), and lijnmanager and operationeel manager with a Dutch "manager" as the
     // middenmanager rule above says it (it reads MAA-naa-cher), operationeel stressed on -NEEL (it stresses OO-);
-    // no other film says them in Dutch
+    // no other film says them in Dutch. And the lesson's trigger before its Dutch gloss as "trikker" (espeak-ng
+    // reads a soft g, "tri-gher"), only in this film's "trigger, een actiegrens", so pm.land.handover keeps its voice
+    [/\b([Tt])rigger(?=, een actie-?grens\b)/g, '$1rikker'],
     [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
-    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer']],
+    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer'],
+    // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
+    // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
+    // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
+    // ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok); analyse is stressed AA-na-ly-se, but
+    // other films say it, so only this film's two phrases get "analiese"; stilstanddata, stilstandlogboek and
+    // lijndata split at the head (it stresses the last part). No other film says them
+    [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
+    [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
+    [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

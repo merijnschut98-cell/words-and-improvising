@@ -37,8 +37,8 @@
 //   teach 3: plan tracking for 6 to 12 months after go-live, the day the change
 //     goes into use (s5 b1); the owner reviews monthly, check-ins at 3 and 6
 //     months (s5 b2); a trigger: two months in a row past an agreed level, the
-//     owner acts (s5 b3; said and shown as "actiegrens", the Dutch word
-//     pm.perform.tree uses for a trigger; "trigger" on the English card); in the
+//     owner acts (s5 b3; the lesson's word "trigger" in caption, card and voice,
+//     the Dutch voice adds "actiegrens", the word pm.perform.tree uses); in the
 //     close-out plan with names and dates, or it will not happen (s5 b4)
 //   teach 4: attribution, how much of a change you may credit to your project
 //     (s6 b1); cancellations dropped while a new contractor also started: you
@@ -357,7 +357,7 @@ const spec = {
     sc('s5', { nl: 'Volgen na de livegang', en: 'Tracking after go-live' }, [
       { nl: 'Volg de baten {n:6} tot {n:12} maanden na de livegang.', en: 'Track the benefits for {n:6} to {n:12} months after go-live.', focus: 'span' },
       { nl: 'De eigenaar kijkt elke maand. Een check-in na {n:3} en na {n:6} maanden.', en: 'The owner looks every month. A check-in at {n:3} and {n:6} months.', focus: ['monthly', 'checks', 'teamlead'] },
-      { nl: 'Twee maanden achter elkaar over de actiegrens? Dan grijpt de eigenaar in.', en: 'Two months in a row past the trigger? Then the owner acts.', focus: ['trig', 'teamlead'] },
+      { nl: 'Een trigger: twee maanden achter elkaar over de grens? Dan grijpt de eigenaar in.', en: 'A trigger: two months in a row past the agreed level? Then the owner acts.', focus: ['trig', 'teamlead'] },
       { nl: 'Zet het in het afsluitplan, met namen en data.', en: 'Put it in the close-out plan, with names and dates.', focus: ['plan', 'sheet'] },
     ]),
     sc('s6', { nl: 'Eerlijk over toerekening', en: 'Honest about attribution' }, [
@@ -410,8 +410,10 @@ const spec = {
 // niet voor niks"; the card keeps sceptisch), sales (said de verkoop), direct
 // (stressed DI-; said rechtstreeks), stormweken (stressed -WEE-; said
 // "weken met storm"; the caption keeps stormweken), voorbij (stressed VOOR-;
-// said "over die grens"); the trigger is said actiegrens, as pm.perform.tree
-// does.
+// said "over die grens"). The lesson's trigger is said "trikker" (espeak-ng
+// reads a soft Dutch g, "tri-gher"; a kit rule scoped to this film's "trigger,
+// een actiegrens", so pm.land.handover's trigger keeps its voice), followed by
+// actiegrens, as pm.perform.tree says it.
 const SAY = [
   [ // s1 output, outcome, benefits
     { nl: 'Drie woorden om uit elkaar te houden: output, uitkomst en baten. {t:Output|Output} is wat het project oplevert.',
@@ -458,7 +460,7 @@ const SAY = [
       en: 'Plan benefits tracking for {n:6} to {n:12} months after go-live: the day the change goes into use.' },
     { nl: 'De eigenaar bekijkt het getal elke maand, en er is een check-in na {n:3} en na {n:6} maanden.',
       en: 'The owner reviews the number every month, and there is a check-in at {n:3} and at {n:6} months.' },
-    { nl: 'En er is een actiegrens. Gaat het getal twee maanden achter elkaar over die grens, dan grijpt de eigenaar in.',
+    { nl: 'En er is een trigger, een actiegrens. Gaat het getal twee maanden achter elkaar over die grens, dan grijpt de eigenaar in.',
       en: 'And there is a trigger. If the number slips past an agreed level two months in a row, the owner acts.' },
     { nl: 'Zet dit in het afsluitplan, met namen en data. Anders gebeurt het niet.',
       en: 'Put this in the close-out plan, with names and dates. Or it will not happen.' },
@@ -610,7 +612,7 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard dat het paneel in het klein herhaalt, en een klok. Jij, de adviseur in petrol, staat bij het bord. De teamleider in werkvest staat aan het linkereind van de tafel, voor de lijn; de sponsor in pak aan het rechtereind, voor de directie; de controller met een map aan de voorkant. Op tafel een vel papier, een laptop en twee kopjes. Rechts een paneel met kaarten, gemarkeerd als schema of voorbeeld: output, uitkomst en baten als drie blokken onder elkaar; de gereedheidscheck met afzeggingen van 14 naar 8 procent en 1.200 ploegdagen maal 750 euro; een tijdlijn met de batenhouder vóór de start en de projectleider die vertrekt; de nulmeting met drie vragen; maandelijkse punten na de livegang met check-ins na 3 en 6 maanden en een actiegrens; een daling waarvan 60 tot 70 procent aan de gereedheidscheck wordt toegerekend; een cijfer dat na de afsluiting terugzakt; en een omstelproject van 90 naar 45 en terug naar 70 minuten, met de twee problemen uit elkaar.',
+  nl: 'Een vergaderruimte. Aan de achterwand een whiteboard dat het paneel in het klein herhaalt, en een klok. Jij, de adviseur in petrol, staat bij het bord. De teamleider in werkvest staat aan het linkereind van de tafel, voor de lijn; de sponsor in pak aan het rechtereind, voor de directie; de controller met een map aan de voorkant. Op tafel een vel papier, een laptop en twee kopjes. Rechts een paneel met kaarten, gemarkeerd als schema of voorbeeld: output, uitkomst en baten als drie blokken onder elkaar; de gereedheidscheck met afzeggingen van 14 naar 8 procent en 1.200 ploegdagen maal 750 euro; een tijdlijn met de batenhouder vóór de start en de projectleider die vertrekt; de nulmeting met drie vragen; maandelijkse punten na de livegang met check-ins na 3 en 6 maanden en een trigger; een daling waarvan 60 tot 70 procent aan de gereedheidscheck wordt toegerekend; een cijfer dat na de afsluiting terugzakt; en een omstelproject van 90 naar 45 en terug naar 70 minuten, met de twee problemen uit elkaar.',
   en: 'A meeting room. On the back wall a whiteboard that repeats the panel in miniature, and a clock. You, the consultant in petrol, stand at the board. The team lead in a work vest stands at the left end of the table, for the line; the sponsor in a suit at the right end, for the board; the controller with a binder at the front. On the table a sheet of paper, a laptop and two cups. At the right a panel with cards, marked as diagram or example: output, outcome and benefit as three stacked blocks; the readiness check with cancellations from 14 to 8 percent and 1,200 crew-days times 750 euros; a timeline with the benefit owner before the start and the project lead who leaves; the baseline with three questions; monthly points after go-live with check-ins at 3 and 6 months and a trigger; a drop of which 60 to 70 percent is attributed to the readiness check; a number that slides back after closing; and a changeover project from 90 to 45 and back to 70 minutes, with the two problems pulled apart.',
 };
 
