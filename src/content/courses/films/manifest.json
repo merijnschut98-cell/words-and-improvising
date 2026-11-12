@@ -1564,6 +1564,41 @@
         ],
         "vtt": "src/content/courses/films/pm.run.rhythm.en.vtt"
       }
+    },
+    "pm.land.adoption": {
+      "poster": "src/content/courses/films/pm.land.adoption.jpg",
+      "nl": {
+        "dur": 346.7,
+        "bytes": 13019264,
+        "scenes": [
+          0,
+          38.45,
+          73.14,
+          125.55,
+          157.89,
+          200.9,
+          241.38,
+          273.67,
+          312.04
+        ],
+        "vtt": "src/content/courses/films/pm.land.adoption.nl.vtt"
+      },
+      "en": {
+        "dur": 350.6,
+        "bytes": 12910591,
+        "scenes": [
+          0,
+          40.75,
+          74.01,
+          126.69,
+          159.11,
+          202.29,
+          244.4,
+          276.05,
+          314.71
+        ],
+        "vtt": "src/content/courses/films/pm.land.adoption.en.vtt"
+      }
     }
   }
 }
