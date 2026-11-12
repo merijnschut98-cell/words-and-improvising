@@ -196,6 +196,12 @@ const SAY = {
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
     [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // compressed air (eng.power.air): espeak-ng stresses oliene-VEL-aar (with the e of "bed"), verzorgings-EEN-heid,
+    // warmte-TEE-rugwinning (with a long e) and reads toerenregeling as "toer-en-regeling"; split at the head, each
+    // part keeps its own reading (OLie-NEvelaar, verZORgings-eenheid, warmte-teRUGwinning, TOEren-REgeling). And
+    // booster as the floor says it, "boester" (espeak-ng reads the Dutch oo).
+    [/\b([Oo])lienevel/g, '$1lie-nevel'], [/\b([Vv])erzorgingseenheid/g, '$1erzorgings-eenheid'], [/\b([Ww])armteterugwinning/g, '$1armte-terugwinning'],
+    [/\b([Tt])oerenregeling/g, '$1oeren-regeling'], [/\b([Bb])ooster/g, '$1oester'],
     // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
     // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
     // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
