@@ -591,7 +591,7 @@ const SAY = [
   [ // s5 under the line
     { nl: 'Tel de schaarse mensen: twee experts met elk {n:120} dagen geven {n:240}.',
       en: 'Count the scarce people: two engineers with {n:120} days each give {n:240}.' },
-    { nl: 'Een voedingsbedrijf wil alle vijf. Per dag van een expert: B vierenhalfduizend euro, D drie, A tweeënhalf, en C, een nieuw MES voor de orders op de vloer, één na {n:50} procent risico.',
+    { nl: 'Een voedingsbedrijf wil alle vijf. Per dag van een expert: B vierenhalfduizend euro, D drie, A tweeënhalf. C is een nieuw MES voor de orders op de vloer: één na {n:50} procent risico.',
       en: 'A food producer wants all five. Per engineer day: B four and a half thousand, D three, A two and a half, and C, a new MES for the orders on the floor, one at {n:50} percent risk.' },
     { nl: 'Rangschik, en trek de {t:Capaciteitsstreep|capaciteitsstreep} waar het lopende totaal {n:240} bereikt. Alles eronder wacht.',
       en: 'Rank, and draw the {t:Capacity line|capacity line} where the running total reaches {n:240}. Everything below waits.' },
