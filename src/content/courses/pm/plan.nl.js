@@ -1000,6 +1000,7 @@ export default {
     },
     {
       id: 'pm.plan.risk',
+      film: 'pm.plan.risk',
       title: 'Een risicolijst die gebruikt wordt',
       pre: [
         {
@@ -1013,7 +1014,7 @@ export default {
         'Een risico is iets wat kan gebeuren en het project pijn zou doen. Een risicolijst (risk register) zet ze op een rij, elk met een kans, een impact (hoe erg), een risico-eigenaar en een actie met een datum.\n\nDe risico-eigenaar is één persoon die het in de gaten houdt en handelt, geen afdeling. “Data kan slecht zijn” helpt niet. “De onderhoudsdata van voor 2023 is na de overstap naar het nieuwe systeem misschien onbruikbaar; eigenaar: Pieter; actie: testexport in week 1” wel.',
         'Veel teams scoren kans en impact van 1 tot 5 en vermenigvuldigen, dus een risico scoort 1 tot 25. Zie die score als sorteerhulp, niet als waarheid: een 12 is niet echt erger dan een 10.\n\nDe actie is de beheersmaatregel (mitigation): wat je nu doet om het risico kleiner of minder schadelijk te maken. “Monitoren” is geen beheersmaatregel. “Testexport in week 1” wel.',
         'De meeste risicolijsten sterven na de kick-off. Houd de jouwe levend: alleen de top vijf komt in elke stuurgroep langs, en de eigenaar vertelt wat er sindsdien gebeurd is.\n\nRisico’s die uitkomen worden issues: problemen die nu spelen en aangepakt moeten worden, niet alleen gevolgd. Voeg nieuwe risico’s toe zodra je ze hoort, vaak bij het koffieapparaat.',
-        'De pre-mortem, beschreven door Gary Klein in 2007: “Stel, het is over zes maanden en dit project is mislukt. Schrijf alleen op waarom.” Haal daarna per ronde één reden per persoon op.\n\nOmdat het mislukken als feit wordt voorgesteld, noemen mensen dingen die ze anders niet zeggen: de sponsor vertrekt misschien, de nachtploeg accepteert het niet, de IT-aanpassing heeft geen budget. Klein haalt Mitchell, Russo en Pennington (1989) aan: met deze “prospective hindsight” (terugkijken vanuit een bedachte toekomst) noemden mensen zo’n 30% beter de juiste redenen.',
+        'De pre-mortem, beschreven door Gary Klein in 2007: “Stel, het is over zes maanden en dit project is mislukt. Schrijf alleen op waarom.” Haal daarna per ronde één reden per persoon op.\n\nOmdat het mislukken als feit wordt voorgesteld, noemen mensen dingen die ze anders niet zeggen: de sponsor vertrekt misschien, de nachtploeg accepteert het niet, de IT-aanpassing heeft geen budget. Klein haalt Mitchell, Russo en Pennington (1989) aan: volgens hem vergroot deze “prospective hindsight” (terugkijken vanuit een bedachte toekomst) het vermogen om de juiste redenen te noemen met 30%.',
         'De mensenkant: sommige risico’s zijn gevoelig, zoals “de plantmanager gelooft er eigenlijk niet in”. Zet dat niet in een lijst die de plantmanager leest. Formuleer het als thema (“sponsorschap en zichtbare steun”) en bespreek het echte punt één op één met wie er iets aan kan doen.\n\nWeet je niet hoe groot de kans is, zeg dat en plan een goedkope test. Scherpe vraag per toprisico: “Wat zien we als eerste als dit begint te gebeuren?”',
       ],
       example: {
