@@ -445,6 +445,12 @@ const SAY = {
     [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arkoodskenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
     [/\breal-time\b/g, 'riel-taim'], [/\blatency\b/g, 'lee-tensie'], [/\bretries\b/g, 'rie-traiz'],
     [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): the authors of Getting to Yes as their
+    // names sound, only after "van" (so pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+    // sounds the h of Fisher and reads Ury as "uu-rie" (said Fisjer en Joeri); and Lean-consultant as
+    // "Lien consultant", two words (espeak-ng reads "lee-an"; "Lien-consultant" runs on into "link-consultant",
+    // as Whisper hears it); no other film says them in Dutch
+    [/\bvan Fisher en Ury\b/g, 'van Fisjer en Joeri'], [/\bLean-consultant\b/g, 'Lien consultant'],
     // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
     // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
     // ("vaazje": vaage),
@@ -474,7 +480,10 @@ const SAY = {
     // (letters elsewhere), so V O P throughout
     [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
     // translating jargon (pm.outside.jargon): espeak-ng's English reads idempotency as "AID-mpoatency"; said idem-potency
-    [/\bidempotency\b/g, 'idem-potency']],
+    [/\bidempotency\b/g, 'idem-potency'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
+    // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
