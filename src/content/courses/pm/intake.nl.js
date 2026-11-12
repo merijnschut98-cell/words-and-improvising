@@ -995,7 +995,7 @@ export default {
       teach: [
         'Een businesscase (business case) is de som die laat zien of een project het waard is: wat het kost, wat het oplevert, en hoe zeker dat is. Voor een klein verbeterproject is dat vaak één tabel, geen rapport.\n\nAls junior maak je hem niet alleen. Maar je moet de som snappen, want elke sponsor stelt de vraag: “Wat levert het op?” En liefst in euro’s.',
         'De kosten splits je in twee soorten. Eenmalige kosten betaal je één keer: consultant, training, een nieuw gereedschap. Daarnaast zijn er kosten die blijven, zoals een licentie per jaar of extra onderhoud.\n\nVergeet de tijd van de eigen mensen niet. Twee operators vier uur per week gedurende acht weken is 64 uur; die uren draaien ze niet in productie. Veel businesscases laten dat weg en lijken daardoor goedkoper dan ze zijn.',
-        'Baten zijn wat het project oplevert, uitgedrukt in geld waar het kan. Minder afkeur: kilo’s maal de materiaalprijs. Minder stilstand: uren maal wat een uur productie waard is. Minder overwerk: uren maal het overwerktarief.\n\nWees eerlijk over het verschil tussen echte en papieren baten. Twee uur minder stilstand per week levert alleen geld op als je die uren ook kunt verkopen. Anders is het capaciteit, geen euro’s.',
+        'Baten zijn de meetbare winst die het project de organisatie brengt, uitgedrukt in geld waar het kan. Minder afkeur: kilo’s maal de materiaalprijs. Minder stilstand: uren maal wat een uur productie waard is. Minder overwerk: uren maal het overwerktarief.\n\nWees eerlijk over het verschil tussen echte en papieren baten. Twee uur minder stilstand per week levert alleen geld op als je die uren ook kunt verkopen. Anders is het capaciteit, geen euro’s.',
         'De eenvoudigste maat is de terugverdientijd (payback period): eenmalige kosten gedeeld door de netto baten per maand of per jaar (baten min de kosten die blijven). Kost een project €30.000 en levert het netto €2.500 per maand op, dan is het na 12 maanden terugverdiend.\n\nVeel bedrijven hanteren een vuistregel, zoals “onder de twee jaar”, maar dat verschilt per bedrijf en sector. Vraag het de controller: “Welke terugverdientijd vinden jullie goed?”',
         'Waar experts het over oneens zijn: de terugverdientijd negeert wat er na het terugverdienen gebeurt en hoe zeker de baten zijn. Financiële mensen gebruiken daarom vaak ook netto contante waarde, die later komt. Voor een eerste gesprek is de terugverdientijd wel helder.\n\nEen veelgemaakte fout: baten optellen die elkaar overlappen, zoals minder stilstand en meer output van dezelfde uren. Scherpe vraag: “Op welke regel in de resultatenrekening zie ik dit terug?”',
       ],
@@ -1058,7 +1058,7 @@ export default {
       terms: [
         { term: 'Businesscase', def: 'De som die laat zien of een project het waard is: kosten, baten en hoe zeker die zijn.' },
         { term: 'Eenmalige kosten', def: 'Kosten die je één keer maakt, zoals consultant, training of gereedschap.' },
-        { term: 'Baten', def: 'Wat het project oplevert, in geld uitgedrukt waar het kan.' },
+        { term: 'Baten', def: 'De meetbare winst die het project de organisatie brengt, in geld uitgedrukt waar het kan.' },
         { term: 'Terugverdientijd', def: 'Eenmalige kosten gedeeld door de netto baten per maand of jaar: hoe lang het duurt voor het project zich terugbetaalt.' },
       ],
     },

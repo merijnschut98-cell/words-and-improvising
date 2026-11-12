@@ -355,7 +355,7 @@ export default {
         'Acceptance criteria say when the project is done. Make them measurable and agree them at the start, in the project charter: the short written agreement on goal, scope (what is in and what is out), roles and timing. For example: “Cancellations below 8% for six consecutive weeks in the pilot region; readiness check used in all regions; owner trained.”\n\nWrite down who signs off. Without criteria, the project ends when someone gets tired of it.',
         'The sign-off is the sponsor’s formal yes. Go through each criterion with the sponsor, the manager who owns and pays for the project, with the evidence on one page: met, partly met or not met. Then a signature, or a written confirmation by e-mail.\n\nFormal acceptance protects both sides: the client knows what they got, and you can close the project and invoice. Without it, the last 10% of a project can drag on for months.',
         'Use an open points list. Not everything will be perfect.\n\nList what remains: item, owner, date. The owner sits in the line organisation: the normal hierarchy that runs the daily work, as opposed to the temporary project team. Accept the project with open points rather than waiting for everything to be done. Points owned by the line survive the handover; points owned by “the project” die when it ends.',
-        'What experts argue about: accept on outputs or on outcomes? Outputs are what you delivered, such as a trained team or a new check. Outcomes are the results, like fewer cancellations, and they often take months to show.\n\nMethods like PRINCE2, a widely used project method, close on outputs and plan a benefits review later. Many sponsors want outcomes in the criteria. A workable middle: outputs, plus a few weeks of outcome data, plus a review date three to six months out.',
+        'What experts argue about: accept on outputs or on outcomes? Outputs are what you delivered, such as a trained team or a new check. Outcomes are the effect, like fewer cancellations, and they often take months to show.\n\nMethods like PRINCE2, a widely used project method, close on outputs and plan a benefits review later. Many sponsors want outcomes in the criteria. A workable middle: outputs, plus a few weeks of outcome data, plus a review date three to six months out.',
         'The people side: clients sometimes delay sign-off with new wishes. Say: “Let’s check against the criteria we agreed in March. These new wishes are good; they go on the list for the line or a follow-up project.”\n\nIf criteria were never agreed, own that honestly and agree them now, before the last week. A sharp question for the kick-off, the first project meeting: “What would you need to see to sign this off?”',
       ],
       example: {
@@ -418,7 +418,7 @@ export default {
         { term: 'Sign-off', def: 'The sponsor’s formal confirmation that the project is accepted.' },
         { term: 'Open points list', def: 'Remaining items, each with an owner in the line and a date.' },
         { term: 'Line organisation', def: 'The normal hierarchy that runs the daily work, as opposed to the temporary project team.' },
-        { term: 'Benefits review', def: 'A planned check, months after closing, of whether the promised results really came.' },
+        { term: 'Benefits review', def: 'A planned check, months after closing, of whether the promised benefits really came.' },
       ],
     },
     {
