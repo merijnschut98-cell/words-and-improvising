@@ -1,7 +1,7 @@
 // Merging progress from another device. Never an overwrite: anything done on
 // either device survives. Device settings (API key, theme, language) and ui
 // state never leave the device. Pure.
-import { cleanPlans, strings } from './storage.js';
+import { cleanPlans, strings, cleanXpDays, cleanGoal, cleanMedals, cleanSpeakMedals, cleanTitles, cleanChecks, MEDAL_TIERS } from './storage.js';
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
@@ -46,7 +46,7 @@ function mergeLesson(x, y) {
   const a = obj(x);
   const b = obj(y);
   const out = { ...b, ...a };
-  for (const k of ['read', 'passed']) { const v = minDefined(a[k], b[k]); if (v != null) out[k] = v; }
+  for (const k of ['read', 'passed', 'perfect']) { const v = minDefined(a[k], b[k]); if (v != null) out[k] = v; }
   const say = maxDefined(a.sayIt, b.sayIt);
   if (say != null) out.sayIt = say;
   const opened = maxDefined(a.opened, b.opened);
@@ -89,6 +89,28 @@ function mergePlans(a, b) {
   }).slice(0, PLANS_CAP);
 }
 
+// v16 flair. Medals and titles: the higher one wins, on a tie the earlier
+// ts (when it was first earned). Checks: best max, perfect earliest, last
+// latest. The daily goal: the later choice.
+const tierRank = (m) => MEDAL_TIERS.indexOf(m && m.tier);
+const higher = (rank) => (x, y) => {
+  if (rank(x) !== rank(y)) return rank(x) > rank(y) ? x : y;
+  return (y.ts < x.ts ? y : x);
+};
+const mergeMedals = (a, b) => perKey(cleanMedals(a), cleanMedals(b), higher(tierRank));
+const mergeTitles = (a, b) => perKey(cleanTitles(a), cleanTitles(b), higher((t) => t.rank));
+function mergeCheck(x, y) {
+  const best = x.best !== y.best ? (x.best > y.best ? x : y) : (x.total >= y.total ? x : y);
+  return { last: x.last > y.last ? x.last : y.last, best: best.best, total: best.total, perfect: minDefined(x.perfect, y.perfect) ?? null };
+}
+const mergeChecks = (a, b) => perKey(cleanChecks(a), cleanChecks(b), mergeCheck);
+const laterGoal = (a, b) => {
+  const x = cleanGoal(a);
+  const y = cleanGoal(b);
+  if (x.ts !== y.ts) return x.ts > y.ts ? x : y;
+  return x.xp >= y.xp ? x : y;
+};
+
 function mergeCourses(a, b) {
   return perKey(a, b, (x, y) => {
     const cx = obj(x);
@@ -98,6 +120,8 @@ function mergeCourses(a, b) {
       lessons: perKey(cx.lessons, cy.lessons, mergeLesson),
       sessions: unionBy(cx.sessions, cy.sessions, (s) => `${s.ts}|${s.kind}|${s.lessonId || ''}`, SESSIONS_CAP),
       plans: mergePlans(cx.plans, cy.plans),
+      medals: mergeMedals(cx.medals, cy.medals),
+      checks: mergeChecks(cx.checks, cy.checks),
       // Event ids grow with time: newest first, capped like on the device.
       prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])].sort().reverse().slice(0, PREPPED_CAP),
     };
@@ -147,6 +171,12 @@ function clean(r) {
     const box = Math.round(Number(v.box));
     return [k, { ...v, box: Number.isFinite(box) ? Math.min(6, Math.max(1, box)) : 1 }];
   }));
+  out.xpDays = cleanXpDays(r.xpDays);
+  out.titles = cleanTitles(r.titles);
+  out.speakMedals = cleanSpeakMedals(r.speakMedals);
+  if (isObj(r.courses)) {
+    out.courses = Object.fromEntries(Object.entries(r.courses).map(([k, c]) => [k, isObj(c) ? { ...c, medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) } : c]));
+  }
   return out;
 }
 
@@ -175,6 +205,10 @@ export function mergeStates(local, remote) {
   })();
   m.bests = mergeBests(l.bests, r.bests);
   m.milestones = [...new Set([...arr(l.milestones), ...arr(r.milestones)])];
+  m.xpDays = perKey(cleanXpDays(l.xpDays), r.xpDays, Math.max);
+  m.dailyGoal = laterGoal(l.dailyGoal, r.dailyGoal);
+  m.titles = mergeTitles(l.titles, r.titles);
+  m.speakMedals = perKey(cleanSpeakMedals(l.speakMedals), r.speakMedals, higher(tierRank));
   m.seen = perKey(l.seen, r.seen, Math.max);
   m.drillLevels = perKey(l.drillLevels, r.drillLevels, Math.max);
   m.friendAsks = { ...obj(r.friendAsks), ...obj(l.friendAsks) };

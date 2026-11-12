@@ -1,7 +1,7 @@
 import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf, ownedDrills } from '../core/mastery.js';
-import { todayPick, startCards } from '../core/today.js';
+import { todayPick, startCards, homeNotices } from '../core/today.js';
 import { SPEAK_BANDS, DRILL_GROUPS, groupProgress, openGroups, toggleGroup } from '../core/layout.js';
 import { programmeWeek, PROGRAMME, startProgramme, stopProgramme, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
@@ -9,6 +9,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
+import { startHead, subjectTitle } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
@@ -267,7 +268,8 @@ function startCard(app, card) {
     onclick: () => app.setSubject(card.subject),
   },
   h('span', { class: 'start-head' },
-    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`)),
+    h('span', { class: 'start-subject' }, ico(icon), ' ', t(`subject_${card.subject}`),
+      subjectTitle(t, app.state, card.subject) ? [h('span', { class: 'muted' }, ' · '), subjectTitle(t, app.state, card.subject)] : null),
     card.done ? h('span', { class: 'start-done' }, ico('check'), ' ', t('startDone')) : null),
   what,
   h('span', { class: 'start-why' }, why),
@@ -281,23 +283,27 @@ function breakCard(app, show) {
     h('button', { class: 'icon-btn small', 'aria-label': app.t('dismiss'), onclick: (e) => e.currentTarget.parentElement.remove() }, ico('x')));
 }
 
+// After the first v16 start: one quiet line about the medals and title his
+// earlier work earned (Q7), shown once.
+function flairNote(app, note) {
+  if (!note) return null;
+  const title = note.rank ? app.t(`title_${note.rank}`) : '';
+  return h('p', { class: 'muted small flair-note' }, ico('award'), ' ', app.t('titleSoFar', note.medals, title));
+}
+
 // The start screen: under the Vantage Point name, one today card per subject,
 // and the streak and level in one quiet line.
-function renderStart(app, root, showBreak) {
+function renderStart(app, root, showBreak, note) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  const streak = isStreakAlive(s.streak, today) ? s.streak.count : 0;
-  const lv = levelFromXp(s.xp);
   const cards = startCards(s, today, app.content, app.lang);
   root.append(
     h('header', { class: 'top' }, brandLockup()),
     h('main', { class: 'screen home start' },
       breakCard(app, showBreak),
-      h('h1', { class: 'start-title' }, t('startTitle')),
-      h('p', { class: 'start-meta muted small' },
-        ico('flame'), ` ${streak} ${t('streak', streak)} · ${t('level')} ${lv.level} · ${lv.into}/${lv.needed} XP`,
-        s.freezes ? ` · ${t('freezesShort', s.freezes)}` : ''),
+      startHead(app),
+      flairNote(app, note),
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
@@ -343,6 +349,7 @@ function subjectHeader(app) {
   const streak = isStreakAlive(s.streak, app.today()) ? s.streak.count : 0;
   return h('header', { class: 'top' },
     h('button', { class: 'back-btn', onclick: () => app.setSubject('start') }, ico('chevron-left'), h('span', {}, t('overview'))),
+    subjectTitle(t, s, app.subject),
     h('div', { class: `streak${streak ? ' on' : ''}`, title: t('streak', streak) },
       ico('flame'), h('b', {}, streak), h('span', { class: 'streak-label' }, t('streak', streak)),
       s.freezes ? h('span', { class: 'freezes', title: t('freezesTitle') }, ico('snowflake'), ` ${s.freezes}`) : null));
@@ -352,11 +359,13 @@ export function renderHome(app, _params, root) {
   const t = app.t;
   const s = app.state;
   const today = app.today();
-  // Gentle, once a day: the streak broke, but the total never resets.
-  const showBreak = app.broke && (s.ui || {}).seenBreak !== today && s.streak.count > 0;
-  if (showBreak) app.setState({ ...s, ui: { ...(s.ui || {}), seenBreak: today } });
+  // Gentle, once a day: the streak broke, but the total never resets. And,
+  // on the start screen, the one-time flair line. Decided before drawing.
+  const once = homeNotices(s, today, { broke: app.broke, onStart: app.subject === 'start' });
+  const { showBreak, note } = once;
+  if (once.state !== s) app.setState(once.state);
 
-  if (app.subject === 'start') { renderStart(app, root, showBreak); return; }
+  if (app.subject === 'start') { renderStart(app, root, showBreak, note); return; }
   // A course subject: its own home under the same header and bar.
   if (app.subject !== 'speak') {
     root.append(subjectHeader(app), subjectBar(app), courseHome(app, app.subject), navBar(app, 'home'));

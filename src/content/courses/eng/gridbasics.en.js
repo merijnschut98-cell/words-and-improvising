@@ -579,6 +579,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      film: 'eng.gridbasics.congestion',
       title: 'What a grid operator does',
       pre: [
         {
@@ -590,7 +591,7 @@ export default {
       ],
       teach: [
         'A regional grid operator has five core tasks: connect customers; transport electricity (and often gas) to them; maintain the grid so it stays safe and reliable; restore outages, day and night; and plan and build the grid of the future. Every two years it publishes an investment plan that shows what it will build.\n\nIt does not sell energy: energy suppliers such as Eneco or Vattenfall do that, and you choose your own.',
-        'Most outages happen in the MV and LV grid: a digger hits a cable, an old joint (the connection between two cable lengths) fails, a fuse blows.\n\nThe Dutch grid is among the most reliable in Europe: in 2024 unplanned outages left a customer without power for about 24 minutes on average (23.9, Netbeheer Nederland); planned work added about 23.3 minutes. Operators track outage minutes per customer per year, officially the annual outage duration.',
+        'Most outages happen in the MV and LV grid: a digger hits a cable, an old joint (the connection between two cable lengths) fails, a fuse blows.\n\nThe Dutch grid is among the most reliable in Europe: in 2025 unplanned outages left a customer without power for about 23 minutes on average (23.4, Netbeheer Nederland); planned work added about 27 minutes (27.2). Operators track outage minutes per customer per year, officially the annual outage duration.',
         'A grid operator is a regulated monopoly: each has its own area, and customers cannot choose. The ACM (Authority for Consumers and Markets), the regulator, sets how much income operators may earn through tariffs, fixes the technical and connection rules in the grid codes, and checks quality.\n\nSince 1 January 2026, the new Energy Act sets the legal framework; it replaced the Electricity Act of 1998 (more in the lesson on laws and codes).',
         'The shares are public: provinces and municipalities own the regional operators, and by law they cannot be sold to private owners. Because the operators must invest billions in the energy transition, the Dutch state has also started to put in capital, for example in Stedin.\n\nTenneT is owned by the Dutch state. Expect political attention: tariffs, waiting lists and investment speed are national news.',
         'The work is changing fast. With the energy transition, operators connect and build more than ever, while technicians and materials are scarce; the sector is short of thousands of technicians.\n\nThat is why they push standardisation, plan work in bigger packages and chase every hour of efficiency in the field. A sharp question for any improvement project: where does a technician’s day actually go?',
@@ -863,6 +864,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      film: 'eng.gridbasics.congestion',
       title: 'Grid congestion',
       pre: [
         {
@@ -877,7 +879,7 @@ export default {
         'In congested areas, new large consumers (connections above 3 × 80 A, about 55 kVA: a supermarket, a factory, a charging hub) and existing ones that want more capacity end up on a waiting list. Thousands of companies are waiting.\n\nSmall connections, such as homes and small shops, used to have capacity set aside; since July 2026 they follow the same priority rules, so in some regions they can have to wait too. The public capacity map shows where there is room and where not.',
         'Reinforcing the grid takes years: a new substation often takes 5 to 10 years, including permits, land and space for cables under the street. MV reinforcement is faster, but still months to years. Technicians, transformers and digging space are all scarce.\n\nSo building alone will not solve congestion this decade; the existing grid has to be used better.',
         'Congestion management means paying or contracting customers to use less or feed in less at peak moments. Grid operators often buy this flexibility through GOPACS, the joint platform of the Dutch grid operators where they post requests and companies offer to shift.\n\nA flexible contract gives a customer capacity except at peak hours, or for a set share of the year, usually at a lower tariff. Since most congestion lasts a few hundred hours a year, a little flexibility frees a lot of room.',
-        'What experts argue about: who gets scarce capacity first. Since 2024 the ACM, the regulator, lets grid operators put projects with social value ahead in the queue, such as schools, healthcare and projects that relieve congestion, instead of strictly first come, first served. A revised framework keeps this and, since July 2026, also covers small connections. Companies further down the queue wait longer as a result.\n\nA sharp question: for how many hours a year is this station really over its limit, and by how much?',
+        'What experts argue about: who gets scarce capacity first. Since 2024 the ACM has let grid operators put social projects ahead of first come, first served: first projects that relieve congestion, then safety (such as hospitals), then basic needs (such as housing and education). A court annulled that first framework in March 2025; the new one keeps the same order and, since July 2026, also covers small connections. Others wait longer.\n\nA sharp question: how many hours a year is this station really over its limit, and by how much?',
       ],
       example: {
         kind: 'worked',

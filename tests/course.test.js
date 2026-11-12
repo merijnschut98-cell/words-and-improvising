@@ -635,3 +635,62 @@ test('applyLesson: only the lesson\'s own recall questions enter the review queu
   assert.deepEqual(Object.keys(state.courseReviews), ['nl|eng.flow.takt#r0']);
   assert.equal(state.courses.eng.sessions[0].total, 4, 'the session still counts every question asked');
 });
+
+// v16 flair: XP is also counted per day.
+test('applyLesson credits 20 XP to today\'s xpDays; a retake credits nothing', () => {
+  const firstTry = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW);
+  assert.equal(a.state.xpDays[TODAY], 20);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.state.xpDays[TODAY], 20);
+  assert.equal(b.state.xp, 20);
+});
+
+test('applyDue and applySituation credit their XP to xpDays', () => {
+  const d = applyDue(defaultState(), { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW);
+  assert.equal(d.state.xpDays[TODAY], d.xp);
+  const s = applySituation(d.state, { subject: 'pm', lessonId: 'pm.intake.ask', pts: 2 }, TODAY, NOW);
+  assert.equal(s.state.xpDays[TODAY], d.xp + 10);
+});
+
+test('applyLesson stores perfect once (the first ts) and keeps it on a later imperfect retake', () => {
+  const all = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': true };
+  const miss = { 'eng.flow.takt#r0': true, 'eng.flow.takt#r1': false };
+  let s = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: miss, lang: 'nl' }, TODAY, NOW).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, undefined);
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 5).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5);
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 9).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5, 'the first ts stays');
+  s = applyLesson(s, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: miss, lang: 'nl' }, TODAY, NOW + 20).state;
+  assert.equal(s.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 5);
+  const hinted = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, sure: { 'eng.flow.takt#r1': false }, lang: 'nl' }, TODAY, NOW).state;
+  assert.equal(hinted.courses.eng.lessons['eng.flow.takt'].perfect, undefined, 'a hint is not perfect');
+});
+
+test('applyLesson returns medals, titles and goalReached alongside xp', () => {
+  const firstTry = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry, lang: 'nl' }, TODAY, NOW);
+  assert.deepEqual(a.titles, [{ subject: 'eng', rank: 1 }]);
+  assert.deepEqual(a.medals, []);
+  assert.equal(a.goalReached, false, '20 of 30');
+  assert.equal(a.state.titles.eng.rank, 1);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.balance', firstTry: { 'eng.flow.balance#r0': true }, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.goalReached, true, '40 crosses 30');
+  assert.deepEqual(b.titles, []);
+});
+
+test('a perfect retake of a passed lesson sets perfect but gives no XP', () => {
+  const all = { 'eng.flow.takt#r0': true };
+  const a = applyLesson(defaultState(), { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: { 'eng.flow.takt#r0': false }, lang: 'nl' }, TODAY, NOW);
+  const b = applyLesson(a.state, { subject: 'eng', lessonId: 'eng.flow.takt', firstTry: all, lang: 'nl' }, TODAY, NOW + 1);
+  assert.equal(b.xp, 0);
+  assert.equal(b.state.courses.eng.lessons['eng.flow.takt'].perfect, NOW + 1);
+});
+
+test('applyDue returns goalReached when its XP crosses the daily goal', () => {
+  const s0 = { ...defaultState(), xpDays: { [TODAY]: 20 } };
+  const r = applyDue(s0, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW);
+  assert.equal(r.goalReached, true);
+  assert.equal(applyDue(r.state, { subject: 'eng', results: { 'eng.flow.takt#r0': true }, lang: 'nl' }, TODAY, NOW + 1).goalReached, false);
+});

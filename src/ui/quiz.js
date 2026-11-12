@@ -6,15 +6,19 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge, guessCompare } from '../core/course.js';
 import { questionHint } from '../core/hint.js';
+import { guide, guideLine } from './guide.js';
 
 const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
 const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
 
 // termsOf(question): the terms of the question's lesson, for the hint.
-export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [] }, box) {
+// onePass (the module check, v16): one pass, no hint, no back, no retry
+// passes; the review ends the quiz.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
+  let saidWrong = false; // the guide's line on a miss comes once per quiz (v16)
 
   const answer = (value) => {
     const q = questions[st.order[st.i]];
@@ -69,7 +73,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     const q = questions[st.order[st.i]];
     // Within a pass: take back the last answer. Before the first: back out of
     // the quiz (in a lesson, to the example).
-    const backBtn = st.i > 0
+    const backBtn = onePass ? null : st.i > 0
       ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack'))
       : (onBack && st.pass === 1 ? h('button', { class: 'btn btn-ghost small lesson-back', onclick: onBack }, ico('chevron-left'), ' ', t('lessonBack')) : null);
     const progress = h('p', { class: 'quiz-progress muted small' }, `${st.pass > 1 ? `${t('quizAgain')} · ` : ''}${st.i + 1}/${st.order.length}`);
@@ -87,7 +91,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       const submit = () => { if (input.value.trim()) answer(input.value.trim()); };
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
       setTimeout(() => input.focus(), 0);
-      const hp = hintParts(q, null);
+      const hp = onePass ? { panel: null, btn: null } : hintParts(q, null);
       return h('section', { class: 'card quiz-card' }, progress,
         guessLine,
         h('p', { class: 'quiz-q' }, q.q),
@@ -100,7 +104,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
       class: `opt${o === mark ? ' chosen' : ''}`, 'aria-pressed': o === mark ? 'true' : null, onclick: () => answer(o),
     }, o)));
-    const hp = hintParts(q, opts);
+    const hp = onePass ? { panel: null, btn: null } : hintParts(q, opts);
     return h('section', { class: 'card quiz-card' }, progress,
       guessLine,
       h('p', { class: 'quiz-q' }, q.q),
@@ -124,8 +128,14 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
 
   function reviewCard() {
     const misses = lastPass.filter((x) => !x.ok).length;
+    // The guide reacts here, not per tap: all right lights the top (no line),
+    // a miss lights the middle ochre with one line, once per quiz.
+    const g = guide(app.state, { mood: misses ? 'wrong' : 'right', size: 32 });
+    const say = g && misses && !saidWrong ? guideLine(t, 'guideWrong', app.today ? app.today() : '') : null;
+    if (say) saidWrong = true;
     return h('section', { class: 'card quiz-review' },
-      h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean')),
+      h('div', { class: 'review-head' }, g, h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean'))),
+      say ? h('p', { class: 'guide-say small muted' }, say) : null,
       // Where he used a hint: marked, so he sees what is not really his yet.
       lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}${'guess' in q ? ' guess-row-back' : ''}` },
         h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
@@ -134,10 +144,12 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
           ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
           h('p', { class: 'small' }, h('b', {}, correct(q)))],
         h('p', { class: 'muted small' }, q.why))),
-      h('button', {
-        class: 'btn btn-primary',
-        onclick: () => { st = continueQuiz(st); lastPass = []; draw(); },
-      }, misses ? t('quizRetry', misses) : t('quizFinish')));
+      onePass
+        ? h('button', { class: 'btn btn-primary', onclick: () => onDone(st.firstTry, st.sure || {}) }, t('quizFinish'))
+        : h('button', {
+          class: 'btn btn-primary',
+          onclick: () => { st = continueQuiz(st); lastPass = []; draw(); },
+        }, misses ? t('quizRetry', misses) : t('quizFinish')));
   }
 
   function draw() {

@@ -3,7 +3,9 @@ import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
-import { courseTodayPick, moduleMastery, nextLesson, topicRows, levelsDone } from '../core/course.js';
+import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
+import { pathModel, topicPath } from './pathmap.js';
+import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -62,15 +64,6 @@ function todayCard(app, subject, pick) {
     }, ico('play'), ' ', t('courseGo')));
 }
 
-// One level chip of a topic: state as an icon (not colour alone), the level
-// name, and a spoken label. The suggested chip is marked, never filled.
-const CHIP_ICON = { todo: null, passed: 'circle-check', owned: 'check-check' };
-export function chipModel(t, topicTitle, lv, isNext) {
-  const label = t(`level_${lv.level}`);
-  const aria = t('chipLabel', topicTitle, label, t(`chipState_${lv.state}`));
-  return { cls: `level-chip s-${lv.state}${isNext ? ' next' : ''}`, label, aria: isNext ? `${aria} (${t('chipNext')})` : aria, icon: CHIP_ICON[lv.state] || null };
-}
-
 // The meta line every module shares: difficulty (Instap / Verdieping /
 // Specialist), mastery once it is more than "learn", and progress as a bar
 // with its count.
@@ -81,6 +74,7 @@ function moduleMeta(app, meta, count) {
   return [
     h('span', { class: 'pill tier' }, t(`tier_${moduleTier(meta.level)}`)),
     m === 'learn' ? null : masteryBadge(t, m),
+    metaSeal(t, app.state, meta),
     progressBar(total ? done / total : 0),
     h('span', { class: 'muted small module-count' }, count),
   ];
@@ -96,36 +90,39 @@ function modSummary(app, meta, ...bits) {
     h('span', { class: 'module-meta' }, ...bits));
 }
 
-// A topic module: one row per topic with its level chips, from the index
+// A topic module: one row per topic with its path of levels, from the index
 // alone (no module load). A level shows once the one before it is passed
-// (v16); every chip shown opens its lesson.
+// (v16, topicRows); every stop shown opens its lesson.
 function topicModuleRow(app, meta) {
   const t = app.t;
   const go = (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
-  const next = nextLesson(app.state, meta);
+  const model = pathModel(app.state, meta, app.lang);
+  const next = model.next;
   const at = next ? placeOf(next, [meta]) : null;
   const { done, total } = levelsDone(app.state, meta);
-  const rows = topicRows(app.state, meta, app.lang).map((row, i) => {
+  const rows = model.topics.map((topic, i) => {
     const title = topicTitle(app, meta.topics[i]);
     return h('div', { class: 'topic-row' },
       h('div', { class: 'topic-head' },
         h('h3', { class: 'topic-title' }, title),
-        h('span', { class: 'mono topic-count' }, t('topicCount', row.passed))),
-      h('div', { class: 'level-chips' }, row.levels.map((lv) => {
-        const isNext = lv.lessonId === next;
-        const m = chipModel(t, title, lv, isNext);
-        return h('button', { class: m.cls, 'aria-label': m.aria, onclick: () => go(lv.lessonId) },
-          m.icon ? ico(m.icon) : null,
-          h('span', { class: 'chip-label' }, m.label),
-          isNext ? h('span', { class: 'chip-next' }, t('chipNext')) : null);
-      })));
+        h('span', { class: 'mono topic-count' }, t('topicCount', topic.passed))),
+      topicPath(t, title, topic, go));
   });
   return h('details', { class: 'module topic-module' },
     modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLevels', done, total))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     h('section', { class: 'topics' }, rows),
+    moduleEnd(app, meta),
     next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
       ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null);
+}
+
+// Under the last topic: the module's medal (an empty ring before bronze).
+// The module check joins it once bronze is earned (v16 flair).
+function moduleEnd(app, meta) {
+  const end = moduleEndModel(app.state, meta, app.today());
+  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
+    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id })));
 }
 
 function moduleRow(app, meta) {
@@ -177,6 +174,7 @@ export function courseHome(app, subject) {
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
     todayCard(app, subject, pick),
+    goalLeftLine(app),
     // Begrippen and Mijn echte week: one compact row under the next step.
     h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),

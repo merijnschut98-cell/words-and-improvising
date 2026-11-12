@@ -11,6 +11,8 @@
 /* global P, C, W, H, iso, pathOf, span, beatStarts, warpU, introBeat, introCamera */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
+  // repeated parts ship once (build.mjs, dedupe): each <g data-r> copies its template
+  svg.querySelectorAll('[data-r]').forEach((el) => { el.innerHTML = svg.querySelector(`[data-t="${el.getAttribute('data-r')}"]`).innerHTML; });
   const E = {};
   svg.querySelectorAll('[data-k]').forEach((el) => { E[el.getAttribute('data-k')] = el; });
   const EN = document.documentElement.getAttribute('lang') === 'en';

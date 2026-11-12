@@ -3,6 +3,7 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
+import { celebration } from './flairui.js';
 import { applyLesson, markOpened, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
@@ -217,7 +218,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
           onDone: (firstTry, sure) => {
             const res = applyLesson(app.state, { subject, lessonId: lesson.id, firstTry, sure, lang: app.lang }, app.today(), Date.now());
             app.setState(res.state);
-            done(res.xp);
+            done(res);
           },
         }, box);
       }
@@ -327,12 +328,17 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
         ico('chevron-right'), ' ', t('nextLevel', placeLabel(t, app.lang, id)));
     }
 
-    function done(xp) {
+    // The done card: the celebration lives inside it (v16 flair); a retake
+    // passes quietly with the existing mark.
+    function done(res) {
       finished = true;
-      show(h('section', { class: 'card lesson-done' },
-        h('p', { class: 'done-mark' }, ico('graduation-cap')),
+      const xp = res.xp;
+      const c = celebration(app, res, { mark: h('p', { class: 'done-mark' }, ico('graduation-cap')), subject });
+      show(h('section', { class: `card lesson-done${c.big ? ' celebrate' : ''}` },
+        c.nodes[0],
         h('h2', { class: 'card-title' }, t('lessonPassed')),
-        xp ? h('p', { class: 'xp-line' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
+        xp ? h('p', { class: 'xp-line xp-rise' }, `+${xp} XP`) : h('p', { class: 'muted' }, t('lessonRetake')),
+        ...c.nodes.slice(1),
         h('p', { class: 'muted small' }, t('lessonComesBack'))),
       planCard(),
       guessCard(),
