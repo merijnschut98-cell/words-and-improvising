@@ -910,6 +910,39 @@
         ],
         "vtt": "src/content/courses/films/eng.maintenance.failure.en.vtt"
       }
+    },
+    "eng.maintenance.tpm": {
+      "poster": "src/content/courses/films/eng.maintenance.tpm.jpg",
+      "nl": {
+        "dur": 304.3,
+        "bytes": 9652090,
+        "scenes": [
+          0,
+          35.6,
+          80.46,
+          113.77,
+          138.62,
+          172.25,
+          222.13,
+          261.71
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.tpm.nl.vtt"
+      },
+      "en": {
+        "dur": 325.1,
+        "bytes": 10214563,
+        "scenes": [
+          0,
+          42.5,
+          87.04,
+          124.55,
+          149.08,
+          182.91,
+          231.62,
+          276.61
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.tpm.en.vtt"
+      }
     }
   }
 }

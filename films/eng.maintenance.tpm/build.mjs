@@ -627,7 +627,7 @@ const SAY = [
       en: 'The other {n:16} go to maintenance, with a clear promise: closed within {n:4} weeks.' },
     { nl: 'Daar staat of valt het mee. Als labels maanden blijven hangen, stoppen operators met melden, want er gebeurt toch niets mee. Dan sterft autonoom onderhoud.',
       en: 'This is what makes or breaks it. When tags hang for months, operators stop reporting, because nothing happens anyway. Then autonomous maintenance dies.' },
-    { nl: 'Daarom een scherpe vraag voor elke fabriek: hoeveel labels zijn er vorig kwartaal gehangen, en welk deel daarvan is gesloten?',
+    { nl: 'Daarom een scherpe vraag voor elke fabriek. Hoeveel labels zijn er vorig kwartaal gehangen, en welk deel daarvan is gesloten?',
       en: 'So here is a sharp question for any plant: how many tags were hung last quarter, and what share of them is closed?' },
   ],
   [ // s6 CILT, every shift
