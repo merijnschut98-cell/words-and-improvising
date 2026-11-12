@@ -299,6 +299,18 @@ const SAY = {
     // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
     // and DUIvels-; no other film says them
     [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
+    // feedback, upward too (pm.lead.feedback): espeak-ng reads feedback as "feed-bak" with a Dutch long e (said
+    // fiedbek, also in feedbacksandwich and feedforward), SBI as one word, "zbie" (said as letters), disagree and
+    // commit as "die-za-grée ant" and the English names as Dutch ("krée-aa-tie-ve lée-aa-der-ship", "mars-hal",
+    // "dzjef" as "jef"); it stresses PRES-tatiegesprek, ES-kalatiepad and IN-tegriteit; split at the head, each
+    // keeps its own stress. Not before "van de vloer", so pm.plan.method keeps the voice it was built with
+    [/\b([Ff])eedbacksandwich/g, '$1iedbek-sendwitsj'], [/\b([Ff])eedforward\b/g, '$1iedforwerd'], [/\b([Ff])eedback\b(?! van de vloer)/g, '$1iedbek'],
+    [/\bSBI\b/g, 'es bee ie'], [/\bCenter for Creative Leadership\b/g, 'Senter for Krie-eetif Liedersjip'], [/\bMarshall\b/g, 'Marsjal'],
+    [/\bEdmondson\b/g, 'Edmondsen'], [/\bJeff Bezos\b/g, 'Djef Beezos'], [/\b([Dd])isagree and commit\b/g, '$1issegrie en kommit'],
+    [/\b([Pp])restatiegesprek/g, '$1restatie-gesprek'], [/\b([Ee])scalatiepad/g, '$1scalatie-pad'], [/\b([Ii])ntegriteit\b/g, '$1n-tegriteit'],
+    // and COO as letters (before a colon espeak-ng reads the word "koo"); commitment as Dutch project people say
+    // it, k'MIT-ment (espeak-ng reads "kommit-MENT", heard as "comment meer"; "kmitmunt" heard as commitment)
+    [/\bCOO\b/g, 'C O O'], [/\bCommitment\b/g, 'Kmitmunt'], [/\bcommitment\b/g, 'kmitmunt'],
     // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
     // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
     // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
@@ -312,15 +324,22 @@ const SAY = {
     // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
     // "too-ie-oota"); no other film says Toyota in Dutch
     [/\bToyota\b/g, 'Tojota'],
+    // proving results (pm.close.results): espeak-ng stresses controller on the first part, "KON-trol-ler" (said
+    // kon-TROL-ler), dekkingsbijdrage on "-DRAA-" with a French zj (split at the head: DEK-kings-BIJ-drage), and
+    // reads run chart with a French sj (said run tsjart); no other film says them. procentpunt stressed PRO-
+    // (split: pro-CENT-punt); no other film's voice says it. investering is read IN-ves-te-ring (said
+    // in-ves-TEE-ring), but eng.lines.variants and eng.quality.tolerance say it in rendered videos, so only
+    // this film's phrase "investering die niet nodig" is split
+    [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
+    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
     // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
     // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
     // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
     // only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its voice. Also deal on its own as
-    // "diel" (espeak-ng reads "dee-al") and integriteit stressed on -TEIT (espeak-ng stresses IN-; split as
-    // inte-griteit). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
+    // "diel" (espeak-ng reads "dee-al"). integriteit takes pm.lead.feedback's in-tegriteit above (stress on
+    // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
     // these words in Dutch
     [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
-    [/\b([Ii])ntegriteit\b/g, '$1nte-griteit'],
     [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],

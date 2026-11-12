@@ -85,17 +85,35 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.lead.feedback: feedback, the feedbacksandwich and feedforward as Dutch project people say them (espeak-ng
+  // reads "feed-bak"), SBI as letters (read as one word, "zbie"), disagree and commit and the English names in a
+  // Dutch spelling, and prestatiegesprek, escalatiepad and integriteit stressed on the right part; English keeps
+  // them, and pm.plan.method's "feedback van de vloer" keeps the voice it was built with
+  assert.equal(speakOf(['Feedback, de feedbacksandwich en feedforward: SBI, van het Center for Creative Leadership.'], 'nl'), 'Fiedbek, de fiedbek-sendwitsj en fiedforwerd: es bee ie, van het Senter for Krie-eetif Liedersjip.');
+  assert.equal(speakOf(['Marshall Goldsmith, Edmondson en Jeff Bezos. Disagree and commit, tenzij het over integriteit gaat.'], 'nl'), 'Marsjal Goldsmith, Edmondsen en Djef Beezos. Dissegrie en kommit, tenzij het over in-tegriteit gaat.');
+  assert.equal(speakOf(['Een prestatiegesprek, het escalatiepad. De COO: nee.'], 'nl'), 'Een prestatie-gesprek, het escalatie-pad. De C O O: nee.');
+  assert.equal(speakOf(['Iets echts, en feedback van de vloer.'], 'nl'), 'Iets echts, en feedback van de vloer.');
+  // commitment, the lead example's word, as k'MIT-ment (espeak-ng stresses it at the end); English keeps it, and
+  // "disagree and commit" is untouched by it
+  assert.equal(speakOf(['Ik heb hun commitment nodig. Commitment, en disagree and commit.'], 'nl'), 'Ik heb hun kmitmunt nodig. Kmitmunt, en dissegrie en kommit.');
+  assert.equal(speakOf(['I need their commitment.'], 'en'), 'I need their commitment.');
+  assert.equal(speakOf(['Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.'], 'en'), 'Feedback and feedforward: SBI, Marshall Goldsmith, Jeff Bezos. Disagree and commit. The COO.');
   // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
   assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
   assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
+  // pm.close.results: controller stressed on the second part (espeak-ng says KON-trol-ler), dekkingsbijdrage
+  // split at the head (espeak-ng stresses -bij-DRAA-zje), run chart with a tsj (espeak-ng reads a French sj);
+  // English keeps them
+  assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
+  assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
   // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
   // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
   // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
   // voice); English keeps them all
   assert.equal(speakOf(['Een pakketdeal, twee pakketdeals. Met framing, Framing.'], 'nl'), 'Een pakket-diel, twee pakket-diels. Met freeming, Freeming.');
   assert.equal(speakOf(['Gecoate beugels; zelf coaten kan niet. Gecoate nagels.'], 'nl'), 'Gekoote beugels; zelf kooten kan niet. Gecoate nagels.');
-  // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (espeak-ng stresses IN-)
-  assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en inte-griteit.');
+  // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
+  assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
 });
 
