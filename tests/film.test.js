@@ -60,6 +60,19 @@ test('speak variant: units and signs are said as words, per language', () => {
   assert.equal(nl('Rand en rpmx en Radius'), 'Rand en rpmx en Radius');
 });
 
+// espeak-ng reads governance the Dutch way ("goo-ver-nan-se"), MUM-effect as
+// letters, keep with a long e and stresses ESkalatieroute: Dutch only, the
+// English voice keeps them (pm.run.escalation)
+test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Dat is governance: één A4.'), 'Dat is gavvernens: één A4.');
+  assert.equal(nl('Governance is'), 'Gavvernens is');
+  assert.equal(nl('het MUM-effect, van keep mum, zwijgen'), 'het mum-effect, van kiep mum, zwijgen');
+  assert.equal(nl('een escalatieroute af. Escalatieroutes'), 'een escalatie-route af. Escalatie-routes');
+  const en = 'governance, the MUM effect, keep mum, an escalation path';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 test('timeline: scene starts, total, the scene at a time', () => {
   const tl = timelineOf([{ dur: 10 }, { dur: 5 }, { dur: 20 }]);
   assert.deepEqual(tl.starts, [0, 10, 15]);
