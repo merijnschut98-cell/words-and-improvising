@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1: standaardwerk en training
     {
       id: 'pm.land.training',
+      film: 'pm.land.training',
       title: 'Training en werkinstructies',
       pre: [
         {
@@ -15,7 +16,7 @@ export default {
       ],
       teach: [
         'Schrijf de nieuwe manier op als korte werkinstructie: één A4 per taak, stappen op volgorde, foto’s van de echte apparatuur, en per stap het kernpunt, het detail waardoor het goed of fout gaat, plus waarom dat ertoe doet.\n\nSchrijf hem met de mensen die het werk doen en test hem: laat iemand die er niet bij was hem volgen terwijl jij kijkt. Waar hij aarzelt, is de instructie onduidelijk.',
-        'Dit komt uit TWI, Training Within Industry, een Amerikaans oorlogsprogramma uit 1940 dat tot 1945 meer dan 1,6 miljoen certificaten uitreikte. De methode Job Instruction heeft vier stappen: de leerling voorbereiden, voordoen en uitleggen, zelf laten proberen terwijl jij corrigeert, en later nagaan hoe het gaat.\n\nHet motto geldt nog steeds: heeft de medewerker het niet geleerd, dan heeft de instructeur het niet goed uitgelegd. Toyota nam het in de jaren 50 over.',
+        'Dit komt uit TWI, Training Within Industry, een Amerikaans oorlogsprogramma uit 1940 dat tot 1945 meer dan 1,6 miljoen certificaten uitreikte. De methode Job Instruction heeft vier stappen: de leerling voorbereiden, voordoen en uitleggen, zelf laten proberen terwijl jij corrigeert, en later nagaan hoe het gaat.\n\nHet motto geldt nog steeds: heeft de medewerker het niet geleerd, dan heeft de instructeur het niet aangeleerd. Toyota nam het in de jaren 50 over.',
         'Klaslokaal tegenover de werkplek. Een klaslokaal is goed voor het waarom en het grote plaatje, in 30 tot 60 minuten. Vaardigheden leer je met training op de werkplek: voordoen, samen doen, zelf laten doen terwijl jij kijkt, later checken.\n\nPloegleiders of ervaren operators zijn de beste trainers, als je hen eerst traint. Train vlak voordat mensen het nodig hebben; een sessie zes weken voor de livegang is dan grotendeels vergeten.',
         'Plan korte sessies in de week voor de livegang en begeleiding op de vloer in de eerste twee weken erna. Zorg dat elke ploeg aan bod komt, ook nacht en weekend, die projecten vaak vergeten.\n\nCheck of het blijft hangen: kijk een week later hoe mensen het zonder hulp doen, niet om ze te beoordelen, maar om te zien of de instructie of de training beter moet. Maken veel mensen dezelfde fout, dan is de instructie fout, niet de mensen.',
         'Trainers meten vaak het verkeerde. De Kirkpatrick-niveaus (Donald Kirkpatrick, 1959) zetten vier checks op een rij: vonden ze het leuk, hebben ze het geleerd, doen ze het op de werkplek, zijn de resultaten beter. De meeste projecten stoppen bij de eerste: een formulier met smileys.\n\nExperts twisten of een klaslokaal wel nodig is. De populaire 70-20-10-regel (70% leer je in het werk, 20% van anderen, 10% in cursussen) is een praktijkmodel met zwak bewijs. Ken je de taak niet goed, laat de expert trainen en check jij het resultaat.',

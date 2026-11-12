@@ -4,6 +4,7 @@ export default {
     // Topic 1: standardised work and training
     {
       id: 'pm.land.training',
+      film: 'pm.land.training',
       title: 'Training and work instructions',
       pre: [
         {
