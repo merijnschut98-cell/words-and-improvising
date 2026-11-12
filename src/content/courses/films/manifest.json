@@ -1494,6 +1494,41 @@
         ],
         "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
       }
+    },
+    "eng.gridplanning.loadflow": {
+      "poster": "src/content/courses/films/eng.gridplanning.loadflow.jpg",
+      "nl": {
+        "dur": 346.4,
+        "bytes": 14454322,
+        "scenes": [
+          0,
+          23.79,
+          58.24,
+          82.12,
+          136.16,
+          186.81,
+          237.11,
+          261.37,
+          302
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.loadflow.nl.vtt"
+      },
+      "en": {
+        "dur": 357.2,
+        "bytes": 14974006,
+        "scenes": [
+          0,
+          27.1,
+          63.71,
+          89.36,
+          141.24,
+          194.05,
+          247.82,
+          273.2,
+          313.09
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
+      }
     }
   }
 }
