@@ -127,6 +127,17 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.consult.proposal: dagtarief split at the head (espeak-ng stresses dag-ta-RIEF; lower case only, so
+  // pm.run.scope's "Dagtarief: bij de klant" keeps its voice), plantdirecteur with its d
+  // (espeak-ng reads "plantirecteur"), extrusielijn split at the head (espeak-ng stresses -LIJN), the productie-engineer
+  // as Dutch makers say it, "entsjinier" (espeak-ng reads "eng-i-neer"), and Alan Weiss as his English name (espeak-ng
+  // reads "AA-lan"); English keeps them all
+  assert.equal(speakOf(['Een dagtarief, twee dagtarieven. Dagtarief: bij de klant.'], 'nl'), 'Een dag-tarief, twee dag-tarieven. Dagtarief: bij de klant.');
+  assert.equal(speakOf(['De plantdirecteur van de extrusielijn. Plantdirecteur, extrusielijnen.'], 'nl'), 'De plant-directeur van de extrusie-lijn. Plant-directeur, extrusie-lijnen.');
+  assert.equal(speakOf(['Een dag van de productie-engineer. Voorstanders zoals Alan Weiss.'], 'nl'), 'Een dag van de productie-entsjinier. Voorstanders zoals Ellun Wais.');
+  // and offerte as off-erte (espeak-ng stresses OF-ferte), offertes as off-erte's (espeak-ng reads offerTES)
+  assert.equal(speakOf(['Een offerte, drie offertes. Offerte!'], 'nl'), "Een off-erte, drie off-erte's. Off-erte!");
+  assert.equal(speakOf(['A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss.'], 'en'), 'A day rate; the plant director, the extrusion line, the production engineer, Alan Weiss.');
 });
 
 // ------------------------------------------------------------ WAV files
