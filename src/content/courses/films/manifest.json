@@ -1529,6 +1529,169 @@
         ],
         "vtt": "src/content/courses/films/eng.gridplanning.loadflow.en.vtt"
       }
+    },
+    "pm.plan.risk": {
+      "poster": "src/content/courses/films/pm.plan.risk.jpg",
+      "nl": {
+        "dur": 233,
+        "bytes": 8625795,
+        "scenes": [
+          0,
+          37.78,
+          77.65,
+          118.38,
+          169.17,
+          199.99
+        ],
+        "vtt": "src/content/courses/films/pm.plan.risk.nl.vtt"
+      },
+      "en": {
+        "dur": 243.2,
+        "bytes": 8797455,
+        "scenes": [
+          0,
+          42.29,
+          82.47,
+          123.66,
+          174.89,
+          207.75
+        ],
+        "vtt": "src/content/courses/films/pm.plan.risk.en.vtt"
+      }
+    },
+    "pm.plan.schedule": {
+      "poster": "src/content/courses/films/pm.plan.schedule.jpg",
+      "nl": {
+        "dur": 290.1,
+        "bytes": 9702983,
+        "scenes": [
+          0,
+          59.55,
+          112.88,
+          159.88,
+          193.8,
+          237.72
+        ],
+        "vtt": "src/content/courses/films/pm.plan.schedule.nl.vtt"
+      },
+      "en": {
+        "dur": 305.2,
+        "bytes": 10212007,
+        "scenes": [
+          0,
+          61.72,
+          115.82,
+          165.29,
+          202.05,
+          248.8
+        ],
+        "vtt": "src/content/courses/films/pm.plan.schedule.en.vtt"
+      }
+    },
+    "pm.intake.firsttalk": {
+      "poster": "src/content/courses/films/pm.intake.firsttalk.jpg",
+      "nl": {
+        "dur": 336.9,
+        "bytes": 11812703,
+        "scenes": [
+          0,
+          47.04,
+          86.8,
+          116.1,
+          142.46,
+          181.68,
+          213.41,
+          257.65,
+          300.6
+        ],
+        "vtt": "src/content/courses/films/pm.intake.firsttalk.nl.vtt"
+      },
+      "en": {
+        "dur": 342.6,
+        "bytes": 12018537,
+        "scenes": [
+          0,
+          48.38,
+          87.92,
+          117.49,
+          143.32,
+          182.39,
+          216.02,
+          261,
+          303.44
+        ],
+        "vtt": "src/content/courses/films/pm.intake.firsttalk.en.vtt"
+      }
+    },
+    "pm.run.escalation": {
+      "poster": "src/content/courses/films/pm.run.escalation.jpg",
+      "nl": {
+        "dur": 358.8,
+        "bytes": 12062854,
+        "scenes": [
+          0,
+          36.86,
+          74.43,
+          110.83,
+          133.26,
+          164.78,
+          202.86,
+          256.21,
+          289.61
+        ],
+        "vtt": "src/content/courses/films/pm.run.escalation.nl.vtt"
+      },
+      "en": {
+        "dur": 356.8,
+        "bytes": 11846078,
+        "scenes": [
+          0,
+          35.25,
+          75.39,
+          111.05,
+          134.51,
+          165.62,
+          202.61,
+          254.83,
+          287.88
+        ],
+        "vtt": "src/content/courses/films/pm.run.escalation.en.vtt"
+      }
+    },
+    "pm.plan.wbs": {
+      "poster": "src/content/courses/films/pm.plan.wbs.jpg",
+      "nl": {
+        "dur": 338.1,
+        "bytes": 11470287,
+        "scenes": [
+          0,
+          42.26,
+          74.82,
+          105.29,
+          149.05,
+          184.03,
+          219.35,
+          261.85,
+          294.97
+        ],
+        "vtt": "src/content/courses/films/pm.plan.wbs.nl.vtt"
+      },
+      "en": {
+        "dur": 340.6,
+        "bytes": 11507186,
+        "scenes": [
+          0,
+          42.97,
+          72.86,
+          103.22,
+          146.2,
+          182.13,
+          218.14,
+          261.35,
+          295.76
+        ],
+        "vtt": "src/content/courses/films/pm.plan.wbs.en.vtt"
+      }
     }
   }
 }
