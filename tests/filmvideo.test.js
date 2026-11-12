@@ -85,6 +85,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.land.training: Toyota as the Dutch say it, "tojota" (espeak-ng reads "too-ie-oota"); English keeps it
+  assert.equal(speakOf(['Toyota nam de methode over, net als Toyota\'s leveranciers.'], 'nl'), 'Tojota nam de methode over, net als Tojota\'s leveranciers.');
+  assert.equal(speakOf(['Toyota adopted it.'], 'en'), 'Toyota adopted it.');
 });
 
 // ------------------------------------------------------------ WAV files

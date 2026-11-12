@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1: standaardwerk en training
     {
       id: 'pm.land.training',
+      film: 'pm.land.training',
       title: 'Training en werkinstructies',
       pre: [
         {
