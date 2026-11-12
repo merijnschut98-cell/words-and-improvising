@@ -1,0 +1,385 @@
+WEBVTT
+
+1
+00:00:00.842 --> 00:00:03.884
+Een straat met een netstation, een kabel naar elk huis,
+
+2
+00:00:04.128 --> 00:00:07.065
+en aan het eind een koelhuis: allemaal aan hetzelfde net.
+
+3
+00:00:08.131 --> 00:00:08.886
+Netcongestie (grid congestion)
+
+4
+00:00:08.955 --> 00:00:11.521
+betekent dat op piekmomenten de vraag naar transport
+
+5
+00:00:11.567 --> 00:00:14.191
+groter is dan wat een deel van het net veilig kan dragen.
+
+6
+00:00:15.155 --> 00:00:18.720
+Dat deel kan een kabel zijn, een transformator of een heel onderstation.
+
+7
+00:00:19.690 --> 00:00:23.022
+Het kan aan de afnamekant zitten, zoals een bedrijventerrein,
+
+8
+00:00:23.243 --> 00:00:25.785
+of aan de invoedingskant, zoals zonneparken.
+
+9
+00:00:26.572 --> 00:00:30.392
+Grote delen van Nederland zitten vol voor een van beide, of allebei.
+
+10
+00:00:31.713 --> 00:00:33.687
+Dit koelhuis is een grootverbruiker (large consumer):
+
+11
+00:00:33.988 --> 00:00:36.612
+een aansluiting boven 3 maal 80 ampère,
+
+12
+00:00:36.926 --> 00:00:42.324
+zo’n 55 kilovoltampère, net als een supermarkt, een fabriek of een laadplein.
+
+13
+00:00:43.302 --> 00:00:47.690
+In een congestiegebied komen nieuwe grootverbruikers, en bestaande die meer willen,
+
+14
+00:00:47.981 --> 00:00:48.701
+op een wachtrij.
+
+15
+00:00:49.492 --> 00:00:51.048
+Duizenden bedrijven wachten.
+
+16
+00:00:52.049 --> 00:00:54.522
+Woningen en winkels hadden aparte capaciteit.
+
+17
+00:00:55.286 --> 00:00:59.524
+Sinds juli 2026 gelden voor hen dezelfde regels voor voorrang,
+
+18
+00:00:59.941 --> 00:01:01.195
+dus soms wachten ook zij.
+
+19
+00:01:02.216 --> 00:01:05.641
+Waar nog ruimte is, toont de openbare capaciteitskaart (capacity map),
+
+20
+00:01:05.919 --> 00:01:07.858
+voor afname en voor invoeding.
+
+21
+00:01:09.146 --> 00:01:10.133
+Waarom niet bijbouwen?
+
+22
+00:01:10.817 --> 00:01:14.463
+Een nieuw onderstation duurt vaak 5 tot 10 jaar: vergunningen,
+
+23
+00:01:14.857 --> 00:01:16.738
+grond, ruimte voor kabels.
+
+24
+00:01:17.464 --> 00:01:20.053
+Middenspanning verzwaren duurt maanden tot jaren.
+
+25
+00:01:21.018 --> 00:01:24.907
+Monteurs, transformatoren en ruimte in de grond zijn schaars.
+
+26
+00:01:25.681 --> 00:01:29.733
+Bouwen alleen lost het voorlopig niet op: het bestaande net moet beter benut worden.
+
+27
+00:01:30.733 --> 00:01:36.329
+Een voorbeeld: een onderstation van 30 megavoltampère, met een piek van 29.
+
+28
+00:01:37.242 --> 00:01:40.272
+Drie bedrijven willen samen 6 megavoltampère erbij.
+
+29
+00:01:41.284 --> 00:01:41.981
+Dat past niet.
+
+30
+00:01:42.653 --> 00:01:44.801
+Het eerste antwoord: een wachtrij,
+
+31
+00:01:45.057 --> 00:01:47.797
+tot er over zo’n 7 jaar een nieuw onderstation staat.
+
+32
+00:01:49.108 --> 00:01:54.135
+Maar de netbeheerder kijkt beter: alle 8.760 uur van het jaar op een rij,
+
+33
+00:01:54.333 --> 00:01:55.285
+van hoog naar laag.
+
+34
+00:01:56.282 --> 00:02:00.949
+Boven de 24 megavoltampère komt de belasting maar 180 uur per jaar.
+
+35
+00:02:01.606 --> 00:02:03.347
+Dat is zo’n 2 procent van de tijd.
+
+36
+00:02:04.378 --> 00:02:05.318
+Zo gaat het vaak:
+
+37
+00:02:05.539 --> 00:02:07.547
+een vol station is meestal maar tientallen
+
+38
+00:02:07.582 --> 00:02:10.078
+tot honderden uren per jaar echt overbelast.
+
+39
+00:02:11.385 --> 00:02:12.349
+Congestiemanagement (congestion management):
+
+40
+00:02:12.720 --> 00:02:14.903
+klanten worden betaald of gecontracteerd om op
+
+41
+00:02:14.984 --> 00:02:17.446
+piekmomenten minder af te nemen of in te voeden.
+
+42
+00:02:18.434 --> 00:02:23.531
+Netbeheerders kopen die flexibiliteit vaak in via GOPACS, hun gezamenlijke platform,
+
+43
+00:02:23.844 --> 00:02:25.609
+waar bedrijven aanbieden om te schuiven.
+
+44
+00:02:26.555 --> 00:02:28.653
+Hier schuift het koelhuis tegen een vergoeding
+
+45
+00:02:28.734 --> 00:02:31.428
+4 megavoltampère koeling weg uit die uren,
+
+46
+00:02:31.683 --> 00:02:33.157
+bijvoorbeeld door eerder te koelen.
+
+47
+00:02:34.134 --> 00:02:36.491
+Een flexibel contract (flexible contract) geeft capaciteit,
+
+48
+00:02:36.851 --> 00:02:39.545
+behalve op de piekuren of voor een vast deel van het jaar,
+
+49
+00:02:39.823 --> 00:02:41.402
+meestal tegen een lager tarief.
+
+50
+00:02:42.392 --> 00:02:44.110
+Eén bedrijf neemt zo’n contract.
+
+51
+00:02:44.827 --> 00:02:47.196
+Zo sluiten twee van de drie binnen een jaar aan:
+
+52
+00:02:47.556 --> 00:02:50.058
+een beetje flexibiliteit levert veel ruimte op.
+
+53
+00:02:51.322 --> 00:02:53.516
+Wie krijgt de schaarse capaciteit het eerst?
+
+54
+00:02:54.233 --> 00:02:55.975
+Standaard: wie het eerst komt.
+
+55
+00:02:57.049 --> 00:03:00.974
+Sinds 2024 mogen netbeheerders van de toezichthouder
+
+56
+00:03:01.032 --> 00:03:03.551
+projecten met maatschappelijke waarde voorrang geven:
+
+57
+00:03:03.923 --> 00:03:05.397
+eerst wat congestie verlicht,
+
+58
+00:03:05.583 --> 00:03:10.842
+dan veiligheid, zoals ziekenhuizen, dan basisbehoeften, zoals woningbouw en scholen.
+
+59
+00:03:11.532 --> 00:03:17.604
+De rechter vernietigde dat eerste kader in 2025; het nieuwe houdt dezelfde volgorde.
+
+60
+00:03:18.597 --> 00:03:21.116
+Bedrijven verderop in de rij wachten daardoor langer.
+
+61
+00:03:22.114 --> 00:03:26.050
+Een scherpe vraag: hoeveel uur zit dit station echt boven zijn grens,
+
+62
+00:03:26.329 --> 00:03:27.467
+en hoeveel erboven?
+
+63
+00:03:28.785 --> 00:03:29.609
+Wie regelt dit?
+
+64
+00:03:30.329 --> 00:03:35.855
+De regionale netbeheerder: hij sluit klanten aan, transporteert stroom en vaak gas,
+
+65
+00:03:36.076 --> 00:03:39.257
+houdt het net veilig, verhelpt storingen, dag en nacht,
+
+66
+00:03:39.547 --> 00:03:41.126
+en bouwt het net van de toekomst.
+
+67
+00:03:42.127 --> 00:03:44.750
+Elke twee jaar publiceert hij een investeringsplan (investment plan):
+
+68
+00:03:44.983 --> 00:03:45.911
+zijn knelpunten,
+
+69
+00:03:46.306 --> 00:03:47.316
+en wat hij gaat bouwen.
+
+70
+00:03:48.287 --> 00:03:49.715
+Energie verkoopt hij niet.
+
+71
+00:03:50.446 --> 00:03:54.010
+Dat doet een energieleverancier (energy supplier), zoals Eneco of Vattenfall,
+
+72
+00:03:54.474 --> 00:03:55.507
+en die kies je zelf.
+
+73
+00:03:56.897 --> 00:04:00.554
+De meeste storingen zitten in het middenspanningsnet en het laagspanningsnet:
+
+74
+00:04:00.891 --> 00:04:02.586
+een kabel geraakt bij graafwerk,
+
+75
+00:04:02.864 --> 00:04:05.372
+een oude mof, een zekering die doorslaat.
+
+76
+00:04:06.369 --> 00:04:09.353
+Netbeheerders sturen op de jaarlijkse uitvalduur (outage minutes) per klant.
+
+77
+00:04:10.131 --> 00:04:17.573
+In 2025: zo’n 23 minuten door onvoorziene storingen, plus zo’n 27 door gepland werk.
+
+78
+00:04:18.328 --> 00:04:20.557
+Een van de betrouwbaarste netten van Europa.
+
+79
+00:04:21.623 --> 00:04:26.627
+Voorbeeld: 2,8 miljoen klanten en 70 miljoen klantminuten in een jaar,
+
+80
+00:04:26.860 --> 00:04:32.061
+vooral door kapotte kabels in de middenspanning: gemiddeld 25 minuten per klant.
+
+81
+00:04:33.085 --> 00:04:37.137
+Eén storing waarbij 3.000 klanten 90 minuten zonder stroom zitten,
+
+82
+00:04:37.311 --> 00:04:39.621
+is al 270.000 klantminuten.
+
+83
+00:04:40.653 --> 00:04:42.731
+Dus eerst de meeste klanten terugschakelen,
+
+84
+00:04:43.044 --> 00:04:47.061
+bijvoorbeeld via het normaal openpunt in de ring, en dan pas de kabel repareren.
+
+85
+00:04:48.339 --> 00:04:50.742
+Een netbeheerder is een gereguleerd monopolie (regulated monopoly):
+
+86
+00:04:51.171 --> 00:04:52.472
+elk heeft een eigen gebied,
+
+87
+00:04:52.901 --> 00:04:54.225
+en klanten kunnen niet kiezen.
+
+88
+00:04:55.269 --> 00:04:59.995
+Daarom bepaalt de ACM, de toezichthouder, zijn inkomsten via de tarieven,
+
+89
+00:05:00.342 --> 00:05:03.559
+de regels in de codes, en controleert ze de kwaliteit.
+
+90
+00:05:04.549 --> 00:05:10.923
+Sinds 1 januari 2026 geldt de Energiewet, die de wet uit 1998 verving.
+
+91
+00:05:11.621 --> 00:05:15.220
+Eigenaar zijn provincies en gemeenten; verkopen mag niet.
+
+92
+00:05:15.935 --> 00:05:20.184
+De Staat brengt kapitaal in, zoals bij Stedin, en bezit TenneT.
+
+93
+00:05:20.920 --> 00:05:23.010
+Tarieven en de wachtrij zijn landelijk nieuws.
+
+94
+00:05:24.082 --> 00:05:27.855
+Intussen groeit het werk, en komt de sector duizenden monteurs tekort.
+
+95
+00:05:28.649 --> 00:05:32.005
+Dus werken netbeheerders standaard, in grotere pakketten.
+
+96
+00:05:32.674 --> 00:05:36.018
+De scherpe vraag: waar gaat de dag van een monteur echt naartoe?
